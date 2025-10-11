@@ -8,13 +8,21 @@ This document records key architectural choices made during development sessions
 
 **Decision:** Separate main process (Electron) code from renderer (React UI) code.
 
-**Structure:** See [directory-structure.md](./directory-structure.md) for complete details.
+**Structure:**
+```
+src/
+├── main/         # Electron main process (Node.js, file system, OS access)
+├── renderer/     # React application (browser sandbox)
+├── shared/       # Code used by both (types, interfaces)
+└── preload.ts    # Security bridge between main and renderer
+```
 
 **Rationale:**
 - Clear separation between Node.js/Electron code and browser/React code
 - Easy to understand what runs where
 - Security: renderer code runs in sandbox, main has system access
 - Prevents accidental mixing of main and renderer APIs
+- preload.ts sits at root as it bridges both worlds
 
 ## Component Organization
 
@@ -106,5 +114,6 @@ const config = nodeTypeConfig[node.type] || { icon: '', style: '' };
 - Code should be readable without comments
 - Comments become stale and misleading
 - Good naming and structure beats documentation
+- Comments can be used when there is a high level of abstraction
 
 **Update this file when making new architectural decisions.**
