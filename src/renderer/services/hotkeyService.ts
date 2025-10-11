@@ -47,7 +47,7 @@ class HotkeyService {
   handleKeyDown(event: KeyboardEvent): boolean {
     for (const [action, handlers] of this.handlers.entries()) {
       const keyBinding = this.getKeyBinding(action);
-      if (keyBinding && this.matchesKey(event, keyBinding)) {
+      if (keyBinding && handlers.length > 0 && this.matchesKey(event, keyBinding)) {
         event.preventDefault();
         handlers.forEach((handler) => handler(event));
         return true;
@@ -70,6 +70,10 @@ class HotkeyService {
 
   getConfig(): HotkeyConfig {
     return this.config;
+  }
+
+  clearAllHandlers(): void {
+    this.handlers.clear();
   }
 }
 
