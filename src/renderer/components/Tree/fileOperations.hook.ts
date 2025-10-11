@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import { Node } from '../../shared/types';
-import { saveFile, loadFile } from '../services/fileService';
+import { Node } from '../../../shared/types';
+import { saveFile, loadFile } from '../../services/fileService';
 
 export function useFileOperations(
   initialNodes: Record<string, Node>,

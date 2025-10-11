@@ -18,20 +18,23 @@ This document records key architectural choices made during development sessions
 
 ## Component Organization
 
-**Decision:** Each component lives in its own subdirectory with co-located styles.
+**Decision:** Each component lives in its own subdirectory with co-located styles and hooks.
 
 **Structure:**
 ```
 src/renderer/components/ComponentName/
 ├── ComponentName.tsx
-└── ComponentName.css
+├── ComponentName.css
+├── featureName.hook.ts (optional)
+└── anotherFeature.hook.ts (optional)
 ```
 
 **Rationale:**
 - Components are self-contained and portable
-- Styles stay with their component
+- Styles and hooks stay with their component
 - Easy to move or delete entire features
 - Clear ownership of files
+- Hook names describe their purpose, not their parent (location already indicates ownership)
 
 ## Style File Separation
 

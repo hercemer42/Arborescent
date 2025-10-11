@@ -8,8 +8,12 @@ interface NodeProps {
   nodeTypeConfig: Record<string, NodeTypeConfig>;
   depth?: number;
   selectedNodeId: string | null;
+  editingNodeId: string | null;
   onSelectNode: (nodeId: string) => void;
+  onStartEdit: (nodeId: string) => void;
+  onFinishEdit: () => void;
   onStatusChange?: (nodeId: string, status: NodeStatus) => void;
+  onContentChange?: (nodeId: string, content: string) => void;
 }
 
 export function Node({
@@ -18,8 +22,12 @@ export function Node({
   nodeTypeConfig,
   depth = 0,
   selectedNodeId,
+  editingNodeId,
   onSelectNode,
+  onStartEdit,
+  onFinishEdit,
   onStatusChange,
+  onContentChange,
 }: NodeProps) {
   const node = nodes[nodeId];
   const [expanded, setExpanded] = useState(true);
@@ -42,6 +50,7 @@ export function Node({
           onSelect={() => onSelectNode(nodeId)}
           onStatusChange={onStatusChange}
           isSelected={selectedNodeId === nodeId}
+          isEditing={editingNodeId === nodeId}
         />
       </div>
 
@@ -56,8 +65,12 @@ export function Node({
             nodeTypeConfig={nodeTypeConfig}
             depth={depth + 1}
             selectedNodeId={selectedNodeId}
+            editingNodeId={editingNodeId}
             onSelectNode={onSelectNode}
+            onStartEdit={onStartEdit}
+            onFinishEdit={onFinishEdit}
             onStatusChange={onStatusChange}
+            onContentChange={onContentChange}
           />
         ))}
     </div>

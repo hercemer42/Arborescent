@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { Document, NodeStatus } from '../../../shared/types';
 import { Node } from '../Node/Node';
-import { useFileOperations } from '../../hooks/useFileOperations';
+import { useFileOperations } from './fileOperations.hook';
+import { useKeyboardNavigation } from './navigation.hook';
 import './Tree.css';
 
 interface TreeProps {
@@ -10,10 +11,13 @@ interface TreeProps {
 
 export function Tree({ document }: TreeProps) {
   const [selectedNodeId, setSelectedNodeId] = useState<string | null>(null);
+  const [editingNodeId, setEditingNodeId] = useState<string | null>(null);
   const { nodes, setNodes, rootNodeId } = useFileOperations(
     document.nodes,
     document.rootNodeId
   );
+
+  useKeyboardNavigation(nodes, rootNodeId, selectedNodeId, setSelectedNodeId);
 
   const handleStatusChange = (nodeId: string, status: NodeStatus) => {
     setNodes((prevNodes) => ({
@@ -28,6 +32,16 @@ export function Tree({ document }: TreeProps) {
     }));
   };
 
+  const handleContentChange = (nodeId: string, content: string) => {
+    setNodes((prevNodes) => ({
+      ...prevNodes,
+      [nodeId]: {
+        ...prevNodes[nodeId],
+        content,
+      },
+    }));
+  };
+
   return (
     <div className="tree">
       <Node
@@ -35,8 +49,12 @@ export function Tree({ document }: TreeProps) {
         nodes={nodes}
         nodeTypeConfig={document.nodeTypeConfig || {}}
         selectedNodeId={selectedNodeId}
+        editingNodeId={editingNodeId}
         onSelectNode={setSelectedNodeId}
+        onStartEdit={setEditingNodeId}
+        onFinishEdit={() => setEditingNodeId(null)}
         onStatusChange={handleStatusChange}
+        onContentChange={handleContentChange}
       />
     </div>
   );
