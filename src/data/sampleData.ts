@@ -6,19 +6,19 @@ export const sampleDocument: Document = {
   nodeTypeConfig: {
     project: {
       icon: '📁',
-      style: 'text-blue-700 font-bold text-lg',
+      style: '',
     },
     section: {
       icon: '📂',
-      style: 'text-purple-700 font-semibold',
+      style: '',
     },
     task: {
       icon: '',
-      style: 'text-gray-800',
+      style: '',
     },
     doc: {
       icon: '📄',
-      style: 'text-gray-600 italic',
+      style: '',
     },
   },
   nodes: {

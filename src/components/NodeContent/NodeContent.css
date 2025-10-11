@@ -1,0 +1,23 @@
+.node-content {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 6px;
+  cursor: pointer;
+}
+
+.node-content:hover {
+  background-color: var(--color-hover);
+}
+
+.node-content.selected {
+  background-color: var(--color-selected);
+}
+
+.node-icon {
+  font-size: 1rem;
+}
+
+.node-text {
+  flex: 1;
+}

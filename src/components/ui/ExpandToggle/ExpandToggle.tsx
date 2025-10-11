@@ -1,24 +1,29 @@
 import React from 'react';
-import { ICONS, styles } from './ExpandToggle.styles';
+import './ExpandToggle.css';
 
 interface ExpandToggleProps {
   expanded: boolean;
   onToggle: () => void;
 }
 
+const ICONS = {
+  expand: '▶',
+  collapse: '▼',
+};
+
 export function ExpandToggle({ expanded, onToggle }: ExpandToggleProps) {
   const icon = expanded ? ICONS.collapse : ICONS.expand;
 
   return (
     <button
-      className={styles.button}
+      className="expand-toggle"
       onClick={(e) => {
         e.stopPropagation();
         onToggle();
       }}
       aria-label={expanded ? 'Collapse' : 'Expand'}
     >
-      <span className={styles.icon}>{icon}</span>
+      <span className="expand-toggle-icon">{icon}</span>
     </button>
   );
 }

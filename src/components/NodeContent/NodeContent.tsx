@@ -2,7 +2,7 @@ import React from 'react';
 import { Node, NodeTypeConfig, NodeStatus } from '../../types';
 import { ExpandToggle } from '../ui/ExpandToggle/ExpandToggle';
 import { StatusCheckbox } from '../ui/StatusCheckbox/StatusCheckbox';
-import { styles } from './NodeContent.styles';
+import './NodeContent.css';
 
 interface NodeContentProps {
   node: Node;
@@ -29,14 +29,10 @@ export function NodeContent({
 
   return (
     <div
-      className={`${styles.base} ${isSelected ? styles.selected : ''}`}
+      className={`node-content ${isSelected ? 'selected' : ''}`}
       onClick={onSelect}
     >
-      {hasChildren ? (
-        <ExpandToggle expanded={expanded} onToggle={onToggle} />
-      ) : (
-        <span className={styles.spacer}></span>
-      )}
+      {hasChildren && <ExpandToggle expanded={expanded} onToggle={onToggle} />}
 
       {node.type === 'task' && (
         <StatusCheckbox
@@ -45,9 +41,9 @@ export function NodeContent({
         />
       )}
 
-      {config.icon && <span className={styles.icon}>{config.icon}</span>}
+      {config.icon && <span className="node-icon">{config.icon}</span>}
 
-      <span className={`${config.style} ${styles.content}`}>{node.content}</span>
+      <span className="node-text">{node.content}</span>
     </div>
   );
 }

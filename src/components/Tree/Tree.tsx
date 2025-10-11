@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Document, NodeStatus } from '../../types';
 import { Node } from '../Node/Node';
-import { styles } from './Tree.styles';
+import './Tree.css';
 
 interface TreeProps {
   document: Document;
@@ -25,7 +25,7 @@ export function Tree({ document }: TreeProps) {
   };
 
   return (
-    <div className={styles.container}>
+    <div className="tree">
       <Node
         nodeId={document.rootNodeId}
         nodes={nodes}

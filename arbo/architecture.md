@@ -12,7 +12,7 @@ This document records key architectural choices made during development sessions
 ```
 src/components/ComponentName/
 ├── ComponentName.tsx
-└── ComponentName.styles.ts
+└── ComponentName.css
 ```
 
 **Rationale:**
@@ -23,17 +23,21 @@ src/components/ComponentName/
 
 ## Style File Separation
 
-**Decision:** Component styles live in separate `.styles.ts` files, imported by the component.
+**Decision:** Component styles live in separate `.css` files, imported by the component.
 
 **Example:**
-```typescript
-// ComponentName.styles.ts
-export const styles = {
-  container: 'flex items-center gap-2',
-};
+```css
+/* ComponentName.css */
+.component {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+```
 
+```typescript
 // ComponentName.tsx
-import { styles } from './ComponentName.styles';
+import './ComponentName.css';
 ```
 
 **Rationale:**
@@ -44,14 +48,14 @@ import { styles } from './ComponentName.styles';
 
 ## Node Type Configuration
 
-**Decision:** Node types (icons, styles) are user-definable data, not hardcoded in components.
+**Decision:** Node types (icons) are user-definable data, not hardcoded in components.
 
 **Implementation:**
 ```typescript
 // In data
 nodeTypeConfig: {
-  project: { icon: '📁', style: 'text-blue-700 font-bold' },
-  task: { icon: '', style: 'text-gray-800' }
+  project: { icon: '📁', style: '' },
+  task: { icon: '', style: '' }
 }
 
 // In component
@@ -62,28 +66,30 @@ const config = nodeTypeConfig[node.type] || { icon: '', style: '' };
 - Users can define custom node types without code changes
 - Makes the system more flexible
 - Component logic doesn't need to know about specific types
+- Style field reserved for future use
 
-## Global CSS Reset
+## Styling System
 
-**Decision:** Use a global CSS reset for buttons in `src/index.css` instead of repeating reset classes in components.
+**Decision:** Use plain CSS with CSS custom properties, no preprocessors.
 
-**Implementation:**
-```css
-/* src/index.css */
-button {
-  border: none;
-  background: transparent;
-  padding: 0;
-  outline: none;
-  font-family: inherit;
-  cursor: pointer;
-}
-```
+**Structure:**
+- `globals.css` - CSS variables for colors and theme
+- `styles.css` - Global resets and base styles
+- Component `.css` files - Component-specific styles
 
 **Rationale:**
-- Pragmatic approach - avoids repetition across all button components
-- All buttons in the app are minimal UI controls (no styled buttons planned)
-- Simpler component styles - just color and size classes needed
-- Can override with Tailwind classes if needed later
+- Modern CSS has variables, nesting support
+- No build complexity or dependencies
+- Full control over every style value
+- Simpler and more direct than utility frameworks
+
+## Comments
+
+**Decision:** Only add comments when code is not self-explanatory.
+
+**Rationale:**
+- Code should be readable without comments
+- Comments become stale and misleading
+- Good naming and structure beats documentation
 
 **Update this file when making new architectural decisions.**
