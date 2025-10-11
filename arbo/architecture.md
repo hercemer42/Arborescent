@@ -242,7 +242,7 @@ Components → Hooks (React) → Store Actions (Business Logic) → Services (In
 
 ## Testing Strategy
 
-**Decision:** Use Vitest with separated unit and integration tests for better organization and test speed.
+**Decision:** Use Vitest with separated unit and integration tests for better organization and test speed. Follow Test-Driven Development (TDD) principles when practical.
 
 **Test Organization:**
 ```
@@ -302,12 +302,28 @@ npm test                  # Run all tests in watch mode
 - ❌ Type definitions
 - ❌ Electron main/preload (requires different approach)
 
+**TDD Approach:**
+- Write tests before implementing features when possible
+- Identify edge cases and error conditions early
+- Use tests to drive API design (forces thinking about interfaces)
+- Build confidence through rapid feedback
+- Refactor safely with test coverage
+
+**When to use TDD:**
+- ✅ New features with clear requirements
+- ✅ Bug fixes (write failing test first, then fix)
+- ✅ Services and business logic (pure functions)
+- ✅ Complex state management operations
+- ⚠️  Exploratory UI work (tests can follow once design solidifies)
+- ⚠️  Rapid prototyping (add tests after validating approach)
+
 **Rationale:**
 - Vitest integrates seamlessly with Vite (same config, faster builds)
 - Coverage thresholds ensure minimum quality bar
 - Start conservative, increase as test suite matures
 - Focus on testing behavior, not implementation details
 - Mock Electron APIs for renderer tests
+- TDD catches bugs earlier and produces better-designed code
 
 ## Zustand Store Testing Pattern
 
