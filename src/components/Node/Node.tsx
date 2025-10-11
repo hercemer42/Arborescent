@@ -1,24 +1,24 @@
 import React, { useState } from 'react';
-import { Node, NodeTypeConfig } from '../types';
-import { NodeContent } from './NodeContent';
+import { Node as NodeType, NodeTypeConfig } from '../../types';
+import { NodeContent } from '../NodeContent/NodeContent';
 
-interface TreeNodeProps {
+interface NodeProps {
   nodeId: string;
-  nodes: Record<string, Node>;
+  nodes: Record<string, NodeType>;
   nodeTypeConfig: Record<string, NodeTypeConfig>;
   depth?: number;
   selectedNodeId: string | null;
   onSelectNode: (nodeId: string) => void;
 }
 
-export function TreeNode({
+export function Node({
   nodeId,
   nodes,
   nodeTypeConfig,
   depth = 0,
   selectedNodeId,
   onSelectNode,
-}: TreeNodeProps) {
+}: NodeProps) {
   const node = nodes[nodeId];
   const [expanded, setExpanded] = useState(true);
 
@@ -46,7 +46,7 @@ export function TreeNode({
       {expanded &&
         hasChildren &&
         node.children.map((childId) => (
-          <TreeNode
+          <Node
             key={childId}
             nodeId={childId}
             nodes={nodes}

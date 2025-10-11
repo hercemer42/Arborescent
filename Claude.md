@@ -264,9 +264,10 @@ npm test                 # Run tests (add later)
 When implementing features for Arborescent:
 
 1. **Check this file first** for architecture decisions
-2. **Follow TypeScript strict mode** (no implicit any)
-3. **Use Tailwind for styling** (utility classes only)
-4. **Keep components small** (single responsibility)
-5. **Test manually** (use the app as you build)
+2. **Check arbo/ directory** for design decisions and session notes
+3. **Follow TypeScript strict mode** (no implicit any)
+4. **Use Tailwind for styling** (utility classes only)
+5. **Keep components small** (single responsibility)
+6. **Test manually** (use the app as you build)
 
 Current focus: **Building the tree UI with basic CRUD operations**

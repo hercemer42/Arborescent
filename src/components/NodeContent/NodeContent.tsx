@@ -1,8 +1,8 @@
 import React from 'react';
-import { Node, NodeTypeConfig } from '../types';
-import { ExpandToggle } from './ui/ExpandToggle';
-import { StatusCheckbox } from './ui/StatusCheckbox';
-import { componentStyles } from '../design/theme';
+import { Node, NodeTypeConfig } from '../../types';
+import { ExpandToggle } from '../ui/ExpandToggle/ExpandToggle';
+import { StatusCheckbox } from '../ui/StatusCheckbox/StatusCheckbox';
+import { styles } from './NodeContent.styles';
 
 interface NodeContentProps {
   node: Node;
@@ -27,18 +27,18 @@ export function NodeContent({
 
   return (
     <div
-      className={`${componentStyles.node.base} ${isSelected ? componentStyles.node.selected : ''}`}
+      className={`${styles.base} ${isSelected ? styles.selected : ''}`}
       onClick={onSelect}
     >
       {hasChildren ? (
         <ExpandToggle expanded={expanded} onToggle={onToggle} />
       ) : (
-        <span className="w-4 h-4"></span>
+        <span className={styles.spacer}></span>
       )}
 
       {node.type === 'task' && <StatusCheckbox status={node.metadata.status} />}
 
-      {config.icon && <span className={componentStyles.icon.base}>{config.icon}</span>}
+      {config.icon && <span className={styles.icon}>{config.icon}</span>}
 
       <span className={config.style}>{node.content}</span>
     </div>

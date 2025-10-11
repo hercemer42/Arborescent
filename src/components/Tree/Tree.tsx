@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { Document } from '../types';
-import { TreeNode } from './TreeNode';
+import { useState } from 'react';
+import { Document } from '../../types';
+import { Node } from '../Node/Node';
 
 interface TreeProps {
   document: Document;
@@ -11,7 +11,7 @@ export function Tree({ document }: TreeProps) {
 
   return (
     <div className="p-4">
-      <TreeNode
+      <Node
         nodeId={document.rootNodeId}
         nodes={document.nodes}
         nodeTypeConfig={document.nodeTypeConfig || {}}

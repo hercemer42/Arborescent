@@ -1,5 +1,5 @@
 import React from 'react';
-import { Tree } from './components/Tree';
+import { Tree } from './components/Tree/Tree';
 import { sampleDocument } from './data/sampleData';
 
 function App() {

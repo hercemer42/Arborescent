@@ -1,6 +1,6 @@
 import React from 'react';
 import { NodeStatus } from '../../types';
-import { componentStyles } from '../../design/theme';
+import { styles } from './StatusCheckbox.styles';
 
 interface StatusCheckboxProps {
   status?: NodeStatus;
@@ -24,7 +24,7 @@ export function StatusCheckbox({ status, onChange }: StatusCheckboxProps) {
 
   return (
     <button
-      className={`${componentStyles.icon.base} cursor-pointer hover:opacity-70 transition-opacity`}
+      className={styles.checkbox}
       onClick={handleClick}
       aria-label={`Status: ${status}`}
     >

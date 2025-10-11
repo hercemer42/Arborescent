@@ -1,5 +1,5 @@
 import React from 'react';
-import { theme, componentStyles } from '../../design/theme';
+import { ICONS, styles } from './ExpandToggle.styles';
 
 interface ExpandToggleProps {
   expanded: boolean;
@@ -7,18 +7,18 @@ interface ExpandToggleProps {
 }
 
 export function ExpandToggle({ expanded, onToggle }: ExpandToggleProps) {
-  const icon = expanded ? theme.icons.collapse : theme.icons.expand;
+  const icon = expanded ? ICONS.collapse : ICONS.expand;
 
   return (
     <button
-      className={`${componentStyles.button.base} ${componentStyles.button.text} ${componentStyles.button.hover}`}
+      className={styles.button}
       onClick={(e) => {
         e.stopPropagation();
         onToggle();
       }}
       aria-label={expanded ? 'Collapse' : 'Expand'}
     >
-      <span className={componentStyles.icon.small}>{icon}</span>
+      <span className={styles.icon}>{icon}</span>
     </button>
   );
 }
