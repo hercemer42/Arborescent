@@ -1,5 +1,5 @@
 import React from 'react';
-import { Node, NodeTypeConfig } from '../../types';
+import { Node, NodeTypeConfig, NodeStatus } from '../../types';
 import { ExpandToggle } from '../ui/ExpandToggle/ExpandToggle';
 import { StatusCheckbox } from '../ui/StatusCheckbox/StatusCheckbox';
 import { styles } from './NodeContent.styles';
@@ -11,6 +11,7 @@ interface NodeContentProps {
   hasChildren: boolean;
   onToggle: () => void;
   onSelect: () => void;
+  onStatusChange?: (nodeId: string, status: NodeStatus) => void;
   isSelected: boolean;
 }
 
@@ -21,6 +22,7 @@ export function NodeContent({
   hasChildren,
   onToggle,
   onSelect,
+  onStatusChange,
   isSelected,
 }: NodeContentProps) {
   const config = nodeTypeConfig[node.type] || { icon: '', style: '' };
@@ -36,11 +38,16 @@ export function NodeContent({
         <span className={styles.spacer}></span>
       )}
 
-      {node.type === 'task' && <StatusCheckbox status={node.metadata.status} />}
+      {node.type === 'task' && (
+        <StatusCheckbox
+          status={node.metadata.status}
+          onChange={(status) => onStatusChange?.(node.id, status)}
+        />
+      )}
 
       {config.icon && <span className={styles.icon}>{config.icon}</span>}
 
-      <span className={config.style}>{node.content}</span>
+      <span className={`${config.style} ${styles.content}`}>{node.content}</span>
     </div>
   );
 }

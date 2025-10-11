@@ -3,4 +3,5 @@ export const styles = {
   selected: 'bg-blue-50 border-l-2 border-blue-500',
   spacer: 'w-4 h-4',
   icon: 'text-sm',
+  content: 'pl-10',
 };

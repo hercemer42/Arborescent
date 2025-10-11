@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Node as NodeType, NodeTypeConfig } from '../../types';
+import { Node as NodeType, NodeTypeConfig, NodeStatus } from '../../types';
 import { NodeContent } from '../NodeContent/NodeContent';
 
 interface NodeProps {
@@ -9,6 +9,7 @@ interface NodeProps {
   depth?: number;
   selectedNodeId: string | null;
   onSelectNode: (nodeId: string) => void;
+  onStatusChange?: (nodeId: string, status: NodeStatus) => void;
 }
 
 export function Node({
@@ -18,6 +19,7 @@ export function Node({
   depth = 0,
   selectedNodeId,
   onSelectNode,
+  onStatusChange,
 }: NodeProps) {
   const node = nodes[nodeId];
   const [expanded, setExpanded] = useState(true);
@@ -38,6 +40,7 @@ export function Node({
           hasChildren={hasChildren}
           onToggle={() => setExpanded(!expanded)}
           onSelect={() => onSelectNode(nodeId)}
+          onStatusChange={onStatusChange}
           isSelected={selectedNodeId === nodeId}
         />
       </div>
@@ -54,6 +57,7 @@ export function Node({
             depth={depth + 1}
             selectedNodeId={selectedNodeId}
             onSelectNode={onSelectNode}
+            onStatusChange={onStatusChange}
           />
         ))}
     </div>
