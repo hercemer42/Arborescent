@@ -5,7 +5,7 @@ import { useTreeStore } from './store/treeStore';
 import './App.css';
 
 function App() {
-  const initialize = useTreeStore((state) => state.initialize);
+  const initialize = useTreeStore((state) => state.actions.initialize);
 
   useEffect(() => {
     initialize(

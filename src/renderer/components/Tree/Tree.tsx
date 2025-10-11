@@ -1,14 +1,12 @@
 import { Node } from '../Node/Node';
 import { useTreeStore } from '../../store/treeStore';
-import { useFileOperations } from './fileOperations.hook';
-import { useKeyboardNavigation } from './navigation.hook';
+import { useTreeListeners } from './useTreeListeners';
 import './Tree.css';
 
 export function Tree() {
   const rootNodeId = useTreeStore((state) => state.rootNodeId);
 
-  useFileOperations();
-  useKeyboardNavigation();
+  useTreeListeners();
 
   if (!rootNodeId) {
     return null;

@@ -5,7 +5,6 @@
 **Arborescent** is a local-first development workflow tool. It organizes project tasks, architecture decisions, and implementation work in a hierarchical tree structure. The primary feature is exporting optimized context files that AI coding assistants can read, eliminating the need to re-explain your project on every prompt.
 
 **Current Phase:** v0.1 MVP - Building the first brick
-**Timeline:** 4 weeks
 **Goal:** Working Electron app with tree UI and basic export functionality
 
 ## Architecture
@@ -13,8 +12,8 @@
 ### Tech Stack
 - **Desktop:** Electron (local-first, file system access)
 - **Frontend:** React 18 + TypeScript (strict mode)
-- **Styling:** Tailwind CSS
-- **State:** Start with useState, migrate to Zustand if needed (Week 3+)
+- **Styling:** CSS (custom)
+- **State:** Zustand (with organized actions pattern)
 - **Build:** Vite + Electron Forge
 
 ### File Structure
@@ -22,18 +21,29 @@
 arborescent/
 ├── src/
 │   ├── main/              # Electron main process
+│   │   └── services/      # IPC, menu, file operations
 │   ├── renderer/          # React app
 │   │   ├── components/
-│   │   │   ├── Tree.tsx
-│   │   │   ├── TreeNode.tsx
-│   │   │   └── NodeHeader.tsx
-│   │   ├── types.ts
-│   │   └── App.tsx
+│   │   │   ├── Tree/
+│   │   │   │   ├── Tree.tsx
+│   │   │   │   └── useTreeListeners.ts   # Side-effect hook
+│   │   │   ├── Node/
+│   │   │   │   └── Node.tsx
+│   │   │   ├── NodeContent/
+│   │   │   │   ├── NodeContent.tsx
+│   │   │   │   └── useNodeContent.ts     # Data hook
+│   │   │   └── ui/              # Reusable UI components
+│   │   ├── store/
+│   │   │   ├── treeStore.ts     # Zustand store
+│   │   │   └── actions/         # Business logic
+│   │   │       ├── nodeActions.ts
+│   │   │       ├── navigationActions.ts
+│   │   │       └── fileActions.ts
+│   │   ├── services/      # File I/O, hotkeys
+│   │   └── data/          # Sample data, templates
 │   └── shared/            # Shared types
 ├── templates/             # Built-in templates
-│   └── basic.json
 └── examples/
-    └── example-project.json
 ```
 
 ### Data Model
@@ -60,26 +70,27 @@ interface Document {
 
 ## Core Features (v0.1)
 
-### Week 1: Basic Tree UI
-- [ ] Recursive tree component (expand/collapse)
-- [ ] Display nodes with indentation
-- [ ] Click to select node
-- [ ] Basic styling with Tailwind
+### Basic Tree UI
+- [x] Recursive tree component (expand/collapse)
+- [x] Display nodes with indentation
+- [x] Click to select node
+- [x] Basic styling
 
-### Week 2: CRUD Operations
-- [ ] Add child node (right-click menu)
-- [ ] Edit node content (inline editing)
-- [ ] Delete node (with confirmation)
+### CRUD Operations
+- [ ] Add child node
+- [x] Edit node content (inline editing)
+- [ ] Delete node
 - [ ] Cycle node type (Tab key: project → section → task → doc)
-- [ ] Cycle status (Tab on task: ☐ → ✓ → ✗)
+- [x] Cycle status (Tab on task: ☐ → ✓ → ✗)
 
-### Week 3: File Operations
-- [ ] Save tree to JSON file (Electron fs)
-- [ ] Load tree from JSON file
+### File Operations
+- [x] Save tree to JSON file (Electron fs)
+- [x] Load tree from JSON file
+- [x] Application reload menu
 - [ ] New project (clear tree, start fresh)
 - [ ] Recent files list
 
-### Week 4: Export for AI
+### Export for AI
 - [ ] Export current node + ancestors to markdown
 - [ ] Save to `.arborescent/current.md`
 - [ ] Context.json for project conventions
@@ -134,9 +145,38 @@ function TreeNode({ nodeId, depth = 0 }: Props) {
 ```
 
 ### State Management Strategy
-- **Week 1-2:** useState for nodes map
-- **Week 3+:** Migrate to Zustand if props drilling becomes painful
-- **With Zustand:** Use persist middleware for auto-save
+- ✅ **Migrated to Zustand** (props drilling became painful)
+- **Store Structure:** Organized with actions pattern (nodeActions, navigationActions, fileActions)
+- **Business Logic Location:** Store actions (following Zustand best practices)
+- **Hooks Purpose:** React-specific code only (effects, refs, event listeners)
+
+### Hook Naming Conventions (Adopted 2025-10-11)
+
+Following React best practices for custom hooks:
+
+**All custom hooks must start with `use` prefix** (enforced by React)
+
+**File Naming:** Hook files should be named after the hook function itself
+- ✅ `useTreeListeners.ts` - contains `useTreeListeners()` hook
+- ✅ `useNodeContent.ts` - contains `useNodeContent()` hook
+- ❌ `Tree.hook.ts` - doesn't match React conventions
+
+**Two types of hooks:**
+
+1. **Data Hooks** - Return state/handlers (e.g., `useNodeContent`)
+   - Return values for component to use
+   - Example: `const { config, isEditing, handleClick } = useNodeContent(node)`
+
+2. **Side-Effect Hooks** - Set up listeners/effects (e.g., `useTreeListeners`)
+   - No return value (or returns cleanup only)
+   - Name describes what they listen to/manage
+   - Example: `useTreeListeners()` - sets up file menu + keyboard listeners
+
+**Naming Pattern:** `use[PurposeOrBehavior]`
+- ✅ `useTreeListeners` - sets up listeners for Tree
+- ✅ `useNodeContent` - provides node content data/handlers
+- ✅ `useKeyboardNavigation` - handles keyboard navigation
+- ❌ `useTree` - too vague
 
 ### Export Format
 ```markdown
@@ -192,14 +232,12 @@ Include error handling for invalid emails.
 
 ## Not in v0.1 (Future)
 
-These are explicitly OUT OF SCOPE for first brick:
-- ❌ Backend/API (Week 5+)
-- ❌ Template marketplace (Month 2)
-- ❌ Share trees (Month 2)
+These are explicitly OUT OF SCOPE for MVP:
+- ❌ Backend/API
+- ❌ Template marketplace
+- ❌ Share trees
 - ❌ Multiple views (canvas, timeline)
-- ❌ Undo/redo
 - ❌ Search/filter
-- ❌ Keyboard shortcuts (beyond Tab)
 - ❌ Drag-and-drop reordering
 - ❌ VSCode extension
 - ❌ Cloud sync
@@ -209,23 +247,24 @@ These are explicitly OUT OF SCOPE for first brick:
 ## Success Criteria for v0.1
 
 **Definition of done:**
-- ✅ Can create/edit/delete nodes
-- ✅ Tree saves to local JSON file
-- ✅ Can load saved trees
-- ✅ Export generates markdown with context
-- ✅ Works on macOS (primary target)
-- ✅ Package as .app (Electron Builder)
-- ✅ I use it daily for one week
+- [ ] Can create/edit/delete nodes
+- [x] Tree saves to local JSON file
+- [x] Can load saved trees
+- [ ] Export generates markdown with context
+- [x] Works on Linux (primary development)
+- [ ] Package as distributable
+- [ ] Daily use test
 
-**If I use it for one week and it helps → success.**
+**Goal: Ship something usable and iterate based on actual usage.**
 
 ## Development Principles
 
 1. **Ship fast** - Working demo over perfect architecture
 2. **YAGNI** - Don't build features until needed
-3. **Use it yourself** - Dogfood from Week 2
-4. **Iterate** - v0.1 doesn't need to be perfect
+3. **Use it yourself** - Dogfood early and often
+4. **Iterate** - MVP doesn't need to be perfect
 5. **Learn** - This is as much about skill-building as product
+6. **Follow best practices** - But don't over-engineer
 
 ## Commands Reference
 
@@ -241,18 +280,22 @@ npm run package          # Create .app bundle
 npm test                 # Run tests (add later)
 ```
 
-## Next Steps After v0.1
+## Next Steps
+
+**Continue building core features:**
+- Complete CRUD operations (add child, delete node)
+- Add undo/redo
+- Implement export functionality
+- Improve keyboard shortcuts
 
 **If it's useful:**
-- Add keyboard shortcuts
-- Add undo/redo
-- Improve export formats
-- Start backend (template marketplace)
+- Iterate based on actual usage
+- Add more advanced features
+- Consider sharing/collaboration features
 
 **If it's not useful:**
-- Pivot or abandon
+- Pivot or learn from experience
 - Portfolio piece regardless
-- Learning experience
 
 ---
 
@@ -263,12 +306,11 @@ npm test                 # Run tests (add later)
 
 When implementing features for Arborescent:
 
-1. **Check this file first** for architecture decisions
-2. **Check arbo/ directory** for design decisions and session notes
-3. **Save major design decisions to arbo/architecture.md** for major design decisions
-4. **Follow TypeScript strict mode** (no implicit any)
-5. **Use Tailwind for styling** (utility classes only)
-6. **Keep components small** (single responsibility)
-7. **Test manually** (use the app as you build)
+1. **Check this file first** for architecture decisions and current state
+2. **Follow TypeScript strict mode** (no implicit any)
+3. **Keep components small** (single responsibility)
+4. **Business logic goes in store actions** (not hooks or components)
+5. **Hooks for React-specific code only** (effects, refs, event listeners)
+6. **Test manually** (use the app as you build)
 
-Current focus: **Building the tree UI with basic CRUD operations**
+Current focus: **Completing CRUD operations and keyboard shortcuts**

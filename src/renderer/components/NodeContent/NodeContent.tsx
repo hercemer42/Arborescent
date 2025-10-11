@@ -2,7 +2,7 @@ import React from 'react';
 import { Node } from '../../../shared/types';
 import { ExpandToggle } from '../ui/ExpandToggle/ExpandToggle';
 import { StatusCheckbox } from '../ui/StatusCheckbox/StatusCheckbox';
-import { useNodeContent } from './nodeContent.hook';
+import { useNodeContent } from './useNodeContent';
 import './NodeContent.css';
 
 interface NodeContentProps {

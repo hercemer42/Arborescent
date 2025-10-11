@@ -6,11 +6,8 @@ export function useNodeContent(node: Node) {
   const nodeTypeConfig = useTreeStore((state) => state.nodeTypeConfig);
   const isSelected = useTreeStore((state) => state.selectedNodeId === node.id);
   const isEditing = useTreeStore((state) => state.editingNodeId === node.id);
-  const selectNode = useTreeStore((state) => state.selectNode);
-  const startEdit = useTreeStore((state) => state.startEdit);
-  const finishEdit = useTreeStore((state) => state.finishEdit);
-  const updateContent = useTreeStore((state) => state.updateContent);
-  const updateStatus = useTreeStore((state) => state.updateStatus);
+  const updateStatus = useTreeStore((state) => state.actions.updateStatus);
+  const finishEdit = useTreeStore((state) => state.actions.finishEdit);
 
   const config = nodeTypeConfig[node.type] || { icon: '', style: '' };
   const hasChildren = node.children.length > 0;
@@ -29,17 +26,16 @@ export function useNodeContent(node: Node) {
     setEditValue(node.content);
   }, [node.content]);
 
+  const selectAndEdit = useTreeStore((state) => state.actions.selectAndEdit);
+  const saveNodeContent = useTreeStore((state) => state.actions.saveNodeContent);
+
   const handleClick = (e: React.MouseEvent) => {
     e.stopPropagation();
-    selectNode(node.id);
-    if (isSelected && !isEditing) {
-      startEdit(node.id);
-    }
+    selectAndEdit(node.id);
   };
 
   const handleSaveEdit = (value: string) => {
-    updateContent(node.id, value);
-    finishEdit();
+    saveNodeContent(node.id, value);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
