@@ -1,11 +1,15 @@
 import { app, BrowserWindow } from 'electron';
 import path from 'node:path';
 import started from 'electron-squirrel-startup';
+import { registerIpcHandlers } from './services/ipcService';
+import { createApplicationMenu } from './services/menuService';
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (started) {
   app.quit();
 }
+
+registerIpcHandlers();
 
 const createWindow = () => {
   // Create the browser window.
@@ -18,6 +22,12 @@ const createWindow = () => {
       nodeIntegration: false,
     },
   });
+
+  createApplicationMenu(
+    () => mainWindow.webContents.send('menu-open'),
+    () => mainWindow.webContents.send('menu-save'),
+    () => mainWindow.webContents.send('menu-save-as')
+  );
 
   // and load the index.html of the app.
   if (MAIN_WINDOW_VITE_DEV_SERVER_URL) {
@@ -49,12 +59,7 @@ app.on('window-all-closed', () => {
 });
 
 app.on('activate', () => {
-  // On OS X it's common to re-create a window in the app when the
-  // dock icon is clicked and there are no other windows open.
   if (BrowserWindow.getAllWindows().length === 0) {
     createWindow();
   }
 });
-
-// In this file you can include the rest of your app's specific main process
-// code. You can also put them in separate files and import them here.

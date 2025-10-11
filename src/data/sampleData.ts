@@ -1,26 +1,10 @@
 import { Document } from '../types';
+import { defaultNodeTypeConfig } from './defaultTemplate';
 
 export const sampleDocument: Document = {
   version: '1.0',
   rootNodeId: 'root',
-  nodeTypeConfig: {
-    project: {
-      icon: '📁',
-      style: '',
-    },
-    section: {
-      icon: '📂',
-      style: '',
-    },
-    task: {
-      icon: '',
-      style: '',
-    },
-    doc: {
-      icon: '📄',
-      style: '',
-    },
-  },
+  nodeTypeConfig: defaultNodeTypeConfig,
   nodes: {
     root: {
       id: 'root',

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Document, NodeStatus } from '../../types';
 import { Node } from '../Node/Node';
+import { useFileOperations } from '../../hooks/useFileOperations';
 import './Tree.css';
 
 interface TreeProps {
@@ -9,7 +10,10 @@ interface TreeProps {
 
 export function Tree({ document }: TreeProps) {
   const [selectedNodeId, setSelectedNodeId] = useState<string | null>(null);
-  const [nodes, setNodes] = useState(document.nodes);
+  const { nodes, setNodes, rootNodeId } = useFileOperations(
+    document.nodes,
+    document.rootNodeId
+  );
 
   const handleStatusChange = (nodeId: string, status: NodeStatus) => {
     setNodes((prevNodes) => ({
@@ -27,7 +31,7 @@ export function Tree({ document }: TreeProps) {
   return (
     <div className="tree">
       <Node
-        nodeId={document.rootNodeId}
+        nodeId={rootNodeId}
         nodes={nodes}
         nodeTypeConfig={document.nodeTypeConfig || {}}
         selectedNodeId={selectedNodeId}
