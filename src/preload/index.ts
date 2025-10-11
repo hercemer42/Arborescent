@@ -18,4 +18,8 @@ contextBridge.exposeInMainWorld('electron', {
     ipcRenderer.removeAllListeners('menu-save-as');
     ipcRenderer.on('menu-save-as', callback);
   },
+  onMainError: (callback: (message: string) => void) => {
+    ipcRenderer.removeAllListeners('main-error');
+    ipcRenderer.on('main-error', (_event, message) => callback(message));
+  },
 });

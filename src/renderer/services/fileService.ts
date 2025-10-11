@@ -43,6 +43,7 @@ declare global {
       onMenuOpen: (callback: () => void) => void;
       onMenuSave: (callback: () => void) => void;
       onMenuSaveAs: (callback: () => void) => void;
+      onMainError: (callback: (message: string) => void) => void;
     };
   }
 }

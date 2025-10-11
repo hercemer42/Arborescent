@@ -1,13 +1,29 @@
 import { ipcMain, dialog } from 'electron';
 import { promises as fs } from 'node:fs';
+import { logger } from './logger';
 
 export function registerIpcHandlers() {
   ipcMain.handle('read-file', async (_, filePath: string) => {
-    return await fs.readFile(filePath, 'utf-8');
+    try {
+      const content = await fs.readFile(filePath, 'utf-8');
+      logger.info(`File read: ${filePath}`, 'IPC');
+      return content;
+    } catch (error) {
+      const message = `Failed to read file: ${filePath}`;
+      logger.error(message, error instanceof Error ? error : undefined, 'IPC', true);
+      throw error;
+    }
   });
 
   ipcMain.handle('write-file', async (_, filePath: string, content: string) => {
-    await fs.writeFile(filePath, content, 'utf-8');
+    try {
+      await fs.writeFile(filePath, content, 'utf-8');
+      logger.info(`File written: ${filePath}`, 'IPC');
+    } catch (error) {
+      const message = `Failed to write file: ${filePath}`;
+      logger.error(message, error instanceof Error ? error : undefined, 'IPC', true);
+      throw error;
+    }
   });
 
   ipcMain.handle('show-open-dialog', async () => {

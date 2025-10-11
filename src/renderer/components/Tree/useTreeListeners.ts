@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useTreeStore } from '../../store/treeStore';
 import { hotkeyService } from '../../services/hotkeyService';
+import { logger } from '../../services/logger';
 
 export function useTreeListeners() {
   const [filePath, setFilePath] = useState<string | null>(null);
@@ -19,8 +20,10 @@ export function useTreeListeners() {
       const meta = await loadFromPath(path);
       setFilePath(path);
       setFileMeta(meta);
+      logger.success(`File loaded: ${path}`, 'FileLoad', false);
     } catch (error) {
-      console.error('Error loading file:', error);
+      const message = `Failed to load file: ${error instanceof Error ? error.message : 'Unknown error'}`;
+      logger.error(message, error instanceof Error ? error : undefined, 'FileLoad', true);
     }
   };
 
@@ -31,9 +34,10 @@ export function useTreeListeners() {
 
       await saveToPath(path, fileMeta || undefined);
       setFilePath(path);
-      console.log('File saved:', path);
+      logger.success(`File saved: ${path}`, 'FileSave', false);
     } catch (error) {
-      console.error('Error saving file:', error);
+      const message = `Failed to save file: ${error instanceof Error ? error.message : 'Unknown error'}`;
+      logger.error(message, error instanceof Error ? error : undefined, 'FileSave', true);
     }
   };
 
@@ -44,9 +48,10 @@ export function useTreeListeners() {
 
       await saveToPath(path, fileMeta || undefined);
       setFilePath(path);
-      console.log('File saved:', path);
+      logger.success(`File saved: ${path}`, 'FileSaveAs', false);
     } catch (error) {
-      console.error('Error saving file:', error);
+      const message = `Failed to save file: ${error instanceof Error ? error.message : 'Unknown error'}`;
+      logger.error(message, error instanceof Error ? error : undefined, 'FileSaveAs', true);
     }
   };
 
