@@ -35,17 +35,19 @@ export function NodeContent({
       onClick={onSelect}
     >
       {/* Expand/collapse button */}
-      <button
-        className="w-4 h-4 flex items-center justify-center text-gray-500 hover:text-gray-700"
-        onClick={(e) => {
-          e.stopPropagation();
-          if (hasChildren) {
+      {hasChildren ? (
+        <button
+          className="w-4 h-4 flex items-center justify-center text-gray-500 hover:text-gray-700"
+          onClick={(e) => {
+            e.stopPropagation();
             onToggle();
-          }
-        }}
-      >
-        <span className="text-xs">{expandIcon}</span>
-      </button>
+          }}
+        >
+          <span className="text-xs">{expandIcon}</span>
+        </button>
+      ) : (
+        <span className="w-4 h-4"></span>
+      )}
 
       {/* Status icon for tasks */}
       {node.type === 'task' && (
