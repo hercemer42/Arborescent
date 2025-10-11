@@ -34,6 +34,7 @@ export interface ArboFile {
   author: string;
   rootNodeId: string;
   nodes: Record<string, Node>;
+  nodeTypeConfig?: Record<string, NodeTypeConfig>;
 }
 
 export interface HotkeyConfig {

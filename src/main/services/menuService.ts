@@ -14,6 +14,7 @@ export function createApplicationMenu(
           accelerator: 'CmdOrCtrl+O',
           click: onOpen,
         },
+        { type: 'separator' },
         {
           label: 'Save',
           accelerator: 'CmdOrCtrl+S',
@@ -23,6 +24,15 @@ export function createApplicationMenu(
           label: 'Save As',
           accelerator: 'CmdOrCtrl+Shift+S',
           click: onSaveAs,
+        },
+        { type: 'separator' },
+        {
+          label: 'Reload Application',
+          accelerator: 'CmdOrCtrl+R',
+          click: () => {
+            const win = BrowserWindow.getFocusedWindow();
+            if (win) win.reload();
+          },
         },
         { type: 'separator' },
         {

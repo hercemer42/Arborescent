@@ -1,9 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Tree } from './components/Tree/Tree';
 import { sampleDocument } from './data/sampleData';
+import { useTreeStore } from './store/treeStore';
 import './App.css';
 
 function App() {
+  const initialize = useTreeStore((state) => state.initialize);
+
+  useEffect(() => {
+    initialize(
+      sampleDocument.nodes,
+      sampleDocument.rootNodeId,
+      sampleDocument.nodeTypeConfig || {}
+    );
+  }, [initialize]);
+
   return (
     <div className="app">
       <header className="app-header">
@@ -13,7 +24,7 @@ function App() {
 
       <main className="app-main">
         <div className="app-content">
-          <Tree document={sampleDocument} />
+          <Tree />
         </div>
       </main>
     </div>

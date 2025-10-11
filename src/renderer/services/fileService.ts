@@ -1,9 +1,10 @@
-import { ArboFile, Node } from '../../shared/types';
+import { ArboFile, Node, NodeTypeConfig } from '../../shared/types';
 
 export async function saveFile(
   filePath: string,
   nodes: Record<string, Node>,
   rootNodeId: string,
+  nodeTypeConfig: Record<string, NodeTypeConfig>,
   existingMeta?: { created: string; author: string }
 ): Promise<void> {
   const arboFile: ArboFile = {
@@ -14,6 +15,7 @@ export async function saveFile(
     author: existingMeta?.author || 'unknown',
     rootNodeId,
     nodes,
+    nodeTypeConfig,
   };
 
   const json = JSON.stringify(arboFile, null, 2);

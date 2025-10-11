@@ -1,15 +1,16 @@
 import { useState, useEffect } from 'react';
-import { Node } from '../../../shared/types';
 import { saveFile, loadFile } from '../../services/fileService';
+import { useTreeStore } from '../../store/treeStore';
+import { defaultNodeTypeConfig } from '../../data/defaultTemplate';
 
-export function useFileOperations(
-  initialNodes: Record<string, Node>,
-  initialRootNodeId: string
-) {
-  const [nodes, setNodes] = useState(initialNodes);
-  const [rootNodeId, setRootNodeId] = useState(initialRootNodeId);
+export function useFileOperations() {
   const [filePath, setFilePath] = useState<string | null>(null);
   const [fileMeta, setFileMeta] = useState<{ created: string; author: string } | null>(null);
+
+  const nodes = useTreeStore((state) => state.nodes);
+  const rootNodeId = useTreeStore((state) => state.rootNodeId);
+  const nodeTypeConfig = useTreeStore((state) => state.nodeTypeConfig);
+  const initialize = useTreeStore((state) => state.initialize);
 
   const handleLoad = async () => {
     try {
@@ -17,8 +18,10 @@ export function useFileOperations(
       if (!path) return;
 
       const data = await loadFile(path);
-      setNodes(data.nodes);
-      setRootNodeId(data.rootNodeId);
+      const configToUse = (data.nodeTypeConfig && Object.keys(data.nodeTypeConfig).length > 0)
+        ? data.nodeTypeConfig
+        : defaultNodeTypeConfig;
+      initialize(data.nodes, data.rootNodeId, configToUse);
       setFilePath(path);
       setFileMeta({ created: data.created, author: data.author });
     } catch (error) {
@@ -31,7 +34,7 @@ export function useFileOperations(
       const path = filePath || (await window.electron.showSaveDialog());
       if (!path) return;
 
-      await saveFile(path, nodes, rootNodeId, fileMeta || undefined);
+      await saveFile(path, nodes, rootNodeId, nodeTypeConfig, fileMeta || undefined);
       setFilePath(path);
       console.log('File saved:', path);
     } catch (error) {
@@ -44,7 +47,7 @@ export function useFileOperations(
       const path = await window.electron.showSaveDialog();
       if (!path) return;
 
-      await saveFile(path, nodes, rootNodeId, fileMeta || undefined);
+      await saveFile(path, nodes, rootNodeId, nodeTypeConfig, fileMeta || undefined);
       setFilePath(path);
       console.log('File saved:', path);
     } catch (error) {
@@ -56,12 +59,5 @@ export function useFileOperations(
     window.electron.onMenuOpen(handleLoad);
     window.electron.onMenuSave(handleSave);
     window.electron.onMenuSaveAs(handleSaveAs);
-  }, [nodes, filePath, fileMeta, rootNodeId]);
-
-  return {
-    nodes,
-    setNodes,
-    rootNodeId,
-    filePath,
-  };
+  }, [nodes, filePath, fileMeta, rootNodeId, nodeTypeConfig]);
 }

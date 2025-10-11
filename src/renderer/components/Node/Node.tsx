@@ -1,35 +1,14 @@
 import React, { useState } from 'react';
-import { Node as NodeType, NodeTypeConfig, NodeStatus } from '../../../shared/types';
 import { NodeContent } from '../NodeContent/NodeContent';
+import { useTreeStore } from '../../store/treeStore';
 
 interface NodeProps {
   nodeId: string;
-  nodes: Record<string, NodeType>;
-  nodeTypeConfig: Record<string, NodeTypeConfig>;
   depth?: number;
-  selectedNodeId: string | null;
-  editingNodeId: string | null;
-  onSelectNode: (nodeId: string) => void;
-  onStartEdit: (nodeId: string) => void;
-  onFinishEdit: () => void;
-  onStatusChange?: (nodeId: string, status: NodeStatus) => void;
-  onContentChange?: (nodeId: string, content: string) => void;
 }
 
-export function Node({
-  nodeId,
-  nodes,
-  nodeTypeConfig,
-  depth = 0,
-  selectedNodeId,
-  editingNodeId,
-  onSelectNode,
-  onStartEdit,
-  onFinishEdit,
-  onStatusChange,
-  onContentChange,
-}: NodeProps) {
-  const node = nodes[nodeId];
+export function Node({ nodeId, depth = 0 }: NodeProps) {
+  const node = useTreeStore((state) => state.nodes[nodeId]);
   const [expanded, setExpanded] = useState(true);
 
   if (!node) {
@@ -43,34 +22,18 @@ export function Node({
       <div style={{ paddingLeft: `${depth * 20}px` }}>
         <NodeContent
           node={node}
-          nodeTypeConfig={nodeTypeConfig}
           expanded={expanded}
-          hasChildren={hasChildren}
           onToggle={() => setExpanded(!expanded)}
-          onSelect={() => onSelectNode(nodeId)}
-          onStatusChange={onStatusChange}
-          isSelected={selectedNodeId === nodeId}
-          isEditing={editingNodeId === nodeId}
         />
       </div>
 
-      {/* Recursive children */}
       {expanded &&
         hasChildren &&
         node.children.map((childId) => (
           <Node
             key={childId}
             nodeId={childId}
-            nodes={nodes}
-            nodeTypeConfig={nodeTypeConfig}
             depth={depth + 1}
-            selectedNodeId={selectedNodeId}
-            editingNodeId={editingNodeId}
-            onSelectNode={onSelectNode}
-            onStartEdit={onStartEdit}
-            onFinishEdit={onFinishEdit}
-            onStatusChange={onStatusChange}
-            onContentChange={onContentChange}
           />
         ))}
     </div>
