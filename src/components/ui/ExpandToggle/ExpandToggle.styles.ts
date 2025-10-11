@@ -4,6 +4,6 @@ export const ICONS = {
 };
 
 export const styles = {
-  button: 'w-4 h-4 flex items-center justify-center text-gray-500 hover:text-gray-700',
+  button: 'w-4 h-4 text-gray-400 hover:text-gray-600',
   icon: 'text-xs',
 };

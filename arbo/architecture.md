@@ -63,4 +63,27 @@ const config = nodeTypeConfig[node.type] || { icon: '', style: '' };
 - Makes the system more flexible
 - Component logic doesn't need to know about specific types
 
+## Global CSS Reset
+
+**Decision:** Use a global CSS reset for buttons in `src/index.css` instead of repeating reset classes in components.
+
+**Implementation:**
+```css
+/* src/index.css */
+button {
+  border: none;
+  background: transparent;
+  padding: 0;
+  outline: none;
+  font-family: inherit;
+  cursor: pointer;
+}
+```
+
+**Rationale:**
+- Pragmatic approach - avoids repetition across all button components
+- All buttons in the app are minimal UI controls (no styled buttons planned)
+- Simpler component styles - just color and size classes needed
+- Can override with Tailwind classes if needed later
+
 **Update this file when making new architectural decisions.**
