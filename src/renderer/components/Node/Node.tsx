@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { NodeContent } from '../NodeContent/NodeContent';
+import { NodeContent } from '../NodeContent';
 import { useTreeStore } from '../../store/treeStore';
 
 interface NodeProps {

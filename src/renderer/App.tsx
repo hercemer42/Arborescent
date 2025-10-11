@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Tree } from './components/Tree/Tree';
+import { Tree } from './components/Tree';
 import { sampleDocument } from './data/sampleData';
 import { useTreeStore } from './store/treeStore';
 import './App.css';

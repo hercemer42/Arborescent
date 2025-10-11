@@ -1,4 +1,4 @@
-import { Node } from '../Node/Node';
+import { Node } from '../Node';
 import { useTreeStore } from '../../store/treeStore';
 import { useTreeListeners } from './useTreeListeners';
 import './Tree.css';
