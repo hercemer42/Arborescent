@@ -30,7 +30,6 @@ export function TreeNode({
 
   return (
     <div>
-      {/* Node content */}
       <div style={{ paddingLeft: `${depth * 20}px` }}>
         <NodeContent
           node={node}

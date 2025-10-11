@@ -1,5 +1,8 @@
 import React from 'react';
 import { Node, NodeTypeConfig } from '../types';
+import { ExpandToggle } from './ui/ExpandToggle';
+import { StatusCheckbox } from './ui/StatusCheckbox';
+import { componentStyles } from '../design/theme';
 
 interface NodeContentProps {
   node: Node;
@@ -20,44 +23,23 @@ export function NodeContent({
   onSelect,
   isSelected,
 }: NodeContentProps) {
-  const statusIcon = node.metadata.status || '';
   const config = nodeTypeConfig[node.type] || { icon: '', style: '' };
-  const typeIcon = config.icon;
-  const expandIcon = hasChildren ? (expanded ? '▼' : '▶') : '  ';
 
   return (
     <div
-      className={`
-        flex items-center gap-2 py-1 px-2 rounded cursor-pointer
-        hover:bg-gray-100 transition-colors
-        ${isSelected ? 'bg-blue-50 border-l-4 border-blue-500' : ''}
-      `}
+      className={`${componentStyles.node.base} ${isSelected ? componentStyles.node.selected : ''}`}
       onClick={onSelect}
     >
-      {/* Expand/collapse button */}
       {hasChildren ? (
-        <button
-          className="w-4 h-4 flex items-center justify-center text-gray-500 hover:text-gray-700"
-          onClick={(e) => {
-            e.stopPropagation();
-            onToggle();
-          }}
-        >
-          <span className="text-xs">{expandIcon}</span>
-        </button>
+        <ExpandToggle expanded={expanded} onToggle={onToggle} />
       ) : (
         <span className="w-4 h-4"></span>
       )}
 
-      {/* Status icon for tasks */}
-      {node.type === 'task' && (
-        <span className="text-sm">{statusIcon}</span>
-      )}
+      {node.type === 'task' && <StatusCheckbox status={node.metadata.status} />}
 
-      {/* Type icon */}
-      {typeIcon && <span className="text-sm">{typeIcon}</span>}
+      {config.icon && <span className={componentStyles.icon.base}>{config.icon}</span>}
 
-      {/* Node content */}
       <span className={config.style}>{node.content}</span>
     </div>
   );
