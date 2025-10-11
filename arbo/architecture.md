@@ -240,4 +240,114 @@ const updateContent = useTreeStore((state) => state.actions.updateContent);
 Components → Hooks (React) → Store Actions (Business Logic) → Services (Infrastructure)
 ```
 
+## Testing Strategy
+
+**Decision:** Use Vitest with separated unit and integration tests for better organization and test speed.
+
+**Test Organization:**
+```
+src/renderer/test/
+├── setup.ts                      # Global test setup (mocks, matchers)
+├── unit/                         # Fast, isolated tests
+│   ├── store/                    # Store action tests
+│   ├── components/               # Component rendering tests
+│   └── utils/                    # Utility function tests
+└── integration/                  # Multi-component tests
+    ├── workflows/                # User workflow tests
+    └── features/                 # Feature integration tests
+```
+
+**Co-located Tests (Preferred):**
+```
+src/renderer/components/Node/
+├── Node.tsx
+└── Node.test.tsx                 # Unit test next to component
+```
+
+**Test Types:**
+
+1. **Unit Tests** - Test single units in isolation
+   - Store actions (business logic)
+   - Individual components (rendering, props)
+   - Utility functions
+   - Custom hooks
+   - Fast execution (<10ms per test)
+
+2. **Integration Tests** - Test multiple units together
+   - Component interactions
+   - Store + component integration
+   - User workflows
+   - Slower execution (can involve multiple renders)
+
+3. **E2E Tests** - Not implemented yet (Electron requires special setup)
+
+**Run Specific Test Types:**
+```bash
+npm run test:unit         # Run only unit tests
+npm run test:integration  # Run only integration tests
+npm test                  # Run all tests in watch mode
+```
+
+**Coverage Configuration:**
+- **Provider:** V8 (faster than Istanbul)
+- **Reporters:** text, json, html, lcov
+- **Current Thresholds:** 30% lines, 40% functions (MVP baseline)
+- **Target Thresholds:** 70% (2025 industry standard for production)
+
+**What to Test:**
+- ✅ Store actions (business logic)
+- ✅ UI components (user interactions)
+- ✅ Custom hooks (data hooks with return values)
+- ❌ Barrel exports (index.ts files)
+- ❌ Type definitions
+- ❌ Electron main/preload (requires different approach)
+
+**Rationale:**
+- Vitest integrates seamlessly with Vite (same config, faster builds)
+- Coverage thresholds ensure minimum quality bar
+- Start conservative, increase as test suite matures
+- Focus on testing behavior, not implementation details
+- Mock Electron APIs for renderer tests
+
+## Zustand Store Testing Pattern
+
+**Decision:** Use official Zustand testing pattern with `__mocks__/zustand.ts` for automatic store reset between tests.
+
+**Reference:** [Official Zustand Testing Guide](https://zustand.docs.pmnd.rs/guides/testing)
+
+**Implementation:**
+- `__mocks__/zustand.ts` - Intercepts `create()` to capture initial state and enable automatic reset
+- `src/renderer/test/setup.ts` - Calls `vi.mock('zustand')` to enable the mock
+- `src/renderer/test/helpers/mockStoreActions.ts` - Helper functions to create mock actions
+- Component tests use `useTreeStore.setState()` directly with real store
+
+**Testing Pattern:**
+```typescript
+// Use the real store with partial mock actions
+const mockActions = createPartialMockActions({
+  selectAndEdit: vi.fn(),
+  updateStatus: vi.fn(),
+});
+
+beforeEach(() => {
+  useTreeStore.setState({
+    nodes: {},
+    // ... other state
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    actions: mockActions as any, // Partial mocks need type assertion
+  });
+});
+```
+
+**Why `as any` is needed:**
+
+The `TreeState.actions` interface requires all 14 methods (NodeActions + NavigationActions + FileActions). Tests only mock the specific methods they need. The `as any` type assertion is **standard practice** for partial mocks - the alternative (mocking all 14 methods in every test) is verbose and obscures test intent.
+
+**Benefits:**
+- Tests use real Zustand store (not custom mock implementations)
+- Store automatically resets between tests
+- Eliminated 150+ lines of custom mock code
+- Type-safe state manipulation
+- Follows official Zustand recommendations
+
 **Update this file when making new architectural decisions.**

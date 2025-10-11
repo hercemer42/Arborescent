@@ -128,12 +128,7 @@ interface Document {
 
 ## Commands
 
-```bash
-npm run dev      # Start Electron in dev mode
-npm run build    # Build for production
-npm run package  # Create distributable
-npm run lint     # Check TypeScript/ESLint
-```
+See `package.json` scripts for all available commands.
 
 ## Success Criteria
 
