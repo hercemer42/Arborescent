@@ -1,5 +1,5 @@
 import React from 'react';
-import { NodeStatus } from '../../../types';
+import { NodeStatus } from '../../../../shared/types';
 import './StatusCheckbox.css';
 
 interface StatusCheckboxProps {

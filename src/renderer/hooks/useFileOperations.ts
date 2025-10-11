@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Node } from '../types';
+import { Node } from '../../shared/types';
 import { saveFile, loadFile } from '../services/fileService';
 
 export function useFileOperations(

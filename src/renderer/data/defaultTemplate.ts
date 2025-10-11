@@ -1,4 +1,4 @@
-import { NodeTypeConfig } from '../types';
+import { NodeTypeConfig } from '../../shared/types';
 
 export const defaultNodeTypeConfig: Record<string, NodeTypeConfig> = {
   project: {

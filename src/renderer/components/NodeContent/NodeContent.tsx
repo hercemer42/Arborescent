@@ -1,5 +1,5 @@
 import React from 'react';
-import { Node, NodeTypeConfig, NodeStatus } from '../../types';
+import { Node, NodeTypeConfig, NodeStatus } from '../../../shared/types';
 import { ExpandToggle } from '../ui/ExpandToggle/ExpandToggle';
 import { StatusCheckbox } from '../ui/StatusCheckbox/StatusCheckbox';
 import './NodeContent.css';

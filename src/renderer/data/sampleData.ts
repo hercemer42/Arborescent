@@ -1,4 +1,4 @@
-import { Document } from '../types';
+import { Document } from '../../shared/types';
 import { defaultNodeTypeConfig } from './defaultTemplate';
 
 export const sampleDocument: Document = {

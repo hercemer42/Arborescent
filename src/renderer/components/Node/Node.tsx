@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Node as NodeType, NodeTypeConfig, NodeStatus } from '../../types';
+import { Node as NodeType, NodeTypeConfig, NodeStatus } from '../../../shared/types';
 import { NodeContent } from '../NodeContent/NodeContent';
 
 interface NodeProps {

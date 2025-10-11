@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Document, NodeStatus } from '../../types';
+import { Document, NodeStatus } from '../../../shared/types';
 import { Node } from '../Node/Node';
 import { useFileOperations } from '../../hooks/useFileOperations';
 import './Tree.css';

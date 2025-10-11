@@ -4,13 +4,25 @@ This document records key architectural choices made during development sessions
 
 **Date:** 2025-10-11
 
+## Directory Structure
+
+**Decision:** Separate main process (Electron) code from renderer (React UI) code.
+
+**Structure:** See [directory-structure.md](./directory-structure.md) for complete details.
+
+**Rationale:**
+- Clear separation between Node.js/Electron code and browser/React code
+- Easy to understand what runs where
+- Security: renderer code runs in sandbox, main has system access
+- Prevents accidental mixing of main and renderer APIs
+
 ## Component Organization
 
 **Decision:** Each component lives in its own subdirectory with co-located styles.
 
 **Structure:**
 ```
-src/components/ComponentName/
+src/renderer/components/ComponentName/
 ├── ComponentName.tsx
 └── ComponentName.css
 ```
@@ -73,8 +85,8 @@ const config = nodeTypeConfig[node.type] || { icon: '', style: '' };
 **Decision:** Use plain CSS with CSS custom properties, no preprocessors.
 
 **Structure:**
-- `globals.css` - CSS variables for colors and theme
-- `styles.css` - Global resets and base styles
+- `src/renderer/globals.css` - CSS variables for colors and theme
+- `src/renderer/styles.css` - Global resets and base styles
 - Component `.css` files - Component-specific styles
 
 **Rationale:**

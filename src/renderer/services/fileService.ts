@@ -1,4 +1,4 @@
-import { ArboFile, Node } from '../types';
+import { ArboFile, Node } from '../../shared/types';
 
 export async function saveFile(
   filePath: string,
