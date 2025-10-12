@@ -1,15 +1,16 @@
 import { create } from 'zustand';
-import { Node, NodeTypeConfig } from '../../shared/types';
+import { TreeNode, NodeTypeConfig } from '../../shared/types';
 import { createNodeActions, NodeActions } from './actions/nodeActions';
 import { createNavigationActions, NavigationActions } from './actions/navigationActions';
 import { createFileActions, FileActions } from './actions/fileActions';
 
 interface TreeState {
-  nodes: Record<string, Node>;
+  nodes: Record<string, TreeNode>;
   rootNodeId: string;
   nodeTypeConfig: Record<string, NodeTypeConfig>;
   selectedNodeId: string | null;
-  editingNodeId: string | null;
+  cursorPosition: number;
+  rememberedCursorColumn: number | null;
 
   actions: NodeActions & NavigationActions & FileActions;
 }
@@ -19,7 +20,8 @@ export const useTreeStore = create<TreeState>((set, get) => ({
   rootNodeId: '',
   nodeTypeConfig: {},
   selectedNodeId: null,
-  editingNodeId: null,
+  cursorPosition: 0,
+  rememberedCursorColumn: null,
 
   actions: {
     ...createNodeActions(get, set),

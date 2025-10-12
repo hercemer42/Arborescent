@@ -1,15 +1,15 @@
-import { Node, NodeTypeConfig } from '../../../shared/types';
+import { TreeNode, NodeTypeConfig } from '../../../shared/types';
 import { loadFile as loadFileFromDisk, saveFile as saveFileToDisk } from '../../services/fileService';
 import { defaultNodeTypeConfig } from '../../data/defaultTemplate';
 
 export interface FileActions {
-  initialize: (nodes: Record<string, Node>, rootNodeId: string, nodeTypeConfig: Record<string, NodeTypeConfig>) => void;
-  loadDocument: (nodes: Record<string, Node>, rootNodeId: string, nodeTypeConfig: Record<string, NodeTypeConfig>) => void;
+  initialize: (nodes: Record<string, TreeNode>, rootNodeId: string, nodeTypeConfig: Record<string, NodeTypeConfig>) => void;
+  loadDocument: (nodes: Record<string, TreeNode>, rootNodeId: string, nodeTypeConfig: Record<string, NodeTypeConfig>) => void;
   loadFromPath: (path: string) => Promise<{ created: string; author: string }>;
   saveToPath: (path: string, fileMeta?: { created: string; author: string }) => Promise<void>;
 }
 
-type StoreState = { nodes: Record<string, Node>; rootNodeId: string; nodeTypeConfig: Record<string, NodeTypeConfig> };
+type StoreState = { nodes: Record<string, TreeNode>; rootNodeId: string; nodeTypeConfig: Record<string, NodeTypeConfig> };
 type StoreSetter = (partial: Partial<StoreState>) => void;
 type StoreGetter = () => StoreState;
 
@@ -17,7 +17,7 @@ export const createFileActions = (
   get: StoreGetter,
   set: StoreSetter
 ): FileActions => {
-  const loadDoc = (nodes: Record<string, Node>, rootNodeId: string, nodeTypeConfig: Record<string, NodeTypeConfig>) => {
+  const loadDoc = (nodes: Record<string, TreeNode>, rootNodeId: string, nodeTypeConfig: Record<string, NodeTypeConfig>) => {
     set({ nodes, rootNodeId, nodeTypeConfig });
   };
 

@@ -1,9 +1,9 @@
-import { Node, NodeTypeConfig } from './node';
+import { TreeNode, NodeTypeConfig } from './node';
 
 export interface Document {
   version: '1.0';
   rootNodeId: string;
-  nodes: Record<string, Node>;
+  nodes: Record<string, TreeNode>;
   nodeTypeConfig?: Record<string, NodeTypeConfig>;
 }
 
@@ -14,6 +14,6 @@ export interface ArboFile {
   updated: string;
   author: string;
   rootNodeId: string;
-  nodes: Record<string, Node>;
+  nodes: Record<string, TreeNode>;
   nodeTypeConfig?: Record<string, NodeTypeConfig>;
 }

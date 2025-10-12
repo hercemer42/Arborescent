@@ -19,6 +19,7 @@ src/
 │   ├── components/
 │   ├── store/
 │   ├── services/
+│   ├── utils/    # Pure utility functions (domain-specific)
 │   └── data/
 └── shared/       # Code used by both (types, interfaces)
     └── types/    # Organized type definitions
@@ -324,6 +325,72 @@ npm test                  # Run all tests in watch mode
 - Focus on testing behavior, not implementation details
 - Mock Electron APIs for renderer tests
 - TDD catches bugs earlier and produces better-designed code
+
+## Services Organization
+
+**Decision:** Services handle infrastructure layer concerns - external interactions with DOM, IPC, browser APIs, and file I/O.
+
+**Structure:**
+```
+src/renderer/services/
+├── cursorService.ts        # DOM Selection API manipulation
+├── fileService.ts          # IPC communication for file operations
+├── hotkeyService.ts        # Keyboard event handling
+└── logger.ts               # Logging and toast notifications
+```
+
+**Example:**
+```typescript
+// services/cursorService.ts - DOM interaction service
+export const getCursorPosition = (element: HTMLElement): number => {
+  const selection = window.getSelection(); // Browser API
+  if (!selection || selection.rangeCount === 0) return 0;
+
+  const range = selection.getRangeAt(0);
+  const preCaretRange = range.cloneRange();
+  preCaretRange.selectNodeContents(element);
+  preCaretRange.setEnd(range.endContainer, range.endOffset);
+  return preCaretRange.toString().length;
+};
+
+// Usage in hooks or components
+import { getCursorPosition, setCursorPosition } from '../../services/cursorService';
+```
+
+**Rationale:**
+- Services handle external interactions (DOM, IPC, browser APIs, file I/O)
+- Services can have side effects
+- Examples: cursor position in DOM, file operations via IPC, keyboard event registration
+- Services need mocking in tests
+- Architecture layers: Components → Hooks → Store Actions → Services
+
+## Utils Organization
+
+**Decision:** Utils contain pure functions with no side effects for domain logic operations.
+
+**Structure:**
+```
+src/renderer/utils/
+└── [future]                # String manipulation, validation, formatting, etc.
+```
+
+**Example (future):**
+```typescript
+// utils/string.ts - Pure string manipulation
+export const truncate = (text: string, maxLength: number): string => {
+  return text.length > maxLength ? text.slice(0, maxLength) + '...' : text;
+};
+
+// Usage
+import { truncate } from '../../utils/string';
+```
+
+**Rationale:**
+- Utils are pure functions with no side effects
+- Examples: string manipulation, number calculations, data transformations, validation
+- Utils do not need mocking in tests (pure input/output)
+- Easy to test and reason about
+- Architecture layers: Components → Hooks → Store Actions → Utils
 
 ## Zustand Store Testing Pattern
 

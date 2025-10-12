@@ -1,9 +1,9 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import { createNavigationActions } from './navigationActions';
-import type { Node } from '@shared/types';
+import type { TreeNode } from '@shared/types';
 
 describe('navigationActions', () => {
-  let state: { nodes: Record<string, Node>; rootNodeId: string; selectedNodeId: string | null };
+  let state: { nodes: Record<string, TreeNode>; rootNodeId: string; selectedNodeId: string | null };
   let setState: (partial: Partial<typeof state>) => void;
   let actions: ReturnType<typeof createNavigationActions>;
 

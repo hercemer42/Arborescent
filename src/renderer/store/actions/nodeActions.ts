@@ -1,55 +1,31 @@
-import { Node, NodeStatus } from '../../../shared/types';
+import { TreeNode, NodeStatus } from '../../../shared/types';
 
 export interface NodeActions {
-  selectAndEdit: (nodeId: string) => void;
-  saveNodeContent: (nodeId: string, content: string) => void;
-  selectNode: (nodeId: string) => void;
-  startEdit: (nodeId: string) => void;
-  finishEdit: () => void;
+  selectNode: (nodeId: string, cursorPosition?: number) => void;
   updateContent: (nodeId: string, content: string) => void;
   updateStatus: (nodeId: string, status: NodeStatus) => void;
   deleteNode: (nodeId: string) => void;
+  setCursorPosition: (position: number) => void;
+  setRememberedCursorColumn: (column: number | null) => void;
 }
 
-type StoreState = { nodes: Record<string, Node>; selectedNodeId: string | null; editingNodeId: string | null };
+type StoreState = {
+  nodes: Record<string, TreeNode>;
+  selectedNodeId: string | null;
+  cursorPosition: number;
+  rememberedCursorColumn: number | null;
+};
 type StoreSetter = (partial: Partial<StoreState> | ((state: StoreState) => Partial<StoreState>)) => void;
 
 export const createNodeActions = (
   get: () => StoreState,
   set: StoreSetter
 ): NodeActions => ({
-  selectAndEdit: (nodeId: string) => {
-    const { selectedNodeId, editingNodeId } = get();
-    set({ selectedNodeId: nodeId });
-    if (selectedNodeId === nodeId && !editingNodeId) {
-      set({ editingNodeId: nodeId });
-    }
-  },
-
-  saveNodeContent: (nodeId: string, content: string) => {
-    const { nodes } = get();
+  selectNode: (nodeId: string, cursorPosition?: number) => {
     set({
-      nodes: {
-        ...nodes,
-        [nodeId]: {
-          ...nodes[nodeId],
-          content,
-        },
-      },
-      editingNodeId: null,
+      selectedNodeId: nodeId,
+      cursorPosition: cursorPosition ?? 0,
     });
-  },
-
-  selectNode: (nodeId: string) => {
-    set({ selectedNodeId: nodeId });
-  },
-
-  startEdit: (nodeId: string) => {
-    set({ editingNodeId: nodeId });
-  },
-
-  finishEdit: () => {
-    set({ editingNodeId: null });
   },
 
   updateContent: (nodeId: string, content: string) => {
@@ -86,5 +62,13 @@ export const createNodeActions = (
     const newNodes = { ...nodes };
     delete newNodes[nodeId];
     set({ nodes: newNodes });
+  },
+
+  setCursorPosition: (position: number) => {
+    set({ cursorPosition: position });
+  },
+
+  setRememberedCursorColumn: (column: number | null) => {
+    set({ rememberedCursorColumn: column });
   },
 });

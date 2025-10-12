@@ -6,7 +6,7 @@ export interface NodeTypeConfig {
   style: string;
 }
 
-export interface Node {
+export interface TreeNode {
   id: string;
   type: NodeType;
   content: string;

@@ -122,7 +122,7 @@ describe('useTreeListeners', () => {
     const handleLoad = mockOnMenuOpen.mock.calls[0][0];
     await handleLoad();
 
-    expect(consoleErrorSpy).toHaveBeenCalledWith('Error loading file:', expect.any(Error));
+    expect(consoleErrorSpy).toHaveBeenCalledWith('[FileLoad] Failed to load file: Load failed', expect.any(Error));
     consoleErrorSpy.mockRestore();
   });
 
@@ -162,7 +162,7 @@ describe('useTreeListeners', () => {
     const handleSave = mockOnMenuSave.mock.calls[0][0];
     await handleSave();
 
-    expect(consoleErrorSpy).toHaveBeenCalledWith('Error saving file:', expect.any(Error));
+    expect(consoleErrorSpy).toHaveBeenCalledWith('[FileSave] Failed to save file: Save failed', expect.any(Error));
     consoleErrorSpy.mockRestore();
   });
 
@@ -201,7 +201,7 @@ describe('useTreeListeners', () => {
     const handleSaveAs = mockOnMenuSaveAs.mock.calls[0][0];
     await handleSaveAs();
 
-    expect(consoleErrorSpy).toHaveBeenCalledWith('Error saving file:', expect.any(Error));
+    expect(consoleErrorSpy).toHaveBeenCalledWith('[FileSaveAs] Failed to save file: Save failed', expect.any(Error));
     consoleErrorSpy.mockRestore();
   });
 

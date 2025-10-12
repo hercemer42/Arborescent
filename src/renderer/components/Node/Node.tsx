@@ -9,6 +9,7 @@ interface NodeProps {
 
 export function Node({ nodeId, depth = 0 }: NodeProps) {
   const node = useTreeStore((state) => state.nodes[nodeId]);
+  const selectNode = useTreeStore((state) => state.actions.selectNode);
   const [expanded, setExpanded] = useState(true);
 
   if (!node) {
@@ -17,13 +18,23 @@ export function Node({ nodeId, depth = 0 }: NodeProps) {
 
   const hasChildren = node.children.length > 0;
 
+  const handleToggle = () => {
+    const newExpandedState = !expanded;
+
+    if (!newExpandedState) {
+      selectNode(nodeId, node.content.length);
+    }
+
+    setExpanded(newExpandedState);
+  };
+
   return (
     <div>
       <div style={{ paddingLeft: `${depth * 20}px` }}>
         <NodeContent
           node={node}
           expanded={expanded}
-          onToggle={() => setExpanded(!expanded)}
+          onToggle={handleToggle}
         />
       </div>
 

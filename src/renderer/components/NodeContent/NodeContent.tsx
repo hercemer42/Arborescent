@@ -1,12 +1,12 @@
 import React from 'react';
-import { Node } from '../../../shared/types';
+import { TreeNode } from '../../../shared/types';
 import { ExpandToggle } from '../ui/ExpandToggle';
 import { StatusCheckbox } from '../ui/StatusCheckbox';
 import { useNodeContent } from './useNodeContent';
 import './NodeContent.css';
 
 interface NodeContentProps {
-  node: Node;
+  node: TreeNode;
   expanded: boolean;
   onToggle: () => void;
 }
@@ -20,14 +20,11 @@ export function NodeContent({
     config,
     hasChildren,
     isSelected,
-    isEditing,
     handleClick,
     updateStatus,
-    editValue,
-    setEditValue,
-    inputRef,
+    contentRef,
     handleKeyDown,
-    handleBlur,
+    handleInput,
   } = useNodeContent(node);
 
   return (
@@ -46,19 +43,16 @@ export function NodeContent({
 
       {config.icon && <span className="node-icon">{config.icon}</span>}
 
-      {isEditing ? (
-        <input
-          ref={inputRef}
-          type="text"
-          className="node-text-input"
-          value={editValue}
-          onChange={(e) => setEditValue(e.target.value)}
-          onKeyDown={handleKeyDown}
-          onBlur={handleBlur}
-        />
-      ) : (
-        <span className="node-text">{node.content}</span>
-      )}
+      <div
+        ref={contentRef}
+        className="node-text"
+        contentEditable
+        suppressContentEditableWarning
+        onKeyDown={handleKeyDown}
+        onInput={handleInput}
+      >
+        {node.content}
+      </div>
     </div>
   );
 }

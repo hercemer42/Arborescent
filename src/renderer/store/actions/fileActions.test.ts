@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { createFileActions } from './fileActions';
-import type { Node, NodeTypeConfig } from '@shared/types';
+import type { TreeNode, NodeTypeConfig } from '@shared/types';
 
 vi.mock('../../services/fileService', () => ({
   loadFile: vi.fn(),
@@ -18,7 +18,7 @@ import { loadFile, saveFile } from '../../services/fileService';
 import { defaultNodeTypeConfig } from '../../data/defaultTemplate';
 
 describe('fileActions', () => {
-  let state: { nodes: Record<string, Node>; rootNodeId: string; nodeTypeConfig: Record<string, NodeTypeConfig> };
+  let state: { nodes: Record<string, TreeNode>; rootNodeId: string; nodeTypeConfig: Record<string, NodeTypeConfig> };
   let setState: (partial: Partial<typeof state>) => void;
   let actions: ReturnType<typeof createFileActions>;
 

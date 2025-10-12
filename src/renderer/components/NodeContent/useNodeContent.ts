@@ -1,64 +1,89 @@
-import { useState, useRef, useEffect } from 'react';
+import { useRef, useEffect } from 'react';
 import { useTreeStore } from '../../store/treeStore';
-import { Node } from '../../../shared/types';
+import { TreeNode } from '../../../shared/types';
+import { getCursorPosition, setCursorPosition } from '../../services/cursorService';
 
-export function useNodeContent(node: Node) {
+export function useNodeContent(node: TreeNode) {
   const nodeTypeConfig = useTreeStore((state) => state.nodeTypeConfig);
   const isSelected = useTreeStore((state) => state.selectedNodeId === node.id);
-  const isEditing = useTreeStore((state) => state.editingNodeId === node.id);
+  const cursorPosition = useTreeStore((state) => state.cursorPosition);
   const updateStatus = useTreeStore((state) => state.actions.updateStatus);
-  const finishEdit = useTreeStore((state) => state.actions.finishEdit);
+  const selectNode = useTreeStore((state) => state.actions.selectNode);
+  const updateContent = useTreeStore((state) => state.actions.updateContent);
+  const setCursorPositionAction = useTreeStore((state) => state.actions.setCursorPosition);
+  const setRememberedCursorColumn = useTreeStore((state) => state.actions.setRememberedCursorColumn);
 
   const config = nodeTypeConfig[node.type] || { icon: '', style: '' };
   const hasChildren = node.children.length > 0;
 
-  const [editValue, setEditValue] = useState(node.content);
-  const inputRef = useRef<HTMLInputElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (isEditing && inputRef.current) {
-      inputRef.current.focus();
-      inputRef.current.select();
+    if (isSelected && contentRef.current) {
+      contentRef.current.focus();
+      setCursorPosition(contentRef.current, cursorPosition);
     }
-  }, [isEditing]);
+  }, [isSelected, cursorPosition]);
 
   useEffect(() => {
-    setEditValue(node.content);
-  }, [node.content]);
-
-  const selectAndEdit = useTreeStore((state) => state.actions.selectAndEdit);
-  const saveNodeContent = useTreeStore((state) => state.actions.saveNodeContent);
+    if (contentRef.current && contentRef.current.textContent !== node.content) {
+      const savedPosition = getCursorPosition(contentRef.current);
+      contentRef.current.textContent = node.content;
+      if (isSelected) {
+        setCursorPosition(contentRef.current, savedPosition);
+      }
+    }
+  }, [node.content, isSelected]);
 
   const handleClick = (e: React.MouseEvent) => {
     e.stopPropagation();
-    selectAndEdit(node.id);
-  };
 
-  const handleSaveEdit = (value: string) => {
-    saveNodeContent(node.id, value);
-  };
-
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter') {
-      e.preventDefault();
-      if (editValue.trim()) {
-        handleSaveEdit(editValue.trim());
-      } else {
-        finishEdit();
-      }
-    } else if (e.key === 'Escape') {
-      e.preventDefault();
-      setEditValue(node.content);
-      finishEdit();
+    const selection = window.getSelection();
+    if (contentRef.current && selection) {
+      setTimeout(() => {
+        if (contentRef.current) {
+          const position = getCursorPosition(contentRef.current);
+          selectNode(node.id, position);
+          setRememberedCursorColumn(null);
+        }
+      }, 0);
     }
   };
 
-  const handleBlur = () => {
-    if (editValue.trim()) {
-      handleSaveEdit(editValue.trim());
-    } else {
-      setEditValue(node.content);
-      finishEdit();
+  const handleInput = (e: React.FormEvent<HTMLDivElement>) => {
+    const newContent = e.currentTarget.textContent || '';
+    updateContent(node.id, newContent);
+
+    if (contentRef.current) {
+      const position = getCursorPosition(contentRef.current);
+      setCursorPositionAction(position);
+    }
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
+      e.preventDefault();
+      if (contentRef.current) {
+        const position = getCursorPosition(contentRef.current);
+        setCursorPositionAction(position);
+      }
+    } else if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+      setRememberedCursorColumn(null);
+
+      setTimeout(() => {
+        if (contentRef.current) {
+          const position = getCursorPosition(contentRef.current);
+          setCursorPositionAction(position);
+        }
+      }, 0);
+    } else if (e.key === 'Enter') {
+      e.preventDefault();
+    } else if (e.key === 'Escape') {
+      e.preventDefault();
+      if (contentRef.current) {
+        contentRef.current.textContent = node.content;
+      }
+      contentRef.current?.blur();
     }
   };
 
@@ -66,13 +91,10 @@ export function useNodeContent(node: Node) {
     config,
     hasChildren,
     isSelected,
-    isEditing,
     handleClick,
     updateStatus,
-    editValue,
-    setEditValue,
-    inputRef,
+    contentRef,
     handleKeyDown,
-    handleBlur,
+    handleInput,
   };
 }

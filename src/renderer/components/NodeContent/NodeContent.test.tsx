@@ -1,12 +1,12 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { NodeContent } from './NodeContent';
 import { useTreeStore } from '../../store/treeStore';
 import { createPartialMockActions } from '../../test/helpers/mockStoreActions';
-import type { Node } from '../../../shared/types';
+import type { TreeNode } from '../../../shared/types';
 
 describe('NodeContent', () => {
-  const mockNode: Node = {
+  const mockNode: TreeNode = {
     id: 'test-node',
     type: 'task',
     content: 'Test Task',
@@ -15,10 +15,11 @@ describe('NodeContent', () => {
   };
 
   const mockActions = createPartialMockActions({
-    selectAndEdit: vi.fn(),
+    selectNode: vi.fn(),
     updateStatus: vi.fn(),
-    saveNodeContent: vi.fn(),
-    finishEdit: vi.fn(),
+    updateContent: vi.fn(),
+    setCursorPosition: vi.fn(),
+    setRememberedCursorColumn: vi.fn(),
   });
 
   beforeEach(() => {
@@ -27,8 +28,9 @@ describe('NodeContent', () => {
     useTreeStore.setState({
       nodes: {},
       rootNodeId: '',
-      editingNodeId: null,
       selectedNodeId: null,
+      cursorPosition: 0,
+      rememberedCursorColumn: null,
       nodeTypeConfig: {
         project: { icon: '📁', style: '' },
         task: { icon: '✓', style: '' },
@@ -38,10 +40,12 @@ describe('NodeContent', () => {
     });
   });
 
-  it('should render node content in view mode', () => {
+  it('should render node content with contentEditable', () => {
     render(<NodeContent node={mockNode} expanded={true} onToggle={vi.fn()} />);
 
-    expect(screen.getByText('Test Task')).toBeInTheDocument();
+    const contentDiv = screen.getByText('Test Task');
+    expect(contentDiv).toBeInTheDocument();
+    expect(contentDiv).toHaveAttribute('contenteditable', 'true');
   });
 
   it('should show expand toggle when node has children', () => {
@@ -61,7 +65,7 @@ describe('NodeContent', () => {
   });
 
   it('should show icon when configured', () => {
-    const projectNode: Node = {
+    const projectNode: TreeNode = {
       id: 'project-node',
       type: 'project',
       content: 'Project',
@@ -74,116 +78,47 @@ describe('NodeContent', () => {
     expect(screen.getByText('📁')).toBeInTheDocument();
   });
 
-  it('should render input when editing', () => {
-    useTreeStore.setState({
-      editingNodeId: 'test-node',
-      selectedNodeId: 'test-node',
-    });
-
-    render(<NodeContent node={mockNode} expanded={true} onToggle={vi.fn()} />);
-
-    const input = screen.getByDisplayValue('Test Task');
-    expect(input).toBeInTheDocument();
-    expect(input.tagName).toBe('INPUT');
-  });
-
-  it('should call selectAndEdit when clicked', () => {
+  it('should call selectNode when clicked', async () => {
     render(<NodeContent node={mockNode} expanded={true} onToggle={vi.fn()} />);
 
     const nodeContent = screen.getByText('Test Task').closest('.node-content');
     fireEvent.click(nodeContent!);
 
-    expect(mockActions.selectAndEdit).toHaveBeenCalledWith('test-node');
+    await waitFor(() => {
+      expect(mockActions.selectNode).toHaveBeenCalledWith('test-node', expect.any(Number));
+    });
   });
 
-  it('should update edit value when typing in input', () => {
-    useTreeStore.setState({
-      editingNodeId: 'test-node',
-      selectedNodeId: 'test-node',
-    });
-
+  it('should update content when typing in contentEditable', () => {
     render(<NodeContent node={mockNode} expanded={true} onToggle={vi.fn()} />);
 
-    const input = screen.getByDisplayValue('Test Task') as HTMLInputElement;
-    fireEvent.change(input, { target: { value: 'Updated Task' } });
+    const contentDiv = screen.getByText('Test Task');
+    fireEvent.input(contentDiv, { target: { textContent: 'Updated Task' } });
 
-    expect(input.value).toBe('Updated Task');
+    expect(mockActions.updateContent).toHaveBeenCalledWith('test-node', 'Updated Task');
   });
 
-  it('should save content on blur', () => {
-    useTreeStore.setState({
-      editingNodeId: 'test-node',
-      selectedNodeId: 'test-node',
-    });
-
+  it('should prevent default on Enter key', () => {
     render(<NodeContent node={mockNode} expanded={true} onToggle={vi.fn()} />);
 
-    const input = screen.getByDisplayValue('Test Task');
-    fireEvent.change(input, { target: { value: 'Updated Task' } });
-    fireEvent.blur(input);
+    const contentDiv = screen.getByText('Test Task');
+    const event = new KeyboardEvent('keydown', { key: 'Enter', bubbles: true, cancelable: true });
+    const preventDefaultSpy = vi.spyOn(event, 'preventDefault');
 
-    expect(mockActions.saveNodeContent).toHaveBeenCalledWith('test-node', 'Updated Task');
+    contentDiv.dispatchEvent(event);
+
+    expect(preventDefaultSpy).toHaveBeenCalled();
   });
 
-  it('should save content on Enter key', () => {
-    useTreeStore.setState({
-      editingNodeId: 'test-node',
-      selectedNodeId: 'test-node',
-    });
-
+  it('should restore content on Escape key', () => {
     render(<NodeContent node={mockNode} expanded={true} onToggle={vi.fn()} />);
 
-    const input = screen.getByDisplayValue('Test Task');
-    fireEvent.change(input, { target: { value: 'Updated Task' } });
-    fireEvent.keyDown(input, { key: 'Enter' });
+    const contentDiv = screen.getByText('Test Task');
 
-    expect(mockActions.saveNodeContent).toHaveBeenCalledWith('test-node', 'Updated Task');
-  });
+    contentDiv.textContent = 'Changed Content';
 
-  it('should finish edit on Enter with empty value', () => {
-    useTreeStore.setState({
-      editingNodeId: 'test-node',
-      selectedNodeId: 'test-node',
-    });
+    fireEvent.keyDown(contentDiv, { key: 'Escape' });
 
-    render(<NodeContent node={mockNode} expanded={true} onToggle={vi.fn()} />);
-
-    const input = screen.getByDisplayValue('Test Task');
-    fireEvent.change(input, { target: { value: '   ' } });
-    fireEvent.keyDown(input, { key: 'Enter' });
-
-    expect(mockActions.finishEdit).toHaveBeenCalled();
-  });
-
-  it('should cancel edit on Escape key', () => {
-    useTreeStore.setState({
-      editingNodeId: 'test-node',
-      selectedNodeId: 'test-node',
-    });
-
-    render(<NodeContent node={mockNode} expanded={true} onToggle={vi.fn()} />);
-
-    const input = screen.getByDisplayValue('Test Task');
-    fireEvent.change(input, { target: { value: 'Updated Task' } });
-    fireEvent.keyDown(input, { key: 'Escape' });
-
-    expect(mockActions.finishEdit).toHaveBeenCalled();
-    expect(input).toHaveValue('Test Task');
-  });
-
-  it('should finish edit on blur with empty value', () => {
-    useTreeStore.setState({
-      editingNodeId: 'test-node',
-      selectedNodeId: 'test-node',
-    });
-
-    render(<NodeContent node={mockNode} expanded={true} onToggle={vi.fn()} />);
-
-    const input = screen.getByDisplayValue('Test Task');
-    fireEvent.change(input, { target: { value: '   ' } });
-    fireEvent.blur(input);
-
-    expect(mockActions.finishEdit).toHaveBeenCalled();
-    expect(input).toHaveValue('Test Task');
+    expect(contentDiv.textContent).toBe('Test Task');
   });
 });

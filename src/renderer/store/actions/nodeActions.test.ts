@@ -1,9 +1,9 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import { createNodeActions } from './nodeActions';
-import type { Node } from '@shared/types';
+import type { TreeNode } from '@shared/types';
 
 describe('nodeActions', () => {
-  type TestState = { nodes: Record<string, Node>; selectedNodeId: string | null; editingNodeId: string | null };
+  type TestState = { nodes: Record<string, TreeNode>; selectedNodeId: string | null };
   let state: TestState;
   let setState: (partial: Partial<TestState> | ((state: TestState) => Partial<TestState>)) => void;
   let actions: ReturnType<typeof createNodeActions>;
@@ -27,7 +27,6 @@ describe('nodeActions', () => {
         },
       },
       selectedNodeId: null,
-      editingNodeId: null,
     };
 
     setState = (partial) => {
@@ -52,39 +51,16 @@ describe('nodeActions', () => {
     });
   });
 
-  describe('startEdit', () => {
-    it('should start editing a node', () => {
-      actions.startEdit('node-1');
-      expect(state.editingNodeId).toBe('node-1');
-    });
-  });
-
-  describe('finishEdit', () => {
-    it('should finish editing', () => {
-      state.editingNodeId = 'node-1';
-      actions.finishEdit();
-      expect(state.editingNodeId).toBeNull();
-    });
-  });
-
-  describe('selectAndEdit', () => {
-    it('should select a node on first click', () => {
-      actions.selectAndEdit('node-1');
-      expect(state.selectedNodeId).toBe('node-1');
-      expect(state.editingNodeId).toBeNull();
-    });
-
-    it('should start editing on second click of same node', () => {
-      state.selectedNodeId = 'node-1';
-      actions.selectAndEdit('node-1');
-      expect(state.editingNodeId).toBe('node-1');
-    });
-  });
-
   describe('updateContent', () => {
     it('should update node content', () => {
       actions.updateContent('node-1', 'Updated Task');
       expect(state.nodes['node-1'].content).toBe('Updated Task');
+    });
+
+    it('should update content without affecting other nodes', () => {
+      actions.updateContent('node-1', 'Updated Task');
+      expect(state.nodes['node-1'].content).toBe('Updated Task');
+      expect(state.nodes['node-2'].content).toBe('Test Project');
     });
   });
 
@@ -92,15 +68,6 @@ describe('nodeActions', () => {
     it('should update task status', () => {
       actions.updateStatus('node-1', '✓');
       expect(state.nodes['node-1'].metadata.status).toBe('✓');
-    });
-  });
-
-  describe('saveNodeContent', () => {
-    it('should save content and finish editing', () => {
-      state.editingNodeId = 'node-1';
-      actions.saveNodeContent('node-1', 'Saved Content');
-      expect(state.nodes['node-1'].content).toBe('Saved Content');
-      expect(state.editingNodeId).toBeNull();
     });
   });
 

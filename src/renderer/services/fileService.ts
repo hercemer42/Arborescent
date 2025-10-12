@@ -1,8 +1,8 @@
-import { ArboFile, Node, NodeTypeConfig } from '../../shared/types';
+import { ArboFile, TreeNode, NodeTypeConfig } from '../../shared/types';
 
 export async function saveFile(
   filePath: string,
-  nodes: Record<string, Node>,
+  nodes: Record<string, TreeNode>,
   rootNodeId: string,
   nodeTypeConfig: Record<string, NodeTypeConfig>,
   existingMeta?: { created: string; author: string }

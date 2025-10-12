@@ -2,7 +2,7 @@ import { describe, it, expect, beforeEach } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { Node } from './Node';
 import { useTreeStore } from '../../store/treeStore';
-import type { Node as NodeType } from '../../../shared/types';
+import type { TreeNode } from '../../../shared/types';
 
 describe('Node', () => {
   beforeEach(() => {
@@ -26,7 +26,7 @@ describe('Node', () => {
   });
 
   it('should render node without children', () => {
-    const mockNode: NodeType = {
+    const mockNode: TreeNode = {
       id: 'test-node',
       type: 'task',
       content: 'Test Task',
@@ -41,7 +41,7 @@ describe('Node', () => {
   });
 
   it('should render node with children', () => {
-    const nodes: Record<string, NodeType> = {
+    const nodes: Record<string, TreeNode> = {
       'parent': {
         id: 'parent',
         type: 'project',
@@ -66,7 +66,7 @@ describe('Node', () => {
   });
 
   it('should apply correct depth indentation', () => {
-    const mockNode: NodeType = {
+    const mockNode: TreeNode = {
       id: 'test-node',
       type: 'task',
       content: 'Test Task',
@@ -83,7 +83,7 @@ describe('Node', () => {
   });
 
   it('should default depth to 0', () => {
-    const mockNode: NodeType = {
+    const mockNode: TreeNode = {
       id: 'test-node',
       type: 'task',
       content: 'Test Task',
