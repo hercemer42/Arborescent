@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { Tree } from './components/Tree';
 import { ToastContainer } from './components/Toast';
 import { sampleDocument } from './data/sampleData';

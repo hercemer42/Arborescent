@@ -28,7 +28,8 @@ describe('useTreeListeners', () => {
       rootNodeId: '',
       nodeTypeConfig: {},
       selectedNodeId: null,
-      editingNodeId: null,
+      cursorPosition: 0,
+      rememberedCursorColumn: null,
       actions: {
         loadFromPath: mockLoadFromPath,
         saveToPath: mockSaveToPath,
@@ -46,6 +47,7 @@ describe('useTreeListeners', () => {
       showSaveDialog: mockShowSaveDialog,
       readFile: vi.fn(),
       writeFile: vi.fn(),
+      onMainError: vi.fn(),
     };
 
     mockRegister.mockReturnValue(mockUnregister);

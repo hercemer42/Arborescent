@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { NodeContent } from '../NodeContent';
 import { useTreeStore } from '../../store/treeStore';
 

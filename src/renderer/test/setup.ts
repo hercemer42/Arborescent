@@ -18,4 +18,5 @@ global.window.electron = {
   onMenuOpen: vi.fn(),
   onMenuSave: vi.fn(),
   onMenuSaveAs: vi.fn(),
+  onMainError: vi.fn(),
 };

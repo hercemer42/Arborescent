@@ -14,7 +14,6 @@ describe('Node', () => {
         task: { icon: '', style: '' },
       },
       selectedNodeId: null,
-      editingNodeId: null,
     });
   });
 

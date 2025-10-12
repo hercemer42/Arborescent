@@ -20,7 +20,8 @@ describe('Tree', () => {
         project: { icon: '📁', style: '' },
       },
       selectedNodeId: null,
-      editingNodeId: null,
+      cursorPosition: 0,
+      rememberedCursorColumn: null,
     });
   });
 

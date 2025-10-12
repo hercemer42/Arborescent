@@ -14,6 +14,7 @@ describe('fileService', () => {
       onMenuOpen: vi.fn(),
       onMenuSave: vi.fn(),
       onMenuSaveAs: vi.fn(),
+      onMainError: vi.fn(),
     };
   });
 
