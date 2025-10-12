@@ -82,9 +82,15 @@ export function useNodeContent(node: TreeNode) {
   };
 
   const handleInput = (e: React.FormEvent<HTMLDivElement>) => {
+    if (!contentRef.current) return;
+
     const newContent = e.currentTarget.textContent || '';
     lastContentRef.current = newContent;
     updateContent(node.id, newContent);
+
+    const position = getCursorPosition(contentRef.current);
+    setCursorPositionAction(position);
+    setRememberedVisualX(null);
   };
 
   const handleArrowUpDown = (e: React.KeyboardEvent) => {
