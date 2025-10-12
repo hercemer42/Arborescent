@@ -21,7 +21,7 @@ describe('Tree', () => {
       },
       selectedNodeId: null,
       cursorPosition: 0,
-      rememberedCursorColumn: null,
+      rememberedVisualX: null,
     });
   });
 

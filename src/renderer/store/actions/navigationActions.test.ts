@@ -3,7 +3,7 @@ import { createNavigationActions } from './navigationActions';
 import type { TreeNode } from '@shared/types';
 
 describe('navigationActions', () => {
-  let state: { nodes: Record<string, TreeNode>; rootNodeId: string; selectedNodeId: string | null; cursorPosition: number; rememberedCursorColumn: number | null };
+  let state: { nodes: Record<string, TreeNode>; rootNodeId: string; selectedNodeId: string | null; cursorPosition: number; rememberedVisualX: number | null };
   let setState: (partial: Partial<typeof state>) => void;
   let actions: ReturnType<typeof createNavigationActions>;
 
@@ -42,7 +42,7 @@ describe('navigationActions', () => {
       rootNodeId: 'root',
       selectedNodeId: null,
       cursorPosition: 0,
-      rememberedCursorColumn: null,
+      rememberedVisualX: null,
     };
 
     setState = (partial) => {

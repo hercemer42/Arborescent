@@ -1,7 +1,7 @@
 import { useRef, useEffect } from 'react';
 import { useTreeStore } from '../../store/treeStore';
 import { TreeNode } from '../../../shared/types';
-import { getCursorPosition, setCursorPosition } from '../../services/cursorService';
+import { getCursorPosition, setCursorPosition, getVisualCursorPosition, setCursorToVisualPosition } from '../../services/cursorService';
 
 export function useNodeContent(node: TreeNode) {
   const nodeTypeConfig = useTreeStore((state) => state.nodeTypeConfig);
@@ -9,11 +9,14 @@ export function useNodeContent(node: TreeNode) {
   const cursorPosition = useTreeStore((state) =>
     state.selectedNodeId === node.id ? state.cursorPosition : 0
   );
+  const rememberedVisualX = useTreeStore((state) =>
+    state.selectedNodeId === node.id ? state.rememberedVisualX : null
+  );
   const updateStatus = useTreeStore((state) => state.actions.updateStatus);
   const selectNode = useTreeStore((state) => state.actions.selectNode);
   const updateContent = useTreeStore((state) => state.actions.updateContent);
   const setCursorPositionAction = useTreeStore((state) => state.actions.setCursorPosition);
-  const setRememberedCursorColumn = useTreeStore((state) => state.actions.setRememberedCursorColumn);
+  const setRememberedVisualX = useTreeStore((state) => state.actions.setRememberedVisualX);
 
   const config = nodeTypeConfig[node.type] || { icon: '', style: '' };
   const hasChildren = node.children.length > 0;
@@ -23,9 +26,21 @@ export function useNodeContent(node: TreeNode) {
   useEffect(() => {
     if (isSelected && contentRef.current) {
       contentRef.current.focus();
-      setCursorPosition(contentRef.current, cursorPosition);
+
+      if (rememberedVisualX !== null) {
+        const newPosition = setCursorToVisualPosition(contentRef.current, rememberedVisualX);
+        setCursorPositionAction(newPosition);
+
+        const contentLength = node.content.length;
+        if (newPosition < contentLength) {
+          const actualVisualX = getVisualCursorPosition();
+          setRememberedVisualX(actualVisualX);
+        }
+      } else {
+        setCursorPosition(contentRef.current, cursorPosition);
+      }
     }
-  }, [isSelected, cursorPosition]);
+  }, [isSelected, cursorPosition, rememberedVisualX]);
 
   useEffect(() => {
     if (contentRef.current && contentRef.current.textContent !== node.content) {
@@ -46,7 +61,7 @@ export function useNodeContent(node: TreeNode) {
         if (contentRef.current) {
           const position = getCursorPosition(contentRef.current);
           selectNode(node.id, position);
-          setRememberedCursorColumn(null);
+          setRememberedVisualX(null);
         }
       }, 0);
     }
@@ -69,10 +84,17 @@ export function useNodeContent(node: TreeNode) {
       e.preventDefault();
       if (contentRef.current) {
         const position = getCursorPosition(contentRef.current);
+        const contentLength = node.content.length;
+        const visualX = getVisualCursorPosition();
+
         setCursorPositionAction(position);
+
+        if (position < contentLength || rememberedVisualX === null) {
+          setRememberedVisualX(visualX);
+        }
       }
     } else if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
-      setRememberedCursorColumn(null);
+      setRememberedVisualX(null);
 
       setTimeout(() => {
         if (contentRef.current) {

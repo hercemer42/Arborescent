@@ -6,7 +6,7 @@ export const createMockStoreActions = () => ({
   updateStatus: vi.fn(),
   deleteNode: vi.fn(),
   setCursorPosition: vi.fn(),
-  setRememberedCursorColumn: vi.fn(),
+  setRememberedVisualX: vi.fn(),
   moveUp: vi.fn(),
   moveDown: vi.fn(),
   initialize: vi.fn(),

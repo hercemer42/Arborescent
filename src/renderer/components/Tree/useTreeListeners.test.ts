@@ -29,7 +29,7 @@ describe('useTreeListeners', () => {
       nodeTypeConfig: {},
       selectedNodeId: null,
       cursorPosition: 0,
-      rememberedCursorColumn: null,
+      rememberedVisualX: null,
       actions: {
         loadFromPath: mockLoadFromPath,
         saveToPath: mockSaveToPath,

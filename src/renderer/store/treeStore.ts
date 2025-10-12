@@ -11,7 +11,7 @@ interface TreeState {
   ancestorRegistry: Record<string, string[]>;
   selectedNodeId: string | null;
   cursorPosition: number;
-  rememberedCursorColumn: number | null;
+  rememberedVisualX: number | null;
 
   actions: NodeActions & NavigationActions & FileActions;
 }
@@ -23,7 +23,7 @@ export const useTreeStore = create<TreeState>((set, get) => ({
   ancestorRegistry: {},
   selectedNodeId: null,
   cursorPosition: 0,
-  rememberedCursorColumn: null,
+  rememberedVisualX: null,
 
   actions: {
     ...createNodeActions(get, set),

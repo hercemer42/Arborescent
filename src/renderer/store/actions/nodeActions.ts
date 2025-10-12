@@ -7,7 +7,7 @@ export interface NodeActions {
   updateStatus: (nodeId: string, status: NodeStatus) => void;
   deleteNode: (nodeId: string) => void;
   setCursorPosition: (position: number) => void;
-  setRememberedCursorColumn: (column: number | null) => void;
+  setRememberedVisualX: (visualX: number | null) => void;
 }
 
 type StoreState = {
@@ -15,7 +15,7 @@ type StoreState = {
   ancestorRegistry: AncestorRegistry;
   selectedNodeId: string | null;
   cursorPosition: number;
-  rememberedCursorColumn: number | null;
+  rememberedVisualX: number | null;
 };
 type StoreSetter = (partial: Partial<StoreState> | ((state: StoreState) => Partial<StoreState>)) => void;
 
@@ -70,7 +70,7 @@ export const createNodeActions = (
     set({ cursorPosition: position });
   },
 
-  setRememberedCursorColumn: (column: number | null) => {
-    set({ rememberedCursorColumn: column });
+  setRememberedVisualX: (visualX: number | null) => {
+    set({ rememberedVisualX: visualX });
   },
 });

@@ -19,7 +19,7 @@ describe('NodeContent', () => {
     updateStatus: vi.fn(),
     updateContent: vi.fn(),
     setCursorPosition: vi.fn(),
-    setRememberedCursorColumn: vi.fn(),
+    setRememberedVisualX: vi.fn(),
   });
 
   beforeEach(() => {
@@ -30,7 +30,7 @@ describe('NodeContent', () => {
       rootNodeId: '',
       selectedNodeId: null,
       cursorPosition: 0,
-      rememberedCursorColumn: null,
+      rememberedVisualX: null,
       nodeTypeConfig: {
         project: { icon: '📁', style: '' },
         task: { icon: '✓', style: '' },

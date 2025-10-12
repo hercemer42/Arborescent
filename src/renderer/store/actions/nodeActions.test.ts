@@ -3,7 +3,7 @@ import { createNodeActions } from './nodeActions';
 import type { TreeNode } from '@shared/types';
 
 describe('nodeActions', () => {
-  type TestState = { nodes: Record<string, TreeNode>; selectedNodeId: string | null; cursorPosition: number; rememberedCursorColumn: number | null };
+  type TestState = { nodes: Record<string, TreeNode>; selectedNodeId: string | null; cursorPosition: number; rememberedVisualX: number | null };
   let state: TestState;
   let setState: (partial: Partial<TestState> | ((state: TestState) => Partial<TestState>)) => void;
   let actions: ReturnType<typeof createNodeActions>;
@@ -28,7 +28,7 @@ describe('nodeActions', () => {
       },
       selectedNodeId: null,
       cursorPosition: 0,
-      rememberedCursorColumn: null,
+      rememberedVisualX: null,
     };
 
     setState = (partial) => {
