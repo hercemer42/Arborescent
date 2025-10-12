@@ -12,8 +12,6 @@ export const Node = memo(function Node({ nodeId, depth = 0 }: NodeProps) {
   const node = useTreeStore((state) => state.nodes[nodeId]);
   const [expanded, setExpanded] = useState(true);
 
-  console.log(`[Node] Rendering node: ${nodeId}, content: "${node?.content}"`);
-
   if (!node) {
     return null;
   }

@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { TreeNode } from '../../../shared/types';
 import { ExpandToggle } from '../ui/ExpandToggle';
 import { StatusCheckbox } from '../ui/StatusCheckbox';
@@ -10,7 +11,7 @@ interface NodeContentProps {
   onToggle: () => void;
 }
 
-export function NodeContent({
+export const NodeContent = memo(function NodeContent({
   node,
   expanded,
   onToggle,
@@ -61,4 +62,4 @@ export function NodeContent({
       </div>
     </div>
   );
-}
+});

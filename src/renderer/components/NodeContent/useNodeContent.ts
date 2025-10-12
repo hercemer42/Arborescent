@@ -6,7 +6,9 @@ import { getCursorPosition, setCursorPosition } from '../../services/cursorServi
 export function useNodeContent(node: TreeNode) {
   const nodeTypeConfig = useTreeStore((state) => state.nodeTypeConfig);
   const isSelected = useTreeStore((state) => state.selectedNodeId === node.id);
-  const cursorPosition = useTreeStore((state) => state.cursorPosition);
+  const cursorPosition = useTreeStore((state) =>
+    state.selectedNodeId === node.id ? state.cursorPosition : 0
+  );
   const updateStatus = useTreeStore((state) => state.actions.updateStatus);
   const selectNode = useTreeStore((state) => state.actions.selectNode);
   const updateContent = useTreeStore((state) => state.actions.updateContent);
@@ -52,11 +54,13 @@ export function useNodeContent(node: TreeNode) {
 
   const handleInput = (e: React.FormEvent<HTMLDivElement>) => {
     const newContent = e.currentTarget.textContent || '';
-    updateContent(node.id, newContent);
 
     if (contentRef.current) {
       const position = getCursorPosition(contentRef.current);
+      updateContent(node.id, newContent);
       setCursorPositionAction(position);
+    } else {
+      updateContent(node.id, newContent);
     }
   };
 
