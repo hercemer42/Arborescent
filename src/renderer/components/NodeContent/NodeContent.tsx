@@ -40,7 +40,14 @@ export function NodeContent({
         />
       )}
 
-      {config.icon && <span className="node-icon">{config.icon}</span>}
+      {config.icon && (
+        <span
+          className="node-icon"
+          onMouseDown={(e) => e.preventDefault()}
+        >
+          {config.icon}
+        </span>
+      )}
 
       <div
         ref={contentRef}

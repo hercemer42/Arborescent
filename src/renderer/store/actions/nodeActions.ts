@@ -8,7 +8,6 @@ export interface NodeActions {
   deleteNode: (nodeId: string) => void;
   setCursorPosition: (position: number) => void;
   setRememberedCursorColumn: (column: number | null) => void;
-  refocus: () => void;
 }
 
 type StoreState = {
@@ -17,7 +16,6 @@ type StoreState = {
   selectedNodeId: string | null;
   cursorPosition: number;
   rememberedCursorColumn: number | null;
-  focusTrigger: number;
 };
 type StoreSetter = (partial: Partial<StoreState> | ((state: StoreState) => Partial<StoreState>)) => void;
 
@@ -74,10 +72,5 @@ export const createNodeActions = (
 
   setRememberedCursorColumn: (column: number | null) => {
     set({ rememberedCursorColumn: column });
-  },
-
-  refocus: () => {
-    const { focusTrigger } = get();
-    set({ focusTrigger: focusTrigger + 1 });
   },
 });

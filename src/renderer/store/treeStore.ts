@@ -12,7 +12,6 @@ interface TreeState {
   selectedNodeId: string | null;
   cursorPosition: number;
   rememberedCursorColumn: number | null;
-  focusTrigger: number;
 
   actions: NodeActions & NavigationActions & FileActions;
 }
@@ -25,7 +24,6 @@ export const useTreeStore = create<TreeState>((set, get) => ({
   selectedNodeId: null,
   cursorPosition: 0,
   rememberedCursorColumn: null,
-  focusTrigger: 0,
 
   actions: {
     ...createNodeActions(get, set),

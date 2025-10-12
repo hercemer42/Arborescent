@@ -99,9 +99,8 @@ describe('Node', () => {
     expect(indentedDiv).toHaveStyle({ paddingLeft: '0px' });
   });
 
-  it('should maintain cursor when collapsing node being edited', async () => {
+  it('should maintain cursor position when collapsing node being edited', async () => {
     const user = userEvent.setup();
-    const mockRefocus = vi.fn();
 
     const nodes: Record<string, TreeNode> = {
       'parent': {
@@ -123,22 +122,24 @@ describe('Node', () => {
     useTreeStore.setState({
       nodes,
       selectedNodeId: 'parent',
+      cursorPosition: 5,
       ancestorRegistry: {
         'parent': [],
         'child-1': ['parent'],
-      },
-      actions: {
-        ...useTreeStore.getState().actions,
-        refocus: mockRefocus,
       },
     });
 
     render(<Node nodeId="parent" />);
 
+    const contentEditable = screen.getByText('Parent Node');
+    expect(contentEditable).toHaveFocus();
+
     const collapseButton = screen.getByText('▼');
     await user.click(collapseButton);
 
-    expect(mockRefocus).toHaveBeenCalled();
+    expect(contentEditable).toHaveFocus();
+    expect(useTreeStore.getState().selectedNodeId).toBe('parent');
+    expect(useTreeStore.getState().cursorPosition).toBe(5);
   });
 
   it('should move cursor to end when collapsing node with descendant being edited', async () => {

@@ -66,4 +66,27 @@ describe('StatusCheckbox', () => {
     expect(handleChange).toHaveBeenCalled();
     expect(handleParentClick).not.toHaveBeenCalled();
   });
+
+  it('should not steal focus from active element', async () => {
+    const handleChange = vi.fn();
+    const user = userEvent.setup();
+
+    render(
+      <div>
+        <input type="text" data-testid="focused-input" />
+        <StatusCheckbox status="☐" onChange={handleChange} />
+      </div>
+    );
+
+    const input = screen.getByTestId('focused-input');
+    const button = screen.getByRole('button');
+
+    await user.click(input);
+    expect(input).toHaveFocus();
+
+    await user.click(button);
+
+    expect(input).toHaveFocus();
+    expect(handleChange).toHaveBeenCalled();
+  });
 });

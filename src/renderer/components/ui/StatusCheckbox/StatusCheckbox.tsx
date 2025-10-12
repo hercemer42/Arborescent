@@ -25,6 +25,10 @@ export function StatusCheckbox({ status, onChange }: StatusCheckboxProps) {
   return (
     <button
       className="status-checkbox"
+      onMouseDown={(e) => {
+        e.preventDefault();
+        e.stopPropagation();
+      }}
       onClick={handleClick}
       aria-label={`Status: ${status}`}
     >

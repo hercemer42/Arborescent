@@ -13,7 +13,6 @@ export function Node({ nodeId, depth = 0 }: NodeProps) {
   const ancestorRegistry = useTreeStore((state) => state.ancestorRegistry);
   const selectedNodeId = useTreeStore((state) => state.selectedNodeId);
   const selectNode = useTreeStore((state) => state.actions.selectNode);
-  const refocus = useTreeStore((state) => state.actions.refocus);
   const [expanded, setExpanded] = useState(true);
 
   if (!node) {
@@ -27,8 +26,6 @@ export function Node({ nodeId, depth = 0 }: NodeProps) {
 
     if (!newExpandedState && checkIsDescendant(nodeId, selectedNodeId, ancestorRegistry)) {
       selectNode(nodeId, node.content.length);
-    } else if (selectedNodeId) {
-      refocus();
     }
 
     setExpanded(newExpandedState);

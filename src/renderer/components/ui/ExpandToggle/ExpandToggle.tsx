@@ -16,13 +16,19 @@ export function ExpandToggle({ expanded, onToggle }: ExpandToggleProps) {
   return (
     <button
       className="expand-toggle"
+      onMouseDown={(e) => {
+        e.preventDefault();
+        e.stopPropagation();
+      }}
       onClick={(e) => {
         e.stopPropagation();
         onToggle();
       }}
       aria-label={expanded ? 'Collapse' : 'Expand'}
     >
-      <span className="expand-toggle-icon">{icon}</span>
+      <span className="expand-toggle-icon" onMouseDown={(e) => e.preventDefault()}>
+        {icon}
+      </span>
     </button>
   );
 }

@@ -121,4 +121,32 @@ describe('NodeContent', () => {
 
     expect(contentDiv.textContent).toBe('Test Task');
   });
+
+  it('should not steal focus when clicking on icon', () => {
+    const projectNode: TreeNode = {
+      id: 'project-node',
+      type: 'project',
+      content: 'Project',
+      children: [],
+      metadata: {},
+    };
+
+    render(
+      <div>
+        <input type="text" data-testid="focused-input" />
+        <NodeContent node={projectNode} expanded={true} onToggle={vi.fn()} />
+      </div>
+    );
+
+    const input = screen.getByTestId('focused-input');
+    const icon = screen.getByText('📁');
+
+    input.focus();
+    expect(input).toHaveFocus();
+
+    fireEvent.mouseDown(icon);
+    fireEvent.click(icon);
+
+    expect(input).toHaveFocus();
+  });
 });
