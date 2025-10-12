@@ -2,6 +2,11 @@ import { useState, useEffect, useCallback } from 'react';
 import { useTreeStore } from '../../store/treeStore';
 import { hotkeyService } from '../../services/hotkeyService';
 import { logger } from '../../services/logger';
+import { ElectronStorageService } from '../../../platforms/electron/storage';
+import { ElectronMenuService } from '../../../platforms/electron/menu';
+
+const storageService = new ElectronStorageService();
+const menuService = new ElectronMenuService();
 
 export function useTreeListeners() {
   const [filePath, setFilePath] = useState<string | null>(null);
@@ -14,7 +19,7 @@ export function useTreeListeners() {
 
   const handleLoad = async () => {
     try {
-      const path = await window.electron.showOpenDialog();
+      const path = await storageService.showOpenDialog();
       if (!path) return;
 
       const meta = await loadFromPath(path);
@@ -29,7 +34,7 @@ export function useTreeListeners() {
 
   const handleSave = async () => {
     try {
-      const path = filePath || (await window.electron.showSaveDialog());
+      const path = filePath || (await storageService.showSaveDialog());
       if (!path) return;
 
       await saveToPath(path, fileMeta || undefined);
@@ -43,7 +48,7 @@ export function useTreeListeners() {
 
   const handleSaveAs = async () => {
     try {
-      const path = await window.electron.showSaveDialog();
+      const path = await storageService.showSaveDialog();
       if (!path) return;
 
       await saveToPath(path, fileMeta || undefined);
@@ -64,9 +69,9 @@ export function useTreeListeners() {
   }, [moveDown]);
 
   useEffect(() => {
-    window.electron.onMenuOpen(handleLoad);
-    window.electron.onMenuSave(handleSave);
-    window.electron.onMenuSaveAs(handleSaveAs);
+    menuService.onMenuOpen(handleLoad);
+    menuService.onMenuSave(handleSave);
+    menuService.onMenuSaveAs(handleSaveAs);
 
     const unregisterUp = hotkeyService.register('navigation.moveUp', handleMoveUp);
     const unregisterDown = hotkeyService.register('navigation.moveDown', handleMoveDown);

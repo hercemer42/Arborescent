@@ -5,7 +5,10 @@ import { sampleDocument } from './data/sampleData';
 import { useTreeStore } from './store/treeStore';
 import { useToastStore } from './store/toastStore';
 import { logger } from './services/logger';
+import { ElectronErrorService } from '../platforms/electron/error';
 import './App.css';
+
+const errorService = new ElectronErrorService();
 
 function App() {
   const initialize = useTreeStore((state) => state.actions.initialize);
@@ -24,7 +27,7 @@ function App() {
   useEffect(() => {
     logger.setToastCallback(addToast);
 
-    window.electron.onMainError((message) => {
+    errorService.onError((message) => {
       logger.error(message, undefined, 'Main Process', true);
     });
   }, [addToast]);

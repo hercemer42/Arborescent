@@ -1,7 +1,8 @@
 import { TreeNode, NodeTypeConfig } from '../../../shared/types';
-import { loadFile as loadFileFromDisk, saveFile as saveFileToDisk } from '../../services/fileService';
 import { defaultNodeTypeConfig } from '../../data/defaultTemplate';
 import { buildAncestorRegistry, AncestorRegistry } from '../../services/registryService';
+import { StorageService } from '../../services/interfaces';
+import { createArboFile } from '../../../platforms/electron/storage';
 
 export interface FileActions {
   initialize: (nodes: Record<string, TreeNode>, rootNodeId: string, nodeTypeConfig: Record<string, NodeTypeConfig>) => void;
@@ -16,7 +17,8 @@ type StoreGetter = () => StoreState;
 
 export const createFileActions = (
   get: StoreGetter,
-  set: StoreSetter
+  set: StoreSetter,
+  storage: StorageService
 ): FileActions => {
   const loadDoc = (nodes: Record<string, TreeNode>, rootNodeId: string, nodeTypeConfig: Record<string, NodeTypeConfig>) => {
     const ancestorRegistry = buildAncestorRegistry(rootNodeId, nodes);
@@ -28,7 +30,7 @@ export const createFileActions = (
     loadDocument: loadDoc,
 
   loadFromPath: async (path: string) => {
-    const data = await loadFileFromDisk(path);
+    const data = await storage.loadDocument(path);
     const configToUse = (data.nodeTypeConfig && Object.keys(data.nodeTypeConfig).length > 0)
       ? data.nodeTypeConfig
       : defaultNodeTypeConfig;
@@ -47,7 +49,8 @@ export const createFileActions = (
 
     saveToPath: async (path: string, fileMeta?: { created: string; author: string }) => {
       const { nodes, rootNodeId, nodeTypeConfig } = get();
-      await saveFileToDisk(path, nodes, rootNodeId, nodeTypeConfig, fileMeta);
+      const arboFile = createArboFile(nodes, rootNodeId, nodeTypeConfig, fileMeta);
+      await storage.saveDocument(path, arboFile);
     },
   };
 };

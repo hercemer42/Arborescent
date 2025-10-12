@@ -1,11 +1,7 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { createFileActions } from './fileActions';
-import type { TreeNode, NodeTypeConfig } from '@shared/types';
-
-vi.mock('../../services/fileService', () => ({
-  loadFile: vi.fn(),
-  saveFile: vi.fn(),
-}));
+import type { TreeNode, NodeTypeConfig, ArboFile } from '@shared/types';
+import type { StorageService } from '../../services/interfaces';
 
 vi.mock('../../data/defaultTemplate', () => ({
   defaultNodeTypeConfig: {
@@ -14,13 +10,13 @@ vi.mock('../../data/defaultTemplate', () => ({
   },
 }));
 
-import { loadFile, saveFile } from '../../services/fileService';
 import { defaultNodeTypeConfig } from '../../data/defaultTemplate';
 
 describe('fileActions', () => {
   let state: { nodes: Record<string, TreeNode>; rootNodeId: string; nodeTypeConfig: Record<string, NodeTypeConfig> };
   let setState: (partial: Partial<typeof state>) => void;
   let actions: ReturnType<typeof createFileActions>;
+  let mockStorage: StorageService;
 
   beforeEach(() => {
     vi.clearAllMocks();
@@ -45,9 +41,17 @@ describe('fileActions', () => {
       state = { ...state, ...partial };
     };
 
+    mockStorage = {
+      loadDocument: vi.fn(),
+      saveDocument: vi.fn(),
+      showOpenDialog: vi.fn(),
+      showSaveDialog: vi.fn(),
+    };
+
     actions = createFileActions(
       () => state,
-      setState
+      setState,
+      mockStorage
     );
   });
 
@@ -97,11 +101,11 @@ describe('fileActions', () => {
         },
       };
 
-      vi.mocked(loadFile).mockResolvedValue(mockData);
+      vi.mocked(mockStorage.loadDocument).mockResolvedValue(mockData);
 
       const result = await actions.loadFromPath('/test/path.arbo');
 
-      expect(loadFile).toHaveBeenCalledWith('/test/path.arbo');
+      expect(mockStorage.loadDocument).toHaveBeenCalledWith('/test/path.arbo');
       expect(state.nodes).toEqual(mockData.nodes);
       expect(state.rootNodeId).toBe('loaded-root');
       expect(state.nodeTypeConfig).toEqual(mockData.nodeTypeConfig);
@@ -120,7 +124,7 @@ describe('fileActions', () => {
         nodeTypeConfig: {},
       };
 
-      vi.mocked(loadFile).mockResolvedValue(mockData);
+      vi.mocked(mockStorage.loadDocument).mockResolvedValue(mockData);
 
       await actions.loadFromPath('/test/path.arbo');
 
@@ -136,9 +140,9 @@ describe('fileActions', () => {
         author: 'Test',
         rootNodeId: 'root',
         nodes: {},
-      };
+      } as ArboFile;
 
-      vi.mocked(loadFile).mockResolvedValue(mockData);
+      vi.mocked(mockStorage.loadDocument).mockResolvedValue(mockData);
 
       await actions.loadFromPath('/test/path.arbo');
 
@@ -148,31 +152,37 @@ describe('fileActions', () => {
 
   describe('saveToPath', () => {
     it('should save file with current state', async () => {
-      vi.mocked(saveFile).mockResolvedValue();
+      vi.mocked(mockStorage.saveDocument).mockResolvedValue();
 
       await actions.saveToPath('/test/save.arbo');
 
-      expect(saveFile).toHaveBeenCalledWith(
+      expect(mockStorage.saveDocument).toHaveBeenCalledWith(
         '/test/save.arbo',
-        state.nodes,
-        state.rootNodeId,
-        state.nodeTypeConfig,
-        undefined
+        expect.objectContaining({
+          format: 'Arborescent',
+          nodes: state.nodes,
+          rootNodeId: state.rootNodeId,
+          nodeTypeConfig: state.nodeTypeConfig,
+        })
       );
     });
 
     it('should save file with metadata', async () => {
-      vi.mocked(saveFile).mockResolvedValue();
+      vi.mocked(mockStorage.saveDocument).mockResolvedValue();
 
       const meta = { created: '2025-01-01', author: 'Test User' };
       await actions.saveToPath('/test/save.arbo', meta);
 
-      expect(saveFile).toHaveBeenCalledWith(
+      expect(mockStorage.saveDocument).toHaveBeenCalledWith(
         '/test/save.arbo',
-        state.nodes,
-        state.rootNodeId,
-        state.nodeTypeConfig,
-        meta
+        expect.objectContaining({
+          format: 'Arborescent',
+          created: meta.created,
+          author: meta.author,
+          nodes: state.nodes,
+          rootNodeId: state.rootNodeId,
+          nodeTypeConfig: state.nodeTypeConfig,
+        })
       );
     });
   });

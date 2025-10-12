@@ -15,10 +15,12 @@ src/
 │   └── services/ # IPC handlers, menu, file operations
 ├── preload/      # Security bridge between main and renderer
 │   └── index.ts  # Context bridge API definitions
+├── platforms/    # Platform-specific service implementations
+│   └── electron/ # Electron implementations (storage, menu, error)
 ├── renderer/     # React application (browser sandbox)
 │   ├── components/
 │   ├── store/
-│   ├── services/
+│   ├── services/ # Service interfaces and platform-agnostic services
 │   ├── utils/    # Pure utility functions (domain-specific)
 │   └── data/
 └── shared/       # Code used by both (types, interfaces)
@@ -328,15 +330,22 @@ npm test                  # Run all tests in watch mode
 
 ## Services Organization
 
-**Decision:** Services handle infrastructure layer concerns - external interactions with DOM, IPC, browser APIs, and file I/O.
+**Decision:** Services handle infrastructure layer concerns - external interactions with DOM, IPC, browser APIs, and file I/O. Platform-specific implementations live in `src/platforms/`.
 
 **Structure:**
 ```
 src/renderer/services/
+├── interfaces.ts           # Service interface definitions
 ├── cursorService.ts        # DOM Selection API manipulation
 ├── fileService.ts          # IPC communication for file operations
 ├── hotkeyService.ts        # Keyboard event handling
 └── logger.ts               # Logging and toast notifications
+
+src/platforms/
+└── electron/               # Electron-specific implementations
+    ├── storage.ts          # ElectronStorageService
+    ├── menu.ts             # ElectronMenuService
+    └── error.ts            # ElectronErrorService
 ```
 
 **Example:**
