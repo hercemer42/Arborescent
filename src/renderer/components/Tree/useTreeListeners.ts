@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useEffect, useCallback } from 'react';
 import { useTreeStore } from '../../store/treeStore';
 import { hotkeyService } from '../../services/hotkeyService';
 import { logger } from '../../services/logger';
@@ -9,9 +9,8 @@ const storageService = new ElectronStorageService();
 const menuService = new ElectronMenuService();
 
 export function useTreeListeners() {
-  const [filePath, setFilePath] = useState<string | null>(null);
-  const [fileMeta, setFileMeta] = useState<{ created: string; author: string } | null>(null);
-
+  const currentFilePath = useTreeStore((state) => state.currentFilePath);
+  const fileMeta = useTreeStore((state) => state.fileMeta);
   const loadFromPath = useTreeStore((state) => state.actions.loadFromPath);
   const saveToPath = useTreeStore((state) => state.actions.saveToPath);
   const moveUp = useTreeStore((state) => state.actions.moveUp);
@@ -22,9 +21,7 @@ export function useTreeListeners() {
       const path = await storageService.showOpenDialog();
       if (!path) return;
 
-      const meta = await loadFromPath(path);
-      setFilePath(path);
-      setFileMeta(meta);
+      await loadFromPath(path);
       logger.success(`File loaded: ${path}`, 'FileLoad', false);
     } catch (error) {
       const message = `Failed to load file: ${error instanceof Error ? error.message : 'Unknown error'}`;
@@ -34,11 +31,10 @@ export function useTreeListeners() {
 
   const handleSave = async () => {
     try {
-      const path = filePath || (await storageService.showSaveDialog());
+      const path = currentFilePath || (await storageService.showSaveDialog());
       if (!path) return;
 
       await saveToPath(path, fileMeta || undefined);
-      setFilePath(path);
       logger.success(`File saved: ${path}`, 'FileSave', false);
     } catch (error) {
       const message = `Failed to save file: ${error instanceof Error ? error.message : 'Unknown error'}`;
@@ -52,7 +48,6 @@ export function useTreeListeners() {
       if (!path) return;
 
       await saveToPath(path, fileMeta || undefined);
-      setFilePath(path);
       logger.success(`File saved: ${path}`, 'FileSaveAs', false);
     } catch (error) {
       const message = `Failed to save file: ${error instanceof Error ? error.message : 'Unknown error'}`;

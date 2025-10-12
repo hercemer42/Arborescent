@@ -27,7 +27,8 @@ function generateId(): string {
 
 export const createNodeActions = (
   get: () => StoreState,
-  set: StoreSetter
+  set: StoreSetter,
+  triggerAutosave?: () => void
 ): NodeActions => ({
   selectNode: (nodeId: string, cursorPosition?: number) => {
     set({
@@ -47,6 +48,7 @@ export const createNodeActions = (
         },
       },
     });
+    triggerAutosave?.();
   },
 
   updateStatus: (nodeId: string, status: NodeStatus) => {

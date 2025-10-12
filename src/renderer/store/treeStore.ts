@@ -14,25 +14,33 @@ interface TreeState {
   selectedNodeId: string | null;
   cursorPosition: number;
   rememberedVisualX: number | null;
+  currentFilePath: string | null;
+  fileMeta: { created: string; author: string } | null;
 
   actions: NodeActions & NavigationActions & FileActions & TreeStructureActions;
 }
 
 const storageService = new ElectronStorageService();
 
-export const useTreeStore = create<TreeState>((set, get) => ({
-  nodes: {},
-  rootNodeId: '',
-  nodeTypeConfig: {},
-  ancestorRegistry: {},
-  selectedNodeId: null,
-  cursorPosition: 0,
-  rememberedVisualX: null,
+export const useTreeStore = create<TreeState>((set, get) => {
+  const fileActions = createFileActions(get, set, storageService);
 
-  actions: {
-    ...createNodeActions(get, set),
-    ...createNavigationActions(get, set),
-    ...createFileActions(get, set, storageService),
-    ...createTreeStructureActions(get, set),
-  },
-}));
+  return {
+    nodes: {},
+    rootNodeId: '',
+    nodeTypeConfig: {},
+    ancestorRegistry: {},
+    selectedNodeId: null,
+    cursorPosition: 0,
+    rememberedVisualX: null,
+    currentFilePath: null,
+    fileMeta: null,
+
+    actions: {
+      ...createNodeActions(get, set, fileActions.autoSave),
+      ...createNavigationActions(get, set),
+      ...fileActions,
+      ...createTreeStructureActions(get, set),
+    },
+  };
+});
