@@ -57,9 +57,7 @@ export const NodeContent = memo(function NodeContent({
         suppressContentEditableWarning
         onKeyDown={handleKeyDown}
         onInput={handleInput}
-      >
-        {node.content}
-      </div>
+      />
     </div>
   );
 });

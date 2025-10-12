@@ -22,6 +22,24 @@ export function useNodeContent(node: TreeNode) {
   const hasChildren = node.children.length > 0;
 
   const contentRef = useRef<HTMLDivElement>(null);
+  const lastContentRef = useRef<string | null>(null);
+
+  useEffect(() => {
+    if (contentRef.current && lastContentRef.current === null) {
+      contentRef.current.textContent = node.content;
+      lastContentRef.current = node.content;
+    }
+  }, []);
+
+  useEffect(() => {
+    if (contentRef.current && node.content !== lastContentRef.current) {
+      const currentDOMContent = contentRef.current.textContent || '';
+      if (currentDOMContent !== node.content) {
+        contentRef.current.textContent = node.content;
+      }
+      lastContentRef.current = node.content;
+    }
+  }, [node.content]);
 
   useEffect(() => {
     if (isSelected && contentRef.current) {
@@ -40,17 +58,7 @@ export function useNodeContent(node: TreeNode) {
         setCursorPosition(contentRef.current, cursorPosition);
       }
     }
-  }, [isSelected, cursorPosition, rememberedVisualX]);
-
-  useEffect(() => {
-    if (contentRef.current && contentRef.current.textContent !== node.content) {
-      const savedPosition = getCursorPosition(contentRef.current);
-      contentRef.current.textContent = node.content;
-      if (isSelected) {
-        setCursorPosition(contentRef.current, savedPosition);
-      }
-    }
-  }, [node.content, isSelected]);
+  }, [isSelected, rememberedVisualX]);
 
   const handleClick = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -69,14 +77,8 @@ export function useNodeContent(node: TreeNode) {
 
   const handleInput = (e: React.FormEvent<HTMLDivElement>) => {
     const newContent = e.currentTarget.textContent || '';
-
-    if (contentRef.current) {
-      const position = getCursorPosition(contentRef.current);
-      updateContent(node.id, newContent);
-      setCursorPositionAction(position);
-    } else {
-      updateContent(node.id, newContent);
-    }
+    lastContentRef.current = newContent;
+    updateContent(node.id, newContent);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
