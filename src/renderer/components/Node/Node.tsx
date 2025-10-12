@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, memo } from 'react';
 import { NodeContent } from '../NodeContent';
 import { useTreeStore } from '../../store/treeStore';
 import { isDescendant as checkIsDescendant } from '../../services/registryService';
@@ -8,12 +8,11 @@ interface NodeProps {
   depth?: number;
 }
 
-export function Node({ nodeId, depth = 0 }: NodeProps) {
+export const Node = memo(function Node({ nodeId, depth = 0 }: NodeProps) {
   const node = useTreeStore((state) => state.nodes[nodeId]);
-  const ancestorRegistry = useTreeStore((state) => state.ancestorRegistry);
-  const selectedNodeId = useTreeStore((state) => state.selectedNodeId);
-  const selectNode = useTreeStore((state) => state.actions.selectNode);
   const [expanded, setExpanded] = useState(true);
+
+  console.log(`[Node] Rendering node: ${nodeId}, content: "${node?.content}"`);
 
   if (!node) {
     return null;
@@ -24,8 +23,11 @@ export function Node({ nodeId, depth = 0 }: NodeProps) {
   const handleToggle = () => {
     const newExpandedState = !expanded;
 
-    if (!newExpandedState && checkIsDescendant(nodeId, selectedNodeId, ancestorRegistry)) {
-      selectNode(nodeId, node.content.length);
+    if (!newExpandedState) {
+      const { selectedNodeId, ancestorRegistry, actions } = useTreeStore.getState();
+      if (checkIsDescendant(nodeId, selectedNodeId, ancestorRegistry)) {
+        actions.selectNode(nodeId, node.content.length);
+      }
     }
 
     setExpanded(newExpandedState);
@@ -52,4 +54,4 @@ export function Node({ nodeId, depth = 0 }: NodeProps) {
         ))}
     </div>
   );
-}
+});
