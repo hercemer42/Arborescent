@@ -1,4 +1,5 @@
 import { TreeNode, NodeStatus } from '../../../shared/types';
+import { AncestorRegistry } from '../../services/registryService';
 
 export interface NodeActions {
   selectNode: (nodeId: string, cursorPosition?: number) => void;
@@ -12,6 +13,7 @@ export interface NodeActions {
 
 type StoreState = {
   nodes: Record<string, TreeNode>;
+  ancestorRegistry: AncestorRegistry;
   selectedNodeId: string | null;
   cursorPosition: number;
   rememberedCursorColumn: number | null;

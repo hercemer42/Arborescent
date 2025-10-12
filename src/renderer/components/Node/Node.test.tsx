@@ -1,5 +1,6 @@
-import { describe, it, expect, beforeEach } from 'vitest';
+import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { Node } from './Node';
 import { useTreeStore } from '../../store/treeStore';
 import type { TreeNode } from '../../../shared/types';
@@ -96,5 +97,89 @@ describe('Node', () => {
     const nodeWrapper = container.firstChild as HTMLElement;
     const indentedDiv = nodeWrapper?.children[0] as HTMLElement;
     expect(indentedDiv).toHaveStyle({ paddingLeft: '0px' });
+  });
+
+  it('should maintain cursor when collapsing node being edited', async () => {
+    const user = userEvent.setup();
+    const mockRefocus = vi.fn();
+
+    const nodes: Record<string, TreeNode> = {
+      'parent': {
+        id: 'parent',
+        type: 'project',
+        content: 'Parent Node',
+        children: ['child-1'],
+        metadata: {},
+      },
+      'child-1': {
+        id: 'child-1',
+        type: 'task',
+        content: 'Child Node',
+        children: [],
+        metadata: {},
+      },
+    };
+
+    useTreeStore.setState({
+      nodes,
+      selectedNodeId: 'parent',
+      ancestorRegistry: {
+        'parent': [],
+        'child-1': ['parent'],
+      },
+      actions: {
+        ...useTreeStore.getState().actions,
+        refocus: mockRefocus,
+      },
+    });
+
+    render(<Node nodeId="parent" />);
+
+    const collapseButton = screen.getByText('▼');
+    await user.click(collapseButton);
+
+    expect(mockRefocus).toHaveBeenCalled();
+  });
+
+  it('should move cursor to end when collapsing node with descendant being edited', async () => {
+    const user = userEvent.setup();
+    const mockSelectNode = vi.fn();
+
+    const nodes: Record<string, TreeNode> = {
+      'parent': {
+        id: 'parent',
+        type: 'project',
+        content: 'Parent Node',
+        children: ['child-1'],
+        metadata: {},
+      },
+      'child-1': {
+        id: 'child-1',
+        type: 'task',
+        content: 'Child Node',
+        children: [],
+        metadata: {},
+      },
+    };
+
+    useTreeStore.setState({
+      nodes,
+      selectedNodeId: 'child-1',
+      ancestorRegistry: {
+        'parent': [],
+        'child-1': ['parent'],
+      },
+      actions: {
+        ...useTreeStore.getState().actions,
+        selectNode: mockSelectNode,
+      },
+    });
+
+    render(<Node nodeId="parent" />);
+
+    const collapseButton = screen.getByText('▼');
+    await user.click(collapseButton);
+
+    expect(mockSelectNode).toHaveBeenCalledWith('parent', 11);
   });
 });

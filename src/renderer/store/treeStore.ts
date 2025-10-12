@@ -8,6 +8,7 @@ interface TreeState {
   nodes: Record<string, TreeNode>;
   rootNodeId: string;
   nodeTypeConfig: Record<string, NodeTypeConfig>;
+  ancestorRegistry: Record<string, string[]>;
   selectedNodeId: string | null;
   cursorPosition: number;
   rememberedCursorColumn: number | null;
@@ -20,6 +21,7 @@ export const useTreeStore = create<TreeState>((set, get) => ({
   nodes: {},
   rootNodeId: '',
   nodeTypeConfig: {},
+  ancestorRegistry: {},
   selectedNodeId: null,
   cursorPosition: 0,
   rememberedCursorColumn: null,

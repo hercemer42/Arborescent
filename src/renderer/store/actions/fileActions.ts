@@ -1,6 +1,7 @@
 import { TreeNode, NodeTypeConfig } from '../../../shared/types';
 import { loadFile as loadFileFromDisk, saveFile as saveFileToDisk } from '../../services/fileService';
 import { defaultNodeTypeConfig } from '../../data/defaultTemplate';
+import { buildAncestorRegistry, AncestorRegistry } from '../../services/registryService';
 
 export interface FileActions {
   initialize: (nodes: Record<string, TreeNode>, rootNodeId: string, nodeTypeConfig: Record<string, NodeTypeConfig>) => void;
@@ -9,7 +10,7 @@ export interface FileActions {
   saveToPath: (path: string, fileMeta?: { created: string; author: string }) => Promise<void>;
 }
 
-type StoreState = { nodes: Record<string, TreeNode>; rootNodeId: string; nodeTypeConfig: Record<string, NodeTypeConfig> };
+type StoreState = { nodes: Record<string, TreeNode>; rootNodeId: string; nodeTypeConfig: Record<string, NodeTypeConfig>; ancestorRegistry: AncestorRegistry };
 type StoreSetter = (partial: Partial<StoreState>) => void;
 type StoreGetter = () => StoreState;
 
@@ -18,7 +19,8 @@ export const createFileActions = (
   set: StoreSetter
 ): FileActions => {
   const loadDoc = (nodes: Record<string, TreeNode>, rootNodeId: string, nodeTypeConfig: Record<string, NodeTypeConfig>) => {
-    set({ nodes, rootNodeId, nodeTypeConfig });
+    const ancestorRegistry = buildAncestorRegistry(rootNodeId, nodes);
+    set({ nodes, rootNodeId, nodeTypeConfig, ancestorRegistry });
   };
 
   return {
@@ -31,10 +33,13 @@ export const createFileActions = (
       ? data.nodeTypeConfig
       : defaultNodeTypeConfig;
 
+    const ancestorRegistry = buildAncestorRegistry(data.rootNodeId, data.nodes);
+
     set({
       nodes: data.nodes,
       rootNodeId: data.rootNodeId,
-      nodeTypeConfig: configToUse
+      nodeTypeConfig: configToUse,
+      ancestorRegistry
     });
 
     return { created: data.created, author: data.author };

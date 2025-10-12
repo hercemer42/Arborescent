@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { NodeContent } from '../NodeContent';
 import { useTreeStore } from '../../store/treeStore';
+import { isDescendant as checkIsDescendant } from '../../services/registryService';
 
 interface NodeProps {
   nodeId: string;
@@ -9,7 +10,7 @@ interface NodeProps {
 
 export function Node({ nodeId, depth = 0 }: NodeProps) {
   const node = useTreeStore((state) => state.nodes[nodeId]);
-  const nodes = useTreeStore((state) => state.nodes);
+  const ancestorRegistry = useTreeStore((state) => state.ancestorRegistry);
   const selectedNodeId = useTreeStore((state) => state.selectedNodeId);
   const selectNode = useTreeStore((state) => state.actions.selectNode);
   const refocus = useTreeStore((state) => state.actions.refocus);
@@ -21,24 +22,10 @@ export function Node({ nodeId, depth = 0 }: NodeProps) {
 
   const hasChildren = node.children.length > 0;
 
-  const isDescendant = (parentId: string, targetId: string | null): boolean => {
-    if (!targetId) return false;
-    if (parentId === targetId) return false;
-
-    const parent = nodes[parentId];
-    if (!parent) return false;
-
-    for (const childId of parent.children) {
-      if (childId === targetId) return true;
-      if (isDescendant(childId, targetId)) return true;
-    }
-    return false;
-  };
-
   const handleToggle = () => {
     const newExpandedState = !expanded;
 
-    if (!newExpandedState && isDescendant(nodeId, selectedNodeId)) {
+    if (!newExpandedState && checkIsDescendant(nodeId, selectedNodeId, ancestorRegistry)) {
       selectNode(nodeId, node.content.length);
     } else if (selectedNodeId) {
       refocus();
