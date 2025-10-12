@@ -479,4 +479,40 @@ When implementing lazy loading (partial tree loading), only loaded branches need
 - Uses existing hash IDs (no new position/indexing system needed)
 - Prepares architecture for lazy loading features
 
+## React Rendering Performance Strategy
+
+**Decision:** Minimize re-renders through selective Zustand subscriptions and React.memo.
+
+**Strategy:**
+
+1. **Subscribe to minimal state** - Only what the component needs
+   ```typescript
+   const node = useTreeStore((state) => state.nodes[nodeId]);
+   ```
+
+2. **Use `getState()` in event handlers** - One-time reads don't need subscriptions
+   ```typescript
+   const handleToggle = () => {
+     const { selectedNodeId, actions } = useTreeStore.getState();
+   };
+   ```
+
+3. **Conditional subscriptions** - Return same value for non-relevant components
+   ```typescript
+   const cursorPosition = useTreeStore((state) =>
+     state.selectedNodeId === node.id ? state.cursorPosition : 0
+   );
+   ```
+
+4. **React.memo** - Prevent prop-driven re-renders
+   ```typescript
+   export const Node = memo(function Node({ nodeId }: NodeProps) { ... });
+   ```
+
+5. **Maintain referential equality** - Use spread operators correctly when updating state
+
+**Result:** Only affected components re-render. Editing one node doesn't re-render the entire tree.
+
+**Rationale:** Critical for large trees (100+ nodes). Follows Zustand best practices for performance.
+
 **Update this file when making new architectural decisions.**
