@@ -5,7 +5,7 @@ import { sampleDocument } from './data/sampleData';
 import { useTreeStore } from './store/treeStore';
 import { useToastStore } from './store/toastStore';
 import { logger } from './services/logger';
-import { ElectronErrorService } from '../platforms/electron/error';
+import { ElectronErrorService } from '@platform/error';
 import './App.css';
 
 const errorService = new ElectronErrorService();

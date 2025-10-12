@@ -2,8 +2,8 @@ import { useState, useEffect, useCallback } from 'react';
 import { useTreeStore } from '../../store/treeStore';
 import { hotkeyService } from '../../services/hotkeyService';
 import { logger } from '../../services/logger';
-import { ElectronStorageService } from '../../../platforms/electron/storage';
-import { ElectronMenuService } from '../../../platforms/electron/menu';
+import { ElectronStorageService } from '@platform/storage';
+import { ElectronMenuService } from '@platform/menu';
 
 const storageService = new ElectronStorageService();
 const menuService = new ElectronMenuService();

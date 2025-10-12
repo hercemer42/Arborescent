@@ -3,7 +3,7 @@ import { TreeNode, NodeTypeConfig } from '../../shared/types';
 import { createNodeActions, NodeActions } from './actions/nodeActions';
 import { createNavigationActions, NavigationActions } from './actions/navigationActions';
 import { createFileActions, FileActions } from './actions/fileActions';
-import { ElectronStorageService } from '../../platforms/electron/storage';
+import { ElectronStorageService } from '@platform/storage';
 
 interface TreeState {
   nodes: Record<string, TreeNode>;

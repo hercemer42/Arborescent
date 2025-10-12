@@ -2,7 +2,7 @@ import { TreeNode, NodeTypeConfig } from '../../../shared/types';
 import { defaultNodeTypeConfig } from '../../data/defaultTemplate';
 import { buildAncestorRegistry, AncestorRegistry } from '../../services/registryService';
 import { StorageService } from '../../services/interfaces';
-import { createArboFile } from '../../../platforms/electron/storage';
+import { createArboFile } from '@platform/storage';
 
 export interface FileActions {
   initialize: (nodes: Record<string, TreeNode>, rootNodeId: string, nodeTypeConfig: Record<string, NodeTypeConfig>) => void;

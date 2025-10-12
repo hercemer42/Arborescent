@@ -1,5 +1,5 @@
 import { ArboFile, TreeNode, NodeTypeConfig } from '../../shared/types';
-import { ElectronStorageService, createArboFile } from '../../platforms/electron/storage';
+import { ElectronStorageService, createArboFile } from '@platform/storage';
 
 const storageService = new ElectronStorageService();
 
