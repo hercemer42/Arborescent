@@ -100,4 +100,64 @@ describe('navigationActions', () => {
       expect(state.selectedNodeId).toBe('root');
     });
   });
+
+  describe('moveToPrevious', () => {
+    it('should move to previous node with cursor at end', () => {
+      state.selectedNodeId = 'child-1';
+      actions.moveToPrevious();
+      expect(state.selectedNodeId).toBe('root');
+      expect(state.cursorPosition).toBe(4);
+      expect(state.rememberedVisualX).toBeNull();
+    });
+
+    it('should not move from first node', () => {
+      state.selectedNodeId = 'root';
+      actions.moveToPrevious();
+      expect(state.selectedNodeId).toBe('root');
+    });
+
+    it('should handle moving from nested nodes', () => {
+      state.selectedNodeId = 'grandchild-1';
+      actions.moveToPrevious();
+      expect(state.selectedNodeId).toBe('child-1');
+      expect(state.cursorPosition).toBe(7);
+    });
+
+    it('should clear remembered visual X position', () => {
+      state.selectedNodeId = 'child-1';
+      state.rememberedVisualX = 10;
+      actions.moveToPrevious();
+      expect(state.rememberedVisualX).toBeNull();
+    });
+  });
+
+  describe('moveToNext', () => {
+    it('should move to next node with cursor at start', () => {
+      state.selectedNodeId = 'root';
+      actions.moveToNext();
+      expect(state.selectedNodeId).toBe('child-1');
+      expect(state.cursorPosition).toBe(0);
+      expect(state.rememberedVisualX).toBeNull();
+    });
+
+    it('should not move from last node', () => {
+      state.selectedNodeId = 'child-2';
+      actions.moveToNext();
+      expect(state.selectedNodeId).toBe('child-2');
+    });
+
+    it('should handle moving through nested nodes', () => {
+      state.selectedNodeId = 'child-1';
+      actions.moveToNext();
+      expect(state.selectedNodeId).toBe('grandchild-1');
+      expect(state.cursorPosition).toBe(0);
+    });
+
+    it('should clear remembered visual X position', () => {
+      state.selectedNodeId = 'root';
+      state.rememberedVisualX = 10;
+      actions.moveToNext();
+      expect(state.rememberedVisualX).toBeNull();
+    });
+  });
 });

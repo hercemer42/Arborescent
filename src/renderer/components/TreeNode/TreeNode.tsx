@@ -12,6 +12,7 @@ interface TreeNodeProps {
 export const TreeNode = memo(function TreeNode({ nodeId, depth = 0 }: TreeNodeProps) {
   const node = useTreeStore((state) => state.nodes[nodeId]);
   const [expanded, setExpanded] = useState(true);
+  const isSelected = useTreeStore((state) => state.selectedNodeId === nodeId);
 
   if (!node) {
     return null;
@@ -31,8 +32,6 @@ export const TreeNode = memo(function TreeNode({ nodeId, depth = 0 }: TreeNodePr
 
     setExpanded(newExpandedState);
   };
-
-  const isSelected = useTreeStore((state) => state.selectedNodeId === nodeId);
 
   return (
     <>

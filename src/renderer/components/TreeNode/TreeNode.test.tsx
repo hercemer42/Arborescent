@@ -15,6 +15,7 @@ describe('TreeNode', () => {
         task: { icon: '', style: '' },
       },
       selectedNodeId: null,
+      ancestorRegistry: {},
     });
   });
 
@@ -78,8 +79,7 @@ describe('TreeNode', () => {
 
     const { container } = render(<TreeNode nodeId="test-node" depth={2} />);
     const nodeWrapper = container.firstChild as HTMLElement;
-    const indentedDiv = nodeWrapper?.children[0] as HTMLElement;
-    expect(indentedDiv).toHaveStyle({ paddingLeft: '40px' }); // 2 * 20px
+    expect(nodeWrapper).toHaveStyle({ paddingLeft: '40px' });
   });
 
   it('should default depth to 0', () => {
@@ -95,8 +95,7 @@ describe('TreeNode', () => {
 
     const { container } = render(<TreeNode nodeId="test-node" />);
     const nodeWrapper = container.firstChild as HTMLElement;
-    const indentedDiv = nodeWrapper?.children[0] as HTMLElement;
-    expect(indentedDiv).toHaveStyle({ paddingLeft: '0px' });
+    expect(nodeWrapper).toHaveStyle({ paddingLeft: '0px' });
   });
 
   it('should maintain cursor position when collapsing node being edited', async () => {
