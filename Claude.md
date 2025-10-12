@@ -163,6 +163,7 @@ When implementing features for Arborescent:
 5. **Hooks for React-specific code** (effects, refs, listeners)
 6. **Use barrel exports** - import from directory: `from './components/Tree'`
 7. **Test manually** as you build
+8. **Do not create git commits** - User handles all commits
 
 **Architecture Layers:**
 ```

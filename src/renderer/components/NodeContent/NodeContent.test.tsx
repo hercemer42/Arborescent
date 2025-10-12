@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import { NodeContent } from './NodeContent';
 import { useTreeStore } from '../../store/treeStore';
 import { createPartialMockActions } from '../../test/helpers/mockStoreActions';
@@ -76,17 +76,6 @@ describe('NodeContent', () => {
     render(<NodeContent node={projectNode} expanded={true} onToggle={vi.fn()} />);
 
     expect(screen.getByText('📁')).toBeInTheDocument();
-  });
-
-  it('should call selectNode when clicked', async () => {
-    render(<NodeContent node={mockNode} expanded={true} onToggle={vi.fn()} />);
-
-    const nodeContent = screen.getByText('Test Task').closest('.node-content');
-    fireEvent.click(nodeContent!);
-
-    await waitFor(() => {
-      expect(mockActions.selectNode).toHaveBeenCalledWith('test-node', expect.any(Number));
-    });
   });
 
   it('should update content when typing in contentEditable', () => {

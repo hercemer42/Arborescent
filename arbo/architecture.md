@@ -488,6 +488,16 @@ When implementing lazy loading (partial tree loading), only loaded branches need
 - Uses existing hash IDs (no new position/indexing system needed)
 - Prepares architecture for lazy loading features
 
+## Coordinate-Based Cursor Positioning
+
+**Decision:** Implement coordinate-based cursor positioning for contentEditable elements.
+
+**Problem:** ContentEditable has a limitation where clicking on padding/gaps between elements places the cursor at position 0 (start) instead of the natural click position.
+
+**Solution:** Calculate cursor position from click coordinates by measuring distance to each character position. Handled in `useNodeClick` hook and `calculatePositionService`.
+
+**Trade-off:** Adds ~60 lines of code complexity but provides natural cursor positioning UX. Similar approach used by professional code editors like Monaco.
+
 ## React Rendering Performance Strategy
 
 **Decision:** Minimize re-renders through selective Zustand subscriptions and React.memo.

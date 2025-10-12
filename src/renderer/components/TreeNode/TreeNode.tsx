@@ -2,6 +2,7 @@ import { useState, memo } from 'react';
 import { NodeContent } from '../NodeContent';
 import { useTreeStore } from '../../store/treeStore';
 import { isDescendant as checkIsDescendant } from '../../services/registryService';
+import { useNodeClick } from './useNodeClick';
 import './TreeNode.css';
 
 interface TreeNodeProps {
@@ -13,6 +14,7 @@ export const TreeNode = memo(function TreeNode({ nodeId, depth = 0 }: TreeNodePr
   const node = useTreeStore((state) => state.nodes[nodeId]);
   const [expanded, setExpanded] = useState(true);
   const isSelected = useTreeStore((state) => state.selectedNodeId === nodeId);
+  const { handleMouseDown, handleMouseMove, handleClick } = useNodeClick(nodeId);
 
   if (!node) {
     return null;
@@ -38,6 +40,9 @@ export const TreeNode = memo(function TreeNode({ nodeId, depth = 0 }: TreeNodePr
       <div
         className={`tree-node-wrapper ${isSelected ? 'selected' : ''}`}
         style={{ paddingLeft: `${depth * 20}px` }}
+        onMouseDown={handleMouseDown}
+        onMouseMove={handleMouseMove}
+        onClick={handleClick}
       >
         <NodeContent
           node={node}

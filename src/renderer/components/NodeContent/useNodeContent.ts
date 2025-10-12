@@ -18,7 +18,6 @@ export function useNodeContent(node: TreeNode) {
     (state) => (state.selectedNodeId === node.id ? state.rememberedVisualX : null)
   );
   const updateStatus = useTreeStore((state) => state.actions.updateStatus);
-  const selectNode = useTreeStore((state) => state.actions.selectNode);
   const updateContent = useTreeStore((state) => state.actions.updateContent);
   const setCursorPositionAction = useTreeStore((state) => state.actions.setCursorPosition);
   const setRememberedVisualX = useTreeStore((state) => state.actions.setRememberedVisualX);
@@ -65,21 +64,6 @@ export function useNodeContent(node: TreeNode) {
       setCursorPosition(contentRef.current, cursorPosition);
     }
   }, [isSelected, rememberedVisualX, cursorPosition, node.content.length]);
-
-  const handleClick = (e: React.MouseEvent) => {
-    e.stopPropagation();
-
-    const selection = window.getSelection();
-    if (contentRef.current && selection) {
-      setTimeout(() => {
-        if (contentRef.current) {
-          const position = getCursorPosition(contentRef.current);
-          selectNode(node.id, position);
-          setRememberedVisualX(null);
-        }
-      }, 0);
-    }
-  };
 
   const handleInput = (e: React.FormEvent<HTMLDivElement>) => {
     if (!contentRef.current) return;
@@ -161,7 +145,6 @@ export function useNodeContent(node: TreeNode) {
     config,
     hasChildren,
     isSelected,
-    handleClick,
     updateStatus,
     contentRef,
     handleKeyDown,

@@ -20,7 +20,6 @@ export const NodeContent = memo(function NodeContent({
     config,
     hasChildren,
     isSelected,
-    handleClick,
     updateStatus,
     contentRef,
     handleKeyDown,
@@ -30,7 +29,6 @@ export const NodeContent = memo(function NodeContent({
   return (
     <div
       className={`node-content ${isSelected ? 'selected' : ''}`}
-      onClick={handleClick}
     >
       {hasChildren && <ExpandToggle expanded={expanded} onToggle={onToggle} />}
 
