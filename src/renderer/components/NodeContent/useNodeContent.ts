@@ -7,6 +7,7 @@ export function useNodeContent(node: TreeNode) {
   const nodeTypeConfig = useTreeStore((state) => state.nodeTypeConfig);
   const isSelected = useTreeStore((state) => state.selectedNodeId === node.id);
   const cursorPosition = useTreeStore((state) => state.cursorPosition);
+  const focusTrigger = useTreeStore((state) => state.focusTrigger);
   const updateStatus = useTreeStore((state) => state.actions.updateStatus);
   const selectNode = useTreeStore((state) => state.actions.selectNode);
   const updateContent = useTreeStore((state) => state.actions.updateContent);
@@ -23,7 +24,7 @@ export function useNodeContent(node: TreeNode) {
       contentRef.current.focus();
       setCursorPosition(contentRef.current, cursorPosition);
     }
-  }, [isSelected, cursorPosition]);
+  }, [isSelected, cursorPosition, focusTrigger]);
 
   useEffect(() => {
     if (contentRef.current && contentRef.current.textContent !== node.content) {
