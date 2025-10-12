@@ -64,11 +64,13 @@ interface Document {
 - [x] Application reload menu
 - [x] Keyboard navigation (arrow keys)
 - [x] Status cycling for tasks (☐ → ✓ → ✗)
+- [x] Create sibling node (Enter key)
+- [x] Indent node (Tab key - make child of previous sibling)
+- [x] Outdent node (Shift+Tab - make sibling of parent)
 
 ### 🚧 In Progress / Todo
-- [ ] Add child node
 - [ ] Delete node
-- [ ] Cycle node type (Tab key: project → section → task → doc)
+- [ ] Cycle node type (project → section → task → doc)
 - [ ] New project (clear tree, start fresh)
 - [ ] Export current node + ancestors to markdown
 - [ ] Save to `.arborescent/current.md`

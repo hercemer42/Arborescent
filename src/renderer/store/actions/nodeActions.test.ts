@@ -1,9 +1,17 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import { createNodeActions } from './nodeActions';
 import type { TreeNode } from '@shared/types';
+import type { AncestorRegistry } from '../../services/registryService';
 
 describe('nodeActions', () => {
-  type TestState = { nodes: Record<string, TreeNode>; selectedNodeId: string | null; cursorPosition: number; rememberedVisualX: number | null };
+  type TestState = {
+    nodes: Record<string, TreeNode>;
+    rootNodeId: string;
+    ancestorRegistry: AncestorRegistry;
+    selectedNodeId: string | null;
+    cursorPosition: number;
+    rememberedVisualX: number | null;
+  };
   let state: TestState;
   let setState: (partial: Partial<TestState> | ((state: TestState) => Partial<TestState>)) => void;
   let actions: ReturnType<typeof createNodeActions>;
@@ -11,20 +19,41 @@ describe('nodeActions', () => {
   beforeEach(() => {
     state = {
       nodes: {
+        'root': {
+          id: 'root',
+          type: 'project',
+          content: 'Root',
+          children: ['node-1', 'node-2'],
+          metadata: {},
+        },
         'node-1': {
           id: 'node-1',
           type: 'task',
-          content: 'Test Task',
-          children: [],
+          content: 'Task 1',
+          children: ['node-3'],
           metadata: { status: '☐' },
         },
         'node-2': {
           id: 'node-2',
-          type: 'project',
-          content: 'Test Project',
-          children: ['node-1'],
-          metadata: {},
+          type: 'task',
+          content: 'Task 2',
+          children: [],
+          metadata: { status: '☐' },
         },
+        'node-3': {
+          id: 'node-3',
+          type: 'task',
+          content: 'Task 3',
+          children: [],
+          metadata: { status: '☐' },
+        },
+      },
+      rootNodeId: 'root',
+      ancestorRegistry: {
+        'root': [],
+        'node-1': ['root'],
+        'node-2': ['root'],
+        'node-3': ['root', 'node-1'],
       },
       selectedNodeId: null,
       cursorPosition: 0,
@@ -62,7 +91,7 @@ describe('nodeActions', () => {
     it('should update content without affecting other nodes', () => {
       actions.updateContent('node-1', 'Updated Task');
       expect(state.nodes['node-1'].content).toBe('Updated Task');
-      expect(state.nodes['node-2'].content).toBe('Test Project');
+      expect(state.nodes['node-2'].content).toBe('Task 2');
     });
   });
 
@@ -78,6 +107,142 @@ describe('nodeActions', () => {
       actions.deleteNode('node-1');
       expect(state.nodes['node-1']).toBeUndefined();
       expect(state.nodes['node-2']).toBeDefined();
+    });
+  });
+
+  describe('createSiblingNode', () => {
+    it('should create a new sibling node after current node', () => {
+      actions.createSiblingNode('node-1');
+
+      expect(state.nodes['root'].children).toHaveLength(3);
+
+      const children = state.nodes['root'].children;
+      expect(children[0]).toBe('node-1');
+      expect(children[2]).toBe('node-2');
+
+      const newNodeId = children[1];
+      const newNode = state.nodes[newNodeId];
+
+      expect(newNode).toBeDefined();
+      expect(newNode.type).toBe('task');
+      expect(newNode.content).toBe('');
+      expect(newNode.children).toEqual([]);
+      expect(newNode.metadata.status).toBe('☐');
+    });
+
+    it('should select the new node with cursor at position 0', () => {
+      actions.createSiblingNode('node-1');
+
+      const newNodeId = state.nodes['root'].children[1];
+      expect(state.selectedNodeId).toBe(newNodeId);
+      expect(state.cursorPosition).toBe(0);
+      expect(state.rememberedVisualX).toBeNull();
+    });
+
+    it('should update ancestor registry', () => {
+      actions.createSiblingNode('node-1');
+
+      const newNodeId = state.nodes['root'].children[1];
+      expect(state.ancestorRegistry[newNodeId]).toEqual(['root']);
+    });
+
+    it('should always create task type nodes', () => {
+      state.nodes['node-1'].type = 'project';
+
+      actions.createSiblingNode('node-1');
+
+      const newNodeId = state.nodes['root'].children[1];
+      expect(state.nodes[newNodeId].type).toBe('task');
+      expect(state.nodes[newNodeId].metadata.status).toBe('☐');
+    });
+  });
+
+  describe('indentNode', () => {
+    it('should make node a child of previous sibling', () => {
+      actions.indentNode('node-2');
+
+      expect(state.nodes['root'].children).toEqual(['node-1']);
+      expect(state.nodes['node-1'].children).toEqual(['node-3', 'node-2']);
+    });
+
+    it('should update ancestor registry', () => {
+      actions.indentNode('node-2');
+
+      expect(state.ancestorRegistry['node-2']).toEqual(['root', 'node-1']);
+    });
+
+    it('should not indent first child', () => {
+      const originalRootChildren = [...state.nodes['root'].children];
+
+      actions.indentNode('node-1');
+
+      expect(state.nodes['root'].children).toEqual(originalRootChildren);
+    });
+
+    it('should handle deeply nested indentation', () => {
+      state.nodes['node-1'].children = ['node-3', 'node-4'];
+      state.nodes['node-4'] = {
+        id: 'node-4',
+        type: 'task',
+        content: 'Task 4',
+        children: [],
+        metadata: { status: '☐' },
+      };
+      state.ancestorRegistry['node-4'] = ['root', 'node-1'];
+
+      actions.indentNode('node-4');
+
+      expect(state.nodes['node-1'].children).toEqual(['node-3']);
+      expect(state.nodes['node-3'].children).toEqual(['node-4']);
+      expect(state.ancestorRegistry['node-4']).toEqual(['root', 'node-1', 'node-3']);
+    });
+  });
+
+  describe('outdentNode', () => {
+    it('should make node a sibling of parent', () => {
+      actions.outdentNode('node-3');
+
+      expect(state.nodes['node-1'].children).toEqual([]);
+      expect(state.nodes['root'].children).toEqual(['node-1', 'node-3', 'node-2']);
+    });
+
+    it('should update ancestor registry', () => {
+      actions.outdentNode('node-3');
+
+      expect(state.ancestorRegistry['node-3']).toEqual(['root']);
+    });
+
+    it('should not outdent nodes that are already children of root', () => {
+      const originalRootChildren = [...state.nodes['root'].children];
+
+      actions.outdentNode('node-1');
+
+      expect(state.nodes['root'].children).toEqual(originalRootChildren);
+    });
+
+    it('should allow outdenting to root level', () => {
+      actions.outdentNode('node-3');
+
+      expect(state.nodes['node-1'].children).toEqual([]);
+      expect(state.nodes['root'].children).toEqual(['node-1', 'node-3', 'node-2']);
+      expect(state.ancestorRegistry['node-3']).toEqual(['root']);
+    });
+
+    it('should position outdented node after its parent', () => {
+      state.nodes['node-1'].children = ['node-3', 'node-5'];
+      state.nodes['node-5'] = {
+        id: 'node-5',
+        type: 'task',
+        content: 'Task 5',
+        children: [],
+        metadata: { status: '☐' },
+      };
+      state.ancestorRegistry['node-5'] = ['root', 'node-1'];
+
+      actions.outdentNode('node-5');
+
+      expect(state.nodes['root'].children).toEqual(['node-1', 'node-5', 'node-2']);
+      expect(state.ancestorRegistry['node-5']).toEqual(['root']);
     });
   });
 });

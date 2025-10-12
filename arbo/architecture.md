@@ -130,13 +130,17 @@ const config = nodeTypeConfig[node.type] || { icon: '', style: '' };
 
 ## Comments
 
-**Decision:** Only add comments when code is not self-explanatory.
+**Decision:** Only add comments when code is not self-explanatory or when refactoring would add unnecessary complexity.
 
 **Rationale:**
 - Code should be readable without comments
 - Comments become stale and misleading
 - Good naming and structure beats documentation
-- Comments can be used when there is a high level of abstraction
+- Comments are acceptable when:
+  - There is a high level of abstraction
+  - The code handles complex edge cases or performance optimizations
+  - Refactoring to eliminate the need for comments would make the code harder to understand
+  - Explaining "why" something is done a certain way (not "what" it does)
 
 ## Type Organization
 

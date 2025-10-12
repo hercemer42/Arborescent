@@ -30,14 +30,28 @@ describe('Tree', () => {
     expect(container.firstChild).toBeNull();
   });
 
-  it('should render tree with root node', () => {
+  it('should render tree with root children (root node hidden)', () => {
     const nodes = {
       'root': {
         id: 'root',
         type: 'project',
         content: 'Root Project',
-        children: [],
+        children: ['child-1', 'child-2'],
         metadata: {},
+      },
+      'child-1': {
+        id: 'child-1',
+        type: 'task',
+        content: 'First Task',
+        children: [],
+        metadata: { status: '☐' },
+      },
+      'child-2': {
+        id: 'child-2',
+        type: 'task',
+        content: 'Second Task',
+        children: [],
+        metadata: { status: '☐' },
       },
     };
 
@@ -47,7 +61,12 @@ describe('Tree', () => {
     });
 
     render(<Tree />);
-    const treeDiv = screen.getByText('Root Project').closest('.tree');
-    expect(treeDiv).toBeInTheDocument();
+
+    // Root node content should NOT be visible
+    expect(screen.queryByText('Root Project')).not.toBeInTheDocument();
+
+    // But its children should be visible
+    expect(screen.getByText('First Task')).toBeInTheDocument();
+    expect(screen.getByText('Second Task')).toBeInTheDocument();
   });
 });

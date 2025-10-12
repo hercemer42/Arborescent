@@ -20,6 +20,9 @@ describe('NodeContent', () => {
     updateContent: vi.fn(),
     setCursorPosition: vi.fn(),
     setRememberedVisualX: vi.fn(),
+    createSiblingNode: vi.fn(),
+    indentNode: vi.fn(),
+    outdentNode: vi.fn(),
   });
 
   beforeEach(() => {
@@ -87,16 +90,13 @@ describe('NodeContent', () => {
     expect(mockActions.updateContent).toHaveBeenCalledWith('test-node', 'Updated Task');
   });
 
-  it('should prevent default on Enter key', () => {
+  it('should create sibling node on Enter key', () => {
     render(<NodeContent node={mockNode} expanded={true} onToggle={vi.fn()} />);
 
     const contentDiv = screen.getByText('Test Task');
-    const event = new KeyboardEvent('keydown', { key: 'Enter', bubbles: true, cancelable: true });
-    const preventDefaultSpy = vi.spyOn(event, 'preventDefault');
+    fireEvent.keyDown(contentDiv, { key: 'Enter' });
 
-    contentDiv.dispatchEvent(event);
-
-    expect(preventDefaultSpy).toHaveBeenCalled();
+    expect(mockActions.createSiblingNode).toHaveBeenCalledWith('test-node');
   });
 
   it('should restore content on Escape key', () => {

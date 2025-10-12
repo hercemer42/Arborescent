@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useLayoutEffect } from 'react';
 import { useTreeStore } from '../../store/treeStore';
 import { TreeNode } from '../../../shared/types';
 import {
@@ -23,6 +23,9 @@ export function useNodeContent(node: TreeNode) {
   const setRememberedVisualX = useTreeStore((state) => state.actions.setRememberedVisualX);
   const moveToPrevious = useTreeStore((state) => state.actions.moveToPrevious);
   const moveToNext = useTreeStore((state) => state.actions.moveToNext);
+  const createSiblingNode = useTreeStore((state) => state.actions.createSiblingNode);
+  const indentNode = useTreeStore((state) => state.actions.indentNode);
+  const outdentNode = useTreeStore((state) => state.actions.outdentNode);
 
   const config = nodeTypeConfig[node.type] || { icon: '', style: '' };
   const hasChildren = node.children.length > 0;
@@ -44,11 +47,12 @@ export function useNodeContent(node: TreeNode) {
     lastContentRef.current = node.content;
   }, [node.content]);
 
-  /* Focus the selected node and restore cursor position
-     If rememberedVisualX exists, restore horizontal column position for vertical navigation
-     Otherwise, set cursor to the stored position for horizontal navigation */
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!isSelected || !contentRef.current) return;
+
+    if (contentRef.current.childNodes.length === 0) {
+      contentRef.current.appendChild(document.createTextNode(''));
+    }
 
     contentRef.current.focus();
 
@@ -63,7 +67,7 @@ export function useNodeContent(node: TreeNode) {
     } else {
       setCursorPosition(contentRef.current, cursorPosition);
     }
-  }, [isSelected, rememberedVisualX, cursorPosition, node.content.length]);
+  }, [isSelected, rememberedVisualX, cursorPosition, node.content.length, setCursorPositionAction, setRememberedVisualX, node.id]);
 
   const handleInput = (e: React.FormEvent<HTMLDivElement>) => {
     if (!contentRef.current) return;
@@ -136,6 +140,21 @@ export function useNodeContent(node: TreeNode) {
       handleArrowRight(e);
     } else if (e.key === 'Enter') {
       e.preventDefault();
+      createSiblingNode(node.id);
+    } else if (e.key === 'Tab') {
+      e.preventDefault();
+
+      if (contentRef.current) {
+        const position = getCursorPosition(contentRef.current);
+        setCursorPositionAction(position);
+        setRememberedVisualX(null);
+      }
+
+      if (e.shiftKey) {
+        outdentNode(node.id);
+      } else {
+        indentNode(node.id);
+      }
     } else if (e.key === 'Escape') {
       handleEscape(e);
     }

@@ -5,16 +5,19 @@ import './Tree.css';
 
 export function Tree() {
   const rootNodeId = useTreeStore((state) => state.rootNodeId);
+  const rootNode = useTreeStore((state) => state.nodes[state.rootNodeId]);
 
   useTreeListeners();
 
-  if (!rootNodeId) {
+  if (!rootNodeId || !rootNode) {
     return null;
   }
 
   return (
     <div className="tree">
-      <TreeNode nodeId={rootNodeId} />
+      {rootNode.children.map((childId) => (
+        <TreeNode key={childId} nodeId={childId} depth={0} />
+      ))}
     </div>
   );
 }
