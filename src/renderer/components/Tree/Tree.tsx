@@ -1,4 +1,4 @@
-import { Node } from '../Node';
+import { TreeNode } from '../TreeNode';
 import { useTreeStore } from '../../store/treeStore';
 import { useTreeListeners } from './useTreeListeners';
 import './Tree.css';
@@ -14,7 +14,7 @@ export function Tree() {
 
   return (
     <div className="tree">
-      <Node nodeId={rootNodeId} />
+      <TreeNode nodeId={rootNodeId} />
     </div>
   );
 }

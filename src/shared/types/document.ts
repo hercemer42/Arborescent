@@ -1,4 +1,4 @@
-import { TreeNode, NodeTypeConfig } from './node';
+import { TreeNode, NodeTypeConfig } from './treeNode';
 
 export interface Document {
   version: '1.0';

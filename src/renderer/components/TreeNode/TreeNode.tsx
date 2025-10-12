@@ -3,12 +3,12 @@ import { NodeContent } from '../NodeContent';
 import { useTreeStore } from '../../store/treeStore';
 import { isDescendant as checkIsDescendant } from '../../services/registryService';
 
-interface NodeProps {
+interface TreeNodeProps {
   nodeId: string;
   depth?: number;
 }
 
-export const Node = memo(function Node({ nodeId, depth = 0 }: NodeProps) {
+export const TreeNode = memo(function TreeNode({ nodeId, depth = 0 }: TreeNodeProps) {
   const node = useTreeStore((state) => state.nodes[nodeId]);
   const [expanded, setExpanded] = useState(true);
 
@@ -44,7 +44,7 @@ export const Node = memo(function Node({ nodeId, depth = 0 }: NodeProps) {
       {expanded &&
         hasChildren &&
         node.children.map((childId) => (
-          <Node
+          <TreeNode
             key={childId}
             nodeId={childId}
             depth={depth + 1}

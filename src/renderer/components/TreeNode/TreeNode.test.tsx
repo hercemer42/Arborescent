@@ -1,11 +1,11 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { Node } from './Node';
+import { TreeNode } from './TreeNode';
 import { useTreeStore } from '../../store/treeStore';
-import type { TreeNode } from '../../../shared/types';
+import type { TreeNode as TreeNodeType } from '../../../shared/types';
 
-describe('Node', () => {
+describe('TreeNode', () => {
   beforeEach(() => {
     useTreeStore.setState({
       nodes: {},
@@ -21,12 +21,12 @@ describe('Node', () => {
   it('should render nothing if node does not exist', () => {
     useTreeStore.setState({ nodes: {} });
 
-    const { container } = render(<Node nodeId="nonexistent" />);
+    const { container } = render(<TreeNode nodeId="nonexistent" />);
     expect(container.firstChild).toBeNull();
   });
 
   it('should render node without children', () => {
-    const mockNode: TreeNode = {
+    const mockNode: TreeNodeType = {
       id: 'test-node',
       type: 'task',
       content: 'Test Task',
@@ -36,12 +36,12 @@ describe('Node', () => {
 
     useTreeStore.setState({ nodes: { 'test-node': mockNode } });
 
-    render(<Node nodeId="test-node" />);
+    render(<TreeNode nodeId="test-node" />);
     expect(screen.getByText('Test Task')).toBeInTheDocument();
   });
 
   it('should render node with children', () => {
-    const nodes: Record<string, TreeNode> = {
+    const nodes: Record<string, TreeNodeType> = {
       'parent': {
         id: 'parent',
         type: 'project',
@@ -60,13 +60,13 @@ describe('Node', () => {
 
     useTreeStore.setState({ nodes });
 
-    render(<Node nodeId="parent" />);
+    render(<TreeNode nodeId="parent" />);
     expect(screen.getByText('Parent Node')).toBeInTheDocument();
     expect(screen.getByText('Child Node')).toBeInTheDocument();
   });
 
   it('should apply correct depth indentation', () => {
-    const mockNode: TreeNode = {
+    const mockNode: TreeNodeType = {
       id: 'test-node',
       type: 'task',
       content: 'Test Task',
@@ -76,14 +76,14 @@ describe('Node', () => {
 
     useTreeStore.setState({ nodes: { 'test-node': mockNode } });
 
-    const { container } = render(<Node nodeId="test-node" depth={2} />);
+    const { container } = render(<TreeNode nodeId="test-node" depth={2} />);
     const nodeWrapper = container.firstChild as HTMLElement;
     const indentedDiv = nodeWrapper?.children[0] as HTMLElement;
     expect(indentedDiv).toHaveStyle({ paddingLeft: '40px' }); // 2 * 20px
   });
 
   it('should default depth to 0', () => {
-    const mockNode: TreeNode = {
+    const mockNode: TreeNodeType = {
       id: 'test-node',
       type: 'task',
       content: 'Test Task',
@@ -93,7 +93,7 @@ describe('Node', () => {
 
     useTreeStore.setState({ nodes: { 'test-node': mockNode } });
 
-    const { container } = render(<Node nodeId="test-node" />);
+    const { container } = render(<TreeNode nodeId="test-node" />);
     const nodeWrapper = container.firstChild as HTMLElement;
     const indentedDiv = nodeWrapper?.children[0] as HTMLElement;
     expect(indentedDiv).toHaveStyle({ paddingLeft: '0px' });
@@ -102,7 +102,7 @@ describe('Node', () => {
   it('should maintain cursor position when collapsing node being edited', async () => {
     const user = userEvent.setup();
 
-    const nodes: Record<string, TreeNode> = {
+    const nodes: Record<string, TreeNodeType> = {
       'parent': {
         id: 'parent',
         type: 'project',
@@ -129,7 +129,7 @@ describe('Node', () => {
       },
     });
 
-    render(<Node nodeId="parent" />);
+    render(<TreeNode nodeId="parent" />);
 
     const contentEditable = screen.getByText('Parent Node');
     expect(contentEditable).toHaveFocus();
@@ -146,7 +146,7 @@ describe('Node', () => {
     const user = userEvent.setup();
     const mockSelectNode = vi.fn();
 
-    const nodes: Record<string, TreeNode> = {
+    const nodes: Record<string, TreeNodeType> = {
       'parent': {
         id: 'parent',
         type: 'project',
@@ -176,7 +176,7 @@ describe('Node', () => {
       },
     });
 
-    render(<Node nodeId="parent" />);
+    render(<TreeNode nodeId="parent" />);
 
     const collapseButton = screen.getByText('▼');
     await user.click(collapseButton);
