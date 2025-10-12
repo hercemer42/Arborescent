@@ -3,6 +3,7 @@ import { TreeNode, NodeTypeConfig } from '../../shared/types';
 import { createNodeActions, NodeActions } from './actions/nodeActions';
 import { createNavigationActions, NavigationActions } from './actions/navigationActions';
 import { createFileActions, FileActions } from './actions/fileActions';
+import { createTreeStructureActions, TreeStructureActions } from './actions/treeStructureActions';
 import { ElectronStorageService } from '@platform/storage';
 
 interface TreeState {
@@ -14,7 +15,7 @@ interface TreeState {
   cursorPosition: number;
   rememberedVisualX: number | null;
 
-  actions: NodeActions & NavigationActions & FileActions;
+  actions: NodeActions & NavigationActions & FileActions & TreeStructureActions;
 }
 
 const storageService = new ElectronStorageService();
@@ -32,5 +33,6 @@ export const useTreeStore = create<TreeState>((set, get) => ({
     ...createNodeActions(get, set),
     ...createNavigationActions(get, set),
     ...createFileActions(get, set, storageService),
+    ...createTreeStructureActions(get, set),
   },
 }));
