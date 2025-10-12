@@ -55,6 +55,7 @@ export const NodeContent = memo(function NodeContent({
         className="node-text"
         contentEditable
         suppressContentEditableWarning
+        spellCheck={false}
         onKeyDown={handleKeyDown}
         onInput={handleInput}
       />
