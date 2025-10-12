@@ -1,16 +1,21 @@
 import { useRef, useEffect } from 'react';
 import { useTreeStore } from '../../store/treeStore';
 import { TreeNode } from '../../../shared/types';
-import { getCursorPosition, setCursorPosition, getVisualCursorPosition, setCursorToVisualPosition } from '../../services/cursorService';
+import {
+  getCursorPosition,
+  setCursorPosition,
+  getVisualCursorPosition,
+  setCursorToVisualPosition,
+} from '../../services/cursorService';
 
 export function useNodeContent(node: TreeNode) {
   const nodeTypeConfig = useTreeStore((state) => state.nodeTypeConfig);
   const isSelected = useTreeStore((state) => state.selectedNodeId === node.id);
-  const cursorPosition = useTreeStore((state) =>
-    state.selectedNodeId === node.id ? state.cursorPosition : 0
+  const cursorPosition = useTreeStore(
+    (state) => (state.selectedNodeId === node.id ? state.cursorPosition : 0)
   );
-  const rememberedVisualX = useTreeStore((state) =>
-    state.selectedNodeId === node.id ? state.rememberedVisualX : null
+  const rememberedVisualX = useTreeStore(
+    (state) => (state.selectedNodeId === node.id ? state.rememberedVisualX : null)
   );
   const updateStatus = useTreeStore((state) => state.actions.updateStatus);
   const selectNode = useTreeStore((state) => state.actions.selectNode);
@@ -26,41 +31,40 @@ export function useNodeContent(node: TreeNode) {
   const contentRef = useRef<HTMLDivElement>(null);
   const lastContentRef = useRef<string | null>(null);
 
+  /* Sync content changes from store to DOM imperatively to avoid React re-renders
+     that would reset the cursor position during typing */
   useEffect(() => {
-    if (contentRef.current && lastContentRef.current === null) {
-      contentRef.current.textContent = node.content;
-      lastContentRef.current = node.content;
-    }
-  }, []);
+    if (!contentRef.current) return;
+    if (node.content === lastContentRef.current) return;
 
-  useEffect(() => {
-    if (contentRef.current && node.content !== lastContentRef.current) {
-      const currentDOMContent = contentRef.current.textContent || '';
-      if (currentDOMContent !== node.content) {
-        contentRef.current.textContent = node.content;
-      }
-      lastContentRef.current = node.content;
+    const currentDOMContent = contentRef.current.textContent || '';
+    if (currentDOMContent !== node.content) {
+      contentRef.current.textContent = node.content;
     }
+
+    lastContentRef.current = node.content;
   }, [node.content]);
 
+  /* Focus the selected node and restore cursor position
+     If rememberedVisualX exists, restore horizontal column position for vertical navigation
+     Otherwise, set cursor to the stored position for horizontal navigation */
   useEffect(() => {
-    if (isSelected && contentRef.current) {
-      contentRef.current.focus();
+    if (!isSelected || !contentRef.current) return;
 
-      if (rememberedVisualX !== null) {
-        const newPosition = setCursorToVisualPosition(contentRef.current, rememberedVisualX);
-        setCursorPositionAction(newPosition);
+    contentRef.current.focus();
 
-        const contentLength = node.content.length;
-        if (newPosition < contentLength) {
-          const actualVisualX = getVisualCursorPosition();
-          setRememberedVisualX(actualVisualX);
-        }
-      } else {
-        setCursorPosition(contentRef.current, cursorPosition);
+    if (rememberedVisualX !== null) {
+      const newPosition = setCursorToVisualPosition(contentRef.current, rememberedVisualX);
+      setCursorPositionAction(newPosition);
+
+      if (newPosition < node.content.length) {
+        const actualVisualX = getVisualCursorPosition();
+        setRememberedVisualX(actualVisualX);
       }
+    } else {
+      setCursorPosition(contentRef.current, cursorPosition);
     }
-  }, [isSelected, rememberedVisualX]);
+  }, [isSelected, rememberedVisualX, cursorPosition, node.content.length]);
 
   const handleClick = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -83,45 +87,67 @@ export function useNodeContent(node: TreeNode) {
     updateContent(node.id, newContent);
   };
 
-  const handleKeyDown = (e: React.KeyboardEvent) => {
+  const handleArrowUpDown = (e: React.KeyboardEvent) => {
     if (!contentRef.current) return;
 
-    if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
+    e.preventDefault();
+    const position = getCursorPosition(contentRef.current);
+    const contentLength = node.content.length;
+    const visualX = getVisualCursorPosition();
+
+    setCursorPositionAction(position);
+
+    if (position < contentLength || rememberedVisualX === null) {
+      setRememberedVisualX(visualX);
+    }
+  };
+
+  const handleArrowLeft = (e: React.KeyboardEvent) => {
+    if (!contentRef.current) return;
+
+    const position = getCursorPosition(contentRef.current);
+    if (position === 0) {
       e.preventDefault();
-      const position = getCursorPosition(contentRef.current);
-      const contentLength = node.content.length;
-      const visualX = getVisualCursorPosition();
+      moveToPrevious();
+    } else {
+      setRememberedVisualX(null);
+      setCursorPositionAction(position - 1);
+    }
+  };
 
-      setCursorPositionAction(position);
+  const handleArrowRight = (e: React.KeyboardEvent) => {
+    if (!contentRef.current) return;
 
-      if (position < contentLength || rememberedVisualX === null) {
-        setRememberedVisualX(visualX);
-      }
+    const position = getCursorPosition(contentRef.current);
+    const contentLength = node.content.length;
+    if (position === contentLength) {
+      e.preventDefault();
+      moveToNext();
+    } else {
+      setRememberedVisualX(null);
+      setCursorPositionAction(position + 1);
+    }
+  };
+
+  const handleEscape = (e: React.KeyboardEvent) => {
+    if (!contentRef.current) return;
+
+    e.preventDefault();
+    contentRef.current.textContent = node.content;
+    contentRef.current.blur();
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
+      handleArrowUpDown(e);
     } else if (e.key === 'ArrowLeft') {
-      const position = getCursorPosition(contentRef.current);
-      if (position === 0) {
-        e.preventDefault();
-        moveToPrevious();
-      } else {
-        setRememberedVisualX(null);
-        setCursorPositionAction(position - 1);
-      }
+      handleArrowLeft(e);
     } else if (e.key === 'ArrowRight') {
-      const position = getCursorPosition(contentRef.current);
-      const contentLength = node.content.length;
-      if (position === contentLength) {
-        e.preventDefault();
-        moveToNext();
-      } else {
-        setRememberedVisualX(null);
-        setCursorPositionAction(position + 1);
-      }
+      handleArrowRight(e);
     } else if (e.key === 'Enter') {
       e.preventDefault();
     } else if (e.key === 'Escape') {
-      e.preventDefault();
-      contentRef.current.textContent = node.content;
-      contentRef.current.blur();
+      handleEscape(e);
     }
   };
 
