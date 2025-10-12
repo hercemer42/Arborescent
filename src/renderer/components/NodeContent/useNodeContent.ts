@@ -26,6 +26,8 @@ export function useNodeContent(node: TreeNode) {
   const createSiblingNode = useTreeStore((state) => state.actions.createSiblingNode);
   const indentNode = useTreeStore((state) => state.actions.indentNode);
   const outdentNode = useTreeStore((state) => state.actions.outdentNode);
+  const moveNodeUp = useTreeStore((state) => state.actions.moveNodeUp);
+  const moveNodeDown = useTreeStore((state) => state.actions.moveNodeDown);
 
   const config = nodeTypeConfig[node.type] || { icon: '', style: '' };
   const hasChildren = node.children.length > 0;
@@ -81,10 +83,9 @@ export function useNodeContent(node: TreeNode) {
     setRememberedVisualX(null);
   };
 
-  const handleArrowUpDown = (e: React.KeyboardEvent) => {
+  const handleArrowUpDown = () => {
     if (!contentRef.current) return;
 
-    e.preventDefault();
     const position = getCursorPosition(contentRef.current);
     const contentLength = node.content.length;
     const visualX = getVisualCursorPosition();
@@ -132,8 +133,28 @@ export function useNodeContent(node: TreeNode) {
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
-      handleArrowUpDown(e);
+    if (e.key === 'ArrowUp') {
+      if (e.shiftKey) {
+        e.preventDefault();
+        if (contentRef.current) {
+          const position = getCursorPosition(contentRef.current);
+          setCursorPositionAction(position);
+        }
+        moveNodeUp(node.id);
+      } else {
+        handleArrowUpDown();
+      }
+    } else if (e.key === 'ArrowDown') {
+      if (e.shiftKey) {
+        e.preventDefault();
+        if (contentRef.current) {
+          const position = getCursorPosition(contentRef.current);
+          setCursorPositionAction(position);
+        }
+        moveNodeDown(node.id);
+      } else {
+        handleArrowUpDown();
+      }
     } else if (e.key === 'ArrowLeft') {
       handleArrowLeft(e);
     } else if (e.key === 'ArrowRight') {

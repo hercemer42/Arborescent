@@ -245,4 +245,106 @@ describe('nodeActions', () => {
       expect(state.ancestorRegistry['node-5']).toEqual(['root']);
     });
   });
+
+  describe('moveNodeUp', () => {
+    it('should swap node with previous sibling', () => {
+      actions.moveNodeUp('node-2');
+
+      expect(state.nodes['root'].children).toEqual(['node-2', 'node-1']);
+    });
+
+    it('should not move first child of root up', () => {
+      const originalChildren = [...state.nodes['root'].children];
+
+      actions.moveNodeUp('node-1');
+
+      expect(state.nodes['root'].children).toEqual(originalChildren);
+    });
+
+    it('should work with nested nodes', () => {
+      state.nodes['node-1'].children = ['node-3', 'node-4'];
+      state.nodes['node-4'] = {
+        id: 'node-4',
+        type: 'task',
+        content: 'Task 4',
+        children: [],
+        metadata: { status: '☐' },
+      };
+      state.ancestorRegistry['node-4'] = ['root', 'node-1'];
+
+      actions.moveNodeUp('node-4');
+
+      expect(state.nodes['node-1'].children).toEqual(['node-4', 'node-3']);
+    });
+
+    it('should move first child to become last child of previous sibling', () => {
+      state.nodes['node-1'].children = ['node-3'];
+      state.nodes['node-2'].children = ['node-4'];
+      state.nodes['node-4'] = {
+        id: 'node-4',
+        type: 'task',
+        content: 'Task 4',
+        children: [],
+        metadata: { status: '☐' },
+      };
+      state.ancestorRegistry['node-4'] = ['root', 'node-2'];
+
+      actions.moveNodeUp('node-4');
+
+      expect(state.nodes['node-1'].children).toEqual(['node-3', 'node-4']);
+      expect(state.nodes['node-2'].children).toEqual([]);
+      expect(state.ancestorRegistry['node-4']).toEqual(['root', 'node-1']);
+    });
+  });
+
+  describe('moveNodeDown', () => {
+    it('should swap node with next sibling', () => {
+      actions.moveNodeDown('node-1');
+
+      expect(state.nodes['root'].children).toEqual(['node-2', 'node-1']);
+    });
+
+    it('should not move last child of root down', () => {
+      const originalChildren = [...state.nodes['root'].children];
+
+      actions.moveNodeDown('node-2');
+
+      expect(state.nodes['root'].children).toEqual(originalChildren);
+    });
+
+    it('should work with nested nodes', () => {
+      state.nodes['node-1'].children = ['node-3', 'node-4'];
+      state.nodes['node-4'] = {
+        id: 'node-4',
+        type: 'task',
+        content: 'Task 4',
+        children: [],
+        metadata: { status: '☐' },
+      };
+      state.ancestorRegistry['node-4'] = ['root', 'node-1'];
+
+      actions.moveNodeDown('node-3');
+
+      expect(state.nodes['node-1'].children).toEqual(['node-4', 'node-3']);
+    });
+
+    it('should move last child to become first child of next sibling', () => {
+      state.nodes['node-1'].children = ['node-4'];
+      state.nodes['node-2'].children = ['node-3'];
+      state.nodes['node-4'] = {
+        id: 'node-4',
+        type: 'task',
+        content: 'Task 4',
+        children: [],
+        metadata: { status: '☐' },
+      };
+      state.ancestorRegistry['node-4'] = ['root', 'node-1'];
+
+      actions.moveNodeDown('node-4');
+
+      expect(state.nodes['node-1'].children).toEqual([]);
+      expect(state.nodes['node-2'].children).toEqual(['node-4', 'node-3']);
+      expect(state.ancestorRegistry['node-4']).toEqual(['root', 'node-2']);
+    });
+  });
 });

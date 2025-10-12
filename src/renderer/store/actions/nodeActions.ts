@@ -11,6 +11,8 @@ export interface NodeActions {
   createSiblingNode: (currentNodeId: string) => void;
   indentNode: (nodeId: string) => void;
   outdentNode: (nodeId: string) => void;
+  moveNodeUp: (nodeId: string) => void;
+  moveNodeDown: (nodeId: string) => void;
 }
 
 type StoreState = {
@@ -207,5 +209,130 @@ export const createNodeActions = (
       nodes: updatedNodes,
       ancestorRegistry: newAncestorRegistry,
     });
+  },
+
+  moveNodeUp: (nodeId: string) => {
+    const { nodes, rootNodeId, ancestorRegistry } = get();
+    const node = nodes[nodeId];
+    if (!node) return;
+
+    const ancestors = ancestorRegistry[nodeId] || [];
+    const parentId = ancestors[ancestors.length - 1] || rootNodeId;
+    const parent = nodes[parentId];
+    if (!parent) return;
+
+    const currentIndex = parent.children.indexOf(nodeId);
+
+    if (currentIndex > 0) {
+      const updatedChildren = [...parent.children];
+      [updatedChildren[currentIndex - 1], updatedChildren[currentIndex]] =
+        [updatedChildren[currentIndex], updatedChildren[currentIndex - 1]];
+
+      const updatedNodes = {
+        ...nodes,
+        [parentId]: {
+          ...parent,
+          children: updatedChildren,
+        },
+      };
+
+      set({ nodes: updatedNodes });
+    } else if (currentIndex === 0) {
+      const grandparentId = ancestors[ancestors.length - 2] || rootNodeId;
+      const grandparent = nodes[grandparentId];
+      if (!grandparent) return;
+
+      const parentIndexInGrandparent = grandparent.children.indexOf(parentId);
+      if (parentIndexInGrandparent <= 0) return;
+
+      const newParentId = grandparent.children[parentIndexInGrandparent - 1];
+      const newParent = nodes[newParentId];
+      if (!newParent) return;
+
+      const updatedOldParentChildren = parent.children.filter((id) => id !== nodeId);
+      const updatedNewParentChildren = [...newParent.children, nodeId];
+
+      const updatedNodes = {
+        ...nodes,
+        [parentId]: {
+          ...parent,
+          children: updatedOldParentChildren,
+        },
+        [newParentId]: {
+          ...newParent,
+          children: updatedNewParentChildren,
+        },
+      };
+
+      const newAncestorRegistry = buildAncestorRegistry(rootNodeId, updatedNodes);
+
+      set({
+        nodes: updatedNodes,
+        ancestorRegistry: newAncestorRegistry,
+      });
+    }
+  },
+
+  moveNodeDown: (nodeId: string) => {
+    const { nodes, rootNodeId, ancestorRegistry } = get();
+    const node = nodes[nodeId];
+    if (!node) return;
+
+    const ancestors = ancestorRegistry[nodeId] || [];
+    const parentId = ancestors[ancestors.length - 1] || rootNodeId;
+    const parent = nodes[parentId];
+    if (!parent) return;
+
+    const currentIndex = parent.children.indexOf(nodeId);
+    if (currentIndex < 0) return;
+
+    if (currentIndex < parent.children.length - 1) {
+      const updatedChildren = [...parent.children];
+      [updatedChildren[currentIndex], updatedChildren[currentIndex + 1]] =
+        [updatedChildren[currentIndex + 1], updatedChildren[currentIndex]];
+
+      const updatedNodes = {
+        ...nodes,
+        [parentId]: {
+          ...parent,
+          children: updatedChildren,
+        },
+      };
+
+      set({ nodes: updatedNodes });
+    } else if (currentIndex === parent.children.length - 1) {
+      const grandparentId = ancestors[ancestors.length - 2] || rootNodeId;
+      const grandparent = nodes[grandparentId];
+      if (!grandparent) return;
+
+      const parentIndexInGrandparent = grandparent.children.indexOf(parentId);
+      if (parentIndexInGrandparent < 0 || parentIndexInGrandparent >= grandparent.children.length - 1) return;
+
+      const newParentId = grandparent.children[parentIndexInGrandparent + 1];
+      const newParent = nodes[newParentId];
+      if (!newParent) return;
+
+      const updatedOldParentChildren = parent.children.filter((id) => id !== nodeId);
+      const updatedNewParentChildren = [nodeId, ...newParent.children];
+
+      const updatedNodes = {
+        ...nodes,
+        [parentId]: {
+          ...parent,
+          children: updatedOldParentChildren,
+        },
+        [newParentId]: {
+          ...newParent,
+          children: updatedNewParentChildren,
+        },
+      };
+
+      const newAncestorRegistry = buildAncestorRegistry(rootNodeId, updatedNodes);
+
+      set({
+        nodes: updatedNodes,
+        ancestorRegistry: newAncestorRegistry,
+      });
+    }
   },
 });
