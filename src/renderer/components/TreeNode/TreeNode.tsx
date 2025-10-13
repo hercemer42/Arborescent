@@ -3,7 +3,7 @@ import { NodeContent } from '../NodeContent';
 import { useStore } from '../../store/tree/useStore';
 import { useActiveTreeStore } from '../../store/tree/TreeStoreContext';
 import { isDescendant as checkIsDescendant } from '../../utils/ancestry';
-import { useNodeClick } from './hooks/useNodeClick';
+import { useNodeMouse } from './hooks/useNodeMouse';
 import './TreeNode.css';
 
 interface TreeNodeProps {
@@ -15,7 +15,7 @@ export const TreeNode = memo(function TreeNode({ nodeId, depth = 0 }: TreeNodePr
   const node = useStore((state) => state.nodes[nodeId]);
   const [expanded, setExpanded] = useState(true);
   const isSelected = useStore((state) => state.selectedNodeId === nodeId);
-  const { handleMouseDown, handleMouseMove, handleClick } = useNodeClick(nodeId);
+  const { handleMouseDown, handleMouseMove, handleClick } = useNodeMouse(nodeId);
   const store = useActiveTreeStore();
 
   if (!node) {

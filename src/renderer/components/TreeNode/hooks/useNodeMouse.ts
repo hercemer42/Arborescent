@@ -2,12 +2,7 @@ import { useRef } from 'react';
 import { useStore } from '../../../store/tree/useStore';
 import { getPositionFromCoordinates } from '../../../utils/position';
 
-/**
- * Custom hook for handling mouse interactions on tree nodes to enable
- * coordinate-based cursor positioning. This works around contentEditable's
- * default behavior of placing cursor at start/end when clicking on padding/gaps.
- */
-export function useNodeClick(nodeId: string) {
+export function useNodeMouse(nodeId: string) {
   const selectNode = useStore((state) => state.actions.selectNode);
   const setRememberedVisualX = useStore((state) => state.actions.setRememberedVisualX);
   const mouseDownPos = useRef<{ x: number; y: number } | null>(null);

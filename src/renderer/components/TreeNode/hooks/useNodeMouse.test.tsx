@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { renderHook, act } from '@testing-library/react';
-import { useNodeClick } from './useNodeClick';
+import { useNodeMouse } from './useNodeMouse';
 import { TreeStoreContext } from '../../../store/tree/TreeStoreContext';
 import { createTreeStore, TreeStore } from '../../../store/tree/treeStore';
 
@@ -8,7 +8,7 @@ vi.mock('../../../utils/position', () => ({
   getPositionFromCoordinates: vi.fn(() => 5),
 }));
 
-describe('useNodeClick', () => {
+describe('useNodeMouse', () => {
   let store: TreeStore;
   const mockSelectNode = vi.fn();
   const mockSetRememberedVisualX = vi.fn();
@@ -38,7 +38,7 @@ describe('useNodeClick', () => {
   );
 
   it('should return mouse event handlers', () => {
-    const { result } = renderHook(() => useNodeClick(nodeId), { wrapper });
+    const { result } = renderHook(() => useNodeMouse(nodeId), { wrapper });
 
     expect(result.current.handleMouseDown).toBeInstanceOf(Function);
     expect(result.current.handleMouseMove).toBeInstanceOf(Function);
@@ -46,7 +46,7 @@ describe('useNodeClick', () => {
   });
 
   it('should track mouse position on mousedown', () => {
-    const { result } = renderHook(() => useNodeClick(nodeId), { wrapper });
+    const { result } = renderHook(() => useNodeMouse(nodeId), { wrapper });
 
     const mockEvent = {
       target: { classList: { contains: () => false } },
@@ -67,7 +67,7 @@ describe('useNodeClick', () => {
   });
 
   it('should not prevent default on text clicks', () => {
-    const { result } = renderHook(() => useNodeClick(nodeId), { wrapper });
+    const { result } = renderHook(() => useNodeMouse(nodeId), { wrapper });
 
     const mockEvent = {
       target: { classList: { contains: (cls: string) => cls === 'node-text' } },
@@ -88,7 +88,7 @@ describe('useNodeClick', () => {
   });
 
   it('should not prevent default on modifier key clicks', () => {
-    const { result } = renderHook(() => useNodeClick(nodeId), { wrapper });
+    const { result } = renderHook(() => useNodeMouse(nodeId), { wrapper });
 
     const mockEvent = {
       target: { classList: { contains: () => false } },
@@ -109,7 +109,7 @@ describe('useNodeClick', () => {
   });
 
   it('should select node with cursor position on click', () => {
-    const { result } = renderHook(() => useNodeClick(nodeId), { wrapper });
+    const { result } = renderHook(() => useNodeMouse(nodeId), { wrapper });
 
     // Simulate mousedown first
     const mouseDownEvent = {
@@ -149,7 +149,7 @@ describe('useNodeClick', () => {
   });
 
   it('should not select on modifier key click', () => {
-    const { result } = renderHook(() => useNodeClick(nodeId), { wrapper });
+    const { result } = renderHook(() => useNodeMouse(nodeId), { wrapper });
 
     const mouseDownEvent = {
       target: { classList: { contains: () => false } },
@@ -186,7 +186,7 @@ describe('useNodeClick', () => {
   });
 
   it('should detect drag and not select on click', () => {
-    const { result } = renderHook(() => useNodeClick(nodeId), { wrapper });
+    const { result } = renderHook(() => useNodeMouse(nodeId), { wrapper });
 
     // Mousedown
     const mouseDownEvent = {
