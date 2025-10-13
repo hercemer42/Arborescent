@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { ToastItem, ToastType } from '../components/Toast';
+import { ToastItem, ToastType } from '../../components/Toast';
 
 interface ToastState {
   toasts: ToastItem[];

@@ -1,11 +1,11 @@
 import { TreeNode } from '../TreeNode';
-import { useTreeStore } from '../../store/treeStore';
+import { useStore } from '../../store/tree/useStore';
 import { useTreeListeners } from './useTreeListeners';
 import './Tree.css';
 
 export function Tree() {
-  const rootNodeId = useTreeStore((state) => state.rootNodeId);
-  const rootNode = useTreeStore((state) => state.nodes[state.rootNodeId]);
+  const rootNodeId = useStore((state) => state.rootNodeId);
+  const rootNode = useStore((state) => state.nodes[state.rootNodeId]);
 
   useTreeListeners();
 

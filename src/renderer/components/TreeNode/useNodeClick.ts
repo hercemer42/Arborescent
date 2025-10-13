@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { useTreeStore } from '../../store/treeStore';
+import { useStore } from '../../store/tree/useStore';
 import { getPositionFromCoordinates } from '../../services/calculatePositionService';
 
 /**
@@ -8,8 +8,8 @@ import { getPositionFromCoordinates } from '../../services/calculatePositionServ
  * default behavior of placing cursor at start/end when clicking on padding/gaps.
  */
 export function useNodeClick(nodeId: string) {
-  const selectNode = useTreeStore((state) => state.actions.selectNode);
-  const setRememberedVisualX = useTreeStore((state) => state.actions.setRememberedVisualX);
+  const selectNode = useStore((state) => state.actions.selectNode);
+  const setRememberedVisualX = useStore((state) => state.actions.setRememberedVisualX);
   const mouseDownPos = useRef<{ x: number; y: number } | null>(null);
 
   const handleMouseDown = (e: React.MouseEvent) => {

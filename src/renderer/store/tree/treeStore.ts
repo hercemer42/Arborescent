@@ -1,12 +1,12 @@
 import { create } from 'zustand';
-import { TreeNode, NodeTypeConfig } from '../../shared/types';
+import { TreeNode, NodeTypeConfig } from '../../../shared/types';
 import { createNodeActions, NodeActions } from './actions/nodeActions';
 import { createNavigationActions, NavigationActions } from './actions/navigationActions';
 import { createFileActions, FileActions } from './actions/fileActions';
 import { createTreeStructureActions, TreeStructureActions } from './actions/treeStructureActions';
 import { ElectronStorageService } from '@platform/storage';
 
-interface TreeState {
+export interface TreeState {
   nodes: Record<string, TreeNode>;
   rootNodeId: string;
   nodeTypeConfig: Record<string, NodeTypeConfig>;
@@ -22,25 +22,32 @@ interface TreeState {
 
 const storageService = new ElectronStorageService();
 
-export const useTreeStore = create<TreeState>((set, get) => {
-  const fileActions = createFileActions(get, set, storageService);
+export function createTreeStore() {
+  return create<TreeState>((set, get) => {
+    const fileActions = createFileActions(get, set, storageService);
 
-  return {
-    nodes: {},
-    rootNodeId: '',
-    nodeTypeConfig: {},
-    ancestorRegistry: {},
-    selectedNodeId: null,
-    cursorPosition: 0,
-    rememberedVisualX: null,
-    currentFilePath: null,
-    fileMeta: null,
+    return {
+      nodes: {},
+      rootNodeId: '',
+      nodeTypeConfig: {},
+      ancestorRegistry: {},
+      selectedNodeId: null,
+      cursorPosition: 0,
+      rememberedVisualX: null,
+      currentFilePath: null,
+      fileMeta: null,
 
-    actions: {
-      ...createNodeActions(get, set, fileActions.autoSave),
-      ...createNavigationActions(get, set),
-      ...fileActions,
-      ...createTreeStructureActions(get, set),
-    },
-  };
-});
+      actions: {
+        ...createNodeActions(get, set, fileActions.autoSave),
+        ...createNavigationActions(get, set),
+        ...fileActions,
+        ...createTreeStructureActions(get, set, fileActions.autoSave),
+      },
+    };
+  });
+}
+
+export type TreeStore = ReturnType<typeof createTreeStore>;
+
+// Default store for backward compatibility
+export const useTreeStore = createTreeStore();

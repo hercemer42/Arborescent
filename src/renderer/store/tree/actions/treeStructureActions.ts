@@ -1,5 +1,5 @@
-import { TreeNode } from '../../../shared/types';
-import { AncestorRegistry, buildAncestorRegistry } from '../../services/registryService';
+import { TreeNode } from '../../../../shared/types';
+import { AncestorRegistry, buildAncestorRegistry } from '../../../services/registryService';
 
 export interface TreeStructureActions {
   indentNode: (nodeId: string) => void;
@@ -85,7 +85,8 @@ function moveNodeToSiblingParent(
   direction: 'up' | 'down',
   ancestors: string[],
   state: StoreState,
-  set: StoreSetter
+  set: StoreSetter,
+  triggerAutosave?: () => void
 ): void {
   const { nodes, rootNodeId } = state;
   const grandparentId = ancestors[ancestors.length - 2] || rootNodeId;
@@ -120,6 +121,7 @@ function moveNodeToSiblingParent(
     nodes: updatedNodes,
     ancestorRegistry: newAncestorRegistry,
   });
+  triggerAutosave?.();
 }
 
 function recursivelyDeleteNode(
@@ -144,7 +146,8 @@ function moveNodeVertically(
   nodeId: string,
   direction: 'up' | 'down',
   state: StoreState,
-  set: StoreSetter
+  set: StoreSetter,
+  triggerAutosave?: () => void
 ): void {
   const { nodes, rootNodeId, ancestorRegistry } = state;
   const node = nodes[nodeId];
@@ -165,14 +168,16 @@ function moveNodeVertically(
   if (canSwapWithinParent) {
     const updatedNodes = swapSiblings(nodeId, parentId, currentIndex, direction, nodes);
     set({ nodes: updatedNodes });
+    triggerAutosave?.();
   } else {
-    moveNodeToSiblingParent(nodeId, parentId, direction, ancestors, state, set);
+    moveNodeToSiblingParent(nodeId, parentId, direction, ancestors, state, set, triggerAutosave);
   }
 }
 
 export const createTreeStructureActions = (
   get: () => StoreState,
-  set: StoreSetter
+  set: StoreSetter,
+  triggerAutosave?: () => void
 ): TreeStructureActions => ({
   indentNode: (nodeId: string) => {
     const state = get();
@@ -204,6 +209,7 @@ export const createTreeStructureActions = (
       nodes: updatedNodes,
       ancestorRegistry: newAncestorRegistry,
     });
+    triggerAutosave?.();
   },
 
   outdentNode: (nodeId: string) => {
@@ -238,14 +244,15 @@ export const createTreeStructureActions = (
       nodes: updatedNodes,
       ancestorRegistry: newAncestorRegistry,
     });
+    triggerAutosave?.();
   },
 
   moveNodeUp: (nodeId: string) => {
-    moveNodeVertically(nodeId, 'up', get(), set);
+    moveNodeVertically(nodeId, 'up', get(), set, triggerAutosave);
   },
 
   moveNodeDown: (nodeId: string) => {
-    moveNodeVertically(nodeId, 'down', get(), set);
+    moveNodeVertically(nodeId, 'down', get(), set, triggerAutosave);
   },
 
   deleteNode: (nodeId: string, confirmed = false) => {
@@ -281,6 +288,7 @@ export const createTreeStructureActions = (
       nodes: updatedNodes,
       ancestorRegistry: newAncestorRegistry,
     });
+    triggerAutosave?.();
 
     return true;
   },

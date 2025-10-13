@@ -1,6 +1,7 @@
 import { useState, memo } from 'react';
 import { NodeContent } from '../NodeContent';
-import { useTreeStore } from '../../store/treeStore';
+import { useStore } from '../../store/tree/useStore';
+import { useActiveTreeStore } from '../../store/tree/TreeStoreContext';
 import { isDescendant as checkIsDescendant } from '../../services/registryService';
 import { useNodeClick } from './useNodeClick';
 import './TreeNode.css';
@@ -11,10 +12,11 @@ interface TreeNodeProps {
 }
 
 export const TreeNode = memo(function TreeNode({ nodeId, depth = 0 }: TreeNodeProps) {
-  const node = useTreeStore((state) => state.nodes[nodeId]);
+  const node = useStore((state) => state.nodes[nodeId]);
   const [expanded, setExpanded] = useState(true);
-  const isSelected = useTreeStore((state) => state.selectedNodeId === nodeId);
+  const isSelected = useStore((state) => state.selectedNodeId === nodeId);
   const { handleMouseDown, handleMouseMove, handleClick } = useNodeClick(nodeId);
+  const store = useActiveTreeStore();
 
   if (!node) {
     return null;
@@ -26,7 +28,7 @@ export const TreeNode = memo(function TreeNode({ nodeId, depth = 0 }: TreeNodePr
     const newExpandedState = !expanded;
 
     if (!newExpandedState) {
-      const { selectedNodeId, ancestorRegistry, actions } = useTreeStore.getState();
+      const { selectedNodeId, ancestorRegistry, actions } = store.getState();
       if (checkIsDescendant(nodeId, selectedNodeId, ancestorRegistry)) {
         actions.selectNode(nodeId, node.content.length);
       }

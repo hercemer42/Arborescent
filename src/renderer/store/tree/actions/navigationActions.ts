@@ -1,4 +1,4 @@
-import { TreeNode } from '../../../shared/types';
+import { TreeNode } from '../../../../shared/types';
 
 export interface NavigationActions {
   moveUp: () => void;

@@ -1,8 +1,12 @@
 import { useEffect, useState } from 'react';
 import { Tree } from './components/Tree';
+import { TabBar } from './components/TabBar';
 import { ToastContainer } from './components/Toast';
-import { useTreeStore } from './store/treeStore';
-import { useToastStore } from './store/toastStore';
+import { TreeStoreContext } from './store/tree/TreeStoreContext';
+import { useTabsStore } from './store/tabs/tabsStore';
+import { storeManager } from './store/storeManager';
+import { useToastStore } from './store/toast/toastStore';
+import { useTabListeners } from './components/TabBar/useTabListeners';
 import { logger } from './services/logger';
 import { ElectronErrorService } from '@platform/error';
 import { ElectronStorageService } from '@platform/storage';
@@ -14,12 +18,13 @@ const storageService = new ElectronStorageService();
 
 function App() {
   const [isInitializing, setIsInitializing] = useState(true);
-  const initialize = useTreeStore((state) => state.actions.initialize);
-  const loadFromPath = useTreeStore((state) => state.actions.loadFromPath);
-  const selectNode = useTreeStore((state) => state.actions.selectNode);
+  const openFile = useTabsStore((state) => state.openFile);
+  const activeFilePath = useTabsStore((state) => state.activeFilePath);
   const toasts = useToastStore((state) => state.toasts);
   const addToast = useToastStore((state) => state.addToast);
   const removeToast = useToastStore((state) => state.removeToast);
+
+  useTabListeners();
 
   useEffect(() => {
     const initializeApp = async () => {
@@ -27,7 +32,13 @@ function App() {
 
       if (lastSession) {
         try {
-          await loadFromPath(lastSession);
+          const store = storeManager.getStoreForFile(lastSession);
+          const { actions } = store.getState();
+          await actions.loadFromPath(lastSession);
+
+          const displayName = lastSession.split('/').pop() || lastSession;
+          openFile(lastSession, displayName);
+
           logger.success(`Restored session: ${lastSession}`, 'SessionRestore', false);
           setIsInitializing(false);
           return;
@@ -42,15 +53,20 @@ function App() {
       }
 
       const blank = createBlankDocument();
-      initialize(blank.nodes, blank.rootNodeId, blank.nodeTypeConfig);
+      const untitledPath = 'Untitled';
+      const store = storeManager.getStoreForFile(untitledPath);
+      const { actions } = store.getState();
 
-      selectNode(blank.firstNodeId, 0);
+      actions.initialize(blank.nodes, blank.rootNodeId, blank.nodeTypeConfig);
+      actions.selectNode(blank.firstNodeId, 0);
+
+      openFile(untitledPath, 'Untitled');
 
       setIsInitializing(false);
     };
 
     initializeApp();
-  }, [initialize, loadFromPath, selectNode]);
+  }, [openFile]);
 
   useEffect(() => {
     logger.setToastCallback(addToast);
@@ -59,6 +75,8 @@ function App() {
       logger.error(message, undefined, 'Main Process', true);
     });
   }, [addToast]);
+
+  const activeStore = activeFilePath ? storeManager.getStoreForFile(activeFilePath) : null;
 
   return (
     <div className="app">
@@ -70,7 +88,12 @@ function App() {
 
       <main className="app-main">
         <div className="app-content">
-          {isInitializing ? null : <Tree />}
+          {!isInitializing && activeStore && (
+            <TreeStoreContext.Provider value={activeStore}>
+              <TabBar />
+              <Tree />
+            </TreeStoreContext.Provider>
+          )}
         </div>
       </main>
     </div>

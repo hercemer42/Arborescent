@@ -1,5 +1,5 @@
 import { useRef, useEffect, useLayoutEffect, useState } from 'react';
-import { useTreeStore } from '../../store/treeStore';
+import { useStore } from '../../store/tree/useStore';
 import { TreeNode } from '../../../shared/types';
 import {
   getCursorPosition,
@@ -9,26 +9,26 @@ import {
 } from '../../services/cursorService';
 
 export function useNodeContent(node: TreeNode) {
-  const nodeTypeConfig = useTreeStore((state) => state.nodeTypeConfig);
-  const isSelected = useTreeStore((state) => state.selectedNodeId === node.id);
-  const cursorPosition = useTreeStore(
+  const nodeTypeConfig = useStore((state) => state.nodeTypeConfig);
+  const isSelected = useStore((state) => state.selectedNodeId === node.id);
+  const cursorPosition = useStore(
     (state) => (state.selectedNodeId === node.id ? state.cursorPosition : 0)
   );
-  const rememberedVisualX = useTreeStore(
+  const rememberedVisualX = useStore(
     (state) => (state.selectedNodeId === node.id ? state.rememberedVisualX : null)
   );
-  const updateStatus = useTreeStore((state) => state.actions.updateStatus);
-  const updateContent = useTreeStore((state) => state.actions.updateContent);
-  const setCursorPositionAction = useTreeStore((state) => state.actions.setCursorPosition);
-  const setRememberedVisualX = useTreeStore((state) => state.actions.setRememberedVisualX);
-  const moveToPrevious = useTreeStore((state) => state.actions.moveToPrevious);
-  const moveToNext = useTreeStore((state) => state.actions.moveToNext);
-  const createSiblingNode = useTreeStore((state) => state.actions.createSiblingNode);
-  const indentNode = useTreeStore((state) => state.actions.indentNode);
-  const outdentNode = useTreeStore((state) => state.actions.outdentNode);
-  const moveNodeUp = useTreeStore((state) => state.actions.moveNodeUp);
-  const moveNodeDown = useTreeStore((state) => state.actions.moveNodeDown);
-  const deleteNode = useTreeStore((state) => state.actions.deleteNode);
+  const updateStatus = useStore((state) => state.actions.updateStatus);
+  const updateContent = useStore((state) => state.actions.updateContent);
+  const setCursorPositionAction = useStore((state) => state.actions.setCursorPosition);
+  const setRememberedVisualX = useStore((state) => state.actions.setRememberedVisualX);
+  const moveToPrevious = useStore((state) => state.actions.moveToPrevious);
+  const moveToNext = useStore((state) => state.actions.moveToNext);
+  const createSiblingNode = useStore((state) => state.actions.createSiblingNode);
+  const indentNode = useStore((state) => state.actions.indentNode);
+  const outdentNode = useStore((state) => state.actions.outdentNode);
+  const moveNodeUp = useStore((state) => state.actions.moveNodeUp);
+  const moveNodeDown = useStore((state) => state.actions.moveNodeDown);
+  const deleteNode = useStore((state) => state.actions.deleteNode);
 
   const config = nodeTypeConfig[node.type] || { icon: '', style: '' };
   const hasChildren = node.children.length > 0;

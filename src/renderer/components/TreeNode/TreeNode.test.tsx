@@ -2,12 +2,16 @@ import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { TreeNode } from './TreeNode';
-import { useTreeStore } from '../../store/treeStore';
+import { TreeStoreContext } from '../../store/tree/TreeStoreContext';
+import { createTreeStore, TreeStore } from '../../store/tree/treeStore';
 import type { TreeNode as TreeNodeType } from '../../../shared/types';
 
 describe('TreeNode', () => {
+  let store: TreeStore;
+
   beforeEach(() => {
-    useTreeStore.setState({
+    store = createTreeStore();
+    store.setState({
       nodes: {},
       rootNodeId: '',
       nodeTypeConfig: {
@@ -19,10 +23,18 @@ describe('TreeNode', () => {
     });
   });
 
-  it('should render nothing if node does not exist', () => {
-    useTreeStore.setState({ nodes: {} });
+  const renderWithProvider = (component: React.ReactElement) => {
+    return render(
+      <TreeStoreContext.Provider value={store}>
+        {component}
+      </TreeStoreContext.Provider>
+    );
+  };
 
-    const { container } = render(<TreeNode nodeId="nonexistent" />);
+  it('should render nothing if node does not exist', () => {
+    store.setState({ nodes: {} });
+
+    const { container } = renderWithProvider(<TreeNode nodeId="nonexistent" />);
     expect(container.firstChild).toBeNull();
   });
 
@@ -35,9 +47,9 @@ describe('TreeNode', () => {
       metadata: {},
     };
 
-    useTreeStore.setState({ nodes: { 'test-node': mockNode } });
+    store.setState({ nodes: { 'test-node': mockNode } });
 
-    render(<TreeNode nodeId="test-node" />);
+    renderWithProvider(<TreeNode nodeId="test-node" />);
     expect(screen.getByText('Test Task')).toBeInTheDocument();
   });
 
@@ -59,9 +71,9 @@ describe('TreeNode', () => {
       },
     };
 
-    useTreeStore.setState({ nodes });
+    store.setState({ nodes });
 
-    render(<TreeNode nodeId="parent" />);
+    renderWithProvider(<TreeNode nodeId="parent" />);
     expect(screen.getByText('Parent Node')).toBeInTheDocument();
     expect(screen.getByText('Child Node')).toBeInTheDocument();
   });
@@ -75,9 +87,9 @@ describe('TreeNode', () => {
       metadata: {},
     };
 
-    useTreeStore.setState({ nodes: { 'test-node': mockNode } });
+    store.setState({ nodes: { 'test-node': mockNode } });
 
-    const { container } = render(<TreeNode nodeId="test-node" depth={2} />);
+    const { container } = renderWithProvider(<TreeNode nodeId="test-node" depth={2} />);
     const nodeWrapper = container.firstChild as HTMLElement;
     expect(nodeWrapper).toHaveStyle({ paddingLeft: '40px' });
   });
@@ -91,9 +103,9 @@ describe('TreeNode', () => {
       metadata: {},
     };
 
-    useTreeStore.setState({ nodes: { 'test-node': mockNode } });
+    store.setState({ nodes: { 'test-node': mockNode } });
 
-    const { container } = render(<TreeNode nodeId="test-node" />);
+    const { container } = renderWithProvider(<TreeNode nodeId="test-node" />);
     const nodeWrapper = container.firstChild as HTMLElement;
     expect(nodeWrapper).toHaveStyle({ paddingLeft: '0px' });
   });
@@ -118,7 +130,7 @@ describe('TreeNode', () => {
       },
     };
 
-    useTreeStore.setState({
+    store.setState({
       nodes,
       selectedNodeId: 'parent',
       cursorPosition: 5,
@@ -128,7 +140,7 @@ describe('TreeNode', () => {
       },
     });
 
-    render(<TreeNode nodeId="parent" />);
+    renderWithProvider(<TreeNode nodeId="parent" />);
 
     const contentEditable = screen.getByText('Parent Node');
     expect(contentEditable).toHaveFocus();
@@ -137,8 +149,8 @@ describe('TreeNode', () => {
     await user.click(collapseButton);
 
     expect(contentEditable).toHaveFocus();
-    expect(useTreeStore.getState().selectedNodeId).toBe('parent');
-    expect(useTreeStore.getState().cursorPosition).toBe(5);
+    expect(store.getState().selectedNodeId).toBe('parent');
+    expect(store.getState().cursorPosition).toBe(5);
   });
 
   it('should move cursor to end when collapsing node with descendant being edited', async () => {
@@ -162,7 +174,7 @@ describe('TreeNode', () => {
       },
     };
 
-    useTreeStore.setState({
+    store.setState({
       nodes,
       selectedNodeId: 'child-1',
       ancestorRegistry: {
@@ -170,12 +182,12 @@ describe('TreeNode', () => {
         'child-1': ['parent'],
       },
       actions: {
-        ...useTreeStore.getState().actions,
+        ...store.getState().actions,
         selectNode: mockSelectNode,
       },
     });
 
-    render(<TreeNode nodeId="parent" />);
+    renderWithProvider(<TreeNode nodeId="parent" />);
 
     const collapseButton = screen.getByText('▼');
     await user.click(collapseButton);

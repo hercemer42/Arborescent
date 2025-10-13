@@ -1,19 +1,21 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { Tree } from './Tree';
-import { useTreeStore } from '../../store/treeStore';
-
+import { TreeStoreContext } from '../../store/tree/TreeStoreContext';
+import { createTreeStore, TreeStore } from '../../store/tree/treeStore';
 
 vi.mock('./useTreeListeners', () => ({
   useTreeListeners: vi.fn(),
 }));
 
 describe('Tree', () => {
+  let store: TreeStore;
+
   beforeEach(() => {
     vi.clearAllMocks();
 
-
-    useTreeStore.setState({
+    store = createTreeStore();
+    store.setState({
       rootNodeId: '',
       nodes: {},
       nodeTypeConfig: {
@@ -25,8 +27,16 @@ describe('Tree', () => {
     });
   });
 
+  const renderWithProvider = (component: React.ReactElement) => {
+    return render(
+      <TreeStoreContext.Provider value={store}>
+        {component}
+      </TreeStoreContext.Provider>
+    );
+  };
+
   it('should render nothing when no rootNodeId', () => {
-    const { container } = render(<Tree />);
+    const { container } = renderWithProvider(<Tree />);
     expect(container.firstChild).toBeNull();
   });
 
@@ -55,12 +65,12 @@ describe('Tree', () => {
       },
     };
 
-    useTreeStore.setState({
+    store.setState({
       rootNodeId: 'root',
       nodes,
     });
 
-    render(<Tree />);
+    renderWithProvider(<Tree />);
 
     // Root node content should NOT be visible
     expect(screen.queryByText('Root Project')).not.toBeInTheDocument();

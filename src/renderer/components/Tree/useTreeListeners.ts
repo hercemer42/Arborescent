@@ -1,5 +1,7 @@
 import { useEffect, useCallback } from 'react';
-import { useTreeStore } from '../../store/treeStore';
+import { useStore } from '../../store/tree/useStore';
+import { useTabsStore } from '../../store/tabs/tabsStore';
+import { storeManager } from '../../store/storeManager';
 import { hotkeyService } from '../../services/hotkeyService';
 import { logger } from '../../services/logger';
 import { ElectronStorageService } from '@platform/storage';
@@ -9,19 +11,26 @@ const storageService = new ElectronStorageService();
 const menuService = new ElectronMenuService();
 
 export function useTreeListeners() {
-  const currentFilePath = useTreeStore((state) => state.currentFilePath);
-  const fileMeta = useTreeStore((state) => state.fileMeta);
-  const loadFromPath = useTreeStore((state) => state.actions.loadFromPath);
-  const saveToPath = useTreeStore((state) => state.actions.saveToPath);
-  const moveUp = useTreeStore((state) => state.actions.moveUp);
-  const moveDown = useTreeStore((state) => state.actions.moveDown);
+  const currentFilePath = useStore((state) => state.currentFilePath);
+  const fileMeta = useStore((state) => state.fileMeta);
+  const saveToPath = useStore((state) => state.actions.saveToPath);
+  const moveUp = useStore((state) => state.actions.moveUp);
+  const moveDown = useStore((state) => state.actions.moveDown);
+  const openFile = useTabsStore((state) => state.openFile);
 
   const handleLoad = async () => {
     try {
       const path = await storageService.showOpenDialog();
       if (!path) return;
 
-      await loadFromPath(path);
+      const store = storeManager.getStoreForFile(path);
+      const { actions } = store.getState();
+
+      await actions.loadFromPath(path);
+
+      const displayName = path.split(/[\\/]/).pop() || path;
+      openFile(path, displayName);
+
       logger.success(`File loaded: ${path}`, 'FileLoad', false);
     } catch (error) {
       const message = `Failed to load file: ${error instanceof Error ? error.message : 'Unknown error'}`;

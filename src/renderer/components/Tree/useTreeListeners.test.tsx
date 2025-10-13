@@ -1,12 +1,18 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { renderHook } from '@testing-library/react';
 import { useTreeListeners } from './useTreeListeners';
-import { useTreeStore } from '../../store/treeStore';
+import { TreeStoreContext } from '../../store/tree/TreeStoreContext';
+import { createTreeStore, TreeStore } from '../../store/tree/treeStore';
+import { storeManager } from '../../store/storeManager';
+import { useTabsStore } from '../../store/tabs/tabsStore';
 import { hotkeyService } from '../../services/hotkeyService';
 
 vi.mock('../../services/hotkeyService');
+vi.mock('../../store/storeManager');
 
 describe('useTreeListeners', () => {
+  let store: TreeStore;
+  let fileStore: TreeStore;
   const mockLoadFromPath = vi.fn();
   const mockSaveToPath = vi.fn();
   const mockMoveUp = vi.fn();
@@ -23,7 +29,14 @@ describe('useTreeListeners', () => {
   beforeEach(() => {
     vi.clearAllMocks();
 
-    useTreeStore.setState({
+    // Reset tabsStore
+    useTabsStore.setState({
+      openFiles: [],
+      activeFilePath: null,
+    });
+
+    store = createTreeStore();
+    store.setState({
       nodes: {},
       rootNodeId: '',
       nodeTypeConfig: {},
@@ -38,6 +51,27 @@ describe('useTreeListeners', () => {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } as any,
     });
+
+    // Create a separate store for file operations
+    fileStore = createTreeStore();
+    fileStore.setState({
+      nodes: {},
+      rootNodeId: '',
+      nodeTypeConfig: {},
+      selectedNodeId: null,
+      cursorPosition: 0,
+      rememberedVisualX: null,
+      actions: {
+        loadFromPath: mockLoadFromPath,
+        saveToPath: mockSaveToPath,
+        moveUp: vi.fn(),
+        moveDown: vi.fn(),
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      } as any,
+    });
+
+    // Mock storeManager
+    vi.mocked(storeManager.getStoreForFile).mockReturnValue(fileStore);
 
     global.window.electron = {
       onMenuOpen: mockOnMenuOpen,
@@ -55,8 +89,12 @@ describe('useTreeListeners', () => {
     vi.mocked(hotkeyService.handleKeyDown).mockImplementation(mockHandleKeyDown);
   });
 
+  const wrapper = ({ children }: { children: React.ReactNode }) => (
+    <TreeStoreContext.Provider value={store}>{children}</TreeStoreContext.Provider>
+  );
+
   it('should register menu listeners on mount', () => {
-    renderHook(() => useTreeListeners());
+    renderHook(() => useTreeListeners(), { wrapper });
 
     expect(mockOnMenuOpen).toHaveBeenCalled();
     expect(mockOnMenuSave).toHaveBeenCalled();
@@ -64,7 +102,7 @@ describe('useTreeListeners', () => {
   });
 
   it('should register hotkey listeners on mount', () => {
-    renderHook(() => useTreeListeners());
+    renderHook(() => useTreeListeners(), { wrapper });
 
     expect(mockRegister).toHaveBeenCalledWith('navigation.moveUp', expect.any(Function));
     expect(mockRegister).toHaveBeenCalledWith('navigation.moveDown', expect.any(Function));
@@ -73,7 +111,7 @@ describe('useTreeListeners', () => {
   it('should register keydown listener on mount', () => {
     const addEventListenerSpy = vi.spyOn(window, 'addEventListener');
 
-    renderHook(() => useTreeListeners());
+    renderHook(() => useTreeListeners(), { wrapper });
 
     expect(addEventListenerSpy).toHaveBeenCalledWith('keydown', expect.any(Function));
   });
@@ -81,7 +119,7 @@ describe('useTreeListeners', () => {
   it('should unregister listeners on unmount', () => {
     const removeEventListenerSpy = vi.spyOn(window, 'removeEventListener');
 
-    const { unmount } = renderHook(() => useTreeListeners());
+    const { unmount } = renderHook(() => useTreeListeners(), { wrapper });
     unmount();
 
     expect(mockUnregister).toHaveBeenCalledTimes(2);
@@ -93,24 +131,35 @@ describe('useTreeListeners', () => {
     mockShowOpenDialog.mockResolvedValue('/test/path.arbo');
     mockLoadFromPath.mockResolvedValue(mockMeta);
 
-    renderHook(() => useTreeListeners());
+    renderHook(() => useTreeListeners(), { wrapper });
 
     const handleLoad = mockOnMenuOpen.mock.calls[0][0];
     await handleLoad();
 
     expect(mockShowOpenDialog).toHaveBeenCalled();
+    expect(storeManager.getStoreForFile).toHaveBeenCalledWith('/test/path.arbo');
     expect(mockLoadFromPath).toHaveBeenCalledWith('/test/path.arbo');
+
+    // Should add tab
+    const tabsState = useTabsStore.getState();
+    expect(tabsState.openFiles).toHaveLength(1);
+    expect(tabsState.openFiles[0]).toEqual({
+      path: '/test/path.arbo',
+      displayName: 'path.arbo',
+    });
+    expect(tabsState.activeFilePath).toBe('/test/path.arbo');
   });
 
   it('should not load when dialog is cancelled', async () => {
     mockShowOpenDialog.mockResolvedValue(null);
 
-    renderHook(() => useTreeListeners());
+    renderHook(() => useTreeListeners(), { wrapper });
 
     const handleLoad = mockOnMenuOpen.mock.calls[0][0];
     await handleLoad();
 
     expect(mockShowOpenDialog).toHaveBeenCalled();
+    expect(storeManager.getStoreForFile).not.toHaveBeenCalled();
     expect(mockLoadFromPath).not.toHaveBeenCalled();
   });
 
@@ -119,13 +168,17 @@ describe('useTreeListeners', () => {
     mockShowOpenDialog.mockResolvedValue('/test/path.arbo');
     mockLoadFromPath.mockRejectedValue(new Error('Load failed'));
 
-    renderHook(() => useTreeListeners());
+    renderHook(() => useTreeListeners(), { wrapper });
 
     const handleLoad = mockOnMenuOpen.mock.calls[0][0];
     await handleLoad();
 
     expect(consoleErrorSpy).toHaveBeenCalledWith('[FileLoad] Failed to load file: Load failed', expect.any(Error));
     consoleErrorSpy.mockRestore();
+
+    // Should not add tab when load fails
+    const tabsState = useTabsStore.getState();
+    expect(tabsState.openFiles).toHaveLength(0);
   });
 
 
@@ -133,7 +186,7 @@ describe('useTreeListeners', () => {
     mockShowSaveDialog.mockResolvedValue('/test/new.arbo');
     mockSaveToPath.mockResolvedValue(undefined);
 
-    renderHook(() => useTreeListeners());
+    renderHook(() => useTreeListeners(), { wrapper });
 
     const handleSave = mockOnMenuSave.mock.calls[0][0];
     await handleSave();
@@ -145,7 +198,7 @@ describe('useTreeListeners', () => {
   it('should not save when dialog is cancelled', async () => {
     mockShowSaveDialog.mockResolvedValue(null);
 
-    renderHook(() => useTreeListeners());
+    renderHook(() => useTreeListeners(), { wrapper });
 
     const handleSave = mockOnMenuSave.mock.calls[0][0];
     await handleSave();
@@ -159,7 +212,7 @@ describe('useTreeListeners', () => {
     mockShowSaveDialog.mockResolvedValue('/test/path.arbo');
     mockSaveToPath.mockRejectedValue(new Error('Save failed'));
 
-    renderHook(() => useTreeListeners());
+    renderHook(() => useTreeListeners(), { wrapper });
 
     const handleSave = mockOnMenuSave.mock.calls[0][0];
     await handleSave();
@@ -172,7 +225,7 @@ describe('useTreeListeners', () => {
     mockShowSaveDialog.mockResolvedValue('/test/saveas.arbo');
     mockSaveToPath.mockResolvedValue(undefined);
 
-    renderHook(() => useTreeListeners());
+    renderHook(() => useTreeListeners(), { wrapper });
 
     const handleSaveAs = mockOnMenuSaveAs.mock.calls[0][0];
     await handleSaveAs();
@@ -184,7 +237,7 @@ describe('useTreeListeners', () => {
   it('should not save as when dialog is cancelled', async () => {
     mockShowSaveDialog.mockResolvedValue(null);
 
-    renderHook(() => useTreeListeners());
+    renderHook(() => useTreeListeners(), { wrapper });
 
     const handleSaveAs = mockOnMenuSaveAs.mock.calls[0][0];
     await handleSaveAs();
@@ -198,7 +251,7 @@ describe('useTreeListeners', () => {
     mockShowSaveDialog.mockResolvedValue('/test/path.arbo');
     mockSaveToPath.mockRejectedValue(new Error('Save failed'));
 
-    renderHook(() => useTreeListeners());
+    renderHook(() => useTreeListeners(), { wrapper });
 
     const handleSaveAs = mockOnMenuSaveAs.mock.calls[0][0];
     await handleSaveAs();
@@ -208,7 +261,7 @@ describe('useTreeListeners', () => {
   });
 
   it('should call moveUp on hotkey', () => {
-    renderHook(() => useTreeListeners());
+    renderHook(() => useTreeListeners(), { wrapper });
 
     const handleMoveUp = mockRegister.mock.calls.find(
       (call) => call[0] === 'navigation.moveUp'
@@ -220,7 +273,7 @@ describe('useTreeListeners', () => {
   });
 
   it('should call moveDown on hotkey', () => {
-    renderHook(() => useTreeListeners());
+    renderHook(() => useTreeListeners(), { wrapper });
 
     const handleMoveDown = mockRegister.mock.calls.find(
       (call) => call[0] === 'navigation.moveDown'

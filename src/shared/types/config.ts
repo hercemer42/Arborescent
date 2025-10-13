@@ -26,5 +26,6 @@ export interface HotkeyConfig {
     save: string;
     saveAs: string;
     open: string;
+    closeTab: string;
   };
 }

@@ -1,11 +1,13 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { NodeContent } from './NodeContent';
-import { useTreeStore } from '../../store/treeStore';
+import { TreeStoreContext } from '../../store/tree/TreeStoreContext';
+import { createTreeStore, TreeStore } from '../../store/tree/treeStore';
 import { createPartialMockActions } from '../../test/helpers/mockStoreActions';
 import type { TreeNode } from '../../../shared/types';
 
 describe('NodeContent', () => {
+  let store: TreeStore;
   const mockNode: TreeNode = {
     id: 'test-node',
     type: 'task',
@@ -28,7 +30,8 @@ describe('NodeContent', () => {
   beforeEach(() => {
     vi.clearAllMocks();
 
-    useTreeStore.setState({
+    store = createTreeStore();
+    store.setState({
       nodes: {},
       rootNodeId: '',
       selectedNodeId: null,
@@ -43,8 +46,16 @@ describe('NodeContent', () => {
     });
   });
 
+  const renderWithProvider = (component: React.ReactElement) => {
+    return render(
+      <TreeStoreContext.Provider value={store}>
+        {component}
+      </TreeStoreContext.Provider>
+    );
+  };
+
   it('should render node content with contentEditable', () => {
-    render(<NodeContent node={mockNode} expanded={true} onToggle={vi.fn()} />);
+    renderWithProvider(<NodeContent node={mockNode} expanded={true} onToggle={vi.fn()} />);
 
     const contentDiv = screen.getByText('Test Task');
     expect(contentDiv).toBeInTheDocument();
@@ -54,14 +65,14 @@ describe('NodeContent', () => {
   it('should show expand toggle when node has children', () => {
     const nodeWithChildren = { ...mockNode, children: ['child-1'] };
 
-    render(<NodeContent node={nodeWithChildren} expanded={true} onToggle={vi.fn()} />);
+    renderWithProvider(<NodeContent node={nodeWithChildren} expanded={true} onToggle={vi.fn()} />);
 
     const toggle = screen.getByText('▼');
     expect(toggle).toBeInTheDocument();
   });
 
   it('should show status checkbox for task nodes', () => {
-    render(<NodeContent node={mockNode} expanded={true} onToggle={vi.fn()} />);
+    renderWithProvider(<NodeContent node={mockNode} expanded={true} onToggle={vi.fn()} />);
 
     const checkbox = screen.getByLabelText('Status: ☐');
     expect(checkbox).toBeInTheDocument();
@@ -76,13 +87,13 @@ describe('NodeContent', () => {
       metadata: {},
     };
 
-    render(<NodeContent node={projectNode} expanded={true} onToggle={vi.fn()} />);
+    renderWithProvider(<NodeContent node={projectNode} expanded={true} onToggle={vi.fn()} />);
 
     expect(screen.getByText('📁')).toBeInTheDocument();
   });
 
   it('should update content when typing in contentEditable', () => {
-    render(<NodeContent node={mockNode} expanded={true} onToggle={vi.fn()} />);
+    renderWithProvider(<NodeContent node={mockNode} expanded={true} onToggle={vi.fn()} />);
 
     const contentDiv = screen.getByText('Test Task');
     fireEvent.input(contentDiv, { target: { textContent: 'Updated Task' } });
@@ -91,7 +102,7 @@ describe('NodeContent', () => {
   });
 
   it('should create sibling node on Enter key', () => {
-    render(<NodeContent node={mockNode} expanded={true} onToggle={vi.fn()} />);
+    renderWithProvider(<NodeContent node={mockNode} expanded={true} onToggle={vi.fn()} />);
 
     const contentDiv = screen.getByText('Test Task');
     fireEvent.keyDown(contentDiv, { key: 'Enter' });
@@ -100,7 +111,7 @@ describe('NodeContent', () => {
   });
 
   it('should restore content on Escape key', () => {
-    render(<NodeContent node={mockNode} expanded={true} onToggle={vi.fn()} />);
+    renderWithProvider(<NodeContent node={mockNode} expanded={true} onToggle={vi.fn()} />);
 
     const contentDiv = screen.getByText('Test Task');
 
@@ -120,7 +131,7 @@ describe('NodeContent', () => {
       metadata: {},
     };
 
-    render(
+    renderWithProvider(
       <div>
         <input type="text" data-testid="focused-input" />
         <NodeContent node={projectNode} expanded={true} onToggle={vi.fn()} />

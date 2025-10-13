@@ -10,7 +10,7 @@ vi.mock('../../data/defaultTemplate', () => ({
   },
 }));
 
-import { defaultNodeTypeConfig } from '../../data/defaultTemplate';
+import { defaultNodeTypeConfig } from '../../../data/defaultTemplate';
 
 describe('fileActions', () => {
   let state: { nodes: Record<string, TreeNode>; rootNodeId: string; nodeTypeConfig: Record<string, NodeTypeConfig> };
