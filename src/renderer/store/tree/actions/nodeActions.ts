@@ -5,7 +5,6 @@ export interface NodeActions {
   selectNode: (nodeId: string, cursorPosition?: number) => void;
   updateContent: (nodeId: string, content: string) => void;
   updateStatus: (nodeId: string, status: NodeStatus) => void;
-  deleteNode: (nodeId: string) => void;
   setCursorPosition: (position: number) => void;
   setRememberedVisualX: (visualX: number | null) => void;
   createSiblingNode: (currentNodeId: string) => void;
@@ -65,13 +64,6 @@ export const createNodeActions = (
         },
       },
     });
-  },
-
-  deleteNode: (nodeId: string) => {
-    const { nodes } = get();
-    const newNodes = { ...nodes };
-    delete newNodes[nodeId];
-    set({ nodes: newNodes });
   },
 
   setCursorPosition: (position: number) => {

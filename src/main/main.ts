@@ -26,9 +26,9 @@ const createWindow = () => {
   });
 
   createApplicationMenu(
-    () => mainWindow.webContents.send('menu-open'),
-    () => mainWindow.webContents.send('menu-save'),
-    () => mainWindow.webContents.send('menu-save-as')
+    () => mainWindow?.webContents.send('menu-open'),
+    () => mainWindow?.webContents.send('menu-save'),
+    () => mainWindow?.webContents.send('menu-save-as')
   );
 
   // and load the index.html of the app.

@@ -75,7 +75,7 @@ export const setCursorToVisualPosition = (element: HTMLElement, targetX: number)
 
   for (let i = 0; i <= contentLength; i++) {
     setCursorPosition(element, i);
-    const currentX = getVisualCursorPosition(element);
+    const currentX = getVisualCursorPosition();
     const distance = Math.abs(currentX - targetX);
 
     if (distance < bestDistance) {

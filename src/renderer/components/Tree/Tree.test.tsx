@@ -54,14 +54,14 @@ describe('Tree', () => {
         type: 'task',
         content: 'First Task',
         children: [],
-        metadata: { status: '☐' },
+        metadata: { status: '☐' as const },
       },
       'child-2': {
         id: 'child-2',
         type: 'task',
         content: 'Second Task',
         children: [],
-        metadata: { status: '☐' },
+        metadata: { status: '☐' as const },
       },
     };
 

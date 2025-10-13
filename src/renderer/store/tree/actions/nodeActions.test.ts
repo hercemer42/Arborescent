@@ -102,14 +102,6 @@ describe('nodeActions', () => {
     });
   });
 
-  describe('deleteNode', () => {
-    it('should delete a node', () => {
-      actions.deleteNode('node-1');
-      expect(state.nodes['node-1']).toBeUndefined();
-      expect(state.nodes['node-2']).toBeDefined();
-    });
-  });
-
   describe('createSiblingNode', () => {
     it('should create a new sibling node after current node', () => {
       actions.createSiblingNode('node-1');

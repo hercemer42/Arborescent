@@ -13,7 +13,14 @@ vi.mock('../../data/defaultTemplate', () => ({
 import { defaultNodeTypeConfig } from '../../../data/defaultTemplate';
 
 describe('fileActions', () => {
-  let state: { nodes: Record<string, TreeNode>; rootNodeId: string; nodeTypeConfig: Record<string, NodeTypeConfig> };
+  let state: {
+    nodes: Record<string, TreeNode>;
+    rootNodeId: string;
+    nodeTypeConfig: Record<string, NodeTypeConfig>;
+    ancestorRegistry: Record<string, string[]>;
+    currentFilePath: string | null;
+    fileMeta: { created: string; author: string } | null;
+  };
   let setState: (partial: Partial<typeof state>) => void;
   let actions: ReturnType<typeof createFileActions>;
   let mockStorage: StorageService;
@@ -35,6 +42,9 @@ describe('fileActions', () => {
       nodeTypeConfig: {
         project: { icon: '📁', style: '' },
       },
+      ancestorRegistry: {},
+      currentFilePath: null,
+      fileMeta: null,
     };
 
     setState = (partial) => {
