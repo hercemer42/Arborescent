@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { createFileActions } from './fileActions';
 import type { TreeNode, NodeTypeConfig, ArboFile } from '@shared/types';
-import type { StorageService } from '../../services/interfaces';
+import type { StorageService } from '@shared/interfaces';
 
 vi.mock('../../data/defaultTemplate', () => ({
   defaultNodeTypeConfig: {
@@ -46,6 +46,8 @@ describe('fileActions', () => {
       saveDocument: vi.fn(),
       showOpenDialog: vi.fn(),
       showSaveDialog: vi.fn(),
+      saveLastSession: vi.fn(),
+      getLastSession: vi.fn(),
     };
 
     actions = createFileActions(
@@ -112,6 +114,35 @@ describe('fileActions', () => {
       expect(result).toEqual({ created: mockData.created, author: mockData.author });
     });
 
+    it('should save session after loading file', async () => {
+      const mockData = {
+        format: 'Arborescent' as const,
+        version: '1.0.0',
+        created: '2025-01-01',
+        updated: '2025-01-02',
+        author: 'Test',
+        rootNodeId: 'loaded-root',
+        nodes: {
+          'loaded-root': {
+            id: 'loaded-root',
+            type: 'project',
+            content: 'Loaded Project',
+            children: [],
+            metadata: {},
+          },
+        },
+        nodeTypeConfig: {
+          project: { icon: '📦', style: '' },
+        },
+      };
+
+      vi.mocked(mockStorage.loadDocument).mockResolvedValue(mockData);
+
+      await actions.loadFromPath('/test/path.arbo');
+
+      expect(mockStorage.saveLastSession).toHaveBeenCalledWith('/test/path.arbo');
+    });
+
     it('should use default config when nodeTypeConfig is empty', async () => {
       const mockData = {
         format: 'Arborescent' as const,
@@ -165,6 +196,14 @@ describe('fileActions', () => {
           nodeTypeConfig: state.nodeTypeConfig,
         })
       );
+    });
+
+    it('should save session after saving file', async () => {
+      vi.mocked(mockStorage.saveDocument).mockResolvedValue();
+
+      await actions.saveToPath('/test/save.arbo');
+
+      expect(mockStorage.saveLastSession).toHaveBeenCalledWith('/test/save.arbo');
     });
 
     it('should save file with metadata', async () => {

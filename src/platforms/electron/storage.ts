@@ -1,7 +1,9 @@
 import { ArboFile, TreeNode, NodeTypeConfig } from '../../shared/types';
-import { StorageService } from '../../renderer/services/interfaces';
+import { StorageService } from '../../shared/interfaces';
 
 export class ElectronStorageService implements StorageService {
+  private readonly SESSION_KEY = 'arborescent_last_session';
+
   async loadDocument(filePath: string): Promise<ArboFile> {
     const content = await window.electron.readFile(filePath);
     const data = JSON.parse(content) as ArboFile;
@@ -24,6 +26,18 @@ export class ElectronStorageService implements StorageService {
 
   async showSaveDialog(): Promise<string | null> {
     return window.electron.showSaveDialog();
+  }
+
+  saveLastSession(filePath: string | null): void {
+    if (filePath) {
+      localStorage.setItem(this.SESSION_KEY, filePath);
+    } else {
+      localStorage.removeItem(this.SESSION_KEY);
+    }
+  }
+
+  getLastSession(): string | null {
+    return localStorage.getItem(this.SESSION_KEY);
   }
 }
 

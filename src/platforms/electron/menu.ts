@@ -1,4 +1,4 @@
-import { MenuService } from '../../renderer/services/interfaces';
+import { MenuService } from '../../shared/interfaces';
 
 export class ElectronMenuService implements MenuService {
   onMenuOpen(callback: () => void): void {

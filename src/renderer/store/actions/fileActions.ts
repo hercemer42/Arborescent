@@ -1,7 +1,7 @@
 import { TreeNode, NodeTypeConfig } from '../../../shared/types';
+import { StorageService } from '../../../shared/interfaces';
 import { defaultNodeTypeConfig } from '../../data/defaultTemplate';
 import { buildAncestorRegistry, AncestorRegistry } from '../../services/registryService';
-import { StorageService } from '../../services/interfaces';
 import { createArboFile } from '@platform/storage';
 
 export interface FileActions {
@@ -63,12 +63,15 @@ export const createFileActions = (
         fileMeta: { created: data.created, author: data.author },
       });
 
+      storage.saveLastSession(path);
+
       return { created: data.created, author: data.author };
     },
 
     saveToPath: async (path: string, fileMeta?: { created: string; author: string }) => {
       await performSave(path, fileMeta);
       set({ currentFilePath: path, fileMeta: fileMeta || null });
+      storage.saveLastSession(path);
     },
 
     setFilePath: (path: string | null, meta?: { created: string; author: string } | null) => {

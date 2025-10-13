@@ -1,8 +1,8 @@
-import { ipcMain, dialog } from 'electron';
+import { ipcMain, dialog, BrowserWindow } from 'electron';
 import { promises as fs } from 'node:fs';
 import { logger } from './logger';
 
-export function registerIpcHandlers() {
+export function registerIpcHandlers(getMainWindow: () => BrowserWindow | null) {
   ipcMain.handle('read-file', async (_, filePath: string) => {
     try {
       const content = await fs.readFile(filePath, 'utf-8');
@@ -27,50 +27,33 @@ export function registerIpcHandlers() {
   });
 
   ipcMain.handle('show-open-dialog', async () => {
-    const result = await dialog.showOpenDialog({
-      properties: ['openFile'],
+    const mainWindow = getMainWindow();
+    logger.info('Opening file dialog', 'IPC');
+
+    const options = {
+      properties: ['openFile' as const],
       filters: [{ name: 'Arborescent Files', extensions: ['json'] }],
-    });
+    };
+
+    const result = mainWindow
+      ? await dialog.showOpenDialog(mainWindow, options)
+      : await dialog.showOpenDialog(options);
+
+    logger.info(`Dialog result received, canceled: ${result.canceled}, path: ${result.filePaths[0] || 'none'}`, 'IPC');
+
     return result.canceled ? null : result.filePaths[0];
   });
 
   ipcMain.handle('show-save-dialog', async () => {
-    const result = await dialog.showSaveDialog({
+    const mainWindow = getMainWindow();
+    const options = {
       filters: [{ name: 'Arborescent Files', extensions: ['json'] }],
-    });
+    };
+
+    const result = mainWindow
+      ? await dialog.showSaveDialog(mainWindow, options)
+      : await dialog.showSaveDialog(options);
+
     return result.canceled ? null : result.filePath;
-  });
-
-  ipcMain.on('open-file', async (event) => {
-    const result = await dialog.showOpenDialog({
-      properties: ['openFile'],
-      filters: [{ name: 'Arborescent Files', extensions: ['json'] }],
-    });
-    if (!result.canceled && result.filePaths[0]) {
-      const content = await fs.readFile(result.filePaths[0], 'utf-8');
-      event.reply('file-opened', { path: result.filePaths[0], content });
-    }
-  });
-
-  ipcMain.on('save-file', async (event, data: { path?: string; content: string }) => {
-    let filePath = data.path;
-    if (!filePath) {
-      const result = await dialog.showSaveDialog({
-        filters: [{ name: 'Arborescent Files', extensions: ['json'] }],
-      });
-      if (result.canceled || !result.filePath) return;
-      filePath = result.filePath;
-    }
-    await fs.writeFile(filePath, data.content, 'utf-8');
-    event.reply('file-saved', { path: filePath });
-  });
-
-  ipcMain.on('save-file-as', async (event, data: { content: string }) => {
-    const result = await dialog.showSaveDialog({
-      filters: [{ name: 'Arborescent Files', extensions: ['json'] }],
-    });
-    if (result.canceled || !result.filePath) return;
-    await fs.writeFile(result.filePath, data.content, 'utf-8');
-    event.reply('file-saved', { path: result.filePath });
   });
 }

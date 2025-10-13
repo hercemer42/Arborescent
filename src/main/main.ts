@@ -9,11 +9,13 @@ if (started) {
   app.quit();
 }
 
-registerIpcHandlers();
+let mainWindow: BrowserWindow | null = null;
+
+registerIpcHandlers(() => mainWindow);
 
 const createWindow = () => {
   // Create the browser window.
-  const mainWindow = new BrowserWindow({
+  mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
     webPreferences: {
@@ -42,6 +44,10 @@ const createWindow = () => {
   if (MAIN_WINDOW_VITE_DEV_SERVER_URL) {
     mainWindow.webContents.openDevTools();
   }
+
+  mainWindow.on('closed', () => {
+    mainWindow = null;
+  });
 };
 
 // This method will be called when Electron has finished
