@@ -67,9 +67,9 @@ interface Document {
 - [x] Create sibling node (Enter key)
 - [x] Indent node (Tab key - make child of previous sibling)
 - [x] Outdent node (Shift+Tab - make sibling of parent)
+- [x] Delete node (Ctrl+D hotkey + right-click context menu)
 
 ### 🚧 In Progress / Todo
-- [ ] Delete node
 - [ ] Cycle node type (project → section → task → doc)
 - [ ] New project (clear tree, start fresh)
 - [ ] Export current node + ancestors to markdown

@@ -1,4 +1,4 @@
-import { useRef, useEffect, useLayoutEffect } from 'react';
+import { useRef, useEffect, useLayoutEffect, useState } from 'react';
 import { useTreeStore } from '../../store/treeStore';
 import { TreeNode } from '../../../shared/types';
 import {
@@ -28,12 +28,14 @@ export function useNodeContent(node: TreeNode) {
   const outdentNode = useTreeStore((state) => state.actions.outdentNode);
   const moveNodeUp = useTreeStore((state) => state.actions.moveNodeUp);
   const moveNodeDown = useTreeStore((state) => state.actions.moveNodeDown);
+  const deleteNode = useTreeStore((state) => state.actions.deleteNode);
 
   const config = nodeTypeConfig[node.type] || { icon: '', style: '' };
   const hasChildren = node.children.length > 0;
 
   const contentRef = useRef<HTMLDivElement>(null);
   const lastContentRef = useRef<string | null>(null);
+  const [contextMenu, setContextMenu] = useState<{ x: number; y: number } | null>(null);
 
   /* Sync content changes from store to DOM imperatively to avoid React re-renders
      that would reset the cursor position during typing */
@@ -132,6 +134,23 @@ export function useNodeContent(node: TreeNode) {
     contentRef.current.blur();
   };
 
+  const handleContextMenu = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setContextMenu({ x: e.clientX, y: e.clientY });
+  };
+
+  const handleDelete = () => {
+    const deleted = deleteNode(node.id);
+    if (!deleted) {
+      const confirmed = window.confirm(
+        'This node has children. Deleting it will also delete all its children. Are you sure?'
+      );
+      if (confirmed) {
+        deleteNode(node.id, true);
+      }
+    }
+  };
+
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'ArrowUp') {
       if (e.shiftKey) {
@@ -178,6 +197,15 @@ export function useNodeContent(node: TreeNode) {
       }
     } else if (e.key === 'Escape') {
       handleEscape(e);
+    } else if (e.key === 'd' && (e.ctrlKey || e.metaKey)) {
+      e.preventDefault();
+
+      if (contentRef.current) {
+        const position = getCursorPosition(contentRef.current);
+        setCursorPositionAction(position);
+      }
+
+      handleDelete();
     }
   };
 
@@ -189,5 +217,9 @@ export function useNodeContent(node: TreeNode) {
     contentRef,
     handleKeyDown,
     handleInput,
+    handleContextMenu,
+    handleDelete,
+    contextMenu,
+    closeContextMenu: () => setContextMenu(null),
   };
 }

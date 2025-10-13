@@ -6,6 +6,7 @@ export interface TreeStructureActions {
   outdentNode: (nodeId: string) => void;
   moveNodeUp: (nodeId: string) => void;
   moveNodeDown: (nodeId: string) => void;
+  deleteNode: (nodeId: string, confirmed?: boolean) => boolean;
 }
 
 type StoreState = {
@@ -121,6 +122,24 @@ function moveNodeToSiblingParent(
   });
 }
 
+function recursivelyDeleteNode(
+  nodeId: string,
+  nodes: Record<string, TreeNode>
+): Record<string, TreeNode> {
+  const node = nodes[nodeId];
+  if (!node) return nodes;
+
+  let updatedNodes = { ...nodes };
+
+  for (const childId of node.children) {
+    updatedNodes = recursivelyDeleteNode(childId, updatedNodes);
+  }
+
+  delete updatedNodes[nodeId];
+
+  return updatedNodes;
+}
+
 function moveNodeVertically(
   nodeId: string,
   direction: 'up' | 'down',
@@ -227,5 +246,42 @@ export const createTreeStructureActions = (
 
   moveNodeDown: (nodeId: string) => {
     moveNodeVertically(nodeId, 'down', get(), set);
+  },
+
+  deleteNode: (nodeId: string, confirmed = false) => {
+    const state = get();
+    const { nodes, rootNodeId, ancestorRegistry } = state;
+    const node = nodes[nodeId];
+    if (!node) return true;
+
+    if (node.children.length > 0 && !confirmed) {
+      return false;
+    }
+
+    const ancestors = ancestorRegistry[nodeId] || [];
+    const parentId = ancestors[ancestors.length - 1] || rootNodeId;
+    const parent = nodes[parentId];
+    if (!parent) return true;
+
+    const updatedParentChildren = parent.children.filter((id) => id !== nodeId);
+
+    let updatedNodes = recursivelyDeleteNode(nodeId, nodes);
+
+    updatedNodes = {
+      ...updatedNodes,
+      [parentId]: {
+        ...parent,
+        children: updatedParentChildren,
+      },
+    };
+
+    const newAncestorRegistry = buildAncestorRegistry(rootNodeId, updatedNodes);
+
+    set({
+      nodes: updatedNodes,
+      ancestorRegistry: newAncestorRegistry,
+    });
+
+    return true;
   },
 });

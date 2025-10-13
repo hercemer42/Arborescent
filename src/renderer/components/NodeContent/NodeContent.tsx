@@ -2,6 +2,7 @@ import { memo } from 'react';
 import { TreeNode } from '../../../shared/types';
 import { ExpandToggle } from '../ui/ExpandToggle';
 import { StatusCheckbox } from '../ui/StatusCheckbox';
+import { ContextMenu, ContextMenuItem } from '../ui/ContextMenu';
 import { useNodeContent } from './useNodeContent';
 import './NodeContent.css';
 
@@ -24,39 +25,63 @@ export const NodeContent = memo(function NodeContent({
     contentRef,
     handleKeyDown,
     handleInput,
+    handleContextMenu,
+    handleDelete,
+    contextMenu,
+    closeContextMenu,
   } = useNodeContent(node);
 
-  return (
-    <div
-      className={`node-content ${isSelected ? 'selected' : ''}`}
-    >
-      {hasChildren && <ExpandToggle expanded={expanded} onToggle={onToggle} />}
+  const contextMenuItems: ContextMenuItem[] = [
+    {
+      label: 'Delete',
+      onClick: handleDelete,
+      danger: true,
+    },
+  ];
 
-      {node.type === 'task' && (
-        <StatusCheckbox
-          status={node.metadata.status}
-          onChange={(status) => updateStatus(node.id, status)}
+  return (
+    <>
+      <div
+        className={`node-content ${isSelected ? 'selected' : ''}`}
+        onContextMenu={handleContextMenu}
+      >
+        {hasChildren && <ExpandToggle expanded={expanded} onToggle={onToggle} />}
+
+        {node.type === 'task' && (
+          <StatusCheckbox
+            status={node.metadata.status}
+            onChange={(status) => updateStatus(node.id, status)}
+          />
+        )}
+
+        {config.icon && (
+          <span
+            className="node-icon"
+            onMouseDown={(e) => e.preventDefault()}
+          >
+            {config.icon}
+          </span>
+        )}
+
+        <div
+          ref={contentRef}
+          className="node-text"
+          contentEditable
+          suppressContentEditableWarning
+          spellCheck={false}
+          onKeyDown={handleKeyDown}
+          onInput={handleInput}
+        />
+      </div>
+
+      {contextMenu && (
+        <ContextMenu
+          x={contextMenu.x}
+          y={contextMenu.y}
+          items={contextMenuItems}
+          onClose={closeContextMenu}
         />
       )}
-
-      {config.icon && (
-        <span
-          className="node-icon"
-          onMouseDown={(e) => e.preventDefault()}
-        >
-          {config.icon}
-        </span>
-      )}
-
-      <div
-        ref={contentRef}
-        className="node-text"
-        contentEditable
-        suppressContentEditableWarning
-        spellCheck={false}
-        onKeyDown={handleKeyDown}
-        onInput={handleInput}
-      />
-    </div>
+    </>
   );
 });

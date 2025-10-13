@@ -254,4 +254,103 @@ describe('treeStructureActions', () => {
       expect(state.ancestorRegistry['node-4']).toEqual(['root', 'node-2']);
     });
   });
+
+  describe('deleteNode', () => {
+    it('should delete node without children and return true', () => {
+      const result = actions.deleteNode('node-2');
+
+      expect(result).toBe(true);
+      expect(state.nodes['node-2']).toBeUndefined();
+      expect(state.nodes['root'].children).toEqual(['node-1']);
+    });
+
+    it('should return false when node has children and not confirmed', () => {
+      const result = actions.deleteNode('node-1');
+
+      expect(result).toBe(false);
+      expect(state.nodes['node-1']).toBeDefined();
+      expect(state.nodes['root'].children).toEqual(['node-1', 'node-2']);
+    });
+
+    it('should delete node with children when confirmed', () => {
+      const result = actions.deleteNode('node-1', true);
+
+      expect(result).toBe(true);
+      expect(state.nodes['node-1']).toBeUndefined();
+      expect(state.nodes['root'].children).toEqual(['node-2']);
+    });
+
+    it('should recursively delete all descendants', () => {
+      actions.deleteNode('node-1', true);
+
+      expect(state.nodes['node-1']).toBeUndefined();
+      expect(state.nodes['node-3']).toBeUndefined();
+    });
+
+    it('should update ancestor registry after deletion', () => {
+      actions.deleteNode('node-1', true);
+
+      expect(state.ancestorRegistry['node-1']).toBeUndefined();
+      expect(state.ancestorRegistry['node-3']).toBeUndefined();
+      expect(state.ancestorRegistry['node-2']).toEqual(['root']);
+    });
+
+    it('should return true when deleting non-existent node', () => {
+      const result = actions.deleteNode('non-existent');
+
+      expect(result).toBe(true);
+    });
+
+    it('should handle deleting deeply nested nodes', () => {
+      state.nodes['node-3'].children = ['node-4', 'node-5'];
+      state.nodes['node-4'] = {
+        id: 'node-4',
+        type: 'task',
+        content: 'Task 4',
+        children: [],
+        metadata: { status: '☐' },
+      };
+      state.nodes['node-5'] = {
+        id: 'node-5',
+        type: 'task',
+        content: 'Task 5',
+        children: ['node-6'],
+        metadata: { status: '☐' },
+      };
+      state.nodes['node-6'] = {
+        id: 'node-6',
+        type: 'task',
+        content: 'Task 6',
+        children: [],
+        metadata: { status: '☐' },
+      };
+      state.ancestorRegistry['node-4'] = ['root', 'node-1', 'node-3'];
+      state.ancestorRegistry['node-5'] = ['root', 'node-1', 'node-3'];
+      state.ancestorRegistry['node-6'] = ['root', 'node-1', 'node-3', 'node-5'];
+
+      actions.deleteNode('node-3', true);
+
+      expect(state.nodes['node-3']).toBeUndefined();
+      expect(state.nodes['node-4']).toBeUndefined();
+      expect(state.nodes['node-5']).toBeUndefined();
+      expect(state.nodes['node-6']).toBeUndefined();
+      expect(state.nodes['node-1'].children).toEqual([]);
+    });
+
+    it('should update parent children array correctly', () => {
+      state.nodes['root'].children = ['node-1', 'node-2', 'node-7'];
+      state.nodes['node-7'] = {
+        id: 'node-7',
+        type: 'task',
+        content: 'Task 7',
+        children: [],
+        metadata: { status: '☐' },
+      };
+      state.ancestorRegistry['node-7'] = ['root'];
+
+      actions.deleteNode('node-2');
+
+      expect(state.nodes['root'].children).toEqual(['node-1', 'node-7']);
+    });
+  });
 });
