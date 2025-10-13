@@ -1,2 +1,2 @@
 export { Tree } from './Tree';
-export { useTreeListeners } from './useTreeListeners';
+export { useTree } from './hooks/useTree';

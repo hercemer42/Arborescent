@@ -1,7 +1,7 @@
 import { useState, useMemo } from 'react';
-import { useStore } from '../../store/tree/useStore';
-import { TreeNode } from '../../../shared/types';
-import { ContextMenuItem } from '../ui/ContextMenu';
+import { useStore } from '../../../store/tree/useStore';
+import { TreeNode } from '../../../../shared/types';
+import { ContextMenuItem } from '../../ui/ContextMenu';
 
 export function useNodeContextMenu(node: TreeNode) {
   const deleteNode = useStore((state) => state.actions.deleteNode);

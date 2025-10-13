@@ -1,0 +1,294 @@
+import { describe, it, expect, beforeEach, vi } from 'vitest';
+import { renderHook } from '@testing-library/react';
+import { useNodeKeyboard } from './useNodeKeyboard';
+import { TreeStoreContext } from '../../../store/tree/TreeStoreContext';
+import { createTreeStore, TreeStore } from '../../../store/tree/treeStore';
+import type { TreeNode } from '../../../../shared/types';
+
+vi.mock('../../services/cursorService', () => ({
+  getCursorPosition: vi.fn(() => 5),
+  getVisualCursorPosition: vi.fn(() => 10),
+}));
+
+describe('useNodeKeyboard', () => {
+  let store: TreeStore;
+  const mockMoveToPrevious = vi.fn();
+  const mockMoveToNext = vi.fn();
+  const mockCreateSiblingNode = vi.fn();
+  const mockIndentNode = vi.fn();
+  const mockOutdentNode = vi.fn();
+  const mockMoveNodeUp = vi.fn();
+  const mockMoveNodeDown = vi.fn();
+  const mockSetCursorPosition = vi.fn();
+  const mockSetRememberedVisualX = vi.fn();
+  const mockHandleDelete = vi.fn();
+
+  const mockNode: TreeNode = {
+    id: 'test-node',
+    type: 'task',
+    content: 'Test Content',
+    children: [],
+    metadata: {},
+  };
+
+  const mockContentRef = {
+    current: {
+      textContent: 'Test Content',
+      blur: vi.fn(),
+    } as unknown as HTMLDivElement,
+  };
+
+  beforeEach(() => {
+    vi.clearAllMocks();
+
+    store = createTreeStore();
+    store.setState({
+      nodes: { 'test-node': mockNode },
+      rootNodeId: 'test-node',
+      nodeTypeConfig: {},
+      selectedNodeId: 'test-node',
+      cursorPosition: 5,
+      rememberedVisualX: null,
+      actions: {
+        moveToPrevious: mockMoveToPrevious,
+        moveToNext: mockMoveToNext,
+        createSiblingNode: mockCreateSiblingNode,
+        indentNode: mockIndentNode,
+        outdentNode: mockOutdentNode,
+        moveNodeUp: mockMoveNodeUp,
+        moveNodeDown: mockMoveNodeDown,
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      } as any,
+    });
+  });
+
+  const wrapper = ({ children }: { children: React.ReactNode }) => (
+    <TreeStoreContext.Provider value={store}>{children}</TreeStoreContext.Provider>
+  );
+
+  it('should return handleKeyDown function', () => {
+    const { result } = renderHook(
+      () =>
+        useNodeKeyboard({
+          node: mockNode,
+          contentRef: mockContentRef,
+          rememberedVisualX: null,
+          setCursorPosition: mockSetCursorPosition,
+          setRememberedVisualX: mockSetRememberedVisualX,
+          handleDelete: mockHandleDelete,
+        }),
+      { wrapper }
+    );
+
+    expect(result.current.handleKeyDown).toBeInstanceOf(Function);
+  });
+
+  it('should create sibling node on Enter key', () => {
+    const { result } = renderHook(
+      () =>
+        useNodeKeyboard({
+          node: mockNode,
+          contentRef: mockContentRef,
+          rememberedVisualX: null,
+          setCursorPosition: mockSetCursorPosition,
+          setRememberedVisualX: mockSetRememberedVisualX,
+          handleDelete: mockHandleDelete,
+        }),
+      { wrapper }
+    );
+
+    const mockEvent = {
+      key: 'Enter',
+      preventDefault: vi.fn(),
+    } as unknown as React.KeyboardEvent;
+
+    result.current.handleKeyDown(mockEvent);
+
+    expect(mockEvent.preventDefault).toHaveBeenCalled();
+    expect(mockCreateSiblingNode).toHaveBeenCalledWith('test-node');
+  });
+
+  it('should indent node on Tab key', () => {
+    const { result } = renderHook(
+      () =>
+        useNodeKeyboard({
+          node: mockNode,
+          contentRef: mockContentRef,
+          rememberedVisualX: null,
+          setCursorPosition: mockSetCursorPosition,
+          setRememberedVisualX: mockSetRememberedVisualX,
+          handleDelete: mockHandleDelete,
+        }),
+      { wrapper }
+    );
+
+    const mockEvent = {
+      key: 'Tab',
+      shiftKey: false,
+      preventDefault: vi.fn(),
+    } as unknown as React.KeyboardEvent;
+
+    result.current.handleKeyDown(mockEvent);
+
+    expect(mockEvent.preventDefault).toHaveBeenCalled();
+    expect(mockIndentNode).toHaveBeenCalledWith('test-node');
+  });
+
+  it('should outdent node on Shift+Tab', () => {
+    const { result } = renderHook(
+      () =>
+        useNodeKeyboard({
+          node: mockNode,
+          contentRef: mockContentRef,
+          rememberedVisualX: null,
+          setCursorPosition: mockSetCursorPosition,
+          setRememberedVisualX: mockSetRememberedVisualX,
+          handleDelete: mockHandleDelete,
+        }),
+      { wrapper }
+    );
+
+    const mockEvent = {
+      key: 'Tab',
+      shiftKey: true,
+      preventDefault: vi.fn(),
+    } as unknown as React.KeyboardEvent;
+
+    result.current.handleKeyDown(mockEvent);
+
+    expect(mockEvent.preventDefault).toHaveBeenCalled();
+    expect(mockOutdentNode).toHaveBeenCalledWith('test-node');
+  });
+
+  it('should move node up on Shift+ArrowUp', () => {
+    const { result } = renderHook(
+      () =>
+        useNodeKeyboard({
+          node: mockNode,
+          contentRef: mockContentRef,
+          rememberedVisualX: null,
+          setCursorPosition: mockSetCursorPosition,
+          setRememberedVisualX: mockSetRememberedVisualX,
+          handleDelete: mockHandleDelete,
+        }),
+      { wrapper }
+    );
+
+    const mockEvent = {
+      key: 'ArrowUp',
+      shiftKey: true,
+      preventDefault: vi.fn(),
+    } as unknown as React.KeyboardEvent;
+
+    result.current.handleKeyDown(mockEvent);
+
+    expect(mockEvent.preventDefault).toHaveBeenCalled();
+    expect(mockMoveNodeUp).toHaveBeenCalledWith('test-node');
+  });
+
+  it('should move node down on Shift+ArrowDown', () => {
+    const { result } = renderHook(
+      () =>
+        useNodeKeyboard({
+          node: mockNode,
+          contentRef: mockContentRef,
+          rememberedVisualX: null,
+          setCursorPosition: mockSetCursorPosition,
+          setRememberedVisualX: mockSetRememberedVisualX,
+          handleDelete: mockHandleDelete,
+        }),
+      { wrapper }
+    );
+
+    const mockEvent = {
+      key: 'ArrowDown',
+      shiftKey: true,
+      preventDefault: vi.fn(),
+    } as unknown as React.KeyboardEvent;
+
+    result.current.handleKeyDown(mockEvent);
+
+    expect(mockEvent.preventDefault).toHaveBeenCalled();
+    expect(mockMoveNodeDown).toHaveBeenCalledWith('test-node');
+  });
+
+  it('should handle delete on Ctrl+D', () => {
+    const { result } = renderHook(
+      () =>
+        useNodeKeyboard({
+          node: mockNode,
+          contentRef: mockContentRef,
+          rememberedVisualX: null,
+          setCursorPosition: mockSetCursorPosition,
+          setRememberedVisualX: mockSetRememberedVisualX,
+          handleDelete: mockHandleDelete,
+        }),
+      { wrapper }
+    );
+
+    const mockEvent = {
+      key: 'd',
+      ctrlKey: true,
+      metaKey: false,
+      preventDefault: vi.fn(),
+    } as unknown as React.KeyboardEvent;
+
+    result.current.handleKeyDown(mockEvent);
+
+    expect(mockEvent.preventDefault).toHaveBeenCalled();
+    expect(mockHandleDelete).toHaveBeenCalled();
+  });
+
+  it('should handle delete on Cmd+D', () => {
+    const { result } = renderHook(
+      () =>
+        useNodeKeyboard({
+          node: mockNode,
+          contentRef: mockContentRef,
+          rememberedVisualX: null,
+          setCursorPosition: mockSetCursorPosition,
+          setRememberedVisualX: mockSetRememberedVisualX,
+          handleDelete: mockHandleDelete,
+        }),
+      { wrapper }
+    );
+
+    const mockEvent = {
+      key: 'd',
+      ctrlKey: false,
+      metaKey: true,
+      preventDefault: vi.fn(),
+    } as unknown as React.KeyboardEvent;
+
+    result.current.handleKeyDown(mockEvent);
+
+    expect(mockEvent.preventDefault).toHaveBeenCalled();
+    expect(mockHandleDelete).toHaveBeenCalled();
+  });
+
+  it('should restore content and blur on Escape', () => {
+    const { result } = renderHook(
+      () =>
+        useNodeKeyboard({
+          node: mockNode,
+          contentRef: mockContentRef,
+          rememberedVisualX: null,
+          setCursorPosition: mockSetCursorPosition,
+          setRememberedVisualX: mockSetRememberedVisualX,
+          handleDelete: mockHandleDelete,
+        }),
+      { wrapper }
+    );
+
+    const mockEvent = {
+      key: 'Escape',
+      preventDefault: vi.fn(),
+    } as unknown as React.KeyboardEvent;
+
+    result.current.handleKeyDown(mockEvent);
+
+    expect(mockEvent.preventDefault).toHaveBeenCalled();
+    expect(mockContentRef.current?.textContent).toBe('Test Content');
+    expect(mockContentRef.current?.blur).toHaveBeenCalled();
+  });
+});

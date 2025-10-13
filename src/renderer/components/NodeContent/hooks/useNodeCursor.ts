@@ -1,11 +1,11 @@
 import { useLayoutEffect } from 'react';
-import { useStore } from '../../store/tree/useStore';
-import { TreeNode } from '../../../shared/types';
+import { useStore } from '../../../store/tree/useStore';
+import { TreeNode } from '../../../../shared/types';
 import {
   setCursorPosition,
   getVisualCursorPosition,
   setCursorToVisualPosition,
-} from '../../services/cursorService';
+} from '../../../services/cursorService';
 
 export function useNodeCursor(node: TreeNode, contentRef: React.RefObject<HTMLDivElement | null>) {
   const isSelected = useStore((state) => state.selectedNodeId === node.id);

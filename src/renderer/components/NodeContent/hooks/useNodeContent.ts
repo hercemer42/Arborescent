@@ -1,5 +1,5 @@
-import { useStore } from '../../store/tree/useStore';
-import { TreeNode } from '../../../shared/types';
+import { useStore } from '../../../store/tree/useStore';
+import { TreeNode } from '../../../../shared/types';
 import { useNodeEditing } from './useNodeEditing';
 import { useNodeCursor } from './useNodeCursor';
 import { useNodeContextMenu } from './useNodeContextMenu';

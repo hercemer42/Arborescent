@@ -1,9 +1,9 @@
-import { useStore } from '../../store/tree/useStore';
-import { TreeNode } from '../../../shared/types';
+import { useStore } from '../../../store/tree/useStore';
+import { TreeNode } from '../../../../shared/types';
 import {
   getCursorPosition,
   getVisualCursorPosition,
-} from '../../services/cursorService';
+} from '../../../services/cursorService';
 
 interface UseNodeKeyboardProps {
   node: TreeNode;

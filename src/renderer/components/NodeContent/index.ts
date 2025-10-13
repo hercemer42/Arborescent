@@ -1,2 +1,2 @@
 export { NodeContent } from './NodeContent';
-export { useNodeContent } from './useNodeContent';
+export { useNodeContent } from './hooks/useNodeContent';

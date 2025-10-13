@@ -6,7 +6,7 @@ import { TreeStoreContext } from './store/tree/TreeStoreContext';
 import { useTabsStore } from './store/tabs/tabsStore';
 import { storeManager } from './store/storeManager';
 import { useToastStore } from './store/toast/toastStore';
-import { useTabListeners } from './components/TabBar/useTabListeners';
+import { useTab } from './components/TabBar/hooks/useTab';
 import { logger } from './services/logger';
 import { ElectronErrorService } from '@platform/error';
 import { ElectronStorageService } from '@platform/storage';
@@ -24,7 +24,7 @@ function App() {
   const addToast = useToastStore((state) => state.addToast);
   const removeToast = useToastStore((state) => state.removeToast);
 
-  useTabListeners();
+  useTab();
 
   useEffect(() => {
     const initializeApp = async () => {

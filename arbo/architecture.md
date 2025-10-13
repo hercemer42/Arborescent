@@ -178,25 +178,23 @@ const config = nodeTypeConfig[node.type] || { icon: '', style: '' };
 ```
 src/shared/types/
 ├── index.ts      # Re-exports all types
-├── node.ts       # Node, NodeType, NodeStatus, NodeTypeConfig
-├── document.ts   # Document, ArboFile
-└── config.ts     # HotkeyConfig, other configuration types
+├── treeNode.ts   # TreeNode, NodeType, NodeStatus, NodeTypeConfig
+└── document.ts   # Document, ArboFile
 ```
 
 **Example:**
 ```typescript
-// node.ts
+// treeNode.ts
 export type NodeType = string;
 export type NodeStatus = '☐' | '✓' | '✗';
-export interface Node { /* ... */ }
+export interface TreeNode { /* ... */ }
 
 // index.ts
-export type { NodeType, NodeStatus, Node } from './node';
+export type { NodeType, NodeStatus, TreeNode } from './treeNode';
 export type { Document, ArboFile } from './document';
-export type { HotkeyConfig } from './config';
 
 // Usage
-import { Node, NodeStatus, Document } from '../../../shared/types';
+import { TreeNode, NodeStatus, Document } from '../../../shared/types';
 ```
 
 **Rationale:**

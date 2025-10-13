@@ -1,6 +1,6 @@
 import { useRef, useEffect } from 'react';
-import { useStore } from '../../store/tree/useStore';
-import { TreeNode } from '../../../shared/types';
+import { useStore } from '../../../store/tree/useStore';
+import { TreeNode } from '../../../../shared/types';
 
 export function useNodeEditing(node: TreeNode) {
   const updateContent = useStore((state) => state.actions.updateContent);

@@ -4,8 +4,8 @@ import { Tree } from './Tree';
 import { TreeStoreContext } from '../../store/tree/TreeStoreContext';
 import { createTreeStore, TreeStore } from '../../store/tree/treeStore';
 
-vi.mock('./useTreeListeners', () => ({
-  useTreeListeners: vi.fn(),
+vi.mock('./useTree', () => ({
+  useTree: vi.fn(),
 }));
 
 describe('Tree', () => {

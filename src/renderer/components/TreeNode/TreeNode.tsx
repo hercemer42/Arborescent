@@ -3,7 +3,7 @@ import { NodeContent } from '../NodeContent';
 import { useStore } from '../../store/tree/useStore';
 import { useActiveTreeStore } from '../../store/tree/TreeStoreContext';
 import { isDescendant as checkIsDescendant } from '../../utils/ancestry';
-import { useNodeClick } from './useNodeClick';
+import { useNodeClick } from './hooks/useNodeClick';
 import './TreeNode.css';
 
 interface TreeNodeProps {

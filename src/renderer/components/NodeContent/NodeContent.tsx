@@ -3,7 +3,7 @@ import { TreeNode } from '../../../shared/types';
 import { ExpandToggle } from '../ui/ExpandToggle';
 import { StatusCheckbox } from '../ui/StatusCheckbox';
 import { ContextMenu } from '../ui/ContextMenu';
-import { useNodeContent } from './useNodeContent';
+import { useNodeContent } from './hooks/useNodeContent';
 import './NodeContent.css';
 
 interface NodeContentProps {
