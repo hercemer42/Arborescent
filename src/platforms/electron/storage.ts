@@ -1,4 +1,4 @@
-import { ArboFile, TreeNode, NodeTypeConfig } from '../../shared/types';
+import { ArboFile } from '../../shared/types';
 import { StorageService } from '../../shared/interfaces';
 
 export class ElectronStorageService implements StorageService {

@@ -2,7 +2,7 @@ import { memo } from 'react';
 import { TreeNode } from '../../../shared/types';
 import { ExpandToggle } from '../ui/ExpandToggle';
 import { StatusCheckbox } from '../ui/StatusCheckbox';
-import { ContextMenu, ContextMenuItem } from '../ui/ContextMenu';
+import { ContextMenu } from '../ui/ContextMenu';
 import { useNodeContent } from './useNodeContent';
 import './NodeContent.css';
 
@@ -26,18 +26,10 @@ export const NodeContent = memo(function NodeContent({
     handleKeyDown,
     handleInput,
     handleContextMenu,
-    handleDelete,
     contextMenu,
+    contextMenuItems,
     closeContextMenu,
   } = useNodeContent(node);
-
-  const contextMenuItems: ContextMenuItem[] = [
-    {
-      label: 'Delete',
-      onClick: handleDelete,
-      danger: true,
-    },
-  ];
 
   return (
     <>

@@ -66,6 +66,34 @@ import { ComponentName, useComponentName } from '../components/ComponentName';
 - Index files provide cleaner imports (no repetitive path segments)
 - Hook files named after hook function (React 2025 convention)
 
+## Hook Composition
+
+**Decision:** Complex hooks should be split into focused hooks with single responsibilities, then composed.
+
+**Pattern:**
+```typescript
+// Specialized hooks
+useNodeEditing()      // Content editing, DOM syncing
+useNodeCursor()       // Cursor position management
+useNodeKeyboard()     // Keyboard event handling
+useNodeContextMenu()  // Context menu state
+
+// Main hook composes them
+export function useNodeContent(node: TreeNode) {
+  const { contentRef, handleInput } = useNodeEditing(node);
+  const { setCursorPosition, setRememberedVisualX } = useNodeCursor(node, contentRef);
+  const { contextMenu, handleContextMenu } = useNodeContextMenu(node);
+  const { handleKeyDown } = useNodeKeyboard({ /* ... */ });
+
+  return { contentRef, handleInput, handleKeyDown, contextMenu, handleContextMenu };
+}
+```
+
+**Rationale:**
+- Single Responsibility Principle for hooks
+- Easier to test individual concerns in isolation
+- Specialized hooks remain co-located with their component
+
 ## Style File Separation
 
 **Decision:** Component styles live in separate `.css` files, imported by the component.
