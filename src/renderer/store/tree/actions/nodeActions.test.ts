@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import { createNodeActions } from './nodeActions';
 import type { TreeNode } from '@shared/types';
-import type { AncestorRegistry } from '../../../services/registryService';
+import type { AncestorRegistry } from '../../../utils/ancestry';
 
 describe('nodeActions', () => {
   type TestState = {

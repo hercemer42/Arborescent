@@ -1,5 +1,5 @@
 import { TreeNode, NodeStatus } from '../../../../shared/types';
-import { AncestorRegistry, buildAncestorRegistry } from '../../../services/registryService';
+import { AncestorRegistry, buildAncestorRegistry } from '../../../utils/ancestry';
 
 export interface NodeActions {
   selectNode: (nodeId: string, cursorPosition?: number) => void;

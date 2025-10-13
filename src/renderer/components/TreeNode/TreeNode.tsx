@@ -2,7 +2,7 @@ import { useState, memo } from 'react';
 import { NodeContent } from '../NodeContent';
 import { useStore } from '../../store/tree/useStore';
 import { useActiveTreeStore } from '../../store/tree/TreeStoreContext';
-import { isDescendant as checkIsDescendant } from '../../services/registryService';
+import { isDescendant as checkIsDescendant } from '../../utils/ancestry';
 import { useNodeClick } from './useNodeClick';
 import './TreeNode.css';
 

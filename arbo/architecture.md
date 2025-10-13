@@ -20,8 +20,8 @@ src/
 ├── renderer/     # React application (browser sandbox)
 │   ├── components/
 │   ├── store/
-│   ├── services/ # Service interfaces and platform-agnostic services
-│   ├── utils/    # Pure utility functions (domain-specific)
+│   ├── services/ # Infrastructure layer (DOM, IPC, browser APIs)
+│   ├── utils/    # Pure functions (position, ancestry calculations)
 │   └── data/
 └── shared/       # Code used by both (types, interfaces)
     └── types/    # Organized type definitions
@@ -249,26 +249,26 @@ Components → Hooks (React) → Store Actions (Business Logic) → Services (In
 
 ## Testing Strategy
 
-**Decision:** Use Vitest with separated unit and integration tests for better organization and test speed. Follow Test-Driven Development (TDD) principles when practical.
+**Decision:** Co-locate all tests with their source files for ease of discovery. Follow Test-Driven Development (TDD) principles when practical.
 
 **Test Organization:**
 ```
 src/renderer/test/
 ├── setup.ts                      # Global test setup (mocks, matchers)
-├── unit/                         # Fast, isolated tests
-│   ├── store/                    # Store action tests
-│   ├── components/               # Component rendering tests
-│   └── utils/                    # Utility function tests
-└── integration/                  # Multi-component tests
-    ├── workflows/                # User workflow tests
-    └── features/                 # Feature integration tests
-```
+└── helpers/                      # Shared test utilities
+    └── mockStoreActions.ts
 
-**Co-located Tests (Preferred):**
-```
-src/renderer/components/Node/
-├── Node.tsx
-└── Node.test.tsx                 # Unit test next to component
+src/renderer/components/Tree/
+├── Tree.tsx
+├── Tree.test.tsx                 # Co-located test
+
+src/renderer/store/tree/actions/
+├── nodeActions.ts
+└── nodeActions.test.ts           # Co-located test
+
+src/renderer/services/
+├── cursorService.ts
+└── cursorService.test.ts         # Co-located test
 ```
 
 **Test Types:**
@@ -288,11 +288,11 @@ src/renderer/components/Node/
 
 3. **E2E Tests** - Not implemented yet (Electron requires special setup)
 
-**Run Specific Test Types:**
+**Run Tests:**
 ```bash
-npm run test:unit         # Run only unit tests
-npm run test:integration  # Run only integration tests
 npm test                  # Run all tests in watch mode
+npm run test:run          # Run all tests once
+npm run test:coverage     # Run tests with coverage report
 ```
 
 **Coverage Configuration:**
@@ -325,11 +325,12 @@ npm test                  # Run all tests in watch mode
 - ⚠️  Rapid prototyping (add tests after validating approach)
 
 **Rationale:**
+- Co-location: Tests easier to find (no directory switching)
+- Moving/deleting files also moves/deletes tests
+- 2025 best practice: "keep files that change together close together"
 - Vitest integrates seamlessly with Vite (same config, faster builds)
 - Coverage thresholds ensure minimum quality bar
-- Start conservative, increase as test suite matures
 - Focus on testing behavior, not implementation details
-- Mock Electron APIs for renderer tests
 - TDD catches bugs earlier and produces better-designed code
 
 ## Services Organization
@@ -384,23 +385,13 @@ import { getCursorPosition, setCursorPosition } from '../../services/cursorServi
 **Structure:**
 ```
 src/renderer/utils/
-└── [future]                # String manipulation, validation, formatting, etc.
-```
-
-**Example (future):**
-```typescript
-// utils/string.ts - Pure string manipulation
-export const truncate = (text: string, maxLength: number): string => {
-  return text.length > maxLength ? text.slice(0, maxLength) + '...' : text;
-};
-
-// Usage
-import { truncate } from '../../utils/string';
+├── position.ts             # Coordinate-based cursor position calculations
+└── ancestry.ts             # Tree ancestor registry operations
 ```
 
 **Rationale:**
 - Utils are pure functions with no side effects
-- Examples: string manipulation, number calculations, data transformations, validation
+- Examples: coordinate calculations, tree traversal, string manipulation, data transformations
 - Utils do not need mocking in tests (pure input/output)
 - Easy to test and reason about
 - Architecture layers: Components → Hooks → Store Actions → Utils
@@ -473,7 +464,7 @@ function isDescendant(parentId: string, targetId: string | null): boolean {
 }
 ```
 
-**Registry Service:**
+**Registry Utils (`utils/ancestry.ts`):**
 - `buildAncestorRegistry()` - Builds initial registry when loading tree
 - `isDescendant()` - Fast ancestry check using array includes
 
@@ -498,7 +489,7 @@ When implementing lazy loading (partial tree loading), only loaded branches need
 
 **Problem:** ContentEditable has a limitation where clicking on padding/gaps between elements places the cursor at position 0 (start) instead of the natural click position.
 
-**Solution:** Calculate cursor position from click coordinates by measuring distance to each character position. Handled in `useNodeClick` hook and `calculatePositionService`.
+**Solution:** Calculate cursor position from click coordinates by measuring distance to each character position. Handled in `useNodeClick` hook and `utils/position.ts`.
 
 **Trade-off:** Adds ~60 lines of code complexity but provides natural cursor positioning UX. Similar approach used by professional code editors like Monaco.
 

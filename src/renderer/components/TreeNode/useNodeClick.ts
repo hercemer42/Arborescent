@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import { useStore } from '../../store/tree/useStore';
-import { getPositionFromCoordinates } from '../../services/calculatePositionService';
+import { getPositionFromCoordinates } from '../../utils/position';
 
 /**
  * Custom hook for handling mouse interactions on tree nodes to enable

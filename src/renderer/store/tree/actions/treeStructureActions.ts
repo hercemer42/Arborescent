@@ -1,5 +1,5 @@
 import { TreeNode } from '../../../../shared/types';
-import { AncestorRegistry, buildAncestorRegistry } from '../../../services/registryService';
+import { AncestorRegistry, buildAncestorRegistry } from '../../../utils/ancestry';
 
 export interface TreeStructureActions {
   indentNode: (nodeId: string) => void;
