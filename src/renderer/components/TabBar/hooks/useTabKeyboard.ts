@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useTabsStore } from '../../../store/tabs/tabsStore';
 import { storeManager } from '../../../store/storeManager';
+import { matchesHotkey } from '../../../data/hotkeyConfig';
 
 export function useTabKeyboard() {
   const closeActiveFile = useTabsStore((state) => state.closeActiveFile);
@@ -8,7 +9,7 @@ export function useTabKeyboard() {
 
   useEffect(() => {
     const handleKeyDown = async (event: KeyboardEvent) => {
-      if (event.key === 'w' && (event.ctrlKey || event.metaKey) && !event.shiftKey && !event.altKey) {
+      if (matchesHotkey(event, 'file', 'closeTab')) {
         event.preventDefault();
         if (activeFilePath) {
           await storeManager.closeFile(activeFilePath);

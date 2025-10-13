@@ -4,6 +4,7 @@ import {
   getCursorPosition,
   getVisualCursorPosition,
 } from '../../../services/cursorService';
+import { matchesHotkey } from '../../../data/hotkeyConfig';
 
 interface UseNodeKeyboardProps {
   node: TreeNode;
@@ -80,6 +81,9 @@ export function useNodeKeyboard({
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
+    // Use nativeEvent for real events, fallback to e for test mocks
+    const event = (e.nativeEvent || e) as KeyboardEvent;
+
     if (e.key === 'ArrowUp') {
       if (e.shiftKey) {
         e.preventDefault();
@@ -106,10 +110,10 @@ export function useNodeKeyboard({
       handleArrowLeft(e);
     } else if (e.key === 'ArrowRight') {
       handleArrowRight(e);
-    } else if (e.key === 'Enter') {
+    } else if (matchesHotkey(event, 'editing', 'newSiblingAfter')) {
       e.preventDefault();
       createSiblingNode(node.id);
-    } else if (e.key === 'Tab') {
+    } else if (matchesHotkey(event, 'editing', 'outdent')) {
       e.preventDefault();
 
       if (contentRef.current) {
@@ -118,14 +122,20 @@ export function useNodeKeyboard({
         setRememberedVisualX(null);
       }
 
-      if (e.shiftKey) {
-        outdentNode(node.id);
-      } else {
-        indentNode(node.id);
+      outdentNode(node.id);
+    } else if (matchesHotkey(event, 'editing', 'indent')) {
+      e.preventDefault();
+
+      if (contentRef.current) {
+        const position = getCursorPosition(contentRef.current);
+        setCursorPosition(position);
+        setRememberedVisualX(null);
       }
-    } else if (e.key === 'Escape') {
+
+      indentNode(node.id);
+    } else if (matchesHotkey(event, 'editing', 'cancelEdit')) {
       handleEscape(e);
-    } else if (e.key === 'd' && (e.ctrlKey || e.metaKey)) {
+    } else if (matchesHotkey(event, 'actions', 'deleteNode')) {
       e.preventDefault();
 
       if (contentRef.current) {

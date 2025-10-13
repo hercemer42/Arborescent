@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useStore } from '../../../store/tree/useStore';
+import { matchesHotkey } from '../../../data/hotkeyConfig';
 
 export function useTreeKeyboard() {
   const moveUp = useStore((state) => state.actions.moveUp);
@@ -7,9 +8,9 @@ export function useTreeKeyboard() {
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'ArrowUp' && !event.shiftKey && !event.ctrlKey && !event.metaKey && !event.altKey) {
+      if (matchesHotkey(event, 'navigation', 'moveUp')) {
         moveUp();
-      } else if (event.key === 'ArrowDown' && !event.shiftKey && !event.ctrlKey && !event.metaKey && !event.altKey) {
+      } else if (matchesHotkey(event, 'navigation', 'moveDown')) {
         moveDown();
       }
     };
