@@ -2,7 +2,7 @@ import { TreeNode, NodeTypeConfig } from '../../../../shared/types';
 import { StorageService } from '../../../../shared/interfaces';
 import { defaultNodeTypeConfig } from '../../../data/defaultTemplate';
 import { buildAncestorRegistry, AncestorRegistry } from '../../../utils/ancestry';
-import { createArboFile } from '@platform/storage';
+import { createArboFile } from '../../../utils/document';
 
 export interface FileActions {
   initialize: (nodes: Record<string, TreeNode>, rootNodeId: string, nodeTypeConfig: Record<string, NodeTypeConfig>) => void;
