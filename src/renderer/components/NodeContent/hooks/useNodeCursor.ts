@@ -39,7 +39,6 @@ export function useNodeCursor(node: TreeNode, contentRef: React.RefObject<HTMLDi
     isSelected,
     rememberedVisualX,
     cursorPosition,
-    node.content.length,
     setCursorPositionAction,
     setRememberedVisualX,
     node.id,

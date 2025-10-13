@@ -25,23 +25,33 @@ export function useNodeKeyboard({
 }: UseNodeKeyboardProps) {
   const moveToPrevious = useStore((state) => state.actions.moveToPrevious);
   const moveToNext = useStore((state) => state.actions.moveToNext);
+  const moveUp = useStore((state) => state.actions.moveUp);
+  const moveDown = useStore((state) => state.actions.moveDown);
   const createSiblingNode = useStore((state) => state.actions.createSiblingNode);
   const indentNode = useStore((state) => state.actions.indentNode);
   const outdentNode = useStore((state) => state.actions.outdentNode);
   const moveNodeUp = useStore((state) => state.actions.moveNodeUp);
   const moveNodeDown = useStore((state) => state.actions.moveNodeDown);
 
-  const handleArrowUpDown = () => {
+  const handleArrowUpDown = (e: React.KeyboardEvent, direction: 'up' | 'down') => {
     if (!contentRef.current) return;
 
+    e.preventDefault();
+    e.stopPropagation();
+
     const position = getCursorPosition(contentRef.current);
-    const contentLength = node.content.length;
-    const visualX = getVisualCursorPosition();
 
     setCursorPosition(position);
 
-    if (position < contentLength || rememberedVisualX === null) {
+    if (rememberedVisualX === null) {
+      const visualX = getVisualCursorPosition();
       setRememberedVisualX(visualX);
+    }
+
+    if (direction === 'up') {
+      moveUp();
+    } else {
+      moveDown();
     }
   };
 
@@ -54,7 +64,6 @@ export function useNodeKeyboard({
       moveToPrevious();
     } else {
       setRememberedVisualX(null);
-      setCursorPosition(position - 1);
     }
   };
 
@@ -68,7 +77,6 @@ export function useNodeKeyboard({
       moveToNext();
     } else {
       setRememberedVisualX(null);
-      setCursorPosition(position + 1);
     }
   };
 
@@ -93,7 +101,7 @@ export function useNodeKeyboard({
         }
         moveNodeUp(node.id);
       } else {
-        handleArrowUpDown();
+        handleArrowUpDown(e, 'up');
       }
     } else if (e.key === 'ArrowDown') {
       if (e.shiftKey) {
@@ -104,7 +112,7 @@ export function useNodeKeyboard({
         }
         moveNodeDown(node.id);
       } else {
-        handleArrowUpDown();
+        handleArrowUpDown(e, 'down');
       }
     } else if (e.key === 'ArrowLeft') {
       handleArrowLeft(e);
