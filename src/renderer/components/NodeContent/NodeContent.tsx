@@ -18,7 +18,6 @@ export const NodeContent = memo(function NodeContent({
   onToggle,
 }: NodeContentProps) {
   const {
-    config,
     hasChildren,
     isSelected,
     updateStatus,
@@ -39,21 +38,10 @@ export const NodeContent = memo(function NodeContent({
       >
         {hasChildren && <ExpandToggle expanded={expanded} onToggle={onToggle} />}
 
-        {node.type === 'task' && (
-          <StatusCheckbox
-            status={node.metadata.status}
-            onChange={(status) => updateStatus(node.id, status)}
-          />
-        )}
-
-        {config.icon && (
-          <span
-            className="node-icon"
-            onMouseDown={(e) => e.preventDefault()}
-          >
-            {config.icon}
-          </span>
-        )}
+        <StatusCheckbox
+          status={node.metadata.status}
+          onChange={(status) => updateStatus(node.id, status)}
+        />
 
         <div
           ref={contentRef}

@@ -82,7 +82,6 @@ export const createNodeActions = (
     const newNodeId = generateId();
     const newNode: TreeNode = {
       id: newNodeId,
-      type: 'task',
       content: '',
       children: [],
       metadata: { status: '☐' },

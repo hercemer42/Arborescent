@@ -57,7 +57,7 @@ function App() {
       const store = storeManager.getStoreForFile(untitledPath);
       const { actions } = store.getState();
 
-      actions.initialize(blank.nodes, blank.rootNodeId, blank.nodeTypeConfig);
+      actions.initialize(blank.nodes, blank.rootNodeId);
       actions.selectNode(blank.firstNodeId, 0);
 
       openFile(untitledPath, 'Untitled');

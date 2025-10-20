@@ -119,28 +119,6 @@ import './ComponentName.css';
 - Makes styles easy to find and modify
 - Component-specific styles stay with component, not in global theme
 
-## Node Type Configuration
-
-**Decision:** Node types (icons) are user-definable data, not hardcoded in components.
-
-**Implementation:**
-```typescript
-// In data
-nodeTypeConfig: {
-  project: { icon: '📁', style: '' },
-  task: { icon: '', style: '' }
-}
-
-// In component
-const config = nodeTypeConfig[node.type] || { icon: '', style: '' };
-```
-
-**Rationale:**
-- Users can define custom node types without code changes
-- Makes the system more flexible
-- Component logic doesn't need to know about specific types
-- Style field reserved for future use
-
 ## Styling System
 
 **Decision:** Use plain CSS with CSS custom properties, no preprocessors.
@@ -178,19 +156,18 @@ const config = nodeTypeConfig[node.type] || { icon: '', style: '' };
 ```
 src/shared/types/
 ├── index.ts      # Re-exports all types
-├── treeNode.ts   # TreeNode, NodeType, NodeStatus, NodeTypeConfig
+├── treeNode.ts   # TreeNode, NodeStatus
 └── document.ts   # Document, ArboFile
 ```
 
 **Example:**
 ```typescript
 // treeNode.ts
-export type NodeType = string;
 export type NodeStatus = '☐' | '✓' | '✗';
 export interface TreeNode { /* ... */ }
 
 // index.ts
-export type { NodeType, NodeStatus, TreeNode } from './treeNode';
+export type { NodeStatus, TreeNode } from './treeNode';
 export type { Document, ArboFile } from './document';
 
 // Usage

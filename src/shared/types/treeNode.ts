@@ -1,14 +1,7 @@
-export type NodeType = string;
 export type NodeStatus = '☐' | '✓' | '✗';
-
-export interface NodeTypeConfig {
-  icon: string;
-  style: string;
-}
 
 export interface TreeNode {
   id: string;
-  type: NodeType;
   content: string;
   children: string[];
   metadata: {

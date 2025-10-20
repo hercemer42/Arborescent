@@ -1,9 +1,8 @@
-import { ArboFile, TreeNode, NodeTypeConfig } from '../../shared/types';
+import { ArboFile, TreeNode } from '../../shared/types';
 
 export function createArboFile(
   nodes: Record<string, TreeNode>,
   rootNodeId: string,
-  nodeTypeConfig: Record<string, NodeTypeConfig>,
   existingMeta?: { created: string; author: string }
 ): ArboFile {
   return {
@@ -14,6 +13,5 @@ export function createArboFile(
     author: existingMeta?.author || 'unknown',
     rootNodeId,
     nodes,
-    nodeTypeConfig,
   };
 }

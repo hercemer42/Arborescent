@@ -6,11 +6,9 @@ import { useNodeContextMenu } from './useNodeContextMenu';
 import { useNodeKeyboard } from './useNodeKeyboard';
 
 export function useNodeContent(node: TreeNode) {
-  const nodeTypeConfig = useStore((state) => state.nodeTypeConfig);
   const isSelected = useStore((state) => state.selectedNodeId === node.id);
   const updateStatus = useStore((state) => state.actions.updateStatus);
 
-  const config = nodeTypeConfig[node.type] || { icon: '', style: '' };
   const hasChildren = node.children.length > 0;
 
   const { contentRef, handleInput } = useNodeEditing(node);
@@ -31,7 +29,6 @@ export function useNodeContent(node: TreeNode) {
   });
 
   return {
-    config,
     hasChildren,
     isSelected,
     updateStatus,

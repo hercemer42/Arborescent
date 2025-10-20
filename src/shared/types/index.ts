@@ -1,5 +1,5 @@
 // Node types
-export type { NodeType, NodeStatus, NodeTypeConfig, TreeNode } from './treeNode';
+export type { NodeStatus, TreeNode } from './treeNode';
 
 // Document types
 export type { Document, ArboFile } from './document';

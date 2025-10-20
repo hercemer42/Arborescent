@@ -1,12 +1,11 @@
-import { TreeNode, NodeTypeConfig } from '../../../../shared/types';
+import { TreeNode } from '../../../../shared/types';
 import { StorageService } from '../../../../shared/interfaces';
-import { defaultNodeTypeConfig } from '../../../data/defaultTemplate';
 import { buildAncestorRegistry, AncestorRegistry } from '../../../utils/ancestry';
 import { createArboFile } from '../../../utils/document';
 
 export interface FileActions {
-  initialize: (nodes: Record<string, TreeNode>, rootNodeId: string, nodeTypeConfig: Record<string, NodeTypeConfig>) => void;
-  loadDocument: (nodes: Record<string, TreeNode>, rootNodeId: string, nodeTypeConfig: Record<string, NodeTypeConfig>) => void;
+  initialize: (nodes: Record<string, TreeNode>, rootNodeId: string) => void;
+  loadDocument: (nodes: Record<string, TreeNode>, rootNodeId: string) => void;
   loadFromPath: (path: string) => Promise<{ created: string; author: string }>;
   saveToPath: (path: string, fileMeta?: { created: string; author: string }) => Promise<void>;
   setFilePath: (path: string | null, meta?: { created: string; author: string } | null) => void;
@@ -16,7 +15,6 @@ export interface FileActions {
 type StoreState = {
   nodes: Record<string, TreeNode>;
   rootNodeId: string;
-  nodeTypeConfig: Record<string, NodeTypeConfig>;
   ancestorRegistry: AncestorRegistry;
   currentFilePath: string | null;
   fileMeta: { created: string; author: string } | null;
@@ -31,14 +29,14 @@ export const createFileActions = (
 ): FileActions => {
   let autosaveTimeout: ReturnType<typeof setTimeout> | null = null;
 
-  const loadDoc = (nodes: Record<string, TreeNode>, rootNodeId: string, nodeTypeConfig: Record<string, NodeTypeConfig>) => {
+  const loadDoc = (nodes: Record<string, TreeNode>, rootNodeId: string) => {
     const ancestorRegistry = buildAncestorRegistry(rootNodeId, nodes);
-    set({ nodes, rootNodeId, nodeTypeConfig, ancestorRegistry });
+    set({ nodes, rootNodeId, ancestorRegistry });
   };
 
   const performSave = async (path: string, fileMeta?: { created: string; author: string }) => {
-    const { nodes, rootNodeId, nodeTypeConfig } = get();
-    const arboFile = createArboFile(nodes, rootNodeId, nodeTypeConfig, fileMeta);
+    const { nodes, rootNodeId } = get();
+    const arboFile = createArboFile(nodes, rootNodeId, fileMeta);
     await storage.saveDocument(path, arboFile);
   };
 
@@ -48,16 +46,12 @@ export const createFileActions = (
 
     loadFromPath: async (path: string) => {
       const data = await storage.loadDocument(path);
-      const configToUse = (data.nodeTypeConfig && Object.keys(data.nodeTypeConfig).length > 0)
-        ? data.nodeTypeConfig
-        : defaultNodeTypeConfig;
 
       const ancestorRegistry = buildAncestorRegistry(data.rootNodeId, data.nodes);
 
       set({
         nodes: data.nodes,
         rootNodeId: data.rootNodeId,
-        nodeTypeConfig: configToUse,
         ancestorRegistry,
         currentFilePath: path,
         fileMeta: { created: data.created, author: data.author },
