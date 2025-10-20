@@ -13,6 +13,8 @@ type StoreState = {
   nodes: Record<string, TreeNode>;
   rootNodeId: string;
   ancestorRegistry: AncestorRegistry;
+  selectedNodeId: string | null;
+  cursorPosition: number;
 };
 type StoreSetter = (partial: Partial<StoreState>) => void;
 
@@ -142,6 +144,38 @@ function recursivelyDeleteNode(
   return updatedNodes;
 }
 
+function isLastRootLevelNode(
+  nodeId: string,
+  parentId: string,
+  rootNodeId: string,
+  parent: TreeNode
+): boolean {
+  return parentId === rootNodeId && parent.children.length === 1;
+}
+
+function clearNodeContent(
+  nodeId: string,
+  node: TreeNode,
+  nodes: Record<string, TreeNode>,
+  set: StoreSetter,
+  triggerAutosave?: () => void
+): void {
+  const updatedNodes = {
+    ...nodes,
+    [nodeId]: {
+      ...node,
+      content: '',
+    },
+  };
+
+  set({
+    nodes: updatedNodes,
+    selectedNodeId: nodeId,
+    cursorPosition: 0,
+  });
+  triggerAutosave?.();
+}
+
 function moveNodeVertically(
   nodeId: string,
   direction: 'up' | 'down',
@@ -269,6 +303,11 @@ export const createTreeStructureActions = (
     const parentId = ancestors[ancestors.length - 1] || rootNodeId;
     const parent = nodes[parentId];
     if (!parent) return true;
+
+    if (isLastRootLevelNode(nodeId, parentId, rootNodeId, parent)) {
+      clearNodeContent(nodeId, node, nodes, set, triggerAutosave);
+      return true;
+    }
 
     const updatedParentChildren = parent.children.filter((id) => id !== nodeId);
 
