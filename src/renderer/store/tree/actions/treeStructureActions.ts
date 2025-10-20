@@ -176,6 +176,64 @@ function clearNodeContent(
   triggerAutosave?.();
 }
 
+function getParentNode(
+  nodeId: string,
+  state: { ancestorRegistry: Record<string, string[]>; rootNodeId: string; nodes: Record<string, TreeNode> }
+): { parentId: string; parent: TreeNode } | null {
+  const { ancestorRegistry, rootNodeId, nodes } = state;
+  const ancestors = ancestorRegistry[nodeId] || [];
+  const parentId = ancestors[ancestors.length - 1] || rootNodeId;
+  const parent = nodes[parentId];
+
+  if (!parent) return null;
+
+  return { parentId, parent };
+}
+
+function calculateNextSelectedNode(
+  deletedNodeIndex: number,
+  remainingSiblings: string[],
+  parentId: string,
+  rootNodeId: string
+): string | null {
+  if (remainingSiblings.length === 0) {
+    return parentId === rootNodeId ? null : parentId;
+  }
+
+  if (deletedNodeIndex < remainingSiblings.length) {
+    return remainingSiblings[deletedNodeIndex];
+  }
+
+  return remainingSiblings[remainingSiblings.length - 1];
+}
+
+function performNodeDeletion(
+  nodeId: string,
+  parentId: string,
+  state: { nodes: Record<string, TreeNode>; rootNodeId: string }
+): {
+  updatedNodes: Record<string, TreeNode>;
+  newAncestorRegistry: Record<string, string[]>;
+  remainingSiblings: string[];
+} {
+  const { nodes, rootNodeId } = state;
+  const parent = nodes[parentId];
+  const remainingSiblings = parent.children.filter((id) => id !== nodeId);
+  let updatedNodes = recursivelyDeleteNode(nodeId, nodes);
+
+  updatedNodes = {
+    ...updatedNodes,
+    [parentId]: {
+      ...parent,
+      children: remainingSiblings,
+    },
+  };
+
+  const newAncestorRegistry = buildAncestorRegistry(rootNodeId, updatedNodes);
+
+  return { updatedNodes, newAncestorRegistry, remainingSiblings };
+}
+
 function moveNodeVertically(
   nodeId: string,
   direction: 'up' | 'down',
@@ -299,33 +357,30 @@ export const createTreeStructureActions = (
       return false;
     }
 
-    const ancestors = ancestorRegistry[nodeId] || [];
-    const parentId = ancestors[ancestors.length - 1] || rootNodeId;
-    const parent = nodes[parentId];
-    if (!parent) return true;
+    const parentInfo = getParentNode(nodeId, state);
+    if (!parentInfo) return true;
+
+    const { parentId, parent } = parentInfo;
 
     if (isLastRootLevelNode(nodeId, parentId, rootNodeId, parent)) {
       clearNodeContent(nodeId, node, nodes, set, triggerAutosave);
       return true;
     }
 
-    const updatedParentChildren = parent.children.filter((id) => id !== nodeId);
+    const nodeIndex = parent.children.indexOf(nodeId);
+    const { updatedNodes, newAncestorRegistry, remainingSiblings } = performNodeDeletion(
+      nodeId,
+      parentId,
+      state
+    );
 
-    let updatedNodes = recursivelyDeleteNode(nodeId, nodes);
-
-    updatedNodes = {
-      ...updatedNodes,
-      [parentId]: {
-        ...parent,
-        children: updatedParentChildren,
-      },
-    };
-
-    const newAncestorRegistry = buildAncestorRegistry(rootNodeId, updatedNodes);
+    const nextSelectedNodeId = calculateNextSelectedNode(nodeIndex, remainingSiblings, parentId, rootNodeId);
 
     set({
       nodes: updatedNodes,
       ancestorRegistry: newAncestorRegistry,
+      selectedNodeId: nextSelectedNodeId,
+      cursorPosition: 0,
     });
     triggerAutosave?.();
 
