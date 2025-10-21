@@ -66,6 +66,56 @@ import { ComponentName, useComponentName } from '../components/ComponentName';
 - Index files provide cleaner imports (no repetitive path segments)
 - Hook files named after hook function (React 2025 convention)
 
+## Co-location vs Centralization
+
+**Decision:** Co-locate single-component concerns, centralize multi-component shared state.
+
+**Principle:**
+- **Co-locate** when code is used by **one component only**
+  - Component-specific CSS files
+  - Component-specific hooks
+  - Component-specific utilities
+- **Centralize** when code is **shared across multiple components**
+  - State stores (used by multiple components)
+  - Shared services (infrastructure layer)
+  - Shared utilities (pure functions used everywhere)
+
+**Examples:**
+
+**Co-located (Component-specific):**
+```
+src/renderer/components/NodeContent/
+├── NodeContent.tsx          # Only NodeContent uses these files
+├── NodeContent.css          # Styles for NodeContent only
+└── hooks/
+    ├── useNodeContent.ts    # Only NodeContent uses this hook
+    ├── useNodeEditing.ts    # Only NodeContent uses this hook
+    └── useNodeCursor.ts     # Only NodeContent uses this hook
+```
+
+**Centralized (Multi-component shared):**
+```
+src/renderer/store/
+├── tabs/
+│   └── tabsStore.ts         # Used by: TabBar, Workspace, useAppInitialization
+├── toast/
+│   └── toastStore.ts        # Used by: App, useAppErrorHandling, logger
+└── tree/
+    └── treeStore.ts         # Used by: Tree, TreeNode, NodeContent
+```
+
+**How to decide:**
+1. **Is it used by multiple components?** → Centralize in `store/`, `services/`, or `utils/`
+2. **Is it only used by one component?** → Co-locate in component folder
+3. **Not sure yet?** → Start co-located, move to centralized when second consumer appears
+
+**Rationale:**
+- Co-location makes single-component code easy to find and modify
+- Centralization makes shared dependencies explicit and discoverable
+- Prevents confusion: centralized location signals "this is shared"
+- Matches the mental model: component folder = component-specific, store folder = shared state
+- Easy to refactor: move from co-located to centralized when usage expands
+
 ## Hook Composition
 
 **Decision:** Complex hooks should be split into focused hooks with single responsibilities, then composed.
