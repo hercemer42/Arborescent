@@ -3,6 +3,7 @@ import './ExpandToggle.css';
 interface ExpandToggleProps {
   expanded: boolean;
   onToggle: () => void;
+  isSelected: boolean;
 }
 
 const ICONS = {
@@ -10,8 +11,10 @@ const ICONS = {
   collapse: '▼',
 };
 
-export function ExpandToggle({ expanded, onToggle }: ExpandToggleProps) {
+export function ExpandToggle({ expanded, onToggle, isSelected }: ExpandToggleProps) {
   const icon = expanded ? ICONS.collapse : ICONS.expand;
+
+  if (!isSelected) return null;
 
   return (
     <button

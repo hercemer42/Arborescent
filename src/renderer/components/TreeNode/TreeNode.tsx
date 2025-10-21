@@ -41,7 +41,7 @@ export const TreeNode = memo(function TreeNode({ nodeId, depth = 0 }: TreeNodePr
     <>
       <div
         className={`tree-node-wrapper ${isSelected ? 'selected' : ''}`}
-        style={{ paddingLeft: `${depth * 20}px` }}
+        style={{ paddingLeft: `${(depth * 20) + 15}px` }}
         onMouseDown={handleMouseDown}
         onMouseMove={handleMouseMove}
         onClick={handleClick}
