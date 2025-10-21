@@ -67,7 +67,7 @@ describe('NodeContent', () => {
 
     renderWithProvider(<NodeContent node={nodeWithChildren} expanded={true} onToggle={vi.fn()} />);
 
-    const toggle = screen.getByText('▼');
+    const toggle = screen.getByText('⌄');
     expect(toggle).toBeInTheDocument();
   });
 
@@ -78,18 +78,19 @@ describe('NodeContent', () => {
     expect(checkbox).toBeInTheDocument();
   });
 
-  it('should show icon when configured', () => {
-    const projectNode: TreeNode = {
-      id: 'project-node',
-      type: 'project',
-      content: 'Project',
+  it('should not show status checkbox when no status', () => {
+    const node: TreeNode = {
+      id: 'node-1',
+      content: 'Node',
       children: [],
       metadata: {},
     };
 
-    renderWithProvider(<NodeContent node={projectNode} expanded={true} onToggle={vi.fn()} />);
+    renderWithProvider(<NodeContent node={node} expanded={true} onToggle={vi.fn()} />);
 
-    expect(screen.getByText('📁')).toBeInTheDocument();
+    // StatusCheckbox does not render when there's no status
+    const checkbox = screen.queryByRole('button', { name: /Status/ });
+    expect(checkbox).not.toBeInTheDocument();
   });
 
   it('should update content when typing in contentEditable', () => {
@@ -122,30 +123,29 @@ describe('NodeContent', () => {
     expect(contentDiv.textContent).toBe('Test Task');
   });
 
-  it('should not steal focus when clicking on icon', () => {
-    const projectNode: TreeNode = {
-      id: 'project-node',
-      type: 'project',
-      content: 'Project',
+  it('should not steal focus when clicking on status checkbox', () => {
+    const node: TreeNode = {
+      id: 'node-1',
+      content: 'Node',
       children: [],
-      metadata: {},
+      metadata: { status: '☐' },
     };
 
     renderWithProvider(
       <div>
         <input type="text" data-testid="focused-input" />
-        <NodeContent node={projectNode} expanded={true} onToggle={vi.fn()} />
+        <NodeContent node={node} expanded={true} onToggle={vi.fn()} />
       </div>
     );
 
     const input = screen.getByTestId('focused-input');
-    const icon = screen.getByText('📁');
+    const checkbox = screen.getByRole('button', { name: /Status/ });
 
     input.focus();
     expect(input).toHaveFocus();
 
-    fireEvent.mouseDown(icon);
-    fireEvent.click(icon);
+    fireEvent.mouseDown(checkbox);
+    fireEvent.click(checkbox);
 
     expect(input).toHaveFocus();
   });

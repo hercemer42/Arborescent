@@ -349,7 +349,7 @@ export const createTreeStructureActions = (
 
   deleteNode: (nodeId: string, confirmed = false) => {
     const state = get();
-    const { nodes, rootNodeId, ancestorRegistry } = state;
+    const { nodes, rootNodeId } = state;
     const node = nodes[nodeId];
     if (!node) return true;
 

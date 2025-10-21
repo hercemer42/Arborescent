@@ -1,4 +1,5 @@
 import { TreeNode, NodeStatus } from '../../../../shared/types';
+import { updateNodeMetadata } from '../../../utils/nodeHelpers';
 import { AncestorRegistry, buildAncestorRegistry } from '../../../utils/ancestry';
 
 export interface NodeActions {
@@ -53,16 +54,7 @@ export const createNodeActions = (
   updateStatus: (nodeId: string, status: NodeStatus) => {
     const { nodes } = get();
     set({
-      nodes: {
-        ...nodes,
-        [nodeId]: {
-          ...nodes[nodeId],
-          metadata: {
-            ...nodes[nodeId].metadata,
-            status,
-          },
-        },
-      },
+      nodes: updateNodeMetadata(nodes, nodeId, { status }),
     });
   },
 

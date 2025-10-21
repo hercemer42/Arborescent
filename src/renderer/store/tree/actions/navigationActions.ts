@@ -1,10 +1,12 @@
 import { TreeNode } from '../../../../shared/types';
+import { updateNodeMetadata } from '../../../utils/nodeHelpers';
 
 export interface NavigationActions {
   moveUp: () => void;
   moveDown: () => void;
   moveToPrevious: () => void;
   moveToNext: () => void;
+  toggleNode: (nodeId: string) => void;
 }
 
 type StoreState = {
@@ -26,7 +28,8 @@ export const createNavigationActions = (
     const traverse = (nodeId: string) => {
       result.push(nodeId);
       const node = nodes[nodeId];
-      if (node && node.children.length > 0) {
+      const isExpanded = node?.metadata.expanded ?? true;
+      if (node && node.children.length > 0 && isExpanded) {
         node.children.forEach((childId) => traverse(childId));
       }
     };
@@ -96,6 +99,17 @@ export const createNavigationActions = (
           rememberedVisualX: null,
         });
       }
+    },
+
+    toggleNode: (nodeId: string) => {
+      const { nodes } = get();
+      const node = nodes[nodeId];
+      if (!node) return;
+
+      const newExpanded = !(node.metadata.expanded ?? true);
+      set({
+        nodes: updateNodeMetadata(nodes, nodeId, { expanded: newExpanded }),
+      });
     },
   };
 };

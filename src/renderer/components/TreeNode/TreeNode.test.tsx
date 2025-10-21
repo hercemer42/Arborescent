@@ -14,10 +14,6 @@ describe('TreeNode', () => {
     store.setState({
       nodes: {},
       rootNodeId: '',
-      nodeTypeConfig: {
-        project: { icon: '📁', style: '' },
-        task: { icon: '', style: '' },
-      },
       selectedNodeId: null,
       ancestorRegistry: {},
     });
@@ -41,7 +37,6 @@ describe('TreeNode', () => {
   it('should render node without children', () => {
     const mockNode: TreeNodeType = {
       id: 'test-node',
-      type: 'task',
       content: 'Test Task',
       children: [],
       metadata: {},
@@ -57,14 +52,12 @@ describe('TreeNode', () => {
     const nodes: Record<string, TreeNodeType> = {
       'parent': {
         id: 'parent',
-        type: 'project',
         content: 'Parent Node',
         children: ['child-1'],
         metadata: {},
       },
       'child-1': {
         id: 'child-1',
-        type: 'task',
         content: 'Child Node',
         children: [],
         metadata: {},
@@ -81,7 +74,6 @@ describe('TreeNode', () => {
   it('should apply correct depth indentation', () => {
     const mockNode: TreeNodeType = {
       id: 'test-node',
-      type: 'task',
       content: 'Test Task',
       children: [],
       metadata: {},
@@ -91,13 +83,12 @@ describe('TreeNode', () => {
 
     const { container } = renderWithProvider(<TreeNode nodeId="test-node" depth={2} />);
     const nodeWrapper = container.firstChild as HTMLElement;
-    expect(nodeWrapper).toHaveStyle({ paddingLeft: '40px' });
+    expect(nodeWrapper).toHaveStyle({ paddingLeft: '55px' }); // depth * 20 + 15
   });
 
   it('should default depth to 0', () => {
     const mockNode: TreeNodeType = {
       id: 'test-node',
-      type: 'task',
       content: 'Test Task',
       children: [],
       metadata: {},
@@ -107,7 +98,7 @@ describe('TreeNode', () => {
 
     const { container } = renderWithProvider(<TreeNode nodeId="test-node" />);
     const nodeWrapper = container.firstChild as HTMLElement;
-    expect(nodeWrapper).toHaveStyle({ paddingLeft: '0px' });
+    expect(nodeWrapper).toHaveStyle({ paddingLeft: '15px' }); // depth * 20 + 15
   });
 
   it('should maintain cursor position when collapsing node being edited', async () => {
@@ -116,14 +107,12 @@ describe('TreeNode', () => {
     const nodes: Record<string, TreeNodeType> = {
       'parent': {
         id: 'parent',
-        type: 'project',
         content: 'Parent Node',
         children: ['child-1'],
         metadata: {},
       },
       'child-1': {
         id: 'child-1',
-        type: 'task',
         content: 'Child Node',
         children: [],
         metadata: {},
@@ -145,7 +134,7 @@ describe('TreeNode', () => {
     const contentEditable = screen.getByText('Parent Node');
     expect(contentEditable).toHaveFocus();
 
-    const collapseButton = screen.getByText('▼');
+    const collapseButton = screen.getByText('⌄');
     await user.click(collapseButton);
 
     expect(contentEditable).toHaveFocus();
@@ -160,14 +149,12 @@ describe('TreeNode', () => {
     const nodes: Record<string, TreeNodeType> = {
       'parent': {
         id: 'parent',
-        type: 'project',
         content: 'Parent Node',
         children: ['child-1'],
         metadata: {},
       },
       'child-1': {
         id: 'child-1',
-        type: 'task',
         content: 'Child Node',
         children: [],
         metadata: {},
@@ -189,7 +176,7 @@ describe('TreeNode', () => {
 
     renderWithProvider(<TreeNode nodeId="parent" />);
 
-    const collapseButton = screen.getByText('▼');
+    const collapseButton = screen.getByText('⌄');
     await user.click(collapseButton);
 
     expect(mockSelectNode).toHaveBeenCalledWith('parent', 11);

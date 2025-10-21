@@ -8,6 +8,7 @@ export interface HotkeyConfig {
     moveLeft: string;
     moveRight: string;
     expandCollapse: string;
+    toggleNode: string;
   };
   editing: {
     startEdit: string;

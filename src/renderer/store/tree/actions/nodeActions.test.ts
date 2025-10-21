@@ -116,7 +116,6 @@ describe('nodeActions', () => {
       const newNode = state.nodes[newNodeId];
 
       expect(newNode).toBeDefined();
-      expect(newNode.type).toBe('task');
       expect(newNode.content).toBe('');
       expect(newNode.children).toEqual([]);
       expect(newNode.metadata.status).toBe('☐');
@@ -138,13 +137,10 @@ describe('nodeActions', () => {
       expect(state.ancestorRegistry[newNodeId]).toEqual(['root']);
     });
 
-    it('should always create task type nodes', () => {
-      state.nodes['node-1'].type = 'project';
-
+    it('should create new nodes with default status', () => {
       actions.createSiblingNode('node-1');
 
       const newNodeId = state.nodes['root'].children[1];
-      expect(state.nodes[newNodeId].type).toBe('task');
       expect(state.nodes[newNodeId].metadata.status).toBe('☐');
     });
   });

@@ -1,16 +1,25 @@
 .expand-toggle {
   position: absolute;
-  left: -12px;
-  top: 2px;
+  left: -14px;
+  top: -7px;
   width: 16px;
   height: 16px;
   color: var(--color-text-subtle);
+  opacity: 0;
+  transition: opacity 0.1s ease;
+}
+
+.expand-toggle.collapsed {
+  opacity: 1;
+  top: -2px;
+  left: -13px;
 }
 
 .expand-toggle:hover {
+  opacity: 1;
   color: var(--color-text-muted);
 }
 
 .expand-toggle-icon {
-  font-size: 0.8125rem;
+  font-size: 1.4rem;
 }

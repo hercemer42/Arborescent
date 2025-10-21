@@ -3,22 +3,19 @@ import './ExpandToggle.css';
 interface ExpandToggleProps {
   expanded: boolean;
   onToggle: () => void;
-  isSelected: boolean;
 }
 
 const ICONS = {
-  expand: '▶',
-  collapse: '▼',
+  expand: '›',
+  collapse: '⌄',
 };
 
-export function ExpandToggle({ expanded, onToggle, isSelected }: ExpandToggleProps) {
+export function ExpandToggle({ expanded, onToggle }: ExpandToggleProps) {
   const icon = expanded ? ICONS.collapse : ICONS.expand;
-
-  if (!isSelected) return null;
 
   return (
     <button
-      className="expand-toggle"
+      className={`expand-toggle ${expanded ? 'expanded' : 'collapsed'}`}
       onMouseDown={(e) => {
         e.preventDefault();
         e.stopPropagation();

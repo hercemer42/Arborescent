@@ -6,6 +6,7 @@ export interface TreeNode {
   children: string[];
   metadata: {
     status?: NodeStatus;
+    expanded?: boolean;
     created?: string;
     updated?: string;
     [key: string]: unknown;

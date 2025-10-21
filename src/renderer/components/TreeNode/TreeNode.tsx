@@ -1,4 +1,4 @@
-import { useState, memo } from 'react';
+import { memo } from 'react';
 import { NodeContent } from '../NodeContent';
 import { useStore } from '../../store/tree/useStore';
 import { useActiveTreeStore } from '../../store/tree/TreeStoreContext';
@@ -13,7 +13,6 @@ interface TreeNodeProps {
 
 export const TreeNode = memo(function TreeNode({ nodeId, depth = 0 }: TreeNodeProps) {
   const node = useStore((state) => state.nodes[nodeId]);
-  const [expanded, setExpanded] = useState(true);
   const isSelected = useStore((state) => state.selectedNodeId === nodeId);
   const { handleMouseDown, handleMouseMove, handleClick } = useNodeMouse(nodeId);
   const store = useActiveTreeStore();
@@ -23,6 +22,7 @@ export const TreeNode = memo(function TreeNode({ nodeId, depth = 0 }: TreeNodePr
   }
 
   const hasChildren = node.children.length > 0;
+  const expanded = node.metadata.expanded ?? true;
 
   const handleToggle = () => {
     const newExpandedState = !expanded;
@@ -34,7 +34,7 @@ export const TreeNode = memo(function TreeNode({ nodeId, depth = 0 }: TreeNodePr
       }
     }
 
-    setExpanded(newExpandedState);
+    store.getState().actions.toggleNode(nodeId);
   };
 
   return (

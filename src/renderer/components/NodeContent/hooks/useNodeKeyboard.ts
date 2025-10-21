@@ -32,6 +32,7 @@ export function useNodeKeyboard({
   const outdentNode = useStore((state) => state.actions.outdentNode);
   const moveNodeUp = useStore((state) => state.actions.moveNodeUp);
   const moveNodeDown = useStore((state) => state.actions.moveNodeDown);
+  const toggleNode = useStore((state) => state.actions.toggleNode);
 
   const handleArrowUpDown = (e: React.KeyboardEvent, direction: 'up' | 'down') => {
     if (!contentRef.current) return;
@@ -152,6 +153,15 @@ export function useNodeKeyboard({
       }
 
       handleDelete();
+    } else if (matchesHotkey(event, 'navigation', 'toggleNode')) {
+      e.preventDefault();
+
+      if (contentRef.current) {
+        const position = getCursorPosition(contentRef.current);
+        setCursorPosition(position);
+      }
+
+      toggleNode(node.id);
     }
   };
 

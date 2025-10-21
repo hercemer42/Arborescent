@@ -7,14 +7,14 @@ describe('ExpandToggle', () => {
   it('should render collapsed state', () => {
     render(<ExpandToggle expanded={false} onToggle={() => {}} />);
     const button = screen.getByRole('button');
-    expect(button).toHaveTextContent('▶');
+    expect(button).toHaveTextContent('›');
     expect(button).toHaveAttribute('aria-label', 'Expand');
   });
 
   it('should render expanded state', () => {
     render(<ExpandToggle expanded={true} onToggle={() => {}} />);
     const button = screen.getByRole('button');
-    expect(button).toHaveTextContent('▼');
+    expect(button).toHaveTextContent('⌄');
     expect(button).toHaveAttribute('aria-label', 'Collapse');
   });
 
