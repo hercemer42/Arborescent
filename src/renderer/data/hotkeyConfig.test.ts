@@ -112,6 +112,7 @@ describe('hotkeyConfig', () => {
           moveLeft: 'h',
           moveRight: 'l',
           expandCollapse: 'Space',
+          toggleNode: 'Mod+T',
         },
         editing: {
           startEdit: 'i',
@@ -152,6 +153,7 @@ describe('hotkeyConfig', () => {
           moveLeft: 'h',
           moveRight: 'l',
           expandCollapse: 'Space',
+          toggleNode: 'Mod+T',
         },
         editing: {
           startEdit: 'i',

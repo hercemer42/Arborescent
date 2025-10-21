@@ -21,28 +21,24 @@ describe('nodeActions', () => {
       nodes: {
         'root': {
           id: 'root',
-          type: 'project',
           content: 'Root',
           children: ['node-1', 'node-2'],
           metadata: {},
         },
         'node-1': {
           id: 'node-1',
-          type: 'task',
           content: 'Task 1',
           children: ['node-3'],
           metadata: { status: '☐' },
         },
         'node-2': {
           id: 'node-2',
-          type: 'task',
           content: 'Task 2',
           children: [],
           metadata: { status: '☐' },
         },
         'node-3': {
           id: 'node-3',
-          type: 'task',
           content: 'Task 3',
           children: [],
           metadata: { status: '☐' },

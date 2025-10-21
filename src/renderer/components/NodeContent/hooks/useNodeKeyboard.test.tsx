@@ -25,7 +25,6 @@ describe('useNodeKeyboard', () => {
 
   const mockNode: TreeNode = {
     id: 'test-node',
-    type: 'task',
     content: 'Test Content',
     children: [],
     metadata: {},
@@ -45,7 +44,6 @@ describe('useNodeKeyboard', () => {
     store.setState({
       nodes: { 'test-node': mockNode },
       rootNodeId: 'test-node',
-      nodeTypeConfig: {},
       selectedNodeId: 'test-node',
       cursorPosition: 5,
       rememberedVisualX: null,

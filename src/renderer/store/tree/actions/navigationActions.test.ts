@@ -12,28 +12,24 @@ describe('navigationActions', () => {
       nodes: {
         'root': {
           id: 'root',
-          type: 'project',
           content: 'Root',
           children: ['child-1', 'child-2'],
           metadata: {},
         },
         'child-1': {
           id: 'child-1',
-          type: 'task',
           content: 'Child 1',
           children: ['grandchild-1'],
           metadata: {},
         },
         'grandchild-1': {
           id: 'grandchild-1',
-          type: 'task',
           content: 'Grandchild 1',
           children: [],
           metadata: {},
         },
         'child-2': {
           id: 'child-2',
-          type: 'task',
           content: 'Child 2',
           children: [],
           metadata: {},

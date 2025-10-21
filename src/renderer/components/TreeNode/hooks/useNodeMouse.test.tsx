@@ -21,7 +21,6 @@ describe('useNodeMouse', () => {
     store.setState({
       nodes: {},
       rootNodeId: '',
-      nodeTypeConfig: {},
       selectedNodeId: null,
       cursorPosition: 0,
       rememberedVisualX: null,

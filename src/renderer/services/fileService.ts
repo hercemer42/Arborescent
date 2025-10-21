@@ -1,4 +1,4 @@
-import { ArboFile, TreeNode, NodeTypeConfig } from '../../shared/types';
+import { ArboFile, TreeNode } from '../../shared/types';
 import { ElectronStorageService } from '@platform/storage';
 import { createArboFile } from '../utils/document';
 
@@ -8,10 +8,9 @@ export async function saveFile(
   filePath: string,
   nodes: Record<string, TreeNode>,
   rootNodeId: string,
-  nodeTypeConfig: Record<string, NodeTypeConfig>,
   existingMeta?: { created: string; author: string }
 ): Promise<void> {
-  const arboFile = createArboFile(nodes, rootNodeId, nodeTypeConfig, existingMeta);
+  const arboFile = createArboFile(nodes, rootNodeId, existingMeta);
   await storageService.saveDocument(filePath, arboFile);
 }
 

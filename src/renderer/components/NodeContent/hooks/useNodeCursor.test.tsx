@@ -17,7 +17,6 @@ describe('useNodeCursor', () => {
   const mockSetRememberedVisualX = vi.fn();
   const mockNode: TreeNode = {
     id: 'test-node',
-    type: 'task',
     content: 'Test Content',
     children: [],
     metadata: {},
@@ -30,7 +29,6 @@ describe('useNodeCursor', () => {
     store.setState({
       nodes: { 'test-node': mockNode },
       rootNodeId: 'test-node',
-      nodeTypeConfig: {},
       selectedNodeId: null,
       cursorPosition: 0,
       rememberedVisualX: null,

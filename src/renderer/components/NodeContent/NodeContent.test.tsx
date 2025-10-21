@@ -10,7 +10,6 @@ describe('NodeContent', () => {
   let store: TreeStore;
   const mockNode: TreeNode = {
     id: 'test-node',
-    type: 'task',
     content: 'Test Task',
     children: [],
     metadata: { status: '☐' },
@@ -37,10 +36,6 @@ describe('NodeContent', () => {
       selectedNodeId: null,
       cursorPosition: 0,
       rememberedVisualX: null,
-      nodeTypeConfig: {
-        project: { icon: '📁', style: '' },
-        task: { icon: '✓', style: '' },
-      },
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       actions: mockActions as any,
     });

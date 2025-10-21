@@ -18,9 +18,6 @@ describe('Tree', () => {
     store.setState({
       rootNodeId: '',
       nodes: {},
-      nodeTypeConfig: {
-        project: { icon: '📁', style: '' },
-      },
       selectedNodeId: null,
       cursorPosition: 0,
       rememberedVisualX: null,
@@ -44,21 +41,18 @@ describe('Tree', () => {
     const nodes = {
       'root': {
         id: 'root',
-        type: 'project',
         content: 'Root Project',
         children: ['child-1', 'child-2'],
         metadata: {},
       },
       'child-1': {
         id: 'child-1',
-        type: 'task',
         content: 'First Task',
         children: [],
         metadata: { status: '☐' as const },
       },
       'child-2': {
         id: 'child-2',
-        type: 'task',
         content: 'Second Task',
         children: [],
         metadata: { status: '☐' as const },

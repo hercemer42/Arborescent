@@ -26,14 +26,13 @@ describe('fileService', () => {
       const nodes = {
         'node-1': {
           id: 'node-1',
-          type: 'task',
           content: 'Test',
           children: [],
           metadata: {},
         },
       };
 
-      await saveFile('/test/path.arbo', nodes, 'node-1', {});
+      await saveFile('/test/path.arbo', nodes, 'node-1');
 
       expect(mockWriteFile).toHaveBeenCalledWith(
         '/test/path.arbo',
@@ -54,7 +53,7 @@ describe('fileService', () => {
         author: 'Test Author',
       };
 
-      await saveFile('/test/path.arbo', {}, 'root', {}, existingMeta);
+      await saveFile('/test/path.arbo', {}, 'root', existingMeta);
 
       const callArg = mockWriteFile.mock.calls[0][1] as string;
       const savedData = JSON.parse(callArg);
@@ -67,7 +66,7 @@ describe('fileService', () => {
       const mockWriteFile = vi.fn().mockResolvedValue(undefined);
       window.electron.writeFile = mockWriteFile;
 
-      await saveFile('/test/path.arbo', {}, 'root', {});
+      await saveFile('/test/path.arbo', {}, 'root');
 
       const callArg = mockWriteFile.mock.calls[0][1] as string;
       const savedData = JSON.parse(callArg);
@@ -90,13 +89,11 @@ describe('fileService', () => {
         nodes: {
           'root': {
             id: 'root',
-            type: 'project',
             content: 'Test Project',
             children: [],
             metadata: {},
           },
         },
-        nodeTypeConfig: {},
       };
 
       const mockReadFile = vi.fn().mockResolvedValue(JSON.stringify(validFile));

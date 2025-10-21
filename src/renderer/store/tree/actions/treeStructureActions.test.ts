@@ -8,6 +8,8 @@ describe('treeStructureActions', () => {
     nodes: Record<string, TreeNode>;
     rootNodeId: string;
     ancestorRegistry: AncestorRegistry;
+    selectedNodeId?: string | null;
+    cursorPosition?: number;
   };
   let state: TestState;
   let setState: (partial: Partial<TestState>) => void;
@@ -18,28 +20,24 @@ describe('treeStructureActions', () => {
       nodes: {
         'root': {
           id: 'root',
-          type: 'project',
           content: 'Root',
           children: ['node-1', 'node-2'],
           metadata: {},
         },
         'node-1': {
           id: 'node-1',
-          type: 'task',
           content: 'Task 1',
           children: ['node-3'],
           metadata: { status: '☐' },
         },
         'node-2': {
           id: 'node-2',
-          type: 'task',
           content: 'Task 2',
           children: [],
           metadata: { status: '☐' },
         },
         'node-3': {
           id: 'node-3',
-          type: 'task',
           content: 'Task 3',
           children: [],
           metadata: { status: '☐' },
@@ -59,8 +57,10 @@ describe('treeStructureActions', () => {
     };
 
     actions = createTreeStructureActions(
-      () => state,
-      setState
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      () => state as any,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      setState as any
     );
   });
 
@@ -90,7 +90,6 @@ describe('treeStructureActions', () => {
       state.nodes['node-1'].children = ['node-3', 'node-4'];
       state.nodes['node-4'] = {
         id: 'node-4',
-        type: 'task',
         content: 'Task 4',
         children: [],
         metadata: { status: '☐' },
@@ -139,7 +138,6 @@ describe('treeStructureActions', () => {
       state.nodes['node-1'].children = ['node-3', 'node-5'];
       state.nodes['node-5'] = {
         id: 'node-5',
-        type: 'task',
         content: 'Task 5',
         children: [],
         metadata: { status: '☐' },
@@ -172,7 +170,6 @@ describe('treeStructureActions', () => {
       state.nodes['node-1'].children = ['node-3', 'node-4'];
       state.nodes['node-4'] = {
         id: 'node-4',
-        type: 'task',
         content: 'Task 4',
         children: [],
         metadata: { status: '☐' },
@@ -189,7 +186,6 @@ describe('treeStructureActions', () => {
       state.nodes['node-2'].children = ['node-4'];
       state.nodes['node-4'] = {
         id: 'node-4',
-        type: 'task',
         content: 'Task 4',
         children: [],
         metadata: { status: '☐' },
@@ -223,7 +219,6 @@ describe('treeStructureActions', () => {
       state.nodes['node-1'].children = ['node-3', 'node-4'];
       state.nodes['node-4'] = {
         id: 'node-4',
-        type: 'task',
         content: 'Task 4',
         children: [],
         metadata: { status: '☐' },
@@ -240,7 +235,6 @@ describe('treeStructureActions', () => {
       state.nodes['node-2'].children = ['node-3'];
       state.nodes['node-4'] = {
         id: 'node-4',
-        type: 'task',
         content: 'Task 4',
         children: [],
         metadata: { status: '☐' },
@@ -305,21 +299,18 @@ describe('treeStructureActions', () => {
       state.nodes['node-3'].children = ['node-4', 'node-5'];
       state.nodes['node-4'] = {
         id: 'node-4',
-        type: 'task',
         content: 'Task 4',
         children: [],
         metadata: { status: '☐' },
       };
       state.nodes['node-5'] = {
         id: 'node-5',
-        type: 'task',
         content: 'Task 5',
         children: ['node-6'],
         metadata: { status: '☐' },
       };
       state.nodes['node-6'] = {
         id: 'node-6',
-        type: 'task',
         content: 'Task 6',
         children: [],
         metadata: { status: '☐' },
@@ -341,7 +332,6 @@ describe('treeStructureActions', () => {
       state.nodes['root'].children = ['node-1', 'node-2', 'node-7'];
       state.nodes['node-7'] = {
         id: 'node-7',
-        type: 'task',
         content: 'Task 7',
         children: [],
         metadata: { status: '☐' },

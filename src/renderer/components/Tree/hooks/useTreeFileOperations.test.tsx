@@ -31,7 +31,6 @@ describe('useTreeFileOperations', () => {
     store.setState({
       nodes: {},
       rootNodeId: '',
-      nodeTypeConfig: {},
       selectedNodeId: null,
       cursorPosition: 0,
       rememberedVisualX: null,
@@ -49,7 +48,6 @@ describe('useTreeFileOperations', () => {
     fileStore.setState({
       nodes: {},
       rootNodeId: '',
-      nodeTypeConfig: {},
       selectedNodeId: null,
       cursorPosition: 0,
       rememberedVisualX: null,
