@@ -12,6 +12,7 @@ export interface FileActions {
   saveActiveFile: () => Promise<void>;
   saveFileAs: (filePath: string) => Promise<void>;
   loadAndOpenFile: (path: string, logContext?: string, showToast?: boolean) => Promise<void>;
+  initializeSession: () => Promise<void>;
 }
 
 type StoreState = {
@@ -195,6 +196,82 @@ export const createFileActions = (get: StoreGetter, storage: StorageService): Fi
       openFile(path, displayName, isTemporary);
 
       logger.success(`File loaded: ${path}`, logContext, showToast);
+    },
+
+    initializeSession: async () => {
+      let hasOpenedFiles = false;
+
+      const lastSession = storage.getLastSession();
+      const isTempFile = lastSession && storage.isTempFile(lastSession);
+
+      if (lastSession && !isTempFile) {
+        try {
+          const { openFile } = get();
+          const store = storeManager.getStoreForFile(lastSession);
+          const { actions } = store.getState();
+          await actions.loadFromPath(lastSession);
+
+          const displayName = lastSession.split(/[\\/]/).pop() || lastSession;
+          openFile(lastSession, displayName, false);
+
+          hasOpenedFiles = true;
+        } catch (error) {
+          logger.error(
+            `Failed to restore session: ${error instanceof Error ? error.message : 'Unknown error'}`,
+            error instanceof Error ? error : undefined,
+            'SessionRestore',
+            false
+          );
+        }
+      }
+
+      const tempFiles = storage.getTempFiles();
+      if (tempFiles.length > 0) {
+        try {
+          for (const tempPath of tempFiles) {
+            const { openFile } = get();
+            const store = storeManager.getStoreForFile(tempPath);
+            const { actions } = store.getState();
+            await actions.loadFromPath(tempPath);
+
+            const isTemporary = storage.isTempFile(tempPath);
+            const displayName = isTemporary
+              ? `Untitled ${tempPath.match(/untitled-(\d+)/)?.[1] || '1'}`
+              : tempPath.split(/[\\/]/).pop() || tempPath;
+
+            openFile(tempPath, displayName, isTemporary);
+          }
+
+          logger.success(`Restored ${tempFiles.length} temporary file(s)`, 'SessionRestore', false);
+          hasOpenedFiles = true;
+        } catch (error) {
+          logger.error(
+            `Failed to restore temporary files: ${error instanceof Error ? error.message : 'Unknown error'}`,
+            error instanceof Error ? error : undefined,
+            'SessionRestore',
+            false
+          );
+        }
+      }
+
+      if (!hasOpenedFiles) {
+        const { openFile } = get();
+        const blank = createBlankDocument();
+        const arboFile = createArboFile(blank.nodes, blank.rootNodeId);
+        const tempPath = await storage.createTempFile(arboFile);
+
+        const store = storeManager.getStoreForFile(tempPath);
+        const { actions } = store.getState();
+
+        actions.initialize(blank.nodes, blank.rootNodeId);
+        actions.selectNode(blank.firstNodeId, 0);
+        actions.setFilePath(tempPath);
+
+        const untitledNumber = tempPath.match(/untitled-(\d+)/)?.[1] || '1';
+        openFile(tempPath, `Untitled ${untitledNumber}`, true);
+
+        logger.success(`New file created: ${tempPath}`, 'FileNew', false);
+      }
     },
   };
 };

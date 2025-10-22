@@ -98,7 +98,7 @@ src/renderer/components/NodeContent/
 ```
 src/renderer/store/
 ├── files/
-│   └── filesStore.ts        # Used by: TabBar, Workspace, useAppInitialization
+│   └── filesStore.ts        # Used by: TabBar, Workspace, App
 ├── toast/
 │   └── toastStore.ts        # Used by: App, useAppErrorHandling, logger
 └── tree/
@@ -715,7 +715,7 @@ When implementing lazy loading (partial tree loading), only loaded branches need
 
 **Example of the problem:**
 ```typescript
-// In useAppInitialization.ts
+// In App.tsx initialization
 useEffect(() => {
   const initializeApp = async () => {
     const tempPath = await storageService.createTempFile(arboFile);

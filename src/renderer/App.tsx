@@ -1,14 +1,20 @@
+import { useEffect, useState } from 'react';
 import { ToastContainer } from './components/Toast';
 import { Workspace } from './components/Workspace';
 import { useToastStore } from './store/toast/toastStore';
-import { useAppInitialization } from './useAppInitialization';
+import { useFilesStore } from './store/files/filesStore';
 import { useAppErrorHandling } from './useAppErrorHandling';
 import './App.css';
 
 export function App() {
-  const { isInitializing } = useAppInitialization();
+  const [isInitializing, setIsInitializing] = useState(true);
+  const initializeSession = useFilesStore((state) => state.actions.initializeSession);
   const toasts = useToastStore((state) => state.toasts);
   const removeToast = useToastStore((state) => state.removeToast);
+
+  useEffect(() => {
+    initializeSession().finally(() => setIsInitializing(false));
+  }, [initializeSession]);
 
   useAppErrorHandling();
 

@@ -20,6 +20,7 @@ describe('useTabKeyboard', () => {
         saveActiveFile: vi.fn(),
         saveFileAs: vi.fn(),
         loadAndOpenFile: vi.fn(),
+        initializeSession: vi.fn(),
       },
     });
   });
