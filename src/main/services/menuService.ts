@@ -1,6 +1,7 @@
 import { Menu, BrowserWindow } from 'electron';
 
 export function createApplicationMenu(
+  onNew: () => void,
   onOpen: () => void,
   onSave: () => void,
   onSaveAs: () => void
@@ -9,6 +10,11 @@ export function createApplicationMenu(
     {
       label: 'File',
       submenu: [
+        {
+          label: 'New',
+          accelerator: 'CmdOrCtrl+N',
+          click: onNew,
+        },
         {
           label: 'Open',
           accelerator: 'CmdOrCtrl+O',

@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import { useToastStore } from './store/toast/toastStore';
 import { logger } from './services/logger';
-import { ElectronErrorService } from '@platform/error';
+import { ErrorService } from '@platform';
 
-const errorService = new ElectronErrorService();
+const errorService = new ErrorService();
 
 export function useAppErrorHandling() {
   const addToast = useToastStore((state) => state.addToast);

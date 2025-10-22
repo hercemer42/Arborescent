@@ -1,93 +1,75 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { renderHook } from '@testing-library/react';
 import { useTreeMenu } from './useTreeMenu';
-import { ElectronMenuService } from '@platform/menu';
+import { TreeStoreContext } from '../../../store/tree/TreeStoreContext';
+import { createTreeStore, TreeStore } from '../../../store/tree/treeStore';
+import { useFilesStore } from '../../../store/files/filesStore';
 
-vi.mock('@platform/menu');
+const { mockMenuService } = vi.hoisted(() => ({
+  mockMenuService: {
+    onMenuNew: vi.fn(),
+    onMenuOpen: vi.fn(),
+    onMenuSave: vi.fn(),
+    onMenuSaveAs: vi.fn(),
+  },
+}));
+
+vi.mock('@platform', () => ({
+  MenuService: vi.fn(() => mockMenuService),
+  StorageService: vi.fn(),
+  ErrorService: vi.fn(),
+}));
 
 describe('useTreeMenu', () => {
-  const mockOnMenuOpen = vi.fn();
-  const mockOnMenuSave = vi.fn();
-  const mockOnMenuSaveAs = vi.fn();
-  const mockHandleLoad = vi.fn();
-  const mockHandleSave = vi.fn();
-  const mockHandleSaveAs = vi.fn();
+  let store: TreeStore;
 
   beforeEach(() => {
     vi.clearAllMocks();
 
-    // Mock menu service
-    vi.mocked(ElectronMenuService.prototype.onMenuOpen).mockImplementation(mockOnMenuOpen);
-    vi.mocked(ElectronMenuService.prototype.onMenuSave).mockImplementation(mockOnMenuSave);
-    vi.mocked(ElectronMenuService.prototype.onMenuSaveAs).mockImplementation(mockOnMenuSaveAs);
-  });
-
-  it('should register menu open listener', () => {
-    renderHook(() => useTreeMenu({
-      handleLoad: mockHandleLoad,
-      handleSave: mockHandleSave,
-      handleSaveAs: mockHandleSaveAs,
-    }));
-
-    expect(mockOnMenuOpen).toHaveBeenCalledWith(mockHandleLoad);
-  });
-
-  it('should register menu save listener', () => {
-    renderHook(() => useTreeMenu({
-      handleLoad: mockHandleLoad,
-      handleSave: mockHandleSave,
-      handleSaveAs: mockHandleSaveAs,
-    }));
-
-    expect(mockOnMenuSave).toHaveBeenCalledWith(mockHandleSave);
-  });
-
-  it('should register menu save as listener', () => {
-    renderHook(() => useTreeMenu({
-      handleLoad: mockHandleLoad,
-      handleSave: mockHandleSave,
-      handleSaveAs: mockHandleSaveAs,
-    }));
-
-    expect(mockOnMenuSaveAs).toHaveBeenCalledWith(mockHandleSaveAs);
-  });
-
-  it('should re-register listeners when handlers change', () => {
-    const { rerender } = renderHook(
-      ({ handlers }) => useTreeMenu(handlers),
-      {
-        initialProps: {
-          handlers: {
-            handleLoad: mockHandleLoad,
-            handleSave: mockHandleSave,
-            handleSaveAs: mockHandleSaveAs,
-          }
-        }
-      }
-    );
-
-    expect(mockOnMenuOpen).toHaveBeenCalledTimes(1);
-    expect(mockOnMenuSave).toHaveBeenCalledTimes(1);
-    expect(mockOnMenuSaveAs).toHaveBeenCalledTimes(1);
-
-    // Change handlers
-    const newHandleLoad = vi.fn();
-    const newHandleSave = vi.fn();
-    const newHandleSaveAs = vi.fn();
-
-    rerender({
-      handlers: {
-        handleLoad: newHandleLoad,
-        handleSave: newHandleSave,
-        handleSaveAs: newHandleSaveAs,
-      }
+    // Reset tabsStore
+    useFilesStore.setState({
+      files: [],
+      activeFilePath: null,
     });
 
-    expect(mockOnMenuOpen).toHaveBeenCalledTimes(2);
-    expect(mockOnMenuSave).toHaveBeenCalledTimes(2);
-    expect(mockOnMenuSaveAs).toHaveBeenCalledTimes(2);
-    expect(mockOnMenuOpen).toHaveBeenLastCalledWith(newHandleLoad);
-    expect(mockOnMenuSave).toHaveBeenLastCalledWith(newHandleSave);
-    expect(mockOnMenuSaveAs).toHaveBeenLastCalledWith(newHandleSaveAs);
+    store = createTreeStore();
+    store.setState({
+      nodes: {},
+      rootNodeId: '',
+      selectedNodeId: null,
+      cursorPosition: 0,
+      rememberedVisualX: null,
+      currentFilePath: null,
+      fileMeta: null,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      actions: {} as any,
+    });
+  });
+
+  const wrapper = ({ children }: { children: React.ReactNode }) => (
+    <TreeStoreContext.Provider value={store}>{children}</TreeStoreContext.Provider>
+  );
+
+  it('should register all menu listeners', () => {
+    renderHook(() => useTreeMenu(), { wrapper });
+
+    expect(mockMenuService.onMenuNew).toHaveBeenCalledWith(expect.any(Function));
+    expect(mockMenuService.onMenuOpen).toHaveBeenCalledWith(expect.any(Function));
+    expect(mockMenuService.onMenuSave).toHaveBeenCalledWith(expect.any(Function));
+    expect(mockMenuService.onMenuSaveAs).toHaveBeenCalledWith(expect.any(Function));
+  });
+
+  it('should re-register listeners when currentFilePath changes', () => {
+    const { rerender } = renderHook(() => useTreeMenu(), { wrapper });
+
+    expect(mockMenuService.onMenuNew).toHaveBeenCalledTimes(1);
+    expect(mockMenuService.onMenuSave).toHaveBeenCalledTimes(1);
+
+    // Change currentFilePath
+    store.setState({ currentFilePath: '/test/path.arbo' });
+    rerender();
+
+    expect(mockMenuService.onMenuNew).toHaveBeenCalledTimes(2);
+    expect(mockMenuService.onMenuSave).toHaveBeenCalledTimes(2);
   });
 });

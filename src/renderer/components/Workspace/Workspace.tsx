@@ -1,12 +1,12 @@
 import { Tree } from '../Tree';
 import { TabBar } from '../TabBar';
 import { TreeStoreContext } from '../../store/tree/TreeStoreContext';
-import { useTabsStore } from '../../store/tabs/tabsStore';
+import { useFilesStore } from '../../store/files/filesStore';
 import { storeManager } from '../../store/storeManager';
 import './Workspace.css';
 
 export function Workspace() {
-  const activeFilePath = useTabsStore((state) => state.activeFilePath);
+  const activeFilePath = useFilesStore((state) => state.activeFilePath);
   const activeStore = activeFilePath ? storeManager.getStoreForFile(activeFilePath) : null;
 
   if (!activeStore) {

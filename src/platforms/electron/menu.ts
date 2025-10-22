@@ -1,6 +1,10 @@
 import { MenuService } from '../../shared/interfaces';
 
 export class ElectronMenuService implements MenuService {
+  onMenuNew(callback: () => void): void {
+    window.electron.onMenuNew(callback);
+  }
+
   onMenuOpen(callback: () => void): void {
     window.electron.onMenuOpen(callback);
   }

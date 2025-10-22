@@ -2,9 +2,9 @@ import { create } from 'zustand';
 import { TreeNode } from '../../../shared/types';
 import { createNodeActions, NodeActions } from './actions/nodeActions';
 import { createNavigationActions, NavigationActions } from './actions/navigationActions';
-import { createFileActions, FileActions } from './actions/fileActions';
+import { createPersistenceActions, PersistenceActions } from './actions/persistenceActions';
 import { createTreeStructureActions, TreeStructureActions } from './actions/treeStructureActions';
-import { ElectronStorageService } from '@platform/storage';
+import { StorageService } from '@platform';
 
 export interface TreeState {
   nodes: Record<string, TreeNode>;
@@ -16,14 +16,14 @@ export interface TreeState {
   currentFilePath: string | null;
   fileMeta: { created: string; author: string } | null;
 
-  actions: NodeActions & NavigationActions & FileActions & TreeStructureActions;
+  actions: NodeActions & NavigationActions & PersistenceActions & TreeStructureActions;
 }
 
-const storageService = new ElectronStorageService();
+const storageService = new StorageService();
 
 export function createTreeStore() {
   return create<TreeState>((set, get) => {
-    const fileActions = createFileActions(get, set, storageService);
+    const persistenceActions = createPersistenceActions(get, set, storageService);
 
     return {
       nodes: {},
@@ -36,10 +36,10 @@ export function createTreeStore() {
       fileMeta: null,
 
       actions: {
-        ...createNodeActions(get, set, fileActions.autoSave),
+        ...createNodeActions(get, set, persistenceActions.autoSave),
         ...createNavigationActions(get, set),
-        ...fileActions,
-        ...createTreeStructureActions(get, set, fileActions.autoSave),
+        ...persistenceActions,
+        ...createTreeStructureActions(get, set, persistenceActions.autoSave),
       },
     };
   });

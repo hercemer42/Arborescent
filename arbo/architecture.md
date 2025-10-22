@@ -2,7 +2,7 @@
 
 This document records key architectural choices made during development sessions.
 
-**Date:** 2025-10-11
+**Last Updated:** 2025-10-22
 
 ## Directory Structure
 
@@ -21,10 +21,11 @@ src/
 │   ├── components/
 │   ├── store/
 │   ├── services/ # Infrastructure layer (DOM, IPC, browser APIs)
-│   ├── utils/    # Pure functions (position, ancestry calculations)
+│   ├── utils/    # Pure functions for renderer (position, ancestry)
 │   └── data/
-└── shared/       # Code used by both (types, interfaces)
-    └── types/    # Organized type definitions
+└── shared/       # Code used by both main and renderer
+    ├── types/    # Type definitions (TreeNode, ArboFile, etc.)
+    └── utils/    # Pure functions shared across platforms (fileNaming)
 ```
 
 **Rationale:**
@@ -96,8 +97,8 @@ src/renderer/components/NodeContent/
 **Centralized (Multi-component shared):**
 ```
 src/renderer/store/
-├── tabs/
-│   └── tabsStore.ts         # Used by: TabBar, Workspace, useAppInitialization
+├── files/
+│   └── filesStore.ts        # Used by: TabBar, Workspace, useAppInitialization
 ├── toast/
 │   └── toastStore.ts        # Used by: App, useAppErrorHandling, logger
 └── tree/
@@ -263,11 +264,17 @@ import { TreeNode, NodeStatus, Document } from '../../../shared/types';
 **Structure:**
 ```
 src/renderer/store/
-├── treeStore.ts           # Main store with state + actions interface
-└── actions/
-    ├── nodeActions.ts      # Node CRUD operations
-    ├── navigationActions.ts # Keyboard navigation
-    └── fileActions.ts      # File I/O operations
+├── files/
+│   ├── filesStore.ts              # Multi-file management (tabs, workspace)
+│   └── actions/
+│       └── fileActions.ts         # File orchestration (open/close/save dialogs)
+└── tree/
+    ├── treeStore.ts               # Tree state + actions interface
+    └── actions/
+        ├── nodeActions.ts         # Node CRUD operations
+        ├── navigationActions.ts   # Keyboard navigation
+        ├── persistenceActions.ts  # Document I/O (load/save/autosave)
+        └── treeStructureActions.ts # Tree structure modifications
 ```
 
 **Pattern:**
@@ -275,7 +282,7 @@ src/renderer/store/
 // Store defines state + actions interface
 interface TreeState {
   nodes: Record<string, Node>;
-  actions: NodeActions & NavigationActions & FileActions;
+  actions: NodeActions & NavigationActions & PersistenceActions & TreeStructureActions;
 }
 
 // Actions created in separate files
@@ -299,6 +306,92 @@ const updateContent = useTreeStore((state) => state.actions.updateContent);
 ```
 Components → Hooks (React) → Store Actions (Business Logic) → Services (Infrastructure)
 ```
+
+## Multi-File vs Single-File Actions Separation
+
+**Decision:** Separate file-related actions into two distinct layers: workspace orchestration (files store) and document persistence (tree store).
+
+**Problem:** Initially both were named `fileActions`, causing confusion about responsibilities.
+
+**Solution:** Clear naming and separation of concerns.
+
+**Structure:**
+
+**`files/actions/fileActions.ts`** - Workspace orchestration layer
+- Manages multi-file operations (tabs, workspace state)
+- Coordinates across multiple tree stores via `storeManager`
+- Handles user-facing workflows (dialogs, confirmations)
+- Actions: `openFileWithDialog()`, `createNewFile()`, `closeFile()`, `saveActiveFile()`, `loadAndOpenFile()`
+
+**`tree/actions/persistenceActions.ts`** - Document persistence layer
+- Manages single-document I/O operations
+- Operates on one tree store instance
+- Handles file format serialization/deserialization
+- Actions: `loadFromPath()`, `saveToPath()`, `autoSave()`, `initialize()`, `setFilePath()`
+
+**Architecture Flow:**
+```
+User Action (Menu/Hotkey)
+    ↓
+files/fileActions (orchestration)
+    ↓
+storeManager.getStoreForFile(path)
+    ↓
+tree/persistenceActions (I/O)
+    ↓
+StorageService (platform implementation)
+```
+
+**Example:**
+
+```typescript
+// files/fileActions - Orchestrates multiple files
+export const createFileActions = (get, storage): FileActions => ({
+  openFileWithDialog: async () => {
+    const path = await storage.showOpenDialog();  // Dialog interaction
+    const store = storeManager.getStoreForFile(path);  // Get/create tree store
+    await store.getState().actions.loadFromPath(path);  // Delegate to persistence
+    openFile(path, displayName);  // Update workspace tabs
+  }
+});
+
+// tree/persistenceActions - Single document I/O
+export const createPersistenceActions = (get, set, storage): PersistenceActions => ({
+  loadFromPath: async (path) => {
+    const data = await storage.loadDocument(path);  // Load from disk
+    set({ nodes: data.nodes, rootNodeId: data.rootNodeId });  // Update tree
+    return { created: data.created, author: data.author };
+  }
+});
+```
+
+**Dependency Injection Pattern:**
+
+Both action creators use dependency injection for the storage service:
+
+```typescript
+// Store instantiates and injects
+const storageService = new StorageService();  // from @platform
+const actions = createFileActions(get, storageService);
+
+// Actions receive injected dependency
+export const createFileActions = (get, storage: StorageService) => ({
+  // Use storage parameter, not direct import
+});
+```
+
+**Benefits:**
+- ✅ Platform switching via `@platform` alias (Electron ↔ Web)
+- ✅ Testable via mock injection
+- ✅ Clear separation of concerns
+- ✅ No naming confusion
+
+**Rationale:**
+- Files actions manage the workspace (which files are open)
+- Persistence actions manage individual documents (load/save operations)
+- Separation allows tree store to be used independently of workspace
+- Each layer has a single, well-defined responsibility
+- Dependency injection enables testing and platform independence
 
 ## Testing Strategy
 
@@ -433,18 +526,36 @@ import { getCursorPosition, setCursorPosition } from '../../services/cursorServi
 
 ## Utils Organization
 
-**Decision:** Utils contain pure functions with no side effects for domain logic operations.
+**Decision:** Utils contain pure functions with no side effects. Renderer utils are for renderer-specific logic, shared utils are for cross-platform logic.
 
 **Structure:**
 ```
-src/renderer/utils/
-├── position.ts             # Coordinate-based cursor position calculations
-└── ancestry.ts             # Tree ancestor registry operations
+src/renderer/utils/          # Renderer-specific pure functions
+├── position.ts              # Coordinate-based cursor position calculations
+├── ancestry.ts              # Tree ancestor registry operations
+└── hotkeyUtils.ts           # Hotkey pattern matching
+
+src/shared/utils/            # Platform-agnostic pure functions
+└── fileNaming.ts            # Untitled file numbering logic
 ```
+
+**When to use each:**
+
+**Renderer Utils** (`src/renderer/utils/`):
+- Pure functions used by renderer code (components, hooks, stores)
+- Examples: DOM coordinate calculations, tree traversal, hotkey matching
+- Called by: Components, hooks, store actions
+
+**Shared Utils** (`src/shared/utils/`):
+- Pure functions used by platform implementations
+- Platform-agnostic business logic
+- Examples: file naming patterns, validation rules, formatting
+- Called by: Platform services (Electron, Web), main process, renderer
 
 **Rationale:**
 - Utils are pure functions with no side effects
-- Examples: coordinate calculations, tree traversal, string manipulation, data transformations
+- Clear separation: renderer-specific vs platform-agnostic
+- Shared utils can be reused across Electron and Web platforms
 - Utils do not need mocking in tests (pure input/output)
 - Easy to test and reason about
 - Architecture layers: Components → Hooks → Store Actions → Utils
@@ -481,7 +592,7 @@ beforeEach(() => {
 
 **Why `as any` is needed:**
 
-The `TreeState.actions` interface requires all 14 methods (NodeActions + NavigationActions + FileActions). Tests only mock the specific methods they need. The `as any` type assertion is **standard practice** for partial mocks - the alternative (mocking all 14 methods in every test) is verbose and obscures test intent.
+The `TreeState.actions` interface requires all methods from NodeActions, NavigationActions, PersistenceActions, and TreeStructureActions. Tests only mock the specific methods they need. The `as any` type assertion is **standard practice** for partial mocks - the alternative (mocking all methods in every test) is verbose and obscures test intent.
 
 **Benefits:**
 - Tests use real Zustand store (not custom mock implementations)
@@ -581,5 +692,42 @@ When implementing lazy loading (partial tree loading), only loaded branches need
 **Result:** Only affected components re-render. Editing one node doesn't re-render the entire tree.
 
 **Rationale:** Critical for large trees (100+ nodes). Follows Zustand best practices for performance.
+
+## React Strict Mode
+
+**Decision:** Strict Mode is disabled for this Electron desktop application.
+
+**Why Strict Mode exists:**
+- Detects unsafe lifecycles (mostly for legacy class components)
+- Warns about deprecated React APIs
+- Double-invokes effects to help catch side effect bugs
+- Prepares for React's concurrent rendering features
+
+**Why it's disabled for Arborescent:**
+
+1. **Dev/Prod parity is critical** - Strict Mode causes development to behave differently from production by double-invoking effects. For a desktop app with real file I/O and IPC operations, this creates false bugs (e.g., creating two temp files instead of one) that don't exist in production. Testing against production behavior is more valuable.
+
+2. **Modern patterns already in use** - The entire codebase uses functional components, hooks, and no legacy APIs. The warnings Strict Mode provides for class components and deprecated APIs don't apply.
+
+3. **Desktop app context** - This is not a complex web application needing concurrent rendering optimization. The performance benefits of preparing for concurrent features are minimal.
+
+4. **Side effects are intentional** - File I/O, IPC calls to Electron main process, and localStorage operations are real side effects that should only execute once. Double-invoking these creates actual problems rather than revealing bugs.
+
+**Example of the problem:**
+```typescript
+// In useAppInitialization.ts
+useEffect(() => {
+  const initializeApp = async () => {
+    const tempPath = await storageService.createTempFile(arboFile);
+    // With Strict Mode: This runs twice in dev, creating two temp files
+    // Without Strict Mode: This runs once, matching production behavior
+  };
+  initializeApp();
+}, []);
+```
+
+**Location:** `src/renderer/renderer.tsx` renders `<App />` directly without `<React.StrictMode>` wrapper.
+
+**Rationale:** For Electron desktop apps with system-level side effects, dev/prod consistency outweighs the benefits of Strict Mode's double-invocation checks.
 
 **Update this file when making new architectural decisions.**

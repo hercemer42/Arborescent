@@ -1,19 +1,17 @@
 import { useEffect } from 'react';
-import { useTabsStore } from '../../../store/tabs/tabsStore';
-import { storeManager } from '../../../store/storeManager';
+import { useFilesStore } from '../../../store/files/filesStore';
 import { matchesHotkey } from '../../../data/hotkeyConfig';
 
 export function useTabKeyboard() {
-  const closeActiveFile = useTabsStore((state) => state.closeActiveFile);
-  const activeFilePath = useTabsStore((state) => state.activeFilePath);
+  const activeFilePath = useFilesStore((state) => state.activeFilePath);
+  const closeFile = useFilesStore((state) => state.actions.closeFile);
 
   useEffect(() => {
     const handleKeyDown = async (event: KeyboardEvent) => {
       if (matchesHotkey(event, 'file', 'closeTab')) {
         event.preventDefault();
         if (activeFilePath) {
-          await storeManager.closeFile(activeFilePath);
-          closeActiveFile();
+          await closeFile(activeFilePath);
         }
       }
     };
@@ -23,5 +21,5 @@ export function useTabKeyboard() {
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [activeFilePath, closeActiveFile]);
+  }, [activeFilePath, closeFile]);
 }

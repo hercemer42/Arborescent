@@ -1,32 +1,26 @@
 import { useEffect, useState } from 'react';
-import { useTabsStore } from './store/tabs/tabsStore';
-import { storeManager } from './store/storeManager';
+import { useFilesStore } from './store/files/filesStore';
 import { logger } from './services/logger';
-import { ElectronStorageService } from '@platform/storage';
-import { createBlankDocument } from './data/defaultTemplate';
+import { StorageService } from '@platform';
 
-const storageService = new ElectronStorageService();
+const storageService = new StorageService();
 
 export function useAppInitialization() {
   const [isInitializing, setIsInitializing] = useState(true);
-  const openFile = useTabsStore((state) => state.openFile);
+  const loadAndOpenFile = useFilesStore((state) => state.actions.loadAndOpenFile);
+  const createNewFile = useFilesStore((state) => state.actions.createNewFile);
 
   useEffect(() => {
     const initializeApp = async () => {
+      let hasOpenedFiles = false;
+
       const lastSession = storageService.getLastSession();
+      const isTempFile = lastSession && storageService.isTempFile(lastSession);
 
-      if (lastSession) {
+      if (lastSession && !isTempFile) {
         try {
-          const store = storeManager.getStoreForFile(lastSession);
-          const { actions } = store.getState();
-          await actions.loadFromPath(lastSession);
-
-          const displayName = lastSession.split('/').pop() || lastSession;
-          openFile(lastSession, displayName);
-
-          logger.success(`Restored session: ${lastSession}`, 'SessionRestore', false);
-          setIsInitializing(false);
-          return;
+          await loadAndOpenFile(lastSession, 'SessionRestore', false);
+          hasOpenedFiles = true;
         } catch (error) {
           logger.error(
             `Failed to restore session: ${error instanceof Error ? error.message : 'Unknown error'}`,
@@ -37,21 +31,34 @@ export function useAppInitialization() {
         }
       }
 
-      const blank = createBlankDocument();
-      const untitledPath = 'Untitled';
-      const store = storeManager.getStoreForFile(untitledPath);
-      const { actions } = store.getState();
+      const tempFiles = storageService.getTempFiles();
+      if (tempFiles.length > 0) {
+        try {
+          for (const tempPath of tempFiles) {
+            await loadAndOpenFile(tempPath, 'SessionRestore', false);
+          }
 
-      actions.initialize(blank.nodes, blank.rootNodeId);
-      actions.selectNode(blank.firstNodeId, 0);
+          logger.success(`Restored ${tempFiles.length} temporary file(s)`, 'SessionRestore', false);
+          hasOpenedFiles = true;
+        } catch (error) {
+          logger.error(
+            `Failed to restore temporary files: ${error instanceof Error ? error.message : 'Unknown error'}`,
+            error instanceof Error ? error : undefined,
+            'SessionRestore',
+            false
+          );
+        }
+      }
 
-      openFile(untitledPath, 'Untitled');
+      if (!hasOpenedFiles) {
+        await createNewFile();
+      }
 
       setIsInitializing(false);
     };
 
     initializeApp();
-  }, [openFile]);
+  }, [loadAndOpenFile, createNewFile]);
 
   return { isInitializing };
 }

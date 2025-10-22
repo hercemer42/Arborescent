@@ -1,7 +1,6 @@
 import { ToastContainer } from './components/Toast';
 import { Workspace } from './components/Workspace';
 import { useToastStore } from './store/toast/toastStore';
-import { useTab } from './components/TabBar/hooks/useTab';
 import { useAppInitialization } from './useAppInitialization';
 import { useAppErrorHandling } from './useAppErrorHandling';
 import './App.css';
@@ -11,7 +10,6 @@ export function App() {
   const toasts = useToastStore((state) => state.toasts);
   const removeToast = useToastStore((state) => state.removeToast);
 
-  useTab();
   useAppErrorHandling();
 
   return (

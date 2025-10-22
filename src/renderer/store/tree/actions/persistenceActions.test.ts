@@ -1,9 +1,9 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
-import { createFileActions } from './fileActions';
+import { createPersistenceActions } from './persistenceActions';
 import type { TreeNode } from '@shared/types';
 import type { StorageService } from '@shared/interfaces';
 
-describe('fileActions', () => {
+describe('persistenceActions', () => {
   let state: {
     nodes: Record<string, TreeNode>;
     rootNodeId: string;
@@ -12,7 +12,7 @@ describe('fileActions', () => {
     fileMeta: { created: string; author: string } | null;
   };
   let setState: (partial: Partial<typeof state>) => void;
-  let actions: ReturnType<typeof createFileActions>;
+  let actions: ReturnType<typeof createPersistenceActions>;
   let mockStorage: StorageService;
 
   beforeEach(() => {
@@ -42,11 +42,17 @@ describe('fileActions', () => {
       saveDocument: vi.fn(),
       showOpenDialog: vi.fn(),
       showSaveDialog: vi.fn(),
+      showUnsavedChangesDialog: vi.fn(() => Promise.resolve(2)),
       saveLastSession: vi.fn(),
       getLastSession: vi.fn(),
+      createTempFile: vi.fn(),
+      deleteTempFile: vi.fn(),
+      getTempFiles: vi.fn(() => []),
+      listTempFiles: vi.fn(() => Promise.resolve([])),
+      isTempFile: vi.fn(() => false),
     };
 
-    actions = createFileActions(
+    actions = createPersistenceActions(
       () => state,
       setState,
       mockStorage

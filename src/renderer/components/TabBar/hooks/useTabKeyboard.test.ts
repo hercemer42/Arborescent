@@ -1,26 +1,27 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { renderHook } from '@testing-library/react';
 import { useTabKeyboard } from './useTabKeyboard';
-import { useTabsStore } from '../../../store/tabs/tabsStore';
-import { storeManager } from '../../../store/storeManager';
-
-vi.mock('../../../store/storeManager');
+import { useFilesStore } from '../../../store/files/filesStore';
 
 describe('useTabKeyboard', () => {
-  const mockCloseActiveFile = vi.fn();
   const mockCloseFile = vi.fn();
 
   beforeEach(() => {
     vi.clearAllMocks();
 
-    // Reset tabs store
-    useTabsStore.setState({
-      openFiles: [],
+    // Reset tabs store with mock actions
+    useFilesStore.setState({
+      files: [],
       activeFilePath: null,
+      actions: {
+        closeFile: mockCloseFile,
+        openFileWithDialog: vi.fn(),
+        createNewFile: vi.fn(),
+        saveActiveFile: vi.fn(),
+        saveFileAs: vi.fn(),
+        loadAndOpenFile: vi.fn(),
+      },
     });
-
-    // Mock store manager
-    vi.mocked(storeManager.closeFile).mockImplementation(mockCloseFile);
   });
 
   it('should register keydown listener on mount', () => {
@@ -42,10 +43,9 @@ describe('useTabKeyboard', () => {
   });
 
   it('should close active file when Ctrl+W is pressed', async () => {
-    useTabsStore.setState({
-      openFiles: [{ path: '/test/file.arbo', displayName: 'file.arbo' }],
+    useFilesStore.setState({
+      files: [{ path: '/test/file.arbo', displayName: 'file.arbo' }],
       activeFilePath: '/test/file.arbo',
-      closeActiveFile: mockCloseActiveFile,
     });
 
     renderHook(() => useTabKeyboard());
@@ -60,14 +60,12 @@ describe('useTabKeyboard', () => {
 
     expect(preventDefaultSpy).toHaveBeenCalled();
     expect(mockCloseFile).toHaveBeenCalledWith('/test/file.arbo');
-    expect(mockCloseActiveFile).toHaveBeenCalledTimes(1);
   });
 
   it('should close active file when Cmd+W is pressed', async () => {
-    useTabsStore.setState({
-      openFiles: [{ path: '/test/file.arbo', displayName: 'file.arbo' }],
+    useFilesStore.setState({
+      files: [{ path: '/test/file.arbo', displayName: 'file.arbo' }],
       activeFilePath: '/test/file.arbo',
-      closeActiveFile: mockCloseActiveFile,
     });
 
     renderHook(() => useTabKeyboard());
@@ -82,14 +80,12 @@ describe('useTabKeyboard', () => {
 
     expect(preventDefaultSpy).toHaveBeenCalled();
     expect(mockCloseFile).toHaveBeenCalledWith('/test/file.arbo');
-    expect(mockCloseActiveFile).toHaveBeenCalledTimes(1);
   });
 
   it('should not close file when no active file', async () => {
-    useTabsStore.setState({
-      openFiles: [],
+    useFilesStore.setState({
+      files: [],
       activeFilePath: null,
-      closeActiveFile: mockCloseActiveFile,
     });
 
     renderHook(() => useTabKeyboard());
@@ -101,14 +97,12 @@ describe('useTabKeyboard', () => {
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     expect(mockCloseFile).not.toHaveBeenCalled();
-    expect(mockCloseActiveFile).not.toHaveBeenCalled();
   });
 
   it('should not close file when Shift+Ctrl+W is pressed', async () => {
-    useTabsStore.setState({
-      openFiles: [{ path: '/test/file.arbo', displayName: 'file.arbo' }],
+    useFilesStore.setState({
+      files: [{ path: '/test/file.arbo', displayName: 'file.arbo' }],
       activeFilePath: '/test/file.arbo',
-      closeActiveFile: mockCloseActiveFile,
     });
 
     renderHook(() => useTabKeyboard());
@@ -120,15 +114,14 @@ describe('useTabKeyboard', () => {
     await new Promise((resolve) => setTimeout(resolve, 0));
 
     expect(mockCloseFile).not.toHaveBeenCalled();
-    expect(mockCloseActiveFile).not.toHaveBeenCalled();
   });
 
   it('should re-register handler when activeFilePath changes', () => {
     const { rerender } = renderHook(() => useTabKeyboard());
 
     // Change active file
-    useTabsStore.setState({
-      openFiles: [
+    useFilesStore.setState({
+      files: [
         { path: '/test/file1.arbo', displayName: 'file1.arbo' },
         { path: '/test/file2.arbo', displayName: 'file2.arbo' },
       ],

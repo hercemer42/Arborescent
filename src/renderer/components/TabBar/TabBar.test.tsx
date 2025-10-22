@@ -2,7 +2,7 @@ import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { TabBar } from './TabBar';
-import { useTabsStore } from '../../store/tabs/tabsStore';
+import { useFilesStore } from '../../store/files/filesStore';
 import { storeManager } from '../../store/storeManager';
 
 vi.mock('../../store/storeManager', () => ({
@@ -13,8 +13,8 @@ vi.mock('../../store/storeManager', () => ({
 
 describe('TabBar', () => {
   beforeEach(() => {
-    useTabsStore.setState({
-      openFiles: [],
+    useFilesStore.setState({
+      files: [],
       activeFilePath: null,
     });
     vi.clearAllMocks();
@@ -26,8 +26,8 @@ describe('TabBar', () => {
   });
 
   it('should render tabs for open files', () => {
-    useTabsStore.setState({
-      openFiles: [
+    useFilesStore.setState({
+      files: [
         { path: '/path/file1.arbo', displayName: 'file1.arbo' },
         { path: '/path/file2.arbo', displayName: 'file2.arbo' },
       ],
@@ -41,8 +41,8 @@ describe('TabBar', () => {
   });
 
   it('should highlight active tab', () => {
-    useTabsStore.setState({
-      openFiles: [
+    useFilesStore.setState({
+      files: [
         { path: '/path/file1.arbo', displayName: 'file1.arbo' },
         { path: '/path/file2.arbo', displayName: 'file2.arbo' },
       ],
@@ -60,8 +60,8 @@ describe('TabBar', () => {
 
   it('should set active file when tab is clicked', async () => {
     const user = userEvent.setup();
-    useTabsStore.setState({
-      openFiles: [
+    useFilesStore.setState({
+      files: [
         { path: '/path/file1.arbo', displayName: 'file1.arbo' },
         { path: '/path/file2.arbo', displayName: 'file2.arbo' },
       ],
@@ -72,13 +72,13 @@ describe('TabBar', () => {
 
     await user.click(screen.getByText('file2.arbo'));
 
-    expect(useTabsStore.getState().activeFilePath).toBe('/path/file2.arbo');
+    expect(useFilesStore.getState().activeFilePath).toBe('/path/file2.arbo');
   });
 
   it('should close file when close button is clicked', async () => {
     const user = userEvent.setup();
-    useTabsStore.setState({
-      openFiles: [
+    useFilesStore.setState({
+      files: [
         { path: '/path/file1.arbo', displayName: 'file1.arbo' },
       ],
       activeFilePath: '/path/file1.arbo',
@@ -89,6 +89,6 @@ describe('TabBar', () => {
     await user.click(screen.getByRole('button', { name: 'Close tab' }));
 
     expect(storeManager.closeFile).toHaveBeenCalledWith('/path/file1.arbo');
-    expect(useTabsStore.getState().openFiles).toHaveLength(0);
+    expect(useFilesStore.getState().files).toHaveLength(0);
   });
 });

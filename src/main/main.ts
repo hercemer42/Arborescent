@@ -26,6 +26,7 @@ const createWindow = () => {
   });
 
   createApplicationMenu(
+    () => mainWindow?.webContents.send('menu-new'),
     () => mainWindow?.webContents.send('menu-open'),
     () => mainWindow?.webContents.send('menu-save'),
     () => mainWindow?.webContents.send('menu-save-as')

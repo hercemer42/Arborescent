@@ -1,22 +1,26 @@
 import { useEffect } from 'react';
-import { ElectronMenuService } from '@platform/menu';
+import { MenuService } from '@platform';
+import { useStore } from '../../../store/tree/useStore';
+import { useFilesStore } from '../../../store/files/filesStore';
 
-const menuService = new ElectronMenuService();
+const menuService = new MenuService();
 
-interface UseTreeMenuProps {
-  handleLoad: () => void;
-  handleSave: () => void;
-  handleSaveAs: () => void;
-}
+export function useTreeMenu() {
+  const currentFilePath = useStore((state) => state.currentFilePath);
+  const createNewFile = useFilesStore((state) => state.actions.createNewFile);
+  const openFileWithDialog = useFilesStore((state) => state.actions.openFileWithDialog);
+  const saveActiveFile = useFilesStore((state) => state.actions.saveActiveFile);
+  const saveFileAs = useFilesStore((state) => state.actions.saveFileAs);
 
-export function useTreeMenu({
-  handleLoad,
-  handleSave,
-  handleSaveAs,
-}: UseTreeMenuProps) {
   useEffect(() => {
+    const handleNew = () => createNewFile();
+    const handleLoad = () => openFileWithDialog();
+    const handleSave = () => saveActiveFile();
+    const handleSaveAs = () => currentFilePath && saveFileAs(currentFilePath);
+
+    menuService.onMenuNew(handleNew);
     menuService.onMenuOpen(handleLoad);
     menuService.onMenuSave(handleSave);
     menuService.onMenuSaveAs(handleSaveAs);
-  }, [handleLoad, handleSave, handleSaveAs]);
+  }, [currentFilePath, createNewFile, openFileWithDialog, saveActiveFile, saveFileAs]);
 }

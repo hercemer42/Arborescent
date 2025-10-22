@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
-      '@platform': path.resolve(__dirname, 'src/platforms/electron'),
+      '@platform': path.resolve(__dirname, 'src/platforms'),
     },
   },
 });

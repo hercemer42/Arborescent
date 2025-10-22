@@ -48,7 +48,7 @@ export default defineConfig({
     alias: {
       '@': path.resolve(__dirname, './src/renderer'),
       '@shared': path.resolve(__dirname, './src/shared'),
-      '@platform': path.resolve(__dirname, './src/platforms/electron'),
+      '@platform': path.resolve(__dirname, './src/platforms'),
     },
   },
 });

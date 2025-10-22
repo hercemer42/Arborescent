@@ -3,7 +3,7 @@ import { StorageService } from '../../../../shared/interfaces';
 import { buildAncestorRegistry, AncestorRegistry } from '../../../utils/ancestry';
 import { createArboFile } from '../../../utils/document';
 
-export interface FileActions {
+export interface PersistenceActions {
   initialize: (nodes: Record<string, TreeNode>, rootNodeId: string) => void;
   loadDocument: (nodes: Record<string, TreeNode>, rootNodeId: string) => void;
   loadFromPath: (path: string) => Promise<{ created: string; author: string }>;
@@ -22,11 +22,11 @@ type StoreState = {
 type StoreSetter = (partial: Partial<StoreState>) => void;
 type StoreGetter = () => StoreState;
 
-export const createFileActions = (
+export const createPersistenceActions = (
   get: StoreGetter,
   set: StoreSetter,
   storage: StorageService
-): FileActions => {
+): PersistenceActions => {
   let autosaveTimeout: ReturnType<typeof setTimeout> | null = null;
 
   const loadDoc = (nodes: Record<string, TreeNode>, rootNodeId: string) => {
