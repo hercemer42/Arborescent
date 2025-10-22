@@ -4,6 +4,7 @@ import { logger } from '../../../services/logger';
 import { createArboFile } from '../../../utils/document';
 import { createBlankDocument } from '../../../data/defaultTemplate';
 import { File } from '../filesStore';
+import { getDisplayName } from '../../../utils/fileNaming';
 
 export interface FileActions {
   closeFile: (filePath: string) => Promise<void>;
@@ -32,14 +33,48 @@ export const createFileActions = (get: StoreGetter, storage: StorageService): Fi
     return 'cancel';
   }
 
+  async function save(
+    filePath: string,
+    newPath: string,
+    logContext: string
+  ): Promise<void> {
+    const store = storeManager.getStoreForFile(filePath);
+    const { fileMeta, actions } = store.getState();
+    await actions.saveToPath(newPath, fileMeta || undefined);
+    logger.success(`File saved: ${newPath}`, logContext, false);
+  }
+
+  async function cleanUp(oldPath: string, newPath: string): Promise<void> {
+    const { markAsSaved } = get();
+    await storage.deleteTempFile(oldPath);
+    const displayName = getDisplayName(newPath, false);
+    markAsSaved(oldPath, newPath, displayName);
+  }
+
+  async function open(
+    path: string,
+    logContext: string = 'FileLoad',
+    showToast: boolean = false
+  ): Promise<void> {
+    const { openFile } = get();
+    const store = storeManager.getStoreForFile(path);
+    const { actions } = store.getState();
+    await actions.loadFromPath(path);
+
+    const isTemporary = storage.isTempFile(path);
+    const displayName = getDisplayName(path, isTemporary);
+
+    openFile(path, displayName, isTemporary);
+    logger.success(`File loaded: ${path}`, logContext, showToast);
+  }
+
   return {
     closeFile: async (filePath: string) => {
-      const { closeFile: closeFileAction, markAsSaved } = get();
+      const { closeFile: closeFileAction } = get();
       const isTemporary = storage.isTempFile(filePath);
 
       if (isTemporary) {
-        const untitledNumber = filePath.match(/untitled-(\d+)/)?.[1] || '1';
-        const displayName = `Untitled ${untitledNumber}`;
+        const displayName = getDisplayName(filePath, true);
         const choice = await promptUnsavedChanges(displayName);
 
         if (choice === 'cancel') return;
@@ -49,15 +84,8 @@ export const createFileActions = (get: StoreGetter, storage: StorageService): Fi
           if (!path) return;
 
           try {
-            const store = storeManager.getStoreForFile(filePath);
-            const { fileMeta, actions } = store.getState();
-            await actions.saveToPath(path, fileMeta || undefined);
-
-            await storage.deleteTempFile(filePath);
-            const savedDisplayName = path.split(/[\\/]/).pop() || path;
-            markAsSaved(filePath, path, savedDisplayName);
-
-            logger.success(`File saved: ${path}`, 'FileSaveAs', false);
+            await save(filePath, path, 'FileSaveAs');
+            await cleanUp(filePath, path);
           } catch (error) {
             logger.error(
               `Failed to save file: ${error instanceof Error ? error.message : 'Unknown error'}`,
@@ -81,18 +109,7 @@ export const createFileActions = (get: StoreGetter, storage: StorageService): Fi
         const path = await storage.showOpenDialog();
         if (!path) return;
 
-        const { openFile } = get();
-        const store = storeManager.getStoreForFile(path);
-        const { actions } = store.getState();
-        await actions.loadFromPath(path);
-
-        const isTemporary = storage.isTempFile(path);
-        const displayName = isTemporary
-          ? `Untitled ${path.match(/untitled-(\d+)/)?.[1] || '1'}`
-          : path.split(/[\\/]/).pop() || path;
-
-        openFile(path, displayName, isTemporary);
-        logger.success(`File loaded: ${path}`, 'FileLoad', false);
+        await open(path, 'FileLoad', false);
       } catch (error) {
         const message = `Failed to load file: ${error instanceof Error ? error.message : 'Unknown error'}`;
         logger.error(message, error instanceof Error ? error : undefined, 'FileLoad', true);
@@ -113,8 +130,8 @@ export const createFileActions = (get: StoreGetter, storage: StorageService): Fi
         actions.selectNode(blank.firstNodeId, 0);
         actions.setFilePath(tempPath);
 
-        const untitledNumber = tempPath.match(/untitled-(\d+)/)?.[1] || '1';
-        openFile(tempPath, `Untitled ${untitledNumber}`, true);
+        const displayName = getDisplayName(tempPath, true);
+        openFile(tempPath, displayName, true);
 
         logger.success(`New file created: ${tempPath}`, 'FileNew', false);
       } catch (error) {
@@ -125,7 +142,7 @@ export const createFileActions = (get: StoreGetter, storage: StorageService): Fi
 
     saveActiveFile: async () => {
       try {
-        const { activeFilePath, markAsSaved } = get();
+        const { activeFilePath } = get();
         const currentFilePath = activeFilePath;
 
         const isTemporary = currentFilePath && storage.isTempFile(currentFilePath);
@@ -135,18 +152,10 @@ export const createFileActions = (get: StoreGetter, storage: StorageService): Fi
 
         if (!path) return;
 
-        const store = storeManager.getStoreForFile(currentFilePath || path);
-        const { fileMeta, actions } = store.getState();
-
-        await actions.saveToPath(path, fileMeta || undefined);
-
+        await save(currentFilePath || path, path, 'FileSave');
         if (isTemporary && currentFilePath) {
-          await storage.deleteTempFile(currentFilePath);
-          const displayName = path.split(/[\\/]/).pop() || path;
-          markAsSaved(currentFilePath, path, displayName);
+          await cleanUp(currentFilePath, path);
         }
-
-        logger.success(`File saved: ${path}`, 'FileSave', false);
       } catch (error) {
         const message = `Failed to save file: ${error instanceof Error ? error.message : 'Unknown error'}`;
         logger.error(message, error instanceof Error ? error : undefined, 'FileSave', true);
@@ -158,20 +167,11 @@ export const createFileActions = (get: StoreGetter, storage: StorageService): Fi
       if (!path) return;
 
       try {
-        const { markAsSaved } = get();
-        const store = storeManager.getStoreForFile(filePath);
-        const { fileMeta, actions } = store.getState();
-
-        await actions.saveToPath(path, fileMeta || undefined);
-
+        await save(filePath, path, 'FileSaveAs');
         const isTemporary = storage.isTempFile(filePath);
         if (isTemporary) {
-          await storage.deleteTempFile(filePath);
-          const displayName = path.split(/[\\/]/).pop() || path;
-          markAsSaved(filePath, path, displayName);
+          await cleanUp(filePath, path);
         }
-
-        logger.success(`File saved: ${path}`, 'FileSaveAs', false);
       } catch (error) {
         logger.error(
           `Failed to save file: ${error instanceof Error ? error.message : 'Unknown error'}`,
@@ -183,78 +183,52 @@ export const createFileActions = (get: StoreGetter, storage: StorageService): Fi
     },
 
     loadAndOpenFile: async (path: string, logContext: string = 'FileLoad', showToast: boolean = false) => {
-      const { openFile } = get();
-      const store = storeManager.getStoreForFile(path);
-      const { actions } = store.getState();
-      await actions.loadFromPath(path);
-
-      const isTemporary = storage.isTempFile(path);
-      const displayName = isTemporary
-        ? `Untitled ${path.match(/untitled-(\d+)/)?.[1] || '1'}`
-        : path.split(/[\\/]/).pop() || path;
-
-      openFile(path, displayName, isTemporary);
-
-      logger.success(`File loaded: ${path}`, logContext, showToast);
+      await open(path, logContext, showToast);
     },
 
     initializeSession: async () => {
-      let hasOpenedFiles = false;
+      async function restoreLastSession(): Promise<boolean> {
+        const lastSession = storage.getLastSession();
+        const isTempFile = lastSession && storage.isTempFile(lastSession);
 
-      const lastSession = storage.getLastSession();
-      const isTempFile = lastSession && storage.isTempFile(lastSession);
-
-      if (lastSession && !isTempFile) {
-        try {
-          const { openFile } = get();
-          const store = storeManager.getStoreForFile(lastSession);
-          const { actions } = store.getState();
-          await actions.loadFromPath(lastSession);
-
-          const displayName = lastSession.split(/[\\/]/).pop() || lastSession;
-          openFile(lastSession, displayName, false);
-
-          hasOpenedFiles = true;
-        } catch (error) {
-          logger.error(
-            `Failed to restore session: ${error instanceof Error ? error.message : 'Unknown error'}`,
-            error instanceof Error ? error : undefined,
-            'SessionRestore',
-            false
-          );
-        }
-      }
-
-      const tempFiles = storage.getTempFiles();
-      if (tempFiles.length > 0) {
-        try {
-          for (const tempPath of tempFiles) {
-            const { openFile } = get();
-            const store = storeManager.getStoreForFile(tempPath);
-            const { actions } = store.getState();
-            await actions.loadFromPath(tempPath);
-
-            const isTemporary = storage.isTempFile(tempPath);
-            const displayName = isTemporary
-              ? `Untitled ${tempPath.match(/untitled-(\d+)/)?.[1] || '1'}`
-              : tempPath.split(/[\\/]/).pop() || tempPath;
-
-            openFile(tempPath, displayName, isTemporary);
+        if (lastSession && !isTempFile) {
+          try {
+            await open(lastSession, 'SessionRestore', false);
+            return true;
+          } catch (error) {
+            logger.error(
+              `Failed to restore session: ${error instanceof Error ? error.message : 'Unknown error'}`,
+              error instanceof Error ? error : undefined,
+              'SessionRestore',
+              false
+            );
           }
-
-          logger.success(`Restored ${tempFiles.length} temporary file(s)`, 'SessionRestore', false);
-          hasOpenedFiles = true;
-        } catch (error) {
-          logger.error(
-            `Failed to restore temporary files: ${error instanceof Error ? error.message : 'Unknown error'}`,
-            error instanceof Error ? error : undefined,
-            'SessionRestore',
-            false
-          );
         }
+        return false;
       }
 
-      if (!hasOpenedFiles) {
+      async function restoreTempFiles(): Promise<boolean> {
+        const tempFiles = storage.getTempFiles();
+        if (tempFiles.length > 0) {
+          try {
+            for (const tempPath of tempFiles) {
+              await open(tempPath, 'SessionRestore', false);
+            }
+            logger.success(`Restored ${tempFiles.length} temporary file(s)`, 'SessionRestore', false);
+            return true;
+          } catch (error) {
+            logger.error(
+              `Failed to restore temporary files: ${error instanceof Error ? error.message : 'Unknown error'}`,
+              error instanceof Error ? error : undefined,
+              'SessionRestore',
+              false
+            );
+          }
+        }
+        return false;
+      }
+
+      async function createDefaultFile(): Promise<void> {
         const { openFile } = get();
         const blank = createBlankDocument();
         const arboFile = createArboFile(blank.nodes, blank.rootNodeId);
@@ -267,10 +241,17 @@ export const createFileActions = (get: StoreGetter, storage: StorageService): Fi
         actions.selectNode(blank.firstNodeId, 0);
         actions.setFilePath(tempPath);
 
-        const untitledNumber = tempPath.match(/untitled-(\d+)/)?.[1] || '1';
-        openFile(tempPath, `Untitled ${untitledNumber}`, true);
+        const displayName = getDisplayName(tempPath, true);
+        openFile(tempPath, displayName, true);
 
         logger.success(`New file created: ${tempPath}`, 'FileNew', false);
+      }
+
+      const hasLastSession = await restoreLastSession();
+      const hasTempFiles = await restoreTempFiles();
+
+      if (!hasLastSession && !hasTempFiles) {
+        await createDefaultFile();
       }
     },
   };
