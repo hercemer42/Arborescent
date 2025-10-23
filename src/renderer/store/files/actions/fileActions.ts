@@ -69,6 +69,92 @@ export const createFileActions = (get: StoreGetter, storage: StorageService): Fi
     logger.success(`File loaded: ${path}`, logContext, showToast);
   }
 
+  async function createBlankFile(logContext: string): Promise<string> {
+    const { openFile } = get();
+    const blank = createBlankDocument();
+    const arboFile = createArboFile(blank.nodes, blank.rootNodeId);
+    const tempPath = await storage.createTempFile(arboFile);
+
+    const store = storeManager.getStoreForFile(tempPath);
+    const { actions } = store.getState();
+
+    actions.initialize(blank.nodes, blank.rootNodeId);
+    actions.selectNode(blank.firstNodeId, 0);
+    actions.setFilePath(tempPath);
+
+    const displayName = getDisplayName(tempPath, true);
+    openFile(tempPath, displayName, true);
+
+    logger.success(`New file created: ${tempPath}`, logContext, false);
+    return tempPath;
+  }
+
+  async function restoreSessionFiles(): Promise<boolean> {
+    const session = await storage.getSession();
+    if (!session || session.openFiles.length === 0) {
+      return false;
+    }
+
+    let restoredAny = false;
+    for (const filePath of session.openFiles) {
+      try {
+        await open(filePath, 'SessionRestore', false);
+        restoredAny = true;
+      } catch (error) {
+        logger.error(
+          `Failed to restore file: ${filePath}`,
+          error instanceof Error ? error : undefined,
+          'SessionRestore',
+          false
+        );
+      }
+    }
+
+    if (restoredAny && session.activeFilePath) {
+      const { setActiveFile } = get();
+      setActiveFile(session.activeFilePath);
+    }
+
+    if (restoredAny) {
+      logger.success(`Restored ${session.openFiles.length} file(s)`, 'SessionRestore', false);
+    }
+
+    return restoredAny;
+  }
+
+  async function restoreOrphanedTempFiles(): Promise<boolean> {
+    const session = await storage.getSession();
+    const sessionFiles = new Set(session?.openFiles || []);
+    const tempFiles = await storage.getTempFiles();
+
+    const orphanedTempFiles = tempFiles.filter(path => !sessionFiles.has(path));
+
+    if (orphanedTempFiles.length === 0) {
+      return false;
+    }
+
+    let restoredAny = false;
+    for (const tempPath of orphanedTempFiles) {
+      try {
+        await open(tempPath, 'SessionRestore', false);
+        restoredAny = true;
+      } catch (error) {
+        logger.error(
+          `Failed to restore temporary file: ${tempPath}`,
+          error instanceof Error ? error : undefined,
+          'SessionRestore',
+          false
+        );
+      }
+    }
+
+    if (restoredAny) {
+      logger.success(`Restored ${orphanedTempFiles.length} orphaned temporary file(s)`, 'SessionRestore', false);
+    }
+
+    return restoredAny;
+  }
+
   return {
     closeFile: async (filePath: string) => {
       const { closeFile: closeFileAction } = get();
@@ -119,22 +205,7 @@ export const createFileActions = (get: StoreGetter, storage: StorageService): Fi
 
     createNewFile: async () => {
       try {
-        const { openFile } = get();
-        const blank = createBlankDocument();
-        const arboFile = createArboFile(blank.nodes, blank.rootNodeId);
-        const tempPath = await storage.createTempFile(arboFile);
-
-        const store = storeManager.getStoreForFile(tempPath);
-        const { actions } = store.getState();
-
-        actions.initialize(blank.nodes, blank.rootNodeId);
-        actions.selectNode(blank.firstNodeId, 0);
-        actions.setFilePath(tempPath);
-
-        const displayName = getDisplayName(tempPath, true);
-        openFile(tempPath, displayName, true);
-
-        logger.success(`New file created: ${tempPath}`, 'FileNew', false);
+        await createBlankFile('FileNew');
       } catch (error) {
         const message = `Failed to create new file: ${error instanceof Error ? error.message : 'Unknown error'}`;
         logger.error(message, error instanceof Error ? error : undefined, 'FileNew', true);
@@ -188,97 +259,11 @@ export const createFileActions = (get: StoreGetter, storage: StorageService): Fi
     },
 
     initializeSession: async () => {
-      async function restoreSessionFiles(): Promise<boolean> {
-        const session = await storage.getSession();
-        if (!session || session.openFiles.length === 0) {
-          return false;
-        }
-
-        let restoredAny = false;
-        for (const filePath of session.openFiles) {
-          try {
-            await open(filePath, 'SessionRestore', false);
-            restoredAny = true;
-          } catch (error) {
-            logger.error(
-              `Failed to restore file: ${filePath}`,
-              error instanceof Error ? error : undefined,
-              'SessionRestore',
-              false
-            );
-          }
-        }
-
-        if (restoredAny && session.activeFilePath) {
-          const { setActiveFile } = get();
-          setActiveFile(session.activeFilePath);
-        }
-
-        if (restoredAny) {
-          logger.success(`Restored ${session.openFiles.length} file(s)`, 'SessionRestore', false);
-        }
-
-        return restoredAny;
-      }
-
-      async function restoreOrphanedTempFiles(): Promise<boolean> {
-        const session = await storage.getSession();
-        const sessionFiles = new Set(session?.openFiles || []);
-        const tempFiles = await storage.getTempFiles();
-
-        // Only restore temp files not already in session
-        const orphanedTempFiles = tempFiles.filter(path => !sessionFiles.has(path));
-
-        if (orphanedTempFiles.length === 0) {
-          return false;
-        }
-
-        let restoredAny = false;
-        for (const tempPath of orphanedTempFiles) {
-          try {
-            await open(tempPath, 'SessionRestore', false);
-            restoredAny = true;
-          } catch (error) {
-            logger.error(
-              `Failed to restore temporary file: ${tempPath}`,
-              error instanceof Error ? error : undefined,
-              'SessionRestore',
-              false
-            );
-          }
-        }
-
-        if (restoredAny) {
-          logger.success(`Restored ${orphanedTempFiles.length} orphaned temporary file(s)`, 'SessionRestore', false);
-        }
-
-        return restoredAny;
-      }
-
-      async function createDefaultFile(): Promise<void> {
-        const { openFile } = get();
-        const blank = createBlankDocument();
-        const arboFile = createArboFile(blank.nodes, blank.rootNodeId);
-        const tempPath = await storage.createTempFile(arboFile);
-
-        const store = storeManager.getStoreForFile(tempPath);
-        const { actions } = store.getState();
-
-        actions.initialize(blank.nodes, blank.rootNodeId);
-        actions.selectNode(blank.firstNodeId, 0);
-        actions.setFilePath(tempPath);
-
-        const displayName = getDisplayName(tempPath, true);
-        openFile(tempPath, displayName, true);
-
-        logger.success(`New file created: ${tempPath}`, 'FileNew', false);
-      }
-
       const hasSessionFiles = await restoreSessionFiles();
       const hasOrphanedTempFiles = await restoreOrphanedTempFiles();
 
       if (!hasSessionFiles && !hasOrphanedTempFiles) {
-        await createDefaultFile();
+        await createBlankFile('FileNew');
       }
     },
   };
