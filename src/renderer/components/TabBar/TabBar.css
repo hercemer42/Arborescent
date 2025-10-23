@@ -1,7 +1,8 @@
 .tab-bar {
+  flex-shrink: 0;
   display: flex;
-  background: var(--background-secondary);
-  border-bottom: 1px solid var(--border);
+  background: var(--color-bg);
+  border-bottom: 1px solid var(--color-border);
   overflow-x: auto;
   overflow-y: hidden;
 }
@@ -11,10 +12,10 @@
 }
 
 .tab-bar::-webkit-scrollbar-thumb {
-  background: var(--border);
+  background: var(--color-border);
   border-radius: 2px;
 }
 
 .tab-bar::-webkit-scrollbar-thumb:hover {
-  background: var(--text-secondary);
+  background: var(--color-text-muted);
 }

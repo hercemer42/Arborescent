@@ -1,9 +1,12 @@
 .app {
-  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
   background-color: var(--color-bg);
 }
 
 .app-header {
+  flex-shrink: 0;
   background-color: var(--color-bg-elevated);
   border-bottom: 1px solid var(--color-border);
   padding: 12px 16px;

@@ -3,20 +3,21 @@
   align-items: center;
   gap: 8px;
   padding: 8px 12px;
-  background: var(--background-secondary);
-  border-right: 1px solid var(--border);
+  background: var(--color-bg);
+  border-right: 1px solid var(--color-border);
   cursor: pointer;
   user-select: none;
   transition: background-color 0.1s;
+  color: var(--color-text-muted);
 }
 
 .tab:hover {
-  background: var(--background-hover);
+  background: var(--color-hover);
 }
 
 .tab.active {
-  background: var(--background);
-  color: var(--text-primary);
+  background: var(--color-bg-elevated);
+  color: var(--color-text);
 }
 
 .tab-name {
@@ -33,7 +34,7 @@
   padding: 0;
   border: none;
   background: none;
-  color: var(--text-secondary);
+  color: var(--color-text-subtle);
   font-size: 18px;
   line-height: 1;
   cursor: pointer;
@@ -42,10 +43,14 @@
 }
 
 .tab-close:hover {
-  background: var(--background-hover);
-  color: var(--text-primary);
+  background: var(--color-selected);
+  color: var(--color-text);
 }
 
 .tab.active .tab-close {
-  color: var(--text-primary);
+  color: var(--color-text-muted);
+}
+
+.tab.active .tab-close:hover {
+  color: var(--color-text);
 }
