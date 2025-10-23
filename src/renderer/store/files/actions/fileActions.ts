@@ -22,6 +22,7 @@ type StoreState = {
   openFile: (path: string, displayName: string, isTemporary?: boolean) => void;
   closeFile: (path: string) => void;
   markAsSaved: (oldPath: string, newPath: string, newDisplayName: string) => void;
+  setActiveFile: (path: string) => void;
 };
 type StoreGetter = () => StoreState;
 
@@ -61,7 +62,7 @@ export const createFileActions = (get: StoreGetter, storage: StorageService): Fi
     const { actions } = store.getState();
     await actions.loadFromPath(path);
 
-    const isTemporary = storage.isTempFile(path);
+    const isTemporary = await storage.isTempFile(path);
     const displayName = getDisplayName(path, isTemporary);
 
     openFile(path, displayName, isTemporary);
@@ -71,7 +72,7 @@ export const createFileActions = (get: StoreGetter, storage: StorageService): Fi
   return {
     closeFile: async (filePath: string) => {
       const { closeFile: closeFileAction } = get();
-      const isTemporary = storage.isTempFile(filePath);
+      const isTemporary = await storage.isTempFile(filePath);
 
       if (isTemporary) {
         const displayName = getDisplayName(filePath, true);
@@ -145,7 +146,7 @@ export const createFileActions = (get: StoreGetter, storage: StorageService): Fi
         const { activeFilePath } = get();
         const currentFilePath = activeFilePath;
 
-        const isTemporary = currentFilePath && storage.isTempFile(currentFilePath);
+        const isTemporary = currentFilePath && await storage.isTempFile(currentFilePath);
         const path = (isTemporary || !currentFilePath)
           ? await storage.showSaveDialog()
           : currentFilePath;
@@ -168,7 +169,7 @@ export const createFileActions = (get: StoreGetter, storage: StorageService): Fi
 
       try {
         await save(filePath, path, 'FileSaveAs');
-        const isTemporary = storage.isTempFile(filePath);
+        const isTemporary = await storage.isTempFile(filePath);
         if (isTemporary) {
           await cleanUp(filePath, path);
         }
@@ -187,45 +188,71 @@ export const createFileActions = (get: StoreGetter, storage: StorageService): Fi
     },
 
     initializeSession: async () => {
-      async function restoreLastSession(): Promise<boolean> {
-        const lastSession = storage.getLastSession();
-        const isTempFile = lastSession && storage.isTempFile(lastSession);
+      async function restoreSessionFiles(): Promise<boolean> {
+        const session = await storage.getSession();
+        if (!session || session.openFiles.length === 0) {
+          return false;
+        }
 
-        if (lastSession && !isTempFile) {
+        let restoredAny = false;
+        for (const filePath of session.openFiles) {
           try {
-            await open(lastSession, 'SessionRestore', false);
-            return true;
+            await open(filePath, 'SessionRestore', false);
+            restoredAny = true;
           } catch (error) {
             logger.error(
-              `Failed to restore session: ${error instanceof Error ? error.message : 'Unknown error'}`,
+              `Failed to restore file: ${filePath}`,
               error instanceof Error ? error : undefined,
               'SessionRestore',
               false
             );
           }
         }
-        return false;
+
+        if (restoredAny && session.activeFilePath) {
+          const { setActiveFile } = get();
+          setActiveFile(session.activeFilePath);
+        }
+
+        if (restoredAny) {
+          logger.success(`Restored ${session.openFiles.length} file(s)`, 'SessionRestore', false);
+        }
+
+        return restoredAny;
       }
 
-      async function restoreTempFiles(): Promise<boolean> {
-        const tempFiles = storage.getTempFiles();
-        if (tempFiles.length > 0) {
+      async function restoreOrphanedTempFiles(): Promise<boolean> {
+        const session = await storage.getSession();
+        const sessionFiles = new Set(session?.openFiles || []);
+        const tempFiles = await storage.getTempFiles();
+
+        // Only restore temp files not already in session
+        const orphanedTempFiles = tempFiles.filter(path => !sessionFiles.has(path));
+
+        if (orphanedTempFiles.length === 0) {
+          return false;
+        }
+
+        let restoredAny = false;
+        for (const tempPath of orphanedTempFiles) {
           try {
-            for (const tempPath of tempFiles) {
-              await open(tempPath, 'SessionRestore', false);
-            }
-            logger.success(`Restored ${tempFiles.length} temporary file(s)`, 'SessionRestore', false);
-            return true;
+            await open(tempPath, 'SessionRestore', false);
+            restoredAny = true;
           } catch (error) {
             logger.error(
-              `Failed to restore temporary files: ${error instanceof Error ? error.message : 'Unknown error'}`,
+              `Failed to restore temporary file: ${tempPath}`,
               error instanceof Error ? error : undefined,
               'SessionRestore',
               false
             );
           }
         }
-        return false;
+
+        if (restoredAny) {
+          logger.success(`Restored ${orphanedTempFiles.length} orphaned temporary file(s)`, 'SessionRestore', false);
+        }
+
+        return restoredAny;
       }
 
       async function createDefaultFile(): Promise<void> {
@@ -247,10 +274,10 @@ export const createFileActions = (get: StoreGetter, storage: StorageService): Fi
         logger.success(`New file created: ${tempPath}`, 'FileNew', false);
       }
 
-      const hasLastSession = await restoreLastSession();
-      const hasTempFiles = await restoreTempFiles();
+      const hasSessionFiles = await restoreSessionFiles();
+      const hasOrphanedTempFiles = await restoreOrphanedTempFiles();
 
-      if (!hasLastSession && !hasTempFiles) {
+      if (!hasSessionFiles && !hasOrphanedTempFiles) {
         await createDefaultFile();
       }
     },

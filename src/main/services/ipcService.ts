@@ -122,4 +122,60 @@ export function registerIpcHandlers(getMainWindow: () => BrowserWindow | null) {
 
     return result.response;
   });
+
+  ipcMain.handle('save-session', async (_, sessionData: string) => {
+    try {
+      const userDataPath = app.getPath('userData');
+      const sessionPath = path.join(userDataPath, 'session.json');
+      await fs.writeFile(sessionPath, sessionData, 'utf-8');
+      logger.info('Session saved', 'IPC');
+    } catch (error) {
+      logger.error('Failed to save session', error instanceof Error ? error : undefined, 'IPC', false);
+    }
+  });
+
+  ipcMain.handle('get-session', async () => {
+    try {
+      const userDataPath = app.getPath('userData');
+      const sessionPath = path.join(userDataPath, 'session.json');
+      const content = await fs.readFile(sessionPath, 'utf-8');
+      logger.info('Session loaded', 'IPC');
+      return content;
+    } catch (error) {
+      if ((error as NodeJS.ErrnoException).code === 'ENOENT') {
+        logger.info('No session file found', 'IPC');
+        return null;
+      }
+      logger.error('Failed to load session', error instanceof Error ? error : undefined, 'IPC', false);
+      return null;
+    }
+  });
+
+  ipcMain.handle('save-temp-files-metadata', async (_, metadataJson: string) => {
+    try {
+      const userDataPath = app.getPath('userData');
+      const metadataPath = path.join(userDataPath, 'temp-files-metadata.json');
+      await fs.writeFile(metadataPath, metadataJson, 'utf-8');
+      logger.info('Temp files metadata saved', 'IPC');
+    } catch (error) {
+      logger.error('Failed to save temp files metadata', error instanceof Error ? error : undefined, 'IPC', false);
+    }
+  });
+
+  ipcMain.handle('get-temp-files-metadata', async () => {
+    try {
+      const userDataPath = app.getPath('userData');
+      const metadataPath = path.join(userDataPath, 'temp-files-metadata.json');
+      const content = await fs.readFile(metadataPath, 'utf-8');
+      logger.info('Temp files metadata loaded', 'IPC');
+      return content;
+    } catch (error) {
+      if ((error as NodeJS.ErrnoException).code === 'ENOENT') {
+        logger.info('No temp files metadata found', 'IPC');
+        return null;
+      }
+      logger.error('Failed to load temp files metadata', error instanceof Error ? error : undefined, 'IPC', false);
+      return null;
+    }
+  });
 }

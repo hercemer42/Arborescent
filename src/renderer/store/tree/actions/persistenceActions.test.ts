@@ -43,13 +43,12 @@ describe('persistenceActions', () => {
       showOpenDialog: vi.fn(),
       showSaveDialog: vi.fn(),
       showUnsavedChangesDialog: vi.fn(() => Promise.resolve(2)),
-      saveLastSession: vi.fn(),
-      getLastSession: vi.fn(),
+      saveSession: vi.fn(),
+      getSession: vi.fn(),
       createTempFile: vi.fn(),
       deleteTempFile: vi.fn(),
-      getTempFiles: vi.fn(() => []),
-      listTempFiles: vi.fn(() => Promise.resolve([])),
-      isTempFile: vi.fn(() => false),
+      getTempFiles: vi.fn(() => Promise.resolve([])),
+      isTempFile: vi.fn(() => Promise.resolve(false)),
     };
 
     actions = createPersistenceActions(
@@ -105,31 +104,6 @@ describe('persistenceActions', () => {
       expect(state.rootNodeId).toBe('loaded-root');
       expect(result).toEqual({ created: mockData.created, author: mockData.author });
     });
-
-    it('should save session after loading file', async () => {
-      const mockData = {
-        format: 'Arborescent' as const,
-        version: '1.0.0',
-        created: '2025-01-01',
-        updated: '2025-01-02',
-        author: 'Test',
-        rootNodeId: 'loaded-root',
-        nodes: {
-          'loaded-root': {
-            id: 'loaded-root',
-            content: 'Loaded Project',
-            children: [],
-            metadata: {},
-          },
-        },
-      };
-
-      vi.mocked(mockStorage.loadDocument).mockResolvedValue(mockData);
-
-      await actions.loadFromPath('/test/path.arbo');
-
-      expect(mockStorage.saveLastSession).toHaveBeenCalledWith('/test/path.arbo');
-    });
   });
 
   describe('saveToPath', () => {
@@ -146,14 +120,6 @@ describe('persistenceActions', () => {
           rootNodeId: state.rootNodeId,
         })
       );
-    });
-
-    it('should save session after saving file', async () => {
-      vi.mocked(mockStorage.saveDocument).mockResolvedValue();
-
-      await actions.saveToPath('/test/save.arbo');
-
-      expect(mockStorage.saveLastSession).toHaveBeenCalledWith('/test/save.arbo');
     });
 
     it('should save file with metadata', async () => {

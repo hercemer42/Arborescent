@@ -419,6 +419,23 @@ export const createFileActions = (get, storage: StorageService) => ({
 - Each layer has a single, well-defined responsibility
 - Dependency injection enables testing and platform independence
 
+## Session Persistence
+
+**Decision:** Session state stored via platform-abstracted storage, tracking all open files in order (including temporary files).
+
+**Implementation:**
+- `SessionState` interface: `{ openFiles: string[], activeFilePath: string | null }`
+- Files store persists session after open/close/setActive/markAsSaved operations
+- Electron: stored in `userData/session.json` via IPC handlers
+- Session includes both saved and temporary files to preserve tab order
+- `initializeSession()` restores files in session order, then any orphaned temp files
+
+**Rationale:**
+- Platform abstraction enables future web version (localStorage/server storage)
+- Session managed at workspace level (files store), not document level (tree store)
+- All open files remembered in exact order (not just saved files)
+- Including temp files preserves natural tab order users expect
+
 ## Testing Strategy
 
 **Decision:** Co-locate all tests with their source files for ease of discovery. Follow Test-Driven Development (TDD) principles when practical.

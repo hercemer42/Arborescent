@@ -1,16 +1,8 @@
 import { ArboFile } from '../../shared/types';
-import { StorageService } from '../../shared/interfaces';
+import { StorageService, SessionState } from '../../shared/interfaces';
 import { getNextUntitledNumber } from '../../shared/utils/fileNaming';
 
 export class ElectronStorageService implements StorageService {
-  private readonly SESSION_KEY = 'arborescent_last_session';
-  private readonly TEMP_FILES_KEY = 'arborescent_temp_files';
-  private untitledCounter: number;
-
-  constructor() {
-    this.untitledCounter = getNextUntitledNumber(this.getTempFiles());
-  }
-
   async loadDocument(filePath: string): Promise<ArboFile> {
     const content = await window.electron.readFile(filePath);
     const data = JSON.parse(content) as ArboFile;
@@ -35,26 +27,30 @@ export class ElectronStorageService implements StorageService {
     return window.electron.showSaveDialog();
   }
 
-  saveLastSession(filePath: string | null): void {
-    if (filePath) {
-      localStorage.setItem(this.SESSION_KEY, filePath);
-    } else {
-      localStorage.removeItem(this.SESSION_KEY);
+  async saveSession(session: SessionState): Promise<void> {
+    const sessionData = JSON.stringify(session, null, 2);
+    await window.electron.saveSession(sessionData);
+  }
+
+  async getSession(): Promise<SessionState | null> {
+    const sessionData = await window.electron.getSession();
+    if (!sessionData) return null;
+    try {
+      return JSON.parse(sessionData) as SessionState;
+    } catch {
+      return null;
     }
   }
 
-  getLastSession(): string | null {
-    return localStorage.getItem(this.SESSION_KEY);
-  }
-
   async createTempFile(data: ArboFile): Promise<string> {
-    const fileName = `untitled-${this.untitledCounter++}.json`;
+    const tempFiles = await this.getTempFiles();
+    const nextNumber = getNextUntitledNumber(tempFiles);
+    const fileName = `untitled-${nextNumber}.json`;
     const content = JSON.stringify(data, null, 2);
     const filePath = await window.electron.createTempFile(fileName, content);
 
-    const tempFiles = this.getTempFiles();
     tempFiles.push(filePath);
-    localStorage.setItem(this.TEMP_FILES_KEY, JSON.stringify(tempFiles));
+    await window.electron.saveTempFilesMetadata(JSON.stringify(tempFiles));
 
     return filePath;
   }
@@ -62,21 +58,24 @@ export class ElectronStorageService implements StorageService {
   async deleteTempFile(filePath: string): Promise<void> {
     await window.electron.deleteTempFile(filePath);
 
-    const tempFiles = this.getTempFiles().filter(f => f !== filePath);
-    localStorage.setItem(this.TEMP_FILES_KEY, JSON.stringify(tempFiles));
+    const tempFiles = await this.getTempFiles();
+    const updatedFiles = tempFiles.filter(f => f !== filePath);
+    await window.electron.saveTempFilesMetadata(JSON.stringify(updatedFiles));
   }
 
-  getTempFiles(): string[] {
-    const stored = localStorage.getItem(this.TEMP_FILES_KEY);
-    return stored ? JSON.parse(stored) : [];
+  async getTempFiles(): Promise<string[]> {
+    const metadata = await window.electron.getTempFilesMetadata();
+    if (!metadata) return [];
+    try {
+      return JSON.parse(metadata) as string[];
+    } catch {
+      return [];
+    }
   }
 
-  async listTempFiles(): Promise<string[]> {
-    return window.electron.listTempFiles();
-  }
-
-  isTempFile(filePath: string): boolean {
-    return this.getTempFiles().includes(filePath);
+  async isTempFile(filePath: string): Promise<boolean> {
+    const tempFiles = await this.getTempFiles();
+    return tempFiles.includes(filePath);
   }
 
   async showUnsavedChangesDialog(fileName: string): Promise<number> {
@@ -92,10 +91,14 @@ declare global {
       showOpenDialog: () => Promise<string | null>;
       showSaveDialog: () => Promise<string | null>;
       showUnsavedChangesDialog: (fileName: string) => Promise<number>;
+      saveSession: (sessionData: string) => Promise<void>;
+      getSession: () => Promise<string | null>;
       getTempDir: () => Promise<string>;
       createTempFile: (fileName: string, content: string) => Promise<string>;
       deleteTempFile: (filePath: string) => Promise<void>;
       listTempFiles: () => Promise<string[]>;
+      saveTempFilesMetadata: (metadata: string) => Promise<void>;
+      getTempFilesMetadata: () => Promise<string | null>;
       onMenuNew: (callback: () => void) => void;
       onMenuOpen: (callback: () => void) => void;
       onMenuSave: (callback: () => void) => void;

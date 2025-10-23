@@ -76,6 +76,7 @@ describe('Workspace', () => {
 
   it('should return null if storeManager returns null', () => {
     useFilesStore.setState({ activeFilePath: '/path/to/file.arbo' });
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     vi.mocked(storeManager.getStoreForFile).mockReturnValue(null as any);
 
     const { container } = render(<Workspace />);

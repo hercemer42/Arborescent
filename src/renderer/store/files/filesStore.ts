@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import { createFileActions, FileActions } from './actions/fileActions';
 import { StorageService } from '@platform';
+import { SessionState } from '@shared/interfaces';
 
 export interface File {
   path: string;
@@ -23,6 +24,17 @@ interface FilesState {
 
 const storageService = new StorageService();
 
+async function persistSession(files: File[], activeFilePath: string | null): Promise<void> {
+  const openFiles = files.map(f => f.path);
+
+  const session: SessionState = {
+    openFiles,
+    activeFilePath,
+  };
+
+  await storageService.saveSession(session);
+}
+
 export const useFilesStore = create<FilesState>((set, get) => ({
   files: [],
   activeFilePath: null,
@@ -32,6 +44,8 @@ export const useFilesStore = create<FilesState>((set, get) => ({
 
     if (files.some(f => f.path === path)) {
       set({ activeFilePath: path });
+      const newState = get();
+      persistSession(newState.files, newState.activeFilePath);
       return;
     }
 
@@ -39,6 +53,8 @@ export const useFilesStore = create<FilesState>((set, get) => ({
       files: [...files, { path, displayName, isTemporary }],
       activeFilePath: path,
     });
+    const newState = get();
+    persistSession(newState.files, newState.activeFilePath);
   },
 
   closeFile: (path: string) => {
@@ -60,10 +76,14 @@ export const useFilesStore = create<FilesState>((set, get) => ({
       files: newFiles,
       activeFilePath: newActiveFilePath,
     });
+    const newState = get();
+    persistSession(newState.files, newState.activeFilePath);
   },
 
   setActiveFile: (path: string) => {
     set({ activeFilePath: path });
+    const newState = get();
+    persistSession(newState.files, newState.activeFilePath);
   },
 
   closeActiveFile: () => {
@@ -85,6 +105,8 @@ export const useFilesStore = create<FilesState>((set, get) => ({
       files: newFiles,
       activeFilePath: activeFilePath === oldPath ? newPath : activeFilePath,
     });
+    const newState = get();
+    persistSession(newState.files, newState.activeFilePath);
   },
 
   actions: createFileActions(get, storageService),

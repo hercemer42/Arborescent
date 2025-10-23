@@ -57,15 +57,12 @@ export const createPersistenceActions = (
         fileMeta: { created: data.created, author: data.author },
       });
 
-      storage.saveLastSession(path);
-
       return { created: data.created, author: data.author };
     },
 
     saveToPath: async (path: string, fileMeta?: { created: string; author: string }) => {
       await performSave(path, fileMeta);
       set({ currentFilePath: path, fileMeta: fileMeta || null });
-      storage.saveLastSession(path);
     },
 
     setFilePath: (path: string | null, meta?: { created: string; author: string } | null) => {
