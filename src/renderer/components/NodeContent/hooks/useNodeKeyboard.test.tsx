@@ -39,8 +39,8 @@ function createKeyboardEvent(
 
 describe('useNodeKeyboard', () => {
   let store: TreeStore;
-  const mockMoveToPrevious = vi.fn();
-  const mockMoveToNext = vi.fn();
+  const mockMoveBack = vi.fn();
+  const mockMoveForward = vi.fn();
   const mockCreateSiblingNode = vi.fn();
   const mockIndentNode = vi.fn();
   const mockOutdentNode = vi.fn();
@@ -75,8 +75,8 @@ describe('useNodeKeyboard', () => {
       cursorPosition: 5,
       rememberedVisualX: null,
       actions: {
-        moveToPrevious: mockMoveToPrevious,
-        moveToNext: mockMoveToNext,
+        moveBack: mockMoveBack,
+        moveForward: mockMoveForward,
         createSiblingNode: mockCreateSiblingNode,
         indentNode: mockIndentNode,
         outdentNode: mockOutdentNode,

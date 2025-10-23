@@ -70,20 +70,27 @@ export const setCursorToVisualPosition = (element: HTMLElement, targetX: number)
     return 0;
   }
 
+  let left = 0;
+  let right = contentLength;
   let bestPosition = 0;
   let bestDistance = Infinity;
 
-  for (let i = 0; i <= contentLength; i++) {
-    setCursorPosition(element, i);
+  while (left <= right) {
+    const mid = Math.floor((left + right) / 2);
+    setCursorPosition(element, mid);
     const currentX = getVisualCursorPosition();
     const distance = Math.abs(currentX - targetX);
 
     if (distance < bestDistance) {
       bestDistance = distance;
-      bestPosition = i;
+      bestPosition = mid;
     }
 
-    if (currentX > targetX) {
+    if (currentX < targetX) {
+      left = mid + 1;
+    } else if (currentX > targetX) {
+      right = mid - 1;
+    } else {
       break;
     }
   }

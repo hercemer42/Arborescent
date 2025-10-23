@@ -3,7 +3,7 @@ import { createNavigationActions } from './navigationActions';
 import type { TreeNode } from '@shared/types';
 
 describe('navigationActions', () => {
-  let state: { nodes: Record<string, TreeNode>; rootNodeId: string; selectedNodeId: string | null; cursorPosition: number; rememberedVisualX: number | null };
+  let state: { nodes: Record<string, TreeNode>; rootNodeId: string; ancestorRegistry: Record<string, string[]>; selectedNodeId: string | null; cursorPosition: number; rememberedVisualX: number | null };
   let setState: (partial: Partial<typeof state>) => void;
   let actions: ReturnType<typeof createNavigationActions>;
 
@@ -36,6 +36,12 @@ describe('navigationActions', () => {
         },
       },
       rootNodeId: 'root',
+      ancestorRegistry: {
+        'root': [],
+        'child-1': ['root'],
+        'child-2': ['root'],
+        'grandchild-1': ['root', 'child-1'],
+      },
       selectedNodeId: null,
       cursorPosition: 0,
       rememberedVisualX: null,
@@ -53,9 +59,9 @@ describe('navigationActions', () => {
 
   describe('moveUp', () => {
     it('should move selection up in flat list', () => {
-      state.selectedNodeId = 'child-1';
+      state.selectedNodeId = 'grandchild-1';
       actions.moveUp();
-      expect(state.selectedNodeId).toBe('root');
+      expect(state.selectedNodeId).toBe('child-1');
     });
 
     it('should not move up from first node', () => {
@@ -93,44 +99,44 @@ describe('navigationActions', () => {
     it('should select first node when nothing selected', () => {
       state.selectedNodeId = null;
       actions.moveDown();
-      expect(state.selectedNodeId).toBe('root');
+      expect(state.selectedNodeId).toBe('child-1');
     });
   });
 
-  describe('moveToPrevious', () => {
+  describe('moveBack', () => {
     it('should move to previous node with cursor at end', () => {
-      state.selectedNodeId = 'child-1';
-      actions.moveToPrevious();
-      expect(state.selectedNodeId).toBe('root');
-      expect(state.cursorPosition).toBe(4);
+      state.selectedNodeId = 'grandchild-1';
+      actions.moveBack();
+      expect(state.selectedNodeId).toBe('child-1');
+      expect(state.cursorPosition).toBe(7);
       expect(state.rememberedVisualX).toBeNull();
     });
 
     it('should not move from first node', () => {
       state.selectedNodeId = 'root';
-      actions.moveToPrevious();
+      actions.moveBack();
       expect(state.selectedNodeId).toBe('root');
     });
 
     it('should handle moving from nested nodes', () => {
       state.selectedNodeId = 'grandchild-1';
-      actions.moveToPrevious();
+      actions.moveBack();
       expect(state.selectedNodeId).toBe('child-1');
       expect(state.cursorPosition).toBe(7);
     });
 
     it('should clear remembered visual X position', () => {
-      state.selectedNodeId = 'child-1';
+      state.selectedNodeId = 'grandchild-1';
       state.rememberedVisualX = 10;
-      actions.moveToPrevious();
+      actions.moveBack();
       expect(state.rememberedVisualX).toBeNull();
     });
   });
 
-  describe('moveToNext', () => {
+  describe('moveForward', () => {
     it('should move to next node with cursor at start', () => {
       state.selectedNodeId = 'root';
-      actions.moveToNext();
+      actions.moveForward();
       expect(state.selectedNodeId).toBe('child-1');
       expect(state.cursorPosition).toBe(0);
       expect(state.rememberedVisualX).toBeNull();
@@ -138,13 +144,13 @@ describe('navigationActions', () => {
 
     it('should not move from last node', () => {
       state.selectedNodeId = 'child-2';
-      actions.moveToNext();
+      actions.moveForward();
       expect(state.selectedNodeId).toBe('child-2');
     });
 
     it('should handle moving through nested nodes', () => {
       state.selectedNodeId = 'child-1';
-      actions.moveToNext();
+      actions.moveForward();
       expect(state.selectedNodeId).toBe('grandchild-1');
       expect(state.cursorPosition).toBe(0);
     });
@@ -152,7 +158,7 @@ describe('navigationActions', () => {
     it('should clear remembered visual X position', () => {
       state.selectedNodeId = 'root';
       state.rememberedVisualX = 10;
-      actions.moveToNext();
+      actions.moveForward();
       expect(state.rememberedVisualX).toBeNull();
     });
   });
@@ -212,13 +218,13 @@ describe('navigationActions', () => {
 
     it('should skip collapsed children when moving to next', () => {
       state.selectedNodeId = 'child-1';
-      actions.moveToNext();
+      actions.moveForward();
       expect(state.selectedNodeId).toBe('child-2');
     });
 
     it('should skip collapsed children when moving to previous', () => {
       state.selectedNodeId = 'child-2';
-      actions.moveToPrevious();
+      actions.moveBack();
       expect(state.selectedNodeId).toBe('child-1');
       expect(state.cursorPosition).toBe(7);
     });

@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { updateNodeMetadata } from './nodeHelpers';
+import { updateNodeMetadata, findPreviousVisibleNode, findNextVisibleNode } from './nodeHelpers';
 import { TreeNode } from '../../shared/types';
 
 describe('updateNodeMetadata', () => {
@@ -78,5 +78,187 @@ describe('updateNodeMetadata', () => {
     expect(result['node-1'].metadata.status).toBe('✓');
     expect(result['node-1'].metadata.expanded).toBe(false);
     expect(result['node-1'].metadata.created).toBe('2025-01-01');
+  });
+});
+
+describe('findPreviousVisibleNode', () => {
+  const createNode = (id: string, children: string[] = [], metadata = {}): TreeNode => ({
+    id,
+    content: `Node ${id}`,
+    children,
+    metadata,
+  });
+
+  it('should find previous sibling', () => {
+    const nodes = {
+      'root': createNode('root', ['child-1', 'child-2']),
+      'child-1': createNode('child-1'),
+      'child-2': createNode('child-2'),
+    };
+    const ancestorRegistry = {
+      'root': [],
+      'child-1': ['root'],
+      'child-2': ['root'],
+    };
+
+    const result = findPreviousVisibleNode('child-2', nodes, 'root', ancestorRegistry);
+    expect(result).toBe('child-1');
+  });
+
+  it('should find deepest child of previous sibling', () => {
+    const nodes = {
+      'root': createNode('root', ['child-1', 'child-2']),
+      'child-1': createNode('child-1', ['grandchild-1']),
+      'grandchild-1': createNode('grandchild-1'),
+      'child-2': createNode('child-2'),
+    };
+    const ancestorRegistry = {
+      'root': [],
+      'child-1': ['root'],
+      'grandchild-1': ['root', 'child-1'],
+      'child-2': ['root'],
+    };
+
+    const result = findPreviousVisibleNode('child-2', nodes, 'root', ancestorRegistry);
+    expect(result).toBe('grandchild-1');
+  });
+
+  it('should return parent if first child', () => {
+    const nodes = {
+      'root': createNode('root', ['child-1']),
+      'child-1': createNode('child-1', ['grandchild-1']),
+      'grandchild-1': createNode('grandchild-1'),
+    };
+    const ancestorRegistry = {
+      'root': [],
+      'child-1': ['root'],
+      'grandchild-1': ['root', 'child-1'],
+    };
+
+    const result = findPreviousVisibleNode('grandchild-1', nodes, 'root', ancestorRegistry);
+    expect(result).toBe('child-1');
+  });
+
+  it('should return null if first child of root', () => {
+    const nodes = {
+      'root': createNode('root', ['child-1']),
+      'child-1': createNode('child-1'),
+    };
+    const ancestorRegistry = {
+      'root': [],
+      'child-1': ['root'],
+    };
+
+    const result = findPreviousVisibleNode('child-1', nodes, 'root', ancestorRegistry);
+    expect(result).toBeNull();
+  });
+
+  it('should skip collapsed children', () => {
+    const nodes = {
+      'root': createNode('root', ['child-1', 'child-2']),
+      'child-1': createNode('child-1', ['grandchild-1'], { expanded: false }),
+      'grandchild-1': createNode('grandchild-1'),
+      'child-2': createNode('child-2'),
+    };
+    const ancestorRegistry = {
+      'root': [],
+      'child-1': ['root'],
+      'grandchild-1': ['root', 'child-1'],
+      'child-2': ['root'],
+    };
+
+    const result = findPreviousVisibleNode('child-2', nodes, 'root', ancestorRegistry);
+    expect(result).toBe('child-1');
+  });
+});
+
+describe('findNextVisibleNode', () => {
+  const createNode = (id: string, children: string[] = [], metadata = {}): TreeNode => ({
+    id,
+    content: `Node ${id}`,
+    children,
+    metadata,
+  });
+
+  it('should find first child if expanded', () => {
+    const nodes = {
+      'root': createNode('root', ['child-1']),
+      'child-1': createNode('child-1', ['grandchild-1']),
+      'grandchild-1': createNode('grandchild-1'),
+    };
+    const ancestorRegistry = {
+      'root': [],
+      'child-1': ['root'],
+      'grandchild-1': ['root', 'child-1'],
+    };
+
+    const result = findNextVisibleNode('child-1', nodes, 'root', ancestorRegistry);
+    expect(result).toBe('grandchild-1');
+  });
+
+  it('should find next sibling if no children', () => {
+    const nodes = {
+      'root': createNode('root', ['child-1', 'child-2']),
+      'child-1': createNode('child-1'),
+      'child-2': createNode('child-2'),
+    };
+    const ancestorRegistry = {
+      'root': [],
+      'child-1': ['root'],
+      'child-2': ['root'],
+    };
+
+    const result = findNextVisibleNode('child-1', nodes, 'root', ancestorRegistry);
+    expect(result).toBe('child-2');
+  });
+
+  it('should find parent sibling if last child', () => {
+    const nodes = {
+      'root': createNode('root', ['child-1', 'child-2']),
+      'child-1': createNode('child-1', ['grandchild-1']),
+      'grandchild-1': createNode('grandchild-1'),
+      'child-2': createNode('child-2'),
+    };
+    const ancestorRegistry = {
+      'root': [],
+      'child-1': ['root'],
+      'grandchild-1': ['root', 'child-1'],
+      'child-2': ['root'],
+    };
+
+    const result = findNextVisibleNode('grandchild-1', nodes, 'root', ancestorRegistry);
+    expect(result).toBe('child-2');
+  });
+
+  it('should return null if last node in tree', () => {
+    const nodes = {
+      'root': createNode('root', ['child-1']),
+      'child-1': createNode('child-1'),
+    };
+    const ancestorRegistry = {
+      'root': [],
+      'child-1': ['root'],
+    };
+
+    const result = findNextVisibleNode('child-1', nodes, 'root', ancestorRegistry);
+    expect(result).toBeNull();
+  });
+
+  it('should skip collapsed children', () => {
+    const nodes = {
+      'root': createNode('root', ['child-1', 'child-2']),
+      'child-1': createNode('child-1', ['grandchild-1'], { expanded: false }),
+      'grandchild-1': createNode('grandchild-1'),
+      'child-2': createNode('child-2'),
+    };
+    const ancestorRegistry = {
+      'root': [],
+      'child-1': ['root'],
+      'grandchild-1': ['root', 'child-1'],
+      'child-2': ['root'],
+    };
+
+    const result = findNextVisibleNode('child-1', nodes, 'root', ancestorRegistry);
+    expect(result).toBe('child-2');
   });
 });

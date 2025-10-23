@@ -12,6 +12,9 @@ interface UseNodeKeyboardProps {
   handleDelete: () => void;
 }
 
+const NAVIGATION_THROTTLE_MS = 50;
+let lastNavigationTime = 0;
+
 export function useNodeKeyboard({
   node,
   contentRef,
@@ -20,8 +23,8 @@ export function useNodeKeyboard({
   const rememberedVisualX = useStore((state) => state.rememberedVisualX);
   const setCursorPosition = useStore((state) => state.actions.setCursorPosition);
   const setRememberedVisualX = useStore((state) => state.actions.setRememberedVisualX);
-  const moveToPrevious = useStore((state) => state.actions.moveToPrevious);
-  const moveToNext = useStore((state) => state.actions.moveToNext);
+  const moveBack = useStore((state) => state.actions.moveBack);
+  const moveForward = useStore((state) => state.actions.moveForward);
   const moveUp = useStore((state) => state.actions.moveUp);
   const moveDown = useStore((state) => state.actions.moveDown);
   const createSiblingNode = useStore((state) => state.actions.createSiblingNode);
@@ -34,22 +37,25 @@ export function useNodeKeyboard({
   const handleArrowUpDown = (e: React.KeyboardEvent, direction: 'up' | 'down') => {
     if (!contentRef.current) return;
 
+    const now = Date.now();
+    if (now - lastNavigationTime < NAVIGATION_THROTTLE_MS) {
+      e.preventDefault();
+      e.stopPropagation();
+      return;
+    }
+
+    lastNavigationTime = now;
+
     e.preventDefault();
     e.stopPropagation();
 
     const position = getCursorPosition(contentRef.current);
-
-    setCursorPosition(position);
-
-    if (rememberedVisualX === null) {
-      const visualX = getVisualCursorPosition();
-      setRememberedVisualX(visualX);
-    }
+    const visualX = rememberedVisualX === null ? getVisualCursorPosition() : rememberedVisualX;
 
     if (direction === 'up') {
-      moveUp();
+      moveUp(position, visualX);
     } else {
-      moveDown();
+      moveDown(position, visualX);
     }
   };
 
@@ -59,7 +65,7 @@ export function useNodeKeyboard({
     const position = getCursorPosition(contentRef.current);
     if (position === 0) {
       e.preventDefault();
-      moveToPrevious();
+      moveBack();
     } else {
       setRememberedVisualX(null);
     }
@@ -72,7 +78,7 @@ export function useNodeKeyboard({
     const contentLength = node.content.length;
     if (position === contentLength) {
       e.preventDefault();
-      moveToNext();
+      moveForward();
     } else {
       setRememberedVisualX(null);
     }

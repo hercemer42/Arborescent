@@ -107,6 +107,7 @@ export const createNodeActions = (
         rememberedVisualX: null,
       });
     }
+    triggerAutosave?.();
   },
 
 });

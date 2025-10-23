@@ -1,82 +1,82 @@
 import { TreeNode } from '../../../../shared/types';
-import { updateNodeMetadata } from '../../../utils/nodeHelpers';
+import { updateNodeMetadata, findPreviousVisibleNode, findNextVisibleNode } from '../../../utils/nodeHelpers';
 
 export interface NavigationActions {
-  moveUp: () => void;
-  moveDown: () => void;
-  moveToPrevious: () => void;
-  moveToNext: () => void;
+  moveUp: (cursorPosition?: number, rememberedVisualX?: number | null) => void;
+  moveDown: (cursorPosition?: number, rememberedVisualX?: number | null) => void;
+  moveBack: () => void;
+  moveForward: () => void;
   toggleNode: (nodeId: string) => void;
 }
 
 type StoreState = {
   nodes: Record<string, TreeNode>;
   rootNodeId: string;
+  ancestorRegistry: Record<string, string[]>;
   selectedNodeId: string | null;
   cursorPosition: number;
   rememberedVisualX: number | null;
 };
 type StoreSetter = (partial: Partial<StoreState>) => void;
 
+function selectNode(
+  nextNodeId: string,
+  cursorPosition?: number,
+  rememberedVisualX?: number | null
+): Partial<StoreState> {
+  const update: Partial<StoreState> = { selectedNodeId: nextNodeId };
+
+  if (cursorPosition !== undefined) {
+    update.cursorPosition = cursorPosition;
+  }
+  if (rememberedVisualX !== undefined) {
+    update.rememberedVisualX = rememberedVisualX;
+  }
+
+  return update;
+}
+
 export const createNavigationActions = (
   get: () => StoreState,
   set: StoreSetter
 ): NavigationActions => {
-  const getFlatNodeList = (): string[] => {
-    const { nodes, rootNodeId } = get();
-    const result: string[] = [];
-    const traverse = (nodeId: string) => {
-      result.push(nodeId);
-      const node = nodes[nodeId];
-      const isExpanded = node?.metadata.expanded ?? true;
-      if (node && node.children.length > 0 && isExpanded) {
-        node.children.forEach((childId) => traverse(childId));
-      }
-    };
-    traverse(rootNodeId);
-    return result;
-  };
-
   return {
-    moveUp: () => {
-      const { selectedNodeId } = get();
-      const flatList = getFlatNodeList();
-      const currentIndex = selectedNodeId ? flatList.indexOf(selectedNodeId) : -1;
+    moveUp: (cursorPosition?: number, rememberedVisualX?: number | null) => {
+      const { selectedNodeId, nodes, rootNodeId, ancestorRegistry } = get();
+      if (!selectedNodeId) return;
 
-      if (currentIndex > 0) {
-        const nextNodeId = flatList[currentIndex - 1];
-        set({
-          selectedNodeId: nextNodeId,
-        });
+      const nextNodeId = findPreviousVisibleNode(selectedNodeId, nodes, rootNodeId, ancestorRegistry);
+      if (nextNodeId) {
+        set(selectNode(nextNodeId, cursorPosition, rememberedVisualX));
       }
     },
 
-    moveDown: () => {
-      const { selectedNodeId } = get();
-      const flatList = getFlatNodeList();
-      const currentIndex = selectedNodeId ? flatList.indexOf(selectedNodeId) : -1;
+    moveDown: (cursorPosition?: number, rememberedVisualX?: number | null) => {
+      const { selectedNodeId, nodes, rootNodeId, ancestorRegistry } = get();
+      if (!selectedNodeId) {
+        const root = nodes[rootNodeId];
+        if (root && root.children.length > 0) {
+          set({
+            selectedNodeId: root.children[0],
+            cursorPosition: 0,
+            rememberedVisualX: null,
+          });
+        }
+        return;
+      }
 
-      if (currentIndex < flatList.length - 1) {
-        const nextNodeId = flatList[currentIndex + 1];
-        set({
-          selectedNodeId: nextNodeId,
-        });
-      } else if (currentIndex === -1 && flatList.length > 0) {
-        set({
-          selectedNodeId: flatList[0],
-          cursorPosition: 0,
-          rememberedVisualX: null,
-        });
+      const nextNodeId = findNextVisibleNode(selectedNodeId, nodes, rootNodeId, ancestorRegistry);
+      if (nextNodeId) {
+        set(selectNode(nextNodeId, cursorPosition, rememberedVisualX));
       }
     },
 
-    moveToPrevious: () => {
-      const { selectedNodeId, nodes } = get();
-      const flatList = getFlatNodeList();
-      const currentIndex = selectedNodeId ? flatList.indexOf(selectedNodeId) : -1;
+    moveBack: () => {
+      const { selectedNodeId, nodes, rootNodeId, ancestorRegistry } = get();
+      if (!selectedNodeId) return;
 
-      if (currentIndex > 0) {
-        const nextNodeId = flatList[currentIndex - 1];
+      const nextNodeId = findPreviousVisibleNode(selectedNodeId, nodes, rootNodeId, ancestorRegistry);
+      if (nextNodeId) {
         const nextNode = nodes[nextNodeId];
         set({
           selectedNodeId: nextNodeId,
@@ -86,13 +86,12 @@ export const createNavigationActions = (
       }
     },
 
-    moveToNext: () => {
-      const { selectedNodeId } = get();
-      const flatList = getFlatNodeList();
-      const currentIndex = selectedNodeId ? flatList.indexOf(selectedNodeId) : -1;
+    moveForward: () => {
+      const { selectedNodeId, nodes, rootNodeId, ancestorRegistry } = get();
+      if (!selectedNodeId) return;
 
-      if (currentIndex < flatList.length - 1) {
-        const nextNodeId = flatList[currentIndex + 1];
+      const nextNodeId = findNextVisibleNode(selectedNodeId, nodes, rootNodeId, ancestorRegistry);
+      if (nextNodeId) {
         set({
           selectedNodeId: nextNodeId,
           cursorPosition: 0,
@@ -107,8 +106,9 @@ export const createNavigationActions = (
       if (!node) return;
 
       const newExpanded = !(node.metadata.expanded ?? true);
+      const updatedNodes = updateNodeMetadata(nodes, nodeId, { expanded: newExpanded });
       set({
-        nodes: updateNodeMetadata(nodes, nodeId, { expanded: newExpanded }),
+        nodes: updatedNodes,
       });
     },
   };
