@@ -13,8 +13,7 @@ export function useNodeContent(node: TreeNode) {
 
   const { contentRef, handleInput } = useNodeEditing(node);
 
-  const { rememberedVisualX, setCursorPosition, setRememberedVisualX } =
-    useNodeCursor(node, contentRef);
+  useNodeCursor(node, contentRef);
 
   const { contextMenu, contextMenuItems, handleContextMenu, handleDelete, closeContextMenu } =
     useNodeContextMenu(node);
@@ -22,9 +21,6 @@ export function useNodeContent(node: TreeNode) {
   const { handleKeyDown } = useNodeKeyboard({
     node,
     contentRef,
-    rememberedVisualX,
-    setCursorPosition,
-    setRememberedVisualX,
     handleDelete,
   });
 

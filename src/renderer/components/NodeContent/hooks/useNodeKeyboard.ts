@@ -9,20 +9,17 @@ import { matchesHotkey } from '../../../data/hotkeyConfig';
 interface UseNodeKeyboardProps {
   node: TreeNode;
   contentRef: React.RefObject<HTMLDivElement | null>;
-  rememberedVisualX: number | null;
-  setCursorPosition: (position: number) => void;
-  setRememberedVisualX: (visualX: number | null) => void;
   handleDelete: () => void;
 }
 
 export function useNodeKeyboard({
   node,
   contentRef,
-  rememberedVisualX,
-  setCursorPosition,
-  setRememberedVisualX,
   handleDelete,
 }: UseNodeKeyboardProps) {
+  const rememberedVisualX = useStore((state) => state.rememberedVisualX);
+  const setCursorPosition = useStore((state) => state.actions.setCursorPosition);
+  const setRememberedVisualX = useStore((state) => state.actions.setRememberedVisualX);
   const moveToPrevious = useStore((state) => state.actions.moveToPrevious);
   const moveToNext = useStore((state) => state.actions.moveToNext);
   const moveUp = useStore((state) => state.actions.moveUp);

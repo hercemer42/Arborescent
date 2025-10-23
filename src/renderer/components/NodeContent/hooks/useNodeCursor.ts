@@ -44,11 +44,4 @@ export function useNodeCursor(node: TreeNode, contentRef: React.RefObject<HTMLDi
     node.id,
     contentRef,
   ]);
-
-  return {
-    cursorPosition,
-    rememberedVisualX,
-    setCursorPosition: setCursorPositionAction,
-    setRememberedVisualX,
-  };
 }

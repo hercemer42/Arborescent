@@ -82,6 +82,8 @@ describe('useNodeKeyboard', () => {
         outdentNode: mockOutdentNode,
         moveNodeUp: mockMoveNodeUp,
         moveNodeDown: mockMoveNodeDown,
+        setCursorPosition: mockSetCursorPosition,
+        setRememberedVisualX: mockSetRememberedVisualX,
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } as any,
     });
@@ -97,9 +99,6 @@ describe('useNodeKeyboard', () => {
         useNodeKeyboard({
           node: mockNode,
           contentRef: mockContentRef,
-          rememberedVisualX: null,
-          setCursorPosition: mockSetCursorPosition,
-          setRememberedVisualX: mockSetRememberedVisualX,
           handleDelete: mockHandleDelete,
         }),
       { wrapper }
@@ -114,9 +113,6 @@ describe('useNodeKeyboard', () => {
         useNodeKeyboard({
           node: mockNode,
           contentRef: mockContentRef,
-          rememberedVisualX: null,
-          setCursorPosition: mockSetCursorPosition,
-          setRememberedVisualX: mockSetRememberedVisualX,
           handleDelete: mockHandleDelete,
         }),
       { wrapper }
@@ -136,9 +132,6 @@ describe('useNodeKeyboard', () => {
         useNodeKeyboard({
           node: mockNode,
           contentRef: mockContentRef,
-          rememberedVisualX: null,
-          setCursorPosition: mockSetCursorPosition,
-          setRememberedVisualX: mockSetRememberedVisualX,
           handleDelete: mockHandleDelete,
         }),
       { wrapper }
@@ -158,9 +151,6 @@ describe('useNodeKeyboard', () => {
         useNodeKeyboard({
           node: mockNode,
           contentRef: mockContentRef,
-          rememberedVisualX: null,
-          setCursorPosition: mockSetCursorPosition,
-          setRememberedVisualX: mockSetRememberedVisualX,
           handleDelete: mockHandleDelete,
         }),
       { wrapper }
@@ -180,9 +170,6 @@ describe('useNodeKeyboard', () => {
         useNodeKeyboard({
           node: mockNode,
           contentRef: mockContentRef,
-          rememberedVisualX: null,
-          setCursorPosition: mockSetCursorPosition,
-          setRememberedVisualX: mockSetRememberedVisualX,
           handleDelete: mockHandleDelete,
         }),
       { wrapper }
@@ -202,9 +189,6 @@ describe('useNodeKeyboard', () => {
         useNodeKeyboard({
           node: mockNode,
           contentRef: mockContentRef,
-          rememberedVisualX: null,
-          setCursorPosition: mockSetCursorPosition,
-          setRememberedVisualX: mockSetRememberedVisualX,
           handleDelete: mockHandleDelete,
         }),
       { wrapper }
@@ -224,9 +208,6 @@ describe('useNodeKeyboard', () => {
         useNodeKeyboard({
           node: mockNode,
           contentRef: mockContentRef,
-          rememberedVisualX: null,
-          setCursorPosition: mockSetCursorPosition,
-          setRememberedVisualX: mockSetRememberedVisualX,
           handleDelete: mockHandleDelete,
         }),
       { wrapper }
@@ -246,9 +227,6 @@ describe('useNodeKeyboard', () => {
         useNodeKeyboard({
           node: mockNode,
           contentRef: mockContentRef,
-          rememberedVisualX: null,
-          setCursorPosition: mockSetCursorPosition,
-          setRememberedVisualX: mockSetRememberedVisualX,
           handleDelete: mockHandleDelete,
         }),
       { wrapper }
@@ -268,9 +246,6 @@ describe('useNodeKeyboard', () => {
         useNodeKeyboard({
           node: mockNode,
           contentRef: mockContentRef,
-          rememberedVisualX: null,
-          setCursorPosition: mockSetCursorPosition,
-          setRememberedVisualX: mockSetRememberedVisualX,
           handleDelete: mockHandleDelete,
         }),
       { wrapper }
