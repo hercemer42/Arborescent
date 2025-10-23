@@ -95,28 +95,24 @@ export function useNodeKeyboard({
   const handleKeyDown = (e: React.KeyboardEvent) => {
     const event = e.nativeEvent as KeyboardEvent;
 
-    if (e.key === 'ArrowUp') {
-      if (e.shiftKey) {
-        e.preventDefault();
-        if (contentRef.current) {
-          const position = getCursorPosition(contentRef.current);
-          setCursorPosition(position);
-        }
-        moveNodeUp(node.id);
-      } else {
-        handleArrowUpDown(e, 'up');
+    if (matchesHotkey(event, 'navigation', 'moveNodeUp')) {
+      e.preventDefault();
+      if (contentRef.current) {
+        const position = getCursorPosition(contentRef.current);
+        setCursorPosition(position);
       }
+      moveNodeUp(node.id);
+    } else if (matchesHotkey(event, 'navigation', 'moveNodeDown')) {
+      e.preventDefault();
+      if (contentRef.current) {
+        const position = getCursorPosition(contentRef.current);
+        setCursorPosition(position);
+      }
+      moveNodeDown(node.id);
+    } else if (e.key === 'ArrowUp') {
+      handleArrowUpDown(e, 'up');
     } else if (e.key === 'ArrowDown') {
-      if (e.shiftKey) {
-        e.preventDefault();
-        if (contentRef.current) {
-          const position = getCursorPosition(contentRef.current);
-          setCursorPosition(position);
-        }
-        moveNodeDown(node.id);
-      } else {
-        handleArrowUpDown(e, 'down');
-      }
+      handleArrowUpDown(e, 'down');
     } else if (e.key === 'ArrowLeft') {
       handleArrowLeft(e);
     } else if (e.key === 'ArrowRight') {

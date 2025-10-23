@@ -164,7 +164,7 @@ describe('useNodeKeyboard', () => {
     expect(mockOutdentNode).toHaveBeenCalledWith('test-node');
   });
 
-  it('should move node up on Shift+ArrowUp', () => {
+  it('should move node up on Ctrl+ArrowUp', () => {
     const { result } = renderHook(
       () =>
         useNodeKeyboard({
@@ -175,7 +175,7 @@ describe('useNodeKeyboard', () => {
       { wrapper }
     );
 
-    const mockEvent = createKeyboardEvent('ArrowUp', { shiftKey: true });
+    const mockEvent = createKeyboardEvent('ArrowUp', { ctrlKey: true });
 
     result.current.handleKeyDown(mockEvent);
 
@@ -183,7 +183,7 @@ describe('useNodeKeyboard', () => {
     expect(mockMoveNodeUp).toHaveBeenCalledWith('test-node');
   });
 
-  it('should move node down on Shift+ArrowDown', () => {
+  it('should move node down on Ctrl+ArrowDown', () => {
     const { result } = renderHook(
       () =>
         useNodeKeyboard({
@@ -194,7 +194,45 @@ describe('useNodeKeyboard', () => {
       { wrapper }
     );
 
-    const mockEvent = createKeyboardEvent('ArrowDown', { shiftKey: true });
+    const mockEvent = createKeyboardEvent('ArrowDown', { ctrlKey: true });
+
+    result.current.handleKeyDown(mockEvent);
+
+    expect(mockEvent.preventDefault).toHaveBeenCalled();
+    expect(mockMoveNodeDown).toHaveBeenCalledWith('test-node');
+  });
+
+  it('should move node up on Cmd+ArrowUp', () => {
+    const { result } = renderHook(
+      () =>
+        useNodeKeyboard({
+          node: mockNode,
+          contentRef: mockContentRef,
+          handleDelete: mockHandleDelete,
+        }),
+      { wrapper }
+    );
+
+    const mockEvent = createKeyboardEvent('ArrowUp', { metaKey: true });
+
+    result.current.handleKeyDown(mockEvent);
+
+    expect(mockEvent.preventDefault).toHaveBeenCalled();
+    expect(mockMoveNodeUp).toHaveBeenCalledWith('test-node');
+  });
+
+  it('should move node down on Cmd+ArrowDown', () => {
+    const { result } = renderHook(
+      () =>
+        useNodeKeyboard({
+          node: mockNode,
+          contentRef: mockContentRef,
+          handleDelete: mockHandleDelete,
+        }),
+      { wrapper }
+    );
+
+    const mockEvent = createKeyboardEvent('ArrowDown', { metaKey: true });
 
     result.current.handleKeyDown(mockEvent);
 
