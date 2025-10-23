@@ -160,10 +160,19 @@ export function useNodeKeyboard({
       }
 
       toggleNode(node.id);
+    } else if (e.key === 'Home' || e.key === 'End' || e.key === 'PageUp' || e.key === 'PageDown') {
+      setRememberedVisualX(null);
+    } else if (e.key.length === 1 || e.key === 'Backspace' || e.key === 'Delete') {
+      setRememberedVisualX(null);
     }
+  };
+
+  const handleMouseDown = () => {
+    setRememberedVisualX(null);
   };
 
   return {
     handleKeyDown,
+    handleMouseDown,
   };
 }

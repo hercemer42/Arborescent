@@ -23,6 +23,7 @@ export const NodeContent = memo(function NodeContent({
     updateStatus,
     contentRef,
     handleKeyDown,
+    handleMouseDown,
     handleInput,
     handleContextMenu,
     contextMenu,
@@ -50,6 +51,7 @@ export const NodeContent = memo(function NodeContent({
           suppressContentEditableWarning
           spellCheck={false}
           onKeyDown={handleKeyDown}
+          onMouseDown={handleMouseDown}
           onInput={handleInput}
         />
       </div>

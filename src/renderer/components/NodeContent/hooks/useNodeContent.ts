@@ -18,7 +18,7 @@ export function useNodeContent(node: TreeNode) {
   const { contextMenu, contextMenuItems, handleContextMenu, handleDelete, closeContextMenu } =
     useNodeContextMenu(node);
 
-  const { handleKeyDown } = useNodeKeyboard({
+  const { handleKeyDown, handleMouseDown } = useNodeKeyboard({
     node,
     contentRef,
     handleDelete,
@@ -30,6 +30,7 @@ export function useNodeContent(node: TreeNode) {
     updateStatus,
     contentRef,
     handleKeyDown,
+    handleMouseDown,
     handleInput,
     handleContextMenu,
     contextMenu,
