@@ -29,15 +29,15 @@ export const createNodeActions = (
   get: () => StoreState,
   set: StoreSetter,
   triggerAutosave?: () => void
-): NodeActions => ({
-  selectNode: (nodeId: string, cursorPosition?: number) => {
+): NodeActions => {
+  function selectNode(nodeId: string, cursorPosition?: number): void {
     set({
       selectedNodeId: nodeId,
       cursorPosition: cursorPosition ?? 0,
     });
-  },
+  }
 
-  updateContent: (nodeId: string, content: string) => {
+  function updateContent(nodeId: string, content: string): void {
     const { nodes } = get();
     set({
       nodes: {
@@ -49,24 +49,24 @@ export const createNodeActions = (
       },
     });
     triggerAutosave?.();
-  },
+  }
 
-  updateStatus: (nodeId: string, status: NodeStatus) => {
+  function updateStatus(nodeId: string, status: NodeStatus): void {
     const { nodes } = get();
     set({
       nodes: updateNodeMetadata(nodes, nodeId, { status }),
     });
-  },
+  }
 
-  setCursorPosition: (position: number) => {
+  function setCursorPosition(position: number): void {
     set({ cursorPosition: position });
-  },
+  }
 
-  setRememberedVisualX: (visualX: number | null) => {
+  function setRememberedVisualX(visualX: number | null): void {
     set({ rememberedVisualX: visualX });
-  },
+  }
 
-  createSiblingNode: (currentNodeId: string) => {
+  function createSiblingNode(currentNodeId: string): void {
     const { nodes, rootNodeId, ancestorRegistry } = get();
     const currentNode = nodes[currentNodeId];
     if (!currentNode) return;
@@ -108,6 +108,14 @@ export const createNodeActions = (
       });
     }
     triggerAutosave?.();
-  },
+  }
 
-});
+  return {
+    selectNode,
+    updateContent,
+    updateStatus,
+    setCursorPosition,
+    setRememberedVisualX,
+    createSiblingNode,
+  };
+};

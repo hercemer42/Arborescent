@@ -40,76 +40,82 @@ export const createNavigationActions = (
   get: () => StoreState,
   set: StoreSetter
 ): NavigationActions => {
-  return {
-    moveUp: (cursorPosition?: number, rememberedVisualX?: number | null) => {
-      const { selectedNodeId, nodes, rootNodeId, ancestorRegistry } = get();
-      if (!selectedNodeId) return;
+  function moveUp(cursorPosition?: number, rememberedVisualX?: number | null): void {
+    const { selectedNodeId, nodes, rootNodeId, ancestorRegistry } = get();
+    if (!selectedNodeId) return;
 
-      const nextNodeId = findPreviousVisibleNode(selectedNodeId, nodes, rootNodeId, ancestorRegistry);
-      if (nextNodeId) {
-        set(selectNode(nextNodeId, cursorPosition, rememberedVisualX));
-      }
-    },
+    const nextNodeId = findPreviousVisibleNode(selectedNodeId, nodes, rootNodeId, ancestorRegistry);
+    if (nextNodeId) {
+      set(selectNode(nextNodeId, cursorPosition, rememberedVisualX));
+    }
+  }
 
-    moveDown: (cursorPosition?: number, rememberedVisualX?: number | null) => {
-      const { selectedNodeId, nodes, rootNodeId, ancestorRegistry } = get();
-      if (!selectedNodeId) {
-        const root = nodes[rootNodeId];
-        if (root && root.children.length > 0) {
-          set({
-            selectedNodeId: root.children[0],
-            cursorPosition: 0,
-            rememberedVisualX: null,
-          });
-        }
-        return;
-      }
-
-      const nextNodeId = findNextVisibleNode(selectedNodeId, nodes, rootNodeId, ancestorRegistry);
-      if (nextNodeId) {
-        set(selectNode(nextNodeId, cursorPosition, rememberedVisualX));
-      }
-    },
-
-    moveBack: () => {
-      const { selectedNodeId, nodes, rootNodeId, ancestorRegistry } = get();
-      if (!selectedNodeId) return;
-
-      const nextNodeId = findPreviousVisibleNode(selectedNodeId, nodes, rootNodeId, ancestorRegistry);
-      if (nextNodeId) {
-        const nextNode = nodes[nextNodeId];
+  function moveDown(cursorPosition?: number, rememberedVisualX?: number | null): void {
+    const { selectedNodeId, nodes, rootNodeId, ancestorRegistry } = get();
+    if (!selectedNodeId) {
+      const root = nodes[rootNodeId];
+      if (root && root.children.length > 0) {
         set({
-          selectedNodeId: nextNodeId,
-          cursorPosition: nextNode?.content.length ?? 0,
-          rememberedVisualX: null,
-        });
-      }
-    },
-
-    moveForward: () => {
-      const { selectedNodeId, nodes, rootNodeId, ancestorRegistry } = get();
-      if (!selectedNodeId) return;
-
-      const nextNodeId = findNextVisibleNode(selectedNodeId, nodes, rootNodeId, ancestorRegistry);
-      if (nextNodeId) {
-        set({
-          selectedNodeId: nextNodeId,
+          selectedNodeId: root.children[0],
           cursorPosition: 0,
           rememberedVisualX: null,
         });
       }
-    },
+      return;
+    }
 
-    toggleNode: (nodeId: string) => {
-      const { nodes } = get();
-      const node = nodes[nodeId];
-      if (!node) return;
+    const nextNodeId = findNextVisibleNode(selectedNodeId, nodes, rootNodeId, ancestorRegistry);
+    if (nextNodeId) {
+      set(selectNode(nextNodeId, cursorPosition, rememberedVisualX));
+    }
+  }
 
-      const newExpanded = !(node.metadata.expanded ?? true);
-      const updatedNodes = updateNodeMetadata(nodes, nodeId, { expanded: newExpanded });
+  function moveBack(): void {
+    const { selectedNodeId, nodes, rootNodeId, ancestorRegistry } = get();
+    if (!selectedNodeId) return;
+
+    const nextNodeId = findPreviousVisibleNode(selectedNodeId, nodes, rootNodeId, ancestorRegistry);
+    if (nextNodeId) {
+      const nextNode = nodes[nextNodeId];
       set({
-        nodes: updatedNodes,
+        selectedNodeId: nextNodeId,
+        cursorPosition: nextNode?.content.length ?? 0,
+        rememberedVisualX: null,
       });
-    },
+    }
+  }
+
+  function moveForward(): void {
+    const { selectedNodeId, nodes, rootNodeId, ancestorRegistry } = get();
+    if (!selectedNodeId) return;
+
+    const nextNodeId = findNextVisibleNode(selectedNodeId, nodes, rootNodeId, ancestorRegistry);
+    if (nextNodeId) {
+      set({
+        selectedNodeId: nextNodeId,
+        cursorPosition: 0,
+        rememberedVisualX: null,
+      });
+    }
+  }
+
+  function toggleNode(nodeId: string): void {
+    const { nodes } = get();
+    const node = nodes[nodeId];
+    if (!node) return;
+
+    const newExpanded = !(node.metadata.expanded ?? true);
+    const updatedNodes = updateNodeMetadata(nodes, nodeId, { expanded: newExpanded });
+    set({
+      nodes: updatedNodes,
+    });
+  }
+
+  return {
+    moveUp,
+    moveDown,
+    moveBack,
+    moveForward,
+    toggleNode,
   };
 };

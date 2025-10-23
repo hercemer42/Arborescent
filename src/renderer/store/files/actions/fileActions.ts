@@ -155,116 +155,124 @@ export const createFileActions = (get: StoreGetter, storage: StorageService): Fi
     return restoredAny;
   }
 
-  return {
-    closeFile: async (filePath: string) => {
-      const { closeFile: closeFileAction } = get();
-      const isTemporary = await storage.isTempFile(filePath);
+  async function closeFile(filePath: string): Promise<void> {
+    const { closeFile: closeFileAction } = get();
+    const isTemporary = await storage.isTempFile(filePath);
 
-      if (isTemporary) {
-        const displayName = getDisplayName(filePath, true);
-        const choice = await promptUnsavedChanges(displayName);
+    if (isTemporary) {
+      const displayName = getDisplayName(filePath, true);
+      const choice = await promptUnsavedChanges(displayName);
 
-        if (choice === 'cancel') return;
+      if (choice === 'cancel') return;
 
-        if (choice === 'save') {
-          const path = await storage.showSaveDialog();
-          if (!path) return;
-
-          try {
-            await save(filePath, path, 'FileSaveAs');
-            await cleanUp(filePath, path);
-          } catch (error) {
-            logger.error(
-              `Failed to save file: ${error instanceof Error ? error.message : 'Unknown error'}`,
-              error instanceof Error ? error : undefined,
-              'FileSaveAs',
-              true
-            );
-            return;
-          }
-        } else {
-          await storage.deleteTempFile(filePath);
-        }
-      }
-
-      await storeManager.closeFile(filePath);
-      closeFileAction(filePath);
-    },
-
-    openFileWithDialog: async () => {
-      try {
-        const path = await storage.showOpenDialog();
+      if (choice === 'save') {
+        const path = await storage.showSaveDialog();
         if (!path) return;
 
-        await open(path, 'FileLoad', false);
-      } catch (error) {
-        const message = `Failed to load file: ${error instanceof Error ? error.message : 'Unknown error'}`;
-        logger.error(message, error instanceof Error ? error : undefined, 'FileLoad', true);
-      }
-    },
-
-    createNewFile: async () => {
-      try {
-        await createBlankFile('FileNew');
-      } catch (error) {
-        const message = `Failed to create new file: ${error instanceof Error ? error.message : 'Unknown error'}`;
-        logger.error(message, error instanceof Error ? error : undefined, 'FileNew', true);
-      }
-    },
-
-    saveActiveFile: async () => {
-      try {
-        const { activeFilePath } = get();
-        const currentFilePath = activeFilePath;
-
-        const isTemporary = currentFilePath && await storage.isTempFile(currentFilePath);
-        const path = (isTemporary || !currentFilePath)
-          ? await storage.showSaveDialog()
-          : currentFilePath;
-
-        if (!path) return;
-
-        await save(currentFilePath || path, path, 'FileSave');
-        if (isTemporary && currentFilePath) {
-          await cleanUp(currentFilePath, path);
+        try {
+          await save(filePath, path, 'FileSaveAs');
+          await cleanUp(filePath, path);
+        } catch (error) {
+          logger.error(
+            `Failed to save file: ${error instanceof Error ? error.message : 'Unknown error'}`,
+            error instanceof Error ? error : undefined,
+            'FileSaveAs',
+            true
+          );
+          return;
         }
-      } catch (error) {
-        const message = `Failed to save file: ${error instanceof Error ? error.message : 'Unknown error'}`;
-        logger.error(message, error instanceof Error ? error : undefined, 'FileSave', true);
+      } else {
+        await storage.deleteTempFile(filePath);
       }
-    },
+    }
 
-    saveFileAs: async (filePath: string) => {
-      const path = await storage.showSaveDialog();
+    await storeManager.closeFile(filePath);
+    closeFileAction(filePath);
+  }
+
+  async function openFileWithDialog(): Promise<void> {
+    try {
+      const path = await storage.showOpenDialog();
       if (!path) return;
 
-      try {
-        await save(filePath, path, 'FileSaveAs');
-        const isTemporary = await storage.isTempFile(filePath);
-        if (isTemporary) {
-          await cleanUp(filePath, path);
-        }
-      } catch (error) {
-        logger.error(
-          `Failed to save file: ${error instanceof Error ? error.message : 'Unknown error'}`,
-          error instanceof Error ? error : undefined,
-          'FileSaveAs',
-          true
-        );
+      await open(path, 'FileLoad', false);
+    } catch (error) {
+      const message = `Failed to load file: ${error instanceof Error ? error.message : 'Unknown error'}`;
+      logger.error(message, error instanceof Error ? error : undefined, 'FileLoad', true);
+    }
+  }
+
+  async function createNewFile(): Promise<void> {
+    try {
+      await createBlankFile('FileNew');
+    } catch (error) {
+      const message = `Failed to create new file: ${error instanceof Error ? error.message : 'Unknown error'}`;
+      logger.error(message, error instanceof Error ? error : undefined, 'FileNew', true);
+    }
+  }
+
+  async function saveActiveFile(): Promise<void> {
+    try {
+      const { activeFilePath } = get();
+      const currentFilePath = activeFilePath;
+
+      const isTemporary = currentFilePath && await storage.isTempFile(currentFilePath);
+      const path = (isTemporary || !currentFilePath)
+        ? await storage.showSaveDialog()
+        : currentFilePath;
+
+      if (!path) return;
+
+      await save(currentFilePath || path, path, 'FileSave');
+      if (isTemporary && currentFilePath) {
+        await cleanUp(currentFilePath, path);
       }
-    },
+    } catch (error) {
+      const message = `Failed to save file: ${error instanceof Error ? error.message : 'Unknown error'}`;
+      logger.error(message, error instanceof Error ? error : undefined, 'FileSave', true);
+    }
+  }
 
-    loadAndOpenFile: async (path: string, logContext: string = 'FileLoad', showToast: boolean = false) => {
-      await open(path, logContext, showToast);
-    },
+  async function saveFileAs(filePath: string): Promise<void> {
+    const path = await storage.showSaveDialog();
+    if (!path) return;
 
-    initializeSession: async () => {
-      const hasSessionFiles = await restoreSessionFiles();
-      const hasOrphanedTempFiles = await restoreOrphanedTempFiles();
-
-      if (!hasSessionFiles && !hasOrphanedTempFiles) {
-        await createBlankFile('FileNew');
+    try {
+      await save(filePath, path, 'FileSaveAs');
+      const isTemporary = await storage.isTempFile(filePath);
+      if (isTemporary) {
+        await cleanUp(filePath, path);
       }
-    },
+    } catch (error) {
+      logger.error(
+        `Failed to save file: ${error instanceof Error ? error.message : 'Unknown error'}`,
+        error instanceof Error ? error : undefined,
+        'FileSaveAs',
+        true
+      );
+    }
+  }
+
+  async function loadAndOpenFile(path: string, logContext: string = 'FileLoad', showToast: boolean = false): Promise<void> {
+    await open(path, logContext, showToast);
+  }
+
+  async function initializeSession(): Promise<void> {
+    const hasSessionFiles = await restoreSessionFiles();
+    const hasOrphanedTempFiles = await restoreOrphanedTempFiles();
+
+    if (!hasSessionFiles && !hasOrphanedTempFiles) {
+      await createBlankFile('FileNew');
+    }
+  }
+
+  return {
+    closeFile,
+    openFileWithDialog,
+    createNewFile,
+    saveActiveFile,
+    saveFileAs,
+    loadAndOpenFile,
+    initializeSession,
   };
 };

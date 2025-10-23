@@ -270,8 +270,8 @@ export const createTreeStructureActions = (
   get: () => StoreState,
   set: StoreSetter,
   triggerAutosave?: () => void
-): TreeStructureActions => ({
-  indentNode: (nodeId: string) => {
+): TreeStructureActions => {
+  function indentNode(nodeId: string): void {
     const state = get();
     const { nodes, ancestorRegistry } = state;
     const node = nodes[nodeId];
@@ -302,9 +302,9 @@ export const createTreeStructureActions = (
       ancestorRegistry: newAncestorRegistry,
     });
     triggerAutosave?.();
-  },
+  }
 
-  outdentNode: (nodeId: string) => {
+  function outdentNode(nodeId: string): void {
     const state = get();
     const { nodes, rootNodeId, ancestorRegistry } = state;
     const node = nodes[nodeId];
@@ -337,17 +337,17 @@ export const createTreeStructureActions = (
       ancestorRegistry: newAncestorRegistry,
     });
     triggerAutosave?.();
-  },
+  }
 
-  moveNodeUp: (nodeId: string) => {
+  function moveNodeUp(nodeId: string): void {
     moveNodeVertically(nodeId, 'up', get(), set, triggerAutosave);
-  },
+  }
 
-  moveNodeDown: (nodeId: string) => {
+  function moveNodeDown(nodeId: string): void {
     moveNodeVertically(nodeId, 'down', get(), set, triggerAutosave);
-  },
+  }
 
-  deleteNode: (nodeId: string, confirmed = false) => {
+  function deleteNode(nodeId: string, confirmed = false): boolean {
     const state = get();
     const { nodes, rootNodeId } = state;
     const node = nodes[nodeId];
@@ -385,5 +385,13 @@ export const createTreeStructureActions = (
     triggerAutosave?.();
 
     return true;
-  },
-});
+  }
+
+  return {
+    indentNode,
+    outdentNode,
+    moveNodeUp,
+    moveNodeDown,
+    deleteNode,
+  };
+};

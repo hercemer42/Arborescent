@@ -29,62 +29,66 @@ export const createPersistenceActions = (
 ): PersistenceActions => {
   let autosaveTimeout: ReturnType<typeof setTimeout> | null = null;
 
-  const loadDoc = (nodes: Record<string, TreeNode>, rootNodeId: string) => {
+  function loadDoc(nodes: Record<string, TreeNode>, rootNodeId: string): void {
     const ancestorRegistry = buildAncestorRegistry(rootNodeId, nodes);
     set({ nodes, rootNodeId, ancestorRegistry });
-  };
+  }
 
-  const performSave = async (path: string, fileMeta?: { created: string; author: string }) => {
+  async function performSave(path: string, fileMeta?: { created: string; author: string }): Promise<void> {
     const { nodes, rootNodeId } = get();
     const arboFile = createArboFile(nodes, rootNodeId, fileMeta);
     await storage.saveDocument(path, arboFile);
-  };
+  }
+
+  async function loadFromPath(path: string): Promise<{ created: string; author: string }> {
+    const data = await storage.loadDocument(path);
+
+    const ancestorRegistry = buildAncestorRegistry(data.rootNodeId, data.nodes);
+
+    set({
+      nodes: data.nodes,
+      rootNodeId: data.rootNodeId,
+      ancestorRegistry,
+      currentFilePath: path,
+      fileMeta: { created: data.created, author: data.author },
+    });
+
+    return { created: data.created, author: data.author };
+  }
+
+  async function saveToPath(path: string, fileMeta?: { created: string; author: string }): Promise<void> {
+    await performSave(path, fileMeta);
+    set({ currentFilePath: path, fileMeta: fileMeta || null });
+  }
+
+  function setFilePath(path: string | null, meta?: { created: string; author: string } | null): void {
+    set({ currentFilePath: path, fileMeta: meta || null });
+  }
+
+  function autoSave(): void {
+    if (autosaveTimeout) {
+      clearTimeout(autosaveTimeout);
+    }
+
+    autosaveTimeout = setTimeout(async () => {
+      const { currentFilePath, fileMeta } = get();
+      if (currentFilePath) {
+        try {
+          await performSave(currentFilePath, fileMeta || undefined);
+        } catch (error) {
+          console.error('Autosave failed:', error);
+        }
+      }
+      autosaveTimeout = null;
+    }, 2000);
+  }
 
   return {
     initialize: loadDoc,
     loadDocument: loadDoc,
-
-    loadFromPath: async (path: string) => {
-      const data = await storage.loadDocument(path);
-
-      const ancestorRegistry = buildAncestorRegistry(data.rootNodeId, data.nodes);
-
-      set({
-        nodes: data.nodes,
-        rootNodeId: data.rootNodeId,
-        ancestorRegistry,
-        currentFilePath: path,
-        fileMeta: { created: data.created, author: data.author },
-      });
-
-      return { created: data.created, author: data.author };
-    },
-
-    saveToPath: async (path: string, fileMeta?: { created: string; author: string }) => {
-      await performSave(path, fileMeta);
-      set({ currentFilePath: path, fileMeta: fileMeta || null });
-    },
-
-    setFilePath: (path: string | null, meta?: { created: string; author: string } | null) => {
-      set({ currentFilePath: path, fileMeta: meta || null });
-    },
-
-    autoSave: () => {
-      if (autosaveTimeout) {
-        clearTimeout(autosaveTimeout);
-      }
-
-      autosaveTimeout = setTimeout(async () => {
-        const { currentFilePath, fileMeta } = get();
-        if (currentFilePath) {
-          try {
-            await performSave(currentFilePath, fileMeta || undefined);
-          } catch (error) {
-            console.error('Autosave failed:', error);
-          }
-        }
-        autosaveTimeout = null;
-      }, 2000);
-    },
+    loadFromPath,
+    saveToPath,
+    setFilePath,
+    autoSave,
   };
 };

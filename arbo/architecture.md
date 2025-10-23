@@ -307,6 +307,40 @@ const updateContent = useStore((state) => state.actions.updateContent);
 Components → Hooks (React) → Store Actions (Business Logic) → Services (Infrastructure)
 ```
 
+## Action Factory Function Convention
+
+**Decision:** Define actions as separate named functions, return references to them.
+
+**Pattern:**
+```typescript
+// ✅ CORRECT
+export const createNodeActions = (get, set, triggerAutosave?): NodeActions => {
+  function selectNode(nodeId: string, cursorPosition?: number): void {
+    set({ selectedNodeId: nodeId, cursorPosition: cursorPosition ?? 0 });
+  }
+
+  function updateContent(nodeId: string, content: string): void {
+    const { nodes } = get();
+    set({ nodes: { ...nodes, [nodeId]: { ...nodes[nodeId], content } } });
+    triggerAutosave?.();
+  }
+
+  return { selectNode, updateContent };
+};
+
+// ❌ INCORRECT - Inline arrow functions
+export const createNodeActions = (get, set, triggerAutosave?): NodeActions => ({
+  selectNode: (nodeId, cursorPosition?) => { /* ... */ },
+  updateContent: (nodeId, content) => { /* ... */ },
+});
+```
+
+**Scope:**
+- ✅ Action factories: `createNodeActions`, `createFileActions`, etc.
+- ❌ Zustand stores: `useFilesStore`, `useToastStore` (use standard Zustand pattern)
+
+**Rationale:** Consistency, better readability, easier to maintain, better stack traces.
+
 ## Multi-File Tree Store Architecture
 
 **Decision:** Use factory pattern with context provider. Each open file gets its own independent tree store instance.
@@ -785,4 +819,4 @@ useEffect(() => {
 
 **Rationale:** For Electron desktop apps with system-level side effects, dev/prod consistency outweighs the benefits of Strict Mode's double-invocation checks.
 
-**Update this file when making new architectural decisions.**
+**Update this file when making new architectural decisions. Be concise - focus on the decision, pattern, and rationale. Avoid verbose explanations.**
