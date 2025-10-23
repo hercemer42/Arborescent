@@ -52,8 +52,7 @@ export function useNodeMouse(nodeId: string) {
     // Calculate correct cursor position from click coordinates
     const position = getPositionFromCoordinates(
       contentEditableElement,
-      e.clientX,
-      e.clientY
+      e.clientX
     );
 
     setRememberedVisualX(null);

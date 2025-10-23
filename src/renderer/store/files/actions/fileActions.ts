@@ -4,7 +4,7 @@ import { logger } from '../../../services/logger';
 import { createArboFile } from '../../../utils/document';
 import { createBlankDocument } from '../../../data/defaultTemplate';
 import { File } from '../filesStore';
-import { getDisplayName } from '../../../utils/fileNaming';
+import { getDisplayName } from '../../../../shared/utils/fileNaming';
 
 export interface FileActions {
   closeFile: (filePath: string) => Promise<void>;
