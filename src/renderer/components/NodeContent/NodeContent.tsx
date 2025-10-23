@@ -37,7 +37,11 @@ export const NodeContent = memo(function NodeContent({
         className={`node-content ${isSelected ? 'selected' : ''}`}
         onContextMenu={handleContextMenu}
       >
-        {hasChildren && <ExpandToggle expanded={expanded} onToggle={onToggle} />}
+        {hasChildren && (
+          <div className={`expand-toggle-wrapper ${expanded ? 'expanded' : 'collapsed'}`}>
+            <ExpandToggle expanded={expanded} onToggle={onToggle} />
+          </div>
+        )}
 
         <StatusCheckbox
           status={node.metadata.status}
