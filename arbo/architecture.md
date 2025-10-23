@@ -2,7 +2,7 @@
 
 This document records key architectural choices made during development sessions.
 
-**Last Updated:** 2025-10-22
+**Last Updated:** 2025-10-23
 
 ## Directory Structure
 
@@ -291,8 +291,8 @@ export const createNodeActions = (get, set): NodeActions => ({
   updateContent: (nodeId, content) => { /* business logic */ },
 });
 
-// Usage in components
-const updateContent = useTreeStore((state) => state.actions.updateContent);
+// Usage in components (via context)
+const updateContent = useStore((state) => state.actions.updateContent);
 ```
 
 **Rationale:**
@@ -306,6 +306,32 @@ const updateContent = useTreeStore((state) => state.actions.updateContent);
 ```
 Components → Hooks (React) → Store Actions (Business Logic) → Services (Infrastructure)
 ```
+
+## Multi-File Tree Store Architecture
+
+**Decision:** Use factory pattern with context provider. Each open file gets its own independent tree store instance.
+
+**Problem:** Singleton stores don't work when multiple files are open simultaneously.
+
+**Solution:** `createTreeStore()` factory + `StoreManager` + `TreeStoreContext`
+
+**Structure:**
+- `createTreeStore()` - Factory creates independent store instances
+- `storeManager.getStoreForFile(path)` - One store per file path
+- `TreeStoreContext` - Provides store to components without prop drilling
+- `useStore(selector)` - Hook to access store via context
+
+**Usage:**
+```typescript
+// Components access store via context
+const node = useStore((state) => state.nodes[nodeId]);
+const selectAndEdit = useStore((state) => state.actions.selectAndEdit);
+```
+
+**Rationale:**
+- Each file needs isolated state
+- Context allows switching active store without re-mounting tree
+- No singleton limitations
 
 ## Multi-File vs Single-File Actions Separation
 
@@ -570,24 +596,35 @@ src/shared/utils/            # Platform-agnostic pure functions
 - `__mocks__/zustand.ts` - Intercepts `create()` to capture initial state and enable automatic reset
 - `src/renderer/test/setup.ts` - Calls `vi.mock('zustand')` to enable the mock
 - `src/renderer/test/helpers/mockStoreActions.ts` - Helper functions to create mock actions
-- Component tests use `useTreeStore.setState()` directly with real store
+- Component tests create store instances and provide via TreeStoreContext
 
 **Testing Pattern:**
 ```typescript
-// Use the real store with partial mock actions
-const mockActions = createPartialMockActions({
-  selectAndEdit: vi.fn(),
-  updateStatus: vi.fn(),
-});
+// Create a store instance for testing
+let store: TreeStore;
 
 beforeEach(() => {
-  useTreeStore.setState({
+  store = createTreeStore();
+  store.setState({
     nodes: {},
+    rootNodeId: 'test-node',
+    selectedNodeId: null,
     // ... other state
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    actions: mockActions as any, // Partial mocks need type assertion
+    actions: {
+      selectAndEdit: vi.fn(),
+      updateStatus: vi.fn(),
+      // ... other actions
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } as any, // Partial mocks need type assertion
   });
 });
+
+// Wrap test component with context provider
+const wrapper = ({ children }: { children: React.ReactNode }) => (
+  <TreeStoreContext.Provider value={store}>{children}</TreeStoreContext.Provider>
+);
+
+const { result } = renderHook(() => useStore((state) => state.selectedNodeId), { wrapper });
 ```
 
 **Why `as any` is needed:**
@@ -665,19 +702,20 @@ When implementing lazy loading (partial tree loading), only loaded branches need
 
 1. **Subscribe to minimal state** - Only what the component needs
    ```typescript
-   const node = useTreeStore((state) => state.nodes[nodeId]);
+   const node = useStore((state) => state.nodes[nodeId]);
    ```
 
 2. **Use `getState()` in event handlers** - One-time reads don't need subscriptions
    ```typescript
    const handleToggle = () => {
-     const { selectedNodeId, actions } = useTreeStore.getState();
+     const store = useContext(TreeStoreContext);
+     const { selectedNodeId, actions } = store!.getState();
    };
    ```
 
 3. **Conditional subscriptions** - Return same value for non-relevant components
    ```typescript
-   const cursorPosition = useTreeStore((state) =>
+   const cursorPosition = useStore((state) =>
      state.selectedNodeId === node.id ? state.cursorPosition : 0
    );
    ```

@@ -3,6 +3,7 @@ import { render, screen } from '@testing-library/react';
 import { Workspace } from './Workspace';
 import { useFilesStore } from '../../store/files/filesStore';
 import { storeManager } from '../../store/storeManager';
+import { createTreeStore } from '../../store/tree/treeStore';
 
 vi.mock('../Tree', () => ({
   Tree: () => <div data-testid="tree">Tree Component</div>,
@@ -21,7 +22,7 @@ vi.mock('../../store/storeManager', () => ({
 describe('Workspace', () => {
   beforeEach(() => {
     useFilesStore.setState({
-      openFiles: [],
+      files: [],
       activeFilePath: null,
     });
     vi.clearAllMocks();
@@ -38,12 +39,7 @@ describe('Workspace', () => {
   });
 
   it('should render TabBar and Tree when active file exists', () => {
-    const mockStore = {
-      getState: vi.fn(),
-      setState: vi.fn(),
-      subscribe: vi.fn(),
-      destroy: vi.fn(),
-    };
+    const mockStore = createTreeStore();
 
     useFilesStore.setState({ activeFilePath: '/path/to/file.arbo' });
     vi.mocked(storeManager.getStoreForFile).mockReturnValue(mockStore);
@@ -55,12 +51,7 @@ describe('Workspace', () => {
   });
 
   it('should call storeManager.getStoreForFile with active file path', () => {
-    const mockStore = {
-      getState: vi.fn(),
-      setState: vi.fn(),
-      subscribe: vi.fn(),
-      destroy: vi.fn(),
-    };
+    const mockStore = createTreeStore();
 
     useFilesStore.setState({ activeFilePath: '/test/path.arbo' });
     vi.mocked(storeManager.getStoreForFile).mockReturnValue(mockStore);
@@ -71,12 +62,7 @@ describe('Workspace', () => {
   });
 
   it('should render with workspace class', () => {
-    const mockStore = {
-      getState: vi.fn(),
-      setState: vi.fn(),
-      subscribe: vi.fn(),
-      destroy: vi.fn(),
-    };
+    const mockStore = createTreeStore();
 
     useFilesStore.setState({ activeFilePath: '/path/to/file.arbo' });
     vi.mocked(storeManager.getStoreForFile).mockReturnValue(mockStore);
@@ -90,7 +76,7 @@ describe('Workspace', () => {
 
   it('should return null if storeManager returns null', () => {
     useFilesStore.setState({ activeFilePath: '/path/to/file.arbo' });
-    vi.mocked(storeManager.getStoreForFile).mockReturnValue(null);
+    vi.mocked(storeManager.getStoreForFile).mockReturnValue(null as any);
 
     const { container } = render(<Workspace />);
 

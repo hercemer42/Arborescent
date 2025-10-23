@@ -21,6 +21,12 @@ export interface TreeState {
 
 const storageService = new StorageService();
 
+/**
+ * We use a factory pattern instead of a singleton because each open file needs its own
+ * independent tree state.
+ * The storeManager handles store lifecycle, and TreeStoreContext allows switching
+ * between file stores without prop drilling
+ */
 export function createTreeStore() {
   return create<TreeState>((set, get) => {
     const persistenceActions = createPersistenceActions(get, set, storageService);
@@ -46,6 +52,3 @@ export function createTreeStore() {
 }
 
 export type TreeStore = ReturnType<typeof createTreeStore>;
-
-// Default store for backward compatibility
-export const useTreeStore = createTreeStore();
