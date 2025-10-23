@@ -10,6 +10,33 @@ vi.mock('../../services/cursorService', () => ({
   getVisualCursorPosition: vi.fn(() => 10),
 }));
 
+function createKeyboardEvent(
+  key: string,
+  options: {
+    shiftKey?: boolean;
+    ctrlKey?: boolean;
+    metaKey?: boolean;
+  } = {}
+): React.KeyboardEvent {
+  const nativeEvent = new KeyboardEvent('keydown', {
+    key,
+    shiftKey: options.shiftKey || false,
+    ctrlKey: options.ctrlKey || false,
+    metaKey: options.metaKey || false,
+    bubbles: true,
+  });
+
+  return {
+    key,
+    shiftKey: options.shiftKey || false,
+    ctrlKey: options.ctrlKey || false,
+    metaKey: options.metaKey || false,
+    preventDefault: vi.fn(),
+    stopPropagation: vi.fn(),
+    nativeEvent,
+  } as unknown as React.KeyboardEvent;
+}
+
 describe('useNodeKeyboard', () => {
   let store: TreeStore;
   const mockMoveToPrevious = vi.fn();
@@ -95,10 +122,7 @@ describe('useNodeKeyboard', () => {
       { wrapper }
     );
 
-    const mockEvent = {
-      key: 'Enter',
-      preventDefault: vi.fn(),
-    } as unknown as React.KeyboardEvent;
+    const mockEvent = createKeyboardEvent('Enter');
 
     result.current.handleKeyDown(mockEvent);
 
@@ -120,11 +144,7 @@ describe('useNodeKeyboard', () => {
       { wrapper }
     );
 
-    const mockEvent = {
-      key: 'Tab',
-      shiftKey: false,
-      preventDefault: vi.fn(),
-    } as unknown as React.KeyboardEvent;
+    const mockEvent = createKeyboardEvent('Tab');
 
     result.current.handleKeyDown(mockEvent);
 
@@ -146,11 +166,7 @@ describe('useNodeKeyboard', () => {
       { wrapper }
     );
 
-    const mockEvent = {
-      key: 'Tab',
-      shiftKey: true,
-      preventDefault: vi.fn(),
-    } as unknown as React.KeyboardEvent;
+    const mockEvent = createKeyboardEvent('Tab', { shiftKey: true });
 
     result.current.handleKeyDown(mockEvent);
 
@@ -172,11 +188,7 @@ describe('useNodeKeyboard', () => {
       { wrapper }
     );
 
-    const mockEvent = {
-      key: 'ArrowUp',
-      shiftKey: true,
-      preventDefault: vi.fn(),
-    } as unknown as React.KeyboardEvent;
+    const mockEvent = createKeyboardEvent('ArrowUp', { shiftKey: true });
 
     result.current.handleKeyDown(mockEvent);
 
@@ -198,11 +210,7 @@ describe('useNodeKeyboard', () => {
       { wrapper }
     );
 
-    const mockEvent = {
-      key: 'ArrowDown',
-      shiftKey: true,
-      preventDefault: vi.fn(),
-    } as unknown as React.KeyboardEvent;
+    const mockEvent = createKeyboardEvent('ArrowDown', { shiftKey: true });
 
     result.current.handleKeyDown(mockEvent);
 
@@ -224,12 +232,7 @@ describe('useNodeKeyboard', () => {
       { wrapper }
     );
 
-    const mockEvent = {
-      key: 'd',
-      ctrlKey: true,
-      metaKey: false,
-      preventDefault: vi.fn(),
-    } as unknown as React.KeyboardEvent;
+    const mockEvent = createKeyboardEvent('d', { ctrlKey: true });
 
     result.current.handleKeyDown(mockEvent);
 
@@ -251,12 +254,7 @@ describe('useNodeKeyboard', () => {
       { wrapper }
     );
 
-    const mockEvent = {
-      key: 'd',
-      ctrlKey: false,
-      metaKey: true,
-      preventDefault: vi.fn(),
-    } as unknown as React.KeyboardEvent;
+    const mockEvent = createKeyboardEvent('d', { metaKey: true });
 
     result.current.handleKeyDown(mockEvent);
 
@@ -278,10 +276,7 @@ describe('useNodeKeyboard', () => {
       { wrapper }
     );
 
-    const mockEvent = {
-      key: 'Escape',
-      preventDefault: vi.fn(),
-    } as unknown as React.KeyboardEvent;
+    const mockEvent = createKeyboardEvent('Escape');
 
     result.current.handleKeyDown(mockEvent);
 

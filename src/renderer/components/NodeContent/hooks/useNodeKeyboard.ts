@@ -90,8 +90,7 @@ export function useNodeKeyboard({
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
-    // Use nativeEvent for real events, fallback to e for test mocks
-    const event = (e.nativeEvent || e) as KeyboardEvent;
+    const event = e.nativeEvent as KeyboardEvent;
 
     if (e.key === 'ArrowUp') {
       if (e.shiftKey) {
