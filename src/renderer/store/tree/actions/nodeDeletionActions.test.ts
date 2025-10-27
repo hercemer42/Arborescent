@@ -85,6 +85,16 @@ describe('nodeDeletionActions', () => {
       expect(state.nodes['root'].children).toEqual(['node-1', 'node-2']);
     });
 
+    it('should not require confirmation if all children are already deleted', () => {
+      actions.deleteNode('node-3');
+      expect(state.nodes['node-3'].metadata.deleted).toBe(true);
+
+      const result = actions.deleteNode('node-1', false);
+
+      expect(result).toBe(true);
+      expect(state.nodes['node-1'].metadata.deleted).toBe(true);
+    });
+
     it('should delete node with children when confirmed', () => {
       const result = actions.deleteNode('node-1', true);
 
@@ -300,6 +310,36 @@ describe('nodeDeletionActions', () => {
 
       expect(state.nodes['node-2']).toBeUndefined();
       expect(state.nodes['node-3']).toBeUndefined();
+      expect(state.deletedNodes).toHaveLength(0);
+    });
+
+    it('should handle sequential undo when child deleted before parent', () => {
+      // Delete child first
+      actions.deleteNode('node-3');
+      expect(state.nodes['node-3'].metadata.deleted).toBe(true);
+      expect(state.deletedNodes).toHaveLength(1);
+      const childBufferId = state.nodes['node-3'].metadata.deleteBufferId;
+
+      // Delete parent (node-1 has node-3 as child, which is already deleted)
+      actions.deleteNode('node-1', true);
+      expect(state.nodes['node-1'].metadata.deleted).toBe(true);
+      expect(state.deletedNodes).toHaveLength(2);
+      const parentBufferId = state.nodes['node-1'].metadata.deleteBufferId;
+
+      // Child should still have its original buffer ID
+      expect(state.nodes['node-3'].metadata.deleteBufferId).toBe(childBufferId);
+      // Parent should have a different buffer ID
+      expect(parentBufferId).not.toBe(childBufferId);
+
+      // First undo should restore only the parent
+      actions.undeleteNode();
+      expect(state.nodes['node-1'].metadata.deleted).toBeUndefined();
+      expect(state.nodes['node-3'].metadata.deleted).toBe(true); // Child still deleted
+      expect(state.deletedNodes).toHaveLength(1);
+
+      // Second undo should restore the child
+      actions.undeleteNode();
+      expect(state.nodes['node-3'].metadata.deleted).toBeUndefined();
       expect(state.deletedNodes).toHaveLength(0);
     });
   });

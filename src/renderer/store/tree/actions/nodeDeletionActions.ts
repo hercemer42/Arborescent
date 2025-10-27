@@ -1,10 +1,12 @@
 import { TreeNode } from '../../../../shared/types';
 import { DeletedNodeEntry } from '../treeStore';
 import {
-  calculateNextSelection,
   isLastRootLevelNode,
   getParentNode,
+  getVisibleChildren,
+  findPreviousVisibleNode,
 } from '../../../utils/nodeHelpers';
+import { v4 as uuidv4 } from 'uuid';
 
 export const MAX_DELETED_NODES = 10;
 
@@ -27,7 +29,8 @@ type StoreSetter = (partial: Partial<StoreState>) => void;
 function recursivelySoftDelete(
   nodeId: string,
   nodes: Record<string, TreeNode>,
-  timestamp: number
+  timestamp: number,
+  deleteBufferId: string
 ): Record<string, TreeNode> {
   const node = nodes[nodeId];
   if (!node) return nodes;
@@ -35,24 +38,29 @@ function recursivelySoftDelete(
   let updatedNodes = { ...nodes };
 
   for (const childId of node.children) {
-    updatedNodes = recursivelySoftDelete(childId, updatedNodes, timestamp);
+    updatedNodes = recursivelySoftDelete(childId, updatedNodes, timestamp, deleteBufferId);
   }
 
-  updatedNodes[nodeId] = {
-    ...node,
-    metadata: {
-      ...node.metadata,
-      deleted: true,
-      deletedAt: timestamp,
-    },
-  };
+  // Only soft-delete if not already deleted (preserve existing deletion metadata)
+  if (!node.metadata.deleted) {
+    updatedNodes[nodeId] = {
+      ...node,
+      metadata: {
+        ...node.metadata,
+        deleted: true,
+        deletedAt: timestamp,
+        deleteBufferId,
+      },
+    };
+  }
 
   return updatedNodes;
 }
 
 function recursivelyUndelete(
   nodeId: string,
-  nodes: Record<string, TreeNode>
+  nodes: Record<string, TreeNode>,
+  deleteBufferId: string
 ): Record<string, TreeNode> {
   const node = nodes[nodeId];
   if (!node) return nodes;
@@ -60,16 +68,20 @@ function recursivelyUndelete(
   let updatedNodes = { ...nodes };
 
   for (const childId of node.children) {
-    updatedNodes = recursivelyUndelete(childId, updatedNodes);
+    updatedNodes = recursivelyUndelete(childId, updatedNodes, deleteBufferId);
   }
 
-  const { deleted, deletedAt, ...remainingMetadata } = node.metadata;
-  void deleted;
-  void deletedAt;
-  updatedNodes[nodeId] = {
-    ...node,
-    metadata: remainingMetadata,
-  };
+  // Only undelete if it belongs to this buffer entry
+  if (node.metadata.deleteBufferId === deleteBufferId) {
+    const { deleted, deletedAt, deleteBufferId: _deleteBufferId, ...remainingMetadata } = node.metadata;
+    void deleted;
+    void deletedAt;
+    void _deleteBufferId;
+    updatedNodes[nodeId] = {
+      ...node,
+      metadata: remainingMetadata,
+    };
+  }
 
   return updatedNodes;
 }
@@ -117,11 +129,13 @@ function clearNodeContent(
 
 function addDeletedNodeToBuffer(
   deletedNodes: DeletedNodeEntry[],
-  nodeId: string
+  nodeId: string,
+  deleteBufferId: string
 ): { updatedBuffer: DeletedNodeEntry[]; nodesToPurge: DeletedNodeEntry[] } {
   const newDeletedEntry: DeletedNodeEntry = {
     rootNodeId: nodeId,
     deletedAt: Date.now(),
+    deleteBufferId,
   };
 
   const updatedDeletedNodes = [...deletedNodes, newDeletedEntry];
@@ -151,8 +165,9 @@ function performDeletion(
   deletedNodes: DeletedNodeEntry[]
 ): { finalNodes: Record<string, TreeNode>; updatedBuffer: DeletedNodeEntry[] } {
   const timestamp = Date.now();
-  const updatedNodes = recursivelySoftDelete(nodeId, nodes, timestamp);
-  const { updatedBuffer, nodesToPurge } = addDeletedNodeToBuffer(deletedNodes, nodeId);
+  const deleteBufferId = uuidv4();
+  const updatedNodes = recursivelySoftDelete(nodeId, nodes, timestamp, deleteBufferId);
+  const { updatedBuffer, nodesToPurge } = addDeletedNodeToBuffer(deletedNodes, nodeId, deleteBufferId);
   const finalNodes = applyBufferPurge(updatedNodes, nodesToPurge);
   return { finalNodes, updatedBuffer };
 }
@@ -168,7 +183,8 @@ export const createNodeDeletionActions = (
     const node = nodes[nodeId];
     if (!node) return true;
 
-    if (node.children.length > 0 && !confirmed) {
+    const visibleChildren = getVisibleChildren(node.children, nodes);
+    if (visibleChildren.length > 0 && !confirmed) {
       return false;
     }
 
@@ -182,12 +198,22 @@ export const createNodeDeletionActions = (
       return true;
     }
 
+    // Find previous visible node BEFORE deletion (so the node is still in its parent's children)
+    const nextSelectedNodeId = findPreviousVisibleNode(
+      nodeId,
+      nodes,
+      rootNodeId,
+      state.ancestorRegistry
+    );
+
     const { finalNodes, updatedBuffer } = performDeletion(nodeId, nodes, deletedNodes);
-    const nextSelectedNodeId = calculateNextSelection(nodeId, parentId, rootNodeId, parent, finalNodes);
+
+    // If no previous node, move to parent (unless parent is root)
+    const finalSelectedNodeId = nextSelectedNodeId || (parentId !== rootNodeId ? parentId : null);
 
     set({
       nodes: finalNodes,
-      selectedNodeId: nextSelectedNodeId,
+      selectedNodeId: finalSelectedNodeId,
       cursorPosition: 0,
       deletedNodes: updatedBuffer,
     });
@@ -208,7 +234,7 @@ export const createNodeDeletionActions = (
 
     if (!deletedNode || !deletedNode.metadata.deleted) return false;
 
-    const updatedNodes = recursivelyUndelete(deletedNodeId, nodes);
+    const updatedNodes = recursivelyUndelete(deletedNodeId, nodes, lastDeleted.deleteBufferId);
 
     set({
       nodes: updatedNodes,

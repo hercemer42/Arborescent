@@ -10,6 +10,7 @@ import { StorageService } from '@platform';
 export interface DeletedNodeEntry {
   rootNodeId: string;
   deletedAt: number;
+  deleteBufferId: string;
 }
 
 export interface TreeState {

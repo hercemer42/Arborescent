@@ -1,5 +1,5 @@
 import { TreeNode } from '../../../../shared/types';
-import { updateNodeMetadata, findPreviousVisibleNode, findNextVisibleNode } from '../../../utils/nodeHelpers';
+import { updateNodeMetadata, findPreviousVisibleNode, findNextVisibleNode, getVisibleChildren } from '../../../utils/nodeHelpers';
 
 export interface NavigationActions {
   moveUp: (cursorPosition?: number, rememberedVisualX?: number | null) => void;
@@ -54,9 +54,10 @@ export const createNavigationActions = (
     const { selectedNodeId, nodes, rootNodeId, ancestorRegistry } = get();
     if (!selectedNodeId) {
       const root = nodes[rootNodeId];
-      if (root && root.children.length > 0) {
+      const visibleChildren = getVisibleChildren(root?.children || [], nodes);
+      if (visibleChildren.length > 0) {
         set({
-          selectedNodeId: root.children[0],
+          selectedNodeId: visibleChildren[0],
           cursorPosition: 0,
           rememberedVisualX: null,
         });
