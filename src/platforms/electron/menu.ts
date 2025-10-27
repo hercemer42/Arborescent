@@ -2,18 +2,18 @@ import { MenuService } from '../../shared/interfaces';
 
 export class ElectronMenuService implements MenuService {
   onMenuNew(callback: () => void): void {
-    window.electron.onMenuNew(callback);
+    window.electron.setMenuNewHandler(callback);
   }
 
   onMenuOpen(callback: () => void): void {
-    window.electron.onMenuOpen(callback);
+    window.electron.setMenuOpenHandler(callback);
   }
 
   onMenuSave(callback: () => void): void {
-    window.electron.onMenuSave(callback);
+    window.electron.setMenuSaveHandler(callback);
   }
 
   onMenuSaveAs(callback: () => void): void {
-    window.electron.onMenuSaveAs(callback);
+    window.electron.setMenuSaveAsHandler(callback);
   }
 }

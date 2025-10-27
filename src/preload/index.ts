@@ -20,23 +20,23 @@ contextBridge.exposeInMainWorld('electron', {
   saveTempFilesMetadata: (metadata: string) =>
     ipcRenderer.invoke('save-temp-files-metadata', metadata),
   getTempFilesMetadata: () => ipcRenderer.invoke('get-temp-files-metadata'),
-  onMenuNew: (callback: () => void) => {
+  setMenuNewHandler: (callback: () => void) => {
     ipcRenderer.removeAllListeners('menu-new');
     ipcRenderer.on('menu-new', callback);
   },
-  onMenuOpen: (callback: () => void) => {
+  setMenuOpenHandler: (callback: () => void) => {
     ipcRenderer.removeAllListeners('menu-open');
     ipcRenderer.on('menu-open', callback);
   },
-  onMenuSave: (callback: () => void) => {
+  setMenuSaveHandler: (callback: () => void) => {
     ipcRenderer.removeAllListeners('menu-save');
     ipcRenderer.on('menu-save', callback);
   },
-  onMenuSaveAs: (callback: () => void) => {
+  setMenuSaveAsHandler: (callback: () => void) => {
     ipcRenderer.removeAllListeners('menu-save-as');
     ipcRenderer.on('menu-save-as', callback);
   },
-  onMainError: (callback: (message: string) => void) => {
+  setMainErrorHandler: (callback: (message: string) => void) => {
     ipcRenderer.removeAllListeners('main-error');
     ipcRenderer.on('main-error', (_event, message) => callback(message));
   },

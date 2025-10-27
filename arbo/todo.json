@@ -2,7 +2,7 @@
   "format": "Arborescent",
   "version": "1.0.0",
   "created": "2025-10-11T00:00:00.000Z",
-  "updated": "2025-10-27T17:24:22.294Z",
+  "updated": "2025-10-27T17:37:22.865Z",
   "author": "brian@brianfox.fr",
   "rootNodeId": "root",
   "nodes": {
@@ -14,6 +14,8 @@
         "fvytrtgjx",
         "44jmbkqfv",
         "8yqsdogy7",
+        "perf-main-001",
+        "7edf4296-e43d-4bdd-8afe-e1d544d6f582",
         "l7w7ssh62",
         "yifizx1mv",
         "rpl4d1hw3",
@@ -62,7 +64,7 @@
       ],
       "metadata": {
         "status": "completed",
-        "expanded": true
+        "expanded": false
       }
     },
     "utbpeq420": {
@@ -251,10 +253,7 @@
       "id": "8yqsdogy7",
       "content": "Refactor",
       "children": [
-        "emyrx9gf5",
-        "5ss280oso",
-        "fy75hwo3d",
-        "fbad0f8c-9103-4dcc-95ca-a010496b2ffa",
+        "a45af02d-395a-4622-a268-c06a8d8275ae",
         "21940e44-bfb0-42ae-ba8d-25cac54e5231",
         "14885be8-7272-4f43-831a-61543594f9a2"
       ],
@@ -880,6 +879,197 @@
         "deleted": true,
         "deletedAt": 1761585856375,
         "deleteBufferId": "c06c00ea-cc57-405f-8cb6-30c3c02afe84"
+      }
+    },
+    "7edf4296-e43d-4bdd-8afe-e1d544d6f582": {
+      "id": "7edf4296-e43d-4bdd-8afe-e1d544d6f582",
+      "content": "",
+      "children": [],
+      "metadata": {
+        "status": "pending",
+        "deleted": true,
+        "deletedAt": 1761586282662,
+        "deleteBufferId": "62b4ac60-ed26-4f0c-812d-588d464e0acc"
+      }
+    },
+    "a45af02d-395a-4622-a268-c06a8d8275ae": {
+      "id": "a45af02d-395a-4622-a268-c06a8d8275ae",
+      "content": "Done",
+      "children": [
+        "emyrx9gf5",
+        "5ss280oso",
+        "fy75hwo3d",
+        "fbad0f8c-9103-4dcc-95ca-a010496b2ffa"
+      ],
+      "metadata": {
+        "status": "completed",
+        "expanded": false
+      }
+    },
+    "perf-main-001": {
+      "id": "perf-main-001",
+      "content": "Performance Issues",
+      "children": [
+        "perf-high-001",
+        "perf-med-001",
+        "perf-low-001"
+      ],
+      "metadata": {
+        "status": "pending",
+        "expanded": true
+      }
+    },
+    "perf-high-001": {
+      "id": "perf-high-001",
+      "content": "High Priority",
+      "children": [
+        "perf-high-leak-001",
+        "perf-high-leak-002",
+        "perf-high-render-001",
+        "perf-high-render-002",
+        "perf-high-render-003"
+      ],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "perf-high-leak-001": {
+      "id": "perf-high-leak-001",
+      "content": "NOT A LEAK - Improved naming: preload uses setMenuNewHandler, renderer uses onMenuNew",
+      "children": [],
+      "metadata": {
+        "status": "completed"
+      }
+    },
+    "perf-high-leak-002": {
+      "id": "perf-high-leak-002",
+      "content": "NOT A LEAK - Improved naming: preload uses setMainErrorHandler, renderer uses onError",
+      "children": [],
+      "metadata": {
+        "status": "completed"
+      }
+    },
+    "perf-high-render-001": {
+      "id": "perf-high-render-001",
+      "content": "CRITICAL: Zustand over-selection in TreeNode.tsx:17 - selecting entire nodes object causes all nodes to re-render",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "perf-high-render-002": {
+      "id": "perf-high-render-002",
+      "content": "CRITICAL: Zustand over-selection in Tree.tsx:10 - same issue at tree level",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "perf-high-render-003": {
+      "id": "perf-high-render-003",
+      "content": "Inline style object in TreeNode.tsx:47 - creates new object for every node on every render",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "perf-med-001": {
+      "id": "perf-med-001",
+      "content": "Medium Priority",
+      "children": [
+        "perf-med-inline-001",
+        "perf-med-inline-002",
+        "perf-med-inline-003",
+        "perf-med-inline-004",
+        "perf-med-memo-001",
+        "perf-med-deps-001"
+      ],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "perf-med-inline-001": {
+      "id": "perf-med-inline-001",
+      "content": "Inline functions in NodeContent.tsx:48 - new function for every node",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "perf-med-inline-002": {
+      "id": "perf-med-inline-002",
+      "content": "Inline functions in TabBar.tsx:26-27 - new functions for every tab",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "perf-med-inline-003": {
+      "id": "perf-med-inline-003",
+      "content": "Inline functions in ExpandToggle.tsx:19-26 - multiple inline handlers",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "perf-med-inline-004": {
+      "id": "perf-med-inline-004",
+      "content": "Inline functions in StatusCheckbox.tsx:27-30 and ToastContainer.tsx:22",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "perf-med-memo-001": {
+      "id": "perf-med-memo-001",
+      "content": "Missing memoization on Tree, Workspace, StatusCheckbox, ExpandToggle components",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "perf-med-deps-001": {
+      "id": "perf-med-deps-001",
+      "content": "Large dependency arrays in useTreeMenu.ts:25 causing frequent effect re-runs",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "perf-low-001": {
+      "id": "perf-low-001",
+      "content": "Low Priority",
+      "children": [
+        "perf-low-state-001",
+        "perf-low-memo-001",
+        "perf-low-inline-001"
+      ],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "perf-low-state-001": {
+      "id": "perf-low-state-001",
+      "content": "Module-level state in useNodeKeyboard.ts:17 - shared across all component instances",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "perf-low-memo-001": {
+      "id": "perf-low-memo-001",
+      "content": "useMemo with unstable dependencies in useNodeContextMenu.ts:27-36",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "perf-low-inline-001": {
+      "id": "perf-low-inline-001",
+      "content": "Minor inline objects in ContextMenu.tsx:46 and ToastContainer.tsx:16",
+      "children": [],
+      "metadata": {
+        "status": "pending"
       }
     }
   }

@@ -99,11 +99,11 @@ declare global {
       listTempFiles: () => Promise<string[]>;
       saveTempFilesMetadata: (metadata: string) => Promise<void>;
       getTempFilesMetadata: () => Promise<string | null>;
-      onMenuNew: (callback: () => void) => void;
-      onMenuOpen: (callback: () => void) => void;
-      onMenuSave: (callback: () => void) => void;
-      onMenuSaveAs: (callback: () => void) => void;
-      onMainError: (callback: (message: string) => void) => void;
+      setMenuNewHandler: (callback: () => void) => void;
+      setMenuOpenHandler: (callback: () => void) => void;
+      setMenuSaveHandler: (callback: () => void) => void;
+      setMenuSaveAsHandler: (callback: () => void) => void;
+      setMainErrorHandler: (callback: (message: string) => void) => void;
     };
   }
 }
