@@ -5,6 +5,7 @@ import { matchesHotkey } from '../../../data/hotkeyConfig';
 export function useTreeKeyboard() {
   const moveUp = useStore((state) => state.actions.moveUp);
   const moveDown = useStore((state) => state.actions.moveDown);
+  const undeleteNode = useStore((state) => state.actions.undeleteNode);
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -12,6 +13,9 @@ export function useTreeKeyboard() {
         moveUp();
       } else if (matchesHotkey(event, 'navigation', 'moveDown')) {
         moveDown();
+      } else if (matchesHotkey(event, 'actions', 'undeleteNode')) {
+        event.preventDefault();
+        undeleteNode();
       }
     };
 
@@ -20,5 +24,5 @@ export function useTreeKeyboard() {
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [moveUp, moveDown]);
+  }, [moveUp, moveDown, undeleteNode]);
 }

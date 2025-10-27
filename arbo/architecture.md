@@ -265,16 +265,17 @@ import { TreeNode, NodeStatus, Document } from '../../../shared/types';
 ```
 src/renderer/store/
 ├── files/
-│   ├── filesStore.ts              # Multi-file management (tabs, workspace)
+│   ├── filesStore.ts                # Multi-file management (tabs, workspace)
 │   └── actions/
-│       └── fileActions.ts         # File orchestration (open/close/save dialogs)
+│       └── fileActions.ts           # File orchestration (open/close/save dialogs)
 └── tree/
-    ├── treeStore.ts               # Tree state + actions interface
+    ├── treeStore.ts                 # Tree state + actions interface
     └── actions/
-        ├── nodeActions.ts         # Node CRUD operations
-        ├── navigationActions.ts   # Keyboard navigation
-        ├── persistenceActions.ts  # Document I/O (load/save/autosave)
-        └── treeStructureActions.ts # Tree structure modifications
+        ├── nodeActions.ts           # Node CRUD operations
+        ├── navigationActions.ts     # Keyboard navigation
+        ├── persistenceActions.ts    # Document I/O (load/save/autosave)
+        ├── nodeMovementActions.ts   # Movement operations (indent/outdent/up/down)
+        └── nodeDeletionActions.ts   # Soft-delete operations
 ```
 
 **Pattern:**
@@ -306,6 +307,66 @@ const updateContent = useStore((state) => state.actions.updateContent);
 ```
 Components → Hooks (React) → Store Actions (Business Logic) → Services (Infrastructure)
 ```
+
+## Focused Actions Pattern
+
+**Decision:** Split large action files into focused modules by activity, compose them directly in the store.
+
+**Pattern:**
+```
+actions/
+├── nodeMovementActions.ts       # Movement operations
+└── nodeDeletionActions.ts       # Deletion operations
+```
+
+**Example:**
+```typescript
+// nodeMovementActions.ts - Focused module
+export interface NodeMovementActions {
+  indentNode: (nodeId: string) => void;
+  outdentNode: (nodeId: string) => void;
+  moveNodeUp: (nodeId: string) => void;
+  moveNodeDown: (nodeId: string) => void;
+}
+
+export const createNodeMovementActions = (get, set): NodeMovementActions => {
+  // Internal helpers as private functions
+  function reparentNode(...) { }
+  function swapSiblings(...) { }
+
+  // Public interface
+  return { indentNode, outdentNode, moveNodeUp, moveNodeDown };
+};
+
+// treeStore.ts - Composition in store
+export const createTreeStore = () => create<TreeState>((set, get) => ({
+  // ... state
+  actions: {
+    ...createNodeActions(get, set),
+    ...createNodeMovementActions(get, set),
+    ...createNodeDeletionActions(get, set),
+  }
+}));
+```
+
+**Pure functions go in utils:**
+- Deletion-related transformations: `recursivelyMarkAsDeleted()` lives in actions (modifies state)
+- Generic helpers: `getVisibleChildren()` lives in utils (pure filter function)
+
+**Test organization:**
+```
+actions/
+├── nodeMovementActions.ts
+├── nodeMovementActions.test.ts   # Tests movement operations
+├── nodeDeletionActions.ts
+└── nodeDeletionActions.test.ts   # Tests deletion operations
+```
+
+**Rationale:**
+- Keeps related operations together in focused files
+- Store composes actions directly without extra indirection
+- Each module has single responsibility
+- Avoids unnecessary composition layers when only spreading actions
 
 ## Action Factory Function Convention
 
@@ -339,7 +400,10 @@ export const createNodeActions = (get, set, triggerAutosave?): NodeActions => ({
 - ✅ Action factories: `createNodeActions`, `createFileActions`, etc.
 - ❌ Zustand stores: `useFilesStore`, `useToastStore` (use standard Zustand pattern)
 
-**Rationale:** Consistency, better readability, easier to maintain, better stack traces.
+**Rationale:**
+- Actions defined inside factory capture `get`, `set`, and `triggerAutosave` via closure
+- Named functions provide better stack traces than arrow functions
+- Consistency, better readability, easier to maintain
 
 ## Multi-File Tree Store Architecture
 

@@ -129,6 +129,7 @@ describe('hotkeyConfig', () => {
         actions: {
           toggleTaskStatus: 'x',
           deleteNode: 'd',
+          undeleteNode: 'Mod+Shift+d',
           undo: 'u',
           redo: 'Mod+r',
         },
@@ -172,6 +173,7 @@ describe('hotkeyConfig', () => {
         actions: {
           toggleTaskStatus: 'x',
           deleteNode: 'd',
+          undeleteNode: 'Mod+Shift+d',
           undo: 'u',
           redo: 'Mod+r',
         },

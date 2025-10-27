@@ -2,7 +2,7 @@
   "format": "Arborescent",
   "version": "1.0.0",
   "created": "2025-10-11T00:00:00.000Z",
-  "updated": "2025-10-23T20:04:29.817Z",
+  "updated": "2025-10-27T11:56:12.801Z",
   "author": "brian@brianfox.fr",
   "rootNodeId": "root",
   "nodes": {
@@ -12,10 +12,11 @@
       "content": "Arborescent Development",
       "children": [
         "fvytrtgjx",
+        "44jmbkqfv",
         "8yqsdogy7",
+        "l7w7ssh62",
         "yifizx1mv",
         "rpl4d1hw3",
-        "44jmbkqfv",
         "byqndehy4",
         "pdt35vy1z",
         "utbpeq420",
@@ -39,10 +40,24 @@
     },
     "44jmbkqfv": {
       "id": "44jmbkqfv",
-      "content": "Implement an undo system",
-      "children": [],
+      "content": "Implement the done/delete system",
+      "children": [
+        "7yv24ywtt",
+        "cij2x0vpx",
+        "o64287195",
+        "dhcbknjlb",
+        "1wf47fb81",
+        "2wbxyk587",
+        "k4yiytyw0",
+        "njrw983i4",
+        "vmp8qtbbt",
+        "318mtpgx1",
+        "h9rd6hple",
+        "h3zc7f755"
+      ],
       "metadata": {
-        "status": "☐"
+        "status": "☐",
+        "expanded": true
       }
     },
     "utbpeq420": {
@@ -227,7 +242,10 @@
     "8yqsdogy7": {
       "id": "8yqsdogy7",
       "content": "Refactor",
-      "children": [],
+      "children": [
+        "emyrx9gf5",
+        "fy75hwo3d"
+      ],
       "metadata": {
         "status": "☐"
       }
@@ -377,6 +395,319 @@
     "en0dw0bvq": {
       "id": "en0dw0bvq",
       "content": "integrate a console ?",
+      "children": [],
+      "metadata": {
+        "status": "☐"
+      }
+    },
+    "l7w7ssh62": {
+      "id": "l7w7ssh62",
+      "content": "Bugs",
+      "children": [
+        "p4b94svjw"
+      ],
+      "metadata": {
+        "status": "☐"
+      }
+    },
+    "p4b94svjw": {
+      "id": "p4b94svjw",
+      "content": "Keyboard browsing perf bug is back - skips nodes",
+      "children": [],
+      "metadata": {
+        "status": "☐"
+      }
+    },
+    "7yv24ywtt": {
+      "id": "7yv24ywtt",
+      "content": "Soft delete anything that is deleted so that it is hidden in the view but not actually removed",
+      "children": [],
+      "metadata": {
+        "status": "✓"
+      }
+    },
+    "cij2x0vpx": {
+      "id": "cij2x0vpx",
+      "content": "Have a buffer of deletions, anything that goes over 10 gets permadeleted",
+      "children": [],
+      "metadata": {
+        "status": "✓"
+      }
+    },
+    "o64287195": {
+      "id": "o64287195",
+      "content": "Each mark on the buffer includes a node and all its ancestors - that is if a node has 10 descendants, the entire branch still only counts for one mark on the buffer ",
+      "children": [],
+      "metadata": {
+        "status": "✓"
+      }
+    },
+    "dhcbknjlb": {
+      "id": "dhcbknjlb",
+      "content": "ctrl + shift + d undoes node deletions until it hits the buffer limit",
+      "children": [],
+      "metadata": {
+        "status": "✓"
+      }
+    },
+    "1wf47fb81": {
+      "id": "1wf47fb81",
+      "content": "at end make tests, check linting, typescript, coverage",
+      "children": [],
+      "metadata": {
+        "status": "✓"
+      }
+    },
+    "2wbxyk587": {
+      "id": "2wbxyk587",
+      "content": "No comments !",
+      "children": [],
+      "metadata": {
+        "status": "✓"
+      }
+    },
+    "emyrx9gf5": {
+      "id": "emyrx9gf5",
+      "content": "Node status should not be recorded with symbols in the metadata, but with words that are restricted by an enum or type, they get transformed to symbols in the UI only",
+      "children": [],
+      "metadata": {
+        "status": "☐"
+      }
+    },
+    "wxzh88snq": {
+      "id": "wxzh88snq",
+      "content": "",
+      "children": [],
+      "metadata": {
+        "status": "☐",
+        "deleted": true,
+        "deletedAt": 1761560723223
+      }
+    },
+    "87t5xro0f": {
+      "id": "87t5xro0f",
+      "content": "",
+      "children": [],
+      "metadata": {
+        "status": "☐",
+        "deleted": true,
+        "deletedAt": 1761560733841
+      }
+    },
+    "k4yiytyw0": {
+      "id": "k4yiytyw0",
+      "content": "visibleChildren is repeated twice in tree.tsx and treenode.tsx - it should be in the nodeHelper util",
+      "children": [],
+      "metadata": {
+        "status": "✓"
+      }
+    },
+    "3sftz3ttj": {
+      "id": "3sftz3ttj",
+      "content": "",
+      "children": [],
+      "metadata": {
+        "status": "☐",
+        "deleted": true,
+        "deletedAt": 1761560846166
+      }
+    },
+    "njrw983i4": {
+      "id": "njrw983i4",
+      "content": "deleteNode in treeStructureActions is responsible for too much",
+      "children": [],
+      "metadata": {
+        "status": "✓"
+      }
+    },
+    "vmp8qtbbt": {
+      "id": "vmp8qtbbt",
+      "content": "treeStructureActions is too big and should be divided",
+      "children": [],
+      "metadata": {
+        "status": "✓"
+      }
+    },
+    "7uxxo8fif": {
+      "id": "7uxxo8fif",
+      "content": "recursivelyMarkAsDeleted and recursivelyUnmarkAsDeleted share a lot of code and could be merged into ",
+      "children": [],
+      "metadata": {
+        "status": "☐",
+        "deleted": true,
+        "deletedAt": 1761561221941
+      }
+    },
+    "h9rd6hple": {
+      "id": "h9rd6hple",
+      "content": "when undeleting a node it appears at the end of the tree and loses it's place in the hierachy - it should be restored in the right parent",
+      "children": [],
+      "metadata": {
+        "status": "☐",
+        "deleted": true,
+        "deletedAt": 1761564474946
+      }
+    },
+    "cbw2gv9gf": {
+      "id": "cbw2gv9gf",
+      "content": "werwe",
+      "children": [],
+      "metadata": {
+        "status": "☐",
+        "deleted": true,
+        "deletedAt": 1761562509782
+      }
+    },
+    "h3zc7f755": {
+      "id": "h3zc7f755",
+      "content": "tests broken down ?",
+      "children": [
+        "ffbtfdfs4",
+        "x89zcmrp3",
+        "n1qdeog1p"
+      ],
+      "metadata": {
+        "status": "☐",
+        "deleted": true,
+        "deletedAt": 1761564478627
+      }
+    },
+    "s05slozit": {
+      "id": "s05slozit",
+      "content": "sdf",
+      "children": [],
+      "metadata": {
+        "status": "☐",
+        "deleted": true,
+        "deletedAt": 1761562507646
+      }
+    },
+    "ffbtfdfs4": {
+      "id": "ffbtfdfs4",
+      "content": "testy mc test face",
+      "children": [
+        "8msqio0hn",
+        "5q4mypjy8"
+      ],
+      "metadata": {
+        "status": "☐",
+        "deleted": true,
+        "deletedAt": 1761564478627
+      }
+    },
+    "8msqio0hn": {
+      "id": "8msqio0hn",
+      "content": "blah blah blah",
+      "children": [
+        "ckbu6tfxp"
+      ],
+      "metadata": {
+        "status": "☐",
+        "deleted": true,
+        "deletedAt": 1761564478627
+      }
+    },
+    "ckbu6tfxp": {
+      "id": "ckbu6tfxp",
+      "content": "wtf",
+      "children": [
+        "u5fgddram"
+      ],
+      "metadata": {
+        "status": "☐",
+        "deleted": true,
+        "deletedAt": 1761564478627
+      }
+    },
+    "5q4mypjy8": {
+      "id": "5q4mypjy8",
+      "content": "hello I'm here",
+      "children": [],
+      "metadata": {
+        "status": "☐",
+        "deleted": true,
+        "deletedAt": 1761564478627
+      }
+    },
+    "n1qdeog1p": {
+      "id": "n1qdeog1p",
+      "content": "Hell i'm here too",
+      "children": [
+        "ofcterf6c"
+      ],
+      "metadata": {
+        "status": "☐",
+        "deleted": true,
+        "deletedAt": 1761564478627
+      }
+    },
+    "ofcterf6c": {
+      "id": "ofcterf6c",
+      "content": "blah blah",
+      "children": [],
+      "metadata": {
+        "status": "☐",
+        "deleted": true,
+        "deletedAt": 1761564478627
+      }
+    },
+    "u5fgddram": {
+      "id": "u5fgddram",
+      "content": "swer",
+      "children": [],
+      "metadata": {
+        "status": "☐",
+        "deleted": true,
+        "deletedAt": 1761564478627
+      }
+    },
+    "x89zcmrp3": {
+      "id": "x89zcmrp3",
+      "content": "really ?",
+      "children": [
+        "d7zb16jjw"
+      ],
+      "metadata": {
+        "status": "☐",
+        "deleted": true,
+        "deletedAt": 1761564478627
+      }
+    },
+    "d7zb16jjw": {
+      "id": "d7zb16jjw",
+      "content": "Does not seem to wkr very well",
+      "children": [
+        "xu6qplq39"
+      ],
+      "metadata": {
+        "status": "☐",
+        "deleted": true,
+        "deletedAt": 1761564478627
+      }
+    },
+    "xu6qplq39": {
+      "id": "xu6qplq39",
+      "content": "forgets what it has deleted",
+      "children": [],
+      "metadata": {
+        "status": "☐",
+        "deleted": true,
+        "deletedAt": 1761564478627
+      }
+    },
+    "318mtpgx1": {
+      "id": "318mtpgx1",
+      "content": "deleteNode is too big",
+      "children": [],
+      "metadata": {
+        "status": "☐",
+        "deleted": true,
+        "deletedAt": 1761566148675
+      }
+    },
+    "fy75hwo3d": {
+      "id": "fy75hwo3d",
+      "content": "Think it's time to move tests into their own subdirectory within each domain directory",
       "children": [],
       "metadata": {
         "status": "☐"

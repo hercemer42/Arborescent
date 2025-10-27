@@ -3,6 +3,7 @@ import { NodeContent } from '../NodeContent';
 import { useStore } from '../../store/tree/useStore';
 import { useActiveTreeStore } from '../../store/tree/TreeStoreContext';
 import { isDescendant as checkIsDescendant } from '../../utils/ancestry';
+import { getVisibleChildren } from '../../utils/nodeHelpers';
 import { useNodeMouse } from './hooks/useNodeMouse';
 import './TreeNode.css';
 
@@ -13,6 +14,7 @@ interface TreeNodeProps {
 
 export const TreeNode = memo(function TreeNode({ nodeId, depth = 0 }: TreeNodeProps) {
   const node = useStore((state) => state.nodes[nodeId]);
+  const nodes = useStore((state) => state.nodes);
   const isSelected = useStore((state) => state.selectedNodeId === nodeId);
   const { handleMouseDown, handleMouseMove, handleClick } = useNodeMouse(nodeId);
   const store = useActiveTreeStore();
@@ -21,7 +23,8 @@ export const TreeNode = memo(function TreeNode({ nodeId, depth = 0 }: TreeNodePr
     return null;
   }
 
-  const hasChildren = node.children.length > 0;
+  const visibleChildren = getVisibleChildren(node.children, nodes);
+  const hasChildren = visibleChildren.length > 0;
   const expanded = node.metadata.expanded ?? true;
 
   const handleToggle = () => {
@@ -55,7 +58,7 @@ export const TreeNode = memo(function TreeNode({ nodeId, depth = 0 }: TreeNodePr
 
       {expanded &&
         hasChildren &&
-        node.children.map((childId) => (
+        visibleChildren.map((childId) => (
           <TreeNode
             key={childId}
             nodeId={childId}

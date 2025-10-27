@@ -1,20 +1,17 @@
 import { TreeNode } from '../../../../shared/types';
 import { AncestorRegistry, buildAncestorRegistry } from '../../../utils/ancestry';
 
-export interface TreeStructureActions {
+export interface NodeMovementActions {
   indentNode: (nodeId: string) => void;
   outdentNode: (nodeId: string) => void;
   moveNodeUp: (nodeId: string) => void;
   moveNodeDown: (nodeId: string) => void;
-  deleteNode: (nodeId: string, confirmed?: boolean) => boolean;
 }
 
 type StoreState = {
   nodes: Record<string, TreeNode>;
   rootNodeId: string;
   ancestorRegistry: AncestorRegistry;
-  selectedNodeId: string | null;
-  cursorPosition: number;
 };
 type StoreSetter = (partial: Partial<StoreState>) => void;
 
@@ -23,7 +20,7 @@ function reparentNode(
   oldParentId: string,
   newParentId: string,
   insertAt: 'start' | 'end' | number,
-  state: StoreState
+  state: { nodes: Record<string, TreeNode>; rootNodeId: string }
 ): { updatedNodes: Record<string, TreeNode>; newAncestorRegistry: AncestorRegistry } {
   const { nodes, rootNodeId } = state;
   const oldParent = nodes[oldParentId];
@@ -126,114 +123,6 @@ function moveNodeToSiblingParent(
   triggerAutosave?.();
 }
 
-function recursivelyDeleteNode(
-  nodeId: string,
-  nodes: Record<string, TreeNode>
-): Record<string, TreeNode> {
-  const node = nodes[nodeId];
-  if (!node) return nodes;
-
-  let updatedNodes = { ...nodes };
-
-  for (const childId of node.children) {
-    updatedNodes = recursivelyDeleteNode(childId, updatedNodes);
-  }
-
-  delete updatedNodes[nodeId];
-
-  return updatedNodes;
-}
-
-function isLastRootLevelNode(
-  nodeId: string,
-  parentId: string,
-  rootNodeId: string,
-  parent: TreeNode
-): boolean {
-  return parentId === rootNodeId && parent.children.length === 1;
-}
-
-function clearNodeContent(
-  nodeId: string,
-  node: TreeNode,
-  nodes: Record<string, TreeNode>,
-  set: StoreSetter,
-  triggerAutosave?: () => void
-): void {
-  const updatedNodes = {
-    ...nodes,
-    [nodeId]: {
-      ...node,
-      content: '',
-    },
-  };
-
-  set({
-    nodes: updatedNodes,
-    selectedNodeId: nodeId,
-    cursorPosition: 0,
-  });
-  triggerAutosave?.();
-}
-
-function getParentNode(
-  nodeId: string,
-  state: { ancestorRegistry: Record<string, string[]>; rootNodeId: string; nodes: Record<string, TreeNode> }
-): { parentId: string; parent: TreeNode } | null {
-  const { ancestorRegistry, rootNodeId, nodes } = state;
-  const ancestors = ancestorRegistry[nodeId] || [];
-  const parentId = ancestors[ancestors.length - 1] || rootNodeId;
-  const parent = nodes[parentId];
-
-  if (!parent) return null;
-
-  return { parentId, parent };
-}
-
-function calculateNextSelectedNode(
-  deletedNodeIndex: number,
-  remainingSiblings: string[],
-  parentId: string,
-  rootNodeId: string
-): string | null {
-  if (remainingSiblings.length === 0) {
-    return parentId === rootNodeId ? null : parentId;
-  }
-
-  if (deletedNodeIndex < remainingSiblings.length) {
-    return remainingSiblings[deletedNodeIndex];
-  }
-
-  return remainingSiblings[remainingSiblings.length - 1];
-}
-
-function performNodeDeletion(
-  nodeId: string,
-  parentId: string,
-  state: { nodes: Record<string, TreeNode>; rootNodeId: string }
-): {
-  updatedNodes: Record<string, TreeNode>;
-  newAncestorRegistry: Record<string, string[]>;
-  remainingSiblings: string[];
-} {
-  const { nodes, rootNodeId } = state;
-  const parent = nodes[parentId];
-  const remainingSiblings = parent.children.filter((id) => id !== nodeId);
-  let updatedNodes = recursivelyDeleteNode(nodeId, nodes);
-
-  updatedNodes = {
-    ...updatedNodes,
-    [parentId]: {
-      ...parent,
-      children: remainingSiblings,
-    },
-  };
-
-  const newAncestorRegistry = buildAncestorRegistry(rootNodeId, updatedNodes);
-
-  return { updatedNodes, newAncestorRegistry, remainingSiblings };
-}
-
 function moveNodeVertically(
   nodeId: string,
   direction: 'up' | 'down',
@@ -266,11 +155,11 @@ function moveNodeVertically(
   }
 }
 
-export const createTreeStructureActions = (
+export const createNodeMovementActions = (
   get: () => StoreState,
   set: StoreSetter,
   triggerAutosave?: () => void
-): TreeStructureActions => {
+): NodeMovementActions => {
   function indentNode(nodeId: string): void {
     const state = get();
     const { nodes, ancestorRegistry } = state;
@@ -347,51 +236,10 @@ export const createTreeStructureActions = (
     moveNodeVertically(nodeId, 'down', get(), set, triggerAutosave);
   }
 
-  function deleteNode(nodeId: string, confirmed = false): boolean {
-    const state = get();
-    const { nodes, rootNodeId } = state;
-    const node = nodes[nodeId];
-    if (!node) return true;
-
-    if (node.children.length > 0 && !confirmed) {
-      return false;
-    }
-
-    const parentInfo = getParentNode(nodeId, state);
-    if (!parentInfo) return true;
-
-    const { parentId, parent } = parentInfo;
-
-    if (isLastRootLevelNode(nodeId, parentId, rootNodeId, parent)) {
-      clearNodeContent(nodeId, node, nodes, set, triggerAutosave);
-      return true;
-    }
-
-    const nodeIndex = parent.children.indexOf(nodeId);
-    const { updatedNodes, newAncestorRegistry, remainingSiblings } = performNodeDeletion(
-      nodeId,
-      parentId,
-      state
-    );
-
-    const nextSelectedNodeId = calculateNextSelectedNode(nodeIndex, remainingSiblings, parentId, rootNodeId);
-
-    set({
-      nodes: updatedNodes,
-      ancestorRegistry: newAncestorRegistry,
-      selectedNodeId: nextSelectedNodeId,
-      cursorPosition: 0,
-    });
-    triggerAutosave?.();
-
-    return true;
-  }
-
   return {
     indentNode,
     outdentNode,
     moveNodeUp,
     moveNodeDown,
-    deleteNode,
   };
 };

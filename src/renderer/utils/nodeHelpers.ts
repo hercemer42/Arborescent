@@ -81,3 +81,61 @@ export function findNextVisibleNode(
 
   return null;
 }
+
+export function getVisibleChildren(
+  childrenIds: string[],
+  nodes: Record<string, TreeNode>
+): string[] {
+  return childrenIds.filter((childId) => !nodes[childId]?.metadata.deleted);
+}
+
+export function calculateNextSelectedNode(
+  deletedNodeIndex: number,
+  remainingSiblings: string[],
+  parentId: string,
+  rootNodeId: string
+): string | null {
+  if (remainingSiblings.length === 0) {
+    return parentId === rootNodeId ? null : parentId;
+  }
+
+  if (deletedNodeIndex < remainingSiblings.length) {
+    return remainingSiblings[deletedNodeIndex];
+  }
+
+  return remainingSiblings[remainingSiblings.length - 1];
+}
+
+export function calculateNextSelection(
+  nodeId: string,
+  parentId: string,
+  rootNodeId: string,
+  parent: TreeNode,
+  nodes: Record<string, TreeNode>
+): string | null {
+  const visibleSiblings = parent.children.filter((id) => !nodes[id]?.metadata.deleted);
+  const visibleIndex = visibleSiblings.indexOf(nodeId);
+  return calculateNextSelectedNode(visibleIndex, visibleSiblings, parentId, rootNodeId);
+}
+
+export function isLastRootLevelNode(
+  parentId: string,
+  rootNodeId: string,
+  parent: TreeNode
+): boolean {
+  return parentId === rootNodeId && parent.children.length === 1;
+}
+
+export function getParentNode(
+  nodeId: string,
+  state: { ancestorRegistry: Record<string, string[]>; rootNodeId: string; nodes: Record<string, TreeNode> }
+): { parentId: string; parent: TreeNode } | null {
+  const { ancestorRegistry, rootNodeId, nodes } = state;
+  const ancestors = ancestorRegistry[nodeId] || [];
+  const parentId = ancestors[ancestors.length - 1] || rootNodeId;
+  const parent = nodes[parentId];
+
+  if (!parent) return null;
+
+  return { parentId, parent };
+}
