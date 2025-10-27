@@ -18,6 +18,7 @@ describe('NodeContent', () => {
   const mockActions = createPartialMockActions({
     selectNode: vi.fn(),
     updateStatus: vi.fn(),
+    toggleStatus: vi.fn(),
     updateContent: vi.fn(),
     setCursorPosition: vi.fn(),
     setRememberedVisualX: vi.fn(),

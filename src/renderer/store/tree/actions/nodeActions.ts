@@ -7,6 +7,7 @@ export interface NodeActions {
   selectNode: (nodeId: string, cursorPosition?: number) => void;
   updateContent: (nodeId: string, content: string) => void;
   updateStatus: (nodeId: string, status: NodeStatus) => void;
+  toggleStatus: (nodeId: string) => void;
   setCursorPosition: (position: number) => void;
   setRememberedVisualX: (visualX: number | null) => void;
   createSiblingNode: (currentNodeId: string) => void;
@@ -57,6 +58,29 @@ export const createNodeActions = (
     set({
       nodes: updateNodeMetadata(nodes, nodeId, { status }),
     });
+    triggerAutosave?.();
+  }
+
+  function toggleStatus(nodeId: string): void {
+    const { nodes } = get();
+    const node = nodes[nodeId];
+    if (!node) return;
+
+    const currentStatus = node.metadata.status;
+    const statusCycle: NodeStatus[] = ['pending', 'completed', 'failed'];
+
+    let nextStatus: NodeStatus;
+    if (!currentStatus) {
+      nextStatus = 'pending';
+    } else {
+      const currentIndex = statusCycle.indexOf(currentStatus);
+      nextStatus = statusCycle[(currentIndex + 1) % statusCycle.length];
+    }
+
+    set({
+      nodes: updateNodeMetadata(nodes, nodeId, { status: nextStatus }),
+    });
+    triggerAutosave?.();
   }
 
   function setCursorPosition(position: number): void {
@@ -115,6 +139,7 @@ export const createNodeActions = (
     selectNode,
     updateContent,
     updateStatus,
+    toggleStatus,
     setCursorPosition,
     setRememberedVisualX,
     createSiblingNode,

@@ -33,6 +33,7 @@ export function useNodeKeyboard({
   const moveNodeUp = useStore((state) => state.actions.moveNodeUp);
   const moveNodeDown = useStore((state) => state.actions.moveNodeDown);
   const toggleNode = useStore((state) => state.actions.toggleNode);
+  const toggleStatus = useStore((state) => state.actions.toggleStatus);
 
   const handleArrowUpDown = (e: React.KeyboardEvent, direction: 'up' | 'down') => {
     if (!contentRef.current) return;
@@ -160,6 +161,15 @@ export function useNodeKeyboard({
       }
 
       toggleNode(node.id);
+    } else if (matchesHotkey(event, 'actions', 'toggleTaskStatus')) {
+      e.preventDefault();
+
+      if (contentRef.current) {
+        const position = getCursorPosition(contentRef.current);
+        setCursorPosition(position);
+      }
+
+      toggleStatus(node.id);
     } else if (e.key === 'Home' || e.key === 'End' || e.key === 'PageUp' || e.key === 'PageDown') {
       setRememberedVisualX(null);
     } else if (e.key.length === 1 || e.key === 'Backspace' || e.key === 'Delete') {

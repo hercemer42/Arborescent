@@ -5,7 +5,7 @@ import { StatusCheckbox } from './StatusCheckbox';
 
 describe('StatusCheckbox', () => {
   it('should render pending status', () => {
-    render(<StatusCheckbox status="pending" onChange={() => {}} />);
+    render(<StatusCheckbox status="pending" onToggle={() => {}} />);
     const button = screen.getByRole('button');
     expect(button).toHaveTextContent('☐');
     expect(button).toHaveClass('status-checkbox');
@@ -13,7 +13,7 @@ describe('StatusCheckbox', () => {
   });
 
   it('should render completed status', () => {
-    render(<StatusCheckbox status="completed" onChange={() => {}} />);
+    render(<StatusCheckbox status="completed" onToggle={() => {}} />);
     const button = screen.getByRole('button');
     expect(button).toHaveTextContent('✓');
     expect(button).toHaveClass('status-checkbox');
@@ -21,60 +21,50 @@ describe('StatusCheckbox', () => {
   });
 
   it('should render failed status', () => {
-    render(<StatusCheckbox status="failed" onChange={() => {}} />);
+    render(<StatusCheckbox status="failed" onToggle={() => {}} />);
     const button = screen.getByRole('button');
     expect(button).toHaveTextContent('✗');
     expect(button).toHaveClass('status-checkbox');
     expect(button).toHaveAttribute('aria-label', 'Status: failed');
   });
 
-  it('should cycle through statuses on click', async () => {
-    const handleChange = vi.fn();
+  it('should call onToggle when clicked', async () => {
+    const handleToggle = vi.fn();
     const user = userEvent.setup();
 
-    const { rerender } = render(<StatusCheckbox status="pending" onChange={handleChange} />);
+    render(<StatusCheckbox status="pending" onToggle={handleToggle} />);
     const button = screen.getByRole('button');
 
     await user.click(button);
-    expect(handleChange).toHaveBeenCalledWith('completed');
-
-    rerender(<StatusCheckbox status="completed" onChange={handleChange} />);
-
-    await user.click(button);
-    expect(handleChange).toHaveBeenCalledWith('failed');
-
-    rerender(<StatusCheckbox status="failed" onChange={handleChange} />);
-
-    await user.click(button);
-    expect(handleChange).toHaveBeenCalledWith('pending');
+    expect(handleToggle).toHaveBeenCalledTimes(1);
   });
 
   it('should stop propagation on click', async () => {
-    const handleChange = vi.fn();
+    const handleToggle = vi.fn();
     const handleParentClick = vi.fn();
     const user = userEvent.setup();
 
     render(
       <div onClick={handleParentClick}>
-        <StatusCheckbox status="pending" onChange={handleChange} />
+        <StatusCheckbox status="pending" onToggle={handleToggle} />
       </div>
     );
 
     const button = screen.getByRole('button');
     await user.click(button);
 
-    expect(handleChange).toHaveBeenCalled();
+    expect(handleToggle).toHaveBeenCalled();
     expect(handleParentClick).not.toHaveBeenCalled();
   });
 
   it('should not steal focus from active element', async () => {
-    const handleChange = vi.fn();
+    const handleToggle = vi.fn();
     const user = userEvent.setup();
 
     render(
       <div>
         <input type="text" data-testid="focused-input" />
-        <StatusCheckbox status="pending" onChange={handleChange} />
+        <StatusCheckbox status="pending" onToggle={handleToggle} />
       </div>
     );
 
@@ -87,6 +77,6 @@ describe('StatusCheckbox', () => {
     await user.click(button);
 
     expect(input).toHaveFocus();
-    expect(handleChange).toHaveBeenCalled();
+    expect(handleToggle).toHaveBeenCalled();
   });
 });

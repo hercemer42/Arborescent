@@ -4,21 +4,18 @@ import './StatusCheckbox.css';
 
 interface StatusCheckboxProps {
   status?: NodeStatus;
-  onChange?: (status: NodeStatus) => void;
+  onToggle?: () => void;
 }
 
-export function StatusCheckbox({ status, onChange }: StatusCheckboxProps) {
+export function StatusCheckbox({ status, onToggle }: StatusCheckboxProps) {
   if (!status) {
     return null;
   }
 
   const handleClick = (e: React.MouseEvent) => {
     e.stopPropagation();
-    if (onChange) {
-      const statusCycle: NodeStatus[] = ['pending', 'completed', 'failed'];
-      const currentIndex = statusCycle.indexOf(status);
-      const nextStatus = statusCycle[(currentIndex + 1) % statusCycle.length];
-      onChange(nextStatus);
+    if (onToggle) {
+      onToggle();
     }
   };
 

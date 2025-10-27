@@ -7,7 +7,7 @@ import { useNodeKeyboard } from './useNodeKeyboard';
 
 export function useNodeContent(node: TreeNode) {
   const isSelected = useStore((state) => state.selectedNodeId === node.id);
-  const updateStatus = useStore((state) => state.actions.updateStatus);
+  const toggleStatus = useStore((state) => state.actions.toggleStatus);
 
   const hasChildren = node.children.length > 0;
 
@@ -27,7 +27,7 @@ export function useNodeContent(node: TreeNode) {
   return {
     hasChildren,
     isSelected,
-    updateStatus,
+    toggleStatus,
     contentRef,
     handleKeyDown,
     handleMouseDown,

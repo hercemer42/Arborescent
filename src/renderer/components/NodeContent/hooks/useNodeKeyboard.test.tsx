@@ -49,6 +49,7 @@ describe('useNodeKeyboard', () => {
   const mockSetCursorPosition = vi.fn();
   const mockSetRememberedVisualX = vi.fn();
   const mockHandleDelete = vi.fn();
+  const mockToggleStatus = vi.fn();
 
   const mockNode: TreeNode = {
     id: 'test-node',
@@ -84,6 +85,7 @@ describe('useNodeKeyboard', () => {
         moveNodeDown: mockMoveNodeDown,
         setCursorPosition: mockSetCursorPosition,
         setRememberedVisualX: mockSetRememberedVisualX,
+        toggleStatus: mockToggleStatus,
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } as any,
     });
@@ -296,5 +298,43 @@ describe('useNodeKeyboard', () => {
     expect(mockEvent.preventDefault).toHaveBeenCalled();
     expect(mockContentRef.current?.textContent).toBe('Test Content');
     expect(mockContentRef.current?.blur).toHaveBeenCalled();
+  });
+
+  it('should toggle status on Ctrl+K', () => {
+    const { result } = renderHook(
+      () =>
+        useNodeKeyboard({
+          node: mockNode,
+          contentRef: mockContentRef,
+          handleDelete: mockHandleDelete,
+        }),
+      { wrapper }
+    );
+
+    const mockEvent = createKeyboardEvent('k', { ctrlKey: true });
+
+    result.current.handleKeyDown(mockEvent);
+
+    expect(mockEvent.preventDefault).toHaveBeenCalled();
+    expect(mockToggleStatus).toHaveBeenCalledWith('test-node');
+  });
+
+  it('should toggle status on Cmd+K', () => {
+    const { result } = renderHook(
+      () =>
+        useNodeKeyboard({
+          node: mockNode,
+          contentRef: mockContentRef,
+          handleDelete: mockHandleDelete,
+        }),
+      { wrapper }
+    );
+
+    const mockEvent = createKeyboardEvent('k', { metaKey: true });
+
+    result.current.handleKeyDown(mockEvent);
+
+    expect(mockEvent.preventDefault).toHaveBeenCalled();
+    expect(mockToggleStatus).toHaveBeenCalledWith('test-node');
   });
 });

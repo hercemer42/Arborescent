@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach } from 'vitest';
+import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { createNodeActions } from './nodeActions';
 import type { TreeNode } from '@shared/types';
 import type { AncestorRegistry } from '../../../utils/ancestry';
@@ -15,6 +15,7 @@ describe('nodeActions', () => {
   let state: TestState;
   let setState: (partial: Partial<TestState> | ((state: TestState) => Partial<TestState>)) => void;
   let actions: ReturnType<typeof createNodeActions>;
+  let mockTriggerAutosave: ReturnType<typeof vi.fn>;
 
   beforeEach(() => {
     state = {
@@ -64,10 +65,13 @@ describe('nodeActions', () => {
       }
     };
 
+    mockTriggerAutosave = vi.fn();
+
     actions = createNodeActions(
       () => state,
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      setState as any
+      setState as any,
+      mockTriggerAutosave
     );
   });
 
@@ -95,6 +99,41 @@ describe('nodeActions', () => {
     it('should update task status', () => {
       actions.updateStatus('node-1', 'completed');
       expect(state.nodes['node-1'].metadata.status).toBe('completed');
+    });
+
+    it('should trigger autosave', () => {
+      actions.updateStatus('node-1', 'completed');
+      expect(mockTriggerAutosave).toHaveBeenCalled();
+    });
+  });
+
+  describe('toggleStatus', () => {
+    it('should toggle status from pending to completed', () => {
+      actions.toggleStatus('node-1');
+      expect(state.nodes['node-1'].metadata.status).toBe('completed');
+    });
+
+    it('should toggle status from completed to failed', () => {
+      state.nodes['node-1'].metadata.status = 'completed';
+      actions.toggleStatus('node-1');
+      expect(state.nodes['node-1'].metadata.status).toBe('failed');
+    });
+
+    it('should toggle status from failed to pending', () => {
+      state.nodes['node-1'].metadata.status = 'failed';
+      actions.toggleStatus('node-1');
+      expect(state.nodes['node-1'].metadata.status).toBe('pending');
+    });
+
+    it('should add pending status if node has no status', () => {
+      delete state.nodes['root'].metadata.status;
+      actions.toggleStatus('root');
+      expect(state.nodes['root'].metadata.status).toBe('pending');
+    });
+
+    it('should trigger autosave', () => {
+      actions.toggleStatus('node-1');
+      expect(mockTriggerAutosave).toHaveBeenCalled();
     });
   });
 

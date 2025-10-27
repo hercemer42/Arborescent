@@ -20,7 +20,7 @@ export const NodeContent = memo(function NodeContent({
   const {
     hasChildren,
     isSelected,
-    updateStatus,
+    toggleStatus,
     contentRef,
     handleKeyDown,
     handleMouseDown,
@@ -45,7 +45,7 @@ export const NodeContent = memo(function NodeContent({
 
         <StatusCheckbox
           status={node.metadata.status}
-          onChange={(status) => updateStatus(node.id, status)}
+          onToggle={() => toggleStatus(node.id)}
         />
 
         <div
