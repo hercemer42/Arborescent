@@ -1,4 +1,10 @@
-export type NodeStatus = '☐' | '✓' | '✗';
+export type NodeStatus = 'pending' | 'completed' | 'failed';
+
+export const STATUS_SYMBOLS: Record<NodeStatus, string> = {
+  pending: '☐',
+  completed: '✓',
+  failed: '✗',
+};
 
 export interface TreeNode {
   id: string;
@@ -11,6 +17,7 @@ export interface TreeNode {
     updated?: string;
     deleted?: boolean;
     deletedAt?: number;
+    deleteBufferId?: string;
     [key: string]: unknown;
   };
 }

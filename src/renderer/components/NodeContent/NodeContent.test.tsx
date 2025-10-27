@@ -12,7 +12,7 @@ describe('NodeContent', () => {
     id: 'test-node',
     content: 'Test Task',
     children: [],
-    metadata: { status: '☐' },
+    metadata: { status: 'pending' },
   };
 
   const mockActions = createPartialMockActions({
@@ -69,7 +69,7 @@ describe('NodeContent', () => {
   it('should show status checkbox for task nodes', () => {
     renderWithProvider(<NodeContent node={mockNode} expanded={true} onToggle={vi.fn()} />);
 
-    const checkbox = screen.getByLabelText('Status: ☐');
+    const checkbox = screen.getByLabelText('Status: pending');
     expect(checkbox).toBeInTheDocument();
   });
 
@@ -123,7 +123,7 @@ describe('NodeContent', () => {
       id: 'node-1',
       content: 'Node',
       children: [],
-      metadata: { status: '☐' },
+      metadata: { status: 'pending' },
     };
 
     renderWithProvider(

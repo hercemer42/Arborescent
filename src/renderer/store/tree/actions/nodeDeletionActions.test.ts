@@ -30,19 +30,19 @@ describe('nodeDeletionActions', () => {
           id: 'node-1',
           content: 'Task 1',
           children: ['node-3'],
-          metadata: { status: '☐' },
+          metadata: { status: 'pending' },
         },
         'node-2': {
           id: 'node-2',
           content: 'Task 2',
           children: [],
-          metadata: { status: '☐' },
+          metadata: { status: 'pending' },
         },
         'node-3': {
           id: 'node-3',
           content: 'Task 3',
           children: [],
-          metadata: { status: '☐' },
+          metadata: { status: 'pending' },
         },
       },
       rootNodeId: 'root',
@@ -133,19 +133,19 @@ describe('nodeDeletionActions', () => {
         id: 'node-4',
         content: 'Task 4',
         children: [],
-        metadata: { status: '☐' },
+        metadata: { status: 'pending' },
       };
       state.nodes['node-5'] = {
         id: 'node-5',
         content: 'Task 5',
         children: ['node-6'],
-        metadata: { status: '☐' },
+        metadata: { status: 'pending' },
       };
       state.nodes['node-6'] = {
         id: 'node-6',
         content: 'Task 6',
         children: [],
-        metadata: { status: '☐' },
+        metadata: { status: 'pending' },
       };
       state.ancestorRegistry['node-4'] = ['root', 'node-1', 'node-3'];
       state.ancestorRegistry['node-5'] = ['root', 'node-1', 'node-3'];
@@ -170,7 +170,7 @@ describe('nodeDeletionActions', () => {
         id: 'node-7',
         content: 'Task 7',
         children: [],
-        metadata: { status: '☐' },
+        metadata: { status: 'pending' },
       };
       state.ancestorRegistry['node-7'] = ['root'];
 

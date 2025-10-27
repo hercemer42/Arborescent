@@ -5,48 +5,48 @@ import { StatusCheckbox } from './StatusCheckbox';
 
 describe('StatusCheckbox', () => {
   it('should render pending status', () => {
-    render(<StatusCheckbox status="☐" onChange={() => {}} />);
+    render(<StatusCheckbox status="pending" onChange={() => {}} />);
     const button = screen.getByRole('button');
     expect(button).toHaveTextContent('☐');
     expect(button).toHaveClass('status-checkbox');
-    expect(button).toHaveAttribute('aria-label', 'Status: ☐');
+    expect(button).toHaveAttribute('aria-label', 'Status: pending');
   });
 
   it('should render completed status', () => {
-    render(<StatusCheckbox status="✓" onChange={() => {}} />);
+    render(<StatusCheckbox status="completed" onChange={() => {}} />);
     const button = screen.getByRole('button');
     expect(button).toHaveTextContent('✓');
     expect(button).toHaveClass('status-checkbox');
-    expect(button).toHaveAttribute('aria-label', 'Status: ✓');
+    expect(button).toHaveAttribute('aria-label', 'Status: completed');
   });
 
   it('should render failed status', () => {
-    render(<StatusCheckbox status="✗" onChange={() => {}} />);
+    render(<StatusCheckbox status="failed" onChange={() => {}} />);
     const button = screen.getByRole('button');
     expect(button).toHaveTextContent('✗');
     expect(button).toHaveClass('status-checkbox');
-    expect(button).toHaveAttribute('aria-label', 'Status: ✗');
+    expect(button).toHaveAttribute('aria-label', 'Status: failed');
   });
 
   it('should cycle through statuses on click', async () => {
     const handleChange = vi.fn();
     const user = userEvent.setup();
 
-    const { rerender } = render(<StatusCheckbox status="☐" onChange={handleChange} />);
+    const { rerender } = render(<StatusCheckbox status="pending" onChange={handleChange} />);
     const button = screen.getByRole('button');
 
     await user.click(button);
-    expect(handleChange).toHaveBeenCalledWith('✓');
+    expect(handleChange).toHaveBeenCalledWith('completed');
 
-    rerender(<StatusCheckbox status="✓" onChange={handleChange} />);
-
-    await user.click(button);
-    expect(handleChange).toHaveBeenCalledWith('✗');
-
-    rerender(<StatusCheckbox status="✗" onChange={handleChange} />);
+    rerender(<StatusCheckbox status="completed" onChange={handleChange} />);
 
     await user.click(button);
-    expect(handleChange).toHaveBeenCalledWith('☐');
+    expect(handleChange).toHaveBeenCalledWith('failed');
+
+    rerender(<StatusCheckbox status="failed" onChange={handleChange} />);
+
+    await user.click(button);
+    expect(handleChange).toHaveBeenCalledWith('pending');
   });
 
   it('should stop propagation on click', async () => {
@@ -56,7 +56,7 @@ describe('StatusCheckbox', () => {
 
     render(
       <div onClick={handleParentClick}>
-        <StatusCheckbox status="☐" onChange={handleChange} />
+        <StatusCheckbox status="pending" onChange={handleChange} />
       </div>
     );
 
@@ -74,7 +74,7 @@ describe('StatusCheckbox', () => {
     render(
       <div>
         <input type="text" data-testid="focused-input" />
-        <StatusCheckbox status="☐" onChange={handleChange} />
+        <StatusCheckbox status="pending" onChange={handleChange} />
       </div>
     );
 

@@ -77,7 +77,7 @@ export const createNodeActions = (
       id: newNodeId,
       content: '',
       children: [],
-      metadata: { status: '☐' },
+      metadata: { status: 'pending' },
     };
 
     const ancestors = ancestorRegistry[currentNodeId] || [];

@@ -26,19 +26,19 @@ describe('nodeMovementActions', () => {
           id: 'node-1',
           content: 'Task 1',
           children: ['node-3'],
-          metadata: { status: '☐' },
+          metadata: { status: 'pending' },
         },
         'node-2': {
           id: 'node-2',
           content: 'Task 2',
           children: [],
-          metadata: { status: '☐' },
+          metadata: { status: 'pending' },
         },
         'node-3': {
           id: 'node-3',
           content: 'Task 3',
           children: [],
-          metadata: { status: '☐' },
+          metadata: { status: 'pending' },
         },
       },
       rootNodeId: 'root',
@@ -90,7 +90,7 @@ describe('nodeMovementActions', () => {
         id: 'node-4',
         content: 'Task 4',
         children: [],
-        metadata: { status: '☐' },
+        metadata: { status: 'pending' },
       };
       state.ancestorRegistry['node-4'] = ['root', 'node-1'];
 
@@ -138,7 +138,7 @@ describe('nodeMovementActions', () => {
         id: 'node-5',
         content: 'Task 5',
         children: [],
-        metadata: { status: '☐' },
+        metadata: { status: 'pending' },
       };
       state.ancestorRegistry['node-5'] = ['root', 'node-1'];
 
@@ -170,7 +170,7 @@ describe('nodeMovementActions', () => {
         id: 'node-4',
         content: 'Task 4',
         children: [],
-        metadata: { status: '☐' },
+        metadata: { status: 'pending' },
       };
       state.ancestorRegistry['node-4'] = ['root', 'node-1'];
 
@@ -186,7 +186,7 @@ describe('nodeMovementActions', () => {
         id: 'node-4',
         content: 'Task 4',
         children: [],
-        metadata: { status: '☐' },
+        metadata: { status: 'pending' },
       };
       state.ancestorRegistry['node-4'] = ['root', 'node-2'];
 
@@ -219,7 +219,7 @@ describe('nodeMovementActions', () => {
         id: 'node-4',
         content: 'Task 4',
         children: [],
-        metadata: { status: '☐' },
+        metadata: { status: 'pending' },
       };
       state.ancestorRegistry['node-4'] = ['root', 'node-1'];
 
@@ -235,7 +235,7 @@ describe('nodeMovementActions', () => {
         id: 'node-4',
         content: 'Task 4',
         children: [],
-        metadata: { status: '☐' },
+        metadata: { status: 'pending' },
       };
       state.ancestorRegistry['node-4'] = ['root', 'node-1'];
 

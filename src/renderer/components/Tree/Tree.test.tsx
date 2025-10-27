@@ -49,13 +49,13 @@ describe('Tree', () => {
         id: 'child-1',
         content: 'First Task',
         children: [],
-        metadata: { status: '☐' as const },
+        metadata: { status: 'pending' as const },
       },
       'child-2': {
         id: 'child-2',
         content: 'Second Task',
         children: [],
-        metadata: { status: '☐' as const },
+        metadata: { status: 'pending' as const },
       },
     };
 

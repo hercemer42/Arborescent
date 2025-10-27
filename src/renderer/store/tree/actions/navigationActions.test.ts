@@ -189,10 +189,10 @@ describe('navigationActions', () => {
     });
 
     it('should preserve other metadata when toggling', () => {
-      state.nodes['child-1'].metadata = { status: '✓', expanded: true, created: '2025-01-01' };
+      state.nodes['child-1'].metadata = { status: 'completed', expanded: true, created: '2025-01-01' };
       actions.toggleNode('child-1');
       expect(state.nodes['child-1'].metadata).toEqual({
-        status: '✓',
+        status: 'completed',
         expanded: false,
         created: '2025-01-01',
       });

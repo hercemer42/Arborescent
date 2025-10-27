@@ -1,5 +1,5 @@
 import React from 'react';
-import { NodeStatus } from '../../../../shared/types';
+import { NodeStatus, STATUS_SYMBOLS } from '../../../../shared/types';
 import './StatusCheckbox.css';
 
 interface StatusCheckboxProps {
@@ -15,12 +15,14 @@ export function StatusCheckbox({ status, onChange }: StatusCheckboxProps) {
   const handleClick = (e: React.MouseEvent) => {
     e.stopPropagation();
     if (onChange) {
-      const statusCycle: NodeStatus[] = ['☐', '✓', '✗'];
+      const statusCycle: NodeStatus[] = ['pending', 'completed', 'failed'];
       const currentIndex = statusCycle.indexOf(status);
       const nextStatus = statusCycle[(currentIndex + 1) % statusCycle.length];
       onChange(nextStatus);
     }
   };
+
+  const symbol = STATUS_SYMBOLS[status];
 
   return (
     <button
@@ -32,7 +34,7 @@ export function StatusCheckbox({ status, onChange }: StatusCheckboxProps) {
       onClick={handleClick}
       aria-label={`Status: ${status}`}
     >
-      {status}
+      {symbol}
     </button>
   );
 }

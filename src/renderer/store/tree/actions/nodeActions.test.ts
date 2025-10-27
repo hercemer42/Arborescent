@@ -29,19 +29,19 @@ describe('nodeActions', () => {
           id: 'node-1',
           content: 'Task 1',
           children: ['node-3'],
-          metadata: { status: '☐' },
+          metadata: { status: 'pending' },
         },
         'node-2': {
           id: 'node-2',
           content: 'Task 2',
           children: [],
-          metadata: { status: '☐' },
+          metadata: { status: 'pending' },
         },
         'node-3': {
           id: 'node-3',
           content: 'Task 3',
           children: [],
-          metadata: { status: '☐' },
+          metadata: { status: 'pending' },
         },
       },
       rootNodeId: 'root',
@@ -93,8 +93,8 @@ describe('nodeActions', () => {
 
   describe('updateStatus', () => {
     it('should update task status', () => {
-      actions.updateStatus('node-1', '✓');
-      expect(state.nodes['node-1'].metadata.status).toBe('✓');
+      actions.updateStatus('node-1', 'completed');
+      expect(state.nodes['node-1'].metadata.status).toBe('completed');
     });
   });
 
@@ -114,7 +114,7 @@ describe('nodeActions', () => {
       expect(newNode).toBeDefined();
       expect(newNode.content).toBe('');
       expect(newNode.children).toEqual([]);
-      expect(newNode.metadata.status).toBe('☐');
+      expect(newNode.metadata.status).toBe('pending');
     });
 
     it('should select the new node with cursor at position 0', () => {
@@ -137,7 +137,7 @@ describe('nodeActions', () => {
       actions.createSiblingNode('node-1');
 
       const newNodeId = state.nodes['root'].children[1];
-      expect(state.nodes[newNodeId].metadata.status).toBe('☐');
+      expect(state.nodes[newNodeId].metadata.status).toBe('pending');
     });
   });
 

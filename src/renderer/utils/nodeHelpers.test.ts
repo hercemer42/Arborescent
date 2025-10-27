@@ -12,56 +12,56 @@ describe('updateNodeMetadata', () => {
 
   it('should update node metadata', () => {
     const nodes = {
-      'node-1': createNode('node-1', { status: '☐' }),
+      'node-1': createNode('node-1', { status: 'pending' }),
     };
 
-    const result = updateNodeMetadata(nodes, 'node-1', { status: '✓' });
+    const result = updateNodeMetadata(nodes, 'node-1', { status: 'completed' });
 
-    expect(result['node-1'].metadata.status).toBe('✓');
+    expect(result['node-1'].metadata.status).toBe('completed');
   });
 
   it('should merge metadata without losing existing properties', () => {
     const nodes = {
-      'node-1': createNode('node-1', { status: '☐', expanded: false }),
+      'node-1': createNode('node-1', { status: 'pending', expanded: false }),
     };
 
-    const result = updateNodeMetadata(nodes, 'node-1', { status: '✓' });
+    const result = updateNodeMetadata(nodes, 'node-1', { status: 'completed' });
 
-    expect(result['node-1'].metadata.status).toBe('✓');
+    expect(result['node-1'].metadata.status).toBe('completed');
     expect(result['node-1'].metadata.expanded).toBe(false);
   });
 
   it('should add new metadata properties', () => {
     const nodes = {
-      'node-1': createNode('node-1', { status: '☐' }),
+      'node-1': createNode('node-1', { status: 'pending' }),
     };
 
     const result = updateNodeMetadata(nodes, 'node-1', { expanded: false });
 
-    expect(result['node-1'].metadata.status).toBe('☐');
+    expect(result['node-1'].metadata.status).toBe('pending');
     expect(result['node-1'].metadata.expanded).toBe(false);
   });
 
   it('should return original nodes if node does not exist', () => {
     const nodes = {
-      'node-1': createNode('node-1', { status: '☐' }),
+      'node-1': createNode('node-1', { status: 'pending' }),
     };
 
-    const result = updateNodeMetadata(nodes, 'node-2', { status: '✓' });
+    const result = updateNodeMetadata(nodes, 'node-2', { status: 'completed' });
 
     expect(result).toBe(nodes);
   });
 
   it('should not mutate original nodes object', () => {
     const nodes = {
-      'node-1': createNode('node-1', { status: '☐' }),
+      'node-1': createNode('node-1', { status: 'pending' }),
     };
 
-    const result = updateNodeMetadata(nodes, 'node-1', { status: '✓' });
+    const result = updateNodeMetadata(nodes, 'node-1', { status: 'completed' });
 
     expect(result).not.toBe(nodes);
-    expect(nodes['node-1'].metadata.status).toBe('☐');
-    expect(result['node-1'].metadata.status).toBe('✓');
+    expect(nodes['node-1'].metadata.status).toBe('pending');
+    expect(result['node-1'].metadata.status).toBe('completed');
   });
 
   it('should handle updating multiple metadata fields at once', () => {
@@ -70,12 +70,12 @@ describe('updateNodeMetadata', () => {
     };
 
     const result = updateNodeMetadata(nodes, 'node-1', {
-      status: '✓',
+      status: 'completed',
       expanded: false,
       created: '2025-01-01',
     });
 
-    expect(result['node-1'].metadata.status).toBe('✓');
+    expect(result['node-1'].metadata.status).toBe('completed');
     expect(result['node-1'].metadata.expanded).toBe(false);
     expect(result['node-1'].metadata.created).toBe('2025-01-01');
   });

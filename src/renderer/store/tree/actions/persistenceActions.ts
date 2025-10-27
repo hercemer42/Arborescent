@@ -1,7 +1,13 @@
-import { TreeNode } from '../../../../shared/types';
+import { TreeNode, NodeStatus } from '../../../../shared/types';
 import { StorageService } from '../../../../shared/interfaces';
 import { buildAncestorRegistry, AncestorRegistry } from '../../../utils/ancestry';
 import { createArboFile } from '../../../utils/document';
+
+const STATUS_MIGRATION_MAP: Record<string, NodeStatus> = {
+  '☐': 'pending',
+  '✓': 'completed',
+  '✗': 'failed',
+};
 
 export interface PersistenceActions {
   initialize: (nodes: Record<string, TreeNode>, rootNodeId: string) => void;
@@ -43,10 +49,28 @@ export const createPersistenceActions = (
   async function loadFromPath(path: string): Promise<{ created: string; author: string }> {
     const data = await storage.loadDocument(path);
 
-    const ancestorRegistry = buildAncestorRegistry(data.rootNodeId, data.nodes);
+    // Migrate old status symbols to new enum values
+    const migratedNodes = { ...data.nodes };
+    Object.keys(migratedNodes).forEach(nodeId => {
+      const node = migratedNodes[nodeId];
+      if (node.metadata.status && typeof node.metadata.status === 'string') {
+        const oldStatus = node.metadata.status as string;
+        if (oldStatus in STATUS_MIGRATION_MAP) {
+          migratedNodes[nodeId] = {
+            ...node,
+            metadata: {
+              ...node.metadata,
+              status: STATUS_MIGRATION_MAP[oldStatus],
+            },
+          };
+        }
+      }
+    });
+
+    const ancestorRegistry = buildAncestorRegistry(data.rootNodeId, migratedNodes);
 
     set({
-      nodes: data.nodes,
+      nodes: migratedNodes,
       rootNodeId: data.rootNodeId,
       ancestorRegistry,
       currentFilePath: path,

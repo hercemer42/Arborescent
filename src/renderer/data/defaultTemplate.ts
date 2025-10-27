@@ -20,7 +20,7 @@ export function createBlankDocument(): {
         id: firstNodeId,
         content: '',
         children: [],
-        metadata: { status: '☐' },
+        metadata: { status: 'pending' },
       },
     },
     rootNodeId: rootId,
