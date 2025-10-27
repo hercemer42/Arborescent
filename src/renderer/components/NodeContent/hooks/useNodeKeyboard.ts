@@ -1,3 +1,4 @@
+import { useRef } from 'react';
 import { useStore } from '../../../store/tree/useStore';
 import { TreeNode } from '../../../../shared/types';
 import {
@@ -5,6 +6,7 @@ import {
   getVisualCursorPosition,
 } from '../../../services/cursorService';
 import { matchesHotkey } from '../../../data/hotkeyConfig';
+import { NAVIGATION_THROTTLE_MS } from '../../../constants';
 
 interface UseNodeKeyboardProps {
   node: TreeNode;
@@ -12,8 +14,7 @@ interface UseNodeKeyboardProps {
   handleDelete: () => void;
 }
 
-const NAVIGATION_THROTTLE_MS = 50;
-let lastNavigationTime = 0;
+let lastMoveTime = 0;
 
 export function useNodeKeyboard({
   node,
@@ -38,17 +39,14 @@ export function useNodeKeyboard({
   const handleArrowUpDown = (e: React.KeyboardEvent, direction: 'up' | 'down') => {
     if (!contentRef.current) return;
 
-    const now = Date.now();
-    if (now - lastNavigationTime < NAVIGATION_THROTTLE_MS) {
-      e.preventDefault();
-      e.stopPropagation();
-      return;
-    }
-
-    lastNavigationTime = now;
-
     e.preventDefault();
     e.stopPropagation();
+
+    const now = Date.now();
+    if (now - lastMoveTime < NAVIGATION_THROTTLE_MS) {
+      return;
+    }
+    lastMoveTime = now;
 
     const position = getCursorPosition(contentRef.current);
     const visualX = rememberedVisualX === null ? getVisualCursorPosition() : rememberedVisualX;

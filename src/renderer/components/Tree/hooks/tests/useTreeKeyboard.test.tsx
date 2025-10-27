@@ -14,9 +14,22 @@ describe('useTreeKeyboard', () => {
 
     store = createTreeStore();
     store.setState({
-      nodes: {},
-      rootNodeId: '',
-      selectedNodeId: null,
+      nodes: {
+        root: {
+          id: 'root',
+          content: '',
+          children: ['node-1'],
+          metadata: { status: 'pending' },
+        },
+        'node-1': {
+          id: 'node-1',
+          content: 'Test Node',
+          children: [],
+          metadata: { status: 'pending' },
+        },
+      },
+      rootNodeId: 'root',
+      selectedNodeId: 'node-1',
       cursorPosition: 0,
       rememberedVisualX: null,
       actions: {
@@ -48,24 +61,32 @@ describe('useTreeKeyboard', () => {
     expect(removeEventListenerSpy).toHaveBeenCalledWith('keydown', expect.any(Function));
   });
 
-  it('should call moveUp on ArrowUp', () => {
+  it('should focus selected node on ArrowUp', () => {
+    const focusSpy = vi.fn();
+    const mockElement = { focus: focusSpy } as unknown as HTMLElement;
+    const querySelectorSpy = vi.spyOn(document, 'querySelector').mockReturnValue(mockElement);
+
     renderHook(() => useTreeKeyboard(), { wrapper });
 
     const event = new KeyboardEvent('keydown', { key: 'ArrowUp' });
     window.dispatchEvent(event);
 
-    expect(mockMoveUp).toHaveBeenCalledTimes(1);
-    expect(mockMoveDown).not.toHaveBeenCalled();
+    expect(querySelectorSpy).toHaveBeenCalled();
+    expect(focusSpy).toHaveBeenCalledTimes(1);
   });
 
-  it('should call moveDown on ArrowDown', () => {
+  it('should focus selected node on ArrowDown', () => {
+    const focusSpy = vi.fn();
+    const mockElement = { focus: focusSpy } as unknown as HTMLElement;
+    const querySelectorSpy = vi.spyOn(document, 'querySelector').mockReturnValue(mockElement);
+
     renderHook(() => useTreeKeyboard(), { wrapper });
 
     const event = new KeyboardEvent('keydown', { key: 'ArrowDown' });
     window.dispatchEvent(event);
 
-    expect(mockMoveDown).toHaveBeenCalledTimes(1);
-    expect(mockMoveUp).not.toHaveBeenCalled();
+    expect(querySelectorSpy).toHaveBeenCalled();
+    expect(focusSpy).toHaveBeenCalledTimes(1);
   });
 
   it('should not call moveUp when Shift is pressed', () => {
