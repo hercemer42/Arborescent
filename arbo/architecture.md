@@ -353,20 +353,12 @@ export const createTreeStore = () => create<TreeState>((set, get) => ({
 - Deletion-related transformations: `recursivelyMarkAsDeleted()` lives in actions (modifies state)
 - Generic helpers: `getVisibleChildren()` lives in utils (pure filter function)
 
-**Test organization:**
-```
-actions/
-├── nodeMovementActions.ts
-├── nodeMovementActions.test.ts   # Tests movement operations
-├── nodeDeletionActions.ts
-└── nodeDeletionActions.test.ts   # Tests deletion operations
-```
-
 **Rationale:**
 - Keeps related operations together in focused files
 - Store composes actions directly without extra indirection
 - Each module has single responsibility
 - Avoids unnecessary composition layers when only spreading actions
+- Tests organized in subdirectories for cleaner file structure
 
 ## Action Factory Function Convention
 
@@ -536,7 +528,7 @@ export const createFileActions = (get, storage: StorageService) => ({
 
 ## Testing Strategy
 
-**Decision:** Co-locate all tests with their source files for ease of discovery. Follow Test-Driven Development (TDD) principles when practical.
+**Decision:** Organize tests in `tests/` subdirectories within their module directories. Follow Test-Driven Development (TDD) principles when practical.
 
 **Test Organization:**
 ```
@@ -547,15 +539,23 @@ src/renderer/test/
 
 src/renderer/components/Tree/
 ├── Tree.tsx
-├── Tree.test.tsx                 # Co-located test
+├── tests/
+│   └── Tree.test.tsx             # Component tests
+
+src/renderer/components/Tree/hooks/
+├── useTree.ts
+└── tests/
+    └── useTree.test.tsx          # Hook tests
 
 src/renderer/store/tree/actions/
 ├── nodeActions.ts
-└── nodeActions.test.ts           # Co-located test
+└── tests/
+    └── nodeActions.test.ts       # Action tests
 
 src/renderer/services/
 ├── cursorService.ts
-└── cursorService.test.ts         # Co-located test
+└── tests/
+    └── cursorService.test.ts     # Service tests
 ```
 
 **Test Types:**
@@ -612,9 +612,9 @@ npm run test:coverage     # Run tests with coverage report
 - ⚠️  Rapid prototyping (add tests after validating approach)
 
 **Rationale:**
-- Co-location: Tests easier to find (no directory switching)
-- Moving/deleting files also moves/deletes tests
-- 2025 best practice: "keep files that change together close together"
+- Tests stay with their modules but in organized subdirectories
+- Moving/deleting modules also moves/deletes test directories
+- Cleaner file structure without cluttering source directories
 - Vitest integrates seamlessly with Vite (same config, faster builds)
 - Coverage thresholds ensure minimum quality bar
 - Focus on testing behavior, not implementation details
