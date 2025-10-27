@@ -1,6 +1,7 @@
 import { TreeNode, NodeStatus } from '../../../../shared/types';
 import { updateNodeMetadata } from '../../../utils/nodeHelpers';
 import { AncestorRegistry, buildAncestorRegistry } from '../../../utils/ancestry';
+import { v4 as uuidv4 } from 'uuid';
 
 export interface NodeActions {
   selectNode: (nodeId: string, cursorPosition?: number) => void;
@@ -22,7 +23,7 @@ type StoreState = {
 type StoreSetter = (partial: Partial<StoreState> | ((state: StoreState) => Partial<StoreState>)) => void;
 
 function generateId(): string {
-  return Math.random().toString(36).substring(2, 11);
+  return uuidv4();
 }
 
 export const createNodeActions = (
