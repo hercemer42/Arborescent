@@ -6,8 +6,7 @@ import { createTreeStore, TreeStore } from '../../../../store/tree/treeStore';
 
 describe('useTreeKeyboard', () => {
   let store: TreeStore;
-  const mockMoveUp = vi.fn();
-  const mockMoveDown = vi.fn();
+  const mockUndeleteNode = vi.fn();
 
   beforeEach(() => {
     vi.clearAllMocks();
@@ -33,8 +32,7 @@ describe('useTreeKeyboard', () => {
       cursorPosition: 0,
       rememberedVisualX: null,
       actions: {
-        moveUp: mockMoveUp,
-        moveDown: mockMoveDown,
+        undeleteNode: mockUndeleteNode,
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } as any,
     });
@@ -61,67 +59,31 @@ describe('useTreeKeyboard', () => {
     expect(removeEventListenerSpy).toHaveBeenCalledWith('keydown', expect.any(Function));
   });
 
-  it('should focus selected node on ArrowUp', () => {
-    const focusSpy = vi.fn();
-    const mockElement = { focus: focusSpy } as unknown as HTMLElement;
-    const querySelectorSpy = vi.spyOn(document, 'querySelector').mockReturnValue(mockElement);
-
+  it('should call undeleteNode on Ctrl+Shift+D', () => {
     renderHook(() => useTreeKeyboard(), { wrapper });
 
-    const event = new KeyboardEvent('keydown', { key: 'ArrowUp' });
+    const event = new KeyboardEvent('keydown', { key: 'd', ctrlKey: true, shiftKey: true });
     window.dispatchEvent(event);
 
-    expect(querySelectorSpy).toHaveBeenCalled();
-    expect(focusSpy).toHaveBeenCalledTimes(1);
+    expect(mockUndeleteNode).toHaveBeenCalledTimes(1);
   });
 
-  it('should focus selected node on ArrowDown', () => {
-    const focusSpy = vi.fn();
-    const mockElement = { focus: focusSpy } as unknown as HTMLElement;
-    const querySelectorSpy = vi.spyOn(document, 'querySelector').mockReturnValue(mockElement);
-
+  it('should not call undeleteNode without correct modifiers', () => {
     renderHook(() => useTreeKeyboard(), { wrapper });
 
-    const event = new KeyboardEvent('keydown', { key: 'ArrowDown' });
+    const event = new KeyboardEvent('keydown', { key: 'd' });
     window.dispatchEvent(event);
 
-    expect(querySelectorSpy).toHaveBeenCalled();
-    expect(focusSpy).toHaveBeenCalledTimes(1);
+    expect(mockUndeleteNode).not.toHaveBeenCalled();
   });
 
-  it('should not call moveUp when Shift is pressed', () => {
+  it('should prevent default when undelete hotkey is pressed', () => {
     renderHook(() => useTreeKeyboard(), { wrapper });
 
-    const event = new KeyboardEvent('keydown', { key: 'ArrowUp', shiftKey: true });
+    const event = new KeyboardEvent('keydown', { key: 'd', ctrlKey: true, shiftKey: true });
+    const preventDefaultSpy = vi.spyOn(event, 'preventDefault');
     window.dispatchEvent(event);
 
-    expect(mockMoveUp).not.toHaveBeenCalled();
-  });
-
-  it('should not call moveDown when Ctrl is pressed', () => {
-    renderHook(() => useTreeKeyboard(), { wrapper });
-
-    const event = new KeyboardEvent('keydown', { key: 'ArrowDown', ctrlKey: true });
-    window.dispatchEvent(event);
-
-    expect(mockMoveDown).not.toHaveBeenCalled();
-  });
-
-  it('should not call moveUp when Meta is pressed', () => {
-    renderHook(() => useTreeKeyboard(), { wrapper });
-
-    const event = new KeyboardEvent('keydown', { key: 'ArrowUp', metaKey: true });
-    window.dispatchEvent(event);
-
-    expect(mockMoveUp).not.toHaveBeenCalled();
-  });
-
-  it('should not call moveDown when Alt is pressed', () => {
-    renderHook(() => useTreeKeyboard(), { wrapper });
-
-    const event = new KeyboardEvent('keydown', { key: 'ArrowDown', altKey: true });
-    window.dispatchEvent(event);
-
-    expect(mockMoveDown).not.toHaveBeenCalled();
+    expect(preventDefaultSpy).toHaveBeenCalled();
   });
 });

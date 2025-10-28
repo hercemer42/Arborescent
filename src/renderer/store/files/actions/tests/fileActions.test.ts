@@ -4,21 +4,21 @@ import type { StorageService } from '@shared/interfaces';
 import type { File } from '../../filesStore';
 
 // Mock dependencies
-vi.mock('../../storeManager', () => ({
+vi.mock('../../../storeManager', () => ({
   storeManager: {
     getStoreForFile: vi.fn(),
     closeFile: vi.fn(),
   },
 }));
 
-vi.mock('../../../services/logger', () => ({
+vi.mock('../../../../services/logger', () => ({
   logger: {
     success: vi.fn(),
     error: vi.fn(),
   },
 }));
 
-vi.mock('../../../utils/document', () => ({
+vi.mock('../../../../utils/document', () => ({
   createArboFile: vi.fn(() => ({
     format: 'Arborescent',
     version: '1.0.0',
@@ -27,7 +27,7 @@ vi.mock('../../../utils/document', () => ({
   })),
 }));
 
-vi.mock('../../../data/defaultTemplate', () => ({
+vi.mock('../../../../data/defaultTemplate', () => ({
   createBlankDocument: vi.fn(() => ({
     nodes: { root: { id: 'root', content: '', children: [], metadata: {} } },
     rootNodeId: 'root',
@@ -83,7 +83,7 @@ describe('fileActions', () => {
 
     // Mock storeManager responses
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    vi.mocked(storeManager.getStoreForFile).mockReturnValue({
+    (storeManager.getStoreForFile as ReturnType<typeof vi.fn>).mockReturnValue({
       getState: () => ({
         fileMeta: null,
         actions: {
@@ -106,11 +106,11 @@ describe('fileActions', () => {
 
       await actions.createNewFile();
 
-      expect(createBlankDocument).toHaveBeenCalled();
-      expect(createArboFile).toHaveBeenCalled();
+      expect(createBlankDocument as ReturnType<typeof vi.fn>).toHaveBeenCalled();
+      expect(createArboFile as ReturnType<typeof vi.fn>).toHaveBeenCalled();
       expect(mockStorage.createTempFile).toHaveBeenCalled();
       expect(state.openFile).toHaveBeenCalledWith('/tmp/untitled-1.arbo', 'Untitled 1', true);
-      expect(logger.success).toHaveBeenCalledWith('New file created: /tmp/untitled-1.arbo', 'FileNew', false);
+      expect((logger.success as ReturnType<typeof vi.fn>)).toHaveBeenCalledWith('New file created: /tmp/untitled-1.arbo', 'FileNew', false);
     });
 
     it('should initialize the store for the new file', async () => {
@@ -145,7 +145,7 @@ describe('fileActions', () => {
 
       await actions.createNewFile();
 
-      expect(logger.error).toHaveBeenCalledWith(
+      expect((logger.error as ReturnType<typeof vi.fn>)).toHaveBeenCalledWith(
         'Failed to create new file: Failed to create temp file',
         error,
         'FileNew',
@@ -163,7 +163,7 @@ describe('fileActions', () => {
 
       expect(mockStorage.showOpenDialog).toHaveBeenCalled();
       expect(state.openFile).toHaveBeenCalledWith('/test/file.arbo', 'file.arbo', false);
-      expect(logger.success).toHaveBeenCalledWith('File loaded: /test/file.arbo', 'FileLoad', false);
+      expect((logger.success as ReturnType<typeof vi.fn>)).toHaveBeenCalledWith('File loaded: /test/file.arbo', 'FileLoad', false);
     });
 
     it('should handle temporary files', async () => {
@@ -198,7 +198,7 @@ describe('fileActions', () => {
 
       await actions.openFileWithDialog();
 
-      expect(logger.error).toHaveBeenCalledWith(
+      expect((logger.error as ReturnType<typeof vi.fn>)).toHaveBeenCalledWith(
         'Failed to load file: Failed to load',
         error,
         'FileLoad',
@@ -280,7 +280,7 @@ describe('fileActions', () => {
 
       await actions.closeFile('/tmp/untitled-1.arbo');
 
-      expect(logger.error).toHaveBeenCalledWith(
+      expect((logger.error as ReturnType<typeof vi.fn>)).toHaveBeenCalledWith(
         'Failed to save file: Save failed',
         error,
         'FileSaveAs',
@@ -297,7 +297,7 @@ describe('fileActions', () => {
 
       await actions.saveActiveFile();
 
-      expect(logger.success).toHaveBeenCalledWith('File saved: /test/file.arbo', 'FileSave', false);
+      expect((logger.success as ReturnType<typeof vi.fn>)).toHaveBeenCalledWith('File saved: /test/file.arbo', 'FileSave', false);
     });
 
     it('should prompt for path when saving temporary file', async () => {
@@ -318,7 +318,7 @@ describe('fileActions', () => {
 
       await actions.saveActiveFile();
 
-      expect(logger.success).not.toHaveBeenCalled();
+      expect((logger.success as ReturnType<typeof vi.fn>)).not.toHaveBeenCalled();
     });
 
     it('should do nothing when save dialog is cancelled', async () => {
@@ -328,7 +328,7 @@ describe('fileActions', () => {
 
       await actions.saveActiveFile();
 
-      expect(logger.success).not.toHaveBeenCalled();
+      expect((logger.success as ReturnType<typeof vi.fn>)).not.toHaveBeenCalled();
     });
 
     it('should log error on failure', async () => {
@@ -348,7 +348,7 @@ describe('fileActions', () => {
 
       await actions.saveActiveFile();
 
-      expect(logger.error).toHaveBeenCalledWith(
+      expect((logger.error as ReturnType<typeof vi.fn>)).toHaveBeenCalledWith(
         'Failed to save file: Save failed',
         error,
         'FileSave',
@@ -365,7 +365,7 @@ describe('fileActions', () => {
       await actions.saveFileAs('/test/file.arbo');
 
       expect(mockStorage.showSaveDialog).toHaveBeenCalled();
-      expect(logger.success).toHaveBeenCalledWith('File saved: /new/path.arbo', 'FileSaveAs', false);
+      expect((logger.success as ReturnType<typeof vi.fn>)).toHaveBeenCalledWith('File saved: /new/path.arbo', 'FileSaveAs', false);
     });
 
     it('should cleanup temporary file when saving as', async () => {
@@ -383,7 +383,7 @@ describe('fileActions', () => {
 
       await actions.saveFileAs('/test/file.arbo');
 
-      expect(logger.success).not.toHaveBeenCalled();
+      expect((logger.success as ReturnType<typeof vi.fn>)).not.toHaveBeenCalled();
     });
 
     it('should log error on failure', async () => {
@@ -401,7 +401,7 @@ describe('fileActions', () => {
 
       await actions.saveFileAs('/test/file.arbo');
 
-      expect(logger.error).toHaveBeenCalledWith(
+      expect((logger.error as ReturnType<typeof vi.fn>)).toHaveBeenCalledWith(
         'Failed to save file: Save failed',
         error,
         'FileSaveAs',
@@ -417,7 +417,7 @@ describe('fileActions', () => {
       await actions.loadAndOpenFile('/test/file.arbo');
 
       expect(state.openFile).toHaveBeenCalledWith('/test/file.arbo', 'file.arbo', false);
-      expect(logger.success).toHaveBeenCalledWith('File loaded: /test/file.arbo', 'FileLoad', false);
+      expect((logger.success as ReturnType<typeof vi.fn>)).toHaveBeenCalledWith('File loaded: /test/file.arbo', 'FileLoad', false);
     });
 
     it('should load and open file with custom log context', async () => {
@@ -425,7 +425,7 @@ describe('fileActions', () => {
 
       await actions.loadAndOpenFile('/test/file.arbo', 'CustomContext', true);
 
-      expect(logger.success).toHaveBeenCalledWith('File loaded: /test/file.arbo', 'CustomContext', true);
+      expect((logger.success as ReturnType<typeof vi.fn>)).toHaveBeenCalledWith('File loaded: /test/file.arbo', 'CustomContext', true);
     });
 
     it('should handle temporary files', async () => {
@@ -454,7 +454,7 @@ describe('fileActions', () => {
       expect(state.openFile).toHaveBeenNthCalledWith(2, '/tmp/untitled-1.arbo', 'Untitled 1', true);
       expect(state.openFile).toHaveBeenNthCalledWith(3, '/test/file2.arbo', 'file2.arbo', false);
       expect(state.setActiveFile).toHaveBeenCalledWith('/tmp/untitled-1.arbo');
-      expect(logger.success).toHaveBeenCalledWith('Restored 3 file(s)', 'SessionRestore', false);
+      expect((logger.success as ReturnType<typeof vi.fn>)).toHaveBeenCalledWith('Restored 3 file(s)', 'SessionRestore', false);
     });
 
     it('should restore orphaned temporary files not in session', async () => {
@@ -472,8 +472,8 @@ describe('fileActions', () => {
       expect(state.openFile).toHaveBeenCalledWith('/test/file1.arbo', 'file1.arbo', false);
       expect(state.openFile).toHaveBeenCalledWith('/tmp/untitled-1.arbo', 'Untitled 1', true);
       expect(state.openFile).toHaveBeenCalledWith('/tmp/untitled-2.arbo', 'Untitled 2', true);
-      expect(logger.success).toHaveBeenCalledWith('Restored 1 file(s)', 'SessionRestore', false);
-      expect(logger.success).toHaveBeenCalledWith('Restored 2 orphaned temporary file(s)', 'SessionRestore', false);
+      expect((logger.success as ReturnType<typeof vi.fn>)).toHaveBeenCalledWith('Restored 1 file(s)', 'SessionRestore', false);
+      expect((logger.success as ReturnType<typeof vi.fn>)).toHaveBeenCalledWith('Restored 2 orphaned temporary file(s)', 'SessionRestore', false);
     });
 
     it('should create new file when no session to restore', async () => {
@@ -483,9 +483,9 @@ describe('fileActions', () => {
 
       await actions.initializeSession();
 
-      expect(createBlankDocument).toHaveBeenCalled();
+      expect(createBlankDocument as ReturnType<typeof vi.fn>).toHaveBeenCalled();
       expect(state.openFile).toHaveBeenCalledWith('/tmp/untitled-1.arbo', 'Untitled 1', true);
-      expect(logger.success).toHaveBeenCalledWith('New file created: /tmp/untitled-1.arbo', 'FileNew', false);
+      expect((logger.success as ReturnType<typeof vi.fn>)).toHaveBeenCalledWith('New file created: /tmp/untitled-1.arbo', 'FileNew', false);
     });
 
     it('should handle errors when restoring files from session', async () => {
@@ -525,7 +525,7 @@ describe('fileActions', () => {
 
       await actions.initializeSession();
 
-      expect(logger.error).toHaveBeenCalledWith(
+      expect((logger.error as ReturnType<typeof vi.fn>)).toHaveBeenCalledWith(
         'Failed to restore file: /test/file1.arbo',
         error,
         'SessionRestore',
@@ -577,7 +577,7 @@ describe('fileActions', () => {
 
       await actions.initializeSession();
 
-      expect(logger.error).toHaveBeenCalledWith(
+      expect((logger.error as ReturnType<typeof vi.fn>)).toHaveBeenCalledWith(
         'Failed to restore temporary file: /tmp/untitled-1.arbo',
         error,
         'SessionRestore',
@@ -612,7 +612,7 @@ describe('fileActions', () => {
 
       expect(state.setActiveFile).not.toHaveBeenCalled();
       // Should create new file when all files fail to restore
-      expect(createBlankDocument).toHaveBeenCalled();
+      expect(createBlankDocument as ReturnType<typeof vi.fn>).toHaveBeenCalled();
     });
   });
 });

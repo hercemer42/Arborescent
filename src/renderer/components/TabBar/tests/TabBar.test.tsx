@@ -5,7 +5,7 @@ import { TabBar } from '../TabBar';
 import { useFilesStore } from '../../../store/files/filesStore';
 import { storeManager } from '../../../store/storeManager';
 
-vi.mock('../../store/storeManager', () => ({
+vi.mock('../../../store/storeManager', () => ({
   storeManager: {
     closeFile: vi.fn(),
   },
@@ -77,6 +77,8 @@ describe('TabBar', () => {
 
   it('should close file when close button is clicked', async () => {
     const user = userEvent.setup();
+    (storeManager.closeFile as ReturnType<typeof vi.fn>).mockResolvedValue(undefined);
+
     useFilesStore.setState({
       files: [
         { path: '/path/file1.arbo', displayName: 'file1.arbo' },

@@ -4,7 +4,7 @@ import { useNodeMouse } from '../useNodeMouse';
 import { TreeStoreContext } from '../../../../store/tree/TreeStoreContext';
 import { createTreeStore, TreeStore } from '../../../../store/tree/treeStore';
 
-vi.mock('../../../utils/position', () => ({
+vi.mock('../../../../utils/position', () => ({
   getPositionFromCoordinates: vi.fn(() => 5),
 }));
 
@@ -129,7 +129,11 @@ describe('useNodeMouse', () => {
     // Then click
     const clickEvent = {
       currentTarget: {
-        querySelector: () => ({ tagName: 'DIV' }),
+        querySelector: () => ({
+          tagName: 'DIV',
+          getBoundingClientRect: () => ({ left: 0, right: 100, top: 0, bottom: 20, width: 100, height: 20 }),
+          textContent: 'test content',
+        }),
       },
       clientX: 100,
       clientY: 200,
