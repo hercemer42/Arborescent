@@ -4,6 +4,8 @@ This document records key architectural choices made during development sessions
 
 **Last Updated:** 2025-10-23
 
+**When updating this file:** Be concise - focus on the decision, pattern, and rationale. Avoid verbose explanations.
+
 ## Directory Structure
 
 **Decision:** Separate main process (Electron) code from renderer (React UI) code.
@@ -396,6 +398,27 @@ export const createNodeActions = (get, set, triggerAutosave?): NodeActions => ({
 - Actions defined inside factory capture `get`, `set`, and `triggerAutosave` via closure
 - Named functions provide better stack traces than arrow functions
 - Consistency, better readability, easier to maintain
+
+## Function Size and Complexity
+
+**Decision:** Keep functions small and focused. A function should do one thing well.
+
+**Guidelines:**
+- **Target:** 10-20 lines per function
+- **Maximum:** 30 lines (if exceeding, refactor)
+- **Single responsibility:** Each function has one clear purpose
+- **Extraction rule:** If you need a comment to explain a block, extract it to a named function
+
+**When to extract:**
+- Block needs comment → Extract to named function
+- Repeated logic → Extract to shared helper
+- Function exceeds 30 lines → Break into smaller functions
+- Nested control flow → Extract inner logic
+
+**Rationale:**
+- Function names replace comments
+- Small units easier to test and maintain
+- Reduces cognitive load
 
 ## Multi-File Tree Store Architecture
 
@@ -889,5 +912,3 @@ useEffect(() => {
 **Location:** `src/renderer/renderer.tsx` renders `<App />` directly without `<React.StrictMode>` wrapper.
 
 **Rationale:** For Electron desktop apps with system-level side effects, dev/prod consistency outweighs the benefits of Strict Mode's double-invocation checks.
-
-**Update this file when making new architectural decisions. Be concise - focus on the decision, pattern, and rationale. Avoid verbose explanations.**

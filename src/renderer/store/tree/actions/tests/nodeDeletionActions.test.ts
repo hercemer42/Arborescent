@@ -2,11 +2,12 @@ import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { createNodeDeletionActions } from '../nodeDeletionActions';
 import type { TreeNode } from '@shared/types';
 import type { AncestorRegistry } from '../../../../utils/ancestry';
-import type { DeletedNodeEntry } from '../../treeStore';
+import type { DeletedNodeEntry, DeletedNodeInfo } from '../../treeStore';
 
 describe('nodeDeletionActions', () => {
   type TestState = {
     nodes: Record<string, TreeNode>;
+    deletedNodesMap: Record<string, DeletedNodeInfo>;
     rootNodeId: string;
     ancestorRegistry: AncestorRegistry;
     selectedNodeId?: string | null;
@@ -45,6 +46,7 @@ describe('nodeDeletionActions', () => {
           metadata: { status: 'pending' },
         },
       },
+      deletedNodesMap: {},
       rootNodeId: 'root',
       ancestorRegistry: {
         'root': [],
@@ -72,9 +74,10 @@ describe('nodeDeletionActions', () => {
       const result = actions.deleteNode('node-2');
 
       expect(result).toBe(true);
-      expect(state.nodes['node-2']).toBeDefined();
-      expect(state.nodes['node-2'].metadata.deleted).toBe(true);
-      expect(state.nodes['root'].children).toEqual(['node-1', 'node-2']);
+      expect(state.nodes['node-2']).toBeUndefined();
+      expect(state.deletedNodesMap['node-2']).toBeDefined();
+      expect(state.deletedNodesMap['node-2'].originalParentId).toBe('root');
+      expect(state.nodes['root'].children).toEqual(['node-1']);
     });
 
     it('should return false when node has children and not confirmed', () => {
@@ -87,30 +90,30 @@ describe('nodeDeletionActions', () => {
 
     it('should not require confirmation if all children are already deleted', () => {
       actions.deleteNode('node-3');
-      expect(state.nodes['node-3'].metadata.deleted).toBe(true);
+      expect(state.deletedNodesMap['node-3']).toBeDefined();
 
       const result = actions.deleteNode('node-1', false);
 
       expect(result).toBe(true);
-      expect(state.nodes['node-1'].metadata.deleted).toBe(true);
+      expect(state.deletedNodesMap['node-1']).toBeDefined();
     });
 
     it('should delete node with children when confirmed', () => {
       const result = actions.deleteNode('node-1', true);
 
       expect(result).toBe(true);
-      expect(state.nodes['node-1']).toBeDefined();
-      expect(state.nodes['node-1'].metadata.deleted).toBe(true);
-      expect(state.nodes['root'].children).toEqual(['node-1', 'node-2']);
+      expect(state.nodes['node-1']).toBeUndefined();
+      expect(state.deletedNodesMap['node-1']).toBeDefined();
+      expect(state.nodes['root'].children).toEqual(['node-2']);
     });
 
     it('should recursively delete all descendants', () => {
       actions.deleteNode('node-1', true);
 
-      expect(state.nodes['node-1']).toBeDefined();
-      expect(state.nodes['node-1'].metadata.deleted).toBe(true);
-      expect(state.nodes['node-3']).toBeDefined();
-      expect(state.nodes['node-3'].metadata.deleted).toBe(true);
+      expect(state.nodes['node-1']).toBeUndefined();
+      expect(state.deletedNodesMap['node-1']).toBeDefined();
+      expect(state.nodes['node-3']).toBeUndefined();
+      expect(state.deletedNodesMap['node-3']).toBeDefined();
     });
 
     it('should keep deleted nodes in ancestor registry', () => {
@@ -153,18 +156,18 @@ describe('nodeDeletionActions', () => {
 
       actions.deleteNode('node-3', true);
 
-      expect(state.nodes['node-3']).toBeDefined();
-      expect(state.nodes['node-3'].metadata.deleted).toBe(true);
-      expect(state.nodes['node-4']).toBeDefined();
-      expect(state.nodes['node-4'].metadata.deleted).toBe(true);
-      expect(state.nodes['node-5']).toBeDefined();
-      expect(state.nodes['node-5'].metadata.deleted).toBe(true);
-      expect(state.nodes['node-6']).toBeDefined();
-      expect(state.nodes['node-6'].metadata.deleted).toBe(true);
-      expect(state.nodes['node-1'].children).toEqual(['node-3']);
+      expect(state.nodes['node-3']).toBeUndefined();
+      expect(state.deletedNodesMap['node-3']).toBeDefined();
+      expect(state.nodes['node-4']).toBeUndefined();
+      expect(state.deletedNodesMap['node-4']).toBeDefined();
+      expect(state.nodes['node-5']).toBeUndefined();
+      expect(state.deletedNodesMap['node-5']).toBeDefined();
+      expect(state.nodes['node-6']).toBeUndefined();
+      expect(state.deletedNodesMap['node-6']).toBeDefined();
+      expect(state.nodes['node-1'].children).toEqual([]);
     });
 
-    it('should keep deleted node in parent children array', () => {
+    it('should remove deleted node from parent children array', () => {
       state.nodes['root'].children = ['node-1', 'node-2', 'node-7'];
       state.nodes['node-7'] = {
         id: 'node-7',
@@ -176,7 +179,7 @@ describe('nodeDeletionActions', () => {
 
       actions.deleteNode('node-2');
 
-      expect(state.nodes['root'].children).toEqual(['node-1', 'node-2', 'node-7']);
+      expect(state.nodes['root'].children).toEqual(['node-1', 'node-7']);
     });
   });
 
@@ -185,27 +188,27 @@ describe('nodeDeletionActions', () => {
       vi.useFakeTimers();
     });
 
-    it('should mark node as deleted instead of removing it', () => {
+    it('should move node to deletedNodesMap with timestamp', () => {
       const beforeDelete = Date.now();
       vi.setSystemTime(beforeDelete);
 
       actions.deleteNode('node-2');
 
-      expect(state.nodes['node-2']).toBeDefined();
-      expect(state.nodes['node-2'].metadata.deleted).toBe(true);
-      expect(state.nodes['node-2'].metadata.deletedAt).toBe(beforeDelete);
+      expect(state.nodes['node-2']).toBeUndefined();
+      expect(state.deletedNodesMap['node-2']).toBeDefined();
+      expect(state.deletedNodesMap['node-2'].deletedAt).toBe(beforeDelete);
     });
 
-    it('should recursively mark children as deleted', () => {
+    it('should recursively move children to deletedNodesMap', () => {
       const beforeDelete = Date.now();
       vi.setSystemTime(beforeDelete);
 
       actions.deleteNode('node-1', true);
 
-      expect(state.nodes['node-1'].metadata.deleted).toBe(true);
-      expect(state.nodes['node-3'].metadata.deleted).toBe(true);
-      expect(state.nodes['node-1'].metadata.deletedAt).toBe(beforeDelete);
-      expect(state.nodes['node-3'].metadata.deletedAt).toBe(beforeDelete);
+      expect(state.deletedNodesMap['node-1']).toBeDefined();
+      expect(state.deletedNodesMap['node-3']).toBeDefined();
+      expect(state.deletedNodesMap['node-1'].deletedAt).toBe(beforeDelete);
+      expect(state.deletedNodesMap['node-3'].deletedAt).toBe(beforeDelete);
     });
 
     it('should track deleted node in deletedNodes buffer', () => {
@@ -215,10 +218,10 @@ describe('nodeDeletionActions', () => {
       expect(state.deletedNodes[0].rootNodeId).toBe('node-2');
     });
 
-    it('should keep node in parent children array', () => {
+    it('should remove node from parent children array', () => {
       actions.deleteNode('node-2');
 
-      expect(state.nodes['root'].children).toEqual(['node-1', 'node-2']);
+      expect(state.nodes['root'].children).toEqual(['node-1']);
     });
 
     it('should purge oldest deleted nodes when buffer exceeds 10', () => {
@@ -236,36 +239,36 @@ describe('nodeDeletionActions', () => {
       }
 
       expect(state.deletedNodes).toHaveLength(10);
-      expect(state.nodes['delete-1']).toBeUndefined();
-      expect(state.nodes['delete-2']).toBeUndefined();
-      expect(state.nodes['delete-3']).toBeDefined();
-      expect(state.nodes['delete-12']).toBeDefined();
+      expect(state.deletedNodesMap['delete-1']).toBeUndefined();
+      expect(state.deletedNodesMap['delete-2']).toBeUndefined();
+      expect(state.deletedNodesMap['delete-3']).toBeDefined();
+      expect(state.deletedNodesMap['delete-12']).toBeDefined();
     });
 
     it('should undelete the last deleted node', () => {
       actions.deleteNode('node-2');
 
-      expect(state.nodes['node-2'].metadata.deleted).toBe(true);
-      expect(state.nodes['root'].children).toEqual(['node-1', 'node-2']);
+      expect(state.deletedNodesMap['node-2']).toBeDefined();
+      expect(state.nodes['root'].children).toEqual(['node-1']);
 
       const success = actions.undeleteNode();
 
       expect(success).toBe(true);
-      expect(state.nodes['node-2'].metadata.deleted).toBeUndefined();
-      expect(state.nodes['node-2'].metadata.deletedAt).toBeUndefined();
+      expect(state.nodes['node-2']).toBeDefined();
+      expect(state.deletedNodesMap['node-2']).toBeUndefined();
       expect(state.nodes['root'].children).toEqual(['node-1', 'node-2']);
     });
 
     it('should undelete node with entire subtree', () => {
       actions.deleteNode('node-1', true);
 
-      expect(state.nodes['node-1'].metadata.deleted).toBe(true);
-      expect(state.nodes['node-3'].metadata.deleted).toBe(true);
+      expect(state.deletedNodesMap['node-1']).toBeDefined();
+      expect(state.deletedNodesMap['node-3']).toBeDefined();
 
       actions.undeleteNode();
 
-      expect(state.nodes['node-1'].metadata.deleted).toBeUndefined();
-      expect(state.nodes['node-3'].metadata.deleted).toBeUndefined();
+      expect(state.nodes['node-1']).toBeDefined();
+      expect(state.nodes['node-3']).toBeDefined();
       expect(state.nodes['root'].children).toContain('node-1');
     });
 
@@ -291,55 +294,56 @@ describe('nodeDeletionActions', () => {
 
       actions.undeleteNode();
       expect(state.deletedNodes).toHaveLength(0);
-      expect(state.nodes['node-2'].metadata.deleted).toBeUndefined();
+      expect(state.nodes['node-2']).toBeDefined();
+      expect(state.deletedNodesMap['node-2']).toBeUndefined();
 
       actions.deleteNode('node-2');
       expect(state.deletedNodes).toHaveLength(1);
-      expect(state.nodes['node-2'].metadata.deleted).toBe(true);
+      expect(state.deletedNodesMap['node-2']).toBeDefined();
     });
 
     it('should purge all deleted nodes permanently', () => {
       actions.deleteNode('node-2');
       actions.deleteNode('node-3');
 
-      expect(state.nodes['node-2']).toBeDefined();
-      expect(state.nodes['node-3']).toBeDefined();
+      expect(state.deletedNodesMap['node-2']).toBeDefined();
+      expect(state.deletedNodesMap['node-3']).toBeDefined();
       expect(state.deletedNodes).toHaveLength(2);
 
       actions.purgeOldDeletedNodes();
 
-      expect(state.nodes['node-2']).toBeUndefined();
-      expect(state.nodes['node-3']).toBeUndefined();
+      expect(state.deletedNodesMap['node-2']).toBeUndefined();
+      expect(state.deletedNodesMap['node-3']).toBeUndefined();
       expect(state.deletedNodes).toHaveLength(0);
     });
 
     it('should handle sequential undo when child deleted before parent', () => {
       // Delete child first
       actions.deleteNode('node-3');
-      expect(state.nodes['node-3'].metadata.deleted).toBe(true);
+      expect(state.deletedNodesMap['node-3']).toBeDefined();
       expect(state.deletedNodes).toHaveLength(1);
-      const childBufferId = state.nodes['node-3'].metadata.deleteBufferId;
+      const childBufferId = state.deletedNodesMap['node-3'].deleteBufferId;
 
       // Delete parent (node-1 has node-3 as child, which is already deleted)
       actions.deleteNode('node-1', true);
-      expect(state.nodes['node-1'].metadata.deleted).toBe(true);
+      expect(state.deletedNodesMap['node-1']).toBeDefined();
       expect(state.deletedNodes).toHaveLength(2);
-      const parentBufferId = state.nodes['node-1'].metadata.deleteBufferId;
+      const parentBufferId = state.deletedNodesMap['node-1'].deleteBufferId;
 
       // Child should still have its original buffer ID
-      expect(state.nodes['node-3'].metadata.deleteBufferId).toBe(childBufferId);
+      expect(state.deletedNodesMap['node-3'].deleteBufferId).toBe(childBufferId);
       // Parent should have a different buffer ID
       expect(parentBufferId).not.toBe(childBufferId);
 
       // First undo should restore only the parent
       actions.undeleteNode();
-      expect(state.nodes['node-1'].metadata.deleted).toBeUndefined();
-      expect(state.nodes['node-3'].metadata.deleted).toBe(true); // Child still deleted
+      expect(state.nodes['node-1']).toBeDefined();
+      expect(state.deletedNodesMap['node-3']).toBeDefined(); // Child still deleted
       expect(state.deletedNodes).toHaveLength(1);
 
       // Second undo should restore the child
       actions.undeleteNode();
-      expect(state.nodes['node-3'].metadata.deleted).toBeUndefined();
+      expect(state.nodes['node-3']).toBeDefined();
       expect(state.deletedNodes).toHaveLength(0);
     });
   });

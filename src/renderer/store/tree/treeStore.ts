@@ -13,8 +13,17 @@ export interface DeletedNodeEntry {
   deleteBufferId: string;
 }
 
+export interface DeletedNodeInfo {
+  node: TreeNode;
+  originalParentId: string;
+  originalPosition: number;
+  deleteBufferId: string;
+  deletedAt: number;
+}
+
 export interface TreeState {
   nodes: Record<string, TreeNode>;
+  deletedNodesMap: Record<string, DeletedNodeInfo>;
   rootNodeId: string;
   ancestorRegistry: Record<string, string[]>;
   selectedNodeId: string | null;
@@ -41,6 +50,7 @@ export function createTreeStore() {
 
     return {
       nodes: {},
+      deletedNodesMap: {},
       rootNodeId: '',
       ancestorRegistry: {},
       selectedNodeId: null,

@@ -15,9 +15,6 @@ export interface TreeNode {
     expanded?: boolean;
     created?: string;
     updated?: string;
-    deleted?: boolean;
-    deletedAt?: number;
-    deleteBufferId?: string;
     [key: string]: unknown;
   };
 }

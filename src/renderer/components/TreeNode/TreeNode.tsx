@@ -34,7 +34,7 @@ export const TreeNode = memo(function TreeNode({ nodeId, depth = 0 }: TreeNodePr
     store.getState().actions.toggleNode(nodeId);
   }, [expanded, nodeId, contentLength, store]);
 
-  if (!node || node.metadata.deleted) {
+  if (!node) {
     return null;
   }
 

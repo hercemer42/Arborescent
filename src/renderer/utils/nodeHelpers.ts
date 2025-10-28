@@ -20,7 +20,7 @@ export function updateNodeMetadata(
   };
 }
 
-export function findPreviousVisibleNode(
+export function findPreviousNode(
   nodeId: string,
   nodes: Record<string, TreeNode>,
   rootNodeId: string,
@@ -31,17 +31,15 @@ export function findPreviousVisibleNode(
   const parent = nodes[parentId];
   if (!parent) return null;
 
-  const visibleSiblings = getVisibleChildren(parent.children, nodes);
-  const siblingIndex = visibleSiblings.indexOf(nodeId);
+  const siblingIndex = parent.children.indexOf(nodeId);
   if (siblingIndex > 0) {
-    const prevSiblingId = visibleSiblings[siblingIndex - 1];
+    const prevSiblingId = parent.children[siblingIndex - 1];
     let deepestId = prevSiblingId;
     let deepestNode = nodes[deepestId];
 
     while (deepestNode && (deepestNode.metadata.expanded ?? true)) {
-      const visibleChildren = getVisibleChildren(deepestNode.children, nodes);
-      if (visibleChildren.length === 0) break;
-      deepestId = visibleChildren[visibleChildren.length - 1];
+      if (deepestNode.children.length === 0) break;
+      deepestId = deepestNode.children[deepestNode.children.length - 1];
       deepestNode = nodes[deepestId];
     }
 
@@ -51,7 +49,7 @@ export function findPreviousVisibleNode(
   return parentId === rootNodeId ? null : parentId;
 }
 
-export function findNextVisibleNode(
+export function findNextNode(
   nodeId: string,
   nodes: Record<string, TreeNode>,
   rootNodeId: string,
@@ -61,9 +59,8 @@ export function findNextVisibleNode(
   if (!node) return null;
 
   if ((node.metadata.expanded ?? true)) {
-    const visibleChildren = getVisibleChildren(node.children, nodes);
-    if (visibleChildren.length > 0) {
-      return visibleChildren[0];
+    if (node.children.length > 0) {
+      return node.children[0];
     }
   }
 
@@ -75,10 +72,9 @@ export function findNextVisibleNode(
     const parent = nodes[parentId];
     if (!parent) return null;
 
-    const visibleSiblings = getVisibleChildren(parent.children, nodes);
-    const siblingIndex = visibleSiblings.indexOf(currentId);
-    if (siblingIndex < visibleSiblings.length - 1) {
-      return visibleSiblings[siblingIndex + 1];
+    const siblingIndex = parent.children.indexOf(currentId);
+    if (siblingIndex < parent.children.length - 1) {
+      return parent.children[siblingIndex + 1];
     }
 
     if (parentId === rootNodeId) return null;
@@ -87,13 +83,6 @@ export function findNextVisibleNode(
   }
 
   return null;
-}
-
-export function getVisibleChildren(
-  childrenIds: string[],
-  nodes: Record<string, TreeNode>
-): string[] {
-  return childrenIds.filter((childId) => !nodes[childId]?.metadata.deleted);
 }
 
 export function isLastRootLevelNode(
@@ -116,4 +105,16 @@ export function getParentNode(
   if (!parent) return null;
 
   return { parentId, parent };
+}
+
+export function captureNodePosition(
+  nodeId: string,
+  state: { nodes: Record<string, TreeNode>; ancestorRegistry: Record<string, string[]>; rootNodeId: string }
+): { parentId: string; originalPosition: number } {
+  const { nodes, ancestorRegistry, rootNodeId } = state;
+  const ancestors = ancestorRegistry[nodeId] || [];
+  const parentId = ancestors[ancestors.length - 1] || rootNodeId;
+  const parent = nodes[parentId];
+  const originalPosition = parent ? parent.children.indexOf(nodeId) : -1;
+  return { parentId, originalPosition };
 }

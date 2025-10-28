@@ -1,5 +1,5 @@
 import { TreeNode } from '../../../../shared/types';
-import { updateNodeMetadata, findPreviousVisibleNode, findNextVisibleNode, getVisibleChildren } from '../../../utils/nodeHelpers';
+import { updateNodeMetadata, findPreviousNode, findNextNode } from '../../../utils/nodeHelpers';
 
 export interface NavigationActions {
   moveUp: (cursorPosition?: number, rememberedVisualX?: number | null) => void;
@@ -44,7 +44,7 @@ export const createNavigationActions = (
     const { selectedNodeId, nodes, rootNodeId, ancestorRegistry } = get();
     if (!selectedNodeId) return;
 
-    const nextNodeId = findPreviousVisibleNode(selectedNodeId, nodes, rootNodeId, ancestorRegistry);
+    const nextNodeId = findPreviousNode(selectedNodeId, nodes, rootNodeId, ancestorRegistry);
     if (nextNodeId) {
       set(selectNode(nextNodeId, cursorPosition, rememberedVisualX));
     }
@@ -54,10 +54,9 @@ export const createNavigationActions = (
     const { selectedNodeId, nodes, rootNodeId, ancestorRegistry } = get();
     if (!selectedNodeId) {
       const root = nodes[rootNodeId];
-      const visibleChildren = getVisibleChildren(root?.children || [], nodes);
-      if (visibleChildren.length > 0) {
+      if (root?.children.length > 0) {
         set({
-          selectedNodeId: visibleChildren[0],
+          selectedNodeId: root.children[0],
           cursorPosition: 0,
           rememberedVisualX: null,
         });
@@ -65,7 +64,7 @@ export const createNavigationActions = (
       return;
     }
 
-    const nextNodeId = findNextVisibleNode(selectedNodeId, nodes, rootNodeId, ancestorRegistry);
+    const nextNodeId = findNextNode(selectedNodeId, nodes, rootNodeId, ancestorRegistry);
     if (nextNodeId) {
       set(selectNode(nextNodeId, cursorPosition, rememberedVisualX));
     }
@@ -75,7 +74,7 @@ export const createNavigationActions = (
     const { selectedNodeId, nodes, rootNodeId, ancestorRegistry } = get();
     if (!selectedNodeId) return;
 
-    const nextNodeId = findPreviousVisibleNode(selectedNodeId, nodes, rootNodeId, ancestorRegistry);
+    const nextNodeId = findPreviousNode(selectedNodeId, nodes, rootNodeId, ancestorRegistry);
     if (nextNodeId) {
       const nextNode = nodes[nextNodeId];
       set({
@@ -90,7 +89,7 @@ export const createNavigationActions = (
     const { selectedNodeId, nodes, rootNodeId, ancestorRegistry } = get();
     if (!selectedNodeId) return;
 
-    const nextNodeId = findNextVisibleNode(selectedNodeId, nodes, rootNodeId, ancestorRegistry);
+    const nextNodeId = findNextNode(selectedNodeId, nodes, rootNodeId, ancestorRegistry);
     if (nextNodeId) {
       set({
         selectedNodeId: nextNodeId,

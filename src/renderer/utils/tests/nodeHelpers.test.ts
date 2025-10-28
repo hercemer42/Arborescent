@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { updateNodeMetadata, findPreviousVisibleNode, findNextVisibleNode } from '../nodeHelpers';
+import { updateNodeMetadata, findPreviousNode, findNextNode } from '../nodeHelpers';
 import { TreeNode } from '@shared/types';
 
 describe('updateNodeMetadata', () => {
@@ -81,7 +81,7 @@ describe('updateNodeMetadata', () => {
   });
 });
 
-describe('findPreviousVisibleNode', () => {
+describe('findPreviousNode', () => {
   const createNode = (id: string, children: string[] = [], metadata = {}): TreeNode => ({
     id,
     content: `Node ${id}`,
@@ -101,7 +101,7 @@ describe('findPreviousVisibleNode', () => {
       'child-2': ['root'],
     };
 
-    const result = findPreviousVisibleNode('child-2', nodes, 'root', ancestorRegistry);
+    const result = findPreviousNode('child-2', nodes, 'root', ancestorRegistry);
     expect(result).toBe('child-1');
   });
 
@@ -119,7 +119,7 @@ describe('findPreviousVisibleNode', () => {
       'child-2': ['root'],
     };
 
-    const result = findPreviousVisibleNode('child-2', nodes, 'root', ancestorRegistry);
+    const result = findPreviousNode('child-2', nodes, 'root', ancestorRegistry);
     expect(result).toBe('grandchild-1');
   });
 
@@ -135,7 +135,7 @@ describe('findPreviousVisibleNode', () => {
       'grandchild-1': ['root', 'child-1'],
     };
 
-    const result = findPreviousVisibleNode('grandchild-1', nodes, 'root', ancestorRegistry);
+    const result = findPreviousNode('grandchild-1', nodes, 'root', ancestorRegistry);
     expect(result).toBe('child-1');
   });
 
@@ -149,7 +149,7 @@ describe('findPreviousVisibleNode', () => {
       'child-1': ['root'],
     };
 
-    const result = findPreviousVisibleNode('child-1', nodes, 'root', ancestorRegistry);
+    const result = findPreviousNode('child-1', nodes, 'root', ancestorRegistry);
     expect(result).toBeNull();
   });
 
@@ -167,12 +167,12 @@ describe('findPreviousVisibleNode', () => {
       'child-2': ['root'],
     };
 
-    const result = findPreviousVisibleNode('child-2', nodes, 'root', ancestorRegistry);
+    const result = findPreviousNode('child-2', nodes, 'root', ancestorRegistry);
     expect(result).toBe('child-1');
   });
 });
 
-describe('findNextVisibleNode', () => {
+describe('findNextNode', () => {
   const createNode = (id: string, children: string[] = [], metadata = {}): TreeNode => ({
     id,
     content: `Node ${id}`,
@@ -192,7 +192,7 @@ describe('findNextVisibleNode', () => {
       'grandchild-1': ['root', 'child-1'],
     };
 
-    const result = findNextVisibleNode('child-1', nodes, 'root', ancestorRegistry);
+    const result = findNextNode('child-1', nodes, 'root', ancestorRegistry);
     expect(result).toBe('grandchild-1');
   });
 
@@ -208,7 +208,7 @@ describe('findNextVisibleNode', () => {
       'child-2': ['root'],
     };
 
-    const result = findNextVisibleNode('child-1', nodes, 'root', ancestorRegistry);
+    const result = findNextNode('child-1', nodes, 'root', ancestorRegistry);
     expect(result).toBe('child-2');
   });
 
@@ -226,7 +226,7 @@ describe('findNextVisibleNode', () => {
       'child-2': ['root'],
     };
 
-    const result = findNextVisibleNode('grandchild-1', nodes, 'root', ancestorRegistry);
+    const result = findNextNode('grandchild-1', nodes, 'root', ancestorRegistry);
     expect(result).toBe('child-2');
   });
 
@@ -240,7 +240,7 @@ describe('findNextVisibleNode', () => {
       'child-1': ['root'],
     };
 
-    const result = findNextVisibleNode('child-1', nodes, 'root', ancestorRegistry);
+    const result = findNextNode('child-1', nodes, 'root', ancestorRegistry);
     expect(result).toBeNull();
   });
 
@@ -258,7 +258,7 @@ describe('findNextVisibleNode', () => {
       'child-2': ['root'],
     };
 
-    const result = findNextVisibleNode('child-1', nodes, 'root', ancestorRegistry);
+    const result = findNextNode('child-1', nodes, 'root', ancestorRegistry);
     expect(result).toBe('child-2');
   });
 });
