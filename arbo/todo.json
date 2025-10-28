@@ -2,7 +2,7 @@
   "format": "Arborescent",
   "version": "1.0.0",
   "created": "2025-10-11T00:00:00.000Z",
-  "updated": "2025-10-28T17:50:46.515Z",
+  "updated": "2025-10-28T18:04:38.284Z",
   "author": "brian@brianfox.fr",
   "rootNodeId": "root",
   "nodes": {
@@ -294,7 +294,7 @@
       ],
       "metadata": {
         "status": "completed",
-        "expanded": false
+        "expanded": true
       }
     },
     "1lvwh7qxq": {
@@ -309,7 +309,8 @@
       "id": "fvytrtgjx",
       "content": "In progress",
       "children": [
-        "zfr9nn0fr"
+        "zfr9nn0fr",
+        "5458d091-2079-40cf-bcd0-a514978f1a55"
       ],
       "metadata": {
         "status": "pending"
@@ -409,11 +410,13 @@
       "content": "Bugs",
       "children": [
         "p4b94svjw",
-        "26066785-5fbb-4294-ba3f-48a989bc2390"
+        "26066785-5fbb-4294-ba3f-48a989bc2390",
+        "c3e18b8e-c3f5-4835-8876-5e2b571fc705",
+        "a56f27cf-be6c-4453-af20-d295d1ba386b"
       ],
       "metadata": {
-        "status": "completed",
-        "expanded": false
+        "status": "pending",
+        "expanded": true
       }
     },
     "p4b94svjw": {
@@ -775,6 +778,32 @@
         "status": "completed"
       }
     },
+    "85b819ca-ac48-45e2-87d9-b2a178bb4cd0": {
+      "id": "85b819ca-ac48-45e2-87d9-b2a178bb4cd0",
+      "content": "TEST node deletion after new system",
+      "children": [],
+      "metadata": {
+        "status": "completed"
+      }
+    },
+    "5458d091-2079-40cf-bcd0-a514978f1a55": {
+      "id": "5458d091-2079-40cf-bcd0-a514978f1a55",
+      "content": "when we have an ancestor node selected, and it is expanded, and we create a new node, instead of creating a sibling node, it should create a new child node, in first position, just under itself",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "c3e18b8e-c3f5-4835-8876-5e2b571fc705": {
+      "id": "c3e18b8e-c3f5-4835-8876-5e2b571fc705",
+      "content": "If a node has multiple lines, keyboard navigation should move through each of its lines before going to the next node",
+      "children": [
+        "7caf9f96-1719-4228-bdd4-2028e9b79f71"
+      ],
+      "metadata": {
+        "status": "pending"
+      }
+    },
     "f42baf93-4237-400b-aeca-14d4d3280962": {
       "id": "f42baf93-4237-400b-aeca-14d4d3280962",
       "content": "We need to remove the soft deleted nodes entirely from the render tree",
@@ -783,12 +812,12 @@
         "status": "completed"
       }
     },
-    "85b819ca-ac48-45e2-87d9-b2a178bb4cd0": {
-      "id": "85b819ca-ac48-45e2-87d9-b2a178bb4cd0",
-      "content": "TEST node deletion after new system",
+    "a56f27cf-be6c-4453-af20-d295d1ba386b": {
+      "id": "a56f27cf-be6c-4453-af20-d295d1ba386b",
+      "content": "Keyboard navigation bug, can't go down through the node just above this one with the down arrow - i had deleted some stuff earlier",
       "children": [],
       "metadata": {
-        "status": "completed"
+        "status": "pending"
       }
     }
   }

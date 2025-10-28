@@ -22,7 +22,7 @@ describe('NodeContent', () => {
     updateContent: vi.fn(),
     setCursorPosition: vi.fn(),
     setRememberedVisualX: vi.fn(),
-    createSiblingNode: vi.fn(),
+    createNode: vi.fn(),
     indentNode: vi.fn(),
     outdentNode: vi.fn(),
   });
@@ -104,7 +104,7 @@ describe('NodeContent', () => {
     const contentDiv = screen.getByText('Test Task');
     fireEvent.keyDown(contentDiv, { key: 'Enter' });
 
-    expect(mockActions.createSiblingNode).toHaveBeenCalledWith('test-node');
+    expect(mockActions.createNode).toHaveBeenCalledWith('test-node');
   });
 
   it('should restore content on Escape key', () => {

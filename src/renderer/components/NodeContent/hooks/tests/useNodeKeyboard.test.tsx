@@ -41,7 +41,7 @@ describe('useNodeKeyboard', () => {
   let store: TreeStore;
   const mockMoveBack = vi.fn();
   const mockMoveForward = vi.fn();
-  const mockCreateSiblingNode = vi.fn();
+  const mockCreateNode = vi.fn();
   const mockIndentNode = vi.fn();
   const mockOutdentNode = vi.fn();
   const mockMoveNodeUp = vi.fn();
@@ -78,7 +78,7 @@ describe('useNodeKeyboard', () => {
       actions: {
         moveBack: mockMoveBack,
         moveForward: mockMoveForward,
-        createSiblingNode: mockCreateSiblingNode,
+        createNode: mockCreateNode,
         indentNode: mockIndentNode,
         outdentNode: mockOutdentNode,
         moveNodeUp: mockMoveNodeUp,
@@ -125,7 +125,7 @@ describe('useNodeKeyboard', () => {
     result.current.handleKeyDown(mockEvent);
 
     expect(mockEvent.preventDefault).toHaveBeenCalled();
-    expect(mockCreateSiblingNode).toHaveBeenCalledWith('test-node');
+    expect(mockCreateNode).toHaveBeenCalledWith('test-node');
   });
 
   it('should indent node on Tab key', () => {

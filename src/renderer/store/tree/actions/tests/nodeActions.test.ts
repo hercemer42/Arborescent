@@ -137,45 +137,114 @@ describe('nodeActions', () => {
     });
   });
 
-  describe('createSiblingNode', () => {
-    it('should create a new sibling node after current node', () => {
-      actions.createSiblingNode('node-1');
+  describe('createNode', () => {
+    describe('when node is expanded and has children', () => {
+      it('should create a new child node at first position', () => {
+        actions.createNode('node-1');
 
-      expect(state.nodes['root'].children).toHaveLength(3);
+        expect(state.nodes['node-1'].children).toHaveLength(2);
 
-      const children = state.nodes['root'].children;
-      expect(children[0]).toBe('node-1');
-      expect(children[2]).toBe('node-2');
+        const children = state.nodes['node-1'].children;
+        expect(children[1]).toBe('node-3');
 
-      const newNodeId = children[1];
-      const newNode = state.nodes[newNodeId];
+        const newNodeId = children[0];
+        const newNode = state.nodes[newNodeId];
 
-      expect(newNode).toBeDefined();
-      expect(newNode.content).toBe('');
-      expect(newNode.children).toEqual([]);
-      expect(newNode.metadata.status).toBe('pending');
+        expect(newNode).toBeDefined();
+        expect(newNode.content).toBe('');
+        expect(newNode.children).toEqual([]);
+        expect(newNode.metadata.status).toBe('pending');
+      });
+
+      it('should select the new child node with cursor at position 0', () => {
+        actions.createNode('node-1');
+
+        const newNodeId = state.nodes['node-1'].children[0];
+        expect(state.selectedNodeId).toBe(newNodeId);
+        expect(state.cursorPosition).toBe(0);
+        expect(state.rememberedVisualX).toBeNull();
+      });
+
+      it('should update ancestor registry for child node', () => {
+        actions.createNode('node-1');
+
+        const newNodeId = state.nodes['node-1'].children[0];
+        expect(state.ancestorRegistry[newNodeId]).toEqual(['root', 'node-1']);
+      });
     });
 
-    it('should select the new node with cursor at position 0', () => {
-      actions.createSiblingNode('node-1');
+    describe('when node is expanded but has no children', () => {
+      it('should create a sibling node after current node', () => {
+        actions.createNode('node-2');
 
-      const newNodeId = state.nodes['root'].children[1];
-      expect(state.selectedNodeId).toBe(newNodeId);
-      expect(state.cursorPosition).toBe(0);
-      expect(state.rememberedVisualX).toBeNull();
+        expect(state.nodes['node-2'].children).toHaveLength(0);
+        expect(state.nodes['root'].children).toHaveLength(3);
+
+        const children = state.nodes['root'].children;
+        expect(children[0]).toBe('node-1');
+        expect(children[1]).toBe('node-2');
+
+        const newNodeId = children[2];
+        const newNode = state.nodes[newNodeId];
+
+        expect(newNode).toBeDefined();
+        expect(newNode.content).toBe('');
+        expect(newNode.children).toEqual([]);
+        expect(newNode.metadata.status).toBe('pending');
+      });
+
+      it('should update ancestor registry for sibling node', () => {
+        actions.createNode('node-2');
+
+        const newNodeId = state.nodes['root'].children[2];
+        expect(state.ancestorRegistry[newNodeId]).toEqual(['root']);
+      });
     });
 
-    it('should update ancestor registry', () => {
-      actions.createSiblingNode('node-1');
+    describe('when node is collapsed', () => {
+      beforeEach(() => {
+        state.nodes['node-1'].metadata.expanded = false;
+      });
 
-      const newNodeId = state.nodes['root'].children[1];
-      expect(state.ancestorRegistry[newNodeId]).toEqual(['root']);
+      it('should create a new sibling node after current node', () => {
+        actions.createNode('node-1');
+
+        expect(state.nodes['root'].children).toHaveLength(3);
+
+        const children = state.nodes['root'].children;
+        expect(children[0]).toBe('node-1');
+        expect(children[2]).toBe('node-2');
+
+        const newNodeId = children[1];
+        const newNode = state.nodes[newNodeId];
+
+        expect(newNode).toBeDefined();
+        expect(newNode.content).toBe('');
+        expect(newNode.children).toEqual([]);
+        expect(newNode.metadata.status).toBe('pending');
+      });
+
+      it('should select the new sibling node with cursor at position 0', () => {
+        actions.createNode('node-1');
+
+        const newNodeId = state.nodes['root'].children[1];
+        expect(state.selectedNodeId).toBe(newNodeId);
+        expect(state.cursorPosition).toBe(0);
+        expect(state.rememberedVisualX).toBeNull();
+      });
+
+      it('should update ancestor registry for sibling node', () => {
+        actions.createNode('node-1');
+
+        const newNodeId = state.nodes['root'].children[1];
+        expect(state.ancestorRegistry[newNodeId]).toEqual(['root']);
+      });
     });
 
     it('should create new nodes with default status', () => {
-      actions.createSiblingNode('node-1');
+      actions.createNode('node-1');
 
-      const newNodeId = state.nodes['root'].children[1];
+      const newNodeId = state.nodes['node-1'].children[0];
       expect(state.nodes[newNodeId].metadata.status).toBe('pending');
     });
   });

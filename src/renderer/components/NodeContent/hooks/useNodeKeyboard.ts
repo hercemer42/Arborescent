@@ -27,7 +27,7 @@ export function useNodeKeyboard({
   const moveForward = useStore((state) => state.actions.moveForward);
   const moveUp = useStore((state) => state.actions.moveUp);
   const moveDown = useStore((state) => state.actions.moveDown);
-  const createSiblingNode = useStore((state) => state.actions.createSiblingNode);
+  const createNode = useStore((state) => state.actions.createNode);
   const indentNode = useStore((state) => state.actions.indentNode);
   const outdentNode = useStore((state) => state.actions.outdentNode);
   const moveNodeUp = useStore((state) => state.actions.moveNodeUp);
@@ -117,7 +117,7 @@ export function useNodeKeyboard({
       handleArrowRight(e);
     } else if (matchesHotkey(event, 'editing', 'newSiblingAfter')) {
       e.preventDefault();
-      createSiblingNode(node.id);
+      createNode(node.id);
     } else if (matchesHotkey(event, 'editing', 'outdent')) {
       e.preventDefault();
 
