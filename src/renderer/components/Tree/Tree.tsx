@@ -1,9 +1,10 @@
+import { memo } from 'react';
 import { TreeNode } from '../TreeNode';
 import { useStore } from '../../store/tree/useStore';
 import { useTree } from './hooks/useTree';
 import './Tree.css';
 
-export function Tree() {
+export const Tree = memo(function Tree() {
   const rootNodeId = useStore((state) => state.rootNodeId);
   const rootNodeChildren = useStore((state) =>
     state.nodes[state.rootNodeId]?.children
@@ -22,4 +23,4 @@ export function Tree() {
       ))}
     </div>
   );
-}
+});

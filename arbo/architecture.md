@@ -835,10 +835,17 @@ When implementing lazy loading (partial tree loading), only loaded branches need
    );
    ```
 
-4. **React.memo** - Prevent prop-driven re-renders
+4. **React.memo** - Prevent prop-driven re-renders (use selectively)
    ```typescript
    export const Node = memo(function Node({ nodeId }: NodeProps) { ... });
    ```
+
+   **When to use memo:**
+   - ✅ TreeNode (recursive, many instances, stable props)
+   - ✅ Tree (top-level, prevents cascade re-renders)
+   - ✅ Workspace (top-level, complex subtree)
+   - ❌ Small components (StatusCheckbox, ExpandToggle) - comparison cost > render cost
+   - ❌ Components with frequently changing props - memo overhead without benefit
 
 5. **Maintain referential equality** - Use spread operators correctly when updating state
 
