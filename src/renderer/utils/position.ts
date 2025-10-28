@@ -96,10 +96,10 @@ type DocumentWithCaretPosition = Document & {
 };
 
 export function getRangeFromPoint(x: number, y: number): Range | null {
-  const caretPositionFromPoint = (document as DocumentWithCaretPosition).caretPositionFromPoint;
-  if (!caretPositionFromPoint) return null;
+  const doc = document as DocumentWithCaretPosition;
+  if (!doc.caretPositionFromPoint) return null;
 
-  const position = caretPositionFromPoint(x, y);
+  const position = doc.caretPositionFromPoint(x, y);
   if (!position) return null;
 
   const range = document.createRange();
