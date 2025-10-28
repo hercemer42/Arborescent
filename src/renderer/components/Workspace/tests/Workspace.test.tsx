@@ -1,6 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import { memo } from 'react';
 import { Workspace } from '../Workspace';
 import { useFilesStore } from '../../../store/files/filesStore';
 import { storeManager } from '../../../store/storeManager';

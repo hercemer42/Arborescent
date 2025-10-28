@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState } from 'react';
 import { useStore } from '../../../store/tree/useStore';
 import { TreeNode } from '../../../../shared/types';
 import { ContextMenuItem } from '../../ui/ContextMenu';
@@ -24,16 +24,13 @@ export function useNodeContextMenu(node: TreeNode) {
     }
   };
 
-  const contextMenuItems: ContextMenuItem[] = useMemo(
-    () => [
-      {
-        label: 'Delete',
-        onClick: handleDelete,
-        danger: true,
-      },
-    ],
-    [handleDelete]
-  );
+  const contextMenuItems: ContextMenuItem[] = [
+    {
+      label: 'Delete',
+      onClick: handleDelete,
+      danger: true,
+    },
+  ];
 
   return {
     contextMenu,
