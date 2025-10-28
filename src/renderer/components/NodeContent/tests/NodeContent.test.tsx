@@ -67,7 +67,7 @@ describe('NodeContent', () => {
     expect(toggle).toBeInTheDocument();
   });
 
-  it('should show status checkbox for task nodes', () => {
+  it('should show status checkbox for nodes with content', () => {
     renderWithProvider(<NodeContent node={mockNode} expanded={true} onToggle={vi.fn()} />);
 
     const checkbox = screen.getByLabelText('Status: pending');
@@ -124,7 +124,7 @@ describe('NodeContent', () => {
       id: 'node-1',
       content: 'Node',
       children: [],
-      metadata: { status: 'pending' },
+      metadata: { status: 'completed' },
     };
 
     renderWithProvider(

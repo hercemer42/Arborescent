@@ -2,9 +2,26 @@
   display: flex;
   align-items: center;
   gap: 6px;
-  padding: 2px 6px;
+  padding: 3px 6px;
   cursor: pointer;
   position: relative;
+}
+
+.node-content.collapsed-parent {
+  background-color: rgba(33, 150, 243, 0.1);
+}
+
+.node-content.collapsed-parent:hover {
+  background-color: rgba(33, 150, 243, 0.15);
+}
+
+.status-checkbox-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.status-checkbox-wrapper.not-selected {
+  opacity: 0.4;
 }
 
 .expand-toggle-wrapper {

@@ -34,7 +34,7 @@ export const NodeContent = memo(function NodeContent({
   return (
     <>
       <div
-        className={`node-content ${isSelected ? 'selected' : ''}`}
+        className={`node-content ${isSelected ? 'selected' : ''} ${hasChildren && !expanded ? 'collapsed-parent' : ''}`}
         onContextMenu={handleContextMenu}
       >
         {hasChildren && (
@@ -43,10 +43,12 @@ export const NodeContent = memo(function NodeContent({
           </div>
         )}
 
-        <StatusCheckbox
-          status={node.metadata.status}
-          onToggle={() => toggleStatus(node.id)}
-        />
+        <div className={`status-checkbox-wrapper ${!isSelected ? 'not-selected' : ''}`}>
+          <StatusCheckbox
+            status={node.metadata.status}
+            onToggle={() => toggleStatus(node.id)}
+          />
+        </div>
 
         <div
           ref={contentRef}
