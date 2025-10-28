@@ -1,3 +1,5 @@
+type VerticalDirection = 'up' | 'down';
+
 export function getPositionFromCoordinates(
   element: HTMLElement,
   clientX: number,
@@ -38,4 +40,70 @@ export function getPositionFromCoordinates(
   }
 
   return bestPosition;
+}
+
+export function isAtVerticalBoundary(
+  direction: VerticalDirection,
+  cursorY: number,
+  lineHeight: number,
+  elementTop: number,
+  elementBottom: number
+): boolean {
+  const checkY = direction === 'up'
+    ? cursorY - lineHeight / 2
+    : cursorY + lineHeight + lineHeight / 2;
+
+  return direction === 'up'
+    ? checkY < elementTop
+    : checkY > elementBottom;
+}
+
+export function detectVerticalBoundary(
+  element: HTMLElement,
+  direction: VerticalDirection
+): { isAtBoundary: boolean; cursorX: number } | null {
+  const selection = window.getSelection();
+  if (!selection || selection.rangeCount === 0) {
+    return null;
+  }
+
+  const range = selection.getRangeAt(0);
+  const rect = range.getBoundingClientRect();
+  const cursorX = rect.left;
+  const cursorY = rect.top;
+
+  const elementRect = element.getBoundingClientRect();
+  const lineHeight = parseFloat(window.getComputedStyle(element).lineHeight) || 20;
+
+  const isAtBoundary = isAtVerticalBoundary(
+    direction,
+    cursorY,
+    lineHeight,
+    elementRect.top,
+    elementRect.bottom
+  );
+
+  return { isAtBoundary, cursorX };
+}
+
+interface CaretPosition {
+  readonly offsetNode: Node;
+  readonly offset: number;
+}
+
+type DocumentWithCaretPosition = Document & {
+  caretPositionFromPoint?: (x: number, y: number) => CaretPosition | null;
+};
+
+export function getRangeFromPoint(x: number, y: number): Range | null {
+  const caretPositionFromPoint = (document as DocumentWithCaretPosition).caretPositionFromPoint;
+  if (!caretPositionFromPoint) return null;
+
+  const position = caretPositionFromPoint(x, y);
+  if (!position) return null;
+
+  const range = document.createRange();
+  range.setStart(position.offsetNode, position.offset);
+  range.collapse(true);
+  return range;
 }

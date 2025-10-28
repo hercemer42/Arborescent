@@ -1,3 +1,5 @@
+import { getRangeFromPoint } from '../utils/position';
+
 export const getCursorPosition = (element: HTMLElement): number => {
   const selection = window.getSelection();
   if (!selection || selection.rangeCount === 0) return 0;
@@ -97,4 +99,34 @@ export const setCursorToVisualPosition = (element: HTMLElement, targetX: number)
 
   setCursorPosition(element, bestPosition);
   return bestPosition;
+};
+
+export const setCursorToVisualPositionOnLine = (
+  element: HTMLElement,
+  targetX: number,
+  initialPosition: number
+): number => {
+  const lineHeight = parseFloat(window.getComputedStyle(element).lineHeight) || 20;
+
+  setCursorPosition(element, initialPosition);
+
+  const selection = window.getSelection();
+  if (!selection || selection.rangeCount === 0) {
+    return initialPosition;
+  }
+
+  const initialY = selection.getRangeAt(0).getBoundingClientRect().top;
+  const targetRange = getRangeFromPoint(targetX, initialY + lineHeight / 2);
+
+  if (targetRange) {
+    selection.removeAllRanges();
+    selection.addRange(targetRange);
+
+    const preCaretRange = targetRange.cloneRange();
+    preCaretRange.selectNodeContents(element);
+    preCaretRange.setEnd(targetRange.endContainer, targetRange.endOffset);
+    return preCaretRange.toString().length;
+  }
+
+  return initialPosition;
 };

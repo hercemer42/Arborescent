@@ -1,11 +1,10 @@
 import { useStore } from '../../../store/tree/useStore';
 import { TreeNode } from '../../../../shared/types';
-import {
-  getCursorPosition,
-  getVisualCursorPosition,
-} from '../../../services/cursorService';
+import { getCursorPosition } from '../../../services/cursorService';
 import { matchesHotkey } from '../../../data/hotkeyConfig';
 import { NAVIGATION_THROTTLE_MS } from '../../../constants';
+import { convertToContentEditable } from '../../../utils/contentConversion';
+import { detectVerticalBoundary } from '../../../utils/position';
 
 interface UseNodeKeyboardProps {
   node: TreeNode;
@@ -38,22 +37,30 @@ export function useNodeKeyboard({
   const handleArrowUpDown = (e: React.KeyboardEvent, direction: 'up' | 'down') => {
     if (!contentRef.current) return;
 
-    e.preventDefault();
-    e.stopPropagation();
+    const result = detectVerticalBoundary(contentRef.current, direction);
+    if (!result) return;
 
-    const now = Date.now();
-    if (now - lastMoveTime < NAVIGATION_THROTTLE_MS) {
-      return;
-    }
-    lastMoveTime = now;
+    const { isAtBoundary, cursorX } = result;
+    const targetX = rememberedVisualX !== null ? rememberedVisualX : cursorX;
 
-    const position = getCursorPosition(contentRef.current);
-    const visualX = rememberedVisualX === null ? getVisualCursorPosition() : rememberedVisualX;
+    if (isAtBoundary) {
+      e.preventDefault();
 
-    if (direction === 'up') {
-      moveUp(position, visualX);
+      const now = Date.now();
+      if (now - lastMoveTime < NAVIGATION_THROTTLE_MS) {
+        return;
+      }
+      lastMoveTime = now;
+
+      if (direction === 'up') {
+        moveUp(undefined, targetX);
+      } else {
+        moveDown(undefined, targetX);
+      }
     } else {
-      moveDown(position, visualX);
+      if (rememberedVisualX === null) {
+        setRememberedVisualX(cursorX);
+      }
     }
   };
 
@@ -86,7 +93,7 @@ export function useNodeKeyboard({
     if (!contentRef.current) return;
 
     e.preventDefault();
-    contentRef.current.textContent = node.content;
+    convertToContentEditable(contentRef.current, node.content);
     contentRef.current.blur();
   };
 

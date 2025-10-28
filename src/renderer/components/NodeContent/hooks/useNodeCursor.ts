@@ -3,7 +3,7 @@ import { useStore } from '../../../store/tree/useStore';
 import { TreeNode } from '../../../../shared/types';
 import {
   setCursorPosition,
-  setCursorToVisualPosition,
+  setCursorToVisualPositionOnLine,
 } from '../../../services/cursorService';
 
 export function useNodeCursor(node: TreeNode, contentRef: React.RefObject<HTMLDivElement | null>) {
@@ -25,7 +25,7 @@ export function useNodeCursor(node: TreeNode, contentRef: React.RefObject<HTMLDi
     contentRef.current.focus();
 
     if (rememberedVisualX !== null) {
-      setCursorToVisualPosition(contentRef.current, rememberedVisualX);
+      setCursorToVisualPositionOnLine(contentRef.current, rememberedVisualX, cursorPosition);
     } else {
       setCursorPosition(contentRef.current, cursorPosition);
     }

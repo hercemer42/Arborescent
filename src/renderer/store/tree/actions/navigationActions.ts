@@ -46,7 +46,9 @@ export const createNavigationActions = (
 
     const nextNodeId = findPreviousNode(selectedNodeId, nodes, rootNodeId, ancestorRegistry);
     if (nextNodeId) {
-      set(selectNode(nextNodeId, cursorPosition, rememberedVisualX));
+      const nextNode = nodes[nextNodeId];
+      const position = cursorPosition !== undefined ? cursorPosition : nextNode?.content.length ?? 0;
+      set(selectNode(nextNodeId, position, rememberedVisualX));
     }
   }
 
@@ -66,7 +68,8 @@ export const createNavigationActions = (
 
     const nextNodeId = findNextNode(selectedNodeId, nodes, rootNodeId, ancestorRegistry);
     if (nextNodeId) {
-      set(selectNode(nextNodeId, cursorPosition, rememberedVisualX));
+      const position = cursorPosition !== undefined ? cursorPosition : 0;
+      set(selectNode(nextNodeId, position, rememberedVisualX));
     }
   }
 
