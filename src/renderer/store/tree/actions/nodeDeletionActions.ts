@@ -6,6 +6,7 @@ import {
   findPreviousNode,
   captureNodePosition,
 } from '../../../utils/nodeHelpers';
+import { buildAncestorRegistry } from '../../../utils/ancestry';
 import { v4 as uuidv4 } from 'uuid';
 
 export const MAX_DELETED_NODES = 10;
@@ -326,7 +327,7 @@ export const createNodeDeletionActions = (
 
   function undeleteNode(): boolean {
     const state = get();
-    const { deletedNodes, deletedNodesMap } = state;
+    const { deletedNodes, deletedNodesMap, rootNodeId } = state;
 
     if (deletedNodes.length === 0) return false;
 
@@ -342,9 +343,12 @@ export const createNodeDeletionActions = (
       lastDeleted.deleteBufferId
     );
 
+    const newAncestorRegistry = buildAncestorRegistry(rootNodeId, updatedNodes);
+
     set({
       nodes: updatedNodes,
       deletedNodesMap: updatedDeletedNodesMap,
+      ancestorRegistry: newAncestorRegistry,
       selectedNodeId: deletedNodeId,
       cursorPosition: 0,
       deletedNodes: deletedNodes.slice(0, -1),
