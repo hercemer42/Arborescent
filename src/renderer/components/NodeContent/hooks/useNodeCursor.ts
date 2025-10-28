@@ -8,11 +8,15 @@ import {
 
 export function useNodeCursor(node: TreeNode, contentRef: React.RefObject<HTMLDivElement | null>) {
   const isSelected = useStore((state) => state.selectedNodeId === node.id);
-  const cursorPosition = useStore((state) => state.cursorPosition);
-  const rememberedVisualX = useStore((state) => state.rememberedVisualX);
+  const cursorPosition = useStore((state) =>
+    state.selectedNodeId === node.id ? state.cursorPosition : null
+  );
+  const rememberedVisualX = useStore((state) =>
+    state.selectedNodeId === node.id ? state.rememberedVisualX : null
+  );
 
   useLayoutEffect(() => {
-    if (!isSelected || !contentRef.current) return;
+    if (!isSelected || !contentRef.current || cursorPosition === null) return;
 
     if (contentRef.current.childNodes.length === 0) {
       contentRef.current.appendChild(document.createTextNode(''));

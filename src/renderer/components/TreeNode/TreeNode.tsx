@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, useCallback } from 'react';
 import { NodeContent } from '../NodeContent';
 import { useStore } from '../../store/tree/useStore';
 import { useActiveTreeStore } from '../../store/tree/TreeStoreContext';
@@ -17,25 +17,26 @@ export const TreeNode = memo(function TreeNode({ nodeId, depth = 0 }: TreeNodePr
   const { handleMouseDown, handleMouseMove, handleClick } = useNodeMouse(nodeId);
   const store = useActiveTreeStore();
 
-  if (!node || node.metadata.deleted) {
-    return null;
-  }
+  const hasChildren = node ? node.children.length > 0 : false;
+  const expanded = node?.metadata.expanded ?? true;
+  const contentLength = node?.content.length ?? 0;
 
-  const hasChildren = node.children.length > 0;
-  const expanded = node.metadata.expanded ?? true;
-
-  const handleToggle = () => {
+  const handleToggle = useCallback(() => {
     const newExpandedState = !expanded;
 
     if (!newExpandedState) {
       const { selectedNodeId, ancestorRegistry, actions } = store.getState();
       if (checkIsDescendant(nodeId, selectedNodeId, ancestorRegistry)) {
-        actions.selectNode(nodeId, node.content.length);
+        actions.selectNode(nodeId, contentLength);
       }
     }
 
     store.getState().actions.toggleNode(nodeId);
-  };
+  }, [expanded, nodeId, contentLength, store]);
+
+  if (!node || node.metadata.deleted) {
+    return null;
+  }
 
   return (
     <>
