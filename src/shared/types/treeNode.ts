@@ -15,6 +15,7 @@ export interface TreeNode {
     expanded?: boolean;
     created?: string;
     updated?: string;
+    plugins?: Record<string, Record<string, unknown>>;
     [key: string]: unknown;
   };
 }

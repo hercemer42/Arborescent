@@ -4,6 +4,26 @@ import * as matchers from '@testing-library/jest-dom/matchers';
 
 vi.mock('zustand');
 
+vi.mock('../plugins/core', () => ({
+  usePlugins: () => ({
+    plugins: [],
+    enabledPlugins: [],
+    loading: false,
+  }),
+  PluginProvider: ({ children }: { children: React.ReactNode }) => children,
+  PluginRegistry: {
+    register: vi.fn(),
+    unregister: vi.fn(),
+    initializeAll: vi.fn(),
+    disposeAll: vi.fn(),
+    getPlugin: vi.fn(),
+    getAllPlugins: vi.fn(() => []),
+    getEnabledPlugins: vi.fn(() => []),
+    enablePlugin: vi.fn(),
+    disablePlugin: vi.fn(),
+  },
+}));
+
 expect.extend(matchers);
 
 afterEach(() => {
@@ -29,4 +49,7 @@ global.window.electron = {
   setMenuSaveHandler: vi.fn(),
   setMenuSaveAsHandler: vi.fn(),
   setMainErrorHandler: vi.fn(),
+  claudeGetProjectPath: vi.fn().mockResolvedValue('/test/project'),
+  claudeListSessions: vi.fn(),
+  claudeSendToSession: vi.fn(),
 };
