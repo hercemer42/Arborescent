@@ -1,6 +1,7 @@
 import { ArboFile } from '../../shared/types';
 import { StorageService, SessionState } from '../../shared/interfaces';
 import { getNextUntitledNumber } from '../../shared/utils/fileNaming';
+import type { PluginPreloadAPI } from '../../../plugins/preload/pluginPreload';
 
 export class ElectronStorageService implements StorageService {
   async loadDocument(filePath: string): Promise<ArboFile> {
@@ -104,6 +105,6 @@ declare global {
       setMenuSaveHandler: (callback: () => void) => void;
       setMenuSaveAsHandler: (callback: () => void) => void;
       setMainErrorHandler: (callback: (message: string) => void) => void;
-    };
+    } & PluginPreloadAPI;
   }
 }

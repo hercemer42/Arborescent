@@ -4,6 +4,7 @@ import { ExpandToggle } from '../ui/ExpandToggle';
 import { StatusCheckbox } from '../ui/StatusCheckbox';
 import { ContextMenu } from '../ui/ContextMenu';
 import { useNodeContent } from './hooks/useNodeContent';
+import { usePlugins } from '../../plugins/core';
 import './NodeContent.css';
 
 interface NodeContentProps {
@@ -31,6 +32,12 @@ export const NodeContent = memo(function NodeContent({
     closeContextMenu,
   } = useNodeContent(node);
 
+  const { enabledPlugins } = usePlugins();
+
+  const pluginIndicators = enabledPlugins
+    .map((plugin) => plugin.getNodeIndicator?.(node))
+    .filter(Boolean);
+
   return (
     <>
       <div
@@ -49,6 +56,16 @@ export const NodeContent = memo(function NodeContent({
             onToggle={() => toggleStatus(node.id)}
           />
         </div>
+
+        {pluginIndicators.length > 0 && (
+          <span className="plugin-indicators">
+            {pluginIndicators.map((indicator, i) => (
+              <span key={i} className="plugin-indicator">
+                {indicator}
+              </span>
+            ))}
+          </span>
+        )}
 
         <div
           ref={contentRef}

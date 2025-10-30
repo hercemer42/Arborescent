@@ -2,13 +2,13 @@
 
 This document records key architectural choices made during development sessions.
 
-**Last Updated:** 2025-10-23
+**Last Updated:** 2025-10-30
 
 **When updating this file:** Be concise - focus on the decision, pattern, and rationale. Avoid verbose explanations.
 
 ## Directory Structure
 
-**Decision:** Separate main process (Electron) code from renderer (React UI) code.
+**Decision:** Separate main process (Electron) code from renderer (React UI) code, with plugins isolated outside core.
 
 **Structure:**
 ```
@@ -23,11 +23,21 @@ src/
 │   ├── components/
 │   ├── store/
 │   ├── services/ # Infrastructure layer (DOM, IPC, browser APIs)
+│   ├── plugins/  # Plugin system core (registry, context, interfaces)
 │   ├── utils/    # Pure functions for renderer (position, ancestry)
 │   └── data/
 └── shared/       # Code used by both main and renderer
     ├── types/    # Type definitions (TreeNode, ArboFile, etc.)
+    ├── services/ # Shared services (logger)
     └── utils/    # Pure functions shared across platforms (fileNaming)
+
+plugins/          # Plugins directory (outside src/ to emphasize separation)
+├── main/         # Plugin IPC handler registry
+├── preload/      # Plugin preload API registry
+└── claude/       # Claude Code integration plugin
+    ├── main/     # IPC handlers for Claude CLI interaction
+    ├── preload/  # Preload API for renderer access
+    └── renderer/ # React components and plugin implementation
 ```
 
 **Rationale:**
@@ -912,3 +922,173 @@ useEffect(() => {
 **Location:** `src/renderer/renderer.tsx` renders `<App />` directly without `<React.StrictMode>` wrapper.
 
 **Rationale:** For Electron desktop apps with system-level side effects, dev/prod consistency outweighs the benefits of Strict Mode's double-invocation checks.
+
+## Plugin Architecture
+
+**Decision:** VS Code-inspired plugin system where built-in plugins use the same API as external plugins and can be disabled.
+
+**Structure:**
+```
+src/renderer/plugins/core/
+├── pluginInterface.ts       # AIPlugin interface, PluginManifest
+├── PluginRegistry.ts        # Plugin lifecycle management (register, enable, disable)
+└── PluginContext.tsx        # React context provider for accessing plugins
+
+plugins/                     # Plugins directory (outside src/)
+├── main/
+│   └── pluginRegistry.ts    # Registers all plugin IPC handlers
+├── preload/
+│   └── pluginPreload.ts     # Aggregates all plugin preload APIs
+└── claude/
+    ├── main/
+    │   └── claudeIpcHandlers.ts
+    ├── preload/
+    │   └── claudePreload.ts
+    ├── renderer/
+    │   ├── ClaudePlugin.ts
+    │   ├── manifest.json
+    │   └── claudeTypes.ts
+    └── tests/
+```
+
+**Plugin Interface:**
+```typescript
+interface AIPlugin {
+  manifest: PluginManifest;
+  initialize(): Promise<void>;
+  dispose(): void;
+  getSessions(): Promise<AISession[]>;
+  sendToSession(sessionId: string, context: string): Promise<void>;
+  getContextMenuItems(node: TreeNode, hasAncestorSession: boolean): ContextMenuItem[];
+  getNodeIndicator?(node: TreeNode): React.ReactNode | null;
+}
+```
+
+**Generic Plugin Metadata:**
+```typescript
+interface TreeNode {
+  metadata: {
+    plugins?: Record<string, Record<string, unknown>>;
+  };
+}
+
+// Each plugin has its own namespace
+node.metadata.plugins.claude.sessionId
+node.metadata.plugins.someOtherPlugin.data
+```
+
+**Registration Flow:**
+```
+1. Main Process:
+   registerPluginHandlers() in plugins/main/pluginRegistry.ts
+   ↓
+   registerClaudeIpcHandlers() registers IPC channels
+
+2. Preload:
+   pluginPreloadAPI in plugins/preload/pluginPreload.ts
+   ↓
+   Aggregates all plugin APIs for contextBridge
+
+3. Renderer:
+   PluginProvider wraps App
+   ↓
+   PluginRegistry.register(ClaudePlugin)
+   ↓
+   Components access via usePlugins()
+```
+
+**Integration Points:**
+
+**NodeContent** displays plugin indicators:
+```typescript
+const { enabledPlugins } = usePlugins();
+const indicators = enabledPlugins.map(p => p.getNodeIndicator?.(node)).filter(Boolean);
+```
+
+**useNodeContextMenu** merges plugin menu items:
+```typescript
+const pluginMenuItems = enabledPlugins.flatMap(p =>
+  p.getContextMenuItems(node, hasAncestorSession)
+);
+const contextMenuItems = [...pluginMenuItems, ...baseMenuItems];
+```
+
+**Rationale:**
+- Built-in plugins can be disabled like external plugins
+- Same API eliminates special-casing in core code
+- Generic metadata prevents pollution of TreeNode interface
+- Plugins isolated outside src/ emphasize architectural boundary
+- VS Code model proven at scale for extensibility
+- Each plugin manages its own IPC channels, preload APIs, and UI components
+- Plugin registry pattern decouples core from plugin-specific code
+
+## Shared Logger Architecture
+
+**Decision:** Base logger class with platform-specific implementations for main and renderer processes.
+
+**Structure:**
+```
+src/shared/services/logger/
+├── LoggerInterface.ts       # Logger interface
+└── BaseLogger.ts            # Base implementation with common logic
+
+src/main/services/
+└── logger.ts                # MainLogger extends BaseLogger
+
+src/renderer/services/
+└── logger.ts                # RendererLogger extends BaseLogger
+```
+
+**Pattern:**
+```typescript
+// Base logger provides common functionality
+export abstract class BaseLogger implements Logger {
+  protected logs: LogEntry[] = [];
+  protected maxLogs = 1000;
+
+  debug(message: string, context?: string): void {
+    this.log('debug', message, context);
+  }
+
+  abstract error(message: string, error?: Error, context?: string): void;
+
+  protected log(level: LogLevel, message: string, context?: string, error?: Error): void {
+    // Common logging logic
+  }
+}
+
+// Platform-specific implementations
+class MainLogger extends BaseLogger {
+  error(message: string, error?: Error, context?: string, notifyRenderer = true): void {
+    this.log('error', message, context, error);
+    if (notifyRenderer) {
+      mainWindow.webContents.send('main-error', message);
+    }
+  }
+}
+
+class RendererLogger extends BaseLogger {
+  error(message: string, error?: Error, context?: string, showToast = true): void {
+    this.log('error', message, context, error);
+    if (showToast) {
+      this.toastCallback?.(message, 'error');
+    }
+  }
+}
+```
+
+**Usage in Plugins:**
+```typescript
+import { logger } from '../../../src/renderer/services/logger';
+
+logger.info('Plugin initialized', 'Claude Plugin');
+logger.error('Failed to load sessions', error, 'Claude Plugin');
+```
+
+**Rationale:**
+- Shared base implementation eliminates code duplication
+- Platform-specific implementations handle process-specific concerns (BrowserWindow notifications, toasts)
+- Plugins can use logger without depending on process type
+- Single interface ensures consistent logging API across codebase
+- Context parameter enables filtering logs by module
+- Base logger tested once, inherited by both implementations

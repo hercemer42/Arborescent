@@ -1,36 +1,17 @@
 import { ToastType } from '../components/Toast';
-
-export type LogLevel = 'debug' | 'info' | 'warn' | 'error';
-
-export interface LogEntry {
-  timestamp: Date;
-  level: LogLevel;
-  message: string;
-  context?: string;
-  error?: Error;
-}
+import { BaseLogger } from '../../shared/services/logger/BaseLogger';
 
 type ToastCallback = (message: string, type: ToastType) => void;
 
-class Logger {
+class RendererLogger extends BaseLogger {
   private toastCallback?: ToastCallback;
-  private logs: LogEntry[] = [];
-  private maxLogs = 1000;
 
   setToastCallback(callback: ToastCallback): void {
     this.toastCallback = callback;
   }
 
-  debug(message: string, context?: string): void {
-    this.log('debug', message, context);
-  }
-
-  info(message: string, context?: string): void {
-    this.log('info', message, context);
-  }
-
   warn(message: string, context?: string, showToast = false): void {
-    this.log('warn', message, context);
+    super.warn(message, context);
     if (showToast && this.toastCallback) {
       this.toastCallback(message, 'warning');
     }
@@ -49,60 +30,6 @@ class Logger {
       this.toastCallback(message, 'success');
     }
   }
-
-  private log(level: LogLevel, message: string, context?: string, error?: Error): void {
-    const entry: LogEntry = {
-      timestamp: new Date(),
-      level,
-      message,
-      context,
-      error,
-    };
-
-    this.logs.push(entry);
-    if (this.logs.length > this.maxLogs) {
-      this.logs.shift();
-    }
-
-    const prefix = context ? `[${context}]` : '';
-    const formattedMessage = `${prefix} ${message}`;
-
-    switch (level) {
-      case 'debug':
-        console.debug(formattedMessage);
-        break;
-      case 'info':
-        console.log(formattedMessage);
-        break;
-      case 'warn':
-        console.warn(formattedMessage);
-        break;
-      case 'error':
-        if (error) {
-          console.error(formattedMessage, error);
-        } else {
-          console.error(formattedMessage);
-        }
-        break;
-    }
-  }
-
-  getLogs(): LogEntry[] {
-    return [...this.logs];
-  }
-
-  clearLogs(): void {
-    this.logs = [];
-  }
-
-  exportLogs(): string {
-    return this.logs
-      .map(
-        (entry) =>
-          `[${entry.timestamp.toISOString()}] ${entry.level.toUpperCase()} ${entry.context ? `[${entry.context}] ` : ''}${entry.message}${entry.error ? `\n${entry.error.stack}` : ''}`
-      )
-      .join('\n');
-  }
 }
 
-export const logger = new Logger();
+export const logger = new RendererLogger();

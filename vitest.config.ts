@@ -10,9 +10,10 @@ export default defineConfig({
     setupFiles: './src/renderer/test/setup.ts',
     // Test file patterns
     include: [
-      'src/**/*.{test,spec}.{ts,tsx}',           // Co-located tests
-      'src/renderer/test/unit/**/*.{test,spec}.{ts,tsx}',        // Unit tests
-      'src/renderer/test/integration/**/*.{test,spec}.{ts,tsx}', // Integration tests
+      'src/**/*.{test,spec}.{ts,tsx}',
+      'src/renderer/test/unit/**/*.{test,spec}.{ts,tsx}',
+      'src/renderer/test/integration/**/*.{test,spec}.{ts,tsx}',
+      'plugins/**/renderer/**/*.{test,spec}.{ts,tsx}',
     ],
     coverage: {
       provider: 'v8',

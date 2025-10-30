@@ -5,6 +5,7 @@ import { TreeStoreContext } from '../../../store/tree/TreeStoreContext';
 import { createTreeStore, TreeStore } from '../../../store/tree/treeStore';
 import { createPartialMockActions } from '../../../test/helpers/mockStoreActions';
 import type { TreeNode } from '@shared/types';
+import * as pluginCore from '../../../plugins/core';
 
 describe('NodeContent', () => {
   let store: TreeStore;
@@ -144,5 +145,116 @@ describe('NodeContent', () => {
     fireEvent.click(checkbox);
 
     expect(input).toHaveFocus();
+  });
+
+  describe('plugin indicators', () => {
+    it('should display plugin indicators when plugins return indicators', () => {
+      const mockPlugin = {
+        manifest: { name: 'test-plugin', version: '1.0.0', displayName: 'Test', enabled: true, builtin: false },
+        initialize: vi.fn(),
+        dispose: vi.fn(),
+        getSessions: vi.fn(),
+        sendToSession: vi.fn(),
+        getContextMenuItems: vi.fn(() => []),
+        getNodeIndicator: vi.fn(() => '🤖'),
+      };
+
+      vi.spyOn(pluginCore, 'usePlugins').mockReturnValue({
+        plugins: [mockPlugin],
+        enabledPlugins: [mockPlugin],
+        loading: false,
+      });
+
+      const nodeWithSession = {
+        ...mockNode,
+        metadata: {
+          plugins: {
+            claude: { sessionId: 'session-123' },
+          },
+        },
+      };
+
+      renderWithProvider(<NodeContent node={nodeWithSession} expanded={true} onToggle={vi.fn()} />);
+
+      expect(mockPlugin.getNodeIndicator).toHaveBeenCalledWith(nodeWithSession);
+      expect(screen.getByText('🤖')).toBeInTheDocument();
+    });
+
+    it('should not display plugin indicators section when no indicators', () => {
+      const mockPlugin = {
+        manifest: { name: 'test-plugin', version: '1.0.0', displayName: 'Test', enabled: true, builtin: false },
+        initialize: vi.fn(),
+        dispose: vi.fn(),
+        getSessions: vi.fn(),
+        sendToSession: vi.fn(),
+        getContextMenuItems: vi.fn(() => []),
+        getNodeIndicator: vi.fn(() => null),
+      };
+
+      vi.spyOn(pluginCore, 'usePlugins').mockReturnValue({
+        plugins: [mockPlugin],
+        enabledPlugins: [mockPlugin],
+        loading: false,
+      });
+
+      const { container } = renderWithProvider(<NodeContent node={mockNode} expanded={true} onToggle={vi.fn()} />);
+
+      expect(mockPlugin.getNodeIndicator).toHaveBeenCalledWith(mockNode);
+      expect(container.querySelector('.plugin-indicators')).not.toBeInTheDocument();
+    });
+
+    it('should display multiple plugin indicators', () => {
+      const mockPlugin1 = {
+        manifest: { name: 'plugin1', version: '1.0.0', displayName: 'Plugin 1', enabled: true, builtin: false },
+        initialize: vi.fn(),
+        dispose: vi.fn(),
+        getSessions: vi.fn(),
+        sendToSession: vi.fn(),
+        getContextMenuItems: vi.fn(() => []),
+        getNodeIndicator: vi.fn(() => '🤖'),
+      };
+
+      const mockPlugin2 = {
+        manifest: { name: 'plugin2', version: '1.0.0', displayName: 'Plugin 2', enabled: true, builtin: false },
+        initialize: vi.fn(),
+        dispose: vi.fn(),
+        getSessions: vi.fn(),
+        sendToSession: vi.fn(),
+        getContextMenuItems: vi.fn(() => []),
+        getNodeIndicator: vi.fn(() => '✨'),
+      };
+
+      vi.spyOn(pluginCore, 'usePlugins').mockReturnValue({
+        plugins: [mockPlugin1, mockPlugin2],
+        enabledPlugins: [mockPlugin1, mockPlugin2],
+        loading: false,
+      });
+
+      renderWithProvider(<NodeContent node={mockNode} expanded={true} onToggle={vi.fn()} />);
+
+      expect(screen.getByText('🤖')).toBeInTheDocument();
+      expect(screen.getByText('✨')).toBeInTheDocument();
+    });
+
+    it('should handle plugins without getNodeIndicator method', () => {
+      const mockPlugin = {
+        manifest: { name: 'test-plugin', version: '1.0.0', displayName: 'Test', enabled: true, builtin: false },
+        initialize: vi.fn(),
+        dispose: vi.fn(),
+        getSessions: vi.fn(),
+        sendToSession: vi.fn(),
+        getContextMenuItems: vi.fn(() => []),
+      };
+
+      vi.spyOn(pluginCore, 'usePlugins').mockReturnValue({
+        plugins: [mockPlugin],
+        enabledPlugins: [mockPlugin],
+        loading: false,
+      });
+
+      const { container } = renderWithProvider(<NodeContent node={mockNode} expanded={true} onToggle={vi.fn()} />);
+
+      expect(container.querySelector('.plugin-indicators')).not.toBeInTheDocument();
+    });
   });
 });
