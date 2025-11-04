@@ -13,7 +13,7 @@ interface NodeContentProps {
   onToggle: () => void;
 }
 
-export const NodeContent = memo(function NodeContent({
+function NodeContentComponent({
   node,
   expanded,
   onToggle,
@@ -57,8 +57,7 @@ export const NodeContent = memo(function NodeContent({
     }
 
     loadPluginIndicators();
-    // Don't re-fetch indicators when content changes for performance reasons
-  }, [node.id, node.metadata.status, node.metadata.plugins, enabledPlugins]);
+  }, [node.id, node.metadata.status, node.metadata.plugins, enabledPlugins, node]);
 
   return (
     <>
@@ -111,4 +110,19 @@ export const NodeContent = memo(function NodeContent({
       )}
     </>
   );
+}
+
+// Skip re-renders when only content changes
+export const NodeContent = memo(NodeContentComponent, (prev, next) => {
+  if (prev.expanded !== next.expanded || prev.onToggle !== next.onToggle) return false;
+  if (prev.node.id !== next.node.id) return false;
+
+
+  if (prev.node.content !== next.node.content &&
+      prev.node.children === next.node.children &&
+      prev.node.metadata === next.node.metadata) {
+    return true;
+  }
+
+  return false;
 });

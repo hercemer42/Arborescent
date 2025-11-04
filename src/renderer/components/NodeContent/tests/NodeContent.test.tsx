@@ -33,11 +33,14 @@ describe('NodeContent', () => {
 
     store = createTreeStore();
     store.setState({
-      nodes: {},
+      nodes: {
+        'test-node': mockNode,
+      },
       rootNodeId: '',
       selectedNodeId: null,
       cursorPosition: 0,
       rememberedVisualX: null,
+      ancestorRegistry: {},
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       actions: mockActions as any,
     });
