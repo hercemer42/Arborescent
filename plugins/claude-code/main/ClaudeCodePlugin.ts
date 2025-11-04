@@ -1,8 +1,13 @@
-import { Plugin, PluginManifest, NodeContext, PluginExtensionPoints } from '../../core/pluginInterface';
+import {
+  Plugin,
+  PluginManifest,
+  NodeContext,
+  PluginExtensionPoints,
+  PluginContextMenuItem,
+  PluginNodeIndicator,
+} from '../../core/pluginInterface';
 import { TreeNode } from '../../../src/shared/types';
-import { ContextMenuItem } from '../../../src/renderer/components/ui/ContextMenu';
-import { logger } from '../../../src/renderer/services/logger';
-import manifest from './manifest.json';
+import manifest from '../renderer/manifest.json';
 
 interface ClaudeCodePluginMetadata {
   sessionId?: string;
@@ -30,12 +35,14 @@ export class ClaudeCodePlugin implements Plugin {
   };
 
   async initialize(): Promise<void> {
-    this.projectPath = await window.electron.claudeGetProjectPath();
-    logger.info(`Plugin initialized for project: ${this.projectPath}`, 'Claude Code Plugin');
+    // Use pluginAPI to call IPC handlers from the extension host
+    const api = (global as { pluginAPI: { invokeIPC: (channel: string, ...args: unknown[]) => Promise<unknown> } }).pluginAPI;
+    this.projectPath = (await api.invokeIPC('claude:get-project-path')) as string;
+    console.log(`[Claude Code Plugin] Plugin initialized for project: ${this.projectPath}`);
   }
 
   dispose(): void {
-    logger.info('Plugin disposed', 'Claude Code Plugin');
+    console.log('[Claude Code Plugin] Plugin disposed');
   }
 
   private getClaudeMetadata(node: TreeNode): ClaudeCodePluginMetadata {
@@ -44,7 +51,11 @@ export class ClaudeCodePlugin implements Plugin {
 
   async getSessions(): Promise<ClaudeCodeSession[]> {
     try {
-      const sessions = await window.electron.claudeListSessions(this.projectPath);
+      const api = (global as { pluginAPI: { invokeIPC: (channel: string, ...args: unknown[]) => Promise<unknown> } }).pluginAPI;
+      const sessions = (await api.invokeIPC(
+        'claude:list-sessions',
+        this.projectPath
+      )) as unknown[];
 
       return sessions.map((s: unknown) => {
         const session = s as {
@@ -62,22 +73,28 @@ export class ClaudeCodePlugin implements Plugin {
         };
       });
     } catch (error) {
-      logger.error('Failed to get Claude Code sessions', error as Error, 'Claude Code Plugin', false);
+      console.error('[Claude Code Plugin] Failed to get Claude Code sessions:', error);
       return [];
     }
   }
 
   async sendToSession(sessionId: string, context: string): Promise<void> {
     try {
-      await window.electron.claudeSendToSession(sessionId, context, this.projectPath);
+      const api = (global as { pluginAPI: { invokeIPC: (channel: string, ...args: unknown[]) => Promise<unknown> } }).pluginAPI;
+      await api.invokeIPC(
+        'claude:send-to-session',
+        sessionId,
+        context,
+        this.projectPath
+      );
     } catch (error) {
-      logger.error('Failed to send context to Claude Code session', error as Error, 'Claude Code Plugin');
+      console.error('[Claude Code Plugin] Failed to send context to Claude Code session:', error);
       throw error;
     }
   }
 
-  private getContextMenuItems(node: TreeNode, context: NodeContext): ContextMenuItem[] {
-    const items: ContextMenuItem[] = [];
+  private getContextMenuItems(node: TreeNode, context: NodeContext): PluginContextMenuItem[] {
+    const items: PluginContextMenuItem[] = [];
 
     if (context.hasAncestorSession) {
       return items;
@@ -87,28 +104,29 @@ export class ClaudeCodePlugin implements Plugin {
 
     if (claudeData.sessionId) {
       items.push({
+        id: 'claude-code:send-to-last-session',
         label: 'Send to Last Session',
-        onClick: async () => {
-          logger.info(`Send to last session: ${claudeData.sessionId}`, 'Claude Code Plugin');
-        },
       });
     }
 
     items.push({
+      id: 'claude-code:send-to-session',
       label: 'Send to Session...',
-      onClick: async () => {
-        logger.info('Show session picker', 'Claude Code Plugin');
-      },
     });
 
     return items;
   }
 
-  private getNodeIndicator(node: TreeNode): React.ReactNode | null {
+  private getNodeIndicator(node: TreeNode): PluginNodeIndicator | null {
     const claudeData = this.getClaudeMetadata(node);
     if (claudeData.sessionId) {
-      return '🤖';
+      return {
+        type: 'text',
+        value: '🤖',
+      };
     }
     return null;
   }
 }
+
+export default ClaudeCodePlugin;

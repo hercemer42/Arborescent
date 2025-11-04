@@ -1,9 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useStore } from '../../../store/tree/useStore';
-import { TreeNode } from '../../../../shared/types';
+import { TreeNode, NodeContext, PluginContextMenuItem } from '../../../../shared/types';
 import { ContextMenuItem } from '../../ui/ContextMenu';
 import { usePluginStore } from '../../../store/plugins/pluginStore';
-import { NodeContext } from '../../../../../plugins/core/pluginInterface';
+import { PluginCommandRegistry } from '../../../../../plugins/core/PluginCommandRegistry';
 
 export function useNodeContextMenu(node: TreeNode) {
   const deleteNode = useStore((state) => state.actions.deleteNode);
@@ -11,6 +11,7 @@ export function useNodeContextMenu(node: TreeNode) {
   const ancestorRegistry = useStore((state) => state.ancestorRegistry);
   const enabledPlugins = usePluginStore((state) => state.enabledPlugins);
   const [contextMenu, setContextMenu] = useState<{ x: number; y: number } | null>(null);
+  const [pluginMenuItems, setPluginMenuItems] = useState<ContextMenuItem[]>([]);
 
   const handleContextMenu = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -37,6 +38,46 @@ export function useNodeContextMenu(node: TreeNode) {
     });
   }
 
+  function convertToContextMenuItem(
+    item: PluginContextMenuItem,
+    node: TreeNode
+  ): ContextMenuItem {
+    return {
+      label: item.label,
+      onClick: () => {
+        PluginCommandRegistry.execute(item.id, { node });
+      },
+      disabled: item.disabled,
+      danger: false,
+    };
+  }
+
+  useEffect(() => {
+    const hasAncestorSession = hasAncestorWithSession();
+
+    const nodeContext: NodeContext = {
+      hasAncestorSession,
+    };
+
+    async function loadPluginMenuItems() {
+      const items = await Promise.all(
+        enabledPlugins.map(async (plugin) => {
+          const result = await plugin.extensions.provideNodeContextMenuItems?.(
+            node,
+            nodeContext
+          );
+          return result || [];
+        })
+      );
+
+      const flatItems = items.flat();
+      const converted = flatItems.map((item) => convertToContextMenuItem(item, node));
+      setPluginMenuItems(converted);
+    }
+
+    loadPluginMenuItems();
+  }, [node, enabledPlugins, nodes, ancestorRegistry]);
+
   const baseMenuItems: ContextMenuItem[] = [
     {
       label: 'Delete',
@@ -44,16 +85,6 @@ export function useNodeContextMenu(node: TreeNode) {
       danger: true,
     },
   ];
-
-  const hasAncestorSession = hasAncestorWithSession();
-
-  const nodeContext: NodeContext = {
-    hasAncestorSession,
-  };
-
-  const pluginMenuItems = enabledPlugins.flatMap((plugin) =>
-    plugin.extensions.provideNodeContextMenuItems?.(node, nodeContext) || []
-  );
 
   const contextMenuItems = [...pluginMenuItems, ...baseMenuItems];
 

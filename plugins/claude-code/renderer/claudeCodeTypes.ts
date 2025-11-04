@@ -4,8 +4,3 @@ export interface ClaudeCodeSession {
   lastModified: Date;
   firstMessage?: string;
 }
-
-export interface ClaudeCodeSessionListResult {
-  sessions: ClaudeCodeSession[];
-  error?: string;
-}

@@ -5,6 +5,7 @@ export interface ContextMenuItem {
   label: string;
   onClick: () => void;
   danger?: boolean;
+  disabled?: boolean;
 }
 
 interface ContextMenuProps {

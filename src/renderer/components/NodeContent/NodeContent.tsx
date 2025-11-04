@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, useState, useEffect } from 'react';
 import { TreeNode } from '../../../shared/types';
 import { ExpandToggle } from '../ui/ExpandToggle';
 import { StatusCheckbox } from '../ui/StatusCheckbox';
@@ -33,10 +33,31 @@ export const NodeContent = memo(function NodeContent({
   } = useNodeContent(node);
 
   const enabledPlugins = usePluginStore((state) => state.enabledPlugins);
+  const [pluginIndicators, setPluginIndicators] = useState<React.ReactNode[]>([]);
 
-  const pluginIndicators = enabledPlugins
-    .map((plugin) => plugin.extensions.provideNodeIndicator?.(node))
-    .filter(Boolean);
+  useEffect(() => {
+    async function loadPluginIndicators() {
+      const indicators = await Promise.all(
+        enabledPlugins.map(async (plugin) => {
+          const result = await plugin.extensions.provideNodeIndicator?.(node);
+          return result;
+        })
+      );
+
+      const rendered = indicators
+        .filter((indicator) => indicator !== null)
+        .map((indicator) => {
+          if (indicator && typeof indicator === 'object' && 'type' in indicator && 'value' in indicator) {
+            return indicator.value;
+          }
+          return null;
+        });
+
+      setPluginIndicators(rendered);
+    }
+
+    loadPluginIndicators();
+  }, [node, enabledPlugins]);
 
   return (
     <>

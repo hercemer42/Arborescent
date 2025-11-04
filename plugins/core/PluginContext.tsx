@@ -1,30 +1,32 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { PluginRegistry } from './PluginRegistry';
+import { initializeBuiltinPlugins, disposeBuiltinPlugins } from './initializePlugins';
+import { logger } from '../../src/renderer/services/logger';
 
 export function PluginProvider({ children }: { children: React.ReactNode }) {
-  const [loading, setLoading] = useState(true);
-
   useEffect(() => {
+    let mounted = true;
+
     async function initPlugins() {
       try {
+        await initializeBuiltinPlugins();
+        if (!mounted) return;
         await PluginRegistry.initializeAll();
       } catch (error) {
-        console.error('Failed to initialize plugins:', error);
-      } finally {
-        setLoading(false);
+        logger.error('Failed to initialize plugins', error as Error, 'Plugin Provider');
       }
     }
 
     initPlugins();
 
     return () => {
+      mounted = false;
       PluginRegistry.disposeAll();
+      disposeBuiltinPlugins().catch((error) => {
+        logger.error('Failed to dispose plugins', error as Error, 'Plugin Provider');
+      });
     };
   }, []);
-
-  if (loading) {
-    return null;
-  }
 
   return <>{children}</>;
 }

@@ -64,4 +64,11 @@ global.window.electron = {
   claudeGetProjectPath: vi.fn().mockResolvedValue('/test/project'),
   claudeListSessions: vi.fn(),
   claudeSendToSession: vi.fn(),
+  extensionHostStart: vi.fn().mockResolvedValue({ success: true }),
+  extensionHostStop: vi.fn().mockResolvedValue({ success: true }),
+  extensionHostRegisterPlugin: vi.fn().mockResolvedValue({ success: true, manifest: {} }),
+  extensionHostUnregisterPlugin: vi.fn().mockResolvedValue({ success: true }),
+  extensionHostInitializePlugins: vi.fn().mockResolvedValue({ success: true }),
+  extensionHostDisposePlugins: vi.fn().mockResolvedValue({ success: true }),
+  extensionHostInvokeExtension: vi.fn().mockResolvedValue({ success: true, result: {} }),
 };

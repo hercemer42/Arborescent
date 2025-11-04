@@ -4,13 +4,25 @@ import { defineConfig } from 'vite';
 export default defineConfig({
 	build: {
 		lib: {
-			entry: 'src/main/main.ts',
+			entry: {
+				main: 'src/main/main.ts',
+				'extensionHost.worker': 'plugins/core/main/extensionHost/extensionHost.worker.ts',
+				'plugins/claude-code': 'plugins/claude-code/main/ClaudeCodePlugin.ts',
+			},
 			formats: ['cjs'],
-			fileName: () => 'main.cjs',
 		},
 		rollupOptions: {
 			output: {
-				entryFileNames: 'main.cjs',
+				entryFileNames: (chunkInfo) => {
+					if (chunkInfo.name === 'main') {
+						return 'main.cjs';
+					}
+					if (chunkInfo.name === 'plugins/claude-code') {
+						return 'plugins/claude-code.cjs';
+					}
+					return '[name].cjs';
+				},
+				chunkFileNames: '[name]-[hash].cjs',
 				format: 'cjs',
 			},
 		},

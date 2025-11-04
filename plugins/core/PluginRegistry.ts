@@ -1,5 +1,6 @@
 import { Plugin } from './pluginInterface';
 import { usePluginStore } from '../../src/renderer/store/plugins/pluginStore';
+import { logger } from '../../src/renderer/services/logger';
 
 class PluginRegistryClass {
   private plugins: Map<string, Plugin> = new Map();
@@ -7,7 +8,7 @@ class PluginRegistryClass {
 
   async register(plugin: Plugin): Promise<void> {
     if (this.plugins.has(plugin.manifest.name)) {
-      console.warn(`Plugin ${plugin.manifest.name} is already registered`);
+      logger.warn(`Plugin ${plugin.manifest.name} is already registered`, 'Plugin Registry');
       return;
     }
 
@@ -15,17 +16,41 @@ class PluginRegistryClass {
     usePluginStore.getState().registerPlugin(plugin);
 
     if (this.initialized && plugin.manifest.enabled) {
-      await plugin.initialize();
+      try {
+        await plugin.initialize();
+        logger.info(`Plugin ${plugin.manifest.name} initialized`, 'Plugin Registry');
+      } catch (error) {
+        logger.error(
+          `Failed to initialize plugin ${plugin.manifest.name}`,
+          error as Error,
+          'Plugin Registry'
+        );
+      }
     }
+
+    logger.info(`Plugin ${plugin.manifest.name} registered`, 'Plugin Registry');
   }
 
-  unregister(pluginName: string): void {
+  async unregister(pluginName: string): Promise<void> {
     const plugin = this.plugins.get(pluginName);
-    if (plugin) {
-      plugin.dispose();
-      this.plugins.delete(pluginName);
-      usePluginStore.getState().unregisterPlugin(pluginName);
+    if (!plugin) {
+      return;
     }
+
+    try {
+      plugin.dispose();
+    } catch (error) {
+      logger.error(
+        `Failed to dispose plugin ${pluginName}`,
+        error as Error,
+        'Plugin Registry'
+      );
+    }
+
+    this.plugins.delete(pluginName);
+    usePluginStore.getState().unregisterPlugin(pluginName);
+
+    logger.info(`Plugin ${pluginName} unregistered`, 'Plugin Registry');
   }
 
   async initializeAll(): Promise<void> {
@@ -33,14 +58,44 @@ class PluginRegistryClass {
       (p) => p.manifest.enabled
     );
 
-    await Promise.all(enabledPlugins.map((plugin) => plugin.initialize()));
+    await Promise.all(
+      enabledPlugins.map(async (plugin) => {
+        try {
+          await plugin.initialize();
+          logger.info(`Plugin ${plugin.manifest.name} initialized`, 'Plugin Registry');
+        } catch (error) {
+          logger.error(
+            `Failed to initialize plugin ${plugin.manifest.name}`,
+            error as Error,
+            'Plugin Registry'
+          );
+        }
+      })
+    );
+
     this.initialized = true;
+    logger.info('All plugins initialized', 'Plugin Registry');
   }
 
-  disposeAll(): void {
-    this.plugins.forEach((plugin) => plugin.dispose());
+  async disposeAll(): Promise<void> {
+    await Promise.all(
+      Array.from(this.plugins.values()).map(async (plugin) => {
+        try {
+          plugin.dispose();
+        } catch (error) {
+          logger.error(
+            `Failed to dispose plugin ${plugin.manifest.name}`,
+            error as Error,
+            'Plugin Registry'
+          );
+        }
+      })
+    );
+
     this.plugins.clear();
     this.initialized = false;
+
+    logger.info('All plugins disposed', 'Plugin Registry');
   }
 
   getPlugin(name: string): Plugin | undefined {
@@ -65,19 +120,42 @@ class PluginRegistryClass {
     usePluginStore.getState().enablePlugin(name);
 
     if (this.initialized) {
-      await plugin.initialize();
+      try {
+        await plugin.initialize();
+        logger.info(`Plugin ${name} enabled and initialized`, 'Plugin Registry');
+      } catch (error) {
+        logger.error(
+          `Failed to initialize plugin ${name}`,
+          error as Error,
+          'Plugin Registry'
+        );
+      }
+    } else {
+      logger.info(`Plugin ${name} enabled`, 'Plugin Registry');
     }
   }
 
-  disablePlugin(name: string): void {
+  async disablePlugin(name: string): Promise<void> {
     const plugin = this.plugins.get(name);
     if (!plugin) {
       throw new Error(`Plugin ${name} not found`);
     }
 
     plugin.manifest.enabled = false;
-    plugin.dispose();
+
+    try {
+      plugin.dispose();
+    } catch (error) {
+      logger.error(
+        `Failed to dispose plugin ${name}`,
+        error as Error,
+        'Plugin Registry'
+      );
+    }
+
     usePluginStore.getState().disablePlugin(name);
+
+    logger.info(`Plugin ${name} disabled`, 'Plugin Registry');
   }
 }
 

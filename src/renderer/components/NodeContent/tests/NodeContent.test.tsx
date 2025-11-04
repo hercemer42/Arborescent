@@ -148,8 +148,8 @@ describe('NodeContent', () => {
   });
 
   describe('plugin indicators', () => {
-    it('should display plugin indicators when plugins return indicators', () => {
-      const provideNodeIndicator = vi.fn(() => '🤖');
+    it('should display plugin indicators when plugins return indicators', async () => {
+      const provideNodeIndicator = vi.fn(() => ({ type: 'text' as const, value: '🤖' }));
 
       const mockPlugin = {
         manifest: { name: 'test-plugin', version: '1.0.0', displayName: 'Test', enabled: true, builtin: false },
@@ -184,6 +184,7 @@ describe('NodeContent', () => {
       renderWithProvider(<NodeContent node={nodeWithSession} expanded={true} onToggle={vi.fn()} />);
 
       expect(provideNodeIndicator).toHaveBeenCalledWith(nodeWithSession);
+      await screen.findByText('🤖');
       expect(screen.getByText('🤖')).toBeInTheDocument();
     });
 
@@ -217,9 +218,9 @@ describe('NodeContent', () => {
       expect(container.querySelector('.plugin-indicators')).not.toBeInTheDocument();
     });
 
-    it('should display multiple plugin indicators', () => {
-      const provideNodeIndicator1 = vi.fn(() => '🤖');
-      const provideNodeIndicator2 = vi.fn(() => '✨');
+    it('should display multiple plugin indicators', async () => {
+      const provideNodeIndicator1 = vi.fn(() => ({ type: 'text' as const, value: '🤖' }));
+      const provideNodeIndicator2 = vi.fn(() => ({ type: 'text' as const, value: '✨' }));
 
       const mockPlugin1 = {
         manifest: { name: 'plugin1', version: '1.0.0', displayName: 'Plugin 1', enabled: true, builtin: false },
@@ -253,6 +254,7 @@ describe('NodeContent', () => {
 
       renderWithProvider(<NodeContent node={mockNode} expanded={true} onToggle={vi.fn()} />);
 
+      await screen.findByText('🤖');
       expect(screen.getByText('🤖')).toBeInTheDocument();
       expect(screen.getByText('✨')).toBeInTheDocument();
     });

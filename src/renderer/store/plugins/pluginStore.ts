@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { Plugin } from '../../../../plugins/core/pluginInterface';
+import { Plugin } from '../../../shared/types';
 
 interface PluginState {
   plugins: Plugin[];

@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
-import { renderHook, act } from '@testing-library/react';
+import { renderHook, act, waitFor } from '@testing-library/react';
 import { useNodeContextMenu } from '../useNodeContextMenu';
 import { TreeStoreContext } from '../../../../store/tree/TreeStoreContext';
 import { createTreeStore, TreeStore } from '../../../../store/tree/treeStore';
@@ -160,9 +160,9 @@ describe('useNodeContextMenu', () => {
   });
 
   describe('plugin integration', () => {
-    it('should include plugin menu items before base items', () => {
+    it('should include plugin menu items before base items', async () => {
       const provideNodeContextMenuItems = vi.fn(() => [
-        { label: 'Plugin Action', onClick: vi.fn() },
+        { id: 'plugin:action', label: 'Plugin Action' },
       ]);
 
       const mockPlugin = {
@@ -187,6 +187,10 @@ describe('useNodeContextMenu', () => {
       });
 
       const { result } = renderHook(() => useNodeContextMenu(mockNode), { wrapper });
+
+      await waitFor(() => {
+        expect(result.current.contextMenuItems.length).toBeGreaterThan(1);
+      });
 
       expect(result.current.contextMenuItems[0].label).toBe('Plugin Action');
       expect(result.current.contextMenuItems.find(item => item.label === 'Delete')).toBeDefined();
@@ -271,13 +275,13 @@ describe('useNodeContextMenu', () => {
       expect(provideNodeContextMenuItems).toHaveBeenCalledWith(mockNode, { hasAncestorSession: true });
     });
 
-    it('should handle multiple plugins', () => {
+    it('should handle multiple plugins', async () => {
       const provideNodeContextMenuItems1 = vi.fn(() => [
-        { label: 'Action 1', onClick: vi.fn() },
+        { id: 'plugin1:action1', label: 'Action 1' },
       ]);
 
       const provideNodeContextMenuItems2 = vi.fn(() => [
-        { label: 'Action 2', onClick: vi.fn() },
+        { id: 'plugin2:action2', label: 'Action 2' },
       ]);
 
       const mockPlugin1 = {
@@ -311,6 +315,10 @@ describe('useNodeContextMenu', () => {
       });
 
       const { result } = renderHook(() => useNodeContextMenu(mockNode), { wrapper });
+
+      await waitFor(() => {
+        expect(result.current.contextMenuItems.length).toBeGreaterThan(1);
+      });
 
       const actionLabels = result.current.contextMenuItems.map(item => item.label);
       expect(actionLabels).toContain('Action 1');

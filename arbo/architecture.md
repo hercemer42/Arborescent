@@ -2,7 +2,7 @@
 
 This document records key architectural choices made during development sessions.
 
-**Last Updated:** 2025-10-30
+**Last Updated:** 2025-11-04
 
 **When updating this file:** Be concise - focus on the decision, pattern, and rationale. Avoid verbose explanations.
 
@@ -27,13 +27,13 @@ src/
 │   ├── utils/    # Pure functions for renderer (position, ancestry)
 │   └── data/
 └── shared/       # Code used by both main and renderer
-    ├── types/    # Type definitions (TreeNode, ArboFile, etc.)
+    ├── types/    # Type definitions (TreeNode, ArboFile, Plugin interfaces, etc.)
     ├── services/ # Shared services (logger)
     └── utils/    # Pure functions shared across platforms (fileNaming)
 
 plugins/          # Plugins directory (outside src/ to emphasize separation)
-├── core/         # Plugin system core (renderer)
-│   ├── pluginInterface.ts    # AIPlugin interface definitions
+├── core/         # Plugin system core
+│   ├── pluginInterface.ts    # Re-exports from src/shared/types/plugins.ts
 │   ├── PluginRegistry.ts     # Plugin lifecycle management
 │   ├── PluginContext.tsx     # React context provider
 │   └── initializePlugins.ts  # Built-in plugin initialization
@@ -225,7 +225,8 @@ import './ComponentName.css';
 src/shared/types/
 ├── index.ts      # Re-exports all types
 ├── treeNode.ts   # TreeNode, NodeStatus
-└── document.ts   # Document, ArboFile
+├── document.ts   # Document, ArboFile
+└── plugins.ts    # Plugin interfaces (Plugin, PluginManifest, etc.)
 ```
 
 **Example:**
@@ -237,6 +238,7 @@ export interface TreeNode { /* ... */ }
 // index.ts
 export type { NodeStatus, TreeNode } from './treeNode';
 export type { Document, ArboFile } from './document';
+export type { Plugin, PluginManifest } from './plugins';
 
 // Usage
 import { TreeNode, NodeStatus, Document } from '../../../shared/types';
@@ -930,68 +932,86 @@ useEffect(() => {
 
 ## Plugin Architecture
 
-**Decision:** VS Code-inspired plugin system with extension points pattern and Zustand store for state management.
+**Decision:** VS Code-inspired plugin system with worker thread process isolation, serializable data pattern, command registry, and IPC-based communication.
 
 **Structure:**
 ```
-plugins/core/
-├── pluginInterface.ts       # Plugin interface, extension points
-├── PluginRegistry.ts        # Lifecycle management, syncs with store
-├── PluginContext.tsx        # Lifecycle provider (init/dispose)
-└── initializePlugins.ts
+src/shared/types/
+└── plugins.ts              # Plugin interface definitions (shared contract)
 
-src/renderer/store/plugins/
-└── pluginStore.ts           # Zustand store for plugin state
+plugins/core/
+├── renderer/               # Plugin system (registry, proxy, manager)
+├── main/extensionHost/     # Worker thread (plugin execution, API, logger)
+├── preload/                # IPC bridge
+└── initializePlugins.ts    # Plugin initialization
+
+plugins/[plugin-name]/
+├── main/                   # Plugin implementation + IPC handlers
+├── preload/                # IPC bridge
+└── renderer/               # Command handlers + UI components
 ```
 
-**Extension Points Pattern:**
+**Architecture Flow:**
+```
+Renderer ←→ IPC ←→ Main Process ←→ Worker Thread
+                                      ↓
+                                   Plugin
+                                      ↓
+                               pluginAPI.invokeIPC()
+                                      ↓
+                               IPC Handlers
+```
+
+**Key Components:**
+- **PluginProxy (renderer):** Forwards calls to worker via IPC
+- **ExtensionHostConnection (main):** Manages worker thread lifecycle
+- **extensionHost.worker (worker):** Loads and executes plugins in isolation
+- **pluginAPI (worker):** Allows plugins to call main process IPC handlers
+- **Command Registry (renderer):** Maps plugin commands to renderer actions
+
+**Plugin Extension Points:**
 ```typescript
 interface PluginExtensionPoints {
-  provideNodeContextMenuItems?(node: TreeNode, context: NodeContext): ContextMenuItem[];
-  provideNodeIndicator?(node: TreeNode): React.ReactNode | null;
-  provideSidebarPanels?(): SidebarPanel[];
-  provideToolbarActions?(): ToolbarAction[];
-}
-
-interface Plugin {
-  manifest: PluginManifest;
-  initialize(): Promise<void>;
-  dispose(): void;
-  extensions: PluginExtensionPoints;
+  provideNodeContextMenuItems?(node: TreeNode, context: NodeContext):
+    PluginContextMenuItem[];  // { id, label } not { onClick }
+  provideNodeIndicator?(node: TreeNode):
+    PluginNodeIndicator | null;  // { type: 'text', value: '🤖' }
+  provideSidebarPanels?(): PluginSidebarPanel[];
+  provideToolbarActions?(): PluginToolbarAction[];
 }
 ```
 
-**State Management:**
+**Command Pattern:**
 ```typescript
-// Plugin store (Zustand)
-const enabledPlugins = usePluginStore((state) => state.enabledPlugins);
+// Plugin registers commands (renderer process)
+PluginCommandRegistry.register('claude-code:send-to-session', async (context) => {
+  // Command logic with access to renderer state
+});
 
-// PluginRegistry syncs with store
-PluginRegistry.register(plugin) → usePluginStore.getState().registerPlugin(plugin)
+// Plugin returns menu item (worker thread)
+{ id: 'claude-code:send-to-session', label: 'Send to Session...' }
+
+// UI executes command (renderer process)
+PluginCommandRegistry.execute(item.id, { node });
 ```
 
-**Component Integration:**
+**Plugin API (Worker Thread):**
 ```typescript
-// NodeContent - uses store directly
-const enabledPlugins = usePluginStore((state) => state.enabledPlugins);
-const indicators = enabledPlugins
-  .map(p => p.extensions.provideNodeIndicator?.(node))
-  .filter(Boolean);
-
-// useNodeContextMenu - accesses via extension points
-const nodeContext: NodeContext = { hasAncestorSession };
-const items = enabledPlugins.flatMap(p =>
-  p.extensions.provideNodeContextMenuItems?.(node, nodeContext) || []
-);
+// Global pluginAPI allows plugins to call main process IPC handlers
+const projectPath = await pluginAPI.invokeIPC('claude:get-project-path');
+const sessions = await pluginAPI.invokeIPC('claude:list-sessions', projectPath);
 ```
 
 **Rationale:**
-- Store-based architecture decouples components from plugin initialization
-- Extension points support node-level and app-level plugins (sidebar, toolbar)
-- Follows existing Zustand patterns for consistency
-- PluginContext handles lifecycle, store handles state
-- Plugins can return React components for flexible UI contributions
-- Scales to workspace-level features without coupling to node components
+- **Plugin Types in Shared**: Plugin interface types live in `src/shared/types/plugins.ts` as the contract between core and plugins, preventing core components from depending on `plugins/` directory
+- **Process Isolation**: Plugins run in separate worker thread for security and stability
+- **Serializable Data**: All extension points return JSON-serializable data for IPC transport
+- **Command Pattern**: Commands run in renderer with access to UI state, while menu definitions come from worker
+- **IPC Architecture**: Main process manages worker thread, renderer communicates via IPC
+- **Error Isolation**: Plugin crashes don't affect renderer; try/catch around all invocations
+- **Security**: Untrusted plugins can't directly access renderer state or DOM
+
+**See also:** `plugins/PLUGIN_DEVELOPMENT.md` for complete plugin development guide
 
 ## Shared Logger Architecture
 
