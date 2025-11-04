@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useStore } from '../../../store/tree/useStore';
 import { TreeNode, NodeContext, PluginContextMenuItem } from '../../../../shared/types';
 import { ContextMenuItem } from '../../ui/ContextMenu';
@@ -13,9 +13,29 @@ export function useNodeContextMenu(node: TreeNode) {
   const [contextMenu, setContextMenu] = useState<{ x: number; y: number } | null>(null);
   const [pluginMenuItems, setPluginMenuItems] = useState<ContextMenuItem[]>([]);
 
-  const handleContextMenu = (e: React.MouseEvent) => {
+  const handleContextMenu = async (e: React.MouseEvent) => {
     e.preventDefault();
     setContextMenu({ x: e.clientX, y: e.clientY });
+
+    // Load plugin menu items only when context menu is opened
+    const hasAncestorSession = hasAncestorWithSession();
+    const nodeContext: NodeContext = {
+      hasAncestorSession,
+    };
+
+    const items = await Promise.all(
+      enabledPlugins.map(async (plugin) => {
+        const result = await plugin.extensions.provideNodeContextMenuItems?.(
+          node,
+          nodeContext
+        );
+        return result || [];
+      })
+    );
+
+    const flatItems = items.flat();
+    const converted = flatItems.map((item) => convertToContextMenuItem(item, node));
+    setPluginMenuItems(converted);
   };
 
   const handleDelete = () => {
@@ -51,32 +71,6 @@ export function useNodeContextMenu(node: TreeNode) {
       danger: false,
     };
   }
-
-  useEffect(() => {
-    const hasAncestorSession = hasAncestorWithSession();
-
-    const nodeContext: NodeContext = {
-      hasAncestorSession,
-    };
-
-    async function loadPluginMenuItems() {
-      const items = await Promise.all(
-        enabledPlugins.map(async (plugin) => {
-          const result = await plugin.extensions.provideNodeContextMenuItems?.(
-            node,
-            nodeContext
-          );
-          return result || [];
-        })
-      );
-
-      const flatItems = items.flat();
-      const converted = flatItems.map((item) => convertToContextMenuItem(item, node));
-      setPluginMenuItems(converted);
-    }
-
-    loadPluginMenuItems();
-  }, [node, enabledPlugins, nodes, ancestorRegistry]);
 
   const baseMenuItems: ContextMenuItem[] = [
     {

@@ -46,6 +46,9 @@ export class PluginProxy implements Plugin {
       );
 
       if (!response.success) {
+        if (response.error === 'Extension host not started') {
+          return [];
+        }
         console.error(
           `Error invoking provideNodeContextMenuItems for ${this.pluginName}:`,
           response.error
@@ -72,6 +75,9 @@ export class PluginProxy implements Plugin {
       );
 
       if (!response.success) {
+        if (response.error === 'Extension host not started') {
+          return null;
+        }
         console.error(`Error invoking provideNodeIndicator for ${this.pluginName}:`, response.error);
         return null;
       }
@@ -92,6 +98,9 @@ export class PluginProxy implements Plugin {
       );
 
       if (!response.success) {
+        if (response.error === 'Extension host not started') {
+          return [];
+        }
         console.error(`Error invoking provideSidebarPanels for ${this.pluginName}:`, response.error);
         return [];
       }
@@ -112,6 +121,9 @@ export class PluginProxy implements Plugin {
       );
 
       if (!response.success) {
+        if (response.error === 'Extension host not started') {
+          return [];
+        }
         console.error(`Error invoking provideToolbarActions for ${this.pluginName}:`, response.error);
         return [];
       }

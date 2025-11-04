@@ -57,7 +57,8 @@ export const NodeContent = memo(function NodeContent({
     }
 
     loadPluginIndicators();
-  }, [node, enabledPlugins]);
+    // Don't re-fetch indicators when content changes for performance reasons
+  }, [node.id, node.metadata.status, node.metadata.plugins, enabledPlugins]);
 
   return (
     <>
