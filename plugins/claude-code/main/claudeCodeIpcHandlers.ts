@@ -4,19 +4,32 @@ import path from 'node:path';
 import os from 'node:os';
 import { spawn, ChildProcess } from 'node:child_process';
 import { logger } from '../../../src/main/services/logger';
-
-interface ClaudeSession {
-  id: string;
-  projectPath: string;
-  lastModified: Date;
-  firstMessage: string;
-}
+import { ClaudeCodeSession } from '../renderer/claudeCodeTypes';
 
 function getClaudeProjectDirectory(projectPath: string): string {
   const homeDir = os.homedir();
   const claudeDir = path.join(homeDir, '.claude', 'projects');
   const encodedPath = projectPath.replace(/\//g, '-');
   return path.join(claudeDir, encodedPath);
+}
+
+function extractSessionId(filePath: string): string {
+  return path.basename(filePath, '.jsonl');
+}
+
+function parseFirstMessage(content: string): string {
+  try {
+    const lines = content.split('\n').filter(l => l.trim());
+    if (lines.length > 0) {
+      const firstLine = JSON.parse(lines[0]);
+      if (firstLine.message?.content) {
+        return firstLine.message.content.substring(0, 100);
+      }
+    }
+  } catch {
+    return '';
+  }
+  return '';
 }
 
 async function directoryExists(dirPath: string): Promise<boolean> {
@@ -31,20 +44,14 @@ async function directoryExists(dirPath: string): Promise<boolean> {
 async function parseSessionMetadata(
   filePath: string,
   projectPath: string
-): Promise<ClaudeSession> {
+): Promise<ClaudeCodeSession> {
   const stats = await fs.stat(filePath);
-  const sessionId = path.basename(filePath, '.jsonl');
+  const sessionId = extractSessionId(filePath);
 
   let firstMessage = '';
   try {
     const content = await fs.readFile(filePath, 'utf-8');
-    const lines = content.split('\n').filter(l => l.trim());
-    if (lines.length > 0) {
-      const firstLine = JSON.parse(lines[0]);
-      if (firstLine.message?.content) {
-        firstMessage = firstLine.message.content.substring(0, 100);
-      }
-    }
+    firstMessage = parseFirstMessage(content);
   } catch {
     firstMessage = '';
   }
@@ -57,7 +64,7 @@ async function parseSessionMetadata(
   };
 }
 
-async function readSessionFiles(projectDir: string, projectPath: string): Promise<ClaudeSession[]> {
+async function readSessionFiles(projectDir: string, projectPath: string): Promise<ClaudeCodeSession[]> {
   const files = await fs.readdir(projectDir);
   const sessionFiles = files.filter(f => f.endsWith('.jsonl') && !f.includes('summary'));
 
@@ -94,23 +101,23 @@ function handleClaudeProcessEvents(
   reject: (reason: Error) => void
 ): void {
   claudeProcess.on('error', (error) => {
-    logger.error('Failed to spawn Claude process', error, 'Claude Plugin', true);
+    logger.error('Failed to spawn Claude process', error, 'Claude Code Plugin', true);
     reject(error);
   });
 
   claudeProcess.on('close', (code) => {
     if (code === 0) {
-      logger.info(`Claude session ${sessionId} completed`, 'Claude Plugin');
+      logger.info(`Claude Code session ${sessionId} completed`, 'Claude Code Plugin');
       resolve();
     } else {
       const error = new Error(`Claude process exited with code ${code}`);
-      logger.error('Claude process failed', error, 'Claude Plugin', true);
+      logger.error('Claude process failed', error, 'Claude Code Plugin', true);
       reject(error);
     }
   });
 }
 
-export function registerClaudeIpcHandlers() {
+export function registerClaudeCodeIpcHandlers() {
   ipcMain.handle('claude:get-project-path', async () => {
     return process.cwd();
   });
@@ -121,30 +128,30 @@ export function registerClaudeIpcHandlers() {
       const claudeBaseDir = path.dirname(projectDir);
 
       if (!(await directoryExists(claudeBaseDir))) {
-        logger.info('Claude directory not found', 'Claude Plugin');
+        logger.info('Claude directory not found', 'Claude Code Plugin');
         return [];
       }
 
       if (!(await directoryExists(projectDir))) {
-        logger.info(`No Claude sessions for project: ${projectPath}`, 'Claude Plugin');
+        logger.info(`No Claude Code sessions for project: ${projectPath}`, 'Claude Code Plugin');
         return [];
       }
 
       const sessions = await readSessionFiles(projectDir, projectPath);
-      logger.info(`Found ${sessions.length} Claude sessions for project: ${projectPath}`, 'Claude Plugin');
+      logger.info(`Found ${sessions.length} Claude Code sessions for project: ${projectPath}`, 'Claude Code Plugin');
       return sessions;
     } catch (error) {
-      logger.error('Failed to list Claude sessions', error as Error, 'Claude Plugin', false);
+      logger.error('Failed to list Claude Code sessions', error as Error, 'Claude Code Plugin', false);
       return [];
     }
   });
 
   ipcMain.handle('claude:send-to-session', async (_, sessionId: string, context: string, projectPath: string) => {
     try {
-      logger.info(`Sending context to Claude session: ${sessionId}`, 'Claude Plugin');
+      logger.info(`Sending context to Claude Code session: ${sessionId}`, 'Claude Code Plugin');
       await spawnClaudeProcess(sessionId, context, projectPath);
     } catch (error) {
-      logger.error('Failed to send context to Claude', error as Error, 'Claude Plugin', true);
+      logger.error('Failed to send context to Claude Code session', error as Error, 'Claude Code Plugin', true);
       throw error;
     }
   });

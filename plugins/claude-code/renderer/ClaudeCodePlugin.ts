@@ -1,31 +1,48 @@
-import { AIPlugin, AISession, PluginManifest } from '../../../src/renderer/plugins/core/pluginInterface';
+import { Plugin, PluginManifest, NodeContext, PluginExtensionPoints } from '../../core/pluginInterface';
 import { TreeNode } from '../../../src/shared/types';
 import { ContextMenuItem } from '../../../src/renderer/components/ui/ContextMenu';
 import { logger } from '../../../src/renderer/services/logger';
 import manifest from './manifest.json';
 
-interface ClaudePluginMetadata {
+interface ClaudeCodePluginMetadata {
   sessionId?: string;
 }
 
-export class ClaudePlugin implements AIPlugin {
+export interface ClaudeCodeSession {
+  id: string;
+  displayName: string;
+  projectPath?: string;
+  lastModified?: Date;
+}
+
+export class ClaudeCodePlugin implements Plugin {
   manifest: PluginManifest = manifest;
   private projectPath: string = '';
 
+  extensions: PluginExtensionPoints = {
+    provideNodeContextMenuItems: (node: TreeNode, context: NodeContext) => {
+      return this.getContextMenuItems(node, context);
+    },
+
+    provideNodeIndicator: (node: TreeNode) => {
+      return this.getNodeIndicator(node);
+    },
+  };
+
   async initialize(): Promise<void> {
     this.projectPath = await window.electron.claudeGetProjectPath();
-    logger.info(`Plugin initialized for project: ${this.projectPath}`, 'Claude Plugin');
+    logger.info(`Plugin initialized for project: ${this.projectPath}`, 'Claude Code Plugin');
   }
 
   dispose(): void {
-    logger.info('Plugin disposed', 'Claude Plugin');
+    logger.info('Plugin disposed', 'Claude Code Plugin');
   }
 
-  private getClaudeMetadata(node: TreeNode): ClaudePluginMetadata {
-    return (node.metadata.plugins?.claude as ClaudePluginMetadata) || {};
+  private getClaudeMetadata(node: TreeNode): ClaudeCodePluginMetadata {
+    return (node.metadata.plugins?.claude as ClaudeCodePluginMetadata) || {};
   }
 
-  async getSessions(): Promise<AISession[]> {
+  async getSessions(): Promise<ClaudeCodeSession[]> {
     try {
       const sessions = await window.electron.claudeListSessions(this.projectPath);
 
@@ -45,7 +62,7 @@ export class ClaudePlugin implements AIPlugin {
         };
       });
     } catch (error) {
-      logger.error('Failed to get Claude sessions', error as Error, 'Claude Plugin', false);
+      logger.error('Failed to get Claude Code sessions', error as Error, 'Claude Code Plugin', false);
       return [];
     }
   }
@@ -54,15 +71,15 @@ export class ClaudePlugin implements AIPlugin {
     try {
       await window.electron.claudeSendToSession(sessionId, context, this.projectPath);
     } catch (error) {
-      logger.error('Failed to send context to Claude session', error as Error, 'Claude Plugin');
+      logger.error('Failed to send context to Claude Code session', error as Error, 'Claude Code Plugin');
       throw error;
     }
   }
 
-  getContextMenuItems(node: TreeNode, hasAncestorSession: boolean): ContextMenuItem[] {
+  private getContextMenuItems(node: TreeNode, context: NodeContext): ContextMenuItem[] {
     const items: ContextMenuItem[] = [];
 
-    if (hasAncestorSession) {
+    if (context.hasAncestorSession) {
       return items;
     }
 
@@ -72,7 +89,7 @@ export class ClaudePlugin implements AIPlugin {
       items.push({
         label: 'Send to Last Session',
         onClick: async () => {
-          logger.info(`Send to last session: ${claudeData.sessionId}`, 'Claude Plugin');
+          logger.info(`Send to last session: ${claudeData.sessionId}`, 'Claude Code Plugin');
         },
       });
     }
@@ -80,14 +97,14 @@ export class ClaudePlugin implements AIPlugin {
     items.push({
       label: 'Send to Session...',
       onClick: async () => {
-        logger.info('Show session picker', 'Claude Plugin');
+        logger.info('Show session picker', 'Claude Code Plugin');
       },
     });
 
     return items;
   }
 
-  getNodeIndicator(node: TreeNode): React.ReactNode | null {
+  private getNodeIndicator(node: TreeNode): React.ReactNode | null {
     const claudeData = this.getClaudeMetadata(node);
     if (claudeData.sessionId) {
       return '🤖';

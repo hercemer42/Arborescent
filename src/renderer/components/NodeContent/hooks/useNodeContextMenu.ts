@@ -2,13 +2,14 @@ import { useState } from 'react';
 import { useStore } from '../../../store/tree/useStore';
 import { TreeNode } from '../../../../shared/types';
 import { ContextMenuItem } from '../../ui/ContextMenu';
-import { usePlugins } from '../../../plugins/core';
+import { usePluginStore } from '../../../store/plugins/pluginStore';
+import { NodeContext } from '../../../../../plugins/core/pluginInterface';
 
 export function useNodeContextMenu(node: TreeNode) {
   const deleteNode = useStore((state) => state.actions.deleteNode);
   const nodes = useStore((state) => state.nodes);
   const ancestorRegistry = useStore((state) => state.ancestorRegistry);
-  const { enabledPlugins } = usePlugins();
+  const enabledPlugins = usePluginStore((state) => state.enabledPlugins);
   const [contextMenu, setContextMenu] = useState<{ x: number; y: number } | null>(null);
 
   const handleContextMenu = (e: React.MouseEvent) => {
@@ -46,8 +47,12 @@ export function useNodeContextMenu(node: TreeNode) {
 
   const hasAncestorSession = hasAncestorWithSession();
 
+  const nodeContext: NodeContext = {
+    hasAncestorSession,
+  };
+
   const pluginMenuItems = enabledPlugins.flatMap((plugin) =>
-    plugin.getContextMenuItems(node, hasAncestorSession)
+    plugin.extensions.provideNodeContextMenuItems?.(node, nodeContext) || []
   );
 
   const contextMenuItems = [...pluginMenuItems, ...baseMenuItems];

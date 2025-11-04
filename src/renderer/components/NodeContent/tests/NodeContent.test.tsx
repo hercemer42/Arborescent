@@ -5,7 +5,7 @@ import { TreeStoreContext } from '../../../store/tree/TreeStoreContext';
 import { createTreeStore, TreeStore } from '../../../store/tree/treeStore';
 import { createPartialMockActions } from '../../../test/helpers/mockStoreActions';
 import type { TreeNode } from '@shared/types';
-import * as pluginCore from '../../../plugins/core';
+import * as pluginStore from '../../../store/plugins/pluginStore';
 
 describe('NodeContent', () => {
   let store: TreeStore;
@@ -149,20 +149,27 @@ describe('NodeContent', () => {
 
   describe('plugin indicators', () => {
     it('should display plugin indicators when plugins return indicators', () => {
+      const provideNodeIndicator = vi.fn(() => '🤖');
+
       const mockPlugin = {
         manifest: { name: 'test-plugin', version: '1.0.0', displayName: 'Test', enabled: true, builtin: false },
         initialize: vi.fn(),
         dispose: vi.fn(),
-        getSessions: vi.fn(),
-        sendToSession: vi.fn(),
-        getContextMenuItems: vi.fn(() => []),
-        getNodeIndicator: vi.fn(() => '🤖'),
+        extensions: {
+          provideNodeIndicator,
+        },
       };
 
-      vi.spyOn(pluginCore, 'usePlugins').mockReturnValue({
-        plugins: [mockPlugin],
-        enabledPlugins: [mockPlugin],
-        loading: false,
+      vi.spyOn(pluginStore, 'usePluginStore').mockImplementation((selector) => {
+        const state = {
+          plugins: [mockPlugin],
+          enabledPlugins: [mockPlugin],
+          registerPlugin: vi.fn(),
+          unregisterPlugin: vi.fn(),
+          enablePlugin: vi.fn(),
+          disablePlugin: vi.fn(),
+        };
+        return selector ? selector(state) : state;
       });
 
       const nodeWithSession = {
@@ -176,58 +183,72 @@ describe('NodeContent', () => {
 
       renderWithProvider(<NodeContent node={nodeWithSession} expanded={true} onToggle={vi.fn()} />);
 
-      expect(mockPlugin.getNodeIndicator).toHaveBeenCalledWith(nodeWithSession);
+      expect(provideNodeIndicator).toHaveBeenCalledWith(nodeWithSession);
       expect(screen.getByText('🤖')).toBeInTheDocument();
     });
 
     it('should not display plugin indicators section when no indicators', () => {
+      const provideNodeIndicator = vi.fn(() => null);
+
       const mockPlugin = {
         manifest: { name: 'test-plugin', version: '1.0.0', displayName: 'Test', enabled: true, builtin: false },
         initialize: vi.fn(),
         dispose: vi.fn(),
-        getSessions: vi.fn(),
-        sendToSession: vi.fn(),
-        getContextMenuItems: vi.fn(() => []),
-        getNodeIndicator: vi.fn(() => null),
+        extensions: {
+          provideNodeIndicator,
+        },
       };
 
-      vi.spyOn(pluginCore, 'usePlugins').mockReturnValue({
-        plugins: [mockPlugin],
-        enabledPlugins: [mockPlugin],
-        loading: false,
+      vi.spyOn(pluginStore, 'usePluginStore').mockImplementation((selector) => {
+        const state = {
+          plugins: [mockPlugin],
+          enabledPlugins: [mockPlugin],
+          registerPlugin: vi.fn(),
+          unregisterPlugin: vi.fn(),
+          enablePlugin: vi.fn(),
+          disablePlugin: vi.fn(),
+        };
+        return selector ? selector(state) : state;
       });
 
       const { container } = renderWithProvider(<NodeContent node={mockNode} expanded={true} onToggle={vi.fn()} />);
 
-      expect(mockPlugin.getNodeIndicator).toHaveBeenCalledWith(mockNode);
+      expect(provideNodeIndicator).toHaveBeenCalledWith(mockNode);
       expect(container.querySelector('.plugin-indicators')).not.toBeInTheDocument();
     });
 
     it('should display multiple plugin indicators', () => {
+      const provideNodeIndicator1 = vi.fn(() => '🤖');
+      const provideNodeIndicator2 = vi.fn(() => '✨');
+
       const mockPlugin1 = {
         manifest: { name: 'plugin1', version: '1.0.0', displayName: 'Plugin 1', enabled: true, builtin: false },
         initialize: vi.fn(),
         dispose: vi.fn(),
-        getSessions: vi.fn(),
-        sendToSession: vi.fn(),
-        getContextMenuItems: vi.fn(() => []),
-        getNodeIndicator: vi.fn(() => '🤖'),
+        extensions: {
+          provideNodeIndicator: provideNodeIndicator1,
+        },
       };
 
       const mockPlugin2 = {
         manifest: { name: 'plugin2', version: '1.0.0', displayName: 'Plugin 2', enabled: true, builtin: false },
         initialize: vi.fn(),
         dispose: vi.fn(),
-        getSessions: vi.fn(),
-        sendToSession: vi.fn(),
-        getContextMenuItems: vi.fn(() => []),
-        getNodeIndicator: vi.fn(() => '✨'),
+        extensions: {
+          provideNodeIndicator: provideNodeIndicator2,
+        },
       };
 
-      vi.spyOn(pluginCore, 'usePlugins').mockReturnValue({
-        plugins: [mockPlugin1, mockPlugin2],
-        enabledPlugins: [mockPlugin1, mockPlugin2],
-        loading: false,
+      vi.spyOn(pluginStore, 'usePluginStore').mockImplementation((selector) => {
+        const state = {
+          plugins: [mockPlugin1, mockPlugin2],
+          enabledPlugins: [mockPlugin1, mockPlugin2],
+          registerPlugin: vi.fn(),
+          unregisterPlugin: vi.fn(),
+          enablePlugin: vi.fn(),
+          disablePlugin: vi.fn(),
+        };
+        return selector ? selector(state) : state;
       });
 
       renderWithProvider(<NodeContent node={mockNode} expanded={true} onToggle={vi.fn()} />);
@@ -236,20 +257,24 @@ describe('NodeContent', () => {
       expect(screen.getByText('✨')).toBeInTheDocument();
     });
 
-    it('should handle plugins without getNodeIndicator method', () => {
+    it('should handle plugins without provideNodeIndicator method', () => {
       const mockPlugin = {
         manifest: { name: 'test-plugin', version: '1.0.0', displayName: 'Test', enabled: true, builtin: false },
         initialize: vi.fn(),
         dispose: vi.fn(),
-        getSessions: vi.fn(),
-        sendToSession: vi.fn(),
-        getContextMenuItems: vi.fn(() => []),
+        extensions: {},
       };
 
-      vi.spyOn(pluginCore, 'usePlugins').mockReturnValue({
-        plugins: [mockPlugin],
-        enabledPlugins: [mockPlugin],
-        loading: false,
+      vi.spyOn(pluginStore, 'usePluginStore').mockImplementation((selector) => {
+        const state = {
+          plugins: [mockPlugin],
+          enabledPlugins: [mockPlugin],
+          registerPlugin: vi.fn(),
+          unregisterPlugin: vi.fn(),
+          enablePlugin: vi.fn(),
+          disablePlugin: vi.fn(),
+        };
+        return selector ? selector(state) : state;
       });
 
       const { container } = renderWithProvider(<NodeContent node={mockNode} expanded={true} onToggle={vi.fn()} />);

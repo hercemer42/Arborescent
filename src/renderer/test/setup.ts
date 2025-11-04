@@ -4,13 +4,25 @@ import * as matchers from '@testing-library/jest-dom/matchers';
 
 vi.mock('zustand');
 
-vi.mock('../plugins/core', () => ({
-  usePlugins: () => ({
-    plugins: [],
-    enabledPlugins: [],
-    loading: false,
+vi.mock('../store/plugins/pluginStore', () => ({
+  usePluginStore: vi.fn((selector) => {
+    const state = {
+      plugins: [],
+      enabledPlugins: [],
+      registerPlugin: vi.fn(),
+      unregisterPlugin: vi.fn(),
+      enablePlugin: vi.fn(),
+      disablePlugin: vi.fn(),
+    };
+    return selector ? selector(state) : state;
   }),
+}));
+
+vi.mock('../../../plugins/core/PluginContext', () => ({
   PluginProvider: ({ children }: { children: React.ReactNode }) => children,
+}));
+
+vi.mock('../../../plugins/core/PluginRegistry', () => ({
   PluginRegistry: {
     register: vi.fn(),
     unregister: vi.fn(),

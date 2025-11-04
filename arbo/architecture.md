@@ -32,6 +32,11 @@ src/
     └── utils/    # Pure functions shared across platforms (fileNaming)
 
 plugins/          # Plugins directory (outside src/ to emphasize separation)
+├── core/         # Plugin system core (renderer)
+│   ├── pluginInterface.ts    # AIPlugin interface definitions
+│   ├── PluginRegistry.ts     # Plugin lifecycle management
+│   ├── PluginContext.tsx     # React context provider
+│   └── initializePlugins.ts  # Built-in plugin initialization
 ├── main/         # Plugin IPC handler registry
 ├── preload/      # Plugin preload API registry
 └── claude/       # Claude Code integration plugin
@@ -925,102 +930,68 @@ useEffect(() => {
 
 ## Plugin Architecture
 
-**Decision:** VS Code-inspired plugin system where built-in plugins use the same API as external plugins and can be disabled.
+**Decision:** VS Code-inspired plugin system with extension points pattern and Zustand store for state management.
 
 **Structure:**
 ```
-src/renderer/plugins/core/
-├── pluginInterface.ts       # AIPlugin interface, PluginManifest
-├── PluginRegistry.ts        # Plugin lifecycle management (register, enable, disable)
-└── PluginContext.tsx        # React context provider for accessing plugins
+plugins/core/
+├── pluginInterface.ts       # Plugin interface, extension points
+├── PluginRegistry.ts        # Lifecycle management, syncs with store
+├── PluginContext.tsx        # Lifecycle provider (init/dispose)
+└── initializePlugins.ts
 
-plugins/                     # Plugins directory (outside src/)
-├── main/
-│   └── pluginRegistry.ts    # Registers all plugin IPC handlers
-├── preload/
-│   └── pluginPreload.ts     # Aggregates all plugin preload APIs
-└── claude/
-    ├── main/
-    │   └── claudeIpcHandlers.ts
-    ├── preload/
-    │   └── claudePreload.ts
-    ├── renderer/
-    │   ├── ClaudePlugin.ts
-    │   ├── manifest.json
-    │   └── claudeTypes.ts
-    └── tests/
+src/renderer/store/plugins/
+└── pluginStore.ts           # Zustand store for plugin state
 ```
 
-**Plugin Interface:**
+**Extension Points Pattern:**
 ```typescript
-interface AIPlugin {
+interface PluginExtensionPoints {
+  provideNodeContextMenuItems?(node: TreeNode, context: NodeContext): ContextMenuItem[];
+  provideNodeIndicator?(node: TreeNode): React.ReactNode | null;
+  provideSidebarPanels?(): SidebarPanel[];
+  provideToolbarActions?(): ToolbarAction[];
+}
+
+interface Plugin {
   manifest: PluginManifest;
   initialize(): Promise<void>;
   dispose(): void;
-  getSessions(): Promise<AISession[]>;
-  sendToSession(sessionId: string, context: string): Promise<void>;
-  getContextMenuItems(node: TreeNode, hasAncestorSession: boolean): ContextMenuItem[];
-  getNodeIndicator?(node: TreeNode): React.ReactNode | null;
+  extensions: PluginExtensionPoints;
 }
 ```
 
-**Generic Plugin Metadata:**
+**State Management:**
 ```typescript
-interface TreeNode {
-  metadata: {
-    plugins?: Record<string, Record<string, unknown>>;
-  };
-}
+// Plugin store (Zustand)
+const enabledPlugins = usePluginStore((state) => state.enabledPlugins);
 
-// Each plugin has its own namespace
-node.metadata.plugins.claude.sessionId
-node.metadata.plugins.someOtherPlugin.data
+// PluginRegistry syncs with store
+PluginRegistry.register(plugin) → usePluginStore.getState().registerPlugin(plugin)
 ```
 
-**Registration Flow:**
-```
-1. Main Process:
-   registerPluginHandlers() in plugins/main/pluginRegistry.ts
-   ↓
-   registerClaudeIpcHandlers() registers IPC channels
-
-2. Preload:
-   pluginPreloadAPI in plugins/preload/pluginPreload.ts
-   ↓
-   Aggregates all plugin APIs for contextBridge
-
-3. Renderer:
-   PluginProvider wraps App
-   ↓
-   PluginRegistry.register(ClaudePlugin)
-   ↓
-   Components access via usePlugins()
-```
-
-**Integration Points:**
-
-**NodeContent** displays plugin indicators:
+**Component Integration:**
 ```typescript
-const { enabledPlugins } = usePlugins();
-const indicators = enabledPlugins.map(p => p.getNodeIndicator?.(node)).filter(Boolean);
-```
+// NodeContent - uses store directly
+const enabledPlugins = usePluginStore((state) => state.enabledPlugins);
+const indicators = enabledPlugins
+  .map(p => p.extensions.provideNodeIndicator?.(node))
+  .filter(Boolean);
 
-**useNodeContextMenu** merges plugin menu items:
-```typescript
-const pluginMenuItems = enabledPlugins.flatMap(p =>
-  p.getContextMenuItems(node, hasAncestorSession)
+// useNodeContextMenu - accesses via extension points
+const nodeContext: NodeContext = { hasAncestorSession };
+const items = enabledPlugins.flatMap(p =>
+  p.extensions.provideNodeContextMenuItems?.(node, nodeContext) || []
 );
-const contextMenuItems = [...pluginMenuItems, ...baseMenuItems];
 ```
 
 **Rationale:**
-- Built-in plugins can be disabled like external plugins
-- Same API eliminates special-casing in core code
-- Generic metadata prevents pollution of TreeNode interface
-- Plugins isolated outside src/ emphasize architectural boundary
-- VS Code model proven at scale for extensibility
-- Each plugin manages its own IPC channels, preload APIs, and UI components
-- Plugin registry pattern decouples core from plugin-specific code
+- Store-based architecture decouples components from plugin initialization
+- Extension points support node-level and app-level plugins (sidebar, toolbar)
+- Follows existing Zustand patterns for consistency
+- PluginContext handles lifecycle, store handles state
+- Plugins can return React components for flexible UI contributions
+- Scales to workspace-level features without coupling to node components
 
 ## Shared Logger Architecture
 

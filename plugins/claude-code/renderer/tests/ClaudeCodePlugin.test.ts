@@ -1,12 +1,12 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
-import { ClaudePlugin } from '../ClaudePlugin';
+import { ClaudeCodePlugin } from '../ClaudeCodePlugin';
 import type { TreeNode } from '../../../../src/shared/types';
 
-describe('ClaudePlugin', () => {
-  let plugin: ClaudePlugin;
+describe('ClaudeCodePlugin', () => {
+  let plugin: ClaudeCodePlugin;
 
   beforeEach(() => {
-    plugin = new ClaudePlugin();
+    plugin = new ClaudeCodePlugin();
 
     global.window.electron = {
       ...global.window.electron,
@@ -100,7 +100,7 @@ describe('ClaudePlugin', () => {
     });
   });
 
-  describe('getContextMenuItems', () => {
+  describe('provideNodeContextMenuItems', () => {
     it('should return empty array if ancestor has session', () => {
       const node: TreeNode = {
         id: 'node-1',
@@ -109,7 +109,7 @@ describe('ClaudePlugin', () => {
         metadata: {},
       };
 
-      const items = plugin.getContextMenuItems(node, true);
+      const items = plugin.extensions.provideNodeContextMenuItems?.(node, { hasAncestorSession: true });
 
       expect(items).toEqual([]);
     });
@@ -122,10 +122,10 @@ describe('ClaudePlugin', () => {
         metadata: {},
       };
 
-      const items = plugin.getContextMenuItems(node, false);
+      const items = plugin.extensions.provideNodeContextMenuItems?.(node, { hasAncestorSession: false });
 
       expect(items).toHaveLength(1);
-      expect(items[0].label).toBe('Send to Session...');
+      expect(items?.[0].label).toBe('Send to Session...');
     });
 
     it('should return both menu items if node has session', () => {
@@ -142,11 +142,11 @@ describe('ClaudePlugin', () => {
         },
       };
 
-      const items = plugin.getContextMenuItems(node, false);
+      const items = plugin.extensions.provideNodeContextMenuItems?.(node, { hasAncestorSession: false });
 
       expect(items).toHaveLength(2);
-      expect(items[0].label).toBe('Send to Last Session');
-      expect(items[1].label).toBe('Send to Session...');
+      expect(items?.[0].label).toBe('Send to Last Session');
+      expect(items?.[1].label).toBe('Send to Session...');
     });
 
     it('should handle missing plugin metadata', () => {
@@ -157,7 +157,7 @@ describe('ClaudePlugin', () => {
         metadata: {},
       };
 
-      const items = plugin.getContextMenuItems(node, false);
+      const items = plugin.extensions.provideNodeContextMenuItems?.(node, { hasAncestorSession: false });
 
       expect(items).toHaveLength(1);
     });
@@ -172,13 +172,13 @@ describe('ClaudePlugin', () => {
         },
       };
 
-      const items = plugin.getContextMenuItems(node, false);
+      const items = plugin.extensions.provideNodeContextMenuItems?.(node, { hasAncestorSession: false });
 
       expect(items).toHaveLength(1);
     });
   });
 
-  describe('getNodeIndicator', () => {
+  describe('provideNodeIndicator', () => {
     it('should return robot emoji if node has session', () => {
       const node: TreeNode = {
         id: 'node-1',
@@ -193,7 +193,7 @@ describe('ClaudePlugin', () => {
         },
       };
 
-      const indicator = plugin.getNodeIndicator(node);
+      const indicator = plugin.extensions.provideNodeIndicator?.(node);
 
       expect(indicator).toBe('🤖');
     });
@@ -206,7 +206,7 @@ describe('ClaudePlugin', () => {
         metadata: {},
       };
 
-      const indicator = plugin.getNodeIndicator(node);
+      const indicator = plugin.extensions.provideNodeIndicator?.(node);
 
       expect(indicator).toBeNull();
     });
@@ -221,7 +221,7 @@ describe('ClaudePlugin', () => {
         },
       };
 
-      const indicator = plugin.getNodeIndicator(node);
+      const indicator = plugin.extensions.provideNodeIndicator?.(node);
 
       expect(indicator).toBeNull();
     });
@@ -230,7 +230,7 @@ describe('ClaudePlugin', () => {
   describe('manifest', () => {
     it('should have correct manifest properties', () => {
       expect(plugin.manifest).toBeDefined();
-      expect(plugin.manifest.name).toBe('claude-integration');
+      expect(plugin.manifest.name).toBe('claude-code-integration');
       expect(plugin.manifest.displayName).toBe('Claude Code Integration');
       expect(plugin.manifest.version).toBe('1.0.0');
       expect(plugin.manifest.enabled).toBe(true);

@@ -1,5 +1,5 @@
-import { registerClaudeIpcHandlers } from '../claude/main/claudeIpcHandlers';
+import { registerClaudeCodeIpcHandlers } from '../claude-code/main/claudeCodeIpcHandlers';
 
 export function registerPluginHandlers(): void {
-  registerClaudeIpcHandlers();
+  registerClaudeCodeIpcHandlers();
 }

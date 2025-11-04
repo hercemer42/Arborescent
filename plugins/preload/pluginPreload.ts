@@ -1,7 +1,7 @@
-import { claudePreloadAPI } from '../claude/preload/claudePreload';
+import { claudeCodePreloadAPI } from '../claude-code/preload/claudeCodePreload';
 
 export const pluginPreloadAPI = {
-  ...claudePreloadAPI,
+  ...claudeCodePreloadAPI,
 };
 
 export interface PluginPreloadAPI {

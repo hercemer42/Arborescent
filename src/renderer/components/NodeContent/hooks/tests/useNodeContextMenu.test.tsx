@@ -4,7 +4,7 @@ import { useNodeContextMenu } from '../useNodeContextMenu';
 import { TreeStoreContext } from '../../../../store/tree/TreeStoreContext';
 import { createTreeStore, TreeStore } from '../../../../store/tree/treeStore';
 import type { TreeNode } from '@shared/types';
-import * as pluginCore from '../../../../plugins/core';
+import * as pluginStore from '../../../../store/plugins/pluginStore';
 
 describe('useNodeContextMenu', () => {
   let store: TreeStore;
@@ -35,10 +35,16 @@ describe('useNodeContextMenu', () => {
       } as any,
     });
 
-    vi.spyOn(pluginCore, 'usePlugins').mockReturnValue({
-      plugins: [],
-      enabledPlugins: [],
-      loading: false,
+    vi.spyOn(pluginStore, 'usePluginStore').mockImplementation((selector) => {
+      const state = {
+        plugins: [],
+        enabledPlugins: [],
+        registerPlugin: vi.fn(),
+        unregisterPlugin: vi.fn(),
+        enablePlugin: vi.fn(),
+        disablePlugin: vi.fn(),
+      };
+      return selector ? selector(state) : state;
     });
   });
 
@@ -155,22 +161,29 @@ describe('useNodeContextMenu', () => {
 
   describe('plugin integration', () => {
     it('should include plugin menu items before base items', () => {
+      const provideNodeContextMenuItems = vi.fn(() => [
+        { label: 'Plugin Action', onClick: vi.fn() },
+      ]);
+
       const mockPlugin = {
         manifest: { name: 'test-plugin', version: '1.0.0', displayName: 'Test', enabled: true, builtin: false },
         initialize: vi.fn(),
         dispose: vi.fn(),
-        getSessions: vi.fn(),
-        sendToSession: vi.fn(),
-        getContextMenuItems: vi.fn(() => [
-          { label: 'Plugin Action', onClick: vi.fn() },
-        ]),
-        getNodeIndicator: vi.fn(() => null),
+        extensions: {
+          provideNodeContextMenuItems,
+        },
       };
 
-      vi.spyOn(pluginCore, 'usePlugins').mockReturnValue({
-        plugins: [mockPlugin],
-        enabledPlugins: [mockPlugin],
-        loading: false,
+      vi.spyOn(pluginStore, 'usePluginStore').mockImplementation((selector) => {
+        const state = {
+          plugins: [mockPlugin],
+          enabledPlugins: [mockPlugin],
+          registerPlugin: vi.fn(),
+          unregisterPlugin: vi.fn(),
+          enablePlugin: vi.fn(),
+          disablePlugin: vi.fn(),
+        };
+        return selector ? selector(state) : state;
       });
 
       const { result } = renderHook(() => useNodeContextMenu(mockNode), { wrapper });
@@ -180,25 +193,32 @@ describe('useNodeContextMenu', () => {
     });
 
     it('should pass hasAncestorSession=false when no ancestor has session', () => {
+      const provideNodeContextMenuItems = vi.fn(() => []);
+
       const mockPlugin = {
         manifest: { name: 'test-plugin', version: '1.0.0', displayName: 'Test', enabled: true, builtin: false },
         initialize: vi.fn(),
         dispose: vi.fn(),
-        getSessions: vi.fn(),
-        sendToSession: vi.fn(),
-        getContextMenuItems: vi.fn(() => []),
-        getNodeIndicator: vi.fn(() => null),
+        extensions: {
+          provideNodeContextMenuItems,
+        },
       };
 
-      vi.spyOn(pluginCore, 'usePlugins').mockReturnValue({
-        plugins: [mockPlugin],
-        enabledPlugins: [mockPlugin],
-        loading: false,
+      vi.spyOn(pluginStore, 'usePluginStore').mockImplementation((selector) => {
+        const state = {
+          plugins: [mockPlugin],
+          enabledPlugins: [mockPlugin],
+          registerPlugin: vi.fn(),
+          unregisterPlugin: vi.fn(),
+          enablePlugin: vi.fn(),
+          disablePlugin: vi.fn(),
+        };
+        return selector ? selector(state) : state;
       });
 
       renderHook(() => useNodeContextMenu(mockNode), { wrapper });
 
-      expect(mockPlugin.getContextMenuItems).toHaveBeenCalledWith(mockNode, false);
+      expect(provideNodeContextMenuItems).toHaveBeenCalledWith(mockNode, { hasAncestorSession: false });
     });
 
     it('should pass hasAncestorSession=true when ancestor has Claude session', () => {
@@ -223,56 +243,71 @@ describe('useNodeContextMenu', () => {
         },
       });
 
+      const provideNodeContextMenuItems = vi.fn(() => []);
+
       const mockPlugin = {
         manifest: { name: 'test-plugin', version: '1.0.0', displayName: 'Test', enabled: true, builtin: false },
         initialize: vi.fn(),
         dispose: vi.fn(),
-        getSessions: vi.fn(),
-        sendToSession: vi.fn(),
-        getContextMenuItems: vi.fn(() => []),
-        getNodeIndicator: vi.fn(() => null),
+        extensions: {
+          provideNodeContextMenuItems,
+        },
       };
 
-      vi.spyOn(pluginCore, 'usePlugins').mockReturnValue({
-        plugins: [mockPlugin],
-        enabledPlugins: [mockPlugin],
-        loading: false,
+      vi.spyOn(pluginStore, 'usePluginStore').mockImplementation((selector) => {
+        const state = {
+          plugins: [mockPlugin],
+          enabledPlugins: [mockPlugin],
+          registerPlugin: vi.fn(),
+          unregisterPlugin: vi.fn(),
+          enablePlugin: vi.fn(),
+          disablePlugin: vi.fn(),
+        };
+        return selector ? selector(state) : state;
       });
 
       renderHook(() => useNodeContextMenu(mockNode), { wrapper });
 
-      expect(mockPlugin.getContextMenuItems).toHaveBeenCalledWith(mockNode, true);
+      expect(provideNodeContextMenuItems).toHaveBeenCalledWith(mockNode, { hasAncestorSession: true });
     });
 
     it('should handle multiple plugins', () => {
+      const provideNodeContextMenuItems1 = vi.fn(() => [
+        { label: 'Action 1', onClick: vi.fn() },
+      ]);
+
+      const provideNodeContextMenuItems2 = vi.fn(() => [
+        { label: 'Action 2', onClick: vi.fn() },
+      ]);
+
       const mockPlugin1 = {
         manifest: { name: 'plugin1', version: '1.0.0', displayName: 'Plugin 1', enabled: true, builtin: false },
         initialize: vi.fn(),
         dispose: vi.fn(),
-        getSessions: vi.fn(),
-        sendToSession: vi.fn(),
-        getContextMenuItems: vi.fn(() => [
-          { label: 'Action 1', onClick: vi.fn() },
-        ]),
-        getNodeIndicator: vi.fn(() => null),
+        extensions: {
+          provideNodeContextMenuItems: provideNodeContextMenuItems1,
+        },
       };
 
       const mockPlugin2 = {
         manifest: { name: 'plugin2', version: '1.0.0', displayName: 'Plugin 2', enabled: true, builtin: false },
         initialize: vi.fn(),
         dispose: vi.fn(),
-        getSessions: vi.fn(),
-        sendToSession: vi.fn(),
-        getContextMenuItems: vi.fn(() => [
-          { label: 'Action 2', onClick: vi.fn() },
-        ]),
-        getNodeIndicator: vi.fn(() => null),
+        extensions: {
+          provideNodeContextMenuItems: provideNodeContextMenuItems2,
+        },
       };
 
-      vi.spyOn(pluginCore, 'usePlugins').mockReturnValue({
-        plugins: [mockPlugin1, mockPlugin2],
-        enabledPlugins: [mockPlugin1, mockPlugin2],
-        loading: false,
+      vi.spyOn(pluginStore, 'usePluginStore').mockImplementation((selector) => {
+        const state = {
+          plugins: [mockPlugin1, mockPlugin2],
+          enabledPlugins: [mockPlugin1, mockPlugin2],
+          registerPlugin: vi.fn(),
+          unregisterPlugin: vi.fn(),
+          enablePlugin: vi.fn(),
+          disablePlugin: vi.fn(),
+        };
+        return selector ? selector(state) : state;
       });
 
       const { result } = renderHook(() => useNodeContextMenu(mockNode), { wrapper });

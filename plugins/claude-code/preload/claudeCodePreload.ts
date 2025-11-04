@@ -1,6 +1,6 @@
 import { ipcRenderer } from 'electron';
 
-export const claudePreloadAPI = {
+export const claudeCodePreloadAPI = {
   claudeGetProjectPath: () => ipcRenderer.invoke('claude:get-project-path'),
   claudeListSessions: (projectPath: string) =>
     ipcRenderer.invoke('claude:list-sessions', projectPath),

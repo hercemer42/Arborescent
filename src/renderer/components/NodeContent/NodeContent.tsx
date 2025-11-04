@@ -4,7 +4,7 @@ import { ExpandToggle } from '../ui/ExpandToggle';
 import { StatusCheckbox } from '../ui/StatusCheckbox';
 import { ContextMenu } from '../ui/ContextMenu';
 import { useNodeContent } from './hooks/useNodeContent';
-import { usePlugins } from '../../plugins/core';
+import { usePluginStore } from '../../store/plugins/pluginStore';
 import './NodeContent.css';
 
 interface NodeContentProps {
@@ -32,10 +32,10 @@ export const NodeContent = memo(function NodeContent({
     closeContextMenu,
   } = useNodeContent(node);
 
-  const { enabledPlugins } = usePlugins();
+  const enabledPlugins = usePluginStore((state) => state.enabledPlugins);
 
   const pluginIndicators = enabledPlugins
-    .map((plugin) => plugin.getNodeIndicator?.(node))
+    .map((plugin) => plugin.extensions.provideNodeIndicator?.(node))
     .filter(Boolean);
 
   return (

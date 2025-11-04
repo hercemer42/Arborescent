@@ -1,1 +1,0 @@
-export { ClaudePlugin } from './ClaudePlugin';

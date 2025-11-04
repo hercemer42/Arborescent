@@ -2,7 +2,7 @@
   "format": "Arborescent",
   "version": "1.0.0",
   "created": "2025-10-11T00:00:00.000Z",
-  "updated": "2025-10-30T07:35:32.211Z",
+  "updated": "2025-11-04T07:18:51.902Z",
   "author": "brian@brianfox.fr",
   "rootNodeId": "root",
   "nodes": {
@@ -145,7 +145,7 @@
         "b2004b56-bb44-4266-b147-c1a4315f3da2"
       ],
       "metadata": {
-        "status": "completed",
+        "status": "pending",
         "expanded": true
       }
     },
@@ -200,7 +200,9 @@
       "content": "Refactor",
       "children": [
         "a45af02d-395a-4622-a268-c06a8d8275ae",
-        "perf-main-001"
+        "perf-main-001",
+        "b18d78b0-a96e-4483-840c-df932f663968",
+        "00fe1875-4004-44e5-9ad3-0b338c9c1c41"
       ],
       "metadata": {
         "status": "completed",
@@ -328,11 +330,12 @@
       "children": [
         "p4b94svjw",
         "26066785-5fbb-4294-ba3f-48a989bc2390",
-        "a56f27cf-be6c-4453-af20-d295d1ba386b"
+        "a56f27cf-be6c-4453-af20-d295d1ba386b",
+        "acdf701b-aa3e-4443-be72-e12d45db8275"
       ],
       "metadata": {
-        "status": "completed",
-        "expanded": false
+        "status": "pending",
+        "expanded": true
       }
     },
     "p4b94svjw": {
@@ -727,7 +730,8 @@
         "7aa4140c-1206-47ea-8a94-6c3e7763ccff",
         "rpl4d1hw3",
         "pdt35vy1z",
-        "0vzl7mppk"
+        "0vzl7mppk",
+        "8ee5326d-1eec-45be-aa26-d11ae0e57284"
       ],
       "metadata": {
         "status": "pending"
@@ -784,7 +788,8 @@
         "f48b03ed-3a35-4ede-9e80-29f60c1c951c"
       ],
       "metadata": {
-        "status": "pending"
+        "status": "pending",
+        "expanded": false
       }
     },
     "f48b03ed-3a35-4ede-9e80-29f60c1c951c": {
@@ -809,7 +814,8 @@
         "c22f7ef7-8224-4d5e-91da-ff5750fb767b"
       ],
       "metadata": {
-        "status": "pending"
+        "status": "pending",
+        "expanded": false
       }
     },
     "e9c43a83-c40f-441b-902c-f5aa1ce97bc4": {
@@ -985,7 +991,7 @@
       "content": "Follow VS Code model: built-in extensions use same API as marketplace extensions, all can be disabled by users",
       "children": [],
       "metadata": {
-        "status": "pending"
+        "status": "completed"
       }
     },
     "970270c0-d817-4e71-83f4-f540cffd4673": {
@@ -993,7 +999,7 @@
       "content": "Directory structure: src/renderer/plugins/ with core/ (registry, interface, context), builtin/ (ships with app), external/ (future user-installed)",
       "children": [],
       "metadata": {
-        "status": "pending"
+        "status": "completed"
       }
     },
     "4429d7ba-34ea-48e6-bef4-1dea1c350562": {
@@ -1001,7 +1007,7 @@
       "content": "Each plugin has manifest.json: { name, version, displayName, enabled: true, builtin: true }",
       "children": [],
       "metadata": {
-        "status": "pending"
+        "status": "completed"
       }
     },
     "f4d54505-4c01-48a1-804d-d9afbc27151f": {
@@ -1009,7 +1015,7 @@
       "content": "Plugin interface defines standard API: initialize(), dispose(), getContextMenuItems(), getSessions(), sendToSession(), getNodeIndicator()",
       "children": [],
       "metadata": {
-        "status": "pending"
+        "status": "completed"
       }
     },
     "cf30ace6-5743-47c9-ad11-33506bb23c09": {
@@ -1049,7 +1055,7 @@
       "content": "Same architecture works for future external plugins (Gemini, Copilot, custom community plugins)",
       "children": [],
       "metadata": {
-        "status": "pending"
+        "status": "completed"
       }
     },
     "bd4e87a5-132a-484d-82f0-52b6de115e60": {
@@ -1064,7 +1070,12 @@
       "id": "b4fb16a1-a09d-4200-affd-d59492318f22",
       "content": "Refactor",
       "children": [
-        "78d77e98-d6a2-47a2-9290-6e3d0b77ded8"
+        "78d77e98-d6a2-47a2-9290-6e3d0b77ded8",
+        "c5549db2-748d-4c2a-b5f6-6e3b6f3ce4be",
+        "9d5bf685-1248-4494-b5c9-1f745e75d157",
+        "e64f06e3-9bf8-42f2-b6ba-826a3cbbf39f",
+        "d4a91032-dc55-4283-a24a-61164b101ee1",
+        "e9741008-3b55-431e-b5dc-2964d594a37c"
       ],
       "metadata": {
         "status": "pending"
@@ -1188,7 +1199,9 @@
         "384e2fb7-72a7-425f-95ee-dc9b1469acdb",
         "ef376107-4f5a-44d1-9ada-1ed77c98254f",
         "77368efd-fad4-4ba5-a3b4-42c4dcc23cca",
-        "0c238ce8-51c5-45dc-a5bd-e4757a0a75e0"
+        "0c238ce8-51c5-45dc-a5bd-e4757a0a75e0",
+        "8812e18b-fe8d-4190-ba0b-e7ab279e42d7",
+        "12685af2-0a97-4e37-a882-08dbe4d570c9"
       ],
       "metadata": {
         "status": "completed",
@@ -1242,6 +1255,171 @@
     "fd7fd59a-7a83-41d3-baed-9e2a559dedbd": {
       "id": "fd7fd59a-7a83-41d3-baed-9e2a559dedbd",
       "content": "update architecture.md",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "8812e18b-fe8d-4190-ba0b-e7ab279e42d7": {
+      "id": "8812e18b-fe8d-4190-ba0b-e7ab279e42d7",
+      "content": "Rename files and folders for claude plugin to claude code",
+      "children": [],
+      "metadata": {
+        "status": "completed"
+      }
+    },
+    "acdf701b-aa3e-4443-be72-e12d45db8275": {
+      "id": "acdf701b-aa3e-4443-be72-e12d45db8275",
+      "content": "Seems to be some performance issues while typing - check listeners ? Renderers ?  Maybe just on development while there are changes going on ?",
+      "children": [
+        "0c16c95e-2e5c-41c6-9dd5-10eb6812f287"
+      ],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "0c16c95e-2e5c-41c6-9dd5-10eb6812f287": {
+      "id": "0c16c95e-2e5c-41c6-9dd5-10eb6812f287",
+      "content": "In development mode, have the amount of renders of nodeContent, node and tree, as well as listener count, to console.",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "12685af2-0a97-4e37-a882-08dbe4d570c9": {
+      "id": "12685af2-0a97-4e37-a882-08dbe4d570c9",
+      "content": "Why do we import usePlugins in nodeContent ? Plugins may not always act on node level.  Can we not import the plugin into the workspace ? ",
+      "children": [],
+      "metadata": {
+        "status": "completed"
+      }
+    },
+    "c5549db2-748d-4c2a-b5f6-6e3b6f3ce4be": {
+      "id": "c5549db2-748d-4c2a-b5f6-6e3b6f3ce4be",
+      "content": "in claudeCodeIPCHandlers.ts we have ClaudeSession which should be ClaudeCodeSession",
+      "children": [
+        "0b5dd419-3dc6-4dd2-bc5f-655dacb15f28",
+        "6d5fdc7b-4b0d-4513-8631-3b92773b6652"
+      ],
+      "metadata": {
+        "status": "completed"
+      }
+    },
+    "9d5bf685-1248-4494-b5c9-1f745e75d157": {
+      "id": "9d5bf685-1248-4494-b5c9-1f745e75d157",
+      "content": "claudeCodeIPCHandlers has lots of things that could be made into pure functions and moved to utils, and reused for other plugins",
+      "children": [],
+      "metadata": {
+        "status": "completed"
+      }
+    },
+    "b18d78b0-a96e-4483-840c-df932f663968": {
+      "id": "b18d78b0-a96e-4483-840c-df932f663968",
+      "content": "Navigation issues",
+      "children": [
+        "ad630169-dc01-462b-a7b4-01e36da699fd",
+        "6ba108c5-6162-48f9-b985-42cad8495ea5",
+        "7e61295b-37df-41e5-8e89-f20ce79ec180",
+        "94817fd6-86dd-4fbb-a853-8f226bab2f0f"
+      ],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "ad630169-dc01-462b-a7b4-01e36da699fd": {
+      "id": "ad630169-dc01-462b-a7b4-01e36da699fd",
+      "content": "Clicking doesn't focus the cursor on the click spot, but at the start of the node",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "6ba108c5-6162-48f9-b985-42cad8495ea5": {
+      "id": "6ba108c5-6162-48f9-b985-42cad8495ea5",
+      "content": "When navigating down to an element, then when we use the left arrow, it goes to the start of the node instead of the next character to the left",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "7e61295b-37df-41e5-8e89-f20ce79ec180": {
+      "id": "7e61295b-37df-41e5-8e89-f20ce79ec180",
+      "content": "When typing, there is an obvious delay - something is fireing too many times",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "00fe1875-4004-44e5-9ad3-0b338c9c1c41": {
+      "id": "00fe1875-4004-44e5-9ad3-0b338c9c1c41",
+      "content": "When we copy and paste, we should retain the default arborescent font type and size",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "e64f06e3-9bf8-42f2-b6ba-826a3cbbf39f": {
+      "id": "e64f06e3-9bf8-42f2-b6ba-826a3cbbf39f",
+      "content": "There are text entries that reference Claude instead of Claude code",
+      "children": [],
+      "metadata": {
+        "status": "completed"
+      }
+    },
+    "d4a91032-dc55-4283-a24a-61164b101ee1": {
+      "id": "d4a91032-dc55-4283-a24a-61164b101ee1",
+      "content": "same in claudeCodePreload.ts and claudeCodePlugin.ts",
+      "children": [],
+      "metadata": {
+        "status": "completed"
+      }
+    },
+    "e9741008-3b55-431e-b5dc-2964d594a37c": {
+      "id": "e9741008-3b55-431e-b5dc-2964d594a37c",
+      "content": "move the abstractions back to claudeCodeIPCHandlers, they are actually Claude specific and can't be reused",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "94817fd6-86dd-4fbb-a853-8f226bab2f0f": {
+      "id": "94817fd6-86dd-4fbb-a853-8f226bab2f0f",
+      "content": "When navigating to an empty node, no cursor appears at the first space, we have to start typing to see it",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "0b5dd419-3dc6-4dd2-bc5f-655dacb15f28": {
+      "id": "0b5dd419-3dc6-4dd2-bc5f-655dacb15f28",
+      "content": "Actually it should be imported from claudeCodeTypes.ts",
+      "children": [],
+      "metadata": {
+        "status": "completed"
+      }
+    },
+    "6d5fdc7b-4b0d-4513-8631-3b92773b6652": {
+      "id": "6d5fdc7b-4b0d-4513-8631-3b92773b6652",
+      "content": "Same goes for ClaudeCodePlugin.ts",
+      "children": [],
+      "metadata": {
+        "status": "completed"
+      }
+    },
+    "8ee5326d-1eec-45be-aa26-d11ae0e57284": {
+      "id": "8ee5326d-1eec-45be-aa26-d11ae0e57284",
+      "content": "Gitlab integration",
+      "children": [
+        "7692be0d-fdce-41ed-9221-67d1fc42e2c9"
+      ],
+      "metadata": {
+        "status": "pending",
+        "expanded": false
+      }
+    },
+    "7692be0d-fdce-41ed-9221-67d1fc42e2c9": {
+      "id": "7692be0d-fdce-41ed-9221-67d1fc42e2c9",
+      "content": "Read/contribute to code reviews",
       "children": [],
       "metadata": {
         "status": "pending"

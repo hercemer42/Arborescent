@@ -7,8 +7,8 @@ import './styles.css';
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { App } from './App';
-import { PluginProvider } from './plugins/core';
-import { initializeBuiltinPlugins } from './plugins/initializePlugins';
+import { PluginProvider } from '../../plugins/core/PluginContext';
+import { initializeBuiltinPlugins } from '../../plugins/core/initializePlugins';
 
 initializeBuiltinPlugins();
 
