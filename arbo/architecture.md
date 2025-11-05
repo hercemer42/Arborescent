@@ -2,13 +2,13 @@
 
 This document records key architectural choices made during development sessions.
 
-**Last Updated:** 2025-10-23
+**Last Updated:** 2025-11-04
 
 **When updating this file:** Be concise - focus on the decision, pattern, and rationale. Avoid verbose explanations.
 
 ## Directory Structure
 
-**Decision:** Separate main process (Electron) code from renderer (React UI) code.
+**Decision:** Separate main process (Electron) code from renderer (React UI) code, with plugins isolated outside core.
 
 **Structure:**
 ```
@@ -23,11 +23,26 @@ src/
 │   ├── components/
 │   ├── store/
 │   ├── services/ # Infrastructure layer (DOM, IPC, browser APIs)
+│   ├── plugins/  # Plugin system core (registry, context, interfaces)
 │   ├── utils/    # Pure functions for renderer (position, ancestry)
 │   └── data/
 └── shared/       # Code used by both main and renderer
-    ├── types/    # Type definitions (TreeNode, ArboFile, etc.)
+    ├── types/    # Type definitions (TreeNode, ArboFile, Plugin interfaces, etc.)
+    ├── services/ # Shared services (logger)
     └── utils/    # Pure functions shared across platforms (fileNaming)
+
+plugins/          # Plugins directory (outside src/ to emphasize separation)
+├── core/         # Plugin system core
+│   ├── pluginInterface.ts    # Re-exports from src/shared/types/plugins.ts
+│   ├── PluginRegistry.ts     # Plugin lifecycle management
+│   ├── PluginContext.tsx     # React context provider
+│   └── initializePlugins.ts  # Built-in plugin initialization
+├── main/         # Plugin IPC handler registry
+├── preload/      # Plugin preload API registry
+└── claude/       # Claude Code integration plugin
+    ├── main/     # IPC handlers for Claude CLI interaction
+    ├── preload/  # Preload API for renderer access
+    └── renderer/ # React components and plugin implementation
 ```
 
 **Rationale:**
@@ -210,7 +225,8 @@ import './ComponentName.css';
 src/shared/types/
 ├── index.ts      # Re-exports all types
 ├── treeNode.ts   # TreeNode, NodeStatus
-└── document.ts   # Document, ArboFile
+├── document.ts   # Document, ArboFile
+└── plugins.ts    # Plugin interfaces (Plugin, PluginManifest, etc.)
 ```
 
 **Example:**
@@ -222,6 +238,7 @@ export interface TreeNode { /* ... */ }
 // index.ts
 export type { NodeStatus, TreeNode } from './treeNode';
 export type { Document, ArboFile } from './document';
+export type { Plugin, PluginManifest } from './plugins';
 
 // Usage
 import { TreeNode, NodeStatus, Document } from '../../../shared/types';
@@ -912,3 +929,172 @@ useEffect(() => {
 **Location:** `src/renderer/renderer.tsx` renders `<App />` directly without `<React.StrictMode>` wrapper.
 
 **Rationale:** For Electron desktop apps with system-level side effects, dev/prod consistency outweighs the benefits of Strict Mode's double-invocation checks.
+
+## Plugin Architecture
+
+**Decision:** VS Code-inspired plugin system with worker thread process isolation, serializable data pattern, command registry, and IPC-based communication.
+
+**Structure:**
+```
+src/shared/types/
+└── plugins.ts              # Plugin interface definitions (shared contract)
+
+plugins/core/
+├── PluginManager.ts        # IPC coordination (renderer → main → worker)
+├── PluginRegistry.ts       # Renderer-side tracking (UI state, enable/disable)
+├── PluginCommandRegistry.ts # Command execution (renderer process)
+├── PluginProxy.ts          # Forwards calls to worker via IPC
+├── main/pluginWorker/      # Worker thread (plugin execution, API, logger)
+├── preload/                # IPC bridge
+└── initializePlugins.ts    # Plugin initialization
+
+plugins/[plugin-name]/
+├── main/                   # Plugin implementation + IPC handlers
+├── preload/                # IPC bridge
+└── renderer/               # Command handlers + UI components
+```
+
+**Architecture Flow:**
+```
+Renderer ←→ IPC ←→ Main Process ←→ Worker Thread
+                                      ↓
+                                   Plugin
+                                      ↓
+                               pluginAPI.invokeIPC()
+                                      ↓
+                               IPC Handlers
+```
+
+**Key Components:**
+- **PluginManager (renderer):** Coordinates worker lifecycle via IPC, creates PluginProxy instances
+- **PluginRegistry (renderer):** Tracks enabled plugins, updates UI state (Zustand store)
+- **PluginCommandRegistry (renderer):** Maps plugin commands to renderer actions
+- **PluginProxy (renderer):** Forwards extension point calls to worker via IPC
+- **PluginWorkerConnection (main):** Manages worker thread lifecycle
+- **pluginWorker.worker (worker):** Loads and executes plugins in isolation
+- **PluginContext (worker):** Provides plugins access to IPC handlers
+
+**Plugin Extension Points:**
+```typescript
+interface PluginExtensionPoints {
+  provideNodeContextMenuItems?(node: TreeNode, context: NodeContext):
+    PluginContextMenuItem[];  // { id, label } not { onClick }
+  provideNodeIndicator?(node: TreeNode):
+    PluginNodeIndicator | null;  // { type: 'text', value: '🤖' }
+  provideSidebarPanels?(): PluginSidebarPanel[];
+  provideToolbarActions?(): PluginToolbarAction[];
+}
+```
+
+**Command Pattern:**
+```typescript
+// Plugin registers commands (renderer process)
+PluginCommandRegistry.register('claude-code:send-to-session', async (context) => {
+  // Command logic with access to renderer state
+});
+
+// Plugin returns menu item (worker thread)
+{ id: 'claude-code:send-to-session', label: 'Send to Session...' }
+
+// UI executes command (renderer process)
+PluginCommandRegistry.execute(item.id, { node });
+```
+
+**Plugin API (Worker Thread):**
+```typescript
+export class MyPlugin implements Plugin {
+  private context: PluginContext;
+
+  constructor(context: PluginContext) {
+    this.context = context;
+  }
+
+  async initialize(): Promise<void> {
+    const projectPath = await this.context.invokeIPC<string>('claude:get-project-path');
+    const sessions = await this.context.invokeIPC<Session[]>('claude:list-sessions', projectPath);
+  }
+}
+```
+
+**Rationale:**
+- **Plugin Types in Shared**: Plugin interface types live in `src/shared/types/plugins.ts` as the contract between core and plugins, preventing core components from depending on `plugins/` directory
+- **PluginContext Injection**: Plugins receive context via constructor, eliminating tight coupling to worker implementation
+- **Process Isolation**: Plugins run in separate worker thread for security and stability
+- **Serializable Data**: All extension points return JSON-serializable data for IPC transport
+- **Command Pattern**: Commands run in renderer with access to UI state, while menu definitions come from worker
+- **IPC Architecture**: Main process manages worker thread, renderer communicates via IPC
+- **Error Isolation**: Plugin crashes don't affect renderer; try/catch around all invocations
+- **Security**: Untrusted plugins can't directly access renderer state or DOM
+
+**See also:** `plugins/PLUGIN_DEVELOPMENT.md` for complete plugin development guide
+
+## Shared Logger Architecture
+
+**Decision:** Base logger class with platform-specific implementations for main and renderer processes.
+
+**Structure:**
+```
+src/shared/services/logger/
+├── LoggerInterface.ts       # Logger interface
+└── BaseLogger.ts            # Base implementation with common logic
+
+src/main/services/
+└── logger.ts                # MainLogger extends BaseLogger
+
+src/renderer/services/
+└── logger.ts                # RendererLogger extends BaseLogger
+```
+
+**Pattern:**
+```typescript
+// Base logger provides common functionality
+export abstract class BaseLogger implements Logger {
+  protected logs: LogEntry[] = [];
+  protected maxLogs = 1000;
+
+  debug(message: string, context?: string): void {
+    this.log('debug', message, context);
+  }
+
+  abstract error(message: string, error?: Error, context?: string): void;
+
+  protected log(level: LogLevel, message: string, context?: string, error?: Error): void {
+    // Common logging logic
+  }
+}
+
+// Platform-specific implementations
+class MainLogger extends BaseLogger {
+  error(message: string, error?: Error, context?: string, notifyRenderer = true): void {
+    this.log('error', message, context, error);
+    if (notifyRenderer) {
+      mainWindow.webContents.send('main-error', message);
+    }
+  }
+}
+
+class RendererLogger extends BaseLogger {
+  error(message: string, error?: Error, context?: string, showToast = true): void {
+    this.log('error', message, context, error);
+    if (showToast) {
+      this.toastCallback?.(message, 'error');
+    }
+  }
+}
+```
+
+**Usage in Plugins:**
+```typescript
+import { logger } from '../../../src/renderer/services/logger';
+
+logger.info('Plugin initialized', 'Claude Plugin');
+logger.error('Failed to load sessions', error, 'Claude Plugin');
+```
+
+**Rationale:**
+- Shared base implementation eliminates code duplication
+- Platform-specific implementations handle process-specific concerns (BrowserWindow notifications, toasts)
+- Plugins can use logger without depending on process type
+- Single interface ensures consistent logging API across codebase
+- Context parameter enables filtering logs by module
+- Base logger tested once, inherited by both implementations

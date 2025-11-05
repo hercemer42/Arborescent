@@ -1,10 +1,10 @@
-import { memo } from 'react';
+import { memo, useState, useEffect } from 'react';
 import { TreeNode } from '../../../shared/types';
 import { ExpandToggle } from '../ui/ExpandToggle';
 import { StatusCheckbox } from '../ui/StatusCheckbox';
 import { ContextMenu } from '../ui/ContextMenu';
 import { useNodeContent } from './hooks/useNodeContent';
-import { usePlugins } from '../../plugins/core';
+import { usePluginStore } from '../../store/plugins/pluginStore';
 import './NodeContent.css';
 
 interface NodeContentProps {
@@ -13,7 +13,7 @@ interface NodeContentProps {
   onToggle: () => void;
 }
 
-export const NodeContent = memo(function NodeContent({
+function NodeContentComponent({
   node,
   expanded,
   onToggle,
@@ -32,11 +32,32 @@ export const NodeContent = memo(function NodeContent({
     closeContextMenu,
   } = useNodeContent(node);
 
-  const { enabledPlugins } = usePlugins();
+  const enabledPlugins = usePluginStore((state) => state.enabledPlugins);
+  const [pluginIndicators, setPluginIndicators] = useState<React.ReactNode[]>([]);
 
-  const pluginIndicators = enabledPlugins
-    .map((plugin) => plugin.getNodeIndicator?.(node))
-    .filter(Boolean);
+  useEffect(() => {
+    async function loadPluginIndicators() {
+      const indicators = await Promise.all(
+        enabledPlugins.map(async (plugin) => {
+          const result = await plugin.extensions.provideNodeIndicator?.(node);
+          return result;
+        })
+      );
+
+      const rendered = indicators
+        .filter((indicator) => indicator !== null)
+        .map((indicator) => {
+          if (indicator && typeof indicator === 'object' && 'type' in indicator && 'value' in indicator) {
+            return indicator.value;
+          }
+          return null;
+        });
+
+      setPluginIndicators(rendered);
+    }
+
+    loadPluginIndicators();
+  }, [node.id, node.metadata.status, node.metadata.plugins, enabledPlugins, node]);
 
   return (
     <>
@@ -89,4 +110,19 @@ export const NodeContent = memo(function NodeContent({
       )}
     </>
   );
+}
+
+// Skip re-renders when only content changes
+export const NodeContent = memo(NodeContentComponent, (prev, next) => {
+  if (prev.expanded !== next.expanded || prev.onToggle !== next.onToggle) return false;
+  if (prev.node.id !== next.node.id) return false;
+
+
+  if (prev.node.content !== next.node.content &&
+      prev.node.children === next.node.children &&
+      prev.node.metadata === next.node.metadata) {
+    return true;
+  }
+
+  return false;
 });

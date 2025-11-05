@@ -7,10 +7,7 @@ import './styles.css';
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { App } from './App';
-import { PluginProvider } from './plugins/core';
-import { initializeBuiltinPlugins } from './plugins/initializePlugins';
-
-initializeBuiltinPlugins();
+import { PluginProvider } from '../../plugins/core/PluginContext';
 
 const root = createRoot(
   document.getElementById('root') as HTMLElement

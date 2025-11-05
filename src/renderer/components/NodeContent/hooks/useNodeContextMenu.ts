@@ -1,19 +1,41 @@
 import { useState } from 'react';
 import { useStore } from '../../../store/tree/useStore';
-import { TreeNode } from '../../../../shared/types';
+import { TreeNode, NodeContext, PluginContextMenuItem } from '../../../../shared/types';
 import { ContextMenuItem } from '../../ui/ContextMenu';
-import { usePlugins } from '../../../plugins/core';
+import { usePluginStore } from '../../../store/plugins/pluginStore';
+import { PluginCommandRegistry } from '../../../../../plugins/core/PluginCommandRegistry';
 
 export function useNodeContextMenu(node: TreeNode) {
   const deleteNode = useStore((state) => state.actions.deleteNode);
   const nodes = useStore((state) => state.nodes);
   const ancestorRegistry = useStore((state) => state.ancestorRegistry);
-  const { enabledPlugins } = usePlugins();
+  const enabledPlugins = usePluginStore((state) => state.enabledPlugins);
   const [contextMenu, setContextMenu] = useState<{ x: number; y: number } | null>(null);
+  const [pluginMenuItems, setPluginMenuItems] = useState<ContextMenuItem[]>([]);
 
-  const handleContextMenu = (e: React.MouseEvent) => {
+  const handleContextMenu = async (e: React.MouseEvent) => {
     e.preventDefault();
     setContextMenu({ x: e.clientX, y: e.clientY });
+
+    // Load plugin menu items only when context menu is opened
+    const hasAncestorSession = hasAncestorWithSession();
+    const nodeContext: NodeContext = {
+      hasAncestorSession,
+    };
+
+    const items = await Promise.all(
+      enabledPlugins.map(async (plugin) => {
+        const result = await plugin.extensions.provideNodeContextMenuItems?.(
+          node,
+          nodeContext
+        );
+        return result || [];
+      })
+    );
+
+    const flatItems = items.flat();
+    const converted = flatItems.map((item) => convertToContextMenuItem(item, node));
+    setPluginMenuItems(converted);
   };
 
   const handleDelete = () => {
@@ -36,6 +58,20 @@ export function useNodeContextMenu(node: TreeNode) {
     });
   }
 
+  function convertToContextMenuItem(
+    item: PluginContextMenuItem,
+    node: TreeNode
+  ): ContextMenuItem {
+    return {
+      label: item.label,
+      onClick: () => {
+        PluginCommandRegistry.execute(item.id, { node });
+      },
+      disabled: item.disabled,
+      danger: false,
+    };
+  }
+
   const baseMenuItems: ContextMenuItem[] = [
     {
       label: 'Delete',
@@ -43,12 +79,6 @@ export function useNodeContextMenu(node: TreeNode) {
       danger: true,
     },
   ];
-
-  const hasAncestorSession = hasAncestorWithSession();
-
-  const pluginMenuItems = enabledPlugins.flatMap((plugin) =>
-    plugin.getContextMenuItems(node, hasAncestorSession)
-  );
 
   const contextMenuItems = [...pluginMenuItems, ...baseMenuItems];
 

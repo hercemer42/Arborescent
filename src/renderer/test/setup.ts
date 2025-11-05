@@ -4,13 +4,25 @@ import * as matchers from '@testing-library/jest-dom/matchers';
 
 vi.mock('zustand');
 
-vi.mock('../plugins/core', () => ({
-  usePlugins: () => ({
-    plugins: [],
-    enabledPlugins: [],
-    loading: false,
+vi.mock('../store/plugins/pluginStore', () => ({
+  usePluginStore: vi.fn((selector) => {
+    const state = {
+      plugins: [],
+      enabledPlugins: [],
+      registerPlugin: vi.fn(),
+      unregisterPlugin: vi.fn(),
+      enablePlugin: vi.fn(),
+      disablePlugin: vi.fn(),
+    };
+    return selector ? selector(state) : state;
   }),
+}));
+
+vi.mock('../../../plugins/core/PluginContext', () => ({
   PluginProvider: ({ children }: { children: React.ReactNode }) => children,
+}));
+
+vi.mock('../../../plugins/core/PluginRegistry', () => ({
   PluginRegistry: {
     register: vi.fn(),
     unregister: vi.fn(),
@@ -52,4 +64,11 @@ global.window.electron = {
   claudeGetProjectPath: vi.fn().mockResolvedValue('/test/project'),
   claudeListSessions: vi.fn(),
   claudeSendToSession: vi.fn(),
+  pluginStart: vi.fn().mockResolvedValue({ success: true }),
+  pluginStop: vi.fn().mockResolvedValue({ success: true }),
+  pluginRegister: vi.fn().mockResolvedValue({ success: true, manifest: {} }),
+  pluginUnregister: vi.fn().mockResolvedValue({ success: true }),
+  pluginInitializeAll: vi.fn().mockResolvedValue({ success: true }),
+  pluginDisposeAll: vi.fn().mockResolvedValue({ success: true }),
+  pluginInvokeExtension: vi.fn().mockResolvedValue({ success: true, result: {} }),
 };

@@ -2,7 +2,7 @@
   "format": "Arborescent",
   "version": "1.0.0",
   "created": "2025-10-11T00:00:00.000Z",
-  "updated": "2025-10-30T07:35:32.211Z",
+  "updated": "2025-11-05T13:27:13.722Z",
   "author": "brian@brianfox.fr",
   "rootNodeId": "root",
   "nodes": {
@@ -11,25 +11,13 @@
       "type": "project",
       "content": "Arborescent Development",
       "children": [
-        "fvytrtgjx",
         "8yqsdogy7",
         "16d93b2e-604f-4271-9a56-3cad9f93b713",
-        "l7w7ssh62",
         "yifizx1mv",
         "60ebf3ef-241c-4317-8578-5a8b5a038cf7"
       ],
       "metadata": {
         "created": "2025-10-11T00:00:00.000Z"
-      }
-    },
-    "mgymxc1lr": {
-      "id": "mgymxc1lr",
-      "content": "Right now return anywhere in a line makes a new line - we should change it so that it makes a new line from the content after the cursor when we hit return",
-      "children": [
-        "tyxzt7agl"
-      ],
-      "metadata": {
-        "status": "failed"
       }
     },
     "44jmbkqfv": {
@@ -67,7 +55,8 @@
         "abc92459-4a6d-4048-8751-1282b904b6d6"
       ],
       "metadata": {
-        "status": "pending"
+        "status": "pending",
+        "expanded": false
       }
     },
     "pdt35vy1z": {
@@ -111,35 +100,14 @@
         "status": "pending"
       }
     },
-    "tyxzt7agl": {
-      "id": "tyxzt7agl",
-      "content": "What happens if that line has children ?",
-      "children": [
-        "5op5ryfa0"
-      ],
-      "metadata": {
-        "status": "failed"
-      }
-    },
-    "5op5ryfa0": {
-      "id": "5op5ryfa0",
-      "content": "And we're at the start/end of that line ?",
-      "children": [],
-      "metadata": {
-        "status": "failed"
-      }
-    },
     "byqndehy4": {
       "id": "byqndehy4",
       "content": "Claude integration",
       "children": [
+        "e9bb0de8-a33a-4054-8902-466a58ae3a1a",
         "b4fb16a1-a09d-4200-affd-d59492318f22",
-        "a6c473f8-d221-468b-94d4-dc835d1737b8",
-        "0f9c1312-d773-45bb-9d54-7ef0fc4f58a9",
         "a566f506-3e2d-41e7-8cc8-68dbb3417bef",
         "qo4eickz9",
-        "j5ltx1du8",
-        "ii2dhc1b9",
         "fv89yst04",
         "6jkr576r4",
         "b2004b56-bb44-4266-b147-c1a4315f3da2"
@@ -149,58 +117,14 @@
         "expanded": true
       }
     },
-    "j5ltx1du8": {
-      "id": "j5ltx1du8",
-      "content": "Terminal integration",
-      "children": [],
-      "metadata": {
-        "status": "failed"
-      }
-    },
-    "ii2dhc1b9": {
-      "id": "ii2dhc1b9",
-      "content": "Look at output",
-      "children": [],
-      "metadata": {
-        "status": "pending"
-      }
-    },
-    "rpl4d1hw3": {
-      "id": "rpl4d1hw3",
-      "content": "Node management",
-      "children": [
-        "mgymxc1lr",
-        "jm2e1dfgq"
-      ],
-      "metadata": {
-        "status": "completed",
-        "expanded": false
-      }
-    },
-    "jm2e1dfgq": {
-      "id": "jm2e1dfgq",
-      "content": "Hotkey to toggle for done",
-      "children": [
-        "mkuscyszx"
-      ],
-      "metadata": {
-        "status": "failed"
-      }
-    },
-    "mkuscyszx": {
-      "id": "mkuscyszx",
-      "content": "Do we need to toggle children ?",
-      "children": [],
-      "metadata": {
-        "status": "failed"
-      }
-    },
     "8yqsdogy7": {
       "id": "8yqsdogy7",
       "content": "Refactor",
       "children": [
         "a45af02d-395a-4622-a268-c06a8d8275ae",
-        "perf-main-001"
+        "perf-main-001",
+        "b18d78b0-a96e-4483-840c-df932f663968",
+        "l7w7ssh62"
       ],
       "metadata": {
         "status": "completed",
@@ -259,30 +183,12 @@
         "status": "failed"
       }
     },
-    "fvytrtgjx": {
-      "id": "fvytrtgjx",
-      "content": "In progress",
-      "children": [
-        "zfr9nn0fr"
-      ],
-      "metadata": {
-        "status": "pending"
-      }
-    },
     "mz7j4sjn4": {
       "id": "mz7j4sjn4",
       "content": "Use same space for checkbox and toggle",
       "children": [],
       "metadata": {
         "status": "failed"
-      }
-    },
-    "zfr9nn0fr": {
-      "id": "zfr9nn0fr",
-      "content": "tests/linting/typescript/coverage",
-      "children": [],
-      "metadata": {
-        "status": "pending"
       }
     },
     "0vzl7mppk": {
@@ -326,12 +232,15 @@
       "id": "l7w7ssh62",
       "content": "Bugs",
       "children": [
+        "b3beb907-e7ad-4476-a42f-83b7fc75a189",
+        "00fe1875-4004-44e5-9ad3-0b338c9c1c41",
         "p4b94svjw",
         "26066785-5fbb-4294-ba3f-48a989bc2390",
-        "a56f27cf-be6c-4453-af20-d295d1ba386b"
+        "a56f27cf-be6c-4453-af20-d295d1ba386b",
+        "acdf701b-aa3e-4443-be72-e12d45db8275"
       ],
       "metadata": {
-        "status": "completed",
+        "status": "pending",
         "expanded": false
       }
     },
@@ -501,7 +410,8 @@
         "21940e44-bfb0-42ae-ba8d-25cac54e5231",
         "85b819ca-ac48-45e2-87d9-b2a178bb4cd0",
         "14885be8-7272-4f43-831a-61543594f9a2",
-        "5458d091-2079-40cf-bcd0-a514978f1a55"
+        "5458d091-2079-40cf-bcd0-a514978f1a55",
+        "plugin-refactor-001"
       ],
       "metadata": {
         "status": "completed",
@@ -514,7 +424,8 @@
       "children": [
         "perf-high-001",
         "perf-med-001",
-        "perf-low-001"
+        "perf-low-001",
+        "7e61295b-37df-41e5-8e89-f20ce79ec180"
       ],
       "metadata": {
         "status": "completed",
@@ -532,7 +443,8 @@
         "perf-high-render-003"
       ],
       "metadata": {
-        "status": "completed"
+        "status": "completed",
+        "expanded": false
       }
     },
     "perf-high-leak-001": {
@@ -587,7 +499,8 @@
         "perf-med-deps-001"
       ],
       "metadata": {
-        "status": "completed"
+        "status": "completed",
+        "expanded": false
       }
     },
     "perf-med-inline-001": {
@@ -647,7 +560,8 @@
         "perf-low-inline-001"
       ],
       "metadata": {
-        "status": "completed"
+        "status": "completed",
+        "expanded": false
       }
     },
     "perf-low-state-001": {
@@ -720,14 +634,11 @@
       "id": "16d93b2e-604f-4271-9a56-3cad9f93b713",
       "content": "Features",
       "children": [
-        "44jmbkqfv",
-        "byqndehy4",
-        "31cc1d2b-858b-4323-937b-6a38b15e0239",
-        "5f8eb896-d610-429f-a53a-fac6d164bd77",
-        "7aa4140c-1206-47ea-8a94-6c3e7763ccff",
-        "rpl4d1hw3",
-        "pdt35vy1z",
-        "0vzl7mppk"
+        "565dde0a-864b-41f9-86ff-dbdf40ac4dd0",
+        "0cc62ae1-1a7a-4aa4-bc6a-d817cabd672c",
+        "2f83a0af-280e-4e67-8306-31a8e02c9500",
+        "d5fe0eff-b1c6-4986-b6a3-70a0ea46f096",
+        "9bfbb401-dcb6-4f92-a34b-e9b3982c676f"
       ],
       "metadata": {
         "status": "pending"
@@ -740,7 +651,8 @@
         "adba02d6-5f8c-4321-ba4c-edbdb037adce"
       ],
       "metadata": {
-        "status": "pending"
+        "status": "pending",
+        "expanded": true
       }
     },
     "adba02d6-5f8c-4321-ba4c-edbdb037adce": {
@@ -784,7 +696,8 @@
         "f48b03ed-3a35-4ede-9e80-29f60c1c951c"
       ],
       "metadata": {
-        "status": "pending"
+        "status": "pending",
+        "expanded": false
       }
     },
     "f48b03ed-3a35-4ede-9e80-29f60c1c951c": {
@@ -809,7 +722,8 @@
         "c22f7ef7-8224-4d5e-91da-ff5750fb767b"
       ],
       "metadata": {
-        "status": "pending"
+        "status": "pending",
+        "expanded": false
       }
     },
     "e9c43a83-c40f-441b-902c-f5aa1ce97bc4": {
@@ -971,13 +885,13 @@
         "f4d54505-4c01-48a1-804d-d9afbc27151f",
         "cf30ace6-5743-47c9-ad11-33506bb23c09",
         "5bcba9ad-828d-4d4e-b661-89504c00e097",
-        "d281fba2-fd47-430d-a1cc-92a83aaf8f1c",
         "d789b040-ce74-4e38-8793-d9fe46b0e96f",
         "e99c471a-ab13-475a-b8f9-b98edf0920af",
         "bd4e87a5-132a-484d-82f0-52b6de115e60"
       ],
       "metadata": {
-        "status": "pending"
+        "status": "completed",
+        "expanded": false
       }
     },
     "c88262d6-21ba-41bd-aab7-51b96d0ed062": {
@@ -985,7 +899,7 @@
       "content": "Follow VS Code model: built-in extensions use same API as marketplace extensions, all can be disabled by users",
       "children": [],
       "metadata": {
-        "status": "pending"
+        "status": "completed"
       }
     },
     "970270c0-d817-4e71-83f4-f540cffd4673": {
@@ -993,7 +907,7 @@
       "content": "Directory structure: src/renderer/plugins/ with core/ (registry, interface, context), builtin/ (ships with app), external/ (future user-installed)",
       "children": [],
       "metadata": {
-        "status": "pending"
+        "status": "completed"
       }
     },
     "4429d7ba-34ea-48e6-bef4-1dea1c350562": {
@@ -1001,7 +915,7 @@
       "content": "Each plugin has manifest.json: { name, version, displayName, enabled: true, builtin: true }",
       "children": [],
       "metadata": {
-        "status": "pending"
+        "status": "completed"
       }
     },
     "f4d54505-4c01-48a1-804d-d9afbc27151f": {
@@ -1009,7 +923,7 @@
       "content": "Plugin interface defines standard API: initialize(), dispose(), getContextMenuItems(), getSessions(), sendToSession(), getNodeIndicator()",
       "children": [],
       "metadata": {
-        "status": "pending"
+        "status": "completed"
       }
     },
     "cf30ace6-5743-47c9-ad11-33506bb23c09": {
@@ -1017,7 +931,8 @@
       "content": "Process isolation: plugins run separately from UI (like VS Code extension host)",
       "children": [],
       "metadata": {
-        "status": "pending"
+        "status": "completed",
+        "expanded": true
       }
     },
     "5bcba9ad-828d-4d4e-b661-89504c00e097": {
@@ -1025,15 +940,7 @@
       "content": "Lazy loading: plugins activate only when needed (not at startup)",
       "children": [],
       "metadata": {
-        "status": "pending"
-      }
-    },
-    "d281fba2-fd47-430d-a1cc-92a83aaf8f1c": {
-      "id": "d281fba2-fd47-430d-a1cc-92a83aaf8f1c",
-      "content": "User control: Settings UI with Extensions tab to enable/disable any plugin, persisted in user settings",
-      "children": [],
-      "metadata": {
-        "status": "pending"
+        "status": "completed"
       }
     },
     "d789b040-ce74-4e38-8793-d9fe46b0e96f": {
@@ -1041,7 +948,7 @@
       "content": "Claude integration is built-in but optional - can be disabled if user doesn't use Claude Code",
       "children": [],
       "metadata": {
-        "status": "pending"
+        "status": "completed"
       }
     },
     "e99c471a-ab13-475a-b8f9-b98edf0920af": {
@@ -1049,7 +956,7 @@
       "content": "Same architecture works for future external plugins (Gemini, Copilot, custom community plugins)",
       "children": [],
       "metadata": {
-        "status": "pending"
+        "status": "completed"
       }
     },
     "bd4e87a5-132a-484d-82f0-52b6de115e60": {
@@ -1057,17 +964,19 @@
       "content": "Clean separation: plugin crashes don't break tree core, easy to test core independently",
       "children": [],
       "metadata": {
-        "status": "pending"
+        "status": "completed"
       }
     },
     "b4fb16a1-a09d-4200-affd-d59492318f22": {
       "id": "b4fb16a1-a09d-4200-affd-d59492318f22",
       "content": "Refactor",
       "children": [
-        "78d77e98-d6a2-47a2-9290-6e3d0b77ded8"
+        "78d77e98-d6a2-47a2-9290-6e3d0b77ded8",
+        "a6c473f8-d221-468b-94d4-dc835d1737b8"
       ],
       "metadata": {
-        "status": "pending"
+        "status": "pending",
+        "expanded": false
       }
     },
     "6c5180fc-e306-4a8d-a1e2-df403b3e2eb6": {
@@ -1188,7 +1097,18 @@
         "384e2fb7-72a7-425f-95ee-dc9b1469acdb",
         "ef376107-4f5a-44d1-9ada-1ed77c98254f",
         "77368efd-fad4-4ba5-a3b4-42c4dcc23cca",
-        "0c238ce8-51c5-45dc-a5bd-e4757a0a75e0"
+        "0c238ce8-51c5-45dc-a5bd-e4757a0a75e0",
+        "8812e18b-fe8d-4190-ba0b-e7ab279e42d7",
+        "12685af2-0a97-4e37-a882-08dbe4d570c9",
+        "e9741008-3b55-431e-b5dc-2964d594a37c",
+        "d4a91032-dc55-4283-a24a-61164b101ee1",
+        "e64f06e3-9bf8-42f2-b6ba-826a3cbbf39f",
+        "9d5bf685-1248-4494-b5c9-1f745e75d157",
+        "c5549db2-748d-4c2a-b5f6-6e3b6f3ce4be",
+        "67b4c175-a885-41f5-a825-78f435509683",
+        "7d407941-2fbd-404d-a30e-a23514f9e0c3",
+        "e96feea2-2696-480e-864c-51dc646dabea",
+        "3d9ffce5-4235-45dc-9bc5-68f104e54ad0"
       ],
       "metadata": {
         "status": "completed",
@@ -1242,6 +1162,958 @@
     "fd7fd59a-7a83-41d3-baed-9e2a559dedbd": {
       "id": "fd7fd59a-7a83-41d3-baed-9e2a559dedbd",
       "content": "update architecture.md",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "8812e18b-fe8d-4190-ba0b-e7ab279e42d7": {
+      "id": "8812e18b-fe8d-4190-ba0b-e7ab279e42d7",
+      "content": "Rename files and folders for claude plugin to claude code",
+      "children": [],
+      "metadata": {
+        "status": "completed"
+      }
+    },
+    "acdf701b-aa3e-4443-be72-e12d45db8275": {
+      "id": "acdf701b-aa3e-4443-be72-e12d45db8275",
+      "content": "Seems to be some performance issues while typing - check listeners ? Renderers ?  Maybe just on development while there are changes going on ?",
+      "children": [
+        "0c16c95e-2e5c-41c6-9dd5-10eb6812f287"
+      ],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "0c16c95e-2e5c-41c6-9dd5-10eb6812f287": {
+      "id": "0c16c95e-2e5c-41c6-9dd5-10eb6812f287",
+      "content": "In development mode, have the amount of renders of nodeContent, node and tree, as well as listener count, to console.",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "12685af2-0a97-4e37-a882-08dbe4d570c9": {
+      "id": "12685af2-0a97-4e37-a882-08dbe4d570c9",
+      "content": "Why do we import usePlugins in nodeContent ? Plugins may not always act on node level.  Can we not import the plugin into the workspace ? ",
+      "children": [],
+      "metadata": {
+        "status": "completed"
+      }
+    },
+    "c5549db2-748d-4c2a-b5f6-6e3b6f3ce4be": {
+      "id": "c5549db2-748d-4c2a-b5f6-6e3b6f3ce4be",
+      "content": "in claudeCodeIPCHandlers.ts we have ClaudeSession which should be ClaudeCodeSession",
+      "children": [
+        "0b5dd419-3dc6-4dd2-bc5f-655dacb15f28",
+        "6d5fdc7b-4b0d-4513-8631-3b92773b6652"
+      ],
+      "metadata": {
+        "status": "completed"
+      }
+    },
+    "9d5bf685-1248-4494-b5c9-1f745e75d157": {
+      "id": "9d5bf685-1248-4494-b5c9-1f745e75d157",
+      "content": "claudeCodeIPCHandlers has lots of things that could be made into pure functions and moved to utils, and reused for other plugins",
+      "children": [],
+      "metadata": {
+        "status": "completed"
+      }
+    },
+    "b18d78b0-a96e-4483-840c-df932f663968": {
+      "id": "b18d78b0-a96e-4483-840c-df932f663968",
+      "content": "Navigation issues",
+      "children": [
+        "ad630169-dc01-462b-a7b4-01e36da699fd",
+        "6ba108c5-6162-48f9-b985-42cad8495ea5",
+        "94817fd6-86dd-4fbb-a853-8f226bab2f0f",
+        "2da028a0-d59d-4055-9322-a0d8b5887e82"
+      ],
+      "metadata": {
+        "status": "pending",
+        "expanded": false
+      }
+    },
+    "ad630169-dc01-462b-a7b4-01e36da699fd": {
+      "id": "ad630169-dc01-462b-a7b4-01e36da699fd",
+      "content": "Clicking doesn't focus the cursor on the click spot, but at the start of the node",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "6ba108c5-6162-48f9-b985-42cad8495ea5": {
+      "id": "6ba108c5-6162-48f9-b985-42cad8495ea5",
+      "content": "When navigating down to an element, then when we use the left arrow, it goes to the start of the node instead of the next character to the left",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "7e61295b-37df-41e5-8e89-f20ce79ec180": {
+      "id": "7e61295b-37df-41e5-8e89-f20ce79ec180",
+      "content": "When typing, there is an obvious delay - something is fireing too many times",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "00fe1875-4004-44e5-9ad3-0b338c9c1c41": {
+      "id": "00fe1875-4004-44e5-9ad3-0b338c9c1c41",
+      "content": "When we copy and paste, we should retain the default arborescent font type and size",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "e64f06e3-9bf8-42f2-b6ba-826a3cbbf39f": {
+      "id": "e64f06e3-9bf8-42f2-b6ba-826a3cbbf39f",
+      "content": "There are text entries that reference Claude instead of Claude code",
+      "children": [],
+      "metadata": {
+        "status": "completed"
+      }
+    },
+    "d4a91032-dc55-4283-a24a-61164b101ee1": {
+      "id": "d4a91032-dc55-4283-a24a-61164b101ee1",
+      "content": "same in claudeCodePreload.ts and claudeCodePlugin.ts",
+      "children": [],
+      "metadata": {
+        "status": "completed"
+      }
+    },
+    "e9741008-3b55-431e-b5dc-2964d594a37c": {
+      "id": "e9741008-3b55-431e-b5dc-2964d594a37c",
+      "content": "move the abstractions back to claudeCodeIPCHandlers, they are actually Claude specific and can't be reused",
+      "children": [],
+      "metadata": {
+        "status": "completed"
+      }
+    },
+    "94817fd6-86dd-4fbb-a853-8f226bab2f0f": {
+      "id": "94817fd6-86dd-4fbb-a853-8f226bab2f0f",
+      "content": "When navigating to an empty node, no cursor appears at the first space, we have to start typing to see it",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "0b5dd419-3dc6-4dd2-bc5f-655dacb15f28": {
+      "id": "0b5dd419-3dc6-4dd2-bc5f-655dacb15f28",
+      "content": "Actually it should be imported from claudeCodeTypes.ts",
+      "children": [],
+      "metadata": {
+        "status": "completed"
+      }
+    },
+    "6d5fdc7b-4b0d-4513-8631-3b92773b6652": {
+      "id": "6d5fdc7b-4b0d-4513-8631-3b92773b6652",
+      "content": "Same goes for ClaudeCodePlugin.ts",
+      "children": [],
+      "metadata": {
+        "status": "completed"
+      }
+    },
+    "8ee5326d-1eec-45be-aa26-d11ae0e57284": {
+      "id": "8ee5326d-1eec-45be-aa26-d11ae0e57284",
+      "content": "Gitlab integration",
+      "children": [
+        "7692be0d-fdce-41ed-9221-67d1fc42e2c9"
+      ],
+      "metadata": {
+        "status": "pending",
+        "expanded": false
+      }
+    },
+    "7692be0d-fdce-41ed-9221-67d1fc42e2c9": {
+      "id": "7692be0d-fdce-41ed-9221-67d1fc42e2c9",
+      "content": "Read/contribute to code reviews",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "6573b620-bfc0-4c5b-8d92-13b9ace3461d": {
+      "id": "6573b620-bfc0-4c5b-8d92-13b9ace3461d",
+      "content": "Tests",
+      "children": [
+        "96b138b9-3004-4087-a4af-ea2f58abc68e"
+      ],
+      "metadata": {
+        "status": "pending",
+        "expanded": false
+      }
+    },
+    "adf1f4bc-305a-402d-bc15-e0770d41d145": {
+      "id": "adf1f4bc-305a-402d-bc15-e0770d41d145",
+      "content": "E2E",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "2a226e0e-9f94-4712-8540-6714bccd7a3c": {
+      "id": "2a226e0e-9f94-4712-8540-6714bccd7a3c",
+      "content": "Electron",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "545c3c8e-f3fa-405d-8404-183ee71248e0": {
+      "id": "545c3c8e-f3fa-405d-8404-183ee71248e0",
+      "content": "Integration",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "96b138b9-3004-4087-a4af-ea2f58abc68e": {
+      "id": "96b138b9-3004-4087-a4af-ea2f58abc68e",
+      "content": "Once mature :",
+      "children": [
+        "adf1f4bc-305a-402d-bc15-e0770d41d145",
+        "2a226e0e-9f94-4712-8540-6714bccd7a3c",
+        "545c3c8e-f3fa-405d-8404-183ee71248e0"
+      ],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "ce2de4b4-cc94-4106-a61b-26ce1089e97e": {
+      "id": "ce2de4b4-cc94-4106-a61b-26ce1089e97e",
+      "content": "Settings UI",
+      "children": [
+        "fd5f2142-2b28-4147-b3b4-d581d5b9225d"
+      ],
+      "metadata": {
+        "status": "pending",
+        "expanded": false
+      }
+    },
+    "fd5f2142-2b28-4147-b3b4-d581d5b9225d": {
+      "id": "fd5f2142-2b28-4147-b3b4-d581d5b9225d",
+      "content": "Plugin activate/deactivate",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "b3beb907-e7ad-4476-a42f-83b7fc75a189": {
+      "id": "b3beb907-e7ad-4476-a42f-83b7fc75a189",
+      "content": "When we delete the first node, we lose the cursor",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "2da028a0-d59d-4055-9322-a0d8b5887e82": {
+      "id": "2da028a0-d59d-4055-9322-a0d8b5887e82",
+      "content": "When moving a node into a hiddend node, ",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "67b4c175-a885-41f5-a825-78f435509683": {
+      "id": "67b4c175-a885-41f5-a825-78f435509683",
+      "content": "Make sure PLUGIN_DEVELOPMENT.md is updated",
+      "children": [],
+      "metadata": {
+        "status": "completed"
+      }
+    },
+    "e96feea2-2696-480e-864c-51dc646dabea": {
+      "id": "e96feea2-2696-480e-864c-51dc646dabea",
+      "content": "Remove unnessecary comments from initializePlugins.ts",
+      "children": [],
+      "metadata": {
+        "status": "completed"
+      }
+    },
+    "3d9ffce5-4235-45dc-9bc5-68f104e54ad0": {
+      "id": "3d9ffce5-4235-45dc-9bc5-68f104e54ad0",
+      "content": "Are we still using a plugin store ?",
+      "children": [],
+      "metadata": {
+        "status": "completed"
+      }
+    },
+    "7d407941-2fbd-404d-a30e-a23514f9e0c3": {
+      "id": "7d407941-2fbd-404d-a30e-a23514f9e0c3",
+      "content": "Why the disabling in pluginAPI.d.ts ?",
+      "children": [],
+      "metadata": {
+        "status": "completed"
+      }
+    },
+    "909d90fd-f37c-45af-b028-d1ca56ee13fd": {
+      "id": "909d90fd-f37c-45af-b028-d1ca56ee13fd",
+      "content": "Doc",
+      "children": [
+        "01c7c8ef-3bc5-4cd9-8784-0d478fb3f5ee"
+      ],
+      "metadata": {
+        "status": "pending",
+        "expanded": false
+      }
+    },
+    "01c7c8ef-3bc5-4cd9-8784-0d478fb3f5ee": {
+      "id": "01c7c8ef-3bc5-4cd9-8784-0d478fb3f5ee",
+      "content": "Create coherent documentation system",
+      "children": [
+        "bda43cfc-8be4-4c22-8bc5-03ed7cb050df"
+      ],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "bda43cfc-8be4-4c22-8bc5-03ed7cb050df": {
+      "id": "bda43cfc-8be4-4c22-8bc5-03ed7cb050df",
+      "content": "Integrate the docs in arbo and the docs in plugin",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "plugin-refactor-001": {
+      "id": "plugin-refactor-001",
+      "content": "Plugin System Refactor",
+      "children": [
+        "plugin-refactor-critical",
+        "plugin-refactor-high",
+        "plugin-refactor-medium",
+        "plugin-refactor-low"
+      ],
+      "metadata": {
+        "status": "completed",
+        "expanded": false
+      }
+    },
+    "plugin-refactor-critical": {
+      "id": "plugin-refactor-critical",
+      "content": "Critical Priority",
+      "children": [
+        "plugin-refactor-critical-001"
+      ],
+      "metadata": {
+        "status": "completed",
+        "expanded": false
+      }
+    },
+    "plugin-refactor-critical-001": {
+      "id": "plugin-refactor-critical-001",
+      "content": "Unsafe private API access: ExtensionHostConnection.ts:173-178 accesses _invokeHandlers (private Electron API)",
+      "children": [
+        "plugin-refactor-critical-001-a",
+        "plugin-refactor-critical-001-b"
+      ],
+      "metadata": {
+        "status": "completed"
+      }
+    },
+    "plugin-refactor-critical-001-b": {
+      "id": "plugin-refactor-critical-001-b",
+      "content": "Solution: Create proper IPC bridge with public APIs. Use dedicated channel for plugin IPC calls with own event emitter.",
+      "children": [],
+      "metadata": {
+        "status": "completed"
+      }
+    },
+    "plugin-refactor-high": {
+      "id": "plugin-refactor-high",
+      "content": "High Priority",
+      "children": [
+        "plugin-refactor-high-001",
+        "plugin-refactor-high-002",
+        "plugin-refactor-high-003"
+      ],
+      "metadata": {
+        "status": "completed",
+        "expanded": false
+      }
+    },
+    "plugin-refactor-high-001": {
+      "id": "plugin-refactor-high-001",
+      "content": "Massive code duplication in PluginProxy.ts - 4 methods with identical 30-line implementations (136 lines → ~40 lines possible)",
+      "children": [
+        "plugin-refactor-high-001-a",
+        "plugin-refactor-high-001-b"
+      ],
+      "metadata": {
+        "status": "completed"
+      }
+    },
+    "plugin-refactor-high-001-a": {
+      "id": "plugin-refactor-high-001-a",
+      "content": "Issue: provideNodeContextMenuItems, provideNodeIndicator, provideSidebarPanels, provideToolbarActions all duplicate error handling and IPC call logic",
+      "children": [],
+      "metadata": {
+        "status": "completed"
+      }
+    },
+    "plugin-refactor-high-001-b": {
+      "id": "plugin-refactor-high-001-b",
+      "content": "Solution: Create generic invokeExtension<T>() helper. Reduce to 4 one-liners calling the helper.",
+      "children": [],
+      "metadata": {
+        "status": "completed"
+      }
+    },
+    "plugin-refactor-high-002": {
+      "id": "plugin-refactor-high-002",
+      "content": "Type safety issues - 50+ type casts, unknown payloads without validation across codebase",
+      "children": [
+        "plugin-refactor-high-002-a",
+        "plugin-refactor-high-002-b"
+      ],
+      "metadata": {
+        "status": "completed"
+      }
+    },
+    "plugin-refactor-high-002-a": {
+      "id": "plugin-refactor-high-002-a",
+      "content": "Issue: extensionHost.worker.ts, ExtensionHostConnection.ts, PluginAPI.ts use 'as' casts liberally. No runtime validation.",
+      "children": [],
+      "metadata": {
+        "status": "completed"
+      }
+    },
+    "plugin-refactor-high-002-b": {
+      "id": "plugin-refactor-high-002-b",
+      "content": "Solution: Define proper TypeScript interfaces for all message payloads. Add Zod/io-ts runtime validation at boundaries.",
+      "children": [],
+      "metadata": {
+        "status": "completed"
+      }
+    },
+    "plugin-refactor-high-003": {
+      "id": "plugin-refactor-high-003",
+      "content": "Missing abstraction layer for worker thread communication - direct PluginAPI coupling",
+      "children": [
+        "plugin-refactor-high-003-a",
+        "plugin-refactor-high-003-b"
+      ],
+      "metadata": {
+        "status": "completed"
+      }
+    },
+    "plugin-refactor-high-003-a": {
+      "id": "plugin-refactor-high-003-a",
+      "content": "Issue: Plugins directly access global.pluginAPI with hardcoded access patterns. Tight coupling to worker implementation.",
+      "children": [],
+      "metadata": {
+        "status": "completed"
+      }
+    },
+    "plugin-refactor-high-003-b": {
+      "id": "plugin-refactor-high-003-b",
+      "content": "Solution: Create PluginContext class injected into plugin constructors. Abstract IPC calls behind clean API.",
+      "children": [],
+      "metadata": {
+        "status": "completed"
+      }
+    },
+    "plugin-refactor-medium": {
+      "id": "plugin-refactor-medium",
+      "content": "Medium Priority",
+      "children": [
+        "plugin-refactor-medium-001",
+        "plugin-refactor-medium-002",
+        "plugin-refactor-medium-003",
+        "plugin-refactor-medium-004",
+        "plugin-refactor-medium-005",
+        "plugin-refactor-medium-006"
+      ],
+      "metadata": {
+        "status": "completed",
+        "expanded": false
+      }
+    },
+    "plugin-refactor-medium-001": {
+      "id": "plugin-refactor-medium-001",
+      "content": "Error handling inconsistency - Mix of console.error, logger.error, throw, silent failures",
+      "children": [
+        "plugin-refactor-medium-001-a"
+      ],
+      "metadata": {
+        "status": "completed",
+        "expanded": false
+      }
+    },
+    "plugin-refactor-medium-001-a": {
+      "id": "plugin-refactor-medium-001-a",
+      "content": "Solution: Standardize on logger everywhere. Define error policy: log + return { success: false } or throw?",
+      "children": [],
+      "metadata": {
+        "status": "completed"
+      }
+    },
+    "plugin-refactor-medium-002": {
+      "id": "plugin-refactor-medium-002",
+      "content": "IPC handler duplication in extensionHostIpcHandlers.ts - Repetitive try/catch/logger patterns in 6 handlers",
+      "children": [
+        "plugin-refactor-medium-002-a"
+      ],
+      "metadata": {
+        "status": "completed",
+        "expanded": false
+      }
+    },
+    "plugin-refactor-medium-002-a": {
+      "id": "plugin-refactor-medium-002-a",
+      "content": "Solution: Create wrapHandler() higher-order function for error handling, logging, response formatting",
+      "children": [],
+      "metadata": {
+        "status": "completed"
+      }
+    },
+    "plugin-refactor-medium-003": {
+      "id": "plugin-refactor-medium-003",
+      "content": "Message ID generation inconsistency - Different patterns in ExtensionHostConnection.ts and PluginAPI.ts",
+      "children": [
+        "plugin-refactor-medium-003-a"
+      ],
+      "metadata": {
+        "status": "completed",
+        "expanded": false
+      }
+    },
+    "plugin-refactor-medium-003-a": {
+      "id": "plugin-refactor-medium-003-a",
+      "content": "Solution: Create shared generateMessageId() utility with UUID or nanoid instead of counters",
+      "children": [],
+      "metadata": {
+        "status": "completed"
+      }
+    },
+    "plugin-refactor-medium-004": {
+      "id": "plugin-refactor-medium-004",
+      "content": "No timeout configuration - Hardcoded 30000ms timeouts in multiple files",
+      "children": [
+        "plugin-refactor-medium-004-a"
+      ],
+      "metadata": {
+        "status": "completed",
+        "expanded": false
+      }
+    },
+    "plugin-refactor-medium-004-a": {
+      "id": "plugin-refactor-medium-004-a",
+      "content": "Solution: Move to shared constants file. Make configurable for development vs production.",
+      "children": [],
+      "metadata": {
+        "status": "completed"
+      }
+    },
+    "plugin-refactor-medium-005": {
+      "id": "plugin-refactor-medium-005",
+      "content": "ExtensionHostManager lifecycle complexity - Multiple async guards (startPromise, started flag) could race",
+      "children": [
+        "plugin-refactor-medium-005-a",
+        "plugin-refactor-medium-005-b"
+      ],
+      "metadata": {
+        "status": "failed",
+        "expanded": false
+      }
+    },
+    "plugin-refactor-medium-005-a": {
+      "id": "plugin-refactor-medium-005-a",
+      "content": "Solution: Use state machine library (xstate) or enum-based state. Single source of truth for lifecycle state.",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "plugin-refactor-medium-005-b": {
+      "id": "plugin-refactor-medium-005-b",
+      "content": "Effort: Medium (3-4 hours). Affects: ExtensionHostManager.ts",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "plugin-refactor-medium-006": {
+      "id": "plugin-refactor-medium-006",
+      "content": "No plugin dependency management - Plugins can't declare dependencies on each other or load order",
+      "children": [
+        "plugin-refactor-medium-006-a",
+        "plugin-refactor-medium-006-b"
+      ],
+      "metadata": {
+        "status": "failed",
+        "expanded": false
+      }
+    },
+    "plugin-refactor-medium-006-a": {
+      "id": "plugin-refactor-medium-006-a",
+      "content": "Solution: Add dependencies field to manifest. Topological sort on registration. Future: plugin APIs exposed to other plugins.",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "plugin-refactor-medium-006-b": {
+      "id": "plugin-refactor-medium-006-b",
+      "content": "Effort: Medium (4-5 hours). Affects: PluginRegistry.ts, manifest schema, initialization flow",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "plugin-refactor-low": {
+      "id": "plugin-refactor-low",
+      "content": "Low Priority",
+      "children": [
+        "plugin-refactor-low-001",
+        "plugin-refactor-low-002",
+        "plugin-refactor-low-003",
+        "plugin-refactor-low-004",
+        "plugin-refactor-low-005",
+        "plugin-refactor-low-006"
+      ],
+      "metadata": {
+        "status": "completed",
+        "expanded": false
+      }
+    },
+    "plugin-refactor-low-001": {
+      "id": "plugin-refactor-low-001",
+      "content": "Naming inconsistency: 'Extension Host' vs 'Plugin' terminology mixed throughout codebase",
+      "children": [
+        "plugin-refactor-low-001-a"
+      ],
+      "metadata": {
+        "status": "completed"
+      }
+    },
+    "plugin-refactor-low-001-a": {
+      "id": "plugin-refactor-low-001-a",
+      "content": "Solution: Pick one term. 'Extension Host' is implementation detail. Use 'Plugin' in user-facing code. Effort: 1-2 hours.",
+      "children": [],
+      "metadata": {
+        "status": "completed"
+      }
+    },
+    "plugin-refactor-low-002": {
+      "id": "plugin-refactor-low-002",
+      "content": "Missing plugin unload/reload during development - Must restart app to test plugin changes",
+      "children": [
+        "plugin-refactor-low-002-a"
+      ],
+      "metadata": {
+        "status": "failed"
+      }
+    },
+    "plugin-refactor-low-002-a": {
+      "id": "plugin-refactor-low-002-a",
+      "content": "Solution: Add hot reload support. Watch manifest/plugin files. Unregister/re-register on change. Effort: 3-4 hours.",
+      "children": [],
+      "metadata": {
+        "status": "failed"
+      }
+    },
+    "plugin-refactor-low-003": {
+      "id": "plugin-refactor-low-003",
+      "content": "No plugin metrics/telemetry - Can't track performance, errors, or usage patterns per plugin",
+      "children": [
+        "plugin-refactor-low-003-a"
+      ],
+      "metadata": {
+        "status": "failed"
+      }
+    },
+    "plugin-refactor-low-003-a": {
+      "id": "plugin-refactor-low-003-a",
+      "content": "Solution: Wrap extension calls with metrics collection. Track: call count, duration, errors, memory. Effort: 2-3 hours.",
+      "children": [],
+      "metadata": {
+        "status": "failed"
+      }
+    },
+    "plugin-refactor-low-004": {
+      "id": "plugin-refactor-low-004",
+      "content": "pathToFileURL import only used once - Minor: Could inline or comment why needed for worker threads",
+      "children": [],
+      "metadata": {
+        "status": "completed"
+      }
+    },
+    "plugin-refactor-low-005": {
+      "id": "plugin-refactor-low-005",
+      "content": "PluginRegistry missing from architecture - Mentioned in docs but implementation unclear/incomplete",
+      "children": [
+        "plugin-refactor-low-005-a"
+      ],
+      "metadata": {
+        "status": "completed"
+      }
+    },
+    "plugin-refactor-low-005-a": {
+      "id": "plugin-refactor-low-005-a",
+      "content": "Solution: PluginRegistry exists with clear separation from PluginManager. Updated architecture.md to document both.",
+      "children": [],
+      "metadata": {
+        "status": "completed"
+      }
+    },
+    "plugin-refactor-low-006": {
+      "id": "plugin-refactor-low-006",
+      "content": "Mock event object in handleIPCCall - Creates fake IPC event, may not have all properties real events have",
+      "children": [
+        "plugin-refactor-low-006-a"
+      ],
+      "metadata": {
+        "status": "completed"
+      }
+    },
+    "plugin-refactor-low-006-a": {
+      "id": "plugin-refactor-low-006-a",
+      "content": "Solution: After fixing private API access (critical-001), this becomes moot. Document why mock needed if kept. Effort: 30 mins.",
+      "children": [],
+      "metadata": {
+        "status": "completed"
+      }
+    },
+    "plugin-refactor-critical-001-a": {
+      "id": "plugin-refactor-critical-001-a",
+      "content": "Issue: Fragile and could break on Electron version upgrades. No type safety.",
+      "children": [],
+      "metadata": {
+        "status": "completed"
+      }
+    },
+    "2f83a0af-280e-4e67-8306-31a8e02c9500": {
+      "id": "2f83a0af-280e-4e67-8306-31a8e02c9500",
+      "content": "Features",
+      "children": [
+        "6573b620-bfc0-4c5b-8d92-13b9ace3461d",
+        "ce2de4b4-cc94-4106-a61b-26ce1089e97e",
+        "31cc1d2b-858b-4323-937b-6a38b15e0239",
+        "1420f7da-e115-4f89-befa-f046a07ba964",
+        "acc9f80b-deee-4252-8987-dfed46be6464",
+        "5f8eb896-d610-429f-a53a-fac6d164bd77",
+        "pdt35vy1z",
+        "0vzl7mppk",
+        "8ee5326d-1eec-45be-aa26-d11ae0e57284",
+        "909d90fd-f37c-45af-b028-d1ca56ee13fd",
+        "7aa4140c-1206-47ea-8a94-6c3e7763ccff"
+      ],
+      "metadata": {
+        "status": "pending",
+        "expanded": true
+      }
+    },
+    "0cc62ae1-1a7a-4aa4-bc6a-d817cabd672c": {
+      "id": "0cc62ae1-1a7a-4aa4-bc6a-d817cabd672c",
+      "content": "In progress",
+      "children": [
+        "byqndehy4"
+      ],
+      "metadata": {
+        "status": "pending",
+        "expanded": true
+      }
+    },
+    "565dde0a-864b-41f9-86ff-dbdf40ac4dd0": {
+      "id": "565dde0a-864b-41f9-86ff-dbdf40ac4dd0",
+      "content": "Done",
+      "children": [
+        "44jmbkqfv"
+      ],
+      "metadata": {
+        "status": "pending",
+        "expanded": false
+      }
+    },
+    "e9bb0de8-a33a-4054-8902-466a58ae3a1a": {
+      "id": "e9bb0de8-a33a-4054-8902-466a58ae3a1a",
+      "content": "Done",
+      "children": [
+        "0f9c1312-d773-45bb-9d54-7ef0fc4f58a9"
+      ],
+      "metadata": {
+        "status": "pending",
+        "expanded": false
+      }
+    },
+    "d5fe0eff-b1c6-4986-b6a3-70a0ea46f096": {
+      "id": "d5fe0eff-b1c6-4986-b6a3-70a0ea46f096",
+      "content": "Ideas",
+      "children": [
+        "2ce5b181-5461-486c-be65-159e5e98de54"
+      ],
+      "metadata": {
+        "status": "pending",
+        "expanded": false
+      }
+    },
+    "2ce5b181-5461-486c-be65-159e5e98de54": {
+      "id": "2ce5b181-5461-486c-be65-159e5e98de54",
+      "content": "Mobile app",
+      "children": [
+        "30ee4a6f-59a2-4ec8-a78f-2068542d8886"
+      ],
+      "metadata": {
+        "status": "pending",
+        "expanded": false
+      }
+    },
+    "30ee4a6f-59a2-4ec8-a78f-2068542d8886": {
+      "id": "30ee4a6f-59a2-4ec8-a78f-2068542d8886",
+      "content": "Easy as possible to use, as a neurodivergent aid",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "9bfbb401-dcb6-4f92-a34b-e9b3982c676f": {
+      "id": "9bfbb401-dcb6-4f92-a34b-e9b3982c676f",
+      "content": "Philosophy",
+      "children": [
+        "17de3fdf-e5f6-4dec-9e4b-df1cadec2db9",
+        "f15111b1-9e2d-46e9-b84c-e12b9053e230"
+      ],
+      "metadata": {
+        "status": "pending",
+        "expanded": false
+      }
+    },
+    "f15111b1-9e2d-46e9-b84c-e12b9053e230": {
+      "id": "f15111b1-9e2d-46e9-b84c-e12b9053e230",
+      "content": "Neurodivergent compatible",
+      "children": [
+        "c882ae02-4134-41c9-89de-39e04fb749c5",
+        "64ef60c9-40fe-43c8-9b48-0000d28e024a",
+        "789d86bb-3069-43eb-9e71-2ca2d0779302",
+        "50de00c5-8138-491b-9063-eeb5145fc4e2"
+      ],
+      "metadata": {
+        "status": "pending",
+        "expanded": false
+      }
+    },
+    "c882ae02-4134-41c9-89de-39e04fb749c5": {
+      "id": "c882ae02-4134-41c9-89de-39e04fb749c5",
+      "content": "UI as simple as possible",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "64ef60c9-40fe-43c8-9b48-0000d28e024a": {
+      "id": "64ef60c9-40fe-43c8-9b48-0000d28e024a",
+      "content": "As stable as possible to avoid frustration",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "789d86bb-3069-43eb-9e71-2ca2d0779302": {
+      "id": "789d86bb-3069-43eb-9e71-2ca2d0779302",
+      "content": "As simple as possible in it's base form, plugins off by default",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "50de00c5-8138-491b-9063-eeb5145fc4e2": {
+      "id": "50de00c5-8138-491b-9063-eeb5145fc4e2",
+      "content": "Complexity is emergent, discoverable, configurable - respect cognitive load",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "17de3fdf-e5f6-4dec-9e4b-df1cadec2db9": {
+      "id": "17de3fdf-e5f6-4dec-9e4b-df1cadec2db9",
+      "content": "Accessible",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "acc9f80b-deee-4252-8987-dfed46be6464": {
+      "id": "acc9f80b-deee-4252-8987-dfed46be6464",
+      "content": "Nodes collapse after certain time expires",
+      "children": [
+        "08af7da4-d763-4106-9fa8-1063a7bea892"
+      ],
+      "metadata": {
+        "status": "pending",
+        "expanded": false
+      }
+    },
+    "08af7da4-d763-4106-9fa8-1063a7bea892": {
+      "id": "08af7da4-d763-4106-9fa8-1063a7bea892",
+      "content": "Configurable",
+      "children": [
+        "820ae36f-7de6-4fd0-bbdf-6574b19da889",
+        "7b2f1f0a-b56d-4b50-bd47-039cd2628151",
+        "31607f0b-1294-41c8-9ee6-e8939d9b8e21",
+        "1cb0c6ff-0468-485d-b72d-ca34c8f6f491"
+      ],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "7b2f1f0a-b56d-4b50-bd47-039cd2628151": {
+      "id": "7b2f1f0a-b56d-4b50-bd47-039cd2628151",
+      "content": "All nodes autocollapse",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "820ae36f-7de6-4fd0-bbdf-6574b19da889": {
+      "id": "820ae36f-7de6-4fd0-bbdf-6574b19da889",
+      "content": "Delay",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "31607f0b-1294-41c8-9ee6-e8939d9b8e21": {
+      "id": "31607f0b-1294-41c8-9ee6-e8939d9b8e21",
+      "content": "Nodes never autocollapse",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "1cb0c6ff-0468-485d-b72d-ca34c8f6f491": {
+      "id": "1cb0c6ff-0468-485d-b72d-ca34c8f6f491",
+      "content": "Nodes collapse except for those the user expanded",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "1420f7da-e115-4f89-befa-f046a07ba964": {
+      "id": "1420f7da-e115-4f89-befa-f046a07ba964",
+      "content": "Spell checker",
+      "children": [
+        "c24da958-73a3-43a1-a36e-22a11a6fabe3"
+      ],
+      "metadata": {
+        "status": "pending",
+        "expanded": true
+      }
+    },
+    "c24da958-73a3-43a1-a36e-22a11a6fabe3": {
+      "id": "c24da958-73a3-43a1-a36e-22a11a6fabe3",
+      "content": "English only for now",
+      "children": [
+        "fd37c1ae-0416-421e-a937-6153bbe483ee"
+      ],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "fd37c1ae-0416-421e-a937-6153bbe483ee": {
+      "id": "fd37c1ae-0416-421e-a937-6153bbe483ee",
+      "content": "Unless possible to pick up on system settings or otherwise easy",
       "children": [],
       "metadata": {
         "status": "pending"

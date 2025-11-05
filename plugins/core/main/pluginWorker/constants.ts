@@ -1,0 +1,1 @@
+export const IPC_MESSAGE_TIMEOUT_MS = 30000;
