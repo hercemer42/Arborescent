@@ -9,6 +9,7 @@ import {
 import { PluginContext } from '../../core/main/extensionHost/PluginContext';
 import { TreeNode } from '../../../src/shared/types';
 import manifest from '../renderer/manifest.json';
+import { logger } from '../../core/main/extensionHost/workerLogger';
 
 interface ClaudeCodePluginMetadata {
   sessionId?: string;
@@ -42,11 +43,11 @@ export class ClaudeCodePlugin implements Plugin {
 
   async initialize(): Promise<void> {
     this.projectPath = await this.context.invokeIPC<string>('claude:get-project-path');
-    console.log(`[Claude Code Plugin] Plugin initialized for project: ${this.projectPath}`);
+    logger.info(`Plugin initialized for project: ${this.projectPath}`, 'Claude Code Plugin');
   }
 
   dispose(): void {
-    console.log('[Claude Code Plugin] Plugin disposed');
+    logger.info('Plugin disposed', 'Claude Code Plugin');
   }
 
   private getClaudeMetadata(node: TreeNode): ClaudeCodePluginMetadata {
@@ -76,7 +77,7 @@ export class ClaudeCodePlugin implements Plugin {
         };
       });
     } catch (error) {
-      console.error('[Claude Code Plugin] Failed to get Claude Code sessions:', error);
+      logger.error('Failed to get Claude Code sessions', error as Error, 'Claude Code Plugin');
       return [];
     }
   }
@@ -90,7 +91,7 @@ export class ClaudeCodePlugin implements Plugin {
         this.projectPath
       );
     } catch (error) {
-      console.error('[Claude Code Plugin] Failed to send context to Claude Code session:', error);
+      logger.error('Failed to send context to Claude Code session', error as Error, 'Claude Code Plugin');
       throw error;
     }
   }

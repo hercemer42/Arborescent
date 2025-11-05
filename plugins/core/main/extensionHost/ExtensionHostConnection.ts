@@ -3,11 +3,12 @@ import path from 'node:path';
 import { ExtensionHostMessage, RendererMessage, MessageType } from './types/messages';
 import { logger } from '../../../../src/main/services/logger';
 import { LogMessageSchema, IPCCallMessageSchema, safeValidatePayload } from './types/messageValidation';
+import { generateMessageId } from './utils/messageId';
+import { IPC_MESSAGE_TIMEOUT_MS } from './constants';
 
 export class ExtensionHostConnection {
   private worker: Worker | null = null;
   private messageHandlers: Map<string, (response: ExtensionHostMessage) => void> = new Map();
-  private messageIdCounter = 0;
   private readyPromise: Promise<void>;
   private readyResolve!: () => void;
 
@@ -77,7 +78,7 @@ export class ExtensionHostConnection {
       throw new Error('Extension host not started');
     }
 
-    const id = `msg-${this.messageIdCounter++}`;
+    const id = generateMessageId('msg');
 
     const message: RendererMessage = {
       type: type as RendererMessage['type'],
@@ -89,7 +90,7 @@ export class ExtensionHostConnection {
       const timeout = setTimeout(() => {
         this.messageHandlers.delete(id);
         reject(new Error(`Message ${id} timed out`));
-      }, 30000);
+      }, IPC_MESSAGE_TIMEOUT_MS);
 
       this.messageHandlers.set(id, (response: ExtensionHostMessage) => {
         clearTimeout(timeout);

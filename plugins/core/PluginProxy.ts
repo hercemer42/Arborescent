@@ -8,6 +8,7 @@ import {
   NodeContext,
 } from './pluginInterface';
 import { TreeNode } from '../../src/shared/types';
+import { logger } from '../../src/renderer/services/logger';
 
 /**
  * PluginProxy runs in the renderer process and forwards extension point calls
@@ -50,13 +51,21 @@ export class PluginProxy implements Plugin {
         if (response.error === 'Extension host not started') {
           return defaultValue;
         }
-        console.error(`Error invoking ${extensionPoint} for ${this.pluginName}:`, response.error);
+        logger.error(
+          `Error invoking ${extensionPoint} for ${this.pluginName}: ${response.error}`,
+          undefined,
+          'Plugin Proxy'
+        );
         return defaultValue;
       }
 
       return (response.result as { result?: T })?.result ?? defaultValue;
     } catch (error) {
-      console.error(`Error invoking ${extensionPoint} for ${this.pluginName}:`, error);
+      logger.error(
+        `Error invoking ${extensionPoint} for ${this.pluginName}`,
+        error as Error,
+        'Plugin Proxy'
+      );
       return defaultValue;
     }
   }

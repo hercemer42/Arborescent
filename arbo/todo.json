@@ -2,7 +2,7 @@
   "format": "Arborescent",
   "version": "1.0.0",
   "created": "2025-10-11T00:00:00.000Z",
-  "updated": "2025-11-05T06:30:00.000Z",
+  "updated": "2025-11-05T07:00:00.000Z",
   "author": "brian@brianfox.fr",
   "rootNodeId": "root",
   "nodes": {
@@ -1591,7 +1591,7 @@
         "plugin-refactor-high-003"
       ],
       "metadata": {
-        "status": "completed",
+        "status": "pending",
         "expanded": true
       }
     },
@@ -1627,8 +1627,7 @@
       "content": "Type safety issues - 50+ type casts, unknown payloads without validation across codebase",
       "children": [
         "plugin-refactor-high-002-a",
-        "plugin-refactor-high-002-b",
-        "plugin-refactor-high-002-c"
+        "plugin-refactor-high-002-b"
       ],
       "metadata": {
         "status": "completed"
@@ -1650,21 +1649,12 @@
         "status": "completed"
       }
     },
-    "plugin-refactor-high-002-c": {
-      "id": "plugin-refactor-high-002-c",
-      "content": "Effort: Medium (6-8 hours). Affects: All plugin core files + types directory",
-      "children": [],
-      "metadata": {
-        "status": "completed"
-      }
-    },
     "plugin-refactor-high-003": {
       "id": "plugin-refactor-high-003",
       "content": "Missing abstraction layer for worker thread communication - direct PluginAPI coupling",
       "children": [
         "plugin-refactor-high-003-a",
-        "plugin-refactor-high-003-b",
-        "plugin-refactor-high-003-c"
+        "plugin-refactor-high-003-b"
       ],
       "metadata": {
         "status": "completed"
@@ -1686,14 +1676,6 @@
         "status": "completed"
       }
     },
-    "plugin-refactor-high-003-c": {
-      "id": "plugin-refactor-high-003-c",
-      "content": "Effort: Medium (4-6 hours). Affects: Plugin interface, extensionHost.worker.ts, all plugin implementations",
-      "children": [],
-      "metadata": {
-        "status": "completed"
-      }
-    },
     "plugin-refactor-medium": {
       "id": "plugin-refactor-medium",
       "content": "Medium Priority",
@@ -1707,7 +1689,7 @@
       ],
       "metadata": {
         "status": "pending",
-        "expanded": false
+        "expanded": true
       }
     },
     "plugin-refactor-medium-001": {
@@ -1718,7 +1700,7 @@
         "plugin-refactor-medium-001-b"
       ],
       "metadata": {
-        "status": "pending"
+        "status": "completed"
       }
     },
     "plugin-refactor-medium-001-a": {
@@ -1726,7 +1708,7 @@
       "content": "Solution: Standardize on logger everywhere. Define error policy: log + return { success: false } or throw?",
       "children": [],
       "metadata": {
-        "status": "pending"
+        "status": "completed"
       }
     },
     "plugin-refactor-medium-001-b": {
@@ -1734,7 +1716,7 @@
       "content": "Effort: Small (2-3 hours). Affects: All plugin files",
       "children": [],
       "metadata": {
-        "status": "pending"
+        "status": "completed"
       }
     },
     "plugin-refactor-medium-002": {
@@ -1745,7 +1727,7 @@
         "plugin-refactor-medium-002-b"
       ],
       "metadata": {
-        "status": "pending"
+        "status": "completed"
       }
     },
     "plugin-refactor-medium-002-a": {
@@ -1753,7 +1735,7 @@
       "content": "Solution: Create wrapHandler() higher-order function for error handling, logging, response formatting",
       "children": [],
       "metadata": {
-        "status": "pending"
+        "status": "completed"
       }
     },
     "plugin-refactor-medium-002-b": {
@@ -1761,7 +1743,7 @@
       "content": "Effort: Small (1-2 hours). Affects: extensionHostIpcHandlers.ts",
       "children": [],
       "metadata": {
-        "status": "pending"
+        "status": "completed"
       }
     },
     "plugin-refactor-medium-003": {
@@ -1772,7 +1754,7 @@
         "plugin-refactor-medium-003-b"
       ],
       "metadata": {
-        "status": "pending"
+        "status": "completed"
       }
     },
     "plugin-refactor-medium-003-a": {
@@ -1780,7 +1762,7 @@
       "content": "Solution: Create shared generateMessageId() utility with UUID or nanoid instead of counters",
       "children": [],
       "metadata": {
-        "status": "pending"
+        "status": "completed"
       }
     },
     "plugin-refactor-medium-003-b": {
@@ -1788,7 +1770,7 @@
       "content": "Effort: Small (30 minutes). Affects: ExtensionHostConnection.ts, PluginAPI.ts",
       "children": [],
       "metadata": {
-        "status": "pending"
+        "status": "completed"
       }
     },
     "plugin-refactor-medium-004": {
@@ -1799,7 +1781,7 @@
         "plugin-refactor-medium-004-b"
       ],
       "metadata": {
-        "status": "pending"
+        "status": "completed"
       }
     },
     "plugin-refactor-medium-004-a": {
@@ -1807,7 +1789,7 @@
       "content": "Solution: Move to shared constants file. Make configurable for development vs production.",
       "children": [],
       "metadata": {
-        "status": "pending"
+        "status": "completed"
       }
     },
     "plugin-refactor-medium-004-b": {
@@ -1815,7 +1797,7 @@
       "content": "Effort: Small (30 minutes). Affects: ExtensionHostConnection.ts, PluginAPI.ts",
       "children": [],
       "metadata": {
-        "status": "pending"
+        "status": "completed"
       }
     },
     "plugin-refactor-medium-005": {

@@ -238,6 +238,7 @@ import {
 import { PluginContext } from '../../core/main/extensionHost/PluginContext';
 import { TreeNode } from '../../../src/shared/types';
 import manifest from '../manifest.json';
+import { logger } from '../../core/main/extensionHost/workerLogger';
 
 export class MyPlugin implements Plugin {
   manifest: PluginManifest = manifest;
@@ -256,11 +257,11 @@ export class MyPlugin implements Plugin {
 
   async initialize(): Promise<void> {
     this.someData = await this.context.invokeIPC<string>('my-plugin:get-data');
-    console.log('[My Plugin] Initialized with data:', this.someData);
+    logger.info(`Initialized with data: ${this.someData}`, 'My Plugin');
   }
 
   dispose(): void {
-    console.log('[My Plugin] Disposed');
+    logger.info('Disposed', 'My Plugin');
   }
 
   private getContextMenuItems(
@@ -437,7 +438,7 @@ export const myPluginPreloadAPI = {
 // In plugin initialization or extension point
 async initialize(): Promise<void> {
   const result = await this.context.invokeIPC<{ success: boolean }>('my-plugin:do-something', 'hello');
-  console.log(`Result: ${result.success}`);
+  logger.info(`Result: ${result.success}`, 'My Plugin');
 }
 ```
 
@@ -517,12 +518,12 @@ export class MyPlugin implements Plugin {
   async initialize(): Promise<void> {
     // Setup: subscribe to stores, initialize state, etc.
     // This runs only on first use, not at startup
-    console.log('Plugin starting...');
+    logger.info('Plugin starting...', 'My Plugin');
   }
 
   dispose(): void {
     // Cleanup: unsubscribe, clear timers, etc.
-    console.log('Plugin stopping...');
+    logger.info('Plugin stopping...', 'My Plugin');
   }
 }
 ```

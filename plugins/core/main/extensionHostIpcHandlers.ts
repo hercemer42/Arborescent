@@ -6,47 +6,52 @@ import { logger } from '../../../src/main/services/logger';
 
 let extensionHost: ExtensionHostConnection | null = null;
 
+type HandlerResult = { success: boolean; error?: string; [key: string]: unknown };
+type HandlerFunction = (...args: unknown[]) => Promise<HandlerResult>;
+
+function wrapHandler(
+  handlerName: string,
+  requiresExtensionHost: boolean,
+  handler: HandlerFunction
+): HandlerFunction {
+  return async (...args: unknown[]): Promise<HandlerResult> => {
+    if (requiresExtensionHost && !extensionHost) {
+      return { success: false, error: 'Extension host not started' };
+    }
+
+    try {
+      return await handler(...args);
+    } catch (error) {
+      logger.error(handlerName, error as Error, 'Extension Host IPC');
+      return { success: false, error: (error as Error).message };
+    }
+  };
+}
+
 export function registerExtensionHostIpcHandlers(): void {
-  ipcMain.handle('extension-host:start', async () => {
+  ipcMain.handle('extension-host:start', wrapHandler('Failed to start extension host', false, async () => {
     if (extensionHost) {
       logger.warn('Extension host already started', 'Extension Host IPC');
       return { success: true };
     }
 
-    try {
-      extensionHost = new ExtensionHostConnection();
-      await extensionHost.start();
-      return { success: true };
-    } catch (error) {
-      logger.error('Failed to start extension host', error as Error, 'Extension Host IPC');
-      return { success: false, error: (error as Error).message };
-    }
-  });
+    extensionHost = new ExtensionHostConnection();
+    await extensionHost.start();
+    return { success: true };
+  }));
 
-  ipcMain.handle('extension-host:stop', async () => {
+  ipcMain.handle('extension-host:stop', wrapHandler('Failed to stop extension host', false, async () => {
     if (!extensionHost) {
       return { success: true };
     }
 
-    try {
-      await extensionHost.stop();
-      extensionHost = null;
-      return { success: true };
-    } catch (error) {
-      logger.error('Failed to stop extension host', error as Error, 'Extension Host IPC');
-      return { success: false, error: (error as Error).message };
-    }
-  });
+    await extensionHost.stop();
+    extensionHost = null;
+    return { success: true };
+  }));
 
-  ipcMain.handle('extension-host:register-plugin', async (_, pluginName: string, pluginPath: string, manifestPath: string) => {
-    if (!extensionHost) {
-      return { success: false, error: 'Extension host not started' };
-    }
-
-    try {
-      // Resolve paths relative to app resources
-      // In development: app.getAppPath() is the project root
-      // In production: app.getAppPath() is the .app/Contents/Resources/app directory
+  ipcMain.handle('extension-host:register-plugin', async (_, pluginName: string, pluginPath: string, manifestPath: string) =>
+    wrapHandler(`Failed to register plugin ${pluginName}`, true, async () => {
       const appPath = app.getAppPath();
       const absolutePluginPath = path.isAbsolute(pluginPath)
         ? pluginPath
@@ -55,81 +60,50 @@ export function registerExtensionHostIpcHandlers(): void {
         ? manifestPath
         : path.resolve(appPath, manifestPath);
 
-      const response = await extensionHost.sendMessage(MessageType.RegisterPlugin, {
+      const response = await extensionHost!.sendMessage(MessageType.RegisterPlugin, {
         pluginName,
         pluginPath: absolutePluginPath,
         manifestPath: absoluteManifestPath,
       }) as { manifest: unknown };
       return { success: true, manifest: response.manifest };
-    } catch (error) {
-      logger.error(`Failed to register plugin ${pluginName}`, error as Error, 'Extension Host IPC');
-      return { success: false, error: (error as Error).message };
-    }
-  });
+    })()
+  );
 
-  ipcMain.handle('extension-host:unregister-plugin', async (_, pluginName: string) => {
-    if (!extensionHost) {
-      return { success: true };
-    }
+  ipcMain.handle('extension-host:unregister-plugin', async (_, pluginName: string) =>
+    wrapHandler(`Failed to unregister plugin ${pluginName}`, false, async () => {
+      if (!extensionHost) {
+        return { success: true };
+      }
 
-    try {
       await extensionHost.sendMessage(MessageType.UnregisterPlugin, {
         pluginName,
       });
       return { success: true };
-    } catch (error) {
-      logger.error(`Failed to unregister plugin ${pluginName}`, error as Error, 'Extension Host IPC');
-      return { success: false, error: (error as Error).message };
-    }
-  });
+    })()
+  );
 
-  ipcMain.handle('extension-host:initialize-plugins', async () => {
-    if (!extensionHost) {
-      return { success: false, error: 'Extension host not started' };
-    }
+  ipcMain.handle('extension-host:initialize-plugins', wrapHandler('Failed to initialize plugins', true, async () => {
+    await extensionHost!.sendMessage(MessageType.InitializePlugins, {});
+    return { success: true };
+  }));
 
-    try {
-      await extensionHost.sendMessage(MessageType.InitializePlugins, {});
-      return { success: true };
-    } catch (error) {
-      logger.error('Failed to initialize plugins', error as Error, 'Extension Host IPC');
-      return { success: false, error: (error as Error).message };
-    }
-  });
-
-  ipcMain.handle('extension-host:dispose-plugins', async () => {
+  ipcMain.handle('extension-host:dispose-plugins', wrapHandler('Failed to dispose plugins', false, async () => {
     if (!extensionHost) {
       return { success: true };
     }
 
-    try {
-      await extensionHost.sendMessage(MessageType.DisposePlugins, {});
-      return { success: true };
-    } catch (error) {
-      logger.error('Failed to dispose plugins', error as Error, 'Extension Host IPC');
-      return { success: false, error: (error as Error).message };
-    }
-  });
+    await extensionHost.sendMessage(MessageType.DisposePlugins, {});
+    return { success: true };
+  }));
 
-  ipcMain.handle('extension-host:invoke-extension', async (_, pluginName: string, extensionPoint: string, args: unknown[]) => {
-    if (!extensionHost) {
-      return { success: false, error: 'Extension host not started' };
-    }
-
-    try {
-      const response = await extensionHost.sendMessage(MessageType.InvokeExtension, {
+  ipcMain.handle('extension-host:invoke-extension', async (_, pluginName: string, extensionPoint: string, args: unknown[]) =>
+    wrapHandler(`Failed to invoke extension ${extensionPoint} on plugin ${pluginName}`, true, async () => {
+      const response = await extensionHost!.sendMessage(MessageType.InvokeExtension, {
         pluginName,
         extensionPoint,
         args,
       });
       return { success: true, result: response };
-    } catch (error) {
-      logger.error(
-        `Failed to invoke extension ${extensionPoint} on plugin ${pluginName}`,
-        error as Error,
-        'Extension Host IPC'
-      );
-      return { success: false, error: (error as Error).message };
-    }
-  });
+    })()
+  );
 }

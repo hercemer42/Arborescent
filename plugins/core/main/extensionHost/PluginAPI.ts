@@ -1,8 +1,9 @@
 import { parentPort } from 'node:worker_threads';
 import { IPCResponseMessageSchema, safeValidatePayload } from './types/messageValidation';
+import { generateMessageId } from './utils/messageId';
+import { IPC_MESSAGE_TIMEOUT_MS } from './constants';
 
 export class PluginAPI {
-  private messageIdCounter = 0;
   private pendingCalls: Map<string, { resolve: (value: unknown) => void; reject: (error: Error) => void }> = new Map();
 
   constructor() {
@@ -35,7 +36,7 @@ export class PluginAPI {
     }
 
     return new Promise<T>((resolve, reject) => {
-      const id = `ipc-${this.messageIdCounter++}`;
+      const id = generateMessageId('ipc');
 
       this.pendingCalls.set(id, { resolve: resolve as (value: unknown) => void, reject });
 
@@ -51,7 +52,7 @@ export class PluginAPI {
           this.pendingCalls.delete(id);
           reject(new Error(`IPC call to ${channel} timed out`));
         }
-      }, 30000);
+      }, IPC_MESSAGE_TIMEOUT_MS);
     });
   }
 }
