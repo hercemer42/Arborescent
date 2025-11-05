@@ -2,7 +2,7 @@
   "format": "Arborescent",
   "version": "1.0.0",
   "created": "2025-10-11T00:00:00.000Z",
-  "updated": "2025-11-05T07:00:00.000Z",
+  "updated": "2025-11-05T07:03:42.407Z",
   "author": "brian@brianfox.fr",
   "rootNodeId": "root",
   "nodes": {
@@ -956,7 +956,7 @@
         "bd4e87a5-132a-484d-82f0-52b6de115e60"
       ],
       "metadata": {
-        "status": "pending"
+        "status": "completed"
       }
     },
     "c88262d6-21ba-41bd-aab7-51b96d0ed062": {
@@ -1005,7 +1005,7 @@
       "content": "Lazy loading: plugins activate only when needed (not at startup)",
       "children": [],
       "metadata": {
-        "status": "pending"
+        "status": "completed"
       }
     },
     "d789b040-ce74-4e38-8793-d9fe46b0e96f": {
@@ -1560,7 +1560,7 @@
       ],
       "metadata": {
         "status": "completed",
-        "expanded": true
+        "expanded": false
       }
     },
     "plugin-refactor-critical-001": {
@@ -1591,8 +1591,8 @@
         "plugin-refactor-high-003"
       ],
       "metadata": {
-        "status": "pending",
-        "expanded": true
+        "status": "completed",
+        "expanded": false
       }
     },
     "plugin-refactor-high-001": {
@@ -1688,19 +1688,19 @@
         "plugin-refactor-medium-006"
       ],
       "metadata": {
-        "status": "pending",
-        "expanded": true
+        "status": "completed",
+        "expanded": false
       }
     },
     "plugin-refactor-medium-001": {
       "id": "plugin-refactor-medium-001",
       "content": "Error handling inconsistency - Mix of console.error, logger.error, throw, silent failures",
       "children": [
-        "plugin-refactor-medium-001-a",
-        "plugin-refactor-medium-001-b"
+        "plugin-refactor-medium-001-a"
       ],
       "metadata": {
-        "status": "completed"
+        "status": "completed",
+        "expanded": false
       }
     },
     "plugin-refactor-medium-001-a": {
@@ -1711,23 +1711,15 @@
         "status": "completed"
       }
     },
-    "plugin-refactor-medium-001-b": {
-      "id": "plugin-refactor-medium-001-b",
-      "content": "Effort: Small (2-3 hours). Affects: All plugin files",
-      "children": [],
-      "metadata": {
-        "status": "completed"
-      }
-    },
     "plugin-refactor-medium-002": {
       "id": "plugin-refactor-medium-002",
       "content": "IPC handler duplication in extensionHostIpcHandlers.ts - Repetitive try/catch/logger patterns in 6 handlers",
       "children": [
-        "plugin-refactor-medium-002-a",
-        "plugin-refactor-medium-002-b"
+        "plugin-refactor-medium-002-a"
       ],
       "metadata": {
-        "status": "completed"
+        "status": "completed",
+        "expanded": false
       }
     },
     "plugin-refactor-medium-002-a": {
@@ -1738,23 +1730,15 @@
         "status": "completed"
       }
     },
-    "plugin-refactor-medium-002-b": {
-      "id": "plugin-refactor-medium-002-b",
-      "content": "Effort: Small (1-2 hours). Affects: extensionHostIpcHandlers.ts",
-      "children": [],
-      "metadata": {
-        "status": "completed"
-      }
-    },
     "plugin-refactor-medium-003": {
       "id": "plugin-refactor-medium-003",
       "content": "Message ID generation inconsistency - Different patterns in ExtensionHostConnection.ts and PluginAPI.ts",
       "children": [
-        "plugin-refactor-medium-003-a",
-        "plugin-refactor-medium-003-b"
+        "plugin-refactor-medium-003-a"
       ],
       "metadata": {
-        "status": "completed"
+        "status": "completed",
+        "expanded": false
       }
     },
     "plugin-refactor-medium-003-a": {
@@ -1765,36 +1749,20 @@
         "status": "completed"
       }
     },
-    "plugin-refactor-medium-003-b": {
-      "id": "plugin-refactor-medium-003-b",
-      "content": "Effort: Small (30 minutes). Affects: ExtensionHostConnection.ts, PluginAPI.ts",
-      "children": [],
-      "metadata": {
-        "status": "completed"
-      }
-    },
     "plugin-refactor-medium-004": {
       "id": "plugin-refactor-medium-004",
       "content": "No timeout configuration - Hardcoded 30000ms timeouts in multiple files",
       "children": [
-        "plugin-refactor-medium-004-a",
-        "plugin-refactor-medium-004-b"
+        "plugin-refactor-medium-004-a"
       ],
       "metadata": {
-        "status": "completed"
+        "status": "completed",
+        "expanded": false
       }
     },
     "plugin-refactor-medium-004-a": {
       "id": "plugin-refactor-medium-004-a",
       "content": "Solution: Move to shared constants file. Make configurable for development vs production.",
-      "children": [],
-      "metadata": {
-        "status": "completed"
-      }
-    },
-    "plugin-refactor-medium-004-b": {
-      "id": "plugin-refactor-medium-004-b",
-      "content": "Effort: Small (30 minutes). Affects: ExtensionHostConnection.ts, PluginAPI.ts",
       "children": [],
       "metadata": {
         "status": "completed"
@@ -1808,7 +1776,8 @@
         "plugin-refactor-medium-005-b"
       ],
       "metadata": {
-        "status": "pending"
+        "status": "failed",
+        "expanded": false
       }
     },
     "plugin-refactor-medium-005-a": {
@@ -1835,7 +1804,8 @@
         "plugin-refactor-medium-006-b"
       ],
       "metadata": {
-        "status": "pending"
+        "status": "failed",
+        "expanded": false
       }
     },
     "plugin-refactor-medium-006-a": {
@@ -1866,7 +1836,7 @@
         "plugin-refactor-low-006"
       ],
       "metadata": {
-        "status": "pending",
+        "status": "completed",
         "expanded": false
       }
     },
@@ -1877,7 +1847,7 @@
         "plugin-refactor-low-001-a"
       ],
       "metadata": {
-        "status": "pending"
+        "status": "completed"
       }
     },
     "plugin-refactor-low-001-a": {
@@ -1885,7 +1855,7 @@
       "content": "Solution: Pick one term. 'Extension Host' is implementation detail. Use 'Plugin' in user-facing code. Effort: 1-2 hours.",
       "children": [],
       "metadata": {
-        "status": "pending"
+        "status": "completed"
       }
     },
     "plugin-refactor-low-002": {
@@ -1895,7 +1865,7 @@
         "plugin-refactor-low-002-a"
       ],
       "metadata": {
-        "status": "pending"
+        "status": "failed"
       }
     },
     "plugin-refactor-low-002-a": {
@@ -1903,7 +1873,7 @@
       "content": "Solution: Add hot reload support. Watch manifest/plugin files. Unregister/re-register on change. Effort: 3-4 hours.",
       "children": [],
       "metadata": {
-        "status": "pending"
+        "status": "failed"
       }
     },
     "plugin-refactor-low-003": {
@@ -1913,7 +1883,7 @@
         "plugin-refactor-low-003-a"
       ],
       "metadata": {
-        "status": "pending"
+        "status": "failed"
       }
     },
     "plugin-refactor-low-003-a": {
@@ -1921,7 +1891,7 @@
       "content": "Solution: Wrap extension calls with metrics collection. Track: call count, duration, errors, memory. Effort: 2-3 hours.",
       "children": [],
       "metadata": {
-        "status": "pending"
+        "status": "failed"
       }
     },
     "plugin-refactor-low-004": {
@@ -1929,7 +1899,7 @@
       "content": "pathToFileURL import only used once - Minor: Could inline or comment why needed for worker threads",
       "children": [],
       "metadata": {
-        "status": "pending"
+        "status": "completed"
       }
     },
     "plugin-refactor-low-005": {
@@ -1939,15 +1909,15 @@
         "plugin-refactor-low-005-a"
       ],
       "metadata": {
-        "status": "pending"
+        "status": "completed"
       }
     },
     "plugin-refactor-low-005-a": {
       "id": "plugin-refactor-low-005-a",
-      "content": "Solution: Complete PluginRegistry or remove references. Clarify vs ExtensionHostManager responsibilities. Effort: 2-3 hours.",
+      "content": "Solution: PluginRegistry exists with clear separation from PluginManager. Updated architecture.md to document both.",
       "children": [],
       "metadata": {
-        "status": "pending"
+        "status": "completed"
       }
     },
     "plugin-refactor-low-006": {
@@ -1957,7 +1927,7 @@
         "plugin-refactor-low-006-a"
       ],
       "metadata": {
-        "status": "pending"
+        "status": "completed"
       }
     },
     "plugin-refactor-low-006-a": {
@@ -1965,7 +1935,7 @@
       "content": "Solution: After fixing private API access (critical-001), this becomes moot. Document why mock needed if kept. Effort: 30 mins.",
       "children": [],
       "metadata": {
-        "status": "pending"
+        "status": "completed"
       }
     },
     "plugin-refactor-critical-001-a": {

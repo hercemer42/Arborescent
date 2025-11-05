@@ -1,10 +1,10 @@
 import { claudeCodePreloadAPI } from '../claude-code/preload/claudeCodePreload';
-import { extensionHostPreloadAPI } from '../core/preload/extensionHostPreload';
+import { pluginPreloadAPI as corePluginPreloadAPI } from '../core/preload/pluginPreload';
 import { PluginManifest } from '../../src/shared/types';
 
 export const pluginPreloadAPI = {
   ...claudeCodePreloadAPI,
-  ...extensionHostPreloadAPI,
+  ...corePluginPreloadAPI,
 };
 
 export interface PluginPreloadAPI {
@@ -13,18 +13,18 @@ export interface PluginPreloadAPI {
   claudeListSessions: (projectPath: string) => Promise<unknown[]>;
   claudeSendToSession: (sessionId: string, context: string, projectPath: string) => Promise<void>;
 
-  // Extension Host
-  extensionHostStart: () => Promise<{ success: boolean; error?: string }>;
-  extensionHostStop: () => Promise<{ success: boolean; error?: string }>;
-  extensionHostRegisterPlugin: (
+  // Plugin System
+  pluginStart: () => Promise<{ success: boolean; error?: string }>;
+  pluginStop: () => Promise<{ success: boolean; error?: string }>;
+  pluginRegister: (
     pluginName: string,
     pluginPath: string,
     manifestPath: string
   ) => Promise<{ success: boolean; manifest?: PluginManifest; error?: string }>;
-  extensionHostUnregisterPlugin: (pluginName: string) => Promise<{ success: boolean; error?: string }>;
-  extensionHostInitializePlugins: () => Promise<{ success: boolean; error?: string }>;
-  extensionHostDisposePlugins: () => Promise<{ success: boolean; error?: string }>;
-  extensionHostInvokeExtension: (
+  pluginUnregister: (pluginName: string) => Promise<{ success: boolean; error?: string }>;
+  pluginInitializeAll: () => Promise<{ success: boolean; error?: string }>;
+  pluginDisposeAll: () => Promise<{ success: boolean; error?: string }>;
+  pluginInvokeExtension: (
     pluginName: string,
     extensionPoint: string,
     args: unknown[]

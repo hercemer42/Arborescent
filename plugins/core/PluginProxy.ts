@@ -41,14 +41,14 @@ export class PluginProxy implements Plugin {
     defaultValue: T
   ): Promise<T> {
     try {
-      const response = await window.electron.extensionHostInvokeExtension(
+      const response = await window.electron.pluginInvokeExtension(
         this.pluginName,
         extensionPoint,
         args
       );
 
       if (!response.success) {
-        if (response.error === 'Extension host not started') {
+        if (response.error === 'Plugin system not started') {
           return defaultValue;
         }
         logger.error(

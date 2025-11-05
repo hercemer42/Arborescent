@@ -1,6 +1,6 @@
 import { parentPort } from 'node:worker_threads';
 import { pathToFileURL } from 'node:url';
-import { ExtensionHostMessage, RendererMessage, MessageType, PluginManifest } from './types/messages';
+import { PluginMessage, RendererMessage, MessageType, PluginManifest } from './types/messages';
 import { Plugin } from '../../pluginInterface';
 import { logger } from './workerLogger';
 import { PluginAPI } from './PluginAPI';
@@ -39,7 +39,7 @@ class ExtensionHost {
       }
 
       this.handleMessage(message as RendererMessage).catch((error) => {
-        logger.error('Error handling message in extension host', error as Error, 'Extension Host');
+        logger.error('Error handling message in plugin worker', error as Error, 'Plugin Worker');
         if ('id' in message) {
           this.sendError(message.id, error);
         }
@@ -108,7 +108,7 @@ class ExtensionHost {
     }
 
     try {
-      // Convert absolute path to file URL for dynamic import
+      // ESM dynamic imports require file:// URLs (especially on Windows where C:\ paths fail)
       const fileUrl = pathToFileURL(registration.pluginPath).href;
       const PluginModule = await import(fileUrl);
 
@@ -135,7 +135,7 @@ class ExtensionHost {
 
       return plugin;
     } catch (error) {
-      logger.error(`Failed to load plugin ${pluginName}`, error as Error, 'Extension Host');
+      logger.error(`Failed to load plugin ${pluginName}`, error as Error, 'Plugin Worker');
       throw error;
     }
   }
@@ -217,7 +217,7 @@ class ExtensionHost {
   private sendResponse(id: string, payload: unknown): void {
     if (!parentPort) return;
 
-    const response: ExtensionHostMessage = {
+    const response: PluginMessage = {
       type: MessageType.Response,
       id,
       payload,
@@ -229,7 +229,7 @@ class ExtensionHost {
   private sendError(id: string, error: unknown): void {
     if (!parentPort) return;
 
-    const response: ExtensionHostMessage = {
+    const response: PluginMessage = {
       type: MessageType.Error,
       id,
       payload: {
@@ -244,7 +244,7 @@ class ExtensionHost {
   private sendReady(): void {
     if (!parentPort) return;
 
-    const message: ExtensionHostMessage = {
+    const message: PluginMessage = {
       type: MessageType.Ready,
       id: 'ready',
       payload: {},

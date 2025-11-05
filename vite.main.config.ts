@@ -6,7 +6,7 @@ export default defineConfig({
 		lib: {
 			entry: {
 				main: 'src/main/main.ts',
-				'extensionHost.worker': 'plugins/core/main/extensionHost/extensionHost.worker.ts',
+				'pluginWorker.worker': 'plugins/core/main/pluginWorker/pluginWorker.worker.ts',
 				'plugins/claude-code': 'plugins/claude-code/main/ClaudeCodePlugin.ts',
 			},
 			formats: ['cjs'],

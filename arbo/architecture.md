@@ -940,8 +940,11 @@ src/shared/types/
 └── plugins.ts              # Plugin interface definitions (shared contract)
 
 plugins/core/
-├── renderer/               # Plugin system (registry, proxy, manager)
-├── main/extensionHost/     # Worker thread (plugin execution, API, logger)
+├── PluginManager.ts        # IPC coordination (renderer → main → worker)
+├── PluginRegistry.ts       # Renderer-side tracking (UI state, enable/disable)
+├── PluginCommandRegistry.ts # Command execution (renderer process)
+├── PluginProxy.ts          # Forwards calls to worker via IPC
+├── main/pluginWorker/      # Worker thread (plugin execution, API, logger)
 ├── preload/                # IPC bridge
 └── initializePlugins.ts    # Plugin initialization
 
@@ -963,11 +966,13 @@ Renderer ←→ IPC ←→ Main Process ←→ Worker Thread
 ```
 
 **Key Components:**
-- **PluginProxy (renderer):** Forwards calls to worker via IPC
-- **ExtensionHostConnection (main):** Manages worker thread lifecycle
-- **extensionHost.worker (worker):** Loads and executes plugins in isolation
-- **pluginAPI (worker):** Allows plugins to call main process IPC handlers
-- **Command Registry (renderer):** Maps plugin commands to renderer actions
+- **PluginManager (renderer):** Coordinates worker lifecycle via IPC, creates PluginProxy instances
+- **PluginRegistry (renderer):** Tracks enabled plugins, updates UI state (Zustand store)
+- **PluginCommandRegistry (renderer):** Maps plugin commands to renderer actions
+- **PluginProxy (renderer):** Forwards extension point calls to worker via IPC
+- **PluginWorkerConnection (main):** Manages worker thread lifecycle
+- **pluginWorker.worker (worker):** Loads and executes plugins in isolation
+- **PluginContext (worker):** Provides plugins access to IPC handlers
 
 **Plugin Extension Points:**
 ```typescript

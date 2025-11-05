@@ -1,14 +1,14 @@
 import { Worker } from 'node:worker_threads';
 import path from 'node:path';
-import { ExtensionHostMessage, RendererMessage, MessageType } from './types/messages';
+import { PluginMessage, RendererMessage, MessageType } from './types/messages';
 import { logger } from '../../../../src/main/services/logger';
 import { LogMessageSchema, IPCCallMessageSchema, safeValidatePayload } from './types/messageValidation';
 import { generateMessageId } from './utils/messageId';
 import { IPC_MESSAGE_TIMEOUT_MS } from './constants';
 
-export class ExtensionHostConnection {
+export class PluginWorkerConnection {
   private worker: Worker | null = null;
-  private messageHandlers: Map<string, (response: ExtensionHostMessage) => void> = new Map();
+  private messageHandlers: Map<string, (response: PluginMessage) => void> = new Map();
   private readyPromise: Promise<void>;
   private readyResolve!: () => void;
 
@@ -20,11 +20,11 @@ export class ExtensionHostConnection {
 
   async start(): Promise<void> {
     if (this.worker) {
-      logger.warn('Extension host already started', 'Extension Host');
+      logger.warn('Plugin system already started', 'Plugin System');
       return;
     }
 
-    const workerPath = path.join(__dirname, 'extensionHost.worker.cjs');
+    const workerPath = path.join(__dirname, 'pluginWorker.worker.cjs');
 
     this.worker = new Worker(workerPath);
 
@@ -39,26 +39,26 @@ export class ExtensionHostConnection {
           return;
         }
       }
-      this.handleMessage(message as ExtensionHostMessage);
+      this.handleMessage(message as PluginMessage);
     });
 
     this.worker.on('error', (error) => {
-      logger.error('Extension host worker error', error, 'Extension Host');
+      logger.error('Plugin worker error', error, 'Plugin System');
     });
 
     this.worker.on('exit', (code) => {
       if (code !== 0) {
         logger.error(
-          'Extension host worker exited with error',
+          'Plugin worker exited with error',
           new Error(`Worker exited with code ${code}`),
-          'Extension Host'
+          'Plugin System'
         );
       }
       this.worker = null;
     });
 
     await this.readyPromise;
-    logger.info('Extension host started', 'Extension Host');
+    logger.info('Plugin system started', 'Plugin System');
   }
 
   async stop(): Promise<void> {
@@ -70,12 +70,12 @@ export class ExtensionHostConnection {
     this.worker = null;
     this.messageHandlers.clear();
 
-    logger.info('Extension host stopped', 'Extension Host');
+    logger.info('Plugin system stopped', 'Plugin System');
   }
 
   async sendMessage(type: MessageType, payload: unknown): Promise<unknown> {
     if (!this.worker) {
-      throw new Error('Extension host not started');
+      throw new Error('Plugin system not started');
     }
 
     const id = generateMessageId('msg');
@@ -92,7 +92,7 @@ export class ExtensionHostConnection {
         reject(new Error(`Message ${id} timed out`));
       }, IPC_MESSAGE_TIMEOUT_MS);
 
-      this.messageHandlers.set(id, (response: ExtensionHostMessage) => {
+      this.messageHandlers.set(id, (response: PluginMessage) => {
         clearTimeout(timeout);
         this.messageHandlers.delete(id);
 
@@ -110,7 +110,7 @@ export class ExtensionHostConnection {
     });
   }
 
-  private handleMessage(message: ExtensionHostMessage): void {
+  private handleMessage(message: PluginMessage): void {
     if (message.type === MessageType.Ready) {
       this.readyResolve();
       return;
@@ -120,19 +120,19 @@ export class ExtensionHostConnection {
     if (handler) {
       handler(message);
     } else {
-      logger.warn(`No handler for message ${message.id}`, 'Extension Host');
+      logger.warn(`No handler for message ${message.id}`, 'Plugin Worker');
     }
   }
 
   private handleLogMessage(message: unknown): void {
     const validation = safeValidatePayload(LogMessageSchema, message);
     if (!validation.success) {
-      logger.warn(`Invalid log message: ${validation.error}`, 'Extension Host Connection');
+      logger.warn(`Invalid log message: ${validation.error}`, 'Plugin Worker');
       return;
     }
 
     const logMsg = validation.data;
-    const context = logMsg.context || 'Extension Host Worker';
+    const context = logMsg.context || 'Plugin Worker';
     const error = logMsg.error ? new Error(logMsg.error.message) : undefined;
     if (error && logMsg.error?.stack) {
       error.stack = logMsg.error.stack;
@@ -157,7 +157,7 @@ export class ExtensionHostConnection {
 
     const validation = safeValidatePayload(IPCCallMessageSchema, message);
     if (!validation.success) {
-      logger.warn(`Invalid IPC call message: ${validation.error}`, 'Extension Host Connection');
+      logger.warn(`Invalid IPC call message: ${validation.error}`, 'Plugin Worker');
       return;
     }
 
@@ -178,7 +178,7 @@ export class ExtensionHostConnection {
       logger.error(
         `IPC handler ${ipcMsg.channel} failed: ${errorMsg}`,
         error instanceof Error ? error : new Error(errorMsg),
-        'Extension Host Connection'
+        'Plugin Worker'
       );
       this.worker.postMessage({
         type: 'ipc-response',

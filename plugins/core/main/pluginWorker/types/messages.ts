@@ -25,7 +25,7 @@ export interface RendererMessage extends BaseMessage {
     | MessageType.InvokeExtension;
 }
 
-export interface ExtensionHostMessage extends BaseMessage {
+export interface PluginMessage extends BaseMessage {
   type: MessageType.Response | MessageType.Error | MessageType.Ready | MessageType.StoreUpdate;
 }
 

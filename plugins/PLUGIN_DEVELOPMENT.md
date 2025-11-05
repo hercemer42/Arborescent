@@ -235,10 +235,10 @@ import {
   PluginContextMenuItem,
   NodeContext,
 } from '../../core/pluginInterface';
-import { PluginContext } from '../../core/main/extensionHost/PluginContext';
+import { PluginContext } from '../../core/main/pluginWorker/PluginContext';
 import { TreeNode } from '../../../src/shared/types';
 import manifest from '../manifest.json';
-import { logger } from '../../core/main/extensionHost/workerLogger';
+import { logger } from '../../core/main/pluginWorker/workerLogger';
 
 export class MyPlugin implements Plugin {
   manifest: PluginManifest = manifest;
@@ -303,7 +303,7 @@ build: {
   lib: {
     entry: {
       main: 'src/main/main.ts',
-      'extensionHost.worker': 'plugins/core/main/extensionHost/extensionHost.worker.ts',
+      'pluginWorker.worker': 'plugins/core/main/pluginWorker/pluginWorker.worker.ts',
       'plugins/my-plugin': 'plugins/my-plugin/main/MyPlugin.ts',
     },
     formats: ['cjs'],
@@ -315,18 +315,18 @@ build: {
 
 ```typescript
 // plugins/core/initializePlugins.ts
-import { ExtensionHostManager } from './ExtensionHostManager';
+import { PluginManager } from './PluginManager';
 import { PluginRegistry } from './PluginRegistry';
 import { registerMyPluginCommands } from '../my-plugin/renderer/commands';
 
 export async function initializeBuiltinPlugins(): Promise<void> {
-  await ExtensionHostManager.start();
+  await PluginManager.start();
 
   // Register commands in renderer
   registerMyPluginCommands();
 
   // Load plugin with lazy loading (code loads on first use)
-  const myPlugin = await ExtensionHostManager.registerPlugin({
+  const myPlugin = await PluginManager.registerPlugin({
     name: 'my-plugin',
     pluginPath: '.vite/build/plugins/my-plugin.cjs',
     manifestPath: 'plugins/my-plugin/manifest.json',
@@ -594,22 +594,24 @@ Key files:
 
 ## Process Isolation Details
 
-The extension host architecture provides:
+The plugin worker architecture provides:
 
 **Worker Thread:**
-- `extensionHost.worker.ts` - Loads and executes plugins
-- `PluginAPI` - Global API for plugins to call main process
+- `pluginWorker.worker.ts` - Loads and executes plugins
+- `PluginAPI` - API for plugins to call main process IPC handlers
+- `PluginContext` - Injected into plugins, wraps PluginAPI
 - `workerLogger.ts` - Logging from worker to main
 
 **Main Process:**
-- `ExtensionHostConnection.ts` - Manages worker lifecycle
-- `extensionHostIpcHandlers.ts` - Handles renderer ↔ worker communication
+- `PluginWorkerConnection.ts` - Manages worker lifecycle
+- `pluginIpcHandlers.ts` - Handles renderer ↔ worker communication
 - `PluginIPCBridge.ts` - Secure registry for plugin-accessible IPC handlers
 - Forwards pluginAPI calls to PluginIPCBridge (no private API access)
 
 **Renderer Process:**
 - `PluginProxy.ts` - Proxies calls to worker via IPC
-- `ExtensionHostManager.ts` - Lifecycle management
+- `PluginManager.ts` - IPC coordination, creates PluginProxy instances
+- `PluginRegistry.ts` - Tracks enabled plugins, updates UI state
 - `PluginCommandRegistry.ts` - Executes commands with renderer access
 
 **Benefits:**
