@@ -6,10 +6,10 @@ export async function initializeBuiltinPlugins(): Promise<void> {
   await ExtensionHostManager.start();
   registerClaudeCodeCommands();
 
-  // Path is relative to app root
   const claudeCodePlugin = await ExtensionHostManager.registerPlugin({
     name: 'claude-code',
     pluginPath: '.vite/build/plugins/claude-code.cjs',
+    manifestPath: 'plugins/claude-code/manifest.json',
   });
 
   await PluginRegistry.register(claudeCodePlugin);

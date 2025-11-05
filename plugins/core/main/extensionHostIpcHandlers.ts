@@ -38,28 +38,27 @@ export function registerExtensionHostIpcHandlers(): void {
     }
   });
 
-  ipcMain.handle('extension-host:register-plugin', async (_, pluginName: string, pluginPath: string) => {
+  ipcMain.handle('extension-host:register-plugin', async (_, pluginName: string, pluginPath: string, manifestPath: string) => {
     if (!extensionHost) {
       return { success: false, error: 'Extension host not started' };
     }
 
     try {
-      // Resolve plugin path relative to app resources
+      // Resolve paths relative to app resources
       // In development: app.getAppPath() is the project root
       // In production: app.getAppPath() is the .app/Contents/Resources/app directory
       const appPath = app.getAppPath();
       const absolutePluginPath = path.isAbsolute(pluginPath)
         ? pluginPath
         : path.resolve(appPath, pluginPath);
-
-      logger.info(
-        `Resolving plugin ${pluginName}: ${pluginPath} -> ${absolutePluginPath}`,
-        'Extension Host IPC'
-      );
+      const absoluteManifestPath = path.isAbsolute(manifestPath)
+        ? manifestPath
+        : path.resolve(appPath, manifestPath);
 
       const response = await extensionHost.sendMessage(MessageType.RegisterPlugin, {
         pluginName,
         pluginPath: absolutePluginPath,
+        manifestPath: absoluteManifestPath,
       }) as { manifest: unknown };
       return { success: true, manifest: response.manifest };
     } catch (error) {

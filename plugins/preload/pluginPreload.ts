@@ -18,7 +18,8 @@ export interface PluginPreloadAPI {
   extensionHostStop: () => Promise<{ success: boolean; error?: string }>;
   extensionHostRegisterPlugin: (
     pluginName: string,
-    pluginPath: string
+    pluginPath: string,
+    manifestPath: string
   ) => Promise<{ success: boolean; manifest?: PluginManifest; error?: string }>;
   extensionHostUnregisterPlugin: (pluginName: string) => Promise<{ success: boolean; error?: string }>;
   extensionHostInitializePlugins: () => Promise<{ success: boolean; error?: string }>;

@@ -1,4 +1,5 @@
 import { parentPort } from 'node:worker_threads';
+import { pathToFileURL } from 'node:url';
 import { ExtensionHostMessage, RendererMessage, MessageType } from './types/messages';
 import { Plugin } from '../../pluginInterface';
 import { logger } from './workerLogger';
@@ -7,8 +8,15 @@ import { PluginAPI } from './PluginAPI';
 // Make the plugin API available globally for plugins to use
 (global as { pluginAPI: PluginAPI }).pluginAPI = new PluginAPI();
 
+interface PluginRegistration {
+  manifest: unknown;
+  pluginPath: string;
+  plugin?: Plugin;
+  initialized: boolean;
+}
+
 class ExtensionHost {
-  private plugins: Map<string, Plugin> = new Map();
+  private plugins: Map<string, PluginRegistration> = new Map();
   private initialized = false;
 
   constructor() {
@@ -16,10 +24,17 @@ class ExtensionHost {
       throw new Error('ExtensionHost must be run as a worker thread');
     }
 
-    parentPort.on('message', (message: RendererMessage) => {
-      this.handleMessage(message).catch((error) => {
+    parentPort.on('message', (message: RendererMessage | { type: string }) => {
+      // Ignore messages handled by PluginAPI (ipc-response, ipc-call responses)
+      if ('type' in message && (message.type === 'ipc-response' || message.type === 'log')) {
+        return;
+      }
+
+      this.handleMessage(message as RendererMessage).catch((error) => {
         logger.error('Error handling message in extension host', error as Error, 'Extension Host');
-        this.sendError(message.id, error);
+        if ('id' in message) {
+          this.sendError(message.id, error);
+        }
       });
     });
 
@@ -49,11 +64,45 @@ class ExtensionHost {
   }
 
   private async handleRegisterPlugin(message: RendererMessage): Promise<void> {
-    const payload = message.payload as { pluginName: string; pluginPath: string };
-    const { pluginName, pluginPath } = payload;
+    const payload = message.payload as { pluginName: string; pluginPath: string; manifestPath: string };
+    const { pluginName, pluginPath, manifestPath } = payload;
 
     try {
-      const PluginModule = await import(pluginPath);
+      // Only load manifest, not the plugin code (lazy loading)
+      const fs = await import('node:fs/promises');
+      const manifestJson = await fs.readFile(manifestPath, 'utf-8');
+      const manifest = JSON.parse(manifestJson);
+
+      this.plugins.set(pluginName, {
+        manifest,
+        pluginPath,
+        plugin: undefined,
+        initialized: false,
+      });
+
+      this.sendResponse(message.id, {
+        success: true,
+        manifest,
+      });
+    } catch (error) {
+      this.sendError(message.id, error);
+    }
+  }
+
+  private async ensurePluginLoaded(pluginName: string): Promise<Plugin> {
+    const registration = this.plugins.get(pluginName);
+    if (!registration) {
+      throw new Error(`Plugin ${pluginName} not registered`);
+    }
+
+    if (registration.plugin) {
+      return registration.plugin;
+    }
+
+    try {
+      // Convert absolute path to file URL for dynamic import
+      const fileUrl = pathToFileURL(registration.pluginPath).href;
+      const PluginModule = await import(fileUrl);
 
       // Handle different export patterns (ES modules, CommonJS, etc.)
       let PluginClass: new () => Plugin;
@@ -75,44 +124,53 @@ class ExtensionHost {
       }
 
       const plugin: Plugin = new PluginClass();
+      registration.plugin = plugin;
 
-      this.plugins.set(pluginName, plugin);
-
-      this.sendResponse(message.id, {
-        success: true,
-        manifest: plugin.manifest,
-      });
+      return plugin;
     } catch (error) {
-      this.sendError(message.id, error);
+      logger.error(`Failed to load plugin ${pluginName}`, error as Error, 'Extension Host');
+      throw error;
     }
   }
 
   private async handleUnregisterPlugin(message: RendererMessage): Promise<void> {
     const payload = message.payload as { pluginName: string };
     const { pluginName } = payload;
-    const plugin = this.plugins.get(pluginName);
+    const registration = this.plugins.get(pluginName);
 
-    if (plugin) {
-      plugin.dispose();
-      this.plugins.delete(pluginName);
+    if (registration?.plugin) {
+      registration.plugin.dispose();
     }
+    this.plugins.delete(pluginName);
 
     this.sendResponse(message.id, { success: true });
   }
 
   private async handleInitializePlugins(message: RendererMessage): Promise<void> {
-    const enabledPlugins = Array.from(this.plugins.values()).filter(
-      (p) => p.manifest.enabled
+    const enabledRegistrations = Array.from(this.plugins.entries()).filter(
+      ([, reg]) => (reg.manifest as { enabled?: boolean }).enabled
     );
 
-    await Promise.all(enabledPlugins.map((plugin) => plugin.initialize()));
-    this.initialized = true;
+    await Promise.all(
+      enabledRegistrations.map(async ([pluginName, registration]) => {
+        if (!registration.initialized) {
+          const plugin = await this.ensurePluginLoaded(pluginName);
+          await plugin.initialize();
+          registration.initialized = true;
+        }
+      })
+    );
 
+    this.initialized = true;
     this.sendResponse(message.id, { success: true });
   }
 
   private async handleDisposePlugins(message: RendererMessage): Promise<void> {
-    this.plugins.forEach((plugin) => plugin.dispose());
+    this.plugins.forEach((registration) => {
+      if (registration.plugin) {
+        registration.plugin.dispose();
+      }
+    });
     this.plugins.clear();
     this.initialized = false;
 
@@ -122,19 +180,23 @@ class ExtensionHost {
   private async handleInvokeExtension(message: RendererMessage): Promise<void> {
     const payload = message.payload as { pluginName: string; extensionPoint: string; args: unknown[] };
     const { pluginName, extensionPoint, args } = payload;
-    const plugin = this.plugins.get(pluginName);
-
-    if (!plugin) {
-      throw new Error(`Plugin ${pluginName} not found`);
-    }
-
-    const extensionFn = plugin.extensions[extensionPoint as keyof typeof plugin.extensions];
-    if (!extensionFn) {
-      this.sendResponse(message.id, { result: null });
-      return;
-    }
 
     try {
+      // Lazy load plugin if not already loaded
+      const plugin = await this.ensurePluginLoaded(pluginName);
+
+      const registration = this.plugins.get(pluginName);
+      if (registration && !registration.initialized) {
+        await plugin.initialize();
+        registration.initialized = true;
+      }
+
+      const extensionFn = plugin.extensions[extensionPoint as keyof typeof plugin.extensions];
+      if (!extensionFn) {
+        this.sendResponse(message.id, { result: null });
+        return;
+      }
+
       const result = await (extensionFn as (...args: unknown[]) => unknown)(...(args as unknown[]));
       this.sendResponse(message.id, { result });
     } catch (error) {

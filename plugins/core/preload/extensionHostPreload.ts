@@ -8,8 +8,8 @@ export const extensionHostPreloadAPI = {
   extensionHostStop: () =>
     ipcRenderer.invoke('extension-host:stop'),
 
-  extensionHostRegisterPlugin: (pluginName: string, pluginPath: string) =>
-    ipcRenderer.invoke('extension-host:register-plugin', pluginName, pluginPath) as Promise<{
+  extensionHostRegisterPlugin: (pluginName: string, pluginPath: string, manifestPath: string) =>
+    ipcRenderer.invoke('extension-host:register-plugin', pluginName, pluginPath, manifestPath) as Promise<{
       success: boolean;
       manifest?: PluginManifest;
       error?: string;

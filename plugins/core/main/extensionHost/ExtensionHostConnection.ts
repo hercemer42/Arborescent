@@ -170,22 +170,25 @@ export class ExtensionHostConnection {
     try {
       const { ipcMain } = await import('electron');
 
-      const handlers = (ipcMain as unknown as { _events: Record<string, unknown> })._events;
-      const handlerKey = Object.keys(handlers).find(key => key === message.channel);
+      const internalMain = ipcMain as unknown as {
+        _invokeHandlers?: Map<string, (event: unknown, ...args: unknown[]) => Promise<unknown>>;
+      };
 
-      if (!handlerKey) {
+      if (!internalMain._invokeHandlers || !internalMain._invokeHandlers.has(message.channel)) {
         throw new Error(`No IPC handler registered for channel: ${message.channel}`);
       }
 
-      const handler = handlers[handlerKey];
-      const handlerFn = Array.isArray(handler) ? handler[0] : handler;
+      const handler = internalMain._invokeHandlers.get(message.channel)!;
 
       const mockEvent = {
-        sender: null,
-        returnValue: undefined,
+        processId: process.pid,
+        frameId: 0,
+        sender: {
+          send: () => {},
+        },
       };
 
-      const result = await handlerFn(mockEvent, ...message.args);
+      const result = await handler(mockEvent, ...message.args);
 
       this.worker.postMessage({
         type: 'ipc-response',
@@ -193,6 +196,11 @@ export class ExtensionHostConnection {
         result,
       });
     } catch (error) {
+      logger.error(
+        `IPC handler ${message.channel} failed: ${(error as Error).message}`,
+        error as Error,
+        'Extension Host Connection'
+      );
       this.worker.postMessage({
         type: 'ipc-response',
         id: message.id,

@@ -31,15 +31,17 @@ A plugin is organized into three main directories:
 
 ```
 plugins/my-plugin/
+├── manifest.json           # Plugin metadata (lazy loading)
 ├── main/
 │   ├── MyPlugin.ts         # Plugin implementation (runs in worker)
 │   └── myPluginIpcHandlers.ts  # Main process IPC handlers
 ├── preload/
 │   └── myPluginPreload.ts  # IPC bridge
 └── renderer/
-    ├── commands.ts         # Command handlers (renderer process)
-    └── manifest.json       # Plugin metadata
+    └── commands.ts         # Command handlers (renderer process)
 ```
+
+**Lazy Loading:** Plugin code is loaded on-demand when first used, improving startup performance.
 
 ## Core Interfaces
 
@@ -63,6 +65,21 @@ interface PluginManifest {
   displayName: string;
   description: string;
   enabled: boolean;
+  builtin: boolean;
+  main: string;  // Path to compiled plugin code (for lazy loading)
+}
+```
+
+**Example manifest.json:**
+```json
+{
+  "name": "my-plugin",
+  "version": "1.0.0",
+  "displayName": "My Plugin",
+  "description": "Does something useful",
+  "enabled": true,
+  "builtin": true,
+  "main": ".vite/build/plugins/my-plugin.cjs"
 }
 ```
 
@@ -189,7 +206,23 @@ mkdir -p plugins/my-plugin/main
 mkdir -p plugins/my-plugin/preload
 ```
 
-### Step 2: Define Plugin Class
+### Step 2: Create Manifest
+
+Create `plugins/my-plugin/manifest.json`:
+
+```json
+{
+  "name": "my-plugin",
+  "version": "1.0.0",
+  "displayName": "My Plugin",
+  "description": "Does something useful",
+  "enabled": true,
+  "builtin": true,
+  "main": ".vite/build/plugins/my-plugin.cjs"
+}
+```
+
+### Step 3: Define Plugin Class
 
 **Note:** Plugin runs in worker thread - no window, document, or React APIs available.
 
@@ -203,7 +236,7 @@ import {
   NodeContext,
 } from '../../core/pluginInterface';
 import { TreeNode } from '../../../src/shared/types';
-import manifest from '../renderer/manifest.json';
+import manifest from '../manifest.json';
 
 export class MyPlugin implements Plugin {
   manifest: PluginManifest = manifest;
@@ -241,7 +274,7 @@ export class MyPlugin implements Plugin {
 export default MyPlugin;
 ```
 
-### Step 3: Register Commands
+### Step 4: Register Commands
 
 ```typescript
 // plugins/my-plugin/renderer/commands.ts
@@ -255,7 +288,7 @@ export function registerMyPluginCommands(): void {
 }
 ```
 
-### Step 4: Build Plugin
+### Step 5: Build Plugin
 
 Add plugin to vite.main.config.ts:
 
@@ -272,7 +305,7 @@ build: {
 }
 ```
 
-### Step 5: Register Plugin
+### Step 6: Register Plugin
 
 ```typescript
 // plugins/core/initializePlugins.ts
@@ -286,15 +319,18 @@ export async function initializeBuiltinPlugins(): Promise<void> {
   // Register commands in renderer
   registerMyPluginCommands();
 
-  // Load plugin in worker thread
+  // Load plugin with lazy loading (code loads on first use)
   const myPlugin = await ExtensionHostManager.registerPlugin({
     name: 'my-plugin',
     pluginPath: '.vite/build/plugins/my-plugin.cjs',
+    manifestPath: 'plugins/my-plugin/manifest.json',
   });
 
   await PluginRegistry.register(myPlugin);
 }
 ```
+
+**Note:** Plugin code is lazy-loaded on first use. Only the manifest is read during registration for fast startup.
 
 ## Working with Node Context
 
@@ -446,18 +482,20 @@ private getNodeIndicator(node: TreeNode): PluginNodeIndicator | null {
 
 ## Plugin Lifecycle
 
-Plugins follow a clear lifecycle:
+Plugins follow a clear lifecycle with lazy loading:
 
-1. **Construction** - Plugin class is instantiated
-2. **Registration** - Plugin is registered with `PluginRegistry`
-3. **Initialization** - `initialize()` is called
-4. **Active** - Extension points are invoked as needed
-5. **Disposal** - `dispose()` is called on shutdown
+1. **Registration** - Only manifest.json is read, plugin code not loaded yet
+2. **First Use** - Plugin code is lazy-loaded when extension point is called
+3. **Construction** - Plugin class is instantiated
+4. **Initialization** - `initialize()` is called automatically
+5. **Active** - Extension points are invoked as needed
+6. **Disposal** - `dispose()` is called on shutdown
 
 ```typescript
 export class MyPlugin implements Plugin {
   async initialize(): Promise<void> {
     // Setup: subscribe to stores, initialize state, etc.
+    // This runs only on first use, not at startup
     console.log('Plugin starting...');
   }
 
@@ -467,6 +505,13 @@ export class MyPlugin implements Plugin {
   }
 }
 ```
+
+### Lazy Loading Benefits
+
+- **Fast Startup**: Only manifest files are loaded at startup
+- **Memory Efficient**: Plugin code loaded only when needed
+- **Auto-Initialize**: Plugins initialize automatically on first use
+- **Cached**: Once loaded, plugins stay in memory for subsequent calls
 
 ## Testing Plugins
 
@@ -519,6 +564,7 @@ See `plugins/claude-code/` for a complete working example that:
 - Registers multiple commands in renderer
 
 Key files:
+- `plugins/claude-code/manifest.json` - Plugin metadata (lazy loading)
 - `plugins/claude-code/main/ClaudeCodePlugin.ts` - Plugin (runs in worker)
 - `plugins/claude-code/renderer/claudeCodeCommands.ts` - Command registration (renderer)
 - `plugins/claude-code/main/claudeCodeIpcHandlers.ts` - Main process handlers

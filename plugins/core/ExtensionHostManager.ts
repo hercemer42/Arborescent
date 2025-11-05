@@ -5,6 +5,7 @@ import { logger } from '../../src/renderer/services/logger';
 interface PluginRegistration {
   name: string;
   pluginPath: string;
+  manifestPath: string;
 }
 
 class ExtensionHostManagerClass {
@@ -68,11 +69,9 @@ class ExtensionHostManagerClass {
       throw new Error('Extension host not started');
     }
 
-    const { name, pluginPath } = registration;
+    const { name, pluginPath, manifestPath } = registration;
 
-    logger.info(`Registering plugin ${name} from ${pluginPath}`, 'Extension Host Manager');
-
-    const response = await window.electron.extensionHostRegisterPlugin(name, pluginPath);
+    const response = await window.electron.extensionHostRegisterPlugin(name, pluginPath, manifestPath);
 
     if (!response.success || !response.manifest) {
       throw new Error(response.error || `Failed to register plugin ${name}`);
@@ -81,7 +80,7 @@ class ExtensionHostManagerClass {
     const proxy = new PluginProxy(name, response.manifest);
     this.pluginProxies.set(name, proxy);
 
-    logger.info(`Plugin ${name} registered successfully`, 'Extension Host Manager');
+    logger.info(`Plugin ${name} registered`, 'Extension Host Manager');
 
     return proxy;
   }
