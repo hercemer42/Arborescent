@@ -2,7 +2,7 @@
   "format": "Arborescent",
   "version": "1.0.0",
   "created": "2025-10-11T00:00:00.000Z",
-  "updated": "2025-11-05T07:03:42.407Z",
+  "updated": "2025-11-05T13:27:13.722Z",
   "author": "brian@brianfox.fr",
   "rootNodeId": "root",
   "nodes": {
@@ -18,16 +18,6 @@
       ],
       "metadata": {
         "created": "2025-10-11T00:00:00.000Z"
-      }
-    },
-    "mgymxc1lr": {
-      "id": "mgymxc1lr",
-      "content": "Right now return anywhere in a line makes a new line - we should change it so that it makes a new line from the content after the cursor when we hit return",
-      "children": [
-        "tyxzt7agl"
-      ],
-      "metadata": {
-        "status": "failed"
       }
     },
     "44jmbkqfv": {
@@ -110,31 +100,12 @@
         "status": "pending"
       }
     },
-    "tyxzt7agl": {
-      "id": "tyxzt7agl",
-      "content": "What happens if that line has children ?",
-      "children": [
-        "5op5ryfa0"
-      ],
-      "metadata": {
-        "status": "failed"
-      }
-    },
-    "5op5ryfa0": {
-      "id": "5op5ryfa0",
-      "content": "And we're at the start/end of that line ?",
-      "children": [],
-      "metadata": {
-        "status": "failed"
-      }
-    },
     "byqndehy4": {
       "id": "byqndehy4",
       "content": "Claude integration",
       "children": [
-        "a6c473f8-d221-468b-94d4-dc835d1737b8",
+        "e9bb0de8-a33a-4054-8902-466a58ae3a1a",
         "b4fb16a1-a09d-4200-affd-d59492318f22",
-        "0f9c1312-d773-45bb-9d54-7ef0fc4f58a9",
         "a566f506-3e2d-41e7-8cc8-68dbb3417bef",
         "qo4eickz9",
         "fv89yst04",
@@ -146,36 +117,6 @@
         "expanded": true
       }
     },
-    "rpl4d1hw3": {
-      "id": "rpl4d1hw3",
-      "content": "Node management",
-      "children": [
-        "mgymxc1lr",
-        "jm2e1dfgq"
-      ],
-      "metadata": {
-        "status": "completed",
-        "expanded": false
-      }
-    },
-    "jm2e1dfgq": {
-      "id": "jm2e1dfgq",
-      "content": "Hotkey to toggle for done",
-      "children": [
-        "mkuscyszx"
-      ],
-      "metadata": {
-        "status": "failed"
-      }
-    },
-    "mkuscyszx": {
-      "id": "mkuscyszx",
-      "content": "Do we need to toggle children ?",
-      "children": [],
-      "metadata": {
-        "status": "failed"
-      }
-    },
     "8yqsdogy7": {
       "id": "8yqsdogy7",
       "content": "Refactor",
@@ -183,8 +124,7 @@
         "a45af02d-395a-4622-a268-c06a8d8275ae",
         "perf-main-001",
         "b18d78b0-a96e-4483-840c-df932f663968",
-        "l7w7ssh62",
-        "plugin-refactor-001"
+        "l7w7ssh62"
       ],
       "metadata": {
         "status": "completed",
@@ -470,7 +410,8 @@
         "21940e44-bfb0-42ae-ba8d-25cac54e5231",
         "85b819ca-ac48-45e2-87d9-b2a178bb4cd0",
         "14885be8-7272-4f43-831a-61543594f9a2",
-        "5458d091-2079-40cf-bcd0-a514978f1a55"
+        "5458d091-2079-40cf-bcd0-a514978f1a55",
+        "plugin-refactor-001"
       ],
       "metadata": {
         "status": "completed",
@@ -693,18 +634,11 @@
       "id": "16d93b2e-604f-4271-9a56-3cad9f93b713",
       "content": "Features",
       "children": [
-        "44jmbkqfv",
-        "byqndehy4",
-        "ce2de4b4-cc94-4106-a61b-26ce1089e97e",
-        "31cc1d2b-858b-4323-937b-6a38b15e0239",
-        "5f8eb896-d610-429f-a53a-fac6d164bd77",
-        "7aa4140c-1206-47ea-8a94-6c3e7763ccff",
-        "rpl4d1hw3",
-        "pdt35vy1z",
-        "0vzl7mppk",
-        "8ee5326d-1eec-45be-aa26-d11ae0e57284",
-        "6573b620-bfc0-4c5b-8d92-13b9ace3461d",
-        "909d90fd-f37c-45af-b028-d1ca56ee13fd"
+        "565dde0a-864b-41f9-86ff-dbdf40ac4dd0",
+        "0cc62ae1-1a7a-4aa4-bc6a-d817cabd672c",
+        "2f83a0af-280e-4e67-8306-31a8e02c9500",
+        "d5fe0eff-b1c6-4986-b6a3-70a0ea46f096",
+        "9bfbb401-dcb6-4f92-a34b-e9b3982c676f"
       ],
       "metadata": {
         "status": "pending"
@@ -956,7 +890,8 @@
         "bd4e87a5-132a-484d-82f0-52b6de115e60"
       ],
       "metadata": {
-        "status": "completed"
+        "status": "completed",
+        "expanded": false
       }
     },
     "c88262d6-21ba-41bd-aab7-51b96d0ed062": {
@@ -1036,10 +971,12 @@
       "id": "b4fb16a1-a09d-4200-affd-d59492318f22",
       "content": "Refactor",
       "children": [
-        "78d77e98-d6a2-47a2-9290-6e3d0b77ded8"
+        "78d77e98-d6a2-47a2-9290-6e3d0b77ded8",
+        "a6c473f8-d221-468b-94d4-dc835d1737b8"
       ],
       "metadata": {
-        "status": "pending"
+        "status": "pending",
+        "expanded": false
       }
     },
     "6c5180fc-e306-4a8d-a1e2-df403b3e2eb6": {
@@ -1517,7 +1454,8 @@
         "01c7c8ef-3bc5-4cd9-8784-0d478fb3f5ee"
       ],
       "metadata": {
-        "status": "pending"
+        "status": "pending",
+        "expanded": false
       }
     },
     "01c7c8ef-3bc5-4cd9-8784-0d478fb3f5ee": {
@@ -1548,8 +1486,8 @@
         "plugin-refactor-low"
       ],
       "metadata": {
-        "status": "pending",
-        "expanded": true
+        "status": "completed",
+        "expanded": false
       }
     },
     "plugin-refactor-critical": {
@@ -1944,6 +1882,241 @@
       "children": [],
       "metadata": {
         "status": "completed"
+      }
+    },
+    "2f83a0af-280e-4e67-8306-31a8e02c9500": {
+      "id": "2f83a0af-280e-4e67-8306-31a8e02c9500",
+      "content": "Features",
+      "children": [
+        "6573b620-bfc0-4c5b-8d92-13b9ace3461d",
+        "ce2de4b4-cc94-4106-a61b-26ce1089e97e",
+        "31cc1d2b-858b-4323-937b-6a38b15e0239",
+        "1420f7da-e115-4f89-befa-f046a07ba964",
+        "acc9f80b-deee-4252-8987-dfed46be6464",
+        "5f8eb896-d610-429f-a53a-fac6d164bd77",
+        "pdt35vy1z",
+        "0vzl7mppk",
+        "8ee5326d-1eec-45be-aa26-d11ae0e57284",
+        "909d90fd-f37c-45af-b028-d1ca56ee13fd",
+        "7aa4140c-1206-47ea-8a94-6c3e7763ccff"
+      ],
+      "metadata": {
+        "status": "pending",
+        "expanded": true
+      }
+    },
+    "0cc62ae1-1a7a-4aa4-bc6a-d817cabd672c": {
+      "id": "0cc62ae1-1a7a-4aa4-bc6a-d817cabd672c",
+      "content": "In progress",
+      "children": [
+        "byqndehy4"
+      ],
+      "metadata": {
+        "status": "pending",
+        "expanded": true
+      }
+    },
+    "565dde0a-864b-41f9-86ff-dbdf40ac4dd0": {
+      "id": "565dde0a-864b-41f9-86ff-dbdf40ac4dd0",
+      "content": "Done",
+      "children": [
+        "44jmbkqfv"
+      ],
+      "metadata": {
+        "status": "pending",
+        "expanded": false
+      }
+    },
+    "e9bb0de8-a33a-4054-8902-466a58ae3a1a": {
+      "id": "e9bb0de8-a33a-4054-8902-466a58ae3a1a",
+      "content": "Done",
+      "children": [
+        "0f9c1312-d773-45bb-9d54-7ef0fc4f58a9"
+      ],
+      "metadata": {
+        "status": "pending",
+        "expanded": false
+      }
+    },
+    "d5fe0eff-b1c6-4986-b6a3-70a0ea46f096": {
+      "id": "d5fe0eff-b1c6-4986-b6a3-70a0ea46f096",
+      "content": "Ideas",
+      "children": [
+        "2ce5b181-5461-486c-be65-159e5e98de54"
+      ],
+      "metadata": {
+        "status": "pending",
+        "expanded": false
+      }
+    },
+    "2ce5b181-5461-486c-be65-159e5e98de54": {
+      "id": "2ce5b181-5461-486c-be65-159e5e98de54",
+      "content": "Mobile app",
+      "children": [
+        "30ee4a6f-59a2-4ec8-a78f-2068542d8886"
+      ],
+      "metadata": {
+        "status": "pending",
+        "expanded": false
+      }
+    },
+    "30ee4a6f-59a2-4ec8-a78f-2068542d8886": {
+      "id": "30ee4a6f-59a2-4ec8-a78f-2068542d8886",
+      "content": "Easy as possible to use, as a neurodivergent aid",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "9bfbb401-dcb6-4f92-a34b-e9b3982c676f": {
+      "id": "9bfbb401-dcb6-4f92-a34b-e9b3982c676f",
+      "content": "Philosophy",
+      "children": [
+        "17de3fdf-e5f6-4dec-9e4b-df1cadec2db9",
+        "f15111b1-9e2d-46e9-b84c-e12b9053e230"
+      ],
+      "metadata": {
+        "status": "pending",
+        "expanded": false
+      }
+    },
+    "f15111b1-9e2d-46e9-b84c-e12b9053e230": {
+      "id": "f15111b1-9e2d-46e9-b84c-e12b9053e230",
+      "content": "Neurodivergent compatible",
+      "children": [
+        "c882ae02-4134-41c9-89de-39e04fb749c5",
+        "64ef60c9-40fe-43c8-9b48-0000d28e024a",
+        "789d86bb-3069-43eb-9e71-2ca2d0779302",
+        "50de00c5-8138-491b-9063-eeb5145fc4e2"
+      ],
+      "metadata": {
+        "status": "pending",
+        "expanded": false
+      }
+    },
+    "c882ae02-4134-41c9-89de-39e04fb749c5": {
+      "id": "c882ae02-4134-41c9-89de-39e04fb749c5",
+      "content": "UI as simple as possible",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "64ef60c9-40fe-43c8-9b48-0000d28e024a": {
+      "id": "64ef60c9-40fe-43c8-9b48-0000d28e024a",
+      "content": "As stable as possible to avoid frustration",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "789d86bb-3069-43eb-9e71-2ca2d0779302": {
+      "id": "789d86bb-3069-43eb-9e71-2ca2d0779302",
+      "content": "As simple as possible in it's base form, plugins off by default",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "50de00c5-8138-491b-9063-eeb5145fc4e2": {
+      "id": "50de00c5-8138-491b-9063-eeb5145fc4e2",
+      "content": "Complexity is emergent, discoverable, configurable - respect cognitive load",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "17de3fdf-e5f6-4dec-9e4b-df1cadec2db9": {
+      "id": "17de3fdf-e5f6-4dec-9e4b-df1cadec2db9",
+      "content": "Accessible",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "acc9f80b-deee-4252-8987-dfed46be6464": {
+      "id": "acc9f80b-deee-4252-8987-dfed46be6464",
+      "content": "Nodes collapse after certain time expires",
+      "children": [
+        "08af7da4-d763-4106-9fa8-1063a7bea892"
+      ],
+      "metadata": {
+        "status": "pending",
+        "expanded": false
+      }
+    },
+    "08af7da4-d763-4106-9fa8-1063a7bea892": {
+      "id": "08af7da4-d763-4106-9fa8-1063a7bea892",
+      "content": "Configurable",
+      "children": [
+        "820ae36f-7de6-4fd0-bbdf-6574b19da889",
+        "7b2f1f0a-b56d-4b50-bd47-039cd2628151",
+        "31607f0b-1294-41c8-9ee6-e8939d9b8e21",
+        "1cb0c6ff-0468-485d-b72d-ca34c8f6f491"
+      ],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "7b2f1f0a-b56d-4b50-bd47-039cd2628151": {
+      "id": "7b2f1f0a-b56d-4b50-bd47-039cd2628151",
+      "content": "All nodes autocollapse",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "820ae36f-7de6-4fd0-bbdf-6574b19da889": {
+      "id": "820ae36f-7de6-4fd0-bbdf-6574b19da889",
+      "content": "Delay",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "31607f0b-1294-41c8-9ee6-e8939d9b8e21": {
+      "id": "31607f0b-1294-41c8-9ee6-e8939d9b8e21",
+      "content": "Nodes never autocollapse",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "1cb0c6ff-0468-485d-b72d-ca34c8f6f491": {
+      "id": "1cb0c6ff-0468-485d-b72d-ca34c8f6f491",
+      "content": "Nodes collapse except for those the user expanded",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "1420f7da-e115-4f89-befa-f046a07ba964": {
+      "id": "1420f7da-e115-4f89-befa-f046a07ba964",
+      "content": "Spell checker",
+      "children": [
+        "c24da958-73a3-43a1-a36e-22a11a6fabe3"
+      ],
+      "metadata": {
+        "status": "pending",
+        "expanded": true
+      }
+    },
+    "c24da958-73a3-43a1-a36e-22a11a6fabe3": {
+      "id": "c24da958-73a3-43a1-a36e-22a11a6fabe3",
+      "content": "English only for now",
+      "children": [
+        "fd37c1ae-0416-421e-a937-6153bbe483ee"
+      ],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "fd37c1ae-0416-421e-a937-6153bbe483ee": {
+      "id": "fd37c1ae-0416-421e-a937-6153bbe483ee",
+      "content": "Unless possible to pick up on system settings or otherwise easy",
+      "children": [],
+      "metadata": {
+        "status": "pending"
       }
     }
   }
