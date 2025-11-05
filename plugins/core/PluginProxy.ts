@@ -3,8 +3,6 @@ import {
   PluginManifest,
   PluginContextMenuItem,
   PluginNodeIndicator,
-  PluginSidebarPanel,
-  PluginToolbarAction,
   NodeContext,
 } from './pluginInterface';
 import { TreeNode } from '../../src/shared/types';
@@ -19,8 +17,6 @@ export class PluginProxy implements Plugin {
   extensions = {
     provideNodeContextMenuItems: this.provideNodeContextMenuItems.bind(this),
     provideNodeIndicator: this.provideNodeIndicator.bind(this),
-    provideSidebarPanels: this.provideSidebarPanels.bind(this),
-    provideToolbarActions: this.provideToolbarActions.bind(this),
   };
 
   constructor(private pluginName: string, manifest: PluginManifest) {
@@ -79,13 +75,5 @@ export class PluginProxy implements Plugin {
 
   async provideNodeIndicator(node: TreeNode): Promise<PluginNodeIndicator | null> {
     return this.invokeExtension('provideNodeIndicator', [node], null);
-  }
-
-  async provideSidebarPanels(): Promise<PluginSidebarPanel[]> {
-    return this.invokeExtension('provideSidebarPanels', [], []);
-  }
-
-  async provideToolbarActions(): Promise<PluginToolbarAction[]> {
-    return this.invokeExtension('provideToolbarActions', [], []);
   }
 }

@@ -99,12 +99,6 @@ interface PluginExtensionPoints {
   provideNodeIndicator?(
     node: TreeNode
   ): PluginNodeIndicator | null | Promise<PluginNodeIndicator | null>;
-
-  // Add panels to sidebar
-  provideSidebarPanels?(): PluginSidebarPanel[] | Promise<PluginSidebarPanel[]>;
-
-  // Add actions to toolbar
-  provideToolbarActions?(): PluginToolbarAction[] | Promise<PluginToolbarAction[]>;
 }
 ```
 
@@ -134,32 +128,6 @@ Visual indicators shown next to nodes:
 type PluginNodeIndicator =
   | { type: 'text'; value: string }     // Text indicator (e.g., "🤖")
   | { type: 'icon'; value: string };    // Icon indicator
-```
-
-### PluginSidebarPanel
-
-Sidebar panel definition:
-
-```typescript
-interface PluginSidebarPanel {
-  id: string;
-  title: string;
-  icon: string;
-  component: React.ComponentType;
-}
-```
-
-### PluginToolbarAction
-
-Toolbar action definition:
-
-```typescript
-interface PluginToolbarAction {
-  id: string;
-  label: string;
-  icon: string;
-  onClick: () => void;
-}
 ```
 
 ## Command Pattern

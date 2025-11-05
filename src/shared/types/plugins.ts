@@ -21,19 +21,6 @@ export interface PluginContextMenuItem {
   submenu?: PluginContextMenuItem[];
 }
 
-export interface PluginSidebarPanel {
-  id: string;
-  title: string;
-  icon?: string;
-  componentId: string;
-}
-
-export interface PluginToolbarAction {
-  id: string;
-  label: string;
-  icon?: string;
-}
-
 export interface PluginNodeIndicator {
   type: 'text' | 'icon';
   value: string;
@@ -48,10 +35,6 @@ export interface PluginExtensionPoints {
   provideNodeIndicator?(
     node: TreeNode
   ): PluginNodeIndicator | null | Promise<PluginNodeIndicator | null>;
-
-  provideSidebarPanels?(): PluginSidebarPanel[] | Promise<PluginSidebarPanel[]>;
-
-  provideToolbarActions?(): PluginToolbarAction[] | Promise<PluginToolbarAction[]>;
 }
 
 /**

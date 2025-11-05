@@ -981,8 +981,6 @@ interface PluginExtensionPoints {
     PluginContextMenuItem[];  // { id, label } not { onClick }
   provideNodeIndicator?(node: TreeNode):
     PluginNodeIndicator | null;  // { type: 'text', value: '🤖' }
-  provideSidebarPanels?(): PluginSidebarPanel[];
-  provideToolbarActions?(): PluginToolbarAction[];
 }
 ```
 
