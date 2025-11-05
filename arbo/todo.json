@@ -2,7 +2,7 @@
   "format": "Arborescent",
   "version": "1.0.0",
   "created": "2025-10-11T00:00:00.000Z",
-  "updated": "2025-11-05T03:35:35.595Z",
+  "updated": "2025-11-05T05:01:38.037Z",
   "author": "brian@brianfox.fr",
   "rootNodeId": "root",
   "nodes": {
@@ -1568,19 +1568,10 @@
       "content": "Unsafe private API access: ExtensionHostConnection.ts:173-178 accesses _invokeHandlers (private Electron API)",
       "children": [
         "plugin-refactor-critical-001-a",
-        "plugin-refactor-critical-001-b",
-        "plugin-refactor-critical-001-c"
+        "plugin-refactor-critical-001-b"
       ],
       "metadata": {
         "status": "completed"
-      }
-    },
-    "plugin-refactor-critical-001-a": {
-      "id": "plugin-refactor-critical-001-a",
-      "content": "Issue: Fragile and could break on Electron version upgrades. No type safety.",
-      "children": [],
-      "metadata": {
-        "status": "pending"
       }
     },
     "plugin-refactor-critical-001-b": {
@@ -1588,15 +1579,7 @@
       "content": "Solution: Create proper IPC bridge with public APIs. Use dedicated channel for plugin IPC calls with own event emitter.",
       "children": [],
       "metadata": {
-        "status": "pending"
-      }
-    },
-    "plugin-refactor-critical-001-c": {
-      "id": "plugin-refactor-critical-001-c",
-      "content": "Effort: Medium (4-6 hours). Affects: ExtensionHostConnection.ts, PluginAPI.ts, extensionHost.worker.ts",
-      "children": [],
-      "metadata": {
-        "status": "pending"
+        "status": "completed"
       }
     },
     "plugin-refactor-high": {
@@ -1621,7 +1604,7 @@
         "plugin-refactor-high-001-c"
       ],
       "metadata": {
-        "status": "pending"
+        "status": "completed"
       }
     },
     "plugin-refactor-high-001-a": {
@@ -1629,7 +1612,7 @@
       "content": "Issue: provideNodeContextMenuItems, provideNodeIndicator, provideSidebarPanels, provideToolbarActions all duplicate error handling and IPC call logic",
       "children": [],
       "metadata": {
-        "status": "pending"
+        "status": "completed"
       }
     },
     "plugin-refactor-high-001-b": {
@@ -1637,7 +1620,7 @@
       "content": "Solution: Create generic invokeExtension<T>() helper. Reduce to 4 one-liners calling the helper.",
       "children": [],
       "metadata": {
-        "status": "pending"
+        "status": "completed"
       }
     },
     "plugin-refactor-high-001-c": {
@@ -1645,7 +1628,7 @@
       "content": "Effort: Small (1-2 hours). Affects: PluginProxy.ts only",
       "children": [],
       "metadata": {
-        "status": "pending"
+        "status": "completed"
       }
     },
     "plugin-refactor-high-002": {
@@ -2010,6 +1993,14 @@
       "children": [],
       "metadata": {
         "status": "pending"
+      }
+    },
+    "plugin-refactor-critical-001-a": {
+      "id": "plugin-refactor-critical-001-a",
+      "content": "Issue: Fragile and could break on Electron version upgrades. No type safety.",
+      "children": [],
+      "metadata": {
+        "status": "completed"
       }
     }
   }

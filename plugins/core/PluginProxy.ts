@@ -34,104 +34,49 @@ export class PluginProxy implements Plugin {
     // Disposal happens in the worker thread
   }
 
+  private async invokeExtension<T>(
+    extensionPoint: string,
+    args: unknown[],
+    defaultValue: T
+  ): Promise<T> {
+    try {
+      const response = await window.electron.extensionHostInvokeExtension(
+        this.pluginName,
+        extensionPoint,
+        args
+      );
+
+      if (!response.success) {
+        if (response.error === 'Extension host not started') {
+          return defaultValue;
+        }
+        console.error(`Error invoking ${extensionPoint} for ${this.pluginName}:`, response.error);
+        return defaultValue;
+      }
+
+      return (response.result as { result?: T })?.result ?? defaultValue;
+    } catch (error) {
+      console.error(`Error invoking ${extensionPoint} for ${this.pluginName}:`, error);
+      return defaultValue;
+    }
+  }
+
   async provideNodeContextMenuItems(
     node: TreeNode,
     context: NodeContext
   ): Promise<PluginContextMenuItem[]> {
-    try {
-      const response = await window.electron.extensionHostInvokeExtension(
-        this.pluginName,
-        'provideNodeContextMenuItems',
-        [node, context]
-      );
-
-      if (!response.success) {
-        if (response.error === 'Extension host not started') {
-          return [];
-        }
-        console.error(
-          `Error invoking provideNodeContextMenuItems for ${this.pluginName}:`,
-          response.error
-        );
-        return [];
-      }
-
-      return (response.result as { result?: PluginContextMenuItem[] })?.result || [];
-    } catch (error) {
-      console.error(
-        `Error invoking provideNodeContextMenuItems for ${this.pluginName}:`,
-        error
-      );
-      return [];
-    }
+    return this.invokeExtension('provideNodeContextMenuItems', [node, context], []);
   }
 
   async provideNodeIndicator(node: TreeNode): Promise<PluginNodeIndicator | null> {
-    try {
-      const response = await window.electron.extensionHostInvokeExtension(
-        this.pluginName,
-        'provideNodeIndicator',
-        [node]
-      );
-
-      if (!response.success) {
-        if (response.error === 'Extension host not started') {
-          return null;
-        }
-        console.error(`Error invoking provideNodeIndicator for ${this.pluginName}:`, response.error);
-        return null;
-      }
-
-      return (response.result as { result?: PluginNodeIndicator | null })?.result || null;
-    } catch (error) {
-      console.error(`Error invoking provideNodeIndicator for ${this.pluginName}:`, error);
-      return null;
-    }
+    return this.invokeExtension('provideNodeIndicator', [node], null);
   }
 
   async provideSidebarPanels(): Promise<PluginSidebarPanel[]> {
-    try {
-      const response = await window.electron.extensionHostInvokeExtension(
-        this.pluginName,
-        'provideSidebarPanels',
-        []
-      );
-
-      if (!response.success) {
-        if (response.error === 'Extension host not started') {
-          return [];
-        }
-        console.error(`Error invoking provideSidebarPanels for ${this.pluginName}:`, response.error);
-        return [];
-      }
-
-      return (response.result as { result?: PluginSidebarPanel[] })?.result || [];
-    } catch (error) {
-      console.error(`Error invoking provideSidebarPanels for ${this.pluginName}:`, error);
-      return [];
-    }
+    return this.invokeExtension('provideSidebarPanels', [], []);
   }
 
   async provideToolbarActions(): Promise<PluginToolbarAction[]> {
-    try {
-      const response = await window.electron.extensionHostInvokeExtension(
-        this.pluginName,
-        'provideToolbarActions',
-        []
-      );
-
-      if (!response.success) {
-        if (response.error === 'Extension host not started') {
-          return [];
-        }
-        console.error(`Error invoking provideToolbarActions for ${this.pluginName}:`, response.error);
-        return [];
-      }
-
-      return (response.result as { result?: PluginToolbarAction[] })?.result || [];
-    } catch (error) {
-      console.error(`Error invoking provideToolbarActions for ${this.pluginName}:`, error);
-      return [];
-    }
+    return this.invokeExtension('provideToolbarActions', [], []);
   }
 }
