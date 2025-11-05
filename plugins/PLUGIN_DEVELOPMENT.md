@@ -370,21 +370,38 @@ private getContextMenuItems(
 
 ## IPC Communication
 
-Plugins running in worker threads use `pluginAPI.invokeIPC()` to call main process handlers:
+Plugins running in worker threads use `pluginAPI.invokeIPC()` to call main process handlers. The plugin system uses a dedicated **PluginIPCBridge** to safely expose IPC handlers to plugins without relying on Electron's private APIs.
 
 ### Main Process Handler
+
+Plugin IPC handlers must be registered with **both** `ipcMain` (for renderer access) and `pluginIPCBridge` (for plugin worker thread access):
 
 ```typescript
 // plugins/my-plugin/main/myPluginIpcHandlers.ts
 import { ipcMain } from 'electron';
+import { pluginIPCBridge } from '../../core/main/PluginIPCBridge';
 
 export function registerMyPluginIpcHandlers(): void {
-  ipcMain.handle('my-plugin:do-something', async (event, arg) => {
+  // Define handler once (use rest parameters for pluginIPCBridge compatibility)
+  const doSomethingHandler = async (_: unknown, ...args: unknown[]) => {
+    const arg = args[0] as string;
     // Main process logic
     return { success: true };
-  });
+  };
+
+  // Register with ipcMain for renderer process
+  ipcMain.handle('my-plugin:do-something', doSomethingHandler);
+
+  // Register with pluginIPCBridge for plugin worker threads
+  pluginIPCBridge.registerHandler('my-plugin:do-something', doSomethingHandler);
 }
 ```
+
+**Why PluginIPCBridge?**
+- **No private API access**: Doesn't rely on Electron's internal `_invokeHandlers` (fragile, could break on upgrades)
+- **Type-safe**: Explicit handler registry with proper TypeScript types
+- **Security**: Only explicitly registered handlers are accessible to plugins
+- **Control**: Can add middleware, validation, rate limiting, etc.
 
 ### Preload Script
 
@@ -582,7 +599,8 @@ The extension host architecture provides:
 **Main Process:**
 - `ExtensionHostConnection.ts` - Manages worker lifecycle
 - `extensionHostIpcHandlers.ts` - Handles renderer ↔ worker communication
-- Forwards pluginAPI calls to IPC handlers
+- `PluginIPCBridge.ts` - Secure registry for plugin-accessible IPC handlers
+- Forwards pluginAPI calls to PluginIPCBridge (no private API access)
 
 **Renderer Process:**
 - `PluginProxy.ts` - Proxies calls to worker via IPC

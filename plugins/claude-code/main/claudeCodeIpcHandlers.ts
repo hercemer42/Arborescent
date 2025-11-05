@@ -5,6 +5,7 @@ import os from 'node:os';
 import { spawn, ChildProcess } from 'node:child_process';
 import { logger } from '../../../src/main/services/logger';
 import { ClaudeCodeSession } from '../renderer/claudeCodeTypes';
+import { pluginIPCBridge } from '../../core/main/PluginIPCBridge';
 
 function getClaudeProjectDirectory(projectPath: string): string {
   const homeDir = os.homedir();
@@ -118,11 +119,12 @@ function handleClaudeProcessEvents(
 }
 
 export function registerClaudeCodeIpcHandlers() {
-  ipcMain.handle('claude:get-project-path', async () => {
+  const getProjectPathHandler = async () => {
     return process.cwd();
-  });
+  };
 
-  ipcMain.handle('claude:list-sessions', async (_, projectPath: string) => {
+  const listSessionsHandler = async (_: unknown, ...args: unknown[]) => {
+    const projectPath = args[0] as string;
     try {
       const projectDir = getClaudeProjectDirectory(projectPath);
       const claudeBaseDir = path.dirname(projectDir);
@@ -144,9 +146,12 @@ export function registerClaudeCodeIpcHandlers() {
       logger.error('Failed to list Claude Code sessions', error as Error, 'Claude Code Plugin', false);
       return [];
     }
-  });
+  };
 
-  ipcMain.handle('claude:send-to-session', async (_, sessionId: string, context: string, projectPath: string) => {
+  const sendToSessionHandler = async (_: unknown, ...args: unknown[]) => {
+    const sessionId = args[0] as string;
+    const context = args[1] as string;
+    const projectPath = args[2] as string;
     try {
       logger.info(`Sending context to Claude Code session: ${sessionId}`, 'Claude Code Plugin');
       await spawnClaudeProcess(sessionId, context, projectPath);
@@ -154,5 +159,13 @@ export function registerClaudeCodeIpcHandlers() {
       logger.error('Failed to send context to Claude Code session', error as Error, 'Claude Code Plugin', true);
       throw error;
     }
-  });
+  };
+
+  ipcMain.handle('claude:get-project-path', getProjectPathHandler);
+  ipcMain.handle('claude:list-sessions', listSessionsHandler);
+  ipcMain.handle('claude:send-to-session', sendToSessionHandler);
+
+  pluginIPCBridge.registerHandler('claude:get-project-path', getProjectPathHandler);
+  pluginIPCBridge.registerHandler('claude:list-sessions', listSessionsHandler);
+  pluginIPCBridge.registerHandler('claude:send-to-session', sendToSessionHandler);
 }

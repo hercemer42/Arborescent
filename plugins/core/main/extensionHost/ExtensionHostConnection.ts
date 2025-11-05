@@ -168,27 +168,9 @@ export class ExtensionHostConnection {
     if (!this.worker) return;
 
     try {
-      const { ipcMain } = await import('electron');
+      const { pluginIPCBridge } = await import('../PluginIPCBridge');
 
-      const internalMain = ipcMain as unknown as {
-        _invokeHandlers?: Map<string, (event: unknown, ...args: unknown[]) => Promise<unknown>>;
-      };
-
-      if (!internalMain._invokeHandlers || !internalMain._invokeHandlers.has(message.channel)) {
-        throw new Error(`No IPC handler registered for channel: ${message.channel}`);
-      }
-
-      const handler = internalMain._invokeHandlers.get(message.channel)!;
-
-      const mockEvent = {
-        processId: process.pid,
-        frameId: 0,
-        sender: {
-          send: () => {},
-        },
-      };
-
-      const result = await handler(mockEvent, ...message.args);
+      const result = await pluginIPCBridge.invoke(message.channel, ...message.args);
 
       this.worker.postMessage({
         type: 'ipc-response',

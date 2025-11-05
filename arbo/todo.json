@@ -183,7 +183,8 @@
         "a45af02d-395a-4622-a268-c06a8d8275ae",
         "perf-main-001",
         "b18d78b0-a96e-4483-840c-df932f663968",
-        "l7w7ssh62"
+        "l7w7ssh62",
+        "plugin-refactor-001"
       ],
       "metadata": {
         "status": "completed",
@@ -1532,6 +1533,480 @@
     "bda43cfc-8be4-4c22-8bc5-03ed7cb050df": {
       "id": "bda43cfc-8be4-4c22-8bc5-03ed7cb050df",
       "content": "Integrate the docs in arbo and the docs in plugin",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "plugin-refactor-001": {
+      "id": "plugin-refactor-001",
+      "content": "Plugin System Refactor",
+      "children": [
+        "plugin-refactor-critical",
+        "plugin-refactor-high",
+        "plugin-refactor-medium",
+        "plugin-refactor-low"
+      ],
+      "metadata": {
+        "status": "pending",
+        "expanded": true
+      }
+    },
+    "plugin-refactor-critical": {
+      "id": "plugin-refactor-critical",
+      "content": "Critical Priority",
+      "children": [
+        "plugin-refactor-critical-001"
+      ],
+      "metadata": {
+        "status": "completed",
+        "expanded": true
+      }
+    },
+    "plugin-refactor-critical-001": {
+      "id": "plugin-refactor-critical-001",
+      "content": "Unsafe private API access: ExtensionHostConnection.ts:173-178 accesses _invokeHandlers (private Electron API)",
+      "children": [
+        "plugin-refactor-critical-001-a",
+        "plugin-refactor-critical-001-b",
+        "plugin-refactor-critical-001-c"
+      ],
+      "metadata": {
+        "status": "completed"
+      }
+    },
+    "plugin-refactor-critical-001-a": {
+      "id": "plugin-refactor-critical-001-a",
+      "content": "Issue: Fragile and could break on Electron version upgrades. No type safety.",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "plugin-refactor-critical-001-b": {
+      "id": "plugin-refactor-critical-001-b",
+      "content": "Solution: Create proper IPC bridge with public APIs. Use dedicated channel for plugin IPC calls with own event emitter.",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "plugin-refactor-critical-001-c": {
+      "id": "plugin-refactor-critical-001-c",
+      "content": "Effort: Medium (4-6 hours). Affects: ExtensionHostConnection.ts, PluginAPI.ts, extensionHost.worker.ts",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "plugin-refactor-high": {
+      "id": "plugin-refactor-high",
+      "content": "High Priority",
+      "children": [
+        "plugin-refactor-high-001",
+        "plugin-refactor-high-002",
+        "plugin-refactor-high-003"
+      ],
+      "metadata": {
+        "status": "pending",
+        "expanded": true
+      }
+    },
+    "plugin-refactor-high-001": {
+      "id": "plugin-refactor-high-001",
+      "content": "Massive code duplication in PluginProxy.ts - 4 methods with identical 30-line implementations (136 lines → ~40 lines possible)",
+      "children": [
+        "plugin-refactor-high-001-a",
+        "plugin-refactor-high-001-b",
+        "plugin-refactor-high-001-c"
+      ],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "plugin-refactor-high-001-a": {
+      "id": "plugin-refactor-high-001-a",
+      "content": "Issue: provideNodeContextMenuItems, provideNodeIndicator, provideSidebarPanels, provideToolbarActions all duplicate error handling and IPC call logic",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "plugin-refactor-high-001-b": {
+      "id": "plugin-refactor-high-001-b",
+      "content": "Solution: Create generic invokeExtension<T>() helper. Reduce to 4 one-liners calling the helper.",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "plugin-refactor-high-001-c": {
+      "id": "plugin-refactor-high-001-c",
+      "content": "Effort: Small (1-2 hours). Affects: PluginProxy.ts only",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "plugin-refactor-high-002": {
+      "id": "plugin-refactor-high-002",
+      "content": "Type safety issues - 50+ type casts, unknown payloads without validation across codebase",
+      "children": [
+        "plugin-refactor-high-002-a",
+        "plugin-refactor-high-002-b",
+        "plugin-refactor-high-002-c"
+      ],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "plugin-refactor-high-002-a": {
+      "id": "plugin-refactor-high-002-a",
+      "content": "Issue: extensionHost.worker.ts, ExtensionHostConnection.ts, PluginAPI.ts use 'as' casts liberally. No runtime validation.",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "plugin-refactor-high-002-b": {
+      "id": "plugin-refactor-high-002-b",
+      "content": "Solution: Define proper TypeScript interfaces for all message payloads. Add Zod/io-ts runtime validation at boundaries.",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "plugin-refactor-high-002-c": {
+      "id": "plugin-refactor-high-002-c",
+      "content": "Effort: Medium (6-8 hours). Affects: All plugin core files + types directory",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "plugin-refactor-high-003": {
+      "id": "plugin-refactor-high-003",
+      "content": "Missing abstraction layer for worker thread communication - direct PluginAPI coupling",
+      "children": [
+        "plugin-refactor-high-003-a",
+        "plugin-refactor-high-003-b",
+        "plugin-refactor-high-003-c"
+      ],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "plugin-refactor-high-003-a": {
+      "id": "plugin-refactor-high-003-a",
+      "content": "Issue: Plugins directly access global.pluginAPI with hardcoded access patterns. Tight coupling to worker implementation.",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "plugin-refactor-high-003-b": {
+      "id": "plugin-refactor-high-003-b",
+      "content": "Solution: Create PluginContext class injected into plugin constructors. Abstract IPC calls behind clean API.",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "plugin-refactor-high-003-c": {
+      "id": "plugin-refactor-high-003-c",
+      "content": "Effort: Medium (4-6 hours). Affects: Plugin interface, extensionHost.worker.ts, all plugin implementations",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "plugin-refactor-medium": {
+      "id": "plugin-refactor-medium",
+      "content": "Medium Priority",
+      "children": [
+        "plugin-refactor-medium-001",
+        "plugin-refactor-medium-002",
+        "plugin-refactor-medium-003",
+        "plugin-refactor-medium-004",
+        "plugin-refactor-medium-005",
+        "plugin-refactor-medium-006"
+      ],
+      "metadata": {
+        "status": "pending",
+        "expanded": false
+      }
+    },
+    "plugin-refactor-medium-001": {
+      "id": "plugin-refactor-medium-001",
+      "content": "Error handling inconsistency - Mix of console.error, logger.error, throw, silent failures",
+      "children": [
+        "plugin-refactor-medium-001-a",
+        "plugin-refactor-medium-001-b"
+      ],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "plugin-refactor-medium-001-a": {
+      "id": "plugin-refactor-medium-001-a",
+      "content": "Solution: Standardize on logger everywhere. Define error policy: log + return { success: false } or throw?",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "plugin-refactor-medium-001-b": {
+      "id": "plugin-refactor-medium-001-b",
+      "content": "Effort: Small (2-3 hours). Affects: All plugin files",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "plugin-refactor-medium-002": {
+      "id": "plugin-refactor-medium-002",
+      "content": "IPC handler duplication in extensionHostIpcHandlers.ts - Repetitive try/catch/logger patterns in 6 handlers",
+      "children": [
+        "plugin-refactor-medium-002-a",
+        "plugin-refactor-medium-002-b"
+      ],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "plugin-refactor-medium-002-a": {
+      "id": "plugin-refactor-medium-002-a",
+      "content": "Solution: Create wrapHandler() higher-order function for error handling, logging, response formatting",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "plugin-refactor-medium-002-b": {
+      "id": "plugin-refactor-medium-002-b",
+      "content": "Effort: Small (1-2 hours). Affects: extensionHostIpcHandlers.ts",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "plugin-refactor-medium-003": {
+      "id": "plugin-refactor-medium-003",
+      "content": "Message ID generation inconsistency - Different patterns in ExtensionHostConnection.ts and PluginAPI.ts",
+      "children": [
+        "plugin-refactor-medium-003-a",
+        "plugin-refactor-medium-003-b"
+      ],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "plugin-refactor-medium-003-a": {
+      "id": "plugin-refactor-medium-003-a",
+      "content": "Solution: Create shared generateMessageId() utility with UUID or nanoid instead of counters",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "plugin-refactor-medium-003-b": {
+      "id": "plugin-refactor-medium-003-b",
+      "content": "Effort: Small (30 minutes). Affects: ExtensionHostConnection.ts, PluginAPI.ts",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "plugin-refactor-medium-004": {
+      "id": "plugin-refactor-medium-004",
+      "content": "No timeout configuration - Hardcoded 30000ms timeouts in multiple files",
+      "children": [
+        "plugin-refactor-medium-004-a",
+        "plugin-refactor-medium-004-b"
+      ],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "plugin-refactor-medium-004-a": {
+      "id": "plugin-refactor-medium-004-a",
+      "content": "Solution: Move to shared constants file. Make configurable for development vs production.",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "plugin-refactor-medium-004-b": {
+      "id": "plugin-refactor-medium-004-b",
+      "content": "Effort: Small (30 minutes). Affects: ExtensionHostConnection.ts, PluginAPI.ts",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "plugin-refactor-medium-005": {
+      "id": "plugin-refactor-medium-005",
+      "content": "ExtensionHostManager lifecycle complexity - Multiple async guards (startPromise, started flag) could race",
+      "children": [
+        "plugin-refactor-medium-005-a",
+        "plugin-refactor-medium-005-b"
+      ],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "plugin-refactor-medium-005-a": {
+      "id": "plugin-refactor-medium-005-a",
+      "content": "Solution: Use state machine library (xstate) or enum-based state. Single source of truth for lifecycle state.",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "plugin-refactor-medium-005-b": {
+      "id": "plugin-refactor-medium-005-b",
+      "content": "Effort: Medium (3-4 hours). Affects: ExtensionHostManager.ts",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "plugin-refactor-medium-006": {
+      "id": "plugin-refactor-medium-006",
+      "content": "No plugin dependency management - Plugins can't declare dependencies on each other or load order",
+      "children": [
+        "plugin-refactor-medium-006-a",
+        "plugin-refactor-medium-006-b"
+      ],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "plugin-refactor-medium-006-a": {
+      "id": "plugin-refactor-medium-006-a",
+      "content": "Solution: Add dependencies field to manifest. Topological sort on registration. Future: plugin APIs exposed to other plugins.",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "plugin-refactor-medium-006-b": {
+      "id": "plugin-refactor-medium-006-b",
+      "content": "Effort: Medium (4-5 hours). Affects: PluginRegistry.ts, manifest schema, initialization flow",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "plugin-refactor-low": {
+      "id": "plugin-refactor-low",
+      "content": "Low Priority",
+      "children": [
+        "plugin-refactor-low-001",
+        "plugin-refactor-low-002",
+        "plugin-refactor-low-003",
+        "plugin-refactor-low-004",
+        "plugin-refactor-low-005",
+        "plugin-refactor-low-006"
+      ],
+      "metadata": {
+        "status": "pending",
+        "expanded": false
+      }
+    },
+    "plugin-refactor-low-001": {
+      "id": "plugin-refactor-low-001",
+      "content": "Naming inconsistency: 'Extension Host' vs 'Plugin' terminology mixed throughout codebase",
+      "children": [
+        "plugin-refactor-low-001-a"
+      ],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "plugin-refactor-low-001-a": {
+      "id": "plugin-refactor-low-001-a",
+      "content": "Solution: Pick one term. 'Extension Host' is implementation detail. Use 'Plugin' in user-facing code. Effort: 1-2 hours.",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "plugin-refactor-low-002": {
+      "id": "plugin-refactor-low-002",
+      "content": "Missing plugin unload/reload during development - Must restart app to test plugin changes",
+      "children": [
+        "plugin-refactor-low-002-a"
+      ],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "plugin-refactor-low-002-a": {
+      "id": "plugin-refactor-low-002-a",
+      "content": "Solution: Add hot reload support. Watch manifest/plugin files. Unregister/re-register on change. Effort: 3-4 hours.",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "plugin-refactor-low-003": {
+      "id": "plugin-refactor-low-003",
+      "content": "No plugin metrics/telemetry - Can't track performance, errors, or usage patterns per plugin",
+      "children": [
+        "plugin-refactor-low-003-a"
+      ],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "plugin-refactor-low-003-a": {
+      "id": "plugin-refactor-low-003-a",
+      "content": "Solution: Wrap extension calls with metrics collection. Track: call count, duration, errors, memory. Effort: 2-3 hours.",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "plugin-refactor-low-004": {
+      "id": "plugin-refactor-low-004",
+      "content": "pathToFileURL import only used once - Minor: Could inline or comment why needed for worker threads",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "plugin-refactor-low-005": {
+      "id": "plugin-refactor-low-005",
+      "content": "PluginRegistry missing from architecture - Mentioned in docs but implementation unclear/incomplete",
+      "children": [
+        "plugin-refactor-low-005-a"
+      ],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "plugin-refactor-low-005-a": {
+      "id": "plugin-refactor-low-005-a",
+      "content": "Solution: Complete PluginRegistry or remove references. Clarify vs ExtensionHostManager responsibilities. Effort: 2-3 hours.",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "plugin-refactor-low-006": {
+      "id": "plugin-refactor-low-006",
+      "content": "Mock event object in handleIPCCall - Creates fake IPC event, may not have all properties real events have",
+      "children": [
+        "plugin-refactor-low-006-a"
+      ],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "plugin-refactor-low-006-a": {
+      "id": "plugin-refactor-low-006-a",
+      "content": "Solution: After fixing private API access (critical-001), this becomes moot. Document why mock needed if kept. Effort: 30 mins.",
       "children": [],
       "metadata": {
         "status": "pending"
