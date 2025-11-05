@@ -6,6 +6,7 @@ import {
   PluginContextMenuItem,
   PluginNodeIndicator,
 } from '../../core/pluginInterface';
+import { PluginContext } from '../../core/main/extensionHost/PluginContext';
 import { TreeNode } from '../../../src/shared/types';
 import manifest from '../renderer/manifest.json';
 
@@ -22,7 +23,12 @@ export interface ClaudeCodeSession {
 
 export class ClaudeCodePlugin implements Plugin {
   manifest: PluginManifest = manifest;
+  private context: PluginContext;
   private projectPath: string = '';
+
+  constructor(context: PluginContext) {
+    this.context = context;
+  }
 
   extensions: PluginExtensionPoints = {
     provideNodeContextMenuItems: (node: TreeNode, context: NodeContext) => {
@@ -35,9 +41,7 @@ export class ClaudeCodePlugin implements Plugin {
   };
 
   async initialize(): Promise<void> {
-    // Use pluginAPI to call IPC handlers from the extension host
-    const api = (global as { pluginAPI: { invokeIPC: (channel: string, ...args: unknown[]) => Promise<unknown> } }).pluginAPI;
-    this.projectPath = (await api.invokeIPC('claude:get-project-path')) as string;
+    this.projectPath = await this.context.invokeIPC<string>('claude:get-project-path');
     console.log(`[Claude Code Plugin] Plugin initialized for project: ${this.projectPath}`);
   }
 
@@ -51,11 +55,10 @@ export class ClaudeCodePlugin implements Plugin {
 
   async getSessions(): Promise<ClaudeCodeSession[]> {
     try {
-      const api = (global as { pluginAPI: { invokeIPC: (channel: string, ...args: unknown[]) => Promise<unknown> } }).pluginAPI;
-      const sessions = (await api.invokeIPC(
+      const sessions = await this.context.invokeIPC<unknown[]>(
         'claude:list-sessions',
         this.projectPath
-      )) as unknown[];
+      );
 
       return sessions.map((s: unknown) => {
         const session = s as {
@@ -80,8 +83,7 @@ export class ClaudeCodePlugin implements Plugin {
 
   async sendToSession(sessionId: string, context: string): Promise<void> {
     try {
-      const api = (global as { pluginAPI: { invokeIPC: (channel: string, ...args: unknown[]) => Promise<unknown> } }).pluginAPI;
-      await api.invokeIPC(
+      await this.context.invokeIPC(
         'claude:send-to-session',
         sessionId,
         context,

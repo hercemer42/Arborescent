@@ -2,7 +2,7 @@
   "format": "Arborescent",
   "version": "1.0.0",
   "created": "2025-10-11T00:00:00.000Z",
-  "updated": "2025-11-05T05:01:38.037Z",
+  "updated": "2025-11-05T06:30:00.000Z",
   "author": "brian@brianfox.fr",
   "rootNodeId": "root",
   "nodes": {
@@ -1591,7 +1591,7 @@
         "plugin-refactor-high-003"
       ],
       "metadata": {
-        "status": "pending",
+        "status": "completed",
         "expanded": true
       }
     },
@@ -1600,8 +1600,7 @@
       "content": "Massive code duplication in PluginProxy.ts - 4 methods with identical 30-line implementations (136 lines → ~40 lines possible)",
       "children": [
         "plugin-refactor-high-001-a",
-        "plugin-refactor-high-001-b",
-        "plugin-refactor-high-001-c"
+        "plugin-refactor-high-001-b"
       ],
       "metadata": {
         "status": "completed"
@@ -1623,14 +1622,6 @@
         "status": "completed"
       }
     },
-    "plugin-refactor-high-001-c": {
-      "id": "plugin-refactor-high-001-c",
-      "content": "Effort: Small (1-2 hours). Affects: PluginProxy.ts only",
-      "children": [],
-      "metadata": {
-        "status": "completed"
-      }
-    },
     "plugin-refactor-high-002": {
       "id": "plugin-refactor-high-002",
       "content": "Type safety issues - 50+ type casts, unknown payloads without validation across codebase",
@@ -1640,7 +1631,7 @@
         "plugin-refactor-high-002-c"
       ],
       "metadata": {
-        "status": "pending"
+        "status": "completed"
       }
     },
     "plugin-refactor-high-002-a": {
@@ -1648,7 +1639,7 @@
       "content": "Issue: extensionHost.worker.ts, ExtensionHostConnection.ts, PluginAPI.ts use 'as' casts liberally. No runtime validation.",
       "children": [],
       "metadata": {
-        "status": "pending"
+        "status": "completed"
       }
     },
     "plugin-refactor-high-002-b": {
@@ -1656,7 +1647,7 @@
       "content": "Solution: Define proper TypeScript interfaces for all message payloads. Add Zod/io-ts runtime validation at boundaries.",
       "children": [],
       "metadata": {
-        "status": "pending"
+        "status": "completed"
       }
     },
     "plugin-refactor-high-002-c": {
@@ -1664,7 +1655,7 @@
       "content": "Effort: Medium (6-8 hours). Affects: All plugin core files + types directory",
       "children": [],
       "metadata": {
-        "status": "pending"
+        "status": "completed"
       }
     },
     "plugin-refactor-high-003": {
@@ -1676,7 +1667,7 @@
         "plugin-refactor-high-003-c"
       ],
       "metadata": {
-        "status": "pending"
+        "status": "completed"
       }
     },
     "plugin-refactor-high-003-a": {
@@ -1684,7 +1675,7 @@
       "content": "Issue: Plugins directly access global.pluginAPI with hardcoded access patterns. Tight coupling to worker implementation.",
       "children": [],
       "metadata": {
-        "status": "pending"
+        "status": "completed"
       }
     },
     "plugin-refactor-high-003-b": {
@@ -1692,7 +1683,7 @@
       "content": "Solution: Create PluginContext class injected into plugin constructors. Abstract IPC calls behind clean API.",
       "children": [],
       "metadata": {
-        "status": "pending"
+        "status": "completed"
       }
     },
     "plugin-refactor-high-003-c": {
@@ -1700,7 +1691,7 @@
       "content": "Effort: Medium (4-6 hours). Affects: Plugin interface, extensionHost.worker.ts, all plugin implementations",
       "children": [],
       "metadata": {
-        "status": "pending"
+        "status": "completed"
       }
     },
     "plugin-refactor-medium": {

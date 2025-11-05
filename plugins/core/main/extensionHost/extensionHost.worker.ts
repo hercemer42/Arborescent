@@ -1,15 +1,23 @@
 import { parentPort } from 'node:worker_threads';
 import { pathToFileURL } from 'node:url';
-import { ExtensionHostMessage, RendererMessage, MessageType } from './types/messages';
+import { ExtensionHostMessage, RendererMessage, MessageType, PluginManifest } from './types/messages';
 import { Plugin } from '../../pluginInterface';
 import { logger } from './workerLogger';
 import { PluginAPI } from './PluginAPI';
+import { PluginContext } from './PluginContext';
+import {
+  RegisterPluginPayloadSchema,
+  UnregisterPluginPayloadSchema,
+  InvokeExtensionPayloadSchema,
+  PluginManifestSchema,
+  validatePayload,
+} from './types/messageValidation';
 
-// Make the plugin API available globally for plugins to use
-(global as { pluginAPI: PluginAPI }).pluginAPI = new PluginAPI();
+const pluginAPI = new PluginAPI();
+const pluginContext = new PluginContext(pluginAPI);
 
 interface PluginRegistration {
-  manifest: unknown;
+  manifest: PluginManifest;
   pluginPath: string;
   plugin?: Plugin;
   initialized: boolean;
@@ -64,14 +72,14 @@ class ExtensionHost {
   }
 
   private async handleRegisterPlugin(message: RendererMessage): Promise<void> {
-    const payload = message.payload as { pluginName: string; pluginPath: string; manifestPath: string };
-    const { pluginName, pluginPath, manifestPath } = payload;
-
     try {
-      // Only load manifest, not the plugin code (lazy loading)
+      const payload = validatePayload(RegisterPluginPayloadSchema, message.payload);
+      const { pluginName, pluginPath, manifestPath } = payload;
+
       const fs = await import('node:fs/promises');
       const manifestJson = await fs.readFile(manifestPath, 'utf-8');
-      const manifest = JSON.parse(manifestJson);
+      const manifestData = JSON.parse(manifestJson);
+      const manifest = validatePayload(PluginManifestSchema, manifestData);
 
       this.plugins.set(pluginName, {
         manifest,
@@ -105,25 +113,24 @@ class ExtensionHost {
       const PluginModule = await import(fileUrl);
 
       // Handle different export patterns (ES modules, CommonJS, etc.)
-      let PluginClass: new () => Plugin;
+      let PluginClass: new (context?: PluginContext) => Plugin;
 
       if (typeof PluginModule.default === 'function') {
-        PluginClass = PluginModule.default as new () => Plugin;
+        PluginClass = PluginModule.default as new (context?: PluginContext) => Plugin;
       } else if (typeof PluginModule === 'function') {
-        PluginClass = PluginModule as unknown as new () => Plugin;
+        PluginClass = PluginModule as unknown as new (context?: PluginContext) => Plugin;
       } else {
-        // Try to find a class export by looking for capitalized keys
         const classKey = Object.keys(PluginModule).find(key =>
           key[0] === key[0].toUpperCase() && typeof PluginModule[key] === 'function'
         );
         if (classKey) {
-          PluginClass = PluginModule[classKey] as new () => Plugin;
+          PluginClass = PluginModule[classKey] as new (context?: PluginContext) => Plugin;
         } else {
           throw new Error('Could not find plugin class export');
         }
       }
 
-      const plugin: Plugin = new PluginClass();
+      const plugin: Plugin = new PluginClass(pluginContext);
       registration.plugin = plugin;
 
       return plugin;
@@ -134,21 +141,25 @@ class ExtensionHost {
   }
 
   private async handleUnregisterPlugin(message: RendererMessage): Promise<void> {
-    const payload = message.payload as { pluginName: string };
-    const { pluginName } = payload;
-    const registration = this.plugins.get(pluginName);
+    try {
+      const payload = validatePayload(UnregisterPluginPayloadSchema, message.payload);
+      const { pluginName } = payload;
+      const registration = this.plugins.get(pluginName);
 
-    if (registration?.plugin) {
-      registration.plugin.dispose();
+      if (registration?.plugin) {
+        registration.plugin.dispose();
+      }
+      this.plugins.delete(pluginName);
+
+      this.sendResponse(message.id, { success: true });
+    } catch (error) {
+      this.sendError(message.id, error);
     }
-    this.plugins.delete(pluginName);
-
-    this.sendResponse(message.id, { success: true });
   }
 
   private async handleInitializePlugins(message: RendererMessage): Promise<void> {
     const enabledRegistrations = Array.from(this.plugins.entries()).filter(
-      ([, reg]) => (reg.manifest as { enabled?: boolean }).enabled
+      ([, reg]) => reg.manifest.enabled
     );
 
     await Promise.all(
@@ -178,11 +189,10 @@ class ExtensionHost {
   }
 
   private async handleInvokeExtension(message: RendererMessage): Promise<void> {
-    const payload = message.payload as { pluginName: string; extensionPoint: string; args: unknown[] };
-    const { pluginName, extensionPoint, args } = payload;
-
     try {
-      // Lazy load plugin if not already loaded
+      const payload = validatePayload(InvokeExtensionPayloadSchema, message.payload);
+      const { pluginName, extensionPoint, args } = payload;
+
       const plugin = await this.ensurePluginLoaded(pluginName);
 
       const registration = this.plugins.get(pluginName);

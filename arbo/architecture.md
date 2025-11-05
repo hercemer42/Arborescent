@@ -997,13 +997,23 @@ PluginCommandRegistry.execute(item.id, { node });
 
 **Plugin API (Worker Thread):**
 ```typescript
-// Global pluginAPI allows plugins to call main process IPC handlers
-const projectPath = await pluginAPI.invokeIPC('claude:get-project-path');
-const sessions = await pluginAPI.invokeIPC('claude:list-sessions', projectPath);
+export class MyPlugin implements Plugin {
+  private context: PluginContext;
+
+  constructor(context: PluginContext) {
+    this.context = context;
+  }
+
+  async initialize(): Promise<void> {
+    const projectPath = await this.context.invokeIPC<string>('claude:get-project-path');
+    const sessions = await this.context.invokeIPC<Session[]>('claude:list-sessions', projectPath);
+  }
+}
 ```
 
 **Rationale:**
 - **Plugin Types in Shared**: Plugin interface types live in `src/shared/types/plugins.ts` as the contract between core and plugins, preventing core components from depending on `plugins/` directory
+- **PluginContext Injection**: Plugins receive context via constructor, eliminating tight coupling to worker implementation
 - **Process Isolation**: Plugins run in separate worker thread for security and stability
 - **Serializable Data**: All extension points return JSON-serializable data for IPC transport
 - **Command Pattern**: Commands run in renderer with access to UI state, while menu definitions come from worker

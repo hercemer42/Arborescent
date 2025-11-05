@@ -2,6 +2,7 @@ import { Worker } from 'node:worker_threads';
 import path from 'node:path';
 import { ExtensionHostMessage, RendererMessage, MessageType } from './types/messages';
 import { logger } from '../../../../src/main/services/logger';
+import { LogMessageSchema, IPCCallMessageSchema, safeValidatePayload } from './types/messageValidation';
 
 export class ExtensionHostConnection {
   private worker: Worker | null = null;
@@ -26,24 +27,14 @@ export class ExtensionHostConnection {
 
     this.worker = new Worker(workerPath);
 
-    this.worker.on('message', (message: ExtensionHostMessage | { type: string }) => {
-      if ('type' in message) {
-        if (message.type === 'log') {
-          this.handleLogMessage(message as {
-            type: 'log';
-            level: string;
-            message: string;
-            context?: string;
-            error?: { message: string; stack?: string };
-          });
+    this.worker.on('message', (message: unknown) => {
+      if (typeof message === 'object' && message !== null && 'type' in message) {
+        const msg = message as { type: string };
+        if (msg.type === 'log') {
+          this.handleLogMessage(message);
           return;
-        } else if (message.type === 'ipc-call') {
-          this.handleIPCCall(message as {
-            type: 'ipc-call';
-            id: string;
-            channel: string;
-            args: unknown[];
-          });
+        } else if (msg.type === 'ipc-call') {
+          this.handleIPCCall(message);
           return;
         }
       }
@@ -132,61 +123,66 @@ export class ExtensionHostConnection {
     }
   }
 
-  private handleLogMessage(message: {
-    type: 'log';
-    level: string;
-    message: string;
-    context?: string;
-    error?: { message: string; stack?: string };
-  }): void {
-    const context = message.context || 'Extension Host Worker';
-    const error = message.error ? new Error(message.error.message) : undefined;
-    if (error && message.error?.stack) {
-      error.stack = message.error.stack;
+  private handleLogMessage(message: unknown): void {
+    const validation = safeValidatePayload(LogMessageSchema, message);
+    if (!validation.success) {
+      logger.warn(`Invalid log message: ${validation.error}`, 'Extension Host Connection');
+      return;
     }
 
-    switch (message.level) {
+    const logMsg = validation.data;
+    const context = logMsg.context || 'Extension Host Worker';
+    const error = logMsg.error ? new Error(logMsg.error.message) : undefined;
+    if (error && logMsg.error?.stack) {
+      error.stack = logMsg.error.stack;
+    }
+
+    switch (logMsg.level) {
       case 'error':
-        logger.error(message.message, error, context);
+        logger.error(logMsg.message, error, context);
         break;
       case 'warn':
-        logger.warn(message.message, context);
+        logger.warn(logMsg.message, context);
         break;
       case 'info':
       default:
-        logger.info(message.message, context);
+        logger.info(logMsg.message, context);
         break;
     }
   }
 
-  private async handleIPCCall(message: {
-    type: 'ipc-call';
-    id: string;
-    channel: string;
-    args: unknown[];
-  }): Promise<void> {
+  private async handleIPCCall(message: unknown): Promise<void> {
     if (!this.worker) return;
+
+    const validation = safeValidatePayload(IPCCallMessageSchema, message);
+    if (!validation.success) {
+      logger.warn(`Invalid IPC call message: ${validation.error}`, 'Extension Host Connection');
+      return;
+    }
+
+    const ipcMsg = validation.data;
 
     try {
       const { pluginIPCBridge } = await import('../PluginIPCBridge');
 
-      const result = await pluginIPCBridge.invoke(message.channel, ...message.args);
+      const result = await pluginIPCBridge.invoke(ipcMsg.channel, ...ipcMsg.args);
 
       this.worker.postMessage({
         type: 'ipc-response',
-        id: message.id,
+        id: ipcMsg.id,
         result,
       });
     } catch (error) {
+      const errorMsg = error instanceof Error ? error.message : String(error);
       logger.error(
-        `IPC handler ${message.channel} failed: ${(error as Error).message}`,
-        error as Error,
+        `IPC handler ${ipcMsg.channel} failed: ${errorMsg}`,
+        error instanceof Error ? error : new Error(errorMsg),
         'Extension Host Connection'
       );
       this.worker.postMessage({
         type: 'ipc-response',
-        id: message.id,
-        error: (error as Error).message,
+        id: ipcMsg.id,
+        error: errorMsg,
       });
     }
   }

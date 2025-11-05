@@ -54,6 +54,14 @@ export interface PluginExtensionPoints {
   provideToolbarActions?(): PluginToolbarAction[] | Promise<PluginToolbarAction[]>;
 }
 
+/**
+ * Plugin interface defines the contract for all Arborescent plugins.
+ *
+ * Plugins must implement a constructor that accepts a PluginContext parameter:
+ *   constructor(context: PluginContext)
+ *
+ * The PluginContext provides access to IPC handlers and other platform services.
+ */
 export interface Plugin {
   manifest: PluginManifest;
 

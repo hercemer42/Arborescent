@@ -235,12 +235,18 @@ import {
   PluginContextMenuItem,
   NodeContext,
 } from '../../core/pluginInterface';
+import { PluginContext } from '../../core/main/extensionHost/PluginContext';
 import { TreeNode } from '../../../src/shared/types';
 import manifest from '../manifest.json';
 
 export class MyPlugin implements Plugin {
   manifest: PluginManifest = manifest;
+  private context: PluginContext;
   private someData: string = '';
+
+  constructor(context: PluginContext) {
+    this.context = context;
+  }
 
   extensions: PluginExtensionPoints = {
     provideNodeContextMenuItems: (node, context) => {
@@ -249,8 +255,7 @@ export class MyPlugin implements Plugin {
   };
 
   async initialize(): Promise<void> {
-    // Use pluginAPI to call main process IPC handlers
-    this.someData = await (global as { pluginAPI: { invokeIPC: (channel: string, ...args: unknown[]) => Promise<unknown> } }).pluginAPI.invokeIPC('my-plugin:get-data') as string;
+    this.someData = await this.context.invokeIPC<string>('my-plugin:get-data');
     console.log('[My Plugin] Initialized with data:', this.someData);
   }
 
@@ -431,8 +436,7 @@ export const myPluginPreloadAPI = {
 ```typescript
 // In plugin initialization or extension point
 async initialize(): Promise<void> {
-  const api = (global as { pluginAPI: { invokeIPC: (...) => Promise<unknown> } }).pluginAPI;
-  const result = await api.invokeIPC('my-plugin:do-something', 'hello') as { success: boolean };
+  const result = await this.context.invokeIPC<{ success: boolean }>('my-plugin:do-something', 'hello');
   console.log(`Result: ${result.success}`);
 }
 ```
