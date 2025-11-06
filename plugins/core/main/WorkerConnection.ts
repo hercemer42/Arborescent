@@ -1,11 +1,24 @@
 import { Worker } from 'node:worker_threads';
 import path from 'node:path';
-import { PluginMessage, RendererMessage, MessageType } from './types/messages';
-import { logger } from '../../../../src/main/services/logger';
-import { LogMessageSchema, IPCCallMessageSchema, safeValidatePayload } from './types/messageValidation';
-import { generateMessageId } from './utils/messageId';
-import { IPC_MESSAGE_TIMEOUT_MS } from './constants';
+import { PluginMessage, RendererMessage, MessageType } from '../worker/types/messages';
+import { logger } from '../../../src/main/services/logger';
+import { LogMessageSchema, IPCCallMessageSchema, safeValidatePayload } from '../worker/types/messageValidation';
+import { generateMessageId } from '../worker/utils/messageId';
+import { IPC_MESSAGE_TIMEOUT_MS } from '../worker/constants';
 
+/**
+ * Manages the plugin worker thread lifecycle and communication.
+ *
+ * The worker thread provides process isolation for plugins - if a plugin crashes,
+ * it won't take down the main app. Communication happens via message passing:
+ * - Renderer → Main → Worker (plugin execution)
+ * - Worker → Main → Renderer (responses)
+ *
+ * Special message types:
+ * - 'log': Worker logging routed to main process logger
+ * - 'ipc-call': Worker requesting main process APIs (via IPCBridge)
+ * - Standard plugin messages: Register, initialize, invoke, dispose
+ */
 export class PluginWorkerConnection {
   private worker: Worker | null = null;
   private messageHandlers: Map<string, (response: PluginMessage) => void> = new Map();
@@ -24,27 +37,12 @@ export class PluginWorkerConnection {
       return;
     }
 
-    const workerPath = path.join(__dirname, 'pluginWorker.worker.cjs');
+    const workerPath = path.join(__dirname, 'worker.cjs');
 
     this.worker = new Worker(workerPath);
 
-    this.worker.on('message', (message: unknown) => {
-      if (typeof message === 'object' && message !== null && 'type' in message) {
-        const msg = message as { type: string };
-        if (msg.type === 'log') {
-          this.handleLogMessage(message);
-          return;
-        } else if (msg.type === 'ipc-call') {
-          this.handleIPCCall(message);
-          return;
-        }
-      }
-      this.handleMessage(message as PluginMessage);
-    });
-
-    this.worker.on('error', (error) => {
-      logger.error('Plugin worker error', error, 'Plugin System');
-    });
+    this.worker.on('message', (message) => this.routeMessage(message));
+    this.worker.on('error', (error) => this.handleWorkerError(error));
 
     this.worker.on('exit', (code) => {
       if (code !== 0) {
@@ -110,6 +108,28 @@ export class PluginWorkerConnection {
     });
   }
 
+  /**
+   * Routes incoming worker messages to appropriate handlers based on message type.
+   */
+  private routeMessage(message: unknown): void {
+    if (typeof message === 'object' && message !== null && 'type' in message) {
+      const msg = message as { type: string };
+      if (msg.type === 'log') {
+        this.handleLogMessage(message);
+        return;
+      }
+      if (msg.type === 'ipc-call') {
+        this.handleIPCCall(message);
+        return;
+      }
+    }
+    this.handleMessage(message as PluginMessage);
+  }
+
+  private handleWorkerError(error: Error): void {
+    logger.error('Plugin worker error', error, 'Plugin System');
+  }
+
   private handleMessage(message: PluginMessage): void {
     if (message.type === MessageType.Ready) {
       this.readyResolve();
@@ -133,10 +153,7 @@ export class PluginWorkerConnection {
 
     const logMsg = validation.data;
     const context = logMsg.context || 'Plugin Worker';
-    const error = logMsg.error ? new Error(logMsg.error.message) : undefined;
-    if (error && logMsg.error?.stack) {
-      error.stack = logMsg.error.stack;
-    }
+    const error = this.reconstructError(logMsg.error);
 
     switch (logMsg.level) {
       case 'error':
@@ -152,6 +169,19 @@ export class PluginWorkerConnection {
     }
   }
 
+  /**
+   * Reconstructs an Error object from serialized error data.
+   */
+  private reconstructError(errorData?: { message: string; stack?: string }): Error | undefined {
+    if (!errorData) return undefined;
+
+    const error = new Error(errorData.message);
+    if (errorData.stack) {
+      error.stack = errorData.stack;
+    }
+    return error;
+  }
+
   private async handleIPCCall(message: unknown): Promise<void> {
     if (!this.worker) return;
 
@@ -164,7 +194,7 @@ export class PluginWorkerConnection {
     const ipcMsg = validation.data;
 
     try {
-      const { pluginIPCBridge } = await import('../PluginIPCBridge');
+      const { pluginIPCBridge } = await import('./IPCBridge');
 
       const result = await pluginIPCBridge.invoke(ipcMsg.channel, ...ipcMsg.args);
 

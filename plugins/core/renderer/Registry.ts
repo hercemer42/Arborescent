@@ -1,15 +1,14 @@
-import { Plugin } from './pluginInterface';
-import { usePluginStore } from '../../src/renderer/store/plugins/pluginStore';
-import { logger } from '../../src/renderer/services/logger';
-import { notifyError } from '../../src/renderer/utils/errorNotification';
-import { checkApiCompatibility } from './pluginApiVersion';
+import { Plugin } from '../shared/interface';
+import { usePluginStore } from '../../../src/renderer/store/plugins/pluginStore';
+import { logger } from '../../../src/renderer/services/logger';
+import { checkApiCompatibility } from '../shared/apiVersion';
 
 class PluginRegistryClass {
   private plugins: Map<string, Plugin> = new Map();
   private initialized = false;
 
   private handleInitializationError(plugin: Plugin, error: Error): void {
-    notifyError(
+    logger.error(
       `Plugin "${plugin.manifest.displayName}" failed to initialize`,
       error,
       'Plugin Registry'
@@ -24,7 +23,7 @@ class PluginRegistryClass {
 
     const compatibility = checkApiCompatibility(plugin.manifest.apiVersion);
     if (!compatibility.compatible) {
-      notifyError(
+      logger.error(
         `Plugin "${plugin.manifest.displayName}": ${compatibility.warning}`,
         new Error(compatibility.warning),
         'Plugin Registry'

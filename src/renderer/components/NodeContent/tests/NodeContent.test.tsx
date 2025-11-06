@@ -179,7 +179,7 @@ describe('NodeContent', () => {
         ...mockNode,
         metadata: {
           plugins: {
-            claude: { sessionId: 'session-123' },
+            'test-plugin': { sessionId: 'session-123' },
           },
         },
       };

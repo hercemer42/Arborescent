@@ -188,6 +188,16 @@ describe('useNodeContextMenu', () => {
 
       const { result } = renderHook(() => useNodeContextMenu(mockNode), { wrapper });
 
+      const mockEvent = {
+        preventDefault: vi.fn(),
+        clientX: 100,
+        clientY: 200,
+      } as unknown as React.MouseEvent;
+
+      await act(async () => {
+        result.current.handleContextMenu(mockEvent);
+      });
+
       await waitFor(() => {
         expect(result.current.contextMenuItems.length).toBeGreaterThan(1);
       });
@@ -220,19 +230,29 @@ describe('useNodeContextMenu', () => {
         return selector ? selector(state) : state;
       });
 
-      renderHook(() => useNodeContextMenu(mockNode), { wrapper });
+      const { result } = renderHook(() => useNodeContextMenu(mockNode), { wrapper });
+
+      const mockEvent = {
+        preventDefault: vi.fn(),
+        clientX: 100,
+        clientY: 200,
+      } as unknown as React.MouseEvent;
+
+      act(() => {
+        result.current.handleContextMenu(mockEvent);
+      });
 
       expect(provideNodeContextMenuItems).toHaveBeenCalledWith(mockNode, { hasAncestorSession: false });
     });
 
-    it('should pass hasAncestorSession=true when ancestor has Claude session', () => {
+    it('should pass hasAncestorSession=true when ancestor has plugin metadata', () => {
       const ancestorNode: TreeNode = {
         id: 'ancestor-node',
         content: 'Ancestor',
         children: ['test-node'],
         metadata: {
           plugins: {
-            claude: { sessionId: 'session-123' },
+            'test-plugin': { sessionId: 'session-123' },
           },
         },
       };
@@ -270,7 +290,17 @@ describe('useNodeContextMenu', () => {
         return selector ? selector(state) : state;
       });
 
-      renderHook(() => useNodeContextMenu(mockNode), { wrapper });
+      const { result } = renderHook(() => useNodeContextMenu(mockNode), { wrapper });
+
+      const mockEvent = {
+        preventDefault: vi.fn(),
+        clientX: 100,
+        clientY: 200,
+      } as unknown as React.MouseEvent;
+
+      act(() => {
+        result.current.handleContextMenu(mockEvent);
+      });
 
       expect(provideNodeContextMenuItems).toHaveBeenCalledWith(mockNode, { hasAncestorSession: true });
     });
@@ -315,6 +345,16 @@ describe('useNodeContextMenu', () => {
       });
 
       const { result } = renderHook(() => useNodeContextMenu(mockNode), { wrapper });
+
+      const mockEvent = {
+        preventDefault: vi.fn(),
+        clientX: 100,
+        clientY: 200,
+      } as unknown as React.MouseEvent;
+
+      await act(async () => {
+        result.current.handleContextMenu(mockEvent);
+      });
 
       await waitFor(() => {
         expect(result.current.contextMenuItems.length).toBeGreaterThan(1);

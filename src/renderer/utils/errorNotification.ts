@@ -23,3 +23,4 @@ export function notifySuccess(message: string, context?: string): void {
   }
   useToastStore.getState().addToast(message, 'success');
 }
+

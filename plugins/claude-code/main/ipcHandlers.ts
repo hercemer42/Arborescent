@@ -1,11 +1,10 @@
-import { ipcMain } from 'electron';
 import { promises as fs } from 'node:fs';
 import path from 'node:path';
 import os from 'node:os';
 import { spawn, ChildProcess } from 'node:child_process';
 import { logger } from '../../../src/main/services/logger';
-import { ClaudeCodeSession } from '../renderer/claudeCodeTypes';
-import { pluginIPCBridge } from '../../core/main/PluginIPCBridge';
+import { ClaudeCodeSession } from '../renderer/types';
+import { pluginIPCBridge } from '../../core/main/IPCBridge';
 
 function getClaudeProjectDirectory(projectPath: string): string {
   const homeDir = os.homedir();
@@ -161,9 +160,6 @@ export function registerClaudeCodeIpcHandlers() {
     }
   };
 
-  ipcMain.handle('claude:get-project-path', getProjectPathHandler);
-  ipcMain.handle('claude:list-sessions', listSessionsHandler);
-  ipcMain.handle('claude:send-to-session', sendToSessionHandler);
 
   pluginIPCBridge.registerHandler('claude:get-project-path', getProjectPathHandler);
   pluginIPCBridge.registerHandler('claude:list-sessions', listSessionsHandler);

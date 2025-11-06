@@ -1,11 +1,5 @@
 import { TreeNode } from './treeNode';
 
-export interface Document {
-  version: '1.0';
-  rootNodeId: string;
-  nodes: Record<string, TreeNode>;
-}
-
 export interface ArboFile {
   format: 'Arborescent';
   version: string;

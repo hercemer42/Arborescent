@@ -5,14 +5,21 @@ import {
   PluginExtensionPoints,
   PluginContextMenuItem,
   PluginNodeIndicator,
-} from '../../core/pluginInterface';
-import { PluginContext } from '../../core/main/pluginWorker/PluginContext';
+} from '../../core/shared/interface';
+import { PluginContext } from '../../core/worker/Context';
 import { TreeNode } from '../../../src/shared/types';
 import manifest from '../renderer/manifest.json';
-import { logger } from '../../core/main/pluginWorker/workerLogger';
+import { logger } from '../../core/worker/services/Logger';
 
 interface ClaudeCodePluginMetadata {
   sessionId?: string;
+}
+
+interface ClaudeCodeSessionFromIPC {
+  id: string;
+  projectPath: string;
+  lastModified: string;
+  firstMessage?: string;
 }
 
 export interface ClaudeCodeSessionDisplay {
@@ -42,7 +49,7 @@ export class ClaudeCodePlugin implements Plugin {
   };
 
   async initialize(): Promise<void> {
-    this.projectPath = await this.context.getProjectPath();
+    this.projectPath = await this.context.invokeIPC<string>('claude:get-project-path');
     logger.info(`Plugin initialized for project: ${this.projectPath}`, 'Claude Code Plugin');
   }
 
@@ -56,7 +63,10 @@ export class ClaudeCodePlugin implements Plugin {
 
   async getSessions(): Promise<ClaudeCodeSessionDisplay[]> {
     try {
-      const sessions = await this.context.listClaudeSessions(this.projectPath);
+      const sessions = await this.context.invokeIPC<ClaudeCodeSessionFromIPC[]>(
+        'claude:list-sessions',
+        this.projectPath
+      );
 
       return sessions.map((session) => ({
         id: session.id,
@@ -72,7 +82,12 @@ export class ClaudeCodePlugin implements Plugin {
 
   async sendToSession(sessionId: string, context: string): Promise<void> {
     try {
-      await this.context.sendToClaudeSession(sessionId, context, this.projectPath);
+      await this.context.invokeIPC<void>(
+        'claude:send-to-session',
+        sessionId,
+        context,
+        this.projectPath
+      );
     } catch (error) {
       logger.error('Failed to send context to Claude Code session', error as Error, 'Claude Code Plugin');
       throw error;
@@ -116,3 +131,6 @@ export class ClaudeCodePlugin implements Plugin {
 }
 
 export default ClaudeCodePlugin;
+
+// Re-export register function for dynamic import from plugin config
+export { registerIpcHandlers } from './register';

@@ -11,9 +11,9 @@ if (started) {
 
 let mainWindow: BrowserWindow | null = null;
 
-registerIpcHandlers(() => mainWindow);
+const createWindow = async () => {
+  await registerIpcHandlers(() => mainWindow);
 
-const createWindow = () => {
   // Create the browser window.
   mainWindow = new BrowserWindow({
     width: 800,

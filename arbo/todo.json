@@ -2,7 +2,7 @@
   "format": "Arborescent",
   "version": "1.0.0",
   "created": "2025-10-11T00:00:00.000Z",
-  "updated": "2025-11-06T07:56:03.578Z",
+  "updated": "2025-11-06T20:37:18.322Z",
   "author": "brian@brianfox.fr",
   "rootNodeId": "root",
   "nodes": {
@@ -859,7 +859,9 @@
     "afc82f17-0de5-4a3c-b9bb-bfb1954c9799": {
       "id": "afc82f17-0de5-4a3c-b9bb-bfb1954c9799",
       "content": "Need to create a status bar",
-      "children": [],
+      "children": [
+        "83c73c8b-478b-41d0-82ac-f3395fd86937"
+      ],
       "metadata": {
         "status": "pending"
       }
@@ -961,7 +963,14 @@
       "content": "Refactor",
       "children": [
         "78d77e98-d6a2-47a2-9290-6e3d0b77ded8",
-        "a6c473f8-d221-468b-94d4-dc835d1737b8"
+        "a6c473f8-d221-468b-94d4-dc835d1737b8",
+        "58950aa3-50be-457f-a089-232d02c19831",
+        "a3743f7c-cbf4-48e5-99f5-322edc1dec14",
+        "48e0f485-f1dc-4b07-9f6a-53072b7e67f1",
+        "9073d866-ea02-4f85-a338-e821fa89e35d",
+        "3343aef2-f900-4c60-8981-35c17c7ee0bc",
+        "f483719e-3280-4bd6-8afd-6d0e3ac0d73c",
+        "3a9a0a6a-8858-442e-a716-f02b8b30655c"
       ],
       "metadata": {
         "status": "pending",
@@ -1014,7 +1023,8 @@
         "fd7fd59a-7a83-41d3-baed-9e2a559dedbd"
       ],
       "metadata": {
-        "status": "pending"
+        "status": "pending",
+        "expanded": true
       }
     },
     "aa607eda-5536-4955-98dc-96c7aba0808b": {
@@ -1882,11 +1892,14 @@
       "content": "Features",
       "children": [
         "565dde0a-864b-41f9-86ff-dbdf40ac4dd0",
+        "d7597faa-0b34-400e-985a-de035508cdb1",
         "2e0b8b75-e3c2-4c83-ba5c-0a2c507081c8",
         "65b74e0f-88fe-41c6-9910-8bac806adc6f",
         "bc5a4b76-b674-4bab-80db-e113a25aa211",
         "6573b620-bfc0-4c5b-8d92-13b9ace3461d",
         "ce2de4b4-cc94-4106-a61b-26ce1089e97e",
+        "24bfe3b9-597f-4762-8e2d-fba9507772d3",
+        "5288b678-63dc-4672-b1b3-8e2b540c04de",
         "31cc1d2b-858b-4323-937b-6a38b15e0239",
         "1420f7da-e115-4f89-befa-f046a07ba964",
         "acc9f80b-deee-4252-8987-dfed46be6464",
@@ -2181,7 +2194,7 @@
       ],
       "metadata": {
         "status": "pending",
-        "expanded": true
+        "expanded": false
       }
     },
     "febab53e-cebd-44d6-8d7d-431f0710e791": {
@@ -2234,6 +2247,7 @@
       "id": "bc5a4b76-b674-4bab-80db-e113a25aa211",
       "content": "Node management",
       "children": [
+        "7f8eb1d0-743b-4ac5-a3a1-3c33dc844341",
         "05bcaba6-3bb5-409d-a109-72091d3ebdc7"
       ],
       "metadata": {
@@ -2308,7 +2322,8 @@
         "a8f746c7-6f95-430b-a73e-fceb5761066d"
       ],
       "metadata": {
-        "status": "pending"
+        "status": "pending",
+        "expanded": false
       }
     },
     "a8f746c7-6f95-430b-a73e-fceb5761066d": {
@@ -2332,6 +2347,197 @@
     "19a90e4b-61aa-4f1c-b0f0-9282975318d3": {
       "id": "19a90e4b-61aa-4f1c-b0f0-9282975318d3",
       "content": "Add permission model in manifest - Add permissions array to manifest.json declaring required capabilities (workspace:read, notifications:show, claude:sessions:read). Enables permission review and potential future permission prompts.",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "83c73c8b-478b-41d0-82ac-f3395fd86937": {
+      "id": "83c73c8b-478b-41d0-82ac-f3395fd86937",
+      "content": "Or should we do it as a visual indicator on the node ?",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "58950aa3-50be-457f-a089-232d02c19831": {
+      "id": "58950aa3-50be-457f-a089-232d02c19831",
+      "content": "We watch claude from vite.main.config but we should have something that can watch code changes in all plugins without naming them",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "a3743f7c-cbf4-48e5-99f5-322edc1dec14": {
+      "id": "a3743f7c-cbf4-48e5-99f5-322edc1dec14",
+      "content": "There is claude specific code in core/initializePlugins, registerPluginHandlers, pluginContext",
+      "children": [],
+      "metadata": {
+        "status": "completed"
+      }
+    },
+    "48e0f485-f1dc-4b07-9f6a-53072b7e67f1": {
+      "id": "48e0f485-f1dc-4b07-9f6a-53072b7e67f1",
+      "content": "There is claude specific code in useNodeContextMenu and test, nodecontent test, renderer/test/setup.ts",
+      "children": [],
+      "metadata": {
+        "status": "completed"
+      }
+    },
+    "3a9a0a6a-8858-442e-a716-f02b8b30655c": {
+      "id": "3a9a0a6a-8858-442e-a716-f02b8b30655c",
+      "content": "Linting etc",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "24bfe3b9-597f-4762-8e2d-fba9507772d3": {
+      "id": "24bfe3b9-597f-4762-8e2d-fba9507772d3",
+      "content": "Meta content",
+      "children": [
+        "109d0f69-555e-4aab-b633-beb0fce2bd2d",
+        "203dbc08-5a91-417f-b70c-309303e233fd"
+      ],
+      "metadata": {
+        "status": "pending",
+        "expanded": false
+      }
+    },
+    "109d0f69-555e-4aab-b633-beb0fce2bd2d": {
+      "id": "109d0f69-555e-4aab-b633-beb0fce2bd2d",
+      "content": "Hyperlinks",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "203dbc08-5a91-417f-b70c-309303e233fd": {
+      "id": "203dbc08-5a91-417f-b70c-309303e233fd",
+      "content": "Categories",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "5288b678-63dc-4672-b1b3-8e2b540c04de": {
+      "id": "5288b678-63dc-4672-b1b3-8e2b540c04de",
+      "content": "Markdown editor",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "7f8eb1d0-743b-4ac5-a3a1-3c33dc844341": {
+      "id": "7f8eb1d0-743b-4ac5-a3a1-3c33dc844341",
+      "content": "Instead of arrow key traversal within a multiline node, would it be easier to collapse a multiline node with elipses and a color coding ?",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "9073d866-ea02-4f85-a338-e821fa89e35d": {
+      "id": "9073d866-ea02-4f85-a338-e821fa89e35d",
+      "content": "Types file naming not consistent with main project, should have a 'types' folder",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "3343aef2-f900-4c60-8981-35c17c7ee0bc": {
+      "id": "3343aef2-f900-4c60-8981-35c17c7ee0bc",
+      "content": "should pluginInterface be named just interface ? we're already in the plugins folder",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "f483719e-3280-4bd6-8afd-6d0e3ac0d73c": {
+      "id": "f483719e-3280-4bd6-8afd-6d0e3ac0d73c",
+      "content": "actually, generally speaking, why do we have the word 'plugin' in the files ? ",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "d7597faa-0b34-400e-985a-de035508cdb1": {
+      "id": "d7597faa-0b34-400e-985a-de035508cdb1",
+      "content": "Doc",
+      "children": [
+        "d053981a-608c-4a30-945a-f0aec466a572",
+        "96e9597f-9b07-4638-b960-4430507fbfb9",
+        "3992c938-c113-48ad-b88c-0fb0f4411daa",
+        "f8465cf9-dd7a-433d-bd45-4f8dfa8920a2",
+        "52028dd3-abbc-42e7-9415-11313d556b91",
+        "59724865-e1d7-466d-b34f-14f08d0bd9cc",
+        "16978390-8839-400d-a02a-83948bad8f4d"
+      ],
+      "metadata": {
+        "status": "pending",
+        "expanded": false
+      }
+    },
+    "d053981a-608c-4a30-945a-f0aec466a572": {
+      "id": "d053981a-608c-4a30-945a-f0aec466a572",
+      "content": "Add widespread doc",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "96e9597f-9b07-4638-b960-4430507fbfb9": {
+      "id": "96e9597f-9b07-4638-b960-4430507fbfb9",
+      "content": "Make master doc for each component (folder? system? component?)",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "3992c938-c113-48ad-b88c-0fb0f4411daa": {
+      "id": "3992c938-c113-48ad-b88c-0fb0f4411daa",
+      "content": "Have coherent naming convention",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "f8465cf9-dd7a-433d-bd45-4f8dfa8920a2": {
+      "id": "f8465cf9-dd7a-433d-bd45-4f8dfa8920a2",
+      "content": "Tie arbo context to docs",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "52028dd3-abbc-42e7-9415-11313d556b91": {
+      "id": "52028dd3-abbc-42e7-9415-11313d556b91",
+      "content": "Pick a document model - we used to do this remember ?",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "59724865-e1d7-466d-b34f-14f08d0bd9cc": {
+      "id": "59724865-e1d7-466d-b34f-14f08d0bd9cc",
+      "content": "Changelog",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "16978390-8839-400d-a02a-83948bad8f4d": {
+      "id": "16978390-8839-400d-a02a-83948bad8f4d",
+      "content": "Master architecture file",
+      "children": [
+        "fa8b9544-c3e1-42ff-8162-96d87a087bda"
+      ],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "fa8b9544-c3e1-42ff-8162-96d87a087bda": {
+      "id": "fa8b9544-c3e1-42ff-8162-96d87a087bda",
+      "content": "What goes in there ?",
       "children": [],
       "metadata": {
         "status": "pending"

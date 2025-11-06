@@ -1,13 +1,30 @@
 import { defineConfig } from 'vite';
+import fs from 'node:fs';
+import path from 'node:path';
 
-// https://vitejs.dev/config
+const pluginsDir = 'plugins';
+const pluginEntries: Record<string, string> = {};
+
+const pluginDirs = fs.readdirSync(pluginsDir, { withFileTypes: true })
+	.filter(dirent => dirent.isDirectory() && dirent.name !== 'core')
+	.map(dirent => dirent.name);
+
+for (const pluginName of pluginDirs) {
+	const configPath = path.join(pluginsDir, pluginName, 'plugin.config.ts');
+	if (fs.existsSync(configPath)) {
+		const entryFile = path.join(pluginsDir, pluginName, 'main', 'Plugin.ts');
+
+		pluginEntries[`plugins/${pluginName}`] = entryFile;
+	}
+}
+
 export default defineConfig({
 	build: {
 		lib: {
 			entry: {
 				main: 'src/main/main.ts',
-				'pluginWorker.worker': 'plugins/core/main/pluginWorker/pluginWorker.worker.ts',
-				'plugins/claude-code': 'plugins/claude-code/main/ClaudeCodePlugin.ts',
+				'worker': 'plugins/core/worker/worker.ts',
+				...pluginEntries,
 			},
 			formats: ['cjs'],
 		},
@@ -17,13 +34,14 @@ export default defineConfig({
 					if (chunkInfo.name === 'main') {
 						return 'main.cjs';
 					}
-					if (chunkInfo.name === 'plugins/claude-code') {
-						return 'plugins/claude-code.cjs';
+					if (chunkInfo.name.startsWith('plugins/')) {
+						return `${chunkInfo.name}.cjs`;
 					}
 					return '[name].cjs';
 				},
 				chunkFileNames: '[name]-[hash].cjs',
 				format: 'cjs',
+				exports: 'auto',
 			},
 		},
 		outDir: '.vite/build',

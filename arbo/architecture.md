@@ -33,15 +33,16 @@ src/
 
 plugins/          # Plugins directory (outside src/ to emphasize separation)
 ├── core/         # Plugin system core
-│   ├── pluginInterface.ts    # Re-exports from src/shared/types/plugins.ts
-│   ├── PluginRegistry.ts     # Plugin lifecycle management
-│   ├── PluginContext.tsx     # React context provider
-│   └── initializePlugins.ts  # Built-in plugin initialization
-├── main/         # Plugin IPC handler registry
-├── preload/      # Plugin preload API registry
-└── claude/       # Claude Code integration plugin
+│   ├── interface.ts          # Re-exports from src/shared/types/plugins.ts
+│   ├── renderer/
+│   │   ├── Registry.ts       # Plugin lifecycle management
+│   │   ├── Provider.tsx      # React context provider
+│   │   └── initializePlugins.ts  # Built-in plugin initialization
+│   ├── main/     # Plugin IPC handler registry
+│   ├── worker/   # Plugin worker thread
+│   └── preload/  # Plugin preload API registry
+└── claude-code/  # Claude Code integration plugin
     ├── main/     # IPC handlers for Claude CLI interaction
-    ├── preload/  # Preload API for renderer access
     └── renderer/ # React components and plugin implementation
 ```
 
@@ -253,28 +254,40 @@ import { TreeNode, NodeStatus, Document } from '../../../shared/types';
 
 ## File Naming Conventions
 
-**Decision:** Follow TypeScript/React 2025 best practices for file naming.
+**Decision:** Hybrid convention - React convention for components, TypeScript convention for classes and functions.
 
 **Conventions:**
-- **Components:** PascalCase matching component name
+- **React Components:** PascalCase matching component name
   - ✅ `Tree.tsx`, `Node.tsx`, `StatusCheckbox.tsx`
-- **Hooks:** camelCase starting with "use"
-  - ✅ `useTreeListeners.ts`, `useNodeContent.ts`
-- **Services:** camelCase with "Service" suffix
-  - ✅ `fileService.ts`, `hotkeyService.ts`
-- **Store actions:** camelCase with "Actions" suffix
-  - ✅ `nodeActions.ts`, `fileActions.ts`
-- **Types:** camelCase or by domain
+- **Classes:** PascalCase matching class name
+  - ✅ `PluginManager.ts`, `PluginRegistry.ts`, `PluginContext.ts`
+  - ✅ `services/Storage.ts`, `services/Menu.ts` (directory provides "Service" context)
+- **Functions/Utilities:** camelCase describing functionality
+  - ✅ `useTreeListeners.ts` (hooks start with "use")
+  - ✅ `nodeActions.ts`, `fileActions.ts` (action creators)
+  - ✅ `initializePlugins.ts` (initialization functions)
+  - ✅ `loadHandlers.ts` (utility functions)
+- **Types:** camelCase by domain
   - ✅ `node.ts`, `document.ts`, `config.ts`
 - **Index files:** Always lowercase
   - ✅ `index.ts`
 
+**General Rules:**
+- Don't repeat directory names in file names
+  - ✅ `plugins/core/PluginManager.ts` (not `plugins/core/PluginCoreManager.ts`)
+  - ✅ `platforms/electron/services/Storage.ts` (not `platforms/electron/ElectronStorageService.ts`)
+  - ✅ `renderer/services/cursor.ts` (not `renderer/services/cursorService.ts`)
+- Directory structure provides context, file names should be concise
+- When directory name already describes the file type (services/, components/, actions/), omit that suffix from file name
+
 **Rationale:**
-- Consistency across the codebase
-- Matches 2025 React/TypeScript conventions
-- File names match exported functions/classes
-- Avoids case-sensitivity issues across operating systems
-- Clear distinction between components (PascalCase) and utilities (camelCase)
+- Hybrid approach appropriate for Electron (front-end + Node.js)
+- React convention (PascalCase components) for renderer process
+- TypeScript convention (PascalCase classes, camelCase functions) for main/worker processes
+- File names match exported symbols (class `Storage` in `services/Storage.ts`)
+- Clear distinction: Components and Classes use PascalCase, functions use camelCase
+- Avoids applying front-end conventions to Node.js code
+- Eliminates redundancy: directory context makes prefixes unnecessary
 
 ## State Management Architecture
 
@@ -526,11 +539,15 @@ export const createPersistenceActions = (get, set, storage): PersistenceActions 
 Both action creators use dependency injection for the storage service:
 
 ```typescript
+// Platform layer exports with abstraction
+// src/platforms/index.ts: export { Storage as StorageService }
+import { StorageService } from '@platform';  // Actually imports Storage class
+
 // Store instantiates and injects
-const storageService = new StorageService();  // from @platform
+const storageService = new StorageService();
 const actions = createFileActions(get, storageService);
 
-// Actions receive injected dependency
+// Actions receive injected dependency (interface type)
 export const createFileActions = (get, storage: StorageService) => ({
   // Use storage parameter, not direct import
 });
@@ -667,17 +684,19 @@ npm run test:coverage     # Run tests with coverage report
 **Structure:**
 ```
 src/renderer/services/
-├── interfaces.ts           # Service interface definitions
 ├── cursorService.ts        # DOM Selection API manipulation
-├── fileService.ts          # IPC communication for file operations
-├── hotkeyService.ts        # Keyboard event handling
 └── logger.ts               # Logging and toast notifications
 
 src/platforms/
+├── index.ts                # Platform services exports
 └── electron/               # Electron-specific implementations
-    ├── storage.ts          # ElectronStorageService
-    ├── menu.ts             # ElectronMenuService
-    └── error.ts            # ElectronErrorService
+    └── services/           # Platform service implementations
+        ├── Storage.ts      # Storage class
+        ├── Menu.ts         # Menu class
+        └── ErrorHandler.ts # ErrorHandler class
+
+src/shared/
+└── interfaces.ts           # Shared interface definitions
 ```
 
 **Example:**
@@ -940,17 +959,33 @@ src/shared/types/
 └── plugins.ts              # Plugin interface definitions (shared contract)
 
 plugins/core/
-├── PluginManager.ts        # IPC coordination (renderer → main → worker)
-├── PluginRegistry.ts       # Renderer-side tracking (UI state, enable/disable)
-├── PluginCommandRegistry.ts # Command execution (renderer process)
-├── PluginProxy.ts          # Forwards calls to worker via IPC
-├── main/pluginWorker/      # Worker thread (plugin execution, API, logger)
-├── preload/                # IPC bridge
-└── initializePlugins.ts    # Plugin initialization
+├── renderer/
+│   ├── Manager.ts          # IPC coordination (renderer → main → worker)
+│   ├── Registry.ts         # Renderer-side tracking (UI state, enable/disable)
+│   ├── CommandRegistry.ts  # Command execution (renderer process)
+│   ├── Proxy.ts            # Forwards calls to worker via IPC
+│   └── initializePlugins.ts # Plugin initialization
+├── main/                   # Worker thread coordination
+│   ├── WorkerConnection.ts # Worker lifecycle management
+│   ├── IPCBridge.ts        # Plugin API handler registry
+│   ├── ipcSystemHandlers.ts # Plugin system lifecycle handlers
+│   ├── loadHandlers.ts     # Dynamic handler loading
+│   └── registerHandlers.ts # Handler registration
+├── worker/                 # Worker thread (plugin execution)
+│   ├── API.ts              # Low-level IPC
+│   ├── Context.ts          # Plugin API surface
+│   ├── worker.ts           # Worker thread entry point
+│   └── services/
+│       └── Logger.ts       # Worker logging
+├── shared/                 # Shared types
+│   ├── interface.ts        # Plugin interfaces
+│   ├── config.ts           # Config types
+│   └── apiVersion.ts       # API version constants
+└── preload/                # IPC bridge
+    └── preload.ts          # Secure IPC bridge
 
 plugins/[plugin-name]/
 ├── main/                   # Plugin implementation + IPC handlers
-├── preload/                # IPC bridge
 └── renderer/               # Command handlers + UI components
 ```
 
@@ -968,14 +1003,14 @@ Renderer ←→ IPC ←→ Main Process ←→ Worker Thread
 ```
 
 **Key Components:**
-- **PluginManager (renderer):** Coordinates worker lifecycle via IPC, creates PluginProxy instances
-- **PluginRegistry (renderer):** Tracks enabled plugins, updates UI state (Zustand store)
-- **PluginCommandRegistry (renderer):** Maps plugin commands to renderer actions
-- **PluginProxy (renderer):** Forwards extension point calls to worker via IPC
-- **PluginWorkerConnection (main):** Manages worker thread lifecycle
-- **pluginWorker.worker (worker):** Loads and executes plugins in isolation
-- **PluginContext (worker):** Typed API surface that provides secure methods to plugins
-- **PluginIPCBridge (main):** Secure IPC handler registry for plugin-accessible APIs
+- **Manager (renderer):** Coordinates worker lifecycle via IPC, creates Proxy instances (Manager.ts)
+- **Registry (renderer):** Tracks enabled plugins, updates UI state (Registry.ts - Zustand store)
+- **CommandRegistry (renderer):** Maps plugin commands to renderer actions (CommandRegistry.ts)
+- **Proxy (renderer):** Forwards extension point calls to worker via IPC (Proxy.ts)
+- **WorkerConnection (main):** Manages worker thread lifecycle (WorkerConnection.ts)
+- **worker (worker):** Loads and executes plugins in isolation (worker.ts)
+- **Context (worker):** Typed API surface that provides secure methods to plugins (Context.ts)
+- **IPCBridge (main):** Secure IPC handler registry for plugin-accessible APIs (IPCBridge.ts)
 
 **Plugin Extension Points:**
 ```typescript

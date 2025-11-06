@@ -27,23 +27,75 @@ Renderer ←→ IPC ←→ Main Process ←→ Worker Thread
 - Commands run in renderer process (have access to UI state)
 - Plugin crashes don't affect the renderer
 
+## Core Plugin Directory Structure
+
+The plugin core system is organized by Electron process model:
+
+```
+plugins/core/
+├── renderer/               # Renderer process code
+│   ├── Provider.tsx        # Plugin initialization orchestration
+│   ├── Manager.ts          # Worker thread coordination
+│   ├── Registry.ts         # UI state tracking
+│   ├── CommandRegistry.ts  # Command execution
+│   └── initializePlugins.ts      # Plugin discovery
+├── main/                   # Main process code
+│   ├── WorkerConnection.ts       # Worker lifecycle
+│   ├── ipcSystemHandlers.ts      # Plugin system lifecycle handlers
+│   ├── IPCBridge.ts              # Plugin API handler registry
+│   ├── loadHandlers.ts           # Dynamic handler loading
+│   └── registerHandlers.ts       # Handler registration
+├── worker/                 # Worker thread code
+│   ├── worker.ts                 # Plugin execution
+│   ├── Context.ts                # Plugin API
+│   ├── API.ts                    # Low-level IPC
+│   └── services/
+│       └── Logger.ts             # Logging
+├── shared/                 # Shared types
+│   ├── interface.ts              # Plugin interfaces
+│   ├── config.ts                 # Config types
+│   └── apiVersion.ts             # Version constants
+└── preload/                # Preload bridge
+    └── preload.ts                # Secure IPC bridge
+```
+
 ## Plugin Structure
 
-A plugin is organized into three main directories:
+A plugin is organized into the following structure:
 
 ```
 plugins/my-plugin/
+├── plugin.config.ts        # Plugin configuration (for auto-discovery)
 ├── manifest.json           # Plugin metadata (lazy loading)
 ├── main/
 │   ├── MyPlugin.ts         # Plugin implementation (runs in worker)
-│   └── myPluginIpcHandlers.ts  # Main process IPC handlers
-├── preload/
-│   └── myPluginPreload.ts  # IPC bridge
+│   ├── register.ts         # IPC handler registration wrapper
+│   └── myPluginIpcHandlers.ts  # Main process IPC handlers (optional)
 └── renderer/
-    └── commands.ts         # Command handlers (renderer process)
+    ├── register.ts         # Command registration wrapper
+    └── myPluginCommands.ts # Command handlers (renderer process)
 ```
 
+**Key Files:**
+
+- **plugin.config.ts** - Tells the build system and runtime where to find your plugin. Required for auto-discovery. Contains paths to built bundle and register files.
+- **manifest.json** - Plugin metadata (name, version, description, etc.)
+- **main/register.ts** - Exports `registerIpcHandlers()` wrapper function (optional, only if you have IPC handlers)
+- **main/myPluginIpcHandlers.ts** - Exports `registerMyPluginIpcHandlers()` function that registers IPC handlers
+- **renderer/register.ts** - Exports `registerCommands()` wrapper function for command registration
+- **renderer/myPluginCommands.ts** - Exports `registerMyPluginCommands()` function for command registration
+
 **Lazy Loading:** Plugin code is loaded on-demand when first used, improving startup performance.
+
+**Module Resolution:**
+- **Main process**: Handlers loaded from built bundle (`.cjs`) at runtime via dynamic import
+- **Renderer process**: Commands loaded from source (`.ts`) during development, Vite handles TypeScript compilation
+
+**Naming Convention:**
+- Follow the hybrid TypeScript/React convention (see `arbo/architecture.md`)
+- Don't repeat directory names in file names
+  - ✅ `plugins/claude-code/main/ClaudeCodePlugin.ts` (not `plugins/claude-code/main/ClaudeCodeClaudePlugin.ts`)
+- Directory structure provides context, keep file names concise
 
 ## Core Interfaces
 
@@ -108,7 +160,7 @@ interface PluginExtensionPoints {
 
 ## Extension Point Data Types
 
-All extension points return **serializable data structures** (no functions). This design enables future process isolation via worker threads.
+All extension points return **serializable data structures** (no functions). This design enables process isolation via worker threads.
 
 ### PluginContextMenuItem
 
@@ -145,8 +197,8 @@ Since extension points return serializable data, user actions are handled via th
 ### Registering Commands
 
 ```typescript
-// plugins/my-plugin/renderer/commands.ts
-import { PluginCommandRegistry } from '../../core/PluginCommandRegistry';
+// plugins/my-plugin/renderer/myPluginCommands.ts
+import { PluginCommandRegistry } from '../../core/renderer/CommandRegistry';
 
 export function registerMyPluginCommands(): void {
   PluginCommandRegistry.register(
@@ -170,30 +222,27 @@ interface CommandContext {
 
 ## PluginContext API
 
-The `PluginContext` class provides a **typed, secure API surface** for plugins to access main process functionality. This replaces the previous open `invokeIPC()` method, which allowed plugins to call any IPC channel.
+The `PluginContext` class provides a **generic, secure API surface** for plugins to access main process functionality via IPC.
 
 **Security Benefits:**
-- Only approved APIs are exposed to plugins
-- Type-safe with full TypeScript autocomplete
-- Clear documentation of available capabilities
-- Prevents plugins from accessing internal IPC channels
+- Only registered IPC handlers are accessible to plugins
+- Type-safe with TypeScript generics
+- Plugin isolation prevents access to internal channels
+- All communication goes through the secure PluginIPCBridge
 
 **Available Methods:**
 
 ```typescript
 class PluginContext {
-  // Get the current project's file path
-  async getProjectPath(): Promise<string>
-
-  // List Claude Code sessions for a project
-  async listClaudeSessions(projectPath: string): Promise<ClaudeCodeSession[]>
-
-  // Send context to a Claude Code session
-  async sendToClaudeSession(
-    sessionId: string,
-    context: string,
-    projectPath: string
-  ): Promise<void>
+  /**
+   * Generic IPC invocation method that plugins can use to call main process handlers.
+   * The handler must be registered via pluginIPCBridge.registerHandler() in the main process.
+   *
+   * @param channel - The IPC channel name (e.g., 'plugin-name:operation')
+   * @param args - Arguments to pass to the handler
+   * @returns Promise resolving to the handler's return value
+   */
+  async invokeIPC<T = unknown>(channel: string, ...args: unknown[]): Promise<T>
 }
 ```
 
@@ -209,13 +258,16 @@ export class MyPlugin implements Plugin {
   }
 
   async initialize(): Promise<void> {
-    // Use typed methods with full autocomplete
-    this.projectPath = await this.context.getProjectPath();
-    const sessions = await this.context.listClaudeSessions(this.projectPath);
-    logger.info(`Found ${sessions.length} sessions`, 'My Plugin');
+    // Call any IPC handler registered by your plugin in the main process
+    this.projectPath = await this.context.invokeIPC<string>('my-plugin:get-config');
+    const data = await this.context.invokeIPC<MyData[]>('my-plugin:fetch-data', this.projectPath);
+    logger.info(`Loaded ${data.length} items`, 'My Plugin');
   }
 }
 ```
+
+**Note:** Your plugin must register its IPC handlers in the main process before they can be called.
+See the "IPC Communication" section below for details.
 
 ## Creating a Plugin
 
@@ -224,10 +276,33 @@ export class MyPlugin implements Plugin {
 ```bash
 mkdir -p plugins/my-plugin/renderer
 mkdir -p plugins/my-plugin/main
-mkdir -p plugins/my-plugin/preload
 ```
 
-### Step 2: Create Manifest
+### Step 2: Create Plugin Configuration
+
+Create `plugins/my-plugin/plugin.config.ts`:
+
+```typescript
+import type { PluginConfig } from '../core/shared/config';
+
+export const config: PluginConfig = {
+  name: 'my-plugin',
+  pluginPath: '.vite/build/plugins/my-plugin.cjs',
+  manifestPath: 'plugins/my-plugin/manifest.json',
+  mainHandlersPath: './plugins/my-plugin.cjs',
+  rendererCommandsPath: '../../my-plugin/renderer/register',
+};
+```
+
+**Note:** This configuration file enables automatic plugin discovery. The properties are:
+- `pluginPath` - Where Vite builds your plugin (relative to app root)
+- `manifestPath` - Location of your manifest.json (relative to app root)
+- `mainHandlersPath` - Path to built plugin bundle for IPC handler loading (optional, omit if no IPC handlers)
+- `rendererCommandsPath` - Relative path to renderer register file (resolved from `plugins/core/renderer/`)
+
+**Important:** For the main process, handlers are dynamically imported from the built bundle at runtime. For the renderer process, Vite handles TypeScript imports during development. You need to create register files that export the registration functions.
+
+### Step 3: Create Manifest
 
 Create `plugins/my-plugin/manifest.json`:
 
@@ -246,7 +321,7 @@ Create `plugins/my-plugin/manifest.json`:
 
 **Note:** Always specify `apiVersion` matching the current plugin API (currently `1.0.0`). Plugins with incompatible API versions will be rejected at load time.
 
-### Step 3: Define Plugin Class
+### Step 4: Define Plugin Class
 
 **Note:** Plugin runs in worker thread - no window, document, or React APIs available.
 
@@ -258,11 +333,11 @@ import {
   PluginExtensionPoints,
   PluginContextMenuItem,
   NodeContext,
-} from '../../core/pluginInterface';
-import { PluginContext } from '../../core/main/pluginWorker/PluginContext';
+} from '../../core/shared/interface';
+import { PluginContext } from '../../core/worker/Context';
 import { TreeNode } from '../../../src/shared/types';
 import manifest from '../manifest.json';
-import { logger } from '../../core/main/pluginWorker/workerLogger';
+import { logger } from '../../core/worker/services/Logger';
 
 export class MyPlugin implements Plugin {
   manifest: PluginManifest = manifest;
@@ -303,13 +378,39 @@ export class MyPlugin implements Plugin {
 }
 
 export default MyPlugin;
+
+// Re-export register function for dynamic import (only if you have IPC handlers)
+export { registerIpcHandlers } from './register';
 ```
 
-### Step 4: Register Commands
+### Step 5: Create Register Files
+
+Create `plugins/my-plugin/main/register.ts` (only if you have IPC handlers):
 
 ```typescript
-// plugins/my-plugin/renderer/commands.ts
-import { PluginCommandRegistry } from '../../core/PluginCommandRegistry';
+import { registerMyPluginIpcHandlers } from './myPluginIpcHandlers';
+
+export function registerIpcHandlers(): void {
+  registerMyPluginIpcHandlers();
+}
+```
+
+Create `plugins/my-plugin/renderer/register.ts`:
+
+```typescript
+import { registerMyPluginCommands } from './myPluginCommands';
+
+export function registerCommands(): void {
+  registerMyPluginCommands();
+}
+```
+
+### Step 6: Create Command Registration
+
+Create `plugins/my-plugin/renderer/myPluginCommands.ts`:
+
+```typescript
+import { PluginCommandRegistry } from '../../core/renderer/CommandRegistry';
 import { logger } from '../../../src/renderer/services/logger';
 
 export function registerMyPluginCommands(): void {
@@ -319,49 +420,83 @@ export function registerMyPluginCommands(): void {
 }
 ```
 
-### Step 5: Build Plugin
+This function will be called via the register file.
 
-Add plugin to vite.main.config.ts:
+### Step 7: Create IPC Handler Registration (Optional)
+
+**Only needed if your plugin has IPC handlers for main process operations.**
+
+Create `plugins/my-plugin/main/myPluginIpcHandlers.ts`:
 
 ```typescript
-build: {
-  lib: {
-    entry: {
-      main: 'src/main/main.ts',
-      'pluginWorker.worker': 'plugins/core/main/pluginWorker/pluginWorker.worker.ts',
-      'plugins/my-plugin': 'plugins/my-plugin/main/MyPlugin.ts',
-    },
-    formats: ['cjs'],
-  },
+import { pluginIPCBridge } from '../../core/main/IPCBridge';
+
+export function registerMyPluginIpcHandlers(): void {
+  pluginIPCBridge.registerHandler('my-plugin:get-data', async () => {
+    // Main process logic here
+    return { data: 'example' };
+  });
 }
 ```
 
-### Step 6: Register Plugin
+This function will be called via the register file created in Step 5.
 
-```typescript
-// plugins/core/initializePlugins.ts
-import { PluginManager } from './PluginManager';
-import { PluginRegistry } from './PluginRegistry';
-import { registerMyPluginCommands } from '../my-plugin/renderer/commands';
+**If your plugin doesn't need IPC handlers**, omit the `mainHandlersPath` property from your `plugin.config.ts` and don't create the main register file or re-export line.
 
-export async function initializeBuiltinPlugins(): Promise<void> {
-  await PluginManager.start();
+### Step 8: Build and Run
 
-  // Register commands in renderer
-  registerMyPluginCommands();
+That's it! Your plugin is now ready. The system will automatically:
 
-  // Load plugin with lazy loading (code loads on first use)
-  const myPlugin = await PluginManager.registerPlugin({
-    name: 'my-plugin',
-    pluginPath: '.vite/build/plugins/my-plugin.cjs',
-    manifestPath: 'plugins/my-plugin/manifest.json',
-  });
+1. **Discover your plugin** via `plugin.config.ts`
+2. **Build it** with Vite (no manual config changes needed)
+3. **Load it** at runtime (no core modifications needed)
 
-  await PluginRegistry.register(myPlugin);
-}
+Run your dev server or build:
+
+```bash
+npm start       # Development mode
+npm run build   # Production build
 ```
 
 **Note:** Plugin code is lazy-loaded on first use. Only the manifest is read during registration for fast startup.
+
+## How Plugin Discovery Works
+
+The plugin system uses automatic discovery to eliminate manual configuration:
+
+### Build Time (Vite)
+
+`vite.main.config.ts` scans for all `plugin.config.ts` files:
+
+```typescript
+const pluginDirs = fs.readdirSync('plugins')
+  .filter(dirent => dirent.isDirectory() && dirent.name !== 'core');
+
+for (const pluginName of pluginDirs) {
+  const configPath = path.join('plugins', pluginName, 'plugin.config.ts');
+  if (fs.existsSync(configPath)) {
+    // Auto-add to Vite build entries
+  }
+}
+```
+
+### Runtime (Application)
+
+`plugins/plugins.config.ts` uses Vite's glob imports:
+
+```typescript
+const pluginConfigModules = import.meta.glob('./*/plugin.config.ts', { eager: true });
+
+export const PLUGINS = Object.values(pluginConfigModules).map(
+  (module) => module.config
+);
+```
+
+This means:
+- ✅ Add a plugin = create a `plugin.config.ts` file
+- ✅ Remove a plugin = delete the plugin directory
+- ✅ No core file modifications needed
+- ✅ No build config changes needed
 
 ## Working with Node Context
 
@@ -403,27 +538,25 @@ private getContextMenuItems(
 
 The plugin system uses a dedicated **PluginIPCBridge** to safely expose IPC handlers to plugin worker threads without relying on Electron's private APIs.
 
+**How PluginContext and PluginIPCBridge relate:** PluginContext provides the high-level typed API that plugins use, while PluginIPCBridge is the underlying infrastructure that makes those API calls work. When you call a PluginContext method, it uses `invokeIPC()` internally to communicate through PluginIPCBridge to the main process.
+
 **Note:** Plugins should use the typed methods from `PluginContext` (see PluginContext API section above) rather than calling IPC handlers directly. This section documents how to add new APIs to PluginContext if needed.
 
 ### Main Process Handler
 
-Plugin IPC handlers must be registered with **both** `ipcMain` (for renderer access) and `pluginIPCBridge` (for plugin worker thread access):
+Plugin IPC handlers are registered **only** through the `pluginIPCBridge`. This ensures all plugins (builtin and third-party) use the same secure communication mechanism:
 
 ```typescript
 // plugins/my-plugin/main/myPluginIpcHandlers.ts
-import { ipcMain } from 'electron';
-import { pluginIPCBridge } from '../../core/main/PluginIPCBridge';
+import { pluginIPCBridge } from '../../core/main/IPCBridge';
 
 export function registerMyPluginIpcHandlers(): void {
-  // Define handler once (use rest parameters for pluginIPCBridge compatibility)
+  // Define handler (use rest parameters for pluginIPCBridge compatibility)
   const doSomethingHandler = async (_: unknown, ...args: unknown[]) => {
     const arg = args[0] as string;
-    // Main process logic
+    // Main process logic using Node.js/Electron APIs
     return { success: true };
   };
-
-  // Register with ipcMain for renderer process
-  ipcMain.handle('my-plugin:do-something', doSomethingHandler);
 
   // Register with pluginIPCBridge for plugin worker threads
   pluginIPCBridge.registerHandler('my-plugin:do-something', doSomethingHandler);
@@ -435,36 +568,16 @@ export function registerMyPluginIpcHandlers(): void {
 - **Type-safe**: Explicit handler registry with proper TypeScript types
 - **Security**: Only explicitly registered handlers are accessible to plugins
 - **Control**: Can add middleware, validation, rate limiting, etc.
+- **Consistency**: All plugins use the same communication mechanism
 
-### Preload Script
-
-Add to plugins/preload/pluginPreload.ts:
-
-```typescript
-import { myPluginPreloadAPI } from '../my-plugin/preload/myPluginPreload';
-
-export const pluginPreloadAPI = {
-  // ... other plugins
-  ...myPluginPreloadAPI,
-};
-```
-
-```typescript
-// plugins/my-plugin/preload/myPluginPreload.ts
-import { ipcRenderer } from 'electron';
-
-export const myPluginPreloadAPI = {
-  myPluginDoSomething: (arg: string) =>
-    ipcRenderer.invoke('my-plugin:do-something', arg),
-};
-```
+**Note:** The `pluginIPCBridge` provides a controlled API surface for plugin communication, ensuring plugins can only access explicitly approved functionality.
 
 ### Adding to PluginContext API
 
 After registering IPC handlers, add a typed method to `PluginContext`:
 
 ```typescript
-// plugins/core/main/pluginWorker/PluginContext.ts
+// plugins/core/worker/Context.ts
 export class PluginContext {
   // ... existing methods
 
@@ -482,17 +595,6 @@ async initialize(): Promise<void> {
   const result = await this.context.doSomething('hello');
   logger.info(`Result: ${result.success}`, 'My Plugin');
 }
-```
-
-### Command Usage (Renderer)
-
-Commands run in renderer and can use window.electron:
-
-```typescript
-PluginCommandRegistry.register('my-plugin:my-command', async (context) => {
-  const result = await window.electron.myPluginDoSomething('hello');
-  logger.info(`Result: ${result.success}`, 'My Plugin');
-});
 ```
 
 ## Accessing Node Metadata
@@ -515,6 +617,8 @@ interface TreeNode {
 Example:
 
 ```typescript
+import { PluginCommandRegistry } from '../../core/renderer/CommandRegistry';
+
 PluginCommandRegistry.register('my-plugin:check-status', async (context) => {
   const { node } = context;
 
@@ -548,23 +652,36 @@ private getNodeIndicator(node: TreeNode): PluginNodeIndicator | null {
 
 Plugins follow a clear lifecycle with lazy loading:
 
-1. **Registration** - Only manifest.json is read, plugin code not loaded yet
-2. **First Use** - Plugin code is lazy-loaded when extension point is called
-3. **Construction** - Plugin class is instantiated
-4. **Initialization** - `initialize()` is called automatically
-5. **Active** - Extension points are invoked as needed
-6. **Disposal** - `dispose()` is called on shutdown
+1. **Registration Phase** (Startup)
+   - `PluginManager.registerPlugin()` - Sends manifest to worker thread (no code loaded yet)
+   - `PluginRegistry.register()` - Creates PluginProxy in renderer for UI state tracking
+
+2. **Initialization Phase** (Triggered after registration)
+   - `PluginManager.initializePlugins()` - Sends IPC message to worker
+   - Worker loads plugin code and instantiates plugin class
+   - Worker calls `plugin.initialize()` in the isolated thread
+   - Plugin can now use `context.invokeIPC()` to access main process functionality
+
+3. **Active Phase** (Runtime)
+   - Extension points invoked via PluginProxy → IPC → Worker
+   - Commands executed in renderer process (have UI access)
+
+4. **Disposal Phase** (Shutdown)
+   - `PluginManager.disposePlugins()` - Sends IPC to worker
+   - Worker calls `plugin.dispose()` on each plugin
+   - Cleanup resources, unsubscribe, clear timers
 
 ```typescript
 export class MyPlugin implements Plugin {
   async initialize(): Promise<void> {
-    // Setup: subscribe to stores, initialize state, etc.
-    // This runs only on first use, not at startup
+    // This runs in the worker thread after registration
+    // Use context.invokeIPC() to access main process functionality
     logger.info('Plugin starting...', 'My Plugin');
   }
 
   dispose(): void {
     // Cleanup: unsubscribe, clear timers, etc.
+    // This runs in the worker thread during shutdown
     logger.info('Plugin stopping...', 'My Plugin');
   }
 }
@@ -573,8 +690,7 @@ export class MyPlugin implements Plugin {
 ### Lazy Loading Benefits
 
 - **Fast Startup**: Only manifest files are loaded at startup
-- **Memory Efficient**: Plugin code loaded only when needed
-- **Auto-Initialize**: Plugins initialize automatically on first use
+- **Memory Efficient**: Plugin code loaded only when initialization is triggered
 - **Cached**: Once loaded, plugins stay in memory for subsequent calls
 
 ## Testing Plugins
@@ -618,49 +734,94 @@ describe('MyPlugin', () => {
 5. **Cleanup**: Always implement `dispose()` to clean up resources
 6. **TypeScript**: Use strict typing for all plugin code
 
-## Example: ClaudeCodePlugin
+## Example: Claude Code Plugin
 
-See `plugins/claude-code/` for a complete working example that:
+See `plugins/claude-code/` for a complete working example of a builtin plugin that:
 - Runs in isolated worker thread
-- Uses pluginAPI.invokeIPC() to communicate with main process
-- Adds context menu items for sending nodes to Claude Code
-- Shows AI indicators on nodes with AI context
+- Uses `context.invokeIPC()` to communicate with main process (generic API)
+- Adds context menu items for sending nodes to Claude Code sessions
+- Shows AI indicators on nodes with session metadata
 - Registers multiple commands in renderer
 
 Key files:
-- `plugins/claude-code/manifest.json` - Plugin metadata (lazy loading)
-- `plugins/claude-code/main/ClaudeCodePlugin.ts` - Plugin (runs in worker)
-- `plugins/claude-code/renderer/claudeCodeCommands.ts` - Command registration (renderer)
-- `plugins/claude-code/main/claudeCodeIpcHandlers.ts` - Main process handlers
-- `plugins/claude-code/preload/claudeCodePreload.ts` - IPC bridge
+- `plugins/claude-code/plugin.config.ts` - Plugin configuration with paths to built bundle and register files
+- `plugins/claude-code/manifest.json` - Plugin metadata
+- `plugins/claude-code/main/Plugin.ts` - Plugin implementation (runs in worker, lazy-loaded, re-exports registerIpcHandlers)
+- `plugins/claude-code/main/register.ts` - Thin wrapper that calls IPC handler registration
+- `plugins/claude-code/main/ipcHandlers.ts` - IPC handler registration (main process)
+- `plugins/claude-code/renderer/register.ts` - Thin wrapper that calls command registration
+- `plugins/claude-code/renderer/commands.ts` - Command registration (renderer process)
+
+**Architecture Notes:**
+- The plugin uses the generic `PluginContext.invokeIPC()` method to call main process handlers
+- IPC handlers are dynamically imported from the built bundle at runtime (via `mainHandlersPath`)
+- Command handlers are dynamically imported from source during development (via `rendererCommandsPath`, Vite handles TS)
+- Plugin code remains lazy-loaded - only loaded in worker when first used
+- Register files are thin wrappers that call the actual registration functions
+- No plugin-specific preload layer needed - all communication goes through the generic plugin IPC bridge
+- Plugin is automatically discovered via `plugin.config.ts` - no core modifications needed
+- File naming follows hybrid convention: Classes use PascalCase, functions use camelCase, no redundant directory prefixes
 
 ## Process Isolation Details
 
 The plugin worker architecture provides:
 
-**Worker Thread:**
-- `pluginWorker.worker.ts` - Loads and executes plugins
-- `PluginAPI` - Low-level IPC communication with main process
-- `PluginContext` - Typed API surface injected into plugins, provides secure methods
-- `workerLogger.ts` - Logging from worker to main
+**Worker Thread** (`plugins/core/worker/`):
+- `worker.ts` - Loads and executes plugins
+- `API.ts` - Low-level IPC communication with main process
+- `Context.ts` - Typed API surface injected into plugins, provides secure methods
+- `services/Logger.ts` - Logging from worker to main
 
-**Main Process:**
-- `PluginWorkerConnection.ts` - Manages worker lifecycle
-- `pluginIpcHandlers.ts` - Handles renderer ↔ worker communication
-- `PluginIPCBridge.ts` - Secure registry for plugin-accessible IPC handlers
-- Forwards pluginAPI calls to PluginIPCBridge (no private API access)
+**Main Process** (`plugins/core/main/`):
+- `WorkerConnection.ts` - Manages worker lifecycle
+- `ipcSystemHandlers.ts` - Plugin system lifecycle handlers (start/stop/register/invoke)
+- `IPCBridge.ts` - Plugin API handler registry (what plugins can call)
+- `loadHandlers.ts` - Dynamically loads plugin IPC handlers from built bundles
+- `registerHandlers.ts` - Registers all plugin handlers
+- Forwards pluginAPI calls to IPCBridge (no private API access)
 
-**Renderer Process:**
-- `PluginProxy.ts` - Proxies calls to worker via IPC
-- `PluginManager.ts` - IPC coordination, creates PluginProxy instances
-- `PluginRegistry.ts` - Tracks enabled plugins, updates UI state
-- `PluginCommandRegistry.ts` - Executes commands with renderer access
+**Renderer Process** (`plugins/core/renderer/`):
+- `Proxy.ts` - Proxies extension point calls to worker via IPC (initialize/dispose are stubs)
+- `Manager.ts` - Worker thread coordination via IPC (start, register, initialize, dispose plugins)
+- `Registry.ts` - Tracks plugin proxies for UI state (enabled/disabled status, updates Zustand store)
+- `CommandRegistry.ts` - Executes commands with renderer access (runs in renderer, not worker)
+- `initializePlugins.ts` - Dynamically loads plugin commands from source files (Vite handles TS)
+
+**Shared Types** (`plugins/core/shared/`):
+- `interface.ts` - Plugin, PluginManifest, PluginExtensionPoints interfaces
+- `config.ts` - PluginConfig type for plugin.config.ts files
+- `apiVersion.ts` - API version constants
+
+**Dual Tracking System:**
+- `Manager` - Manages worker thread lifecycle and plugin IPC communication (Manager.ts)
+- `Registry` - Manages UI state and plugin proxies for the renderer (Registry.ts)
+- Both track the same plugins but serve different purposes (worker communication vs UI state)
 
 **Benefits:**
 - Plugin crashes isolated from renderer
 - No direct DOM/React access from plugins
 - Security: Untrusted code runs in sandbox
 - Performance: Heavy operations don't block UI
+
+### Security Architecture
+
+The plugin system is secure by design through process isolation:
+
+**What plugins CAN access:**
+- `PluginContext` API (only `invokeIPC()` method)
+- IPC handlers explicitly registered via `pluginIPCBridge.registerHandler()`
+- Node.js standard library (fs, path, etc.)
+- npm packages they declare as dependencies
+
+**What plugins CANNOT access:**
+- Electron main process APIs (`ipcMain`, `BrowserWindow`, `app`, etc.)
+  - These are `undefined` in worker threads even if imported
+- Direct access to the renderer process or DOM
+- Other plugins' internal state
+- Application's internal IPC channels
+
+**Why it's secure:**
+Plugins run in Node.js worker threads, which are completely isolated from Electron's main process. Even if a plugin attempts `require('electron').ipcMain`, it receives `undefined` because Electron's main process APIs don't exist in worker context. The only way for plugins to communicate is through the controlled `PluginContext.invokeIPC()` method, which only accesses handlers explicitly registered in `PluginIPCBridge`.
 
 ## API Versioning
 

@@ -1,8 +1,20 @@
 import { ipcMain, app } from 'electron';
 import path from 'node:path';
-import { PluginWorkerConnection } from './pluginWorker/PluginWorkerConnection';
-import { MessageType } from './pluginWorker/types/messages';
+import { PluginWorkerConnection } from './WorkerConnection';
+import { MessageType } from '../worker/types/messages';
 import { logger } from '../../../src/main/services/logger';
+
+/**
+ * Registers system-level IPC handlers for plugin lifecycle management.
+ *
+ * These handlers enable the renderer to control the plugin system itself:
+ * - plugin:start/stop - Start/stop the worker thread
+ * - plugin:register/unregister - Load/unload plugins
+ * - plugin:initialize-all/dispose-all - Lifecycle management
+ * - plugin:invoke-extension - Execute plugin extension points
+ *
+ * Flow: Renderer (UI) → Electron IPC → Main (this file) → Worker (plugin execution)
+ */
 
 let pluginWorker: PluginWorkerConnection | null = null;
 
@@ -53,10 +65,11 @@ export function registerPluginIpcHandlers(): void {
   ipcMain.handle('plugin:register', async (_, pluginName: string, pluginPath: string, manifestPath: string) =>
     wrapHandler(`Failed to register plugin ${pluginName}`, true, async () => {
       const appPath = app.getAppPath();
-      const absolutePluginPath = path.isAbsolute(pluginPath)
+      const isAbsolute = path.isAbsolute(manifestPath);
+      const absolutePluginPath = isAbsolute
         ? pluginPath
         : path.resolve(appPath, pluginPath);
-      const absoluteManifestPath = path.isAbsolute(manifestPath)
+      const absoluteManifestPath = isAbsolute
         ? manifestPath
         : path.resolve(appPath, manifestPath);
 

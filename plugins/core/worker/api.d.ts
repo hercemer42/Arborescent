@@ -1,4 +1,4 @@
-import { PluginAPI } from './PluginAPI';
+import { PluginAPI } from './API';
 
 declare global {
   // TypeScript requires 'var' for global ambient declarations

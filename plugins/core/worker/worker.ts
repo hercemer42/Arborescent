@@ -1,10 +1,10 @@
 import { parentPort } from 'node:worker_threads';
 import { pathToFileURL } from 'node:url';
 import { PluginMessage, RendererMessage, MessageType, PluginManifest } from './types/messages';
-import { Plugin } from '../../pluginInterface';
-import { logger } from './workerLogger';
-import { PluginAPI } from './PluginAPI';
-import { PluginContext } from './PluginContext';
+import { Plugin } from '../shared/interface';
+import { logger } from './services/Logger';
+import { PluginAPI } from './API';
+import { PluginContext } from './Context';
 import {
   RegisterPluginPayloadSchema,
   UnregisterPluginPayloadSchema,

@@ -11,15 +11,6 @@ export const getCursorPosition = (element: HTMLElement): number => {
   return preCaretRange.toString().length;
 };
 
-export const getVisualCursorPosition = (): number => {
-  const selection = window.getSelection();
-  if (!selection || selection.rangeCount === 0) return 0;
-
-  const range = selection.getRangeAt(0);
-  const rect = range.getBoundingClientRect();
-  return rect.left;
-};
-
 export const setCursorPosition = (element: HTMLElement, position: number) => {
   const range = document.createRange();
   const selection = window.getSelection();
@@ -99,6 +90,15 @@ export const setCursorToVisualPosition = (element: HTMLElement, targetX: number)
 
   setCursorPosition(element, bestPosition);
   return bestPosition;
+};
+
+const getVisualCursorPosition = (): number => {
+  const selection = window.getSelection();
+  if (!selection || selection.rangeCount === 0) return 0;
+
+  const range = selection.getRangeAt(0);
+  const rect = range.getBoundingClientRect();
+  return rect.left;
 };
 
 export const setCursorToVisualPositionOnLine = (

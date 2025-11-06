@@ -1,9 +1,9 @@
-import { ArboFile } from '../../shared/types';
-import { StorageService, SessionState } from '../../shared/interfaces';
-import { getNextUntitledNumber } from '../../shared/utils/fileNaming';
-import type { PluginPreloadAPI } from '../../../plugins/preload/pluginPreload';
+import { ArboFile } from '../../../shared/types';
+import { StorageService as IStorageService, SessionState } from '../../../shared/interfaces';
+import { getNextUntitledNumber } from '../../../shared/utils/fileNaming';
+import type { PluginPreloadAPI } from '../../../../plugins/core/preload/preload';
 
-export class ElectronStorageService implements StorageService {
+export class Storage implements IStorageService {
   async loadDocument(filePath: string): Promise<ArboFile> {
     const content = await window.electron.readFile(filePath);
     const data = JSON.parse(content) as ArboFile;

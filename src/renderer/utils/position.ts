@@ -42,7 +42,7 @@ export function getPositionFromCoordinates(
   return bestPosition;
 }
 
-export function isAtVerticalBoundary(
+function isAtVerticalBoundary(
   direction: VerticalDirection,
   cursorY: number,
   lineHeight: number,

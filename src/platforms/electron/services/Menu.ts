@@ -1,6 +1,6 @@
-import { MenuService } from '../../shared/interfaces';
+import { MenuService as IMenuService } from '../../../shared/interfaces';
 
-export class ElectronMenuService implements MenuService {
+export class Menu implements IMenuService {
   onMenuNew(callback: () => void): void {
     window.electron.setMenuNewHandler(callback);
   }
