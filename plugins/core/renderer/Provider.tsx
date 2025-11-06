@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
-import { PluginRegistry } from './PluginRegistry';
-import { PluginManager } from './PluginManager';
+import { PluginRegistry } from './Registry';
+import { PluginManager } from './Manager';
 import { registerPlugins, disposePlugins } from './initializePlugins';
 import { logger } from '../../../src/renderer/services/logger';
 

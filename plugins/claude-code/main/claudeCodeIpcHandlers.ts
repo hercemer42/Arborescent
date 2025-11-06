@@ -4,7 +4,7 @@ import os from 'node:os';
 import { spawn, ChildProcess } from 'node:child_process';
 import { logger } from '../../../src/main/services/logger';
 import { ClaudeCodeSession } from '../renderer/claudeCodeTypes';
-import { pluginIPCBridge } from '../../core/main/PluginIPCBridge';
+import { pluginIPCBridge } from '../../core/main/IPCBridge';
 
 function getClaudeProjectDirectory(projectPath: string): string {
   const homeDir = os.homedir();

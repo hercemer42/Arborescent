@@ -1,7 +1,7 @@
 import { ArboFile } from '../../../shared/types';
 import { StorageService as IStorageService, SessionState } from '../../../shared/interfaces';
 import { getNextUntitledNumber } from '../../../shared/utils/fileNaming';
-import type { PluginPreloadAPI } from '../../../../plugins/core/preload/pluginPreload';
+import type { PluginPreloadAPI } from '../../../../plugins/core/preload/preload';
 
 export class Storage implements IStorageService {
   async loadDocument(filePath: string): Promise<ArboFile> {

@@ -2,7 +2,7 @@ import { ipcMain, dialog, BrowserWindow, app } from 'electron';
 import { promises as fs } from 'node:fs';
 import path from 'node:path';
 import { logger } from './logger';
-import { registerPluginHandlers } from '../../../plugins/core/main/registerPluginHandlers';
+import { registerHandlers as registerPluginHandlers } from '../../../plugins/core/main/registerHandlers';
 
 export async function registerIpcHandlers(getMainWindow: () => BrowserWindow | null) {
   await registerPluginHandlers();

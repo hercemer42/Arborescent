@@ -33,15 +33,16 @@ src/
 
 plugins/          # Plugins directory (outside src/ to emphasize separation)
 ├── core/         # Plugin system core
-│   ├── pluginInterface.ts    # Re-exports from src/shared/types/plugins.ts
-│   ├── PluginRegistry.ts     # Plugin lifecycle management
-│   ├── PluginContext.tsx     # React context provider
-│   └── initializePlugins.ts  # Built-in plugin initialization
-├── main/         # Plugin IPC handler registry
-├── preload/      # Plugin preload API registry
-└── claude/       # Claude Code integration plugin
+│   ├── interface.ts          # Re-exports from src/shared/types/plugins.ts
+│   ├── renderer/
+│   │   ├── Registry.ts       # Plugin lifecycle management
+│   │   ├── Provider.tsx      # React context provider
+│   │   └── initializePlugins.ts  # Built-in plugin initialization
+│   ├── main/     # Plugin IPC handler registry
+│   ├── worker/   # Plugin worker thread
+│   └── preload/  # Plugin preload API registry
+└── claude-code/  # Claude Code integration plugin
     ├── main/     # IPC handlers for Claude CLI interaction
-    ├── preload/  # Preload API for renderer access
     └── renderer/ # React components and plugin implementation
 ```
 
@@ -958,17 +959,33 @@ src/shared/types/
 └── plugins.ts              # Plugin interface definitions (shared contract)
 
 plugins/core/
-├── PluginManager.ts        # IPC coordination (renderer → main → worker)
-├── PluginRegistry.ts       # Renderer-side tracking (UI state, enable/disable)
-├── PluginCommandRegistry.ts # Command execution (renderer process)
-├── PluginProxy.ts          # Forwards calls to worker via IPC
-├── main/pluginWorker/      # Worker thread (plugin execution, API, logger)
-├── preload/                # IPC bridge
-└── initializePlugins.ts    # Plugin initialization
+├── renderer/
+│   ├── Manager.ts          # IPC coordination (renderer → main → worker)
+│   ├── Registry.ts         # Renderer-side tracking (UI state, enable/disable)
+│   ├── CommandRegistry.ts  # Command execution (renderer process)
+│   ├── Proxy.ts            # Forwards calls to worker via IPC
+│   └── initializePlugins.ts # Plugin initialization
+├── main/                   # Worker thread coordination
+│   ├── WorkerConnection.ts # Worker lifecycle management
+│   ├── IPCBridge.ts        # Secure IPC handler registry
+│   ├── ipcHandlers.ts      # IPC handlers
+│   ├── loadHandlers.ts     # Dynamic handler loading
+│   └── registerHandlers.ts # Handler registration
+├── worker/                 # Worker thread (plugin execution)
+│   ├── API.ts              # Low-level IPC
+│   ├── Context.ts          # Plugin API surface
+│   ├── worker.ts           # Worker thread entry point
+│   └── services/
+│       └── Logger.ts       # Worker logging
+├── shared/                 # Shared types
+│   ├── interface.ts        # Plugin interfaces
+│   ├── config.ts           # Config types
+│   └── apiVersion.ts       # API version constants
+└── preload/                # IPC bridge
+    └── preload.ts          # Secure IPC bridge
 
 plugins/[plugin-name]/
 ├── main/                   # Plugin implementation + IPC handlers
-├── preload/                # IPC bridge
 └── renderer/               # Command handlers + UI components
 ```
 
@@ -986,14 +1003,14 @@ Renderer ←→ IPC ←→ Main Process ←→ Worker Thread
 ```
 
 **Key Components:**
-- **PluginManager (renderer):** Coordinates worker lifecycle via IPC, creates PluginProxy instances
-- **PluginRegistry (renderer):** Tracks enabled plugins, updates UI state (Zustand store)
-- **PluginCommandRegistry (renderer):** Maps plugin commands to renderer actions
-- **PluginProxy (renderer):** Forwards extension point calls to worker via IPC
-- **PluginWorkerConnection (main):** Manages worker thread lifecycle
-- **pluginWorker.worker (worker):** Loads and executes plugins in isolation
-- **PluginContext (worker):** Typed API surface that provides secure methods to plugins
-- **PluginIPCBridge (main):** Secure IPC handler registry for plugin-accessible APIs
+- **Manager (renderer):** Coordinates worker lifecycle via IPC, creates Proxy instances (Manager.ts)
+- **Registry (renderer):** Tracks enabled plugins, updates UI state (Registry.ts - Zustand store)
+- **CommandRegistry (renderer):** Maps plugin commands to renderer actions (CommandRegistry.ts)
+- **Proxy (renderer):** Forwards extension point calls to worker via IPC (Proxy.ts)
+- **WorkerConnection (main):** Manages worker thread lifecycle (WorkerConnection.ts)
+- **worker (worker):** Loads and executes plugins in isolation (worker.ts)
+- **Context (worker):** Typed API surface that provides secure methods to plugins (Context.ts)
+- **IPCBridge (main):** Secure IPC handler registry for plugin-accessible APIs (IPCBridge.ts)
 
 **Plugin Extension Points:**
 ```typescript

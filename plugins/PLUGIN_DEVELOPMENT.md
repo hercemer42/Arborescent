@@ -34,27 +34,29 @@ The plugin core system is organized by Electron process model:
 ```
 plugins/core/
 ├── renderer/               # Renderer process code
-│   ├── PluginProvider.tsx  # Plugin initialization orchestration
-│   ├── PluginManager.ts    # Worker thread coordination
-│   ├── PluginRegistry.ts   # UI state tracking
-│   ├── PluginCommandRegistry.ts  # Command execution
+│   ├── Provider.tsx        # Plugin initialization orchestration
+│   ├── Manager.ts          # Worker thread coordination
+│   ├── Registry.ts         # UI state tracking
+│   ├── CommandRegistry.ts  # Command execution
 │   └── initializePlugins.ts      # Plugin discovery
 ├── main/                   # Main process code
-│   ├── PluginWorkerConnection.ts # Worker lifecycle
-│   ├── pluginIpcHandlers.ts      # Renderer ↔ Worker bridge
-│   ├── PluginIPCBridge.ts        # Secure IPC registry
-│   └── loadPluginHandlers.ts     # Dynamic handler loading
+│   ├── WorkerConnection.ts       # Worker lifecycle
+│   ├── ipcHandlers.ts            # Renderer ↔ Worker bridge
+│   ├── IPCBridge.ts              # Secure IPC registry
+│   ├── loadHandlers.ts           # Dynamic handler loading
+│   └── registerHandlers.ts       # Handler registration
 ├── worker/                 # Worker thread code
-│   ├── pluginWorker.worker.ts    # Plugin execution
-│   ├── PluginContext.ts          # Plugin API
-│   ├── PluginAPI.ts              # Low-level IPC
-│   └── workerLogger.ts           # Logging
+│   ├── worker.ts                 # Plugin execution
+│   ├── Context.ts                # Plugin API
+│   ├── API.ts                    # Low-level IPC
+│   └── services/
+│       └── Logger.ts             # Logging
 ├── shared/                 # Shared types
-│   ├── pluginInterface.ts        # Plugin interfaces
-│   ├── pluginConfig.ts           # Config types
-│   └── pluginApiVersion.ts       # Version constants
+│   ├── interface.ts              # Plugin interfaces
+│   ├── config.ts                 # Config types
+│   └── apiVersion.ts             # Version constants
 └── preload/                # Preload bridge
-    └── pluginPreload.ts          # Secure IPC bridge
+    └── preload.ts                # Secure IPC bridge
 ```
 
 ## Plugin Structure
@@ -196,7 +198,7 @@ Since extension points return serializable data, user actions are handled via th
 
 ```typescript
 // plugins/my-plugin/renderer/myPluginCommands.ts
-import { PluginCommandRegistry } from '../../core/renderer/PluginCommandRegistry';
+import { PluginCommandRegistry } from '../../core/renderer/CommandRegistry';
 
 export function registerMyPluginCommands(): void {
   PluginCommandRegistry.register(
@@ -281,7 +283,7 @@ mkdir -p plugins/my-plugin/main
 Create `plugins/my-plugin/plugin.config.ts`:
 
 ```typescript
-import type { PluginConfig } from '../core/shared/pluginConfig';
+import type { PluginConfig } from '../core/shared/config';
 
 export const config: PluginConfig = {
   name: 'my-plugin',
@@ -331,11 +333,11 @@ import {
   PluginExtensionPoints,
   PluginContextMenuItem,
   NodeContext,
-} from '../../core/shared/pluginInterface';
-import { PluginContext } from '../../core/worker/PluginContext';
+} from '../../core/shared/interface';
+import { PluginContext } from '../../core/worker/Context';
 import { TreeNode } from '../../../src/shared/types';
 import manifest from '../manifest.json';
-import { logger } from '../../core/worker/workerLogger';
+import { logger } from '../../core/worker/services/Logger';
 
 export class MyPlugin implements Plugin {
   manifest: PluginManifest = manifest;
@@ -408,7 +410,7 @@ export function registerCommands(): void {
 Create `plugins/my-plugin/renderer/myPluginCommands.ts`:
 
 ```typescript
-import { PluginCommandRegistry } from '../../core/renderer/PluginCommandRegistry';
+import { PluginCommandRegistry } from '../../core/renderer/CommandRegistry';
 import { logger } from '../../../src/renderer/services/logger';
 
 export function registerMyPluginCommands(): void {
@@ -427,7 +429,7 @@ This function will be called via the register file.
 Create `plugins/my-plugin/main/myPluginIpcHandlers.ts`:
 
 ```typescript
-import { pluginIPCBridge } from '../../core/main/PluginIPCBridge';
+import { pluginIPCBridge } from '../../core/main/IPCBridge';
 
 export function registerMyPluginIpcHandlers(): void {
   pluginIPCBridge.registerHandler('my-plugin:get-data', async () => {
@@ -546,7 +548,7 @@ Plugin IPC handlers are registered **only** through the `pluginIPCBridge`. This 
 
 ```typescript
 // plugins/my-plugin/main/myPluginIpcHandlers.ts
-import { pluginIPCBridge } from '../../core/main/PluginIPCBridge';
+import { pluginIPCBridge } from '../../core/main/IPCBridge';
 
 export function registerMyPluginIpcHandlers(): void {
   // Define handler (use rest parameters for pluginIPCBridge compatibility)
@@ -575,7 +577,7 @@ export function registerMyPluginIpcHandlers(): void {
 After registering IPC handlers, add a typed method to `PluginContext`:
 
 ```typescript
-// plugins/core/worker/PluginContext.ts
+// plugins/core/worker/Context.ts
 export class PluginContext {
   // ... existing methods
 
@@ -615,6 +617,8 @@ interface TreeNode {
 Example:
 
 ```typescript
+import { PluginCommandRegistry } from '../../core/renderer/CommandRegistry';
+
 PluginCommandRegistry.register('my-plugin:check-status', async (context) => {
   const { node } = context;
 
@@ -763,33 +767,34 @@ Key files:
 The plugin worker architecture provides:
 
 **Worker Thread** (`plugins/core/worker/`):
-- `pluginWorker.worker.ts` - Loads and executes plugins
-- `PluginAPI.ts` - Low-level IPC communication with main process
-- `PluginContext.ts` - Typed API surface injected into plugins, provides secure methods
-- `workerLogger.ts` - Logging from worker to main
+- `worker.ts` - Loads and executes plugins
+- `API.ts` - Low-level IPC communication with main process
+- `Context.ts` - Typed API surface injected into plugins, provides secure methods
+- `services/Logger.ts` - Logging from worker to main
 
 **Main Process** (`plugins/core/main/`):
-- `PluginWorkerConnection.ts` - Manages worker lifecycle
-- `pluginIpcHandlers.ts` - Handles renderer ↔ worker communication
-- `PluginIPCBridge.ts` - Secure registry for plugin-accessible IPC handlers
-- `loadPluginHandlers.ts` - Dynamically loads plugin IPC handlers from built bundles
-- Forwards pluginAPI calls to PluginIPCBridge (no private API access)
+- `WorkerConnection.ts` - Manages worker lifecycle
+- `ipcHandlers.ts` - Handles renderer ↔ worker communication
+- `IPCBridge.ts` - Secure registry for plugin-accessible IPC handlers
+- `loadHandlers.ts` - Dynamically loads plugin IPC handlers from built bundles
+- `registerHandlers.ts` - Registers all plugin handlers
+- Forwards pluginAPI calls to IPCBridge (no private API access)
 
 **Renderer Process** (`plugins/core/renderer/`):
-- `PluginProxy.ts` - Proxies extension point calls to worker via IPC (initialize/dispose are stubs)
-- `PluginManager.ts` - Worker thread coordination via IPC (start, register, initialize, dispose plugins)
-- `PluginRegistry.ts` - Tracks plugin proxies for UI state (enabled/disabled status, updates Zustand store)
-- `PluginCommandRegistry.ts` - Executes commands with renderer access (runs in renderer, not worker)
+- `Proxy.ts` - Proxies extension point calls to worker via IPC (initialize/dispose are stubs)
+- `Manager.ts` - Worker thread coordination via IPC (start, register, initialize, dispose plugins)
+- `Registry.ts` - Tracks plugin proxies for UI state (enabled/disabled status, updates Zustand store)
+- `CommandRegistry.ts` - Executes commands with renderer access (runs in renderer, not worker)
 - `initializePlugins.ts` - Dynamically loads plugin commands from source files (Vite handles TS)
 
 **Shared Types** (`plugins/core/shared/`):
-- `pluginInterface.ts` - Plugin, PluginManifest, PluginExtensionPoints interfaces
-- `pluginConfig.ts` - PluginConfig type for plugin.config.ts files
-- `pluginApiVersion.ts` - API version constants
+- `interface.ts` - Plugin, PluginManifest, PluginExtensionPoints interfaces
+- `config.ts` - PluginConfig type for plugin.config.ts files
+- `apiVersion.ts` - API version constants
 
 **Dual Tracking System:**
-- `PluginManager` - Manages worker thread lifecycle and plugin IPC communication
-- `PluginRegistry` - Manages UI state and plugin proxies for the renderer
+- `Manager` - Manages worker thread lifecycle and plugin IPC communication (Manager.ts)
+- `Registry` - Manages UI state and plugin proxies for the renderer (Registry.ts)
 - Both track the same plugins but serve different purposes (worker communication vs UI state)
 
 **Benefits:**

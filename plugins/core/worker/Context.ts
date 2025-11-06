@@ -1,4 +1,4 @@
-import { PluginAPI } from './PluginAPI';
+import { PluginAPI } from './API';
 
 export class PluginContext {
   private pluginAPI: PluginAPI;

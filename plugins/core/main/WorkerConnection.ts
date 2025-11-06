@@ -6,7 +6,7 @@ import { LogMessageSchema, IPCCallMessageSchema, safeValidatePayload } from '../
 import { generateMessageId } from '../worker/utils/messageId';
 import { IPC_MESSAGE_TIMEOUT_MS } from '../worker/constants';
 
-export class PluginWorkerConnection {
+export class WorkerConnection {
   private worker: Worker | null = null;
   private messageHandlers: Map<string, (response: PluginMessage) => void> = new Map();
   private readyPromise: Promise<void>;
@@ -24,7 +24,7 @@ export class PluginWorkerConnection {
       return;
     }
 
-    const workerPath = path.join(__dirname, 'pluginWorker.worker.cjs');
+    const workerPath = path.join(__dirname, 'worker.cjs');
 
     this.worker = new Worker(workerPath);
 
@@ -164,7 +164,7 @@ export class PluginWorkerConnection {
     const ipcMsg = validation.data;
 
     try {
-      const { pluginIPCBridge } = await import('./PluginIPCBridge');
+      const { pluginIPCBridge } = await import('./IPCBridge');
 
       const result = await pluginIPCBridge.invoke(ipcMsg.channel, ...ipcMsg.args);
 

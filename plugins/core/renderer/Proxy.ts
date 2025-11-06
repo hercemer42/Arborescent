@@ -4,7 +4,7 @@ import {
   PluginContextMenuItem,
   PluginNodeIndicator,
   NodeContext,
-} from '../shared/pluginInterface';
+} from '../shared/interface';
 import { TreeNode } from '../../../src/shared/types';
 import { logger } from '../../../src/renderer/services/logger';
 

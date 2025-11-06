@@ -5,11 +5,11 @@ import {
   PluginExtensionPoints,
   PluginContextMenuItem,
   PluginNodeIndicator,
-} from '../../core/shared/pluginInterface';
-import { PluginContext } from '../../core/worker/PluginContext';
+} from '../../core/shared/interface';
+import { PluginContext } from '../../core/worker/Context';
 import { TreeNode } from '../../../src/shared/types';
 import manifest from '../renderer/manifest.json';
-import { logger } from '../../core/worker/workerLogger';
+import { logger } from '../../core/worker/services/Logger';
 
 interface ClaudeCodePluginMetadata {
   sessionId?: string;

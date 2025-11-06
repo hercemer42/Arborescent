@@ -6,7 +6,7 @@ import './globals.css';
 import './styles.css';
 import { createRoot } from 'react-dom/client';
 import { App } from './App';
-import { PluginProvider } from '../../plugins/core/renderer/PluginProvider';
+import { PluginProvider } from '../../plugins/core/renderer/Provider';
 
 const root = createRoot(
   document.getElementById('root') as HTMLElement

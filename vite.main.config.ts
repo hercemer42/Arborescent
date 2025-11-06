@@ -25,7 +25,7 @@ export default defineConfig({
 		lib: {
 			entry: {
 				main: 'src/main/main.ts',
-				'pluginWorker.worker': 'plugins/core/worker/pluginWorker.worker.ts',
+				'worker': 'plugins/core/worker/worker.ts',
 				...pluginEntries,
 			},
 			formats: ['cjs'],

@@ -1,4 +1,4 @@
-import { PluginCommandRegistry, CommandContext } from '../../core/renderer/PluginCommandRegistry';
+import { PluginCommandRegistry, CommandContext } from '../../core/renderer/CommandRegistry';
 import { logger } from '../../../src/renderer/services/logger';
 
 export function registerClaudeCodeCommands(): void {

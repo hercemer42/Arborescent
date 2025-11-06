@@ -1,5 +1,5 @@
 import { ipcRenderer } from 'electron';
-import { PluginManifest } from '../shared/pluginInterface';
+import { PluginManifest } from '../shared/interface';
 
 export interface PluginPreloadAPI {
   pluginStart: () => Promise<{ success: boolean; error?: string }>;

@@ -1,5 +1,5 @@
 import { contextBridge, ipcRenderer } from 'electron';
-import { pluginPreloadAPI } from '../../plugins/core/preload/pluginPreload';
+import { pluginPreloadAPI } from '../../plugins/core/preload/preload';
 
 contextBridge.exposeInMainWorld('electron', {
   readFile: (path: string) => ipcRenderer.invoke('read-file', path),

@@ -1,8 +1,8 @@
-import { Plugin } from '../shared/pluginInterface';
+import { Plugin } from '../shared/interface';
 import { usePluginStore } from '../../../src/renderer/store/plugins/pluginStore';
 import { logger } from '../../../src/renderer/services/logger';
 import { notifyError } from '../../../src/renderer/utils/errorNotification';
-import { checkApiCompatibility } from '../shared/pluginApiVersion';
+import { checkApiCompatibility } from '../shared/apiVersion';
 
 class PluginRegistryClass {
   private plugins: Map<string, Plugin> = new Map();

@@ -1,5 +1,5 @@
-import { PluginProxy } from './PluginProxy';
-import { Plugin, PluginManifest } from '../shared/pluginInterface';
+import { PluginProxy } from './Proxy';
+import { Plugin, PluginManifest } from '../shared/interface';
 import { logger } from '../../../src/renderer/services/logger';
 import { notifyError } from '../../../src/renderer/utils/errorNotification';
 

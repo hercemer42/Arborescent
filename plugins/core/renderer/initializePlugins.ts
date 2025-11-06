@@ -1,5 +1,5 @@
-import { PluginRegistry } from './PluginRegistry';
-import { PluginManager } from './PluginManager';
+import { PluginRegistry } from './Registry';
+import { PluginManager } from './Manager';
 import { PLUGINS } from '../../plugins.config';
 
 /**

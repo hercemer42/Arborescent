@@ -1,4 +1,4 @@
-import type { PluginConfig } from '../core/shared/pluginConfig';
+import type { PluginConfig } from '../core/shared/config';
 
 export const config: PluginConfig = {
   name: 'claude-code',
