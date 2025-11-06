@@ -1,4 +1,4 @@
-export interface KeyBinding {
+interface KeyBinding {
   key: string;
   ctrl: boolean;
   shift: boolean;

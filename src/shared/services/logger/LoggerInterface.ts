@@ -13,7 +13,5 @@ export interface Logger {
   info(message: string, context?: string): void;
   warn(message: string, context?: string): void;
   error(message: string, error?: Error, context?: string): void;
-  getLogs(): LogEntry[];
-  clearLogs(): void;
   exportLogs(): string;
 }

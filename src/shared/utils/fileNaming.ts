@@ -9,11 +9,11 @@ export function getNextUntitledNumber(filePaths: string[]): number {
   return numbers.length > 0 ? Math.max(...numbers) + 1 : 1;
 }
 
-export function getUntitledNumber(path: string): string {
+function getUntitledNumber(path: string): string {
   return path.match(/untitled-(\d+)/)?.[1] || '1';
 }
 
-export function getFilename(path: string): string {
+function getFilename(path: string): string {
   return path.split(/[/\\]/).pop() || path;
 }
 

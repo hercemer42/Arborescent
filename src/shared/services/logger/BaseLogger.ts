@@ -59,14 +59,6 @@ export abstract class BaseLogger implements Logger {
     }
   }
 
-  getLogs(): LogEntry[] {
-    return [...this.logs];
-  }
-
-  clearLogs(): void {
-    this.logs = [];
-  }
-
   exportLogs(): string {
     return this.logs
       .map(
