@@ -2,8 +2,8 @@ export interface PluginConfig {
   name: string;
   pluginPath: string;
   manifestPath: string;
-  mainRegisterPath?: string;
-  rendererRegisterPath?: string;
+  mainHandlersPath?: string;
+  rendererCommandsPath?: string;
 }
 
 export interface PluginConfigModule {

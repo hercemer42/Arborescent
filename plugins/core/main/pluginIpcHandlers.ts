@@ -1,7 +1,7 @@
 import { ipcMain, app } from 'electron';
 import path from 'node:path';
-import { PluginWorkerConnection } from './pluginWorker/PluginWorkerConnection';
-import { MessageType } from './pluginWorker/types/messages';
+import { PluginWorkerConnection } from './PluginWorkerConnection';
+import { MessageType } from '../worker/types/messages';
 import { logger } from '../../../src/main/services/logger';
 
 let pluginWorker: PluginWorkerConnection | null = null;

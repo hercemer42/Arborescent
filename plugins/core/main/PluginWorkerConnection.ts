@@ -1,10 +1,10 @@
 import { Worker } from 'node:worker_threads';
 import path from 'node:path';
-import { PluginMessage, RendererMessage, MessageType } from './types/messages';
-import { logger } from '../../../../src/main/services/logger';
-import { LogMessageSchema, IPCCallMessageSchema, safeValidatePayload } from './types/messageValidation';
-import { generateMessageId } from './utils/messageId';
-import { IPC_MESSAGE_TIMEOUT_MS } from './constants';
+import { PluginMessage, RendererMessage, MessageType } from '../worker/types/messages';
+import { logger } from '../../../src/main/services/logger';
+import { LogMessageSchema, IPCCallMessageSchema, safeValidatePayload } from '../worker/types/messageValidation';
+import { generateMessageId } from '../worker/utils/messageId';
+import { IPC_MESSAGE_TIMEOUT_MS } from '../worker/constants';
 
 export class PluginWorkerConnection {
   private worker: Worker | null = null;
@@ -164,7 +164,7 @@ export class PluginWorkerConnection {
     const ipcMsg = validation.data;
 
     try {
-      const { pluginIPCBridge } = await import('../PluginIPCBridge');
+      const { pluginIPCBridge } = await import('./PluginIPCBridge');
 
       const result = await pluginIPCBridge.invoke(ipcMsg.channel, ...ipcMsg.args);
 

@@ -3,7 +3,7 @@ import { useStore } from '../../../store/tree/useStore';
 import { TreeNode, NodeContext, PluginContextMenuItem } from '../../../../shared/types';
 import { ContextMenuItem } from '../../ui/ContextMenu';
 import { usePluginStore } from '../../../store/plugins/pluginStore';
-import { PluginCommandRegistry } from '../../../../../plugins/core/PluginCommandRegistry';
+import { PluginCommandRegistry } from '../../../../../plugins/core/renderer/PluginCommandRegistry';
 
 export function useNodeContextMenu(node: TreeNode) {
   const deleteNode = useStore((state) => state.actions.deleteNode);

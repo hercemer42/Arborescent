@@ -6,4 +6,4 @@ export type {
   PluginContextMenuItem,
   PluginNodeIndicator,
   PluginCommand,
-} from '../../src/shared/types/plugins';
+} from '../../../src/shared/types/plugins';

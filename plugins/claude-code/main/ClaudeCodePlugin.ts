@@ -5,11 +5,11 @@ import {
   PluginExtensionPoints,
   PluginContextMenuItem,
   PluginNodeIndicator,
-} from '../../core/pluginInterface';
-import { PluginContext } from '../../core/main/pluginWorker/PluginContext';
+} from '../../core/shared/pluginInterface';
+import { PluginContext } from '../../core/worker/PluginContext';
 import { TreeNode } from '../../../src/shared/types';
 import manifest from '../renderer/manifest.json';
-import { logger } from '../../core/main/pluginWorker/workerLogger';
+import { logger } from '../../core/worker/workerLogger';
 
 interface ClaudeCodePluginMetadata {
   sessionId?: string;
@@ -131,3 +131,6 @@ export class ClaudeCodePlugin implements Plugin {
 }
 
 export default ClaudeCodePlugin;
+
+// Re-export register function for dynamic import from plugin config
+export { registerIpcHandlers } from './register';

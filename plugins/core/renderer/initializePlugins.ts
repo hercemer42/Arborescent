@@ -1,13 +1,19 @@
 import { PluginRegistry } from './PluginRegistry';
 import { PluginManager } from './PluginManager';
-import { PLUGINS } from '../plugins.config';
+import { PLUGINS } from '../../plugins.config';
 
-export async function initializePlugins(): Promise<void> {
+/**
+ * Registers all plugins by:
+ * 1. Starting the plugin worker thread
+ * 2. Loading and registering renderer commands
+ * 3. Registering plugin metadata with PluginManager (for worker) and PluginRegistry (for UI)
+ */
+export async function registerPlugins(): Promise<void> {
   await PluginManager.start();
 
   for (const config of PLUGINS) {
-    if (config.rendererRegisterPath) {
-      const module = await import(config.rendererRegisterPath);
+    if (config.rendererCommandsPath) {
+      const module = await import(/* @vite-ignore */ config.rendererCommandsPath);
       module.registerCommands();
     }
 

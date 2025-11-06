@@ -25,7 +25,7 @@ export default defineConfig({
 		lib: {
 			entry: {
 				main: 'src/main/main.ts',
-				'pluginWorker.worker': 'plugins/core/main/pluginWorker/pluginWorker.worker.ts',
+				'pluginWorker.worker': 'plugins/core/worker/pluginWorker.worker.ts',
 				...pluginEntries,
 			},
 			formats: ['cjs'],
@@ -43,6 +43,7 @@ export default defineConfig({
 				},
 				chunkFileNames: '[name]-[hash].cjs',
 				format: 'cjs',
+				exports: 'auto',
 			},
 		},
 		outDir: '.vite/build',

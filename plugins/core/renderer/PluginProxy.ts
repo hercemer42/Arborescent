@@ -4,9 +4,9 @@ import {
   PluginContextMenuItem,
   PluginNodeIndicator,
   NodeContext,
-} from './pluginInterface';
-import { TreeNode } from '../../src/shared/types';
-import { logger } from '../../src/renderer/services/logger';
+} from '../shared/pluginInterface';
+import { TreeNode } from '../../../src/shared/types';
+import { logger } from '../../../src/renderer/services/logger';
 
 /**
  * PluginProxy runs in the renderer process and forwards extension point calls

@@ -1,7 +1,7 @@
 import { parentPort } from 'node:worker_threads';
 import { pathToFileURL } from 'node:url';
 import { PluginMessage, RendererMessage, MessageType, PluginManifest } from './types/messages';
-import { Plugin } from '../../pluginInterface';
+import { Plugin } from '../shared/pluginInterface';
 import { logger } from './workerLogger';
 import { PluginAPI } from './PluginAPI';
 import { PluginContext } from './PluginContext';
