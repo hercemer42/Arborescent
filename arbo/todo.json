@@ -2,7 +2,7 @@
   "format": "Arborescent",
   "version": "1.0.0",
   "created": "2025-10-11T00:00:00.000Z",
-  "updated": "2025-11-06T07:35:00.364Z",
+  "updated": "2025-11-06T07:56:03.578Z",
   "author": "brian@brianfox.fr",
   "rootNodeId": "root",
   "nodes": {
@@ -641,7 +641,7 @@
       ],
       "metadata": {
         "status": "pending",
-        "expanded": true
+        "expanded": false
       }
     },
     "adba02d6-5f8c-4321-ba4c-edbdb037adce": {
@@ -961,9 +961,7 @@
       "content": "Refactor",
       "children": [
         "78d77e98-d6a2-47a2-9290-6e3d0b77ded8",
-        "a6c473f8-d221-468b-94d4-dc835d1737b8",
-        "2090c20b-13eb-459d-9cae-ece1084e9d04",
-        "081ee1e2-f3d7-47cb-b932-637c1b0e8fd2"
+        "a6c473f8-d221-468b-94d4-dc835d1737b8"
       ],
       "metadata": {
         "status": "pending",
@@ -1101,7 +1099,9 @@
         "e96feea2-2696-480e-864c-51dc646dabea",
         "3d9ffce5-4235-45dc-9bc5-68f104e54ad0",
         "e3961487-35f1-4387-9ce0-1cdcce51acbb",
-        "b8ad6f61-d1f3-479e-a925-34572b5850a1"
+        "b8ad6f61-d1f3-479e-a925-34572b5850a1",
+        "2090c20b-13eb-459d-9cae-ece1084e9d04",
+        "081ee1e2-f3d7-47cb-b932-637c1b0e8fd2"
       ],
       "metadata": {
         "status": "completed",
@@ -2150,12 +2150,12 @@
       "content": "we have plugin registry in plugins/main, should it not be in plugins, core, main ?",
       "children": [],
       "metadata": {
-        "status": "pending"
+        "status": "completed"
       }
     },
     "081ee1e2-f3d7-47cb-b932-637c1b0e8fd2": {
       "id": "081ee1e2-f3d7-47cb-b932-637c1b0e8fd2",
-      "content": "Is extension a better word than plugin ? Or something else ?",
+      "content": "Changed extensions to extensionPoints",
       "children": [],
       "metadata": {
         "status": "pending"

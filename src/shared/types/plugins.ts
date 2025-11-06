@@ -52,7 +52,7 @@ export interface Plugin {
   initialize(): Promise<void>;
   dispose(): void;
 
-  extensions: PluginExtensionPoints;
+  extensionPoints: PluginExtensionPoints;
 }
 
 export interface PluginCommand {

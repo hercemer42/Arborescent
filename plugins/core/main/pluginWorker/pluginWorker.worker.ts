@@ -201,7 +201,7 @@ class ExtensionHost {
         registration.initialized = true;
       }
 
-      const extensionFn = plugin.extensions[extensionPoint as keyof typeof plugin.extensions];
+      const extensionFn = plugin.extensionPoints[extensionPoint as keyof typeof plugin.extensionPoints];
       if (!extensionFn) {
         this.sendResponse(message.id, { result: null });
         return;

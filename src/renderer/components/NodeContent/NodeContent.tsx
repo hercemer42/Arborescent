@@ -39,7 +39,7 @@ function NodeContentComponent({
     async function loadPluginIndicators() {
       const indicators = await Promise.all(
         enabledPlugins.map(async (plugin) => {
-          const result = await plugin.extensions.provideNodeIndicator?.(node);
+          const result = await plugin.extensionPoints.provideNodeIndicator?.(node);
           return result;
         })
       );

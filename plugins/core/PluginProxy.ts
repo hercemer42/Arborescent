@@ -14,7 +14,7 @@ import { logger } from '../../src/renderer/services/logger';
  */
 export class PluginProxy implements Plugin {
   manifest: PluginManifest;
-  extensions = {
+  extensionPoints = {
     provideNodeContextMenuItems: this.provideNodeContextMenuItems.bind(this),
     provideNodeIndicator: this.provideNodeIndicator.bind(this),
   };

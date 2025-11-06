@@ -31,7 +31,7 @@ export class ClaudeCodePlugin implements Plugin {
     this.context = context;
   }
 
-  extensions: PluginExtensionPoints = {
+  extensionPoints: PluginExtensionPoints = {
     provideNodeContextMenuItems: (node: TreeNode, context: NodeContext) => {
       return this.getContextMenuItems(node, context);
     },

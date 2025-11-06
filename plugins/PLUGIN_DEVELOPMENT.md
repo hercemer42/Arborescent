@@ -52,7 +52,7 @@ plugins/my-plugin/
 ```typescript
 interface Plugin {
   manifest: PluginManifest;
-  extensions: PluginExtensionPoints;
+  extensionPoints: PluginExtensionPoints;
   initialize(): Promise<void>;
   dispose(): void;
 }
@@ -273,7 +273,7 @@ export class MyPlugin implements Plugin {
     this.context = context;
   }
 
-  extensions: PluginExtensionPoints = {
+  extensionPoints: PluginExtensionPoints = {
     provideNodeContextMenuItems: (node, context) => {
       return this.getContextMenuItems(node, context);
     },
@@ -592,7 +592,7 @@ describe('MyPlugin', () => {
     const node = createMockNode();
     const context = { isMultiSelect: false, selectedNodes: [node] };
 
-    const items = plugin.extensions.provideNodeContextMenuItems?.(node, context);
+    const items = plugin.extensionPoints.provideNodeContextMenuItems?.(node, context);
 
     expect(items).toHaveLength(1);
     expect(items?.[0].id).toBe('my-plugin:my-command');
@@ -602,7 +602,7 @@ describe('MyPlugin', () => {
     const plugin = new MyPlugin();
     const node = createMockNode({ customData: { aiContext: true } });
 
-    const indicator = plugin.extensions.provideNodeIndicator?.(node);
+    const indicator = plugin.extensionPoints.provideNodeIndicator?.(node);
 
     expect(indicator).toEqual({ type: 'text', value: '🤖' });
   });
