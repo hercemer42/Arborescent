@@ -239,7 +239,7 @@ mkdir -p plugins/my-plugin/main
 Create `plugins/my-plugin/plugin.config.ts`:
 
 ```typescript
-import type { PluginConfig } from '../plugins.config';
+import type { PluginConfig } from '../core/types/pluginConfig';
 
 export const config: PluginConfig = {
   name: 'my-plugin',

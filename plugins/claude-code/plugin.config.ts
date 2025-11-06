@@ -1,4 +1,4 @@
-import type { PluginConfig } from '../plugins.config';
+import type { PluginConfig } from '../core/types/pluginConfig';
 
 export const config: PluginConfig = {
   name: 'claude-code',

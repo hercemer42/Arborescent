@@ -667,17 +667,18 @@ npm run test:coverage     # Run tests with coverage report
 **Structure:**
 ```
 src/renderer/services/
-├── interfaces.ts           # Service interface definitions
 ├── cursorService.ts        # DOM Selection API manipulation
-├── fileService.ts          # IPC communication for file operations
-├── hotkeyService.ts        # Keyboard event handling
 └── logger.ts               # Logging and toast notifications
 
 src/platforms/
+├── index.ts                # Platform services exports
 └── electron/               # Electron-specific implementations
     ├── storage.ts          # ElectronStorageService
     ├── menu.ts             # ElectronMenuService
     └── error.ts            # ElectronErrorService
+
+src/shared/
+└── interfaces.ts           # Shared interface definitions
 ```
 
 **Example:**
