@@ -3,6 +3,7 @@ import { PluginRegistry } from './Registry';
 import { PluginManager } from './Manager';
 import { registerPlugins, disposePlugins } from './initializePlugins';
 import { logger } from '../../../src/renderer/services/logger';
+import { notifyError } from '../../../src/renderer/utils/errorNotification';
 
 /**
  * PluginProvider orchestrates the plugin system initialization in the renderer process.
@@ -29,6 +30,11 @@ export function PluginProvider({ children }: { children: React.ReactNode }) {
         await PluginManager.initializePlugins();
       } catch (error) {
         logger.error('Failed to initialize plugins', error as Error, 'Plugin Provider');
+        notifyError(
+          'Plugin system encountered an error. Check logs for details.',
+          error as Error,
+          'Plugin System'
+        );
       }
     }
 

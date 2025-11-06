@@ -1,7 +1,6 @@
 import { PluginProxy } from './Proxy';
 import { Plugin, PluginManifest } from '../shared/interface';
 import { logger } from '../../../src/renderer/services/logger';
-import { notifyError } from '../../../src/renderer/utils/errorNotification';
 
 interface PluginRegistration {
   name: string;
@@ -65,7 +64,7 @@ class PluginManagerClass {
     if (!response.success) {
       const error = response.error || 'Failed to start plugin system';
       const errorObj = new Error(error);
-      notifyError(`Plugin system failed to start: ${error}`, errorObj, 'Plugin Manager');
+      logger.error('Plugin system failed to start', errorObj, 'Plugin Manager');
       throw errorObj;
     }
 
@@ -125,7 +124,7 @@ class PluginManagerClass {
     if (!response.success || !response.manifest) {
       const error = response.error || `Failed to register plugin ${name}`;
       const errorObj = new Error(error);
-      notifyError(`Plugin registration failed: ${error}`, errorObj, 'Plugin Manager');
+      logger.error(`Plugin registration failed: ${name}`, errorObj, 'Plugin Manager');
       throw errorObj;
     }
 

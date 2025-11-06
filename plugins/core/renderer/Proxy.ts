@@ -9,8 +9,26 @@ import { TreeNode } from '../../../src/shared/types';
 import { logger } from '../../../src/renderer/services/logger';
 
 /**
- * PluginProxy runs in the renderer process and forwards extension point calls
- * to the plugin running in the worker thread via IPC.
+ * PluginProxy is a renderer-side stub that forwards extension point calls to plugins
+ * running in the worker thread via IPC.
+ *
+ * Architecture:
+ * - Created by PluginManager during plugin registration
+ * - Implements the Plugin interface locally in the renderer process
+ * - Actual plugin code executes in an isolated worker thread
+ * - All extension point calls are forwarded via window.electron.pluginInvokeExtension
+ *
+ * Lifecycle:
+ * 1. PluginManager.registerPlugin() creates a PluginProxy instance
+ * 2. UI components call extension point methods (e.g., provideNodeContextMenuItems)
+ * 3. PluginProxy forwards the call to the worker via IPC
+ * 4. Worker executes the plugin code and returns results
+ * 5. PluginProxy returns results to the UI (or default values on error)
+ *
+ * Error Handling:
+ * - Returns default values when plugin system isn't started
+ * - Logs errors and returns defaults when plugins fail
+ * - Gracefully handles worker communication failures
  */
 export class PluginProxy implements Plugin {
   manifest: PluginManifest;

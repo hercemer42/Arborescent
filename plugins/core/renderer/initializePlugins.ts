@@ -13,6 +13,7 @@ export async function registerPlugins(): Promise<void> {
 
   for (const config of PLUGINS) {
     if (config.rendererCommandsPath) {
+      // Dynamic import requires vite-ignore since path is determined at runtime
       const module = await import(/* @vite-ignore */ config.rendererCommandsPath);
       module.registerCommands();
     }
