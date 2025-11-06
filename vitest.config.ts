@@ -14,6 +14,7 @@ export default defineConfig({
       'src/renderer/test/unit/**/*.{test,spec}.{ts,tsx}',
       'src/renderer/test/integration/**/*.{test,spec}.{ts,tsx}',
       'plugins/**/renderer/**/*.{test,spec}.{ts,tsx}',
+      'plugins/**/main/**/*.{test,spec}.{ts,tsx}',
     ],
     coverage: {
       provider: 'v8',
