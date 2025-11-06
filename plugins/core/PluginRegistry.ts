@@ -1,27 +1,34 @@
 import { Plugin } from './pluginInterface';
 import { usePluginStore } from '../../src/renderer/store/plugins/pluginStore';
 import { logger } from '../../src/renderer/services/logger';
-import { useToastStore } from '../../src/renderer/store/toast/toastStore';
+import { notifyError } from '../../src/renderer/utils/errorNotification';
+import { checkApiCompatibility } from './pluginApiVersion';
 
 class PluginRegistryClass {
   private plugins: Map<string, Plugin> = new Map();
   private initialized = false;
 
   private handleInitializationError(plugin: Plugin, error: Error): void {
-    logger.error(
-      `Failed to initialize plugin ${plugin.manifest.name}`,
+    notifyError(
+      `Plugin "${plugin.manifest.displayName}" failed to initialize`,
       error,
       'Plugin Registry'
-    );
-    useToastStore.getState().addToast(
-      `Plugin "${plugin.manifest.displayName}" failed to initialize`,
-      'error'
     );
   }
 
   async register(plugin: Plugin): Promise<void> {
     if (this.plugins.has(plugin.manifest.name)) {
       logger.warn(`Plugin ${plugin.manifest.name} is already registered`, 'Plugin Registry');
+      return;
+    }
+
+    const compatibility = checkApiCompatibility(plugin.manifest.apiVersion);
+    if (!compatibility.compatible) {
+      notifyError(
+        `Plugin "${plugin.manifest.displayName}": ${compatibility.warning}`,
+        new Error(compatibility.warning),
+        'Plugin Registry'
+      );
       return;
     }
 

@@ -36,6 +36,7 @@ export const PluginManifestSchema = z.object({
   enabled: z.boolean(),
   builtin: z.boolean(),
   main: z.string(),
+  apiVersion: z.string().optional(),
 });
 
 export const BaseMessageSchema = z.object({

@@ -1,7 +1,7 @@
 import { PluginProxy } from './PluginProxy';
 import { Plugin } from './pluginInterface';
 import { logger } from '../../src/renderer/services/logger';
-import { useToastStore } from '../../src/renderer/store/toast/toastStore';
+import { notifyError } from '../../src/renderer/utils/errorNotification';
 
 interface PluginRegistration {
   name: string;
@@ -37,8 +37,9 @@ class PluginManagerClass {
     const response = await window.electron.pluginStart();
     if (!response.success) {
       const error = response.error || 'Failed to start plugin system';
-      useToastStore.getState().addToast(`Plugin system failed to start: ${error}`, 'error');
-      throw new Error(error);
+      const errorObj = new Error(error);
+      notifyError(`Plugin system failed to start: ${error}`, errorObj, 'Plugin Manager');
+      throw errorObj;
     }
 
     this.started = true;
@@ -78,8 +79,9 @@ class PluginManagerClass {
 
     if (!response.success || !response.manifest) {
       const error = response.error || `Failed to register plugin ${name}`;
-      useToastStore.getState().addToast(`Plugin registration failed: ${error}`, 'error');
-      throw new Error(error);
+      const errorObj = new Error(error);
+      notifyError(`Plugin registration failed: ${error}`, errorObj, 'Plugin Manager');
+      throw errorObj;
     }
 
     const proxy = new PluginProxy(name, response.manifest);

@@ -7,6 +7,7 @@ export interface PluginManifest {
   description?: string;
   enabled: boolean;
   builtin: boolean;
+  apiVersion?: string;
 }
 
 export interface NodeContext {

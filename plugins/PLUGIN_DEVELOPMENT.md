@@ -65,10 +65,11 @@ interface PluginManifest {
   name: string;
   version: string;
   displayName: string;
-  description: string;
+  description?: string;
   enabled: boolean;
   builtin: boolean;
-  main: string;  // Path to compiled plugin code (for lazy loading)
+  main: string;       // Path to compiled plugin code (for lazy loading)
+  apiVersion?: string;
 }
 ```
 
@@ -81,7 +82,8 @@ interface PluginManifest {
   "description": "Does something useful",
   "enabled": true,
   "builtin": true,
-  "main": ".vite/build/plugins/my-plugin.cjs"
+  "main": ".vite/build/plugins/my-plugin.cjs",
+  "apiVersion": "1.0.0"
 }
 ```
 
@@ -237,9 +239,12 @@ Create `plugins/my-plugin/manifest.json`:
   "description": "Does something useful",
   "enabled": true,
   "builtin": true,
-  "main": ".vite/build/plugins/my-plugin.cjs"
+  "main": ".vite/build/plugins/my-plugin.cjs",
+  "apiVersion": "1.0.0"
 }
 ```
+
+**Note:** Always specify `apiVersion` matching the current plugin API (currently `1.0.0`). Plugins with incompatible API versions will be rejected at load time.
 
 ### Step 3: Define Plugin Class
 
@@ -656,3 +661,43 @@ The plugin worker architecture provides:
 - No direct DOM/React access from plugins
 - Security: Untrusted code runs in sandbox
 - Performance: Heavy operations don't block UI
+
+## API Versioning
+
+Arborescent uses semantic versioning for the plugin API to ensure compatibility between plugins and the core system.
+
+**Current API Version:** `1.0.0`
+
+### Version Format
+
+Follows semantic versioning (MAJOR.MINOR.PATCH):
+- **MAJOR**: Incompatible API changes (breaking changes)
+- **MINOR**: Backward-compatible new features
+- **PATCH**: Backward-compatible bug fixes
+
+### Compatibility Rules
+
+- **No `apiVersion` specified**: Plugin is assumed compatible (backward compatibility for v1.0.0)
+- **Same major version**: Plugin is compatible (e.g., 1.0.0 works with 1.2.5)
+- **Different major version**: Plugin is **rejected** at load time
+
+### Example
+
+```json
+{
+  "name": "my-plugin",
+  "apiVersion": "1.0.0"
+}
+```
+
+If the plugin system upgrades to API v2.0.0 (breaking changes), this plugin will be rejected with an error toast:
+```
+Plugin "My Plugin": Incompatible API version: plugin requires v1.0.0, but current API is v2.0.0
+```
+
+### Best Practices
+
+1. **Always specify `apiVersion`** in your manifest
+2. **Match the current API version** when developing new plugins
+3. **Test your plugin** after API updates to ensure compatibility
+4. **Update `apiVersion`** when rebuilding plugins for new API versions
