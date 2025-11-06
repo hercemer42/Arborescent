@@ -41,8 +41,8 @@ plugins/core/
 │   └── initializePlugins.ts      # Plugin discovery
 ├── main/                   # Main process code
 │   ├── WorkerConnection.ts       # Worker lifecycle
-│   ├── ipcHandlers.ts            # Renderer ↔ Worker bridge
-│   ├── IPCBridge.ts              # Secure IPC registry
+│   ├── ipcSystemHandlers.ts      # Plugin system lifecycle handlers
+│   ├── IPCBridge.ts              # Plugin API handler registry
 │   ├── loadHandlers.ts           # Dynamic handler loading
 │   └── registerHandlers.ts       # Handler registration
 ├── worker/                 # Worker thread code
@@ -774,8 +774,8 @@ The plugin worker architecture provides:
 
 **Main Process** (`plugins/core/main/`):
 - `WorkerConnection.ts` - Manages worker lifecycle
-- `ipcHandlers.ts` - Handles renderer ↔ worker communication
-- `IPCBridge.ts` - Secure registry for plugin-accessible IPC handlers
+- `ipcSystemHandlers.ts` - Plugin system lifecycle handlers (start/stop/register/invoke)
+- `IPCBridge.ts` - Plugin API handler registry (what plugins can call)
 - `loadHandlers.ts` - Dynamically loads plugin IPC handlers from built bundles
 - `registerHandlers.ts` - Registers all plugin handlers
 - Forwards pluginAPI calls to IPCBridge (no private API access)

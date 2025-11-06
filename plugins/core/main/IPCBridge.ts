@@ -1,5 +1,21 @@
 type IPCHandler = (event: unknown, ...args: unknown[]) => Promise<unknown>;
 
+/**
+ * Secure registry for IPC handlers that can be called from both the renderer process
+ * and the worker thread (by plugins).
+ *
+ * This is the controlled API surface that the renderer and plugins have access to - only
+ * handlers registered here can be invoked. This prevents arbitrary access to main process
+ * functionality.
+ *
+ * Example: A plugin in the worker calls `context.invokeIPC('claude:list-sessions')`
+ * → Worker sends 'ipc-call' message → Main process looks up handler in this bridge
+ * → Handler executes → Result sent back to worker
+ *
+ * Example: Renderer calls `window.arborescent.invoke('open-file', path)`
+ * → Renderer sends IPC message → Main process looks up handler in this bridge
+ * → Handler executes → Result sent back to renderer
+ */
 export class PluginIPCBridge {
   private handlers: Map<string, IPCHandler> = new Map();
 

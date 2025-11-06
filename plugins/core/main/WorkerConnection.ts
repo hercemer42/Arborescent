@@ -6,6 +6,19 @@ import { LogMessageSchema, IPCCallMessageSchema, safeValidatePayload } from '../
 import { generateMessageId } from '../worker/utils/messageId';
 import { IPC_MESSAGE_TIMEOUT_MS } from '../worker/constants';
 
+/**
+ * Manages the plugin worker thread lifecycle and communication.
+ *
+ * The worker thread provides process isolation for plugins - if a plugin crashes,
+ * it won't take down the main app. Communication happens via message passing:
+ * - Renderer → Main → Worker (plugin execution)
+ * - Worker → Main → Renderer (responses)
+ *
+ * Special message types:
+ * - 'log': Worker logging routed to main process logger
+ * - 'ipc-call': Worker requesting main process APIs (via IPCBridge)
+ * - Standard plugin messages: Register, initialize, invoke, dispose
+ */
 export class PluginWorkerConnection {
   private worker: Worker | null = null;
   private messageHandlers: Map<string, (response: PluginMessage) => void> = new Map();

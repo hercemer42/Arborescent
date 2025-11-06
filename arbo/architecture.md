@@ -967,8 +967,8 @@ plugins/core/
 │   └── initializePlugins.ts # Plugin initialization
 ├── main/                   # Worker thread coordination
 │   ├── WorkerConnection.ts # Worker lifecycle management
-│   ├── IPCBridge.ts        # Secure IPC handler registry
-│   ├── ipcHandlers.ts      # IPC handlers
+│   ├── IPCBridge.ts        # Plugin API handler registry
+│   ├── ipcSystemHandlers.ts # Plugin system lifecycle handlers
 │   ├── loadHandlers.ts     # Dynamic handler loading
 │   └── registerHandlers.ts # Handler registration
 ├── worker/                 # Worker thread (plugin execution)

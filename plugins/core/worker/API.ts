@@ -3,6 +3,18 @@ import { IPCResponseMessageSchema, safeValidatePayload } from './types/messageVa
 import { generateMessageId } from './utils/messageId';
 import { IPC_MESSAGE_TIMEOUT_MS } from './constants';
 
+/**
+ * Low-level API for worker ↔ main process IPC communication.
+ *
+ * This handles the message passing mechanics:
+ * - Sending 'ipc-call' messages from worker to main
+ * - Receiving 'ipc-response' messages back
+ * - Timeout handling
+ * - Promise-based async/await interface
+ *
+ * Plugins don't use this directly - they use PluginContext which wraps this
+ * with a typed interface.
+ */
 export class PluginAPI {
   private pendingCalls: Map<string, { resolve: (value: unknown) => void; reject: (error: Error) => void }> = new Map();
 
