@@ -2,7 +2,7 @@
   "format": "Arborescent",
   "version": "1.0.0",
   "created": "2025-10-11T00:00:00.000Z",
-  "updated": "2025-11-06T07:56:03.578Z",
+  "updated": "2025-11-06T10:07:14.043Z",
   "author": "brian@brianfox.fr",
   "rootNodeId": "root",
   "nodes": {
@@ -859,7 +859,9 @@
     "afc82f17-0de5-4a3c-b9bb-bfb1954c9799": {
       "id": "afc82f17-0de5-4a3c-b9bb-bfb1954c9799",
       "content": "Need to create a status bar",
-      "children": [],
+      "children": [
+        "83c73c8b-478b-41d0-82ac-f3395fd86937"
+      ],
       "metadata": {
         "status": "pending"
       }
@@ -961,7 +963,11 @@
       "content": "Refactor",
       "children": [
         "78d77e98-d6a2-47a2-9290-6e3d0b77ded8",
-        "a6c473f8-d221-468b-94d4-dc835d1737b8"
+        "a6c473f8-d221-468b-94d4-dc835d1737b8",
+        "58950aa3-50be-457f-a089-232d02c19831",
+        "a3743f7c-cbf4-48e5-99f5-322edc1dec14",
+        "48e0f485-f1dc-4b07-9f6a-53072b7e67f1",
+        "3a9a0a6a-8858-442e-a716-f02b8b30655c"
       ],
       "metadata": {
         "status": "pending",
@@ -1900,7 +1906,7 @@
       ],
       "metadata": {
         "status": "pending",
-        "expanded": true
+        "expanded": false
       }
     },
     "0cc62ae1-1a7a-4aa4-bc6a-d817cabd672c": {
@@ -2181,7 +2187,7 @@
       ],
       "metadata": {
         "status": "pending",
-        "expanded": true
+        "expanded": false
       }
     },
     "febab53e-cebd-44d6-8d7d-431f0710e791": {
@@ -2308,7 +2314,8 @@
         "a8f746c7-6f95-430b-a73e-fceb5761066d"
       ],
       "metadata": {
-        "status": "pending"
+        "status": "pending",
+        "expanded": false
       }
     },
     "a8f746c7-6f95-430b-a73e-fceb5761066d": {
@@ -2332,6 +2339,46 @@
     "19a90e4b-61aa-4f1c-b0f0-9282975318d3": {
       "id": "19a90e4b-61aa-4f1c-b0f0-9282975318d3",
       "content": "Add permission model in manifest - Add permissions array to manifest.json declaring required capabilities (workspace:read, notifications:show, claude:sessions:read). Enables permission review and potential future permission prompts.",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "83c73c8b-478b-41d0-82ac-f3395fd86937": {
+      "id": "83c73c8b-478b-41d0-82ac-f3395fd86937",
+      "content": "Or should we do it as a visual indicator on the node ?",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "58950aa3-50be-457f-a089-232d02c19831": {
+      "id": "58950aa3-50be-457f-a089-232d02c19831",
+      "content": "We watch claude from vite.main.config but we should have something that can watch code changes in all plugins without naming them",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "a3743f7c-cbf4-48e5-99f5-322edc1dec14": {
+      "id": "a3743f7c-cbf4-48e5-99f5-322edc1dec14",
+      "content": "There is claude specific code in core/initializePlugins, registerPluginHandlers, pluginContext",
+      "children": [],
+      "metadata": {
+        "status": "completed"
+      }
+    },
+    "48e0f485-f1dc-4b07-9f6a-53072b7e67f1": {
+      "id": "48e0f485-f1dc-4b07-9f6a-53072b7e67f1",
+      "content": "There is claude specific code in useNodeContextMenu and test, nodecontent test, renderer/test/setup.ts",
+      "children": [],
+      "metadata": {
+        "status": "completed"
+      }
+    },
+    "3a9a0a6a-8858-442e-a716-f02b8b30655c": {
+      "id": "3a9a0a6a-8858-442e-a716-f02b8b30655c",
+      "content": "Linting etc",
       "children": [],
       "metadata": {
         "status": "pending"

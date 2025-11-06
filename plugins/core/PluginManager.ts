@@ -1,5 +1,5 @@
 import { PluginProxy } from './PluginProxy';
-import { Plugin } from './pluginInterface';
+import { Plugin, PluginManifest } from './pluginInterface';
 import { logger } from '../../src/renderer/services/logger';
 import { notifyError } from '../../src/renderer/utils/errorNotification';
 
@@ -84,7 +84,7 @@ class PluginManagerClass {
       throw errorObj;
     }
 
-    const proxy = new PluginProxy(name, response.manifest);
+    const proxy = new PluginProxy(name, response.manifest as PluginManifest);
     this.pluginProxies.set(name, proxy);
 
     logger.info(`Plugin ${name} registered`, 'Plugin Manager');

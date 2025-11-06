@@ -1,7 +1,7 @@
-import { registerClaudeCodeIpcHandlers } from '../../claude-code/main/claudeCodeIpcHandlers';
 import { registerPluginIpcHandlers } from './pluginIpcHandlers';
+import { registerBuiltinPluginHandlers } from './registerBuiltinPluginHandlers';
 
-export function registerPluginHandlers(): void {
+export async function registerPluginHandlers(): Promise<void> {
   registerPluginIpcHandlers();
-  registerClaudeCodeIpcHandlers();
+  await registerBuiltinPluginHandlers();
 }

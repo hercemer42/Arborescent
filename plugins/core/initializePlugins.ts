@@ -1,18 +1,24 @@
 import { PluginRegistry } from './PluginRegistry';
 import { PluginManager } from './PluginManager';
-import { registerClaudeCodeCommands } from '../claude-code/renderer/claudeCodeCommands';
+import { PLUGINS } from '../plugins.config';
 
 export async function initializeBuiltinPlugins(): Promise<void> {
   await PluginManager.start();
-  registerClaudeCodeCommands();
 
-  const claudeCodePlugin = await PluginManager.registerPlugin({
-    name: 'claude-code',
-    pluginPath: '.vite/build/plugins/claude-code.cjs',
-    manifestPath: 'plugins/claude-code/manifest.json',
-  });
+  for (const config of PLUGINS) {
+    if (config.rendererRegisterPath) {
+      const module = await import(config.rendererRegisterPath);
+      module.registerCommands();
+    }
 
-  await PluginRegistry.register(claudeCodePlugin);
+    const plugin = await PluginManager.registerPlugin({
+      name: config.name,
+      pluginPath: config.pluginPath,
+      manifestPath: config.manifestPath,
+    });
+
+    await PluginRegistry.register(plugin);
+  }
 }
 
 export async function disposeBuiltinPlugins(): Promise<void> {

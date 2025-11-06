@@ -17,7 +17,6 @@ export function useNodeContextMenu(node: TreeNode) {
     e.preventDefault();
     setContextMenu({ x: e.clientX, y: e.clientY });
 
-    // Load plugin menu items only when context menu is opened
     const hasAncestorSession = hasAncestorWithSession();
     const nodeContext: NodeContext = {
       hasAncestorSession,
@@ -54,7 +53,7 @@ export function useNodeContextMenu(node: TreeNode) {
     const ancestors = ancestorRegistry[node.id] || [];
     return ancestors.some((ancestorId) => {
       const ancestor = nodes[ancestorId];
-      return ancestor && ancestor.metadata.plugins?.claude?.sessionId;
+      return ancestor && ancestor.metadata.plugins && Object.keys(ancestor.metadata.plugins).length > 0;
     });
   }
 
