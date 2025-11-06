@@ -41,23 +41,8 @@ export class PluginWorkerConnection {
 
     this.worker = new Worker(workerPath);
 
-    this.worker.on('message', (message: unknown) => {
-      if (typeof message === 'object' && message !== null && 'type' in message) {
-        const msg = message as { type: string };
-        if (msg.type === 'log') {
-          this.handleLogMessage(message);
-          return;
-        } else if (msg.type === 'ipc-call') {
-          this.handleIPCCall(message);
-          return;
-        }
-      }
-      this.handleMessage(message as PluginMessage);
-    });
-
-    this.worker.on('error', (error) => {
-      logger.error('Plugin worker error', error, 'Plugin System');
-    });
+    this.worker.on('message', (message) => this.routeMessage(message));
+    this.worker.on('error', (error) => this.handleWorkerError(error));
 
     this.worker.on('exit', (code) => {
       if (code !== 0) {
@@ -123,6 +108,28 @@ export class PluginWorkerConnection {
     });
   }
 
+  /**
+   * Routes incoming worker messages to appropriate handlers based on message type.
+   */
+  private routeMessage(message: unknown): void {
+    if (typeof message === 'object' && message !== null && 'type' in message) {
+      const msg = message as { type: string };
+      if (msg.type === 'log') {
+        this.handleLogMessage(message);
+        return;
+      }
+      if (msg.type === 'ipc-call') {
+        this.handleIPCCall(message);
+        return;
+      }
+    }
+    this.handleMessage(message as PluginMessage);
+  }
+
+  private handleWorkerError(error: Error): void {
+    logger.error('Plugin worker error', error, 'Plugin System');
+  }
+
   private handleMessage(message: PluginMessage): void {
     if (message.type === MessageType.Ready) {
       this.readyResolve();
@@ -146,10 +153,7 @@ export class PluginWorkerConnection {
 
     const logMsg = validation.data;
     const context = logMsg.context || 'Plugin Worker';
-    const error = logMsg.error ? new Error(logMsg.error.message) : undefined;
-    if (error && logMsg.error?.stack) {
-      error.stack = logMsg.error.stack;
-    }
+    const error = this.reconstructError(logMsg.error);
 
     switch (logMsg.level) {
       case 'error':
@@ -163,6 +167,19 @@ export class PluginWorkerConnection {
         logger.info(logMsg.message, context);
         break;
     }
+  }
+
+  /**
+   * Reconstructs an Error object from serialized error data.
+   */
+  private reconstructError(errorData?: { message: string; stack?: string }): Error | undefined {
+    if (!errorData) return undefined;
+
+    const error = new Error(errorData.message);
+    if (errorData.stack) {
+      error.stack = errorData.stack;
+    }
+    return error;
   }
 
   private async handleIPCCall(message: unknown): Promise<void> {
