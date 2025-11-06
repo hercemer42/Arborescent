@@ -960,7 +960,9 @@ Renderer ←→ IPC ←→ Main Process ←→ Worker Thread
                                       ↓
                                    Plugin
                                       ↓
-                               pluginAPI.invokeIPC()
+                            PluginContext (typed API)
+                                      ↓
+                              PluginIPCBridge
                                       ↓
                                IPC Handlers
 ```
@@ -972,7 +974,8 @@ Renderer ←→ IPC ←→ Main Process ←→ Worker Thread
 - **PluginProxy (renderer):** Forwards extension point calls to worker via IPC
 - **PluginWorkerConnection (main):** Manages worker thread lifecycle
 - **pluginWorker.worker (worker):** Loads and executes plugins in isolation
-- **PluginContext (worker):** Provides plugins access to IPC handlers
+- **PluginContext (worker):** Typed API surface that provides secure methods to plugins
+- **PluginIPCBridge (main):** Secure IPC handler registry for plugin-accessible APIs
 
 **Plugin Extension Points:**
 ```typescript
@@ -1008,8 +1011,9 @@ export class MyPlugin implements Plugin {
   }
 
   async initialize(): Promise<void> {
-    const projectPath = await this.context.invokeIPC<string>('claude:get-project-path');
-    const sessions = await this.context.invokeIPC<Session[]>('claude:list-sessions', projectPath);
+    // Use typed methods from PluginContext
+    const projectPath = await this.context.getProjectPath();
+    const sessions = await this.context.listClaudeSessions(projectPath);
   }
 }
 ```

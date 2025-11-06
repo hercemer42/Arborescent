@@ -2,7 +2,7 @@
   "format": "Arborescent",
   "version": "1.0.0",
   "created": "2025-10-11T00:00:00.000Z",
-  "updated": "2025-11-05T18:13:03.009Z",
+  "updated": "2025-11-06T06:00:26.050Z",
   "author": "brian@brianfox.fr",
   "rootNodeId": "root",
   "nodes": {
@@ -961,11 +961,13 @@
       "content": "Refactor",
       "children": [
         "78d77e98-d6a2-47a2-9290-6e3d0b77ded8",
+        "a6c473f8-d221-468b-94d4-dc835d1737b8",
         "2090c20b-13eb-459d-9cae-ece1084e9d04",
         "45b1c5ea-c688-4f38-8fb5-b99cc45b9246",
         "081ee1e2-f3d7-47cb-b932-637c1b0e8fd2",
         "e3961487-35f1-4387-9ce0-1cdcce51acbb",
-        "a6c473f8-d221-468b-94d4-dc835d1737b8"
+        "a879a993-7527-44db-936a-300d3ec75d3e",
+        "b8ad6f61-d1f3-479e-a925-34572b5850a1"
       ],
       "metadata": {
         "status": "pending",
@@ -1881,8 +1883,9 @@
       "id": "2f83a0af-280e-4e67-8306-31a8e02c9500",
       "content": "Features",
       "children": [
-        "65b74e0f-88fe-41c6-9910-8bac806adc6f",
         "565dde0a-864b-41f9-86ff-dbdf40ac4dd0",
+        "65b74e0f-88fe-41c6-9910-8bac806adc6f",
+        "bc5a4b76-b674-4bab-80db-e113a25aa211",
         "6573b620-bfc0-4c5b-8d92-13b9ace3461d",
         "ce2de4b4-cc94-4106-a61b-26ce1089e97e",
         "31cc1d2b-858b-4323-937b-6a38b15e0239",
@@ -2156,7 +2159,7 @@
       "content": "Resolve how to actually make a UI component in a plugin and have it render",
       "children": [],
       "metadata": {
-        "status": "pending"
+        "status": "completed"
       }
     },
     "081ee1e2-f3d7-47cb-b932-637c1b0e8fd2": {
@@ -2169,8 +2172,10 @@
     },
     "e3961487-35f1-4387-9ce0-1cdcce51acbb": {
       "id": "e3961487-35f1-4387-9ce0-1cdcce51acbb",
-      "content": "",
-      "children": [],
+      "content": "HIGH PRIORITY",
+      "children": [
+        "0dd5351f-535e-4860-ad32-e7f08eb8987e"
+      ],
       "metadata": {
         "status": "pending"
       }
@@ -2182,7 +2187,8 @@
         "febab53e-cebd-44d6-8d7d-431f0710e791"
       ],
       "metadata": {
-        "status": "pending"
+        "status": "pending",
+        "expanded": false
       }
     },
     "febab53e-cebd-44d6-8d7d-431f0710e791": {
@@ -2226,6 +2232,104 @@
       "id": "4c0d427f-5c21-425c-84a1-6f4afe0bec5d",
       "content": "Integrate webview panels into sidebar - render plugin-provided HTML in isolated containers",
       "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "bc5a4b76-b674-4bab-80db-e113a25aa211": {
+      "id": "bc5a4b76-b674-4bab-80db-e113a25aa211",
+      "content": "Node management",
+      "children": [
+        "05bcaba6-3bb5-409d-a109-72091d3ebdc7"
+      ],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "05bcaba6-3bb5-409d-a109-72091d3ebdc7": {
+      "id": "05bcaba6-3bb5-409d-a109-72091d3ebdc7",
+      "content": "Drag & drop like scrivener",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "0dd5351f-535e-4860-ad32-e7f08eb8987e": {
+      "id": "0dd5351f-535e-4860-ad32-e7f08eb8987e",
+      "content": "Replace open invokeIPC() with typed API methods - Current PluginContext exposes entire IPC layer via invokeIPC(channel, ...args), allowing plugins to call ANY internal IPC channel. Replace with typed API surface (getProjectPath(), showNotification(), etc.) to restrict plugin access to approved APIs only.",
+      "children": [],
+      "metadata": {
+        "status": "completed"
+      }
+    },
+    "559f1d71-f22d-47fb-8986-d842425ed150": {
+      "id": "559f1d71-f22d-47fb-8986-d842425ed150",
+      "content": "Add activation events to manifest.  Currently all plugins load at startup.  Add activationEvents array to manifest.json (onStartup, onContextMenu, onCommand:*) to enable lazy loading and improve startup performance.",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "4cf9fc6a-8d59-40f0-99b4-5aff0e49deab": {
+      "id": "4cf9fc6a-8d59-40f0-99b4-5aff0e49deab",
+      "content": "Add manifest contribution points - Move static plugin capabilities (commands, menu items, when clauses) to manifest.json \"contributes\" section. Enables plugin discovery without code execution and faster initialization.",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "c615a958-165f-4100-9091-28b1a6dc7e6f": {
+      "id": "c615a958-165f-4100-9091-28b1a6dc7e6f",
+      "content": "Implement hot reload during development - Add file watching for plugin source files and implement reload command that disposes old plugin and loads new version without app restart. Improves plugin development iteration speed.",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "e3fba299-84eb-40a4-b35e-26ff2ce36b59": {
+      "id": "e3fba299-84eb-40a4-b35e-26ff2ce36b59",
+      "content": "Add error recovery & restart - Wrap plugin calls in error handlers that log but don't crash app. Provide UI to disable/restart failed plugins. Improves stability when plugins have bugs.",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "6fab1a58-6725-4cdf-baf5-8784d4ba9487": {
+      "id": "6fab1a58-6725-4cdf-baf5-8784d4ba9487",
+      "content": "Add API versioning - Add apiVersion field to manifest and check compatibility at load time. Enables detecting incompatible plugins and warning users about version mismatches.",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "7a3394ef-a3db-41a3-8237-d36923366a29": {
+      "id": "7a3394ef-a3db-41a3-8237-d36923366a29",
+      "content": "Add permission model in manifest - Add permissions array to manifest.json declaring required capabilities (workspace:read, notifications:show, claude:sessions:read). Enables permission review and potential future permission prompts.",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "a879a993-7527-44db-936a-300d3ec75d3e": {
+      "id": "a879a993-7527-44db-936a-300d3ec75d3e",
+      "content": "MEDIUM PRIORITY",
+      "children": [
+        "559f1d71-f22d-47fb-8986-d842425ed150",
+        "4cf9fc6a-8d59-40f0-99b4-5aff0e49deab",
+        "c615a958-165f-4100-9091-28b1a6dc7e6f"
+      ],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "b8ad6f61-d1f3-479e-a925-34572b5850a1": {
+      "id": "b8ad6f61-d1f3-479e-a925-34572b5850a1",
+      "content": "LOW PRIORITY",
+      "children": [
+        "e3fba299-84eb-40a4-b35e-26ff2ce36b59",
+        "6fab1a58-6725-4cdf-baf5-8784d4ba9487",
+        "7a3394ef-a3db-41a3-8237-d36923366a29"
+      ],
       "metadata": {
         "status": "pending"
       }

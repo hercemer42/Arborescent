@@ -13,14 +13,16 @@ Renderer ←→ IPC ←→ Main Process ←→ Worker Thread
                                       ↓
                                    Plugin
                                       ↓
-                               pluginAPI.invokeIPC()
+                            PluginContext (typed API)
+                                      ↓
+                              PluginIPCBridge
                                       ↓
                                IPC Handlers
 ```
 
 **Key Points:**
 - Plugins execute in isolated worker thread (no window, DOM, or React APIs)
-- Use `pluginAPI.invokeIPC()` to access main process functionality
+- Use typed methods from `PluginContext` to access main process functionality
 - Extension points return JSON-serializable data only
 - Commands run in renderer process (have access to UI state)
 - Plugin crashes don't affect the renderer
@@ -164,6 +166,55 @@ interface CommandContext {
 }
 ```
 
+## PluginContext API
+
+The `PluginContext` class provides a **typed, secure API surface** for plugins to access main process functionality. This replaces the previous open `invokeIPC()` method, which allowed plugins to call any IPC channel.
+
+**Security Benefits:**
+- Only approved APIs are exposed to plugins
+- Type-safe with full TypeScript autocomplete
+- Clear documentation of available capabilities
+- Prevents plugins from accessing internal IPC channels
+
+**Available Methods:**
+
+```typescript
+class PluginContext {
+  // Get the current project's file path
+  async getProjectPath(): Promise<string>
+
+  // List Claude Code sessions for a project
+  async listClaudeSessions(projectPath: string): Promise<ClaudeCodeSession[]>
+
+  // Send context to a Claude Code session
+  async sendToClaudeSession(
+    sessionId: string,
+    context: string,
+    projectPath: string
+  ): Promise<void>
+}
+```
+
+**Usage Example:**
+
+```typescript
+export class MyPlugin implements Plugin {
+  private context: PluginContext;
+  private projectPath: string = '';
+
+  constructor(context: PluginContext) {
+    this.context = context;
+  }
+
+  async initialize(): Promise<void> {
+    // Use typed methods with full autocomplete
+    this.projectPath = await this.context.getProjectPath();
+    const sessions = await this.context.listClaudeSessions(this.projectPath);
+    logger.info(`Found ${sessions.length} sessions`, 'My Plugin');
+  }
+}
+```
+
 ## Creating a Plugin
 
 ### Step 1: Create Plugin Directory Structure
@@ -224,8 +275,9 @@ export class MyPlugin implements Plugin {
   };
 
   async initialize(): Promise<void> {
-    this.someData = await this.context.invokeIPC<string>('my-plugin:get-data');
-    logger.info(`Initialized with data: ${this.someData}`, 'My Plugin');
+    // Use typed methods from PluginContext
+    // Example: const projectPath = await this.context.getProjectPath();
+    logger.info('Initialized', 'My Plugin');
   }
 
   dispose(): void {
@@ -344,7 +396,9 @@ private getContextMenuItems(
 
 ## IPC Communication
 
-Plugins running in worker threads use `pluginAPI.invokeIPC()` to call main process handlers. The plugin system uses a dedicated **PluginIPCBridge** to safely expose IPC handlers to plugins without relying on Electron's private APIs.
+The plugin system uses a dedicated **PluginIPCBridge** to safely expose IPC handlers to plugin worker threads without relying on Electron's private APIs.
+
+**Note:** Plugins should use the typed methods from `PluginContext` (see PluginContext API section above) rather than calling IPC handlers directly. This section documents how to add new APIs to PluginContext if needed.
 
 ### Main Process Handler
 
@@ -400,12 +454,27 @@ export const myPluginPreloadAPI = {
 };
 ```
 
-### Plugin Usage (Worker Thread)
+### Adding to PluginContext API
+
+After registering IPC handlers, add a typed method to `PluginContext`:
 
 ```typescript
-// In plugin initialization or extension point
+// plugins/core/main/pluginWorker/PluginContext.ts
+export class PluginContext {
+  // ... existing methods
+
+  async doSomething(arg: string): Promise<{ success: boolean }> {
+    return this.invokeIPC<{ success: boolean }>('my-plugin:do-something', arg);
+  }
+}
+```
+
+Then plugins can use the typed method:
+
+```typescript
+// In plugin
 async initialize(): Promise<void> {
-  const result = await this.context.invokeIPC<{ success: boolean }>('my-plugin:do-something', 'hello');
+  const result = await this.context.doSomething('hello');
   logger.info(`Result: ${result.success}`, 'My Plugin');
 }
 ```
@@ -566,8 +635,8 @@ The plugin worker architecture provides:
 
 **Worker Thread:**
 - `pluginWorker.worker.ts` - Loads and executes plugins
-- `PluginAPI` - API for plugins to call main process IPC handlers
-- `PluginContext` - Injected into plugins, wraps PluginAPI
+- `PluginAPI` - Low-level IPC communication with main process
+- `PluginContext` - Typed API surface injected into plugins, provides secure methods
 - `workerLogger.ts` - Logging from worker to main
 
 **Main Process:**
