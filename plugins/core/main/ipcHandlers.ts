@@ -1,10 +1,10 @@
 import { ipcMain, app } from 'electron';
 import path from 'node:path';
-import { WorkerConnection } from './WorkerConnection';
+import { PluginWorkerConnection } from './WorkerConnection';
 import { MessageType } from '../worker/types/messages';
 import { logger } from '../../../src/main/services/logger';
 
-let pluginWorker: WorkerConnection | null = null;
+let pluginWorker: PluginWorkerConnection | null = null;
 
 type HandlerResult = { success: boolean; error?: string; [key: string]: unknown };
 type HandlerFunction = (...args: unknown[]) => Promise<HandlerResult>;
@@ -28,14 +28,14 @@ function wrapHandler(
   };
 }
 
-export function registerIpcHandlers(): void {
+export function registerPluginIpcHandlers(): void {
   ipcMain.handle('plugin:start', wrapHandler('Failed to start plugin system', false, async () => {
     if (pluginWorker) {
       logger.warn('Plugin system already started', 'Plugin IPC');
       return { success: true };
     }
 
-    pluginWorker = new WorkerConnection();
+    pluginWorker = new PluginWorkerConnection();
     await pluginWorker.start();
     return { success: true };
   }));

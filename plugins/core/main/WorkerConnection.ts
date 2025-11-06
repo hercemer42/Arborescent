@@ -6,7 +6,7 @@ import { LogMessageSchema, IPCCallMessageSchema, safeValidatePayload } from '../
 import { generateMessageId } from '../worker/utils/messageId';
 import { IPC_MESSAGE_TIMEOUT_MS } from '../worker/constants';
 
-export class WorkerConnection {
+export class PluginWorkerConnection {
   private worker: Worker | null = null;
   private messageHandlers: Map<string, (response: PluginMessage) => void> = new Map();
   private readyPromise: Promise<void>;
