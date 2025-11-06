@@ -89,6 +89,12 @@ plugins/my-plugin/
 - **Main process**: Handlers loaded from built bundle (`.cjs`) at runtime via dynamic import
 - **Renderer process**: Commands loaded from source (`.ts`) during development, Vite handles TypeScript compilation
 
+**Naming Convention:**
+- Follow the hybrid TypeScript/React convention (see `arbo/architecture.md`)
+- Don't repeat directory names in file names
+  - ✅ `plugins/claude-code/main/ClaudeCodePlugin.ts` (not `plugins/claude-code/main/ClaudeCodeClaudePlugin.ts`)
+- Directory structure provides context, keep file names concise
+
 ## Core Interfaces
 
 ### Plugin Interface
@@ -750,6 +756,7 @@ Key files:
 - Register files are thin wrappers that call the actual registration functions
 - No plugin-specific preload layer needed - all communication goes through the generic plugin IPC bridge
 - Plugin is automatically discovered via `plugin.config.ts` - no core modifications needed
+- File naming follows hybrid convention: Classes use PascalCase, functions use camelCase, no redundant directory prefixes
 
 ## Process Isolation Details
 

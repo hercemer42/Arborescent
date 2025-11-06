@@ -6,6 +6,6 @@
  * To build for Electron: import from './electron/*'
  */
 
-export { ElectronStorageService as StorageService } from './electron/storage';
-export { ElectronMenuService as MenuService } from './electron/menu';
-export { ElectronErrorService as ErrorService } from './electron/error';
+export { Storage as StorageService } from './electron/services/Storage';
+export { Menu as MenuService } from './electron/services/Menu';
+export { ErrorHandler as ErrorService } from './electron/services/ErrorHandler';

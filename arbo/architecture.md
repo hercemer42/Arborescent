@@ -253,28 +253,40 @@ import { TreeNode, NodeStatus, Document } from '../../../shared/types';
 
 ## File Naming Conventions
 
-**Decision:** Follow TypeScript/React 2025 best practices for file naming.
+**Decision:** Hybrid convention - React convention for components, TypeScript convention for classes and functions.
 
 **Conventions:**
-- **Components:** PascalCase matching component name
+- **React Components:** PascalCase matching component name
   - ✅ `Tree.tsx`, `Node.tsx`, `StatusCheckbox.tsx`
-- **Hooks:** camelCase starting with "use"
-  - ✅ `useTreeListeners.ts`, `useNodeContent.ts`
-- **Services:** camelCase with "Service" suffix
-  - ✅ `fileService.ts`, `hotkeyService.ts`
-- **Store actions:** camelCase with "Actions" suffix
-  - ✅ `nodeActions.ts`, `fileActions.ts`
-- **Types:** camelCase or by domain
+- **Classes:** PascalCase matching class name
+  - ✅ `PluginManager.ts`, `PluginRegistry.ts`, `PluginContext.ts`
+  - ✅ `services/Storage.ts`, `services/Menu.ts` (directory provides "Service" context)
+- **Functions/Utilities:** camelCase describing functionality
+  - ✅ `useTreeListeners.ts` (hooks start with "use")
+  - ✅ `nodeActions.ts`, `fileActions.ts` (action creators)
+  - ✅ `initializePlugins.ts` (initialization functions)
+  - ✅ `loadHandlers.ts` (utility functions)
+- **Types:** camelCase by domain
   - ✅ `node.ts`, `document.ts`, `config.ts`
 - **Index files:** Always lowercase
   - ✅ `index.ts`
 
+**General Rules:**
+- Don't repeat directory names in file names
+  - ✅ `plugins/core/PluginManager.ts` (not `plugins/core/PluginCoreManager.ts`)
+  - ✅ `platforms/electron/services/Storage.ts` (not `platforms/electron/ElectronStorageService.ts`)
+  - ✅ `renderer/services/cursor.ts` (not `renderer/services/cursorService.ts`)
+- Directory structure provides context, file names should be concise
+- When directory name already describes the file type (services/, components/, actions/), omit that suffix from file name
+
 **Rationale:**
-- Consistency across the codebase
-- Matches 2025 React/TypeScript conventions
-- File names match exported functions/classes
-- Avoids case-sensitivity issues across operating systems
-- Clear distinction between components (PascalCase) and utilities (camelCase)
+- Hybrid approach appropriate for Electron (front-end + Node.js)
+- React convention (PascalCase components) for renderer process
+- TypeScript convention (PascalCase classes, camelCase functions) for main/worker processes
+- File names match exported symbols (class `Storage` in `services/Storage.ts`)
+- Clear distinction: Components and Classes use PascalCase, functions use camelCase
+- Avoids applying front-end conventions to Node.js code
+- Eliminates redundancy: directory context makes prefixes unnecessary
 
 ## State Management Architecture
 
@@ -526,11 +538,15 @@ export const createPersistenceActions = (get, set, storage): PersistenceActions 
 Both action creators use dependency injection for the storage service:
 
 ```typescript
+// Platform layer exports with abstraction
+// src/platforms/index.ts: export { Storage as StorageService }
+import { StorageService } from '@platform';  // Actually imports Storage class
+
 // Store instantiates and injects
-const storageService = new StorageService();  // from @platform
+const storageService = new StorageService();
 const actions = createFileActions(get, storageService);
 
-// Actions receive injected dependency
+// Actions receive injected dependency (interface type)
 export const createFileActions = (get, storage: StorageService) => ({
   // Use storage parameter, not direct import
 });
@@ -673,9 +689,10 @@ src/renderer/services/
 src/platforms/
 ├── index.ts                # Platform services exports
 └── electron/               # Electron-specific implementations
-    ├── storage.ts          # ElectronStorageService
-    ├── menu.ts             # ElectronMenuService
-    └── error.ts            # ElectronErrorService
+    └── services/           # Platform service implementations
+        ├── Storage.ts      # Storage class
+        ├── Menu.ts         # Menu class
+        └── ErrorHandler.ts # ErrorHandler class
 
 src/shared/
 └── interfaces.ts           # Shared interface definitions
