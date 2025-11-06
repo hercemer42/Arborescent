@@ -12,9 +12,7 @@ const pluginDirs = fs.readdirSync(pluginsDir, { withFileTypes: true })
 for (const pluginName of pluginDirs) {
 	const configPath = path.join(pluginsDir, pluginName, 'plugin.config.ts');
 	if (fs.existsSync(configPath)) {
-		const entryFile = path.join(pluginsDir, pluginName, 'main', `${pluginName.split('-').map(word =>
-			word.charAt(0).toUpperCase() + word.slice(1)
-		).join('')}Plugin.ts`);
+		const entryFile = path.join(pluginsDir, pluginName, 'main', 'Plugin.ts');
 
 		pluginEntries[`plugins/${pluginName}`] = entryFile;
 	}

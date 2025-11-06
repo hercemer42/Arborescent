@@ -734,7 +734,7 @@ describe('MyPlugin', () => {
 5. **Cleanup**: Always implement `dispose()` to clean up resources
 6. **TypeScript**: Use strict typing for all plugin code
 
-## Example: ClaudeCodePlugin
+## Example: Claude Code Plugin
 
 See `plugins/claude-code/` for a complete working example of a builtin plugin that:
 - Runs in isolated worker thread
@@ -746,17 +746,17 @@ See `plugins/claude-code/` for a complete working example of a builtin plugin th
 Key files:
 - `plugins/claude-code/plugin.config.ts` - Plugin configuration with paths to built bundle and register files
 - `plugins/claude-code/manifest.json` - Plugin metadata
-- `plugins/claude-code/main/ClaudeCodePlugin.ts` - Plugin implementation (runs in worker, lazy-loaded, re-exports registerIpcHandlers)
+- `plugins/claude-code/main/Plugin.ts` - Plugin implementation (runs in worker, lazy-loaded, re-exports registerIpcHandlers)
 - `plugins/claude-code/main/register.ts` - Thin wrapper that calls IPC handler registration
-- `plugins/claude-code/main/claudeCodeIpcHandlers.ts` - IPC handler registration (main process)
+- `plugins/claude-code/main/ipcHandlers.ts` - IPC handler registration (main process)
 - `plugins/claude-code/renderer/register.ts` - Thin wrapper that calls command registration
-- `plugins/claude-code/renderer/claudeCodeCommands.ts` - Command registration (renderer process)
+- `plugins/claude-code/renderer/commands.ts` - Command registration (renderer process)
 
 **Architecture Notes:**
 - The plugin uses the generic `PluginContext.invokeIPC()` method to call main process handlers
 - IPC handlers are dynamically imported from the built bundle at runtime (via `mainHandlersPath`)
 - Command handlers are dynamically imported from source during development (via `rendererCommandsPath`, Vite handles TS)
-- Plugin code (ClaudeCodePlugin class) remains lazy-loaded - only loaded in worker when first used
+- Plugin code remains lazy-loaded - only loaded in worker when first used
 - Register files are thin wrappers that call the actual registration functions
 - No plugin-specific preload layer needed - all communication goes through the generic plugin IPC bridge
 - Plugin is automatically discovered via `plugin.config.ts` - no core modifications needed
