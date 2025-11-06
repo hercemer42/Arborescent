@@ -1,6 +1,7 @@
 import { PluginProxy } from './PluginProxy';
 import { Plugin } from './pluginInterface';
 import { logger } from '../../src/renderer/services/logger';
+import { notifyError } from '../../src/renderer/utils/errorNotification';
 
 interface PluginRegistration {
   name: string;
@@ -35,7 +36,10 @@ class PluginManagerClass {
   private async _doStart(): Promise<void> {
     const response = await window.electron.pluginStart();
     if (!response.success) {
-      throw new Error(response.error || 'Failed to start plugin system');
+      const error = response.error || 'Failed to start plugin system';
+      const errorObj = new Error(error);
+      notifyError(`Plugin system failed to start: ${error}`, errorObj, 'Plugin Manager');
+      throw errorObj;
     }
 
     this.started = true;
@@ -74,7 +78,10 @@ class PluginManagerClass {
     const response = await window.electron.pluginRegister(name, pluginPath, manifestPath);
 
     if (!response.success || !response.manifest) {
-      throw new Error(response.error || `Failed to register plugin ${name}`);
+      const error = response.error || `Failed to register plugin ${name}`;
+      const errorObj = new Error(error);
+      notifyError(`Plugin registration failed: ${error}`, errorObj, 'Plugin Manager');
+      throw errorObj;
     }
 
     const proxy = new PluginProxy(name, response.manifest);

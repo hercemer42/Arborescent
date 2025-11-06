@@ -15,7 +15,7 @@ interface ClaudeCodePluginMetadata {
   sessionId?: string;
 }
 
-export interface ClaudeCodeSession {
+export interface ClaudeCodeSessionDisplay {
   id: string;
   displayName: string;
   projectPath?: string;
@@ -31,7 +31,7 @@ export class ClaudeCodePlugin implements Plugin {
     this.context = context;
   }
 
-  extensions: PluginExtensionPoints = {
+  extensionPoints: PluginExtensionPoints = {
     provideNodeContextMenuItems: (node: TreeNode, context: NodeContext) => {
       return this.getContextMenuItems(node, context);
     },
@@ -42,7 +42,7 @@ export class ClaudeCodePlugin implements Plugin {
   };
 
   async initialize(): Promise<void> {
-    this.projectPath = await this.context.invokeIPC<string>('claude:get-project-path');
+    this.projectPath = await this.context.getProjectPath();
     logger.info(`Plugin initialized for project: ${this.projectPath}`, 'Claude Code Plugin');
   }
 
@@ -54,28 +54,16 @@ export class ClaudeCodePlugin implements Plugin {
     return (node.metadata.plugins?.claude as ClaudeCodePluginMetadata) || {};
   }
 
-  async getSessions(): Promise<ClaudeCodeSession[]> {
+  async getSessions(): Promise<ClaudeCodeSessionDisplay[]> {
     try {
-      const sessions = await this.context.invokeIPC<unknown[]>(
-        'claude:list-sessions',
-        this.projectPath
-      );
+      const sessions = await this.context.listClaudeSessions(this.projectPath);
 
-      return sessions.map((s: unknown) => {
-        const session = s as {
-          id: string;
-          projectPath?: string;
-          lastModified: string;
-          firstMessage?: string;
-        };
-
-        return {
-          id: session.id,
-          displayName: session.firstMessage || session.id.substring(0, 8),
-          projectPath: session.projectPath,
-          lastModified: new Date(session.lastModified),
-        };
-      });
+      return sessions.map((session) => ({
+        id: session.id,
+        displayName: session.firstMessage || session.id.substring(0, 8),
+        projectPath: session.projectPath,
+        lastModified: new Date(session.lastModified),
+      }));
     } catch (error) {
       logger.error('Failed to get Claude Code sessions', error as Error, 'Claude Code Plugin');
       return [];
@@ -84,12 +72,7 @@ export class ClaudeCodePlugin implements Plugin {
 
   async sendToSession(sessionId: string, context: string): Promise<void> {
     try {
-      await this.context.invokeIPC(
-        'claude:send-to-session',
-        sessionId,
-        context,
-        this.projectPath
-      );
+      await this.context.sendToClaudeSession(sessionId, context, this.projectPath);
     } catch (error) {
       logger.error('Failed to send context to Claude Code session', error as Error, 'Claude Code Plugin');
       throw error;

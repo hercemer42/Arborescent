@@ -7,6 +7,7 @@ export interface PluginManifest {
   description?: string;
   enabled: boolean;
   builtin: boolean;
+  apiVersion?: string;
 }
 
 export interface NodeContext {
@@ -19,19 +20,6 @@ export interface PluginContextMenuItem {
   disabled?: boolean;
   separator?: boolean;
   submenu?: PluginContextMenuItem[];
-}
-
-export interface PluginSidebarPanel {
-  id: string;
-  title: string;
-  icon?: string;
-  componentId: string;
-}
-
-export interface PluginToolbarAction {
-  id: string;
-  label: string;
-  icon?: string;
 }
 
 export interface PluginNodeIndicator {
@@ -48,10 +36,6 @@ export interface PluginExtensionPoints {
   provideNodeIndicator?(
     node: TreeNode
   ): PluginNodeIndicator | null | Promise<PluginNodeIndicator | null>;
-
-  provideSidebarPanels?(): PluginSidebarPanel[] | Promise<PluginSidebarPanel[]>;
-
-  provideToolbarActions?(): PluginToolbarAction[] | Promise<PluginToolbarAction[]>;
 }
 
 /**
@@ -68,7 +52,7 @@ export interface Plugin {
   initialize(): Promise<void>;
   dispose(): void;
 
-  extensions: PluginExtensionPoints;
+  extensionPoints: PluginExtensionPoints;
 }
 
 export interface PluginCommand {

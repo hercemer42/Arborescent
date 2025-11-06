@@ -32,10 +32,11 @@ export const PluginManifestSchema = z.object({
   name: z.string(),
   version: z.string(),
   displayName: z.string(),
-  description: z.string(),
+  description: z.string().optional(),
   enabled: z.boolean(),
   builtin: z.boolean(),
   main: z.string(),
+  apiVersion: z.string().optional(),
 });
 
 export const BaseMessageSchema = z.object({

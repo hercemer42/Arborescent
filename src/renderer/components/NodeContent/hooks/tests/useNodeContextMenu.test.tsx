@@ -169,7 +169,7 @@ describe('useNodeContextMenu', () => {
         manifest: { name: 'test-plugin', version: '1.0.0', displayName: 'Test', enabled: true, builtin: false },
         initialize: vi.fn(),
         dispose: vi.fn(),
-        extensions: {
+        extensionPoints: {
           provideNodeContextMenuItems,
         },
       };
@@ -203,7 +203,7 @@ describe('useNodeContextMenu', () => {
         manifest: { name: 'test-plugin', version: '1.0.0', displayName: 'Test', enabled: true, builtin: false },
         initialize: vi.fn(),
         dispose: vi.fn(),
-        extensions: {
+        extensionPoints: {
           provideNodeContextMenuItems,
         },
       };
@@ -253,7 +253,7 @@ describe('useNodeContextMenu', () => {
         manifest: { name: 'test-plugin', version: '1.0.0', displayName: 'Test', enabled: true, builtin: false },
         initialize: vi.fn(),
         dispose: vi.fn(),
-        extensions: {
+        extensionPoints: {
           provideNodeContextMenuItems,
         },
       };
@@ -288,7 +288,7 @@ describe('useNodeContextMenu', () => {
         manifest: { name: 'plugin1', version: '1.0.0', displayName: 'Plugin 1', enabled: true, builtin: false },
         initialize: vi.fn(),
         dispose: vi.fn(),
-        extensions: {
+        extensionPoints: {
           provideNodeContextMenuItems: provideNodeContextMenuItems1,
         },
       };
@@ -297,7 +297,7 @@ describe('useNodeContextMenu', () => {
         manifest: { name: 'plugin2', version: '1.0.0', displayName: 'Plugin 2', enabled: true, builtin: false },
         initialize: vi.fn(),
         dispose: vi.fn(),
-        extensions: {
+        extensionPoints: {
           provideNodeContextMenuItems: provideNodeContextMenuItems2,
         },
       };

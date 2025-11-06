@@ -158,7 +158,7 @@ describe('NodeContent', () => {
         manifest: { name: 'test-plugin', version: '1.0.0', displayName: 'Test', enabled: true, builtin: false },
         initialize: vi.fn(),
         dispose: vi.fn(),
-        extensions: {
+        extensionPoints: {
           provideNodeIndicator,
         },
       };
@@ -198,7 +198,7 @@ describe('NodeContent', () => {
         manifest: { name: 'test-plugin', version: '1.0.0', displayName: 'Test', enabled: true, builtin: false },
         initialize: vi.fn(),
         dispose: vi.fn(),
-        extensions: {
+        extensionPoints: {
           provideNodeIndicator,
         },
       };
@@ -229,7 +229,7 @@ describe('NodeContent', () => {
         manifest: { name: 'plugin1', version: '1.0.0', displayName: 'Plugin 1', enabled: true, builtin: false },
         initialize: vi.fn(),
         dispose: vi.fn(),
-        extensions: {
+        extensionPoints: {
           provideNodeIndicator: provideNodeIndicator1,
         },
       };
@@ -238,7 +238,7 @@ describe('NodeContent', () => {
         manifest: { name: 'plugin2', version: '1.0.0', displayName: 'Plugin 2', enabled: true, builtin: false },
         initialize: vi.fn(),
         dispose: vi.fn(),
-        extensions: {
+        extensionPoints: {
           provideNodeIndicator: provideNodeIndicator2,
         },
       };
@@ -267,7 +267,7 @@ describe('NodeContent', () => {
         manifest: { name: 'test-plugin', version: '1.0.0', displayName: 'Test', enabled: true, builtin: false },
         initialize: vi.fn(),
         dispose: vi.fn(),
-        extensions: {},
+        extensionPoints: {},
       };
 
       vi.spyOn(pluginStore, 'usePluginStore').mockImplementation((selector) => {

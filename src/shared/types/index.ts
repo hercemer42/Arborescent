@@ -12,8 +12,6 @@ export type {
   PluginExtensionPoints,
   NodeContext,
   PluginContextMenuItem,
-  PluginSidebarPanel,
-  PluginToolbarAction,
   PluginNodeIndicator,
   PluginCommand,
 } from './plugins';

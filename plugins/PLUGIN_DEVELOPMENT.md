@@ -13,14 +13,16 @@ Renderer ←→ IPC ←→ Main Process ←→ Worker Thread
                                       ↓
                                    Plugin
                                       ↓
-                               pluginAPI.invokeIPC()
+                            PluginContext (typed API)
+                                      ↓
+                              PluginIPCBridge
                                       ↓
                                IPC Handlers
 ```
 
 **Key Points:**
 - Plugins execute in isolated worker thread (no window, DOM, or React APIs)
-- Use `pluginAPI.invokeIPC()` to access main process functionality
+- Use typed methods from `PluginContext` to access main process functionality
 - Extension points return JSON-serializable data only
 - Commands run in renderer process (have access to UI state)
 - Plugin crashes don't affect the renderer
@@ -50,7 +52,7 @@ plugins/my-plugin/
 ```typescript
 interface Plugin {
   manifest: PluginManifest;
-  extensions: PluginExtensionPoints;
+  extensionPoints: PluginExtensionPoints;
   initialize(): Promise<void>;
   dispose(): void;
 }
@@ -63,10 +65,11 @@ interface PluginManifest {
   name: string;
   version: string;
   displayName: string;
-  description: string;
+  description?: string;
   enabled: boolean;
   builtin: boolean;
-  main: string;  // Path to compiled plugin code (for lazy loading)
+  main: string;       // Path to compiled plugin code (for lazy loading)
+  apiVersion?: string;
 }
 ```
 
@@ -79,7 +82,8 @@ interface PluginManifest {
   "description": "Does something useful",
   "enabled": true,
   "builtin": true,
-  "main": ".vite/build/plugins/my-plugin.cjs"
+  "main": ".vite/build/plugins/my-plugin.cjs",
+  "apiVersion": "1.0.0"
 }
 ```
 
@@ -99,12 +103,6 @@ interface PluginExtensionPoints {
   provideNodeIndicator?(
     node: TreeNode
   ): PluginNodeIndicator | null | Promise<PluginNodeIndicator | null>;
-
-  // Add panels to sidebar
-  provideSidebarPanels?(): PluginSidebarPanel[] | Promise<PluginSidebarPanel[]>;
-
-  // Add actions to toolbar
-  provideToolbarActions?(): PluginToolbarAction[] | Promise<PluginToolbarAction[]>;
 }
 ```
 
@@ -134,32 +132,6 @@ Visual indicators shown next to nodes:
 type PluginNodeIndicator =
   | { type: 'text'; value: string }     // Text indicator (e.g., "🤖")
   | { type: 'icon'; value: string };    // Icon indicator
-```
-
-### PluginSidebarPanel
-
-Sidebar panel definition:
-
-```typescript
-interface PluginSidebarPanel {
-  id: string;
-  title: string;
-  icon: string;
-  component: React.ComponentType;
-}
-```
-
-### PluginToolbarAction
-
-Toolbar action definition:
-
-```typescript
-interface PluginToolbarAction {
-  id: string;
-  label: string;
-  icon: string;
-  onClick: () => void;
-}
 ```
 
 ## Command Pattern
@@ -196,6 +168,55 @@ interface CommandContext {
 }
 ```
 
+## PluginContext API
+
+The `PluginContext` class provides a **typed, secure API surface** for plugins to access main process functionality. This replaces the previous open `invokeIPC()` method, which allowed plugins to call any IPC channel.
+
+**Security Benefits:**
+- Only approved APIs are exposed to plugins
+- Type-safe with full TypeScript autocomplete
+- Clear documentation of available capabilities
+- Prevents plugins from accessing internal IPC channels
+
+**Available Methods:**
+
+```typescript
+class PluginContext {
+  // Get the current project's file path
+  async getProjectPath(): Promise<string>
+
+  // List Claude Code sessions for a project
+  async listClaudeSessions(projectPath: string): Promise<ClaudeCodeSession[]>
+
+  // Send context to a Claude Code session
+  async sendToClaudeSession(
+    sessionId: string,
+    context: string,
+    projectPath: string
+  ): Promise<void>
+}
+```
+
+**Usage Example:**
+
+```typescript
+export class MyPlugin implements Plugin {
+  private context: PluginContext;
+  private projectPath: string = '';
+
+  constructor(context: PluginContext) {
+    this.context = context;
+  }
+
+  async initialize(): Promise<void> {
+    // Use typed methods with full autocomplete
+    this.projectPath = await this.context.getProjectPath();
+    const sessions = await this.context.listClaudeSessions(this.projectPath);
+    logger.info(`Found ${sessions.length} sessions`, 'My Plugin');
+  }
+}
+```
+
 ## Creating a Plugin
 
 ### Step 1: Create Plugin Directory Structure
@@ -218,9 +239,12 @@ Create `plugins/my-plugin/manifest.json`:
   "description": "Does something useful",
   "enabled": true,
   "builtin": true,
-  "main": ".vite/build/plugins/my-plugin.cjs"
+  "main": ".vite/build/plugins/my-plugin.cjs",
+  "apiVersion": "1.0.0"
 }
 ```
+
+**Note:** Always specify `apiVersion` matching the current plugin API (currently `1.0.0`). Plugins with incompatible API versions will be rejected at load time.
 
 ### Step 3: Define Plugin Class
 
@@ -249,15 +273,16 @@ export class MyPlugin implements Plugin {
     this.context = context;
   }
 
-  extensions: PluginExtensionPoints = {
+  extensionPoints: PluginExtensionPoints = {
     provideNodeContextMenuItems: (node, context) => {
       return this.getContextMenuItems(node, context);
     },
   };
 
   async initialize(): Promise<void> {
-    this.someData = await this.context.invokeIPC<string>('my-plugin:get-data');
-    logger.info(`Initialized with data: ${this.someData}`, 'My Plugin');
+    // Use typed methods from PluginContext
+    // Example: const projectPath = await this.context.getProjectPath();
+    logger.info('Initialized', 'My Plugin');
   }
 
   dispose(): void {
@@ -376,7 +401,9 @@ private getContextMenuItems(
 
 ## IPC Communication
 
-Plugins running in worker threads use `pluginAPI.invokeIPC()` to call main process handlers. The plugin system uses a dedicated **PluginIPCBridge** to safely expose IPC handlers to plugins without relying on Electron's private APIs.
+The plugin system uses a dedicated **PluginIPCBridge** to safely expose IPC handlers to plugin worker threads without relying on Electron's private APIs.
+
+**Note:** Plugins should use the typed methods from `PluginContext` (see PluginContext API section above) rather than calling IPC handlers directly. This section documents how to add new APIs to PluginContext if needed.
 
 ### Main Process Handler
 
@@ -432,12 +459,27 @@ export const myPluginPreloadAPI = {
 };
 ```
 
-### Plugin Usage (Worker Thread)
+### Adding to PluginContext API
+
+After registering IPC handlers, add a typed method to `PluginContext`:
 
 ```typescript
-// In plugin initialization or extension point
+// plugins/core/main/pluginWorker/PluginContext.ts
+export class PluginContext {
+  // ... existing methods
+
+  async doSomething(arg: string): Promise<{ success: boolean }> {
+    return this.invokeIPC<{ success: boolean }>('my-plugin:do-something', arg);
+  }
+}
+```
+
+Then plugins can use the typed method:
+
+```typescript
+// In plugin
 async initialize(): Promise<void> {
-  const result = await this.context.invokeIPC<{ success: boolean }>('my-plugin:do-something', 'hello');
+  const result = await this.context.doSomething('hello');
   logger.info(`Result: ${result.success}`, 'My Plugin');
 }
 ```
@@ -550,7 +592,7 @@ describe('MyPlugin', () => {
     const node = createMockNode();
     const context = { isMultiSelect: false, selectedNodes: [node] };
 
-    const items = plugin.extensions.provideNodeContextMenuItems?.(node, context);
+    const items = plugin.extensionPoints.provideNodeContextMenuItems?.(node, context);
 
     expect(items).toHaveLength(1);
     expect(items?.[0].id).toBe('my-plugin:my-command');
@@ -560,7 +602,7 @@ describe('MyPlugin', () => {
     const plugin = new MyPlugin();
     const node = createMockNode({ customData: { aiContext: true } });
 
-    const indicator = plugin.extensions.provideNodeIndicator?.(node);
+    const indicator = plugin.extensionPoints.provideNodeIndicator?.(node);
 
     expect(indicator).toEqual({ type: 'text', value: '🤖' });
   });
@@ -598,8 +640,8 @@ The plugin worker architecture provides:
 
 **Worker Thread:**
 - `pluginWorker.worker.ts` - Loads and executes plugins
-- `PluginAPI` - API for plugins to call main process IPC handlers
-- `PluginContext` - Injected into plugins, wraps PluginAPI
+- `PluginAPI` - Low-level IPC communication with main process
+- `PluginContext` - Typed API surface injected into plugins, provides secure methods
 - `workerLogger.ts` - Logging from worker to main
 
 **Main Process:**
@@ -619,3 +661,43 @@ The plugin worker architecture provides:
 - No direct DOM/React access from plugins
 - Security: Untrusted code runs in sandbox
 - Performance: Heavy operations don't block UI
+
+## API Versioning
+
+Arborescent uses semantic versioning for the plugin API to ensure compatibility between plugins and the core system.
+
+**Current API Version:** `1.0.0`
+
+### Version Format
+
+Follows semantic versioning (MAJOR.MINOR.PATCH):
+- **MAJOR**: Incompatible API changes (breaking changes)
+- **MINOR**: Backward-compatible new features
+- **PATCH**: Backward-compatible bug fixes
+
+### Compatibility Rules
+
+- **No `apiVersion` specified**: Plugin is assumed compatible (backward compatibility for v1.0.0)
+- **Same major version**: Plugin is compatible (e.g., 1.0.0 works with 1.2.5)
+- **Different major version**: Plugin is **rejected** at load time
+
+### Example
+
+```json
+{
+  "name": "my-plugin",
+  "apiVersion": "1.0.0"
+}
+```
+
+If the plugin system upgrades to API v2.0.0 (breaking changes), this plugin will be rejected with an error toast:
+```
+Plugin "My Plugin": Incompatible API version: plugin requires v1.0.0, but current API is v2.0.0
+```
+
+### Best Practices
+
+1. **Always specify `apiVersion`** in your manifest
+2. **Match the current API version** when developing new plugins
+3. **Test your plugin** after API updates to ensure compatibility
+4. **Update `apiVersion`** when rebuilding plugins for new API versions

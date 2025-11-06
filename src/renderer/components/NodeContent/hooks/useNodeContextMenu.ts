@@ -25,7 +25,7 @@ export function useNodeContextMenu(node: TreeNode) {
 
     const items = await Promise.all(
       enabledPlugins.map(async (plugin) => {
-        const result = await plugin.extensions.provideNodeContextMenuItems?.(
+        const result = await plugin.extensionPoints.provideNodeContextMenuItems?.(
           node,
           nodeContext
         );
