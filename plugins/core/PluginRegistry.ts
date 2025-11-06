@@ -1,10 +1,23 @@
 import { Plugin } from './pluginInterface';
 import { usePluginStore } from '../../src/renderer/store/plugins/pluginStore';
 import { logger } from '../../src/renderer/services/logger';
+import { useToastStore } from '../../src/renderer/store/toast/toastStore';
 
 class PluginRegistryClass {
   private plugins: Map<string, Plugin> = new Map();
   private initialized = false;
+
+  private handleInitializationError(plugin: Plugin, error: Error): void {
+    logger.error(
+      `Failed to initialize plugin ${plugin.manifest.name}`,
+      error,
+      'Plugin Registry'
+    );
+    useToastStore.getState().addToast(
+      `Plugin "${plugin.manifest.displayName}" failed to initialize`,
+      'error'
+    );
+  }
 
   async register(plugin: Plugin): Promise<void> {
     if (this.plugins.has(plugin.manifest.name)) {
@@ -20,11 +33,7 @@ class PluginRegistryClass {
         await plugin.initialize();
         logger.info(`Plugin ${plugin.manifest.name} initialized`, 'Plugin Registry');
       } catch (error) {
-        logger.error(
-          `Failed to initialize plugin ${plugin.manifest.name}`,
-          error as Error,
-          'Plugin Registry'
-        );
+        this.handleInitializationError(plugin, error as Error);
       }
     }
 
@@ -64,11 +73,7 @@ class PluginRegistryClass {
           await plugin.initialize();
           logger.info(`Plugin ${plugin.manifest.name} initialized`, 'Plugin Registry');
         } catch (error) {
-          logger.error(
-            `Failed to initialize plugin ${plugin.manifest.name}`,
-            error as Error,
-            'Plugin Registry'
-          );
+          this.handleInitializationError(plugin, error as Error);
         }
       })
     );
@@ -124,11 +129,7 @@ class PluginRegistryClass {
         await plugin.initialize();
         logger.info(`Plugin ${name} enabled and initialized`, 'Plugin Registry');
       } catch (error) {
-        logger.error(
-          `Failed to initialize plugin ${name}`,
-          error as Error,
-          'Plugin Registry'
-        );
+        this.handleInitializationError(plugin, error as Error);
       }
     } else {
       logger.info(`Plugin ${name} enabled`, 'Plugin Registry');
