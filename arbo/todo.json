@@ -2,7 +2,7 @@
   "format": "Arborescent",
   "version": "1.0.0",
   "created": "2025-10-11T00:00:00.000Z",
-  "updated": "2025-11-06T06:00:26.050Z",
+  "updated": "2025-11-06T06:21:16.993Z",
   "author": "brian@brianfox.fr",
   "rootNodeId": "root",
   "nodes": {
@@ -965,8 +965,6 @@
         "2090c20b-13eb-459d-9cae-ece1084e9d04",
         "45b1c5ea-c688-4f38-8fb5-b99cc45b9246",
         "081ee1e2-f3d7-47cb-b932-637c1b0e8fd2",
-        "e3961487-35f1-4387-9ce0-1cdcce51acbb",
-        "a879a993-7527-44db-936a-300d3ec75d3e",
         "b8ad6f61-d1f3-479e-a925-34572b5850a1"
       ],
       "metadata": {
@@ -1103,7 +1101,8 @@
         "67b4c175-a885-41f5-a825-78f435509683",
         "7d407941-2fbd-404d-a30e-a23514f9e0c3",
         "e96feea2-2696-480e-864c-51dc646dabea",
-        "3d9ffce5-4235-45dc-9bc5-68f104e54ad0"
+        "3d9ffce5-4235-45dc-9bc5-68f104e54ad0",
+        "e3961487-35f1-4387-9ce0-1cdcce51acbb"
       ],
       "metadata": {
         "status": "completed",
@@ -2177,7 +2176,7 @@
         "0dd5351f-535e-4860-ad32-e7f08eb8987e"
       ],
       "metadata": {
-        "status": "pending"
+        "status": "completed"
       }
     },
     "65b74e0f-88fe-41c6-9910-8bac806adc6f": {
@@ -2262,30 +2261,6 @@
         "status": "completed"
       }
     },
-    "559f1d71-f22d-47fb-8986-d842425ed150": {
-      "id": "559f1d71-f22d-47fb-8986-d842425ed150",
-      "content": "Add activation events to manifest.  Currently all plugins load at startup.  Add activationEvents array to manifest.json (onStartup, onContextMenu, onCommand:*) to enable lazy loading and improve startup performance.",
-      "children": [],
-      "metadata": {
-        "status": "pending"
-      }
-    },
-    "4cf9fc6a-8d59-40f0-99b4-5aff0e49deab": {
-      "id": "4cf9fc6a-8d59-40f0-99b4-5aff0e49deab",
-      "content": "Add manifest contribution points - Move static plugin capabilities (commands, menu items, when clauses) to manifest.json \"contributes\" section. Enables plugin discovery without code execution and faster initialization.",
-      "children": [],
-      "metadata": {
-        "status": "pending"
-      }
-    },
-    "c615a958-165f-4100-9091-28b1a6dc7e6f": {
-      "id": "c615a958-165f-4100-9091-28b1a6dc7e6f",
-      "content": "Implement hot reload during development - Add file watching for plugin source files and implement reload command that disposes old plugin and loads new version without app restart. Improves plugin development iteration speed.",
-      "children": [],
-      "metadata": {
-        "status": "pending"
-      }
-    },
     "e3fba299-84eb-40a4-b35e-26ff2ce36b59": {
       "id": "e3fba299-84eb-40a4-b35e-26ff2ce36b59",
       "content": "Add error recovery & restart - Wrap plugin calls in error handlers that log but don't crash app. Provide UI to disable/restart failed plugins. Improves stability when plugins have bugs.",
@@ -2306,18 +2281,6 @@
       "id": "7a3394ef-a3db-41a3-8237-d36923366a29",
       "content": "Add permission model in manifest - Add permissions array to manifest.json declaring required capabilities (workspace:read, notifications:show, claude:sessions:read). Enables permission review and potential future permission prompts.",
       "children": [],
-      "metadata": {
-        "status": "pending"
-      }
-    },
-    "a879a993-7527-44db-936a-300d3ec75d3e": {
-      "id": "a879a993-7527-44db-936a-300d3ec75d3e",
-      "content": "MEDIUM PRIORITY",
-      "children": [
-        "559f1d71-f22d-47fb-8986-d842425ed150",
-        "4cf9fc6a-8d59-40f0-99b4-5aff0e49deab",
-        "c615a958-165f-4100-9091-28b1a6dc7e6f"
-      ],
       "metadata": {
         "status": "pending"
       }
