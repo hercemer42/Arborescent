@@ -1,7 +1,7 @@
 import { registerPluginIpcHandlers } from './pluginIpcHandlers';
-import { registerBuiltinPluginHandlers } from './registerBuiltinPluginHandlers';
+import { loadPluginHandlers } from './loadPluginHandlers';
 
 export async function registerPluginHandlers(): Promise<void> {
   registerPluginIpcHandlers();
-  await registerBuiltinPluginHandlers();
+  await loadPluginHandlers();
 }

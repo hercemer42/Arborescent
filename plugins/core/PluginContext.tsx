@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { PluginRegistry } from './PluginRegistry';
-import { initializeBuiltinPlugins, disposeBuiltinPlugins } from './initializePlugins';
+import { initializePlugins, disposePlugins } from './initializePlugins';
 import { logger } from '../../src/renderer/services/logger';
 
 export function PluginProvider({ children }: { children: React.ReactNode }) {
@@ -9,7 +9,7 @@ export function PluginProvider({ children }: { children: React.ReactNode }) {
 
     async function initPlugins() {
       try {
-        await initializeBuiltinPlugins();
+        await initializePlugins();
         if (!mounted) return;
         await PluginRegistry.initializeAll();
       } catch (error) {
@@ -22,7 +22,7 @@ export function PluginProvider({ children }: { children: React.ReactNode }) {
     return () => {
       mounted = false;
       PluginRegistry.disposeAll();
-      disposeBuiltinPlugins().catch((error) => {
+      disposePlugins().catch((error) => {
         logger.error('Failed to dispose plugins', error as Error, 'Plugin Provider');
       });
     };

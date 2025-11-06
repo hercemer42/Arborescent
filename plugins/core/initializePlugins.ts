@@ -2,7 +2,7 @@ import { PluginRegistry } from './PluginRegistry';
 import { PluginManager } from './PluginManager';
 import { PLUGINS } from '../plugins.config';
 
-export async function initializeBuiltinPlugins(): Promise<void> {
+export async function initializePlugins(): Promise<void> {
   await PluginManager.start();
 
   for (const config of PLUGINS) {
@@ -21,7 +21,7 @@ export async function initializeBuiltinPlugins(): Promise<void> {
   }
 }
 
-export async function disposeBuiltinPlugins(): Promise<void> {
+export async function disposePlugins(): Promise<void> {
   await PluginManager.disposePlugins();
   await PluginManager.stop();
 }
