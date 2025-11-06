@@ -2,7 +2,7 @@
   "format": "Arborescent",
   "version": "1.0.0",
   "created": "2025-10-11T00:00:00.000Z",
-  "updated": "2025-11-06T07:02:09.538Z",
+  "updated": "2025-11-06T07:35:00.364Z",
   "author": "brian@brianfox.fr",
   "rootNodeId": "root",
   "nodes": {
@@ -963,9 +963,7 @@
         "78d77e98-d6a2-47a2-9290-6e3d0b77ded8",
         "a6c473f8-d221-468b-94d4-dc835d1737b8",
         "2090c20b-13eb-459d-9cae-ece1084e9d04",
-        "45b1c5ea-c688-4f38-8fb5-b99cc45b9246",
-        "081ee1e2-f3d7-47cb-b932-637c1b0e8fd2",
-        "b8ad6f61-d1f3-479e-a925-34572b5850a1"
+        "081ee1e2-f3d7-47cb-b932-637c1b0e8fd2"
       ],
       "metadata": {
         "status": "pending",
@@ -1102,7 +1100,8 @@
         "7d407941-2fbd-404d-a30e-a23514f9e0c3",
         "e96feea2-2696-480e-864c-51dc646dabea",
         "3d9ffce5-4235-45dc-9bc5-68f104e54ad0",
-        "e3961487-35f1-4387-9ce0-1cdcce51acbb"
+        "e3961487-35f1-4387-9ce0-1cdcce51acbb",
+        "b8ad6f61-d1f3-479e-a925-34572b5850a1"
       ],
       "metadata": {
         "status": "completed",
@@ -2154,14 +2153,6 @@
         "status": "pending"
       }
     },
-    "45b1c5ea-c688-4f38-8fb5-b99cc45b9246": {
-      "id": "45b1c5ea-c688-4f38-8fb5-b99cc45b9246",
-      "content": "Resolve how to actually make a UI component in a plugin and have it render",
-      "children": [],
-      "metadata": {
-        "status": "completed"
-      }
-    },
     "081ee1e2-f3d7-47cb-b932-637c1b0e8fd2": {
       "id": "081ee1e2-f3d7-47cb-b932-637c1b0e8fd2",
       "content": "Is extension a better word than plugin ? Or something else ?",
@@ -2184,12 +2175,13 @@
       "id": "65b74e0f-88fe-41c6-9910-8bac806adc6f",
       "content": "Plugins",
       "children": [
+        "06850f75-804b-4452-ad03-837f0d233abb",
         "febab53e-cebd-44d6-8d7d-431f0710e791",
         "c3f48047-7df6-4080-8c3b-1e114e81964f"
       ],
       "metadata": {
         "status": "pending",
-        "expanded": false
+        "expanded": true
       }
     },
     "febab53e-cebd-44d6-8d7d-431f0710e791": {
@@ -2265,40 +2257,22 @@
         "status": "completed"
       }
     },
-    "e3fba299-84eb-40a4-b35e-26ff2ce36b59": {
-      "id": "e3fba299-84eb-40a4-b35e-26ff2ce36b59",
-      "content": "Add error recovery & restart - Wrap plugin calls in error handlers that log but don't crash app. Provide UI to disable/restart failed plugins. Improves stability when plugins have bugs.",
-      "children": [],
-      "metadata": {
-        "status": "failed"
-      }
-    },
     "6fab1a58-6725-4cdf-baf5-8784d4ba9487": {
       "id": "6fab1a58-6725-4cdf-baf5-8784d4ba9487",
       "content": "Add API versioning - Add apiVersion field to manifest and check compatibility at load time. Enables detecting incompatible plugins and warning users about version mismatches.",
       "children": [],
       "metadata": {
-        "status": "pending"
-      }
-    },
-    "7a3394ef-a3db-41a3-8237-d36923366a29": {
-      "id": "7a3394ef-a3db-41a3-8237-d36923366a29",
-      "content": "Add permission model in manifest - Add permissions array to manifest.json declaring required capabilities (workspace:read, notifications:show, claude:sessions:read). Enables permission review and potential future permission prompts.",
-      "children": [],
-      "metadata": {
-        "status": "pending"
+        "status": "completed"
       }
     },
     "b8ad6f61-d1f3-479e-a925-34572b5850a1": {
       "id": "b8ad6f61-d1f3-479e-a925-34572b5850a1",
       "content": "LOW PRIORITY",
       "children": [
-        "e3fba299-84eb-40a4-b35e-26ff2ce36b59",
-        "6fab1a58-6725-4cdf-baf5-8784d4ba9487",
-        "7a3394ef-a3db-41a3-8237-d36923366a29"
+        "6fab1a58-6725-4cdf-baf5-8784d4ba9487"
       ],
       "metadata": {
-        "status": "pending"
+        "status": "completed"
       }
     },
     "c3f48047-7df6-4080-8c3b-1e114e81964f": {
@@ -2340,6 +2314,24 @@
     "a8f746c7-6f95-430b-a73e-fceb5761066d": {
       "id": "a8f746c7-6f95-430b-a73e-fceb5761066d",
       "content": "Have a limited undo (back 20 perhaps)",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "06850f75-804b-4452-ad03-837f0d233abb": {
+      "id": "06850f75-804b-4452-ad03-837f0d233abb",
+      "content": "Third party plugins",
+      "children": [
+        "19a90e4b-61aa-4f1c-b0f0-9282975318d3"
+      ],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "19a90e4b-61aa-4f1c-b0f0-9282975318d3": {
+      "id": "19a90e4b-61aa-4f1c-b0f0-9282975318d3",
+      "content": "Add permission model in manifest - Add permissions array to manifest.json declaring required capabilities (workspace:read, notifications:show, claude:sessions:read). Enables permission review and potential future permission prompts.",
       "children": [],
       "metadata": {
         "status": "pending"
