@@ -5,6 +5,7 @@ import { createNavigationActions, NavigationActions } from './actions/navigation
 import { createPersistenceActions, PersistenceActions } from './actions/persistenceActions';
 import { createNodeMovementActions, NodeMovementActions } from './actions/nodeMovementActions';
 import { createNodeDeletionActions, NodeDeletionActions } from './actions/nodeDeletionActions';
+import { createVisualEffectsActions, VisualEffectsActions } from './actions/visualEffectsActions';
 import { StorageService } from '@platform';
 
 export interface DeletedNodeEntry {
@@ -32,8 +33,9 @@ export interface TreeState {
   currentFilePath: string | null;
   fileMeta: { created: string; author: string } | null;
   deletedNodes: DeletedNodeEntry[];
+  flashingNodeId: string | null;
 
-  actions: NodeActions & NavigationActions & PersistenceActions & NodeMovementActions & NodeDeletionActions;
+  actions: NodeActions & NavigationActions & PersistenceActions & NodeMovementActions & NodeDeletionActions & VisualEffectsActions;
 }
 
 const storageService = new StorageService();
@@ -47,6 +49,7 @@ const storageService = new StorageService();
 export function createTreeStore() {
   return create<TreeState>((set, get) => {
     const persistenceActions = createPersistenceActions(get, set, storageService);
+    const visualEffectsActions = createVisualEffectsActions(get, set);
 
     return {
       nodes: {},
@@ -59,13 +62,15 @@ export function createTreeStore() {
       currentFilePath: null,
       fileMeta: null,
       deletedNodes: [],
+      flashingNodeId: null,
 
       actions: {
         ...createNodeActions(get, set, persistenceActions.autoSave),
         ...createNavigationActions(get, set),
         ...persistenceActions,
-        ...createNodeMovementActions(get, set, persistenceActions.autoSave),
+        ...createNodeMovementActions(get, set, persistenceActions.autoSave, visualEffectsActions),
         ...createNodeDeletionActions(get, set, persistenceActions.autoSave),
+        ...visualEffectsActions,
       },
     };
   });

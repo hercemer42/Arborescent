@@ -1,5 +1,6 @@
 import { TreeNode } from '../../../../shared/types';
 import { AncestorRegistry, buildAncestorRegistry } from '../../../utils/ancestry';
+import { VisualEffectsActions } from './visualEffectsActions';
 
 export interface NodeMovementActions {
   indentNode: (nodeId: string) => void;
@@ -158,7 +159,8 @@ function moveNodeVertically(
 export const createNodeMovementActions = (
   get: () => StoreState,
   set: StoreSetter,
-  triggerAutosave?: () => void
+  triggerAutosave?: () => void,
+  visualEffects?: VisualEffectsActions
 ): NodeMovementActions => {
   function indentNode(nodeId: string): void {
     const state = get();
@@ -190,6 +192,13 @@ export const createNodeMovementActions = (
       nodes: updatedNodes,
       ancestorRegistry: newAncestorRegistry,
     });
+
+    // Flash the parent if it's collapsed
+    const isCollapsed = !newParent.metadata.expanded && newParent.children.length > 0;
+    if (isCollapsed && visualEffects) {
+      visualEffects.flashNode(newParentId);
+    }
+
     triggerAutosave?.();
   }
 

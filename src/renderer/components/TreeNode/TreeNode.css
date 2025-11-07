@@ -2,3 +2,12 @@
   outline: 1px solid #e8e8e8;
   outline-offset: -1px;
 }
+
+.tree-node-wrapper.flashing {
+  background-color: var(--blue-100);
+  transition: none;
+}
+
+.tree-node-wrapper:not(.flashing) {
+  transition: background-color 0.5s ease-out;
+}

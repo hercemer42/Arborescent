@@ -4,6 +4,7 @@ import { useStore } from '../../store/tree/useStore';
 import { useActiveTreeStore } from '../../store/tree/TreeStoreContext';
 import { isDescendant as checkIsDescendant } from '../../utils/ancestry';
 import { useNodeMouse } from './hooks/useNodeMouse';
+import { useNodeEffects } from './hooks/useNodeEffects';
 import './TreeNode.css';
 
 interface TreeNodeProps {
@@ -20,6 +21,8 @@ export const TreeNode = memo(function TreeNode({ nodeId, depth = 0 }: TreeNodePr
   const hasChildren = node ? node.children.length > 0 : false;
   const expanded = node?.metadata.expanded ?? true;
   const contentLength = node?.content.length ?? 0;
+
+  const { isFlashing } = useNodeEffects(nodeId);
 
   const handleToggle = useCallback(() => {
     const newExpandedState = !expanded;
@@ -41,7 +44,7 @@ export const TreeNode = memo(function TreeNode({ nodeId, depth = 0 }: TreeNodePr
   return (
     <>
       <div
-        className={`tree-node-wrapper ${isSelected ? 'selected' : ''}`}
+        className={`tree-node-wrapper ${isSelected ? 'selected' : ''} ${isFlashing ? 'flashing' : ''}`}
         style={{ paddingLeft: `${(depth * 20) + 15}px` }}
         onMouseDown={handleMouseDown}
         onMouseMove={handleMouseMove}

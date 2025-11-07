@@ -886,6 +886,54 @@ When implementing lazy loading (partial tree loading), only loaded branches need
 
 **Trade-off:** Adds ~60 lines of code complexity but provides natural cursor positioning UX. Similar approach used by professional code editors like Monaco.
 
+## Visual Effects Actions
+
+**Decision:** Visual effects triggered by actions belong in store, in a dedicated `visualEffectsActions.ts` file.
+
+**Structure:**
+```
+store/tree/actions/
+├── nodeActions.ts
+├── navigationActions.ts
+├── visualEffectsActions.ts    # Visual effects (flash, highlight, etc.)
+└── ...
+```
+
+**Pattern:**
+```typescript
+// visualEffectsActions.ts
+function flashNode(nodeId: string): void {
+  set({ flashingNodeId: nodeId });
+  setTimeout(() => set({ flashingNodeId: null }), 2000);
+}
+
+// nodeMovementActions.ts
+if (isCollapsed && visualEffects) {
+  visualEffects.flashNode(newParentId);
+}
+
+// Component reads flash state
+const isFlashing = useStore((state) => state.flashingNodeId === nodeId);
+```
+
+**CSS Pattern:**
+```css
+.node.flashing {
+  background-color: var(--blue-100);
+  transition: none;  /* Instant on */
+}
+
+.node:not(.flashing) {
+  transition: background-color 0.5s ease-out;  /* Fade out */
+}
+```
+
+**Rationale:**
+- Direct and performant - effect triggered exactly when action happens
+- Separate file keeps visual effects organized and discoverable
+- No detecting changes after-the-fact with useEffect
+- Timing controlled in one place (visualEffectsActions)
+
 ## React Rendering Performance Strategy
 
 **Decision:** Minimize re-renders through selective Zustand subscriptions and React.memo.
