@@ -1,17 +1,23 @@
-import { describe, it, expect, beforeEach } from 'vitest';
+import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { createNodeMovementActions } from '../nodeMovementActions';
 import type { TreeNode } from '@shared/types';
 import type { AncestorRegistry } from '../../../../utils/ancestry';
+import type { VisualEffectsActions } from '../visualEffectsActions';
+import type { NavigationActions } from '../navigationActions';
 
 describe('nodeMovementActions', () => {
   type TestState = {
     nodes: Record<string, TreeNode>;
     rootNodeId: string;
     ancestorRegistry: AncestorRegistry;
+    cursorPosition: number;
+    rememberedVisualX: number | null;
   };
   let state: TestState;
   let setState: (partial: Partial<TestState>) => void;
   let actions: ReturnType<typeof createNodeMovementActions>;
+  let mockVisualEffects: VisualEffectsActions;
+  let mockNavigation: NavigationActions;
 
   beforeEach(() => {
     state = {
@@ -48,17 +54,34 @@ describe('nodeMovementActions', () => {
         'node-2': ['root'],
         'node-3': ['root', 'node-1'],
       },
+      cursorPosition: 0,
+      rememberedVisualX: null,
     };
 
     setState = (partial) => {
       state = { ...state, ...partial };
     };
 
+    mockVisualEffects = {
+      flashNode: vi.fn(),
+    };
+
+    mockNavigation = {
+      moveUp: vi.fn(),
+      moveDown: vi.fn(),
+      moveBack: vi.fn(),
+      moveForward: vi.fn(),
+      toggleNode: vi.fn(),
+    };
+
     actions = createNodeMovementActions(
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       () => state as any,
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      setState as any
+      setState as any,
+      undefined,
+      mockVisualEffects,
+      mockNavigation
     );
   });
 
@@ -99,6 +122,78 @@ describe('nodeMovementActions', () => {
       expect(state.nodes['node-1'].children).toEqual(['node-3']);
       expect(state.nodes['node-3'].children).toEqual(['node-4']);
       expect(state.ancestorRegistry['node-4']).toEqual(['root', 'node-1', 'node-3']);
+    });
+
+    it('should call navigation.moveUp when indenting into collapsed parent', () => {
+      state.nodes['node-1'].metadata = { expanded: false };
+
+      actions.indentNode('node-2');
+
+      expect(mockNavigation.moveUp).toHaveBeenCalledWith(0, null);
+    });
+
+    it('should call visualEffects.flashNode when indenting into collapsed parent', () => {
+      state.nodes['node-1'].metadata = { expanded: false };
+
+      actions.indentNode('node-2');
+
+      expect(mockVisualEffects.flashNode).toHaveBeenCalledWith('node-1');
+    });
+
+    it('should not call navigation.moveUp when indenting into expanded parent', () => {
+      state.nodes['node-1'].metadata = { expanded: true };
+
+      actions.indentNode('node-2');
+
+      expect(mockNavigation.moveUp).not.toHaveBeenCalled();
+    });
+
+    it('should not call visualEffects.flashNode when indenting into expanded parent', () => {
+      state.nodes['node-1'].metadata = { expanded: true };
+
+      actions.indentNode('node-2');
+
+      expect(mockVisualEffects.flashNode).not.toHaveBeenCalled();
+    });
+
+    it('should not call effects when indenting into parent with no children', () => {
+      state.nodes['node-1'].children = [];
+      state.nodes['node-1'].metadata = { expanded: false };
+
+      actions.indentNode('node-2');
+
+      expect(mockNavigation.moveUp).not.toHaveBeenCalled();
+      expect(mockVisualEffects.flashNode).not.toHaveBeenCalled();
+    });
+
+    it('should call moveUp before reparenting when indenting into collapsed parent', () => {
+      state.nodes['node-1'].metadata = { expanded: false };
+      const callOrder: string[] = [];
+
+      mockNavigation.moveUp = vi.fn(() => {
+        callOrder.push('moveUp');
+      });
+
+      const originalSetState = setState;
+      setState = (partial) => {
+        callOrder.push('setState');
+        originalSetState(partial);
+      };
+
+      actions = createNodeMovementActions(
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        () => state as any,
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        setState as any,
+        undefined,
+        mockVisualEffects,
+        mockNavigation
+      );
+
+      actions.indentNode('node-2');
+
+      expect(callOrder[0]).toBe('moveUp');
+      expect(callOrder[1]).toBe('setState');
     });
   });
 

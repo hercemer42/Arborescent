@@ -50,6 +50,7 @@ export function createTreeStore() {
   return create<TreeState>((set, get) => {
     const persistenceActions = createPersistenceActions(get, set, storageService);
     const visualEffectsActions = createVisualEffectsActions(get, set);
+    const navigationActions = createNavigationActions(get, set);
 
     return {
       nodes: {},
@@ -66,9 +67,9 @@ export function createTreeStore() {
 
       actions: {
         ...createNodeActions(get, set, persistenceActions.autoSave),
-        ...createNavigationActions(get, set),
+        ...navigationActions,
         ...persistenceActions,
-        ...createNodeMovementActions(get, set, persistenceActions.autoSave, visualEffectsActions),
+        ...createNodeMovementActions(get, set, persistenceActions.autoSave, visualEffectsActions, navigationActions),
         ...createNodeDeletionActions(get, set, persistenceActions.autoSave),
         ...visualEffectsActions,
       },

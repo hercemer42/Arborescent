@@ -1,6 +1,7 @@
 import { TreeNode } from '../../../../shared/types';
 import { AncestorRegistry, buildAncestorRegistry } from '../../../utils/ancestry';
 import { VisualEffectsActions } from './visualEffectsActions';
+import { NavigationActions } from './navigationActions';
 
 export interface NodeMovementActions {
   indentNode: (nodeId: string) => void;
@@ -160,7 +161,8 @@ export const createNodeMovementActions = (
   get: () => StoreState,
   set: StoreSetter,
   triggerAutosave?: () => void,
-  visualEffects?: VisualEffectsActions
+  visualEffects?: VisualEffectsActions,
+  navigation?: NavigationActions
 ): NodeMovementActions => {
   function indentNode(nodeId: string): void {
     const state = get();
@@ -180,6 +182,13 @@ export const createNodeMovementActions = (
     const newParent = nodes[newParentId];
     if (!newParent) return;
 
+    // Move selection up before reparenting if parent is collapsed
+    const isCollapsed = !newParent.metadata.expanded && newParent.children.length > 0;
+    if (isCollapsed && navigation) {
+      const fullState = get() as StoreState & { cursorPosition: number; rememberedVisualX: number | null };
+      navigation.moveUp(fullState.cursorPosition, fullState.rememberedVisualX);
+    }
+
     const { updatedNodes, newAncestorRegistry } = reparentNode(
       nodeId,
       currentParentId,
@@ -193,8 +202,6 @@ export const createNodeMovementActions = (
       ancestorRegistry: newAncestorRegistry,
     });
 
-    // Flash the parent if it's collapsed
-    const isCollapsed = !newParent.metadata.expanded && newParent.children.length > 0;
     if (isCollapsed && visualEffects) {
       visualEffects.flashNode(newParentId);
     }
