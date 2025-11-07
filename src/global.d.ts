@@ -23,10 +23,6 @@ declare global {
       setMenuSaveHandler: (callback: () => void) => void;
       setMenuSaveAsHandler: (callback: () => void) => void;
       setMainErrorHandler: (callback: (message: string) => void) => void;
-      // Claude plugin methods (legacy)
-      claudeGetProjectPath?: () => Promise<string>;
-      claudeListSessions?: (projectPath: string) => Promise<unknown[]>;
-      claudeSendToSession?: (sessionId: string, context: string, projectPath: string) => Promise<void>;
     } & PluginPreloadAPI;
   }
 }

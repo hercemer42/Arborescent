@@ -4,6 +4,7 @@ import { Workspace } from './components/Workspace';
 import { useToastStore } from './store/toast/toastStore';
 import { useFilesStore } from './store/files/filesStore';
 import { useAppErrorHandling } from './useAppErrorHandling';
+import { logger } from './services/logger';
 import './App.css';
 
 export function App() {
@@ -13,7 +14,11 @@ export function App() {
   const removeToast = useToastStore((state) => state.removeToast);
 
   useEffect(() => {
-    initializeSession().finally(() => setIsInitializing(false));
+    initializeSession()
+      .catch((err) => {
+        logger.error('Failed to initialize session', err, 'App');
+      })
+      .finally(() => setIsInitializing(false));
   }, [initializeSession]);
 
   useAppErrorHandling();
