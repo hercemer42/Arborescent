@@ -10,15 +10,6 @@ vi.mock('../../../../src/renderer/services/logger', () => ({
   },
 }));
 
-interface MockElectron {
-  pluginStart: ReturnType<typeof vi.fn>;
-  pluginStop: ReturnType<typeof vi.fn>;
-  pluginRegister: ReturnType<typeof vi.fn>;
-  pluginUnregister: ReturnType<typeof vi.fn>;
-  pluginInitializeAll: ReturnType<typeof vi.fn>;
-  pluginDisposeAll: ReturnType<typeof vi.fn>;
-}
-
 describe('PluginManager', () => {
   let mockPluginStart: ReturnType<typeof vi.fn>;
   let mockPluginStop: ReturnType<typeof vi.fn>;
