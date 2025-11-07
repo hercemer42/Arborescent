@@ -197,6 +197,20 @@ describe('navigationActions', () => {
         created: '2025-01-01',
       });
     });
+
+    it('should not toggle nodes without children', () => {
+      // Create a node with no children
+      state.nodes['leaf'] = {
+        id: 'leaf',
+        content: 'Leaf node',
+        children: [],
+        metadata: { expanded: true },
+      };
+
+      const expandedBefore = state.nodes['leaf'].metadata.expanded;
+      actions.toggleNode('leaf');
+      expect(state.nodes['leaf'].metadata.expanded).toBe(expandedBefore);
+    });
   });
 
   describe('navigation with collapsed nodes', () => {

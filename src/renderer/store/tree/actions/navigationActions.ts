@@ -107,6 +107,9 @@ export const createNavigationActions = (
     const node = nodes[nodeId];
     if (!node) return;
 
+    // Only allow toggling if the node has children
+    if (node.children.length === 0) return;
+
     const newExpanded = !(node.metadata.expanded ?? true);
     const updatedNodes = updateNodeMetadata(nodes, nodeId, { expanded: newExpanded });
     set({
