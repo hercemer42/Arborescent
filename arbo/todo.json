@@ -2,7 +2,7 @@
   "format": "Arborescent",
   "version": "1.0.0",
   "created": "2025-10-11T00:00:00.000Z",
-  "updated": "2025-11-07T22:07:49.517Z",
+  "updated": "2025-11-07T22:55:45.637Z",
   "author": "brian@brianfox.fr",
   "rootNodeId": "root",
   "nodes": {
@@ -110,8 +110,6 @@
       "children": [
         "e9bb0de8-a33a-4054-8902-466a58ae3a1a",
         "b4fb16a1-a09d-4200-affd-d59492318f22",
-        "3ca41b82-8879-4fa4-bbfd-e997a9e91978",
-        "a9d73bb5-8011-497e-aede-9c4cfa750b7b",
         "a566f506-3e2d-41e7-8cc8-68dbb3417bef",
         "qo4eickz9",
         "fv89yst04",
@@ -965,16 +963,7 @@
       "id": "b4fb16a1-a09d-4200-affd-d59492318f22",
       "content": "Refactor",
       "children": [
-        "78d77e98-d6a2-47a2-9290-6e3d0b77ded8",
-        "7d407941-2fbd-404d-a30e-a23514f9e0c3",
-        "e96feea2-2696-480e-864c-51dc646dabea",
-        "3d9ffce5-4235-45dc-9bc5-68f104e54ad0",
-        "e3961487-35f1-4387-9ce0-1cdcce51acbb",
-        "b8ad6f61-d1f3-479e-a925-34572b5850a1",
-        "48e0f485-f1dc-4b07-9f6a-53072b7e67f1",
-        "f483719e-3280-4bd6-8afd-6d0e3ac0d73c",
-        "9073d866-ea02-4f85-a338-e821fa89e35d",
-        "3343aef2-f900-4c60-8981-35c17c7ee0bc"
+        "78d77e98-d6a2-47a2-9290-6e3d0b77ded8"
       ],
       "metadata": {
         "status": "pending",
@@ -1003,7 +992,8 @@
       "children": [
         "c5776417-8d72-4b6c-91e2-f6812c433fde",
         "086be485-d087-4dc7-84bb-9c74e4c8a57a",
-        "536222cc-f8c2-4de7-9134-10d074ba2fa5"
+        "536222cc-f8c2-4de7-9134-10d074ba2fa5",
+        "525f2aab-04d2-4752-912d-086b9e6cbd52"
       ],
       "metadata": {
         "status": "completed",
@@ -1068,7 +1058,7 @@
       "content": "Plugin indicators are visual markers (like emojis) that plugins can add next to node content",
       "children": [],
       "metadata": {
-        "status": "pending"
+        "status": "completed"
       }
     },
     "086be485-d087-4dc7-84bb-9c74e4c8a57a": {
@@ -1076,7 +1066,7 @@
       "content": "Each plugin can implement getNodeIndicator(node) to return a React node (e.g., 🤖 for Claude sessions)",
       "children": [],
       "metadata": {
-        "status": "pending"
+        "status": "completed"
       }
     },
     "536222cc-f8c2-4de7-9134-10d074ba2fa5": {
@@ -1084,24 +1074,14 @@
       "content": "Rendered in NodeContent.tsx before the node text, styled with plugin-indicators and plugin-indicator CSS classes",
       "children": [],
       "metadata": {
-        "status": "pending"
+        "status": "completed"
       }
     },
     "78d77e98-d6a2-47a2-9290-6e3d0b77ded8": {
       "id": "78d77e98-d6a2-47a2-9290-6e3d0b77ded8",
       "content": "Done",
       "children": [
-        "ef376107-4f5a-44d1-9ada-1ed77c98254f",
-        "384e2fb7-72a7-425f-95ee-dc9b1469acdb",
-        "f0b77102-a44a-41e3-8b42-2b9ec1aa29e5",
-        "037a8a46-8286-4cc0-82b1-bb2054873fcb",
-        "020eb205-8ea8-4ba5-b3e0-e07600bd7639",
         "c3e6d535-e6cd-4245-8064-eae7f19eeb1f",
-        "525f2aab-04d2-4752-912d-086b9e6cbd52",
-        "6c5180fc-e306-4a8d-a1e2-df403b3e2eb6",
-        "2090c20b-13eb-459d-9cae-ece1084e9d04",
-        "081ee1e2-f3d7-47cb-b932-637c1b0e8fd2",
-        "a6c473f8-d221-468b-94d4-dc835d1737b8",
         "3a9a0a6a-8858-442e-a716-f02b8b30655c",
         "58950aa3-50be-457f-a089-232d02c19831",
         "a3743f7c-cbf4-48e5-99f5-322edc1dec14",
@@ -1113,12 +1093,30 @@
         "d4a91032-dc55-4283-a24a-61164b101ee1",
         "e64f06e3-9bf8-42f2-b6ba-826a3cbbf39f",
         "9d5bf685-1248-4494-b5c9-1f745e75d157",
+        "67b4c175-a885-41f5-a825-78f435509683",
+        "f0b77102-a44a-41e3-8b42-2b9ec1aa29e5",
+        "ef376107-4f5a-44d1-9ada-1ed77c98254f",
+        "e96feea2-2696-480e-864c-51dc646dabea",
+        "3d9ffce5-4235-45dc-9bc5-68f104e54ad0",
+        "e3961487-35f1-4387-9ce0-1cdcce51acbb",
+        "b8ad6f61-d1f3-479e-a925-34572b5850a1",
+        "9073d866-ea02-4f85-a338-e821fa89e35d",
+        "6c5180fc-e306-4a8d-a1e2-df403b3e2eb6",
+        "2090c20b-13eb-459d-9cae-ece1084e9d04",
+        "020eb205-8ea8-4ba5-b3e0-e07600bd7639",
+        "3343aef2-f900-4c60-8981-35c17c7ee0bc",
+        "48e0f485-f1dc-4b07-9f6a-53072b7e67f1",
         "c5549db2-748d-4c2a-b5f6-6e3b6f3ce4be",
-        "67b4c175-a885-41f5-a825-78f435509683"
+        "f483719e-3280-4bd6-8afd-6d0e3ac0d73c",
+        "037a8a46-8286-4cc0-82b1-bb2054873fcb",
+        "081ee1e2-f3d7-47cb-b932-637c1b0e8fd2",
+        "a6c473f8-d221-468b-94d4-dc835d1737b8",
+        "384e2fb7-72a7-425f-95ee-dc9b1469acdb",
+        "7d407941-2fbd-404d-a30e-a23514f9e0c3"
       ],
       "metadata": {
         "status": "completed",
-        "expanded": false
+        "expanded": true
       }
     },
     "77368efd-fad4-4ba5-a3b4-42c4dcc23cca": {
@@ -2289,7 +2287,8 @@
         "6fab1a58-6725-4cdf-baf5-8784d4ba9487"
       ],
       "metadata": {
-        "status": "completed"
+        "status": "completed",
+        "expanded": true
       }
     },
     "c3f48047-7df6-4080-8c3b-1e114e81964f": {
@@ -2549,23 +2548,6 @@
     "ff71c203-adaa-424e-9305-8e563cae5f8a": {
       "id": "ff71c203-adaa-424e-9305-8e563cae5f8a",
       "content": "Toggle should not apply to a node with no children",
-      "children": [],
-      "metadata": {
-        "status": "pending"
-      }
-    },
-    "3ca41b82-8879-4fa4-bbfd-e997a9e91978": {
-      "id": "3ca41b82-8879-4fa4-bbfd-e997a9e91978",
-      "content": "test",
-      "children": [],
-      "metadata": {
-        "status": "pending",
-        "expanded": true
-      }
-    },
-    "a9d73bb5-8011-497e-aede-9c4cfa750b7b": {
-      "id": "a9d73bb5-8011-497e-aede-9c4cfa750b7b",
-      "content": "test2",
       "children": [],
       "metadata": {
         "status": "pending"

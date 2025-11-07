@@ -3,11 +3,16 @@
   outline-offset: -1px;
 }
 
-.tree-node-wrapper.flashing {
+.tree-node-wrapper.flashing-light {
+  background-color: var(--blue-75);
+  transition: none;
+}
+
+.tree-node-wrapper.flashing-medium {
   background-color: var(--blue-100);
   transition: none;
 }
 
-.tree-node-wrapper:not(.flashing) {
+.tree-node-wrapper:not(.flashing-light):not(.flashing-medium) {
   transition: background-color 0.5s ease-out;
 }

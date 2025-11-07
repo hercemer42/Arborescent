@@ -202,8 +202,14 @@ export const createNodeMovementActions = (
       ancestorRegistry: newAncestorRegistry,
     });
 
-    if (isCollapsed && visualEffects) {
-      visualEffects.flashNode(newParentId);
+    if (visualEffects) {
+      if (isCollapsed) {
+        // Flash the parent when indenting into a collapsed parent (medium intensity)
+        visualEffects.flashNode(newParentId, 'medium');
+      } else {
+        // Flash the node itself when indenting into an expanded parent (light intensity - default)
+        visualEffects.flashNode(nodeId);
+      }
     }
 
     triggerAutosave?.();
@@ -241,6 +247,14 @@ export const createNodeMovementActions = (
       nodes: updatedNodes,
       ancestorRegistry: newAncestorRegistry,
     });
+
+    if (visualEffects) {
+      // Flash the outdented node (light intensity - default)
+      visualEffects.flashNode(nodeId);
+      // Scroll to the outdented node to maintain visual position
+      visualEffects.scrollToNode(nodeId);
+    }
+
     triggerAutosave?.();
   }
 

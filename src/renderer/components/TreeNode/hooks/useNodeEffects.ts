@@ -1,13 +1,29 @@
+import { useEffect, useRef } from 'react';
 import { useStore } from '../../../store/tree/useStore';
 
 interface NodeEffectsResult {
-  isFlashing: boolean;
+  flashIntensity: 'light' | 'medium' | null;
+  nodeRef: React.RefObject<HTMLDivElement | null>;
 }
 
 export function useNodeEffects(nodeId: string): NodeEffectsResult {
-  const isFlashing = useStore((state) => state.flashingNodeId === nodeId);
+  const flashingNode = useStore((state) => state.flashingNode);
+  const shouldScrollTo = useStore((state) => state.scrollToNodeId === nodeId);
+  const nodeRef = useRef<HTMLDivElement>(null);
+
+  const flashIntensity = flashingNode?.nodeId === nodeId ? flashingNode.intensity : null;
+
+  useEffect(() => {
+    if (shouldScrollTo && nodeRef.current) {
+      nodeRef.current.scrollIntoView({
+        behavior: 'smooth',
+        block: 'nearest',
+      });
+    }
+  }, [shouldScrollTo]);
 
   return {
-    isFlashing,
+    flashIntensity,
+    nodeRef,
   };
 }

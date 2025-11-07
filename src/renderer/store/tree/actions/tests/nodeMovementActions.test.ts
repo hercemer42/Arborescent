@@ -64,6 +64,7 @@ describe('nodeMovementActions', () => {
 
     mockVisualEffects = {
       flashNode: vi.fn(),
+      scrollToNode: vi.fn(),
     };
 
     mockNavigation = {
@@ -132,12 +133,12 @@ describe('nodeMovementActions', () => {
       expect(mockNavigation.moveUp).toHaveBeenCalledWith(0, null);
     });
 
-    it('should call visualEffects.flashNode when indenting into collapsed parent', () => {
+    it('should call visualEffects.flashNode with parent and medium intensity when indenting into collapsed parent', () => {
       state.nodes['node-1'].metadata = { expanded: false };
 
       actions.indentNode('node-2');
 
-      expect(mockVisualEffects.flashNode).toHaveBeenCalledWith('node-1');
+      expect(mockVisualEffects.flashNode).toHaveBeenCalledWith('node-1', 'medium');
     });
 
     it('should not call navigation.moveUp when indenting into expanded parent', () => {
@@ -148,22 +149,22 @@ describe('nodeMovementActions', () => {
       expect(mockNavigation.moveUp).not.toHaveBeenCalled();
     });
 
-    it('should not call visualEffects.flashNode when indenting into expanded parent', () => {
+    it('should call visualEffects.flashNode with node when indenting into expanded parent', () => {
       state.nodes['node-1'].metadata = { expanded: true };
 
       actions.indentNode('node-2');
 
-      expect(mockVisualEffects.flashNode).not.toHaveBeenCalled();
+      expect(mockVisualEffects.flashNode).toHaveBeenCalledWith('node-2');
     });
 
-    it('should not call effects when indenting into parent with no children', () => {
+    it('should flash node when indenting into parent with no children', () => {
       state.nodes['node-1'].children = [];
       state.nodes['node-1'].metadata = { expanded: false };
 
       actions.indentNode('node-2');
 
       expect(mockNavigation.moveUp).not.toHaveBeenCalled();
-      expect(mockVisualEffects.flashNode).not.toHaveBeenCalled();
+      expect(mockVisualEffects.flashNode).toHaveBeenCalledWith('node-2');
     });
 
     it('should call moveUp before reparenting when indenting into collapsed parent', () => {
@@ -241,6 +242,18 @@ describe('nodeMovementActions', () => {
 
       expect(state.nodes['root'].children).toEqual(['node-1', 'node-5', 'node-2']);
       expect(state.ancestorRegistry['node-5']).toEqual(['root']);
+    });
+
+    it('should call visualEffects.scrollToNode when outdenting', () => {
+      actions.outdentNode('node-3');
+
+      expect(mockVisualEffects.scrollToNode).toHaveBeenCalledWith('node-3');
+    });
+
+    it('should call visualEffects.flashNode when outdenting', () => {
+      actions.outdentNode('node-3');
+
+      expect(mockVisualEffects.flashNode).toHaveBeenCalledWith('node-3');
     });
   });
 

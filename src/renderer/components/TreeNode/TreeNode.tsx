@@ -22,7 +22,7 @@ export const TreeNode = memo(function TreeNode({ nodeId, depth = 0 }: TreeNodePr
   const expanded = node?.metadata.expanded ?? true;
   const contentLength = node?.content.length ?? 0;
 
-  const { isFlashing } = useNodeEffects(nodeId);
+  const { flashIntensity, nodeRef } = useNodeEffects(nodeId);
 
   const handleToggle = useCallback(() => {
     const newExpandedState = !expanded;
@@ -44,7 +44,8 @@ export const TreeNode = memo(function TreeNode({ nodeId, depth = 0 }: TreeNodePr
   return (
     <>
       <div
-        className={`tree-node-wrapper ${isSelected ? 'selected' : ''} ${isFlashing ? 'flashing' : ''}`}
+        ref={nodeRef}
+        className={`tree-node-wrapper ${isSelected ? 'selected' : ''} ${flashIntensity ? `flashing-${flashIntensity}` : ''}`}
         style={{ paddingLeft: `${(depth * 20) + 15}px` }}
         onMouseDown={handleMouseDown}
         onMouseMove={handleMouseMove}

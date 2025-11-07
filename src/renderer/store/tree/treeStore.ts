@@ -33,7 +33,8 @@ export interface TreeState {
   currentFilePath: string | null;
   fileMeta: { created: string; author: string } | null;
   deletedNodes: DeletedNodeEntry[];
-  flashingNodeId: string | null;
+  flashingNode: { nodeId: string; intensity: 'light' | 'medium' } | null;
+  scrollToNodeId: string | null;
 
   actions: NodeActions & NavigationActions & PersistenceActions & NodeMovementActions & NodeDeletionActions & VisualEffectsActions;
 }
@@ -63,7 +64,8 @@ export function createTreeStore() {
       currentFilePath: null,
       fileMeta: null,
       deletedNodes: [],
-      flashingNodeId: null,
+      flashingNode: null,
+      scrollToNodeId: null,
 
       actions: {
         ...createNodeActions(get, set, persistenceActions.autoSave),
