@@ -1,4 +1,4 @@
-import { describe, it, expect, vi, beforeEach, Mock } from 'vitest';
+import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { vol } from 'memfs';
 import { EventEmitter } from 'node:events';
 import { registerClaudeCodeIpcHandlers } from '../ipcHandlers';
@@ -61,8 +61,8 @@ describe('ipcHandlers', () => {
     vol.reset();
 
     // Capture registered handlers
-    vi.mocked(pluginIPCBridge.registerHandler).mockImplementation((channel: string, handler: Mock) => {
-      handlers.set(channel, handler);
+    vi.mocked(pluginIPCBridge.registerHandler).mockImplementation((channel: string, handler: unknown) => {
+      handlers.set(channel, handler as (...args: unknown[]) => Promise<unknown>);
     });
 
     // Mock process.cwd
@@ -262,7 +262,7 @@ describe('ipcHandlers', () => {
       const handler = handlers.get('claude:send-to-session')!;
       const mockProcess = new EventEmitter();
 
-      vi.mocked(spawn).mockReturnValue(mockProcess as any);
+      vi.mocked(spawn).mockReturnValue(mockProcess as unknown as ReturnType<typeof spawn>);
 
       // Call handler and immediately emit close event with success
       const promise = handler(null, 'session-123', 'Test context', '/test/project');
@@ -294,7 +294,7 @@ describe('ipcHandlers', () => {
       const mockProcess = new EventEmitter();
       const error = new Error('Spawn failed');
 
-      vi.mocked(spawn).mockReturnValue(mockProcess as any);
+      vi.mocked(spawn).mockReturnValue(mockProcess as unknown as ReturnType<typeof spawn>);
 
       // Call handler and immediately emit error
       const promise = handler(null, 'session-123', 'Test context', '/test/project');
@@ -314,7 +314,7 @@ describe('ipcHandlers', () => {
       const handler = handlers.get('claude:send-to-session')!;
       const mockProcess = new EventEmitter();
 
-      vi.mocked(spawn).mockReturnValue(mockProcess as any);
+      vi.mocked(spawn).mockReturnValue(mockProcess as unknown as ReturnType<typeof spawn>);
 
       // Call handler and emit close event with error code
       const promise = handler(null, 'session-123', 'Test context', '/test/project');
@@ -335,7 +335,7 @@ describe('ipcHandlers', () => {
       const error = new Error('Process error');
       const mockProcess = new EventEmitter();
 
-      vi.mocked(spawn).mockReturnValue(mockProcess as any);
+      vi.mocked(spawn).mockReturnValue(mockProcess as unknown as ReturnType<typeof spawn>);
 
       const promise = handler(null, 'session-123', 'Test context', '/test/project');
       mockProcess.emit('error', error);

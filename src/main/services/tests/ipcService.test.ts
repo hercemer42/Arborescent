@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { ipcMain, dialog, BrowserWindow, app } from 'electron';
+import { ipcMain, dialog, BrowserWindow } from 'electron';
 import { vol } from 'memfs';
 import { registerIpcHandlers } from '../ipcService';
 import { logger } from '../logger';

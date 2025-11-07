@@ -43,7 +43,7 @@ describe('ClaudePlugin', () => {
         },
       ];
 
-      vi.mocked(window.electron.claudeListSessions).mockResolvedValue(mockSessions);
+      vi.mocked(window.electron.claudeListSessions!).mockResolvedValue(mockSessions);
 
       const sessions = await plugin.getSessions();
 
@@ -63,7 +63,7 @@ describe('ClaudePlugin', () => {
         },
       ];
 
-      vi.mocked(window.electron.claudeListSessions).mockResolvedValue(mockSessions);
+      vi.mocked(window.electron.claudeListSessions!).mockResolvedValue(mockSessions);
 
       const sessions = await plugin.getSessions();
 
@@ -71,7 +71,7 @@ describe('ClaudePlugin', () => {
     });
 
     it('should return empty array on error', async () => {
-      vi.mocked(window.electron.claudeListSessions).mockRejectedValue(new Error('Failed'));
+      vi.mocked(window.electron.claudeListSessions!).mockRejectedValue(new Error('Failed'));
 
       const sessions = await plugin.getSessions();
 
@@ -92,7 +92,7 @@ describe('ClaudePlugin', () => {
     });
 
     it('should throw error if send fails', async () => {
-      vi.mocked(window.electron.claudeSendToSession).mockRejectedValue(
+      vi.mocked(window.electron.claudeSendToSession!).mockRejectedValue(
         new Error('Send failed')
       );
 

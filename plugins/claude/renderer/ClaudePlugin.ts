@@ -13,6 +13,9 @@ export class ClaudePlugin implements AIPlugin {
   private projectPath: string = '';
 
   async initialize(): Promise<void> {
+    if (!window.electron.claudeGetProjectPath) {
+      throw new Error('Claude preload API not available');
+    }
     this.projectPath = await window.electron.claudeGetProjectPath();
     logger.info(`Plugin initialized for project: ${this.projectPath}`, 'Claude Plugin');
   }
@@ -27,6 +30,9 @@ export class ClaudePlugin implements AIPlugin {
 
   async getSessions(): Promise<AISession[]> {
     try {
+      if (!window.electron.claudeListSessions) {
+        throw new Error('Claude preload API not available');
+      }
       const sessions = await window.electron.claudeListSessions(this.projectPath);
 
       return sessions.map((s: unknown) => {
@@ -52,6 +58,9 @@ export class ClaudePlugin implements AIPlugin {
 
   async sendToSession(sessionId: string, context: string): Promise<void> {
     try {
+      if (!window.electron.claudeSendToSession) {
+        throw new Error('Claude preload API not available');
+      }
       await window.electron.claudeSendToSession(sessionId, context, this.projectPath);
     } catch (error) {
       logger.error('Failed to send context to Claude session', error as Error, 'Claude Plugin');

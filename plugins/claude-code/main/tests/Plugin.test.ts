@@ -3,7 +3,7 @@ import { ClaudeCodePlugin } from '../Plugin';
 import { PluginContext } from '../../../core/worker/Context';
 import { logger } from '../../../core/worker/services/Logger';
 import { TreeNode } from '../../../../src/shared/types';
-import { NodeContext } from '../../../core/shared/interface';
+import { NodeContext, PluginContextMenuItem } from '../../../core/shared/interface';
 
 // Mock logger
 vi.mock('../../../core/worker/services/Logger', () => ({
@@ -188,9 +188,7 @@ describe('ClaudeCodePlugin', () => {
   describe('getContextMenuItems', () => {
     const createNode = (sessionId?: string): TreeNode => ({
       id: 'node-1',
-      name: 'Test Node',
-      type: 'task',
-      collapsed: false,
+      content: 'Test node',
       children: [],
       metadata: {
         plugins: sessionId
@@ -205,7 +203,7 @@ describe('ClaudeCodePlugin', () => {
       const node = createNode();
       const context: NodeContext = { hasAncestorSession: true };
 
-      const items = plugin.extensionPoints.provideNodeContextMenuItems!(node, context);
+      const items = plugin.extensionPoints.provideNodeContextMenuItems!(node, context) as PluginContextMenuItem[];
 
       expect(items).toEqual([]);
     });
@@ -214,7 +212,7 @@ describe('ClaudeCodePlugin', () => {
       const node = createNode();
       const context: NodeContext = { hasAncestorSession: false };
 
-      const items = plugin.extensionPoints.provideNodeContextMenuItems!(node, context);
+      const items = plugin.extensionPoints.provideNodeContextMenuItems!(node, context) as PluginContextMenuItem[];
 
       expect(items).toHaveLength(1);
       expect(items[0]).toEqual({
@@ -227,7 +225,7 @@ describe('ClaudeCodePlugin', () => {
       const node = createNode('session-123');
       const context: NodeContext = { hasAncestorSession: false };
 
-      const items = plugin.extensionPoints.provideNodeContextMenuItems!(node, context);
+      const items = plugin.extensionPoints.provideNodeContextMenuItems!(node, context) as PluginContextMenuItem[];
 
       expect(items).toHaveLength(2);
       expect(items[0]).toEqual({
@@ -243,15 +241,13 @@ describe('ClaudeCodePlugin', () => {
     it('should handle missing plugins metadata', () => {
       const node: TreeNode = {
         id: 'node-1',
-        name: 'Test Node',
-        type: 'task',
-        collapsed: false,
+        content: 'Test node',
         children: [],
         metadata: {},
       };
       const context: NodeContext = { hasAncestorSession: false };
 
-      const items = plugin.extensionPoints.provideNodeContextMenuItems!(node, context);
+      const items = plugin.extensionPoints.provideNodeContextMenuItems!(node, context) as PluginContextMenuItem[];
 
       expect(items).toHaveLength(1);
       expect(items[0].id).toBe('claude-code:send-to-session');
@@ -261,9 +257,7 @@ describe('ClaudeCodePlugin', () => {
   describe('getNodeIndicator', () => {
     const createNode = (sessionId?: string): TreeNode => ({
       id: 'node-1',
-      name: 'Test Node',
-      type: 'task',
-      collapsed: false,
+      content: 'Test node',
       children: [],
       metadata: {
         plugins: sessionId
@@ -296,9 +290,7 @@ describe('ClaudeCodePlugin', () => {
     it('should return null when plugins metadata is missing', () => {
       const node: TreeNode = {
         id: 'node-1',
-        name: 'Test Node',
-        type: 'task',
-        collapsed: false,
+        content: 'Test node',
         children: [],
         metadata: {},
       };

@@ -69,7 +69,7 @@ describe('PluginWorkerConnection', () => {
     lastCreatedWorker = null;
     connection = new PluginWorkerConnection();
     // Get the mock worker that was just created
-    mockWorker = lastCreatedWorker as MockWorker;
+    mockWorker = lastCreatedWorker!;
   });
 
   afterEach(() => {
@@ -79,7 +79,7 @@ describe('PluginWorkerConnection', () => {
   describe('start', () => {
     it('should start worker and wait for ready message', async () => {
       const startPromise = connection.start();
-      mockWorker = lastCreatedWorker as MockWorker;
+      mockWorker = lastCreatedWorker!;
 
       // Emit ready message
       mockWorker.emit('message', {
@@ -96,7 +96,7 @@ describe('PluginWorkerConnection', () => {
 
     it('should not start twice', async () => {
       const startPromise = connection.start();
-      mockWorker = lastCreatedWorker as MockWorker;
+      mockWorker = lastCreatedWorker!;
       mockWorker.emit('message', {
         type: MessageType.Ready,
         id: 'ready',
@@ -114,7 +114,7 @@ describe('PluginWorkerConnection', () => {
 
     it('should handle worker error events', async () => {
       const startPromise = connection.start();
-      mockWorker = lastCreatedWorker as MockWorker;
+      mockWorker = lastCreatedWorker!;
       mockWorker.emit('message', {
         type: MessageType.Ready,
         id: 'ready',
@@ -130,7 +130,7 @@ describe('PluginWorkerConnection', () => {
 
     it('should handle worker exit with non-zero code', async () => {
       const startPromise = connection.start();
-      mockWorker = lastCreatedWorker as MockWorker;
+      mockWorker = lastCreatedWorker!;
       mockWorker.emit('message', {
         type: MessageType.Ready,
         id: 'ready',
@@ -149,7 +149,7 @@ describe('PluginWorkerConnection', () => {
 
     it('should not log error on clean exit (code 0)', async () => {
       const startPromise = connection.start();
-      mockWorker = lastCreatedWorker as MockWorker;
+      mockWorker = lastCreatedWorker!;
       mockWorker.emit('message', {
         type: MessageType.Ready,
         id: 'ready',
@@ -168,7 +168,7 @@ describe('PluginWorkerConnection', () => {
   describe('stop', () => {
     it('should terminate worker', async () => {
       const startPromise = connection.start();
-      mockWorker = lastCreatedWorker as MockWorker;
+      mockWorker = lastCreatedWorker!;
       mockWorker.emit('message', {
         type: MessageType.Ready,
         id: 'ready',
@@ -193,9 +193,9 @@ describe('PluginWorkerConnection', () => {
   describe('sendMessage', () => {
     beforeEach(async () => {
       const startPromise = connection.start();
-      mockWorker = lastCreatedWorker as MockWorker;
+      mockWorker = lastCreatedWorker!;
       // Update mockWorker reference after start() creates the worker
-      mockWorker = lastCreatedWorker as MockWorker;
+      mockWorker = lastCreatedWorker!;
       mockWorker.emit('message', {
         type: MessageType.Ready,
         id: 'ready',
@@ -262,47 +262,14 @@ describe('PluginWorkerConnection', () => {
       );
     });
 
-    it.skip('should handle multiple concurrent messages', async () => {
-      vi.mocked(require('../../../worker/utils/messageId').generateMessageId)
-        .mockReturnValueOnce('msg-1')
-        .mockReturnValueOnce('msg-2')
-        .mockReturnValueOnce('msg-3');
-
-      const promise1 = connection.sendMessage(MessageType.RegisterPlugin, { plugin: 1 });
-      const promise2 = connection.sendMessage(MessageType.UnregisterPlugin, { plugin: 2 });
-      const promise3 = connection.sendMessage(MessageType.InitializePlugins, { plugin: 3 });
-
-      // Respond in different order
-      mockWorker.emit.skip('message', {
-        type: MessageType.Response,
-        id: 'msg-2',
-        payload: 'result-2',
-      });
-      mockWorker.emit.skip('message', {
-        type: MessageType.Response,
-        id: 'msg-3',
-        payload: 'result-3',
-      });
-      mockWorker.emit.skip('message', {
-        type: MessageType.Response,
-        id: 'msg-1',
-        payload: 'result-1',
-      });
-
-      const [result1, result2, result3] = await Promise.all([promise1, promise2, promise3]);
-
-      expect(result1).toBe('result-1');
-      expect(result2).toBe('result-2');
-      expect(result3).toBe('result-3');
-    });
   });
 
   describe('message routing', () => {
     beforeEach(async () => {
       const startPromise = connection.start();
-      mockWorker = lastCreatedWorker as MockWorker;
+      mockWorker = lastCreatedWorker!;
       // Update mockWorker reference after start() creates the worker
-      mockWorker = lastCreatedWorker as MockWorker;
+      mockWorker = lastCreatedWorker!;
       mockWorker.emit('message', {
         type: MessageType.Ready,
         id: 'ready',
