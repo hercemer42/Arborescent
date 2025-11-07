@@ -1,5 +1,10 @@
 import { describe, it, expect, beforeEach, vi, afterEach } from 'vitest';
 import { render, waitFor } from '@testing-library/react';
+
+// Unmock modules that have local mocks in this test (globally mocked in setup.ts)
+vi.unmock('../Provider');
+vi.unmock('../Registry');
+
 import { PluginProvider } from '../Provider';
 import { PluginManager } from '../Manager';
 import { PluginRegistry } from '../Registry';

@@ -18,11 +18,11 @@ vi.mock('../store/plugins/pluginStore', () => ({
   }),
 }));
 
-vi.mock('../../../plugins/core/Context', () => ({
+vi.mock('../../../plugins/core/renderer/Provider', () => ({
   PluginProvider: ({ children }: { children: React.ReactNode }) => children,
 }));
 
-vi.mock('../../../plugins/core/Registry', () => ({
+vi.mock('../../../plugins/core/renderer/Registry', () => ({
   PluginRegistry: {
     register: vi.fn(),
     unregister: vi.fn(),

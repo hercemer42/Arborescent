@@ -1,4 +1,8 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
+
+// Unmock the Registry for this test file (it's globally mocked in setup.ts)
+vi.unmock('../Registry');
+
 import { PluginRegistry } from '../Registry';
 import { Plugin } from '../../shared/interface';
 import { logger } from '../../../../src/renderer/services/logger';
