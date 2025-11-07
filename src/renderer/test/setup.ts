@@ -56,6 +56,7 @@ global.window.electron = {
   listTempFiles: vi.fn(),
   saveTempFilesMetadata: vi.fn(),
   getTempFilesMetadata: vi.fn(),
+  isTempFile: vi.fn(),
   setMenuNewHandler: vi.fn(),
   setMenuOpenHandler: vi.fn(),
   setMenuSaveHandler: vi.fn(),

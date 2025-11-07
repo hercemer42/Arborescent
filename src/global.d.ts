@@ -18,6 +18,7 @@ declare global {
       listTempFiles: () => Promise<string[]>;
       saveTempFilesMetadata: (metadata: string) => Promise<void>;
       getTempFilesMetadata: () => Promise<string | null>;
+      isTempFile: (filePath: string) => Promise<boolean>;
       setMenuNewHandler: (callback: () => void) => void;
       setMenuOpenHandler: (callback: () => void) => void;
       setMenuSaveHandler: (callback: () => void) => void;

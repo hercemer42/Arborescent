@@ -2,7 +2,7 @@
 
 This document records key architectural choices made during development sessions.
 
-**Last Updated:** 2025-11-04
+**Last Updated:** 2025-11-07
 
 **When updating this file:** Be concise - focus on the decision, pattern, and rationale. Avoid verbose explanations.
 
@@ -591,8 +591,13 @@ export const createFileActions = (get, storage: StorageService) => ({
 ```
 src/renderer/test/
 ├── setup.ts                      # Global test setup (mocks, matchers)
-└── helpers/                      # Shared test utilities
-    └── mockStoreActions.ts
+├── helpers/                      # Shared test utilities
+│   └── mockStoreActions.ts
+└── integration/                  # Integration tests
+    ├── fileSaveLoad.test.ts
+    ├── unsavedChanges.test.ts
+    ├── tempFileLifecycle.test.ts
+    └── multiFileState.test.ts
 
 src/renderer/components/Tree/
 ├── Tree.tsx
@@ -624,11 +629,13 @@ src/renderer/services/
    - Custom hooks
    - Fast execution (<10ms per test)
 
-2. **Integration Tests** - Test multiple units together
-   - Component interactions
-   - Store + component integration
-   - User workflows
-   - Slower execution (can involve multiple renders)
+2. **Integration Tests** - Test multiple units together across system boundaries
+   - Full data flows: UI → stores → IPC → Storage → Filesystem
+   - Critical user workflows (save/load, unsaved changes dialogs, multi-file management)
+   - Data integrity validation (no loss through save/load cycles)
+   - Temp file lifecycle management
+   - Cross-store coordination (filesStore + storeManager + treeStore)
+   - Slower execution (involves multiple state changes and mock IPC calls)
 
 3. **E2E Tests** - Not implemented yet (Electron requires special setup)
 
@@ -642,8 +649,19 @@ npm run test:coverage     # Run tests with coverage report
 **Coverage Configuration:**
 - **Provider:** V8 (faster than Istanbul)
 - **Reporters:** text, json, html, lcov
-- **Current Thresholds:** 30% lines, 40% functions (MVP baseline)
+- **Current Coverage:** 85.55% (812 tests)
 - **Target Thresholds:** 70% (2025 industry standard for production)
+
+**Integration Test Suite:**
+
+Four integration tests validate critical data integrity workflows:
+
+1. **fileSaveLoad.test.ts** - Save/load round trip preserves all data (content, structure, metadata)
+2. **unsavedChanges.test.ts** - Dialog flow for temp files (Save/Don't Save/Cancel)
+3. **tempFileLifecycle.test.ts** - Temp file creation, cleanup, orphan recovery
+4. **multiFileState.test.ts** - Multiple files with independent state, session persistence
+
+**Pattern:** Realistic mock implementations with stateful storage (Map-based file system, temp file tracking). Use `vi.clearAllMocks()` before test operations to isolate assertions.
 
 **What to Test:**
 - ✅ Store actions (business logic)
