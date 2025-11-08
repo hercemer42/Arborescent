@@ -55,14 +55,17 @@ export const createSelectionActions = (
       // Remove this node and all its descendants
       const nodeWithDescendants = createSelectionWithDescendants(nodeId, nodes);
       nodeWithDescendants.forEach(id => newSelection.delete(id));
+
+      // Clear anchor when deselecting
+      set({ selectedNodeIds: newSelection, lastSelectedNodeId: null });
     } else {
       // Adding to selection: add this node and all its descendants
       const nodeWithDescendants = createSelectionWithDescendants(nodeId, nodes);
       nodeWithDescendants.forEach(id => newSelection.add(id));
-    }
 
-    // Note: Don't update lastSelectedNodeId here - only Shift+Click should set the anchor
-    set({ selectedNodeIds: newSelection });
+      // Update anchor so Shift+Click can create range from this node
+      set({ selectedNodeIds: newSelection, lastSelectedNodeId: nodeId });
+    }
   }
 
   function selectRange(nodeId: string): void {

@@ -11,12 +11,18 @@ interface NodeContentProps {
   node: TreeNode;
   expanded: boolean;
   onToggle: () => void;
+  onMouseDown?: (e: React.MouseEvent) => void;
+  onMouseMove?: (e: React.MouseEvent) => void;
+  onClick?: (e: React.MouseEvent) => void;
 }
 
 function NodeContentComponent({
   node,
   expanded,
   onToggle,
+  onMouseDown,
+  onMouseMove,
+  onClick,
 }: NodeContentProps) {
   const {
     hasChildren,
@@ -64,6 +70,9 @@ function NodeContentComponent({
       <div
         className={`node-content ${isSelected ? 'selected' : ''} ${hasChildren && !expanded ? 'collapsed-parent' : ''}`}
         onContextMenu={handleContextMenu}
+        onMouseDown={onMouseDown}
+        onMouseMove={onMouseMove}
+        onClick={onClick}
       >
         {hasChildren && (
           <div className={`expand-toggle-wrapper ${expanded ? 'expanded' : 'collapsed'}`}>
@@ -116,7 +125,9 @@ function NodeContentComponent({
 export const NodeContent = memo(NodeContentComponent, (prev, next) => {
   if (prev.expanded !== next.expanded || prev.onToggle !== next.onToggle) return false;
   if (prev.node.id !== next.node.id) return false;
-
+  if (prev.onMouseDown !== next.onMouseDown) return false;
+  if (prev.onMouseMove !== next.onMouseMove) return false;
+  if (prev.onClick !== next.onClick) return false;
 
   if (prev.node.content !== next.node.content &&
       prev.node.children === next.node.children &&

@@ -60,9 +60,6 @@ export const TreeNode = memo(function TreeNode({ nodeId, depth = 0 }: TreeNodePr
         className={classNames}
         data-node-id={nodeId}
         style={{ paddingLeft: `${(depth * 20) + 15}px` }}
-        onMouseDown={handleMouseDown}
-        onMouseMove={handleMouseMove}
-        onClick={handleClick}
         {...attributes}
         {...listeners}
       >
@@ -70,6 +67,9 @@ export const TreeNode = memo(function TreeNode({ nodeId, depth = 0 }: TreeNodePr
           node={node}
           expanded={expanded}
           onToggle={handleToggle}
+          onMouseDown={handleMouseDown}
+          onMouseMove={handleMouseMove}
+          onClick={handleClick}
         />
       </div>
 

@@ -3,3 +3,10 @@
   padding: 8px 0;
   overflow-y: auto;
 }
+
+/* Make DragOverlay instant and snappy */
+.dnd-drag-overlay {
+  animation: none !important;
+  transition: none !important;
+  cursor: grabbing;
+}

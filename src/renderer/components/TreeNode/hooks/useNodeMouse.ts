@@ -1,18 +1,10 @@
-import { useRef, useEffect } from 'react';
+import { useRef } from 'react';
 import { useActiveTreeStore } from '../../../store/tree/TreeStoreContext';
 import { getPositionFromCoordinates } from '../../../utils/position';
 
 export function useNodeMouse(nodeId: string) {
   const store = useActiveTreeStore();
   const mouseDownPos = useRef<{ x: number; y: number } | null>(null);
-  const holdTimeoutRef = useRef<NodeJS.Timeout | null>(null);
-
-  const clearHoldTimeout = () => {
-    if (holdTimeoutRef.current) {
-      clearTimeout(holdTimeoutRef.current);
-      holdTimeoutRef.current = null;
-    }
-  };
 
   const handleMouseDown = (e: React.MouseEvent) => {
     const target = e.target as HTMLElement;
@@ -24,25 +16,6 @@ export function useNodeMouse(nodeId: string) {
     // Track mouse position for drag detection, but skip for modifier key clicks
     // (shift-click, ctrl-click, etc. are for selection operations, not cursor placement)
     mouseDownPos.current = hasModifierKey ? null : { x: e.clientX, y: e.clientY };
-
-    // Clear any existing hold timeout
-    clearHoldTimeout();
-
-    // For normal clicks (no modifiers), start a 1-second timeout to show selection
-    // This gives visual feedback when holding before dragging
-    if (!hasModifierKey) {
-      holdTimeoutRef.current = setTimeout(() => {
-        const { actions, selectedNodeIds } = store.getState();
-
-        // Only add to selection if not already selected
-        if (!selectedNodeIds.has(nodeId)) {
-          actions.clearSelection();
-          actions.addToSelection([nodeId]);
-        }
-
-        holdTimeoutRef.current = null;
-      }, 500);
-    }
 
     // Prevent default browser selection when clicking on gaps/icons/wrappers
     // but allow natural behavior for text clicks and modifier key operations
@@ -60,14 +33,11 @@ export function useNodeMouse(nodeId: string) {
 
     if (dx > 5 || dy > 5) {
       mouseDownPos.current = null;
-      clearHoldTimeout();
     }
   };
 
   const handleClick = (e: React.MouseEvent) => {
-    clearHoldTimeout();
-
-    const { actions } = store.getState();
+    const { actions, selectedNodeIds } = store.getState();
     const isCtrlOrCmd = e.ctrlKey || e.metaKey;
     const isShift = e.shiftKey;
 
@@ -92,7 +62,7 @@ export function useNodeMouse(nodeId: string) {
     }
     mouseDownPos.current = null;
 
-    // Normal click: clear multi-selection and select this node
+    // Normal click: always clear selection (allows deselecting by clicking on selected node)
     actions.clearSelection();
 
     // Find the contentEditable element to position cursor in
@@ -110,13 +80,6 @@ export function useNodeMouse(nodeId: string) {
     actions.setRememberedVisualX(null);
     actions.selectNode(nodeId, position);
   };
-
-  // Cleanup timeout on unmount
-  useEffect(() => {
-    return () => {
-      clearHoldTimeout();
-    };
-  }, []);
 
   return {
     handleMouseDown,

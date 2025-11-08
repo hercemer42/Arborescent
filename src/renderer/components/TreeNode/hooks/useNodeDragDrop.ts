@@ -26,6 +26,9 @@ export function useNodeDragDrop(nodeId: string, nodeRef: React.RefObject<HTMLDiv
       return;
     }
 
+    // Set default to 'child' immediately to avoid gap
+    setDropPosition('child');
+
     const handleMouseMove = (e: MouseEvent) => {
       if (!nodeRef.current) return;
 
@@ -33,13 +36,13 @@ export function useNodeDragDrop(nodeId: string, nodeRef: React.RefObject<HTMLDiv
       const y = e.clientY - rect.top;
       const height = rect.height;
 
-      // Calculate which zone we're in
+      // Calculate which zone we're in (25% top/bottom, 50% middle)
       const topThreshold = height * 0.25;
       const bottomThreshold = height * 0.75;
 
-      if (y < topThreshold) {
+      if (y <= topThreshold) {
         setDropPosition('before');
-      } else if (y > bottomThreshold) {
+      } else if (y >= bottomThreshold) {
         setDropPosition('after');
       } else {
         setDropPosition('child');
