@@ -37,7 +37,7 @@ export function useNodeMouse(nodeId: string) {
   };
 
   const handleClick = (e: React.MouseEvent) => {
-    const { actions, selectedNodeIds } = store.getState();
+    const { actions } = store.getState();
     const isCtrlOrCmd = e.ctrlKey || e.metaKey;
     const isShift = e.shiftKey;
 

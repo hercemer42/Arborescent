@@ -354,4 +354,119 @@ describe('nodeMovementActions', () => {
       expect(state.ancestorRegistry['node-4']).toEqual(['root', 'node-2']);
     });
   });
+
+  describe('dropNode', () => {
+    it('should drop node as child of target', () => {
+      actions.dropNode('node-2', 'node-1', 'child');
+
+      // node-2 should now be a child of node-1
+      expect(state.nodes['node-1'].children).toContain('node-2');
+      expect(state.nodes['root'].children).not.toContain('node-2');
+      expect(state.ancestorRegistry['node-2']).toEqual(['root', 'node-1']);
+    });
+
+    it('should drop node before target', () => {
+      actions.dropNode('node-2', 'node-1', 'before');
+
+      // node-2 should be before node-1 in root's children
+      expect(state.nodes['root'].children).toEqual(['node-2', 'node-1']);
+    });
+
+    it('should drop node after target', () => {
+      actions.dropNode('node-1', 'node-2', 'after');
+
+      // node-1 should be after node-2 in root's children
+      expect(state.nodes['root'].children).toEqual(['node-2', 'node-1']);
+    });
+
+    it('should update ancestor registry when dropping as child', () => {
+      actions.dropNode('node-2', 'node-1', 'child');
+
+      expect(state.ancestorRegistry['node-2']).toEqual(['root', 'node-1']);
+    });
+
+    it('should not drop node onto itself', () => {
+      const originalChildren = [...state.nodes['node-1'].children];
+
+      actions.dropNode('node-1', 'node-1', 'child');
+
+      // Should not change
+      expect(state.nodes['node-1'].children).toEqual(originalChildren);
+    });
+
+    it('should not drop node onto its own descendant', () => {
+      const originalChildren = [...state.nodes['node-3'].children];
+
+      actions.dropNode('node-1', 'node-3', 'child');
+
+      // Should not change (node-3 is a descendant of node-1)
+      expect(state.nodes['node-3'].children).toEqual(originalChildren);
+      expect(state.ancestorRegistry['node-1']).toEqual(['root']);
+    });
+
+    it('should not drop if already a child of target parent', () => {
+      // node-3 is already a child of node-1
+      const originalChildren = [...state.nodes['node-1'].children];
+
+      actions.dropNode('node-3', 'node-1', 'child');
+
+      // Should not duplicate
+      expect(state.nodes['node-1'].children).toEqual(originalChildren);
+    });
+
+    it('should call visualEffects.flashNode when dropping as child into expanded parent', () => {
+      actions.dropNode('node-2', 'node-1', 'child');
+
+      expect(mockVisualEffects.flashNode).toHaveBeenCalledWith('node-1', 'light');
+    });
+
+    it('should call visualEffects.flashNode when dropping as child into collapsed parent', () => {
+      // Make node-1 collapsed
+      state.nodes['node-1'].metadata.expanded = false;
+
+      actions.dropNode('node-2', 'node-1', 'child');
+
+      expect(mockVisualEffects.flashNode).toHaveBeenCalledWith('node-1', 'medium');
+    });
+
+    it('should call visualEffects.flashNode with node when dropping before/after', () => {
+      actions.dropNode('node-2', 'node-1', 'before');
+
+      expect(mockVisualEffects.flashNode).toHaveBeenCalledWith('node-2');
+    });
+
+    it('should handle dropping into deep nested structure', () => {
+      // Create deeper structure: node-1 > node-3 > node-3-1
+      state.nodes['node-3'].children = ['node-3-1'];
+      state.nodes['node-3-1'] = {
+        id: 'node-3-1',
+        content: 'Task 3.1',
+        children: [],
+        metadata: {},
+      };
+      state.ancestorRegistry['node-3-1'] = ['root', 'node-1', 'node-3'];
+
+      actions.dropNode('node-2', 'node-3-1', 'child');
+
+      expect(state.nodes['node-3-1'].children).toContain('node-2');
+      expect(state.ancestorRegistry['node-2']).toEqual(['root', 'node-1', 'node-3', 'node-3-1']);
+    });
+
+    it('should handle complex before/after positioning', () => {
+      // Add more children to test positioning
+      state.nodes['root'].children = ['node-1', 'node-2', 'node-3', 'node-4'];
+      state.nodes['node-4'] = {
+        id: 'node-4',
+        content: 'Task 4',
+        children: [],
+        metadata: {},
+      };
+      state.ancestorRegistry['node-4'] = ['root'];
+
+      // Move node-4 before node-2
+      actions.dropNode('node-4', 'node-2', 'before');
+
+      expect(state.nodes['root'].children).toEqual(['node-1', 'node-4', 'node-2', 'node-3']);
+    });
+  });
 });

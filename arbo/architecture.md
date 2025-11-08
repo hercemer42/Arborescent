@@ -590,21 +590,33 @@ export const createFileActions = (get, storage: StorageService) => ({
 **Implementation:**
 - **DndContext** wraps entire tree (one context, not per-node)
 - Each **TreeNode** is both draggable and droppable
-- **Drop zones**: top 25% (before), middle 50% (child), bottom 25% (after)
+- **Drop zones**: top 35% (before), middle 30% (child), bottom 35% (after)
 - **Multi-select state**: `selectedNodeIds: Set<string>`, `lastSelectedNodeId` (anchor for range)
 - **Hierarchical rule**: Selecting a node auto-selects all descendants (visual matches behavior)
 - **Move filtering**: `getNodesToMove()` excludes descendants of selected ancestors (prevents duplicates)
+- **Selection actions**: Organized in `selectionActions.ts` (toggleNodeSelection, selectRange, clearSelection)
+- **Hook organization**: `useTreeDragDrop`, `useTreeClick`, `useNodeDragDrop` for clean separation
 
 **Performance:**
 - Store access via `store.getState()` in event handlers (no subscriptions per node)
 - Drop position listener only active on hovered node
 - Optimized re-renders: ~2-3 nodes per mouse move during drag, not all nodes
+- **Instant visual feedback**: No CSS transitions on drop indicators (tolerance: 0, delay: 0)
+- **Drop animation**: 150ms configured in useTreeDragDrop hook
+
+**Selection Behavior:**
+- **Normal click**: Clears selection, positions cursor
+- **Ctrl/Cmd+Click**: Toggles node in/out of selection, updates anchor for range selection
+- **Shift+Click**: Selects range from last anchor to clicked node
+- **Drag**: Auto-selects non-selected dragged node, clears all selections on drop
 
 **Rationale:**
 - Familiar UX from file explorers and IDEs
 - Visual selection matches what actually moves (parent moves → children move)
 - Filtering duplicates prevents tree corruption
 - Minimal re-renders maintain performance with large trees
+- Instant feedback critical for responsive drag UX
+- Known limitation: Slight jank during drag is normal @dnd-kit behavior (context re-renders)
 
 ## Testing Strategy
 

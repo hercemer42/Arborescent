@@ -378,7 +378,7 @@ export const createNodeMovementActions = (
     dropZone: 'before' | 'after' | 'child'
   ): void {
     const state = get();
-    const { nodes, ancestorRegistry } = state;
+    const { ancestorRegistry } = state;
 
     // Calculate drop target position
     const dropTarget = calculateDropTarget(nodeId, targetNodeId, dropZone, state);

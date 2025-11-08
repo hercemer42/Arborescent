@@ -36,9 +36,9 @@ export function useNodeDragDrop(nodeId: string, nodeRef: React.RefObject<HTMLDiv
       const y = e.clientY - rect.top;
       const height = rect.height;
 
-      // Calculate which zone we're in (25% top/bottom, 50% middle)
-      const topThreshold = height * 0.25;
-      const bottomThreshold = height * 0.75;
+      // Calculate which zone we're in (35% top/bottom, 30% middle)
+      const topThreshold = height * 0.35;
+      const bottomThreshold = height * 0.65;
 
       if (y <= topThreshold) {
         setDropPosition('before');
