@@ -2,7 +2,7 @@
 
 This document records key architectural choices made during development sessions.
 
-**Last Updated:** 2025-11-07
+**Last Updated:** 2025-11-08
 
 **When updating this file:** Be concise - focus on the decision, pattern, and rationale. Avoid verbose explanations.
 
@@ -582,6 +582,29 @@ export const createFileActions = (get, storage: StorageService) => ({
 - Session managed at workspace level (files store), not document level (tree store)
 - All open files remembered in exact order (not just saved files)
 - Including temp files preserves natural tab order users expect
+
+## Drag-and-Drop with Multi-Select
+
+**Decision:** Use @dnd-kit with standard desktop multi-select patterns (Ctrl/Cmd+Click, Shift+Click). Hierarchical selection auto-selects descendants.
+
+**Implementation:**
+- **DndContext** wraps entire tree (one context, not per-node)
+- Each **TreeNode** is both draggable and droppable
+- **Drop zones**: top 25% (before), middle 50% (child), bottom 25% (after)
+- **Multi-select state**: `selectedNodeIds: Set<string>`, `lastSelectedNodeId` (anchor for range)
+- **Hierarchical rule**: Selecting a node auto-selects all descendants (visual matches behavior)
+- **Move filtering**: `getNodesToMove()` excludes descendants of selected ancestors (prevents duplicates)
+
+**Performance:**
+- Store access via `store.getState()` in event handlers (no subscriptions per node)
+- Drop position listener only active on hovered node
+- Optimized re-renders: ~2-3 nodes per mouse move during drag, not all nodes
+
+**Rationale:**
+- Familiar UX from file explorers and IDEs
+- Visual selection matches what actually moves (parent moves → children move)
+- Filtering duplicates prevents tree corruption
+- Minimal re-renders maintain performance with large trees
 
 ## Testing Strategy
 

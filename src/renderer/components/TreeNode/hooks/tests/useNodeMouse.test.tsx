@@ -12,6 +12,9 @@ describe('useNodeMouse', () => {
   let store: TreeStore;
   const mockSelectNode = vi.fn();
   const mockSetRememberedVisualX = vi.fn();
+  const mockClearSelection = vi.fn();
+  const mockSelectRange = vi.fn();
+  const mockToggleNodeSelection = vi.fn();
   const nodeId = 'test-node';
 
   beforeEach(() => {
@@ -27,6 +30,9 @@ describe('useNodeMouse', () => {
       actions: {
         selectNode: mockSelectNode,
         setRememberedVisualX: mockSetRememberedVisualX,
+        clearSelection: mockClearSelection,
+        selectRange: mockSelectRange,
+        toggleNodeSelection: mockToggleNodeSelection,
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } as any,
     });

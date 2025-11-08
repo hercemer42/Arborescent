@@ -6,6 +6,7 @@ import { createPersistenceActions, PersistenceActions } from './actions/persiste
 import { createNodeMovementActions, NodeMovementActions } from './actions/nodeMovementActions';
 import { createNodeDeletionActions, NodeDeletionActions } from './actions/nodeDeletionActions';
 import { createVisualEffectsActions, VisualEffectsActions } from './actions/visualEffectsActions';
+import { createSelectionActions, SelectionActions } from './actions/selectionActions';
 import { StorageService } from '@platform';
 
 export interface DeletedNodeEntry {
@@ -28,6 +29,8 @@ export interface TreeState {
   rootNodeId: string;
   ancestorRegistry: Record<string, string[]>;
   selectedNodeId: string | null;
+  selectedNodeIds: Set<string>;
+  lastSelectedNodeId: string | null; // For Shift+Click range selection
   cursorPosition: number;
   rememberedVisualX: number | null;
   currentFilePath: string | null;
@@ -36,7 +39,7 @@ export interface TreeState {
   flashingNode: { nodeId: string; intensity: 'light' | 'medium' } | null;
   scrollToNodeId: string | null;
 
-  actions: NodeActions & NavigationActions & PersistenceActions & NodeMovementActions & NodeDeletionActions & VisualEffectsActions;
+  actions: NodeActions & NavigationActions & PersistenceActions & NodeMovementActions & NodeDeletionActions & VisualEffectsActions & SelectionActions;
 }
 
 const storageService = new StorageService();
@@ -52,6 +55,7 @@ export function createTreeStore() {
     const persistenceActions = createPersistenceActions(get, set, storageService);
     const visualEffectsActions = createVisualEffectsActions(get, set);
     const navigationActions = createNavigationActions(get, set);
+    const selectionActions = createSelectionActions(get, set);
 
     return {
       nodes: {},
@@ -59,6 +63,8 @@ export function createTreeStore() {
       rootNodeId: '',
       ancestorRegistry: {},
       selectedNodeId: null,
+      selectedNodeIds: new Set(),
+      lastSelectedNodeId: null,
       cursorPosition: 0,
       rememberedVisualX: null,
       currentFilePath: null,
@@ -74,6 +80,7 @@ export function createTreeStore() {
         ...createNodeMovementActions(get, set, persistenceActions.autoSave, visualEffectsActions, navigationActions),
         ...createNodeDeletionActions(get, set, persistenceActions.autoSave),
         ...visualEffectsActions,
+        ...selectionActions,
       },
     };
   });

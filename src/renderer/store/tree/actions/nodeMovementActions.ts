@@ -8,6 +8,7 @@ export interface NodeMovementActions {
   outdentNode: (nodeId: string) => void;
   moveNodeUp: (nodeId: string) => void;
   moveNodeDown: (nodeId: string) => void;
+  dropNode: (nodeId: string, targetNodeId: string, dropZone: 'before' | 'after' | 'child') => void;
 }
 
 type StoreState = {
@@ -17,19 +18,60 @@ type StoreState = {
 };
 type StoreSetter = (partial: Partial<StoreState>) => void;
 
-function reparentNode(
+function moveWithinParent(
+  nodeId: string,
+  parentId: string,
+  insertAt: 'start' | 'end' | number,
+  nodes: Record<string, TreeNode>
+): Record<string, TreeNode> {
+  const parent = nodes[parentId];
+  const currentIndex = parent.children.indexOf(nodeId);
+
+  // Remove from current position
+  const childrenWithoutNode = parent.children.filter((id) => id !== nodeId);
+
+  // Calculate new index (accounting for removal)
+  let newIndex: number;
+  if (insertAt === 'start') {
+    newIndex = 0;
+  } else if (insertAt === 'end') {
+    newIndex = childrenWithoutNode.length;
+  } else {
+    newIndex = insertAt;
+    // If inserting after the current position, adjust index down by 1
+    // since we already removed the node
+    if (insertAt > currentIndex) {
+      newIndex = insertAt - 1;
+    }
+  }
+
+  // Insert at new position
+  const updatedChildren = [...childrenWithoutNode];
+  updatedChildren.splice(newIndex, 0, nodeId);
+
+  return {
+    ...nodes,
+    [parentId]: {
+      ...parent,
+      children: updatedChildren,
+    },
+  };
+}
+
+function moveBetweenParents(
   nodeId: string,
   oldParentId: string,
   newParentId: string,
   insertAt: 'start' | 'end' | number,
-  state: { nodes: Record<string, TreeNode>; rootNodeId: string }
-): { updatedNodes: Record<string, TreeNode>; newAncestorRegistry: AncestorRegistry } {
-  const { nodes, rootNodeId } = state;
+  nodes: Record<string, TreeNode>
+): Record<string, TreeNode> {
   const oldParent = nodes[oldParentId];
   const newParent = nodes[newParentId];
 
+  // Remove from old parent
   const updatedOldParentChildren = oldParent.children.filter((id) => id !== nodeId);
 
+  // Add to new parent at specified position
   let updatedNewParentChildren: string[];
   if (insertAt === 'end') {
     updatedNewParentChildren = [...newParent.children, nodeId];
@@ -40,7 +82,7 @@ function reparentNode(
     updatedNewParentChildren.splice(insertAt, 0, nodeId);
   }
 
-  const updatedNodes = {
+  return {
     ...nodes,
     [oldParentId]: {
       ...oldParent,
@@ -51,10 +93,74 @@ function reparentNode(
       children: updatedNewParentChildren,
     },
   };
+}
+
+function moveNode(
+  nodeId: string,
+  oldParentId: string,
+  newParentId: string,
+  insertAt: 'start' | 'end' | number,
+  state: { nodes: Record<string, TreeNode>; rootNodeId: string }
+): { updatedNodes: Record<string, TreeNode>; newAncestorRegistry: AncestorRegistry } {
+  const { nodes, rootNodeId } = state;
+
+  const updatedNodes = oldParentId === newParentId
+    ? moveWithinParent(nodeId, oldParentId, insertAt, nodes)
+    : moveBetweenParents(nodeId, oldParentId, newParentId, insertAt, nodes);
 
   const newAncestorRegistry = buildAncestorRegistry(rootNodeId, updatedNodes);
 
   return { updatedNodes, newAncestorRegistry };
+}
+
+function calculateDropTarget(
+  nodeId: string,
+  targetNodeId: string,
+  dropZone: 'before' | 'after' | 'child',
+  state: StoreState
+): { targetParentId: string; insertAt: 'start' | 'end' | number } | null {
+  const { nodes, rootNodeId, ancestorRegistry } = state;
+
+  // Get node's current parent
+  const nodeAncestors = ancestorRegistry[nodeId] || [];
+  const currentParentId = nodeAncestors[nodeAncestors.length - 1] || rootNodeId;
+
+  if (dropZone === 'child') {
+    // Drop as child of target
+    const target = nodes[targetNodeId];
+    if (!target) return null;
+
+    // Don't allow dropping a node onto itself or its descendants
+    const targetAncestors = ancestorRegistry[targetNodeId] || [];
+    if (nodeId === targetNodeId || targetAncestors.includes(nodeId)) {
+      return null;
+    }
+
+    // If already a child of this parent, do nothing
+    if (currentParentId === targetNodeId) {
+      return null;
+    }
+
+    return {
+      targetParentId: targetNodeId,
+      insertAt: 'end',
+    };
+  } else {
+    // Drop as sibling (before or after)
+    const targetAncestors = ancestorRegistry[targetNodeId] || [];
+    const targetParentId = targetAncestors[targetAncestors.length - 1] || rootNodeId;
+    const targetParent = nodes[targetParentId];
+
+    if (!targetParent) return null;
+
+    const targetIndex = targetParent.children.indexOf(targetNodeId);
+    if (targetIndex < 0) return null;
+
+    return {
+      targetParentId,
+      insertAt: dropZone === 'before' ? targetIndex : targetIndex + 1,
+    };
+  }
 }
 
 function swapSiblings(
@@ -110,7 +216,7 @@ function moveNodeToSiblingParent(
   if (!newParent) return;
 
   const insertAt = direction === 'up' ? 'end' : 'start';
-  const { updatedNodes, newAncestorRegistry } = reparentNode(
+  const { updatedNodes, newAncestorRegistry } = moveNode(
     nodeId,
     parentId,
     newParentId,
@@ -189,7 +295,7 @@ export const createNodeMovementActions = (
       navigation.moveUp(fullState.cursorPosition, fullState.rememberedVisualX);
     }
 
-    const { updatedNodes, newAncestorRegistry } = reparentNode(
+    const { updatedNodes, newAncestorRegistry } = moveNode(
       nodeId,
       currentParentId,
       newParentId,
@@ -235,7 +341,7 @@ export const createNodeMovementActions = (
     if (!grandparent) return;
 
     const parentIndexInGrandparent = grandparent.children.indexOf(currentParentId);
-    const { updatedNodes, newAncestorRegistry } = reparentNode(
+    const { updatedNodes, newAncestorRegistry } = moveNode(
       nodeId,
       currentParentId,
       grandparentId,
@@ -266,10 +372,57 @@ export const createNodeMovementActions = (
     moveNodeVertically(nodeId, 'down', get(), set, triggerAutosave);
   }
 
+  function dropNode(
+    nodeId: string,
+    targetNodeId: string,
+    dropZone: 'before' | 'after' | 'child'
+  ): void {
+    const state = get();
+    const { nodes, ancestorRegistry } = state;
+
+    // Calculate drop target position
+    const dropTarget = calculateDropTarget(nodeId, targetNodeId, dropZone, state);
+    if (!dropTarget) return;
+
+    const { targetParentId, insertAt } = dropTarget;
+
+    // Get node's current parent
+    const nodeAncestors = ancestorRegistry[nodeId] || [];
+    const currentParentId = nodeAncestors[nodeAncestors.length - 1] || state.rootNodeId;
+
+    // Execute move
+    const { updatedNodes, newAncestorRegistry } = moveNode(
+      nodeId,
+      currentParentId,
+      targetParentId,
+      insertAt,
+      state
+    );
+
+    set({
+      nodes: updatedNodes,
+      ancestorRegistry: newAncestorRegistry,
+    });
+
+    // Flash effect
+    if (visualEffects) {
+      if (dropZone === 'child') {
+        const target = updatedNodes[targetNodeId];
+        const isCollapsed = !(target.metadata.expanded ?? true);
+        visualEffects.flashNode(targetNodeId, isCollapsed ? 'medium' : 'light');
+      } else {
+        visualEffects.flashNode(nodeId);
+      }
+    }
+
+    triggerAutosave?.();
+  }
+
   return {
     indentNode,
     outdentNode,
     moveNodeUp,
     moveNodeDown,
+    dropNode,
   };
 };

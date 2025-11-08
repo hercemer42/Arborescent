@@ -2,7 +2,7 @@
   "format": "Arborescent",
   "version": "1.0.0",
   "created": "2025-10-11T00:00:00.000Z",
-  "updated": "2025-11-07T23:04:34.130Z",
+  "updated": "2025-11-08T19:08:57.689Z",
   "author": "brian@brianfox.fr",
   "rootNodeId": "root",
   "nodes": {
@@ -11,6 +11,7 @@
       "type": "project",
       "content": "Arborescent Development",
       "children": [
+        "b9f82a5e-5019-4fee-bf58-50deb62a1609",
         "0cc62ae1-1a7a-4aa4-bc6a-d817cabd672c",
         "2f83a0af-280e-4e67-8306-31a8e02c9500",
         "l7w7ssh62",
@@ -112,9 +113,10 @@
         "b4fb16a1-a09d-4200-affd-d59492318f22",
         "a566f506-3e2d-41e7-8cc8-68dbb3417bef",
         "qo4eickz9",
-        "fv89yst04",
         "6jkr576r4",
-        "b2004b56-bb44-4266-b147-c1a4315f3da2"
+        "b2004b56-bb44-4266-b147-c1a4315f3da2",
+        "fv89yst04",
+        "f7440b53-29bc-4c2e-b49a-30b2970f4683"
       ],
       "metadata": {
         "status": "completed",
@@ -966,7 +968,7 @@
         "78d77e98-d6a2-47a2-9290-6e3d0b77ded8"
       ],
       "metadata": {
-        "status": "pending",
+        "status": "completed",
         "expanded": true
       }
     },
@@ -1083,13 +1085,8 @@
       "children": [
         "c3e6d535-e6cd-4245-8064-eae7f19eeb1f",
         "3a9a0a6a-8858-442e-a716-f02b8b30655c",
-        "58950aa3-50be-457f-a089-232d02c19831",
-        "a3743f7c-cbf4-48e5-99f5-322edc1dec14",
-        "77368efd-fad4-4ba5-a3b4-42c4dcc23cca",
-        "0c238ce8-51c5-45dc-a5bd-e4757a0a75e0",
         "8812e18b-fe8d-4190-ba0b-e7ab279e42d7",
         "12685af2-0a97-4e37-a882-08dbe4d570c9",
-        "e9741008-3b55-431e-b5dc-2964d594a37c",
         "d4a91032-dc55-4283-a24a-61164b101ee1",
         "e64f06e3-9bf8-42f2-b6ba-826a3cbbf39f",
         "9d5bf685-1248-4494-b5c9-1f745e75d157",
@@ -1112,27 +1109,13 @@
         "081ee1e2-f3d7-47cb-b932-637c1b0e8fd2",
         "a6c473f8-d221-468b-94d4-dc835d1737b8",
         "384e2fb7-72a7-425f-95ee-dc9b1469acdb",
-        "7d407941-2fbd-404d-a30e-a23514f9e0c3"
+        "7d407941-2fbd-404d-a30e-a23514f9e0c3",
+        "58950aa3-50be-457f-a089-232d02c19831",
+        "a3743f7c-cbf4-48e5-99f5-322edc1dec14"
       ],
       "metadata": {
         "status": "completed",
         "expanded": true
-      }
-    },
-    "77368efd-fad4-4ba5-a3b4-42c4dcc23cca": {
-      "id": "77368efd-fad4-4ba5-a3b4-42c4dcc23cca",
-      "content": "ClaudeIPCHandlers.ts could do with a refactor",
-      "children": [],
-      "metadata": {
-        "status": "completed"
-      }
-    },
-    "0c238ce8-51c5-45dc-a5bd-e4757a0a75e0": {
-      "id": "0c238ce8-51c5-45dc-a5bd-e4757a0a75e0",
-      "content": "ipcService makes reference to ClaudeIPCHandlers, but we need to have a generic plugin handlers file that imports these to avoid a plugin specific reference at this level, same for storage.ts and index.ts",
-      "children": [],
-      "metadata": {
-        "status": "completed"
       }
     },
     "384e2fb7-72a7-425f-95ee-dc9b1469acdb": {
@@ -1281,14 +1264,6 @@
     "d4a91032-dc55-4283-a24a-61164b101ee1": {
       "id": "d4a91032-dc55-4283-a24a-61164b101ee1",
       "content": "same in claudeCodePreload.ts and claudeCodePlugin.ts",
-      "children": [],
-      "metadata": {
-        "status": "completed"
-      }
-    },
-    "e9741008-3b55-431e-b5dc-2964d594a37c": {
-      "id": "e9741008-3b55-431e-b5dc-2964d594a37c",
-      "content": "move the abstractions back to claudeCodeIPCHandlers, they are actually Claude specific and can't be reused",
       "children": [],
       "metadata": {
         "status": "completed"
@@ -1894,7 +1869,6 @@
       "children": [
         "565dde0a-864b-41f9-86ff-dbdf40ac4dd0",
         "d7597faa-0b34-400e-985a-de035508cdb1",
-        "2e0b8b75-e3c2-4c83-ba5c-0a2c507081c8",
         "65b74e0f-88fe-41c6-9910-8bac806adc6f",
         "bc5a4b76-b674-4bab-80db-e113a25aa211",
         "6573b620-bfc0-4c5b-8d92-13b9ace3461d",
@@ -1914,7 +1888,7 @@
       ],
       "metadata": {
         "status": "pending",
-        "expanded": false
+        "expanded": true
       }
     },
     "0cc62ae1-1a7a-4aa4-bc6a-d817cabd672c": {
@@ -2317,25 +2291,6 @@
         "status": "pending"
       }
     },
-    "2e0b8b75-e3c2-4c83-ba5c-0a2c507081c8": {
-      "id": "2e0b8b75-e3c2-4c83-ba5c-0a2c507081c8",
-      "content": "Undo",
-      "children": [
-        "a8f746c7-6f95-430b-a73e-fceb5761066d"
-      ],
-      "metadata": {
-        "status": "pending",
-        "expanded": false
-      }
-    },
-    "a8f746c7-6f95-430b-a73e-fceb5761066d": {
-      "id": "a8f746c7-6f95-430b-a73e-fceb5761066d",
-      "content": "Have a limited undo (back 20 perhaps)",
-      "children": [],
-      "metadata": {
-        "status": "pending"
-      }
-    },
     "06850f75-804b-4452-ad03-837f0d233abb": {
       "id": "06850f75-804b-4452-ad03-837f0d233abb",
       "content": "Third party plugins",
@@ -2476,7 +2431,7 @@
       ],
       "metadata": {
         "status": "pending",
-        "expanded": false
+        "expanded": true
       }
     },
     "d053981a-608c-4a30-945a-f0aec466a572": {
@@ -2548,6 +2503,414 @@
     "ff71c203-adaa-424e-9305-8e563cae5f8a": {
       "id": "ff71c203-adaa-424e-9305-8e563cae5f8a",
       "content": "Toggle should not apply to a node with no children",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "f7440b53-29bc-4c2e-b49a-30b2970f4683": {
+      "id": "f7440b53-29bc-4c2e-b49a-30b2970f4683",
+      "content": "test",
+      "children": [
+        "cb3ad486-f7a7-4dca-87a8-babd282ae3a5",
+        "cead8cf7-86b4-4d89-8a1e-9514c7229ab4",
+        "62cb2dd4-0721-4f0b-ac02-8d3a54f90eec"
+      ],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "cb3ad486-f7a7-4dca-87a8-babd282ae3a5": {
+      "id": "cb3ad486-f7a7-4dca-87a8-babd282ae3a5",
+      "content": "test 1",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "cead8cf7-86b4-4d89-8a1e-9514c7229ab4": {
+      "id": "cead8cf7-86b4-4d89-8a1e-9514c7229ab4",
+      "content": "test 2",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "62cb2dd4-0721-4f0b-ac02-8d3a54f90eec": {
+      "id": "62cb2dd4-0721-4f0b-ac02-8d3a54f90eec",
+      "content": "test 3",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "b9f82a5e-5019-4fee-bf58-50deb62a1609": {
+      "id": "b9f82a5e-5019-4fee-bf58-50deb62a1609",
+      "content": "Test",
+      "children": [
+        "a8698844-d6fe-4f3e-af76-00a0fb26ea44",
+        "dc6a5817-5f01-4adf-b223-62be9836e095",
+        "9d898278-e4b2-482d-bd45-f25b20dc0fc2",
+        "021d4033-276e-405b-919a-89ee2267a425"
+      ],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "a8698844-d6fe-4f3e-af76-00a0fb26ea44": {
+      "id": "a8698844-d6fe-4f3e-af76-00a0fb26ea44",
+      "content": "test 1",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "dc6a5817-5f01-4adf-b223-62be9836e095": {
+      "id": "dc6a5817-5f01-4adf-b223-62be9836e095",
+      "content": "test 2",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "9d898278-e4b2-482d-bd45-f25b20dc0fc2": {
+      "id": "9d898278-e4b2-482d-bd45-f25b20dc0fc2",
+      "content": "test 3",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "fd779290-3ee4-4e2b-a6fd-2fa1276be1fd": {
+      "id": "fd779290-3ee4-4e2b-a6fd-2fa1276be1fd",
+      "content": "4",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "280ebc7a-a04f-43e0-bf3d-560e5016cbc1": {
+      "id": "280ebc7a-a04f-43e0-bf3d-560e5016cbc1",
+      "content": "5",
+      "children": [
+        "55652082-a901-45ad-8784-4ef9a25ba465",
+        "a08aefdf-a5a0-408e-b925-37948e2b7181"
+      ],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "55652082-a901-45ad-8784-4ef9a25ba465": {
+      "id": "55652082-a901-45ad-8784-4ef9a25ba465",
+      "content": "6",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "a08aefdf-a5a0-408e-b925-37948e2b7181": {
+      "id": "a08aefdf-a5a0-408e-b925-37948e2b7181",
+      "content": "7",
+      "children": [
+        "523028a6-ad02-4326-9a20-919f650c20b4",
+        "4a5976b3-f208-4bd4-a589-039d2768b783"
+      ],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "523028a6-ad02-4326-9a20-919f650c20b4": {
+      "id": "523028a6-ad02-4326-9a20-919f650c20b4",
+      "content": "8",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "4a5976b3-f208-4bd4-a589-039d2768b783": {
+      "id": "4a5976b3-f208-4bd4-a589-039d2768b783",
+      "content": "8",
+      "children": [
+        "caf5a6b1-376e-42ba-bdf1-542dc58ea61b"
+      ],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "caf5a6b1-376e-42ba-bdf1-542dc58ea61b": {
+      "id": "caf5a6b1-376e-42ba-bdf1-542dc58ea61b",
+      "content": "9",
+      "children": [
+        "ff75c0ae-b02a-4b32-9a4e-e00bc1540ae2",
+        "c27a5f77-0305-499a-b8de-48bb30f4018a",
+        "12857b0c-90dc-4216-9ab1-e168719df0bb",
+        "280ebc7a-a04f-43e0-bf3d-560e5016cbc1",
+        "372cf412-2059-4eee-87a3-0ac21377d212"
+      ],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "e3f94856-4d26-4b62-b3b2-0d4633567f05": {
+      "id": "e3f94856-4d26-4b62-b3b2-0d4633567f05",
+      "content": "13",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "8977b010-1db3-43fc-8fcc-6a8bd81c077c": {
+      "id": "8977b010-1db3-43fc-8fcc-6a8bd81c077c",
+      "content": "14",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "0f9c9a18-0331-4fdf-86c3-51af33eced3e": {
+      "id": "0f9c9a18-0331-4fdf-86c3-51af33eced3e",
+      "content": "15",
+      "children": [
+        "e3f94856-4d26-4b62-b3b2-0d4633567f05"
+      ],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "12857b0c-90dc-4216-9ab1-e168719df0bb": {
+      "id": "12857b0c-90dc-4216-9ab1-e168719df0bb",
+      "content": "16",
+      "children": [
+        "0f9c9a18-0331-4fdf-86c3-51af33eced3e"
+      ],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "ff75c0ae-b02a-4b32-9a4e-e00bc1540ae2": {
+      "id": "ff75c0ae-b02a-4b32-9a4e-e00bc1540ae2",
+      "content": "17",
+      "children": [
+        "4e01a58b-b601-4008-bb4e-00beec8f3dc0"
+      ],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "c27a5f77-0305-499a-b8de-48bb30f4018a": {
+      "id": "c27a5f77-0305-499a-b8de-48bb30f4018a",
+      "content": "18",
+      "children": [
+        "8977b010-1db3-43fc-8fcc-6a8bd81c077c"
+      ],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "4e01a58b-b601-4008-bb4e-00beec8f3dc0": {
+      "id": "4e01a58b-b601-4008-bb4e-00beec8f3dc0",
+      "content": "19",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "372cf412-2059-4eee-87a3-0ac21377d212": {
+      "id": "372cf412-2059-4eee-87a3-0ac21377d212",
+      "content": "20",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "021d4033-276e-405b-919a-89ee2267a425": {
+      "id": "021d4033-276e-405b-919a-89ee2267a425",
+      "content": "5",
+      "children": [
+        "2689c176-20cd-452d-84af-f5c000fc2a87",
+        "192d249a-8241-4210-8def-c3635da9da03",
+        "360022ed-2bf4-435a-8608-9ce3e56a6e57"
+      ],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "2689c176-20cd-452d-84af-f5c000fc2a87": {
+      "id": "2689c176-20cd-452d-84af-f5c000fc2a87",
+      "content": "6",
+      "children": [
+        "e6892637-a282-4237-aba5-d1e174d27ad1"
+      ],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "192d249a-8241-4210-8def-c3635da9da03": {
+      "id": "192d249a-8241-4210-8def-c3635da9da03",
+      "content": "7",
+      "children": [
+        "428d4068-e770-459b-81bc-2cc212d3e158"
+      ],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "360022ed-2bf4-435a-8608-9ce3e56a6e57": {
+      "id": "360022ed-2bf4-435a-8608-9ce3e56a6e57",
+      "content": "8",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "0332be73-1e7f-4ef8-bc0c-802c4a8d6dc0": {
+      "id": "0332be73-1e7f-4ef8-bc0c-802c4a8d6dc0",
+      "content": "9",
+      "children": [
+        "e1bfbe14-2f1b-4b87-95fd-4527a5c0a98b"
+      ],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "f581ec57-f0b8-4bb2-905d-515898ab25c6": {
+      "id": "f581ec57-f0b8-4bb2-905d-515898ab25c6",
+      "content": "19",
+      "children": [
+        "b1043146-9f1b-4276-9417-5d9354d2a33c"
+      ],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "e6892637-a282-4237-aba5-d1e174d27ad1": {
+      "id": "e6892637-a282-4237-aba5-d1e174d27ad1",
+      "content": "11",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "b1043146-9f1b-4276-9417-5d9354d2a33c": {
+      "id": "b1043146-9f1b-4276-9417-5d9354d2a33c",
+      "content": "12",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "b2d2c296-0971-420a-b5ad-febddf20200c": {
+      "id": "b2d2c296-0971-420a-b5ad-febddf20200c",
+      "content": "13",
+      "children": [
+        "e8b563a1-3b05-4f35-b9dd-ee4762f3dea6",
+        "749a3143-0496-410f-82ad-a8c2e9140c77",
+        "f581ec57-f0b8-4bb2-905d-515898ab25c6"
+      ],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "e5214504-e2d1-4408-90a9-0d73d97aaef1": {
+      "id": "e5214504-e2d1-4408-90a9-0d73d97aaef1",
+      "content": "14",
+      "children": [
+        "55858fca-7a35-47b9-a6ce-a644a909c104",
+        "434feddb-4041-4120-93e8-6a4f597d4b09",
+        "b2d2c296-0971-420a-b5ad-febddf20200c"
+      ],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "e1bfbe14-2f1b-4b87-95fd-4527a5c0a98b": {
+      "id": "e1bfbe14-2f1b-4b87-95fd-4527a5c0a98b",
+      "content": "15",
+      "children": [
+        "fa01d1d2-e573-48fd-b544-9954b79f222c"
+      ],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "428d4068-e770-459b-81bc-2cc212d3e158": {
+      "id": "428d4068-e770-459b-81bc-2cc212d3e158",
+      "content": "16",
+      "children": [
+        "f24d1017-819f-47bd-8e10-b2d9ff92a4a7",
+        "574a8dc2-283d-4a38-b77d-e904d261fd51"
+      ],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "434feddb-4041-4120-93e8-6a4f597d4b09": {
+      "id": "434feddb-4041-4120-93e8-6a4f597d4b09",
+      "content": "17",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "e8b563a1-3b05-4f35-b9dd-ee4762f3dea6": {
+      "id": "e8b563a1-3b05-4f35-b9dd-ee4762f3dea6",
+      "content": "18",
+      "children": [
+        "0332be73-1e7f-4ef8-bc0c-802c4a8d6dc0"
+      ],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "538c1d27-fb97-4523-bc2d-d16b6ae5f596": {
+      "id": "538c1d27-fb97-4523-bc2d-d16b6ae5f596",
+      "content": "16",
+      "children": [
+        "fd779290-3ee4-4e2b-a6fd-2fa1276be1fd"
+      ],
+      "metadata": {
+        "status": "pending",
+        "expanded": true
+      }
+    },
+    "55858fca-7a35-47b9-a6ce-a644a909c104": {
+      "id": "55858fca-7a35-47b9-a6ce-a644a909c104",
+      "content": "17",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "f24d1017-819f-47bd-8e10-b2d9ff92a4a7": {
+      "id": "f24d1017-819f-47bd-8e10-b2d9ff92a4a7",
+      "content": "18",
+      "children": [
+        "e5214504-e2d1-4408-90a9-0d73d97aaef1",
+        "538c1d27-fb97-4523-bc2d-d16b6ae5f596"
+      ],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "749a3143-0496-410f-82ad-a8c2e9140c77": {
+      "id": "749a3143-0496-410f-82ad-a8c2e9140c77",
+      "content": "19",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "574a8dc2-283d-4a38-b77d-e904d261fd51": {
+      "id": "574a8dc2-283d-4a38-b77d-e904d261fd51",
+      "content": "20",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "fa01d1d2-e573-48fd-b544-9954b79f222c": {
+      "id": "fa01d1d2-e573-48fd-b544-9954b79f222c",
+      "content": "21",
       "children": [],
       "metadata": {
         "status": "pending"

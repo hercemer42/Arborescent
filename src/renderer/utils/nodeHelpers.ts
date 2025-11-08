@@ -118,3 +118,38 @@ export function captureNodePosition(
   const originalPosition = parent ? parent.children.indexOf(nodeId) : -1;
   return { parentId, originalPosition };
 }
+
+export function getAllDescendants(nodeId: string, nodes: Record<string, TreeNode>): string[] {
+  const node = nodes[nodeId];
+  if (!node || node.children.length === 0) {
+    return [];
+  }
+
+  const descendants: string[] = [];
+  for (const childId of node.children) {
+    descendants.push(childId);
+    descendants.push(...getAllDescendants(childId, nodes));
+  }
+  return descendants;
+}
+
+export function getVisibleNodesInOrder(
+  rootNodeId: string,
+  nodes: Record<string, TreeNode>,
+  ancestorRegistry: Record<string, string[]>
+): string[] {
+  const rootNode = nodes[rootNodeId];
+  if (!rootNode || rootNode.children.length === 0) {
+    return [];
+  }
+
+  const result: string[] = [];
+  let currentId: string | null = rootNode.children[0];
+
+  while (currentId) {
+    result.push(currentId);
+    currentId = findNextNode(currentId, nodes, rootNodeId, ancestorRegistry);
+  }
+
+  return result;
+}

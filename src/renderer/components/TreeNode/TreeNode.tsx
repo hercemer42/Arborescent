@@ -5,6 +5,7 @@ import { useActiveTreeStore } from '../../store/tree/TreeStoreContext';
 import { isDescendant as checkIsDescendant } from '../../utils/ancestry';
 import { useNodeMouse } from './hooks/useNodeMouse';
 import { useNodeEffects } from './hooks/useNodeEffects';
+import { useNodeDragDrop } from './hooks/useNodeDragDrop';
 import './TreeNode.css';
 
 interface TreeNodeProps {
@@ -15,6 +16,7 @@ interface TreeNodeProps {
 export const TreeNode = memo(function TreeNode({ nodeId, depth = 0 }: TreeNodeProps) {
   const node = useStore((state) => state.nodes[nodeId]);
   const isSelected = useStore((state) => state.selectedNodeId === nodeId);
+  const isMultiSelected = useStore((state) => state.selectedNodeIds.has(nodeId));
   const { handleMouseDown, handleMouseMove, handleClick } = useNodeMouse(nodeId);
   const store = useActiveTreeStore();
 
@@ -23,6 +25,7 @@ export const TreeNode = memo(function TreeNode({ nodeId, depth = 0 }: TreeNodePr
   const contentLength = node?.content.length ?? 0;
 
   const { flashIntensity, nodeRef } = useNodeEffects(nodeId);
+  const { isDragging, isOver, dropPosition, setRefs, attributes, listeners } = useNodeDragDrop(nodeId, nodeRef);
 
   const handleToggle = useCallback(() => {
     const newExpandedState = !expanded;
@@ -41,15 +44,27 @@ export const TreeNode = memo(function TreeNode({ nodeId, depth = 0 }: TreeNodePr
     return null;
   }
 
+  const classNames = [
+    'tree-node-wrapper',
+    isSelected && 'selected',
+    isMultiSelected && 'multi-selected',
+    isDragging && 'dragging',
+    isOver && dropPosition && `drop-${dropPosition}`,
+    flashIntensity && `flashing-${flashIntensity}`,
+  ].filter(Boolean).join(' ');
+
   return (
     <>
       <div
-        ref={nodeRef}
-        className={`tree-node-wrapper ${isSelected ? 'selected' : ''} ${flashIntensity ? `flashing-${flashIntensity}` : ''}`}
+        ref={setRefs}
+        className={classNames}
+        data-node-id={nodeId}
         style={{ paddingLeft: `${(depth * 20) + 15}px` }}
         onMouseDown={handleMouseDown}
         onMouseMove={handleMouseMove}
         onClick={handleClick}
+        {...attributes}
+        {...listeners}
       >
         <NodeContent
           node={node}

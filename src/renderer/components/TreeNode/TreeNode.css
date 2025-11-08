@@ -3,6 +3,33 @@
   outline-offset: -1px;
 }
 
+.tree-node-wrapper.multi-selected {
+  outline: 1px solid var(--blue-500);
+  outline-offset: -1px;
+  background-color: var(--blue-75);
+}
+
+.tree-node-wrapper.dragging {
+  background-color: #e0e0e0;
+  outline: 1px solid #999;
+  outline-offset: -1px;
+  opacity: 0.9;
+}
+
+.tree-node-wrapper.drop-before {
+  border-top: 2px solid var(--blue-500);
+}
+
+.tree-node-wrapper.drop-after {
+  border-bottom: 2px solid var(--blue-500);
+}
+
+.tree-node-wrapper.drop-child {
+  background-color: var(--blue-100);
+  outline: 2px solid var(--blue-500);
+  outline-offset: -2px;
+}
+
 .tree-node-wrapper.flashing-light {
   background-color: var(--blue-75);
   transition: none;
