@@ -17,7 +17,7 @@ describe('useTree', () => {
     store.setState({
       nodes: {},
       rootNodeId: '',
-      selectedNodeId: null,
+      activeNodeId: null,
       cursorPosition: 0,
       rememberedVisualX: null,
       currentFilePath: null,

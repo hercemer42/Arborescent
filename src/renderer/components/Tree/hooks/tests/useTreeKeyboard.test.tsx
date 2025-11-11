@@ -28,7 +28,7 @@ describe('useTreeKeyboard', () => {
         },
       },
       rootNodeId: 'root',
-      selectedNodeId: 'node-1',
+      activeNodeId: 'node-1',
       cursorPosition: 0,
       rememberedVisualX: null,
       actions: {

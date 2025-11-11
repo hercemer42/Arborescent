@@ -22,7 +22,7 @@ type StoreState = {
   deletedNodesMap: Record<string, DeletedNodeInfo>;
   rootNodeId: string;
   ancestorRegistry: Record<string, string[]>;
-  selectedNodeId: string | null;
+  activeNodeId: string | null;
   cursorPosition: number;
   deletedNodes: DeletedNodeEntry[];
 };
@@ -198,7 +198,7 @@ function clearNodeContent(
 
   set({
     nodes: updatedNodes,
-    selectedNodeId: nodeId,
+    activeNodeId: nodeId,
     cursorPosition: 0,
   });
   triggerAutosave?.();
@@ -290,7 +290,7 @@ function executeDeletionWithStateUpdate(
   set({
     nodes: finalNodes,
     deletedNodesMap: finalDeletedNodesMap,
-    selectedNodeId: finalSelectedNodeId,
+    activeNodeId: finalSelectedNodeId,
     cursorPosition: 0,
     deletedNodes: updatedBuffer,
   });
@@ -349,7 +349,7 @@ export const createNodeDeletionActions = (
       nodes: updatedNodes,
       deletedNodesMap: updatedDeletedNodesMap,
       ancestorRegistry: newAncestorRegistry,
-      selectedNodeId: deletedNodeId,
+      activeNodeId: deletedNodeId,
       cursorPosition: 0,
       deletedNodes: deletedNodes.slice(0, -1),
     });

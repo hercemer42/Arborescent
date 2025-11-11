@@ -72,7 +72,7 @@ describe('useNodeKeyboard', () => {
     store.setState({
       nodes: { 'test-node': mockNode },
       rootNodeId: 'test-node',
-      selectedNodeId: 'test-node',
+      activeNodeId: 'test-node',
       cursorPosition: 5,
       rememberedVisualX: null,
       actions: {

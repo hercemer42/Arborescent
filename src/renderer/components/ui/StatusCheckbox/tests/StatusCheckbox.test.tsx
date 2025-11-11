@@ -39,22 +39,17 @@ describe('StatusCheckbox', () => {
     expect(handleToggle).toHaveBeenCalledTimes(1);
   });
 
-  it('should stop propagation on click', async () => {
+  it('should call toggle when clicked', async () => {
     const handleToggle = vi.fn();
-    const handleParentClick = vi.fn();
     const user = userEvent.setup();
 
-    render(
-      <div onClick={handleParentClick}>
-        <StatusCheckbox status="pending" onToggle={handleToggle} />
-      </div>
-    );
+    render(<StatusCheckbox status="pending" onToggle={handleToggle} />);
 
     const button = screen.getByRole('button');
     await user.click(button);
 
     expect(handleToggle).toHaveBeenCalled();
-    expect(handleParentClick).not.toHaveBeenCalled();
+    // Note: Events now bubble to parent, which handles button detection
   });
 
   it('should not steal focus from active element', async () => {

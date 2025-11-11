@@ -401,7 +401,7 @@ export const createTreeStore = () => create<TreeState>((set, get) => ({
 // ✅ CORRECT
 export const createNodeActions = (get, set, triggerAutosave?): NodeActions => {
   function selectNode(nodeId: string, cursorPosition?: number): void {
-    set({ selectedNodeId: nodeId, cursorPosition: cursorPosition ?? 0 });
+    set({ activeNodeId: nodeId, cursorPosition: cursorPosition ?? 0 });
   }
 
   function updateContent(nodeId: string, content: string): void {
@@ -591,7 +591,7 @@ export const createFileActions = (get, storage: StorageService) => ({
 - **DndContext** wraps entire tree (one context, not per-node)
 - Each **TreeNode** is both draggable and droppable
 - **Drop zones**: top 35% (before), middle 30% (child), bottom 35% (after)
-- **Multi-select state**: `selectedNodeIds: Set<string>`, `lastSelectedNodeId` (anchor for range)
+- **Multi-select state**: `multiSelectedNodeIds: Set<string>`, `lastSelectedNodeId` (anchor for range), `activeNodeId` (node being edited)
 - **Hierarchical rule**: Selecting a node auto-selects all descendants (visual matches behavior)
 - **Move filtering**: `getNodesToMove()` excludes descendants of selected ancestors (prevents duplicates)
 - **Selection actions**: Organized in `selectionActions.ts` (toggleNodeSelection, selectRange, clearSelection)
@@ -606,9 +606,15 @@ export const createFileActions = (get, storage: StorageService) => ({
 
 **Selection Behavior:**
 - **Normal click**: Clears selection, positions cursor
-- **Ctrl/Cmd+Click**: Toggles node in/out of selection, updates anchor for range selection
-- **Shift+Click**: Selects range from last anchor to clicked node
+- **Ctrl/Cmd+Click**: Toggles node in/out of selection. Anchor preserved when removing (anchor stays on last added node, not removed node)
+- **Shift+Click**: Selects range from last anchor to clicked node. Ranges accumulate (chaining: A→C, then C→E results in A-E selected)
+- **Click outside node**: Only clears selection on normal clicks (not Ctrl/Shift clicks)
 - **Drag**: Auto-selects non-selected dragged node, clears all selections on drop
+
+**Multi-Node Drag:**
+- **Collision detection**: Uses `pointerWithin` (cursor position only) instead of bounding box. Prevents incorrect drop zones when dragging tall ghost overlays
+- **Ghost rendering**: Shows all selected nodes being dragged, not just the clicked node
+- **Drop validation**: Prevents dropping nodes into themselves, their descendants, or target nodes that are also being moved
 
 **Rationale:**
 - Familiar UX from file explorers and IDEs
@@ -616,6 +622,7 @@ export const createFileActions = (get, storage: StorageService) => ({
 - Filtering duplicates prevents tree corruption
 - Minimal re-renders maintain performance with large trees
 - Instant feedback critical for responsive drag UX
+- Pointer-based collision essential for accurate drop zones with multiple nodes
 - Known limitation: Slight jank during drag is normal @dnd-kit behavior (context re-renders)
 
 ## Testing Strategy
@@ -835,7 +842,7 @@ beforeEach(() => {
   store.setState({
     nodes: {},
     rootNodeId: 'test-node',
-    selectedNodeId: null,
+    activeNodeId: null,
     // ... other state
     actions: {
       selectAndEdit: vi.fn(),
@@ -851,7 +858,7 @@ const wrapper = ({ children }: { children: React.ReactNode }) => (
   <TreeStoreContext.Provider value={store}>{children}</TreeStoreContext.Provider>
 );
 
-const { result } = renderHook(() => useStore((state) => state.selectedNodeId), { wrapper });
+const { result } = renderHook(() => useStore((state) => state.activeNodeId), { wrapper });
 ```
 
 **Why `as any` is needed:**
@@ -984,14 +991,14 @@ const isFlashing = useStore((state) => state.flashingNodeId === nodeId);
    ```typescript
    const handleToggle = () => {
      const store = useContext(TreeStoreContext);
-     const { selectedNodeId, actions } = store!.getState();
+     const { activeNodeId, actions } = store!.getState();
    };
    ```
 
 3. **Conditional subscriptions** - Return same value for non-relevant components
    ```typescript
    const cursorPosition = useStore((state) =>
-     state.selectedNodeId === node.id ? state.cursorPosition : 0
+     state.activeNodeId === node.id ? state.cursorPosition : 0
    );
    ```
 

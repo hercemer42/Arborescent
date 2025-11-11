@@ -15,9 +15,8 @@ interface TreeNodeProps {
 
 export const TreeNode = memo(function TreeNode({ nodeId, depth = 0 }: TreeNodeProps) {
   const node = useStore((state) => state.nodes[nodeId]);
-  const isSelected = useStore((state) => state.selectedNodeId === nodeId);
-  const isMultiSelected = useStore((state) => state.selectedNodeIds.has(nodeId));
-  const { handleMouseDown, handleMouseMove, handleClick } = useNodeMouse(nodeId);
+  const isSelected = useStore((state) => state.activeNodeId === nodeId);
+  const isMultiSelected = useStore((state) => state.multiSelectedNodeIds.has(nodeId));
   const store = useActiveTreeStore();
 
   const hasChildren = node ? node.children.length > 0 : false;
@@ -26,13 +25,14 @@ export const TreeNode = memo(function TreeNode({ nodeId, depth = 0 }: TreeNodePr
 
   const { flashIntensity, nodeRef } = useNodeEffects(nodeId);
   const { isDragging, isOver, dropPosition, setRefs, attributes, listeners } = useNodeDragDrop(nodeId, nodeRef);
+  const { handleMouseDown, handleMouseMove, handleClick, wrappedListeners } = useNodeMouse(nodeId, listeners);
 
   const handleToggle = useCallback(() => {
     const newExpandedState = !expanded;
 
     if (!newExpandedState) {
-      const { selectedNodeId, ancestorRegistry, actions } = store.getState();
-      if (checkIsDescendant(nodeId, selectedNodeId, ancestorRegistry)) {
+      const { activeNodeId, ancestorRegistry, actions } = store.getState();
+      if (checkIsDescendant(nodeId, activeNodeId, ancestorRegistry)) {
         actions.selectNode(nodeId, contentLength);
       }
     }
@@ -61,15 +61,15 @@ export const TreeNode = memo(function TreeNode({ nodeId, depth = 0 }: TreeNodePr
         data-node-id={nodeId}
         style={{ paddingLeft: `${(depth * 20) + 15}px` }}
         {...attributes}
-        {...listeners}
+        {...wrappedListeners}
+        onMouseDown={handleMouseDown}
+        onMouseMove={handleMouseMove}
+        onClick={handleClick}
       >
         <NodeContent
           node={node}
           expanded={expanded}
           onToggle={handleToggle}
-          onMouseDown={handleMouseDown}
-          onMouseMove={handleMouseMove}
-          onClick={handleClick}
         />
       </div>
 

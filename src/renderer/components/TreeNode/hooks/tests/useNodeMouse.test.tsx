@@ -24,7 +24,7 @@ describe('useNodeMouse', () => {
     store.setState({
       nodes: {},
       rootNodeId: '',
-      selectedNodeId: null,
+      activeNodeId: null,
       cursorPosition: 0,
       rememberedVisualX: null,
       actions: {
@@ -48,6 +48,100 @@ describe('useNodeMouse', () => {
     expect(result.current.handleMouseDown).toBeInstanceOf(Function);
     expect(result.current.handleMouseMove).toBeInstanceOf(Function);
     expect(result.current.handleClick).toBeInstanceOf(Function);
+    expect(result.current.wrappedListeners).toBeUndefined();
+  });
+
+  it('should return wrappedListeners when listeners provided', () => {
+    const mockListener = vi.fn();
+    const listeners = {
+      onPointerDown: mockListener,
+    };
+
+    const { result } = renderHook(() => useNodeMouse(nodeId, listeners), { wrapper });
+
+    expect(result.current.wrappedListeners).toBeDefined();
+    expect(result.current.wrappedListeners?.onPointerDown).toBeInstanceOf(Function);
+  });
+
+  it('should prevent drag when modifier keys pressed', () => {
+    const mockListener = vi.fn();
+    const listeners = {
+      onPointerDown: mockListener,
+    };
+
+    store.setState({
+      ...store.getState(),
+      multiSelectedNodeIds: new Set([nodeId]),
+    });
+
+    const { result } = renderHook(() => useNodeMouse(nodeId, listeners), { wrapper });
+
+    const mockEvent = {
+      ctrlKey: true,
+      metaKey: false,
+      shiftKey: false,
+    } as React.PointerEvent;
+
+    act(() => {
+      const handler = result.current.wrappedListeners?.onPointerDown as (e: React.PointerEvent) => void;
+      handler(mockEvent);
+    });
+
+    expect(mockListener).not.toHaveBeenCalled();
+  });
+
+  it('should prevent drag when node is not multi-selected', () => {
+    const mockListener = vi.fn();
+    const listeners = {
+      onPointerDown: mockListener,
+    };
+
+    store.setState({
+      ...store.getState(),
+      multiSelectedNodeIds: new Set(),
+    });
+
+    const { result } = renderHook(() => useNodeMouse(nodeId, listeners), { wrapper });
+
+    const mockEvent = {
+      ctrlKey: false,
+      metaKey: false,
+      shiftKey: false,
+    } as React.PointerEvent;
+
+    act(() => {
+      const handler = result.current.wrappedListeners?.onPointerDown as (e: React.PointerEvent) => void;
+      handler(mockEvent);
+    });
+
+    expect(mockListener).not.toHaveBeenCalled();
+  });
+
+  it('should allow drag when node is multi-selected and no modifier keys', () => {
+    const mockListener = vi.fn();
+    const listeners = {
+      onPointerDown: mockListener,
+    };
+
+    store.setState({
+      ...store.getState(),
+      multiSelectedNodeIds: new Set([nodeId]),
+    });
+
+    const { result } = renderHook(() => useNodeMouse(nodeId, listeners), { wrapper });
+
+    const mockEvent = {
+      ctrlKey: false,
+      metaKey: false,
+      shiftKey: false,
+    } as React.PointerEvent;
+
+    act(() => {
+      const handler = result.current.wrappedListeners?.onPointerDown as (e: React.PointerEvent) => void;
+      handler(mockEvent);
+    });
+
+    expect(mockListener).toHaveBeenCalledWith(mockEvent);
   });
 
   it('should track mouse position on mousedown', () => {
@@ -92,7 +186,7 @@ describe('useNodeMouse', () => {
     expect(mockEvent.preventDefault).not.toHaveBeenCalled();
   });
 
-  it('should not prevent default on modifier key clicks', () => {
+  it('should prevent default on modifier key clicks', () => {
     const { result } = renderHook(() => useNodeMouse(nodeId), { wrapper });
 
     const mockEvent = {
@@ -110,7 +204,8 @@ describe('useNodeMouse', () => {
       result.current.handleMouseDown(mockEvent);
     });
 
-    expect(mockEvent.preventDefault).not.toHaveBeenCalled();
+    // Modifier keys are ONLY for node multi-selection, so we prevent text selection
+    expect(mockEvent.preventDefault).toHaveBeenCalled();
   });
 
   it('should select node with cursor position on click', () => {

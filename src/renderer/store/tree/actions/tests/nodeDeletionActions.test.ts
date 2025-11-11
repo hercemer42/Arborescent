@@ -10,7 +10,7 @@ describe('nodeDeletionActions', () => {
     deletedNodesMap: Record<string, DeletedNodeInfo>;
     rootNodeId: string;
     ancestorRegistry: AncestorRegistry;
-    selectedNodeId?: string | null;
+    activeNodeId?: string | null;
     cursorPosition?: number;
     deletedNodes: DeletedNodeEntry[];
   };

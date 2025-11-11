@@ -8,7 +8,7 @@ describe('nodeActions', () => {
     nodes: Record<string, TreeNode>;
     rootNodeId: string;
     ancestorRegistry: AncestorRegistry;
-    selectedNodeId: string | null;
+    activeNodeId: string | null;
     cursorPosition: number;
     rememberedVisualX: number | null;
   };
@@ -52,7 +52,7 @@ describe('nodeActions', () => {
         'node-2': ['root'],
         'node-3': ['root', 'node-1'],
       },
-      selectedNodeId: null,
+      activeNodeId: null,
       cursorPosition: 0,
       rememberedVisualX: null,
     };
@@ -78,7 +78,7 @@ describe('nodeActions', () => {
   describe('selectNode', () => {
     it('should select a node', () => {
       actions.selectNode('node-1');
-      expect(state.selectedNodeId).toBe('node-1');
+      expect(state.activeNodeId).toBe('node-1');
     });
   });
 
@@ -160,7 +160,7 @@ describe('nodeActions', () => {
         actions.createNode('node-1');
 
         const newNodeId = state.nodes['node-1'].children[0];
-        expect(state.selectedNodeId).toBe(newNodeId);
+        expect(state.activeNodeId).toBe(newNodeId);
         expect(state.cursorPosition).toBe(0);
         expect(state.rememberedVisualX).toBeNull();
       });
@@ -228,7 +228,7 @@ describe('nodeActions', () => {
         actions.createNode('node-1');
 
         const newNodeId = state.nodes['root'].children[1];
-        expect(state.selectedNodeId).toBe(newNodeId);
+        expect(state.activeNodeId).toBe(newNodeId);
         expect(state.cursorPosition).toBe(0);
         expect(state.rememberedVisualX).toBeNull();
       });

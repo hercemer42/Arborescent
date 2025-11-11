@@ -13,7 +13,7 @@ type StoreState = {
   nodes: Record<string, TreeNode>;
   rootNodeId: string;
   ancestorRegistry: Record<string, string[]>;
-  selectedNodeId: string | null;
+  activeNodeId: string | null;
   cursorPosition: number;
   rememberedVisualX: number | null;
 };
@@ -24,7 +24,7 @@ function selectNode(
   cursorPosition?: number,
   rememberedVisualX?: number | null
 ): Partial<StoreState> {
-  const update: Partial<StoreState> = { selectedNodeId: nextNodeId };
+  const update: Partial<StoreState> = { activeNodeId: nextNodeId };
 
   if (cursorPosition !== undefined) {
     update.cursorPosition = cursorPosition;
@@ -41,10 +41,10 @@ export const createNavigationActions = (
   set: StoreSetter
 ): NavigationActions => {
   function moveUp(cursorPosition?: number, rememberedVisualX?: number | null): void {
-    const { selectedNodeId, nodes, rootNodeId, ancestorRegistry } = get();
-    if (!selectedNodeId) return;
+    const { activeNodeId, nodes, rootNodeId, ancestorRegistry } = get();
+    if (!activeNodeId) return;
 
-    const nextNodeId = findPreviousNode(selectedNodeId, nodes, rootNodeId, ancestorRegistry);
+    const nextNodeId = findPreviousNode(activeNodeId, nodes, rootNodeId, ancestorRegistry);
     if (nextNodeId) {
       const nextNode = nodes[nextNodeId];
       const position = cursorPosition !== undefined ? cursorPosition : nextNode?.content.length ?? 0;
@@ -53,12 +53,12 @@ export const createNavigationActions = (
   }
 
   function moveDown(cursorPosition?: number, rememberedVisualX?: number | null): void {
-    const { selectedNodeId, nodes, rootNodeId, ancestorRegistry } = get();
-    if (!selectedNodeId) {
+    const { activeNodeId, nodes, rootNodeId, ancestorRegistry } = get();
+    if (!activeNodeId) {
       const root = nodes[rootNodeId];
       if (root?.children.length > 0) {
         set({
-          selectedNodeId: root.children[0],
+          activeNodeId: root.children[0],
           cursorPosition: 0,
           rememberedVisualX: null,
         });
@@ -66,7 +66,7 @@ export const createNavigationActions = (
       return;
     }
 
-    const nextNodeId = findNextNode(selectedNodeId, nodes, rootNodeId, ancestorRegistry);
+    const nextNodeId = findNextNode(activeNodeId, nodes, rootNodeId, ancestorRegistry);
     if (nextNodeId) {
       const position = cursorPosition !== undefined ? cursorPosition : 0;
       set(selectNode(nextNodeId, position, rememberedVisualX));
@@ -74,14 +74,14 @@ export const createNavigationActions = (
   }
 
   function moveBack(): void {
-    const { selectedNodeId, nodes, rootNodeId, ancestorRegistry } = get();
-    if (!selectedNodeId) return;
+    const { activeNodeId, nodes, rootNodeId, ancestorRegistry } = get();
+    if (!activeNodeId) return;
 
-    const nextNodeId = findPreviousNode(selectedNodeId, nodes, rootNodeId, ancestorRegistry);
+    const nextNodeId = findPreviousNode(activeNodeId, nodes, rootNodeId, ancestorRegistry);
     if (nextNodeId) {
       const nextNode = nodes[nextNodeId];
       set({
-        selectedNodeId: nextNodeId,
+        activeNodeId: nextNodeId,
         cursorPosition: nextNode?.content.length ?? 0,
         rememberedVisualX: null,
       });
@@ -89,13 +89,13 @@ export const createNavigationActions = (
   }
 
   function moveForward(): void {
-    const { selectedNodeId, nodes, rootNodeId, ancestorRegistry } = get();
-    if (!selectedNodeId) return;
+    const { activeNodeId, nodes, rootNodeId, ancestorRegistry } = get();
+    if (!activeNodeId) return;
 
-    const nextNodeId = findNextNode(selectedNodeId, nodes, rootNodeId, ancestorRegistry);
+    const nextNodeId = findNextNode(activeNodeId, nodes, rootNodeId, ancestorRegistry);
     if (nextNodeId) {
       set({
-        selectedNodeId: nextNodeId,
+        activeNodeId: nextNodeId,
         cursorPosition: 0,
         rememberedVisualX: null,
       });

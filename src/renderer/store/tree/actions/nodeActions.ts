@@ -17,7 +17,7 @@ type StoreState = {
   nodes: Record<string, TreeNode>;
   rootNodeId: string;
   ancestorRegistry: AncestorRegistry;
-  selectedNodeId: string | null;
+  activeNodeId: string | null;
   cursorPosition: number;
   rememberedVisualX: number | null;
 };
@@ -34,7 +34,7 @@ export const createNodeActions = (
 ): NodeActions => {
   function selectNode(nodeId: string, cursorPosition?: number): void {
     set({
-      selectedNodeId: nodeId,
+      activeNodeId: nodeId,
       cursorPosition: cursorPosition ?? 0,
     });
   }
@@ -114,7 +114,7 @@ export const createNodeActions = (
     set({
       nodes: updatedNodes,
       ancestorRegistry: newAncestorRegistry,
-      selectedNodeId: newNodeId,
+      activeNodeId: newNodeId,
       cursorPosition: 0,
       rememberedVisualX: null,
     });
@@ -151,7 +151,7 @@ export const createNodeActions = (
     set({
       nodes: updatedNodes,
       ancestorRegistry: newAncestorRegistry,
-      selectedNodeId: newNodeId,
+      activeNodeId: newNodeId,
       cursorPosition: 0,
       rememberedVisualX: null,
     });

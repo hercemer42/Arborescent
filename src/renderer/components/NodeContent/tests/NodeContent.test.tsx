@@ -37,7 +37,7 @@ describe('NodeContent', () => {
         'test-node': mockNode,
       },
       rootNodeId: '',
-      selectedNodeId: null,
+      activeNodeId: null,
       cursorPosition: 0,
       rememberedVisualX: null,
       ancestorRegistry: {},

@@ -13,7 +13,10 @@ export function StatusCheckbox({ status, onToggle }: StatusCheckboxProps) {
   }
 
   const handleClick = (e: React.MouseEvent) => {
-    e.stopPropagation();
+    // Don't toggle when modifier keys pressed (let parent handle node multi-selection)
+    if (e.ctrlKey || e.metaKey || e.shiftKey) {
+      return;
+    }
     if (onToggle) {
       onToggle();
     }
@@ -26,7 +29,6 @@ export function StatusCheckbox({ status, onToggle }: StatusCheckboxProps) {
       className="status-checkbox"
       onMouseDown={(e) => {
         e.preventDefault();
-        e.stopPropagation();
       }}
       onClick={handleClick}
       aria-label={`Status: ${status}`}

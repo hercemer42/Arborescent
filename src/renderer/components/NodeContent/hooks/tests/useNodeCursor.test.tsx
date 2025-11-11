@@ -29,7 +29,7 @@ describe('useNodeCursor', () => {
     store.setState({
       nodes: { 'test-node': mockNode },
       rootNodeId: 'test-node',
-      selectedNodeId: null,
+      activeNodeId: null,
       cursorPosition: 0,
       rememberedVisualX: null,
       actions: {
@@ -54,7 +54,7 @@ describe('useNodeCursor', () => {
 
   it('should render without errors when node is selected', () => {
     const contentRef = { current: document.createElement('div') };
-    store.setState({ selectedNodeId: 'test-node' });
+    store.setState({ activeNodeId: 'test-node' });
 
     expect(() => {
       renderHook(() => useNodeCursor(mockNode, contentRef), { wrapper });
@@ -64,7 +64,7 @@ describe('useNodeCursor', () => {
   it('should render without errors with rememberedVisualX', () => {
     const contentRef = { current: document.createElement('div') };
     store.setState({
-      selectedNodeId: 'test-node',
+      activeNodeId: 'test-node',
       rememberedVisualX: 15
     });
 
@@ -76,7 +76,7 @@ describe('useNodeCursor', () => {
   it('should render without errors with cursor position', () => {
     const contentRef = { current: document.createElement('div') };
     store.setState({
-      selectedNodeId: 'test-node',
+      activeNodeId: 'test-node',
       cursorPosition: 5
     });
 
@@ -87,7 +87,7 @@ describe('useNodeCursor', () => {
 
   it('should render without errors when contentRef is null', () => {
     const contentRef = { current: null };
-    store.setState({ selectedNodeId: 'test-node' });
+    store.setState({ activeNodeId: 'test-node' });
 
     expect(() => {
       renderHook(() => useNodeCursor(mockNode, contentRef), { wrapper });

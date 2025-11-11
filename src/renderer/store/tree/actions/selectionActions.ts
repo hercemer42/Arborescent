@@ -13,7 +13,7 @@ export interface SelectionActions {
 type StoreState = {
   nodes: Record<string, TreeNode>;
   ancestorRegistry: AncestorRegistry;
-  selectedNodeIds: Set<string>;
+  multiSelectedNodeIds: Set<string>;
   lastSelectedNodeId: string | null;
   rootNodeId: string;
 };
@@ -40,13 +40,13 @@ export const createSelectionActions = (
   set: StoreSetter
 ): SelectionActions => {
   function toggleNodeSelection(nodeId: string): void {
-    const { selectedNodeIds, nodes, ancestorRegistry } = get();
-    const newSelection = new Set(selectedNodeIds);
+    const { multiSelectedNodeIds, nodes, ancestorRegistry } = get();
+    const newSelection = new Set(multiSelectedNodeIds);
 
     if (newSelection.has(nodeId)) {
       // Trying to deselect: check if any ancestor is selected
       const ancestors = ancestorRegistry[nodeId] || [];
-      const hasSelectedAncestor = ancestors.some(ancestorId => selectedNodeIds.has(ancestorId));
+      const hasSelectedAncestor = ancestors.some(ancestorId => multiSelectedNodeIds.has(ancestorId));
 
       if (hasSelectedAncestor) {
         return;
@@ -56,15 +56,15 @@ export const createSelectionActions = (
       const nodeWithDescendants = createSelectionWithDescendants(nodeId, nodes);
       nodeWithDescendants.forEach(id => newSelection.delete(id));
 
-      // Clear anchor when deselecting
-      set({ selectedNodeIds: newSelection, lastSelectedNodeId: null });
+      // Keep anchor unchanged when deselecting (don't set anchor to a removed node)
+      set({ multiSelectedNodeIds: newSelection });
     } else {
       // Adding to selection: add this node and all its descendants
       const nodeWithDescendants = createSelectionWithDescendants(nodeId, nodes);
       nodeWithDescendants.forEach(id => newSelection.add(id));
 
       // Update anchor so Shift+Click can create range from this node
-      set({ selectedNodeIds: newSelection, lastSelectedNodeId: nodeId });
+      set({ multiSelectedNodeIds: newSelection, lastSelectedNodeId: nodeId });
     }
   }
 
@@ -74,7 +74,7 @@ export const createSelectionActions = (
     if (!lastSelectedNodeId) {
       // First Shift+Click: select this node and set as anchor
       const newSelection = createSelectionWithDescendants(nodeId, nodes);
-      set({ selectedNodeIds: newSelection, lastSelectedNodeId: nodeId });
+      set({ multiSelectedNodeIds: newSelection, lastSelectedNodeId: nodeId });
       return;
     }
 
@@ -88,7 +88,7 @@ export const createSelectionActions = (
     if (startIndex === -1 || endIndex === -1) {
       // One of the nodes not found, just select this node and set as new anchor
       const newSelection = createSelectionWithDescendants(nodeId, nodes);
-      set({ selectedNodeIds: newSelection, lastSelectedNodeId: nodeId });
+      set({ multiSelectedNodeIds: newSelection, lastSelectedNodeId: nodeId });
       return;
     }
 
@@ -100,19 +100,21 @@ export const createSelectionActions = (
     const rangeNodes = visibleNodes.slice(rangeStart, rangeEnd + 1);
 
     // Select all nodes in range (and their descendants)
-    const newSelection = new Set<string>();
+    // Start with existing selection to accumulate ranges (allow chaining)
+    const { multiSelectedNodeIds } = get();
+    const newSelection = new Set(multiSelectedNodeIds);
     rangeNodes.forEach(id => {
       const nodeSelection = createSelectionWithDescendants(id, nodes);
       nodeSelection.forEach(selectedId => newSelection.add(selectedId));
     });
 
     // Update anchor to this node, so next Shift+Click extends from here
-    set({ selectedNodeIds: newSelection, lastSelectedNodeId: nodeId });
+    set({ multiSelectedNodeIds: newSelection, lastSelectedNodeId: nodeId });
   }
 
   function addToSelection(nodeIds: string[]): void {
-    const { selectedNodeIds, nodes } = get();
-    const newSelection = new Set(selectedNodeIds);
+    const { multiSelectedNodeIds, nodes } = get();
+    const newSelection = new Set(multiSelectedNodeIds);
 
     // Add each node and all its descendants
     nodeIds.forEach(id => {
@@ -120,11 +122,11 @@ export const createSelectionActions = (
       nodeWithDescendants.forEach(selectedId => newSelection.add(selectedId));
     });
 
-    set({ selectedNodeIds: newSelection });
+    set({ multiSelectedNodeIds: newSelection });
   }
 
   function clearSelection(): void {
-    set({ selectedNodeIds: new Set(), lastSelectedNodeId: null });
+    set({ multiSelectedNodeIds: new Set(), lastSelectedNodeId: null });
   }
 
   /**
@@ -138,15 +140,15 @@ export const createSelectionActions = (
    * both B and C should be moved.
    */
   function getNodesToMove(): string[] {
-    const { selectedNodeIds, ancestorRegistry } = get();
-    const selectedArray = Array.from(selectedNodeIds);
+    const { multiSelectedNodeIds, ancestorRegistry } = get();
+    const selectedArray = Array.from(multiSelectedNodeIds);
 
     return selectedArray.filter((nodeId) => {
       const ancestors = ancestorRegistry[nodeId] || [];
 
       // Check if any ancestor of this node is also selected
       const hasSelectedAncestor = ancestors.some((ancestorId) =>
-        selectedNodeIds.has(ancestorId)
+        multiSelectedNodeIds.has(ancestorId)
       );
 
       // Only include this node if none of its ancestors are selected

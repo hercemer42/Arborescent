@@ -30,21 +30,16 @@ describe('ExpandToggle', () => {
     expect(handleToggle).toHaveBeenCalledTimes(1);
   });
 
-  it('should stop propagation on click', async () => {
+  it('should call toggle when clicked', async () => {
     const handleToggle = vi.fn();
-    const handleParentClick = vi.fn();
     const user = userEvent.setup();
 
-    render(
-      <div onClick={handleParentClick}>
-        <ExpandToggle expanded={false} onToggle={handleToggle} />
-      </div>
-    );
+    render(<ExpandToggle expanded={false} onToggle={handleToggle} />);
 
     const button = screen.getByRole('button');
     await user.click(button);
 
     expect(handleToggle).toHaveBeenCalledTimes(1);
-    expect(handleParentClick).not.toHaveBeenCalled();
+    // Note: Events now bubble to parent, which handles button detection
   });
 });

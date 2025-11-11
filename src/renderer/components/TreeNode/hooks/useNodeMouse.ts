@@ -1,10 +1,39 @@
-import { useRef } from 'react';
+import { useRef, useMemo } from 'react';
+import { DraggableSyntheticListeners } from '@dnd-kit/core';
 import { useActiveTreeStore } from '../../../store/tree/TreeStoreContext';
 import { getPositionFromCoordinates } from '../../../utils/position';
 
-export function useNodeMouse(nodeId: string) {
+export function useNodeMouse(nodeId: string, listeners?: DraggableSyntheticListeners) {
   const store = useActiveTreeStore();
   const mouseDownPos = useRef<{ x: number; y: number } | null>(null);
+
+  // Wrap drag listeners to only allow drag if node is multi-selected
+  const wrappedListeners = useMemo(() => {
+    if (!listeners) return undefined;
+
+    return Object.keys(listeners).reduce((acc, key) => {
+      const originalHandler = listeners[key];
+      if (typeof originalHandler === 'function') {
+        acc[key] = (e: React.PointerEvent) => {
+          // Skip drag if modifier keys pressed (user wants to select, not drag)
+          if (e.ctrlKey || e.metaKey || e.shiftKey) {
+            return;
+          }
+
+          // Only allow drag if node is already multi-selected
+          const state = store.getState();
+          if (!state.multiSelectedNodeIds.has(nodeId)) {
+            return;
+          }
+
+          originalHandler(e);
+        };
+      } else {
+        acc[key] = originalHandler;
+      }
+      return acc;
+    }, {} as Record<string, unknown>);
+  }, [listeners, nodeId, store]);
 
   const handleMouseDown = (e: React.MouseEvent) => {
     const target = e.target as HTMLElement;
@@ -13,13 +42,19 @@ export function useNodeMouse(nodeId: string) {
     const isShift = e.shiftKey;
     const hasModifierKey = isShift || isCtrlOrCmd || e.altKey;
 
-    // Track mouse position for drag detection, but skip for modifier key clicks
-    // (shift-click, ctrl-click, etc. are for selection operations, not cursor placement)
-    mouseDownPos.current = hasModifierKey ? null : { x: e.clientX, y: e.clientY };
+    // Modifier keys are ONLY for node multi-selection, never for text selection or cursor placement
+    if (hasModifierKey) {
+      e.preventDefault(); // Prevent text selection
+      mouseDownPos.current = null;
+      return;
+    }
+
+    // Track mouse position for drag detection (only for normal clicks)
+    mouseDownPos.current = { x: e.clientX, y: e.clientY };
 
     // Prevent default browser selection when clicking on gaps/icons/wrappers
-    // but allow natural behavior for text clicks and modifier key operations
-    if (!isClickingOnText && !hasModifierKey) {
+    // but allow natural behavior for text clicks
+    if (!isClickingOnText) {
       e.preventDefault();
     }
   };
@@ -40,32 +75,47 @@ export function useNodeMouse(nodeId: string) {
     const { actions } = store.getState();
     const isCtrlOrCmd = e.ctrlKey || e.metaKey;
     const isShift = e.shiftKey;
+    const hasModifierKey = isCtrlOrCmd || isShift;
 
-    // Handle Ctrl/Cmd+Click: toggle node in/out of multi-select
+    // Check if clicking on a button
+    const target = e.target as HTMLElement;
+    const isClickingOnButton = target && (target.tagName === 'BUTTON' || target.closest?.('button'));
+
+    // If clicking on button WITHOUT modifier keys, let button handle it (don't place cursor)
+    if (isClickingOnButton && !hasModifierKey) {
+      return;
+    }
+
+    // Handle Ctrl/Cmd+Click: ONLY toggle node multi-selection
     if (isCtrlOrCmd && !isShift) {
-      mouseDownPos.current = null;
       actions.toggleNodeSelection(nodeId);
+      // Clear any cursor
+      if (document.activeElement && document.activeElement instanceof HTMLElement) {
+        document.activeElement.blur();
+      }
       return;
     }
 
-    // Handle Shift+Click: range selection
+    // Handle Shift+Click: ONLY do node range selection
     if (isShift) {
-      mouseDownPos.current = null;
       actions.selectRange(nodeId);
+      // Clear any cursor
+      if (document.activeElement && document.activeElement instanceof HTMLElement) {
+        document.activeElement.blur();
+      }
       return;
     }
 
-    // If drag detected or using alt key, let browser handle naturally
+    // If drag detected or using alt key, don't do anything
     if (!mouseDownPos.current || e.altKey) {
       mouseDownPos.current = null;
       return;
     }
     mouseDownPos.current = null;
 
-    // Normal click: always clear selection (allows deselecting by clicking on selected node)
+    // Normal click: clear multi-selection and place cursor
     actions.clearSelection();
 
-    // Find the contentEditable element to position cursor in
     const wrapperElement = e.currentTarget as HTMLElement;
     const contentEditableElement = wrapperElement.querySelector('.node-text') as HTMLElement;
 
@@ -85,5 +135,6 @@ export function useNodeMouse(nodeId: string) {
     handleMouseDown,
     handleMouseMove,
     handleClick,
+    wrappedListeners,
   };
 }

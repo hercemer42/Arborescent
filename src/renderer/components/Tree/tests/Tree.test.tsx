@@ -18,7 +18,7 @@ describe('Tree', () => {
     store.setState({
       rootNodeId: '',
       nodes: {},
-      selectedNodeId: null,
+      activeNodeId: null,
       cursorPosition: 0,
       rememberedVisualX: null,
     });

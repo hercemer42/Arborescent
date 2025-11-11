@@ -3,7 +3,7 @@ import { createNavigationActions } from '../navigationActions';
 import type { TreeNode } from '@shared/types';
 
 describe('navigationActions', () => {
-  let state: { nodes: Record<string, TreeNode>; rootNodeId: string; ancestorRegistry: Record<string, string[]>; selectedNodeId: string | null; cursorPosition: number; rememberedVisualX: number | null };
+  let state: { nodes: Record<string, TreeNode>; rootNodeId: string; ancestorRegistry: Record<string, string[]>; activeNodeId: string | null; cursorPosition: number; rememberedVisualX: number | null };
   let setState: (partial: Partial<typeof state>) => void;
   let actions: ReturnType<typeof createNavigationActions>;
 
@@ -42,7 +42,7 @@ describe('navigationActions', () => {
         'child-2': ['root'],
         'grandchild-1': ['root', 'child-1'],
       },
-      selectedNodeId: null,
+      activeNodeId: null,
       cursorPosition: 0,
       rememberedVisualX: null,
     };
@@ -59,74 +59,74 @@ describe('navigationActions', () => {
 
   describe('moveUp', () => {
     it('should move selection up in flat list', () => {
-      state.selectedNodeId = 'grandchild-1';
+      state.activeNodeId = 'grandchild-1';
       actions.moveUp();
-      expect(state.selectedNodeId).toBe('child-1');
+      expect(state.activeNodeId).toBe('child-1');
     });
 
     it('should not move up from first node', () => {
-      state.selectedNodeId = 'root';
+      state.activeNodeId = 'root';
       actions.moveUp();
-      expect(state.selectedNodeId).toBe('root');
+      expect(state.activeNodeId).toBe('root');
     });
 
     it('should handle moving up from nested nodes', () => {
-      state.selectedNodeId = 'grandchild-1';
+      state.activeNodeId = 'grandchild-1';
       actions.moveUp();
-      expect(state.selectedNodeId).toBe('child-1');
+      expect(state.activeNodeId).toBe('child-1');
     });
   });
 
   describe('moveDown', () => {
     it('should move selection down in flat list', () => {
-      state.selectedNodeId = 'root';
+      state.activeNodeId = 'root';
       actions.moveDown();
-      expect(state.selectedNodeId).toBe('child-1');
+      expect(state.activeNodeId).toBe('child-1');
     });
 
     it('should not move down from last node', () => {
-      state.selectedNodeId = 'child-2';
+      state.activeNodeId = 'child-2';
       actions.moveDown();
-      expect(state.selectedNodeId).toBe('child-2');
+      expect(state.activeNodeId).toBe('child-2');
     });
 
     it('should handle moving down through nested nodes', () => {
-      state.selectedNodeId = 'child-1';
+      state.activeNodeId = 'child-1';
       actions.moveDown();
-      expect(state.selectedNodeId).toBe('grandchild-1');
+      expect(state.activeNodeId).toBe('grandchild-1');
     });
 
     it('should select first node when nothing selected', () => {
-      state.selectedNodeId = null;
+      state.activeNodeId = null;
       actions.moveDown();
-      expect(state.selectedNodeId).toBe('child-1');
+      expect(state.activeNodeId).toBe('child-1');
     });
   });
 
   describe('moveBack', () => {
     it('should move to previous node with cursor at end', () => {
-      state.selectedNodeId = 'grandchild-1';
+      state.activeNodeId = 'grandchild-1';
       actions.moveBack();
-      expect(state.selectedNodeId).toBe('child-1');
+      expect(state.activeNodeId).toBe('child-1');
       expect(state.cursorPosition).toBe(7);
       expect(state.rememberedVisualX).toBeNull();
     });
 
     it('should not move from first node', () => {
-      state.selectedNodeId = 'root';
+      state.activeNodeId = 'root';
       actions.moveBack();
-      expect(state.selectedNodeId).toBe('root');
+      expect(state.activeNodeId).toBe('root');
     });
 
     it('should handle moving from nested nodes', () => {
-      state.selectedNodeId = 'grandchild-1';
+      state.activeNodeId = 'grandchild-1';
       actions.moveBack();
-      expect(state.selectedNodeId).toBe('child-1');
+      expect(state.activeNodeId).toBe('child-1');
       expect(state.cursorPosition).toBe(7);
     });
 
     it('should clear remembered visual X position', () => {
-      state.selectedNodeId = 'grandchild-1';
+      state.activeNodeId = 'grandchild-1';
       state.rememberedVisualX = 10;
       actions.moveBack();
       expect(state.rememberedVisualX).toBeNull();
@@ -135,28 +135,28 @@ describe('navigationActions', () => {
 
   describe('moveForward', () => {
     it('should move to next node with cursor at start', () => {
-      state.selectedNodeId = 'root';
+      state.activeNodeId = 'root';
       actions.moveForward();
-      expect(state.selectedNodeId).toBe('child-1');
+      expect(state.activeNodeId).toBe('child-1');
       expect(state.cursorPosition).toBe(0);
       expect(state.rememberedVisualX).toBeNull();
     });
 
     it('should not move from last node', () => {
-      state.selectedNodeId = 'child-2';
+      state.activeNodeId = 'child-2';
       actions.moveForward();
-      expect(state.selectedNodeId).toBe('child-2');
+      expect(state.activeNodeId).toBe('child-2');
     });
 
     it('should handle moving through nested nodes', () => {
-      state.selectedNodeId = 'child-1';
+      state.activeNodeId = 'child-1';
       actions.moveForward();
-      expect(state.selectedNodeId).toBe('grandchild-1');
+      expect(state.activeNodeId).toBe('grandchild-1');
       expect(state.cursorPosition).toBe(0);
     });
 
     it('should clear remembered visual X position', () => {
-      state.selectedNodeId = 'root';
+      state.activeNodeId = 'root';
       state.rememberedVisualX = 10;
       actions.moveForward();
       expect(state.rememberedVisualX).toBeNull();
@@ -219,35 +219,35 @@ describe('navigationActions', () => {
     });
 
     it('should skip collapsed children when moving down', () => {
-      state.selectedNodeId = 'child-1';
+      state.activeNodeId = 'child-1';
       actions.moveDown();
-      expect(state.selectedNodeId).toBe('child-2');
+      expect(state.activeNodeId).toBe('child-2');
     });
 
     it('should skip collapsed children when moving up', () => {
-      state.selectedNodeId = 'child-2';
+      state.activeNodeId = 'child-2';
       actions.moveUp();
-      expect(state.selectedNodeId).toBe('child-1');
+      expect(state.activeNodeId).toBe('child-1');
     });
 
     it('should skip collapsed children when moving to next', () => {
-      state.selectedNodeId = 'child-1';
+      state.activeNodeId = 'child-1';
       actions.moveForward();
-      expect(state.selectedNodeId).toBe('child-2');
+      expect(state.activeNodeId).toBe('child-2');
     });
 
     it('should skip collapsed children when moving to previous', () => {
-      state.selectedNodeId = 'child-2';
+      state.activeNodeId = 'child-2';
       actions.moveBack();
-      expect(state.selectedNodeId).toBe('child-1');
+      expect(state.activeNodeId).toBe('child-1');
       expect(state.cursorPosition).toBe(7);
     });
 
     it('should include children when node is expanded', () => {
       state.nodes['child-1'].metadata.expanded = true;
-      state.selectedNodeId = 'child-1';
+      state.activeNodeId = 'child-1';
       actions.moveDown();
-      expect(state.selectedNodeId).toBe('grandchild-1');
+      expect(state.activeNodeId).toBe('grandchild-1');
     });
 
     it('should handle deeply nested collapsed nodes', () => {
@@ -261,9 +261,9 @@ describe('navigationActions', () => {
 
       state.nodes['child-1'].metadata.expanded = false;
 
-      state.selectedNodeId = 'child-1';
+      state.activeNodeId = 'child-1';
       actions.moveDown();
-      expect(state.selectedNodeId).toBe('child-2');
+      expect(state.activeNodeId).toBe('child-2');
     });
   });
 });

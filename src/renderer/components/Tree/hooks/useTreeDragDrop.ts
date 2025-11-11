@@ -2,6 +2,7 @@ import { useCallback, useState, useMemo } from 'react';
 import { DragEndEvent, DragStartEvent, PointerSensor, useSensor, useSensors, defaultDropAnimationSideEffects } from '@dnd-kit/core';
 import { useActiveTreeStore } from '../../../store/tree/TreeStoreContext';
 import { useStore } from '../../../store/tree/useStore';
+import { AncestorRegistry } from '../../../utils/ancestry';
 
 // Fast drop animation for snappy feel
 const dropAnimation = {
@@ -16,10 +17,39 @@ const dropAnimation = {
   }),
 };
 
+type DropZone = 'before' | 'after' | 'child';
+
+function isValidDrop(
+  nodeId: string,
+  targetNodeId: string,
+  dropZone: DropZone,
+  nodesToMove: string[],
+  ancestorRegistry: AncestorRegistry
+): boolean {
+  // Skip if trying to drop into the node itself
+  if (nodeId === targetNodeId) {
+    return false;
+  }
+
+  // Skip if trying to drop into one of its descendants
+  const targetAncestors = ancestorRegistry[targetNodeId] || [];
+  if (targetAncestors.includes(nodeId)) {
+    return false;
+  }
+
+  // Skip if target is one of the nodes being moved (when dropping as sibling)
+  if (dropZone !== 'child' && nodesToMove.includes(targetNodeId)) {
+    return false;
+  }
+
+  return true;
+}
+
 export function useTreeDragDrop() {
   const store = useActiveTreeStore();
   const ancestorRegistry = useStore((state) => state.ancestorRegistry);
   const [activeId, setActiveId] = useState<string | null>(null);
+  const [draggedNodeIds, setDraggedNodeIds] = useState<string[]>([]);
 
   // Configure sensors for drag detection
   const sensors = useSensors(
@@ -34,28 +64,33 @@ export function useTreeDragDrop() {
 
   const handleDragStart = useCallback((event: DragStartEvent) => {
     const { active } = event;
-    const { actions, selectedNodeIds } = store.getState();
+    const { actions, multiSelectedNodeIds } = store.getState();
     const draggedNodeId = active.id as string;
 
     // Set active ID for DragOverlay
     setActiveId(draggedNodeId);
 
     // If dragging a non-selected node, add it to selection for immediate visual feedback
-    if (!selectedNodeIds.has(draggedNodeId)) {
+    if (!multiSelectedNodeIds.has(draggedNodeId)) {
       actions.addToSelection([draggedNodeId]);
     }
+
+    // Get all nodes that will be moved (for display in DragOverlay)
+    const nodesToMove = actions.getNodesToMove();
+    setDraggedNodeIds(nodesToMove);
   }, [store]);
 
   const handleDragEnd = useCallback((event: DragEndEvent) => {
     const { active, over } = event;
-    const { actions, selectedNodeIds } = store.getState();
+    const { actions, multiSelectedNodeIds, ancestorRegistry } = store.getState();
 
-    // Clear active ID
+    // Clear drag state
     setActiveId(null);
+    setDraggedNodeIds([]);
 
-    // Clear selection after any drag ends (even if invalid)
-    const shouldClearSelection = selectedNodeIds.size > 0;
+    const shouldClearSelection = multiSelectedNodeIds.size > 0;
 
+    // Early exit for invalid drops
     if (!over || active.id === over.id) {
       if (shouldClearSelection) {
         actions.clearSelection();
@@ -65,19 +100,19 @@ export function useTreeDragDrop() {
 
     const draggedNodeId = active.id as string;
     const targetNodeId = over.id as string;
-
-    // Get drop position from the droppable's data
-    const dropPosition = over.data.current?.dropPosition as 'before' | 'after' | 'child' | null;
+    const dropPosition = over.data.current?.dropPosition as DropZone | null;
+    const dropZone = dropPosition || 'child';
 
     // Determine which nodes to move
-    const nodesToMove = selectedNodeIds.has(draggedNodeId) && selectedNodeIds.size > 0
-      ? actions.getNodesToMove()  // Move all selected nodes (filtered to avoid duplicates)
-      : [draggedNodeId];           // Just move the dragged node
+    const nodesToMove = multiSelectedNodeIds.has(draggedNodeId) && multiSelectedNodeIds.size > 0
+      ? actions.getNodesToMove()
+      : [draggedNodeId];
 
-    // Move each node based on drop zone
-    const dropZone = dropPosition || 'child';
+    // Execute validated drops
     nodesToMove.forEach((nodeId) => {
-      actions.dropNode(nodeId, targetNodeId, dropZone);
+      if (isValidDrop(nodeId, targetNodeId, dropZone, nodesToMove, ancestorRegistry)) {
+        actions.dropNode(nodeId, targetNodeId, dropZone);
+      }
     });
 
     // Clear selection after drop
@@ -94,6 +129,7 @@ export function useTreeDragDrop() {
   return {
     sensors,
     activeId,
+    draggedNodeIds,
     draggedNodeDepth,
     dropAnimation,
     handleDragStart,

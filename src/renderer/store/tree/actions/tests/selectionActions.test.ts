@@ -7,7 +7,7 @@ describe('selectionActions', () => {
   type TestState = {
     nodes: Record<string, TreeNode>;
     ancestorRegistry: AncestorRegistry;
-    selectedNodeIds: Set<string>;
+    multiSelectedNodeIds: Set<string>;
     lastSelectedNodeId: string | null;
     rootNodeId: string;
   };
@@ -71,7 +71,7 @@ describe('selectionActions', () => {
         'node-3': ['root'],
         'node-3-1': ['root', 'node-3'],
       },
-      selectedNodeIds: new Set<string>(),
+      multiSelectedNodeIds: new Set<string>(),
       lastSelectedNodeId: null,
       rootNodeId: 'root',
     };
@@ -87,9 +87,9 @@ describe('selectionActions', () => {
     it('should add node to selection with all descendants', () => {
       actions.toggleNodeSelection('node-1');
 
-      expect(state.selectedNodeIds.has('node-1')).toBe(true);
-      expect(state.selectedNodeIds.has('node-1-1')).toBe(true);
-      expect(state.selectedNodeIds.has('node-1-2')).toBe(true);
+      expect(state.multiSelectedNodeIds.has('node-1')).toBe(true);
+      expect(state.multiSelectedNodeIds.has('node-1-1')).toBe(true);
+      expect(state.multiSelectedNodeIds.has('node-1-2')).toBe(true);
       expect(state.lastSelectedNodeId).toBe('node-1');
     });
 
@@ -101,38 +101,40 @@ describe('selectionActions', () => {
 
     it('should remove node from selection with all descendants', () => {
       // First add to selection
-      state.selectedNodeIds = new Set(['node-1', 'node-1-1', 'node-1-2']);
+      state.multiSelectedNodeIds = new Set(['node-1', 'node-1-1', 'node-1-2']);
       state.lastSelectedNodeId = 'node-1';
 
       actions.toggleNodeSelection('node-1');
 
-      expect(state.selectedNodeIds.has('node-1')).toBe(false);
-      expect(state.selectedNodeIds.has('node-1-1')).toBe(false);
-      expect(state.selectedNodeIds.has('node-1-2')).toBe(false);
-      expect(state.lastSelectedNodeId).toBe(null);
+      expect(state.multiSelectedNodeIds.has('node-1')).toBe(false);
+      expect(state.multiSelectedNodeIds.has('node-1-1')).toBe(false);
+      expect(state.multiSelectedNodeIds.has('node-1-2')).toBe(false);
+      // Anchor is preserved when removing (not set to removed node)
+      expect(state.lastSelectedNodeId).toBe('node-1');
     });
 
-    it('should clear anchor when removing from selection', () => {
-      state.selectedNodeIds = new Set(['node-2']);
+    it('should preserve anchor when removing from selection', () => {
+      state.multiSelectedNodeIds = new Set(['node-2']);
       state.lastSelectedNodeId = 'node-2';
 
       actions.toggleNodeSelection('node-2');
 
-      expect(state.lastSelectedNodeId).toBe(null);
+      // Anchor stays unchanged (convention: anchor should be a node in selection)
+      expect(state.lastSelectedNodeId).toBe('node-2');
     });
 
     it('should not deselect node when ancestor is selected', () => {
       // Select parent and child
-      state.selectedNodeIds = new Set(['node-1', 'node-1-1', 'node-1-2']);
+      state.multiSelectedNodeIds = new Set(['node-1', 'node-1-1', 'node-1-2']);
       state.lastSelectedNodeId = 'node-1';
 
       // Try to deselect child
       actions.toggleNodeSelection('node-1-1');
 
       // Should remain selected (parent still selected)
-      expect(state.selectedNodeIds.has('node-1')).toBe(true);
-      expect(state.selectedNodeIds.has('node-1-1')).toBe(true);
-      expect(state.selectedNodeIds.has('node-1-2')).toBe(true);
+      expect(state.multiSelectedNodeIds.has('node-1')).toBe(true);
+      expect(state.multiSelectedNodeIds.has('node-1-1')).toBe(true);
+      expect(state.multiSelectedNodeIds.has('node-1-2')).toBe(true);
       expect(state.lastSelectedNodeId).toBe('node-1'); // Unchanged
     });
 
@@ -140,9 +142,9 @@ describe('selectionActions', () => {
       actions.toggleNodeSelection('node-2');
       actions.toggleNodeSelection('node-3');
 
-      expect(state.selectedNodeIds.has('node-2')).toBe(true);
-      expect(state.selectedNodeIds.has('node-3')).toBe(true);
-      expect(state.selectedNodeIds.has('node-3-1')).toBe(true); // Descendant included
+      expect(state.multiSelectedNodeIds.has('node-2')).toBe(true);
+      expect(state.multiSelectedNodeIds.has('node-3')).toBe(true);
+      expect(state.multiSelectedNodeIds.has('node-3-1')).toBe(true); // Descendant included
     });
   });
 
@@ -150,7 +152,7 @@ describe('selectionActions', () => {
     it('should select single node when no anchor set', () => {
       actions.selectRange('node-2');
 
-      expect(state.selectedNodeIds.has('node-2')).toBe(true);
+      expect(state.multiSelectedNodeIds.has('node-2')).toBe(true);
       expect(state.lastSelectedNodeId).toBe('node-2');
     });
 
@@ -162,12 +164,12 @@ describe('selectionActions', () => {
       actions.selectRange('node-3');
 
       // Should select node-1, node-2, node-3 (and their descendants)
-      expect(state.selectedNodeIds.has('node-1')).toBe(true);
-      expect(state.selectedNodeIds.has('node-1-1')).toBe(true);
-      expect(state.selectedNodeIds.has('node-1-2')).toBe(true);
-      expect(state.selectedNodeIds.has('node-2')).toBe(true);
-      expect(state.selectedNodeIds.has('node-3')).toBe(true);
-      expect(state.selectedNodeIds.has('node-3-1')).toBe(true);
+      expect(state.multiSelectedNodeIds.has('node-1')).toBe(true);
+      expect(state.multiSelectedNodeIds.has('node-1-1')).toBe(true);
+      expect(state.multiSelectedNodeIds.has('node-1-2')).toBe(true);
+      expect(state.multiSelectedNodeIds.has('node-2')).toBe(true);
+      expect(state.multiSelectedNodeIds.has('node-3')).toBe(true);
+      expect(state.multiSelectedNodeIds.has('node-3-1')).toBe(true);
       expect(state.lastSelectedNodeId).toBe('node-3');
     });
 
@@ -179,11 +181,11 @@ describe('selectionActions', () => {
       actions.selectRange('node-1');
 
       // Should select node-1, node-2, node-3 (and descendants)
-      expect(state.selectedNodeIds.has('node-1')).toBe(true);
-      expect(state.selectedNodeIds.has('node-1-1')).toBe(true);
-      expect(state.selectedNodeIds.has('node-1-2')).toBe(true);
-      expect(state.selectedNodeIds.has('node-2')).toBe(true);
-      expect(state.selectedNodeIds.has('node-3')).toBe(true);
+      expect(state.multiSelectedNodeIds.has('node-1')).toBe(true);
+      expect(state.multiSelectedNodeIds.has('node-1-1')).toBe(true);
+      expect(state.multiSelectedNodeIds.has('node-1-2')).toBe(true);
+      expect(state.multiSelectedNodeIds.has('node-2')).toBe(true);
+      expect(state.multiSelectedNodeIds.has('node-3')).toBe(true);
       expect(state.lastSelectedNodeId).toBe('node-1');
     });
 
@@ -197,9 +199,9 @@ describe('selectionActions', () => {
       actions.selectRange('node-3');
 
       // Should have range from node-1 to node-3
-      expect(state.selectedNodeIds.has('node-1')).toBe(true);
-      expect(state.selectedNodeIds.has('node-2')).toBe(true);
-      expect(state.selectedNodeIds.has('node-3')).toBe(true);
+      expect(state.multiSelectedNodeIds.has('node-1')).toBe(true);
+      expect(state.multiSelectedNodeIds.has('node-2')).toBe(true);
+      expect(state.multiSelectedNodeIds.has('node-3')).toBe(true);
     });
 
     it('should update anchor to clicked node', () => {
@@ -215,20 +217,20 @@ describe('selectionActions', () => {
 
       actions.selectRange('node-2');
 
-      expect(state.selectedNodeIds.has('node-2')).toBe(true);
+      expect(state.multiSelectedNodeIds.has('node-2')).toBe(true);
       expect(state.lastSelectedNodeId).toBe('node-2');
     });
 
     it('should replace previous selection', () => {
-      state.selectedNodeIds = new Set(['node-1']);
+      state.multiSelectedNodeIds = new Set(['node-1']);
       state.lastSelectedNodeId = 'node-1';
 
       actions.selectRange('node-3');
 
       // Old selection should be replaced
-      expect(state.selectedNodeIds.has('node-1')).toBe(true);
-      expect(state.selectedNodeIds.has('node-2')).toBe(true);
-      expect(state.selectedNodeIds.has('node-3')).toBe(true);
+      expect(state.multiSelectedNodeIds.has('node-1')).toBe(true);
+      expect(state.multiSelectedNodeIds.has('node-2')).toBe(true);
+      expect(state.multiSelectedNodeIds.has('node-3')).toBe(true);
     });
   });
 
@@ -236,56 +238,56 @@ describe('selectionActions', () => {
     it('should add single node with descendants', () => {
       actions.addToSelection(['node-1']);
 
-      expect(state.selectedNodeIds.has('node-1')).toBe(true);
-      expect(state.selectedNodeIds.has('node-1-1')).toBe(true);
-      expect(state.selectedNodeIds.has('node-1-2')).toBe(true);
+      expect(state.multiSelectedNodeIds.has('node-1')).toBe(true);
+      expect(state.multiSelectedNodeIds.has('node-1-1')).toBe(true);
+      expect(state.multiSelectedNodeIds.has('node-1-2')).toBe(true);
     });
 
     it('should add multiple nodes with descendants', () => {
       actions.addToSelection(['node-1', 'node-3']);
 
-      expect(state.selectedNodeIds.has('node-1')).toBe(true);
-      expect(state.selectedNodeIds.has('node-1-1')).toBe(true);
-      expect(state.selectedNodeIds.has('node-1-2')).toBe(true);
-      expect(state.selectedNodeIds.has('node-3')).toBe(true);
-      expect(state.selectedNodeIds.has('node-3-1')).toBe(true);
+      expect(state.multiSelectedNodeIds.has('node-1')).toBe(true);
+      expect(state.multiSelectedNodeIds.has('node-1-1')).toBe(true);
+      expect(state.multiSelectedNodeIds.has('node-1-2')).toBe(true);
+      expect(state.multiSelectedNodeIds.has('node-3')).toBe(true);
+      expect(state.multiSelectedNodeIds.has('node-3-1')).toBe(true);
     });
 
     it('should preserve existing selection', () => {
-      state.selectedNodeIds = new Set(['node-2']);
+      state.multiSelectedNodeIds = new Set(['node-2']);
 
       actions.addToSelection(['node-3']);
 
-      expect(state.selectedNodeIds.has('node-2')).toBe(true);
-      expect(state.selectedNodeIds.has('node-3')).toBe(true);
-      expect(state.selectedNodeIds.has('node-3-1')).toBe(true);
+      expect(state.multiSelectedNodeIds.has('node-2')).toBe(true);
+      expect(state.multiSelectedNodeIds.has('node-3')).toBe(true);
+      expect(state.multiSelectedNodeIds.has('node-3-1')).toBe(true);
     });
 
     it('should handle empty array', () => {
-      state.selectedNodeIds = new Set(['node-2']);
+      state.multiSelectedNodeIds = new Set(['node-2']);
 
       actions.addToSelection([]);
 
-      expect(state.selectedNodeIds.has('node-2')).toBe(true);
-      expect(state.selectedNodeIds.size).toBe(1);
+      expect(state.multiSelectedNodeIds.has('node-2')).toBe(true);
+      expect(state.multiSelectedNodeIds.size).toBe(1);
     });
   });
 
   describe('clearSelection', () => {
     it('should clear all selections', () => {
-      state.selectedNodeIds = new Set(['node-1', 'node-2', 'node-3']);
+      state.multiSelectedNodeIds = new Set(['node-1', 'node-2', 'node-3']);
       state.lastSelectedNodeId = 'node-1';
 
       actions.clearSelection();
 
-      expect(state.selectedNodeIds.size).toBe(0);
+      expect(state.multiSelectedNodeIds.size).toBe(0);
       expect(state.lastSelectedNodeId).toBe(null);
     });
 
     it('should work when selection already empty', () => {
       actions.clearSelection();
 
-      expect(state.selectedNodeIds.size).toBe(0);
+      expect(state.multiSelectedNodeIds.size).toBe(0);
       expect(state.lastSelectedNodeId).toBe(null);
     });
   });
@@ -298,7 +300,7 @@ describe('selectionActions', () => {
     });
 
     it('should return single node when only one selected', () => {
-      state.selectedNodeIds = new Set(['node-2']);
+      state.multiSelectedNodeIds = new Set(['node-2']);
 
       const nodes = actions.getNodesToMove();
 
@@ -307,7 +309,7 @@ describe('selectionActions', () => {
 
     it('should exclude descendants when parent is selected', () => {
       // Select parent and all descendants
-      state.selectedNodeIds = new Set(['node-1', 'node-1-1', 'node-1-2']);
+      state.multiSelectedNodeIds = new Set(['node-1', 'node-1-1', 'node-1-2']);
 
       const nodes = actions.getNodesToMove();
 
@@ -317,7 +319,7 @@ describe('selectionActions', () => {
 
     it('should include siblings when parent not selected', () => {
       // Select two children of node-1, but not node-1 itself
-      state.selectedNodeIds = new Set(['node-1-1', 'node-1-2']);
+      state.multiSelectedNodeIds = new Set(['node-1-1', 'node-1-2']);
 
       const nodes = actions.getNodesToMove();
 
@@ -329,7 +331,7 @@ describe('selectionActions', () => {
 
     it('should filter multiple levels of ancestry', () => {
       // Select root, parent, and child
-      state.selectedNodeIds = new Set(['root', 'node-1', 'node-1-1']);
+      state.multiSelectedNodeIds = new Set(['root', 'node-1', 'node-1-1']);
 
       const nodes = actions.getNodesToMove();
 
@@ -339,7 +341,7 @@ describe('selectionActions', () => {
 
     it('should return multiple independent branches', () => {
       // Select node-1 with descendants and node-2 (independent)
-      state.selectedNodeIds = new Set(['node-1', 'node-1-1', 'node-1-2', 'node-2']);
+      state.multiSelectedNodeIds = new Set(['node-1', 'node-1-1', 'node-1-2', 'node-2']);
 
       const nodes = actions.getNodesToMove();
 
@@ -351,7 +353,7 @@ describe('selectionActions', () => {
 
     it('should handle mixed selection correctly', () => {
       // Select node-1 (with descendants), node-2, and only node-3-1 (not node-3)
-      state.selectedNodeIds = new Set(['node-1', 'node-1-1', 'node-1-2', 'node-2', 'node-3-1']);
+      state.multiSelectedNodeIds = new Set(['node-1', 'node-1-1', 'node-1-2', 'node-2', 'node-3-1']);
 
       const nodes = actions.getNodesToMove();
 

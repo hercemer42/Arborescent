@@ -7,12 +7,12 @@ import {
 } from '../../../services/cursorService';
 
 export function useNodeCursor(node: TreeNode, contentRef: React.RefObject<HTMLDivElement | null>) {
-  const isSelected = useStore((state) => state.selectedNodeId === node.id);
+  const isSelected = useStore((state) => state.activeNodeId === node.id);
   const cursorPosition = useStore((state) =>
-    state.selectedNodeId === node.id ? state.cursorPosition : null
+    state.activeNodeId === node.id ? state.cursorPosition : null
   );
   const rememberedVisualX = useStore((state) =>
-    state.selectedNodeId === node.id ? state.rememberedVisualX : null
+    state.activeNodeId === node.id ? state.rememberedVisualX : null
   );
 
   useLayoutEffect(() => {

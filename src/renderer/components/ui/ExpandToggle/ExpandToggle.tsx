@@ -18,10 +18,12 @@ export function ExpandToggle({ expanded, onToggle }: ExpandToggleProps) {
       className={`expand-toggle ${expanded ? 'expanded' : 'collapsed'}`}
       onMouseDown={(e) => {
         e.preventDefault();
-        e.stopPropagation();
       }}
       onClick={(e) => {
-        e.stopPropagation();
+        // Don't toggle when modifier keys pressed (let parent handle node multi-selection)
+        if (e.ctrlKey || e.metaKey || e.shiftKey) {
+          return;
+        }
         onToggle();
       }}
       aria-label={expanded ? 'Collapse' : 'Expand'}

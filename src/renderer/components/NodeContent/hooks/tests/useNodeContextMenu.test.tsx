@@ -23,7 +23,7 @@ describe('useNodeContextMenu', () => {
     store.setState({
       nodes: { 'test-node': mockNode },
       rootNodeId: 'test-node',
-      selectedNodeId: null,
+      activeNodeId: null,
       cursorPosition: 0,
       rememberedVisualX: null,
       ancestorRegistry: {

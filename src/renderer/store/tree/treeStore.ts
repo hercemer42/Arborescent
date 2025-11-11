@@ -28,9 +28,9 @@ export interface TreeState {
   deletedNodesMap: Record<string, DeletedNodeInfo>;
   rootNodeId: string;
   ancestorRegistry: Record<string, string[]>;
-  selectedNodeId: string | null;
-  selectedNodeIds: Set<string>;
-  lastSelectedNodeId: string | null; // For Shift+Click range selection
+  activeNodeId: string | null; // The single node being edited (cursor placement)
+  multiSelectedNodeIds: Set<string>; // Nodes selected for bulk operations (drag, delete, etc.)
+  lastSelectedNodeId: string | null; // For Shift+Click range selection anchor
   cursorPosition: number;
   rememberedVisualX: number | null;
   currentFilePath: string | null;
@@ -62,8 +62,8 @@ export function createTreeStore() {
       deletedNodesMap: {},
       rootNodeId: '',
       ancestorRegistry: {},
-      selectedNodeId: null,
-      selectedNodeIds: new Set(),
+      activeNodeId: null,
+      multiSelectedNodeIds: new Set(),
       lastSelectedNodeId: null,
       cursorPosition: 0,
       rememberedVisualX: null,

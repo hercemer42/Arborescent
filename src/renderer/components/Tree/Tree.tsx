@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import { DndContext, DragOverlay } from '@dnd-kit/core';
+import { DndContext, DragOverlay, pointerWithin } from '@dnd-kit/core';
 import { TreeNode } from '../TreeNode';
 import { useStore } from '../../store/tree/useStore';
 import { useTree } from './hooks/useTree';
@@ -14,7 +14,7 @@ export const Tree = memo(function Tree() {
   );
 
   useTree();
-  const { sensors, activeId, draggedNodeDepth, dropAnimation, handleDragStart, handleDragEnd } = useTreeDragDrop();
+  const { sensors, activeId, draggedNodeIds, draggedNodeDepth, dropAnimation, handleDragStart, handleDragEnd } = useTreeDragDrop();
   const { handleTreeClick } = useTreeClick();
 
   if (!rootNodeId || !rootNodeChildren) {
@@ -22,14 +22,25 @@ export const Tree = memo(function Tree() {
   }
 
   return (
-    <DndContext sensors={sensors} onDragStart={handleDragStart} onDragEnd={handleDragEnd}>
+    <DndContext
+      sensors={sensors}
+      collisionDetection={pointerWithin}
+      onDragStart={handleDragStart}
+      onDragEnd={handleDragEnd}
+    >
       <div className="tree" onClick={handleTreeClick}>
         {rootNodeChildren.map((childId) => (
           <TreeNode key={childId} nodeId={childId} depth={0} />
         ))}
       </div>
       <DragOverlay dropAnimation={dropAnimation}>
-        {activeId ? <TreeNode nodeId={activeId} depth={draggedNodeDepth} /> : null}
+        {activeId ? (
+          <div>
+            {draggedNodeIds.map((nodeId) => (
+              <TreeNode key={nodeId} nodeId={nodeId} depth={draggedNodeDepth} />
+            ))}
+          </div>
+        ) : null}
       </DragOverlay>
     </DndContext>
   );

@@ -8,6 +8,12 @@ export function useTreeClick() {
     const target = e.target as HTMLElement;
     const { actions } = store.getState();
 
+    // Only clear selection on normal clicks (not Ctrl/Shift clicks)
+    const hasModifierKey = e.ctrlKey || e.metaKey || e.shiftKey;
+    if (hasModifierKey) {
+      return;
+    }
+
     // Clear if clicking on:
     // 1. Tree container (empty whitespace)
     // 2. Node wrapper (indentation area, not node content)

@@ -14,7 +14,7 @@ describe('TreeNode', () => {
     store.setState({
       nodes: {},
       rootNodeId: '',
-      selectedNodeId: null,
+      activeNodeId: null,
       ancestorRegistry: {},
     });
   });
@@ -121,7 +121,7 @@ describe('TreeNode', () => {
 
     store.setState({
       nodes,
-      selectedNodeId: 'parent',
+      activeNodeId: 'parent',
       cursorPosition: 5,
       ancestorRegistry: {
         'parent': [],
@@ -138,7 +138,7 @@ describe('TreeNode', () => {
     await user.click(collapseButton);
 
     expect(contentEditable).toHaveFocus();
-    expect(store.getState().selectedNodeId).toBe('parent');
+    expect(store.getState().activeNodeId).toBe('parent');
     expect(store.getState().cursorPosition).toBe(5);
   });
 
@@ -163,7 +163,7 @@ describe('TreeNode', () => {
 
     store.setState({
       nodes,
-      selectedNodeId: 'child-1',
+      activeNodeId: 'child-1',
       ancestorRegistry: {
         'parent': [],
         'child-1': ['parent'],

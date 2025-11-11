@@ -6,7 +6,7 @@ import { useNodeContextMenu } from './useNodeContextMenu';
 import { useNodeKeyboard } from './useNodeKeyboard';
 
 export function useNodeContent(node: TreeNode) {
-  const isSelected = useStore((state) => state.selectedNodeId === node.id);
+  const isSelected = useStore((state) => state.activeNodeId === node.id);
   const toggleStatus = useStore((state) => state.actions.toggleStatus);
 
   const hasChildren = node.children.length > 0;
