@@ -1,18 +1,11 @@
 .node-content {
-  display: inline-flex;
+  flex: 1;
+  display: flex;
   align-items: center;
   gap: 6px;
-  padding: 3px 6px;
+  padding: 3px 8px;
   cursor: pointer;
   position: relative;
-}
-
-.node-content.collapsed-parent {
-  background-color: rgba(33, 150, 243, 0.1);
-}
-
-.node-content.collapsed-parent:hover {
-  background-color: rgba(33, 150, 243, 0.15);
 }
 
 .status-checkbox-wrapper {
@@ -24,22 +17,12 @@
   opacity: 0.4;
 }
 
-.expand-toggle-wrapper {
-  position: absolute;
-  left: -14px;
-  top: -7px;
-}
-
-.expand-toggle-wrapper.collapsed {
-  left: -13px;
-  top: -2px;
-}
-
 .node-icon {
   font-size: 1rem;
 }
 
 .node-text {
+  flex: 1;
   outline: none;
   min-width: 1ch;
 }

@@ -1,0 +1,58 @@
+/* Node gutter - fixed width, right-aligned content */
+.node-gutter {
+  width: 60px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 4px;
+  padding-right: 8px;
+  border-right: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* Plugin indicators in gutter */
+.gutter-plugin-indicators {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+.gutter-plugin-indicator {
+  display: inline-block;
+}
+
+/* Expand toggle in gutter */
+.gutter-expand-toggle {
+  display: flex;
+  align-items: center;
+}
+
+.expand-toggle-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 2px 4px;
+  color: var(--gray-500);
+  font-size: 20px;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+
+/* Collapsed nodes: chevron always visible */
+.expand-toggle-button.collapsed {
+  opacity: 1;
+  transform: translateY(-1px);
+}
+
+/* Expanded chevron: adjust position to align with collapsed chevron */
+.expand-toggle-button.expanded {
+  transform: translate(6px, -4px);
+}
+
+/* Expanded nodes: show chevron only on button hover */
+.expand-toggle-button:hover {
+  opacity: 1;
+  color: var(--gray-700);
+}

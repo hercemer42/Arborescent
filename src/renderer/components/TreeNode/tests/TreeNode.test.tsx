@@ -82,8 +82,8 @@ describe('TreeNode', () => {
     store.setState({ nodes: { 'test-node': mockNode } });
 
     const { container } = renderWithProvider(<TreeNode nodeId="test-node" depth={2} />);
-    const nodeWrapper = container.firstChild as HTMLElement;
-    expect(nodeWrapper).toHaveStyle({ paddingLeft: '55px' }); // depth * 20 + 15
+    const nodeContent = container.querySelector('.node-content') as HTMLElement;
+    expect(nodeContent).toHaveStyle({ paddingLeft: '55px' }); // depth * 20 + 15
   });
 
   it('should default depth to 0', () => {
@@ -97,8 +97,8 @@ describe('TreeNode', () => {
     store.setState({ nodes: { 'test-node': mockNode } });
 
     const { container } = renderWithProvider(<TreeNode nodeId="test-node" />);
-    const nodeWrapper = container.firstChild as HTMLElement;
-    expect(nodeWrapper).toHaveStyle({ paddingLeft: '15px' }); // depth * 20 + 15
+    const nodeContent = container.querySelector('.node-content') as HTMLElement;
+    expect(nodeContent).toHaveStyle({ paddingLeft: '15px' }); // depth * 20 + 15
   });
 
   it('should maintain cursor position when collapsing node being edited', async () => {

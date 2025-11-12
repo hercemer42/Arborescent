@@ -5,7 +5,6 @@ import { TreeStoreContext } from '../../../store/tree/TreeStoreContext';
 import { createTreeStore, TreeStore } from '../../../store/tree/treeStore';
 import { createPartialMockActions } from '../../../test/helpers/mockStoreActions';
 import type { TreeNode } from '@shared/types';
-import * as pluginStore from '../../../store/plugins/pluginStore';
 
 describe('NodeContent', () => {
   let store: TreeStore;
@@ -55,24 +54,15 @@ describe('NodeContent', () => {
   };
 
   it('should render node content with contentEditable', () => {
-    renderWithProvider(<NodeContent node={mockNode} expanded={true} onToggle={vi.fn()} />);
+    renderWithProvider(<NodeContent node={mockNode} depth={0} />);
 
     const contentDiv = screen.getByText('Test Task');
     expect(contentDiv).toBeInTheDocument();
     expect(contentDiv).toHaveAttribute('contenteditable', 'true');
   });
 
-  it('should show expand toggle when node has children', () => {
-    const nodeWithChildren = { ...mockNode, children: ['child-1'] };
-
-    renderWithProvider(<NodeContent node={nodeWithChildren} expanded={true} onToggle={vi.fn()} />);
-
-    const toggle = screen.getByText('⌄');
-    expect(toggle).toBeInTheDocument();
-  });
-
   it('should show status checkbox for nodes with content', () => {
-    renderWithProvider(<NodeContent node={mockNode} expanded={true} onToggle={vi.fn()} />);
+    renderWithProvider(<NodeContent node={mockNode} depth={0} />);
 
     const checkbox = screen.getByLabelText('Status: pending');
     expect(checkbox).toBeInTheDocument();
@@ -86,7 +76,7 @@ describe('NodeContent', () => {
       metadata: {},
     };
 
-    renderWithProvider(<NodeContent node={node} expanded={true} onToggle={vi.fn()} />);
+    renderWithProvider(<NodeContent node={node} depth={0} />);
 
     // StatusCheckbox does not render when there's no status
     const checkbox = screen.queryByRole('button', { name: /Status/ });
@@ -94,7 +84,7 @@ describe('NodeContent', () => {
   });
 
   it('should update content when typing in contentEditable', () => {
-    renderWithProvider(<NodeContent node={mockNode} expanded={true} onToggle={vi.fn()} />);
+    renderWithProvider(<NodeContent node={mockNode} depth={0} />);
 
     const contentDiv = screen.getByText('Test Task');
     fireEvent.input(contentDiv, { target: { textContent: 'Updated Task' } });
@@ -103,7 +93,7 @@ describe('NodeContent', () => {
   });
 
   it('should create sibling node on Enter key', () => {
-    renderWithProvider(<NodeContent node={mockNode} expanded={true} onToggle={vi.fn()} />);
+    renderWithProvider(<NodeContent node={mockNode} depth={0} />);
 
     const contentDiv = screen.getByText('Test Task');
     fireEvent.keyDown(contentDiv, { key: 'Enter' });
@@ -112,7 +102,7 @@ describe('NodeContent', () => {
   });
 
   it('should restore content on Escape key', () => {
-    renderWithProvider(<NodeContent node={mockNode} expanded={true} onToggle={vi.fn()} />);
+    renderWithProvider(<NodeContent node={mockNode} depth={0} />);
 
     const contentDiv = screen.getByText('Test Task');
 
@@ -134,7 +124,7 @@ describe('NodeContent', () => {
     renderWithProvider(
       <div>
         <input type="text" data-testid="focused-input" />
-        <NodeContent node={node} expanded={true} onToggle={vi.fn()} />
+        <NodeContent node={node} depth={0} />
       </div>
     );
 
@@ -150,141 +140,4 @@ describe('NodeContent', () => {
     expect(input).toHaveFocus();
   });
 
-  describe('plugin indicators', () => {
-    it('should display plugin indicators when plugins return indicators', async () => {
-      const provideNodeIndicator = vi.fn(() => ({ type: 'text' as const, value: '🤖' }));
-
-      const mockPlugin = {
-        manifest: { name: 'test-plugin', version: '1.0.0', displayName: 'Test', enabled: true, builtin: false },
-        initialize: vi.fn(),
-        dispose: vi.fn(),
-        extensionPoints: {
-          provideNodeIndicator,
-        },
-      };
-
-      vi.spyOn(pluginStore, 'usePluginStore').mockImplementation((selector) => {
-        const state = {
-          plugins: [mockPlugin],
-          enabledPlugins: [mockPlugin],
-          registerPlugin: vi.fn(),
-          unregisterPlugin: vi.fn(),
-          enablePlugin: vi.fn(),
-          disablePlugin: vi.fn(),
-        };
-        return selector ? selector(state) : state;
-      });
-
-      const nodeWithSession = {
-        ...mockNode,
-        metadata: {
-          plugins: {
-            'test-plugin': { sessionId: 'session-123' },
-          },
-        },
-      };
-
-      renderWithProvider(<NodeContent node={nodeWithSession} expanded={true} onToggle={vi.fn()} />);
-
-      expect(provideNodeIndicator).toHaveBeenCalledWith(nodeWithSession);
-      await screen.findByText('🤖');
-      expect(screen.getByText('🤖')).toBeInTheDocument();
-    });
-
-    it('should not display plugin indicators section when no indicators', () => {
-      const provideNodeIndicator = vi.fn(() => null);
-
-      const mockPlugin = {
-        manifest: { name: 'test-plugin', version: '1.0.0', displayName: 'Test', enabled: true, builtin: false },
-        initialize: vi.fn(),
-        dispose: vi.fn(),
-        extensionPoints: {
-          provideNodeIndicator,
-        },
-      };
-
-      vi.spyOn(pluginStore, 'usePluginStore').mockImplementation((selector) => {
-        const state = {
-          plugins: [mockPlugin],
-          enabledPlugins: [mockPlugin],
-          registerPlugin: vi.fn(),
-          unregisterPlugin: vi.fn(),
-          enablePlugin: vi.fn(),
-          disablePlugin: vi.fn(),
-        };
-        return selector ? selector(state) : state;
-      });
-
-      const { container } = renderWithProvider(<NodeContent node={mockNode} expanded={true} onToggle={vi.fn()} />);
-
-      expect(provideNodeIndicator).toHaveBeenCalledWith(mockNode);
-      expect(container.querySelector('.plugin-indicators')).not.toBeInTheDocument();
-    });
-
-    it('should display multiple plugin indicators', async () => {
-      const provideNodeIndicator1 = vi.fn(() => ({ type: 'text' as const, value: '🤖' }));
-      const provideNodeIndicator2 = vi.fn(() => ({ type: 'text' as const, value: '✨' }));
-
-      const mockPlugin1 = {
-        manifest: { name: 'plugin1', version: '1.0.0', displayName: 'Plugin 1', enabled: true, builtin: false },
-        initialize: vi.fn(),
-        dispose: vi.fn(),
-        extensionPoints: {
-          provideNodeIndicator: provideNodeIndicator1,
-        },
-      };
-
-      const mockPlugin2 = {
-        manifest: { name: 'plugin2', version: '1.0.0', displayName: 'Plugin 2', enabled: true, builtin: false },
-        initialize: vi.fn(),
-        dispose: vi.fn(),
-        extensionPoints: {
-          provideNodeIndicator: provideNodeIndicator2,
-        },
-      };
-
-      vi.spyOn(pluginStore, 'usePluginStore').mockImplementation((selector) => {
-        const state = {
-          plugins: [mockPlugin1, mockPlugin2],
-          enabledPlugins: [mockPlugin1, mockPlugin2],
-          registerPlugin: vi.fn(),
-          unregisterPlugin: vi.fn(),
-          enablePlugin: vi.fn(),
-          disablePlugin: vi.fn(),
-        };
-        return selector ? selector(state) : state;
-      });
-
-      renderWithProvider(<NodeContent node={mockNode} expanded={true} onToggle={vi.fn()} />);
-
-      await screen.findByText('🤖');
-      expect(screen.getByText('🤖')).toBeInTheDocument();
-      expect(screen.getByText('✨')).toBeInTheDocument();
-    });
-
-    it('should handle plugins without provideNodeIndicator method', () => {
-      const mockPlugin = {
-        manifest: { name: 'test-plugin', version: '1.0.0', displayName: 'Test', enabled: true, builtin: false },
-        initialize: vi.fn(),
-        dispose: vi.fn(),
-        extensionPoints: {},
-      };
-
-      vi.spyOn(pluginStore, 'usePluginStore').mockImplementation((selector) => {
-        const state = {
-          plugins: [mockPlugin],
-          enabledPlugins: [mockPlugin],
-          registerPlugin: vi.fn(),
-          unregisterPlugin: vi.fn(),
-          enablePlugin: vi.fn(),
-          disablePlugin: vi.fn(),
-        };
-        return selector ? selector(state) : state;
-      });
-
-      const { container } = renderWithProvider(<NodeContent node={mockNode} expanded={true} onToggle={vi.fn()} />);
-
-      expect(container.querySelector('.plugin-indicators')).not.toBeInTheDocument();
-    });
-  });
 });
