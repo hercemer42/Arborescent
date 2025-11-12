@@ -26,7 +26,7 @@ export function StatusCheckbox({ status, onToggle }: StatusCheckboxProps) {
 
   return (
     <button
-      className="status-checkbox"
+      className={`status-checkbox status-${status}`}
       onMouseDown={(e) => {
         e.preventDefault();
       }}

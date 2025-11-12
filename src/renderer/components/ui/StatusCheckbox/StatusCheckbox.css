@@ -1,8 +1,31 @@
 .status-checkbox {
   font-size: 1rem;
-  opacity: 0.6;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1px solid var(--gray-400);
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
 }
 
-.status-checkbox:hover {
-  opacity: 1;
+/* Pending state - empty circle */
+.status-checkbox.status-pending {
+  border-color: var(--gray-400);
+  color: transparent;
+}
+
+/* Completed state - green tick with circle outline */
+.status-checkbox.status-completed {
+  border-color: var(--green-700);
+  color: var(--green-700);
+}
+
+/* Failed state - red X with circle outline */
+.status-checkbox.status-failed {
+  border-color: var(--red-400);
+  color: var(--red-400);
 }
