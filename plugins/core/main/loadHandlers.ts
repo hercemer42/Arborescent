@@ -1,4 +1,6 @@
 import { PLUGINS } from '../../plugins.config';
+import { app } from 'electron';
+import * as path from 'path';
 
 /**
  * Dynamically loads plugin IPC handlers from built plugin bundles.
@@ -22,9 +24,29 @@ import { PLUGINS } from '../../plugins.config';
 export async function loadPluginHandlers(): Promise<void> {
   for (const config of PLUGINS) {
     if (config.mainHandlersPath) {
-      // Dynamic import requires vite-ignore since path is determined at runtime
-      const module = await import(/* @vite-ignore */ config.mainHandlersPath);
-      module.registerIpcHandlers();
+      try {
+        // Resolve path relative to app root
+        const appPath = app.getAppPath();
+        const absolutePath = path.isAbsolute(config.mainHandlersPath)
+          ? config.mainHandlersPath
+          : path.resolve(appPath, config.mainHandlersPath);
+
+        // Use require for CommonJS .cjs files
+        // eslint-disable-next-line @typescript-eslint/no-require-imports
+        const module = require(absolutePath);
+
+        // Handle both CommonJS and ES module exports
+        const registerFn = module.registerIpcHandlers || module.default?.registerIpcHandlers;
+        if (registerFn) {
+          registerFn();
+          console.log(`[Plugin Handlers] Loaded handlers for: ${config.name}`);
+        } else {
+          console.warn(`[Plugin Handlers] No registerIpcHandlers found in: ${config.name}`);
+        }
+      } catch (error) {
+        console.error(`[Plugin Handlers] Failed to load handlers for ${config.name}:`, error);
+        // Don't throw - allow other plugins to load
+      }
     }
   }
 }

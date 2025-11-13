@@ -1,14 +1,21 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { ToastContainer } from './components/Toast';
 import { Workspace } from './components/Workspace';
+import { TerminalContainer } from './components/Terminal';
 import { useToastStore } from './store/toast/toastStore';
 import { useFilesStore } from './store/files/filesStore';
+import { useTerminalStore } from './store/terminal/terminalStore';
 import { useAppErrorHandling } from './useAppErrorHandling';
 import { logger } from './services/logger';
 import './App.css';
 
 export function App() {
   const [isInitializing, setIsInitializing] = useState(true);
+  const contentRef = useRef<HTMLDivElement>(null);
+
+  const panelPosition = useTerminalStore((state) => state.panelPosition);
+  const isTerminalVisible = useTerminalStore((state) => state.isTerminalVisible);
+
   const initializeSession = useFilesStore((state) => state.actions.initializeSession);
   const toasts = useToastStore((state) => state.toasts);
   const removeToast = useToastStore((state) => state.removeToast);
@@ -31,7 +38,19 @@ export function App() {
         <p>Development workflow tool</p>
       </header>
 
-      {!isInitializing && <Workspace />}
+      {!isInitializing && (
+        <div
+          className={`app-content ${
+            isTerminalVisible && panelPosition === 'side' ? 'side-layout' : 'bottom-layout'
+          }`}
+          ref={contentRef}
+        >
+          <div className="workspace-container">
+            <Workspace />
+          </div>
+          <TerminalContainer contentRef={contentRef} />
+        </div>
+      )}
     </div>
   );
 }

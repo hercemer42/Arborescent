@@ -23,3 +23,24 @@
   color: var(--gray-500);
   margin: 0;
 }
+
+.app-content {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+}
+
+/* Bottom layout - vertical stack */
+.app-content.bottom-layout {
+  flex-direction: column;
+}
+
+/* Side layout - horizontal split */
+.app-content.side-layout {
+  flex-direction: row;
+}
+
+.workspace-container {
+  flex: 1;
+  overflow: hidden;
+}

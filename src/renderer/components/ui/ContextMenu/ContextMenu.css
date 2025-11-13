@@ -10,7 +10,8 @@
 }
 
 .context-menu-item {
-  display: block;
+  display: flex;
+  align-items: center;
   width: 100%;
   padding: 8px 16px;
   border: none;
@@ -22,7 +23,12 @@
   transition: background-color 0.1s;
 }
 
-.context-menu-item:hover {
+.context-menu-item:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.context-menu-item:hover:not(:disabled) {
   background: #3a3a3a;
 }
 
@@ -30,6 +36,6 @@
   color: #ff6b6b;
 }
 
-.context-menu-item.danger:hover {
+.context-menu-item.danger:hover:not(:disabled) {
   background: #4a2a2a;
 }

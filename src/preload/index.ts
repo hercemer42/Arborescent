@@ -21,6 +21,25 @@ contextBridge.exposeInMainWorld('electron', {
   saveTempFilesMetadata: (metadata: string) =>
     ipcRenderer.invoke('save-temp-files-metadata', metadata),
   getTempFilesMetadata: () => ipcRenderer.invoke('get-temp-files-metadata'),
+  // Terminal IPC
+  terminalCreate: (id: string, title: string, shellCommand?: string, shellArgs?: string[], cwd?: string) =>
+    ipcRenderer.invoke('terminal:create', id, title, shellCommand, shellArgs, cwd),
+  terminalWrite: (id: string, data: string) =>
+    ipcRenderer.invoke('terminal:write', id, data),
+  terminalResize: (id: string, cols: number, rows: number) =>
+    ipcRenderer.invoke('terminal:resize', id, cols, rows),
+  terminalDestroy: (id: string) =>
+    ipcRenderer.invoke('terminal:destroy', id),
+  onTerminalData: (id: string, callback: (data: string) => void) => {
+    const channel = `terminal:data:${id}`;
+    ipcRenderer.on(channel, (_event, data) => callback(data));
+    return () => ipcRenderer.removeAllListeners(channel);
+  },
+  onTerminalExit: (id: string, callback: (exitInfo: { exitCode: number; signal?: number }) => void) => {
+    const channel = `terminal:exit:${id}`;
+    ipcRenderer.on(channel, (_event, exitInfo) => callback(exitInfo));
+    return () => ipcRenderer.removeAllListeners(channel);
+  },
   setMenuNewHandler: (callback: () => void) => {
     ipcRenderer.removeAllListeners('menu-new');
     ipcRenderer.on('menu-new', callback);

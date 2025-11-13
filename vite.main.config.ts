@@ -1,4 +1,4 @@
-import { defineConfig } from 'vite';
+import { defineConfig, Plugin } from 'vite';
 import fs from 'node:fs';
 import path from 'node:path';
 
@@ -18,7 +18,26 @@ for (const pluginName of pluginDirs) {
 	}
 }
 
+// Vite plugin to copy plugin manifests to build output
+function copyPluginManifests(): Plugin {
+	return {
+		name: 'copy-plugin-manifests',
+		closeBundle() {
+			// Copy manifest.json files to .vite/build/plugins/
+			for (const pluginName of pluginDirs) {
+				const manifestPath = path.join(pluginsDir, pluginName, 'renderer', 'manifest.json');
+				if (fs.existsSync(manifestPath)) {
+					const destPath = path.join('.vite', 'build', 'plugins', `${pluginName}-manifest.json`);
+					fs.copyFileSync(manifestPath, destPath);
+					console.log(`Copied ${manifestPath} to ${destPath}`);
+				}
+			}
+		}
+	};
+}
+
 export default defineConfig({
+	plugins: [copyPluginManifests()],
 	build: {
 		lib: {
 			entry: {
@@ -29,6 +48,7 @@ export default defineConfig({
 			formats: ['cjs'],
 		},
 		rollupOptions: {
+			external: ['node-pty', 'electron'],
 			output: {
 				entryFileNames: (chunkInfo) => {
 					if (chunkInfo.name === 'main') {
@@ -41,7 +61,7 @@ export default defineConfig({
 				},
 				chunkFileNames: '[name]-[hash].cjs',
 				format: 'cjs',
-				exports: 'auto',
+				exports: 'named',
 			},
 		},
 		outDir: '.vite/build',

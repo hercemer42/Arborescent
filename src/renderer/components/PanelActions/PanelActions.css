@@ -1,0 +1,32 @@
+.panel-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0 4px;
+}
+
+.panel-action-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  background: none;
+  border: none;
+  color: var(--gray-500);
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: monospace;
+  transition: background-color 0.1s, color 0.1s;
+  border-radius: 4px;
+}
+
+.panel-action-button:hover {
+  background: var(--gray-100);
+  color: var(--blue-500);
+}
+
+.panel-action-button:active {
+  background: var(--gray-200);
+}

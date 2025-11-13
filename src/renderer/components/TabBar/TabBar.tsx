@@ -1,5 +1,6 @@
 import { memo } from 'react';
 import { Tab } from '../Tab';
+import { PanelActions } from '../PanelActions';
 import { useTabKeyboard } from './hooks/useTabKeyboard';
 import { useFilesStore } from '../../store/files/filesStore';
 import './TabBar.css';
@@ -18,15 +19,18 @@ export const TabBar = memo(function TabBar() {
 
   return (
     <div className="tab-bar">
-      {files.map((file) => (
-        <Tab
-          key={file.path}
-          displayName={file.displayName}
-          isActive={file.path === activeFilePath}
-          onClick={() => setActiveFile(file.path)}
-          onClose={() => closeFile(file.path)}
-        />
-      ))}
+      <div className="tab-bar-tabs">
+        {files.map((file) => (
+          <Tab
+            key={file.path}
+            displayName={file.displayName}
+            isActive={file.path === activeFilePath}
+            onClick={() => setActiveFile(file.path)}
+            onClose={() => closeFile(file.path)}
+          />
+        ))}
+      </div>
+      <PanelActions />
     </div>
   );
 });

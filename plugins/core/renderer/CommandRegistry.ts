@@ -1,10 +1,13 @@
 import { TreeNode } from '../../../src/shared/types';
 import { logger } from '../../../src/renderer/services/logger';
+import type { NodeActions } from '../../../src/renderer/store/tree/actions/nodeActions';
 
 export type CommandHandler = (context: CommandContext) => Promise<void> | void;
 
 export interface CommandContext {
   node?: TreeNode;
+  actions?: NodeActions;
+  nodes?: Record<string, TreeNode>;
   [key: string]: unknown;
 }
 

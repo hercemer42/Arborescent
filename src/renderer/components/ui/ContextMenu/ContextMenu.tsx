@@ -3,7 +3,7 @@ import './ContextMenu.css';
 
 export interface ContextMenuItem {
   label: string;
-  onClick: () => void;
+  onClick?: () => void;
   danger?: boolean;
   disabled?: boolean;
 }
@@ -40,6 +40,13 @@ export function ContextMenu({ x, y, items, onClose }: ContextMenuProps) {
     };
   }, [onClose]);
 
+  const handleItemClick = (item: ContextMenuItem) => {
+    if (item.onClick) {
+      item.onClick();
+    }
+    onClose();
+  };
+
   return (
     <div
       ref={menuRef}
@@ -50,10 +57,8 @@ export function ContextMenu({ x, y, items, onClose }: ContextMenuProps) {
         <button
           key={index}
           className={`context-menu-item ${item.danger ? 'danger' : ''}`}
-          onClick={() => {
-            item.onClick();
-            onClose();
-          }}
+          onClick={() => handleItemClick(item)}
+          disabled={item.disabled}
         >
           {item.label}
         </button>

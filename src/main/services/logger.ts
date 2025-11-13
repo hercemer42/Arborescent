@@ -1,4 +1,3 @@
-import { BrowserWindow } from 'electron';
 import { BaseLogger } from '../../shared/services/logger/BaseLogger';
 
 class MainLogger extends BaseLogger {
@@ -6,9 +5,16 @@ class MainLogger extends BaseLogger {
     this.log('error', message, context, error);
 
     if (notifyRenderer) {
-      const mainWindow = BrowserWindow.getAllWindows()[0];
-      if (mainWindow) {
-        mainWindow.webContents.send('main-error', message);
+      try {
+        // Lazy import electron to avoid errors when loaded in worker context
+        // eslint-disable-next-line @typescript-eslint/no-require-imports
+        const { BrowserWindow } = require('electron');
+        const mainWindow = BrowserWindow.getAllWindows()[0];
+        if (mainWindow) {
+          mainWindow.webContents.send('main-error', message);
+        }
+      } catch {
+        // Electron not available (e.g., in worker thread) - skip renderer notification
       }
     }
   }

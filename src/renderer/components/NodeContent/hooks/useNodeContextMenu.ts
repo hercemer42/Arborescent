@@ -1,17 +1,24 @@
 import { useState } from 'react';
 import { useStore } from '../../../store/tree/useStore';
+import { useActiveTreeStore } from '../../../store/tree/TreeStoreContext';
 import { TreeNode, NodeContext, PluginContextMenuItem } from '../../../../shared/types';
 import { ContextMenuItem } from '../../ui/ContextMenu';
 import { usePluginStore } from '../../../store/plugins/pluginStore';
 import { PluginCommandRegistry } from '../../../../../plugins/core/renderer/CommandRegistry';
+import { useTerminalStore } from '../../../store/terminal/terminalStore';
+import { useTerminalActions } from '../../Terminal/hooks/useTerminalActions';
 
 export function useNodeContextMenu(node: TreeNode) {
   const deleteNode = useStore((state) => state.actions.deleteNode);
   const nodes = useStore((state) => state.nodes);
   const ancestorRegistry = useStore((state) => state.ancestorRegistry);
   const enabledPlugins = usePluginStore((state) => state.enabledPlugins);
+  const activeTerminalId = useTerminalStore((state) => state.activeTerminalId);
+  const store = useActiveTreeStore();
   const [contextMenu, setContextMenu] = useState<{ x: number; y: number } | null>(null);
   const [pluginMenuItems, setPluginMenuItems] = useState<ContextMenuItem[]>([]);
+
+  const { sendToTerminal, executeInTerminal } = useTerminalActions(activeTerminalId);
 
   const handleContextMenu = async (e: React.MouseEvent) => {
     e.preventDefault();
@@ -49,6 +56,14 @@ export function useNodeContextMenu(node: TreeNode) {
     }
   };
 
+  const handleSendToTerminal = async () => {
+    await sendToTerminal(node, nodes);
+  };
+
+  const handleExecuteInTerminal = async () => {
+    await executeInTerminal(node, nodes);
+  };
+
   function hasAncestorWithSession(): boolean {
     const ancestors = ancestorRegistry[node.id] || [];
     return ancestors.some((ancestorId) => {
@@ -64,7 +79,12 @@ export function useNodeContextMenu(node: TreeNode) {
     return {
       label: item.label,
       onClick: () => {
-        PluginCommandRegistry.execute(item.id, { node });
+        const state = store.getState();
+        PluginCommandRegistry.execute(item.id, {
+          node,
+          actions: state.actions,
+          nodes: state.nodes,
+        });
       },
       disabled: item.disabled,
       danger: false,
@@ -72,6 +92,16 @@ export function useNodeContextMenu(node: TreeNode) {
   }
 
   const baseMenuItems: ContextMenuItem[] = [
+    {
+      label: 'Send to Terminal',
+      onClick: handleSendToTerminal,
+      disabled: !activeTerminalId,
+    },
+    {
+      label: 'Execute in Terminal',
+      onClick: handleExecuteInTerminal,
+      disabled: !activeTerminalId,
+    },
     {
       label: 'Delete',
       onClick: handleDelete,

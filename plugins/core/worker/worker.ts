@@ -108,9 +108,22 @@ class ExtensionHost {
     }
 
     try {
-      // ESM dynamic imports require file:// URLs (especially on Windows where C:\ paths fail)
-      const fileUrl = pathToFileURL(registration.pluginPath).href;
-      const PluginModule = await import(fileUrl);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      let PluginModule: any;
+
+      // Use require for .cjs files, import for .mjs/.js files
+      if (registration.pluginPath.endsWith('.cjs')) {
+        // Use require for CommonJS modules - need to resolve path first
+        const { resolve } = await import('node:path');
+        const { cwd } = await import('node:process');
+        const absolutePath = resolve(cwd(), registration.pluginPath);
+        // eslint-disable-next-line @typescript-eslint/no-require-imports
+        PluginModule = require(absolutePath);
+      } else {
+        // ESM dynamic imports require file:// URLs (especially on Windows where C:\ paths fail)
+        const fileUrl = pathToFileURL(registration.pluginPath).href;
+        PluginModule = await import(fileUrl);
+      }
 
       // Handle different export patterns (ES modules, CommonJS, etc.)
       let PluginClass: new (context?: PluginContext) => Plugin;
