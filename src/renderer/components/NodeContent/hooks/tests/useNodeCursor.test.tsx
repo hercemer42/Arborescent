@@ -5,10 +5,9 @@ import { TreeStoreContext } from '../../../../store/tree/TreeStoreContext';
 import { createTreeStore, TreeStore } from '../../../../store/tree/treeStore';
 import type { TreeNode } from '@shared/types';
 
-vi.mock('../../services/cursorService', () => ({
+vi.mock('../../../../services/cursorService', () => ({
   setCursorPosition: vi.fn(),
-  getVisualCursorPosition: vi.fn(() => 10),
-  setCursorToVisualPosition: vi.fn(() => 5),
+  setCursorToVisualPositionOnLine: vi.fn(),
 }));
 
 describe('useNodeCursor', () => {

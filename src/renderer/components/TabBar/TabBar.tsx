@@ -1,12 +1,10 @@
 import { memo } from 'react';
 import { Tab } from '../Tab';
 import { PanelActions } from '../PanelActions';
-import { useTabKeyboard } from './hooks/useTabKeyboard';
 import { useFilesStore } from '../../store/files/filesStore';
 import './TabBar.css';
 
 export const TabBar = memo(function TabBar() {
-  useTabKeyboard();
 
   const files = useFilesStore((state) => state.files);
   const activeFilePath = useFilesStore((state) => state.activeFilePath);

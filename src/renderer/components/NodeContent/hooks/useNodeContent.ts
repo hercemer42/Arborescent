@@ -3,7 +3,6 @@ import { TreeNode } from '../../../../shared/types';
 import { useNodeEditing } from './useNodeEditing';
 import { useNodeCursor } from './useNodeCursor';
 import { useNodeContextMenu } from './useNodeContextMenu';
-import { useNodeKeyboard } from './useNodeKeyboard';
 
 export function useNodeContent(node: TreeNode) {
   const isSelected = useStore((state) => state.activeNodeId === node.id);
@@ -15,22 +14,14 @@ export function useNodeContent(node: TreeNode) {
 
   useNodeCursor(node, contentRef);
 
-  const { contextMenu, contextMenuItems, handleContextMenu, handleDelete, closeContextMenu } =
+  const { contextMenu, contextMenuItems, handleContextMenu, closeContextMenu } =
     useNodeContextMenu(node);
-
-  const { handleKeyDown, handleMouseDown } = useNodeKeyboard({
-    node,
-    contentRef,
-    handleDelete,
-  });
 
   return {
     hasChildren,
     isSelected,
     toggleStatus,
     contentRef,
-    handleKeyDown,
-    handleMouseDown,
     handleInput,
     handleContextMenu,
     contextMenu,

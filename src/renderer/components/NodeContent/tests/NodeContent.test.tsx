@@ -92,27 +92,6 @@ describe('NodeContent', () => {
     expect(mockActions.updateContent).toHaveBeenCalledWith('test-node', 'Updated Task');
   });
 
-  it('should create sibling node on Enter key', () => {
-    renderWithProvider(<NodeContent node={mockNode} depth={0} />);
-
-    const contentDiv = screen.getByText('Test Task');
-    fireEvent.keyDown(contentDiv, { key: 'Enter' });
-
-    expect(mockActions.createNode).toHaveBeenCalledWith('test-node');
-  });
-
-  it('should restore content on Escape key', () => {
-    renderWithProvider(<NodeContent node={mockNode} depth={0} />);
-
-    const contentDiv = screen.getByText('Test Task');
-
-    contentDiv.textContent = 'Changed Content';
-
-    fireEvent.keyDown(contentDiv, { key: 'Escape' });
-
-    expect(contentDiv.textContent).toBe('Test Task');
-  });
-
   it('should not steal focus when clicking on status checkbox', () => {
     const node: TreeNode = {
       id: 'node-1',

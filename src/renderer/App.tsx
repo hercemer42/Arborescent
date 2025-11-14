@@ -7,6 +7,7 @@ import { useFilesStore } from './store/files/filesStore';
 import { useTerminalStore } from './store/terminal/terminalStore';
 import { useAppErrorHandling } from './useAppErrorHandling';
 import { logger } from './services/logger';
+import { initializeKeyboardNavigation } from './services/keyboard/keyboard';
 import './App.css';
 
 export function App() {
@@ -27,6 +28,12 @@ export function App() {
       })
       .finally(() => setIsInitializing(false));
   }, [initializeSession]);
+
+  // Initialize centralized keyboard navigation
+  useEffect(() => {
+    const cleanup = initializeKeyboardNavigation();
+    return cleanup;
+  }, []);
 
   useAppErrorHandling();
 

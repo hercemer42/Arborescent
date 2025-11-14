@@ -2,7 +2,6 @@ import { RefObject } from 'react';
 import { TerminalPanel } from './TerminalPanel';
 import { useTerminalStore } from '../../store/terminal/terminalStore';
 import { useTerminalResize } from './hooks/useTerminalResize';
-import { useTerminalKeyboardShortcut } from './hooks/useTerminalKeyboardShortcut';
 import './TerminalContainer.css';
 
 interface TerminalContainerProps {
@@ -13,14 +12,11 @@ export function TerminalContainer({ contentRef }: TerminalContainerProps) {
 
   const panelPosition = useTerminalStore((state) => state.panelPosition);
   const isTerminalVisible = useTerminalStore((state) => state.isTerminalVisible);
-  const toggleTerminalVisibility = useTerminalStore((state) => state.toggleTerminalVisibility);
 
   const { terminalHeight, terminalWidth, isResizing, handleMouseDown } = useTerminalResize({
     contentRef,
     panelPosition,
   });
-
-  useTerminalKeyboardShortcut(toggleTerminalVisibility);
 
   return (
     <>

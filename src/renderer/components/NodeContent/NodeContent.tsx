@@ -18,8 +18,6 @@ function NodeContentComponent({
     isSelected,
     toggleStatus,
     contentRef,
-    handleKeyDown,
-    handleMouseDown,
     handleInput,
     handleContextMenu,
     contextMenu,
@@ -47,8 +45,6 @@ function NodeContentComponent({
           contentEditable
           suppressContentEditableWarning
           spellCheck={false}
-          onKeyDown={handleKeyDown}
-          onMouseDown={handleMouseDown}
           onInput={handleInput}
         />
       </div>

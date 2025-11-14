@@ -191,7 +191,7 @@ describe('useTerminalResize', () => {
   });
 
   it('should handle resize with contentRef.current being null', () => {
-    const nullRef: RefObject<HTMLDivElement> = { current: null };
+    const nullRef = { current: null } as unknown as RefObject<HTMLDivElement>;
 
     const { result } = renderHook(() =>
       useTerminalResize({

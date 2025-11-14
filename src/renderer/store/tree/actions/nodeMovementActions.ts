@@ -289,7 +289,7 @@ export const createNodeMovementActions = (
     if (!newParent) return;
 
     // Move selection up before reparenting if parent is collapsed
-    const isCollapsed = !newParent.metadata.expanded && newParent.children.length > 0;
+    const isCollapsed = !(newParent.metadata.expanded ?? true) && newParent.children.length > 0;
     if (isCollapsed && navigation) {
       const fullState = get() as StoreState & { cursorPosition: number; rememberedVisualX: number | null };
       navigation.moveUp(fullState.cursorPosition, fullState.rememberedVisualX);
@@ -308,14 +308,9 @@ export const createNodeMovementActions = (
       ancestorRegistry: newAncestorRegistry,
     });
 
-    if (visualEffects) {
-      if (isCollapsed) {
-        // Flash the parent when indenting into a collapsed parent (medium intensity)
-        visualEffects.flashNode(newParentId, 'medium');
-      } else {
-        // Flash the node itself when indenting into an expanded parent (light intensity - default)
-        visualEffects.flashNode(nodeId);
-      }
+    if (visualEffects && isCollapsed) {
+      // Flash the parent when indenting into a collapsed parent (medium intensity)
+      visualEffects.flashNode(newParentId, 'medium');
     }
 
     triggerAutosave?.();
@@ -355,8 +350,6 @@ export const createNodeMovementActions = (
     });
 
     if (visualEffects) {
-      // Flash the outdented node (light intensity - default)
-      visualEffects.flashNode(nodeId);
       // Scroll to the outdented node to maintain visual position
       visualEffects.scrollToNode(nodeId);
     }

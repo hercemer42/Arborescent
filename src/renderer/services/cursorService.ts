@@ -15,6 +15,11 @@ export const setCursorPosition = (element: HTMLElement, position: number) => {
   const range = document.createRange();
   const selection = window.getSelection();
 
+  // Ensure there's at least an empty text node for cursor placement
+  if (element.childNodes.length === 0) {
+    element.appendChild(document.createTextNode(''));
+  }
+
   let charCount = 0;
   let found = false;
 
@@ -22,7 +27,7 @@ export const setCursorPosition = (element: HTMLElement, position: number) => {
     if (node.nodeType === window.Node.TEXT_NODE) {
       const textLength = node.textContent?.length || 0;
       if (charCount + textLength >= position) {
-        range.setStart(node, position - charCount);
+        range.setStart(node, Math.min(position - charCount, textLength));
         range.collapse(true);
         found = true;
         return true;
@@ -54,79 +59,50 @@ export const setCursorPosition = (element: HTMLElement, position: number) => {
   selection?.addRange(range);
 };
 
-export const setCursorToVisualPosition = (element: HTMLElement, targetX: number): number => {
-  const text = element.textContent || '';
-  const contentLength = text.length;
-
-  if (contentLength === 0) {
-    setCursorPosition(element, 0);
-    return 0;
+function isWithinElement(range: Range, element: HTMLElement): boolean {
+  let node: Node | null = range.startContainer;
+  while (node) {
+    if (node === element) return true;
+    node = node.parentNode;
   }
-
-  let left = 0;
-  let right = contentLength;
-  let bestPosition = 0;
-  let bestDistance = Infinity;
-
-  while (left <= right) {
-    const mid = Math.floor((left + right) / 2);
-    setCursorPosition(element, mid);
-    const currentX = getVisualCursorPosition();
-    const distance = Math.abs(currentX - targetX);
-
-    if (distance < bestDistance) {
-      bestDistance = distance;
-      bestPosition = mid;
-    }
-
-    if (currentX < targetX) {
-      left = mid + 1;
-    } else if (currentX > targetX) {
-      right = mid - 1;
-    } else {
-      break;
-    }
-  }
-
-  setCursorPosition(element, bestPosition);
-  return bestPosition;
-};
-
-const getVisualCursorPosition = (): number => {
-  const selection = window.getSelection();
-  if (!selection || selection.rangeCount === 0) return 0;
-
-  const range = selection.getRangeAt(0);
-  const rect = range.getBoundingClientRect();
-  return rect.left;
-};
+  return false;
+}
 
 export const setCursorToVisualPositionOnLine = (
   element: HTMLElement,
   targetX: number,
   initialPosition: number
-): number => {
+): void => {
+  const elementRect = element.getBoundingClientRect();
+
+  // Boundary case: targetX left of content (indentation)
+  if (targetX < elementRect.left) {
+    setCursorPosition(element, 0);
+    return;
+  }
+
+  // Set cursor at initial position to get the line's Y coordinate
+  setCursorPosition(element, initialPosition);
+  const selection = window.getSelection();
+  if (!selection || selection.rangeCount === 0) return;
+
+  const initialRange = selection.getRangeAt(0);
+  const initialRect = initialRange.getBoundingClientRect();
+  const initialY = initialRect.top;
   const lineHeight = parseFloat(window.getComputedStyle(element).lineHeight) || 20;
 
-  setCursorPosition(element, initialPosition);
-
-  const selection = window.getSelection();
-  if (!selection || selection.rangeCount === 0) {
-    return initialPosition;
-  }
-
-  const initialY = selection.getRangeAt(0).getBoundingClientRect().top;
+  // Try to place cursor at targetX on the same line
   const targetRange = getRangeFromPoint(targetX, initialY + lineHeight / 2);
+  if (!targetRange) return;
 
-  if (targetRange) {
-    selection.removeAllRanges();
-    selection.addRange(targetRange);
+  // Validate: must be within element and on same line
+  if (!isWithinElement(targetRange, element)) return;
 
-    const preCaretRange = targetRange.cloneRange();
-    preCaretRange.selectNodeContents(element);
-    preCaretRange.setEnd(targetRange.endContainer, targetRange.endOffset);
-    return preCaretRange.toString().length;
-  }
+  const targetY = targetRange.getBoundingClientRect().top;
+  const yDifference = Math.abs(targetY - initialY);
+  if (yDifference > lineHeight * 0.75) return;
 
-  return initialPosition;
+  // Valid position found - set it
+  selection.removeAllRanges();
+  selection.addRange(targetRange);
 };

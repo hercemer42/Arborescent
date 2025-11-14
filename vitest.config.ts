@@ -8,6 +8,18 @@ export default defineConfig({
     globals: true,
     environment: 'jsdom',
     setupFiles: './src/renderer/test/setup.ts',
+    // Memory optimization - limited threads with file isolation
+    pool: 'threads',
+    poolOptions: {
+      threads: {
+        singleThread: false,
+        minThreads: 1,
+        maxThreads: 2,
+        useAtomics: true,
+      },
+    },
+    // Isolate test files to prevent memory leaks
+    isolate: true,
     // Test file patterns
     include: [
       'src/**/*.{test,spec}.{ts,tsx}',

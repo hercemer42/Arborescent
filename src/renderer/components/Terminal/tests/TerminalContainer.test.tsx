@@ -22,10 +22,6 @@ vi.mock('../hooks/useTerminalResize', () => ({
   }),
 }));
 
-vi.mock('../hooks/useTerminalKeyboardShortcut', () => ({
-  useTerminalKeyboardShortcut: vi.fn(),
-}));
-
 describe('TerminalContainer', () => {
   let mockContentRef: RefObject<HTMLDivElement>;
 
@@ -124,21 +120,5 @@ describe('TerminalContainer', () => {
     const terminalContainer = container.querySelector('.terminal-container');
 
     expect(terminalContainer).toHaveStyle({ width: '400px' });
-  });
-
-  it('should call useTerminalKeyboardShortcut hook', async () => {
-    (useTerminalStore as unknown as ReturnType<typeof vi.fn>).mockImplementation((selector) =>
-      selector({
-        isTerminalVisible: true,
-        panelPosition: 'bottom',
-        toggleTerminalVisibility: vi.fn(),
-      })
-    );
-
-    const { useTerminalKeyboardShortcut } = await import('../hooks/useTerminalKeyboardShortcut');
-
-    render(<TerminalContainer contentRef={mockContentRef} />);
-
-    expect(useTerminalKeyboardShortcut).toHaveBeenCalled();
   });
 });

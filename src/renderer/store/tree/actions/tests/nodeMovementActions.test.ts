@@ -149,22 +149,14 @@ describe('nodeMovementActions', () => {
       expect(mockNavigation.moveUp).not.toHaveBeenCalled();
     });
 
-    it('should call visualEffects.flashNode with node when indenting into expanded parent', () => {
-      state.nodes['node-1'].metadata = { expanded: true };
-
-      actions.indentNode('node-2');
-
-      expect(mockVisualEffects.flashNode).toHaveBeenCalledWith('node-2');
-    });
-
-    it('should flash node when indenting into parent with no children', () => {
+    it('should not flash when indenting into parent with no children', () => {
       state.nodes['node-1'].children = [];
       state.nodes['node-1'].metadata = { expanded: false };
 
       actions.indentNode('node-2');
 
       expect(mockNavigation.moveUp).not.toHaveBeenCalled();
-      expect(mockVisualEffects.flashNode).toHaveBeenCalledWith('node-2');
+      expect(mockVisualEffects.flashNode).not.toHaveBeenCalled();
     });
 
     it('should call moveUp before reparenting when indenting into collapsed parent', () => {
@@ -248,12 +240,6 @@ describe('nodeMovementActions', () => {
       actions.outdentNode('node-3');
 
       expect(mockVisualEffects.scrollToNode).toHaveBeenCalledWith('node-3');
-    });
-
-    it('should call visualEffects.flashNode when outdenting', () => {
-      actions.outdentNode('node-3');
-
-      expect(mockVisualEffects.flashNode).toHaveBeenCalledWith('node-3');
     });
   });
 

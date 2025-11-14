@@ -2,7 +2,7 @@
 
 This document records key architectural choices made during development sessions.
 
-**Last Updated:** 2025-11-08
+**Last Updated:** 2025-11-13
 
 **When updating this file:** Be concise - focus on the decision, pattern, and rationale. Avoid verbose explanations.
 
@@ -109,7 +109,8 @@ src/renderer/components/NodeContent/
 └── hooks/
     ├── useNodeContent.ts    # Only NodeContent uses this hook
     ├── useNodeEditing.ts    # Only NodeContent uses this hook
-    └── useNodeCursor.ts     # Only NodeContent uses this hook
+    ├── useNodeCursor.ts     # Only NodeContent uses this hook
+    └── useNodeContextMenu.ts # Only NodeContent uses this hook
 ```
 
 **Centralized (Multi-component shared):**
@@ -121,6 +122,12 @@ src/renderer/store/
 │   └── toastStore.ts        # Used by: App, useAppErrorHandling, logger
 └── tree/
     └── treeStore.ts         # Used by: Tree, TreeNode, NodeContent
+
+src/renderer/services/
+├── cursorService.ts         # Used by: All nodes, navigation service
+└── keyboardNavigation/      # Used by: App (init), Workspace (store switching)
+    ├── navigationService.ts
+    └── multilineHelpers.ts
 ```
 
 **How to decide:**
@@ -144,24 +151,25 @@ src/renderer/store/
 // Specialized hooks
 useNodeEditing()      // Content editing, DOM syncing
 useNodeCursor()       // Cursor position management
-useNodeKeyboard()     // Keyboard event handling
 useNodeContextMenu()  // Context menu state
 
 // Main hook composes them
 export function useNodeContent(node: TreeNode) {
   const { contentRef, handleInput } = useNodeEditing(node);
-  const { setCursorPosition, setRememberedVisualX } = useNodeCursor(node, contentRef);
+  useNodeCursor(node, contentRef);  // Side-effect only (cursor positioning)
   const { contextMenu, handleContextMenu } = useNodeContextMenu(node);
-  const { handleKeyDown } = useNodeKeyboard({ /* ... */ });
 
-  return { contentRef, handleInput, handleKeyDown, contextMenu, handleContextMenu };
+  return { contentRef, handleInput, contextMenu, handleContextMenu };
 }
 ```
+
+**Note:** Keyboard handling moved to centralized navigation service (see "Centralized Keyboard Navigation" section).
 
 **Rationale:**
 - Single Responsibility Principle for hooks
 - Easier to test individual concerns in isolation
 - Specialized hooks remain co-located with their component
+- Global concerns (keyboard navigation) handled at service level
 
 ## Style File Separation
 
@@ -783,6 +791,45 @@ import { getCursorPosition, setCursorPosition } from '../../services/cursorServi
 - Examples: cursor position in DOM, file operations via IPC, keyboard event registration
 - Services need mocking in tests
 - Architecture layers: Components → Hooks → Store Actions → Services
+
+## Centralized Keyboard Services
+
+**Decision:** Window-level keyboard services organized by domain, replacing scattered per-component event handlers.
+
+**Problem:** Per-node listeners caused O(n) performance overhead. Keyboard shortcuts scattered across components (Tree, TabBar, Terminal hooks).
+
+**Structure:**
+```
+src/renderer/services/keyboard/
+├── keyboard.ts              # Main entry point, initializes all services
+├── shared.ts                # Common utilities (activeStore, getActiveNodeElement)
+├── navigationService.ts     # Arrow keys, Home/End, PageUp/PageDown
+├── editingService.ts        # Node editing (Enter, Tab, Delete, Escape, move, undelete)
+└── uiService.ts             # File/tab/terminal (Save, Open, Close, Toggle terminal)
+```
+
+**Pattern:**
+```typescript
+// App.tsx - Initialize once
+useEffect(() => initializeKeyboardServices(), []);
+
+// Workspace.tsx - Switch active store when file changes
+useEffect(() => setActiveStore(activeStore), [activeStore]);
+
+// Services query active element via shared utilities
+const element = getActiveNodeElement();
+```
+
+**Shortcuts Handled:**
+- **Navigation**: Arrows, Home/End, PageUp/PageDown (multiline support)
+- **Editing**: Enter, Tab, Shift+Tab, Delete, Escape, Ctrl+T, Ctrl+D, Ctrl+Z
+- **UI**: Ctrl+S (save), Ctrl+O (open), Ctrl+W (close tab), Ctrl+` (terminal)
+
+**Rationale:**
+- O(1) event registration vs O(n) per-component listeners
+- Domain separation: navigation vs editing vs UI shortcuts
+- All keyboard handling in one place, easier to maintain
+- Multiline navigation requires global coordination
 
 ## Utils Organization
 
