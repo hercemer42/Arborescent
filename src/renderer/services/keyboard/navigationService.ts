@@ -302,12 +302,12 @@ function handleKeyDown(event: KeyboardEvent): void {
 
 /**
  * Initializes the navigation keyboard service
- * Call this once when the app starts
+ * @param target - The element to attach keyboard listeners to
  */
-export function initializeNavigationService(): () => void {
-  window.addEventListener('keydown', handleKeyDown, true);
+export function initializeNavigationService(target: HTMLElement | Window = window): () => void {
+  target.addEventListener('keydown', handleKeyDown as EventListener, true);
 
   return () => {
-    window.removeEventListener('keydown', handleKeyDown, true);
+    target.removeEventListener('keydown', handleKeyDown as EventListener, true);
   };
 }

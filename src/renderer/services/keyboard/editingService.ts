@@ -143,10 +143,10 @@ function handleKeyDown(event: KeyboardEvent): void {
  * Initializes the editing keyboard service
  * Call this once when the app starts
  */
-export function initializeEditingService(): () => void {
-  window.addEventListener('keydown', handleKeyDown, true);
+export function initializeEditingService(target: HTMLElement | Window = window): () => void {
+  target.addEventListener('keydown', handleKeyDown as EventListener, true);
 
   return () => {
-    window.removeEventListener('keydown', handleKeyDown, true);
+    target.removeEventListener('keydown', handleKeyDown as EventListener, true);
   };
 }

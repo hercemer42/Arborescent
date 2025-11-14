@@ -65,10 +65,10 @@ function handleKeyDown(event: KeyboardEvent): void {
  * Initializes the UI keyboard service
  * Call this once when the app starts
  */
-export function initializeUIService(): () => void {
-  window.addEventListener('keydown', handleKeyDown, true);
+export function initializeUIService(target: HTMLElement | Window = window): () => void {
+  target.addEventListener('keydown', handleKeyDown as EventListener, true);
 
   return () => {
-    window.removeEventListener('keydown', handleKeyDown, true);
+    target.removeEventListener('keydown', handleKeyDown as EventListener, true);
   };
 }

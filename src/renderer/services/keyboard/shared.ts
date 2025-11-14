@@ -71,12 +71,13 @@ export function handleMouseDown(): void {
 
 /**
  * Initializes mouse event handlers for cursor position sync
+ * @param target - The element to attach mouse listeners to
  */
-export function initializeMouseHandlers(): () => void {
-  window.addEventListener('mousedown', handleMouseDown, true);
+export function initializeMouseHandlers(target: HTMLElement | Window = window): () => void {
+  target.addEventListener('mousedown', handleMouseDown, true);
 
   return () => {
-    window.removeEventListener('mousedown', handleMouseDown, true);
+    target.removeEventListener('mousedown', handleMouseDown, true);
   };
 }
 

@@ -16,13 +16,13 @@ export function setActiveStore(store: TreeStore | null): void {
 
 /**
  * Initializes all keyboard services (navigation, editing, UI, and mouse handlers)
- * Call this once when the app starts
+ * @param target - The element to attach keyboard listeners to (defaults to window)
  */
-export function initializeKeyboardServices(): () => void {
-  const cleanupNav = initializeNavigationService();
-  const cleanupEdit = initializeEditingService();
-  const cleanupUI = initializeUIService();
-  const cleanupMouse = initializeMouseHandlers();
+export function initializeKeyboardServices(target: HTMLElement | Window = window): () => void {
+  const cleanupNav = initializeNavigationService(target);
+  const cleanupEdit = initializeEditingService(target);
+  const cleanupUI = initializeUIService(target);
+  const cleanupMouse = initializeMouseHandlers(target);
 
   // Return combined cleanup function
   return () => {
