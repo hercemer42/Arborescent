@@ -36,6 +36,12 @@
   inset: 0;
   background-color: rgba(0, 128, 128, 0.15);
   pointer-events: none;
+  z-index: 0;
+}
+
+.tree-node-wrapper > * {
+  position: relative;
+  z-index: 1;
 }
 
 /* Drop zones */

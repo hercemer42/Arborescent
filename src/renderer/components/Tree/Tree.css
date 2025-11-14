@@ -4,6 +4,25 @@
   overflow-y: auto;
 }
 
+/* Scrollbar styling - lighter thumb, keep the track/gap design */
+.tree::-webkit-scrollbar {
+  width: 12px;
+}
+
+.tree::-webkit-scrollbar-track {
+  background: var(--gray-100);
+}
+
+.tree::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.15);
+  border: 2px solid var(--gray-100);
+  border-radius: 6px;
+}
+
+.tree::-webkit-scrollbar-thumb:hover {
+  background-color: var(--gray-400);
+}
+
 /* Make DragOverlay instant and snappy */
 .dnd-drag-overlay {
   animation: none !important;
