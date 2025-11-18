@@ -1,6 +1,5 @@
 import { useFilesStore } from '../../store/files/filesStore';
 import { useTerminalStore } from '../../store/terminal/terminalStore';
-import { storeManager } from '../../store/storeManager';
 import { matchesHotkey } from '../../data/hotkeyConfig';
 
 /**

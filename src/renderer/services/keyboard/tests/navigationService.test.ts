@@ -47,11 +47,9 @@ describe('navigationService', () => {
 
       cleanup = initializeKeyboardNavigation();
       expect(addEventListenerSpy).toHaveBeenCalledWith('keydown', expect.any(Function), true);
-      expect(addEventListenerSpy).toHaveBeenCalledWith('mousedown', expect.any(Function), true);
 
       cleanup();
       expect(removeEventListenerSpy).toHaveBeenCalledWith('keydown', expect.any(Function), true);
-      expect(removeEventListenerSpy).toHaveBeenCalledWith('mousedown', expect.any(Function), true);
 
       addEventListenerSpy.mockRestore();
       removeEventListenerSpy.mockRestore();
@@ -105,24 +103,6 @@ describe('navigationService', () => {
 
       // Should not throw
       expect(true).toBe(true);
-    });
-
-    it('should reset rememberedVisualX on mouse down', async () => {
-      document.body.innerHTML = `
-        <div data-node-id="node-1">
-          <div contenteditable="true">Node 1</div>
-        </div>
-      `;
-
-      store.setState({ rememberedVisualX: 100 });
-
-      const event = new MouseEvent('mousedown');
-      window.dispatchEvent(event);
-
-      // Wait for setTimeout(0) to execute
-      await new Promise(resolve => setTimeout(resolve, 10));
-
-      expect(store.getState().rememberedVisualX).toBeNull();
     });
 
     it('should reset rememberedVisualX on Home key', () => {

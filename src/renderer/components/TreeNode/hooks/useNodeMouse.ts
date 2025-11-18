@@ -1,7 +1,7 @@
 import { useRef, useMemo } from 'react';
 import { DraggableSyntheticListeners } from '@dnd-kit/core';
 import { useActiveTreeStore } from '../../../store/tree/TreeStoreContext';
-import { getPositionFromCoordinates } from '../../../utils/position';
+import { getPositionFromPoint } from '../../../utils/position';
 
 export function useNodeMouse(nodeId: string, listeners?: DraggableSyntheticListeners) {
   const store = useActiveTreeStore();
@@ -121,10 +121,11 @@ export function useNodeMouse(nodeId: string, listeners?: DraggableSyntheticListe
 
     if (!contentEditableElement) return;
 
-    // Calculate correct cursor position from click coordinates
-    const position = getPositionFromCoordinates(
+    // Calculate correct cursor position from click coordinates (including Y for multiline support)
+    const position = getPositionFromPoint(
       contentEditableElement,
-      e.clientX
+      e.clientX,
+      e.clientY
     );
 
     actions.setRememberedVisualX(null);

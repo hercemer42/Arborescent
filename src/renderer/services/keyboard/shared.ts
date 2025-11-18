@@ -1,5 +1,4 @@
 import type { TreeStore } from '../../store/tree/treeStore';
-import { getCursorPosition } from '../cursorService';
 
 /**
  * Shared utilities for keyboard services
@@ -48,37 +47,6 @@ export function scrollToActiveNode(): void {
   if (activeNodeId) {
     activeStore.getState().actions.scrollToNode(activeNodeId);
   }
-}
-
-/**
- * Handles mouse clicks to reset remembered position and sync cursor position
- */
-export function handleMouseDown(): void {
-  if (!activeStore) return;
-
-  const element = getActiveNodeElement();
-  if (!element) return;
-
-  // Let browser handle click, then sync cursor position
-  setTimeout(() => {
-    if (!element || !activeStore) return;
-    const position = getCursorPosition(element);
-    const store = activeStore.getState();
-    store.actions.setCursorPosition(position);
-    store.actions.setRememberedVisualX(null);
-  }, 0);
-}
-
-/**
- * Initializes mouse event handlers for cursor position sync
- * @param target - The element to attach mouse listeners to
- */
-export function initializeMouseHandlers(target: HTMLElement | Window = window): () => void {
-  target.addEventListener('mousedown', handleMouseDown, true);
-
-  return () => {
-    target.removeEventListener('mousedown', handleMouseDown, true);
-  };
 }
 
 /**

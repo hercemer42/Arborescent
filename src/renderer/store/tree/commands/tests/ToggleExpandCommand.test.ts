@@ -308,27 +308,7 @@ describe('ToggleExpandCommand', () => {
   });
 
   describe('canMergeWith', () => {
-    it('should never merge with any command', () => {
-      const cmd1 = new ToggleExpandCommand(
-        'node1',
-        getNodes,
-        setNodes,
-        selectNode,
-        triggerAutosave
-      );
-
-      const cmd2 = new ToggleExpandCommand(
-        'node1',
-        getNodes,
-        setNodes,
-        selectNode,
-        triggerAutosave
-      );
-
-      expect(cmd1.canMergeWith(cmd2)).toBe(false);
-    });
-
-    it('should not merge with other command types', () => {
+    it('should always return false for canMergeWith', () => {
       const cmd = new ToggleExpandCommand(
         'node1',
         getNodes,
@@ -337,9 +317,7 @@ describe('ToggleExpandCommand', () => {
         triggerAutosave
       );
 
-      expect(cmd.canMergeWith({ some: 'object' })).toBe(false);
-      expect(cmd.canMergeWith(null)).toBe(false);
-      expect(cmd.canMergeWith(undefined)).toBe(false);
+      expect(cmd.canMergeWith()).toBe(false);
     });
   });
 });

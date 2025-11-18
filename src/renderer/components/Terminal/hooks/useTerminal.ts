@@ -16,6 +16,7 @@ export function useTerminal({ id, onResize }: UseTerminalOptions) {
   const terminalRef = useRef<HTMLDivElement>(null);
   const xtermRef = useRef<XTerm | null>(null);
   const fitAddonRef = useRef<FitAddon | null>(null);
+  const userScrolledUpRef = useRef(false);
 
   useEffect(() => {
     if (!terminalRef.current) return;
@@ -37,6 +38,25 @@ export function useTerminal({ id, onResize }: UseTerminalOptions) {
     xtermRef.current = xterm;
     fitAddonRef.current = fitAddon;
 
+    /**
+     * Check if the terminal is scrolled to the bottom
+     */
+    const isAtBottom = (): boolean => {
+      const buffer = xterm.buffer.active;
+      const viewport = buffer.viewportY;
+      const bottomPosition = buffer.baseY + buffer.length - xterm.rows;
+      return viewport >= bottomPosition - 1;
+    };
+
+    /**
+     * Track when user manually scrolls away from bottom
+     * When user scrolls back to bottom, auto-scroll resumes
+     */
+    xterm.onScroll(() => {
+      const atBottom = isAtBottom();
+      userScrolledUpRef.current = !atBottom;
+    });
+
     // Listen for user input and send to PTY
     xterm.onData((data) => {
       window.electron.terminalWrite(id, data);
@@ -45,6 +65,12 @@ export function useTerminal({ id, onResize }: UseTerminalOptions) {
     // Listen for PTY output
     const removeDataListener = window.electron.onTerminalData(id, (data) => {
       xterm.write(data);
+
+      // Some CLI tools (like Claude Code) use escape sequences that can confuse
+      // xterm.js scroll position tracking. Only auto-scroll if user hasn't scrolled up.
+      if (!userScrolledUpRef.current) {
+        xterm.scrollToBottom();
+      }
     });
 
     // Listen for terminal exit

@@ -5,7 +5,7 @@ import { TreeStoreContext } from '../../../../store/tree/TreeStoreContext';
 import { createTreeStore, TreeStore } from '../../../../store/tree/treeStore';
 
 vi.mock('../../../../utils/position', () => ({
-  getPositionFromCoordinates: vi.fn(() => 5),
+  getPositionFromPoint: vi.fn(() => 5),
 }));
 
 describe('useNodeMouse', () => {
