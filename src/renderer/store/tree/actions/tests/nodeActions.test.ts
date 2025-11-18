@@ -11,13 +11,20 @@ describe('nodeActions', () => {
     activeNodeId: string | null;
     cursorPosition: number;
     rememberedVisualX: number | null;
+    actions?: { executeCommand?: (cmd: unknown) => void };
   };
   let state: TestState;
   let setState: (partial: Partial<TestState> | ((state: TestState) => Partial<TestState>)) => void;
   let actions: ReturnType<typeof createNodeActions>;
   let mockTriggerAutosave: ReturnType<typeof vi.fn>;
+  let mockExecuteCommand: ReturnType<typeof vi.fn>;
 
   beforeEach(() => {
+    mockExecuteCommand = vi.fn((command: { execute: () => void }) => {
+      // Execute the command immediately in tests
+      command.execute();
+    });
+
     state = {
       nodes: {
         'root': {
@@ -55,6 +62,7 @@ describe('nodeActions', () => {
       activeNodeId: null,
       cursorPosition: 0,
       rememberedVisualX: null,
+      actions: { executeCommand: mockExecuteCommand },
     };
 
     setState = (partial) => {
@@ -125,10 +133,11 @@ describe('nodeActions', () => {
       expect(state.nodes['node-1'].metadata.status).toBe('pending');
     });
 
-    it('should add pending status if node has no status', () => {
+    it('should toggle to completed if node has no status', () => {
       delete state.nodes['root'].metadata.status;
       actions.toggleStatus('root');
-      expect(state.nodes['root'].metadata.status).toBe('pending');
+      // Undefined status is treated as 'pending', so it toggles to 'completed'
+      expect(state.nodes['root'].metadata.status).toBe('completed');
     });
 
     it('should trigger autosave', () => {

@@ -39,7 +39,9 @@
   z-index: 0;
 }
 
-.tree-node-wrapper > * {
+/* Place node content above the ::before background overlay */
+.tree-node-wrapper > .node-gutter,
+.tree-node-wrapper > .node-content {
   position: relative;
   z-index: 1;
 }

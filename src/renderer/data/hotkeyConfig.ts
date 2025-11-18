@@ -25,7 +25,6 @@ export interface HotkeyConfig {
   actions: {
     toggleTaskStatus: string;
     deleteNode: string;
-    undeleteNode: string;
     undo: string;
     redo: string;
   };

@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react';
+import { useRef, useLayoutEffect } from 'react';
 import { useStore } from '../../../store/tree/useStore';
 import { TreeNode } from '../../../../shared/types';
 import { convertFromContentEditable, convertToContentEditable } from '../../../utils/contentConversion';
@@ -8,8 +8,9 @@ export function useNodeEditing(node: TreeNode) {
   const contentRef = useRef<HTMLDivElement>(null);
   const lastContentRef = useRef<string | null>(null);
 
- /* Only update DOM if it differs from the store to avoid a re-render resetting the cursor position while typing */
-  useEffect(() => {
+  /* Only update DOM if it differs from the store to avoid a re-render resetting the cursor position while typing */
+  /* Use useLayoutEffect to ensure DOM updates BEFORE cursor positioning in useNodeCursor */
+  useLayoutEffect(() => {
     if (!contentRef.current) return;
     if (node.content === lastContentRef.current) return;
 

@@ -7,25 +7,12 @@ import { createNodeMovementActions, NodeMovementActions } from './actions/nodeMo
 import { createNodeDeletionActions, NodeDeletionActions } from './actions/nodeDeletionActions';
 import { createVisualEffectsActions, VisualEffectsActions } from './actions/visualEffectsActions';
 import { createSelectionActions, SelectionActions } from './actions/selectionActions';
+import { createHistoryActions, HistoryActions } from './actions/historyActions';
+import { HistoryManager } from './commands/HistoryManager';
 import { StorageService } from '@platform';
-
-export interface DeletedNodeEntry {
-  rootNodeId: string;
-  deletedAt: number;
-  deleteBufferId: string;
-}
-
-export interface DeletedNodeInfo {
-  node: TreeNode;
-  originalParentId: string;
-  originalPosition: number;
-  deleteBufferId: string;
-  deletedAt: number;
-}
 
 export interface TreeState {
   nodes: Record<string, TreeNode>;
-  deletedNodesMap: Record<string, DeletedNodeInfo>;
   rootNodeId: string;
   ancestorRegistry: Record<string, string[]>;
   activeNodeId: string | null; // The single node being edited (cursor placement)
@@ -35,11 +22,10 @@ export interface TreeState {
   rememberedVisualX: number | null;
   currentFilePath: string | null;
   fileMeta: { created: string; author: string } | null;
-  deletedNodes: DeletedNodeEntry[];
   flashingNode: { nodeId: string; intensity: 'light' | 'medium' } | null;
   scrollToNodeId: string | null;
 
-  actions: NodeActions & NavigationActions & PersistenceActions & NodeMovementActions & NodeDeletionActions & VisualEffectsActions & SelectionActions;
+  actions: NodeActions & NavigationActions & PersistenceActions & NodeMovementActions & NodeDeletionActions & VisualEffectsActions & SelectionActions & HistoryActions;
 }
 
 const storageService = new StorageService();
@@ -52,14 +38,15 @@ const storageService = new StorageService();
  */
 export function createTreeStore() {
   return create<TreeState>((set, get) => {
+    const historyManager = new HistoryManager();
     const persistenceActions = createPersistenceActions(get, set, storageService);
     const visualEffectsActions = createVisualEffectsActions(get, set);
     const navigationActions = createNavigationActions(get, set);
     const selectionActions = createSelectionActions(get, set);
+    const historyActions = createHistoryActions(historyManager);
 
     return {
       nodes: {},
-      deletedNodesMap: {},
       rootNodeId: '',
       ancestorRegistry: {},
       activeNodeId: null,
@@ -69,7 +56,6 @@ export function createTreeStore() {
       rememberedVisualX: null,
       currentFilePath: null,
       fileMeta: null,
-      deletedNodes: [],
       flashingNode: null,
       scrollToNodeId: null,
 
@@ -81,6 +67,7 @@ export function createTreeStore() {
         ...createNodeDeletionActions(get, set, persistenceActions.autoSave),
         ...visualEffectsActions,
         ...selectionActions,
+        ...historyActions,
       },
     };
   });

@@ -1,7 +1,10 @@
 import { TreeNode, NodeStatus } from '../../../../shared/types';
 import { updateNodeMetadata } from '../../../utils/nodeHelpers';
-import { AncestorRegistry, buildAncestorRegistry } from '../../../utils/ancestry';
+import { AncestorRegistry } from '../../../utils/ancestry';
 import { v4 as uuidv4 } from 'uuid';
+import { ContentEditCommand } from '../commands/ContentEditCommand';
+import { ToggleStatusCommand } from '../commands/ToggleStatusCommand';
+import { CreateNodeCommand } from '../commands/CreateNodeCommand';
 
 export interface NodeActions {
   selectNode: (nodeId: string, cursorPosition?: number) => void;
@@ -40,17 +43,27 @@ export const createNodeActions = (
   }
 
   function updateContent(nodeId: string, content: string): void {
-    const { nodes } = get();
-    set({
-      nodes: {
-        ...nodes,
-        [nodeId]: {
-          ...nodes[nodeId],
-          content,
-        },
-      },
-    });
-    triggerAutosave?.();
+    const state = get() as StoreState & { actions?: { executeCommand?: (cmd: unknown) => void } };
+    const { nodes } = state;
+    const node = nodes[nodeId];
+    if (!node) return;
+
+    const oldContent = node.content;
+
+    if (!state.actions?.executeCommand) {
+      throw new Error('Command system not initialized - cannot update content with undo/redo support');
+    }
+
+    const command = new ContentEditCommand(
+      nodeId,
+      () => (get() as StoreState).nodes,
+      (updatedNodes) => set({ nodes: updatedNodes }),
+      oldContent,
+      content,
+      (nodeId, cursorPosition) => set({ activeNodeId: nodeId, cursorPosition }),
+      triggerAutosave
+    );
+    state.actions.executeCommand(command);
   }
 
   function updateStatus(nodeId: string, status: NodeStatus): void {
@@ -62,25 +75,23 @@ export const createNodeActions = (
   }
 
   function toggleStatus(nodeId: string): void {
-    const { nodes } = get();
+    const state = get() as StoreState & { actions?: { executeCommand?: (cmd: unknown) => void } };
+    const { nodes } = state;
     const node = nodes[nodeId];
     if (!node) return;
 
-    const currentStatus = node.metadata.status;
-    const statusCycle: NodeStatus[] = ['pending', 'completed', 'failed'];
-
-    let nextStatus: NodeStatus;
-    if (!currentStatus) {
-      nextStatus = 'pending';
-    } else {
-      const currentIndex = statusCycle.indexOf(currentStatus);
-      nextStatus = statusCycle[(currentIndex + 1) % statusCycle.length];
+    if (!state.actions?.executeCommand) {
+      throw new Error('Command system not initialized - cannot toggle status with undo/redo support');
     }
 
-    set({
-      nodes: updateNodeMetadata(nodes, nodeId, { status: nextStatus }),
-    });
-    triggerAutosave?.();
+    const command = new ToggleStatusCommand(
+      nodeId,
+      () => (get() as StoreState).nodes,
+      (updatedNodes) => set({ nodes: updatedNodes }),
+      (nodeId, cursorPosition) => set({ activeNodeId: nodeId, cursorPosition }),
+      triggerAutosave
+    );
+    state.actions.executeCommand(command);
   }
 
   function setCursorPosition(position: number): void {
@@ -91,95 +102,50 @@ export const createNodeActions = (
     set({ rememberedVisualX: visualX });
   }
 
-  function createChildNodeAtFirstPosition(
-    parentNodeId: string,
-    newNodeId: string,
-    newNode: TreeNode
-  ): void {
-    const { nodes, rootNodeId } = get();
-    const parentNode = nodes[parentNodeId];
-
-    const updatedChildren = [newNodeId, ...parentNode.children];
-    const updatedNodes = {
-      ...nodes,
-      [newNodeId]: newNode,
-      [parentNodeId]: {
-        ...parentNode,
-        children: updatedChildren,
-      },
-    };
-
-    const newAncestorRegistry = buildAncestorRegistry(rootNodeId, updatedNodes);
-
-    set({
-      nodes: updatedNodes,
-      ancestorRegistry: newAncestorRegistry,
-      activeNodeId: newNodeId,
-      cursorPosition: 0,
-      rememberedVisualX: null,
-    });
-  }
-
-  function createSiblingNodeAfterCurrent(
-    currentNodeId: string,
-    newNodeId: string,
-    newNode: TreeNode
-  ): void {
-    const { nodes, rootNodeId, ancestorRegistry } = get();
-
-    const ancestors = ancestorRegistry[currentNodeId] || [];
-    const parentId = ancestors[ancestors.length - 1] || rootNodeId;
-    const parent = nodes[parentId];
-
-    if (!parent) return;
-
-    const currentIndex = parent.children.indexOf(currentNodeId);
-    const updatedChildren = [...parent.children];
-    updatedChildren.splice(currentIndex + 1, 0, newNodeId);
-
-    const updatedNodes = {
-      ...nodes,
-      [newNodeId]: newNode,
-      [parentId]: {
-        ...parent,
-        children: updatedChildren,
-      },
-    };
-
-    const newAncestorRegistry = buildAncestorRegistry(rootNodeId, updatedNodes);
-
-    set({
-      nodes: updatedNodes,
-      ancestorRegistry: newAncestorRegistry,
-      activeNodeId: newNodeId,
-      cursorPosition: 0,
-      rememberedVisualX: null,
-    });
-  }
-
   function createNode(currentNodeId: string): void {
-    const { nodes } = get();
+    const state = get() as StoreState & { actions?: { executeCommand?: (cmd: unknown) => void } };
+    const { nodes, rootNodeId, ancestorRegistry } = state;
     const currentNode = nodes[currentNodeId];
     if (!currentNode) return;
 
     const newNodeId = generateId();
-    const newNode: TreeNode = {
-      id: newNodeId,
-      content: '',
-      children: [],
-      metadata: { status: 'pending' },
-    };
-
     const isExpanded = currentNode.metadata.expanded ?? true;
     const hasChildren = currentNode.children.length > 0;
 
+    // Determine where to create the node
+    let parentId: string;
+    let position: number;
+
     if (isExpanded && hasChildren) {
-      createChildNodeAtFirstPosition(currentNodeId, newNodeId, newNode);
+      // Create as first child of current node
+      parentId = currentNodeId;
+      position = 0;
     } else {
-      createSiblingNodeAfterCurrent(currentNodeId, newNodeId, newNode);
+      // Create as sibling after current node
+      const ancestors = ancestorRegistry[currentNodeId] || [];
+      parentId = ancestors[ancestors.length - 1] || rootNodeId;
+      const parent = nodes[parentId];
+      if (!parent) return;
+      position = parent.children.indexOf(currentNodeId) + 1;
     }
 
-    triggerAutosave?.();
+    if (!state.actions?.executeCommand) {
+      throw new Error('Command system not initialized - cannot create node with undo/redo support');
+    }
+
+    const command = new CreateNodeCommand(
+      newNodeId,
+      parentId,
+      position,
+      '',
+      () => {
+        const currentState = get() as StoreState;
+        return { nodes: currentState.nodes, rootNodeId: currentState.rootNodeId };
+      },
+      (partial) => set(partial as Partial<StoreState>),
+      triggerAutosave
+    );
+    state.actions.executeCommand(command);
   }
 
   return {

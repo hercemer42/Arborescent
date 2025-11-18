@@ -12,14 +12,21 @@ describe('nodeMovementActions', () => {
     ancestorRegistry: AncestorRegistry;
     cursorPosition: number;
     rememberedVisualX: number | null;
+    actions?: { executeCommand?: (cmd: unknown) => void };
   };
   let state: TestState;
   let setState: (partial: Partial<TestState>) => void;
   let actions: ReturnType<typeof createNodeMovementActions>;
   let mockVisualEffects: VisualEffectsActions;
   let mockNavigation: NavigationActions;
+  let mockExecuteCommand: ReturnType<typeof vi.fn>;
 
   beforeEach(() => {
+    mockExecuteCommand = vi.fn((command: { execute: () => void }) => {
+      // Execute the command immediately in tests
+      command.execute();
+    });
+
     state = {
       nodes: {
         'root': {
@@ -56,6 +63,7 @@ describe('nodeMovementActions', () => {
       },
       cursorPosition: 0,
       rememberedVisualX: null,
+      actions: { executeCommand: mockExecuteCommand },
     };
 
     setState = (partial) => {

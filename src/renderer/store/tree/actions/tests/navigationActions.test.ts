@@ -1,13 +1,19 @@
-import { describe, it, expect, beforeEach } from 'vitest';
+import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { createNavigationActions } from '../navigationActions';
 import type { TreeNode } from '@shared/types';
 
 describe('navigationActions', () => {
-  let state: { nodes: Record<string, TreeNode>; rootNodeId: string; ancestorRegistry: Record<string, string[]>; activeNodeId: string | null; cursorPosition: number; rememberedVisualX: number | null };
+  let state: { nodes: Record<string, TreeNode>; rootNodeId: string; ancestorRegistry: Record<string, string[]>; activeNodeId: string | null; cursorPosition: number; rememberedVisualX: number | null; actions?: { executeCommand?: (cmd: unknown) => void } };
   let setState: (partial: Partial<typeof state>) => void;
   let actions: ReturnType<typeof createNavigationActions>;
+  let mockExecuteCommand: ReturnType<typeof vi.fn>;
 
   beforeEach(() => {
+    mockExecuteCommand = vi.fn((command: { execute: () => void }) => {
+      // Execute the command immediately in tests
+      command.execute();
+    });
+
     state = {
       nodes: {
         'root': {
@@ -45,6 +51,7 @@ describe('navigationActions', () => {
       activeNodeId: null,
       cursorPosition: 0,
       rememberedVisualX: null,
+      actions: { executeCommand: mockExecuteCommand },
     };
 
     setState = (partial) => {

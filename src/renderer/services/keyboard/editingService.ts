@@ -124,11 +124,19 @@ function handleEditingShortcuts(event: KeyboardEvent): void {
 function handleKeyDown(event: KeyboardEvent): void {
   const activeStore = getActiveStore();
 
-  // Handle undelete (doesn't require active element)
-  if (matchesHotkey(event, 'actions', 'undeleteNode')) {
+  // Handle undo/redo (doesn't require active element)
+  if (matchesHotkey(event, 'actions', 'undo')) {
     event.preventDefault();
     if (activeStore) {
-      activeStore.getState().actions.undeleteNode();
+      activeStore.getState().actions.undo();
+    }
+    return;
+  }
+
+  if (matchesHotkey(event, 'actions', 'redo')) {
+    event.preventDefault();
+    if (activeStore) {
+      activeStore.getState().actions.redo();
     }
     return;
   }
