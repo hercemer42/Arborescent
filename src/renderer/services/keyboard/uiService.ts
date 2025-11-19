@@ -64,6 +64,27 @@ async function handleUIShortcuts(event: KeyboardEvent): Promise<void> {
     }
     return;
   }
+
+  // Toggle browser (Ctrl/Cmd + B)
+  if (event.key === 'b' && (event.ctrlKey || event.metaKey) && !event.shiftKey && !event.altKey) {
+    event.preventDefault();
+    const { usePanelStore } = await import('../../store/panel/panelStore');
+    const { useBrowserStore } = await import('../../store/browser/browserStore');
+    const panelStore = usePanelStore.getState();
+    const browserStore = useBrowserStore.getState();
+
+    if (panelStore.activeContent === 'browser') {
+      panelStore.hidePanel();
+    } else {
+      // Create browser tab if none exist
+      if (browserStore.tabs.length === 0) {
+        const { DEFAULT_BROWSER_URL } = await import('../../store/browser/browserStore');
+        browserStore.actions.addTab(DEFAULT_BROWSER_URL);
+      }
+      panelStore.showBrowser();
+    }
+    return;
+  }
 }
 
 /**
