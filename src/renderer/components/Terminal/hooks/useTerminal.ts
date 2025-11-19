@@ -1,7 +1,8 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Terminal as XTerm } from '@xterm/xterm';
 import { FitAddon } from '@xterm/addon-fit';
 import { LIGHT_THEME } from '../terminalThemes';
+import { useTerminalKeyboard } from './useTerminalKeyboard';
 
 interface UseTerminalOptions {
   id: string;
@@ -17,26 +18,68 @@ export function useTerminal({ id, onResize }: UseTerminalOptions) {
   const xtermRef = useRef<XTerm | null>(null);
   const fitAddonRef = useRef<FitAddon | null>(null);
   const userScrolledUpRef = useRef(false);
+  const [isInitialized, setIsInitialized] = useState(false);
 
+  // Initialization effect - waits for element to have dimensions
   useEffect(() => {
-    if (!terminalRef.current) return;
+    if (!terminalRef.current || isInitialized) return;
 
-    // Create xterm instance with light theme as default
-    const xterm = new XTerm({
-      cursorBlink: true,
-      fontSize: 14,
-      fontFamily: 'Menlo, Monaco, "Courier New", monospace',
-      theme: LIGHT_THEME,
-    });
+    const initializeTerminal = () => {
+      if (!terminalRef.current || xtermRef.current) return;
 
-    const fitAddon = new FitAddon();
-    xterm.loadAddon(fitAddon);
+      const rect = terminalRef.current.getBoundingClientRect();
 
-    xterm.open(terminalRef.current);
-    fitAddon.fit();
+      // CRITICAL: Don't initialize xterm if element has no dimensions
+      // This breaks mouse selection permanently
+      if (rect.width === 0 || rect.height === 0) {
+        return;
+      }
 
-    xtermRef.current = xterm;
-    fitAddonRef.current = fitAddon;
+      // Create xterm instance
+      const xterm = new XTerm({
+        cursorBlink: true,
+        fontSize: 14,
+        fontFamily: 'Menlo, Monaco, "Courier New", monospace',
+        theme: LIGHT_THEME,
+      });
+
+      const fitAddon = new FitAddon();
+      xterm.loadAddon(fitAddon);
+
+      xterm.open(terminalRef.current);
+      fitAddon.fit();
+
+      xtermRef.current = xterm;
+      fitAddonRef.current = fitAddon;
+      setIsInitialized(true);
+    };
+
+    // Try immediate initialization
+    initializeTerminal();
+
+    // If not initialized, watch for element to get dimensions
+    if (!isInitialized) {
+      const resizeObserver = new ResizeObserver(() => {
+        initializeTerminal();
+      });
+
+      resizeObserver.observe(terminalRef.current);
+
+      return () => {
+        resizeObserver.disconnect();
+      };
+    }
+  }, [id, isInitialized]);
+
+  // Setup keyboard shortcuts
+  useTerminalKeyboard(xtermRef.current);
+
+  // Main effect - sets up event handlers after initialization
+  useEffect(() => {
+    if (!isInitialized || !xtermRef.current || !fitAddonRef.current || !terminalRef.current) return;
+
+    const xterm = xtermRef.current;
+    const fitAddon = fitAddonRef.current;
 
     /**
      * Check if the terminal is scrolled to the bottom
@@ -119,7 +162,7 @@ export function useTerminal({ id, onResize }: UseTerminalOptions) {
       removeExitListener();
       xterm.dispose();
     };
-  }, [id, onResize]);
+  }, [id, onResize, isInitialized]);
 
   return { terminalRef, xtermRef, fitAddonRef };
 }

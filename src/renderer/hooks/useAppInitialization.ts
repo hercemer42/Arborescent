@@ -21,10 +21,10 @@ export function useAppInitialization(onComplete: () => void) {
       restorePanelSession(),
     ])
       .then(async () => {
-        // Auto-create a terminal if none exist AND panel is not visible
+        // Auto-create a terminal if none exist AND terminal panel is active
         const activeContent = usePanelStore.getState().activeContent;
         const terminals = useTerminalStore.getState().terminals;
-        if (terminals.length === 0 && !activeContent) {
+        if (terminals.length === 0 && activeContent === 'terminal') {
           await createTerminal('Terminal');
         }
       })

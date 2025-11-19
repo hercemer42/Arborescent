@@ -33,6 +33,8 @@ export const LIGHT_THEME: ITheme = {
   background: '#ffffff',
   foreground: '#1e1e1e',
   cursor: '#1e1e1e',
+  selectionBackground: '#ADD6FF',  // Light blue selection (VS Code style)
+  selectionInactiveBackground: '#E5EBF1',  // Grayed out when not focused
   black: '#1e1e1e',
   red: '#cd3131',
   green: '#008000',
