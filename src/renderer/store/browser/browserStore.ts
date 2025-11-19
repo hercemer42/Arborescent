@@ -5,6 +5,8 @@ import { BrowserTab } from '../../../shared/interfaces';
 
 export type { BrowserTab };
 
+export const DEFAULT_BROWSER_URL = 'https://ecosia.org';
+
 interface BrowserState {
   tabs: BrowserTab[];
   activeTabId: string | null;

@@ -1,5 +1,6 @@
 import { StorageService, BrowserSession, BrowserTab } from '../../../../shared/interfaces';
 import { logger } from '../../../services/logger';
+import { DEFAULT_BROWSER_URL } from '../browserStore';
 
 interface BrowserState {
   tabs: BrowserTab[];
@@ -213,7 +214,7 @@ export function createBrowserActions(get: StoreGetter, set: StoreSetter, storage
       const defaultTab: BrowserTab = {
         id: `browser-${Date.now()}`,
         title: 'Ecosia',
-        url: 'https://ecosia.org',
+        url: DEFAULT_BROWSER_URL,
       };
       const defaultHeight = 300;
       const defaultWidth = typeof window !== 'undefined' ? window.innerWidth * 0.5 : 600;

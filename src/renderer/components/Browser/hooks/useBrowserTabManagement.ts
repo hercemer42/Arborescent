@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import { useBrowserStore } from '../../../store/browser/browserStore';
+import { useBrowserStore, DEFAULT_BROWSER_URL } from '../../../store/browser/browserStore';
 
 interface UseBrowserTabManagementOptions {
   unregisterWebview: (id: string) => void;
@@ -13,7 +13,7 @@ export function useBrowserTabManagement({ unregisterWebview }: UseBrowserTabMana
   const actions = useBrowserStore((state) => state.actions);
 
   const handleNewBrowser = useCallback(() => {
-    actions.addTab('https://ecosia.org');
+    actions.addTab(DEFAULT_BROWSER_URL);
   }, [actions]);
 
   const handleCloseBrowser = useCallback(

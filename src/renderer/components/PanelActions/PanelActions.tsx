@@ -1,5 +1,5 @@
 import { useTerminalStore } from '../../store/terminal/terminalStore';
-import { useBrowserStore } from '../../store/browser/browserStore';
+import { useBrowserStore, DEFAULT_BROWSER_URL } from '../../store/browser/browserStore';
 import { useTerminalPanel } from '../Terminal/hooks/useTerminalPanel';
 import './PanelActions.css';
 
@@ -28,7 +28,7 @@ export function PanelActions() {
       // Create a new browser tab if none exist
       const tabs = useBrowserStore.getState().tabs;
       if (tabs.length === 0) {
-        browserActions.addTab('https://ecosia.org');
+        browserActions.addTab(DEFAULT_BROWSER_URL);
       } else {
         browserActions.showBrowser();
       }
