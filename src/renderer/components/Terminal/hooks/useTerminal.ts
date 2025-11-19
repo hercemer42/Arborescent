@@ -40,12 +40,15 @@ export function useTerminal({ id, onResize }: UseTerminalOptions) {
 
     /**
      * Check if the terminal is scrolled to the bottom
+     * Uses a tolerance of 2 lines to account for rapid output scenarios
+     * where xterm.js might temporarily be slightly off during updates
      */
     const isAtBottom = (): boolean => {
       const buffer = xterm.buffer.active;
       const viewport = buffer.viewportY;
       const bottomPosition = buffer.baseY + buffer.length - xterm.rows;
-      return viewport >= bottomPosition - 1;
+      // Use tolerance of 2 lines to handle rapid updates
+      return viewport >= bottomPosition - 2;
     };
 
     /**
@@ -80,10 +83,22 @@ export function useTerminal({ id, onResize }: UseTerminalOptions) {
 
     // Handle resize
     const handleResize = () => {
+      // Check if we're at bottom before resize to preserve scroll position
+      const wasAtBottom = isAtBottom();
+
       fitAddon.fit();
       const { cols, rows } = xterm;
       window.electron.terminalResize(id, cols, rows);
       onResize?.(cols, rows);
+
+      // If we were at bottom and user hasn't scrolled up, stay at bottom
+      // This ensures resize operations (like panel toggling) don't disrupt scroll
+      if (wasAtBottom && !userScrolledUpRef.current) {
+        // Use setTimeout to ensure scroll happens after xterm.js finishes layout
+        setTimeout(() => {
+          xterm.scrollToBottom();
+        }, 0);
+      }
     };
 
     // Watch for container size changes
