@@ -6,3 +6,5 @@ export { useBrowserWebviewRefs } from './hooks/useBrowserWebviewRefs';
 export { useBrowserNavigation } from './hooks/useBrowserNavigation';
 export { useBrowserAddressBar } from './hooks/useBrowserAddressBar';
 export { useBrowserWebview } from './hooks/useBrowserWebview';
+export { useBrowserTabManagement } from './hooks/useBrowserTabManagement';
+export { useBrowserNavigationSync } from './hooks/useBrowserNavigationSync';

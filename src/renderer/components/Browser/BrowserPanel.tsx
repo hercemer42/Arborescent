@@ -1,10 +1,11 @@
-import { useEffect } from 'react';
 import { useBrowserStore } from '../../store/browser/browserStore';
 import { Browser } from './Browser';
 import { Tab } from '../Tab';
 import { useBrowserWebviewRefs } from './hooks/useBrowserWebviewRefs';
 import { useBrowserNavigation } from './hooks/useBrowserNavigation';
 import { useBrowserAddressBar } from './hooks/useBrowserAddressBar';
+import { useBrowserTabManagement } from './hooks/useBrowserTabManagement';
+import { useBrowserNavigationSync } from './hooks/useBrowserNavigationSync';
 import './BrowserPanel.css';
 
 export function BrowserPanel() {
@@ -26,39 +27,11 @@ export function BrowserPanel() {
     updateAddressBarFromWebview,
   } = useBrowserAddressBar({ activeTabId, tabs, getActiveWebview });
 
-  const handleNewBrowser = () => {
-    actions.addTab('https://ecosia.org');
-  };
+  // Manage tab operations
+  const { handleNewBrowser, handleCloseBrowser } = useBrowserTabManagement({ unregisterWebview });
 
-  const handleCloseBrowser = (id: string) => {
-    actions.closeTab(id);
-    unregisterWebview(id);
-  };
-
-  // Listen to navigation events on active webview
-  useEffect(() => {
-    const webview = getActiveWebview();
-    if (!webview) return;
-
-    const handleNavigation = () => {
-      updateNavigationState();
-      updateAddressBarFromWebview();
-    };
-
-    // Update immediately on mount/tab change
-    handleNavigation();
-
-    // Listen for navigation events
-    webview.addEventListener('did-navigate', handleNavigation);
-    webview.addEventListener('did-navigate-in-page', handleNavigation);
-    webview.addEventListener('dom-ready', handleNavigation);
-
-    return () => {
-      webview.removeEventListener('did-navigate', handleNavigation);
-      webview.removeEventListener('did-navigate-in-page', handleNavigation);
-      webview.removeEventListener('dom-ready', handleNavigation);
-    };
-  }, [activeTabId, getActiveWebview, updateNavigationState, updateAddressBarFromWebview]);
+  // Sync navigation state with webview events
+  useBrowserNavigationSync({ activeTabId, getActiveWebview, updateNavigationState, updateAddressBarFromWebview });
 
   return (
     <div className="browser-panel">
