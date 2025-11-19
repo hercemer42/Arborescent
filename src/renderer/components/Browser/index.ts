@@ -1,10 +1,13 @@
 export { Browser } from './Browser';
 export { BrowserPanel } from './BrowserPanel';
 export { BrowserContainer } from './BrowserContainer';
+export { BrowserTabBar } from './BrowserTabBar';
+export { BrowserNavBar } from './BrowserNavBar';
+export { BrowserContent } from './BrowserContent';
 export { useBrowserResize } from './hooks/useBrowserResize';
 export { useBrowserWebviewRefs } from './hooks/useBrowserWebviewRefs';
-export { useBrowserNavigation } from './hooks/useBrowserNavigation';
-export { useBrowserAddressBar } from './hooks/useBrowserAddressBar';
 export { useBrowserWebview } from './hooks/useBrowserWebview';
-export { useBrowserTabManagement } from './hooks/useBrowserTabManagement';
-export { useBrowserNavigationSync } from './hooks/useBrowserNavigationSync';
+export { useBrowserNavigation } from './BrowserNavBar/hooks/useBrowserNavigation';
+export { useBrowserAddressBar } from './BrowserNavBar/hooks/useBrowserAddressBar';
+export { useBrowserNavigationSync } from './BrowserNavBar/hooks/useBrowserNavigationSync';
+export { useBrowserTabManagement } from './BrowserTabBar/hooks/useBrowserTabManagement';

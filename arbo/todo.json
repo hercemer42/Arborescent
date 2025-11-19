@@ -2,7 +2,7 @@
   "format": "Arborescent",
   "version": "1.0.0",
   "created": "2025-10-11T00:00:00.000Z",
-  "updated": "2025-11-19T13:37:25.817Z",
+  "updated": "2025-11-19T13:52:30.655Z",
   "author": "brian@brianfox.fr",
   "rootNodeId": "root",
   "nodes": {
@@ -1230,6 +1230,7 @@
         "565dde0a-864b-41f9-86ff-dbdf40ac4dd0",
         "07dbd367-fd7c-41a6-94bc-3f7c5f57e668",
         "d7597faa-0b34-400e-985a-de035508cdb1",
+        "40729a78-ee9c-4599-aa83-57f189199c3c",
         "65b74e0f-88fe-41c6-9910-8bac806adc6f",
         "6573b620-bfc0-4c5b-8d92-13b9ace3461d",
         "ce2de4b4-cc94-4106-a61b-26ce1089e97e",
@@ -2324,12 +2325,13 @@
       "id": "e15d77fa-c719-45d4-9207-ff759d86e58f",
       "content": "Terminal integration",
       "children": [
+        "754934df-27a9-4f73-8f64-1a854da7132a",
         "31a08609-4870-4710-b2df-297ee24ab040",
         "c4a0a9f7-196d-457f-83ff-3efe3f8ea706"
       ],
       "metadata": {
         "status": "completed",
-        "expanded": false
+        "expanded": true
       }
     },
     "90ef4542-1a4c-48b9-922e-5674d3143748": {
@@ -3482,7 +3484,7 @@
       "content": "Ecosia.org hardcoded in panelActions and browserPanel, should be only one source",
       "children": [],
       "metadata": {
-        "status": "pending"
+        "status": "completed"
       }
     },
     "6692624c-0391-4e11-9785-de27a8facbaa": {
@@ -3523,6 +3525,109 @@
       "children": [],
       "metadata": {
         "status": "completed"
+      }
+    },
+    "754934df-27a9-4f73-8f64-1a854da7132a": {
+      "id": "754934df-27a9-4f73-8f64-1a854da7132a",
+      "content": "Bugs",
+      "children": [
+        "c139d768-f8eb-4b4e-a780-bcc68de3f240"
+      ],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "c139d768-f8eb-4b4e-a780-bcc68de3f240": {
+      "id": "c139d768-f8eb-4b4e-a780-bcc68de3f240",
+      "content": "It keeps going back to top of screen after processing something in Claude Code",
+      "children": [
+        "a0d41291-4fcc-46df-923f-b31a13970c83",
+        "ac2e431a-45e0-4dba-80de-9e9f78454b03",
+        "927628e2-4499-4004-9073-5a2f04c70747",
+        "f5c3ae2a-fbc6-4eaf-b207-e2cf74f02681"
+      ],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "a0d41291-4fcc-46df-923f-b31a13970c83": {
+      "id": "a0d41291-4fcc-46df-923f-b31a13970c83",
+      "content": "It should stay stuck to the bottom, unless the user has scrolled up and then never scrolled back down",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "ac2e431a-45e0-4dba-80de-9e9f78454b03": {
+      "id": "ac2e431a-45e0-4dba-80de-9e9f78454b03",
+      "content": "Inconsistent, sometimes it maintains the bottom scroll, sometimes not",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "f5c3ae2a-fbc6-4eaf-b207-e2cf74f02681": {
+      "id": "f5c3ae2a-fbc6-4eaf-b207-e2cf74f02681",
+      "content": "We already tried to fix this with a bunch of code - it didn't work",
+      "children": [
+        "0518f4df-ef1b-45f0-af97-baca8442931a"
+      ],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "0518f4df-ef1b-45f0-af97-baca8442931a": {
+      "id": "0518f4df-ef1b-45f0-af97-baca8442931a",
+      "content": "Will need cleanup if we find the proper solution",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "927628e2-4499-4004-9073-5a2f04c70747": {
+      "id": "927628e2-4499-4004-9073-5a2f04c70747",
+      "content": "Claude seems to do this kind of weird thing sometimes even outside of arborescent where it looks like its fighting with how much to display, and trying to maintain the terminal position at the bottom.",
+      "children": [
+        "49b42aeb-45be-4b2e-9cb2-9f28c7589857"
+      ],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "49b42aeb-45be-4b2e-9cb2-9f28c7589857": {
+      "id": "49b42aeb-45be-4b2e-9cb2-9f28c7589857",
+      "content": "I think this is linked.",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "40729a78-ee9c-4599-aa83-57f189199c3c": {
+      "id": "40729a78-ee9c-4599-aa83-57f189199c3c",
+      "content": "Security",
+      "children": [
+        "b0b87860-dc20-4138-9b88-0a7ec82d8e94"
+      ],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "b0b87860-dc20-4138-9b88-0a7ec82d8e94": {
+      "id": "b0b87860-dc20-4138-9b88-0a7ec82d8e94",
+      "content": "Potential vulnerability in the 'send to terminal' code",
+      "children": [
+        "263c0065-f86e-4fc4-bf60-1f22f8c39526"
+      ],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "263c0065-f86e-4fc4-bf60-1f22f8c39526": {
+      "id": "263c0065-f86e-4fc4-bf60-1f22f8c39526",
+      "content": "Be sure only the user can exploit this",
+      "children": [],
+      "metadata": {
+        "status": "pending"
       }
     }
   }

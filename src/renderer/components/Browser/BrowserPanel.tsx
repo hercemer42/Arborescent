@@ -1,11 +1,12 @@
 import { useBrowserStore } from '../../store/browser/browserStore';
-import { Browser } from './Browser';
-import { Tab } from '../Tab';
+import { BrowserTabBar } from './BrowserTabBar';
+import { BrowserNavBar } from './BrowserNavBar';
+import { BrowserContent } from './BrowserContent';
 import { useBrowserWebviewRefs } from './hooks/useBrowserWebviewRefs';
-import { useBrowserNavigation } from './hooks/useBrowserNavigation';
-import { useBrowserAddressBar } from './hooks/useBrowserAddressBar';
-import { useBrowserTabManagement } from './hooks/useBrowserTabManagement';
-import { useBrowserNavigationSync } from './hooks/useBrowserNavigationSync';
+import { useBrowserNavigation } from './BrowserNavBar/hooks/useBrowserNavigation';
+import { useBrowserAddressBar } from './BrowserNavBar/hooks/useBrowserAddressBar';
+import { useBrowserTabManagement } from './BrowserTabBar/hooks/useBrowserTabManagement';
+import { useBrowserNavigationSync } from './BrowserNavBar/hooks/useBrowserNavigationSync';
 import './BrowserPanel.css';
 
 export function BrowserPanel() {
@@ -35,78 +36,32 @@ export function BrowserPanel() {
 
   return (
     <div className="browser-panel">
-      <div className="browser-tab-bar">
-        <div className="browser-tabs-left">
-          {tabs.map((tab) => (
-            <Tab
-              key={tab.id}
-              displayName={tab.title}
-              isActive={activeTabId === tab.id}
-              onClick={() => actions.setActiveTab(tab.id)}
-              onClose={() => handleCloseBrowser(tab.id)}
-            />
-          ))}
-          <button onClick={handleNewBrowser} className="new-browser-button" title="New Tab">
-            +
-          </button>
-        </div>
-        <button
-          onClick={actions.togglePanelPosition}
-          className="toggle-panel-button"
-          title={`Switch to ${panelPosition === 'side' ? 'bottom' : 'side'} panel`}
-        >
-          {panelPosition === 'side' ? '⬇' : '➡'}
-        </button>
-      </div>
-
-      <div className="browser-nav-bar">
-        <button
-          onClick={handleBack}
-          disabled={!canGoBack}
-          className="browser-nav-button"
-          title="Back"
-        >
-          ←
-        </button>
-        <button
-          onClick={handleForward}
-          disabled={!canGoForward}
-          className="browser-nav-button"
-          title="Forward"
-        >
-          →
-        </button>
-        <button onClick={handleReload} className="browser-nav-button" title="Reload">
-          ↻
-        </button>
-        <form onSubmit={handleAddressBarSubmit} className="browser-nav-form">
-          <input
-            type="text"
-            className="browser-url-display"
-            value={addressBarValue}
-            onFocus={() => setIsEditingAddress(true)}
-            onBlur={() => setIsEditingAddress(false)}
-            onChange={(e) => setAddressBarValue(e.target.value)}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter') {
-                handleAddressBarSubmit();
-              }
-            }}
-            placeholder="Enter URL..."
-          />
-        </form>
-      </div>
-
-      <div className="browser-content">
-        {tabs.map((tab) => (
-          <div
-            key={tab.id}
-            className={`browser-wrapper ${activeTabId !== tab.id ? 'hidden' : ''}`}
-          >
-            <Browser id={tab.id} url={tab.url} onWebviewReady={registerWebview} />
-          </div>
-        ))}
-      </div>
+      <BrowserTabBar
+        tabs={tabs}
+        activeTabId={activeTabId}
+        panelPosition={panelPosition}
+        onTabClick={actions.setActiveTab}
+        onTabClose={handleCloseBrowser}
+        onNewTab={handleNewBrowser}
+        onTogglePanelPosition={actions.togglePanelPosition}
+      />
+      <BrowserNavBar
+        canGoBack={canGoBack}
+        canGoForward={canGoForward}
+        addressBarValue={addressBarValue}
+        onBack={handleBack}
+        onForward={handleForward}
+        onReload={handleReload}
+        onAddressBarChange={setAddressBarValue}
+        onAddressBarSubmit={handleAddressBarSubmit}
+        onAddressBarFocus={() => setIsEditingAddress(true)}
+        onAddressBarBlur={() => setIsEditingAddress(false)}
+      />
+      <BrowserContent
+        tabs={tabs}
+        activeTabId={activeTabId}
+        onWebviewReady={registerWebview}
+      />
     </div>
   );
 }

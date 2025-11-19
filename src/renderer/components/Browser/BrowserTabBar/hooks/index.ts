@@ -1,0 +1,1 @@
+export { useBrowserTabManagement } from './useBrowserTabManagement';

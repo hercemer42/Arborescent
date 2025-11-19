@@ -1,0 +1,1 @@
+export { BrowserTabBar } from './BrowserTabBar';

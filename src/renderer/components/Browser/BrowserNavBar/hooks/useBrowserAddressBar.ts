@@ -1,5 +1,5 @@
 import { useState, useCallback, useEffect } from 'react';
-import { BrowserTab } from '../../../store/browser/browserStore';
+import { BrowserTab } from '../../../../store/browser/browserStore';
 
 interface UseBrowserAddressBarOptions {
   activeTabId: string | null;

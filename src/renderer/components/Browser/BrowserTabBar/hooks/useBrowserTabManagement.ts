@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import { useBrowserStore, DEFAULT_BROWSER_URL } from '../../../store/browser/browserStore';
+import { useBrowserStore, DEFAULT_BROWSER_URL } from '../../../../store/browser/browserStore';
 
 interface UseBrowserTabManagementOptions {
   unregisterWebview: (id: string) => void;
