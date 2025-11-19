@@ -50,6 +50,8 @@ global.window.electron = {
   showUnsavedChangesDialog: vi.fn(),
   saveSession: vi.fn(),
   getSession: vi.fn(),
+  saveBrowserSession: vi.fn(),
+  getBrowserSession: vi.fn(),
   getTempDir: vi.fn(),
   createTempFile: vi.fn(),
   deleteTempFile: vi.fn(),

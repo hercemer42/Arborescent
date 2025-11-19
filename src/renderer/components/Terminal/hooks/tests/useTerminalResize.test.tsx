@@ -35,7 +35,6 @@ describe('useTerminalResize', () => {
       useTerminalResize({
         contentRef: mockContentRef,
         panelPosition: 'bottom',
-        initialHeight: 400,
       })
     );
 
@@ -49,7 +48,6 @@ describe('useTerminalResize', () => {
       useTerminalResize({
         contentRef: mockContentRef,
         panelPosition: 'side',
-        initialWidth: 500,
       })
     );
 
@@ -80,7 +78,6 @@ describe('useTerminalResize', () => {
       useTerminalResize({
         contentRef: mockContentRef,
         panelPosition: 'bottom',
-        initialHeight: 300,
       })
     );
 
@@ -99,7 +96,6 @@ describe('useTerminalResize', () => {
       useTerminalResize({
         contentRef: mockContentRef,
         panelPosition: 'bottom',
-        initialHeight: 300,
       })
     );
 
@@ -159,7 +155,6 @@ describe('useTerminalResize', () => {
       useTerminalResize({
         contentRef: mockContentRef,
         panelPosition: 'side',
-        initialWidth: 400,
       })
     );
 
@@ -221,7 +216,6 @@ describe('useTerminalResize', () => {
       useTerminalResize({
         contentRef: mockContentRef,
         panelPosition: 'bottom',
-        initialHeight: 300,
       })
     );
 
@@ -246,7 +240,6 @@ describe('useTerminalResize', () => {
       useTerminalResize({
         contentRef: mockContentRef,
         panelPosition: 'side',
-        initialWidth: 300,
       })
     );
 

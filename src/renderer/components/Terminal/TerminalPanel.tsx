@@ -9,18 +9,6 @@ export function TerminalPanel() {
     useTerminalStore();
   const { handleNewTerminal, handleCloseTerminal } = useTerminalPanel();
 
-  if (terminals.length === 0) {
-    return (
-      <div className="terminal-panel">
-        <div className="terminal-empty">
-          <button onClick={handleNewTerminal} className="new-terminal-button">
-            + New Terminal
-          </button>
-        </div>
-      </div>
-    );
-  }
-
   return (
     <div className="terminal-panel">
       <div className="terminal-tab-bar">

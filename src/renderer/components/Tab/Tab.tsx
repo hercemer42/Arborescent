@@ -23,6 +23,7 @@ export const Tab = memo(function Tab({
     <div
       className={`tab ${isActive ? 'active' : ''}`}
       onClick={onClick}
+      title={displayName}
     >
       <span className="tab-name">{displayName}</span>
       <button

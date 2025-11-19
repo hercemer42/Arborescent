@@ -8,6 +8,8 @@
   user-select: none;
   transition: background-color 0.1s;
   color: var(--gray-500);
+  max-width: 200px;
+  min-width: 80px;
 }
 
 .tab:hover {
@@ -22,6 +24,10 @@
 .tab-name {
   font-size: 15px;
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 1;
+  min-width: 0;
 }
 
 .tab-close {
@@ -39,6 +45,7 @@
   cursor: pointer;
   border-radius: 2px;
   transition: background-color 0.1s, color 0.1s;
+  flex-shrink: 0;
 }
 
 .tab-close:hover {

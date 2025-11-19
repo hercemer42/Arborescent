@@ -7,6 +7,8 @@ import { usePluginStore } from '../../../store/plugins/pluginStore';
 import { PluginCommandRegistry } from '../../../../../plugins/core/renderer/CommandRegistry';
 import { useTerminalStore } from '../../../store/terminal/terminalStore';
 import { useTerminalActions } from '../../Terminal/hooks/useTerminalActions';
+import { formatNodeAsMarkdown } from '../../../utils/nodeFormatting';
+import { logger } from '../../../services/logger';
 
 export function useNodeContextMenu(node: TreeNode) {
   const deleteNode = useStore((state) => state.actions.deleteNode);
@@ -64,6 +66,16 @@ export function useNodeContextMenu(node: TreeNode) {
     await executeInTerminal(node, nodes);
   };
 
+  const handleCopyToClipboard = async () => {
+    try {
+      const formattedContent = formatNodeAsMarkdown(node, nodes);
+      await navigator.clipboard.writeText(formattedContent);
+      logger.info('Copied to clipboard', 'Context Menu');
+    } catch (error) {
+      logger.error('Failed to copy to clipboard', error as Error, 'Context Menu');
+    }
+  };
+
   function hasAncestorWithSession(): boolean {
     const ancestors = ancestorRegistry[node.id] || [];
     return ancestors.some((ancestorId) => {
@@ -92,6 +104,11 @@ export function useNodeContextMenu(node: TreeNode) {
   }
 
   const baseMenuItems: ContextMenuItem[] = [
+    {
+      label: 'Copy to Clipboard',
+      onClick: handleCopyToClipboard,
+      disabled: false,
+    },
     {
       label: 'Send to Terminal',
       onClick: handleSendToTerminal,

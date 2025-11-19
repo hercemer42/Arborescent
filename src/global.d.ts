@@ -12,6 +12,8 @@ declare global {
       showUnsavedChangesDialog: (fileName: string) => Promise<number>;
       saveSession: (sessionData: string) => Promise<void>;
       getSession: () => Promise<string | null>;
+      saveBrowserSession: (sessionData: string) => Promise<void>;
+      getBrowserSession: () => Promise<string | null>;
       getTempDir: () => Promise<string>;
       createTempFile: (fileName: string, content: string) => Promise<string>;
       deleteTempFile: (filePath: string) => Promise<void>;

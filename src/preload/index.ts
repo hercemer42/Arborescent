@@ -12,6 +12,9 @@ contextBridge.exposeInMainWorld('electron', {
   saveSession: (sessionData: string) =>
     ipcRenderer.invoke('save-session', sessionData),
   getSession: () => ipcRenderer.invoke('get-session'),
+  saveBrowserSession: (sessionData: string) =>
+    ipcRenderer.invoke('save-browser-session', sessionData),
+  getBrowserSession: () => ipcRenderer.invoke('get-browser-session'),
   getTempDir: () => ipcRenderer.invoke('get-temp-dir'),
   createTempFile: (fileName: string, content: string) =>
     ipcRenderer.invoke('create-temp-file', fileName, content),

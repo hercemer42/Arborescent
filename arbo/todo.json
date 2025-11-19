@@ -2,7 +2,7 @@
   "format": "Arborescent",
   "version": "1.0.0",
   "created": "2025-10-11T00:00:00.000Z",
-  "updated": "2025-11-18T20:27:51.791Z",
+  "updated": "2025-11-19T12:38:25.045Z",
   "author": "brian@brianfox.fr",
   "rootNodeId": "root",
   "nodes": {
@@ -3011,10 +3011,518 @@
     },
     "a015d694-46fb-41f2-86ce-493d8bb90098": {
       "id": "a015d694-46fb-41f2-86ce-493d8bb90098",
+      "content": "Add browser panel and copy to clipboard",
+      "children": [
+        "18a12739-e26a-49b6-8924-e6959153b93f",
+        "3a376191-72a1-43d9-9488-a834721d5c7d",
+        "7c43acac-f84d-45f1-886b-894b1c292f3e",
+        "c5e7326b-e18f-4509-994e-081400c54994",
+        "8627ce04-5125-4c2b-8677-813dc1e2c5cf",
+        "689012c7-af48-47d3-9ca2-a0fc644d069b",
+        "325474ef-7f6e-4153-85de-d58fc31ac1f9",
+        "05bb8212-2ba7-4ab9-a94c-cd09fb568265",
+        "aa0b6842-0f83-4f7a-9d3f-ca339cdf4404",
+        "3e7a29e8-b6f0-4dcc-a481-572aaa00ce99"
+      ],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "7c43acac-f84d-45f1-886b-894b1c292f3e": {
+      "id": "7c43acac-f84d-45f1-886b-894b1c292f3e",
+      "content": "Right click on a node should copy it and its descendants to the clipboard",
+      "children": [
+        "258e3647-b115-4d7a-9e31-63eaa6d3c5b5"
+      ],
+      "metadata": {
+        "status": "completed",
+        "expanded": false
+      }
+    },
+    "258e3647-b115-4d7a-9e31-63eaa6d3c5b5": {
+      "id": "258e3647-b115-4d7a-9e31-63eaa6d3c5b5",
+      "content": "The format should be the same MD format we use for sending something to terminal",
+      "children": [],
+      "metadata": {
+        "status": "completed"
+      }
+    },
+    "c5e7326b-e18f-4509-994e-081400c54994": {
+      "id": "c5e7326b-e18f-4509-994e-081400c54994",
+      "content": "There should be a browser button next to the terminal button in the right of the tab bar",
+      "children": [
+        "5674015b-5be6-4b7c-9193-ae7ac42f3689",
+        "72b17a8e-db6f-49ca-80c3-9a76a224a440"
+      ],
+      "metadata": {
+        "status": "completed",
+        "expanded": false
+      }
+    },
+    "5674015b-5be6-4b7c-9193-ae7ac42f3689": {
+      "id": "5674015b-5be6-4b7c-9193-ae7ac42f3689",
+      "content": "Clicking on this opens a side panel with the browser",
+      "children": [],
+      "metadata": {
+        "status": "completed"
+      }
+    },
+    "72b17a8e-db6f-49ca-80c3-9a76a224a440": {
+      "id": "72b17a8e-db6f-49ca-80c3-9a76a224a440",
+      "content": "If there is a terminal panel open, it minimizes it",
+      "children": [
+        "064edf20-1aff-483b-b685-33a2aa45f66a",
+        "3bd47aa3-d6a7-41e4-a016-9c24068a6ec2"
+      ],
+      "metadata": {
+        "status": "completed"
+      }
+    },
+    "8627ce04-5125-4c2b-8677-813dc1e2c5cf": {
+      "id": "8627ce04-5125-4c2b-8677-813dc1e2c5cf",
+      "content": "There should be a toggle button (⬇/➡) to move panel between bottom and side\n  positions",
+      "children": [
+        "3eb96326-51d3-423d-8503-82a6bafe1922",
+        "b3be78ab-a86e-4731-9eee-15e3ca365c4e",
+        "191b0663-1b32-4560-892f-a7a3ec0909da",
+        "3f908158-fe8f-4e96-8dbb-da6aae6b1230"
+      ],
+      "metadata": {
+        "status": "completed",
+        "expanded": false
+      }
+    },
+    "064edf20-1aff-483b-b685-33a2aa45f66a": {
+      "id": "064edf20-1aff-483b-b685-33a2aa45f66a",
+      "content": "When clicking on the terminal button again, it shows it, and minimizes the browser panel",
+      "children": [],
+      "metadata": {
+        "status": "completed"
+      }
+    },
+    "3bd47aa3-d6a7-41e4-a016-9c24068a6ec2": {
+      "id": "3bd47aa3-d6a7-41e4-a016-9c24068a6ec2",
+      "content": "Nothing gets closed, the previous sessions appear when opening the panel",
+      "children": [],
+      "metadata": {
+        "status": "completed"
+      }
+    },
+    "3eb96326-51d3-423d-8503-82a6bafe1922": {
+      "id": "3eb96326-51d3-423d-8503-82a6bafe1922",
+      "content": "Panel position preference should be remembered between sessions",
+      "children": [],
+      "metadata": {
+        "status": "completed"
+      }
+    },
+    "b3be78ab-a86e-4731-9eee-15e3ca365c4e": {
+      "id": "b3be78ab-a86e-4731-9eee-15e3ca365c4e",
+      "content": "Same position preference applies to terminal panel (shared panel space)",
+      "children": [],
+      "metadata": {
+        "status": "completed"
+      }
+    },
+    "191b0663-1b32-4560-892f-a7a3ec0909da": {
+      "id": "191b0663-1b32-4560-892f-a7a3ec0909da",
+      "content": "Panel size (width/height) should be remembered between sessions",
+      "children": [],
+      "metadata": {
+        "status": "completed"
+      }
+    },
+    "3f908158-fe8f-4e96-8dbb-da6aae6b1230": {
+      "id": "3f908158-fe8f-4e96-8dbb-da6aae6b1230",
+      "content": "Panel size should be shared between browser and terminal",
+      "children": [],
+      "metadata": {
+        "status": "completed"
+      }
+    },
+    "689012c7-af48-47d3-9ca2-a0fc644d069b": {
+      "id": "689012c7-af48-47d3-9ca2-a0fc644d069b",
+      "content": "Browser tabs functionality",
+      "children": [
+        "e06ca801-95a2-4ac9-a4f9-07af8fc53279",
+        "4bf11414-ea4e-4412-817d-8a8e0e35696f",
+        "253dc403-cfb1-463b-a4df-0470bfa3b6ff",
+        "5105370c-89df-4249-822a-42d44b6beca4",
+        "79a32959-15a8-48f9-9ef9-c15ac2b7175a",
+        "8fc0a61c-eb45-4d2a-8877-ffdce7c4cc43"
+      ],
+      "metadata": {
+        "status": "completed",
+        "expanded": false
+      }
+    },
+    "e06ca801-95a2-4ac9-a4f9-07af8fc53279": {
+      "id": "e06ca801-95a2-4ac9-a4f9-07af8fc53279",
+      "content": "There should be ability to create tabs with a + button",
+      "children": [],
+      "metadata": {
+        "status": "completed"
+      }
+    },
+    "4bf11414-ea4e-4412-817d-8a8e0e35696f": {
+      "id": "4bf11414-ea4e-4412-817d-8a8e0e35696f",
+      "content": "Tabs should have close buttons (×)",
+      "children": [],
+      "metadata": {
+        "status": "completed"
+      }
+    },
+    "253dc403-cfb1-463b-a4df-0470bfa3b6ff": {
+      "id": "253dc403-cfb1-463b-a4df-0470bfa3b6ff",
+      "content": "Tab width should be limited (max 200px)",
+      "children": [],
+      "metadata": {
+        "status": "completed"
+      }
+    },
+    "5105370c-89df-4249-822a-42d44b6beca4": {
+      "id": "5105370c-89df-4249-822a-42d44b6beca4",
+      "content": "Full title should be displayed on hover",
+      "children": [],
+      "metadata": {
+        "status": "completed"
+      }
+    },
+    "79a32959-15a8-48f9-9ef9-c15ac2b7175a": {
+      "id": "79a32959-15a8-48f9-9ef9-c15ac2b7175a",
+      "content": "Tabs should persist between sessions",
+      "children": [],
+      "metadata": {
+        "status": "completed"
+      }
+    },
+    "8fc0a61c-eb45-4d2a-8877-ffdce7c4cc43": {
+      "id": "8fc0a61c-eb45-4d2a-8877-ffdce7c4cc43",
+      "content": "Active tab should be remembered between sessions",
+      "children": [],
+      "metadata": {
+        "status": "completed"
+      }
+    },
+    "325474ef-7f6e-4153-85de-d58fc31ac1f9": {
+      "id": "325474ef-7f6e-4153-85de-d58fc31ac1f9",
+      "content": "Browser navigation",
+      "children": [
+        "8bd391d7-c73e-4c26-8b0e-2a8dc3f56989",
+        "0d2fd590-94fc-4c22-836c-51e048d9f39b",
+        "0d0db6bc-ed8d-4cc5-b14a-6dd515ed98ff",
+        "ee96f7d6-5aae-46ef-bf57-5dc5174eb2b7",
+        "4a4b0956-21ab-48d6-8084-82d342b65a89",
+        "a3135edb-8c74-406c-a2d9-b3faec842c52"
+      ],
+      "metadata": {
+        "status": "completed",
+        "expanded": false
+      }
+    },
+    "8bd391d7-c73e-4c26-8b0e-2a8dc3f56989": {
+      "id": "8bd391d7-c73e-4c26-8b0e-2a8dc3f56989",
+      "content": "Address bar for URL input and display",
+      "children": [],
+      "metadata": {
+        "status": "completed"
+      }
+    },
+    "0d2fd590-94fc-4c22-836c-51e048d9f39b": {
+      "id": "0d2fd590-94fc-4c22-836c-51e048d9f39b",
+      "content": "Back button (←) - disabled when no history",
+      "children": [],
+      "metadata": {
+        "status": "completed"
+      }
+    },
+    "0d0db6bc-ed8d-4cc5-b14a-6dd515ed98ff": {
+      "id": "0d0db6bc-ed8d-4cc5-b14a-6dd515ed98ff",
+      "content": "Forward button (→) - disabled when no forward history",
+      "children": [],
+      "metadata": {
+        "status": "completed"
+      }
+    },
+    "ee96f7d6-5aae-46ef-bf57-5dc5174eb2b7": {
+      "id": "ee96f7d6-5aae-46ef-bf57-5dc5174eb2b7",
+      "content": "Reload button (↻)",
+      "children": [],
+      "metadata": {
+        "status": "completed"
+      }
+    },
+    "4a4b0956-21ab-48d6-8084-82d342b65a89": {
+      "id": "4a4b0956-21ab-48d6-8084-82d342b65a89",
+      "content": "URL editing with auto-https:// prepending",
+      "children": [],
+      "metadata": {
+        "status": "completed"
+      }
+    },
+    "a3135edb-8c74-406c-a2d9-b3faec842c52": {
+      "id": "a3135edb-8c74-406c-a2d9-b3faec842c52",
+      "content": "Navigation updates address bar without overwriting user input",
+      "children": [],
+      "metadata": {
+        "status": "completed"
+      }
+    },
+    "05bb8212-2ba7-4ab9-a94c-cd09fb568265": {
+      "id": "05bb8212-2ba7-4ab9-a94c-cd09fb568265",
+      "content": "Browser session persistence",
+      "children": [
+        "8b56b498-bcda-4d9f-ae1b-e203b87f6b71",
+        "b6b0999b-82a9-4199-8c50-9ac09da79be5",
+        "79200bce-0a1a-4647-9573-f585010fd0a7",
+        "c914d78c-475a-428e-a87f-43f57d48761e",
+        "be02a260-10a5-4b87-8f14-bd2b2e879307"
+      ],
+      "metadata": {
+        "status": "completed",
+        "expanded": false
+      }
+    },
+    "8b56b498-bcda-4d9f-ae1b-e203b87f6b71": {
+      "id": "8b56b498-bcda-4d9f-ae1b-e203b87f6b71",
+      "content": "All tabs and their URLs should be saved",
+      "children": [],
+      "metadata": {
+        "status": "completed"
+      }
+    },
+    "b6b0999b-82a9-4199-8c50-9ac09da79be5": {
+      "id": "b6b0999b-82a9-4199-8c50-9ac09da79be5",
+      "content": "Browser visibility state should be saved",
+      "children": [],
+      "metadata": {
+        "status": "completed"
+      }
+    },
+    "79200bce-0a1a-4647-9573-f585010fd0a7": {
+      "id": "79200bce-0a1a-4647-9573-f585010fd0a7",
+      "content": "Panel position and size should be saved",
+      "children": [],
+      "metadata": {
+        "status": "completed"
+      }
+    },
+    "c914d78c-475a-428e-a87f-43f57d48761e": {
+      "id": "c914d78c-475a-428e-a87f-43f57d48761e",
+      "content": "Cookies and logins should persist (shared partition)",
+      "children": [],
+      "metadata": {
+        "status": "completed"
+      }
+    },
+    "be02a260-10a5-4b87-8f14-bd2b2e879307": {
+      "id": "be02a260-10a5-4b87-8f14-bd2b2e879307",
+      "content": "Default to ecosia.org on first run",
+      "children": [],
+      "metadata": {
+        "status": "completed"
+      }
+    },
+    "aa0b6842-0f83-4f7a-9d3f-ca339cdf4404": {
+      "id": "aa0b6842-0f83-4f7a-9d3f-ca339cdf4404",
+      "content": "Terminal auto-creation",
+      "children": [
+        "da428de7-176b-4c95-b863-b3ba79c80bfc",
+        "a1da1b95-615a-4889-9fc0-48d883f140c9",
+        "39c0ca55-31b2-4a25-8964-6331f559817a",
+        "61bd2f5f-3363-41ab-999b-58ccfb9b3b06"
+      ],
+      "metadata": {
+        "status": "completed",
+        "expanded": false
+      }
+    },
+    "da428de7-176b-4c95-b863-b3ba79c80bfc": {
+      "id": "da428de7-176b-4c95-b863-b3ba79c80bfc",
+      "content": "Terminal should auto-create on startup if browser is not visible",
+      "children": [],
+      "metadata": {
+        "status": "completed"
+      }
+    },
+    "a1da1b95-615a-4889-9fc0-48d883f140c9": {
+      "id": "a1da1b95-615a-4889-9fc0-48d883f140c9",
+      "content": "Terminal should auto-create when clicking terminal button if none exist",
+      "children": [],
+      "metadata": {
+        "status": "completed"
+      }
+    },
+    "39c0ca55-31b2-4a25-8964-6331f559817a": {
+      "id": "39c0ca55-31b2-4a25-8964-6331f559817a",
+      "content": "Terminal opens in user's home directory",
+      "children": [],
+      "metadata": {
+        "status": "completed"
+      }
+    },
+    "61bd2f5f-3363-41ab-999b-58ccfb9b3b06": {
+      "id": "61bd2f5f-3363-41ab-999b-58ccfb9b3b06",
+      "content": "Terminal has + button in tab bar for creating new terminals",
+      "children": [],
+      "metadata": {
+        "status": "completed"
+      }
+    },
+    "3e7a29e8-b6f0-4dcc-a481-572aaa00ce99": {
+      "id": "3e7a29e8-b6f0-4dcc-a481-572aaa00ce99",
+      "content": "Panel resizing",
+      "children": [
+        "72a73daa-aa40-4337-8c28-578161fa2a46",
+        "c97ae16d-85e2-43ae-ba51-8f738e09648d",
+        "4f692289-cd28-468a-9e57-25ce10c7808d"
+      ],
+      "metadata": {
+        "status": "completed",
+        "expanded": false
+      }
+    },
+    "72a73daa-aa40-4337-8c28-578161fa2a46": {
+      "id": "72a73daa-aa40-4337-8c28-578161fa2a46",
+      "content": "Resize handle should release on mouse up (not capture events during resize)",
+      "children": [],
+      "metadata": {
+        "status": "completed"
+      }
+    },
+    "c97ae16d-85e2-43ae-ba51-8f738e09648d": {
+      "id": "c97ae16d-85e2-43ae-ba51-8f738e09648d",
+      "content": "Resizing should work correctly when dragging over webview",
+      "children": [],
+      "metadata": {
+        "status": "completed"
+      }
+    },
+    "4f692289-cd28-468a-9e57-25ce10c7808d": {
+      "id": "4f692289-cd28-468a-9e57-25ce10c7808d",
+      "content": "Default browser width should be 50% of window",
+      "children": [],
+      "metadata": {
+        "status": "completed"
+      }
+    },
+    "18a12739-e26a-49b6-8924-e6959153b93f": {
+      "id": "18a12739-e26a-49b6-8924-e6959153b93f",
+      "content": "Bugs",
+      "children": [
+        "c6d477c0-4a7b-4db9-8b24-5bf9a128a0df"
+      ],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "c6d477c0-4a7b-4db9-8b24-5bf9a128a0df": {
+      "id": "c6d477c0-4a7b-4db9-8b24-5bf9a128a0df",
       "content": "",
       "children": [],
       "metadata": {
         "status": "pending"
+      }
+    },
+    "3a376191-72a1-43d9-9488-a834721d5c7d": {
+      "id": "3a376191-72a1-43d9-9488-a834721d5c7d",
+      "content": "Refactor",
+      "children": [
+        "7193b176-7ef2-42d4-be1b-54329e8cfeb6",
+        "b07169f9-8bb2-4565-b869-64269bbfa1fb",
+        "8816b073-8d04-4cd5-9f02-e64214044231",
+        "2274cfb2-4049-44fd-af82-40816c65c07a",
+        "3e5a7158-eef2-4ae4-a869-575a7c6b8ff6",
+        "6692624c-0391-4e11-9785-de27a8facbaa",
+        "8099c6e2-5283-420e-b7ae-46f2a0298dba",
+        "4eeed787-c9c0-4822-a937-768500dba8e6",
+        "dac085ea-2e38-458a-b804-de5fd5c7e005"
+      ],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "7193b176-7ef2-42d4-be1b-54329e8cfeb6": {
+      "id": "7193b176-7ef2-42d4-be1b-54329e8cfeb6",
+      "content": "There is stuff related to default terminal in app.tsx - should this not be in useTerminal.ts ?",
+      "children": [
+        "1cdc8ce3-7035-4240-b328-b51fe04283b7"
+      ],
+      "metadata": {
+        "status": "completed",
+        "expanded": false
+      }
+    },
+    "b07169f9-8bb2-4565-b869-64269bbfa1fb": {
+      "id": "b07169f9-8bb2-4565-b869-64269bbfa1fb",
+      "content": "Read arbo/architecture.md and identify refactor opportunities in code since last commit",
+      "children": [],
+      "metadata": {
+        "status": "completed"
+      }
+    },
+    "8816b073-8d04-4cd5-9f02-e64214044231": {
+      "id": "8816b073-8d04-4cd5-9f02-e64214044231",
+      "content": "There is an arbo/browser-session.json that should not be there",
+      "children": [],
+      "metadata": {
+        "status": "completed"
+      }
+    },
+    "2274cfb2-4049-44fd-af82-40816c65c07a": {
+      "id": "2274cfb2-4049-44fd-af82-40816c65c07a",
+      "content": "Stuff in browser.tsx that should be in a hooks file",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "3e5a7158-eef2-4ae4-a869-575a7c6b8ff6": {
+      "id": "3e5a7158-eef2-4ae4-a869-575a7c6b8ff6",
+      "content": "Ecosia.org hardcoded in panelActions and browserPanel, should be only one source",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "6692624c-0391-4e11-9785-de27a8facbaa": {
+      "id": "6692624c-0391-4e11-9785-de27a8facbaa",
+      "content": "Stuff in browserPanel.tsx that should be in hooks",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "8099c6e2-5283-420e-b7ae-46f2a0298dba": {
+      "id": "8099c6e2-5283-420e-b7ae-46f2a0298dba",
+      "content": "browserPanel.tsx should be divided into sub component files each with their own directory and hooks files",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "dac085ea-2e38-458a-b804-de5fd5c7e005": {
+      "id": "dac085ea-2e38-458a-b804-de5fd5c7e005",
+      "content": "panelActions needs a hooks file with logic extracted to it",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "4eeed787-c9c0-4822-a937-768500dba8e6": {
+      "id": "4eeed787-c9c0-4822-a937-768500dba8e6",
+      "content": "there's a userBrowserResize, did we not do this code already for resizing the terminal ? it should be resused - perhaps we need a side panel component  to unify them ?",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "1cdc8ce3-7035-4240-b328-b51fe04283b7": {
+      "id": "1cdc8ce3-7035-4240-b328-b51fe04283b7",
+      "content": "Moved to hooks file",
+      "children": [],
+      "metadata": {
+        "status": "completed"
       }
     }
   }

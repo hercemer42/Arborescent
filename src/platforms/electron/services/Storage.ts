@@ -1,5 +1,5 @@
 import { ArboFile } from '../../../shared/types';
-import { StorageService as IStorageService, SessionState } from '../../../shared/interfaces';
+import { StorageService as IStorageService, SessionState, BrowserSession } from '../../../shared/interfaces';
 import { getNextUntitledNumber } from '../../../shared/utils/fileNaming';
 
 export class Storage implements IStorageService {
@@ -80,5 +80,20 @@ export class Storage implements IStorageService {
 
   async showUnsavedChangesDialog(fileName: string): Promise<number> {
     return window.electron.showUnsavedChangesDialog(fileName);
+  }
+
+  async saveBrowserSession(session: BrowserSession): Promise<void> {
+    const sessionData = JSON.stringify(session, null, 2);
+    await window.electron.saveBrowserSession(sessionData);
+  }
+
+  async getBrowserSession(): Promise<BrowserSession | null> {
+    const sessionData = await window.electron.getBrowserSession();
+    if (!sessionData) return null;
+    try {
+      return JSON.parse(sessionData) as BrowserSession;
+    } catch {
+      return null;
+    }
   }
 }

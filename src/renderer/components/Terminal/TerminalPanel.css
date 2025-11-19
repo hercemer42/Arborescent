@@ -45,17 +45,36 @@
 
 .new-terminal-button {
   padding: 8px 16px;
-  background: none;
+  background: var(--accent-primary);
+  color: white;
   border: none;
-  color: var(--gray-500);
+  border-radius: 4px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 14px;
   transition: background-color 0.1s;
   flex-shrink: 0;
 }
 
 .new-terminal-button:hover {
-  background: var(--gray-100);
+  background: var(--accent-secondary);
+}
+
+.terminal-tabs-left .new-terminal-button {
+  padding: 6px 12px;
+  font-size: 18px;
+  font-weight: bold;
+  min-width: 32px;
+  height: 32px;
+  margin-left: 4px;
+  background-color: transparent;
+  border: 1px solid var(--border-primary);
+  color: var(--text-primary);
+  border-radius: 4px;
+}
+
+.terminal-tabs-left .new-terminal-button:hover {
+  background-color: var(--gray-100);
+  border-color: var(--blue-500);
 }
 
 .toggle-panel-button {

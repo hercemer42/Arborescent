@@ -15,6 +15,8 @@ interface TerminalState {
   activeTerminalId: string | null;
   panelPosition: PanelPosition;
   isTerminalVisible: boolean;
+  panelHeight: number;
+  panelWidth: number;
 
   // Actions
   addTerminal: (terminal: TerminalInfo) => void;
@@ -25,6 +27,8 @@ interface TerminalState {
   toggleTerminalVisibility: () => void;
   showTerminal: () => void;
   hideTerminal: () => void;
+  setPanelHeight: (height: number) => void;
+  setPanelWidth: (width: number) => void;
 }
 
 export const useTerminalStore = create<TerminalState>((set) => ({
@@ -32,13 +36,20 @@ export const useTerminalStore = create<TerminalState>((set) => ({
   activeTerminalId: null,
   panelPosition: 'side', // Default to side panel
   isTerminalVisible: false, // Default to closed
+  panelHeight: 300,
+  panelWidth: typeof window !== 'undefined' ? window.innerWidth * 0.5 : 600,
 
-  addTerminal: (terminal: TerminalInfo) =>
+  addTerminal: (terminal: TerminalInfo) => {
     set((state) => ({
       terminals: [...state.terminals, terminal],
       activeTerminalId: terminal.id, // Auto-focus new terminal
       isTerminalVisible: true, // Show terminal when adding a new one
-    })),
+    }));
+    // Hide browser when adding a terminal (lazy import to avoid circular dependency)
+    import('../browser/browserStore').then(({ useBrowserStore }) => {
+      useBrowserStore.getState().actions.hideBrowser();
+    });
+  },
 
   removeTerminal: (id: string) =>
     set((state) => {
@@ -70,13 +81,31 @@ export const useTerminalStore = create<TerminalState>((set) => ({
     })),
 
   toggleTerminalVisibility: () =>
-    set((state) => ({
-      isTerminalVisible: !state.isTerminalVisible,
-    })),
+    set((state) => {
+      const newVisibility = !state.isTerminalVisible;
+      if (newVisibility) {
+        // Hide browser when showing terminal (lazy import to avoid circular dependency)
+        import('../browser/browserStore').then(({ useBrowserStore }) => {
+          useBrowserStore.getState().actions.hideBrowser();
+        });
+      }
+      return { isTerminalVisible: newVisibility };
+    }),
 
-  showTerminal: () =>
-    set({ isTerminalVisible: true }),
+  showTerminal: () => {
+    set({ isTerminalVisible: true });
+    // Hide browser when showing terminal (lazy import to avoid circular dependency)
+    import('../browser/browserStore').then(({ useBrowserStore }) => {
+      useBrowserStore.getState().actions.hideBrowser();
+    });
+  },
 
   hideTerminal: () =>
     set({ isTerminalVisible: false }),
+
+  setPanelHeight: (height: number) =>
+    set({ panelHeight: height }),
+
+  setPanelWidth: (width: number) =>
+    set({ panelWidth: width }),
 }));

@@ -34,6 +34,7 @@ const createWindow = async () => {
       preload: path.join(__dirname, 'index.js'),
       contextIsolation: true,
       nodeIntegration: false,
+      webviewTag: true,
     },
   });
 

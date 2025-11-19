@@ -5,6 +5,21 @@ export interface SessionState {
   activeFilePath: string | null;
 }
 
+export interface BrowserTab {
+  id: string;
+  title: string;
+  url: string;
+}
+
+export interface BrowserSession {
+  tabs: BrowserTab[];
+  activeTabId: string | null;
+  panelPosition: 'side' | 'bottom';
+  isBrowserVisible: boolean;
+  panelHeight: number;
+  panelWidth: number;
+}
+
 export interface StorageService {
   loadDocument(path: string): Promise<ArboFile>;
   saveDocument(path: string, data: ArboFile): Promise<void>;
@@ -17,6 +32,8 @@ export interface StorageService {
   deleteTempFile(filePath: string): Promise<void>;
   getTempFiles(): Promise<string[]>;
   isTempFile(filePath: string): Promise<boolean>;
+  saveBrowserSession(session: BrowserSession): Promise<void>;
+  getBrowserSession(): Promise<BrowserSession | null>;
 }
 
 export interface MenuService {

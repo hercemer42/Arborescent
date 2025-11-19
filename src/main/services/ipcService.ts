@@ -153,6 +153,34 @@ export async function registerIpcHandlers(getMainWindow: () => BrowserWindow | n
     }
   });
 
+  ipcMain.handle('save-browser-session', async (_, sessionData: string) => {
+    try {
+      const userDataPath = app.getPath('userData');
+      const sessionPath = path.join(userDataPath, 'browser-session.json');
+      await fs.writeFile(sessionPath, sessionData, 'utf-8');
+      logger.info('Browser session saved', 'IPC');
+    } catch (error) {
+      logger.error('Failed to save browser session', error instanceof Error ? error : undefined, 'IPC', false);
+    }
+  });
+
+  ipcMain.handle('get-browser-session', async () => {
+    try {
+      const userDataPath = app.getPath('userData');
+      const sessionPath = path.join(userDataPath, 'browser-session.json');
+      const content = await fs.readFile(sessionPath, 'utf-8');
+      logger.info('Browser session loaded', 'IPC');
+      return content;
+    } catch (error) {
+      if ((error as NodeJS.ErrnoException).code === 'ENOENT') {
+        logger.info('No browser session file found', 'IPC');
+        return null;
+      }
+      logger.error('Failed to load browser session', error instanceof Error ? error : undefined, 'IPC', false);
+      return null;
+    }
+  });
+
   ipcMain.handle('save-temp-files-metadata', async (_, metadataJson: string) => {
     try {
       const userDataPath = app.getPath('userData');

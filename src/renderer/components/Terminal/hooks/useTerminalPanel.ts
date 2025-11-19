@@ -1,4 +1,6 @@
+import { useCallback } from 'react';
 import { useTerminalStore } from '../../../store/terminal/terminalStore';
+import { createTerminal } from '../../../services/terminalService';
 import { logger } from '../../../services/logger';
 
 /**
@@ -6,28 +8,21 @@ import { logger } from '../../../services/logger';
  * Handles creating and closing terminals
  */
 export function useTerminalPanel() {
-  const { terminals, addTerminal, removeTerminal } = useTerminalStore();
+  const { terminals, removeTerminal } = useTerminalStore();
 
-  const handleNewTerminal = async () => {
-    const id = `terminal-${Date.now()}`;
+  const handleNewTerminal = useCallback(async () => {
     const title = `Terminal ${terminals.length + 1}`;
+    await createTerminal(title);
+  }, [terminals.length]);
 
-    try {
-      const terminalInfo = await window.electron.terminalCreate(id, title);
-      addTerminal(terminalInfo);
-    } catch (error) {
-      logger.error('Failed to create terminal', error as Error, 'TerminalPanel');
-    }
-  };
-
-  const handleCloseTerminal = async (id: string) => {
+  const handleCloseTerminal = useCallback(async (id: string) => {
     try {
       await window.electron.terminalDestroy(id);
       removeTerminal(id);
     } catch (error) {
       logger.error('Failed to close terminal', error as Error, 'TerminalPanel');
     }
-  };
+  }, [removeTerminal]);
 
   return {
     handleNewTerminal,
