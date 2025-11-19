@@ -56,7 +56,13 @@
   background-color: var(--white);
 }
 
-.terminal-container {
+.resizable-panel {
+  background-color: var(--bg-primary);
   flex-shrink: 0;
   overflow: hidden;
+}
+
+/* Disable pointer events during resize to prevent child elements from capturing mouse events */
+.resizable-panel.resizing * {
+  pointer-events: none;
 }

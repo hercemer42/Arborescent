@@ -2,7 +2,7 @@
   "format": "Arborescent",
   "version": "1.0.0",
   "created": "2025-10-11T00:00:00.000Z",
-  "updated": "2025-11-19T13:52:30.655Z",
+  "updated": "2025-11-19T14:36:07.439Z",
   "author": "brian@brianfox.fr",
   "rootNodeId": "root",
   "nodes": {
@@ -1275,7 +1275,7 @@
       ],
       "metadata": {
         "status": "completed",
-        "expanded": false
+        "expanded": true
       }
     },
     "e9bb0de8-a33a-4054-8902-466a58ae3a1a": {
@@ -3024,7 +3024,8 @@
         "325474ef-7f6e-4153-85de-d58fc31ac1f9",
         "05bb8212-2ba7-4ab9-a94c-cd09fb568265",
         "aa0b6842-0f83-4f7a-9d3f-ca339cdf4404",
-        "3e7a29e8-b6f0-4dcc-a481-572aaa00ce99"
+        "3e7a29e8-b6f0-4dcc-a481-572aaa00ce99",
+        "1ba28725-58a8-4ca5-8eee-050984a2c410"
       ],
       "metadata": {
         "status": "pending"
@@ -3058,7 +3059,7 @@
       ],
       "metadata": {
         "status": "completed",
-        "expanded": false
+        "expanded": true
       }
     },
     "5674015b-5be6-4b7c-9193-ae7ac42f3689": {
@@ -3438,7 +3439,8 @@
         "6692624c-0391-4e11-9785-de27a8facbaa",
         "8099c6e2-5283-420e-b7ae-46f2a0298dba",
         "4eeed787-c9c0-4822-a937-768500dba8e6",
-        "dac085ea-2e38-458a-b804-de5fd5c7e005"
+        "dac085ea-2e38-458a-b804-de5fd5c7e005",
+        "070ca2b9-6e90-4e0a-8c63-3e7f247c7457"
       ],
       "metadata": {
         "status": "pending"
@@ -3500,7 +3502,7 @@
       "content": "browserPanel.tsx should be divided into sub component files each with their own directory and hooks files",
       "children": [],
       "metadata": {
-        "status": "pending"
+        "status": "completed"
       }
     },
     "dac085ea-2e38-458a-b804-de5fd5c7e005": {
@@ -3543,8 +3545,7 @@
       "children": [
         "a0d41291-4fcc-46df-923f-b31a13970c83",
         "ac2e431a-45e0-4dba-80de-9e9f78454b03",
-        "927628e2-4499-4004-9073-5a2f04c70747",
-        "f5c3ae2a-fbc6-4eaf-b207-e2cf74f02681"
+        "927628e2-4499-4004-9073-5a2f04c70747"
       ],
       "metadata": {
         "status": "pending"
@@ -3566,29 +3567,12 @@
         "status": "pending"
       }
     },
-    "f5c3ae2a-fbc6-4eaf-b207-e2cf74f02681": {
-      "id": "f5c3ae2a-fbc6-4eaf-b207-e2cf74f02681",
-      "content": "We already tried to fix this with a bunch of code - it didn't work",
-      "children": [
-        "0518f4df-ef1b-45f0-af97-baca8442931a"
-      ],
-      "metadata": {
-        "status": "pending"
-      }
-    },
-    "0518f4df-ef1b-45f0-af97-baca8442931a": {
-      "id": "0518f4df-ef1b-45f0-af97-baca8442931a",
-      "content": "Will need cleanup if we find the proper solution",
-      "children": [],
-      "metadata": {
-        "status": "pending"
-      }
-    },
     "927628e2-4499-4004-9073-5a2f04c70747": {
       "id": "927628e2-4499-4004-9073-5a2f04c70747",
       "content": "Claude seems to do this kind of weird thing sometimes even outside of arborescent where it looks like its fighting with how much to display, and trying to maintain the terminal position at the bottom.",
       "children": [
-        "49b42aeb-45be-4b2e-9cb2-9f28c7589857"
+        "49b42aeb-45be-4b2e-9cb2-9f28c7589857",
+        "feb58ecf-4a07-4fcf-a925-0aa2576ce965"
       ],
       "metadata": {
         "status": "pending"
@@ -3609,7 +3593,8 @@
         "b0b87860-dc20-4138-9b88-0a7ec82d8e94"
       ],
       "metadata": {
-        "status": "pending"
+        "status": "pending",
+        "expanded": false
       }
     },
     "b0b87860-dc20-4138-9b88-0a7ec82d8e94": {
@@ -3625,6 +3610,50 @@
     "263c0065-f86e-4fc4-bf60-1f22f8c39526": {
       "id": "263c0065-f86e-4fc4-bf60-1f22f8c39526",
       "content": "Be sure only the user can exploit this",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "feb58ecf-4a07-4fcf-a925-0aa2576ce965": {
+      "id": "feb58ecf-4a07-4fcf-a925-0aa2576ce965",
+      "content": "It might happen when it's showing a long list of changes that are longer than the screen length",
+      "children": [
+        "5448aca1-029f-457e-8fe3-3b256a435815"
+      ],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "5448aca1-029f-457e-8fe3-3b256a435815": {
+      "id": "5448aca1-029f-457e-8fe3-3b256a435815",
+      "content": "Not sure - an angle to explore at least",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "070ca2b9-6e90-4e0a-8c63-3e7f247c7457": {
+      "id": "070ca2b9-6e90-4e0a-8c63-3e7f247c7457",
+      "content": "I",
+      "children": [],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "1ba28725-58a8-4ca5-8eee-050984a2c410": {
+      "id": "1ba28725-58a8-4ca5-8eee-050984a2c410",
+      "content": "Keyboard shortcut",
+      "children": [
+        "7bd2489a-0697-47e7-98b5-8455be083797"
+      ],
+      "metadata": {
+        "status": "pending"
+      }
+    },
+    "7bd2489a-0697-47e7-98b5-8455be083797": {
+      "id": "7bd2489a-0697-47e7-98b5-8455be083797",
+      "content": "Suggest a keyboard shortcut to toggle on/off the browser in the side panel",
       "children": [],
       "metadata": {
         "status": "pending"

@@ -1,24 +1,31 @@
 import { useState, useEffect, RefObject } from 'react';
-import { useTerminalStore } from '../../../store/terminal/terminalStore';
 
-const MIN_TERMINAL_HEIGHT = 100;
-const MAX_TERMINAL_HEIGHT_RATIO = 0.8;
-const MIN_TERMINAL_WIDTH = 200;
-const MAX_TERMINAL_WIDTH_RATIO = 0.8;
+const MIN_PANEL_HEIGHT = 100;
+const MAX_PANEL_HEIGHT_RATIO = 0.8;
+const MIN_PANEL_WIDTH = 200;
+const MAX_PANEL_WIDTH_RATIO = 0.8;
 
-interface UseTerminalResizeOptions {
+interface UsePanelResizeOptions {
   contentRef: RefObject<HTMLDivElement | null>;
   panelPosition: 'bottom' | 'side';
+  panelHeight: number;
+  panelWidth: number;
+  setPanelHeight: (height: number) => void;
+  setPanelWidth: (width: number) => void;
 }
 
-export function useTerminalResize({
+/**
+ * Generic hook to handle panel resize functionality
+ * Works with any panel that can be positioned at the bottom or side
+ */
+export function usePanelResize({
   contentRef,
   panelPosition,
-}: UseTerminalResizeOptions) {
-  const terminalHeight = useTerminalStore((state) => state.panelHeight);
-  const terminalWidth = useTerminalStore((state) => state.panelWidth);
-  const setPanelHeight = useTerminalStore((state) => state.setPanelHeight);
-  const setPanelWidth = useTerminalStore((state) => state.setPanelWidth);
+  panelHeight,
+  panelWidth,
+  setPanelHeight,
+  setPanelWidth,
+}: UsePanelResizeOptions) {
   const [isResizing, setIsResizing] = useState(false);
 
   const handleMouseDown = (e: React.MouseEvent) => {
@@ -36,22 +43,22 @@ export function useTerminalResize({
 
       if (panelPosition === 'bottom') {
         // Vertical resize for bottom panel
-        const maxHeight = contentRect.height * MAX_TERMINAL_HEIGHT_RATIO;
+        const maxHeight = contentRect.height * MAX_PANEL_HEIGHT_RATIO;
         const newHeight = contentRect.bottom - e.clientY;
 
         const clampedHeight = Math.max(
-          MIN_TERMINAL_HEIGHT,
+          MIN_PANEL_HEIGHT,
           Math.min(maxHeight, newHeight)
         );
 
         setPanelHeight(clampedHeight);
       } else {
         // Horizontal resize for side panel
-        const maxWidth = contentRect.width * MAX_TERMINAL_WIDTH_RATIO;
-        const newWidth = contentRef.current.getBoundingClientRect().right - e.clientX;
+        const maxWidth = contentRect.width * MAX_PANEL_WIDTH_RATIO;
+        const newWidth = contentRect.right - e.clientX;
 
         const clampedWidth = Math.max(
-          MIN_TERMINAL_WIDTH,
+          MIN_PANEL_WIDTH,
           Math.min(maxWidth, newWidth)
         );
 
@@ -73,8 +80,8 @@ export function useTerminalResize({
   }, [isResizing, panelPosition, contentRef, setPanelHeight, setPanelWidth]);
 
   return {
-    terminalHeight,
-    terminalWidth,
+    panelHeight,
+    panelWidth,
     isResizing,
     handleMouseDown,
   };

@@ -34,10 +34,6 @@ export function createBrowserActions(get: StoreGetter, set: StoreSetter, storage
     const session: BrowserSession = {
       tabs: state.tabs,
       activeTabId: state.activeTabId,
-      panelPosition: state.panelPosition,
-      isBrowserVisible: state.isBrowserVisible,
-      panelHeight: state.panelHeight,
-      panelWidth: state.panelWidth,
     };
 
     try {
@@ -62,11 +58,6 @@ export function createBrowserActions(get: StoreGetter, set: StoreSetter, storage
       };
       saveBrowserSession({ ...state, ...newState });
       return newState;
-    });
-
-    // Hide terminal when showing browser (lazy import to avoid circular dependency)
-    import('../../terminal/terminalStore').then(({ useTerminalStore }) => {
-      useTerminalStore.getState().hideTerminal();
     });
   }
 
@@ -129,12 +120,6 @@ export function createBrowserActions(get: StoreGetter, set: StoreSetter, storage
   function toggleBrowserVisibility(): void {
     set((state: BrowserState) => {
       const newVisibility = !state.isBrowserVisible;
-      if (newVisibility) {
-        // Hide terminal when showing browser (lazy import to avoid circular dependency)
-        import('../../terminal/terminalStore').then(({ useTerminalStore }) => {
-          useTerminalStore.getState().hideTerminal();
-        });
-      }
       const newState = { isBrowserVisible: newVisibility };
       saveBrowserSession({ ...state, ...newState });
       return newState;
@@ -146,11 +131,6 @@ export function createBrowserActions(get: StoreGetter, set: StoreSetter, storage
       const newState = { isBrowserVisible: true };
       saveBrowserSession({ ...state, ...newState });
       return newState;
-    });
-
-    // Hide terminal when showing browser (lazy import to avoid circular dependency)
-    import('../../terminal/terminalStore').then(({ useTerminalStore }) => {
-      useTerminalStore.getState().hideTerminal();
     });
   }
 
@@ -166,10 +146,6 @@ export function createBrowserActions(get: StoreGetter, set: StoreSetter, storage
     set((state: BrowserState) => {
       const newState = { panelHeight: height };
       saveBrowserSession({ ...state, ...newState });
-      // Sync to terminal store
-      import('../../terminal/terminalStore').then(({ useTerminalStore }) => {
-        useTerminalStore.getState().setPanelHeight(height);
-      });
       return newState;
     });
   }
@@ -178,10 +154,6 @@ export function createBrowserActions(get: StoreGetter, set: StoreSetter, storage
     set((state: BrowserState) => {
       const newState = { panelWidth: width };
       saveBrowserSession({ ...state, ...newState });
-      // Sync to terminal store
-      import('../../terminal/terminalStore').then(({ useTerminalStore }) => {
-        useTerminalStore.getState().setPanelWidth(width);
-      });
       return newState;
     });
   }
@@ -193,19 +165,6 @@ export function createBrowserActions(get: StoreGetter, set: StoreSetter, storage
       set({
         tabs: session.tabs,
         activeTabId: session.activeTabId,
-        panelPosition: session.panelPosition,
-        isBrowserVisible: session.isBrowserVisible,
-        panelHeight: session.panelHeight || 300,
-        panelWidth: session.panelWidth || (typeof window !== 'undefined' ? window.innerWidth * 0.5 : 600),
-      });
-
-      // Sync panel sizes to terminal
-      import('../../terminal/terminalStore').then(({ useTerminalStore }) => {
-        const terminalStore = useTerminalStore.getState();
-        terminalStore.setPanelHeight(session.panelHeight || 300);
-        terminalStore.setPanelWidth(
-          session.panelWidth || (typeof window !== 'undefined' ? window.innerWidth * 0.5 : 600)
-        );
       });
 
       logger.info(`Restored ${session.tabs.length} browser tab(s)`, 'BrowserActions');
@@ -216,26 +175,13 @@ export function createBrowserActions(get: StoreGetter, set: StoreSetter, storage
         title: 'Ecosia',
         url: DEFAULT_BROWSER_URL,
       };
-      const defaultHeight = 300;
-      const defaultWidth = typeof window !== 'undefined' ? window.innerWidth * 0.5 : 600;
       const defaultState = {
         tabs: [defaultTab],
         activeTabId: defaultTab.id,
-        panelPosition: 'side' as 'side' | 'bottom',
-        isBrowserVisible: false,
-        panelHeight: defaultHeight,
-        panelWidth: defaultWidth,
       };
 
       set(defaultState);
-      saveBrowserSession(defaultState);
-
-      // Sync panel sizes to terminal
-      import('../../terminal/terminalStore').then(({ useTerminalStore }) => {
-        const terminalStore = useTerminalStore.getState();
-        terminalStore.setPanelHeight(defaultHeight);
-        terminalStore.setPanelWidth(defaultWidth);
-      });
+      saveBrowserSession(get());
 
       logger.info('Created default browser session', 'BrowserActions');
     }

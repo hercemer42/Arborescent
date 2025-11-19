@@ -1,4 +1,5 @@
 import { useBrowserStore } from '../../store/browser/browserStore';
+import { usePanelStore } from '../../store/panel/panelStore';
 import { BrowserTabBar } from './BrowserTabBar';
 import { BrowserNavBar } from './BrowserNavBar';
 import { BrowserContent } from './BrowserContent';
@@ -10,7 +11,9 @@ import { useBrowserNavigationSync } from './BrowserNavBar/hooks/useBrowserNaviga
 import './BrowserPanel.css';
 
 export function BrowserPanel() {
-  const { tabs, activeTabId, panelPosition, actions } = useBrowserStore();
+  const { tabs, activeTabId, actions } = useBrowserStore();
+  const panelPosition = usePanelStore((state) => state.panelPosition);
+  const togglePanelPosition = usePanelStore((state) => state.togglePanelPosition);
 
   // Manage webview references
   const { registerWebview, getActiveWebview, unregisterWebview } = useBrowserWebviewRefs(activeTabId);
@@ -43,7 +46,7 @@ export function BrowserPanel() {
         onTabClick={actions.setActiveTab}
         onTabClose={handleCloseBrowser}
         onNewTab={handleNewBrowser}
-        onTogglePanelPosition={actions.togglePanelPosition}
+        onTogglePanelPosition={togglePanelPosition}
       />
       <BrowserNavBar
         canGoBack={canGoBack}

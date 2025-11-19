@@ -52,6 +52,8 @@ global.window.electron = {
   getSession: vi.fn(),
   saveBrowserSession: vi.fn(),
   getBrowserSession: vi.fn(),
+  savePanelSession: vi.fn(),
+  getPanelSession: vi.fn(),
   getTempDir: vi.fn(),
   createTempFile: vi.fn(),
   deleteTempFile: vi.fn(),

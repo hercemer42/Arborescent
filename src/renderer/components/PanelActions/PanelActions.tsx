@@ -1,37 +1,45 @@
 import { useTerminalStore } from '../../store/terminal/terminalStore';
 import { useBrowserStore, DEFAULT_BROWSER_URL } from '../../store/browser/browserStore';
+import { usePanelStore } from '../../store/panel/panelStore';
 import { useTerminalPanel } from '../Terminal/hooks/useTerminalPanel';
 import './PanelActions.css';
 
 export function PanelActions() {
-  const { isTerminalVisible, terminals, showTerminal, toggleTerminalVisibility } = useTerminalStore();
-  const { isBrowserVisible, actions: browserActions } = useBrowserStore();
+  const activeContent = usePanelStore((state) => state.activeContent);
+  const showTerminal = usePanelStore((state) => state.showTerminal);
+  const showBrowser = usePanelStore((state) => state.showBrowser);
+  const hidePanel = usePanelStore((state) => state.hidePanel);
+
+  const terminals = useTerminalStore((state) => state.terminals);
+  const tabs = useBrowserStore((state) => state.tabs);
+  const addTab = useBrowserStore((state) => state.actions.addTab);
   const { handleNewTerminal } = useTerminalPanel();
 
   const handleTerminalToggle = async () => {
-    if (isTerminalVisible) {
-      toggleTerminalVisibility();
+    if (activeContent === 'terminal') {
+      // Hide panel if terminal is already showing
+      hidePanel();
     } else {
       // Create a new terminal if none exist
       if (terminals.length === 0) {
         await handleNewTerminal();
-      } else {
-        showTerminal();
       }
+      // Show terminal in panel
+      showTerminal();
     }
   };
 
   const handleBrowserToggle = () => {
-    if (isBrowserVisible) {
-      browserActions.toggleBrowserVisibility();
+    if (activeContent === 'browser') {
+      // Hide panel if browser is already showing
+      hidePanel();
     } else {
       // Create a new browser tab if none exist
-      const tabs = useBrowserStore.getState().tabs;
       if (tabs.length === 0) {
-        browserActions.addTab(DEFAULT_BROWSER_URL);
-      } else {
-        browserActions.showBrowser();
+        addTab(DEFAULT_BROWSER_URL);
       }
+      // Show browser in panel
+      showBrowser();
     }
   };
 
@@ -40,14 +48,14 @@ export function PanelActions() {
       <button
         className="panel-action-button"
         onClick={handleTerminalToggle}
-        title={isTerminalVisible ? 'Hide Terminal (Ctrl+`)' : 'Show Terminal (Ctrl+`)'}
+        title={activeContent === 'terminal' ? 'Hide Terminal (Ctrl+`)' : 'Show Terminal (Ctrl+`)'}
       >
         {'>_'}
       </button>
       <button
         className="panel-action-button"
         onClick={handleBrowserToggle}
-        title={isBrowserVisible ? 'Hide Browser' : 'Show Browser'}
+        title={activeContent === 'browser' ? 'Hide Browser' : 'Show Browser'}
       >
         {'🌐'}
       </button>

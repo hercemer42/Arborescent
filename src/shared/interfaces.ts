@@ -14,10 +14,13 @@ export interface BrowserTab {
 export interface BrowserSession {
   tabs: BrowserTab[];
   activeTabId: string | null;
+}
+
+export interface PanelSession {
   panelPosition: 'side' | 'bottom';
-  isBrowserVisible: boolean;
   panelHeight: number;
   panelWidth: number;
+  activeContent: 'terminal' | 'browser' | null;
 }
 
 export interface StorageService {
@@ -34,6 +37,8 @@ export interface StorageService {
   isTempFile(filePath: string): Promise<boolean>;
   saveBrowserSession(session: BrowserSession): Promise<void>;
   getBrowserSession(): Promise<BrowserSession | null>;
+  savePanelSession(session: PanelSession): Promise<void>;
+  getPanelSession(): Promise<PanelSession | null>;
 }
 
 export interface MenuService {

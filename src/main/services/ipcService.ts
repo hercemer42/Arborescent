@@ -181,6 +181,34 @@ export async function registerIpcHandlers(getMainWindow: () => BrowserWindow | n
     }
   });
 
+  ipcMain.handle('save-panel-session', async (_, sessionData: string) => {
+    try {
+      const userDataPath = app.getPath('userData');
+      const sessionPath = path.join(userDataPath, 'panel-session.json');
+      await fs.writeFile(sessionPath, sessionData, 'utf-8');
+      logger.info('Panel session saved', 'IPC');
+    } catch (error) {
+      logger.error('Failed to save panel session', error instanceof Error ? error : undefined, 'IPC', false);
+    }
+  });
+
+  ipcMain.handle('get-panel-session', async () => {
+    try {
+      const userDataPath = app.getPath('userData');
+      const sessionPath = path.join(userDataPath, 'panel-session.json');
+      const content = await fs.readFile(sessionPath, 'utf-8');
+      logger.info('Panel session loaded', 'IPC');
+      return content;
+    } catch (error) {
+      if ((error as NodeJS.ErrnoException).code === 'ENOENT') {
+        logger.info('No panel session file found', 'IPC');
+        return null;
+      }
+      logger.error('Failed to load panel session', error instanceof Error ? error : undefined, 'IPC', false);
+      return null;
+    }
+  });
+
   ipcMain.handle('save-temp-files-metadata', async (_, metadataJson: string) => {
     try {
       const userDataPath = app.getPath('userData');

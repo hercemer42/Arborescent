@@ -1,5 +1,5 @@
 import { ArboFile } from '../../../shared/types';
-import { StorageService as IStorageService, SessionState, BrowserSession } from '../../../shared/interfaces';
+import { StorageService as IStorageService, SessionState, BrowserSession, PanelSession } from '../../../shared/interfaces';
 import { getNextUntitledNumber } from '../../../shared/utils/fileNaming';
 
 export class Storage implements IStorageService {
@@ -92,6 +92,21 @@ export class Storage implements IStorageService {
     if (!sessionData) return null;
     try {
       return JSON.parse(sessionData) as BrowserSession;
+    } catch {
+      return null;
+    }
+  }
+
+  async savePanelSession(session: PanelSession): Promise<void> {
+    const sessionData = JSON.stringify(session, null, 2);
+    await window.electron.savePanelSession(sessionData);
+  }
+
+  async getPanelSession(): Promise<PanelSession | null> {
+    const sessionData = await window.electron.getPanelSession();
+    if (!sessionData) return null;
+    try {
+      return JSON.parse(sessionData) as PanelSession;
     } catch {
       return null;
     }

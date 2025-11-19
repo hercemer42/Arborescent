@@ -1,12 +1,14 @@
 import { useTerminalStore } from '../../store/terminal/terminalStore';
+import { usePanelStore } from '../../store/panel/panelStore';
 import { Terminal } from './Terminal';
 import { Tab } from '../Tab';
 import './TerminalPanel.css';
 import { useTerminalPanel } from './hooks/useTerminalPanel';
 
 export function TerminalPanel() {
-  const { terminals, activeTerminalId, panelPosition, setActiveTerminal, togglePanelPosition } =
-    useTerminalStore();
+  const { terminals, activeTerminalId, setActiveTerminal } = useTerminalStore();
+  const panelPosition = usePanelStore((state) => state.panelPosition);
+  const togglePanelPosition = usePanelStore((state) => state.togglePanelPosition);
   const { handleNewTerminal, handleCloseTerminal } = useTerminalPanel();
 
   return (

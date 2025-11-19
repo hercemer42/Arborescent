@@ -1,5 +1,4 @@
 import { useFilesStore } from '../../store/files/filesStore';
-import { useTerminalStore } from '../../store/terminal/terminalStore';
 import { matchesHotkey } from '../../data/hotkeyConfig';
 
 /**
@@ -10,7 +9,7 @@ import { matchesHotkey } from '../../data/hotkeyConfig';
 /**
  * Handles UI keyboard shortcuts
  */
-function handleUIShortcuts(event: KeyboardEvent): void {
+async function handleUIShortcuts(event: KeyboardEvent): Promise<void> {
   // Save file
   if (matchesHotkey(event, 'file', 'save')) {
     event.preventDefault();
@@ -48,7 +47,21 @@ function handleUIShortcuts(event: KeyboardEvent): void {
   // Toggle terminal (Ctrl/Cmd + `)
   if (event.key === '`' && (event.ctrlKey || event.metaKey) && !event.shiftKey && !event.altKey) {
     event.preventDefault();
-    useTerminalStore.getState().toggleTerminalVisibility();
+    const { usePanelStore } = await import('../../store/panel/panelStore');
+    const { useTerminalStore } = await import('../../store/terminal/terminalStore');
+    const panelStore = usePanelStore.getState();
+    const terminalStore = useTerminalStore.getState();
+
+    if (panelStore.activeContent === 'terminal') {
+      panelStore.hidePanel();
+    } else {
+      // Create terminal if none exist
+      if (terminalStore.terminals.length === 0) {
+        const { createTerminal } = await import('../terminalService');
+        await createTerminal('Terminal');
+      }
+      panelStore.showTerminal();
+    }
     return;
   }
 }

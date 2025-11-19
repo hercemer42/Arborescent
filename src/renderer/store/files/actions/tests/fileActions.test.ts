@@ -81,6 +81,8 @@ describe('fileActions', () => {
       isTempFile: vi.fn(() => Promise.resolve(false)),
       saveBrowserSession: vi.fn(),
       getBrowserSession: vi.fn(() => Promise.resolve(null)),
+      savePanelSession: vi.fn(),
+      getPanelSession: vi.fn(() => Promise.resolve(null)),
     };
 
     // Mock storeManager responses

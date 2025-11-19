@@ -1,11 +1,9 @@
 import { useState, useRef } from 'react';
 import { ToastContainer } from './components/Toast';
 import { Workspace } from './components/Workspace';
-import { TerminalContainer } from './components/Terminal';
-import { BrowserContainer } from './components/Browser';
+import { Panel } from './components/Panel';
 import { useToastStore } from './store/toast/toastStore';
-import { useTerminalStore } from './store/terminal/terminalStore';
-import { useBrowserStore } from './store/browser/browserStore';
+import { usePanelStore } from './store/panel/panelStore';
 import { useAppErrorHandling } from './useAppErrorHandling';
 import { useAppInitialization } from './hooks';
 import './App.css';
@@ -14,14 +12,9 @@ export function App() {
   const [isInitializing, setIsInitializing] = useState(true);
   const contentRef = useRef<HTMLDivElement>(null);
 
-  const terminalPanelPosition = useTerminalStore((state) => state.panelPosition);
-  const isTerminalVisible = useTerminalStore((state) => state.isTerminalVisible);
-  const browserPanelPosition = useBrowserStore((state) => state.panelPosition);
-  const isBrowserVisible = useBrowserStore((state) => state.isBrowserVisible);
-
-  // Use whichever panel is visible for layout
-  const panelPosition = isBrowserVisible ? browserPanelPosition : terminalPanelPosition;
-  const isPanelVisible = isTerminalVisible || isBrowserVisible;
+  const panelPosition = usePanelStore((state) => state.panelPosition);
+  const activeContent = usePanelStore((state) => state.activeContent);
+  const isPanelVisible = activeContent !== null;
 
   const toasts = useToastStore((state) => state.toasts);
   const removeToast = useToastStore((state) => state.removeToast);
@@ -47,8 +40,7 @@ export function App() {
           <div className="workspace-container">
             <Workspace />
           </div>
-          <TerminalContainer contentRef={contentRef} />
-          <BrowserContainer contentRef={contentRef} />
+          <Panel contentRef={contentRef} />
         </div>
       )}
     </div>

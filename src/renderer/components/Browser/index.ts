@@ -1,10 +1,8 @@
 export { Browser } from './Browser';
 export { BrowserPanel } from './BrowserPanel';
-export { BrowserContainer } from './BrowserContainer';
 export { BrowserTabBar } from './BrowserTabBar';
 export { BrowserNavBar } from './BrowserNavBar';
 export { BrowserContent } from './BrowserContent';
-export { useBrowserResize } from './hooks/useBrowserResize';
 export { useBrowserWebviewRefs } from './hooks/useBrowserWebviewRefs';
 export { useBrowserWebview } from './hooks/useBrowserWebview';
 export { useBrowserNavigation } from './BrowserNavBar/hooks/useBrowserNavigation';
