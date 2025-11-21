@@ -49,6 +49,9 @@ export function useTerminal({ id, onResize }: UseTerminalOptions) {
       xterm.open(terminalRef.current);
       fitAddon.fit();
 
+      // Start scrolled to bottom (default is top of scrollback)
+      xterm.scrollToBottom();
+
       xtermRef.current = xterm;
       fitAddonRef.current = fitAddon;
       setIsInitialized(true);
@@ -81,17 +84,29 @@ export function useTerminal({ id, onResize }: UseTerminalOptions) {
     const xterm = xtermRef.current;
     const fitAddon = fitAddonRef.current;
 
+    // Tolerance for "at bottom" check to handle rapid xterm.js updates
+    const SCROLL_TOLERANCE_LINES = 2;
+
     /**
      * Check if the terminal is scrolled to the bottom
-     * Uses a tolerance of 2 lines to account for rapid output scenarios
-     * where xterm.js might temporarily be slightly off during updates
+     * Uses tolerance to account for rapid output scenarios where
+     * xterm.js might temporarily be slightly off during updates
      */
     const isAtBottom = (): boolean => {
       const buffer = xterm.buffer.active;
       const viewport = buffer.viewportY;
       const bottomPosition = buffer.baseY + buffer.length - xterm.rows;
-      // Use tolerance of 2 lines to handle rapid updates
-      return viewport >= bottomPosition - 2;
+      return viewport >= bottomPosition - SCROLL_TOLERANCE_LINES;
+    };
+
+    /**
+     * Scroll to bottom if user hasn't manually scrolled up
+     * Respects user's scroll position when they've scrolled up to read history
+     */
+    const autoScrollToBottom = () => {
+      if (!userScrolledUpRef.current) {
+        xterm.scrollToBottom();
+      }
     };
 
     /**
@@ -99,8 +114,17 @@ export function useTerminal({ id, onResize }: UseTerminalOptions) {
      * When user scrolls back to bottom, auto-scroll resumes
      */
     xterm.onScroll(() => {
-      const atBottom = isAtBottom();
-      userScrolledUpRef.current = !atBottom;
+      userScrolledUpRef.current = !isAtBottom();
+    });
+
+    /**
+     * Handle terminal repaints (e.g., from Claude Code content reprints)
+     * If user hasn't scrolled up, ensure we stay at bottom after repaint
+     */
+    xterm.onRender(() => {
+      if (!userScrolledUpRef.current && !isAtBottom()) {
+        autoScrollToBottom();
+      }
     });
 
     // Listen for user input and send to PTY
@@ -110,13 +134,11 @@ export function useTerminal({ id, onResize }: UseTerminalOptions) {
 
     // Listen for PTY output
     const removeDataListener = window.electron.onTerminalData(id, (data) => {
-      xterm.write(data);
-
-      // Some CLI tools (like Claude Code) use escape sequences that can confuse
-      // xterm.js scroll position tracking. Only auto-scroll if user hasn't scrolled up.
-      if (!userScrolledUpRef.current) {
-        xterm.scrollToBottom();
-      }
+      xterm.write(data, () => {
+        // Some CLI tools (like Claude Code) use escape sequences that can
+        // confuse xterm.js scroll position. Auto-scroll after write completes.
+        autoScrollToBottom();
+      });
     });
 
     // Listen for terminal exit
@@ -135,12 +157,9 @@ export function useTerminal({ id, onResize }: UseTerminalOptions) {
       onResize?.(cols, rows);
 
       // If we were at bottom and user hasn't scrolled up, stay at bottom
-      // This ensures resize operations (like panel toggling) don't disrupt scroll
       if (wasAtBottom && !userScrolledUpRef.current) {
         // Use setTimeout to ensure scroll happens after xterm.js finishes layout
-        setTimeout(() => {
-          xterm.scrollToBottom();
-        }, 0);
+        setTimeout(autoScrollToBottom, 0);
       }
     };
 
