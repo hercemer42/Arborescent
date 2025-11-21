@@ -25,7 +25,7 @@ export interface TreeState {
   fileMeta: { created: string; author: string } | null;
   flashingNode: { nodeId: string; intensity: 'light' | 'medium' } | null;
   scrollToNodeId: string | null;
-  reviewingNodeId: string | null; // Node currently being reviewed by AI
+  reviewingNodeId: string | null; // Node currently being reviewed
 
   actions: NodeActions & NavigationActions & PersistenceActions & NodeMovementActions & NodeDeletionActions & VisualEffectsActions & SelectionActions & HistoryActions & ReviewActions;
 }

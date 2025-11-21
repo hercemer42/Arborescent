@@ -118,7 +118,7 @@ export function useTerminal({ id, onResize }: UseTerminalOptions) {
     });
 
     /**
-     * Handle terminal repaints (e.g., from Claude Code content reprints)
+     * Handle terminal repaints (e.g., from tools that reprint content)
      * If user hasn't scrolled up, ensure we stay at bottom after repaint
      */
     xterm.onRender(() => {
@@ -135,8 +135,8 @@ export function useTerminal({ id, onResize }: UseTerminalOptions) {
     // Listen for PTY output
     const removeDataListener = window.electron.onTerminalData(id, (data) => {
       xterm.write(data, () => {
-        // Some CLI tools (like Claude Code) use escape sequences that can
-        // confuse xterm.js scroll position. Auto-scroll after write completes.
+        // Some CLI tools use escape sequences that can confuse xterm.js scroll
+        // position. Auto-scroll after write completes.
         autoScrollToBottom();
       });
     });

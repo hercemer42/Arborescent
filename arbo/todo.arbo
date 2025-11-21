@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2025-11-21T12:48:28.909Z'
+updated: '2025-11-21T13:33:34.978Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -3191,8 +3191,9 @@ nodes:
       - a4b178fc-0e62-4b0d-813e-7635997afccf
       - 25985527-b177-4863-a681-0a7da03ad520
       - 3e8f4f09-1e6f-4a0d-b6c6-359a26350bfb
+      - 34e09add-518e-4494-8d1b-c0cb3a795427
     metadata:
-      status: pending
+      status: completed
   eecdd15b-ec15-47d7-9dd8-84f74f0d1110:
     id: eecdd15b-ec15-47d7-9dd8-84f74f0d1110
     content: Need to check for markdown format that arbo can import - so hierarchical node structure with checkboxes
@@ -3205,22 +3206,28 @@ nodes:
     content: Do we need to separate the code in ipcServices to utility files ?
     children: []
     metadata:
-      status: pending
+      status: completed
   25985527-b177-4863-a681-0a7da03ad520:
     id: 25985527-b177-4863-a681-0a7da03ad520
     content: Theres review specific code in useNodeContextMenu that should go elsewhere, like a dedicated service or actions
     children: []
     metadata:
-      status: pending
+      status: completed
   3e8f4f09-1e6f-4a0d-b6c6-359a26350bfb:
     id: 3e8f4f09-1e6f-4a0d-b6c6-359a26350bfb
     content: stuff in reviewPanel.tsx should go in hooks files
     children: []
     metadata:
-      status: pending
+      status: completed
   74f01418-7d27-4b6e-92bc-0aa4bb32988e:
     id: 74f01418-7d27-4b6e-92bc-0aa4bb32988e
     content: Do so in renderer
     children: []
     metadata:
       status: completed
+  34e09add-518e-4494-8d1b-c0cb3a795427:
+    id: 34e09add-518e-4494-8d1b-c0cb3a795427
+    content: there's code in reviewService.ts that looks like we already have it with the 'send to terminal' feature
+    children: []
+    metadata:
+      status: pending

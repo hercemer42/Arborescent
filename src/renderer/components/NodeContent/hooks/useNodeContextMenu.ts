@@ -7,16 +7,17 @@ import { usePluginStore } from '../../../store/plugins/pluginStore';
 import { PluginCommandRegistry } from '../../../../../plugins/core/renderer/CommandRegistry';
 import { useTerminalStore } from '../../../store/terminal/terminalStore';
 import { useTerminalActions } from '../../Terminal/hooks/useTerminalActions';
-import { formatNodeAsMarkdown } from '../../../utils/nodeFormatting';
 import { logger } from '../../../services/logger';
 import { usePanelStore } from '../../../store/panel/panelStore';
+import { formatNodeAsMarkdown } from '../../../utils/nodeFormatting';
 
 export function useNodeContextMenu(node: TreeNode) {
   const deleteNode = useStore((state) => state.actions.deleteNode);
   const nodes = useStore((state) => state.nodes);
   const ancestorRegistry = useStore((state) => state.ancestorRegistry);
   const reviewingNodeId = useStore((state) => state.reviewingNodeId);
-  const startReview = useStore((state) => state.actions.startReview);
+  const requestReview = useStore((state) => state.actions.requestReview);
+  const requestReviewInTerminal = useStore((state) => state.actions.requestReviewInTerminal);
   const enabledPlugins = usePluginStore((state) => state.enabledPlugins);
   const activeTerminalId = useTerminalStore((state) => state.activeTerminalId);
   const showReview = usePanelStore((state) => state.showReview);
@@ -82,19 +83,8 @@ export function useNodeContextMenu(node: TreeNode) {
 
   const handleRequestReview = async () => {
     try {
-      // Copy node content to clipboard
-      const formattedContent = formatNodeAsMarkdown(node, nodes);
-      await navigator.clipboard.writeText(formattedContent);
-      logger.info('Copied to clipboard for review', 'Context Menu');
-
-      // Start review mode
-      startReview(node.id);
-
-      // Show review panel
+      await requestReview(node.id);
       showReview();
-
-      // Start clipboard monitoring
-      await window.electron.startClipboardMonitor();
     } catch (error) {
       logger.error('Failed to request review', error as Error, 'Context Menu');
     }
@@ -107,44 +97,8 @@ export function useNodeContextMenu(node: TreeNode) {
     }
 
     try {
-      // Prepend instruction for Claude Code
-      const instruction = 'Review the following list and update it in the same format, then copy your reply to clipboard:\n\n';
-      const formattedContent = formatNodeAsMarkdown(node, nodes);
-      const contentWithInstruction = instruction + formattedContent;
-
-      // Write instruction + content to terminal
-      await window.electron.terminalWrite(activeTerminalId, contentWithInstruction);
-
-      // Wait a moment for text to be written
-      await new Promise(resolve => setTimeout(resolve, 50));
-
-      // Focus and send Enter key event to the terminal
-      const terminalElement = document.querySelector('.terminal-container .xterm-helper-textarea') as HTMLTextAreaElement;
-      if (terminalElement) {
-        terminalElement.focus();
-
-        // Dispatch Enter key event
-        const enterEvent = new KeyboardEvent('keydown', {
-          key: 'Enter',
-          code: 'Enter',
-          keyCode: 13,
-          which: 13,
-          bubbles: true,
-          cancelable: true,
-        });
-        terminalElement.dispatchEvent(enterEvent);
-      }
-
-      logger.info('Requested review in terminal', 'Context Menu');
-
-      // Start review mode
-      startReview(node.id);
-
-      // Show review panel
+      await requestReviewInTerminal(node.id, activeTerminalId);
       showReview();
-
-      // Start clipboard monitoring
-      await window.electron.startClipboardMonitor();
     } catch (error) {
       logger.error('Failed to request review in terminal', error as Error, 'Context Menu');
     }
