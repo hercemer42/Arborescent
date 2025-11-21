@@ -62,7 +62,20 @@ export function useReviewActions() {
       const reviewState = reviewStore.getState();
       const { nodes: reviewNodes, rootNodeId: reviewRootNodeId } = reviewState;
 
-      logger.info(`Accepting review with ${Object.keys(reviewNodes).length} nodes`, 'ReviewActions');
+      // The review store has a hidden root node - get the actual content root
+      const hiddenRoot = reviewNodes[reviewRootNodeId];
+      if (!hiddenRoot || hiddenRoot.children.length === 0) {
+        logger.error('Review store has no content', new Error('Empty review'), 'ReviewActions');
+        return;
+      }
+
+      // Get the actual content root (first child of hidden root)
+      const actualRootNodeId = hiddenRoot.children[0];
+
+      // Filter out the hidden root from the nodes map
+      const { [reviewRootNodeId]: _hiddenRoot, ...contentNodes } = reviewNodes;
+
+      logger.info(`Accepting review with ${Object.keys(contentNodes).length} nodes`, 'ReviewActions');
 
       // Get temp file path from reviewing node metadata before accepting
       const mainStore = storeManager.getStoreForFile(activeFilePath);
@@ -71,7 +84,7 @@ export function useReviewActions() {
       const tempFilePath = currentReviewingNodeId && mainState.nodes[currentReviewingNodeId]?.metadata.reviewTempFile;
 
       // Replace the reviewing node with nodes from review store - use action from store
-      mainStore.getState().actions.acceptReview(reviewRootNodeId, reviewNodes);
+      mainStore.getState().actions.acceptReview(actualRootNodeId, contentNodes);
 
       // Stop clipboard monitoring
       await window.electron.stopClipboardMonitor();

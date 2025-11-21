@@ -187,15 +187,16 @@ describe('useReviewActions', () => {
       });
 
       expect(mockReviewTreeStore.getStoreForFile).toHaveBeenCalledWith('/test/file.arbo');
+      // Should pass actual content root (not hidden root) and nodes without hidden root
       expect(mockAcceptReview).toHaveBeenCalledWith(
-        'review-root',
-        mockReviewNodes
+        'review-child-1',
+        { 'review-child-1': mockReviewNodes['review-child-1'] }
       );
       expect(mockReviewTreeStore.clearFile).toHaveBeenCalledWith('/test/file.arbo');
       expect(mockStopClipboardMonitor).toHaveBeenCalled();
       expect(mockHidePanel).toHaveBeenCalled();
       expect(logger.info).toHaveBeenCalledWith(
-        'Accepting review with 2 nodes',
+        'Accepting review with 1 nodes',
         'ReviewActions'
       );
       expect(logger.info).toHaveBeenCalledWith('Review accepted and node replaced', 'ReviewActions');

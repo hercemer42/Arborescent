@@ -40,9 +40,21 @@ export function useReviewClipboard(reviewingNodeId: string | null) {
         if (rootNodes.length === 1) {
           logger.info('Successfully parsed clipboard content as Arborescent markdown', 'ReviewClipboard');
 
-          // Initialize review store for this file with parsed nodes
-          const rootNode = rootNodes[0];
-          reviewTreeStore.initialize(activeFilePath, allNodes, rootNode.id);
+          // Create a hidden root node (like the main workspace) so the parsed root is visible
+          const parsedRootNode = rootNodes[0];
+          const hiddenRootId = 'review-root';
+          const nodesWithHiddenRoot = {
+            ...allNodes,
+            [hiddenRootId]: {
+              id: hiddenRootId,
+              content: '',
+              children: [parsedRootNode.id],
+              metadata: {},
+            },
+          };
+
+          // Initialize review store with hidden root containing the parsed tree
+          reviewTreeStore.initialize(activeFilePath, nodesWithHiddenRoot, hiddenRootId);
 
           setHasReviewContent(true);
           logger.info(`Initialized review store with ${Object.keys(allNodes).length} nodes`, 'ReviewClipboard');

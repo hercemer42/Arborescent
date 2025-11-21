@@ -131,8 +131,14 @@ describe('useReviewClipboard', () => {
 
     expect(mockReviewTreeInitialize).toHaveBeenCalledWith(
       '/test/file.arbo',
-      { 'node-1': expect.any(Object) },
-      'node-1'
+      {
+        'node-1': expect.any(Object),
+        'review-root': expect.objectContaining({
+          id: 'review-root',
+          children: ['node-1'],
+        }),
+      },
+      'review-root'
     );
     expect(logger.info).toHaveBeenCalledWith(
       'Successfully parsed clipboard content as Arborescent markdown',
