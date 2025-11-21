@@ -3,16 +3,18 @@ import { parseMarkdown, flattenNodes } from '../../../utils/markdownParser';
 import { logger } from '../../../services/logger';
 import { saveReviewContent } from '../../../utils/reviewTempFiles';
 import { useStore } from '../../../store/tree/useStore';
+import { useFilesStore } from '../../../store/files/filesStore';
 import { reviewTreeStore } from '../../../store/review/reviewTreeStore';
 
 /**
  * Hook to monitor clipboard for valid Arborescent markdown content
- * Validates content by attempting to parse it and initializes the review tree store
+ * Validates content by attempting to parse it and initializes the review tree store for the active file
  * Only accepts content that parses to exactly 1 root node
  */
 export function useReviewClipboard(reviewingNodeId: string | null) {
   const [hasReviewContent, setHasReviewContent] = useState<boolean>(false);
   const updateReviewMetadata = useStore((state) => state.actions.updateReviewMetadata);
+  const activeFilePath = useFilesStore((state) => state.activeFilePath);
 
   // Listen for clipboard content detection
   useEffect(() => {
@@ -24,6 +26,11 @@ export function useReviewClipboard(reviewingNodeId: string | null) {
         return;
       }
 
+      if (!activeFilePath) {
+        logger.warn('Received clipboard content but no active file', 'ReviewClipboard');
+        return;
+      }
+
       // Try to parse the content - only accept if it parses successfully
       try {
         const parsed = parseMarkdown(content);
@@ -32,10 +39,10 @@ export function useReviewClipboard(reviewingNodeId: string | null) {
         if (parsed.length === 1) {
           logger.info('Successfully parsed clipboard content as Arborescent markdown', 'ReviewClipboard');
 
-          // Flatten nodes into a map and initialize review store
+          // Flatten nodes into a map and initialize review store for this file
           const rootNode = parsed[0];
           const nodesMap = flattenNodes(parsed);
-          reviewTreeStore.initialize(nodesMap, rootNode.id);
+          reviewTreeStore.initialize(activeFilePath, nodesMap, rootNode.id);
 
           setHasReviewContent(true);
           logger.info(`Initialized review store with ${Object.keys(nodesMap).length} nodes`, 'ReviewClipboard');
@@ -61,15 +68,15 @@ export function useReviewClipboard(reviewingNodeId: string | null) {
     });
 
     return cleanup;
-  }, [reviewingNodeId, updateReviewMetadata]);
+  }, [reviewingNodeId, activeFilePath, updateReviewMetadata]);
 
-  // Clear review store when review is cancelled
+  // Clear review store for this file when review is cancelled
   useEffect(() => {
-    if (!reviewingNodeId) {
-      reviewTreeStore.clear();
+    if (!reviewingNodeId && activeFilePath) {
+      reviewTreeStore.clearFile(activeFilePath);
       setHasReviewContent(false);
     }
-  }, [reviewingNodeId]);
+  }, [reviewingNodeId, activeFilePath]);
 
   return hasReviewContent;
 }

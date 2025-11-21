@@ -1,44 +1,53 @@
 import { createTreeStore, TreeStore } from '../tree/treeStore';
+import type { TreeNode } from '../../../shared/types';
 
 /**
- * Dedicated tree store for review content
- * This is a singleton store used to display and edit the reviewed tree structure
- * Separate from the main file stores managed by storeManager
+ * Manages review tree stores on a per-file basis
+ * Each arbo file can have its own review in progress with its own tree store
+ * When switching between files, the review panel shows the review for the active file
  */
 class ReviewTreeStoreManager {
-  private store: TreeStore | null = null;
+  private stores = new Map<string, TreeStore>();
 
   /**
-   * Initialize the review store with parsed nodes
+   * Initialize the review store for a specific file with parsed nodes
    */
-  initialize(nodes: Record<string, import('../../../shared/types').TreeNode>, rootNodeId: string): void {
-    if (!this.store) {
-      this.store = createTreeStore();
+  initialize(filePath: string, nodes: Record<string, TreeNode>, rootNodeId: string): void {
+    if (!this.stores.has(filePath)) {
+      this.stores.set(filePath, createTreeStore());
     }
 
-    const state = this.store.getState();
+    const store = this.stores.get(filePath)!;
+    const state = store.getState();
     state.actions.initialize(nodes, rootNodeId);
   }
 
   /**
-   * Get the current review store
+   * Get the review store for a specific file
    */
-  getStore(): TreeStore | null {
-    return this.store;
+  getStoreForFile(filePath: string): TreeStore | null {
+    return this.stores.get(filePath) || null;
   }
 
   /**
-   * Clear the review store
+   * Clear the review store for a specific file
    */
-  clear(): void {
-    this.store = null;
+  clearFile(filePath: string): void {
+    this.stores.delete(filePath);
   }
 
   /**
-   * Check if review store is initialized
+   * Check if a file has an active review
    */
-  isInitialized(): boolean {
-    return this.store !== null;
+  hasReview(filePath: string): boolean {
+    return this.stores.has(filePath);
+  }
+
+  /**
+   * Clear all review stores
+   */
+  clearAll(): void {
+    this.stores.clear();
   }
 }
 

@@ -28,18 +28,27 @@ vi.mock('../../../../utils/reviewTempFiles', () => ({
   saveReviewContent: vi.fn().mockResolvedValue({ filePath: '/temp/review-test.txt', contentHash: 'hash123' }),
 }));
 
-const { mockReviewTreeInitialize, mockReviewTreeClear, mockReviewTreeGetStore } = vi.hoisted(() => ({
+const { mockReviewTreeInitialize, mockReviewTreeClearFile, mockReviewTreeGetStoreForFile } = vi.hoisted(() => ({
   mockReviewTreeInitialize: vi.fn(),
-  mockReviewTreeClear: vi.fn(),
-  mockReviewTreeGetStore: vi.fn(),
+  mockReviewTreeClearFile: vi.fn(),
+  mockReviewTreeGetStoreForFile: vi.fn(),
 }));
 
 vi.mock('../../../../store/review/reviewTreeStore', () => ({
   reviewTreeStore: {
     initialize: mockReviewTreeInitialize,
-    clear: mockReviewTreeClear,
-    getStore: mockReviewTreeGetStore,
+    clearFile: mockReviewTreeClearFile,
+    getStoreForFile: mockReviewTreeGetStoreForFile,
   },
+}));
+
+vi.mock('../../../../store/files/filesStore', () => ({
+  useFilesStore: vi.fn((selector) => {
+    const mockState = {
+      activeFilePath: '/test/file.arbo',
+    };
+    return selector(mockState);
+  }),
 }));
 
 vi.mock('../../../../utils/markdownParser', () => ({
@@ -84,8 +93,8 @@ describe('useReviewClipboard', () => {
     vi.clearAllMocks();
     mockUpdateReviewMetadata.mockClear();
     mockReviewTreeInitialize.mockClear();
-    mockReviewTreeClear.mockClear();
-    mockReviewTreeGetStore.mockClear();
+    mockReviewTreeClearFile.mockClear();
+    mockReviewTreeGetStoreForFile.mockClear();
     mockCleanup = vi.fn();
     mockOnClipboardContentDetected = vi.fn((callback) => {
       clipboardCallback = callback;
@@ -125,6 +134,7 @@ describe('useReviewClipboard', () => {
     }, { container: document.body });
 
     expect(mockReviewTreeInitialize).toHaveBeenCalledWith(
+      '/test/file.arbo',
       { 'node-1': expect.any(Object) },
       'node-1'
     );
@@ -214,7 +224,7 @@ describe('useReviewClipboard', () => {
       expect(result.current).toBe(false);
     }, { container: document.body });
 
-    expect(mockReviewTreeClear).toHaveBeenCalled();
+    expect(mockReviewTreeClearFile).toHaveBeenCalledWith('/test/file.arbo');
   });
 
   it('should not clear hasReviewContent when reviewingNodeId changes to another node', async () => {

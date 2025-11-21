@@ -49,8 +49,12 @@ export function useReviewActions() {
 
   const handleAccept = async () => {
     try {
-      // Get the review tree store
-      const reviewStore = reviewTreeStore.getStore();
+      // Get active file path
+      const activeFilePath = useFilesStore.getState().activeFilePath;
+      if (!activeFilePath) return;
+
+      // Get the review tree store for this file
+      const reviewStore = reviewTreeStore.getStoreForFile(activeFilePath);
       if (!reviewStore) {
         logger.error('No review store available', new Error('Review store not initialized'), 'ReviewActions');
         return;
@@ -63,9 +67,6 @@ export function useReviewActions() {
       logger.info(`Accepting review with ${Object.keys(reviewNodes).length} nodes`, 'ReviewActions');
 
       // Get temp file path from reviewing node metadata before accepting
-      const activeFilePath = useFilesStore.getState().activeFilePath;
-      if (!activeFilePath) return;
-
       const mainStore = storeManager.getStoreForFile(activeFilePath);
       const mainState = mainStore.getState();
       const currentReviewingNodeId = mainState.reviewingNodeId;
@@ -82,8 +83,8 @@ export function useReviewActions() {
         await deleteReviewTempFile(tempFilePath);
       }
 
-      // Clear the review store
-      reviewTreeStore.clear();
+      // Clear the review store for this file
+      reviewTreeStore.clearFile(activeFilePath);
 
       // Hide the review panel
       hidePanel();

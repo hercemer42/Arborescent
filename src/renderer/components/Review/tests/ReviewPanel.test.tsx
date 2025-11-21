@@ -42,8 +42,17 @@ vi.mock('../hooks/useReviewActions', () => ({
 
 vi.mock('../../../store/review/reviewTreeStore', () => ({
   reviewTreeStore: {
-    getStore: vi.fn(() => mockReviewStore),
+    getStoreForFile: vi.fn(() => mockReviewStore),
   },
+}));
+
+vi.mock('../../../store/files/filesStore', () => ({
+  useFilesStore: vi.fn((selector) => {
+    const mockState = {
+      activeFilePath: '/test/file.arbo',
+    };
+    return selector(mockState);
+  }),
 }));
 
 vi.mock('../../Tree', () => ({

@@ -110,8 +110,8 @@ const { mockReviewNodes, mockReviewStore, mockReviewTreeStore } = vi.hoisted(() 
   };
 
   const treeStore = {
-    getStore: vi.fn(() => store),
-    clear: vi.fn(),
+    getStoreForFile: vi.fn(() => store),
+    clearFile: vi.fn(),
   };
 
   return {
@@ -130,8 +130,8 @@ describe('useReviewActions', () => {
 
   beforeEach(() => {
     vi.clearAllMocks();
-    mockReviewTreeStore.getStore.mockReturnValue(mockReviewStore);
-    mockReviewTreeStore.clear.mockClear();
+    mockReviewTreeStore.getStoreForFile.mockReturnValue(mockReviewStore);
+    mockReviewTreeStore.clearFile.mockClear();
     mockReviewStore.getState.mockReturnValue({
       nodes: mockReviewNodes,
       rootNodeId: 'review-root',
@@ -186,12 +186,12 @@ describe('useReviewActions', () => {
         await result.current.handleAccept();
       });
 
-      expect(mockReviewTreeStore.getStore).toHaveBeenCalled();
+      expect(mockReviewTreeStore.getStoreForFile).toHaveBeenCalledWith('/test/file.arbo');
       expect(mockAcceptReview).toHaveBeenCalledWith(
         'review-root',
         mockReviewNodes
       );
-      expect(mockReviewTreeStore.clear).toHaveBeenCalled();
+      expect(mockReviewTreeStore.clearFile).toHaveBeenCalledWith('/test/file.arbo');
       expect(mockStopClipboardMonitor).toHaveBeenCalled();
       expect(mockHidePanel).toHaveBeenCalled();
       expect(logger.info).toHaveBeenCalledWith(
@@ -202,7 +202,7 @@ describe('useReviewActions', () => {
     });
 
     it('should not accept if review store is not available', async () => {
-      mockReviewTreeStore.getStore.mockReturnValueOnce(null as never);
+      mockReviewTreeStore.getStoreForFile.mockReturnValueOnce(null as never);
 
       const { result } = renderHook(() => useReviewActions());
 
@@ -212,7 +212,7 @@ describe('useReviewActions', () => {
 
       expect(mockAcceptReview).not.toHaveBeenCalled();
       expect(mockStopClipboardMonitor).not.toHaveBeenCalled();
-      expect(mockReviewTreeStore.clear).not.toHaveBeenCalled();
+      expect(mockReviewTreeStore.clearFile).not.toHaveBeenCalled();
       expect(logger.error).toHaveBeenCalledWith(
         'No review store available',
         expect.any(Error),
