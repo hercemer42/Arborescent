@@ -31,8 +31,10 @@ export function getActiveNodeElement(): HTMLElement | null {
   const activeNodeId = activeStore.getState().activeNodeId;
   if (!activeNodeId) return null;
 
+  // React renders contentEditable as contenteditable="" (empty string) or "true"
+  // Use attribute selector that matches both
   const element = document.querySelector(
-    `[data-node-id="${activeNodeId}"] [contenteditable="true"]`
+    `[data-node-id="${activeNodeId}"] [contenteditable]`
   ) as HTMLElement | null;
 
   return element;
