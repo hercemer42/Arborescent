@@ -7,6 +7,7 @@ import { usePluginStore } from '../../../store/plugins/pluginStore';
 import { PluginCommandRegistry } from '../../../../../plugins/core/renderer/CommandRegistry';
 import { useTerminalStore } from '../../../store/terminal/terminalStore';
 import { useTerminalActions } from '../../Terminal/hooks/useTerminalActions';
+import { useReviewActions } from '../../Review/hooks/useReviewActions';
 import { logger } from '../../../services/logger';
 import { usePanelStore } from '../../../store/panel/panelStore';
 import { formatNodeAsMarkdown } from '../../../utils/nodeFormatting';
@@ -18,7 +19,6 @@ export function useNodeContextMenu(node: TreeNode) {
   const reviewingNodeId = useStore((state) => state.reviewingNodeId);
   const requestReview = useStore((state) => state.actions.requestReview);
   const requestReviewInTerminal = useStore((state) => state.actions.requestReviewInTerminal);
-  const cancelReview = useStore((state) => state.actions.cancelReview);
   const enabledPlugins = usePluginStore((state) => state.enabledPlugins);
   const activeTerminalId = useTerminalStore((state) => state.activeTerminalId);
   const showReview = usePanelStore((state) => state.showReview);
@@ -27,6 +27,7 @@ export function useNodeContextMenu(node: TreeNode) {
   const [pluginMenuItems, setPluginMenuItems] = useState<ContextMenuItem[]>([]);
 
   const { sendToTerminal, executeInTerminal } = useTerminalActions(activeTerminalId);
+  const { handleCancel } = useReviewActions();
 
   const handleContextMenu = async (e: React.MouseEvent) => {
     e.preventDefault();
@@ -106,14 +107,7 @@ export function useNodeContextMenu(node: TreeNode) {
   };
 
   const handleCancelReview = async () => {
-    try {
-      await window.electron.stopClipboardMonitor();
-      cancelReview();
-      usePanelStore.getState().hidePanel();
-      logger.info('Review cancelled from context menu', 'Context Menu');
-    } catch (error) {
-      logger.error('Failed to cancel review', error as Error, 'Context Menu');
-    }
+    await handleCancel();
   };
 
   function hasAncestorWithSession(): boolean {
