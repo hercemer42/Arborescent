@@ -1,7 +1,7 @@
 import { useStore } from '../../../store/tree/useStore';
 import { logger } from '../../../services/logger';
 import { usePanelStore } from '../../../store/panel/panelStore';
-import { deleteReviewTempFile } from '../../../utils/reviewTempFiles';
+import { deleteReviewTempFile } from '../../../services/review/reviewTempFileService';
 import { reviewTreeStore } from '../../../store/review/reviewTreeStore';
 import { useFilesStore } from '../../../store/files/filesStore';
 import { storeManager } from '../../../store/storeManager';

@@ -24,7 +24,7 @@ vi.mock('../../../../store/tree/useStore', () => ({
   }),
 }));
 
-vi.mock('../../../../utils/reviewTempFiles', () => ({
+vi.mock('../../../../services/review/reviewTempFileService', () => ({
   saveReviewContent: vi.fn().mockResolvedValue({ filePath: '/temp/review-test.txt', contentHash: 'hash123' }),
 }));
 

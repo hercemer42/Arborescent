@@ -82,7 +82,7 @@ vi.mock('../../../../store/storeManager', () => ({
   },
 }));
 
-vi.mock('../../../../utils/reviewTempFiles', () => ({
+vi.mock('../../../../services/review/reviewTempFileService', () => ({
   deleteReviewTempFile: vi.fn().mockResolvedValue(undefined),
 }));
 

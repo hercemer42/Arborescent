@@ -5,7 +5,7 @@ import { executeInTerminal } from '../../../utils/terminalExecution';
 import { logger } from '../../../services/logger';
 import { useToastStore } from '../../toast/toastStore';
 import { VisualEffectsActions } from './visualEffectsActions';
-import { loadReviewContent } from '../../../utils/reviewTempFiles';
+import { loadReviewContent } from '../../../services/review/reviewTempFileService';
 
 export interface ReviewActions {
   startReview: (nodeId: string) => void;

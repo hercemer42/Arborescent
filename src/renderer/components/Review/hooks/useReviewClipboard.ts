@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { parseMarkdown, flattenNodes } from '../../../utils/markdownParser';
 import { logger } from '../../../services/logger';
-import { saveReviewContent } from '../../../utils/reviewTempFiles';
+import { saveReviewContent } from '../../../services/review/reviewTempFileService';
 import { useStore } from '../../../store/tree/useStore';
 import { useFilesStore } from '../../../store/files/filesStore';
 import { reviewTreeStore } from '../../../store/review/reviewTreeStore';

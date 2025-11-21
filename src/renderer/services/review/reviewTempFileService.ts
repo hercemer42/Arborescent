@@ -1,7 +1,7 @@
-import { logger } from '../services/logger';
+import { logger } from '../logger';
 
 /**
- * Utility for managing temporary review files
+ * Service for managing temporary review files
  * These files store review content during a review session to enable crash recovery
  */
 
@@ -31,11 +31,11 @@ export async function saveReviewContent(
     const fileName = `review-${nodeId}-${contentHash}.txt`;
     const filePath = await window.electron.createTempFile(fileName, content);
 
-    logger.info(`Saved review content to temp file: ${filePath}`, 'ReviewTempFiles');
+    logger.info(`Saved review content to temp file: ${filePath}`, 'ReviewTempFileService');
 
     return { filePath, contentHash };
   } catch (error) {
-    logger.error('Failed to save review content', error as Error, 'ReviewTempFiles');
+    logger.error('Failed to save review content', error as Error, 'ReviewTempFileService');
     throw error;
   }
 }
@@ -52,7 +52,7 @@ export async function loadReviewContent(
     const content = await window.electron.readTempFile(filePath);
 
     if (!content) {
-      logger.warn(`Review temp file not found: ${filePath}`, 'ReviewTempFiles');
+      logger.warn(`Review temp file not found: ${filePath}`, 'ReviewTempFileService');
       return null;
     }
 
@@ -63,16 +63,16 @@ export async function loadReviewContent(
         logger.error(
           'Review content hash mismatch',
           new Error(`Expected ${expectedHash}, got ${actualHash}`),
-          'ReviewTempFiles'
+          'ReviewTempFileService'
         );
         return null;
       }
     }
 
-    logger.info(`Loaded review content from temp file: ${filePath}`, 'ReviewTempFiles');
+    logger.info(`Loaded review content from temp file: ${filePath}`, 'ReviewTempFileService');
     return content;
   } catch (error) {
-    logger.error('Failed to load review content', error as Error, 'ReviewTempFiles');
+    logger.error('Failed to load review content', error as Error, 'ReviewTempFileService');
     return null;
   }
 }
@@ -83,8 +83,8 @@ export async function loadReviewContent(
 export async function deleteReviewTempFile(filePath: string): Promise<void> {
   try {
     await window.electron.deleteTempFile(filePath);
-    logger.info(`Deleted review temp file: ${filePath}`, 'ReviewTempFiles');
+    logger.info(`Deleted review temp file: ${filePath}`, 'ReviewTempFileService');
   } catch (error) {
-    logger.error('Failed to delete review temp file', error as Error, 'ReviewTempFiles');
+    logger.error('Failed to delete review temp file', error as Error, 'ReviewTempFileService');
   }
 }
