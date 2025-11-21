@@ -1,6 +1,10 @@
 import { useStore } from '../../../store/tree/useStore';
-import { parseMarkdown, flattenNodes } from '../../../utils/markdownParser';
 import { logger } from '../../../services/logger';
+import { usePanelStore } from '../../../store/panel/panelStore';
+import { deleteReviewTempFile } from '../../../utils/reviewTempFiles';
+import { reviewTreeStore } from '../../../store/review/reviewTreeStore';
+import { useFilesStore } from '../../../store/files/filesStore';
+import { storeManager } from '../../../store/storeManager';
 
 /**
  * Hook providing accept and cancel actions for the review workflow
@@ -8,14 +12,34 @@ import { logger } from '../../../services/logger';
 export function useReviewActions() {
   const cancelReview = useStore((state) => state.actions.cancelReview);
   const acceptReview = useStore((state) => state.actions.acceptReview);
+  const hidePanel = usePanelStore((state) => state.hidePanel);
 
   const handleCancel = async () => {
     try {
+      // Get temp file path from reviewing node metadata before canceling
+      const activeFilePath = useFilesStore.getState().activeFilePath;
+      if (!activeFilePath) return;
+
+      const store = storeManager.getStoreForFile(activeFilePath);
+      const state = store.getState();
+      const tempFilePath = state.reviewingNodeId && state.nodes[state.reviewingNodeId]?.metadata.reviewTempFile;
+
       // Stop clipboard monitoring
       await window.electron.stopClipboardMonitor();
 
       // Cancel review
       cancelReview();
+
+      // Delete temp file if it exists
+      if (tempFilePath) {
+        await deleteReviewTempFile(tempFilePath);
+      }
+
+      // Hide the review panel
+      hidePanel();
+
+      // Dispatch event for status bar flash message
+      window.dispatchEvent(new Event('review-canceled'));
 
       logger.info('Review cancelled', 'ReviewActions');
     } catch (error) {
@@ -23,37 +47,49 @@ export function useReviewActions() {
     }
   };
 
-  const handleAccept = async (reviewedContent: string | null, reviewingNodeId: string | null) => {
-    if (!reviewedContent || !reviewingNodeId) {
-      return;
-    }
-
+  const handleAccept = async () => {
     try {
-      // Parse markdown into nodes
-      const newNodes = parseMarkdown(reviewedContent);
-
-      if (newNodes.length === 0) {
-        logger.error('No nodes parsed from markdown', new Error('Empty parse result'), 'ReviewActions');
+      // Get the review tree store
+      const reviewStore = reviewTreeStore.getStore();
+      if (!reviewStore) {
+        logger.error('No review store available', new Error('Review store not initialized'), 'ReviewActions');
         return;
       }
 
-      if (newNodes.length !== 1) {
-        logger.error(`Expected 1 root node, got ${newNodes.length}`, new Error('Multiple roots not supported'), 'ReviewActions');
-        return;
-      }
+      // Get nodes and rootNodeId from the review store (includes any edits made by user)
+      const reviewState = reviewStore.getState();
+      const { nodes: reviewNodes, rootNodeId: reviewRootNodeId } = reviewState;
 
-      const newRootNode = newNodes[0];
+      logger.info(`Accepting review with ${Object.keys(reviewNodes).length} nodes`, 'ReviewActions');
 
-      // Flatten nodes into a map
-      const newNodesMap = flattenNodes(newNodes);
+      // Get temp file path from reviewing node metadata before accepting
+      const activeFilePath = useFilesStore.getState().activeFilePath;
+      if (!activeFilePath) return;
 
-      logger.info(`Parsed ${Object.keys(newNodesMap).length} total nodes from markdown`, 'ReviewActions');
+      const mainStore = storeManager.getStoreForFile(activeFilePath);
+      const mainState = mainStore.getState();
+      const currentReviewingNodeId = mainState.reviewingNodeId;
+      const tempFilePath = currentReviewingNodeId && mainState.nodes[currentReviewingNodeId]?.metadata.reviewTempFile;
 
-      // Replace the reviewing node with new nodes
-      acceptReview(newRootNode.id, newNodesMap);
+      // Replace the reviewing node with nodes from review store
+      acceptReview(reviewRootNodeId, reviewNodes);
 
       // Stop clipboard monitoring
       await window.electron.stopClipboardMonitor();
+
+      // Delete temp file if it exists
+      if (tempFilePath) {
+        await deleteReviewTempFile(tempFilePath);
+      }
+
+      // Clear the review store
+      reviewTreeStore.clear();
+
+      // Hide the review panel
+      hidePanel();
+
+      // Dispatch event for status bar flash message
+      window.dispatchEvent(new Event('review-accepted'));
 
       logger.info('Review accepted and node replaced', 'ReviewActions');
     } catch (error) {

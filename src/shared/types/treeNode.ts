@@ -16,6 +16,8 @@ export interface TreeNode {
     created?: string;
     updated?: string;
     plugins?: Record<string, Record<string, unknown>>;
+    reviewTempFile?: string; // Path to temporary file storing review content
+    reviewContentHash?: string; // Hash of review content for validation
     [key: string]: unknown;
   };
 }

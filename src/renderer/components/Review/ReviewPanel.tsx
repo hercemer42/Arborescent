@@ -1,13 +1,20 @@
-import { StatusBar } from './StatusBar';
 import { useStore } from '../../store/tree/useStore';
 import { useReviewClipboard } from './hooks/useReviewClipboard';
 import { useReviewActions } from './hooks/useReviewActions';
+import { usePanelStore } from '../../store/panel/panelStore';
+import { reviewTreeStore } from '../../store/review/reviewTreeStore';
+import { TreeStoreContext } from '../../store/tree/TreeStoreContext';
+import { Tree } from '../Tree';
 import './ReviewPanel.css';
 
 export function ReviewPanel() {
   const reviewingNodeId = useStore((state) => state.reviewingNodeId);
-  const reviewedContent = useReviewClipboard(reviewingNodeId);
+  const hasReviewContent = useReviewClipboard(reviewingNodeId);
   const { handleCancel, handleAccept } = useReviewActions();
+  const panelPosition = usePanelStore((state) => state.panelPosition);
+  const togglePanelPosition = usePanelStore((state) => state.togglePanelPosition);
+
+  const reviewStore = reviewTreeStore.getStore();
 
   if (!reviewingNodeId) {
     return (
@@ -21,35 +28,43 @@ export function ReviewPanel() {
 
   return (
     <div className="review-panel">
-      <StatusBar />
+      <div className="review-tab-bar">
+        <div className="review-actions-left">
+          <button
+            className="review-button review-button-accept"
+            onClick={() => handleAccept()}
+            disabled={!hasReviewContent}
+            title="Accept reviewed changes"
+          >
+            Accept
+          </button>
+          <button
+            className="review-button review-button-cancel"
+            onClick={() => handleCancel()}
+            title="Cancel review"
+          >
+            Cancel
+          </button>
+        </div>
+        <button
+          onClick={togglePanelPosition}
+          className="toggle-panel-button"
+          title={`Switch to ${panelPosition === 'side' ? 'bottom' : 'side'} panel`}
+        >
+          {panelPosition === 'side' ? '⬇' : '➡'}
+        </button>
+      </div>
 
       <div className="review-content">
-        {reviewedContent ? (
-          <div className="review-preview">
-            <div className="review-preview-header">Reviewed content:</div>
-            <div className="review-preview-content">{reviewedContent}</div>
-          </div>
+        {hasReviewContent && reviewStore ? (
+          <TreeStoreContext.Provider value={reviewStore}>
+            <Tree />
+          </TreeStoreContext.Provider>
         ) : (
           <div className="review-waiting">
             Waiting for reviewed content...
           </div>
         )}
-      </div>
-
-      <div className="review-actions">
-        <button
-          className="review-button review-button-cancel"
-          onClick={handleCancel}
-        >
-          Cancel
-        </button>
-        <button
-          className="review-button review-button-accept"
-          onClick={() => handleAccept(reviewedContent, reviewingNodeId)}
-          disabled={!reviewedContent}
-        >
-          Accept
-        </button>
       </div>
     </div>
   );

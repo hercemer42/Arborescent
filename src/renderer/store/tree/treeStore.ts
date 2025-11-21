@@ -46,7 +46,7 @@ export function createTreeStore() {
     const navigationActions = createNavigationActions(get, set);
     const selectionActions = createSelectionActions(get, set);
     const historyActions = createHistoryActions(historyManager);
-    const reviewActions = createReviewActions(get, set);
+    const reviewActions = createReviewActions(get, set, visualEffectsActions);
 
     return {
       nodes: {},

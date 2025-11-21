@@ -12,56 +12,117 @@ vi.mock('../../../../services/logger', () => ({
 
 const mockCancelReview = vi.fn();
 const mockAcceptReview = vi.fn();
+const mockHidePanel = vi.fn();
+
+const mockNodes = {
+  'node-id': {
+    id: 'node-id',
+    content: 'Test',
+    children: [],
+    metadata: {
+      plugins: {},
+      reviewTempFile: '/temp/review-node-id.txt',
+      reviewContentHash: 'hash123',
+    },
+  },
+  'old-node-id': {
+    id: 'old-node-id',
+    content: 'Old',
+    children: [],
+    metadata: {
+      plugins: {},
+      reviewTempFile: '/temp/review-old-node-id.txt',
+      reviewContentHash: 'hash456',
+    },
+  },
+};
+
+const mockStore = {
+  actions: {
+    cancelReview: mockCancelReview,
+    acceptReview: mockAcceptReview,
+  },
+  reviewingNodeId: 'node-id',
+  nodes: mockNodes,
+};
 
 vi.mock('../../../../store/tree/useStore', () => ({
-  useStore: vi.fn((selector) => {
+  useStore: Object.assign(
+    vi.fn((selector) => {
+      return selector ? selector(mockStore) : mockStore;
+    }),
+    {
+      getState: vi.fn(() => mockStore),
+    }
+  ),
+}));
+
+vi.mock('../../../../store/panel/panelStore', () => ({
+  usePanelStore: vi.fn((selector) => {
     const mockState = {
-      actions: {
-        cancelReview: mockCancelReview,
-        acceptReview: mockAcceptReview,
-      },
+      hidePanel: mockHidePanel,
     };
     return selector(mockState);
   }),
 }));
 
-vi.mock('../../../../utils/markdownParser', () => ({
-  parseMarkdown: vi.fn((content: string) => {
-    if (content.includes('- Valid node')) {
-      return [{
-        id: 'new-node-1',
-        content: 'Valid node',
-        children: ['child-1'],
-        metadata: { plugins: {} },
-      }];
-    }
-    if (content.includes('Multiple')) {
-      return [
-        { id: 'node-1', content: 'Node 1', children: [], metadata: { plugins: {} } },
-        { id: 'node-2', content: 'Node 2', children: [], metadata: { plugins: {} } },
-      ];
-    }
-    if (content.includes('Empty')) {
-      return [];
-    }
-    throw new Error('Invalid markdown');
-  }),
-  flattenNodes: vi.fn((nodes) => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const flattened: Record<string, any> = {};
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const flatten = (node: any) => {
-      flattened[node.id] = node;
-      if (node.children) {
-        node.children.forEach((childId: string) => {
-          const child = { id: childId, content: 'Child', children: [], metadata: { plugins: {} } };
-          flatten(child);
-        });
-      }
-    };
-    nodes.forEach(flatten);
-    return flattened;
-  }),
+vi.mock('../../../../store/files/filesStore', () => ({
+  useFilesStore: {
+    getState: vi.fn(() => ({
+      activeFilePath: '/test/file.arbo',
+    })),
+  },
+}));
+
+vi.mock('../../../../store/storeManager', () => ({
+  storeManager: {
+    getStoreForFile: vi.fn(() => ({
+      getState: vi.fn(() => mockStore),
+    })),
+  },
+}));
+
+vi.mock('../../../../utils/reviewTempFiles', () => ({
+  deleteReviewTempFile: vi.fn().mockResolvedValue(undefined),
+}));
+
+const { mockReviewNodes, mockReviewStore, mockReviewTreeStore } = vi.hoisted(() => {
+  const nodes = {
+    'review-root': {
+      id: 'review-root',
+      content: 'Review Root',
+      children: ['review-child-1'],
+      metadata: { plugins: {} },
+    },
+    'review-child-1': {
+      id: 'review-child-1',
+      content: 'Review Child',
+      children: [],
+      metadata: { plugins: {} },
+    },
+  };
+
+  const store = {
+    getState: vi.fn(() => ({
+      nodes,
+      rootNodeId: 'review-root',
+    })),
+  };
+
+  const treeStore = {
+    getStore: vi.fn(() => store),
+    clear: vi.fn(),
+  };
+
+  return {
+    mockReviewNodes: nodes,
+    mockReviewStore: store,
+    mockReviewTreeStore: treeStore,
+  };
+});
+
+vi.mock('../../../../store/review/reviewTreeStore', () => ({
+  reviewTreeStore: mockReviewTreeStore,
 }));
 
 describe('useReviewActions', () => {
@@ -69,12 +130,19 @@ describe('useReviewActions', () => {
 
   beforeEach(() => {
     vi.clearAllMocks();
+    mockReviewTreeStore.getStore.mockReturnValue(mockReviewStore);
+    mockReviewTreeStore.clear.mockClear();
+    mockReviewStore.getState.mockReturnValue({
+      nodes: mockReviewNodes,
+      rootNodeId: 'review-root',
+    });
     mockStopClipboardMonitor = vi.fn().mockResolvedValue(undefined);
 
     global.window = {
       electron: {
         stopClipboardMonitor: mockStopClipboardMonitor,
       },
+      dispatchEvent: vi.fn(),
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } as any;
   });
@@ -111,121 +179,77 @@ describe('useReviewActions', () => {
   });
 
   describe('handleAccept', () => {
-    it('should parse markdown, accept review, and stop monitoring', async () => {
+    it('should get nodes from review store, accept review, clear store, and stop monitoring', async () => {
       const { result } = renderHook(() => useReviewActions());
 
       await act(async () => {
-        await result.current.handleAccept('- Valid node', 'old-node-id');
+        await result.current.handleAccept();
       });
 
+      expect(mockReviewTreeStore.getStore).toHaveBeenCalled();
       expect(mockAcceptReview).toHaveBeenCalledWith(
-        'new-node-1',
-        expect.objectContaining({
-          'new-node-1': expect.any(Object),
-        })
+        'review-root',
+        mockReviewNodes
       );
+      expect(mockReviewTreeStore.clear).toHaveBeenCalled();
       expect(mockStopClipboardMonitor).toHaveBeenCalled();
+      expect(mockHidePanel).toHaveBeenCalled();
+      expect(logger.info).toHaveBeenCalledWith(
+        'Accepting review with 2 nodes',
+        'ReviewActions'
+      );
       expect(logger.info).toHaveBeenCalledWith('Review accepted and node replaced', 'ReviewActions');
     });
 
-    it('should not accept if reviewedContent is null', async () => {
+    it('should not accept if review store is not available', async () => {
+      mockReviewTreeStore.getStore.mockReturnValueOnce(null as never);
+
       const { result } = renderHook(() => useReviewActions());
 
       await act(async () => {
-        await result.current.handleAccept(null, 'node-id');
+        await result.current.handleAccept();
       });
 
       expect(mockAcceptReview).not.toHaveBeenCalled();
       expect(mockStopClipboardMonitor).not.toHaveBeenCalled();
-    });
-
-    it('should not accept if reviewingNodeId is null', async () => {
-      const { result } = renderHook(() => useReviewActions());
-
-      await act(async () => {
-        await result.current.handleAccept('- Valid node', null);
-      });
-
-      expect(mockAcceptReview).not.toHaveBeenCalled();
-      expect(mockStopClipboardMonitor).not.toHaveBeenCalled();
-    });
-
-    it('should handle empty parse result', async () => {
-      const { result } = renderHook(() => useReviewActions());
-
-      await act(async () => {
-        await result.current.handleAccept('Empty content', 'node-id');
-      });
-
-      expect(mockAcceptReview).not.toHaveBeenCalled();
+      expect(mockReviewTreeStore.clear).not.toHaveBeenCalled();
       expect(logger.error).toHaveBeenCalledWith(
-        'No nodes parsed from markdown',
+        'No review store available',
         expect.any(Error),
         'ReviewActions'
       );
     });
 
-    it('should handle multiple root nodes', async () => {
-      const { result } = renderHook(() => useReviewActions());
-
-      await act(async () => {
-        await result.current.handleAccept('Multiple roots', 'node-id');
+    it('should handle errors during accept gracefully', async () => {
+      const error = new Error('Accept failed');
+      mockAcceptReview.mockImplementationOnce(() => {
+        throw error;
       });
 
-      expect(mockAcceptReview).not.toHaveBeenCalled();
-      expect(logger.error).toHaveBeenCalledWith(
-        'Expected 1 root node, got 2',
-        expect.any(Error),
-        'ReviewActions'
-      );
-    });
-
-    it('should handle parsing errors', async () => {
       const { result } = renderHook(() => useReviewActions());
 
       await act(async () => {
-        await result.current.handleAccept('Invalid markdown', 'node-id');
-      });
-
-      expect(mockAcceptReview).not.toHaveBeenCalled();
-      expect(logger.error).toHaveBeenCalledWith(
-        'Failed to accept review',
-        expect.any(Error),
-        'ReviewActions'
-      );
-    });
-
-    it('should log number of parsed nodes', async () => {
-      const { result } = renderHook(() => useReviewActions());
-
-      await act(async () => {
-        await result.current.handleAccept('- Valid node', 'old-node-id');
-      });
-
-      expect(logger.info).toHaveBeenCalledWith(
-        expect.stringContaining('Parsed'),
-        'ReviewActions'
-      );
-      expect(logger.info).toHaveBeenCalledWith(
-        expect.stringContaining('total nodes from markdown'),
-        'ReviewActions'
-      );
-    });
-
-    it('should handle stop monitor errors gracefully', async () => {
-      const error = new Error('Stop monitor failed');
-      mockStopClipboardMonitor.mockRejectedValue(error);
-
-      const { result } = renderHook(() => useReviewActions());
-
-      await act(async () => {
-        await result.current.handleAccept('- Valid node', 'old-node-id');
+        await result.current.handleAccept();
       });
 
       expect(logger.error).toHaveBeenCalledWith(
         'Failed to accept review',
         error,
         'ReviewActions'
+      );
+    });
+
+    it('should dispatch review-accepted event', async () => {
+      const { result } = renderHook(() => useReviewActions());
+
+      await act(async () => {
+        await result.current.handleAccept();
+      });
+
+      expect(window.dispatchEvent).toHaveBeenCalledWith(
+        expect.objectContaining({
+          type: 'review-accepted',
+        })
       );
     });
   });

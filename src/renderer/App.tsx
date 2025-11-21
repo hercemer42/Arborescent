@@ -2,6 +2,7 @@ import { useState, useRef } from 'react';
 import { ToastContainer } from './components/Toast';
 import { Workspace } from './components/Workspace';
 import { Panel } from './components/Panel';
+import { BottomStatusBar } from './components/BottomStatusBar/BottomStatusBar';
 import { useToastStore } from './store/toast/toastStore';
 import { usePanelStore } from './store/panel/panelStore';
 import { useAppErrorHandling } from './useAppErrorHandling';
@@ -43,6 +44,8 @@ export function App() {
           <Panel contentRef={contentRef} />
         </div>
       )}
+
+      <BottomStatusBar />
     </div>
   );
 }

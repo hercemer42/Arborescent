@@ -3,6 +3,9 @@ import { TreeNode } from '../../../../shared/types';
 import { formatNodeAsMarkdown } from '../../../utils/nodeFormatting';
 import { executeInTerminal } from '../../../utils/terminalExecution';
 import { logger } from '../../../services/logger';
+import { useToastStore } from '../../toast/toastStore';
+import { VisualEffectsActions } from './visualEffectsActions';
+import { loadReviewContent } from '../../../utils/reviewTempFiles';
 
 export interface ReviewActions {
   startReview: (nodeId: string) => void;
@@ -10,11 +13,14 @@ export interface ReviewActions {
   acceptReview: (newRootNodeId: string, newNodesMap: Record<string, TreeNode>) => void;
   requestReview: (nodeId: string) => Promise<void>;
   requestReviewInTerminal: (nodeId: string, terminalId: string) => Promise<void>;
+  restoreReviewState: () => Promise<void>;
+  updateReviewMetadata: (nodeId: string, tempFile: string, contentHash: string) => void;
 }
 
 export function createReviewActions(
   get: () => TreeState,
-  set: (partial: Partial<TreeState> | ((state: TreeState) => Partial<TreeState>)) => void
+  set: (partial: Partial<TreeState> | ((state: TreeState) => Partial<TreeState>)) => void,
+  visualEffects: VisualEffectsActions
 ): ReviewActions {
   return {
     /**
@@ -26,6 +32,10 @@ export function createReviewActions(
 
       // Can't start a new review if one is already in progress
       if (state.reviewingNodeId) {
+        useToastStore.getState().addToast(
+          'Review already in progress - Please finish or cancel the current review first',
+          'error'
+        );
         return;
       }
 
@@ -132,6 +142,9 @@ export function createReviewActions(
         ancestorRegistry: newAncestorRegistry,
         reviewingNodeId: null,
       });
+
+      // Flash the new root node to indicate success
+      visualEffects.flashNode(newRootNodeId, 'medium');
     },
 
     /**
@@ -144,6 +157,10 @@ export function createReviewActions(
 
       // Can't start a new review if one is already in progress
       if (state.reviewingNodeId) {
+        useToastStore.getState().addToast(
+          'Review already in progress - Please finish or cancel the current review first',
+          'error'
+        );
         logger.error('Review already in progress', new Error('Cannot start new review'), 'ReviewActions');
         return;
       }
@@ -159,6 +176,12 @@ export function createReviewActions(
         const formattedContent = formatNodeAsMarkdown(node, state.nodes);
         await navigator.clipboard.writeText(formattedContent);
         logger.info('Copied to clipboard for review', 'ReviewActions');
+
+        // Show toast message
+        useToastStore.getState().addToast(
+          'Content copied to clipboard - Paste to review tool, then copy response to continue',
+          'info'
+        );
 
         // Start review mode
         set({ reviewingNodeId: nodeId });
@@ -184,6 +207,10 @@ export function createReviewActions(
 
       // Can't start a new review if one is already in progress
       if (state.reviewingNodeId) {
+        useToastStore.getState().addToast(
+          'Review already in progress - Please finish or cancel the current review first',
+          'error'
+        );
         logger.error('Review already in progress', new Error('Cannot start new review'), 'ReviewActions');
         return;
       }
@@ -220,6 +247,99 @@ export function createReviewActions(
         logger.error('Failed to request review in terminal', error as Error, 'ReviewActions');
         throw error;
       }
+    },
+
+    /**
+     * Restore review state from node metadata
+     * Called after loading a file to check if there was a review in progress
+     */
+    restoreReviewState: async () => {
+      const state = get();
+      const { nodes } = state;
+
+      // Find any node with review metadata
+      const reviewingNode = Object.entries(nodes).find(
+        ([, node]) => node.metadata.reviewTempFile && node.metadata.reviewContentHash
+      );
+
+      if (!reviewingNode) {
+        logger.info('No review state to restore', 'ReviewActions');
+        return;
+      }
+
+      const [nodeId, node] = reviewingNode;
+      const { reviewTempFile, reviewContentHash } = node.metadata;
+
+      if (!reviewTempFile || !reviewContentHash) {
+        return;
+      }
+
+      try {
+        // Try to load the review content from temp file
+        const content = await loadReviewContent(reviewTempFile, reviewContentHash);
+
+        if (content) {
+          // Start review mode for this node
+          set({ reviewingNodeId: nodeId });
+
+          // Start clipboard monitoring
+          await window.electron.startClipboardMonitor();
+
+          logger.info(`Restored review state for node: ${nodeId}`, 'ReviewActions');
+          useToastStore.getState().addToast(
+            'Review restored - Continue your previous review',
+            'info'
+          );
+        } else {
+          // Temp file not found or hash mismatch - clean up metadata
+          logger.warn(`Review temp file not found or invalid: ${reviewTempFile}`, 'ReviewActions');
+
+          const updatedNodes = {
+            ...nodes,
+            [nodeId]: {
+              ...node,
+              metadata: {
+                ...node.metadata,
+                reviewTempFile: undefined,
+                reviewContentHash: undefined,
+              },
+            },
+          };
+
+          set({ nodes: updatedNodes });
+        }
+      } catch (error) {
+        logger.error('Failed to restore review state', error as Error, 'ReviewActions');
+      }
+    },
+
+    /**
+     * Update review metadata on a node
+     * Called when review content is saved to temp file
+     */
+    updateReviewMetadata: (nodeId: string, tempFile: string, contentHash: string) => {
+      const state = get();
+      const node = state.nodes[nodeId];
+
+      if (!node) {
+        logger.warn(`Cannot update review metadata - node not found: ${nodeId}`, 'ReviewActions');
+        return;
+      }
+
+      const updatedNodes = {
+        ...state.nodes,
+        [nodeId]: {
+          ...node,
+          metadata: {
+            ...node.metadata,
+            reviewTempFile: tempFile,
+            reviewContentHash: contentHash,
+          },
+        },
+      };
+
+      set({ nodes: updatedNodes });
+      logger.info(`Updated review metadata for node: ${nodeId}`, 'ReviewActions');
     },
   };
 }

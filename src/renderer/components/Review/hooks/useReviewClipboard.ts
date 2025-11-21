@@ -1,19 +1,28 @@
 import { useEffect, useState } from 'react';
-import { parseMarkdown } from '../../../utils/markdownParser';
+import { parseMarkdown, flattenNodes } from '../../../utils/markdownParser';
 import { logger } from '../../../services/logger';
+import { saveReviewContent } from '../../../utils/reviewTempFiles';
+import { useStore } from '../../../store/tree/useStore';
+import { reviewTreeStore } from '../../../store/review/reviewTreeStore';
 
 /**
  * Hook to monitor clipboard for valid Arborescent markdown content
- * Validates content by attempting to parse it
+ * Validates content by attempting to parse it and initializes the review tree store
  * Only accepts content that parses to exactly 1 root node
  */
 export function useReviewClipboard(reviewingNodeId: string | null) {
-  const [reviewedContent, setReviewedContent] = useState<string | null>(null);
+  const [hasReviewContent, setHasReviewContent] = useState<boolean>(false);
+  const updateReviewMetadata = useStore((state) => state.actions.updateReviewMetadata);
 
   // Listen for clipboard content detection
   useEffect(() => {
-    const cleanup = window.electron.onClipboardContentDetected((content: string) => {
+    const cleanup = window.electron.onClipboardContentDetected(async (content: string) => {
       logger.info('Received clipboard content, attempting to parse', 'ReviewClipboard');
+
+      if (!reviewingNodeId) {
+        logger.warn('Received clipboard content but no node is being reviewed', 'ReviewClipboard');
+        return;
+      }
 
       // Try to parse the content - only accept if it parses successfully
       try {
@@ -22,7 +31,25 @@ export function useReviewClipboard(reviewingNodeId: string | null) {
         // Must parse to exactly 1 root node with valid structure
         if (parsed.length === 1) {
           logger.info('Successfully parsed clipboard content as Arborescent markdown', 'ReviewClipboard');
-          setReviewedContent(content);
+
+          // Flatten nodes into a map and initialize review store
+          const rootNode = parsed[0];
+          const nodesMap = flattenNodes(parsed);
+          reviewTreeStore.initialize(nodesMap, rootNode.id);
+
+          setHasReviewContent(true);
+          logger.info(`Initialized review store with ${Object.keys(nodesMap).length} nodes`, 'ReviewClipboard');
+
+          // Save content to temp file and update node metadata
+          try {
+            const { filePath, contentHash } = await saveReviewContent(reviewingNodeId, content);
+
+            // Update node metadata with temp file info
+            updateReviewMetadata(reviewingNodeId, filePath, contentHash);
+            logger.info('Saved review content to temp file and updated node metadata', 'ReviewClipboard');
+          } catch (error) {
+            logger.error('Failed to save review content to temp file', error as Error, 'ReviewClipboard');
+          }
         } else if (parsed.length === 0) {
           logger.info('Clipboard content does not contain valid Arborescent markdown (no nodes parsed)', 'ReviewClipboard');
         } else {
@@ -34,14 +61,15 @@ export function useReviewClipboard(reviewingNodeId: string | null) {
     });
 
     return cleanup;
-  }, []);
+  }, [reviewingNodeId, updateReviewMetadata]);
 
-  // Clear reviewed content when review is cancelled
+  // Clear review store when review is cancelled
   useEffect(() => {
     if (!reviewingNodeId) {
-      setReviewedContent(null);
+      reviewTreeStore.clear();
+      setHasReviewContent(false);
     }
   }, [reviewingNodeId]);
 
-  return reviewedContent;
+  return hasReviewContent;
 }

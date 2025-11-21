@@ -35,6 +35,13 @@ contextBridge.exposeInMainWorld('electron', {
     ipcRenderer.on('clipboard-content-detected', listener);
     return () => ipcRenderer.removeListener('clipboard-content-detected', listener);
   },
+  // Review temp file IPC
+  saveReviewTempFile: (fileName: string, content: string) =>
+    ipcRenderer.invoke('save-review-temp-file', fileName, content),
+  loadReviewTempFile: (filePath: string) =>
+    ipcRenderer.invoke('load-review-temp-file', filePath),
+  deleteReviewTempFile: (filePath: string) =>
+    ipcRenderer.invoke('delete-review-temp-file', filePath),
   // Terminal IPC
   terminalCreate: (id: string, title: string, shellCommand?: string, shellArgs?: string[], cwd?: string) =>
     ipcRenderer.invoke('terminal:create', id, title, shellCommand, shellArgs, cwd),

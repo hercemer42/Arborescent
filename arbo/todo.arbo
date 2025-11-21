@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2025-11-21T13:52:54.188Z'
+updated: '2025-11-21T16:51:50.766Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -3192,6 +3192,12 @@ nodes:
       - 25985527-b177-4863-a681-0a7da03ad520
       - 3e8f4f09-1e6f-4a0d-b6c6-359a26350bfb
       - 34e09add-518e-4494-8d1b-c0cb3a795427
+      - 2cfda1a5-b67b-4e7c-b860-6c0ded121c60
+      - 7c8bad8d-8408-4b91-a886-396713e1981a
+      - 6d2ef63b-1703-4b4a-aa54-6320ff99facf
+      - c2af3c5a-c480-4c86-baf2-6471a1e067a4
+      - 4cf09548-3c30-4047-aa29-4fad5ed3a932
+      - 2cad1735-4ece-4767-9a70-4cc7789a92c1
     metadata:
       status: completed
   eecdd15b-ec15-47d7-9dd8-84f74f0d1110:
@@ -3231,3 +3237,39 @@ nodes:
     children: []
     metadata:
       status: completed
+  7c8bad8d-8408-4b91-a886-396713e1981a:
+    id: 7c8bad8d-8408-4b91-a886-396713e1981a
+    content: Repetition in tempFileHandlers
+    children: []
+    metadata:
+      status: pending
+  6d2ef63b-1703-4b4a-aa54-6320ff99facf:
+    id: 6d2ef63b-1703-4b4a-aa54-6320ff99facf
+    content: bottomStatusBar needs hooks file
+    children: []
+    metadata:
+      status: pending
+  c2af3c5a-c480-4c86-baf2-6471a1e067a4:
+    id: c2af3c5a-c480-4c86-baf2-6471a1e067a4
+    content: handleCancelReview in useNodeContextMeny should be an action
+    children: []
+    metadata:
+      status: pending
+  4cf09548-3c30-4047-aa29-4fad5ed3a932:
+    id: 4cf09548-3c30-4047-aa29-4fad5ed3a932
+    content: in reviewPanel - review-tab-bar should be its own component
+    children: []
+    metadata:
+      status: pending
+  2cfda1a5-b67b-4e7c-b860-6c0ded121c60:
+    id: 2cfda1a5-b67b-4e7c-b860-6c0ded121c60
+    content: "we'll need to have a review file per arbo file - it means we'll keep the same side\n\_panel, but switch between review file when we switch arbo file - or just a blank panel if there is no\_\nreview in progress."
+    children: []
+    metadata:
+      status: pending
+  2cad1735-4ece-4767-9a70-4cc7789a92c1:
+    id: 2cad1735-4ece-4767-9a70-4cc7789a92c1
+    content: "reviewTempFiles looks like it should be a service and not a utils ?\_ These aren't pure functions, the are calling electron"
+    children: []
+    metadata:
+      status: pending

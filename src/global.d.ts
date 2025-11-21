@@ -26,6 +26,10 @@ declare global {
       startClipboardMonitor: () => Promise<void>;
       stopClipboardMonitor: () => Promise<void>;
       onClipboardContentDetected: (callback: (content: string) => void) => () => void;
+      // Review temp file IPC
+      saveReviewTempFile: (fileName: string, content: string) => Promise<string>;
+      loadReviewTempFile: (filePath: string) => Promise<string | null>;
+      deleteReviewTempFile: (filePath: string) => Promise<void>;
       setMenuNewHandler: (callback: () => void) => void;
       setMenuOpenHandler: (callback: () => void) => void;
       setMenuSaveHandler: (callback: () => void) => void;

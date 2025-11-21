@@ -2,15 +2,18 @@ import { useTerminalStore } from '../../../store/terminal/terminalStore';
 import { useBrowserStore, DEFAULT_BROWSER_URL } from '../../../store/browser/browserStore';
 import { usePanelStore } from '../../../store/panel/panelStore';
 import { useTerminalPanel } from '../../Terminal/hooks/useTerminalPanel';
+import { useStore } from '../../../store/tree/useStore';
 
 /**
- * Hook to manage panel toggle actions for terminal and browser
+ * Hook to manage panel toggle actions for terminal, browser, and review
  */
 export function usePanelActions() {
   const activeContent = usePanelStore((state) => state.activeContent);
   const showTerminal = usePanelStore((state) => state.showTerminal);
   const showBrowser = usePanelStore((state) => state.showBrowser);
+  const showReview = usePanelStore((state) => state.showReview);
   const hidePanel = usePanelStore((state) => state.hidePanel);
+  const reviewingNodeId = useStore((state) => state.reviewingNodeId);
 
   const terminals = useTerminalStore((state) => state.terminals);
   const tabs = useBrowserStore((state) => state.tabs);
@@ -45,9 +48,19 @@ export function usePanelActions() {
     }
   };
 
+  const handleReviewShow = () => {
+    // Only show review panel if there's an active review
+    // The panel can only be hidden by accepting or canceling the review
+    if (reviewingNodeId) {
+      showReview();
+    }
+  };
+
   return {
     activeContent,
+    reviewingNodeId,
     handleTerminalToggle,
     handleBrowserToggle,
+    handleReviewShow,
   };
 }

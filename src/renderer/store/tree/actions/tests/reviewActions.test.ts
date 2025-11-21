@@ -116,7 +116,12 @@ describe('reviewActions', () => {
       }
     });
 
-    actions = createReviewActions(mockGet, mockSet);
+    const mockVisualEffects = {
+      flashNode: vi.fn(),
+      scrollToNode: vi.fn(),
+    };
+
+    actions = createReviewActions(mockGet, mockSet, mockVisualEffects);
   });
 
   describe('startReview', () => {

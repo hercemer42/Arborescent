@@ -18,6 +18,7 @@ export function useNodeContextMenu(node: TreeNode) {
   const reviewingNodeId = useStore((state) => state.reviewingNodeId);
   const requestReview = useStore((state) => state.actions.requestReview);
   const requestReviewInTerminal = useStore((state) => state.actions.requestReviewInTerminal);
+  const cancelReview = useStore((state) => state.actions.cancelReview);
   const enabledPlugins = usePluginStore((state) => state.enabledPlugins);
   const activeTerminalId = useTerminalStore((state) => state.activeTerminalId);
   const showReview = usePanelStore((state) => state.showReview);
@@ -104,6 +105,17 @@ export function useNodeContextMenu(node: TreeNode) {
     }
   };
 
+  const handleCancelReview = async () => {
+    try {
+      await window.electron.stopClipboardMonitor();
+      cancelReview();
+      usePanelStore.getState().hidePanel();
+      logger.info('Review cancelled from context menu', 'Context Menu');
+    } catch (error) {
+      logger.error('Failed to cancel review', error as Error, 'Context Menu');
+    }
+  };
+
   function hasAncestorWithSession(): boolean {
     const ancestors = ancestorRegistry[node.id] || [];
     return ancestors.some((ancestorId) => {
@@ -131,6 +143,8 @@ export function useNodeContextMenu(node: TreeNode) {
     };
   }
 
+  const isNodeBeingReviewed = reviewingNodeId === node.id;
+
   const baseMenuItems: ContextMenuItem[] = [
     {
       label: 'Copy to Clipboard',
@@ -157,6 +171,11 @@ export function useNodeContextMenu(node: TreeNode) {
       onClick: handleRequestReviewInTerminal,
       disabled: !activeTerminalId || !!reviewingNodeId,
     },
+    ...(isNodeBeingReviewed ? [{
+      label: 'Cancel review',
+      onClick: handleCancelReview,
+      disabled: false,
+    }] : []),
     {
       label: 'Delete',
       onClick: handleDelete,

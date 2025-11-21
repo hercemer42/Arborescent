@@ -6,6 +6,7 @@ import { ContentEditCommand } from '../commands/ContentEditCommand';
 import { ToggleStatusCommand } from '../commands/ToggleStatusCommand';
 import { CreateNodeCommand } from '../commands/CreateNodeCommand';
 import { logger } from '../../../services/logger';
+import { useToastStore } from '../../toast/toastStore';
 
 export interface NodeActions {
   selectNode: (nodeId: string, cursorPosition?: number) => void;
@@ -52,6 +53,10 @@ export const createNodeActions = (
 
     // Prevent editing of node under review
     if (reviewingNodeId === nodeId) {
+      useToastStore.getState().addToast(
+        'Cannot edit node in review - Please finish or cancel the review first',
+        'error'
+      );
       logger.error('Cannot edit node under review', new Error('Node is being reviewed'), 'TreeStore');
       return;
     }

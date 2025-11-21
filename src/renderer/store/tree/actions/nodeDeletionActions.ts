@@ -6,6 +6,7 @@ import {
 } from '../../../utils/nodeHelpers';
 import { DeleteNodeCommand } from '../commands/DeleteNodeCommand';
 import { logger } from '../../../services/logger';
+import { useToastStore } from '../../toast/toastStore';
 
 export interface NodeDeletionActions {
   deleteNode: (nodeId: string, confirmed?: boolean) => boolean;
@@ -64,6 +65,10 @@ export const createNodeDeletionActions = (
 
     // Prevent deletion of node under review
     if (reviewingNodeId === nodeId) {
+      useToastStore.getState().addToast(
+        'Cannot delete node in review - Please finish or cancel the review first',
+        'error'
+      );
       logger.error('Cannot delete node under review', new Error('Node is being reviewed'), 'TreeStore');
       return false;
     }
