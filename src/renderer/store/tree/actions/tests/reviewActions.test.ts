@@ -102,6 +102,7 @@ describe('reviewActions', () => {
       flashingNode: null,
       scrollToNodeId: null,
       reviewingNodeId: null,
+      reviewFadingNodeIds: new Set(),
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       actions: {} as any,
     };
@@ -121,7 +122,9 @@ describe('reviewActions', () => {
       scrollToNode: vi.fn(),
     };
 
-    actions = createReviewActions(mockGet, mockSet, mockVisualEffects);
+    const mockAutoSave = vi.fn();
+
+    actions = createReviewActions(mockGet, mockSet, mockVisualEffects, mockAutoSave);
   });
 
   describe('startReview', () => {
@@ -329,7 +332,7 @@ describe('reviewActions', () => {
 
       expect(executeInTerminal).toHaveBeenCalledWith(
         'terminal-1',
-        expect.stringContaining('Review and update the following hierarchical list. Maintain the indented format')
+        expect.stringContaining('Retain status symbols for existing entries. Copy your reply to clipboard.')
       );
       expect(executeInTerminal).toHaveBeenCalledWith(
         'terminal-1',

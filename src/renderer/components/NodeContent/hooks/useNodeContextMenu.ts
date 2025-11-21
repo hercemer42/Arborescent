@@ -9,8 +9,7 @@ import { useTerminalStore } from '../../../store/terminal/terminalStore';
 import { useTerminalActions } from '../../Terminal/hooks/useTerminalActions';
 import { useReviewActions } from '../../Review/hooks/useReviewActions';
 import { logger } from '../../../services/logger';
-import { usePanelStore } from '../../../store/panel/panelStore';
-import { formatNodeAsMarkdown } from '../../../utils/nodeFormatting';
+import { exportNodeAsMarkdown } from '../../../utils/markdown';
 
 export function useNodeContextMenu(node: TreeNode) {
   const deleteNode = useStore((state) => state.actions.deleteNode);
@@ -21,7 +20,6 @@ export function useNodeContextMenu(node: TreeNode) {
   const requestReviewInTerminal = useStore((state) => state.actions.requestReviewInTerminal);
   const enabledPlugins = usePluginStore((state) => state.enabledPlugins);
   const activeTerminalId = useTerminalStore((state) => state.activeTerminalId);
-  const showReview = usePanelStore((state) => state.showReview);
   const store = useActiveTreeStore();
   const [contextMenu, setContextMenu] = useState<{ x: number; y: number } | null>(null);
   const [pluginMenuItems, setPluginMenuItems] = useState<ContextMenuItem[]>([]);
@@ -75,7 +73,7 @@ export function useNodeContextMenu(node: TreeNode) {
 
   const handleCopyToClipboard = async () => {
     try {
-      const formattedContent = formatNodeAsMarkdown(node, nodes);
+      const formattedContent = exportNodeAsMarkdown(node, nodes);
       await navigator.clipboard.writeText(formattedContent);
       logger.info('Copied to clipboard', 'Context Menu');
     } catch (error) {
@@ -86,7 +84,8 @@ export function useNodeContextMenu(node: TreeNode) {
   const handleRequestReview = async () => {
     try {
       await requestReview(node.id);
-      showReview();
+      // Don't show review panel here - let the user stay in their current view
+      // Panel will be shown when clipboard content is detected
     } catch (error) {
       logger.error('Failed to request review', error as Error, 'Context Menu');
     }
@@ -100,7 +99,8 @@ export function useNodeContextMenu(node: TreeNode) {
 
     try {
       await requestReviewInTerminal(node.id, activeTerminalId);
-      showReview();
+      // Don't show review panel here - let the user stay in their current view
+      // Panel will be shown when clipboard content is detected
     } catch (error) {
       logger.error('Failed to request review in terminal', error as Error, 'Context Menu');
     }

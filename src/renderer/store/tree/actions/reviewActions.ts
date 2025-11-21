@@ -1,11 +1,14 @@
 import { TreeState } from '../treeStore';
 import { TreeNode } from '../../../../shared/types';
-import { formatNodeAsMarkdown } from '../../../utils/nodeFormatting';
+import { exportNodeAsMarkdown } from '../../../utils/markdown';
 import { executeInTerminal } from '../../../utils/terminalExecution';
 import { logger } from '../../../services/logger';
 import { useToastStore } from '../../toast/toastStore';
 import { VisualEffectsActions } from './visualEffectsActions';
 import { loadReviewContent } from '../../../services/review/reviewTempFileService';
+
+// Base instruction for review requests - used by both clipboard and terminal workflows
+const REVIEW_INSTRUCTION = 'Review and update the following hierarchical list. Output your response in a markdown code block to preserve formatting. Use heading levels for hierarchy (# root, ## child, ### grandchild). Retain status symbols for existing entries.';
 
 export interface ReviewActions {
   startReview: (nodeId: string) => void;
@@ -20,7 +23,8 @@ export interface ReviewActions {
 export function createReviewActions(
   get: () => TreeState,
   set: (partial: Partial<TreeState> | ((state: TreeState) => Partial<TreeState>)) => void,
-  visualEffects: VisualEffectsActions
+  visualEffects: VisualEffectsActions,
+  autoSave: () => void
 ): ReviewActions {
   return {
     /**
@@ -136,15 +140,34 @@ export function createReviewActions(
 
       buildAncestorRegistry(updatedRootNodeId, []);
 
+      // Collect all new node IDs for the fade effect (new root + all descendants)
+      const fadingNodeIds = new Set<string>();
+      const collectNewNodeIds = (nodeId: string) => {
+        fadingNodeIds.add(nodeId);
+        const node = newNodesMap[nodeId];
+        if (node) {
+          for (const childId of node.children) {
+            collectNewNodeIds(childId);
+          }
+        }
+      };
+      collectNewNodeIds(newRootNodeId);
+
       set({
         nodes: mergedNodesMap,
         rootNodeId: updatedRootNodeId,
         ancestorRegistry: newAncestorRegistry,
         reviewingNodeId: null,
+        reviewFadingNodeIds: fadingNodeIds,
       });
 
-      // Flash the new root node to indicate success
-      visualEffects.flashNode(newRootNodeId, 'medium');
+      // Persist changes to disk
+      autoSave();
+
+      // Clear the fading effect after transition completes (1.5s)
+      setTimeout(() => {
+        set({ reviewFadingNodeIds: new Set() });
+      }, 1500);
     },
 
     /**
@@ -173,9 +196,8 @@ export function createReviewActions(
 
       try {
         // Copy node content to clipboard with context instruction
-        const instruction = 'Review and update the following hierarchical list. Maintain the indented format with status symbols (☐ pending, ☑ done, ✗ rejected):\n\n';
-        const formattedContent = formatNodeAsMarkdown(node, state.nodes);
-        await navigator.clipboard.writeText(instruction + formattedContent);
+        const formattedContent = exportNodeAsMarkdown(node, state.nodes);
+        await navigator.clipboard.writeText(REVIEW_INSTRUCTION + '\n\n' + formattedContent);
         logger.info('Copied to clipboard for review', 'ReviewActions');
 
         // Show toast message
@@ -229,10 +251,9 @@ export function createReviewActions(
       }
 
       try {
-        // Prepend instruction for terminal tool
-        const instruction = 'Review and update the following hierarchical list. Maintain the indented format with status symbols (☐ pending, ☑ done, ✗ rejected). Copy your reply to clipboard:\n\n';
-        const formattedContent = formatNodeAsMarkdown(node, state.nodes);
-        const contentWithInstruction = instruction + formattedContent;
+        // Prepend instruction for terminal tool (adds clipboard copy instruction)
+        const formattedContent = exportNodeAsMarkdown(node, state.nodes);
+        const contentWithInstruction = REVIEW_INSTRUCTION + ' Copy your reply to clipboard.\n\n' + formattedContent;
 
         // Write and execute in terminal
         await executeInTerminal(terminalId, contentWithInstruction);

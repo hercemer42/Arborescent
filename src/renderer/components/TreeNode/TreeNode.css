@@ -32,6 +32,26 @@
   border-bottom: 1px solid rgb(255, 193, 7);
 }
 
+/* Descendant of node under review - lighter amber highlight */
+.tree-node-wrapper.reviewing-descendant {
+  background-color: rgba(255, 152, 0, 0.08);
+}
+
+/* Review accepted - fade out transition */
+.tree-node-wrapper.review-fading {
+  background-color: rgba(255, 152, 0, 0.15);
+  animation: review-fade-out 1.5s ease-out forwards;
+}
+
+@keyframes review-fade-out {
+  from {
+    background-color: rgba(255, 152, 0, 0.15);
+  }
+  to {
+    background-color: transparent;
+  }
+}
+
 /* Multi-selected + collapsed - layered backgrounds with transparency */
 .tree-node-wrapper.collapsed-parent.multi-selected {
   background-color: rgba(33, 150, 243, 0.1);

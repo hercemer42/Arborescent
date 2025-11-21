@@ -1,9 +1,9 @@
 import { describe, it, expect } from 'vitest';
-import { formatNodeAsMarkdown } from '../nodeFormatting';
+import { exportNodeAsMarkdown } from '../markdown';
 import type { TreeNode } from '../../../shared/types';
 
-describe('formatNodeAsMarkdown', () => {
-  it('formats a single node with status symbol', () => {
+describe('exportNodeAsMarkdown', () => {
+  it('formats a single node with heading and status symbol', () => {
     const node: TreeNode = {
       id: '1',
       content: 'Test task',
@@ -12,12 +12,12 @@ describe('formatNodeAsMarkdown', () => {
     };
     const nodes = { '1': node };
 
-    const result = formatNodeAsMarkdown(node, nodes);
+    const result = exportNodeAsMarkdown(node, nodes);
 
-    expect(result).toBe('☐ Test task\n');
+    expect(result).toBe('# ☐ Test task\n');
   });
 
-  it('formats nested nodes with indentation', () => {
+  it('formats nested nodes with heading levels', () => {
     const child: TreeNode = {
       id: '2',
       content: 'Subtask',
@@ -32,9 +32,9 @@ describe('formatNodeAsMarkdown', () => {
     };
     const nodes = { '1': parent, '2': child };
 
-    const result = formatNodeAsMarkdown(parent, nodes);
+    const result = exportNodeAsMarkdown(parent, nodes);
 
-    expect(result).toBe('☐ Parent task\n  ✓ Subtask\n');
+    expect(result).toBe('# ☐ Parent task\n## ✓ Subtask\n');
   });
 
   it('formats deeply nested hierarchy', () => {
@@ -58,9 +58,9 @@ describe('formatNodeAsMarkdown', () => {
     };
     const nodes = { '1': parent, '2': child, '3': grandchild };
 
-    const result = formatNodeAsMarkdown(parent, nodes);
+    const result = exportNodeAsMarkdown(parent, nodes);
 
-    expect(result).toBe('☐ Parent task\n  ☐ Child task\n    ☐ Deep task\n');
+    expect(result).toBe('# ☐ Parent task\n## ☐ Child task\n### ☐ Deep task\n');
   });
 
   it('skips deleted nodes', () => {
@@ -84,9 +84,9 @@ describe('formatNodeAsMarkdown', () => {
     };
     const nodes = { '1': parent, '2': deletedChild, '3': visibleChild };
 
-    const result = formatNodeAsMarkdown(parent, nodes);
+    const result = exportNodeAsMarkdown(parent, nodes);
 
-    expect(result).toBe('☐ Parent task\n  ☐ Visible task\n');
+    expect(result).toBe('# ☐ Parent task\n## ☐ Visible task\n');
   });
 
   it('handles different status symbols', () => {
@@ -110,12 +110,12 @@ describe('formatNodeAsMarkdown', () => {
     };
     const nodes = { '1': parent, '2': child1, '3': child2 };
 
-    const result = formatNodeAsMarkdown(parent, nodes);
+    const result = exportNodeAsMarkdown(parent, nodes);
 
-    expect(result).toBe('☐ Pending\n  ✓ Completed\n  ✗ Failed\n');
+    expect(result).toBe('# ☐ Pending\n## ✓ Completed\n## ✗ Failed\n');
   });
 
-  it('preserves multi-line content with proper indentation', () => {
+  it('preserves multi-line content', () => {
     const node: TreeNode = {
       id: '1',
       content: 'Task title\nAdditional details\nMore context',
@@ -124,9 +124,9 @@ describe('formatNodeAsMarkdown', () => {
     };
     const nodes = { '1': node };
 
-    const result = formatNodeAsMarkdown(node, nodes);
+    const result = exportNodeAsMarkdown(node, nodes);
 
-    expect(result).toBe('☐ Task title\n  Additional details\n  More context\n');
+    expect(result).toBe('# ☐ Task title\nAdditional details\nMore context\n');
   });
 
   it('handles multiple siblings at same level', () => {
@@ -150,9 +150,9 @@ describe('formatNodeAsMarkdown', () => {
     };
     const nodes = { '1': parent, '2': child1, '3': child2 };
 
-    const result = formatNodeAsMarkdown(parent, nodes);
+    const result = exportNodeAsMarkdown(parent, nodes);
 
-    expect(result).toBe('☐ Parent\n  ☐ First sibling\n  ✓ Second sibling\n');
+    expect(result).toBe('# ☐ Parent\n## ☐ First sibling\n## ✓ Second sibling\n');
   });
 
   it('returns empty string for deleted root node', () => {
@@ -164,7 +164,7 @@ describe('formatNodeAsMarkdown', () => {
     };
     const nodes = { '1': node };
 
-    const result = formatNodeAsMarkdown(node, nodes);
+    const result = exportNodeAsMarkdown(node, nodes);
 
     expect(result).toBe('');
   });

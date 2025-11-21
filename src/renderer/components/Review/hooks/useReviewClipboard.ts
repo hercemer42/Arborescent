@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
-import { parseMarkdown, flattenNodes } from '../../../utils/markdownParser';
+import { parseMarkdown } from '../../../utils/markdown';
 import { logger } from '../../../services/logger';
 import { saveReviewContent } from '../../../services/review/reviewTempFileService';
 import { useFilesStore } from '../../../store/files/filesStore';
 import { storeManager } from '../../../store/storeManager';
 import { reviewTreeStore } from '../../../store/review/reviewTreeStore';
+import { usePanelStore } from '../../../store/panel/panelStore';
 
 /**
  * Hook to monitor clipboard for valid Arborescent markdown content
@@ -14,6 +15,7 @@ import { reviewTreeStore } from '../../../store/review/reviewTreeStore';
 export function useReviewClipboard(reviewingNodeId: string | null) {
   const [hasReviewContent, setHasReviewContent] = useState<boolean>(false);
   const activeFilePath = useFilesStore((state) => state.activeFilePath);
+  const showReview = usePanelStore((state) => state.showReview);
 
   // Listen for clipboard content detection
   useEffect(() => {
@@ -32,19 +34,21 @@ export function useReviewClipboard(reviewingNodeId: string | null) {
 
       // Try to parse the content - only accept if it parses successfully
       try {
-        const parsed = parseMarkdown(content);
+        const { rootNodes, allNodes } = parseMarkdown(content);
 
         // Must parse to exactly 1 root node with valid structure
-        if (parsed.length === 1) {
+        if (rootNodes.length === 1) {
           logger.info('Successfully parsed clipboard content as Arborescent markdown', 'ReviewClipboard');
 
-          // Flatten nodes into a map and initialize review store for this file
-          const rootNode = parsed[0];
-          const nodesMap = flattenNodes(parsed);
-          reviewTreeStore.initialize(activeFilePath, nodesMap, rootNode.id);
+          // Initialize review store for this file with parsed nodes
+          const rootNode = rootNodes[0];
+          reviewTreeStore.initialize(activeFilePath, allNodes, rootNode.id);
 
           setHasReviewContent(true);
-          logger.info(`Initialized review store with ${Object.keys(nodesMap).length} nodes`, 'ReviewClipboard');
+          logger.info(`Initialized review store with ${Object.keys(allNodes).length} nodes`, 'ReviewClipboard');
+
+          // Show the review panel now that we have valid content
+          showReview();
 
           // Save content to temp file and update node metadata
           try {
@@ -59,10 +63,10 @@ export function useReviewClipboard(reviewingNodeId: string | null) {
           } catch (error) {
             logger.error('Failed to save review content to temp file', error as Error, 'ReviewClipboard');
           }
-        } else if (parsed.length === 0) {
+        } else if (rootNodes.length === 0) {
           logger.info('Clipboard content does not contain valid Arborescent markdown (no nodes parsed)', 'ReviewClipboard');
         } else {
-          logger.info(`Clipboard content has ${parsed.length} root nodes, expected 1`, 'ReviewClipboard');
+          logger.info(`Clipboard content has ${rootNodes.length} root nodes, expected 1`, 'ReviewClipboard');
         }
       } catch {
         logger.info('Clipboard content is not valid Arborescent markdown', 'ReviewClipboard');
@@ -70,7 +74,7 @@ export function useReviewClipboard(reviewingNodeId: string | null) {
     });
 
     return cleanup;
-  }, [reviewingNodeId, activeFilePath]);
+  }, [reviewingNodeId, activeFilePath, showReview]);
 
   // Clear review store for this file when review is cancelled
   useEffect(() => {

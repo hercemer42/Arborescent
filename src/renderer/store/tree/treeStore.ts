@@ -26,6 +26,7 @@ export interface TreeState {
   flashingNode: { nodeId: string; intensity: 'light' | 'medium' } | null;
   scrollToNodeId: string | null;
   reviewingNodeId: string | null; // Node currently being reviewed
+  reviewFadingNodeIds: Set<string>; // Nodes fading out after review accepted
 
   actions: NodeActions & NavigationActions & PersistenceActions & NodeMovementActions & NodeDeletionActions & VisualEffectsActions & SelectionActions & HistoryActions & ReviewActions;
 }
@@ -46,7 +47,7 @@ export function createTreeStore() {
     const navigationActions = createNavigationActions(get, set);
     const selectionActions = createSelectionActions(get, set);
     const historyActions = createHistoryActions(historyManager);
-    const reviewActions = createReviewActions(get, set, visualEffectsActions);
+    const reviewActions = createReviewActions(get, set, visualEffectsActions, persistenceActions.autoSave);
 
     return {
       nodes: {},
@@ -62,6 +63,7 @@ export function createTreeStore() {
       flashingNode: null,
       scrollToNodeId: null,
       reviewingNodeId: null,
+      reviewFadingNodeIds: new Set(),
 
       actions: {
         ...createNodeActions(get, set, persistenceActions.autoSave),

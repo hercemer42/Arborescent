@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useCallback } from 'react';
 import { ToastContainer } from './components/Toast';
 import { Workspace } from './components/Workspace';
 import { Panel } from './components/Panel';
@@ -20,7 +20,9 @@ export function App() {
   const toasts = useToastStore((state) => state.toasts);
   const removeToast = useToastStore((state) => state.removeToast);
 
-  useAppInitialization(() => setIsInitializing(false));
+  // Memoize to prevent re-initialization on every render
+  const handleInitComplete = useCallback(() => setIsInitializing(false), []);
+  useAppInitialization(handleInitComplete);
   useAppErrorHandling();
 
   return (

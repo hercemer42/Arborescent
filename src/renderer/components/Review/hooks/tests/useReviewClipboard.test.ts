@@ -13,15 +13,16 @@ vi.mock('../../../../services/logger', () => ({
 
 const mockUpdateReviewMetadata = vi.fn();
 
-vi.mock('../../../../store/tree/useStore', () => ({
-  useStore: vi.fn((selector) => {
-    const mockState = {
-      actions: {
-        updateReviewMetadata: mockUpdateReviewMetadata,
-      },
-    };
-    return selector(mockState);
-  }),
+vi.mock('../../../../store/storeManager', () => ({
+  storeManager: {
+    getStoreForFile: vi.fn(() => ({
+      getState: () => ({
+        actions: {
+          updateReviewMetadata: mockUpdateReviewMetadata,
+        },
+      }),
+    })),
+  },
 }));
 
 vi.mock('../../../../services/review/reviewTempFileService', () => ({
@@ -51,36 +52,31 @@ vi.mock('../../../../store/files/filesStore', () => ({
   }),
 }));
 
-vi.mock('../../../../utils/markdownParser', () => ({
+vi.mock('../../../../utils/markdown', () => ({
   parseMarkdown: vi.fn((content: string) => {
     // Mock implementation: return valid parse for specific content
     if (content.includes('- Valid node')) {
-      return [{
+      const node = {
         id: 'node-1',
         content: 'Valid node',
         children: [],
         metadata: { plugins: {} },
-      }];
+      };
+      return { rootNodes: [node], allNodes: { 'node-1': node } };
     }
     if (content.includes('- Node 1\n- Node 2')) {
       // Multiple root nodes
-      return [
-        { id: 'node-1', content: 'Node 1', children: [], metadata: { plugins: {} } },
-        { id: 'node-2', content: 'Node 2', children: [], metadata: { plugins: {} } },
-      ];
+      const node1 = { id: 'node-1', content: 'Node 1', children: [], metadata: { plugins: {} } };
+      const node2 = { id: 'node-2', content: 'Node 2', children: [], metadata: { plugins: {} } };
+      return {
+        rootNodes: [node1, node2],
+        allNodes: { 'node-1': node1, 'node-2': node2 },
+      };
     }
     if (content.includes('Empty')) {
-      return [];
+      return { rootNodes: [], allNodes: {} };
     }
     throw new Error('Invalid markdown');
-  }),
-  flattenNodes: vi.fn((nodes) => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const result: Record<string, any> = {};
-    nodes.forEach((node: { id: string }) => {
-      result[node.id] = node;
-    });
-    return result;
   }),
 }));
 

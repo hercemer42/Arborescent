@@ -1,5 +1,5 @@
 import { TreeNode } from '../../../../shared/types';
-import { formatNodeAsMarkdown } from '../../../utils/nodeFormatting';
+import { exportNodeAsMarkdown } from '../../../utils/markdown';
 import { logger } from '../../../services/logger';
 import { executeInTerminal as executeInTerminalUtil } from '../../../utils/terminalExecution';
 
@@ -14,7 +14,7 @@ export function useTerminalActions(activeTerminalId: string | null) {
     }
 
     try {
-      const formattedContent = formatNodeAsMarkdown(node, nodes);
+      const formattedContent = exportNodeAsMarkdown(node, nodes);
       await window.electron.terminalWrite(activeTerminalId, formattedContent + '\n');
       logger.info('Sent content to terminal', 'Terminal Actions');
     } catch (error) {
@@ -29,7 +29,7 @@ export function useTerminalActions(activeTerminalId: string | null) {
     }
 
     try {
-      const formattedContent = formatNodeAsMarkdown(node, nodes);
+      const formattedContent = exportNodeAsMarkdown(node, nodes);
       await executeInTerminalUtil(activeTerminalId, formattedContent);
       logger.info('Executed content in terminal', 'Terminal Actions');
     } catch (error) {
