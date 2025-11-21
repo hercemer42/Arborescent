@@ -1,6 +1,8 @@
+import { useRef } from 'react';
 import { useReviewClipboard } from './hooks/useReviewClipboard';
 import { useReviewActions } from './hooks/useReviewActions';
 import { useReviewState } from './hooks/useReviewState';
+import { useReviewKeyboard } from './hooks/useReviewKeyboard';
 import { TreeStoreContext } from '../../store/tree/TreeStoreContext';
 import { Tree } from '../Tree';
 import { ReviewTabBar } from './ReviewTabBar';
@@ -10,10 +12,13 @@ export function ReviewPanel() {
   const { reviewingNodeId, reviewStore } = useReviewState();
   const hasReviewContent = useReviewClipboard(reviewingNodeId);
   const { handleCancel, handleAccept } = useReviewActions();
+  const panelRef = useRef<HTMLDivElement>(null);
+
+  useReviewKeyboard(panelRef, reviewStore);
 
   if (!reviewingNodeId) {
     return (
-      <div className="review-panel">
+      <div className="review-panel" ref={panelRef}>
         <div className="review-empty">
           No active review
         </div>
@@ -22,7 +27,7 @@ export function ReviewPanel() {
   }
 
   return (
-    <div className="review-panel">
+    <div className="review-panel" ref={panelRef}>
       <ReviewTabBar
         hasReviewContent={hasReviewContent}
         onAccept={() => handleAccept()}

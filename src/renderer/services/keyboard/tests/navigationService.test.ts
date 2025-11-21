@@ -1,14 +1,12 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
-import {
-  initializeKeyboardNavigation,
-  setActiveStore,
-  resetRememberedPosition,
-} from '../keyboard';
+import { initializeKeyboardNavigation, resetRememberedPosition } from '../keyboard';
+import { registerTreeContainer, unregisterTreeContainer } from '../../treeContainerRegistry';
 import { createTreeStore, TreeStore } from '../../../store/tree/treeStore';
 
 describe('navigationService', () => {
   let cleanup: (() => void) | undefined;
   let store: TreeStore;
+  let container: HTMLDivElement;
 
   beforeEach(() => {
     store = createTreeStore();
@@ -23,7 +21,12 @@ describe('navigationService', () => {
       rememberedVisualX: null,
       ancestorRegistry: {},
     });
-    setActiveStore(store);
+
+    // Create a container and register it with the store
+    container = document.createElement('div');
+    container.id = 'test-container';
+    document.body.appendChild(container);
+    registerTreeContainer(container, store);
   });
 
   afterEach(() => {
@@ -31,7 +34,8 @@ describe('navigationService', () => {
       cleanup();
       cleanup = undefined;
     }
-    setActiveStore(null);
+    unregisterTreeContainer(container);
+    document.body.removeChild(container);
   });
 
   describe('initializeKeyboardNavigation', () => {
@@ -56,25 +60,42 @@ describe('navigationService', () => {
     });
   });
 
-  describe('setActiveStore', () => {
-    it('should set the active store', () => {
+  describe('registerTreeContainer', () => {
+    it('should register a container with its store', () => {
       const newStore = createTreeStore();
-      setActiveStore(newStore);
-
-      // Should not throw - store is now set
-      expect(() => setActiveStore(newStore)).not.toThrow();
-    });
-
-    it('should allow setting store to null', () => {
-      setActiveStore(null);
+      const newContainer = document.createElement('div');
+      document.body.appendChild(newContainer);
 
       // Should not throw
-      expect(() => setActiveStore(null)).not.toThrow();
+      expect(() => registerTreeContainer(newContainer, newStore)).not.toThrow();
+
+      unregisterTreeContainer(newContainer);
+      document.body.removeChild(newContainer);
+    });
+
+    it('should allow unregistering a container', () => {
+      const newStore = createTreeStore();
+      const newContainer = document.createElement('div');
+      document.body.appendChild(newContainer);
+
+      registerTreeContainer(newContainer, newStore);
+      expect(() => unregisterTreeContainer(newContainer)).not.toThrow();
+
+      document.body.removeChild(newContainer);
     });
   });
 
   describe('resetRememberedPosition', () => {
     it('should reset rememberedVisualX to null', () => {
+      // Put focus inside the container so the store can be found
+      container.innerHTML = `
+        <div data-node-id="node-1">
+          <div contenteditable="true">Node 1</div>
+        </div>
+      `;
+      const editable = container.querySelector('[contenteditable]') as HTMLElement;
+      editable.focus();
+
       store.setState({ rememberedVisualX: 100 });
 
       resetRememberedPosition();
@@ -82,8 +103,9 @@ describe('navigationService', () => {
       expect(store.getState().rememberedVisualX).toBeNull();
     });
 
-    it('should handle when store is null', () => {
-      setActiveStore(null);
+    it('should handle when no element is focused', () => {
+      // No element is focused, so no store can be found
+      (document.activeElement as HTMLElement)?.blur?.();
 
       // Should not throw
       expect(() => resetRememberedPosition()).not.toThrow();
@@ -96,22 +118,30 @@ describe('navigationService', () => {
     });
 
     it('should not handle events when no active store', () => {
-      setActiveStore(null);
+      // Create an element outside any registered container
+      const orphanElement = document.createElement('div');
+      orphanElement.innerHTML = '<div contenteditable="true">Orphan</div>';
+      document.body.appendChild(orphanElement);
+      (orphanElement.querySelector('[contenteditable]') as HTMLElement).focus();
 
       const event = new KeyboardEvent('keydown', { key: 'ArrowUp' });
       window.dispatchEvent(event);
 
       // Should not throw
       expect(true).toBe(true);
+
+      document.body.removeChild(orphanElement);
     });
 
     it('should reset rememberedVisualX on Home key', () => {
-      // Create mock element
-      document.body.innerHTML = `
+      // Create mock element inside container
+      container.innerHTML = `
         <div data-node-id="node-1">
           <div contenteditable="true">Node 1</div>
         </div>
       `;
+      const editable = container.querySelector('[contenteditable]') as HTMLElement;
+      editable.focus();
 
       store.setState({ rememberedVisualX: 100 });
 
@@ -122,11 +152,12 @@ describe('navigationService', () => {
     });
 
     it('should reset rememberedVisualX on End key', () => {
-      document.body.innerHTML = `
+      container.innerHTML = `
         <div data-node-id="node-1">
           <div contenteditable="true">Node 1</div>
         </div>
       `;
+      (container.querySelector('[contenteditable]') as HTMLElement).focus();
 
       store.setState({ rememberedVisualX: 100 });
 
@@ -137,11 +168,12 @@ describe('navigationService', () => {
     });
 
     it('should reset rememberedVisualX on PageUp key', async () => {
-      document.body.innerHTML = `
+      container.innerHTML = `
         <div data-node-id="node-1">
           <div contenteditable="true">Node 1</div>
         </div>
       `;
+      (container.querySelector('[contenteditable]') as HTMLElement).focus();
 
       store.setState({ rememberedVisualX: 100 });
 
@@ -155,11 +187,12 @@ describe('navigationService', () => {
     });
 
     it('should reset rememberedVisualX on PageDown key', async () => {
-      document.body.innerHTML = `
+      container.innerHTML = `
         <div data-node-id="node-1">
           <div contenteditable="true">Node 1</div>
         </div>
       `;
+      (container.querySelector('[contenteditable]') as HTMLElement).focus();
 
       store.setState({ rememberedVisualX: 100 });
 
@@ -173,11 +206,12 @@ describe('navigationService', () => {
     });
 
     it('should reset rememberedVisualX on character input', () => {
-      document.body.innerHTML = `
+      container.innerHTML = `
         <div data-node-id="node-1">
           <div contenteditable="true">Node 1</div>
         </div>
       `;
+      (container.querySelector('[contenteditable]') as HTMLElement).focus();
 
       store.setState({ rememberedVisualX: 100 });
 
@@ -188,11 +222,12 @@ describe('navigationService', () => {
     });
 
     it('should reset rememberedVisualX on Backspace', () => {
-      document.body.innerHTML = `
+      container.innerHTML = `
         <div data-node-id="node-1">
           <div contenteditable="true">Node 1</div>
         </div>
       `;
+      (container.querySelector('[contenteditable]') as HTMLElement).focus();
 
       store.setState({ rememberedVisualX: 100 });
 
@@ -203,11 +238,12 @@ describe('navigationService', () => {
     });
 
     it('should reset rememberedVisualX on Delete', () => {
-      document.body.innerHTML = `
+      container.innerHTML = `
         <div data-node-id="node-1">
           <div contenteditable="true">Node 1</div>
         </div>
       `;
+      (container.querySelector('[contenteditable]') as HTMLElement).focus();
 
       store.setState({ rememberedVisualX: 100 });
 
@@ -218,11 +254,12 @@ describe('navigationService', () => {
     });
 
     it('should not interfere with text selection (Shift + arrow keys)', () => {
-      document.body.innerHTML = `
+      container.innerHTML = `
         <div data-node-id="node-1">
           <div contenteditable="true">Node 1</div>
         </div>
       `;
+      (container.querySelector('[contenteditable]') as HTMLElement).focus();
 
       store.setState({ rememberedVisualX: 100 });
 
@@ -238,11 +275,12 @@ describe('navigationService', () => {
     });
 
     it('should not handle arrow keys with Ctrl modifier', () => {
-      document.body.innerHTML = `
+      container.innerHTML = `
         <div data-node-id="node-1">
           <div contenteditable="true">Node 1</div>
         </div>
       `;
+      (container.querySelector('[contenteditable]') as HTMLElement).focus();
 
       store.setState({ rememberedVisualX: 100 });
 

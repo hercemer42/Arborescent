@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2025-11-21T17:48:17.707Z'
+updated: '2025-11-21T21:20:38.980Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -2740,7 +2740,6 @@ nodes:
     id: 4d685d6f-e15f-4d03-a085-5d7d0676284c
     content: Human/AI collaboration feature
     children:
-      - 9c98633d-03da-4205-bd6c-5614b058200c
       - 15c1dd13-0e0e-494c-bf17-e4ee3d618877
       - d07ca588-f707-4c30-a743-5643ce0585d6
       - 9735cf65-46d2-4c90-b6af-5153b2e3228a
@@ -2767,6 +2766,8 @@ nodes:
       - 894eff60-42f4-4061-83c7-3d8ced499ee4
     metadata:
       status: pending
+      reviewTempFile: /home/brian/.config/arborescent/temp-files/review-4d685d6f-e15f-4d03-a085-5d7d0676284c-4i9s55.txt
+      reviewContentHash: 4i9s55
   d07ca588-f707-4c30-a743-5643ce0585d6:
     id: d07ca588-f707-4c30-a743-5643ce0585d6
     content: Add a review panel that uses the ARBO format, just like a normal arbo file, with same editing capabilities.
@@ -3127,8 +3128,9 @@ nodes:
       status: pending
   40ca581f-f877-4706-ae2b-3a939583b696:
     id: 40ca581f-f877-4706-ae2b-3a939583b696
-    content: While sending to terminal, adds instructions to copy the results to clipboard in MD format preserving the checkboxes and hierarchy of the original
-    children: []
+    content: While sending to terminal, adds instructions to copy the results to a temporary file in the user arborescent profile folder
+    children:
+      - 559af34a-4163-4df6-9e86-73aec839523a
     metadata:
       status: pending
   063d90f2-96a3-41c3-8b45-550e50f24192:
@@ -3317,23 +3319,16 @@ nodes:
     children: []
     metadata:
       status: pending
-  9c98633d-03da-4205-bd6c-5614b058200c:
-    id: 9c98633d-03da-4205-bd6c-5614b058200c
-    content: Bugs
+  559af34a-4163-4df6-9e86-73aec839523a:
+    id: 559af34a-4163-4df6-9e86-73aec839523a
+    content: Watch this file in arborescent, when the contents change, send them to the renderer and fill the same memory object that is filled when we detect MD content in the clipboard
     children:
-      - a3a8f74e-72da-4c26-83e5-93cc25cd8f50
+      - 52b1d70c-6c83-4c12-8805-3ef0e3452cc5
     metadata:
       status: pending
-  a3a8f74e-72da-4c26-83e5-93cc25cd8f50:
-    id: a3a8f74e-72da-4c26-83e5-93cc25cd8f50
-    content: The review panel button should not appear if there is no review in progress for the open file
-    children:
-      - 59271293-76b7-46aa-9731-fba59cca7cd2
-    metadata:
-      status: completed
-  59271293-76b7-46aa-9731-fba59cca7cd2:
-    id: 59271293-76b7-46aa-9731-fba59cca7cd2
-    content: It should appear if we change file and there IS a review in progress
+  52b1d70c-6c83-4c12-8805-3ef0e3452cc5:
+    id: 52b1d70c-6c83-4c12-8805-3ef0e3452cc5
+    content: Then continue the same flow - if the content is valid then open the review pane etc
     children: []
     metadata:
-      status: completed
+      status: pending

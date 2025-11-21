@@ -1,18 +1,11 @@
-import { setActiveStore as setActiveStoreShared } from './shared';
 import { initializeNavigationService } from './navigationService';
 import { initializeEditingService } from './editingService';
 import { initializeUIService } from './uiService';
-import type { TreeStore } from '../../store/tree/treeStore';
 
 /**
  * Main keyboard service entry point
  * Initializes navigation, editing, and UI services
  */
-
-// Re-export setActiveStore for convenience
-export function setActiveStore(store: TreeStore | null): void {
-  setActiveStoreShared(store);
-}
 
 /**
  * Initializes all keyboard services (navigation, editing, UI)
