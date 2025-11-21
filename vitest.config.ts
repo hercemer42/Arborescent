@@ -4,22 +4,23 @@ import path from 'path';
 
 export default defineConfig({
   plugins: [react()],
+  esbuild: {
+    // Reduce memory usage during transforms
+    target: 'es2020',
+  },
   test: {
     globals: true,
     environment: 'jsdom',
     setupFiles: './src/renderer/test/setup.ts',
-    // Memory optimization - limited threads with file isolation
-    pool: 'threads',
+    // Use forks for separate process memory isolation
+    pool: 'forks',
     poolOptions: {
-      threads: {
-        singleThread: false,
-        minThreads: 1,
-        maxThreads: 2,
-        useAtomics: true,
+      forks: {
+        singleFork: true,
+        isolate: true,
+        execArgv: ['--max-old-space-size=4096'],
       },
     },
-    // Isolate test files to prevent memory leaks
-    isolate: true,
     // Test file patterns
     include: [
       'src/**/*.{test,spec}.{ts,tsx}',

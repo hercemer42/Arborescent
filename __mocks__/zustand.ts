@@ -1,16 +1,21 @@
 import { act } from '@testing-library/react';
-import { afterEach, vi } from 'vitest';
-import type * as ZustandExportedTypes from 'zustand';
+import { afterEach, beforeEach } from 'vitest';
+import type { StateCreator } from 'zustand';
 
-const { create: actualCreate, createStore: actualCreateStore } =
-  await vi.importActual<typeof ZustandExportedTypes>('zustand');
-
+// Store reset functions - clear between tests to allow GC
 export const storeResetFns = new Set<() => void>();
 
-const createUncurried = <T>(
-  stateCreator: ZustandExportedTypes.StateCreator<T>,
-) => {
-  const store = actualCreate(stateCreator);
+// Get actual zustand synchronously using createRequire
+import { createRequire } from 'module';
+const require = createRequire(import.meta.url);
+const actualZustand = require('zustand') as typeof import('zustand');
+
+beforeEach(() => {
+  storeResetFns.clear();
+});
+
+const createUncurried = <T>(stateCreator: StateCreator<T>) => {
+  const store = actualZustand.create(stateCreator);
   const initialState = store.getInitialState();
   storeResetFns.add(() => {
     store.setState(initialState, true);
@@ -18,18 +23,14 @@ const createUncurried = <T>(
   return store;
 };
 
-export const create = (<T>(
-  stateCreator: ZustandExportedTypes.StateCreator<T>,
-) => {
+export const create = (<T>(stateCreator: StateCreator<T>) => {
   return typeof stateCreator === 'function'
     ? createUncurried(stateCreator)
     : createUncurried;
-}) as typeof ZustandExportedTypes.create;
+}) as typeof actualZustand.create;
 
-const createStoreUncurried = <T>(
-  stateCreator: ZustandExportedTypes.StateCreator<T>,
-) => {
-  const store = actualCreateStore(stateCreator);
+const createStoreUncurried = <T>(stateCreator: StateCreator<T>) => {
+  const store = actualZustand.createStore(stateCreator);
   const initialState = store.getInitialState();
   storeResetFns.add(() => {
     store.setState(initialState, true);
@@ -37,13 +38,11 @@ const createStoreUncurried = <T>(
   return store;
 };
 
-export const createStore = (<T>(
-  stateCreator: ZustandExportedTypes.StateCreator<T>,
-) => {
+export const createStore = (<T>(stateCreator: StateCreator<T>) => {
   return typeof stateCreator === 'function'
     ? createStoreUncurried(stateCreator)
     : createStoreUncurried;
-}) as typeof ZustandExportedTypes.createStore;
+}) as typeof actualZustand.createStore;
 
 afterEach(() => {
   act(() => {
@@ -51,4 +50,5 @@ afterEach(() => {
       resetFn();
     });
   });
+  storeResetFns.clear();
 });

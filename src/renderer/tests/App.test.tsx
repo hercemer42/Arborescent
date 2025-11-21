@@ -23,31 +23,82 @@ vi.mock('../useAppErrorHandling', () => ({
   useAppErrorHandling: vi.fn(),
 }));
 
-// Mock stores
-const mockInitializeSession = vi.fn();
-const mockToasts: { id: string; message: string; type: string }[] = [];
-const mockRemoveToast = vi.fn();
+// Mock stores - use vi.hoisted to ensure these are defined before vi.mock calls
+const {
+  mockInitializeSession,
+  mockToasts,
+  mockRemoveToast,
+  mockRestoreBrowserSession,
+  mockRestorePanelSession,
+  filesStoreState,
+  toastStoreState,
+  browserStoreState,
+  panelStoreState,
+} = vi.hoisted(() => {
+  const mockInitializeSession = vi.fn();
+  const mockToasts: { id: string; message: string; type: string }[] = [];
+  const mockRemoveToast = vi.fn();
+  const mockRestoreBrowserSession = vi.fn();
+  const mockRestorePanelSession = vi.fn();
 
-vi.mock('../store/files/filesStore', () => ({
-  useFilesStore: vi.fn((selector) => {
-    const state = {
-      actions: {
-        initializeSession: mockInitializeSession,
-      },
-    };
-    return selector(state);
-  }),
-}));
+  const filesStoreState = {
+    actions: { initializeSession: mockInitializeSession },
+  };
+  const toastStoreState = {
+    toasts: mockToasts,
+    removeToast: mockRemoveToast,
+  };
+  const browserStoreState = {
+    actions: { restoreSession: mockRestoreBrowserSession },
+  };
+  const panelStoreState = {
+    restoreSession: mockRestorePanelSession,
+  };
 
-vi.mock('../store/toast/toastStore', () => ({
-  useToastStore: vi.fn((selector) => {
-    const state = {
-      toasts: mockToasts,
-      removeToast: mockRemoveToast,
-    };
-    return selector(state);
-  }),
-}));
+  return {
+    mockInitializeSession,
+    mockToasts,
+    mockRemoveToast,
+    mockRestoreBrowserSession,
+    mockRestorePanelSession,
+    filesStoreState,
+    toastStoreState,
+    browserStoreState,
+    panelStoreState,
+  };
+});
+
+vi.mock('../store/files/filesStore', () => {
+  const useFilesStoreMock = Object.assign(
+    vi.fn((selector: (s: typeof filesStoreState) => unknown) => selector(filesStoreState)),
+    { getState: () => filesStoreState }
+  );
+  return { useFilesStore: useFilesStoreMock };
+});
+
+vi.mock('../store/toast/toastStore', () => {
+  const useToastStoreMock = Object.assign(
+    vi.fn((selector: (s: typeof toastStoreState) => unknown) => selector(toastStoreState)),
+    { getState: () => toastStoreState }
+  );
+  return { useToastStore: useToastStoreMock };
+});
+
+vi.mock('../store/browser/browserStore', () => {
+  const useBrowserStoreMock = Object.assign(
+    vi.fn((selector: (s: typeof browserStoreState) => unknown) => selector(browserStoreState)),
+    { getState: () => browserStoreState }
+  );
+  return { useBrowserStore: useBrowserStoreMock };
+});
+
+vi.mock('../store/panel/panelStore', () => {
+  const usePanelStoreMock = Object.assign(
+    vi.fn((selector: (s: typeof panelStoreState) => unknown) => selector(panelStoreState)),
+    { getState: () => panelStoreState }
+  );
+  return { usePanelStore: usePanelStoreMock };
+});
 
 import { useAppErrorHandling } from '../useAppErrorHandling';
 

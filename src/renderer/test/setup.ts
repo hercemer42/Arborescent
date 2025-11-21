@@ -1,8 +1,18 @@
-import { expect, afterEach, vi } from 'vitest';
+import { expect, afterEach, beforeEach, vi } from 'vitest';
 import { cleanup } from '@testing-library/react';
 import * as matchers from '@testing-library/jest-dom/matchers';
 
 vi.mock('zustand');
+
+// Force garbage collection hints after each test
+beforeEach(() => {
+  vi.clearAllMocks();
+});
+
+afterEach(() => {
+  // Clear all timers to prevent memory leaks
+  vi.clearAllTimers();
+});
 
 vi.mock('../store/plugins/pluginStore', () => ({
   usePluginStore: vi.fn((selector) => {
