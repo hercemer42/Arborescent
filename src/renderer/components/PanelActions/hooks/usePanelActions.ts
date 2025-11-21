@@ -1,8 +1,10 @@
+import { useSyncExternalStore } from 'react';
 import { useTerminalStore } from '../../../store/terminal/terminalStore';
 import { useBrowserStore, DEFAULT_BROWSER_URL } from '../../../store/browser/browserStore';
 import { usePanelStore } from '../../../store/panel/panelStore';
 import { useTerminalPanel } from '../../Terminal/hooks/useTerminalPanel';
-import { useStore } from '../../../store/tree/useStore';
+import { useFilesStore } from '../../../store/files/filesStore';
+import { storeManager } from '../../../store/storeManager';
 
 /**
  * Hook to manage panel toggle actions for terminal, browser, and review
@@ -13,7 +15,23 @@ export function usePanelActions() {
   const showBrowser = usePanelStore((state) => state.showBrowser);
   const showReview = usePanelStore((state) => state.showReview);
   const hidePanel = usePanelStore((state) => state.hidePanel);
-  const reviewingNodeId = useStore((state) => state.reviewingNodeId);
+
+  // Get reviewingNodeId for the active file using storeManager (not useStore)
+  // This allows the component to work outside TreeStoreProvider context
+  const activeFilePath = useFilesStore((state) => state.activeFilePath);
+  const reviewingNodeId = useSyncExternalStore(
+    (callback) => {
+      if (!activeFilePath) return () => {};
+      const store = storeManager.getStoreForFile(activeFilePath);
+      return store.subscribe(callback);
+    },
+    () => {
+      if (!activeFilePath) return null;
+      const store = storeManager.getStoreForFile(activeFilePath);
+      return store.getState().reviewingNodeId;
+    },
+    () => null
+  );
 
   const terminals = useTerminalStore((state) => state.terminals);
   const tabs = useBrowserStore((state) => state.tabs);

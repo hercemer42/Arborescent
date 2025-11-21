@@ -1,4 +1,3 @@
-import { useStore } from '../../../store/tree/useStore';
 import { logger } from '../../../services/logger';
 import { usePanelStore } from '../../../store/panel/panelStore';
 import { deleteReviewTempFile } from '../../../services/review/reviewTempFileService';
@@ -10,16 +9,15 @@ import { storeManager } from '../../../store/storeManager';
  * Hook providing accept and cancel actions for the review workflow
  */
 export function useReviewActions() {
-  const cancelReview = useStore((state) => state.actions.cancelReview);
-  const acceptReview = useStore((state) => state.actions.acceptReview);
   const hidePanel = usePanelStore((state) => state.hidePanel);
 
   const handleCancel = async () => {
     try {
-      // Get temp file path from reviewing node metadata before canceling
+      // Get active file path
       const activeFilePath = useFilesStore.getState().activeFilePath;
       if (!activeFilePath) return;
 
+      // Get store for this file
       const store = storeManager.getStoreForFile(activeFilePath);
       const state = store.getState();
       const tempFilePath = state.reviewingNodeId && state.nodes[state.reviewingNodeId]?.metadata.reviewTempFile;
@@ -27,8 +25,8 @@ export function useReviewActions() {
       // Stop clipboard monitoring
       await window.electron.stopClipboardMonitor();
 
-      // Cancel review
-      cancelReview();
+      // Cancel review using action from store
+      store.getState().actions.cancelReview();
 
       // Delete temp file if it exists
       if (tempFilePath) {
@@ -72,8 +70,8 @@ export function useReviewActions() {
       const currentReviewingNodeId = mainState.reviewingNodeId;
       const tempFilePath = currentReviewingNodeId && mainState.nodes[currentReviewingNodeId]?.metadata.reviewTempFile;
 
-      // Replace the reviewing node with nodes from review store
-      acceptReview(reviewRootNodeId, reviewNodes);
+      // Replace the reviewing node with nodes from review store - use action from store
+      mainStore.getState().actions.acceptReview(reviewRootNodeId, reviewNodes);
 
       // Stop clipboard monitoring
       await window.electron.stopClipboardMonitor();

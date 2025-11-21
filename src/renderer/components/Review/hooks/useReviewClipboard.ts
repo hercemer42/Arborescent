@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 import { parseMarkdown, flattenNodes } from '../../../utils/markdownParser';
 import { logger } from '../../../services/logger';
 import { saveReviewContent } from '../../../services/review/reviewTempFileService';
-import { useStore } from '../../../store/tree/useStore';
 import { useFilesStore } from '../../../store/files/filesStore';
+import { storeManager } from '../../../store/storeManager';
 import { reviewTreeStore } from '../../../store/review/reviewTreeStore';
 
 /**
@@ -13,7 +13,6 @@ import { reviewTreeStore } from '../../../store/review/reviewTreeStore';
  */
 export function useReviewClipboard(reviewingNodeId: string | null) {
   const [hasReviewContent, setHasReviewContent] = useState<boolean>(false);
-  const updateReviewMetadata = useStore((state) => state.actions.updateReviewMetadata);
   const activeFilePath = useFilesStore((state) => state.activeFilePath);
 
   // Listen for clipboard content detection
@@ -52,7 +51,10 @@ export function useReviewClipboard(reviewingNodeId: string | null) {
             const { filePath, contentHash } = await saveReviewContent(reviewingNodeId, content);
 
             // Update node metadata with temp file info
-            updateReviewMetadata(reviewingNodeId, filePath, contentHash);
+            if (activeFilePath) {
+              const store = storeManager.getStoreForFile(activeFilePath);
+              store.getState().actions.updateReviewMetadata(reviewingNodeId, filePath, contentHash);
+            }
             logger.info('Saved review content to temp file and updated node metadata', 'ReviewClipboard');
           } catch (error) {
             logger.error('Failed to save review content to temp file', error as Error, 'ReviewClipboard');
@@ -68,7 +70,7 @@ export function useReviewClipboard(reviewingNodeId: string | null) {
     });
 
     return cleanup;
-  }, [reviewingNodeId, activeFilePath, updateReviewMetadata]);
+  }, [reviewingNodeId, activeFilePath]);
 
   // Clear review store for this file when review is cancelled
   useEffect(() => {

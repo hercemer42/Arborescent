@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2025-11-21T17:22:27.355Z'
+updated: '2025-11-21T17:45:07.617Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -939,6 +939,7 @@ nodes:
     id: 0cc62ae1-1a7a-4aa4-bc6a-d817cabd672c
     content: In progress
     children:
+      - ae69b14e-a0a8-4609-bd22-0f8489957aaa
       - 4d685d6f-e15f-4d03-a085-5d7d0676284c
       - 5bc6d46e-b1ce-471e-8350-bfd32e49780a
     metadata:
@@ -2739,6 +2740,7 @@ nodes:
     id: 4d685d6f-e15f-4d03-a085-5d7d0676284c
     content: Human/AI collaboration feature
     children:
+      - 9c98633d-03da-4205-bd6c-5614b058200c
       - 15c1dd13-0e0e-494c-bf17-e4ee3d618877
       - d07ca588-f707-4c30-a743-5643ce0585d6
       - 9735cf65-46d2-4c90-b6af-5153b2e3228a
@@ -3201,6 +3203,7 @@ nodes:
       - 2cad1735-4ece-4767-9a70-4cc7789a92c1
     metadata:
       status: completed
+      expanded: false
   eecdd15b-ec15-47d7-9dd8-84f74f0d1110:
     id: eecdd15b-ec15-47d7-9dd8-84f74f0d1110
     content: Need to check for markdown format that arbo can import - so hierarchical node structure with checkboxes
@@ -3273,7 +3276,7 @@ nodes:
     content: "reviewTempFiles looks like it should be a service and not a utils ?\_ These aren't pure functions, the are calling electron"
     children: []
     metadata:
-      status: pending
+      status: completed
   894eff60-42f4-4061-83c7-3d8ced499ee4:
     id: 894eff60-42f4-4061-83c7-3d8ced499ee4
     content: There should be a review file per arbo file
@@ -3298,6 +3301,39 @@ nodes:
   fdcf05df-a44e-4827-ba2e-40fd687b34ac:
     id: fdcf05df-a44e-4827-ba2e-40fd687b34ac
     content: Each one should persist between sessions
+    children: []
+    metadata:
+      status: pending
+  ae69b14e-a0a8-4609-bd22-0f8489957aaa:
+    id: ae69b14e-a0a8-4609-bd22-0f8489957aaa
+    content: Bugs
+    children:
+      - c1251058-46b6-4f5c-9f4e-8399f5f5d2a6
+    metadata:
+      status: pending
+  c1251058-46b6-4f5c-9f4e-8399f5f5d2a6:
+    id: c1251058-46b6-4f5c-9f4e-8399f5f5d2a6
+    content: There are an awful lot of console logs for browser initialization on startup
+    children: []
+    metadata:
+      status: pending
+  9c98633d-03da-4205-bd6c-5614b058200c:
+    id: 9c98633d-03da-4205-bd6c-5614b058200c
+    content: Bugs
+    children:
+      - a3a8f74e-72da-4c26-83e5-93cc25cd8f50
+    metadata:
+      status: pending
+  a3a8f74e-72da-4c26-83e5-93cc25cd8f50:
+    id: a3a8f74e-72da-4c26-83e5-93cc25cd8f50
+    content: The review panel button should not appear if there is no review in progress for the open file
+    children:
+      - 59271293-76b7-46aa-9731-fba59cca7cd2
+    metadata:
+      status: pending
+  59271293-76b7-46aa-9731-fba59cca7cd2:
+    id: 59271293-76b7-46aa-9731-fba59cca7cd2
+    content: It should appear if we change file and there IS a review in progress
     children: []
     metadata:
       status: pending

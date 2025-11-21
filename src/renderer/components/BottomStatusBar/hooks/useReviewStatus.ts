@@ -1,14 +1,36 @@
-import { useStore } from '../../../store/tree/useStore';
-import { useReviewClipboard } from '../../Review/hooks/useReviewClipboard';
+import { useSyncExternalStore } from 'react';
+import { useFilesStore } from '../../../store/files/filesStore';
+import { storeManager } from '../../../store/storeManager';
+import { reviewTreeStore } from '../../../store/review/reviewTreeStore';
 
 /**
  * Hook to compute the review status message
  * Returns null if no review is in progress
  */
 export function useReviewStatus(): string | null {
-  const reviewingNodeId = useStore((state) => state.reviewingNodeId);
-  const nodes = useStore((state) => state.nodes);
-  const reviewedContent = useReviewClipboard(reviewingNodeId);
+  const activeFilePath = useFilesStore((state) => state.activeFilePath);
+
+  // Subscribe to tree store changes for the active file
+  const treeState = useSyncExternalStore(
+    (callback) => {
+      if (!activeFilePath) return () => {};
+      const store = storeManager.getStoreForFile(activeFilePath);
+      return store.subscribe(callback);
+    },
+    () => {
+      if (!activeFilePath) return null;
+      const store = storeManager.getStoreForFile(activeFilePath);
+      return store.getState();
+    },
+    () => null
+  );
+
+  // No active file or tree state
+  if (!activeFilePath || !treeState) {
+    return null;
+  }
+
+  const { reviewingNodeId, nodes } = treeState;
 
   // No review in progress
   if (!reviewingNodeId) {
@@ -20,6 +42,9 @@ export function useReviewStatus(): string | null {
     return null;
   }
 
+  // Check if review content is available
+  const hasReviewContent = reviewTreeStore.hasReview(activeFilePath);
+
   // Truncate node name to 15 characters
   const maxLength = 15;
   const nodeName = node.content.length > maxLength
@@ -27,7 +52,7 @@ export function useReviewStatus(): string | null {
     : node.content;
 
   // Show different messages based on state
-  return reviewedContent
+  return hasReviewContent
     ? `Review in progress for node ${nodeName}`
     : `Waiting for review for node ${nodeName}`;
 }

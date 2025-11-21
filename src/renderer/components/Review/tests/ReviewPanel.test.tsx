@@ -10,13 +10,16 @@ let mockReviewStore: unknown = null;
 let mockPanelPosition: 'side' | 'bottom' = 'side';
 const mockTogglePanelPosition = vi.fn();
 
-vi.mock('../../../store/tree/useStore', () => ({
-  useStore: vi.fn((selector) => {
-    const mockState = {
-      reviewingNodeId: mockReviewingNodeId,
-    };
-    return selector(mockState);
-  }),
+vi.mock('../../../store/storeManager', () => ({
+  storeManager: {
+    getStoreForFile: vi.fn(() => ({
+      subscribe: vi.fn(() => () => {}),
+      getState: vi.fn(() => ({
+        reviewingNodeId: mockReviewingNodeId,
+        nodes: {},
+      })),
+    })),
+  },
 }));
 
 vi.mock('../../../store/panel/panelStore', () => ({
