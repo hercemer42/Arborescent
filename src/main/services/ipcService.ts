@@ -4,6 +4,61 @@ import path from 'node:path';
 import { logger } from './logger';
 import { registerPluginHandlers } from '../../../plugins/core/main/registerHandlers';
 
+// Helper: Get last saved directory
+async function getLastSavedDirectory(): Promise<string | undefined> {
+  try {
+    const userDataPath = app.getPath('userData');
+    const lastDirPath = path.join(userDataPath, 'last-save-directory.txt');
+    const lastDir = await fs.readFile(lastDirPath, 'utf-8');
+    return lastDir.trim();
+  } catch {
+    return undefined;
+  }
+}
+
+// Helper: Save directory for next time
+async function saveLastUsedDirectory(filePath: string): Promise<void> {
+  try {
+    const directory = path.dirname(filePath);
+    const userDataPath = app.getPath('userData');
+    const lastDirPath = path.join(userDataPath, 'last-save-directory.txt');
+    await fs.writeFile(lastDirPath, directory, 'utf-8');
+    logger.info(`Saved last directory: ${directory}`, 'IPC');
+  } catch (error) {
+    logger.error('Failed to save last directory', error instanceof Error ? error : undefined, 'IPC', false);
+  }
+}
+
+// Helper: Save JSON file to userData
+async function saveJsonFile(fileName: string, content: string, logName: string): Promise<void> {
+  try {
+    const userDataPath = app.getPath('userData');
+    const filePath = path.join(userDataPath, fileName);
+    await fs.writeFile(filePath, content, 'utf-8');
+    logger.info(`${logName} saved`, 'IPC');
+  } catch (error) {
+    logger.error(`Failed to save ${logName}`, error instanceof Error ? error : undefined, 'IPC', false);
+  }
+}
+
+// Helper: Load JSON file from userData
+async function loadJsonFile(fileName: string, logName: string): Promise<string | null> {
+  try {
+    const userDataPath = app.getPath('userData');
+    const filePath = path.join(userDataPath, fileName);
+    const content = await fs.readFile(filePath, 'utf-8');
+    logger.info(`${logName} loaded`, 'IPC');
+    return content;
+  } catch (error) {
+    if ((error as NodeJS.ErrnoException).code === 'ENOENT') {
+      logger.info(`No ${logName.toLowerCase()} file found`, 'IPC');
+      return null;
+    }
+    logger.error(`Failed to load ${logName.toLowerCase()}`, error instanceof Error ? error : undefined, 'IPC', false);
+    return null;
+  }
+}
+
 export async function registerIpcHandlers(getMainWindow: () => BrowserWindow | null) {
   await registerPluginHandlers();
   ipcMain.handle('read-file', async (_, filePath: string) => {
@@ -33,16 +88,7 @@ export async function registerIpcHandlers(getMainWindow: () => BrowserWindow | n
     const mainWindow = getMainWindow();
     logger.info('Opening file dialog', 'IPC');
 
-    // Read last used directory
-    let defaultPath: string | undefined;
-    try {
-      const userDataPath = app.getPath('userData');
-      const lastDirPath = path.join(userDataPath, 'last-save-directory.txt');
-      const lastDir = await fs.readFile(lastDirPath, 'utf-8');
-      defaultPath = lastDir.trim();
-    } catch {
-      // File doesn't exist yet, no default path
-    }
+    const defaultPath = await getLastSavedDirectory();
 
     const options = {
       defaultPath,
@@ -57,16 +103,7 @@ export async function registerIpcHandlers(getMainWindow: () => BrowserWindow | n
     logger.info(`Dialog result received, canceled: ${result.canceled}, path: ${result.filePaths[0] || 'none'}`, 'IPC');
 
     if (!result.canceled && result.filePaths[0]) {
-      // Save the directory for next time
-      try {
-        const directory = path.dirname(result.filePaths[0]);
-        const userDataPath = app.getPath('userData');
-        const lastDirPath = path.join(userDataPath, 'last-save-directory.txt');
-        await fs.writeFile(lastDirPath, directory, 'utf-8');
-        logger.info(`Saved last directory: ${directory}`, 'IPC');
-      } catch (error) {
-        logger.error('Failed to save last directory', error instanceof Error ? error : undefined, 'IPC', false);
-      }
+      await saveLastUsedDirectory(result.filePaths[0]);
     }
 
     return result.canceled ? null : result.filePaths[0];
@@ -76,18 +113,7 @@ export async function registerIpcHandlers(getMainWindow: () => BrowserWindow | n
     const mainWindow = getMainWindow();
 
     // Use provided default path (e.g., current file's directory), or fall back to last saved directory
-    let defaultPath: string | undefined = providedDefaultPath;
-
-    if (!defaultPath) {
-      try {
-        const userDataPath = app.getPath('userData');
-        const lastDirPath = path.join(userDataPath, 'last-save-directory.txt');
-        const lastDir = await fs.readFile(lastDirPath, 'utf-8');
-        defaultPath = lastDir.trim();
-      } catch {
-        // File doesn't exist yet, no default path
-      }
-    }
+    const defaultPath = providedDefaultPath || await getLastSavedDirectory();
 
     const options = {
       defaultPath,
@@ -108,16 +134,7 @@ export async function registerIpcHandlers(getMainWindow: () => BrowserWindow | n
       filePath = `${filePath}.arbo`;
     }
 
-    // Save the directory for next time
-    try {
-      const directory = path.dirname(filePath);
-      const userDataPath = app.getPath('userData');
-      const lastDirPath = path.join(userDataPath, 'last-save-directory.txt');
-      await fs.writeFile(lastDirPath, directory, 'utf-8');
-      logger.info(`Saved last directory: ${directory}`, 'IPC');
-    } catch (error) {
-      logger.error('Failed to save last directory', error instanceof Error ? error : undefined, 'IPC', false);
-    }
+    await saveLastUsedDirectory(filePath);
 
     return filePath;
   });
@@ -188,114 +205,34 @@ export async function registerIpcHandlers(getMainWindow: () => BrowserWindow | n
   });
 
   ipcMain.handle('save-session', async (_, sessionData: string) => {
-    try {
-      const userDataPath = app.getPath('userData');
-      const sessionPath = path.join(userDataPath, 'session.json');
-      await fs.writeFile(sessionPath, sessionData, 'utf-8');
-      logger.info('Session saved', 'IPC');
-    } catch (error) {
-      logger.error('Failed to save session', error instanceof Error ? error : undefined, 'IPC', false);
-    }
+    await saveJsonFile('session.json', sessionData, 'Session');
   });
 
   ipcMain.handle('get-session', async () => {
-    try {
-      const userDataPath = app.getPath('userData');
-      const sessionPath = path.join(userDataPath, 'session.json');
-      const content = await fs.readFile(sessionPath, 'utf-8');
-      logger.info('Session loaded', 'IPC');
-      return content;
-    } catch (error) {
-      if ((error as NodeJS.ErrnoException).code === 'ENOENT') {
-        logger.info('No session file found', 'IPC');
-        return null;
-      }
-      logger.error('Failed to load session', error instanceof Error ? error : undefined, 'IPC', false);
-      return null;
-    }
+    return await loadJsonFile('session.json', 'Session');
   });
 
   ipcMain.handle('save-browser-session', async (_, sessionData: string) => {
-    try {
-      const userDataPath = app.getPath('userData');
-      const sessionPath = path.join(userDataPath, 'browser-session.json');
-      await fs.writeFile(sessionPath, sessionData, 'utf-8');
-      logger.info('Browser session saved', 'IPC');
-    } catch (error) {
-      logger.error('Failed to save browser session', error instanceof Error ? error : undefined, 'IPC', false);
-    }
+    await saveJsonFile('browser-session.json', sessionData, 'Browser session');
   });
 
   ipcMain.handle('get-browser-session', async () => {
-    try {
-      const userDataPath = app.getPath('userData');
-      const sessionPath = path.join(userDataPath, 'browser-session.json');
-      const content = await fs.readFile(sessionPath, 'utf-8');
-      logger.info('Browser session loaded', 'IPC');
-      return content;
-    } catch (error) {
-      if ((error as NodeJS.ErrnoException).code === 'ENOENT') {
-        logger.info('No browser session file found', 'IPC');
-        return null;
-      }
-      logger.error('Failed to load browser session', error instanceof Error ? error : undefined, 'IPC', false);
-      return null;
-    }
+    return await loadJsonFile('browser-session.json', 'Browser session');
   });
 
   ipcMain.handle('save-panel-session', async (_, sessionData: string) => {
-    try {
-      const userDataPath = app.getPath('userData');
-      const sessionPath = path.join(userDataPath, 'panel-session.json');
-      await fs.writeFile(sessionPath, sessionData, 'utf-8');
-      logger.info('Panel session saved', 'IPC');
-    } catch (error) {
-      logger.error('Failed to save panel session', error instanceof Error ? error : undefined, 'IPC', false);
-    }
+    await saveJsonFile('panel-session.json', sessionData, 'Panel session');
   });
 
   ipcMain.handle('get-panel-session', async () => {
-    try {
-      const userDataPath = app.getPath('userData');
-      const sessionPath = path.join(userDataPath, 'panel-session.json');
-      const content = await fs.readFile(sessionPath, 'utf-8');
-      logger.info('Panel session loaded', 'IPC');
-      return content;
-    } catch (error) {
-      if ((error as NodeJS.ErrnoException).code === 'ENOENT') {
-        logger.info('No panel session file found', 'IPC');
-        return null;
-      }
-      logger.error('Failed to load panel session', error instanceof Error ? error : undefined, 'IPC', false);
-      return null;
-    }
+    return await loadJsonFile('panel-session.json', 'Panel session');
   });
 
   ipcMain.handle('save-temp-files-metadata', async (_, metadataJson: string) => {
-    try {
-      const userDataPath = app.getPath('userData');
-      const metadataPath = path.join(userDataPath, 'temp-files-metadata.json');
-      await fs.writeFile(metadataPath, metadataJson, 'utf-8');
-      logger.info('Temp files metadata saved', 'IPC');
-    } catch (error) {
-      logger.error('Failed to save temp files metadata', error instanceof Error ? error : undefined, 'IPC', false);
-    }
+    await saveJsonFile('temp-files-metadata.json', metadataJson, 'Temp files metadata');
   });
 
   ipcMain.handle('get-temp-files-metadata', async () => {
-    try {
-      const userDataPath = app.getPath('userData');
-      const metadataPath = path.join(userDataPath, 'temp-files-metadata.json');
-      const content = await fs.readFile(metadataPath, 'utf-8');
-      logger.info('Temp files metadata loaded', 'IPC');
-      return content;
-    } catch (error) {
-      if ((error as NodeJS.ErrnoException).code === 'ENOENT') {
-        logger.info('No temp files metadata found', 'IPC');
-        return null;
-      }
-      logger.error('Failed to load temp files metadata', error instanceof Error ? error : undefined, 'IPC', false);
-      return null;
-    }
+    return await loadJsonFile('temp-files-metadata.json', 'Temp files metadata');
   });
 }

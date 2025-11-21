@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2025-11-21T09:15:01.065Z'
+updated: '2025-11-21T09:49:58.046Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -762,7 +762,7 @@ nodes:
       - 2da028a0-d59d-4055-9322-a0d8b5887e82
     metadata:
       status: pending
-      expanded: false
+      expanded: true
   ad630169-dc01-462b-a7b4-01e36da699fd:
     id: ad630169-dc01-462b-a7b4-01e36da699fd
     content: Clicking doesn't focus the cursor on the click spot, but at the start of the node
@@ -934,12 +934,11 @@ nodes:
       - 382ddb47-39df-4546-978c-66b3a2306480
     metadata:
       status: pending
-      expanded: false
+      expanded: true
   0cc62ae1-1a7a-4aa4-bc6a-d817cabd672c:
     id: 0cc62ae1-1a7a-4aa4-bc6a-d817cabd672c
     content: In progress
     children:
-      - 00e08ff5-0634-4205-982c-6a3094f74d20
       - 72f56688-a466-4210-abbf-ae6c04a3b571
       - 4d685d6f-e15f-4d03-a085-5d7d0676284c
       - 5bc6d46e-b1ce-471e-8350-bfd32e49780a
@@ -958,7 +957,7 @@ nodes:
       - a015d694-46fb-41f2-86ce-493d8bb90098
     metadata:
       status: completed
-      expanded: false
+      expanded: true
   e9bb0de8-a33a-4054-8902-466a58ae3a1a:
     id: e9bb0de8-a33a-4054-8902-466a58ae3a1a
     content: Done
@@ -1747,7 +1746,7 @@ nodes:
       - c4a0a9f7-196d-457f-83ff-3efe3f8ea706
     metadata:
       status: completed
-      expanded: false
+      expanded: true
   90ef4542-1a4c-48b9-922e-5674d3143748:
     id: 90ef4542-1a4c-48b9-922e-5674d3143748
     content: Linting, Typescript, Tests, Coverage
@@ -2653,6 +2652,7 @@ nodes:
       - a0d41291-4fcc-46df-923f-b31a13970c83
       - ac2e431a-45e0-4dba-80de-9e9f78454b03
       - 927628e2-4499-4004-9073-5a2f04c70747
+      - ae33281b-792d-48bd-aa42-3c896540de04
     metadata:
       status: completed
       expanded: true
@@ -2830,6 +2830,7 @@ nodes:
     content: Refactor
     children:
       - 0084829f-1547-48ae-a595-96148c114df8
+      - 2b1a2404-faed-41a3-bb8b-8e8e5bd6da4b
     metadata:
       status: pending
   0084829f-1547-48ae-a595-96148c114df8:
@@ -2837,22 +2838,13 @@ nodes:
     content: Some repetition in ipcService.ts
     children: []
     metadata:
-      status: pending
-  00e08ff5-0634-4205-982c-6a3094f74d20:
-    id: 00e08ff5-0634-4205-982c-6a3094f74d20
-    content: Terminal scrolling
-    children:
-      - ae33281b-792d-48bd-aa42-3c896540de04
-    metadata:
-      status: pending
-      expanded: true
+      status: completed
   ae33281b-792d-48bd-aa42-3c896540de04:
     id: ae33281b-792d-48bd-aa42-3c896540de04
     content: Think the issue is that claude somehow resets the terminal view
     children:
       - 3a1fff8c-f3b6-4ed4-ba73-77b9d48a12aa
       - 01c8048d-aba9-4298-936d-0d2fe5f15a78
-      - d7e0af4c-84a5-4409-8ebe-3f60be676003
     metadata:
       status: pending
       expanded: true
@@ -2868,9 +2860,9 @@ nodes:
     children: []
     metadata:
       status: pending
-  d7e0af4c-84a5-4409-8ebe-3f60be676003:
-    id: d7e0af4c-84a5-4409-8ebe-3f60be676003
-    content: Remove toggleNode entirely from defaultHotkeys
+  2b1a2404-faed-41a3-bb8b-8e8e5bd6da4b:
+    id: 2b1a2404-faed-41a3-bb8b-8e8e5bd6da4b
+    content: "There's still code relating to saving, loading json files.\_ We don't need backward compatibility.\_ Remove all."
     children: []
     metadata:
       status: pending
