@@ -117,6 +117,18 @@ describe('reviewActions', () => {
       }
     });
 
+    // Mock executeCommand that executes the command immediately
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const mockExecuteCommand = vi.fn((command: any) => {
+      command.execute();
+    });
+
+    // Add executeCommand to the mock state's actions
+    mockState.actions = {
+      executeCommand: mockExecuteCommand,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } as any;
+
     const mockVisualEffects = {
       flashNode: vi.fn(),
       scrollToNode: vi.fn(),

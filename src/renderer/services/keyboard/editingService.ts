@@ -125,8 +125,10 @@ function handleKeyDown(event: KeyboardEvent): void {
   const activeStore = getActiveStore();
 
   // Handle undo/redo (doesn't require active element)
+  // Must preventDefault AND stopPropagation to prevent contentEditable native undo
   if (matchesHotkey(event, 'actions', 'undo')) {
     event.preventDefault();
+    event.stopPropagation();
     if (activeStore) {
       activeStore.getState().actions.undo();
     }
@@ -135,6 +137,7 @@ function handleKeyDown(event: KeyboardEvent): void {
 
   if (matchesHotkey(event, 'actions', 'redo')) {
     event.preventDefault();
+    event.stopPropagation();
     if (activeStore) {
       activeStore.getState().actions.redo();
     }

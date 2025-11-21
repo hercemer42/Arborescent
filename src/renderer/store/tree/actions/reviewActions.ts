@@ -6,6 +6,7 @@ import { logger } from '../../../services/logger';
 import { useToastStore } from '../../toast/toastStore';
 import { VisualEffectsActions } from './visualEffectsActions';
 import { loadReviewContent } from '../../../services/review/reviewTempFileService';
+import { AcceptReviewCommand } from '../commands/AcceptReviewCommand';
 
 // Base instruction for review requests - used by both clipboard and terminal workflows
 const REVIEW_INSTRUCTION = 'Review and update the following hierarchical list. Output your response in a markdown code block to preserve formatting. Use heading levels for hierarchy (# root, ## child, ### grandchild). Retain status symbols for existing entries.';
@@ -59,7 +60,7 @@ export function createReviewActions(
      * @param newNodesMap - Flat map of all new nodes (including the root and all descendants)
      */
     acceptReview: (newRootNodeId: string, newNodesMap: Record<string, TreeNode>) => {
-      const state = get();
+      const state = get() as TreeState & { actions?: { executeCommand?: (cmd: unknown) => void } };
       const reviewingNodeId = state.reviewingNodeId;
 
       if (!reviewingNodeId) {
@@ -71,103 +72,22 @@ export function createReviewActions(
         return;
       }
 
-      // Find all descendants of the reviewing node
-      const descendantIds = new Set<string>();
-      const collectDescendants = (nodeId: string) => {
-        const node = state.nodes[nodeId];
-        if (!node) return;
-
-        for (const childId of node.children) {
-          descendantIds.add(childId);
-          collectDescendants(childId);
-        }
-      };
-      collectDescendants(reviewingNodeId);
-
-      // Find parent by searching through all nodes
-      let parentId: string | null = null;
-      for (const [id, node] of Object.entries(state.nodes)) {
-        if (node.children.includes(reviewingNodeId)) {
-          parentId = id;
-          break;
-        }
+      // Use command pattern for undo support
+      if (!state.actions?.executeCommand) {
+        logger.error('executeCommand not available', new Error('Cannot accept review without command system'), 'ReviewActions');
+        return;
       }
 
-      // Create merged nodes map
-      const mergedNodesMap = { ...state.nodes };
+      const command = new AcceptReviewCommand(
+        reviewingNodeId,
+        newRootNodeId,
+        newNodesMap,
+        get,
+        set,
+        autoSave
+      );
 
-      // Remove old reviewing node and its descendants
-      delete mergedNodesMap[reviewingNodeId];
-      for (const descendantId of descendantIds) {
-        delete mergedNodesMap[descendantId];
-      }
-
-      // Add all new nodes
-      for (const [id, node] of Object.entries(newNodesMap)) {
-        mergedNodesMap[id] = node;
-      }
-
-      // Update parent's children or root
-      let updatedRootNodeId = state.rootNodeId;
-
-      if (parentId !== null) {
-        const parent = mergedNodesMap[parentId];
-        if (parent) {
-          const newChildren = parent.children.map(id =>
-            id === reviewingNodeId ? newRootNodeId : id
-          );
-          mergedNodesMap[parentId] = { ...parent, children: newChildren };
-        }
-      } else {
-        // Replacing the root node itself
-        updatedRootNodeId = newRootNodeId;
-      }
-
-      // Rebuild ancestor registry
-      const newAncestorRegistry: Record<string, string[]> = {};
-
-      const buildAncestorRegistry = (nodeId: string, ancestors: string[]) => {
-        newAncestorRegistry[nodeId] = ancestors;
-
-        const node = mergedNodesMap[nodeId];
-        if (node) {
-          const newAncestors = [...ancestors, nodeId];
-          for (const childId of node.children) {
-            buildAncestorRegistry(childId, newAncestors);
-          }
-        }
-      };
-
-      buildAncestorRegistry(updatedRootNodeId, []);
-
-      // Collect all new node IDs for the fade effect (new root + all descendants)
-      const fadingNodeIds = new Set<string>();
-      const collectNewNodeIds = (nodeId: string) => {
-        fadingNodeIds.add(nodeId);
-        const node = newNodesMap[nodeId];
-        if (node) {
-          for (const childId of node.children) {
-            collectNewNodeIds(childId);
-          }
-        }
-      };
-      collectNewNodeIds(newRootNodeId);
-
-      set({
-        nodes: mergedNodesMap,
-        rootNodeId: updatedRootNodeId,
-        ancestorRegistry: newAncestorRegistry,
-        reviewingNodeId: null,
-        reviewFadingNodeIds: fadingNodeIds,
-      });
-
-      // Persist changes to disk
-      autoSave();
-
-      // Clear the fading effect after transition completes (1.5s)
-      setTimeout(() => {
-        set({ reviewFadingNodeIds: new Set() });
-      }, 1500);
+      state.actions.executeCommand(command);
     },
 
     /**
