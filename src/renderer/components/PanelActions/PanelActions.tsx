@@ -20,14 +20,15 @@ export function PanelActions() {
       >
         {'🌐'}
       </button>
-      <button
-        className="panel-action-button"
-        onClick={handleReviewShow}
-        disabled={!reviewingNodeId}
-        title={reviewingNodeId ? 'Show Review Panel' : 'No active review'}
-      >
-        {'📝'}
-      </button>
+      {reviewingNodeId && (
+        <button
+          className="panel-action-button"
+          onClick={handleReviewShow}
+          title="Show Review Panel"
+        >
+          {'📝'}
+        </button>
+      )}
     </div>
   );
 }

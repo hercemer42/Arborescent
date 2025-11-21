@@ -70,7 +70,7 @@ describe('Toast', () => {
 
     expect(onClose).not.toHaveBeenCalled();
 
-    vi.advanceTimersByTime(5000);
+    vi.advanceTimersByTime(8000);
 
     expect(onClose).toHaveBeenCalledTimes(1);
   });

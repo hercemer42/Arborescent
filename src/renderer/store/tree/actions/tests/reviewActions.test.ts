@@ -329,7 +329,7 @@ describe('reviewActions', () => {
 
       expect(executeInTerminal).toHaveBeenCalledWith(
         'terminal-1',
-        expect.stringContaining('Review the following list')
+        expect.stringContaining('Review and update the following hierarchical list. Maintain the indented format')
       );
       expect(executeInTerminal).toHaveBeenCalledWith(
         'terminal-1',

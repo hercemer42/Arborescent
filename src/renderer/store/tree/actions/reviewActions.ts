@@ -172,9 +172,10 @@ export function createReviewActions(
       }
 
       try {
-        // Copy node content to clipboard
+        // Copy node content to clipboard with context instruction
+        const instruction = 'Review and update the following hierarchical list. Maintain the indented format with status symbols (☐ pending, ☑ done, ✗ rejected):\n\n';
         const formattedContent = formatNodeAsMarkdown(node, state.nodes);
-        await navigator.clipboard.writeText(formattedContent);
+        await navigator.clipboard.writeText(instruction + formattedContent);
         logger.info('Copied to clipboard for review', 'ReviewActions');
 
         // Show toast message
@@ -229,7 +230,7 @@ export function createReviewActions(
 
       try {
         // Prepend instruction for terminal tool
-        const instruction = 'Review the following list and update it in the same format, then copy your reply to clipboard:\n\n';
+        const instruction = 'Review and update the following hierarchical list. Maintain the indented format with status symbols (☐ pending, ☑ done, ✗ rejected). Copy your reply to clipboard:\n\n';
         const formattedContent = formatNodeAsMarkdown(node, state.nodes);
         const contentWithInstruction = instruction + formattedContent;
 

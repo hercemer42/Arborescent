@@ -66,7 +66,7 @@ describe('ToastContainer', () => {
 
     expect(onRemove).not.toHaveBeenCalled();
 
-    vi.advanceTimersByTime(5000);
+    vi.advanceTimersByTime(8000);
 
     expect(onRemove).toHaveBeenCalledWith('toast-456');
   });

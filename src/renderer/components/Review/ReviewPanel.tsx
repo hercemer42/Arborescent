@@ -36,7 +36,7 @@ export function ReviewPanel() {
           </TreeStoreContext.Provider>
         ) : (
           <div className="review-waiting">
-            Waiting for reviewed content...
+            Waiting for reviewed content to appear in clipboard...
           </div>
         )}
       </div>

@@ -108,7 +108,7 @@ describe('ReviewPanel', () => {
 
       render(<ReviewPanel />);
 
-      expect(screen.getByText('Waiting for reviewed content...')).toBeInTheDocument();
+      expect(screen.getByText('Waiting for reviewed content to appear in clipboard...')).toBeInTheDocument();
       expect(screen.queryByTestId('tree-component')).not.toBeInTheDocument();
     });
 
@@ -119,7 +119,7 @@ describe('ReviewPanel', () => {
 
       expect(screen.getByTestId('tree-store-provider')).toBeInTheDocument();
       expect(screen.getByTestId('tree-component')).toBeInTheDocument();
-      expect(screen.queryByText('Waiting for reviewed content...')).not.toBeInTheDocument();
+      expect(screen.queryByText('Waiting for reviewed content to appear in clipboard...')).not.toBeInTheDocument();
     });
 
     it('should render Cancel button that calls handleCancel', () => {
