@@ -53,38 +53,15 @@ export function registerTempFileHandlers(): void {
     }
   });
 
-  // Review temp file handlers
-  ipcMain.handle('save-review-temp-file', async (_, fileName: string, content: string) => {
-    try {
-      const tempDir = path.join(app.getPath('userData'), 'temp-files');
-      await fs.mkdir(tempDir, { recursive: true });
-      const filePath = path.join(tempDir, fileName);
-      await fs.writeFile(filePath, content, 'utf-8');
-      logger.info(`Review temp file saved: ${filePath}`, 'IPC');
-      return filePath;
-    } catch (error) {
-      logger.error(`Failed to save review temp file: ${fileName}`, error instanceof Error ? error : undefined, 'IPC', true);
-      throw error;
-    }
-  });
-
-  ipcMain.handle('load-review-temp-file', async (_, filePath: string) => {
+  // Generic temp file read handler
+  ipcMain.handle('read-temp-file', async (_, filePath: string) => {
     try {
       const content = await fs.readFile(filePath, 'utf-8');
-      logger.info(`Review temp file loaded: ${filePath}`, 'IPC');
+      logger.info(`Temp file read: ${filePath}`, 'IPC');
       return content;
     } catch (error) {
-      logger.error(`Failed to load review temp file: ${filePath}`, error instanceof Error ? error : undefined, 'IPC', false);
+      logger.error(`Failed to read temp file: ${filePath}`, error instanceof Error ? error : undefined, 'IPC', false);
       return null;
-    }
-  });
-
-  ipcMain.handle('delete-review-temp-file', async (_, filePath: string) => {
-    try {
-      await fs.unlink(filePath);
-      logger.info(`Review temp file deleted: ${filePath}`, 'IPC');
-    } catch (error) {
-      logger.error(`Failed to delete review temp file: ${filePath}`, error instanceof Error ? error : undefined, 'IPC', false);
     }
   });
 }

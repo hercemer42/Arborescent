@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2025-11-21T16:51:50.766Z'
+updated: '2025-11-21T17:04:33.948Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -2762,6 +2762,7 @@ nodes:
       - 59074d72-2143-45f6-91ab-efb66da13417
       - 4bd48b05-5317-4e1d-aba3-93a1688311e4
       - d3ec4cf3-ab8e-43a3-afcd-dc773be46603
+      - 894eff60-42f4-4061-83c7-3d8ced499ee4
     metadata:
       status: pending
   d07ca588-f707-4c30-a743-5643ce0585d6:
@@ -3270,6 +3271,33 @@ nodes:
   2cad1735-4ece-4767-9a70-4cc7789a92c1:
     id: 2cad1735-4ece-4767-9a70-4cc7789a92c1
     content: "reviewTempFiles looks like it should be a service and not a utils ?\_ These aren't pure functions, the are calling electron"
+    children: []
+    metadata:
+      status: pending
+  894eff60-42f4-4061-83c7-3d8ced499ee4:
+    id: 894eff60-42f4-4061-83c7-3d8ced499ee4
+    content: There should be a review file per arbo file
+    children:
+      - 41188db8-daae-47e1-a389-68fe3c8e57f9
+      - edbe11f9-a16c-4dbf-b6f5-3a3d1334fb4e
+      - fdcf05df-a44e-4827-ba2e-40fd687b34ac
+    metadata:
+      status: pending
+  41188db8-daae-47e1-a389-68fe3c8e57f9:
+    id: 41188db8-daae-47e1-a389-68fe3c8e57f9
+    content: It should change when we change arbo file
+    children: []
+    metadata:
+      status: pending
+  edbe11f9-a16c-4dbf-b6f5-3a3d1334fb4e:
+    id: edbe11f9-a16c-4dbf-b6f5-3a3d1334fb4e
+    content: If there is no review in progress for the current arbo file, it should be blank
+    children: []
+    metadata:
+      status: pending
+  fdcf05df-a44e-4827-ba2e-40fd687b34ac:
+    id: fdcf05df-a44e-4827-ba2e-40fd687b34ac
+    content: Each one should persist between sessions
     children: []
     metadata:
       status: pending

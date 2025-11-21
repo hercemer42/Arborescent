@@ -29,7 +29,7 @@ export async function saveReviewContent(
   try {
     const contentHash = computeContentHash(content);
     const fileName = `review-${nodeId}-${contentHash}.txt`;
-    const filePath = await window.electron.saveReviewTempFile(fileName, content);
+    const filePath = await window.electron.createTempFile(fileName, content);
 
     logger.info(`Saved review content to temp file: ${filePath}`, 'ReviewTempFiles');
 
@@ -49,7 +49,7 @@ export async function loadReviewContent(
   expectedHash?: string
 ): Promise<string | null> {
   try {
-    const content = await window.electron.loadReviewTempFile(filePath);
+    const content = await window.electron.readTempFile(filePath);
 
     if (!content) {
       logger.warn(`Review temp file not found: ${filePath}`, 'ReviewTempFiles');
@@ -82,7 +82,7 @@ export async function loadReviewContent(
  */
 export async function deleteReviewTempFile(filePath: string): Promise<void> {
   try {
-    await window.electron.deleteReviewTempFile(filePath);
+    await window.electron.deleteTempFile(filePath);
     logger.info(`Deleted review temp file: ${filePath}`, 'ReviewTempFiles');
   } catch (error) {
     logger.error('Failed to delete review temp file', error as Error, 'ReviewTempFiles');

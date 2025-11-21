@@ -21,6 +21,8 @@ contextBridge.exposeInMainWorld('electron', {
   getTempDir: () => ipcRenderer.invoke('get-temp-dir'),
   createTempFile: (fileName: string, content: string) =>
     ipcRenderer.invoke('create-temp-file', fileName, content),
+  readTempFile: (filePath: string) =>
+    ipcRenderer.invoke('read-temp-file', filePath),
   deleteTempFile: (filePath: string) =>
     ipcRenderer.invoke('delete-temp-file', filePath),
   listTempFiles: () => ipcRenderer.invoke('list-temp-files'),
@@ -35,13 +37,6 @@ contextBridge.exposeInMainWorld('electron', {
     ipcRenderer.on('clipboard-content-detected', listener);
     return () => ipcRenderer.removeListener('clipboard-content-detected', listener);
   },
-  // Review temp file IPC
-  saveReviewTempFile: (fileName: string, content: string) =>
-    ipcRenderer.invoke('save-review-temp-file', fileName, content),
-  loadReviewTempFile: (filePath: string) =>
-    ipcRenderer.invoke('load-review-temp-file', filePath),
-  deleteReviewTempFile: (filePath: string) =>
-    ipcRenderer.invoke('delete-review-temp-file', filePath),
   // Terminal IPC
   terminalCreate: (id: string, title: string, shellCommand?: string, shellArgs?: string[], cwd?: string) =>
     ipcRenderer.invoke('terminal:create', id, title, shellCommand, shellArgs, cwd),

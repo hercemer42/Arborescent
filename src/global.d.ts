@@ -18,6 +18,7 @@ declare global {
       getPanelSession: () => Promise<string | null>;
       getTempDir: () => Promise<string>;
       createTempFile: (fileName: string, content: string) => Promise<string>;
+      readTempFile: (filePath: string) => Promise<string | null>;
       deleteTempFile: (filePath: string) => Promise<void>;
       listTempFiles: () => Promise<string[]>;
       saveTempFilesMetadata: (metadata: string) => Promise<void>;
@@ -26,10 +27,6 @@ declare global {
       startClipboardMonitor: () => Promise<void>;
       stopClipboardMonitor: () => Promise<void>;
       onClipboardContentDetected: (callback: (content: string) => void) => () => void;
-      // Review temp file IPC
-      saveReviewTempFile: (fileName: string, content: string) => Promise<string>;
-      loadReviewTempFile: (filePath: string) => Promise<string | null>;
-      deleteReviewTempFile: (filePath: string) => Promise<void>;
       setMenuNewHandler: (callback: () => void) => void;
       setMenuOpenHandler: (callback: () => void) => void;
       setMenuSaveHandler: (callback: () => void) => void;
