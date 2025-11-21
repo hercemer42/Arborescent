@@ -8,6 +8,7 @@ import { createNodeDeletionActions, NodeDeletionActions } from './actions/nodeDe
 import { createVisualEffectsActions, VisualEffectsActions } from './actions/visualEffectsActions';
 import { createSelectionActions, SelectionActions } from './actions/selectionActions';
 import { createHistoryActions, HistoryActions } from './actions/historyActions';
+import { createReviewActions, ReviewActions } from './actions/reviewActions';
 import { HistoryManager } from './commands/HistoryManager';
 import { StorageService } from '@platform';
 
@@ -24,8 +25,9 @@ export interface TreeState {
   fileMeta: { created: string; author: string } | null;
   flashingNode: { nodeId: string; intensity: 'light' | 'medium' } | null;
   scrollToNodeId: string | null;
+  reviewingNodeId: string | null; // Node currently being reviewed by AI
 
-  actions: NodeActions & NavigationActions & PersistenceActions & NodeMovementActions & NodeDeletionActions & VisualEffectsActions & SelectionActions & HistoryActions;
+  actions: NodeActions & NavigationActions & PersistenceActions & NodeMovementActions & NodeDeletionActions & VisualEffectsActions & SelectionActions & HistoryActions & ReviewActions;
 }
 
 const storageService = new StorageService();
@@ -44,6 +46,7 @@ export function createTreeStore() {
     const navigationActions = createNavigationActions(get, set);
     const selectionActions = createSelectionActions(get, set);
     const historyActions = createHistoryActions(historyManager);
+    const reviewActions = createReviewActions(get, set);
 
     return {
       nodes: {},
@@ -58,6 +61,7 @@ export function createTreeStore() {
       fileMeta: null,
       flashingNode: null,
       scrollToNodeId: null,
+      reviewingNodeId: null,
 
       actions: {
         ...createNodeActions(get, set, persistenceActions.autoSave),
@@ -68,6 +72,7 @@ export function createTreeStore() {
         ...visualEffectsActions,
         ...selectionActions,
         ...historyActions,
+        ...reviewActions,
       },
     };
   });

@@ -11,6 +11,7 @@ describe('nodeActions', () => {
     activeNodeId: string | null;
     cursorPosition: number;
     rememberedVisualX: number | null;
+    reviewingNodeId: string | null;
     actions?: { executeCommand?: (cmd: unknown) => void };
   };
   let state: TestState;
@@ -62,6 +63,7 @@ describe('nodeActions', () => {
       activeNodeId: null,
       cursorPosition: 0,
       rememberedVisualX: null,
+      reviewingNodeId: null,
       actions: { executeCommand: mockExecuteCommand },
     };
 

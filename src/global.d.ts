@@ -23,6 +23,9 @@ declare global {
       saveTempFilesMetadata: (metadata: string) => Promise<void>;
       getTempFilesMetadata: () => Promise<string | null>;
       isTempFile: (filePath: string) => Promise<boolean>;
+      startClipboardMonitor: () => Promise<void>;
+      stopClipboardMonitor: () => Promise<void>;
+      onClipboardContentDetected: (callback: (content: string) => void) => () => void;
       setMenuNewHandler: (callback: () => void) => void;
       setMenuOpenHandler: (callback: () => void) => void;
       setMenuSaveHandler: (callback: () => void) => void;

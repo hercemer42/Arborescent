@@ -5,6 +5,7 @@ import {
   findPreviousNode,
 } from '../../../utils/nodeHelpers';
 import { DeleteNodeCommand } from '../commands/DeleteNodeCommand';
+import { logger } from '../../../services/logger';
 
 export interface NodeDeletionActions {
   deleteNode: (nodeId: string, confirmed?: boolean) => boolean;
@@ -16,6 +17,7 @@ type StoreState = {
   ancestorRegistry: Record<string, string[]>;
   activeNodeId: string | null;
   cursorPosition: number;
+  reviewingNodeId: string | null;
 };
 type StoreSetter = (partial: Partial<StoreState>) => void;
 
@@ -56,9 +58,15 @@ export const createNodeDeletionActions = (
 
   function deleteNode(nodeId: string, confirmed = false): boolean {
     const state = get() as StoreState & { actions?: { executeCommand?: (cmd: unknown) => void } };
-    const { nodes, rootNodeId } = state;
+    const { nodes, rootNodeId, reviewingNodeId } = state;
     const node = nodes[nodeId];
     if (!node) return true;
+
+    // Prevent deletion of node under review
+    if (reviewingNodeId === nodeId) {
+      logger.error('Cannot delete node under review', new Error('Node is being reviewed'), 'TreeStore');
+      return false;
+    }
 
     // Require confirmation if node has children
     if (node.children.length > 0 && !confirmed) return false;

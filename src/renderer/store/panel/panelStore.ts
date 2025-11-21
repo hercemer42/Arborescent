@@ -4,7 +4,7 @@ import { Storage } from '../../../platforms/electron/services/Storage';
 import { logger } from '../../services/logger';
 
 export type PanelPosition = 'side' | 'bottom';
-export type PanelContentType = 'terminal' | 'browser' | null;
+export type PanelContentType = 'terminal' | 'browser' | 'review' | null;
 
 interface PanelSession {
   panelPosition: PanelPosition;
@@ -27,6 +27,7 @@ interface PanelState {
   setActiveContent: (content: PanelContentType) => void;
   showTerminal: () => void;
   showBrowser: () => void;
+  showReview: () => void;
   hidePanel: () => void;
   restoreSession: () => Promise<void>;
 }
@@ -101,6 +102,13 @@ export const usePanelStore = create<PanelState>((set) => ({
   showBrowser: () =>
     set((state) => {
       const newState = { activeContent: 'browser' as PanelContentType };
+      savePanelSession({ ...state, ...newState });
+      return newState;
+    }),
+
+  showReview: () =>
+    set((state) => {
+      const newState = { activeContent: 'review' as PanelContentType };
       savePanelSession({ ...state, ...newState });
       return newState;
     }),

@@ -27,6 +27,14 @@ contextBridge.exposeInMainWorld('electron', {
   saveTempFilesMetadata: (metadata: string) =>
     ipcRenderer.invoke('save-temp-files-metadata', metadata),
   getTempFilesMetadata: () => ipcRenderer.invoke('get-temp-files-metadata'),
+  // Clipboard monitoring IPC
+  startClipboardMonitor: () => ipcRenderer.invoke('start-clipboard-monitor'),
+  stopClipboardMonitor: () => ipcRenderer.invoke('stop-clipboard-monitor'),
+  onClipboardContentDetected: (callback: (content: string) => void) => {
+    const listener = (_event: Electron.IpcRendererEvent, content: string) => callback(content);
+    ipcRenderer.on('clipboard-content-detected', listener);
+    return () => ipcRenderer.removeListener('clipboard-content-detected', listener);
+  },
   // Terminal IPC
   terminalCreate: (id: string, title: string, shellCommand?: string, shellArgs?: string[], cwd?: string) =>
     ipcRenderer.invoke('terminal:create', id, title, shellCommand, shellArgs, cwd),

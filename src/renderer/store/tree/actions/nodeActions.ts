@@ -5,6 +5,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { ContentEditCommand } from '../commands/ContentEditCommand';
 import { ToggleStatusCommand } from '../commands/ToggleStatusCommand';
 import { CreateNodeCommand } from '../commands/CreateNodeCommand';
+import { logger } from '../../../services/logger';
 
 export interface NodeActions {
   selectNode: (nodeId: string, cursorPosition?: number) => void;
@@ -23,6 +24,7 @@ type StoreState = {
   activeNodeId: string | null;
   cursorPosition: number;
   rememberedVisualX: number | null;
+  reviewingNodeId: string | null;
 };
 type StoreSetter = (partial: Partial<StoreState> | ((state: StoreState) => Partial<StoreState>)) => void;
 
@@ -44,9 +46,15 @@ export const createNodeActions = (
 
   function updateContent(nodeId: string, content: string): void {
     const state = get() as StoreState & { actions?: { executeCommand?: (cmd: unknown) => void } };
-    const { nodes } = state;
+    const { nodes, reviewingNodeId } = state;
     const node = nodes[nodeId];
     if (!node) return;
+
+    // Prevent editing of node under review
+    if (reviewingNodeId === nodeId) {
+      logger.error('Cannot edit node under review', new Error('Node is being reviewed'), 'TreeStore');
+      return;
+    }
 
     const oldContent = node.content;
 

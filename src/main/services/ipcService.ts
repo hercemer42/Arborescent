@@ -3,6 +3,7 @@ import { promises as fs } from 'node:fs';
 import path from 'node:path';
 import { logger } from './logger';
 import { registerPluginHandlers } from '../../../plugins/core/main/registerHandlers';
+import { clipboardMonitor } from './clipboardMonitor';
 
 // Helper: Get last saved directory
 async function getLastSavedDirectory(): Promise<string | undefined> {
@@ -234,5 +235,20 @@ export async function registerIpcHandlers(getMainWindow: () => BrowserWindow | n
 
   ipcMain.handle('get-temp-files-metadata', async () => {
     return await loadJsonFile('temp-files-metadata.json', 'Temp files metadata');
+  });
+
+  // Clipboard monitoring for review feature
+  ipcMain.handle('start-clipboard-monitor', async () => {
+    const mainWindow = getMainWindow();
+    if (!mainWindow) return;
+
+    clipboardMonitor.start((content) => {
+      // Send clipboard content to renderer when detected
+      mainWindow.webContents.send('clipboard-content-detected', content);
+    });
+  });
+
+  ipcMain.handle('stop-clipboard-monitor', async () => {
+    clipboardMonitor.stop();
   });
 }

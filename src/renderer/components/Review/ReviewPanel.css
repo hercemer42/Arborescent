@@ -1,0 +1,86 @@
+.review-panel {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-primary);
+}
+
+.review-content {
+  flex: 1;
+  overflow: auto;
+  padding: 1rem;
+}
+
+.review-empty,
+.review-waiting {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+.review-preview {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.review-preview-header {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.review-preview-content {
+  padding: 1rem;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  white-space: pre-wrap;
+  font-family: monospace;
+  font-size: 0.9rem;
+  color: var(--text-primary);
+}
+
+.review-actions {
+  display: flex;
+  gap: 0.5rem;
+  padding: 1rem;
+  border-top: 1px solid var(--border-color);
+  background-color: var(--bg-secondary);
+}
+
+.review-button {
+  flex: 1;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.review-button-cancel {
+  background-color: var(--bg-tertiary);
+  color: var(--text-primary);
+}
+
+.review-button-cancel:hover {
+  background-color: var(--bg-quaternary);
+}
+
+.review-button-accept {
+  background-color: rgb(76, 175, 80);
+  color: white;
+}
+
+.review-button-accept:hover:not(:disabled) {
+  background-color: rgb(67, 160, 71);
+}
+
+.review-button-accept:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

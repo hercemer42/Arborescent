@@ -9,13 +9,17 @@ import { useTerminalStore } from '../../../store/terminal/terminalStore';
 import { useTerminalActions } from '../../Terminal/hooks/useTerminalActions';
 import { formatNodeAsMarkdown } from '../../../utils/nodeFormatting';
 import { logger } from '../../../services/logger';
+import { usePanelStore } from '../../../store/panel/panelStore';
 
 export function useNodeContextMenu(node: TreeNode) {
   const deleteNode = useStore((state) => state.actions.deleteNode);
   const nodes = useStore((state) => state.nodes);
   const ancestorRegistry = useStore((state) => state.ancestorRegistry);
+  const reviewingNodeId = useStore((state) => state.reviewingNodeId);
+  const startReview = useStore((state) => state.actions.startReview);
   const enabledPlugins = usePluginStore((state) => state.enabledPlugins);
   const activeTerminalId = useTerminalStore((state) => state.activeTerminalId);
+  const showReview = usePanelStore((state) => state.showReview);
   const store = useActiveTreeStore();
   const [contextMenu, setContextMenu] = useState<{ x: number; y: number } | null>(null);
   const [pluginMenuItems, setPluginMenuItems] = useState<ContextMenuItem[]>([]);
@@ -76,6 +80,76 @@ export function useNodeContextMenu(node: TreeNode) {
     }
   };
 
+  const handleRequestReview = async () => {
+    try {
+      // Copy node content to clipboard
+      const formattedContent = formatNodeAsMarkdown(node, nodes);
+      await navigator.clipboard.writeText(formattedContent);
+      logger.info('Copied to clipboard for review', 'Context Menu');
+
+      // Start review mode
+      startReview(node.id);
+
+      // Show review panel
+      showReview();
+
+      // Start clipboard monitoring
+      await window.electron.startClipboardMonitor();
+    } catch (error) {
+      logger.error('Failed to request review', error as Error, 'Context Menu');
+    }
+  };
+
+  const handleRequestReviewInTerminal = async () => {
+    if (!activeTerminalId) {
+      logger.error('No active terminal', new Error('No terminal selected'), 'Context Menu');
+      return;
+    }
+
+    try {
+      // Prepend instruction for Claude Code
+      const instruction = 'Review the following list and update it in the same format, then copy your reply to clipboard:\n\n';
+      const formattedContent = formatNodeAsMarkdown(node, nodes);
+      const contentWithInstruction = instruction + formattedContent;
+
+      // Write instruction + content to terminal
+      await window.electron.terminalWrite(activeTerminalId, contentWithInstruction);
+
+      // Wait a moment for text to be written
+      await new Promise(resolve => setTimeout(resolve, 50));
+
+      // Focus and send Enter key event to the terminal
+      const terminalElement = document.querySelector('.terminal-container .xterm-helper-textarea') as HTMLTextAreaElement;
+      if (terminalElement) {
+        terminalElement.focus();
+
+        // Dispatch Enter key event
+        const enterEvent = new KeyboardEvent('keydown', {
+          key: 'Enter',
+          code: 'Enter',
+          keyCode: 13,
+          which: 13,
+          bubbles: true,
+          cancelable: true,
+        });
+        terminalElement.dispatchEvent(enterEvent);
+      }
+
+      logger.info('Requested review in terminal', 'Context Menu');
+
+      // Start review mode
+      startReview(node.id);
+
+      // Show review panel
+      showReview();
+
+      // Start clipboard monitoring
+      await window.electron.startClipboardMonitor();
+    } catch (error) {
+      logger.error('Failed to request review in terminal', error as Error, 'Context Menu');
+    }
+  };
+
   function hasAncestorWithSession(): boolean {
     const ancestors = ancestorRegistry[node.id] || [];
     return ancestors.some((ancestorId) => {
@@ -118,6 +192,16 @@ export function useNodeContextMenu(node: TreeNode) {
       label: 'Execute in Terminal',
       onClick: handleExecuteInTerminal,
       disabled: !activeTerminalId,
+    },
+    {
+      label: 'Request review',
+      onClick: handleRequestReview,
+      disabled: !!reviewingNodeId,
+    },
+    {
+      label: 'Request review in terminal',
+      onClick: handleRequestReviewInTerminal,
+      disabled: !activeTerminalId || !!reviewingNodeId,
     },
     {
       label: 'Delete',

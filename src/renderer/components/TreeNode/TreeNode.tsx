@@ -18,6 +18,8 @@ export const TreeNode = memo(function TreeNode({ nodeId, depth = 0 }: TreeNodePr
   const node = useStore((state) => state.nodes[nodeId]);
   const isSelected = useStore((state) => state.activeNodeId === nodeId);
   const isMultiSelected = useStore((state) => state.multiSelectedNodeIds.has(nodeId));
+  const reviewingNodeId = useStore((state) => state.reviewingNodeId);
+  const isReviewing = reviewingNodeId === nodeId;
 
   const hasChildren = node ? node.children.length > 0 : false;
   const expanded = node?.metadata.expanded ?? true;
@@ -37,6 +39,7 @@ export const TreeNode = memo(function TreeNode({ nodeId, depth = 0 }: TreeNodePr
     'tree-node-wrapper',
     isSelected && 'selected',
     isMultiSelected && 'multi-selected',
+    isReviewing && 'reviewing',
     hasChildren && !expanded && 'collapsed-parent',
     isDragging && 'dragging',
     isOver && dropPosition && `drop-${dropPosition}`,

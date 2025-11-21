@@ -20,7 +20,7 @@ export interface PanelSession {
   panelPosition: 'side' | 'bottom';
   panelHeight: number;
   panelWidth: number;
-  activeContent: 'terminal' | 'browser' | null;
+  activeContent: 'terminal' | 'browser' | 'review' | null;
 }
 
 export interface StorageService {

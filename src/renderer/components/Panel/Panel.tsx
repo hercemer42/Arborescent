@@ -2,6 +2,7 @@ import { RefObject } from 'react';
 import { usePanelStore } from '../../store/panel/panelStore';
 import { TerminalPanel } from '../Terminal/TerminalPanel';
 import { BrowserPanel } from '../Browser/BrowserPanel';
+import { ReviewPanel } from '../Review/ReviewPanel';
 import { ResizablePanel } from '../ResizablePanel';
 import './Panel.css';
 
@@ -39,6 +40,9 @@ export function Panel({ contentRef }: PanelProps) {
       </div>
       <div style={{ display: activeContent === 'browser' ? 'block' : 'none', height: '100%' }}>
         <BrowserPanel />
+      </div>
+      <div style={{ display: activeContent === 'review' ? 'block' : 'none', height: '100%' }}>
+        <ReviewPanel />
       </div>
     </ResizablePanel>
   );
