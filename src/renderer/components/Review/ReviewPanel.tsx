@@ -14,8 +14,24 @@ export function ReviewPanel() {
   // Listen for clipboard content detection
   useEffect(() => {
     const cleanup = window.electron.onClipboardContentDetected((content: string) => {
-      logger.info('Received clipboard content for review', 'ReviewPanel');
-      setReviewedContent(content);
+      logger.info('Received clipboard content, attempting to parse', 'ReviewPanel');
+
+      // Try to parse the content - only accept if it parses successfully
+      try {
+        const parsed = parseMarkdown(content);
+
+        // Must parse to exactly 1 root node with valid structure
+        if (parsed.length === 1) {
+          logger.info('Successfully parsed clipboard content as Arborescent markdown', 'ReviewPanel');
+          setReviewedContent(content);
+        } else if (parsed.length === 0) {
+          logger.info('Clipboard content does not contain valid Arborescent markdown (no nodes parsed)', 'ReviewPanel');
+        } else {
+          logger.info(`Clipboard content has ${parsed.length} root nodes, expected 1`, 'ReviewPanel');
+        }
+      } catch {
+        logger.info('Clipboard content is not valid Arborescent markdown', 'ReviewPanel');
+      }
     });
 
     return cleanup;

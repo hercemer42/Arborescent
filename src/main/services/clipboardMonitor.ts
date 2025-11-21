@@ -3,7 +3,8 @@ import { logger } from './logger';
 
 /**
  * Clipboard monitor service
- * Monitors clipboard for markdown content when review is active
+ * Monitors clipboard for content changes when review is active
+ * Sends all content to renderer which validates if it's parseable
  */
 export class ClipboardMonitor {
   private intervalId: NodeJS.Timeout | null = null;
@@ -30,11 +31,8 @@ export class ClipboardMonitor {
 
       if (current !== this.lastClipboardContent && current.length > 50) {
         this.lastClipboardContent = current;
-
-        if (this.isMarkdownFormat(current)) {
-          logger.info('Detected markdown content in clipboard', 'ClipboardMonitor');
-          this.onChange?.(current);
-        }
+        logger.info('Clipboard content changed, sending to renderer', 'ClipboardMonitor');
+        this.onChange?.(current);
       }
     }, 500);
 
@@ -55,24 +53,6 @@ export class ClipboardMonitor {
     this.lastClipboardContent = '';
 
     logger.info('Clipboard monitor stopped', 'ClipboardMonitor');
-  }
-
-  /**
-   * Check if content appears to be markdown format
-   */
-  private isMarkdownFormat(text: string): boolean {
-    const patterns = [
-      /^#{1,6}\s/m,           // Headers: # Title
-      /^\*\s/m,               // Bullets: * item
-      /^-\s/m,                // Bullets: - item
-      /^\d+\.\s/m,            // Numbers: 1. item
-      /\*\*.*\*\*/,           // Bold: **text**
-      /\[.*\]\(.*\)/,         // Links: [text](url)
-      /```/,                  // Code blocks
-      /^\s*-\s\[[ x]\]/m,     // Checkboxes: - [ ] or - [x]
-    ];
-
-    return patterns.some(pattern => pattern.test(text));
   }
 
   /**
