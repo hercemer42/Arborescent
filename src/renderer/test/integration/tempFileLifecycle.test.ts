@@ -1,4 +1,5 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
+import * as yaml from 'js-yaml';
 import { useFilesStore } from '../../store/files/filesStore';
 import { storeManager } from '../../store/storeManager';
 import { StorageService } from '@platform';
@@ -24,7 +25,7 @@ describe('Integration: Temp File Lifecycle', () => {
 
   function generateTempPath(): string {
     tempFileCounter++;
-    return `/tmp/untitled-${tempFileCounter}.json`;
+    return `/tmp/untitled-${tempFileCounter}.arbo`;
   }
 
   beforeEach(() => {
@@ -71,7 +72,7 @@ describe('Integration: Temp File Lifecycle', () => {
       savedFiles.set(path, content);
     });
 
-    vi.mocked(window.electron.showSaveDialog).mockResolvedValue('/saved/file.json');
+    vi.mocked(window.electron.showSaveDialog).mockResolvedValue('/saved/file.arbo');
     vi.mocked(window.electron.getSession).mockResolvedValue(null);
     vi.mocked(window.electron.showUnsavedChangesDialog).mockResolvedValue(0); // Save
   });
@@ -86,7 +87,7 @@ describe('Integration: Temp File Lifecycle', () => {
     // Verify temp file was created
     expect(window.electron.createTempFile).toHaveBeenCalled();
     expect(tempFilesMetadata).toHaveLength(1);
-    expect(tempFilesMetadata[0]).toMatch(/\/tmp\/untitled-\d+\.json/);
+    expect(tempFilesMetadata[0]).toMatch(/\/tmp\/untitled-\d+\.arbo/);
 
     // Verify it's tracked as temp
     const isTemp = await storage.isTempFile(tempFilesMetadata[0]);
@@ -114,7 +115,7 @@ describe('Integration: Temp File Lifecycle', () => {
     expect(tempFilesMetadata).toHaveLength(0);
 
     // Verify file was saved to permanent location
-    expect(savedFiles.has('/saved/file.json')).toBe(true);
+    expect(savedFiles.has('/saved/file.arbo')).toBe(true);
   });
 
   it('should clean up temp file when closed without saving', async () => {
@@ -161,13 +162,13 @@ describe('Integration: Temp File Lifecycle', () => {
 
   it('should recover orphaned temp files on app restart', async () => {
     // Simulate app with orphaned temp files (in metadata but not in session)
-    const orphanedPath1 = '/tmp/untitled-1.json';
-    const orphanedPath2 = '/tmp/untitled-2.json';
+    const orphanedPath1 = '/tmp/untitled-1.arbo';
+    const orphanedPath2 = '/tmp/untitled-2.arbo';
 
     tempFilesMetadata = [orphanedPath1, orphanedPath2];
 
     // Create dummy content for these files
-    const dummyContent = JSON.stringify({
+    const dummyContent = yaml.dump({
       format: 'Arborescent',
       version: '1.0.0',
       created: new Date().toISOString(),
@@ -177,7 +178,7 @@ describe('Integration: Temp File Lifecycle', () => {
       nodes: {
         'root': { id: 'root', content: 'Orphaned', children: [], metadata: {} },
       },
-    });
+    }, { indent: 2, lineWidth: -1 });
 
     savedFiles.set(orphanedPath1, dummyContent);
     savedFiles.set(orphanedPath2, dummyContent);
@@ -213,7 +214,7 @@ describe('Integration: Temp File Lifecycle', () => {
   });
 
   it('should properly transition from temp to saved file', async () => {
-    const permanentPath = '/saved/document.json';
+    const permanentPath = '/saved/document.arbo';
     vi.mocked(window.electron.showSaveDialog).mockResolvedValue(permanentPath);
 
     const { actions } = useFilesStore.getState();
@@ -258,7 +259,7 @@ describe('Integration: Temp File Lifecycle', () => {
     expect(initialMetadata).toHaveLength(3);
 
     // Save one as permanent
-    vi.mocked(window.electron.showSaveDialog).mockResolvedValue('/saved/file1.json');
+    vi.mocked(window.electron.showSaveDialog).mockResolvedValue('/saved/file1.arbo');
     await actions.saveFileAs(initialMetadata[1]);
 
     // Verify metadata was updated

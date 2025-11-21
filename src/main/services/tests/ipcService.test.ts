@@ -159,7 +159,7 @@ describe('ipcService', () => {
 
       expect(dialog.showOpenDialog).toHaveBeenCalledWith(mockWindow, {
         properties: ['openFile'],
-        filters: [{ name: 'Arborescent Files', extensions: ['json'] }],
+        filters: [{ name: 'Arborescent Files', extensions: ['arbo'] }],
       });
       expect(result).toBe('/selected/file.json');
     });
@@ -171,6 +171,111 @@ describe('ipcService', () => {
       vi.mocked(dialog.showOpenDialog).mockResolvedValue({
         canceled: true,
         filePaths: [],
+      });
+
+      const result = await handler();
+
+      expect(result).toBeNull();
+    });
+  });
+
+  describe('show-save-dialog handler', () => {
+    it('should return file path with .arbo extension when user provides it', async () => {
+      await registerIpcHandlers(() => mockWindow);
+      const handler = handlers.get('show-save-dialog')!;
+
+      vi.mocked(dialog.showSaveDialog).mockResolvedValue({
+        canceled: false,
+        filePath: '/path/to/file.arbo',
+      });
+
+      const result = await handler();
+
+      expect(result).toBe('/path/to/file.arbo');
+    });
+
+    it('should add .arbo extension when user does not provide it', async () => {
+      await registerIpcHandlers(() => mockWindow);
+      const handler = handlers.get('show-save-dialog')!;
+
+      vi.mocked(dialog.showSaveDialog).mockResolvedValue({
+        canceled: false,
+        filePath: '/path/to/file',
+      });
+
+      const result = await handler();
+
+      expect(result).toBe('/path/to/file.arbo');
+    });
+
+    it('should use provided default path over last saved directory', async () => {
+      await registerIpcHandlers(() => mockWindow);
+      const handler = handlers.get('show-save-dialog')!;
+
+      // Create parent directory in memfs
+      vol.mkdirSync('/mock/user/data', { recursive: true });
+
+      // Save with last directory stored
+      vol.writeFileSync('/mock/user/data/last-save-directory.txt', '/documents/work');
+
+      // Call with explicit default path
+      vi.mocked(dialog.showSaveDialog).mockResolvedValue({
+        canceled: false,
+        filePath: '/home/user/project.arbo',
+      });
+
+      await handler({}, '/home/user');
+
+      // Should use provided path, not last saved directory
+      expect(dialog.showSaveDialog).toHaveBeenCalledWith(mockWindow, {
+        defaultPath: '/home/user',
+        filters: [{ name: 'Arborescent Files', extensions: ['arbo'] }],
+      });
+    });
+
+    it('should fall back to last saved directory when no default provided', async () => {
+      await registerIpcHandlers(() => mockWindow);
+      const handler = handlers.get('show-save-dialog')!;
+
+      // Create parent directory in memfs
+      vol.mkdirSync('/mock/user/data', { recursive: true });
+      vol.writeFileSync('/mock/user/data/last-save-directory.txt', '/documents/work');
+
+      vi.mocked(dialog.showSaveDialog).mockResolvedValue({
+        canceled: false,
+        filePath: '/documents/work/file.arbo',
+      });
+
+      await handler({}, undefined);
+
+      // Should use last saved directory
+      expect(dialog.showSaveDialog).toHaveBeenCalledWith(mockWindow, {
+        defaultPath: '/documents/work',
+        filters: [{ name: 'Arborescent Files', extensions: ['arbo'] }],
+      });
+    });
+
+    it('should return null when dialog is canceled', async () => {
+      await registerIpcHandlers(() => mockWindow);
+      const handler = handlers.get('show-save-dialog')!;
+
+      vi.mocked(dialog.showSaveDialog).mockResolvedValue({
+        canceled: true,
+        filePath: '',
+      });
+
+      const result = await handler();
+
+      expect(result).toBeNull();
+    });
+
+    it('should return null when filePath is empty', async () => {
+      await registerIpcHandlers(() => mockWindow);
+      const handler = handlers.get('show-save-dialog')!;
+
+      vi.mocked(dialog.showSaveDialog).mockResolvedValue({
+        canceled: false,
+        filePath: '',
       });
 
       const result = await handler();

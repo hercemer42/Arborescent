@@ -2,7 +2,7 @@ export function getNextUntitledNumber(filePaths: string[]): number {
   if (filePaths.length === 0) return 1;
 
   const numbers = filePaths
-    .map(path => path.match(/untitled-(\d+)\.json$/)?.[1])
+    .map(path => path.match(/untitled-(\d+)\.arbo$/)?.[1])
     .filter((n): n is string => n !== undefined)
     .map(n => parseInt(n, 10));
 

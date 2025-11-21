@@ -33,9 +33,21 @@ export async function registerIpcHandlers(getMainWindow: () => BrowserWindow | n
     const mainWindow = getMainWindow();
     logger.info('Opening file dialog', 'IPC');
 
+    // Read last used directory
+    let defaultPath: string | undefined;
+    try {
+      const userDataPath = app.getPath('userData');
+      const lastDirPath = path.join(userDataPath, 'last-save-directory.txt');
+      const lastDir = await fs.readFile(lastDirPath, 'utf-8');
+      defaultPath = lastDir.trim();
+    } catch {
+      // File doesn't exist yet, no default path
+    }
+
     const options = {
+      defaultPath,
       properties: ['openFile' as const],
-      filters: [{ name: 'Arborescent Files', extensions: ['json'] }],
+      filters: [{ name: 'Arborescent Files', extensions: ['arbo'] }],
     };
 
     const result = mainWindow
@@ -44,20 +56,70 @@ export async function registerIpcHandlers(getMainWindow: () => BrowserWindow | n
 
     logger.info(`Dialog result received, canceled: ${result.canceled}, path: ${result.filePaths[0] || 'none'}`, 'IPC');
 
+    if (!result.canceled && result.filePaths[0]) {
+      // Save the directory for next time
+      try {
+        const directory = path.dirname(result.filePaths[0]);
+        const userDataPath = app.getPath('userData');
+        const lastDirPath = path.join(userDataPath, 'last-save-directory.txt');
+        await fs.writeFile(lastDirPath, directory, 'utf-8');
+        logger.info(`Saved last directory: ${directory}`, 'IPC');
+      } catch (error) {
+        logger.error('Failed to save last directory', error instanceof Error ? error : undefined, 'IPC', false);
+      }
+    }
+
     return result.canceled ? null : result.filePaths[0];
   });
 
-  ipcMain.handle('show-save-dialog', async () => {
+  ipcMain.handle('show-save-dialog', async (_event, providedDefaultPath?: string) => {
     const mainWindow = getMainWindow();
+
+    // Use provided default path (e.g., current file's directory), or fall back to last saved directory
+    let defaultPath: string | undefined = providedDefaultPath;
+
+    if (!defaultPath) {
+      try {
+        const userDataPath = app.getPath('userData');
+        const lastDirPath = path.join(userDataPath, 'last-save-directory.txt');
+        const lastDir = await fs.readFile(lastDirPath, 'utf-8');
+        defaultPath = lastDir.trim();
+      } catch {
+        // File doesn't exist yet, no default path
+      }
+    }
+
     const options = {
-      filters: [{ name: 'Arborescent Files', extensions: ['json'] }],
+      defaultPath,
+      filters: [{ name: 'Arborescent Files', extensions: ['arbo'] }],
     };
 
     const result = mainWindow
       ? await dialog.showSaveDialog(mainWindow, options)
       : await dialog.showSaveDialog(options);
 
-    return result.canceled ? null : result.filePath;
+    if (result.canceled || !result.filePath || result.filePath === '') {
+      return null;
+    }
+
+    // Ensure .arbo extension is always present (cross-platform consistency)
+    let filePath = result.filePath;
+    if (!filePath.endsWith('.arbo')) {
+      filePath = `${filePath}.arbo`;
+    }
+
+    // Save the directory for next time
+    try {
+      const directory = path.dirname(filePath);
+      const userDataPath = app.getPath('userData');
+      const lastDirPath = path.join(userDataPath, 'last-save-directory.txt');
+      await fs.writeFile(lastDirPath, directory, 'utf-8');
+      logger.info(`Saved last directory: ${directory}`, 'IPC');
+    } catch (error) {
+      logger.error('Failed to save last directory', error instanceof Error ? error : undefined, 'IPC', false);
+    }
+
+    return filePath;
   });
 
   ipcMain.handle('get-temp-dir', async () => {

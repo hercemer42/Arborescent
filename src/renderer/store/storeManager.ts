@@ -26,6 +26,14 @@ class StoreManager {
     this.stores.delete(filePath);
   }
 
+  moveStore(oldPath: string, newPath: string): void {
+    const store = this.stores.get(oldPath);
+    if (store) {
+      this.stores.set(newPath, store);
+      this.stores.delete(oldPath);
+    }
+  }
+
   hasStore(filePath: string): boolean {
     return this.stores.has(filePath);
   }

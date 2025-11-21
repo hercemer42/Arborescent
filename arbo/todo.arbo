@@ -1,0 +1,2876 @@
+format: Arborescent
+version: 1.0.0
+created: '2025-10-11T00:00:00.000Z'
+updated: '2025-11-21T09:15:01.065Z'
+author: brian@brianfox.fr
+rootNodeId: root
+nodes:
+  root:
+    id: root
+    type: project
+    content: Arborescent Development
+    children:
+      - 0cc62ae1-1a7a-4aa4-bc6a-d817cabd672c
+      - 2f83a0af-280e-4e67-8306-31a8e02c9500
+      - l7w7ssh62
+      - d5fe0eff-b1c6-4986-b6a3-70a0ea46f096
+      - 9bfbb401-dcb6-4f92-a34b-e9b3982c676f
+      - yifizx1mv
+      - 60ebf3ef-241c-4317-8578-5a8b5a038cf7
+    metadata:
+      created: '2025-10-11T00:00:00.000Z'
+  44jmbkqfv:
+    id: 44jmbkqfv
+    content: Implement the done/delete system
+    children:
+      - 7yv24ywtt
+      - cij2x0vpx
+      - o64287195
+      - dhcbknjlb
+      - 1wf47fb81
+      - 2wbxyk587
+      - k4yiytyw0
+      - njrw983i4
+      - vmp8qtbbt
+      - rupbtgixt
+    metadata:
+      status: completed
+      expanded: false
+  i6yepfx52:
+    id: i6yepfx52
+    content: The JSON file is flat but perhaps should be imbrecated - also we should have .arbo file extensions
+    children: []
+    metadata:
+      status: pending
+  qo4eickz9:
+    id: qo4eickz9
+    content: Audio and visual alert when claude has done something or needs something
+    children:
+      - abc92459-4a6d-4048-8751-1282b904b6d6
+    metadata:
+      status: pending
+      expanded: false
+  pdt35vy1z:
+    id: pdt35vy1z
+    content: File management
+    children:
+      - i6yepfx52
+      - csovhwc4s
+      - vtm9cep7j
+      - jnuzwknho
+      - o8mrjsr09
+    metadata:
+      status: pending
+      expanded: false
+  csovhwc4s:
+    id: csovhwc4s
+    content: We don't default the file extension
+    children: []
+    metadata:
+      status: pending
+  vtm9cep7j:
+    id: vtm9cep7j
+    content: Separate the autosave file from the user saved file (optional, it's not code)
+    children:
+      - lb5oddd8o
+    metadata:
+      status: pending
+  lb5oddd8o:
+    id: lb5oddd8o
+    content: Have a dot after the text name when the content is not saved
+    children: []
+    metadata:
+      status: pending
+  byqndehy4:
+    id: byqndehy4
+    content: Claude integration
+    children:
+      - e9bb0de8-a33a-4054-8902-466a58ae3a1a
+    metadata:
+      status: completed
+      expanded: false
+  jnuzwknho:
+    id: jnuzwknho
+    content: Show path on hover on tab
+    children: []
+    metadata:
+      status: pending
+  o8mrjsr09:
+    id: o8mrjsr09
+    content: New file from node
+    children: []
+    metadata:
+      status: pending
+  yifizx1mv:
+    id: yifizx1mv
+    content: UI
+    children:
+      - 1lvwh7qxq
+      - mz7j4sjn4
+    metadata:
+      status: completed
+      expanded: false
+  1lvwh7qxq:
+    id: 1lvwh7qxq
+    content: Check box should not display when empty
+    children: []
+    metadata:
+      status: failed
+  mz7j4sjn4:
+    id: mz7j4sjn4
+    content: Use same space for checkbox and toggle
+    children: []
+    metadata:
+      status: failed
+  0vzl7mppk:
+    id: 0vzl7mppk
+    content: Infra
+    children:
+      - gnwc7enq6
+      - wu3w8oli1
+      - nc5iircs3
+    metadata:
+      status: pending
+      expanded: false
+  gnwc7enq6:
+    id: gnwc7enq6
+    content: should have different logging level depending on development enviornement
+    children: []
+    metadata:
+      status: pending
+  wu3w8oli1:
+    id: wu3w8oli1
+    content: move text strings to file and have translations in european languages
+    children: []
+    metadata:
+      status: pending
+  nc5iircs3:
+    id: nc5iircs3
+    content: integration tests
+    children: []
+    metadata:
+      status: pending
+  l7w7ssh62:
+    id: l7w7ssh62
+    content: Bugs
+    children:
+      - perf-main-001
+      - b18d78b0-a96e-4483-840c-df932f663968
+      - ff71c203-adaa-424e-9305-8e563cae5f8a
+      - b3beb907-e7ad-4476-a42f-83b7fc75a189
+      - 00fe1875-4004-44e5-9ad3-0b338c9c1c41
+      - p4b94svjw
+      - 26066785-5fbb-4294-ba3f-48a989bc2390
+      - a56f27cf-be6c-4453-af20-d295d1ba386b
+      - acdf701b-aa3e-4443-be72-e12d45db8275
+    metadata:
+      status: pending
+      expanded: false
+  p4b94svjw:
+    id: p4b94svjw
+    content: Keyboard browsing perf bug is back - skips nodes
+    children: []
+    metadata:
+      status: completed
+  7yv24ywtt:
+    id: 7yv24ywtt
+    content: Soft delete anything that is deleted so that it is hidden in the view but not actually removed
+    children: []
+    metadata:
+      status: completed
+  cij2x0vpx:
+    id: cij2x0vpx
+    content: Have a buffer of deletions, anything that goes over 10 gets permadeleted
+    children: []
+    metadata:
+      status: completed
+  o64287195:
+    id: o64287195
+    content: "Each mark on the buffer includes a node and all its ancestors - that is if a node has 10 descendants, the entire branch still only counts for one mark on the buffer\_"
+    children: []
+    metadata:
+      status: completed
+  dhcbknjlb:
+    id: dhcbknjlb
+    content: ctrl + shift + d undoes node deletions until it hits the buffer limit
+    children: []
+    metadata:
+      status: completed
+  1wf47fb81:
+    id: 1wf47fb81
+    content: at end make tests, check linting, typescript, coverage
+    children: []
+    metadata:
+      status: completed
+  2wbxyk587:
+    id: 2wbxyk587
+    content: No comments !
+    children: []
+    metadata:
+      status: completed
+  k4yiytyw0:
+    id: k4yiytyw0
+    content: visibleChildren is repeated twice in tree.tsx and treenode.tsx - it should be in the nodeHelper util
+    children: []
+    metadata:
+      status: completed
+  njrw983i4:
+    id: njrw983i4
+    content: deleteNode in treeStructureActions is responsible for too much
+    children: []
+    metadata:
+      status: completed
+  vmp8qtbbt:
+    id: vmp8qtbbt
+    content: treeStructureActions is too big and should be divided
+    children: []
+    metadata:
+      status: completed
+  rupbtgixt:
+    id: rupbtgixt
+    content: Soft deleted node children accounted for when we warn about deleting ancestors
+    children: []
+    metadata:
+      status: completed
+  60ebf3ef-241c-4317-8578-5a8b5a038cf7:
+    id: 60ebf3ef-241c-4317-8578-5a8b5a038cf7
+    content: Accessibility
+    children: []
+    metadata:
+      status: pending
+  perf-main-001:
+    id: perf-main-001
+    content: Performance Issues
+    children:
+      - perf-high-001
+      - perf-med-001
+      - perf-low-001
+    metadata:
+      status: completed
+      expanded: true
+  perf-high-001:
+    id: perf-high-001
+    content: High Priority
+    children:
+      - perf-high-leak-001
+      - perf-high-leak-002
+      - perf-high-render-001
+      - perf-high-render-002
+      - perf-high-render-003
+    metadata:
+      status: completed
+      expanded: false
+  perf-high-leak-001:
+    id: perf-high-leak-001
+    content: 'NOT A LEAK - Improved naming: preload uses setMenuNewHandler, renderer uses onMenuNew'
+    children: []
+    metadata:
+      status: completed
+  perf-high-leak-002:
+    id: perf-high-leak-002
+    content: 'NOT A LEAK - Improved naming: preload uses setMainErrorHandler, renderer uses onError'
+    children: []
+    metadata:
+      status: completed
+  perf-high-render-001:
+    id: perf-high-render-001
+    content: 'CRITICAL: Zustand over-selection in TreeNode.tsx:17 - selecting entire nodes object causes all nodes to re-render'
+    children: []
+    metadata:
+      status: completed
+  perf-high-render-002:
+    id: perf-high-render-002
+    content: 'CRITICAL: Zustand over-selection in Tree.tsx:10 - same issue at tree level'
+    children: []
+    metadata:
+      status: completed
+  perf-high-render-003:
+    id: perf-high-render-003
+    content: Inline style object in TreeNode.tsx:47 - creates new object for every node on every render
+    children: []
+    metadata:
+      status: failed
+  perf-med-001:
+    id: perf-med-001
+    content: Medium Priority
+    children:
+      - perf-med-inline-001
+      - perf-med-inline-002
+      - perf-med-inline-003
+      - perf-med-inline-004
+      - perf-med-memo-001
+      - perf-med-deps-001
+    metadata:
+      status: completed
+      expanded: false
+  perf-med-inline-001:
+    id: perf-med-inline-001
+    content: Inline functions in NodeContent.tsx:48 - new function for every node
+    children: []
+    metadata:
+      status: failed
+  perf-med-inline-002:
+    id: perf-med-inline-002
+    content: Inline functions in TabBar.tsx:26-27 - new functions for every tab
+    children: []
+    metadata:
+      status: failed
+  perf-med-inline-003:
+    id: perf-med-inline-003
+    content: Inline functions in ExpandToggle.tsx:19-26 - multiple inline handlers
+    children: []
+    metadata:
+      status: failed
+  perf-med-inline-004:
+    id: perf-med-inline-004
+    content: Inline functions in StatusCheckbox.tsx:27-30 and ToastContainer.tsx:22
+    children: []
+    metadata:
+      status: failed
+  perf-med-memo-001:
+    id: perf-med-memo-001
+    content: Missing memoization on Tree, Workspace, StatusCheckbox, ExpandToggle components
+    children: []
+    metadata:
+      status: completed
+  perf-med-deps-001:
+    id: perf-med-deps-001
+    content: Large dependency arrays in useTreeMenu.ts:25 causing frequent effect re-runs
+    children: []
+    metadata:
+      status: failed
+  perf-low-001:
+    id: perf-low-001
+    content: Low Priority
+    children:
+      - perf-low-state-001
+      - perf-low-memo-001
+      - perf-low-inline-001
+    metadata:
+      status: completed
+      expanded: false
+  perf-low-state-001:
+    id: perf-low-state-001
+    content: Module-level state in useNodeKeyboard.ts:17 - shared across all component instances
+    children: []
+    metadata:
+      status: failed
+  perf-low-memo-001:
+    id: perf-low-memo-001
+    content: useMemo with unstable dependencies in useNodeContextMenu.ts:27-36
+    children: []
+    metadata:
+      status: failed
+  perf-low-inline-001:
+    id: perf-low-inline-001
+    content: Minor inline objects in ContextMenu.tsx:46 and ToastContainer.tsx:16
+    children: []
+    metadata:
+      status: failed
+  26066785-5fbb-4294-ba3f-48a989bc2390:
+    id: 26066785-5fbb-4294-ba3f-48a989bc2390
+    content: There is an issue with indented or moved nodes dissapearing if there is an adjacent soft deleted node
+    children:
+      - f42baf93-4237-400b-aeca-14d4d3280962
+    metadata:
+      status: completed
+  f42baf93-4237-400b-aeca-14d4d3280962:
+    id: f42baf93-4237-400b-aeca-14d4d3280962
+    content: We need to remove the soft deleted nodes entirely from the render tree
+    children: []
+    metadata:
+      status: completed
+  a56f27cf-be6c-4453-af20-d295d1ba386b:
+    id: a56f27cf-be6c-4453-af20-d295d1ba386b
+    content: Keyboard navigation bug, can't go down through the node just above this one with the down arrow - i had deleted some stuff earlier
+    children: []
+    metadata:
+      status: completed
+  5f8eb896-d610-429f-a53a-fac6d164bd77:
+    id: 5f8eb896-d610-429f-a53a-fac6d164bd77
+    content: Start building context
+    children:
+      - f48b03ed-3a35-4ede-9e80-29f60c1c951c
+    metadata:
+      status: pending
+      expanded: false
+  f48b03ed-3a35-4ede-9e80-29f60c1c951c:
+    id: f48b03ed-3a35-4ede-9e80-29f60c1c951c
+    content: Make some hardcoded contexts
+    children:
+      - 88dbd33f-d47c-42d9-8820-66de50109fb1
+      - f0b2b93b-a81b-4444-880a-03b9ab91da5c
+      - 4517a3b7-e41b-4db5-94c4-5eba9aa3239a
+      - f0e02e79-fa64-47c9-8c88-8778e34f9239
+      - 4b9c5e9c-6b49-488e-9760-f1545dd1c7b3
+    metadata:
+      status: pending
+  31cc1d2b-858b-4323-937b-6a38b15e0239:
+    id: 31cc1d2b-858b-4323-937b-6a38b15e0239
+    content: Create project file browser
+    children:
+      - e9c43a83-c40f-441b-902c-f5aa1ce97bc4
+      - c22f7ef7-8224-4d5e-91da-ff5750fb767b
+    metadata:
+      status: pending
+      expanded: false
+  e9c43a83-c40f-441b-902c-f5aa1ce97bc4:
+    id: e9c43a83-c40f-441b-902c-f5aa1ce97bc4
+    content: Set project folder, create arbo folder
+    children:
+      - de46f940-e752-4042-a4eb-1adaf4270b75
+    metadata:
+      status: pending
+  c22f7ef7-8224-4d5e-91da-ff5750fb767b:
+    id: c22f7ef7-8224-4d5e-91da-ff5750fb767b
+    content: Have left panel focused on arbo folder
+    children: []
+    metadata:
+      status: pending
+  de46f940-e752-4042-a4eb-1adaf4270b75:
+    id: de46f940-e752-4042-a4eb-1adaf4270b75
+    content: Nope project folder is set by Claude, arbo folder is created by user, we just need to set working folder for session
+    children: []
+    metadata:
+      status: pending
+  88dbd33f-d47c-42d9-8820-66de50109fb1:
+    id: 88dbd33f-d47c-42d9-8820-66de50109fb1
+    content: New feature
+    children: []
+    metadata:
+      status: pending
+  f0b2b93b-a81b-4444-880a-03b9ab91da5c:
+    id: f0b2b93b-a81b-4444-880a-03b9ab91da5c
+    content: Bug
+    children: []
+    metadata:
+      status: pending
+  4517a3b7-e41b-4db5-94c4-5eba9aa3239a:
+    id: 4517a3b7-e41b-4db5-94c4-5eba9aa3239a
+    content: Refactor
+    children: []
+    metadata:
+      status: pending
+  f0e02e79-fa64-47c9-8c88-8778e34f9239:
+    id: f0e02e79-fa64-47c9-8c88-8778e34f9239
+    content: After compression
+    children: []
+    metadata:
+      status: pending
+  4b9c5e9c-6b49-488e-9760-f1545dd1c7b3:
+    id: 4b9c5e9c-6b49-488e-9760-f1545dd1c7b3
+    content: Discovery
+    children: []
+    metadata:
+      status: pending
+  7aa4140c-1206-47ea-8a94-6c3e7763ccff:
+    id: 7aa4140c-1206-47ea-8a94-6c3e7763ccff
+    content: Export of done tasks
+    children: []
+    metadata:
+      status: pending
+  abc92459-4a6d-4048-8751-1282b904b6d6:
+    id: abc92459-4a6d-4048-8751-1282b904b6d6
+    content: Similar to what we currently have in i3
+    children:
+      - b79d0854-a3ea-4c10-801e-a1ffdb16d627
+      - afc82f17-0de5-4a3c-b9bb-bfb1954c9799
+    metadata:
+      status: pending
+  b79d0854-a3ea-4c10-801e-a1ffdb16d627:
+    id: b79d0854-a3ea-4c10-801e-a1ffdb16d627
+    content: Need to find different icons
+    children: []
+    metadata:
+      status: pending
+  afc82f17-0de5-4a3c-b9bb-bfb1954c9799:
+    id: afc82f17-0de5-4a3c-b9bb-bfb1954c9799
+    content: Need to create a status bar
+    children:
+      - 83c73c8b-478b-41d0-82ac-f3395fd86937
+    metadata:
+      status: pending
+  0f9c1312-d773-45bb-9d54-7ef0fc4f58a9:
+    id: 0f9c1312-d773-45bb-9d54-7ef0fc4f58a9
+    content: Plugin architecture to keep the core concept abstract and allow for specific customizations for each user/need
+    children:
+      - c88262d6-21ba-41bd-aab7-51b96d0ed062
+      - 970270c0-d817-4e71-83f4-f540cffd4673
+      - 4429d7ba-34ea-48e6-bef4-1dea1c350562
+      - f4d54505-4c01-48a1-804d-d9afbc27151f
+      - cf30ace6-5743-47c9-ad11-33506bb23c09
+      - 5bcba9ad-828d-4d4e-b661-89504c00e097
+      - d789b040-ce74-4e38-8793-d9fe46b0e96f
+      - e99c471a-ab13-475a-b8f9-b98edf0920af
+      - bd4e87a5-132a-484d-82f0-52b6de115e60
+    metadata:
+      status: completed
+      expanded: false
+  c88262d6-21ba-41bd-aab7-51b96d0ed062:
+    id: c88262d6-21ba-41bd-aab7-51b96d0ed062
+    content: 'Follow VS Code model: built-in extensions use same API as marketplace extensions, all can be disabled by users'
+    children: []
+    metadata:
+      status: completed
+  970270c0-d817-4e71-83f4-f540cffd4673:
+    id: 970270c0-d817-4e71-83f4-f540cffd4673
+    content: 'Directory structure: src/renderer/plugins/ with core/ (registry, interface, context), builtin/ (ships with app), external/ (future user-installed)'
+    children: []
+    metadata:
+      status: completed
+  4429d7ba-34ea-48e6-bef4-1dea1c350562:
+    id: 4429d7ba-34ea-48e6-bef4-1dea1c350562
+    content: 'Each plugin has manifest.json: { name, version, displayName, enabled: true, builtin: true }'
+    children: []
+    metadata:
+      status: completed
+  f4d54505-4c01-48a1-804d-d9afbc27151f:
+    id: f4d54505-4c01-48a1-804d-d9afbc27151f
+    content: 'Plugin interface defines standard API: initialize(), dispose(), getContextMenuItems(), getSessions(), sendToSession(), getNodeIndicator()'
+    children: []
+    metadata:
+      status: completed
+  cf30ace6-5743-47c9-ad11-33506bb23c09:
+    id: cf30ace6-5743-47c9-ad11-33506bb23c09
+    content: 'Process isolation: plugins run separately from UI (like VS Code extension host)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+  5bcba9ad-828d-4d4e-b661-89504c00e097:
+    id: 5bcba9ad-828d-4d4e-b661-89504c00e097
+    content: 'Lazy loading: plugins activate only when needed (not at startup)'
+    children: []
+    metadata:
+      status: completed
+  d789b040-ce74-4e38-8793-d9fe46b0e96f:
+    id: d789b040-ce74-4e38-8793-d9fe46b0e96f
+    content: Claude integration is built-in but optional - can be disabled if user doesn't use Claude Code
+    children: []
+    metadata:
+      status: completed
+  e99c471a-ab13-475a-b8f9-b98edf0920af:
+    id: e99c471a-ab13-475a-b8f9-b98edf0920af
+    content: Same architecture works for future external plugins (Gemini, Copilot, custom community plugins)
+    children: []
+    metadata:
+      status: completed
+  bd4e87a5-132a-484d-82f0-52b6de115e60:
+    id: bd4e87a5-132a-484d-82f0-52b6de115e60
+    content: 'Clean separation: plugin crashes don''t break tree core, easy to test core independently'
+    children: []
+    metadata:
+      status: completed
+  b4fb16a1-a09d-4200-affd-d59492318f22:
+    id: b4fb16a1-a09d-4200-affd-d59492318f22
+    content: Refactor
+    children:
+      - 78d77e98-d6a2-47a2-9290-6e3d0b77ded8
+    metadata:
+      status: completed
+      expanded: false
+  6c5180fc-e306-4a8d-a1e2-df403b3e2eb6:
+    id: 6c5180fc-e306-4a8d-a1e2-df403b3e2eb6
+    content: There's stuff in ipcService belonging to the plugin, same for storage.ts, index.ts
+    children: []
+    metadata:
+      status: completed
+  f0b77102-a44a-41e3-8b42-2b9ec1aa29e5:
+    id: f0b77102-a44a-41e3-8b42-2b9ec1aa29e5
+    content: "You've made a plugin folder for the renderer but not for the electron end.\_ We should have a common plugin folder that within it replicates the main project structure"
+    children: []
+    metadata:
+      status: completed
+  c3e6d535-e6cd-4245-8064-eae7f19eeb1f:
+    id: c3e6d535-e6cd-4245-8064-eae7f19eeb1f
+    content: "What's the plugin indicators in nodecontent about ?\_ Edit this file to explain it as children under this node."
+    children:
+      - c5776417-8d72-4b6c-91e2-f6812c433fde
+      - 086be485-d087-4dc7-84bb-9c74e4c8a57a
+      - 536222cc-f8c2-4de7-9134-10d074ba2fa5
+      - 525f2aab-04d2-4752-912d-086b9e6cbd52
+    metadata:
+      status: completed
+      expanded: false
+  ef376107-4f5a-44d1-9ada-1ed77c98254f:
+    id: ef376107-4f5a-44d1-9ada-1ed77c98254f
+    content: In ClaudePlugin.ts you are logging to console, but we have a custom logger
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+  a6c473f8-d221-468b-94d4-dc835d1737b8:
+    id: a6c473f8-d221-468b-94d4-dc835d1737b8
+    content: After refactor
+    children:
+      - aa607eda-5536-4955-98dc-96c7aba0808b
+      - fd7fd59a-7a83-41d3-baed-9e2a559dedbd
+    metadata:
+      status: completed
+      expanded: true
+  aa607eda-5536-4955-98dc-96c7aba0808b:
+    id: aa607eda-5536-4955-98dc-96c7aba0808b
+    content: test/linting/typescript/coverage
+    children: []
+    metadata:
+      status: completed
+  525f2aab-04d2-4752-912d-086b9e6cbd52:
+    id: 525f2aab-04d2-4752-912d-086b9e6cbd52
+    content: markdownExport.ts could do with a little refactor
+    children: []
+    metadata:
+      status: completed
+  020eb205-8ea8-4ba5-b3e0-e07600bd7639:
+    id: 020eb205-8ea8-4ba5-b3e0-e07600bd7639
+    content: there's stuff in shared/types relating to plugins - each plugin folder should have its own types
+    children: []
+    metadata:
+      status: completed
+  037a8a46-8286-4cc0-82b1-bb2054873fcb:
+    id: 037a8a46-8286-4cc0-82b1-bb2054873fcb
+    content: you've updated treeNode with a claudeSessionID - we'll have to find another way, this will break when we want to support user included plugins
+    children: []
+    metadata:
+      status: completed
+  c5776417-8d72-4b6c-91e2-f6812c433fde:
+    id: c5776417-8d72-4b6c-91e2-f6812c433fde
+    content: Plugin indicators are visual markers (like emojis) that plugins can add next to node content
+    children: []
+    metadata:
+      status: completed
+  086be485-d087-4dc7-84bb-9c74e4c8a57a:
+    id: 086be485-d087-4dc7-84bb-9c74e4c8a57a
+    content: Each plugin can implement getNodeIndicator(node) to return a React node (e.g., 🤖 for Claude sessions)
+    children: []
+    metadata:
+      status: completed
+  536222cc-f8c2-4de7-9134-10d074ba2fa5:
+    id: 536222cc-f8c2-4de7-9134-10d074ba2fa5
+    content: Rendered in NodeContent.tsx before the node text, styled with plugin-indicators and plugin-indicator CSS classes
+    children: []
+    metadata:
+      status: completed
+  78d77e98-d6a2-47a2-9290-6e3d0b77ded8:
+    id: 78d77e98-d6a2-47a2-9290-6e3d0b77ded8
+    content: Done
+    children:
+      - c3e6d535-e6cd-4245-8064-eae7f19eeb1f
+      - 3a9a0a6a-8858-442e-a716-f02b8b30655c
+      - 8812e18b-fe8d-4190-ba0b-e7ab279e42d7
+      - 12685af2-0a97-4e37-a882-08dbe4d570c9
+      - d4a91032-dc55-4283-a24a-61164b101ee1
+      - e64f06e3-9bf8-42f2-b6ba-826a3cbbf39f
+      - 9d5bf685-1248-4494-b5c9-1f745e75d157
+      - 67b4c175-a885-41f5-a825-78f435509683
+      - f0b77102-a44a-41e3-8b42-2b9ec1aa29e5
+      - ef376107-4f5a-44d1-9ada-1ed77c98254f
+      - e96feea2-2696-480e-864c-51dc646dabea
+      - 3d9ffce5-4235-45dc-9bc5-68f104e54ad0
+      - e3961487-35f1-4387-9ce0-1cdcce51acbb
+      - b8ad6f61-d1f3-479e-a925-34572b5850a1
+      - 9073d866-ea02-4f85-a338-e821fa89e35d
+      - 6c5180fc-e306-4a8d-a1e2-df403b3e2eb6
+      - 2090c20b-13eb-459d-9cae-ece1084e9d04
+      - 020eb205-8ea8-4ba5-b3e0-e07600bd7639
+      - 3343aef2-f900-4c60-8981-35c17c7ee0bc
+      - 48e0f485-f1dc-4b07-9f6a-53072b7e67f1
+      - c5549db2-748d-4c2a-b5f6-6e3b6f3ce4be
+      - f483719e-3280-4bd6-8afd-6d0e3ac0d73c
+      - 037a8a46-8286-4cc0-82b1-bb2054873fcb
+      - 081ee1e2-f3d7-47cb-b932-637c1b0e8fd2
+      - a6c473f8-d221-468b-94d4-dc835d1737b8
+      - 384e2fb7-72a7-425f-95ee-dc9b1469acdb
+      - 7d407941-2fbd-404d-a30e-a23514f9e0c3
+      - 58950aa3-50be-457f-a089-232d02c19831
+      - a3743f7c-cbf4-48e5-99f5-322edc1dec14
+    metadata:
+      status: completed
+      expanded: true
+  384e2fb7-72a7-425f-95ee-dc9b1469acdb:
+    id: 384e2fb7-72a7-425f-95ee-dc9b1469acdb
+    content: the logger I want you to use is under src/main/services/logger
+    children:
+      - 01e6ce74-a180-4d50-b200-260b37841699
+      - 266f2e9f-5a2a-49a1-a4b8-a40f859ee72a
+    metadata:
+      status: completed
+      expanded: false
+  01e6ce74-a180-4d50-b200-260b37841699:
+    id: 01e6ce74-a180-4d50-b200-260b37841699
+    content: Can this be refactored to be used for both main and renderer layer, and hence used for plugins ?
+    children: []
+    metadata:
+      status: completed
+  266f2e9f-5a2a-49a1-a4b8-a40f859ee72a:
+    id: 266f2e9f-5a2a-49a1-a4b8-a40f859ee72a
+    content: 'Answer: Yes, the logger can be refactored for both layers. Create shared interface in src/shared/logger/ with platform-specific implementations for main (uses BrowserWindow) and renderer (uses console only). Each plugin layer uses appropriate implementation.'
+    children: []
+    metadata:
+      status: completed
+  fd7fd59a-7a83-41d3-baed-9e2a559dedbd:
+    id: fd7fd59a-7a83-41d3-baed-9e2a559dedbd
+    content: update architecture.md
+    children: []
+    metadata:
+      status: completed
+  8812e18b-fe8d-4190-ba0b-e7ab279e42d7:
+    id: 8812e18b-fe8d-4190-ba0b-e7ab279e42d7
+    content: Rename files and folders for claude plugin to claude code
+    children: []
+    metadata:
+      status: completed
+  acdf701b-aa3e-4443-be72-e12d45db8275:
+    id: acdf701b-aa3e-4443-be72-e12d45db8275
+    content: "Seems to be some performance issues while typing - check listeners ? Renderers ?\_ Maybe just on development while there are changes going on ?"
+    children:
+      - 0c16c95e-2e5c-41c6-9dd5-10eb6812f287
+    metadata:
+      status: pending
+  0c16c95e-2e5c-41c6-9dd5-10eb6812f287:
+    id: 0c16c95e-2e5c-41c6-9dd5-10eb6812f287
+    content: In development mode, have the amount of renders of nodeContent, node and tree, as well as listener count, to console.
+    children: []
+    metadata:
+      status: pending
+  12685af2-0a97-4e37-a882-08dbe4d570c9:
+    id: 12685af2-0a97-4e37-a882-08dbe4d570c9
+    content: "Why do we import usePlugins in nodeContent ? Plugins may not always act on node level.\_ Can we not import the plugin into the workspace ?\_"
+    children: []
+    metadata:
+      status: completed
+  c5549db2-748d-4c2a-b5f6-6e3b6f3ce4be:
+    id: c5549db2-748d-4c2a-b5f6-6e3b6f3ce4be
+    content: in claudeCodeIPCHandlers.ts we have ClaudeSession which should be ClaudeCodeSession
+    children:
+      - 0b5dd419-3dc6-4dd2-bc5f-655dacb15f28
+      - 6d5fdc7b-4b0d-4513-8631-3b92773b6652
+    metadata:
+      status: completed
+  9d5bf685-1248-4494-b5c9-1f745e75d157:
+    id: 9d5bf685-1248-4494-b5c9-1f745e75d157
+    content: claudeCodeIPCHandlers has lots of things that could be made into pure functions and moved to utils, and reused for other plugins
+    children: []
+    metadata:
+      status: completed
+  b18d78b0-a96e-4483-840c-df932f663968:
+    id: b18d78b0-a96e-4483-840c-df932f663968
+    content: Navigation issues
+    children:
+      - ad630169-dc01-462b-a7b4-01e36da699fd
+      - 6ba108c5-6162-48f9-b985-42cad8495ea5
+      - 94817fd6-86dd-4fbb-a853-8f226bab2f0f
+      - 2da028a0-d59d-4055-9322-a0d8b5887e82
+    metadata:
+      status: pending
+      expanded: false
+  ad630169-dc01-462b-a7b4-01e36da699fd:
+    id: ad630169-dc01-462b-a7b4-01e36da699fd
+    content: Clicking doesn't focus the cursor on the click spot, but at the start of the node
+    children: []
+    metadata:
+      status: pending
+  6ba108c5-6162-48f9-b985-42cad8495ea5:
+    id: 6ba108c5-6162-48f9-b985-42cad8495ea5
+    content: When navigating down to an element, then when we use the left arrow, it goes to the start of the node instead of the next character to the left
+    children: []
+    metadata:
+      status: pending
+  00fe1875-4004-44e5-9ad3-0b338c9c1c41:
+    id: 00fe1875-4004-44e5-9ad3-0b338c9c1c41
+    content: When we copy and paste, we should retain the default arborescent font type and size
+    children: []
+    metadata:
+      status: pending
+  e64f06e3-9bf8-42f2-b6ba-826a3cbbf39f:
+    id: e64f06e3-9bf8-42f2-b6ba-826a3cbbf39f
+    content: There are text entries that reference Claude instead of Claude code
+    children: []
+    metadata:
+      status: completed
+  d4a91032-dc55-4283-a24a-61164b101ee1:
+    id: d4a91032-dc55-4283-a24a-61164b101ee1
+    content: same in claudeCodePreload.ts and claudeCodePlugin.ts
+    children: []
+    metadata:
+      status: completed
+  94817fd6-86dd-4fbb-a853-8f226bab2f0f:
+    id: 94817fd6-86dd-4fbb-a853-8f226bab2f0f
+    content: When navigating to an empty node, no cursor appears at the first space, we have to start typing to see it
+    children: []
+    metadata:
+      status: pending
+  0b5dd419-3dc6-4dd2-bc5f-655dacb15f28:
+    id: 0b5dd419-3dc6-4dd2-bc5f-655dacb15f28
+    content: Actually it should be imported from claudeCodeTypes.ts
+    children: []
+    metadata:
+      status: completed
+  6d5fdc7b-4b0d-4513-8631-3b92773b6652:
+    id: 6d5fdc7b-4b0d-4513-8631-3b92773b6652
+    content: Same goes for ClaudeCodePlugin.ts
+    children: []
+    metadata:
+      status: completed
+  8ee5326d-1eec-45be-aa26-d11ae0e57284:
+    id: 8ee5326d-1eec-45be-aa26-d11ae0e57284
+    content: Gitlab integration
+    children:
+      - 7692be0d-fdce-41ed-9221-67d1fc42e2c9
+    metadata:
+      status: pending
+      expanded: false
+  7692be0d-fdce-41ed-9221-67d1fc42e2c9:
+    id: 7692be0d-fdce-41ed-9221-67d1fc42e2c9
+    content: Read/contribute to code reviews
+    children: []
+    metadata:
+      status: pending
+  6573b620-bfc0-4c5b-8d92-13b9ace3461d:
+    id: 6573b620-bfc0-4c5b-8d92-13b9ace3461d
+    content: Tests
+    children:
+      - 96b138b9-3004-4087-a4af-ea2f58abc68e
+    metadata:
+      status: pending
+      expanded: false
+  adf1f4bc-305a-402d-bc15-e0770d41d145:
+    id: adf1f4bc-305a-402d-bc15-e0770d41d145
+    content: E2E
+    children: []
+    metadata:
+      status: pending
+  2a226e0e-9f94-4712-8540-6714bccd7a3c:
+    id: 2a226e0e-9f94-4712-8540-6714bccd7a3c
+    content: Electron
+    children: []
+    metadata:
+      status: pending
+  545c3c8e-f3fa-405d-8404-183ee71248e0:
+    id: 545c3c8e-f3fa-405d-8404-183ee71248e0
+    content: Integration
+    children: []
+    metadata:
+      status: pending
+  96b138b9-3004-4087-a4af-ea2f58abc68e:
+    id: 96b138b9-3004-4087-a4af-ea2f58abc68e
+    content: 'Once mature :'
+    children:
+      - adf1f4bc-305a-402d-bc15-e0770d41d145
+      - 2a226e0e-9f94-4712-8540-6714bccd7a3c
+      - 545c3c8e-f3fa-405d-8404-183ee71248e0
+    metadata:
+      status: pending
+  ce2de4b4-cc94-4106-a61b-26ce1089e97e:
+    id: ce2de4b4-cc94-4106-a61b-26ce1089e97e
+    content: Settings UI
+    children:
+      - fd5f2142-2b28-4147-b3b4-d581d5b9225d
+    metadata:
+      status: pending
+      expanded: false
+  fd5f2142-2b28-4147-b3b4-d581d5b9225d:
+    id: fd5f2142-2b28-4147-b3b4-d581d5b9225d
+    content: Plugin activate/deactivate
+    children: []
+    metadata:
+      status: pending
+  b3beb907-e7ad-4476-a42f-83b7fc75a189:
+    id: b3beb907-e7ad-4476-a42f-83b7fc75a189
+    content: When we delete the first node, we lose the cursor
+    children: []
+    metadata:
+      status: pending
+  2da028a0-d59d-4055-9322-a0d8b5887e82:
+    id: 2da028a0-d59d-4055-9322-a0d8b5887e82
+    content: "When moving a node into a hiddend node,\_"
+    children: []
+    metadata:
+      status: pending
+  67b4c175-a885-41f5-a825-78f435509683:
+    id: 67b4c175-a885-41f5-a825-78f435509683
+    content: Make sure PLUGIN_DEVELOPMENT.md is updated
+    children: []
+    metadata:
+      status: completed
+  e96feea2-2696-480e-864c-51dc646dabea:
+    id: e96feea2-2696-480e-864c-51dc646dabea
+    content: Remove unnessecary comments from initializePlugins.ts
+    children: []
+    metadata:
+      status: completed
+  3d9ffce5-4235-45dc-9bc5-68f104e54ad0:
+    id: 3d9ffce5-4235-45dc-9bc5-68f104e54ad0
+    content: Are we still using a plugin store ?
+    children: []
+    metadata:
+      status: completed
+  7d407941-2fbd-404d-a30e-a23514f9e0c3:
+    id: 7d407941-2fbd-404d-a30e-a23514f9e0c3
+    content: Why the disabling in pluginAPI.d.ts ?
+    children: []
+    metadata:
+      status: completed
+  2f83a0af-280e-4e67-8306-31a8e02c9500:
+    id: 2f83a0af-280e-4e67-8306-31a8e02c9500
+    content: Features
+    children:
+      - 565dde0a-864b-41f9-86ff-dbdf40ac4dd0
+      - d7597faa-0b34-400e-985a-de035508cdb1
+      - 40729a78-ee9c-4599-aa83-57f189199c3c
+      - 65b74e0f-88fe-41c6-9910-8bac806adc6f
+      - 6573b620-bfc0-4c5b-8d92-13b9ace3461d
+      - ce2de4b4-cc94-4106-a61b-26ce1089e97e
+      - 24bfe3b9-597f-4762-8e2d-fba9507772d3
+      - 5288b678-63dc-4672-b1b3-8e2b540c04de
+      - 31cc1d2b-858b-4323-937b-6a38b15e0239
+      - 1420f7da-e115-4f89-befa-f046a07ba964
+      - acc9f80b-deee-4252-8987-dfed46be6464
+      - 5f8eb896-d610-429f-a53a-fac6d164bd77
+      - pdt35vy1z
+      - 0vzl7mppk
+      - 8ee5326d-1eec-45be-aa26-d11ae0e57284
+      - 07dbd367-fd7c-41a6-94bc-3f7c5f57e668
+      - 7aa4140c-1206-47ea-8a94-6c3e7763ccff
+      - 382ddb47-39df-4546-978c-66b3a2306480
+    metadata:
+      status: pending
+      expanded: false
+  0cc62ae1-1a7a-4aa4-bc6a-d817cabd672c:
+    id: 0cc62ae1-1a7a-4aa4-bc6a-d817cabd672c
+    content: In progress
+    children:
+      - 00e08ff5-0634-4205-982c-6a3094f74d20
+      - 72f56688-a466-4210-abbf-ae6c04a3b571
+      - 4d685d6f-e15f-4d03-a085-5d7d0676284c
+      - 5bc6d46e-b1ce-471e-8350-bfd32e49780a
+    metadata:
+      status: pending
+      expanded: true
+  565dde0a-864b-41f9-86ff-dbdf40ac4dd0:
+    id: 565dde0a-864b-41f9-86ff-dbdf40ac4dd0
+    content: Done
+    children:
+      - 44jmbkqfv
+      - e15d77fa-c719-45d4-9207-ff759d86e58f
+      - byqndehy4
+      - e139f106-5ea4-4bdc-92e3-15cecbcebe39
+      - 9f235582-5298-4b91-bf99-1927a312e702
+      - a015d694-46fb-41f2-86ce-493d8bb90098
+    metadata:
+      status: completed
+      expanded: false
+  e9bb0de8-a33a-4054-8902-466a58ae3a1a:
+    id: e9bb0de8-a33a-4054-8902-466a58ae3a1a
+    content: Done
+    children:
+      - 0f9c1312-d773-45bb-9d54-7ef0fc4f58a9
+      - b4fb16a1-a09d-4200-affd-d59492318f22
+    metadata:
+      status: completed
+      expanded: true
+  d5fe0eff-b1c6-4986-b6a3-70a0ea46f096:
+    id: d5fe0eff-b1c6-4986-b6a3-70a0ea46f096
+    content: Ideas
+    children:
+      - 2ce5b181-5461-486c-be65-159e5e98de54
+    metadata:
+      status: pending
+      expanded: false
+  2ce5b181-5461-486c-be65-159e5e98de54:
+    id: 2ce5b181-5461-486c-be65-159e5e98de54
+    content: Mobile app
+    children:
+      - 30ee4a6f-59a2-4ec8-a78f-2068542d8886
+    metadata:
+      status: pending
+      expanded: false
+  30ee4a6f-59a2-4ec8-a78f-2068542d8886:
+    id: 30ee4a6f-59a2-4ec8-a78f-2068542d8886
+    content: Easy as possible to use, as a neurodivergent aid
+    children: []
+    metadata:
+      status: pending
+  9bfbb401-dcb6-4f92-a34b-e9b3982c676f:
+    id: 9bfbb401-dcb6-4f92-a34b-e9b3982c676f
+    content: Philosophy
+    children:
+      - 17de3fdf-e5f6-4dec-9e4b-df1cadec2db9
+      - f15111b1-9e2d-46e9-b84c-e12b9053e230
+    metadata:
+      status: pending
+      expanded: false
+  f15111b1-9e2d-46e9-b84c-e12b9053e230:
+    id: f15111b1-9e2d-46e9-b84c-e12b9053e230
+    content: Neurodivergent compatible
+    children:
+      - c882ae02-4134-41c9-89de-39e04fb749c5
+      - 64ef60c9-40fe-43c8-9b48-0000d28e024a
+      - 789d86bb-3069-43eb-9e71-2ca2d0779302
+      - 50de00c5-8138-491b-9063-eeb5145fc4e2
+    metadata:
+      status: pending
+      expanded: false
+  c882ae02-4134-41c9-89de-39e04fb749c5:
+    id: c882ae02-4134-41c9-89de-39e04fb749c5
+    content: UI as simple as possible
+    children: []
+    metadata:
+      status: pending
+  64ef60c9-40fe-43c8-9b48-0000d28e024a:
+    id: 64ef60c9-40fe-43c8-9b48-0000d28e024a
+    content: As stable as possible to avoid frustration
+    children: []
+    metadata:
+      status: pending
+  789d86bb-3069-43eb-9e71-2ca2d0779302:
+    id: 789d86bb-3069-43eb-9e71-2ca2d0779302
+    content: As simple as possible in it's base form, plugins off by default
+    children: []
+    metadata:
+      status: pending
+  50de00c5-8138-491b-9063-eeb5145fc4e2:
+    id: 50de00c5-8138-491b-9063-eeb5145fc4e2
+    content: Complexity is emergent, discoverable, configurable - respect cognitive load
+    children: []
+    metadata:
+      status: pending
+  17de3fdf-e5f6-4dec-9e4b-df1cadec2db9:
+    id: 17de3fdf-e5f6-4dec-9e4b-df1cadec2db9
+    content: Accessible
+    children: []
+    metadata:
+      status: pending
+  acc9f80b-deee-4252-8987-dfed46be6464:
+    id: acc9f80b-deee-4252-8987-dfed46be6464
+    content: Nodes collapse after certain time expires
+    children:
+      - 08af7da4-d763-4106-9fa8-1063a7bea892
+    metadata:
+      status: pending
+      expanded: false
+  08af7da4-d763-4106-9fa8-1063a7bea892:
+    id: 08af7da4-d763-4106-9fa8-1063a7bea892
+    content: Configurable
+    children:
+      - 820ae36f-7de6-4fd0-bbdf-6574b19da889
+      - 7b2f1f0a-b56d-4b50-bd47-039cd2628151
+      - 31607f0b-1294-41c8-9ee6-e8939d9b8e21
+      - 1cb0c6ff-0468-485d-b72d-ca34c8f6f491
+    metadata:
+      status: pending
+  7b2f1f0a-b56d-4b50-bd47-039cd2628151:
+    id: 7b2f1f0a-b56d-4b50-bd47-039cd2628151
+    content: All nodes autocollapse
+    children: []
+    metadata:
+      status: pending
+  820ae36f-7de6-4fd0-bbdf-6574b19da889:
+    id: 820ae36f-7de6-4fd0-bbdf-6574b19da889
+    content: Delay
+    children: []
+    metadata:
+      status: pending
+  31607f0b-1294-41c8-9ee6-e8939d9b8e21:
+    id: 31607f0b-1294-41c8-9ee6-e8939d9b8e21
+    content: Nodes never autocollapse
+    children: []
+    metadata:
+      status: pending
+  1cb0c6ff-0468-485d-b72d-ca34c8f6f491:
+    id: 1cb0c6ff-0468-485d-b72d-ca34c8f6f491
+    content: Nodes collapse except for those the user expanded
+    children: []
+    metadata:
+      status: pending
+  1420f7da-e115-4f89-befa-f046a07ba964:
+    id: 1420f7da-e115-4f89-befa-f046a07ba964
+    content: Spell checker
+    children:
+      - c24da958-73a3-43a1-a36e-22a11a6fabe3
+    metadata:
+      status: pending
+      expanded: false
+  c24da958-73a3-43a1-a36e-22a11a6fabe3:
+    id: c24da958-73a3-43a1-a36e-22a11a6fabe3
+    content: English only for now
+    children:
+      - fd37c1ae-0416-421e-a937-6153bbe483ee
+    metadata:
+      status: pending
+  fd37c1ae-0416-421e-a937-6153bbe483ee:
+    id: fd37c1ae-0416-421e-a937-6153bbe483ee
+    content: Unless possible to pick up on system settings or otherwise easy
+    children: []
+    metadata:
+      status: pending
+  382ddb47-39df-4546-978c-66b3a2306480:
+    id: 382ddb47-39df-4546-978c-66b3a2306480
+    content: Recurring tasks
+    children:
+      - 9141f8d4-396e-46ca-af0a-9bb062a65e54
+      - cfc987ad-f055-4985-8ef7-624ed37e01a9
+    metadata:
+      status: pending
+      expanded: false
+  9141f8d4-396e-46ca-af0a-9bb062a65e54:
+    id: 9141f8d4-396e-46ca-af0a-9bb062a65e54
+    content: With calendar ?
+    children: []
+    metadata:
+      status: pending
+  cfc987ad-f055-4985-8ef7-624ed37e01a9:
+    id: cfc987ad-f055-4985-8ef7-624ed37e01a9
+    content: Talk to Chris
+    children: []
+    metadata:
+      status: pending
+  2090c20b-13eb-459d-9cae-ece1084e9d04:
+    id: 2090c20b-13eb-459d-9cae-ece1084e9d04
+    content: we have plugin registry in plugins/main, should it not be in plugins, core, main ?
+    children: []
+    metadata:
+      status: completed
+  081ee1e2-f3d7-47cb-b932-637c1b0e8fd2:
+    id: 081ee1e2-f3d7-47cb-b932-637c1b0e8fd2
+    content: Changed extensions to extensionPoints
+    children: []
+    metadata:
+      status: completed
+  e3961487-35f1-4387-9ce0-1cdcce51acbb:
+    id: e3961487-35f1-4387-9ce0-1cdcce51acbb
+    content: HIGH PRIORITY
+    children:
+      - 0dd5351f-535e-4860-ad32-e7f08eb8987e
+    metadata:
+      status: completed
+  65b74e0f-88fe-41c6-9910-8bac806adc6f:
+    id: 65b74e0f-88fe-41c6-9910-8bac806adc6f
+    content: Plugins
+    children:
+      - 06850f75-804b-4452-ad03-837f0d233abb
+      - febab53e-cebd-44d6-8d7d-431f0710e791
+      - c3f48047-7df6-4080-8c3b-1e114e81964f
+    metadata:
+      status: pending
+      expanded: false
+  febab53e-cebd-44d6-8d7d-431f0710e791:
+    id: febab53e-cebd-44d6-8d7d-431f0710e791
+    content: Implement webview-based UI system for plugin sidebars/panels (VS Code pattern)
+    children:
+      - 399423a9-df74-4d84-8e8f-b8bbd857fae8
+      - fcf2d6d2-f85e-4dc7-ae73-4583c09db89b
+      - af7f87dc-c418-4ee3-8cf8-9dc608fd3edd
+      - 4c0d427f-5c21-425c-84a1-6f4afe0bec5d
+      - d55ed1aa-2605-4f6f-802e-384582cd7d0b
+    metadata:
+      status: pending
+  399423a9-df74-4d84-8e8f-b8bbd857fae8:
+    id: 399423a9-df74-4d84-8e8f-b8bbd857fae8
+    content: Design webview container component - isolated iframe with sandboxing, similar to VS Code webviews
+    children: []
+    metadata:
+      status: pending
+  fcf2d6d2-f85e-4dc7-ae73-4583c09db89b:
+    id: fcf2d6d2-f85e-4dc7-ae73-4583c09db89b
+    content: Implement message passing system - postMessage API between plugin webview and main app
+    children: []
+    metadata:
+      status: pending
+  af7f87dc-c418-4ee3-8cf8-9dc608fd3edd:
+    id: af7f87dc-c418-4ee3-8cf8-9dc608fd3edd
+    content: Add provideSidebarPanels extension point - plugins return { id, title, icon, htmlContent }
+    children: []
+    metadata:
+      status: pending
+  4c0d427f-5c21-425c-84a1-6f4afe0bec5d:
+    id: 4c0d427f-5c21-425c-84a1-6f4afe0bec5d
+    content: Integrate webview panels into sidebar - render plugin-provided HTML in isolated containers
+    children: []
+    metadata:
+      status: pending
+  0dd5351f-535e-4860-ad32-e7f08eb8987e:
+    id: 0dd5351f-535e-4860-ad32-e7f08eb8987e
+    content: Replace open invokeIPC() with typed API methods - Current PluginContext exposes entire IPC layer via invokeIPC(channel, ...args), allowing plugins to call ANY internal IPC channel. Replace with typed API surface (getProjectPath(), showNotification(), etc.) to restrict plugin access to approved APIs only.
+    children: []
+    metadata:
+      status: completed
+  6fab1a58-6725-4cdf-baf5-8784d4ba9487:
+    id: 6fab1a58-6725-4cdf-baf5-8784d4ba9487
+    content: Add API versioning - Add apiVersion field to manifest and check compatibility at load time. Enables detecting incompatible plugins and warning users about version mismatches.
+    children: []
+    metadata:
+      status: completed
+  b8ad6f61-d1f3-479e-a925-34572b5850a1:
+    id: b8ad6f61-d1f3-479e-a925-34572b5850a1
+    content: LOW PRIORITY
+    children:
+      - 6fab1a58-6725-4cdf-baf5-8784d4ba9487
+    metadata:
+      status: completed
+      expanded: true
+  c3f48047-7df6-4080-8c3b-1e114e81964f:
+    id: c3f48047-7df6-4080-8c3b-1e114e81964f
+    content: Recovery
+    children:
+      - c6168d15-0beb-47bf-9b7b-80dac62a3495
+    metadata:
+      status: pending
+  c6168d15-0beb-47bf-9b7b-80dac62a3495:
+    id: c6168d15-0beb-47bf-9b7b-80dac62a3495
+    content: Auto restart
+    children: []
+    metadata:
+      status: pending
+  d55ed1aa-2605-4f6f-802e-384582cd7d0b:
+    id: d55ed1aa-2605-4f6f-802e-384582cd7d0b
+    content: Enable/disable
+    children: []
+    metadata:
+      status: pending
+  06850f75-804b-4452-ad03-837f0d233abb:
+    id: 06850f75-804b-4452-ad03-837f0d233abb
+    content: Third party plugins
+    children:
+      - 19a90e4b-61aa-4f1c-b0f0-9282975318d3
+    metadata:
+      status: pending
+  19a90e4b-61aa-4f1c-b0f0-9282975318d3:
+    id: 19a90e4b-61aa-4f1c-b0f0-9282975318d3
+    content: Add permission model in manifest - Add permissions array to manifest.json declaring required capabilities (workspace:read, notifications:show, claude:sessions:read). Enables permission review and potential future permission prompts.
+    children: []
+    metadata:
+      status: pending
+  83c73c8b-478b-41d0-82ac-f3395fd86937:
+    id: 83c73c8b-478b-41d0-82ac-f3395fd86937
+    content: Or should we do it as a visual indicator on the node ?
+    children: []
+    metadata:
+      status: pending
+  58950aa3-50be-457f-a089-232d02c19831:
+    id: 58950aa3-50be-457f-a089-232d02c19831
+    content: We watch claude from vite.main.config but we should have something that can watch code changes in all plugins without naming them
+    children: []
+    metadata:
+      status: completed
+  a3743f7c-cbf4-48e5-99f5-322edc1dec14:
+    id: a3743f7c-cbf4-48e5-99f5-322edc1dec14
+    content: There is claude specific code in core/initializePlugins, registerPluginHandlers, pluginContext
+    children: []
+    metadata:
+      status: completed
+  48e0f485-f1dc-4b07-9f6a-53072b7e67f1:
+    id: 48e0f485-f1dc-4b07-9f6a-53072b7e67f1
+    content: There is claude specific code in useNodeContextMenu and test, nodecontent test, renderer/test/setup.ts
+    children: []
+    metadata:
+      status: completed
+  3a9a0a6a-8858-442e-a716-f02b8b30655c:
+    id: 3a9a0a6a-8858-442e-a716-f02b8b30655c
+    content: Linting etc
+    children: []
+    metadata:
+      status: completed
+  24bfe3b9-597f-4762-8e2d-fba9507772d3:
+    id: 24bfe3b9-597f-4762-8e2d-fba9507772d3
+    content: Meta content
+    children:
+      - 109d0f69-555e-4aab-b633-beb0fce2bd2d
+      - 203dbc08-5a91-417f-b70c-309303e233fd
+    metadata:
+      status: pending
+      expanded: false
+  109d0f69-555e-4aab-b633-beb0fce2bd2d:
+    id: 109d0f69-555e-4aab-b633-beb0fce2bd2d
+    content: Hyperlinks
+    children: []
+    metadata:
+      status: pending
+  203dbc08-5a91-417f-b70c-309303e233fd:
+    id: 203dbc08-5a91-417f-b70c-309303e233fd
+    content: Categories
+    children: []
+    metadata:
+      status: pending
+  5288b678-63dc-4672-b1b3-8e2b540c04de:
+    id: 5288b678-63dc-4672-b1b3-8e2b540c04de
+    content: Markdown editor
+    children: []
+    metadata:
+      status: pending
+  9073d866-ea02-4f85-a338-e821fa89e35d:
+    id: 9073d866-ea02-4f85-a338-e821fa89e35d
+    content: Types file naming not consistent with main project, should have a 'types' folder
+    children: []
+    metadata:
+      status: completed
+  3343aef2-f900-4c60-8981-35c17c7ee0bc:
+    id: 3343aef2-f900-4c60-8981-35c17c7ee0bc
+    content: should pluginInterface be named just interface ? we're already in the plugins folder
+    children: []
+    metadata:
+      status: completed
+  f483719e-3280-4bd6-8afd-6d0e3ac0d73c:
+    id: f483719e-3280-4bd6-8afd-6d0e3ac0d73c
+    content: "actually, generally speaking, why do we have the word 'plugin' in the files ?\_"
+    children: []
+    metadata:
+      status: completed
+  d7597faa-0b34-400e-985a-de035508cdb1:
+    id: d7597faa-0b34-400e-985a-de035508cdb1
+    content: Doc
+    children:
+      - d053981a-608c-4a30-945a-f0aec466a572
+      - 96e9597f-9b07-4638-b960-4430507fbfb9
+      - 3992c938-c113-48ad-b88c-0fb0f4411daa
+      - f8465cf9-dd7a-433d-bd45-4f8dfa8920a2
+      - 52028dd3-abbc-42e7-9415-11313d556b91
+      - 59724865-e1d7-466d-b34f-14f08d0bd9cc
+      - 16978390-8839-400d-a02a-83948bad8f4d
+      - a37a4248-b9c2-4197-9469-9e738fefe8ea
+    metadata:
+      status: pending
+      expanded: false
+  d053981a-608c-4a30-945a-f0aec466a572:
+    id: d053981a-608c-4a30-945a-f0aec466a572
+    content: Add widespread doc
+    children: []
+    metadata:
+      status: pending
+  96e9597f-9b07-4638-b960-4430507fbfb9:
+    id: 96e9597f-9b07-4638-b960-4430507fbfb9
+    content: Make master doc for each component (folder? system? component?)
+    children: []
+    metadata:
+      status: pending
+  3992c938-c113-48ad-b88c-0fb0f4411daa:
+    id: 3992c938-c113-48ad-b88c-0fb0f4411daa
+    content: Have coherent naming convention
+    children: []
+    metadata:
+      status: pending
+  f8465cf9-dd7a-433d-bd45-4f8dfa8920a2:
+    id: f8465cf9-dd7a-433d-bd45-4f8dfa8920a2
+    content: Tie arbo context to docs
+    children: []
+    metadata:
+      status: pending
+  52028dd3-abbc-42e7-9415-11313d556b91:
+    id: 52028dd3-abbc-42e7-9415-11313d556b91
+    content: Pick a document model - we used to do this remember ?
+    children: []
+    metadata:
+      status: pending
+  59724865-e1d7-466d-b34f-14f08d0bd9cc:
+    id: 59724865-e1d7-466d-b34f-14f08d0bd9cc
+    content: Changelog
+    children: []
+    metadata:
+      status: pending
+  16978390-8839-400d-a02a-83948bad8f4d:
+    id: 16978390-8839-400d-a02a-83948bad8f4d
+    content: Master architecture file
+    children:
+      - fa8b9544-c3e1-42ff-8162-96d87a087bda
+    metadata:
+      status: pending
+  fa8b9544-c3e1-42ff-8162-96d87a087bda:
+    id: fa8b9544-c3e1-42ff-8162-96d87a087bda
+    content: What goes in there ?
+    children: []
+    metadata:
+      status: pending
+  ff71c203-adaa-424e-9305-8e563cae5f8a:
+    id: ff71c203-adaa-424e-9305-8e563cae5f8a
+    content: Toggle should not apply to a node with no children
+    children: []
+    metadata:
+      status: pending
+  280ebc7a-a04f-43e0-bf3d-560e5016cbc1:
+    id: 280ebc7a-a04f-43e0-bf3d-560e5016cbc1
+    content: '5'
+    children:
+      - 55652082-a901-45ad-8784-4ef9a25ba465
+      - a08aefdf-a5a0-408e-b925-37948e2b7181
+    metadata:
+      status: pending
+  55652082-a901-45ad-8784-4ef9a25ba465:
+    id: 55652082-a901-45ad-8784-4ef9a25ba465
+    content: '6'
+    children: []
+    metadata:
+      status: pending
+  a08aefdf-a5a0-408e-b925-37948e2b7181:
+    id: a08aefdf-a5a0-408e-b925-37948e2b7181
+    content: '7'
+    children:
+      - 523028a6-ad02-4326-9a20-919f650c20b4
+      - 4a5976b3-f208-4bd4-a589-039d2768b783
+    metadata:
+      status: pending
+  523028a6-ad02-4326-9a20-919f650c20b4:
+    id: 523028a6-ad02-4326-9a20-919f650c20b4
+    content: '8'
+    children: []
+    metadata:
+      status: pending
+  4a5976b3-f208-4bd4-a589-039d2768b783:
+    id: 4a5976b3-f208-4bd4-a589-039d2768b783
+    content: '8'
+    children:
+      - caf5a6b1-376e-42ba-bdf1-542dc58ea61b
+    metadata:
+      status: pending
+  caf5a6b1-376e-42ba-bdf1-542dc58ea61b:
+    id: caf5a6b1-376e-42ba-bdf1-542dc58ea61b
+    content: '9'
+    children:
+      - ff75c0ae-b02a-4b32-9a4e-e00bc1540ae2
+      - c27a5f77-0305-499a-b8de-48bb30f4018a
+      - 12857b0c-90dc-4216-9ab1-e168719df0bb
+      - 280ebc7a-a04f-43e0-bf3d-560e5016cbc1
+      - 372cf412-2059-4eee-87a3-0ac21377d212
+    metadata:
+      status: pending
+  e3f94856-4d26-4b62-b3b2-0d4633567f05:
+    id: e3f94856-4d26-4b62-b3b2-0d4633567f05
+    content: '13'
+    children: []
+    metadata:
+      status: pending
+  8977b010-1db3-43fc-8fcc-6a8bd81c077c:
+    id: 8977b010-1db3-43fc-8fcc-6a8bd81c077c
+    content: '14'
+    children: []
+    metadata:
+      status: pending
+  0f9c9a18-0331-4fdf-86c3-51af33eced3e:
+    id: 0f9c9a18-0331-4fdf-86c3-51af33eced3e
+    content: '15'
+    children:
+      - e3f94856-4d26-4b62-b3b2-0d4633567f05
+    metadata:
+      status: pending
+  12857b0c-90dc-4216-9ab1-e168719df0bb:
+    id: 12857b0c-90dc-4216-9ab1-e168719df0bb
+    content: '16'
+    children:
+      - 0f9c9a18-0331-4fdf-86c3-51af33eced3e
+    metadata:
+      status: pending
+  ff75c0ae-b02a-4b32-9a4e-e00bc1540ae2:
+    id: ff75c0ae-b02a-4b32-9a4e-e00bc1540ae2
+    content: '17'
+    children:
+      - 4e01a58b-b601-4008-bb4e-00beec8f3dc0
+    metadata:
+      status: pending
+  c27a5f77-0305-499a-b8de-48bb30f4018a:
+    id: c27a5f77-0305-499a-b8de-48bb30f4018a
+    content: '18'
+    children:
+      - 8977b010-1db3-43fc-8fcc-6a8bd81c077c
+    metadata:
+      status: pending
+  4e01a58b-b601-4008-bb4e-00beec8f3dc0:
+    id: 4e01a58b-b601-4008-bb4e-00beec8f3dc0
+    content: '19'
+    children: []
+    metadata:
+      status: pending
+  372cf412-2059-4eee-87a3-0ac21377d212:
+    id: 372cf412-2059-4eee-87a3-0ac21377d212
+    content: '20'
+    children: []
+    metadata:
+      status: pending
+  e139f106-5ea4-4bdc-92e3-15cecbcebe39:
+    id: e139f106-5ea4-4bdc-92e3-15cecbcebe39
+    content: Keyboard navigation
+    children:
+      - f48e2a15-a829-483b-90a7-a4613759f5a6
+      - 0b20e0ac-7cc4-45f0-b7b6-bfbcab8bca0b
+      - 7369de34-5df6-4000-8019-9b08867e025a
+      - edaa71b2-d292-4b7d-934f-b79dee4cfbb7
+      - 9d8539d0-b67b-4779-941d-92ae3f87eb84
+      - 21adaa42-d805-4bcc-8f47-ef286784b007
+      - 5aef392e-fccc-428e-a0c2-bb435f5856ab
+      - c06f6d42-1e1a-435c-907a-b75931e2369a
+      - 42563c09-9ca4-4c1d-8897-3820358aad78
+    metadata:
+      status: completed
+      expanded: false
+  7369de34-5df6-4000-8019-9b08867e025a:
+    id: 7369de34-5df6-4000-8019-9b08867e025a
+    content: When pressing the down key should navigate down
+    children:
+      - d6d64b8e-6591-4f77-be03-e268be42b181
+    metadata:
+      status: completed
+  d6d64b8e-6591-4f77-be03-e268be42b181:
+    id: d6d64b8e-6591-4f77-be03-e268be42b181
+    content: It should maintain the horizontal cursor position as much as possible
+    children:
+      - 3beed0f5-29b0-4432-bb94-8ec4a9e73ef9
+      - d46a09a8-2eeb-428f-82f2-094fa80196ca
+      - 99e62c7e-359e-4f0a-948a-1f7f67c38af7
+      - a85cc28f-0757-4938-bd45-a8abce29f1fa
+      - 2c64d86e-9b1a-4577-98ec-ddb9ce79cebf
+      - 4a55c979-1b4c-430e-8f4a-bdaf4dd36aa6
+      - 2297c45a-3fb3-426c-b5d6-db178b11ecdc
+      - 8114cf06-3e70-4077-9538-4bef65121bfc
+    metadata:
+      status: completed
+  d46a09a8-2eeb-428f-82f2-094fa80196ca:
+    id: d46a09a8-2eeb-428f-82f2-094fa80196ca
+    content: If the next line is shorter than the current horizontal position, the cursor should be placed on the end of the line
+    children: []
+    metadata:
+      status: completed
+  99e62c7e-359e-4f0a-948a-1f7f67c38af7:
+    id: 99e62c7e-359e-4f0a-948a-1f7f67c38af7
+    content: If the next line is tabbed and therefore begins after the current horizontal position, the cursor should be placed on the start of the line
+    children: []
+    metadata:
+      status: completed
+  a85cc28f-0757-4938-bd45-a8abce29f1fa:
+    id: a85cc28f-0757-4938-bd45-a8abce29f1fa
+    content: If the next line is empty, the cursor should be placed at the start of the line
+    children: []
+    metadata:
+      status: completed
+  2c64d86e-9b1a-4577-98ec-ddb9ce79cebf:
+    id: 2c64d86e-9b1a-4577-98ec-ddb9ce79cebf
+    content: If the next line is within the range of the initial horizontal position as measured by the first node we moved from using arrow navigation, then we maintain the initial horizontal position.
+    children: []
+    metadata:
+      status: completed
+  4a55c979-1b4c-430e-8f4a-bdaf4dd36aa6:
+    id: 4a55c979-1b4c-430e-8f4a-bdaf4dd36aa6
+    content: The horizontal line position resets if we type something, use the left or right keyboard arrows, delete something, or place the cursor with the mouse.
+    children: []
+    metadata:
+      status: completed
+  edaa71b2-d292-4b7d-934f-b79dee4cfbb7:
+    id: edaa71b2-d292-4b7d-934f-b79dee4cfbb7
+    content: When pressing the up key to navigate
+    children:
+      - 98031f57-fd58-4ee0-bd13-410692ac9d53
+    metadata:
+      status: completed
+  2297c45a-3fb3-426c-b5d6-db178b11ecdc:
+    id: 2297c45a-3fb3-426c-b5d6-db178b11ecdc
+    content: When arriving at the end of the nodes, pressing the down key doesn't do anything.
+    children: []
+    metadata:
+      status: completed
+  98031f57-fd58-4ee0-bd13-410692ac9d53:
+    id: 98031f57-fd58-4ee0-bd13-410692ac9d53
+    content: The same rules apply as per navigation with the down key with the direction reversed
+    children: []
+    metadata:
+      status: completed
+  3beed0f5-29b0-4432-bb94-8ec4a9e73ef9:
+    id: 3beed0f5-29b0-4432-bb94-8ec4a9e73ef9
+    content: It accounts for child nodes - navigation should go to the next visual node, which could be a descendant of the previous sibling
+    children: []
+    metadata:
+      status: completed
+  0b20e0ac-7cc4-45f0-b7b6-bfbcab8bca0b:
+    id: 0b20e0ac-7cc4-45f0-b7b6-bfbcab8bca0b
+    content: Architecture
+    children:
+      - ec91e025-d35a-4f99-8e79-dc47f47c629c
+      - df576138-77dd-44d9-b7dc-1cdd7cd08d1d
+      - 44a5e0f5-8245-478a-b69c-1ccc4c456b36
+    metadata:
+      status: completed
+  ec91e025-d35a-4f99-8e79-dc47f47c629c:
+    id: ec91e025-d35a-4f99-8e79-dc47f47c629c
+    content: Should be centralized as much as possible in the same files
+    children: []
+    metadata:
+      status: completed
+  df576138-77dd-44d9-b7dc-1cdd7cd08d1d:
+    id: df576138-77dd-44d9-b7dc-1cdd7cd08d1d
+    content: Should delete the existing keyboard navigation system and start from scratch, it is overly complicated
+    children:
+      - f12c8451-3c69-4907-993e-846c21ca1ff1
+    metadata:
+      status: completed
+  485fdcb7-4572-47ea-a13f-d80de8901d45:
+    id: 485fdcb7-4572-47ea-a13f-d80de8901d45
+    content: Listeners and rerenders should be minimized
+    children: []
+    metadata:
+      status: completed
+  44a5e0f5-8245-478a-b69c-1ccc4c456b36:
+    id: 44a5e0f5-8245-478a-b69c-1ccc4c456b36
+    content: Performance is a priority
+    children:
+      - 485fdcb7-4572-47ea-a13f-d80de8901d45
+    metadata:
+      status: completed
+  21adaa42-d805-4bcc-8f47-ef286784b007:
+    id: 21adaa42-d805-4bcc-8f47-ef286784b007
+    content: When collapsing a node
+    children:
+      - 4e69c885-39aa-4306-bd34-b1e84c52195a
+    metadata:
+      status: completed
+  4e69c885-39aa-4306-bd34-b1e84c52195a:
+    id: 4e69c885-39aa-4306-bd34-b1e84c52195a
+    content: If the cursor is within a child node of the collapsed node, then it should move to the first place of the parent
+    children: []
+    metadata:
+      status: completed
+  8114cf06-3e70-4077-9538-4bef65121bfc:
+    id: 8114cf06-3e70-4077-9538-4bef65121bfc
+    content: It should skip children of collapsed nodes
+    children: []
+    metadata:
+      status: completed
+  5aef392e-fccc-428e-a0c2-bb435f5856ab:
+    id: 5aef392e-fccc-428e-a0c2-bb435f5856ab
+    content: When expanding a node
+    children:
+      - 4ed2d131-8f0e-4601-be7e-593f6dd43496
+    metadata:
+      status: completed
+  4ed2d131-8f0e-4601-be7e-593f6dd43496:
+    id: 4ed2d131-8f0e-4601-be7e-593f6dd43496
+    content: The cursor position should be maintained
+    children: []
+    metadata:
+      status: completed
+  c06f6d42-1e1a-435c-907a-b75931e2369a:
+    id: c06f6d42-1e1a-435c-907a-b75931e2369a
+    content: When scrolling beyond the current visual boundaries
+    children:
+      - e934990e-b0d3-49c1-8bff-a7fdeee0debb
+    metadata:
+      status: completed
+  e934990e-b0d3-49c1-8bff-a7fdeee0debb:
+    id: e934990e-b0d3-49c1-8bff-a7fdeee0debb
+    content: Keyboard navigation should deplace the scroll bar
+    children: []
+    metadata:
+      status: completed
+  42563c09-9ca4-4c1d-8897-3820358aad78:
+    id: 42563c09-9ca4-4c1d-8897-3820358aad78
+    content: When encountering a multiline node
+    children:
+      - 271d2bf0-ed3b-4e55-b291-a9445cb6e30f
+      - 716ab02a-a2bc-4ef8-b1b3-242afc1cb356
+      - 727ef19d-2e62-4029-8b0f-97df3d003daf
+    metadata:
+      status: completed
+  271d2bf0-ed3b-4e55-b291-a9445cb6e30f:
+    id: 271d2bf0-ed3b-4e55-b291-a9445cb6e30f
+    content: Pressing up or down should move through each line of the node and maintain cursor position.
+    children: []
+    metadata:
+      status: completed
+  716ab02a-a2bc-4ef8-b1b3-242afc1cb356:
+    id: 716ab02a-a2bc-4ef8-b1b3-242afc1cb356
+    content: When pressing down at the last line or up at the first line, should navigate to the next/previous node
+    children: []
+    metadata:
+      status: completed
+  727ef19d-2e62-4029-8b0f-97df3d003daf:
+    id: 727ef19d-2e62-4029-8b0f-97df3d003daf
+    content: Pressing left or right should move to the next/previous line when at the start/end of a line or the next/previous node when at the start/end of the node.
+    children: []
+    metadata:
+      status: completed
+  9d8539d0-b67b-4779-941d-92ae3f87eb84:
+    id: 9d8539d0-b67b-4779-941d-92ae3f87eb84
+    content: When pressing the left/right keys to navigate
+    children:
+      - 4b579484-4a87-4217-8bbb-40c69924b93f
+      - afa7405d-8e2b-4b90-9292-4fda7957fcd5
+      - 555c6cb9-625f-4a93-8f20-eed6a5d336d9
+      - b709fd21-099d-47a6-a4b6-ac29632173d3
+      - 145277e1-4873-46fd-a560-6c06da53ff25
+    metadata:
+      status: completed
+  4b579484-4a87-4217-8bbb-40c69924b93f:
+    id: 4b579484-4a87-4217-8bbb-40c69924b93f
+    content: We should move forwards and backwards by one character within that line
+    children: []
+    metadata:
+      status: completed
+  afa7405d-8e2b-4b90-9292-4fda7957fcd5:
+    id: afa7405d-8e2b-4b90-9292-4fda7957fcd5
+    content: When we are at the start of the node, we go back to the last character of the previous node
+    children: []
+    metadata:
+      status: completed
+  555c6cb9-625f-4a93-8f20-eed6a5d336d9:
+    id: 555c6cb9-625f-4a93-8f20-eed6a5d336d9
+    content: When we are at the end of the node, we go forwards to the first character of the next node
+    children: []
+    metadata:
+      status: completed
+  b709fd21-099d-47a6-a4b6-ac29632173d3:
+    id: b709fd21-099d-47a6-a4b6-ac29632173d3
+    content: We update the horizontal position accordingly
+    children: []
+    metadata:
+      status: completed
+  145277e1-4873-46fd-a560-6c06da53ff25:
+    id: 145277e1-4873-46fd-a560-6c06da53ff25
+    content: When we are at the start of the very first node in the workspace, or at the end of the very last node, then left or right does nothing
+    children: []
+    metadata:
+      status: completed
+  07dbd367-fd7c-41a6-94bc-3f7c5f57e668:
+    id: 07dbd367-fd7c-41a6-94bc-3f7c5f57e668
+    content: Reimagine/remove Claude code plugin
+    children:
+      - 29b1c516-3ac2-48a3-91bf-07146b824880
+      - qo4eickz9
+    metadata:
+      status: pending
+      expanded: false
+  29b1c516-3ac2-48a3-91bf-07146b824880:
+    id: 29b1c516-3ac2-48a3-91bf-07146b824880
+    content: "\_And the 'hooks' we made for IPC"
+    children: []
+    metadata:
+      status: pending
+  e15d77fa-c719-45d4-9207-ff759d86e58f:
+    id: e15d77fa-c719-45d4-9207-ff759d86e58f
+    content: Terminal integration
+    children:
+      - 754934df-27a9-4f73-8f64-1a854da7132a
+      - 31a08609-4870-4710-b2df-297ee24ab040
+      - c4a0a9f7-196d-457f-83ff-3efe3f8ea706
+    metadata:
+      status: completed
+      expanded: false
+  90ef4542-1a4c-48b9-922e-5674d3143748:
+    id: 90ef4542-1a4c-48b9-922e-5674d3143748
+    content: Linting, Typescript, Tests, Coverage
+    children: []
+    metadata:
+      status: completed
+  c4a0a9f7-196d-457f-83ff-3efe3f8ea706:
+    id: c4a0a9f7-196d-457f-83ff-3efe3f8ea706
+    content: Refactor
+    children:
+      - 454bc3a4-6a64-4f0d-85e5-09d6793abd49
+      - dad3e4df-5cbc-4124-8acd-d49432c6d7d4
+      - 4f258a4e-8521-41f3-98c1-c39260d22d30
+      - 90ef4542-1a4c-48b9-922e-5674d3143748
+    metadata:
+      status: completed
+  1c90c8d1-d23a-4d91-8ffc-60850b65457e:
+    id: 1c90c8d1-d23a-4d91-8ffc-60850b65457e
+    content: In main.ts there are console logs that should use the logger util
+    children: []
+    metadata:
+      status: completed
+  64190c95-a7b2-416c-84f0-1f922785bd29:
+    id: 64190c95-a7b2-416c-84f0-1f922785bd29
+    content: There is a comment in ipcService about terminal handlers that doesn't make much sense as there's no related code there, so reading the comment in isolation is kind of 'wait, what?'
+    children: []
+    metadata:
+      status: completed
+  1998bb11-a0c7-4927-b877-c4b2433eabd0:
+    id: 1998bb11-a0c7-4927-b877-c4b2433eabd0
+    content: Is there stuff in TerminalManager that is related to the claude code integration attempt we abandoned ? Because we don't need to find session ID for example, and same goes for global.d.ts, and index.ts and setup.ts
+    children: []
+    metadata:
+      status: completed
+  454bc3a4-6a64-4f0d-85e5-09d6793abd49:
+    id: 454bc3a4-6a64-4f0d-85e5-09d6793abd49
+    content: All the terminal related stuff in app.tsx should have it's own component file and hook file and css file
+    children:
+      - b80235b5-148e-442b-8a81-95175bd6a7dd
+    metadata:
+      status: completed
+  15f7ace1-2bf2-474f-861f-813c2a69e142:
+    id: 15f7ace1-2bf2-474f-861f-813c2a69e142
+    content: There's a type error in useNodeContextMenu.ts
+    children: []
+    metadata:
+      status: completed
+  4c943fa0-ab83-437b-be8a-5f92b8827fae:
+    id: 4c943fa0-ab83-437b-be8a-5f92b8827fae
+    content: useNodeContextMenu has code specific to terminal management that should be somewhere dedicated
+    children: []
+    metadata:
+      status: completed
+  dad3e4df-5cbc-4124-8acd-d49432c6d7d4:
+    id: dad3e4df-5cbc-4124-8acd-d49432c6d7d4
+    content: terminal.tsx should have have a hooks file
+    children:
+      - 9205ccd2-be95-4dea-8674-6424a2cbb0d7
+    metadata:
+      status: completed
+  885a6791-79c4-4434-97af-903252347600:
+    id: 885a6791-79c4-4434-97af-903252347600
+    content: terminalPanel should have its own folder
+    children: []
+    metadata:
+      status: completed
+  bb4a50e6-15a0-4169-a693-892a0344cb26:
+    id: bb4a50e6-15a0-4169-a693-892a0344cb26
+    content: we no longer need to support sub menus in contextMenu.ts - you can remove that code
+    children: []
+    metadata:
+      status: completed
+  0b1a73fa-e446-4ea4-9bbb-695b91f3eb4f:
+    id: 0b1a73fa-e446-4ea4-9bbb-695b91f3eb4f
+    content: "Doesn't look like we need\_updateNodePluginMetadata\_anymore in nodeActions"
+    children: []
+    metadata:
+      status: completed
+  31a08609-4870-4710-b2df-297ee24ab040:
+    id: 31a08609-4870-4710-b2df-297ee24ab040
+    content: Done
+    children:
+      - 1c90c8d1-d23a-4d91-8ffc-60850b65457e
+      - 64190c95-a7b2-416c-84f0-1f922785bd29
+      - 15f7ace1-2bf2-474f-861f-813c2a69e142
+      - 1998bb11-a0c7-4927-b877-c4b2433eabd0
+      - 4c943fa0-ab83-437b-be8a-5f92b8827fae
+      - 885a6791-79c4-4434-97af-903252347600
+      - bb4a50e6-15a0-4169-a693-892a0344cb26
+      - 0b1a73fa-e446-4ea4-9bbb-695b91f3eb4f
+    metadata:
+      status: completed
+  b80235b5-148e-442b-8a81-95175bd6a7dd:
+    id: b80235b5-148e-442b-8a81-95175bd6a7dd
+    content: themes in terminal.tsx should be in css files
+    children: []
+    metadata:
+      status: completed
+  9205ccd2-be95-4dea-8674-6424a2cbb0d7:
+    id: 9205ccd2-be95-4dea-8674-6424a2cbb0d7
+    content: there's still a bunch of stuff in terminal.tsx that looks like it should be in hooks
+    children:
+      - c57dd6b5-32e7-4344-9b28-c7a9801ec431
+    metadata:
+      status: completed
+  c57dd6b5-32e7-4344-9b28-c7a9801ec431:
+    id: c57dd6b5-32e7-4344-9b28-c7a9801ec431
+    content: same goes for terminalPanel.tsx
+    children: []
+    metadata:
+      status: completed
+  4f258a4e-8521-41f3-98c1-c39260d22d30:
+    id: 4f258a4e-8521-41f3-98c1-c39260d22d30
+    content: we need to add tests for new code additions since last commit
+    children: []
+    metadata:
+      status: completed
+  f12c8451-3c69-4907-993e-846c21ca1ff1:
+    id: f12c8451-3c69-4907-993e-846c21ca1ff1
+    content: Don't touch the keyboad node management (moving nodes) unless necessary
+    children: []
+    metadata:
+      status: completed
+  a37a4248-b9c2-4197-9469-9e738fefe8ea:
+    id: a37a4248-b9c2-4197-9469-9e738fefe8ea
+    content: IMPORTANT - each feature should have acceptance criteria
+    children:
+      - d3bffd85-b0d4-4d4f-a7fe-d260e1cba7ad
+      - 4a195f9d-138e-4f68-9da5-0d9829322195
+      - 3d53a26c-c7cc-49cd-a3e9-1a298132bcf2
+      - d6196365-b040-4515-8a12-0142cad89ee8
+      - a433188a-94dd-4e90-a8bf-1090374d803b
+      - 6caef70c-283f-4073-b628-be7a788ad0bb
+    metadata:
+      status: pending
+      expanded: true
+  d3bffd85-b0d4-4d4f-a7fe-d260e1cba7ad:
+    id: d3bffd85-b0d4-4d4f-a7fe-d260e1cba7ad
+    content: Those acceptance criteria form in-folder documentation
+    children: []
+    metadata:
+      status: pending
+  4a195f9d-138e-4f68-9da5-0d9829322195:
+    id: 4a195f9d-138e-4f68-9da5-0d9829322195
+    content: Updating a feature or fixing a bug updates the acceptance criteria
+    children: []
+    metadata:
+      status: pending
+  3d53a26c-c7cc-49cd-a3e9-1a298132bcf2:
+    id: 3d53a26c-c7cc-49cd-a3e9-1a298132bcf2
+    content: The acceptance criteria maps to tests (to see if it's the same file)
+    children: []
+    metadata:
+      status: pending
+  d6196365-b040-4515-8a12-0142cad89ee8:
+    id: d6196365-b040-4515-8a12-0142cad89ee8
+    content: It is built into the context
+    children: []
+    metadata:
+      status: pending
+  a433188a-94dd-4e90-a8bf-1090374d803b:
+    id: a433188a-94dd-4e90-a8bf-1090374d803b
+    content: It can be exported to feature documentation
+    children: []
+    metadata:
+      status: pending
+  6caef70c-283f-4073-b628-be7a788ad0bb:
+    id: 6caef70c-283f-4073-b628-be7a788ad0bb
+    content: Ideally all of this is managed by the context associated with a feature, and we export from that feature
+    children:
+      - d11ce2a2-5256-401f-907d-d8a0f5127de1
+    metadata:
+      status: pending
+  d11ce2a2-5256-401f-907d-d8a0f5127de1:
+    id: d11ce2a2-5256-401f-907d-d8a0f5127de1
+    content: So we keep 'done' in the feature as documentation, and pass that as context
+    children: []
+    metadata:
+      status: pending
+  f48e2a15-a829-483b-90a7-a4613759f5a6:
+    id: f48e2a15-a829-483b-90a7-a4613759f5a6
+    content: Bugs
+    children:
+      - 5e35de69-5f77-41e1-8df7-57f35da9a62b
+      - 3e60ba1f-6b22-4a63-9561-30a9ef011356
+      - 7a78ddb3-4006-45ff-9fe5-d940bebdb793
+      - d513e289-7a0c-46ff-9acc-3a90f68285df
+      - 1d5aa320-4837-4371-b108-c97761e2fa1d
+    metadata:
+      status: completed
+  5e35de69-5f77-41e1-8df7-57f35da9a62b:
+    id: 5e35de69-5f77-41e1-8df7-57f35da9a62b
+    content: When clicking in a multiline node, and pressing the down key, nothing happens until pressing a second time.
+    children: []
+    metadata:
+      status: completed
+  3e60ba1f-6b22-4a63-9561-30a9ef011356:
+    id: 3e60ba1f-6b22-4a63-9561-30a9ef011356
+    content: When clicking in a multiline node, and pressing the up key, it skips a line.
+    children: []
+    metadata:
+      status: completed
+  7a78ddb3-4006-45ff-9fe5-d940bebdb793:
+    id: 7a78ddb3-4006-45ff-9fe5-d940bebdb793
+    content: Trying to place the cursor with the mouse in the last lines of a multiline node doesn't work, the cursor jumps to the top line.
+    children: []
+    metadata:
+      status: completed
+  d513e289-7a0c-46ff-9acc-3a90f68285df:
+    id: d513e289-7a0c-46ff-9acc-3a90f68285df
+    content: If I navigate up into a multiline node, and press left, it goes to the end of the node
+    children: []
+    metadata:
+      status: completed
+  1d5aa320-4837-4371-b108-c97761e2fa1d:
+    id: 1d5aa320-4837-4371-b108-c97761e2fa1d
+    content: If I navigate up unto a multiline node, into a line other than the last, then press left, the cursor goes to the end of the last line
+    children: []
+    metadata:
+      status: completed
+  9f235582-5298-4b91-bf99-1927a312e702:
+    id: 9f235582-5298-4b91-bf99-1927a312e702
+    content: Undo/Redo
+    children:
+      - dca4a83a-9a58-4fc6-81a6-52ac13b29a96
+      - a1c58d22-fec6-4fba-992f-dfb862ff24b0
+    metadata:
+      status: completed
+      expanded: false
+  0fc03b7b-685d-4258-b683-84ae60ff9218:
+    id: 0fc03b7b-685d-4258-b683-84ae60ff9218
+    content: Ctrl + Z undoes
+    children: []
+    metadata:
+      status: completed
+  7a820b75-d7db-4b58-94fd-633cec28c594:
+    id: 7a820b75-d7db-4b58-94fd-633cec28c594
+    content: Ctrl + Shift + Z redoes
+    children: []
+    metadata:
+      status: completed
+  b007eab5-ff0e-41c9-b108-522890c27d28:
+    id: b007eab5-ff0e-41c9-b108-522890c27d28
+    content: Can go back up to 100 commands
+    children: []
+    metadata:
+      status: completed
+  f0c1f3fe-1b70-4ce2-b04e-84f7e35d50e0:
+    id: f0c1f3fe-1b70-4ce2-b04e-84f7e35d50e0
+    content: Each file has its own undo/redo
+    children: []
+    metadata:
+      status: completed
+  d086a59a-3fd6-4439-8262-f9f2425198b8:
+    id: d086a59a-3fd6-4439-8262-f9f2425198b8
+    content: Switching between files preseres history
+    children: []
+    metadata:
+      status: completed
+  93bca57a-f257-4bbc-8836-6918b88ef660:
+    id: 93bca57a-f257-4bbc-8836-6918b88ef660
+    content: Keyboard
+    children:
+      - 0fc03b7b-685d-4258-b683-84ae60ff9218
+      - 7a820b75-d7db-4b58-94fd-633cec28c594
+    metadata:
+      status: completed
+  9185393a-a03a-4e4e-b1e2-8ab6de4a952d:
+    id: 9185393a-a03a-4e4e-b1e2-8ab6de4a952d
+    content: History
+    children:
+      - b007eab5-ff0e-41c9-b108-522890c27d28
+      - f0c1f3fe-1b70-4ce2-b04e-84f7e35d50e0
+      - d086a59a-3fd6-4439-8262-f9f2425198b8
+      - 7ecd8358-bc1d-4185-a4a2-be0a5d3e3c77
+    metadata:
+      status: completed
+  7ecd8358-bc1d-4185-a4a2-be0a5d3e3c77:
+    id: 7ecd8358-bc1d-4185-a4a2-be0a5d3e3c77
+    content: Closing a file discards its undo/redo stack
+    children: []
+    metadata:
+      status: completed
+  0e1f532b-3f15-4649-9a25-c52fbadb0ae0:
+    id: 0e1f532b-3f15-4649-9a25-c52fbadb0ae0
+    content: Content editing
+    children:
+      - fd4814e7-9b71-4cf1-9e84-eaccb5a81363
+      - 94b6391c-1c48-4899-aa3c-f83240672cba
+    metadata:
+      status: completed
+  fd4814e7-9b71-4cf1-9e84-eaccb5a81363:
+    id: fd4814e7-9b71-4cf1-9e84-eaccb5a81363
+    content: Text undo
+    children:
+      - 2eabfebb-b816-4518-a206-88b5a420ce21
+      - 4a9daa2c-86fe-456f-a4fa-a97871c51d12
+      - 610b7f7e-0cf0-4537-8761-c393f1c28b4d
+      - 8c550333-710a-42e0-94f3-8399c5051bee
+    metadata:
+      status: completed
+  2eabfebb-b816-4518-a206-88b5a420ce21:
+    id: 2eabfebb-b816-4518-a206-88b5a420ce21
+    content: Characters all undone together unles space is typed or after 1 second of inactivity
+    children: []
+    metadata:
+      status: completed
+  4a9daa2c-86fe-456f-a4fa-a97871c51d12:
+    id: 4a9daa2c-86fe-456f-a4fa-a97871c51d12
+    content: Backspace is a single undo step
+    children: []
+    metadata:
+      status: completed
+  610b7f7e-0cf0-4537-8761-c393f1c28b4d:
+    id: 610b7f7e-0cf0-4537-8761-c393f1c28b4d
+    content: Undo/redo removes/restores entire word (unless we paused for one second or typing space)
+    children:
+      - b8f376d8-dc50-46c8-93e8-dd4f328d8688
+    metadata:
+      status: completed
+  dca4a83a-9a58-4fc6-81a6-52ac13b29a96:
+    id: dca4a83a-9a58-4fc6-81a6-52ac13b29a96
+    content: Bugs
+    children:
+      - 63289c3f-3646-4a60-a29e-0ac034185037
+      - 0ee336f9-6807-4249-ac73-21150b1468b6
+      - 3554c780-1a4c-4c04-ab91-b7f8c163c981
+      - 6812f09f-de1e-4f7b-96a3-c01e2847ddd2
+    metadata:
+      status: completed
+  8c550333-710a-42e0-94f3-8399c5051bee:
+    id: 8c550333-710a-42e0-94f3-8399c5051bee
+    content: Non breaking spaces treated as spaces
+    children: []
+    metadata:
+      status: completed
+  94b6391c-1c48-4899-aa3c-f83240672cba:
+    id: 94b6391c-1c48-4899-aa3c-f83240672cba
+    content: Cursor positioning
+    children:
+      - ce127657-c522-40a0-b864-6fe47246ce0c
+    metadata:
+      status: completed
+  ce127657-c522-40a0-b864-6fe47246ce0c:
+    id: ce127657-c522-40a0-b864-6fe47246ce0c
+    content: Undo/redo places us at the end of restored/previous content
+    children: []
+    metadata:
+      status: completed
+  33d5686e-e334-468d-8ba9-663267df6e0a:
+    id: 33d5686e-e334-468d-8ba9-663267df6e0a
+    content: Node operations
+    children:
+      - bab73b2e-1c6f-43ff-b911-4c1fd3db33d6
+      - af5bbcdf-5ca8-4863-bf0b-b92c7070eb20
+      - b71abf8c-034d-49a6-8f0b-1d7a11886df1
+      - 78296e29-c507-4a71-b69e-b04a7251c268
+    metadata:
+      status: completed
+  b8f376d8-dc50-46c8-93e8-dd4f328d8688:
+    id: b8f376d8-dc50-46c8-93e8-dd4f328d8688
+    content: Same goes for undoing backspace (if two words are deleted, each is restored with undo independantly)
+    children: []
+    metadata:
+      status: completed
+  bab73b2e-1c6f-43ff-b911-4c1fd3db33d6:
+    id: bab73b2e-1c6f-43ff-b911-4c1fd3db33d6
+    content: Undo/redo can act on node creation
+    children:
+      - e907be42-2f0a-445f-a0b8-6a9bcb238070
+      - e400a8d9-71d0-42ea-aee4-3212a11ad911
+      - 51910440-c5a3-4c6e-96be-354df498af05
+    metadata:
+      status: completed
+  e400a8d9-71d0-42ea-aee4-3212a11ad911:
+    id: e400a8d9-71d0-42ea-aee4-3212a11ad911
+    content: On redo cursor is placed at end of restored node
+    children: []
+    metadata:
+      status: completed
+  e907be42-2f0a-445f-a0b8-6a9bcb238070:
+    id: e907be42-2f0a-445f-a0b8-6a9bcb238070
+    content: On undo cursor is placed on parent
+    children: []
+    metadata:
+      status: completed
+  51910440-c5a3-4c6e-96be-354df498af05:
+    id: 51910440-c5a3-4c6e-96be-354df498af05
+    content: Redo restores metadata (like status)
+    children: []
+    metadata:
+      status: completed
+  af5bbcdf-5ca8-4863-bf0b-b92c7070eb20:
+    id: af5bbcdf-5ca8-4863-bf0b-b92c7070eb20
+    content: Deleted nodes are undoable
+    children:
+      - ce413210-c00b-4420-b752-1199a1846cb6
+      - a6e4122d-3dfc-459d-8755-dd22f7fd9f9e
+      - 7dc80a71-126a-4080-8b63-7e7d7c333d2b
+    metadata:
+      status: completed
+  ce413210-c00b-4420-b752-1199a1846cb6:
+    id: ce413210-c00b-4420-b752-1199a1846cb6
+    content: Undo restores a deleted node with all its descendants
+    children: []
+    metadata:
+      status: completed
+  a6e4122d-3dfc-459d-8755-dd22f7fd9f9e:
+    id: a6e4122d-3dfc-459d-8755-dd22f7fd9f9e
+    content: Cursor is placed at end of restored node
+    children: []
+    metadata:
+      status: completed
+  7dc80a71-126a-4080-8b63-7e7d7c333d2b:
+    id: 7dc80a71-126a-4080-8b63-7e7d7c333d2b
+    content: Redo deletes it again
+    children: []
+    metadata:
+      status: completed
+  b71abf8c-034d-49a6-8f0b-1d7a11886df1:
+    id: b71abf8c-034d-49a6-8f0b-1d7a11886df1
+    content: Node movement
+    children:
+      - f98af613-2ae2-43d7-b568-38f198972efb
+    metadata:
+      status: completed
+  f98af613-2ae2-43d7-b568-38f198972efb:
+    id: f98af613-2ae2-43d7-b568-38f198972efb
+    content: 'The following are handled :'
+    children:
+      - ec1031fd-e38a-47a6-88c5-b84dfddd291c
+      - 540adb08-a8d7-4627-8792-eb9464a33c38
+      - 7efab6a0-663a-4c12-b2a5-4d43f886e175
+    metadata:
+      status: completed
+  ec1031fd-e38a-47a6-88c5-b84dfddd291c:
+    id: ec1031fd-e38a-47a6-88c5-b84dfddd291c
+    content: Indent/Outdent
+    children: []
+    metadata:
+      status: completed
+  540adb08-a8d7-4627-8792-eb9464a33c38:
+    id: 540adb08-a8d7-4627-8792-eb9464a33c38
+    content: Move up/down
+    children: []
+    metadata:
+      status: completed
+  7efab6a0-663a-4c12-b2a5-4d43f886e175:
+    id: 7efab6a0-663a-4c12-b2a5-4d43f886e175
+    content: Drag drop with CTRL and Shift click
+    children: []
+    metadata:
+      status: completed
+  78296e29-c507-4a71-b69e-b04a7251c268:
+    id: 78296e29-c507-4a71-b69e-b04a7251c268
+    content: Status toggling is undoable
+    children: []
+    metadata:
+      status: completed
+  13cbc270-7c0b-4f84-ac89-e332c5679640:
+    id: 13cbc270-7c0b-4f84-ac89-e332c5679640
+    content: Stack management
+    children:
+      - edbfcd4a-9ec2-4e1d-a1be-aedb5cfd7dcc
+    metadata:
+      status: completed
+  edbfcd4a-9ec2-4e1d-a1be-aedb5cfd7dcc:
+    id: edbfcd4a-9ec2-4e1d-a1be-aedb5cfd7dcc
+    content: A new operations clears the redo stack
+    children: []
+    metadata:
+      status: completed
+  a1c58d22-fec6-4fba-992f-dfb862ff24b0:
+    id: a1c58d22-fec6-4fba-992f-dfb862ff24b0
+    content: Done
+    children:
+      - 93bca57a-f257-4bbc-8836-6918b88ef660
+      - 9185393a-a03a-4e4e-b1e2-8ab6de4a952d
+      - 0e1f532b-3f15-4649-9a25-c52fbadb0ae0
+      - 33d5686e-e334-468d-8ba9-663267df6e0a
+      - 13cbc270-7c0b-4f84-ac89-e332c5679640
+    metadata:
+      status: completed
+      expanded: false
+  63289c3f-3646-4a60-a29e-0ac034185037:
+    id: 63289c3f-3646-4a60-a29e-0ac034185037
+    content: Collapse/expand should be undoable/redoable
+    children: []
+    metadata:
+      status: completed
+  3554c780-1a4c-4c04-ab91-b7f8c163c981:
+    id: 3554c780-1a4c-4c04-ab91-b7f8c163c981
+    content: In nodeMovementActions - there are several huge functions that do too much
+    children: []
+    metadata:
+      status: completed
+  0ee336f9-6807-4249-ac73-21150b1468b6:
+    id: 0ee336f9-6807-4249-ac73-21150b1468b6
+    content: "Why do we have fall back if command system is not available ? - it should always be available right ?\_ If it's not we should give an error, as the user might not expect it to fail silently and then not be able to undo..."
+    children: []
+    metadata:
+      status: completed
+  6812f09f-de1e-4f7b-96a3-c01e2847ddd2:
+    id: 6812f09f-de1e-4f7b-96a3-c01e2847ddd2
+    content: After clicking within a multiline node, the cursor always jumps up to the first line
+    children: []
+    metadata:
+      status: completed
+  a015d694-46fb-41f2-86ce-493d8bb90098:
+    id: a015d694-46fb-41f2-86ce-493d8bb90098
+    content: Add browser panel and copy to clipboard
+    children:
+      - 3a376191-72a1-43d9-9488-a834721d5c7d
+      - 7c43acac-f84d-45f1-886b-894b1c292f3e
+      - c5e7326b-e18f-4509-994e-081400c54994
+      - 8627ce04-5125-4c2b-8677-813dc1e2c5cf
+      - 689012c7-af48-47d3-9ca2-a0fc644d069b
+      - 325474ef-7f6e-4153-85de-d58fc31ac1f9
+      - 05bb8212-2ba7-4ab9-a94c-cd09fb568265
+      - aa0b6842-0f83-4f7a-9d3f-ca339cdf4404
+      - 3e7a29e8-b6f0-4dcc-a481-572aaa00ce99
+      - 1ba28725-58a8-4ca5-8eee-050984a2c410
+    metadata:
+      status: completed
+      expanded: false
+  7c43acac-f84d-45f1-886b-894b1c292f3e:
+    id: 7c43acac-f84d-45f1-886b-894b1c292f3e
+    content: Right click on a node should copy it and its descendants to the clipboard
+    children:
+      - 258e3647-b115-4d7a-9e31-63eaa6d3c5b5
+    metadata:
+      status: completed
+      expanded: false
+  258e3647-b115-4d7a-9e31-63eaa6d3c5b5:
+    id: 258e3647-b115-4d7a-9e31-63eaa6d3c5b5
+    content: The format should be the same MD format we use for sending something to terminal
+    children: []
+    metadata:
+      status: completed
+  c5e7326b-e18f-4509-994e-081400c54994:
+    id: c5e7326b-e18f-4509-994e-081400c54994
+    content: There should be a browser button next to the terminal button in the right of the tab bar
+    children:
+      - 5674015b-5be6-4b7c-9193-ae7ac42f3689
+      - 72b17a8e-db6f-49ca-80c3-9a76a224a440
+    metadata:
+      status: completed
+      expanded: true
+  5674015b-5be6-4b7c-9193-ae7ac42f3689:
+    id: 5674015b-5be6-4b7c-9193-ae7ac42f3689
+    content: Clicking on this opens a side panel with the browser
+    children: []
+    metadata:
+      status: completed
+  72b17a8e-db6f-49ca-80c3-9a76a224a440:
+    id: 72b17a8e-db6f-49ca-80c3-9a76a224a440
+    content: If there is a terminal panel open, it minimizes it
+    children:
+      - 064edf20-1aff-483b-b685-33a2aa45f66a
+      - 3bd47aa3-d6a7-41e4-a016-9c24068a6ec2
+    metadata:
+      status: completed
+  8627ce04-5125-4c2b-8677-813dc1e2c5cf:
+    id: 8627ce04-5125-4c2b-8677-813dc1e2c5cf
+    content: "There should be a toggle button (⬇/➡) to move panel between bottom and side\n\_ positions"
+    children:
+      - 3eb96326-51d3-423d-8503-82a6bafe1922
+      - b3be78ab-a86e-4731-9eee-15e3ca365c4e
+      - 191b0663-1b32-4560-892f-a7a3ec0909da
+      - 3f908158-fe8f-4e96-8dbb-da6aae6b1230
+    metadata:
+      status: completed
+      expanded: false
+  064edf20-1aff-483b-b685-33a2aa45f66a:
+    id: 064edf20-1aff-483b-b685-33a2aa45f66a
+    content: When clicking on the terminal button again, it shows it, and minimizes the browser panel
+    children: []
+    metadata:
+      status: completed
+  3bd47aa3-d6a7-41e4-a016-9c24068a6ec2:
+    id: 3bd47aa3-d6a7-41e4-a016-9c24068a6ec2
+    content: Nothing gets closed, the previous sessions appear when opening the panel
+    children: []
+    metadata:
+      status: completed
+  3eb96326-51d3-423d-8503-82a6bafe1922:
+    id: 3eb96326-51d3-423d-8503-82a6bafe1922
+    content: Panel position preference should be remembered between sessions
+    children: []
+    metadata:
+      status: completed
+  b3be78ab-a86e-4731-9eee-15e3ca365c4e:
+    id: b3be78ab-a86e-4731-9eee-15e3ca365c4e
+    content: Same position preference applies to terminal panel (shared panel space)
+    children: []
+    metadata:
+      status: completed
+  191b0663-1b32-4560-892f-a7a3ec0909da:
+    id: 191b0663-1b32-4560-892f-a7a3ec0909da
+    content: Panel size (width/height) should be remembered between sessions
+    children: []
+    metadata:
+      status: completed
+  3f908158-fe8f-4e96-8dbb-da6aae6b1230:
+    id: 3f908158-fe8f-4e96-8dbb-da6aae6b1230
+    content: Panel size should be shared between browser and terminal
+    children: []
+    metadata:
+      status: completed
+  689012c7-af48-47d3-9ca2-a0fc644d069b:
+    id: 689012c7-af48-47d3-9ca2-a0fc644d069b
+    content: Browser tabs functionality
+    children:
+      - e06ca801-95a2-4ac9-a4f9-07af8fc53279
+      - 4bf11414-ea4e-4412-817d-8a8e0e35696f
+      - 253dc403-cfb1-463b-a4df-0470bfa3b6ff
+      - 5105370c-89df-4249-822a-42d44b6beca4
+      - 79a32959-15a8-48f9-9ef9-c15ac2b7175a
+      - 8fc0a61c-eb45-4d2a-8877-ffdce7c4cc43
+    metadata:
+      status: completed
+      expanded: false
+  e06ca801-95a2-4ac9-a4f9-07af8fc53279:
+    id: e06ca801-95a2-4ac9-a4f9-07af8fc53279
+    content: There should be ability to create tabs with a + button
+    children: []
+    metadata:
+      status: completed
+  4bf11414-ea4e-4412-817d-8a8e0e35696f:
+    id: 4bf11414-ea4e-4412-817d-8a8e0e35696f
+    content: Tabs should have close buttons (×)
+    children: []
+    metadata:
+      status: completed
+  253dc403-cfb1-463b-a4df-0470bfa3b6ff:
+    id: 253dc403-cfb1-463b-a4df-0470bfa3b6ff
+    content: Tab width should be limited (max 200px)
+    children: []
+    metadata:
+      status: completed
+  5105370c-89df-4249-822a-42d44b6beca4:
+    id: 5105370c-89df-4249-822a-42d44b6beca4
+    content: Full title should be displayed on hover
+    children: []
+    metadata:
+      status: completed
+  79a32959-15a8-48f9-9ef9-c15ac2b7175a:
+    id: 79a32959-15a8-48f9-9ef9-c15ac2b7175a
+    content: Tabs should persist between sessions
+    children: []
+    metadata:
+      status: completed
+  8fc0a61c-eb45-4d2a-8877-ffdce7c4cc43:
+    id: 8fc0a61c-eb45-4d2a-8877-ffdce7c4cc43
+    content: Active tab should be remembered between sessions
+    children: []
+    metadata:
+      status: completed
+  325474ef-7f6e-4153-85de-d58fc31ac1f9:
+    id: 325474ef-7f6e-4153-85de-d58fc31ac1f9
+    content: Browser navigation
+    children:
+      - 8bd391d7-c73e-4c26-8b0e-2a8dc3f56989
+      - 0d2fd590-94fc-4c22-836c-51e048d9f39b
+      - 0d0db6bc-ed8d-4cc5-b14a-6dd515ed98ff
+      - ee96f7d6-5aae-46ef-bf57-5dc5174eb2b7
+      - 4a4b0956-21ab-48d6-8084-82d342b65a89
+      - a3135edb-8c74-406c-a2d9-b3faec842c52
+    metadata:
+      status: completed
+      expanded: false
+  8bd391d7-c73e-4c26-8b0e-2a8dc3f56989:
+    id: 8bd391d7-c73e-4c26-8b0e-2a8dc3f56989
+    content: Address bar for URL input and display
+    children: []
+    metadata:
+      status: completed
+  0d2fd590-94fc-4c22-836c-51e048d9f39b:
+    id: 0d2fd590-94fc-4c22-836c-51e048d9f39b
+    content: Back button (←) - disabled when no history
+    children: []
+    metadata:
+      status: completed
+  0d0db6bc-ed8d-4cc5-b14a-6dd515ed98ff:
+    id: 0d0db6bc-ed8d-4cc5-b14a-6dd515ed98ff
+    content: Forward button (→) - disabled when no forward history
+    children: []
+    metadata:
+      status: completed
+  ee96f7d6-5aae-46ef-bf57-5dc5174eb2b7:
+    id: ee96f7d6-5aae-46ef-bf57-5dc5174eb2b7
+    content: Reload button (↻)
+    children: []
+    metadata:
+      status: completed
+  4a4b0956-21ab-48d6-8084-82d342b65a89:
+    id: 4a4b0956-21ab-48d6-8084-82d342b65a89
+    content: URL editing with auto-https:// prepending
+    children: []
+    metadata:
+      status: completed
+  a3135edb-8c74-406c-a2d9-b3faec842c52:
+    id: a3135edb-8c74-406c-a2d9-b3faec842c52
+    content: Navigation updates address bar without overwriting user input
+    children: []
+    metadata:
+      status: completed
+  05bb8212-2ba7-4ab9-a94c-cd09fb568265:
+    id: 05bb8212-2ba7-4ab9-a94c-cd09fb568265
+    content: Browser session persistence
+    children:
+      - 8b56b498-bcda-4d9f-ae1b-e203b87f6b71
+      - b6b0999b-82a9-4199-8c50-9ac09da79be5
+      - 79200bce-0a1a-4647-9573-f585010fd0a7
+      - c914d78c-475a-428e-a87f-43f57d48761e
+      - be02a260-10a5-4b87-8f14-bd2b2e879307
+    metadata:
+      status: completed
+      expanded: false
+  8b56b498-bcda-4d9f-ae1b-e203b87f6b71:
+    id: 8b56b498-bcda-4d9f-ae1b-e203b87f6b71
+    content: All tabs and their URLs should be saved
+    children: []
+    metadata:
+      status: completed
+  b6b0999b-82a9-4199-8c50-9ac09da79be5:
+    id: b6b0999b-82a9-4199-8c50-9ac09da79be5
+    content: Browser visibility state should be saved
+    children: []
+    metadata:
+      status: completed
+  79200bce-0a1a-4647-9573-f585010fd0a7:
+    id: 79200bce-0a1a-4647-9573-f585010fd0a7
+    content: Panel position and size should be saved
+    children: []
+    metadata:
+      status: completed
+  c914d78c-475a-428e-a87f-43f57d48761e:
+    id: c914d78c-475a-428e-a87f-43f57d48761e
+    content: Cookies and logins should persist (shared partition)
+    children: []
+    metadata:
+      status: completed
+  be02a260-10a5-4b87-8f14-bd2b2e879307:
+    id: be02a260-10a5-4b87-8f14-bd2b2e879307
+    content: Default to ecosia.org on first run
+    children: []
+    metadata:
+      status: completed
+  aa0b6842-0f83-4f7a-9d3f-ca339cdf4404:
+    id: aa0b6842-0f83-4f7a-9d3f-ca339cdf4404
+    content: Terminal auto-creation
+    children:
+      - da428de7-176b-4c95-b863-b3ba79c80bfc
+      - a1da1b95-615a-4889-9fc0-48d883f140c9
+      - 39c0ca55-31b2-4a25-8964-6331f559817a
+      - 61bd2f5f-3363-41ab-999b-58ccfb9b3b06
+    metadata:
+      status: completed
+      expanded: false
+  da428de7-176b-4c95-b863-b3ba79c80bfc:
+    id: da428de7-176b-4c95-b863-b3ba79c80bfc
+    content: Terminal should auto-create on startup if browser is not visible
+    children: []
+    metadata:
+      status: completed
+  a1da1b95-615a-4889-9fc0-48d883f140c9:
+    id: a1da1b95-615a-4889-9fc0-48d883f140c9
+    content: Terminal should auto-create when clicking terminal button if none exist
+    children: []
+    metadata:
+      status: completed
+  39c0ca55-31b2-4a25-8964-6331f559817a:
+    id: 39c0ca55-31b2-4a25-8964-6331f559817a
+    content: Terminal opens in user's home directory
+    children: []
+    metadata:
+      status: completed
+  61bd2f5f-3363-41ab-999b-58ccfb9b3b06:
+    id: 61bd2f5f-3363-41ab-999b-58ccfb9b3b06
+    content: Terminal has + button in tab bar for creating new terminals
+    children: []
+    metadata:
+      status: completed
+  3e7a29e8-b6f0-4dcc-a481-572aaa00ce99:
+    id: 3e7a29e8-b6f0-4dcc-a481-572aaa00ce99
+    content: Panel resizing
+    children:
+      - 72a73daa-aa40-4337-8c28-578161fa2a46
+      - c97ae16d-85e2-43ae-ba51-8f738e09648d
+      - 4f692289-cd28-468a-9e57-25ce10c7808d
+    metadata:
+      status: completed
+      expanded: false
+  72a73daa-aa40-4337-8c28-578161fa2a46:
+    id: 72a73daa-aa40-4337-8c28-578161fa2a46
+    content: Resize handle should release on mouse up (not capture events during resize)
+    children: []
+    metadata:
+      status: completed
+  c97ae16d-85e2-43ae-ba51-8f738e09648d:
+    id: c97ae16d-85e2-43ae-ba51-8f738e09648d
+    content: Resizing should work correctly when dragging over webview
+    children: []
+    metadata:
+      status: completed
+  4f692289-cd28-468a-9e57-25ce10c7808d:
+    id: 4f692289-cd28-468a-9e57-25ce10c7808d
+    content: Default browser width should be 50% of window
+    children: []
+    metadata:
+      status: completed
+  3a376191-72a1-43d9-9488-a834721d5c7d:
+    id: 3a376191-72a1-43d9-9488-a834721d5c7d
+    content: Refactor
+    children:
+      - 7193b176-7ef2-42d4-be1b-54329e8cfeb6
+      - b07169f9-8bb2-4565-b869-64269bbfa1fb
+      - 8816b073-8d04-4cd5-9f02-e64214044231
+      - 2274cfb2-4049-44fd-af82-40816c65c07a
+      - 3e5a7158-eef2-4ae4-a869-575a7c6b8ff6
+      - 6692624c-0391-4e11-9785-de27a8facbaa
+      - 8099c6e2-5283-420e-b7ae-46f2a0298dba
+      - 4eeed787-c9c0-4822-a937-768500dba8e6
+      - dac085ea-2e38-458a-b804-de5fd5c7e005
+    metadata:
+      status: completed
+  7193b176-7ef2-42d4-be1b-54329e8cfeb6:
+    id: 7193b176-7ef2-42d4-be1b-54329e8cfeb6
+    content: There is stuff related to default terminal in app.tsx - should this not be in useTerminal.ts ?
+    children:
+      - 1cdc8ce3-7035-4240-b328-b51fe04283b7
+    metadata:
+      status: completed
+      expanded: false
+  b07169f9-8bb2-4565-b869-64269bbfa1fb:
+    id: b07169f9-8bb2-4565-b869-64269bbfa1fb
+    content: Read arbo/architecture.md and identify refactor opportunities in code since last commit
+    children: []
+    metadata:
+      status: completed
+  8816b073-8d04-4cd5-9f02-e64214044231:
+    id: 8816b073-8d04-4cd5-9f02-e64214044231
+    content: There is an arbo/browser-session.json that should not be there
+    children: []
+    metadata:
+      status: completed
+  2274cfb2-4049-44fd-af82-40816c65c07a:
+    id: 2274cfb2-4049-44fd-af82-40816c65c07a
+    content: Stuff in browser.tsx that should be in a hooks file
+    children: []
+    metadata:
+      status: completed
+  3e5a7158-eef2-4ae4-a869-575a7c6b8ff6:
+    id: 3e5a7158-eef2-4ae4-a869-575a7c6b8ff6
+    content: Ecosia.org hardcoded in panelActions and browserPanel, should be only one source
+    children: []
+    metadata:
+      status: completed
+  6692624c-0391-4e11-9785-de27a8facbaa:
+    id: 6692624c-0391-4e11-9785-de27a8facbaa
+    content: Stuff in browserPanel.tsx that should be in hooks
+    children: []
+    metadata:
+      status: completed
+  8099c6e2-5283-420e-b7ae-46f2a0298dba:
+    id: 8099c6e2-5283-420e-b7ae-46f2a0298dba
+    content: browserPanel.tsx should be divided into sub component files each with their own directory and hooks files
+    children: []
+    metadata:
+      status: completed
+  dac085ea-2e38-458a-b804-de5fd5c7e005:
+    id: dac085ea-2e38-458a-b804-de5fd5c7e005
+    content: panelActions needs a hooks file with logic extracted to it
+    children: []
+    metadata:
+      status: completed
+  4eeed787-c9c0-4822-a937-768500dba8e6:
+    id: 4eeed787-c9c0-4822-a937-768500dba8e6
+    content: "there's a userBrowserResize, did we not do this code already for resizing the terminal ? it should be resused - perhaps we need a side panel component\_ to unify them ?"
+    children: []
+    metadata:
+      status: completed
+  1cdc8ce3-7035-4240-b328-b51fe04283b7:
+    id: 1cdc8ce3-7035-4240-b328-b51fe04283b7
+    content: Moved to hooks file
+    children: []
+    metadata:
+      status: completed
+  754934df-27a9-4f73-8f64-1a854da7132a:
+    id: 754934df-27a9-4f73-8f64-1a854da7132a
+    content: Bugs
+    children:
+      - dd1e5047-289a-4225-adaf-29300a3d3bc9
+      - c139d768-f8eb-4b4e-a780-bcc68de3f240
+    metadata:
+      status: completed
+  c139d768-f8eb-4b4e-a780-bcc68de3f240:
+    id: c139d768-f8eb-4b4e-a780-bcc68de3f240
+    content: It keeps going back to top of screen after processing something in Claude Code
+    children:
+      - b7f8432b-e5c1-45c7-8637-282c2f24e6a9
+      - a0d41291-4fcc-46df-923f-b31a13970c83
+      - ac2e431a-45e0-4dba-80de-9e9f78454b03
+      - 927628e2-4499-4004-9073-5a2f04c70747
+    metadata:
+      status: completed
+      expanded: true
+  a0d41291-4fcc-46df-923f-b31a13970c83:
+    id: a0d41291-4fcc-46df-923f-b31a13970c83
+    content: It should stay stuck to the bottom, unless the user has scrolled up and then never scrolled back down
+    children: []
+    metadata:
+      status: pending
+  ac2e431a-45e0-4dba-80de-9e9f78454b03:
+    id: ac2e431a-45e0-4dba-80de-9e9f78454b03
+    content: Inconsistent, sometimes it maintains the bottom scroll, sometimes not
+    children: []
+    metadata:
+      status: pending
+  927628e2-4499-4004-9073-5a2f04c70747:
+    id: 927628e2-4499-4004-9073-5a2f04c70747
+    content: Claude seems to do this kind of weird thing sometimes even outside of arborescent where it looks like its fighting with how much to display, and trying to maintain the terminal position at the bottom.
+    children:
+      - 49b42aeb-45be-4b2e-9cb2-9f28c7589857
+      - feb58ecf-4a07-4fcf-a925-0aa2576ce965
+    metadata:
+      status: pending
+  49b42aeb-45be-4b2e-9cb2-9f28c7589857:
+    id: 49b42aeb-45be-4b2e-9cb2-9f28c7589857
+    content: I think this is linked.
+    children: []
+    metadata:
+      status: pending
+  40729a78-ee9c-4599-aa83-57f189199c3c:
+    id: 40729a78-ee9c-4599-aa83-57f189199c3c
+    content: Security
+    children:
+      - b0b87860-dc20-4138-9b88-0a7ec82d8e94
+    metadata:
+      status: pending
+      expanded: false
+  b0b87860-dc20-4138-9b88-0a7ec82d8e94:
+    id: b0b87860-dc20-4138-9b88-0a7ec82d8e94
+    content: Potential vulnerability in the 'send to terminal' code
+    children:
+      - 263c0065-f86e-4fc4-bf60-1f22f8c39526
+    metadata:
+      status: pending
+  263c0065-f86e-4fc4-bf60-1f22f8c39526:
+    id: 263c0065-f86e-4fc4-bf60-1f22f8c39526
+    content: Be sure only the user can exploit this
+    children: []
+    metadata:
+      status: pending
+  feb58ecf-4a07-4fcf-a925-0aa2576ce965:
+    id: feb58ecf-4a07-4fcf-a925-0aa2576ce965
+    content: It might happen when it's showing a long list of changes that are longer than the screen length
+    children:
+      - 5448aca1-029f-457e-8fe3-3b256a435815
+    metadata:
+      status: pending
+  5448aca1-029f-457e-8fe3-3b256a435815:
+    id: 5448aca1-029f-457e-8fe3-3b256a435815
+    content: Not sure - an angle to explore at least
+    children: []
+    metadata:
+      status: pending
+  1ba28725-58a8-4ca5-8eee-050984a2c410:
+    id: 1ba28725-58a8-4ca5-8eee-050984a2c410
+    content: Keyboard shortcut
+    children:
+      - 7bd2489a-0697-47e7-98b5-8455be083797
+    metadata:
+      status: completed
+      expanded: false
+  7bd2489a-0697-47e7-98b5-8455be083797:
+    id: 7bd2489a-0697-47e7-98b5-8455be083797
+    content: Suggest a keyboard shortcut to toggle on/off the browser in the side panel
+    children:
+      - 02d579f1-0df6-4716-bcc9-951bcbe77283
+    metadata:
+      status: completed
+  02d579f1-0df6-4716-bcc9-951bcbe77283:
+    id: 02d579f1-0df6-4716-bcc9-951bcbe77283
+    content: Gone with ctrl + B
+    children: []
+    metadata:
+      status: completed
+  dd1e5047-289a-4225-adaf-29300a3d3bc9:
+    id: dd1e5047-289a-4225-adaf-29300a3d3bc9
+    content: Can't select, copy or paste
+    children: []
+    metadata:
+      status: completed
+  b7f8432b-e5c1-45c7-8637-282c2f24e6a9:
+    id: b7f8432b-e5c1-45c7-8637-282c2f24e6a9
+    content: THINK it's fixed, leave here for now...
+    children: []
+    metadata:
+      status: pending
+  4d685d6f-e15f-4d03-a085-5d7d0676284c:
+    id: 4d685d6f-e15f-4d03-a085-5d7d0676284c
+    content: Suggestions panel
+    children:
+      - d07ca588-f707-4c30-a743-5643ce0585d6
+    metadata:
+      status: pending
+  d07ca588-f707-4c30-a743-5643ce0585d6:
+    id: d07ca588-f707-4c30-a743-5643ce0585d6
+    content: "Add a suggestions panel that watches an\_"
+    children: []
+    metadata:
+      status: pending
+  72f56688-a466-4210-abbf-ae6c04a3b571:
+    id: 72f56688-a466-4210-abbf-ae6c04a3b571
+    content: Save with .arbo extension
+    children:
+      - 6d806c74-d45e-4995-85c9-e4411e384a67
+      - b3b6af54-06c4-44b8-bc3c-ff518e23becb
+      - 1dd3f501-b2ff-4a0e-8e85-8134d4164fee
+      - 121448b8-9760-411b-be0f-838c2678e59c
+      - 6cb897bd-fdc2-43a7-96d2-78ff176ba681
+      - f89c13a4-583f-466e-9a8d-6a4fccfa2d0c
+      - ea87f37b-d025-4035-8ea4-9cfac42aca1e
+      - 520a3aff-e1d7-4a1e-aa5f-2be41f36ddfa
+    metadata:
+      status: pending
+      expanded: true
+  b3b6af54-06c4-44b8-bc3c-ff518e23becb:
+    id: b3b6af54-06c4-44b8-bc3c-ff518e23becb
+    content: Change it to a .arbo file extension
+    children: []
+    metadata:
+      status: completed
+  1dd3f501-b2ff-4a0e-8e85-8134d4164fee:
+    id: 1dd3f501-b2ff-4a0e-8e85-8134d4164fee
+    content: Convert the format from json to yaml
+    children: []
+    metadata:
+      status: completed
+  121448b8-9760-411b-be0f-838c2678e59c:
+    id: 121448b8-9760-411b-be0f-838c2678e59c
+    content: Convert the project parsers
+    children: []
+    metadata:
+      status: completed
+  6cb897bd-fdc2-43a7-96d2-78ff176ba681:
+    id: 6cb897bd-fdc2-43a7-96d2-78ff176ba681
+    content: Make a little script in a 'scripts' folder to convert existing arbo JSON files to the new format
+    children: []
+    metadata:
+      status: completed
+  5bc6d46e-b1ce-471e-8350-bfd32e49780a:
+    id: 5bc6d46e-b1ce-471e-8350-bfd32e49780a
+    content: Remove the 'Send to session' in right click menu
+    children: []
+    metadata:
+      status: pending
+  f89c13a4-583f-466e-9a8d-6a4fccfa2d0c:
+    id: f89c13a4-583f-466e-9a8d-6a4fccfa2d0c
+    content: Auto appent arbo extension when saving
+    children: []
+    metadata:
+      status: completed
+  ea87f37b-d025-4035-8ea4-9cfac42aca1e:
+    id: ea87f37b-d025-4035-8ea4-9cfac42aca1e
+    content: Remember last save/open directories
+    children: []
+    metadata:
+      status: completed
+  520a3aff-e1d7-4a1e-aa5f-2be41f36ddfa:
+    id: 520a3aff-e1d7-4a1e-aa5f-2be41f36ddfa
+    content: Change tabname to new name on save as
+    children: []
+    metadata:
+      status: completed
+  6d806c74-d45e-4995-85c9-e4411e384a67:
+    id: 6d806c74-d45e-4995-85c9-e4411e384a67
+    content: Refactor
+    children:
+      - 0084829f-1547-48ae-a595-96148c114df8
+    metadata:
+      status: pending
+  0084829f-1547-48ae-a595-96148c114df8:
+    id: 0084829f-1547-48ae-a595-96148c114df8
+    content: Some repetition in ipcService.ts
+    children: []
+    metadata:
+      status: pending
+  00e08ff5-0634-4205-982c-6a3094f74d20:
+    id: 00e08ff5-0634-4205-982c-6a3094f74d20
+    content: Terminal scrolling
+    children:
+      - ae33281b-792d-48bd-aa42-3c896540de04
+    metadata:
+      status: pending
+      expanded: true
+  ae33281b-792d-48bd-aa42-3c896540de04:
+    id: ae33281b-792d-48bd-aa42-3c896540de04
+    content: Think the issue is that claude somehow resets the terminal view
+    children:
+      - 3a1fff8c-f3b6-4ed4-ba73-77b9d48a12aa
+      - 01c8048d-aba9-4298-936d-0d2fe5f15a78
+      - d7e0af4c-84a5-4409-8ebe-3f60be676003
+    metadata:
+      status: pending
+      expanded: true
+  3a1fff8c-f3b6-4ed4-ba73-77b9d48a12aa:
+    id: 3a1fff8c-f3b6-4ed4-ba73-77b9d48a12aa
+    content: And the default view on reset is scrolled up
+    children: []
+    metadata:
+      status: pending
+  01c8048d-aba9-4298-936d-0d2fe5f15a78:
+    id: 01c8048d-aba9-4298-936d-0d2fe5f15a78
+    content: Is there a way to set the default on reset as scrolled down ?
+    children: []
+    metadata:
+      status: pending
+  d7e0af4c-84a5-4409-8ebe-3f60be676003:
+    id: d7e0af4c-84a5-4409-8ebe-3f60be676003
+    content: Remove toggleNode entirely from defaultHotkeys
+    children: []
+    metadata:
+      status: pending

@@ -1,3 +1,4 @@
+import * as yaml from 'js-yaml';
 import { ArboFile } from '../../../shared/types';
 import { StorageService as IStorageService, SessionState, BrowserSession, PanelSession } from '../../../shared/interfaces';
 import { getNextUntitledNumber } from '../../../shared/utils/fileNaming';
@@ -5,7 +6,7 @@ import { getNextUntitledNumber } from '../../../shared/utils/fileNaming';
 export class Storage implements IStorageService {
   async loadDocument(filePath: string): Promise<ArboFile> {
     const content = await window.electron.readFile(filePath);
-    const data = JSON.parse(content) as ArboFile;
+    const data = yaml.load(content) as ArboFile;
 
     if (data.format !== 'Arborescent') {
       throw new Error('Invalid file format');
@@ -15,16 +16,16 @@ export class Storage implements IStorageService {
   }
 
   async saveDocument(filePath: string, data: ArboFile): Promise<void> {
-    const json = JSON.stringify(data, null, 2);
-    await window.electron.writeFile(filePath, json);
+    const yamlContent = yaml.dump(data, { indent: 2, lineWidth: -1 });
+    await window.electron.writeFile(filePath, yamlContent);
   }
 
   async showOpenDialog(): Promise<string | null> {
     return window.electron.showOpenDialog();
   }
 
-  async showSaveDialog(): Promise<string | null> {
-    return window.electron.showSaveDialog();
+  async showSaveDialog(defaultPath?: string): Promise<string | null> {
+    return window.electron.showSaveDialog(defaultPath);
   }
 
   async saveSession(session: SessionState): Promise<void> {
@@ -45,8 +46,8 @@ export class Storage implements IStorageService {
   async createTempFile(data: ArboFile): Promise<string> {
     const tempFiles = await this.getTempFiles();
     const nextNumber = getNextUntitledNumber(tempFiles);
-    const fileName = `untitled-${nextNumber}.json`;
-    const content = JSON.stringify(data, null, 2);
+    const fileName = `untitled-${nextNumber}.arbo`;
+    const content = yaml.dump(data, { indent: 2, lineWidth: -1 });
     const filePath = await window.electron.createTempFile(fileName, content);
 
     tempFiles.push(filePath);

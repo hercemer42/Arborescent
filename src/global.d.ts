@@ -8,7 +8,7 @@ declare global {
       readFile: (path: string) => Promise<string>;
       writeFile: (path: string, content: string) => Promise<void>;
       showOpenDialog: () => Promise<string | null>;
-      showSaveDialog: () => Promise<string | null>;
+      showSaveDialog: (defaultPath?: string) => Promise<string | null>;
       showUnsavedChangesDialog: (fileName: string) => Promise<number>;
       saveSession: (sessionData: string) => Promise<void>;
       getSession: () => Promise<string | null>;

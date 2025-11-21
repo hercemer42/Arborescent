@@ -6,7 +6,7 @@ contextBridge.exposeInMainWorld('electron', {
   writeFile: (path: string, content: string) =>
     ipcRenderer.invoke('write-file', path, content),
   showOpenDialog: () => ipcRenderer.invoke('show-open-dialog'),
-  showSaveDialog: () => ipcRenderer.invoke('show-save-dialog'),
+  showSaveDialog: (defaultPath?: string) => ipcRenderer.invoke('show-save-dialog', defaultPath),
   showUnsavedChangesDialog: (fileName: string) =>
     ipcRenderer.invoke('show-unsaved-changes-dialog', fileName),
   saveSession: (sessionData: string) =>

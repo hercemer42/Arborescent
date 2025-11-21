@@ -8,6 +8,7 @@ vi.mock('../../../storeManager', () => ({
   storeManager: {
     getStoreForFile: vi.fn(),
     closeFile: vi.fn(),
+    moveStore: vi.fn(),
   },
 }));
 
@@ -388,6 +389,30 @@ describe('fileActions', () => {
       await actions.saveFileAs('/test/file.arbo');
 
       expect((logger.success as ReturnType<typeof vi.fn>)).not.toHaveBeenCalled();
+    });
+
+    it('should update tab name when saving non-temporary file with new name', async () => {
+      vi.mocked(mockStorage.showSaveDialog).mockResolvedValue('/new/project.arbo');
+      vi.mocked(mockStorage.isTempFile).mockResolvedValue(false);
+
+      await actions.saveFileAs('/old/file.arbo');
+
+      // Should pass the file's directory to the save dialog
+      expect(mockStorage.showSaveDialog).toHaveBeenCalledWith('/old');
+      // Should move the store to the new path
+      expect(storeManager.moveStore).toHaveBeenCalledWith('/old/file.arbo', '/new/project.arbo');
+      // Should update the tab with the new name
+      expect(state.markAsSaved).toHaveBeenCalledWith('/old/file.arbo', '/new/project.arbo', 'project.arbo');
+    });
+
+    it('should use last saved directory for temporary files', async () => {
+      vi.mocked(mockStorage.showSaveDialog).mockResolvedValue('/saved/file.arbo');
+      vi.mocked(mockStorage.isTempFile).mockResolvedValue(true);
+
+      await actions.saveFileAs('/tmp/untitled-1.arbo');
+
+      // Should not pass a default directory for temp files
+      expect(mockStorage.showSaveDialog).toHaveBeenCalledWith(undefined);
     });
 
     it('should log error on failure', async () => {

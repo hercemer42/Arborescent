@@ -49,6 +49,10 @@ export const createFileActions = (get: StoreGetter, storage: StorageService): Fi
     const { markAsSaved } = get();
     await storage.deleteTempFile(oldPath);
     const displayName = getDisplayName(newPath, false);
+
+    // Move the store from old path to new path in storeManager
+    storeManager.moveStore(oldPath, newPath);
+
     markAsSaved(oldPath, newPath, displayName);
   }
 
@@ -234,14 +238,24 @@ export const createFileActions = (get: StoreGetter, storage: StorageService): Fi
   }
 
   async function saveFileAs(filePath: string): Promise<void> {
-    const path = await storage.showSaveDialog();
+    // For existing files, default to the file's directory; for temp files, use last saved directory
+    const isTemporary = await storage.isTempFile(filePath);
+    const defaultDir = isTemporary ? undefined : filePath.substring(0, filePath.lastIndexOf('/'));
+
+    const path = await storage.showSaveDialog(defaultDir);
     if (!path) return;
 
     try {
       await save(filePath, path, 'FileSaveAs');
-      const isTemporary = await storage.isTempFile(filePath);
+
       if (isTemporary) {
         await cleanUp(filePath, path);
+      } else {
+        // For non-temporary files, still need to update the tab name and store mapping
+        const { markAsSaved } = get();
+        const displayName = getDisplayName(path, false);
+        storeManager.moveStore(filePath, path);
+        markAsSaved(filePath, path, displayName);
       }
     } catch (error) {
       logger.error(

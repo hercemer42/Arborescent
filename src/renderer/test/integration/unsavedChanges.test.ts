@@ -1,7 +1,8 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
+import * as yaml from 'js-yaml';
 import { useFilesStore } from '../../store/files/filesStore';
 import { storeManager } from '../../store/storeManager';
-import { TreeNode } from '../../../shared/types';
+import { ArboFile, TreeNode } from '../../../shared/types';
 import { createArboFile } from '../../utils/document';
 
 /**
@@ -19,8 +20,8 @@ import { createArboFile } from '../../utils/document';
  * - Temp file cleanup
  */
 describe('Integration: Unsaved Changes Handling', () => {
-  const tempFilePath = '/tmp/untitled-1.json';
-  const savedFilePath = '/test/saved-file.json';
+  const tempFilePath = '/tmp/untitled-1.arbo';
+  const savedFilePath = '/test/saved-file.arbo';
   let dialogResponse: number = 2; // Default to cancel
   const savedData: Map<string, string> = new Map();
 
@@ -96,7 +97,7 @@ describe('Integration: Unsaved Changes Handling', () => {
 
     // Verify file was saved to new location
     expect(savedData.has(savedFilePath)).toBe(true);
-    const savedContent = JSON.parse(savedData.get(savedFilePath)!);
+    const savedContent = yaml.load(savedData.get(savedFilePath)!) as ArboFile;
     expect(savedContent.nodes['child'].content).toBe('Important work');
 
     // Verify temp file was deleted
@@ -178,7 +179,7 @@ describe('Integration: Unsaved Changes Handling', () => {
   });
 
   it('should not show dialog for saved files', async () => {
-    const savedFilePath = '/test/saved.json';
+    const savedFilePath = '/test/saved.arbo';
 
     // Mock as saved file (not temp)
     vi.mocked(window.electron.getTempFilesMetadata).mockResolvedValue(JSON.stringify([]));
@@ -189,14 +190,14 @@ describe('Integration: Unsaved Changes Handling', () => {
     };
 
     const arboFile = createArboFile(nodes, 'root');
-    savedData.set(savedFilePath, JSON.stringify(arboFile));
+    savedData.set(savedFilePath, yaml.dump(arboFile, { indent: 2, lineWidth: -1 }));
 
     const store = storeManager.getStoreForFile(savedFilePath);
     store.getState().actions.initialize(nodes, 'root');
     store.getState().actions.setFilePath(savedFilePath);
 
     const { openFile } = useFilesStore.getState();
-    openFile(savedFilePath, 'saved.json', false);
+    openFile(savedFilePath, 'saved.arbo', false);
 
     // Clear mocks to track only close operation
     vi.clearAllMocks();

@@ -1,4 +1,5 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
+import * as yaml from 'js-yaml';
 import { useFilesStore } from '../../store/files/filesStore';
 import { storeManager } from '../../store/storeManager';
 import { ArboFile, TreeNode } from '../../../shared/types';
@@ -18,7 +19,7 @@ import { ArboFile, TreeNode } from '../../../shared/types';
  * - Filesystem → Main process → IPC → Storage service → filesStore → Tree store
  */
 describe('Integration: File Save/Load', () => {
-  const mockFilePath = '/test/documents/test.json';
+  const mockFilePath = '/test/documents/test.arbo';
   let savedData: ArboFile | null = null;
 
   beforeEach(() => {
@@ -29,12 +30,12 @@ describe('Integration: File Save/Load', () => {
 
     // Mock IPC calls - but keep data flow realistic
     vi.mocked(window.electron.writeFile).mockImplementation(async (_path, content) => {
-      savedData = JSON.parse(content);
+      savedData = yaml.load(content) as ArboFile;
     });
 
     vi.mocked(window.electron.readFile).mockImplementation(async () => {
       if (!savedData) throw new Error('No file saved yet');
-      return JSON.stringify(savedData);
+      return yaml.dump(savedData, { indent: 2, lineWidth: -1 });
     });
 
     vi.mocked(window.electron.getTempFilesMetadata).mockResolvedValue(null);

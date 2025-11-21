@@ -27,7 +27,7 @@ export interface StorageService {
   loadDocument(path: string): Promise<ArboFile>;
   saveDocument(path: string, data: ArboFile): Promise<void>;
   showOpenDialog(): Promise<string | null>;
-  showSaveDialog(): Promise<string | null>;
+  showSaveDialog(defaultPath?: string): Promise<string | null>;
   showUnsavedChangesDialog(fileName: string): Promise<number>;
   saveSession(session: SessionState): Promise<void>;
   getSession(): Promise<SessionState | null>;

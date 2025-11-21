@@ -1,5 +1,6 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { storeManager } from '../storeManager';
+import { TreeNode } from '../../../shared/types';
 
 describe('storeManager', () => {
   beforeEach(() => {
@@ -64,6 +65,46 @@ describe('storeManager', () => {
 
     it('should return false for non-existent store', () => {
       expect(storeManager.hasStore('/path/nonexistent.arbo')).toBe(false);
+    });
+  });
+
+  describe('moveStore', () => {
+    it('should move store from old path to new path', () => {
+      const store = storeManager.getStoreForFile('/tmp/untitled-1.arbo');
+      store.setState({ nodes: { root: { id: 'root', content: 'Test', children: [], metadata: {} } } });
+
+      expect(storeManager.hasStore('/tmp/untitled-1.arbo')).toBe(true);
+      expect(storeManager.hasStore('/saved/file.arbo')).toBe(false);
+
+      storeManager.moveStore('/tmp/untitled-1.arbo', '/saved/file.arbo');
+
+      expect(storeManager.hasStore('/tmp/untitled-1.arbo')).toBe(false);
+      expect(storeManager.hasStore('/saved/file.arbo')).toBe(true);
+
+      // Verify the same store instance was moved
+      const movedStore = storeManager.getStoreForFile('/saved/file.arbo');
+      expect(movedStore).toBe(store);
+      expect(movedStore.getState().nodes.root.content).toBe('Test');
+    });
+
+    it('should do nothing if old path does not exist', () => {
+      storeManager.moveStore('/nonexistent.arbo', '/new.arbo');
+      expect(storeManager.hasStore('/new.arbo')).toBe(false);
+    });
+
+    it('should preserve store state when moving', () => {
+      const store = storeManager.getStoreForFile('/tmp/untitled-1.arbo');
+      const testNodes: Record<string, TreeNode> = {
+        'root': { id: 'root', content: 'Root', children: ['child'], metadata: {} },
+        'child': { id: 'child', content: 'Child', children: [], metadata: { status: 'pending' as const } },
+      };
+      store.setState({ nodes: testNodes, rootNodeId: 'root' });
+
+      storeManager.moveStore('/tmp/untitled-1.arbo', '/saved/file.arbo');
+
+      const movedStore = storeManager.getStoreForFile('/saved/file.arbo');
+      expect(movedStore.getState().nodes).toEqual(testNodes);
+      expect(movedStore.getState().rootNodeId).toBe('root');
     });
   });
 

@@ -1,4 +1,5 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
+import * as yaml from 'js-yaml';
 import { useFilesStore } from '../../store/files/filesStore';
 import { storeManager } from '../../store/storeManager';
 import { TreeNode } from '../../../shared/types';
@@ -19,9 +20,9 @@ import { createArboFile } from '../../utils/document';
  * - Tab switching and active file tracking
  */
 describe('Integration: Multi-File State Management', () => {
-  const file1Path = '/test/file1.json';
-  const file2Path = '/test/file2.json';
-  const file3Path = '/test/file3.json';
+  const file1Path = '/test/file1.arbo';
+  const file2Path = '/test/file2.arbo';
+  const file3Path = '/test/file3.arbo';
   const savedFiles: Map<string, string> = new Map();
 
   beforeEach(() => {
@@ -44,7 +45,7 @@ describe('Integration: Multi-File State Management', () => {
     vi.mocked(window.electron.getTempFilesMetadata).mockResolvedValue(null);
     vi.mocked(window.electron.isTempFile).mockResolvedValue(false);
     vi.mocked(window.electron.getSession).mockResolvedValue(null);
-    vi.mocked(window.electron.createTempFile).mockResolvedValue('/tmp/untitled-1.json');
+    vi.mocked(window.electron.createTempFile).mockResolvedValue('/tmp/untitled-1.arbo');
   });
 
   function createTestFile(path: string, content: string): void {
@@ -58,7 +59,7 @@ describe('Integration: Multi-File State Management', () => {
     };
 
     const arboFile = createArboFile(nodes, 'root');
-    savedFiles.set(path, JSON.stringify(arboFile));
+    savedFiles.set(path, yaml.dump(arboFile, { indent: 2, lineWidth: -1 }));
   }
 
   it('should open multiple files simultaneously', async () => {
@@ -238,7 +239,7 @@ describe('Integration: Multi-File State Management', () => {
       'a': { id: 'a', content: 'A', children: [], metadata: {} },
       'b': { id: 'b', content: 'B', children: [], metadata: {} },
     };
-    savedFiles.set(file1Path, JSON.stringify(createArboFile(file1Nodes, 'root')));
+    savedFiles.set(file1Path, yaml.dump(createArboFile(file1Nodes, 'root'), { indent: 2, lineWidth: -1 }));
 
     // Create file 2 with different structure
     const file2Nodes: Record<string, TreeNode> = {
@@ -247,7 +248,7 @@ describe('Integration: Multi-File State Management', () => {
       'y': { id: 'y', content: 'Y', children: [], metadata: {} },
       'z': { id: 'z', content: 'Z', children: [], metadata: {} },
     };
-    savedFiles.set(file2Path, JSON.stringify(createArboFile(file2Nodes, 'root')));
+    savedFiles.set(file2Path, yaml.dump(createArboFile(file2Nodes, 'root'), { indent: 2, lineWidth: -1 }));
 
     const { actions } = useFilesStore.getState();
 
