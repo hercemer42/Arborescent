@@ -19,6 +19,9 @@ vi.mock('electron', () => ({
   app: {
     getPath: vi.fn(() => '/mock/user/data'),
   },
+  clipboard: {
+    readText: vi.fn(() => ''),
+  },
 }));
 
 // Mock node:fs using memfs
@@ -296,7 +299,7 @@ describe('ipcService', () => {
 
       // Verify session was written to memfs
       expect(vol.readFileSync('/mock/user/data/session.json', 'utf-8')).toBe('{"data":"test"}');
-      expect(logger.info).toHaveBeenCalledWith('Session saved', 'IPC');
+      expect(logger.info).toHaveBeenCalledWith('Session saved', 'Persistence');
     });
   });
 
@@ -311,7 +314,7 @@ describe('ipcService', () => {
       const result = await handler();
 
       expect(result).toBe('{"data":"test"}');
-      expect(logger.info).toHaveBeenCalledWith('Session loaded', 'IPC');
+      expect(logger.info).toHaveBeenCalledWith('Session loaded', 'Persistence');
     });
 
     it('should return null when session file does not exist', async () => {
@@ -321,7 +324,87 @@ describe('ipcService', () => {
       const result = await handler();
 
       expect(result).toBeNull();
-      expect(logger.info).toHaveBeenCalledWith('No session file found', 'IPC');
+      expect(logger.info).toHaveBeenCalledWith('No session file found', 'Persistence');
+    });
+  });
+
+  describe('clipboard handlers', () => {
+    it('should register start-clipboard-monitor handler', async () => {
+      await registerIpcHandlers(() => mockWindow);
+
+      expect(ipcMain.handle).toHaveBeenCalledWith('start-clipboard-monitor', expect.any(Function));
+    });
+
+    it('should register stop-clipboard-monitor handler', async () => {
+      await registerIpcHandlers(() => mockWindow);
+
+      expect(ipcMain.handle).toHaveBeenCalledWith('stop-clipboard-monitor', expect.any(Function));
+    });
+
+    it('should start clipboard monitor when handler is called', async () => {
+      const clipboardMonitorModule = await import('../clipboardMonitor');
+      const startSpy = vi.spyOn(clipboardMonitorModule.clipboardMonitor, 'start');
+
+      await registerIpcHandlers(() => mockWindow);
+      const handler = handlers.get('start-clipboard-monitor')!;
+
+      await handler();
+
+      expect(startSpy).toHaveBeenCalledWith(expect.any(Function));
+    });
+
+    it('should not start monitor if no window available', async () => {
+      const clipboardMonitorModule = await import('../clipboardMonitor');
+      const startSpy = vi.spyOn(clipboardMonitorModule.clipboardMonitor, 'start');
+
+      await registerIpcHandlers(() => null);
+      const handler = handlers.get('start-clipboard-monitor')!;
+
+      await handler();
+
+      expect(startSpy).not.toHaveBeenCalled();
+    });
+
+    it('should stop clipboard monitor when handler is called', async () => {
+      const clipboardMonitorModule = await import('../clipboardMonitor');
+      const stopSpy = vi.spyOn(clipboardMonitorModule.clipboardMonitor, 'stop');
+
+      await registerIpcHandlers(() => mockWindow);
+      const handler = handlers.get('stop-clipboard-monitor')!;
+
+      await handler();
+
+      expect(stopSpy).toHaveBeenCalled();
+    });
+
+    it('should send clipboard content to renderer when detected', async () => {
+      const mockWebContents = {
+        send: vi.fn(),
+      };
+      const mockWindowWithWebContents = {
+        webContents: mockWebContents,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      } as any;
+
+      const clipboardMonitorModule = await import('../clipboardMonitor');
+      let monitorCallback: ((content: string) => void) | undefined;
+      vi.spyOn(clipboardMonitorModule.clipboardMonitor, 'start').mockImplementation((callback) => {
+        monitorCallback = callback;
+      });
+
+      await registerIpcHandlers(() => mockWindowWithWebContents);
+      const handler = handlers.get('start-clipboard-monitor')!;
+
+      await handler();
+
+      // Simulate clipboard content detection
+      expect(monitorCallback).toBeDefined();
+      monitorCallback!('clipboard content');
+
+      expect(mockWebContents.send).toHaveBeenCalledWith(
+        'clipboard-content-detected',
+        'clipboard content'
+      );
     });
   });
 });
