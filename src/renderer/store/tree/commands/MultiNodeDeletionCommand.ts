@@ -200,7 +200,8 @@ export class MultiNodeDeletionCommand extends BaseCommand {
 
       const parent = updatedNodes[snapshot.parentId];
       if (parent) {
-        const updatedChildren = [...parent.children];
+        // Filter out the node ID first to avoid duplicates, then insert at correct position
+        const updatedChildren = parent.children.filter((id) => id !== nodeId);
         updatedChildren.splice(snapshot.position, 0, nodeId);
 
         updatedNodes[snapshot.parentId] = {
