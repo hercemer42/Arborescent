@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { exportNodeAsMarkdown } from '../markdown';
+import { exportNodeAsMarkdown, exportMultipleNodesAsMarkdown } from '../markdown';
 import type { TreeNode } from '../../../shared/types';
 
 describe('exportNodeAsMarkdown', () => {
@@ -167,5 +167,141 @@ describe('exportNodeAsMarkdown', () => {
     const result = exportNodeAsMarkdown(node, nodes);
 
     expect(result).toBe('');
+  });
+});
+
+describe('exportMultipleNodesAsMarkdown', () => {
+  it('exports multiple nodes as siblings (all at depth 0)', () => {
+    const node1: TreeNode = {
+      id: '1',
+      content: 'First task',
+      children: [],
+      metadata: { status: 'pending', expanded: true, deleted: false },
+    };
+    const node2: TreeNode = {
+      id: '2',
+      content: 'Second task',
+      children: [],
+      metadata: { status: 'completed', expanded: true, deleted: false },
+    };
+    const nodes = { '1': node1, '2': node2 };
+
+    const result = exportMultipleNodesAsMarkdown(['1', '2'], nodes);
+
+    expect(result).toBe('# [ ] First task\n# [x] Second task\n');
+  });
+
+  it('exports nodes with their descendants', () => {
+    const child: TreeNode = {
+      id: 'child',
+      content: 'Child task',
+      children: [],
+      metadata: { status: 'pending', expanded: true, deleted: false },
+    };
+    const parent: TreeNode = {
+      id: 'parent',
+      content: 'Parent task',
+      children: ['child'],
+      metadata: { status: 'pending', expanded: true, deleted: false },
+    };
+    const sibling: TreeNode = {
+      id: 'sibling',
+      content: 'Sibling task',
+      children: [],
+      metadata: { status: 'completed', expanded: true, deleted: false },
+    };
+    const nodes = { parent, child, sibling };
+
+    const result = exportMultipleNodesAsMarkdown(['parent', 'sibling'], nodes);
+
+    expect(result).toBe('# [ ] Parent task\n## [ ] Child task\n# [x] Sibling task\n');
+  });
+
+  it('returns empty string for empty nodeIds array', () => {
+    const nodes = {};
+
+    const result = exportMultipleNodesAsMarkdown([], nodes);
+
+    expect(result).toBe('');
+  });
+
+  it('skips non-existent nodes', () => {
+    const node: TreeNode = {
+      id: '1',
+      content: 'Existing task',
+      children: [],
+      metadata: { status: 'pending', expanded: true, deleted: false },
+    };
+    const nodes = { '1': node };
+
+    const result = exportMultipleNodesAsMarkdown(['1', 'non-existent'], nodes);
+
+    expect(result).toBe('# [ ] Existing task\n');
+  });
+
+  it('preserves order of nodeIds', () => {
+    const node1: TreeNode = {
+      id: '1',
+      content: 'First',
+      children: [],
+      metadata: { status: 'pending', expanded: true, deleted: false },
+    };
+    const node2: TreeNode = {
+      id: '2',
+      content: 'Second',
+      children: [],
+      metadata: { status: 'pending', expanded: true, deleted: false },
+    };
+    const node3: TreeNode = {
+      id: '3',
+      content: 'Third',
+      children: [],
+      metadata: { status: 'pending', expanded: true, deleted: false },
+    };
+    const nodes = { '1': node1, '2': node2, '3': node3 };
+
+    const result = exportMultipleNodesAsMarkdown(['3', '1', '2'], nodes);
+
+    expect(result).toBe('# [ ] Third\n# [ ] First\n# [ ] Second\n');
+  });
+
+  it('handles complex nested hierarchies', () => {
+    const grandchild: TreeNode = {
+      id: 'gc',
+      content: 'Grandchild',
+      children: [],
+      metadata: { status: 'pending', expanded: true, deleted: false },
+    };
+    const child1: TreeNode = {
+      id: 'c1',
+      content: 'Child 1',
+      children: ['gc'],
+      metadata: { status: 'pending', expanded: true, deleted: false },
+    };
+    const child2: TreeNode = {
+      id: 'c2',
+      content: 'Child 2',
+      children: [],
+      metadata: { status: 'completed', expanded: true, deleted: false },
+    };
+    const parent1: TreeNode = {
+      id: 'p1',
+      content: 'Parent 1',
+      children: ['c1'],
+      metadata: { status: 'pending', expanded: true, deleted: false },
+    };
+    const parent2: TreeNode = {
+      id: 'p2',
+      content: 'Parent 2',
+      children: ['c2'],
+      metadata: { status: 'pending', expanded: true, deleted: false },
+    };
+    const nodes = { p1: parent1, p2: parent2, c1: child1, c2: child2, gc: grandchild };
+
+    const result = exportMultipleNodesAsMarkdown(['p1', 'p2'], nodes);
+
+    expect(result).toBe(
+      '# [ ] Parent 1\n## [ ] Child 1\n### [ ] Grandchild\n# [ ] Parent 2\n## [x] Child 2\n'
+    );
   });
 });

@@ -74,6 +74,25 @@ export function exportNodeAsMarkdown(node: TreeNode, nodes: NodesMap, depth: num
   return markdown;
 }
 
+/**
+ * Exports multiple nodes as markdown, each starting at depth 0.
+ * Used for multi-selection cut/copy where selected nodes become siblings.
+ *
+ * @param nodeIds - Array of node IDs to export (should be root-level selections, not descendants)
+ * @param nodes - Map of all nodes
+ * @returns Markdown string with all nodes as top-level siblings
+ */
+export function exportMultipleNodesAsMarkdown(nodeIds: string[], nodes: NodesMap): string {
+  return nodeIds
+    .map((nodeId) => {
+      const node = nodes[nodeId];
+      if (!node) return '';
+      return exportNodeAsMarkdown(node, nodes, 0);
+    })
+    .filter((md) => md.length > 0)
+    .join('');
+}
+
 // ============================================================================
 // Parse Functions
 // ============================================================================
@@ -120,7 +139,7 @@ function parseLine(line: string): ParsedLine | null {
 
   // Also check for ASCII checkbox syntax: [ ], [x], [X], [-]
   if (!foundStatus) {
-    const checkboxMatch = remainder.match(/^\[([xX \-])\]\s*(.*)/);
+    const checkboxMatch = remainder.match(/^\[([xX -])\]\s*(.*)/);
     if (checkboxMatch) {
       const checkMark = checkboxMatch[1];
       if (checkMark === ' ') {

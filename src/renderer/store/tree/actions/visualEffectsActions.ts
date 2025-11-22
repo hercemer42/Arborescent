@@ -1,14 +1,14 @@
 export interface VisualEffectsActions {
   flashNode: (nodeId: string, intensity?: 'light' | 'medium') => void;
   scrollToNode: (nodeId: string) => void;
-  startDeleteAnimation: (nodeId: string, onComplete?: () => void) => void;
-  clearDeleteAnimation: () => void;
+  startDeleteAnimation: (nodeId: string | string[], onComplete?: () => void) => void;
+  clearDeleteAnimation: (nodeId: string) => void;
 }
 
 type StoreState = {
   flashingNode: { nodeId: string; intensity: 'light' | 'medium' } | null;
   scrollToNodeId: string | null;
-  deletingNodeId: string | null;
+  deletingNodeIds: Set<string>;
   deleteAnimationCallback: (() => void) | null;
 };
 type StoreSetter = (partial: Partial<StoreState>) => void;
@@ -32,16 +32,30 @@ export const createVisualEffectsActions = (
     }, 100);
   }
 
-  function startDeleteAnimation(nodeId: string, onComplete?: () => void): void {
-    set({ deletingNodeId: nodeId, deleteAnimationCallback: onComplete ?? null });
+  function startDeleteAnimation(nodeId: string | string[], onComplete?: () => void): void {
+    const nodeIds = Array.isArray(nodeId) ? nodeId : [nodeId];
+    set({
+      deletingNodeIds: new Set(nodeIds),
+      deleteAnimationCallback: onComplete ?? null,
+    });
   }
 
-  function clearDeleteAnimation(): void {
-    const { deleteAnimationCallback } = get();
-    set({ deletingNodeId: null, deleteAnimationCallback: null });
-    // Execute callback after clearing state to ensure deletion happens after animation
-    if (deleteAnimationCallback) {
-      deleteAnimationCallback();
+  function clearDeleteAnimation(nodeId: string): void {
+    const { deletingNodeIds, deleteAnimationCallback } = get();
+
+    // Remove the completed node from the set
+    const updatedSet = new Set(deletingNodeIds);
+    updatedSet.delete(nodeId);
+
+    if (updatedSet.size === 0) {
+      // All animations complete - clear state and execute callback
+      set({ deletingNodeIds: new Set(), deleteAnimationCallback: null });
+      if (deleteAnimationCallback) {
+        deleteAnimationCallback();
+      }
+    } else {
+      // Still waiting for more animations
+      set({ deletingNodeIds: updatedSet });
     }
   }
 

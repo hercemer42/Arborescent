@@ -9,6 +9,7 @@ import { useTerminalStore } from '../../../store/terminal/terminalStore';
 import { useTerminalActions } from '../../Terminal/hooks/useTerminalActions';
 import { useReviewActions } from '../../Review/hooks/useReviewActions';
 import { logger } from '../../../services/logger';
+import { writeToClipboard } from '../../../services/clipboardService';
 import { exportNodeAsMarkdown } from '../../../utils/markdown';
 
 export function useNodeContextMenu(node: TreeNode) {
@@ -72,13 +73,8 @@ export function useNodeContextMenu(node: TreeNode) {
   };
 
   const handleCopyToClipboard = async () => {
-    try {
-      const formattedContent = exportNodeAsMarkdown(node, nodes);
-      await navigator.clipboard.writeText(formattedContent);
-      logger.info('Copied to clipboard', 'Context Menu');
-    } catch (error) {
-      logger.error('Failed to copy to clipboard', error as Error, 'Context Menu');
-    }
+    const formattedContent = exportNodeAsMarkdown(node, nodes);
+    await writeToClipboard(formattedContent, 'ContextMenu');
   };
 
   const handleRequestReview = async () => {

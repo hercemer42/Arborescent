@@ -20,7 +20,7 @@ describe('useNodeEffects', () => {
     mockUseStore.mockImplementation((selector) => {
       const state = {
         flashingNode: null,
-        deletingNodeId: null,
+        deletingNodeIds: new Set<string>(),
         scrollToNodeId: null,
         actions: {
           clearDeleteAnimation: mockClearDeleteAnimation,
@@ -35,7 +35,7 @@ describe('useNodeEffects', () => {
       mockUseStore.mockImplementation((selector) => {
         const state = {
           flashingNode: null,
-          deletingNodeId: null,
+          deletingNodeIds: new Set<string>(),
           scrollToNodeId: null,
           actions: { clearDeleteAnimation: mockClearDeleteAnimation },
         };
@@ -51,7 +51,7 @@ describe('useNodeEffects', () => {
       mockUseStore.mockImplementation((selector) => {
         const state = {
           flashingNode: { nodeId: 'node-1', intensity: 'light' as const },
-          deletingNodeId: null,
+          deletingNodeIds: new Set<string>(),
           scrollToNodeId: null,
           actions: { clearDeleteAnimation: mockClearDeleteAnimation },
         };
@@ -67,7 +67,7 @@ describe('useNodeEffects', () => {
       mockUseStore.mockImplementation((selector) => {
         const state = {
           flashingNode: { nodeId: 'node-1', intensity: 'medium' as const },
-          deletingNodeId: null,
+          deletingNodeIds: new Set<string>(),
           scrollToNodeId: null,
           actions: { clearDeleteAnimation: mockClearDeleteAnimation },
         };
@@ -83,7 +83,7 @@ describe('useNodeEffects', () => {
       mockUseStore.mockImplementation((selector) => {
         const state = {
           flashingNode: { nodeId: 'node-2', intensity: 'light' as const },
-          deletingNodeId: null,
+          deletingNodeIds: new Set<string>(),
           scrollToNodeId: null,
           actions: { clearDeleteAnimation: mockClearDeleteAnimation },
         };
@@ -97,11 +97,11 @@ describe('useNodeEffects', () => {
   });
 
   describe('isDeleting', () => {
-    it('should return false when no deleting node', () => {
+    it('should return false when no deleting nodes', () => {
       mockUseStore.mockImplementation((selector) => {
         const state = {
           flashingNode: null,
-          deletingNodeId: null,
+          deletingNodeIds: new Set<string>(),
           scrollToNodeId: null,
           actions: { clearDeleteAnimation: mockClearDeleteAnimation },
         };
@@ -113,11 +113,11 @@ describe('useNodeEffects', () => {
       expect(result.current.isDeleting).toBe(false);
     });
 
-    it('should return true when this node is deleting', () => {
+    it('should return true when this node is in deletingNodeIds', () => {
       mockUseStore.mockImplementation((selector) => {
         const state = {
           flashingNode: null,
-          deletingNodeId: 'node-1',
+          deletingNodeIds: new Set(['node-1']),
           scrollToNodeId: null,
           actions: { clearDeleteAnimation: mockClearDeleteAnimation },
         };
@@ -133,7 +133,7 @@ describe('useNodeEffects', () => {
       mockUseStore.mockImplementation((selector) => {
         const state = {
           flashingNode: null,
-          deletingNodeId: 'node-2',
+          deletingNodeIds: new Set(['node-2']),
           scrollToNodeId: null,
           actions: { clearDeleteAnimation: mockClearDeleteAnimation },
         };
@@ -144,14 +144,30 @@ describe('useNodeEffects', () => {
 
       expect(result.current.isDeleting).toBe(false);
     });
-  });
 
-  describe('onAnimationEnd', () => {
-    it('should call clearDeleteAnimation when delete-flash animation ends on deleting node', () => {
+    it('should return true when node is among multiple deleting nodes', () => {
       mockUseStore.mockImplementation((selector) => {
         const state = {
           flashingNode: null,
-          deletingNodeId: 'node-1',
+          deletingNodeIds: new Set(['node-1', 'node-2', 'node-3']),
+          scrollToNodeId: null,
+          actions: { clearDeleteAnimation: mockClearDeleteAnimation },
+        };
+        return selector(state as any); // eslint-disable-line @typescript-eslint/no-explicit-any
+      });
+
+      const { result } = renderHook(() => useNodeEffects('node-2'));
+
+      expect(result.current.isDeleting).toBe(true);
+    });
+  });
+
+  describe('onAnimationEnd', () => {
+    it('should call clearDeleteAnimation with nodeId when delete-flash animation ends on deleting node', () => {
+      mockUseStore.mockImplementation((selector) => {
+        const state = {
+          flashingNode: null,
+          deletingNodeIds: new Set(['node-1']),
           scrollToNodeId: null,
           actions: { clearDeleteAnimation: mockClearDeleteAnimation },
         };
@@ -166,14 +182,14 @@ describe('useNodeEffects', () => {
         } as React.AnimationEvent);
       });
 
-      expect(mockClearDeleteAnimation).toHaveBeenCalled();
+      expect(mockClearDeleteAnimation).toHaveBeenCalledWith('node-1');
     });
 
     it('should not call clearDeleteAnimation for other animations', () => {
       mockUseStore.mockImplementation((selector) => {
         const state = {
           flashingNode: null,
-          deletingNodeId: 'node-1',
+          deletingNodeIds: new Set(['node-1']),
           scrollToNodeId: null,
           actions: { clearDeleteAnimation: mockClearDeleteAnimation },
         };
@@ -195,7 +211,7 @@ describe('useNodeEffects', () => {
       mockUseStore.mockImplementation((selector) => {
         const state = {
           flashingNode: null,
-          deletingNodeId: null,
+          deletingNodeIds: new Set<string>(),
           scrollToNodeId: null,
           actions: { clearDeleteAnimation: mockClearDeleteAnimation },
         };
@@ -217,7 +233,7 @@ describe('useNodeEffects', () => {
       mockUseStore.mockImplementation((selector) => {
         const state = {
           flashingNode: null,
-          deletingNodeId: 'node-2',
+          deletingNodeIds: new Set(['node-2']),
           scrollToNodeId: null,
           actions: { clearDeleteAnimation: mockClearDeleteAnimation },
         };
@@ -241,7 +257,7 @@ describe('useNodeEffects', () => {
       mockUseStore.mockImplementation((selector) => {
         const state = {
           flashingNode: null,
-          deletingNodeId: null,
+          deletingNodeIds: new Set<string>(),
           scrollToNodeId: null,
           actions: { clearDeleteAnimation: mockClearDeleteAnimation },
         };

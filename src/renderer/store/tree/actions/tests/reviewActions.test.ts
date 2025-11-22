@@ -103,7 +103,7 @@ describe('reviewActions', () => {
       fileMeta: null,
       flashingNode: null,
       scrollToNodeId: null,
-      deletingNodeId: null,
+      deletingNodeIds: new Set<string>(),
       deleteAnimationCallback: null,
       reviewingNodeId: null,
       reviewFadingNodeIds: new Set(),

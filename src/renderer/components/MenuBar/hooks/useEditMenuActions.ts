@@ -1,10 +1,6 @@
 import { useCallback } from 'react';
-import { useActiveTreeStore, useActiveTreeActions } from './useActiveTreeStore';
-import { exportNodeAsMarkdown, parseMarkdown } from '../../../utils/markdown';
+import { useActiveTreeActions } from './useActiveTreeStore';
 import { logger } from '../../../services/logger';
-import { PasteNodesCommand } from '../../../store/tree/commands/PasteNodesCommand';
-import { useFilesStore } from '../../../store/files/filesStore';
-import { storeManager } from '../../../store/storeManager';
 
 /**
  * Check if there's text selected in an active contenteditable element
@@ -47,7 +43,6 @@ interface EditMenuActions {
  * or custom tree operations.
  */
 export function useEditMenuActions(): EditMenuActions {
-  const treeState = useActiveTreeStore();
   const actions = useActiveTreeActions();
 
   const handleUndo = useCallback(() => {
@@ -63,7 +58,7 @@ export function useEditMenuActions(): EditMenuActions {
   }, [actions]);
 
   const handleCut = useCallback(async () => {
-    if (!treeState || !actions) return;
+    if (!actions) return;
 
     // If text is selected in contenteditable, let browser handle it
     if (hasTextSelection()) {
@@ -71,31 +66,11 @@ export function useEditMenuActions(): EditMenuActions {
       return;
     }
 
-    const { activeNodeId, nodes } = treeState;
-
-    // No text selected - cut the active node
-    if (!activeNodeId) return;
-
-    const node = nodes[activeNodeId];
-    if (!node) return;
-
-    // Export node as markdown and copy to clipboard
-    const markdown = exportNodeAsMarkdown(node, nodes);
-    try {
-      await navigator.clipboard.writeText(markdown);
-      logger.info(`Cut node to clipboard: ${activeNodeId}`, 'EditMenu');
-
-      // Start delete animation - deletion will happen when animation completes
-      actions.startDeleteAnimation(activeNodeId, () => {
-        actions.deleteNode(activeNodeId, true);
-      });
-    } catch (error) {
-      logger.error('Failed to cut node', error as Error, 'EditMenu');
-    }
-  }, [treeState, actions]);
+    await actions.cutNodes();
+  }, [actions]);
 
   const handleCopy = useCallback(async () => {
-    if (!treeState || !actions) return;
+    if (!actions) return;
 
     // If text is selected in contenteditable, let browser handle it
     if (hasTextSelection()) {
@@ -103,100 +78,24 @@ export function useEditMenuActions(): EditMenuActions {
       return;
     }
 
-    const { activeNodeId, nodes } = treeState;
-
-    // No text selected - copy the active node
-    if (!activeNodeId) return;
-
-    const node = nodes[activeNodeId];
-    if (!node) return;
-
-    // Export node as markdown and copy to clipboard
-    const markdown = exportNodeAsMarkdown(node, nodes);
-    try {
-      await navigator.clipboard.writeText(markdown);
-      logger.info(`Copied node to clipboard: ${activeNodeId}`, 'EditMenu');
-
-      // Flash the node to indicate successful copy
-      actions.flashNode(activeNodeId, 'light');
-    } catch (error) {
-      logger.error('Failed to copy node', error as Error, 'EditMenu');
-    }
-  }, [treeState, actions]);
+    await actions.copyNodes();
+  }, [actions]);
 
   const handlePaste = useCallback(async () => {
-    try {
-      const clipboardText = await navigator.clipboard.readText();
+    if (!actions) return;
 
-      // Check if clipboard contains markdown-formatted nodes
-      const parsed = parseMarkdown(clipboardText);
+    const result = await actions.pasteNodes();
 
-      // If no valid nodes parsed, fall through to default paste behavior
-      if (parsed.rootNodes.length === 0) {
-        if (isContentEditableFocused()) {
-          document.execCommand('paste');
-        }
-        return;
-      }
-
-      // Get the active file and store to execute the command
-      const activeFilePath = useFilesStore.getState().activeFilePath;
-      if (!activeFilePath) return;
-
-      const store = storeManager.getStoreForFile(activeFilePath);
-      const state = store.getState();
-      const { activeNodeId, rootNodeId, actions } = state;
-
-      // Determine parent node for pasting
-      const targetParentId = activeNodeId || rootNodeId;
-      if (!targetParentId) return;
-
-      // Create and execute the paste command
-      const command = new PasteNodesCommand(
-        parsed.rootNodes,
-        parsed.allNodes,
-        targetParentId,
-        () => {
-          const currentState = store.getState();
-          return { nodes: currentState.nodes, rootNodeId: currentState.rootNodeId };
-        },
-        (partial) => store.setState(partial),
-        () => actions.autoSave?.()
-      );
-
-      actions.executeCommand(command);
-
-      // Flash the pasted nodes
-      const pastedIds = command.getPastedRootIds();
-      for (const nodeId of pastedIds) {
-        actions.flashNode(nodeId, 'light');
-      }
-
-      logger.info(`Pasted ${parsed.rootNodes.length} node(s) from clipboard`, 'EditMenu');
-    } catch (error) {
-      logger.error('Failed to paste', error as Error, 'EditMenu');
+    // If no valid markdown nodes, fall through to default paste behavior
+    if (result === 'no-content' && isContentEditableFocused()) {
+      document.execCommand('paste');
     }
-  }, []);
+  }, [actions]);
 
   const handleDelete = useCallback(() => {
-    if (!treeState || !actions) return;
-
-    const { activeNodeId, nodes } = treeState;
-
-    if (!activeNodeId) return;
-
-    const node = nodes[activeNodeId];
-    if (!node) return;
-
-    // Start delete animation - deletion will happen when animation completes
-    actions.startDeleteAnimation(activeNodeId, () => {
-      // Pass confirmed=true to skip confirmation for nodes with children
-      // The menu action is intentional, so we don't need to confirm
-      actions.deleteNode(activeNodeId, true);
-    });
-
-    logger.info(`Deleted node: ${activeNodeId}`, 'EditMenu');
-  }, [treeState, actions]);
+    if (!actions) return;
+    actions.deleteSelectedNodes();
+  }, [actions]);
 
   return {
     handleUndo,

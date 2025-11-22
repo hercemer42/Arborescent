@@ -6,7 +6,6 @@ import { logger } from '../../../../services/logger';
 
 // Mock dependencies
 vi.mock('../useActiveTreeStore', () => ({
-  useActiveTreeStore: vi.fn(),
   useActiveTreeActions: vi.fn(),
 }));
 
@@ -17,44 +16,17 @@ vi.mock('../../../../services/logger', () => ({
   },
 }));
 
-vi.mock('../../../../utils/markdown', () => ({
-  exportNodeAsMarkdown: vi.fn(() => '- Test node\n'),
-  parseMarkdown: vi.fn(() => ({ rootNodes: [], allNodes: {} })),
-}));
-
-vi.mock('../../../../store/files/filesStore', () => ({
-  useFilesStore: {
-    getState: vi.fn(() => ({ activeFilePath: null })),
-  },
-}));
-
-vi.mock('../../../../store/storeManager', () => ({
-  storeManager: {
-    getStoreForFile: vi.fn(),
-  },
-}));
-
 describe('useEditMenuActions', () => {
-  const mockUseActiveTreeStore = vi.mocked(useActiveTreeStoreModule.useActiveTreeStore);
   const mockUseActiveTreeActions = vi.mocked(useActiveTreeStoreModule.useActiveTreeActions);
-
-  let mockClipboardWriteText: ReturnType<typeof vi.fn>;
-  let mockClipboardReadText: ReturnType<typeof vi.fn>;
 
   beforeEach(() => {
     vi.clearAllMocks();
 
-    // Mock clipboard API
-    mockClipboardWriteText = vi.fn().mockResolvedValue(undefined);
-    mockClipboardReadText = vi.fn().mockResolvedValue('');
-    Object.defineProperty(navigator, 'clipboard', {
-      value: {
-        writeText: mockClipboardWriteText,
-        readText: mockClipboardReadText,
-      },
-      writable: true,
-      configurable: true,
-    });
+    // Define window.getSelection if it doesn't exist (jsdom may not have it)
+    if (!window.getSelection) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      (window as any).getSelection = vi.fn();
+    }
 
     // Mock window.getSelection to return no selection by default
     vi.spyOn(window, 'getSelection').mockReturnValue({
@@ -74,7 +46,6 @@ describe('useEditMenuActions', () => {
   describe('handleUndo', () => {
     it('should call actions.undo when actions available', () => {
       const mockUndo = vi.fn();
-      mockUseActiveTreeStore.mockReturnValue(null);
       mockUseActiveTreeActions.mockReturnValue({
         undo: mockUndo,
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -91,7 +62,6 @@ describe('useEditMenuActions', () => {
     });
 
     it('should do nothing when actions not available', () => {
-      mockUseActiveTreeStore.mockReturnValue(null);
       mockUseActiveTreeActions.mockReturnValue(null);
 
       const { result } = renderHook(() => useEditMenuActions());
@@ -107,7 +77,6 @@ describe('useEditMenuActions', () => {
   describe('handleRedo', () => {
     it('should call actions.redo when actions available', () => {
       const mockRedo = vi.fn();
-      mockUseActiveTreeStore.mockReturnValue(null);
       mockUseActiveTreeActions.mockReturnValue({
         redo: mockRedo,
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -122,12 +91,27 @@ describe('useEditMenuActions', () => {
       expect(mockRedo).toHaveBeenCalled();
       expect(logger.info).toHaveBeenCalledWith('Redo executed from menu', 'EditMenu');
     });
+
+    it('should do nothing when actions not available', () => {
+      mockUseActiveTreeActions.mockReturnValue(null);
+
+      const { result } = renderHook(() => useEditMenuActions());
+
+      act(() => {
+        result.current.handleRedo();
+      });
+
+      expect(logger.info).not.toHaveBeenCalled();
+    });
   });
 
   describe('handleCut', () => {
-    it('should do nothing when treeState not available', async () => {
-      mockUseActiveTreeStore.mockReturnValue(null);
-      mockUseActiveTreeActions.mockReturnValue({ deleteNode: vi.fn() } as any); // eslint-disable-line @typescript-eslint/no-explicit-any
+    it('should call actions.cutNodes when no text selection', async () => {
+      const mockCutNodes = vi.fn().mockResolvedValue('cut');
+      mockUseActiveTreeActions.mockReturnValue({
+        cutNodes: mockCutNodes,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      } as any);
 
       const { result } = renderHook(() => useEditMenuActions());
 
@@ -135,20 +119,28 @@ describe('useEditMenuActions', () => {
         await result.current.handleCut();
       });
 
-      expect(mockClipboardWriteText).not.toHaveBeenCalled();
+      expect(mockCutNodes).toHaveBeenCalled();
+      expect(document.execCommand).not.toHaveBeenCalled();
     });
 
-    it('should do nothing when no activeNodeId', async () => {
-      mockUseActiveTreeStore.mockReturnValue({
-        activeNodeId: null,
-        nodes: {},
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      } as any);
+    it('should use browser cut when text is selected in contenteditable', async () => {
+      const mockCutNodes = vi.fn().mockResolvedValue('cut');
       mockUseActiveTreeActions.mockReturnValue({
-        deleteNode: vi.fn(),
-        startDeleteAnimation: vi.fn(),
+        cutNodes: mockCutNodes,
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } as any);
+
+      // Mock text selection in contenteditable
+      const mockContentEditable = document.createElement('div');
+      mockContentEditable.setAttribute('contenteditable', 'true');
+      const textNode = document.createTextNode('test');
+      mockContentEditable.appendChild(textNode);
+      document.body.appendChild(mockContentEditable);
+
+      vi.spyOn(window, 'getSelection').mockReturnValue({
+        isCollapsed: false,
+        anchorNode: textNode,
+      } as unknown as Selection);
 
       const { result } = renderHook(() => useEditMenuActions());
 
@@ -156,25 +148,14 @@ describe('useEditMenuActions', () => {
         await result.current.handleCut();
       });
 
-      expect(mockClipboardWriteText).not.toHaveBeenCalled();
+      expect(document.execCommand).toHaveBeenCalledWith('cut');
+      expect(mockCutNodes).not.toHaveBeenCalled();
+
+      document.body.removeChild(mockContentEditable);
     });
 
-    it('should copy node to clipboard and start delete animation', async () => {
-      const mockStartDeleteAnimation = vi.fn();
-      const mockDeleteNode = vi.fn();
-
-      mockUseActiveTreeStore.mockReturnValue({
-        activeNodeId: 'node-1',
-        nodes: {
-          'node-1': { id: 'node-1', content: 'Test', children: [], metadata: {} },
-        },
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      } as any);
-      mockUseActiveTreeActions.mockReturnValue({
-        deleteNode: mockDeleteNode,
-        startDeleteAnimation: mockStartDeleteAnimation,
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      } as any);
+    it('should do nothing when actions not available', async () => {
+      mockUseActiveTreeActions.mockReturnValue(null);
 
       const { result } = renderHook(() => useEditMenuActions());
 
@@ -182,85 +163,15 @@ describe('useEditMenuActions', () => {
         await result.current.handleCut();
       });
 
-      expect(mockClipboardWriteText).toHaveBeenCalledWith('- Test node\n');
-      expect(mockStartDeleteAnimation).toHaveBeenCalledWith('node-1', expect.any(Function));
-      expect(logger.info).toHaveBeenCalledWith('Cut node to clipboard: node-1', 'EditMenu');
-    });
-
-    it('should call deleteNode when animation callback is executed', async () => {
-      const mockDeleteNode = vi.fn();
-      let animationCallback: (() => void) | undefined;
-      const mockStartDeleteAnimation = vi.fn((nodeId, callback) => {
-        animationCallback = callback;
-      });
-
-      mockUseActiveTreeStore.mockReturnValue({
-        activeNodeId: 'node-1',
-        nodes: {
-          'node-1': { id: 'node-1', content: 'Test', children: [], metadata: {} },
-        },
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      } as any);
-      mockUseActiveTreeActions.mockReturnValue({
-        deleteNode: mockDeleteNode,
-        startDeleteAnimation: mockStartDeleteAnimation,
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      } as any);
-
-      const { result } = renderHook(() => useEditMenuActions());
-
-      await act(async () => {
-        await result.current.handleCut();
-      });
-
-      // Simulate animation completing
-      act(() => {
-        animationCallback?.();
-      });
-
-      expect(mockDeleteNode).toHaveBeenCalledWith('node-1', true);
-    });
-
-    it('should log error when clipboard write fails', async () => {
-      const error = new Error('Clipboard error');
-      mockClipboardWriteText.mockRejectedValue(error);
-
-      mockUseActiveTreeStore.mockReturnValue({
-        activeNodeId: 'node-1',
-        nodes: {
-          'node-1': { id: 'node-1', content: 'Test', children: [], metadata: {} },
-        },
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      } as any);
-      mockUseActiveTreeActions.mockReturnValue({
-        deleteNode: vi.fn(),
-        startDeleteAnimation: vi.fn(),
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      } as any);
-
-      const { result } = renderHook(() => useEditMenuActions());
-
-      await act(async () => {
-        await result.current.handleCut();
-      });
-
-      expect(logger.error).toHaveBeenCalledWith('Failed to cut node', error, 'EditMenu');
+      expect(document.execCommand).not.toHaveBeenCalled();
     });
   });
 
   describe('handleCopy', () => {
-    it('should copy node to clipboard and flash node', async () => {
-      const mockFlashNode = vi.fn();
-
-      mockUseActiveTreeStore.mockReturnValue({
-        activeNodeId: 'node-1',
-        nodes: {
-          'node-1': { id: 'node-1', content: 'Test', children: [], metadata: {} },
-        },
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      } as any);
+    it('should call actions.copyNodes when no text selection', async () => {
+      const mockCopyNodes = vi.fn().mockResolvedValue('copied');
       mockUseActiveTreeActions.mockReturnValue({
-        flashNode: mockFlashNode,
+        copyNodes: mockCopyNodes,
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } as any);
 
@@ -270,21 +181,28 @@ describe('useEditMenuActions', () => {
         await result.current.handleCopy();
       });
 
-      expect(mockClipboardWriteText).toHaveBeenCalledWith('- Test node\n');
-      expect(mockFlashNode).toHaveBeenCalledWith('node-1', 'light');
-      expect(logger.info).toHaveBeenCalledWith('Copied node to clipboard: node-1', 'EditMenu');
+      expect(mockCopyNodes).toHaveBeenCalled();
+      expect(document.execCommand).not.toHaveBeenCalled();
     });
 
-    it('should do nothing when no activeNodeId', async () => {
-      mockUseActiveTreeStore.mockReturnValue({
-        activeNodeId: null,
-        nodes: {},
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      } as any);
+    it('should use browser copy when text is selected in contenteditable', async () => {
+      const mockCopyNodes = vi.fn().mockResolvedValue('copied');
       mockUseActiveTreeActions.mockReturnValue({
-        flashNode: vi.fn(),
+        copyNodes: mockCopyNodes,
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } as any);
+
+      // Mock text selection in contenteditable
+      const mockContentEditable = document.createElement('div');
+      mockContentEditable.setAttribute('contenteditable', 'true');
+      const textNode = document.createTextNode('test');
+      mockContentEditable.appendChild(textNode);
+      document.body.appendChild(mockContentEditable);
+
+      vi.spyOn(window, 'getSelection').mockReturnValue({
+        isCollapsed: false,
+        anchorNode: textNode,
+      } as unknown as Selection);
 
       const { result } = renderHook(() => useEditMenuActions());
 
@@ -292,24 +210,90 @@ describe('useEditMenuActions', () => {
         await result.current.handleCopy();
       });
 
-      expect(mockClipboardWriteText).not.toHaveBeenCalled();
+      expect(document.execCommand).toHaveBeenCalledWith('copy');
+      expect(mockCopyNodes).not.toHaveBeenCalled();
+
+      document.body.removeChild(mockContentEditable);
+    });
+
+    it('should do nothing when actions not available', async () => {
+      mockUseActiveTreeActions.mockReturnValue(null);
+
+      const { result } = renderHook(() => useEditMenuActions());
+
+      await act(async () => {
+        await result.current.handleCopy();
+      });
+
+      expect(document.execCommand).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('handlePaste', () => {
+    it('should call actions.pasteNodes', async () => {
+      const mockPasteNodes = vi.fn().mockResolvedValue('pasted');
+      mockUseActiveTreeActions.mockReturnValue({
+        pasteNodes: mockPasteNodes,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      } as any);
+
+      const { result } = renderHook(() => useEditMenuActions());
+
+      await act(async () => {
+        await result.current.handlePaste();
+      });
+
+      expect(mockPasteNodes).toHaveBeenCalled();
+      expect(document.execCommand).not.toHaveBeenCalled();
+    });
+
+    it('should fall back to browser paste when no valid markdown and contenteditable focused', async () => {
+      const mockPasteNodes = vi.fn().mockResolvedValue('no-content');
+      mockUseActiveTreeActions.mockReturnValue({
+        pasteNodes: mockPasteNodes,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      } as any);
+
+      // Mock contenteditable being focused
+      const mockContentEditable = document.createElement('div');
+      mockContentEditable.setAttribute('contenteditable', 'true');
+      document.body.appendChild(mockContentEditable);
+      mockContentEditable.focus();
+      Object.defineProperty(document, 'activeElement', {
+        value: mockContentEditable,
+        configurable: true,
+      });
+
+      const { result } = renderHook(() => useEditMenuActions());
+
+      await act(async () => {
+        await result.current.handlePaste();
+      });
+
+      expect(mockPasteNodes).toHaveBeenCalled();
+      expect(document.execCommand).toHaveBeenCalledWith('paste');
+
+      document.body.removeChild(mockContentEditable);
+    });
+
+    it('should do nothing when actions not available', async () => {
+      mockUseActiveTreeActions.mockReturnValue(null);
+
+      const { result } = renderHook(() => useEditMenuActions());
+
+      await act(async () => {
+        await result.current.handlePaste();
+      });
+
+      expect(document.execCommand).not.toHaveBeenCalled();
     });
   });
 
   describe('handleDelete', () => {
-    it('should start delete animation', () => {
-      const mockStartDeleteAnimation = vi.fn();
-
-      mockUseActiveTreeStore.mockReturnValue({
-        activeNodeId: 'node-1',
-        nodes: {
-          'node-1': { id: 'node-1', content: 'Test', children: [], metadata: {} },
-        },
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      } as any);
+    it('should call actions.deleteSelectedNodes', () => {
+      const mockDeleteSelectedNodes = vi.fn().mockReturnValue('deleted');
       mockUseActiveTreeActions.mockReturnValue({
-        deleteNode: vi.fn(),
-        startDeleteAnimation: mockStartDeleteAnimation,
+        deleteSelectedNodes: mockDeleteSelectedNodes,
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } as any);
 
@@ -319,29 +303,11 @@ describe('useEditMenuActions', () => {
         result.current.handleDelete();
       });
 
-      expect(mockStartDeleteAnimation).toHaveBeenCalledWith('node-1', expect.any(Function));
-      expect(logger.info).toHaveBeenCalledWith('Deleted node: node-1', 'EditMenu');
+      expect(mockDeleteSelectedNodes).toHaveBeenCalled();
     });
 
-    it('should call deleteNode when animation callback is executed', () => {
-      const mockDeleteNode = vi.fn();
-      let animationCallback: (() => void) | undefined;
-      const mockStartDeleteAnimation = vi.fn((nodeId, callback) => {
-        animationCallback = callback;
-      });
-
-      mockUseActiveTreeStore.mockReturnValue({
-        activeNodeId: 'node-1',
-        nodes: {
-          'node-1': { id: 'node-1', content: 'Test', children: [], metadata: {} },
-        },
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      } as any);
-      mockUseActiveTreeActions.mockReturnValue({
-        deleteNode: mockDeleteNode,
-        startDeleteAnimation: mockStartDeleteAnimation,
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      } as any);
+    it('should do nothing when actions not available', () => {
+      mockUseActiveTreeActions.mockReturnValue(null);
 
       const { result } = renderHook(() => useEditMenuActions());
 
@@ -349,58 +315,7 @@ describe('useEditMenuActions', () => {
         result.current.handleDelete();
       });
 
-      // Simulate animation completing
-      act(() => {
-        animationCallback?.();
-      });
-
-      expect(mockDeleteNode).toHaveBeenCalledWith('node-1', true);
-    });
-
-    it('should do nothing when no activeNodeId', () => {
-      const mockStartDeleteAnimation = vi.fn();
-
-      mockUseActiveTreeStore.mockReturnValue({
-        activeNodeId: null,
-        nodes: {},
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      } as any);
-      mockUseActiveTreeActions.mockReturnValue({
-        deleteNode: vi.fn(),
-        startDeleteAnimation: mockStartDeleteAnimation,
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      } as any);
-
-      const { result } = renderHook(() => useEditMenuActions());
-
-      act(() => {
-        result.current.handleDelete();
-      });
-
-      expect(mockStartDeleteAnimation).not.toHaveBeenCalled();
-    });
-
-    it('should do nothing when node does not exist', () => {
-      const mockStartDeleteAnimation = vi.fn();
-
-      mockUseActiveTreeStore.mockReturnValue({
-        activeNodeId: 'node-1',
-        nodes: {},
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      } as any);
-      mockUseActiveTreeActions.mockReturnValue({
-        deleteNode: vi.fn(),
-        startDeleteAnimation: mockStartDeleteAnimation,
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      } as any);
-
-      const { result } = renderHook(() => useEditMenuActions());
-
-      act(() => {
-        result.current.handleDelete();
-      });
-
-      expect(mockStartDeleteAnimation).not.toHaveBeenCalled();
+      // No error should be thrown
     });
   });
 });

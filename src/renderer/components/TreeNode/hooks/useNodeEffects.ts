@@ -10,13 +10,13 @@ interface NodeEffectsResult {
 
 export function useNodeEffects(nodeId: string): NodeEffectsResult {
   const flashingNode = useStore((state) => state.flashingNode);
-  const deletingNodeId = useStore((state) => state.deletingNodeId);
+  const deletingNodeIds = useStore((state) => state.deletingNodeIds);
   const shouldScrollTo = useStore((state) => state.scrollToNodeId === nodeId);
   const clearDeleteAnimation = useStore((state) => state.actions.clearDeleteAnimation);
   const nodeRef = useRef<HTMLDivElement>(null);
 
   const flashIntensity = flashingNode?.nodeId === nodeId ? flashingNode.intensity : null;
-  const isDeleting = deletingNodeId === nodeId;
+  const isDeleting = deletingNodeIds.has(nodeId);
 
   useEffect(() => {
     if (shouldScrollTo && nodeRef.current) {
@@ -30,9 +30,9 @@ export function useNodeEffects(nodeId: string): NodeEffectsResult {
   const onAnimationEnd = useCallback((e: React.AnimationEvent) => {
     // Only handle the delete animation
     if (isDeleting && e.animationName === 'delete-flash') {
-      clearDeleteAnimation();
+      clearDeleteAnimation(nodeId);
     }
-  }, [isDeleting, clearDeleteAnimation]);
+  }, [isDeleting, clearDeleteAnimation, nodeId]);
 
   return {
     flashIntensity,

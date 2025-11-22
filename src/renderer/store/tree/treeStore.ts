@@ -9,6 +9,7 @@ import { createVisualEffectsActions, VisualEffectsActions } from './actions/visu
 import { createSelectionActions, SelectionActions } from './actions/selectionActions';
 import { createHistoryActions, HistoryActions } from './actions/historyActions';
 import { createReviewActions, ReviewActions } from './actions/reviewActions';
+import { createClipboardActions, ClipboardActions } from './actions/clipboardActions';
 import { HistoryManager } from './commands/HistoryManager';
 import { StorageService } from '@platform';
 
@@ -25,12 +26,12 @@ export interface TreeState {
   fileMeta: { created: string; author: string } | null;
   flashingNode: { nodeId: string; intensity: 'light' | 'medium' } | null;
   scrollToNodeId: string | null;
-  deletingNodeId: string | null; // Node being animated out before deletion
+  deletingNodeIds: Set<string>; // Nodes being animated out before deletion
   deleteAnimationCallback: (() => void) | null; // Callback to execute when delete animation completes
   reviewingNodeId: string | null; // Node currently being reviewed
   reviewFadingNodeIds: Set<string>; // Nodes fading out after review accepted
 
-  actions: NodeActions & NavigationActions & PersistenceActions & NodeMovementActions & NodeDeletionActions & VisualEffectsActions & SelectionActions & HistoryActions & ReviewActions;
+  actions: NodeActions & NavigationActions & PersistenceActions & NodeMovementActions & NodeDeletionActions & VisualEffectsActions & SelectionActions & HistoryActions & ReviewActions & ClipboardActions;
 }
 
 const storageService = new StorageService();
@@ -49,7 +50,22 @@ export function createTreeStore() {
     const navigationActions = createNavigationActions(get, set);
     const selectionActions = createSelectionActions(get, set);
     const historyActions = createHistoryActions(historyManager);
+    const nodeDeletionActions = createNodeDeletionActions(get, set, persistenceActions.autoSave);
     const reviewActions = createReviewActions(get, set, visualEffectsActions, persistenceActions.autoSave);
+
+    // clipboardActions needs access to executeCommand and deleteNode, which are created above
+    // We use a getter function to access them lazily after the store is created
+    const clipboardActions = createClipboardActions(
+      get,
+      set,
+      () => ({
+        executeCommand: historyActions.executeCommand,
+        deleteNode: nodeDeletionActions.deleteNode,
+        autoSave: persistenceActions.autoSave,
+      }),
+      visualEffectsActions,
+      persistenceActions.autoSave
+    );
 
     return {
       nodes: {},
@@ -64,7 +80,7 @@ export function createTreeStore() {
       fileMeta: null,
       flashingNode: null,
       scrollToNodeId: null,
-      deletingNodeId: null,
+      deletingNodeIds: new Set(),
       deleteAnimationCallback: null,
       reviewingNodeId: null,
       reviewFadingNodeIds: new Set(),
@@ -74,11 +90,12 @@ export function createTreeStore() {
         ...navigationActions,
         ...persistenceActions,
         ...createNodeMovementActions(get, set, persistenceActions.autoSave, visualEffectsActions, navigationActions),
-        ...createNodeDeletionActions(get, set, persistenceActions.autoSave),
+        ...nodeDeletionActions,
         ...visualEffectsActions,
         ...selectionActions,
         ...historyActions,
         ...reviewActions,
+        ...clipboardActions,
       },
     };
   });
