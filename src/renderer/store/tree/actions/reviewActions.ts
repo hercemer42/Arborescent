@@ -4,6 +4,7 @@ import { exportNodeAsMarkdown } from '../../../utils/markdown';
 import { executeInTerminal } from '../../../utils/terminalExecution';
 import { logger } from '../../../services/logger';
 import { useToastStore } from '../../toast/toastStore';
+import { usePanelStore } from '../../panel/panelStore';
 import { VisualEffectsActions } from './visualEffectsActions';
 import { loadReviewContent } from '../../../services/review/reviewTempFileService';
 import { AcceptReviewCommand } from '../commands/AcceptReviewCommand';
@@ -110,8 +111,7 @@ export function createReviewActions(
 
     /**
      * Request review for a node (manual workflow - for browser-based tools)
-     * Copies node content to clipboard and starts monitoring for response
-     * Note: Caller should also call panelStore.showReview() to show the review panel
+     * Copies node content to clipboard, opens browser panel, and starts monitoring for response
      */
     requestReview: async (nodeId: string) => {
       const state = get();
@@ -146,6 +146,9 @@ export function createReviewActions(
 
         // Start review mode
         set({ reviewingNodeId: nodeId });
+
+        // Open browser panel
+        usePanelStore.getState().showBrowser();
 
         // Start clipboard monitoring
         await window.electron.startClipboardMonitor();
