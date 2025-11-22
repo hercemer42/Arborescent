@@ -29,7 +29,7 @@ export const TreeNode = memo(function TreeNode({ nodeId, depth = 0 }: TreeNodePr
   const expanded = node?.metadata.expanded ?? true;
   const contentLength = node?.content.length ?? 0;
 
-  const { flashIntensity, nodeRef } = useNodeEffects(nodeId);
+  const { flashIntensity, isDeleting, nodeRef, onAnimationEnd } = useNodeEffects(nodeId);
   const { isDragging, isOver, dropPosition, setRefs, attributes, listeners } = useNodeDragDrop(nodeId, nodeRef);
   const { handleMouseDown, handleMouseMove, handleClick, wrappedListeners } = useNodeMouse(nodeId, listeners);
   const handleToggle = useNodeToggle(nodeId, expanded, contentLength);
@@ -50,6 +50,7 @@ export const TreeNode = memo(function TreeNode({ nodeId, depth = 0 }: TreeNodePr
     isDragging && 'dragging',
     isOver && dropPosition && `drop-${dropPosition}`,
     flashIntensity && `flashing-${flashIntensity}`,
+    isDeleting && 'deleting',
   ].filter(Boolean).join(' ');
 
   return (
@@ -63,6 +64,7 @@ export const TreeNode = memo(function TreeNode({ nodeId, depth = 0 }: TreeNodePr
         onMouseDown={handleMouseDown}
         onMouseMove={handleMouseMove}
         onClick={handleClick}
+        onAnimationEnd={onAnimationEnd}
       >
         <NodeGutter
           hasChildren={hasChildren}

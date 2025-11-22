@@ -73,6 +73,8 @@ describe('nodeMovementActions', () => {
     mockVisualEffects = {
       flashNode: vi.fn(),
       scrollToNode: vi.fn(),
+      startDeleteAnimation: vi.fn(),
+      clearDeleteAnimation: vi.fn(),
     };
 
     mockNavigation = {

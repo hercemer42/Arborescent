@@ -93,9 +93,47 @@
 
 /* Flash animations */
 .tree-node-wrapper.flashing-light .node-content {
-  background-color: var(--blue-75);
+  animation: flash-light 0.5s ease-out;
 }
 
 .tree-node-wrapper.flashing-medium .node-content {
-  background-color: var(--blue-100);
+  animation: flash-medium 0.5s ease-out;
+}
+
+/* Delete animation for cut/delete - flash then fade out */
+.tree-node-wrapper.deleting .node-content {
+  animation: delete-flash 0.3s ease-out forwards;
+}
+
+@keyframes flash-light {
+  0% {
+    background-color: var(--blue-75);
+  }
+  100% {
+    background-color: transparent;
+  }
+}
+
+@keyframes flash-medium {
+  0% {
+    background-color: var(--blue-100);
+  }
+  100% {
+    background-color: transparent;
+  }
+}
+
+@keyframes delete-flash {
+  0% {
+    background-color: var(--orange-500);
+    opacity: 1;
+  }
+  50% {
+    background-color: var(--orange-500);
+    opacity: 1;
+  }
+  100% {
+    background-color: var(--orange-500);
+    opacity: 0;
+  }
 }

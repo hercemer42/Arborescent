@@ -5,6 +5,8 @@ describe('visualEffectsActions', () => {
   type TestState = {
     flashingNode: { nodeId: string; intensity: 'light' | 'medium' } | null;
     scrollToNodeId: string | null;
+    deletingNodeId: string | null;
+    deleteAnimationCallback: (() => void) | null;
   };
   let state: TestState;
   let setState: (partial: Partial<TestState>) => void;
@@ -14,6 +16,8 @@ describe('visualEffectsActions', () => {
     state = {
       flashingNode: null,
       scrollToNodeId: null,
+      deletingNodeId: null,
+      deleteAnimationCallback: null,
     };
 
     setState = (partial) => {
@@ -106,6 +110,82 @@ describe('visualEffectsActions', () => {
 
       vi.advanceTimersByTime(100);
       expect(state.scrollToNodeId).toBe(null);
+    });
+  });
+
+  describe('startDeleteAnimation', () => {
+    it('should set deletingNodeId', () => {
+      actions.startDeleteAnimation('node-1');
+
+      expect(state.deletingNodeId).toBe('node-1');
+    });
+
+    it('should store callback when provided', () => {
+      const callback = vi.fn();
+      actions.startDeleteAnimation('node-1', callback);
+
+      expect(state.deletingNodeId).toBe('node-1');
+      expect(state.deleteAnimationCallback).toBe(callback);
+    });
+
+    it('should set callback to null when not provided', () => {
+      actions.startDeleteAnimation('node-1');
+
+      expect(state.deleteAnimationCallback).toBe(null);
+    });
+  });
+
+  describe('clearDeleteAnimation', () => {
+    it('should clear deletingNodeId', () => {
+      state.deletingNodeId = 'node-1';
+
+      actions.clearDeleteAnimation();
+
+      expect(state.deletingNodeId).toBe(null);
+    });
+
+    it('should execute callback when present', () => {
+      const callback = vi.fn();
+      state.deletingNodeId = 'node-1';
+      state.deleteAnimationCallback = callback;
+
+      actions.clearDeleteAnimation();
+
+      expect(callback).toHaveBeenCalled();
+    });
+
+    it('should clear callback after executing', () => {
+      const callback = vi.fn();
+      state.deletingNodeId = 'node-1';
+      state.deleteAnimationCallback = callback;
+
+      actions.clearDeleteAnimation();
+
+      expect(state.deleteAnimationCallback).toBe(null);
+    });
+
+    it('should not throw when no callback is present', () => {
+      state.deletingNodeId = 'node-1';
+      state.deleteAnimationCallback = null;
+
+      expect(() => actions.clearDeleteAnimation()).not.toThrow();
+      expect(state.deletingNodeId).toBe(null);
+    });
+
+    it('should clear state before executing callback', () => {
+      let deletingNodeIdAtCallbackTime: string | null = 'unset';
+      let deleteAnimationCallbackAtCallbackTime: (() => void) | null | string = 'unset';
+      const callback = () => {
+        deletingNodeIdAtCallbackTime = state.deletingNodeId;
+        deleteAnimationCallbackAtCallbackTime = state.deleteAnimationCallback;
+      };
+      state.deletingNodeId = 'node-1';
+      state.deleteAnimationCallback = callback;
+
+      actions.clearDeleteAnimation();
+
+      expect(deletingNodeIdAtCallbackTime).toBe(null);
+      expect(deleteAnimationCallbackAtCallbackTime).toBe(null);
     });
   });
 });

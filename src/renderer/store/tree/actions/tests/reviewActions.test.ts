@@ -103,6 +103,8 @@ describe('reviewActions', () => {
       fileMeta: null,
       flashingNode: null,
       scrollToNodeId: null,
+      deletingNodeId: null,
+      deleteAnimationCallback: null,
       reviewingNodeId: null,
       reviewFadingNodeIds: new Set(),
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -134,6 +136,8 @@ describe('reviewActions', () => {
     const mockVisualEffects = {
       flashNode: vi.fn(),
       scrollToNode: vi.fn(),
+      startDeleteAnimation: vi.fn(),
+      clearDeleteAnimation: vi.fn(),
     };
 
     const mockAutoSave = vi.fn();

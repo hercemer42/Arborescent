@@ -25,6 +25,8 @@ export interface TreeState {
   fileMeta: { created: string; author: string } | null;
   flashingNode: { nodeId: string; intensity: 'light' | 'medium' } | null;
   scrollToNodeId: string | null;
+  deletingNodeId: string | null; // Node being animated out before deletion
+  deleteAnimationCallback: (() => void) | null; // Callback to execute when delete animation completes
   reviewingNodeId: string | null; // Node currently being reviewed
   reviewFadingNodeIds: Set<string>; // Nodes fading out after review accepted
 
@@ -62,6 +64,8 @@ export function createTreeStore() {
       fileMeta: null,
       flashingNode: null,
       scrollToNodeId: null,
+      deletingNodeId: null,
+      deleteAnimationCallback: null,
       reviewingNodeId: null,
       reviewFadingNodeIds: new Set(),
 
