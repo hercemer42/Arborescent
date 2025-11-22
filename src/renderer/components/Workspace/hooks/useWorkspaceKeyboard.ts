@@ -1,6 +1,7 @@
 import { useEffect, RefObject } from 'react';
 import { registerTreeContainer, unregisterTreeContainer } from '../../../services/treeContainerRegistry';
-import { initializeKeyboardServices } from '../../../services/keyboard/keyboard';
+import { initializeNavigationService, initializeEditingService } from '../../../services/keyboard/keyboard';
+import { initializeUIService } from '../../../services/keyboard/uiService';
 import type { TreeStore } from '../../../store/tree/treeStore';
 
 export function useWorkspaceKeyboard(
@@ -14,8 +15,20 @@ export function useWorkspaceKeyboard(
     return () => unregisterTreeContainer(container);
   }, [containerRef, store]);
 
+  // Navigation and editing services need to be scoped to workspace container
   useEffect(() => {
     if (!containerRef.current) return;
-    return initializeKeyboardServices(containerRef.current);
+    const cleanupNav = initializeNavigationService(containerRef.current);
+    const cleanupEdit = initializeEditingService(containerRef.current);
+    return () => {
+      cleanupNav();
+      cleanupEdit();
+    };
   }, [containerRef]);
+
+  // UI service (cut/copy/paste, save, etc.) should work globally
+  // even when focus is outside workspace (e.g., after multi-selection blur)
+  useEffect(() => {
+    return initializeUIService(window);
+  }, []);
 }

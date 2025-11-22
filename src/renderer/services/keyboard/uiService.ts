@@ -86,7 +86,9 @@ async function handleUIShortcuts(event: KeyboardEvent): Promise<void> {
   // Clipboard: Cut
   if (matchesHotkey(event, 'actions', 'cut')) {
     // If text is selected in contenteditable, let browser handle it
-    if (hasTextSelection()) return;
+    if (hasTextSelection()) {
+      return;
+    }
 
     event.preventDefault();
     const activeFilePath = useFilesStore.getState().activeFilePath;
@@ -100,7 +102,9 @@ async function handleUIShortcuts(event: KeyboardEvent): Promise<void> {
   // Clipboard: Copy
   if (matchesHotkey(event, 'actions', 'copy')) {
     // If text is selected in contenteditable, let browser handle it
-    if (hasTextSelection()) return;
+    if (hasTextSelection()) {
+      return;
+    }
 
     event.preventDefault();
     const activeFilePath = useFilesStore.getState().activeFilePath;
