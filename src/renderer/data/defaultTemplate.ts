@@ -14,7 +14,7 @@ export function createBlankDocument(): {
         id: rootId,
         content: '',
         children: [firstNodeId],
-        metadata: {},
+        metadata: { isRoot: true },
       },
       [firstNodeId]: {
         id: firstNodeId,

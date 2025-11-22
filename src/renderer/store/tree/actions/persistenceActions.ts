@@ -67,6 +67,15 @@ export const createPersistenceActions = (
       }
     });
 
+    // Ensure root node has isRoot metadata (migration for older files)
+    const rootNode = migratedNodes[data.rootNodeId];
+    if (rootNode && !rootNode.metadata.isRoot) {
+      migratedNodes[data.rootNodeId] = {
+        ...rootNode,
+        metadata: { ...rootNode.metadata, isRoot: true },
+      };
+    }
+
     const ancestorRegistry = buildAncestorRegistry(data.rootNodeId, migratedNodes);
 
     set({

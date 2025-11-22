@@ -3,12 +3,6 @@ import { TreeNode } from '../../../../shared/types';
 import { buildAncestorRegistry } from '../../../utils/ancestry';
 import { v4 as uuidv4 } from 'uuid';
 
-interface PastedNodeInfo {
-  node: TreeNode;
-  parentId: string;
-  position: number;
-}
-
 /**
  * Command for pasting nodes from clipboard (with hierarchy preservation)
  */

@@ -38,6 +38,11 @@ vi.mock('../../../../services/logger', () => ({
   },
 }));
 
+// Mock error notification
+vi.mock('../../../../utils/errorNotification', () => ({
+  notifyError: vi.fn(),
+}));
+
 describe('clipboardActions', () => {
   type TestState = {
     nodes: Record<string, TreeNode>;
@@ -494,6 +499,60 @@ describe('clipboardActions', () => {
 
       expect(mockFlashNode).toHaveBeenCalledTimes(1);
       expect(mockFlashNode).toHaveBeenCalledWith('node-1', 'light');
+    });
+  });
+
+  describe('root node protection', () => {
+    beforeEach(() => {
+      // Mark root node with isRoot metadata
+      state.nodes.root.metadata = { isRoot: true };
+    });
+
+    it('should fail cut if root node is selected', async () => {
+      state.activeNodeId = 'root';
+
+      const result = await actions.cutNodes();
+
+      expect(result).toBe('no-selection');
+      expect(mockClipboard.writeText).not.toHaveBeenCalled();
+    });
+
+    it('should fail delete if root node is selected', () => {
+      state.activeNodeId = 'root';
+
+      const result = actions.deleteSelectedNodes();
+
+      expect(result).toBe('no-selection');
+      expect(mockStartDeleteAnimation).not.toHaveBeenCalled();
+    });
+
+    it('should allow copying root node', async () => {
+      state.activeNodeId = 'root';
+
+      const result = await actions.copyNodes();
+
+      expect(result).toBe('copied');
+      expect(mockClipboard.writeText).toHaveBeenCalled();
+    });
+
+    it('should fail cut if root is in multi-selection (indicates bug)', async () => {
+      state.multiSelectedNodeIds = new Set(['root', 'node-1']);
+
+      const result = await actions.cutNodes();
+
+      // Any selection containing root should fail entirely
+      expect(result).toBe('no-selection');
+      expect(mockStartDeleteAnimation).not.toHaveBeenCalled();
+    });
+
+    it('should fail delete if root is in multi-selection (indicates bug)', () => {
+      state.multiSelectedNodeIds = new Set(['root', 'node-1']);
+
+      const result = actions.deleteSelectedNodes();
+
+      // Any selection containing root should fail entirely
+      expect(result).toBe('no-selection');
+      expect(mockStartDeleteAnimation).not.toHaveBeenCalled();
     });
   });
 });

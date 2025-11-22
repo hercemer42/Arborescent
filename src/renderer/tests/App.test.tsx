@@ -27,9 +27,6 @@ vi.mock('../useAppErrorHandling', () => ({
 const {
   mockInitializeSession,
   mockToasts,
-  mockRemoveToast,
-  mockRestoreBrowserSession,
-  mockRestorePanelSession,
   filesStoreState,
   toastStoreState,
   browserStoreState,
@@ -58,9 +55,6 @@ const {
   return {
     mockInitializeSession,
     mockToasts,
-    mockRemoveToast,
-    mockRestoreBrowserSession,
-    mockRestorePanelSession,
     filesStoreState,
     toastStoreState,
     browserStoreState,

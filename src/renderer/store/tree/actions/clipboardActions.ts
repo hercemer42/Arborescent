@@ -8,6 +8,7 @@ import { Command } from '../commands/Command';
 import { logger } from '../../../services/logger';
 import { writeToClipboard, readFromClipboard } from '../../../services/clipboardService';
 import { VisualEffectsActions } from './visualEffectsActions';
+import { notifyError } from '../../../utils/errorNotification';
 
 export interface ClipboardActions {
   /**
@@ -64,6 +65,14 @@ function getRootLevelSelections(
     const ancestors = ancestorRegistry[nodeId] || [];
     return !ancestors.some((ancestorId) => multiSelectedNodeIds.has(ancestorId));
   });
+}
+
+/**
+ * Check if any nodes in selection have isRoot metadata.
+ * Returns true if root node is in the selection (indicates a bug).
+ */
+function selectionContainsRoot(nodeIds: string[], nodes: Record<string, TreeNode>): boolean {
+  return nodeIds.some((id) => nodes[id]?.metadata.isRoot === true);
 }
 
 type SelectionResult =
@@ -180,6 +189,14 @@ export const createClipboardActions = (
 
     if (selection.type === 'none') return 'no-selection';
 
+    // Check for root node in selection (should never happen, indicates a bug)
+    const nodeIds = getNodeIdsFromSelection(selection);
+    if (selectionContainsRoot(nodeIds, state.nodes)) {
+      logger.error('Attempted to cut root node - this indicates a bug', undefined, 'ClipboardActions');
+      notifyError('Cannot modify root node', undefined, 'ClipboardActions:cut');
+      return 'no-selection';
+    }
+
     const markdown = exportSelectionAsMarkdown(selection, state.nodes);
     if (!markdown) return 'no-selection';
 
@@ -250,7 +267,14 @@ export const createClipboardActions = (
 
     if (selection.type === 'none') return 'no-selection';
 
+    // Check for root node in selection (should never happen, indicates a bug)
     const nodeIds = getNodeIdsFromSelection(selection);
+    if (selectionContainsRoot(nodeIds, state.nodes)) {
+      logger.error('Attempted to delete root node - this indicates a bug', undefined, 'ClipboardActions');
+      notifyError('Cannot modify root node', undefined, 'ClipboardActions:delete');
+      return 'no-selection';
+    }
+
     logger.info(`Deleted ${nodeIds.length} node(s)`, 'ClipboardActions');
 
     if (selection.type === 'multi') {
