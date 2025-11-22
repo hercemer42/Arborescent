@@ -53,6 +53,7 @@ afterEach(() => {
 });
 
 global.window.electron = {
+  platform: 'linux',
   readFile: vi.fn(),
   writeFile: vi.fn(),
   showOpenDialog: vi.fn(),

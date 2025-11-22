@@ -44,8 +44,8 @@ async function handleUIShortcuts(event: KeyboardEvent): Promise<void> {
     return;
   }
 
-  // Toggle terminal (Ctrl/Cmd + `)
-  if (event.key === '`' && (event.ctrlKey || event.metaKey) && !event.shiftKey && !event.altKey) {
+  // Toggle terminal
+  if (matchesHotkey(event, 'view', 'toggleTerminal')) {
     event.preventDefault();
     const { usePanelStore } = await import('../../store/panel/panelStore');
     const { useTerminalStore } = await import('../../store/terminal/terminalStore');
@@ -65,8 +65,8 @@ async function handleUIShortcuts(event: KeyboardEvent): Promise<void> {
     return;
   }
 
-  // Toggle browser (Ctrl/Cmd + B)
-  if (event.key === 'b' && (event.ctrlKey || event.metaKey) && !event.shiftKey && !event.altKey) {
+  // Toggle browser
+  if (matchesHotkey(event, 'view', 'toggleBrowser')) {
     event.preventDefault();
     const { usePanelStore } = await import('../../store/panel/panelStore');
     const { useBrowserStore } = await import('../../store/browser/browserStore');

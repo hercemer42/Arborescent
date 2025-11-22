@@ -22,6 +22,7 @@ describe('hotkeyConfig', () => {
       expect(config.editing).toBeDefined();
       expect(config.actions).toBeDefined();
       expect(config.file).toBeDefined();
+      expect(config.view).toBeDefined();
     });
 
     it('should have expected default keys', () => {
@@ -30,8 +31,10 @@ describe('hotkeyConfig', () => {
       expect(config.navigation.moveDown).toBe('ArrowDown');
       expect(config.editing.indent).toBe('Tab');
       expect(config.editing.outdent).toBe('Shift+Tab');
-      expect(config.actions.deleteNode).toBe('Mod+D');
-      expect(config.file.closeTab).toBe('Mod+w');
+      expect(config.actions.deleteNode).toBe('CmdOrCtrl+D');
+      expect(config.file.closeTab).toBe('CmdOrCtrl+W');
+      expect(config.view.toggleTerminal).toBe('CmdOrCtrl+`');
+      expect(config.view.toggleBrowser).toBe('CmdOrCtrl+B');
     });
   });
 
@@ -45,11 +48,16 @@ describe('hotkeyConfig', () => {
     });
 
     it('should get actions action', () => {
-      expect(getKeyForAction('actions', 'deleteNode')).toBe('Mod+D');
+      expect(getKeyForAction('actions', 'deleteNode')).toBe('CmdOrCtrl+D');
     });
 
     it('should get file action', () => {
-      expect(getKeyForAction('file', 'save')).toBe('Mod+S');
+      expect(getKeyForAction('file', 'save')).toBe('CmdOrCtrl+S');
+    });
+
+    it('should get view action', () => {
+      expect(getKeyForAction('view', 'toggleTerminal')).toBe('CmdOrCtrl+`');
+      expect(getKeyForAction('view', 'toggleBrowser')).toBe('CmdOrCtrl+B');
     });
 
     it('should return undefined for non-existent action', () => {
@@ -112,9 +120,9 @@ describe('hotkeyConfig', () => {
           moveLeft: 'h',
           moveRight: 'l',
           expandCollapse: 'Space',
-          toggleNode: 'Mod+T',
-          moveNodeUp: 'Mod+k',
-          moveNodeDown: 'Mod+j',
+          toggleNode: 'CmdOrCtrl+T',
+          moveNodeUp: 'CmdOrCtrl+K',
+          moveNodeDown: 'CmdOrCtrl+J',
         },
         editing: {
           startEdit: 'i',
@@ -122,7 +130,7 @@ describe('hotkeyConfig', () => {
           saveEdit: 'Escape',
           deleteLine: 'd',
           newSiblingAfter: 'o',
-          newChildNode: 'Shift+o',
+          newChildNode: 'Shift+O',
           indent: '>',
           outdent: '<',
         },
@@ -130,13 +138,17 @@ describe('hotkeyConfig', () => {
           toggleTaskStatus: 'x',
           deleteNode: 'd',
           undo: 'u',
-          redo: 'Mod+r',
+          redo: 'CmdOrCtrl+R',
         },
         file: {
-          save: 'Mod+s',
-          saveAs: 'Mod+Shift+s',
-          open: 'Mod+o',
-          closeTab: 'Mod+w',
+          save: 'CmdOrCtrl+S',
+          saveAs: 'CmdOrCtrl+Shift+S',
+          open: 'CmdOrCtrl+O',
+          closeTab: 'CmdOrCtrl+W',
+        },
+        view: {
+          toggleTerminal: 'CmdOrCtrl+T',
+          toggleBrowser: 'CmdOrCtrl+B',
         },
       };
 
@@ -155,9 +167,9 @@ describe('hotkeyConfig', () => {
           moveLeft: 'h',
           moveRight: 'l',
           expandCollapse: 'Space',
-          toggleNode: 'Mod+T',
-          moveNodeUp: 'Mod+k',
-          moveNodeDown: 'Mod+j',
+          toggleNode: 'CmdOrCtrl+T',
+          moveNodeUp: 'CmdOrCtrl+K',
+          moveNodeDown: 'CmdOrCtrl+J',
         },
         editing: {
           startEdit: 'i',
@@ -165,7 +177,7 @@ describe('hotkeyConfig', () => {
           saveEdit: 'Escape',
           deleteLine: 'd',
           newSiblingAfter: 'o',
-          newChildNode: 'Shift+o',
+          newChildNode: 'Shift+O',
           indent: '>',
           outdent: '<',
         },
@@ -173,13 +185,17 @@ describe('hotkeyConfig', () => {
           toggleTaskStatus: 'x',
           deleteNode: 'd',
           undo: 'u',
-          redo: 'Mod+r',
+          redo: 'CmdOrCtrl+R',
         },
         file: {
-          save: 'Mod+s',
-          saveAs: 'Mod+Shift+s',
-          open: 'Mod+o',
-          closeTab: 'Mod+w',
+          save: 'CmdOrCtrl+S',
+          saveAs: 'CmdOrCtrl+Shift+S',
+          open: 'CmdOrCtrl+O',
+          closeTab: 'CmdOrCtrl+W',
+        },
+        view: {
+          toggleTerminal: 'CmdOrCtrl+T',
+          toggleBrowser: 'CmdOrCtrl+B',
         },
       };
 

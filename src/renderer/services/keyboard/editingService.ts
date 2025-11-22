@@ -94,7 +94,7 @@ function handleEditingShortcuts(event: KeyboardEvent): void {
     return;
   }
 
-  // Expand/collapse node - Mod+T
+  // Expand/collapse node - CmdOrCtrl+T
   if (matchesHotkey(event, 'navigation', 'expandCollapse')) {
     event.preventDefault();
     const position = getCursorPosition(element);

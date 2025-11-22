@@ -16,7 +16,7 @@ export function useTerminalKeyboard(xterm: XTerm | null) {
         return true;
       }
 
-      const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
+      const isMac = window.electron?.platform === 'darwin';
       const ctrlOrCmd = isMac ? e.metaKey : e.ctrlKey;
 
       // Copy: Ctrl+Shift+C (or Cmd+Shift+C on Mac)

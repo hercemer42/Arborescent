@@ -5,6 +5,7 @@ import type { PluginPreloadAPI } from '../plugins/core/preload/preload';
 declare global {
   interface Window {
     electron: {
+      platform: NodeJS.Platform;
       readFile: (path: string) => Promise<string>;
       writeFile: (path: string, content: string) => Promise<void>;
       showOpenDialog: () => Promise<string | null>;

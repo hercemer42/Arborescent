@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { parseKeyNotation, matchesKeyNotation } from '../hotkeyUtils';
+import { parseKeyNotation, matchesKeyNotation, formatHotkeyForDisplay } from '../hotkeyUtils';
 
 describe('hotkeyUtils', () => {
   describe('parseKeyNotation', () => {
@@ -14,8 +14,8 @@ describe('hotkeyUtils', () => {
       });
     });
 
-    it('should parse Mod+key as both ctrl and meta', () => {
-      const binding = parseKeyNotation('Mod+D');
+    it('should parse CmdOrCtrl+key as both ctrl and meta', () => {
+      const binding = parseKeyNotation('CmdOrCtrl+D');
       expect(binding).toEqual({
         key: 'd',
         ctrl: true,
@@ -36,8 +36,8 @@ describe('hotkeyUtils', () => {
       });
     });
 
-    it('should parse Mod+Shift+key', () => {
-      const binding = parseKeyNotation('Mod+Shift+Z');
+    it('should parse CmdOrCtrl+Shift+key', () => {
+      const binding = parseKeyNotation('CmdOrCtrl+Shift+Z');
       expect(binding).toEqual({
         key: 'z',
         ctrl: true,
@@ -59,7 +59,7 @@ describe('hotkeyUtils', () => {
     });
 
     it('should handle lowercase key normalization', () => {
-      const binding = parseKeyNotation('Mod+w');
+      const binding = parseKeyNotation('CmdOrCtrl+w');
       expect(binding.key).toBe('w');
     });
 
@@ -80,25 +80,25 @@ describe('hotkeyUtils', () => {
       expect(matchesKeyNotation(event, 'Enter')).toBe(false);
     });
 
-    it('should match Mod with Ctrl on Windows/Linux', () => {
+    it('should match CmdOrCtrl with Ctrl on Windows/Linux', () => {
       const event = new KeyboardEvent('keydown', {
         key: 'd',
         ctrlKey: true,
       });
-      expect(matchesKeyNotation(event, 'Mod+D')).toBe(true);
+      expect(matchesKeyNotation(event, 'CmdOrCtrl+D')).toBe(true);
     });
 
-    it('should match Mod with Meta on Mac', () => {
+    it('should match CmdOrCtrl with Meta on Mac', () => {
       const event = new KeyboardEvent('keydown', {
         key: 'd',
         metaKey: true,
       });
-      expect(matchesKeyNotation(event, 'Mod+D')).toBe(true);
+      expect(matchesKeyNotation(event, 'CmdOrCtrl+D')).toBe(true);
     });
 
-    it('should not match Mod if neither ctrl nor meta pressed', () => {
+    it('should not match CmdOrCtrl if neither ctrl nor meta pressed', () => {
       const event = new KeyboardEvent('keydown', { key: 'd' });
-      expect(matchesKeyNotation(event, 'Mod+D')).toBe(false);
+      expect(matchesKeyNotation(event, 'CmdOrCtrl+D')).toBe(false);
     });
 
     it('should match Shift+key', () => {
@@ -122,13 +122,13 @@ describe('hotkeyUtils', () => {
       expect(matchesKeyNotation(event, 'Enter')).toBe(false);
     });
 
-    it('should match Mod+Shift+key', () => {
+    it('should match CmdOrCtrl+Shift+key', () => {
       const event = new KeyboardEvent('keydown', {
         key: 'z',
         ctrlKey: true,
         shiftKey: true,
       });
-      expect(matchesKeyNotation(event, 'Mod+Shift+Z')).toBe(true);
+      expect(matchesKeyNotation(event, 'CmdOrCtrl+Shift+Z')).toBe(true);
     });
 
     it('should match Alt+key', () => {
@@ -144,7 +144,7 @@ describe('hotkeyUtils', () => {
         key: 'D',
         ctrlKey: true,
       });
-      expect(matchesKeyNotation(event, 'Mod+d')).toBe(true);
+      expect(matchesKeyNotation(event, 'CmdOrCtrl+d')).toBe(true);
     });
 
     it('should not match if extra modifiers pressed', () => {
@@ -154,5 +154,54 @@ describe('hotkeyUtils', () => {
       });
       expect(matchesKeyNotation(event, 'ArrowUp')).toBe(false);
     });
+  });
+
+  describe('formatHotkeyForDisplay', () => {
+    // Note: electron-accelerator-formatter uses Unicode symbols on all platforms
+    // The library uses process.platform internally, so tests reflect actual system platform (Linux)
+    describe('on Linux (current test platform)', () => {
+      it('should format CmdOrCtrl with Ctrl symbol', () => {
+        expect(formatHotkeyForDisplay('CmdOrCtrl+S')).toBe('⌃S');
+      });
+
+      it('should format CmdOrCtrl+Shift with symbols', () => {
+        expect(formatHotkeyForDisplay('CmdOrCtrl+Shift+Z')).toBe('⌃⇧Z');
+      });
+
+      it('should format arrow keys', () => {
+        expect(formatHotkeyForDisplay('Up')).toBe('Up');
+        expect(formatHotkeyForDisplay('Down')).toBe('Down');
+        expect(formatHotkeyForDisplay('Left')).toBe('Left');
+        expect(formatHotkeyForDisplay('Right')).toBe('Right');
+      });
+
+      it('should format CmdOrCtrl+Arrow', () => {
+        expect(formatHotkeyForDisplay('CmdOrCtrl+Up')).toBe('⌃Up');
+      });
+
+      it('should format single letters', () => {
+        expect(formatHotkeyForDisplay('CmdOrCtrl+D')).toBe('⌃D');
+      });
+
+      it('should handle empty notation', () => {
+        expect(formatHotkeyForDisplay('')).toBe('');
+      });
+
+      it('should format Ctrl as symbol', () => {
+        expect(formatHotkeyForDisplay('Ctrl+C')).toBe('⌃C');
+      });
+
+      it('should format Alt as symbol', () => {
+        expect(formatHotkeyForDisplay('Alt+F4')).toBe('⌥F4');
+      });
+
+      it('should format Shift as symbol', () => {
+        expect(formatHotkeyForDisplay('Shift+Tab')).toBe('⇧Tab');
+      });
+    });
+
+    // Note: Cannot test Mac-specific output because electron-accelerator-formatter
+    // uses process.platform internally which cannot be mocked in test environment.
+    // The library would show ⌘ for CmdOrCtrl on Mac.
   });
 });

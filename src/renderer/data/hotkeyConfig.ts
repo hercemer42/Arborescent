@@ -34,6 +34,10 @@ export interface HotkeyConfig {
     open: string;
     closeTab: string;
   };
+  view: {
+    toggleTerminal: string;
+    toggleBrowser: string;
+  };
 }
 
 export type HotkeyContext = keyof HotkeyConfig;
