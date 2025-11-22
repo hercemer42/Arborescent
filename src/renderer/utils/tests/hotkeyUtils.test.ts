@@ -157,15 +157,15 @@ describe('hotkeyUtils', () => {
   });
 
   describe('formatHotkeyForDisplay', () => {
-    // Note: electron-accelerator-formatter uses Unicode symbols on all platforms
-    // The library uses process.platform internally, so tests reflect actual system platform (Linux)
-    describe('on Linux (current test platform)', () => {
-      it('should format CmdOrCtrl with Ctrl symbol', () => {
-        expect(formatHotkeyForDisplay('CmdOrCtrl+S')).toBe('⌃S');
+    // Tests run on Linux, so we expect text-based output (Ctrl, Shift, Alt)
+    // Mac would show Unicode symbols (⌘, ⇧, ⌥)
+    describe('on Linux/Windows', () => {
+      it('should format CmdOrCtrl as Ctrl', () => {
+        expect(formatHotkeyForDisplay('CmdOrCtrl+S')).toBe('Ctrl+S');
       });
 
-      it('should format CmdOrCtrl+Shift with symbols', () => {
-        expect(formatHotkeyForDisplay('CmdOrCtrl+Shift+Z')).toBe('⌃⇧Z');
+      it('should format CmdOrCtrl+Shift', () => {
+        expect(formatHotkeyForDisplay('CmdOrCtrl+Shift+Z')).toBe('Ctrl+Shift+Z');
       });
 
       it('should format arrow keys', () => {
@@ -176,32 +176,28 @@ describe('hotkeyUtils', () => {
       });
 
       it('should format CmdOrCtrl+Arrow', () => {
-        expect(formatHotkeyForDisplay('CmdOrCtrl+Up')).toBe('⌃Up');
+        expect(formatHotkeyForDisplay('CmdOrCtrl+Up')).toBe('Ctrl+Up');
       });
 
-      it('should format single letters', () => {
-        expect(formatHotkeyForDisplay('CmdOrCtrl+D')).toBe('⌃D');
+      it('should format single letters uppercase', () => {
+        expect(formatHotkeyForDisplay('CmdOrCtrl+D')).toBe('Ctrl+D');
       });
 
       it('should handle empty notation', () => {
         expect(formatHotkeyForDisplay('')).toBe('');
       });
 
-      it('should format Ctrl as symbol', () => {
-        expect(formatHotkeyForDisplay('Ctrl+C')).toBe('⌃C');
+      it('should format Ctrl', () => {
+        expect(formatHotkeyForDisplay('Ctrl+C')).toBe('Ctrl+C');
       });
 
-      it('should format Alt as symbol', () => {
-        expect(formatHotkeyForDisplay('Alt+F4')).toBe('⌥F4');
+      it('should format Alt', () => {
+        expect(formatHotkeyForDisplay('Alt+F4')).toBe('Alt+F4');
       });
 
-      it('should format Shift as symbol', () => {
-        expect(formatHotkeyForDisplay('Shift+Tab')).toBe('⇧Tab');
+      it('should format Shift', () => {
+        expect(formatHotkeyForDisplay('Shift+Tab')).toBe('Shift+Tab');
       });
     });
-
-    // Note: Cannot test Mac-specific output because electron-accelerator-formatter
-    // uses process.platform internally which cannot be mocked in test environment.
-    // The library would show ⌘ for CmdOrCtrl on Mac.
   });
 });

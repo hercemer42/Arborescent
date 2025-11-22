@@ -1,5 +1,3 @@
-import acceleratorFormatter from 'electron-accelerator-formatter';
-
 interface KeyBinding {
   key: string;
   ctrl: boolean;
@@ -89,10 +87,42 @@ export function matchesKeyNotation(event: KeyboardEvent, notation: string): bool
 }
 
 /**
- * Format an Electron accelerator for display.
- * Uses electron-accelerator-formatter for platform-specific symbols.
+ * Detect if running on macOS.
+ */
+const isMac = (): boolean => navigator.platform?.includes('Mac') ?? false;
+
+/**
+ * Format an Electron accelerator for display with platform-specific symbols.
  */
 export function formatHotkeyForDisplay(accelerator: string): string {
   if (!accelerator) return '';
-  return acceleratorFormatter(accelerator);
+
+  const mac = isMac();
+  const formatted = accelerator.split('+').map((part) => {
+    switch (part.toLowerCase()) {
+      case 'cmdorctrl':
+      case 'commandorcontrol':
+        return mac ? '⌘' : 'Ctrl';
+      case 'cmd':
+      case 'command':
+        return mac ? '⌘' : 'Cmd';
+      case 'ctrl':
+      case 'control':
+        return mac ? '⌃' : 'Ctrl';
+      case 'shift':
+        return mac ? '⇧' : 'Shift';
+      case 'alt':
+      case 'option':
+        return mac ? '⌥' : 'Alt';
+      case 'altgr':
+        return 'AltGr';
+      case 'super':
+      case 'meta':
+        return mac ? '⌘' : 'Super';
+      default:
+        return part.length === 1 ? part.toUpperCase() : part;
+    }
+  });
+
+  return mac ? formatted.join('') : formatted.join('+');
 }
