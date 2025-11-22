@@ -82,8 +82,10 @@ vi.mock('../../../../utils/markdown', () => ({
 
 describe('useReviewClipboard', () => {
   let mockOnClipboardContentDetected: ReturnType<typeof vi.fn>;
+  let mockOnReviewFileContentDetected: ReturnType<typeof vi.fn>;
   let mockCleanup: ReturnType<typeof vi.fn>;
   let clipboardCallback: (content: string) => void;
+  let fileCallback: (content: string) => void;
 
   beforeEach(() => {
     vi.clearAllMocks();
@@ -96,10 +98,15 @@ describe('useReviewClipboard', () => {
       clipboardCallback = callback;
       return mockCleanup;
     });
+    mockOnReviewFileContentDetected = vi.fn((callback) => {
+      fileCallback = callback;
+      return mockCleanup;
+    });
 
     global.window = {
       electron: {
         onClipboardContentDetected: mockOnClipboardContentDetected,
+        onReviewFileContentDetected: mockOnReviewFileContentDetected,
       },
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } as any;
@@ -146,6 +153,24 @@ describe('useReviewClipboard', () => {
     );
   });
 
+  it('should set hasReviewContent to true when valid markdown is detected from file', async () => {
+    const { result } = renderHook(() => useReviewClipboard('node-1'));
+
+    // Simulate file content detection
+    act(() => {
+      fileCallback('- Valid node');
+    });
+
+    await waitFor(() => {
+      expect(result.current).toBe(true);
+    }, { container: document.body });
+
+    expect(logger.info).toHaveBeenCalledWith(
+      'Successfully parsed file content as Arborescent markdown',
+      'ReviewClipboard'
+    );
+  });
+
   it('should not set hasReviewContent when markdown has multiple root nodes', async () => {
     const { result } = renderHook(() => useReviewClipboard('node-1'));
 
@@ -155,7 +180,7 @@ describe('useReviewClipboard', () => {
 
     await waitFor(() => {
       expect(logger.info).toHaveBeenCalledWith(
-        'Clipboard content has 2 root nodes, expected 1',
+        'clipboard content has 2 root nodes, expected 1',
         'ReviewClipboard'
       );
     }, { container: document.body });
@@ -173,7 +198,7 @@ describe('useReviewClipboard', () => {
 
     await waitFor(() => {
       expect(logger.info).toHaveBeenCalledWith(
-        'Clipboard content does not contain valid Arborescent markdown (no nodes parsed)',
+        'clipboard content does not contain valid Arborescent markdown (no nodes parsed)',
         'ReviewClipboard'
       );
     }, { container: document.body });
@@ -191,7 +216,7 @@ describe('useReviewClipboard', () => {
 
     await waitFor(() => {
       expect(logger.info).toHaveBeenCalledWith(
-        'Clipboard content is not valid Arborescent markdown',
+        'clipboard content is not valid Arborescent markdown',
         'ReviewClipboard'
       );
     }, { container: document.body });

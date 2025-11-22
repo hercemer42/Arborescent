@@ -8,8 +8,26 @@ import { VisualEffectsActions } from './visualEffectsActions';
 import { loadReviewContent } from '../../../services/review/reviewTempFileService';
 import { AcceptReviewCommand } from '../commands/AcceptReviewCommand';
 
-// Base instruction for review requests - used by both clipboard and terminal workflows
-const REVIEW_INSTRUCTION = 'Review and update the following hierarchical list. Output your response in a markdown code block to preserve formatting. Use heading levels for hierarchy (# root, ## child, ### grandchild). Retain status symbols for existing entries.';
+// Base instruction for review requests
+const REVIEW_INSTRUCTION_BASE = `You are reviewing a hierarchical task/note list. Please:
+1. Analyze the content and suggest improvements, additions, or reorganization
+2. Add any missing items that would make the list more complete
+3. Fix any issues or inconsistencies you find
+
+OUTPUT FORMAT:
+- Use markdown headings for hierarchy (# root, ## child, ### grandchild)
+- Use [ ] for pending items, [x] for completed, [-] for failed
+- Example: "## [ ] Task name" or "### [x] Completed task"`;
+
+// Web version - output in code block for easy copying
+const REVIEW_INSTRUCTION_WEB = `${REVIEW_INSTRUCTION_BASE}
+
+Output the complete updated list in a markdown code block.`;
+
+// Terminal version - just the base instruction (file path added separately)
+const REVIEW_INSTRUCTION_TERMINAL = `${REVIEW_INSTRUCTION_BASE}
+
+Output the complete updated list.`;
 
 export interface ReviewActions {
   startReview: (nodeId: string) => void;
@@ -117,7 +135,7 @@ export function createReviewActions(
       try {
         // Copy node content to clipboard with context instruction
         const formattedContent = exportNodeAsMarkdown(node, state.nodes);
-        await navigator.clipboard.writeText(REVIEW_INSTRUCTION + '\n\n' + formattedContent);
+        await navigator.clipboard.writeText(REVIEW_INSTRUCTION_WEB + '\n\n' + formattedContent);
         logger.info('Copied to clipboard for review', 'ReviewActions');
 
         // Show toast message
@@ -141,8 +159,8 @@ export function createReviewActions(
 
     /**
      * Request review in terminal (automated workflow)
-     * Writes instruction + content to terminal, executes, and starts monitoring
-     * Works with any terminal tool that can copy responses to clipboard
+     * Writes instruction + content to terminal, executes, and starts file watching
+     * The AI tool writes its response to a temp file which we watch for changes
      * Note: Caller should also call panelStore.showReview() to show the review panel
      */
     requestReviewInTerminal: async (nodeId: string, terminalId: string) => {
@@ -171,20 +189,30 @@ export function createReviewActions(
       }
 
       try {
-        // Prepend instruction for terminal tool (adds clipboard copy instruction)
+        // Create temp file for review response - createTempFile returns the full path
+        const reviewFileName = `review-response-${nodeId}.md`;
+        const reviewResponseFile = await window.electron.createTempFile(reviewFileName, '');
+
+        // Build instruction for terminal tool
         const formattedContent = exportNodeAsMarkdown(node, state.nodes);
-        const contentWithInstruction = REVIEW_INSTRUCTION + ' Copy your reply to clipboard.\n\n' + formattedContent;
+        const terminalInstruction = `${REVIEW_INSTRUCTION_TERMINAL}
+
+IMPORTANT: Write your reviewed/updated list to this file: ${reviewResponseFile}
+
+Here is the content to review:
+
+${formattedContent}`;
 
         // Write and execute in terminal
-        await executeInTerminal(terminalId, contentWithInstruction);
+        await executeInTerminal(terminalId, terminalInstruction);
 
         // Start review mode
         set({ reviewingNodeId: nodeId });
 
-        // Start clipboard monitoring
-        await window.electron.startClipboardMonitor();
+        // Start file watching for the response
+        await window.electron.startReviewFileWatcher(reviewResponseFile);
 
-        logger.info(`Started terminal review for node: ${nodeId}`, 'ReviewActions');
+        logger.info(`Started terminal review for node: ${nodeId}, watching: ${reviewResponseFile}`, 'ReviewActions');
       } catch (error) {
         logger.error('Failed to request review in terminal', error as Error, 'ReviewActions');
         throw error;

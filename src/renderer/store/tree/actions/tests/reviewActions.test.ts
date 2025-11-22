@@ -44,6 +44,8 @@ describe('reviewActions', () => {
       electron: {
         terminalWrite: mockTerminalWrite,
         startClipboardMonitor: mockStartClipboardMonitor,
+        createTempFile: vi.fn().mockResolvedValue('/tmp/arborescent/review-response.md'),
+        startReviewFileWatcher: vi.fn().mockResolvedValue(undefined),
       },
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } as any;
@@ -337,23 +339,23 @@ describe('reviewActions', () => {
   });
 
   describe('requestReviewInTerminal', () => {
-    it('should write to terminal, execute, and start review', async () => {
+    it('should write to terminal, execute, and start file watcher', async () => {
       const { executeInTerminal } = await import('../../../../utils/terminalExecution');
 
       await actions.requestReviewInTerminal('child1', 'terminal-1');
 
       expect(executeInTerminal).toHaveBeenCalledWith(
         'terminal-1',
-        expect.stringContaining('Retain status symbols for existing entries. Copy your reply to clipboard.')
+        expect.stringContaining('Write your reviewed/updated list to this file:')
       );
       expect(executeInTerminal).toHaveBeenCalledWith(
         'terminal-1',
         expect.stringContaining('Child 1')
       );
       expect(mockSet).toHaveBeenCalledWith({ reviewingNodeId: 'child1' });
-      expect(mockStartClipboardMonitor).toHaveBeenCalled();
+      expect(window.electron.startReviewFileWatcher).toHaveBeenCalled();
       expect(logger.info).toHaveBeenCalledWith(
-        'Started terminal review for node: child1',
+        expect.stringContaining('Started terminal review for node: child1'),
         'ReviewActions'
       );
     });
@@ -365,7 +367,7 @@ describe('reviewActions', () => {
       await actions.requestReviewInTerminal('child1', 'terminal-1');
 
       expect(executeInTerminal).not.toHaveBeenCalled();
-      expect(mockStartClipboardMonitor).not.toHaveBeenCalled();
+      expect(window.electron.startReviewFileWatcher).not.toHaveBeenCalled();
       expect(logger.error).toHaveBeenCalledWith(
         'Review already in progress',
         expect.any(Error),
@@ -394,7 +396,7 @@ describe('reviewActions', () => {
       await actions.requestReviewInTerminal('nonexistent', 'terminal-1');
 
       expect(executeInTerminal).not.toHaveBeenCalled();
-      expect(mockStartClipboardMonitor).not.toHaveBeenCalled();
+      expect(window.electron.startReviewFileWatcher).not.toHaveBeenCalled();
       expect(logger.error).toHaveBeenCalledWith(
         'Node not found',
         expect.any(Error),

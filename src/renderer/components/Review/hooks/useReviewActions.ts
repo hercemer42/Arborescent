@@ -22,8 +22,9 @@ export function useReviewActions() {
       const state = store.getState();
       const tempFilePath = state.reviewingNodeId && state.nodes[state.reviewingNodeId]?.metadata.reviewTempFile;
 
-      // Stop clipboard monitoring
+      // Stop clipboard monitoring and file watching
       await window.electron.stopClipboardMonitor();
+      await window.electron.stopReviewFileWatcher();
 
       // Cancel review using action from store
       store.getState().actions.cancelReview();
@@ -73,6 +74,7 @@ export function useReviewActions() {
       const actualRootNodeId = hiddenRoot.children[0];
 
       // Filter out the hidden root from the nodes map
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { [reviewRootNodeId]: _hiddenRoot, ...contentNodes } = reviewNodes;
 
       logger.info(`Accepting review with ${Object.keys(contentNodes).length} nodes`, 'ReviewActions');
@@ -86,8 +88,9 @@ export function useReviewActions() {
       // Replace the reviewing node with nodes from review store - use action from store
       mainStore.getState().actions.acceptReview(actualRootNodeId, contentNodes);
 
-      // Stop clipboard monitoring
+      // Stop clipboard monitoring and file watching
       await window.electron.stopClipboardMonitor();
+      await window.electron.stopReviewFileWatcher();
 
       // Delete temp file if it exists
       if (tempFilePath) {

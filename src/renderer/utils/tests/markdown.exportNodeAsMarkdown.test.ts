@@ -14,7 +14,7 @@ describe('exportNodeAsMarkdown', () => {
 
     const result = exportNodeAsMarkdown(node, nodes);
 
-    expect(result).toBe('# ☐ Test task\n');
+    expect(result).toBe('# [ ] Test task\n');
   });
 
   it('formats nested nodes with heading levels', () => {
@@ -34,7 +34,7 @@ describe('exportNodeAsMarkdown', () => {
 
     const result = exportNodeAsMarkdown(parent, nodes);
 
-    expect(result).toBe('# ☐ Parent task\n## ✓ Subtask\n');
+    expect(result).toBe('# [ ] Parent task\n## [x] Subtask\n');
   });
 
   it('formats deeply nested hierarchy', () => {
@@ -60,7 +60,7 @@ describe('exportNodeAsMarkdown', () => {
 
     const result = exportNodeAsMarkdown(parent, nodes);
 
-    expect(result).toBe('# ☐ Parent task\n## ☐ Child task\n### ☐ Deep task\n');
+    expect(result).toBe('# [ ] Parent task\n## [ ] Child task\n### [ ] Deep task\n');
   });
 
   it('skips deleted nodes', () => {
@@ -86,7 +86,7 @@ describe('exportNodeAsMarkdown', () => {
 
     const result = exportNodeAsMarkdown(parent, nodes);
 
-    expect(result).toBe('# ☐ Parent task\n## ☐ Visible task\n');
+    expect(result).toBe('# [ ] Parent task\n## [ ] Visible task\n');
   });
 
   it('handles different status symbols', () => {
@@ -112,7 +112,7 @@ describe('exportNodeAsMarkdown', () => {
 
     const result = exportNodeAsMarkdown(parent, nodes);
 
-    expect(result).toBe('# ☐ Pending\n## ✓ Completed\n## ✗ Failed\n');
+    expect(result).toBe('# [ ] Pending\n## [x] Completed\n## [-] Failed\n');
   });
 
   it('preserves multi-line content', () => {
@@ -126,7 +126,7 @@ describe('exportNodeAsMarkdown', () => {
 
     const result = exportNodeAsMarkdown(node, nodes);
 
-    expect(result).toBe('# ☐ Task title\nAdditional details\nMore context\n');
+    expect(result).toBe('# [ ] Task title\nAdditional details\nMore context\n');
   });
 
   it('handles multiple siblings at same level', () => {
@@ -152,7 +152,7 @@ describe('exportNodeAsMarkdown', () => {
 
     const result = exportNodeAsMarkdown(parent, nodes);
 
-    expect(result).toBe('# ☐ Parent\n## ☐ First sibling\n## ✓ Second sibling\n');
+    expect(result).toBe('# [ ] Parent\n## [ ] First sibling\n## [x] Second sibling\n');
   });
 
   it('returns empty string for deleted root node', () => {

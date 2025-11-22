@@ -127,6 +127,7 @@ vi.mock('../../../../store/review/reviewTreeStore', () => ({
 
 describe('useReviewActions', () => {
   let mockStopClipboardMonitor: ReturnType<typeof vi.fn>;
+  let mockStopReviewFileWatcher: ReturnType<typeof vi.fn>;
 
   beforeEach(() => {
     vi.clearAllMocks();
@@ -137,10 +138,12 @@ describe('useReviewActions', () => {
       rootNodeId: 'review-root',
     });
     mockStopClipboardMonitor = vi.fn().mockResolvedValue(undefined);
+    mockStopReviewFileWatcher = vi.fn().mockResolvedValue(undefined);
 
     global.window = {
       electron: {
         stopClipboardMonitor: mockStopClipboardMonitor,
+        stopReviewFileWatcher: mockStopReviewFileWatcher,
       },
       dispatchEvent: vi.fn(),
     // eslint-disable-next-line @typescript-eslint/no-explicit-any

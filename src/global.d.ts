@@ -27,6 +27,10 @@ declare global {
       startClipboardMonitor: () => Promise<void>;
       stopClipboardMonitor: () => Promise<void>;
       onClipboardContentDetected: (callback: (content: string) => void) => () => void;
+      startReviewFileWatcher: (filePath: string) => Promise<void>;
+      stopReviewFileWatcher: () => Promise<void>;
+      getReviewFilePath: () => Promise<string | null>;
+      onReviewFileContentDetected: (callback: (content: string) => void) => () => void;
       setMenuNewHandler: (callback: () => void) => void;
       setMenuOpenHandler: (callback: () => void) => void;
       setMenuSaveHandler: (callback: () => void) => void;

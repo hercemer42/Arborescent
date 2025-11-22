@@ -5,6 +5,7 @@ import { registerDialogHandlers } from './handlers/dialogHandlers';
 import { registerSessionHandlers } from './handlers/sessionHandlers';
 import { registerTempFileHandlers } from './handlers/tempFileHandlers';
 import { registerClipboardHandlers } from './handlers/clipboardHandlers';
+import { registerReviewFileHandlers } from './handlers/reviewFileHandlers';
 
 /**
  * Register all IPC handlers
@@ -20,4 +21,5 @@ export async function registerIpcHandlers(getMainWindow: () => BrowserWindow | n
   registerSessionHandlers();
   registerTempFileHandlers();
   registerClipboardHandlers(getMainWindow);
+  registerReviewFileHandlers(getMainWindow);
 }

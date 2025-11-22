@@ -3,6 +3,13 @@ import { v4 as uuidv4 } from 'uuid';
 
 export type NodesMap = Record<string, TreeNode>;
 
+// ASCII checkbox symbols for export (more reliable across tools and encodings)
+const ASCII_STATUS_SYMBOLS: Record<NodeStatus, string> = {
+  pending: '[ ]',
+  completed: '[x]',
+  failed: '[-]',
+};
+
 // ============================================================================
 // Export Functions
 // ============================================================================
@@ -24,7 +31,7 @@ function createHeadingPrefix(depth: number): string {
  * @param node - The node to export
  * @param nodes - Map of all nodes
  * @param depth - Current depth level (0 = root, maps to # heading)
- * @returns Markdown formatted string with heading hierarchy and status symbols
+ * @returns Markdown formatted string with heading hierarchy and ASCII checkbox symbols
  */
 export function exportNodeAsMarkdown(node: TreeNode, nodes: NodesMap, depth: number = 0): string {
   // Skip deleted nodes
@@ -34,9 +41,9 @@ export function exportNodeAsMarkdown(node: TreeNode, nodes: NodesMap, depth: num
 
   let markdown = '';
 
-  // Get status symbol
+  // Get ASCII status symbol
   const status = node.metadata.status || 'pending';
-  const statusSymbol = STATUS_SYMBOLS[status];
+  const statusSymbol = ASCII_STATUS_SYMBOLS[status];
 
   const headingPrefix = createHeadingPrefix(depth);
 
@@ -99,7 +106,7 @@ function parseLine(line: string): ParsedLine | null {
   let status: NodeStatus = 'pending';
   let content = '';
 
-  // Find which status symbol matches
+  // Find which status symbol matches (Unicode symbols)
   let foundStatus = false;
   for (const [key, symbol] of Object.entries(STATUS_SYMBOLS)) {
     if (remainder.startsWith(symbol)) {
@@ -108,6 +115,23 @@ function parseLine(line: string): ParsedLine | null {
       content = remainder.substring(symbol.length).trim();
       foundStatus = true;
       break;
+    }
+  }
+
+  // Also check for ASCII checkbox syntax: [ ], [x], [X], [-]
+  if (!foundStatus) {
+    const checkboxMatch = remainder.match(/^\[([xX \-])\]\s*(.*)/);
+    if (checkboxMatch) {
+      const checkMark = checkboxMatch[1];
+      if (checkMark === ' ') {
+        status = 'pending';
+      } else if (checkMark === '-') {
+        status = 'failed';
+      } else {
+        status = 'completed';
+      }
+      content = checkboxMatch[2].trim();
+      foundStatus = true;
     }
   }
 

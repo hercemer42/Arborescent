@@ -64,4 +64,10 @@ export function registerTempFileHandlers(): void {
       return null;
     }
   });
+
+  // Check if a file is in the temp directory
+  ipcMain.handle('is-temp-file', async (_, filePath: string) => {
+    const tempDir = path.join(app.getPath('userData'), 'temp-files');
+    return filePath.startsWith(tempDir);
+  });
 }

@@ -29,6 +29,7 @@ contextBridge.exposeInMainWorld('electron', {
   saveTempFilesMetadata: (metadata: string) =>
     ipcRenderer.invoke('save-temp-files-metadata', metadata),
   getTempFilesMetadata: () => ipcRenderer.invoke('get-temp-files-metadata'),
+  isTempFile: (filePath: string) => ipcRenderer.invoke('is-temp-file', filePath),
   // Clipboard monitoring IPC
   startClipboardMonitor: () => ipcRenderer.invoke('start-clipboard-monitor'),
   stopClipboardMonitor: () => ipcRenderer.invoke('stop-clipboard-monitor'),
@@ -36,6 +37,15 @@ contextBridge.exposeInMainWorld('electron', {
     const listener = (_event: Electron.IpcRendererEvent, content: string) => callback(content);
     ipcRenderer.on('clipboard-content-detected', listener);
     return () => ipcRenderer.removeListener('clipboard-content-detected', listener);
+  },
+  // Review file watching IPC
+  startReviewFileWatcher: (filePath: string) => ipcRenderer.invoke('start-review-file-watcher', filePath),
+  stopReviewFileWatcher: () => ipcRenderer.invoke('stop-review-file-watcher'),
+  getReviewFilePath: () => ipcRenderer.invoke('get-review-file-path'),
+  onReviewFileContentDetected: (callback: (content: string) => void) => {
+    const listener = (_event: Electron.IpcRendererEvent, content: string) => callback(content);
+    ipcRenderer.on('review-file-content-detected', listener);
+    return () => ipcRenderer.removeListener('review-file-content-detected', listener);
   },
   // Terminal IPC
   terminalCreate: (id: string, title: string, shellCommand?: string, shellArgs?: string[], cwd?: string) =>

@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2025-11-21T21:45:03.905Z'
+updated: '2025-11-21T21:52:03.290Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -940,7 +940,7 @@ nodes:
     content: In progress
     children:
       - ae69b14e-a0a8-4609-bd22-0f8489957aaa
-      - 4d685d6f-e15f-4d03-a085-5d7d0676284c
+      - b4f9a92d-30c7-46b4-af29-d0e4ed22f5fd
       - 5bc6d46e-b1ce-471e-8350-bfd32e49780a
     metadata:
       status: pending
@@ -2736,44 +2736,6 @@ nodes:
     children: []
     metadata:
       status: completed
-  4d685d6f-e15f-4d03-a085-5d7d0676284c:
-    id: 4d685d6f-e15f-4d03-a085-5d7d0676284c
-    content: Human/AI collaboration feature
-    children:
-      - 15c1dd13-0e0e-494c-bf17-e4ee3d618877
-      - d07ca588-f707-4c30-a743-5643ce0585d6
-      - 9735cf65-46d2-4c90-b6af-5153b2e3228a
-      - 94b0ede8-ee9e-44d1-8c14-c8fbe09fe78b
-      - 13423a4c-cdce-4c3f-bee3-28cd14953770
-      - b7989bac-696e-4421-a60c-8e038ffbebcc
-      - e2bdd1b4-6873-4722-992d-ce85f5112b86
-      - 485670f9-e066-4e21-9821-f5273bb6e896
-      - 14670af3-c8ac-41dd-a753-f80cd9d924dc
-      - 138865df-efc5-4b3f-a787-81cd2901b384
-      - 5dd65353-e32f-413c-941b-f51b6af90af1
-      - 05c39c8e-05a2-4cac-98dc-01d9dce532e2
-      - d9e4132d-6378-4314-90ba-f86a3e388783
-      - b95286c3-2ecf-4850-9ca4-ab9ca0d122b0
-      - 45a3b1dc-086c-46a7-95c4-7852d385e1dd
-      - d6f34f31-56e9-4e88-80b3-c66550b02a7b
-      - 9b8bd81b-9737-4d50-aa1b-10e9eba2bbf9
-      - 98d3211b-f030-459d-bf2b-7cab7f152721
-      - e00abf5e-e5ea-4ca2-8dc3-e85c69acbc57
-      - 691eed9c-2be9-433a-83b1-23d48d43f902
-      - 59074d72-2143-45f6-91ab-efb66da13417
-      - 4bd48b05-5317-4e1d-aba3-93a1688311e4
-      - d3ec4cf3-ab8e-43a3-afcd-dc773be46603
-      - 894eff60-42f4-4061-83c7-3d8ced499ee4
-    metadata:
-      status: pending
-      reviewTempFile: /home/brian/.config/arborescent/temp-files/review-4d685d6f-e15f-4d03-a085-5d7d0676284c-4i9s55.txt
-      reviewContentHash: 4i9s55
-  d07ca588-f707-4c30-a743-5643ce0585d6:
-    id: d07ca588-f707-4c30-a743-5643ce0585d6
-    content: Add a review panel that uses the ARBO format, just like a normal arbo file, with same editing capabilities.
-    children: []
-    metadata:
-      status: pending
   72f56688-a466-4210-abbf-ae6c04a3b571:
     id: 72f56688-a466-4210-abbf-ae6c04a3b571
     content: Save with .arbo extension
@@ -2871,441 +2833,6 @@ nodes:
     children: []
     metadata:
       status: pending
-  9735cf65-46d2-4c90-b6af-5153b2e3228a:
-    id: 9735cf65-46d2-4c90-b6af-5153b2e3228a
-    content: Add an icon for it that only appears if there is a review in progress, it appears next to the terminal and browser panel.
-    children: []
-    metadata:
-      status: pending
-  94b0ede8-ee9e-44d1-8c14-c8fbe09fe78b:
-    id: 94b0ede8-ee9e-44d1-8c14-c8fbe09fe78b
-    content: Add a right-click option to the context menu - 'Request review in terminal' or whatever you think a good wording is
-    children:
-      - 43bcc78d-661e-4bda-9c01-65edaa27ac45
-      - 40ca581f-f877-4706-ae2b-3a939583b696
-    metadata:
-      status: pending
-  43bcc78d-661e-4bda-9c01-65edaa27ac45:
-    id: 43bcc78d-661e-4bda-9c01-65edaa27ac45
-    content: When clicking on this, sends the node to the terminal and executes it
-    children: []
-    metadata:
-      status: pending
-  13423a4c-cdce-4c3f-bee3-28cd14953770:
-    id: 13423a4c-cdce-4c3f-bee3-28cd14953770
-    content: We watch the clipboard in arborescent, when it changes and the format is arborescent compatible (MD, checkboxes, hierarchical, like the original node) we open the side panel with the contents for review
-    children: []
-    metadata:
-      status: pending
-  e2bdd1b4-6873-4722-992d-ce85f5112b86:
-    id: e2bdd1b4-6873-4722-992d-ce85f5112b86
-    content: While a node is being reviewed we give it a colour highlight (different from existing highlights)
-    children: []
-    metadata:
-      status: pending
-  485670f9-e066-4e21-9821-f5273bb6e896:
-    id: 485670f9-e066-4e21-9821-f5273bb6e896
-    content: "Reviews persist between sessions (if review panel is open on close session, keep it.\_ If node is being reviewed, keep it highlighted)"
-    children: []
-    metadata:
-      status: pending
-  14670af3-c8ac-41dd-a753-f80cd9d924dc:
-    id: 14670af3-c8ac-41dd-a753-f80cd9d924dc
-    content: There can only be one review in progress at a time.
-    children: []
-    metadata:
-      status: pending
-  138865df-efc5-4b3f-a787-81cd2901b384:
-    id: 138865df-efc5-4b3f-a787-81cd2901b384
-    content: Node metadata should contain review status if there is one in progress (plus hash identifier for temporary review file, not hardcoded path)
-    children: []
-    metadata:
-      status: pending
-  5dd65353-e32f-413c-941b-f51b6af90af1:
-    id: 5dd65353-e32f-413c-941b-f51b6af90af1
-    content: We cannot delete a node in review, the user gets a message (Cannot delete a node in review, please finish or cancel the review) or whatever works best
-    children: []
-    metadata:
-      status: pending
-  18fd1614-4113-4eec-82e2-5a7a98200055:
-    id: 18fd1614-4113-4eec-82e2-5a7a98200055
-    content: The review panel should just be hidden and not closed if we open the terminal or browser panels instead
-    children: []
-    metadata:
-      status: pending
-  05c39c8e-05a2-4cac-98dc-01d9dce532e2:
-    id: 05c39c8e-05a2-4cac-98dc-01d9dce532e2
-    content: The review panel uses the same side panel and terminal
-    children:
-      - 18fd1614-4113-4eec-82e2-5a7a98200055
-    metadata:
-      status: pending
-  d9e4132d-6378-4314-90ba-f86a3e388783:
-    id: d9e4132d-6378-4314-90ba-f86a3e388783
-    content: A new node can't be reviewed if there is a review in progress
-    children: []
-    metadata:
-      status: pending
-  b95286c3-2ecf-4850-9ca4-ab9ca0d122b0:
-    id: b95286c3-2ecf-4850-9ca4-ab9ca0d122b0
-    content: |
-      There is a bottom status bar where we can show review status
-    children:
-      - 3866518d-cf5a-45fe-8fb9-1057a5489c19
-      - 29fca3f2-30d6-4e09-80e6-0b698df189a1
-      - f5bf86dc-3ef5-4e91-8b06-c0517aa729cb
-      - 063d90f2-96a3-41c3-8b45-550e50f24192
-      - cfc541de-2c0d-4b81-92a3-d5d727aec588
-    metadata:
-      status: pending
-  eeb0d9b7-4228-4cfc-b9be-f029275e4f1c:
-    id: eeb0d9b7-4228-4cfc-b9be-f029275e4f1c
-    content: The node name is the node text but truncates with elipses after 15 characters.
-    children: []
-    metadata:
-      status: pending
-  29fca3f2-30d6-4e09-80e6-0b698df189a1:
-    id: 29fca3f2-30d6-4e09-80e6-0b698df189a1
-    content: When the clipbard has changed and the review panel is populated, it shows - Review in progress for node xyz...
-    children: []
-    metadata:
-      status: pending
-  f5bf86dc-3ef5-4e91-8b06-c0517aa729cb:
-    id: f5bf86dc-3ef5-4e91-8b06-c0517aa729cb
-    content: The status appears even if the review panel is minimized - no effect
-    children: []
-    metadata:
-      status: pending
-  3866518d-cf5a-45fe-8fb9-1057a5489c19:
-    id: 3866518d-cf5a-45fe-8fb9-1057a5489c19
-    content: When the clipboard hasn't changed yet, it shows - waiting for review for node xyx...
-    children:
-      - eeb0d9b7-4228-4cfc-b9be-f029275e4f1c
-    metadata:
-      status: pending
-  45a3b1dc-086c-46a7-95c4-7852d385e1dd:
-    id: 45a3b1dc-086c-46a7-95c4-7852d385e1dd
-    content: There is a right-click option in the context menu 'Request review'
-    children:
-      - e0c4ba6e-e8e6-44c1-8a7d-122f983be6bd
-      - 527e3e1d-cd76-416c-ae82-7052063e5ff5
-      - 22d70b83-84e7-4ea8-8e40-a31f8465f129
-      - 4caba031-af32-443c-95d4-f675c7e7c0ab
-      - c4ebc95e-be18-4156-b086-97657c45bdc4
-      - 3bd31afa-260f-4a50-9595-7695fd107b71
-    metadata:
-      status: pending
-  e0c4ba6e-e8e6-44c1-8a7d-122f983be6bd:
-    id: e0c4ba6e-e8e6-44c1-8a7d-122f983be6bd
-    content: It copies the node to clipboard in MD format
-    children: []
-    metadata:
-      status: pending
-  527e3e1d-cd76-416c-ae82-7052063e5ff5:
-    id: 527e3e1d-cd76-416c-ae82-7052063e5ff5
-    content: It highlights the node and updates the review status bar
-    children: []
-    metadata:
-      status: pending
-  4caba031-af32-443c-95d4-f675c7e7c0ab:
-    id: 4caba031-af32-443c-95d4-f675c7e7c0ab
-    content: The user can then paste this into whatever review tool they have
-    children: []
-    metadata:
-      status: pending
-  c4ebc95e-be18-4156-b086-97657c45bdc4:
-    id: c4ebc95e-be18-4156-b086-97657c45bdc4
-    content: Once they recieve a review in MD format they can copy it to clipboard
-    children: []
-    metadata:
-      status: pending
-  3bd31afa-260f-4a50-9595-7695fd107b71:
-    id: 3bd31afa-260f-4a50-9595-7695fd107b71
-    content: Arborescent watches to clipboard for changes
-    children:
-      - d7f5607e-405c-41cf-b6d4-2b9f917b23f7
-    metadata:
-      status: pending
-  d7f5607e-405c-41cf-b6d4-2b9f917b23f7:
-    id: d7f5607e-405c-41cf-b6d4-2b9f917b23f7
-    content: If the clipboard changes and the contents are valid ARBO compatible MD format
-    children:
-      - 1932edc8-32cb-4673-8812-c78b912af08a
-      - f608f86c-27f2-4d55-8f92-a8b7a44f13ad
-    metadata:
-      status: pending
-  1932edc8-32cb-4673-8812-c78b912af08a:
-    id: 1932edc8-32cb-4673-8812-c78b912af08a
-    content: Then open the side panel with the contents
-    children: []
-    metadata:
-      status: pending
-  f608f86c-27f2-4d55-8f92-a8b7a44f13ad:
-    id: f608f86c-27f2-4d55-8f92-a8b7a44f13ad
-    content: Update the review bar status
-    children: []
-    metadata:
-      status: pending
-  22d70b83-84e7-4ea8-8e40-a31f8465f129:
-    id: 22d70b83-84e7-4ea8-8e40-a31f8465f129
-    content: It shows a toaster message
-    children:
-      - 1f8d815a-8869-449f-9c45-9823b9e7fa55
-    metadata:
-      status: pending
-  1f8d815a-8869-449f-9c45-9823b9e7fa55:
-    id: 1f8d815a-8869-449f-9c45-9823b9e7fa55
-    content: Content copied to clipboard - Paste to review tool, then copy response to continue
-    children: []
-    metadata:
-      status: pending
-  d6f34f31-56e9-4e88-80b3-c66550b02a7b:
-    id: d6f34f31-56e9-4e88-80b3-c66550b02a7b
-    content: There is an 'Accept' button on the top right of the review panel, to the right of the panel tabs.
-    children:
-      - bc947754-eabe-4043-b56f-3f563cf93eb5
-      - 9ece8665-2093-4574-9bb9-1e5a542505df
-      - 1742073e-4860-4f8b-a6e9-ec5a12ab986f
-      - 571bf3c9-4a8e-469e-9835-f6be24982946
-      - 41c759f9-c6f4-488c-af22-abeb6601a26e
-    metadata:
-      status: pending
-  bc947754-eabe-4043-b56f-3f563cf93eb5:
-    id: bc947754-eabe-4043-b56f-3f563cf93eb5
-    content: When clicking, it copies the contents into the node, replacing the node and its descendents
-    children: []
-    metadata:
-      status: pending
-  9ece8665-2093-4574-9bb9-1e5a542505df:
-    id: 9ece8665-2093-4574-9bb9-1e5a542505df
-    content: The node briefly flashes then goes back to normal (loses its review colour scheme)
-    children: []
-    metadata:
-      status: pending
-  1742073e-4860-4f8b-a6e9-ec5a12ab986f:
-    id: 1742073e-4860-4f8b-a6e9-ec5a12ab986f
-    content: The side panel closes
-    children: []
-    metadata:
-      status: pending
-  41c759f9-c6f4-488c-af22-abeb6601a26e:
-    id: 41c759f9-c6f4-488c-af22-abeb6601a26e
-    content: This is undoable and redoable
-    children:
-      - 8cb9b6ce-f403-48f7-b358-d71ec3e6e83b
-    metadata:
-      status: pending
-  8cb9b6ce-f403-48f7-b358-d71ec3e6e83b:
-    id: 8cb9b6ce-f403-48f7-b358-d71ec3e6e83b
-    content: If we undo it, we lose the highlight on the node and dont resume the review
-    children: []
-    metadata:
-      status: pending
-  9b8bd81b-9737-4d50-aa1b-10e9eba2bbf9:
-    id: 9b8bd81b-9737-4d50-aa1b-10e9eba2bbf9
-    content: There is a 'Cancel' button next to accept
-    children:
-      - ca09020a-7f1d-40d2-80b7-90b91336dc85
-    metadata:
-      status: pending
-  ca09020a-7f1d-40d2-80b7-90b91336dc85:
-    id: ca09020a-7f1d-40d2-80b7-90b91336dc85
-    content: When clicking, it closes the review panel, removes the highlight from the node in review, removes the bottom bar status.
-    children: []
-    metadata:
-      status: pending
-  571bf3c9-4a8e-469e-9835-f6be24982946:
-    id: 571bf3c9-4a8e-469e-9835-f6be24982946
-    content: The bottom bar status is removed
-    children: []
-    metadata:
-      status: pending
-  98d3211b-f030-459d-bf2b-7cab7f152721:
-    id: 98d3211b-f030-459d-bf2b-7cab7f152721
-    content: There is no 'Edit' button, the review content can be edited - when we click 'accept', the edited version is inserted
-    children: []
-    metadata:
-      status: pending
-  40ca581f-f877-4706-ae2b-3a939583b696:
-    id: 40ca581f-f877-4706-ae2b-3a939583b696
-    content: While sending to terminal, adds instructions to copy the results to a temporary file in the user arborescent profile folder
-    children:
-      - 559af34a-4163-4df6-9e86-73aec839523a
-    metadata:
-      status: pending
-  063d90f2-96a3-41c3-8b45-550e50f24192:
-    id: 063d90f2-96a3-41c3-8b45-550e50f24192
-    content: On accepting a review it flashes briefly 'Review accepted'
-    children: []
-    metadata:
-      status: pending
-  cfc541de-2c0d-4b81-92a3-d5d727aec588:
-    id: cfc541de-2c0d-4b81-92a3-d5d727aec588
-    content: On cancelling a review it flashes briefly 'Review canceled'
-    children: []
-    metadata:
-      status: pending
-  e00abf5e-e5ea-4ca2-8dc3-e85c69acbc57:
-    id: e00abf5e-e5ea-4ca2-8dc3-e85c69acbc57
-    content: We can't edit a node in review, must cancel or accept review first
-    children: []
-    metadata:
-      status: pending
-  691eed9c-2be9-433a-83b1-23d48d43f902:
-    id: 691eed9c-2be9-433a-83b1-23d48d43f902
-    content: If clipboard has invalid content, ignore and move on.
-    children: []
-    metadata:
-      status: pending
-  59074d72-2143-45f6-91ab-efb66da13417:
-    id: 59074d72-2143-45f6-91ab-efb66da13417
-    content: The review can be cancelled by right clicking on the node and selecting 'cancel review'
-    children:
-      - 343268b5-3e4b-4a99-9138-668539b8875d
-    metadata:
-      status: pending
-  343268b5-3e4b-4a99-9138-668539b8875d:
-    id: 343268b5-3e4b-4a99-9138-668539b8875d
-    content: This only shows if a review is in progress.
-    children: []
-    metadata:
-      status: pending
-  4bd48b05-5317-4e1d-aba3-93a1688311e4:
-    id: 4bd48b05-5317-4e1d-aba3-93a1688311e4
-    content: "Review panel can't be closed with the 'X' - none displays.\_ Must accept or cancel"
-    children: []
-    metadata:
-      status: pending
-  d3ec4cf3-ab8e-43a3-afcd-dc773be46603:
-    id: d3ec4cf3-ab8e-43a3-afcd-dc773be46603
-    content: Review persists on restart/crash
-    children: []
-    metadata:
-      status: pending
-  b7989bac-696e-4421-a60c-8e038ffbebcc:
-    id: b7989bac-696e-4421-a60c-8e038ffbebcc
-    content: When the side panel is opened, we save the contents to a temporary file in the user arborescent profile so that it can persist between sessions
-    children: []
-    metadata:
-      status: pending
-  15c1dd13-0e0e-494c-bf17-e4ee3d618877:
-    id: 15c1dd13-0e0e-494c-bf17-e4ee3d618877
-    content: Refactor
-    children:
-      - eecdd15b-ec15-47d7-9dd8-84f74f0d1110
-      - a4b178fc-0e62-4b0d-813e-7635997afccf
-      - 25985527-b177-4863-a681-0a7da03ad520
-      - 3e8f4f09-1e6f-4a0d-b6c6-359a26350bfb
-      - 34e09add-518e-4494-8d1b-c0cb3a795427
-      - 2cfda1a5-b67b-4e7c-b860-6c0ded121c60
-      - 7c8bad8d-8408-4b91-a886-396713e1981a
-      - 6d2ef63b-1703-4b4a-aa54-6320ff99facf
-      - c2af3c5a-c480-4c86-baf2-6471a1e067a4
-      - 4cf09548-3c30-4047-aa29-4fad5ed3a932
-      - 2cad1735-4ece-4767-9a70-4cc7789a92c1
-    metadata:
-      status: completed
-      expanded: false
-  eecdd15b-ec15-47d7-9dd8-84f74f0d1110:
-    id: eecdd15b-ec15-47d7-9dd8-84f74f0d1110
-    content: Need to check for markdown format that arbo can import - so hierarchical node structure with checkboxes
-    children:
-      - 74f01418-7d27-4b6e-92bc-0aa4bb32988e
-    metadata:
-      status: completed
-  a4b178fc-0e62-4b0d-813e-7635997afccf:
-    id: a4b178fc-0e62-4b0d-813e-7635997afccf
-    content: Do we need to separate the code in ipcServices to utility files ?
-    children: []
-    metadata:
-      status: completed
-  25985527-b177-4863-a681-0a7da03ad520:
-    id: 25985527-b177-4863-a681-0a7da03ad520
-    content: Theres review specific code in useNodeContextMenu that should go elsewhere, like a dedicated service or actions
-    children: []
-    metadata:
-      status: completed
-  3e8f4f09-1e6f-4a0d-b6c6-359a26350bfb:
-    id: 3e8f4f09-1e6f-4a0d-b6c6-359a26350bfb
-    content: stuff in reviewPanel.tsx should go in hooks files
-    children: []
-    metadata:
-      status: completed
-  74f01418-7d27-4b6e-92bc-0aa4bb32988e:
-    id: 74f01418-7d27-4b6e-92bc-0aa4bb32988e
-    content: Do so in renderer
-    children: []
-    metadata:
-      status: completed
-  34e09add-518e-4494-8d1b-c0cb3a795427:
-    id: 34e09add-518e-4494-8d1b-c0cb3a795427
-    content: there's code in reviewService.ts that looks like we already have it with the 'send to terminal' feature
-    children: []
-    metadata:
-      status: completed
-  7c8bad8d-8408-4b91-a886-396713e1981a:
-    id: 7c8bad8d-8408-4b91-a886-396713e1981a
-    content: Repetition in tempFileHandlers
-    children: []
-    metadata:
-      status: completed
-  6d2ef63b-1703-4b4a-aa54-6320ff99facf:
-    id: 6d2ef63b-1703-4b4a-aa54-6320ff99facf
-    content: bottomStatusBar needs hooks file
-    children: []
-    metadata:
-      status: completed
-  c2af3c5a-c480-4c86-baf2-6471a1e067a4:
-    id: c2af3c5a-c480-4c86-baf2-6471a1e067a4
-    content: handleCancelReview in useNodeContextMeny should be an action
-    children: []
-    metadata:
-      status: completed
-  4cf09548-3c30-4047-aa29-4fad5ed3a932:
-    id: 4cf09548-3c30-4047-aa29-4fad5ed3a932
-    content: in reviewPanel - review-tab-bar should be its own component
-    children: []
-    metadata:
-      status: completed
-  2cfda1a5-b67b-4e7c-b860-6c0ded121c60:
-    id: 2cfda1a5-b67b-4e7c-b860-6c0ded121c60
-    content: "we'll need to have a review file per arbo file - it means we'll keep the same side\n\_panel, but switch between review file when we switch arbo file - or just a blank panel if there is no\_\nreview in progress."
-    children: []
-    metadata:
-      status: completed
-  2cad1735-4ece-4767-9a70-4cc7789a92c1:
-    id: 2cad1735-4ece-4767-9a70-4cc7789a92c1
-    content: "reviewTempFiles looks like it should be a service and not a utils ?\_ These aren't pure functions, the are calling electron"
-    children: []
-    metadata:
-      status: completed
-  894eff60-42f4-4061-83c7-3d8ced499ee4:
-    id: 894eff60-42f4-4061-83c7-3d8ced499ee4
-    content: There should be a review file per arbo file
-    children:
-      - 41188db8-daae-47e1-a389-68fe3c8e57f9
-      - edbe11f9-a16c-4dbf-b6f5-3a3d1334fb4e
-      - fdcf05df-a44e-4827-ba2e-40fd687b34ac
-    metadata:
-      status: pending
-  41188db8-daae-47e1-a389-68fe3c8e57f9:
-    id: 41188db8-daae-47e1-a389-68fe3c8e57f9
-    content: It should change when we change arbo file
-    children: []
-    metadata:
-      status: pending
-  edbe11f9-a16c-4dbf-b6f5-3a3d1334fb4e:
-    id: edbe11f9-a16c-4dbf-b6f5-3a3d1334fb4e
-    content: If there is no review in progress for the current arbo file, it should be blank
-    children: []
-    metadata:
-      status: pending
-  fdcf05df-a44e-4827-ba2e-40fd687b34ac:
-    id: fdcf05df-a44e-4827-ba2e-40fd687b34ac
-    content: Each one should persist between sessions
-    children: []
-    metadata:
-      status: pending
   ae69b14e-a0a8-4609-bd22-0f8489957aaa:
     id: ae69b14e-a0a8-4609-bd22-0f8489957aaa
     content: Bugs
@@ -3319,16 +2846,502 @@ nodes:
     children: []
     metadata:
       status: pending
-  559af34a-4163-4df6-9e86-73aec839523a:
-    id: 559af34a-4163-4df6-9e86-73aec839523a
-    content: Watch this file in arborescent, when the contents change, send them to the renderer and fill the same memory object that is filled when we detect MD content in the clipboard
+  b4f9a92d-30c7-46b4-af29-d0e4ed22f5fd:
+    id: b4f9a92d-30c7-46b4-af29-d0e4ed22f5fd
+    content: Human/AI collaboration feature
     children:
-      - 52b1d70c-6c83-4c12-8805-3ef0e3452cc5
+      - 1a4060c3-a847-49d3-8af9-950a42ef0eba
+      - 59d59120-05cf-43da-9739-ff949bea4a77
+      - a1d6612b-c310-4163-b284-09832cff9602
+      - 17c3911e-6070-4c8f-bf2c-26835e470700
+      - f0cc488f-b738-4eb0-8d6d-e764b860cb09
+      - 6e0d975c-c46c-4ce4-95cf-08327c680c96
+      - 70531d32-65f5-47c9-a4f8-76f9b781c66a
     metadata:
       status: pending
-  52b1d70c-6c83-4c12-8805-3ef0e3452cc5:
-    id: 52b1d70c-6c83-4c12-8805-3ef0e3452cc5
-    content: Then continue the same flow - if the content is valid then open the review pane etc
+      expanded: true
+      deleted: false
+      plugins: {}
+  1a4060c3-a847-49d3-8af9-950a42ef0eba:
+    id: 1a4060c3-a847-49d3-8af9-950a42ef0eba
+    content: Review panel
+    children:
+      - e8f1a722-660f-4cc1-914c-9d1bf0e9fdab
+      - 594994e1-7624-4163-9cea-db09ee279b76
+      - f36858da-b0a4-4e56-bd91-aca0b742ebff
+      - c65b64f1-5834-4428-9a1e-530d591840bd
+      - 39e60141-06b8-42a8-9456-4141c3dcc33b
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e8f1a722-660f-4cc1-914c-9d1bf0e9fdab:
+    id: e8f1a722-660f-4cc1-914c-9d1bf0e9fdab
+    content: Uses ARBO format with same editing capabilities as normal arbo files
     children: []
     metadata:
       status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  594994e1-7624-4163-9cea-db09ee279b76:
+    id: 594994e1-7624-4163-9cea-db09ee279b76
+    content: Icon appears next to terminal/browser panels only when review in progress
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f36858da-b0a4-4e56-bd91-aca0b742ebff:
+    id: f36858da-b0a4-4e56-bd91-aca0b742ebff
+    content: Cannot be closed with 'X' - must accept or cancel
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c65b64f1-5834-4428-9a1e-530d591840bd:
+    id: c65b64f1-5834-4428-9a1e-530d591840bd
+    content: Hidden (not closed) when terminal or browser panels opened
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  39e60141-06b8-42a8-9456-4141c3dcc33b:
+    id: 39e60141-06b8-42a8-9456-4141c3dcc33b
+    content: Review content is editable - edited version is inserted on accept
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  59d59120-05cf-43da-9739-ff949bea4a77:
+    id: 59d59120-05cf-43da-9739-ff949bea4a77
+    content: Initiating a review
+    children:
+      - a29263c4-32ff-4506-a768-e7f69ffc66a2
+      - ae5ed168-f18f-47a3-b624-3030ac613c62
+      - 1de9f4f6-7a05-441a-bb22-0c544df48aa3
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a29263c4-32ff-4506-a768-e7f69ffc66a2:
+    id: a29263c4-32ff-4506-a768-e7f69ffc66a2
+    content: 'Right-click option: ''Request review'' (clipboard flow)'
+    children:
+      - 2ac8f7c3-52ae-40ed-880e-ea248a27cb57
+      - 174a72c6-cd60-40d6-9366-68e00e6d3394
+      - f6aee3c5-76c6-43c8-8c43-099977eefcfa
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2ac8f7c3-52ae-40ed-880e-ea248a27cb57:
+    id: 2ac8f7c3-52ae-40ed-880e-ea248a27cb57
+    content: Copies node to clipboard in MD format
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  174a72c6-cd60-40d6-9366-68e00e6d3394:
+    id: 174a72c6-cd60-40d6-9366-68e00e6d3394
+    content: Highlights node and updates status bar
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f6aee3c5-76c6-43c8-8c43-099977eefcfa:
+    id: f6aee3c5-76c6-43c8-8c43-099977eefcfa
+    content: 'Shows toaster: "Content copied to clipboard - Paste to review tool, then copy response to'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ae5ed168-f18f-47a3-b624-3030ac613c62:
+    id: ae5ed168-f18f-47a3-b624-3030ac613c62
+    content: 'Right-click option: ''Request review in terminal'''
+    children:
+      - 21f32055-3996-4ee3-9345-3f6445f039c7
+      - f32ebcfd-8f53-48ef-bfac-2dfc41982d9f
+      - c9c4b85c-5d1a-4d3f-bd7c-eebcc92a8360
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  21f32055-3996-4ee3-9345-3f6445f039c7:
+    id: 21f32055-3996-4ee3-9345-3f6445f039c7
+    content: Sends node to terminal and executes
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f32ebcfd-8f53-48ef-bfac-2dfc41982d9f:
+    id: f32ebcfd-8f53-48ef-bfac-2dfc41982d9f
+    content: Includes instructions to write results to temp file in user's arborescent profile folder
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c9c4b85c-5d1a-4d3f-bd7c-eebcc92a8360:
+    id: c9c4b85c-5d1a-4d3f-bd7c-eebcc92a8360
+    content: Watch this file - on change, send contents to renderer and continue review flow
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1de9f4f6-7a05-441a-bb22-0c544df48aa3:
+    id: 1de9f4f6-7a05-441a-bb22-0c544df48aa3
+    content: Clipboard monitoring
+    children:
+      - c2f2f95a-f883-44fd-ac8c-c6de002359b4
+      - 5e5ba7d4-65e7-497e-9ecc-41576bac9249
+      - dcc420d1-bfa5-4afa-8cb0-cb3be9783153
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c2f2f95a-f883-44fd-ac8c-c6de002359b4:
+    id: c2f2f95a-f883-44fd-ac8c-c6de002359b4
+    content: Watch clipboard for ARBO-compatible MD format (hierarchical, checkboxes)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5e5ba7d4-65e7-497e-9ecc-41576bac9249:
+    id: 5e5ba7d4-65e7-497e-9ecc-41576bac9249
+    content: If valid, open review panel with contents
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  dcc420d1-bfa5-4afa-8cb0-cb3be9783153:
+    id: dcc420d1-bfa5-4afa-8cb0-cb3be9783153
+    content: If invalid, ignore
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a1d6612b-c310-4163-b284-09832cff9602:
+    id: a1d6612b-c310-4163-b284-09832cff9602
+    content: Review state
+    children:
+      - cab00ecd-d396-4eda-86b7-a29ddfaee521
+      - 79244ecc-ceb2-42cd-91d2-e77d28357b64
+      - 4d263867-6f8e-4c1f-acb3-6c1444bb8256
+      - e62b9dbe-8061-4d29-b6f1-34758763a2cf
+      - 726d68cc-d115-414e-b06e-2a1e6c96ddec
+      - 2b415fb9-400f-4ca5-b59e-c8c9a5e472d3
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  cab00ecd-d396-4eda-86b7-a29ddfaee521:
+    id: cab00ecd-d396-4eda-86b7-a29ddfaee521
+    content: Only one review in progress at a time
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  79244ecc-ceb2-42cd-91d2-e77d28357b64:
+    id: 79244ecc-ceb2-42cd-91d2-e77d28357b64
+    content: Node in review gets distinct colour highlight
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4d263867-6f8e-4c1f-acb3-6c1444bb8256:
+    id: 4d263867-6f8e-4c1f-acb3-6c1444bb8256
+    content: Node in review cannot be deleted - show message
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e62b9dbe-8061-4d29-b6f1-34758763a2cf:
+    id: e62b9dbe-8061-4d29-b6f1-34758763a2cf
+    content: Node in review cannot be edited - must cancel or accept first
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  726d68cc-d115-414e-b06e-2a1e6c96ddec:
+    id: 726d68cc-d115-414e-b06e-2a1e6c96ddec
+    content: Cannot start new review while one is in progress
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2b415fb9-400f-4ca5-b59e-c8c9a5e472d3:
+    id: 2b415fb9-400f-4ca5-b59e-c8c9a5e472d3
+    content: Node metadata contains review status and temp file hash identifier
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  17c3911e-6070-4c8f-bf2c-26835e470700:
+    id: 17c3911e-6070-4c8f-bf2c-26835e470700
+    content: Persistence
+    children:
+      - 4657280e-00e8-4a0d-a7f7-4c9d3797c204
+      - 01d895fc-1c90-4c30-88d3-985074ba242b
+      - 04bc3763-d1ed-4bda-a716-1a6e2cd204ed
+      - a3959c36-ed80-4b8a-9423-0dc8af78881a
+      - fe8c2787-d889-42f8-8091-a4893d52fc8e
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4657280e-00e8-4a0d-a7f7-4c9d3797c204:
+    id: 4657280e-00e8-4a0d-a7f7-4c9d3797c204
+    content: Review persists on restart/crash
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  01d895fc-1c90-4c30-88d3-985074ba242b:
+    id: 01d895fc-1c90-4c30-88d3-985074ba242b
+    content: One review file per arbo file
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  04bc3763-d1ed-4bda-a716-1a6e2cd204ed:
+    id: 04bc3763-d1ed-4bda-a716-1a6e2cd204ed
+    content: Review file switches when arbo file switches
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a3959c36-ed80-4b8a-9423-0dc8af78881a:
+    id: a3959c36-ed80-4b8a-9423-0dc8af78881a
+    content: Blank panel if no review in progress for current arbo file
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fe8c2787-d889-42f8-8091-a4893d52fc8e:
+    id: fe8c2787-d889-42f8-8091-a4893d52fc8e
+    content: Save review contents to temp file in user profile folder
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f0cc488f-b738-4eb0-8d6d-e764b860cb09:
+    id: f0cc488f-b738-4eb0-8d6d-e764b860cb09
+    content: Bottom status bar
+    children:
+      - 1df8d76d-256a-45bf-a0ab-739da7a9860b
+      - 5bff5d23-1aac-4480-8c8b-a5253a2b8c05
+      - 454c419a-a32e-4b56-b40d-7a93cd8ac389
+      - 46519088-640b-44dd-9107-37252ac8f153
+      - 11e2337b-28b1-4902-b3f5-b494846b01b9
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1df8d76d-256a-45bf-a0ab-739da7a9860b:
+    id: 1df8d76d-256a-45bf-a0ab-739da7a9860b
+    content: Shows "Waiting for review for node xyz..." before response received (truncate at 15 chars with
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5bff5d23-1aac-4480-8c8b-a5253a2b8c05:
+    id: 5bff5d23-1aac-4480-8c8b-a5253a2b8c05
+    content: Shows "Review in progress for node xyz..." when panel populated
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  454c419a-a32e-4b56-b40d-7a93cd8ac389:
+    id: 454c419a-a32e-4b56-b40d-7a93cd8ac389
+    content: Status visible even when review panel minimized
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  46519088-640b-44dd-9107-37252ac8f153:
+    id: 46519088-640b-44dd-9107-37252ac8f153
+    content: Flashes "Review accepted" on accept
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  11e2337b-28b1-4902-b3f5-b494846b01b9:
+    id: 11e2337b-28b1-4902-b3f5-b494846b01b9
+    content: Flashes "Review cancelled" on cancel
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6e0d975c-c46c-4ce4-95cf-08327c680c96:
+    id: 6e0d975c-c46c-4ce4-95cf-08327c680c96
+    content: Accept button (top right of panel, right of tabs)
+    children:
+      - 957d87ad-1743-4b28-9232-09a26f0299a0
+      - a8b8d333-b372-415d-a7cb-5a5e290bf2d0
+      - c965a02a-0bd8-4e29-a98b-cab8e292e0b1
+      - 2324df75-f73a-47bd-a4ac-5fcbfeb155f7
+      - f8d5be25-66fc-4923-8a96-c0734f1f93d0
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  957d87ad-1743-4b28-9232-09a26f0299a0:
+    id: 957d87ad-1743-4b28-9232-09a26f0299a0
+    content: Replaces node and descendants with review contents
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a8b8d333-b372-415d-a7cb-5a5e290bf2d0:
+    id: a8b8d333-b372-415d-a7cb-5a5e290bf2d0
+    content: Node briefly flashes then returns to normal (loses review highlight)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c965a02a-0bd8-4e29-a98b-cab8e292e0b1:
+    id: c965a02a-0bd8-4e29-a98b-cab8e292e0b1
+    content: Closes side panel
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2324df75-f73a-47bd-a4ac-5fcbfeb155f7:
+    id: 2324df75-f73a-47bd-a4ac-5fcbfeb155f7
+    content: Removes status bar
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f8d5be25-66fc-4923-8a96-c0734f1f93d0:
+    id: f8d5be25-66fc-4923-8a96-c0734f1f93d0
+    content: Undoable/redoable (undo removes highlight, does not resume review)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  70531d32-65f5-47c9-a4f8-76f9b781c66a:
+    id: 70531d32-65f5-47c9-a4f8-76f9b781c66a
+    content: Cancel button (next to accept)
+    children:
+      - 012ba4d9-4778-436f-8762-a9df0c6b98b6
+      - 52ebb463-6ff3-4c75-b63a-e5ec4a75e441
+      - 34536083-d7e8-4fb3-b0ca-37ebd68ff150
+      - be02ac1b-55bd-48ac-a223-caf8209c5dd0
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  012ba4d9-4778-436f-8762-a9df0c6b98b6:
+    id: 012ba4d9-4778-436f-8762-a9df0c6b98b6
+    content: Closes review panel
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  52ebb463-6ff3-4c75-b63a-e5ec4a75e441:
+    id: 52ebb463-6ff3-4c75-b63a-e5ec4a75e441
+    content: Removes node highlight
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  34536083-d7e8-4fb3-b0ca-37ebd68ff150:
+    id: 34536083-d7e8-4fb3-b0ca-37ebd68ff150
+    content: Removes status bar
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  be02ac1b-55bd-48ac-a223-caf8209c5dd0:
+    id: be02ac1b-55bd-48ac-a223-caf8209c5dd0
+    content: Also available via right-click "Cancel review" (only shows during active review)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
