@@ -1,32 +1,7 @@
 import { useCallback } from 'react';
 import { useActiveTreeActions } from './useActiveTreeStore';
 import { logger } from '../../../services/logger';
-
-/**
- * Check if there's text selected in an active contenteditable element
- */
-function hasTextSelection(): boolean {
-  const selection = window.getSelection();
-  if (!selection || selection.isCollapsed) return false;
-
-  // Check if selection is within a contenteditable
-  const anchorNode = selection.anchorNode;
-  if (!anchorNode) return false;
-
-  const element = anchorNode.nodeType === Node.TEXT_NODE
-    ? anchorNode.parentElement
-    : anchorNode as Element;
-
-  return element?.closest('[contenteditable="true"]') !== null;
-}
-
-/**
- * Check if a contenteditable element is currently focused
- */
-function isContentEditableFocused(): boolean {
-  const activeElement = document.activeElement;
-  return activeElement?.getAttribute('contenteditable') === 'true';
-}
+import { hasTextSelection, isContentEditableFocused } from '../../../utils/selectionUtils';
 
 interface EditMenuActions {
   handleUndo: () => void;

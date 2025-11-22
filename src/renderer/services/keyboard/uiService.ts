@@ -1,10 +1,7 @@
 import { useFilesStore } from '../../store/files/filesStore';
 import { matchesHotkey } from '../../data/hotkeyConfig';
-
-/**
- * Keyboard UI service
- * Handles global UI shortcuts: files, tabs, terminal
- */
+import { storeManager } from '../../store/storeManager';
+import { hasTextSelection, isContentEditableFocused } from '../../utils/selectionUtils';
 
 /**
  * Handles UI keyboard shortcuts
@@ -82,6 +79,50 @@ async function handleUIShortcuts(event: KeyboardEvent): Promise<void> {
         browserStore.actions.addTab(DEFAULT_BROWSER_URL);
       }
       panelStore.showBrowser();
+    }
+    return;
+  }
+
+  // Clipboard: Cut
+  if (matchesHotkey(event, 'actions', 'cut')) {
+    // If text is selected in contenteditable, let browser handle it
+    if (hasTextSelection()) return;
+
+    event.preventDefault();
+    const activeFilePath = useFilesStore.getState().activeFilePath;
+    if (activeFilePath) {
+      const store = storeManager.getStoreForFile(activeFilePath);
+      store?.getState().actions.cutNodes();
+    }
+    return;
+  }
+
+  // Clipboard: Copy
+  if (matchesHotkey(event, 'actions', 'copy')) {
+    // If text is selected in contenteditable, let browser handle it
+    if (hasTextSelection()) return;
+
+    event.preventDefault();
+    const activeFilePath = useFilesStore.getState().activeFilePath;
+    if (activeFilePath) {
+      const store = storeManager.getStoreForFile(activeFilePath);
+      store?.getState().actions.copyNodes();
+    }
+    return;
+  }
+
+  // Clipboard: Paste
+  if (matchesHotkey(event, 'actions', 'paste')) {
+    event.preventDefault();
+    const activeFilePath = useFilesStore.getState().activeFilePath;
+    if (activeFilePath) {
+      const store = storeManager.getStoreForFile(activeFilePath);
+      const result = await store?.getState().actions.pasteNodes();
+
+      // If no valid markdown nodes, fall through to default paste behavior
+      if (result === 'no-content' && isContentEditableFocused()) {
+        document.execCommand('paste');
+      }
     }
     return;
   }

@@ -139,6 +139,9 @@ describe('hotkeyConfig', () => {
           deleteNode: 'd',
           undo: 'u',
           redo: 'CmdOrCtrl+R',
+          cut: 'CmdOrCtrl+X',
+          copy: 'CmdOrCtrl+C',
+          paste: 'CmdOrCtrl+V',
         },
         file: {
           save: 'CmdOrCtrl+S',
@@ -186,6 +189,9 @@ describe('hotkeyConfig', () => {
           deleteNode: 'd',
           undo: 'u',
           redo: 'CmdOrCtrl+R',
+          cut: 'CmdOrCtrl+X',
+          copy: 'CmdOrCtrl+C',
+          paste: 'CmdOrCtrl+V',
         },
         file: {
           save: 'CmdOrCtrl+S',

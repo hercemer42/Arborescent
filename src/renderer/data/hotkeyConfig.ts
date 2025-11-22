@@ -27,6 +27,9 @@ export interface HotkeyConfig {
     deleteNode: string;
     undo: string;
     redo: string;
+    cut: string;
+    copy: string;
+    paste: string;
   };
   file: {
     save: string;
