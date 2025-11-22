@@ -1,70 +1,9 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { renderHook, act } from '@testing-library/react';
 import { useReviewActions } from '../useReviewActions';
-import { logger } from '../../../../services/logger';
 
-vi.mock('../../../../services/logger', () => ({
-  logger: {
-    info: vi.fn(),
-    error: vi.fn(),
-  },
-}));
-
-const mockCancelReview = vi.fn();
-const mockAcceptReview = vi.fn();
-const mockHidePanel = vi.fn();
-
-const mockNodes = {
-  'node-id': {
-    id: 'node-id',
-    content: 'Test',
-    children: [],
-    metadata: {
-      plugins: {},
-      reviewTempFile: '/temp/review-node-id.txt',
-      reviewContentHash: 'hash123',
-    },
-  },
-  'old-node-id': {
-    id: 'old-node-id',
-    content: 'Old',
-    children: [],
-    metadata: {
-      plugins: {},
-      reviewTempFile: '/temp/review-old-node-id.txt',
-      reviewContentHash: 'hash456',
-    },
-  },
-};
-
-const mockStore = {
-  actions: {
-    cancelReview: mockCancelReview,
-    acceptReview: mockAcceptReview,
-  },
-  reviewingNodeId: 'node-id',
-  nodes: mockNodes,
-};
-
-vi.mock('../../../../store/tree/useStore', () => ({
-  useStore: Object.assign(
-    vi.fn((selector) => {
-      return selector ? selector(mockStore) : mockStore;
-    }),
-    {
-      getState: vi.fn(() => mockStore),
-    }
-  ),
-}));
-
-vi.mock('../../../../store/panel/panelStore', () => ({
-  usePanelStore: vi.fn((selector) => {
-    const mockState = {
-      hidePanel: mockHidePanel,
-    };
-    return selector(mockState);
-  }),
-}));
+const mockFinishCancel = vi.fn();
+const mockFinishAccept = vi.fn();
 
 vi.mock('../../../../store/files/filesStore', () => ({
   useFilesStore: {
@@ -77,136 +16,66 @@ vi.mock('../../../../store/files/filesStore', () => ({
 vi.mock('../../../../store/storeManager', () => ({
   storeManager: {
     getStoreForFile: vi.fn(() => ({
-      getState: vi.fn(() => mockStore),
+      getState: vi.fn(() => ({
+        actions: {
+          finishCancel: mockFinishCancel,
+          finishAccept: mockFinishAccept,
+        },
+      })),
     })),
   },
 }));
 
-vi.mock('../../../../services/review/reviewTempFileService', () => ({
-  deleteReviewTempFile: vi.fn().mockResolvedValue(undefined),
-}));
-
-const { mockReviewNodes, mockReviewStore, mockReviewTreeStore } = vi.hoisted(() => {
-  const nodes = {
-    'review-root': {
-      id: 'review-root',
-      content: 'Review Root',
-      children: ['review-child-1'],
-      metadata: { plugins: {} },
-    },
-    'review-child-1': {
-      id: 'review-child-1',
-      content: 'Review Child',
-      children: [],
-      metadata: { plugins: {} },
-    },
-  };
-
-  const store = {
-    getState: vi.fn(() => ({
-      nodes,
-      rootNodeId: 'review-root',
-    })),
-  };
-
-  const treeStore = {
-    getStoreForFile: vi.fn(() => store),
-    clearFile: vi.fn(),
-  };
-
-  return {
-    mockReviewNodes: nodes,
-    mockReviewStore: store,
-    mockReviewTreeStore: treeStore,
-  };
-});
-
-vi.mock('../../../../store/review/reviewTreeStore', () => ({
-  reviewTreeStore: mockReviewTreeStore,
-}));
-
 describe('useReviewActions', () => {
-  let mockStopClipboardMonitor: ReturnType<typeof vi.fn>;
-  let mockStopReviewFileWatcher: ReturnType<typeof vi.fn>;
-
   beforeEach(() => {
     vi.clearAllMocks();
-    mockReviewTreeStore.getStoreForFile.mockReturnValue(mockReviewStore);
-    mockReviewTreeStore.clearFile.mockClear();
-    mockReviewStore.getState.mockReturnValue({
-      nodes: mockReviewNodes,
-      rootNodeId: 'review-root',
-    });
-    mockStopClipboardMonitor = vi.fn().mockResolvedValue(undefined);
-    mockStopReviewFileWatcher = vi.fn().mockResolvedValue(undefined);
-
-    global.window = {
-      electron: {
-        stopClipboardMonitor: mockStopClipboardMonitor,
-        stopReviewFileWatcher: mockStopReviewFileWatcher,
-      },
-      dispatchEvent: vi.fn(),
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } as any;
   });
 
   describe('handleCancel', () => {
-    it('should stop monitoring and cancel review', async () => {
+    it('should call finishCancel action', async () => {
+      mockFinishCancel.mockResolvedValue(undefined);
+
       const { result } = renderHook(() => useReviewActions());
 
       await act(async () => {
         await result.current.handleCancel();
       });
 
-      expect(mockStopClipboardMonitor).toHaveBeenCalled();
-      expect(mockCancelReview).toHaveBeenCalled();
-      expect(logger.info).toHaveBeenCalledWith('Review cancelled', 'ReviewActions');
+      expect(mockFinishCancel).toHaveBeenCalledTimes(1);
     });
 
     it('should handle errors when cancelling', async () => {
-      const error = new Error('Stop monitor failed');
-      mockStopClipboardMonitor.mockRejectedValue(error);
+      mockFinishCancel.mockRejectedValue(new Error('Cancel failed'));
 
       const { result } = renderHook(() => useReviewActions());
 
-      await act(async () => {
-        await result.current.handleCancel();
-      });
-
-      expect(logger.error).toHaveBeenCalledWith(
-        'Failed to cancel review',
-        error,
-        'ReviewActions'
-      );
+      await expect(
+        act(async () => {
+          await result.current.handleCancel();
+        })
+      ).rejects.toThrow('Cancel failed');
     });
   });
 
   describe('handleAccept', () => {
-    it('should get nodes from review store, accept review, clear store, and stop monitoring', async () => {
+    it('should call finishAccept action', async () => {
+      mockFinishAccept.mockResolvedValue(undefined);
+
       const { result } = renderHook(() => useReviewActions());
 
       await act(async () => {
         await result.current.handleAccept();
       });
 
-      expect(mockReviewTreeStore.getStoreForFile).toHaveBeenCalledWith('/test/file.arbo');
-      // Should pass actual content root (not hidden root) and nodes without hidden root
-      expect(mockAcceptReview).toHaveBeenCalledWith(
-        'review-child-1',
-        { 'review-child-1': mockReviewNodes['review-child-1'] }
-      );
-      expect(mockReviewTreeStore.clearFile).toHaveBeenCalledWith('/test/file.arbo');
-      expect(mockStopClipboardMonitor).toHaveBeenCalled();
-      expect(mockHidePanel).toHaveBeenCalled();
-      expect(logger.info).toHaveBeenCalledWith(
-        'Accepting review with 1 nodes',
-        'ReviewActions'
-      );
-      expect(logger.info).toHaveBeenCalledWith('Review accepted and node replaced', 'ReviewActions');
+      expect(mockFinishAccept).toHaveBeenCalledTimes(1);
     });
 
-    it('should not accept if review store is not available', async () => {
-      mockReviewTreeStore.getStoreForFile.mockReturnValueOnce(null as never);
+    it('should not call actions if no active file path', async () => {
+      // Override the mock for this test
+      const { useFilesStore } = await vi.importMock<typeof import('../../../../store/files/filesStore')>(
+        '../../../../store/files/filesStore'
+      );
+      vi.mocked(useFilesStore.getState).mockReturnValue({ activeFilePath: null } as ReturnType<typeof useFilesStore.getState>);
 
       const { result } = renderHook(() => useReviewActions());
 
@@ -214,47 +83,22 @@ describe('useReviewActions', () => {
         await result.current.handleAccept();
       });
 
-      expect(mockAcceptReview).not.toHaveBeenCalled();
-      expect(mockStopClipboardMonitor).not.toHaveBeenCalled();
-      expect(mockReviewTreeStore.clearFile).not.toHaveBeenCalled();
-      expect(logger.error).toHaveBeenCalledWith(
-        'No review store available',
-        expect.any(Error),
-        'ReviewActions'
-      );
+      expect(mockFinishAccept).not.toHaveBeenCalled();
+
+      // Restore
+      vi.mocked(useFilesStore.getState).mockReturnValue({ activeFilePath: '/test/file.arbo' } as ReturnType<typeof useFilesStore.getState>);
     });
 
     it('should handle errors during accept gracefully', async () => {
-      const error = new Error('Accept failed');
-      mockAcceptReview.mockImplementationOnce(() => {
-        throw error;
-      });
+      mockFinishAccept.mockRejectedValue(new Error('Accept failed'));
 
       const { result } = renderHook(() => useReviewActions());
 
-      await act(async () => {
-        await result.current.handleAccept();
-      });
-
-      expect(logger.error).toHaveBeenCalledWith(
-        'Failed to accept review',
-        error,
-        'ReviewActions'
-      );
-    });
-
-    it('should dispatch review-accepted event', async () => {
-      const { result } = renderHook(() => useReviewActions());
-
-      await act(async () => {
-        await result.current.handleAccept();
-      });
-
-      expect(window.dispatchEvent).toHaveBeenCalledWith(
-        expect.objectContaining({
-          type: 'review-accepted',
+      await expect(
+        act(async () => {
+          await result.current.handleAccept();
         })
-      );
+      ).rejects.toThrow('Accept failed');
     });
   });
 });

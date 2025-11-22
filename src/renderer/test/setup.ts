@@ -12,6 +12,32 @@ beforeEach(() => {
 afterEach(() => {
   // Clear all timers to prevent memory leaks
   vi.clearAllTimers();
+
+  // Reset Zustand stores to initial state to prevent state leakage between tests
+  // Import stores dynamically to avoid circular dependencies
+  try {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const { useTerminalStore } = require('../store/terminal/terminalStore');
+    useTerminalStore?.setState?.({ terminals: [], activeTerminalId: null });
+  } catch { /* Store may not be loaded */ }
+
+  try {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const { useToastStore } = require('../store/toast/toastStore');
+    useToastStore?.setState?.({ toasts: [] });
+  } catch { /* Store may not be loaded */ }
+
+  try {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const { usePanelStore } = require('../store/panel/panelStore');
+    usePanelStore?.setState?.({ isOpen: false, activeContent: null });
+  } catch { /* Store may not be loaded */ }
+
+  try {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const { useBrowserStore } = require('../store/browser/browserStore');
+    useBrowserStore?.setState?.({ tabs: [], activeTabId: null });
+  } catch { /* Store may not be loaded */ }
 });
 
 vi.mock('../store/plugins/pluginStore', () => ({

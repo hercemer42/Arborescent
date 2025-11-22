@@ -6,6 +6,20 @@ import { useTerminalStore } from '../../../store/terminal/terminalStore';
 // Mock the terminal store
 vi.mock('../../../store/terminal/terminalStore');
 
+// Mock the panel store
+const mockTogglePanelPosition = vi.fn();
+vi.mock('../../../store/panel/panelStore', () => ({
+  usePanelStore: vi.fn((selector) => {
+    const state = {
+      panelPosition: 'bottom',
+      togglePanelPosition: mockTogglePanelPosition,
+    };
+    return selector ? selector(state) : state;
+  }),
+}));
+
+import { usePanelStore } from '../../../store/panel/panelStore';
+
 // Mock the Terminal component
 vi.mock('../Terminal', () => ({
   Terminal: ({ id }: { id: string }) => <div data-testid={`terminal-${id}`}>Terminal {id}</div>,
@@ -43,14 +57,13 @@ describe('TerminalPanel', () => {
     (useTerminalStore as unknown as ReturnType<typeof vi.fn>).mockReturnValue({
       terminals: [],
       activeTerminalId: null,
-      panelPosition: 'bottom',
       setActiveTerminal: vi.fn(),
-      togglePanelPosition: vi.fn(),
     });
 
     render(<TerminalPanel />);
 
-    expect(screen.getByText('+ New Terminal')).toBeInTheDocument();
+    // Should show the new terminal button
+    expect(screen.getByTitle('New Terminal')).toBeInTheDocument();
   });
 
   it('should render terminals when they exist', () => {
@@ -62,9 +75,7 @@ describe('TerminalPanel', () => {
     (useTerminalStore as unknown as ReturnType<typeof vi.fn>).mockReturnValue({
       terminals: mockTerminals,
       activeTerminalId: 'term-1',
-      panelPosition: 'bottom',
       setActiveTerminal: vi.fn(),
-      togglePanelPosition: vi.fn(),
     });
 
     render(<TerminalPanel />);
@@ -82,9 +93,7 @@ describe('TerminalPanel', () => {
     (useTerminalStore as unknown as ReturnType<typeof vi.fn>).mockReturnValue({
       terminals: mockTerminals,
       activeTerminalId: 'term-1',
-      panelPosition: 'bottom',
       setActiveTerminal: vi.fn(),
-      togglePanelPosition: vi.fn(),
     });
 
     const { container } = render(<TerminalPanel />);
@@ -104,9 +113,7 @@ describe('TerminalPanel', () => {
     (useTerminalStore as unknown as ReturnType<typeof vi.fn>).mockReturnValue({
       terminals: mockTerminals,
       activeTerminalId: 'term-1',
-      panelPosition: 'bottom',
       setActiveTerminal: mockSetActiveTerminal,
-      togglePanelPosition: vi.fn(),
     });
 
     render(<TerminalPanel />);
@@ -118,7 +125,6 @@ describe('TerminalPanel', () => {
   });
 
   it('should call togglePanelPosition when toggle button is clicked', () => {
-    const mockTogglePanelPosition = vi.fn();
     const mockTerminals = [
       { id: 'term-1', title: 'Terminal 1', cwd: '/home', shellCommand: 'bash', shellArgs: [] },
     ];
@@ -126,9 +132,7 @@ describe('TerminalPanel', () => {
     (useTerminalStore as unknown as ReturnType<typeof vi.fn>).mockReturnValue({
       terminals: mockTerminals,
       activeTerminalId: 'term-1',
-      panelPosition: 'bottom',
       setActiveTerminal: vi.fn(),
-      togglePanelPosition: mockTogglePanelPosition,
     });
 
     render(<TerminalPanel />);
@@ -143,11 +147,10 @@ describe('TerminalPanel', () => {
     (useTerminalStore as unknown as ReturnType<typeof vi.fn>).mockReturnValue({
       terminals: [{ id: 'term-1', title: 'Terminal 1', cwd: '/home', shellCommand: 'bash', shellArgs: [] }],
       activeTerminalId: 'term-1',
-      panelPosition: 'bottom',
       setActiveTerminal: vi.fn(),
-      togglePanelPosition: vi.fn(),
     });
 
+    // Default mock already has panelPosition: 'bottom'
     render(<TerminalPanel />);
 
     expect(screen.getByText('➡')).toBeInTheDocument();
@@ -158,9 +161,16 @@ describe('TerminalPanel', () => {
     (useTerminalStore as unknown as ReturnType<typeof vi.fn>).mockReturnValue({
       terminals: [{ id: 'term-1', title: 'Terminal 1', cwd: '/home', shellCommand: 'bash', shellArgs: [] }],
       activeTerminalId: 'term-1',
-      panelPosition: 'side',
       setActiveTerminal: vi.fn(),
-      togglePanelPosition: vi.fn(),
+    });
+
+    // Override panel position to side
+    (usePanelStore as unknown as ReturnType<typeof vi.fn>).mockImplementation((selector: (state: Record<string, unknown>) => unknown) => {
+      const state = {
+        panelPosition: 'side',
+        togglePanelPosition: mockTogglePanelPosition,
+      };
+      return selector ? selector(state) : state;
     });
 
     render(<TerminalPanel />);

@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach } from 'vitest';
+import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { HistoryManager } from '../HistoryManager';
 import { Command } from '../Command';
 
@@ -43,7 +43,12 @@ describe('HistoryManager', () => {
   let manager: HistoryManager;
 
   beforeEach(() => {
+    vi.useFakeTimers();
     manager = new HistoryManager();
+  });
+
+  afterEach(() => {
+    vi.useRealTimers();
   });
 
   describe('executeCommand', () => {
@@ -84,14 +89,14 @@ describe('HistoryManager', () => {
       expect(cmd1.value).toBe('ab'); // Merged value
     });
 
-    it('should not merge commands after timeout', async () => {
+    it('should not merge commands after timeout', () => {
       const cmd1 = new MergeableCommand('a');
       const cmd2 = new MergeableCommand('b');
 
       manager.executeCommand(cmd1);
 
-      // Wait for merge timeout (1 second)
-      await new Promise(resolve => setTimeout(resolve, 1100));
+      // Advance past merge timeout (1 second)
+      vi.advanceTimersByTime(1100);
 
       manager.executeCommand(cmd2);
 

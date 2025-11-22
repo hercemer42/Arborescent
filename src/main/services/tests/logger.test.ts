@@ -1,12 +1,5 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { BrowserWindow } from 'electron';
-import { logger } from '../logger';
-
-vi.mock('electron', () => ({
-  BrowserWindow: {
-    getAllWindows: vi.fn(),
-  },
-}));
+import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
+import { logger, setElectronModule } from '../logger';
 
 describe('MainLogger', () => {
   let mockWindow: {
@@ -14,6 +7,7 @@ describe('MainLogger', () => {
       send: ReturnType<typeof vi.fn>;
     };
   };
+  let mockGetAllWindows: ReturnType<typeof vi.fn>;
 
   beforeEach(() => {
     vi.clearAllMocks();
@@ -24,6 +18,15 @@ describe('MainLogger', () => {
       },
     };
 
+    mockGetAllWindows = vi.fn();
+
+    // Inject mock electron module
+    setElectronModule({
+      BrowserWindow: {
+        getAllWindows: mockGetAllWindows,
+      },
+    } as unknown as typeof import('electron'));
+
     // Mock console methods to suppress output during tests
     vi.spyOn(console, 'log').mockImplementation(() => {});
     vi.spyOn(console, 'info').mockImplementation(() => {});
@@ -31,10 +34,15 @@ describe('MainLogger', () => {
     vi.spyOn(console, 'error').mockImplementation(() => {});
   });
 
+  afterEach(() => {
+    // Reset electron module
+    setElectronModule(null);
+  });
+
   describe('error', () => {
     it('should log error with message and context', () => {
       const consoleErrorSpy = vi.spyOn(console, 'error');
-      vi.mocked(BrowserWindow.getAllWindows).mockReturnValue([]);
+      mockGetAllWindows.mockReturnValue([]);
 
       logger.error('Test error', undefined, 'Test Context');
 
@@ -42,7 +50,7 @@ describe('MainLogger', () => {
     });
 
     it('should send error to renderer by default', () => {
-      vi.mocked(BrowserWindow.getAllWindows).mockReturnValue([mockWindow] as unknown as BrowserWindow[]);
+      mockGetAllWindows.mockReturnValue([mockWindow]);
 
       logger.error('Test error');
 
@@ -50,7 +58,7 @@ describe('MainLogger', () => {
     });
 
     it('should not send to renderer when notifyRenderer is false', () => {
-      vi.mocked(BrowserWindow.getAllWindows).mockReturnValue([mockWindow] as unknown as BrowserWindow[]);
+      mockGetAllWindows.mockReturnValue([mockWindow]);
 
       logger.error('Test error', undefined, undefined, false);
 
@@ -58,7 +66,7 @@ describe('MainLogger', () => {
     });
 
     it('should handle no windows available', () => {
-      vi.mocked(BrowserWindow.getAllWindows).mockReturnValue([]);
+      mockGetAllWindows.mockReturnValue([]);
 
       // Should not throw
       expect(() => logger.error('Test error')).not.toThrow();
@@ -68,7 +76,7 @@ describe('MainLogger', () => {
     it('should log error with Error object', () => {
       const consoleErrorSpy = vi.spyOn(console, 'error');
       const error = new Error('Something went wrong');
-      vi.mocked(BrowserWindow.getAllWindows).mockReturnValue([]);
+      mockGetAllWindows.mockReturnValue([]);
 
       logger.error('Test error', error, 'Test Context');
 
@@ -82,10 +90,7 @@ describe('MainLogger', () => {
         },
       };
 
-      vi.mocked(BrowserWindow.getAllWindows).mockReturnValue([
-        mockWindow,
-        mockWindow2,
-      ] as unknown as BrowserWindow[]);
+      mockGetAllWindows.mockReturnValue([mockWindow, mockWindow2]);
 
       logger.error('Test error');
 

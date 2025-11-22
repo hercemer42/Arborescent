@@ -104,7 +104,13 @@ describe('persistenceActions', () => {
       const result = await actions.loadFromPath('/test/path.arbo');
 
       expect(mockStorage.loadDocument).toHaveBeenCalledWith('/test/path.arbo');
-      expect(state.nodes).toEqual(mockData.nodes);
+      // Root node gets isRoot: true metadata added during load
+      expect(state.nodes['loaded-root']).toMatchObject({
+        id: 'loaded-root',
+        content: 'Loaded Project',
+        children: [],
+      });
+      expect(state.nodes['loaded-root'].metadata.isRoot).toBe(true);
       expect(state.rootNodeId).toBe('loaded-root');
       expect(result).toEqual({ created: mockData.created, author: mockData.author });
     });

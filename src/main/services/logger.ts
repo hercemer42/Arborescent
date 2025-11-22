@@ -1,15 +1,24 @@
 import { BaseLogger } from '../../shared/services/logger/BaseLogger';
 
+// Allow injection for testing
+let electronModule: typeof import('electron') | null = null;
+
+export function setElectronModule(mod: typeof import('electron') | null): void {
+  electronModule = mod;
+}
+
 class MainLogger extends BaseLogger {
   error(message: string, error?: Error, context?: string, notifyRenderer = true): void {
     this.log('error', message, context, error);
 
     if (notifyRenderer) {
       try {
-        // Lazy import electron to avoid errors when loaded in worker context
-        // eslint-disable-next-line @typescript-eslint/no-require-imports
-        const { BrowserWindow } = require('electron');
-        const mainWindow = BrowserWindow.getAllWindows()[0];
+        // Use injected module for testing, or lazy import for production
+        const electron =
+          electronModule ??
+          // eslint-disable-next-line @typescript-eslint/no-require-imports
+          require('electron');
+        const mainWindow = electron.BrowserWindow.getAllWindows()[0];
         if (mainWindow) {
           mainWindow.webContents.send('main-error', message);
         }

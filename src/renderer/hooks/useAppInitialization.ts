@@ -3,6 +3,7 @@ import { useFilesStore } from '../store/files/filesStore';
 import { useBrowserStore } from '../store/browser/browserStore';
 import { useTerminalStore } from '../store/terminal/terminalStore';
 import { usePanelStore } from '../store/panel/panelStore';
+import { logger } from '../services/logger';
 
 /**
  * Hook to handle app-level initialization on startup
@@ -26,6 +27,9 @@ export function useAppInitialization(onComplete: () => void) {
         if (terminalStore.terminals.length === 0 && activeContent === 'terminal') {
           await terminalStore.createNewTerminal('Terminal');
         }
+      })
+      .catch((error) => {
+        logger.error('Failed to initialize session', error, 'App');
       })
       .finally(() => onComplete());
   }, [onComplete]);

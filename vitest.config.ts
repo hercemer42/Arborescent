@@ -12,15 +12,20 @@ export default defineConfig({
     globals: true,
     environment: 'jsdom',
     setupFiles: './src/renderer/test/setup.ts',
-    // Use forks for separate process memory isolation
+    // Use forks pool - each test file gets its own process with clean memory
+    // Note: Full test suite may require running in batches due to memory constraints
     pool: 'forks',
     poolOptions: {
       forks: {
-        singleFork: true,
+        singleFork: false,
         isolate: true,
-        execArgv: ['--max-old-space-size=4096'],
+        maxForks: 1,
+        minForks: 0,
+        execArgv: ['--max-old-space-size=2048'],
       },
     },
+    fileParallelism: false,
+    testTimeout: 10000,
     // Test file patterns
     include: [
       'src/**/*.{test,spec}.{ts,tsx}',

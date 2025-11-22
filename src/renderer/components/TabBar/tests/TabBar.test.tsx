@@ -8,6 +8,12 @@ import { storeManager } from '../../../store/storeManager';
 vi.mock('../../../store/storeManager', () => ({
   storeManager: {
     closeFile: vi.fn(),
+    getStoreForFile: vi.fn(() => ({
+      getState: () => ({
+        reviewingNodeId: null,
+      }),
+      subscribe: vi.fn(() => () => {}),
+    })),
   },
 }));
 

@@ -96,10 +96,13 @@ describe('ContextMenu', () => {
     expect(enabledItem).toBeDefined();
     expect(disabledItem).toBeDefined();
 
-    // Note: The component doesn't actually implement disabled behavior,
-    // it just accepts the prop. This test documents current behavior.
+    // Disabled items should not trigger onClick
     fireEvent.click(disabledItem);
-    expect(mockItem2Click).toHaveBeenCalledTimes(1);
+    expect(mockItem2Click).not.toHaveBeenCalled();
+
+    // Enabled items should still work
+    fireEvent.click(enabledItem);
+    expect(mockItem1Click).toHaveBeenCalledTimes(1);
   });
 
   it('should close menu on Escape key', () => {

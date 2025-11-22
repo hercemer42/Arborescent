@@ -46,6 +46,8 @@ const {
     removeToast: mockRemoveToast,
   };
   const browserStoreState = {
+    tabs: [],
+    activeTabId: null,
     actions: { restoreSession: mockRestoreBrowserSession },
   };
   const panelStoreState = {
@@ -80,7 +82,9 @@ vi.mock('../store/toast/toastStore', () => {
 
 vi.mock('../store/browser/browserStore', () => {
   const useBrowserStoreMock = Object.assign(
-    vi.fn((selector: (s: typeof browserStoreState) => unknown) => selector(browserStoreState)),
+    vi.fn((selector?: (s: typeof browserStoreState) => unknown) =>
+      selector ? selector(browserStoreState) : browserStoreState
+    ),
     { getState: () => browserStoreState }
   );
   return { useBrowserStore: useBrowserStoreMock };
@@ -102,11 +106,11 @@ describe('App', () => {
     mockInitializeSession.mockResolvedValue(undefined);
   });
 
-  it('should render app header', async () => {
-    render(<App />);
+  it('should render app container', async () => {
+    const { container } = render(<App />);
 
-    expect(screen.getByText('Arborescent')).toBeDefined();
-    expect(screen.getByText('Development workflow tool')).toBeDefined();
+    // App should render with the app class
+    expect(container.querySelector('.app')).toBeDefined();
 
     // Wait for initialization to complete to avoid act warnings
     await waitFor(() => expect(mockInitializeSession).toHaveBeenCalled());

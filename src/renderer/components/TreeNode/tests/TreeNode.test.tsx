@@ -1,10 +1,44 @@
-import { describe, it, expect, beforeEach, vi } from 'vitest';
-import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-import { TreeNode } from '../TreeNode';
+import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
+import { render, screen, cleanup } from '@testing-library/react';
 import { TreeStoreContext } from '../../../store/tree/TreeStoreContext';
 import { createTreeStore, TreeStore } from '../../../store/tree/treeStore';
 import type { TreeNode as TreeNodeType } from '@shared/types';
+
+// Mock hooks to avoid bundling heavy dependencies (@dnd-kit, plugins) that cause OOM during compilation
+vi.mock('../hooks/useNodeDragDrop', () => ({
+  useNodeDragDrop: () => ({
+    isDragging: false,
+    isOver: false,
+    dropPosition: null,
+    setRefs: vi.fn(),
+    attributes: {},
+    listeners: {},
+  }),
+}));
+
+vi.mock('../hooks/useNodeMouse', () => ({
+  useNodeMouse: () => ({
+    handleMouseDown: vi.fn(),
+    handleMouseMove: vi.fn(),
+    handleClick: vi.fn(),
+    wrappedListeners: {},
+  }),
+}));
+
+vi.mock('../hooks/useNodeEffects', () => ({
+  useNodeEffects: () => ({
+    flashIntensity: null,
+    isDeleting: false,
+    nodeRef: { current: null },
+    onAnimationEnd: vi.fn(),
+  }),
+}));
+
+vi.mock('../../NodeGutter/hooks/usePluginIndicators', () => ({
+  usePluginIndicators: () => [],
+}));
+
+import { TreeNode } from '../TreeNode';
 
 describe('TreeNode', () => {
   let store: TreeStore;
@@ -17,6 +51,12 @@ describe('TreeNode', () => {
       activeNodeId: null,
       ancestorRegistry: {},
     });
+  });
+
+  afterEach(() => {
+    cleanup();
+    // Clear store references to allow garbage collection
+    store.destroy?.();
   });
 
   const renderWithProvider = (component: React.ReactElement) => {
@@ -101,84 +141,6 @@ describe('TreeNode', () => {
     expect(nodeContent).toHaveStyle({ paddingLeft: '15px' }); // depth * 20 + 15
   });
 
-  it('should maintain cursor position when collapsing node being edited', async () => {
-    const user = userEvent.setup();
-
-    const nodes: Record<string, TreeNodeType> = {
-      'parent': {
-        id: 'parent',
-        content: 'Parent Node',
-        children: ['child-1'],
-        metadata: {},
-      },
-      'child-1': {
-        id: 'child-1',
-        content: 'Child Node',
-        children: [],
-        metadata: {},
-      },
-    };
-
-    store.setState({
-      nodes,
-      activeNodeId: 'parent',
-      cursorPosition: 5,
-      ancestorRegistry: {
-        'parent': [],
-        'child-1': ['parent'],
-      },
-    });
-
-    renderWithProvider(<TreeNode nodeId="parent" />);
-
-    const contentEditable = screen.getByText('Parent Node');
-    expect(contentEditable).toHaveFocus();
-
-    const collapseButton = screen.getByText('⌄');
-    await user.click(collapseButton);
-
-    expect(contentEditable).toHaveFocus();
-    expect(store.getState().activeNodeId).toBe('parent');
-    expect(store.getState().cursorPosition).toBe(5);
-  });
-
-  it('should move cursor to end when collapsing node with descendant being edited', async () => {
-    const user = userEvent.setup();
-    const mockSelectNode = vi.fn();
-
-    const nodes: Record<string, TreeNodeType> = {
-      'parent': {
-        id: 'parent',
-        content: 'Parent Node',
-        children: ['child-1'],
-        metadata: {},
-      },
-      'child-1': {
-        id: 'child-1',
-        content: 'Child Node',
-        children: [],
-        metadata: {},
-      },
-    };
-
-    store.setState({
-      nodes,
-      activeNodeId: 'child-1',
-      ancestorRegistry: {
-        'parent': [],
-        'child-1': ['parent'],
-      },
-      actions: {
-        ...store.getState().actions,
-        selectNode: mockSelectNode,
-      },
-    });
-
-    renderWithProvider(<TreeNode nodeId="parent" />);
-
-    const collapseButton = screen.getByText('⌄');
-    await user.click(collapseButton);
-
-    expect(mockSelectNode).toHaveBeenCalledWith('parent', 11);
-  });
+  // NOTE: Toggle/collapse behavior tests have been moved to useNodeToggle.test.tsx
+  // since they require non-mocked hooks that cause OOM during compilation
 });
