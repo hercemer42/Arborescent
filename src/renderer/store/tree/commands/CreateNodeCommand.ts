@@ -1,6 +1,7 @@
 import { BaseCommand } from './Command';
 import { TreeNode } from '../../../../shared/types';
 import { buildAncestorRegistry } from '../../../utils/ancestry';
+import { createTreeNode } from '../../../utils/nodeHelpers';
 
 /**
  * Command for creating a new node
@@ -30,12 +31,10 @@ export class CreateNodeCommand extends BaseCommand {
     if (!parent) return;
 
     // Create the new node with default pending status
-    const newNode: TreeNode = {
-      id: this.newNodeId,
+    const newNode = createTreeNode(this.newNodeId, {
       content: this.initialContent,
-      children: [],
       metadata: { status: 'pending' },
-    };
+    });
 
     // Insert into parent's children
     const updatedChildren = [...parent.children];

@@ -1,4 +1,5 @@
 import { TreeNode } from '../../shared/types';
+import { createTreeNode } from '../utils/nodeHelpers';
 
 export function createBlankDocument(): {
   nodes: Record<string, TreeNode>;
@@ -10,18 +11,13 @@ export function createBlankDocument(): {
 
   return {
     nodes: {
-      [rootId]: {
-        id: rootId,
-        content: '',
+      [rootId]: createTreeNode(rootId, {
         children: [firstNodeId],
         metadata: { isRoot: true },
-      },
-      [firstNodeId]: {
-        id: firstNodeId,
-        content: '',
-        children: [],
+      }),
+      [firstNodeId]: createTreeNode(firstNodeId, {
         metadata: { status: 'pending' },
-      },
+      }),
     },
     rootNodeId: rootId,
     firstNodeId,

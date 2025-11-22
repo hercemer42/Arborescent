@@ -1,13 +1,17 @@
 import { TreeState } from '../treeStore';
 import { TreeNode } from '../../../../shared/types';
-import { exportNodeAsMarkdown } from '../../../utils/markdown';
+import { exportNodeAsMarkdown, parseMarkdown } from '../../../utils/markdown';
+import { wrapNodesWithHiddenRoot } from '../../../utils/nodeHelpers';
 import { executeInTerminal } from '../../../utils/terminalExecution';
 import { logger } from '../../../services/logger';
 import { useToastStore } from '../../toast/toastStore';
 import { usePanelStore } from '../../panel/panelStore';
 import { VisualEffectsActions } from './visualEffectsActions';
-import { loadReviewContent } from '../../../services/review/reviewTempFileService';
+import { loadReviewContent, saveReviewContent } from '../../../services/review/reviewTempFileService';
 import { AcceptReviewCommand } from '../commands/AcceptReviewCommand';
+import { reviewTreeStore } from '../../review/reviewTreeStore';
+
+export type ContentSource = 'clipboard' | 'file' | 'restore';
 
 // Base instruction for review requests
 const REVIEW_INSTRUCTION_BASE = `You are reviewing a hierarchical task/note list. Please:
@@ -30,6 +34,11 @@ const REVIEW_INSTRUCTION_TERMINAL = `${REVIEW_INSTRUCTION_BASE}
 
 Output the complete updated list.`;
 
+export interface ProcessReviewContentResult {
+  success: boolean;
+  nodeCount?: number;
+}
+
 export interface ReviewActions {
   startReview: (nodeId: string) => void;
   cancelReview: () => void;
@@ -38,6 +47,7 @@ export interface ReviewActions {
   requestReviewInTerminal: (nodeId: string, terminalId: string) => Promise<void>;
   restoreReviewState: () => Promise<void>;
   updateReviewMetadata: (nodeId: string, tempFile: string, contentHash: string) => void;
+  processIncomingReviewContent: (content: string, source: ContentSource, skipSave?: boolean) => Promise<ProcessReviewContentResult>;
 }
 
 export function createReviewActions(
@@ -313,6 +323,86 @@ ${formattedContent}`;
 
       set({ nodes: updatedNodes });
       logger.info(`Updated review metadata for node: ${nodeId}`, 'ReviewActions');
+    },
+
+    /**
+     * Process incoming review content from clipboard, file watcher, or temp file restore.
+     * Parses markdown, initializes review store, saves to temp file, and updates metadata.
+     */
+    processIncomingReviewContent: async (
+      content: string,
+      source: ContentSource,
+      skipSave: boolean = false
+    ): Promise<ProcessReviewContentResult> => {
+      const state = get();
+      const { reviewingNodeId, currentFilePath } = state;
+
+      if (!reviewingNodeId) {
+        logger.warn(`Received ${source} content but no node is being reviewed`, 'ReviewActions');
+        return { success: false };
+      }
+
+      if (!currentFilePath) {
+        logger.warn(`Received ${source} content but no active file`, 'ReviewActions');
+        return { success: false };
+      }
+
+      logger.info(`Processing ${source} content`, 'ReviewActions');
+
+      // Parse markdown content
+      let rootNodes, allNodes;
+      try {
+        ({ rootNodes, allNodes } = parseMarkdown(content));
+      } catch {
+        logger.info(`${source} content is not valid markdown`, 'ReviewActions');
+        return { success: false };
+      }
+
+      // Must have exactly 1 root node
+      if (rootNodes.length !== 1) {
+        if (rootNodes.length === 0) {
+          logger.info(`${source} content has no valid nodes`, 'ReviewActions');
+        } else {
+          logger.info(`${source} content has ${rootNodes.length} root nodes, expected 1`, 'ReviewActions');
+        }
+        return { success: false };
+      }
+
+      // Wrap with hidden root and initialize review store
+      const { nodes: nodesWithHiddenRoot, rootNodeId: hiddenRootId } = wrapNodesWithHiddenRoot(
+        allNodes,
+        rootNodes[0].id,
+        'review-root'
+      );
+      reviewTreeStore.initialize(currentFilePath, nodesWithHiddenRoot, hiddenRootId);
+      logger.info(`Initialized review store with ${Object.keys(allNodes).length} nodes`, 'ReviewActions');
+
+      // Show the review panel
+      usePanelStore.getState().showReview();
+
+      // Save content to temp file and update node metadata (skip if restoring)
+      if (!skipSave) {
+        try {
+          const { filePath: tempFilePath, contentHash } = await saveReviewContent(reviewingNodeId, content);
+          const updatedNodes = {
+            ...get().nodes,
+            [reviewingNodeId]: {
+              ...get().nodes[reviewingNodeId],
+              metadata: {
+                ...get().nodes[reviewingNodeId].metadata,
+                reviewTempFile: tempFilePath,
+                reviewContentHash: contentHash,
+              },
+            },
+          };
+          set({ nodes: updatedNodes });
+          logger.info('Saved review content to temp file', 'ReviewActions');
+        } catch (error) {
+          logger.error('Failed to save review content to temp file', error as Error, 'ReviewActions');
+        }
+      }
+
+      return { success: true, nodeCount: Object.keys(allNodes).length };
     },
   };
 }

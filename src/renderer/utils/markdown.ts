@@ -1,5 +1,6 @@
 import { TreeNode, NodeStatus, STATUS_SYMBOLS } from '../../shared/types';
 import { v4 as uuidv4 } from 'uuid';
+import { createTreeNode } from './nodeHelpers';
 
 export type NodesMap = Record<string, TreeNode>;
 
@@ -203,17 +204,15 @@ export function parseMarkdown(markdown: string): ParsedMarkdownResult {
     const { depth, status, content } = parsed;
 
     // Create new node
-    const newNode: TreeNode = {
-      id: uuidv4(),
+    const newNode = createTreeNode(uuidv4(), {
       content,
-      children: [],
       metadata: {
         status,
         expanded: true,
         deleted: false,
         plugins: {},
       },
-    };
+    });
 
     // Add to allNodes map
     allNodes[newNode.id] = newNode;

@@ -1,114 +1,97 @@
-import { useEffect, useState, useCallback } from 'react';
-import { parseMarkdown } from '../../../utils/markdown';
+import { useEffect, useState, useCallback, useRef } from 'react';
 import { logger } from '../../../services/logger';
-import { saveReviewContent } from '../../../services/review/reviewTempFileService';
+import { loadReviewContent } from '../../../services/review/reviewTempFileService';
 import { useFilesStore } from '../../../store/files/filesStore';
-import { storeManager } from '../../../store/storeManager';
 import { reviewTreeStore } from '../../../store/review/reviewTreeStore';
-import { usePanelStore } from '../../../store/panel/panelStore';
+import { storeManager } from '../../../store/storeManager';
+import type { ContentSource } from '../../../store/tree/actions/reviewActions';
 
 /**
  * Hook to monitor clipboard and file watcher for valid Arborescent markdown content
- * Validates content by attempting to parse it and initializes the review tree store for the active file
- * Only accepts content that parses to exactly 1 root node
+ * Orchestrates between store methods and services to process incoming content
  */
 export function useReviewClipboard(reviewingNodeId: string | null) {
   const [hasReviewContent, setHasReviewContent] = useState<boolean>(false);
   const activeFilePath = useFilesStore((state) => state.activeFilePath);
-  const showReview = usePanelStore((state) => state.showReview);
+  const hasAttemptedRestore = useRef<string | null>(null);
 
-  // Process review content from any source (clipboard or file)
-  const processReviewContent = useCallback(async (content: string, source: 'clipboard' | 'file') => {
-    logger.info(`Received ${source} content, attempting to parse`, 'ReviewClipboard');
-
-    if (!reviewingNodeId) {
-      logger.warn(`Received ${source} content but no node is being reviewed`, 'ReviewClipboard');
+  // Handle incoming review content from any source
+  const handleReviewContent = useCallback(async (content: string, source: ContentSource, skipSave: boolean = false) => {
+    if (!reviewingNodeId || !activeFilePath) {
       return;
     }
 
-    if (!activeFilePath) {
-      logger.warn(`Received ${source} content but no active file`, 'ReviewClipboard');
-      return;
+    const store = storeManager.getStoreForFile(activeFilePath);
+    const result = await store.getState().actions.processIncomingReviewContent(content, source, skipSave);
+    if (result.success) {
+      setHasReviewContent(true);
     }
-
-    // Try to parse the content - only accept if it parses successfully
-    try {
-      const { rootNodes, allNodes } = parseMarkdown(content);
-
-      // Must parse to exactly 1 root node with valid structure
-      if (rootNodes.length === 1) {
-        logger.info(`Successfully parsed ${source} content as Arborescent markdown`, 'ReviewClipboard');
-
-        // Create a hidden root node (like the main workspace) so the parsed root is visible
-        const parsedRootNode = rootNodes[0];
-        const hiddenRootId = 'review-root';
-        const nodesWithHiddenRoot = {
-          ...allNodes,
-          [hiddenRootId]: {
-            id: hiddenRootId,
-            content: '',
-            children: [parsedRootNode.id],
-            metadata: {},
-          },
-        };
-
-        // Initialize review store with hidden root containing the parsed tree
-        reviewTreeStore.initialize(activeFilePath, nodesWithHiddenRoot, hiddenRootId);
-
-        setHasReviewContent(true);
-        logger.info(`Initialized review store with ${Object.keys(allNodes).length} nodes`, 'ReviewClipboard');
-
-        // Show the review panel now that we have valid content
-        showReview();
-
-        // Save content to temp file and update node metadata
-        try {
-          const { filePath, contentHash } = await saveReviewContent(reviewingNodeId, content);
-
-          // Update node metadata with temp file info
-          if (activeFilePath) {
-            const store = storeManager.getStoreForFile(activeFilePath);
-            store.getState().actions.updateReviewMetadata(reviewingNodeId, filePath, contentHash);
-          }
-          logger.info('Saved review content to temp file and updated node metadata', 'ReviewClipboard');
-        } catch (error) {
-          logger.error('Failed to save review content to temp file', error as Error, 'ReviewClipboard');
-        }
-      } else if (rootNodes.length === 0) {
-        logger.info(`${source} content does not contain valid Arborescent markdown (no nodes parsed)`, 'ReviewClipboard');
-      } else {
-        logger.info(`${source} content has ${rootNodes.length} root nodes, expected 1`, 'ReviewClipboard');
-      }
-    } catch {
-      logger.info(`${source} content is not valid Arborescent markdown`, 'ReviewClipboard');
-    }
-  }, [reviewingNodeId, activeFilePath, showReview]);
+  }, [reviewingNodeId, activeFilePath]);
 
   // Listen for clipboard content detection
   useEffect(() => {
     const cleanup = window.electron.onClipboardContentDetected((content: string) => {
-      processReviewContent(content, 'clipboard');
+      handleReviewContent(content, 'clipboard');
     });
 
     return cleanup;
-  }, [processReviewContent]);
+  }, [handleReviewContent]);
 
   // Listen for file content detection (from terminal review workflow)
   useEffect(() => {
     const cleanup = window.electron.onReviewFileContentDetected((content: string) => {
-      processReviewContent(content, 'file');
+      handleReviewContent(content, 'file');
     });
 
     return cleanup;
-  }, [processReviewContent]);
+  }, [handleReviewContent]);
 
   // Clear review store for this file when review is cancelled
   useEffect(() => {
     if (!reviewingNodeId && activeFilePath) {
       reviewTreeStore.clearFile(activeFilePath);
       setHasReviewContent(false);
+      hasAttemptedRestore.current = null;
     }
   }, [reviewingNodeId, activeFilePath]);
+
+  // Restore review content from temp file on app restart
+  // This runs when reviewingNodeId is set but we don't have content yet
+  useEffect(() => {
+    if (!reviewingNodeId || !activeFilePath || hasReviewContent) {
+      return;
+    }
+
+    // Only attempt restore once per reviewingNodeId
+    if (hasAttemptedRestore.current === reviewingNodeId) {
+      return;
+    }
+    hasAttemptedRestore.current = reviewingNodeId;
+
+    // Check node metadata for temp file info
+    const store = storeManager.getStoreForFile(activeFilePath);
+    const node = store.getState().nodes[reviewingNodeId];
+
+    if (!node?.metadata.reviewTempFile || !node?.metadata.reviewContentHash) {
+      logger.info('No temp file metadata to restore from', 'ReviewClipboard');
+      return;
+    }
+
+    // Load and process the content
+    loadReviewContent(
+      node.metadata.reviewTempFile as string,
+      node.metadata.reviewContentHash as string
+    ).then((content) => {
+      if (content) {
+        logger.info('Restoring review content from temp file', 'ReviewClipboard');
+        handleReviewContent(content, 'restore', true);
+      } else {
+        logger.warn('Failed to load review content from temp file', 'ReviewClipboard');
+      }
+    }).catch((error) => {
+      logger.error('Failed to restore review content', error as Error, 'ReviewClipboard');
+    });
+  }, [reviewingNodeId, activeFilePath, hasReviewContent, handleReviewContent]);
 
   return hasReviewContent;
 }

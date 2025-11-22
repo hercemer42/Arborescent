@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { updateNodeMetadata, findPreviousNode, findNextNode } from '../nodeHelpers';
+import { updateNodeMetadata, findPreviousNode, findNextNode, createTreeNode } from '../nodeHelpers';
 import { TreeNode } from '@shared/types';
 
 describe('updateNodeMetadata', () => {
@@ -260,5 +260,71 @@ describe('findNextNode', () => {
 
     const result = findNextNode('child-1', nodes, 'root', ancestorRegistry);
     expect(result).toBe('child-2');
+  });
+});
+
+describe('createTreeNode', () => {
+  it('should create a node with only id', () => {
+    const node = createTreeNode('test-id');
+
+    expect(node).toEqual({
+      id: 'test-id',
+      content: '',
+      children: [],
+      metadata: {},
+    });
+  });
+
+  it('should create a node with content', () => {
+    const node = createTreeNode('test-id', { content: 'Hello world' });
+
+    expect(node.id).toBe('test-id');
+    expect(node.content).toBe('Hello world');
+    expect(node.children).toEqual([]);
+    expect(node.metadata).toEqual({});
+  });
+
+  it('should create a node with children', () => {
+    const node = createTreeNode('parent-id', { children: ['child-1', 'child-2'] });
+
+    expect(node.id).toBe('parent-id');
+    expect(node.content).toBe('');
+    expect(node.children).toEqual(['child-1', 'child-2']);
+    expect(node.metadata).toEqual({});
+  });
+
+  it('should create a node with metadata', () => {
+    const node = createTreeNode('test-id', { metadata: { status: 'pending', isRoot: true } });
+
+    expect(node.id).toBe('test-id');
+    expect(node.content).toBe('');
+    expect(node.children).toEqual([]);
+    expect(node.metadata).toEqual({ status: 'pending', isRoot: true });
+  });
+
+  it('should create a node with all options', () => {
+    const node = createTreeNode('test-id', {
+      content: 'Test content',
+      children: ['child-1'],
+      metadata: { status: 'completed' },
+    });
+
+    expect(node).toEqual({
+      id: 'test-id',
+      content: 'Test content',
+      children: ['child-1'],
+      metadata: { status: 'completed' },
+    });
+  });
+
+  it('should not share references between nodes', () => {
+    const node1 = createTreeNode('node-1');
+    const node2 = createTreeNode('node-2');
+
+    node1.children.push('child-a');
+    node1.metadata.status = 'pending';
+
+    expect(node2.children).toEqual([]);
+    expect(node2.metadata).toEqual({});
   });
 });

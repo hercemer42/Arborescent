@@ -1,24 +1,19 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { renderHook, waitFor, act } from '@testing-library/react';
 import { useReviewClipboard } from '../useReviewClipboard';
-import { logger } from '../../../../services/logger';
 
-vi.mock('../../../../services/logger', () => ({
-  logger: {
-    info: vi.fn(),
-    warn: vi.fn(),
-    error: vi.fn(),
-  },
-}));
-
-const mockUpdateReviewMetadata = vi.fn();
+const mockProcessIncomingReviewContent = vi.fn();
 
 vi.mock('../../../../store/storeManager', () => ({
   storeManager: {
     getStoreForFile: vi.fn(() => ({
       getState: () => ({
+        nodes: {
+          'node-1': { id: 'node-1', content: '', children: [], metadata: {} },
+          'node-2': { id: 'node-2', content: '', children: [], metadata: {} },
+        },
         actions: {
-          updateReviewMetadata: mockUpdateReviewMetadata,
+          processIncomingReviewContent: mockProcessIncomingReviewContent,
         },
       }),
     })),
@@ -26,20 +21,16 @@ vi.mock('../../../../store/storeManager', () => ({
 }));
 
 vi.mock('../../../../services/review/reviewTempFileService', () => ({
-  saveReviewContent: vi.fn().mockResolvedValue({ filePath: '/temp/review-test.txt', contentHash: 'hash123' }),
+  loadReviewContent: vi.fn().mockResolvedValue(null),
 }));
 
-const { mockReviewTreeInitialize, mockReviewTreeClearFile, mockReviewTreeGetStoreForFile } = vi.hoisted(() => ({
-  mockReviewTreeInitialize: vi.fn(),
+const { mockReviewTreeClearFile } = vi.hoisted(() => ({
   mockReviewTreeClearFile: vi.fn(),
-  mockReviewTreeGetStoreForFile: vi.fn(),
 }));
 
 vi.mock('../../../../store/review/reviewTreeStore', () => ({
   reviewTreeStore: {
-    initialize: mockReviewTreeInitialize,
     clearFile: mockReviewTreeClearFile,
-    getStoreForFile: mockReviewTreeGetStoreForFile,
   },
 }));
 
@@ -52,33 +43,6 @@ vi.mock('../../../../store/files/filesStore', () => ({
   }),
 }));
 
-vi.mock('../../../../utils/markdown', () => ({
-  parseMarkdown: vi.fn((content: string) => {
-    // Mock implementation: return valid parse for specific content
-    if (content.includes('- Valid node')) {
-      const node = {
-        id: 'node-1',
-        content: 'Valid node',
-        children: [],
-        metadata: { plugins: {} },
-      };
-      return { rootNodes: [node], allNodes: { 'node-1': node } };
-    }
-    if (content.includes('- Node 1\n- Node 2')) {
-      // Multiple root nodes
-      const node1 = { id: 'node-1', content: 'Node 1', children: [], metadata: { plugins: {} } };
-      const node2 = { id: 'node-2', content: 'Node 2', children: [], metadata: { plugins: {} } };
-      return {
-        rootNodes: [node1, node2],
-        allNodes: { 'node-1': node1, 'node-2': node2 },
-      };
-    }
-    if (content.includes('Empty')) {
-      return { rootNodes: [], allNodes: {} };
-    }
-    throw new Error('Invalid markdown');
-  }),
-}));
 
 describe('useReviewClipboard', () => {
   let mockOnClipboardContentDetected: ReturnType<typeof vi.fn>;
@@ -89,10 +53,8 @@ describe('useReviewClipboard', () => {
 
   beforeEach(() => {
     vi.clearAllMocks();
-    mockUpdateReviewMetadata.mockClear();
-    mockReviewTreeInitialize.mockClear();
+    mockProcessIncomingReviewContent.mockClear();
     mockReviewTreeClearFile.mockClear();
-    mockReviewTreeGetStoreForFile.mockClear();
     mockCleanup = vi.fn();
     mockOnClipboardContentDetected = vi.fn((callback) => {
       clipboardCallback = callback;
@@ -102,6 +64,9 @@ describe('useReviewClipboard', () => {
       fileCallback = callback;
       return mockCleanup;
     });
+
+    // Default: processIncomingReviewContent returns success
+    mockProcessIncomingReviewContent.mockResolvedValue({ success: true, nodeCount: 1 });
 
     global.window = {
       electron: {
@@ -124,10 +89,9 @@ describe('useReviewClipboard', () => {
     expect(mockOnClipboardContentDetected).toHaveBeenCalledWith(expect.any(Function));
   });
 
-  it('should set hasReviewContent to true when valid markdown is detected', async () => {
+  it('should call store action when clipboard content is detected', async () => {
     const { result } = renderHook(() => useReviewClipboard('node-1'));
 
-    // Simulate clipboard content detection
     act(() => {
       clipboardCallback('- Valid node');
     });
@@ -136,27 +100,16 @@ describe('useReviewClipboard', () => {
       expect(result.current).toBe(true);
     }, { container: document.body });
 
-    expect(mockReviewTreeInitialize).toHaveBeenCalledWith(
-      '/test/file.arbo',
-      {
-        'node-1': expect.any(Object),
-        'review-root': expect.objectContaining({
-          id: 'review-root',
-          children: ['node-1'],
-        }),
-      },
-      'review-root'
-    );
-    expect(logger.info).toHaveBeenCalledWith(
-      'Successfully parsed clipboard content as Arborescent markdown',
-      'ReviewClipboard'
+    expect(mockProcessIncomingReviewContent).toHaveBeenCalledWith(
+      '- Valid node',
+      'clipboard',
+      false
     );
   });
 
-  it('should set hasReviewContent to true when valid markdown is detected from file', async () => {
+  it('should call store action when file content is detected', async () => {
     const { result } = renderHook(() => useReviewClipboard('node-1'));
 
-    // Simulate file content detection
     act(() => {
       fileCallback('- Valid node');
     });
@@ -165,64 +118,27 @@ describe('useReviewClipboard', () => {
       expect(result.current).toBe(true);
     }, { container: document.body });
 
-    expect(logger.info).toHaveBeenCalledWith(
-      'Successfully parsed file content as Arborescent markdown',
-      'ReviewClipboard'
+    expect(mockProcessIncomingReviewContent).toHaveBeenCalledWith(
+      '- Valid node',
+      'file',
+      false
     );
   });
 
-  it('should not set hasReviewContent when markdown has multiple root nodes', async () => {
+  it('should not set hasReviewContent when action fails', async () => {
+    mockProcessIncomingReviewContent.mockResolvedValue({ success: false });
+
     const { result } = renderHook(() => useReviewClipboard('node-1'));
 
     act(() => {
-      clipboardCallback('- Node 1\n- Node 2');
+      clipboardCallback('Invalid content');
     });
 
     await waitFor(() => {
-      expect(logger.info).toHaveBeenCalledWith(
-        'clipboard content has 2 root nodes, expected 1',
-        'ReviewClipboard'
-      );
+      expect(mockProcessIncomingReviewContent).toHaveBeenCalled();
     }, { container: document.body });
 
     expect(result.current).toBe(false);
-    expect(mockReviewTreeInitialize).not.toHaveBeenCalled();
-  });
-
-  it('should not set hasReviewContent when markdown has no nodes', async () => {
-    const { result } = renderHook(() => useReviewClipboard('node-1'));
-
-    act(() => {
-      clipboardCallback('Empty content');
-    });
-
-    await waitFor(() => {
-      expect(logger.info).toHaveBeenCalledWith(
-        'clipboard content does not contain valid Arborescent markdown (no nodes parsed)',
-        'ReviewClipboard'
-      );
-    }, { container: document.body });
-
-    expect(result.current).toBe(false);
-    expect(mockReviewTreeInitialize).not.toHaveBeenCalled();
-  });
-
-  it('should not set hasReviewContent when markdown parsing fails', async () => {
-    const { result } = renderHook(() => useReviewClipboard('node-1'));
-
-    act(() => {
-      clipboardCallback('Invalid markdown content');
-    });
-
-    await waitFor(() => {
-      expect(logger.info).toHaveBeenCalledWith(
-        'clipboard content is not valid Arborescent markdown',
-        'ReviewClipboard'
-      );
-    }, { container: document.body });
-
-    expect(result.current).toBe(false);
-    expect(mockReviewTreeInitialize).not.toHaveBeenCalled();
   });
 
   it('should clear review store when reviewingNodeId becomes null', async () => {
@@ -239,8 +155,6 @@ describe('useReviewClipboard', () => {
     await waitFor(() => {
       expect(result.current).toBe(true);
     }, { container: document.body });
-
-    expect(mockReviewTreeInitialize).toHaveBeenCalled();
 
     // Clear review by setting reviewingNodeId to null
     act(() => {
@@ -284,5 +198,18 @@ describe('useReviewClipboard', () => {
     unmount();
 
     expect(mockCleanup).toHaveBeenCalled();
+  });
+
+  it('should not call action when no reviewingNodeId', async () => {
+    renderHook(() => useReviewClipboard(null));
+
+    act(() => {
+      clipboardCallback('- Valid node');
+    });
+
+    // Give time for any async operations
+    await new Promise((resolve) => setTimeout(resolve, 10));
+
+    expect(mockProcessIncomingReviewContent).not.toHaveBeenCalled();
   });
 });

@@ -153,3 +153,57 @@ export function getVisibleNodesInOrder(
 
   return result;
 }
+
+/**
+ * Options for creating a tree node
+ */
+export interface CreateTreeNodeOptions {
+  content?: string;
+  children?: string[];
+  metadata?: Record<string, unknown>;
+}
+
+/**
+ * Create a new TreeNode with sensible defaults.
+ * Centralizes node creation to ensure consistent structure.
+ *
+ * @param id - Unique identifier for the node
+ * @param options - Optional content, children, and metadata
+ * @returns A new TreeNode
+ */
+export function createTreeNode(
+  id: string,
+  options: CreateTreeNodeOptions = {}
+): TreeNode {
+  return {
+    id,
+    content: options.content ?? '',
+    children: options.children ?? [],
+    metadata: options.metadata ?? {},
+  };
+}
+
+/**
+ * Wrap a set of nodes with a hidden root node.
+ * Used when displaying parsed content that needs an invisible container.
+ *
+ * @param nodes - The nodes to wrap
+ * @param contentRootId - The ID of the content's root node (becomes child of hidden root)
+ * @param hiddenRootId - The ID for the hidden root node
+ * @returns New nodes map with hidden root, and the hidden root ID
+ */
+export function wrapNodesWithHiddenRoot(
+  nodes: Record<string, TreeNode>,
+  contentRootId: string,
+  hiddenRootId: string = 'hidden-root'
+): { nodes: Record<string, TreeNode>; rootNodeId: string } {
+  return {
+    nodes: {
+      ...nodes,
+      [hiddenRootId]: createTreeNode(hiddenRootId, {
+        children: [contentRootId],
+      }),
+    },
+    rootNodeId: hiddenRootId,
+  };
+}
