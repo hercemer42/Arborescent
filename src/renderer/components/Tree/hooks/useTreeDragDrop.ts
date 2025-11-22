@@ -2,7 +2,7 @@ import { useCallback, useState, useMemo } from 'react';
 import { DragEndEvent, DragStartEvent, PointerSensor, useSensor, useSensors, defaultDropAnimationSideEffects } from '@dnd-kit/core';
 import { useActiveTreeStore } from '../../../store/tree/TreeStoreContext';
 import { useStore } from '../../../store/tree/useStore';
-import { AncestorRegistry } from '../../../utils/ancestry';
+import { isValidDrop, DropZone } from '../../../utils/nodeHelpers';
 
 // Fast drop animation for snappy feel
 const dropAnimation = {
@@ -16,34 +16,6 @@ const dropAnimation = {
     },
   }),
 };
-
-type DropZone = 'before' | 'after' | 'child';
-
-function isValidDrop(
-  nodeId: string,
-  targetNodeId: string,
-  dropZone: DropZone,
-  nodesToMove: string[],
-  ancestorRegistry: AncestorRegistry
-): boolean {
-  // Skip if trying to drop into the node itself
-  if (nodeId === targetNodeId) {
-    return false;
-  }
-
-  // Skip if trying to drop into one of its descendants
-  const targetAncestors = ancestorRegistry[targetNodeId] || [];
-  if (targetAncestors.includes(nodeId)) {
-    return false;
-  }
-
-  // Skip if target is one of the nodes being moved (when dropping as sibling)
-  if (dropZone !== 'child' && nodesToMove.includes(targetNodeId)) {
-    return false;
-  }
-
-  return true;
-}
 
 export function useTreeDragDrop() {
   const store = useActiveTreeStore();

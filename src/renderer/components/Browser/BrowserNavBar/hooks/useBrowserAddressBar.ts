@@ -1,5 +1,6 @@
 import { useState, useCallback, useEffect } from 'react';
 import { BrowserTab } from '../../../../store/browser/browserStore';
+import { normalizeUrl } from '../../../../utils/urlHelpers';
 
 interface UseBrowserAddressBarOptions {
   activeTabId: string | null;
@@ -19,11 +20,7 @@ export function useBrowserAddressBar({ activeTabId, tabs, getActiveWebview }: Us
     e?.preventDefault();
     const webview = getActiveWebview();
     if (webview && addressBarValue) {
-      let url = addressBarValue;
-      // Add https:// if no protocol specified
-      if (!url.match(/^[a-zA-Z]+:\/\//)) {
-        url = 'https://' + url;
-      }
+      const url = normalizeUrl(addressBarValue);
       webview.loadURL(url);
       setIsEditingAddress(false);
     }

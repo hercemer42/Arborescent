@@ -1,4 +1,9 @@
 import { create } from 'zustand';
+import { TreeNode } from '../../../shared/types';
+import { exportNodeAsMarkdown } from '../../utils/markdown';
+import { executeInTerminal as executeInTerminalUtil } from '../../services/terminalExecution';
+import { createTerminal as createTerminalService } from '../../services/terminalService';
+import { logger } from '../../services/logger';
 
 export interface TerminalInfo {
   id: string;
@@ -17,9 +22,13 @@ interface TerminalState {
   removeTerminal: (id: string) => void;
   setActiveTerminal: (id: string | null) => void;
   updateTerminal: (id: string, updates: Partial<TerminalInfo>) => void;
+  sendNodeToTerminal: (node: TreeNode, nodes: Record<string, TreeNode>) => Promise<void>;
+  executeNodeInTerminal: (node: TreeNode, nodes: Record<string, TreeNode>) => Promise<void>;
+  createNewTerminal: (title?: string) => Promise<void>;
+  closeTerminal: (id: string) => Promise<void>;
 }
 
-export const useTerminalStore = create<TerminalState>((set) => ({
+export const useTerminalStore = create<TerminalState>((set, get) => ({
   terminals: [],
   activeTerminalId: null,
 
@@ -53,4 +62,56 @@ export const useTerminalStore = create<TerminalState>((set) => ({
         t.id === id ? { ...t, ...updates } : t
       ),
     })),
+
+  sendNodeToTerminal: async (node: TreeNode, nodes: Record<string, TreeNode>) => {
+    const { activeTerminalId } = get();
+    if (!activeTerminalId) {
+      logger.error('No active terminal', new Error('No terminal selected'), 'TerminalStore');
+      return;
+    }
+
+    try {
+      const formattedContent = exportNodeAsMarkdown(node, nodes);
+      await window.electron.terminalWrite(activeTerminalId, formattedContent + '\n');
+      logger.info('Sent content to terminal', 'TerminalStore');
+    } catch (error) {
+      logger.error('Failed to send to terminal', error as Error, 'TerminalStore');
+    }
+  },
+
+  executeNodeInTerminal: async (node: TreeNode, nodes: Record<string, TreeNode>) => {
+    const { activeTerminalId } = get();
+    if (!activeTerminalId) {
+      logger.error('No active terminal', new Error('No terminal selected'), 'TerminalStore');
+      return;
+    }
+
+    try {
+      const formattedContent = exportNodeAsMarkdown(node, nodes);
+      await executeInTerminalUtil(activeTerminalId, formattedContent);
+      logger.info('Executed content in terminal', 'TerminalStore');
+    } catch (error) {
+      logger.error('Failed to execute in terminal', error as Error, 'TerminalStore');
+    }
+  },
+
+  createNewTerminal: async (title = 'Terminal') => {
+    try {
+      const terminalInfo = await createTerminalService(title);
+      get().addTerminal(terminalInfo);
+      logger.info(`Created new terminal: ${terminalInfo.id}`, 'TerminalStore');
+    } catch (error) {
+      logger.error('Failed to create terminal', error as Error, 'TerminalStore');
+    }
+  },
+
+  closeTerminal: async (id: string) => {
+    try {
+      await window.electron.terminalDestroy(id);
+      get().removeTerminal(id);
+      logger.info(`Closed terminal: ${id}`, 'TerminalStore');
+    } catch (error) {
+      logger.error('Failed to close terminal', error as Error, 'TerminalStore');
+    }
+  },
 }));

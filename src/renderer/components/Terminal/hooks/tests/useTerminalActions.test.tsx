@@ -2,6 +2,7 @@ import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { renderHook, waitFor } from '@testing-library/react';
 import { useTerminalActions } from '../useTerminalActions';
 import { TreeNode } from '../../../../../shared/types';
+import { useTerminalStore } from '../../../../store/terminal/terminalStore';
 
 // Mock logger
 vi.mock('../../../../services/logger', () => ({
@@ -25,6 +26,11 @@ describe('useTerminalActions', () => {
 
   beforeEach(() => {
     vi.clearAllMocks();
+    // Reset terminal store state
+    useTerminalStore.setState({
+      terminals: [],
+      activeTerminalId: null,
+    });
   });
 
   describe('sendToTerminal', () => {
@@ -32,7 +38,10 @@ describe('useTerminalActions', () => {
       const mockTerminalWrite = vi.fn().mockResolvedValue(undefined);
       window.electron.terminalWrite = mockTerminalWrite;
 
-      const { result } = renderHook(() => useTerminalActions('terminal-1'));
+      // Set up terminal store with active terminal
+      useTerminalStore.setState({ activeTerminalId: 'terminal-1' });
+
+      const { result } = renderHook(() => useTerminalActions());
 
       await result.current.sendToTerminal(mockNode, mockNodes);
 
@@ -52,7 +61,9 @@ describe('useTerminalActions', () => {
       const mockTerminalWrite = vi.fn().mockResolvedValue(undefined);
       window.electron.terminalWrite = mockTerminalWrite;
 
-      const { result } = renderHook(() => useTerminalActions(null));
+      // No active terminal set
+
+      const { result } = renderHook(() => useTerminalActions());
 
       await result.current.sendToTerminal(mockNode, mockNodes);
 
@@ -63,7 +74,10 @@ describe('useTerminalActions', () => {
       const mockTerminalWrite = vi.fn().mockRejectedValue(new Error('Write failed'));
       window.electron.terminalWrite = mockTerminalWrite;
 
-      const { result } = renderHook(() => useTerminalActions('terminal-1'));
+      // Set up terminal store with active terminal
+      useTerminalStore.setState({ activeTerminalId: 'terminal-1' });
+
+      const { result } = renderHook(() => useTerminalActions());
 
       await result.current.sendToTerminal(mockNode, mockNodes);
 
@@ -78,6 +92,9 @@ describe('useTerminalActions', () => {
       const mockTerminalWrite = vi.fn().mockResolvedValue(undefined);
       window.electron.terminalWrite = mockTerminalWrite;
 
+      // Set up terminal store with active terminal
+      useTerminalStore.setState({ activeTerminalId: 'terminal-1' });
+
       // Mock querySelector to return a mock textarea
       const mockTextarea = document.createElement('textarea');
       mockTextarea.className = 'xterm-helper-textarea';
@@ -86,7 +103,7 @@ describe('useTerminalActions', () => {
         .spyOn(document, 'querySelector')
         .mockReturnValue(mockTextarea);
 
-      const { result } = renderHook(() => useTerminalActions('terminal-1'));
+      const { result } = renderHook(() => useTerminalActions());
 
       await result.current.executeInTerminal(mockNode, mockNodes);
 
@@ -112,6 +129,9 @@ describe('useTerminalActions', () => {
       const mockTerminalWrite = vi.fn().mockResolvedValue(undefined);
       window.electron.terminalWrite = mockTerminalWrite;
 
+      // Set up terminal store with active terminal
+      useTerminalStore.setState({ activeTerminalId: 'terminal-1' });
+
       const emptyNode: TreeNode = {
         id: 'empty',
         content: '',
@@ -119,7 +139,7 @@ describe('useTerminalActions', () => {
         metadata: {},
       };
 
-      const { result } = renderHook(() => useTerminalActions('terminal-1'));
+      const { result } = renderHook(() => useTerminalActions());
 
       await result.current.executeInTerminal(emptyNode, { empty: emptyNode });
 
@@ -130,7 +150,9 @@ describe('useTerminalActions', () => {
       const mockTerminalWrite = vi.fn().mockResolvedValue(undefined);
       window.electron.terminalWrite = mockTerminalWrite;
 
-      const { result } = renderHook(() => useTerminalActions(null));
+      // No active terminal set
+
+      const { result } = renderHook(() => useTerminalActions());
 
       await result.current.executeInTerminal(mockNode, mockNodes);
 

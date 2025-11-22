@@ -11,6 +11,7 @@ import { useReviewActions } from '../../Review/hooks/useReviewActions';
 import { logger } from '../../../services/logger';
 import { writeToClipboard } from '../../../services/clipboardService';
 import { exportNodeAsMarkdown } from '../../../utils/markdown';
+import { hasAncestorWithPluginSession } from '../../../utils/nodeHelpers';
 
 export function useNodeContextMenu(node: TreeNode) {
   const deleteNode = useStore((state) => state.actions.deleteNode);
@@ -25,14 +26,14 @@ export function useNodeContextMenu(node: TreeNode) {
   const [contextMenu, setContextMenu] = useState<{ x: number; y: number } | null>(null);
   const [pluginMenuItems, setPluginMenuItems] = useState<ContextMenuItem[]>([]);
 
-  const { sendToTerminal, executeInTerminal } = useTerminalActions(activeTerminalId);
+  const { sendToTerminal, executeInTerminal } = useTerminalActions();
   const { handleCancel } = useReviewActions();
 
   const handleContextMenu = async (e: React.MouseEvent) => {
     e.preventDefault();
     setContextMenu({ x: e.clientX, y: e.clientY });
 
-    const hasAncestorSession = hasAncestorWithSession();
+    const hasAncestorSession = hasAncestorWithPluginSession(node.id, nodes, ancestorRegistry);
     const nodeContext: NodeContext = {
       hasAncestorSession,
     };
@@ -105,14 +106,6 @@ export function useNodeContextMenu(node: TreeNode) {
   const handleCancelReview = async () => {
     await handleCancel();
   };
-
-  function hasAncestorWithSession(): boolean {
-    const ancestors = ancestorRegistry[node.id] || [];
-    return ancestors.some((ancestorId) => {
-      const ancestor = nodes[ancestorId];
-      return ancestor && ancestor.metadata.plugins && Object.keys(ancestor.metadata.plugins).length > 0;
-    });
-  }
 
   function convertToContextMenuItem(
     item: PluginContextMenuItem,

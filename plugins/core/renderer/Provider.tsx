@@ -3,7 +3,7 @@ import { PluginRegistry } from './Registry';
 import { PluginManager } from './Manager';
 import { registerPlugins, disposePlugins } from './initializePlugins';
 import { logger } from '../../../src/renderer/services/logger';
-import { notifyError } from '../../../src/renderer/utils/errorNotification';
+import { notifyError } from '../../../src/renderer/services/notification';
 
 /**
  * PluginProvider orchestrates the plugin system initialization in the renderer process.

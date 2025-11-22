@@ -3,7 +3,6 @@ import { useFilesStore } from '../store/files/filesStore';
 import { useBrowserStore } from '../store/browser/browserStore';
 import { useTerminalStore } from '../store/terminal/terminalStore';
 import { usePanelStore } from '../store/panel/panelStore';
-import { createTerminal } from '../services/terminalService';
 
 /**
  * Hook to handle app-level initialization on startup
@@ -23,9 +22,9 @@ export function useAppInitialization(onComplete: () => void) {
       .then(async () => {
         // Auto-create a terminal if none exist AND terminal panel is active
         const activeContent = usePanelStore.getState().activeContent;
-        const terminals = useTerminalStore.getState().terminals;
-        if (terminals.length === 0 && activeContent === 'terminal') {
-          await createTerminal('Terminal');
+        const terminalStore = useTerminalStore.getState();
+        if (terminalStore.terminals.length === 0 && activeContent === 'terminal') {
+          await terminalStore.createNewTerminal('Terminal');
         }
       })
       .finally(() => onComplete());

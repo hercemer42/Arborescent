@@ -2,12 +2,12 @@ import { TreeState } from '../treeStore';
 import { TreeNode } from '../../../../shared/types';
 import { exportNodeAsMarkdown, parseMarkdown } from '../../../utils/markdown';
 import { wrapNodesWithHiddenRoot } from '../../../utils/nodeHelpers';
-import { executeInTerminal } from '../../../utils/terminalExecution';
+import { executeInTerminal } from '../../../services/terminalExecution';
 import { logger } from '../../../services/logger';
 import { useToastStore } from '../../toast/toastStore';
 import { usePanelStore } from '../../panel/panelStore';
 import { VisualEffectsActions } from './visualEffectsActions';
-import { loadReviewContent, saveReviewContent } from '../../../services/review/reviewTempFileService';
+import { loadReviewContent, saveReviewContent, deleteReviewTempFile } from '../../../services/review/reviewTempFileService';
 import { AcceptReviewCommand } from '../commands/AcceptReviewCommand';
 import { reviewTreeStore } from '../../review/reviewTreeStore';
 
@@ -48,6 +48,10 @@ export interface ReviewActions {
   restoreReviewState: () => Promise<void>;
   updateReviewMetadata: (nodeId: string, tempFile: string, contentHash: string) => void;
   processIncomingReviewContent: (content: string, source: ContentSource, skipSave?: boolean) => Promise<ProcessReviewContentResult>;
+  /** Full cancel workflow with cleanup - stops monitors, deletes temp files, clears state */
+  finishCancel: () => Promise<void>;
+  /** Full accept workflow - extracts nodes from review store, accepts, and cleans up */
+  finishAccept: () => Promise<void>;
 }
 
 export function createReviewActions(
@@ -56,6 +60,54 @@ export function createReviewActions(
   visualEffects: VisualEffectsActions,
   autoSave: () => void
 ): ReviewActions {
+  /**
+   * Stop all review monitors (clipboard, file watcher)
+   */
+  async function stopReviewMonitors(): Promise<void> {
+    await window.electron.stopClipboardMonitor();
+    await window.electron.stopReviewFileWatcher();
+  }
+
+  /**
+   * Clean up review resources for a file
+   */
+  async function cleanupReview(filePath: string, tempFilePath?: string): Promise<void> {
+    await stopReviewMonitors();
+    if (tempFilePath) {
+      await deleteReviewTempFile(tempFilePath);
+    }
+    reviewTreeStore.clearFile(filePath);
+  }
+
+  /**
+   * Extract content nodes from review store, excluding hidden root
+   * Returns null if review store is empty or invalid
+   */
+  function extractReviewContent(filePath: string): { rootNodeId: string; nodes: Record<string, TreeNode> } | null {
+    const reviewStore = reviewTreeStore.getStoreForFile(filePath);
+    if (!reviewStore) {
+      logger.error('No review store available', new Error('Review store not initialized'), 'ReviewActions');
+      return null;
+    }
+
+    const { nodes: reviewNodes, rootNodeId: reviewRootNodeId } = reviewStore.getState();
+    const hiddenRoot = reviewNodes[reviewRootNodeId];
+
+    if (!hiddenRoot || hiddenRoot.children.length === 0) {
+      logger.error('Review store has no content', new Error('Empty review'), 'ReviewActions');
+      return null;
+    }
+
+    // Get actual content root (first child of hidden root)
+    const actualRootNodeId = hiddenRoot.children[0];
+
+    // Filter out the hidden root from the nodes map
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { [reviewRootNodeId]: _hiddenRoot, ...contentNodes } = reviewNodes;
+
+    return { rootNodeId: actualRootNodeId, nodes: contentNodes };
+  }
+
   return {
     /**
      * Start reviewing a node
@@ -403,6 +455,75 @@ ${formattedContent}`;
       }
 
       return { success: true, nodeCount: Object.keys(allNodes).length };
+    },
+
+    /**
+     * Full cancel workflow with cleanup
+     */
+    finishCancel: async () => {
+      try {
+        const { reviewingNodeId, currentFilePath, nodes } = get();
+        if (!reviewingNodeId || !currentFilePath) {
+          logger.warn('No review in progress to cancel', 'ReviewActions');
+          return;
+        }
+
+        const tempFilePath = nodes[reviewingNodeId]?.metadata.reviewTempFile;
+        set({ reviewingNodeId: null });
+        await cleanupReview(currentFilePath, tempFilePath);
+
+        window.dispatchEvent(new Event('review-canceled'));
+        logger.info('Review cancelled', 'ReviewActions');
+      } catch (error) {
+        logger.error('Failed to cancel review', error as Error, 'ReviewActions');
+      }
+    },
+
+    /**
+     * Full accept workflow
+     */
+    finishAccept: async () => {
+      try {
+        const { reviewingNodeId, currentFilePath, nodes } = get();
+        if (!reviewingNodeId || !currentFilePath) {
+          logger.error('No review in progress to accept', new Error('No active review'), 'ReviewActions');
+          return;
+        }
+
+        // Extract content from review store
+        const reviewContent = extractReviewContent(currentFilePath);
+        if (!reviewContent) return;
+
+        logger.info(`Accepting review with ${Object.keys(reviewContent.nodes).length} nodes`, 'ReviewActions');
+
+        // Get executeCommand from state
+        const stateWithActions = get() as TreeState & { actions?: { executeCommand?: (cmd: unknown) => void } };
+        if (!stateWithActions.actions?.executeCommand) {
+          logger.error('executeCommand not available', new Error('Cannot accept review without command system'), 'ReviewActions');
+          return;
+        }
+
+        // Execute accept command (handles undo support)
+        const command = new AcceptReviewCommand(
+          reviewingNodeId,
+          reviewContent.rootNodeId,
+          reviewContent.nodes,
+          get,
+          set,
+          autoSave
+        );
+        stateWithActions.actions.executeCommand(command);
+
+        // Cleanup
+        const tempFilePath = nodes[reviewingNodeId]?.metadata.reviewTempFile;
+        await cleanupReview(currentFilePath, tempFilePath);
+        usePanelStore.getState().hidePanel();
+
+        window.dispatchEvent(new Event('review-accepted'));
+        logger.info('Review accepted and node replaced', 'ReviewActions');
+      } catch (error) {
+        logger.error('Failed to accept review', error as Error, 'ReviewActions');
+      }
     },
   };
 }

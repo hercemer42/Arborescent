@@ -8,7 +8,7 @@ import { Command } from '../commands/Command';
 import { logger } from '../../../services/logger';
 import { writeToClipboard, readFromClipboard } from '../../../services/clipboardService';
 import { VisualEffectsActions } from './visualEffectsActions';
-import { notifyError } from '../../../utils/errorNotification';
+import { notifyError } from '../../../services/notification';
 
 export interface ClipboardActions {
   /**

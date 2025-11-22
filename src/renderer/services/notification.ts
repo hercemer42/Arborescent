@@ -1,4 +1,4 @@
-import { logger } from '../services/logger';
+import { logger } from './logger';
 import { useToastStore } from '../store/toast/toastStore';
 import { ToastType } from '../components/Toast';
 

@@ -11,7 +11,7 @@ vi.mock('../../../../services/logger', () => ({
   },
 }));
 
-vi.mock('../../../../utils/terminalExecution', () => ({
+vi.mock('../../../../services/terminalExecution', () => ({
   executeInTerminal: vi.fn().mockResolvedValue(undefined),
 }));
 
@@ -344,7 +344,7 @@ describe('reviewActions', () => {
 
   describe('requestReviewInTerminal', () => {
     it('should write to terminal, execute, and start file watcher', async () => {
-      const { executeInTerminal } = await import('../../../../utils/terminalExecution');
+      const { executeInTerminal } = await import('../../../../services/terminalExecution');
 
       await actions.requestReviewInTerminal('child1', 'terminal-1');
 
@@ -365,7 +365,7 @@ describe('reviewActions', () => {
     });
 
     it('should not start review if one is already in progress', async () => {
-      const { executeInTerminal } = await import('../../../../utils/terminalExecution');
+      const { executeInTerminal } = await import('../../../../services/terminalExecution');
       mockState.reviewingNodeId = 'child2';
 
       await actions.requestReviewInTerminal('child1', 'terminal-1');
@@ -380,7 +380,7 @@ describe('reviewActions', () => {
     });
 
     it('should throw error if no terminal ID provided', async () => {
-      const { executeInTerminal } = await import('../../../../utils/terminalExecution');
+      const { executeInTerminal } = await import('../../../../services/terminalExecution');
 
       await expect(actions.requestReviewInTerminal('child1', '')).rejects.toThrow(
         'No terminal selected'
@@ -395,7 +395,7 @@ describe('reviewActions', () => {
     });
 
     it('should not start review if node does not exist', async () => {
-      const { executeInTerminal } = await import('../../../../utils/terminalExecution');
+      const { executeInTerminal } = await import('../../../../services/terminalExecution');
 
       await actions.requestReviewInTerminal('nonexistent', 'terminal-1');
 
@@ -409,7 +409,7 @@ describe('reviewActions', () => {
     });
 
     it('should handle terminal execution errors', async () => {
-      const { executeInTerminal } = await import('../../../../utils/terminalExecution');
+      const { executeInTerminal } = await import('../../../../services/terminalExecution');
       const error = new Error('Terminal error');
       vi.mocked(executeInTerminal).mockRejectedValue(error);
 

@@ -1,8 +1,8 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { executeInTerminal } from '../terminalExecution';
-import { logger } from '../../services/logger';
+import { logger } from '../logger';
 
-vi.mock('../../services/logger', () => ({
+vi.mock('../logger', () => ({
   logger: {
     error: vi.fn(),
   },

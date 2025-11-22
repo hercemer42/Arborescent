@@ -1,4 +1,5 @@
 import { TreeNode } from '../../shared/types';
+import { AncestorRegistry } from './ancestry';
 
 export function updateNodeMetadata(
   nodes: Record<string, TreeNode>,
@@ -206,4 +207,52 @@ export function wrapNodesWithHiddenRoot(
     },
     rootNodeId: hiddenRootId,
   };
+}
+
+export type DropZone = 'before' | 'after' | 'child';
+
+/**
+ * Check if a node has any ancestor with plugin session data.
+ * Used to determine if context should inherit plugin state from parent nodes.
+ */
+export function hasAncestorWithPluginSession(
+  nodeId: string,
+  nodes: Record<string, TreeNode>,
+  ancestorRegistry: AncestorRegistry
+): boolean {
+  const ancestors = ancestorRegistry[nodeId] || [];
+  return ancestors.some((ancestorId) => {
+    const ancestor = nodes[ancestorId];
+    return ancestor && ancestor.metadata.plugins && Object.keys(ancestor.metadata.plugins).length > 0;
+  });
+}
+
+/**
+ * Validate whether a drag and drop operation is valid.
+ * Prevents dropping a node onto itself, its descendants, or other invalid targets.
+ */
+export function isValidDrop(
+  nodeId: string,
+  targetNodeId: string,
+  dropZone: DropZone,
+  nodesToMove: string[],
+  ancestorRegistry: AncestorRegistry
+): boolean {
+  // Skip if trying to drop into the node itself
+  if (nodeId === targetNodeId) {
+    return false;
+  }
+
+  // Skip if trying to drop into one of its descendants
+  const targetAncestors = ancestorRegistry[targetNodeId] || [];
+  if (targetAncestors.includes(nodeId)) {
+    return false;
+  }
+
+  // Skip if target is one of the nodes being moved (when dropping as sibling)
+  if (dropZone !== 'child' && nodesToMove.includes(targetNodeId)) {
+    return false;
+  }
+
+  return true;
 }

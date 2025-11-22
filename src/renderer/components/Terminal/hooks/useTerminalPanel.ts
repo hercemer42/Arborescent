@@ -1,28 +1,23 @@
 import { useCallback } from 'react';
 import { useTerminalStore } from '../../../store/terminal/terminalStore';
-import { createTerminal } from '../../../services/terminalService';
-import { logger } from '../../../services/logger';
 
 /**
- * Hook to manage terminal panel operations
- * Handles creating and closing terminals
+ * Hook to manage terminal panel operations.
+ * Delegates to store actions which contain all the business logic.
  */
 export function useTerminalPanel() {
-  const { terminals, removeTerminal } = useTerminalStore();
+  const terminals = useTerminalStore((state) => state.terminals);
+  const createNewTerminal = useTerminalStore((state) => state.createNewTerminal);
+  const closeTerminal = useTerminalStore((state) => state.closeTerminal);
 
   const handleNewTerminal = useCallback(async () => {
     const title = `Terminal ${terminals.length + 1}`;
-    await createTerminal(title);
-  }, [terminals.length]);
+    await createNewTerminal(title);
+  }, [terminals.length, createNewTerminal]);
 
   const handleCloseTerminal = useCallback(async (id: string) => {
-    try {
-      await window.electron.terminalDestroy(id);
-      removeTerminal(id);
-    } catch (error) {
-      logger.error('Failed to close terminal', error as Error, 'TerminalPanel');
-    }
-  }, [removeTerminal]);
+    await closeTerminal(id);
+  }, [closeTerminal]);
 
   return {
     handleNewTerminal,

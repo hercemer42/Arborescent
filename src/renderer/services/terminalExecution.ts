@@ -1,4 +1,4 @@
-import { logger } from '../services/logger';
+import { logger } from './logger';
 
 /**
  * Writes content to terminal and executes it by simulating Enter key press

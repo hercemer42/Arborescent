@@ -54,8 +54,7 @@ async function handleUIShortcuts(event: KeyboardEvent): Promise<void> {
     } else {
       // Create terminal if none exist
       if (terminalStore.terminals.length === 0) {
-        const { createTerminal } = await import('../terminalService');
-        await createTerminal('Terminal');
+        await terminalStore.createNewTerminal('Terminal');
       }
       panelStore.showTerminal();
     }
