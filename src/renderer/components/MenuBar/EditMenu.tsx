@@ -44,7 +44,7 @@ export function EditMenu() {
       <MenuSeparator />
       <MenuItem
         label="Delete"
-        shortcut="Del"
+        shortcut="Ctrl+D"
         disabled={!canDelete}
         onClick={handleDelete}
         danger
