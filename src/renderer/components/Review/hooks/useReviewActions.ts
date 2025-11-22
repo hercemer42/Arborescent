@@ -34,9 +34,6 @@ export function useReviewActions() {
         await deleteReviewTempFile(tempFilePath);
       }
 
-      // Hide the review panel
-      hidePanel();
-
       // Dispatch event for status bar flash message
       window.dispatchEvent(new Event('review-canceled'));
 
