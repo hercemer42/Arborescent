@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2025-11-22T11:08:18.165Z'
+updated: '2025-11-22T11:37:44.163Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -940,6 +940,7 @@ nodes:
     content: In progress
     children:
       - ae69b14e-a0a8-4609-bd22-0f8489957aaa
+      - 2aecf985-2c83-442d-9589-0e730eac4c13
       - b4f9a92d-30c7-46b4-af29-d0e4ed22f5fd
       - 5bc6d46e-b1ce-471e-8350-bfd32e49780a
     metadata:
@@ -3339,6 +3340,985 @@ nodes:
   be02ac1b-55bd-48ac-a223-caf8209c5dd0:
     id: be02ac1b-55bd-48ac-a223-caf8209c5dd0
     content: Also available via right-click "Cancel review" (only shows during active review)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2aecf985-2c83-442d-9589-0e730eac4c13:
+    id: 2aecf985-2c83-442d-9589-0e730eac4c13
+    content: Edit feature
+    children:
+      - c3df91dd-3213-48a4-8cc5-1bc21867a4c2
+      - c7b4f1d4-fa5d-4a4f-8a65-0d0f262c19d2
+      - d745cb51-e550-475e-a839-732b8b3a10af
+      - 53b505c0-ee22-4f6e-bc76-ac625a8651e6
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c3df91dd-3213-48a4-8cc5-1bc21867a4c2:
+    id: c3df91dd-3213-48a4-8cc5-1bc21867a4c2
+    content: 'Architecture: React-based Menu System'
+    children:
+      - fbdbfc51-9ea0-4af4-9d3b-eecfd5062a15
+      - b96d4f2c-2311-4bad-9d1a-c5ee9cb4131b
+      - da714c59-cda6-4219-8f5d-02b9b94b7b78
+      - edcbb0ea-8cc8-4438-ab81-fe6662b47ce5
+      - cf952c2e-8a7a-4ac3-bde0-342c67aa9cd2
+      - 4201a779-a92a-4f73-9560-f7957114080c
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fbdbfc51-9ea0-4af4-9d3b-eecfd5062a15:
+    id: fbdbfc51-9ea0-4af4-9d3b-eecfd5062a15
+    content: Why not Electron native menus
+    children:
+      - 94182642-4a24-42d7-9e93-041aa126d0c1
+      - 726c7a2b-7696-4fee-977f-4237168239a0
+      - c336cfdd-8bfa-41db-bfbd-cc767f5db194
+      - 536e6a30-b7a4-496f-86ed-6813a2905e99
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  94182642-4a24-42d7-9e93-041aa126d0c1:
+    id: 94182642-4a24-42d7-9e93-041aa126d0c1
+    content: Native menus are difficult to update dynamically (greyed out states)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  726c7a2b-7696-4fee-977f-4237168239a0:
+    id: 726c7a2b-7696-4fee-977f-4237168239a0
+    content: Can't easily access React state (undo stack, selection state, etc.)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c336cfdd-8bfa-41db-bfbd-cc767f5db194:
+    id: c336cfdd-8bfa-41db-bfbd-cc767f5db194
+    content: Inconsistent styling with the rest of the app
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  536e6a30-b7a4-496f-86ed-6813a2905e99:
+    id: 536e6a30-b7a4-496f-86ed-6813a2905e99
+    content: Limited customization options
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b96d4f2c-2311-4bad-9d1a-c5ee9cb4131b:
+    id: b96d4f2c-2311-4bad-9d1a-c5ee9cb4131b
+    content: 'Proposed approach: Custom React menu bar'
+    children:
+      - 5c84ae1f-fe7b-469e-8462-d20fa50b10ee
+      - bc1926ce-1b1d-49c9-9079-ba80e5561094
+      - 402c4326-c1dc-4882-ad41-dff8f3b6173f
+      - 7631da21-c948-4cf6-9582-2a46e406c892
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5c84ae1f-fe7b-469e-8462-d20fa50b10ee:
+    id: 5c84ae1f-fe7b-469e-8462-d20fa50b10ee
+    content: Create a MenuBar component that renders in the app header area
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  bc1926ce-1b1d-49c9-9079-ba80e5561094:
+    id: bc1926ce-1b1d-49c9-9079-ba80e5561094
+    content: Each menu (File, Edit, View, etc.) is a dropdown triggered on click
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  402c4326-c1dc-4882-ad41-dff8f3b6173f:
+    id: 402c4326-c1dc-4882-ad41-dff8f3b6173f
+    content: Menu items are React components with access to stores via hooks
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7631da21-c948-4cf6-9582-2a46e406c892:
+    id: 7631da21-c948-4cf6-9582-2a46e406c892
+    content: Use existing keyboard shortcut system - menus just display the shortcuts, don't register them
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  da714c59-cda6-4219-8f5d-02b9b94b7b78:
+    id: da714c59-cda6-4219-8f5d-02b9b94b7b78
+    content: Component structure
+    children:
+      - 0aad385d-6282-4899-9775-866676bdddb3
+      - fddae545-7eb4-4b36-b68c-6aa754d88e63
+      - e6cd4f16-b873-4d2e-aa57-6d30ae4b656b
+      - 09a49393-e465-4168-b3f8-67b7815882bd
+      - d52f00fa-c2b6-443f-9580-9964d29dc0d5
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0aad385d-6282-4899-9775-866676bdddb3:
+    id: 0aad385d-6282-4899-9775-866676bdddb3
+    content: MenuBar - horizontal container for menu triggers
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fddae545-7eb4-4b36-b68c-6aa754d88e63:
+    id: fddae545-7eb4-4b36-b68c-6aa754d88e63
+    content: Menu - dropdown container with title, manages open/close state
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e6cd4f16-b873-4d2e-aa57-6d30ae4b656b:
+    id: e6cd4f16-b873-4d2e-aa57-6d30ae4b656b
+    content: MenuItem - individual action with label, shortcut display, onClick, disabled state
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  09a49393-e465-4168-b3f8-67b7815882bd:
+    id: 09a49393-e465-4168-b3f8-67b7815882bd
+    content: MenuSeparator - visual divider between groups
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d52f00fa-c2b6-443f-9580-9964d29dc0d5:
+    id: d52f00fa-c2b6-443f-9580-9964d29dc0d5
+    content: MenuContext - shared state for which menu is open, close on outside click
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  edcbb0ea-8cc8-4438-ab81-fe6662b47ce5:
+    id: edcbb0ea-8cc8-4438-ab81-fe6662b47ce5
+    content: State integration
+    children:
+      - e48df33e-ae07-4aa9-9740-db2b4f20716a
+      - 5b8e1068-1969-43f5-827f-d0acbcb151dc
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e48df33e-ae07-4aa9-9740-db2b4f20716a:
+    id: e48df33e-ae07-4aa9-9740-db2b4f20716a
+    content: useEditMenuState hook to derive enabled/disabled states
+    children:
+      - da66d091-d49b-409c-8f58-dad3d5dbecdb
+      - 9bdb1192-56d8-482d-bbe3-9db1eb9ed7b4
+      - d20d9183-03df-4570-a73b-4dc49ca16f62
+      - f2aa684e-77d9-4237-a296-e3cd21d04e73
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  da66d091-d49b-409c-8f58-dad3d5dbecdb:
+    id: da66d091-d49b-409c-8f58-dad3d5dbecdb
+    content: 'canUndo: check undo stack length > 0'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9bdb1192-56d8-482d-bbe3-9db1eb9ed7b4:
+    id: 9bdb1192-56d8-482d-bbe3-9db1eb9ed7b4
+    content: 'canRedo: check redo stack length > 0'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d20d9183-03df-4570-a73b-4dc49ca16f62:
+    id: d20d9183-03df-4570-a73b-4dc49ca16f62
+    content: 'canCut/canCopy: check if node selected or text selected'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f2aa684e-77d9-4237-a296-e3cd21d04e73:
+    id: f2aa684e-77d9-4237-a296-e3cd21d04e73
+    content: 'canPaste: check clipboard has content (may need async check)'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5b8e1068-1969-43f5-827f-d0acbcb151dc:
+    id: 5b8e1068-1969-43f5-827f-d0acbcb151dc
+    content: Subscribe to relevant stores (tree, selection, undo/redo)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  cf952c2e-8a7a-4ac3-bde0-342c67aa9cd2:
+    id: cf952c2e-8a7a-4ac3-bde0-342c67aa9cd2
+    content: Styling considerations
+    children:
+      - 567e28bb-3c9a-4f79-a4fa-e24c43cdf586
+      - 13c0d182-1e9b-484b-8ae2-43c63bc74e1a
+      - 3f8e002e-89e3-4768-9562-f7bf29ab8b03
+      - 5214d0f0-c445-4358-b188-f3effed5148f
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  567e28bb-3c9a-4f79-a4fa-e24c43cdf586:
+    id: 567e28bb-3c9a-4f79-a4fa-e24c43cdf586
+    content: Position menu bar at top of app, above tree view
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  13c0d182-1e9b-484b-8ae2-43c63bc74e1a:
+    id: 13c0d182-1e9b-484b-8ae2-43c63bc74e1a
+    content: Dropdowns appear below menu triggers, aligned left
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3f8e002e-89e3-4768-9562-f7bf29ab8b03:
+    id: 3f8e002e-89e3-4768-9562-f7bf29ab8b03
+    content: Keyboard navigation within open menu (up/down arrows, Enter to select)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5214d0f0-c445-4358-b188-f3effed5148f:
+    id: 5214d0f0-c445-4358-b188-f3effed5148f
+    content: Close on Escape, outside click, or item selection
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4201a779-a92a-4f73-9560-f7957114080c:
+    id: 4201a779-a92a-4f73-9560-f7957114080c
+    content: Accessibility
+    children:
+      - b36e3f02-c6e0-4a7a-91f9-2b2de13acf12
+      - 617f4530-029f-46fc-b326-826c406aa86b
+      - 20a5ee69-0909-4d8e-9e05-84630b6e1839
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b36e3f02-c6e0-4a7a-91f9-2b2de13acf12:
+    id: b36e3f02-c6e0-4a7a-91f9-2b2de13acf12
+    content: 'ARIA roles: menubar, menu, menuitem'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  617f4530-029f-46fc-b326-826c406aa86b:
+    id: 617f4530-029f-46fc-b326-826c406aa86b
+    content: Keyboard navigation support
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  20a5ee69-0909-4d8e-9e05-84630b6e1839:
+    id: 20a5ee69-0909-4d8e-9e05-84630b6e1839
+    content: Focus management
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c7b4f1d4-fa5d-4a4f-8a65-0d0f262c19d2:
+    id: c7b4f1d4-fa5d-4a4f-8a65-0d0f262c19d2
+    content: Add 'Edit' menu with the following items
+    children:
+      - 8db5a096-8543-4c26-af5c-52975e45c952
+      - e93a55f8-7a63-4b8d-a84d-1d7ea41f52d6
+      - 9c8ff55b-a7c5-4264-bbca-db6d00b3172a
+      - ddeeb731-4621-4b38-aef3-c7603612e460
+      - a1af9dcf-8f43-4150-939f-3ce4c8d5383d
+      - d4c5c1b0-5010-4f7c-99cd-e7e15d5215b0
+      - c96e9761-b89d-433c-b146-74167b277ffe
+      - 95220300-a8d8-4d39-8a01-91d6ca4066b1
+      - 09aefd63-c7fe-4cfd-b811-be1685e03be5
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8db5a096-8543-4c26-af5c-52975e45c952:
+    id: 8db5a096-8543-4c26-af5c-52975e45c952
+    content: Undo
+    children:
+      - f8d55142-9416-4acb-8058-9bd80f435068
+      - 5ce85394-f731-44f6-aea1-008841642cde
+      - 8f26cd2d-4f12-4e7c-8ee0-a86ce2ca8e22
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f8d55142-9416-4acb-8058-9bd80f435068:
+    id: f8d55142-9416-4acb-8058-9bd80f435068
+    content: Uses the existing undo functionality
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5ce85394-f731-44f6-aea1-008841642cde:
+    id: 5ce85394-f731-44f6-aea1-008841642cde
+    content: Greyed out if nothing to undo
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8f26cd2d-4f12-4e7c-8ee0-a86ce2ca8e22:
+    id: 8f26cd2d-4f12-4e7c-8ee0-a86ce2ca8e22
+    content: 'Keyboard shortcut: Ctrl+Z (Cmd+Z on Mac)'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e93a55f8-7a63-4b8d-a84d-1d7ea41f52d6:
+    id: e93a55f8-7a63-4b8d-a84d-1d7ea41f52d6
+    content: Redo
+    children:
+      - bc0bf734-87ec-454f-b90e-a83f3085854e
+      - 4eaff584-a1e5-4c96-9b1f-2376a7b84ef3
+      - bcabca9f-6aec-4b3d-a667-5176ac5c68ba
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  bc0bf734-87ec-454f-b90e-a83f3085854e:
+    id: bc0bf734-87ec-454f-b90e-a83f3085854e
+    content: Uses the existing redo functionality
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4eaff584-a1e5-4c96-9b1f-2376a7b84ef3:
+    id: 4eaff584-a1e5-4c96-9b1f-2376a7b84ef3
+    content: Greyed out if nothing to redo
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  bcabca9f-6aec-4b3d-a667-5176ac5c68ba:
+    id: bcabca9f-6aec-4b3d-a667-5176ac5c68ba
+    content: 'Keyboard shortcut: Ctrl+Shift+Z or Ctrl+Y (Cmd+Shift+Z on Mac)'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9c8ff55b-a7c5-4264-bbca-db6d00b3172a:
+    id: 9c8ff55b-a7c5-4264-bbca-db6d00b3172a
+    content: Separator
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ddeeb731-4621-4b38-aef3-c7603612e460:
+    id: ddeeb731-4621-4b38-aef3-c7603612e460
+    content: Cut
+    children:
+      - 0dc4ed54-2f1f-4b26-adca-0ef6b9cd929c
+      - 101054ab-ccf9-4a87-8282-2707960b906a
+      - 956b4b6f-c28a-4fdd-9e64-f2d0f94ac2d4
+      - be57f46c-4eca-4f07-868e-99de08ac04ce
+      - 7fb3ead6-9e10-421b-be0d-660de3aee1b0
+      - d7ec3809-393f-4e2b-b3f5-7c6b1fb00464
+      - 3144ea9d-3fc5-4a45-9869-63c485d0d025
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0dc4ed54-2f1f-4b26-adca-0ef6b9cd929c:
+    id: 0dc4ed54-2f1f-4b26-adca-0ef6b9cd929c
+    content: Removes the currently selected node and descendants from the tree
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  101054ab-ccf9-4a87-8282-2707960b906a:
+    id: 101054ab-ccf9-4a87-8282-2707960b906a
+    content: Is undoable
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  956b4b6f-c28a-4fdd-9e64-f2d0f94ac2d4:
+    id: 956b4b6f-c28a-4fdd-9e64-f2d0f94ac2d4
+    content: Node flashes briefly with a background colour and a transition before it is removed
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  be57f46c-4eca-4f07-868e-99de08ac04ce:
+    id: be57f46c-4eca-4f07-868e-99de08ac04ce
+    content: Adds the items to the system clipboard in the same markdown format we use for the review feature, but without the context
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7fb3ead6-9e10-421b-be0d-660de3aee1b0:
+    id: 7fb3ead6-9e10-421b-be0d-660de3aee1b0
+    content: If there is text selected in a node, skip this action and use the default contenteditable cut instead
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d7ec3809-393f-4e2b-b3f5-7c6b1fb00464:
+    id: d7ec3809-393f-4e2b-b3f5-7c6b1fb00464
+    content: Greyed out if no node is selected and no text is selected
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3144ea9d-3fc5-4a45-9869-63c485d0d025:
+    id: 3144ea9d-3fc5-4a45-9869-63c485d0d025
+    content: 'Keyboard shortcut: Ctrl+X (Cmd+X on Mac)'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a1af9dcf-8f43-4150-939f-3ce4c8d5383d:
+    id: a1af9dcf-8f43-4150-939f-3ce4c8d5383d
+    content: Copy
+    children:
+      - 915fd136-1941-43b5-b908-a3159812f67d
+      - 01ef1d01-efd1-4eea-8bdb-008f04b3355d
+      - 996f917c-7aca-47e4-a241-afa6808053ed
+      - 55482600-99ac-4507-9766-e47c33470f8b
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  915fd136-1941-43b5-b908-a3159812f67d:
+    id: 915fd136-1941-43b5-b908-a3159812f67d
+    content: Copies the currently selected node and descendants to the system clipboard in the same markdown format we use for the review feature, but without the context
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  01ef1d01-efd1-4eea-8bdb-008f04b3355d:
+    id: 01ef1d01-efd1-4eea-8bdb-008f04b3355d
+    content: If there is text selected in a node, skip this action and use the default contenteditable copy instead
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  996f917c-7aca-47e4-a241-afa6808053ed:
+    id: 996f917c-7aca-47e4-a241-afa6808053ed
+    content: Greyed out if no node is selected and no text is selected
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  55482600-99ac-4507-9766-e47c33470f8b:
+    id: 55482600-99ac-4507-9766-e47c33470f8b
+    content: 'Keyboard shortcut: Ctrl+C (Cmd+C on Mac)'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d4c5c1b0-5010-4f7c-99cd-e7e15d5215b0:
+    id: d4c5c1b0-5010-4f7c-99cd-e7e15d5215b0
+    content: Paste
+    children:
+      - 3354872a-a363-4f25-b10c-d7cb65368502
+      - b95961b6-d04a-4ecd-a483-2436fe1cdaff
+      - f925a95f-009f-4714-87a2-7d0d555d3395
+      - 1da0f77e-fc5b-40a4-b072-a7444ea7a5f1
+      - a62f67c6-95d6-4ff4-9f52-d69a0c307859
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3354872a-a363-4f25-b10c-d7cb65368502:
+    id: 3354872a-a363-4f25-b10c-d7cb65368502
+    content: Pastes from the clipboard into arborescent
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b95961b6-d04a-4ecd-a483-2436fe1cdaff:
+    id: b95961b6-d04a-4ecd-a483-2436fe1cdaff
+    content: If the clipboard contents is a string with no markdown format, skip this action and use the default contenteditable paste instead
+    children:
+      - bd3eaf81-04fd-479a-b82b-ebc964bd6bb2
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  bd3eaf81-04fd-479a-b82b-ebc964bd6bb2:
+    id: bd3eaf81-04fd-479a-b82b-ebc964bd6bb2
+    content: If no contenteditable is focused, do nothing
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f925a95f-009f-4714-87a2-7d0d555d3395:
+    id: f925a95f-009f-4714-87a2-7d0d555d3395
+    content: If the clipboard content contains a node in compatible markdown format (like a reviewed node), paste it and its descendants as a child of the currently selected node
+    children:
+      - 8416de37-6155-4192-9817-184b23109add
+      - 43c5e702-2480-49fa-9494-371a3951a4d9
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8416de37-6155-4192-9817-184b23109add:
+    id: 8416de37-6155-4192-9817-184b23109add
+    content: If there is no node currently selected, place it in the tree root as the last child
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  43c5e702-2480-49fa-9494-371a3951a4d9:
+    id: 43c5e702-2480-49fa-9494-371a3951a4d9
+    content: Make it flash a background briefly when it is pasted
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1da0f77e-fc5b-40a4-b072-a7444ea7a5f1:
+    id: 1da0f77e-fc5b-40a4-b072-a7444ea7a5f1
+    content: Is undoable
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a62f67c6-95d6-4ff4-9f52-d69a0c307859:
+    id: a62f67c6-95d6-4ff4-9f52-d69a0c307859
+    content: 'Keyboard shortcut: Ctrl+V (Cmd+V on Mac)'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c96e9761-b89d-433c-b146-74167b277ffe:
+    id: c96e9761-b89d-433c-b146-74167b277ffe
+    content: Separator
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  95220300-a8d8-4d39-8a01-91d6ca4066b1:
+    id: 95220300-a8d8-4d39-8a01-91d6ca4066b1
+    content: Delete
+    children:
+      - b16165de-e218-43c6-a50d-0042ae12fc05
+      - 1b72c575-0dbe-4ba3-ae43-2034f18ae262
+      - dc173675-6610-42a0-9317-176769374bbe
+      - 960696fa-16e6-4a77-bf13-e4124557872b
+      - 8186e70a-b7f2-4279-bf83-870d99d7206f
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b16165de-e218-43c6-a50d-0042ae12fc05:
+    id: b16165de-e218-43c6-a50d-0042ae12fc05
+    content: Removes the currently selected node and descendants from the tree (without copying to clipboard)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1b72c575-0dbe-4ba3-ae43-2034f18ae262:
+    id: 1b72c575-0dbe-4ba3-ae43-2034f18ae262
+    content: Is undoable
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  dc173675-6610-42a0-9317-176769374bbe:
+    id: dc173675-6610-42a0-9317-176769374bbe
+    content: Node flashes briefly with a background colour and a transition before it is removed
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  960696fa-16e6-4a77-bf13-e4124557872b:
+    id: 960696fa-16e6-4a77-bf13-e4124557872b
+    content: Greyed out if no node is selected
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8186e70a-b7f2-4279-bf83-870d99d7206f:
+    id: 8186e70a-b7f2-4279-bf83-870d99d7206f
+    content: 'Keyboard shortcut: Delete or Backspace (when not editing text)'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  09aefd63-c7fe-4cfd-b811-be1685e03be5:
+    id: 09aefd63-c7fe-4cfd-b811-be1685e03be5
+    content: Select All
+    children:
+      - 8dfe361e-06bc-4ea3-b13e-c74d800b9500
+      - 879cd8f1-0d18-4b9e-b14f-0295a44b0910
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8dfe361e-06bc-4ea3-b13e-c74d800b9500:
+    id: 8dfe361e-06bc-4ea3-b13e-c74d800b9500
+    content: If editing text in a node, select all text in that node (default contenteditable behavior)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  879cd8f1-0d18-4b9e-b14f-0295a44b0910:
+    id: 879cd8f1-0d18-4b9e-b14f-0295a44b0910
+    content: 'Keyboard shortcut: Ctrl+A (Cmd+A on Mac)'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d745cb51-e550-475e-a839-732b8b3a10af:
+    id: d745cb51-e550-475e-a839-732b8b3a10af
+    content: Menu item display
+    children:
+      - 4a70a3c3-c563-4943-b36f-122835ec8bff
+      - cdac61c1-9f74-4ded-aada-e1235393c07e
+      - e947db3c-e5d5-4c18-b053-298003818340
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4a70a3c3-c563-4943-b36f-122835ec8bff:
+    id: 4a70a3c3-c563-4943-b36f-122835ec8bff
+    content: Show the command name on the left
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  cdac61c1-9f74-4ded-aada-e1235393c07e:
+    id: cdac61c1-9f74-4ded-aada-e1235393c07e
+    content: Show the keyboard shortcut on the right (greyed/muted text)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e947db3c-e5d5-4c18-b053-298003818340:
+    id: e947db3c-e5d5-4c18-b053-298003818340
+    content: Support platform-specific modifier keys (Ctrl on Windows/Linux, Cmd on Mac)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  53b505c0-ee22-4f6e-bc76-ac625a8651e6:
+    id: 53b505c0-ee22-4f6e-bc76-ac625a8651e6
+    content: Implementation phases
+    children:
+      - 82061459-c47d-4272-96d6-96a5490045ce
+      - 1a687544-485d-4f77-a382-9d84c651b087
+      - f9fb3e85-65f4-4a22-8329-5aa3736d8b70
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  82061459-c47d-4272-96d6-96a5490045ce:
+    id: 82061459-c47d-4272-96d6-96a5490045ce
+    content: 'Phase 1: MenuBar infrastructure'
+    children:
+      - dc3297df-bfd8-41a7-9f00-e35a4b25d407
+      - a9590499-5897-4a52-929f-71dcb5edb841
+      - 3eb67d76-c052-4ddc-b6c9-6dbc3b2ade87
+      - ca4cf961-4d51-41d2-86be-d54da4ba4c12
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  dc3297df-bfd8-41a7-9f00-e35a4b25d407:
+    id: dc3297df-bfd8-41a7-9f00-e35a4b25d407
+    content: Create base components (MenuBar, Menu, MenuItem, MenuSeparator)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a9590499-5897-4a52-929f-71dcb5edb841:
+    id: a9590499-5897-4a52-929f-71dcb5edb841
+    content: Implement open/close logic and click-outside handling
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3eb67d76-c052-4ddc-b6c9-6dbc3b2ade87:
+    id: 3eb67d76-c052-4ddc-b6c9-6dbc3b2ade87
+    content: Add keyboard navigation
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ca4cf961-4d51-41d2-86be-d54da4ba4c12:
+    id: ca4cf961-4d51-41d2-86be-d54da4ba4c12
+    content: Style to match app theme
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1a687544-485d-4f77-a382-9d84c651b087:
+    id: 1a687544-485d-4f77-a382-9d84c651b087
+    content: 'Phase 2: Edit menu functionality'
+    children:
+      - a2efce04-012b-4ce9-8616-88830126f85d
+      - c542b947-6c33-47e7-a64d-1c0bfc8b3508
+      - 41d3ab50-83a0-4f29-af8a-6bbedb671c07
+      - a1ec7ecd-ec88-4859-940f-eb28525bcdd4
+      - 9455aa0b-d154-4c80-b5e0-c2f2b12c4e5b
+      - b37ecfa4-67ab-437b-9f58-cfbf6379e6e7
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a2efce04-012b-4ce9-8616-88830126f85d:
+    id: a2efce04-012b-4ce9-8616-88830126f85d
+    content: Implement useEditMenuState hook
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c542b947-6c33-47e7-a64d-1c0bfc8b3508:
+    id: c542b947-6c33-47e7-a64d-1c0bfc8b3508
+    content: Wire up Undo/Redo to existing functionality
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  41d3ab50-83a0-4f29-af8a-6bbedb671c07:
+    id: 41d3ab50-83a0-4f29-af8a-6bbedb671c07
+    content: Implement Cut/Copy with markdown export
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a1ec7ecd-ec88-4859-940f-eb28525bcdd4:
+    id: a1ec7ecd-ec88-4859-940f-eb28525bcdd4
+    content: Implement Paste with markdown import
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9455aa0b-d154-4c80-b5e0-c2f2b12c4e5b:
+    id: 9455aa0b-d154-4c80-b5e0-c2f2b12c4e5b
+    content: Implement Delete
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b37ecfa4-67ab-437b-9f58-cfbf6379e6e7:
+    id: b37ecfa4-67ab-437b-9f58-cfbf6379e6e7
+    content: Add flash animations
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f9fb3e85-65f4-4a22-8329-5aa3736d8b70:
+    id: f9fb3e85-65f4-4a22-8329-5aa3736d8b70
+    content: 'Phase 3: Polish'
+    children:
+      - 0397ab9a-e5d7-4667-8375-ad2154bbabec
+      - a4430bf4-81c3-4022-9d33-037728a57c55
+      - 0a610700-8697-4d68-a6b1-1b11002773cc
+      - e33c5979-81b9-4db0-b0ce-7656daaa0370
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0397ab9a-e5d7-4667-8375-ad2154bbabec:
+    id: 0397ab9a-e5d7-4667-8375-ad2154bbabec
+    content: Ensure all disabled states work correctly
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a4430bf4-81c3-4022-9d33-037728a57c55:
+    id: a4430bf4-81c3-4022-9d33-037728a57c55
+    content: Test text selection vs node selection behavior
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0a610700-8697-4d68-a6b1-1b11002773cc:
+    id: 0a610700-8697-4d68-a6b1-1b11002773cc
+    content: Verify undo/redo for all operations
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e33c5979-81b9-4db0-b0ce-7656daaa0370:
+    id: e33c5979-81b9-4db0-b0ce-7656daaa0370
+    content: Cross-platform testing (keyboard shortcuts)
     children: []
     metadata:
       status: pending

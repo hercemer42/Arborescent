@@ -1,0 +1,118 @@
+/* Overlay to capture clicks outside menu */
+.menu-bar-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+}
+
+/* MenuBar container */
+.menu-bar {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  background-color: var(--white);
+  border-bottom: 1px solid var(--gray-300);
+  padding: 4px 8px;
+  flex-shrink: 0;
+}
+
+/* Individual menu container */
+.menu {
+  position: relative;
+}
+
+/* Menu trigger button */
+.menu-trigger {
+  display: flex;
+  align-items: center;
+  padding: 4px 10px;
+  border: none;
+  background: none;
+  color: var(--gray-600);
+  font-size: 13px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.1s;
+}
+
+.menu-trigger:hover {
+  background-color: var(--gray-100);
+}
+
+.menu-trigger.active {
+  background-color: var(--gray-200);
+}
+
+/* Menu dropdown panel */
+.menu-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 2px;
+  min-width: 200px;
+  background-color: var(--white);
+  border: 1px solid var(--gray-300);
+  border-radius: 6px;
+  padding: 4px 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+}
+
+/* Menu item */
+.menu-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 6px 12px;
+  border: none;
+  background: none;
+  color: var(--gray-600);
+  font-size: 13px;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 0.1s;
+}
+
+.menu-item:hover:not(:disabled),
+.menu-item:focus:not(:disabled) {
+  background-color: var(--gray-100);
+  outline: none;
+}
+
+.menu-item:disabled {
+  color: var(--gray-400);
+  cursor: not-allowed;
+}
+
+.menu-item.danger {
+  color: var(--red-600);
+}
+
+.menu-item.danger:hover:not(:disabled),
+.menu-item.danger:focus:not(:disabled) {
+  background-color: var(--red-50);
+}
+
+/* Menu item label */
+.menu-item-label {
+  flex: 1;
+}
+
+/* Keyboard shortcut display */
+.menu-item-shortcut {
+  margin-left: 24px;
+  color: var(--gray-400);
+  font-size: 12px;
+}
+
+.menu-item:disabled .menu-item-shortcut {
+  color: var(--gray-300);
+}
+
+/* Menu separator */
+.menu-separator {
+  height: 1px;
+  background-color: var(--gray-200);
+  margin: 4px 0;
+}

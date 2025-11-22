@@ -3,6 +3,7 @@ import { ToastContainer } from './components/Toast';
 import { Workspace } from './components/Workspace';
 import { Panel } from './components/Panel';
 import { BottomStatusBar } from './components/BottomStatusBar/BottomStatusBar';
+import { AppMenuBar } from './components/MenuBar';
 import { useToastStore } from './store/toast/toastStore';
 import { usePanelStore } from './store/panel/panelStore';
 import { useAppErrorHandling } from './useAppErrorHandling';
@@ -28,10 +29,7 @@ export function App() {
   return (
     <div className="app">
       <ToastContainer toasts={toasts} onRemove={removeToast} />
-      <header className="app-header">
-        <h1>Arborescent</h1>
-        <p>Development workflow tool</p>
-      </header>
+      <AppMenuBar />
 
       {!isInitializing && (
         <div
