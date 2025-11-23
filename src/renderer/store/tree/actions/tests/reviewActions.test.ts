@@ -76,6 +76,7 @@ describe('reviewActions', () => {
         startClipboardMonitor: mockStartClipboardMonitor,
         stopClipboardMonitor: vi.fn().mockResolvedValue(undefined),
         createTempFile: vi.fn().mockResolvedValue('/tmp/arborescent/review-response.md'),
+        readTempFile: vi.fn().mockResolvedValue(null),
         startReviewFileWatcher: vi.fn().mockResolvedValue(undefined),
         stopReviewFileWatcher: vi.fn().mockResolvedValue(undefined),
       },
@@ -529,6 +530,9 @@ describe('reviewActions', () => {
         const nodeWithReview = { ...mockState.nodes.child1, metadata: { ...mockState.nodes.child1.metadata, reviewTempFile: '/tmp/review.arbo' } };
         mockFindReviewingNode.mockReturnValue(['child1', nodeWithReview]);
 
+        // Mock temp file exists
+        (window.electron.readTempFile as ReturnType<typeof vi.fn>).mockResolvedValue('file content');
+
         const mockLoadFromPath = vi.fn().mockResolvedValue(undefined);
         mockReviewTreeStoreGetStoreForFile.mockReturnValue({
           getState: () => ({ actions: { loadFromPath: mockLoadFromPath } }),
@@ -555,6 +559,9 @@ describe('reviewActions', () => {
         mockState.currentFilePath = '/test/file.arbo';
         const nodeWithReview = { ...mockState.nodes.child1, metadata: { ...mockState.nodes.child1.metadata, reviewTempFile: '/tmp/review.arbo' } };
         mockFindReviewingNode.mockReturnValue(['child1', nodeWithReview]);
+
+        // Mock temp file exists
+        (window.electron.readTempFile as ReturnType<typeof vi.fn>).mockResolvedValue('file content');
 
         mockReviewTreeStoreGetStoreForFile.mockReturnValue({
           getState: () => ({ actions: { loadFromPath: vi.fn().mockResolvedValue(undefined) } }),

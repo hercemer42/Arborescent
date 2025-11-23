@@ -217,6 +217,16 @@ ${formattedContent}`;
       const [nodeId, node] = reviewingNode;
       const tempFilePath = node.metadata.reviewTempFile as string;
 
+      // Check if temp file still exists before trying to load
+      const tempFileContent = await window.electron.readTempFile(tempFilePath);
+      if (!tempFileContent) {
+        // Temp file was cleaned up or never existed - clear stale metadata
+        logger.info(`Clearing stale review metadata (temp file not found): ${tempFilePath}`, 'ReviewActions');
+        setReviewTempFile(nodeId, undefined);
+        autoSave();
+        return;
+      }
+
       try {
         // Load review store from temp file
         let reviewStore = reviewTreeStore.getStoreForFile(currentFilePath);
@@ -234,10 +244,10 @@ ${formattedContent}`;
         logger.info(`Restored review state for node: ${nodeId}`, 'ReviewActions');
         useToastStore.getState().addToast('Review restored - Continue your previous review', 'info');
       } catch (error) {
-        logger.warn(`Review temp file not found or invalid: ${tempFilePath}`, 'ReviewActions');
+        // File exists but couldn't be loaded (corrupted?)
+        logger.error('Failed to restore review state', error as Error, 'ReviewActions');
         setReviewTempFile(nodeId, undefined);
         autoSave();
-        logger.error('Failed to restore review state', error as Error, 'ReviewActions');
       }
     },
 
