@@ -4,19 +4,20 @@
   left: 0;
   right: 0;
   height: 24px;
-  background-color: var(--color-bg-secondary);
-  border-top: 1px solid var(--color-border);
+  background-color: var(--gray-100);
+  border-top: 1px solid var(--gray-300);
   display: flex;
   align-items: center;
   padding: 0 12px;
   font-size: 12px;
-  color: var(--color-text-secondary);
-  z-index: 1000;
+  color: var(--gray-500);
+  z-index: 9000;
+  opacity: 1;
 }
 
 .bottom-status-bar-flash {
-  background-color: var(--color-accent);
-  color: var(--color-text);
+  background-color: var(--blue-500);
+  color: var(--white);
   font-weight: 500;
   animation: flash-fade 2s ease-out;
 }
