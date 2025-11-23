@@ -32,6 +32,7 @@ export function useReviewState(): ReviewState {
   );
 
   // Get review store for the active file
+  // Fetched on each render - becomes available when processIncomingReviewContent initializes it
   const reviewStore = activeFilePath ? reviewTreeStore.getStoreForFile(activeFilePath) : null;
 
   return {

@@ -332,7 +332,7 @@ describe('reviewActions', () => {
 
       expect(mockClipboardWriteText).toHaveBeenCalledWith(expect.stringContaining('Child 1'));
       expect(mockSet).toHaveBeenCalledWith({ reviewingNodeId: 'child1' });
-      expect(mockStartClipboardMonitor).toHaveBeenCalled();
+      // Clipboard monitor is managed by useReviewClipboard, not reviewActions
       expect(logger.info).toHaveBeenCalledWith('Started review for node: child1', 'ReviewActions');
     });
 
@@ -342,7 +342,7 @@ describe('reviewActions', () => {
       await actions.requestReview('child1');
 
       expect(mockClipboardWriteText).not.toHaveBeenCalled();
-      expect(mockStartClipboardMonitor).not.toHaveBeenCalled();
+      // Clipboard monitor is managed by useReviewClipboard, not reviewActions
       expect(logger.error).toHaveBeenCalledWith(
         'Review already in progress',
         expect.any(Error),
@@ -354,7 +354,7 @@ describe('reviewActions', () => {
       await actions.requestReview('nonexistent');
 
       expect(mockClipboardWriteText).not.toHaveBeenCalled();
-      expect(mockStartClipboardMonitor).not.toHaveBeenCalled();
+      // Clipboard monitor is managed by useReviewClipboard, not reviewActions
       expect(logger.error).toHaveBeenCalledWith(
         'Node not found',
         expect.any(Error),
@@ -523,7 +523,7 @@ describe('reviewActions', () => {
         await actions.restoreReviewState();
 
         expect(mockSet).not.toHaveBeenCalledWith({ reviewingNodeId: 'child1' });
-        expect(window.electron.startClipboardMonitor).not.toHaveBeenCalled();
+        // Clipboard monitor is managed by useReviewClipboard, not reviewActions
       });
 
       it('should restore reviewingNodeId and content when temp file exists', async () => {
@@ -556,22 +556,7 @@ describe('reviewActions', () => {
         );
       });
 
-      it('should start clipboard monitor when restoring with content', async () => {
-        mockState.currentFilePath = '/test/file.arbo';
-        const nodeWithReview = { ...mockState.nodes.child1, metadata: { ...mockState.nodes.child1.metadata, reviewTempFile: '/tmp/review.arbo' } };
-        mockFindReviewingNode.mockReturnValue(['child1', nodeWithReview]);
-
-        // Mock temp file exists
-        (window.electron.readTempFile as ReturnType<typeof vi.fn>).mockResolvedValue('file content');
-
-        mockReviewTreeStoreGetStoreForFile.mockReturnValue({
-          getState: () => ({ actions: { loadFromPath: vi.fn().mockResolvedValue(undefined) } }),
-        });
-
-        await actions.restoreReviewState();
-
-        expect(window.electron.startClipboardMonitor).toHaveBeenCalled();
-      });
+      // Clipboard monitor is now managed by useReviewClipboard hook, not reviewActions
 
       it('should skip restore if currentFilePath is null', async () => {
         mockState.currentFilePath = null;

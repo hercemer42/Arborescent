@@ -1,7 +1,7 @@
 import { useFilesStore } from '../../store/files/filesStore';
 import { matchesHotkey } from '../../data/hotkeyConfig';
-import { storeManager } from '../../store/storeManager';
 import { hasTextSelection, isContentEditableFocused } from '../../utils/selectionUtils';
+import { getActiveStore } from './shared';
 
 /**
  * Handles UI keyboard shortcuts
@@ -90,11 +90,9 @@ async function handleUIShortcuts(event: KeyboardEvent): Promise<void> {
     }
 
     event.preventDefault();
-    const activeFilePath = useFilesStore.getState().activeFilePath;
-    if (activeFilePath) {
-      const store = storeManager.getStoreForFile(activeFilePath);
-      store?.getState().actions.cutNodes();
-    }
+    // Use getActiveStore to support both workspace and review panel
+    const store = getActiveStore();
+    store?.getState().actions.cutNodes();
     return;
   }
 
@@ -106,21 +104,19 @@ async function handleUIShortcuts(event: KeyboardEvent): Promise<void> {
     }
 
     event.preventDefault();
-    const activeFilePath = useFilesStore.getState().activeFilePath;
-    if (activeFilePath) {
-      const store = storeManager.getStoreForFile(activeFilePath);
-      store?.getState().actions.copyNodes();
-    }
+    // Use getActiveStore to support both workspace and review panel
+    const store = getActiveStore();
+    store?.getState().actions.copyNodes();
     return;
   }
 
   // Clipboard: Paste
   if (matchesHotkey(event, 'actions', 'paste')) {
     event.preventDefault();
-    const activeFilePath = useFilesStore.getState().activeFilePath;
-    if (activeFilePath) {
-      const store = storeManager.getStoreForFile(activeFilePath);
-      const result = await store?.getState().actions.pasteNodes();
+    // Use getActiveStore to support both workspace and review panel
+    const store = getActiveStore();
+    if (store) {
+      const result = await store.getState().actions.pasteNodes();
 
       // If no valid markdown nodes, fall through to default paste behavior
       if (result === 'no-content' && isContentEditableFocused()) {

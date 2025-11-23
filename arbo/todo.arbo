@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2025-11-23T14:07:25.439Z'
+updated: '2025-11-23T14:57:34.753Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -4966,7 +4966,7 @@ nodes:
       - ababdfce-e389-4a1d-81ed-5c94770aa21b
     metadata:
       status: completed
-      expanded: true
+      expanded: false
       deleted: false
       plugins: {}
   cd793753-2355-4732-af11-9d77fde3b51c:
@@ -5005,7 +5005,7 @@ nodes:
       - 0c28f4bc-585d-453c-9453-99ae2741ad81
     metadata:
       status: completed
-      expanded: true
+      expanded: false
       deleted: false
       plugins: {}
   03612276-6a50-4e1e-a3c9-e4d676baf06f:
@@ -5044,7 +5044,7 @@ nodes:
       - 3d2068be-1b84-4d98-a103-d5e6f8b0e055
     metadata:
       status: completed
-      expanded: true
+      expanded: false
       deleted: false
       plugins: {}
   58e07041-0806-4157-ab0a-cbc7817d374a:
@@ -5086,7 +5086,7 @@ nodes:
       - 74ebf216-5bae-4367-8fb0-86899c0888bc
     metadata:
       status: completed
-      expanded: true
+      expanded: false
       deleted: false
       plugins: {}
   5d4e4f32-2615-4ed8-b773-5f69dd8e5628:
@@ -5365,7 +5365,7 @@ nodes:
       - 4d7bbc2d-c420-4cfb-9a47-04d597e9a520
     metadata:
       status: completed
-      expanded: true
+      expanded: false
       deleted: false
       plugins: {}
   022330fe-22a4-45c7-a633-fb33bdbfe5a6:
@@ -5637,6 +5637,7 @@ nodes:
       - db3a97af-b9d4-496b-8923-540822c6333b
       - df639133-fecd-400a-ab26-0d263d0ae86c
       - 2454611f-0880-4c9b-8be8-6ea05c8d594b
+      - 1f90a199-78dc-49a8-b19c-a2f5eeea4d76
       - 6d7031d2-82eb-4c23-9a51-a0dc63626ac3
     metadata:
       status: completed
@@ -5731,7 +5732,7 @@ nodes:
       - d1998120-7e96-4859-ac40-ecab8c823d1f
     metadata:
       status: completed
-      expanded: true
+      expanded: false
       deleted: false
       plugins: {}
   93f40bd6-30dc-44f0-84f2-5d96732adc59:
@@ -5780,7 +5781,7 @@ nodes:
       - 0be08fb5-e0ab-4e88-be61-8cf98724a0ce
     metadata:
       status: completed
-      expanded: true
+      expanded: false
       deleted: false
       plugins: {}
   b96d56ea-b920-42b8-b851-3b988a59191c:
@@ -5899,7 +5900,7 @@ nodes:
       - 8737099f-7bff-467d-a5e7-a487922150a4
     metadata:
       status: completed
-      expanded: true
+      expanded: false
       deleted: false
       plugins: {}
   c4cd6e35-db32-4c64-bd0b-0a84285961d4:
@@ -5935,6 +5936,7 @@ nodes:
     children:
       - a704060b-d1d3-480f-9edb-59a715e51464
       - 9839e112-5623-4524-ae4e-4a380094be65
+      - 2d6f5b04-d70f-47fe-b077-f260736c769a
     metadata:
       status: pending
       expanded: true
@@ -5958,3 +5960,50 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
+  2d6f5b04-d70f-47fe-b077-f260736c769a:
+    id: 2d6f5b04-d70f-47fe-b077-f260736c769a
+    content: Enable editing hotkeys in review panel
+    children: []
+    metadata:
+      status: pending
+  1f90a199-78dc-49a8-b19c-a2f5eeea4d76:
+    id: 1f90a199-78dc-49a8-b19c-a2f5eeea4d76
+    content: Hotkeys
+    children:
+      - 1b50a7ce-cac4-4023-8739-be4db8f03604
+      - 4bcb3051-69c6-4306-b668-ce40adbe05c9
+      - 15e4a1fe-c0d3-488b-896d-a07401ea2709
+    metadata:
+      status: pending
+  1b50a7ce-cac4-4023-8739-be4db8f03604:
+    id: 1b50a7ce-cac4-4023-8739-be4db8f03604
+    content: All hotkeys should work as they do in the workspace view
+    children: []
+    metadata:
+      status: pending
+  4bcb3051-69c6-4306-b668-ce40adbe05c9:
+    id: 4bcb3051-69c6-4306-b668-ce40adbe05c9
+    content: However be careful add a condition to the clipboard watching to not update the review panel when we cut/copy into it.
+    children: []
+    metadata:
+      status: pending
+  15e4a1fe-c0d3-488b-896d-a07401ea2709:
+    id: 15e4a1fe-c0d3-488b-896d-a07401ea2709
+    content: 'This should work per file - that is :'
+    children:
+      - 19957fd3-a59b-4b87-8ed2-97ea13da353c
+      - 513a7185-a7bd-4144-b7fc-53f8ae36e735
+    metadata:
+      status: pending
+  19957fd3-a59b-4b87-8ed2-97ea13da353c:
+    id: 19957fd3-a59b-4b87-8ed2-97ea13da353c
+    content: If a file has an active review and the review panel has content, stop watching the clipboard
+    children: []
+    metadata:
+      status: pending
+  513a7185-a7bd-4144-b7fc-53f8ae36e735:
+    id: 513a7185-a7bd-4144-b7fc-53f8ae36e735
+    content: If we switch to another file in review that does not yet have review panel content (pending) - we watch the clipboard
+    children: []
+    metadata:
+      status: pending

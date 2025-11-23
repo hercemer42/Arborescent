@@ -146,7 +146,7 @@ export function createReviewActions(
 
         set({ reviewingNodeId: nodeId });
         usePanelStore.getState().showBrowser();
-        await window.electron.startClipboardMonitor();
+        // Clipboard monitor is managed by useReviewClipboard based on reviewingNodeId state
 
         logger.info(`Started review for node: ${nodeId}`, 'ReviewActions');
       } catch (error) {
@@ -239,7 +239,7 @@ ${formattedContent}`;
 
         set({ reviewingNodeId: nodeId });
         usePanelStore.getState().showReview();
-        await window.electron.startClipboardMonitor();
+        // Clipboard monitor is managed by useReviewClipboard based on reviewingNodeId state
 
         logger.info(`Restored review state for node: ${nodeId}`, 'ReviewActions');
         useToastStore.getState().addToast('Review restored - Continue your previous review', 'info');
@@ -274,6 +274,9 @@ ${formattedContent}`;
       // Initialize review store
       initializeReviewStore(currentFilePath, parsedContent);
       usePanelStore.getState().showReview();
+
+      // Stop clipboard monitor - we have content now
+      await window.electron.stopClipboardMonitor();
 
       // Persist if not restoring
       if (!skipSave) {

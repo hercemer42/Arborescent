@@ -1,6 +1,6 @@
 import { useEffect, RefObject } from 'react';
 import { registerTreeContainer, unregisterTreeContainer } from '../../../services/treeContainerRegistry';
-import { initializeKeyboardServices } from '../../../services/keyboard/keyboard';
+import { initializeNavigationService, initializeEditingService } from '../../../services/keyboard/keyboard';
 import type { TreeStore } from '../../../store/tree/treeStore';
 
 export function useReviewKeyboard(
@@ -14,8 +14,15 @@ export function useReviewKeyboard(
     return () => unregisterTreeContainer(container);
   }, [containerRef, store]);
 
+  // Navigation and editing services scoped to review container
+  // UI service (cut/copy/paste) is handled globally by useWorkspaceKeyboard
   useEffect(() => {
     if (!containerRef.current) return;
-    return initializeKeyboardServices(containerRef.current);
+    const cleanupNav = initializeNavigationService(containerRef.current);
+    const cleanupEdit = initializeEditingService(containerRef.current);
+    return () => {
+      cleanupNav();
+      cleanupEdit();
+    };
   }, [containerRef]);
 }

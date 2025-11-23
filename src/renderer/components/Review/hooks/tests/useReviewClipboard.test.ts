@@ -74,6 +74,8 @@ describe('useReviewClipboard', () => {
       electron: {
         onClipboardContentDetected: mockOnClipboardContentDetected,
         onReviewFileContentDetected: mockOnReviewFileContentDetected,
+        startClipboardMonitor: vi.fn().mockResolvedValue(undefined),
+        stopClipboardMonitor: vi.fn().mockResolvedValue(undefined),
       },
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } as any;

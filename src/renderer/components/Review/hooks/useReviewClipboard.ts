@@ -69,5 +69,22 @@ export function useReviewClipboard(reviewingNodeId: string | null) {
     }
   }, [reviewingNodeId, activeFilePath, hasReviewContent]);
 
+  // Manage clipboard monitor based on review state
+  // Start when we have a review awaiting content, stop when we have content
+  useEffect(() => {
+    if (reviewingNodeId && !hasReviewContent) {
+      // Review in progress but no content yet - start monitoring
+      window.electron.startClipboardMonitor();
+    } else {
+      // Either no review or already have content - stop monitoring
+      window.electron.stopClipboardMonitor();
+    }
+
+    return () => {
+      // Cleanup: stop monitoring when unmounting
+      window.electron.stopClipboardMonitor();
+    };
+  }, [reviewingNodeId, hasReviewContent]);
+
   return hasReviewContent;
 }
