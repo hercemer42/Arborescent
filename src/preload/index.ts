@@ -19,9 +19,6 @@ contextBridge.exposeInMainWorld('electron', {
   savePanelSession: (sessionData: string) =>
     ipcRenderer.invoke('save-panel-session', sessionData),
   getPanelSession: () => ipcRenderer.invoke('get-panel-session'),
-  saveReviewSession: (sessionData: string) =>
-    ipcRenderer.invoke('save-review-session', sessionData),
-  getReviewSession: () => ipcRenderer.invoke('get-review-session'),
   getTempDir: () => ipcRenderer.invoke('get-temp-dir'),
   createTempFile: (fileName: string, content: string) =>
     ipcRenderer.invoke('create-temp-file', fileName, content),

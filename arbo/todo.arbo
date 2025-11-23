@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2025-11-23T12:01:14.469Z'
+updated: '2025-11-23T12:06:07.400Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -5850,6 +5850,13 @@ nodes:
   324e9b3a-4995-4ec5-b6c9-6057c539f0a6:
     id: 324e9b3a-4995-4ec5-b6c9-6057c539f0a6
     content: reviewTreeStore has logic for saving a temporary file, but it looks like we already have this logic in fileActions, we should treat the review temporary file as a normal file, just a different save location
+    children:
+      - e8238b6e-b804-4085-a8e1-51dda723225f
+    metadata:
+      status: pending
+  e8238b6e-b804-4085-a8e1-51dda723225f:
+    id: e8238b6e-b804-4085-a8e1-51dda723225f
+    content: After refactor be sure to disable right click menu for review panel nodes
     children: []
     metadata:
       status: pending

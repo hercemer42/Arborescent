@@ -91,8 +91,6 @@ global.window.electron = {
   getBrowserSession: vi.fn(),
   savePanelSession: vi.fn(),
   getPanelSession: vi.fn(),
-  saveReviewSession: vi.fn(),
-  getReviewSession: vi.fn().mockResolvedValue(null),
   getTempDir: vi.fn(),
   createTempFile: vi.fn(),
   readTempFile: vi.fn().mockResolvedValue(null),

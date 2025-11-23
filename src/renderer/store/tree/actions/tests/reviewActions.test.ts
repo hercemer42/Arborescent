@@ -16,19 +16,32 @@ vi.mock('../../../../services/terminalExecution', () => ({
   executeInTerminal: vi.fn().mockResolvedValue(undefined),
 }));
 
-vi.mock('../../../../services/review/reviewTempFileService', () => ({
-  loadReviewContent: vi.fn().mockResolvedValue(null),
-  saveReviewContent: vi.fn().mockResolvedValue({ filePath: '/tmp/review.md', contentHash: 'abc123' }),
-  deleteReviewTempFile: vi.fn().mockResolvedValue(undefined),
+// Mock the reviewService
+const mockParseReviewContent = vi.fn();
+const mockInitializeReviewStore = vi.fn();
+const mockExtractReviewContent = vi.fn();
+const mockCleanupReview = vi.fn().mockResolvedValue(undefined);
+const mockFindReviewingNode = vi.fn();
+
+vi.mock('../../../../services/review/reviewService', () => ({
+  parseReviewContent: (...args: unknown[]) => mockParseReviewContent(...args),
+  initializeReviewStore: (...args: unknown[]) => mockInitializeReviewStore(...args),
+  extractReviewContent: (...args: unknown[]) => mockExtractReviewContent(...args),
+  cleanupReview: (...args: unknown[]) => mockCleanupReview(...args),
+  findReviewingNode: (...args: unknown[]) => mockFindReviewingNode(...args),
 }));
+
+// Mock reviewTreeStore
+const mockReviewTreeStoreGetStoreForFile = vi.fn();
+const mockReviewTreeStoreInitialize = vi.fn();
+const mockReviewTreeStoreSetFilePath = vi.fn();
 
 vi.mock('../../../review/reviewTreeStore', () => ({
   reviewTreeStore: {
-    initialize: vi.fn(),
-    setTempFilePath: vi.fn(),
-    getStoreForFile: vi.fn(() => null),
+    getStoreForFile: (...args: unknown[]) => mockReviewTreeStoreGetStoreForFile(...args),
+    initialize: (...args: unknown[]) => mockReviewTreeStoreInitialize(...args),
+    setFilePath: (...args: unknown[]) => mockReviewTreeStoreSetFilePath(...args),
     clearFile: vi.fn(),
-    hasReview: vi.fn(() => false),
   },
 }));
 
@@ -65,8 +78,6 @@ describe('reviewActions', () => {
         createTempFile: vi.fn().mockResolvedValue('/tmp/arborescent/review-response.md'),
         startReviewFileWatcher: vi.fn().mockResolvedValue(undefined),
         stopReviewFileWatcher: vi.fn().mockResolvedValue(undefined),
-        saveReviewSession: vi.fn().mockResolvedValue(undefined),
-        getReviewSession: vi.fn().mockResolvedValue(null),
       },
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } as any;
@@ -446,33 +457,30 @@ describe('reviewActions', () => {
     });
   });
 
-  describe('review session persistence', () => {
+  describe('review persistence', () => {
     describe('startReview', () => {
-      it('should not save to session on startReview (only when content is received)', () => {
+      it('should set reviewingNodeId without saving metadata', () => {
         mockState.currentFilePath = '/test/file.arbo';
 
         actions.startReview('child1');
 
-        // Session save now happens in processIncomingReviewContent, not startReview
-        expect(window.electron.saveReviewSession).not.toHaveBeenCalled();
+        // Metadata is only saved when content is received via processIncomingReviewContent
+        expect(mockSet).toHaveBeenCalledWith({ reviewingNodeId: 'child1' });
       });
     });
 
     describe('finishCancel', () => {
-      it('should remove review from session', async () => {
+      it('should cleanup review state and metadata', async () => {
         mockState.currentFilePath = '/test/file.arbo';
         mockState.reviewingNodeId = 'child1';
-        vi.mocked(window.electron.getReviewSession).mockResolvedValue(
-          JSON.stringify({ activeReviews: { '/test/file.arbo': 'child1' } })
-        );
+        mockState.nodes.child1.metadata.reviewTempFile = '/tmp/review.arbo';
 
         await actions.finishCancel();
 
-        expect(window.electron.saveReviewSession).toHaveBeenCalled();
-        const savedData = JSON.parse(
-          vi.mocked(window.electron.saveReviewSession).mock.calls[0][0]
-        );
-        expect(savedData.activeReviews['/test/file.arbo']).toBeUndefined();
+        // Should clear node metadata and reviewingNodeId together
+        expect(mockSet).toHaveBeenCalledWith(expect.objectContaining({
+          reviewingNodeId: null,
+        }));
       });
 
       it('should clear reviewingNodeId', async () => {
@@ -486,72 +494,55 @@ describe('reviewActions', () => {
     });
 
     describe('finishAccept', () => {
-      it('should remove review from session after accepting', async () => {
+      it('should complete accept workflow and cleanup', async () => {
         mockState.currentFilePath = '/test/file.arbo';
         mockState.reviewingNodeId = 'child1';
-        vi.mocked(window.electron.getReviewSession).mockResolvedValue(
-          JSON.stringify({ activeReviews: { '/test/file.arbo': 'child1' } })
-        );
 
-        // Override getStoreForFile for this test
-        const { reviewTreeStore } = await import('../../../review/reviewTreeStore');
-        vi.mocked(reviewTreeStore.getStoreForFile).mockReturnValue({
-          getState: () => ({
-            nodes: {
-              'review-root': { id: 'review-root', content: '', children: ['new-child1'], metadata: { plugins: {} } },
-              'new-child1': { id: 'new-child1', content: 'Updated', children: [], metadata: { plugins: {} } },
-            },
-            rootNodeId: 'review-root',
-          }),
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        } as any);
+        // Mock extractReviewContent to return valid content
+        mockExtractReviewContent.mockReturnValue({
+          rootNodeId: 'new-child1',
+          nodes: {
+            'new-child1': { id: 'new-child1', content: 'Updated', children: [], metadata: { plugins: {} } },
+          },
+        });
 
         await actions.finishAccept();
 
-        expect(window.electron.saveReviewSession).toHaveBeenCalled();
+        // Should cleanup the review
+        expect(mockCleanupReview).toHaveBeenCalledWith('/test/file.arbo', undefined);
       });
     });
 
     describe('restoreReviewState', () => {
-      it('should NOT restore when node has no temp file (user can redo action)', async () => {
+      it('should NOT restore when findReviewingNode returns null', async () => {
         mockState.currentFilePath = '/test/file.arbo';
-        vi.mocked(window.electron.getReviewSession).mockResolvedValue(
-          JSON.stringify({ activeReviews: { '/test/file.arbo': 'child1' } })
-        );
+        mockFindReviewingNode.mockReturnValue(null);
 
         await actions.restoreReviewState();
 
-        // When there's no temp file, don't restore - user can easily redo the action
         expect(mockSet).not.toHaveBeenCalledWith({ reviewingNodeId: 'child1' });
         expect(window.electron.startClipboardMonitor).not.toHaveBeenCalled();
-        // Should clear the stale session entry
-        expect(window.electron.saveReviewSession).toHaveBeenCalled();
       });
 
       it('should restore reviewingNodeId and content when temp file exists', async () => {
-        const { loadReviewContent } = await import('../../../../services/review/reviewTempFileService');
-        vi.mocked(loadReviewContent).mockResolvedValue('# Test Content');
-
         mockState.currentFilePath = '/test/file.arbo';
-        mockState.nodes.child1.metadata = {
-          ...mockState.nodes.child1.metadata,
-          reviewTempFile: '/tmp/review.md',
-          reviewContentHash: 'abc123',
-        };
-        vi.mocked(window.electron.getReviewSession).mockResolvedValue(
-          JSON.stringify({ activeReviews: { '/test/file.arbo': 'child1' } })
-        );
+        const nodeWithReview = { ...mockState.nodes.child1, metadata: { ...mockState.nodes.child1.metadata, reviewTempFile: '/tmp/review.arbo' } };
+        mockFindReviewingNode.mockReturnValue(['child1', nodeWithReview]);
+
+        const mockLoadFromPath = vi.fn().mockResolvedValue(undefined);
+        mockReviewTreeStoreGetStoreForFile.mockReturnValue({
+          getState: () => ({ actions: { loadFromPath: mockLoadFromPath } }),
+        });
 
         await actions.restoreReviewState();
 
         expect(mockSet).toHaveBeenCalledWith({ reviewingNodeId: 'child1' });
-        // Hash is no longer passed - content may have been edited since initial save
-        expect(loadReviewContent).toHaveBeenCalledWith('/tmp/review.md');
+        expect(mockLoadFromPath).toHaveBeenCalledWith('/tmp/review.arbo');
       });
 
-      it('should not restore if no session data exists', async () => {
+      it('should not restore if no node has reviewTempFile metadata', async () => {
         mockState.currentFilePath = '/test/file.arbo';
-        vi.mocked(window.electron.getReviewSession).mockResolvedValue(null);
+        mockFindReviewingNode.mockReturnValue(null);
 
         await actions.restoreReviewState();
 
@@ -561,18 +552,13 @@ describe('reviewActions', () => {
       });
 
       it('should start clipboard monitor when restoring with content', async () => {
-        const { loadReviewContent } = await import('../../../../services/review/reviewTempFileService');
-        vi.mocked(loadReviewContent).mockResolvedValue('# Test Content');
-
         mockState.currentFilePath = '/test/file.arbo';
-        mockState.nodes.child1.metadata = {
-          ...mockState.nodes.child1.metadata,
-          reviewTempFile: '/tmp/review.md',
-          reviewContentHash: 'abc123',
-        };
-        vi.mocked(window.electron.getReviewSession).mockResolvedValue(
-          JSON.stringify({ activeReviews: { '/test/file.arbo': 'child1' } })
-        );
+        const nodeWithReview = { ...mockState.nodes.child1, metadata: { ...mockState.nodes.child1.metadata, reviewTempFile: '/tmp/review.arbo' } };
+        mockFindReviewingNode.mockReturnValue(['child1', nodeWithReview]);
+
+        mockReviewTreeStoreGetStoreForFile.mockReturnValue({
+          getState: () => ({ actions: { loadFromPath: vi.fn().mockResolvedValue(undefined) } }),
+        });
 
         await actions.restoreReviewState();
 
@@ -584,7 +570,6 @@ describe('reviewActions', () => {
 
         await actions.restoreReviewState();
 
-        expect(window.electron.getReviewSession).not.toHaveBeenCalled();
         expect(logger.info).toHaveBeenCalledWith(
           'No current file path, skipping review restore',
           'ReviewActions'
