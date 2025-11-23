@@ -1,6 +1,4 @@
-import { useEffect, useState, useCallback, useRef } from 'react';
-import { logger } from '../../../services/logger';
-import { loadReviewContent } from '../../../services/review/reviewTempFileService';
+import { useEffect, useState, useCallback } from 'react';
 import { useFilesStore } from '../../../store/files/filesStore';
 import { reviewTreeStore } from '../../../store/review/reviewTreeStore';
 import { storeManager } from '../../../store/storeManager';
@@ -13,7 +11,6 @@ import type { ContentSource } from '../../../store/tree/actions/reviewActions';
 export function useReviewClipboard(reviewingNodeId: string | null) {
   const [hasReviewContent, setHasReviewContent] = useState<boolean>(false);
   const activeFilePath = useFilesStore((state) => state.activeFilePath);
-  const hasAttemptedRestore = useRef<string | null>(null);
 
   // Handle incoming review content from any source
   const handleReviewContent = useCallback(async (content: string, source: ContentSource, skipSave: boolean = false) => {
@@ -51,47 +48,26 @@ export function useReviewClipboard(reviewingNodeId: string | null) {
     if (!reviewingNodeId && activeFilePath) {
       reviewTreeStore.clearFile(activeFilePath);
       setHasReviewContent(false);
-      hasAttemptedRestore.current = null;
     }
   }, [reviewingNodeId, activeFilePath]);
 
-  // Restore review content from temp file on app restart
-  // This runs when reviewingNodeId is set but we don't have content yet
+  // Check if review store already has content (e.g., restored by restoreReviewState)
   useEffect(() => {
-    if (!reviewingNodeId || !activeFilePath || hasReviewContent) {
-      return;
-    }
-
-    // Only attempt restore once per reviewingNodeId
-    if (hasAttemptedRestore.current === reviewingNodeId) {
-      return;
-    }
-    hasAttemptedRestore.current = reviewingNodeId;
-
-    // Check node metadata for temp file info
-    const store = storeManager.getStoreForFile(activeFilePath);
-    const node = store.getState().nodes[reviewingNodeId];
-
-    if (!node?.metadata.reviewTempFile || !node?.metadata.reviewContentHash) {
-      logger.info('No temp file metadata to restore from', 'ReviewClipboard');
-      return;
-    }
-
-    // Load and process the content
-    loadReviewContent(
-      node.metadata.reviewTempFile as string,
-      node.metadata.reviewContentHash as string
-    ).then((content) => {
-      if (content) {
-        logger.info('Restoring review content from temp file', 'ReviewClipboard');
-        handleReviewContent(content, 'restore', true);
-      } else {
-        logger.warn('Failed to load review content from temp file', 'ReviewClipboard');
+    if (reviewingNodeId && activeFilePath && !hasReviewContent) {
+      const reviewStore = reviewTreeStore.getStoreForFile(activeFilePath);
+      if (reviewStore) {
+        try {
+          const { nodes, rootNodeId } = reviewStore.getState();
+          const hasNodes = rootNodeId && nodes[rootNodeId]?.children?.length > 0;
+          if (hasNodes) {
+            setHasReviewContent(true);
+          }
+        } catch {
+          // Store not ready yet
+        }
       }
-    }).catch((error) => {
-      logger.error('Failed to restore review content', error as Error, 'ReviewClipboard');
-    });
-  }, [reviewingNodeId, activeFilePath, hasReviewContent, handleReviewContent]);
+    }
+  }, [reviewingNodeId, activeFilePath, hasReviewContent]);
 
   return hasReviewContent;
 }

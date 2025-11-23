@@ -10,8 +10,54 @@ import { VisualEffectsActions } from './visualEffectsActions';
 import { loadReviewContent, saveReviewContent, deleteReviewTempFile } from '../../../services/review/reviewTempFileService';
 import { AcceptReviewCommand } from '../commands/AcceptReviewCommand';
 import { reviewTreeStore } from '../../review/reviewTreeStore';
+import { ReviewSession } from '../../../../shared/interfaces';
 
 export type ContentSource = 'clipboard' | 'file' | 'restore';
+
+/**
+ * Save active review to session for persistence across restarts
+ */
+async function saveReviewToSession(filePath: string, nodeId: string): Promise<void> {
+  try {
+    const sessionData = await window.electron.getReviewSession();
+    const session: ReviewSession = sessionData ? JSON.parse(sessionData) : { activeReviews: {} };
+    session.activeReviews[filePath] = nodeId;
+    await window.electron.saveReviewSession(JSON.stringify(session));
+    logger.info(`Saved review session: ${filePath} -> ${nodeId}`, 'ReviewActions');
+  } catch (error) {
+    logger.error('Failed to save review session', error as Error, 'ReviewActions');
+  }
+}
+
+/**
+ * Remove review from session (on cancel/accept)
+ */
+async function removeReviewFromSession(filePath: string): Promise<void> {
+  try {
+    const sessionData = await window.electron.getReviewSession();
+    if (!sessionData) return;
+    const session: ReviewSession = JSON.parse(sessionData);
+    delete session.activeReviews[filePath];
+    await window.electron.saveReviewSession(JSON.stringify(session));
+    logger.info(`Removed review from session: ${filePath}`, 'ReviewActions');
+  } catch (error) {
+    logger.error('Failed to remove review from session', error as Error, 'ReviewActions');
+  }
+}
+
+/**
+ * Get review nodeId for a file from session
+ */
+async function getReviewFromSession(filePath: string): Promise<string | null> {
+  try {
+    const sessionData = await window.electron.getReviewSession();
+    if (!sessionData) return null;
+    const session: ReviewSession = JSON.parse(sessionData);
+    return session.activeReviews[filePath] || null;
+  } catch {
+    return null;
+  }
+}
 
 // Base instruction for review requests
 const REVIEW_INSTRUCTION_BASE = `You are reviewing a hierarchical task/note list. Please:
@@ -126,6 +172,8 @@ export function createReviewActions(
       }
 
       set({ reviewingNodeId: nodeId });
+      // Note: We don't save to session here - only when content is received
+      // User can easily redo the "start review" action if app restarts
     },
 
     /**
@@ -208,6 +256,7 @@ export function createReviewActions(
 
         // Start review mode
         set({ reviewingNodeId: nodeId });
+        // Note: We don't save to session here - only when content is received
 
         // Open browser panel
         usePanelStore.getState().showBrowser();
@@ -273,6 +322,7 @@ ${formattedContent}`;
 
         // Start review mode
         set({ reviewingNodeId: nodeId });
+        // Note: We don't save to session here - only when content is received
 
         // Start file watching for the response
         await window.electron.startReviewFileWatcher(reviewResponseFile);
@@ -285,48 +335,83 @@ ${formattedContent}`;
     },
 
     /**
-     * Restore review state from node metadata
+     * Restore review state from session and node metadata
      * Called after loading a file to check if there was a review in progress
      */
     restoreReviewState: async () => {
       const state = get();
-      const { nodes } = state;
+      const { nodes, currentFilePath } = state;
 
-      // Find any node with review metadata
+      if (!currentFilePath) {
+        logger.info('No current file path, skipping review restore', 'ReviewActions');
+        return;
+      }
+
+      // First check session for saved review state
+      const sessionNodeId = await getReviewFromSession(currentFilePath);
+      logger.info(`Review restore check: file=${currentFilePath}, sessionNodeId=${sessionNodeId}`, 'ReviewActions');
+
+      // Find node with review metadata (fallback or validation)
       const reviewingNode = Object.entries(nodes).find(
         ([, node]) => node.metadata.reviewTempFile && node.metadata.reviewContentHash
       );
 
-      if (!reviewingNode) {
+      // Determine which nodeId to use: prefer session, fall back to metadata
+      let nodeId: string | null = null;
+      let node: TreeNode | null = null;
+
+      if (sessionNodeId && nodes[sessionNodeId]) {
+        nodeId = sessionNodeId;
+        node = nodes[sessionNodeId];
+      } else if (reviewingNode) {
+        [nodeId, node] = reviewingNode;
+      }
+
+      if (!nodeId || !node) {
         logger.info('No review state to restore', 'ReviewActions');
         return;
       }
 
-      const [nodeId, node] = reviewingNode;
       const { reviewTempFile, reviewContentHash } = node.metadata;
 
       if (!reviewTempFile || !reviewContentHash) {
+        // No temp file content - don't restore (user can easily redo "start review" action)
+        // Clean up stale session entry if it exists
+        if (sessionNodeId) {
+          await removeReviewFromSession(currentFilePath);
+          logger.info('Cleared stale review session (no content to restore)', 'ReviewActions');
+        }
         return;
       }
 
       try {
         // Try to load the review content from temp file
-        const content = await loadReviewContent(reviewTempFile, reviewContentHash);
+        // Don't validate hash - content may have been edited since initial save
+        const content = await loadReviewContent(reviewTempFile);
 
         if (content) {
           // Start review mode for this node
           set({ reviewingNodeId: nodeId });
 
+          // Process the content to populate the review panel
+          const stateWithActions = get() as TreeState & { actions?: { processIncomingReviewContent?: (content: string, source: ContentSource, skipSave?: boolean) => Promise<ProcessReviewContentResult> } };
+          if (stateWithActions.actions?.processIncomingReviewContent) {
+            await stateWithActions.actions.processIncomingReviewContent(content, 'restore', true);
+          }
+
+          // Enable auto-save for review edits (since we skipped save above, setTempFilePath wasn't called)
+          reviewTreeStore.setTempFilePath(currentFilePath, reviewTempFile, nodeId);
+
           // Start clipboard monitoring
           await window.electron.startClipboardMonitor();
 
-          logger.info(`Restored review state for node: ${nodeId}`, 'ReviewActions');
+          logger.info(`Restored review state with content for node: ${nodeId}`, 'ReviewActions');
           useToastStore.getState().addToast(
             'Review restored - Continue your previous review',
             'info'
           );
         } else {
-          // Temp file not found or hash mismatch - clean up metadata
+          // Temp file not found or hash mismatch - clean up metadata and session
           logger.warn(`Review temp file not found or invalid: ${reviewTempFile}`, 'ReviewActions');
 
           const updatedNodes = {
@@ -342,6 +427,9 @@ ${formattedContent}`;
           };
 
           set({ nodes: updatedNodes });
+          await removeReviewFromSession(currentFilePath);
+          // Save to persist the cleared metadata
+          autoSave();
         }
       } catch (error) {
         logger.error('Failed to restore review state', error as Error, 'ReviewActions');
@@ -449,6 +537,16 @@ ${formattedContent}`;
           };
           set({ nodes: updatedNodes });
           logger.info('Saved review content to temp file', 'ReviewActions');
+
+          // Enable auto-save for review edits
+          reviewTreeStore.setTempFilePath(currentFilePath, tempFilePath, reviewingNodeId);
+
+          // Persist the metadata to the .arbo file
+          autoSave();
+
+          // Now that content exists, save to session for persistence across restarts
+          logger.info(`Saving review to session: file=${currentFilePath}, nodeId=${reviewingNodeId}`, 'ReviewActions');
+          await saveReviewToSession(currentFilePath, reviewingNodeId);
         } catch (error) {
           logger.error('Failed to save review content to temp file', error as Error, 'ReviewActions');
         }
@@ -468,9 +566,30 @@ ${formattedContent}`;
           return;
         }
 
-        const tempFilePath = nodes[reviewingNodeId]?.metadata.reviewTempFile;
-        set({ reviewingNodeId: null });
+        const node = nodes[reviewingNodeId];
+        const tempFilePath = node?.metadata.reviewTempFile;
+
+        // Clear the node's review metadata
+        if (node && (node.metadata.reviewTempFile || node.metadata.reviewContentHash)) {
+          const updatedNodes = {
+            ...nodes,
+            [reviewingNodeId]: {
+              ...node,
+              metadata: {
+                ...node.metadata,
+                reviewTempFile: undefined,
+                reviewContentHash: undefined,
+              },
+            },
+          };
+          set({ nodes: updatedNodes, reviewingNodeId: null });
+          autoSave(); // Persist the cleared metadata
+        } else {
+          set({ reviewingNodeId: null });
+        }
+
         await cleanupReview(currentFilePath, tempFilePath);
+        await removeReviewFromSession(currentFilePath);
 
         window.dispatchEvent(new Event('review-canceled'));
         logger.info('Review cancelled', 'ReviewActions');
@@ -517,6 +636,7 @@ ${formattedContent}`;
         // Cleanup
         const tempFilePath = nodes[reviewingNodeId]?.metadata.reviewTempFile;
         await cleanupReview(currentFilePath, tempFilePath);
+        await removeReviewFromSession(currentFilePath);
         usePanelStore.getState().hidePanel();
 
         window.dispatchEvent(new Event('review-accepted'));

@@ -53,6 +53,8 @@ describe('persistenceActions', () => {
       getBrowserSession: vi.fn(() => Promise.resolve(null)),
       savePanelSession: vi.fn(),
       getPanelSession: vi.fn(() => Promise.resolve(null)),
+      saveReviewSession: vi.fn(),
+      getReviewSession: vi.fn(() => Promise.resolve(null)),
     };
 
     actions = createPersistenceActions(

@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2025-11-22T21:36:54.413Z'
+updated: '2025-11-23T12:01:14.469Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -19,6 +19,7 @@ nodes:
       - 60ebf3ef-241c-4317-8578-5a8b5a038cf7
     metadata:
       created: '2025-10-11T00:00:00.000Z'
+      isRoot: true
   44jmbkqfv:
     id: 44jmbkqfv
     content: Implement the done/delete system
@@ -4873,7 +4874,7 @@ nodes:
       - facb23d4-e76f-468c-a445-46ed4be10622
       - 207eec41-6c44-4bf0-9cbb-4313846a33b9
       - 8c77dd3f-2232-4dcd-83f8-d14d35c8673a
-      - 6a7a1df1-3725-4b25-9aaa-58454d6c53c7
+      - 6ad5324a-6e22-403b-bc59-39bdefc56fcf
       - 9b90f770-9ce7-4298-8680-0d43723b0549
       - 6b476f7a-00d5-450f-b2bc-2b724c352c34
       - cf925157-1a27-4772-b261-7e84e137e4dc
@@ -4883,6 +4884,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
+      reviewTempFile: /home/brian/.config/arborescent/temp-files/review-7c0b24c0-df35-4a51-9541-4d4ae263d727-x736vv.txt
+      reviewContentHash: x736vv
   facb23d4-e76f-468c-a445-46ed4be10622:
     id: facb23d4-e76f-468c-a445-46ed4be10622
     content: Review panel
@@ -5140,65 +5143,6 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  6a7a1df1-3725-4b25-9aaa-58454d6c53c7:
-    id: 6a7a1df1-3725-4b25-9aaa-58454d6c53c7
-    content: Persistence
-    children:
-      - e3727385-1450-42a6-8634-dc0faffdf875
-      - ae92c5d1-1f09-4082-aa2b-508192c12555
-      - 50205680-07b9-47b9-85d3-5a43478210a6
-      - cd383302-bfbb-4707-920c-21bfdc531796
-      - 6606a69d-68dd-44cd-9fd7-5542f9ff37a3
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e3727385-1450-42a6-8634-dc0faffdf875:
-    id: e3727385-1450-42a6-8634-dc0faffdf875
-    content: Review persists on restart/crash
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ae92c5d1-1f09-4082-aa2b-508192c12555:
-    id: ae92c5d1-1f09-4082-aa2b-508192c12555
-    content: One review file per arbo file
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  50205680-07b9-47b9-85d3-5a43478210a6:
-    id: 50205680-07b9-47b9-85d3-5a43478210a6
-    content: Review file switches when arbo file switches
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  cd383302-bfbb-4707-920c-21bfdc531796:
-    id: cd383302-bfbb-4707-920c-21bfdc531796
-    content: Blank panel if no review in progress for current arbo file
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  6606a69d-68dd-44cd-9fd7-5542f9ff37a3:
-    id: 6606a69d-68dd-44cd-9fd7-5542f9ff37a3
-    content: Save review contents to temp file in user profile folder
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
   9b90f770-9ce7-4298-8680-0d43723b0549:
     id: 9b90f770-9ce7-4298-8680-0d43723b0549
     content: Bottom status bar
@@ -5395,3 +5339,517 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
+  6ad5324a-6e22-403b-bc59-39bdefc56fcf:
+    id: 6ad5324a-6e22-403b-bc59-39bdefc56fcf
+    content: Persistence for review feature
+    children:
+      - 5bd8aafb-d75f-40c5-9109-6e77809787dd
+      - f4430053-cc20-475d-8c56-64cfe9303a15
+      - 110325dd-5e7b-4c2f-a5cf-9d7cc814efdb
+      - 4b51e78d-75a0-4b67-aebd-fb3f6d7386fe
+      - 74e1db56-6270-4f60-89ee-a6b705f73549
+      - a26431c6-8e6d-4343-88f4-9000f2479f5b
+      - dfbe0c3d-3bff-483f-9c34-ae868b9ccc51
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5bd8aafb-d75f-40c5-9109-6e77809787dd:
+    id: 5bd8aafb-d75f-40c5-9109-6e77809787dd
+    content: Review file management
+    children:
+      - 022330fe-22a4-45c7-a633-fb33bdbfe5a6
+      - f23a2041-9539-410f-9e9f-f470dc274f04
+      - bcf954f6-c1d7-4d09-a402-f5b4cc81bbb4
+      - 4d7bbc2d-c420-4cfb-9a47-04d597e9a520
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  022330fe-22a4-45c7-a633-fb33bdbfe5a6:
+    id: 022330fe-22a4-45c7-a633-fb33bdbfe5a6
+    content: One review file per arbo file
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f23a2041-9539-410f-9e9f-f470dc274f04:
+    id: f23a2041-9539-410f-9e9f-f470dc274f04
+    content: Review file switches when arbo file switches
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bcf954f6-c1d7-4d09-a402-f5b4cc81bbb4:
+    id: bcf954f6-c1d7-4d09-a402-f5b4cc81bbb4
+    content: Blank panel if no review in progress for current arbo file
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4d7bbc2d-c420-4cfb-9a47-04d597e9a520:
+    id: 4d7bbc2d-c420-4cfb-9a47-04d597e9a520
+    content: Save review contents to temp file in user profile folder
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f4430053-cc20-475d-8c56-64cfe9303a15:
+    id: f4430053-cc20-475d-8c56-64cfe9303a15
+    content: Review state persists on restart/crash
+    children:
+      - 883f35ac-4eb2-414b-8531-377a4d299074
+      - c676a7f1-f071-46c5-a634-976f12ffaac2
+      - 41f693f4-287b-4745-954c-f0a54eee46a7
+      - 824fd34f-165b-4a42-89b8-80471db8cfd0
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c676a7f1-f071-46c5-a634-976f12ffaac2:
+    id: c676a7f1-f071-46c5-a634-976f12ffaac2
+    content: Save review state to session
+    children:
+      - 791a281f-8656-41ec-a4d7-5c2b7a2d173d
+      - 6e07c509-96ed-4adc-8437-52f3608e4c7d
+      - 30868091-d833-41ff-aca7-980f59a377fb
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  791a281f-8656-41ec-a4d7-5c2b7a2d173d:
+    id: 791a281f-8656-41ec-a4d7-5c2b7a2d173d
+    content: Only save to session when review content is received (not when review starts)
+    children:
+      - 108175ed-4863-4ac9-a6a8-28256c7c01eb
+      - 384dc4a0-a2a4-4ce4-b85f-d5b4a3c73970
+      - c786a063-5c9b-4da5-9dc1-e2702b1e4eda
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  108175ed-4863-4ac9-a6a8-28256c7c01eb:
+    id: 108175ed-4863-4ac9-a6a8-28256c7c01eb
+    content: 'Added ReviewSession interface with activeReviews: Record<filePath, nodeId>'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  384dc4a0-a2a4-4ce4-b85f-d5b4a3c73970:
+    id: 384dc4a0-a2a4-4ce4-b85f-d5b4a3c73970
+    content: Added saveReviewSession/getReviewSession to Storage service
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c786a063-5c9b-4da5-9dc1-e2702b1e4eda:
+    id: c786a063-5c9b-4da5-9dc1-e2702b1e4eda
+    content: Added IPC handlers for review-session.json persistence
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6e07c509-96ed-4adc-8437-52f3608e4c7d:
+    id: 6e07c509-96ed-4adc-8437-52f3608e4c7d
+    content: Review panel open/closed state (panelStore persists activeContent)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  30868091-d833-41ff-aca7-980f59a377fb:
+    id: 30868091-d833-41ff-aca7-980f59a377fb
+    content: Active side panel type (panelStore persists 'review'/'browser'/'terminal'/null)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  41f693f4-287b-4745-954c-f0a54eee46a7:
+    id: 41f693f4-287b-4745-954c-f0a54eee46a7
+    content: Restore review state on startup
+    children:
+      - aada78e2-0f10-4dc4-b710-a99568c16f46
+      - f5f675fe-7033-4c78-9622-352377e7269d
+      - 256dddb2-3715-438c-af37-0ea4021acbc8
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  aada78e2-0f10-4dc4-b710-a99568c16f46:
+    id: aada78e2-0f10-4dc4-b710-a99568c16f46
+    content: Only restore if review panel has content (temp file exists with valid content)
+    children:
+      - 37ceab35-f8ba-4c8d-a399-d0716a1275be
+      - 69969d28-f5ee-41b4-8f04-2bb7139fc5c1
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  37ceab35-f8ba-4c8d-a399-d0716a1275be:
+    id: 37ceab35-f8ba-4c8d-a399-d0716a1275be
+    content: Do NOT restore just because node was highlighted (user can redo that action)
+    children:
+      - b39e05fd-ea16-48b9-b842-c581d1f79ba6
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  69969d28-f5ee-41b4-8f04-2bb7139fc5c1:
+    id: 69969d28-f5ee-41b4-8f04-2bb7139fc5c1
+    content: Do NOT save to session when starting review - only when content is received
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f5f675fe-7033-4c78-9622-352377e7269d:
+    id: f5f675fe-7033-4c78-9622-352377e7269d
+    content: Review panel reopens if it was open (panelStore handles this)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  256dddb2-3715-438c-af37-0ea4021acbc8:
+    id: 256dddb2-3715-438c-af37-0ea4021acbc8
+    content: Feedback content loads from temp file into panel
+    children:
+      - 4304fece-6d3a-479f-bf8e-64bae1786de3
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4304fece-6d3a-479f-bf8e-64bae1786de3:
+    id: 4304fece-6d3a-479f-bf8e-64bae1786de3
+    content: 'FIXED: restoreReviewState now calls processIncomingReviewContent with loaded content'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  824fd34f-165b-4a42-89b8-80471db8cfd0:
+    id: 824fd34f-165b-4a42-89b8-80471db8cfd0
+    content: Handle multiple files with active reviews
+    children:
+      - b9d22e84-9e12-4295-a3ae-85c99f73769c
+      - 5196866b-f75b-4d98-985c-6937e603cd4e
+      - f3b94443-f5ce-412a-aa62-07f7162f61f1
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b9d22e84-9e12-4295-a3ae-85c99f73769c:
+    id: b9d22e84-9e12-4295-a3ae-85c99f73769c
+    content: Track { filePath, nodeId } pairs in ReviewSession.activeReviews
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5196866b-f75b-4d98-985c-6937e603cd4e:
+    id: 5196866b-f75b-4d98-985c-6937e603cd4e
+    content: Each file has its own TreeStore with its own reviewingNodeId
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f3b94443-f5ce-412a-aa62-07f7162f61f1:
+    id: f3b94443-f5ce-412a-aa62-07f7162f61f1
+    content: Switching files uses correct store; restoreReviewState called on file load
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  110325dd-5e7b-4c2f-a5cf-9d7cc814efdb:
+    id: 110325dd-5e7b-4c2f-a5cf-9d7cc814efdb
+    content: Side panel state persistence
+    children:
+      - bf394a5b-2dea-4749-8e92-100f61c3c4a5
+      - cf2dc023-ce65-4977-a416-31a699a77772
+      - a7fa1ae2-3e0e-448d-a10b-4bd999fa6ed1
+      - ebb746d2-c94a-4b47-884b-32c18404da6f
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bf394a5b-2dea-4749-8e92-100f61c3c4a5:
+    id: bf394a5b-2dea-4749-8e92-100f61c3c4a5
+    content: Track which panel was last open (panelStore.activeContent)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cf2dc023-ce65-4977-a416-31a699a77772:
+    id: cf2dc023-ce65-4977-a416-31a699a77772
+    content: Restore correct panel on startup (panelStore.restoreSession)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a7fa1ae2-3e0e-448d-a10b-4bd999fa6ed1:
+    id: a7fa1ae2-3e0e-448d-a10b-4bd999fa6ed1
+    content: 'Browser panel: restored if it was open'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ebb746d2-c94a-4b47-884b-32c18404da6f:
+    id: ebb746d2-c94a-4b47-884b-32c18404da6f
+    content: 'Review panel: restored if it was open with content populated'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4b51e78d-75a0-4b67-aebd-fb3f6d7386fe:
+    id: 4b51e78d-75a0-4b67-aebd-fb3f6d7386fe
+    content: Cleanup
+    children:
+      - ad38d49c-13f3-45d9-be60-3f4f5dce5d5d
+      - 821fd8c8-714d-4e81-ab5d-c8e4fbbb7501
+      - 110315c6-f8ff-4f4a-8155-62686058e00c
+      - 77eb6df7-2ad2-4f86-bb25-e742cdf01ad0
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ad38d49c-13f3-45d9-be60-3f4f5dce5d5d:
+    id: ad38d49c-13f3-45d9-be60-3f4f5dce5d5d
+    content: Accepting review removes the temporary review file
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  821fd8c8-714d-4e81-ab5d-c8e4fbbb7501:
+    id: 821fd8c8-714d-4e81-ab5d-c8e4fbbb7501
+    content: Closing file without accepting preserves review for recovery
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  110315c6-f8ff-4f4a-8155-62686058e00c:
+    id: 110315c6-f8ff-4f4a-8155-62686058e00c
+    content: We do NOT cache/recreate clipboard contents (intentional)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  77eb6df7-2ad2-4f86-bb25-e742cdf01ad0:
+    id: 77eb6df7-2ad2-4f86-bb25-e742cdf01ad0
+    content: finishCancel and finishAccept remove review from session
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  74e1db56-6270-4f60-89ee-a6b705f73549:
+    id: 74e1db56-6270-4f60-89ee-a6b705f73549
+    content: Edge cases handled
+    children:
+      - 08c1c22f-4686-49c6-87b9-11d2a87224c9
+      - 138be791-c9a8-4e00-9283-71080fd8f536
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  08c1c22f-4686-49c6-87b9-11d2a87224c9:
+    id: 08c1c22f-4686-49c6-87b9-11d2a87224c9
+    content: Review temp file corrupted/missing - graceful fallback (clears metadata and session)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  138be791-c9a8-4e00-9283-71080fd8f536:
+    id: 138be791-c9a8-4e00-9283-71080fd8f536
+    content: File deleted externally while review in progress - not handled (out of scope)
+    children: []
+    metadata:
+      status: failed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a26431c6-8e6d-4343-88f4-9000f2479f5b:
+    id: a26431c6-8e6d-4343-88f4-9000f2479f5b
+    content: Tests updated
+    children:
+      - 447b7e51-e334-4e6c-801f-c92361073866
+      - 8f06c03c-dce6-4820-8f47-9f898c6a6e69
+      - 1f099ec8-a393-44ba-94bc-49990f0d33e4
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  447b7e51-e334-4e6c-801f-c92361073866:
+    id: 447b7e51-e334-4e6c-801f-c92361073866
+    content: 'Update tests to reflect new behavior: only persist when content exists'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8f06c03c-dce6-4820-8f47-9f898c6a6e69:
+    id: 8f06c03c-dce6-4820-8f47-9f898c6a6e69
+    content: reviewActions.test.ts - tests for session persistence
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1f099ec8-a393-44ba-94bc-49990f0d33e4:
+    id: 1f099ec8-a393-44ba-94bc-49990f0d33e4
+    content: Storage.test.ts - tests for review session methods
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  dfbe0c3d-3bff-483f-9c34-ae868b9ccc51:
+    id: dfbe0c3d-3bff-483f-9c34-ae868b9ccc51
+    content: Implementation summary
+    children:
+      - 426ad029-6c70-4561-8dd0-b455e6fff564
+      - 4f02da33-dee0-4783-bb29-a18545c75f6c
+      - f14d7074-8aec-4bc2-8d81-6742ce1312c0
+      - 7091da3a-c5b3-438d-9872-77060da5e3e1
+      - 9d06830f-9837-49f3-8159-d98fb6b79eae
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  426ad029-6c70-4561-8dd0-b455e6fff564:
+    id: 426ad029-6c70-4561-8dd0-b455e6fff564
+    content: Added ReviewSession interface to shared/interfaces.ts
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4f02da33-dee0-4783-bb29-a18545c75f6c:
+    id: 4f02da33-dee0-4783-bb29-a18545c75f6c
+    content: Added IPC handlers in sessionHandlers.ts
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f14d7074-8aec-4bc2-8d81-6742ce1312c0:
+    id: f14d7074-8aec-4bc2-8d81-6742ce1312c0
+    content: Added Storage methods saveReviewSession/getReviewSession
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7091da3a-c5b3-438d-9872-77060da5e3e1:
+    id: 7091da3a-c5b3-438d-9872-77060da5e3e1
+    content: Updated preload/index.ts and global.d.ts with new electron methods
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9d06830f-9837-49f3-8159-d98fb6b79eae:
+    id: 9d06830f-9837-49f3-8159-d98fb6b79eae
+    content: Updated reviewActions.ts - move session save from startReview to processIncomingReviewContent
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b39e05fd-ea16-48b9-b842-c581d1f79ba6:
+    id: b39e05fd-ea16-48b9-b842-c581d1f79ba6
+    content: Do NOT restore node highlighted state
+    children: []
+    metadata:
+      status: pending
+  883f35ac-4eb2-414b-8531-377a4d299074:
+    id: 883f35ac-4eb2-414b-8531-377a4d299074
+    content: Refactor
+    children:
+      - 324e9b3a-4995-4ec5-b6c9-6057c539f0a6
+      - 49e0c6c8-a79b-4c91-9492-783a705d6234
+      - 7ae2e387-1d55-4c51-9b28-3d5f201ef221
+    metadata:
+      status: pending
+  49e0c6c8-a79b-4c91-9492-783a705d6234:
+    id: 49e0c6c8-a79b-4c91-9492-783a705d6234
+    content: There is stuff in reviewTreeStore that should be in actions
+    children: []
+    metadata:
+      status: pending
+  7ae2e387-1d55-4c51-9b28-3d5f201ef221:
+    id: 7ae2e387-1d55-4c51-9b28-3d5f201ef221
+    content: There is already saveJsonFile and loadJsonFile in utils/persistance - can this not be reused in the other handlers ?
+    children: []
+    metadata:
+      status: pending
+  324e9b3a-4995-4ec5-b6c9-6057c539f0a6:
+    id: 324e9b3a-4995-4ec5-b6c9-6057c539f0a6
+    content: reviewTreeStore has logic for saving a temporary file, but it looks like we already have this logic in fileActions, we should treat the review temporary file as a normal file, just a different save location
+    children: []
+    metadata:
+      status: pending

@@ -36,4 +36,12 @@ export function registerSessionHandlers(): void {
   ipcMain.handle('get-temp-files-metadata', async () => {
     return await loadJsonFile('temp-files-metadata.json', 'Temp files metadata');
   });
+
+  ipcMain.handle('save-review-session', async (_, sessionData: string) => {
+    await saveJsonFile('review-session.json', sessionData, 'Review session');
+  });
+
+  ipcMain.handle('get-review-session', async () => {
+    return await loadJsonFile('review-session.json', 'Review session');
+  });
 }

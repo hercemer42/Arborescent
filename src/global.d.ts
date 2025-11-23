@@ -17,6 +17,8 @@ declare global {
       getBrowserSession: () => Promise<string | null>;
       savePanelSession: (sessionData: string) => Promise<void>;
       getPanelSession: () => Promise<string | null>;
+      saveReviewSession: (sessionData: string) => Promise<void>;
+      getReviewSession: () => Promise<string | null>;
       getTempDir: () => Promise<string>;
       createTempFile: (fileName: string, content: string) => Promise<string>;
       readTempFile: (filePath: string) => Promise<string | null>;

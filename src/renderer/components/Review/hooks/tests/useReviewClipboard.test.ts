@@ -24,13 +24,15 @@ vi.mock('../../../../services/review/reviewTempFileService', () => ({
   loadReviewContent: vi.fn().mockResolvedValue(null),
 }));
 
-const { mockReviewTreeClearFile } = vi.hoisted(() => ({
+const { mockReviewTreeClearFile, mockReviewTreeGetStoreForFile } = vi.hoisted(() => ({
   mockReviewTreeClearFile: vi.fn(),
+  mockReviewTreeGetStoreForFile: vi.fn(() => null),
 }));
 
 vi.mock('../../../../store/review/reviewTreeStore', () => ({
   reviewTreeStore: {
     clearFile: mockReviewTreeClearFile,
+    getStoreForFile: mockReviewTreeGetStoreForFile,
   },
 }));
 

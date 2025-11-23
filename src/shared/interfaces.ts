@@ -23,6 +23,11 @@ export interface PanelSession {
   activeContent: 'terminal' | 'browser' | 'review' | null;
 }
 
+export interface ReviewSession {
+  // Map of filePath -> nodeId being reviewed
+  activeReviews: Record<string, string>;
+}
+
 export interface StorageService {
   loadDocument(path: string): Promise<ArboFile>;
   saveDocument(path: string, data: ArboFile): Promise<void>;
@@ -39,6 +44,8 @@ export interface StorageService {
   getBrowserSession(): Promise<BrowserSession | null>;
   savePanelSession(session: PanelSession): Promise<void>;
   getPanelSession(): Promise<PanelSession | null>;
+  saveReviewSession(session: ReviewSession): Promise<void>;
+  getReviewSession(): Promise<ReviewSession | null>;
 }
 
 export interface MenuService {

@@ -331,4 +331,43 @@ describe('Storage', () => {
       expect(result).toBe(1);
     });
   });
+
+  describe('saveReviewSession', () => {
+    it('should save review session as JSON', async () => {
+      vi.mocked(window.electron.saveReviewSession).mockResolvedValue(undefined);
+
+      await storage.saveReviewSession({ activeReviews: { '/test/file.arbo': 'node1' } });
+
+      expect(window.electron.saveReviewSession).toHaveBeenCalledWith(
+        JSON.stringify({ activeReviews: { '/test/file.arbo': 'node1' } }, null, 2)
+      );
+    });
+  });
+
+  describe('getReviewSession', () => {
+    it('should retrieve and parse review session', async () => {
+      const sessionData = { activeReviews: { '/test/file.arbo': 'node1' } };
+      vi.mocked(window.electron.getReviewSession).mockResolvedValue(JSON.stringify(sessionData));
+
+      const result = await storage.getReviewSession();
+
+      expect(result).toEqual(sessionData);
+    });
+
+    it('should return null when no session exists', async () => {
+      vi.mocked(window.electron.getReviewSession).mockResolvedValue(null);
+
+      const result = await storage.getReviewSession();
+
+      expect(result).toBeNull();
+    });
+
+    it('should return null on parse error', async () => {
+      vi.mocked(window.electron.getReviewSession).mockResolvedValue('invalid json{');
+
+      const result = await storage.getReviewSession();
+
+      expect(result).toBeNull();
+    });
+  });
 });
