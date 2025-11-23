@@ -3,7 +3,7 @@ export type { NodeStatus, TreeNode } from './treeNode';
 export { STATUS_SYMBOLS } from './treeNode';
 
 // Document types
-export type { ArboFile } from './document';
+export type { ArboFile, TreeType } from './document';
 
 // Plugin types
 export type {

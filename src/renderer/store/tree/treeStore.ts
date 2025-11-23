@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { TreeNode } from '../../../shared/types';
+import { TreeNode, TreeType } from '../../../shared/types';
 import { createNodeActions, NodeActions } from './actions/nodeActions';
 import { createNavigationActions, NavigationActions } from './actions/navigationActions';
 import { createPersistenceActions, PersistenceActions } from './actions/persistenceActions';
@@ -16,6 +16,7 @@ import { StorageService } from '@platform';
 export interface TreeState {
   nodes: Record<string, TreeNode>;
   rootNodeId: string;
+  treeType: TreeType;
   ancestorRegistry: Record<string, string[]>;
   activeNodeId: string | null; // The single node being edited (cursor placement)
   multiSelectedNodeIds: Set<string>; // Nodes selected for bulk operations (drag, delete, etc.)
@@ -42,7 +43,7 @@ const storageService = new StorageService();
  * The storeManager handles store lifecycle, and TreeStoreContext allows switching
  * between file stores without prop drilling
  */
-export function createTreeStore() {
+export function createTreeStore(treeType: TreeType = 'workspace') {
   return create<TreeState>((set, get) => {
     const historyManager = new HistoryManager();
     const persistenceActions = createPersistenceActions(get, set, storageService);
@@ -70,6 +71,7 @@ export function createTreeStore() {
     return {
       nodes: {},
       rootNodeId: '',
+      treeType,
       ancestorRegistry: {},
       activeNodeId: null,
       multiSelectedNodeIds: new Set(),

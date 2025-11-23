@@ -121,6 +121,7 @@ describe('reviewActions', () => {
         child2: child2,
       },
       rootNodeId: 'root',
+      treeType: 'workspace',
       ancestorRegistry: {
         root: [],
         child1: ['root'],

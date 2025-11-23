@@ -17,7 +17,7 @@ class ReviewTreeStoreManager {
    */
   initialize(filePath: string, nodes: Record<string, TreeNode>, rootNodeId: string): void {
     if (!this.stores.has(filePath)) {
-      this.stores.set(filePath, createTreeStore());
+      this.stores.set(filePath, createTreeStore('review'));
     }
 
     const store = this.stores.get(filePath)!;

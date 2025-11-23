@@ -14,6 +14,8 @@ import { exportNodeAsMarkdown } from '../../../utils/markdown';
 import { hasAncestorWithPluginSession } from '../../../utils/nodeHelpers';
 
 export function useNodeContextMenu(node: TreeNode) {
+  const treeType = useStore((state) => state.treeType);
+  const isReviewTree = treeType === 'review';
   const deleteNode = useStore((state) => state.actions.deleteNode);
   const nodes = useStore((state) => state.nodes);
   const ancestorRegistry = useStore((state) => state.ancestorRegistry);
@@ -31,6 +33,7 @@ export function useNodeContextMenu(node: TreeNode) {
 
   const handleContextMenu = async (e: React.MouseEvent) => {
     e.preventDefault();
+    if (isReviewTree) return;
     setContextMenu({ x: e.clientX, y: e.clientY });
 
     const hasAncestorSession = hasAncestorWithPluginSession(node.id, nodes, ancestorRegistry);
