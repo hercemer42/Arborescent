@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2025-11-24T10:54:40.123Z'
+updated: '2025-11-24T11:18:40.261Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -959,7 +959,7 @@ nodes:
       - 7c0b24c0-df35-4a51-9541-4d4ae263d727
     metadata:
       status: completed
-      expanded: false
+      expanded: true
   e9bb0de8-a33a-4054-8902-466a58ae3a1a:
     id: e9bb0de8-a33a-4054-8902-466a58ae3a1a
     content: Done
@@ -1743,129 +1743,10 @@ nodes:
     id: e15d77fa-c719-45d4-9207-ff759d86e58f
     content: Terminal integration
     children:
-      - 754934df-27a9-4f73-8f64-1a854da7132a
-      - 31a08609-4870-4710-b2df-297ee24ab040
-      - c4a0a9f7-196d-457f-83ff-3efe3f8ea706
+      - d9c2466a-8bfe-426c-a4bc-725306ebfb50
     metadata:
-      status: completed
-      expanded: false
-  90ef4542-1a4c-48b9-922e-5674d3143748:
-    id: 90ef4542-1a4c-48b9-922e-5674d3143748
-    content: Linting, Typescript, Tests, Coverage
-    children: []
-    metadata:
-      status: completed
-  c4a0a9f7-196d-457f-83ff-3efe3f8ea706:
-    id: c4a0a9f7-196d-457f-83ff-3efe3f8ea706
-    content: Refactor
-    children:
-      - 454bc3a4-6a64-4f0d-85e5-09d6793abd49
-      - dad3e4df-5cbc-4124-8acd-d49432c6d7d4
-      - 4f258a4e-8521-41f3-98c1-c39260d22d30
-      - 90ef4542-1a4c-48b9-922e-5674d3143748
-    metadata:
-      status: completed
-  1c90c8d1-d23a-4d91-8ffc-60850b65457e:
-    id: 1c90c8d1-d23a-4d91-8ffc-60850b65457e
-    content: In main.ts there are console logs that should use the logger util
-    children: []
-    metadata:
-      status: completed
-  64190c95-a7b2-416c-84f0-1f922785bd29:
-    id: 64190c95-a7b2-416c-84f0-1f922785bd29
-    content: There is a comment in ipcService about terminal handlers that doesn't make much sense as there's no related code there, so reading the comment in isolation is kind of 'wait, what?'
-    children: []
-    metadata:
-      status: completed
-  1998bb11-a0c7-4927-b877-c4b2433eabd0:
-    id: 1998bb11-a0c7-4927-b877-c4b2433eabd0
-    content: Is there stuff in TerminalManager that is related to the claude code integration attempt we abandoned ? Because we don't need to find session ID for example, and same goes for global.d.ts, and index.ts and setup.ts
-    children: []
-    metadata:
-      status: completed
-  454bc3a4-6a64-4f0d-85e5-09d6793abd49:
-    id: 454bc3a4-6a64-4f0d-85e5-09d6793abd49
-    content: All the terminal related stuff in app.tsx should have it's own component file and hook file and css file
-    children:
-      - b80235b5-148e-442b-8a81-95175bd6a7dd
-    metadata:
-      status: completed
-  15f7ace1-2bf2-474f-861f-813c2a69e142:
-    id: 15f7ace1-2bf2-474f-861f-813c2a69e142
-    content: There's a type error in useNodeContextMenu.ts
-    children: []
-    metadata:
-      status: completed
-  4c943fa0-ab83-437b-be8a-5f92b8827fae:
-    id: 4c943fa0-ab83-437b-be8a-5f92b8827fae
-    content: useNodeContextMenu has code specific to terminal management that should be somewhere dedicated
-    children: []
-    metadata:
-      status: completed
-  dad3e4df-5cbc-4124-8acd-d49432c6d7d4:
-    id: dad3e4df-5cbc-4124-8acd-d49432c6d7d4
-    content: terminal.tsx should have have a hooks file
-    children:
-      - 9205ccd2-be95-4dea-8674-6424a2cbb0d7
-    metadata:
-      status: completed
-  885a6791-79c4-4434-97af-903252347600:
-    id: 885a6791-79c4-4434-97af-903252347600
-    content: terminalPanel should have its own folder
-    children: []
-    metadata:
-      status: completed
-  bb4a50e6-15a0-4169-a693-892a0344cb26:
-    id: bb4a50e6-15a0-4169-a693-892a0344cb26
-    content: we no longer need to support sub menus in contextMenu.ts - you can remove that code
-    children: []
-    metadata:
-      status: completed
-  0b1a73fa-e446-4ea4-9bbb-695b91f3eb4f:
-    id: 0b1a73fa-e446-4ea4-9bbb-695b91f3eb4f
-    content: "Doesn't look like we need\_updateNodePluginMetadata\_anymore in nodeActions"
-    children: []
-    metadata:
-      status: completed
-  31a08609-4870-4710-b2df-297ee24ab040:
-    id: 31a08609-4870-4710-b2df-297ee24ab040
-    content: Done
-    children:
-      - 1c90c8d1-d23a-4d91-8ffc-60850b65457e
-      - 64190c95-a7b2-416c-84f0-1f922785bd29
-      - 15f7ace1-2bf2-474f-861f-813c2a69e142
-      - 1998bb11-a0c7-4927-b877-c4b2433eabd0
-      - 4c943fa0-ab83-437b-be8a-5f92b8827fae
-      - 885a6791-79c4-4434-97af-903252347600
-      - bb4a50e6-15a0-4169-a693-892a0344cb26
-      - 0b1a73fa-e446-4ea4-9bbb-695b91f3eb4f
-    metadata:
-      status: completed
-  b80235b5-148e-442b-8a81-95175bd6a7dd:
-    id: b80235b5-148e-442b-8a81-95175bd6a7dd
-    content: themes in terminal.tsx should be in css files
-    children: []
-    metadata:
-      status: completed
-  9205ccd2-be95-4dea-8674-6424a2cbb0d7:
-    id: 9205ccd2-be95-4dea-8674-6424a2cbb0d7
-    content: there's still a bunch of stuff in terminal.tsx that looks like it should be in hooks
-    children:
-      - c57dd6b5-32e7-4344-9b28-c7a9801ec431
-    metadata:
-      status: completed
-  c57dd6b5-32e7-4344-9b28-c7a9801ec431:
-    id: c57dd6b5-32e7-4344-9b28-c7a9801ec431
-    content: same goes for terminalPanel.tsx
-    children: []
-    metadata:
-      status: completed
-  4f258a4e-8521-41f3-98c1-c39260d22d30:
-    id: 4f258a4e-8521-41f3-98c1-c39260d22d30
-    content: we need to add tests for new code additions since last commit
-    children: []
-    metadata:
-      status: completed
+      status: pending
+      expanded: true
   f12c8451-3c69-4907-993e-846c21ca1ff1:
     id: f12c8451-3c69-4907-993e-846c21ca1ff1
     content: Don't touch the keyboad node management (moving nodes) unless necessary
@@ -2638,51 +2519,6 @@ nodes:
     children: []
     metadata:
       status: completed
-  754934df-27a9-4f73-8f64-1a854da7132a:
-    id: 754934df-27a9-4f73-8f64-1a854da7132a
-    content: Bugs
-    children:
-      - dd1e5047-289a-4225-adaf-29300a3d3bc9
-      - c139d768-f8eb-4b4e-a780-bcc68de3f240
-    metadata:
-      status: completed
-  c139d768-f8eb-4b4e-a780-bcc68de3f240:
-    id: c139d768-f8eb-4b4e-a780-bcc68de3f240
-    content: The terminal focus keeps going back to top of screen after processing something in Claude Code
-    children:
-      - a0d41291-4fcc-46df-923f-b31a13970c83
-      - ac2e431a-45e0-4dba-80de-9e9f78454b03
-      - 927628e2-4499-4004-9073-5a2f04c70747
-      - ae33281b-792d-48bd-aa42-3c896540de04
-    metadata:
-      status: completed
-      expanded: true
-  a0d41291-4fcc-46df-923f-b31a13970c83:
-    id: a0d41291-4fcc-46df-923f-b31a13970c83
-    content: It should stay stuck to the bottom, unless the user has scrolled up and then never scrolled back down
-    children: []
-    metadata:
-      status: pending
-  ac2e431a-45e0-4dba-80de-9e9f78454b03:
-    id: ac2e431a-45e0-4dba-80de-9e9f78454b03
-    content: Inconsistent, sometimes it maintains the bottom scroll, sometimes not
-    children: []
-    metadata:
-      status: pending
-  927628e2-4499-4004-9073-5a2f04c70747:
-    id: 927628e2-4499-4004-9073-5a2f04c70747
-    content: Claude seems to do this kind of weird thing sometimes even outside of arborescent where it looks like its fighting with how much to display, and trying to maintain the terminal position at the bottom.
-    children:
-      - 49b42aeb-45be-4b2e-9cb2-9f28c7589857
-      - feb58ecf-4a07-4fcf-a925-0aa2576ce965
-    metadata:
-      status: pending
-  49b42aeb-45be-4b2e-9cb2-9f28c7589857:
-    id: 49b42aeb-45be-4b2e-9cb2-9f28c7589857
-    content: I think this is linked.
-    children: []
-    metadata:
-      status: pending
   40729a78-ee9c-4599-aa83-57f189199c3c:
     id: 40729a78-ee9c-4599-aa83-57f189199c3c
     content: Security
@@ -2704,12 +2540,6 @@ nodes:
     children: []
     metadata:
       status: pending
-  feb58ecf-4a07-4fcf-a925-0aa2576ce965:
-    id: feb58ecf-4a07-4fcf-a925-0aa2576ce965
-    content: It might happen when it's showing a long list of changes that are longer than the screen length
-    children: []
-    metadata:
-      status: pending
   1ba28725-58a8-4ca5-8eee-050984a2c410:
     id: 1ba28725-58a8-4ca5-8eee-050984a2c410
     content: Keyboard shortcut
@@ -2728,12 +2558,6 @@ nodes:
   02d579f1-0df6-4716-bcc9-951bcbe77283:
     id: 02d579f1-0df6-4716-bcc9-951bcbe77283
     content: Gone with ctrl + B
-    children: []
-    metadata:
-      status: completed
-  dd1e5047-289a-4225-adaf-29300a3d3bc9:
-    id: dd1e5047-289a-4225-adaf-29300a3d3bc9
-    content: Can't select, copy or paste
     children: []
     metadata:
       status: completed
@@ -2807,27 +2631,6 @@ nodes:
     children: []
     metadata:
       status: completed
-  ae33281b-792d-48bd-aa42-3c896540de04:
-    id: ae33281b-792d-48bd-aa42-3c896540de04
-    content: Think the issue is that claude somehow resets the terminal view as a hack when summarizing long outputs
-    children:
-      - 3a1fff8c-f3b6-4ed4-ba73-77b9d48a12aa
-      - 01c8048d-aba9-4298-936d-0d2fe5f15a78
-    metadata:
-      status: pending
-      expanded: true
-  3a1fff8c-f3b6-4ed4-ba73-77b9d48a12aa:
-    id: 3a1fff8c-f3b6-4ed4-ba73-77b9d48a12aa
-    content: And the default view on reset is scrolled up (like when we open a new terminal)
-    children: []
-    metadata:
-      status: pending
-  01c8048d-aba9-4298-936d-0d2fe5f15a78:
-    id: 01c8048d-aba9-4298-936d-0d2fe5f15a78
-    content: Is there a way to set the default on reset as scrolled down ?
-    children: []
-    metadata:
-      status: pending
   ae69b14e-a0a8-4609-bd22-0f8489957aaa:
     id: ae69b14e-a0a8-4609-bd22-0f8489957aaa
     content: Bugs
@@ -5989,3 +5792,30 @@ nodes:
     children: []
     metadata:
       status: completed
+  d9c2466a-8bfe-426c-a4bc-725306ebfb50:
+    id: d9c2466a-8bfe-426c-a4bc-725306ebfb50
+    content: Maintain scroll to bottom of terminal
+    children:
+      - b77008da-c407-4557-99e3-56be6420bb05
+    metadata:
+      status: pending
+  b77008da-c407-4557-99e3-56be6420bb05:
+    id: b77008da-c407-4557-99e3-56be6420bb05
+    content: If we detect that terminal content has changed, force it to scroll to the bottom of the window.
+    children:
+      - 49ca6717-b3c2-4b8c-a0dd-90799d27886a
+      - 4e4a6231-7de1-4a83-9020-50663e9bc30a
+    metadata:
+      status: pending
+  49ca6717-b3c2-4b8c-a0dd-90799d27886a:
+    id: 49ca6717-b3c2-4b8c-a0dd-90799d27886a
+    content: If the user scrolls UP, with the mouse or scroll bar, disable the functionality to scroll to the bottom.
+    children: []
+    metadata:
+      status: pending
+  4e4a6231-7de1-4a83-9020-50663e9bc30a:
+    id: 4e4a6231-7de1-4a83-9020-50663e9bc30a
+    content: If the user scrolls DOWN, with the mouse or scroll bar, and we detect they have scrolled down ALL THE WAY, then enable the functionality to scroll to the bottom
+    children: []
+    metadata:
+      status: pending

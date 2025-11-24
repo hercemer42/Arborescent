@@ -17,7 +17,7 @@ export function useTerminal({ id, onResize }: UseTerminalOptions) {
   const terminalRef = useRef<HTMLDivElement>(null);
   const xtermRef = useRef<XTerm | null>(null);
   const fitAddonRef = useRef<FitAddon | null>(null);
-  const userScrolledUpRef = useRef(false);
+  const autoScrollEnabledRef = useRef(true);
   const [isInitialized, setIsInitialized] = useState(false);
 
   // Initialization effect - waits for element to have dimensions
@@ -29,13 +29,11 @@ export function useTerminal({ id, onResize }: UseTerminalOptions) {
 
       const rect = terminalRef.current.getBoundingClientRect();
 
-      // CRITICAL: Don't initialize xterm if element has no dimensions
-      // This breaks mouse selection permanently
+      // Don't initialize xterm if element has no dimensions
       if (rect.width === 0 || rect.height === 0) {
         return;
       }
 
-      // Create xterm instance
       const xterm = new XTerm({
         cursorBlink: true,
         fontSize: 14,
@@ -48,9 +46,6 @@ export function useTerminal({ id, onResize }: UseTerminalOptions) {
 
       xterm.open(terminalRef.current);
       fitAddon.fit();
-
-      // Start scrolled to bottom (default is top of scrollback)
-      xterm.scrollToBottom();
 
       xtermRef.current = xterm;
       fitAddonRef.current = fitAddon;
@@ -84,47 +79,15 @@ export function useTerminal({ id, onResize }: UseTerminalOptions) {
     const xterm = xtermRef.current;
     const fitAddon = fitAddonRef.current;
 
-    // Tolerance for "at bottom" check to handle rapid xterm.js updates
-    const SCROLL_TOLERANCE_LINES = 2;
-
-    /**
-     * Check if the terminal is scrolled to the bottom
-     * Uses tolerance to account for rapid output scenarios where
-     * xterm.js might temporarily be slightly off during updates
-     */
-    const isAtBottom = (): boolean => {
+    // Check if terminal is scrolled to bottom
+    const isAtBottom = () => {
       const buffer = xterm.buffer.active;
-      const viewport = buffer.viewportY;
-      const bottomPosition = buffer.baseY + buffer.length - xterm.rows;
-      return viewport >= bottomPosition - SCROLL_TOLERANCE_LINES;
+      return buffer.viewportY >= buffer.baseY;
     };
 
-    /**
-     * Scroll to bottom if user hasn't manually scrolled up
-     * Respects user's scroll position when they've scrolled up to read history
-     */
-    const autoScrollToBottom = () => {
-      if (!userScrolledUpRef.current) {
-        xterm.scrollToBottom();
-      }
-    };
-
-    /**
-     * Track when user manually scrolls away from bottom
-     * When user scrolls back to bottom, auto-scroll resumes
-     */
+    // Track scroll position to enable/disable auto-scroll
     xterm.onScroll(() => {
-      userScrolledUpRef.current = !isAtBottom();
-    });
-
-    /**
-     * Handle terminal repaints (e.g., from tools that reprint content)
-     * If user hasn't scrolled up, ensure we stay at bottom after repaint
-     */
-    xterm.onRender(() => {
-      if (!userScrolledUpRef.current && !isAtBottom()) {
-        autoScrollToBottom();
-      }
+      autoScrollEnabledRef.current = isAtBottom();
     });
 
     // Listen for user input and send to PTY
@@ -134,11 +97,10 @@ export function useTerminal({ id, onResize }: UseTerminalOptions) {
 
     // Listen for PTY output
     const removeDataListener = window.electron.onTerminalData(id, (data) => {
-      xterm.write(data, () => {
-        // Some CLI tools use escape sequences that can confuse xterm.js scroll
-        // position. Auto-scroll after write completes.
-        autoScrollToBottom();
-      });
+      xterm.write(data);
+      if (autoScrollEnabledRef.current) {
+        xterm.scrollToBottom();
+      }
     });
 
     // Listen for terminal exit
@@ -148,19 +110,10 @@ export function useTerminal({ id, onResize }: UseTerminalOptions) {
 
     // Handle resize
     const handleResize = () => {
-      // Check if we're at bottom before resize to preserve scroll position
-      const wasAtBottom = isAtBottom();
-
       fitAddon.fit();
       const { cols, rows } = xterm;
       window.electron.terminalResize(id, cols, rows);
       onResize?.(cols, rows);
-
-      // If we were at bottom and user hasn't scrolled up, stay at bottom
-      if (wasAtBottom && !userScrolledUpRef.current) {
-        // Use setTimeout to ensure scroll happens after xterm.js finishes layout
-        setTimeout(autoScrollToBottom, 0);
-      }
     };
 
     // Watch for container size changes

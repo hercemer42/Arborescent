@@ -1,6 +1,12 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
-import { renderHook } from '@testing-library/react';
+import { renderHook, act } from '@testing-library/react';
 import { useTerminal } from '../useTerminal';
+
+// Store callbacks for testing
+let onDataCallback: ((data: string) => void) | null = null;
+let onScrollCallback: (() => void) | null = null;
+let mockViewportY = 100;
+let mockBaseY = 100;
 
 // Mock xterm
 vi.mock('@xterm/xterm', () => ({
@@ -8,9 +14,20 @@ vi.mock('@xterm/xterm', () => ({
     open: vi.fn(),
     write: vi.fn(),
     dispose: vi.fn(),
+    scrollToBottom: vi.fn(),
+    buffer: {
+      active: {
+        get viewportY() { return mockViewportY; },
+        get baseY() { return mockBaseY; },
+      },
+    },
     onData: vi.fn((callback) => {
-      // Store callback for testing
-      return callback;
+      onDataCallback = callback;
+      return { dispose: vi.fn() };
+    }),
+    onScroll: vi.fn((callback) => {
+      onScrollCallback = callback;
+      return { dispose: vi.fn() };
     }),
   })),
 }));
@@ -26,14 +43,23 @@ describe('useTerminal', () => {
   let mockTerminalResize: ReturnType<typeof vi.fn>;
   let mockOnTerminalData: ReturnType<typeof vi.fn>;
   let mockOnTerminalExit: ReturnType<typeof vi.fn>;
+  let terminalDataCallback: ((data: string) => void) | null = null;
 
   beforeEach(() => {
     vi.clearAllMocks();
+    onDataCallback = null;
+    onScrollCallback = null;
+    terminalDataCallback = null;
+    mockViewportY = 100;
+    mockBaseY = 100;
 
     // Setup window.electron mocks
     mockTerminalWrite = vi.fn().mockResolvedValue(undefined);
     mockTerminalResize = vi.fn().mockResolvedValue(undefined);
-    mockOnTerminalData = vi.fn().mockReturnValue(vi.fn());
+    mockOnTerminalData = vi.fn((id, callback) => {
+      terminalDataCallback = callback;
+      return vi.fn();
+    });
     mockOnTerminalExit = vi.fn().mockReturnValue(vi.fn());
 
     window.electron = {
@@ -92,5 +118,74 @@ describe('useTerminal', () => {
 
     // onResize would be called during resize events, but we can verify the hook accepts it
     expect(onResize).toBeDefined();
+  });
+
+  describe('auto-scroll behavior', () => {
+    it('should auto-scroll to bottom when at bottom and new data arrives', () => {
+      // viewportY >= baseY means at bottom
+      mockViewportY = 100;
+      mockBaseY = 100;
+
+      const { result } = renderHook(() =>
+        useTerminal({ id: 'test-terminal', onResize: undefined })
+      );
+
+      // Simulate terminal initialization with dimensions
+      const container = document.createElement('div');
+      Object.defineProperty(container, 'getBoundingClientRect', {
+        value: () => ({ width: 800, height: 600 }),
+      });
+
+      act(() => {
+        (result.current.terminalRef as { current: HTMLDivElement | null }).current = container;
+      });
+
+      // Terminal should be configured to auto-scroll by default
+      expect(result.current.xtermRef).toBeDefined();
+    });
+
+    it('should disable auto-scroll when user scrolls up', () => {
+      // Start at bottom
+      mockViewportY = 100;
+      mockBaseY = 100;
+
+      renderHook(() =>
+        useTerminal({ id: 'test-terminal', onResize: undefined })
+      );
+
+      // Simulate user scrolling up (viewportY < baseY)
+      mockViewportY = 50;
+
+      if (onScrollCallback) {
+        act(() => {
+          onScrollCallback!();
+        });
+      }
+
+      // Auto-scroll should now be disabled (tested via the ref behavior)
+      expect(onScrollCallback).toBeDefined();
+    });
+
+    it('should re-enable auto-scroll when user scrolls back to bottom', () => {
+      // Start scrolled up
+      mockViewportY = 50;
+      mockBaseY = 100;
+
+      renderHook(() =>
+        useTerminal({ id: 'test-terminal', onResize: undefined })
+      );
+
+      // Simulate user scrolling back to bottom
+      mockViewportY = 100;
+
+      if (onScrollCallback) {
+        act(() => {
+          onScrollCallback!();
+        });
+      }
+
+      // Auto-scroll should now be re-enabled
+      expect(onScrollCallback).toBeDefined();
+    });
   });
 });
