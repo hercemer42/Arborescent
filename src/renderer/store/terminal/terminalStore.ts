@@ -22,6 +22,7 @@ interface TerminalState {
   removeTerminal: (id: string) => void;
   setActiveTerminal: (id: string | null) => void;
   updateTerminal: (id: string, updates: Partial<TerminalInfo>) => void;
+  openTerminal: () => Promise<string | null>;
   sendNodeToTerminal: (node: TreeNode, nodes: Record<string, TreeNode>) => Promise<void>;
   executeNodeInTerminal: (node: TreeNode, nodes: Record<string, TreeNode>) => Promise<void>;
   createNewTerminal: (title?: string) => Promise<void>;
@@ -63,16 +64,24 @@ export const useTerminalStore = create<TerminalState>((set, get) => ({
       ),
     })),
 
-  sendNodeToTerminal: async (node: TreeNode, nodes: Record<string, TreeNode>) => {
+  openTerminal: async () => {
     const { activeTerminalId } = get();
-    if (!activeTerminalId) {
-      logger.error('No active terminal', new Error('No terminal selected'), 'TerminalStore');
+    if (activeTerminalId) return activeTerminalId;
+
+    await get().createNewTerminal();
+    return get().activeTerminalId;
+  },
+
+  sendNodeToTerminal: async (node: TreeNode, nodes: Record<string, TreeNode>) => {
+    const terminalId = await get().openTerminal();
+    if (!terminalId) {
+      logger.error('Failed to create terminal', new Error('No terminal available'), 'TerminalStore');
       return;
     }
 
     try {
       const formattedContent = exportNodeAsMarkdown(node, nodes);
-      await window.electron.terminalWrite(activeTerminalId, formattedContent + '\n');
+      await window.electron.terminalWrite(terminalId, formattedContent + '\n');
       logger.info('Sent content to terminal', 'TerminalStore');
     } catch (error) {
       logger.error('Failed to send to terminal', error as Error, 'TerminalStore');
@@ -80,15 +89,15 @@ export const useTerminalStore = create<TerminalState>((set, get) => ({
   },
 
   executeNodeInTerminal: async (node: TreeNode, nodes: Record<string, TreeNode>) => {
-    const { activeTerminalId } = get();
-    if (!activeTerminalId) {
-      logger.error('No active terminal', new Error('No terminal selected'), 'TerminalStore');
+    const terminalId = await get().openTerminal();
+    if (!terminalId) {
+      logger.error('Failed to create terminal', new Error('No terminal available'), 'TerminalStore');
       return;
     }
 
     try {
       const formattedContent = exportNodeAsMarkdown(node, nodes);
-      await executeInTerminalUtil(activeTerminalId, formattedContent);
+      await executeInTerminalUtil(terminalId, formattedContent);
       logger.info('Executed content in terminal', 'TerminalStore');
     } catch (error) {
       logger.error('Failed to execute in terminal', error as Error, 'TerminalStore');

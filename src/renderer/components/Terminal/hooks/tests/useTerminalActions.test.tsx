@@ -12,6 +12,17 @@ vi.mock('../../../../services/logger', () => ({
   },
 }));
 
+// Mock terminal service
+vi.mock('../../../../services/terminalService', () => ({
+  createTerminal: vi.fn().mockResolvedValue({
+    id: 'auto-created-terminal',
+    title: 'Terminal',
+    cwd: '/home/user',
+    shellCommand: '/bin/bash',
+    shellArgs: [],
+  }),
+}));
+
 describe('useTerminalActions', () => {
   const mockNode: TreeNode = {
     id: 'test-node',
@@ -57,7 +68,7 @@ describe('useTerminalActions', () => {
       });
     });
 
-    it('should not send when no active terminal', async () => {
+    it('should auto-create terminal when none exists', async () => {
       const mockTerminalWrite = vi.fn().mockResolvedValue(undefined);
       window.electron.terminalWrite = mockTerminalWrite;
 
@@ -67,7 +78,12 @@ describe('useTerminalActions', () => {
 
       await result.current.sendToTerminal(mockNode, mockNodes);
 
-      expect(mockTerminalWrite).not.toHaveBeenCalled();
+      await waitFor(() => {
+        expect(mockTerminalWrite).toHaveBeenCalledWith(
+          'auto-created-terminal',
+          expect.stringContaining('# Test Command')
+        );
+      });
     });
 
     it('should handle errors gracefully', async () => {
@@ -146,9 +162,14 @@ describe('useTerminalActions', () => {
       expect(mockTerminalWrite).not.toHaveBeenCalled();
     });
 
-    it('should not execute when no active terminal', async () => {
+    it('should auto-create terminal when none exists', async () => {
       const mockTerminalWrite = vi.fn().mockResolvedValue(undefined);
       window.electron.terminalWrite = mockTerminalWrite;
+
+      // Mock querySelector to return a mock textarea
+      const mockTextarea = document.createElement('textarea');
+      mockTextarea.className = 'xterm-helper-textarea';
+      vi.spyOn(document, 'querySelector').mockReturnValue(mockTextarea);
 
       // No active terminal set
 
@@ -156,7 +177,9 @@ describe('useTerminalActions', () => {
 
       await result.current.executeInTerminal(mockNode, mockNodes);
 
-      expect(mockTerminalWrite).not.toHaveBeenCalled();
+      await waitFor(() => {
+        expect(mockTerminalWrite).toHaveBeenCalled();
+      });
     });
   });
 });

@@ -8,6 +8,7 @@ import { PluginCommandRegistry } from '../../../../../plugins/core/renderer/Comm
 import { useTerminalStore } from '../../../store/terminal/terminalStore';
 import { useTerminalActions } from '../../Terminal/hooks/useTerminalActions';
 import { useReviewActions } from '../../Review/hooks/useReviewActions';
+import { usePanelStore } from '../../../store/panel/panelStore';
 import { logger } from '../../../services/logger';
 import { writeToClipboard } from '../../../services/clipboardService';
 import { exportNodeAsMarkdown } from '../../../utils/markdown';
@@ -23,13 +24,13 @@ export function useNodeContextMenu(node: TreeNode) {
   const requestReview = useStore((state) => state.actions.requestReview);
   const requestReviewInTerminal = useStore((state) => state.actions.requestReviewInTerminal);
   const enabledPlugins = usePluginStore((state) => state.enabledPlugins);
-  const activeTerminalId = useTerminalStore((state) => state.activeTerminalId);
   const store = useActiveTreeStore();
   const [contextMenu, setContextMenu] = useState<{ x: number; y: number } | null>(null);
   const [pluginMenuItems, setPluginMenuItems] = useState<ContextMenuItem[]>([]);
 
   const { sendToTerminal, executeInTerminal } = useTerminalActions();
   const { handleCancel } = useReviewActions();
+  const showTerminal = usePanelStore((state) => state.showTerminal);
 
   const handleContextMenu = async (e: React.MouseEvent) => {
     e.preventDefault();
@@ -69,10 +70,12 @@ export function useNodeContextMenu(node: TreeNode) {
   };
 
   const handleSendToTerminal = async () => {
+    showTerminal();
     await sendToTerminal(node, nodes);
   };
 
   const handleExecuteInTerminal = async () => {
+    showTerminal();
     await executeInTerminal(node, nodes);
   };
 
@@ -92,15 +95,15 @@ export function useNodeContextMenu(node: TreeNode) {
   };
 
   const handleRequestReviewInTerminal = async () => {
-    if (!activeTerminalId) {
-      logger.error('No active terminal', new Error('No terminal selected'), 'Context Menu');
+    const terminalId = await useTerminalStore.getState().openTerminal();
+    if (!terminalId) {
+      logger.error('Failed to create terminal', new Error('No terminal available'), 'Context Menu');
       return;
     }
 
     try {
-      await requestReviewInTerminal(node.id, activeTerminalId);
-      // Don't show review panel here - let the user stay in their current view
-      // Panel will be shown when clipboard content is detected
+      showTerminal();
+      await requestReviewInTerminal(node.id, terminalId);
     } catch (error) {
       logger.error('Failed to request review in terminal', error as Error, 'Context Menu');
     }
@@ -140,12 +143,12 @@ export function useNodeContextMenu(node: TreeNode) {
     {
       label: 'Send to Terminal',
       onClick: handleSendToTerminal,
-      disabled: !activeTerminalId,
+      disabled: false,
     },
     {
       label: 'Execute in Terminal',
       onClick: handleExecuteInTerminal,
-      disabled: !activeTerminalId,
+      disabled: false,
     },
     {
       label: 'Request review',
@@ -155,7 +158,7 @@ export function useNodeContextMenu(node: TreeNode) {
     {
       label: 'Request review in terminal',
       onClick: handleRequestReviewInTerminal,
-      disabled: !activeTerminalId || !!reviewingNodeId,
+      disabled: !!reviewingNodeId,
     },
     ...(isNodeBeingReviewed ? [{
       label: 'Cancel review',
