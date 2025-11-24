@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import { Tree } from '../Tree';
 import { TreeStoreContext } from '../../../store/tree/TreeStoreContext';
 import { createTreeStore, TreeStore } from '../../../store/tree/treeStore';
@@ -37,7 +37,7 @@ describe('Tree', () => {
     expect(container.firstChild).toBeNull();
   });
 
-  it('should render tree with root children (root node hidden)', () => {
+  it('should render tree with root children (root node hidden)', async () => {
     const nodes = {
       'root': {
         id: 'root',
@@ -65,6 +65,11 @@ describe('Tree', () => {
     });
 
     renderWithProvider(<Tree />);
+
+    // Wait for component to settle
+    await waitFor(() => {
+      expect(screen.getByText('First Task')).toBeInTheDocument();
+    });
 
     // Root node content should NOT be visible
     expect(screen.queryByText('Root Project')).not.toBeInTheDocument();

@@ -55,8 +55,6 @@ describe('TreeNode', () => {
 
   afterEach(() => {
     cleanup();
-    // Clear store references to allow garbage collection
-    store.destroy?.();
   });
 
   const renderWithProvider = (component: React.ReactElement) => {

@@ -73,7 +73,7 @@ describe('useNodeContextMenu', () => {
     expect(deleteItem?.danger).toBe(true);
   });
 
-  it('should set context menu position on handleContextMenu', () => {
+  it('should set context menu position on handleContextMenu', async () => {
     const { result } = renderHook(() => useNodeContextMenu(mockNode), { wrapper });
 
     const mockEvent = {
@@ -82,7 +82,7 @@ describe('useNodeContextMenu', () => {
       clientY: 200,
     } as unknown as React.MouseEvent;
 
-    act(() => {
+    await act(async () => {
       result.current.handleContextMenu(mockEvent);
     });
 
@@ -90,7 +90,7 @@ describe('useNodeContextMenu', () => {
     expect(result.current.contextMenu).toEqual({ x: 100, y: 200 });
   });
 
-  it('should close context menu', () => {
+  it('should close context menu', async () => {
     const { result } = renderHook(() => useNodeContextMenu(mockNode), { wrapper });
 
     const mockEvent = {
@@ -99,7 +99,7 @@ describe('useNodeContextMenu', () => {
       clientY: 200,
     } as unknown as React.MouseEvent;
 
-    act(() => {
+    await act(async () => {
       result.current.handleContextMenu(mockEvent);
     });
 
@@ -206,7 +206,7 @@ describe('useNodeContextMenu', () => {
       expect(result.current.contextMenuItems.find(item => item.label === 'Delete')).toBeDefined();
     });
 
-    it('should pass hasAncestorSession=false when no ancestor has session', () => {
+    it('should pass hasAncestorSession=false when no ancestor has session', async () => {
       const provideNodeContextMenuItems = vi.fn(() => []);
 
       const mockPlugin = {
@@ -238,14 +238,14 @@ describe('useNodeContextMenu', () => {
         clientY: 200,
       } as unknown as React.MouseEvent;
 
-      act(() => {
+      await act(async () => {
         result.current.handleContextMenu(mockEvent);
       });
 
       expect(provideNodeContextMenuItems).toHaveBeenCalledWith(mockNode, { hasAncestorSession: false });
     });
 
-    it('should pass hasAncestorSession=true when ancestor has plugin metadata', () => {
+    it('should pass hasAncestorSession=true when ancestor has plugin metadata', async () => {
       const ancestorNode: TreeNode = {
         id: 'ancestor-node',
         content: 'Ancestor',
@@ -298,7 +298,7 @@ describe('useNodeContextMenu', () => {
         clientY: 200,
       } as unknown as React.MouseEvent;
 
-      act(() => {
+      await act(async () => {
         result.current.handleContextMenu(mockEvent);
       });
 

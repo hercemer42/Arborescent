@@ -3,7 +3,6 @@ import { renderHook, act } from '@testing-library/react';
 import { useTerminal } from '../useTerminal';
 
 // Store callbacks for testing
-let onDataCallback: ((data: string) => void) | null = null;
 let onScrollCallback: (() => void) | null = null;
 let mockViewportY = 100;
 let mockBaseY = 100;
@@ -21,8 +20,7 @@ vi.mock('@xterm/xterm', () => ({
         get baseY() { return mockBaseY; },
       },
     },
-    onData: vi.fn((callback) => {
-      onDataCallback = callback;
+    onData: vi.fn(() => {
       return { dispose: vi.fn() };
     }),
     onScroll: vi.fn((callback) => {
@@ -43,21 +41,17 @@ describe('useTerminal', () => {
   let mockTerminalResize: ReturnType<typeof vi.fn>;
   let mockOnTerminalData: ReturnType<typeof vi.fn>;
   let mockOnTerminalExit: ReturnType<typeof vi.fn>;
-  let terminalDataCallback: ((data: string) => void) | null = null;
 
   beforeEach(() => {
     vi.clearAllMocks();
-    onDataCallback = null;
     onScrollCallback = null;
-    terminalDataCallback = null;
     mockViewportY = 100;
     mockBaseY = 100;
 
     // Setup window.electron mocks
     mockTerminalWrite = vi.fn().mockResolvedValue(undefined);
     mockTerminalResize = vi.fn().mockResolvedValue(undefined);
-    mockOnTerminalData = vi.fn((id, callback) => {
-      terminalDataCallback = callback;
+    mockOnTerminalData = vi.fn(() => {
       return vi.fn();
     });
     mockOnTerminalExit = vi.fn().mockReturnValue(vi.fn());

@@ -63,7 +63,7 @@ describe('reviewService', () => {
     it('should return null when multiple root nodes', async () => {
       const { parseMarkdown } = await import('../../../utils/markdown');
       vi.mocked(parseMarkdown).mockReturnValue({
-        rootNodes: [{ id: 'node1' }, { id: 'node2' }],
+        rootNodes: [{ id: 'node1', content: '', children: [], metadata: {} }, { id: 'node2', content: '', children: [], metadata: {} }],
         allNodes: {},
       });
 
@@ -77,7 +77,7 @@ describe('reviewService', () => {
         'node1': { id: 'node1', content: 'Test', children: [], metadata: {} },
       };
       vi.mocked(parseMarkdown).mockReturnValue({
-        rootNodes: [{ id: 'node1' }],
+        rootNodes: [{ id: 'node1', content: 'Test', children: [], metadata: {} }],
         allNodes: mockNodes,
       });
 
@@ -94,7 +94,10 @@ describe('reviewService', () => {
     it('should wrap nodes with hidden root and initialize store', async () => {
       const { wrapNodesWithHiddenRoot } = await import('../../../utils/nodeHelpers');
       vi.mocked(wrapNodesWithHiddenRoot).mockReturnValue({
-        nodes: { 'hidden-root': {}, 'node1': {} },
+        nodes: {
+          'hidden-root': { id: 'hidden-root', content: '', children: ['node1'], metadata: {} },
+          'node1': { id: 'node1', content: 'Test', children: [], metadata: {} },
+        },
         rootNodeId: 'hidden-root',
       });
 
@@ -113,7 +116,10 @@ describe('reviewService', () => {
       );
       expect(mockReviewTreeStore.initialize).toHaveBeenCalledWith(
         '/test/file.arbo',
-        { 'hidden-root': {}, 'node1': {} },
+        {
+          'hidden-root': { id: 'hidden-root', content: '', children: ['node1'], metadata: {} },
+          'node1': { id: 'node1', content: 'Test', children: [], metadata: {} },
+        },
         'hidden-root'
       );
     });
