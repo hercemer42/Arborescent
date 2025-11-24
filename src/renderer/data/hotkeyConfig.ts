@@ -32,10 +32,13 @@ export interface HotkeyConfig {
     paste: string;
   };
   file: {
+    new: string;
     save: string;
     saveAs: string;
     open: string;
     closeTab: string;
+    reload: string;
+    quit: string;
   };
   view: {
     toggleTerminal: string;

@@ -144,10 +144,13 @@ describe('hotkeyConfig', () => {
           paste: 'CmdOrCtrl+V',
         },
         file: {
+          new: 'CmdOrCtrl+N',
           save: 'CmdOrCtrl+S',
           saveAs: 'CmdOrCtrl+Shift+S',
           open: 'CmdOrCtrl+O',
           closeTab: 'CmdOrCtrl+W',
+          reload: 'CmdOrCtrl+R',
+          quit: 'CmdOrCtrl+Q',
         },
         view: {
           toggleTerminal: 'CmdOrCtrl+T',
@@ -194,10 +197,13 @@ describe('hotkeyConfig', () => {
           paste: 'CmdOrCtrl+V',
         },
         file: {
+          new: 'CmdOrCtrl+N',
           save: 'CmdOrCtrl+S',
           saveAs: 'CmdOrCtrl+Shift+S',
           open: 'CmdOrCtrl+O',
           closeTab: 'CmdOrCtrl+W',
+          reload: 'CmdOrCtrl+R',
+          quit: 'CmdOrCtrl+Q',
         },
         view: {
           toggleTerminal: 'CmdOrCtrl+T',
