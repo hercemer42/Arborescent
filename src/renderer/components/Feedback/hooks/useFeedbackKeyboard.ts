@@ -3,7 +3,7 @@ import { registerTreeContainer, unregisterTreeContainer } from '../../../service
 import { initializeNavigationService, initializeEditingService } from '../../../services/keyboard/keyboard';
 import type { TreeStore } from '../../../store/tree/treeStore';
 
-export function useReviewKeyboard(
+export function useFeedbackKeyboard(
   containerRef: RefObject<HTMLDivElement | null>,
   store: TreeStore | null
 ): void {
@@ -14,7 +14,7 @@ export function useReviewKeyboard(
     return () => unregisterTreeContainer(container);
   }, [containerRef, store]);
 
-  // Navigation and editing services scoped to review container
+  // Navigation and editing services scoped to feedback container
   // UI service (cut/copy/paste) is handled globally by useWorkspaceKeyboard
   useEffect(() => {
     if (!containerRef.current) return;

@@ -4,11 +4,11 @@ import { buildAncestorRegistry } from '../../../utils/ancestry';
 import { getAllDescendants, captureNodePosition } from '../../../utils/nodeHelpers';
 
 /**
- * Snapshot of the original reviewing node and its descendants
+ * Snapshot of the original collaborating node and its descendants
  */
-interface ReviewSnapshot {
-  reviewingNodeId: string;
-  reviewingNode: TreeNode;
+interface CollaborationSnapshot {
+  collaboratingNodeId: string;
+  collaboratingNode: TreeNode;
   parentId: string;
   position: number;
   descendants: Map<string, TreeNode>;
@@ -16,14 +16,14 @@ interface ReviewSnapshot {
 }
 
 /**
- * Command for accepting a review and replacing nodes
+ * Command for accepting feedback and replacing nodes
  * Supports undo to restore the original nodes
  */
-export class AcceptReviewCommand extends BaseCommand {
-  private snapshot: ReviewSnapshot | null = null;
+export class AcceptFeedbackCommand extends BaseCommand {
+  private snapshot: CollaborationSnapshot | null = null;
 
   constructor(
-    private reviewingNodeId: string,
+    private collaboratingNodeId: string,
     private newRootNodeId: string,
     private newNodesMap: Record<string, TreeNode>,
     private getState: () => {
@@ -35,44 +35,44 @@ export class AcceptReviewCommand extends BaseCommand {
       nodes?: Record<string, TreeNode>;
       rootNodeId?: string;
       ancestorRegistry?: Record<string, string[]>;
-      reviewingNodeId?: string | null;
-      reviewFadingNodeIds?: Set<string>;
+      collaboratingNodeId?: string | null;
+      feedbackFadingNodeIds?: Set<string>;
       activeNodeId?: string | null;
     }) => void,
     private triggerAutosave?: () => void
   ) {
     super();
-    this.description = `Accept review for node ${reviewingNodeId}`;
+    this.description = `Accept feedback for node ${collaboratingNodeId}`;
   }
 
   execute(): void {
     const state = this.getState();
-    const reviewingNode = state.nodes[this.reviewingNodeId];
+    const collaboratingNode = state.nodes[this.collaboratingNodeId];
 
-    if (!reviewingNode) {
+    if (!collaboratingNode) {
       return;
     }
 
     // Capture position and descendants for undo
-    const { parentId, originalPosition } = captureNodePosition(this.reviewingNodeId, state);
-    const descendantIds = getAllDescendants(this.reviewingNodeId, state.nodes);
+    const { parentId, originalPosition } = captureNodePosition(this.collaboratingNodeId, state);
+    const descendantIds = getAllDescendants(this.collaboratingNodeId, state.nodes);
     const descendants = new Map<string, TreeNode>();
     for (const id of descendantIds) {
       descendants.set(id, { ...state.nodes[id] });
     }
 
     this.snapshot = {
-      reviewingNodeId: this.reviewingNodeId,
-      reviewingNode: { ...reviewingNode },
+      collaboratingNodeId: this.collaboratingNodeId,
+      collaboratingNode: { ...collaboratingNode },
       parentId,
       position: originalPosition,
       descendants,
-      wasRootNode: state.rootNodeId === this.reviewingNodeId,
+      wasRootNode: state.rootNodeId === this.collaboratingNodeId,
     };
 
     // Build new nodes map: remove old, add new
     const mergedNodesMap = { ...state.nodes };
-    delete mergedNodesMap[this.reviewingNodeId];
+    delete mergedNodesMap[this.collaboratingNodeId];
     for (const id of descendantIds) {
       delete mergedNodesMap[id];
     }
@@ -84,7 +84,7 @@ export class AcceptReviewCommand extends BaseCommand {
       mergedNodesMap[parentId] = {
         ...parent,
         children: parent.children.map(id =>
-          id === this.reviewingNodeId ? this.newRootNodeId : id
+          id === this.collaboratingNodeId ? this.newRootNodeId : id
         ),
       };
     }
@@ -99,15 +99,15 @@ export class AcceptReviewCommand extends BaseCommand {
       nodes: mergedNodesMap,
       rootNodeId: updatedRootNodeId,
       ancestorRegistry: newAncestorRegistry,
-      reviewingNodeId: null,
-      reviewFadingNodeIds: new Set(newNodeIds),
+      collaboratingNodeId: null,
+      feedbackFadingNodeIds: new Set(newNodeIds),
       activeNodeId: this.newRootNodeId,
     });
 
     this.triggerAutosave?.();
 
     setTimeout(() => {
-      this.setState({ reviewFadingNodeIds: new Set() });
+      this.setState({ feedbackFadingNodeIds: new Set() });
     }, 1500);
   }
 
@@ -124,7 +124,7 @@ export class AcceptReviewCommand extends BaseCommand {
     }
 
     // Restore old nodes
-    restoredNodesMap[this.snapshot.reviewingNodeId] = { ...this.snapshot.reviewingNode };
+    restoredNodesMap[this.snapshot.collaboratingNodeId] = { ...this.snapshot.collaboratingNode };
     this.snapshot.descendants.forEach((node, nodeId) => {
       restoredNodesMap[nodeId] = { ...node };
     });
@@ -135,13 +135,13 @@ export class AcceptReviewCommand extends BaseCommand {
       restoredNodesMap[this.snapshot.parentId] = {
         ...parent,
         children: parent.children.map(id =>
-          id === this.newRootNodeId ? this.snapshot!.reviewingNodeId : id
+          id === this.newRootNodeId ? this.snapshot!.collaboratingNodeId : id
         ),
       };
     }
 
     const restoredRootNodeId = this.snapshot.wasRootNode
-      ? this.snapshot.reviewingNodeId
+      ? this.snapshot.collaboratingNodeId
       : state.rootNodeId;
     const newAncestorRegistry = buildAncestorRegistry(restoredRootNodeId, restoredNodesMap);
 
@@ -149,9 +149,9 @@ export class AcceptReviewCommand extends BaseCommand {
       nodes: restoredNodesMap,
       rootNodeId: restoredRootNodeId,
       ancestorRegistry: newAncestorRegistry,
-      reviewingNodeId: null,
-      reviewFadingNodeIds: new Set(),
-      activeNodeId: this.snapshot.reviewingNodeId,
+      collaboratingNodeId: null,
+      feedbackFadingNodeIds: new Set(),
+      activeNodeId: this.snapshot.collaboratingNodeId,
     });
 
     this.triggerAutosave?.();

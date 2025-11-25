@@ -7,19 +7,19 @@ import { useFilesStore } from '../../../store/files/filesStore';
 import { storeManager } from '../../../store/storeManager';
 
 /**
- * Hook to manage panel toggle actions for terminal, browser, and review
+ * Hook to manage panel toggle actions for terminal, browser, and feedback
  */
 export function usePanelActions() {
   const activeContent = usePanelStore((state) => state.activeContent);
   const showTerminal = usePanelStore((state) => state.showTerminal);
   const showBrowser = usePanelStore((state) => state.showBrowser);
-  const showReview = usePanelStore((state) => state.showReview);
+  const showFeedback = usePanelStore((state) => state.showFeedback);
   const hidePanel = usePanelStore((state) => state.hidePanel);
 
-  // Get reviewingNodeId for the active file using storeManager (not useStore)
+  // Get collaboratingNodeId for the active file using storeManager (not useStore)
   // This allows the component to work outside TreeStoreProvider context
   const activeFilePath = useFilesStore((state) => state.activeFilePath);
-  const reviewingNodeId = useSyncExternalStore(
+  const collaboratingNodeId = useSyncExternalStore(
     (callback) => {
       if (!activeFilePath) return () => {};
       const store = storeManager.getStoreForFile(activeFilePath);
@@ -28,7 +28,7 @@ export function usePanelActions() {
     () => {
       if (!activeFilePath) return null;
       const store = storeManager.getStoreForFile(activeFilePath);
-      return store.getState().reviewingNodeId;
+      return store.getState().collaboratingNodeId;
     },
     () => null
   );
@@ -66,19 +66,19 @@ export function usePanelActions() {
     }
   };
 
-  const handleReviewShow = () => {
-    // Only show review panel if there's an active review
-    // The panel can only be hidden by accepting or canceling the review
-    if (reviewingNodeId) {
-      showReview();
+  const handleFeedbackShow = () => {
+    // Only show feedback panel if there's an active collaboration
+    // The panel can only be hidden by accepting or canceling the collaboration
+    if (collaboratingNodeId) {
+      showFeedback();
     }
   };
 
   return {
     activeContent,
-    reviewingNodeId,
+    collaboratingNodeId,
     handleTerminalToggle,
     handleBrowserToggle,
-    handleReviewShow,
+    handleFeedbackShow,
   };
 }

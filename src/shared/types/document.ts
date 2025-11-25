@@ -1,6 +1,6 @@
 import { TreeNode } from './treeNode';
 
-export type TreeType = 'workspace' | 'review';
+export type TreeType = 'workspace' | 'feedback';
 
 export interface ArboFile {
   format: 'Arborescent';

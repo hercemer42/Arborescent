@@ -18,7 +18,7 @@ type StoreState = {
   ancestorRegistry: Record<string, string[]>;
   activeNodeId: string | null;
   cursorPosition: number;
-  reviewingNodeId: string | null;
+  collaboratingNodeId: string | null;
 };
 type StoreSetter = (partial: Partial<StoreState>) => void;
 
@@ -59,17 +59,17 @@ export const createNodeDeletionActions = (
 
   function deleteNode(nodeId: string, confirmed = false): boolean {
     const state = get() as StoreState & { actions?: { executeCommand?: (cmd: unknown) => void } };
-    const { nodes, rootNodeId, reviewingNodeId } = state;
+    const { nodes, rootNodeId, collaboratingNodeId } = state;
     const node = nodes[nodeId];
     if (!node) return true;
 
-    // Prevent deletion of node under review
-    if (reviewingNodeId === nodeId) {
+    // Prevent deletion of node in collaboration
+    if (collaboratingNodeId === nodeId) {
       useToastStore.getState().addToast(
-        'Cannot delete node in review - Please finish or cancel the review first',
+        'Cannot delete node in collaboration - Please finish or cancel the collaboration first',
         'error'
       );
-      logger.error('Cannot delete node under review', new Error('Node is being reviewed'), 'TreeStore');
+      logger.error('Cannot delete node in collaboration', new Error('Node is being collaborated on'), 'TreeStore');
       return false;
     }
 

@@ -39,14 +39,14 @@ contextBridge.exposeInMainWorld('electron', {
     ipcRenderer.on('clipboard-content-detected', listener);
     return () => ipcRenderer.removeListener('clipboard-content-detected', listener);
   },
-  // Review file watching IPC
-  startReviewFileWatcher: (filePath: string) => ipcRenderer.invoke('start-review-file-watcher', filePath),
-  stopReviewFileWatcher: () => ipcRenderer.invoke('stop-review-file-watcher'),
-  getReviewFilePath: () => ipcRenderer.invoke('get-review-file-path'),
-  onReviewFileContentDetected: (callback: (content: string) => void) => {
+  // Feedback file watching IPC
+  startFeedbackFileWatcher: (filePath: string) => ipcRenderer.invoke('start-feedback-file-watcher', filePath),
+  stopFeedbackFileWatcher: () => ipcRenderer.invoke('stop-feedback-file-watcher'),
+  getFeedbackFilePath: () => ipcRenderer.invoke('get-feedback-file-path'),
+  onFeedbackFileContentDetected: (callback: (content: string) => void) => {
     const listener = (_event: Electron.IpcRendererEvent, content: string) => callback(content);
-    ipcRenderer.on('review-file-content-detected', listener);
-    return () => ipcRenderer.removeListener('review-file-content-detected', listener);
+    ipcRenderer.on('feedback-file-content-detected', listener);
+    return () => ipcRenderer.removeListener('feedback-file-content-detected', listener);
   },
   // Terminal IPC
   terminalCreate: (id: string, title: string, shellCommand?: string, shellArgs?: string[], cwd?: string) =>

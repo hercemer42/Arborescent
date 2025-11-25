@@ -1,10 +1,10 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import {
-  parseReviewContent,
-  initializeReviewStore,
-  findReviewingNode,
-  extractReviewContent,
-} from '../reviewService';
+  parseFeedbackContent,
+  initializeFeedbackStore,
+  findCollaboratingNode,
+  extractFeedbackContent,
+} from '../feedbackService';
 import { TreeNode } from '../../../../shared/types';
 
 vi.mock('../../logger', () => ({
@@ -23,8 +23,8 @@ vi.mock('../../../utils/nodeHelpers', () => ({
   wrapNodesWithHiddenRoot: vi.fn(),
 }));
 
-const { mockReviewTreeStore } = vi.hoisted(() => ({
-  mockReviewTreeStore: {
+const { mockFeedbackTreeStore } = vi.hoisted(() => ({
+  mockFeedbackTreeStore: {
     initialize: vi.fn(),
     setFilePath: vi.fn(),
     getStoreForFile: vi.fn(),
@@ -32,23 +32,23 @@ const { mockReviewTreeStore } = vi.hoisted(() => ({
   },
 }));
 
-vi.mock('../../../store/review/reviewTreeStore', () => ({
-  reviewTreeStore: mockReviewTreeStore,
+vi.mock('../../../store/feedback/feedbackTreeStore', () => ({
+  feedbackTreeStore: mockFeedbackTreeStore,
 }));
 
-describe('reviewService', () => {
+describe('feedbackService', () => {
   beforeEach(() => {
     vi.clearAllMocks();
   });
 
-  describe('parseReviewContent', () => {
+  describe('parseFeedbackContent', () => {
     it('should return null for invalid markdown', async () => {
       const { parseMarkdown } = await import('../../../utils/markdown');
       vi.mocked(parseMarkdown).mockImplementation(() => {
         throw new Error('Invalid markdown');
       });
 
-      const result = parseReviewContent('invalid content');
+      const result = parseFeedbackContent('invalid content');
       expect(result).toBeNull();
     });
 
@@ -56,7 +56,7 @@ describe('reviewService', () => {
       const { parseMarkdown } = await import('../../../utils/markdown');
       vi.mocked(parseMarkdown).mockReturnValue({ rootNodes: [], allNodes: {} });
 
-      const result = parseReviewContent('# No valid nodes');
+      const result = parseFeedbackContent('# No valid nodes');
       expect(result).toBeNull();
     });
 
@@ -67,7 +67,7 @@ describe('reviewService', () => {
         allNodes: {},
       });
 
-      const result = parseReviewContent('# Node 1\n# Node 2');
+      const result = parseFeedbackContent('# Node 1\n# Node 2');
       expect(result).toBeNull();
     });
 
@@ -81,7 +81,7 @@ describe('reviewService', () => {
         allNodes: mockNodes,
       });
 
-      const result = parseReviewContent('# Test');
+      const result = parseFeedbackContent('# Test');
       expect(result).toEqual({
         nodes: mockNodes,
         rootNodeId: 'node1',
@@ -90,7 +90,7 @@ describe('reviewService', () => {
     });
   });
 
-  describe('initializeReviewStore', () => {
+  describe('initializeFeedbackStore', () => {
     it('should wrap nodes with hidden root and initialize store', async () => {
       const { wrapNodesWithHiddenRoot } = await import('../../../utils/nodeHelpers');
       vi.mocked(wrapNodesWithHiddenRoot).mockReturnValue({
@@ -107,14 +107,14 @@ describe('reviewService', () => {
         nodeCount: 1,
       };
 
-      initializeReviewStore('/test/file.arbo', parsedContent);
+      initializeFeedbackStore('/test/file.arbo', parsedContent);
 
       expect(wrapNodesWithHiddenRoot).toHaveBeenCalledWith(
         parsedContent.nodes,
         'node1',
-        'review-root'
+        'feedback-root'
       );
-      expect(mockReviewTreeStore.initialize).toHaveBeenCalledWith(
+      expect(mockFeedbackTreeStore.initialize).toHaveBeenCalledWith(
         '/test/file.arbo',
         {
           'hidden-root': { id: 'hidden-root', content: '', children: ['node1'], metadata: {} },
@@ -125,61 +125,61 @@ describe('reviewService', () => {
     });
   });
 
-  describe('findReviewingNode', () => {
-    it('should return null when no nodes have reviewTempFile', () => {
+  describe('findCollaboratingNode', () => {
+    it('should return null when no nodes have feedbackTempFile', () => {
       const nodes: Record<string, TreeNode> = {
         'node1': { id: 'node1', content: 'Test', children: [], metadata: {} },
         'node2': { id: 'node2', content: 'Test 2', children: [], metadata: {} },
       };
 
-      const result = findReviewingNode(nodes);
+      const result = findCollaboratingNode(nodes);
       expect(result).toBeNull();
     });
 
-    it('should return node with reviewTempFile metadata', () => {
+    it('should return node with feedbackTempFile metadata', () => {
       const nodes: Record<string, TreeNode> = {
         'node1': { id: 'node1', content: 'Test', children: [], metadata: {} },
-        'node2': { id: 'node2', content: 'Test 2', children: [], metadata: { reviewTempFile: '/tmp/review.arbo' } },
+        'node2': { id: 'node2', content: 'Test 2', children: [], metadata: { feedbackTempFile: '/tmp/feedback.arbo' } },
       };
 
-      const result = findReviewingNode(nodes);
+      const result = findCollaboratingNode(nodes);
       expect(result).toEqual(['node2', nodes['node2']]);
     });
   });
 
-  describe('extractReviewContent', () => {
-    it('should return null when no review store', () => {
-      mockReviewTreeStore.getStoreForFile.mockReturnValue(null);
+  describe('extractFeedbackContent', () => {
+    it('should return null when no feedback store', () => {
+      mockFeedbackTreeStore.getStoreForFile.mockReturnValue(null);
 
-      const result = extractReviewContent('/test/file.arbo');
+      const result = extractFeedbackContent('/test/file.arbo');
       expect(result).toBeNull();
     });
 
-    it('should return null when review store is empty', () => {
-      mockReviewTreeStore.getStoreForFile.mockReturnValue({
+    it('should return null when feedback store is empty', () => {
+      mockFeedbackTreeStore.getStoreForFile.mockReturnValue({
         getState: () => ({
-          nodes: { 'review-root': { id: 'review-root', children: [], content: '', metadata: {} } },
-          rootNodeId: 'review-root',
+          nodes: { 'feedback-root': { id: 'feedback-root', children: [], content: '', metadata: {} } },
+          rootNodeId: 'feedback-root',
         }),
       });
 
-      const result = extractReviewContent('/test/file.arbo');
+      const result = extractFeedbackContent('/test/file.arbo');
       expect(result).toBeNull();
     });
 
     it('should extract content nodes excluding hidden root', () => {
-      mockReviewTreeStore.getStoreForFile.mockReturnValue({
+      mockFeedbackTreeStore.getStoreForFile.mockReturnValue({
         getState: () => ({
           nodes: {
-            'review-root': { id: 'review-root', children: ['content-root'], content: '', metadata: {} },
+            'feedback-root': { id: 'feedback-root', children: ['content-root'], content: '', metadata: {} },
             'content-root': { id: 'content-root', children: ['child1'], content: 'Content', metadata: {} },
             'child1': { id: 'child1', children: [], content: 'Child', metadata: {} },
           },
-          rootNodeId: 'review-root',
+          rootNodeId: 'feedback-root',
         }),
       });
 
-      const result = extractReviewContent('/test/file.arbo');
+      const result = extractFeedbackContent('/test/file.arbo');
       expect(result).toEqual({
         rootNodeId: 'content-root',
         nodes: {

@@ -7,7 +7,7 @@ import { usePluginStore } from '../../../store/plugins/pluginStore';
 import { PluginCommandRegistry } from '../../../../../plugins/core/renderer/CommandRegistry';
 import { useTerminalStore } from '../../../store/terminal/terminalStore';
 import { useTerminalActions } from '../../Terminal/hooks/useTerminalActions';
-import { useReviewActions } from '../../Review/hooks/useReviewActions';
+import { useFeedbackActions } from '../../Feedback/hooks/useFeedbackActions';
 import { usePanelStore } from '../../../store/panel/panelStore';
 import { logger } from '../../../services/logger';
 import { writeToClipboard } from '../../../services/clipboardService';
@@ -16,25 +16,25 @@ import { hasAncestorWithPluginSession } from '../../../utils/nodeHelpers';
 
 export function useNodeContextMenu(node: TreeNode) {
   const treeType = useStore((state) => state.treeType);
-  const isReviewTree = treeType === 'review';
+  const isFeedbackTree = treeType === 'feedback';
   const deleteNode = useStore((state) => state.actions.deleteNode);
   const nodes = useStore((state) => state.nodes);
   const ancestorRegistry = useStore((state) => state.ancestorRegistry);
-  const reviewingNodeId = useStore((state) => state.reviewingNodeId);
-  const requestReview = useStore((state) => state.actions.requestReview);
-  const requestReviewInTerminal = useStore((state) => state.actions.requestReviewInTerminal);
+  const collaboratingNodeId = useStore((state) => state.collaboratingNodeId);
+  const collaborate = useStore((state) => state.actions.collaborate);
+  const collaborateInTerminal = useStore((state) => state.actions.collaborateInTerminal);
   const enabledPlugins = usePluginStore((state) => state.enabledPlugins);
   const store = useActiveTreeStore();
   const [contextMenu, setContextMenu] = useState<{ x: number; y: number } | null>(null);
   const [pluginMenuItems, setPluginMenuItems] = useState<ContextMenuItem[]>([]);
 
   const { sendToTerminal, executeInTerminal } = useTerminalActions();
-  const { handleCancel } = useReviewActions();
+  const { handleCancel } = useFeedbackActions();
   const showTerminal = usePanelStore((state) => state.showTerminal);
 
   const handleContextMenu = async (e: React.MouseEvent) => {
     e.preventDefault();
-    if (isReviewTree) return;
+    if (isFeedbackTree) return;
     setContextMenu({ x: e.clientX, y: e.clientY });
 
     const hasAncestorSession = hasAncestorWithPluginSession(node.id, nodes, ancestorRegistry);
@@ -84,17 +84,17 @@ export function useNodeContextMenu(node: TreeNode) {
     await writeToClipboard(formattedContent, 'ContextMenu');
   };
 
-  const handleRequestReview = async () => {
+  const handleCollaborate = async () => {
     try {
-      await requestReview(node.id);
-      // Don't show review panel here - let the user stay in their current view
+      await collaborate(node.id);
+      // Don't show feedback panel here - let the user stay in their current view
       // Panel will be shown when clipboard content is detected
     } catch (error) {
-      logger.error('Failed to request review', error as Error, 'Context Menu');
+      logger.error('Failed to start collaboration', error as Error, 'Context Menu');
     }
   };
 
-  const handleRequestReviewInTerminal = async () => {
+  const handleCollaborateInTerminal = async () => {
     const terminalId = await useTerminalStore.getState().openTerminal();
     if (!terminalId) {
       logger.error('Failed to create terminal', new Error('No terminal available'), 'Context Menu');
@@ -103,13 +103,13 @@ export function useNodeContextMenu(node: TreeNode) {
 
     try {
       showTerminal();
-      await requestReviewInTerminal(node.id, terminalId);
+      await collaborateInTerminal(node.id, terminalId);
     } catch (error) {
-      logger.error('Failed to request review in terminal', error as Error, 'Context Menu');
+      logger.error('Failed to collaborate in terminal', error as Error, 'Context Menu');
     }
   };
 
-  const handleCancelReview = async () => {
+  const handleCancelCollaboration = async () => {
     await handleCancel();
   };
 
@@ -132,7 +132,7 @@ export function useNodeContextMenu(node: TreeNode) {
     };
   }
 
-  const isNodeBeingReviewed = reviewingNodeId === node.id;
+  const isNodeBeingCollaborated = collaboratingNodeId === node.id;
 
   const baseMenuItems: ContextMenuItem[] = [
     {
@@ -151,18 +151,18 @@ export function useNodeContextMenu(node: TreeNode) {
       disabled: false,
     },
     {
-      label: 'Request review',
-      onClick: handleRequestReview,
-      disabled: !!reviewingNodeId,
+      label: 'Collaborate',
+      onClick: handleCollaborate,
+      disabled: !!collaboratingNodeId,
     },
     {
-      label: 'Request review in terminal',
-      onClick: handleRequestReviewInTerminal,
-      disabled: !!reviewingNodeId,
+      label: 'Collaborate in terminal',
+      onClick: handleCollaborateInTerminal,
+      disabled: !!collaboratingNodeId,
     },
-    ...(isNodeBeingReviewed ? [{
-      label: 'Cancel review',
-      onClick: handleCancelReview,
+    ...(isNodeBeingCollaborated ? [{
+      label: 'Cancel collaboration',
+      onClick: handleCancelCollaboration,
       disabled: false,
     }] : []),
     {

@@ -10,7 +10,7 @@ vi.mock('../../../store/storeManager', () => ({
     closeFile: vi.fn(),
     getStoreForFile: vi.fn(() => ({
       getState: () => ({
-        reviewingNodeId: null,
+        collaboratingNodeId: null,
       }),
       subscribe: vi.fn(() => () => {}),
     })),

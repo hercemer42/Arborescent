@@ -1,9 +1,9 @@
 import { describe, it, expect, beforeEach } from 'vitest';
-import { reviewTreeStore } from '../reviewTreeStore';
+import { feedbackTreeStore } from '../feedbackTreeStore';
 
-describe('ReviewTreeStoreManager', () => {
+describe('FeedbackTreeStoreManager', () => {
   beforeEach(() => {
-    reviewTreeStore.clearAll();
+    feedbackTreeStore.clearAll();
   });
 
   describe('initialize', () => {
@@ -13,9 +13,9 @@ describe('ReviewTreeStoreManager', () => {
         'node-1': { id: 'node-1', content: 'Test', children: [], metadata: {} },
       };
 
-      reviewTreeStore.initialize('/test/file.arbo', nodes, 'root');
+      feedbackTreeStore.initialize('/test/file.arbo', nodes, 'root');
 
-      expect(reviewTreeStore.hasReview('/test/file.arbo')).toBe(true);
+      expect(feedbackTreeStore.hasFeedback('/test/file.arbo')).toBe(true);
     });
 
     it('should initialize store with correct nodes and root', () => {
@@ -24,9 +24,9 @@ describe('ReviewTreeStoreManager', () => {
         'node-1': { id: 'node-1', content: 'Test', children: [], metadata: {} },
       };
 
-      reviewTreeStore.initialize('/test/file.arbo', nodes, 'root');
+      feedbackTreeStore.initialize('/test/file.arbo', nodes, 'root');
 
-      const store = reviewTreeStore.getStoreForFile('/test/file.arbo');
+      const store = feedbackTreeStore.getStoreForFile('/test/file.arbo');
       expect(store).not.toBeNull();
 
       const state = store!.getState();
@@ -38,32 +38,32 @@ describe('ReviewTreeStoreManager', () => {
 
   describe('getStoreForFile', () => {
     it('should return null for non-existent file', () => {
-      expect(reviewTreeStore.getStoreForFile('/nonexistent.arbo')).toBeNull();
+      expect(feedbackTreeStore.getStoreForFile('/nonexistent.arbo')).toBeNull();
     });
 
     it('should return store for initialized file', () => {
       const nodes = {
         'root': { id: 'root', content: '', children: [], metadata: {} },
       };
-      reviewTreeStore.initialize('/test/file.arbo', nodes, 'root');
+      feedbackTreeStore.initialize('/test/file.arbo', nodes, 'root');
 
-      const store = reviewTreeStore.getStoreForFile('/test/file.arbo');
+      const store = feedbackTreeStore.getStoreForFile('/test/file.arbo');
       expect(store).not.toBeNull();
     });
   });
 
-  describe('hasReview', () => {
+  describe('hasFeedback', () => {
     it('should return false for non-existent file', () => {
-      expect(reviewTreeStore.hasReview('/nonexistent.arbo')).toBe(false);
+      expect(feedbackTreeStore.hasFeedback('/nonexistent.arbo')).toBe(false);
     });
 
     it('should return true for initialized file', () => {
       const nodes = {
         'root': { id: 'root', content: '', children: [], metadata: {} },
       };
-      reviewTreeStore.initialize('/test/file.arbo', nodes, 'root');
+      feedbackTreeStore.initialize('/test/file.arbo', nodes, 'root');
 
-      expect(reviewTreeStore.hasReview('/test/file.arbo')).toBe(true);
+      expect(feedbackTreeStore.hasFeedback('/test/file.arbo')).toBe(true);
     });
   });
 
@@ -72,13 +72,13 @@ describe('ReviewTreeStoreManager', () => {
       const nodes = {
         'root': { id: 'root', content: '', children: [], metadata: {} },
       };
-      reviewTreeStore.initialize('/file1.arbo', nodes, 'root');
-      reviewTreeStore.initialize('/file2.arbo', nodes, 'root');
+      feedbackTreeStore.initialize('/file1.arbo', nodes, 'root');
+      feedbackTreeStore.initialize('/file2.arbo', nodes, 'root');
 
-      reviewTreeStore.clearFile('/file1.arbo');
+      feedbackTreeStore.clearFile('/file1.arbo');
 
-      expect(reviewTreeStore.hasReview('/file1.arbo')).toBe(false);
-      expect(reviewTreeStore.hasReview('/file2.arbo')).toBe(true);
+      expect(feedbackTreeStore.hasFeedback('/file1.arbo')).toBe(false);
+      expect(feedbackTreeStore.hasFeedback('/file2.arbo')).toBe(true);
     });
   });
 
@@ -87,13 +87,13 @@ describe('ReviewTreeStoreManager', () => {
       const nodes = {
         'root': { id: 'root', content: '', children: [], metadata: {} },
       };
-      reviewTreeStore.initialize('/file1.arbo', nodes, 'root');
-      reviewTreeStore.initialize('/file2.arbo', nodes, 'root');
+      feedbackTreeStore.initialize('/file1.arbo', nodes, 'root');
+      feedbackTreeStore.initialize('/file2.arbo', nodes, 'root');
 
-      reviewTreeStore.clearAll();
+      feedbackTreeStore.clearAll();
 
-      expect(reviewTreeStore.hasReview('/file1.arbo')).toBe(false);
-      expect(reviewTreeStore.hasReview('/file2.arbo')).toBe(false);
+      expect(feedbackTreeStore.hasFeedback('/file1.arbo')).toBe(false);
+      expect(feedbackTreeStore.hasFeedback('/file2.arbo')).toBe(false);
     });
   });
 });

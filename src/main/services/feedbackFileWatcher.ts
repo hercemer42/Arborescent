@@ -3,11 +3,11 @@ import { readFile } from 'fs/promises';
 import { logger } from './logger';
 
 /**
- * Review file watcher service
- * Watches a temp file for changes when terminal review is active
+ * Feedback file watcher service
+ * Watches a temp file for changes when terminal collaboration is active
  * Sends content to renderer when file changes
  */
-export class ReviewFileWatcher {
+export class FeedbackFileWatcher {
   private watcher: FSWatcher | null = null;
   private watchedFilePath: string | null = null;
   private lastContent: string = '';
@@ -33,12 +33,12 @@ export class ReviewFileWatcher {
       });
 
       this.watcher.on('error', (error) => {
-        logger.error('File watcher error', error, 'ReviewFileWatcher');
+        logger.error('File watcher error', error, 'FeedbackFileWatcher');
       });
 
-      logger.info(`Started watching file: ${filePath}`, 'ReviewFileWatcher');
+      logger.info(`Started watching file: ${filePath}`, 'FeedbackFileWatcher');
     } catch (error) {
-      logger.error('Failed to start file watcher', error as Error, 'ReviewFileWatcher');
+      logger.error('Failed to start file watcher', error as Error, 'FeedbackFileWatcher');
     }
   }
 
@@ -68,12 +68,12 @@ export class ReviewFileWatcher {
       // Only notify if content actually changed and has meaningful length
       if (content !== this.lastContent && content.length > 50) {
         this.lastContent = content;
-        logger.info('Review file content changed, sending to renderer', 'ReviewFileWatcher');
+        logger.info('Feedback file content changed, sending to renderer', 'FeedbackFileWatcher');
         this.onChange(content);
       }
     } catch (error) {
       // File might not exist yet or be temporarily unavailable
-      logger.warn(`Failed to read watched file: ${(error as Error).message}`, 'ReviewFileWatcher');
+      logger.warn(`Failed to read watched file: ${(error as Error).message}`, 'FeedbackFileWatcher');
     }
   }
 
@@ -92,7 +92,7 @@ export class ReviewFileWatcher {
     }
 
     if (this.watchedFilePath) {
-      logger.info(`Stopped watching file: ${this.watchedFilePath}`, 'ReviewFileWatcher');
+      logger.info(`Stopped watching file: ${this.watchedFilePath}`, 'FeedbackFileWatcher');
     }
 
     this.watchedFilePath = null;
@@ -116,4 +116,4 @@ export class ReviewFileWatcher {
 }
 
 // Singleton instance
-export const reviewFileWatcher = new ReviewFileWatcher();
+export const feedbackFileWatcher = new FeedbackFileWatcher();

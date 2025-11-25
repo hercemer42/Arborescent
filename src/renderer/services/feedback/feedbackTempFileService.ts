@@ -1,8 +1,8 @@
 import { logger } from '../logger';
 
 /**
- * Service for managing temporary review files
- * These files store review content during a review session to enable crash recovery
+ * Service for managing temporary feedback files
+ * These files store feedback content during a collaboration session to enable crash recovery
  */
 
 /**
@@ -19,32 +19,32 @@ export function computeContentHash(content: string): string {
 }
 
 /**
- * Save review content to a temporary file
+ * Save feedback content to a temporary file
  * Returns the file path and content hash
  */
-export async function saveReviewContent(
+export async function saveFeedbackContent(
   nodeId: string,
   content: string
 ): Promise<{ filePath: string; contentHash: string }> {
   try {
     const contentHash = computeContentHash(content);
-    const fileName = `review-${nodeId}-${contentHash}.txt`;
+    const fileName = `feedback-${nodeId}-${contentHash}.txt`;
     const filePath = await window.electron.createTempFile(fileName, content);
 
-    logger.info(`Saved review content to temp file: ${filePath}`, 'ReviewTempFileService');
+    logger.info(`Saved feedback content to temp file: ${filePath}`, 'FeedbackTempFileService');
 
     return { filePath, contentHash };
   } catch (error) {
-    logger.error('Failed to save review content', error as Error, 'ReviewTempFileService');
+    logger.error('Failed to save feedback content', error as Error, 'FeedbackTempFileService');
     throw error;
   }
 }
 
 /**
- * Load review content from a temporary file
+ * Load feedback content from a temporary file
  * Validates the content hash if provided
  */
-export async function loadReviewContent(
+export async function loadFeedbackContent(
   filePath: string,
   expectedHash?: string
 ): Promise<string | null> {
@@ -52,7 +52,7 @@ export async function loadReviewContent(
     const content = await window.electron.readTempFile(filePath);
 
     if (!content) {
-      logger.warn(`Review temp file not found: ${filePath}`, 'ReviewTempFileService');
+      logger.warn(`Feedback temp file not found: ${filePath}`, 'FeedbackTempFileService');
       return null;
     }
 
@@ -61,30 +61,30 @@ export async function loadReviewContent(
       const actualHash = computeContentHash(content);
       if (actualHash !== expectedHash) {
         logger.error(
-          'Review content hash mismatch',
+          'Feedback content hash mismatch',
           new Error(`Expected ${expectedHash}, got ${actualHash}`),
-          'ReviewTempFileService'
+          'FeedbackTempFileService'
         );
         return null;
       }
     }
 
-    logger.info(`Loaded review content from temp file: ${filePath}`, 'ReviewTempFileService');
+    logger.info(`Loaded feedback content from temp file: ${filePath}`, 'FeedbackTempFileService');
     return content;
   } catch (error) {
-    logger.error('Failed to load review content', error as Error, 'ReviewTempFileService');
+    logger.error('Failed to load feedback content', error as Error, 'FeedbackTempFileService');
     return null;
   }
 }
 
 /**
- * Delete a review temporary file
+ * Delete a feedback temporary file
  */
-export async function deleteReviewTempFile(filePath: string): Promise<void> {
+export async function deleteFeedbackTempFile(filePath: string): Promise<void> {
   try {
     await window.electron.deleteTempFile(filePath);
-    logger.info(`Deleted review temp file: ${filePath}`, 'ReviewTempFileService');
+    logger.info(`Deleted feedback temp file: ${filePath}`, 'FeedbackTempFileService');
   } catch (error) {
-    logger.error('Failed to delete review temp file', error as Error, 'ReviewTempFileService');
+    logger.error('Failed to delete feedback temp file', error as Error, 'FeedbackTempFileService');
   }
 }

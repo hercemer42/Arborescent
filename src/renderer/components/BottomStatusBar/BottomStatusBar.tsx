@@ -1,10 +1,10 @@
 import { useFlashMessage } from './hooks/useFlashMessage';
-import { useReviewStatus } from './hooks/useReviewStatus';
+import { useFeedbackStatus } from './hooks/useFeedbackStatus';
 import './BottomStatusBar.css';
 
 export function BottomStatusBar() {
   const flashMessage = useFlashMessage();
-  const statusMessage = useReviewStatus();
+  const statusMessage = useFeedbackStatus();
 
   // Show flash message if present
   if (flashMessage) {
@@ -15,7 +15,7 @@ export function BottomStatusBar() {
     );
   }
 
-  // Show nothing if no review in progress
+  // Show nothing if no collaboration in progress
   if (!statusMessage) {
     return null;
   }

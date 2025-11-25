@@ -3,7 +3,7 @@ import { logger } from './logger';
 
 /**
  * Clipboard monitor service
- * Monitors clipboard for content changes when review is active
+ * Monitors clipboard for content changes when collaboration is active
  * Sends all content to renderer which validates if it's parseable
  */
 export class ClipboardMonitor {

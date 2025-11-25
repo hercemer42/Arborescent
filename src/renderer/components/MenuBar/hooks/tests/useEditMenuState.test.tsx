@@ -38,7 +38,7 @@ describe('useEditMenuState', () => {
       },
       activeNodeId: null,
       multiSelectedNodeIds: new Set(),
-      reviewingNodeId: null,
+      collaboratingNodeId: null,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } as any);
 
@@ -56,7 +56,7 @@ describe('useEditMenuState', () => {
       },
       activeNodeId: null,
       multiSelectedNodeIds: new Set(),
-      reviewingNodeId: null,
+      collaboratingNodeId: null,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } as any);
 
@@ -74,7 +74,7 @@ describe('useEditMenuState', () => {
       },
       activeNodeId: 'node-1',
       multiSelectedNodeIds: new Set(),
-      reviewingNodeId: null,
+      collaboratingNodeId: null,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } as any);
 
@@ -93,7 +93,7 @@ describe('useEditMenuState', () => {
       },
       activeNodeId: null,
       multiSelectedNodeIds: new Set(['node-1', 'node-2']),
-      reviewingNodeId: null,
+      collaboratingNodeId: null,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } as any);
 
@@ -112,7 +112,7 @@ describe('useEditMenuState', () => {
       },
       activeNodeId: null,
       multiSelectedNodeIds: new Set(),
-      reviewingNodeId: null,
+      collaboratingNodeId: null,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } as any);
 
@@ -123,7 +123,7 @@ describe('useEditMenuState', () => {
     expect(result.current.canDelete).toBe(false);
   });
 
-  it('should disable cut/delete but allow copy when reviewing', () => {
+  it('should disable cut/delete but allow copy when collaborating', () => {
     mockUseActiveTreeStore.mockReturnValue({
       actions: {
         canUndo: vi.fn(() => false),
@@ -131,7 +131,7 @@ describe('useEditMenuState', () => {
       },
       activeNodeId: 'node-1',
       multiSelectedNodeIds: new Set(),
-      reviewingNodeId: 'node-2', // Review in progress
+      collaboratingNodeId: 'node-2', // Collaboration in progress
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } as any);
 
@@ -142,7 +142,7 @@ describe('useEditMenuState', () => {
     expect(result.current.canDelete).toBe(false);
   });
 
-  it('should disable paste when reviewing', () => {
+  it('should disable paste when collaborating', () => {
     mockUseActiveTreeStore.mockReturnValue({
       actions: {
         canUndo: vi.fn(() => false),
@@ -150,7 +150,7 @@ describe('useEditMenuState', () => {
       },
       activeNodeId: null,
       multiSelectedNodeIds: new Set(),
-      reviewingNodeId: 'node-1',
+      collaboratingNodeId: 'node-1',
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } as any);
 
@@ -159,7 +159,7 @@ describe('useEditMenuState', () => {
     expect(result.current.canPaste).toBe(false);
   });
 
-  it('should enable paste when not reviewing', () => {
+  it('should enable paste when not collaborating', () => {
     mockUseActiveTreeStore.mockReturnValue({
       actions: {
         canUndo: vi.fn(() => false),
@@ -167,7 +167,7 @@ describe('useEditMenuState', () => {
       },
       activeNodeId: null,
       multiSelectedNodeIds: new Set(),
-      reviewingNodeId: null,
+      collaboratingNodeId: null,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } as any);
 

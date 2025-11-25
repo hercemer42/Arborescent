@@ -1,13 +1,13 @@
 import { useSyncExternalStore } from 'react';
 import { useFilesStore } from '../../../store/files/filesStore';
 import { storeManager } from '../../../store/storeManager';
-import { reviewTreeStore } from '../../../store/review/reviewTreeStore';
+import { feedbackTreeStore } from '../../../store/feedback/feedbackTreeStore';
 
 /**
- * Hook to compute the review status message
- * Returns null if no review is in progress
+ * Hook to compute the feedback status message
+ * Returns null if no collaboration is in progress
  */
-export function useReviewStatus(): string | null {
+export function useFeedbackStatus(): string | null {
   const activeFilePath = useFilesStore((state) => state.activeFilePath);
 
   // Subscribe to tree store changes for the active file
@@ -30,20 +30,20 @@ export function useReviewStatus(): string | null {
     return null;
   }
 
-  const { reviewingNodeId, nodes } = treeState;
+  const { collaboratingNodeId, nodes } = treeState;
 
-  // No review in progress
-  if (!reviewingNodeId) {
+  // No collaboration in progress
+  if (!collaboratingNodeId) {
     return null;
   }
 
-  const node = nodes[reviewingNodeId];
+  const node = nodes[collaboratingNodeId];
   if (!node) {
     return null;
   }
 
-  // Check if review content is available
-  const hasReviewContent = reviewTreeStore.hasReview(activeFilePath);
+  // Check if feedback content is available
+  const hasFeedbackContent = feedbackTreeStore.hasFeedback(activeFilePath);
 
   // Truncate node name to 15 characters
   const maxLength = 15;
@@ -52,7 +52,7 @@ export function useReviewStatus(): string | null {
     : node.content;
 
   // Show different messages based on state
-  return hasReviewContent
-    ? `Review in progress for node ${nodeName}`
-    : `Waiting for review for node ${nodeName}`;
+  return hasFeedbackContent
+    ? `Collaboration in progress for node ${nodeName}`
+    : `Waiting for feedback for node ${nodeName}`;
 }

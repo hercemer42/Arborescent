@@ -2,7 +2,7 @@ import { usePanelActions } from './hooks/usePanelActions';
 import './PanelActions.css';
 
 export function PanelActions() {
-  const { activeContent, reviewingNodeId, handleTerminalToggle, handleBrowserToggle, handleReviewShow } = usePanelActions();
+  const { activeContent, collaboratingNodeId, handleTerminalToggle, handleBrowserToggle, handleFeedbackShow } = usePanelActions();
 
   return (
     <div className="panel-actions">
@@ -20,11 +20,11 @@ export function PanelActions() {
       >
         {'🌐'}
       </button>
-      {reviewingNodeId && (
+      {collaboratingNodeId && (
         <button
           className="panel-action-button"
-          onClick={handleReviewShow}
-          title="Show Review Panel"
+          onClick={handleFeedbackShow}
+          title="Show Feedback Panel"
         >
           {'📝'}
         </button>

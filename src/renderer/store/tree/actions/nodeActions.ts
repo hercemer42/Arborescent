@@ -25,7 +25,7 @@ type StoreState = {
   activeNodeId: string | null;
   cursorPosition: number;
   rememberedVisualX: number | null;
-  reviewingNodeId: string | null;
+  collaboratingNodeId: string | null;
 };
 type StoreSetter = (partial: Partial<StoreState> | ((state: StoreState) => Partial<StoreState>)) => void;
 
@@ -47,17 +47,17 @@ export const createNodeActions = (
 
   function updateContent(nodeId: string, content: string): void {
     const state = get() as StoreState & { actions?: { executeCommand?: (cmd: unknown) => void } };
-    const { nodes, reviewingNodeId } = state;
+    const { nodes, collaboratingNodeId } = state;
     const node = nodes[nodeId];
     if (!node) return;
 
-    // Prevent editing of node under review
-    if (reviewingNodeId === nodeId) {
+    // Prevent editing of node in collaboration
+    if (collaboratingNodeId === nodeId) {
       useToastStore.getState().addToast(
-        'Cannot edit node in review - Please finish or cancel the review first',
+        'Cannot edit node in collaboration - Please finish or cancel the collaboration first',
         'error'
       );
-      logger.error('Cannot edit node under review', new Error('Node is being reviewed'), 'TreeStore');
+      logger.error('Cannot edit node in collaboration', new Error('Node is being collaborated on'), 'TreeStore');
       return;
     }
 

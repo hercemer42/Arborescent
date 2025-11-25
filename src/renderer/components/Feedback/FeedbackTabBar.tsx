@@ -1,30 +1,30 @@
 import { usePanelStore } from '../../store/panel/panelStore';
 
-interface ReviewTabBarProps {
-  hasReviewContent: boolean;
+interface FeedbackTabBarProps {
+  hasFeedbackContent: boolean;
   onAccept: () => void;
   onCancel: () => void;
 }
 
-export function ReviewTabBar({ hasReviewContent, onAccept, onCancel }: ReviewTabBarProps) {
+export function FeedbackTabBar({ hasFeedbackContent, onAccept, onCancel }: FeedbackTabBarProps) {
   const panelPosition = usePanelStore((state) => state.panelPosition);
   const togglePanelPosition = usePanelStore((state) => state.togglePanelPosition);
 
   return (
-    <div className="review-tab-bar">
-      <div className="review-actions-left">
+    <div className="feedback-tab-bar">
+      <div className="feedback-actions-left">
         <button
-          className="review-button review-button-accept"
+          className="feedback-button feedback-button-accept"
           onClick={onAccept}
-          disabled={!hasReviewContent}
-          title="Accept reviewed changes"
+          disabled={!hasFeedbackContent}
+          title="Accept feedback"
         >
           Accept
         </button>
         <button
-          className="review-button review-button-cancel"
+          className="feedback-button feedback-button-cancel"
           onClick={onCancel}
-          title="Cancel review"
+          title="Cancel collaboration"
         >
           Cancel
         </button>

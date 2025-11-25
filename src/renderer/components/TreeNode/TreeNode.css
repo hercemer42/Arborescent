@@ -25,25 +25,25 @@
   border-bottom: 1px solid white;
 }
 
-/* Node under review - amber/orange highlight with borders */
-.tree-node-wrapper.reviewing {
+/* Node in collaboration - amber/orange highlight with borders */
+.tree-node-wrapper.collaborating {
   background-color: rgba(255, 152, 0, 0.15);
   border-top: 1px solid rgb(255, 193, 7);
   border-bottom: 1px solid rgb(255, 193, 7);
 }
 
-/* Descendant of node under review - lighter amber highlight */
-.tree-node-wrapper.reviewing-descendant {
+/* Descendant of node in collaboration - lighter amber highlight */
+.tree-node-wrapper.collaborating-descendant {
   background-color: rgba(255, 152, 0, 0.08);
 }
 
-/* Review accepted - fade out transition */
-.tree-node-wrapper.review-fading {
+/* Feedback accepted - fade out transition */
+.tree-node-wrapper.feedback-fading {
   background-color: rgba(255, 152, 0, 0.15);
-  animation: review-fade-out 1.5s ease-out forwards;
+  animation: feedback-fade-out 1.5s ease-out forwards;
 }
 
-@keyframes review-fade-out {
+@keyframes feedback-fade-out {
   from {
     background-color: rgba(255, 152, 0, 0.15);
   }

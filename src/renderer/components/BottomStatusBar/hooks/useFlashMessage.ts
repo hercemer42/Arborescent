@@ -1,29 +1,29 @@
 import { useEffect, useState } from 'react';
 
 /**
- * Hook to manage flash messages displayed after review actions
- * Listens for review-accepted and review-canceled events
+ * Hook to manage flash messages displayed after collaboration actions
+ * Listens for collaboration-accepted and collaboration-canceled events
  */
 export function useFlashMessage() {
   const [flashMessage, setFlashMessage] = useState<string | null>(null);
 
   useEffect(() => {
-    const handleReviewAccepted = () => {
-      setFlashMessage('Review accepted');
+    const handleCollaborationAccepted = () => {
+      setFlashMessage('Feedback accepted');
       setTimeout(() => setFlashMessage(null), 2000);
     };
 
-    const handleReviewCanceled = () => {
-      setFlashMessage('Review canceled');
+    const handleCollaborationCanceled = () => {
+      setFlashMessage('Collaboration canceled');
       setTimeout(() => setFlashMessage(null), 2000);
     };
 
-    window.addEventListener('review-accepted', handleReviewAccepted);
-    window.addEventListener('review-canceled', handleReviewCanceled);
+    window.addEventListener('collaboration-accepted', handleCollaborationAccepted);
+    window.addEventListener('collaboration-canceled', handleCollaborationCanceled);
 
     return () => {
-      window.removeEventListener('review-accepted', handleReviewAccepted);
-      window.removeEventListener('review-canceled', handleReviewCanceled);
+      window.removeEventListener('collaboration-accepted', handleCollaborationAccepted);
+      window.removeEventListener('collaboration-canceled', handleCollaborationCanceled);
     };
   }, []);
 

@@ -2,10 +2,10 @@ import { useFilesStore } from '../../../store/files/filesStore';
 import { storeManager } from '../../../store/storeManager';
 
 /**
- * Hook providing accept and cancel actions for the review workflow.
+ * Hook providing accept and cancel actions for the collaboration workflow.
  * These simply delegate to store actions which contain all the business logic.
  */
-export function useReviewActions() {
+export function useFeedbackActions() {
   const handleCancel = async () => {
     const activeFilePath = useFilesStore.getState().activeFilePath;
     if (!activeFilePath) return;

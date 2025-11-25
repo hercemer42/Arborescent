@@ -28,25 +28,25 @@ export function useEditMenuState(): EditMenuState {
     };
   }
 
-  const { actions, activeNodeId, multiSelectedNodeIds, reviewingNodeId } = treeState;
+  const { actions, activeNodeId, multiSelectedNodeIds, collaboratingNodeId } = treeState;
 
   const canUndo = actions.canUndo();
   const canRedo = actions.canRedo();
 
-  // Can't perform edit operations while reviewing
-  const isReviewing = reviewingNodeId !== null;
+  // Can't perform edit operations while collaborating
+  const isCollaborating = collaboratingNodeId !== null;
 
   // Has a node selected (either active or multi-selected)
   const hasNodeSelected = activeNodeId !== null || multiSelectedNodeIds.size > 0;
 
-  // Cut/Copy/Delete require a node to be selected and not in review mode
-  const canCut = hasNodeSelected && !isReviewing;
+  // Cut/Copy/Delete require a node to be selected and not in collaboration mode
+  const canCut = hasNodeSelected && !isCollaborating;
   const canCopy = hasNodeSelected;
-  const canDelete = hasNodeSelected && !isReviewing;
+  const canDelete = hasNodeSelected && !isCollaborating;
 
   // Paste is always enabled (we'll check clipboard content when executed)
   // The actual paste logic will determine if it's valid markdown or should fall through
-  const canPaste = !isReviewing;
+  const canPaste = !isCollaborating;
 
   return {
     canUndo,

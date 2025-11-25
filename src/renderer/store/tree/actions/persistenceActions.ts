@@ -86,10 +86,10 @@ export const createPersistenceActions = (
       fileMeta: { created: data.created, author: data.author },
     });
 
-    // Restore review state if there's review metadata
-    const state = get() as StoreState & { actions?: { restoreReviewState?: () => Promise<void> } };
-    if (state.actions?.restoreReviewState) {
-      await state.actions.restoreReviewState();
+    // Restore collaboration state if there's collaboration metadata
+    const state = get() as StoreState & { actions?: { restoreCollaborationState?: () => Promise<void> } };
+    if (state.actions?.restoreCollaborationState) {
+      await state.actions.restoreCollaborationState();
     }
 
     return { created: data.created, author: data.author };

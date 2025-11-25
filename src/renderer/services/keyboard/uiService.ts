@@ -90,7 +90,7 @@ async function handleUIShortcuts(event: KeyboardEvent): Promise<void> {
     }
 
     event.preventDefault();
-    // Use getActiveStore to support both workspace and review panel
+    // Use getActiveStore to support both workspace and feedback panel
     const store = getActiveStore();
     store?.getState().actions.cutNodes();
     return;
@@ -104,7 +104,7 @@ async function handleUIShortcuts(event: KeyboardEvent): Promise<void> {
     }
 
     event.preventDefault();
-    // Use getActiveStore to support both workspace and review panel
+    // Use getActiveStore to support both workspace and feedback panel
     const store = getActiveStore();
     store?.getState().actions.copyNodes();
     return;
@@ -113,7 +113,7 @@ async function handleUIShortcuts(event: KeyboardEvent): Promise<void> {
   // Clipboard: Paste
   if (matchesHotkey(event, 'actions', 'paste')) {
     event.preventDefault();
-    // Use getActiveStore to support both workspace and review panel
+    // Use getActiveStore to support both workspace and feedback panel
     const store = getActiveStore();
     if (store) {
       const result = await store.getState().actions.pasteNodes();

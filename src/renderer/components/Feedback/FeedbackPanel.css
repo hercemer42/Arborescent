@@ -1,11 +1,11 @@
-.review-panel {
+.feedback-panel {
   height: 100%;
   display: flex;
   flex-direction: column;
   background-color: var(--bg-primary);
 }
 
-.review-tab-bar {
+.feedback-tab-bar {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -15,20 +15,20 @@
   gap: 0.5rem;
 }
 
-.review-actions-left {
+.feedback-actions-left {
   display: flex;
   gap: 0.5rem;
 }
 
-.review-content {
+.feedback-content {
   flex: 1;
   overflow: hidden;
   display: flex;
   flex-direction: column;
 }
 
-.review-empty,
-.review-waiting {
+.feedback-empty,
+.feedback-waiting {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -38,7 +38,7 @@
   padding: 2rem;
 }
 
-.review-button {
+.feedback-button {
   padding: 0.4rem 1rem;
   border: none;
   border-radius: 4px;
@@ -48,25 +48,25 @@
   transition: background-color 0.2s;
 }
 
-.review-button-cancel {
+.feedback-button-cancel {
   background-color: var(--bg-tertiary);
   color: var(--text-primary);
 }
 
-.review-button-cancel:hover {
+.feedback-button-cancel:hover {
   background-color: var(--bg-quaternary);
 }
 
-.review-button-accept {
+.feedback-button-accept {
   background-color: rgb(76, 175, 80);
   color: white;
 }
 
-.review-button-accept:hover:not(:disabled) {
+.feedback-button-accept:hover:not(:disabled) {
   background-color: rgb(67, 160, 71);
 }
 
-.review-button-accept:disabled {
+.feedback-button-accept:disabled {
   opacity: 0.5;
   cursor: not-allowed;
 }

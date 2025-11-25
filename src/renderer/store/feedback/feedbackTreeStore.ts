@@ -2,22 +2,22 @@ import { createTreeStore, TreeStore } from '../tree/treeStore';
 import type { TreeNode } from '../../../shared/types';
 
 /**
- * Manages review tree stores on a per-file basis
- * Each arbo file can have its own review in progress with its own tree store
- * When switching between files, the review panel shows the review for the active file
+ * Manages feedback tree stores on a per-file basis
+ * Each arbo file can have its own collaboration in progress with its own tree store
+ * When switching between files, the feedback panel shows the feedback for the active file
  *
- * The review store is a standard TreeStore - it uses the same save mechanism as the workspace.
- * The only difference is the save location (temp file) and context (review panel with accept/cancel).
+ * The feedback store is a standard TreeStore - it uses the same save mechanism as the workspace.
+ * The only difference is the save location (temp file) and context (feedback panel with accept/cancel).
  */
-class ReviewTreeStoreManager {
+class FeedbackTreeStoreManager {
   private stores = new Map<string, TreeStore>();
 
   /**
-   * Initialize the review store for a specific file with parsed nodes
+   * Initialize the feedback store for a specific file with parsed nodes
    */
   initialize(filePath: string, nodes: Record<string, TreeNode>, rootNodeId: string): void {
     if (!this.stores.has(filePath)) {
-      this.stores.set(filePath, createTreeStore('review'));
+      this.stores.set(filePath, createTreeStore('feedback'));
     }
 
     const store = this.stores.get(filePath)!;
@@ -25,7 +25,7 @@ class ReviewTreeStoreManager {
   }
 
   /**
-   * Set the temp file path for the review store
+   * Set the temp file path for the feedback store
    * This enables the store's built-in autoSave to persist edits
    */
   setFilePath(filePath: string, tempFilePath: string): void {
@@ -36,32 +36,32 @@ class ReviewTreeStoreManager {
   }
 
   /**
-   * Get the review store for a specific file
+   * Get the feedback store for a specific file
    */
   getStoreForFile(filePath: string): TreeStore | null {
     return this.stores.get(filePath) || null;
   }
 
   /**
-   * Clear the review store for a specific file
+   * Clear the feedback store for a specific file
    */
   clearFile(filePath: string): void {
     this.stores.delete(filePath);
   }
 
   /**
-   * Check if a file has an active review
+   * Check if a file has active feedback
    */
-  hasReview(filePath: string): boolean {
+  hasFeedback(filePath: string): boolean {
     return this.stores.has(filePath);
   }
 
   /**
-   * Clear all review stores
+   * Clear all feedback stores
    */
   clearAll(): void {
     this.stores.clear();
   }
 }
 
-export const reviewTreeStore = new ReviewTreeStoreManager();
+export const feedbackTreeStore = new FeedbackTreeStoreManager();

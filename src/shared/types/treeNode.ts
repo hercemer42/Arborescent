@@ -16,7 +16,7 @@ export interface TreeNode {
     created?: string;
     updated?: string;
     plugins?: Record<string, Record<string, unknown>>;
-    reviewTempFile?: string; // Path to temporary file storing review content
+    feedbackTempFile?: string; // Path to temporary file storing feedback content
     [key: string]: unknown;
   };
 }

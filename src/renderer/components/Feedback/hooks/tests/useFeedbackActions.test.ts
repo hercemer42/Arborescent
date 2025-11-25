@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { renderHook, act } from '@testing-library/react';
-import { useReviewActions } from '../useReviewActions';
+import { useFeedbackActions } from '../useFeedbackActions';
 
 const mockFinishCancel = vi.fn();
 const mockFinishAccept = vi.fn();
@@ -26,7 +26,7 @@ vi.mock('../../../../store/storeManager', () => ({
   },
 }));
 
-describe('useReviewActions', () => {
+describe('useFeedbackActions', () => {
   beforeEach(() => {
     vi.clearAllMocks();
   });
@@ -35,7 +35,7 @@ describe('useReviewActions', () => {
     it('should call finishCancel action', async () => {
       mockFinishCancel.mockResolvedValue(undefined);
 
-      const { result } = renderHook(() => useReviewActions());
+      const { result } = renderHook(() => useFeedbackActions());
 
       await act(async () => {
         await result.current.handleCancel();
@@ -47,7 +47,7 @@ describe('useReviewActions', () => {
     it('should handle errors when cancelling', async () => {
       mockFinishCancel.mockRejectedValue(new Error('Cancel failed'));
 
-      const { result } = renderHook(() => useReviewActions());
+      const { result } = renderHook(() => useFeedbackActions());
 
       await expect(
         act(async () => {
@@ -61,7 +61,7 @@ describe('useReviewActions', () => {
     it('should call finishAccept action', async () => {
       mockFinishAccept.mockResolvedValue(undefined);
 
-      const { result } = renderHook(() => useReviewActions());
+      const { result } = renderHook(() => useFeedbackActions());
 
       await act(async () => {
         await result.current.handleAccept();
@@ -77,7 +77,7 @@ describe('useReviewActions', () => {
       );
       vi.mocked(useFilesStore.getState).mockReturnValue({ activeFilePath: null } as ReturnType<typeof useFilesStore.getState>);
 
-      const { result } = renderHook(() => useReviewActions());
+      const { result } = renderHook(() => useFeedbackActions());
 
       await act(async () => {
         await result.current.handleAccept();
@@ -92,7 +92,7 @@ describe('useReviewActions', () => {
     it('should handle errors during accept gracefully', async () => {
       mockFinishAccept.mockRejectedValue(new Error('Accept failed'));
 
-      const { result } = renderHook(() => useReviewActions());
+      const { result } = renderHook(() => useFeedbackActions());
 
       await expect(
         act(async () => {
