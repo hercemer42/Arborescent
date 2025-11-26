@@ -108,12 +108,26 @@ export function useTerminal({ id, onResize }: UseTerminalOptions) {
       xterm.write(`\r\n\r\n[Process exited with code ${exitCode}]\r\n`);
     });
 
-    // Handle resize
+    // Handle resize - wrapped in requestAnimationFrame to ensure layout is complete
+    // This fixes issues when container visibility changes (display: none -> block)
+    // where ResizeObserver fires before browser completes layout reflow
+    let resizeRafId: number | null = null;
     const handleResize = () => {
-      fitAddon.fit();
-      const { cols, rows } = xterm;
-      window.electron.terminalResize(id, cols, rows);
-      onResize?.(cols, rows);
+      if (resizeRafId !== null) {
+        cancelAnimationFrame(resizeRafId);
+      }
+      resizeRafId = requestAnimationFrame(() => {
+        resizeRafId = null;
+        // Skip if container has no dimensions (still hidden)
+        const rect = terminalRef.current?.getBoundingClientRect();
+        if (!rect || rect.width === 0 || rect.height === 0) {
+          return;
+        }
+        fitAddon.fit();
+        const { cols, rows } = xterm;
+        window.electron.terminalResize(id, cols, rows);
+        onResize?.(cols, rows);
+      });
     };
 
     // Watch for container size changes
@@ -128,6 +142,9 @@ export function useTerminal({ id, onResize }: UseTerminalOptions) {
 
     // Cleanup
     return () => {
+      if (resizeRafId !== null) {
+        cancelAnimationFrame(resizeRafId);
+      }
       resizeObserver.disconnect();
       window.removeEventListener('resize', handleResize);
       removeDataListener();
