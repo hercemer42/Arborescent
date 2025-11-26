@@ -256,3 +256,20 @@ export function isValidDrop(
 
   return true;
 }
+
+/**
+ * Find all context declarations in the tree.
+ * Returns an array of context info objects sorted by content.
+ */
+export function getContextDeclarations(
+  nodes: Record<string, TreeNode>
+): { nodeId: string; content: string; icon: string }[] {
+  return Object.values(nodes)
+    .filter(node => node.metadata.isContextDeclaration === true)
+    .map(node => ({
+      nodeId: node.id,
+      content: node.content || 'Untitled context',
+      icon: (node.metadata.contextIcon as string) || 'lightbulb',
+    }))
+    .sort((a, b) => a.content.localeCompare(b.content));
+}

@@ -14,8 +14,12 @@ export function useNodeContent(node: TreeNode) {
 
   useNodeCursor(node, contentRef);
 
-  const { contextMenu, contextMenuItems, handleContextMenu, closeContextMenu } =
-    useNodeContextMenu(node);
+  const {
+    contextMenu,
+    contextMenuItems,
+    handleContextMenu,
+    closeContextMenu,
+  } = useNodeContextMenu(node);
 
   return {
     hasChildren,

@@ -1,7 +1,8 @@
-import { memo } from 'react';
+import { memo, useCallback } from 'react';
 import { NodeContent } from '../NodeContent';
 import { NodeGutter } from '../NodeGutter/NodeGutter';
 import { useStore } from '../../store/tree/useStore';
+import { useIconPickerStore } from '../../store/iconPicker/iconPickerStore';
 import { useNodeMouse } from './hooks/useNodeMouse';
 import { useNodeEffects } from './hooks/useNodeEffects';
 import { useNodeDragDrop } from './hooks/useNodeDragDrop';
@@ -16,6 +17,7 @@ interface TreeNodeProps {
 
 export const TreeNode = memo(function TreeNode({ nodeId, depth = 0 }: TreeNodeProps) {
   const node = useStore((state) => state.nodes[nodeId]);
+  const nodes = useStore((state) => state.nodes);
   const isSelected = useStore((state) => state.activeNodeId === nodeId);
   const isMultiSelected = useStore((state) => state.multiSelectedNodeIds.has(nodeId));
   const collaboratingNodeId = useStore((state) => state.collaboratingNodeId);
@@ -24,6 +26,12 @@ export const TreeNode = memo(function TreeNode({ nodeId, depth = 0 }: TreeNodePr
   const isCollaborating = collaboratingNodeId === nodeId;
   const isCollaboratingDescendant = collaboratingNodeId !== null && ancestorRegistry[nodeId]?.includes(collaboratingNodeId);
   const isFeedbackFading = feedbackFadingNodeIds.has(nodeId);
+
+  // Get applied context info
+  const appliedContextId = node?.metadata.appliedContextId as string | undefined;
+  const appliedContextNode = appliedContextId ? nodes[appliedContextId] : null;
+  const appliedContextIcon = appliedContextNode?.metadata.contextIcon as string | undefined;
+  const appliedContextName = appliedContextNode?.content;
 
   const hasChildren = node ? node.children.length > 0 : false;
   const expanded = node?.metadata.expanded ?? true;
@@ -34,6 +42,16 @@ export const TreeNode = memo(function TreeNode({ nodeId, depth = 0 }: TreeNodePr
   const { handleMouseDown, handleMouseMove, handleClick, wrappedListeners } = useNodeMouse(nodeId, listeners);
   const handleToggle = useNodeToggle(nodeId, expanded, contentLength);
   const pluginIndicators = usePluginIndicators(node);
+
+  const setContextIcon = useStore((state) => state.actions.setContextIcon);
+  const openIconPicker = useIconPickerStore((state) => state.open);
+
+  const handleIconClick = useCallback(() => {
+    const currentIcon = (node?.metadata.contextIcon as string) || 'lightbulb';
+    openIconPicker(currentIcon, (iconName) => {
+      setContextIcon(nodeId, iconName);
+    });
+  }, [node?.metadata.contextIcon, nodeId, openIconPicker, setContextIcon]);
 
   if (!node) {
     return null;
@@ -72,6 +90,10 @@ export const TreeNode = memo(function TreeNode({ nodeId, depth = 0 }: TreeNodePr
           onToggle={handleToggle}
           pluginIndicators={pluginIndicators}
           isContextDeclaration={node.metadata.isContextDeclaration === true}
+          contextIcon={node.metadata.contextIcon as string | undefined}
+          onIconClick={handleIconClick}
+          appliedContextIcon={appliedContextIcon}
+          appliedContextName={appliedContextName}
         />
 
         <NodeContent

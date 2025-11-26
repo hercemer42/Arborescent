@@ -16,7 +16,11 @@ export interface NodeActions {
   setCursorPosition: (position: number) => void;
   setRememberedVisualX: (visualX: number | null) => void;
   createNode: (currentNodeId: string) => void;
-  declareAsContext: (nodeId: string) => void;
+  declareAsContext: (nodeId: string, icon?: string) => void;
+  setContextIcon: (nodeId: string, icon: string) => void;
+  removeContextDeclaration: (nodeId: string) => void;
+  applyContext: (nodeId: string, contextNodeId: string) => void;
+  removeAppliedContext: (nodeId: string) => void;
 }
 
 type StoreState = {
@@ -162,26 +166,97 @@ export const createNodeActions = (
     state.actions.executeCommand(command);
   }
 
-  function declareAsContext(nodeId: string): void {
+  function declareAsContext(nodeId: string, icon?: string): void {
     const { nodes } = get();
     const node = nodes[nodeId];
     if (!node) return;
 
-    const isCurrentlyContext = node.metadata.isContextDeclaration === true;
-
     set({
       nodes: updateNodeMetadata(nodes, nodeId, {
-        isContextDeclaration: !isCurrentlyContext,
+        isContextDeclaration: true,
+        contextIcon: icon || 'lightbulb',
       }),
     });
 
-    if (!isCurrentlyContext) {
-      useToastStore.getState().addToast('Node declared as context', 'success');
-      logger.info(`Node ${nodeId} declared as context`, 'Context');
-    } else {
-      useToastStore.getState().addToast('Context declaration removed', 'info');
-      logger.info(`Context declaration removed from node ${nodeId}`, 'Context');
+    useToastStore.getState().addToast('Node declared as context', 'success');
+    logger.info(`Node ${nodeId} declared as context with icon ${icon || 'lightbulb'}`, 'Context');
+
+    triggerAutosave?.();
+  }
+
+  function setContextIcon(nodeId: string, icon: string): void {
+    const { nodes } = get();
+    const node = nodes[nodeId];
+    if (!node) return;
+
+    set({
+      nodes: updateNodeMetadata(nodes, nodeId, {
+        contextIcon: icon,
+      }),
+    });
+
+    useToastStore.getState().addToast('Context icon updated', 'success');
+    logger.info(`Context icon updated to ${icon} for node ${nodeId}`, 'Context');
+
+    triggerAutosave?.();
+  }
+
+  function removeContextDeclaration(nodeId: string): void {
+    const { nodes } = get();
+    const node = nodes[nodeId];
+    if (!node) return;
+
+    set({
+      nodes: updateNodeMetadata(nodes, nodeId, {
+        isContextDeclaration: false,
+        contextIcon: undefined,
+      }),
+    });
+
+    useToastStore.getState().addToast('Context declaration removed', 'info');
+    logger.info(`Context declaration removed from node ${nodeId}`, 'Context');
+
+    triggerAutosave?.();
+  }
+
+  function applyContext(nodeId: string, contextNodeId: string): void {
+    const { nodes } = get();
+    const node = nodes[nodeId];
+    const contextNode = nodes[contextNodeId];
+    if (!node || !contextNode) return;
+
+    // Don't allow applying context to a context declaration itself
+    if (node.metadata.isContextDeclaration) {
+      useToastStore.getState().addToast('Cannot apply context to a context declaration', 'error');
+      return;
     }
+
+    set({
+      nodes: updateNodeMetadata(nodes, nodeId, {
+        appliedContextId: contextNodeId,
+      }),
+    });
+
+    const contextName = contextNode.content.slice(0, 30) || 'Context';
+    useToastStore.getState().addToast(`Context "${contextName}" applied`, 'success');
+    logger.info(`Context ${contextNodeId} applied to node ${nodeId}`, 'Context');
+
+    triggerAutosave?.();
+  }
+
+  function removeAppliedContext(nodeId: string): void {
+    const { nodes } = get();
+    const node = nodes[nodeId];
+    if (!node) return;
+
+    set({
+      nodes: updateNodeMetadata(nodes, nodeId, {
+        appliedContextId: undefined,
+      }),
+    });
+
+    useToastStore.getState().addToast('Context removed', 'info');
+    logger.info(`Applied context removed from node ${nodeId}`, 'Context');
 
     triggerAutosave?.();
   }
@@ -195,5 +270,9 @@ export const createNodeActions = (
     setRememberedVisualX,
     createNode,
     declareAsContext,
+    setContextIcon,
+    removeContextDeclaration,
+    applyContext,
+    removeAppliedContext,
   };
 };

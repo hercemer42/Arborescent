@@ -147,6 +147,93 @@ describe('NodeGutter', () => {
     expect(screen.getByRole('button')).toBeInTheDocument();
   });
 
+  describe('applied context indicator', () => {
+    it('should render applied context icon when appliedContextIcon is provided', () => {
+      const mockOnToggle = vi.fn();
+      const { container } = render(
+        <NodeGutter
+          hasChildren={false}
+          expanded={true}
+          onToggle={mockOnToggle}
+          pluginIndicators={[]}
+          appliedContextIcon="star"
+          appliedContextName="My Context"
+        />
+      );
+
+      const indicator = container.querySelector('.gutter-context-indicator.context-applied');
+      expect(indicator).toBeInTheDocument();
+      expect(indicator?.querySelector('svg')).toBeInTheDocument();
+    });
+
+    it('should show tooltip with context name when applied', () => {
+      const mockOnToggle = vi.fn();
+      const { container } = render(
+        <NodeGutter
+          hasChildren={false}
+          expanded={true}
+          onToggle={mockOnToggle}
+          pluginIndicators={[]}
+          appliedContextIcon="star"
+          appliedContextName="My Context"
+        />
+      );
+
+      const indicator = container.querySelector('.gutter-context-indicator.context-applied');
+      expect(indicator).toHaveAttribute('title', 'Context: My Context');
+    });
+
+    it('should show generic tooltip when context name is not provided', () => {
+      const mockOnToggle = vi.fn();
+      const { container } = render(
+        <NodeGutter
+          hasChildren={false}
+          expanded={true}
+          onToggle={mockOnToggle}
+          pluginIndicators={[]}
+          appliedContextIcon="star"
+        />
+      );
+
+      const indicator = container.querySelector('.gutter-context-indicator.context-applied');
+      expect(indicator).toHaveAttribute('title', 'Has context applied');
+    });
+
+    it('should not render applied context icon when not provided', () => {
+      const mockOnToggle = vi.fn();
+      const { container } = render(
+        <NodeGutter
+          hasChildren={false}
+          expanded={true}
+          onToggle={mockOnToggle}
+          pluginIndicators={[]}
+        />
+      );
+
+      expect(container.querySelector('.gutter-context-indicator.context-applied')).not.toBeInTheDocument();
+    });
+
+    it('should prioritize context declaration over applied context', () => {
+      const mockOnToggle = vi.fn();
+      const { container } = render(
+        <NodeGutter
+          hasChildren={false}
+          expanded={true}
+          onToggle={mockOnToggle}
+          pluginIndicators={[]}
+          isContextDeclaration={true}
+          contextIcon="flag"
+          appliedContextIcon="star"
+          appliedContextName="My Context"
+        />
+      );
+
+      // Should show declaration (button) not applied (span)
+      expect(container.querySelector('.gutter-context-indicator.context-declaration')).toBeInTheDocument();
+      expect(container.querySelector('.gutter-context-indicator.context-applied')).not.toBeInTheDocument();
+    });
+  });
+
   describe('context declaration indicator', () => {
     it('should render context indicator when isContextDeclaration is true', () => {
       const mockOnToggle = vi.fn();
@@ -162,7 +249,8 @@ describe('NodeGutter', () => {
 
       const indicator = container.querySelector('.gutter-context-indicator');
       expect(indicator).toBeInTheDocument();
-      expect(indicator).toHaveTextContent('◆');
+      // FontAwesome renders an SVG icon
+      expect(indicator?.querySelector('svg')).toBeInTheDocument();
     });
 
     it('should not render context indicator when isContextDeclaration is false', () => {
@@ -207,7 +295,7 @@ describe('NodeGutter', () => {
       );
 
       const indicator = container.querySelector('.gutter-context-indicator');
-      expect(indicator).toHaveAttribute('title', 'Context declaration');
+      expect(indicator).toHaveAttribute('title', 'Click to change icon');
     });
 
     it('should render context indicator alongside chevron and plugin indicators', () => {
@@ -224,7 +312,8 @@ describe('NodeGutter', () => {
 
       expect(container.querySelector('.gutter-context-indicator')).toBeInTheDocument();
       expect(screen.getByText('🤖')).toBeInTheDocument();
-      expect(screen.getByRole('button')).toBeInTheDocument();
+      // Both context indicator and expand toggle are buttons
+      expect(screen.getAllByRole('button')).toHaveLength(2);
     });
   });
 });

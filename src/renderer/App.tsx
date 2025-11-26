@@ -4,6 +4,7 @@ import { Workspace } from './components/Workspace';
 import { Panel } from './components/Panel';
 import { BottomStatusBar } from './components/BottomStatusBar/BottomStatusBar';
 import { AppMenuBar } from './components/MenuBar';
+import { IconPickerDialog } from './components/ui/IconPicker/IconPickerDialog';
 import { useToastStore } from './store/toast/toastStore';
 import { usePanelStore } from './store/panel/panelStore';
 import { useAppErrorHandling } from './useAppErrorHandling';
@@ -46,6 +47,7 @@ export function App() {
       )}
 
       <BottomStatusBar />
+      <IconPickerDialog />
     </div>
   );
 }

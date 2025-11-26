@@ -266,10 +266,14 @@ describe('nodeActions', () => {
       expect(state.nodes['node-1'].metadata.isContextDeclaration).toBe(true);
     });
 
-    it('should toggle isContextDeclaration to false if already true', () => {
-      state.nodes['node-1'].metadata.isContextDeclaration = true;
+    it('should set default icon to lightbulb', () => {
       actions.declareAsContext('node-1');
-      expect(state.nodes['node-1'].metadata.isContextDeclaration).toBe(false);
+      expect(state.nodes['node-1'].metadata.contextIcon).toBe('lightbulb');
+    });
+
+    it('should set custom icon when provided', () => {
+      actions.declareAsContext('node-1', 'star');
+      expect(state.nodes['node-1'].metadata.contextIcon).toBe('star');
     });
 
     it('should trigger autosave', () => {
@@ -286,6 +290,108 @@ describe('nodeActions', () => {
       const originalNodes = { ...state.nodes };
       actions.declareAsContext('non-existent');
       expect(state.nodes).toEqual(originalNodes);
+    });
+  });
+
+  describe('setContextIcon', () => {
+    it('should update the context icon', () => {
+      state.nodes['node-1'].metadata.isContextDeclaration = true;
+      state.nodes['node-1'].metadata.contextIcon = 'lightbulb';
+      actions.setContextIcon('node-1', 'star');
+      expect(state.nodes['node-1'].metadata.contextIcon).toBe('star');
+    });
+
+    it('should trigger autosave', () => {
+      actions.setContextIcon('node-1', 'star');
+      expect(mockTriggerAutosave).toHaveBeenCalled();
+    });
+  });
+
+  describe('removeContextDeclaration', () => {
+    it('should set isContextDeclaration to false', () => {
+      state.nodes['node-1'].metadata.isContextDeclaration = true;
+      state.nodes['node-1'].metadata.contextIcon = 'lightbulb';
+      actions.removeContextDeclaration('node-1');
+      expect(state.nodes['node-1'].metadata.isContextDeclaration).toBe(false);
+    });
+
+    it('should clear the context icon', () => {
+      state.nodes['node-1'].metadata.isContextDeclaration = true;
+      state.nodes['node-1'].metadata.contextIcon = 'lightbulb';
+      actions.removeContextDeclaration('node-1');
+      expect(state.nodes['node-1'].metadata.contextIcon).toBeUndefined();
+    });
+
+    it('should trigger autosave', () => {
+      actions.removeContextDeclaration('node-1');
+      expect(mockTriggerAutosave).toHaveBeenCalled();
+    });
+  });
+
+  describe('applyContext', () => {
+    beforeEach(() => {
+      // Set up node-1 as a context declaration
+      state.nodes['node-1'].metadata.isContextDeclaration = true;
+      state.nodes['node-1'].metadata.contextIcon = 'star';
+    });
+
+    it('should set appliedContextId on the target node', () => {
+      actions.applyContext('node-2', 'node-1');
+      expect(state.nodes['node-2'].metadata.appliedContextId).toBe('node-1');
+    });
+
+    it('should trigger autosave', () => {
+      actions.applyContext('node-2', 'node-1');
+      expect(mockTriggerAutosave).toHaveBeenCalled();
+    });
+
+    it('should not apply context to a context declaration', () => {
+      state.nodes['node-2'].metadata.isContextDeclaration = true;
+      actions.applyContext('node-2', 'node-1');
+      expect(state.nodes['node-2'].metadata.appliedContextId).toBeUndefined();
+    });
+
+    it('should do nothing if target node does not exist', () => {
+      actions.applyContext('non-existent', 'node-1');
+      expect(mockTriggerAutosave).not.toHaveBeenCalled();
+    });
+
+    it('should do nothing if context node does not exist', () => {
+      actions.applyContext('node-2', 'non-existent');
+      expect(mockTriggerAutosave).not.toHaveBeenCalled();
+    });
+
+    it('should allow changing applied context', () => {
+      state.nodes['node-3'].metadata.isContextDeclaration = true;
+      state.nodes['node-3'].metadata.contextIcon = 'flag';
+
+      actions.applyContext('node-2', 'node-1');
+      expect(state.nodes['node-2'].metadata.appliedContextId).toBe('node-1');
+
+      actions.applyContext('node-2', 'node-3');
+      expect(state.nodes['node-2'].metadata.appliedContextId).toBe('node-3');
+    });
+  });
+
+  describe('removeAppliedContext', () => {
+    beforeEach(() => {
+      state.nodes['node-1'].metadata.isContextDeclaration = true;
+      state.nodes['node-2'].metadata.appliedContextId = 'node-1';
+    });
+
+    it('should remove appliedContextId from the node', () => {
+      actions.removeAppliedContext('node-2');
+      expect(state.nodes['node-2'].metadata.appliedContextId).toBeUndefined();
+    });
+
+    it('should trigger autosave', () => {
+      actions.removeAppliedContext('node-2');
+      expect(mockTriggerAutosave).toHaveBeenCalled();
+    });
+
+    it('should do nothing if node does not exist', () => {
+      actions.removeAppliedContext('non-existent');
+      expect(mockTriggerAutosave).not.toHaveBeenCalled();
     });
   });
 

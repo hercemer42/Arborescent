@@ -75,11 +75,11 @@ describe('ContextMenu', () => {
 
     render(<ContextMenu x={100} y={200} items={dangerItems} onClose={mockOnClose} />);
 
-    const normalItem = screen.getByText('Normal Item');
-    const dangerItem = screen.getByText('Danger Item');
+    const normalItem = screen.getByText('Normal Item').closest('.context-menu-item');
+    const dangerItem = screen.getByText('Danger Item').closest('.context-menu-item');
 
-    expect(normalItem.className).not.toContain('danger');
-    expect(dangerItem.className).toContain('danger');
+    expect(normalItem?.className).not.toContain('danger');
+    expect(dangerItem?.className).toContain('danger');
   });
 
   it('should handle disabled items', () => {
@@ -203,10 +203,10 @@ describe('ContextMenu', () => {
 
     render(<ContextMenu x={100} y={200} items={complexItems} onClose={mockOnClose} />);
 
-    const dangerItem = screen.getByText('Danger');
-    const disabledDangerItem = screen.getByText('Disabled Danger');
+    const dangerItem = screen.getByText('Danger').closest('.context-menu-item');
+    const disabledDangerItem = screen.getByText('Disabled Danger').closest('.context-menu-item');
 
-    expect(dangerItem.className).toContain('danger');
-    expect(disabledDangerItem.className).toContain('danger');
+    expect(dangerItem?.className).toContain('danger');
+    expect(disabledDangerItem?.className).toContain('danger');
   });
 });

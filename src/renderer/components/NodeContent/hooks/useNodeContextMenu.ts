@@ -9,6 +9,7 @@ import { useTerminalStore } from '../../../store/terminal/terminalStore';
 import { useTerminalActions } from '../../Terminal/hooks/useTerminalActions';
 import { useFeedbackActions } from '../../Feedback/hooks/useFeedbackActions';
 import { usePanelStore } from '../../../store/panel/panelStore';
+import { useContextSubmenu } from './useContextSubmenu';
 import { logger } from '../../../services/logger';
 import { writeToClipboard } from '../../../services/clipboardService';
 import { exportNodeAsMarkdown } from '../../../utils/markdown';
@@ -18,7 +19,6 @@ export function useNodeContextMenu(node: TreeNode) {
   const treeType = useStore((state) => state.treeType);
   const isFeedbackTree = treeType === 'feedback';
   const deleteNode = useStore((state) => state.actions.deleteNode);
-  const declareAsContext = useStore((state) => state.actions.declareAsContext);
   const nodes = useStore((state) => state.nodes);
   const ancestorRegistry = useStore((state) => state.ancestorRegistry);
   const collaboratingNodeId = useStore((state) => state.collaboratingNodeId);
@@ -32,6 +32,7 @@ export function useNodeContextMenu(node: TreeNode) {
   const { sendToTerminal, executeInTerminal } = useTerminalActions();
   const { handleCancel } = useFeedbackActions();
   const showTerminal = usePanelStore((state) => state.showTerminal);
+  const { contextDeclarationMenuItems, applyContextMenuItem } = useContextSubmenu(node);
 
   const handleContextMenu = async (e: React.MouseEvent) => {
     e.preventDefault();
@@ -114,10 +115,6 @@ export function useNodeContextMenu(node: TreeNode) {
     await handleCancel();
   };
 
-  const handleDeclareAsContext = () => {
-    declareAsContext(node.id);
-  };
-
   function convertToContextMenuItem(
     item: PluginContextMenuItem,
     node: TreeNode
@@ -138,14 +135,10 @@ export function useNodeContextMenu(node: TreeNode) {
   }
 
   const isNodeBeingCollaborated = collaboratingNodeId === node.id;
-  const isContextDeclaration = node.metadata.isContextDeclaration === true;
 
   const baseMenuItems: ContextMenuItem[] = [
-    {
-      label: isContextDeclaration ? 'Remove context declaration' : 'Declare as context',
-      onClick: handleDeclareAsContext,
-      disabled: false,
-    },
+    ...contextDeclarationMenuItems,
+    ...applyContextMenuItem,
     {
       label: 'Copy to Clipboard',
       onClick: handleCopyToClipboard,
@@ -183,11 +176,11 @@ export function useNodeContextMenu(node: TreeNode) {
     },
   ];
 
-  const contextMenuItems = [...pluginMenuItems, ...baseMenuItems];
+  const allMenuItems = [...pluginMenuItems, ...baseMenuItems];
 
   return {
     contextMenu,
-    contextMenuItems,
+    contextMenuItems: allMenuItems,
     handleContextMenu,
     handleDelete,
     closeContextMenu: () => setContextMenu(null),

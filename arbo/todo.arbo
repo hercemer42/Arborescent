@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2025-11-26T11:17:21.228Z'
+updated: '2025-11-26T13:56:01.894Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -5813,6 +5813,8 @@ nodes:
     children:
       - 1006fb67-4011-47d2-aa73-09c74b223df5
       - 184c32c8-d7c1-4e16-a124-8d62f31a202a
+      - 03b783e8-7744-4a84-a321-12165e6e448b
+      - 86c78761-ebaa-4a9c-abb6-768cf022c2ec
     metadata:
       status: pending
       expanded: true
@@ -6604,6 +6606,7 @@ nodes:
       - 05dc5196-735f-4bfd-a36a-a4ca8e3bd6cd
     metadata:
       status: pending
+      expanded: false
   695b4a59-45f8-433f-aafa-4a5fb557cdde:
     id: 695b4a59-45f8-433f-aafa-4a5fb557cdde
     content: Functional breakdown
@@ -6857,7 +6860,7 @@ nodes:
       - f2cac9a8-d1d1-4c27-a44d-5ad605f0fcb5
       - 0a5724be-91e2-43ef-a24d-4b7a3fbfdd7a
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -6866,7 +6869,7 @@ nodes:
     content: Right-click menu option 'Declare as context'
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -6875,7 +6878,7 @@ nodes:
     content: Any node can be turned into a context
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -6884,7 +6887,7 @@ nodes:
     content: Default icon assigned automatically
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -6893,7 +6896,7 @@ nodes:
     content: Icon appears in gutter to indicate context declaration
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -6902,7 +6905,7 @@ nodes:
     content: Toast notification confirms context creation
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -6914,16 +6917,19 @@ nodes:
       - d1650788-7662-4d19-9fbf-fbca6d5015fc
       - add35c7d-f167-4829-b1fb-845ac7a07d01
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
   1d01e42a-8cf8-4ace-90ed-43a57a4320a2:
     id: 1d01e42a-8cf8-4ace-90ed-43a57a4320a2
     content: Popup dialog to select icon from FontAwesome
-    children: []
+    children:
+      - 93943e2e-6487-4639-9ad9-121eceb92698
+      - 6a1e67ef-08e1-489a-8508-79f8a9e3c934
+      - 4ce81e73-ca7a-4f0e-8fff-b47137b93c5c
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -6932,7 +6938,7 @@ nodes:
     content: Can be done when declaring or editing existing context
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -6941,7 +6947,93 @@ nodes:
     content: Selected icon replaces default icon in gutter
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
+  93943e2e-6487-4639-9ad9-121eceb92698:
+    id: 93943e2e-6487-4639-9ad9-121eceb92698
+    content: Make subset of 50 common icons, load those as default.
+    children: []
+    metadata:
+      status: completed
+  6a1e67ef-08e1-489a-8508-79f8a9e3c934:
+    id: 6a1e67ef-08e1-489a-8508-79f8a9e3c934
+    content: Have a 'more' button which replaces the list with the full list.
+    children: []
+    metadata:
+      status: completed
+  4ce81e73-ca7a-4f0e-8fff-b47137b93c5c:
+    id: 4ce81e73-ca7a-4f0e-8fff-b47137b93c5c
+    content: Add a search bar to filter
+    children: []
+    metadata:
+      status: completed
+  86c78761-ebaa-4a9c-abb6-768cf022c2ec:
+    id: 86c78761-ebaa-4a9c-abb6-768cf022c2ec
+    content: Bugs
+    children: []
+    metadata:
+      status: pending
+  03b783e8-7744-4a84-a321-12165e6e448b:
+    id: 03b783e8-7744-4a84-a321-12165e6e448b
+    content: Refactor
+    children:
+      - 0c290b1d-7a6b-4608-afcd-0e95c629f158
+      - 7af72874-39d9-40dd-b19c-3a4681480bab
+      - 1049b81e-6521-4f47-b602-10a759de9159
+      - a997cd5a-2472-4387-a0e5-ff34e45ab725
+      - 83bab522-f1f6-4be5-915c-ea60c18f8ff3
+      - 2e487b23-341e-403f-87dd-1fda5256bda4
+      - 1a5fc95c-3292-4ffb-965b-84b9cdb8cd81
+    metadata:
+      status: pending
+  0c290b1d-7a6b-4608-afcd-0e95c629f158:
+    id: 0c290b1d-7a6b-4608-afcd-0e95c629f158
+    content: Why the hardcoded gutters in NodeGutter ?
+    children: []
+    metadata:
+      status: pending
+  7af72874-39d9-40dd-b19c-3a4681480bab:
+    id: 7af72874-39d9-40dd-b19c-3a4681480bab
+    content: handleIconClick on treeNode should go to a hook
+    children: []
+    metadata:
+      status: pending
+  1049b81e-6521-4f47-b602-10a759de9159:
+    id: 1049b81e-6521-4f47-b602-10a759de9159
+    content: why the hardcoded colour blue in ContextMenu.css ?
+    children: []
+    metadata:
+      status: pending
+  a997cd5a-2472-4387-a0e5-ff34e45ab725:
+    id: a997cd5a-2472-4387-a0e5-ff34e45ab725
+    content: move non template stuff in contextMenu.tsx into a hooks file
+    children: []
+    metadata:
+      status: pending
+  83bab522-f1f6-4be5-915c-ea60c18f8ff3:
+    id: 83bab522-f1f6-4be5-915c-ea60c18f8ff3
+    content: "same for colours in iconPicker.css - are they fallbacks ?\_ no need"
+    children: []
+    metadata:
+      status: pending
+  2e487b23-341e-403f-87dd-1fda5256bda4:
+    id: 2e487b23-341e-403f-87dd-1fda5256bda4
+    content: logic in iconPicker.tsx needs to go to hooks file
+    children: []
+    metadata:
+      status: pending
+  1a5fc95c-3292-4ffb-965b-84b9cdb8cd81:
+    id: 1a5fc95c-3292-4ffb-965b-84b9cdb8cd81
+    content: getContextDeclarations is heavy and could get called too many times.
+    children:
+      - 8b99f921-e1fc-4310-94c6-31730013e8f0
+    metadata:
+      status: pending
+  8b99f921-e1fc-4310-94c6-31730013e8f0:
+    id: 8b99f921-e1fc-4310-94c6-31730013e8f0
+    content: "Instead of calling it on render of sub item menu, we should do it asynchronously after applying/removing/editing a context.\_ We should have an array that carries a reference to the context node array, and just iterate over that in the sub menu.\_ This will avoid performance issues"
+    children: []
+    metadata:
+      status: pending

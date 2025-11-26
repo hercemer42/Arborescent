@@ -1,20 +1,41 @@
-/* Node gutter - fixed width, right-aligned content */
+/* Node gutter - fixed width with centered icon and right-aligned toggle */
 .node-gutter {
   width: 60px;
   flex-shrink: 0;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
-  gap: 4px;
-  padding-right: 8px;
+  justify-content: center;
+  position: relative;
   border-right: 1px solid rgba(0, 0, 0, 0.05);
 }
 
-/* Context declaration indicator */
+/* Context indicator base styles */
 .gutter-context-indicator {
-  color: var(--orange-500, #f97316);
   font-size: 0.75rem;
+  padding: 2px 4px;
+  border-radius: 3px;
+  transition: opacity 0.15s, background-color 0.15s;
+  background: none;
+  border: none;
+}
+
+/* Context declaration indicator - clickable button, solid color */
+.gutter-context-indicator.context-declaration {
+  color: var(--sky-500, #0ea5e9);
   opacity: 0.9;
+  cursor: pointer;
+}
+
+.gutter-context-indicator.context-declaration:hover {
+  opacity: 1;
+  background-color: rgba(14, 165, 233, 0.1);
+}
+
+/* Applied context indicator - not clickable, slightly faded */
+.gutter-context-indicator.context-applied {
+  color: var(--sky-400, #38bdf8);
+  opacity: 0.5;
+  cursor: default;
 }
 
 /* Plugin indicators in gutter */
@@ -30,8 +51,10 @@
   display: inline-block;
 }
 
-/* Expand toggle in gutter */
+/* Expand toggle in gutter - positioned at right edge */
 .gutter-expand-toggle {
+  position: absolute;
+  right: 3px;
   display: flex;
   align-items: center;
 }
@@ -58,7 +81,7 @@
   transform: translate(6px, -4px);
 }
 
-/* Expanded nodes: show chevron only on button hover */
+/* Expanded nodes: show chevron only on hover */
 .expand-toggle-button:hover {
   opacity: 1;
   color: var(--gray-700);
