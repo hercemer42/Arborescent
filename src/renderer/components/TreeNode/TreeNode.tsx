@@ -1,12 +1,12 @@
-import { memo, useCallback } from 'react';
+import { memo } from 'react';
 import { NodeContent } from '../NodeContent';
 import { NodeGutter } from '../NodeGutter/NodeGutter';
 import { useStore } from '../../store/tree/useStore';
-import { useIconPickerStore } from '../../store/iconPicker/iconPickerStore';
 import { useNodeMouse } from './hooks/useNodeMouse';
 import { useNodeEffects } from './hooks/useNodeEffects';
 import { useNodeDragDrop } from './hooks/useNodeDragDrop';
 import { useNodeToggle } from './hooks/useNodeToggle';
+import { useNodeIconClick } from './hooks/useNodeIconClick';
 import { usePluginIndicators } from '../NodeGutter/hooks/usePluginIndicators';
 import './TreeNode.css';
 
@@ -41,17 +41,8 @@ export const TreeNode = memo(function TreeNode({ nodeId, depth = 0 }: TreeNodePr
   const { isDragging, isOver, dropPosition, setRefs, attributes, listeners } = useNodeDragDrop(nodeId, nodeRef);
   const { handleMouseDown, handleMouseMove, handleClick, wrappedListeners } = useNodeMouse(nodeId, listeners);
   const handleToggle = useNodeToggle(nodeId, expanded, contentLength);
+  const handleIconClick = useNodeIconClick(nodeId, node);
   const pluginIndicators = usePluginIndicators(node);
-
-  const setContextIcon = useStore((state) => state.actions.setContextIcon);
-  const openIconPicker = useIconPickerStore((state) => state.open);
-
-  const handleIconClick = useCallback(() => {
-    const currentIcon = (node?.metadata.contextIcon as string) || 'lightbulb';
-    openIconPicker(currentIcon, (iconName) => {
-      setContextIcon(nodeId, iconName);
-    });
-  }, [node?.metadata.contextIcon, nodeId, openIconPicker, setContextIcon]);
 
   if (!node) {
     return null;
