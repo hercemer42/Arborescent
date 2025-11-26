@@ -1,7 +1,7 @@
-import { useEffect, useRef, useState, useMemo } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IconDefinition, library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
+import { useIconPickerBehavior } from './hooks/useIconPickerBehavior';
 import './IconPicker.css';
 
 // Add all solid icons to the library
@@ -70,65 +70,20 @@ interface IconPickerProps {
 }
 
 export function IconPicker({ selectedIcon, onSelect, onClose }: IconPickerProps) {
-  const dialogRef = useRef<HTMLDivElement>(null);
-  const searchInputRef = useRef<HTMLInputElement>(null);
-  const [hoveredIcon, setHoveredIcon] = useState<string | null>(null);
-  const [showAll, setShowAll] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
-
-  // Filter icons based on search query and showAll state
-  const displayedIcons = useMemo(() => {
-    const baseIcons = showAll ? ALL_ICONS : CURATED_ICONS;
-
-    if (!searchQuery.trim()) {
-      return baseIcons;
-    }
-
-    const query = searchQuery.toLowerCase().trim();
-    return ALL_ICONS.filter(({ name }) => name.includes(query));
-  }, [showAll, searchQuery]);
-
-  useEffect(() => {
-    const handleClickOutside = (e: MouseEvent) => {
-      if (dialogRef.current && !dialogRef.current.contains(e.target as Node)) {
-        onClose();
-      }
-    };
-
-    const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        onClose();
-      }
-    };
-
-    document.addEventListener('mousedown', handleClickOutside);
-    document.addEventListener('keydown', handleEscape);
-
-    // Focus search input on open
-    searchInputRef.current?.focus();
-
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-      document.removeEventListener('keydown', handleEscape);
-    };
-  }, [onClose]);
-
-  const handleIconClick = (iconName: string) => {
-    onSelect(iconName);
-    onClose();
-  };
-
-  const handleShowMore = () => {
-    setShowAll(true);
-    setSearchQuery('');
-  };
-
-  const handleShowLess = () => {
-    setShowAll(false);
-    setSearchQuery('');
-  };
-
-  const isSearching = searchQuery.trim().length > 0;
+  const {
+    dialogRef,
+    searchInputRef,
+    hoveredIcon,
+    showAll,
+    searchQuery,
+    displayedIcons,
+    isSearching,
+    handleIconClick,
+    handleShowMore,
+    handleShowLess,
+    handleSearchChange,
+    handleIconHover,
+  } = useIconPickerBehavior(onSelect, onClose, ALL_ICONS, CURATED_ICONS);
 
   return (
     <div className="icon-picker-overlay">
@@ -144,7 +99,7 @@ export function IconPicker({ selectedIcon, onSelect, onClose }: IconPickerProps)
             type="text"
             placeholder="Search icons..."
             value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
+            onChange={(e) => handleSearchChange(e.target.value)}
             className="icon-picker-search-input"
           />
         </div>
@@ -155,8 +110,8 @@ export function IconPicker({ selectedIcon, onSelect, onClose }: IconPickerProps)
               key={name}
               className={`icon-picker-item ${selectedIcon === name ? 'selected' : ''}`}
               onClick={() => handleIconClick(name)}
-              onMouseEnter={() => setHoveredIcon(name)}
-              onMouseLeave={() => setHoveredIcon(null)}
+              onMouseEnter={() => handleIconHover(name)}
+              onMouseLeave={() => handleIconHover(null)}
               title={name}
             >
               <FontAwesomeIcon icon={icon} />
