@@ -1,4 +1,4 @@
-import { useMemo, createElement } from 'react';
+import { useMemo, useCallback, createElement } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useStore } from '../../../store/tree/useStore';
 import { useIconPickerStore } from '../../../store/iconPicker/iconPickerStore';
@@ -19,13 +19,13 @@ export function useContextSubmenu(node: TreeNode) {
   const hasAppliedContext = !!node.metadata.appliedContextId;
   const appliedContextId = node.metadata.appliedContextId as string | undefined;
 
-  const handleDeclareAsContext = () => {
+  const handleDeclareAsContext = useCallback(() => {
     openIconPicker(null, (iconName) => {
       declareAsContext(node.id, iconName);
     });
-  };
+  }, [openIconPicker, declareAsContext, node.id]);
 
-  const handleRemoveContextDeclaration = () => {
+  const handleRemoveContextDeclaration = useCallback(() => {
     // Check how many nodes have this context applied
     const affectedNodes = Object.values(nodes).filter(
       n => n.metadata.appliedContextId === node.id
@@ -41,7 +41,7 @@ export function useContextSubmenu(node: TreeNode) {
     }
 
     removeContextDeclaration(node.id);
-  };
+  }, [nodes, node.id, removeContextDeclaration]);
 
   // Build context submenu items (for applying context to a node)
   const contextSubmenuItems: ContextMenuItem[] = useMemo(() => {
@@ -86,7 +86,7 @@ export function useContextSubmenu(node: TreeNode) {
             disabled: false,
           },
         ];
-  }, [isContextDeclaration]);
+  }, [isContextDeclaration, handleRemoveContextDeclaration, handleDeclareAsContext]);
 
   // Add/Change context menu item with submenu (only show if not a context declaration itself)
   const applyContextMenuItem: ContextMenuItem[] = useMemo(() => {
