@@ -21,19 +21,19 @@
 
 /* Context declaration indicator - clickable button, solid color */
 .gutter-context-indicator.context-declaration {
-  color: var(--sky-500, #0ea5e9);
+  color: var(--sky-500);
   opacity: 0.9;
   cursor: pointer;
 }
 
 .gutter-context-indicator.context-declaration:hover {
   opacity: 1;
-  background-color: rgba(14, 165, 233, 0.1);
+  background-color: color-mix(in srgb, var(--sky-500) 10%, transparent);
 }
 
 /* Applied context indicator - not clickable, slightly faded */
 .gutter-context-indicator.context-applied {
-  color: var(--sky-400, #38bdf8);
+  color: var(--sky-400);
   opacity: 0.5;
   cursor: default;
 }

@@ -1,7 +1,7 @@
 .context-menu {
   position: fixed;
-  background: #2a2a2a;
-  border: 1px solid #444;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-color);
   border-radius: 4px;
   padding: 4px 0;
   min-width: 150px;
@@ -20,7 +20,7 @@
   padding: 8px 16px;
   border: none;
   background: none;
-  color: #ddd;
+  color: var(--text-primary);
   text-align: left;
   cursor: pointer;
   font-size: 14px;
@@ -34,15 +34,15 @@
 }
 
 .context-menu-item:hover:not(:disabled) {
-  background: #3a3a3a;
+  background: var(--bg-hover);
 }
 
 .context-menu-item.danger {
-  color: #ff6b6b;
+  color: var(--red-500);
 }
 
 .context-menu-item.danger:hover:not(:disabled) {
-  background: #4a2a2a;
+  background: color-mix(in srgb, var(--red-500) 15%, transparent);
 }
 
 .context-menu-item.has-submenu {
@@ -54,7 +54,7 @@
   align-items: center;
   justify-content: center;
   width: 16px;
-  color: var(--sky-500, #0ea5e9);
+  color: var(--sky-500);
 }
 
 .context-menu-item-label {
@@ -67,7 +67,7 @@
 .context-menu-submenu-arrow {
   position: absolute;
   right: 8px;
-  color: #888;
+  color: var(--text-tertiary);
 }
 
 /* Submenu */
@@ -75,8 +75,8 @@
   position: absolute;
   left: 100%;
   top: 0;
-  background: #2a2a2a;
-  border: 1px solid #444;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-color);
   border-radius: 4px;
   padding: 4px 0;
   min-width: 180px;
