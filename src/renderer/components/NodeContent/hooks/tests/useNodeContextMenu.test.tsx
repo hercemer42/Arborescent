@@ -246,6 +246,9 @@ describe('useNodeContextMenu', () => {
           'test-node': [],
           'context-node': [],
         },
+        contextDeclarations: [
+          { nodeId: 'context-node', content: 'My Context', icon: 'star' },
+        ],
       });
 
       const { result } = renderHook(() => useNodeContextMenu(mockNode), { wrapper });
@@ -278,6 +281,9 @@ describe('useNodeContextMenu', () => {
           'test-node': [],
           'context-node': [],
         },
+        contextDeclarations: [
+          { nodeId: 'context-node', content: 'My Context', icon: 'star' },
+        ],
       });
 
       const { result } = renderHook(() => useNodeContextMenu(nodeWithContext), { wrapper });
@@ -321,6 +327,10 @@ describe('useNodeContextMenu', () => {
           'test-node': [],
           'other-context': [],
         },
+        contextDeclarations: [
+          { nodeId: 'test-node', content: 'Test Context', icon: 'star' },
+          { nodeId: 'other-context', content: 'Other Context', icon: 'flag' },
+        ],
       });
 
       // For a context declaration, we don't show Add/Change context
@@ -354,6 +364,9 @@ describe('useNodeContextMenu', () => {
           'test-node': [],
           'context-node': [],
         },
+        contextDeclarations: [
+          { nodeId: 'context-node', content: 'My Context', icon: 'star' },
+        ],
       });
 
       const { result } = renderHook(() => useNodeContextMenu(nodeWithContext), { wrapper });

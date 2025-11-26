@@ -10,6 +10,7 @@ describe('persistenceActions', () => {
     ancestorRegistry: Record<string, string[]>;
     currentFilePath: string | null;
     fileMeta: { created: string; author: string } | null;
+    contextDeclarations: { nodeId: string; content: string; icon: string }[];
   };
   let setState: (partial: Partial<typeof state>) => void;
   let actions: ReturnType<typeof createPersistenceActions>;
@@ -31,6 +32,7 @@ describe('persistenceActions', () => {
       ancestorRegistry: {},
       currentFilePath: null,
       fileMeta: null,
+      contextDeclarations: [],
     };
 
     setState = (partial) => {

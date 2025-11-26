@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2025-11-26T14:21:51.428Z'
+updated: '2025-11-26T17:29:09.343Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -6895,6 +6895,7 @@ nodes:
       - 0c6fe40b-a600-4593-8d05-47a5bdf6211b
       - 03b783e8-7744-4a84-a321-12165e6e448b
       - 86c78761-ebaa-4a9c-abb6-768cf022c2ec
+      - 506b0a95-a258-495a-945b-d46a7acea587
     metadata:
       status: completed
       expanded: true
@@ -6995,20 +6996,20 @@ nodes:
     content: logic in iconPicker.tsx needs to go to hooks file
     children: []
     metadata:
-      status: pending
+      status: completed
   1a5fc95c-3292-4ffb-965b-84b9cdb8cd81:
     id: 1a5fc95c-3292-4ffb-965b-84b9cdb8cd81
     content: getContextDeclarations is heavy and could get called too many times.
     children:
       - 8b99f921-e1fc-4310-94c6-31730013e8f0
     metadata:
-      status: pending
+      status: completed
   8b99f921-e1fc-4310-94c6-31730013e8f0:
     id: 8b99f921-e1fc-4310-94c6-31730013e8f0
     content: "Instead of calling it on render of sub item menu, we should do it asynchronously after applying/removing/editing a context.\_ We should have an array that carries a reference to the context node array, and just iterate over that in the sub menu.\_ This will avoid performance issues"
     children: []
     metadata:
-      status: pending
+      status: completed
   05dc5196-735f-4bfd-a36a-a4ca8e3bd6cd:
     id: 05dc5196-735f-4bfd-a36a-a4ca8e3bd6cd
     content: Context feature
@@ -7049,6 +7050,40 @@ nodes:
   0c6fe40b-a600-4593-8d05-47a5bdf6211b:
     id: 0c6fe40b-a600-4593-8d05-47a5bdf6211b
     content: Technical proposition
+    children: []
+    metadata:
+      status: pending
+  506b0a95-a258-495a-945b-d46a7acea587:
+    id: 506b0a95-a258-495a-945b-d46a7acea587
+    content: Cleanup
+    children:
+      - 6ec2492b-ad6e-4f99-b22f-30e5e7cff12c
+      - 0d7eefa1-9170-40dc-b6c1-6d5fd6390cc9
+      - f202dda3-62d6-40ce-9a81-faa4bf4a3b84
+      - b0ec1bb1-09ce-4f8c-b151-d6c568511029
+    metadata:
+      status: pending
+  0d7eefa1-9170-40dc-b6c1-6d5fd6390cc9:
+    id: 0d7eefa1-9170-40dc-b6c1-6d5fd6390cc9
+    content: Linting is ok
+    children: []
+    metadata:
+      status: pending
+  f202dda3-62d6-40ce-9a81-faa4bf4a3b84:
+    id: f202dda3-62d6-40ce-9a81-faa4bf4a3b84
+    content: Typescript compliant
+    children: []
+    metadata:
+      status: pending
+  b0ec1bb1-09ce-4f8c-b151-d6c568511029:
+    id: b0ec1bb1-09ce-4f8c-b151-d6c568511029
+    content: Test coverage adequate
+    children: []
+    metadata:
+      status: pending
+  6ec2492b-ad6e-4f99-b22f-30e5e7cff12c:
+    id: 6ec2492b-ad6e-4f99-b22f-30e5e7cff12c
+    content: All tests pass
     children: []
     metadata:
       status: pending

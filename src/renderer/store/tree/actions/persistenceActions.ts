@@ -2,6 +2,8 @@ import { TreeNode, NodeStatus } from '../../../../shared/types';
 import { StorageService } from '../../../../shared/interfaces';
 import { buildAncestorRegistry, AncestorRegistry } from '../../../utils/ancestry';
 import { createArboFile } from '../../../utils/document';
+import { getContextDeclarations } from '../../../utils/nodeHelpers';
+import { ContextDeclarationInfo } from '../treeStore';
 
 const STATUS_MIGRATION_MAP: Record<string, NodeStatus> = {
   '☐': 'pending',
@@ -24,6 +26,7 @@ type StoreState = {
   ancestorRegistry: AncestorRegistry;
   currentFilePath: string | null;
   fileMeta: { created: string; author: string } | null;
+  contextDeclarations: ContextDeclarationInfo[];
 };
 type StoreSetter = (partial: Partial<StoreState>) => void;
 type StoreGetter = () => StoreState;
@@ -77,6 +80,7 @@ export const createPersistenceActions = (
     }
 
     const ancestorRegistry = buildAncestorRegistry(data.rootNodeId, migratedNodes);
+    const contextDeclarations = getContextDeclarations(migratedNodes);
 
     set({
       nodes: migratedNodes,
@@ -84,6 +88,7 @@ export const createPersistenceActions = (
       ancestorRegistry,
       currentFilePath: path,
       fileMeta: { created: data.created, author: data.author },
+      contextDeclarations,
     });
 
     // Restore collaboration state if there's collaboration metadata

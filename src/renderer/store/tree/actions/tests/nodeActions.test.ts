@@ -12,6 +12,7 @@ describe('nodeActions', () => {
     cursorPosition: number;
     rememberedVisualX: number | null;
     collaboratingNodeId: string | null;
+    contextDeclarations: { nodeId: string; content: string; icon: string }[];
     actions?: { executeCommand?: (cmd: unknown) => void };
   };
   let state: TestState;
@@ -64,6 +65,7 @@ describe('nodeActions', () => {
       cursorPosition: 0,
       rememberedVisualX: null,
       collaboratingNodeId: null,
+      contextDeclarations: [],
       actions: { executeCommand: mockExecuteCommand },
     };
 

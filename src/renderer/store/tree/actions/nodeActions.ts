@@ -7,6 +7,7 @@ import { ToggleStatusCommand } from '../commands/ToggleStatusCommand';
 import { CreateNodeCommand } from '../commands/CreateNodeCommand';
 import { logger } from '../../../services/logger';
 import { useToastStore } from '../../toast/toastStore';
+import { ContextDeclarationInfo } from '../treeStore';
 
 export interface NodeActions {
   selectNode: (nodeId: string, cursorPosition?: number) => void;
@@ -21,6 +22,22 @@ export interface NodeActions {
   removeContextDeclaration: (nodeId: string) => void;
   applyContext: (nodeId: string, contextNodeId: string) => void;
   removeAppliedContext: (nodeId: string) => void;
+  refreshContextDeclarations: () => void;
+}
+
+/**
+ * Build context declarations array from nodes.
+ * Called asynchronously after context-related operations.
+ */
+function buildContextDeclarations(nodes: Record<string, TreeNode>): ContextDeclarationInfo[] {
+  return Object.values(nodes)
+    .filter(node => node.metadata.isContextDeclaration === true)
+    .map(node => ({
+      nodeId: node.id,
+      content: node.content || 'Untitled context',
+      icon: (node.metadata.contextIcon as string) || 'lightbulb',
+    }))
+    .sort((a, b) => a.content.localeCompare(b.content));
 }
 
 type StoreState = {
@@ -31,6 +48,7 @@ type StoreState = {
   cursorPosition: number;
   rememberedVisualX: number | null;
   collaboratingNodeId: string | null;
+  contextDeclarations: ContextDeclarationInfo[];
 };
 type StoreSetter = (partial: Partial<StoreState> | ((state: StoreState) => Partial<StoreState>)) => void;
 
@@ -166,6 +184,14 @@ export const createNodeActions = (
     state.actions.executeCommand(command);
   }
 
+  function refreshContextDeclarations(): void {
+    const { nodes } = get();
+    // Use setTimeout to make this async and avoid blocking the UI
+    setTimeout(() => {
+      set({ contextDeclarations: buildContextDeclarations(nodes) });
+    }, 0);
+  }
+
   function declareAsContext(nodeId: string, icon?: string): void {
     const { nodes } = get();
     const node = nodes[nodeId];
@@ -182,6 +208,7 @@ export const createNodeActions = (
     logger.info(`Node ${nodeId} declared as context with icon ${icon || 'lightbulb'}`, 'Context');
 
     triggerAutosave?.();
+    refreshContextDeclarations();
   }
 
   function setContextIcon(nodeId: string, icon: string): void {
@@ -199,6 +226,7 @@ export const createNodeActions = (
     logger.info(`Context icon updated to ${icon} for node ${nodeId}`, 'Context');
 
     triggerAutosave?.();
+    refreshContextDeclarations();
   }
 
   function removeContextDeclaration(nodeId: string): void {
@@ -217,6 +245,7 @@ export const createNodeActions = (
     logger.info(`Context declaration removed from node ${nodeId}`, 'Context');
 
     triggerAutosave?.();
+    refreshContextDeclarations();
   }
 
   function applyContext(nodeId: string, contextNodeId: string): void {
@@ -274,5 +303,6 @@ export const createNodeActions = (
     removeContextDeclaration,
     applyContext,
     removeAppliedContext,
+    refreshContextDeclarations,
   };
 };

@@ -141,6 +141,7 @@ describe('collaborateActions', () => {
       deleteAnimationCallback: null,
       collaboratingNodeId: null,
       feedbackFadingNodeIds: new Set(),
+      contextDeclarations: [],
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       actions: {} as any,
     };

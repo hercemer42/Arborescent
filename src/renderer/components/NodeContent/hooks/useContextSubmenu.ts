@@ -4,11 +4,10 @@ import { useStore } from '../../../store/tree/useStore';
 import { useIconPickerStore } from '../../../store/iconPicker/iconPickerStore';
 import { TreeNode } from '../../../../shared/types';
 import { ContextMenuItem } from '../../ui/ContextMenu';
-import { getContextDeclarations } from '../../../utils/nodeHelpers';
 import { getIconByName } from '../../ui/IconPicker/IconPicker';
 
 export function useContextSubmenu(node: TreeNode) {
-  const nodes = useStore((state) => state.nodes);
+  const contextDeclarations = useStore((state) => state.contextDeclarations);
   const declareAsContext = useStore((state) => state.actions.declareAsContext);
   const removeContextDeclaration = useStore((state) => state.actions.removeContextDeclaration);
   const applyContext = useStore((state) => state.actions.applyContext);
@@ -18,9 +17,6 @@ export function useContextSubmenu(node: TreeNode) {
   const isContextDeclaration = node.metadata.isContextDeclaration === true;
   const hasAppliedContext = !!node.metadata.appliedContextId;
   const appliedContextId = node.metadata.appliedContextId as string | undefined;
-
-  // Get all available contexts for the submenu
-  const contextDeclarations = useMemo(() => getContextDeclarations(nodes), [nodes]);
 
   const handleDeclareAsContext = () => {
     openIconPicker(null, (iconName) => {

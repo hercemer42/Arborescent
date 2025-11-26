@@ -13,6 +13,13 @@ import { createClipboardActions, ClipboardActions } from './actions/clipboardAct
 import { HistoryManager } from './commands/HistoryManager';
 import { StorageService } from '@platform';
 
+// Cached context declaration info
+export interface ContextDeclarationInfo {
+  nodeId: string;
+  content: string;
+  icon: string;
+}
+
 export interface TreeState {
   nodes: Record<string, TreeNode>;
   rootNodeId: string;
@@ -31,6 +38,7 @@ export interface TreeState {
   deleteAnimationCallback: (() => void) | null; // Callback to execute when delete animation completes
   collaboratingNodeId: string | null; // Node currently in collaboration
   feedbackFadingNodeIds: Set<string>; // Nodes fading out after feedback accepted
+  contextDeclarations: ContextDeclarationInfo[]; // Cached list of context declarations
 
   actions: NodeActions & NavigationActions & PersistenceActions & NodeMovementActions & NodeDeletionActions & VisualEffectsActions & SelectionActions & HistoryActions & CollaborateActions & ClipboardActions;
 }
@@ -86,6 +94,7 @@ export function createTreeStore(treeType: TreeType = 'workspace') {
       deleteAnimationCallback: null,
       collaboratingNodeId: null,
       feedbackFadingNodeIds: new Set(),
+      contextDeclarations: [],
 
       actions: {
         ...createNodeActions(get, set, persistenceActions.autoSave),

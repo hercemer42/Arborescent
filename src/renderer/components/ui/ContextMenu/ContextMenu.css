@@ -1,11 +1,11 @@
 .context-menu {
   position: fixed;
-  background: var(--bg-elevated);
-  border: 1px solid var(--border-color);
+  background: var(--white);
+  border: 1px solid var(--gray-200);
   border-radius: 4px;
   padding: 4px 0;
   min-width: 150px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
   z-index: 1000;
 }
 
@@ -20,7 +20,7 @@
   padding: 8px 16px;
   border: none;
   background: none;
-  color: var(--text-primary);
+  color: var(--gray-600);
   text-align: left;
   cursor: pointer;
   font-size: 14px;
@@ -34,15 +34,15 @@
 }
 
 .context-menu-item:hover:not(:disabled) {
-  background: var(--bg-hover);
+  background: var(--gray-100);
 }
 
 .context-menu-item.danger {
-  color: var(--red-500);
+  color: var(--red-400);
 }
 
 .context-menu-item.danger:hover:not(:disabled) {
-  background: color-mix(in srgb, var(--red-500) 15%, transparent);
+  background: var(--red-50);
 }
 
 .context-menu-item.has-submenu {
@@ -67,7 +67,7 @@
 .context-menu-submenu-arrow {
   position: absolute;
   right: 8px;
-  color: var(--text-tertiary);
+  color: var(--gray-400);
 }
 
 /* Submenu */
@@ -75,15 +75,15 @@
   position: absolute;
   left: 100%;
   top: 0;
-  background: var(--bg-elevated);
-  border: 1px solid var(--border-color);
+  background: var(--white);
+  border: 1px solid var(--gray-200);
   border-radius: 4px;
   padding: 4px 0;
   min-width: 180px;
   max-width: 250px;
   max-height: 300px;
   overflow-y: auto;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
   z-index: 1001;
 }
 
