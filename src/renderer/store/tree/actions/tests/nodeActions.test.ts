@@ -328,6 +328,34 @@ describe('nodeActions', () => {
       actions.removeContextDeclaration('node-1');
       expect(mockTriggerAutosave).toHaveBeenCalled();
     });
+
+    it('should clear appliedContextId from nodes that had this context applied', () => {
+      // Set up node-1 as a context declaration
+      state.nodes['node-1'].metadata.isContextDeclaration = true;
+      state.nodes['node-1'].metadata.contextIcon = 'star';
+      // Apply context to node-2 and node-3
+      state.nodes['node-2'].metadata.appliedContextId = 'node-1';
+      state.nodes['node-3'].metadata.appliedContextId = 'node-1';
+
+      actions.removeContextDeclaration('node-1');
+
+      expect(state.nodes['node-2'].metadata.appliedContextId).toBeUndefined();
+      expect(state.nodes['node-3'].metadata.appliedContextId).toBeUndefined();
+    });
+
+    it('should not affect nodes with different appliedContextId', () => {
+      // Set up node-1 as a context declaration
+      state.nodes['node-1'].metadata.isContextDeclaration = true;
+      state.nodes['node-1'].metadata.contextIcon = 'star';
+      // node-2 has node-1 as context, node-3 has a different context
+      state.nodes['node-2'].metadata.appliedContextId = 'node-1';
+      state.nodes['node-3'].metadata.appliedContextId = 'other-context';
+
+      actions.removeContextDeclaration('node-1');
+
+      expect(state.nodes['node-2'].metadata.appliedContextId).toBeUndefined();
+      expect(state.nodes['node-3'].metadata.appliedContextId).toBe('other-context');
+    });
   });
 
   describe('applyContext', () => {

@@ -82,11 +82,16 @@ export function useTerminal({ id, onResize }: UseTerminalOptions) {
     // Check if terminal is scrolled to bottom
     const isAtBottom = () => {
       const buffer = xterm.buffer.active;
-      return buffer.viewportY >= buffer.baseY;
+      const atBottom = buffer.viewportY >= buffer.baseY;
+      console.log('at bottom of terminal?', atBottom)
+      console.log('buffer.viewportY', buffer.viewportY)
+      console.log('buffer.baseY', buffer.baseY)
+      return atBottom;
     };
 
     // Track scroll position to enable/disable auto-scroll
     xterm.onScroll(() => {
+      console.log('scrolling terminal')
       autoScrollEnabledRef.current = isAtBottom();
     });
 

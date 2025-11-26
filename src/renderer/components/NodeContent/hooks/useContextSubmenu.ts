@@ -7,6 +7,7 @@ import { ContextMenuItem } from '../../ui/ContextMenu';
 import { getIconByName } from '../../ui/IconPicker/IconPicker';
 
 export function useContextSubmenu(node: TreeNode) {
+  const nodes = useStore((state) => state.nodes);
   const contextDeclarations = useStore((state) => state.contextDeclarations);
   const declareAsContext = useStore((state) => state.actions.declareAsContext);
   const removeContextDeclaration = useStore((state) => state.actions.removeContextDeclaration);
@@ -25,6 +26,20 @@ export function useContextSubmenu(node: TreeNode) {
   };
 
   const handleRemoveContextDeclaration = () => {
+    // Check how many nodes have this context applied
+    const affectedNodes = Object.values(nodes).filter(
+      n => n.metadata.appliedContextId === node.id
+    );
+
+    if (affectedNodes.length > 0) {
+      const confirmed = window.confirm(
+        `This context is applied to ${affectedNodes.length} node${affectedNodes.length === 1 ? '' : 's'}. ` +
+        `Removing the declaration will also remove the context from ${affectedNodes.length === 1 ? 'that node' : 'those nodes'}.\n\n` +
+        `Continue?`
+      );
+      if (!confirmed) return;
+    }
+
     removeContextDeclaration(node.id);
   };
 

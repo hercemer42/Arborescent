@@ -234,15 +234,28 @@ export const createNodeActions = (
     const node = nodes[nodeId];
     if (!node) return;
 
-    set({
-      nodes: updateNodeMetadata(nodes, nodeId, {
-        isContextDeclaration: false,
-        contextIcon: undefined,
-      }),
+    // Find all nodes that have this context applied
+    const nodesWithThisContext = Object.values(nodes).filter(
+      n => n.metadata.appliedContextId === nodeId
+    );
+
+    // Update the context declaration node
+    let updatedNodes = updateNodeMetadata(nodes, nodeId, {
+      isContextDeclaration: false,
+      contextIcon: undefined,
     });
 
+    // Remove appliedContextId from all nodes that had this context applied
+    for (const affectedNode of nodesWithThisContext) {
+      updatedNodes = updateNodeMetadata(updatedNodes, affectedNode.id, {
+        appliedContextId: undefined,
+      });
+    }
+
+    set({ nodes: updatedNodes });
+
     useToastStore.getState().addToast('Context declaration removed', 'info');
-    logger.info(`Context declaration removed from node ${nodeId}`, 'Context');
+    logger.info(`Context declaration removed from node ${nodeId}, cleared from ${nodesWithThisContext.length} nodes`, 'Context');
 
     triggerAutosave?.();
     refreshContextDeclarations();

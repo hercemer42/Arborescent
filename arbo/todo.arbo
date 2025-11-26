@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2025-11-26T17:29:09.343Z'
+updated: '2025-11-26T18:06:37.732Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -6626,9 +6626,14 @@ nodes:
       - a0d11b5f-f8a4-41a5-b11c-02144d5e8c08
       - af755083-22b7-4bdd-bd55-ff11043ac847
       - fb10b2dd-3657-42c0-aecd-da22a5bd43b2
+      - 3a12ebbf-6431-4488-b3cf-d834d817c210
+      - 03b783e8-7744-4a84-a321-12165e6e448b
+      - 506b0a95-a258-495a-945b-d46a7acea587
+      - 86c78761-ebaa-4a9c-abb6-768cf022c2ec
+      - 0c6fe40b-a600-4593-8d05-47a5bdf6211b
     metadata:
       status: pending
-      expanded: false
+      expanded: true
       deleted: false
       plugins: {}
   7eded4f9-ab5e-4112-9c85-26a1410afc55:
@@ -6636,7 +6641,7 @@ nodes:
     content: Right-click menu shows 'Add context' option
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -6645,7 +6650,7 @@ nodes:
     content: Submenu lists all contexts declared in the file (flat list)
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -6654,7 +6659,7 @@ nodes:
     content: Selecting a context applies it to the node
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -6663,7 +6668,7 @@ nodes:
     content: Applied context shows visually distinct icon in gutter
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -6672,46 +6677,18 @@ nodes:
     content: '''Add context'' changes to ''Change context'' once applied'
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
   0b190671-16be-4752-837f-bf973822ad55:
     id: 0b190671-16be-4752-837f-bf973822ad55
-    content: 'US3: Change context on a node'
+    content: 'US3: Remove context'
     children:
       - 69e9980f-2229-40b5-8c4a-1cab5d7a7d5c
-      - 7e89f505-6f10-459b-b154-b8f10d7e52ad
-      - 6fff75b2-d6f7-403d-91fd-7ca0955fb747
+      - c45b797e-5920-463f-a241-7e9b63dd7375
     metadata:
-      status: pending
-      expanded: false
-      deleted: false
-      plugins: {}
-  69e9980f-2229-40b5-8c4a-1cab5d7a7d5c:
-    id: 69e9980f-2229-40b5-8c4a-1cab5d7a7d5c
-    content: '''Change context'' appears when node already has context'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  7e89f505-6f10-459b-b154-b8f10d7e52ad:
-    id: 7e89f505-6f10-459b-b154-b8f10d7e52ad
-    content: Dropdown shows other available contexts in the file
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  6fff75b2-d6f7-403d-91fd-7ca0955fb747:
-    id: 6fff75b2-d6f7-403d-91fd-7ca0955fb747
-    content: Selecting new context replaces the existing one
-    children: []
-    metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -6892,13 +6869,9 @@ nodes:
     content: 'US1B: Choose custom icon for context'
     children:
       - 85b86e28-4810-4c13-83c7-a52983bec9dc
-      - 0c6fe40b-a600-4593-8d05-47a5bdf6211b
-      - 03b783e8-7744-4a84-a321-12165e6e448b
-      - 86c78761-ebaa-4a9c-abb6-768cf022c2ec
-      - 506b0a95-a258-495a-945b-d46a7acea587
     metadata:
       status: completed
-      expanded: true
+      expanded: false
       deleted: false
       plugins: {}
   1d01e42a-8cf8-4ace-90ed-43a57a4320a2:
@@ -6965,7 +6938,8 @@ nodes:
       - 2e487b23-341e-403f-87dd-1fda5256bda4
       - 1a5fc95c-3292-4ffb-965b-84b9cdb8cd81
     metadata:
-      status: pending
+      status: completed
+      expanded: false
   7af72874-39d9-40dd-b19c-3a4681480bab:
     id: 7af72874-39d9-40dd-b19c-3a4681480bab
     content: handleIconClick on treeNode should go to a hook
@@ -7045,8 +7019,8 @@ nodes:
       - d1650788-7662-4d19-9fbf-fbca6d5015fc
       - add35c7d-f167-4829-b1fb-845ac7a07d01
     metadata:
-      status: pending
-      expanded: false
+      status: completed
+      expanded: true
   0c6fe40b-a600-4593-8d05-47a5bdf6211b:
     id: 0c6fe40b-a600-4593-8d05-47a5bdf6211b
     content: Technical proposition
@@ -7084,6 +7058,48 @@ nodes:
   6ec2492b-ad6e-4f99-b22f-30e5e7cff12c:
     id: 6ec2492b-ad6e-4f99-b22f-30e5e7cff12c
     content: All tests pass
+    children: []
+    metadata:
+      status: pending
+  3a12ebbf-6431-4488-b3cf-d834d817c210:
+    id: 3a12ebbf-6431-4488-b3cf-d834d817c210
+    content: Removing a context declaration from a node also removes the context metadata from all nodes that it was applied to.
+    children:
+      - 5ff87808-097e-4c63-b946-a399c8246759
+    metadata:
+      status: completed
+  5ff87808-097e-4c63-b946-a399c8246759:
+    id: 5ff87808-097e-4c63-b946-a399c8246759
+    content: If we detect that it was applied to one or more nodes, then we tell the user that removing the context declaration will remove the context from other nodes.
+    children: []
+    metadata:
+      status: completed
+  69e9980f-2229-40b5-8c4a-1cab5d7a7d5c:
+    id: 69e9980f-2229-40b5-8c4a-1cab5d7a7d5c
+    content: When a context is applied to a node, we no longer have the menu option 'Add context'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c45b797e-5920-463f-a241-7e9b63dd7375:
+    id: c45b797e-5920-463f-a241-7e9b63dd7375
+    content: Instead we have a 'Remove context'
+    children:
+      - 920a0519-5dbc-4b88-8e19-8b5aea8bb2d0
+      - 183213c2-d8c9-4874-ac22-10c997c521f0
+    metadata:
+      status: pending
+  920a0519-5dbc-4b88-8e19-8b5aea8bb2d0:
+    id: 920a0519-5dbc-4b88-8e19-8b5aea8bb2d0
+    content: This removes the context from the node
+    children: []
+    metadata:
+      status: pending
+  183213c2-d8c9-4874-ac22-10c997c521f0:
+    id: 183213c2-d8c9-4874-ac22-10c997c521f0
+    content: And then we once again have 'Add context' available
     children: []
     metadata:
       status: pending
