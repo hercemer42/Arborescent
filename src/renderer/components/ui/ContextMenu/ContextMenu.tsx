@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useContextMenuBehavior } from './hooks/useContextMenuBehavior';
 import './ContextMenu.css';
 
 export interface ContextMenuItem {
@@ -18,47 +18,14 @@ interface ContextMenuProps {
 }
 
 export function ContextMenu({ x, y, items, onClose }: ContextMenuProps) {
-  const menuRef = useRef<HTMLDivElement>(null);
-  const [openSubmenu, setOpenSubmenu] = useState<number | null>(null);
-
-  useEffect(() => {
-    const handleClickOutside = (e: MouseEvent) => {
-      if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
-        onClose();
-      }
-    };
-
-    const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        onClose();
-      }
-    };
-
-    document.addEventListener('mousedown', handleClickOutside);
-    document.addEventListener('keydown', handleEscape);
-
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-      document.removeEventListener('keydown', handleEscape);
-    };
-  }, [onClose]);
-
-  const handleItemClick = (item: ContextMenuItem) => {
-    if (item.submenu) {
-      return; // Don't close menu when clicking on submenu parent
-    }
-    if (item.onClick) {
-      item.onClick();
-    }
-    onClose();
-  };
-
-  const handleSubmenuItemClick = (item: ContextMenuItem) => {
-    if (item.onClick) {
-      item.onClick();
-    }
-    onClose();
-  };
+  const {
+    menuRef,
+    openSubmenu,
+    handleItemClick,
+    handleSubmenuItemClick,
+    handleSubmenuEnter,
+    handleSubmenuLeave,
+  } = useContextMenuBehavior(onClose);
 
   return (
     <div
@@ -70,8 +37,8 @@ export function ContextMenu({ x, y, items, onClose }: ContextMenuProps) {
         <div
           key={index}
           className="context-menu-item-wrapper"
-          onMouseEnter={() => item.submenu && setOpenSubmenu(index)}
-          onMouseLeave={() => item.submenu && setOpenSubmenu(null)}
+          onMouseEnter={() => item.submenu && handleSubmenuEnter(index)}
+          onMouseLeave={() => item.submenu && handleSubmenuLeave()}
         >
           <button
             className={`context-menu-item ${item.danger ? 'danger' : ''} ${item.submenu ? 'has-submenu' : ''}`}
