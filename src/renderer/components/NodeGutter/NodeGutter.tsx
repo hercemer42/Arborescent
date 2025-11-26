@@ -6,6 +6,7 @@ interface NodeGutterProps {
   expanded: boolean;
   onToggle: () => void;
   pluginIndicators: React.ReactNode[];
+  isContextDeclaration?: boolean;
 }
 
 export const NodeGutter = memo(function NodeGutter({
@@ -13,10 +14,15 @@ export const NodeGutter = memo(function NodeGutter({
   expanded,
   onToggle,
   pluginIndicators,
+  isContextDeclaration,
 }: NodeGutterProps) {
   return (
     <div className="node-gutter">
-      {/* Future: context icons will go here */}
+      {isContextDeclaration && (
+        <span className="gutter-context-indicator" title="Context declaration">
+          ◆
+        </span>
+      )}
       {pluginIndicators.length > 0 && (
         <span className="gutter-plugin-indicators">
           {pluginIndicators.map((indicator, i) => (

@@ -260,4 +260,33 @@ describe('nodeActions', () => {
     });
   });
 
+  describe('declareAsContext', () => {
+    it('should set isContextDeclaration to true on a node', () => {
+      actions.declareAsContext('node-1');
+      expect(state.nodes['node-1'].metadata.isContextDeclaration).toBe(true);
+    });
+
+    it('should toggle isContextDeclaration to false if already true', () => {
+      state.nodes['node-1'].metadata.isContextDeclaration = true;
+      actions.declareAsContext('node-1');
+      expect(state.nodes['node-1'].metadata.isContextDeclaration).toBe(false);
+    });
+
+    it('should trigger autosave', () => {
+      actions.declareAsContext('node-1');
+      expect(mockTriggerAutosave).toHaveBeenCalled();
+    });
+
+    it('should not modify other nodes', () => {
+      actions.declareAsContext('node-1');
+      expect(state.nodes['node-2'].metadata.isContextDeclaration).toBeUndefined();
+    });
+
+    it('should do nothing if node does not exist', () => {
+      const originalNodes = { ...state.nodes };
+      actions.declareAsContext('non-existent');
+      expect(state.nodes).toEqual(originalNodes);
+    });
+  });
+
 });

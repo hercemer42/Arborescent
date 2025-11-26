@@ -71,6 +71,7 @@ export const TreeNode = memo(function TreeNode({ nodeId, depth = 0 }: TreeNodePr
           expanded={expanded}
           onToggle={handleToggle}
           pluginIndicators={pluginIndicators}
+          isContextDeclaration={node.metadata.isContextDeclaration === true}
         />
 
         <NodeContent

@@ -146,4 +146,85 @@ describe('NodeGutter', () => {
     expect(screen.getByText('🤖')).toBeInTheDocument();
     expect(screen.getByRole('button')).toBeInTheDocument();
   });
+
+  describe('context declaration indicator', () => {
+    it('should render context indicator when isContextDeclaration is true', () => {
+      const mockOnToggle = vi.fn();
+      const { container } = render(
+        <NodeGutter
+          hasChildren={false}
+          expanded={true}
+          onToggle={mockOnToggle}
+          pluginIndicators={[]}
+          isContextDeclaration={true}
+        />
+      );
+
+      const indicator = container.querySelector('.gutter-context-indicator');
+      expect(indicator).toBeInTheDocument();
+      expect(indicator).toHaveTextContent('◆');
+    });
+
+    it('should not render context indicator when isContextDeclaration is false', () => {
+      const mockOnToggle = vi.fn();
+      const { container } = render(
+        <NodeGutter
+          hasChildren={false}
+          expanded={true}
+          onToggle={mockOnToggle}
+          pluginIndicators={[]}
+          isContextDeclaration={false}
+        />
+      );
+
+      expect(container.querySelector('.gutter-context-indicator')).not.toBeInTheDocument();
+    });
+
+    it('should not render context indicator when isContextDeclaration is undefined', () => {
+      const mockOnToggle = vi.fn();
+      const { container } = render(
+        <NodeGutter
+          hasChildren={false}
+          expanded={true}
+          onToggle={mockOnToggle}
+          pluginIndicators={[]}
+        />
+      );
+
+      expect(container.querySelector('.gutter-context-indicator')).not.toBeInTheDocument();
+    });
+
+    it('should render context indicator with tooltip', () => {
+      const mockOnToggle = vi.fn();
+      const { container } = render(
+        <NodeGutter
+          hasChildren={false}
+          expanded={true}
+          onToggle={mockOnToggle}
+          pluginIndicators={[]}
+          isContextDeclaration={true}
+        />
+      );
+
+      const indicator = container.querySelector('.gutter-context-indicator');
+      expect(indicator).toHaveAttribute('title', 'Context declaration');
+    });
+
+    it('should render context indicator alongside chevron and plugin indicators', () => {
+      const mockOnToggle = vi.fn();
+      const { container } = render(
+        <NodeGutter
+          hasChildren={true}
+          expanded={true}
+          onToggle={mockOnToggle}
+          pluginIndicators={['🤖']}
+          isContextDeclaration={true}
+        />
+      );
+
+      expect(container.querySelector('.gutter-context-indicator')).toBeInTheDocument();
+      expect(screen.getByText('🤖')).toBeInTheDocument();
+      expect(screen.getByRole('button')).toBeInTheDocument();
+    });
+  });
 });

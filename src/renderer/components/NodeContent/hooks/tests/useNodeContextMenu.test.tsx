@@ -73,6 +73,30 @@ describe('useNodeContextMenu', () => {
     expect(deleteItem?.danger).toBe(true);
   });
 
+  it('should have a Declare as context menu item', () => {
+    const { result } = renderHook(() => useNodeContextMenu(mockNode), { wrapper });
+
+    const contextItem = result.current.contextMenuItems.find(item => item.label === 'Declare as context');
+    expect(contextItem).toBeDefined();
+    expect(contextItem?.disabled).toBe(false);
+  });
+
+  it('should show Remove context declaration when node is already a context', () => {
+    const contextNode: TreeNode = {
+      ...mockNode,
+      metadata: { isContextDeclaration: true },
+    };
+
+    store.setState({
+      nodes: { 'test-node': contextNode },
+    });
+
+    const { result } = renderHook(() => useNodeContextMenu(contextNode), { wrapper });
+
+    const contextItem = result.current.contextMenuItems.find(item => item.label === 'Remove context declaration');
+    expect(contextItem).toBeDefined();
+  });
+
   it('should set context menu position on handleContextMenu', async () => {
     const { result } = renderHook(() => useNodeContextMenu(mockNode), { wrapper });
 

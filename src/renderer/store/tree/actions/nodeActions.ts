@@ -16,6 +16,7 @@ export interface NodeActions {
   setCursorPosition: (position: number) => void;
   setRememberedVisualX: (visualX: number | null) => void;
   createNode: (currentNodeId: string) => void;
+  declareAsContext: (nodeId: string) => void;
 }
 
 type StoreState = {
@@ -161,6 +162,30 @@ export const createNodeActions = (
     state.actions.executeCommand(command);
   }
 
+  function declareAsContext(nodeId: string): void {
+    const { nodes } = get();
+    const node = nodes[nodeId];
+    if (!node) return;
+
+    const isCurrentlyContext = node.metadata.isContextDeclaration === true;
+
+    set({
+      nodes: updateNodeMetadata(nodes, nodeId, {
+        isContextDeclaration: !isCurrentlyContext,
+      }),
+    });
+
+    if (!isCurrentlyContext) {
+      useToastStore.getState().addToast('Node declared as context', 'success');
+      logger.info(`Node ${nodeId} declared as context`, 'Context');
+    } else {
+      useToastStore.getState().addToast('Context declaration removed', 'info');
+      logger.info(`Context declaration removed from node ${nodeId}`, 'Context');
+    }
+
+    triggerAutosave?.();
+  }
+
   return {
     selectNode,
     updateContent,
@@ -169,5 +194,6 @@ export const createNodeActions = (
     setCursorPosition,
     setRememberedVisualX,
     createNode,
+    declareAsContext,
   };
 };

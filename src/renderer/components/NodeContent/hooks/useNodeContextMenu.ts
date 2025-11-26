@@ -18,6 +18,7 @@ export function useNodeContextMenu(node: TreeNode) {
   const treeType = useStore((state) => state.treeType);
   const isFeedbackTree = treeType === 'feedback';
   const deleteNode = useStore((state) => state.actions.deleteNode);
+  const declareAsContext = useStore((state) => state.actions.declareAsContext);
   const nodes = useStore((state) => state.nodes);
   const ancestorRegistry = useStore((state) => state.ancestorRegistry);
   const collaboratingNodeId = useStore((state) => state.collaboratingNodeId);
@@ -113,6 +114,10 @@ export function useNodeContextMenu(node: TreeNode) {
     await handleCancel();
   };
 
+  const handleDeclareAsContext = () => {
+    declareAsContext(node.id);
+  };
+
   function convertToContextMenuItem(
     item: PluginContextMenuItem,
     node: TreeNode
@@ -133,8 +138,14 @@ export function useNodeContextMenu(node: TreeNode) {
   }
 
   const isNodeBeingCollaborated = collaboratingNodeId === node.id;
+  const isContextDeclaration = node.metadata.isContextDeclaration === true;
 
   const baseMenuItems: ContextMenuItem[] = [
+    {
+      label: isContextDeclaration ? 'Remove context declaration' : 'Declare as context',
+      onClick: handleDeclareAsContext,
+      disabled: false,
+    },
     {
       label: 'Copy to Clipboard',
       onClick: handleCopyToClipboard,
