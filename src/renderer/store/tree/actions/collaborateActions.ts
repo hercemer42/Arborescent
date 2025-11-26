@@ -25,6 +25,7 @@ const COLLABORATE_INSTRUCTION_BASE = `You are reviewing a hierarchical task/note
 3. Fix any issues or inconsistencies you find
 
 OUTPUT FORMAT:
+- Must have exactly one root node (single # heading)
 - Use markdown headings for hierarchy (# root, ## child, ### grandchild)
 - Use [ ] for pending items, [x] for completed, [-] for failed
 - Example: "## [ ] Task name" or "### [x] Completed task"`;
