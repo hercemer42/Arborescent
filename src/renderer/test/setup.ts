@@ -4,40 +4,56 @@ import * as matchers from '@testing-library/jest-dom/matchers';
 
 vi.mock('zustand');
 
-// Force garbage collection hints after each test
+// Pre-import stores once at module load time (cached by Node)
+let terminalStore: { setState?: (state: unknown) => void } | null = null;
+let toastStore: { setState?: (state: unknown) => void } | null = null;
+let panelStore: { setState?: (state: unknown) => void } | null = null;
+let browserStore: { setState?: (state: unknown) => void } | null = null;
+
+// Lazy load stores once on first use
+function getStores() {
+  if (terminalStore === null) {
+    try {
+      // eslint-disable-next-line @typescript-eslint/no-require-imports
+      terminalStore = require('../store/terminal/terminalStore').useTerminalStore;
+    } catch { terminalStore = undefined as unknown as null; }
+  }
+  if (toastStore === null) {
+    try {
+      // eslint-disable-next-line @typescript-eslint/no-require-imports
+      toastStore = require('../store/toast/toastStore').useToastStore;
+    } catch { toastStore = undefined as unknown as null; }
+  }
+  if (panelStore === null) {
+    try {
+      // eslint-disable-next-line @typescript-eslint/no-require-imports
+      panelStore = require('../store/panel/panelStore').usePanelStore;
+    } catch { panelStore = undefined as unknown as null; }
+  }
+  if (browserStore === null) {
+    try {
+      // eslint-disable-next-line @typescript-eslint/no-require-imports
+      browserStore = require('../store/browser/browserStore').useBrowserStore;
+    } catch { browserStore = undefined as unknown as null; }
+  }
+}
+
+function resetStores() {
+  getStores();
+  terminalStore?.setState?.({ terminals: [], activeTerminalId: null });
+  toastStore?.setState?.({ toasts: [] });
+  panelStore?.setState?.({ isOpen: false, activeContent: null });
+  browserStore?.setState?.({ tabs: [], activeTabId: null });
+}
+
 beforeEach(() => {
   vi.clearAllMocks();
+  resetStores();
 });
 
 afterEach(() => {
-  // Clear all timers to prevent memory leaks
   vi.clearAllTimers();
-
-  // Reset Zustand stores to initial state to prevent state leakage between tests
-  // Import stores dynamically to avoid circular dependencies
-  try {
-    // eslint-disable-next-line @typescript-eslint/no-require-imports
-    const { useTerminalStore } = require('../store/terminal/terminalStore');
-    useTerminalStore?.setState?.({ terminals: [], activeTerminalId: null });
-  } catch { /* Store may not be loaded */ }
-
-  try {
-    // eslint-disable-next-line @typescript-eslint/no-require-imports
-    const { useToastStore } = require('../store/toast/toastStore');
-    useToastStore?.setState?.({ toasts: [] });
-  } catch { /* Store may not be loaded */ }
-
-  try {
-    // eslint-disable-next-line @typescript-eslint/no-require-imports
-    const { usePanelStore } = require('../store/panel/panelStore');
-    usePanelStore?.setState?.({ isOpen: false, activeContent: null });
-  } catch { /* Store may not be loaded */ }
-
-  try {
-    // eslint-disable-next-line @typescript-eslint/no-require-imports
-    const { useBrowserStore } = require('../store/browser/browserStore');
-    useBrowserStore?.setState?.({ tabs: [], activeTabId: null });
-  } catch { /* Store may not be loaded */ }
+  resetStores();
 });
 
 vi.mock('../store/plugins/pluginStore', () => ({

@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2025-11-26T18:06:37.732Z'
+updated: '2025-11-26T18:28:52.209Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -941,7 +941,8 @@ nodes:
   0cc62ae1-1a7a-4aa4-bc6a-d817cabd672c:
     id: 0cc62ae1-1a7a-4aa4-bc6a-d817cabd672c
     content: In progress
-    children: []
+    children:
+      - 9d0a9c58-7e1c-4e22-b072-e00dabf1a363
     metadata:
       status: pending
       expanded: true
@@ -6871,7 +6872,7 @@ nodes:
       - 85b86e28-4810-4c13-83c7-a52983bec9dc
     metadata:
       status: completed
-      expanded: false
+      expanded: true
       deleted: false
       plugins: {}
   1d01e42a-8cf8-4ace-90ed-43a57a4320a2:
@@ -7103,3 +7104,392 @@ nodes:
     children: []
     metadata:
       status: pending
+  9d0a9c58-7e1c-4e22-b072-e00dabf1a363:
+    id: 9d0a9c58-7e1c-4e22-b072-e00dabf1a363
+    content: Fix failing tests (165 failures across 20 files)
+    children:
+      - 20035f2b-8095-45a5-bdd4-dcf5ac0a36cc
+      - 93710936-c7cb-45e7-89dc-8a7a7577e964
+      - a5fd467d-72f9-44cc-98c0-3bed66901aee
+      - 01d64ef9-eb88-4f1e-8459-97b5503b30bf
+      - ebc46b09-a9ee-42e0-badb-e9817f753a8b
+      - 62179335-af08-4949-873a-18ec50de08c4
+      - d5ebd9e0-934f-4429-8f8a-4b8b0c45b3ab
+      - 6230d70d-6af5-4d55-a69d-3c0efdb90217
+      - 7b8e0393-b7a7-45eb-b7eb-b8184a9782f5
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  20035f2b-8095-45a5-bdd4-dcf5ac0a36cc:
+    id: 20035f2b-8095-45a5-bdd4-dcf5ac0a36cc
+    content: Store/State isolation issues (highest priority - likely root cause)
+    children:
+      - 443ddeb4-0407-4d9a-a85e-45ae8cbdf39a
+      - 006b040a-8b13-45d8-9d66-4f6cc943a7e5
+      - 4278f335-e53a-4165-8154-9f523a3a177f
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  443ddeb4-0407-4d9a-a85e-45ae8cbdf39a:
+    id: 443ddeb4-0407-4d9a-a85e-45ae8cbdf39a
+    content: terminalStore.test.ts (4 failures)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  006b040a-8b13-45d8-9d66-4f6cc943a7e5:
+    id: 006b040a-8b13-45d8-9d66-4f6cc943a7e5
+    content: clipboardActions.test.ts (2 failures)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4278f335-e53a-4165-8154-9f523a3a177f:
+    id: 4278f335-e53a-4165-8154-9f523a3a177f
+    content: clipboardService.test.ts (3 failures)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  93710936-c7cb-45e7-89dc-8a7a7577e964:
+    id: 93710936-c7cb-45e7-89dc-8a7a7577e964
+    content: Integration tests (15 failures)
+    children:
+      - 42eef94e-d271-4e22-8731-46bb76ffc8ed
+      - f3b1d459-251d-4834-b995-427a7f649a53
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  42eef94e-d271-4e22-8731-46bb76ffc8ed:
+    id: 42eef94e-d271-4e22-8731-46bb76ffc8ed
+    content: multiFileState.test.ts (10 failures)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f3b1d459-251d-4834-b995-427a7f649a53:
+    id: f3b1d459-251d-4834-b995-427a7f649a53
+    content: tempFileLifecycle.test.ts (5 failures)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a5fd467d-72f9-44cc-98c0-3bed66901aee:
+    id: a5fd467d-72f9-44cc-98c0-3bed66901aee
+    content: Plugin system tests (14 failures)
+    children:
+      - d0551f7a-ecc6-4135-afbc-0630a7275a1b
+      - 4822b41d-942c-4225-bf90-1a654d7832b1
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d0551f7a-ecc6-4135-afbc-0630a7275a1b:
+    id: d0551f7a-ecc6-4135-afbc-0630a7275a1b
+    content: Provider.test.tsx (10 failures)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4822b41d-942c-4225-bf90-1a654d7832b1:
+    id: 4822b41d-942c-4225-bf90-1a654d7832b1
+    content: Manager.test.ts (4 failures)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  01d64ef9-eb88-4f1e-8459-97b5503b30bf:
+    id: 01d64ef9-eb88-4f1e-8459-97b5503b30bf
+    content: MenuBar/Menu tests (31 failures)
+    children:
+      - 0dc45e99-f562-4e5a-b96e-e993e0666a23
+      - 538f0928-40a8-4c96-86ba-47ad7572825c
+      - cb77fe58-bb0d-48d1-9a95-c020d7302e57
+      - 69935498-ef3c-493d-9e2b-6a019d4f9657
+      - d8fdeb40-f93b-4da0-a621-8f706fac292e
+      - 1c46386b-ed0e-4721-8d3b-42c44bc33d7f
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0dc45e99-f562-4e5a-b96e-e993e0666a23:
+    id: 0dc45e99-f562-4e5a-b96e-e993e0666a23
+    content: FileMenu.test.tsx (21 failures)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  538f0928-40a8-4c96-86ba-47ad7572825c:
+    id: 538f0928-40a8-4c96-86ba-47ad7572825c
+    content: useFileMenuActions.test.tsx (6 failures)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  cb77fe58-bb0d-48d1-9a95-c020d7302e57:
+    id: cb77fe58-bb0d-48d1-9a95-c020d7302e57
+    content: useEditMenuActions.test.tsx (8 failures)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  69935498-ef3c-493d-9e2b-6a019d4f9657:
+    id: 69935498-ef3c-493d-9e2b-6a019d4f9657
+    content: useEditMenuState.test.tsx (6 failures)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d8fdeb40-f93b-4da0-a621-8f706fac292e:
+    id: d8fdeb40-f93b-4da0-a621-8f706fac292e
+    content: useActiveTreeStore.test.tsx (4 failures)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1c46386b-ed0e-4721-8d3b-42c44bc33d7f:
+    id: 1c46386b-ed0e-4721-8d3b-42c44bc33d7f
+    content: MenuBar.test.tsx (2 failures)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ebc46b09-a9ee-42e0-badb-e9817f753a8b:
+    id: ebc46b09-a9ee-42e0-badb-e9817f753a8b
+    content: Feedback system tests (24 failures)
+    children:
+      - 40b200f0-b252-4b5a-9f8b-9a324478b1c4
+      - a674ca11-474a-4687-81bf-0d27b5092bb3
+      - 1b6eebe9-5176-4bb8-b931-407f0131af7e
+      - 395c1dbc-8dfb-47d1-9306-e167ca45853b
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  40b200f0-b252-4b5a-9f8b-9a324478b1c4:
+    id: 40b200f0-b252-4b5a-9f8b-9a324478b1c4
+    content: FeedbackPanel.test.tsx (15 failures)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a674ca11-474a-4687-81bf-0d27b5092bb3:
+    id: a674ca11-474a-4687-81bf-0d27b5092bb3
+    content: useFeedbackActions.test.ts (3 failures)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1b6eebe9-5176-4bb8-b931-407f0131af7e:
+    id: 1b6eebe9-5176-4bb8-b931-407f0131af7e
+    content: useFeedbackClipboard.test.ts (6 failures)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  395c1dbc-8dfb-47d1-9306-e167ca45853b:
+    id: 395c1dbc-8dfb-47d1-9306-e167ca45853b
+    content: feedbackService.test.ts (6 failures - counted below in services)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  62179335-af08-4949-873a-18ec50de08c4:
+    id: 62179335-af08-4949-873a-18ec50de08c4
+    content: UI Component tests (32 failures)
+    children:
+      - b1ab4980-c323-4919-a28c-7b86c46bde79
+      - e2116ff3-509f-43d1-8930-adb848dc59ec
+      - 7aeedc17-b5f9-4290-9c32-41878ba8f0b1
+      - 91cb0e3c-c162-4f6d-90ac-0545c719e358
+      - 2742d8bb-f724-46df-92f0-e10bc3400860
+      - 864f07d4-f30c-4196-b390-5b8a58b18fd9
+      - 28371d19-7002-4030-85d3-19c445eeb5a7
+      - 6f07321e-3a73-4660-9bc7-c2def3abcac9
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b1ab4980-c323-4919-a28c-7b86c46bde79:
+    id: b1ab4980-c323-4919-a28c-7b86c46bde79
+    content: ContextMenu.test.tsx (7 failures)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e2116ff3-509f-43d1-8930-adb848dc59ec:
+    id: e2116ff3-509f-43d1-8930-adb848dc59ec
+    content: ExpandToggle.test.tsx (4 failures)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7aeedc17-b5f9-4290-9c32-41878ba8f0b1:
+    id: 7aeedc17-b5f9-4290-9c32-41878ba8f0b1
+    content: StatusCheckbox.test.tsx (6 failures)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  91cb0e3c-c162-4f6d-90ac-0545c719e358:
+    id: 91cb0e3c-c162-4f6d-90ac-0545c719e358
+    content: TabBar.test.tsx (4 failures)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2742d8bb-f724-46df-92f0-e10bc3400860:
+    id: 2742d8bb-f724-46df-92f0-e10bc3400860
+    content: ToastContainer.test.tsx (4 failures)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  864f07d4-f30c-4196-b390-5b8a58b18fd9:
+    id: 864f07d4-f30c-4196-b390-5b8a58b18fd9
+    content: NodeContent.test.tsx (4 failures)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  28371d19-7002-4030-85d3-19c445eeb5a7:
+    id: 28371d19-7002-4030-85d3-19c445eeb5a7
+    content: Tree.test.tsx (1 failure)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6f07321e-3a73-4660-9bc7-c2def3abcac9:
+    id: 6f07321e-3a73-4660-9bc7-c2def3abcac9
+    content: TreeNode.test.tsx (2 failures)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d5ebd9e0-934f-4429-8f8a-4b8b0c45b3ab:
+    id: d5ebd9e0-934f-4429-8f8a-4b8b0c45b3ab
+    content: App-level tests (8 failures)
+    children:
+      - 98daf6bb-48a1-4bbb-ad45-72a0ebd900b9
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  98daf6bb-48a1-4bbb-ad45-72a0ebd900b9:
+    id: 98daf6bb-48a1-4bbb-ad45-72a0ebd900b9
+    content: App.test.tsx (8 failures)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6230d70d-6af5-4d55-a69d-3c0efdb90217:
+    id: 6230d70d-6af5-4d55-a69d-3c0efdb90217
+    content: Service tests (8 failures)
+    children:
+      - 5bd00c08-10bb-4c4a-b876-ae2749d2100c
+      - 84a7c6ba-f8e3-4304-9aee-a48d4b767f34
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5bd00c08-10bb-4c4a-b876-ae2749d2100c:
+    id: 5bd00c08-10bb-4c4a-b876-ae2749d2100c
+    content: feedbackService.test.ts (6 failures)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  84a7c6ba-f8e3-4304-9aee-a48d4b767f34:
+    id: 84a7c6ba-f8e3-4304-9aee-a48d4b767f34
+    content: terminalExecution.test.ts (2 failures)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7b8e0393-b7a7-45eb-b7eb-b8184a9782f5:
+    id: 7b8e0393-b7a7-45eb-b7eb-b8184a9782f5
+    content: Terminal hook tests (1 failure)
+    children:
+      - 0c4aa143-1602-4a2d-ba4d-99ae1af7fba0
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0c4aa143-1602-4a2d-ba4d-99ae1af7fba0:
+    id: 0c4aa143-1602-4a2d-ba4d-99ae1af7fba0
+    content: useTerminalActions.test.tsx (1 failure)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}

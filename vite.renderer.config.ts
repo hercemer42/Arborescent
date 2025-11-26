@@ -9,4 +9,9 @@ export default defineConfig({
       '@platform': path.resolve(__dirname, 'src/platforms'),
     },
   },
+  server: {
+    watch: {
+      ignored: ['**/coverage/**'],
+    },
+  },
 });
