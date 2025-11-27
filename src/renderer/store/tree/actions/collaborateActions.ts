@@ -1,6 +1,7 @@
 import { TreeState } from '../treeStore';
 import { TreeNode } from '../../../../shared/types';
 import { exportNodeAsMarkdown } from '../../../utils/markdown';
+import { getEffectiveContextId } from '../../../utils/nodeHelpers';
 import { executeInTerminal } from '../../../services/terminalExecution';
 import { logger } from '../../../services/logger';
 import { useToastStore } from '../../toast/toastStore';
@@ -134,11 +135,11 @@ export function createCollaborateActions(
       try {
         const formattedContent = exportNodeAsMarkdown(node, state.nodes);
 
-        // Build context: user-applied context node with ancestors (if any) + programmatic instruction
+        // Build context: find closest context (own or inherited from nearest ancestor)
         let contextPrefix = '';
-        const appliedContextId = node.metadata.appliedContextId as string | undefined;
-        if (appliedContextId) {
-          const contextNode = state.nodes[appliedContextId];
+        const effectiveContextId = getEffectiveContextId(nodeId, state.nodes, state.ancestorRegistry);
+        if (effectiveContextId) {
+          const contextNode = state.nodes[effectiveContextId];
           if (contextNode) {
             contextPrefix = exportNodeAsMarkdown(contextNode, state.nodes) + '\n';
           }
@@ -190,11 +191,11 @@ export function createCollaborateActions(
 
         const formattedContent = exportNodeAsMarkdown(node, state.nodes);
 
-        // Build context: user-applied context node with ancestors (if any) + programmatic instruction
+        // Build context: find closest context (own or inherited from nearest ancestor)
         let contextPrefix = '';
-        const appliedContextId = node.metadata.appliedContextId as string | undefined;
-        if (appliedContextId) {
-          const contextNode = state.nodes[appliedContextId];
+        const effectiveContextId = getEffectiveContextId(nodeId, state.nodes, state.ancestorRegistry);
+        if (effectiveContextId) {
+          const contextNode = state.nodes[effectiveContextId];
           if (contextNode) {
             contextPrefix = exportNodeAsMarkdown(contextNode, state.nodes) + '\n';
           }

@@ -6,6 +6,7 @@ export interface ContextMenuItem {
   onClick?: () => void;
   danger?: boolean;
   disabled?: boolean;
+  disabledTooltip?: string;
   submenu?: ContextMenuItem[];
   icon?: React.ReactNode;
 }
@@ -44,6 +45,7 @@ export function ContextMenu({ x, y, items, onClose }: ContextMenuProps) {
             className={`context-menu-item ${item.danger ? 'danger' : ''} ${item.submenu ? 'has-submenu' : ''}`}
             onClick={() => handleItemClick(item)}
             disabled={item.disabled}
+            title={item.disabled && item.disabledTooltip ? item.disabledTooltip : undefined}
           >
             {item.icon && <span className="context-menu-item-icon">{item.icon}</span>}
             <span className="context-menu-item-label">{item.label}</span>

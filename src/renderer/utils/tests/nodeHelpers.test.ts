@@ -5,6 +5,7 @@ import {
   findNextNode,
   createTreeNode,
   cloneNodesWithNewIds,
+  getEffectiveContextId,
 } from '../nodeHelpers';
 import { TreeNode } from '@shared/types';
 
@@ -412,5 +413,106 @@ describe('cloneNodesWithNewIds', () => {
     (result.newRootNodes[0].metadata.nested as { value: string }).value = 'modified';
 
     expect((cachedNodes['node-1'].metadata.nested as { value: string }).value).toBe('original');
+  });
+});
+
+describe('getEffectiveContextId', () => {
+  const createNode = (id: string, children: string[] = [], metadata = {}): TreeNode => ({
+    id,
+    content: `Node ${id}`,
+    children,
+    metadata,
+  });
+
+  it('should return node own appliedContextId', () => {
+    const nodes = {
+      'node-1': createNode('node-1', [], { appliedContextId: 'ctx-1' }),
+    };
+    const ancestorRegistry = { 'node-1': [] };
+
+    const result = getEffectiveContextId('node-1', nodes, ancestorRegistry);
+    expect(result).toBe('ctx-1');
+  });
+
+  it('should return inherited context from parent', () => {
+    const nodes = {
+      'parent': createNode('parent', ['child'], { appliedContextId: 'ctx-1' }),
+      'child': createNode('child'),
+    };
+    const ancestorRegistry = {
+      'parent': [],
+      'child': ['parent'],
+    };
+
+    const result = getEffectiveContextId('child', nodes, ancestorRegistry);
+    expect(result).toBe('ctx-1');
+  });
+
+  it('should return inherited context from grandparent', () => {
+    const nodes = {
+      'grandparent': createNode('grandparent', ['parent'], { appliedContextId: 'ctx-1' }),
+      'parent': createNode('parent', ['child']),
+      'child': createNode('child'),
+    };
+    const ancestorRegistry = {
+      'grandparent': [],
+      'parent': ['grandparent'],
+      'child': ['grandparent', 'parent'],
+    };
+
+    const result = getEffectiveContextId('child', nodes, ancestorRegistry);
+    expect(result).toBe('ctx-1');
+  });
+
+  it('should prefer node own context over inherited', () => {
+    const nodes = {
+      'parent': createNode('parent', ['child'], { appliedContextId: 'ctx-parent' }),
+      'child': createNode('child', [], { appliedContextId: 'ctx-child' }),
+    };
+    const ancestorRegistry = {
+      'parent': [],
+      'child': ['parent'],
+    };
+
+    const result = getEffectiveContextId('child', nodes, ancestorRegistry);
+    expect(result).toBe('ctx-child');
+  });
+
+  it('should return closest ancestor context when multiple exist', () => {
+    const nodes = {
+      'grandparent': createNode('grandparent', ['parent'], { appliedContextId: 'ctx-gp' }),
+      'parent': createNode('parent', ['child'], { appliedContextId: 'ctx-parent' }),
+      'child': createNode('child'),
+    };
+    const ancestorRegistry = {
+      'grandparent': [],
+      'parent': ['grandparent'],
+      'child': ['grandparent', 'parent'],
+    };
+
+    const result = getEffectiveContextId('child', nodes, ancestorRegistry);
+    expect(result).toBe('ctx-parent');
+  });
+
+  it('should return null if no context in chain', () => {
+    const nodes = {
+      'parent': createNode('parent', ['child']),
+      'child': createNode('child'),
+    };
+    const ancestorRegistry = {
+      'parent': [],
+      'child': ['parent'],
+    };
+
+    const result = getEffectiveContextId('child', nodes, ancestorRegistry);
+    expect(result).toBeNull();
+  });
+
+  it('should return null for non-existent node', () => {
+    const nodes = {};
+    const ancestorRegistry = {};
+
+    const result = getEffectiveContextId('non-existent', nodes, ancestorRegistry);
+    expect(result).toBeNull();
   });
 });

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { useStore } from '../../../store/tree/useStore';
 import { useActiveTreeStore } from '../../../store/tree/TreeStoreContext';
 import { TreeNode, NodeContext, PluginContextMenuItem } from '../../../../shared/types';
@@ -13,7 +13,7 @@ import { useContextSubmenu } from './useContextSubmenu';
 import { logger } from '../../../services/logger';
 import { writeToClipboard } from '../../../services/clipboardService';
 import { exportNodeAsMarkdown } from '../../../utils/markdown';
-import { hasAncestorWithPluginSession } from '../../../utils/nodeHelpers';
+import { hasAncestorWithPluginSession, getEffectiveContextId } from '../../../utils/nodeHelpers';
 
 export function useNodeContextMenu(node: TreeNode) {
   const treeType = useStore((state) => state.treeType);
@@ -135,6 +135,12 @@ export function useNodeContextMenu(node: TreeNode) {
   }
 
   const isNodeBeingCollaborated = collaboratingNodeId === node.id;
+  const hasEffectiveContext = useMemo(
+    () => !!getEffectiveContextId(node.id, nodes, ancestorRegistry),
+    [node.id, nodes, ancestorRegistry]
+  );
+  const collaborateDisabled = !!collaboratingNodeId || !hasEffectiveContext;
+  const collaborateTooltip = !hasEffectiveContext ? 'You must add a context to collaborate' : undefined;
 
   const baseMenuItems: ContextMenuItem[] = [
     ...contextDeclarationMenuItems,
@@ -157,12 +163,14 @@ export function useNodeContextMenu(node: TreeNode) {
     {
       label: 'Collaborate',
       onClick: handleCollaborate,
-      disabled: !!collaboratingNodeId,
+      disabled: collaborateDisabled,
+      disabledTooltip: collaborateTooltip,
     },
     {
       label: 'Collaborate in terminal',
       onClick: handleCollaborateInTerminal,
-      disabled: !!collaboratingNodeId,
+      disabled: collaborateDisabled,
+      disabledTooltip: collaborateTooltip,
     },
     ...(isNodeBeingCollaborated ? [{
       label: 'Cancel collaboration',

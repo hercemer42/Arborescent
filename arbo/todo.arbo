@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2025-11-27T12:49:06.358Z'
+updated: '2025-11-27T14:17:29.836Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -6605,7 +6605,7 @@ nodes:
       - 05dc5196-735f-4bfd-a36a-a4ca8e3bd6cd
     metadata:
       status: pending
-      expanded: false
+      expanded: true
   695b4a59-45f8-433f-aafa-4a5fb557cdde:
     id: 695b4a59-45f8-433f-aafa-4a5fb557cdde
     content: Functional breakdown
@@ -6715,48 +6715,6 @@ nodes:
     children: []
     metadata:
       status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  0f40d697-7399-4b96-9ee6-6a431f5a75ec:
-    id: 0f40d697-7399-4b96-9ee6-6a431f5a75ec
-    content: 'US6: Context inheritance behavior'
-    children:
-      - f0d20f8d-8d66-4508-a7de-d737ff3db96f
-      - b140502c-6eb3-49bb-977f-9b5f0f3e6d10
-      - f4216d5c-e3f9-4144-99ce-6cefaa57d724
-      - 333f68ab-c1bc-4b18-863e-52727ebc5fab
-      - 4cb55f13-e6eb-4483-9d2b-48211a05a6a7
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f0d20f8d-8d66-4508-a7de-d737ff3db96f:
-    id: f0d20f8d-8d66-4508-a7de-d737ff3db96f
-    content: Descendants inherit context automatically
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  b140502c-6eb3-49bb-977f-9b5f0f3e6d10:
-    id: b140502c-6eb3-49bb-977f-9b5f0f3e6d10
-    content: Descendants can have their own explicit context
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f4216d5c-e3f9-4144-99ce-6cefaa57d724:
-    id: f4216d5c-e3f9-4144-99ce-6cefaa57d724
-    content: Explicit descendant context is not overridden by ancestor context
-    children:
-      - e40ef951-c075-4ec9-8584-a306a6f3d4c1
-    metadata:
-      status: pending
       expanded: true
       deleted: false
       plugins: {}
@@ -6946,7 +6904,7 @@ nodes:
       - 0b190671-16be-4752-837f-bf973822ad55
       - 5954919a-cdd7-42c7-a4c3-8eab91a73e6e
       - 40396d08-f3a1-4759-9462-5d94138d8eed
-      - 0f40d697-7399-4b96-9ee6-6a431f5a75ec
+      - 8c10c76c-8de2-4493-ae14-4aa86c6c5689
       - 3cd8ce98-04b7-4a18-baad-69b167a94714
     metadata:
       status: pending
@@ -7080,31 +7038,6 @@ nodes:
     children: []
     metadata:
       status: completed
-  e40ef951-c075-4ec9-8584-a306a6f3d4c1:
-    id: e40ef951-c075-4ec9-8584-a306a6f3d4c1
-    content: True if the ancestor context is applied before or after
-    children: []
-    metadata:
-      status: pending
-  333f68ab-c1bc-4b18-863e-52727ebc5fab:
-    id: 333f68ab-c1bc-4b18-863e-52727ebc5fab
-    content: Only the ancestor has the context icon
-    children: []
-    metadata:
-      status: pending
-  4cb55f13-e6eb-4483-9d2b-48211a05a6a7:
-    id: 4cb55f13-e6eb-4483-9d2b-48211a05a6a7
-    content: The right click menu for an ancestor is the same as one for a node with no context
-    children:
-      - ee7ad236-46ae-47c9-b6bc-6d839bea0049
-    metadata:
-      status: pending
-  ee7ad236-46ae-47c9-b6bc-6d839bea0049:
-    id: ee7ad236-46ae-47c9-b6bc-6d839bea0049
-    content: Unless the ancestor has an explicit context
-    children: []
-    metadata:
-      status: pending
   3cd8ce98-04b7-4a18-baad-69b167a94714:
     id: 3cd8ce98-04b7-4a18-baad-69b167a94714
     content: 'US7: Dual copy/paste mechanism'
@@ -7113,8 +7046,8 @@ nodes:
       - 6106107f-d87e-402d-ae5d-26471297c196
       - f101c644-b58d-4f5b-892b-9c7982a9d6a0
     metadata:
-      status: pending
-      expanded: true
+      status: completed
+      expanded: false
       deleted: false
       plugins: {}
   cb4b4a07-8dc9-4fcf-82b8-457d74bfa98e:
@@ -7125,7 +7058,7 @@ nodes:
       - 649aa9f5-ece8-4cd1-a173-3ea2d877d8e8
       - 83f2f2b5-3f18-473f-8bca-0c8aae994cef
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -7165,7 +7098,7 @@ nodes:
       - 5cf6fecb-404b-4e94-aecd-522b669aa3c3
       - eddc631e-39f8-41cb-8bb7-4823bd2c7e80
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -7177,7 +7110,7 @@ nodes:
       - 50728d93-2e04-4b7a-a051-c3acc7273e81
       - 15c0931d-5e60-4b76-8697-18538c3dd107
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -7186,7 +7119,7 @@ nodes:
     content: Copy markdown to system clipboard (as currently done)
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -7195,7 +7128,7 @@ nodes:
     content: Store deep clone of node objects in module-level variable
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -7204,7 +7137,7 @@ nodes:
     content: Include all metadata (plugins, custom fields, etc.)
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -7214,7 +7147,7 @@ nodes:
     children:
       - 3180ec3a-af9e-47e6-99c1-fbcaa9299701
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -7225,7 +7158,7 @@ nodes:
       - 9d1a2055-fd0b-4b63-9d2b-08f54caae3bc
       - 2c206ae4-0079-4195-aac1-3d2b8737096f
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -7234,7 +7167,7 @@ nodes:
     content: 'If yes: use in-memory nodes, generate new IDs, clear in-memory clipboard'
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -7243,7 +7176,7 @@ nodes:
     content: 'If no: fall back to parsing system clipboard markdown (external paste)'
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -7258,7 +7191,7 @@ nodes:
       - 790c4ced-e747-472b-870d-e15a639849e5
       - 3e6d73fe-6df8-4ef2-9042-146c55f8e388
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -7267,7 +7200,7 @@ nodes:
     content: Modify copyNodes in clipboardActions.ts to also cache nodes
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -7276,7 +7209,7 @@ nodes:
     content: Modify cutNodes in clipboardActions.ts to also cache nodes
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -7285,7 +7218,7 @@ nodes:
     content: Modify pasteNodes to check cache first before parsing markdown
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -7294,7 +7227,7 @@ nodes:
     content: Deep clone nodes and regenerate all IDs on paste
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -7303,7 +7236,7 @@ nodes:
     content: Update ancestor registry for pasted nodes
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -7315,7 +7248,7 @@ nodes:
       - dd4ef0e1-2f5d-49af-9aa2-051abe16f377
       - 7da06636-1412-4cc2-88bd-2bc54f608478
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -7324,7 +7257,7 @@ nodes:
     content: Handle paste from external source (no cache, use markdown)
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -7333,7 +7266,7 @@ nodes:
     content: Handle multiple copy operations (cache should be replaced)
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -7342,7 +7275,7 @@ nodes:
     content: Ensure cut nodes are properly removed even when using cache
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -7410,14 +7343,14 @@ nodes:
     content: The cache should be in a store
     children: []
     metadata:
-      status: pending
+      status: completed
   f4bf4e1e-141e-42f8-b5ac-90049fc2e3fc:
     id: f4bf4e1e-141e-42f8-b5ac-90049fc2e3fc
     content: Create clipboardCache module with get/set/clear functions
     children:
       - 04ceab51-6d75-41dc-8df9-d1ba8805a210
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -7427,3 +7360,333 @@ nodes:
     children: []
     metadata:
       status: pending
+  8c10c76c-8de2-4493-ae14-4aa86c6c5689:
+    id: 8c10c76c-8de2-4493-ae14-4aa86c6c5689
+    content: 'US6: Context inheritance behavior'
+    children:
+      - b272a373-7c82-484f-89c5-4e75ff87aa68
+      - 9e1649ff-4c35-451b-8cb4-1a9cb2f0e6f7
+      - 06f28df9-2ae0-4fae-b5fd-e84a156764d1
+      - c9ca757e-ca9f-4dd7-bcba-3dbe155c59e7
+      - fa50ffa6-f61a-4918-8e75-3a2ec6360cdb
+      - b1ddf906-4b57-4bb2-beaa-2b0226b19d1d
+      - f67693f7-ad03-45bc-99a5-8b4842f4c82e
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b272a373-7c82-484f-89c5-4e75ff87aa68:
+    id: b272a373-7c82-484f-89c5-4e75ff87aa68
+    content: Descendants inherit context automatically
+    children:
+      - 44532d0f-8a60-4649-866c-eb1de78ce02f
+      - 7b985388-1dcc-4d53-97f6-d4d3858108ae
+    metadata:
+      status: completed
+      expanded: false
+      deleted: false
+      plugins: {}
+  44532d0f-8a60-4649-866c-eb1de78ce02f:
+    id: 44532d0f-8a60-4649-866c-eb1de78ce02f
+    content: Inherited context is resolved at render/query time, not stored on node
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7b985388-1dcc-4d53-97f6-d4d3858108ae:
+    id: 7b985388-1dcc-4d53-97f6-d4d3858108ae
+    content: Inheritance follows ancestor chain until explicit context found
+    children:
+      - 1187237a-b84e-47d3-ba31-7708806f5cb8
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1187237a-b84e-47d3-ba31-7708806f5cb8:
+    id: 1187237a-b84e-47d3-ba31-7708806f5cb8
+    content: Uses the node's ancestor registry to traverse
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9e1649ff-4c35-451b-8cb4-1a9cb2f0e6f7:
+    id: 9e1649ff-4c35-451b-8cb4-1a9cb2f0e6f7
+    content: Descendants can have their own explicit context
+    children:
+      - 91e31cc2-f563-40f7-bf5f-0a9fd775e976
+    metadata:
+      status: completed
+      expanded: false
+      deleted: false
+      plugins: {}
+  91e31cc2-f563-40f7-bf5f-0a9fd775e976:
+    id: 91e31cc2-f563-40f7-bf5f-0a9fd775e976
+    content: Explicit context is stored in node metadata (appliedContextId)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  06f28df9-2ae0-4fae-b5fd-e84a156764d1:
+    id: 06f28df9-2ae0-4fae-b5fd-e84a156764d1
+    content: Explicit descendant context is not overridden by ancestor context
+    children:
+      - a2506ebe-5ef2-452e-928c-7b21c03b922b
+      - ffec730c-c543-4455-b683-2e3488e2b065
+    metadata:
+      status: completed
+      expanded: false
+      deleted: false
+      plugins: {}
+  a2506ebe-5ef2-452e-928c-7b21c03b922b:
+    id: a2506ebe-5ef2-452e-928c-7b21c03b922b
+    content: True if the ancestor context is applied before
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ffec730c-c543-4455-b683-2e3488e2b065:
+    id: ffec730c-c543-4455-b683-2e3488e2b065
+    content: True if the ancestor context is applied after
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c9ca757e-ca9f-4dd7-bcba-3dbe155c59e7:
+    id: c9ca757e-ca9f-4dd7-bcba-3dbe155c59e7
+    content: Visual indicators
+    children:
+      - 801bdbbb-69fd-4f33-9058-db515526c7b4
+      - 005d43aa-b9e3-4428-a3f4-994cc1f7e6bc
+      - f9a5eac4-ff12-42cb-949b-4efd3e781128
+    metadata:
+      status: completed
+      expanded: false
+      deleted: false
+      plugins: {}
+  801bdbbb-69fd-4f33-9058-db515526c7b4:
+    id: 801bdbbb-69fd-4f33-9058-db515526c7b4
+    content: Only the context declaration node shows the context icon
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  005d43aa-b9e3-4428-a3f4-994cc1f7e6bc:
+    id: 005d43aa-b9e3-4428-a3f4-994cc1f7e6bc
+    content: Descendants with inherited context have no visual indicator
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f9a5eac4-ff12-42cb-949b-4efd3e781128:
+    id: f9a5eac4-ff12-42cb-949b-4efd3e781128
+    content: Descendants with explicit context show that context's icon
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fa50ffa6-f61a-4918-8e75-3a2ec6360cdb:
+    id: fa50ffa6-f61a-4918-8e75-3a2ec6360cdb
+    content: Right-click menu behavior by node type
+    children:
+      - 6550a38e-1210-4d33-b5e0-5c9e58b8ca04
+      - 8519c64d-7aa8-4c9a-916e-d855d2075ba0
+      - 36e0c468-037a-4460-bcec-ba35b5047f19
+      - ff955356-0f73-4197-a78a-9fe51675a3e5
+      - a64ad861-5bd9-4d59-9771-8d0671c779a4
+    metadata:
+      status: completed
+      expanded: false
+      deleted: false
+      plugins: {}
+  6550a38e-1210-4d33-b5e0-5c9e58b8ca04:
+    id: 6550a38e-1210-4d33-b5e0-5c9e58b8ca04
+    content: 'Context declaration node (isContextDeclaration: true)'
+    children:
+      - 6a40110b-8e6b-44e8-a3d8-0cc7f1d31114
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6a40110b-8e6b-44e8-a3d8-0cc7f1d31114:
+    id: 6a40110b-8e6b-44e8-a3d8-0cc7f1d31114
+    content: Shows "Remove context declaration" option
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8519c64d-7aa8-4c9a-916e-d855d2075ba0:
+    id: 8519c64d-7aa8-4c9a-916e-d855d2075ba0
+    content: Node with explicit context (has appliedContextId)
+    children:
+      - 507ca9ae-7f00-4f39-b856-37a50f3d53dc
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  507ca9ae-7f00-4f39-b856-37a50f3d53dc:
+    id: 507ca9ae-7f00-4f39-b856-37a50f3d53dc
+    content: Shows "Remove context" option
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  36e0c468-037a-4460-bcec-ba35b5047f19:
+    id: 36e0c468-037a-4460-bcec-ba35b5047f19
+    content: Node with inherited context (ancestor has appliedContextId, node does not)
+    children:
+      - 39b6cdc9-78e7-42d5-8127-ebfd94d41543
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  39b6cdc9-78e7-42d5-8127-ebfd94d41543:
+    id: 39b6cdc9-78e7-42d5-8127-ebfd94d41543
+    content: Shows "Add context" option (to override inheritance with explicit choice)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ff955356-0f73-4197-a78a-9fe51675a3e5:
+    id: ff955356-0f73-4197-a78a-9fe51675a3e5
+    content: Node with no context (no ancestor has appliedContextId)
+    children:
+      - 3a40781b-05b0-4cc3-be0d-545e658ae7f0
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3a40781b-05b0-4cc3-be0d-545e658ae7f0:
+    id: 3a40781b-05b0-4cc3-be0d-545e658ae7f0
+    content: Shows "Add context" option
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a64ad861-5bd9-4d59-9771-8d0671c779a4:
+    id: a64ad861-5bd9-4d59-9771-8d0671c779a4
+    content: Any node (universal options)
+    children:
+      - 1af7248c-2855-4880-8a47-612da66f2c33
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1af7248c-2855-4880-8a47-612da66f2c33:
+    id: 1af7248c-2855-4880-8a47-612da66f2c33
+    content: Shows "Declare as context" option (if not already a declaration)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b1ddf906-4b57-4bb2-beaa-2b0226b19d1d:
+    id: b1ddf906-4b57-4bb2-beaa-2b0226b19d1d
+    content: Edge cases
+    children:
+      - 7f19dd6d-8349-444b-8a71-2de47047ad48
+      - 85416572-e28a-4820-bc10-096ec025419e
+      - b6fa2fe4-96f2-4776-8d15-14f9581d2d7a
+      - f2f48281-196d-4724-acea-24d28c1b266d
+      - 1626f1bc-baf1-4203-8edc-c024747b28a2
+      - 8668f57b-e795-4a35-b524-53af9eb8b376
+    metadata:
+      status: completed
+      expanded: false
+      deleted: false
+      plugins: {}
+  7f19dd6d-8349-444b-8a71-2de47047ad48:
+    id: 7f19dd6d-8349-444b-8a71-2de47047ad48
+    content: 'Moving a node out of context ancestor''s subtree: inherited context automatically removed (no action needed)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  85416572-e28a-4820-bc10-096ec025419e:
+    id: 85416572-e28a-4820-bc10-096ec025419e
+    content: 'Moving a node into context ancestor''s subtree: inherited context automatically gained (no action needed)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b6fa2fe4-96f2-4776-8d15-14f9581d2d7a:
+    id: b6fa2fe4-96f2-4776-8d15-14f9581d2d7a
+    content: Deleting a context declaration clears appliedContextId from all nodes using it
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f2f48281-196d-4724-acea-24d28c1b266d:
+    id: f2f48281-196d-4724-acea-24d28c1b266d
+    content: Copy/paste preserves explicit context (appliedContextId copied with node)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1626f1bc-baf1-4203-8edc-c024747b28a2:
+    id: 1626f1bc-baf1-4203-8edc-c024747b28a2
+    content: Cut/paste preserves explicit context
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8668f57b-e795-4a35-b524-53af9eb8b376:
+    id: 8668f57b-e795-4a35-b524-53af9eb8b376
+    content: If several ancestors have context, apply the context of the closest ancestor only
+    children: []
+    metadata:
+      status: completed
+  f67693f7-ad03-45bc-99a5-8b4842f4c82e:
+    id: f67693f7-ad03-45bc-99a5-8b4842f4c82e
+    content: The 'Collaborate' and 'Collaborate in terminal' options should be greyed out when there is no context associated
+    children:
+      - 2203da5e-af1e-4a89-a705-36297c98c20a
+    metadata:
+      status: completed
+  2203da5e-af1e-4a89-a705-36297c98c20a:
+    id: 2203da5e-af1e-4a89-a705-36297c98c20a
+    content: When we hover over them, a tooltip shows 'You must add a context to collaborate'
+    children: []
+    metadata:
+      status: completed

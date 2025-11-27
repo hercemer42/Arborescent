@@ -2,6 +2,38 @@ import { TreeNode } from '../../shared/types';
 import { AncestorRegistry } from './ancestry';
 import { v4 as uuidv4 } from 'uuid';
 
+/**
+ * Find the effective context for a node - its own appliedContextId
+ * or the closest one found in its ancestor chain.
+ *
+ * @returns The context node ID, or null if no context is applied
+ */
+export function getEffectiveContextId(
+  nodeId: string,
+  nodes: Record<string, TreeNode>,
+  ancestorRegistry: AncestorRegistry
+): string | null {
+  const node = nodes[nodeId];
+  if (!node) return null;
+
+  // Check node's own applied context first
+  if (node.metadata.appliedContextId) {
+    return node.metadata.appliedContextId as string;
+  }
+
+  // Walk up ancestors from closest to furthest
+  const ancestors = ancestorRegistry[nodeId] || [];
+  for (let i = ancestors.length - 1; i >= 0; i--) {
+    const ancestorId = ancestors[i];
+    const ancestor = nodes[ancestorId];
+    if (ancestor?.metadata.appliedContextId) {
+      return ancestor.metadata.appliedContextId as string;
+    }
+  }
+
+  return null;
+}
+
 export function updateNodeMetadata(
   nodes: Record<string, TreeNode>,
   nodeId: string,
