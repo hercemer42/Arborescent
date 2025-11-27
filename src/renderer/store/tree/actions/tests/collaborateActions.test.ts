@@ -375,6 +375,61 @@ describe('collaborateActions', () => {
         'CollaborateActions'
       );
     });
+
+    it('should include applied context in markdown format before programmatic instruction', async () => {
+      // Add a context node with children
+      const contextNode: TreeNode = {
+        id: 'context-node',
+        content: 'You are a helpful assistant',
+        children: ['context-child'],
+        metadata: { isContextDeclaration: true, contextIcon: 'star' },
+      };
+      const contextChild: TreeNode = {
+        id: 'context-child',
+        content: 'Be concise and accurate',
+        children: [],
+        metadata: {},
+      };
+      mockState.nodes['context-node'] = contextNode;
+      mockState.nodes['context-child'] = contextChild;
+      mockState.ancestorRegistry['context-node'] = ['root'];
+      mockState.ancestorRegistry['context-child'] = ['root', 'context-node'];
+
+      // Apply context to child1
+      mockState.nodes.child1.metadata.appliedContextId = 'context-node';
+
+      await actions.collaborate('child1');
+
+      const clipboardContent = mockClipboardWriteText.mock.calls[0][0];
+      // Context should appear in markdown format BEFORE the output format instruction
+      // Should include the context node and its children (with status checkboxes)
+      expect(clipboardContent).toContain('You are a helpful assistant');
+      expect(clipboardContent).toContain('Be concise and accurate');
+      // Context comes before OUTPUT FORMAT
+      const contextPos = clipboardContent.indexOf('You are a helpful assistant');
+      const outputFormatPos = clipboardContent.indexOf('OUTPUT FORMAT:');
+      expect(contextPos).toBeLessThan(outputFormatPos);
+    });
+
+    it('should not include context if node has no applied context', async () => {
+      await actions.collaborate('child1');
+
+      const clipboardContent = mockClipboardWriteText.mock.calls[0][0];
+      // Should start with the output format instruction (no context prefix)
+      expect(clipboardContent).toMatch(/^\s*OUTPUT FORMAT:/);
+    });
+
+    it('should handle missing context node gracefully', async () => {
+      // Apply a non-existent context
+      mockState.nodes.child1.metadata.appliedContextId = 'non-existent-context';
+
+      await actions.collaborate('child1');
+
+      const clipboardContent = mockClipboardWriteText.mock.calls[0][0];
+      // Should still work, just without the context prefix
+      expect(clipboardContent).toMatch(/^\s*OUTPUT FORMAT:/);
+      expect(mockSet).toHaveBeenCalledWith({ collaboratingNodeId: 'child1' });
+    });
   });
 
   describe('collaborateInTerminal', () => {
@@ -446,7 +501,7 @@ describe('collaborateActions', () => {
     it('should handle terminal execution errors', async () => {
       const { executeInTerminal } = await import('../../../../services/terminalExecution');
       const error = new Error('Terminal error');
-      vi.mocked(executeInTerminal).mockRejectedValue(error);
+      vi.mocked(executeInTerminal).mockRejectedValueOnce(error);
 
       await expect(actions.collaborateInTerminal('child1', 'terminal-1')).rejects.toThrow(
         'Terminal error'
@@ -457,6 +512,70 @@ describe('collaborateActions', () => {
         error,
         'CollaborateActions'
       );
+    });
+
+    it('should include applied context in markdown format before programmatic instruction', async () => {
+      const { executeInTerminal } = await import('../../../../services/terminalExecution');
+      vi.mocked(executeInTerminal).mockResolvedValue(undefined);
+
+      // Add a context node with children
+      const contextNode: TreeNode = {
+        id: 'context-node',
+        content: 'You are a helpful assistant',
+        children: ['context-child'],
+        metadata: { isContextDeclaration: true, contextIcon: 'star' },
+      };
+      const contextChild: TreeNode = {
+        id: 'context-child',
+        content: 'Be concise and accurate',
+        children: [],
+        metadata: {},
+      };
+      mockState.nodes['context-node'] = contextNode;
+      mockState.nodes['context-child'] = contextChild;
+      mockState.ancestorRegistry['context-node'] = ['root'];
+      mockState.ancestorRegistry['context-child'] = ['root', 'context-node'];
+
+      // Apply context to child1
+      mockState.nodes.child1.metadata.appliedContextId = 'context-node';
+
+      await actions.collaborateInTerminal('child1', 'terminal-1');
+
+      const terminalContent = vi.mocked(executeInTerminal).mock.calls[0][1];
+      // Context should appear in markdown format BEFORE the output format instruction
+      // Should include the context node and its children (with status checkboxes)
+      expect(terminalContent).toContain('You are a helpful assistant');
+      expect(terminalContent).toContain('Be concise and accurate');
+      // Context comes before OUTPUT FORMAT
+      const contextPos = terminalContent.indexOf('You are a helpful assistant');
+      const outputFormatPos = terminalContent.indexOf('OUTPUT FORMAT:');
+      expect(contextPos).toBeLessThan(outputFormatPos);
+    });
+
+    it('should not include context if node has no applied context', async () => {
+      const { executeInTerminal } = await import('../../../../services/terminalExecution');
+      vi.mocked(executeInTerminal).mockResolvedValue(undefined);
+
+      await actions.collaborateInTerminal('child1', 'terminal-1');
+
+      const terminalContent = vi.mocked(executeInTerminal).mock.calls[0][1];
+      // Should start with the output format instruction (no context prefix)
+      expect(terminalContent).toMatch(/^\s*OUTPUT FORMAT:/);
+    });
+
+    it('should handle missing context node gracefully', async () => {
+      const { executeInTerminal } = await import('../../../../services/terminalExecution');
+      vi.mocked(executeInTerminal).mockResolvedValue(undefined);
+
+      // Apply a non-existent context
+      mockState.nodes.child1.metadata.appliedContextId = 'non-existent-context';
+
+      await actions.collaborateInTerminal('child1', 'terminal-1');
+
+      const terminalContent = vi.mocked(executeInTerminal).mock.calls[0][1];
+      // Should still work, just without the context prefix
+      expect(terminalContent).toMatch(/^\s*OUTPUT FORMAT:/);
+      expect(mockSet).toHaveBeenCalledWith({ collaboratingNodeId: 'child1' });
     });
   });
 

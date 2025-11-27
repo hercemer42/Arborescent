@@ -19,12 +19,7 @@ import { feedbackTreeStore } from '../../feedback/feedbackTreeStore';
 export type ContentSource = 'clipboard' | 'file' | 'restore';
 
 // Base instruction for collaboration requests
-const COLLABORATE_INSTRUCTION_BASE = `You are reviewing a hierarchical task/note list. Please:
-1. Analyze the content and suggest improvements, additions, or reorganization
-2. Add any missing items that would make the list more complete
-3. Fix any issues or inconsistencies you find
-
-OUTPUT FORMAT:
+const COLLABORATE_INSTRUCTION_BASE = `OUTPUT FORMAT:
 - Must have exactly one root node (single # heading)
 - Use markdown headings for hierarchy (# root, ## child, ### grandchild)
 - Use [ ] for pending items, [x] for completed, [-] for failed
@@ -138,7 +133,19 @@ export function createCollaborateActions(
 
       try {
         const formattedContent = exportNodeAsMarkdown(node, state.nodes);
-        await navigator.clipboard.writeText(COLLABORATE_INSTRUCTION_WEB + '\n\n' + formattedContent);
+
+        // Build context: user-applied context node with ancestors (if any) + programmatic instruction
+        let contextPrefix = '';
+        const appliedContextId = node.metadata.appliedContextId as string | undefined;
+        if (appliedContextId) {
+          const contextNode = state.nodes[appliedContextId];
+          if (contextNode) {
+            contextPrefix = exportNodeAsMarkdown(contextNode, state.nodes) + '\n';
+          }
+        }
+
+        const clipboardContent = contextPrefix + COLLABORATE_INSTRUCTION_WEB + '\n\nHere is the content to review:\n\n' + formattedContent;
+        await navigator.clipboard.writeText(clipboardContent);
 
         useToastStore.getState().addToast(
           'Content copied to clipboard - Paste to collaborator, then copy response to continue',
@@ -182,7 +189,18 @@ export function createCollaborateActions(
         const feedbackResponseFile = await window.electron.createTempFile(feedbackFileName, '');
 
         const formattedContent = exportNodeAsMarkdown(node, state.nodes);
-        const terminalInstruction = `${COLLABORATE_INSTRUCTION_TERMINAL}
+
+        // Build context: user-applied context node with ancestors (if any) + programmatic instruction
+        let contextPrefix = '';
+        const appliedContextId = node.metadata.appliedContextId as string | undefined;
+        if (appliedContextId) {
+          const contextNode = state.nodes[appliedContextId];
+          if (contextNode) {
+            contextPrefix = exportNodeAsMarkdown(contextNode, state.nodes) + '\n';
+          }
+        }
+
+        const terminalInstruction = `${contextPrefix}${COLLABORATE_INSTRUCTION_TERMINAL}
 
 IMPORTANT: Write your reviewed/updated list to this file: ${feedbackResponseFile}
 

@@ -194,7 +194,7 @@ describe('useNodeContextMenu', () => {
       expect(addContextItem?.submenu).toBeDefined();
     });
 
-    it('should show "Change context" menu item when node has context applied', () => {
+    it('should show "Remove context" menu item when node has context applied', () => {
       const nodeWithContext: TreeNode = {
         ...mockNode,
         metadata: { appliedContextId: 'context-node' },
@@ -206,9 +206,11 @@ describe('useNodeContextMenu', () => {
 
       const { result } = renderHook(() => useNodeContextMenu(nodeWithContext), { wrapper });
 
-      const changeContextItem = result.current.contextMenuItems.find(item => item.label === 'Change context');
-      expect(changeContextItem).toBeDefined();
-      expect(changeContextItem?.submenu).toBeDefined();
+      const removeContextItem = result.current.contextMenuItems.find(item => item.label === 'Remove context');
+      const addContextItem = result.current.contextMenuItems.find(item => item.label === 'Add context');
+      expect(removeContextItem).toBeDefined();
+      expect(removeContextItem?.submenu).toBeUndefined(); // Direct action, no submenu
+      expect(addContextItem).toBeUndefined(); // Should not show "Add context" when context is applied
     });
 
     it('should not show "Add context" for a context declaration', () => {
@@ -259,7 +261,7 @@ describe('useNodeContextMenu', () => {
       expect(addContextItem?.submenu?.[0].label).toBe('My Context');
     });
 
-    it('should include "Remove context" in submenu when context is applied', () => {
+    it('should show "Remove context" as direct menu item when context is applied', () => {
       const contextNode: TreeNode = {
         id: 'context-node',
         content: 'My Context',
@@ -288,12 +290,11 @@ describe('useNodeContextMenu', () => {
 
       const { result } = renderHook(() => useNodeContextMenu(nodeWithContext), { wrapper });
 
-      const changeContextItem = result.current.contextMenuItems.find(item => item.label === 'Change context');
-      expect(changeContextItem?.submenu).toBeDefined();
-
-      const removeItem = changeContextItem?.submenu?.find(item => item.label === 'Remove context');
-      expect(removeItem).toBeDefined();
-      expect(removeItem?.danger).toBe(true);
+      // "Remove context" should be a direct menu item, not in a submenu
+      const removeContextItem = result.current.contextMenuItems.find(item => item.label === 'Remove context');
+      expect(removeContextItem).toBeDefined();
+      expect(removeContextItem?.submenu).toBeUndefined();
+      expect(removeContextItem?.onClick).toBeDefined();
     });
 
     it('should disable submenu when no context declarations exist', () => {
@@ -342,38 +343,26 @@ describe('useNodeContextMenu', () => {
       expect(addContextItem).toBeUndefined();
     });
 
-    it('should disable already applied context in submenu', () => {
-      const contextNode: TreeNode = {
-        id: 'context-node',
-        content: 'My Context',
-        children: [],
-        metadata: { isContextDeclaration: true, contextIcon: 'star' },
-      };
-
-      const nodeWithContext: TreeNode = {
+    it('should show "Add context" again after removing context', () => {
+      // This tests the flow: node has context -> remove context -> "Add context" shows again
+      const nodeWithoutContext: TreeNode = {
         ...mockNode,
-        metadata: { appliedContextId: 'context-node' },
+        metadata: {}, // No applied context
       };
 
       store.setState({
-        nodes: {
-          'test-node': nodeWithContext,
-          'context-node': contextNode,
-        },
-        ancestorRegistry: {
-          'test-node': [],
-          'context-node': [],
-        },
+        nodes: { 'test-node': nodeWithoutContext },
         contextDeclarations: [
-          { nodeId: 'context-node', content: 'My Context', icon: 'star' },
+          { nodeId: 'some-context', content: 'Some Context', icon: 'star' },
         ],
       });
 
-      const { result } = renderHook(() => useNodeContextMenu(nodeWithContext), { wrapper });
+      const { result } = renderHook(() => useNodeContextMenu(nodeWithoutContext), { wrapper });
 
-      const changeContextItem = result.current.contextMenuItems.find(item => item.label === 'Change context');
-      const contextSubmenuItem = changeContextItem?.submenu?.find(item => item.label === 'My Context');
-      expect(contextSubmenuItem?.disabled).toBe(true);
+      const addContextItem = result.current.contextMenuItems.find(item => item.label === 'Add context');
+      const removeContextItem = result.current.contextMenuItems.find(item => item.label === 'Remove context');
+      expect(addContextItem).toBeDefined();
+      expect(removeContextItem).toBeUndefined();
     });
   });
 
