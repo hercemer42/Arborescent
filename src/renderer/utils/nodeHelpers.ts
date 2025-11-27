@@ -1,9 +1,6 @@
 import { TreeNode } from '../../shared/types';
 import { AncestorRegistry } from './ancestry';
-import rfdc from 'rfdc';
 import { v4 as uuidv4 } from 'uuid';
-
-const deepClone = rfdc();
 
 export function updateNodeMetadata(
   nodes: Record<string, TreeNode>,
@@ -307,7 +304,7 @@ function cloneNodeTreeRecursive(
 
   // Clone with new ID and updated children references
   const clonedNode: TreeNode = {
-    ...deepClone(node),
+    ...structuredClone(node),
     id: newId,
     children: node.children.map((childId) => idMapping[childId] || childId),
   };
