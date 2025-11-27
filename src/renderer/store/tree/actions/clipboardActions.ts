@@ -264,7 +264,7 @@ export const createClipboardActions = (
           targetParentId,
           () => {
             const currentState = get();
-            return { nodes: currentState.nodes, rootNodeId: currentState.rootNodeId };
+            return { nodes: currentState.nodes, rootNodeId: currentState.rootNodeId, ancestorRegistry: currentState.ancestorRegistry };
           },
           (partial) => set(partial as Partial<StoreState>),
           triggerAutosave,
@@ -295,7 +295,7 @@ export const createClipboardActions = (
       targetParentId,
       () => {
         const currentState = get();
-        return { nodes: currentState.nodes, rootNodeId: currentState.rootNodeId };
+        return { nodes: currentState.nodes, rootNodeId: currentState.rootNodeId, ancestorRegistry: currentState.ancestorRegistry };
       },
       (partial) => set(partial as Partial<StoreState>),
       triggerAutosave

@@ -1,6 +1,6 @@
 import { BaseCommand } from './Command';
 import { TreeNode } from '../../../../shared/types';
-import { buildAncestorRegistry } from '../../../utils/ancestry';
+import { removeNodeFromRegistry, addNodesToRegistry, buildAncestorRegistry, AncestorRegistry } from '../../../services/ancestry';
 import { getAllDescendants, captureNodePosition } from '../../../utils/nodeHelpers';
 
 /**
@@ -90,15 +90,25 @@ export class AcceptFeedbackCommand extends BaseCommand {
     }
 
     const updatedRootNodeId = this.snapshot.wasRootNode ? this.newRootNodeId : state.rootNodeId;
-    const newAncestorRegistry = buildAncestorRegistry(updatedRootNodeId, mergedNodesMap);
 
     // Collect new node IDs for fade effect
     const newNodeIds = [this.newRootNodeId, ...getAllDescendants(this.newRootNodeId, this.newNodesMap)];
 
+    // For ancestor registry: if replacing root, rebuild; otherwise incremental
+    let newAncestorRegistry: AncestorRegistry;
+    if (this.snapshot.wasRootNode) {
+      // Root node changed, need full rebuild
+      newAncestorRegistry = buildAncestorRegistry(updatedRootNodeId, mergedNodesMap);
+    } else {
+      // Incremental: remove old node subtree, add new node subtree
+      let registry = removeNodeFromRegistry(state.ancestorRegistry, this.collaboratingNodeId, state.nodes);
+      newAncestorRegistry = addNodesToRegistry(registry, [this.newRootNodeId], parentId, mergedNodesMap);
+    }
+
     this.setState({
       nodes: mergedNodesMap,
-      rootNodeId: updatedRootNodeId,
       ancestorRegistry: newAncestorRegistry,
+      rootNodeId: updatedRootNodeId,
       collaboratingNodeId: null,
       feedbackFadingNodeIds: new Set(newNodeIds),
       activeNodeId: this.newRootNodeId,
@@ -143,12 +153,22 @@ export class AcceptFeedbackCommand extends BaseCommand {
     const restoredRootNodeId = this.snapshot.wasRootNode
       ? this.snapshot.collaboratingNodeId
       : state.rootNodeId;
-    const newAncestorRegistry = buildAncestorRegistry(restoredRootNodeId, restoredNodesMap);
+
+    // For ancestor registry: if restoring root, rebuild; otherwise incremental
+    let newAncestorRegistry: AncestorRegistry;
+    if (this.snapshot.wasRootNode) {
+      // Root node changed, need full rebuild
+      newAncestorRegistry = buildAncestorRegistry(restoredRootNodeId, restoredNodesMap);
+    } else {
+      // Incremental: remove new node subtree, add old node subtree back
+      let registry = removeNodeFromRegistry(state.ancestorRegistry, this.newRootNodeId, this.newNodesMap);
+      newAncestorRegistry = addNodesToRegistry(registry, [this.snapshot.collaboratingNodeId], this.snapshot.parentId, restoredNodesMap);
+    }
 
     this.setState({
       nodes: restoredNodesMap,
-      rootNodeId: restoredRootNodeId,
       ancestorRegistry: newAncestorRegistry,
+      rootNodeId: restoredRootNodeId,
       collaboratingNodeId: null,
       feedbackFadingNodeIds: new Set(),
       activeNodeId: this.snapshot.collaboratingNodeId,

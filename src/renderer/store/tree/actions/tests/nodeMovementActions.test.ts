@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { createNodeMovementActions } from '../nodeMovementActions';
 import type { TreeNode } from '@shared/types';
-import type { AncestorRegistry } from '../../../../utils/ancestry';
+import type { AncestorRegistry } from '../../../../services/ancestry';
 import type { VisualEffectsActions } from '../visualEffectsActions';
 import type { NavigationActions } from '../navigationActions';
 

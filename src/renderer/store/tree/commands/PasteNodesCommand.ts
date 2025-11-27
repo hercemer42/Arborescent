@@ -1,6 +1,6 @@
 import { BaseCommand } from './Command';
 import { TreeNode } from '../../../../shared/types';
-import { buildAncestorRegistry } from '../../../utils/ancestry';
+import { addNodesToRegistry, removeNodeFromRegistry, AncestorRegistry } from '../../../services/ancestry';
 import { v4 as uuidv4 } from 'uuid';
 
 /**
@@ -24,7 +24,7 @@ export class PasteNodesCommand extends BaseCommand {
     private parsedRootNodes: TreeNode[],
     private parsedAllNodes: Record<string, TreeNode>,
     private targetParentId: string,
-    private getState: () => { nodes: Record<string, TreeNode>; rootNodeId: string },
+    private getState: () => { nodes: Record<string, TreeNode>; rootNodeId: string; ancestorRegistry: AncestorRegistry },
     private setState: (partial: {
       nodes?: Record<string, TreeNode>;
       ancestorRegistry?: Record<string, string[]>;
@@ -76,7 +76,7 @@ export class PasteNodesCommand extends BaseCommand {
   }
 
   execute(): void {
-    const { nodes, rootNodeId } = this.getState();
+    const { nodes, ancestorRegistry } = this.getState();
     const parent = nodes[this.targetParentId];
     if (!parent) return;
 
@@ -91,7 +91,13 @@ export class PasteNodesCommand extends BaseCommand {
       children: updatedChildren,
     };
 
-    const newAncestorRegistry = buildAncestorRegistry(rootNodeId, updatedNodes);
+    // Incremental update: add pasted nodes to registry
+    const newAncestorRegistry = addNodesToRegistry(
+      ancestorRegistry,
+      this.rootNodeIds,
+      this.targetParentId,
+      updatedNodes
+    );
 
     // Select the first pasted root node
     const firstPastedId = this.rootNodeIds[0];
@@ -107,9 +113,16 @@ export class PasteNodesCommand extends BaseCommand {
   }
 
   undo(): void {
-    const { nodes, rootNodeId } = this.getState();
+    const { nodes, ancestorRegistry } = this.getState();
     const parent = nodes[this.targetParentId];
     if (!parent) return;
+
+    // Incremental update: remove pasted nodes from registry
+    // We need to remove each root node and its descendants
+    let newAncestorRegistry = ancestorRegistry;
+    for (const rootId of this.rootNodeIds) {
+      newAncestorRegistry = removeNodeFromRegistry(newAncestorRegistry, rootId, this.remappedNodes);
+    }
 
     // Remove all pasted nodes
     const updatedNodes = { ...nodes };
@@ -126,8 +139,6 @@ export class PasteNodesCommand extends BaseCommand {
       ...parent,
       children: updatedChildren,
     };
-
-    const newAncestorRegistry = buildAncestorRegistry(rootNodeId, updatedNodes);
 
     this.setState({
       nodes: updatedNodes,

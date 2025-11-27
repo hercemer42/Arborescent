@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import { useActiveTreeStore } from '../../../store/tree/TreeStoreContext';
-import { isDescendant as checkIsDescendant } from '../../../utils/ancestry';
+import { isDescendant as checkIsDescendant } from '../../../services/ancestry';
 
 export function useNodeToggle(nodeId: string, expanded: boolean, contentLength: number) {
   const store = useActiveTreeStore();

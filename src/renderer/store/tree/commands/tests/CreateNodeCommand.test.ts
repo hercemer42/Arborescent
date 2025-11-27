@@ -1,10 +1,12 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { CreateNodeCommand } from '../CreateNodeCommand';
 import { TreeNode } from '../../../../../shared/types';
+import { AncestorRegistry } from '../../../../services/ancestry';
 
 describe('CreateNodeCommand', () => {
   let nodes: Record<string, TreeNode>;
   let rootNodeId: string;
+  let ancestorRegistry: AncestorRegistry;
   let getState: ReturnType<typeof vi.fn>;
   let setState: ReturnType<typeof vi.fn>;
   let triggerAutosave: ReturnType<typeof vi.fn>;
@@ -32,9 +34,16 @@ describe('CreateNodeCommand', () => {
       },
     };
 
-    getState = vi.fn(() => ({ nodes, rootNodeId }));
+    ancestorRegistry = {
+      root: [],
+      child1: ['root'],
+      child2: ['root'],
+    };
+
+    getState = vi.fn(() => ({ nodes, rootNodeId, ancestorRegistry }));
     setState = vi.fn((partial) => {
       if (partial.nodes) nodes = partial.nodes;
+      if (partial.ancestorRegistry) ancestorRegistry = partial.ancestorRegistry;
     });
     triggerAutosave = vi.fn();
   });

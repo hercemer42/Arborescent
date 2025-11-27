@@ -1,6 +1,6 @@
 import { BaseCommand } from './Command';
 import { TreeNode } from '../../../../shared/types';
-import { buildAncestorRegistry } from '../../../utils/ancestry';
+import { removeNodeFromRegistry, addNodesToRegistry, AncestorRegistry } from '../../../services/ancestry';
 
 /**
  * Captures a node and all its descendants for restoration
@@ -14,12 +14,12 @@ interface DeletedNodeSnapshot {
 type StateGetter = () => {
   nodes: Record<string, TreeNode>;
   rootNodeId: string;
-  ancestorRegistry: Record<string, string[]>;
+  ancestorRegistry: AncestorRegistry;
 };
 
 type StateSetter = (partial: {
   nodes?: Record<string, TreeNode>;
-  ancestorRegistry?: Record<string, string[]>;
+  ancestorRegistry?: AncestorRegistry;
   activeNodeId?: string;
   cursorPosition?: number;
   multiSelectedNodeIds?: Set<string>;
@@ -29,7 +29,7 @@ type FindPreviousNodeFn = (
   nodeId: string,
   nodes: Record<string, TreeNode>,
   rootNodeId: string,
-  ancestorRegistry: Record<string, string[]>
+  ancestorRegistry: AncestorRegistry
 ) => string | null;
 
 /**
@@ -57,18 +57,37 @@ export class MultiNodeDeletionCommand extends BaseCommand {
     this.captureSnapshots(nodes, rootNodeId, ancestorRegistry);
 
     const nextNodeId = this.findNextSelection(nodes, rootNodeId, ancestorRegistry);
+
+    // Incremental update: remove each node and its descendants from registry
+    let newAncestorRegistry = ancestorRegistry;
+    for (const nodeId of this.nodeIds) {
+      newAncestorRegistry = removeNodeFromRegistry(newAncestorRegistry, nodeId, nodes);
+    }
+
     const updatedNodes = this.deleteNodes(nodes);
-    const newAncestorRegistry = buildAncestorRegistry(rootNodeId, updatedNodes);
 
     this.updateState(updatedNodes, newAncestorRegistry, nextNodeId, rootNodeId);
     this.triggerAutosave?.();
   }
 
   undo(): void {
-    const { nodes, rootNodeId } = this.getState();
+    const { nodes, rootNodeId, ancestorRegistry } = this.getState();
 
     const updatedNodes = this.restoreNodes(nodes);
-    const newAncestorRegistry = buildAncestorRegistry(rootNodeId, updatedNodes);
+
+    // Incremental update: add each restored node and its descendants back to registry
+    // Group nodes by parent for efficient batch addition
+    const nodesByParent = new Map<string, string[]>();
+    for (const [nodeId, snapshot] of this.snapshots) {
+      const existing = nodesByParent.get(snapshot.parentId) || [];
+      existing.push(nodeId);
+      nodesByParent.set(snapshot.parentId, existing);
+    }
+
+    let newAncestorRegistry = ancestorRegistry;
+    for (const [parentId, nodeIds] of nodesByParent) {
+      newAncestorRegistry = addNodesToRegistry(newAncestorRegistry, nodeIds, parentId, updatedNodes);
+    }
 
     this.updateStateAfterRestore(updatedNodes, newAncestorRegistry);
     this.triggerAutosave?.();
@@ -86,7 +105,7 @@ export class MultiNodeDeletionCommand extends BaseCommand {
   private captureSnapshots(
     nodes: Record<string, TreeNode>,
     rootNodeId: string,
-    ancestorRegistry: Record<string, string[]>
+    ancestorRegistry: AncestorRegistry
   ): void {
     for (const nodeId of this.nodeIds) {
       const node = nodes[nodeId];
@@ -125,7 +144,7 @@ export class MultiNodeDeletionCommand extends BaseCommand {
   private findNextSelection(
     nodes: Record<string, TreeNode>,
     rootNodeId: string,
-    ancestorRegistry: Record<string, string[]>
+    ancestorRegistry: AncestorRegistry
   ): string | null {
     const firstNodeId = this.nodeIds[0];
     return this.findPreviousNode(firstNodeId, nodes, rootNodeId, ancestorRegistry);
@@ -165,7 +184,7 @@ export class MultiNodeDeletionCommand extends BaseCommand {
 
   private updateState(
     nodes: Record<string, TreeNode>,
-    ancestorRegistry: Record<string, string[]>,
+    ancestorRegistry: AncestorRegistry,
     nextNodeId: string | null,
     rootNodeId: string
   ): void {
@@ -216,7 +235,7 @@ export class MultiNodeDeletionCommand extends BaseCommand {
 
   private updateStateAfterRestore(
     nodes: Record<string, TreeNode>,
-    ancestorRegistry: Record<string, string[]>
+    ancestorRegistry: AncestorRegistry
   ): void {
     const firstNodeId = this.nodeIds[0];
     const firstSnapshot = this.snapshots.get(firstNodeId);

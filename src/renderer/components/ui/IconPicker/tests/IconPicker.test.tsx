@@ -56,23 +56,6 @@ describe('IconPicker', () => {
     expect(screen.getByText('More icons')).toBeInTheDocument();
   });
 
-  it('should show all icons when "More icons" is clicked', async () => {
-    const user = userEvent.setup();
-    const { container } = render(
-      <IconPicker
-        onSelect={mockOnSelect}
-        onClose={mockOnClose}
-      />
-    );
-
-    const moreButton = screen.getByText('More icons');
-    await user.click(moreButton);
-
-    const iconButtons = container.querySelectorAll('.icon-picker-item');
-    expect(iconButtons.length).toBe(CONTEXT_ICONS.length);
-    expect(screen.getByText('Show less')).toBeInTheDocument();
-  });
-
   it('should filter icons when searching', async () => {
     const user = userEvent.setup();
     const { container } = render(

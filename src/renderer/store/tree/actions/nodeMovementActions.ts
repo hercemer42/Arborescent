@@ -1,5 +1,5 @@
 import { TreeNode } from '../../../../shared/types';
-import { AncestorRegistry } from '../../../utils/ancestry';
+import { AncestorRegistry } from '../../../services/ancestry';
 import { VisualEffectsActions } from './visualEffectsActions';
 import { NavigationActions } from './navigationActions';
 import { MoveNodeCommand } from '../commands/MoveNodeCommand';

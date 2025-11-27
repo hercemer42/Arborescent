@@ -1,5 +1,5 @@
 import { TreeNode } from '../../../../shared/types';
-import { AncestorRegistry } from '../../../utils/ancestry';
+import { AncestorRegistry } from '../../../services/ancestry';
 import { getAllDescendants, getVisibleNodesInOrder } from '../../../utils/nodeHelpers';
 
 export interface SelectionActions {

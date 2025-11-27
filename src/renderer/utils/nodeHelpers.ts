@@ -1,5 +1,5 @@
 import { TreeNode } from '../../shared/types';
-import { AncestorRegistry } from './ancestry';
+import { AncestorRegistry } from '../services/ancestry';
 import { v4 as uuidv4 } from 'uuid';
 
 /**

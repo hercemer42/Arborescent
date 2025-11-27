@@ -1,6 +1,6 @@
 import { BaseCommand } from './Command';
 import { TreeNode } from '../../../../shared/types';
-import { buildAncestorRegistry } from '../../../utils/ancestry';
+import { addNodeToRegistry, removeNodeFromRegistry, AncestorRegistry } from '../../../services/ancestry';
 import { createTreeNode } from '../../../utils/nodeHelpers';
 
 /**
@@ -12,10 +12,14 @@ export class CreateNodeCommand extends BaseCommand {
     private parentId: string,
     private position: number,
     private initialContent: string,
-    private getState: () => { nodes: Record<string, TreeNode>; rootNodeId: string },
+    private getState: () => {
+      nodes: Record<string, TreeNode>;
+      rootNodeId: string;
+      ancestorRegistry: AncestorRegistry;
+    },
     private setState: (partial: {
       nodes?: Record<string, TreeNode>;
-      ancestorRegistry?: Record<string, string[]>;
+      ancestorRegistry?: AncestorRegistry;
       activeNodeId?: string;
       cursorPosition?: number;
     }) => void,
@@ -26,7 +30,7 @@ export class CreateNodeCommand extends BaseCommand {
   }
 
   execute(): void {
-    const { nodes, rootNodeId } = this.getState();
+    const { nodes, ancestorRegistry } = this.getState();
     const parent = nodes[this.parentId];
     if (!parent) return;
 
@@ -49,7 +53,8 @@ export class CreateNodeCommand extends BaseCommand {
       },
     };
 
-    const newAncestorRegistry = buildAncestorRegistry(rootNodeId, updatedNodes);
+    // Incremental update: just add the new node
+    const newAncestorRegistry = addNodeToRegistry(ancestorRegistry, this.newNodeId, this.parentId);
 
     this.setState({
       nodes: updatedNodes,
@@ -62,7 +67,7 @@ export class CreateNodeCommand extends BaseCommand {
   }
 
   undo(): void {
-    const { nodes, rootNodeId } = this.getState();
+    const { nodes, ancestorRegistry } = this.getState();
     const parent = nodes[this.parentId];
     if (!parent) return;
 
@@ -78,7 +83,8 @@ export class CreateNodeCommand extends BaseCommand {
       children: updatedChildren,
     };
 
-    const newAncestorRegistry = buildAncestorRegistry(rootNodeId, updatedNodes);
+    // Incremental update: remove the node (no descendants for a newly created node)
+    const newAncestorRegistry = removeNodeFromRegistry(ancestorRegistry, this.newNodeId, nodes);
 
     // Place cursor at end of parent's content
     const cursorPosition = updatedNodes[this.parentId].content.length;

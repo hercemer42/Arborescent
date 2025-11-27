@@ -1,6 +1,6 @@
 import { TreeNode, NodeStatus } from '../../../../shared/types';
 import { updateNodeMetadata } from '../../../utils/nodeHelpers';
-import { AncestorRegistry } from '../../../utils/ancestry';
+import { AncestorRegistry } from '../../../services/ancestry';
 import { v4 as uuidv4 } from 'uuid';
 import { ContentEditCommand } from '../commands/ContentEditCommand';
 import { ToggleStatusCommand } from '../commands/ToggleStatusCommand';
@@ -176,7 +176,7 @@ export const createNodeActions = (
       '',
       () => {
         const currentState = get() as StoreState;
-        return { nodes: currentState.nodes, rootNodeId: currentState.rootNodeId };
+        return { nodes: currentState.nodes, rootNodeId: currentState.rootNodeId, ancestorRegistry: currentState.ancestorRegistry };
       },
       (partial) => set(partial as Partial<StoreState>),
       triggerAutosave

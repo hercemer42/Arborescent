@@ -1,6 +1,6 @@
 import { BaseCommand } from './Command';
 import { TreeNode } from '../../../../shared/types';
-import { buildAncestorRegistry } from '../../../utils/ancestry';
+import { moveNodeInRegistry, AncestorRegistry } from '../../../services/ancestry';
 
 /**
  * Command for moving a node to a new parent/position
@@ -17,11 +17,11 @@ export class MoveNodeCommand extends BaseCommand {
     private getState: () => {
       nodes: Record<string, TreeNode>;
       rootNodeId: string;
-      ancestorRegistry: Record<string, string[]>;
+      ancestorRegistry: AncestorRegistry;
     },
     private setState: (partial: {
       nodes?: Record<string, TreeNode>;
-      ancestorRegistry?: Record<string, string[]>;
+      ancestorRegistry?: AncestorRegistry;
       activeNodeId?: string;
       cursorPosition?: number;
     }) => void,
@@ -65,7 +65,13 @@ export class MoveNodeCommand extends BaseCommand {
       children: newChildren,
     };
 
-    const newAncestorRegistry = buildAncestorRegistry(rootNodeId, updatedNodes);
+    // Incremental update: update ancestors for moved node and descendants
+    const newAncestorRegistry = moveNodeInRegistry(
+      ancestorRegistry,
+      this.nodeId,
+      this.newParentId,
+      updatedNodes
+    );
 
     // Select the moved node and place cursor at end of its content
     const movedNode = updatedNodes[this.nodeId];
@@ -84,7 +90,7 @@ export class MoveNodeCommand extends BaseCommand {
   undo(): void {
     if (this.oldParentId === null || this.oldPosition === -1) return;
 
-    const { nodes, rootNodeId } = this.getState();
+    const { nodes, ancestorRegistry } = this.getState();
 
     // Move back to old position
     const updatedNodes = { ...nodes };
@@ -110,7 +116,13 @@ export class MoveNodeCommand extends BaseCommand {
       children: oldChildren,
     };
 
-    const newAncestorRegistry = buildAncestorRegistry(rootNodeId, updatedNodes);
+    // Incremental update: update ancestors for moved node and descendants
+    const newAncestorRegistry = moveNodeInRegistry(
+      ancestorRegistry,
+      this.nodeId,
+      this.oldParentId,
+      updatedNodes
+    );
 
     // Select the moved node and place cursor at end of its content
     const movedNode = updatedNodes[this.nodeId];

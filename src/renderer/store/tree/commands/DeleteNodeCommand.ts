@@ -1,6 +1,6 @@
 import { BaseCommand } from './Command';
 import { TreeNode } from '../../../../shared/types';
-import { buildAncestorRegistry } from '../../../utils/ancestry';
+import { removeNodeFromRegistry, addNodesToRegistry, AncestorRegistry } from '../../../services/ancestry';
 
 /**
  * Captures a node and all its descendants for restoration
@@ -78,7 +78,8 @@ export class DeleteNodeCommand extends BaseCommand {
       children: parent.children.filter(id => id !== this.nodeId),
     };
 
-    const newAncestorRegistry = buildAncestorRegistry(rootNodeId, updatedNodes);
+    // Incremental update: remove node and descendants
+    const newAncestorRegistry = removeNodeFromRegistry(ancestorRegistry, this.nodeId, nodes);
 
     const selectedNode = updatedNodes[nextNodeId || parentId];
     const cursorPosition = selectedNode ? selectedNode.content.length : 0;
@@ -96,7 +97,7 @@ export class DeleteNodeCommand extends BaseCommand {
   undo(): void {
     if (!this.snapshot) return;
 
-    const { nodes, rootNodeId } = this.getState();
+    const { nodes, ancestorRegistry } = this.getState();
     const { parentId, position } = this.snapshot;
     const parent = nodes[parentId];
     if (!parent) return;
@@ -121,7 +122,13 @@ export class DeleteNodeCommand extends BaseCommand {
       children: updatedChildren,
     };
 
-    const newAncestorRegistry = buildAncestorRegistry(rootNodeId, updatedNodes);
+    // Incremental update: add node and descendants back
+    const newAncestorRegistry = addNodesToRegistry(
+      ancestorRegistry,
+      [this.nodeId],
+      parentId,
+      updatedNodes
+    );
 
     // Place cursor at end of restored node's content
     const cursorPosition = this.snapshot.node.content.length;

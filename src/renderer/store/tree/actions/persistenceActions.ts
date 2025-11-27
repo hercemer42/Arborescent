@@ -1,6 +1,6 @@
 import { TreeNode, NodeStatus } from '../../../../shared/types';
 import { StorageService } from '../../../../shared/interfaces';
-import { buildAncestorRegistry, AncestorRegistry } from '../../../utils/ancestry';
+import { updateAncestorRegistry, AncestorRegistry } from '../../../services/ancestry';
 import { createArboFile } from '../../../utils/document';
 import { getContextDeclarations } from '../../../utils/nodeHelpers';
 import { ContextDeclarationInfo } from '../treeStore';
@@ -39,8 +39,7 @@ export const createPersistenceActions = (
   let autosaveTimeout: ReturnType<typeof setTimeout> | null = null;
 
   function loadDoc(nodes: Record<string, TreeNode>, rootNodeId: string): void {
-    const ancestorRegistry = buildAncestorRegistry(rootNodeId, nodes);
-    set({ nodes, rootNodeId, ancestorRegistry });
+    set({ ...updateAncestorRegistry(rootNodeId, nodes), rootNodeId });
   }
 
   async function performSave(path: string, fileMeta?: { created: string; author: string }): Promise<void> {
@@ -79,13 +78,11 @@ export const createPersistenceActions = (
       };
     }
 
-    const ancestorRegistry = buildAncestorRegistry(data.rootNodeId, migratedNodes);
     const contextDeclarations = getContextDeclarations(migratedNodes);
 
     set({
-      nodes: migratedNodes,
+      ...updateAncestorRegistry(data.rootNodeId, migratedNodes),
       rootNodeId: data.rootNodeId,
-      ancestorRegistry,
       currentFilePath: path,
       fileMeta: { created: data.created, author: data.author },
       contextDeclarations,
