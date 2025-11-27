@@ -32,7 +32,8 @@ export interface TreeState {
   rememberedVisualX: number | null;
   currentFilePath: string | null;
   fileMeta: { created: string; author: string } | null;
-  flashingNode: { nodeId: string; intensity: 'light' | 'medium' } | null;
+  flashingNodeIds: Set<string>;
+  flashingIntensity: 'light' | 'medium';
   scrollToNodeId: string | null;
   deletingNodeIds: Set<string>; // Nodes being animated out before deletion
   deleteAnimationCallback: (() => void) | null; // Callback to execute when delete animation completes
@@ -88,7 +89,8 @@ export function createTreeStore(treeType: TreeType = 'workspace') {
       rememberedVisualX: null,
       currentFilePath: null,
       fileMeta: null,
-      flashingNode: null,
+      flashingNodeIds: new Set(),
+      flashingIntensity: 'light',
       scrollToNodeId: null,
       deletingNodeIds: new Set(),
       deleteAnimationCallback: null,

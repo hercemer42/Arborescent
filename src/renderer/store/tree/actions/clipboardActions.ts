@@ -1,6 +1,6 @@
 import { TreeNode } from '../../../../shared/types';
 import { exportNodeAsMarkdown, exportMultipleNodesAsMarkdown, parseMarkdown } from '../../../utils/markdown';
-import { findPreviousNode, cloneNodesWithNewIds } from '../../../utils/nodeHelpers';
+import { findPreviousNode, cloneNodesWithNewIds, sortNodeIdsByTreeOrder } from '../../../utils/nodeHelpers';
 import { CutMultipleNodesCommand } from '../commands/CutMultipleNodesCommand';
 import { DeleteMultipleNodesCommand } from '../commands/DeleteMultipleNodesCommand';
 import { PasteNodesCommand } from '../commands/PasteNodesCommand';
@@ -85,10 +85,11 @@ type SelectionResult =
 
 /**
  * Get the current selection - either multi-selected nodes or single active node.
- * For multi-selection, filters to root-level nodes only (removes descendants).
+ * For multi-selection, filters to root-level nodes only (removes descendants)
+ * and sorts by tree order.
  */
 function getSelection(state: StoreState): SelectionResult {
-  const { activeNodeId, nodes, multiSelectedNodeIds, ancestorRegistry } = state;
+  const { activeNodeId, nodes, multiSelectedNodeIds, ancestorRegistry, rootNodeId } = state;
 
   if (multiSelectedNodeIds.size > 0) {
     // Filter to only root-level selections (exclude nodes whose ancestors are also selected)
@@ -96,7 +97,9 @@ function getSelection(state: StoreState): SelectionResult {
       Array.from(multiSelectedNodeIds),
       ancestorRegistry
     );
-    return { type: 'multi', nodeIds: rootLevelIds };
+    // Sort by tree order (not selection order)
+    const sortedIds = sortNodeIdsByTreeOrder(rootLevelIds, rootNodeId, nodes, ancestorRegistry);
+    return { type: 'multi', nodeIds: sortedIds };
   }
 
   if (activeNodeId && nodes[activeNodeId]) {
@@ -131,10 +134,7 @@ function flashNodes(
   nodeIds: string | string[],
   visualEffects: VisualEffectsActions
 ): void {
-  const ids = Array.isArray(nodeIds) ? nodeIds : [nodeIds];
-  for (const nodeId of ids) {
-    visualEffects.flashNode(nodeId, 'light');
-  }
+  visualEffects.flashNode(nodeIds, 'light');
 }
 
 /**

@@ -9,13 +9,14 @@ interface NodeEffectsResult {
 }
 
 export function useNodeEffects(nodeId: string): NodeEffectsResult {
-  const flashingNode = useStore((state) => state.flashingNode);
+  const flashingNodeIds = useStore((state) => state.flashingNodeIds);
+  const flashingIntensity = useStore((state) => state.flashingIntensity);
   const deletingNodeIds = useStore((state) => state.deletingNodeIds);
   const shouldScrollTo = useStore((state) => state.scrollToNodeId === nodeId);
   const clearDeleteAnimation = useStore((state) => state.actions.clearDeleteAnimation);
   const nodeRef = useRef<HTMLDivElement>(null);
 
-  const flashIntensity = flashingNode?.nodeId === nodeId ? flashingNode.intensity : null;
+  const flashIntensity = flashingNodeIds.has(nodeId) ? flashingIntensity : null;
   const isDeleting = deletingNodeIds.has(nodeId);
 
   useEffect(() => {

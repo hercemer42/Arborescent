@@ -284,7 +284,7 @@ describe('clipboardActions', () => {
 
         await actions.copyNodes();
 
-        expect(mockFlashNode).toHaveBeenCalledWith('node-2', 'light');
+        expect(mockFlashNode).toHaveBeenCalledWith(['node-2'], 'light');
       });
 
       it('should return no-selection when node does not exist', async () => {
@@ -311,9 +311,9 @@ describe('clipboardActions', () => {
 
         await actions.copyNodes();
 
-        expect(mockFlashNode).toHaveBeenCalledWith('node-1', 'light');
-        expect(mockFlashNode).toHaveBeenCalledWith('node-2', 'light');
-        expect(mockFlashNode).toHaveBeenCalledTimes(2);
+        // flashNode is now called once with all node IDs as an array
+        expect(mockFlashNode).toHaveBeenCalledWith(['node-1', 'node-2'], 'light');
+        expect(mockFlashNode).toHaveBeenCalledTimes(1);
       });
     });
 

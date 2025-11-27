@@ -189,6 +189,25 @@ export function getVisibleNodesInOrder(
 }
 
 /**
+ * Sort an array of node IDs by their order in the tree.
+ * Uses depth-first traversal order (parent before children, siblings in order).
+ */
+export function sortNodeIdsByTreeOrder(
+  nodeIds: string[],
+  rootNodeId: string,
+  nodes: Record<string, TreeNode>,
+  ancestorRegistry: Record<string, string[]>
+): string[] {
+  if (nodeIds.length <= 1) return nodeIds;
+
+  const nodeIdSet = new Set(nodeIds);
+  const orderedNodes = getVisibleNodesInOrder(rootNodeId, nodes, ancestorRegistry);
+
+  // Filter to only include the requested node IDs, preserving tree order
+  return orderedNodes.filter(id => nodeIdSet.has(id));
+}
+
+/**
  * Options for creating a tree node
  */
 export interface CreateTreeNodeOptions {

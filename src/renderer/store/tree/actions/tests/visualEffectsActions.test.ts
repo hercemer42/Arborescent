@@ -3,7 +3,8 @@ import { createVisualEffectsActions } from '../visualEffectsActions';
 
 describe('visualEffectsActions', () => {
   type TestState = {
-    flashingNode: { nodeId: string; intensity: 'light' | 'medium' } | null;
+    flashingNodeIds: Set<string>;
+    flashingIntensity: 'light' | 'medium';
     scrollToNodeId: string | null;
     deletingNodeIds: Set<string>;
     deleteAnimationCallback: (() => void) | null;
@@ -14,7 +15,8 @@ describe('visualEffectsActions', () => {
 
   beforeEach(() => {
     state = {
-      flashingNode: null,
+      flashingNodeIds: new Set(),
+      flashingIntensity: 'light',
       scrollToNodeId: null,
       deletingNodeIds: new Set(),
       deleteAnimationCallback: null,
@@ -33,52 +35,66 @@ describe('visualEffectsActions', () => {
   });
 
   describe('flashNode', () => {
-    it('should set flashingNode with light intensity by default', () => {
+    it('should set flashingNodeIds with light intensity by default', () => {
       actions.flashNode('node-1');
 
-      expect(state.flashingNode).toEqual({ nodeId: 'node-1', intensity: 'light' });
+      expect(state.flashingNodeIds.has('node-1')).toBe(true);
+      expect(state.flashingIntensity).toBe('light');
     });
 
-    it('should set flashingNode with medium intensity when specified', () => {
+    it('should set flashingNodeIds with medium intensity when specified', () => {
       actions.flashNode('node-1', 'medium');
 
-      expect(state.flashingNode).toEqual({ nodeId: 'node-1', intensity: 'medium' });
+      expect(state.flashingNodeIds.has('node-1')).toBe(true);
+      expect(state.flashingIntensity).toBe('medium');
     });
 
-    it('should clear flashingNode after timeout', () => {
+    it('should flash multiple nodes at once', () => {
+      actions.flashNode(['node-1', 'node-2', 'node-3']);
+
+      expect(state.flashingNodeIds.has('node-1')).toBe(true);
+      expect(state.flashingNodeIds.has('node-2')).toBe(true);
+      expect(state.flashingNodeIds.has('node-3')).toBe(true);
+      expect(state.flashingNodeIds.size).toBe(3);
+    });
+
+    it('should clear flashingNodeIds after timeout', () => {
       actions.flashNode('node-1');
-      expect(state.flashingNode).toEqual({ nodeId: 'node-1', intensity: 'light' });
+      expect(state.flashingNodeIds.has('node-1')).toBe(true);
 
       vi.advanceTimersByTime(500);
 
-      expect(state.flashingNode).toBe(null);
+      expect(state.flashingNodeIds.size).toBe(0);
     });
 
     it('should allow flashing different nodes in sequence', () => {
       actions.flashNode('node-1');
-      expect(state.flashingNode).toEqual({ nodeId: 'node-1', intensity: 'light' });
+      expect(state.flashingNodeIds.has('node-1')).toBe(true);
 
       vi.advanceTimersByTime(500);
-      expect(state.flashingNode).toBe(null);
+      expect(state.flashingNodeIds.size).toBe(0);
 
       actions.flashNode('node-2', 'medium');
-      expect(state.flashingNode).toEqual({ nodeId: 'node-2', intensity: 'medium' });
+      expect(state.flashingNodeIds.has('node-2')).toBe(true);
+      expect(state.flashingIntensity).toBe('medium');
 
       vi.advanceTimersByTime(500);
-      expect(state.flashingNode).toBe(null);
+      expect(state.flashingNodeIds.size).toBe(0);
     });
 
     it('should override previous flash if called before timeout', () => {
       actions.flashNode('node-1');
-      expect(state.flashingNode).toEqual({ nodeId: 'node-1', intensity: 'light' });
+      expect(state.flashingNodeIds.has('node-1')).toBe(true);
 
       vi.advanceTimersByTime(300);
 
       actions.flashNode('node-2', 'medium');
-      expect(state.flashingNode).toEqual({ nodeId: 'node-2', intensity: 'medium' });
+      expect(state.flashingNodeIds.has('node-2')).toBe(true);
+      expect(state.flashingNodeIds.has('node-1')).toBe(false);
+      expect(state.flashingIntensity).toBe('medium');
 
       vi.advanceTimersByTime(500);
-      expect(state.flashingNode).toBe(null);
+      expect(state.flashingNodeIds.size).toBe(0);
     });
   });
 

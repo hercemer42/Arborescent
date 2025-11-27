@@ -76,12 +76,19 @@ function handleEditingShortcuts(event: KeyboardEvent): void {
     return;
   }
 
-  // Delete node
+  // Delete node - delegate to deleteSelectedNodes which handles multi-selection
   if (matchesHotkey(event, 'actions', 'deleteNode')) {
     event.preventDefault();
     const position = getCursorPosition(element);
     store.actions.setCursorPosition(position);
 
+    // Check if there's a multi-selection
+    if (store.multiSelectedNodeIds && store.multiSelectedNodeIds.size > 0) {
+      store.actions.deleteSelectedNodes();
+      return;
+    }
+
+    // Single node deletion
     const deleted = store.actions.deleteNode(activeNodeId);
     if (!deleted) {
       const confirmed = window.confirm(

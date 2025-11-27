@@ -82,6 +82,29 @@ async function handleUIShortcuts(event: KeyboardEvent): Promise<void> {
     return;
   }
 
+  // Reload application
+  if (matchesHotkey(event, 'file', 'reload')) {
+    event.preventDefault();
+    window.location.reload();
+    return;
+  }
+
+  // Delete node(s) - handles multi-selection when no element is focused
+  if (matchesHotkey(event, 'actions', 'deleteNode')) {
+    const store = getActiveStore();
+    if (!store) return;
+
+    const state = store.getState();
+    // Only handle here if there's a multi-selection (single node delete is handled by editingService)
+    if (state.multiSelectedNodeIds && state.multiSelectedNodeIds.size > 0) {
+      event.preventDefault();
+      state.actions.deleteSelectedNodes();
+      return;
+    }
+    // Let editingService handle single node delete
+    return;
+  }
+
   // Clipboard: Cut
   if (matchesHotkey(event, 'actions', 'cut')) {
     // If text is selected in contenteditable, let browser handle it
