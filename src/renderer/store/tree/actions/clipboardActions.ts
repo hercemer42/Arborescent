@@ -1,6 +1,6 @@
 import { TreeNode } from '../../../../shared/types';
 import { exportNodeAsMarkdown, exportMultipleNodesAsMarkdown, parseMarkdown } from '../../../utils/markdown';
-import { findPreviousNode } from '../../../utils/nodeHelpers';
+import { findPreviousNode, cloneNodesWithNewIds } from '../../../utils/nodeHelpers';
 import { CutMultipleNodesCommand } from '../commands/CutMultipleNodesCommand';
 import { DeleteMultipleNodesCommand } from '../commands/DeleteMultipleNodesCommand';
 import { PasteNodesCommand } from '../commands/PasteNodesCommand';
@@ -9,6 +9,7 @@ import { logger } from '../../../services/logger';
 import { writeToClipboard, readFromClipboard } from '../../../services/clipboardService';
 import { VisualEffectsActions } from './visualEffectsActions';
 import { notifyError } from '../../../services/notification';
+import { useClipboardCacheStore } from '../../clipboard/clipboardCacheStore';
 
 export interface ClipboardActions {
   /**
@@ -53,26 +54,28 @@ type StoreActions = {
 type StoreSetter = (partial: Partial<StoreState>) => void;
 
 /**
- * Get root-level selections from multi-selection.
- * Filters out any nodes that are descendants of other selected nodes.
- */
-function getRootLevelSelections(
-  multiSelectedNodeIds: Set<string>,
-  ancestorRegistry: Record<string, string[]>
-): string[] {
-  const selectedArray = Array.from(multiSelectedNodeIds);
-  return selectedArray.filter((nodeId) => {
-    const ancestors = ancestorRegistry[nodeId] || [];
-    return !ancestors.some((ancestorId) => multiSelectedNodeIds.has(ancestorId));
-  });
-}
-
-/**
  * Check if any nodes in selection have isRoot metadata.
  * Returns true if root node is in the selection (indicates a bug).
  */
 function selectionContainsRoot(nodeIds: string[], nodes: Record<string, TreeNode>): boolean {
   return nodeIds.some((id) => nodes[id]?.metadata.isRoot === true);
+}
+
+/**
+ * Filter a selection to only include "root level" nodes.
+ * Removes any nodes whose ancestor is also in the selection.
+ * This prevents duplicates when exporting/cloning hierarchies.
+ */
+function getRootLevelSelections(
+  nodeIds: string[],
+  ancestorRegistry: Record<string, string[]>
+): string[] {
+  const selectionSet = new Set(nodeIds);
+  return nodeIds.filter((nodeId) => {
+    const ancestors = ancestorRegistry[nodeId] || [];
+    // Keep this node only if none of its ancestors are in the selection
+    return !ancestors.some((ancestorId) => selectionSet.has(ancestorId));
+  });
 }
 
 type SelectionResult =
@@ -82,16 +85,18 @@ type SelectionResult =
 
 /**
  * Get the current selection - either multi-selected nodes or single active node.
- * For multi-selection, filters out descendants of other selected nodes.
+ * For multi-selection, filters to root-level nodes only (removes descendants).
  */
 function getSelection(state: StoreState): SelectionResult {
   const { activeNodeId, nodes, multiSelectedNodeIds, ancestorRegistry } = state;
 
   if (multiSelectedNodeIds.size > 0) {
-    const rootLevelSelections = getRootLevelSelections(multiSelectedNodeIds, ancestorRegistry);
-    if (rootLevelSelections.length > 0) {
-      return { type: 'multi', nodeIds: rootLevelSelections };
-    }
+    // Filter to only root-level selections (exclude nodes whose ancestors are also selected)
+    const rootLevelIds = getRootLevelSelections(
+      Array.from(multiSelectedNodeIds),
+      ancestorRegistry
+    );
+    return { type: 'multi', nodeIds: rootLevelIds };
   }
 
   if (activeNodeId && nodes[activeNodeId]) {
@@ -203,6 +208,9 @@ export const createClipboardActions = (
     const success = await writeToClipboard(markdown, 'ClipboardActions:cut');
     if (!success) return 'no-selection';
 
+    // Cache node IDs for internal paste (nodes looked up at paste time)
+    useClipboardCacheStore.getState().setCache(nodeIds);
+
     if (selection.type === 'multi') {
       executeMultiNodeDelete(selection.nodeIds, CutMultipleNodesCommand);
     } else {
@@ -224,23 +232,62 @@ export const createClipboardActions = (
     const success = await writeToClipboard(markdown, 'ClipboardActions:copy');
     if (!success) return 'no-selection';
 
+    // Cache node IDs for internal paste (nodes looked up at paste time)
     const nodeIds = getNodeIdsFromSelection(selection);
+    useClipboardCacheStore.getState().setCache(nodeIds);
+
     flashNodes(nodeIds, visualEffects);
 
     return 'copied';
   }
 
   async function pasteNodes(): Promise<'pasted' | 'no-content'> {
+    const state = get();
+    const actions = getActions();
+    const targetParentId = state.activeNodeId || state.rootNodeId;
+    if (!targetParentId) return 'no-content';
+
+    // Check if we have cached node IDs from internal copy/cut
+    const cache = useClipboardCacheStore.getState().getCache();
+    if (cache && cache.rootNodeIds.length > 0) {
+      // Clone from current nodes with new IDs (preserves full metadata)
+      const { newRootNodes, newNodesMap } = cloneNodesWithNewIds(
+        cache.rootNodeIds,
+        state.nodes
+      );
+
+      // If cached nodes still exist, use them
+      if (newRootNodes.length > 0) {
+        const command = new PasteNodesCommand(
+          newRootNodes,
+          newNodesMap,
+          targetParentId,
+          () => {
+            const currentState = get();
+            return { nodes: currentState.nodes, rootNodeId: currentState.rootNodeId };
+          },
+          (partial) => set(partial as Partial<StoreState>),
+          triggerAutosave,
+          true // skipPrepare - nodes already have unique IDs from cloneNodesWithNewIds
+        );
+
+        actions.executeCommand(command);
+        flashNodes(command.getPastedRootIds(), visualEffects);
+
+        logger.info(`Pasted ${newRootNodes.length} node(s) from internal cache`, 'ClipboardActions');
+        return 'pasted';
+      }
+
+      // Cached nodes no longer exist, clear cache and fall through to clipboard
+      useClipboardCacheStore.getState().clearCache();
+    }
+
+    // Fall back to parsing system clipboard markdown (external paste)
     const clipboardText = await readFromClipboard('ClipboardActions:paste');
     if (!clipboardText) return 'no-content';
 
     const parsed = parseMarkdown(clipboardText);
     if (parsed.rootNodes.length === 0) return 'no-content';
-
-    const state = get();
-    const actions = getActions();
-    const targetParentId = state.activeNodeId || state.rootNodeId;
-    if (!targetParentId) return 'no-content';
 
     const command = new PasteNodesCommand(
       parsed.rootNodes,
@@ -257,7 +304,7 @@ export const createClipboardActions = (
     actions.executeCommand(command);
     flashNodes(command.getPastedRootIds(), visualEffects);
 
-    logger.info(`Pasted ${parsed.rootNodes.length} node(s) from clipboard`, 'ClipboardActions');
+    logger.info(`Pasted ${parsed.rootNodes.length} node(s) from clipboard markdown`, 'ClipboardActions');
     return 'pasted';
   }
 

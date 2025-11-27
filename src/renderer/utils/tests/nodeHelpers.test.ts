@@ -1,5 +1,11 @@
 import { describe, it, expect } from 'vitest';
-import { updateNodeMetadata, findPreviousNode, findNextNode, createTreeNode } from '../nodeHelpers';
+import {
+  updateNodeMetadata,
+  findPreviousNode,
+  findNextNode,
+  createTreeNode,
+  cloneNodesWithNewIds,
+} from '../nodeHelpers';
 import { TreeNode } from '@shared/types';
 
 describe('updateNodeMetadata', () => {
@@ -326,5 +332,85 @@ describe('createTreeNode', () => {
 
     expect(node2.children).toEqual([]);
     expect(node2.metadata).toEqual({});
+  });
+});
+
+describe('cloneNodesWithNewIds', () => {
+  const createNode = (id: string, children: string[] = [], metadata = {}): TreeNode => ({
+    id,
+    content: `Node ${id}`,
+    children,
+    metadata,
+  });
+
+  it('should generate new UUIDs for all nodes', () => {
+    const cachedNodes = {
+      'original-id': createNode('original-id'),
+    };
+
+    const result = cloneNodesWithNewIds(['original-id'], cachedNodes);
+
+    expect(result.newRootNodes).toHaveLength(1);
+    expect(result.newRootNodes[0].id).not.toBe('original-id');
+    expect(result.newRootNodes[0].id).toMatch(/^[0-9a-f-]{36}$/);
+  });
+
+  it('should update children references to new IDs', () => {
+    const cachedNodes = {
+      parent: createNode('parent', ['child']),
+      child: createNode('child'),
+    };
+
+    const result = cloneNodesWithNewIds(['parent'], cachedNodes);
+
+    const newParent = result.newRootNodes[0];
+    expect(newParent.children).toHaveLength(1);
+    expect(newParent.children[0]).not.toBe('child');
+
+    // The child reference should point to the cloned child
+    const newChildId = newParent.children[0];
+    expect(result.newNodesMap[newChildId]).toBeDefined();
+    expect(result.newNodesMap[newChildId].content).toBe('Node child');
+  });
+
+  it('should preserve all metadata', () => {
+    const cachedNodes = {
+      'node-1': createNode('node-1', [], {
+        status: 'completed',
+        appliedContextId: 'ctx-123',
+        customField: { nested: 'value' },
+      }),
+    };
+
+    const result = cloneNodesWithNewIds(['node-1'], cachedNodes);
+
+    expect(result.newRootNodes[0].metadata).toEqual({
+      status: 'completed',
+      appliedContextId: 'ctx-123',
+      customField: { nested: 'value' },
+    });
+  });
+
+  it('should handle multiple root nodes', () => {
+    const cachedNodes = {
+      'root1': createNode('root1'),
+      'root2': createNode('root2'),
+    };
+
+    const result = cloneNodesWithNewIds(['root1', 'root2'], cachedNodes);
+
+    expect(result.newRootNodes).toHaveLength(2);
+    expect(result.newRootNodes[0].id).not.toBe(result.newRootNodes[1].id);
+  });
+
+  it('should deep clone (not share references)', () => {
+    const cachedNodes = {
+      'node-1': createNode('node-1', [], { nested: { value: 'original' } }),
+    };
+
+    const result = cloneNodesWithNewIds(['node-1'], cachedNodes);
+    (result.newRootNodes[0].metadata.nested as { value: string }).value = 'modified';
+
+    expect((cachedNodes['node-1'].metadata.nested as { value: string }).value).toBe('original');
   });
 });

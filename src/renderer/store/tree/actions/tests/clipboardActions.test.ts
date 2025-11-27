@@ -38,6 +38,25 @@ vi.mock('../../../../services/logger', () => ({
   },
 }));
 
+// Mock clipboard cache store
+type MockCacheType = { rootNodeIds: string[]; timestamp: number } | null;
+let currentMockCache: MockCacheType = null;
+
+vi.mock('../../../clipboard/clipboardCacheStore', () => ({
+  useClipboardCacheStore: {
+    getState: () => ({
+      setCache: vi.fn((rootNodeIds: string[]) => {
+        currentMockCache = { rootNodeIds, timestamp: Date.now() };
+      }),
+      getCache: vi.fn(() => currentMockCache),
+      clearCache: vi.fn(() => {
+        currentMockCache = null;
+      }),
+      hasCache: vi.fn(() => currentMockCache !== null),
+    }),
+  },
+}));
+
 // Mock error notification
 vi.mock('../../../../utils/errorNotification', () => ({
   notifyError: vi.fn(),
@@ -70,6 +89,8 @@ describe('clipboardActions', () => {
 
   beforeEach(() => {
     vi.clearAllMocks();
+    // Clear the clipboard cache for each test
+    currentMockCache = null;
 
     // Setup navigator.clipboard mock
     Object.defineProperty(navigator, 'clipboard', {
@@ -210,16 +231,6 @@ describe('clipboardActions', () => {
         expect(mockClipboard.writeText).toHaveBeenCalled();
       });
 
-      it('should filter out descendant nodes from selection', async () => {
-        // node-3 is a child of node-1, so it should be filtered out
-        state.multiSelectedNodeIds = new Set(['node-1', 'node-3']);
-
-        await actions.cutNodes();
-
-        // Should only export node-1 since node-3 is its descendant
-        expect(mockStartDeleteAnimation).toHaveBeenCalledWith(['node-1'], expect.any(Function));
-      });
-
       it('should use command for multi-selection cut', async () => {
         state.multiSelectedNodeIds = new Set(['node-1', 'node-2']);
 
@@ -295,17 +306,7 @@ describe('clipboardActions', () => {
         expect(mockClipboard.writeText).toHaveBeenCalled();
       });
 
-      it('should filter out descendant nodes from selection', async () => {
-        state.multiSelectedNodeIds = new Set(['node-1', 'node-3']);
-
-        await actions.copyNodes();
-
-        // Should flash only node-1
-        expect(mockFlashNode).toHaveBeenCalledWith('node-1', 'light');
-        expect(mockFlashNode).toHaveBeenCalledTimes(1);
-      });
-
-      it('should flash all root-level selected nodes', async () => {
+      it('should flash all selected nodes', async () => {
         state.multiSelectedNodeIds = new Set(['node-1', 'node-2']);
 
         await actions.copyNodes();
@@ -430,15 +431,6 @@ describe('clipboardActions', () => {
         expect(mockStartDeleteAnimation).toHaveBeenCalled();
       });
 
-      it('should filter out descendant nodes from deletion', () => {
-        state.multiSelectedNodeIds = new Set(['node-1', 'node-3']);
-
-        actions.deleteSelectedNodes();
-
-        // Should only delete node-1 since node-3 is its descendant
-        expect(mockStartDeleteAnimation).toHaveBeenCalledWith(['node-1'], expect.any(Function));
-      });
-
       it('should use command for multi-selection delete', () => {
         state.multiSelectedNodeIds = new Set(['node-1', 'node-2']);
 
@@ -447,7 +439,7 @@ describe('clipboardActions', () => {
         expect(mockExecuteCommand).toHaveBeenCalled();
       });
 
-      it('should start delete animation with all root-level selections', () => {
+      it('should start delete animation with all selections', () => {
         state.multiSelectedNodeIds = new Set(['node-1', 'node-2']);
 
         actions.deleteSelectedNodes();
@@ -457,48 +449,6 @@ describe('clipboardActions', () => {
           expect.any(Function)
         );
       });
-    });
-  });
-
-  describe('getRootLevelSelections helper', () => {
-    it('should return only root-level nodes when descendants are selected', async () => {
-      // node-3 is child of node-1, so selecting both should only operate on node-1
-      state.multiSelectedNodeIds = new Set(['node-1', 'node-3']);
-
-      await actions.copyNodes();
-
-      // The mock exportMultipleNodesAsMarkdown receives only root-level nodes
-      // We can verify by checking that only node-1 was flashed
-      expect(mockFlashNode).toHaveBeenCalledTimes(1);
-      expect(mockFlashNode).toHaveBeenCalledWith('node-1', 'light');
-    });
-
-    it('should keep all nodes when none are descendants of others', async () => {
-      state.multiSelectedNodeIds = new Set(['node-1', 'node-2']);
-
-      await actions.copyNodes();
-
-      expect(mockFlashNode).toHaveBeenCalledTimes(2);
-    });
-
-    it('should handle deeply nested selection', async () => {
-      // Add another level of nesting
-      state.nodes['node-4'] = {
-        id: 'node-4',
-        content: 'Task 4',
-        children: [],
-        metadata: {},
-      };
-      state.nodes['node-3'].children = ['node-4'];
-      state.ancestorRegistry['node-4'] = ['root', 'node-1', 'node-3'];
-
-      // Select node-1, node-3, and node-4 - only node-1 should be kept
-      state.multiSelectedNodeIds = new Set(['node-1', 'node-3', 'node-4']);
-
-      await actions.copyNodes();
-
-      expect(mockFlashNode).toHaveBeenCalledTimes(1);
-      expect(mockFlashNode).toHaveBeenCalledWith('node-1', 'light');
     });
   });
 
@@ -553,6 +503,108 @@ describe('clipboardActions', () => {
       // Any selection containing root should fail entirely
       expect(result).toBe('no-selection');
       expect(mockStartDeleteAnimation).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('dual clipboard mechanism', () => {
+    beforeEach(() => {
+      // Clear the mock cache before each test
+      currentMockCache = null;
+    });
+
+    describe('copy caching', () => {
+      it('should cache nodes when copying', async () => {
+        state.activeNodeId = 'node-1';
+
+        await actions.copyNodes();
+
+        // Cache should have been set
+        expect(currentMockCache).not.toBeNull();
+        expect(currentMockCache?.rootNodeIds).toContain('node-1');
+      });
+
+      it('should cache multi-selection', async () => {
+        state.multiSelectedNodeIds = new Set(['node-1', 'node-2']);
+
+        await actions.copyNodes();
+
+        // Should include all root selections
+        expect(currentMockCache?.rootNodeIds).toContain('node-1');
+        expect(currentMockCache?.rootNodeIds).toContain('node-2');
+      });
+    });
+
+    describe('cut caching', () => {
+      it('should cache node IDs when cutting', async () => {
+        state.activeNodeId = 'node-2';
+
+        await actions.cutNodes();
+
+        expect(currentMockCache).not.toBeNull();
+        expect(currentMockCache?.rootNodeIds).toContain('node-2');
+      });
+    });
+
+    describe('paste from cache', () => {
+      it('should paste from cache when nodes exist', async () => {
+        // Setup cache referencing existing nodes
+        currentMockCache = {
+          rootNodeIds: ['node-1'],
+          timestamp: Date.now(),
+        };
+        state.activeNodeId = 'node-2';
+
+        const result = await actions.pasteNodes();
+
+        expect(result).toBe('pasted');
+        expect(mockExecuteCommand).toHaveBeenCalled();
+        // Should NOT read from system clipboard when cache is available
+        expect(mockClipboard.readText).not.toHaveBeenCalled();
+      });
+
+      it('should fall back to clipboard when cache is empty', async () => {
+        currentMockCache = null;
+        state.activeNodeId = 'node-1';
+        mockClipboard.readText.mockResolvedValueOnce('# External Content');
+
+        const result = await actions.pasteNodes();
+
+        expect(result).toBe('pasted');
+        expect(mockClipboard.readText).toHaveBeenCalled();
+      });
+
+      it('should fall back to clipboard when cached nodes no longer exist', async () => {
+        // Cache references non-existent nodes
+        currentMockCache = {
+          rootNodeIds: ['deleted-node'],
+          timestamp: Date.now(),
+        };
+        state.activeNodeId = 'node-1';
+        mockClipboard.readText.mockResolvedValueOnce('# External Content');
+
+        const result = await actions.pasteNodes();
+
+        expect(result).toBe('pasted');
+        expect(mockClipboard.readText).toHaveBeenCalled();
+      });
+    });
+
+    describe('cache replacement', () => {
+      it('should replace cache on new copy', async () => {
+        // First copy
+        state.activeNodeId = 'node-1';
+        await actions.copyNodes();
+        const firstCache = currentMockCache;
+
+        // Second copy
+        state.activeNodeId = 'node-2';
+        await actions.copyNodes();
+
+        // Cache should have been replaced
+        expect(currentMockCache).not.toBe(firstCache);
+        expect(currentMockCache?.rootNodeIds).toContain('node-2');
+        expect(currentMockCache?.rootNodeIds).not.toContain('node-1');
+      });
     });
   });
 });

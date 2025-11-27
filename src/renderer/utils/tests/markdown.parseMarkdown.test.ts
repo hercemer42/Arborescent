@@ -178,4 +178,16 @@ describe('parseMarkdown', () => {
     expect(rootNodes[0].content).toBe('Failed task');
     expect(rootNodes[0].metadata.status).toBe('failed');
   });
+
+  describe('HTML comments are ignored', () => {
+    it('includes HTML comments in content (no special handling)', () => {
+      // HTML comments are now treated as regular content, not parsed for context
+      const markdown = '# [ ] Task with comment <!-- some:comment -->';
+      const { rootNodes } = parseMarkdown(markdown);
+
+      expect(rootNodes).toHaveLength(1);
+      expect(rootNodes[0].content).toBe('Task with comment <!-- some:comment -->');
+      expect(rootNodes[0].metadata.appliedContextId).toBeUndefined();
+    });
+  });
 });

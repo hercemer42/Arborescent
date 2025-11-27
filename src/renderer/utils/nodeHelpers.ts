@@ -1,5 +1,9 @@
 import { TreeNode } from '../../shared/types';
 import { AncestorRegistry } from './ancestry';
+import rfdc from 'rfdc';
+import { v4 as uuidv4 } from 'uuid';
+
+const deepClone = rfdc();
 
 export function updateNodeMetadata(
   nodes: Record<string, TreeNode>,
@@ -272,4 +276,68 @@ export function getContextDeclarations(
       icon: (node.metadata.contextIcon as string) || 'lightbulb',
     }))
     .sort((a, b) => a.content.localeCompare(b.content));
+}
+
+/**
+ * Clone a node and all its descendants with new UUIDs.
+ * Recursively traverses from the given node, creating deep clones with fresh IDs.
+ *
+ * @param nodeId - The root node ID to clone from
+ * @param nodes - Map of all nodes in the tree
+ * @param idMapping - Map to track old ID -> new ID mappings (mutated)
+ * @param newNodesMap - Map to collect cloned nodes (mutated)
+ */
+function cloneNodeTreeRecursive(
+  nodeId: string,
+  nodes: Record<string, TreeNode>,
+  idMapping: Record<string, string>,
+  newNodesMap: Record<string, TreeNode>
+): void {
+  const node = nodes[nodeId];
+  if (!node || idMapping[nodeId]) return; // Skip if not found or already processed
+
+  // Generate new ID
+  const newId = uuidv4();
+  idMapping[nodeId] = newId;
+
+  // Recursively process children first so their IDs are in the mapping
+  for (const childId of node.children) {
+    cloneNodeTreeRecursive(childId, nodes, idMapping, newNodesMap);
+  }
+
+  // Clone with new ID and updated children references
+  const clonedNode: TreeNode = {
+    ...deepClone(node),
+    id: newId,
+    children: node.children.map((childId) => idMapping[childId] || childId),
+  };
+  newNodesMap[newId] = clonedNode;
+}
+
+/**
+ * Clone multiple node trees with new UUIDs for pasting.
+ * Traverses from each root node, creating deep clones with fresh IDs.
+ *
+ * @param rootNodeIds - Array of root node IDs to clone
+ * @param nodes - Map of all nodes in the tree
+ * @returns Object with new root nodes and a map of all cloned nodes
+ */
+export function cloneNodesWithNewIds(
+  rootNodeIds: string[],
+  nodes: Record<string, TreeNode>
+): { newRootNodes: TreeNode[]; newNodesMap: Record<string, TreeNode> } {
+  const idMapping: Record<string, string> = {};
+  const newNodesMap: Record<string, TreeNode> = {};
+
+  // Clone each root and its descendants
+  for (const rootId of rootNodeIds) {
+    cloneNodeTreeRecursive(rootId, nodes, idMapping, newNodesMap);
+  }
+
+  // Get new root nodes
+  const newRootNodes = rootNodeIds
+    .map((oldId) => newNodesMap[idMapping[oldId]])
+    .filter(Boolean);
+
+  return { newRootNodes, newNodesMap };
 }

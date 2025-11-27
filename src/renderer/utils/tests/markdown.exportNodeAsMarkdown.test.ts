@@ -168,6 +168,22 @@ describe('exportNodeAsMarkdown', () => {
 
     expect(result).toBe('');
   });
+
+  it('does not include context metadata in export (metadata preserved via clipboard cache)', () => {
+    const node: TreeNode = {
+      id: '1',
+      content: 'Task with context',
+      children: [],
+      metadata: { status: 'pending', expanded: true, deleted: false, appliedContextId: 'context-123' },
+    };
+    const nodes = { '1': node };
+
+    const result = exportNodeAsMarkdown(node, nodes);
+
+    // Context is NOT exported to markdown - it's preserved via the clipboard cache instead
+    expect(result).toBe('# [ ] Task with context\n');
+    expect(result).not.toContain('context-123');
+  });
 });
 
 describe('exportMultipleNodesAsMarkdown', () => {

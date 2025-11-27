@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2025-11-27T08:53:21.923Z'
+updated: '2025-11-27T12:49:06.358Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -941,7 +941,8 @@ nodes:
   0cc62ae1-1a7a-4aa4-bc6a-d817cabd672c:
     id: 0cc62ae1-1a7a-4aa4-bc6a-d817cabd672c
     content: In progress
-    children: []
+    children:
+      - d56165e3-1e71-4217-9510-46fda25832ff
     metadata:
       status: pending
       expanded: true
@@ -6604,7 +6605,7 @@ nodes:
       - 05dc5196-735f-4bfd-a36a-a4ca8e3bd6cd
     metadata:
       status: pending
-      expanded: true
+      expanded: false
   695b4a59-45f8-433f-aafa-4a5fb557cdde:
     id: 695b4a59-45f8-433f-aafa-4a5fb557cdde
     content: Functional breakdown
@@ -6695,7 +6696,7 @@ nodes:
       - 4a17a915-2bb7-461b-a1e6-4696cfc805fd
     metadata:
       status: completed
-      expanded: true
+      expanded: false
       deleted: false
       plugins: {}
   40396d08-f3a1-4759-9462-5d94138d8eed:
@@ -6704,7 +6705,7 @@ nodes:
     children:
       - ed898f0f-5d3e-47a3-b7fb-b2819be96962
     metadata:
-      status: pending
+      status: completed
       expanded: false
       deleted: false
       plugins: {}
@@ -6713,7 +6714,7 @@ nodes:
     content: Copying a node with context preserves the context reference
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -6724,14 +6725,16 @@ nodes:
       - f0d20f8d-8d66-4508-a7de-d737ff3db96f
       - b140502c-6eb3-49bb-977f-9b5f0f3e6d10
       - f4216d5c-e3f9-4144-99ce-6cefaa57d724
+      - 333f68ab-c1bc-4b18-863e-52727ebc5fab
+      - 4cb55f13-e6eb-4483-9d2b-48211a05a6a7
     metadata:
       status: pending
-      expanded: false
+      expanded: true
       deleted: false
       plugins: {}
   f0d20f8d-8d66-4508-a7de-d737ff3db96f:
     id: f0d20f8d-8d66-4508-a7de-d737ff3db96f
-    content: Descendants do not inherit context automatically
+    content: Descendants inherit context automatically
     children: []
     metadata:
       status: pending
@@ -6740,7 +6743,7 @@ nodes:
       plugins: {}
   b140502c-6eb3-49bb-977f-9b5f0f3e6d10:
     id: b140502c-6eb3-49bb-977f-9b5f0f3e6d10
-    content: Child nodes can have their own explicit context
+    content: Descendants can have their own explicit context
     children: []
     metadata:
       status: pending
@@ -6749,8 +6752,9 @@ nodes:
       plugins: {}
   f4216d5c-e3f9-4144-99ce-6cefaa57d724:
     id: f4216d5c-e3f9-4144-99ce-6cefaa57d724
-    content: Explicit child context is not overridden by parent changes
-    children: []
+    content: Explicit descendant context is not overridden by ancestor context
+    children:
+      - e40ef951-c075-4ec9-8584-a306a6f3d4c1
     metadata:
       status: pending
       expanded: true
@@ -6943,6 +6947,7 @@ nodes:
       - 5954919a-cdd7-42c7-a4c3-8eab91a73e6e
       - 40396d08-f3a1-4759-9462-5d94138d8eed
       - 0f40d697-7399-4b96-9ee6-6a431f5a75ec
+      - 3cd8ce98-04b7-4a18-baad-69b167a94714
     metadata:
       status: pending
       expanded: true
@@ -7075,3 +7080,350 @@ nodes:
     children: []
     metadata:
       status: completed
+  e40ef951-c075-4ec9-8584-a306a6f3d4c1:
+    id: e40ef951-c075-4ec9-8584-a306a6f3d4c1
+    content: True if the ancestor context is applied before or after
+    children: []
+    metadata:
+      status: pending
+  333f68ab-c1bc-4b18-863e-52727ebc5fab:
+    id: 333f68ab-c1bc-4b18-863e-52727ebc5fab
+    content: Only the ancestor has the context icon
+    children: []
+    metadata:
+      status: pending
+  4cb55f13-e6eb-4483-9d2b-48211a05a6a7:
+    id: 4cb55f13-e6eb-4483-9d2b-48211a05a6a7
+    content: The right click menu for an ancestor is the same as one for a node with no context
+    children:
+      - ee7ad236-46ae-47c9-b6bc-6d839bea0049
+    metadata:
+      status: pending
+  ee7ad236-46ae-47c9-b6bc-6d839bea0049:
+    id: ee7ad236-46ae-47c9-b6bc-6d839bea0049
+    content: Unless the ancestor has an explicit context
+    children: []
+    metadata:
+      status: pending
+  3cd8ce98-04b7-4a18-baad-69b167a94714:
+    id: 3cd8ce98-04b7-4a18-baad-69b167a94714
+    content: 'US7: Dual copy/paste mechanism'
+    children:
+      - cb4b4a07-8dc9-4fcf-82b8-457d74bfa98e
+      - 6106107f-d87e-402d-ae5d-26471297c196
+      - f101c644-b58d-4f5b-892b-9c7982a9d6a0
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  cb4b4a07-8dc9-4fcf-82b8-457d74bfa98e:
+    id: cb4b4a07-8dc9-4fcf-82b8-457d74bfa98e
+    content: Problem statement
+    children:
+      - 5c4cf0c6-c973-4fb0-a47e-b1acc2eff9ad
+      - 649aa9f5-ece8-4cd1-a173-3ea2d877d8e8
+      - 83f2f2b5-3f18-473f-8bca-0c8aae994cef
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5c4cf0c6-c973-4fb0-a47e-b1acc2eff9ad:
+    id: 5c4cf0c6-c973-4fb0-a47e-b1acc2eff9ad
+    content: Currently we copy nodes as markdown
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  649aa9f5-ece8-4cd1-a173-3ea2d877d8e8:
+    id: 649aa9f5-ece8-4cd1-a173-3ea2d877d8e8
+    content: This does not preserve all metadata (only appliedContextId via HTML comment)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  83f2f2b5-3f18-473f-8bca-0c8aae994cef:
+    id: 83f2f2b5-3f18-473f-8bca-0c8aae994cef
+    content: But markdown export is necessary for external tool interoperability
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6106107f-d87e-402d-ae5d-26471297c196:
+    id: 6106107f-d87e-402d-ae5d-26471297c196
+    content: 'Solution: In-memory clipboard alongside system clipboard'
+    children:
+      - 312efedf-271b-403d-8c88-622277242930
+      - 0dccb7ac-0ce9-4c1f-8331-5c9d3a5ee61b
+      - 5cf6fecb-404b-4e94-aecd-522b669aa3c3
+      - eddc631e-39f8-41cb-8bb7-4823bd2c7e80
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  312efedf-271b-403d-8c88-622277242930:
+    id: 312efedf-271b-403d-8c88-622277242930
+    content: On copy/cut operations
+    children:
+      - c6ed484d-68dc-466a-9fb6-30b868999952
+      - 50728d93-2e04-4b7a-a051-c3acc7273e81
+      - 15c0931d-5e60-4b76-8697-18538c3dd107
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c6ed484d-68dc-466a-9fb6-30b868999952:
+    id: c6ed484d-68dc-466a-9fb6-30b868999952
+    content: Copy markdown to system clipboard (as currently done)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  50728d93-2e04-4b7a-a051-c3acc7273e81:
+    id: 50728d93-2e04-4b7a-a051-c3acc7273e81
+    content: Store deep clone of node objects in module-level variable
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  15c0931d-5e60-4b76-8697-18538c3dd107:
+    id: 15c0931d-5e60-4b76-8697-18538c3dd107
+    content: Include all metadata (plugins, custom fields, etc.)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0dccb7ac-0ce9-4c1f-8331-5c9d3a5ee61b:
+    id: 0dccb7ac-0ce9-4c1f-8331-5c9d3a5ee61b
+    content: On paste operations
+    children:
+      - 3180ec3a-af9e-47e6-99c1-fbcaa9299701
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3180ec3a-af9e-47e6-99c1-fbcaa9299701:
+    id: 3180ec3a-af9e-47e6-99c1-fbcaa9299701
+    content: Check if in-memory clipboard has content
+    children:
+      - 9d1a2055-fd0b-4b63-9d2b-08f54caae3bc
+      - 2c206ae4-0079-4195-aac1-3d2b8737096f
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9d1a2055-fd0b-4b63-9d2b-08f54caae3bc:
+    id: 9d1a2055-fd0b-4b63-9d2b-08f54caae3bc
+    content: 'If yes: use in-memory nodes, generate new IDs, clear in-memory clipboard'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2c206ae4-0079-4195-aac1-3d2b8737096f:
+    id: 2c206ae4-0079-4195-aac1-3d2b8737096f
+    content: 'If no: fall back to parsing system clipboard markdown (external paste)'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5cf6fecb-404b-4e94-aecd-522b669aa3c3:
+    id: 5cf6fecb-404b-4e94-aecd-522b669aa3c3
+    content: Implementation details
+    children:
+      - f4bf4e1e-141e-42f8-b5ac-90049fc2e3fc
+      - 0dc5f664-ec6f-47bc-98fa-70924b4a464f
+      - 694e82e1-c15f-4b2e-a6ed-fa88cf5756d1
+      - 73ec5277-381c-41c5-b262-d6f0c711a783
+      - 790c4ced-e747-472b-870d-e15a639849e5
+      - 3e6d73fe-6df8-4ef2-9042-146c55f8e388
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0dc5f664-ec6f-47bc-98fa-70924b4a464f:
+    id: 0dc5f664-ec6f-47bc-98fa-70924b4a464f
+    content: Modify copyNodes in clipboardActions.ts to also cache nodes
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  694e82e1-c15f-4b2e-a6ed-fa88cf5756d1:
+    id: 694e82e1-c15f-4b2e-a6ed-fa88cf5756d1
+    content: Modify cutNodes in clipboardActions.ts to also cache nodes
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  73ec5277-381c-41c5-b262-d6f0c711a783:
+    id: 73ec5277-381c-41c5-b262-d6f0c711a783
+    content: Modify pasteNodes to check cache first before parsing markdown
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  790c4ced-e747-472b-870d-e15a639849e5:
+    id: 790c4ced-e747-472b-870d-e15a639849e5
+    content: Deep clone nodes and regenerate all IDs on paste
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3e6d73fe-6df8-4ef2-9042-146c55f8e388:
+    id: 3e6d73fe-6df8-4ef2-9042-146c55f8e388
+    content: Update ancestor registry for pasted nodes
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  eddc631e-39f8-41cb-8bb7-4823bd2c7e80:
+    id: eddc631e-39f8-41cb-8bb7-4823bd2c7e80
+    content: Edge cases to handle
+    children:
+      - 3dc98476-10f1-4a2d-bfc5-93d1693345de
+      - dd4ef0e1-2f5d-49af-9aa2-051abe16f377
+      - 7da06636-1412-4cc2-88bd-2bc54f608478
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3dc98476-10f1-4a2d-bfc5-93d1693345de:
+    id: 3dc98476-10f1-4a2d-bfc5-93d1693345de
+    content: Handle paste from external source (no cache, use markdown)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  dd4ef0e1-2f5d-49af-9aa2-051abe16f377:
+    id: dd4ef0e1-2f5d-49af-9aa2-051abe16f377
+    content: Handle multiple copy operations (cache should be replaced)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7da06636-1412-4cc2-88bd-2bc54f608478:
+    id: 7da06636-1412-4cc2-88bd-2bc54f608478
+    content: Ensure cut nodes are properly removed even when using cache
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f101c644-b58d-4f5b-892b-9c7982a9d6a0:
+    id: f101c644-b58d-4f5b-892b-9c7982a9d6a0
+    content: Testing
+    children:
+      - 9222b125-079d-4d1b-8409-35db861d6da4
+      - 7f691248-b772-499f-91d5-f99c94e2e12d
+      - d24bc5ab-85d8-4007-a36e-5e51ff97d161
+      - 8ef0145a-094f-4892-926e-ddcb4535142e
+      - 1ba10e12-4929-4b24-980f-4df68b01484f
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9222b125-079d-4d1b-8409-35db861d6da4:
+    id: 9222b125-079d-4d1b-8409-35db861d6da4
+    content: Internal copy/paste preserves all metadata
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7f691248-b772-499f-91d5-f99c94e2e12d:
+    id: 7f691248-b772-499f-91d5-f99c94e2e12d
+    content: External paste (from other apps) still works via markdown parsing
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d24bc5ab-85d8-4007-a36e-5e51ff97d161:
+    id: d24bc5ab-85d8-4007-a36e-5e51ff97d161
+    content: Cut operation removes original nodes
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8ef0145a-094f-4892-926e-ddcb4535142e:
+    id: 8ef0145a-094f-4892-926e-ddcb4535142e
+    content: Multiple rapid copy operations only keep last copied content
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1ba10e12-4929-4b24-980f-4df68b01484f:
+    id: 1ba10e12-4929-4b24-980f-4df68b01484f
+    content: Context reference (appliedContextId) preserved in both mechanisms
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  04ceab51-6d75-41dc-8df9-d1ba8805a210:
+    id: 04ceab51-6d75-41dc-8df9-d1ba8805a210
+    content: The cache should be in a store
+    children: []
+    metadata:
+      status: pending
+  f4bf4e1e-141e-42f8-b5ac-90049fc2e3fc:
+    id: f4bf4e1e-141e-42f8-b5ac-90049fc2e3fc
+    content: Create clipboardCache module with get/set/clear functions
+    children:
+      - 04ceab51-6d75-41dc-8df9-d1ba8805a210
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d56165e3-1e71-4217-9510-46fda25832ff:
+    id: d56165e3-1e71-4217-9510-46fda25832ff
+    content: Replace rfdc with native structured clone
+    children: []
+    metadata:
+      status: pending

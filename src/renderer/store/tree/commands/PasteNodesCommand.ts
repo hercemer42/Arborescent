@@ -11,6 +11,15 @@ export class PasteNodesCommand extends BaseCommand {
   private remappedNodes: Record<string, TreeNode> = {};
   private rootNodeIds: string[] = [];
 
+  /**
+   * @param parsedRootNodes - The root nodes to paste
+   * @param parsedAllNodes - All nodes (roots + descendants) keyed by their ID
+   * @param targetParentId - The parent node to paste into
+   * @param getState - State getter
+   * @param setState - State setter
+   * @param triggerAutosave - Optional autosave callback
+   * @param skipPrepare - If true, nodes already have unique IDs and correct structure
+   */
   constructor(
     private parsedRootNodes: TreeNode[],
     private parsedAllNodes: Record<string, TreeNode>,
@@ -22,15 +31,25 @@ export class PasteNodesCommand extends BaseCommand {
       activeNodeId?: string;
       cursorPosition?: number;
     }) => void,
-    private triggerAutosave?: () => void
+    private triggerAutosave?: () => void,
+    skipPrepare: boolean = false
   ) {
     super();
     this.description = `Paste ${parsedRootNodes.length} node(s)`;
-    this.prepareNodes();
+    if (skipPrepare) {
+      // Nodes already have unique IDs - use directly
+      this.remappedNodes = parsedAllNodes;
+      this.pastedNodeIds = Object.keys(parsedAllNodes);
+      this.rootNodeIds = parsedRootNodes.map((n) => n.id);
+    } else {
+      // Nodes from markdown need ID remapping
+      this.prepareNodes();
+    }
   }
 
   /**
-   * Re-generate IDs for all pasted nodes to avoid conflicts
+   * Re-generate IDs for all pasted nodes to avoid conflicts.
+   * Used when pasting from external markdown where IDs may conflict.
    */
   private prepareNodes(): void {
     const idMapping: Record<string, string> = {};
