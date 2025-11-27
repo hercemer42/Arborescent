@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2025-11-27T14:42:04.572Z'
+updated: '2025-11-27T15:10:50.856Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -938,11 +938,11 @@ nodes:
     metadata:
       status: pending
       expanded: true
+      appliedContextId: e8824b29-eb18-4031-9e35-b321a864d418
   0cc62ae1-1a7a-4aa4-bc6a-d817cabd672c:
     id: 0cc62ae1-1a7a-4aa4-bc6a-d817cabd672c
     content: In progress
-    children:
-      - d56165e3-1e71-4217-9510-46fda25832ff
+    children: []
     metadata:
       status: pending
       expanded: true
@@ -6127,6 +6127,8 @@ nodes:
       - af1ebc0d-26dd-4a75-982f-03a9dbe2bc84
     metadata:
       status: pending
+      isContextDeclaration: true
+      contextIcon: book
   30907cd3-7b4f-4507-bd31-e1cd25b01d0c:
     id: 30907cd3-7b4f-4507-bd31-e1cd25b01d0c
     content: Apply base context (Need to be able to reference contexts - context within context)
@@ -6161,7 +6163,7 @@ nodes:
       - 8f5242be-463d-46b2-b77a-7417c2db6abf
       - 6939fedc-f61d-4a8c-92a2-497f52bbd5e0
     metadata:
-      status: pending
+      status: completed
       expanded: false
       deleted: false
       plugins: {}
@@ -6604,7 +6606,7 @@ nodes:
     children:
       - 05dc5196-735f-4bfd-a36a-a4ca8e3bd6cd
     metadata:
-      status: pending
+      status: completed
       expanded: true
   695b4a59-45f8-433f-aafa-4a5fb557cdde:
     id: 695b4a59-45f8-433f-aafa-4a5fb557cdde
@@ -6907,8 +6909,8 @@ nodes:
       - 8c10c76c-8de2-4493-ae14-4aa86c6c5689
       - 3cd8ce98-04b7-4a18-baad-69b167a94714
     metadata:
-      status: pending
-      expanded: true
+      status: completed
+      expanded: false
       deleted: false
       plugins: {}
   3c4038c4-ab02-4e51-b4a4-642a1e549ee0:
@@ -7354,12 +7356,6 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  d56165e3-1e71-4217-9510-46fda25832ff:
-    id: d56165e3-1e71-4217-9510-46fda25832ff
-    content: Replace rfdc with native structured clone
-    children: []
-    metadata:
-      status: pending
   8c10c76c-8de2-4493-ae14-4aa86c6c5689:
     id: 8c10c76c-8de2-4493-ae14-4aa86c6c5689
     content: 'US6: Context inheritance behavior'
@@ -7373,7 +7369,7 @@ nodes:
       - f67693f7-ad03-45bc-99a5-8b4842f4c82e
     metadata:
       status: completed
-      expanded: true
+      expanded: false
       deleted: false
       plugins: {}
   b272a373-7c82-484f-89c5-4e75ff87aa68:

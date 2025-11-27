@@ -54,6 +54,14 @@ const createWindow = async () => {
     mainWindow.webContents.openDevTools();
   }
 
+  // Allow Ctrl+Shift+I to toggle DevTools in production too
+  mainWindow.webContents.on('before-input-event', (event, input) => {
+    if (input.control && input.shift && input.key.toLowerCase() === 'i') {
+      mainWindow?.webContents.toggleDevTools();
+      event.preventDefault();
+    }
+  });
+
   mainWindow.on('closed', () => {
     mainWindow = null;
   });
