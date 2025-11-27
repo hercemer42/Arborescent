@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2025-11-27T15:10:50.856Z'
+updated: '2025-11-27T15:36:08.490Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -942,7 +942,8 @@ nodes:
   0cc62ae1-1a7a-4aa4-bc6a-d817cabd672c:
     id: 0cc62ae1-1a7a-4aa4-bc6a-d817cabd672c
     content: In progress
-    children: []
+    children:
+      - 70762c7c-4a21-4668-ab42-8a91ca8afbcc
     metadata:
       status: pending
       expanded: true
@@ -7687,3 +7688,59 @@ nodes:
     children: []
     metadata:
       status: completed
+  70762c7c-4a21-4668-ab42-8a91ca8afbcc:
+    id: 70762c7c-4a21-4668-ab42-8a91ca8afbcc
+    content: Refactor
+    children:
+      - 36b58910-4308-4acc-ae81-a8385f486d3a
+      - ff292fbf-26d8-450a-b9c4-c2aa424bcc06
+    metadata:
+      status: pending
+  36b58910-4308-4acc-ae81-a8385f486d3a:
+    id: 36b58910-4308-4acc-ae81-a8385f486d3a
+    content: Make a central updateAncestorRegistry function, currently it's done in 3 places
+    children: []
+    metadata:
+      status: pending
+  ff292fbf-26d8-450a-b9c4-c2aa424bcc06:
+    id: ff292fbf-26d8-450a-b9c4-c2aa424bcc06
+    content: make compound hooks
+    children:
+      - 1ac1458a-a699-418f-af5c-05950d832155
+      - 63a28c78-c1b6-4acf-bd61-5415cfd9185c
+    metadata:
+      status: pending
+      expanded: false
+  1ac1458a-a699-418f-af5c-05950d832155:
+    id: 1ac1458a-a699-418f-af5c-05950d832155
+    content: NodeContent, TreeNode, and Tree have hooks that follow similar patterns
+    children: []
+    metadata:
+      status: pending
+  63a28c78-c1b6-4acf-bd61-5415cfd9185c:
+    id: 63a28c78-c1b6-4acf-bd61-5415cfd9185c
+    content: could make src/renderer/hooks with
+    children:
+      - 07434a69-6dc4-4c44-82ed-4ef0fbf74e22
+      - 3f551981-c74c-4a0e-9c54-980a796a85fa
+      - 8ae82dcc-98d7-4f00-9a64-1994f336e63e
+    metadata:
+      status: pending
+  07434a69-6dc4-4c44-82ed-4ef0fbf74e22:
+    id: 07434a69-6dc4-4c44-82ed-4ef0fbf74e22
+    content: useStoreSubscribtion
+    children: []
+    metadata:
+      status: pending
+  3f551981-c74c-4a0e-9c54-980a796a85fa:
+    id: 3f551981-c74c-4a0e-9c54-980a796a85fa
+    content: useNodeLifecycle
+    children: []
+    metadata:
+      status: pending
+  8ae82dcc-98d7-4f00-9a64-1994f336e63e:
+    id: 8ae82dcc-98d7-4f00-9a64-1994f336e63e
+    content: useKeyboardShortcut
+    children: []
+    metadata:
+      status: pending

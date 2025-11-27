@@ -17,7 +17,6 @@ export function useTerminal({ id, onResize }: UseTerminalOptions) {
   const terminalRef = useRef<HTMLDivElement>(null);
   const xtermRef = useRef<XTerm | null>(null);
   const fitAddonRef = useRef<FitAddon | null>(null);
-  const autoScrollEnabledRef = useRef(true);
   const [isInitialized, setIsInitialized] = useState(false);
 
   // Initialization effect - waits for element to have dimensions
@@ -79,22 +78,6 @@ export function useTerminal({ id, onResize }: UseTerminalOptions) {
     const xterm = xtermRef.current;
     const fitAddon = fitAddonRef.current;
 
-    // Check if terminal is scrolled to bottom
-    const isAtBottom = () => {
-      const buffer = xterm.buffer.active;
-      const atBottom = buffer.viewportY >= buffer.baseY;
-      console.log('at bottom of terminal?', atBottom)
-      console.log('buffer.viewportY', buffer.viewportY)
-      console.log('buffer.baseY', buffer.baseY)
-      return atBottom;
-    };
-
-    // Track scroll position to enable/disable auto-scroll
-    xterm.onScroll(() => {
-      console.log('scrolling terminal')
-      autoScrollEnabledRef.current = isAtBottom();
-    });
-
     // Listen for user input and send to PTY
     xterm.onData((data) => {
       window.electron.terminalWrite(id, data);
@@ -103,9 +86,7 @@ export function useTerminal({ id, onResize }: UseTerminalOptions) {
     // Listen for PTY output
     const removeDataListener = window.electron.onTerminalData(id, (data) => {
       xterm.write(data);
-      if (autoScrollEnabledRef.current) {
-        xterm.scrollToBottom();
-      }
+      xterm.scrollToBottom();
     });
 
     // Listen for terminal exit
