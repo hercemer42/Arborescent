@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2025-11-28T10:42:05.513Z'
+updated: '2025-11-28T14:10:50.190Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -677,7 +677,7 @@ nodes:
       - 382ddb47-39df-4546-978c-66b3a2306480
     metadata:
       status: pending
-      expanded: false
+      expanded: true
       appliedContextId: e8824b29-eb18-4031-9e35-b321a864d418
   0cc62ae1-1a7a-4aa4-bc6a-d817cabd672c:
     id: 0cc62ae1-1a7a-4aa4-bc6a-d817cabd672c
@@ -686,7 +686,7 @@ nodes:
       - 70762c7c-4a21-4668-ab42-8a91ca8afbcc
     metadata:
       status: pending
-      expanded: true
+      expanded: false
   565dde0a-864b-41f9-86ff-dbdf40ac4dd0:
     id: 565dde0a-864b-41f9-86ff-dbdf40ac4dd0
     content: Done
@@ -6647,7 +6647,7 @@ nodes:
       - 3cd8ce98-04b7-4a18-baad-69b167a94714
     metadata:
       status: completed
-      expanded: false
+      expanded: true
       deleted: false
       plugins: {}
   3c4038c4-ab02-4e51-b4a4-642a1e549ee0:
@@ -7435,12 +7435,11 @@ nodes:
     id: 0d1ab99b-d0fa-41e4-b6fd-5d0404b25e7e
     content: Side project blueprint/pattern design
     children:
-      - c9d695c8-cab3-4df1-9e31-0c8e5efb8d5a
-      - a5c57497-345d-45cd-b804-787c83e6ac59
-      - 65f1dfa8-de56-47be-984b-02d53d6ee774
-      - 8ec943d1-cfa7-49cc-ab7d-0b4eca5d258c
+      - ef24cd73-e869-4b6e-a5da-6294cdfb45fe
+      - 39f4499f-a5de-4c27-9e23-4e289341a2d6
     metadata:
       status: pending
+      expanded: true
   c9d695c8-cab3-4df1-9e31-0c8e5efb8d5a:
     id: c9d695c8-cab3-4df1-9e31-0c8e5efb8d5a
     content: In development
@@ -7450,7 +7449,8 @@ nodes:
   a5c57497-345d-45cd-b804-787c83e6ac59:
     id: a5c57497-345d-45cd-b804-787c83e6ac59
     content: Ideas
-    children: []
+    children:
+      - 64cd752f-021c-4142-a44f-94b640e2d505
     metadata:
       status: pending
   8ec943d1-cfa7-49cc-ab7d-0b4eca5d258c:
@@ -7462,6 +7462,142 @@ nodes:
   65f1dfa8-de56-47be-984b-02d53d6ee774:
     id: 65f1dfa8-de56-47be-984b-02d53d6ee774
     content: User stories
+    children:
+      - 8ec943d1-cfa7-49cc-ab7d-0b4eca5d258c
+    metadata:
+      status: pending
+  64cd752f-021c-4142-a44f-94b640e2d505:
+    id: 64cd752f-021c-4142-a44f-94b640e2d505
+    content: |+
+
+    children: []
+    metadata:
+      status: pending
+  ef24cd73-e869-4b6e-a5da-6294cdfb45fe:
+    id: ef24cd73-e869-4b6e-a5da-6294cdfb45fe
+    content: Brainstorming
+    children:
+      - 0de0a3cf-beb5-4e67-8583-2b46d5e8530d
+    metadata:
+      status: pending
+  39f4499f-a5de-4c27-9e23-4e289341a2d6:
+    id: 39f4499f-a5de-4c27-9e23-4e289341a2d6
+    content: Template
+    children:
+      - c9d695c8-cab3-4df1-9e31-0c8e5efb8d5a
+      - a5c57497-345d-45cd-b804-787c83e6ac59
+      - 65f1dfa8-de56-47be-984b-02d53d6ee774
+    metadata:
+      status: pending
+      expanded: true
+  0de0a3cf-beb5-4e67-8583-2b46d5e8530d:
+    id: 0de0a3cf-beb5-4e67-8583-2b46d5e8530d
+    content: Each step must flow naturally from the previous
+    children:
+      - 45b9bf1e-80d1-4d8f-a13f-201b8eb52786
+    metadata:
+      status: pending
+  45b9bf1e-80d1-4d8f-a13f-201b8eb52786:
+    id: 45b9bf1e-80d1-4d8f-a13f-201b8eb52786
+    content: What brings us from one step to the next ?
+    children:
+      - cad3e162-1c43-4258-bf3a-84d552e2de4b
+      - c22c1c2a-1d13-4ab5-87ed-e0d5d24f396e
+    metadata:
+      status: pending
+  cad3e162-1c43-4258-bf3a-84d552e2de4b:
+    id: cad3e162-1c43-4258-bf3a-84d552e2de4b
+    content: A kind of DoR/DoD ?
+    children:
+      - f7e70df2-e3dc-41c5-9d7b-fcea659202fd
+    metadata:
+      status: pending
+  f7e70df2-e3dc-41c5-9d7b-fcea659202fd:
+    id: f7e70df2-e3dc-41c5-9d7b-fcea659202fd
+    content: So a checklist
+    children:
+      - d390ba3f-317c-4e1f-a1b7-1ac88060b4e2
+    metadata:
+      status: pending
+  d390ba3f-317c-4e1f-a1b7-1ac88060b4e2:
+    id: d390ba3f-317c-4e1f-a1b7-1ac88060b4e2
+    content: What would that look like ?
+    children:
+      - d7df48a4-7dec-4af8-a8bc-6f0a22637291
+      - 39da8b59-924d-4100-b8f6-2346c8f8b696
+      - 578de383-f26d-465e-9a06-f4f2752201c1
+    metadata:
+      status: pending
+  c22c1c2a-1d13-4ab5-87ed-e0d5d24f396e:
+    id: c22c1c2a-1d13-4ab5-87ed-e0d5d24f396e
+    content: We could have a 'Send to node' in the side panel ?
+    children: []
+    metadata:
+      status: pending
+  39da8b59-924d-4100-b8f6-2346c8f8b696:
+    id: 39da8b59-924d-4100-b8f6-2346c8f8b696
+    content: Or 'Build next step' ?
+    children: []
+    metadata:
+      status: pending
+  578de383-f26d-465e-9a06-f4f2752201c1:
+    id: 578de383-f26d-465e-9a06-f4f2752201c1
+    content: So then what does the context become ?
+    children:
+      - 8d65ca61-0b45-4868-95cc-ddf36fce7100
+      - b60ae5df-0e46-41c6-bf3e-33f3e7d2ff0c
+      - d0b5f044-e9e5-4f65-b105-faab8cd921fd
+    metadata:
+      status: pending
+  8d65ca61-0b45-4868-95cc-ddf36fce7100:
+    id: 8d65ca61-0b45-4868-95cc-ddf36fce7100
+    content: We can have 2 - refine current step, send to next step
+    children: []
+    metadata:
+      status: pending
+  b60ae5df-0e46-41c6-bf3e-33f3e7d2ff0c:
+    id: b60ae5df-0e46-41c6-bf3e-33f3e7d2ff0c
+    content: Something to do with what's been checked/unchecked
+    children: []
+    metadata:
+      status: pending
+  d0b5f044-e9e5-4f65-b105-faab8cd921fd:
+    id: d0b5f044-e9e5-4f65-b105-faab8cd921fd
+    content: If everything is checked, and if there is a sibling below with a context attached, then in the right click menu, we can propose 'Collaborate on next step'
+    children:
+      - 3a5fe50d-c3fb-4461-a3f7-3ac1578564f1
+      - da24141f-d512-4649-98ee-b81907ec21b6
+    metadata:
+      status: pending
+  3a5fe50d-c3fb-4461-a3f7-3ac1578564f1:
+    id: 3a5fe50d-c3fb-4461-a3f7-3ac1578564f1
+    content: "So really we have 2 steps PER node - refine for current step, propose next step.\_ Then for next step, we have refine."
+    children: []
+    metadata:
+      status: pending
+  da24141f-d512-4649-98ee-b81907ec21b6:
+    id: da24141f-d512-4649-98ee-b81907ec21b6
+    content: "And each has their own context.\_ How does this look ?"
+    children:
+      - 43f49dcd-eda3-4fa0-b9ba-bd14e3f82b95
+      - 121b9f9d-45c7-461e-a882-4b90cf9d2ea2
+    metadata:
+      status: pending
+  d7df48a4-7dec-4af8-a8bc-6f0a22637291:
+    id: d7df48a4-7dec-4af8-a8bc-6f0a22637291
+    content: It should be built into the pattern for the current step
+    children: []
+    metadata:
+      status: pending
+  43f49dcd-eda3-4fa0-b9ba-bd14e3f82b95:
+    id: 43f49dcd-eda3-4fa0-b9ba-bd14e3f82b95
+    content: When we apply context, we have in the sub menu 'Apply context for next step'
+    children: []
+    metadata:
+      status: pending
+  121b9f9d-45c7-461e-a882-4b90cf9d2ea2:
+    id: 121b9f9d-45c7-461e-a882-4b90cf9d2ea2
+    content: ''
     children: []
     metadata:
       status: pending

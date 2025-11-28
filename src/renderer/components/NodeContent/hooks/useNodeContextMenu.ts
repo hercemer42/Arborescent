@@ -14,11 +14,16 @@ import { logger } from '../../../services/logger';
 import { writeToClipboard } from '../../../services/clipboardService';
 import { exportNodeAsMarkdown } from '../../../utils/markdown';
 import { hasAncestorWithPluginSession, getEffectiveContextId } from '../../../utils/nodeHelpers';
+import { getPositionFromPoint } from '../../../utils/position';
 
 export function useNodeContextMenu(node: TreeNode) {
   const treeType = useStore((state) => state.treeType);
   const isFeedbackTree = treeType === 'feedback';
   const deleteNode = useStore((state) => state.actions.deleteNode);
+  const copyNodes = useStore((state) => state.actions.copyNodes);
+  const cutNodes = useStore((state) => state.actions.cutNodes);
+  const pasteNodes = useStore((state) => state.actions.pasteNodes);
+  const toggleNodeSelection = useStore((state) => state.actions.toggleNodeSelection);
   const nodes = useStore((state) => state.nodes);
   const ancestorRegistry = useStore((state) => state.ancestorRegistry);
   const collaboratingNodeId = useStore((state) => state.collaboratingNodeId);
@@ -29,14 +34,27 @@ export function useNodeContextMenu(node: TreeNode) {
   const [contextMenu, setContextMenu] = useState<{ x: number; y: number } | null>(null);
   const [pluginMenuItems, setPluginMenuItems] = useState<ContextMenuItem[]>([]);
 
-  const { sendToTerminal, executeInTerminal } = useTerminalActions();
+  const { executeInTerminal } = useTerminalActions();
   const { handleCancel } = useFeedbackActions();
   const showTerminal = usePanelStore((state) => state.showTerminal);
-  const { contextDeclarationMenuItems, applyContextMenuItem } = useContextSubmenu(node);
+  const { contextMenuItem } = useContextSubmenu(node);
 
   const handleContextMenu = async (e: React.MouseEvent) => {
     e.preventDefault();
     if (isFeedbackTree) return;
+
+    // Focus the node at the right-click position
+    const { actions } = store.getState();
+    const wrapperElement = e.currentTarget as HTMLElement;
+    const contentEditableElement = wrapperElement.querySelector('.node-text') as HTMLElement;
+
+    if (contentEditableElement) {
+      const position = getPositionFromPoint(contentEditableElement, e.clientX, e.clientY);
+      actions.clearSelection();
+      actions.setRememberedVisualX(null);
+      actions.selectNode(node.id, position);
+    }
+
     setContextMenu({ x: e.clientX, y: e.clientY });
 
     const hasAncestorSession = hasAncestorWithPluginSession(node.id, nodes, ancestorRegistry);
@@ -69,11 +87,6 @@ export function useNodeContextMenu(node: TreeNode) {
         deleteNode(node.id, true);
       }
     }
-  };
-
-  const handleSendToTerminal = async () => {
-    showTerminal();
-    await sendToTerminal(node, nodes);
   };
 
   const handleExecuteInTerminal = async () => {
@@ -143,32 +156,18 @@ export function useNodeContextMenu(node: TreeNode) {
   const collaborateTooltip = !hasEffectiveContext ? 'You must add a context to collaborate' : undefined;
 
   const baseMenuItems: ContextMenuItem[] = [
-    ...contextDeclarationMenuItems,
-    ...applyContextMenuItem,
-    {
-      label: 'Copy to Clipboard',
-      onClick: handleCopyToClipboard,
-      disabled: false,
-    },
-    {
-      label: 'Send to Terminal',
-      onClick: handleSendToTerminal,
-      disabled: false,
-    },
-    {
-      label: 'Execute in Terminal',
-      onClick: handleExecuteInTerminal,
-      disabled: false,
-    },
     {
       label: 'Collaborate',
-      onClick: handleCollaborate,
-      disabled: collaborateDisabled,
-      disabledTooltip: collaborateTooltip,
-    },
-    {
-      label: 'Collaborate in terminal',
-      onClick: handleCollaborateInTerminal,
+      submenu: [
+        {
+          label: 'In browser',
+          onClick: handleCollaborate,
+        },
+        {
+          label: 'In terminal',
+          onClick: handleCollaborateInTerminal,
+        },
+      ],
       disabled: collaborateDisabled,
       disabledTooltip: collaborateTooltip,
     },
@@ -178,9 +177,41 @@ export function useNodeContextMenu(node: TreeNode) {
       disabled: false,
     }] : []),
     {
-      label: 'Delete',
-      onClick: handleDelete,
-      danger: true,
+      label: 'Edit',
+      submenu: [
+        {
+          label: 'Select',
+          onClick: () => toggleNodeSelection(node.id),
+        },
+        {
+          label: 'Copy',
+          onClick: () => copyNodes(),
+        },
+        {
+          label: 'Cut',
+          onClick: () => cutNodes(),
+        },
+        {
+          label: 'Paste',
+          onClick: () => pasteNodes(),
+        },
+        {
+          label: 'Delete',
+          onClick: handleDelete,
+          danger: true,
+        },
+      ],
+    },
+    ...(contextMenuItem ? [contextMenuItem] : []),
+    {
+      label: 'Copy to Clipboard',
+      onClick: handleCopyToClipboard,
+      disabled: false,
+    },
+    {
+      label: 'Execute in Terminal',
+      onClick: handleExecuteInTerminal,
+      disabled: false,
     },
   ];
 

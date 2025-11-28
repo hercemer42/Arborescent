@@ -42,8 +42,8 @@ export function useContextSubmenu(node: TreeNode) {
     removeContextDeclaration(node.id);
   }, [nodes, node.id, removeContextDeclaration]);
 
-  // Build context submenu items (for applying context to a node)
-  const contextSubmenuItems: ContextMenuItem[] = useMemo(() => {
+  // Build context selection submenu items (for applying context to a node)
+  const contextSelectionItems: ContextMenuItem[] = useMemo(() => {
     return contextDeclarations
       .filter(ctx => ctx.nodeId !== node.id) // Don't show self
       .map(ctx => {
@@ -56,53 +56,65 @@ export function useContextSubmenu(node: TreeNode) {
       });
   }, [contextDeclarations, node.id, applyContext]);
 
-  // Context declaration menu items (for declaring a node as context)
-  const contextDeclarationMenuItems: ContextMenuItem[] = useMemo(() => {
-    return isContextDeclaration
-      ? [
-          {
-            label: 'Remove context declaration',
-            onClick: handleRemoveContextDeclaration,
-            disabled: false,
-          },
-        ]
-      : [
-          {
-            label: 'Declare as context',
-            onClick: handleDeclareAsContext,
-            disabled: false,
-          },
-        ];
-  }, [isContextDeclaration, handleRemoveContextDeclaration, handleDeclareAsContext]);
+  // Build the unified "Context" submenu with all context-related options
+  const contextMenuItem: ContextMenuItem | null = useMemo(() => {
+    const submenuItems: ContextMenuItem[] = [];
 
-  // Context application menu item (only show if not a context declaration itself)
-  // - If context is applied: show "Remove context" (direct action)
-  // - If no context applied: show "Add context" (with submenu)
-  const applyContextMenuItem: ContextMenuItem[] = useMemo(() => {
-    if (isContextDeclaration) {
-      return [];
-    }
-
-    if (hasAppliedContext) {
-      return [
-        {
-          label: 'Remove context',
-          onClick: () => removeAppliedContext(node.id),
-        },
-      ];
-    }
-
-    return [
-      {
-        label: 'Add context',
-        submenu: contextSubmenuItems,
+    // 1. Apply context (with nested submenu for context selection)
+    // Only show if not a context declaration itself
+    if (!isContextDeclaration) {
+      submenuItems.push({
+        label: 'Apply context',
+        submenu: contextSelectionItems,
         disabled: contextDeclarations.length === 0,
-      },
-    ];
-  }, [isContextDeclaration, hasAppliedContext, contextSubmenuItems, contextDeclarations.length, removeAppliedContext, node.id]);
+      });
+    }
+
+    // 2. Remove context (only if context is applied)
+    if (hasAppliedContext) {
+      submenuItems.push({
+        label: 'Remove context',
+        onClick: () => removeAppliedContext(node.id),
+      });
+    }
+
+    // 3. Declare as context (only if not already a context declaration)
+    if (!isContextDeclaration) {
+      submenuItems.push({
+        label: 'Declare as context',
+        onClick: handleDeclareAsContext,
+      });
+    }
+
+    // 4. Remove context declaration (only if this is a context declaration)
+    if (isContextDeclaration) {
+      submenuItems.push({
+        label: 'Remove context declaration',
+        onClick: handleRemoveContextDeclaration,
+      });
+    }
+
+    // Return null if no items (shouldn't happen, but safety check)
+    if (submenuItems.length === 0) {
+      return null;
+    }
+
+    return {
+      label: 'Context',
+      submenu: submenuItems,
+    };
+  }, [
+    isContextDeclaration,
+    hasAppliedContext,
+    contextSelectionItems,
+    contextDeclarations.length,
+    removeAppliedContext,
+    node.id,
+    handleDeclareAsContext,
+    handleRemoveContextDeclaration,
+  ]);
 
   return {
-    contextDeclarationMenuItems,
-    applyContextMenuItem,
+    contextMenuItem,
   };
 }

@@ -38,8 +38,8 @@ export function ContextMenu({ x, y, items, onClose }: ContextMenuProps) {
         <div
           key={index}
           className="context-menu-item-wrapper"
-          onMouseEnter={() => item.submenu && handleSubmenuEnter(index)}
-          onMouseLeave={() => item.submenu && handleSubmenuLeave()}
+          onMouseEnter={() => item.submenu && !item.disabled && handleSubmenuEnter(index)}
+          onMouseLeave={() => item.submenu && !item.disabled && handleSubmenuLeave()}
         >
           <button
             className={`context-menu-item ${item.danger ? 'danger' : ''} ${item.submenu ? 'has-submenu' : ''}`}
