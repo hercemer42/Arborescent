@@ -1,31 +1,12 @@
-import { useEffect, useRef, useState, useCallback } from 'react';
+import { useRef, useState, useCallback } from 'react';
 import { ContextMenuItem } from '../ContextMenu';
+import { useDialogBehavior } from '../../../../hooks';
 
 export function useContextMenuBehavior(onClose: () => void) {
   const menuRef = useRef<HTMLDivElement>(null);
   const [openSubmenu, setOpenSubmenu] = useState<number | null>(null);
 
-  useEffect(() => {
-    const handleClickOutside = (e: MouseEvent) => {
-      if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
-        onClose();
-      }
-    };
-
-    const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        onClose();
-      }
-    };
-
-    document.addEventListener('mousedown', handleClickOutside);
-    document.addEventListener('keydown', handleEscape);
-
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-      document.removeEventListener('keydown', handleEscape);
-    };
-  }, [onClose]);
+  useDialogBehavior(menuRef, onClose);
 
   const handleItemClick = useCallback((item: ContextMenuItem) => {
     if (item.submenu) {

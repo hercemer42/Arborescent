@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2025-11-28T10:22:46.843Z'
+updated: '2025-11-28T10:32:47.155Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -12,11 +12,8 @@ nodes:
     children:
       - 0cc62ae1-1a7a-4aa4-bc6a-d817cabd672c
       - 2f83a0af-280e-4e67-8306-31a8e02c9500
-      - l7w7ssh62
       - d5fe0eff-b1c6-4986-b6a3-70a0ea46f096
       - 9bfbb401-dcb6-4f92-a34b-e9b3982c676f
-      - yifizx1mv
-      - 60ebf3ef-241c-4317-8578-5a8b5a038cf7
       - e2c51c9f-43c1-4578-ac3f-861e7d8c17ae
     metadata:
       created: '2025-10-11T00:00:00.000Z'
@@ -103,27 +100,6 @@ nodes:
     children: []
     metadata:
       status: pending
-  yifizx1mv:
-    id: yifizx1mv
-    content: UI
-    children:
-      - 1lvwh7qxq
-      - mz7j4sjn4
-    metadata:
-      status: completed
-      expanded: false
-  1lvwh7qxq:
-    id: 1lvwh7qxq
-    content: Check box should not display when empty
-    children: []
-    metadata:
-      status: failed
-  mz7j4sjn4:
-    id: mz7j4sjn4
-    content: Use same space for checkbox and toggle
-    children: []
-    metadata:
-      status: failed
   0vzl7mppk:
     id: 0vzl7mppk
     content: Infra
@@ -152,28 +128,6 @@ nodes:
     children: []
     metadata:
       status: pending
-  l7w7ssh62:
-    id: l7w7ssh62
-    content: Bugs
-    children:
-      - perf-main-001
-      - b18d78b0-a96e-4483-840c-df932f663968
-      - ff71c203-adaa-424e-9305-8e563cae5f8a
-      - b3beb907-e7ad-4476-a42f-83b7fc75a189
-      - 00fe1875-4004-44e5-9ad3-0b338c9c1c41
-      - p4b94svjw
-      - 26066785-5fbb-4294-ba3f-48a989bc2390
-      - a56f27cf-be6c-4453-af20-d295d1ba386b
-      - acdf701b-aa3e-4443-be72-e12d45db8275
-    metadata:
-      status: pending
-      expanded: false
-  p4b94svjw:
-    id: p4b94svjw
-    content: Keyboard browsing perf bug is back - skips nodes
-    children: []
-    metadata:
-      status: completed
   7yv24ywtt:
     id: 7yv24ywtt
     content: Soft delete anything that is deleted so that it is hidden in the view but not actually removed
@@ -231,160 +185,6 @@ nodes:
   rupbtgixt:
     id: rupbtgixt
     content: Soft deleted node children accounted for when we warn about deleting ancestors
-    children: []
-    metadata:
-      status: completed
-  60ebf3ef-241c-4317-8578-5a8b5a038cf7:
-    id: 60ebf3ef-241c-4317-8578-5a8b5a038cf7
-    content: Accessibility
-    children: []
-    metadata:
-      status: pending
-  perf-main-001:
-    id: perf-main-001
-    content: Performance Issues
-    children:
-      - perf-high-001
-      - perf-med-001
-      - perf-low-001
-    metadata:
-      status: completed
-      expanded: true
-  perf-high-001:
-    id: perf-high-001
-    content: High Priority
-    children:
-      - perf-high-leak-001
-      - perf-high-leak-002
-      - perf-high-render-001
-      - perf-high-render-002
-      - perf-high-render-003
-    metadata:
-      status: completed
-      expanded: false
-  perf-high-leak-001:
-    id: perf-high-leak-001
-    content: 'NOT A LEAK - Improved naming: preload uses setMenuNewHandler, renderer uses onMenuNew'
-    children: []
-    metadata:
-      status: completed
-  perf-high-leak-002:
-    id: perf-high-leak-002
-    content: 'NOT A LEAK - Improved naming: preload uses setMainErrorHandler, renderer uses onError'
-    children: []
-    metadata:
-      status: completed
-  perf-high-render-001:
-    id: perf-high-render-001
-    content: 'CRITICAL: Zustand over-selection in TreeNode.tsx:17 - selecting entire nodes object causes all nodes to re-render'
-    children: []
-    metadata:
-      status: completed
-  perf-high-render-002:
-    id: perf-high-render-002
-    content: 'CRITICAL: Zustand over-selection in Tree.tsx:10 - same issue at tree level'
-    children: []
-    metadata:
-      status: completed
-  perf-high-render-003:
-    id: perf-high-render-003
-    content: Inline style object in TreeNode.tsx:47 - creates new object for every node on every render
-    children: []
-    metadata:
-      status: failed
-  perf-med-001:
-    id: perf-med-001
-    content: Medium Priority
-    children:
-      - perf-med-inline-001
-      - perf-med-inline-002
-      - perf-med-inline-003
-      - perf-med-inline-004
-      - perf-med-memo-001
-      - perf-med-deps-001
-    metadata:
-      status: completed
-      expanded: false
-  perf-med-inline-001:
-    id: perf-med-inline-001
-    content: Inline functions in NodeContent.tsx:48 - new function for every node
-    children: []
-    metadata:
-      status: failed
-  perf-med-inline-002:
-    id: perf-med-inline-002
-    content: Inline functions in TabBar.tsx:26-27 - new functions for every tab
-    children: []
-    metadata:
-      status: failed
-  perf-med-inline-003:
-    id: perf-med-inline-003
-    content: Inline functions in ExpandToggle.tsx:19-26 - multiple inline handlers
-    children: []
-    metadata:
-      status: failed
-  perf-med-inline-004:
-    id: perf-med-inline-004
-    content: Inline functions in StatusCheckbox.tsx:27-30 and ToastContainer.tsx:22
-    children: []
-    metadata:
-      status: failed
-  perf-med-memo-001:
-    id: perf-med-memo-001
-    content: Missing memoization on Tree, Workspace, StatusCheckbox, ExpandToggle components
-    children: []
-    metadata:
-      status: completed
-  perf-med-deps-001:
-    id: perf-med-deps-001
-    content: Large dependency arrays in useTreeMenu.ts:25 causing frequent effect re-runs
-    children: []
-    metadata:
-      status: failed
-  perf-low-001:
-    id: perf-low-001
-    content: Low Priority
-    children:
-      - perf-low-state-001
-      - perf-low-memo-001
-      - perf-low-inline-001
-    metadata:
-      status: completed
-      expanded: false
-  perf-low-state-001:
-    id: perf-low-state-001
-    content: Module-level state in useNodeKeyboard.ts:17 - shared across all component instances
-    children: []
-    metadata:
-      status: failed
-  perf-low-memo-001:
-    id: perf-low-memo-001
-    content: useMemo with unstable dependencies in useNodeContextMenu.ts:27-36
-    children: []
-    metadata:
-      status: failed
-  perf-low-inline-001:
-    id: perf-low-inline-001
-    content: Minor inline objects in ContextMenu.tsx:46 and ToastContainer.tsx:16
-    children: []
-    metadata:
-      status: failed
-  26066785-5fbb-4294-ba3f-48a989bc2390:
-    id: 26066785-5fbb-4294-ba3f-48a989bc2390
-    content: There is an issue with indented or moved nodes dissapearing if there is an adjacent soft deleted node
-    children:
-      - f42baf93-4237-400b-aeca-14d4d3280962
-    metadata:
-      status: completed
-  f42baf93-4237-400b-aeca-14d4d3280962:
-    id: f42baf93-4237-400b-aeca-14d4d3280962
-    content: We need to remove the soft deleted nodes entirely from the render tree
-    children: []
-    metadata:
-      status: completed
-  a56f27cf-be6c-4453-af20-d295d1ba386b:
-    id: a56f27cf-be6c-4453-af20-d295d1ba386b
-    content: Keyboard navigation bug, can't go down through the node just above this one with the down arrow - i had deleted some stuff earlier
     children: []
     metadata:
       status: completed
@@ -721,19 +521,6 @@ nodes:
     children: []
     metadata:
       status: completed
-  acdf701b-aa3e-4443-be72-e12d45db8275:
-    id: acdf701b-aa3e-4443-be72-e12d45db8275
-    content: "Seems to be some performance issues while typing - check listeners ? Renderers ?\_ Maybe just on development while there are changes going on ?"
-    children:
-      - 0c16c95e-2e5c-41c6-9dd5-10eb6812f287
-    metadata:
-      status: pending
-  0c16c95e-2e5c-41c6-9dd5-10eb6812f287:
-    id: 0c16c95e-2e5c-41c6-9dd5-10eb6812f287
-    content: In development mode, have the amount of renders of nodeContent, node and tree, as well as listener count, to console.
-    children: []
-    metadata:
-      status: pending
   12685af2-0a97-4e37-a882-08dbe4d570c9:
     id: 12685af2-0a97-4e37-a882-08dbe4d570c9
     content: "Why do we import usePlugins in nodeContent ? Plugins may not always act on node level.\_ Can we not import the plugin into the workspace ?\_"
@@ -754,35 +541,6 @@ nodes:
     children: []
     metadata:
       status: completed
-  b18d78b0-a96e-4483-840c-df932f663968:
-    id: b18d78b0-a96e-4483-840c-df932f663968
-    content: Navigation issues
-    children:
-      - ad630169-dc01-462b-a7b4-01e36da699fd
-      - 6ba108c5-6162-48f9-b985-42cad8495ea5
-      - 94817fd6-86dd-4fbb-a853-8f226bab2f0f
-      - 2da028a0-d59d-4055-9322-a0d8b5887e82
-    metadata:
-      status: pending
-      expanded: true
-  ad630169-dc01-462b-a7b4-01e36da699fd:
-    id: ad630169-dc01-462b-a7b4-01e36da699fd
-    content: Clicking doesn't focus the cursor on the click spot, but at the start of the node
-    children: []
-    metadata:
-      status: pending
-  6ba108c5-6162-48f9-b985-42cad8495ea5:
-    id: 6ba108c5-6162-48f9-b985-42cad8495ea5
-    content: When navigating down to an element, then when we use the left arrow, it goes to the start of the node instead of the next character to the left
-    children: []
-    metadata:
-      status: pending
-  00fe1875-4004-44e5-9ad3-0b338c9c1c41:
-    id: 00fe1875-4004-44e5-9ad3-0b338c9c1c41
-    content: When we copy and paste, we should retain the default arborescent font type and size
-    children: []
-    metadata:
-      status: pending
   e64f06e3-9bf8-42f2-b6ba-826a3cbbf39f:
     id: e64f06e3-9bf8-42f2-b6ba-826a3cbbf39f
     content: There are text entries that reference Claude instead of Claude code
@@ -795,12 +553,6 @@ nodes:
     children: []
     metadata:
       status: completed
-  94817fd6-86dd-4fbb-a853-8f226bab2f0f:
-    id: 94817fd6-86dd-4fbb-a853-8f226bab2f0f
-    content: When navigating to an empty node, no cursor appears at the first space, we have to start typing to see it
-    children: []
-    metadata:
-      status: pending
   0b5dd419-3dc6-4dd2-bc5f-655dacb15f28:
     id: 0b5dd419-3dc6-4dd2-bc5f-655dacb15f28
     content: Actually it should be imported from claudeCodeTypes.ts
@@ -876,18 +628,6 @@ nodes:
     children: []
     metadata:
       status: pending
-  b3beb907-e7ad-4476-a42f-83b7fc75a189:
-    id: b3beb907-e7ad-4476-a42f-83b7fc75a189
-    content: When we delete the first node, we lose the cursor
-    children: []
-    metadata:
-      status: pending
-  2da028a0-d59d-4055-9322-a0d8b5887e82:
-    id: 2da028a0-d59d-4055-9322-a0d8b5887e82
-    content: "When moving a node into a hiddend node,\_"
-    children: []
-    metadata:
-      status: pending
   67b4c175-a885-41f5-a825-78f435509683:
     id: 67b4c175-a885-41f5-a825-78f435509683
     content: Make sure PLUGIN_DEVELOPMENT.md is updated
@@ -937,7 +677,7 @@ nodes:
       - 382ddb47-39df-4546-978c-66b3a2306480
     metadata:
       status: pending
-      expanded: true
+      expanded: false
       appliedContextId: e8824b29-eb18-4031-9e35-b321a864d418
   0cc62ae1-1a7a-4aa4-bc6a-d817cabd672c:
     id: 0cc62ae1-1a7a-4aa4-bc6a-d817cabd672c
@@ -1013,7 +753,7 @@ nodes:
       - 50de00c5-8138-491b-9063-eeb5145fc4e2
     metadata:
       status: pending
-      expanded: false
+      expanded: true
   c882ae02-4134-41c9-89de-39e04fb749c5:
     id: c882ae02-4134-41c9-89de-39e04fb749c5
     content: UI as simple as possible
@@ -1380,12 +1120,6 @@ nodes:
   fa8b9544-c3e1-42ff-8162-96d87a087bda:
     id: fa8b9544-c3e1-42ff-8162-96d87a087bda
     content: What goes in there ?
-    children: []
-    metadata:
-      status: pending
-  ff71c203-adaa-424e-9305-8e563cae5f8a:
-    id: ff71c203-adaa-424e-9305-8e563cae5f8a
-    content: Toggle should not apply to a node with no children
     children: []
     metadata:
       status: pending
@@ -5932,6 +5666,7 @@ nodes:
       - 0d19da53-f3a7-4ee4-b495-b59f127671fa
     metadata:
       status: pending
+      expanded: false
   45d2a1da-b13f-43c2-a3bd-88d0d6fb5b7a:
     id: 45d2a1da-b13f-43c2-a3bd-88d0d6fb5b7a
     content: Documentation
@@ -5939,7 +5674,7 @@ nodes:
       - 87803b8a-b663-4e92-b92b-d1eacff4aa2a
     metadata:
       status: pending
-      expanded: false
+      expanded: true
   e7bdf7a4-9294-49b2-b80f-05ae7e382d1c:
     id: e7bdf7a4-9294-49b2-b80f-05ae7e382d1c
     content: New features (It's a pattern, and all children are patterns)
@@ -6165,7 +5900,7 @@ nodes:
       - 6939fedc-f61d-4a8c-92a2-497f52bbd5e0
     metadata:
       status: completed
-      expanded: false
+      expanded: true
       deleted: false
       plugins: {}
   3f4716e5-d5c6-4307-892e-41c000112ccb:
@@ -6177,7 +5912,7 @@ nodes:
       - 5a89c964-ba00-4237-9efa-89e0db37d4db
     metadata:
       status: pending
-      expanded: true
+      expanded: false
       deleted: false
       plugins: {}
   861dccdf-01d0-4e71-bddc-e55e78f2cb87:
@@ -7694,7 +7429,6 @@ nodes:
     children:
       - 36b58910-4308-4acc-ae81-a8385f486d3a
       - ff292fbf-26d8-450a-b9c4-c2aa424bcc06
-      - 7cf45411-7af4-485a-9a12-e780f4172a69
     metadata:
       status: pending
       expanded: true
@@ -7746,60 +7480,3 @@ nodes:
     children: []
     metadata:
       status: pending
-  21b6b6a2-c453-460e-91ec-e3c5aa0c659c:
-    id: 21b6b6a2-c453-460e-91ec-e3c5aa0c659c
-    content: Make a central updateAncestorRegistry function, currently it's done in 3 places
-    children: []
-    metadata:
-      status: completed
-  308483a1-3df4-47b3-9d2c-e3a191bde737:
-    id: 308483a1-3df4-47b3-9d2c-e3a191bde737
-    content: NodeContent, TreeNode, and Tree have hooks that follow similar patterns
-    children: []
-    metadata:
-      status: pending
-  873502d7-8b08-4514-9008-9d92c58cb991:
-    id: 873502d7-8b08-4514-9008-9d92c58cb991
-    content: useStoreSubscribtion
-    children: []
-    metadata:
-      status: pending
-  9709398e-20d7-4650-ba60-abc7b386011d:
-    id: 9709398e-20d7-4650-ba60-abc7b386011d
-    content: useNodeLifecycle
-    children: []
-    metadata:
-      status: pending
-  93945f17-7de4-4a77-b8aa-b0e78d13b4c6:
-    id: 93945f17-7de4-4a77-b8aa-b0e78d13b4c6
-    content: useKeyboardShortcut
-    children: []
-    metadata:
-      status: pending
-  70eb1cc7-ee62-48e1-b33f-9c19260b0f6f:
-    id: 70eb1cc7-ee62-48e1-b33f-9c19260b0f6f
-    content: could make src/renderer/hooks with
-    children:
-      - 873502d7-8b08-4514-9008-9d92c58cb991
-      - 9709398e-20d7-4650-ba60-abc7b386011d
-      - 93945f17-7de4-4a77-b8aa-b0e78d13b4c6
-    metadata:
-      status: pending
-  c0c29a4d-c930-44e0-b020-803ee49b2215:
-    id: c0c29a4d-c930-44e0-b020-803ee49b2215
-    content: make compound hooks
-    children:
-      - 308483a1-3df4-47b3-9d2c-e3a191bde737
-      - 70eb1cc7-ee62-48e1-b33f-9c19260b0f6f
-    metadata:
-      status: pending
-      expanded: true
-  7cf45411-7af4-485a-9a12-e780f4172a69:
-    id: 7cf45411-7af4-485a-9a12-e780f4172a69
-    content: /home/brian/Pictures/screenshots/Refactor
-    children:
-      - 21b6b6a2-c453-460e-91ec-e3c5aa0c659c
-      - c0c29a4d-c930-44e0-b020-803ee49b2215
-    metadata:
-      status: pending
-      expanded: true

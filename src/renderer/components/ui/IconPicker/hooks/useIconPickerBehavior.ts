@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState, useMemo, useCallback } from 'react';
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
+import { useDialogBehavior } from '../../../../hooks';
 
 interface IconItem {
   icon: IconDefinition;
@@ -18,6 +19,8 @@ export function useIconPickerBehavior(
   const [showAll, setShowAll] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
 
+  useDialogBehavior(dialogRef, onClose);
+
   // Filter icons based on search query and showAll state
   const displayedIcons = useMemo(() => {
     const baseIcons = showAll ? allIcons : curatedIcons;
@@ -30,30 +33,10 @@ export function useIconPickerBehavior(
     return allIcons.filter(({ name }) => name.includes(query));
   }, [showAll, searchQuery, allIcons, curatedIcons]);
 
+  // Focus search input on open
   useEffect(() => {
-    const handleClickOutside = (e: MouseEvent) => {
-      if (dialogRef.current && !dialogRef.current.contains(e.target as Node)) {
-        onClose();
-      }
-    };
-
-    const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        onClose();
-      }
-    };
-
-    document.addEventListener('mousedown', handleClickOutside);
-    document.addEventListener('keydown', handleEscape);
-
-    // Focus search input on open
     searchInputRef.current?.focus();
-
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-      document.removeEventListener('keydown', handleEscape);
-    };
-  }, [onClose]);
+  }, []);
 
   const handleIconClick = useCallback((iconName: string) => {
     onSelect(iconName);
