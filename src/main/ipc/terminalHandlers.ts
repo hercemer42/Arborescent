@@ -1,6 +1,7 @@
 import { ipcMain, IpcMainInvokeEvent } from 'electron';
 import { TerminalManager } from '../services/TerminalManager';
 import { logger } from '../services/logger';
+import { IDisposable } from 'node-pty';
 
 export interface TerminalInfo {
   id: string;
@@ -9,6 +10,9 @@ export interface TerminalInfo {
   shellCommand: string;
   shellArgs: string[];
 }
+
+// Track disposables for each terminal so we can clean them up
+const terminalDisposables: Map<string, IDisposable[]> = new Map();
 
 export function registerTerminalHandlers(mainWindow: Electron.BrowserWindow) {
   /**
@@ -27,15 +31,23 @@ export function registerTerminalHandlers(mainWindow: Electron.BrowserWindow) {
       try {
         const terminal = TerminalManager.create(id, title, shellCommand, shellArgs, cwd);
 
-        // Forward PTY output to renderer
-        terminal.ptyProcess.onData((data: string) => {
-          mainWindow.webContents.send(`terminal:data:${id}`, data);
-        });
+        const disposables: IDisposable[] = [];
 
-        // Forward PTY exit event
-        terminal.ptyProcess.onExit(({ exitCode, signal }) => {
-          mainWindow.webContents.send(`terminal:exit:${id}`, { exitCode, signal });
-        });
+        // Forward PTY output to renderer (with destroyed check)
+        disposables.push(terminal.ptyProcess.onData((data: string) => {
+          if (!mainWindow.isDestroyed()) {
+            mainWindow.webContents.send(`terminal:data:${id}`, data);
+          }
+        }));
+
+        // Forward PTY exit event (with destroyed check)
+        disposables.push(terminal.ptyProcess.onExit(({ exitCode, signal }) => {
+          if (!mainWindow.isDestroyed()) {
+            mainWindow.webContents.send(`terminal:exit:${id}`, { exitCode, signal });
+          }
+        }));
+
+        terminalDisposables.set(id, disposables);
 
         return {
           id: terminal.id,
@@ -88,6 +100,12 @@ export function registerTerminalHandlers(mainWindow: Electron.BrowserWindow) {
     'terminal:destroy',
     async (_event: IpcMainInvokeEvent, id: string): Promise<void> => {
       try {
+        // Dispose listeners first
+        const disposables = terminalDisposables.get(id);
+        if (disposables) {
+          disposables.forEach(d => d.dispose());
+          terminalDisposables.delete(id);
+        }
         TerminalManager.destroy(id);
       } catch (error) {
         logger.error(`Failed to destroy terminal ${id}`, error as Error, 'Terminal IPC');
@@ -98,8 +116,23 @@ export function registerTerminalHandlers(mainWindow: Electron.BrowserWindow) {
 }
 
 /**
+ * Dispose listeners for a specific terminal
+ */
+export function disposeTerminalListeners(id: string) {
+  const disposables = terminalDisposables.get(id);
+  if (disposables) {
+    disposables.forEach(d => d.dispose());
+    terminalDisposables.delete(id);
+  }
+}
+
+/**
  * Cleanup terminals on app quit
  */
 export function cleanupTerminals() {
+  // Dispose all listeners first to prevent "Object has been destroyed" errors
+  for (const [id] of terminalDisposables) {
+    disposeTerminalListeners(id);
+  }
   TerminalManager.destroyAll();
 }
