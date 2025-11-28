@@ -196,9 +196,8 @@ function handleHorizontalNavigation(direction: 'left' | 'right', event: Keyboard
 
     scrollToActiveNode();
   } else {
-    // Moving within node - update cursor position and reset rememberedVisualX
-    const newPosition = direction === 'left' ? cursorPosition - 1 : cursorPosition + 1;
-    store.actions.setCursorPosition(newPosition);
+    // Let browser handle the cursor movement, just reset rememberedVisualX
+    // The cursor position will sync via the selection change or blur handler
     store.actions.setRememberedVisualX(null);
   }
 }

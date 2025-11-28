@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2025-11-28T10:32:47.155Z'
+updated: '2025-11-28T10:42:05.513Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -716,10 +716,11 @@ nodes:
     id: d5fe0eff-b1c6-4986-b6a3-70a0ea46f096
     content: Ideas
     children:
+      - 0d1ab99b-d0fa-41e4-b6fd-5d0404b25e7e
       - 2ce5b181-5461-486c-be65-159e5e98de54
     metadata:
       status: pending
-      expanded: false
+      expanded: true
   2ce5b181-5461-486c-be65-159e5e98de54:
     id: 2ce5b181-5461-486c-be65-159e5e98de54
     content: Mobile app
@@ -5638,7 +5639,7 @@ nodes:
       - 03c110fc-243f-4452-9faa-d3efecce960d
     metadata:
       status: pending
-      expanded: true
+      expanded: false
   87803b8a-b663-4e92-b92b-d1eacff4aa2a:
     id: 87803b8a-b663-4e92-b92b-d1eacff4aa2a
     content: Features
@@ -7426,57 +7427,41 @@ nodes:
   70762c7c-4a21-4668-ab42-8a91ca8afbcc:
     id: 70762c7c-4a21-4668-ab42-8a91ca8afbcc
     content: Refactor
-    children:
-      - 36b58910-4308-4acc-ae81-a8385f486d3a
-      - ff292fbf-26d8-450a-b9c4-c2aa424bcc06
+    children: []
     metadata:
       status: pending
       expanded: true
-  36b58910-4308-4acc-ae81-a8385f486d3a:
-    id: 36b58910-4308-4acc-ae81-a8385f486d3a
-    content: Make a central updateAncestorRegistry function, currently it's done in 3 places
-    children: []
-    metadata:
-      status: completed
-  ff292fbf-26d8-450a-b9c4-c2aa424bcc06:
-    id: ff292fbf-26d8-450a-b9c4-c2aa424bcc06
-    content: make compound hooks
+  0d1ab99b-d0fa-41e4-b6fd-5d0404b25e7e:
+    id: 0d1ab99b-d0fa-41e4-b6fd-5d0404b25e7e
+    content: Side project blueprint/pattern design
     children:
-      - 1ac1458a-a699-418f-af5c-05950d832155
-      - 63a28c78-c1b6-4acf-bd61-5415cfd9185c
+      - c9d695c8-cab3-4df1-9e31-0c8e5efb8d5a
+      - a5c57497-345d-45cd-b804-787c83e6ac59
+      - 65f1dfa8-de56-47be-984b-02d53d6ee774
+      - 8ec943d1-cfa7-49cc-ab7d-0b4eca5d258c
     metadata:
       status: pending
-      expanded: true
-  1ac1458a-a699-418f-af5c-05950d832155:
-    id: 1ac1458a-a699-418f-af5c-05950d832155
-    content: NodeContent, TreeNode, and Tree have hooks that follow similar patterns
+  c9d695c8-cab3-4df1-9e31-0c8e5efb8d5a:
+    id: c9d695c8-cab3-4df1-9e31-0c8e5efb8d5a
+    content: In development
     children: []
     metadata:
       status: pending
-  63a28c78-c1b6-4acf-bd61-5415cfd9185c:
-    id: 63a28c78-c1b6-4acf-bd61-5415cfd9185c
-    content: could make src/renderer/hooks with
-    children:
-      - 07434a69-6dc4-4c44-82ed-4ef0fbf74e22
-      - 3f551981-c74c-4a0e-9c54-980a796a85fa
-      - 8ae82dcc-98d7-4f00-9a64-1994f336e63e
-    metadata:
-      status: pending
-  07434a69-6dc4-4c44-82ed-4ef0fbf74e22:
-    id: 07434a69-6dc4-4c44-82ed-4ef0fbf74e22
-    content: useStoreSubscribtion
+  a5c57497-345d-45cd-b804-787c83e6ac59:
+    id: a5c57497-345d-45cd-b804-787c83e6ac59
+    content: Ideas
     children: []
     metadata:
       status: pending
-  3f551981-c74c-4a0e-9c54-980a796a85fa:
-    id: 3f551981-c74c-4a0e-9c54-980a796a85fa
-    content: useNodeLifecycle
+  8ec943d1-cfa7-49cc-ab7d-0b4eca5d258c:
+    id: 8ec943d1-cfa7-49cc-ab7d-0b4eca5d258c
+    content: Done
     children: []
     metadata:
       status: pending
-  8ae82dcc-98d7-4f00-9a64-1994f336e63e:
-    id: 8ae82dcc-98d7-4f00-9a64-1994f336e63e
-    content: useKeyboardShortcut
+  65f1dfa8-de56-47be-984b-02d53d6ee774:
+    id: 65f1dfa8-de56-47be-984b-02d53d6ee774
+    content: User stories
     children: []
     metadata:
       status: pending
