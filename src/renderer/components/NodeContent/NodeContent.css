@@ -8,6 +8,25 @@
   position: relative;
 }
 
+/* Indent guide lines */
+.node-content::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  bottom: -1px;
+  left: 24px; /* base padding (15px) + checkbox offset (9px) */
+  width: var(--indent-width, 0);
+  background-image: repeating-linear-gradient(
+    to right,
+    var(--gray-200) 0px,
+    var(--gray-200) 1px,
+    transparent 1px,
+    transparent 20px
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
 .status-checkbox-wrapper {
   display: flex;
   align-items: center;

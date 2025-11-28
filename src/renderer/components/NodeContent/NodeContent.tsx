@@ -30,7 +30,10 @@ function NodeContentComponent({
       <div
         className={`node-content ${isSelected ? 'selected' : ''}`}
         onContextMenu={handleContextMenu}
-        style={{ paddingLeft: `${(depth * 20) + 15}px` }}
+        style={{
+          paddingLeft: `${(depth * 20) + 15}px`,
+          '--indent-width': `${depth * 20}px`,
+        } as React.CSSProperties}
       >
         <div className={`status-checkbox-wrapper ${!isSelected ? 'not-selected' : ''}`}>
           <StatusCheckbox
