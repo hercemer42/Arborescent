@@ -145,7 +145,7 @@ export function createCollaborateActions(
           }
         }
 
-        const clipboardContent = contextPrefix + COLLABORATE_INSTRUCTION_WEB + '\n\nHere is the content to review:\n\n' + formattedContent;
+        const clipboardContent = contextPrefix + COLLABORATE_INSTRUCTION_WEB + '\n\nHere is the content:\n\n' + formattedContent;
         await navigator.clipboard.writeText(clipboardContent);
 
         useToastStore.getState().addToast(
@@ -205,7 +205,7 @@ export function createCollaborateActions(
 
 IMPORTANT: Write your reviewed/updated list to this file: ${feedbackResponseFile}
 
-Here is the content to review:
+Here is the content:
 
 ${formattedContent}`;
 

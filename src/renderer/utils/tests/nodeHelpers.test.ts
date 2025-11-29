@@ -6,6 +6,8 @@ import {
   createTreeNode,
   cloneNodesWithNewIds,
   getEffectiveContextIds,
+  getNextSiblingId,
+  findClosestAncestorWithMetadata,
 } from '../nodeHelpers';
 import { TreeNode } from '@shared/types';
 
@@ -540,5 +542,159 @@ describe('getEffectiveContextIds', () => {
 
     const result = getEffectiveContextIds('non-existent', nodes, ancestorRegistry);
     expect(result).toEqual([]);
+  });
+});
+
+describe('getNextSiblingId', () => {
+  const createNode = (id: string, children: string[] = [], metadata = {}): TreeNode => ({
+    id,
+    content: `Node ${id}`,
+    children,
+    metadata,
+  });
+
+  it('should return next sibling id when it exists', () => {
+    const nodes = {
+      'root': createNode('root', ['child-1', 'child-2', 'child-3']),
+      'child-1': createNode('child-1'),
+      'child-2': createNode('child-2'),
+      'child-3': createNode('child-3'),
+    };
+    const ancestorRegistry = {
+      'child-1': ['root'],
+      'child-2': ['root'],
+      'child-3': ['root'],
+    };
+
+    expect(getNextSiblingId('child-1', nodes, 'root', ancestorRegistry)).toBe('child-2');
+    expect(getNextSiblingId('child-2', nodes, 'root', ancestorRegistry)).toBe('child-3');
+  });
+
+  it('should return null when node is last sibling', () => {
+    const nodes = {
+      'root': createNode('root', ['child-1', 'child-2']),
+      'child-1': createNode('child-1'),
+      'child-2': createNode('child-2'),
+    };
+    const ancestorRegistry = {
+      'child-1': ['root'],
+      'child-2': ['root'],
+    };
+
+    expect(getNextSiblingId('child-2', nodes, 'root', ancestorRegistry)).toBeNull();
+  });
+
+  it('should return null when node is only child', () => {
+    const nodes = {
+      'root': createNode('root', ['only-child']),
+      'only-child': createNode('only-child'),
+    };
+    const ancestorRegistry = {
+      'only-child': ['root'],
+    };
+
+    expect(getNextSiblingId('only-child', nodes, 'root', ancestorRegistry)).toBeNull();
+  });
+
+  it('should work with nested nodes', () => {
+    const nodes = {
+      'root': createNode('root', ['parent']),
+      'parent': createNode('parent', ['child-1', 'child-2']),
+      'child-1': createNode('child-1'),
+      'child-2': createNode('child-2'),
+    };
+    const ancestorRegistry = {
+      'parent': ['root'],
+      'child-1': ['root', 'parent'],
+      'child-2': ['root', 'parent'],
+    };
+
+    expect(getNextSiblingId('child-1', nodes, 'root', ancestorRegistry)).toBe('child-2');
+  });
+});
+
+describe('findClosestAncestorWithMetadata', () => {
+  const createNode = (id: string, children: string[] = [], metadata = {}): TreeNode => ({
+    id,
+    content: `Node ${id}`,
+    children,
+    metadata,
+  });
+
+  it('should return node itself if it has the metadata flag', () => {
+    const nodes = {
+      'root': createNode('root', ['child']),
+      'child': createNode('child', [], { nextStepContext: true }),
+    };
+    const ancestorRegistry = {
+      'child': ['root'],
+    };
+
+    expect(findClosestAncestorWithMetadata('child', nodes, ancestorRegistry, 'nextStepContext')).toBe('child');
+  });
+
+  it('should return closest ancestor with the metadata flag', () => {
+    const nodes = {
+      'root': createNode('root', ['parent']),
+      'parent': createNode('parent', ['child'], { nextStepContext: true }),
+      'child': createNode('child'),
+    };
+    const ancestorRegistry = {
+      'parent': ['root'],
+      'child': ['root', 'parent'],
+    };
+
+    expect(findClosestAncestorWithMetadata('child', nodes, ancestorRegistry, 'nextStepContext')).toBe('parent');
+  });
+
+  it('should return closest when multiple ancestors have the flag', () => {
+    const nodes = {
+      'root': createNode('root', ['grandparent']),
+      'grandparent': createNode('grandparent', ['parent'], { nextStepContext: true }),
+      'parent': createNode('parent', ['child'], { nextStepContext: true }),
+      'child': createNode('child'),
+    };
+    const ancestorRegistry = {
+      'grandparent': ['root'],
+      'parent': ['root', 'grandparent'],
+      'child': ['root', 'grandparent', 'parent'],
+    };
+
+    // Should return parent (closest), not grandparent
+    expect(findClosestAncestorWithMetadata('child', nodes, ancestorRegistry, 'nextStepContext')).toBe('parent');
+  });
+
+  it('should return null when no ancestor has the flag', () => {
+    const nodes = {
+      'root': createNode('root', ['parent']),
+      'parent': createNode('parent', ['child']),
+      'child': createNode('child'),
+    };
+    const ancestorRegistry = {
+      'parent': ['root'],
+      'child': ['root', 'parent'],
+    };
+
+    expect(findClosestAncestorWithMetadata('child', nodes, ancestorRegistry, 'nextStepContext')).toBeNull();
+  });
+
+  it('should return null for non-existent node', () => {
+    const nodes = {};
+    const ancestorRegistry = {};
+
+    expect(findClosestAncestorWithMetadata('non-existent', nodes, ancestorRegistry, 'nextStepContext')).toBeNull();
+  });
+
+  it('should work with different metadata keys', () => {
+    const nodes = {
+      'root': createNode('root', ['child']),
+      'child': createNode('child', [], { isContextDeclaration: true }),
+    };
+    const ancestorRegistry = {
+      'child': ['root'],
+    };
+
+    expect(findClosestAncestorWithMetadata('child', nodes, ancestorRegistry, 'isContextDeclaration')).toBe('child');
+    expect(findClosestAncestorWithMetadata('child', nodes, ancestorRegistry, 'nextStepContext')).toBeNull();
   });
 });

@@ -38,6 +38,35 @@ export function getEffectiveContextIds(
   return Array.from(contextIds);
 }
 
+/**
+ * Find the closest ancestor (or the node itself) that has a specific metadata flag set.
+ * Walks up from closest to furthest ancestor.
+ *
+ * @returns The node ID with the flag set, or null if none found
+ */
+export function findClosestAncestorWithMetadata(
+  nodeId: string,
+  nodes: Record<string, TreeNode>,
+  ancestorRegistry: AncestorRegistry,
+  metadataKey: string
+): string | null {
+  const node = nodes[nodeId];
+  if (node?.metadata[metadataKey] === true) {
+    return nodeId;
+  }
+
+  const ancestors = ancestorRegistry[nodeId] || [];
+  for (let i = ancestors.length - 1; i >= 0; i--) {
+    const ancestorId = ancestors[i];
+    const ancestor = nodes[ancestorId];
+    if (ancestor?.metadata[metadataKey] === true) {
+      return ancestorId;
+    }
+  }
+
+  return null;
+}
+
 export function updateNodeMetadata(
   nodes: Record<string, TreeNode>,
   nodeId: string,
@@ -129,6 +158,29 @@ export function isLastRootLevelNode(
   parent: TreeNode
 ): boolean {
   return parentId === rootNodeId && parent.children.length === 1;
+}
+
+/**
+ * Get the next sibling ID of a node (sibling immediately after it).
+ * Returns null if the node has no next sibling.
+ */
+export function getNextSiblingId(
+  nodeId: string,
+  nodes: Record<string, TreeNode>,
+  rootNodeId: string,
+  ancestorRegistry: Record<string, string[]>
+): string | null {
+  const parentResult = getParentNode(nodeId, { ancestorRegistry, rootNodeId, nodes });
+  if (!parentResult) return null;
+
+  const { parent } = parentResult;
+  const siblingIndex = parent.children.indexOf(nodeId);
+
+  if (siblingIndex >= 0 && siblingIndex < parent.children.length - 1) {
+    return parent.children[siblingIndex + 1];
+  }
+
+  return null;
 }
 
 export function getParentNode(
