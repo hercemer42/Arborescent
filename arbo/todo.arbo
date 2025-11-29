@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2025-11-29T11:56:22.372Z'
+updated: '2025-11-29T12:29:15.910Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -15,6 +15,7 @@ nodes:
       - d5fe0eff-b1c6-4986-b6a3-70a0ea46f096
       - 9bfbb401-dcb6-4f92-a34b-e9b3982c676f
       - e2c51c9f-43c1-4578-ac3f-861e7d8c17ae
+      - 94a6e849-0751-4eea-ac3b-3809951a13ba
     metadata:
       created: '2025-10-11T00:00:00.000Z'
       isRoot: true
@@ -678,12 +679,11 @@ nodes:
       - 382ddb47-39df-4546-978c-66b3a2306480
     metadata:
       status: pending
-      expanded: true
+      expanded: false
   0cc62ae1-1a7a-4aa4-bc6a-d817cabd672c:
     id: 0cc62ae1-1a7a-4aa4-bc6a-d817cabd672c
     content: In progress
     children:
-      - 70762c7c-4a21-4668-ab42-8a91ca8afbcc
       - 143fe7e1-f53e-4807-bf9f-e4dd6f16a042
     metadata:
       status: pending
@@ -721,7 +721,7 @@ nodes:
       - 2ce5b181-5461-486c-be65-159e5e98de54
     metadata:
       status: pending
-      expanded: true
+      expanded: false
   2ce5b181-5461-486c-be65-159e5e98de54:
     id: 2ce5b181-5461-486c-be65-159e5e98de54
     content: Mobile app
@@ -5640,7 +5640,7 @@ nodes:
       - 03c110fc-243f-4452-9faa-d3efecce960d
     metadata:
       status: pending
-      expanded: true
+      expanded: false
   87803b8a-b663-4e92-b92b-d1eacff4aa2a:
     id: 87803b8a-b663-4e92-b92b-d1eacff4aa2a
     content: Features
@@ -5910,7 +5910,7 @@ nodes:
       - 5a89c964-ba00-4237-9efa-89e0db37d4db
     metadata:
       status: pending
-      expanded: false
+      expanded: true
       deleted: false
       plugins: {}
   861dccdf-01d0-4e71-bddc-e55e78f2cb87:
@@ -7421,16 +7421,6 @@ nodes:
     children: []
     metadata:
       status: completed
-  70762c7c-4a21-4668-ab42-8a91ca8afbcc:
-    id: 70762c7c-4a21-4668-ab42-8a91ca8afbcc
-    content: Refactor
-    children:
-      - 35fd4a28-f002-4e45-8ebc-ab024bef9030
-      - 1af6f134-68b7-4770-8a4d-32dddaa35093
-      - b88a8d95-aa8d-4e02-a03a-94b4f079d7db
-    metadata:
-      status: pending
-      expanded: true
   0d1ab99b-d0fa-41e4-b6fd-5d0404b25e7e:
     id: 0d1ab99b-d0fa-41e4-b6fd-5d0404b25e7e
     content: Side project blueprint/pattern design
@@ -8037,18 +8027,6 @@ nodes:
     children: []
     metadata:
       status: pending
-  35fd4a28-f002-4e45-8ebc-ab024bef9030:
-    id: 35fd4a28-f002-4e45-8ebc-ab024bef9030
-    content: Shouldn't removeContextItems be a store action ?
-    children: []
-    metadata:
-      status: pending
-  1af6f134-68b7-4770-8a4d-32dddaa35093:
-    id: 1af6f134-68b7-4770-8a4d-32dddaa35093
-    content: in treeNode should appliedContexts be in a hook ?
-    children: []
-    metadata:
-      status: pending
   64ea2af4-332b-44a6-8b88-78535cc9b79a:
     id: 64ea2af4-332b-44a6-8b88-78535cc9b79a
     content: Refactor
@@ -8082,14 +8060,7 @@ nodes:
     id: 143fe7e1-f53e-4807-bf9f-e4dd6f16a042
     content: Bugs
     children:
-      - 711eca2d-08ed-4cb4-8c96-549e696d8d16
       - dc387934-f59f-43f4-b3f6-a63bbd34ba76
-    metadata:
-      status: pending
-  711eca2d-08ed-4cb4-8c96-549e696d8d16:
-    id: 711eca2d-08ed-4cb4-8c96-549e696d8d16
-    content: Apply context doesn't do anything
-    children: []
     metadata:
       status: pending
   dc387934-f59f-43f4-b3f6-a63bbd34ba76:
@@ -8112,15 +8083,29 @@ nodes:
     children: []
     metadata:
       status: pending
-  b88a8d95-aa8d-4e02-a03a-94b4f079d7db:
-    id: b88a8d95-aa8d-4e02-a03a-94b4f079d7db
-    content: context-menu-submenu should be in its own component
-    children: []
-    metadata:
-      status: pending
   03c110fc-243f-4452-9faa-d3efecce960d:
     id: 03c110fc-243f-4452-9faa-d3efecce960d
     content: Patterns
+    children: []
+    metadata:
+      status: pending
+  94a6e849-0751-4eea-ac3b-3809951a13ba:
+    id: 94a6e849-0751-4eea-ac3b-3809951a13ba
+    content: Commands
+    children:
+      - 11690f47-4226-45a6-a756-dd88a976384e
+      - d71734e5-d95f-4740-aac0-9748a3d32c85
+    metadata:
+      status: pending
+  11690f47-4226-45a6-a756-dd88a976384e:
+    id: 11690f47-4226-45a6-a756-dd88a976384e
+    content: Please add tests
+    children: []
+    metadata:
+      status: pending
+  d71734e5-d95f-4740-aac0-9748a3d32c85:
+    id: d71734e5-d95f-4740-aac0-9748a3d32c85
+    content: ''
     children: []
     metadata:
       status: pending

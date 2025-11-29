@@ -108,3 +108,15 @@
 .context-menu-submenu .context-menu-item-label {
   max-width: 180px;
 }
+
+/* Flip submenu to the left when it would overflow right edge */
+.context-menu-submenu.flip-horizontal {
+  left: auto;
+  right: 100%;
+}
+
+/* Flip submenu upward when it would overflow bottom edge */
+.context-menu-submenu.flip-vertical {
+  top: auto;
+  bottom: 0;
+}

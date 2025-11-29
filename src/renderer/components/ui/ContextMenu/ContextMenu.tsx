@@ -1,4 +1,5 @@
 import { useContextMenuBehavior } from './hooks/useContextMenuBehavior';
+import { useMenuPosition } from './hooks/useMenuPosition';
 import { Submenu } from './Submenu';
 import './ContextMenu.css';
 
@@ -19,6 +20,9 @@ interface ContextMenuProps {
   onClose: () => void;
 }
 
+// Typical submenu width for predicting overflow
+const SUBMENU_WIDTH = 200;
+
 export function ContextMenu({ x, y, items, onClose }: ContextMenuProps) {
   const {
     menuRef,
@@ -26,11 +30,20 @@ export function ContextMenu({ x, y, items, onClose }: ContextMenuProps) {
     handleItemClick,
   } = useContextMenuBehavior(onClose);
 
+  const position = useMenuPosition(menuRef, x, y);
+
+  // Predict if submenus would need to flip based on menu's right edge
+  // Use measured width if available, otherwise estimate
+  const menuWidth = menuRef.current?.getBoundingClientRect().width ?? 150;
+  const menuRight = position.x + menuWidth;
+  const childWouldFlip = menuRight + SUBMENU_WIDTH > window.innerWidth;
+  const arrow = childWouldFlip ? '‹' : '›';
+
   return (
     <div
       ref={menuRef}
       className="context-menu"
-      style={{ left: `${x}px`, top: `${y}px` }}
+      style={{ left: `${position.x}px`, top: `${position.y}px` }}
     >
       {items.map((item, index) => (
         <div
@@ -45,7 +58,7 @@ export function ContextMenu({ x, y, items, onClose }: ContextMenuProps) {
           >
             {item.icon && <span className="context-menu-item-icon">{item.icon}</span>}
             <span className="context-menu-item-label">{item.label}</span>
-            {item.submenu && <span className="context-menu-submenu-arrow">›</span>}
+            {item.submenu && <span className="context-menu-submenu-arrow">{arrow}</span>}
           </button>
           {item.submenu && openSubmenu === index && (
             <Submenu items={item.submenu} onClose={onClose} />
