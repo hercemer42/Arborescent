@@ -1,44 +1,16 @@
-import { useRef, useState, useCallback } from 'react';
-import { ContextMenuItem } from '../ContextMenu';
+import { useRef } from 'react';
 import { useDialogBehavior } from '../../../../hooks';
+import { useSubmenuBehavior } from '../Submenu/useSubmenuBehavior';
 
+// Hook for the root context menu (includes dialog behavior)
 export function useContextMenuBehavior(onClose: () => void) {
   const menuRef = useRef<HTMLDivElement>(null);
-  const [openSubmenu, setOpenSubmenu] = useState<number | null>(null);
+  const submenuBehavior = useSubmenuBehavior(onClose);
 
   useDialogBehavior(menuRef, onClose);
 
-  const handleItemClick = useCallback((item: ContextMenuItem) => {
-    if (item.submenu) {
-      return; // Don't close menu when clicking on submenu parent
-    }
-    if (item.onClick) {
-      item.onClick();
-    }
-    onClose();
-  }, [onClose]);
-
-  const handleSubmenuItemClick = useCallback((item: ContextMenuItem) => {
-    if (item.onClick) {
-      item.onClick();
-    }
-    onClose();
-  }, [onClose]);
-
-  const handleSubmenuEnter = useCallback((index: number) => {
-    setOpenSubmenu(index);
-  }, []);
-
-  const handleSubmenuLeave = useCallback(() => {
-    setOpenSubmenu(null);
-  }, []);
-
   return {
     menuRef,
-    openSubmenu,
-    handleItemClick,
-    handleSubmenuItemClick,
-    handleSubmenuEnter,
-    handleSubmenuLeave,
+    ...submenuBehavior,
   };
 }

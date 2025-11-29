@@ -13,7 +13,7 @@ import { useContextSubmenu } from './useContextSubmenu';
 import { logger } from '../../../services/logger';
 import { writeToClipboard } from '../../../services/clipboardService';
 import { exportNodeAsMarkdown } from '../../../utils/markdown';
-import { hasAncestorWithPluginSession, getEffectiveContextId } from '../../../utils/nodeHelpers';
+import { hasAncestorWithPluginSession, getEffectiveContextIds } from '../../../utils/nodeHelpers';
 import { getPositionFromPoint } from '../../../utils/position';
 
 export function useNodeContextMenu(node: TreeNode) {
@@ -149,7 +149,7 @@ export function useNodeContextMenu(node: TreeNode) {
 
   const isNodeBeingCollaborated = collaboratingNodeId === node.id;
   const hasEffectiveContext = useMemo(
-    () => !!getEffectiveContextId(node.id, nodes, ancestorRegistry),
+    () => getEffectiveContextIds(node.id, nodes, ancestorRegistry).length > 0,
     [node.id, nodes, ancestorRegistry]
   );
   const collaborateDisabled = !!collaboratingNodeId || !hasEffectiveContext;

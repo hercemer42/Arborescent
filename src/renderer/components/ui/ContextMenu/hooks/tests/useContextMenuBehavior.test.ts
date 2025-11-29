@@ -23,28 +23,42 @@ describe('useContextMenuBehavior', () => {
     expect(result.current.openSubmenu).toBeNull();
   });
 
-  it('should set openSubmenu on handleSubmenuEnter', () => {
+  it('should open submenu on click', () => {
     const { result } = renderHook(() => useContextMenuBehavior(mockOnClose));
 
     act(() => {
-      result.current.handleSubmenuEnter(2);
+      result.current.handleItemClick({ label: 'Test', submenu: [] }, 2);
     });
 
     expect(result.current.openSubmenu).toBe(2);
   });
 
-  it('should clear openSubmenu on handleSubmenuLeave', () => {
+  it('should toggle submenu closed on second click', () => {
     const { result } = renderHook(() => useContextMenuBehavior(mockOnClose));
 
     act(() => {
-      result.current.handleSubmenuEnter(2);
+      result.current.handleItemClick({ label: 'Test', submenu: [] }, 2);
     });
     expect(result.current.openSubmenu).toBe(2);
 
     act(() => {
-      result.current.handleSubmenuLeave();
+      result.current.handleItemClick({ label: 'Test', submenu: [] }, 2);
     });
     expect(result.current.openSubmenu).toBeNull();
+  });
+
+  it('should switch submenu when clicking different item', () => {
+    const { result } = renderHook(() => useContextMenuBehavior(mockOnClose));
+
+    act(() => {
+      result.current.handleItemClick({ label: 'Test', submenu: [] }, 1);
+    });
+    expect(result.current.openSubmenu).toBe(1);
+
+    act(() => {
+      result.current.handleItemClick({ label: 'Test 2', submenu: [] }, 3);
+    });
+    expect(result.current.openSubmenu).toBe(3);
   });
 
   it('should call onClose when handleItemClick is called with non-submenu item', () => {
@@ -67,18 +81,6 @@ describe('useContextMenuBehavior', () => {
     });
 
     expect(mockOnClose).not.toHaveBeenCalled();
-  });
-
-  it('should call onClose when handleSubmenuItemClick is called', () => {
-    const { result } = renderHook(() => useContextMenuBehavior(mockOnClose));
-    const mockItemClick = vi.fn();
-
-    act(() => {
-      result.current.handleSubmenuItemClick({ label: 'Test', onClick: mockItemClick });
-    });
-
-    expect(mockItemClick).toHaveBeenCalled();
-    expect(mockOnClose).toHaveBeenCalled();
   });
 
   it('should call onClose on Escape key', () => {

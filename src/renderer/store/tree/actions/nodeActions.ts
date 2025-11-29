@@ -21,7 +21,7 @@ export interface NodeActions {
   setContextIcon: (nodeId: string, icon: string) => void;
   removeContextDeclaration: (nodeId: string) => void;
   applyContext: (nodeId: string, contextNodeId: string) => void;
-  removeAppliedContext: (nodeId: string) => void;
+  removeAppliedContext: (nodeId: string, contextNodeId?: string) => void;
   refreshContextDeclarations: () => void;
 }
 
@@ -236,7 +236,10 @@ export const createNodeActions = (
 
     // Find all nodes that have this context applied
     const nodesWithThisContext = Object.values(nodes).filter(
-      n => n.metadata.appliedContextId === nodeId
+      n => {
+        const appliedIds = (n.metadata.appliedContextIds as string[]) || [];
+        return appliedIds.includes(nodeId);
+      }
     );
 
     // Update the context declaration node
@@ -245,10 +248,12 @@ export const createNodeActions = (
       contextIcon: undefined,
     });
 
-    // Remove appliedContextId from all nodes that had this context applied
+    // Remove this context from appliedContextIds of all affected nodes
     for (const affectedNode of nodesWithThisContext) {
+      const currentIds = (affectedNode.metadata.appliedContextIds as string[]) || [];
+      const newIds = currentIds.filter(id => id !== nodeId);
       updatedNodes = updateNodeMetadata(updatedNodes, affectedNode.id, {
-        appliedContextId: undefined,
+        appliedContextIds: newIds.length > 0 ? newIds : undefined,
       });
     }
 
@@ -273,9 +278,18 @@ export const createNodeActions = (
       return;
     }
 
+    // Get existing applied contexts or initialize empty array
+    const existingContextIds = (node.metadata.appliedContextIds as string[]) || [];
+
+    // Don't add duplicate
+    if (existingContextIds.includes(contextNodeId)) {
+      useToastStore.getState().addToast('Context already applied', 'info');
+      return;
+    }
+
     set({
       nodes: updateNodeMetadata(nodes, nodeId, {
-        appliedContextId: contextNodeId,
+        appliedContextIds: [...existingContextIds, contextNodeId],
       }),
     });
 
@@ -286,14 +300,28 @@ export const createNodeActions = (
     triggerAutosave?.();
   }
 
-  function removeAppliedContext(nodeId: string): void {
+  function removeAppliedContext(nodeId: string, contextNodeId?: string): void {
     const { nodes } = get();
     const node = nodes[nodeId];
     if (!node) return;
 
+    const existingContextIds = (node.metadata.appliedContextIds as string[]) || [];
+
+    let newContextIds: string[] | undefined;
+    if (contextNodeId) {
+      // Remove specific context
+      newContextIds = existingContextIds.filter(id => id !== contextNodeId);
+      if (newContextIds.length === 0) {
+        newContextIds = undefined;
+      }
+    } else {
+      // Remove all contexts (for backwards compatibility or "remove all")
+      newContextIds = undefined;
+    }
+
     set({
       nodes: updateNodeMetadata(nodes, nodeId, {
-        appliedContextId: undefined,
+        appliedContextIds: newContextIds,
       }),
     });
 

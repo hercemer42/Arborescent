@@ -174,7 +174,7 @@ describe('exportNodeAsMarkdown', () => {
       id: '1',
       content: 'Task with context',
       children: [],
-      metadata: { status: 'pending', expanded: true, deleted: false, appliedContextId: 'context-123' },
+      metadata: { status: 'pending', expanded: true, deleted: false, appliedContextIds: ['context-123'] },
     };
     const nodes = { '1': node };
 

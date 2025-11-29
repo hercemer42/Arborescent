@@ -7,6 +7,7 @@ import { useNodeEffects } from './hooks/useNodeEffects';
 import { useNodeDragDrop } from './hooks/useNodeDragDrop';
 import { useNodeToggle } from './hooks/useNodeToggle';
 import { useNodeIconClick } from './hooks/useNodeIconClick';
+import { useAppliedContexts } from './hooks/useAppliedContexts';
 import { usePluginIndicators } from '../NodeGutter/hooks/usePluginIndicators';
 import './TreeNode.css';
 
@@ -27,11 +28,7 @@ export const TreeNode = memo(function TreeNode({ nodeId, depth = 0 }: TreeNodePr
   const isCollaboratingDescendant = collaboratingNodeId !== null && ancestorRegistry[nodeId]?.includes(collaboratingNodeId);
   const isFeedbackFading = feedbackFadingNodeIds.has(nodeId);
 
-  // Get applied context info
-  const appliedContextId = node?.metadata.appliedContextId as string | undefined;
-  const appliedContextNode = appliedContextId ? nodes[appliedContextId] : null;
-  const appliedContextIcon = appliedContextNode?.metadata.contextIcon as string | undefined;
-  const appliedContextName = appliedContextNode?.content;
+  const appliedContexts = useAppliedContexts(node, nodes);
 
   const hasChildren = node ? node.children.length > 0 : false;
   const expanded = node?.metadata.expanded ?? true;
@@ -83,8 +80,7 @@ export const TreeNode = memo(function TreeNode({ nodeId, depth = 0 }: TreeNodePr
           isContextDeclaration={node.metadata.isContextDeclaration === true}
           contextIcon={node.metadata.contextIcon as string | undefined}
           onIconClick={handleIconClick}
-          appliedContextIcon={appliedContextIcon}
-          appliedContextName={appliedContextName}
+          appliedContexts={appliedContexts}
         />
 
         <NodeContent

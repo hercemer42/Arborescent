@@ -282,7 +282,7 @@ describe('useNodeContextMenu', () => {
     it('should show "Remove context" in Context submenu when node has context applied', () => {
       const nodeWithContext: TreeNode = {
         ...mockNode,
-        metadata: { appliedContextId: 'context-node' },
+        metadata: { appliedContextIds: ['context-node'] },
       };
 
       store.setState({

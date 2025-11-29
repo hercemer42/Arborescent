@@ -1,37 +1,28 @@
-import { useContextMenuBehavior } from './hooks/useContextMenuBehavior';
-import { Submenu } from './Submenu';
-import './ContextMenu.css';
+import { useSubmenuBehavior } from './useSubmenuBehavior';
+import { ContextMenuItem } from '../ContextMenu';
 
-export interface ContextMenuItem {
-  label: string;
-  onClick?: () => void;
-  danger?: boolean;
-  disabled?: boolean;
-  disabledTooltip?: string;
-  submenu?: ContextMenuItem[];
-  icon?: React.ReactNode;
-}
-
-interface ContextMenuProps {
-  x: number;
-  y: number;
+interface SubmenuProps {
   items: ContextMenuItem[];
   onClose: () => void;
+  emptyMessage?: string;
 }
 
-export function ContextMenu({ x, y, items, onClose }: ContextMenuProps) {
+export function Submenu({ items, onClose, emptyMessage = 'No items available' }: SubmenuProps) {
   const {
-    menuRef,
     openSubmenu,
     handleItemClick,
-  } = useContextMenuBehavior(onClose);
+  } = useSubmenuBehavior(onClose);
+
+  if (items.length === 0) {
+    return (
+      <div className="context-menu-submenu">
+        <div className="context-menu-item disabled">{emptyMessage}</div>
+      </div>
+    );
+  }
 
   return (
-    <div
-      ref={menuRef}
-      className="context-menu"
-      style={{ left: `${x}px`, top: `${y}px` }}
-    >
+    <div className="context-menu-submenu">
       {items.map((item, index) => (
         <div
           key={index}

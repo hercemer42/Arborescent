@@ -3,35 +3,39 @@ import { AncestorRegistry } from '../services/ancestry';
 import { v4 as uuidv4 } from 'uuid';
 
 /**
- * Find the effective context for a node - its own appliedContextId
- * or the closest one found in its ancestor chain.
+ * Find all effective contexts for a node - its own appliedContextIds
+ * plus all contexts found in its ancestor chain.
  *
- * @returns The context node ID, or null if no context is applied
+ * @returns Array of context node IDs (deduplicated), or empty array if no context is applied
  */
-export function getEffectiveContextId(
+export function getEffectiveContextIds(
   nodeId: string,
   nodes: Record<string, TreeNode>,
   ancestorRegistry: AncestorRegistry
-): string | null {
+): string[] {
   const node = nodes[nodeId];
-  if (!node) return null;
+  if (!node) return [];
 
-  // Check node's own applied context first
-  if (node.metadata.appliedContextId) {
-    return node.metadata.appliedContextId as string;
+  const contextIds = new Set<string>();
+
+  // Add node's own applied contexts
+  const nodeContexts = (node.metadata.appliedContextIds as string[]) || [];
+  for (const id of nodeContexts) {
+    contextIds.add(id);
   }
 
-  // Walk up ancestors from closest to furthest
+  // Walk up ancestors from closest to furthest and add their contexts
   const ancestors = ancestorRegistry[nodeId] || [];
   for (let i = ancestors.length - 1; i >= 0; i--) {
     const ancestorId = ancestors[i];
     const ancestor = nodes[ancestorId];
-    if (ancestor?.metadata.appliedContextId) {
-      return ancestor.metadata.appliedContextId as string;
+    const ancestorContexts = (ancestor?.metadata.appliedContextIds as string[]) || [];
+    for (const id of ancestorContexts) {
+      contextIds.add(id);
     }
   }
 
-  return null;
+  return Array.from(contextIds);
 }
 
 export function updateNodeMetadata(

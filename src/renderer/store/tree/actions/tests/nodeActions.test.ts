@@ -329,32 +329,30 @@ describe('nodeActions', () => {
       expect(mockTriggerAutosave).toHaveBeenCalled();
     });
 
-    it('should clear appliedContextId from nodes that had this context applied', () => {
+    it('should clear appliedContextIds from nodes that had this context applied', () => {
       // Set up node-1 as a context declaration
       state.nodes['node-1'].metadata.isContextDeclaration = true;
       state.nodes['node-1'].metadata.contextIcon = 'star';
       // Apply context to node-2 and node-3
-      state.nodes['node-2'].metadata.appliedContextId = 'node-1';
-      state.nodes['node-3'].metadata.appliedContextId = 'node-1';
+      state.nodes['node-2'].metadata.appliedContextIds = ['node-1'];
+      state.nodes['node-3'].metadata.appliedContextIds = ['node-1'];
 
       actions.removeContextDeclaration('node-1');
 
-      expect(state.nodes['node-2'].metadata.appliedContextId).toBeUndefined();
-      expect(state.nodes['node-3'].metadata.appliedContextId).toBeUndefined();
+      expect(state.nodes['node-2'].metadata.appliedContextIds).toBeUndefined();
+      expect(state.nodes['node-3'].metadata.appliedContextIds).toBeUndefined();
     });
 
-    it('should not affect nodes with different appliedContextId', () => {
+    it('should only remove the specific context from appliedContextIds', () => {
       // Set up node-1 as a context declaration
       state.nodes['node-1'].metadata.isContextDeclaration = true;
       state.nodes['node-1'].metadata.contextIcon = 'star';
-      // node-2 has node-1 as context, node-3 has a different context
-      state.nodes['node-2'].metadata.appliedContextId = 'node-1';
-      state.nodes['node-3'].metadata.appliedContextId = 'other-context';
+      // node-2 has multiple contexts applied
+      state.nodes['node-2'].metadata.appliedContextIds = ['node-1', 'other-context'];
 
       actions.removeContextDeclaration('node-1');
 
-      expect(state.nodes['node-2'].metadata.appliedContextId).toBeUndefined();
-      expect(state.nodes['node-3'].metadata.appliedContextId).toBe('other-context');
+      expect(state.nodes['node-2'].metadata.appliedContextIds).toEqual(['other-context']);
     });
   });
 
@@ -365,9 +363,9 @@ describe('nodeActions', () => {
       state.nodes['node-1'].metadata.contextIcon = 'star';
     });
 
-    it('should set appliedContextId on the target node', () => {
+    it('should add context to appliedContextIds on the target node', () => {
       actions.applyContext('node-2', 'node-1');
-      expect(state.nodes['node-2'].metadata.appliedContextId).toBe('node-1');
+      expect(state.nodes['node-2'].metadata.appliedContextIds).toEqual(['node-1']);
     });
 
     it('should trigger autosave', () => {
@@ -378,7 +376,7 @@ describe('nodeActions', () => {
     it('should not apply context to a context declaration', () => {
       state.nodes['node-2'].metadata.isContextDeclaration = true;
       actions.applyContext('node-2', 'node-1');
-      expect(state.nodes['node-2'].metadata.appliedContextId).toBeUndefined();
+      expect(state.nodes['node-2'].metadata.appliedContextIds).toBeUndefined();
     });
 
     it('should do nothing if target node does not exist', () => {
@@ -391,31 +389,49 @@ describe('nodeActions', () => {
       expect(mockTriggerAutosave).not.toHaveBeenCalled();
     });
 
-    it('should allow changing applied context', () => {
+    it('should allow applying multiple contexts', () => {
       state.nodes['node-3'].metadata.isContextDeclaration = true;
       state.nodes['node-3'].metadata.contextIcon = 'flag';
 
       actions.applyContext('node-2', 'node-1');
-      expect(state.nodes['node-2'].metadata.appliedContextId).toBe('node-1');
+      expect(state.nodes['node-2'].metadata.appliedContextIds).toEqual(['node-1']);
 
       actions.applyContext('node-2', 'node-3');
-      expect(state.nodes['node-2'].metadata.appliedContextId).toBe('node-3');
+      expect(state.nodes['node-2'].metadata.appliedContextIds).toEqual(['node-1', 'node-3']);
+    });
+
+    it('should not add duplicate contexts', () => {
+      actions.applyContext('node-2', 'node-1');
+      actions.applyContext('node-2', 'node-1');
+      expect(state.nodes['node-2'].metadata.appliedContextIds).toEqual(['node-1']);
     });
   });
 
   describe('removeAppliedContext', () => {
     beforeEach(() => {
       state.nodes['node-1'].metadata.isContextDeclaration = true;
-      state.nodes['node-2'].metadata.appliedContextId = 'node-1';
+      state.nodes['node-2'].metadata.appliedContextIds = ['node-1'];
     });
 
-    it('should remove appliedContextId from the node', () => {
+    it('should remove specific context from appliedContextIds', () => {
+      actions.removeAppliedContext('node-2', 'node-1');
+      expect(state.nodes['node-2'].metadata.appliedContextIds).toBeUndefined();
+    });
+
+    it('should remove all contexts when no contextId specified', () => {
+      state.nodes['node-2'].metadata.appliedContextIds = ['node-1', 'other-context'];
       actions.removeAppliedContext('node-2');
-      expect(state.nodes['node-2'].metadata.appliedContextId).toBeUndefined();
+      expect(state.nodes['node-2'].metadata.appliedContextIds).toBeUndefined();
+    });
+
+    it('should keep other contexts when removing specific one', () => {
+      state.nodes['node-2'].metadata.appliedContextIds = ['node-1', 'other-context'];
+      actions.removeAppliedContext('node-2', 'node-1');
+      expect(state.nodes['node-2'].metadata.appliedContextIds).toEqual(['other-context']);
     });
 
     it('should trigger autosave', () => {
-      actions.removeAppliedContext('node-2');
+      actions.removeAppliedContext('node-2', 'node-1');
       expect(mockTriggerAutosave).toHaveBeenCalled();
     });
 

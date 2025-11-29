@@ -148,7 +148,7 @@ describe('NodeGutter', () => {
   });
 
   describe('applied context indicator', () => {
-    it('should render applied context icon when appliedContextIcon is provided', () => {
+    it('should render applied context icon when appliedContexts is provided', () => {
       const mockOnToggle = vi.fn();
       const { container } = render(
         <NodeGutter
@@ -156,14 +156,32 @@ describe('NodeGutter', () => {
           expanded={true}
           onToggle={mockOnToggle}
           pluginIndicators={[]}
-          appliedContextIcon="star"
-          appliedContextName="My Context"
+          appliedContexts={[{ icon: 'star', name: 'My Context' }]}
         />
       );
 
       const indicator = container.querySelector('.gutter-context-indicator.context-applied');
       expect(indicator).toBeInTheDocument();
       expect(indicator?.querySelector('svg')).toBeInTheDocument();
+    });
+
+    it('should render multiple applied context icons', () => {
+      const mockOnToggle = vi.fn();
+      const { container } = render(
+        <NodeGutter
+          hasChildren={false}
+          expanded={true}
+          onToggle={mockOnToggle}
+          pluginIndicators={[]}
+          appliedContexts={[
+            { icon: 'star', name: 'Context 1' },
+            { icon: 'flag', name: 'Context 2' },
+          ]}
+        />
+      );
+
+      const indicators = container.querySelectorAll('.gutter-context-indicator.context-applied');
+      expect(indicators).toHaveLength(2);
     });
 
     it('should show tooltip with context name when applied', () => {
@@ -174,8 +192,7 @@ describe('NodeGutter', () => {
           expanded={true}
           onToggle={mockOnToggle}
           pluginIndicators={[]}
-          appliedContextIcon="star"
-          appliedContextName="My Context"
+          appliedContexts={[{ icon: 'star', name: 'My Context' }]}
         />
       );
 
@@ -183,7 +200,7 @@ describe('NodeGutter', () => {
       expect(indicator).toHaveAttribute('title', 'Context: My Context');
     });
 
-    it('should show generic tooltip when context name is not provided', () => {
+    it('should show generic tooltip when context name is empty', () => {
       const mockOnToggle = vi.fn();
       const { container } = render(
         <NodeGutter
@@ -191,7 +208,7 @@ describe('NodeGutter', () => {
           expanded={true}
           onToggle={mockOnToggle}
           pluginIndicators={[]}
-          appliedContextIcon="star"
+          appliedContexts={[{ icon: 'star', name: '' }]}
         />
       );
 
@@ -223,8 +240,7 @@ describe('NodeGutter', () => {
           pluginIndicators={[]}
           isContextDeclaration={true}
           contextIcon="flag"
-          appliedContextIcon="star"
-          appliedContextName="My Context"
+          appliedContexts={[{ icon: 'star', name: 'My Context' }]}
         />
       );
 

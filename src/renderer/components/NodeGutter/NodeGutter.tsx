@@ -1,6 +1,7 @@
 import { memo } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { getIconByName, DEFAULT_CONTEXT_ICON } from '../ui/IconPicker/IconPicker';
+import { AppliedContext } from '../TreeNode/hooks/useAppliedContexts';
 import './NodeGutter.css';
 
 interface NodeGutterProps {
@@ -11,8 +12,7 @@ interface NodeGutterProps {
   isContextDeclaration?: boolean;
   contextIcon?: string;
   onIconClick?: () => void;
-  appliedContextIcon?: string;
-  appliedContextName?: string;
+  appliedContexts?: AppliedContext[];
 }
 
 export const NodeGutter = memo(function NodeGutter({
@@ -23,11 +23,9 @@ export const NodeGutter = memo(function NodeGutter({
   isContextDeclaration,
   contextIcon,
   onIconClick,
-  appliedContextIcon,
-  appliedContextName,
+  appliedContexts = [],
 }: NodeGutterProps) {
   const declarationIconDef = getIconByName(contextIcon || DEFAULT_CONTEXT_ICON);
-  const appliedIconDef = appliedContextIcon ? getIconByName(appliedContextIcon) : null;
 
   return (
     <div className="node-gutter">
@@ -44,15 +42,20 @@ export const NodeGutter = memo(function NodeGutter({
           <FontAwesomeIcon icon={declarationIconDef} />
         </button>
       )}
-      {/* Show applied context icon (not clickable, visual indicator only) */}
-      {!isContextDeclaration && appliedIconDef && (
-        <span
-          className="gutter-context-indicator context-applied"
-          title={appliedContextName ? `Context: ${appliedContextName}` : 'Has context applied'}
-        >
-          <FontAwesomeIcon icon={appliedIconDef} />
-        </span>
-      )}
+      {/* Show applied context icons (not clickable, visual indicator only) */}
+      {!isContextDeclaration && appliedContexts.map((ctx, index) => {
+        const iconDef = ctx.icon ? getIconByName(ctx.icon) : null;
+        if (!iconDef) return null;
+        return (
+          <span
+            key={index}
+            className="gutter-context-indicator context-applied"
+            title={ctx.name ? `Context: ${ctx.name}` : 'Has context applied'}
+          >
+            <FontAwesomeIcon icon={iconDef} />
+          </span>
+        );
+      })}
       {pluginIndicators.length > 0 && (
         <span className="gutter-plugin-indicators">
           {pluginIndicators.map((indicator, i) => (

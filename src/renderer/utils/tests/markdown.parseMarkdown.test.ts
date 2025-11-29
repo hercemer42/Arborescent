@@ -187,7 +187,7 @@ describe('parseMarkdown', () => {
 
       expect(rootNodes).toHaveLength(1);
       expect(rootNodes[0].content).toBe('Task with comment <!-- some:comment -->');
-      expect(rootNodes[0].metadata.appliedContextId).toBeUndefined();
+      expect(rootNodes[0].metadata.appliedContextIds).toBeUndefined();
     });
   });
 });

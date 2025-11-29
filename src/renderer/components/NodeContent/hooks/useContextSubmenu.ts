@@ -16,7 +16,8 @@ export function useContextSubmenu(node: TreeNode) {
   const openIconPicker = useIconPickerStore((state) => state.open);
 
   const isContextDeclaration = node.metadata.isContextDeclaration === true;
-  const hasAppliedContext = !!node.metadata.appliedContextId;
+  const appliedContextIds = (node.metadata.appliedContextIds as string[]) || [];
+  const hasAppliedContext = appliedContextIds.length > 0;
 
   const handleDeclareAsContext = useCallback(() => {
     openIconPicker(null, (iconName) => {
@@ -27,7 +28,10 @@ export function useContextSubmenu(node: TreeNode) {
   const handleRemoveContextDeclaration = useCallback(() => {
     // Check how many nodes have this context applied
     const affectedNodes = Object.values(nodes).filter(
-      n => n.metadata.appliedContextId === node.id
+      n => {
+        const ids = (n.metadata.appliedContextIds as string[]) || [];
+        return ids.includes(node.id);
+      }
     );
 
     if (affectedNodes.length > 0) {
@@ -46,6 +50,7 @@ export function useContextSubmenu(node: TreeNode) {
   const contextSelectionItems: ContextMenuItem[] = useMemo(() => {
     return contextDeclarations
       .filter(ctx => ctx.nodeId !== node.id) // Don't show self
+      .filter(ctx => !appliedContextIds.includes(ctx.nodeId)) // Don't show already applied
       .map(ctx => {
         const iconDef = getIconByName(ctx.icon);
         return {
@@ -54,7 +59,25 @@ export function useContextSubmenu(node: TreeNode) {
           icon: iconDef ? createElement(FontAwesomeIcon, { icon: iconDef }) : undefined,
         };
       });
-  }, [contextDeclarations, node.id, applyContext]);
+  }, [contextDeclarations, node.id, applyContext, appliedContextIds]);
+
+  // Build remove context submenu items (for removing applied contexts)
+  const removeContextItems: ContextMenuItem[] = useMemo(() => {
+    const items: ContextMenuItem[] = [];
+    for (const contextId of appliedContextIds) {
+      const contextNode = nodes[contextId];
+      if (!contextNode) continue;
+      const contextDecl = contextDeclarations.find(c => c.nodeId === contextId);
+      const iconDef = contextDecl ? getIconByName(contextDecl.icon) : null;
+      const content = contextNode.content || 'Untitled context';
+      items.push({
+        label: content.length > 30 ? content.slice(0, 30) + '...' : content,
+        onClick: () => removeAppliedContext(node.id, contextId),
+        icon: iconDef ? createElement(FontAwesomeIcon, { icon: iconDef }) : undefined,
+      });
+    }
+    return items;
+  }, [appliedContextIds, nodes, contextDeclarations, removeAppliedContext, node.id]);
 
   // Build the unified "Context" submenu with all context-related options
   const contextMenuItem: ContextMenuItem | null = useMemo(() => {
@@ -72,10 +95,19 @@ export function useContextSubmenu(node: TreeNode) {
 
     // 2. Remove context (only if context is applied)
     if (hasAppliedContext) {
-      submenuItems.push({
-        label: 'Remove context',
-        onClick: () => removeAppliedContext(node.id),
-      });
+      if (appliedContextIds.length === 1) {
+        // Single context - direct action
+        submenuItems.push({
+          label: 'Remove context',
+          onClick: () => removeAppliedContext(node.id, appliedContextIds[0]),
+        });
+      } else {
+        // Multiple contexts - show submenu
+        submenuItems.push({
+          label: 'Remove context',
+          submenu: removeContextItems,
+        });
+      }
     }
 
     // 3. Declare as context (only if not already a context declaration)
@@ -106,7 +138,9 @@ export function useContextSubmenu(node: TreeNode) {
   }, [
     isContextDeclaration,
     hasAppliedContext,
+    appliedContextIds,
     contextSelectionItems,
+    removeContextItems,
     contextDeclarations.length,
     removeAppliedContext,
     node.id,

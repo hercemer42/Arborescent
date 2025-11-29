@@ -1,7 +1,7 @@
 import { TreeState } from '../treeStore';
 import { TreeNode } from '../../../../shared/types';
 import { exportNodeAsMarkdown } from '../../../utils/markdown';
-import { getEffectiveContextId } from '../../../utils/nodeHelpers';
+import { getEffectiveContextIds } from '../../../utils/nodeHelpers';
 import { executeInTerminal } from '../../../services/terminalExecution';
 import { logger } from '../../../services/logger';
 import { useToastStore } from '../../toast/toastStore';
@@ -135,13 +135,13 @@ export function createCollaborateActions(
       try {
         const formattedContent = exportNodeAsMarkdown(node, state.nodes);
 
-        // Build context: find closest context (own or inherited from nearest ancestor)
+        // Build context: gather all contexts (own and inherited from ancestors)
         let contextPrefix = '';
-        const effectiveContextId = getEffectiveContextId(nodeId, state.nodes, state.ancestorRegistry);
-        if (effectiveContextId) {
-          const contextNode = state.nodes[effectiveContextId];
+        const effectiveContextIds = getEffectiveContextIds(nodeId, state.nodes, state.ancestorRegistry);
+        for (const contextId of effectiveContextIds) {
+          const contextNode = state.nodes[contextId];
           if (contextNode) {
-            contextPrefix = exportNodeAsMarkdown(contextNode, state.nodes) + '\n';
+            contextPrefix += exportNodeAsMarkdown(contextNode, state.nodes) + '\n';
           }
         }
 
@@ -191,13 +191,13 @@ export function createCollaborateActions(
 
         const formattedContent = exportNodeAsMarkdown(node, state.nodes);
 
-        // Build context: find closest context (own or inherited from nearest ancestor)
+        // Build context: gather all contexts (own and inherited from ancestors)
         let contextPrefix = '';
-        const effectiveContextId = getEffectiveContextId(nodeId, state.nodes, state.ancestorRegistry);
-        if (effectiveContextId) {
-          const contextNode = state.nodes[effectiveContextId];
+        const effectiveContextIds = getEffectiveContextIds(nodeId, state.nodes, state.ancestorRegistry);
+        for (const contextId of effectiveContextIds) {
+          const contextNode = state.nodes[contextId];
           if (contextNode) {
-            contextPrefix = exportNodeAsMarkdown(contextNode, state.nodes) + '\n';
+            contextPrefix += exportNodeAsMarkdown(contextNode, state.nodes) + '\n';
           }
         }
 
