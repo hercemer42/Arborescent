@@ -11,6 +11,8 @@ export interface ContextMenuItem {
   disabledTooltip?: string;
   submenu?: ContextMenuItem[];
   icon?: React.ReactNode;
+  radioSelected?: boolean;
+  keepOpenOnClick?: boolean;
 }
 
 interface ContextMenuProps {

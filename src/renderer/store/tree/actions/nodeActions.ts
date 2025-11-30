@@ -22,6 +22,7 @@ export interface NodeActions {
   removeContextDeclaration: (nodeId: string) => void;
   applyContext: (nodeId: string, contextNodeId: string) => void;
   removeAppliedContext: (nodeId: string, contextNodeId?: string) => void;
+  setActiveContext: (nodeId: string, contextNodeId: string) => void;
   refreshContextDeclarations: () => void;
 }
 
@@ -249,12 +250,29 @@ export const createNodeActions = (
     });
 
     // Remove this context from appliedContextIds of all affected nodes
+    // Also handle activeContextId promotion for regular nodes
     for (const affectedNode of nodesWithThisContext) {
       const currentIds = (affectedNode.metadata.appliedContextIds as string[]) || [];
       const newIds = currentIds.filter(id => id !== nodeId);
-      updatedNodes = updateNodeMetadata(updatedNodes, affectedNode.id, {
+      const isAffectedContextDeclaration = affectedNode.metadata.isContextDeclaration === true;
+      const currentActiveContextId = affectedNode.metadata.activeContextId as string | undefined;
+
+      const metadataUpdates: Record<string, unknown> = {
         appliedContextIds: newIds.length > 0 ? newIds : undefined,
-      });
+      };
+
+      // For regular nodes: handle activeContextId clearing/promotion
+      if (!isAffectedContextDeclaration) {
+        if (newIds.length === 0) {
+          // All contexts removed - clear activeContextId
+          metadataUpdates.activeContextId = undefined;
+        } else if (currentActiveContextId === nodeId) {
+          // Active context was removed - promote first remaining context to active
+          metadataUpdates.activeContextId = newIds[0];
+        }
+      }
+
+      updatedNodes = updateNodeMetadata(updatedNodes, affectedNode.id, metadataUpdates);
     }
 
     set({ nodes: updatedNodes });
@@ -272,12 +290,6 @@ export const createNodeActions = (
     const contextNode = nodes[contextNodeId];
     if (!node || !contextNode) return;
 
-    // Don't allow applying context to a context declaration itself
-    if (node.metadata.isContextDeclaration) {
-      useToastStore.getState().addToast('Cannot apply context to a context declaration', 'error');
-      return;
-    }
-
     // Get existing applied contexts or initialize empty array
     const existingContextIds = (node.metadata.appliedContextIds as string[]) || [];
 
@@ -287,10 +299,23 @@ export const createNodeActions = (
       return;
     }
 
+    const isContextDeclaration = node.metadata.isContextDeclaration === true;
+    const newContextIds = [...existingContextIds, contextNodeId];
+
+    // Build metadata updates
+    const metadataUpdates: Record<string, unknown> = {
+      appliedContextIds: newContextIds,
+    };
+
+    // For regular nodes (not context declarations):
+    // - Auto-set activeContextId when first context is applied
+    // - Keep existing activeContextId when additional contexts are applied
+    if (!isContextDeclaration && existingContextIds.length === 0) {
+      metadataUpdates.activeContextId = contextNodeId;
+    }
+
     set({
-      nodes: updateNodeMetadata(nodes, nodeId, {
-        appliedContextIds: [...existingContextIds, contextNodeId],
-      }),
+      nodes: updateNodeMetadata(nodes, nodeId, metadataUpdates),
     });
 
     const contextName = contextNode.content.slice(0, 30) || 'Context';
@@ -306,6 +331,8 @@ export const createNodeActions = (
     if (!node) return;
 
     const existingContextIds = (node.metadata.appliedContextIds as string[]) || [];
+    const currentActiveContextId = node.metadata.activeContextId as string | undefined;
+    const isContextDeclaration = node.metadata.isContextDeclaration === true;
 
     let newContextIds: string[] | undefined;
     if (contextNodeId) {
@@ -319,14 +346,58 @@ export const createNodeActions = (
       newContextIds = undefined;
     }
 
+    // Build metadata updates
+    const metadataUpdates: Record<string, unknown> = {
+      appliedContextIds: newContextIds,
+    };
+
+    // For regular nodes: handle activeContextId promotion/clearing
+    if (!isContextDeclaration) {
+      if (!newContextIds || newContextIds.length === 0) {
+        // All contexts removed - clear activeContextId
+        metadataUpdates.activeContextId = undefined;
+      } else if (contextNodeId && currentActiveContextId === contextNodeId) {
+        // Active context was removed - promote first remaining context to active
+        metadataUpdates.activeContextId = newContextIds[0];
+      }
+      // Otherwise keep existing activeContextId
+    }
+
     set({
-      nodes: updateNodeMetadata(nodes, nodeId, {
-        appliedContextIds: newContextIds,
-      }),
+      nodes: updateNodeMetadata(nodes, nodeId, metadataUpdates),
     });
 
     useToastStore.getState().addToast('Context removed', 'info');
     logger.info(`Applied context removed from node ${nodeId}`, 'Context');
+
+    triggerAutosave?.();
+  }
+
+  function setActiveContext(nodeId: string, contextNodeId: string): void {
+    const { nodes } = get();
+    const node = nodes[nodeId];
+    if (!node) return;
+
+    // Only allow for regular nodes (not context declarations)
+    if (node.metadata.isContextDeclaration === true) {
+      useToastStore.getState().addToast('Context declarations do not have an active context', 'error');
+      return;
+    }
+
+    // Verify the context is actually applied to this node
+    const appliedContextIds = (node.metadata.appliedContextIds as string[]) || [];
+    if (!appliedContextIds.includes(contextNodeId)) {
+      useToastStore.getState().addToast('Context is not applied to this node', 'error');
+      return;
+    }
+
+    set({
+      nodes: updateNodeMetadata(nodes, nodeId, {
+        activeContextId: contextNodeId,
+      }),
+    });
+
+    logger.info(`Active context set to ${contextNodeId} for node ${nodeId}`, 'Context');
 
     triggerAutosave?.();
   }
@@ -344,6 +415,7 @@ export const createNodeActions = (
     removeContextDeclaration,
     applyContext,
     removeAppliedContext,
+    setActiveContext,
     refreshContextDeclarations,
   };
 };

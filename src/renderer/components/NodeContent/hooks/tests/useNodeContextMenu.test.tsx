@@ -295,20 +295,30 @@ describe('useNodeContextMenu', () => {
       expect(removeContextItem).toBeDefined();
     });
 
-    it('should not show "Apply context" in Context submenu for a context declaration', () => {
+    it('should show "Apply context" in Context submenu for a context declaration (for bundling)', () => {
       const contextDeclarationNode: TreeNode = {
         ...mockNode,
         metadata: { isContextDeclaration: true, contextIcon: 'star' },
       };
+      const otherContextNode: TreeNode = {
+        id: 'other-context',
+        content: 'Other Context',
+        children: [],
+        metadata: { isContextDeclaration: true, contextIcon: 'flag' },
+      };
 
       store.setState({
-        nodes: { 'test-node': contextDeclarationNode },
+        nodes: { 'test-node': contextDeclarationNode, 'other-context': otherContextNode },
+        contextDeclarations: [
+          { nodeId: 'test-node', content: 'Test', icon: 'star' },
+          { nodeId: 'other-context', content: 'Other Context', icon: 'flag' },
+        ],
       });
 
       const { result } = renderHook(() => useNodeContextMenu(contextDeclarationNode), { wrapper });
 
       const applyContextItem = findInSubmenu(result.current.contextMenuItems, 'Context', 'Apply context');
-      expect(applyContextItem).toBeUndefined();
+      expect(applyContextItem).toBeDefined();
     });
 
     it('should show available context declarations in Apply context submenu', () => {

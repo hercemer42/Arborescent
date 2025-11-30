@@ -1,0 +1,131 @@
+/* Context indicator base styles */
+.gutter-context-indicator {
+  font-size: 0.75rem;
+  padding: 2px 4px;
+  border-radius: 3px;
+  transition: opacity 0.15s, background-color 0.15s;
+  background: none;
+  border: none;
+}
+
+/* Context declaration indicator - clickable button, solid color */
+.gutter-context-indicator.context-declaration {
+  color: var(--sky-500);
+  opacity: 0.9;
+  cursor: pointer;
+}
+
+.gutter-context-indicator.context-declaration:hover {
+  opacity: 1;
+  background-color: color-mix(in srgb, var(--sky-500) 10%, transparent);
+}
+
+/* Applied context indicator - not clickable, slightly faded */
+.gutter-context-indicator.context-applied {
+  color: var(--sky-400);
+  opacity: 0.5;
+  cursor: default;
+}
+
+/* Context bundle indicator (cog with count badge) */
+.gutter-context-indicator.context-bundle {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.context-bundle-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 2px 4px;
+  color: var(--sky-500);
+  font-size: 0.75rem;
+  opacity: 0.9;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  border-radius: 3px;
+  transition: opacity 0.15s, background-color 0.15s;
+}
+
+.context-bundle-button:hover {
+  opacity: 1;
+  background-color: color-mix(in srgb, var(--sky-500) 10%, transparent);
+}
+
+.context-bundle-count {
+  font-size: 0.6rem;
+  font-weight: 600;
+  background: var(--sky-500);
+  color: white;
+  border-radius: 50%;
+  width: 12px;
+  height: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+/* Bundle tooltip */
+.context-bundle-tooltip {
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-left: 8px;
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: 4px;
+  padding: 8px 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  z-index: 100;
+  white-space: nowrap;
+  min-width: 120px;
+}
+
+.context-bundle-tooltip-title {
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: var(--gray-500);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+}
+
+.context-bundle-tooltip-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 0;
+  font-size: 0.8rem;
+  color: var(--gray-700);
+}
+
+.context-bundle-tooltip-item .tooltip-icon {
+  color: var(--sky-500);
+  width: 12px;
+}
+
+.context-bundle-tooltip-item .tooltip-name {
+  flex: 1;
+}
+
+/* Bundle indicator for single context (shows icon differently) */
+.gutter-context-indicator.context-declaration.has-bundle {
+  position: relative;
+}
+
+.gutter-context-indicator.context-declaration.has-bundle::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 4px;
+  background: var(--sky-500);
+  border-radius: 50%;
+}

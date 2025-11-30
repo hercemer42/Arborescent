@@ -373,10 +373,16 @@ describe('nodeActions', () => {
       expect(mockTriggerAutosave).toHaveBeenCalled();
     });
 
-    it('should not apply context to a context declaration', () => {
+    it('should allow applying context to a context declaration (for bundling)', () => {
       state.nodes['node-2'].metadata.isContextDeclaration = true;
       actions.applyContext('node-2', 'node-1');
-      expect(state.nodes['node-2'].metadata.appliedContextIds).toBeUndefined();
+      expect(state.nodes['node-2'].metadata.appliedContextIds).toEqual(['node-1']);
+    });
+
+    it('should not set activeContextId on context declarations', () => {
+      state.nodes['node-2'].metadata.isContextDeclaration = true;
+      actions.applyContext('node-2', 'node-1');
+      expect(state.nodes['node-2'].metadata.activeContextId).toBeUndefined();
     });
 
     it('should do nothing if target node does not exist', () => {
@@ -405,12 +411,29 @@ describe('nodeActions', () => {
       actions.applyContext('node-2', 'node-1');
       expect(state.nodes['node-2'].metadata.appliedContextIds).toEqual(['node-1']);
     });
+
+    it('should auto-set activeContextId when first context applied to regular node', () => {
+      actions.applyContext('node-2', 'node-1');
+      expect(state.nodes['node-2'].metadata.activeContextId).toBe('node-1');
+    });
+
+    it('should keep existing activeContextId when additional contexts applied', () => {
+      state.nodes['node-3'].metadata.isContextDeclaration = true;
+      state.nodes['node-3'].metadata.contextIcon = 'flag';
+
+      actions.applyContext('node-2', 'node-1');
+      expect(state.nodes['node-2'].metadata.activeContextId).toBe('node-1');
+
+      actions.applyContext('node-2', 'node-3');
+      expect(state.nodes['node-2'].metadata.activeContextId).toBe('node-1');
+    });
   });
 
   describe('removeAppliedContext', () => {
     beforeEach(() => {
       state.nodes['node-1'].metadata.isContextDeclaration = true;
       state.nodes['node-2'].metadata.appliedContextIds = ['node-1'];
+      state.nodes['node-2'].metadata.activeContextId = 'node-1';
     });
 
     it('should remove specific context from appliedContextIds', () => {
@@ -437,6 +460,69 @@ describe('nodeActions', () => {
 
     it('should do nothing if node does not exist', () => {
       actions.removeAppliedContext('non-existent');
+      expect(mockTriggerAutosave).not.toHaveBeenCalled();
+    });
+
+    it('should clear activeContextId when all contexts removed', () => {
+      actions.removeAppliedContext('node-2', 'node-1');
+      expect(state.nodes['node-2'].metadata.activeContextId).toBeUndefined();
+    });
+
+    it('should clear activeContextId when removing all with no contextId', () => {
+      state.nodes['node-2'].metadata.appliedContextIds = ['node-1', 'other-context'];
+      actions.removeAppliedContext('node-2');
+      expect(state.nodes['node-2'].metadata.activeContextId).toBeUndefined();
+    });
+
+    it('should promote first remaining context to active when active is removed', () => {
+      state.nodes['node-2'].metadata.appliedContextIds = ['node-1', 'other-context'];
+      state.nodes['node-2'].metadata.activeContextId = 'node-1';
+      actions.removeAppliedContext('node-2', 'node-1');
+      expect(state.nodes['node-2'].metadata.activeContextId).toBe('other-context');
+    });
+
+    it('should keep activeContextId when non-active context removed', () => {
+      state.nodes['node-2'].metadata.appliedContextIds = ['node-1', 'other-context'];
+      state.nodes['node-2'].metadata.activeContextId = 'node-1';
+      actions.removeAppliedContext('node-2', 'other-context');
+      expect(state.nodes['node-2'].metadata.activeContextId).toBe('node-1');
+    });
+  });
+
+  describe('setActiveContext', () => {
+    beforeEach(() => {
+      state.nodes['node-1'].metadata.isContextDeclaration = true;
+      state.nodes['node-3'].metadata.isContextDeclaration = true;
+      state.nodes['node-2'].metadata.appliedContextIds = ['node-1', 'node-3'];
+      state.nodes['node-2'].metadata.activeContextId = 'node-1';
+    });
+
+    it('should set activeContextId on the node', () => {
+      actions.setActiveContext('node-2', 'node-3');
+      expect(state.nodes['node-2'].metadata.activeContextId).toBe('node-3');
+    });
+
+    it('should trigger autosave', () => {
+      actions.setActiveContext('node-2', 'node-3');
+      expect(mockTriggerAutosave).toHaveBeenCalled();
+    });
+
+    it('should do nothing if node does not exist', () => {
+      actions.setActiveContext('non-existent', 'node-1');
+      expect(mockTriggerAutosave).not.toHaveBeenCalled();
+    });
+
+    it('should not set activeContextId on context declarations', () => {
+      state.nodes['node-2'].metadata.isContextDeclaration = true;
+      actions.setActiveContext('node-2', 'node-3');
+      // activeContextId should remain unchanged
+      expect(state.nodes['node-2'].metadata.activeContextId).toBe('node-1');
+      expect(mockTriggerAutosave).not.toHaveBeenCalled();
+    });
+
+    it('should not set activeContextId for context not applied to node', () => {
+      actions.setActiveContext('node-2', 'non-applied-context');
+      expect(state.nodes['node-2'].metadata.activeContextId).toBe('node-1');
       expect(mockTriggerAutosave).not.toHaveBeenCalled();
     });
   });

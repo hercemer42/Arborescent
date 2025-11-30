@@ -8,6 +8,9 @@ import {
   getEffectiveContextIds,
   getNextSiblingId,
   findClosestAncestorWithMetadata,
+  getActiveContextId,
+  resolveBundledContexts,
+  getContextsForCollaboration,
 } from '../nodeHelpers';
 import { TreeNode } from '@shared/types';
 
@@ -476,7 +479,7 @@ describe('getEffectiveContextIds', () => {
     expect(result).toEqual(['ctx-1']);
   });
 
-  it('should combine node context with inherited contexts', () => {
+  it('should use node own contexts, not inherited (closest wins)', () => {
     const nodes = {
       'parent': createNode('parent', ['child'], { appliedContextIds: ['ctx-parent'] }),
       'child': createNode('child', [], { appliedContextIds: ['ctx-child'] }),
@@ -487,11 +490,12 @@ describe('getEffectiveContextIds', () => {
     };
 
     const result = getEffectiveContextIds('child', nodes, ancestorRegistry);
-    expect(result).toContain('ctx-child');
-    expect(result).toContain('ctx-parent');
+    // Node has its own context, so parent context is NOT inherited
+    expect(result).toEqual(['ctx-child']);
+    expect(result).not.toContain('ctx-parent');
   });
 
-  it('should combine contexts from all ancestors', () => {
+  it('should inherit from nearest ancestor only (closest wins)', () => {
     const nodes = {
       'grandparent': createNode('grandparent', ['parent'], { appliedContextIds: ['ctx-gp'] }),
       'parent': createNode('parent', ['child'], { appliedContextIds: ['ctx-parent'] }),
@@ -504,22 +508,26 @@ describe('getEffectiveContextIds', () => {
     };
 
     const result = getEffectiveContextIds('child', nodes, ancestorRegistry);
-    expect(result).toContain('ctx-gp');
-    expect(result).toContain('ctx-parent');
+    // Child inherits from parent (nearest), not grandparent
+    expect(result).toEqual(['ctx-parent']);
+    expect(result).not.toContain('ctx-gp');
   });
 
-  it('should deduplicate contexts', () => {
+  it('should skip ancestors without contexts to find nearest with context', () => {
     const nodes = {
-      'parent': createNode('parent', ['child'], { appliedContextIds: ['ctx-1'] }),
-      'child': createNode('child', [], { appliedContextIds: ['ctx-1'] }),
+      'grandparent': createNode('grandparent', ['parent'], { appliedContextIds: ['ctx-gp'] }),
+      'parent': createNode('parent', ['child']), // No context
+      'child': createNode('child'),
     };
     const ancestorRegistry = {
-      'parent': [],
-      'child': ['parent'],
+      'grandparent': [],
+      'parent': ['grandparent'],
+      'child': ['grandparent', 'parent'],
     };
 
     const result = getEffectiveContextIds('child', nodes, ancestorRegistry);
-    expect(result).toEqual(['ctx-1']);
+    // Parent has no context, so inherit from grandparent
+    expect(result).toEqual(['ctx-gp']);
   });
 
   it('should return empty array if no context in chain', () => {
@@ -696,5 +704,218 @@ describe('findClosestAncestorWithMetadata', () => {
 
     expect(findClosestAncestorWithMetadata('child', nodes, ancestorRegistry, 'isContextDeclaration')).toBe('child');
     expect(findClosestAncestorWithMetadata('child', nodes, ancestorRegistry, 'nextStepContext')).toBeNull();
+  });
+});
+
+describe('getActiveContextId', () => {
+  const createNode = (id: string, children: string[] = [], metadata = {}): TreeNode => ({
+    id,
+    content: `Node ${id}`,
+    children,
+    metadata,
+  });
+
+  it('should return activeContextId when set on regular node', () => {
+    const nodes = {
+      'node': createNode('node', [], { appliedContextIds: ['ctx-1', 'ctx-2'], activeContextId: 'ctx-2' }),
+    };
+    const ancestorRegistry = { 'node': [] };
+
+    expect(getActiveContextId('node', nodes, ancestorRegistry)).toBe('ctx-2');
+  });
+
+  it('should return first applied context when activeContextId not set', () => {
+    const nodes = {
+      'node': createNode('node', [], { appliedContextIds: ['ctx-1', 'ctx-2'] }),
+    };
+    const ancestorRegistry = { 'node': [] };
+
+    expect(getActiveContextId('node', nodes, ancestorRegistry)).toBe('ctx-1');
+  });
+
+  it('should return undefined for context declaration nodes', () => {
+    const nodes = {
+      'ctx-node': createNode('ctx-node', [], { isContextDeclaration: true, appliedContextIds: ['ctx-1'] }),
+    };
+    const ancestorRegistry = { 'ctx-node': [] };
+
+    expect(getActiveContextId('ctx-node', nodes, ancestorRegistry)).toBeUndefined();
+  });
+
+  it('should inherit active context from ancestor', () => {
+    const nodes = {
+      'parent': createNode('parent', ['child'], { appliedContextIds: ['ctx-1', 'ctx-2'], activeContextId: 'ctx-2' }),
+      'child': createNode('child'),
+    };
+    const ancestorRegistry = {
+      'parent': [],
+      'child': ['parent'],
+    };
+
+    expect(getActiveContextId('child', nodes, ancestorRegistry)).toBe('ctx-2');
+  });
+
+  it('should return first inherited context when ancestor has no activeContextId', () => {
+    const nodes = {
+      'parent': createNode('parent', ['child'], { appliedContextIds: ['ctx-1', 'ctx-2'] }),
+      'child': createNode('child'),
+    };
+    const ancestorRegistry = {
+      'parent': [],
+      'child': ['parent'],
+    };
+
+    expect(getActiveContextId('child', nodes, ancestorRegistry)).toBe('ctx-1');
+  });
+
+  it('should return undefined when no context in chain', () => {
+    const nodes = {
+      'parent': createNode('parent', ['child']),
+      'child': createNode('child'),
+    };
+    const ancestorRegistry = {
+      'parent': [],
+      'child': ['parent'],
+    };
+
+    expect(getActiveContextId('child', nodes, ancestorRegistry)).toBeUndefined();
+  });
+
+  it('should fall back to first context if activeContextId is invalid', () => {
+    const nodes = {
+      'node': createNode('node', [], { appliedContextIds: ['ctx-1', 'ctx-2'], activeContextId: 'invalid' }),
+    };
+    const ancestorRegistry = { 'node': [] };
+
+    expect(getActiveContextId('node', nodes, ancestorRegistry)).toBe('ctx-1');
+  });
+});
+
+describe('resolveBundledContexts', () => {
+  const createNode = (id: string, children: string[] = [], metadata = {}): TreeNode => ({
+    id,
+    content: `Node ${id}`,
+    children,
+    metadata,
+  });
+
+  it('should return just the context node when no bundle', () => {
+    const nodes = {
+      'ctx-1': createNode('ctx-1', [], { isContextDeclaration: true }),
+    };
+
+    expect(resolveBundledContexts('ctx-1', nodes)).toEqual(['ctx-1']);
+  });
+
+  it('should resolve bundled contexts in order', () => {
+    const nodes = {
+      'bundle': createNode('bundle', [], { isContextDeclaration: true, appliedContextIds: ['ctx-1', 'ctx-2'] }),
+      'ctx-1': createNode('ctx-1', [], { isContextDeclaration: true }),
+      'ctx-2': createNode('ctx-2', [], { isContextDeclaration: true }),
+    };
+
+    // Bundled contexts come first, then the bundle itself
+    expect(resolveBundledContexts('bundle', nodes)).toEqual(['ctx-1', 'ctx-2', 'bundle']);
+  });
+
+  it('should resolve nested bundles', () => {
+    const nodes = {
+      'outer-bundle': createNode('outer-bundle', [], { isContextDeclaration: true, appliedContextIds: ['inner-bundle'] }),
+      'inner-bundle': createNode('inner-bundle', [], { isContextDeclaration: true, appliedContextIds: ['ctx-1'] }),
+      'ctx-1': createNode('ctx-1', [], { isContextDeclaration: true }),
+    };
+
+    // Deepest first: ctx-1, then inner-bundle, then outer-bundle
+    expect(resolveBundledContexts('outer-bundle', nodes)).toEqual(['ctx-1', 'inner-bundle', 'outer-bundle']);
+  });
+
+  it('should handle circular references gracefully', () => {
+    const nodes = {
+      'ctx-a': createNode('ctx-a', [], { isContextDeclaration: true, appliedContextIds: ['ctx-b'] }),
+      'ctx-b': createNode('ctx-b', [], { isContextDeclaration: true, appliedContextIds: ['ctx-a'] }),
+    };
+
+    // Should not infinite loop
+    const result = resolveBundledContexts('ctx-a', nodes);
+    expect(result).toContain('ctx-a');
+    expect(result).toContain('ctx-b');
+  });
+
+  it('should deduplicate contexts', () => {
+    const nodes = {
+      'bundle': createNode('bundle', [], { isContextDeclaration: true, appliedContextIds: ['ctx-1', 'inner-bundle'] }),
+      'inner-bundle': createNode('inner-bundle', [], { isContextDeclaration: true, appliedContextIds: ['ctx-1'] }),
+      'ctx-1': createNode('ctx-1', [], { isContextDeclaration: true }),
+    };
+
+    const result = resolveBundledContexts('bundle', nodes);
+    // ctx-1 should only appear once
+    expect(result.filter(id => id === 'ctx-1')).toHaveLength(1);
+  });
+});
+
+describe('getContextsForCollaboration', () => {
+  const createNode = (id: string, children: string[] = [], metadata = {}): TreeNode => ({
+    id,
+    content: `Node ${id}`,
+    children,
+    metadata,
+  });
+
+  it('should resolve active context and its bundle for regular node', () => {
+    const nodes = {
+      'task': createNode('task', [], { appliedContextIds: ['bundle-ctx'], activeContextId: 'bundle-ctx' }),
+      'bundle-ctx': createNode('bundle-ctx', [], { isContextDeclaration: true, appliedContextIds: ['ctx-1', 'ctx-2'] }),
+      'ctx-1': createNode('ctx-1', [], { isContextDeclaration: true }),
+      'ctx-2': createNode('ctx-2', [], { isContextDeclaration: true }),
+    };
+    const ancestorRegistry = { 'task': [] };
+
+    const result = getContextsForCollaboration('task', nodes, ancestorRegistry);
+    expect(result).toEqual(['ctx-1', 'ctx-2', 'bundle-ctx']);
+  });
+
+  it('should return just active context if not a bundle', () => {
+    const nodes = {
+      'task': createNode('task', [], { appliedContextIds: ['ctx-1'], activeContextId: 'ctx-1' }),
+      'ctx-1': createNode('ctx-1', [], { isContextDeclaration: true }),
+    };
+    const ancestorRegistry = { 'task': [] };
+
+    expect(getContextsForCollaboration('task', nodes, ancestorRegistry)).toEqual(['ctx-1']);
+  });
+
+  it('should resolve bundle for context declaration node', () => {
+    const nodes = {
+      'bundle-ctx': createNode('bundle-ctx', [], { isContextDeclaration: true, appliedContextIds: ['ctx-1'] }),
+      'ctx-1': createNode('ctx-1', [], { isContextDeclaration: true }),
+    };
+    const ancestorRegistry = { 'bundle-ctx': [] };
+
+    const result = getContextsForCollaboration('bundle-ctx', nodes, ancestorRegistry);
+    expect(result).toEqual(['ctx-1', 'bundle-ctx']);
+  });
+
+  it('should return empty array when no context', () => {
+    const nodes = {
+      'task': createNode('task'),
+    };
+    const ancestorRegistry = { 'task': [] };
+
+    expect(getContextsForCollaboration('task', nodes, ancestorRegistry)).toEqual([]);
+  });
+
+  it('should use inherited active context', () => {
+    const nodes = {
+      'parent': createNode('parent', ['task'], { appliedContextIds: ['ctx-1'], activeContextId: 'ctx-1' }),
+      'task': createNode('task'),
+      'ctx-1': createNode('ctx-1', [], { isContextDeclaration: true }),
+    };
+    const ancestorRegistry = {
+      'parent': [],
+      'task': ['parent'],
+    };
+
+    expect(getContextsForCollaboration('task', nodes, ancestorRegistry)).toEqual(['ctx-1']);
   });
 });

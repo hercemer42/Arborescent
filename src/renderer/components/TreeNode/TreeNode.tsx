@@ -7,7 +7,7 @@ import { useNodeEffects } from './hooks/useNodeEffects';
 import { useNodeDragDrop } from './hooks/useNodeDragDrop';
 import { useNodeToggle } from './hooks/useNodeToggle';
 import { useNodeIconClick } from './hooks/useNodeIconClick';
-import { useAppliedContexts } from './hooks/useAppliedContexts';
+import { useAppliedContexts, useActiveContext } from './hooks/useAppliedContexts';
 import { usePluginIndicators } from '../NodeGutter/hooks/usePluginIndicators';
 import './TreeNode.css';
 
@@ -29,6 +29,7 @@ export const TreeNode = memo(function TreeNode({ nodeId, depth = 0 }: TreeNodePr
   const isFeedbackFading = feedbackFadingNodeIds.has(nodeId);
 
   const appliedContexts = useAppliedContexts(node, nodes);
+  const activeContext = useActiveContext(node, nodes, ancestorRegistry);
 
   const hasChildren = node ? node.children.length > 0 : false;
   const expanded = node?.metadata.expanded ?? true;
@@ -81,6 +82,7 @@ export const TreeNode = memo(function TreeNode({ nodeId, depth = 0 }: TreeNodePr
           contextIcon={node.metadata.contextIcon as string | undefined}
           onIconClick={handleIconClick}
           appliedContexts={appliedContexts}
+          activeContext={activeContext}
         />
 
         <NodeContent

@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2025-11-29T17:32:52.296Z'
+updated: '2025-11-30T07:47:19.767Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -657,7 +657,7 @@ nodes:
     content: Features
     children:
       - 565dde0a-864b-41f9-86ff-dbdf40ac4dd0
-      - f9f98280-4e2f-4075-a5ea-a5059256181d
+      - b8521434-96cd-4258-b87e-876dc7276241
       - dcdf600e-aa13-4c87-b23e-a87fb7cf40f3
       - 984247e7-2d55-4b93-80e8-f84818901621
     metadata:
@@ -669,6 +669,7 @@ nodes:
     id: 0cc62ae1-1a7a-4aa4-bc6a-d817cabd672c
     content: In progress
     children:
+      - d5984b48-f715-4450-8baa-08763a28c685
       - 143fe7e1-f53e-4807-bf9f-e4dd6f16a042
     metadata:
       status: pending
@@ -6847,6 +6848,7 @@ nodes:
     content: Functional brainstorming
     children:
       - a16fa143-942d-4f74-a229-8e015a30df14
+      - fb175b88-269f-45a4-ad32-c4592816b154
     metadata:
       status: pending
   a16fa143-942d-4f74-a229-8e015a30df14:
@@ -6865,6 +6867,7 @@ nodes:
       - e4c88a77-6205-4d2f-9b2f-a6427b27a821
       - f1bc1b2c-5d25-46e0-92c8-24854c6d4fbf
       - f8df3ec7-9e2e-401e-9250-5013208ab343
+      - 7872f73c-b9d7-40a7-bcea-d0573548106c
     metadata:
       status: pending
       isContextDeclaration: true
@@ -6983,6 +6986,7 @@ nodes:
       - 0698da58-de58-4553-adda-4aa21643b87a
       - f03b9cb5-d4dd-4630-bb8c-4e02ccfc957a
       - b4761f1f-b2bf-43ef-bf40-530b9c9a8673
+      - 3e33b8b5-9e79-45e4-8e9c-d04f3c1f61c1
     metadata:
       status: pending
       isContextDeclaration: true
@@ -7059,7 +7063,7 @@ nodes:
       - 3f28f971-dfeb-480e-992c-9aa1f1a8ab87
     metadata:
       status: pending
-      expanded: false
+      expanded: true
   984247e7-2d55-4b93-80e8-f84818901621:
     id: 984247e7-2d55-4b93-80e8-f84818901621
     content: Backlog
@@ -7084,9 +7088,366 @@ nodes:
     metadata:
       status: pending
       expanded: false
-  f9f98280-4e2f-4075-a5ea-a5059256181d:
-    id: f9f98280-4e2f-4075-a5ea-a5059256181d
-    content: "Apply context to a\_"
+  7872f73c-b9d7-40a7-bcea-d0573548106c:
+    id: 7872f73c-b9d7-40a7-bcea-d0573548106c
+    content: Don't include an element that is already implemented, check the code first
     children: []
     metadata:
       status: pending
+  b8521434-96cd-4258-b87e-876dc7276241:
+    id: b8521434-96cd-4258-b87e-876dc7276241
+    content: Context System Redesign
+    children:
+      - 825b3f21-360c-4624-b299-3b87eea597d3
+      - 5e2c6e85-2722-4654-8eb8-fa4552820c99
+      - ceec7ae0-a15f-48ac-9f1c-2376921992a3
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  825b3f21-360c-4624-b299-3b87eea597d3:
+    id: 825b3f21-360c-4624-b299-3b87eea597d3
+    content: 'MVP1: Core context resolution logic'
+    children:
+      - 6887c074-7278-4eeb-a69e-61dd34e1befd
+      - 4fadca1d-8475-43bb-9d5d-5c59553f5295
+      - 6712b6d0-d59f-472a-936b-280000441427
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6887c074-7278-4eeb-a69e-61dd34e1befd:
+    id: 6887c074-7278-4eeb-a69e-61dd34e1befd
+    content: Change inheritance from accumulation to "closest wins"
+    children:
+      - 3826be70-20c4-4a65-81b3-f6e710258f64
+      - 2c3b2577-aca9-422c-8805-fe64a6cffaee
+      - 2bc14db0-d882-4acc-af07-207f86a5024c
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3826be70-20c4-4a65-81b3-f6e710258f64:
+    id: 3826be70-20c4-4a65-81b3-f6e710258f64
+    content: Refactor `getEffectiveContextIds` to return only the nearest ancestor's contexts, not accumulated
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2c3b2577-aca9-422c-8805-fe64a6cffaee:
+    id: 2c3b2577-aca9-422c-8805-fe64a6cffaee
+    content: If node has its own applied contexts, use those exclusively (override, no inheritance)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2bc14db0-d882-4acc-af07-207f86a5024c:
+    id: 2bc14db0-d882-4acc-af07-207f86a5024c
+    content: If node has no applied contexts, inherit from nearest ancestor that does
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4fadca1d-8475-43bb-9d5d-5c59553f5295:
+    id: 4fadca1d-8475-43bb-9d5d-5c59553f5295
+    content: Add active context tracking for regular nodes
+    children:
+      - b8ae2f26-2aa1-4aa4-991d-455af370b6e8
+      - 38994ac9-efa6-4b41-80f6-9eb3311b6217
+      - 39230e41-91be-40b1-a3a0-3ab524e8d52c
+      - 929a5ae5-0d1f-472c-9943-a3239745bc39
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b8ae2f26-2aa1-4aa4-991d-455af370b6e8:
+    id: b8ae2f26-2aa1-4aa4-991d-455af370b6e8
+    content: Add `activeContextId` metadata field
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  38994ac9-efa6-4b41-80f6-9eb3311b6217:
+    id: 38994ac9-efa6-4b41-80f6-9eb3311b6217
+    content: When first context is applied to a regular node, automatically set it as active
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  39230e41-91be-40b1-a3a0-3ab524e8d52c:
+    id: 39230e41-91be-40b1-a3a0-3ab524e8d52c
+    content: When active context is removed, promote first remaining context to active
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  929a5ae5-0d1f-472c-9943-a3239745bc39:
+    id: 929a5ae5-0d1f-472c-9943-a3239745bc39
+    content: When all contexts are removed, clear `activeContextId`
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6712b6d0-d59f-472a-936b-280000441427:
+    id: 6712b6d0-d59f-472a-936b-280000441427
+    content: Context nodes bundle their applied contexts (already partially works)
+    children:
+      - 94e61e0a-8fc9-4d2c-a78c-1cb22b09d2a1
+      - 1ce932df-fac7-4425-bf1e-e7aaf573115e
+      - 3e080c1e-59eb-406a-bdd4-726381853c20
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  94e61e0a-8fc9-4d2c-a78c-1cb22b09d2a1:
+    id: 94e61e0a-8fc9-4d2c-a78c-1cb22b09d2a1
+    content: When resolving a context node used as context, include all its applied contexts
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3e080c1e-59eb-406a-bdd4-726381853c20:
+    id: 3e080c1e-59eb-406a-bdd4-726381853c20
+    content: A node that has a context declaration does not inherit any context declarations for applied context from its ancestors.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5e2c6e85-2722-4654-8eb8-fa4552820c99:
+    id: 5e2c6e85-2722-4654-8eb8-fa4552820c99
+    content: 'MVP2: Collaborate menu with context selection'
+    children:
+      - f28fdfae-001c-4824-b1cc-a30fd04094f6
+      - 42e3e13b-0952-43eb-9de1-b044e56afd1e
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f28fdfae-001c-4824-b1cc-a30fd04094f6:
+    id: f28fdfae-001c-4824-b1cc-a30fd04094f6
+    content: Add context selection to Collaborate submenu
+    children:
+      - 66cceff5-ad89-46ff-b7f5-68af701c21ed
+      - 0de3f9ea-8848-4cfc-8463-4008a2deee8b
+      - 17756da6-5942-489b-a39c-3d1cd23b2079
+      - 189cf3c1-9132-4e8d-9e9b-f28a89274863
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  66cceff5-ad89-46ff-b7f5-68af701c21ed:
+    id: 66cceff5-ad89-46ff-b7f5-68af701c21ed
+    content: Show list of directly applied contexts with radio-style indicator for active one
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0de3f9ea-8848-4cfc-8463-4008a2deee8b:
+    id: 0de3f9ea-8848-4cfc-8463-4008a2deee8b
+    content: Clicking a context sets it as active before collaborating
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  17756da6-5942-489b-a39c-3d1cd23b2079:
+    id: 17756da6-5942-489b-a39c-3d1cd23b2079
+    content: If only one context applied, skip selection - show "In browser" / "In terminal" directly
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  189cf3c1-9132-4e8d-9e9b-f28a89274863:
+    id: 189cf3c1-9132-4e8d-9e9b-f28a89274863
+    content: If inheriting context (none directly applied), show inherited context name as read-only info
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  42e3e13b-0952-43eb-9de1-b044e56afd1e:
+    id: 42e3e13b-0952-43eb-9de1-b044e56afd1e
+    content: Update collaboration to use resolved active context
+    children:
+      - f52d183f-3e77-4ebf-889e-6f528ca3fa76
+      - 8cd826be-b140-4663-988b-d34fca3d112f
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f52d183f-3e77-4ebf-889e-6f528ca3fa76:
+    id: f52d183f-3e77-4ebf-889e-6f528ca3fa76
+    content: 'For regular nodes: send only the active context (or inherited if none applied)'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8cd826be-b140-4663-988b-d34fca3d112f:
+    id: 8cd826be-b140-4663-988b-d34fca3d112f
+    content: 'For context nodes: send all bundled contexts from the active/inherited context'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ceec7ae0-a15f-48ac-9f1c-2376921992a3:
+    id: ceec7ae0-a15f-48ac-9f1c-2376921992a3
+    content: 'MVP3: Gutter context indicator redesign'
+    children:
+      - b5f3d324-dfbc-4199-a2d0-9aaf12b558d0
+      - 46da61e4-c7e9-451e-9b40-3a486e02f97f
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b5f3d324-dfbc-4199-a2d0-9aaf12b558d0:
+    id: b5f3d324-dfbc-4199-a2d0-9aaf12b558d0
+    content: Regular nodes show active context icon only
+    children:
+      - b0fd0f74-7125-4e73-96b9-f98f20153f3f
+      - f48cb54d-5032-4e90-a47a-e2c26a6a06c3
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b0fd0f74-7125-4e73-96b9-f98f20153f3f:
+    id: b0fd0f74-7125-4e73-96b9-f98f20153f3f
+    content: Display the single active context's icon (not all applied contexts)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f48cb54d-5032-4e90-a47a-e2c26a6a06c3:
+    id: f48cb54d-5032-4e90-a47a-e2c26a6a06c3
+    content: If no context applied or inherited, show no indicator
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  46da61e4-c7e9-451e-9b40-3a486e02f97f:
+    id: 46da61e4-c7e9-451e-9b40-3a486e02f97f
+    content: Context nodes show bundle indicator
+    children:
+      - c7f67d76-49a3-4b64-81b5-55b980b03eb6
+      - d3f26194-a72a-4324-91a6-a879d9473527
+      - f75d58fe-3536-4219-b309-4e135fe76f5c
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c7f67d76-49a3-4b64-81b5-55b980b03eb6:
+    id: c7f67d76-49a3-4b64-81b5-55b980b03eb6
+    content: '1 applied context: Show that context''s icon'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d3f26194-a72a-4324-91a6-a879d9473527:
+    id: d3f26194-a72a-4324-91a6-a879d9473527
+    content: '2+ applied contexts: Show cog icon with count badge'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f75d58fe-3536-4219-b309-4e135fe76f5c:
+    id: f75d58fe-3536-4219-b309-4e135fe76f5c
+    content: Hover tooltip lists all bundled context icons and names
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fb175b88-269f-45a4-ad32-c4592816b154:
+    id: fb175b88-269f-45a4-ad32-c4592816b154
+    content: Provide ideas and feedback
+    children: []
+    metadata:
+      status: pending
+  d5984b48-f715-4450-8baa-08763a28c685:
+    id: d5984b48-f715-4450-8baa-08763a28c685
+    content: Refactor
+    children: []
+    metadata:
+      status: pending
+      appliedContextIds:
+        - 64ea2af4-332b-44a6-8b88-78535cc9b79a
+  3e33b8b5-9e79-45e4-8e9c-d04f3c1f61c1:
+    id: 3e33b8b5-9e79-45e4-8e9c-d04f3c1f61c1
+    content: Write clear but concise comments
+    children:
+      - 5b38aea8-193e-423e-9873-7500d8ac0d6c
+      - 79965615-38a5-42fb-b7cc-24e4a09a373d
+      - 0ec6ef10-7313-4041-b400-6a6563591081
+    metadata:
+      status: pending
+  5b38aea8-193e-423e-9873-7500d8ac0d6c:
+    id: 5b38aea8-193e-423e-9873-7500d8ac0d6c
+    content: Don't write comments that reflect a particular user story or user ask, refactor or second try.
+    children: []
+    metadata:
+      status: pending
+  79965615-38a5-42fb-b7cc-24e4a09a373d:
+    id: 79965615-38a5-42fb-b7cc-24e4a09a373d
+    content: Only add comments when necessary to explain a case that is hard to understand or when the code is not explicit.
+    children: []
+    metadata:
+      status: pending
+  0ec6ef10-7313-4041-b400-6a6563591081:
+    id: 0ec6ef10-7313-4041-b400-6a6563591081
+    content: Refactor with proper naming in favour of adding comments
+    children: []
+    metadata:
+      status: pending
+  1ce932df-fac7-4425-bf1e-e7aaf573115e:
+    id: 1ce932df-fac7-4425-bf1e-e7aaf573115e
+    content: We should still be able to apply a node as context to a context node
+    children: []
+    metadata:
+      status: completed

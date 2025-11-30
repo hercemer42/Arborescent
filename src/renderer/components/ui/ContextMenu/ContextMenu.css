@@ -120,3 +120,24 @@
   top: auto;
   bottom: 0;
 }
+
+/* Separator */
+.context-menu-separator {
+  height: 1px;
+  background: var(--gray-200);
+  margin: 4px 8px;
+}
+
+/* Radio indicator for context selection */
+.context-menu-item-radio {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 12px;
+  font-size: 10px;
+  color: var(--sky-500);
+}
+
+.context-menu-item.has-radio {
+  padding-left: 8px;
+}

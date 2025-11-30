@@ -3,10 +3,50 @@ import { AncestorRegistry } from '../services/ancestry';
 import { v4 as uuidv4 } from 'uuid';
 
 /**
- * Find all effective contexts for a node - its own appliedContextIds
- * plus all contexts found in its ancestor chain.
+ * Get applied context IDs from a node's metadata.
+ */
+function getAppliedContextIds(node: TreeNode | undefined): string[] {
+  return (node?.metadata.appliedContextIds as string[]) || [];
+}
+
+/**
+ * Get ancestors from closest to furthest (reversed from registry order).
+ */
+function getAncestorsClosestFirst(
+  nodeId: string,
+  ancestorRegistry: AncestorRegistry
+): string[] {
+  const ancestors = ancestorRegistry[nodeId] || [];
+  return ancestors.slice().reverse();
+}
+
+/**
+ * Walk ancestors from closest to furthest, returning the first match.
+ */
+function findClosestAncestor<T>(
+  nodeId: string,
+  nodes: Record<string, TreeNode>,
+  ancestorRegistry: AncestorRegistry,
+  predicate: (ancestor: TreeNode) => T | undefined
+): T | undefined {
+  for (const ancestorId of getAncestorsClosestFirst(nodeId, ancestorRegistry)) {
+    const ancestor = nodes[ancestorId];
+    if (!ancestor) continue;
+    const result = predicate(ancestor);
+    if (result !== undefined) {
+      return result;
+    }
+  }
+  return undefined;
+}
+
+/**
+ * Find effective contexts for a node using "closest wins" inheritance.
  *
- * @returns Array of context node IDs (deduplicated), or empty array if no context is applied
+ * For regular nodes: returns own contexts if any, otherwise inherits from
+ * the nearest ancestor with contexts. No accumulation across ancestors.
+ *
+ * For context declarations: only returns directly applied contexts (no inheritance).
  */
 export function getEffectiveContextIds(
   nodeId: string,
@@ -16,33 +56,132 @@ export function getEffectiveContextIds(
   const node = nodes[nodeId];
   if (!node) return [];
 
-  const contextIds = new Set<string>();
+  const nodeContexts = getAppliedContextIds(node);
 
-  // Add node's own applied contexts
-  const nodeContexts = (node.metadata.appliedContextIds as string[]) || [];
-  for (const id of nodeContexts) {
-    contextIds.add(id);
+  // Context declarations don't inherit - only use directly applied contexts
+  if (node.metadata.isContextDeclaration === true) {
+    return [...nodeContexts];
   }
 
-  // Walk up ancestors from closest to furthest and add their contexts
-  const ancestors = ancestorRegistry[nodeId] || [];
-  for (let i = ancestors.length - 1; i >= 0; i--) {
-    const ancestorId = ancestors[i];
-    const ancestor = nodes[ancestorId];
-    const ancestorContexts = (ancestor?.metadata.appliedContextIds as string[]) || [];
-    for (const id of ancestorContexts) {
-      contextIds.add(id);
-    }
+  if (nodeContexts.length > 0) {
+    return [...nodeContexts];
   }
 
-  return Array.from(contextIds);
+  const inheritedContexts = findClosestAncestor(nodeId, nodes, ancestorRegistry, (ancestor) => {
+    const contexts = getAppliedContextIds(ancestor);
+    return contexts.length > 0 ? [...contexts] : undefined;
+  });
+
+  return inheritedContexts || [];
 }
 
 /**
- * Find the closest ancestor (or the node itself) that has a specific metadata flag set.
- * Walks up from closest to furthest ancestor.
+ * Get the active context ID for a node from its contexts.
+ * Returns activeContextId if valid, otherwise the first applied context.
+ */
+function resolveActiveContextFromNode(node: TreeNode): string | undefined {
+  const contexts = getAppliedContextIds(node);
+  if (contexts.length === 0) return undefined;
+
+  const activeId = node.metadata.activeContextId as string | undefined;
+  if (activeId && contexts.includes(activeId)) {
+    return activeId;
+  }
+  return contexts[0];
+}
+
+/**
+ * Get the active context ID for collaboration.
  *
- * @returns The node ID with the flag set, or null if none found
+ * Returns the node's active context if it has contexts, otherwise inherits
+ * from the nearest ancestor. Context declarations return undefined.
+ */
+export function getActiveContextId(
+  nodeId: string,
+  nodes: Record<string, TreeNode>,
+  ancestorRegistry: AncestorRegistry
+): string | undefined {
+  const node = nodes[nodeId];
+  if (!node) return undefined;
+
+  if (node.metadata.isContextDeclaration === true) {
+    return undefined;
+  }
+
+  const nodeActiveContext = resolveActiveContextFromNode(node);
+  if (nodeActiveContext) {
+    return nodeActiveContext;
+  }
+
+  return findClosestAncestor(nodeId, nodes, ancestorRegistry, resolveActiveContextFromNode);
+}
+
+/**
+ * Recursively resolve bundled contexts for a context node.
+ *
+ * Bundles are context nodes with other contexts applied to them.
+ * Resolution is depth-first: nested contexts appear before the parent.
+ */
+export function resolveBundledContexts(
+  contextNodeId: string,
+  nodes: Record<string, TreeNode>,
+  visited: Set<string> = new Set()
+): string[] {
+  if (visited.has(contextNodeId)) {
+    return [];
+  }
+  visited.add(contextNodeId);
+
+  const contextNode = nodes[contextNodeId];
+  if (!contextNode) return [];
+
+  const result: string[] = [];
+  const bundledContextIds = getAppliedContextIds(contextNode);
+
+  for (const bundledId of bundledContextIds) {
+    const nestedContexts = resolveBundledContexts(bundledId, nodes, visited);
+    for (const nestedId of nestedContexts) {
+      if (!result.includes(nestedId)) {
+        result.push(nestedId);
+      }
+    }
+  }
+
+  if (!result.includes(contextNodeId)) {
+    result.push(contextNodeId);
+  }
+
+  return result;
+}
+
+/**
+ * Get all contexts to send for collaboration.
+ *
+ * For context declarations, resolves all bundled contexts.
+ * For regular nodes, resolves the active context's bundle.
+ */
+export function getContextsForCollaboration(
+  nodeId: string,
+  nodes: Record<string, TreeNode>,
+  ancestorRegistry: AncestorRegistry
+): string[] {
+  const node = nodes[nodeId];
+  if (!node) return [];
+
+  if (node.metadata.isContextDeclaration === true) {
+    return resolveBundledContexts(nodeId, nodes);
+  }
+
+  const activeContextId = getActiveContextId(nodeId, nodes, ancestorRegistry);
+  if (!activeContextId) {
+    return [];
+  }
+
+  return resolveBundledContexts(activeContextId, nodes);
+}
+
+/**
+ * Find the node itself or closest ancestor with a metadata flag set to true.
  */
 export function findClosestAncestorWithMetadata(
   nodeId: string,
@@ -55,16 +194,11 @@ export function findClosestAncestorWithMetadata(
     return nodeId;
   }
 
-  const ancestors = ancestorRegistry[nodeId] || [];
-  for (let i = ancestors.length - 1; i >= 0; i--) {
-    const ancestorId = ancestors[i];
-    const ancestor = nodes[ancestorId];
-    if (ancestor?.metadata[metadataKey] === true) {
-      return ancestorId;
-    }
-  }
+  const ancestorId = findClosestAncestor(nodeId, nodes, ancestorRegistry, (ancestor) =>
+    ancestor.metadata[metadataKey] === true ? ancestor.id : undefined
+  );
 
-  return null;
+  return ancestorId || null;
 }
 
 export function updateNodeMetadata(

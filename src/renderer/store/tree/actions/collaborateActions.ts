@@ -1,7 +1,7 @@
 import { TreeState } from '../treeStore';
 import { TreeNode } from '../../../../shared/types';
 import { exportNodeAsMarkdown } from '../../../utils/markdown';
-import { getEffectiveContextIds } from '../../../utils/nodeHelpers';
+import { getContextsForCollaboration } from '../../../utils/nodeHelpers';
 import { executeInTerminal } from '../../../services/terminalExecution';
 import { logger } from '../../../services/logger';
 import { useToastStore } from '../../toast/toastStore';
@@ -135,10 +135,10 @@ export function createCollaborateActions(
       try {
         const formattedContent = exportNodeAsMarkdown(node, state.nodes);
 
-        // Build context: gather all contexts (own and inherited from ancestors)
+        // Build context: resolve active context and any bundled contexts
         let contextPrefix = '';
-        const effectiveContextIds = getEffectiveContextIds(nodeId, state.nodes, state.ancestorRegistry);
-        for (const contextId of effectiveContextIds) {
+        const contextIds = getContextsForCollaboration(nodeId, state.nodes, state.ancestorRegistry);
+        for (const contextId of contextIds) {
           const contextNode = state.nodes[contextId];
           if (contextNode) {
             contextPrefix += exportNodeAsMarkdown(contextNode, state.nodes) + '\n';
@@ -191,10 +191,10 @@ export function createCollaborateActions(
 
         const formattedContent = exportNodeAsMarkdown(node, state.nodes);
 
-        // Build context: gather all contexts (own and inherited from ancestors)
+        // Build context: resolve active context and any bundled contexts
         let contextPrefix = '';
-        const effectiveContextIds = getEffectiveContextIds(nodeId, state.nodes, state.ancestorRegistry);
-        for (const contextId of effectiveContextIds) {
+        const contextIds = getContextsForCollaboration(nodeId, state.nodes, state.ancestorRegistry);
+        for (const contextId of contextIds) {
           const contextNode = state.nodes[contextId];
           if (contextNode) {
             contextPrefix += exportNodeAsMarkdown(contextNode, state.nodes) + '\n';
@@ -204,6 +204,7 @@ export function createCollaborateActions(
         const terminalInstruction = `${contextPrefix}${COLLABORATE_INSTRUCTION_TERMINAL}
 
 IMPORTANT: Write your reviewed/updated list to this file: ${feedbackResponseFile}
+Do NOT make any changes to the code.
 
 Here is the content:
 

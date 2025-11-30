@@ -84,30 +84,18 @@ export function useContextSubmenu(node: TreeNode) {
     const submenuItems: ContextMenuItem[] = [];
 
     // 1. Apply context (with nested submenu for context selection)
-    // Only show if not a context declaration itself
-    if (!isContextDeclaration) {
-      submenuItems.push({
-        label: 'Apply context',
-        submenu: contextSelectionItems,
-        disabled: contextDeclarations.length === 0,
-      });
-    }
+    submenuItems.push({
+      label: 'Apply context',
+      submenu: contextSelectionItems,
+      disabled: contextSelectionItems.length === 0,
+    });
 
     // 2. Remove context (only if context is applied)
     if (hasAppliedContext) {
-      if (appliedContextIds.length === 1) {
-        // Single context - direct action
-        submenuItems.push({
-          label: 'Remove context',
-          onClick: () => removeAppliedContext(node.id, appliedContextIds[0]),
-        });
-      } else {
-        // Multiple contexts - show submenu
-        submenuItems.push({
-          label: 'Remove context',
-          submenu: removeContextItems,
-        });
-      }
+      submenuItems.push({
+        label: 'Remove context',
+        submenu: removeContextItems,
+      });
     }
 
     // 3. Declare as context (only if not already a context declaration)
@@ -138,11 +126,8 @@ export function useContextSubmenu(node: TreeNode) {
   }, [
     isContextDeclaration,
     hasAppliedContext,
-    appliedContextIds,
     contextSelectionItems,
     removeContextItems,
-    contextDeclarations.length,
-    removeAppliedContext,
     node.id,
     handleDeclareAsContext,
     handleRemoveContextDeclaration,

@@ -9,35 +9,6 @@
   border-right: 1px solid rgba(0, 0, 0, 0.05);
 }
 
-/* Context indicator base styles */
-.gutter-context-indicator {
-  font-size: 0.75rem;
-  padding: 2px 4px;
-  border-radius: 3px;
-  transition: opacity 0.15s, background-color 0.15s;
-  background: none;
-  border: none;
-}
-
-/* Context declaration indicator - clickable button, solid color */
-.gutter-context-indicator.context-declaration {
-  color: var(--sky-500);
-  opacity: 0.9;
-  cursor: pointer;
-}
-
-.gutter-context-indicator.context-declaration:hover {
-  opacity: 1;
-  background-color: color-mix(in srgb, var(--sky-500) 10%, transparent);
-}
-
-/* Applied context indicator - not clickable, slightly faded */
-.gutter-context-indicator.context-applied {
-  color: var(--sky-400);
-  opacity: 0.5;
-  cursor: default;
-}
-
 /* Plugin indicators in gutter */
 .gutter-plugin-indicators {
   display: flex;

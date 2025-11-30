@@ -416,8 +416,9 @@ describe('collaborateActions', () => {
       await actions.collaborate('child1');
 
       const clipboardContent = mockClipboardWriteText.mock.calls[0][0];
-      // Should start with the output format instruction (no context prefix)
-      expect(clipboardContent).toMatch(/^\s*OUTPUT FORMAT:/);
+      // Should start with the instruction (no context prefix)
+      expect(clipboardContent).toMatch(/^OUTPUT FORMAT:/);
+      expect(clipboardContent).not.toContain('You are a helpful assistant');
     });
 
     it('should handle missing context node gracefully', async () => {
@@ -428,7 +429,7 @@ describe('collaborateActions', () => {
 
       const clipboardContent = mockClipboardWriteText.mock.calls[0][0];
       // Should still work, just without the context prefix
-      expect(clipboardContent).toMatch(/^\s*OUTPUT FORMAT:/);
+      expect(clipboardContent).toMatch(/^OUTPUT FORMAT:/);
       expect(mockSet).toHaveBeenCalledWith({ collaboratingNodeId: 'child1' });
     });
   });
@@ -560,8 +561,9 @@ describe('collaborateActions', () => {
       await actions.collaborateInTerminal('child1', 'terminal-1');
 
       const terminalContent = vi.mocked(executeInTerminal).mock.calls[0][1];
-      // Should start with the output format instruction (no context prefix)
-      expect(terminalContent).toMatch(/^\s*OUTPUT FORMAT:/);
+      // Should start with the instruction (no context prefix)
+      expect(terminalContent).toMatch(/^OUTPUT FORMAT:/);
+      expect(terminalContent).not.toContain('You are a helpful assistant');
     });
 
     it('should handle missing context node gracefully', async () => {
@@ -575,7 +577,7 @@ describe('collaborateActions', () => {
 
       const terminalContent = vi.mocked(executeInTerminal).mock.calls[0][1];
       // Should still work, just without the context prefix
-      expect(terminalContent).toMatch(/^\s*OUTPUT FORMAT:/);
+      expect(terminalContent).toMatch(/^OUTPUT FORMAT:/);
       expect(mockSet).toHaveBeenCalledWith({ collaboratingNodeId: 'child1' });
     });
   });

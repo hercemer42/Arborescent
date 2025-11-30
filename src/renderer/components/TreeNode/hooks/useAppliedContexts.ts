@@ -1,5 +1,7 @@
 import { useMemo } from 'react';
 import { TreeNode } from '../../../../shared/types';
+import { getActiveContextId } from '../../../utils/nodeHelpers';
+import { AncestorRegistry } from '../../../services/ancestry';
 
 export interface AppliedContext {
   icon: string | undefined;
@@ -26,4 +28,40 @@ export function useAppliedContexts(
       })
       .filter((ctx): ctx is AppliedContext => ctx !== null);
   }, [node, nodes]);
+}
+
+/**
+ * Get the active context for a node only if it has directly applied contexts.
+ * Returns undefined for context declarations or nodes inheriting context from ancestors.
+ */
+export function useActiveContext(
+  node: TreeNode | undefined,
+  nodes: Record<string, TreeNode>,
+  ancestorRegistry: AncestorRegistry
+): AppliedContext | undefined {
+  return useMemo(() => {
+    if (!node) return undefined;
+
+    // Context declarations don't have an active context
+    if (node.metadata.isContextDeclaration === true) {
+      return undefined;
+    }
+
+    // Only show indicator if node has its own applied contexts (not inherited)
+    const appliedContextIds = (node.metadata.appliedContextIds as string[]) || [];
+    if (appliedContextIds.length === 0) {
+      return undefined;
+    }
+
+    const activeContextId = getActiveContextId(node.id, nodes, ancestorRegistry);
+    if (!activeContextId) return undefined;
+
+    const contextNode = nodes[activeContextId];
+    if (!contextNode) return undefined;
+
+    return {
+      icon: contextNode.metadata.contextIcon as string | undefined,
+      name: contextNode.content,
+    };
+  }, [node, nodes, ancestorRegistry]);
 }

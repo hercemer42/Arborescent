@@ -13,7 +13,9 @@ export function useSubmenuBehavior(onClose: () => void) {
     if (item.onClick) {
       item.onClick();
     }
-    onClose();
+    if (!item.keepOpenOnClick) {
+      onClose();
+    }
   }, [onClose]);
 
   return {

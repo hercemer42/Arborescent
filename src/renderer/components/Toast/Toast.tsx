@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import './Toast.css';
 
 export type ToastType = 'error' | 'warning' | 'success' | 'info';
@@ -10,14 +10,17 @@ export interface ToastProps {
   onClose: () => void;
 }
 
-export function Toast({ message, type, duration = 8000, onClose }: ToastProps) {
+export function Toast({ message, type, duration = 5000, onClose }: ToastProps) {
+  const onCloseRef = useRef(onClose);
+  onCloseRef.current = onClose;
+
   useEffect(() => {
     const timer = setTimeout(() => {
-      onClose();
+      onCloseRef.current();
     }, duration);
 
     return () => clearTimeout(timer);
-  }, [duration, onClose]);
+  }, [duration]);
 
   return (
     <div className={`toast toast-${type}`} role="alert">

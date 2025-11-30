@@ -14,6 +14,7 @@ import { logger } from '../../../services/logger';
 import { writeToClipboard } from '../../../services/clipboardService';
 import { exportNodeAsMarkdown } from '../../../utils/markdown';
 import { hasAncestorWithPluginSession, getEffectiveContextIds } from '../../../utils/nodeHelpers';
+import { useCollaborateSubmenu } from './useCollaborateSubmenu';
 import { getPositionFromPoint } from '../../../utils/position';
 
 export function useNodeContextMenu(node: TreeNode) {
@@ -29,6 +30,7 @@ export function useNodeContextMenu(node: TreeNode) {
   const collaboratingNodeId = useStore((state) => state.collaboratingNodeId);
   const collaborate = useStore((state) => state.actions.collaborate);
   const collaborateInTerminal = useStore((state) => state.actions.collaborateInTerminal);
+  const setActiveContext = useStore((state) => state.actions.setActiveContext);
   const enabledPlugins = usePluginStore((state) => state.enabledPlugins);
   const store = useActiveTreeStore();
   const [contextMenu, setContextMenu] = useState<{ x: number; y: number } | null>(null);
@@ -155,19 +157,20 @@ export function useNodeContextMenu(node: TreeNode) {
   const collaborateDisabled = !!collaboratingNodeId || !hasEffectiveContext;
   const collaborateTooltip = !hasEffectiveContext ? 'You must add a context to collaborate' : undefined;
 
+  const collaborateSubmenu = useCollaborateSubmenu({
+    node,
+    nodes,
+    ancestorRegistry,
+    hasEffectiveContext,
+    onCollaborate: handleCollaborate,
+    onCollaborateInTerminal: handleCollaborateInTerminal,
+    onSetActiveContext: setActiveContext,
+  });
+
   const baseMenuItems: ContextMenuItem[] = [
     {
       label: 'Collaborate',
-      submenu: [
-        {
-          label: 'In browser',
-          onClick: handleCollaborate,
-        },
-        {
-          label: 'In terminal',
-          onClick: handleCollaborateInTerminal,
-        },
-      ],
+      submenu: collaborateSubmenu,
       disabled: collaborateDisabled,
       disabledTooltip: collaborateTooltip,
     },

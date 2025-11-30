@@ -1,6 +1,5 @@
 import { memo } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { getIconByName, DEFAULT_CONTEXT_ICON } from '../ui/IconPicker/IconPicker';
+import { GutterContextIndicator } from './GutterContextIndicator';
 import { AppliedContext } from '../TreeNode/hooks/useAppliedContexts';
 import './NodeGutter.css';
 
@@ -13,6 +12,7 @@ interface NodeGutterProps {
   contextIcon?: string;
   onIconClick?: () => void;
   appliedContexts?: AppliedContext[];
+  activeContext?: AppliedContext;
 }
 
 export const NodeGutter = memo(function NodeGutter({
@@ -20,42 +20,21 @@ export const NodeGutter = memo(function NodeGutter({
   expanded,
   onToggle,
   pluginIndicators,
-  isContextDeclaration,
+  isContextDeclaration = false,
   contextIcon,
   onIconClick,
   appliedContexts = [],
+  activeContext,
 }: NodeGutterProps) {
-  const declarationIconDef = getIconByName(contextIcon || DEFAULT_CONTEXT_ICON);
-
   return (
     <div className="node-gutter">
-      {/* Show context declaration icon (clickable to change) */}
-      {isContextDeclaration && declarationIconDef && (
-        <button
-          className="gutter-context-indicator context-declaration"
-          title="Click to change icon"
-          onClick={(e) => {
-            e.stopPropagation();
-            onIconClick?.();
-          }}
-        >
-          <FontAwesomeIcon icon={declarationIconDef} />
-        </button>
-      )}
-      {/* Show applied context icons (not clickable, visual indicator only) */}
-      {!isContextDeclaration && appliedContexts.map((ctx, index) => {
-        const iconDef = ctx.icon ? getIconByName(ctx.icon) : null;
-        if (!iconDef) return null;
-        return (
-          <span
-            key={index}
-            className="gutter-context-indicator context-applied"
-            title={ctx.name ? `Context: ${ctx.name}` : 'Has context applied'}
-          >
-            <FontAwesomeIcon icon={iconDef} />
-          </span>
-        );
-      })}
+      <GutterContextIndicator
+        isContextDeclaration={isContextDeclaration}
+        contextIcon={contextIcon}
+        appliedContexts={appliedContexts}
+        activeContext={activeContext}
+        onIconClick={onIconClick}
+      />
       {pluginIndicators.length > 0 && (
         <span className="gutter-plugin-indicators">
           {pluginIndicators.map((indicator, i) => (
