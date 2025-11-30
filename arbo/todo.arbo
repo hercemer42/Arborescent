@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2025-11-30T07:47:19.767Z'
+updated: '2025-11-30T08:05:45.778Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -7106,6 +7106,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
+      appliedContextIds:
+        - 3f28f971-dfeb-480e-992c-9aa1f1a8ab87
   825b3f21-360c-4624-b299-3b87eea597d3:
     id: 825b3f21-360c-4624-b299-3b87eea597d3
     content: 'MVP1: Core context resolution logic'
@@ -7114,8 +7116,8 @@ nodes:
       - 4fadca1d-8475-43bb-9d5d-5c59553f5295
       - 6712b6d0-d59f-472a-936b-280000441427
     metadata:
-      status: pending
-      expanded: true
+      status: completed
+      expanded: false
       deleted: false
       plugins: {}
   6887c074-7278-4eeb-a69e-61dd34e1befd:
@@ -7241,9 +7243,9 @@ nodes:
     content: 'MVP2: Collaborate menu with context selection'
     children:
       - f28fdfae-001c-4824-b1cc-a30fd04094f6
-      - 42e3e13b-0952-43eb-9de1-b044e56afd1e
+      - b950f7c6-5e80-4771-a86b-b4425cf3abc1
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -7256,7 +7258,7 @@ nodes:
       - 17756da6-5942-489b-a39c-3d1cd23b2079
       - 189cf3c1-9132-4e8d-9e9b-f28a89274863
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -7265,7 +7267,7 @@ nodes:
     content: Show list of directly applied contexts with radio-style indicator for active one
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -7274,13 +7276,13 @@ nodes:
     content: Clicking a context sets it as active before collaborating
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
   17756da6-5942-489b-a39c-3d1cd23b2079:
     id: 17756da6-5942-489b-a39c-3d1cd23b2079
-    content: If only one context applied, skip selection - show "In browser" / "In terminal" directly
+    content: If only one context applied, still show it
     children: []
     metadata:
       status: pending
@@ -7292,36 +7294,7 @@ nodes:
     content: If inheriting context (none directly applied), show inherited context name as read-only info
     children: []
     metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  42e3e13b-0952-43eb-9de1-b044e56afd1e:
-    id: 42e3e13b-0952-43eb-9de1-b044e56afd1e
-    content: Update collaboration to use resolved active context
-    children:
-      - f52d183f-3e77-4ebf-889e-6f528ca3fa76
-      - 8cd826be-b140-4663-988b-d34fca3d112f
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f52d183f-3e77-4ebf-889e-6f528ca3fa76:
-    id: f52d183f-3e77-4ebf-889e-6f528ca3fa76
-    content: 'For regular nodes: send only the active context (or inherited if none applied)'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  8cd826be-b140-4663-988b-d34fca3d112f:
-    id: 8cd826be-b140-4663-988b-d34fca3d112f
-    content: 'For context nodes: send all bundled contexts from the active/inherited context'
-    children: []
-    metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -7451,3 +7424,30 @@ nodes:
     children: []
     metadata:
       status: completed
+  b950f7c6-5e80-4771-a86b-b4425cf3abc1:
+    id: b950f7c6-5e80-4771-a86b-b4425cf3abc1
+    content: Inheritence of checked contexts
+    children:
+      - 04307c02-c197-4ca8-88d1-79ca9edcaf9b
+    metadata:
+      status: pending
+  04307c02-c197-4ca8-88d1-79ca9edcaf9b:
+    id: 04307c02-c197-4ca8-88d1-79ca9edcaf9b
+    content: If multiple contexts are applied directly to a node
+    children:
+      - 29743673-bd69-4554-ac83-65cbcf3f7b90
+      - 1e07cfe2-c3c4-404b-8236-667dbd3ff6f0
+    metadata:
+      status: pending
+  29743673-bd69-4554-ac83-65cbcf3f7b90:
+    id: 29743673-bd69-4554-ac83-65cbcf3f7b90
+    content: Then its descendants inherit the one that is checked
+    children: []
+    metadata:
+      status: pending
+  1e07cfe2-c3c4-404b-8236-667dbd3ff6f0:
+    id: 1e07cfe2-c3c4-404b-8236-667dbd3ff6f0
+    content: Unless they have a specific context applied
+    children: []
+    metadata:
+      status: pending

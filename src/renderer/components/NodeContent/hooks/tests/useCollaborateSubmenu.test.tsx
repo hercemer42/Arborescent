@@ -47,17 +47,23 @@ describe('useCollaborateSubmenu', () => {
       expect(result.current[1].label).toBe('In terminal');
     });
 
-    it('should return base actions when single context applied', () => {
+    it('should show context info when single context applied', () => {
       const node = createNode('regular-node', { appliedContextIds: ['ctx-1'] });
+      const ctxNode = createNode('ctx-1', { isContextDeclaration: true });
+      ctxNode.content = 'My Context';
       const nodes = {
-        'ctx-1': createNode('ctx-1', { isContextDeclaration: true }),
+        'ctx-1': ctxNode,
       };
       const { result } = renderHook(() =>
         useCollaborateSubmenu({ ...defaultParams, node, nodes })
       );
 
-      expect(result.current).toHaveLength(2);
-      expect(result.current[0].label).toBe('In browser');
+      // Should have: info item, separator, 2 base actions
+      expect(result.current).toHaveLength(4);
+      expect(result.current[0].label).toBe('Context: My Context');
+      expect(result.current[0].disabled).toBe(true);
+      expect(result.current[1].label).toBe('-'); // separator
+      expect(result.current[2].label).toBe('In browser');
     });
   });
 

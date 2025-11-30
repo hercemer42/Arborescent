@@ -28,15 +28,20 @@ function createBaseActions(
   ];
 }
 
-function createInheritedContextInfo(
-  contextName: string,
-  baseActions: ContextMenuItem[]
-): ContextMenuItem[] {
-  return [
-    { label: `Context: ${contextName}`, onClick: () => {}, disabled: true },
-    SEPARATOR,
-    ...baseActions,
-  ];
+function createContextInfoItem(
+  contextNode: TreeNode | undefined,
+  label?: string
+): ContextMenuItem {
+  const contextName = label || contextNode?.content.slice(0, 30) || 'Context';
+  const iconName = contextNode?.metadata.contextIcon as string | undefined;
+  const iconDef = iconName ? getIconByName(iconName) : null;
+
+  return {
+    label: `Context: ${contextName}`,
+    icon: iconDef ? <FontAwesomeIcon icon={iconDef} /> : undefined,
+    onClick: () => {},
+    disabled: true,
+  };
 }
 
 function createContextSelectionItem(
@@ -93,16 +98,28 @@ export function useCollaborateSubmenu({
       return baseActions;
     }
 
-    // Inheriting context - show as read-only info
-    if (isInheritingContext && activeContextId) {
-      const inheritedContextNode = nodes[activeContextId];
-      const contextName = inheritedContextNode?.content.slice(0, 30) || 'Inherited context';
-      return createInheritedContextInfo(contextName, baseActions);
+    // No context applied - just base actions
+    if (appliedContextIds.length === 0) {
+      // Inheriting context - show as read-only info
+      if (isInheritingContext && activeContextId) {
+        const inheritedContextNode = nodes[activeContextId];
+        return [
+          createContextInfoItem(inheritedContextNode),
+          SEPARATOR,
+          ...baseActions,
+        ];
+      }
+      return baseActions;
     }
 
-    // Single or no context - skip selection
-    if (appliedContextIds.length <= 1) {
-      return baseActions;
+    // Single context - show as info (no radio button)
+    if (appliedContextIds.length === 1) {
+      const contextNode = nodes[appliedContextIds[0]];
+      return [
+        createContextInfoItem(contextNode),
+        SEPARATOR,
+        ...baseActions,
+      ];
     }
 
     // Multiple contexts - show selection with radio indicators
