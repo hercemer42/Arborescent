@@ -165,7 +165,7 @@ describe('NodeGutter', () => {
       expect(indicator?.querySelector('svg')).toBeInTheDocument();
     });
 
-    it('should show only one active context icon even with multiple applied', () => {
+    it('should show only one active context icon even with multiple contexts', () => {
       const mockOnToggle = vi.fn();
       const { container } = render(
         <NodeGutter
@@ -173,15 +173,11 @@ describe('NodeGutter', () => {
           expanded={true}
           onToggle={mockOnToggle}
           pluginIndicators={[]}
-          appliedContexts={[
-            { icon: 'star', name: 'Context 1' },
-            { icon: 'flag', name: 'Context 2' },
-          ]}
           activeContext={{ icon: 'star', name: 'Context 1' }}
         />
       );
 
-      // Only one indicator for active context (not multiple for applied)
+      // Only one indicator for active context
       const indicators = container.querySelectorAll('.gutter-context-indicator.context-applied');
       expect(indicators).toHaveLength(1);
     });
@@ -232,7 +228,7 @@ describe('NodeGutter', () => {
       expect(container.querySelector('.gutter-context-indicator.context-applied')).not.toBeInTheDocument();
     });
 
-    it('should prioritize context declaration over applied context', () => {
+    it('should show bundle indicator when context declaration has bundled contexts', () => {
       const mockOnToggle = vi.fn();
       const { container } = render(
         <NodeGutter
@@ -242,12 +238,12 @@ describe('NodeGutter', () => {
           pluginIndicators={[]}
           isContextDeclaration={true}
           contextIcon="flag"
-          appliedContexts={[{ icon: 'star', name: 'My Context' }]}
+          bundledContexts={[{ icon: 'star', name: 'My Context' }]}
         />
       );
 
-      // Should show declaration (button) not applied (span)
-      expect(container.querySelector('.gutter-context-indicator.context-declaration')).toBeInTheDocument();
+      // Should show bundle (cog with count) not applied context or plain declaration
+      expect(container.querySelector('.gutter-context-indicator.context-bundle')).toBeInTheDocument();
       expect(container.querySelector('.gutter-context-indicator.context-applied')).not.toBeInTheDocument();
     });
   });

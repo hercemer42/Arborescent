@@ -1,6 +1,6 @@
 /* Context indicator base styles */
 .gutter-context-indicator {
-  font-size: 0.75rem;
+  font-size: 1rem;
   padding: 2px 4px;
   border-radius: 3px;
   transition: opacity 0.15s, background-color 0.15s;
@@ -27,7 +27,7 @@
   cursor: default;
 }
 
-/* Context bundle indicator (cog with count badge) */
+/* Context bundle indicator (gear with count badge inside) */
 .gutter-context-indicator.context-bundle {
   position: relative;
   display: flex;
@@ -35,34 +35,29 @@
   justify-content: center;
 }
 
-.context-bundle-button {
-  background: none;
-  border: none;
-  cursor: pointer;
+.context-bundle-indicator {
+  position: relative;
   padding: 2px 4px;
   color: var(--sky-500);
-  font-size: 0.75rem;
+  font-size: 1rem;
   opacity: 0.9;
   display: flex;
   align-items: center;
-  gap: 2px;
-  border-radius: 3px;
-  transition: opacity 0.15s, background-color 0.15s;
-}
-
-.context-bundle-button:hover {
-  opacity: 1;
-  background-color: color-mix(in srgb, var(--sky-500) 10%, transparent);
+  justify-content: center;
 }
 
 .context-bundle-count {
-  font-size: 0.6rem;
-  font-weight: 600;
+  position: absolute;
+  top: calc(50%);
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 0.7rem;
+  font-weight: 700;
   background: var(--sky-500);
   color: white;
   border-radius: 50%;
-  width: 12px;
-  height: 12px;
+  width: 11px;
+  height: 11px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -71,17 +66,13 @@
 
 /* Bundle tooltip */
 .context-bundle-tooltip {
-  position: absolute;
-  left: 100%;
-  top: 50%;
-  transform: translateY(-50%);
-  margin-left: 8px;
-  background: var(--white);
+  position: fixed;
+  background-color: #ffffff;
   border: 1px solid var(--gray-200);
   border-radius: 4px;
   padding: 8px 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-  z-index: 100;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  z-index: 9999;
   white-space: nowrap;
   min-width: 120px;
 }
@@ -113,19 +104,3 @@
   flex: 1;
 }
 
-/* Bundle indicator for single context (shows icon differently) */
-.gutter-context-indicator.context-declaration.has-bundle {
-  position: relative;
-}
-
-.gutter-context-indicator.context-declaration.has-bundle::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 4px;
-  height: 4px;
-  background: var(--sky-500);
-  border-radius: 50%;
-}

@@ -1,14 +1,16 @@
-import { memo, useState } from 'react';
+import { memo } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCog } from '@fortawesome/free-solid-svg-icons';
+import { faGear } from '@fortawesome/free-solid-svg-icons';
 import { getIconByName, DEFAULT_CONTEXT_ICON } from '../../ui/IconPicker/IconPicker';
-import { AppliedContext } from '../../TreeNode/hooks/useAppliedContexts';
+import { AppliedContext, BundledContext } from '../../TreeNode/hooks/useAppliedContexts';
+import { useBundleTooltip } from './hooks/useBundleTooltip';
+import { BundleTooltip } from './BundleTooltip';
 import './GutterContextIndicator.css';
 
 interface GutterContextIndicatorProps {
   isContextDeclaration: boolean;
   contextIcon?: string;
-  appliedContexts: AppliedContext[];
+  bundledContexts: BundledContext[];
   activeContext?: AppliedContext;
   onIconClick?: () => void;
 }
@@ -16,22 +18,24 @@ interface GutterContextIndicatorProps {
 export const GutterContextIndicator = memo(function GutterContextIndicator({
   isContextDeclaration,
   contextIcon,
-  appliedContexts,
+  bundledContexts,
   activeContext,
   onIconClick,
 }: GutterContextIndicatorProps) {
-  const [showBundleTooltip, setShowBundleTooltip] = useState(false);
+  const {
+    bundleRef,
+    showTooltip,
+    tooltipPosition,
+    handleMouseEnter,
+    handleMouseLeave,
+    handleIconClick,
+  } = useBundleTooltip(onIconClick);
   const declarationIconDef = getIconByName(contextIcon || DEFAULT_CONTEXT_ICON);
 
-  const handleIconClick = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    onIconClick?.();
-  };
-
-  // Context declaration nodes: show bundle indicator based on applied context count
+  // Context declaration nodes: show declaration icon or bundle indicator
   if (isContextDeclaration) {
-    // No applied contexts: show declaration icon
-    if (appliedContexts.length === 0) {
+    // No bundled contexts: show declaration's own icon (clickable)
+    if (bundledContexts.length === 0) {
       if (!declarationIconDef) return null;
       return (
         <button
@@ -44,50 +48,24 @@ export const GutterContextIndicator = memo(function GutterContextIndicator({
       );
     }
 
-    // Single applied context: show that context's icon
-    if (appliedContexts.length === 1) {
-      const singleContext = appliedContexts[0];
-      const iconDef = singleContext.icon ? getIconByName(singleContext.icon) : declarationIconDef;
-      if (!iconDef) return null;
-      return (
-        <button
-          className="gutter-context-indicator context-declaration has-bundle"
-          title={`Bundle: ${singleContext.name || 'Context'} (click to change icon)`}
-          onClick={handleIconClick}
-        >
-          <FontAwesomeIcon icon={iconDef} />
-        </button>
-      );
-    }
-
-    // Multiple applied contexts: show cog with count badge and tooltip
+    // 1+ bundled contexts: show cog with count badge and tooltip (not clickable)
     return (
       <div
+        ref={bundleRef}
         className="gutter-context-indicator context-bundle"
-        onMouseEnter={() => setShowBundleTooltip(true)}
-        onMouseLeave={() => setShowBundleTooltip(false)}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
       >
-        <button
-          className="context-bundle-button"
-          title="Click to change icon"
-          onClick={handleIconClick}
-        >
-          <FontAwesomeIcon icon={faCog} />
-          <span className="context-bundle-count">{appliedContexts.length}</span>
-        </button>
-        {showBundleTooltip && (
-          <div className="context-bundle-tooltip">
-            <div className="context-bundle-tooltip-title">Bundled contexts:</div>
-            {appliedContexts.map((ctx, index) => {
-              const iconDef = ctx.icon ? getIconByName(ctx.icon) : null;
-              return (
-                <div key={index} className="context-bundle-tooltip-item">
-                  {iconDef && <FontAwesomeIcon icon={iconDef} className="tooltip-icon" />}
-                  <span className="tooltip-name">{ctx.name || 'Context'}</span>
-                </div>
-              );
-            })}
-          </div>
+        <span className="context-bundle-indicator">
+          <FontAwesomeIcon icon={faGear} />
+          <span className="context-bundle-count">{bundledContexts.length}</span>
+        </span>
+        {showTooltip && (
+          <BundleTooltip
+            declarationIconDef={declarationIconDef}
+            bundledContexts={bundledContexts}
+            position={tooltipPosition}
+          />
         )}
       </div>
     );

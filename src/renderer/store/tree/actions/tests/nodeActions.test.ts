@@ -373,16 +373,16 @@ describe('nodeActions', () => {
       expect(mockTriggerAutosave).toHaveBeenCalled();
     });
 
-    it('should allow applying context to a context declaration (for bundling)', () => {
+    it('should allow applying context to a context declaration', () => {
       state.nodes['node-2'].metadata.isContextDeclaration = true;
       actions.applyContext('node-2', 'node-1');
       expect(state.nodes['node-2'].metadata.appliedContextIds).toEqual(['node-1']);
     });
 
-    it('should not set activeContextId on context declarations', () => {
+    it('should set activeContextId on context declarations (same as regular nodes)', () => {
       state.nodes['node-2'].metadata.isContextDeclaration = true;
       actions.applyContext('node-2', 'node-1');
-      expect(state.nodes['node-2'].metadata.activeContextId).toBeUndefined();
+      expect(state.nodes['node-2'].metadata.activeContextId).toBe('node-1');
     });
 
     it('should do nothing if target node does not exist', () => {
@@ -512,12 +512,11 @@ describe('nodeActions', () => {
       expect(mockTriggerAutosave).not.toHaveBeenCalled();
     });
 
-    it('should not set activeContextId on context declarations', () => {
+    it('should allow setting activeContextId on context declarations', () => {
       state.nodes['node-2'].metadata.isContextDeclaration = true;
       actions.setActiveContext('node-2', 'node-3');
-      // activeContextId should remain unchanged
-      expect(state.nodes['node-2'].metadata.activeContextId).toBe('node-1');
-      expect(mockTriggerAutosave).not.toHaveBeenCalled();
+      expect(state.nodes['node-2'].metadata.activeContextId).toBe('node-3');
+      expect(mockTriggerAutosave).toHaveBeenCalled();
     });
 
     it('should not set activeContextId for context not applied to node', () => {

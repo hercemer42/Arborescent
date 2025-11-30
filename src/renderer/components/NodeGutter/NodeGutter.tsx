@@ -1,6 +1,6 @@
 import { memo } from 'react';
 import { GutterContextIndicator } from './GutterContextIndicator';
-import { AppliedContext } from '../TreeNode/hooks/useAppliedContexts';
+import { AppliedContext, BundledContext } from '../TreeNode/hooks/useAppliedContexts';
 import './NodeGutter.css';
 
 interface NodeGutterProps {
@@ -11,7 +11,7 @@ interface NodeGutterProps {
   isContextDeclaration?: boolean;
   contextIcon?: string;
   onIconClick?: () => void;
-  appliedContexts?: AppliedContext[];
+  bundledContexts?: BundledContext[];
   activeContext?: AppliedContext;
 }
 
@@ -23,7 +23,7 @@ export const NodeGutter = memo(function NodeGutter({
   isContextDeclaration = false,
   contextIcon,
   onIconClick,
-  appliedContexts = [],
+  bundledContexts = [],
   activeContext,
 }: NodeGutterProps) {
   return (
@@ -31,7 +31,7 @@ export const NodeGutter = memo(function NodeGutter({
       <GutterContextIndicator
         isContextDeclaration={isContextDeclaration}
         contextIcon={contextIcon}
-        appliedContexts={appliedContexts}
+        bundledContexts={bundledContexts}
         activeContext={activeContext}
         onIconClick={onIconClick}
       />

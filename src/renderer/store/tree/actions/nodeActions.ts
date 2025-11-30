@@ -23,6 +23,8 @@ export interface NodeActions {
   applyContext: (nodeId: string, contextNodeId: string) => void;
   removeAppliedContext: (nodeId: string, contextNodeId?: string) => void;
   setActiveContext: (nodeId: string, contextNodeId: string) => void;
+  addToBundle: (nodeId: string, contextNodeId: string) => void;
+  removeFromBundle: (nodeId: string, contextNodeId: string) => void;
   refreshContextDeclarations: () => void;
 }
 
@@ -55,6 +57,41 @@ type StoreSetter = (partial: Partial<StoreState> | ((state: StoreState) => Parti
 
 function generateId(): string {
   return uuidv4();
+}
+
+/**
+ * Remove a context ID from a metadata array field across all nodes.
+ */
+function removeContextFromMetadataArray(
+  contextNodeId: string,
+  nodes: Record<string, TreeNode>,
+  metadataKey: 'appliedContextIds' | 'bundledContextIds'
+): Record<string, TreeNode> {
+  let updatedNodes = nodes;
+
+  for (const node of Object.values(nodes)) {
+    const ids = (node.metadata[metadataKey] as string[]) || [];
+    if (ids.includes(contextNodeId)) {
+      const newIds = ids.filter(id => id !== contextNodeId);
+      const metadataUpdates: Record<string, unknown> = {
+        [metadataKey]: newIds.length > 0 ? newIds : undefined,
+      };
+
+      // Handle activeContextId promotion when removing from appliedContextIds
+      if (metadataKey === 'appliedContextIds') {
+        const currentActiveContextId = node.metadata.activeContextId as string | undefined;
+        if (newIds.length === 0) {
+          metadataUpdates.activeContextId = undefined;
+        } else if (currentActiveContextId === contextNodeId) {
+          metadataUpdates.activeContextId = newIds[0];
+        }
+      }
+
+      updatedNodes = updateNodeMetadata(updatedNodes, node.id, metadataUpdates);
+    }
+  }
+
+  return updatedNodes;
 }
 
 export const createNodeActions = (
@@ -235,50 +272,23 @@ export const createNodeActions = (
     const node = nodes[nodeId];
     if (!node) return;
 
-    // Find all nodes that have this context applied
-    const nodesWithThisContext = Object.values(nodes).filter(
-      n => {
-        const appliedIds = (n.metadata.appliedContextIds as string[]) || [];
-        return appliedIds.includes(nodeId);
-      }
-    );
-
-    // Update the context declaration node
+    // Update the context declaration node - clear declaration metadata
     let updatedNodes = updateNodeMetadata(nodes, nodeId, {
       isContextDeclaration: false,
       contextIcon: undefined,
+      bundledContextIds: undefined,
     });
 
-    // Remove this context from appliedContextIds of all affected nodes
-    // Also handle activeContextId promotion for regular nodes
-    for (const affectedNode of nodesWithThisContext) {
-      const currentIds = (affectedNode.metadata.appliedContextIds as string[]) || [];
-      const newIds = currentIds.filter(id => id !== nodeId);
-      const isAffectedContextDeclaration = affectedNode.metadata.isContextDeclaration === true;
-      const currentActiveContextId = affectedNode.metadata.activeContextId as string | undefined;
+    // Remove this context from appliedContextIds of all nodes
+    updatedNodes = removeContextFromMetadataArray(nodeId, updatedNodes, 'appliedContextIds');
 
-      const metadataUpdates: Record<string, unknown> = {
-        appliedContextIds: newIds.length > 0 ? newIds : undefined,
-      };
-
-      // For regular nodes: handle activeContextId clearing/promotion
-      if (!isAffectedContextDeclaration) {
-        if (newIds.length === 0) {
-          // All contexts removed - clear activeContextId
-          metadataUpdates.activeContextId = undefined;
-        } else if (currentActiveContextId === nodeId) {
-          // Active context was removed - promote first remaining context to active
-          metadataUpdates.activeContextId = newIds[0];
-        }
-      }
-
-      updatedNodes = updateNodeMetadata(updatedNodes, affectedNode.id, metadataUpdates);
-    }
+    // Remove this context from bundledContextIds of other context declarations
+    updatedNodes = removeContextFromMetadataArray(nodeId, updatedNodes, 'bundledContextIds');
 
     set({ nodes: updatedNodes });
 
     useToastStore.getState().addToast('Context declaration removed', 'info');
-    logger.info(`Context declaration removed from node ${nodeId}, cleared from ${nodesWithThisContext.length} nodes`, 'Context');
+    logger.info(`Context declaration removed from node ${nodeId}`, 'Context');
 
     triggerAutosave?.();
     refreshContextDeclarations();
@@ -299,7 +309,6 @@ export const createNodeActions = (
       return;
     }
 
-    const isContextDeclaration = node.metadata.isContextDeclaration === true;
     const newContextIds = [...existingContextIds, contextNodeId];
 
     // Build metadata updates
@@ -307,10 +316,8 @@ export const createNodeActions = (
       appliedContextIds: newContextIds,
     };
 
-    // For regular nodes (not context declarations):
-    // - Auto-set activeContextId when first context is applied
-    // - Keep existing activeContextId when additional contexts are applied
-    if (!isContextDeclaration && existingContextIds.length === 0) {
+    // Auto-set activeContextId when first context is applied
+    if (existingContextIds.length === 0) {
       metadataUpdates.activeContextId = contextNodeId;
     }
 
@@ -332,7 +339,6 @@ export const createNodeActions = (
 
     const existingContextIds = (node.metadata.appliedContextIds as string[]) || [];
     const currentActiveContextId = node.metadata.activeContextId as string | undefined;
-    const isContextDeclaration = node.metadata.isContextDeclaration === true;
 
     let newContextIds: string[] | undefined;
     if (contextNodeId) {
@@ -351,17 +357,15 @@ export const createNodeActions = (
       appliedContextIds: newContextIds,
     };
 
-    // For regular nodes: handle activeContextId promotion/clearing
-    if (!isContextDeclaration) {
-      if (!newContextIds || newContextIds.length === 0) {
-        // All contexts removed - clear activeContextId
-        metadataUpdates.activeContextId = undefined;
-      } else if (contextNodeId && currentActiveContextId === contextNodeId) {
-        // Active context was removed - promote first remaining context to active
-        metadataUpdates.activeContextId = newContextIds[0];
-      }
-      // Otherwise keep existing activeContextId
+    // Handle activeContextId promotion/clearing
+    if (!newContextIds || newContextIds.length === 0) {
+      // All contexts removed - clear activeContextId
+      metadataUpdates.activeContextId = undefined;
+    } else if (contextNodeId && currentActiveContextId === contextNodeId) {
+      // Active context was removed - promote first remaining context to active
+      metadataUpdates.activeContextId = newContextIds[0];
     }
+    // Otherwise keep existing activeContextId
 
     set({
       nodes: updateNodeMetadata(nodes, nodeId, metadataUpdates),
@@ -377,12 +381,6 @@ export const createNodeActions = (
     const { nodes } = get();
     const node = nodes[nodeId];
     if (!node) return;
-
-    // Only allow for regular nodes (not context declarations)
-    if (node.metadata.isContextDeclaration === true) {
-      useToastStore.getState().addToast('Context declarations do not have an active context', 'error');
-      return;
-    }
 
     // Verify the context is actually applied to this node
     const appliedContextIds = (node.metadata.appliedContextIds as string[]) || [];
@@ -402,6 +400,59 @@ export const createNodeActions = (
     triggerAutosave?.();
   }
 
+  function addToBundle(nodeId: string, contextNodeId: string): void {
+    const { nodes } = get();
+    const node = nodes[nodeId];
+    const contextNode = nodes[contextNodeId];
+    if (!node || !contextNode) return;
+
+    // Only context declarations can have bundles
+    if (node.metadata.isContextDeclaration !== true) return;
+
+    // Only context declarations can be bundled
+    if (contextNode.metadata.isContextDeclaration !== true) return;
+
+    // Get existing bundled contexts or initialize empty array
+    const existingBundleIds = (node.metadata.bundledContextIds as string[]) || [];
+
+    // Don't add duplicate
+    if (existingBundleIds.includes(contextNodeId)) return;
+
+    // Don't allow self-bundling
+    if (nodeId === contextNodeId) return;
+
+    const newBundleIds = [...existingBundleIds, contextNodeId];
+
+    set({
+      nodes: updateNodeMetadata(nodes, nodeId, {
+        bundledContextIds: newBundleIds,
+      }),
+    });
+
+    logger.info(`Context ${contextNodeId} added to bundle of node ${nodeId}`, 'Context');
+
+    triggerAutosave?.();
+  }
+
+  function removeFromBundle(nodeId: string, contextNodeId: string): void {
+    const { nodes } = get();
+    const node = nodes[nodeId];
+    if (!node) return;
+
+    const existingBundleIds = (node.metadata.bundledContextIds as string[]) || [];
+    const newBundleIds = existingBundleIds.filter(id => id !== contextNodeId);
+
+    set({
+      nodes: updateNodeMetadata(nodes, nodeId, {
+        bundledContextIds: newBundleIds.length > 0 ? newBundleIds : undefined,
+      }),
+    });
+
+    logger.info(`Context ${contextNodeId} removed from bundle of node ${nodeId}`, 'Context');
+
+    triggerAutosave?.();
+  }
+
   return {
     selectNode,
     updateContent,
@@ -416,6 +467,8 @@ export const createNodeActions = (
     applyContext,
     removeAppliedContext,
     setActiveContext,
+    addToBundle,
+    removeFromBundle,
     refreshContextDeclarations,
   };
 };

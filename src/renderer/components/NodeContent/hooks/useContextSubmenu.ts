@@ -13,10 +13,13 @@ export function useContextSubmenu(node: TreeNode) {
   const removeContextDeclaration = useStore((state) => state.actions.removeContextDeclaration);
   const applyContext = useStore((state) => state.actions.applyContext);
   const removeAppliedContext = useStore((state) => state.actions.removeAppliedContext);
+  const addToBundle = useStore((state) => state.actions.addToBundle);
+  const removeFromBundle = useStore((state) => state.actions.removeFromBundle);
   const openIconPicker = useIconPickerStore((state) => state.open);
 
   const isContextDeclaration = node.metadata.isContextDeclaration === true;
   const appliedContextIds = (node.metadata.appliedContextIds as string[]) || [];
+  const bundledContextIds = (node.metadata.bundledContextIds as string[]) || [];
   const hasAppliedContext = appliedContextIds.length > 0;
 
   const handleDeclareAsContext = useCallback(() => {
@@ -79,6 +82,30 @@ export function useContextSubmenu(node: TreeNode) {
     return items;
   }, [appliedContextIds, nodes, contextDeclarations, removeAppliedContext, node.id]);
 
+  // Build bundle declarations submenu items with checkboxes
+  const bundleDeclarationItems: ContextMenuItem[] = useMemo(() => {
+    if (!isContextDeclaration) return [];
+    return contextDeclarations
+      .filter(ctx => ctx.nodeId !== node.id) // Don't show self
+      .map(ctx => {
+        const iconDef = getIconByName(ctx.icon);
+        const isBundled = bundledContextIds.includes(ctx.nodeId);
+        return {
+          label: ctx.content.length > 30 ? ctx.content.slice(0, 30) + '...' : ctx.content,
+          onClick: () => {
+            if (isBundled) {
+              removeFromBundle(node.id, ctx.nodeId);
+            } else {
+              addToBundle(node.id, ctx.nodeId);
+            }
+          },
+          icon: iconDef ? createElement(FontAwesomeIcon, { icon: iconDef }) : undefined,
+          radioSelected: isBundled,
+          keepOpenOnClick: true,
+        };
+      });
+  }, [contextDeclarations, node.id, addToBundle, removeFromBundle, bundledContextIds, isContextDeclaration]);
+
   // Build the unified "Context" submenu with all context-related options
   const contextMenuItem: ContextMenuItem | null = useMemo(() => {
     const submenuItems: ContextMenuItem[] = [];
@@ -107,10 +134,21 @@ export function useContextSubmenu(node: TreeNode) {
     }
 
     // 4. Remove context declaration (only if this is a context declaration)
+    // Comes before "Bundle declarations"
     if (isContextDeclaration) {
       submenuItems.push({
         label: 'Remove context declaration',
         onClick: handleRemoveContextDeclaration,
+      });
+    }
+
+    // 5. Bundle declarations (only for context declaration nodes)
+    // Uses checkboxes to toggle bundled status
+    if (isContextDeclaration) {
+      submenuItems.push({
+        label: 'Bundle declarations',
+        submenu: bundleDeclarationItems,
+        disabled: bundleDeclarationItems.length === 0,
       });
     }
 
@@ -128,6 +166,7 @@ export function useContextSubmenu(node: TreeNode) {
     hasAppliedContext,
     contextSelectionItems,
     removeContextItems,
+    bundleDeclarationItems,
     node.id,
     handleDeclareAsContext,
     handleRemoveContextDeclaration,

@@ -53,11 +53,16 @@ export function ContextMenu({ x, y, items, onClose }: ContextMenuProps) {
           className="context-menu-item-wrapper"
         >
           <button
-            className={`context-menu-item ${item.danger ? 'danger' : ''} ${item.submenu ? 'has-submenu' : ''}`}
+            className={`context-menu-item ${item.danger ? 'danger' : ''} ${item.submenu ? 'has-submenu' : ''} ${item.radioSelected !== undefined ? 'has-radio' : ''}`}
             onClick={() => handleItemClick(item, index)}
             disabled={item.disabled}
             title={item.disabled && item.disabledTooltip ? item.disabledTooltip : undefined}
           >
+            {item.radioSelected !== undefined && (
+              <span className="context-menu-item-radio">
+                {item.radioSelected ? '◉' : '○'}
+              </span>
+            )}
             {item.icon && <span className="context-menu-item-icon">{item.icon}</span>}
             <span className="context-menu-item-label">{item.label}</span>
             {item.submenu && <span className="context-menu-submenu-arrow">{arrow}</span>}

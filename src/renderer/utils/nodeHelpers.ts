@@ -94,7 +94,7 @@ function resolveActiveContextFromNode(node: TreeNode): string | undefined {
  * Get the active context ID for collaboration.
  *
  * Returns the node's active context if it has contexts, otherwise inherits
- * from the nearest ancestor. Context declarations return undefined.
+ * from the nearest ancestor.
  */
 export function getActiveContextId(
   nodeId: string,
@@ -103,10 +103,6 @@ export function getActiveContextId(
 ): string | undefined {
   const node = nodes[nodeId];
   if (!node) return undefined;
-
-  if (node.metadata.isContextDeclaration === true) {
-    return undefined;
-  }
 
   const nodeActiveContext = resolveActiveContextFromNode(node);
   if (nodeActiveContext) {
@@ -117,9 +113,16 @@ export function getActiveContextId(
 }
 
 /**
+ * Get bundled context IDs from a node's metadata.
+ */
+function getBundledContextIds(node: TreeNode | undefined): string[] {
+  return (node?.metadata.bundledContextIds as string[]) || [];
+}
+
+/**
  * Recursively resolve bundled contexts for a context node.
  *
- * Bundles are context nodes with other contexts applied to them.
+ * Bundles are context declarations bundled into this context declaration.
  * Resolution is depth-first: nested contexts appear before the parent.
  */
 export function resolveBundledContexts(
@@ -136,7 +139,7 @@ export function resolveBundledContexts(
   if (!contextNode) return [];
 
   const result: string[] = [];
-  const bundledContextIds = getAppliedContextIds(contextNode);
+  const bundledContextIds = getBundledContextIds(contextNode);
 
   for (const bundledId of bundledContextIds) {
     const nestedContexts = resolveBundledContexts(bundledId, nodes, visited);

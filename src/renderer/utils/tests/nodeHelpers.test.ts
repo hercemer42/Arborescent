@@ -733,13 +733,14 @@ describe('getActiveContextId', () => {
     expect(getActiveContextId('node', nodes, ancestorRegistry)).toBe('ctx-1');
   });
 
-  it('should return undefined for context declaration nodes', () => {
+  it('should return active context for context declaration nodes with applied contexts', () => {
     const nodes = {
-      'ctx-node': createNode('ctx-node', [], { isContextDeclaration: true, appliedContextIds: ['ctx-1'] }),
+      'ctx-node': createNode('ctx-node', [], { isContextDeclaration: true, appliedContextIds: ['ctx-1'], activeContextId: 'ctx-1' }),
+      'ctx-1': createNode('ctx-1', [], { isContextDeclaration: true }),
     };
     const ancestorRegistry = { 'ctx-node': [] };
 
-    expect(getActiveContextId('ctx-node', nodes, ancestorRegistry)).toBeUndefined();
+    expect(getActiveContextId('ctx-node', nodes, ancestorRegistry)).toBe('ctx-1');
   });
 
   it('should inherit active context from ancestor', () => {
@@ -809,7 +810,7 @@ describe('resolveBundledContexts', () => {
 
   it('should resolve bundled contexts in order', () => {
     const nodes = {
-      'bundle': createNode('bundle', [], { isContextDeclaration: true, appliedContextIds: ['ctx-1', 'ctx-2'] }),
+      'bundle': createNode('bundle', [], { isContextDeclaration: true, bundledContextIds: ['ctx-1', 'ctx-2'] }),
       'ctx-1': createNode('ctx-1', [], { isContextDeclaration: true }),
       'ctx-2': createNode('ctx-2', [], { isContextDeclaration: true }),
     };
@@ -820,8 +821,8 @@ describe('resolveBundledContexts', () => {
 
   it('should resolve nested bundles', () => {
     const nodes = {
-      'outer-bundle': createNode('outer-bundle', [], { isContextDeclaration: true, appliedContextIds: ['inner-bundle'] }),
-      'inner-bundle': createNode('inner-bundle', [], { isContextDeclaration: true, appliedContextIds: ['ctx-1'] }),
+      'outer-bundle': createNode('outer-bundle', [], { isContextDeclaration: true, bundledContextIds: ['inner-bundle'] }),
+      'inner-bundle': createNode('inner-bundle', [], { isContextDeclaration: true, bundledContextIds: ['ctx-1'] }),
       'ctx-1': createNode('ctx-1', [], { isContextDeclaration: true }),
     };
 
@@ -831,8 +832,8 @@ describe('resolveBundledContexts', () => {
 
   it('should handle circular references gracefully', () => {
     const nodes = {
-      'ctx-a': createNode('ctx-a', [], { isContextDeclaration: true, appliedContextIds: ['ctx-b'] }),
-      'ctx-b': createNode('ctx-b', [], { isContextDeclaration: true, appliedContextIds: ['ctx-a'] }),
+      'ctx-a': createNode('ctx-a', [], { isContextDeclaration: true, bundledContextIds: ['ctx-b'] }),
+      'ctx-b': createNode('ctx-b', [], { isContextDeclaration: true, bundledContextIds: ['ctx-a'] }),
     };
 
     // Should not infinite loop
@@ -843,8 +844,8 @@ describe('resolveBundledContexts', () => {
 
   it('should deduplicate contexts', () => {
     const nodes = {
-      'bundle': createNode('bundle', [], { isContextDeclaration: true, appliedContextIds: ['ctx-1', 'inner-bundle'] }),
-      'inner-bundle': createNode('inner-bundle', [], { isContextDeclaration: true, appliedContextIds: ['ctx-1'] }),
+      'bundle': createNode('bundle', [], { isContextDeclaration: true, bundledContextIds: ['ctx-1', 'inner-bundle'] }),
+      'inner-bundle': createNode('inner-bundle', [], { isContextDeclaration: true, bundledContextIds: ['ctx-1'] }),
       'ctx-1': createNode('ctx-1', [], { isContextDeclaration: true }),
     };
 
@@ -865,7 +866,7 @@ describe('getContextsForCollaboration', () => {
   it('should resolve active context and its bundle for regular node', () => {
     const nodes = {
       'task': createNode('task', [], { appliedContextIds: ['bundle-ctx'], activeContextId: 'bundle-ctx' }),
-      'bundle-ctx': createNode('bundle-ctx', [], { isContextDeclaration: true, appliedContextIds: ['ctx-1', 'ctx-2'] }),
+      'bundle-ctx': createNode('bundle-ctx', [], { isContextDeclaration: true, bundledContextIds: ['ctx-1', 'ctx-2'] }),
       'ctx-1': createNode('ctx-1', [], { isContextDeclaration: true }),
       'ctx-2': createNode('ctx-2', [], { isContextDeclaration: true }),
     };
@@ -887,7 +888,7 @@ describe('getContextsForCollaboration', () => {
 
   it('should resolve bundle for context declaration node', () => {
     const nodes = {
-      'bundle-ctx': createNode('bundle-ctx', [], { isContextDeclaration: true, appliedContextIds: ['ctx-1'] }),
+      'bundle-ctx': createNode('bundle-ctx', [], { isContextDeclaration: true, bundledContextIds: ['ctx-1'] }),
       'ctx-1': createNode('ctx-1', [], { isContextDeclaration: true }),
     };
     const ancestorRegistry = { 'bundle-ctx': [] };
