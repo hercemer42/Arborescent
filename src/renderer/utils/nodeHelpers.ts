@@ -58,20 +58,20 @@ export function getEffectiveContextIds(
   const result: string[] = [];
   const seen = new Set<string>();
 
-  // Add node's own contexts first
+  // Add node's own contexts first (only if context node exists)
   for (const contextId of getAppliedContextIds(node)) {
-    if (!seen.has(contextId)) {
+    if (!seen.has(contextId) && nodes[contextId]) {
       result.push(contextId);
       seen.add(contextId);
     }
   }
 
-  // Add ancestor contexts from closest to furthest
+  // Add ancestor contexts from closest to furthest (only if context node exists)
   for (const ancestorId of getAncestorsClosestFirst(nodeId, ancestorRegistry)) {
     const ancestor = nodes[ancestorId];
     if (!ancestor) continue;
     for (const contextId of getAppliedContextIds(ancestor)) {
-      if (!seen.has(contextId)) {
+      if (!seen.has(contextId) && nodes[contextId]) {
         result.push(contextId);
         seen.add(contextId);
       }
