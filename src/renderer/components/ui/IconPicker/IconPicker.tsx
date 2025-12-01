@@ -1,67 +1,76 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { IconDefinition, library } from '@fortawesome/fontawesome-svg-core';
-import { fas } from '@fortawesome/free-solid-svg-icons';
+import { createElement, ComponentType } from 'react';
+import * as LucideIcons from 'lucide-react';
+import { LucideProps, TriangleAlert } from 'lucide-react';
 import { useIconPickerBehavior } from './hooks/useIconPickerBehavior';
 import './IconPicker.css';
 
-// Add all solid icons to the library
-library.add(fas);
+// Type for Lucide icon components
+export type LucideIcon = ComponentType<LucideProps>;
 
-// Curated list of 50 common/useful icons for context marking
+// Curated list of common/useful icons for context marking
+// Using Lucide icon names (PascalCase component names)
 const CURATED_ICON_NAMES = [
   // Ideas & Knowledge
-  'lightbulb', 'brain', 'graduation-cap', 'book', 'bookmark',
+  'Lightbulb', 'Brain', 'GraduationCap', 'Book', 'Bookmark',
   // Status & Priority
-  'star', 'flag', 'bell', 'circle-exclamation', 'triangle-exclamation',
+  'Star', 'Flag', 'Bell', 'CircleAlert', 'TriangleAlert',
   // Actions & Tasks
-  'check', 'circle-check', 'list-check', 'clipboard', 'thumbtack',
+  'Check', 'CircleCheck', 'ListChecks', 'Clipboard', 'Pin',
   // Objects
-  'key', 'lock', 'unlock', 'gear', 'wrench',
+  'Key', 'Lock', 'Unlock', 'Settings', 'Wrench',
   // Communication
-  'comment', 'comments', 'envelope', 'bullhorn', 'quote-left',
+  'MessageCircle', 'MessageSquare', 'Mail', 'Megaphone', 'Quote',
   // Files & Data
-  'file', 'folder', 'database', 'code', 'terminal',
+  'File', 'Folder', 'Database', 'Code', 'Terminal',
   // People & Users
-  'user', 'users', 'user-gear', 'address-book', 'id-card',
+  'User', 'Users', 'UserCog', 'BookUser', 'IdCard',
   // Symbols
-  'heart', 'bolt', 'fire', 'gem', 'crown',
+  'Heart', 'Zap', 'Flame', 'Gem', 'Crown',
   // Navigation & Location
-  'location-dot', 'compass', 'map', 'route', 'signs-post',
+  'MapPin', 'Compass', 'Map', 'Route', 'Signpost',
   // Misc
-  'tag', 'tags', 'puzzle-piece', 'link', 'paperclip',
+  'Tag', 'Tags', 'Puzzle', 'Link', 'Paperclip',
 ];
 
-// Convert camelCase key to kebab-case name
-function keyToName(key: string): string {
-  return key.replace(/^fa/, '').replace(/([A-Z])/g, '-$1').toLowerCase().replace(/^-/, '');
-}
-
-// Get all solid icons as an array sorted by name
-function getAllSolidIcons(): { icon: IconDefinition; name: string }[] {
-  return Object.entries(fas)
-    .filter(([key]) => key.startsWith('fa') && key !== 'fas' && key !== 'prefix')
-    .map(([key, icon]) => ({
-      icon: icon as IconDefinition,
-      name: keyToName(key),
+// Get all available Lucide icons
+function getAllLucideIcons(): { Icon: LucideIcon; name: string }[] {
+  return Object.entries(LucideIcons)
+    .filter(([name, component]) => {
+      // Filter to only icon components (exclude utilities, types, etc.)
+      // Lucide icons are forwardRef objects with $$typeof Symbol(react.forward_ref)
+      const isReactComponent = component !== null &&
+        typeof component === 'object' &&
+        '$$typeof' in component;
+      return (
+        isReactComponent &&
+        name !== 'default' &&
+        !name.startsWith('Lucide') &&
+        !name.endsWith('Icon') && // Exclude duplicate *Icon variants
+        /^[A-Z]/.test(name) // Must start with capital letter
+      );
+    })
+    .map(([name, Icon]) => ({
+      Icon: Icon as LucideIcon,
+      name,
     }))
     .sort((a, b) => a.name.localeCompare(b.name));
 }
 
 // Get curated icons in the order defined above
-function getCuratedIcons(): { icon: IconDefinition; name: string }[] {
-  const allIcons = getAllSolidIcons();
+function getCuratedIcons(): { Icon: LucideIcon; name: string }[] {
+  const allIcons = getAllLucideIcons();
   const iconMap = new Map(allIcons.map(i => [i.name, i]));
 
   return CURATED_ICON_NAMES
     .map(name => iconMap.get(name))
-    .filter((i): i is { icon: IconDefinition; name: string } => i !== undefined);
+    .filter((i): i is { Icon: LucideIcon; name: string } => i !== undefined);
 }
 
-const ALL_ICONS = getAllSolidIcons();
+const ALL_ICONS = getAllLucideIcons();
 const CURATED_ICONS = getCuratedIcons();
 
-export const CONTEXT_ICONS = ALL_ICONS; // Export all for getIconByName lookup
-export const DEFAULT_CONTEXT_ICON = 'lightbulb';
+export const CONTEXT_ICONS = ALL_ICONS;
+export const DEFAULT_CONTEXT_ICON = 'Lightbulb';
 
 interface IconPickerProps {
   selectedIcon?: string;
@@ -105,7 +114,7 @@ export function IconPicker({ selectedIcon, onSelect, onClose }: IconPickerProps)
         </div>
 
         <div className="icon-picker-grid">
-          {displayedIcons.map(({ icon, name }) => (
+          {displayedIcons.map(({ Icon, name }) => (
             <button
               key={name}
               className={`icon-picker-item ${selectedIcon === name ? 'selected' : ''}`}
@@ -114,7 +123,7 @@ export function IconPicker({ selectedIcon, onSelect, onClose }: IconPickerProps)
               onMouseLeave={() => handleIconHover(null)}
               title={name}
             >
-              <FontAwesomeIcon icon={icon} />
+              <Icon size={16} />
             </button>
           ))}
           {displayedIcons.length === 0 && (
@@ -140,8 +149,23 @@ export function IconPicker({ selectedIcon, onSelect, onClose }: IconPickerProps)
   );
 }
 
-// Helper to get icon definition by name
-export function getIconByName(name: string): IconDefinition | null {
+// Helper to get icon component by name
+// Returns TriangleAlert (warning) as fallback for unknown icons
+export function getIconByName(name: string): LucideIcon | null {
   const found = CONTEXT_ICONS.find(item => item.name === name);
-  return found?.icon || null;
+  if (found) {
+    return found.Icon;
+  }
+  // Fallback for old FontAwesome icon names - return warning icon
+  if (name && name.length > 0) {
+    return TriangleAlert;
+  }
+  return null;
+}
+
+// Helper to render an icon by name (convenience function)
+export function renderIcon(name: string, size: number = 16): React.ReactNode {
+  const Icon = getIconByName(name);
+  if (!Icon) return null;
+  return createElement(Icon, { size });
 }

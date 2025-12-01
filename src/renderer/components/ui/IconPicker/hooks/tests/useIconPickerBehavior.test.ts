@@ -1,22 +1,26 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { renderHook, act } from '@testing-library/react';
 import { useIconPickerBehavior } from '../useIconPickerBehavior';
+import { LucideIcon } from '../../IconPicker';
 
 describe('useIconPickerBehavior', () => {
   const mockOnSelect = vi.fn();
   const mockOnClose = vi.fn();
 
+  // Mock Lucide icon component
+  const MockIcon: LucideIcon = () => null;
+
   const mockAllIcons = [
-    { icon: {} as never, name: 'apple' },
-    { icon: {} as never, name: 'banana' },
-    { icon: {} as never, name: 'cherry' },
-    { icon: {} as never, name: 'star' },
-    { icon: {} as never, name: 'heart' },
+    { Icon: MockIcon, name: 'apple' },
+    { Icon: MockIcon, name: 'banana' },
+    { Icon: MockIcon, name: 'cherry' },
+    { Icon: MockIcon, name: 'star' },
+    { Icon: MockIcon, name: 'heart' },
   ];
 
   const mockCuratedIcons = [
-    { icon: {} as never, name: 'star' },
-    { icon: {} as never, name: 'heart' },
+    { Icon: MockIcon, name: 'star' },
+    { Icon: MockIcon, name: 'heart' },
   ];
 
   beforeEach(() => {
@@ -85,7 +89,7 @@ describe('useIconPickerBehavior', () => {
       result.current.handleSearchChange('app');
     });
 
-    expect(result.current.displayedIcons).toEqual([{ icon: {} as never, name: 'apple' }]);
+    expect(result.current.displayedIcons).toEqual([{ Icon: MockIcon, name: 'apple' }]);
     expect(result.current.isSearching).toBe(true);
   });
 
@@ -102,7 +106,7 @@ describe('useIconPickerBehavior', () => {
     });
 
     // Should find 'banana' even though it's not in curated icons
-    expect(result.current.displayedIcons).toEqual([{ icon: {} as never, name: 'banana' }]);
+    expect(result.current.displayedIcons).toEqual([{ Icon: MockIcon, name: 'banana' }]);
   });
 
   it('should clear search query on handleShowMore', () => {

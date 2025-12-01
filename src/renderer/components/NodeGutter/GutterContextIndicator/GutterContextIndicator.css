@@ -33,6 +33,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
+}
+
+.gutter-context-indicator.context-bundle:hover .context-bundle-indicator {
+  opacity: 1;
+  background-color: color-mix(in srgb, var(--sky-500) 10%, transparent);
+  border-radius: 3px;
 }
 
 .context-bundle-indicator {
@@ -46,22 +53,23 @@
   justify-content: center;
 }
 
-.context-bundle-count {
+.context-bundle-badge {
   position: absolute;
-  top: calc(50%);
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 0.7rem;
-  font-weight: 700;
+  bottom: 0px;
+  right: 0px;
+  font-size: 1rem;
+  font-weight: 500;
   background: var(--sky-500);
   color: white;
   border-radius: 50%;
-  width: 11px;
-  height: 11px;
+  width: 10px;
+  height: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
   line-height: 1;
+  pointer-events: none;
+  padding-left: 1px;
 }
 
 /* Bundle tooltip */

@@ -1,5 +1,4 @@
-import { useMemo } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useMemo, createElement } from 'react';
 import { TreeNode } from '../../../../shared/types';
 import { ContextMenuItem } from '../../ui/ContextMenu';
 import { getActiveContextId, getEffectiveContextIds } from '../../../utils/nodeHelpers';
@@ -40,11 +39,11 @@ function createContextHeading(): ContextMenuItem {
 function createContextInfoItem(contextNode: TreeNode | undefined): ContextMenuItem {
   const contextName = contextNode?.content.slice(0, 30) || 'Context';
   const iconName = contextNode?.metadata.contextIcon as string | undefined;
-  const iconDef = iconName ? getIconByName(iconName) : null;
+  const Icon = iconName ? getIconByName(iconName) : null;
 
   return {
     label: contextName,
-    icon: iconDef ? <FontAwesomeIcon icon={iconDef} /> : undefined,
+    icon: Icon ? createElement(Icon, { size: 14 }) : undefined,
     onClick: () => {},
     disabled: true,
   };
@@ -59,11 +58,11 @@ function createContextSelectionItem(
 ): ContextMenuItem {
   const contextName = contextNode?.content.slice(0, 30) || 'Context';
   const iconName = contextNode?.metadata.contextIcon as string | undefined;
-  const iconDef = iconName ? getIconByName(iconName) : null;
+  const Icon = iconName ? getIconByName(iconName) : null;
 
   return {
     label: contextName,
-    icon: iconDef ? <FontAwesomeIcon icon={iconDef} /> : undefined,
+    icon: Icon ? createElement(Icon, { size: 14 }) : undefined,
     radioSelected: isActive,
     keepOpenOnClick: true,
     onClick: () => {

@@ -1,5 +1,4 @@
 import { useMemo, useCallback, createElement } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useStore } from '../../../store/tree/useStore';
 import { useIconPickerStore } from '../../../store/iconPicker/iconPickerStore';
 import { TreeNode } from '../../../../shared/types';
@@ -55,11 +54,11 @@ export function useContextSubmenu(node: TreeNode) {
       .filter(ctx => ctx.nodeId !== node.id) // Don't show self
       .filter(ctx => !appliedContextIds.includes(ctx.nodeId)) // Don't show already applied
       .map(ctx => {
-        const iconDef = getIconByName(ctx.icon);
+        const Icon = getIconByName(ctx.icon);
         return {
           label: ctx.content.length > 30 ? ctx.content.slice(0, 30) + '...' : ctx.content,
           onClick: () => applyContext(node.id, ctx.nodeId),
-          icon: iconDef ? createElement(FontAwesomeIcon, { icon: iconDef }) : undefined,
+          icon: Icon ? createElement(Icon, { size: 14 }) : undefined,
         };
       });
   }, [contextDeclarations, node.id, applyContext, appliedContextIds]);
@@ -71,12 +70,12 @@ export function useContextSubmenu(node: TreeNode) {
       const contextNode = nodes[contextId];
       if (!contextNode) continue;
       const contextDecl = contextDeclarations.find(c => c.nodeId === contextId);
-      const iconDef = contextDecl ? getIconByName(contextDecl.icon) : null;
+      const Icon = contextDecl ? getIconByName(contextDecl.icon) : null;
       const content = contextNode.content || 'Untitled context';
       items.push({
         label: content.length > 30 ? content.slice(0, 30) + '...' : content,
         onClick: () => removeAppliedContext(node.id, contextId),
-        icon: iconDef ? createElement(FontAwesomeIcon, { icon: iconDef }) : undefined,
+        icon: Icon ? createElement(Icon, { size: 14 }) : undefined,
       });
     }
     return items;
@@ -88,7 +87,7 @@ export function useContextSubmenu(node: TreeNode) {
     return contextDeclarations
       .filter(ctx => ctx.nodeId !== node.id) // Don't show self
       .map(ctx => {
-        const iconDef = getIconByName(ctx.icon);
+        const Icon = getIconByName(ctx.icon);
         const isBundled = bundledContextIds.includes(ctx.nodeId);
         return {
           label: ctx.content.length > 30 ? ctx.content.slice(0, 30) + '...' : ctx.content,
@@ -99,7 +98,7 @@ export function useContextSubmenu(node: TreeNode) {
               addToBundle(node.id, ctx.nodeId);
             }
           },
-          icon: iconDef ? createElement(FontAwesomeIcon, { icon: iconDef }) : undefined,
+          icon: Icon ? createElement(Icon, { size: 14 }) : undefined,
           radioSelected: isBundled,
           keepOpenOnClick: true,
         };

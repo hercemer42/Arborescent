@@ -1,17 +1,16 @@
 import { createPortal } from 'react-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
-import { getIconByName } from '../../ui/IconPicker/IconPicker';
+import { createElement } from 'react';
+import { getIconByName, LucideIcon } from '../../ui/IconPicker/IconPicker';
 import { AppliedContext, BundledContext } from '../../TreeNode/hooks/useAppliedContexts';
 
 interface BundleTooltipProps {
-  declarationIconDef: IconDefinition | null;
+  declarationIcon: LucideIcon | null;
   bundledContexts: BundledContext[];
   appliedContexts: AppliedContext[];
   position: { top: number; left: number };
 }
 
-export function BundleTooltip({ declarationIconDef, bundledContexts, appliedContexts, position }: BundleTooltipProps) {
+export function BundleTooltip({ declarationIcon, bundledContexts, appliedContexts, position }: BundleTooltipProps) {
   return createPortal(
     <div
       className="context-bundle-tooltip"
@@ -23,17 +22,17 @@ export function BundleTooltip({ declarationIconDef, bundledContexts, appliedCont
     >
       <div className="context-bundle-tooltip-title">Declared context:</div>
       <div className="context-bundle-tooltip-item">
-        {declarationIconDef && <FontAwesomeIcon icon={declarationIconDef} className="tooltip-icon" />}
+        {declarationIcon && createElement(declarationIcon, { size: 12, className: 'tooltip-icon' })}
         <span className="tooltip-name">This node</span>
       </div>
       {bundledContexts.length > 0 && (
         <>
           <div className="context-bundle-tooltip-title" style={{ marginTop: '8px' }}>Bundled declarations:</div>
           {bundledContexts.map((ctx, index) => {
-            const iconDef = ctx.icon ? getIconByName(ctx.icon) : null;
+            const Icon = ctx.icon ? getIconByName(ctx.icon) : null;
             return (
               <div key={`bundled-${index}`} className="context-bundle-tooltip-item">
-                {iconDef && <FontAwesomeIcon icon={iconDef} className="tooltip-icon" />}
+                {Icon && createElement(Icon, { size: 12, className: 'tooltip-icon' })}
                 <span className="tooltip-name">{ctx.name || 'Context'}</span>
               </div>
             );
@@ -44,10 +43,10 @@ export function BundleTooltip({ declarationIconDef, bundledContexts, appliedCont
         <>
           <div className="context-bundle-tooltip-title" style={{ marginTop: '8px' }}>Applied contexts:</div>
           {appliedContexts.map((ctx, index) => {
-            const iconDef = ctx.icon ? getIconByName(ctx.icon) : null;
+            const Icon = ctx.icon ? getIconByName(ctx.icon) : null;
             return (
               <div key={`applied-${index}`} className="context-bundle-tooltip-item">
-                {iconDef && <FontAwesomeIcon icon={iconDef} className="tooltip-icon" />}
+                {Icon && createElement(Icon, { size: 12, className: 'tooltip-icon' })}
                 <span className="tooltip-name">{ctx.name || 'Context'}</span>
               </div>
             );

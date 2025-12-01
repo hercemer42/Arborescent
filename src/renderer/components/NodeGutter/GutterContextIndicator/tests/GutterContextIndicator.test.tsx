@@ -82,103 +82,78 @@ describe('GutterContextIndicator', () => {
       expect(mockOnIconClick).toHaveBeenCalled();
     });
 
-    it('should show cog with count for single bundled context (includes self)', () => {
+    it('should show declaration icon with + badge for bundled context', () => {
       const bundledContexts: BundledContext[] = [{ icon: 'flag', name: 'Bundled Context' }];
       const { container } = render(
         <GutterContextIndicator
           isContextDeclaration={true}
-          contextIcon="lightbulb"
+          contextIcon="Lightbulb"
           bundledContexts={bundledContexts}
           appliedContexts={[]}
           onIconClick={mockOnIconClick}
         />
       );
-      // Count is 1 (self) + bundledContexts.length + appliedContexts.length
-      expect(container.querySelector('.context-bundle-count')?.textContent).toBe('2');
+      expect(container.querySelector('.context-bundle-badge')?.textContent).toBe('+');
+      expect(container.querySelector('.context-bundle-indicator')).toBeInTheDocument();
     });
 
-    it('should show cog with count including applied contexts', () => {
+    it('should show declaration icon with + badge for applied contexts', () => {
       const appliedContexts: AppliedContext[] = [{ icon: 'heart', name: 'Applied Context' }];
       const { container } = render(
         <GutterContextIndicator
           isContextDeclaration={true}
-          contextIcon="lightbulb"
+          contextIcon="Lightbulb"
           bundledContexts={[]}
           appliedContexts={appliedContexts}
           onIconClick={mockOnIconClick}
         />
       );
-      // Count is 1 (self) + 0 bundled + 1 applied = 2
-      expect(container.querySelector('.context-bundle-count')?.textContent).toBe('2');
+      expect(container.querySelector('.context-bundle-badge')?.textContent).toBe('+');
     });
 
-    it('should show cog with count for bundled and applied contexts combined', () => {
+    it('should show declaration icon with + badge for bundled and applied contexts combined', () => {
       const bundledContexts: BundledContext[] = [{ icon: 'flag', name: 'Bundled Context' }];
       const appliedContexts: AppliedContext[] = [{ icon: 'heart', name: 'Applied Context' }];
       const { container } = render(
         <GutterContextIndicator
           isContextDeclaration={true}
-          contextIcon="lightbulb"
+          contextIcon="Lightbulb"
           bundledContexts={bundledContexts}
           appliedContexts={appliedContexts}
           onIconClick={mockOnIconClick}
         />
       );
-      // Count is 1 (self) + 1 bundled + 1 applied = 3
-      expect(container.querySelector('.context-bundle-count')?.textContent).toBe('3');
+      expect(container.querySelector('.context-bundle-badge')?.textContent).toBe('+');
     });
 
-    it('should NOT be clickable for single bundled context', () => {
+    it('should be clickable to change icon when has bundled contexts', () => {
       const bundledContexts: BundledContext[] = [{ icon: 'flag', name: 'Bundled Context' }];
-      const { container } = render(
+      render(
         <GutterContextIndicator
           isContextDeclaration={true}
-          contextIcon="lightbulb"
+          contextIcon="Lightbulb"
           bundledContexts={bundledContexts}
           appliedContexts={[]}
           onIconClick={mockOnIconClick}
         />
       );
-      const indicator = container.querySelector('.context-bundle-indicator');
-      if (indicator) fireEvent.click(indicator);
-      expect(mockOnIconClick).not.toHaveBeenCalled();
+      fireEvent.click(screen.getByTitle('Click to change icon'));
+      expect(mockOnIconClick).toHaveBeenCalled();
     });
 
-    it('should show cog with count for multiple bundled contexts (includes self)', () => {
-      const bundledContexts: BundledContext[] = [
-        { icon: 'flag', name: 'Context A' },
-        { icon: 'star', name: 'Context B' },
-      ];
-      const { container } = render(
+    it('should be clickable to change icon when has applied contexts', () => {
+      const appliedContexts: AppliedContext[] = [{ icon: 'heart', name: 'Applied Context' }];
+      render(
         <GutterContextIndicator
           isContextDeclaration={true}
-          contextIcon="lightbulb"
-          bundledContexts={bundledContexts}
-          appliedContexts={[]}
+          contextIcon="Lightbulb"
+          bundledContexts={[]}
+          appliedContexts={appliedContexts}
           onIconClick={mockOnIconClick}
         />
       );
-      // Count is 1 (self) + bundledContexts.length
-      expect(container.querySelector('.context-bundle-count')?.textContent).toBe('3');
-    });
-
-    it('should NOT be clickable for multiple bundled contexts', () => {
-      const bundledContexts: BundledContext[] = [
-        { icon: 'flag', name: 'Context A' },
-        { icon: 'star', name: 'Context B' },
-      ];
-      const { container } = render(
-        <GutterContextIndicator
-          isContextDeclaration={true}
-          contextIcon="lightbulb"
-          bundledContexts={bundledContexts}
-          appliedContexts={[]}
-          onIconClick={mockOnIconClick}
-        />
-      );
-      const indicator = container.querySelector('.context-bundle-indicator');
-      if (indicator) fireEvent.click(indicator);
-      expect(mockOnIconClick).not.toHaveBeenCalled();
+      fireEvent.click(screen.getByTitle('Click to change icon'));
+      expect(mockOnIconClick).toHaveBeenCalled();
     });
 
     it('should show tooltip on hover for bundled contexts', () => {

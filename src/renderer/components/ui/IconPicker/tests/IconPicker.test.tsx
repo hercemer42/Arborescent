@@ -1,7 +1,7 @@
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { IconPicker, CONTEXT_ICONS, getIconByName, DEFAULT_CONTEXT_ICON } from '../IconPicker';
+import { IconPicker, getIconByName, DEFAULT_CONTEXT_ICON } from '../IconPicker';
 
 describe('IconPicker', () => {
   const mockOnSelect = vi.fn();
@@ -92,7 +92,7 @@ describe('IconPicker', () => {
   it('should highlight selected icon', () => {
     const { container } = render(
       <IconPicker
-        selectedIcon="star"
+        selectedIcon="Star"
         onSelect={mockOnSelect}
         onClose={mockOnClose}
       />
@@ -100,7 +100,7 @@ describe('IconPicker', () => {
 
     const selectedButton = container.querySelector('.icon-picker-item.selected');
     expect(selectedButton).toBeInTheDocument();
-    expect(selectedButton).toHaveAttribute('title', 'star');
+    expect(selectedButton).toHaveAttribute('title', 'Star');
   });
 
   it('should call onSelect when an icon is clicked', async () => {
@@ -112,12 +112,12 @@ describe('IconPicker', () => {
       />
     );
 
-    const starButton = container.querySelector('.icon-picker-item[title="star"]');
+    const starButton = container.querySelector('.icon-picker-item[title="Star"]');
     expect(starButton).toBeInTheDocument();
 
     await user.click(starButton!);
 
-    expect(mockOnSelect).toHaveBeenCalledWith('star');
+    expect(mockOnSelect).toHaveBeenCalledWith('Star');
   });
 
   it('should call onClose after selecting an icon', async () => {
@@ -129,7 +129,7 @@ describe('IconPicker', () => {
       />
     );
 
-    const starButton = container.querySelector('.icon-picker-item[title="star"]');
+    const starButton = container.querySelector('.icon-picker-item[title="Star"]');
     await user.click(starButton!);
 
     expect(mockOnClose).toHaveBeenCalled();
@@ -200,27 +200,32 @@ describe('IconPicker', () => {
       />
     );
 
-    const starButton = container.querySelector('.icon-picker-item[title="star"]');
+    const starButton = container.querySelector('.icon-picker-item[title="Star"]');
     await user.hover(starButton!);
 
-    expect(screen.getByText('star')).toBeInTheDocument();
+    expect(screen.getByText('Star')).toBeInTheDocument();
   });
 });
 
 describe('getIconByName', () => {
-  it('should return icon definition for valid name', () => {
-    const icon = getIconByName('lightbulb');
-    expect(icon).not.toBeNull();
+  it('should return icon component for valid name', () => {
+    const Icon = getIconByName('Lightbulb');
+    expect(Icon).not.toBeNull();
   });
 
-  it('should return null for invalid name', () => {
-    const icon = getIconByName('invalid-icon-name');
-    expect(icon).toBeNull();
+  it('should return warning icon for unknown name (fallback)', () => {
+    const Icon = getIconByName('old-fontawesome-icon');
+    expect(Icon).not.toBeNull(); // Returns TriangleAlert as fallback
+  });
+
+  it('should return null for empty string', () => {
+    const Icon = getIconByName('');
+    expect(Icon).toBeNull();
   });
 });
 
 describe('DEFAULT_CONTEXT_ICON', () => {
-  it('should be lightbulb', () => {
-    expect(DEFAULT_CONTEXT_ICON).toBe('lightbulb');
+  it('should be Lightbulb', () => {
+    expect(DEFAULT_CONTEXT_ICON).toBe('Lightbulb');
   });
 });

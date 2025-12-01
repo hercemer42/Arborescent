@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState, useMemo, useCallback } from 'react';
-import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 import { useDialogBehavior } from '../../../../hooks';
+import { LucideIcon } from '../IconPicker';
 
 interface IconItem {
-  icon: IconDefinition;
+  Icon: LucideIcon;
   name: string;
 }
 
@@ -30,7 +30,7 @@ export function useIconPickerBehavior(
     }
 
     const query = searchQuery.toLowerCase().trim();
-    return allIcons.filter(({ name }) => name.includes(query));
+    return allIcons.filter(({ name }) => name.toLowerCase().includes(query));
   }, [showAll, searchQuery, allIcons, curatedIcons]);
 
   // Focus search input on open
