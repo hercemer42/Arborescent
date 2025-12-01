@@ -9,10 +9,11 @@ export function useNodeIconClick(nodeId: string, node: TreeNode | undefined) {
 
   const handleIconClick = useCallback(() => {
     const currentIcon = (node?.metadata.contextIcon as string) || 'lightbulb';
-    openIconPicker(currentIcon, (iconName) => {
-      setContextIcon(nodeId, iconName);
-    });
-  }, [node?.metadata.contextIcon, nodeId, openIconPicker, setContextIcon]);
+    const currentColor = node?.metadata.contextColor as string | undefined;
+    openIconPicker(currentIcon, (selection) => {
+      setContextIcon(nodeId, selection.icon, selection.color);
+    }, currentColor);
+  }, [node?.metadata.contextIcon, node?.metadata.contextColor, nodeId, openIconPicker, setContextIcon]);
 
   return handleIconClick;
 }

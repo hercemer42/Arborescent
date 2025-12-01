@@ -6,8 +6,8 @@ import { ContextDeclarationInfo } from '../treeStore';
 import { AncestorRegistry } from '../../../services/ancestry';
 
 export interface ContextActions {
-  declareAsContext: (nodeId: string, icon?: string) => void;
-  setContextIcon: (nodeId: string, icon: string) => void;
+  declareAsContext: (nodeId: string, icon?: string, color?: string) => void;
+  setContextIcon: (nodeId: string, icon: string, color?: string) => void;
   removeContextDeclaration: (nodeId: string) => void;
   applyContext: (nodeId: string, contextNodeId: string) => void;
   removeAppliedContext: (nodeId: string, contextNodeId?: string) => void;
@@ -28,6 +28,7 @@ function buildContextDeclarations(nodes: Record<string, TreeNode>): ContextDecla
       nodeId: node.id,
       content: node.content || 'Untitled context',
       icon: (node.metadata.contextIcon as string) || 'lightbulb',
+      color: node.metadata.contextColor as string | undefined,
     }))
     .sort((a, b) => a.content.localeCompare(b.content));
 }
@@ -87,7 +88,7 @@ export const createContextActions = (
     }, 0);
   }
 
-  function declareAsContext(nodeId: string, icon?: string): void {
+  function declareAsContext(nodeId: string, icon?: string, color?: string): void {
     const { nodes } = get();
     const node = nodes[nodeId];
     if (!node) return;
@@ -96,6 +97,7 @@ export const createContextActions = (
       nodes: updateNodeMetadata(nodes, nodeId, {
         isContextDeclaration: true,
         contextIcon: icon || 'lightbulb',
+        contextColor: color || undefined,
       }),
     });
 
@@ -106,7 +108,7 @@ export const createContextActions = (
     refreshContextDeclarations();
   }
 
-  function setContextIcon(nodeId: string, icon: string): void {
+  function setContextIcon(nodeId: string, icon: string, color?: string): void {
     const { nodes } = get();
     const node = nodes[nodeId];
     if (!node) return;
@@ -114,10 +116,10 @@ export const createContextActions = (
     set({
       nodes: updateNodeMetadata(nodes, nodeId, {
         contextIcon: icon,
+        contextColor: color,
       }),
     });
 
-    useToastStore.getState().addToast('Context icon updated', 'success');
     logger.info(`Context icon updated to ${icon} for node ${nodeId}`, 'Context');
 
     triggerAutosave?.();
@@ -133,6 +135,7 @@ export const createContextActions = (
     let updatedNodes = updateNodeMetadata(nodes, nodeId, {
       isContextDeclaration: false,
       contextIcon: undefined,
+      contextColor: undefined,
       bundledContextIds: undefined,
     });
 

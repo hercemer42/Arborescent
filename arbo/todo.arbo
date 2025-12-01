@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2025-12-01T22:09:41.716Z'
+updated: '2025-12-01T22:46:18.721Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -6785,6 +6785,12 @@ nodes:
     content: Refactor
     children:
       - 72f62374-15ee-488c-9e84-1c33145f6059
+      - 5ed852b4-834e-4e79-a125-4dc2bbeb136f
+      - 061b2c2c-e334-4ef4-af05-7747029fa953
+      - 6cb5547b-63eb-42d4-ae74-8f09ca4ec931
+      - a8283ff8-f26a-41e9-bf03-caee4d97e229
+      - f2016adf-0e1d-470a-9e88-e7d9b2180ebb
+      - 04ca4bdd-431d-4ad6-a8c2-537ef1c063fb
     metadata:
       status: pending
       expanded: true
@@ -8487,7 +8493,6 @@ nodes:
       - 02e36590-7af6-4c6f-bc21-ce1de7171790
       - dfb86086-4e48-4335-9c2f-2183ea593f0c
       - ae541aa0-f9dc-447c-98e8-7b3338c5523f
-      - bbf4b9df-4eba-40b2-81a3-796c338171a9
     metadata:
       status: completed
       expanded: true
@@ -8516,6 +8521,9 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
+      appliedContextIds:
+        - 9b46397c-c452-421c-b408-46b040d99c9e
+      activeContextId: 9b46397c-c452-421c-b408-46b040d99c9e
   7ace619e-d6a7-41ec-9e58-2f911232f97a:
     id: 7ace619e-d6a7-41ec-9e58-2f911232f97a
     content: Extend existing icon picker with a colour picker
@@ -8546,16 +8554,7 @@ nodes:
       plugins: {}
   622bef1c-3f95-4623-8d72-73c894b83243:
     id: 622bef1c-3f95-4623-8d72-73c894b83243
-    content: Default icon is 3 boxes (or whatever maps from lucide)
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  bbf4b9df-4eba-40b2-81a3-796c338171a9:
-    id: bbf4b9df-4eba-40b2-81a3-796c338171a9
-    content: Settings menu for project default (later)
+    content: Default icon is layers2
     children: []
     metadata:
       status: pending
@@ -8569,8 +8568,8 @@ nodes:
       - 40d5b9b7-a819-455c-9200-33c1c335d5e2
       - c3155224-242d-4a78-aac0-cd02ea9f1cf0
     metadata:
-      status: pending
-      expanded: true
+      status: completed
+      expanded: false
       deleted: false
       plugins: {}
   40d5b9b7-a819-455c-9200-33c1c335d5e2:
@@ -8578,7 +8577,7 @@ nodes:
     content: Cascade delete children from blueprint with confirmation prompt
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -8587,7 +8586,7 @@ nodes:
     content: 'Right-click: Blueprints → Remove from Blueprint'
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -8597,8 +8596,8 @@ nodes:
     children:
       - 957a4235-cb20-4dd5-9299-bfb40ecd69c5
     metadata:
-      status: pending
-      expanded: true
+      status: completed
+      expanded: false
       deleted: false
       plugins: {}
   957a4235-cb20-4dd5-9299-bfb40ecd69c5:
@@ -8607,7 +8606,7 @@ nodes:
     children:
       - e08ead1b-e320-412d-9544-4e41d38bdde1
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -8616,13 +8615,13 @@ nodes:
     content: Likewise when removing it from the blueprint
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
   72f62374-15ee-488c-9e84-1c33145f6059:
     id: 72f62374-15ee-488c-9e84-1c33145f6059
-    content: There is a little repetition in blueprint actions
+    content: Need to move that handleBlueprintIconClick to a hooks file
     children: []
     metadata:
       status: pending
@@ -8655,6 +8654,42 @@ nodes:
   72026da5-3fbe-4c0f-bcf9-8eb2cca47538:
     id: 72026da5-3fbe-4c0f-bcf9-8eb2cca47538
     content: Install a library if required
+    children: []
+    metadata:
+      status: pending
+  5ed852b4-834e-4e79-a125-4dc2bbeb136f:
+    id: 5ed852b4-834e-4e79-a125-4dc2bbeb136f
+    content: Amber should match the default amber colour
+    children: []
+    metadata:
+      status: pending
+  061b2c2c-e334-4ef4-af05-7747029fa953:
+    id: 061b2c2c-e334-4ef4-af05-7747029fa953
+    content: Blue should match the existing sky blue for the gutter icons
+    children: []
+    metadata:
+      status: pending
+  6cb5547b-63eb-42d4-ae74-8f09ca4ec931:
+    id: 6cb5547b-63eb-42d4-ae74-8f09ca4ec931
+    content: Remove the 'Context icon updated' toaster
+    children: []
+    metadata:
+      status: pending
+  a8283ff8-f26a-41e9-bf03-caee4d97e229:
+    id: a8283ff8-f26a-41e9-bf03-caee4d97e229
+    content: Composite gutter icons (when there is more than one context/context declaration) also need to change colour
+    children: []
+    metadata:
+      status: pending
+  f2016adf-0e1d-470a-9e88-e7d9b2180ebb:
+    id: f2016adf-0e1d-470a-9e88-e7d9b2180ebb
+    content: iconPicker.tsx needs hooks file
+    children: []
+    metadata:
+      status: pending
+  04ca4bdd-431d-4ad6-a8c2-537ef1c063fb:
+    id: 04ca4bdd-431d-4ad6-a8c2-537ef1c063fb
+    content: "It's not obvious that there is a custom colour.\_ It just looks like any other colour.\_ We need a visual indicator."
     children: []
     metadata:
       status: pending

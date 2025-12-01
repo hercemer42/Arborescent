@@ -10,6 +10,7 @@ interface NodeGutterProps {
   pluginIndicators: React.ReactNode[];
   isContextDeclaration?: boolean;
   contextIcon?: string;
+  contextColor?: string;
   onIconClick?: () => void;
   bundledContexts?: BundledContext[];
   appliedContexts?: AppliedContext[];
@@ -23,6 +24,7 @@ export const NodeGutter = memo(function NodeGutter({
   pluginIndicators,
   isContextDeclaration = false,
   contextIcon,
+  contextColor,
   onIconClick,
   bundledContexts = [],
   appliedContexts = [],
@@ -33,6 +35,7 @@ export const NodeGutter = memo(function NodeGutter({
       <GutterContextIndicator
         isContextDeclaration={isContextDeclaration}
         contextIcon={contextIcon}
+        contextColor={contextColor}
         bundledContexts={bundledContexts}
         appliedContexts={appliedContexts}
         activeContext={activeContext}

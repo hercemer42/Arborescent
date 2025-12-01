@@ -21,6 +21,7 @@ export interface ContextDeclarationInfo {
   nodeId: string;
   content: string;
   icon: string;
+  color?: string;
 }
 
 export interface TreeState {

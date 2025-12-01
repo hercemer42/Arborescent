@@ -6,6 +6,7 @@ import { AncestorRegistry } from '../../../services/ancestry';
 interface BlueprintState {
   isBlueprint: boolean | undefined;
   blueprintIcon: string | undefined;
+  blueprintColor: string | undefined;
 }
 
 /**
@@ -87,6 +88,7 @@ export class BlueprintCommand extends BaseCommand {
     updatedNodes = updateNodeMetadata(updatedNodes, this.nodeId, {
       isBlueprint: false,
       blueprintIcon: undefined,
+      blueprintColor: undefined,
     });
     this.affectedNodeIds.push(this.nodeId);
 
@@ -113,6 +115,7 @@ export class BlueprintCommand extends BaseCommand {
         updatedNodes = updateNodeMetadata(updatedNodes, childId, {
           isBlueprint: false,
           blueprintIcon: undefined,
+          blueprintColor: undefined,
         });
         this.affectedNodeIds.push(childId);
         updatedNodes = this.removeDescendants(childId, updatedNodes, originalNodes);
@@ -128,6 +131,7 @@ export class BlueprintCommand extends BaseCommand {
       this.previousStates.set(nodeId, {
         isBlueprint: node.metadata.isBlueprint as boolean | undefined,
         blueprintIcon: node.metadata.blueprintIcon as string | undefined,
+        blueprintColor: node.metadata.blueprintColor as string | undefined,
       });
     }
   }
@@ -143,6 +147,7 @@ export class BlueprintCommand extends BaseCommand {
         updatedNodes = updateNodeMetadata(updatedNodes, nodeId, {
           isBlueprint: previousState.isBlueprint,
           blueprintIcon: previousState.blueprintIcon,
+          blueprintColor: previousState.blueprintColor,
         });
       }
     }

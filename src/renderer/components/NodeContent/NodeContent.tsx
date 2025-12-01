@@ -1,11 +1,10 @@
-import { memo, createElement, useCallback } from 'react';
+import { memo, createElement } from 'react';
 import { Boxes } from 'lucide-react';
 import { TreeNode } from '../../../shared/types';
 import { StatusCheckbox } from '../ui/StatusCheckbox';
 import { ContextMenu } from '../ui/ContextMenu';
 import { useNodeContent } from './hooks/useNodeContent';
-import { useStore } from '../../store/tree/useStore';
-import { useIconPickerStore } from '../../store/iconPicker/iconPickerStore';
+import { useBlueprintIconClick } from './hooks/useBlueprintIconClick';
 import { getIconByName } from '../ui/IconPicker/IconPicker';
 import { DEFAULT_BLUEPRINT_ICON } from '../../store/tree/actions/blueprintActions';
 import './NodeContent.css';
@@ -30,18 +29,10 @@ function NodeContentComponent({
     closeContextMenu,
   } = useNodeContent(node);
 
-  const setBlueprintIcon = useStore((state) => state.actions.setBlueprintIcon);
-  const openIconPicker = useIconPickerStore((state) => state.open);
-
-  const handleBlueprintIconClick = useCallback((e: React.MouseEvent) => {
-    e.stopPropagation();
-    const currentIcon = (node.metadata.blueprintIcon as string) || DEFAULT_BLUEPRINT_ICON;
-    openIconPicker(currentIcon, (iconName) => {
-      setBlueprintIcon(node.id, iconName);
-    });
-  }, [node.id, node.metadata.blueprintIcon, openIconPicker, setBlueprintIcon]);
+  const handleBlueprintIconClick = useBlueprintIconClick(node.id, node);
 
   const blueprintIconName = (node.metadata.blueprintIcon as string) || DEFAULT_BLUEPRINT_ICON;
+  const blueprintColor = node.metadata.blueprintColor as string | undefined;
   const BlueprintIcon = getIconByName(blueprintIconName) || Boxes;
 
   return (
@@ -60,6 +51,7 @@ function NodeContentComponent({
               className="blueprint-indicator"
               title="Click to change icon"
               onClick={handleBlueprintIconClick}
+              style={blueprintColor ? { color: blueprintColor } : undefined}
             >
               {createElement(BlueprintIcon, { size: 19 })}
             </button>

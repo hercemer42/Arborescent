@@ -11,7 +11,7 @@ export const DEFAULT_BLUEPRINT_ICON = 'Layers2';
 export interface BlueprintActions {
   addToBlueprint: (nodeId: string) => void;
   removeFromBlueprint: (nodeId: string, cascade?: boolean) => void;
-  setBlueprintIcon: (nodeId: string, icon: string) => void;
+  setBlueprintIcon: (nodeId: string, icon: string, color?: string) => void;
 }
 
 type StoreState = {
@@ -82,7 +82,7 @@ export const createBlueprintActions = (
     logger.info(`Node ${nodeId} removed from blueprint${cascade ? ' (with descendants)' : ''}`, 'Blueprint');
   }
 
-  function setBlueprintIcon(nodeId: string, icon: string): void {
+  function setBlueprintIcon(nodeId: string, icon: string, color?: string): void {
     const { nodes } = get();
     const node = nodes[nodeId];
     if (!node) return;
@@ -90,6 +90,7 @@ export const createBlueprintActions = (
     set({
       nodes: updateNodeMetadata(nodes, nodeId, {
         blueprintIcon: icon,
+        blueprintColor: color,
       }),
     });
 

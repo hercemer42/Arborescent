@@ -19,7 +19,7 @@ describe('IconPicker', () => {
       />
     );
 
-    expect(screen.getByText('Choose an icon')).toBeInTheDocument();
+    expect(screen.getByText('Customize icon')).toBeInTheDocument();
   });
 
   it('should render curated icons by default (50 icons)', () => {
@@ -103,7 +103,7 @@ describe('IconPicker', () => {
     expect(selectedButton).toHaveAttribute('title', 'Star');
   });
 
-  it('should call onSelect when an icon is clicked', async () => {
+  it('should call onSelect with icon and color when Apply is clicked', async () => {
     const user = userEvent.setup();
     const { container } = render(
       <IconPicker
@@ -117,10 +117,13 @@ describe('IconPicker', () => {
 
     await user.click(starButton!);
 
-    expect(mockOnSelect).toHaveBeenCalledWith('Star');
+    const applyButton = screen.getByText('Apply');
+    await user.click(applyButton);
+
+    expect(mockOnSelect).toHaveBeenCalledWith({ icon: 'Star', color: undefined });
   });
 
-  it('should call onClose after selecting an icon', async () => {
+  it('should call onClose after clicking Apply', async () => {
     const user = userEvent.setup();
     const { container } = render(
       <IconPicker
@@ -131,6 +134,9 @@ describe('IconPicker', () => {
 
     const starButton = container.querySelector('.icon-picker-item[title="Star"]');
     await user.click(starButton!);
+
+    const applyButton = screen.getByText('Apply');
+    await user.click(applyButton);
 
     expect(mockOnClose).toHaveBeenCalled();
   });

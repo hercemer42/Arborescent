@@ -156,7 +156,7 @@ describe('NodeGutter', () => {
           expanded={true}
           onToggle={mockOnToggle}
           pluginIndicators={[]}
-          activeContext={{ icon: 'star', name: 'My Context' }}
+          activeContext={{ icon: 'star', color: undefined, name: 'My Context' }}
         />
       );
 
@@ -173,7 +173,7 @@ describe('NodeGutter', () => {
           expanded={true}
           onToggle={mockOnToggle}
           pluginIndicators={[]}
-          activeContext={{ icon: 'star', name: 'Context 1' }}
+          activeContext={{ icon: 'star', color: undefined, name: 'Context 1' }}
         />
       );
 
@@ -190,7 +190,7 @@ describe('NodeGutter', () => {
           expanded={true}
           onToggle={mockOnToggle}
           pluginIndicators={[]}
-          activeContext={{ icon: 'star', name: 'My Context' }}
+          activeContext={{ icon: 'star', color: undefined, name: 'My Context' }}
         />
       );
 
@@ -206,7 +206,7 @@ describe('NodeGutter', () => {
           expanded={true}
           onToggle={mockOnToggle}
           pluginIndicators={[]}
-          activeContext={{ icon: 'star', name: '' }}
+          activeContext={{ icon: 'star', color: undefined, name: '' }}
         />
       );
 
@@ -238,7 +238,7 @@ describe('NodeGutter', () => {
           pluginIndicators={[]}
           isContextDeclaration={true}
           contextIcon="flag"
-          bundledContexts={[{ icon: 'star', name: 'My Context' }]}
+          bundledContexts={[{ icon: 'star', color: undefined, name: 'My Context' }]}
         />
       );
 

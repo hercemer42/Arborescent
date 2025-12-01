@@ -5,11 +5,13 @@ import { AncestorRegistry } from '../../../services/ancestry';
 
 export interface AppliedContext {
   icon: string | undefined;
+  color: string | undefined;
   name: string;
 }
 
 export interface BundledContext {
   icon: string | undefined;
+  color: string | undefined;
   name: string;
 }
 
@@ -28,6 +30,7 @@ export function useAppliedContexts(
         if (!contextNode) return null;
         return {
           icon: contextNode.metadata.contextIcon as string | undefined,
+          color: contextNode.metadata.contextColor as string | undefined,
           name: contextNode.content,
         };
       })
@@ -61,6 +64,7 @@ export function useActiveContext(
 
     return {
       icon: contextNode.metadata.contextIcon as string | undefined,
+      color: contextNode.metadata.contextColor as string | undefined,
       name: contextNode.content,
     };
   }, [node, nodes, ancestorRegistry]);
@@ -90,6 +94,7 @@ export function useBundledContexts(
         if (!contextNode) return null;
         return {
           icon: contextNode.metadata.contextIcon as string | undefined,
+          color: contextNode.metadata.contextColor as string | undefined,
           name: contextNode.content,
         };
       })

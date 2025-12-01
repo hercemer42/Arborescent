@@ -8,6 +8,7 @@ import './GutterContextIndicator.css';
 interface GutterContextIndicatorProps {
   isContextDeclaration: boolean;
   contextIcon?: string;
+  contextColor?: string;
   bundledContexts: BundledContext[];
   appliedContexts: AppliedContext[];
   activeContext?: AppliedContext;
@@ -17,6 +18,7 @@ interface GutterContextIndicatorProps {
 export const GutterContextIndicator = memo(function GutterContextIndicator({
   isContextDeclaration,
   contextIcon,
+  contextColor,
   bundledContexts,
   appliedContexts,
   activeContext,
@@ -44,6 +46,7 @@ export const GutterContextIndicator = memo(function GutterContextIndicator({
           className="gutter-context-indicator context-declaration"
           title="Click to change icon"
           onClick={handleIconClick}
+          style={contextColor ? { color: contextColor } : undefined}
         >
           {createElement(DeclarationIcon, { size: 16 })}
         </button>
@@ -60,14 +63,19 @@ export const GutterContextIndicator = memo(function GutterContextIndicator({
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         onClick={handleIconClick}
+        style={contextColor ? { color: contextColor } : undefined}
       >
-        <span className="context-bundle-indicator">
+        <span className="context-bundle-indicator" style={contextColor ? { color: contextColor } : undefined}>
           {createElement(DeclarationIcon, { size: 16 })}
-          <span className="context-bundle-badge">+</span>
+          <span
+            className="context-bundle-badge"
+            style={contextColor ? { backgroundColor: contextColor } : undefined}
+          >+</span>
         </span>
         {showTooltip && (
           <BundleTooltip
             declarationIcon={DeclarationIcon}
+            declarationColor={contextColor}
             bundledContexts={bundledContexts}
             appliedContexts={appliedContexts}
             position={tooltipPosition}
@@ -87,6 +95,7 @@ export const GutterContextIndicator = memo(function GutterContextIndicator({
     <span
       className="gutter-context-indicator context-applied"
       title={activeContext.name ? `Context: ${activeContext.name}` : 'Has context applied'}
+      style={activeContext.color ? { color: activeContext.color } : undefined}
     >
       {createElement(ActiveIcon, { size: 16 })}
     </span>

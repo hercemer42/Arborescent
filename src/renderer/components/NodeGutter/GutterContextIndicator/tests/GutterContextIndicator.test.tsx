@@ -24,7 +24,7 @@ describe('GutterContextIndicator', () => {
     });
 
     it('should render active context icon', () => {
-      const activeContext: AppliedContext = { icon: 'star', name: 'My Context' };
+      const activeContext: AppliedContext = { icon: 'star', color: undefined, name: 'My Context' };
       render(
         <GutterContextIndicator
           isContextDeclaration={false}
@@ -38,7 +38,7 @@ describe('GutterContextIndicator', () => {
     });
 
     it('should not be clickable for regular nodes', () => {
-      const activeContext: AppliedContext = { icon: 'star', name: 'My Context' };
+      const activeContext: AppliedContext = { icon: 'star', color: undefined, name: 'My Context' };
       render(
         <GutterContextIndicator
           isContextDeclaration={false}
@@ -83,7 +83,7 @@ describe('GutterContextIndicator', () => {
     });
 
     it('should show declaration icon with + badge for bundled context', () => {
-      const bundledContexts: BundledContext[] = [{ icon: 'flag', name: 'Bundled Context' }];
+      const bundledContexts: BundledContext[] = [{ icon: 'flag', color: undefined, name: 'Bundled Context' }];
       const { container } = render(
         <GutterContextIndicator
           isContextDeclaration={true}
@@ -98,7 +98,7 @@ describe('GutterContextIndicator', () => {
     });
 
     it('should show declaration icon with + badge for applied contexts', () => {
-      const appliedContexts: AppliedContext[] = [{ icon: 'heart', name: 'Applied Context' }];
+      const appliedContexts: AppliedContext[] = [{ icon: 'heart', color: undefined, name: 'Applied Context' }];
       const { container } = render(
         <GutterContextIndicator
           isContextDeclaration={true}
@@ -112,8 +112,8 @@ describe('GutterContextIndicator', () => {
     });
 
     it('should show declaration icon with + badge for bundled and applied contexts combined', () => {
-      const bundledContexts: BundledContext[] = [{ icon: 'flag', name: 'Bundled Context' }];
-      const appliedContexts: AppliedContext[] = [{ icon: 'heart', name: 'Applied Context' }];
+      const bundledContexts: BundledContext[] = [{ icon: 'flag', color: undefined, name: 'Bundled Context' }];
+      const appliedContexts: AppliedContext[] = [{ icon: 'heart', color: undefined, name: 'Applied Context' }];
       const { container } = render(
         <GutterContextIndicator
           isContextDeclaration={true}
@@ -127,7 +127,7 @@ describe('GutterContextIndicator', () => {
     });
 
     it('should be clickable to change icon when has bundled contexts', () => {
-      const bundledContexts: BundledContext[] = [{ icon: 'flag', name: 'Bundled Context' }];
+      const bundledContexts: BundledContext[] = [{ icon: 'flag', color: undefined, name: 'Bundled Context' }];
       const { container } = render(
         <GutterContextIndicator
           isContextDeclaration={true}
@@ -143,7 +143,7 @@ describe('GutterContextIndicator', () => {
     });
 
     it('should be clickable to change icon when has applied contexts', () => {
-      const appliedContexts: AppliedContext[] = [{ icon: 'heart', name: 'Applied Context' }];
+      const appliedContexts: AppliedContext[] = [{ icon: 'heart', color: undefined, name: 'Applied Context' }];
       const { container } = render(
         <GutterContextIndicator
           isContextDeclaration={true}
@@ -160,8 +160,8 @@ describe('GutterContextIndicator', () => {
 
     it('should show tooltip on hover for bundled contexts', () => {
       const bundledContexts: BundledContext[] = [
-        { icon: 'flag', name: 'Context A' },
-        { icon: 'star', name: 'Context B' },
+        { icon: 'flag', color: undefined, name: 'Context A' },
+        { icon: 'star', color: undefined, name: 'Context B' },
       ];
       const { container } = render(
         <GutterContextIndicator
@@ -183,8 +183,8 @@ describe('GutterContextIndicator', () => {
 
     it('should show tooltip with applied contexts section', () => {
       const appliedContexts: AppliedContext[] = [
-        { icon: 'heart', name: 'Applied A' },
-        { icon: 'bookmark', name: 'Applied B' },
+        { icon: 'heart', color: undefined, name: 'Applied A' },
+        { icon: 'bookmark', color: undefined, name: 'Applied B' },
       ];
       const { container } = render(
         <GutterContextIndicator
@@ -206,8 +206,8 @@ describe('GutterContextIndicator', () => {
 
     it('should hide tooltip on mouse leave', () => {
       const bundledContexts: BundledContext[] = [
-        { icon: 'flag', name: 'Context A' },
-        { icon: 'star', name: 'Context B' },
+        { icon: 'flag', color: undefined, name: 'Context A' },
+        { icon: 'star', color: undefined, name: 'Context B' },
       ];
       const { container } = render(
         <GutterContextIndicator

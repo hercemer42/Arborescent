@@ -121,13 +121,12 @@
   font-size: 0.9rem;
 }
 
-/* Footer with preview and toggle */
-.icon-picker-footer {
+/* Icon footer with preview and toggle */
+.icon-picker-icon-footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 8px 16px 12px;
-  border-top: 1px solid var(--gray-200);
+  padding: 8px 16px;
 }
 
 .icon-picker-preview {
@@ -149,4 +148,161 @@
 
 .icon-picker-toggle:hover {
   background-color: var(--sky-100);
+}
+
+/* Color picker section */
+.icon-picker-color-section {
+  padding: 12px 16px;
+  border-top: 1px solid var(--gray-200);
+}
+
+.icon-picker-color-label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--gray-600);
+  margin-bottom: 8px;
+}
+
+.icon-picker-color-grid {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.icon-picker-color-item {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: transform 0.15s, border-color 0.15s;
+}
+
+.icon-picker-color-item:hover {
+  transform: scale(1.1);
+}
+
+.icon-picker-color-item.selected {
+  border-color: var(--gray-600);
+  box-shadow: 0 0 0 2px var(--white), 0 0 0 4px var(--gray-300);
+}
+
+.icon-picker-custom-color {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  /* Rainbow gradient border to indicate custom color picker */
+  background: conic-gradient(
+    from 0deg,
+    #ff0000, #ff8000, #ffff00, #80ff00,
+    #00ff00, #00ff80, #00ffff, #0080ff,
+    #0000ff, #8000ff, #ff00ff, #ff0080, #ff0000
+  );
+  padding: 2px;
+}
+
+.icon-picker-color-input {
+  width: 20px;
+  height: 20px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  padding: 0;
+  background: var(--white);
+}
+
+.icon-picker-color-input::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+.icon-picker-color-input::-webkit-color-swatch {
+  border: none;
+  border-radius: 50%;
+}
+
+/* Show selection ring when custom color is active */
+.icon-picker-custom-color.selected {
+  box-shadow: 0 0 0 2px var(--white), 0 0 0 4px var(--gray-300);
+}
+
+.icon-picker-custom-indicator {
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  width: 10px;
+  height: 10px;
+  background: var(--gray-600);
+  border-radius: 50%;
+  border: 2px solid var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Checkmark inside indicator */
+.icon-picker-custom-indicator::after {
+  content: '✓';
+  font-size: 6px;
+  color: white;
+  line-height: 1;
+}
+
+/* Footer with preview and actions */
+.icon-picker-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  border-top: 1px solid var(--gray-200);
+}
+
+.icon-picker-preview-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: var(--gray-50);
+  border-radius: 8px;
+}
+
+.icon-picker-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.icon-picker-cancel {
+  padding: 6px 12px;
+  border: 1px solid var(--gray-300);
+  border-radius: 6px;
+  background: var(--white);
+  color: var(--gray-600);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background-color 0.15s;
+}
+
+.icon-picker-cancel:hover {
+  background: var(--gray-50);
+}
+
+.icon-picker-confirm {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  background: var(--sky-500);
+  color: var(--white);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background-color 0.15s;
+}
+
+.icon-picker-confirm:hover {
+  background: var(--sky-600);
+}
+
+.icon-picker-confirm:disabled {
+  background: var(--gray-300);
+  cursor: not-allowed;
 }

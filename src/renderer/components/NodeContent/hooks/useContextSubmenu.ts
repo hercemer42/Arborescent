@@ -22,8 +22,8 @@ export function useContextSubmenu(node: TreeNode) {
   const hasAppliedContext = appliedContextIds.length > 0;
 
   const handleDeclareAsContext = useCallback(() => {
-    openIconPicker(null, (iconName) => {
-      declareAsContext(node.id, iconName);
+    openIconPicker(null, (selection) => {
+      declareAsContext(node.id, selection.icon, selection.color);
     });
   }, [openIconPicker, declareAsContext, node.id]);
 

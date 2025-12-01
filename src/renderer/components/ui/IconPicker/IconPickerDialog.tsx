@@ -1,4 +1,4 @@
-import { useIconPickerStore } from '../../../store/iconPicker/iconPickerStore';
+import { useIconPickerStore, IconSelection } from '../../../store/iconPicker/iconPickerStore';
 import { IconPicker } from './IconPicker';
 
 /**
@@ -8,6 +8,7 @@ import { IconPicker } from './IconPicker';
 export function IconPickerDialog() {
   const isOpen = useIconPickerStore((state) => state.isOpen);
   const selectedIcon = useIconPickerStore((state) => state.selectedIcon);
+  const selectedColor = useIconPickerStore((state) => state.selectedColor);
   const onSelect = useIconPickerStore((state) => state.onSelect);
   const close = useIconPickerStore((state) => state.close);
 
@@ -15,14 +16,15 @@ export function IconPickerDialog() {
     return null;
   }
 
-  const handleSelect = (icon: string) => {
-    onSelect(icon);
+  const handleSelect = (selection: IconSelection) => {
+    onSelect(selection);
     close();
   };
 
   return (
     <IconPicker
       selectedIcon={selectedIcon ?? undefined}
+      selectedColor={selectedColor}
       onSelect={handleSelect}
       onClose={close}
     />

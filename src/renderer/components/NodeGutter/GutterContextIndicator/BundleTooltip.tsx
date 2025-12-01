@@ -5,12 +5,13 @@ import { AppliedContext, BundledContext } from '../../TreeNode/hooks/useAppliedC
 
 interface BundleTooltipProps {
   declarationIcon: LucideIcon | null;
+  declarationColor?: string;
   bundledContexts: BundledContext[];
   appliedContexts: AppliedContext[];
   position: { top: number; left: number };
 }
 
-export function BundleTooltip({ declarationIcon, bundledContexts, appliedContexts, position }: BundleTooltipProps) {
+export function BundleTooltip({ declarationIcon, declarationColor, bundledContexts, appliedContexts, position }: BundleTooltipProps) {
   return createPortal(
     <div
       className="context-bundle-tooltip"
@@ -22,7 +23,9 @@ export function BundleTooltip({ declarationIcon, bundledContexts, appliedContext
     >
       <div className="context-bundle-tooltip-title">Declared context:</div>
       <div className="context-bundle-tooltip-item">
-        {declarationIcon && createElement(declarationIcon, { size: 12, className: 'tooltip-icon' })}
+        <span style={declarationColor ? { color: declarationColor } : undefined}>
+          {declarationIcon && createElement(declarationIcon, { size: 12, className: 'tooltip-icon' })}
+        </span>
         <span className="tooltip-name">This node</span>
       </div>
       {bundledContexts.length > 0 && (
@@ -32,7 +35,9 @@ export function BundleTooltip({ declarationIcon, bundledContexts, appliedContext
             const Icon = ctx.icon ? getIconByName(ctx.icon) : null;
             return (
               <div key={`bundled-${index}`} className="context-bundle-tooltip-item">
-                {Icon && createElement(Icon, { size: 12, className: 'tooltip-icon' })}
+                <span style={ctx.color ? { color: ctx.color } : undefined}>
+                  {Icon && createElement(Icon, { size: 12, className: 'tooltip-icon' })}
+                </span>
                 <span className="tooltip-name">{ctx.name || 'Context'}</span>
               </div>
             );
@@ -46,7 +51,9 @@ export function BundleTooltip({ declarationIcon, bundledContexts, appliedContext
             const Icon = ctx.icon ? getIconByName(ctx.icon) : null;
             return (
               <div key={`applied-${index}`} className="context-bundle-tooltip-item">
-                {Icon && createElement(Icon, { size: 12, className: 'tooltip-icon' })}
+                <span style={ctx.color ? { color: ctx.color } : undefined}>
+                  {Icon && createElement(Icon, { size: 12, className: 'tooltip-icon' })}
+                </span>
                 <span className="tooltip-name">{ctx.name || 'Context'}</span>
               </div>
             );
