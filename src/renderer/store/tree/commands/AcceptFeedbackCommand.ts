@@ -45,15 +45,10 @@ export class AcceptFeedbackCommand extends BaseCommand {
     this.description = `Accept feedback for node ${collaboratingNodeId}`;
   }
 
-  execute(): void {
-    const state = this.getState();
-    const collaboratingNode = state.nodes[this.collaboratingNodeId];
-
-    if (!collaboratingNode) {
-      return;
-    }
-
-    // Capture position and descendants for undo
+  private captureSnapshot(
+    collaboratingNode: TreeNode,
+    state: ReturnType<typeof this.getState>
+  ): CollaborationSnapshot {
     const { parentId, originalPosition } = captureNodePosition(this.collaboratingNodeId, state);
     const descendantIds = getAllDescendants(this.collaboratingNodeId, state.nodes);
     const descendants = new Map<string, TreeNode>();
@@ -61,7 +56,7 @@ export class AcceptFeedbackCommand extends BaseCommand {
       descendants.set(id, { ...state.nodes[id] });
     }
 
-    this.snapshot = {
+    return {
       collaboratingNodeId: this.collaboratingNodeId,
       collaboratingNode: { ...collaboratingNode },
       parentId,
@@ -69,19 +64,44 @@ export class AcceptFeedbackCommand extends BaseCommand {
       descendants,
       wasRootNode: state.rootNodeId === this.collaboratingNodeId,
     };
+  }
 
-    // Build new nodes map: remove old, add new
+  private buildMergedNodes(
+    state: ReturnType<typeof this.getState>,
+    collaboratingNode: TreeNode
+  ): { mergedNodesMap: Record<string, TreeNode>; updatedNewNodesMap: Record<string, TreeNode> } {
     const mergedNodesMap = { ...state.nodes };
+
+    // Remove old nodes
     delete mergedNodesMap[this.collaboratingNodeId];
-    for (const id of descendantIds) {
+    for (const id of this.snapshot!.descendants.keys()) {
       delete mergedNodesMap[id];
     }
-    Object.assign(mergedNodesMap, this.newNodesMap);
 
-    // Update parent's children to point to new node
-    const parent = mergedNodesMap[parentId];
+    // Preserve applied contexts from the original node
+    const newRootNode = this.newNodesMap[this.newRootNodeId];
+    const preservedMetadata: Record<string, unknown> = {};
+    if (collaboratingNode.metadata.appliedContextIds) {
+      preservedMetadata.appliedContextIds = collaboratingNode.metadata.appliedContextIds;
+    }
+    if (collaboratingNode.metadata.activeContextId) {
+      preservedMetadata.activeContextId = collaboratingNode.metadata.activeContextId;
+    }
+
+    const updatedNewNodesMap = {
+      ...this.newNodesMap,
+      [this.newRootNodeId]: {
+        ...newRootNode,
+        metadata: { ...newRootNode.metadata, ...preservedMetadata },
+      },
+    };
+
+    Object.assign(mergedNodesMap, updatedNewNodesMap);
+
+    // Update parent's children
+    const parent = mergedNodesMap[this.snapshot!.parentId];
     if (parent) {
-      mergedNodesMap[parentId] = {
+      mergedNodesMap[this.snapshot!.parentId] = {
         ...parent,
         children: parent.children.map(id =>
           id === this.collaboratingNodeId ? this.newRootNodeId : id
@@ -89,21 +109,31 @@ export class AcceptFeedbackCommand extends BaseCommand {
       };
     }
 
-    const updatedRootNodeId = this.snapshot.wasRootNode ? this.newRootNodeId : state.rootNodeId;
+    return { mergedNodesMap, updatedNewNodesMap };
+  }
 
-    // Collect new node IDs for fade effect
-    const newNodeIds = [this.newRootNodeId, ...getAllDescendants(this.newRootNodeId, this.newNodesMap)];
-
-    // For ancestor registry: if replacing root, rebuild; otherwise incremental
-    let newAncestorRegistry: AncestorRegistry;
-    if (this.snapshot.wasRootNode) {
-      // Root node changed, need full rebuild
-      newAncestorRegistry = buildAncestorRegistry(updatedRootNodeId, mergedNodesMap);
-    } else {
-      // Incremental: remove old node subtree, add new node subtree
-      let registry = removeNodeFromRegistry(state.ancestorRegistry, this.collaboratingNodeId, state.nodes);
-      newAncestorRegistry = addNodesToRegistry(registry, [this.newRootNodeId], parentId, mergedNodesMap);
+  private buildAncestorRegistryForExecute(
+    state: ReturnType<typeof this.getState>,
+    mergedNodesMap: Record<string, TreeNode>,
+    updatedRootNodeId: string
+  ): AncestorRegistry {
+    if (this.snapshot!.wasRootNode) {
+      return buildAncestorRegistry(updatedRootNodeId, mergedNodesMap);
     }
+    const registry = removeNodeFromRegistry(state.ancestorRegistry, this.collaboratingNodeId, state.nodes);
+    return addNodesToRegistry(registry, [this.newRootNodeId], this.snapshot!.parentId, mergedNodesMap);
+  }
+
+  execute(): void {
+    const state = this.getState();
+    const collaboratingNode = state.nodes[this.collaboratingNodeId];
+    if (!collaboratingNode) return;
+
+    this.snapshot = this.captureSnapshot(collaboratingNode, state);
+    const { mergedNodesMap, updatedNewNodesMap } = this.buildMergedNodes(state, collaboratingNode);
+    const updatedRootNodeId = this.snapshot.wasRootNode ? this.newRootNodeId : state.rootNodeId;
+    const newNodeIds = [this.newRootNodeId, ...getAllDescendants(this.newRootNodeId, updatedNewNodesMap)];
+    const newAncestorRegistry = this.buildAncestorRegistryForExecute(state, mergedNodesMap, updatedRootNodeId);
 
     this.setState({
       nodes: mergedNodesMap,
@@ -115,10 +145,7 @@ export class AcceptFeedbackCommand extends BaseCommand {
     });
 
     this.triggerAutosave?.();
-
-    setTimeout(() => {
-      this.setState({ feedbackFadingNodeIds: new Set() });
-    }, 1500);
+    setTimeout(() => this.setState({ feedbackFadingNodeIds: new Set() }), 1500);
   }
 
   undo(): void {

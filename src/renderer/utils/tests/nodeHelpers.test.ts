@@ -479,7 +479,7 @@ describe('getEffectiveContextIds', () => {
     expect(result).toEqual(['ctx-1']);
   });
 
-  it('should use node own contexts, not inherited (closest wins)', () => {
+  it('should accumulate node own contexts and ancestor contexts', () => {
     const nodes = {
       'parent': createNode('parent', ['child'], { appliedContextIds: ['ctx-parent'] }),
       'child': createNode('child', [], { appliedContextIds: ['ctx-child'] }),
@@ -490,12 +490,11 @@ describe('getEffectiveContextIds', () => {
     };
 
     const result = getEffectiveContextIds('child', nodes, ancestorRegistry);
-    // Node has its own context, so parent context is NOT inherited
-    expect(result).toEqual(['ctx-child']);
-    expect(result).not.toContain('ctx-parent');
+    // Node's own context comes first, then ancestor context
+    expect(result).toEqual(['ctx-child', 'ctx-parent']);
   });
 
-  it('should inherit from nearest ancestor only (closest wins)', () => {
+  it('should accumulate contexts from all ancestors (closest first)', () => {
     const nodes = {
       'grandparent': createNode('grandparent', ['parent'], { appliedContextIds: ['ctx-gp'] }),
       'parent': createNode('parent', ['child'], { appliedContextIds: ['ctx-parent'] }),
@@ -508,12 +507,11 @@ describe('getEffectiveContextIds', () => {
     };
 
     const result = getEffectiveContextIds('child', nodes, ancestorRegistry);
-    // Child inherits from parent (nearest), not grandparent
-    expect(result).toEqual(['ctx-parent']);
-    expect(result).not.toContain('ctx-gp');
+    // Child inherits from both: parent (nearest) first, then grandparent
+    expect(result).toEqual(['ctx-parent', 'ctx-gp']);
   });
 
-  it('should skip ancestors without contexts to find nearest with context', () => {
+  it('should skip ancestors without contexts when accumulating', () => {
     const nodes = {
       'grandparent': createNode('grandparent', ['parent'], { appliedContextIds: ['ctx-gp'] }),
       'parent': createNode('parent', ['child']), // No context
@@ -526,7 +524,7 @@ describe('getEffectiveContextIds', () => {
     };
 
     const result = getEffectiveContextIds('child', nodes, ancestorRegistry);
-    // Parent has no context, so inherit from grandparent
+    // Parent has no context, so only grandparent context is included
     expect(result).toEqual(['ctx-gp']);
   });
 
@@ -886,15 +884,36 @@ describe('getContextsForCollaboration', () => {
     expect(getContextsForCollaboration('task', nodes, ancestorRegistry)).toEqual(['ctx-1']);
   });
 
-  it('should resolve bundle for context declaration node', () => {
+  it('should use applied contexts for context declaration node, not bundled', () => {
     const nodes = {
-      'bundle-ctx': createNode('bundle-ctx', [], { isContextDeclaration: true, bundledContextIds: ['ctx-1'] }),
+      'bundle-ctx': createNode('bundle-ctx', [], {
+        isContextDeclaration: true,
+        bundledContextIds: ['ctx-1'],
+        appliedContextIds: ['ctx-2'],
+      }),
+      'ctx-1': createNode('ctx-1', [], { isContextDeclaration: true }),
+      'ctx-2': createNode('ctx-2', [], { isContextDeclaration: true }),
+    };
+    const ancestorRegistry = { 'bundle-ctx': [] };
+
+    const result = getContextsForCollaboration('bundle-ctx', nodes, ancestorRegistry);
+    // Context declarations use their applied contexts for collaboration, not bundled
+    expect(result).toEqual(['ctx-2']);
+  });
+
+  it('should return empty for context declaration without applied contexts', () => {
+    const nodes = {
+      'bundle-ctx': createNode('bundle-ctx', [], {
+        isContextDeclaration: true,
+        bundledContextIds: ['ctx-1'],
+      }),
       'ctx-1': createNode('ctx-1', [], { isContextDeclaration: true }),
     };
     const ancestorRegistry = { 'bundle-ctx': [] };
 
     const result = getContextsForCollaboration('bundle-ctx', nodes, ancestorRegistry);
-    expect(result).toEqual(['ctx-1', 'bundle-ctx']);
+    // No applied contexts means no contexts for collaboration
+    expect(result).toEqual([]);
   });
 
   it('should return empty array when no context', () => {

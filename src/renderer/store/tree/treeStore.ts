@@ -11,6 +11,7 @@ import { createSelectionActions, SelectionActions } from './actions/selectionAct
 import { createHistoryActions, HistoryActions } from './actions/historyActions';
 import { createCollaborateActions, CollaborateActions } from './actions/collaborateActions';
 import { createClipboardActions, ClipboardActions } from './actions/clipboardActions';
+import { createExecuteActions, ExecuteActions } from './actions/executeActions';
 import { HistoryManager } from './commands/HistoryManager';
 import { StorageService } from '@platform';
 
@@ -42,7 +43,7 @@ export interface TreeState {
   feedbackFadingNodeIds: Set<string>; // Nodes fading out after feedback accepted
   contextDeclarations: ContextDeclarationInfo[]; // Cached list of context declarations
 
-  actions: NodeActions & ContextActions & NavigationActions & PersistenceActions & NodeMovementActions & NodeDeletionActions & VisualEffectsActions & SelectionActions & HistoryActions & CollaborateActions & ClipboardActions;
+  actions: NodeActions & ContextActions & NavigationActions & PersistenceActions & NodeMovementActions & NodeDeletionActions & VisualEffectsActions & SelectionActions & HistoryActions & CollaborateActions & ClipboardActions & ExecuteActions;
 }
 
 const storageService = new StorageService();
@@ -63,6 +64,7 @@ export function createTreeStore(treeType: TreeType = 'workspace') {
     const historyActions = createHistoryActions(historyManager);
     const nodeDeletionActions = createNodeDeletionActions(get, set, persistenceActions.autoSave);
     const collaborateActions = createCollaborateActions(get, set, visualEffectsActions, persistenceActions.autoSave);
+    const executeActions = createExecuteActions(get);
 
     // clipboardActions needs access to executeCommand and deleteNode, which are created above
     // We use a getter function to access them lazily after the store is created
@@ -111,6 +113,7 @@ export function createTreeStore(treeType: TreeType = 'workspace') {
         ...historyActions,
         ...collaborateActions,
         ...clipboardActions,
+        ...executeActions,
       },
     };
   });

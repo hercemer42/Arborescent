@@ -1,7 +1,6 @@
 import { TreeState } from '../treeStore';
 import { TreeNode } from '../../../../shared/types';
-import { exportNodeAsMarkdown } from '../../../utils/markdown';
-import { getContextsForCollaboration } from '../../../utils/nodeHelpers';
+import { buildContentWithContext } from '../../../utils/nodeHelpers';
 import { executeInTerminal } from '../../../services/terminalExecution';
 import { logger } from '../../../services/logger';
 import { useToastStore } from '../../toast/toastStore';
@@ -133,19 +132,13 @@ export function createCollaborateActions(
       }
 
       try {
-        const formattedContent = exportNodeAsMarkdown(node, state.nodes);
+        const { contextPrefix, nodeContent } = buildContentWithContext(
+          nodeId,
+          state.nodes,
+          state.ancestorRegistry
+        );
 
-        // Build context: resolve active context and any bundled contexts
-        let contextPrefix = '';
-        const contextIds = getContextsForCollaboration(nodeId, state.nodes, state.ancestorRegistry);
-        for (const contextId of contextIds) {
-          const contextNode = state.nodes[contextId];
-          if (contextNode) {
-            contextPrefix += exportNodeAsMarkdown(contextNode, state.nodes) + '\n';
-          }
-        }
-
-        const clipboardContent = contextPrefix + COLLABORATE_INSTRUCTION_WEB + '\n\nHere is the content:\n\n' + formattedContent;
+        const clipboardContent = contextPrefix + COLLABORATE_INSTRUCTION_WEB + '\n\nHere is the content:\n\n' + nodeContent;
         await navigator.clipboard.writeText(clipboardContent);
 
         useToastStore.getState().addToast(
@@ -189,17 +182,11 @@ export function createCollaborateActions(
         const feedbackFileName = `feedback-response-${nodeId}.md`;
         const feedbackResponseFile = await window.electron.createTempFile(feedbackFileName, '');
 
-        const formattedContent = exportNodeAsMarkdown(node, state.nodes);
-
-        // Build context: resolve active context and any bundled contexts
-        let contextPrefix = '';
-        const contextIds = getContextsForCollaboration(nodeId, state.nodes, state.ancestorRegistry);
-        for (const contextId of contextIds) {
-          const contextNode = state.nodes[contextId];
-          if (contextNode) {
-            contextPrefix += exportNodeAsMarkdown(contextNode, state.nodes) + '\n';
-          }
-        }
+        const { contextPrefix, nodeContent } = buildContentWithContext(
+          nodeId,
+          state.nodes,
+          state.ancestorRegistry
+        );
 
         const terminalInstruction = `${contextPrefix}${COLLABORATE_INSTRUCTION_TERMINAL}
 
@@ -208,7 +195,7 @@ Do NOT make any changes to the code.
 
 Here is the content:
 
-${formattedContent}`;
+${nodeContent}`;
 
         await executeInTerminal(terminalId, terminalInstruction);
         set({ collaboratingNodeId: nodeId });

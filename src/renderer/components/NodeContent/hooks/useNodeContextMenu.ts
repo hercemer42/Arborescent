@@ -6,7 +6,6 @@ import { ContextMenuItem } from '../../ui/ContextMenu';
 import { usePluginStore } from '../../../store/plugins/pluginStore';
 import { PluginCommandRegistry } from '../../../../../plugins/core/renderer/CommandRegistry';
 import { useTerminalStore } from '../../../store/terminal/terminalStore';
-import { useTerminalActions } from '../../Terminal/hooks/useTerminalActions';
 import { useFeedbackActions } from '../../Feedback/hooks/useFeedbackActions';
 import { usePanelStore } from '../../../store/panel/panelStore';
 import { useContextSubmenu } from './useContextSubmenu';
@@ -15,6 +14,7 @@ import { writeToClipboard } from '../../../services/clipboardService';
 import { exportNodeAsMarkdown } from '../../../utils/markdown';
 import { hasAncestorWithPluginSession, getEffectiveContextIds } from '../../../utils/nodeHelpers';
 import { useCollaborateSubmenu } from './useCollaborateSubmenu';
+import { useExecuteSubmenu } from './useExecuteSubmenu';
 import { getPositionFromPoint } from '../../../utils/position';
 
 export function useNodeContextMenu(node: TreeNode) {
@@ -30,13 +30,14 @@ export function useNodeContextMenu(node: TreeNode) {
   const collaboratingNodeId = useStore((state) => state.collaboratingNodeId);
   const collaborate = useStore((state) => state.actions.collaborate);
   const collaborateInTerminal = useStore((state) => state.actions.collaborateInTerminal);
+  const executeInBrowser = useStore((state) => state.actions.executeInBrowser);
+  const executeInTerminalWithContext = useStore((state) => state.actions.executeInTerminalWithContext);
   const setActiveContext = useStore((state) => state.actions.setActiveContext);
   const enabledPlugins = usePluginStore((state) => state.enabledPlugins);
   const store = useActiveTreeStore();
   const [contextMenu, setContextMenu] = useState<{ x: number; y: number } | null>(null);
   const [pluginMenuItems, setPluginMenuItems] = useState<ContextMenuItem[]>([]);
 
-  const { executeInTerminal } = useTerminalActions();
   const { handleCancel } = useFeedbackActions();
   const showTerminal = usePanelStore((state) => state.showTerminal);
   const { contextMenuItem } = useContextSubmenu(node);
@@ -91,11 +92,6 @@ export function useNodeContextMenu(node: TreeNode) {
     }
   };
 
-  const handleExecuteInTerminal = async () => {
-    showTerminal();
-    await executeInTerminal(node, nodes);
-  };
-
   const handleCopyToClipboard = async () => {
     const formattedContent = exportNodeAsMarkdown(node, nodes);
     await writeToClipboard(formattedContent, 'ContextMenu');
@@ -130,6 +126,22 @@ export function useNodeContextMenu(node: TreeNode) {
     await handleCancel();
   };
 
+  const handleExecuteInBrowser = async () => {
+    try {
+      await executeInBrowser(node.id);
+    } catch (error) {
+      logger.error('Failed to execute in browser', error as Error, 'Context Menu');
+    }
+  };
+
+  const handleExecuteInTerminal = async () => {
+    try {
+      await executeInTerminalWithContext(node.id);
+    } catch (error) {
+      logger.error('Failed to execute in terminal', error as Error, 'Context Menu');
+    }
+  };
+
   function convertToContextMenuItem(
     item: PluginContextMenuItem,
     node: TreeNode
@@ -154,8 +166,8 @@ export function useNodeContextMenu(node: TreeNode) {
     () => getEffectiveContextIds(node.id, nodes, ancestorRegistry).length > 0,
     [node.id, nodes, ancestorRegistry]
   );
-  const collaborateDisabled = !!collaboratingNodeId || !hasEffectiveContext;
-  const collaborateTooltip = !hasEffectiveContext ? 'You must add a context to collaborate' : undefined;
+  // Collaborate submenu is only disabled if another collaboration is in progress
+  const collaborateDisabled = !!collaboratingNodeId;
 
   const collaborateSubmenu = useCollaborateSubmenu({
     node,
@@ -167,12 +179,21 @@ export function useNodeContextMenu(node: TreeNode) {
     onSetActiveContext: setActiveContext,
   });
 
+  const executeSubmenu = useExecuteSubmenu({
+    node,
+    nodes,
+    ancestorRegistry,
+    hasEffectiveContext,
+    onExecuteInBrowser: handleExecuteInBrowser,
+    onExecuteInTerminal: handleExecuteInTerminal,
+    onSetActiveContext: setActiveContext,
+  });
+
   const baseMenuItems: ContextMenuItem[] = [
     {
       label: 'Collaborate',
       submenu: collaborateSubmenu,
       disabled: collaborateDisabled,
-      disabledTooltip: collaborateTooltip,
     },
     ...(isNodeBeingCollaborated ? [{
       label: 'Cancel collaboration',
@@ -212,9 +233,8 @@ export function useNodeContextMenu(node: TreeNode) {
       disabled: false,
     },
     {
-      label: 'Execute in Terminal',
-      onClick: handleExecuteInTerminal,
-      disabled: false,
+      label: 'Execute',
+      submenu: executeSubmenu,
     },
   ];
 

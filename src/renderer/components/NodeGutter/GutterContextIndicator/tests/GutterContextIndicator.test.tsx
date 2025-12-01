@@ -77,7 +77,7 @@ describe('GutterContextIndicator', () => {
       expect(mockOnIconClick).toHaveBeenCalled();
     });
 
-    it('should show cog with count for single bundled context', () => {
+    it('should show cog with count for single bundled context (includes self)', () => {
       const bundledContexts: BundledContext[] = [{ icon: 'flag', name: 'Bundled Context' }];
       const { container } = render(
         <GutterContextIndicator
@@ -87,7 +87,8 @@ describe('GutterContextIndicator', () => {
           onIconClick={mockOnIconClick}
         />
       );
-      expect(container.querySelector('.context-bundle-count')?.textContent).toBe('1');
+      // Count is bundledContexts.length + 1 (for the declaration itself)
+      expect(container.querySelector('.context-bundle-count')?.textContent).toBe('2');
     });
 
     it('should NOT be clickable for single bundled context', () => {
@@ -105,7 +106,7 @@ describe('GutterContextIndicator', () => {
       expect(mockOnIconClick).not.toHaveBeenCalled();
     });
 
-    it('should show cog with count for multiple bundled contexts', () => {
+    it('should show cog with count for multiple bundled contexts (includes self)', () => {
       const bundledContexts: BundledContext[] = [
         { icon: 'flag', name: 'Context A' },
         { icon: 'star', name: 'Context B' },
@@ -118,7 +119,8 @@ describe('GutterContextIndicator', () => {
           onIconClick={mockOnIconClick}
         />
       );
-      expect(container.querySelector('.context-bundle-count')?.textContent).toBe('2');
+      // Count is bundledContexts.length + 1 (for the declaration itself)
+      expect(container.querySelector('.context-bundle-count')?.textContent).toBe('3');
     });
 
     it('should NOT be clickable for multiple bundled contexts', () => {

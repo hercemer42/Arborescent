@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2025-12-01T10:03:27.582Z'
+updated: '2025-12-01T11:40:28.251Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -657,23 +657,13 @@ nodes:
     content: Features
     children:
       - 565dde0a-864b-41f9-86ff-dbdf40ac4dd0
-      - b8521434-96cd-4258-b87e-876dc7276241
-      - dcdf600e-aa13-4c87-b23e-a87fb7cf40f3
+      - 77963e20-53e9-4db7-8802-8c718f202cef
       - 984247e7-2d55-4b93-80e8-f84818901621
     metadata:
       status: pending
       expanded: true
       appliedContextIds:
         - e8824b29-eb18-4031-9e35-b321a864d418
-  0cc62ae1-1a7a-4aa4-bc6a-d817cabd672c:
-    id: 0cc62ae1-1a7a-4aa4-bc6a-d817cabd672c
-    content: In progress
-    children:
-      - d5984b48-f715-4450-8baa-08763a28c685
-      - 143fe7e1-f53e-4807-bf9f-e4dd6f16a042
-    metadata:
-      status: pending
-      expanded: true
   565dde0a-864b-41f9-86ff-dbdf40ac4dd0:
     id: 565dde0a-864b-41f9-86ff-dbdf40ac4dd0
     content: Done
@@ -6755,12 +6745,6 @@ nodes:
     children: []
     metadata:
       status: completed
-  143fe7e1-f53e-4807-bf9f-e4dd6f16a042:
-    id: 143fe7e1-f53e-4807-bf9f-e4dd6f16a042
-    content: Bugs
-    children: []
-    metadata:
-      status: pending
   e8824b29-eb18-4031-9e35-b321a864d418:
     id: e8824b29-eb18-4031-9e35-b321a864d418
     content: Review
@@ -6770,7 +6754,7 @@ nodes:
       status: pending
       isContextDeclaration: true
       contextIcon: book
-      expanded: false
+      expanded: true
   af1ebc0d-26dd-4a75-982f-03a9dbe2bc84:
     id: af1ebc0d-26dd-4a75-982f-03a9dbe2bc84
     content: "You are reviewing a hierarchical task list.\_ Please :"
@@ -6778,6 +6762,8 @@ nodes:
       - 20c4a563-f66e-4e4c-a3d5-06e090b46a12
       - 9e75dae5-0ca1-4ccb-96db-eccceaba398d
       - 0a61fab2-e033-43e2-b83f-c554ef870539
+      - eebd1360-854f-4dcc-936c-27ac861d2d6c
+      - ec997616-4bea-481e-b803-b9b37830da13
     metadata:
       status: pending
       expanded: true
@@ -6873,7 +6859,7 @@ nodes:
     metadata:
       status: pending
       isContextDeclaration: true
-      contextIcon: gear
+      contextIcon: clipboard
       expanded: false
   04b54aa8-6692-4e69-afe8-39ec481c8d42:
     id: 04b54aa8-6692-4e69-afe8-39ec481c8d42
@@ -6956,7 +6942,8 @@ nodes:
     metadata:
       status: pending
       isContextDeclaration: true
-      contextIcon: envelope
+      contextIcon: arrow-right-from-bracket
+      expanded: true
   59f2421c-d726-43ec-8347-ccf2874922a4:
     id: 59f2421c-d726-43ec-8347-ccf2874922a4
     content: Perform the below refactoring tasks
@@ -7005,6 +6992,7 @@ nodes:
       - 07dbd367-fd7c-41a6-94bc-3f7c5f57e668
       - 7aa4140c-1206-47ea-8a94-6c3e7763ccff
       - 382ddb47-39df-4546-978c-66b3a2306480
+      - dcdf600e-aa13-4c87-b23e-a87fb7cf40f3
     metadata:
       status: pending
       expanded: false
@@ -7022,8 +7010,7 @@ nodes:
       - 5e2c6e85-2722-4654-8eb8-fa4552820c99
       - ceec7ae0-a15f-48ac-9f1c-2376921992a3
       - 220a9700-e82a-4418-becb-356fe439f118
-      - 50530238-fa27-4e8d-b435-2d6ed8e1ff0d
-      - 4c38984a-18af-440b-8ca5-94e4967066c4
+      - 3278edc5-03c4-46e2-ab94-2100c325184e
     metadata:
       status: pending
       expanded: true
@@ -7308,14 +7295,6 @@ nodes:
     children: []
     metadata:
       status: pending
-  d5984b48-f715-4450-8baa-08763a28c685:
-    id: d5984b48-f715-4450-8baa-08763a28c685
-    content: Refactor
-    children: []
-    metadata:
-      status: pending
-      appliedContextIds:
-        - 64ea2af4-332b-44a6-8b88-78535cc9b79a
   1ce932df-fac7-4425-bf1e-e7aaf573115e:
     id: 1ce932df-fac7-4425-bf1e-e7aaf573115e
     content: We should still be able to apply a node as context to a context node
@@ -7355,40 +7334,6 @@ nodes:
     children: []
     metadata:
       status: completed
-  4c38984a-18af-440b-8ca5-94e4967066c4:
-    id: 4c38984a-18af-440b-8ca5-94e4967066c4
-    content: 'MVP6: Redesign code execution'
-    children:
-      - 5b55a0f4-aea3-4b69-8e1c-74fad15a47b0
-    metadata:
-      status: pending
-  5b55a0f4-aea3-4b69-8e1c-74fad15a47b0:
-    id: 5b55a0f4-aea3-4b69-8e1c-74fad15a47b0
-    content: Replace 'Execute in terminal' with 'Execute'
-    children:
-      - 02b18e6a-c048-4cea-a9fa-59b83f5b16e1
-      - 5c686a22-ffe2-4c42-8d40-efa45d2b484c
-      - 6ddfd596-8811-444a-a94a-ddd845304270
-    metadata:
-      status: pending
-  02b18e6a-c048-4cea-a9fa-59b83f5b16e1:
-    id: 02b18e6a-c048-4cea-a9fa-59b83f5b16e1
-    content: Works exactly like the 'Collaborate' menu
-    children: []
-    metadata:
-      status: pending
-  5c686a22-ffe2-4c42-8d40-efa45d2b484c:
-    id: 5c686a22-ffe2-4c42-8d40-efa45d2b484c
-    content: Appears directly under 'Collaborate'
-    children: []
-    metadata:
-      status: pending
-  6ddfd596-8811-444a-a94a-ddd845304270:
-    id: 6ddfd596-8811-444a-a94a-ddd845304270
-    content: Does NOT apply the hardcoded output instructions, only the context.
-    children: []
-    metadata:
-      status: pending
   f3be1e0b-9c76-492d-8940-67b2aa8bd13a:
     id: f3be1e0b-9c76-492d-8940-67b2aa8bd13a
     content: The badge count needs to display inside the icon, not next to it
@@ -7407,51 +7352,6 @@ nodes:
     children: []
     metadata:
       status: completed
-  50530238-fa27-4e8d-b435-2d6ed8e1ff0d:
-    id: 50530238-fa27-4e8d-b435-2d6ed8e1ff0d
-    content: 'MVP5 : Redesign context menu'
-    children:
-      - 11e654ae-df8a-4c1c-b5e2-fa9e7600dae5
-      - 7d2385f5-fd2f-4772-92df-41d4ccb27abe
-    metadata:
-      status: pending
-  11e654ae-df8a-4c1c-b5e2-fa9e7600dae5:
-    id: 11e654ae-df8a-4c1c-b5e2-fa9e7600dae5
-    content: Remove the 'Remove context' menu item
-    children: []
-    metadata:
-      status: pending
-  7d2385f5-fd2f-4772-92df-41d4ccb27abe:
-    id: 7d2385f5-fd2f-4772-92df-41d4ccb27abe
-    content: Add checkboxes to the 'Add context' menu
-    children:
-      - 5bf5f274-5cbf-4665-a1a7-ecc5a2d3b079
-      - d3328980-861c-4408-a1d9-c502e86316c4
-      - 8ba0fe50-9f9b-42d9-bd60-ecbe972af021
-      - a7a8446f-9afc-4910-ba7d-6a02a5c50b22
-      - 5ff6d35c-5304-465f-820f-73984368d2f7
-      - d90f9df8-7493-4f71-adaa-76f621d98765
-      - 08013a56-14c2-438e-8c21-58df4a987c5c
-    metadata:
-      status: pending
-  5bf5f274-5cbf-4665-a1a7-ecc5a2d3b079:
-    id: 5bf5f274-5cbf-4665-a1a7-ecc5a2d3b079
-    content: Clicking on a context adds it and checks the box
-    children: []
-    metadata:
-      status: pending
-  d3328980-861c-4408-a1d9-c502e86316c4:
-    id: d3328980-861c-4408-a1d9-c502e86316c4
-    content: Clicking on it again removes it and unchecks the box
-    children: []
-    metadata:
-      status: pending
-  8ba0fe50-9f9b-42d9-bd60-ecbe972af021:
-    id: 8ba0fe50-9f9b-42d9-bd60-ecbe972af021
-    content: Only one context can be applied at a time
-    children: []
-    metadata:
-      status: pending
   acac68ee-f8fd-4f89-9504-ee47ac883e57:
     id: acac68ee-f8fd-4f89-9504-ee47ac883e57
     content: Functional
@@ -7487,6 +7387,8 @@ nodes:
       expanded: false
       deleted: false
       plugins: {}
+      isContextDeclaration: true
+      contextIcon: screwdriver
   5e0fa846-276d-4d99-ae49-a3f05b46b75c:
     id: 5e0fa846-276d-4d99-ae49-a3f05b46b75c
     content: Understand & Plan
@@ -7722,30 +7624,6 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  a7a8446f-9afc-4910-ba7d-6a02a5c50b22:
-    id: a7a8446f-9afc-4910-ba7d-6a02a5c50b22
-    content: When the first context is added it is checked by default
-    children: []
-    metadata:
-      status: pending
-  5ff6d35c-5304-465f-820f-73984368d2f7:
-    id: 5ff6d35c-5304-465f-820f-73984368d2f7
-    content: When each subsequent context is added they are checked by defailt
-    children: []
-    metadata:
-      status: pending
-  d90f9df8-7493-4f71-adaa-76f621d98765:
-    id: d90f9df8-7493-4f71-adaa-76f621d98765
-    content: If the context is inherited, it is greyed out and no checkbox appears
-    children: []
-    metadata:
-      status: pending
-  08013a56-14c2-438e-8c21-58df4a987c5c:
-    id: 08013a56-14c2-438e-8c21-58df4a987c5c
-    content: If a context is applied it overrides the inherited context as before
-    children: []
-    metadata:
-      status: pending
   cc94b377-246d-45ae-b938-2d3906892aa1:
     id: cc94b377-246d-45ae-b938-2d3906892aa1
     content: Implement major feature
@@ -7759,6 +7637,10 @@ nodes:
       expanded: false
       deleted: false
       plugins: {}
+      isContextDeclaration: true
+      contextIcon: hammer
+      bundledContextIds:
+        - 9b46397c-c452-421c-b408-46b040d99c9e
   c2b50240-2e86-4a10-ae72-530187e5e6f0:
     id: c2b50240-2e86-4a10-ae72-530187e5e6f0
     content: Architecture Review
@@ -7897,7 +7779,7 @@ nodes:
       plugins: {}
   220a9700-e82a-4418-becb-356fe439f118:
     id: 220a9700-e82a-4418-becb-356fe439f118
-    content: 'MVP4:'
+    content: 'MVP4: Bundled declarations'
     children:
       - 18240eb2-bc7c-4191-97b8-3edcc01f6e13
     metadata:
@@ -8104,3 +7986,396 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
+  eebd1360-854f-4dcc-936c-27ac861d2d6c:
+    id: eebd1360-854f-4dcc-936c-27ac861d2d6c
+    content: Point out any questionable or costly choices
+    children: []
+    metadata:
+      status: pending
+  143fe7e1-f53e-4807-bf9f-e4dd6f16a042:
+    id: 143fe7e1-f53e-4807-bf9f-e4dd6f16a042
+    content: "There is considerable overlap in the code between collaborate and execute.\_ We should harmonize the components, hooks and actions."
+    children: []
+    metadata:
+      status: pending
+  0cc62ae1-1a7a-4aa4-bc6a-d817cabd672c:
+    id: 0cc62ae1-1a7a-4aa4-bc6a-d817cabd672c
+    content: Refactor
+    children:
+      - 143fe7e1-f53e-4807-bf9f-e4dd6f16a042
+      - c29ac540-1db3-4245-858d-013597e28f5e
+    metadata:
+      status: pending
+      expanded: true
+      appliedContextIds:
+        - 64ea2af4-332b-44a6-8b88-78535cc9b79a
+      activeContextId: 64ea2af4-332b-44a6-8b88-78535cc9b79a
+  ec997616-4bea-481e-b803-b9b37830da13:
+    id: ec997616-4bea-481e-b803-b9b37830da13
+    content: Challenge the user if they appear to be overthinking things
+    children: []
+    metadata:
+      status: pending
+  3278edc5-03c4-46e2-ab94-2100c325184e:
+    id: 3278edc5-03c4-46e2-ab94-2100c325184e
+    content: 'MVP5 : Redesign context and execute menus'
+    children:
+      - 42a94ff4-ec33-4b9b-a9db-671a184a4145
+      - c8f7d149-ccb1-4558-bd15-d778f88bf68e
+      - e864bbe5-4ee1-43ce-a967-422b8d145236
+      - 5d14bae0-02f3-4b38-92e5-d16cfc1f70cc
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  42a94ff4-ec33-4b9b-a9db-671a184a4145:
+    id: 42a94ff4-ec33-4b9b-a9db-671a184a4145
+    content: Collaborate menu restructure
+    children:
+      - 7726b66f-1c5f-4d7b-8c98-891fcdd4588e
+      - 16a669f1-2cdf-42ff-a121-dab3ae47896e
+      - 99ed1fd2-9efd-4947-9901-8040497737d8
+      - c14e498d-bda8-4e7f-95a9-543654038af0
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7726b66f-1c5f-4d7b-8c98-891fcdd4588e:
+    id: 7726b66f-1c5f-4d7b-8c98-891fcdd4588e
+    content: Reverse the order to 'In terminal' first, then 'In browser'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  16a669f1-2cdf-42ff-a121-dab3ae47896e:
+    id: 16a669f1-2cdf-42ff-a121-dab3ae47896e
+    content: Move context selection below the action buttons
+    children:
+      - 257ecc5c-6b9b-4e9f-90f6-c96a88f222e7
+      - 1adf6cdb-9d80-414e-b5e8-a67ab3edaecc
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  257ecc5c-6b9b-4e9f-90f6-c96a88f222e7:
+    id: 257ecc5c-6b9b-4e9f-90f6-c96a88f222e7
+    content: 'Add heading: ''Applied contexts'''
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1adf6cdb-9d80-414e-b5e8-a67ab3edaecc:
+    id: 1adf6cdb-9d80-414e-b5e8-a67ab3edaecc
+    content: Show checkboxes for context selection
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  99ed1fd2-9efd-4947-9901-8040497737d8:
+    id: 99ed1fd2-9efd-4947-9901-8040497737d8
+    content: Grey out 'In terminal' and 'In browser' if there is no context applied
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9ae13e76-c37c-4d59-9b12-41d1638d1fe0:
+    id: 9ae13e76-c37c-4d59-9b12-41d1638d1fe0
+    content: Remove the 'Execute in Terminal' option from right click menu
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e864bbe5-4ee1-43ce-a967-422b8d145236:
+    id: e864bbe5-4ee1-43ce-a967-422b8d145236
+    content: Change context inheritance rules
+    children:
+      - e402aa5d-17ec-438d-9135-933baa7b0578
+      - 467eff2c-e8df-45e1-8570-a51e99d2460d
+      - c47a78c3-fc3d-4386-8286-b263846a693c
+      - 79380cbd-669d-4e61-b00f-6c4f8337f69c
+      - a3c5cffa-12a1-457e-9f92-f84738d518e6
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e402aa5d-17ec-438d-9135-933baa7b0578:
+    id: e402aa5d-17ec-438d-9135-933baa7b0578
+    content: Inherit all contexts from all ancestors (not just nearest)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  467eff2c-e8df-45e1-8570-a51e99d2460d:
+    id: 467eff2c-e8df-45e1-8570-a51e99d2460d
+    content: The default active context is the nearest ancestor's context
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c47a78c3-fc3d-4386-8286-b263846a693c:
+    id: c47a78c3-fc3d-4386-8286-b263846a693c
+    content: When adding a context directly to a node, use that as the default
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  79380cbd-669d-4e61-b00f-6c4f8337f69c:
+    id: 79380cbd-669d-4e61-b00f-6c4f8337f69c
+    content: List all ancestor contexts under Collaborate submenu
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a3c5cffa-12a1-457e-9f92-f84738d518e6:
+    id: a3c5cffa-12a1-457e-9f92-f84738d518e6
+    content: Ancestor contexts are checkable like other contexts
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5d14bae0-02f3-4b38-92e5-d16cfc1f70cc:
+    id: 5d14bae0-02f3-4b38-92e5-d16cfc1f70cc
+    content: Add new 'Execute' menu option
+    children:
+      - 9ae13e76-c37c-4d59-9b12-41d1638d1fe0
+      - 784a8359-a5dc-4191-8bcc-6167f15cdf9b
+      - ed9a6f1d-6e80-4393-a9ce-b0e4b64b8e19
+      - b3d03b59-a299-424c-ba64-4115a6a4f080
+      - 37bf4bf0-171f-4cb4-b31b-4fdd7ff700ea
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  784a8359-a5dc-4191-8bcc-6167f15cdf9b:
+    id: 784a8359-a5dc-4191-8bcc-6167f15cdf9b
+    content: Submenu structure identical to 'Collaborate'
+    children:
+      - 0f74ce2c-d9c8-44ab-afb7-4ee3c8965384
+      - c8f0b345-3aa5-4837-b45d-55f3c60530ef
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0f74ce2c-d9c8-44ab-afb7-4ee3c8965384:
+    id: 0f74ce2c-d9c8-44ab-afb7-4ee3c8965384
+    content: Same 'In terminal' and 'In browser' options
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c8f0b345-3aa5-4837-b45d-55f3c60530ef:
+    id: c8f0b345-3aa5-4837-b45d-55f3c60530ef
+    content: Same context selection checkboxes
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ed9a6f1d-6e80-4393-a9ce-b0e4b64b8e19:
+    id: ed9a6f1d-6e80-4393-a9ce-b0e4b64b8e19
+    content: Key differences from Collaborate
+    children:
+      - d2faa37f-d0af-435e-802a-3ca58b373319
+      - dc6d4494-4ce3-4c99-aa96-fe09a1af38a1
+      - 6db4ba63-fe15-4c3d-ba0b-45101637c08a
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d2faa37f-d0af-435e-802a-3ca58b373319:
+    id: d2faa37f-d0af-435e-802a-3ca58b373319
+    content: Apply all context EXCEPT the hardcoded review panel context
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  dc6d4494-4ce3-4c99-aa96-fe09a1af38a1:
+    id: dc6d4494-4ce3-4c99-aa96-fe09a1af38a1
+    content: Do not mark the node as being in review
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6db4ba63-fe15-4c3d-ba0b-45101637c08a:
+    id: 6db4ba63-fe15-4c3d-ba0b-45101637c08a
+    content: Do not open the review panel
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b3d03b59-a299-424c-ba64-4115a6a4f080:
+    id: b3d03b59-a299-424c-ba64-4115a6a4f080
+    content: '''In terminal'' behavior'
+    children:
+      - ecc51c88-dce4-4282-8110-20e3e94a3127
+      - 29056cb6-7294-49e2-98d3-c93e75527696
+      - 8140a53c-1476-4600-8da1-278a98d1e201
+      - e38395ee-eb55-4878-a315-3d6bcb399f66
+      - e41dc668-6150-4281-8a13-674804cff19d
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ecc51c88-dce4-4282-8110-20e3e94a3127:
+    id: ecc51c88-dce4-4282-8110-20e3e94a3127
+    content: Open the terminal panel if not already open
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  29056cb6-7294-49e2-98d3-c93e75527696:
+    id: 29056cb6-7294-49e2-98d3-c93e75527696
+    content: Open a terminal instance if none exists
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8140a53c-1476-4600-8da1-278a98d1e201:
+    id: 8140a53c-1476-4600-8da1-278a98d1e201
+    content: Send the content to the terminal
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e38395ee-eb55-4878-a315-3d6bcb399f66:
+    id: e38395ee-eb55-4878-a315-3d6bcb399f66
+    content: Simulate 'return' keypress to execute
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e41dc668-6150-4281-8a13-674804cff19d:
+    id: e41dc668-6150-4281-8a13-674804cff19d
+    content: Same behavior as previous 'Execute in terminal'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  37bf4bf0-171f-4cb4-b31b-4fdd7ff700ea:
+    id: 37bf4bf0-171f-4cb4-b31b-4fdd7ff700ea
+    content: '''In browser'' behavior'
+    children:
+      - ec5c6b9f-c7ea-4291-a357-a0aa4ceccbf1
+      - 2e598156-f6a1-47e0-a445-4acd717922d2
+      - 9d7f2f01-e2ab-419a-8e89-9a35b3eecfec
+      - cbd3b9d6-53ae-447a-bd13-f8309594d9cc
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ec5c6b9f-c7ea-4291-a357-a0aa4ceccbf1:
+    id: ec5c6b9f-c7ea-4291-a357-a0aa4ceccbf1
+    content: Copy context and content to clipboard (like 'Collaborate in browser')
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2e598156-f6a1-47e0-a445-4acd717922d2:
+    id: 2e598156-f6a1-47e0-a445-4acd717922d2
+    content: Do NOT include the hardcoded review panel context
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9d7f2f01-e2ab-419a-8e89-9a35b3eecfec:
+    id: 9d7f2f01-e2ab-419a-8e89-9a35b3eecfec
+    content: Open browser tab if not already open
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  cbd3b9d6-53ae-447a-bd13-f8309594d9cc:
+    id: cbd3b9d6-53ae-447a-bd13-f8309594d9cc
+    content: Show the same toaster message as 'Collaborate in browser' to prompt the user to paste the content
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c14e498d-bda8-4e7f-95a9-543654038af0:
+    id: c14e498d-bda8-4e7f-95a9-543654038af0
+    content: Only one context can be applied as before
+    children: []
+    metadata:
+      status: pending
+  c8f7d149-ccb1-4558-bd15-d778f88bf68e:
+    id: c8f7d149-ccb1-4558-bd15-d778f88bf68e
+    content: Preservation of applied contexts
+    children:
+      - 5701ac52-f5c4-46ba-9bc8-d1a80446e13a
+    metadata:
+      status: pending
+  5701ac52-f5c4-46ba-9bc8-d1a80446e13a:
+    id: 5701ac52-f5c4-46ba-9bc8-d1a80446e13a
+    content: When reviewing, preserve the contexts applied to the root of the node being reviewed when accepting the suggestions.
+    children: []
+    metadata:
+      status: pending
+  77963e20-53e9-4db7-8802-8c718f202cef:
+    id: 77963e20-53e9-4db7-8802-8c718f202cef
+    content: In progress
+    children:
+      - b8521434-96cd-4258-b87e-876dc7276241
+    metadata:
+      status: pending
+  c29ac540-1db3-4245-858d-013597e28f5e:
+    id: c29ac540-1db3-4245-858d-013597e28f5e
+    content: Insure there is no overlap or duplicated patterns in node helper
+    children: []
+    metadata:
+      status: pending

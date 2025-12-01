@@ -3,36 +3,36 @@ import { ContextMenuItem } from '../../ui/ContextMenu';
 import { AncestorRegistry } from '../../../services/ancestry';
 import { useContextAwareSubmenu } from './useContextAwareSubmenu';
 
-interface UseCollaborateSubmenuParams {
+interface UseExecuteSubmenuParams {
   node: TreeNode;
   nodes: Record<string, TreeNode>;
   ancestorRegistry: AncestorRegistry;
   hasEffectiveContext: boolean;
-  onCollaborate: () => void;
-  onCollaborateInTerminal: () => void;
+  onExecuteInBrowser: () => void;
+  onExecuteInTerminal: () => void;
   onSetActiveContext: (nodeId: string, contextId: string) => void;
 }
 
 /**
- * Hook for generating the Collaborate submenu.
+ * Hook for generating the Execute submenu.
  * Uses shared context-aware submenu structure.
  */
-export function useCollaborateSubmenu({
+export function useExecuteSubmenu({
   node,
   nodes,
   ancestorRegistry,
   hasEffectiveContext,
-  onCollaborate,
-  onCollaborateInTerminal,
+  onExecuteInBrowser,
+  onExecuteInTerminal,
   onSetActiveContext,
-}: UseCollaborateSubmenuParams): ContextMenuItem[] {
+}: UseExecuteSubmenuParams): ContextMenuItem[] {
   return useContextAwareSubmenu({
     node,
     nodes,
     ancestorRegistry,
     hasEffectiveContext,
-    onTerminalAction: onCollaborateInTerminal,
-    onBrowserAction: onCollaborate,
+    onTerminalAction: onExecuteInTerminal,
+    onBrowserAction: onExecuteInBrowser,
     onSetActiveContext,
   });
 }
