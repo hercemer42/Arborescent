@@ -6,6 +6,7 @@ describe('contextActions', () => {
   type TestState = {
     nodes: Record<string, TreeNode>;
     contextDeclarations: { nodeId: string; content: string; icon: string }[];
+    ancestorRegistry: Record<string, string[]>;
   };
   let state: TestState;
   let setState: (partial: Partial<TestState> | ((state: TestState) => Partial<TestState>)) => void;
@@ -41,6 +42,12 @@ describe('contextActions', () => {
         },
       },
       contextDeclarations: [],
+      ancestorRegistry: {
+        'root': [],
+        'node-1': ['root'],
+        'node-2': ['root'],
+        'node-3': ['node-1', 'root'],
+      },
     };
 
     setState = (partial) => {

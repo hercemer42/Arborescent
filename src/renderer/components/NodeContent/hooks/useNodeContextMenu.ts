@@ -191,6 +191,10 @@ export function useNodeContextMenu(node: TreeNode) {
 
   const baseMenuItems: ContextMenuItem[] = [
     {
+      label: 'Execute',
+      submenu: executeSubmenu,
+    },
+    {
       label: 'Collaborate',
       submenu: collaborateSubmenu,
       disabled: collaborateDisabled,
@@ -200,6 +204,7 @@ export function useNodeContextMenu(node: TreeNode) {
       onClick: handleCancelCollaboration,
       disabled: false,
     }] : []),
+    ...(contextMenuItem ? [contextMenuItem] : []),
     {
       label: 'Edit',
       submenu: [
@@ -226,15 +231,10 @@ export function useNodeContextMenu(node: TreeNode) {
         },
       ],
     },
-    ...(contextMenuItem ? [contextMenuItem] : []),
     {
       label: 'Copy to Clipboard',
       onClick: handleCopyToClipboard,
       disabled: false,
-    },
-    {
-      label: 'Execute',
-      submenu: executeSubmenu,
     },
   ];
 

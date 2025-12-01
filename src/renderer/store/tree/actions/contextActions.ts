@@ -1,8 +1,9 @@
 import { TreeNode } from '../../../../shared/types';
-import { updateNodeMetadata } from '../../../utils/nodeHelpers';
+import { updateNodeMetadata, getEffectiveContextIds } from '../../../utils/nodeHelpers';
 import { logger } from '../../../services/logger';
 import { useToastStore } from '../../toast/toastStore';
 import { ContextDeclarationInfo } from '../treeStore';
+import { AncestorRegistry } from '../../../services/ancestry';
 
 export interface ContextActions {
   declareAsContext: (nodeId: string, icon?: string) => void;
@@ -69,6 +70,7 @@ function removeContextFromMetadataArray(
 type StoreState = {
   nodes: Record<string, TreeNode>;
   contextDeclarations: ContextDeclarationInfo[];
+  ancestorRegistry: AncestorRegistry;
 };
 type StoreSetter = (partial: Partial<StoreState> | ((state: StoreState) => Partial<StoreState>)) => void;
 
@@ -233,14 +235,14 @@ export const createContextActions = (
   }
 
   function setActiveContext(nodeId: string, contextNodeId: string): void {
-    const { nodes } = get();
+    const { nodes, ancestorRegistry } = get();
     const node = nodes[nodeId];
     if (!node) return;
 
-    // Verify the context is actually applied to this node
-    const appliedContextIds = (node.metadata.appliedContextIds as string[]) || [];
-    if (!appliedContextIds.includes(contextNodeId)) {
-      useToastStore.getState().addToast('Context is not applied to this node', 'error');
+    // Verify the context is available (either directly applied or inherited)
+    const effectiveContextIds = getEffectiveContextIds(nodeId, nodes, ancestorRegistry);
+    if (!effectiveContextIds.includes(contextNodeId)) {
+      useToastStore.getState().addToast('Context is not available for this node', 'error');
       return;
     }
 
