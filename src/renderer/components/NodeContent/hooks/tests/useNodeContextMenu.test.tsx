@@ -255,20 +255,20 @@ describe('useNodeContextMenu', () => {
     expect(collaborateMenu?.submenu?.find(item => item.label === 'In terminal')).toBeDefined();
   });
 
-  it('should have correct menu order: Collaborate, Edit, Context, Copy to Clipboard, Execute', () => {
+  it('should have correct menu order: Execute, Collaborate, Context, Edit, Copy to Clipboard', () => {
     const { result } = renderHook(() => useNodeContextMenu(mockNode), { wrapper });
 
     const labels = result.current.contextMenuItems.map(item => item.label);
-    const collaborateIndex = labels.indexOf('Collaborate');
-    const editIndex = labels.indexOf('Edit');
-    const contextIndex = labels.indexOf('Context');
-    const copyIndex = labels.indexOf('Copy to Clipboard');
     const executeIndex = labels.indexOf('Execute');
+    const collaborateIndex = labels.indexOf('Collaborate');
+    const contextIndex = labels.indexOf('Context');
+    const editIndex = labels.indexOf('Edit');
+    const copyIndex = labels.indexOf('Copy to Clipboard');
 
-    expect(collaborateIndex).toBeLessThan(editIndex);
-    expect(editIndex).toBeLessThan(contextIndex);
-    expect(contextIndex).toBeLessThan(copyIndex);
-    expect(copyIndex).toBeLessThan(executeIndex);
+    expect(executeIndex).toBeLessThan(collaborateIndex);
+    expect(collaborateIndex).toBeLessThan(contextIndex);
+    expect(contextIndex).toBeLessThan(editIndex);
+    expect(editIndex).toBeLessThan(copyIndex);
   });
 
   describe('context application', () => {

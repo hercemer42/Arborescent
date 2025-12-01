@@ -12,6 +12,7 @@ interface NodeGutterProps {
   contextIcon?: string;
   onIconClick?: () => void;
   bundledContexts?: BundledContext[];
+  appliedContexts?: AppliedContext[];
   activeContext?: AppliedContext;
 }
 
@@ -24,6 +25,7 @@ export const NodeGutter = memo(function NodeGutter({
   contextIcon,
   onIconClick,
   bundledContexts = [],
+  appliedContexts = [],
   activeContext,
 }: NodeGutterProps) {
   return (
@@ -32,6 +34,7 @@ export const NodeGutter = memo(function NodeGutter({
         isContextDeclaration={isContextDeclaration}
         contextIcon={contextIcon}
         bundledContexts={bundledContexts}
+        appliedContexts={appliedContexts}
         activeContext={activeContext}
         onIconClick={onIconClick}
       />

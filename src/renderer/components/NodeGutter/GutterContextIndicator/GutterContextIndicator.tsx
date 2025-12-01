@@ -11,6 +11,7 @@ interface GutterContextIndicatorProps {
   isContextDeclaration: boolean;
   contextIcon?: string;
   bundledContexts: BundledContext[];
+  appliedContexts: AppliedContext[];
   activeContext?: AppliedContext;
   onIconClick?: () => void;
 }
@@ -19,6 +20,7 @@ export const GutterContextIndicator = memo(function GutterContextIndicator({
   isContextDeclaration,
   contextIcon,
   bundledContexts,
+  appliedContexts,
   activeContext,
   onIconClick,
 }: GutterContextIndicatorProps) {
@@ -34,8 +36,10 @@ export const GutterContextIndicator = memo(function GutterContextIndicator({
 
   // Context declaration nodes: show declaration icon or bundle indicator
   if (isContextDeclaration) {
-    // No bundled contexts: show declaration's own icon (clickable)
-    if (bundledContexts.length === 0) {
+    const hasBundledOrApplied = bundledContexts.length > 0 || appliedContexts.length > 0;
+
+    // No bundled or applied contexts: show declaration's own icon (clickable)
+    if (!hasBundledOrApplied) {
       if (!declarationIconDef) return null;
       return (
         <button
@@ -48,7 +52,9 @@ export const GutterContextIndicator = memo(function GutterContextIndicator({
       );
     }
 
-    // 1+ bundled contexts: show cog with count badge and tooltip (not clickable)
+    // 1+ bundled or applied contexts: show cog with count badge and tooltip (not clickable)
+    // Count = self (1) + bundled + applied
+    const totalCount = 1 + bundledContexts.length + appliedContexts.length;
     return (
       <div
         ref={bundleRef}
@@ -58,12 +64,13 @@ export const GutterContextIndicator = memo(function GutterContextIndicator({
       >
         <span className="context-bundle-indicator">
           <FontAwesomeIcon icon={faGear} />
-          <span className="context-bundle-count">{bundledContexts.length + 1}</span>
+          <span className="context-bundle-count">{totalCount}</span>
         </span>
         {showTooltip && (
           <BundleTooltip
             declarationIconDef={declarationIconDef}
             bundledContexts={bundledContexts}
+            appliedContexts={appliedContexts}
             position={tooltipPosition}
           />
         )}

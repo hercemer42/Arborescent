@@ -432,6 +432,7 @@ describe('getEffectiveContextIds', () => {
   it('should return node own appliedContextIds', () => {
     const nodes = {
       'node-1': createNode('node-1', [], { appliedContextIds: ['ctx-1'] }),
+      'ctx-1': createNode('ctx-1', [], { isContextDeclaration: true }),
     };
     const ancestorRegistry = { 'node-1': [] };
 
@@ -442,6 +443,8 @@ describe('getEffectiveContextIds', () => {
   it('should return multiple contexts from node', () => {
     const nodes = {
       'node-1': createNode('node-1', [], { appliedContextIds: ['ctx-1', 'ctx-2'] }),
+      'ctx-1': createNode('ctx-1', [], { isContextDeclaration: true }),
+      'ctx-2': createNode('ctx-2', [], { isContextDeclaration: true }),
     };
     const ancestorRegistry = { 'node-1': [] };
 
@@ -453,6 +456,7 @@ describe('getEffectiveContextIds', () => {
     const nodes = {
       'parent': createNode('parent', ['child'], { appliedContextIds: ['ctx-1'] }),
       'child': createNode('child'),
+      'ctx-1': createNode('ctx-1', [], { isContextDeclaration: true }),
     };
     const ancestorRegistry = {
       'parent': [],
@@ -468,6 +472,7 @@ describe('getEffectiveContextIds', () => {
       'grandparent': createNode('grandparent', ['parent'], { appliedContextIds: ['ctx-1'] }),
       'parent': createNode('parent', ['child']),
       'child': createNode('child'),
+      'ctx-1': createNode('ctx-1', [], { isContextDeclaration: true }),
     };
     const ancestorRegistry = {
       'grandparent': [],
@@ -483,6 +488,8 @@ describe('getEffectiveContextIds', () => {
     const nodes = {
       'parent': createNode('parent', ['child'], { appliedContextIds: ['ctx-parent'] }),
       'child': createNode('child', [], { appliedContextIds: ['ctx-child'] }),
+      'ctx-parent': createNode('ctx-parent', [], { isContextDeclaration: true }),
+      'ctx-child': createNode('ctx-child', [], { isContextDeclaration: true }),
     };
     const ancestorRegistry = {
       'parent': [],
@@ -499,6 +506,8 @@ describe('getEffectiveContextIds', () => {
       'grandparent': createNode('grandparent', ['parent'], { appliedContextIds: ['ctx-gp'] }),
       'parent': createNode('parent', ['child'], { appliedContextIds: ['ctx-parent'] }),
       'child': createNode('child'),
+      'ctx-gp': createNode('ctx-gp', [], { isContextDeclaration: true }),
+      'ctx-parent': createNode('ctx-parent', [], { isContextDeclaration: true }),
     };
     const ancestorRegistry = {
       'grandparent': [],
@@ -516,6 +525,7 @@ describe('getEffectiveContextIds', () => {
       'grandparent': createNode('grandparent', ['parent'], { appliedContextIds: ['ctx-gp'] }),
       'parent': createNode('parent', ['child']), // No context
       'child': createNode('child'),
+      'ctx-gp': createNode('ctx-gp', [], { isContextDeclaration: true }),
     };
     const ancestorRegistry = {
       'grandparent': [],
@@ -548,6 +558,17 @@ describe('getEffectiveContextIds', () => {
 
     const result = getEffectiveContextIds('non-existent', nodes, ancestorRegistry);
     expect(result).toEqual([]);
+  });
+
+  it('should filter out context IDs that do not exist as nodes', () => {
+    const nodes = {
+      'node-1': createNode('node-1', [], { appliedContextIds: ['ctx-exists', 'ctx-missing'] }),
+      'ctx-exists': createNode('ctx-exists', [], { isContextDeclaration: true }),
+    };
+    const ancestorRegistry = { 'node-1': [] };
+
+    const result = getEffectiveContextIds('node-1', nodes, ancestorRegistry);
+    expect(result).toEqual(['ctx-exists']);
   });
 });
 
@@ -716,6 +737,8 @@ describe('getActiveContextId', () => {
   it('should return activeContextId when set on regular node', () => {
     const nodes = {
       'node': createNode('node', [], { appliedContextIds: ['ctx-1', 'ctx-2'], activeContextId: 'ctx-2' }),
+      'ctx-1': createNode('ctx-1', [], { isContextDeclaration: true }),
+      'ctx-2': createNode('ctx-2', [], { isContextDeclaration: true }),
     };
     const ancestorRegistry = { 'node': [] };
 
@@ -725,6 +748,8 @@ describe('getActiveContextId', () => {
   it('should return first applied context when activeContextId not set', () => {
     const nodes = {
       'node': createNode('node', [], { appliedContextIds: ['ctx-1', 'ctx-2'] }),
+      'ctx-1': createNode('ctx-1', [], { isContextDeclaration: true }),
+      'ctx-2': createNode('ctx-2', [], { isContextDeclaration: true }),
     };
     const ancestorRegistry = { 'node': [] };
 
@@ -745,6 +770,8 @@ describe('getActiveContextId', () => {
     const nodes = {
       'parent': createNode('parent', ['child'], { appliedContextIds: ['ctx-1', 'ctx-2'], activeContextId: 'ctx-2' }),
       'child': createNode('child'),
+      'ctx-1': createNode('ctx-1', [], { isContextDeclaration: true }),
+      'ctx-2': createNode('ctx-2', [], { isContextDeclaration: true }),
     };
     const ancestorRegistry = {
       'parent': [],
@@ -758,6 +785,8 @@ describe('getActiveContextId', () => {
     const nodes = {
       'parent': createNode('parent', ['child'], { appliedContextIds: ['ctx-1', 'ctx-2'] }),
       'child': createNode('child'),
+      'ctx-1': createNode('ctx-1', [], { isContextDeclaration: true }),
+      'ctx-2': createNode('ctx-2', [], { isContextDeclaration: true }),
     };
     const ancestorRegistry = {
       'parent': [],
@@ -783,10 +812,21 @@ describe('getActiveContextId', () => {
   it('should fall back to first context if activeContextId is invalid', () => {
     const nodes = {
       'node': createNode('node', [], { appliedContextIds: ['ctx-1', 'ctx-2'], activeContextId: 'invalid' }),
+      'ctx-1': createNode('ctx-1', [], { isContextDeclaration: true }),
+      'ctx-2': createNode('ctx-2', [], { isContextDeclaration: true }),
     };
     const ancestorRegistry = { 'node': [] };
 
     expect(getActiveContextId('node', nodes, ancestorRegistry)).toBe('ctx-1');
+  });
+
+  it('should return undefined when applied context nodes do not exist', () => {
+    const nodes = {
+      'node': createNode('node', [], { appliedContextIds: ['non-existent'] }),
+    };
+    const ancestorRegistry = { 'node': [] };
+
+    expect(getActiveContextId('node', nodes, ancestorRegistry)).toBeUndefined();
   });
 });
 
