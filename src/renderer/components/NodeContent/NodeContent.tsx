@@ -1,8 +1,13 @@
-import { memo } from 'react';
+import { memo, createElement, useCallback } from 'react';
+import { Boxes } from 'lucide-react';
 import { TreeNode } from '../../../shared/types';
 import { StatusCheckbox } from '../ui/StatusCheckbox';
 import { ContextMenu } from '../ui/ContextMenu';
 import { useNodeContent } from './hooks/useNodeContent';
+import { useStore } from '../../store/tree/useStore';
+import { useIconPickerStore } from '../../store/iconPicker/iconPickerStore';
+import { getIconByName } from '../ui/IconPicker/IconPicker';
+import { DEFAULT_BLUEPRINT_ICON } from '../../store/tree/actions/blueprintActions';
 import './NodeContent.css';
 
 interface NodeContentProps {
@@ -25,6 +30,20 @@ function NodeContentComponent({
     closeContextMenu,
   } = useNodeContent(node);
 
+  const setBlueprintIcon = useStore((state) => state.actions.setBlueprintIcon);
+  const openIconPicker = useIconPickerStore((state) => state.open);
+
+  const handleBlueprintIconClick = useCallback((e: React.MouseEvent) => {
+    e.stopPropagation();
+    const currentIcon = (node.metadata.blueprintIcon as string) || DEFAULT_BLUEPRINT_ICON;
+    openIconPicker(currentIcon, (iconName) => {
+      setBlueprintIcon(node.id, iconName);
+    });
+  }, [node.id, node.metadata.blueprintIcon, openIconPicker, setBlueprintIcon]);
+
+  const blueprintIconName = (node.metadata.blueprintIcon as string) || DEFAULT_BLUEPRINT_ICON;
+  const BlueprintIcon = getIconByName(blueprintIconName) || Boxes;
+
   return (
     <>
       <div
@@ -36,10 +55,20 @@ function NodeContentComponent({
         } as React.CSSProperties}
       >
         <div className={`status-checkbox-wrapper ${!isSelected ? 'not-selected' : ''}`}>
-          <StatusCheckbox
-            status={node.metadata.status}
-            onToggle={() => toggleStatus(node.id)}
-          />
+          {node.metadata.isBlueprint ? (
+            <button
+              className="blueprint-indicator"
+              title="Click to change icon"
+              onClick={handleBlueprintIconClick}
+            >
+              {createElement(BlueprintIcon, { size: 19 })}
+            </button>
+          ) : (
+            <StatusCheckbox
+              status={node.metadata.status}
+              onToggle={() => toggleStatus(node.id)}
+            />
+          )}
         </div>
 
         <div

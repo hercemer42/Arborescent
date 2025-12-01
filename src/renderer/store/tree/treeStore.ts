@@ -2,6 +2,7 @@ import { create } from 'zustand';
 import { TreeNode, TreeType } from '../../../shared/types';
 import { createNodeActions, NodeActions } from './actions/nodeActions';
 import { createContextActions, ContextActions } from './actions/contextActions';
+import { createBlueprintActions, BlueprintActions } from './actions/blueprintActions';
 import { createNavigationActions, NavigationActions } from './actions/navigationActions';
 import { createPersistenceActions, PersistenceActions } from './actions/persistenceActions';
 import { createNodeMovementActions, NodeMovementActions } from './actions/nodeMovementActions';
@@ -43,7 +44,7 @@ export interface TreeState {
   feedbackFadingNodeIds: Set<string>; // Nodes fading out after feedback accepted
   contextDeclarations: ContextDeclarationInfo[]; // Cached list of context declarations
 
-  actions: NodeActions & ContextActions & NavigationActions & PersistenceActions & NodeMovementActions & NodeDeletionActions & VisualEffectsActions & SelectionActions & HistoryActions & CollaborateActions & ClipboardActions & ExecuteActions;
+  actions: NodeActions & ContextActions & BlueprintActions & NavigationActions & PersistenceActions & NodeMovementActions & NodeDeletionActions & VisualEffectsActions & SelectionActions & HistoryActions & CollaborateActions & ClipboardActions & ExecuteActions;
 }
 
 const storageService = new StorageService();
@@ -104,6 +105,7 @@ export function createTreeStore(treeType: TreeType = 'workspace') {
       actions: {
         ...createNodeActions(get, set, persistenceActions.autoSave),
         ...createContextActions(get, set, persistenceActions.autoSave),
+        ...createBlueprintActions(get, set, persistenceActions.autoSave, historyActions.executeCommand),
         ...navigationActions,
         ...persistenceActions,
         ...createNodeMovementActions(get, set, persistenceActions.autoSave, visualEffectsActions, navigationActions),

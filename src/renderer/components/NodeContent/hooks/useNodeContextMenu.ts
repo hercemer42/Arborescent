@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useCallback } from 'react';
 import { useStore } from '../../../store/tree/useStore';
 import { useActiveTreeStore } from '../../../store/tree/TreeStoreContext';
 import { TreeNode, NodeContext, PluginContextMenuItem } from '../../../../shared/types';
@@ -9,6 +9,7 @@ import { useTerminalStore } from '../../../store/terminal/terminalStore';
 import { useFeedbackActions } from '../../Feedback/hooks/useFeedbackActions';
 import { usePanelStore } from '../../../store/panel/panelStore';
 import { useContextSubmenu } from './useContextSubmenu';
+import { useBlueprintSubmenu } from './useBlueprintSubmenu';
 import { logger } from '../../../services/logger';
 import { writeToClipboard } from '../../../services/clipboardService';
 import { exportNodeAsMarkdown } from '../../../utils/markdown';
@@ -33,6 +34,8 @@ export function useNodeContextMenu(node: TreeNode) {
   const executeInBrowser = useStore((state) => state.actions.executeInBrowser);
   const executeInTerminalWithContext = useStore((state) => state.actions.executeInTerminalWithContext);
   const setActiveContext = useStore((state) => state.actions.setActiveContext);
+  const addToBlueprint = useStore((state) => state.actions.addToBlueprint);
+  const removeFromBlueprint = useStore((state) => state.actions.removeFromBlueprint);
   const enabledPlugins = usePluginStore((state) => state.enabledPlugins);
   const store = useActiveTreeStore();
   const [contextMenu, setContextMenu] = useState<{ x: number; y: number } | null>(null);
@@ -41,6 +44,21 @@ export function useNodeContextMenu(node: TreeNode) {
   const { handleCancel } = useFeedbackActions();
   const showTerminal = usePanelStore((state) => state.showTerminal);
   const { contextMenuItem } = useContextSubmenu(node);
+
+  const handleAddToBlueprint = useCallback(() => {
+    addToBlueprint(node.id);
+  }, [addToBlueprint, node.id]);
+
+  const handleRemoveFromBlueprint = useCallback(() => {
+    removeFromBlueprint(node.id, true);
+  }, [removeFromBlueprint, node.id]);
+
+  const blueprintMenuItem = useBlueprintSubmenu({
+    node,
+    nodes,
+    onAddToBlueprint: handleAddToBlueprint,
+    onRemoveFromBlueprint: handleRemoveFromBlueprint,
+  });
 
   const handleContextMenu = async (e: React.MouseEvent) => {
     e.preventDefault();
@@ -205,6 +223,7 @@ export function useNodeContextMenu(node: TreeNode) {
       disabled: false,
     }] : []),
     ...(contextMenuItem ? [contextMenuItem] : []),
+    ...(blueprintMenuItem ? [blueprintMenuItem] : []),
     {
       label: 'Edit',
       submenu: [
