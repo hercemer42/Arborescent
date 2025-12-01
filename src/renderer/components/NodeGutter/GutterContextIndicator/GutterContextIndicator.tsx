@@ -60,7 +60,6 @@ export const GutterContextIndicator = memo(function GutterContextIndicator({
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         onClick={handleIconClick}
-        title="Click to change icon"
       >
         <span className="context-bundle-indicator">
           {createElement(DeclarationIcon, { size: 16 })}

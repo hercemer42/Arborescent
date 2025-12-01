@@ -128,7 +128,7 @@ describe('GutterContextIndicator', () => {
 
     it('should be clickable to change icon when has bundled contexts', () => {
       const bundledContexts: BundledContext[] = [{ icon: 'flag', name: 'Bundled Context' }];
-      render(
+      const { container } = render(
         <GutterContextIndicator
           isContextDeclaration={true}
           contextIcon="Lightbulb"
@@ -137,13 +137,14 @@ describe('GutterContextIndicator', () => {
           onIconClick={mockOnIconClick}
         />
       );
-      fireEvent.click(screen.getByTitle('Click to change icon'));
+      const bundle = container.querySelector('.context-bundle');
+      if (bundle) fireEvent.click(bundle);
       expect(mockOnIconClick).toHaveBeenCalled();
     });
 
     it('should be clickable to change icon when has applied contexts', () => {
       const appliedContexts: AppliedContext[] = [{ icon: 'heart', name: 'Applied Context' }];
-      render(
+      const { container } = render(
         <GutterContextIndicator
           isContextDeclaration={true}
           contextIcon="Lightbulb"
@@ -152,7 +153,8 @@ describe('GutterContextIndicator', () => {
           onIconClick={mockOnIconClick}
         />
       );
-      fireEvent.click(screen.getByTitle('Click to change icon'));
+      const bundle = container.querySelector('.context-bundle');
+      if (bundle) fireEvent.click(bundle);
       expect(mockOnIconClick).toHaveBeenCalled();
     });
 
