@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2025-11-30T10:36:58.730Z'
+updated: '2025-12-01T10:03:27.582Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -6770,6 +6770,7 @@ nodes:
       status: pending
       isContextDeclaration: true
       contextIcon: book
+      expanded: false
   af1ebc0d-26dd-4a75-982f-03a9dbe2bc84:
     id: af1ebc0d-26dd-4a75-982f-03a9dbe2bc84
     content: "You are reviewing a hierarchical task list.\_ Please :"
@@ -6808,7 +6809,7 @@ nodes:
       - 27c0ce83-9e3d-4627-9c9b-027eaa89b2a5
     metadata:
       status: pending
-      expanded: true
+      expanded: false
       deleted: false
       plugins: {}
   30907cd3-7b4f-4507-bd31-e1cd25b01d0c:
@@ -6851,6 +6852,7 @@ nodes:
       - fb175b88-269f-45a4-ad32-c4592816b154
     metadata:
       status: pending
+      expanded: false
   a16fa143-942d-4f74-a229-8e015a30df14:
     id: a16fa143-942d-4f74-a229-8e015a30df14
     content: Analyze the following ideation session
@@ -6872,6 +6874,7 @@ nodes:
       status: pending
       isContextDeclaration: true
       contextIcon: gear
+      expanded: false
   04b54aa8-6692-4e69-afe8-39ec481c8d42:
     id: 04b54aa8-6692-4e69-afe8-39ec481c8d42
     content: You are reviewing a hierarchical functional definition for a new feature
@@ -6956,7 +6959,7 @@ nodes:
       contextIcon: envelope
   59f2421c-d726-43ec-8347-ccf2874922a4:
     id: 59f2421c-d726-43ec-8347-ccf2874922a4
-    content: Perform the following refactor tasks
+    content: Perform the below refactoring tasks
     children: []
     metadata:
       status: pending
@@ -6972,95 +6975,12 @@ nodes:
     children: []
     metadata:
       status: pending
-  3f28f971-dfeb-480e-992c-9aa1f1a8ab87:
-    id: 3f28f971-dfeb-480e-992c-9aa1f1a8ab87
-    content: Major feature
-    children:
-      - dd832f67-26c3-41f6-b509-a8b0208932bf
-      - 8c8934ac-64e0-405c-88fa-33e70650504c
-      - 999e8308-62e6-416e-9a2e-a8dd20f66543
-      - af89ea73-98f9-477f-a60d-54a692ce976d
-      - 825708bf-7994-4a07-b71b-4d2e327b38b8
-      - 427f7b14-f38c-43c7-9342-49f4244e94b0
-      - 4d07ba73-41c2-4197-b674-c7fb74dcc88f
-      - 0698da58-de58-4553-adda-4aa21643b87a
-      - f03b9cb5-d4dd-4630-bb8c-4e02ccfc957a
-      - b4761f1f-b2bf-43ef-bf40-530b9c9a8673
-      - 3e33b8b5-9e79-45e4-8e9c-d04f3c1f61c1
-    metadata:
-      status: pending
-      isContextDeclaration: true
-      contextIcon: heart
-  dd832f67-26c3-41f6-b509-a8b0208932bf:
-    id: dd832f67-26c3-41f6-b509-a8b0208932bf
-    content: Read the architecture file at arbo/architecture.md
-    children: []
-    metadata:
-      status: pending
-  8c8934ac-64e0-405c-88fa-33e70650504c:
-    id: 8c8934ac-64e0-405c-88fa-33e70650504c
-    content: Take it into consideration while building the following feature
-    children: []
-    metadata:
-      status: pending
-  999e8308-62e6-416e-9a2e-a8dd20f66543:
-    id: 999e8308-62e6-416e-9a2e-a8dd20f66543
-    content: Please challenge the user on design, functional or archtecture decisions if required.
-    children: []
-    metadata:
-      status: pending
-  af89ea73-98f9-477f-a60d-54a692ce976d:
-    id: af89ea73-98f9-477f-a60d-54a692ce976d
-    content: If there are complex architectural decisions to make, either refactor of the existing code, or in the new code, then summarize it clearly but briefly for the user before implementing.
-    children: []
-    metadata:
-      status: pending
-  825708bf-7994-4a07-b71b-4d2e327b38b8:
-    id: 825708bf-7994-4a07-b71b-4d2e327b38b8
-    content: Create automated tests and make sure they pass.
-    children: []
-    metadata:
-      status: pending
-  427f7b14-f38c-43c7-9342-49f4244e94b0:
-    id: 427f7b14-f38c-43c7-9342-49f4244e94b0
-    content: Make sure there are no linting or typescript errors in the entire project.
-    children: []
-    metadata:
-      status: pending
-  4d07ba73-41c2-4197-b674-c7fb74dcc88f:
-    id: 4d07ba73-41c2-4197-b674-c7fb74dcc88f
-    content: Once the entire implementation is done, make sure all tests in the project pass.
-    children: []
-    metadata:
-      status: pending
-  0698da58-de58-4553-adda-4aa21643b87a:
-    id: 0698da58-de58-4553-adda-4aa21643b87a
-    content: Insure that the coverage levels are consistent with what is declared in the project architecture.
-    children: []
-    metadata:
-      status: pending
-  f03b9cb5-d4dd-4630-bb8c-4e02ccfc957a:
-    id: f03b9cb5-d4dd-4630-bb8c-4e02ccfc957a
-    content: Be sure to resuse as much of the existing code as possible
-    children: []
-    metadata:
-      status: pending
-  b4761f1f-b2bf-43ef-bf40-530b9c9a8673:
-    id: b4761f1f-b2bf-43ef-bf40-530b9c9a8673
-    content: Don't hesitate to refactor the existing code if needed for reusability
-    children: []
-    metadata:
-      status: pending
   f5e3f44c-6de7-4bd9-ad8d-7f51cdf059f1:
     id: f5e3f44c-6de7-4bd9-ad8d-7f51cdf059f1
     content: Contexts
     children:
-      - e8824b29-eb18-4031-9e35-b321a864d418
-      - 93bfee3f-ca61-4114-9b02-12123cb6980a
-      - 0d19da53-f3a7-4ee4-b495-b59f127671fa
-      - 7bd340ba-cef3-4f8d-bf48-e5afe0c9c8c6
-      - 64ea2af4-332b-44a6-8b88-78535cc9b79a
-      - 3f28f971-dfeb-480e-992c-9aa1f1a8ab87
+      - acac68ee-f8fd-4f89-9504-ee47ac883e57
+      - 9a8f1538-7eb7-4e2d-9e0f-46e2c00675f4
     metadata:
       status: pending
       expanded: true
@@ -7101,7 +7021,7 @@ nodes:
       - 825b3f21-360c-4624-b299-3b87eea597d3
       - 5e2c6e85-2722-4654-8eb8-fa4552820c99
       - ceec7ae0-a15f-48ac-9f1c-2376921992a3
-      - 5f1c7ef9-3191-4eb5-9f71-b994b6686b38
+      - 220a9700-e82a-4418-becb-356fe439f118
       - 50530238-fa27-4e8d-b435-2d6ed8e1ff0d
       - 4c38984a-18af-440b-8ca5-94e4967066c4
     metadata:
@@ -7109,8 +7029,6 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-      appliedContextIds:
-        - 3f28f971-dfeb-480e-992c-9aa1f1a8ab87
   825b3f21-360c-4624-b299-3b87eea597d3:
     id: 825b3f21-360c-4624-b299-3b87eea597d3
     content: 'MVP1: Core context resolution logic'
@@ -7398,33 +7316,6 @@ nodes:
       status: pending
       appliedContextIds:
         - 64ea2af4-332b-44a6-8b88-78535cc9b79a
-  3e33b8b5-9e79-45e4-8e9c-d04f3c1f61c1:
-    id: 3e33b8b5-9e79-45e4-8e9c-d04f3c1f61c1
-    content: Write clear but concise comments
-    children:
-      - 5b38aea8-193e-423e-9873-7500d8ac0d6c
-      - 79965615-38a5-42fb-b7cc-24e4a09a373d
-      - 0ec6ef10-7313-4041-b400-6a6563591081
-    metadata:
-      status: pending
-  5b38aea8-193e-423e-9873-7500d8ac0d6c:
-    id: 5b38aea8-193e-423e-9873-7500d8ac0d6c
-    content: Don't write comments that reflect a particular user story or user ask, refactor or second try.
-    children: []
-    metadata:
-      status: pending
-  79965615-38a5-42fb-b7cc-24e4a09a373d:
-    id: 79965615-38a5-42fb-b7cc-24e4a09a373d
-    content: Only add comments when necessary to explain a case that is hard to understand or when the code is not explicit.
-    children: []
-    metadata:
-      status: pending
-  0ec6ef10-7313-4041-b400-6a6563591081:
-    id: 0ec6ef10-7313-4041-b400-6a6563591081
-    content: Refactor with proper naming in favour of adding comments
-    children: []
-    metadata:
-      status: pending
   1ce932df-fac7-4425-bf1e-e7aaf573115e:
     id: 1ce932df-fac7-4425-bf1e-e7aaf573115e
     content: We should still be able to apply a node as context to a context node
@@ -7504,26 +7395,6 @@ nodes:
     children: []
     metadata:
       status: completed
-  5f1c7ef9-3191-4eb5-9f71-b994b6686b38:
-    id: 5f1c7ef9-3191-4eb5-9f71-b994b6686b38
-    content: 'MVP4:'
-    children:
-      - f5b215a7-e595-4f4f-b3ea-380f44c38288
-    metadata:
-      status: pending
-  f5b215a7-e595-4f4f-b3ea-380f44c38288:
-    id: f5b215a7-e595-4f4f-b3ea-380f44c38288
-    content: Bundled declarations
-    children:
-      - e4cf52ba-6369-447e-a6f3-98d728ec4093
-      - 2b269485-2ed3-4943-a64e-2788d750eda4
-      - cf8bb657-bf1b-49d0-898a-957e0f6859e4
-      - 5602de0c-9904-4c5b-ac22-ef76a92ae277
-      - 89b8fa00-bb01-41ca-87f0-1476e29454d1
-      - 59f9e5e4-6529-4cd8-bdcf-635bc99f618e
-      - 8fe17fe8-1edb-47ec-8876-9131a4cf92b4
-    metadata:
-      status: pending
   92726ea5-0fb7-49e1-b962-359ab2f7df42:
     id: 92726ea5-0fb7-49e1-b962-359ab2f7df42
     content: Starting with the declared context
@@ -7536,111 +7407,6 @@ nodes:
     children: []
     metadata:
       status: completed
-  e4cf52ba-6369-447e-a6f3-98d728ec4093:
-    id: e4cf52ba-6369-447e-a6f3-98d728ec4093
-    content: Declarations will no longer inherit applied contexts
-    children: []
-    metadata:
-      status: pending
-  2b269485-2ed3-4943-a64e-2788d750eda4:
-    id: 2b269485-2ed3-4943-a64e-2788d750eda4
-    content: Applied contexts will work for nodes with declared contexts in the same way they do for all nodes
-    children:
-      - 9879380c-5491-4bfd-aa7a-396b3091ef98
-      - 9be26f4d-6972-4979-b581-1c07a1042e28
-    metadata:
-      status: pending
-  9879380c-5491-4bfd-aa7a-396b3091ef98:
-    id: 9879380c-5491-4bfd-aa7a-396b3091ef98
-    content: So they will be usable in the collaboration menu
-    children: []
-    metadata:
-      status: pending
-  9be26f4d-6972-4979-b581-1c07a1042e28:
-    id: 9be26f4d-6972-4979-b581-1c07a1042e28
-    content: But will not affect the declarations, which are a different system
-    children: []
-    metadata:
-      status: pending
-  cf8bb657-bf1b-49d0-898a-957e0f6859e4:
-    id: cf8bb657-bf1b-49d0-898a-957e0f6859e4
-    content: Add a menu item to 'Contexts' called 'Bundle declarations'
-    children: []
-    metadata:
-      status: pending
-  5602de0c-9904-4c5b-ac22-ef76a92ae277:
-    id: 5602de0c-9904-4c5b-ac22-ef76a92ae277
-    content: Within it list all available contexts
-    children:
-      - 68dd4107-f73a-4e58-9899-efdfe3d8089d
-      - 6ce61c3c-aa6d-4328-9fc0-e0cd752622b5
-      - acfea035-471d-41b6-a349-4768a2c0b174
-    metadata:
-      status: pending
-  68dd4107-f73a-4e58-9899-efdfe3d8089d:
-    id: 68dd4107-f73a-4e58-9899-efdfe3d8089d
-    content: Exclude the context declaration on the current node
-    children: []
-    metadata:
-      status: pending
-  89b8fa00-bb01-41ca-87f0-1476e29454d1:
-    id: 89b8fa00-bb01-41ca-87f0-1476e29454d1
-    content: Context declarations accumulate with bundled declarations
-    children:
-      - fa7990ec-ece0-44e3-80ef-f1b7b70af95b
-      - 41316522-082b-484f-8c31-113582c21ba4
-    metadata:
-      status: pending
-  fa7990ec-ece0-44e3-80ef-f1b7b70af95b:
-    id: fa7990ec-ece0-44e3-80ef-f1b7b70af95b
-    content: The bundled declarations come first, in order of application
-    children: []
-    metadata:
-      status: pending
-  41316522-082b-484f-8c31-113582c21ba4:
-    id: 41316522-082b-484f-8c31-113582c21ba4
-    content: The context declaration on the actual node comes last
-    children: []
-    metadata:
-      status: pending
-  59f9e5e4-6529-4cd8-bdcf-635bc99f618e:
-    id: 59f9e5e4-6529-4cd8-bdcf-635bc99f618e
-    content: The gutter icon changes to showing the cog icon with count when there are 1 or more bundled contexts, not applied contexts
-    children: []
-    metadata:
-      status: pending
-  6ce61c3c-aa6d-4328-9fc0-e0cd752622b5:
-    id: 6ce61c3c-aa6d-4328-9fc0-e0cd752622b5
-    content: Clicking on them selects them with a checkbox
-    children: []
-    metadata:
-      status: pending
-  acfea035-471d-41b6-a349-4768a2c0b174:
-    id: acfea035-471d-41b6-a349-4768a2c0b174
-    content: Clicking on them again unselects them
-    children: []
-    metadata:
-      status: pending
-  8fe17fe8-1edb-47ec-8876-9131a4cf92b4:
-    id: 8fe17fe8-1edb-47ec-8876-9131a4cf92b4
-    content: Remove context declaration comes above 'Bundled declarations'
-    children:
-      - 0f69a7e3-93dc-4604-9fbe-3a44f38ab44b
-      - b6bb29ea-a393-4f8e-9765-b80596035f41
-    metadata:
-      status: pending
-  0f69a7e3-93dc-4604-9fbe-3a44f38ab44b:
-    id: 0f69a7e3-93dc-4604-9fbe-3a44f38ab44b
-    content: Removing it also removes the bundled declarations
-    children: []
-    metadata:
-      status: pending
-  b6bb29ea-a393-4f8e-9765-b80596035f41:
-    id: b6bb29ea-a393-4f8e-9765-b80596035f41
-    content: The user will need to add them again if the add a context declaration
-    children: []
-    metadata:
-      status: pending
   50530238-fa27-4e8d-b435-2d6ed8e1ff0d:
     id: 50530238-fa27-4e8d-b435-2d6ed8e1ff0d
     content: 'MVP5 : Redesign context menu'
@@ -7662,6 +7428,10 @@ nodes:
       - 5bf5f274-5cbf-4665-a1a7-ecc5a2d3b079
       - d3328980-861c-4408-a1d9-c502e86316c4
       - 8ba0fe50-9f9b-42d9-bd60-ecbe972af021
+      - a7a8446f-9afc-4910-ba7d-6a02a5c50b22
+      - 5ff6d35c-5304-465f-820f-73984368d2f7
+      - d90f9df8-7493-4f71-adaa-76f621d98765
+      - 08013a56-14c2-438e-8c21-58df4a987c5c
     metadata:
       status: pending
   5bf5f274-5cbf-4665-a1a7-ecc5a2d3b079:
@@ -7678,7 +7448,659 @@ nodes:
       status: pending
   8ba0fe50-9f9b-42d9-bd60-ecbe972af021:
     id: 8ba0fe50-9f9b-42d9-bd60-ecbe972af021
-    content: ''
+    content: Only one context can be applied at a time
     children: []
     metadata:
       status: pending
+  acac68ee-f8fd-4f89-9504-ee47ac883e57:
+    id: acac68ee-f8fd-4f89-9504-ee47ac883e57
+    content: Functional
+    children:
+      - e8824b29-eb18-4031-9e35-b321a864d418
+      - 93bfee3f-ca61-4114-9b02-12123cb6980a
+      - 0d19da53-f3a7-4ee4-b495-b59f127671fa
+      - 7bd340ba-cef3-4f8d-bf48-e5afe0c9c8c6
+    metadata:
+      status: pending
+  9a8f1538-7eb7-4e2d-9e0f-46e2c00675f4:
+    id: 9a8f1538-7eb7-4e2d-9e0f-46e2c00675f4
+    content: Implementation
+    children:
+      - 9b46397c-c452-421c-b408-46b040d99c9e
+      - cc94b377-246d-45ae-b938-2d3906892aa1
+      - 64ea2af4-332b-44a6-8b88-78535cc9b79a
+    metadata:
+      status: pending
+      appliedContextIds:
+        - e8824b29-eb18-4031-9e35-b321a864d418
+  9b46397c-c452-421c-b408-46b040d99c9e:
+    id: 9b46397c-c452-421c-b408-46b040d99c9e
+    content: Implement minor feature
+    children:
+      - 5e0fa846-276d-4d99-ae49-a3f05b46b75c
+      - 3239dd15-5f50-4999-84ac-b84b71b742be
+      - 6a7c5b51-8827-40a1-9a86-89dcb26ddf40
+      - b9bf8973-53bf-4343-92ac-2adf1b3aadd0
+      - ee62f343-86cb-423b-87ab-63236876a259
+    metadata:
+      status: pending
+      expanded: false
+      deleted: false
+      plugins: {}
+  5e0fa846-276d-4d99-ae49-a3f05b46b75c:
+    id: 5e0fa846-276d-4d99-ae49-a3f05b46b75c
+    content: Understand & Plan
+    children:
+      - 6045ae69-1afd-4579-b088-53443a35a23b
+      - 86a0215b-68ad-4b93-8890-e43ca7623095
+      - dd931d08-014a-4084-8522-9981433eadb9
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6045ae69-1afd-4579-b088-53443a35a23b:
+    id: 6045ae69-1afd-4579-b088-53443a35a23b
+    content: Review the feature requirements and clarify any ambiguities
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  86a0215b-68ad-4b93-8890-e43ca7623095:
+    id: 86a0215b-68ad-4b93-8890-e43ca7623095
+    content: Examine relevant existing code before implementing
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  dd931d08-014a-4084-8522-9981433eadb9:
+    id: dd931d08-014a-4084-8522-9981433eadb9
+    content: Challenge design, functional, or architectural decisions if something seems wrong or unclear
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3239dd15-5f50-4999-84ac-b84b71b742be:
+    id: 3239dd15-5f50-4999-84ac-b84b71b742be
+    content: Implementation Guidelines
+    children:
+      - e0c94a91-a69c-4a42-9184-01b852347016
+      - f3f21746-1d29-4fce-a4f5-3edd0311770b
+      - fa14fd30-8137-4fa7-b6aa-4799cb5c3454
+      - 44bbbce0-f6c3-4cc0-97ed-ae182dd653e8
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e0c94a91-a69c-4a42-9184-01b852347016:
+    id: e0c94a91-a69c-4a42-9184-01b852347016
+    content: Reuse existing code as much as possible
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f3f21746-1d29-4fce-a4f5-3edd0311770b:
+    id: f3f21746-1d29-4fce-a4f5-3edd0311770b
+    content: Refactor existing code if needed for reusability
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fa14fd30-8137-4fa7-b6aa-4799cb5c3454:
+    id: fa14fd30-8137-4fa7-b6aa-4799cb5c3454
+    content: Handle edge cases and error conditions appropriately
+    children:
+      - 5db5304a-bb35-4397-9626-ced835b884a6
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5db5304a-bb35-4397-9626-ced835b884a6:
+    id: 5db5304a-bb35-4397-9626-ced835b884a6
+    content: Skip marginal cases if implementing them would add significant complexity for little benefit
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  44bbbce0-f6c3-4cc0-97ed-ae182dd653e8:
+    id: 44bbbce0-f6c3-4cc0-97ed-ae182dd653e8
+    content: If a requested functionality is not possible to implement, prompt the user before implementing an alternative
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6a7c5b51-8827-40a1-9a86-89dcb26ddf40:
+    id: 6a7c5b51-8827-40a1-9a86-89dcb26ddf40
+    content: Code Quality
+    children:
+      - f0fe0cb0-8e88-4f07-91b1-2eb2f93dde40
+      - fd2e1eef-7de2-41cb-9c14-4921e1f87af5
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f0fe0cb0-8e88-4f07-91b1-2eb2f93dde40:
+    id: f0fe0cb0-8e88-4f07-91b1-2eb2f93dde40
+    content: Ensure no linting or TypeScript errors in the entire project
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fd2e1eef-7de2-41cb-9c14-4921e1f87af5:
+    id: fd2e1eef-7de2-41cb-9c14-4921e1f87af5
+    content: Writing Comments
+    children:
+      - 0e6d1b24-74b5-4890-818c-15f2b0f15b46
+      - 1873772c-99e0-4cfb-813e-c7f2495cd5ce
+      - 94fad8da-0d1e-4d30-bc0c-fb9c3b5da13d
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0e6d1b24-74b5-4890-818c-15f2b0f15b46:
+    id: 0e6d1b24-74b5-4890-818c-15f2b0f15b46
+    content: Prefer refactoring with descriptive naming over adding comments
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1873772c-99e0-4cfb-813e-c7f2495cd5ce:
+    id: 1873772c-99e0-4cfb-813e-c7f2495cd5ce
+    content: Only add comments when necessary to explain non-obvious logic
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  94fad8da-0d1e-4d30-bc0c-fb9c3b5da13d:
+    id: 94fad8da-0d1e-4d30-bc0c-fb9c3b5da13d
+    content: Avoid comments that reference specific user stories, requests, or iteration history
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b9bf8973-53bf-4343-92ac-2adf1b3aadd0:
+    id: b9bf8973-53bf-4343-92ac-2adf1b3aadd0
+    content: Testing
+    children:
+      - f34d3e31-6adf-4f21-b8d7-20e0b0cf1c00
+      - e9f83c64-7825-4969-b60d-828938e0f9cf
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f34d3e31-6adf-4f21-b8d7-20e0b0cf1c00:
+    id: f34d3e31-6adf-4f21-b8d7-20e0b0cf1c00
+    content: Create automated tests for the new functionality and ensure they pass
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e9f83c64-7825-4969-b60d-828938e0f9cf:
+    id: e9f83c64-7825-4969-b60d-828938e0f9cf
+    content: Ensure any existing tests for edited files still pass
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ee62f343-86cb-423b-87ab-63236876a259:
+    id: ee62f343-86cb-423b-87ab-63236876a259
+    content: Reporting
+    children:
+      - 8ec77fd4-d51e-4455-9d52-5c5091788a90
+      - 9105404e-4bfc-43c1-b954-96f9f03a9db5
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8ec77fd4-d51e-4455-9d52-5c5091788a90:
+    id: 8ec77fd4-d51e-4455-9d52-5c5091788a90
+    content: Provide a short summary describing what was implemented
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9105404e-4bfc-43c1-b954-96f9f03a9db5:
+    id: 9105404e-4bfc-43c1-b954-96f9f03a9db5
+    content: 'List any requested functionality that was not implemented, including:'
+    children:
+      - 522a6b78-725d-45f8-ba20-78eb0b8fb373
+      - 9f019dcb-d725-4206-aba5-9190d8b8e820
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  522a6b78-725d-45f8-ba20-78eb0b8fb373:
+    id: 522a6b78-725d-45f8-ba20-78eb0b8fb373
+    content: Edge cases deemed too marginal relative to their complexity
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9f019dcb-d725-4206-aba5-9190d8b8e820:
+    id: 9f019dcb-d725-4206-aba5-9190d8b8e820
+    content: Features that were not possible or required alternative approaches
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a7a8446f-9afc-4910-ba7d-6a02a5c50b22:
+    id: a7a8446f-9afc-4910-ba7d-6a02a5c50b22
+    content: When the first context is added it is checked by default
+    children: []
+    metadata:
+      status: pending
+  5ff6d35c-5304-465f-820f-73984368d2f7:
+    id: 5ff6d35c-5304-465f-820f-73984368d2f7
+    content: When each subsequent context is added they are checked by defailt
+    children: []
+    metadata:
+      status: pending
+  d90f9df8-7493-4f71-adaa-76f621d98765:
+    id: d90f9df8-7493-4f71-adaa-76f621d98765
+    content: If the context is inherited, it is greyed out and no checkbox appears
+    children: []
+    metadata:
+      status: pending
+  08013a56-14c2-438e-8c21-58df4a987c5c:
+    id: 08013a56-14c2-438e-8c21-58df4a987c5c
+    content: If a context is applied it overrides the inherited context as before
+    children: []
+    metadata:
+      status: pending
+  cc94b377-246d-45ae-b938-2d3906892aa1:
+    id: cc94b377-246d-45ae-b938-2d3906892aa1
+    content: Implement major feature
+    children:
+      - c2b50240-2e86-4a10-ae72-530187e5e6f0
+      - 2d2f84ae-d30a-4ddd-a127-c1e7acd15c63
+      - 565e741a-337a-46cc-83bf-97fd39e1dff3
+      - 869e317f-ec2a-4d2d-a8bb-8bc22d84e326
+    metadata:
+      status: pending
+      expanded: false
+      deleted: false
+      plugins: {}
+  c2b50240-2e86-4a10-ae72-530187e5e6f0:
+    id: c2b50240-2e86-4a10-ae72-530187e5e6f0
+    content: Architecture Review
+    children:
+      - a2fe0068-728a-46e2-9bd2-0776b75f3785
+      - 88d420f1-54e1-41c9-9e81-c1aa9eb5fc00
+      - 280e1199-b94d-4918-9ac3-ad944e7d866a
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a2fe0068-728a-46e2-9bd2-0776b75f3785:
+    id: a2fe0068-728a-46e2-9bd2-0776b75f3785
+    content: Read the architecture file at arbo/architecture.md
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  88d420f1-54e1-41c9-9e81-c1aa9eb5fc00:
+    id: 88d420f1-54e1-41c9-9e81-c1aa9eb5fc00
+    content: Consider the architecture guidelines throughout implementation
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  280e1199-b94d-4918-9ac3-ad944e7d866a:
+    id: 280e1199-b94d-4918-9ac3-ad944e7d866a
+    content: If making significant architectural changes, update arbo/architecture.md accordingly
+    children:
+      - 4f64fa1e-0c64-46cf-8813-15e59050a540
+      - 8e0e9fa4-b64f-4497-9024-683ff8cbabea
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4f64fa1e-0c64-46cf-8813-15e59050a540:
+    id: 4f64fa1e-0c64-46cf-8813-15e59050a540
+    content: Be brief, avoid long code examples
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8e0e9fa4-b64f-4497-9024-683ff8cbabea:
+    id: 8e0e9fa4-b64f-4497-9024-683ff8cbabea
+    content: Correct any existing inconsistencies in the documentation
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2d2f84ae-d30a-4ddd-a127-c1e7acd15c63:
+    id: 2d2f84ae-d30a-4ddd-a127-c1e7acd15c63
+    content: Planning
+    children:
+      - 760fca4c-7ad7-4b7b-9aa3-91325e45e524
+      - 52c39879-2b10-40e6-89f7-e0c35bbb5474
+      - 6d0f96f7-457f-4bf5-b091-71efecc01b7f
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  760fca4c-7ad7-4b7b-9aa3-91325e45e524:
+    id: 760fca4c-7ad7-4b7b-9aa3-91325e45e524
+    content: Break down the feature into logical implementation phases
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  52c39879-2b10-40e6-89f7-e0c35bbb5474:
+    id: 52c39879-2b10-40e6-89f7-e0c35bbb5474
+    content: If there are complex architectural decisions involving refactoring or new patterns, summarize them briefly before implementing
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6d0f96f7-457f-4bf5-b091-71efecc01b7f:
+    id: 6d0f96f7-457f-4bf5-b091-71efecc01b7f
+    content: For lengthy implementations, check in with the user at logical milestones before proceeding
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  565e741a-337a-46cc-83bf-97fd39e1dff3:
+    id: 565e741a-337a-46cc-83bf-97fd39e1dff3
+    content: Quality Assurance
+    children:
+      - 504e6f7a-3dae-41f0-b7c6-9f63ba66900d
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  504e6f7a-3dae-41f0-b7c6-9f63ba66900d:
+    id: 504e6f7a-3dae-41f0-b7c6-9f63ba66900d
+    content: Ensure total automated test coverage levels are consistent with what is declared in the project architecture
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  869e317f-ec2a-4d2d-a8bb-8bc22d84e326:
+    id: 869e317f-ec2a-4d2d-a8bb-8bc22d84e326
+    content: Reporting
+    children:
+      - 2c001b63-f8f8-4633-952b-fd1c539d024c
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2c001b63-f8f8-4633-952b-fd1c539d024c:
+    id: 2c001b63-f8f8-4633-952b-fd1c539d024c
+    content: Summarize any modifications made to arbo/architecture.md
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  220a9700-e82a-4418-becb-356fe439f118:
+    id: 220a9700-e82a-4418-becb-356fe439f118
+    content: 'MVP4:'
+    children:
+      - 18240eb2-bc7c-4191-97b8-3edcc01f6e13
+    metadata:
+      status: completed
+      expanded: false
+      deleted: false
+      plugins: {}
+  18240eb2-bc7c-4191-97b8-3edcc01f6e13:
+    id: 18240eb2-bc7c-4191-97b8-3edcc01f6e13
+    content: Bundled declarations
+    children:
+      - b8375d25-8b7d-4e03-947f-3ce54bae1371
+      - 3b365002-5daf-4401-8bb8-b1995f560c07
+      - e0eb846e-46b5-49ef-a959-da5eb2ab5274
+      - 8187349d-a0fd-49c0-a5da-909c090c104a
+      - 031ec1cb-6488-41e6-a539-e723809765e8
+      - 10df2381-2ee4-4299-8741-aa5e0533973a
+      - 674423dd-dcd6-489b-9fd4-72f3cbaa6284
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b8375d25-8b7d-4e03-947f-3ce54bae1371:
+    id: b8375d25-8b7d-4e03-947f-3ce54bae1371
+    content: Declarations will no longer inherit applied contexts
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3b365002-5daf-4401-8bb8-b1995f560c07:
+    id: 3b365002-5daf-4401-8bb8-b1995f560c07
+    content: Applied contexts will work for nodes with declared contexts in the same way they do for all nodes
+    children:
+      - 9f473187-b192-4a0f-86ed-4ff98488dde6
+      - fbf6017a-f397-4569-af25-078938a83428
+      - fc491337-a78c-4f8c-a260-ea44c1446563
+      - fd43015a-97d3-47e8-b573-3de9ccf28ac6
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9f473187-b192-4a0f-86ed-4ff98488dde6:
+    id: 9f473187-b192-4a0f-86ed-4ff98488dde6
+    content: So they will be usable in the collaboration menu
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fbf6017a-f397-4569-af25-078938a83428:
+    id: fbf6017a-f397-4569-af25-078938a83428
+    content: But will not affect the declarations, which are a different system
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fc491337-a78c-4f8c-a260-ea44c1446563:
+    id: fc491337-a78c-4f8c-a260-ea44c1446563
+    content: Context declarations can inherit applied contexts from ancestors
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fd43015a-97d3-47e8-b573-3de9ccf28ac6:
+    id: fd43015a-97d3-47e8-b573-3de9ccf28ac6
+    content: Collaborating on a context declaration uses its applied contexts, not its bundled contexts
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e0eb846e-46b5-49ef-a959-da5eb2ab5274:
+    id: e0eb846e-46b5-49ef-a959-da5eb2ab5274
+    content: Add a menu item to 'Contexts' called 'Bundle declarations'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8187349d-a0fd-49c0-a5da-909c090c104a:
+    id: 8187349d-a0fd-49c0-a5da-909c090c104a
+    content: Within it list all available contexts
+    children:
+      - 80320a61-3994-4270-82b0-b7026766ae12
+      - ac887238-a6d1-4a64-8408-71d27692e4f0
+      - 78c68485-c788-44e6-89ce-206301836d90
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  80320a61-3994-4270-82b0-b7026766ae12:
+    id: 80320a61-3994-4270-82b0-b7026766ae12
+    content: Exclude the context declaration on the current node
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ac887238-a6d1-4a64-8408-71d27692e4f0:
+    id: ac887238-a6d1-4a64-8408-71d27692e4f0
+    content: Clicking on them selects them with a checkbox
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  78c68485-c788-44e6-89ce-206301836d90:
+    id: 78c68485-c788-44e6-89ce-206301836d90
+    content: Clicking on them again unselects them
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  031ec1cb-6488-41e6-a539-e723809765e8:
+    id: 031ec1cb-6488-41e6-a539-e723809765e8
+    content: Context declarations accumulate with bundled declarations
+    children:
+      - 5ec0ba3f-df06-41ee-a31a-67e9ffdc5c8a
+      - 93a7daac-aa70-4510-b4e8-b2b98d89ecfd
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5ec0ba3f-df06-41ee-a31a-67e9ffdc5c8a:
+    id: 5ec0ba3f-df06-41ee-a31a-67e9ffdc5c8a
+    content: The bundled declarations come first, in order of application
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  93a7daac-aa70-4510-b4e8-b2b98d89ecfd:
+    id: 93a7daac-aa70-4510-b4e8-b2b98d89ecfd
+    content: The context declaration on the actual node comes last
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  10df2381-2ee4-4299-8741-aa5e0533973a:
+    id: 10df2381-2ee4-4299-8741-aa5e0533973a
+    content: The gutter icon changes to showing the cog icon with count when there are 1 or more bundled contexts, not applied contexts
+    children:
+      - 7b5ae58b-055a-4e3f-a706-9882f8675117
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7b5ae58b-055a-4e3f-a706-9882f8675117:
+    id: 7b5ae58b-055a-4e3f-a706-9882f8675117
+    content: Count includes the declaration itself plus bundled contexts
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  674423dd-dcd6-489b-9fd4-72f3cbaa6284:
+    id: 674423dd-dcd6-489b-9fd4-72f3cbaa6284
+    content: Remove context declaration comes above 'Bundled declarations'
+    children:
+      - 20aa83e1-985c-4f1b-9f84-1ef451758166
+      - 72c1cfbc-725a-4e44-8864-e1bac84b0c36
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  20aa83e1-985c-4f1b-9f84-1ef451758166:
+    id: 20aa83e1-985c-4f1b-9f84-1ef451758166
+    content: Removing it also removes the bundled declarations
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  72c1cfbc-725a-4e44-8864-e1bac84b0c36:
+    id: 72c1cfbc-725a-4e44-8864-e1bac84b0c36
+    content: The user will need to add them again if they add a context declaration
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}

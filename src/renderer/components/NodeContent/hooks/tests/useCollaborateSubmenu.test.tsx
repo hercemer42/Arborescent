@@ -25,12 +25,14 @@ describe('useCollaborateSubmenu', () => {
   });
 
   describe('base actions', () => {
-    it('should return base actions for context declaration nodes', () => {
-      const node = createNode('ctx-node', { isContextDeclaration: true });
+    it('should return base actions for context declaration nodes without applied contexts', () => {
+      const node = createNode('ctx-node', { isContextDeclaration: true, contextIcon: 'star' });
+      node.content = 'My Declaration';
       const { result } = renderHook(() =>
         useCollaborateSubmenu({ ...defaultParams, node })
       );
 
+      // Context declarations don't apply themselves - just base actions
       expect(result.current).toHaveLength(2);
       expect(result.current[0].label).toBe('In browser');
       expect(result.current[1].label).toBe('In terminal');
@@ -103,6 +105,67 @@ describe('useCollaborateSubmenu', () => {
       expect(result.current[0].disabled).toBe(true);
       expect(result.current[1].label).toBe('-'); // separator
       expect(result.current[2].label).toBe('In browser');
+    });
+  });
+
+  describe('context declarations with applied contexts', () => {
+    it('should show only applied contexts for context declaration with single applied context', () => {
+      const node = createNode('ctx-node', {
+        isContextDeclaration: true,
+        contextIcon: 'star',
+        appliedContextIds: ['other-ctx'],
+      });
+      node.content = 'My Declaration';
+      const otherCtx = createNode('other-ctx', { isContextDeclaration: true, contextIcon: 'flag' });
+      otherCtx.content = 'Other Context';
+
+      const nodes = {
+        'ctx-node': node,
+        'other-ctx': otherCtx,
+      };
+
+      const { result } = renderHook(() =>
+        useCollaborateSubmenu({ ...defaultParams, node, nodes })
+      );
+
+      // Single applied context shown as info (not self)
+      expect(result.current).toHaveLength(4);
+      expect(result.current[0].label).toBe('Context: Other Context');
+      expect(result.current[0].disabled).toBe(true);
+      expect(result.current[1].label).toBe('-'); // separator
+      expect(result.current[2].label).toBe('In browser');
+    });
+
+    it('should show applied contexts with radio selection for multiple applied contexts', () => {
+      const node = createNode('ctx-node', {
+        isContextDeclaration: true,
+        contextIcon: 'star',
+        appliedContextIds: ['ctx-1', 'ctx-2'],
+        activeContextId: 'ctx-1',
+      });
+      node.content = 'My Declaration';
+      const ctx1 = createNode('ctx-1', { isContextDeclaration: true, contextIcon: 'flag' });
+      ctx1.content = 'Context One';
+      const ctx2 = createNode('ctx-2', { isContextDeclaration: true, contextIcon: 'bolt' });
+      ctx2.content = 'Context Two';
+
+      const nodes = {
+        'ctx-node': node,
+        'ctx-1': ctx1,
+        'ctx-2': ctx2,
+      };
+
+      const { result } = renderHook(() =>
+        useCollaborateSubmenu({ ...defaultParams, node, nodes })
+      );
+
+      // Multiple applied contexts shown with radio selection (not including self)
+      expect(result.current).toHaveLength(5);
+      expect(result.current[0].label).toBe('Context One');
+      expect(result.current[0].radioSelected).toBe(true);
+      expect(result.current[1].label).toBe('Context Two');
+      expect(result.current[1].radioSelected).toBe(false);
+      expect(result.current[2].label).toBe('-'); // separator
     });
   });
 

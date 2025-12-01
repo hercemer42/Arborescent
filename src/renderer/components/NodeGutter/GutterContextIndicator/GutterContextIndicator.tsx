@@ -58,7 +58,7 @@ export const GutterContextIndicator = memo(function GutterContextIndicator({
       >
         <span className="context-bundle-indicator">
           <FontAwesomeIcon icon={faGear} />
-          <span className="context-bundle-count">{bundledContexts.length}</span>
+          <span className="context-bundle-count">{bundledContexts.length + 1}</span>
         </span>
         {showTooltip && (
           <BundleTooltip

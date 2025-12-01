@@ -58,11 +58,6 @@ export function getEffectiveContextIds(
 
   const nodeContexts = getAppliedContextIds(node);
 
-  // Context declarations don't inherit - only use directly applied contexts
-  if (node.metadata.isContextDeclaration === true) {
-    return [...nodeContexts];
-  }
-
   if (nodeContexts.length > 0) {
     return [...nodeContexts];
   }
@@ -160,8 +155,8 @@ export function resolveBundledContexts(
 /**
  * Get all contexts to send for collaboration.
  *
- * For context declarations, resolves all bundled contexts.
- * For regular nodes, resolves the active context's bundle.
+ * Gets the active applied context and resolves its bundled contexts.
+ * Works the same for all nodes (including context declarations).
  */
 export function getContextsForCollaboration(
   nodeId: string,
@@ -170,10 +165,6 @@ export function getContextsForCollaboration(
 ): string[] {
   const node = nodes[nodeId];
   if (!node) return [];
-
-  if (node.metadata.isContextDeclaration === true) {
-    return resolveBundledContexts(nodeId, nodes);
-  }
 
   const activeContextId = getActiveContextId(nodeId, nodes, ancestorRegistry);
   if (!activeContextId) {

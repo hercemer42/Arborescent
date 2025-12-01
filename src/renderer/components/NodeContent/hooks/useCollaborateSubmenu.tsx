@@ -88,17 +88,11 @@ export function useCollaborateSubmenu({
   );
 
   const isInheritingContext = appliedContextIds.length === 0 && hasEffectiveContext;
-  const isContextDeclaration = node.metadata.isContextDeclaration === true;
 
   return useMemo(() => {
     const baseActions = createBaseActions(onCollaborate, onCollaborateInTerminal);
 
-    // Context declarations don't have active context selection
-    if (isContextDeclaration) {
-      return baseActions;
-    }
-
-    // No context applied - just base actions
+    // No context applied - just base actions (or inherited context info)
     if (appliedContextIds.length === 0) {
       // Inheriting context - show as read-only info
       if (isInheritingContext && activeContextId) {
@@ -137,10 +131,9 @@ export function useCollaborateSubmenu({
   }, [
     appliedContextIds,
     activeContextId,
-    isContextDeclaration,
     isInheritingContext,
     nodes,
-    node.id,
+    node,
     onCollaborate,
     onCollaborateInTerminal,
     onSetActiveContext,
