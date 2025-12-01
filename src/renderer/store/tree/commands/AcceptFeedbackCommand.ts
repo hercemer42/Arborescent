@@ -78,14 +78,27 @@ export class AcceptFeedbackCommand extends BaseCommand {
       delete mergedNodesMap[id];
     }
 
-    // Preserve applied contexts from the original node
+    // Preserve context-related metadata from the original node
     const newRootNode = this.newNodesMap[this.newRootNodeId];
     const preservedMetadata: Record<string, unknown> = {};
+
+    // Applied contexts
     if (collaboratingNode.metadata.appliedContextIds) {
       preservedMetadata.appliedContextIds = collaboratingNode.metadata.appliedContextIds;
     }
     if (collaboratingNode.metadata.activeContextId) {
       preservedMetadata.activeContextId = collaboratingNode.metadata.activeContextId;
+    }
+
+    // Context declaration
+    if (collaboratingNode.metadata.isContextDeclaration) {
+      preservedMetadata.isContextDeclaration = collaboratingNode.metadata.isContextDeclaration;
+    }
+    if (collaboratingNode.metadata.contextIcon) {
+      preservedMetadata.contextIcon = collaboratingNode.metadata.contextIcon;
+    }
+    if (collaboratingNode.metadata.bundledContextIds) {
+      preservedMetadata.bundledContextIds = collaboratingNode.metadata.bundledContextIds;
     }
 
     const updatedNewNodesMap = {

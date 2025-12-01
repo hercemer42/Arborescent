@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2025-12-01T13:10:44.847Z'
+updated: '2025-12-01T13:19:45.390Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -6754,7 +6754,7 @@ nodes:
       status: pending
       isContextDeclaration: true
       contextIcon: magnifying-glass
-      expanded: true
+      expanded: false
   af1ebc0d-26dd-4a75-982f-03a9dbe2bc84:
     id: af1ebc0d-26dd-4a75-982f-03a9dbe2bc84
     content: "You are reviewing a hierarchical task list.\_ Please :"
@@ -7011,6 +7011,7 @@ nodes:
       - ceec7ae0-a15f-48ac-9f1c-2376921992a3
       - 220a9700-e82a-4418-becb-356fe439f118
       - 3278edc5-03c4-46e2-ab94-2100c325184e
+      - 0d3480d3-8805-43cf-bbd6-255b5dea16f5
     metadata:
       status: pending
       expanded: true
@@ -8048,7 +8049,7 @@ nodes:
     content: Reverse the order to 'In terminal' first, then 'In browser'
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -8059,7 +8060,7 @@ nodes:
       - 257ecc5c-6b9b-4e9f-90f6-c96a88f222e7
       - 1adf6cdb-9d80-414e-b5e8-a67ab3edaecc
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -8068,7 +8069,7 @@ nodes:
     content: 'Add heading: ''Applied contexts'''
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -8077,7 +8078,7 @@ nodes:
     content: Show checkboxes for context selection
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -8086,7 +8087,7 @@ nodes:
     content: Grey out 'In terminal' and 'In browser' if there is no context applied
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -8353,12 +8354,13 @@ nodes:
     content: Only one context can be applied as before
     children: []
     metadata:
-      status: pending
+      status: completed
   c8f7d149-ccb1-4558-bd15-d778f88bf68e:
     id: c8f7d149-ccb1-4558-bd15-d778f88bf68e
     content: Preservation of applied contexts
     children:
       - 5701ac52-f5c4-46ba-9bc8-d1a80446e13a
+      - 4838ed0c-637f-4925-9ec5-fed98e84a494
     metadata:
       status: pending
   5701ac52-f5c4-46ba-9bc8-d1a80446e13a:
@@ -8366,7 +8368,7 @@ nodes:
     content: When reviewing, preserve the contexts applied to the root of the node being reviewed when accepting the suggestions.
     children: []
     metadata:
-      status: pending
+      status: completed
   77963e20-53e9-4db7-8802-8c718f202cef:
     id: 77963e20-53e9-4db7-8802-8c718f202cef
     content: In progress
@@ -8383,6 +8385,18 @@ nodes:
   709d1979-03ab-41b4-a89b-9d8877ad23e8:
     id: 709d1979-03ab-41b4-a89b-9d8877ad23e8
     content: Move the 'Execute' menu to the top, followed by collaborate, then context, then edit, then copy to clipboard
+    children: []
+    metadata:
+      status: pending
+  0d3480d3-8805-43cf-bbd6-255b5dea16f5:
+    id: 0d3480d3-8805-43cf-bbd6-255b5dea16f5
+    content: Have to figure out something for icons for applied and declared contexts
+    children: []
+    metadata:
+      status: pending
+  4838ed0c-637f-4925-9ec5-fed98e84a494:
+    id: 4838ed0c-637f-4925-9ec5-fed98e84a494
+    content: Also preserve any context declaration and bundled declarations
     children: []
     metadata:
       status: pending
