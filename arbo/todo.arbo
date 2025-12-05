@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2025-12-05T10:08:33.480Z'
+updated: '2025-12-05T10:37:30.634Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -8961,19 +8961,19 @@ nodes:
       - 15028a6d-4a26-45ae-a285-65a3bdacd03c
       - c5af95ea-90b8-4265-ab59-1b49f431d908
     metadata:
-      status: pending
+      status: completed
   15028a6d-4a26-45ae-a285-65a3bdacd03c:
     id: 15028a6d-4a26-45ae-a285-65a3bdacd03c
     content: Remove the blueprint flag from the pasted node or any ancestors
     children: []
     metadata:
-      status: pending
+      status: completed
   c5af95ea-90b8-4265-ab59-1b49f431d908:
     id: c5af95ea-90b8-4265-ab59-1b49f431d908
     content: Display a toaster to tell the user that blueprint mode has been stripped from the pasted nodes
     children: []
     metadata:
-      status: pending
+      status: completed
   383f1307-8033-4d1a-883c-ccf0492a6922:
     id: 383f1307-8033-4d1a-883c-ccf0492a6922
     content: When copying/cutting and pasting a blueprint node into a blueprint node
@@ -8992,11 +8992,25 @@ nodes:
     content: A context node and its descendants do not display the checkbox icon
     children:
       - 6299a15d-5bd4-4f4c-9fd9-fd1a49e6fe60
+      - d52c1386-9348-40fe-91df-daa9317b49dd
     metadata:
       status: pending
   6299a15d-5bd4-4f4c-9fd9-fd1a49e6fe60:
     id: 6299a15d-5bd4-4f4c-9fd9-fd1a49e6fe60
-    content: "Instead they display a\_"
+    content: They display instead the same icon that was picked when declaring the context.
+    children: []
+    metadata:
+      status: pending
+  d52c1386-9348-40fe-91df-daa9317b49dd:
+    id: d52c1386-9348-40fe-91df-daa9317b49dd
+    content: It's the same icon that appears in the gutter.
+    children:
+      - 9d435478-a63c-4402-a264-d2fe0bfc66de
+    metadata:
+      status: pending
+  9d435478-a63c-4402-a264-d2fe0bfc66de:
+    id: 9d435478-a63c-4402-a264-d2fe0bfc66de
+    content: However it does not contain the '+' symbol if there are bundled declarations or applied contexts
     children: []
     metadata:
       status: pending

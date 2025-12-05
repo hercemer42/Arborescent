@@ -71,7 +71,7 @@ export class MultiNodeDeletionCommand extends BaseCommand {
   }
 
   undo(): void {
-    const { nodes, rootNodeId, ancestorRegistry } = this.getState();
+    const { nodes, ancestorRegistry } = this.getState();
 
     const updatedNodes = this.restoreNodes(nodes);
 

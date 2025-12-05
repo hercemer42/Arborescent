@@ -119,7 +119,6 @@ export function IconPicker({ selectedIcon, selectedColor, onSelect, onClose }: I
   const {
     currentColor,
     customColor,
-    isPresetColor,
     isCustomColor,
     handleColorSelect,
     handleCustomColorChange,

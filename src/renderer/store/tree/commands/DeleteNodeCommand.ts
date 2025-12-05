@@ -1,6 +1,6 @@
 import { BaseCommand } from './Command';
 import { TreeNode } from '../../../../shared/types';
-import { removeNodeFromRegistry, addNodesToRegistry, AncestorRegistry } from '../../../services/ancestry';
+import { removeNodeFromRegistry, addNodesToRegistry } from '../../../services/ancestry';
 
 /**
  * Captures a node and all its descendants for restoration

@@ -201,7 +201,7 @@ export class AcceptFeedbackCommand extends BaseCommand {
       newAncestorRegistry = buildAncestorRegistry(restoredRootNodeId, restoredNodesMap);
     } else {
       // Incremental: remove new node subtree, add old node subtree back
-      let registry = removeNodeFromRegistry(state.ancestorRegistry, this.newRootNodeId, this.newNodesMap);
+      const registry = removeNodeFromRegistry(state.ancestorRegistry, this.newRootNodeId, this.newNodesMap);
       newAncestorRegistry = addNodesToRegistry(registry, [this.snapshot.collaboratingNodeId], this.snapshot.parentId, restoredNodesMap);
     }
 
