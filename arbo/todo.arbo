@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2025-12-05T09:31:02.804Z'
+updated: '2025-12-05T10:08:33.480Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -5786,7 +5786,7 @@ nodes:
       - dcdf600e-aa13-4c87-b23e-a87fb7cf40f3
     metadata:
       status: pending
-      expanded: true
+      expanded: false
   7872f73c-b9d7-40a7-bcea-d0573548106c:
     id: 7872f73c-b9d7-40a7-bcea-d0573548106c
     content: Don't include an element that is already implemented, check the code first
@@ -6791,10 +6791,6 @@ nodes:
     id: 0cc62ae1-1a7a-4aa4-bc6a-d817cabd672c
     content: Refactor
     children:
-      - 9d5baff2-765d-4a02-8ced-e694cb8cedc4
-      - b094c286-2255-45a9-939e-3f660f3bafc4
-      - d71e3fd4-f2d0-4d86-bb32-c4cd96fe9a2b
-      - 0ce24294-7a50-4276-b985-67cd9300a611
       - 2aa9b055-6780-4457-bc3f-d2d7d40874ef
     metadata:
       status: pending
@@ -8665,6 +8661,8 @@ nodes:
       - bdd1a000-b81d-4254-837e-151df49b8986
       - a3675d1d-91f9-4d83-a042-62e892308c4d
       - 9584c7ca-b072-4fda-985f-55276a9d44a9
+      - 102c9fd7-773c-4898-9d4a-292cd86042b2
+      - d656086b-fb37-4123-8648-9274b2180679
     metadata:
       status: pending
       expanded: true
@@ -8679,8 +8677,8 @@ nodes:
       - 16d9b71c-7f95-49ba-87c0-30d18e8e9acc
       - 6b54a82f-1f63-4e2c-8977-86b50011a4dc
     metadata:
-      status: pending
-      expanded: true
+      status: completed
+      expanded: false
       deleted: false
       plugins: {}
   55bc43bc-6bff-4cbc-a1e7-a4a200610b66:
@@ -8720,7 +8718,7 @@ nodes:
       - 88ec46b8-acc6-4c02-a2fc-9fc00f75b201
     metadata:
       status: completed
-      expanded: true
+      expanded: false
       deleted: false
       plugins: {}
   7460da56-a519-4a69-acd2-672a7d89c4c8:
@@ -8737,7 +8735,7 @@ nodes:
     content: Add border/outline to workspace area
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -8755,7 +8753,7 @@ nodes:
     content: Style active tab border/background to show blueprint mode
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -8767,8 +8765,8 @@ nodes:
       - 724013ea-0458-4f3f-ac4b-f5caf3a1e0b9
       - a844e9a0-795e-4e73-a4e1-9f053e7d9e7c
     metadata:
-      status: pending
-      expanded: true
+      status: completed
+      expanded: false
       deleted: false
       plugins: {}
   e1befc62-1a47-4132-8e7f-fb3aa5e7ecdf:
@@ -8776,7 +8774,7 @@ nodes:
     content: Show nodes where isBlueprint=true
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -8785,7 +8783,7 @@ nodes:
     content: Tree naturally shows complete paths since blueprints require blueprint ancestors
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -8794,7 +8792,7 @@ nodes:
     content: Non-blueprint nodes are simply not in the tree (no filtering logic needed - blueprints form complete subtrees)
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -8806,8 +8804,8 @@ nodes:
       - 2d584520-ebfe-4eb7-9e13-121c229a68d6
       - 8086af39-d2fa-4aba-81b4-57aefcc3d9b3
     metadata:
-      status: pending
-      expanded: true
+      status: completed
+      expanded: false
       deleted: false
       plugins: {}
   1c29adcf-9113-4ec6-8f06-46281f4991bb:
@@ -8815,7 +8813,7 @@ nodes:
     content: New nodes created inherit isBlueprint=true automatically
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -8824,7 +8822,7 @@ nodes:
     content: All normal editing/context operations work unchanged
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -8833,7 +8831,7 @@ nodes:
     content: Delete warning still shows if node has children (visible or not)
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -8845,25 +8843,25 @@ nodes:
       - 5a286958-d55c-4ac8-9da9-38945684193b
       - b77cc3b1-1063-4ccf-b8a2-2ed0f92c0e2a
     metadata:
-      status: pending
-      expanded: true
+      status: completed
+      expanded: false
       deleted: false
       plugins: {}
   cbd92c49-2584-481f-9119-edf1c2b9c60f:
     id: cbd92c49-2584-481f-9119-edf1c2b9c60f
-    content: Keyboard shortcut toggles off
+    content: Keyboard shortcut toggles blueprint mode off
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
   5a286958-d55c-4ac8-9da9-38945684193b:
     id: 5a286958-d55c-4ac8-9da9-38945684193b
-    content: Menu checkbox toggles off
+    content: Menu checkbox toggles blueprint mode off
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -8872,7 +8870,7 @@ nodes:
     content: Selected node preserved when switching modes (if visible in both)
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -8900,30 +8898,6 @@ nodes:
     children: []
     metadata:
       status: pending
-  9d5baff2-765d-4a02-8ced-e694cb8cedc4:
-    id: 9d5baff2-765d-4a02-8ced-e694cb8cedc4
-    content: "In BottomStatusBar we're repeating the div and just changing content and classes depending on what should be shown.\_ Is that the best way to do things ?"
-    children: []
-    metadata:
-      status: pending
-  b094c286-2255-45a9-939e-3f660f3bafc4:
-    id: b094c286-2255-45a9-939e-3f660f3bafc4
-    content: The blue border should be around the workspace component not the tree component
-    children: []
-    metadata:
-      status: pending
-  d71e3fd4-f2d0-4d86-bb32-c4cd96fe9a2b:
-    id: d71e3fd4-f2d0-4d86-bb32-c4cd96fe9a2b
-    content: viewMenu needs a hooks file
-    children: []
-    metadata:
-      status: pending
-  0ce24294-7a50-4276-b985-67cd9300a611:
-    id: 0ce24294-7a50-4276-b985-67cd9300a611
-    content: visibile children in tree.tsx should be in hooks file, same in treenode.tsx
-    children: []
-    metadata:
-      status: pending
   2aa9b055-6780-4457-bc3f-d2d7d40874ef:
     id: 2aa9b055-6780-4457-bc3f-d2d7d40874ef
     content: ''
@@ -8945,6 +8919,84 @@ nodes:
   32f349b9-656c-4cc8-8b5c-e331d819f696:
     id: 32f349b9-656c-4cc8-8b5c-e331d819f696
     content: There are no typescript errors
+    children: []
+    metadata:
+      status: pending
+  102c9fd7-773c-4898-9d4a-292cd86042b2:
+    id: 102c9fd7-773c-4898-9d4a-292cd86042b2
+    content: Contexts
+    children:
+      - 8df02916-594b-4ecc-b80c-0c1f398d3e8e
+      - c228965b-bfb8-418a-8581-29c7754763cd
+      - e891d30a-c258-49a5-a588-a1c67a6e3836
+    metadata:
+      status: pending
+  8df02916-594b-4ecc-b80c-0c1f398d3e8e:
+    id: 8df02916-594b-4ecc-b80c-0c1f398d3e8e
+    content: Context declarations can now only be created on nodes who have a parent for a blueprint
+    children: []
+    metadata:
+      status: pending
+  c228965b-bfb8-418a-8581-29c7754763cd:
+    id: c228965b-bfb8-418a-8581-29c7754763cd
+    content: '''Declare as context'' only appears if the node''s parent is a blueprint'
+    children: []
+    metadata:
+      status: pending
+  d656086b-fb37-4123-8648-9274b2180679:
+    id: d656086b-fb37-4123-8648-9274b2180679
+    content: Copying/pasting blueprint nodes
+    children:
+      - b0ee285d-8d09-49f7-8726-b93a7e46ae41
+      - 383f1307-8033-4d1a-883c-ccf0492a6922
+    metadata:
+      status: pending
+      appliedContextIds:
+        - 9b46397c-c452-421c-b408-46b040d99c9e
+      activeContextId: 9b46397c-c452-421c-b408-46b040d99c9e
+  b0ee285d-8d09-49f7-8726-b93a7e46ae41:
+    id: b0ee285d-8d09-49f7-8726-b93a7e46ae41
+    content: When copying/cutting and pasting a blueprint node into a non blueprint node
+    children:
+      - 15028a6d-4a26-45ae-a285-65a3bdacd03c
+      - c5af95ea-90b8-4265-ab59-1b49f431d908
+    metadata:
+      status: pending
+  15028a6d-4a26-45ae-a285-65a3bdacd03c:
+    id: 15028a6d-4a26-45ae-a285-65a3bdacd03c
+    content: Remove the blueprint flag from the pasted node or any ancestors
+    children: []
+    metadata:
+      status: pending
+  c5af95ea-90b8-4265-ab59-1b49f431d908:
+    id: c5af95ea-90b8-4265-ab59-1b49f431d908
+    content: Display a toaster to tell the user that blueprint mode has been stripped from the pasted nodes
+    children: []
+    metadata:
+      status: pending
+  383f1307-8033-4d1a-883c-ccf0492a6922:
+    id: 383f1307-8033-4d1a-883c-ccf0492a6922
+    content: When copying/cutting and pasting a blueprint node into a blueprint node
+    children:
+      - 49e3c6f3-c2ba-4863-a14b-5989fe79b963
+    metadata:
+      status: pending
+  49e3c6f3-c2ba-4863-a14b-5989fe79b963:
+    id: 49e3c6f3-c2ba-4863-a14b-5989fe79b963
+    content: The blueprint status of the node and all decendants is maintained
+    children: []
+    metadata:
+      status: pending
+  e891d30a-c258-49a5-a588-a1c67a6e3836:
+    id: e891d30a-c258-49a5-a588-a1c67a6e3836
+    content: A context node and its descendants do not display the checkbox icon
+    children:
+      - 6299a15d-5bd4-4f4c-9fd9-fd1a49e6fe60
+    metadata:
+      status: pending
+  6299a15d-5bd4-4f4c-9fd9-fd1a49e6fe60:
+    id: 6299a15d-5bd4-4f4c-9fd9-fd1a49e6fe60
+    content: "Instead they display a\_"
     children: []
     metadata:
       status: pending

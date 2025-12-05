@@ -62,6 +62,16 @@ vi.mock('../../../../utils/errorNotification', () => ({
   notifyError: vi.fn(),
 }));
 
+// Mock toast store
+const mockAddToast = vi.fn();
+vi.mock('../../../toast/toastStore', () => ({
+  useToastStore: {
+    getState: () => ({
+      addToast: mockAddToast,
+    }),
+  },
+}));
+
 describe('clipboardActions', () => {
   type TestState = {
     nodes: Record<string, TreeNode>;
@@ -605,6 +615,103 @@ describe('clipboardActions', () => {
         expect(currentMockCache?.rootNodeIds).toContain('node-2');
         expect(currentMockCache?.rootNodeIds).not.toContain('node-1');
       });
+    });
+  });
+
+  describe('blueprint flag stripping on paste', () => {
+    beforeEach(() => {
+      mockAddToast.mockClear();
+
+      // Setup blueprint nodes for testing
+      state.nodes = {
+        root: {
+          id: 'root',
+          content: 'Root',
+          children: ['blueprint-parent', 'normal-parent'],
+          metadata: { isRoot: true },
+        },
+        'blueprint-parent': {
+          id: 'blueprint-parent',
+          content: 'Blueprint Parent',
+          children: ['blueprint-child'],
+          metadata: { isBlueprint: true, blueprintIcon: 'star', blueprintColor: '#ff0000' },
+        },
+        'blueprint-child': {
+          id: 'blueprint-child',
+          content: 'Blueprint Child',
+          children: [],
+          metadata: { isBlueprint: true, blueprintIcon: 'circle', blueprintColor: '#00ff00' },
+        },
+        'normal-parent': {
+          id: 'normal-parent',
+          content: 'Normal Parent',
+          children: [],
+          metadata: {},
+        },
+      };
+      state.ancestorRegistry = {
+        root: [],
+        'blueprint-parent': ['root'],
+        'blueprint-child': ['root', 'blueprint-parent'],
+        'normal-parent': ['root'],
+      };
+    });
+
+    it('should strip blueprint flags when pasting into non-blueprint parent', async () => {
+      // Copy blueprint node
+      state.activeNodeId = 'blueprint-child';
+      await actions.copyNodes();
+
+      // Paste into non-blueprint parent
+      state.activeNodeId = 'normal-parent';
+      const result = await actions.pasteNodes();
+
+      expect(result).toBe('pasted');
+      expect(mockAddToast).toHaveBeenCalledWith(
+        'Blueprint status removed from pasted nodes',
+        'info'
+      );
+    });
+
+    it('should preserve blueprint flags when pasting into blueprint parent', async () => {
+      // Copy blueprint node
+      state.activeNodeId = 'blueprint-child';
+      await actions.copyNodes();
+
+      // Paste into blueprint parent
+      state.activeNodeId = 'blueprint-parent';
+      const result = await actions.pasteNodes();
+
+      expect(result).toBe('pasted');
+      expect(mockAddToast).not.toHaveBeenCalled();
+    });
+
+    it('should strip blueprint flags when pasting into root', async () => {
+      // Copy blueprint node
+      state.activeNodeId = 'blueprint-child';
+      await actions.copyNodes();
+
+      // Paste into root (no active node)
+      state.activeNodeId = null;
+      const result = await actions.pasteNodes();
+
+      expect(result).toBe('pasted');
+      expect(mockAddToast).toHaveBeenCalledWith(
+        'Blueprint status removed from pasted nodes',
+        'info'
+      );
+    });
+
+    it('should not show toast when pasting non-blueprint nodes', async () => {
+      // Copy normal node
+      state.activeNodeId = 'normal-parent';
+      await actions.copyNodes();
+
+      // Paste anywhere
+      state.activeNodeId = 'root';
+      await actions.pasteNodes();
+
+      expect(mockAddToast).not.toHaveBeenCalled();
     });
   });
 });

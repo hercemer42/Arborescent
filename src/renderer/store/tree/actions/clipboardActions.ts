@@ -10,6 +10,7 @@ import { writeToClipboard, readFromClipboard } from '../../../services/clipboard
 import { VisualEffectsActions } from './visualEffectsActions';
 import { notifyError } from '../../../services/notification';
 import { useClipboardCacheStore } from '../../clipboard/clipboardCacheStore';
+import { useToastStore } from '../../toast/toastStore';
 
 export interface ClipboardActions {
   /**
@@ -138,6 +139,36 @@ function flashNodes(
 }
 
 /**
+ * Strip blueprint flags from nodes if pasting into a non-blueprint parent.
+ * Returns true if any flags were stripped.
+ */
+function stripBlueprintFlagsIfNeeded(
+  nodesMap: Record<string, TreeNode>,
+  targetParentId: string,
+  existingNodes: Record<string, TreeNode>
+): boolean {
+  const targetParent = existingNodes[targetParentId];
+  const targetIsBlueprint = targetParent?.metadata.isBlueprint === true;
+
+  if (targetIsBlueprint) {
+    return false;
+  }
+
+  let strippedAny = false;
+  for (const nodeId of Object.keys(nodesMap)) {
+    const node = nodesMap[nodeId];
+    if (node.metadata.isBlueprint) {
+      delete node.metadata.isBlueprint;
+      delete node.metadata.blueprintIcon;
+      delete node.metadata.blueprintColor;
+      strippedAny = true;
+    }
+  }
+
+  return strippedAny;
+}
+
+/**
  * Get all node IDs from a selection (as array).
  */
 function getNodeIdsFromSelection(selection: SelectionResult): string[] {
@@ -258,6 +289,12 @@ export const createClipboardActions = (
 
       // If cached nodes still exist, use them
       if (newRootNodes.length > 0) {
+        // Strip blueprint flags if pasting into non-blueprint parent
+        const strippedBlueprint = stripBlueprintFlagsIfNeeded(newNodesMap, targetParentId, state.nodes);
+        if (strippedBlueprint) {
+          useToastStore.getState().addToast('Blueprint status removed from pasted nodes', 'info');
+        }
+
         const command = new PasteNodesCommand(
           newRootNodes,
           newNodesMap,
@@ -288,6 +325,12 @@ export const createClipboardActions = (
 
     const parsed = parseMarkdown(clipboardText);
     if (parsed.rootNodes.length === 0) return 'no-content';
+
+    // Strip blueprint flags if pasting into non-blueprint parent
+    const strippedBlueprint = stripBlueprintFlagsIfNeeded(parsed.allNodes, targetParentId, state.nodes);
+    if (strippedBlueprint) {
+      useToastStore.getState().addToast('Blueprint status removed from pasted nodes', 'info');
+    }
 
     const command = new PasteNodesCommand(
       parsed.rootNodes,
