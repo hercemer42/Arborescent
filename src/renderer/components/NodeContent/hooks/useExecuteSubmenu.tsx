@@ -1,9 +1,9 @@
 import { TreeNode } from '../../../../shared/types';
 import { ContextMenuItem } from '../../ui/ContextMenu';
 import { AncestorRegistry } from '../../../services/ancestry';
-import { useContextAwareSubmenu } from './useContextAwareSubmenu';
+import { buildContextAwareSubmenu } from './useContextAwareSubmenu';
 
-interface UseExecuteSubmenuParams {
+interface BuildExecuteSubmenuParams {
   node: TreeNode;
   nodes: Record<string, TreeNode>;
   ancestorRegistry: AncestorRegistry;
@@ -13,11 +13,7 @@ interface UseExecuteSubmenuParams {
   onSetActiveContext: (nodeId: string, contextId: string) => void;
 }
 
-/**
- * Hook for generating the Execute submenu.
- * Uses shared context-aware submenu structure.
- */
-export function useExecuteSubmenu({
+export function buildExecuteSubmenu({
   node,
   nodes,
   ancestorRegistry,
@@ -25,8 +21,8 @@ export function useExecuteSubmenu({
   onExecuteInBrowser,
   onExecuteInTerminal,
   onSetActiveContext,
-}: UseExecuteSubmenuParams): ContextMenuItem[] {
-  return useContextAwareSubmenu({
+}: BuildExecuteSubmenuParams): ContextMenuItem[] {
+  return buildContextAwareSubmenu({
     node,
     nodes,
     ancestorRegistry,

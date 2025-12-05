@@ -19,20 +19,19 @@ interface TreeNodeProps {
 
 export const TreeNode = memo(function TreeNode({ nodeId, depth = 0 }: TreeNodeProps) {
   const node = useStore((state) => state.nodes[nodeId]);
-  const nodes = useStore((state) => state.nodes);
   const isSelected = useStore((state) => state.activeNodeId === nodeId);
   const isMultiSelected = useStore((state) => state.multiSelectedNodeIds.has(nodeId));
-  const collaboratingNodeId = useStore((state) => state.collaboratingNodeId);
-  const ancestorRegistry = useStore((state) => state.ancestorRegistry);
-  const feedbackFadingNodeIds = useStore((state) => state.feedbackFadingNodeIds);
-  const isCollaborating = collaboratingNodeId === nodeId;
-  const isCollaboratingDescendant = collaboratingNodeId !== null && ancestorRegistry[nodeId]?.includes(collaboratingNodeId);
-  const isFeedbackFading = feedbackFadingNodeIds.has(nodeId);
+  const isCollaborating = useStore((state) => state.collaboratingNodeId === nodeId);
+  const isCollaboratingDescendant = useStore((state) => {
+    const { collaboratingNodeId, ancestorRegistry } = state;
+    return collaboratingNodeId !== null && ancestorRegistry[nodeId]?.includes(collaboratingNodeId);
+  });
+  const isFeedbackFading = useStore((state) => state.feedbackFadingNodeIds.has(nodeId));
   const isCutNode = node?.metadata.transient?.isCut === true;
 
-  const appliedContexts = useAppliedContexts(node, nodes);
-  const bundledContexts = useBundledContexts(node, nodes);
-  const activeContext = useActiveContext(node, nodes, ancestorRegistry);
+  const appliedContexts = useAppliedContexts(node);
+  const bundledContexts = useBundledContexts(node);
+  const activeContext = useActiveContext(node);
 
   const expanded = node?.metadata.expanded ?? true;
   const contentLength = node?.content.length ?? 0;

@@ -1,4 +1,4 @@
-import { useMemo, createElement } from 'react';
+import { createElement } from 'react';
 import { TreeNode } from '../../../../shared/types';
 import { ContextMenuItem } from '../../ui/ContextMenu';
 import { getActiveContextId, getEffectiveContextIds } from '../../../utils/nodeHelpers';
@@ -73,18 +73,7 @@ function createContextSelectionItem(
   };
 }
 
-/**
- * Shared hook for generating context-aware submenu items.
- * Used by both Collaborate and Execute submenus.
- *
- * Structure:
- * - "In terminal" action (disabled if no context)
- * - "In browser" action (disabled if no context)
- * - Separator
- * - "Applied contexts" heading
- * - Context selection items (single info or multiple with radio buttons)
- */
-export function useContextAwareSubmenu({
+export function buildContextAwareSubmenu({
   node,
   nodes,
   ancestorRegistry,
@@ -93,54 +82,36 @@ export function useContextAwareSubmenu({
   onBrowserAction,
   onSetActiveContext,
 }: ContextAwareSubmenuParams): ContextMenuItem[] {
-  const effectiveContextIds = useMemo(
-    () => getEffectiveContextIds(node.id, nodes, ancestorRegistry),
-    [node.id, nodes, ancestorRegistry]
-  );
+  const effectiveContextIds = getEffectiveContextIds(node.id, nodes, ancestorRegistry);
+  const activeContextId = getActiveContextId(node.id, nodes, ancestorRegistry);
 
-  const activeContextId = useMemo(
-    () => getActiveContextId(node.id, nodes, ancestorRegistry),
-    [node.id, nodes, ancestorRegistry]
-  );
+  const actionsDisabled = !hasEffectiveContext;
+  const baseActions = createBaseActions(onTerminalAction, onBrowserAction, actionsDisabled);
 
-  return useMemo(() => {
-    const actionsDisabled = !hasEffectiveContext;
-    const baseActions = createBaseActions(onTerminalAction, onBrowserAction, actionsDisabled);
+  if (!hasEffectiveContext || effectiveContextIds.length === 0) {
+    return baseActions;
+  }
 
-    if (!hasEffectiveContext || effectiveContextIds.length === 0) {
-      return baseActions;
-    }
+  const contextItems: ContextMenuItem[] = [
+    SEPARATOR,
+    createContextHeading(),
+  ];
 
-    const contextItems: ContextMenuItem[] = [
-      SEPARATOR,
-      createContextHeading(),
-    ];
+  if (effectiveContextIds.length === 1) {
+    const contextNode = nodes[effectiveContextIds[0]];
+    contextItems.push(createContextInfoItem(contextNode));
+  } else {
+    const selectionItems = effectiveContextIds.map((contextId) =>
+      createContextSelectionItem(
+        contextId,
+        nodes[contextId],
+        contextId === activeContextId,
+        node.id,
+        onSetActiveContext
+      )
+    );
+    contextItems.push(...selectionItems);
+  }
 
-    if (effectiveContextIds.length === 1) {
-      const contextNode = nodes[effectiveContextIds[0]];
-      contextItems.push(createContextInfoItem(contextNode));
-    } else {
-      const selectionItems = effectiveContextIds.map((contextId) =>
-        createContextSelectionItem(
-          contextId,
-          nodes[contextId],
-          contextId === activeContextId,
-          node.id,
-          onSetActiveContext
-        )
-      );
-      contextItems.push(...selectionItems);
-    }
-
-    return [...baseActions, ...contextItems];
-  }, [
-    effectiveContextIds,
-    activeContextId,
-    hasEffectiveContext,
-    nodes,
-    node,
-    onTerminalAction,
-    onBrowserAction,
-    onSetActiveContext,
-  ]);
+  return [...baseActions, ...contextItems];
 }

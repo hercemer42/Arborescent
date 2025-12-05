@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
+import { useStore } from '../../../store/tree/useStore';
 import { TreeNode } from '../../../../shared/types';
 import { getActiveContextId } from '../../../utils/nodeHelpers';
-import { AncestorRegistry } from '../../../services/ancestry';
 
 export interface AppliedContext {
   icon: string | undefined;
@@ -15,89 +15,93 @@ export interface BundledContext {
   name: string;
 }
 
-export function useAppliedContexts(
-  node: TreeNode | undefined,
-  nodes: Record<string, TreeNode>
-): AppliedContext[] {
+export function useAppliedContexts(node: TreeNode | undefined): AppliedContext[] {
+  const appliedContextIds = (node?.metadata.appliedContextIds as string[]) || [];
+
+  const contextNodesData = useStore((state) => {
+    if (appliedContextIds.length === 0) return null;
+
+    const parts: string[] = [];
+    for (const contextId of appliedContextIds) {
+      const contextNode = state.nodes[contextId];
+      if (contextNode) {
+        parts.push(`${contextId}:${contextNode.metadata.contextIcon ?? ''}:${contextNode.metadata.contextColor ?? ''}:${contextNode.content}`);
+      }
+    }
+    return parts.join('|');
+  });
+
   return useMemo(() => {
-    if (!node) return [];
+    if (!contextNodesData) return [];
 
-    const appliedContextIds = (node.metadata.appliedContextIds as string[]) || [];
-
-    return appliedContextIds
-      .map(contextId => {
-        const contextNode = nodes[contextId];
-        if (!contextNode) return null;
-        return {
-          icon: contextNode.metadata.contextIcon as string | undefined,
-          color: contextNode.metadata.contextColor as string | undefined,
-          name: contextNode.content,
-        };
-      })
-      .filter((ctx): ctx is AppliedContext => ctx !== null);
-  }, [node, nodes]);
+    const parts = contextNodesData.split('|');
+    return parts.map(part => {
+      const [, icon, color, ...contentParts] = part.split(':');
+      return {
+        icon: icon || undefined,
+        color: color || undefined,
+        name: contentParts.join(':'),
+      };
+    });
+  }, [contextNodesData]);
 }
 
-/**
- * Get the active context for a node only if it has directly applied contexts.
- * Returns undefined for nodes inheriting context from ancestors (context is shown on the ancestor instead).
- */
-export function useActiveContext(
-  node: TreeNode | undefined,
-  nodes: Record<string, TreeNode>,
-  ancestorRegistry: AncestorRegistry
-): AppliedContext | undefined {
+export function useActiveContext(node: TreeNode | undefined): AppliedContext | undefined {
+  const appliedContextIds = (node?.metadata.appliedContextIds as string[]) || [];
+  const nodeId = node?.id;
+
+  const activeContextData = useStore((state) => {
+    if (!nodeId || appliedContextIds.length === 0) return null;
+
+    const activeContextId = getActiveContextId(nodeId, state.nodes, state.ancestorRegistry);
+    if (!activeContextId) return null;
+
+    const contextNode = state.nodes[activeContextId];
+    if (!contextNode) return null;
+
+    return `${contextNode.metadata.contextIcon ?? ''}:${contextNode.metadata.contextColor ?? ''}:${contextNode.content}`;
+  });
+
   return useMemo(() => {
-    if (!node) return undefined;
+    if (!activeContextData) return undefined;
 
-    // Only show indicator if node has its own applied contexts (not inherited)
-    const appliedContextIds = (node.metadata.appliedContextIds as string[]) || [];
-    if (appliedContextIds.length === 0) {
-      return undefined;
-    }
-
-    const activeContextId = getActiveContextId(node.id, nodes, ancestorRegistry);
-    if (!activeContextId) return undefined;
-
-    const contextNode = nodes[activeContextId];
-    if (!contextNode) return undefined;
-
+    const [icon, color, ...contentParts] = activeContextData.split(':');
     return {
-      icon: contextNode.metadata.contextIcon as string | undefined,
-      color: contextNode.metadata.contextColor as string | undefined,
-      name: contextNode.content,
+      icon: icon || undefined,
+      color: color || undefined,
+      name: contentParts.join(':'),
     };
-  }, [node, nodes, ancestorRegistry]);
+  }, [activeContextData]);
 }
 
-/**
- * Get bundled contexts for a context declaration node.
- * Returns empty array for non-context declarations.
- */
-export function useBundledContexts(
-  node: TreeNode | undefined,
-  nodes: Record<string, TreeNode>
-): BundledContext[] {
-  return useMemo(() => {
-    if (!node) return [];
+export function useBundledContexts(node: TreeNode | undefined): BundledContext[] {
+  const isContextDeclaration = node?.metadata.isContextDeclaration === true;
+  const bundledContextIds = (node?.metadata.bundledContextIds as string[]) || [];
 
-    // Only context declarations can have bundled contexts
-    if (node.metadata.isContextDeclaration !== true) {
-      return [];
+  const bundledContextsData = useStore((state) => {
+    if (!isContextDeclaration || bundledContextIds.length === 0) return null;
+
+    const parts: string[] = [];
+    for (const contextId of bundledContextIds) {
+      const contextNode = state.nodes[contextId];
+      if (contextNode) {
+        parts.push(`${contextId}:${contextNode.metadata.contextIcon ?? ''}:${contextNode.metadata.contextColor ?? ''}:${contextNode.content}`);
+      }
     }
+    return parts.join('|');
+  });
 
-    const bundledContextIds = (node.metadata.bundledContextIds as string[]) || [];
+  return useMemo(() => {
+    if (!bundledContextsData) return [];
 
-    return bundledContextIds
-      .map(contextId => {
-        const contextNode = nodes[contextId];
-        if (!contextNode) return null;
-        return {
-          icon: contextNode.metadata.contextIcon as string | undefined,
-          color: contextNode.metadata.contextColor as string | undefined,
-          name: contextNode.content,
-        };
-      })
-      .filter((ctx): ctx is BundledContext => ctx !== null);
-  }, [node, nodes]);
+    const parts = bundledContextsData.split('|');
+    return parts.map(part => {
+      const [, icon, color, ...contentParts] = part.split(':');
+      return {
+        icon: icon || undefined,
+        color: color || undefined,
+        name: contentParts.join(':'),
+      };
+    });
+  }, [bundledContextsData]);
 }

@@ -1,9 +1,9 @@
 import { TreeNode } from '../../../../shared/types';
 import { ContextMenuItem } from '../../ui/ContextMenu';
 import { AncestorRegistry } from '../../../services/ancestry';
-import { useContextAwareSubmenu } from './useContextAwareSubmenu';
+import { buildContextAwareSubmenu } from './useContextAwareSubmenu';
 
-interface UseCollaborateSubmenuParams {
+interface BuildCollaborateSubmenuParams {
   node: TreeNode;
   nodes: Record<string, TreeNode>;
   ancestorRegistry: AncestorRegistry;
@@ -13,11 +13,7 @@ interface UseCollaborateSubmenuParams {
   onSetActiveContext: (nodeId: string, contextId: string) => void;
 }
 
-/**
- * Hook for generating the Collaborate submenu.
- * Uses shared context-aware submenu structure.
- */
-export function useCollaborateSubmenu({
+export function buildCollaborateSubmenu({
   node,
   nodes,
   ancestorRegistry,
@@ -25,8 +21,8 @@ export function useCollaborateSubmenu({
   onCollaborate,
   onCollaborateInTerminal,
   onSetActiveContext,
-}: UseCollaborateSubmenuParams): ContextMenuItem[] {
-  return useContextAwareSubmenu({
+}: BuildCollaborateSubmenuParams): ContextMenuItem[] {
+  return buildContextAwareSubmenu({
     node,
     nodes,
     ancestorRegistry,

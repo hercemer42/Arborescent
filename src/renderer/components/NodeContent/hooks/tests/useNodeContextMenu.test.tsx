@@ -90,21 +90,39 @@ describe('useNodeContextMenu', () => {
     <TreeStoreContext.Provider value={store}>{children}</TreeStoreContext.Provider>
   );
 
+  // Helper to open context menu and wait for items to be populated
+  async function openContextMenu(result: { current: ReturnType<typeof useNodeContextMenu> }) {
+    const mockEvent = createMockContextMenuEvent(100, 200);
+    await act(async () => {
+      await result.current.handleContextMenu(mockEvent);
+    });
+  }
+
   it('should initialize with no context menu', () => {
     const { result } = renderHook(() => useNodeContextMenu(mockNode), { wrapper });
 
     expect(result.current.contextMenu).toBe(null);
   });
 
-  it('should return contextMenuItems array', () => {
+  it('should return empty contextMenuItems array before menu is opened', () => {
     const { result } = renderHook(() => useNodeContextMenu(mockNode), { wrapper });
 
     expect(result.current.contextMenuItems).toBeInstanceOf(Array);
+    expect(result.current.contextMenuItems.length).toBe(0);
+  });
+
+  it('should populate contextMenuItems after handleContextMenu', async () => {
+    const { result } = renderHook(() => useNodeContextMenu(mockNode), { wrapper });
+
+    await openContextMenu(result);
+
     expect(result.current.contextMenuItems.length).toBeGreaterThan(0);
   });
 
-  it('should have Edit submenu with Delete item', () => {
+  it('should have Edit submenu with Delete item', async () => {
     const { result } = renderHook(() => useNodeContextMenu(mockNode), { wrapper });
+
+    await openContextMenu(result);
 
     const editMenu = result.current.contextMenuItems.find(item => item.label === 'Edit');
     expect(editMenu).toBeDefined();
@@ -115,8 +133,10 @@ describe('useNodeContextMenu', () => {
     expect(deleteItem?.danger).toBe(true);
   });
 
-  it('should have Edit submenu with Select, Copy, Cut, Paste items', () => {
+  it('should have Edit submenu with Select, Copy, Cut, Paste items', async () => {
     const { result } = renderHook(() => useNodeContextMenu(mockNode), { wrapper });
+
+    await openContextMenu(result);
 
     const editMenu = result.current.contextMenuItems.find(item => item.label === 'Edit');
     expect(editMenu?.submenu?.find(item => item.label === 'Select')).toBeDefined();
@@ -125,7 +145,7 @@ describe('useNodeContextMenu', () => {
     expect(editMenu?.submenu?.find(item => item.label === 'Paste')).toBeDefined();
   });
 
-  it('should have Context submenu with Declare as context when parent is blueprint', () => {
+  it('should have Context submenu with Declare as context when parent is blueprint', async () => {
     // Set up a tree where test-node has a blueprint parent
     const parentNode: TreeNode = {
       id: 'parent-node',
@@ -145,6 +165,8 @@ describe('useNodeContextMenu', () => {
 
     const { result } = renderHook(() => useNodeContextMenu(mockNode), { wrapper });
 
+    await openContextMenu(result);
+
     const contextMenu = result.current.contextMenuItems.find(item => item.label === 'Context');
     expect(contextMenu).toBeDefined();
 
@@ -152,8 +174,10 @@ describe('useNodeContextMenu', () => {
     expect(declareItem).toBeDefined();
   });
 
-  it('should not show Declare as context when parent is not a blueprint', () => {
+  it('should not show Declare as context when parent is not a blueprint', async () => {
     const { result } = renderHook(() => useNodeContextMenu(mockNode), { wrapper });
+
+    await openContextMenu(result);
 
     const contextMenu = result.current.contextMenuItems.find(item => item.label === 'Context');
     expect(contextMenu).toBeDefined();
@@ -163,7 +187,7 @@ describe('useNodeContextMenu', () => {
     expect(declareItem).toBeUndefined();
   });
 
-  it('should show Remove context declaration in Context submenu when node is a context', () => {
+  it('should show Remove context declaration in Context submenu when node is a context', async () => {
     const contextNode: TreeNode = {
       ...mockNode,
       metadata: { isContextDeclaration: true, contextIcon: 'lightbulb' },
@@ -174,6 +198,8 @@ describe('useNodeContextMenu', () => {
     });
 
     const { result } = renderHook(() => useNodeContextMenu(contextNode), { wrapper });
+
+    await openContextMenu(result);
 
     const contextMenu = result.current.contextMenuItems.find(item => item.label === 'Context');
     const removeItem = contextMenu?.submenu?.find(item => item.label === 'Remove context declaration');
@@ -274,8 +300,10 @@ describe('useNodeContextMenu', () => {
     mockConfirm.mockRestore();
   });
 
-  it('should have Collaborate submenu with In browser and In terminal options', () => {
+  it('should have Collaborate submenu with In browser and In terminal options', async () => {
     const { result } = renderHook(() => useNodeContextMenu(mockNode), { wrapper });
+
+    await openContextMenu(result);
 
     const collaborateMenu = result.current.contextMenuItems.find(item => item.label === 'Collaborate');
     expect(collaborateMenu).toBeDefined();
@@ -283,8 +311,10 @@ describe('useNodeContextMenu', () => {
     expect(collaborateMenu?.submenu?.find(item => item.label === 'In terminal')).toBeDefined();
   });
 
-  it('should have correct menu order: Execute, Collaborate, Context, Edit, Copy to Clipboard', () => {
+  it('should have correct menu order: Execute, Collaborate, Context, Edit, Copy to Clipboard', async () => {
     const { result } = renderHook(() => useNodeContextMenu(mockNode), { wrapper });
+
+    await openContextMenu(result);
 
     const labels = result.current.contextMenuItems.map(item => item.label);
     const executeIndex = labels.indexOf('Execute');
@@ -300,14 +330,16 @@ describe('useNodeContextMenu', () => {
   });
 
   describe('context application', () => {
-    it('should show "Apply context" in Context submenu when node has no context', () => {
+    it('should show "Apply context" in Context submenu when node has no context', async () => {
       const { result } = renderHook(() => useNodeContextMenu(mockNode), { wrapper });
+
+      await openContextMenu(result);
 
       const applyContextItem = findInSubmenu(result.current.contextMenuItems, 'Context', 'Apply context');
       expect(applyContextItem).toBeDefined();
     });
 
-    it('should show "Remove context" in Context submenu when node has context applied', () => {
+    it('should show "Remove context" in Context submenu when node has context applied', async () => {
       const nodeWithContext: TreeNode = {
         ...mockNode,
         metadata: { appliedContextIds: ['context-node'] },
@@ -319,11 +351,13 @@ describe('useNodeContextMenu', () => {
 
       const { result } = renderHook(() => useNodeContextMenu(nodeWithContext), { wrapper });
 
+      await openContextMenu(result);
+
       const removeContextItem = findInSubmenu(result.current.contextMenuItems, 'Context', 'Remove context');
       expect(removeContextItem).toBeDefined();
     });
 
-    it('should show "Apply context" in Context submenu for a context declaration (for bundling)', () => {
+    it('should show "Apply context" in Context submenu for a context declaration (for bundling)', async () => {
       const contextDeclarationNode: TreeNode = {
         ...mockNode,
         metadata: { isContextDeclaration: true, contextIcon: 'star' },
@@ -345,11 +379,13 @@ describe('useNodeContextMenu', () => {
 
       const { result } = renderHook(() => useNodeContextMenu(contextDeclarationNode), { wrapper });
 
+      await openContextMenu(result);
+
       const applyContextItem = findInSubmenu(result.current.contextMenuItems, 'Context', 'Apply context');
       expect(applyContextItem).toBeDefined();
     });
 
-    it('should show available context declarations in Apply context submenu', () => {
+    it('should show available context declarations in Apply context submenu', async () => {
       const contextNode: TreeNode = {
         id: 'context-node',
         content: 'My Context',
@@ -373,6 +409,8 @@ describe('useNodeContextMenu', () => {
 
       const { result } = renderHook(() => useNodeContextMenu(mockNode), { wrapper });
 
+      await openContextMenu(result);
+
       const contextMenu = result.current.contextMenuItems.find(item => item.label === 'Context');
       const applyContextItem = contextMenu?.submenu?.find(item => item.label === 'Apply context');
       expect(applyContextItem?.submenu).toBeDefined();
@@ -380,8 +418,10 @@ describe('useNodeContextMenu', () => {
       expect(applyContextItem?.submenu?.[0].label).toBe('My Context');
     });
 
-    it('should disable Apply context when no context declarations exist', () => {
+    it('should disable Apply context when no context declarations exist', async () => {
       const { result } = renderHook(() => useNodeContextMenu(mockNode), { wrapper });
+
+      await openContextMenu(result);
 
       const contextMenu = result.current.contextMenuItems.find(item => item.label === 'Context');
       const applyContextItem = contextMenu?.submenu?.find(item => item.label === 'Apply context');

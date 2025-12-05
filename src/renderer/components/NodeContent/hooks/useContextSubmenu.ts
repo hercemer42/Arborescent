@@ -1,46 +1,54 @@
-import { useMemo, useCallback, createElement } from 'react';
-import { useStore } from '../../../store/tree/useStore';
-import { useIconPickerStore } from '../../../store/iconPicker/iconPickerStore';
+import { createElement } from 'react';
 import { TreeNode } from '../../../../shared/types';
 import { ContextMenuItem } from '../../ui/ContextMenu';
 import { getIconByName } from '../../ui/IconPicker/IconPicker';
+import { ContextDeclarationInfo } from '../../../store/tree/treeStore';
+import { AncestorRegistry } from '../../../services/ancestry';
 
-export function useContextSubmenu(node: TreeNode) {
-  const nodes = useStore((state) => state.nodes);
-  const ancestorRegistry = useStore((state) => state.ancestorRegistry);
-  const contextDeclarations = useStore((state) => state.contextDeclarations);
-  const declareAsContext = useStore((state) => state.actions.declareAsContext);
-  const removeContextDeclaration = useStore((state) => state.actions.removeContextDeclaration);
-  const applyContext = useStore((state) => state.actions.applyContext);
-  const removeAppliedContext = useStore((state) => state.actions.removeAppliedContext);
-  const addToBundle = useStore((state) => state.actions.addToBundle);
-  const removeFromBundle = useStore((state) => state.actions.removeFromBundle);
-  const openIconPicker = useIconPickerStore((state) => state.open);
+interface BuildContextSubmenuParams {
+  node: TreeNode;
+  nodes: Record<string, TreeNode>;
+  ancestorRegistry: AncestorRegistry;
+  contextDeclarations: ContextDeclarationInfo[];
+  openIconPicker: (nodeId: string | null, callback: (selection: { icon: string; color?: string }) => void) => void;
+  actions: {
+    declareAsContext: (nodeId: string, icon?: string, color?: string) => void;
+    removeContextDeclaration: (nodeId: string) => void;
+    applyContext: (nodeId: string, contextNodeId: string) => void;
+    removeAppliedContext: (nodeId: string, contextNodeId?: string) => void;
+    addToBundle: (nodeId: string, contextNodeId: string) => void;
+    removeFromBundle: (nodeId: string, contextNodeId: string) => void;
+  };
+}
 
+export function buildContextSubmenu({
+  node,
+  nodes,
+  ancestorRegistry,
+  contextDeclarations,
+  openIconPicker,
+  actions,
+}: BuildContextSubmenuParams): ContextMenuItem | null {
   const isContextDeclaration = node.metadata.isContextDeclaration === true;
   const appliedContextIds = (node.metadata.appliedContextIds as string[]) || [];
   const bundledContextIds = (node.metadata.bundledContextIds as string[]) || [];
   const hasAppliedContext = appliedContextIds.length > 0;
 
-  // Check if this node can be declared as a context
-  // Requirements: not already a declaration, parent is a blueprint
-  // Context children CAN be promoted to nested context declarations
-  const canDeclareAsContext = useMemo(() => {
+  const canDeclareAsContext = (() => {
     if (isContextDeclaration) return false;
     const ancestors = ancestorRegistry[node.id] || [];
     const parentId = ancestors[ancestors.length - 1];
     const parent = parentId ? nodes[parentId] : null;
     return parent?.metadata.isBlueprint === true;
-  }, [isContextDeclaration, ancestorRegistry, node.id, nodes]);
+  })();
 
-  const handleDeclareAsContext = useCallback(() => {
+  const handleDeclareAsContext = () => {
     openIconPicker(null, (selection) => {
-      declareAsContext(node.id, selection.icon, selection.color);
+      actions.declareAsContext(node.id, selection.icon, selection.color);
     });
-  }, [openIconPicker, declareAsContext, node.id]);
+  };
 
-  const handleRemoveContextDeclaration = useCallback(() => {
-    // Check how many nodes have this context applied
+  const handleRemoveContextDeclaration = () => {
     const affectedNodes = Object.values(nodes).filter(
       n => {
         const ids = (n.metadata.appliedContextIds as string[]) || [];
@@ -57,136 +65,102 @@ export function useContextSubmenu(node: TreeNode) {
       if (!confirmed) return;
     }
 
-    removeContextDeclaration(node.id);
-  }, [nodes, node.id, removeContextDeclaration]);
+    actions.removeContextDeclaration(node.id);
+  };
 
-  // Build context selection submenu items (for applying context to a node)
-  const contextSelectionItems: ContextMenuItem[] = useMemo(() => {
-    const ancestors = ancestorRegistry[node.id] || [];
-    return contextDeclarations
-      .filter(ctx => ctx.nodeId !== node.id)
-      .filter(ctx => !appliedContextIds.includes(ctx.nodeId))
-      .filter(ctx => !ancestors.includes(ctx.nodeId))
-      .map(ctx => {
-        const Icon = getIconByName(ctx.icon);
-        return {
-          label: ctx.content.length > 30 ? ctx.content.slice(0, 30) + '...' : ctx.content,
-          onClick: () => applyContext(node.id, ctx.nodeId),
-          icon: Icon ? createElement(Icon, { size: 14 }) : undefined,
-        };
-      });
-  }, [contextDeclarations, node.id, applyContext, appliedContextIds, ancestorRegistry]);
-
-  // Build remove context submenu items (for removing applied contexts)
-  const removeContextItems: ContextMenuItem[] = useMemo(() => {
-    const items: ContextMenuItem[] = [];
-    for (const contextId of appliedContextIds) {
-      const contextNode = nodes[contextId];
-      if (!contextNode) continue;
-      const contextDecl = contextDeclarations.find(c => c.nodeId === contextId);
-      const Icon = contextDecl ? getIconByName(contextDecl.icon) : null;
-      const content = contextNode.content || 'Untitled context';
-      items.push({
-        label: content.length > 30 ? content.slice(0, 30) + '...' : content,
-        onClick: () => removeAppliedContext(node.id, contextId),
+  const ancestors = ancestorRegistry[node.id] || [];
+  const contextSelectionItems: ContextMenuItem[] = contextDeclarations
+    .filter(ctx => ctx.nodeId !== node.id)
+    .filter(ctx => !appliedContextIds.includes(ctx.nodeId))
+    .filter(ctx => !ancestors.includes(ctx.nodeId))
+    .map(ctx => {
+      const Icon = getIconByName(ctx.icon);
+      return {
+        label: ctx.content.length > 30 ? ctx.content.slice(0, 30) + '...' : ctx.content,
+        onClick: () => actions.applyContext(node.id, ctx.nodeId),
         icon: Icon ? createElement(Icon, { size: 14 }) : undefined,
-      });
-    }
-    return items;
-  }, [appliedContextIds, nodes, contextDeclarations, removeAppliedContext, node.id]);
-
-  // Build bundle declarations submenu items with checkboxes
-  const bundleDeclarationItems: ContextMenuItem[] = useMemo(() => {
-    if (!isContextDeclaration) return [];
-    return contextDeclarations
-      .filter(ctx => ctx.nodeId !== node.id) // Don't show self
-      .map(ctx => {
-        const Icon = getIconByName(ctx.icon);
-        const isBundled = bundledContextIds.includes(ctx.nodeId);
-        return {
-          label: ctx.content.length > 30 ? ctx.content.slice(0, 30) + '...' : ctx.content,
-          onClick: () => {
-            if (isBundled) {
-              removeFromBundle(node.id, ctx.nodeId);
-            } else {
-              addToBundle(node.id, ctx.nodeId);
-            }
-          },
-          icon: Icon ? createElement(Icon, { size: 14 }) : undefined,
-          radioSelected: isBundled,
-          keepOpenOnClick: true,
-        };
-      });
-  }, [contextDeclarations, node.id, addToBundle, removeFromBundle, bundledContextIds, isContextDeclaration]);
-
-  // Build the unified "Context" submenu with all context-related options
-  const contextMenuItem: ContextMenuItem | null = useMemo(() => {
-    const submenuItems: ContextMenuItem[] = [];
-
-    // 1. Apply context (with nested submenu for context selection)
-    submenuItems.push({
-      label: 'Apply context',
-      submenu: contextSelectionItems,
-      disabled: contextSelectionItems.length === 0,
+      };
     });
 
-    // 2. Remove context (only if context is applied)
-    if (hasAppliedContext) {
-      submenuItems.push({
-        label: 'Remove context',
-        submenu: removeContextItems,
-      });
-    }
+  const removeContextItems: ContextMenuItem[] = [];
+  for (const contextId of appliedContextIds) {
+    const contextNode = nodes[contextId];
+    if (!contextNode) continue;
+    const contextDecl = contextDeclarations.find(c => c.nodeId === contextId);
+    const Icon = contextDecl ? getIconByName(contextDecl.icon) : null;
+    const content = contextNode.content || 'Untitled context';
+    removeContextItems.push({
+      label: content.length > 30 ? content.slice(0, 30) + '...' : content,
+      onClick: () => actions.removeAppliedContext(node.id, contextId),
+      icon: Icon ? createElement(Icon, { size: 14 }) : undefined,
+    });
+  }
 
-    // 3. Declare as context (only if parent is blueprint and not already declaration/child)
-    if (canDeclareAsContext) {
-      submenuItems.push({
-        label: 'Declare as context',
-        onClick: handleDeclareAsContext,
-      });
-    }
+  const bundleDeclarationItems: ContextMenuItem[] = isContextDeclaration
+    ? contextDeclarations
+        .filter(ctx => ctx.nodeId !== node.id)
+        .map(ctx => {
+          const Icon = getIconByName(ctx.icon);
+          const isBundled = bundledContextIds.includes(ctx.nodeId);
+          return {
+            label: ctx.content.length > 30 ? ctx.content.slice(0, 30) + '...' : ctx.content,
+            onClick: () => {
+              if (isBundled) {
+                actions.removeFromBundle(node.id, ctx.nodeId);
+              } else {
+                actions.addToBundle(node.id, ctx.nodeId);
+              }
+            },
+            icon: Icon ? createElement(Icon, { size: 14 }) : undefined,
+            radioSelected: isBundled,
+            keepOpenOnClick: true,
+          };
+        })
+    : [];
 
-    // 4. Remove context declaration (only if this is a context declaration)
-    // Comes before "Bundle declarations"
-    if (isContextDeclaration) {
-      submenuItems.push({
-        label: 'Remove context declaration',
-        onClick: handleRemoveContextDeclaration,
-      });
-    }
+  const submenuItems: ContextMenuItem[] = [];
 
-    // 5. Bundle declarations (only for context declaration nodes)
-    // Uses checkboxes to toggle bundled status
-    if (isContextDeclaration) {
-      submenuItems.push({
-        label: 'Bundle declarations',
-        submenu: bundleDeclarationItems,
-        disabled: bundleDeclarationItems.length === 0,
-      });
-    }
+  submenuItems.push({
+    label: 'Apply context',
+    submenu: contextSelectionItems,
+    disabled: contextSelectionItems.length === 0,
+  });
 
-    // Return null if no items (shouldn't happen, but safety check)
-    if (submenuItems.length === 0) {
-      return null;
-    }
+  if (hasAppliedContext) {
+    submenuItems.push({
+      label: 'Remove context',
+      submenu: removeContextItems,
+    });
+  }
 
-    return {
-      label: 'Context',
-      submenu: submenuItems,
-    };
-  }, [
-    isContextDeclaration,
-    canDeclareAsContext,
-    hasAppliedContext,
-    contextSelectionItems,
-    removeContextItems,
-    bundleDeclarationItems,
-    node.id,
-    handleDeclareAsContext,
-    handleRemoveContextDeclaration,
-  ]);
+  if (canDeclareAsContext) {
+    submenuItems.push({
+      label: 'Declare as context',
+      onClick: handleDeclareAsContext,
+    });
+  }
+
+  if (isContextDeclaration) {
+    submenuItems.push({
+      label: 'Remove context declaration',
+      onClick: handleRemoveContextDeclaration,
+    });
+  }
+
+  if (isContextDeclaration) {
+    submenuItems.push({
+      label: 'Bundle declarations',
+      submenu: bundleDeclarationItems,
+      disabled: bundleDeclarationItems.length === 0,
+    });
+  }
+
+  if (submenuItems.length === 0) {
+    return null;
+  }
 
   return {
-    contextMenuItem,
+    label: 'Context',
+    submenu: submenuItems,
   };
 }

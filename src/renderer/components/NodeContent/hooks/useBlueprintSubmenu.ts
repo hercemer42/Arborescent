@@ -1,10 +1,9 @@
-import { useMemo, useCallback } from 'react';
 import { TreeNode } from '../../../../shared/types';
 import { ContextMenuItem } from '../../ui/ContextMenu';
 
-interface UseBlueprintSubmenuProps {
+interface BuildBlueprintSubmenuParams {
   node: TreeNode;
-  nodes: Record<string, TreeNode>;
+  getNodes: () => Record<string, TreeNode>;
   onAddToBlueprint: () => void;
   onRemoveFromBlueprint: () => void;
 }
@@ -21,13 +20,21 @@ function hasDescendantBlueprints(nodeId: string, nodes: Record<string, TreeNode>
   return false;
 }
 
-export function useBlueprintSubmenu({
+export function buildBlueprintSubmenu({
   node,
-  nodes,
+  getNodes,
   onAddToBlueprint,
   onRemoveFromBlueprint,
-}: UseBlueprintSubmenuProps): ContextMenuItem | null {
-  const handleRemove = useCallback(() => {
+}: BuildBlueprintSubmenuParams): ContextMenuItem | null {
+  // Hide Blueprint menu for context declarations and context children
+  if (node.metadata.isContextDeclaration === true || node.metadata.isContextChild === true) {
+    return null;
+  }
+
+  const isBlueprint = node.metadata.isBlueprint === true;
+
+  const handleRemove = () => {
+    const nodes = getNodes();
     const hasChildren = hasDescendantBlueprints(node.id, nodes);
     if (hasChildren) {
       const confirmed = window.confirm(
@@ -36,34 +43,24 @@ export function useBlueprintSubmenu({
       if (!confirmed) return;
     }
     onRemoveFromBlueprint();
-  }, [node.id, nodes, onRemoveFromBlueprint]);
+  };
 
-  return useMemo(() => {
-    // Hide Blueprint menu for context declarations and context children
-    // Their blueprint status is managed by the context system
-    if (node.metadata.isContextDeclaration === true || node.metadata.isContextChild === true) {
-      return null;
-    }
+  const submenuItems: ContextMenuItem[] = [];
 
-    const isBlueprint = node.metadata.isBlueprint === true;
+  if (!isBlueprint) {
+    submenuItems.push({
+      label: 'Add to Blueprint',
+      onClick: onAddToBlueprint,
+    });
+  } else {
+    submenuItems.push({
+      label: 'Remove from Blueprint',
+      onClick: handleRemove,
+    });
+  }
 
-    const submenuItems: ContextMenuItem[] = [];
-
-    if (!isBlueprint) {
-      submenuItems.push({
-        label: 'Add to Blueprint',
-        onClick: onAddToBlueprint,
-      });
-    } else {
-      submenuItems.push({
-        label: 'Remove from Blueprint',
-        onClick: handleRemove,
-      });
-    }
-
-    return {
-      label: 'Blueprint',
-      submenu: submenuItems,
-    };
-  }, [node, onAddToBlueprint, handleRemove]);
+  return {
+    label: 'Blueprint',
+    submenu: submenuItems,
+  };
 }

@@ -1,4 +1,4 @@
-import { useState, useMemo, useCallback } from 'react';
+import { useState, useCallback } from 'react';
 import { useStore } from '../../../store/tree/useStore';
 import { useActiveTreeStore } from '../../../store/tree/TreeStoreContext';
 import { TreeNode, NodeContext, PluginContextMenuItem } from '../../../../shared/types';
@@ -8,59 +8,229 @@ import { PluginCommandRegistry } from '../../../../../plugins/core/renderer/Comm
 import { useTerminalStore } from '../../../store/terminal/terminalStore';
 import { useFeedbackActions } from '../../Feedback/hooks/useFeedbackActions';
 import { usePanelStore } from '../../../store/panel/panelStore';
-import { useContextSubmenu } from './useContextSubmenu';
-import { useBlueprintSubmenu } from './useBlueprintSubmenu';
+import { buildContextSubmenu } from './useContextSubmenu';
+import { buildBlueprintSubmenu } from './useBlueprintSubmenu';
 import { logger } from '../../../services/logger';
 import { writeToClipboard } from '../../../services/clipboardService';
 import { exportNodeAsMarkdown } from '../../../utils/markdown';
 import { hasAncestorWithPluginSession, getEffectiveContextIds } from '../../../utils/nodeHelpers';
-import { useCollaborateSubmenu } from './useCollaborateSubmenu';
-import { useExecuteSubmenu } from './useExecuteSubmenu';
+import { buildCollaborateSubmenu } from './useCollaborateSubmenu';
+import { buildExecuteSubmenu } from './useExecuteSubmenu';
 import { getPositionFromPoint } from '../../../utils/position';
+import { useIconPickerStore } from '../../../store/iconPicker/iconPickerStore';
 
 export function useNodeContextMenu(node: TreeNode) {
   const treeType = useStore((state) => state.treeType);
   const isFeedbackTree = treeType === 'feedback';
-  const deleteNode = useStore((state) => state.actions.deleteNode);
-  const copyNodes = useStore((state) => state.actions.copyNodes);
-  const cutNodes = useStore((state) => state.actions.cutNodes);
-  const pasteNodes = useStore((state) => state.actions.pasteNodes);
-  const toggleNodeSelection = useStore((state) => state.actions.toggleNodeSelection);
-  const nodes = useStore((state) => state.nodes);
-  const ancestorRegistry = useStore((state) => state.ancestorRegistry);
-  const collaboratingNodeId = useStore((state) => state.collaboratingNodeId);
-  const collaborate = useStore((state) => state.actions.collaborate);
-  const collaborateInTerminal = useStore((state) => state.actions.collaborateInTerminal);
-  const executeInBrowser = useStore((state) => state.actions.executeInBrowser);
-  const executeInTerminalWithContext = useStore((state) => state.actions.executeInTerminalWithContext);
-  const setActiveContext = useStore((state) => state.actions.setActiveContext);
-  const addToBlueprint = useStore((state) => state.actions.addToBlueprint);
-  const removeFromBlueprint = useStore((state) => state.actions.removeFromBlueprint);
   const enabledPlugins = usePluginStore((state) => state.enabledPlugins);
   const store = useActiveTreeStore();
   const [contextMenu, setContextMenu] = useState<{ x: number; y: number } | null>(null);
-  const [pluginMenuItems, setPluginMenuItems] = useState<ContextMenuItem[]>([]);
+  const [menuItems, setMenuItems] = useState<ContextMenuItem[]>([]);
 
   const { handleCancel } = useFeedbackActions();
   const showTerminal = usePanelStore((state) => state.showTerminal);
-  const { contextMenuItem } = useContextSubmenu(node);
+  const openIconPicker = useIconPickerStore((state) => state.open);
 
-  const handleAddToBlueprint = useCallback(() => {
-    addToBlueprint(node.id);
-  }, [addToBlueprint, node.id]);
+  function convertToContextMenuItem(
+    item: PluginContextMenuItem,
+    targetNode: TreeNode
+  ): ContextMenuItem {
+    return {
+      label: item.label,
+      onClick: () => {
+        const state = store.getState();
+        PluginCommandRegistry.execute(item.id, {
+          node: targetNode,
+          actions: state.actions,
+          nodes: state.nodes,
+        });
+      },
+      disabled: item.disabled,
+      danger: false,
+    };
+  }
 
-  const handleRemoveFromBlueprint = useCallback(() => {
-    removeFromBlueprint(node.id, true);
-  }, [removeFromBlueprint, node.id]);
+  // Build all menu items when context menu is opened (lazy evaluation)
+  const buildMenuItems = useCallback(async () => {
+    const state = store.getState();
+    const { nodes, ancestorRegistry, collaboratingNodeId, contextDeclarations, actions } = state;
 
-  const blueprintMenuItem = useBlueprintSubmenu({
-    node,
-    nodes,
-    onAddToBlueprint: handleAddToBlueprint,
-    onRemoveFromBlueprint: handleRemoveFromBlueprint,
-  });
+    // Plugin items
+    const hasAncestorSession = hasAncestorWithPluginSession(node.id, nodes, ancestorRegistry);
+    const nodeContext: NodeContext = { hasAncestorSession };
 
-  const handleContextMenu = async (e: React.MouseEvent) => {
+    const pluginResults = await Promise.all(
+      enabledPlugins.map(async (plugin) => {
+        const result = await plugin.extensionPoints.provideNodeContextMenuItems?.(
+          node,
+          nodeContext
+        );
+        return result || [];
+      })
+    );
+    const pluginItems = pluginResults.flat().map((item) => convertToContextMenuItem(item, node));
+
+    // Compute context-related values
+    const hasEffectiveContext = getEffectiveContextIds(node.id, nodes, ancestorRegistry).length > 0;
+    const isNodeBeingCollaborated = collaboratingNodeId === node.id;
+    const collaborateDisabled = !!collaboratingNodeId;
+
+    // Handlers
+    const handleCollaborate = async () => {
+      try {
+        await actions.collaborate(node.id);
+      } catch (error) {
+        logger.error('Failed to start collaboration', error as Error, 'Context Menu');
+      }
+    };
+
+    const handleCollaborateInTerminal = async () => {
+      const terminalId = await useTerminalStore.getState().openTerminal();
+      if (!terminalId) {
+        logger.error('Failed to create terminal', new Error('No terminal available'), 'Context Menu');
+        return;
+      }
+      try {
+        showTerminal();
+        await actions.collaborateInTerminal(node.id, terminalId);
+      } catch (error) {
+        logger.error('Failed to collaborate in terminal', error as Error, 'Context Menu');
+      }
+    };
+
+    const handleExecuteInBrowser = async () => {
+      try {
+        await actions.executeInBrowser(node.id);
+      } catch (error) {
+        logger.error('Failed to execute in browser', error as Error, 'Context Menu');
+      }
+    };
+
+    const handleExecuteInTerminal = async () => {
+      try {
+        await actions.executeInTerminalWithContext(node.id);
+      } catch (error) {
+        logger.error('Failed to execute in terminal', error as Error, 'Context Menu');
+      }
+    };
+
+    const handleDelete = () => {
+      const deleted = actions.deleteNode(node.id);
+      if (!deleted) {
+        const confirmed = window.confirm(
+          'This node has children. Deleting it will also delete all its children. Are you sure?'
+        );
+        if (confirmed) {
+          actions.deleteNode(node.id, true);
+        }
+      }
+    };
+
+    const handleCopyToClipboard = async () => {
+      const currentNodes = store.getState().nodes;
+      const formattedContent = exportNodeAsMarkdown(node, currentNodes);
+      await writeToClipboard(formattedContent, 'ContextMenu');
+    };
+
+    // Build submenus
+    const executeSubmenu = buildExecuteSubmenu({
+      node,
+      nodes,
+      ancestorRegistry,
+      hasEffectiveContext,
+      onExecuteInBrowser: handleExecuteInBrowser,
+      onExecuteInTerminal: handleExecuteInTerminal,
+      onSetActiveContext: actions.setActiveContext,
+    });
+
+    const collaborateSubmenu = buildCollaborateSubmenu({
+      node,
+      nodes,
+      ancestorRegistry,
+      hasEffectiveContext,
+      onCollaborate: handleCollaborate,
+      onCollaborateInTerminal: handleCollaborateInTerminal,
+      onSetActiveContext: actions.setActiveContext,
+    });
+
+    const contextMenuItem = buildContextSubmenu({
+      node,
+      nodes,
+      ancestorRegistry,
+      contextDeclarations,
+      openIconPicker,
+      actions: {
+        declareAsContext: actions.declareAsContext,
+        removeContextDeclaration: actions.removeContextDeclaration,
+        applyContext: actions.applyContext,
+        removeAppliedContext: actions.removeAppliedContext,
+        addToBundle: actions.addToBundle,
+        removeFromBundle: actions.removeFromBundle,
+      },
+    });
+
+    const blueprintMenuItem = buildBlueprintSubmenu({
+      node,
+      getNodes: () => store.getState().nodes,
+      onAddToBlueprint: () => actions.addToBlueprint(node.id),
+      onRemoveFromBlueprint: () => actions.removeFromBlueprint(node.id, true),
+    });
+
+    // Base menu items
+    const baseMenuItems: ContextMenuItem[] = [
+      {
+        label: 'Execute',
+        submenu: executeSubmenu,
+      },
+      {
+        label: 'Collaborate',
+        submenu: collaborateSubmenu,
+        disabled: collaborateDisabled,
+      },
+      ...(isNodeBeingCollaborated ? [{
+        label: 'Cancel collaboration',
+        onClick: handleCancel,
+        disabled: false,
+      }] : []),
+      ...(contextMenuItem ? [contextMenuItem] : []),
+      ...(blueprintMenuItem ? [blueprintMenuItem] : []),
+      {
+        label: 'Edit',
+        submenu: [
+          {
+            label: 'Select',
+            onClick: () => actions.toggleNodeSelection(node.id),
+          },
+          {
+            label: 'Copy',
+            onClick: () => actions.copyNodes(),
+          },
+          {
+            label: 'Cut',
+            onClick: () => actions.cutNodes(),
+          },
+          {
+            label: 'Paste',
+            onClick: () => actions.pasteNodes(),
+          },
+          {
+            label: 'Delete',
+            onClick: handleDelete,
+            danger: true,
+          },
+        ],
+      },
+      {
+        label: 'Copy to Clipboard',
+        onClick: handleCopyToClipboard,
+        disabled: false,
+      },
+    ];
+
+    return [...pluginItems, ...baseMenuItems];
+  }, [node, store, enabledPlugins, showTerminal, handleCancel, openIconPicker]);
+
+  const handleContextMenu = useCallback(async (e: React.MouseEvent) => {
     e.preventDefault();
     if (isFeedbackTree) return;
 
@@ -78,190 +248,27 @@ export function useNodeContextMenu(node: TreeNode) {
 
     setContextMenu({ x: e.clientX, y: e.clientY });
 
-    const hasAncestorSession = hasAncestorWithPluginSession(node.id, nodes, ancestorRegistry);
-    const nodeContext: NodeContext = {
-      hasAncestorSession,
-    };
+    // Build menu items lazily when menu is opened
+    const items = await buildMenuItems();
+    setMenuItems(items);
+  }, [node.id, store, isFeedbackTree, buildMenuItems]);
 
-    const items = await Promise.all(
-      enabledPlugins.map(async (plugin) => {
-        const result = await plugin.extensionPoints.provideNodeContextMenuItems?.(
-          node,
-          nodeContext
-        );
-        return result || [];
-      })
-    );
-
-    const flatItems = items.flat();
-    const converted = flatItems.map((item) => convertToContextMenuItem(item, node));
-    setPluginMenuItems(converted);
-  };
-
-  const handleDelete = () => {
-    const deleted = deleteNode(node.id);
+  const handleDelete = useCallback(() => {
+    const { actions } = store.getState();
+    const deleted = actions.deleteNode(node.id);
     if (!deleted) {
       const confirmed = window.confirm(
         'This node has children. Deleting it will also delete all its children. Are you sure?'
       );
       if (confirmed) {
-        deleteNode(node.id, true);
+        actions.deleteNode(node.id, true);
       }
     }
-  };
-
-  const handleCopyToClipboard = async () => {
-    const formattedContent = exportNodeAsMarkdown(node, nodes);
-    await writeToClipboard(formattedContent, 'ContextMenu');
-  };
-
-  const handleCollaborate = async () => {
-    try {
-      await collaborate(node.id);
-      // Don't show feedback panel here - let the user stay in their current view
-      // Panel will be shown when clipboard content is detected
-    } catch (error) {
-      logger.error('Failed to start collaboration', error as Error, 'Context Menu');
-    }
-  };
-
-  const handleCollaborateInTerminal = async () => {
-    const terminalId = await useTerminalStore.getState().openTerminal();
-    if (!terminalId) {
-      logger.error('Failed to create terminal', new Error('No terminal available'), 'Context Menu');
-      return;
-    }
-
-    try {
-      showTerminal();
-      await collaborateInTerminal(node.id, terminalId);
-    } catch (error) {
-      logger.error('Failed to collaborate in terminal', error as Error, 'Context Menu');
-    }
-  };
-
-  const handleCancelCollaboration = async () => {
-    await handleCancel();
-  };
-
-  const handleExecuteInBrowser = async () => {
-    try {
-      await executeInBrowser(node.id);
-    } catch (error) {
-      logger.error('Failed to execute in browser', error as Error, 'Context Menu');
-    }
-  };
-
-  const handleExecuteInTerminal = async () => {
-    try {
-      await executeInTerminalWithContext(node.id);
-    } catch (error) {
-      logger.error('Failed to execute in terminal', error as Error, 'Context Menu');
-    }
-  };
-
-  function convertToContextMenuItem(
-    item: PluginContextMenuItem,
-    node: TreeNode
-  ): ContextMenuItem {
-    return {
-      label: item.label,
-      onClick: () => {
-        const state = store.getState();
-        PluginCommandRegistry.execute(item.id, {
-          node,
-          actions: state.actions,
-          nodes: state.nodes,
-        });
-      },
-      disabled: item.disabled,
-      danger: false,
-    };
-  }
-
-  const isNodeBeingCollaborated = collaboratingNodeId === node.id;
-  const hasEffectiveContext = useMemo(
-    () => getEffectiveContextIds(node.id, nodes, ancestorRegistry).length > 0,
-    [node.id, nodes, ancestorRegistry]
-  );
-  // Collaborate submenu is only disabled if another collaboration is in progress
-  const collaborateDisabled = !!collaboratingNodeId;
-
-  const collaborateSubmenu = useCollaborateSubmenu({
-    node,
-    nodes,
-    ancestorRegistry,
-    hasEffectiveContext,
-    onCollaborate: handleCollaborate,
-    onCollaborateInTerminal: handleCollaborateInTerminal,
-    onSetActiveContext: setActiveContext,
-  });
-
-  const executeSubmenu = useExecuteSubmenu({
-    node,
-    nodes,
-    ancestorRegistry,
-    hasEffectiveContext,
-    onExecuteInBrowser: handleExecuteInBrowser,
-    onExecuteInTerminal: handleExecuteInTerminal,
-    onSetActiveContext: setActiveContext,
-  });
-
-  const baseMenuItems: ContextMenuItem[] = [
-    {
-      label: 'Execute',
-      submenu: executeSubmenu,
-    },
-    {
-      label: 'Collaborate',
-      submenu: collaborateSubmenu,
-      disabled: collaborateDisabled,
-    },
-    ...(isNodeBeingCollaborated ? [{
-      label: 'Cancel collaboration',
-      onClick: handleCancelCollaboration,
-      disabled: false,
-    }] : []),
-    ...(contextMenuItem ? [contextMenuItem] : []),
-    ...(blueprintMenuItem ? [blueprintMenuItem] : []),
-    {
-      label: 'Edit',
-      submenu: [
-        {
-          label: 'Select',
-          onClick: () => toggleNodeSelection(node.id),
-        },
-        {
-          label: 'Copy',
-          onClick: () => copyNodes(),
-        },
-        {
-          label: 'Cut',
-          onClick: () => cutNodes(),
-        },
-        {
-          label: 'Paste',
-          onClick: () => pasteNodes(),
-        },
-        {
-          label: 'Delete',
-          onClick: handleDelete,
-          danger: true,
-        },
-      ],
-    },
-    {
-      label: 'Copy to Clipboard',
-      onClick: handleCopyToClipboard,
-      disabled: false,
-    },
-  ];
-
-  const allMenuItems = [...pluginMenuItems, ...baseMenuItems];
+  }, [node.id, store]);
 
   return {
     contextMenu,
-    contextMenuItems: allMenuItems,
+    contextMenuItems: menuItems,
     handleContextMenu,
     handleDelete,
     closeContextMenu: () => setContextMenu(null),
