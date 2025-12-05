@@ -28,7 +28,8 @@ export const createBlueprintActions = (
   get: () => StoreState,
   set: StoreSetter,
   triggerAutosave?: () => void,
-  executeCommand?: (command: Command) => void
+  executeCommand?: (command: Command) => void,
+  refreshContextDeclarations?: () => void
 ): BlueprintActions => {
   function runBlueprintCommand(nodeId: string, action: 'add' | 'remove', cascade: boolean): void {
     const command = new BlueprintCommand(
@@ -39,7 +40,8 @@ export const createBlueprintActions = (
       () => get().rootNodeId,
       () => get().ancestorRegistry,
       (nodes) => set({ nodes }),
-      triggerAutosave
+      triggerAutosave,
+      refreshContextDeclarations
     );
 
     if (executeCommand) {

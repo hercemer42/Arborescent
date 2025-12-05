@@ -1,6 +1,7 @@
 import { BaseCommand } from './Command';
 import { TreeNode } from '../../../../shared/types';
 import { moveNodeInRegistry, AncestorRegistry } from '../../../services/ancestry';
+import { getContextDeclarationId, getAllDescendants, updateNodeMetadata } from '../../../utils/nodeHelpers';
 
 /**
  * Command for moving a node to a new parent/position
@@ -9,6 +10,12 @@ import { moveNodeInRegistry, AncestorRegistry } from '../../../services/ancestry
 export class MoveNodeCommand extends BaseCommand {
   private oldParentId: string | null = null;
   private oldPosition: number = -1;
+  private oldContextDeclarationId: string | undefined = undefined;
+  private previousContextStates: Map<string, {
+    isContextChild: boolean | undefined;
+    contextParentId: string | undefined;
+    isBlueprint: boolean | undefined;
+  }> = new Map();
 
   constructor(
     private nodeId: string,
@@ -44,8 +51,14 @@ export class MoveNodeCommand extends BaseCommand {
 
     this.oldPosition = oldParent.children.indexOf(this.nodeId);
 
+    // Capture old context declaration ID for the moved node (before move)
+    this.oldContextDeclarationId = getContextDeclarationId(node);
+
+    // Clear previous context states
+    this.previousContextStates.clear();
+
     // Perform the move
-    const updatedNodes = { ...nodes };
+    let updatedNodes = { ...nodes };
 
     // Remove from old parent
     updatedNodes[this.oldParentId] = {
@@ -64,6 +77,14 @@ export class MoveNodeCommand extends BaseCommand {
       ...newParent,
       children: newChildren,
     };
+
+    // Update context metadata based on new parent
+    const newContextDeclarationId = getContextDeclarationId(newParent);
+    updatedNodes = this.updateContextMetadata(
+      updatedNodes,
+      this.nodeId,
+      newContextDeclarationId
+    );
 
     // Incremental update: update ancestors for moved node and descendants
     const newAncestorRegistry = moveNodeInRegistry(
@@ -87,13 +108,64 @@ export class MoveNodeCommand extends BaseCommand {
     this.triggerAutosave?.();
   }
 
+  /**
+   * Update context metadata for a moved node and its descendants.
+   * Skip nodes that are context declarations themselves (they maintain their own context).
+   */
+  private updateContextMetadata(
+    nodes: Record<string, TreeNode>,
+    nodeId: string,
+    newContextDeclarationId: string | undefined
+  ): Record<string, TreeNode> {
+    let updatedNodes = nodes;
+    const node = nodes[nodeId];
+    if (!node) return updatedNodes;
+
+    // Get all nodes to update (moved node + descendants, excluding context declarations)
+    const nodeIdsToUpdate = [nodeId, ...getAllDescendants(nodeId, nodes)].filter(id => {
+      const n = nodes[id];
+      // Skip if this is a context declaration - it keeps its own context
+      return n && n.metadata.isContextDeclaration !== true;
+    });
+
+    for (const id of nodeIdsToUpdate) {
+      const n = updatedNodes[id];
+      if (!n) continue;
+
+      // Capture previous state for undo
+      this.previousContextStates.set(id, {
+        isContextChild: n.metadata.isContextChild as boolean | undefined,
+        contextParentId: n.metadata.contextParentId as string | undefined,
+        isBlueprint: n.metadata.isBlueprint as boolean | undefined,
+      });
+
+      if (newContextDeclarationId) {
+        // Moving into a context tree
+        updatedNodes = updateNodeMetadata(updatedNodes, id, {
+          isBlueprint: true,
+          isContextChild: true,
+          contextParentId: newContextDeclarationId,
+        });
+      } else {
+        // Moving out of a context tree
+        updatedNodes = updateNodeMetadata(updatedNodes, id, {
+          isContextChild: false,
+          contextParentId: undefined,
+          // Note: we don't clear isBlueprint - that's managed by blueprint actions
+        });
+      }
+    }
+
+    return updatedNodes;
+  }
+
   undo(): void {
     if (this.oldParentId === null || this.oldPosition === -1) return;
 
     const { nodes, ancestorRegistry } = this.getState();
 
     // Move back to old position
-    const updatedNodes = { ...nodes };
+    let updatedNodes = { ...nodes };
 
     // Remove from current parent
     const currentParent = updatedNodes[this.newParentId];
@@ -115,6 +187,15 @@ export class MoveNodeCommand extends BaseCommand {
       ...oldParent,
       children: oldChildren,
     };
+
+    // Restore context metadata for all affected nodes
+    for (const [nodeId, previousState] of this.previousContextStates) {
+      updatedNodes = updateNodeMetadata(updatedNodes, nodeId, {
+        isContextChild: previousState.isContextChild,
+        contextParentId: previousState.contextParentId,
+        isBlueprint: previousState.isBlueprint,
+      });
+    }
 
     // Incremental update: update ancestors for moved node and descendants
     const newAncestorRegistry = moveNodeInRegistry(

@@ -55,8 +55,8 @@ describe('GutterContextIndicator', () => {
   });
 
   describe('context declaration nodes', () => {
-    it('should render declaration icon when no bundled or applied contexts', () => {
-      render(
+    it('should render declaration icon without + badge when no bundled/applied contexts', () => {
+      const { container } = render(
         <GutterContextIndicator
           isContextDeclaration={true}
           contextIcon="lightbulb"
@@ -65,11 +65,12 @@ describe('GutterContextIndicator', () => {
           onIconClick={mockOnIconClick}
         />
       );
-      expect(screen.getByTitle('Click to change icon')).toBeInTheDocument();
+      expect(container.querySelector('.context-declaration')).toBeInTheDocument();
+      expect(container.querySelector('.context-bundle-badge')).not.toBeInTheDocument();
     });
 
-    it('should be clickable to change icon when no bundled or applied contexts', () => {
-      render(
+    it('should be clickable to change icon', () => {
+      const { container } = render(
         <GutterContextIndicator
           isContextDeclaration={true}
           contextIcon="lightbulb"
@@ -78,11 +79,12 @@ describe('GutterContextIndicator', () => {
           onIconClick={mockOnIconClick}
         />
       );
-      fireEvent.click(screen.getByTitle('Click to change icon'));
+      const indicator = container.querySelector('.gutter-context-indicator');
+      if (indicator) fireEvent.click(indicator);
       expect(mockOnIconClick).toHaveBeenCalled();
     });
 
-    it('should show declaration icon with + badge for bundled context', () => {
+    it('should render + badge when has bundled contexts', () => {
       const bundledContexts: BundledContext[] = [{ icon: 'flag', color: undefined, name: 'Bundled Context' }];
       const { container } = render(
         <GutterContextIndicator
@@ -94,11 +96,11 @@ describe('GutterContextIndicator', () => {
         />
       );
       expect(container.querySelector('.context-bundle-badge')?.textContent).toBe('+');
-      expect(container.querySelector('.context-bundle-indicator')).toBeInTheDocument();
+      expect(container.querySelector('.context-bundle')).toBeInTheDocument();
     });
 
-    it('should show declaration icon with + badge for applied contexts', () => {
-      const appliedContexts: AppliedContext[] = [{ icon: 'heart', color: undefined, name: 'Applied Context' }];
+    it('should render + badge when has applied contexts', () => {
+      const appliedContexts: AppliedContext[] = [{ icon: 'flag', color: undefined, name: 'Applied Context' }];
       const { container } = render(
         <GutterContextIndicator
           isContextDeclaration={true}
@@ -109,56 +111,10 @@ describe('GutterContextIndicator', () => {
         />
       );
       expect(container.querySelector('.context-bundle-badge')?.textContent).toBe('+');
+      expect(container.querySelector('.context-bundle')).toBeInTheDocument();
     });
 
-    it('should show declaration icon with + badge for bundled and applied contexts combined', () => {
-      const bundledContexts: BundledContext[] = [{ icon: 'flag', color: undefined, name: 'Bundled Context' }];
-      const appliedContexts: AppliedContext[] = [{ icon: 'heart', color: undefined, name: 'Applied Context' }];
-      const { container } = render(
-        <GutterContextIndicator
-          isContextDeclaration={true}
-          contextIcon="Lightbulb"
-          bundledContexts={bundledContexts}
-          appliedContexts={appliedContexts}
-          onIconClick={mockOnIconClick}
-        />
-      );
-      expect(container.querySelector('.context-bundle-badge')?.textContent).toBe('+');
-    });
-
-    it('should be clickable to change icon when has bundled contexts', () => {
-      const bundledContexts: BundledContext[] = [{ icon: 'flag', color: undefined, name: 'Bundled Context' }];
-      const { container } = render(
-        <GutterContextIndicator
-          isContextDeclaration={true}
-          contextIcon="Lightbulb"
-          bundledContexts={bundledContexts}
-          appliedContexts={[]}
-          onIconClick={mockOnIconClick}
-        />
-      );
-      const bundle = container.querySelector('.context-bundle');
-      if (bundle) fireEvent.click(bundle);
-      expect(mockOnIconClick).toHaveBeenCalled();
-    });
-
-    it('should be clickable to change icon when has applied contexts', () => {
-      const appliedContexts: AppliedContext[] = [{ icon: 'heart', color: undefined, name: 'Applied Context' }];
-      const { container } = render(
-        <GutterContextIndicator
-          isContextDeclaration={true}
-          contextIcon="Lightbulb"
-          bundledContexts={[]}
-          appliedContexts={appliedContexts}
-          onIconClick={mockOnIconClick}
-        />
-      );
-      const bundle = container.querySelector('.context-bundle');
-      if (bundle) fireEvent.click(bundle);
-      expect(mockOnIconClick).toHaveBeenCalled();
-    });
-
-    it('should show tooltip on hover for bundled contexts', () => {
+    it('should show tooltip on hover when has bundled contexts', () => {
       const bundledContexts: BundledContext[] = [
         { icon: 'flag', color: undefined, name: 'Context A' },
         { icon: 'star', color: undefined, name: 'Context B' },
@@ -172,36 +128,13 @@ describe('GutterContextIndicator', () => {
           onIconClick={mockOnIconClick}
         />
       );
-      const bundle = container.querySelector('.context-bundle');
-      if (bundle) fireEvent.mouseEnter(bundle);
+      const indicator = container.querySelector('.context-bundle');
+      if (indicator) fireEvent.mouseEnter(indicator);
       expect(screen.getByText('Declared context:')).toBeInTheDocument();
       expect(screen.getByText('This node')).toBeInTheDocument();
       expect(screen.getByText('Bundled declarations:')).toBeInTheDocument();
       expect(screen.getByText('Context A')).toBeInTheDocument();
       expect(screen.getByText('Context B')).toBeInTheDocument();
-    });
-
-    it('should show tooltip with applied contexts section', () => {
-      const appliedContexts: AppliedContext[] = [
-        { icon: 'heart', color: undefined, name: 'Applied A' },
-        { icon: 'bookmark', color: undefined, name: 'Applied B' },
-      ];
-      const { container } = render(
-        <GutterContextIndicator
-          isContextDeclaration={true}
-          contextIcon="lightbulb"
-          bundledContexts={[]}
-          appliedContexts={appliedContexts}
-          onIconClick={mockOnIconClick}
-        />
-      );
-      const bundle = container.querySelector('.context-bundle');
-      if (bundle) fireEvent.mouseEnter(bundle);
-      expect(screen.getByText('Declared context:')).toBeInTheDocument();
-      expect(screen.getByText('This node')).toBeInTheDocument();
-      expect(screen.getByText('Applied contexts:')).toBeInTheDocument();
-      expect(screen.getByText('Applied A')).toBeInTheDocument();
-      expect(screen.getByText('Applied B')).toBeInTheDocument();
     });
 
     it('should hide tooltip on mouse leave', () => {
@@ -218,13 +151,29 @@ describe('GutterContextIndicator', () => {
           onIconClick={mockOnIconClick}
         />
       );
-      const bundle = container.querySelector('.context-bundle');
-      if (bundle) {
-        fireEvent.mouseEnter(bundle);
+      const indicator = container.querySelector('.context-bundle');
+      if (indicator) {
+        fireEvent.mouseEnter(indicator);
         expect(screen.getByText('Declared context:')).toBeInTheDocument();
-        fireEvent.mouseLeave(bundle);
+        fireEvent.mouseLeave(indicator);
         expect(screen.queryByText('Declared context:')).not.toBeInTheDocument();
       }
+    });
+
+    it('should not show tooltip when no bundled or applied contexts', () => {
+      const { container } = render(
+        <GutterContextIndicator
+          isContextDeclaration={true}
+          contextIcon="lightbulb"
+          bundledContexts={[]}
+          appliedContexts={[]}
+          onIconClick={mockOnIconClick}
+        />
+      );
+      const indicator = container.querySelector('.gutter-context-indicator');
+      if (indicator) fireEvent.mouseEnter(indicator);
+      // No tooltip when no bundled/applied contexts
+      expect(screen.queryByText('Declared context:')).not.toBeInTheDocument();
     });
   });
 });

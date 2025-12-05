@@ -7,6 +7,7 @@ import { getIconByName } from '../../ui/IconPicker/IconPicker';
 
 export function useContextSubmenu(node: TreeNode) {
   const nodes = useStore((state) => state.nodes);
+  const ancestorRegistry = useStore((state) => state.ancestorRegistry);
   const contextDeclarations = useStore((state) => state.contextDeclarations);
   const declareAsContext = useStore((state) => state.actions.declareAsContext);
   const removeContextDeclaration = useStore((state) => state.actions.removeContextDeclaration);
@@ -20,6 +21,17 @@ export function useContextSubmenu(node: TreeNode) {
   const appliedContextIds = (node.metadata.appliedContextIds as string[]) || [];
   const bundledContextIds = (node.metadata.bundledContextIds as string[]) || [];
   const hasAppliedContext = appliedContextIds.length > 0;
+
+  // Check if this node can be declared as a context
+  // Requirements: not already a declaration, parent is a blueprint
+  // Context children CAN be promoted to nested context declarations
+  const canDeclareAsContext = useMemo(() => {
+    if (isContextDeclaration) return false;
+    const ancestors = ancestorRegistry[node.id] || [];
+    const parentId = ancestors[ancestors.length - 1];
+    const parent = parentId ? nodes[parentId] : null;
+    return parent?.metadata.isBlueprint === true;
+  }, [isContextDeclaration, ancestorRegistry, node.id, nodes]);
 
   const handleDeclareAsContext = useCallback(() => {
     openIconPicker(null, (selection) => {
@@ -50,9 +62,11 @@ export function useContextSubmenu(node: TreeNode) {
 
   // Build context selection submenu items (for applying context to a node)
   const contextSelectionItems: ContextMenuItem[] = useMemo(() => {
+    const ancestors = ancestorRegistry[node.id] || [];
     return contextDeclarations
-      .filter(ctx => ctx.nodeId !== node.id) // Don't show self
-      .filter(ctx => !appliedContextIds.includes(ctx.nodeId)) // Don't show already applied
+      .filter(ctx => ctx.nodeId !== node.id)
+      .filter(ctx => !appliedContextIds.includes(ctx.nodeId))
+      .filter(ctx => !ancestors.includes(ctx.nodeId))
       .map(ctx => {
         const Icon = getIconByName(ctx.icon);
         return {
@@ -61,7 +75,7 @@ export function useContextSubmenu(node: TreeNode) {
           icon: Icon ? createElement(Icon, { size: 14 }) : undefined,
         };
       });
-  }, [contextDeclarations, node.id, applyContext, appliedContextIds]);
+  }, [contextDeclarations, node.id, applyContext, appliedContextIds, ancestorRegistry]);
 
   // Build remove context submenu items (for removing applied contexts)
   const removeContextItems: ContextMenuItem[] = useMemo(() => {
@@ -124,8 +138,8 @@ export function useContextSubmenu(node: TreeNode) {
       });
     }
 
-    // 3. Declare as context (only if not already a context declaration)
-    if (!isContextDeclaration) {
+    // 3. Declare as context (only if parent is blueprint and not already declaration/child)
+    if (canDeclareAsContext) {
       submenuItems.push({
         label: 'Declare as context',
         onClick: handleDeclareAsContext,
@@ -162,6 +176,7 @@ export function useContextSubmenu(node: TreeNode) {
     };
   }, [
     isContextDeclaration,
+    canDeclareAsContext,
     hasAppliedContext,
     contextSelectionItems,
     removeContextItems,

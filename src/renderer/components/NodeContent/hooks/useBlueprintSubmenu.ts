@@ -39,6 +39,12 @@ export function useBlueprintSubmenu({
   }, [node.id, nodes, onRemoveFromBlueprint]);
 
   return useMemo(() => {
+    // Hide Blueprint menu for context declarations and context children
+    // Their blueprint status is managed by the context system
+    if (node.metadata.isContextDeclaration === true || node.metadata.isContextChild === true) {
+      return null;
+    }
+
     const isBlueprint = node.metadata.isBlueprint === true;
 
     const submenuItems: ContextMenuItem[] = [];

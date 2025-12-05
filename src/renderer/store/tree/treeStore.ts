@@ -70,6 +70,8 @@ export function createTreeStore(treeType: TreeType = 'workspace') {
     const collaborateActions = createCollaborateActions(get, set, visualEffectsActions, persistenceActions.autoSave);
     const executeActions = createExecuteActions(get);
 
+    const contextActions = createContextActions(get, set, persistenceActions.autoSave);
+
     // clipboardActions needs access to executeCommand and deleteNode, which are created above
     // We use a getter function to access them lazily after the store is created
     const clipboardActions = createClipboardActions(
@@ -108,8 +110,8 @@ export function createTreeStore(treeType: TreeType = 'workspace') {
 
       actions: {
         ...createNodeActions(get, set, persistenceActions.autoSave),
-        ...createContextActions(get, set, persistenceActions.autoSave),
-        ...createBlueprintActions(get, set, persistenceActions.autoSave, historyActions.executeCommand),
+        ...contextActions,
+        ...createBlueprintActions(get, set, persistenceActions.autoSave, historyActions.executeCommand, contextActions.refreshContextDeclarations),
         ...navigationActions,
         ...persistenceActions,
         ...createNodeMovementActions(get, set, persistenceActions.autoSave, visualEffectsActions, navigationActions),

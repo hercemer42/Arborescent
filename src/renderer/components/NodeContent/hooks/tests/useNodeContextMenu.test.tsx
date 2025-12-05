@@ -125,7 +125,24 @@ describe('useNodeContextMenu', () => {
     expect(editMenu?.submenu?.find(item => item.label === 'Paste')).toBeDefined();
   });
 
-  it('should have Context submenu with Declare as context', () => {
+  it('should have Context submenu with Declare as context when parent is blueprint', () => {
+    // Set up a tree where test-node has a blueprint parent
+    const parentNode: TreeNode = {
+      id: 'parent-node',
+      content: 'Parent',
+      children: ['test-node'],
+      metadata: { isBlueprint: true },
+    };
+
+    store.setState({
+      nodes: { 'parent-node': parentNode, 'test-node': mockNode },
+      rootNodeId: 'parent-node',
+      ancestorRegistry: {
+        'parent-node': [],
+        'test-node': ['parent-node'],
+      },
+    });
+
     const { result } = renderHook(() => useNodeContextMenu(mockNode), { wrapper });
 
     const contextMenu = result.current.contextMenuItems.find(item => item.label === 'Context');
@@ -133,6 +150,17 @@ describe('useNodeContextMenu', () => {
 
     const declareItem = contextMenu?.submenu?.find(item => item.label === 'Declare as context');
     expect(declareItem).toBeDefined();
+  });
+
+  it('should not show Declare as context when parent is not a blueprint', () => {
+    const { result } = renderHook(() => useNodeContextMenu(mockNode), { wrapper });
+
+    const contextMenu = result.current.contextMenuItems.find(item => item.label === 'Context');
+    expect(contextMenu).toBeDefined();
+
+    // No parent blueprint, so Declare as context should not be available
+    const declareItem = contextMenu?.submenu?.find(item => item.label === 'Declare as context');
+    expect(declareItem).toBeUndefined();
   });
 
   it('should show Remove context declaration in Context submenu when node is a context', () => {

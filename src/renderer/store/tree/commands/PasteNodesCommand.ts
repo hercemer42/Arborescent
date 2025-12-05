@@ -2,6 +2,7 @@ import { BaseCommand } from './Command';
 import { TreeNode } from '../../../../shared/types';
 import { addNodesToRegistry, removeNodeFromRegistry, AncestorRegistry } from '../../../services/ancestry';
 import { v4 as uuidv4 } from 'uuid';
+import { getContextDeclarationId } from '../../../utils/nodeHelpers';
 
 /**
  * Command for pasting nodes from clipboard (with hierarchy preservation)
@@ -80,8 +81,24 @@ export class PasteNodesCommand extends BaseCommand {
     const parent = nodes[this.targetParentId];
     if (!parent) return;
 
-    // Add all remapped nodes to the tree
-    const updatedNodes = { ...nodes, ...this.remappedNodes };
+    // Check if target parent is part of a context declaration tree
+    const targetContextDeclarationId = getContextDeclarationId(parent);
+
+    // Process pasted nodes to update context metadata
+    let processedNodes = this.remappedNodes;
+    if (targetContextDeclarationId) {
+      // Pasting into a context tree - set context metadata on all pasted nodes
+      processedNodes = this.updateNodesWithContextMetadata(
+        this.remappedNodes,
+        targetContextDeclarationId
+      );
+    } else {
+      // Pasting into non-context tree - clear any context metadata
+      processedNodes = this.clearContextMetadata(this.remappedNodes);
+    }
+
+    // Add all processed nodes to the tree
+    const updatedNodes = { ...nodes, ...processedNodes };
 
     // Add root nodes as children of the target parent
     const updatedChildren = [...parent.children, ...this.rootNodeIds];
@@ -110,6 +127,71 @@ export class PasteNodesCommand extends BaseCommand {
     });
 
     this.triggerAutosave?.();
+  }
+
+  /**
+   * Update all nodes with context metadata when pasting into a context tree.
+   * Clears any existing context declaration metadata (can't paste a context into another context).
+   */
+  private updateNodesWithContextMetadata(
+    nodesToUpdate: Record<string, TreeNode>,
+    contextDeclarationId: string
+  ): Record<string, TreeNode> {
+    const result: Record<string, TreeNode> = {};
+
+    for (const [nodeId, node] of Object.entries(nodesToUpdate)) {
+      result[nodeId] = {
+        ...node,
+        metadata: {
+          ...node.metadata,
+          isBlueprint: true,
+          isContextChild: true,
+          contextParentId: contextDeclarationId,
+          // Clear any existing context declaration metadata
+          isContextDeclaration: undefined,
+          contextIcon: undefined,
+          contextColor: undefined,
+          bundledContextIds: undefined,
+        },
+      };
+    }
+
+    return result;
+  }
+
+  /**
+   * Clear context metadata when pasting into a non-context tree.
+   */
+  private clearContextMetadata(
+    nodesToUpdate: Record<string, TreeNode>
+  ): Record<string, TreeNode> {
+    const result: Record<string, TreeNode> = {};
+
+    for (const [nodeId, node] of Object.entries(nodesToUpdate)) {
+      // Only clear if node had context metadata
+      if (
+        node.metadata.isContextDeclaration ||
+        node.metadata.isContextChild ||
+        node.metadata.contextParentId
+      ) {
+        result[nodeId] = {
+          ...node,
+          metadata: {
+            ...node.metadata,
+            isContextDeclaration: undefined,
+            contextIcon: undefined,
+            contextColor: undefined,
+            bundledContextIds: undefined,
+            isContextChild: undefined,
+            contextParentId: undefined,
+          },
+        };
+      } else {
+        result[nodeId] = node;
+      }
+    }
+
+    return result;
   }
 
   undo(): void {

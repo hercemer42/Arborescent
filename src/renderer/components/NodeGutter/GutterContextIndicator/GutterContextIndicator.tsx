@@ -34,70 +34,58 @@ export const GutterContextIndicator = memo(function GutterContextIndicator({
   } = useBundleTooltip(onIconClick);
   const DeclarationIcon = getIconByName(contextIcon || DEFAULT_CONTEXT_ICON);
 
-  // Context declaration nodes: show declaration icon or bundle indicator
-  if (isContextDeclaration) {
-    const hasBundledOrApplied = bundledContexts.length > 0 || appliedContexts.length > 0;
+  // Regular nodes (including context children): show the active context's icon if they have applied contexts
+  if (!isContextDeclaration) {
+    if (!activeContext) return null;
 
-    // No bundled or applied contexts: show declaration's own icon (clickable)
-    if (!hasBundledOrApplied) {
-      if (!DeclarationIcon) return null;
-      return (
-        <button
-          className="gutter-context-indicator context-declaration"
-          title="Click to change icon"
-          onClick={handleIconClick}
-          style={contextColor ? { color: contextColor } : undefined}
-        >
-          {createElement(DeclarationIcon, { size: 16 })}
-        </button>
-      );
-    }
+    const ActiveIcon = activeContext.icon ? getIconByName(activeContext.icon) : null;
+    if (!ActiveIcon) return null;
 
-    // 1+ bundled or applied contexts: show declaration icon with "+" badge and tooltip
-    // Clickable to change the declaration icon
-    if (!DeclarationIcon) return null;
     return (
-      <button
-        ref={bundleRef}
-        className="gutter-context-indicator context-bundle"
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-        onClick={handleIconClick}
-        style={contextColor ? { color: contextColor } : undefined}
+      <span
+        className="gutter-context-indicator context-applied"
+        title={activeContext.name ? `Context: ${activeContext.name}` : 'Has context applied'}
+        style={activeContext.color ? { color: activeContext.color } : undefined}
       >
-        <span className="context-bundle-indicator" style={contextColor ? { color: contextColor } : undefined}>
-          {createElement(DeclarationIcon, { size: 16 })}
+        {createElement(ActiveIcon, { size: 16 })}
+      </span>
+    );
+  }
+
+  // Context declaration nodes: show declaration icon
+  // Only show "+" badge when there are bundled or applied contexts
+  if (!DeclarationIcon) return null;
+
+  const hasBundledOrApplied = bundledContexts.length > 0 || appliedContexts.length > 0;
+
+  return (
+    <button
+      ref={hasBundledOrApplied ? bundleRef : undefined}
+      className={`gutter-context-indicator ${hasBundledOrApplied ? 'context-bundle' : 'context-declaration'}`}
+      onMouseEnter={hasBundledOrApplied ? handleMouseEnter : undefined}
+      onMouseLeave={hasBundledOrApplied ? handleMouseLeave : undefined}
+      onClick={handleIconClick}
+      title="Click to change icon"
+      style={contextColor ? { color: contextColor } : undefined}
+    >
+      <span className="context-bundle-indicator" style={contextColor ? { color: contextColor } : undefined}>
+        {createElement(DeclarationIcon, { size: 16 })}
+        {hasBundledOrApplied && (
           <span
             className="context-bundle-badge"
             style={contextColor ? { backgroundColor: contextColor } : undefined}
           >+</span>
-        </span>
-        {showTooltip && (
-          <BundleTooltip
-            declarationIcon={DeclarationIcon}
-            declarationColor={contextColor}
-            bundledContexts={bundledContexts}
-            appliedContexts={appliedContexts}
-            position={tooltipPosition}
-          />
         )}
-      </button>
-    );
-  }
-
-  // Regular nodes: show only the active context's icon
-  if (!activeContext) return null;
-
-  const ActiveIcon = activeContext.icon ? getIconByName(activeContext.icon) : null;
-  if (!ActiveIcon) return null;
-
-  return (
-    <span
-      className="gutter-context-indicator context-applied"
-      title={activeContext.name ? `Context: ${activeContext.name}` : 'Has context applied'}
-      style={activeContext.color ? { color: activeContext.color } : undefined}
-    >
-      {createElement(ActiveIcon, { size: 16 })}
-    </span>
+      </span>
+      {hasBundledOrApplied && showTooltip && (
+        <BundleTooltip
+          declarationIcon={DeclarationIcon}
+          declarationColor={contextColor}
+          bundledContexts={bundledContexts}
+          appliedContexts={appliedContexts}
+          position={tooltipPosition}
+        />
+      )}
+    </button>
   );
 });

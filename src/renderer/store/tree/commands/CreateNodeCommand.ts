@@ -1,7 +1,7 @@
 import { BaseCommand } from './Command';
 import { TreeNode } from '../../../../shared/types';
 import { addNodeToRegistry, removeNodeFromRegistry, AncestorRegistry } from '../../../services/ancestry';
-import { createTreeNode } from '../../../utils/nodeHelpers';
+import { createTreeNode, getContextDeclarationId } from '../../../utils/nodeHelpers';
 
 /**
  * Command for creating a new node
@@ -35,10 +35,22 @@ export class CreateNodeCommand extends BaseCommand {
     const parent = nodes[this.parentId];
     if (!parent) return;
 
+    // Build initial metadata
+    const metadata: Record<string, unknown> = { status: 'pending', ...this.initialMetadata };
+
+    // Check if parent is part of a context declaration tree
+    // If so, inherit context metadata (isBlueprint, isContextChild, contextParentId)
+    const parentContextDeclarationId = getContextDeclarationId(parent);
+    if (parentContextDeclarationId) {
+      metadata.isBlueprint = true;
+      metadata.isContextChild = true;
+      metadata.contextParentId = parentContextDeclarationId;
+    }
+
     // Create the new node with default pending status and any initial metadata
     const newNode = createTreeNode(this.newNodeId, {
       content: this.initialContent,
-      metadata: { status: 'pending', ...this.initialMetadata },
+      metadata,
     });
 
     // Insert into parent's children

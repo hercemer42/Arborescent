@@ -228,7 +228,7 @@ describe('NodeGutter', () => {
       expect(container.querySelector('.gutter-context-indicator.context-applied')).not.toBeInTheDocument();
     });
 
-    it('should show bundle indicator when context declaration has bundled contexts', () => {
+    it('should show declaration indicator when context declaration has bundled contexts', () => {
       const mockOnToggle = vi.fn();
       const { container } = render(
         <NodeGutter
@@ -242,7 +242,7 @@ describe('NodeGutter', () => {
         />
       );
 
-      // Should show bundle (cog with count) not applied context or plain declaration
+      // Should show declaration icon with + badge (context-bundle class), not applied context
       expect(container.querySelector('.gutter-context-indicator.context-bundle')).toBeInTheDocument();
       expect(container.querySelector('.gutter-context-indicator.context-applied')).not.toBeInTheDocument();
     });
@@ -296,7 +296,7 @@ describe('NodeGutter', () => {
       expect(container.querySelector('.gutter-context-indicator')).not.toBeInTheDocument();
     });
 
-    it('should render context indicator with tooltip', () => {
+    it('should render context indicator as clickable button in gutter', () => {
       const mockOnToggle = vi.fn();
       const { container } = render(
         <NodeGutter
@@ -309,7 +309,9 @@ describe('NodeGutter', () => {
       );
 
       const indicator = container.querySelector('.gutter-context-indicator');
-      expect(indicator).toHaveAttribute('title', 'Click to change icon');
+      expect(indicator).toBeInTheDocument();
+      // Context declaration indicator in gutter is clickable to change icon
+      expect(indicator?.tagName.toLowerCase()).toBe('button');
     });
 
     it('should render context indicator alongside chevron and plugin indicators', () => {
@@ -326,7 +328,7 @@ describe('NodeGutter', () => {
 
       expect(container.querySelector('.gutter-context-indicator')).toBeInTheDocument();
       expect(screen.getByText('🤖')).toBeInTheDocument();
-      // Both context indicator and expand toggle are buttons
+      // Both expand toggle and context indicator are buttons
       expect(screen.getAllByRole('button')).toHaveLength(2);
     });
   });

@@ -595,6 +595,22 @@ export function getContextDeclarations(
 }
 
 /**
+ * Get the context declaration ID for a node.
+ * Returns the node's own ID if it's a context declaration,
+ * the contextParentId if it's a context child,
+ * or undefined if the node is not part of a context tree.
+ */
+export function getContextDeclarationId(node: TreeNode): string | undefined {
+  if (node.metadata.isContextDeclaration === true) {
+    return node.id;
+  }
+  if (node.metadata.isContextChild === true) {
+    return node.metadata.contextParentId as string | undefined;
+  }
+  return undefined;
+}
+
+/**
  * Clone a node and all its descendants with new UUIDs.
  * Recursively traverses from the given node, creating deep clones with fresh IDs.
  *

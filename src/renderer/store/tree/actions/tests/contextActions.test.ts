@@ -20,7 +20,7 @@ describe('contextActions', () => {
           id: 'root',
           content: 'Root',
           children: ['node-1', 'node-2'],
-          metadata: {},
+          metadata: { isBlueprint: true }, // Root must be blueprint for children to be declared as context
         },
         'node-1': {
           id: 'node-1',
@@ -292,6 +292,114 @@ describe('contextActions', () => {
       state.nodes['node-2'].metadata.activeContextId = 'node-1';
       actions.removeAppliedContext('node-2', 'other-context');
       expect(state.nodes['node-2'].metadata.activeContextId).toBe('node-1');
+    });
+  });
+
+  describe('nested context declarations', () => {
+    beforeEach(() => {
+      // Set up a nested context structure:
+      // root (blueprint)
+      //   └── node-1 (context declaration)
+      //       └── node-3 (context child)
+      //           └── nested-child (child of node-3)
+      state.nodes['node-1'].metadata = {
+        ...state.nodes['node-1'].metadata,
+        isContextDeclaration: true,
+        contextIcon: 'star',
+        isBlueprint: true,
+      };
+      state.nodes['node-3'].metadata = {
+        ...state.nodes['node-3'].metadata,
+        isContextChild: true,
+        contextParentId: 'node-1',
+        isBlueprint: true,
+      };
+      state.nodes['node-3'].children = ['nested-child'];
+      state.nodes['nested-child'] = {
+        id: 'nested-child',
+        content: 'Nested Child',
+        children: [],
+        metadata: {
+          isContextChild: true,
+          contextParentId: 'node-1',
+          isBlueprint: true,
+        },
+      };
+      state.ancestorRegistry['nested-child'] = ['node-3', 'node-1', 'root'];
+    });
+
+    it('should skip nested context declarations when declaring as context', () => {
+      // node-3 becomes a nested context declaration
+      actions.declareAsContext('node-3', 'flag');
+
+      // node-3 should now be a context declaration, NOT a child
+      expect(state.nodes['node-3'].metadata.isContextDeclaration).toBe(true);
+      expect(state.nodes['node-3'].metadata.contextIcon).toBe('flag');
+      expect(state.nodes['node-3'].metadata.isContextChild).toBe(false);
+      expect(state.nodes['node-3'].metadata.contextParentId).toBeUndefined();
+
+      // nested-child should now point to node-3, not node-1
+      expect(state.nodes['nested-child'].metadata.isContextChild).toBe(true);
+      expect(state.nodes['nested-child'].metadata.contextParentId).toBe('node-3');
+    });
+
+    it('should inherit ancestor context when nested context is removed', () => {
+      // First declare node-3 as nested context
+      actions.declareAsContext('node-3', 'flag');
+
+      // Then remove the nested context declaration
+      actions.removeContextDeclaration('node-3');
+
+      // node-3 should now be a context child of node-1 again
+      expect(state.nodes['node-3'].metadata.isContextDeclaration).toBe(false);
+      expect(state.nodes['node-3'].metadata.isContextChild).toBe(true);
+      expect(state.nodes['node-3'].metadata.contextParentId).toBe('node-1');
+      // Should keep blueprint status since it's still in a context tree
+      expect(state.nodes['node-3'].metadata.isBlueprint).toBe(true);
+    });
+
+    it('should update descendants to point to ancestor context when nested context removed', () => {
+      // First declare node-3 as nested context
+      actions.declareAsContext('node-3', 'flag');
+
+      // Verify nested-child points to node-3
+      expect(state.nodes['nested-child'].metadata.contextParentId).toBe('node-3');
+
+      // Remove the nested context declaration
+      actions.removeContextDeclaration('node-3');
+
+      // nested-child should now point to the ancestor context (node-1)
+      expect(state.nodes['nested-child'].metadata.isContextChild).toBe(true);
+      expect(state.nodes['nested-child'].metadata.contextParentId).toBe('node-1');
+    });
+
+    it('should skip nested context subtrees when declaring parent as context', () => {
+      // First declare node-3 as nested context (child of node-1)
+      actions.declareAsContext('node-3', 'flag');
+
+      // Now add a new child to node-1 (sibling of node-3)
+      state.nodes['sibling'] = {
+        id: 'sibling',
+        content: 'Sibling',
+        children: [],
+        metadata: {},
+      };
+      state.nodes['node-1'].children.push('sibling');
+      state.ancestorRegistry['sibling'] = ['node-1', 'root'];
+
+      // Re-declare node-1 as context (refresh the context tree)
+      actions.declareAsContext('node-1', 'heart');
+
+      // node-3 should STILL be its own context declaration (not overwritten)
+      expect(state.nodes['node-3'].metadata.isContextDeclaration).toBe(true);
+      expect(state.nodes['node-3'].metadata.contextIcon).toBe('flag');
+
+      // nested-child should still point to node-3 (not changed to node-1)
+      expect(state.nodes['nested-child'].metadata.contextParentId).toBe('node-3');
+
+      // sibling should be a context child of node-1
+      expect(state.nodes['sibling'].metadata.isContextChild).toBe(true);
+      expect(state.nodes['sibling'].metadata.contextParentId).toBe('node-1');
     });
   });
 

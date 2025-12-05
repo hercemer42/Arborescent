@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2025-12-05T13:12:09.680Z'
+updated: '2025-12-05T18:24:32.597Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -11,7 +11,10 @@ nodes:
     content: Arborescent Development
     children:
       - 0cc62ae1-1a7a-4aa4-bc6a-d817cabd672c
+      - 79b693ca-27ce-4410-8617-8092d7e81b07
+      - f5c33654-69b4-492a-a6e3-6d13e4dec80d
       - 2f83a0af-280e-4e67-8306-31a8e02c9500
+      - c4473311-2e42-48ae-9191-d3807dc55a4c
       - d5fe0eff-b1c6-4986-b6a3-70a0ea46f096
       - 9bfbb401-dcb6-4f92-a34b-e9b3982c676f
       - f5e3f44c-6de7-4bd9-ad8d-7f51cdf059f1
@@ -680,6 +683,7 @@ nodes:
       - 080342de-73bd-4325-ba98-e02e859aa64b
       - b8521434-96cd-4258-b87e-876dc7276241
       - a59a24aa-f55a-478c-9960-3bed5acd2851
+      - 8541a984-fcca-479d-a9ca-494878f45de3
     metadata:
       status: completed
       expanded: false
@@ -5746,10 +5750,7 @@ nodes:
   3f5f4443-13b5-478f-90d9-9612c06aa486:
     id: 3f5f4443-13b5-478f-90d9-9612c06aa486
     content: At the end ensure that
-    children:
-      - 7be6e945-9543-40dc-941a-a6ab579c9469
-      - fabfead2-c63b-4e29-bac9-523382a50257
-      - 32f349b9-656c-4cc8-8b5c-e331d819f696
+    children: []
     metadata:
       status: pending
   f5e3f44c-6de7-4bd9-ad8d-7f51cdf059f1:
@@ -5765,6 +5766,7 @@ nodes:
     id: 984247e7-2d55-4b93-80e8-f84818901621
     content: Backlog
     children:
+      - 7f0a454b-cbd9-42e7-9935-1cd7b0e5d7fe
       - a9f7096f-1bdc-42c5-8d6c-161dd38f3e61
       - fae59a45-bfd7-4c23-85fa-b566ee48e16b
       - d7597faa-0b34-400e-985a-de035508cdb1
@@ -6159,14 +6161,16 @@ nodes:
     id: 9a8f1538-7eb7-4e2d-9e0f-46e2c00675f4
     content: Implementation
     children:
+      - 6ab534a2-2956-454c-9c6a-e459314e0b5c
       - 9b46397c-c452-421c-b408-46b040d99c9e
       - cc94b377-246d-45ae-b938-2d3906892aa1
       - 64ea2af4-332b-44a6-8b88-78535cc9b79a
+      - 6690289a-e02f-48bc-9225-a1083b7b324f
     metadata:
       status: pending
       appliedContextIds:
         - e8824b29-eb18-4031-9e35-b321a864d418
-      expanded: false
+      expanded: true
   9b46397c-c452-421c-b408-46b040d99c9e:
     id: 9b46397c-c452-421c-b408-46b040d99c9e
     content: Implement minor feature
@@ -6180,7 +6184,7 @@ nodes:
       - ee62f343-86cb-423b-87ab-63236876a259
     metadata:
       status: pending
-      expanded: true
+      expanded: false
       deleted: false
       plugins: {}
       isContextDeclaration: true
@@ -6431,7 +6435,7 @@ nodes:
       - 869e317f-ec2a-4d2d-a8bb-8bc22d84e326
     metadata:
       status: pending
-      expanded: true
+      expanded: false
       deleted: false
       plugins: {}
       isContextDeclaration: true
@@ -6791,9 +6795,9 @@ nodes:
       status: pending
   0cc62ae1-1a7a-4aa4-bc6a-d817cabd672c:
     id: 0cc62ae1-1a7a-4aa4-bc6a-d817cabd672c
-    content: Refactor
+    content: Refactor/bugs
     children:
-      - db111fa3-8b05-48ed-a9bb-543c85e91195
+      - 3594d666-040e-4132-afd2-0ab8ce0cf800
     metadata:
       status: pending
       expanded: true
@@ -7162,7 +7166,6 @@ nodes:
     id: 77963e20-53e9-4db7-8802-8c718f202cef
     content: In progress
     children:
-      - 8541a984-fcca-479d-a9ca-494878f45de3
       - bf10afa4-0959-4dd4-9e78-dfadbdd81d9c
     metadata:
       status: pending
@@ -8665,8 +8668,8 @@ nodes:
       - bdd1a000-b81d-4254-837e-151df49b8986
       - a3675d1d-91f9-4d83-a042-62e892308c4d
       - 9584c7ca-b072-4fda-985f-55276a9d44a9
-      - 900bde16-cbdf-47f4-8e6f-2f8797487dfa
       - d656086b-fb37-4123-8648-9274b2180679
+      - 900bde16-cbdf-47f4-8e6f-2f8797487dfa
     metadata:
       status: pending
       expanded: true
@@ -8902,31 +8905,6 @@ nodes:
     children: []
     metadata:
       status: pending
-  2aa9b055-6780-4457-bc3f-d2d7d40874ef:
-    id: 2aa9b055-6780-4457-bc3f-d2d7d40874ef
-    content: getAllDescendantIds looks like it should be in nodeHelpers - it's a pure function
-    children:
-      - 033ee716-1267-4993-8638-7a37524fef40
-    metadata:
-      status: pending
-  7be6e945-9543-40dc-941a-a6ab579c9469:
-    id: 7be6e945-9543-40dc-941a-a6ab579c9469
-    content: All the automated tests are updated and passing
-    children: []
-    metadata:
-      status: pending
-  fabfead2-c63b-4e29-bac9-523382a50257:
-    id: fabfead2-c63b-4e29-bac9-523382a50257
-    content: There are no linting errors
-    children: []
-    metadata:
-      status: pending
-  32f349b9-656c-4cc8-8b5c-e331d819f696:
-    id: 32f349b9-656c-4cc8-8b5c-e331d819f696
-    content: There are no typescript errors
-    children: []
-    metadata:
-      status: pending
   d656086b-fb37-4123-8648-9274b2180679:
     id: d656086b-fb37-4123-8648-9274b2180679
     content: Copying/pasting blueprint nodes
@@ -8934,19 +8912,19 @@ nodes:
       - b0ee285d-8d09-49f7-8726-b93a7e46ae41
       - 383f1307-8033-4d1a-883c-ccf0492a6922
     metadata:
-      status: pending
+      status: completed
       appliedContextIds:
         - 9b46397c-c452-421c-b408-46b040d99c9e
       activeContextId: 9b46397c-c452-421c-b408-46b040d99c9e
+      expanded: false
   b0ee285d-8d09-49f7-8726-b93a7e46ae41:
     id: b0ee285d-8d09-49f7-8726-b93a7e46ae41
     content: When copying/cutting and pasting a blueprint node into a non blueprint node
     children:
       - 6b9be846-5f91-4055-8c77-617841df910f
       - 5b3d02fe-7637-4d95-a5b8-db51954abd2e
-      - 4a4dff8a-6d6e-4f60-9577-82507addb2c3
     metadata:
-      status: pending
+      status: completed
   383f1307-8033-4d1a-883c-ccf0492a6922:
     id: 383f1307-8033-4d1a-883c-ccf0492a6922
     content: When copying/cutting and pasting a blueprint node into a blueprint node
@@ -8954,31 +8932,25 @@ nodes:
       - cd583b91-1d4d-4517-b775-3e699ce7fd8b
       - 49e3c6f3-c2ba-4863-a14b-5989fe79b963
     metadata:
-      status: pending
+      status: completed
   49e3c6f3-c2ba-4863-a14b-5989fe79b963:
     id: 49e3c6f3-c2ba-4863-a14b-5989fe79b963
     content: The blueprint status of the node and all decendants is maintained
     children: []
     metadata:
-      status: pending
+      status: completed
   6b9be846-5f91-4055-8c77-617841df910f:
     id: 6b9be846-5f91-4055-8c77-617841df910f
     content: Do not allow the paste
     children: []
     metadata:
-      status: pending
+      status: completed
   5b3d02fe-7637-4d95-a5b8-db51954abd2e:
     id: 5b3d02fe-7637-4d95-a5b8-db51954abd2e
     content: Display an error to the user - You cannot copy a blueprint node into a non blueprint node
     children: []
     metadata:
-      status: pending
-  4a4dff8a-6d6e-4f60-9577-82507addb2c3:
-    id: 4a4dff8a-6d6e-4f60-9577-82507addb2c3
-    content: Restore the cut node to its uncut status
-    children: []
-    metadata:
-      status: pending
+      status: completed
   8541a984-fcca-479d-a9ca-494878f45de3:
     id: 8541a984-fcca-479d-a9ca-494878f45de3
     content: Change 'cut' behavior
@@ -8988,8 +8960,8 @@ nodes:
       - d27b9af9-5232-4720-9b3c-a541953ef73f
       - 568770eb-a7f3-4ece-84a2-d3e611ed99fb
     metadata:
-      status: pending
-      expanded: true
+      status: completed
+      expanded: false
       deleted: false
       plugins: {}
       activeContextId: cc94b377-246d-45ae-b938-2d3906892aa1
@@ -9001,7 +8973,7 @@ nodes:
       - c5f11474-3082-4bf7-97f3-7434d12d9494
     metadata:
       status: completed
-      expanded: true
+      expanded: false
       deleted: false
       plugins: {}
   2cce09ee-9dee-4ac6-9679-1a375d5c3b7d:
@@ -9031,7 +9003,7 @@ nodes:
       - 682414f3-dfc3-41ad-9955-2fa9e8452fe1
     metadata:
       status: completed
-      expanded: true
+      expanded: false
       deleted: false
       plugins: {}
   33c20bf7-46c4-49d4-be41-bac9d7d434e0:
@@ -9043,7 +9015,7 @@ nodes:
       - d6239aae-fc84-4724-b12d-91307c87dd2e
     metadata:
       status: completed
-      expanded: true
+      expanded: false
       deleted: false
       plugins: {}
   0295ba0d-267f-4709-897b-1c6e1c668cea:
@@ -9060,7 +9032,7 @@ nodes:
     content: Clear the clipboard cache
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -9120,7 +9092,7 @@ nodes:
       - 730fc7cf-2f81-457f-8712-5cee511d7ffb
     metadata:
       status: completed
-      expanded: true
+      expanded: false
       deleted: false
       plugins: {}
   0b54edfb-f6da-41df-b7c4-825e6f933077:
@@ -9149,7 +9121,7 @@ nodes:
       - 7631d062-7136-47df-9895-ee597974d3a1
     metadata:
       status: completed
-      expanded: true
+      expanded: false
       deleted: false
       plugins: {}
   b3627f66-2966-4413-9375-18349d702e23:
@@ -9188,7 +9160,7 @@ nodes:
       - ab93e0a0-5113-45a2-a9e3-e521c5b748c0
       - fbcca076-5acf-4518-934a-a84d3e927617
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -9197,7 +9169,7 @@ nodes:
     content: Remove 'cut' visual status
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -9206,7 +9178,7 @@ nodes:
     content: Clear clipboard cache
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -9221,7 +9193,7 @@ nodes:
       - 003a3761-559d-43ca-9b58-5263d480dedd
     metadata:
       status: completed
-      expanded: true
+      expanded: false
       deleted: false
       plugins: {}
   29960f83-b007-4599-980f-f748fc477ec3:
@@ -9277,6 +9249,7 @@ nodes:
       - 1f7eeed8-beee-4900-9fc7-7722be7f4195
     metadata:
       status: pending
+      expanded: false
   a3f47c29-7bb9-4e38-9afe-f5644eec05ec:
     id: a3f47c29-7bb9-4e38-9afe-f5644eec05ec
     content: Add it into the terminal tab
@@ -9368,41 +9341,7 @@ nodes:
     content: Normal copy/cut behavior is maintained
     children: []
     metadata:
-      status: pending
-  033ee716-1267-4993-8638-7a37524fef40:
-    id: 033ee716-1267-4993-8638-7a37524fef40
-    content: Perhaps something like this is already available and can be reused ?
-    children: []
-    metadata:
-      status: pending
-  51fab498-90e8-482d-8cbc-972f72774a86:
-    id: 51fab498-90e8-482d-8cbc-972f72774a86
-    content: Same goes for 'getParentId'
-    children: []
-    metadata:
-      status: pending
-  db111fa3-8b05-48ed-a9bb-543c85e91195:
-    id: db111fa3-8b05-48ed-a9bb-543c85e91195
-    content: in clipboardActions
-    children:
-      - 2aa9b055-6780-4457-bc3f-d2d7d40874ef
-      - 51fab498-90e8-482d-8cbc-972f72774a86
-      - 0faa8409-8f7f-4b4f-9da9-9ff6cb12b538
-    metadata:
-      status: pending
-  0faa8409-8f7f-4b4f-9da9-9ff6cb12b538:
-    id: 0faa8409-8f7f-4b4f-9da9-9ff6cb12b538
-    content: There's too much going on in 'pasteNodes'
-    children:
-      - 942b00ba-da9d-41e8-bbed-51c86b858ae2
-    metadata:
-      status: pending
-  942b00ba-da9d-41e8-bbed-51c86b858ae2:
-    id: 942b00ba-da9d-41e8-bbed-51c86b858ae2
-    content: This needs a refactor
-    children: []
-    metadata:
-      status: pending
+      status: completed
   900bde16-cbdf-47f4-8e6f-2f8797487dfa:
     id: 900bde16-cbdf-47f4-8e6f-2f8797487dfa
     content: Context Declarations Feature
@@ -9418,7 +9357,7 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-      activeContextId: e8824b29-eb18-4031-9e35-b321a864d418
+      activeContextId: cc94b377-246d-45ae-b938-2d3906892aa1
   411cc76f-a04e-4d3d-9870-8e3f94b9e758:
     id: 411cc76f-a04e-4d3d-9870-8e3f94b9e758
     content: Prerequisites
@@ -9426,8 +9365,8 @@ nodes:
       - 8066819c-cd91-46f6-8ca0-4dca0b6a3348
       - c36c4876-b67e-4e4b-9078-163cbbeeea07
     metadata:
-      status: pending
-      expanded: true
+      status: completed
+      expanded: false
       deleted: false
       plugins: {}
   8066819c-cd91-46f6-8ca0-4dca0b6a3348:
@@ -9435,7 +9374,7 @@ nodes:
     content: '''Declare as context'' menu option only appears if the node''s parent is a blueprint'
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -9444,7 +9383,7 @@ nodes:
     content: Context declarations can only be created on nodes whose parent is a blueprint
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -9466,16 +9405,17 @@ nodes:
     content: The node receives blueprint status
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
   b3d75d3f-b2c9-4937-ba9e-3c3bb6189b03:
     id: b3d75d3f-b2c9-4937-ba9e-3c3bb6189b03
     content: The checkbox is replaced by the icon selected when declaring the context
-    children: []
+    children:
+      - 0ac16b87-d48d-4e9d-9ca0-dbc5927b3261
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -9483,15 +9423,15 @@ nodes:
     id: 56f5e7a4-5773-4aae-b73c-f14cbbe0679e
     content: The same icon appears in the gutter
     children:
-      - 0ac16b87-d48d-4e9d-9ca0-dbc5927b3261
+      - fb113649-ae70-4af9-84a2-1495d1731a63
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
   0ac16b87-d48d-4e9d-9ca0-dbc5927b3261:
     id: 0ac16b87-d48d-4e9d-9ca0-dbc5927b3261
-    content: The icon does NOT contain the '+' symbol (even if there are bundled declarations or applied contexts)
+    content: The icon does not contain the '+' symbol (even if there are bundled declarations or applied contexts)
     children: []
     metadata:
       status: pending
@@ -9503,7 +9443,7 @@ nodes:
     content: The 'Blueprint' right-click menu option is not present
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -9519,8 +9459,8 @@ nodes:
       - 1936d9b4-be5d-4af4-b4f2-0a0d7c81a889
       - 4100d649-b2da-4cf8-8338-d933a3777517
     metadata:
-      status: pending
-      expanded: true
+      status: completed
+      expanded: false
       deleted: false
       plugins: {}
   5d263154-239a-469b-bc86-baa4e4f2b4fc:
@@ -9528,7 +9468,7 @@ nodes:
     content: All descendants receive blueprint status
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -9537,7 +9477,7 @@ nodes:
     content: All descendants display the context icon instead of a checkbox
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -9547,7 +9487,7 @@ nodes:
     children:
       - c1cfe4a6-2eb2-493d-b3ce-5111712350f1
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -9556,7 +9496,7 @@ nodes:
     content: The icon is rendered at reduced opacity (matching existing gutter styling for applied contexts)
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -9565,7 +9505,7 @@ nodes:
     content: If the parent context declaration's icon/color changes, all descendants update accordingly
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -9574,7 +9514,7 @@ nodes:
     content: The 'Blueprint' right-click menu option is not present (cannot add/remove descendants from blueprint)
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -9635,8 +9575,8 @@ nodes:
       - c1ea0765-a19d-4e6a-a1b7-c42ea5ac10fb
       - aee896b7-d43d-4fae-888c-82e52d415af1
     metadata:
-      status: pending
-      expanded: true
+      status: completed
+      expanded: false
       deleted: false
       plugins: {}
   d880e549-cd47-4071-9804-c725783eddae:
@@ -9644,7 +9584,7 @@ nodes:
     content: Permitted - works the same as declaring on any other eligible node
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -9653,7 +9593,7 @@ nodes:
     content: The new context's icon applies to all descendants EXCEPT existing nested context declarations and their subtrees
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -9662,7 +9602,7 @@ nodes:
     content: Removing it preserves all explicitly declared nested contexts and their descendants
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -9674,8 +9614,8 @@ nodes:
       - d8f83311-89a8-4444-ab85-1d28b70348a4
       - 0dd4cf5d-7f29-4303-8b66-4d4cb124e094
     metadata:
-      status: pending
-      expanded: true
+      status: completed
+      expanded: false
       deleted: false
       plugins: {}
   d8f83311-89a8-4444-ab85-1d28b70348a4:
@@ -9683,7 +9623,7 @@ nodes:
     content: Moving a non-context node into a context declaration's subtree makes it inherit the same attributes as any other context declaration descendant
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -9692,22 +9632,171 @@ nodes:
     content: Removing a context declaration from a node also removes the blueprint status from it and its descendants
     children: []
     metadata:
-      status: pending
+      status: completed
   9cff98be-8e95-49ef-b576-4910b1b13263:
     id: 9cff98be-8e95-49ef-b576-4910b1b13263
     content: They also recieve a 'context child' metadata
     children: []
     metadata:
-      status: pending
+      status: completed
   c1cfe4a6-2eb2-493d-b3ce-5111712350f1:
     id: c1cfe4a6-2eb2-493d-b3ce-5111712350f1
     content: Unless they have their own explicit context declaration
     children: []
     metadata:
-      status: pending
+      status: completed
   092711c3-d0fa-4a1c-ad6c-0452f2146bc2:
     id: 092711c3-d0fa-4a1c-ad6c-0452f2146bc2
     content: Moving a context declaration node follows the same behavior as any other blueprint node
+    children: []
+    metadata:
+      status: completed
+  7f0a454b-cbd9-42e7-9935-1cd7b0e5d7fe:
+    id: 7f0a454b-cbd9-42e7-9935-1cd7b0e5d7fe
+    content: Maintain choice of context for 'Execute' and 'Collaborate'
+    children: []
+    metadata:
+      status: pending
+  6690289a-e02f-48bc-9225-a1083b7b324f:
+    id: 6690289a-e02f-48bc-9225-a1083b7b324f
+    content: Bug fix
+    children:
+      - 21179aff-4cb0-4e06-877a-6b13488017b3
+      - aff16275-6d8e-49c9-b862-76875858d4af
+    metadata:
+      status: pending
+      isContextDeclaration: true
+      contextIcon: Bug
+  21179aff-4cb0-4e06-877a-6b13488017b3:
+    id: 21179aff-4cb0-4e06-877a-6b13488017b3
+    content: Perform the below bug fixes
+    children: []
+    metadata:
+      status: pending
+  6ab534a2-2956-454c-9c6a-e459314e0b5c:
+    id: 6ab534a2-2956-454c-9c6a-e459314e0b5c
+    content: Standard checks
+    children:
+      - ce9cfecb-f289-494b-8ff2-482e4b29d193
+      - d297e25a-add5-474b-af7a-1c130eab9930
+      - 1dafbd35-70a1-4920-ba69-c61e7d5dbc8a
+    metadata:
+      status: pending
+      isContextDeclaration: true
+      contextIcon: CheckSquare
+  ce9cfecb-f289-494b-8ff2-482e4b29d193:
+    id: ce9cfecb-f289-494b-8ff2-482e4b29d193
+    content: All the automated tests are updated and passing
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d297e25a-add5-474b-af7a-1c130eab9930:
+    id: d297e25a-add5-474b-af7a-1c130eab9930
+    content: There are no linting errors
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1dafbd35-70a1-4920-ba69-c61e7d5dbc8a:
+    id: 1dafbd35-70a1-4920-ba69-c61e7d5dbc8a
+    content: There are no typescript errors
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  79b693ca-27ce-4410-8617-8092d7e81b07:
+    id: 79b693ca-27ce-4410-8617-8092d7e81b07
+    content: Bugs
+    children: []
+    metadata:
+      status: pending
+      appliedContextIds:
+        - 6690289a-e02f-48bc-9225-a1083b7b324f
+      activeContextId: 6690289a-e02f-48bc-9225-a1083b7b324f
+  aff16275-6d8e-49c9-b862-76875858d4af:
+    id: aff16275-6d8e-49c9-b862-76875858d4af
+    content: Avoid adding comments specific to the bug fix unless really needed
+    children: []
+    metadata:
+      status: pending
+  fb113649-ae70-4af9-84a2-1495d1731a63:
+    id: fb113649-ae70-4af9-84a2-1495d1731a63
+    content: The icon DOES contain the '+' symbol etc, same as it previously did
+    children: []
+    metadata:
+      status: pending
+  c4473311-2e42-48ae-9191-d3807dc55a4c:
+    id: c4473311-2e42-48ae-9191-d3807dc55a4c
+    content: Problems
+    children:
+      - a3bbb184-6a27-4c57-817b-38d38d29d45b
+    metadata:
+      status: pending
+  a3bbb184-6a27-4c57-817b-38d38d29d45b:
+    id: a3bbb184-6a27-4c57-817b-38d38d29d45b
+    content: Need to be able to change the order of bundled contexts
+    children: []
+    metadata:
+      status: pending
+  f5c33654-69b4-492a-a6e3-6d13e4dec80d:
+    id: f5c33654-69b4-492a-a6e3-6d13e4dec80d
+    content: Tasks
+    children:
+      - 6e6f1d73-3ad7-46c6-879e-19036d650556
+    metadata:
+      status: pending
+      expanded: true
+  6e6f1d73-3ad7-46c6-879e-19036d650556:
+    id: 6e6f1d73-3ad7-46c6-879e-19036d650556
+    content: Review since last commit
+    children:
+      - e8b96096-b0ba-42f8-91cd-37fea6028a85
+      - 4264aa2a-e101-4dd6-b971-1d0deb8ce03d
+      - 71a10f84-1849-4545-9352-d8827c3250d7
+      - 443ed04c-12ba-43fb-a6b2-e3b14da356a3
+      - 0985b5a6-8be4-43f5-95f2-c5c76575708e
+    metadata:
+      status: pending
+  4264aa2a-e101-4dd6-b971-1d0deb8ce03d:
+    id: 4264aa2a-e101-4dd6-b971-1d0deb8ce03d
+    content: Review all code implemented since last commit
+    children: []
+    metadata:
+      status: pending
+  e8b96096-b0ba-42f8-91cd-37fea6028a85:
+    id: e8b96096-b0ba-42f8-91cd-37fea6028a85
+    content: Read arbo/architecture.md
+    children: []
+    metadata:
+      status: pending
+  71a10f84-1849-4545-9352-d8827c3250d7:
+    id: 71a10f84-1849-4545-9352-d8827c3250d7
+    content: Insure it is consistent withe the global architecture
+    children: []
+    metadata:
+      status: pending
+  443ed04c-12ba-43fb-a6b2-e3b14da356a3:
+    id: 443ed04c-12ba-43fb-a6b2-e3b14da356a3
+    content: Identify any refactoring opportunities
+    children: []
+    metadata:
+      status: pending
+  0985b5a6-8be4-43f5-95f2-c5c76575708e:
+    id: 0985b5a6-8be4-43f5-95f2-c5c76575708e
+    content: Give the user a report of refactoring opportunities and their priority
+    children: []
+    metadata:
+      status: pending
+  3594d666-040e-4132-afd2-0ab8ce0cf800:
+    id: 3594d666-040e-4132-afd2-0ab8ce0cf800
+    content: ''
     children: []
     metadata:
       status: pending

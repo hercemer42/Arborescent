@@ -1,5 +1,5 @@
 import { TreeNode } from '../../../../shared/types';
-import { updateNodeMetadata, getEffectiveContextIds } from '../../../utils/nodeHelpers';
+import { updateNodeMetadata, getEffectiveContextIds, getAllDescendants } from '../../../utils/nodeHelpers';
 import { logger } from '../../../services/logger';
 import { useToastStore } from '../../toast/toastStore';
 import { ContextDeclarationInfo } from '../treeStore';
@@ -51,7 +51,6 @@ function removeContextFromMetadataArray(
         [metadataKey]: newIds.length > 0 ? newIds : undefined,
       };
 
-      // Handle activeContextId promotion when removing from appliedContextIds
       if (metadataKey === 'appliedContextIds') {
         const currentActiveContextId = node.metadata.activeContextId as string | undefined;
         if (newIds.length === 0) {
@@ -82,27 +81,63 @@ export const createContextActions = (
 ): ContextActions => {
   function refreshContextDeclarations(): void {
     const { nodes } = get();
-    // Use setTimeout to make this async and avoid blocking the UI
     setTimeout(() => {
       set({ contextDeclarations: buildContextDeclarations(nodes) });
     }, 0);
   }
 
   function declareAsContext(nodeId: string, icon?: string, color?: string): void {
-    const { nodes } = get();
+    const { nodes, ancestorRegistry } = get();
     const node = nodes[nodeId];
     if (!node) return;
 
-    set({
-      nodes: updateNodeMetadata(nodes, nodeId, {
-        isContextDeclaration: true,
-        contextIcon: icon || 'lightbulb',
-        contextColor: color || undefined,
-      }),
+    const ancestors = ancestorRegistry[nodeId] || [];
+    const parentId = ancestors[ancestors.length - 1];
+    const parent = parentId ? nodes[parentId] : null;
+    if (!parent || parent.metadata.isBlueprint !== true) {
+      useToastStore.getState().addToast('Can only declare context on nodes with a blueprint parent', 'error');
+      return;
+    }
+
+    const contextIcon = icon || 'lightbulb';
+    const contextColor = color || undefined;
+
+    let updatedNodes = updateNodeMetadata(nodes, nodeId, {
+      isContextDeclaration: true,
+      contextIcon,
+      contextColor,
+      isBlueprint: true,
+      isContextChild: false,
+      contextParentId: undefined,
     });
 
-    useToastStore.getState().addToast('Node declared as context', 'success');
-    logger.info(`Node ${nodeId} declared as context with icon ${icon || 'lightbulb'}`, 'Context');
+    const descendantIds = getAllDescendants(nodeId, nodes);
+    const nestedContextIds = new Set<string>();
+
+    for (const descendantId of descendantIds) {
+      const descendant = updatedNodes[descendantId];
+      if (descendant?.metadata.isContextDeclaration === true) {
+        nestedContextIds.add(descendantId);
+        const nestedDescendants = getAllDescendants(descendantId, nodes);
+        for (const nestedId of nestedDescendants) {
+          nestedContextIds.add(nestedId);
+        }
+      }
+    }
+
+    for (const descendantId of descendantIds) {
+      if (nestedContextIds.has(descendantId)) continue;
+
+      updatedNodes = updateNodeMetadata(updatedNodes, descendantId, {
+        isBlueprint: true,
+        isContextChild: true,
+        contextParentId: nodeId,
+      });
+    }
+
+    set({ nodes: updatedNodes });
+
+    logger.info(`Node ${nodeId} declared as context with icon ${contextIcon}`, 'Context');
 
     triggerAutosave?.();
     refreshContextDeclarations();
@@ -127,22 +162,66 @@ export const createContextActions = (
   }
 
   function removeContextDeclaration(nodeId: string): void {
-    const { nodes } = get();
+    const { nodes, ancestorRegistry } = get();
     const node = nodes[nodeId];
     if (!node) return;
 
-    // Update the context declaration node - clear declaration metadata
-    let updatedNodes = updateNodeMetadata(nodes, nodeId, {
-      isContextDeclaration: false,
-      contextIcon: undefined,
-      contextColor: undefined,
-      bundledContextIds: undefined,
-    });
+    let ancestorContextId: string | undefined;
+    const ancestors = ancestorRegistry[nodeId] || [];
+    for (let i = ancestors.length - 1; i >= 0; i--) {
+      const ancestorId = ancestors[i];
+      const ancestor = nodes[ancestorId];
+      if (ancestor?.metadata.isContextDeclaration === true) {
+        ancestorContextId = ancestorId;
+        break;
+      }
+    }
 
-    // Remove this context from appliedContextIds of all nodes
+    let updatedNodes: Record<string, TreeNode>;
+    if (ancestorContextId) {
+      updatedNodes = updateNodeMetadata(nodes, nodeId, {
+        isContextDeclaration: false,
+        contextIcon: undefined,
+        contextColor: undefined,
+        bundledContextIds: undefined,
+        isContextChild: true,
+        contextParentId: ancestorContextId,
+      });
+    } else {
+      updatedNodes = updateNodeMetadata(nodes, nodeId, {
+        isContextDeclaration: false,
+        contextIcon: undefined,
+        contextColor: undefined,
+        bundledContextIds: undefined,
+        isBlueprint: false,
+        isContextChild: false,
+        contextParentId: undefined,
+      });
+    }
+
+    const descendantIds = getAllDescendants(nodeId, nodes);
+    for (const descendantId of descendantIds) {
+      const descendant = updatedNodes[descendantId];
+      if (!descendant) continue;
+
+      if (descendant.metadata.isContextDeclaration === true) continue;
+
+      if (descendant.metadata.contextParentId === nodeId) {
+        if (ancestorContextId) {
+          updatedNodes = updateNodeMetadata(updatedNodes, descendantId, {
+            contextParentId: ancestorContextId,
+          });
+        } else {
+          updatedNodes = updateNodeMetadata(updatedNodes, descendantId, {
+            isBlueprint: false,
+            isContextChild: false,
+            contextParentId: undefined,
+          });
+        }
+      }
+    }
+
     updatedNodes = removeContextFromMetadataArray(nodeId, updatedNodes, 'appliedContextIds');
-
-    // Remove this context from bundledContextIds of other context declarations
     updatedNodes = removeContextFromMetadataArray(nodeId, updatedNodes, 'bundledContextIds');
 
     set({ nodes: updatedNodes });
@@ -160,10 +239,8 @@ export const createContextActions = (
     const contextNode = nodes[contextNodeId];
     if (!node || !contextNode) return;
 
-    // Get existing applied contexts or initialize empty array
     const existingContextIds = (node.metadata.appliedContextIds as string[]) || [];
 
-    // Don't add duplicate
     if (existingContextIds.includes(contextNodeId)) {
       useToastStore.getState().addToast('Context already applied', 'info');
       return;
@@ -171,12 +248,10 @@ export const createContextActions = (
 
     const newContextIds = [...existingContextIds, contextNodeId];
 
-    // Build metadata updates
     const metadataUpdates: Record<string, unknown> = {
       appliedContextIds: newContextIds,
     };
 
-    // Auto-set activeContextId when first context is applied
     if (existingContextIds.length === 0) {
       metadataUpdates.activeContextId = contextNodeId;
     }
@@ -202,30 +277,23 @@ export const createContextActions = (
 
     let newContextIds: string[] | undefined;
     if (contextNodeId) {
-      // Remove specific context
       newContextIds = existingContextIds.filter(id => id !== contextNodeId);
       if (newContextIds.length === 0) {
         newContextIds = undefined;
       }
     } else {
-      // Remove all contexts (for backwards compatibility or "remove all")
       newContextIds = undefined;
     }
 
-    // Build metadata updates
     const metadataUpdates: Record<string, unknown> = {
       appliedContextIds: newContextIds,
     };
 
-    // Handle activeContextId promotion/clearing
     if (!newContextIds || newContextIds.length === 0) {
-      // All contexts removed - clear activeContextId
       metadataUpdates.activeContextId = undefined;
     } else if (contextNodeId && currentActiveContextId === contextNodeId) {
-      // Active context was removed - promote first remaining context to active
       metadataUpdates.activeContextId = newContextIds[0];
     }
-    // Otherwise keep existing activeContextId
 
     set({
       nodes: updateNodeMetadata(nodes, nodeId, metadataUpdates),
@@ -242,7 +310,6 @@ export const createContextActions = (
     const node = nodes[nodeId];
     if (!node) return;
 
-    // Verify the context is available (either directly applied or inherited)
     const effectiveContextIds = getEffectiveContextIds(nodeId, nodes, ancestorRegistry);
     if (!effectiveContextIds.includes(contextNodeId)) {
       useToastStore.getState().addToast('Context is not available for this node', 'error');
@@ -266,19 +333,12 @@ export const createContextActions = (
     const contextNode = nodes[contextNodeId];
     if (!node || !contextNode) return;
 
-    // Only context declarations can have bundles
     if (node.metadata.isContextDeclaration !== true) return;
-
-    // Only context declarations can be bundled
     if (contextNode.metadata.isContextDeclaration !== true) return;
 
-    // Get existing bundled contexts or initialize empty array
     const existingBundleIds = (node.metadata.bundledContextIds as string[]) || [];
 
-    // Don't add duplicate
     if (existingBundleIds.includes(contextNodeId)) return;
-
-    // Don't allow self-bundling
     if (nodeId === contextNodeId) return;
 
     const newBundleIds = [...existingBundleIds, contextNodeId];

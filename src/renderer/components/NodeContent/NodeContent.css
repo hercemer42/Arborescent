@@ -50,6 +50,33 @@
   opacity: 1;
 }
 
+.context-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--blue-500);
+  width: 20px;
+  height: 20px;
+  background: none;
+  border: none;
+  padding: 0;
+  position: relative;
+}
+
+.context-indicator.context-declaration {
+  opacity: 0.9;
+  cursor: pointer;
+}
+
+.context-indicator.context-declaration:hover {
+  opacity: 1;
+}
+
+.context-indicator.context-child {
+  opacity: 0.5;
+  cursor: default;
+}
+
 .node-icon {
   font-size: 1rem;
 }
