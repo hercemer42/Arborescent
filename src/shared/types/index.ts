@@ -1,5 +1,5 @@
 // Node types
-export type { NodeStatus, TreeNode } from './treeNode';
+export type { NodeStatus, TransientMetadata, TreeNode } from './treeNode';
 export { STATUS_SYMBOLS } from './treeNode';
 
 // Document types

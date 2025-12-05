@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2025-12-05T11:49:10.062Z'
+updated: '2025-12-05T13:12:09.680Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -9000,7 +9000,7 @@ nodes:
       - 2cce09ee-9dee-4ac6-9679-1a375d5c3b7d
       - c5f11474-3082-4bf7-97f3-7434d12d9494
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -9009,7 +9009,7 @@ nodes:
     content: Apply 30% opacity/lightening to indicate cut status
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -9018,7 +9018,7 @@ nodes:
     content: Store the cut node ID in clipboard cache (not the node data)
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -9030,7 +9030,7 @@ nodes:
       - 23b3f6be-7509-4217-88df-4420bd49d7d8
       - 682414f3-dfc3-41ad-9955-2fa9e8452fe1
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -9042,7 +9042,7 @@ nodes:
       - 6af4a73c-6717-4823-a7e8-e40335d90747
       - d6239aae-fc84-4724-b12d-91307c87dd2e
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -9051,7 +9051,7 @@ nodes:
     content: Remove the 'cut' visual status
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -9069,7 +9069,7 @@ nodes:
     content: No tree modification needed - node stays in place
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -9081,7 +9081,7 @@ nodes:
       - c168a34a-a19c-48be-94ac-0408d3249f8c
       - 583de3ce-93e4-4980-9bd5-b048e6ac961b
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -9090,7 +9090,7 @@ nodes:
     content: Move the node to the new parent (retain node ID)
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -9099,7 +9099,7 @@ nodes:
     content: Remove the 'cut' visual status
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -9108,7 +9108,7 @@ nodes:
     content: Clear the clipboard cache
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -9119,7 +9119,7 @@ nodes:
       - 0b54edfb-f6da-41df-b7c4-825e6f933077
       - 730fc7cf-2f81-457f-8712-5cee511d7ffb
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -9128,7 +9128,7 @@ nodes:
     content: Block pasting blueprint nodes into non-blueprint parents
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -9137,7 +9137,7 @@ nodes:
     content: Show error toast and restore cut status if blocked
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -9148,7 +9148,7 @@ nodes:
       - b3627f66-2966-4413-9375-18349d702e23
       - 7631d062-7136-47df-9895-ee597974d3a1
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -9159,7 +9159,7 @@ nodes:
       - 064bc2d3-c527-4a00-9c4c-074c805805b4
       - a42d2304-a223-42d7-bbc8-dce681fe43dc
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -9168,7 +9168,7 @@ nodes:
     content: Remove 'cut' visual status from previously cut node
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -9177,7 +9177,7 @@ nodes:
     content: Replace clipboard cache with new selection
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -9220,7 +9220,7 @@ nodes:
       - bebb48cf-9fb7-47d6-9a0f-8dadd0fb6cfe
       - 003a3761-559d-43ca-9b58-5263d480dedd
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -9229,7 +9229,7 @@ nodes:
     content: Need to track 'cut' status visually - likely via a Set in store (similar to flashingNodeIds)
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -9238,16 +9238,16 @@ nodes:
     content: Cut becomes a "mark for move" rather than "delete + cache"
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
   6a7dbed6-8817-472e-bedc-53f7e52869e2:
     id: 6a7dbed6-8817-472e-bedc-53f7e52869e2
-    content: 'Undo behavior: cutting is now non-destructive, so undo just clears the cut status'
+    content: 'Undo behavior: cutting should be a command, and undo undoes that command'
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -9256,7 +9256,7 @@ nodes:
     content: 'Multi-selection cut: all selected nodes get cut status, paste moves all of them'
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -9265,7 +9265,7 @@ nodes:
     content: Be sure to remove any legacy code related to the old 'cut' mechanisms that are no longer required, including helpers
     children: []
     metadata:
-      status: pending
+      status: completed
   a9f7096f-1bdc-42c5-8d6c-161dd38f3e61:
     id: a9f7096f-1bdc-42c5-8d6c-161dd38f3e61
     content: Add 'lock' icon for terminal

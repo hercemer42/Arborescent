@@ -10,6 +10,7 @@ import {
 import { DeleteMultipleNodesCommand } from '../commands/DeleteMultipleNodesCommand';
 import { PasteNodesCommand } from '../commands/PasteNodesCommand';
 import { MoveNodeCommand } from '../commands/MoveNodeCommand';
+import { MarkCutCommand } from '../commands/MarkCutCommand';
 import { Command } from '../commands/Command';
 import { logger } from '../../../services/logger';
 import { writeToClipboard, readFromClipboard } from '../../../services/clipboardService';
@@ -52,7 +53,6 @@ type StoreState = {
   ancestorRegistry: AncestorRegistry;
   activeNodeId: string | null;
   multiSelectedNodeIds: Set<string>;
-  cutNodeIds: Set<string>;
 };
 
 type StoreActions = {
@@ -147,6 +147,7 @@ function flashNodes(
   visualEffects.flashNode(nodeIds, 'light');
 }
 
+
 /**
  * Get all node IDs from a selection (as array).
  */
@@ -185,6 +186,38 @@ interface PasteContext {
 }
 
 /**
+ * Check if target is invalid for move:
+ * - Moving node into itself
+ * - Moving node into its descendant
+ * - Moving node into its current parent (no-op)
+ */
+function isInvalidMoveTarget(
+  nodeIds: string[],
+  targetParentId: string,
+  rootNodeId: string,
+  ancestorRegistry: Record<string, string[]>
+): boolean {
+  // Can't move a node into itself
+  if (nodeIds.includes(targetParentId)) {
+    return true;
+  }
+  // Can't move a node into one of its descendants
+  const targetAncestors = ancestorRegistry[targetParentId] || [];
+  if (nodeIds.some((id) => targetAncestors.includes(id))) {
+    return true;
+  }
+  // Can't move nodes that are already in the target parent (no-op)
+  const firstNodeParent = getParentId(nodeIds[0], ancestorRegistry, rootNodeId);
+  const allSameParent = nodeIds.every(
+    (id) => getParentId(id, ancestorRegistry, rootNodeId) === firstNodeParent
+  );
+  if (allSameParent && firstNodeParent === targetParentId) {
+    return true;
+  }
+  return false;
+}
+
+/**
  * Handle cut-paste (move operation).
  * Returns null if this handler doesn't apply.
  */
@@ -204,6 +237,13 @@ function handleCutPaste(
     return 'no-content';
   }
 
+  // Check if move target is invalid (into self, descendant, or same parent)
+  if (isInvalidMoveTarget(nodesToMove, targetParentId, state.rootNodeId, state.ancestorRegistry)) {
+    clearCutState();
+    logger.info('Paste cancelled - invalid move target', 'ClipboardActions');
+    return 'cancelled';
+  }
+
   // Build map of cut nodes for blueprint validation
   const cutNodesMap: Record<string, TreeNode> = {};
   for (const id of nodesToMove) {
@@ -217,18 +257,6 @@ function handleCutPaste(
       'error'
     );
     return 'blocked';
-  }
-
-  // Check if pasting into same parent (no-op, just cancel cut)
-  const firstNodeParent = getParentId(nodesToMove[0], state.ancestorRegistry, state.rootNodeId);
-  const allSameParent = nodesToMove.every(
-    (id) => getParentId(id, state.ancestorRegistry, state.rootNodeId) === firstNodeParent
-  );
-
-  if (allSameParent && firstNodeParent === targetParentId) {
-    clearCutState();
-    logger.info('Paste cancelled - nodes already in target parent', 'ClipboardActions');
-    return 'cancelled';
   }
 
   // Move each node to the new parent
@@ -367,13 +395,32 @@ export const createClipboardActions = (
   triggerAutosave?: () => void
 ): ClipboardActions => {
   /**
-   * Clear any existing cut state (used when cutting/copying new nodes).
+   * Clear any existing cut state by removing transient.isCut from all nodes.
+   * This is a direct state update, not a command (doesn't go through undo).
    */
   function clearCutState(): void {
-    const state = get();
-    if (state.cutNodeIds.size > 0) {
-      set({ cutNodeIds: new Set() });
+    const cache = useClipboardCacheStore.getState().getCache();
+    const cutIds = cache?.allCutNodeIds || [];
+
+    if (cutIds.length > 0) {
+      const state = get();
+      const updatedNodes = { ...state.nodes };
+      for (const nodeId of cutIds) {
+        const node = updatedNodes[nodeId];
+        if (node) {
+          const { transient, ...restMetadata } = node.metadata;
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
+          const { isCut, ...restTransient } = transient || {};
+          const newMetadata =
+            Object.keys(restTransient).length > 0
+              ? { ...restMetadata, transient: restTransient }
+              : restMetadata;
+          updatedNodes[nodeId] = { ...node, metadata: newMetadata };
+        }
+      }
+      set({ nodes: updatedNodes });
     }
+
     useClipboardCacheStore.getState().clearCache();
   }
 
@@ -431,12 +478,18 @@ export const createClipboardActions = (
     // Clear any previous cut state before marking new nodes
     clearCutState();
 
-    // Mark nodes as cut (including all descendants)
+    // Mark nodes as cut (including all descendants) via command
     const allCutIds = getNodeAndDescendantIds(nodeIds, state.nodes);
-    set({ cutNodeIds: new Set(allCutIds) });
+    const actions = getActions();
+    const command = new MarkCutCommand(
+      allCutIds,
+      () => ({ nodes: get().nodes }),
+      (partial) => set(partial as Partial<StoreState>)
+    );
+    actions.executeCommand(command);
 
-    // Cache the root node IDs for paste operation
-    useClipboardCacheStore.getState().setCache(nodeIds, true);
+    // Cache the root node IDs and all cut IDs for paste operation
+    useClipboardCacheStore.getState().setCache(nodeIds, true, allCutIds);
 
     logger.info(`Cut ${nodeIds.length} node(s)`, 'ClipboardActions');
     return 'cut';
@@ -512,8 +565,9 @@ export const createClipboardActions = (
     }
 
     // Clear cut state if we're deleting cut nodes
-    const cutNodeIds = state.cutNodeIds;
-    if (nodeIds.some((id) => cutNodeIds.has(id))) {
+    const cache = useClipboardCacheStore.getState().getCache();
+    const cutIds = cache?.allCutNodeIds || [];
+    if (cutIds.length > 0 && nodeIds.some((id) => cutIds.includes(id))) {
       clearCutState();
     }
 

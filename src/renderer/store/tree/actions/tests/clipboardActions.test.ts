@@ -39,14 +39,14 @@ vi.mock('../../../../services/logger', () => ({
 }));
 
 // Mock clipboard cache store
-type MockCacheType = { rootNodeIds: string[]; timestamp: number; isCut: boolean } | null;
+type MockCacheType = { rootNodeIds: string[]; allCutNodeIds?: string[]; timestamp: number; isCut: boolean } | null;
 let currentMockCache: MockCacheType = null;
 
 vi.mock('../../../clipboard/clipboardCacheStore', () => ({
   useClipboardCacheStore: {
     getState: () => ({
-      setCache: vi.fn((rootNodeIds: string[], isCut: boolean) => {
-        currentMockCache = { rootNodeIds, timestamp: Date.now(), isCut };
+      setCache: vi.fn((rootNodeIds: string[], isCut: boolean, allCutNodeIds?: string[]) => {
+        currentMockCache = { rootNodeIds, allCutNodeIds, timestamp: Date.now(), isCut };
       }),
       getCache: vi.fn(() => currentMockCache),
       clearCache: vi.fn(() => {
@@ -79,8 +79,12 @@ describe('clipboardActions', () => {
     ancestorRegistry: Record<string, string[]>;
     activeNodeId: string | null;
     multiSelectedNodeIds: Set<string>;
-    cutNodeIds: Set<string>;
   };
+
+  // Helper to check if a node is marked as cut via transient metadata
+  function isNodeCut(nodeId: string): boolean {
+    return state.nodes[nodeId]?.metadata.transient?.isCut === true;
+  }
 
   let state: TestState;
   let setState: (partial: Partial<TestState>) => void;
@@ -164,7 +168,6 @@ describe('clipboardActions', () => {
       },
       activeNodeId: null,
       multiSelectedNodeIds: new Set(),
-      cutNodeIds: new Set(),
     };
 
     setState = (partial) => {
@@ -214,7 +217,7 @@ describe('clipboardActions', () => {
         await actions.cutNodes();
 
         // New behavior: cut marks nodes, doesn't delete them
-        expect(state.cutNodeIds.has('node-2')).toBe(true);
+        expect(isNodeCut('node-2')).toBe(true);
         expect(mockDeleteNode).not.toHaveBeenCalled();
         expect(mockStartDeleteAnimation).not.toHaveBeenCalled();
       });
@@ -225,8 +228,8 @@ describe('clipboardActions', () => {
         await actions.cutNodes();
 
         // node-1 and its child node-3 should both be marked as cut
-        expect(state.cutNodeIds.has('node-1')).toBe(true);
-        expect(state.cutNodeIds.has('node-3')).toBe(true);
+        expect(isNodeCut('node-1')).toBe(true);
+        expect(isNodeCut('node-3')).toBe(true);
       });
 
       it('should return no-selection when node does not exist', async () => {
@@ -254,9 +257,9 @@ describe('clipboardActions', () => {
         await actions.cutNodes();
 
         // All selected nodes and descendants should be marked as cut
-        expect(state.cutNodeIds.has('node-1')).toBe(true);
-        expect(state.cutNodeIds.has('node-2')).toBe(true);
-        expect(state.cutNodeIds.has('node-3')).toBe(true); // child of node-1
+        expect(isNodeCut('node-1')).toBe(true);
+        expect(isNodeCut('node-2')).toBe(true);
+        expect(isNodeCut('node-3')).toBe(true); // child of node-1
       });
 
       it('should return no-selection when all selected nodes are descendants', async () => {
@@ -282,13 +285,13 @@ describe('clipboardActions', () => {
       // First cut
       state.activeNodeId = 'node-2';
       await actions.cutNodes();
-      expect(state.cutNodeIds.has('node-2')).toBe(true);
+      expect(isNodeCut('node-2')).toBe(true);
 
       // Second cut - should clear previous
       state.activeNodeId = 'node-1';
       await actions.cutNodes();
-      expect(state.cutNodeIds.has('node-2')).toBe(false);
-      expect(state.cutNodeIds.has('node-1')).toBe(true);
+      expect(isNodeCut('node-2')).toBe(false);
+      expect(isNodeCut('node-1')).toBe(true);
     });
   });
 
@@ -600,10 +603,15 @@ describe('clipboardActions', () => {
         // Setup cache as cut operation
         currentMockCache = {
           rootNodeIds: ['node-2'],
+          allCutNodeIds: ['node-2'],
           timestamp: Date.now(),
           isCut: true,
         };
-        state.cutNodeIds = new Set(['node-2']);
+        // Mark node as cut via transient metadata
+        state.nodes['node-2'] = {
+          ...state.nodes['node-2'],
+          metadata: { ...state.nodes['node-2'].metadata, transient: { isCut: true } },
+        };
         state.activeNodeId = 'node-1'; // paste into node-1
 
         const result = await actions.pasteNodes();
@@ -611,24 +619,29 @@ describe('clipboardActions', () => {
         expect(result).toBe('pasted');
         expect(mockExecuteCommand).toHaveBeenCalled();
         // Cut state should be cleared
-        expect(state.cutNodeIds.size).toBe(0);
+        expect(isNodeCut('node-2')).toBe(false);
       });
 
       it('should cancel when pasting cut nodes into same parent', async () => {
         // node-2 is already a child of root, pasting into root should be a no-op
         currentMockCache = {
           rootNodeIds: ['node-2'],
+          allCutNodeIds: ['node-2'],
           timestamp: Date.now(),
           isCut: true,
         };
-        state.cutNodeIds = new Set(['node-2']);
+        // Mark node as cut via transient metadata
+        state.nodes['node-2'] = {
+          ...state.nodes['node-2'],
+          metadata: { ...state.nodes['node-2'].metadata, transient: { isCut: true } },
+        };
         state.activeNodeId = null; // paste into root (node-2's current parent)
 
         const result = await actions.pasteNodes();
 
         expect(result).toBe('cancelled');
         // Cut state should be cleared
-        expect(state.cutNodeIds.size).toBe(0);
+        expect(isNodeCut('node-2')).toBe(false);
       });
 
       it('should fall back to clipboard when cache is empty', async () => {
@@ -715,7 +728,6 @@ describe('clipboardActions', () => {
         'blueprint-child': ['root', 'blueprint-parent'],
         'normal-parent': ['root'],
       };
-      state.cutNodeIds = new Set();
     });
 
     it('should block pasting blueprint nodes into non-blueprint parent', async () => {
@@ -790,7 +802,7 @@ describe('clipboardActions', () => {
         'error'
       );
       // Cut state should remain (not cleared on blocked paste)
-      expect(state.cutNodeIds.has('blueprint-child')).toBe(true);
+      expect(isNodeCut('blueprint-child')).toBe(true);
     });
   });
 });
