@@ -39,14 +39,14 @@ vi.mock('../../../../services/logger', () => ({
 }));
 
 // Mock clipboard cache store
-type MockCacheType = { rootNodeIds: string[]; timestamp: number } | null;
+type MockCacheType = { rootNodeIds: string[]; timestamp: number; isCut: boolean } | null;
 let currentMockCache: MockCacheType = null;
 
 vi.mock('../../../clipboard/clipboardCacheStore', () => ({
   useClipboardCacheStore: {
     getState: () => ({
-      setCache: vi.fn((rootNodeIds: string[]) => {
-        currentMockCache = { rootNodeIds, timestamp: Date.now() };
+      setCache: vi.fn((rootNodeIds: string[], isCut: boolean) => {
+        currentMockCache = { rootNodeIds, timestamp: Date.now(), isCut };
       }),
       getCache: vi.fn(() => currentMockCache),
       clearCache: vi.fn(() => {
@@ -79,6 +79,7 @@ describe('clipboardActions', () => {
     ancestorRegistry: Record<string, string[]>;
     activeNodeId: string | null;
     multiSelectedNodeIds: Set<string>;
+    cutNodeIds: Set<string>;
   };
 
   let state: TestState;
@@ -163,6 +164,7 @@ describe('clipboardActions', () => {
       },
       activeNodeId: null,
       multiSelectedNodeIds: new Set(),
+      cutNodeIds: new Set(),
     };
 
     setState = (partial) => {
@@ -206,20 +208,25 @@ describe('clipboardActions', () => {
         expect(mockClipboard.writeText).toHaveBeenCalledWith('# Task 1');
       });
 
-      it('should start delete animation for active node', async () => {
+      it('should mark node as cut (not delete)', async () => {
         state.activeNodeId = 'node-2';
 
         await actions.cutNodes();
 
-        expect(mockStartDeleteAnimation).toHaveBeenCalledWith('node-2', expect.any(Function));
+        // New behavior: cut marks nodes, doesn't delete them
+        expect(state.cutNodeIds.has('node-2')).toBe(true);
+        expect(mockDeleteNode).not.toHaveBeenCalled();
+        expect(mockStartDeleteAnimation).not.toHaveBeenCalled();
       });
 
-      it('should delete node after animation', async () => {
-        state.activeNodeId = 'node-2';
+      it('should mark node and descendants as cut', async () => {
+        state.activeNodeId = 'node-1';
 
         await actions.cutNodes();
 
-        expect(mockDeleteNode).toHaveBeenCalledWith('node-2', true);
+        // node-1 and its child node-3 should both be marked as cut
+        expect(state.cutNodeIds.has('node-1')).toBe(true);
+        expect(state.cutNodeIds.has('node-3')).toBe(true);
       });
 
       it('should return no-selection when node does not exist', async () => {
@@ -241,12 +248,15 @@ describe('clipboardActions', () => {
         expect(mockClipboard.writeText).toHaveBeenCalled();
       });
 
-      it('should use command for multi-selection cut', async () => {
+      it('should mark all selected nodes as cut', async () => {
         state.multiSelectedNodeIds = new Set(['node-1', 'node-2']);
 
         await actions.cutNodes();
 
-        expect(mockExecuteCommand).toHaveBeenCalled();
+        // All selected nodes and descendants should be marked as cut
+        expect(state.cutNodeIds.has('node-1')).toBe(true);
+        expect(state.cutNodeIds.has('node-2')).toBe(true);
+        expect(state.cutNodeIds.has('node-3')).toBe(true); // child of node-1
       });
 
       it('should return no-selection when all selected nodes are descendants', async () => {
@@ -266,6 +276,19 @@ describe('clipboardActions', () => {
       const result = await actions.cutNodes();
 
       expect(result).toBe('no-selection');
+    });
+
+    it('should clear previous cut state when cutting new nodes', async () => {
+      // First cut
+      state.activeNodeId = 'node-2';
+      await actions.cutNodes();
+      expect(state.cutNodeIds.has('node-2')).toBe(true);
+
+      // Second cut - should clear previous
+      state.activeNodeId = 'node-1';
+      await actions.cutNodes();
+      expect(state.cutNodeIds.has('node-2')).toBe(false);
+      expect(state.cutNodeIds.has('node-1')).toBe(true);
     });
   });
 
@@ -556,11 +579,12 @@ describe('clipboardActions', () => {
     });
 
     describe('paste from cache', () => {
-      it('should paste from cache when nodes exist', async () => {
-        // Setup cache referencing existing nodes
+      it('should paste from cache when nodes exist (copy)', async () => {
+        // Setup cache referencing existing nodes (copy, not cut)
         currentMockCache = {
           rootNodeIds: ['node-1'],
           timestamp: Date.now(),
+          isCut: false,
         };
         state.activeNodeId = 'node-2';
 
@@ -570,6 +594,41 @@ describe('clipboardActions', () => {
         expect(mockExecuteCommand).toHaveBeenCalled();
         // Should NOT read from system clipboard when cache is available
         expect(mockClipboard.readText).not.toHaveBeenCalled();
+      });
+
+      it('should move nodes when pasting cut cache', async () => {
+        // Setup cache as cut operation
+        currentMockCache = {
+          rootNodeIds: ['node-2'],
+          timestamp: Date.now(),
+          isCut: true,
+        };
+        state.cutNodeIds = new Set(['node-2']);
+        state.activeNodeId = 'node-1'; // paste into node-1
+
+        const result = await actions.pasteNodes();
+
+        expect(result).toBe('pasted');
+        expect(mockExecuteCommand).toHaveBeenCalled();
+        // Cut state should be cleared
+        expect(state.cutNodeIds.size).toBe(0);
+      });
+
+      it('should cancel when pasting cut nodes into same parent', async () => {
+        // node-2 is already a child of root, pasting into root should be a no-op
+        currentMockCache = {
+          rootNodeIds: ['node-2'],
+          timestamp: Date.now(),
+          isCut: true,
+        };
+        state.cutNodeIds = new Set(['node-2']);
+        state.activeNodeId = null; // paste into root (node-2's current parent)
+
+        const result = await actions.pasteNodes();
+
+        expect(result).toBe('cancelled');
+        // Cut state should be cleared
+        expect(state.cutNodeIds.size).toBe(0);
       });
 
       it('should fall back to clipboard when cache is empty', async () => {
@@ -584,10 +643,11 @@ describe('clipboardActions', () => {
       });
 
       it('should fall back to clipboard when cached nodes no longer exist', async () => {
-        // Cache references non-existent nodes
+        // Cache references non-existent nodes (copy case)
         currentMockCache = {
           rootNodeIds: ['deleted-node'],
           timestamp: Date.now(),
+          isCut: false,
         };
         state.activeNodeId = 'node-1';
         mockClipboard.readText.mockResolvedValueOnce('# External Content');
@@ -618,7 +678,7 @@ describe('clipboardActions', () => {
     });
   });
 
-  describe('blueprint flag stripping on paste', () => {
+  describe('blueprint validation on paste', () => {
     beforeEach(() => {
       mockAddToast.mockClear();
 
@@ -655,25 +715,26 @@ describe('clipboardActions', () => {
         'blueprint-child': ['root', 'blueprint-parent'],
         'normal-parent': ['root'],
       };
+      state.cutNodeIds = new Set();
     });
 
-    it('should strip blueprint flags when pasting into non-blueprint parent', async () => {
+    it('should block pasting blueprint nodes into non-blueprint parent', async () => {
       // Copy blueprint node
       state.activeNodeId = 'blueprint-child';
       await actions.copyNodes();
 
-      // Paste into non-blueprint parent
+      // Try to paste into non-blueprint parent
       state.activeNodeId = 'normal-parent';
       const result = await actions.pasteNodes();
 
-      expect(result).toBe('pasted');
+      expect(result).toBe('blocked');
       expect(mockAddToast).toHaveBeenCalledWith(
-        'Blueprint status removed from pasted nodes',
-        'info'
+        'Cannot paste blueprint nodes into a non-blueprint parent',
+        'error'
       );
     });
 
-    it('should preserve blueprint flags when pasting into blueprint parent', async () => {
+    it('should allow pasting blueprint nodes into blueprint parent', async () => {
       // Copy blueprint node
       state.activeNodeId = 'blueprint-child';
       await actions.copyNodes();
@@ -686,23 +747,23 @@ describe('clipboardActions', () => {
       expect(mockAddToast).not.toHaveBeenCalled();
     });
 
-    it('should strip blueprint flags when pasting into root', async () => {
+    it('should block pasting blueprint nodes into root', async () => {
       // Copy blueprint node
       state.activeNodeId = 'blueprint-child';
       await actions.copyNodes();
 
-      // Paste into root (no active node)
+      // Try to paste into root (no active node)
       state.activeNodeId = null;
       const result = await actions.pasteNodes();
 
-      expect(result).toBe('pasted');
+      expect(result).toBe('blocked');
       expect(mockAddToast).toHaveBeenCalledWith(
-        'Blueprint status removed from pasted nodes',
-        'info'
+        'Cannot paste blueprint nodes into a non-blueprint parent',
+        'error'
       );
     });
 
-    it('should not show toast when pasting non-blueprint nodes', async () => {
+    it('should allow pasting non-blueprint nodes anywhere', async () => {
       // Copy normal node
       state.activeNodeId = 'normal-parent';
       await actions.copyNodes();
@@ -712,6 +773,24 @@ describe('clipboardActions', () => {
       await actions.pasteNodes();
 
       expect(mockAddToast).not.toHaveBeenCalled();
+    });
+
+    it('should block moving cut blueprint nodes into non-blueprint parent', async () => {
+      // Cut blueprint node
+      state.activeNodeId = 'blueprint-child';
+      await actions.cutNodes();
+
+      // Try to paste into non-blueprint parent
+      state.activeNodeId = 'normal-parent';
+      const result = await actions.pasteNodes();
+
+      expect(result).toBe('blocked');
+      expect(mockAddToast).toHaveBeenCalledWith(
+        'Cannot move blueprint nodes into a non-blueprint parent',
+        'error'
+      );
+      // Cut state should remain (not cleared on blocked paste)
+      expect(state.cutNodeIds.has('blueprint-child')).toBe(true);
     });
   });
 });

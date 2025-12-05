@@ -404,6 +404,37 @@ export function getAllDescendants(nodeId: string, nodes: Record<string, TreeNode
   return descendants;
 }
 
+/**
+ * Get a node and all its descendants (node itself included).
+ * Unlike getAllDescendants, this includes the root nodes in the result.
+ */
+export function getNodeAndDescendantIds(
+  rootIds: string[],
+  nodes: Record<string, TreeNode>
+): string[] {
+  const result: string[] = [];
+  for (const rootId of rootIds) {
+    if (nodes[rootId]) {
+      result.push(rootId);
+      result.push(...getAllDescendants(rootId, nodes));
+    }
+  }
+  return result;
+}
+
+/**
+ * Get the parent ID for a node from the ancestor registry.
+ * Returns rootNodeId if node has no ancestors.
+ */
+export function getParentId(
+  nodeId: string,
+  ancestorRegistry: AncestorRegistry,
+  rootNodeId: string
+): string {
+  const ancestors = ancestorRegistry[nodeId] || [];
+  return ancestors[ancestors.length - 1] || rootNodeId;
+}
+
 export function getVisibleNodesInOrder(
   rootNodeId: string,
   nodes: Record<string, TreeNode>,

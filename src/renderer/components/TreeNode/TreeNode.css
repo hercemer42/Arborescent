@@ -91,6 +91,11 @@
   transition: none;
 }
 
+/* Cut nodes - 30% opacity to indicate pending move */
+.tree-node-wrapper.cut-node {
+  opacity: 0.5;
+}
+
 /* Flash animations */
 .tree-node-wrapper.flashing-light .node-content {
   animation: flash-light 0.5s ease-out;

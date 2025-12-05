@@ -11,6 +11,9 @@ import {
   getActiveContextId,
   resolveBundledContexts,
   getContextsForCollaboration,
+  getNodeAndDescendantIds,
+  getParentId,
+  getAllDescendants,
 } from '../nodeHelpers';
 import { TreeNode } from '@shared/types';
 
@@ -977,5 +980,120 @@ describe('getContextsForCollaboration', () => {
     };
 
     expect(getContextsForCollaboration('task', nodes, ancestorRegistry)).toEqual(['ctx-1']);
+  });
+});
+
+describe('getAllDescendants', () => {
+  const createNode = (id: string, children: string[] = []): TreeNode => ({
+    id,
+    content: `Node ${id}`,
+    children,
+    metadata: {},
+  });
+
+  it('should return empty array for node with no children', () => {
+    const nodes = { 'node-1': createNode('node-1') };
+    expect(getAllDescendants('node-1', nodes)).toEqual([]);
+  });
+
+  it('should return direct children', () => {
+    const nodes = {
+      'parent': createNode('parent', ['child-1', 'child-2']),
+      'child-1': createNode('child-1'),
+      'child-2': createNode('child-2'),
+    };
+    expect(getAllDescendants('parent', nodes)).toEqual(['child-1', 'child-2']);
+  });
+
+  it('should return all descendants recursively', () => {
+    const nodes = {
+      'root': createNode('root', ['child']),
+      'child': createNode('child', ['grandchild']),
+      'grandchild': createNode('grandchild'),
+    };
+    expect(getAllDescendants('root', nodes)).toEqual(['child', 'grandchild']);
+  });
+
+  it('should return empty array for non-existent node', () => {
+    const nodes = { 'node-1': createNode('node-1') };
+    expect(getAllDescendants('non-existent', nodes)).toEqual([]);
+  });
+});
+
+describe('getNodeAndDescendantIds', () => {
+  const createNode = (id: string, children: string[] = []): TreeNode => ({
+    id,
+    content: `Node ${id}`,
+    children,
+    metadata: {},
+  });
+
+  it('should return the root node itself when no children', () => {
+    const nodes = { 'node-1': createNode('node-1') };
+    expect(getNodeAndDescendantIds(['node-1'], nodes)).toEqual(['node-1']);
+  });
+
+  it('should return root and all descendants', () => {
+    const nodes = {
+      'parent': createNode('parent', ['child-1', 'child-2']),
+      'child-1': createNode('child-1'),
+      'child-2': createNode('child-2'),
+    };
+    expect(getNodeAndDescendantIds(['parent'], nodes)).toEqual(['parent', 'child-1', 'child-2']);
+  });
+
+  it('should handle multiple root nodes', () => {
+    const nodes = {
+      'root-1': createNode('root-1', ['child-1']),
+      'root-2': createNode('root-2', ['child-2']),
+      'child-1': createNode('child-1'),
+      'child-2': createNode('child-2'),
+    };
+    expect(getNodeAndDescendantIds(['root-1', 'root-2'], nodes)).toEqual([
+      'root-1', 'child-1', 'root-2', 'child-2'
+    ]);
+  });
+
+  it('should skip non-existent root nodes', () => {
+    const nodes = { 'node-1': createNode('node-1') };
+    expect(getNodeAndDescendantIds(['non-existent', 'node-1'], nodes)).toEqual(['node-1']);
+  });
+
+  it('should handle deeply nested tree', () => {
+    const nodes = {
+      'root': createNode('root', ['a']),
+      'a': createNode('a', ['b']),
+      'b': createNode('b', ['c']),
+      'c': createNode('c'),
+    };
+    expect(getNodeAndDescendantIds(['root'], nodes)).toEqual(['root', 'a', 'b', 'c']);
+  });
+});
+
+describe('getParentId', () => {
+  it('should return parent from ancestor registry', () => {
+    const ancestorRegistry = {
+      'child': ['grandparent', 'parent'],
+    };
+    expect(getParentId('child', ancestorRegistry, 'root')).toBe('parent');
+  });
+
+  it('should return root when node has no ancestors', () => {
+    const ancestorRegistry = {
+      'child': [],
+    };
+    expect(getParentId('child', ancestorRegistry, 'root')).toBe('root');
+  });
+
+  it('should return root when node not in registry', () => {
+    const ancestorRegistry = {};
+    expect(getParentId('unknown', ancestorRegistry, 'root')).toBe('root');
+  });
+
+  it('should return immediate parent (last in ancestors array)', () => {
+    const ancestorRegistry = {
+      'deeply-nested': ['root', 'level-1', 'level-2', 'level-3'],
+    };
+    expect(getParentId('deeply-nested', ancestorRegistry, 'root')).toBe('level-3');
   });
 });

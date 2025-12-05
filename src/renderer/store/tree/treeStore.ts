@@ -41,6 +41,7 @@ export interface TreeState {
   scrollToNodeId: string | null;
   deletingNodeIds: Set<string>; // Nodes being animated out before deletion
   deleteAnimationCallback: (() => void) | null; // Callback to execute when delete animation completes
+  cutNodeIds: Set<string>; // Nodes marked as cut (pending move on paste)
   collaboratingNodeId: string | null; // Node currently in collaboration
   feedbackFadingNodeIds: Set<string>; // Nodes fading out after feedback accepted
   contextDeclarations: ContextDeclarationInfo[]; // Cached list of context declarations
@@ -100,6 +101,7 @@ export function createTreeStore(treeType: TreeType = 'workspace') {
       scrollToNodeId: null,
       deletingNodeIds: new Set(),
       deleteAnimationCallback: null,
+      cutNodeIds: new Set(),
       collaboratingNodeId: null,
       feedbackFadingNodeIds: new Set(),
       contextDeclarations: [],

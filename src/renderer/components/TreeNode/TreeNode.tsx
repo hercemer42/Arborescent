@@ -25,9 +25,11 @@ export const TreeNode = memo(function TreeNode({ nodeId, depth = 0 }: TreeNodePr
   const collaboratingNodeId = useStore((state) => state.collaboratingNodeId);
   const ancestorRegistry = useStore((state) => state.ancestorRegistry);
   const feedbackFadingNodeIds = useStore((state) => state.feedbackFadingNodeIds);
+  const cutNodeIds = useStore((state) => state.cutNodeIds);
   const isCollaborating = collaboratingNodeId === nodeId;
   const isCollaboratingDescendant = collaboratingNodeId !== null && ancestorRegistry[nodeId]?.includes(collaboratingNodeId);
   const isFeedbackFading = feedbackFadingNodeIds.has(nodeId);
+  const isCutNode = cutNodeIds.has(nodeId);
 
   const appliedContexts = useAppliedContexts(node, nodes);
   const bundledContexts = useBundledContexts(node, nodes);
@@ -57,6 +59,7 @@ export const TreeNode = memo(function TreeNode({ nodeId, depth = 0 }: TreeNodePr
     isCollaborating && 'collaborating',
     isCollaboratingDescendant && 'collaborating-descendant',
     isFeedbackFading && 'feedback-fading',
+    isCutNode && 'cut-node',
     hasChildren && !expanded && 'collapsed-parent',
     isDragging && 'dragging',
     isOver && dropPosition && `drop-${dropPosition}`,

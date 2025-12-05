@@ -1,16 +1,23 @@
 import { TreeNode } from '../../../../shared/types';
 import { exportNodeAsMarkdown, exportMultipleNodesAsMarkdown, parseMarkdown } from '../../../utils/markdown';
-import { findPreviousNode, cloneNodesWithNewIds, sortNodeIdsByTreeOrder } from '../../../utils/nodeHelpers';
-import { CutMultipleNodesCommand } from '../commands/CutMultipleNodesCommand';
+import {
+  cloneNodesWithNewIds,
+  sortNodeIdsByTreeOrder,
+  findPreviousNode,
+  getNodeAndDescendantIds,
+  getParentId,
+} from '../../../utils/nodeHelpers';
 import { DeleteMultipleNodesCommand } from '../commands/DeleteMultipleNodesCommand';
 import { PasteNodesCommand } from '../commands/PasteNodesCommand';
+import { MoveNodeCommand } from '../commands/MoveNodeCommand';
 import { Command } from '../commands/Command';
 import { logger } from '../../../services/logger';
 import { writeToClipboard, readFromClipboard } from '../../../services/clipboardService';
 import { VisualEffectsActions } from './visualEffectsActions';
 import { notifyError } from '../../../services/notification';
-import { useClipboardCacheStore } from '../../clipboard/clipboardCacheStore';
+import { useClipboardCacheStore, ClipboardCacheContent } from '../../clipboard/clipboardCacheStore';
 import { useToastStore } from '../../toast/toastStore';
+import { AncestorRegistry } from '../../../services/ancestry';
 
 export interface ClipboardActions {
   /**
@@ -27,9 +34,10 @@ export interface ClipboardActions {
 
   /**
    * Paste nodes from clipboard as children of active node (or root).
-   * Returns 'pasted' if nodes were pasted, 'no-content' if clipboard had no valid nodes.
+   * Returns 'pasted' if nodes were pasted/moved, 'no-content' if clipboard had no valid nodes,
+   * 'blocked' if blueprint validation failed, 'cancelled' if pasting cut nodes into same parent.
    */
-  pasteNodes: () => Promise<'pasted' | 'no-content'>;
+  pasteNodes: () => Promise<'pasted' | 'no-content' | 'blocked' | 'cancelled'>;
 
   /**
    * Delete selected nodes (multi-selection or single active node).
@@ -41,9 +49,10 @@ export interface ClipboardActions {
 type StoreState = {
   nodes: Record<string, TreeNode>;
   rootNodeId: string;
-  ancestorRegistry: Record<string, string[]>;
+  ancestorRegistry: AncestorRegistry;
   activeNodeId: string | null;
   multiSelectedNodeIds: Set<string>;
+  cutNodeIds: Set<string>;
 };
 
 type StoreActions = {
@@ -139,42 +148,215 @@ function flashNodes(
 }
 
 /**
- * Strip blueprint flags from nodes if pasting into a non-blueprint parent.
- * Returns true if any flags were stripped.
- */
-function stripBlueprintFlagsIfNeeded(
-  nodesMap: Record<string, TreeNode>,
-  targetParentId: string,
-  existingNodes: Record<string, TreeNode>
-): boolean {
-  const targetParent = existingNodes[targetParentId];
-  const targetIsBlueprint = targetParent?.metadata.isBlueprint === true;
-
-  if (targetIsBlueprint) {
-    return false;
-  }
-
-  let strippedAny = false;
-  for (const nodeId of Object.keys(nodesMap)) {
-    const node = nodesMap[nodeId];
-    if (node.metadata.isBlueprint) {
-      delete node.metadata.isBlueprint;
-      delete node.metadata.blueprintIcon;
-      delete node.metadata.blueprintColor;
-      strippedAny = true;
-    }
-  }
-
-  return strippedAny;
-}
-
-/**
  * Get all node IDs from a selection (as array).
  */
 function getNodeIdsFromSelection(selection: SelectionResult): string[] {
   if (selection.type === 'multi') return selection.nodeIds;
   if (selection.type === 'single') return [selection.nodeId];
   return [];
+}
+
+/**
+ * Check if any nodes in the map have the isBlueprint flag.
+ */
+function containsBlueprintNodes(nodesMap: Record<string, TreeNode>): boolean {
+  return Object.values(nodesMap).some((node) => node.metadata.isBlueprint === true);
+}
+
+/**
+ * Check if the target parent is a blueprint node.
+ */
+function isTargetBlueprint(targetParentId: string, nodes: Record<string, TreeNode>): boolean {
+  const targetParent = nodes[targetParentId];
+  return targetParent?.metadata.isBlueprint === true;
+}
+
+type PasteResult = 'pasted' | 'no-content' | 'blocked' | 'cancelled';
+
+interface PasteContext {
+  state: StoreState;
+  targetParentId: string;
+  actions: StoreActions;
+  get: () => StoreState;
+  set: StoreSetter;
+  triggerAutosave?: () => void;
+  visualEffects: VisualEffectsActions;
+  clearCutState: () => void;
+}
+
+/**
+ * Handle cut-paste (move operation).
+ * Returns null if this handler doesn't apply.
+ */
+function handleCutPaste(
+  cache: ClipboardCacheContent,
+  ctx: PasteContext
+): PasteResult | null {
+  if (!cache.isCut || cache.rootNodeIds.length === 0) {
+    return null;
+  }
+
+  const { state, targetParentId, actions, get, set, triggerAutosave, visualEffects, clearCutState } = ctx;
+  const nodesToMove = cache.rootNodeIds.filter((id) => state.nodes[id]);
+
+  if (nodesToMove.length === 0) {
+    clearCutState();
+    return 'no-content';
+  }
+
+  // Build map of cut nodes for blueprint validation
+  const cutNodesMap: Record<string, TreeNode> = {};
+  for (const id of nodesToMove) {
+    cutNodesMap[id] = state.nodes[id];
+  }
+
+  // Blueprint validation: block moving blueprint nodes into non-blueprint parent
+  if (!isTargetBlueprint(targetParentId, state.nodes) && containsBlueprintNodes(cutNodesMap)) {
+    useToastStore.getState().addToast(
+      'Cannot move blueprint nodes into a non-blueprint parent',
+      'error'
+    );
+    return 'blocked';
+  }
+
+  // Check if pasting into same parent (no-op, just cancel cut)
+  const firstNodeParent = getParentId(nodesToMove[0], state.ancestorRegistry, state.rootNodeId);
+  const allSameParent = nodesToMove.every(
+    (id) => getParentId(id, state.ancestorRegistry, state.rootNodeId) === firstNodeParent
+  );
+
+  if (allSameParent && firstNodeParent === targetParentId) {
+    clearCutState();
+    logger.info('Paste cancelled - nodes already in target parent', 'ClipboardActions');
+    return 'cancelled';
+  }
+
+  // Move each node to the new parent
+  for (const nodeId of nodesToMove) {
+    const targetParent = state.nodes[targetParentId];
+    const newPosition = targetParent ? targetParent.children.length : 0;
+
+    const command = new MoveNodeCommand(
+      nodeId,
+      targetParentId,
+      newPosition,
+      () => {
+        const currentState = get();
+        return {
+          nodes: currentState.nodes,
+          rootNodeId: currentState.rootNodeId,
+          ancestorRegistry: currentState.ancestorRegistry,
+        };
+      },
+      (partial) => set(partial as Partial<StoreState>),
+      triggerAutosave
+    );
+
+    actions.executeCommand(command);
+  }
+
+  clearCutState();
+  flashNodes(nodesToMove, visualEffects);
+
+  logger.info(`Moved ${nodesToMove.length} node(s)`, 'ClipboardActions');
+  return 'pasted';
+}
+
+/**
+ * Handle copy-paste (clone operation) from internal cache.
+ * Returns null if this handler doesn't apply.
+ */
+function handleCopyPaste(
+  cache: ClipboardCacheContent,
+  ctx: PasteContext
+): PasteResult | null {
+  if (cache.isCut || cache.rootNodeIds.length === 0) {
+    return null;
+  }
+
+  const { state, targetParentId, actions, get, set, triggerAutosave, visualEffects } = ctx;
+  const { newRootNodes, newNodesMap } = cloneNodesWithNewIds(cache.rootNodeIds, state.nodes);
+
+  if (newRootNodes.length === 0) {
+    useClipboardCacheStore.getState().clearCache();
+    return null; // Fall through to external paste
+  }
+
+  // Blueprint validation
+  if (!isTargetBlueprint(targetParentId, state.nodes) && containsBlueprintNodes(newNodesMap)) {
+    useToastStore.getState().addToast(
+      'Cannot paste blueprint nodes into a non-blueprint parent',
+      'error'
+    );
+    return 'blocked';
+  }
+
+  const command = new PasteNodesCommand(
+    newRootNodes,
+    newNodesMap,
+    targetParentId,
+    () => {
+      const currentState = get();
+      return {
+        nodes: currentState.nodes,
+        rootNodeId: currentState.rootNodeId,
+        ancestorRegistry: currentState.ancestorRegistry,
+      };
+    },
+    (partial) => set(partial as Partial<StoreState>),
+    triggerAutosave,
+    true
+  );
+
+  actions.executeCommand(command);
+  flashNodes(command.getPastedRootIds(), visualEffects);
+
+  logger.info(`Pasted ${newRootNodes.length} node(s) from internal cache`, 'ClipboardActions');
+  return 'pasted';
+}
+
+/**
+ * Handle external paste from system clipboard markdown.
+ */
+async function handleExternalPaste(ctx: PasteContext): Promise<PasteResult> {
+  const { state, targetParentId, actions, get, set, triggerAutosave, visualEffects } = ctx;
+
+  const clipboardText = await readFromClipboard('ClipboardActions:paste');
+  if (!clipboardText) return 'no-content';
+
+  const parsed = parseMarkdown(clipboardText);
+  if (parsed.rootNodes.length === 0) return 'no-content';
+
+  // Blueprint validation
+  if (!isTargetBlueprint(targetParentId, state.nodes) && containsBlueprintNodes(parsed.allNodes)) {
+    useToastStore.getState().addToast(
+      'Cannot paste blueprint nodes into a non-blueprint parent',
+      'error'
+    );
+    return 'blocked';
+  }
+
+  const command = new PasteNodesCommand(
+    parsed.rootNodes,
+    parsed.allNodes,
+    targetParentId,
+    () => {
+      const currentState = get();
+      return {
+        nodes: currentState.nodes,
+        rootNodeId: currentState.rootNodeId,
+        ancestorRegistry: currentState.ancestorRegistry,
+      };
+    },
+    (partial) => set(partial as Partial<StoreState>),
+    triggerAutosave
+  );
+
+  actions.executeCommand(command);
+  flashNodes(command.getPastedRootIds(), visualEffects);
+
+  logger.info(`Pasted ${parsed.rootNodes.length} node(s) from clipboard markdown`, 'ClipboardActions');
+  return 'pasted';
 }
 
 export const createClipboardActions = (
@@ -185,16 +367,24 @@ export const createClipboardActions = (
   triggerAutosave?: () => void
 ): ClipboardActions => {
   /**
+   * Clear any existing cut state (used when cutting/copying new nodes).
+   */
+  function clearCutState(): void {
+    const state = get();
+    if (state.cutNodeIds.size > 0) {
+      set({ cutNodeIds: new Set() });
+    }
+    useClipboardCacheStore.getState().clearCache();
+  }
+
+  /**
    * Execute deletion for multi-selection using a command.
    */
-  function executeMultiNodeDelete(
-    nodeIds: string[],
-    CommandClass: typeof CutMultipleNodesCommand | typeof DeleteMultipleNodesCommand
-  ): void {
+  function executeMultiNodeDelete(nodeIds: string[]): void {
     const actions = getActions();
     visualEffects.startDeleteAnimation(nodeIds, () => {
       const currentState = get();
-      const command = new CommandClass(
+      const command = new DeleteMultipleNodesCommand(
         nodeIds,
         () => ({
           nodes: currentState.nodes,
@@ -225,7 +415,6 @@ export const createClipboardActions = (
 
     if (selection.type === 'none') return 'no-selection';
 
-    // Check for root node in selection (should never happen, indicates a bug)
     const nodeIds = getNodeIdsFromSelection(selection);
     if (selectionContainsRoot(nodeIds, state.nodes)) {
       logger.error('Attempted to cut root node - this indicates a bug', undefined, 'ClipboardActions');
@@ -239,15 +428,17 @@ export const createClipboardActions = (
     const success = await writeToClipboard(markdown, 'ClipboardActions:cut');
     if (!success) return 'no-selection';
 
-    // Cache node IDs for internal paste (nodes looked up at paste time)
-    useClipboardCacheStore.getState().setCache(nodeIds);
+    // Clear any previous cut state before marking new nodes
+    clearCutState();
 
-    if (selection.type === 'multi') {
-      executeMultiNodeDelete(selection.nodeIds, CutMultipleNodesCommand);
-    } else {
-      executeSingleNodeDelete(selection.nodeId);
-    }
+    // Mark nodes as cut (including all descendants)
+    const allCutIds = getNodeAndDescendantIds(nodeIds, state.nodes);
+    set({ cutNodeIds: new Set(allCutIds) });
 
+    // Cache the root node IDs for paste operation
+    useClipboardCacheStore.getState().setCache(nodeIds, true);
+
+    logger.info(`Cut ${nodeIds.length} node(s)`, 'ClipboardActions');
     return 'cut';
   }
 
@@ -263,92 +454,48 @@ export const createClipboardActions = (
     const success = await writeToClipboard(markdown, 'ClipboardActions:copy');
     if (!success) return 'no-selection';
 
-    // Cache node IDs for internal paste (nodes looked up at paste time)
+    // Clear any previous cut state
+    clearCutState();
+
+    // Cache node IDs for internal paste
     const nodeIds = getNodeIdsFromSelection(selection);
-    useClipboardCacheStore.getState().setCache(nodeIds);
+    useClipboardCacheStore.getState().setCache(nodeIds, false);
 
     flashNodes(nodeIds, visualEffects);
 
+    logger.info(`Copied ${nodeIds.length} node(s)`, 'ClipboardActions');
     return 'copied';
   }
 
-  async function pasteNodes(): Promise<'pasted' | 'no-content'> {
+  async function pasteNodes(): Promise<PasteResult> {
     const state = get();
-    const actions = getActions();
     const targetParentId = state.activeNodeId || state.rootNodeId;
     if (!targetParentId) return 'no-content';
 
-    // Check if we have cached node IDs from internal copy/cut
     const cache = useClipboardCacheStore.getState().getCache();
-    if (cache && cache.rootNodeIds.length > 0) {
-      // Clone from current nodes with new IDs (preserves full metadata)
-      const { newRootNodes, newNodesMap } = cloneNodesWithNewIds(
-        cache.rootNodeIds,
-        state.nodes
-      );
-
-      // If cached nodes still exist, use them
-      if (newRootNodes.length > 0) {
-        // Strip blueprint flags if pasting into non-blueprint parent
-        const strippedBlueprint = stripBlueprintFlagsIfNeeded(newNodesMap, targetParentId, state.nodes);
-        if (strippedBlueprint) {
-          useToastStore.getState().addToast('Blueprint status removed from pasted nodes', 'info');
-        }
-
-        const command = new PasteNodesCommand(
-          newRootNodes,
-          newNodesMap,
-          targetParentId,
-          () => {
-            const currentState = get();
-            return { nodes: currentState.nodes, rootNodeId: currentState.rootNodeId, ancestorRegistry: currentState.ancestorRegistry };
-          },
-          (partial) => set(partial as Partial<StoreState>),
-          triggerAutosave,
-          true // skipPrepare - nodes already have unique IDs from cloneNodesWithNewIds
-        );
-
-        actions.executeCommand(command);
-        flashNodes(command.getPastedRootIds(), visualEffects);
-
-        logger.info(`Pasted ${newRootNodes.length} node(s) from internal cache`, 'ClipboardActions');
-        return 'pasted';
-      }
-
-      // Cached nodes no longer exist, clear cache and fall through to clipboard
-      useClipboardCacheStore.getState().clearCache();
-    }
-
-    // Fall back to parsing system clipboard markdown (external paste)
-    const clipboardText = await readFromClipboard('ClipboardActions:paste');
-    if (!clipboardText) return 'no-content';
-
-    const parsed = parseMarkdown(clipboardText);
-    if (parsed.rootNodes.length === 0) return 'no-content';
-
-    // Strip blueprint flags if pasting into non-blueprint parent
-    const strippedBlueprint = stripBlueprintFlagsIfNeeded(parsed.allNodes, targetParentId, state.nodes);
-    if (strippedBlueprint) {
-      useToastStore.getState().addToast('Blueprint status removed from pasted nodes', 'info');
-    }
-
-    const command = new PasteNodesCommand(
-      parsed.rootNodes,
-      parsed.allNodes,
+    const ctx: PasteContext = {
+      state,
       targetParentId,
-      () => {
-        const currentState = get();
-        return { nodes: currentState.nodes, rootNodeId: currentState.rootNodeId, ancestorRegistry: currentState.ancestorRegistry };
-      },
-      (partial) => set(partial as Partial<StoreState>),
-      triggerAutosave
-    );
+      actions: getActions(),
+      get,
+      set,
+      triggerAutosave,
+      visualEffects,
+      clearCutState,
+    };
 
-    actions.executeCommand(command);
-    flashNodes(command.getPastedRootIds(), visualEffects);
+    // Try cut-paste first
+    if (cache) {
+      const cutResult = handleCutPaste(cache, ctx);
+      if (cutResult !== null) return cutResult;
 
-    logger.info(`Pasted ${parsed.rootNodes.length} node(s) from clipboard markdown`, 'ClipboardActions');
-    return 'pasted';
+      // Try copy-paste from cache
+      const copyResult = handleCopyPaste(cache, ctx);
+      if (copyResult !== null) return copyResult;
+    }
+
+    // Fall back to external clipboard
+    return handleExternalPaste(ctx);
   }
 
   function deleteSelectedNodes(): 'deleted' | 'no-selection' {
@@ -357,7 +504,6 @@ export const createClipboardActions = (
 
     if (selection.type === 'none') return 'no-selection';
 
-    // Check for root node in selection (should never happen, indicates a bug)
     const nodeIds = getNodeIdsFromSelection(selection);
     if (selectionContainsRoot(nodeIds, state.nodes)) {
       logger.error('Attempted to delete root node - this indicates a bug', undefined, 'ClipboardActions');
@@ -365,10 +511,16 @@ export const createClipboardActions = (
       return 'no-selection';
     }
 
+    // Clear cut state if we're deleting cut nodes
+    const cutNodeIds = state.cutNodeIds;
+    if (nodeIds.some((id) => cutNodeIds.has(id))) {
+      clearCutState();
+    }
+
     logger.info(`Deleted ${nodeIds.length} node(s)`, 'ClipboardActions');
 
     if (selection.type === 'multi') {
-      executeMultiNodeDelete(selection.nodeIds, DeleteMultipleNodesCommand);
+      executeMultiNodeDelete(nodeIds);
     } else {
       executeSingleNodeDelete(selection.nodeId);
     }

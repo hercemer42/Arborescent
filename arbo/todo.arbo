@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2025-12-05T10:37:30.634Z'
+updated: '2025-12-05T11:49:10.062Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -34,7 +34,7 @@ nodes:
       - rupbtgixt
     metadata:
       status: completed
-      expanded: false
+      expanded: true
   i6yepfx52:
     id: i6yepfx52
     content: The JSON file is flat but perhaps should be imbrecated - also we should have .arbo file extensions
@@ -5765,6 +5765,7 @@ nodes:
     id: 984247e7-2d55-4b93-80e8-f84818901621
     content: Backlog
     children:
+      - a9f7096f-1bdc-42c5-8d6c-161dd38f3e61
       - fae59a45-bfd7-4c23-85fa-b566ee48e16b
       - d7597faa-0b34-400e-985a-de035508cdb1
       - 40729a78-ee9c-4599-aa83-57f189199c3c
@@ -6165,6 +6166,7 @@ nodes:
       status: pending
       appliedContextIds:
         - e8824b29-eb18-4031-9e35-b321a864d418
+      expanded: false
   9b46397c-c452-421c-b408-46b040d99c9e:
     id: 9b46397c-c452-421c-b408-46b040d99c9e
     content: Implement minor feature
@@ -6791,7 +6793,7 @@ nodes:
     id: 0cc62ae1-1a7a-4aa4-bc6a-d817cabd672c
     content: Refactor
     children:
-      - 2aa9b055-6780-4457-bc3f-d2d7d40874ef
+      - db111fa3-8b05-48ed-a9bb-543c85e91195
     metadata:
       status: pending
       expanded: true
@@ -7160,12 +7162,14 @@ nodes:
     id: 77963e20-53e9-4db7-8802-8c718f202cef
     content: In progress
     children:
+      - 8541a984-fcca-479d-a9ca-494878f45de3
       - bf10afa4-0959-4dd4-9e78-dfadbdd81d9c
     metadata:
       status: pending
       appliedContextIds:
         - cc94b377-246d-45ae-b938-2d3906892aa1
       activeContextId: cc94b377-246d-45ae-b938-2d3906892aa1
+      expanded: true
   709d1979-03ab-41b4-a89b-9d8877ad23e8:
     id: 709d1979-03ab-41b4-a89b-9d8877ad23e8
     content: Move the 'Execute' menu to the top, followed by collaborate, then context, then edit, then copy to clipboard
@@ -8661,7 +8665,7 @@ nodes:
       - bdd1a000-b81d-4254-837e-151df49b8986
       - a3675d1d-91f9-4d83-a042-62e892308c4d
       - 9584c7ca-b072-4fda-985f-55276a9d44a9
-      - 102c9fd7-773c-4898-9d4a-292cd86042b2
+      - 900bde16-cbdf-47f4-8e6f-2f8797487dfa
       - d656086b-fb37-4123-8648-9274b2180679
     metadata:
       status: pending
@@ -8900,8 +8904,9 @@ nodes:
       status: pending
   2aa9b055-6780-4457-bc3f-d2d7d40874ef:
     id: 2aa9b055-6780-4457-bc3f-d2d7d40874ef
-    content: ''
-    children: []
+    content: getAllDescendantIds looks like it should be in nodeHelpers - it's a pure function
+    children:
+      - 033ee716-1267-4993-8638-7a37524fef40
     metadata:
       status: pending
   7be6e945-9543-40dc-941a-a6ab579c9469:
@@ -8922,27 +8927,6 @@ nodes:
     children: []
     metadata:
       status: pending
-  102c9fd7-773c-4898-9d4a-292cd86042b2:
-    id: 102c9fd7-773c-4898-9d4a-292cd86042b2
-    content: Contexts
-    children:
-      - 8df02916-594b-4ecc-b80c-0c1f398d3e8e
-      - c228965b-bfb8-418a-8581-29c7754763cd
-      - e891d30a-c258-49a5-a588-a1c67a6e3836
-    metadata:
-      status: pending
-  8df02916-594b-4ecc-b80c-0c1f398d3e8e:
-    id: 8df02916-594b-4ecc-b80c-0c1f398d3e8e
-    content: Context declarations can now only be created on nodes who have a parent for a blueprint
-    children: []
-    metadata:
-      status: pending
-  c228965b-bfb8-418a-8581-29c7754763cd:
-    id: c228965b-bfb8-418a-8581-29c7754763cd
-    content: '''Declare as context'' only appears if the node''s parent is a blueprint'
-    children: []
-    metadata:
-      status: pending
   d656086b-fb37-4123-8648-9274b2180679:
     id: d656086b-fb37-4123-8648-9274b2180679
     content: Copying/pasting blueprint nodes
@@ -8958,26 +8942,16 @@ nodes:
     id: b0ee285d-8d09-49f7-8726-b93a7e46ae41
     content: When copying/cutting and pasting a blueprint node into a non blueprint node
     children:
-      - 15028a6d-4a26-45ae-a285-65a3bdacd03c
-      - c5af95ea-90b8-4265-ab59-1b49f431d908
+      - 6b9be846-5f91-4055-8c77-617841df910f
+      - 5b3d02fe-7637-4d95-a5b8-db51954abd2e
+      - 4a4dff8a-6d6e-4f60-9577-82507addb2c3
     metadata:
-      status: completed
-  15028a6d-4a26-45ae-a285-65a3bdacd03c:
-    id: 15028a6d-4a26-45ae-a285-65a3bdacd03c
-    content: Remove the blueprint flag from the pasted node or any ancestors
-    children: []
-    metadata:
-      status: completed
-  c5af95ea-90b8-4265-ab59-1b49f431d908:
-    id: c5af95ea-90b8-4265-ab59-1b49f431d908
-    content: Display a toaster to tell the user that blueprint mode has been stripped from the pasted nodes
-    children: []
-    metadata:
-      status: completed
+      status: pending
   383f1307-8033-4d1a-883c-ccf0492a6922:
     id: 383f1307-8033-4d1a-883c-ccf0492a6922
     content: When copying/cutting and pasting a blueprint node into a blueprint node
     children:
+      - cd583b91-1d4d-4517-b775-3e699ce7fd8b
       - 49e3c6f3-c2ba-4863-a14b-5989fe79b963
     metadata:
       status: pending
@@ -8987,30 +8961,753 @@ nodes:
     children: []
     metadata:
       status: pending
-  e891d30a-c258-49a5-a588-a1c67a6e3836:
-    id: e891d30a-c258-49a5-a588-a1c67a6e3836
-    content: A context node and its descendants do not display the checkbox icon
-    children:
-      - 6299a15d-5bd4-4f4c-9fd9-fd1a49e6fe60
-      - d52c1386-9348-40fe-91df-daa9317b49dd
-    metadata:
-      status: pending
-  6299a15d-5bd4-4f4c-9fd9-fd1a49e6fe60:
-    id: 6299a15d-5bd4-4f4c-9fd9-fd1a49e6fe60
-    content: They display instead the same icon that was picked when declaring the context.
+  6b9be846-5f91-4055-8c77-617841df910f:
+    id: 6b9be846-5f91-4055-8c77-617841df910f
+    content: Do not allow the paste
     children: []
     metadata:
       status: pending
-  d52c1386-9348-40fe-91df-daa9317b49dd:
-    id: d52c1386-9348-40fe-91df-daa9317b49dd
-    content: It's the same icon that appears in the gutter.
-    children:
-      - 9d435478-a63c-4402-a264-d2fe0bfc66de
+  5b3d02fe-7637-4d95-a5b8-db51954abd2e:
+    id: 5b3d02fe-7637-4d95-a5b8-db51954abd2e
+    content: Display an error to the user - You cannot copy a blueprint node into a non blueprint node
+    children: []
     metadata:
       status: pending
-  9d435478-a63c-4402-a264-d2fe0bfc66de:
-    id: 9d435478-a63c-4402-a264-d2fe0bfc66de
-    content: However it does not contain the '+' symbol if there are bundled declarations or applied contexts
+  4a4dff8a-6d6e-4f60-9577-82507addb2c3:
+    id: 4a4dff8a-6d6e-4f60-9577-82507addb2c3
+    content: Restore the cut node to its uncut status
+    children: []
+    metadata:
+      status: pending
+  8541a984-fcca-479d-a9ca-494878f45de3:
+    id: 8541a984-fcca-479d-a9ca-494878f45de3
+    content: Change 'cut' behavior
+    children:
+      - a7a14318-ab43-4579-a2d4-e32566c87665
+      - f45250ca-4989-44a7-8282-d984531a8c2d
+      - d27b9af9-5232-4720-9b3c-a541953ef73f
+      - 568770eb-a7f3-4ece-84a2-d3e611ed99fb
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      activeContextId: cc94b377-246d-45ae-b938-2d3906892aa1
+  a7a14318-ab43-4579-a2d4-e32566c87665:
+    id: a7a14318-ab43-4579-a2d4-e32566c87665
+    content: When cutting a node, it remains in the tree but is visually marked as cut
+    children:
+      - 2cce09ee-9dee-4ac6-9679-1a375d5c3b7d
+      - c5f11474-3082-4bf7-97f3-7434d12d9494
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2cce09ee-9dee-4ac6-9679-1a375d5c3b7d:
+    id: 2cce09ee-9dee-4ac6-9679-1a375d5c3b7d
+    content: Apply 30% opacity/lightening to indicate cut status
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c5f11474-3082-4bf7-97f3-7434d12d9494:
+    id: c5f11474-3082-4bf7-97f3-7434d12d9494
+    content: Store the cut node ID in clipboard cache (not the node data)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f45250ca-4989-44a7-8282-d984531a8c2d:
+    id: f45250ca-4989-44a7-8282-d984531a8c2d
+    content: Paste behavior
+    children:
+      - 33c20bf7-46c4-49d4-be41-bac9d7d434e0
+      - 23b3f6be-7509-4217-88df-4420bd49d7d8
+      - 682414f3-dfc3-41ad-9955-2fa9e8452fe1
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  33c20bf7-46c4-49d4-be41-bac9d7d434e0:
+    id: 33c20bf7-46c4-49d4-be41-bac9d7d434e0
+    content: If pasting into the same parent (no-op case)
+    children:
+      - 0295ba0d-267f-4709-897b-1c6e1c668cea
+      - 6af4a73c-6717-4823-a7e8-e40335d90747
+      - d6239aae-fc84-4724-b12d-91307c87dd2e
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0295ba0d-267f-4709-897b-1c6e1c668cea:
+    id: 0295ba0d-267f-4709-897b-1c6e1c668cea
+    content: Remove the 'cut' visual status
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6af4a73c-6717-4823-a7e8-e40335d90747:
+    id: 6af4a73c-6717-4823-a7e8-e40335d90747
+    content: Clear the clipboard cache
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d6239aae-fc84-4724-b12d-91307c87dd2e:
+    id: d6239aae-fc84-4724-b12d-91307c87dd2e
+    content: No tree modification needed - node stays in place
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  23b3f6be-7509-4217-88df-4420bd49d7d8:
+    id: 23b3f6be-7509-4217-88df-4420bd49d7d8
+    content: If pasting into a different parent
+    children:
+      - d2d86072-3d72-48f7-a162-7482c134bc5d
+      - c168a34a-a19c-48be-94ac-0408d3249f8c
+      - 583de3ce-93e4-4980-9bd5-b048e6ac961b
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d2d86072-3d72-48f7-a162-7482c134bc5d:
+    id: d2d86072-3d72-48f7-a162-7482c134bc5d
+    content: Move the node to the new parent (retain node ID)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c168a34a-a19c-48be-94ac-0408d3249f8c:
+    id: c168a34a-a19c-48be-94ac-0408d3249f8c
+    content: Remove the 'cut' visual status
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  583de3ce-93e4-4980-9bd5-b048e6ac961b:
+    id: 583de3ce-93e4-4980-9bd5-b048e6ac961b
+    content: Clear the clipboard cache
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  682414f3-dfc3-41ad-9955-2fa9e8452fe1:
+    id: 682414f3-dfc3-41ad-9955-2fa9e8452fe1
+    content: Blueprint validation still applies
+    children:
+      - 0b54edfb-f6da-41df-b7c4-825e6f933077
+      - 730fc7cf-2f81-457f-8712-5cee511d7ffb
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0b54edfb-f6da-41df-b7c4-825e6f933077:
+    id: 0b54edfb-f6da-41df-b7c4-825e6f933077
+    content: Block pasting blueprint nodes into non-blueprint parents
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  730fc7cf-2f81-457f-8712-5cee511d7ffb:
+    id: 730fc7cf-2f81-457f-8712-5cee511d7ffb
+    content: Show error toast and restore cut status if blocked
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d27b9af9-5232-4720-9b3c-a541953ef73f:
+    id: d27b9af9-5232-4720-9b3c-a541953ef73f
+    content: Cancel cut behavior
+    children:
+      - b3627f66-2966-4413-9375-18349d702e23
+      - 7631d062-7136-47df-9895-ee597974d3a1
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b3627f66-2966-4413-9375-18349d702e23:
+    id: b3627f66-2966-4413-9375-18349d702e23
+    content: If user cuts or copies another node
+    children:
+      - 064bc2d3-c527-4a00-9c4c-074c805805b4
+      - a42d2304-a223-42d7-bbc8-dce681fe43dc
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  064bc2d3-c527-4a00-9c4c-074c805805b4:
+    id: 064bc2d3-c527-4a00-9c4c-074c805805b4
+    content: Remove 'cut' visual status from previously cut node
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a42d2304-a223-42d7-bbc8-dce681fe43dc:
+    id: a42d2304-a223-42d7-bbc8-dce681fe43dc
+    content: Replace clipboard cache with new selection
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7631d062-7136-47df-9895-ee597974d3a1:
+    id: 7631d062-7136-47df-9895-ee597974d3a1
+    content: If user presses undo
+    children:
+      - ab93e0a0-5113-45a2-a9e3-e521c5b748c0
+      - fbcca076-5acf-4518-934a-a84d3e927617
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ab93e0a0-5113-45a2-a9e3-e521c5b748c0:
+    id: ab93e0a0-5113-45a2-a9e3-e521c5b748c0
+    content: Remove 'cut' visual status
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fbcca076-5acf-4518-934a-a84d3e927617:
+    id: fbcca076-5acf-4518-934a-a84d3e927617
+    content: Clear clipboard cache
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  568770eb-a7f3-4ece-84a2-d3e611ed99fb:
+    id: 568770eb-a7f3-4ece-84a2-d3e611ed99fb
+    content: Implementation considerations
+    children:
+      - 29960f83-b007-4599-980f-f748fc477ec3
+      - e20f7f8b-9c31-47ba-9267-2dd8fea6fdd4
+      - 6a7dbed6-8817-472e-bedc-53f7e52869e2
+      - bebb48cf-9fb7-47d6-9a0f-8dadd0fb6cfe
+      - 003a3761-559d-43ca-9b58-5263d480dedd
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  29960f83-b007-4599-980f-f748fc477ec3:
+    id: 29960f83-b007-4599-980f-f748fc477ec3
+    content: Need to track 'cut' status visually - likely via a Set in store (similar to flashingNodeIds)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e20f7f8b-9c31-47ba-9267-2dd8fea6fdd4:
+    id: e20f7f8b-9c31-47ba-9267-2dd8fea6fdd4
+    content: Cut becomes a "mark for move" rather than "delete + cache"
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6a7dbed6-8817-472e-bedc-53f7e52869e2:
+    id: 6a7dbed6-8817-472e-bedc-53f7e52869e2
+    content: 'Undo behavior: cutting is now non-destructive, so undo just clears the cut status'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  bebb48cf-9fb7-47d6-9a0f-8dadd0fb6cfe:
+    id: bebb48cf-9fb7-47d6-9a0f-8dadd0fb6cfe
+    content: 'Multi-selection cut: all selected nodes get cut status, paste moves all of them'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  003a3761-559d-43ca-9b58-5263d480dedd:
+    id: 003a3761-559d-43ca-9b58-5263d480dedd
+    content: Be sure to remove any legacy code related to the old 'cut' mechanisms that are no longer required, including helpers
+    children: []
+    metadata:
+      status: pending
+  a9f7096f-1bdc-42c5-8d6c-161dd38f3e61:
+    id: a9f7096f-1bdc-42c5-8d6c-161dd38f3e61
+    content: Add 'lock' icon for terminal
+    children:
+      - a3f47c29-7bb9-4e38-9afe-f5644eec05ec
+      - 645ca234-db17-47d6-aed4-21ed84e6d010
+      - b1b2c707-6a75-4b98-92e4-3eeb5b645e2f
+      - 70d43e63-5adb-459b-b835-9fd355e7ac69
+      - 1f7eeed8-beee-4900-9fc7-7722be7f4195
+    metadata:
+      status: pending
+  a3f47c29-7bb9-4e38-9afe-f5644eec05ec:
+    id: a3f47c29-7bb9-4e38-9afe-f5644eec05ec
+    content: Add it into the terminal tab
+    children: []
+    metadata:
+      status: pending
+  645ca234-db17-47d6-aed4-21ed84e6d010:
+    id: 645ca234-db17-47d6-aed4-21ed84e6d010
+    content: It displays a unlock icon by default
+    children:
+      - d9d59ce8-f748-4007-bf41-bf4abdb5e4e6
+    metadata:
+      status: pending
+  d9d59ce8-f748-4007-bf41-bf4abdb5e4e6:
+    id: d9d59ce8-f748-4007-bf41-bf4abdb5e4e6
+    content: When hovering over we see a tooltip 'Auto scroll to bottom'
+    children: []
+    metadata:
+      status: pending
+  b1b2c707-6a75-4b98-92e4-3eeb5b645e2f:
+    id: b1b2c707-6a75-4b98-92e4-3eeb5b645e2f
+    content: Clicking on it changes the icon to a locked one
+    children:
+      - a6776965-48d7-448f-a721-c47f167527df
+    metadata:
+      status: pending
+  a6776965-48d7-448f-a721-c47f167527df:
+    id: a6776965-48d7-448f-a721-c47f167527df
+    content: When hovering over it we see a tooltip 'Disable auto scroll'
+    children: []
+    metadata:
+      status: pending
+  28ef3106-0447-4f80-a7d0-1004c14eb3bc:
+    id: 28ef3106-0447-4f80-a7d0-1004c14eb3bc
+    content: This activates the scroll to bottom feature
+    children:
+      - 958fdef7-7799-44d0-96ce-69ae3af3bea1
+      - 29abe9b9-6977-4968-a536-21c1b91a5354
+      - 1c444f95-5394-405e-9c9a-6ece3547400d
+    metadata:
+      status: pending
+  958fdef7-7799-44d0-96ce-69ae3af3bea1:
+    id: 958fdef7-7799-44d0-96ce-69ae3af3bea1
+    content: This exists already but is currently on by default
+    children: []
+    metadata:
+      status: pending
+  70d43e63-5adb-459b-b835-9fd355e7ac69:
+    id: 70d43e63-5adb-459b-b835-9fd355e7ac69
+    content: When 'Auto scroll to bottom' is active
+    children:
+      - 28ef3106-0447-4f80-a7d0-1004c14eb3bc
+    metadata:
+      status: pending
+  29abe9b9-6977-4968-a536-21c1b91a5354:
+    id: 29abe9b9-6977-4968-a536-21c1b91a5354
+    content: It maintains the scroll to the bottom of the terminal
+    children: []
+    metadata:
+      status: pending
+  1c444f95-5394-405e-9c9a-6ece3547400d:
+    id: 1c444f95-5394-405e-9c9a-6ece3547400d
+    content: This compensates for issues where programs such as claude code redraw the terminal lines, forcing a scroll to the top
+    children: []
+    metadata:
+      status: pending
+  1f7eeed8-beee-4900-9fc7-7722be7f4195:
+    id: 1f7eeed8-beee-4900-9fc7-7722be7f4195
+    content: When 'Disable auto scroll is active'
+    children:
+      - 43569007-654f-4e4d-845b-26fafa9e71f4
+      - 79e1ab20-1f92-4670-b7d8-df96b1d4ff78
+    metadata:
+      status: pending
+  43569007-654f-4e4d-845b-26fafa9e71f4:
+    id: 43569007-654f-4e4d-845b-26fafa9e71f4
+    content: We do not try to maintain the scroll position programatically
+    children: []
+    metadata:
+      status: pending
+  79e1ab20-1f92-4670-b7d8-df96b1d4ff78:
+    id: 79e1ab20-1f92-4670-b7d8-df96b1d4ff78
+    content: We fall back on the existing terminal behavior
+    children: []
+    metadata:
+      status: pending
+  cd583b91-1d4d-4517-b775-3e699ce7fd8b:
+    id: cd583b91-1d4d-4517-b775-3e699ce7fd8b
+    content: Normal copy/cut behavior is maintained
+    children: []
+    metadata:
+      status: pending
+  033ee716-1267-4993-8638-7a37524fef40:
+    id: 033ee716-1267-4993-8638-7a37524fef40
+    content: Perhaps something like this is already available and can be reused ?
+    children: []
+    metadata:
+      status: pending
+  51fab498-90e8-482d-8cbc-972f72774a86:
+    id: 51fab498-90e8-482d-8cbc-972f72774a86
+    content: Same goes for 'getParentId'
+    children: []
+    metadata:
+      status: pending
+  db111fa3-8b05-48ed-a9bb-543c85e91195:
+    id: db111fa3-8b05-48ed-a9bb-543c85e91195
+    content: in clipboardActions
+    children:
+      - 2aa9b055-6780-4457-bc3f-d2d7d40874ef
+      - 51fab498-90e8-482d-8cbc-972f72774a86
+      - 0faa8409-8f7f-4b4f-9da9-9ff6cb12b538
+    metadata:
+      status: pending
+  0faa8409-8f7f-4b4f-9da9-9ff6cb12b538:
+    id: 0faa8409-8f7f-4b4f-9da9-9ff6cb12b538
+    content: There's too much going on in 'pasteNodes'
+    children:
+      - 942b00ba-da9d-41e8-bbed-51c86b858ae2
+    metadata:
+      status: pending
+  942b00ba-da9d-41e8-bbed-51c86b858ae2:
+    id: 942b00ba-da9d-41e8-bbed-51c86b858ae2
+    content: This needs a refactor
+    children: []
+    metadata:
+      status: pending
+  900bde16-cbdf-47f4-8e6f-2f8797487dfa:
+    id: 900bde16-cbdf-47f4-8e6f-2f8797487dfa
+    content: Context Declarations Feature
+    children:
+      - 411cc76f-a04e-4d3d-9870-8e3f94b9e758
+      - b03ce211-3947-4d37-9969-7dfa9e216a89
+      - a5bea12b-9013-42a0-8b41-c5d98dd28177
+      - 15e92659-1b32-4b3c-8675-b5634f8d1e6f
+      - 316ee8db-a0ac-4533-851f-261008bd5242
+      - 885caf89-1040-41fb-b789-5d6b71b81ace
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      activeContextId: e8824b29-eb18-4031-9e35-b321a864d418
+  411cc76f-a04e-4d3d-9870-8e3f94b9e758:
+    id: 411cc76f-a04e-4d3d-9870-8e3f94b9e758
+    content: Prerequisites
+    children:
+      - 8066819c-cd91-46f6-8ca0-4dca0b6a3348
+      - c36c4876-b67e-4e4b-9078-163cbbeeea07
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8066819c-cd91-46f6-8ca0-4dca0b6a3348:
+    id: 8066819c-cd91-46f6-8ca0-4dca0b6a3348
+    content: '''Declare as context'' menu option only appears if the node''s parent is a blueprint'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c36c4876-b67e-4e4b-9078-163cbbeeea07:
+    id: c36c4876-b67e-4e4b-9078-163cbbeeea07
+    content: Context declarations can only be created on nodes whose parent is a blueprint
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b03ce211-3947-4d37-9969-7dfa9e216a89:
+    id: b03ce211-3947-4d37-9969-7dfa9e216a89
+    content: Context declaration node behavior
+    children:
+      - 146a9d4e-0d3a-4458-bae8-e92d8b3f8f92
+      - b3d75d3f-b2c9-4937-ba9e-3c3bb6189b03
+      - 56f5e7a4-5773-4aae-b73c-f14cbbe0679e
+      - f9472b1c-8b05-4e7b-b96b-425ba65a56a9
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  146a9d4e-0d3a-4458-bae8-e92d8b3f8f92:
+    id: 146a9d4e-0d3a-4458-bae8-e92d8b3f8f92
+    content: The node receives blueprint status
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b3d75d3f-b2c9-4937-ba9e-3c3bb6189b03:
+    id: b3d75d3f-b2c9-4937-ba9e-3c3bb6189b03
+    content: The checkbox is replaced by the icon selected when declaring the context
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  56f5e7a4-5773-4aae-b73c-f14cbbe0679e:
+    id: 56f5e7a4-5773-4aae-b73c-f14cbbe0679e
+    content: The same icon appears in the gutter
+    children:
+      - 0ac16b87-d48d-4e9d-9ca0-dbc5927b3261
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0ac16b87-d48d-4e9d-9ca0-dbc5927b3261:
+    id: 0ac16b87-d48d-4e9d-9ca0-dbc5927b3261
+    content: The icon does NOT contain the '+' symbol (even if there are bundled declarations or applied contexts)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f9472b1c-8b05-4e7b-b96b-425ba65a56a9:
+    id: f9472b1c-8b05-4e7b-b96b-425ba65a56a9
+    content: The 'Blueprint' right-click menu option is not present
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a5bea12b-9013-42a0-8b41-c5d98dd28177:
+    id: a5bea12b-9013-42a0-8b41-c5d98dd28177
+    content: Descendant nodes of a context declaration
+    children:
+      - 5d263154-239a-469b-bc86-baa4e4f2b4fc
+      - 9cff98be-8e95-49ef-b576-4910b1b13263
+      - 8856bf84-c495-4a58-a2d0-291bcd2ba5a0
+      - 5d7b1db4-8cf5-462e-9ae2-9f4bbd9467c5
+      - bcea6c77-d75d-4d3f-a1f6-976d321dac1d
+      - 1936d9b4-be5d-4af4-b4f2-0a0d7c81a889
+      - 4100d649-b2da-4cf8-8338-d933a3777517
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5d263154-239a-469b-bc86-baa4e4f2b4fc:
+    id: 5d263154-239a-469b-bc86-baa4e4f2b4fc
+    content: All descendants receive blueprint status
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8856bf84-c495-4a58-a2d0-291bcd2ba5a0:
+    id: 8856bf84-c495-4a58-a2d0-291bcd2ba5a0
+    content: All descendants display the context icon instead of a checkbox
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5d7b1db4-8cf5-462e-9ae2-9f4bbd9467c5:
+    id: 5d7b1db4-8cf5-462e-9ae2-9f4bbd9467c5
+    content: The icon/color cannot be clicked or changed on descendants
+    children:
+      - c1cfe4a6-2eb2-493d-b3ce-5111712350f1
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  bcea6c77-d75d-4d3f-a1f6-976d321dac1d:
+    id: bcea6c77-d75d-4d3f-a1f6-976d321dac1d
+    content: The icon is rendered at reduced opacity (matching existing gutter styling for applied contexts)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1936d9b4-be5d-4af4-b4f2-0a0d7c81a889:
+    id: 1936d9b4-be5d-4af4-b4f2-0a0d7c81a889
+    content: If the parent context declaration's icon/color changes, all descendants update accordingly
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4100d649-b2da-4cf8-8338-d933a3777517:
+    id: 4100d649-b2da-4cf8-8338-d933a3777517
+    content: The 'Blueprint' right-click menu option is not present (cannot add/remove descendants from blueprint)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  15e92659-1b32-4b3c-8675-b5634f8d1e6f:
+    id: 15e92659-1b32-4b3c-8675-b5634f8d1e6f
+    content: Nested context declarations (context declared within another context)
+    children:
+      - c65e36c1-3ce2-4d6b-ba27-5d8049abd49e
+      - c37f6863-5913-486e-8a72-b703593ddfcb
+      - 42151230-10e7-466c-9896-9503a7a280f6
+      - e9f1ba88-46f8-4650-bfd2-41e7c38c5fd8
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c65e36c1-3ce2-4d6b-ba27-5d8049abd49e:
+    id: c65e36c1-3ce2-4d6b-ba27-5d8049abd49e
+    content: Permitted - works the same as declaring on any other eligible node
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c37f6863-5913-486e-8a72-b703593ddfcb:
+    id: c37f6863-5913-486e-8a72-b703593ddfcb
+    content: The nested context's icon overrides the ancestor's icon for that node and its descendants
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  42151230-10e7-466c-9896-9503a7a280f6:
+    id: 42151230-10e7-466c-9896-9503a7a280f6
+    content: The node and its descendants remain part of all ancestor contexts
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e9f1ba88-46f8-4650-bfd2-41e7c38c5fd8:
+    id: e9f1ba88-46f8-4650-bfd2-41e7c38c5fd8
+    content: Removing the nested declaration causes the node and its descendants to inherit the ancestor context's icon again
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  316ee8db-a0ac-4533-851f-261008bd5242:
+    id: 316ee8db-a0ac-4533-851f-261008bd5242
+    content: Context declaration on ancestor of existing context declaration
+    children:
+      - d880e549-cd47-4071-9804-c725783eddae
+      - c1ea0765-a19d-4e6a-a1b7-c42ea5ac10fb
+      - aee896b7-d43d-4fae-888c-82e52d415af1
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d880e549-cd47-4071-9804-c725783eddae:
+    id: d880e549-cd47-4071-9804-c725783eddae
+    content: Permitted - works the same as declaring on any other eligible node
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c1ea0765-a19d-4e6a-a1b7-c42ea5ac10fb:
+    id: c1ea0765-a19d-4e6a-a1b7-c42ea5ac10fb
+    content: The new context's icon applies to all descendants EXCEPT existing nested context declarations and their subtrees
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  aee896b7-d43d-4fae-888c-82e52d415af1:
+    id: aee896b7-d43d-4fae-888c-82e52d415af1
+    content: Removing it preserves all explicitly declared nested contexts and their descendants
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  885caf89-1040-41fb-b789-5d6b71b81ace:
+    id: 885caf89-1040-41fb-b789-5d6b71b81ace
+    content: Edge cases
+    children:
+      - 092711c3-d0fa-4a1c-ad6c-0452f2146bc2
+      - d8f83311-89a8-4444-ab85-1d28b70348a4
+      - 0dd4cf5d-7f29-4303-8b66-4d4cb124e094
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d8f83311-89a8-4444-ab85-1d28b70348a4:
+    id: d8f83311-89a8-4444-ab85-1d28b70348a4
+    content: Moving a non-context node into a context declaration's subtree makes it inherit the same attributes as any other context declaration descendant
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0dd4cf5d-7f29-4303-8b66-4d4cb124e094:
+    id: 0dd4cf5d-7f29-4303-8b66-4d4cb124e094
+    content: Removing a context declaration from a node also removes the blueprint status from it and its descendants
+    children: []
+    metadata:
+      status: pending
+  9cff98be-8e95-49ef-b576-4910b1b13263:
+    id: 9cff98be-8e95-49ef-b576-4910b1b13263
+    content: They also recieve a 'context child' metadata
+    children: []
+    metadata:
+      status: pending
+  c1cfe4a6-2eb2-493d-b3ce-5111712350f1:
+    id: c1cfe4a6-2eb2-493d-b3ce-5111712350f1
+    content: Unless they have their own explicit context declaration
+    children: []
+    metadata:
+      status: pending
+  092711c3-d0fa-4a1c-ad6c-0452f2146bc2:
+    id: 092711c3-d0fa-4a1c-ad6c-0452f2146bc2
+    content: Moving a context declaration node follows the same behavior as any other blueprint node
     children: []
     metadata:
       status: pending
