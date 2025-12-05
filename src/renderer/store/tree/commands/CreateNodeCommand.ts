@@ -23,7 +23,8 @@ export class CreateNodeCommand extends BaseCommand {
       activeNodeId?: string;
       cursorPosition?: number;
     }) => void,
-    private triggerAutosave?: () => void
+    private triggerAutosave?: () => void,
+    private initialMetadata?: Record<string, unknown>
   ) {
     super();
     this.description = `Create node ${newNodeId}`;
@@ -34,10 +35,10 @@ export class CreateNodeCommand extends BaseCommand {
     const parent = nodes[this.parentId];
     if (!parent) return;
 
-    // Create the new node with default pending status
+    // Create the new node with default pending status and any initial metadata
     const newNode = createTreeNode(this.newNodeId, {
       content: this.initialContent,
-      metadata: { status: 'pending' },
+      metadata: { status: 'pending', ...this.initialMetadata },
     });
 
     // Insert into parent's children

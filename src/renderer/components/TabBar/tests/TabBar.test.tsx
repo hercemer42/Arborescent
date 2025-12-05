@@ -4,6 +4,8 @@ import userEvent from '@testing-library/user-event';
 import { TabBar } from '../TabBar';
 import { useFilesStore } from '../../../store/files/filesStore';
 import { storeManager } from '../../../store/storeManager';
+import { TreeStoreContext } from '../../../store/tree/TreeStoreContext';
+import { createTreeStore } from '../../../store/tree/treeStore';
 
 vi.mock('../../../store/storeManager', () => ({
   storeManager: {
@@ -17,6 +19,16 @@ vi.mock('../../../store/storeManager', () => ({
   },
 }));
 
+const mockStore = createTreeStore();
+
+const renderWithProvider = (ui: React.ReactElement) => {
+  return render(
+    <TreeStoreContext.Provider value={mockStore}>
+      {ui}
+    </TreeStoreContext.Provider>
+  );
+};
+
 describe('TabBar', () => {
   beforeEach(() => {
     useFilesStore.setState({
@@ -27,7 +39,7 @@ describe('TabBar', () => {
   });
 
   it('should not render when no files are open', () => {
-    const { container } = render(<TabBar />);
+    const { container } = renderWithProvider(<TabBar />);
     expect(container.firstChild).toBeNull();
   });
 
@@ -40,7 +52,7 @@ describe('TabBar', () => {
       activeFilePath: '/path/file1.arbo',
     });
 
-    render(<TabBar />);
+    renderWithProvider(<TabBar />);
 
     expect(screen.getByText('file1.arbo')).toBeInTheDocument();
     expect(screen.getByText('file2.arbo')).toBeInTheDocument();
@@ -55,7 +67,7 @@ describe('TabBar', () => {
       activeFilePath: '/path/file1.arbo',
     });
 
-    render(<TabBar />);
+    renderWithProvider(<TabBar />);
 
     const activeTab = screen.getByText('file1.arbo').closest('.tab');
     const inactiveTab = screen.getByText('file2.arbo').closest('.tab');
@@ -74,7 +86,7 @@ describe('TabBar', () => {
       activeFilePath: '/path/file1.arbo',
     });
 
-    render(<TabBar />);
+    renderWithProvider(<TabBar />);
 
     await user.click(screen.getByText('file2.arbo'));
 
@@ -92,7 +104,7 @@ describe('TabBar', () => {
       activeFilePath: '/path/file1.arbo',
     });
 
-    render(<TabBar />);
+    renderWithProvider(<TabBar />);
 
     await user.click(screen.getByRole('button', { name: 'Close tab' }));
 

@@ -143,6 +143,7 @@ describe('collaborateActions', () => {
       collaboratingNodeId: null,
       feedbackFadingNodeIds: new Set(),
       contextDeclarations: [],
+      blueprintModeEnabled: false,
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       actions: {} as any,
     };

@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2025-12-01T22:46:18.721Z'
+updated: '2025-12-05T09:31:02.804Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -679,6 +679,7 @@ nodes:
       - 7c0b24c0-df35-4a51-9541-4d4ae263d727
       - 080342de-73bd-4325-ba98-e02e859aa64b
       - b8521434-96cd-4258-b87e-876dc7276241
+      - a59a24aa-f55a-478c-9960-3bed5acd2851
     metadata:
       status: completed
       expanded: false
@@ -5744,8 +5745,11 @@ nodes:
       status: pending
   3f5f4443-13b5-478f-90d9-9612c06aa486:
     id: 3f5f4443-13b5-478f-90d9-9612c06aa486
-    content: At the end, make sure all the automated tests are updated and passing.
-    children: []
+    content: At the end ensure that
+    children:
+      - 7be6e945-9543-40dc-941a-a6ab579c9469
+      - fabfead2-c63b-4e29-bac9-523382a50257
+      - 32f349b9-656c-4cc8-8b5c-e331d819f696
     metadata:
       status: pending
   f5e3f44c-6de7-4bd9-ad8d-7f51cdf059f1:
@@ -6165,6 +6169,8 @@ nodes:
     id: 9b46397c-c452-421c-b408-46b040d99c9e
     content: Implement minor feature
     children:
+      - c23bb465-c70f-4229-8a78-f1275d3e05d0
+      - 19f2aeca-f4da-4efa-a790-5de2fdfd3c85
       - 5e0fa846-276d-4d99-ae49-a3f05b46b75c
       - 3239dd15-5f50-4999-84ac-b84b71b742be
       - 6a7c5b51-8827-40a1-9a86-89dcb26ddf40
@@ -6172,7 +6178,7 @@ nodes:
       - ee62f343-86cb-423b-87ab-63236876a259
     metadata:
       status: pending
-      expanded: false
+      expanded: true
       deleted: false
       plugins: {}
       isContextDeclaration: true
@@ -6416,13 +6422,14 @@ nodes:
     id: cc94b377-246d-45ae-b938-2d3906892aa1
     content: Implement major feature
     children:
+      - 1dbf6444-7207-4916-8fa7-7c1bb54f8499
       - c2b50240-2e86-4a10-ae72-530187e5e6f0
       - 2d2f84ae-d30a-4ddd-a127-c1e7acd15c63
       - 565e741a-337a-46cc-83bf-97fd39e1dff3
       - 869e317f-ec2a-4d2d-a8bb-8bc22d84e326
     metadata:
       status: pending
-      expanded: false
+      expanded: true
       deleted: false
       plugins: {}
       isContextDeclaration: true
@@ -6784,13 +6791,11 @@ nodes:
     id: 0cc62ae1-1a7a-4aa4-bc6a-d817cabd672c
     content: Refactor
     children:
-      - 72f62374-15ee-488c-9e84-1c33145f6059
-      - 5ed852b4-834e-4e79-a125-4dc2bbeb136f
-      - 061b2c2c-e334-4ef4-af05-7747029fa953
-      - 6cb5547b-63eb-42d4-ae74-8f09ca4ec931
-      - a8283ff8-f26a-41e9-bf03-caee4d97e229
-      - f2016adf-0e1d-470a-9e88-e7d9b2180ebb
-      - 04ca4bdd-431d-4ad6-a8c2-537ef1c063fb
+      - 9d5baff2-765d-4a02-8ced-e694cb8cedc4
+      - b094c286-2255-45a9-939e-3f660f3bafc4
+      - d71e3fd4-f2d0-4d86-bb32-c4cd96fe9a2b
+      - 0ce24294-7a50-4276-b985-67cd9300a611
+      - 2aa9b055-6780-4457-bc3f-d2d7d40874ef
     metadata:
       status: pending
       expanded: true
@@ -7159,7 +7164,7 @@ nodes:
     id: 77963e20-53e9-4db7-8802-8c718f202cef
     content: In progress
     children:
-      - a59a24aa-f55a-478c-9960-3bed5acd2851
+      - bf10afa4-0959-4dd4-9e78-dfadbdd81d9c
     metadata:
       status: pending
       appliedContextIds:
@@ -8455,8 +8460,8 @@ nodes:
       - 807f3898-a0ac-4f1e-8af9-fad688ab1291
       - d5e7cbc1-8db0-4f5a-b7e7-53f1f1773921
     metadata:
-      status: pending
-      expanded: true
+      status: completed
+      expanded: false
       deleted: false
       plugins: {}
   772b5e7a-57a9-4453-a60a-440995394ea9:
@@ -8529,7 +8534,7 @@ nodes:
     content: Extend existing icon picker with a colour picker
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -8538,7 +8543,7 @@ nodes:
     content: Also add colour picker for gutter icons
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -8548,7 +8553,7 @@ nodes:
     children:
       - 622bef1c-3f95-4623-8d72-73c894b83243
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -8557,7 +8562,7 @@ nodes:
     content: Default icon is layers2
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -8619,12 +8624,6 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  72f62374-15ee-488c-9e84-1c33145f6059:
-    id: 72f62374-15ee-488c-9e84-1c33145f6059
-    content: Need to move that handleBlueprintIconClick to a hooks file
-    children: []
-    metadata:
-      status: pending
   57dd70b4-0580-4f3e-9d62-5caf45494d89:
     id: 57dd70b4-0580-4f3e-9d62-5caf45494d89
     content: Change 'Choose an icon' in to 'Customize icon'
@@ -8636,60 +8635,316 @@ nodes:
     content: Create a consistent, modern, professional colour palate
     children: []
     metadata:
-      status: pending
+      status: completed
   5f747b50-dd53-4ab7-a9da-fb5dbd4149e6:
     id: 5f747b50-dd53-4ab7-a9da-fb5dbd4149e6
     content: Have 8 preset colours
     children:
       - 5ac0cd99-7bb8-4021-93b5-41626cfcfc27
     metadata:
-      status: pending
+      status: completed
   7938cefc-f065-45bb-911a-6d4f253feb15:
     id: 7938cefc-f065-45bb-911a-6d4f253feb15
     content: Have a custom colour (can be selected with a colour wheel)
     children:
       - 72026da5-3fbe-4c0f-bcf9-8eb2cca47538
     metadata:
-      status: pending
+      status: completed
   72026da5-3fbe-4c0f-bcf9-8eb2cca47538:
     id: 72026da5-3fbe-4c0f-bcf9-8eb2cca47538
     content: Install a library if required
     children: []
     metadata:
+      status: completed
+  bf10afa4-0959-4dd4-9e78-dfadbdd81d9c:
+    id: bf10afa4-0959-4dd4-9e78-dfadbdd81d9c
+    content: Blueprint mode
+    children:
+      - da5077ab-a8ff-4f1b-a40c-7cb5d44a54d5
+      - 9d3b08d4-e5e5-48bc-815d-9f4cec150532
+      - bdd1a000-b81d-4254-837e-151df49b8986
+      - a3675d1d-91f9-4d83-a042-62e892308c4d
+      - 9584c7ca-b072-4fda-985f-55276a9d44a9
+    metadata:
       status: pending
-  5ed852b4-834e-4e79-a125-4dc2bbeb136f:
-    id: 5ed852b4-834e-4e79-a125-4dc2bbeb136f
-    content: Amber should match the default amber colour
+      expanded: true
+      deleted: false
+      plugins: {}
+  da5077ab-a8ff-4f1b-a40c-7cb5d44a54d5:
+    id: da5077ab-a8ff-4f1b-a40c-7cb5d44a54d5
+    content: Add toggle mechanism
+    children:
+      - 55bc43bc-6bff-4cbc-a1e7-a4a200610b66
+      - 61da9c79-5388-497e-8789-24a8e90aa5c8
+      - 16d9b71c-7f95-49ba-87c0-30d18e8e9acc
+      - 6b54a82f-1f63-4e2c-8977-86b50011a4dc
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  55bc43bc-6bff-4cbc-a1e7-a4a200610b66:
+    id: 55bc43bc-6bff-4cbc-a1e7-a4a200610b66
+    content: Add keyboard shortcut (Cmd/Ctrl+Shift+B)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  61da9c79-5388-497e-8789-24a8e90aa5c8:
+    id: 61da9c79-5388-497e-8789-24a8e90aa5c8
+    content: Add View menu item with checkbox for toggle
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  16d9b71c-7f95-49ba-87c0-30d18e8e9acc:
+    id: 16d9b71c-7f95-49ba-87c0-30d18e8e9acc
+    content: Store blueprint mode state in UI store per tab
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9d3b08d4-e5e5-48bc-815d-9f4cec150532:
+    id: 9d3b08d4-e5e5-48bc-815d-9f4cec150532
+    content: Visual indicators when active
+    children:
+      - 7460da56-a519-4a69-acd2-672a7d89c4c8
+      - 51875aef-f1d5-4694-b2d5-f3dfa5acf05d
+      - 618471e9-40e1-4910-9617-a070b780696d
+      - 88ec46b8-acc6-4c02-a2fc-9fc00f75b201
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7460da56-a519-4a69-acd2-672a7d89c4c8:
+    id: 7460da56-a519-4a69-acd2-672a7d89c4c8
+    content: Use --sky-500 (#0ea5e9) consistently for all styling
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  51875aef-f1d5-4694-b2d5-f3dfa5acf05d:
+    id: 51875aef-f1d5-4694-b2d5-f3dfa5acf05d
+    content: Add border/outline to workspace area
     children: []
     metadata:
       status: pending
-  061b2c2c-e334-4ef4-af05-7747029fa953:
-    id: 061b2c2c-e334-4ef4-af05-7747029fa953
-    content: Blue should match the existing sky blue for the gutter icons
+      expanded: true
+      deleted: false
+      plugins: {}
+  618471e9-40e1-4910-9617-a070b780696d:
+    id: 618471e9-40e1-4910-9617-a070b780696d
+    content: Style status bar with "Blueprint Mode" indicator text
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  88ec46b8-acc6-4c02-a2fc-9fc00f75b201:
+    id: 88ec46b8-acc6-4c02-a2fc-9fc00f75b201
+    content: Style active tab border/background to show blueprint mode
     children: []
     metadata:
       status: pending
-  6cb5547b-63eb-42d4-ae74-8f09ca4ec931:
-    id: 6cb5547b-63eb-42d4-ae74-8f09ca4ec931
-    content: Remove the 'Context icon updated' toaster
+      expanded: true
+      deleted: false
+      plugins: {}
+  bdd1a000-b81d-4254-837e-151df49b8986:
+    id: bdd1a000-b81d-4254-837e-151df49b8986
+    content: Filter tree to show only Blueprint nodes
+    children:
+      - e1befc62-1a47-4132-8e7f-fb3aa5e7ecdf
+      - 724013ea-0458-4f3f-ac4b-f5caf3a1e0b9
+      - a844e9a0-795e-4e73-a4e1-9f053e7d9e7c
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e1befc62-1a47-4132-8e7f-fb3aa5e7ecdf:
+    id: e1befc62-1a47-4132-8e7f-fb3aa5e7ecdf
+    content: Show nodes where isBlueprint=true
     children: []
     metadata:
       status: pending
-  a8283ff8-f26a-41e9-bf03-caee4d97e229:
-    id: a8283ff8-f26a-41e9-bf03-caee4d97e229
-    content: Composite gutter icons (when there is more than one context/context declaration) also need to change colour
+      expanded: true
+      deleted: false
+      plugins: {}
+  724013ea-0458-4f3f-ac4b-f5caf3a1e0b9:
+    id: 724013ea-0458-4f3f-ac4b-f5caf3a1e0b9
+    content: Tree naturally shows complete paths since blueprints require blueprint ancestors
     children: []
     metadata:
       status: pending
-  f2016adf-0e1d-470a-9e88-e7d9b2180ebb:
-    id: f2016adf-0e1d-470a-9e88-e7d9b2180ebb
-    content: iconPicker.tsx needs hooks file
+      expanded: true
+      deleted: false
+      plugins: {}
+  a844e9a0-795e-4e73-a4e1-9f053e7d9e7c:
+    id: a844e9a0-795e-4e73-a4e1-9f053e7d9e7c
+    content: Non-blueprint nodes are simply not in the tree (no filtering logic needed - blueprints form complete subtrees)
     children: []
     metadata:
       status: pending
-  04ca4bdd-431d-4ad6-a8c2-537ef1c063fb:
-    id: 04ca4bdd-431d-4ad6-a8c2-537ef1c063fb
-    content: "It's not obvious that there is a custom colour.\_ It just looks like any other colour.\_ We need a visual indicator."
+      expanded: true
+      deleted: false
+      plugins: {}
+  a3675d1d-91f9-4d83-a042-62e892308c4d:
+    id: a3675d1d-91f9-4d83-a042-62e892308c4d
+    content: Handle behaviors in blueprint mode
+    children:
+      - 1c29adcf-9113-4ec6-8f06-46281f4991bb
+      - 2d584520-ebfe-4eb7-9e13-121c229a68d6
+      - 8086af39-d2fa-4aba-81b4-57aefcc3d9b3
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1c29adcf-9113-4ec6-8f06-46281f4991bb:
+    id: 1c29adcf-9113-4ec6-8f06-46281f4991bb
+    content: New nodes created inherit isBlueprint=true automatically
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2d584520-ebfe-4eb7-9e13-121c229a68d6:
+    id: 2d584520-ebfe-4eb7-9e13-121c229a68d6
+    content: All normal editing/context operations work unchanged
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8086af39-d2fa-4aba-81b4-57aefcc3d9b3:
+    id: 8086af39-d2fa-4aba-81b4-57aefcc3d9b3
+    content: Delete warning still shows if node has children (visible or not)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9584c7ca-b072-4fda-985f-55276a9d44a9:
+    id: 9584c7ca-b072-4fda-985f-55276a9d44a9
+    content: Exiting blueprint mode
+    children:
+      - cbd92c49-2584-481f-9119-edf1c2b9c60f
+      - 5a286958-d55c-4ac8-9da9-38945684193b
+      - b77cc3b1-1063-4ccf-b8a2-2ed0f92c0e2a
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  cbd92c49-2584-481f-9119-edf1c2b9c60f:
+    id: cbd92c49-2584-481f-9119-edf1c2b9c60f
+    content: Keyboard shortcut toggles off
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5a286958-d55c-4ac8-9da9-38945684193b:
+    id: 5a286958-d55c-4ac8-9da9-38945684193b
+    content: Menu checkbox toggles off
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b77cc3b1-1063-4ccf-b8a2-2ed0f92c0e2a:
+    id: b77cc3b1-1063-4ccf-b8a2-2ed0f92c0e2a
+    content: Selected node preserved when switching modes (if visible in both)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6b54a82f-1f63-4e2c-8977-86b50011a4dc:
+    id: 6b54a82f-1f63-4e2c-8977-86b50011a4dc
+    content: Current selection blurred when entering blueprint mode (user has to refocus on a node manually)
+    children: []
+    metadata:
+      status: completed
+  c23bb465-c70f-4229-8a78-f1275d3e05d0:
+    id: c23bb465-c70f-4229-8a78-f1275d3e05d0
+    content: You will consider the following instructions and then use the given specification to code a minor feature
+    children: []
+    metadata:
+      status: pending
+  1dbf6444-7207-4916-8fa7-7c1bb54f8499:
+    id: 1dbf6444-7207-4916-8fa7-7c1bb54f8499
+    content: You will code a major feature by adding the following to the minor feature instructions
+    children: []
+    metadata:
+      status: pending
+  19f2aeca-f4da-4efa-a790-5de2fdfd3c85:
+    id: 19f2aeca-f4da-4efa-a790-5de2fdfd3c85
+    content: You will not update the feedback panel file if you have previously done that, this is a coding task
+    children: []
+    metadata:
+      status: pending
+  9d5baff2-765d-4a02-8ced-e694cb8cedc4:
+    id: 9d5baff2-765d-4a02-8ced-e694cb8cedc4
+    content: "In BottomStatusBar we're repeating the div and just changing content and classes depending on what should be shown.\_ Is that the best way to do things ?"
+    children: []
+    metadata:
+      status: pending
+  b094c286-2255-45a9-939e-3f660f3bafc4:
+    id: b094c286-2255-45a9-939e-3f660f3bafc4
+    content: The blue border should be around the workspace component not the tree component
+    children: []
+    metadata:
+      status: pending
+  d71e3fd4-f2d0-4d86-bb32-c4cd96fe9a2b:
+    id: d71e3fd4-f2d0-4d86-bb32-c4cd96fe9a2b
+    content: viewMenu needs a hooks file
+    children: []
+    metadata:
+      status: pending
+  0ce24294-7a50-4276-b985-67cd9300a611:
+    id: 0ce24294-7a50-4276-b985-67cd9300a611
+    content: visibile children in tree.tsx should be in hooks file, same in treenode.tsx
+    children: []
+    metadata:
+      status: pending
+  2aa9b055-6780-4457-bc3f-d2d7d40874ef:
+    id: 2aa9b055-6780-4457-bc3f-d2d7d40874ef
+    content: ''
+    children: []
+    metadata:
+      status: pending
+  7be6e945-9543-40dc-941a-a6ab579c9469:
+    id: 7be6e945-9543-40dc-941a-a6ab579c9469
+    content: All the automated tests are updated and passing
+    children: []
+    metadata:
+      status: pending
+  fabfead2-c63b-4e29-bac9-523382a50257:
+    id: fabfead2-c63b-4e29-bac9-523382a50257
+    content: There are no linting errors
+    children: []
+    metadata:
+      status: pending
+  32f349b9-656c-4cc8-8b5c-e331d819f696:
+    id: 32f349b9-656c-4cc8-8b5c-e331d819f696
+    content: There are no typescript errors
     children: []
     metadata:
       status: pending

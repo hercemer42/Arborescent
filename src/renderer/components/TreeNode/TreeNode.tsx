@@ -9,6 +9,7 @@ import { useNodeToggle } from './hooks/useNodeToggle';
 import { useNodeIconClick } from './hooks/useNodeIconClick';
 import { useAppliedContexts, useActiveContext, useBundledContexts } from './hooks/useAppliedContexts';
 import { usePluginIndicators } from '../NodeGutter/hooks/usePluginIndicators';
+import { useNodeVisibleChildren } from '../Tree/hooks/useVisibleChildren';
 import './TreeNode.css';
 
 interface TreeNodeProps {
@@ -32,9 +33,11 @@ export const TreeNode = memo(function TreeNode({ nodeId, depth = 0 }: TreeNodePr
   const bundledContexts = useBundledContexts(node, nodes);
   const activeContext = useActiveContext(node, nodes, ancestorRegistry);
 
-  const hasChildren = node ? node.children.length > 0 : false;
   const expanded = node?.metadata.expanded ?? true;
   const contentLength = node?.content.length ?? 0;
+
+  const visibleChildren = useNodeVisibleChildren(node);
+  const hasChildren = visibleChildren.length > 0;
 
   const { flashIntensity, isDeleting, nodeRef, onAnimationEnd } = useNodeEffects(nodeId);
   const { isDragging, isOver, dropPosition, setRefs, attributes, listeners } = useNodeDragDrop(nodeId, nodeRef);
@@ -96,7 +99,7 @@ export const TreeNode = memo(function TreeNode({ nodeId, depth = 0 }: TreeNodePr
 
       {expanded &&
         hasChildren &&
-        node.children.map((childId) => (
+        visibleChildren.map((childId) => (
           <TreeNode
             key={childId}
             nodeId={childId}

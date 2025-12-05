@@ -12,6 +12,7 @@ describe('nodeActions', () => {
     cursorPosition: number;
     rememberedVisualX: number | null;
     collaboratingNodeId: string | null;
+    blueprintModeEnabled: boolean;
     actions?: { executeCommand?: (cmd: unknown) => void };
   };
   let state: TestState;
@@ -64,6 +65,7 @@ describe('nodeActions', () => {
       cursorPosition: 0,
       rememberedVisualX: null,
       collaboratingNodeId: null,
+      blueprintModeEnabled: false,
       actions: { executeCommand: mockExecuteCommand },
     };
 

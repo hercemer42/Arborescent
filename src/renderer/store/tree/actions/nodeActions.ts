@@ -26,6 +26,7 @@ type StoreState = {
   cursorPosition: number;
   rememberedVisualX: number | null;
   collaboratingNodeId: string | null;
+  blueprintModeEnabled: boolean;
 };
 type StoreSetter = (partial: Partial<StoreState> | ((state: StoreState) => Partial<StoreState>)) => void;
 
@@ -117,7 +118,7 @@ export const createNodeActions = (
 
   function createNode(currentNodeId: string): void {
     const state = get() as StoreState & { actions?: { executeCommand?: (cmd: unknown) => void } };
-    const { nodes, rootNodeId, ancestorRegistry } = state;
+    const { nodes, rootNodeId, ancestorRegistry, blueprintModeEnabled } = state;
     const currentNode = nodes[currentNodeId];
     if (!currentNode) return;
 
@@ -146,6 +147,9 @@ export const createNodeActions = (
       throw new Error('Command system not initialized - cannot create node with undo/redo support');
     }
 
+    // In blueprint mode, new nodes inherit isBlueprint from parent
+    const initialMetadata = blueprintModeEnabled ? { isBlueprint: true } : undefined;
+
     const command = new CreateNodeCommand(
       newNodeId,
       parentId,
@@ -156,7 +160,8 @@ export const createNodeActions = (
         return { nodes: currentState.nodes, rootNodeId: currentState.rootNodeId, ancestorRegistry: currentState.ancestorRegistry };
       },
       (partial) => set(partial as Partial<StoreState>),
-      triggerAutosave
+      triggerAutosave,
+      initialMetadata
     );
     state.actions.executeCommand(command);
   }

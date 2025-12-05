@@ -4,6 +4,7 @@ import './Tab.css';
 interface TabProps {
   displayName: string;
   isActive: boolean;
+  isBlueprintMode?: boolean;
   onClick: () => void;
   onClose: () => void;
 }
@@ -11,6 +12,7 @@ interface TabProps {
 export const Tab = memo(function Tab({
   displayName,
   isActive,
+  isBlueprintMode,
   onClick,
   onClose,
 }: TabProps) {
@@ -19,9 +21,15 @@ export const Tab = memo(function Tab({
     onClose();
   };
 
+  const classNames = [
+    'tab',
+    isActive && 'active',
+    isActive && isBlueprintMode && 'blueprint-mode',
+  ].filter(Boolean).join(' ');
+
   return (
     <div
-      className={`tab ${isActive ? 'active' : ''}`}
+      className={classNames}
       onClick={onClick}
       title={displayName}
     >

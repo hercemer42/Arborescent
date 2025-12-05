@@ -2,6 +2,7 @@ import { memo } from 'react';
 import { Tab } from '../Tab';
 import { PanelActions } from '../PanelActions';
 import { useFilesStore } from '../../store/files/filesStore';
+import { useStore } from '../../store/tree/useStore';
 import './TabBar.css';
 
 export const TabBar = memo(function TabBar() {
@@ -10,6 +11,7 @@ export const TabBar = memo(function TabBar() {
   const activeFilePath = useFilesStore((state) => state.activeFilePath);
   const setActiveFile = useFilesStore((state) => state.setActiveFile);
   const closeFile = useFilesStore((state) => state.actions.closeFile);
+  const blueprintModeEnabled = useStore((state) => state.blueprintModeEnabled);
 
   if (files.length === 0) {
     return null;
@@ -23,6 +25,7 @@ export const TabBar = memo(function TabBar() {
             key={file.path}
             displayName={file.displayName}
             isActive={file.path === activeFilePath}
+            isBlueprintMode={blueprintModeEnabled}
             onClick={() => setActiveFile(file.path)}
             onClose={() => closeFile(file.path)}
           />

@@ -12,12 +12,15 @@ export interface BlueprintActions {
   addToBlueprint: (nodeId: string) => void;
   removeFromBlueprint: (nodeId: string, cascade?: boolean) => void;
   setBlueprintIcon: (nodeId: string, icon: string, color?: string) => void;
+  toggleBlueprintMode: () => void;
 }
 
 type StoreState = {
   nodes: Record<string, TreeNode>;
   rootNodeId: string;
   ancestorRegistry: AncestorRegistry;
+  blueprintModeEnabled: boolean;
+  activeNodeId: string | null;
 };
 type StoreSetter = (partial: Partial<StoreState> | ((state: StoreState) => Partial<StoreState>)) => void;
 
@@ -98,9 +101,24 @@ export const createBlueprintActions = (
     triggerAutosave?.();
   }
 
+  function toggleBlueprintMode(): void {
+    const { blueprintModeEnabled } = get();
+    const newMode = !blueprintModeEnabled;
+
+    // Clear selection when entering blueprint mode
+    if (newMode) {
+      set({ blueprintModeEnabled: true, activeNodeId: null });
+    } else {
+      set({ blueprintModeEnabled: false });
+    }
+
+    logger.info(`Blueprint mode ${newMode ? 'enabled' : 'disabled'}`, 'Blueprint');
+  }
+
   return {
     addToBlueprint,
     removeFromBlueprint,
     setBlueprintIcon,
+    toggleBlueprintMode,
   };
 };

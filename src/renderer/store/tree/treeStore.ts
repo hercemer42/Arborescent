@@ -44,6 +44,7 @@ export interface TreeState {
   collaboratingNodeId: string | null; // Node currently in collaboration
   feedbackFadingNodeIds: Set<string>; // Nodes fading out after feedback accepted
   contextDeclarations: ContextDeclarationInfo[]; // Cached list of context declarations
+  blueprintModeEnabled: boolean; // When true, only blueprint nodes are shown
 
   actions: NodeActions & ContextActions & BlueprintActions & NavigationActions & PersistenceActions & NodeMovementActions & NodeDeletionActions & VisualEffectsActions & SelectionActions & HistoryActions & CollaborateActions & ClipboardActions & ExecuteActions;
 }
@@ -102,6 +103,7 @@ export function createTreeStore(treeType: TreeType = 'workspace') {
       collaboratingNodeId: null,
       feedbackFadingNodeIds: new Set(),
       contextDeclarations: [],
+      blueprintModeEnabled: false,
 
       actions: {
         ...createNodeActions(get, set, persistenceActions.autoSave),

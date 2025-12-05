@@ -19,6 +19,10 @@ vi.mock('../components/Workspace', () => ({
   Workspace: () => <div data-testid="workspace">Workspace</div>,
 }));
 
+vi.mock('../components/MenuBar', () => ({
+  AppMenuBar: () => <div data-testid="menubar">MenuBar</div>,
+}));
+
 vi.mock('../useAppErrorHandling', () => ({
   useAppErrorHandling: vi.fn(),
 }));

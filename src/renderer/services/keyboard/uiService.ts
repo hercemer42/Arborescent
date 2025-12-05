@@ -82,6 +82,14 @@ async function handleUIShortcuts(event: KeyboardEvent): Promise<void> {
     return;
   }
 
+  // Toggle blueprint mode
+  if (matchesHotkey(event, 'view', 'toggleBlueprintMode')) {
+    event.preventDefault();
+    const store = getActiveStore();
+    store?.getState().actions.toggleBlueprintMode();
+    return;
+  }
+
   // Reload application
   if (matchesHotkey(event, 'file', 'reload')) {
     event.preventDefault();
