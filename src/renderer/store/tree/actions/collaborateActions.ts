@@ -192,6 +192,7 @@ export function createCollaborateActions(
 
 IMPORTANT: Write your reviewed/updated list to this file: ${feedbackResponseFile}
 Do NOT make any changes to the code.
+Only write to the file once - fully consider your response beforehand.
 
 Here is the content:
 

@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2025-12-06T10:25:04.714Z'
+updated: '2025-12-06T11:01:39.719Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -583,6 +583,9 @@ nodes:
     metadata:
       status: pending
       expanded: true
+      isBlueprint: true
+      blueprintIcon: Boxes
+      blueprintColor: '#a855f7'
   565dde0a-864b-41f9-86ff-dbdf40ac4dd0:
     id: 565dde0a-864b-41f9-86ff-dbdf40ac4dd0
     content: Done
@@ -602,10 +605,15 @@ nodes:
       - 8541a984-fcca-479d-a9ca-494878f45de3
       - bf10afa4-0959-4dd4-9e78-dfadbdd81d9c
       - 682650c3-1af5-4533-a4d3-403beb2d7bb7
+      - 33ab614c-1a87-4e7e-a050-a86935b99fb2
       - 99fc7f25-912e-4c50-88c8-c179d7213ae5
+      - e704d493-6653-4e28-8748-cf2363ba1c58
     metadata:
       status: completed
-      expanded: true
+      expanded: false
+      isBlueprint: true
+      blueprintIcon: FolderCheck
+      blueprintColor: '#22c55e'
   e9bb0de8-a33a-4054-8902-466a58ae3a1a:
     id: e9bb0de8-a33a-4054-8902-466a58ae3a1a
     content: Done
@@ -623,6 +631,9 @@ nodes:
     metadata:
       status: pending
       expanded: false
+      isBlueprint: true
+      blueprintIcon: Brain
+      blueprintColor: '#0ea5e9'
   2ce5b181-5461-486c-be65-159e5e98de54:
     id: 2ce5b181-5461-486c-be65-159e5e98de54
     content: Mobile app
@@ -646,6 +657,9 @@ nodes:
     metadata:
       status: pending
       expanded: false
+      isBlueprint: true
+      blueprintIcon: Sun
+      blueprintColor: '#f97316'
   f15111b1-9e2d-46e9-b84c-e12b9053e230:
     id: f15111b1-9e2d-46e9-b84c-e12b9053e230
     content: Neurodivergent compatible
@@ -5413,7 +5427,7 @@ nodes:
       status: pending
       isContextDeclaration: true
       contextIcon: Search
-      expanded: false
+      expanded: true
       contextColor: '#0ea5e9'
       isBlueprint: true
       isContextChild: false
@@ -5694,7 +5708,7 @@ nodes:
       - 9a8f1538-7eb7-4e2d-9e0f-46e2c00675f4
     metadata:
       status: pending
-      expanded: true
+      expanded: false
       isBlueprint: true
       blueprintIcon: BrainCog
       blueprintColor: '#14b8a6'
@@ -5702,9 +5716,6 @@ nodes:
     id: 984247e7-2d55-4b93-80e8-f84818901621
     content: Backlog
     children:
-      - e704d493-6653-4e28-8748-cf2363ba1c58
-      - fae59a45-bfd7-4c23-85fa-b566ee48e16b
-      - 689714e9-1848-44a8-8227-9551c21ba4bf
       - b129c479-f708-479c-a1a1-47f6a692247a
       - d7597faa-0b34-400e-985a-de035508cdb1
       - 40729a78-ee9c-4599-aa83-57f189199c3c
@@ -5721,10 +5732,13 @@ nodes:
       - 382ddb47-39df-4546-978c-66b3a2306480
     metadata:
       status: pending
-      expanded: false
+      expanded: true
       appliedContextIds:
         - e8824b29-eb18-4031-9e35-b321a864d418
       activeContextId: e8824b29-eb18-4031-9e35-b321a864d418
+      isBlueprint: true
+      blueprintIcon: LayoutList
+      blueprintColor: '#a855f7'
   7872f73c-b9d7-40a7-bcea-d0573548106c:
     id: 7872f73c-b9d7-40a7-bcea-d0573548106c
     content: Don't include an element that is already implemented, check the code first
@@ -6868,6 +6882,9 @@ nodes:
       appliedContextIds:
         - 64ea2af4-332b-44a6-8b88-78535cc9b79a
       activeContextId: 64ea2af4-332b-44a6-8b88-78535cc9b79a
+      isBlueprint: true
+      blueprintIcon: Recycle
+      blueprintColor: '#a855f7'
   ec997616-4bea-481e-b803-b9b37830da13:
     id: ec997616-4bea-481e-b803-b9b37830da13
     content: Challenge the user if they appear to be overthinking things
@@ -7233,13 +7250,16 @@ nodes:
     id: 77963e20-53e9-4db7-8802-8c718f202cef
     content: In progress
     children:
-      - 33ab614c-1a87-4e7e-a050-a86935b99fb2
+      - da3362df-fa0c-471b-8906-3f82e514360c
     metadata:
       status: pending
       appliedContextIds:
         - cc94b377-246d-45ae-b938-2d3906892aa1
       activeContextId: cc94b377-246d-45ae-b938-2d3906892aa1
       expanded: true
+      isBlueprint: true
+      blueprintIcon: Cog
+      blueprintColor: '#14b8a6'
   709d1979-03ab-41b4-a89b-9d8877ad23e8:
     id: 709d1979-03ab-41b4-a89b-9d8877ad23e8
     content: Move the 'Execute' menu to the top, followed by collaborate, then context, then edit, then copy to clipboard
@@ -8488,20 +8508,6 @@ nodes:
     metadata:
       status: completed
       expanded: false
-  fae59a45-bfd7-4c23-85fa-b566ee48e16b:
-    id: fae59a45-bfd7-4c23-85fa-b566ee48e16b
-    content: Build archive system
-    children:
-      - f6b7f766-03fe-4598-ad1d-294d020c5737
-      - 917c9184-9e42-436b-bd84-b6041321e4ea
-      - 31a137de-6ac0-4237-b788-b75c9c27f0ce
-      - 1d062c51-b893-4f68-872f-6549f529502c
-      - d14bf816-804a-4967-aa66-b35b4ca5f2f2
-      - b467eded-fca8-4a60-936d-e8bdfd59c892
-      - 03e23d22-b0bc-451c-8047-c3084027c453
-    metadata:
-      status: pending
-      expanded: true
   a59a24aa-f55a-478c-9960-3bed5acd2851:
     id: a59a24aa-f55a-478c-9960-3bed5acd2851
     content: Add as blueprint
@@ -9690,6 +9696,9 @@ nodes:
       appliedContextIds:
         - 6690289a-e02f-48bc-9225-a1083b7b324f
       activeContextId: 6690289a-e02f-48bc-9225-a1083b7b324f
+      isBlueprint: true
+      blueprintIcon: Bug
+      blueprintColor: '#ef4444'
   aff16275-6d8e-49c9-b862-76875858d4af:
     id: aff16275-6d8e-49c9-b862-76875858d4af
     content: Avoid adding comments specific to the bug fix unless really needed
@@ -9709,10 +9718,15 @@ nodes:
     id: c4473311-2e42-48ae-9191-d3807dc55a4c
     content: Problems
     children:
+      - 34231e2f-aa80-4c0e-83ed-32e9229ce8cf
       - 2de8ffa0-52d4-4a72-a2a9-794fb7993a82
       - a3bbb184-6a27-4c57-817b-38d38d29d45b
     metadata:
       status: pending
+      expanded: false
+      isBlueprint: true
+      blueprintIcon: FileExclamationPoint
+      blueprintColor: '#ef4444'
   a3bbb184-6a27-4c57-817b-38d38d29d45b:
     id: a3bbb184-6a27-4c57-817b-38d38d29d45b
     content: Need to be able to change the order of bundled contexts
@@ -9721,12 +9735,15 @@ nodes:
       status: pending
   f5c33654-69b4-492a-a6e3-6d13e4dec80d:
     id: f5c33654-69b4-492a-a6e3-6d13e4dec80d
-    content: Tasks
+    content: Actions
     children:
       - 6e6f1d73-3ad7-46c6-879e-19036d650556
     metadata:
       status: pending
       expanded: false
+      isBlueprint: true
+      blueprintIcon: Star
+      blueprintColor: '#64748b'
   6e6f1d73-3ad7-46c6-879e-19036d650556:
     id: 6e6f1d73-3ad7-46c6-879e-19036d650556
     content: Review since last commit
@@ -9779,23 +9796,12 @@ nodes:
     id: b129c479-f708-479c-a1a1-47f6a692247a
     content: Actions - should belong to blueprint
     children:
-      - 465b7a80-b545-4fb5-a1f2-305e89f460e9
+      - ed0a2c9f-033c-4ab5-ae40-874821a58839
+      - 2f169003-a51e-4d5c-8476-ff283d77cd38
+      - f5be00fb-5aad-4f9a-8ecb-d79eaf0aafbb
     metadata:
       status: pending
       expanded: false
-  465b7a80-b545-4fb5-a1f2-305e89f460e9:
-    id: 465b7a80-b545-4fb5-a1f2-305e89f460e9
-    content: Think about how to define, apply them
-    children:
-      - 752784d1-1bcb-43db-a8c1-6422d0eca72d
-    metadata:
-      status: pending
-  752784d1-1bcb-43db-a8c1-6422d0eca72d:
-    id: 752784d1-1bcb-43db-a8c1-6422d0eca72d
-    content: Maybe it's just a template thing, possible no code is needed
-    children: []
-    metadata:
-      status: pending
   2de8ffa0-52d4-4a72-a2a9-794fb7993a82:
     id: 2de8ffa0-52d4-4a72-a2a9-794fb7993a82
     content: Right click menu isn't very intuitive
@@ -9824,24 +9830,6 @@ nodes:
     children: []
     metadata:
       status: pending
-  917c9184-9e42-436b-bd84-b6041321e4ea:
-    id: 917c9184-9e42-436b-bd84-b6041321e4ea
-    content: Add 'Archive' top menu option
-    children: []
-    metadata:
-      status: pending
-  31a137de-6ac0-4237-b788-b75c9c27f0ce:
-    id: 31a137de-6ac0-4237-b788-b75c9c27f0ce
-    content: Under it have an 'Archive' item
-    children: []
-    metadata:
-      status: pending
-  689714e9-1848-44a8-8227-9551c21ba4bf:
-    id: 689714e9-1848-44a8-8227-9551c21ba4bf
-    content: Zoom feature
-    children: []
-    metadata:
-      status: pending
   682650c3-1af5-4533-a4d3-403beb2d7bb7:
     id: 682650c3-1af5-4533-a4d3-403beb2d7bb7
     content: Add scroll lock toggle to terminal
@@ -9851,7 +9839,7 @@ nodes:
       - 1bea29a9-2d9f-4888-b015-0902061b6f45
       - d04d377f-e240-4e90-b116-3118e61fc7a3
     metadata:
-      status: pending
+      status: completed
       expanded: false
       deleted: false
       plugins: {}
@@ -9862,7 +9850,7 @@ nodes:
       - 6144054b-4332-422f-aea4-0e0c47d87a7c
       - 31d5ccd7-a3df-49a8-84c9-74885ad8e1ab
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -9871,7 +9859,7 @@ nodes:
     content: Use anchor icon (normal = locked to bottom, dimmed = free scroll)
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -9880,7 +9868,7 @@ nodes:
     content: Position next to existing terminal tab controls
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -9893,7 +9881,7 @@ nodes:
       - f621d849-b18f-4f1b-b1cd-04f8ff2c00bc
       - e985e379-8fc1-45b1-b182-ffd340823185
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -9902,7 +9890,7 @@ nodes:
     content: Show filled pin icon
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -9911,7 +9899,7 @@ nodes:
     content: 'Tooltip: "Unpin from bottom"'
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -9920,7 +9908,7 @@ nodes:
     content: Terminal auto-scrolls to bottom on new output
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -9929,7 +9917,7 @@ nodes:
     content: Compensates for programs like Claude Code that redraw terminal lines
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -9942,7 +9930,7 @@ nodes:
       - 32ba87d4-558a-4f8c-9261-9a4bb13486e9
       - 6ab1462d-b7ff-4705-b5fd-d4aca023a7fa
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -9951,7 +9939,7 @@ nodes:
     content: Show outline/empty pin icon
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -9960,7 +9948,7 @@ nodes:
     content: 'Tooltip: "Pin to bottom"'
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -9969,7 +9957,7 @@ nodes:
     content: No programmatic scroll intervention
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -9978,7 +9966,7 @@ nodes:
     content: Falls back to native terminal scroll behavior
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -9989,7 +9977,7 @@ nodes:
       - 503da461-4c3f-445f-b88b-87d2f853632e
       - cb461c10-7977-43c2-8610-5c86f299dcab
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -9998,7 +9986,7 @@ nodes:
     content: Each terminal tab maintains its own pin state
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -10007,7 +9995,7 @@ nodes:
     content: State does not need to persist across app restarts
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
@@ -10213,29 +10201,6 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  1d062c51-b893-4f68-872f-6549f529502c:
-    id: 1d062c51-b893-4f68-872f-6549f529502c
-    content: When clicking on 'Archive' open a dialog box
-    children:
-      - 57940dea-50a2-4cae-a10a-f72191fc5246
-      - 0c788826-ba3b-4112-b740-aac49196b9d7
-    metadata:
-      status: pending
-  57940dea-50a2-4cae-a10a-f72191fc5246:
-    id: 57940dea-50a2-4cae-a10a-f72191fc5246
-    content: Let the user know what archive will do
-    children:
-      - 4206beee-a3cb-4043-9fd6-6cbf68734f4e
-      - 80a747b4-261f-46f9-9fac-d8cd38fc39b0
-    metadata:
-      status: pending
-  f6b7f766-03fe-4598-ad1d-294d020c5737:
-    id: f6b7f766-03fe-4598-ad1d-294d020c5737
-    content: Add Timestamp to each node metadata for when a node was marked as completed or abandoned
-    children:
-      - 669053e5-ec17-484f-9a85-bf2abddc3e82
-    metadata:
-      status: pending
   e704d493-6653-4e28-8748-cf2363ba1c58:
     id: e704d493-6653-4e28-8748-cf2363ba1c58
     content: 'Change checkbox metadata to :'
@@ -10243,114 +10208,16 @@ nodes:
       - 04a9dfe3-998e-4d42-9028-8edb6c014cac
       - 8b5914ed-87a9-434e-9fd5-2825ac8d1842
     metadata:
-      status: pending
+      status: completed
+      expanded: false
+      isContextChild: false
   04a9dfe3-998e-4d42-9028-8edb6c014cac:
     id: 04a9dfe3-998e-4d42-9028-8edb6c014cac
     content: When crossed = abandoned (instead of failed)
     children: []
     metadata:
-      status: pending
-  669053e5-ec17-484f-9a85-bf2abddc3e82:
-    id: 669053e5-ec17-484f-9a85-bf2abddc3e82
-    content: Clear timestamp when node is set to empty
-    children: []
-    metadata:
-      status: pending
-  4206beee-a3cb-4043-9fd6-6cbf68734f4e:
-    id: 4206beee-a3cb-4043-9fd6-6cbf68734f4e
-    content: Archives any nodes that have been checked as complete or abandoned
-    children: []
-    metadata:
-      status: pending
-  80a747b4-261f-46f9-9fac-d8cd38fc39b0:
-    id: 80a747b4-261f-46f9-9fac-d8cd38fc39b0
-    content: Archives any descendant nodes of a checked node
-    children: []
-    metadata:
-      status: pending
-  0c788826-ba3b-4112-b740-aac49196b9d7:
-    id: 0c788826-ba3b-4112-b740-aac49196b9d7
-    content: Have an optional date range
-    children:
-      - 7199312b-d1a7-4865-8311-f8b9ebe28eca
-      - 5de088f3-d41c-4c06-adbf-ba625bae316b
-      - d45e6910-b5f3-46ea-8565-890de6504698
-    metadata:
-      status: pending
-  7199312b-d1a7-4865-8311-f8b9ebe28eca:
-    id: 7199312b-d1a7-4865-8311-f8b9ebe28eca
-    content: Off by default
-    children: []
-    metadata:
-      status: pending
-  5de088f3-d41c-4c06-adbf-ba625bae316b:
-    id: 5de088f3-d41c-4c06-adbf-ba625bae316b
-    content: When activated, archives anything older than one week
-    children: []
-    metadata:
-      status: pending
-  d45e6910-b5f3-46ea-8565-890de6504698:
-    id: d45e6910-b5f3-46ea-8565-890de6504698
-    content: We need to show or explain to the user what it does when we archive
-    children: []
-    metadata:
-      status: pending
-  d14bf816-804a-4967-aa66-b35b4ca5f2f2:
-    id: d14bf816-804a-4967-aa66-b35b4ca5f2f2
-    content: Archiving a node moves it to an 'archive' node that is in the root but hidden (like the existing root node)
-    children:
-      - f8d002cd-17b1-48d5-b85c-8689ded71bec
-      - 1d0ff5e1-025f-4582-bd84-5fca9c1d850c
-    metadata:
-      status: pending
-  f8d002cd-17b1-48d5-b85c-8689ded71bec:
-    id: f8d002cd-17b1-48d5-b85c-8689ded71bec
-    content: This node and its descendants are not viewable or editable in normal mode
-    children: []
-    metadata:
-      status: pending
-  1d0ff5e1-025f-4582-bd84-5fca9c1d850c:
-    id: 1d0ff5e1-025f-4582-bd84-5fca9c1d850c
-    content: The entire ancestor path of the archive node is recreated in a simple form
-    children:
-      - 2b0a587f-9892-4bc4-93ae-11da5a9bd61b
-      - 74c48514-d7fd-4b1e-9c27-2fe42fc324a5
-      - 5c8ec4b5-04ec-48f9-9caa-c1f96235e41b
-    metadata:
-      status: pending
-  74c48514-d7fd-4b1e-9c27-2fe42fc324a5:
-    id: 74c48514-d7fd-4b1e-9c27-2fe42fc324a5
-    content: If the ancestor already exists we use the existing
-    children: []
-    metadata:
-      status: pending
-  2b0a587f-9892-4bc4-93ae-11da5a9bd61b:
-    id: 2b0a587f-9892-4bc4-93ae-11da5a9bd61b
-    content: We strip any blueprints from its ancestors
-    children: []
-    metadata:
-      status: pending
-  5c8ec4b5-04ec-48f9-9caa-c1f96235e41b:
-    id: 5c8ec4b5-04ec-48f9-9caa-c1f96235e41b
-    content: We regenerate IDs for the ancestors, to find them we check by name
-    children:
-      - d2db4033-5013-4cf8-95b2-4c13cd049b30
-    metadata:
-      status: pending
-  d2db4033-5013-4cf8-95b2-4c13cd049b30:
-    id: d2db4033-5013-4cf8-95b2-4c13cd049b30
-    content: If the name and hierarchy of an ancestor is the same as an existing node in the archive, we use the existing
-    children: []
-    metadata:
-      status: pending
-  b467eded-fca8-4a60-936d-e8bdfd59c892:
-    id: b467eded-fca8-4a60-936d-e8bdfd59c892
-    content: In the 'View' menu we have 'Archive mode'
-    children:
-      - f5ff53e8-f0ef-462d-9317-841e3715610e
-      - a4b92836-cbb1-43a9-b2c8-e111b6fbe11a
-    metadata:
-      status: pending
+      status: completed
+      isContextChild: false
   61981154-ceb4-4d94-8235-272d7862e0ca:
     id: 61981154-ceb4-4d94-8235-272d7862e0ca
     content: It should be before 'Export as Blueprint'
@@ -10362,7 +10229,8 @@ nodes:
     content: 'Rename any instances of ''status: abandoned'' in todo.arbo to ''status: abandoned'''
     children: []
     metadata:
-      status: pending
+      status: completed
+      isContextChild: false
   2fcb2fba-f85c-4c0c-9c0d-80327e5e3c94:
     id: 2fcb2fba-f85c-4c0c-9c0d-80327e5e3c94
     content: When exporting to the same filename as the current one
@@ -10390,24 +10258,6 @@ nodes:
     children: []
     metadata:
       status: completed
-  f5ff53e8-f0ef-462d-9317-841e3715610e:
-    id: f5ff53e8-f0ef-462d-9317-841e3715610e
-    content: It can be toggled with CTRL+SHIFT+A
-    children: []
-    metadata:
-      status: pending
-  a4b92836-cbb1-43a9-b2c8-e111b6fbe11a:
-    id: a4b92836-cbb1-43a9-b2c8-e111b6fbe11a
-    content: It toggles between working mode and archive mode
-    children: []
-    metadata:
-      status: pending
-  03e23d22-b0bc-451c-8047-c3084027c453:
-    id: 03e23d22-b0bc-451c-8047-c3084027c453
-    content: Archive mode
-    children: []
-    metadata:
-      status: pending
   33ab614c-1a87-4e7e-a050-a86935b99fb2:
     id: 33ab614c-1a87-4e7e-a050-a86935b99fb2
     content: Zoom mode
@@ -10421,11 +10271,12 @@ nodes:
       - e76a2c28-9f3a-4004-99fb-cbb12330f08c
       - 5c86f6f5-3256-4088-ac1d-77bcaecf9e0c
     metadata:
-      status: pending
-      expanded: true
+      status: completed
+      expanded: false
       deleted: false
       plugins: {}
       activeContextId: cc94b377-246d-45ae-b938-2d3906892aa1
+      isContextChild: false
   9764676b-21ba-4a31-94b2-831793b4a812:
     id: 9764676b-21ba-4a31-94b2-831793b4a812
     content: Architecture
@@ -10435,29 +10286,32 @@ nodes:
       - 5a4eae36-62a5-4b2b-b532-f2adcd29b4d0
       - 975a9965-fe05-4579-b458-458fe63a08e4
     metadata:
-      status: pending
+      status: completed
       expanded: false
       deleted: false
       plugins: {}
+      isContextChild: false
   7eeb3370-cdfd-442d-b921-4afb8a75a3bb:
     id: 7eeb3370-cdfd-442d-b921-4afb8a75a3bb
     content: 'Extend `File` interface in `filesStore.ts` with `zoomSource?: { sourceFilePath: string; zoomedNodeId: string }`'
     children:
       - 319003eb-98b3-4335-85ca-912d783139d9
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
+      isContextChild: false
   319003eb-98b3-4335-85ca-912d783139d9:
     id: 319003eb-98b3-4335-85ca-912d783139d9
     content: A zoom tab points back to its parent file and the specific node being zoomed
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
+      isContextChild: false
   7ac39d07-3fbf-4a4b-8b2c-8978c4bd75ef:
     id: 7ac39d07-3fbf-4a4b-8b2c-8978c4bd75ef
     content: Extend `storeManager` to share tree stores between parent and zoom tabs
@@ -10465,28 +10319,31 @@ nodes:
       - 0a01ba7e-101c-4651-9db5-9433807f7720
       - bcbfe3a1-6f66-48d6-8c6a-4f5b249d960e
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
+      isContextChild: false
   0a01ba7e-101c-4651-9db5-9433807f7720:
     id: 0a01ba7e-101c-4651-9db5-9433807f7720
     content: Zoom tabs use the SAME tree store as parent (not a copy)
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
+      isContextChild: false
   bcbfe3a1-6f66-48d6-8c6a-4f5b249d960e:
     id: bcbfe3a1-6f66-48d6-8c6a-4f5b249d960e
     content: This provides real-time sync automatically since both tabs read/write the same store
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
+      isContextChild: false
   5a4eae36-62a5-4b2b-b532-f2adcd29b4d0:
     id: 5a4eae36-62a5-4b2b-b532-f2adcd29b4d0
     content: Modify `Workspace` component to render zoomed view
@@ -10494,28 +10351,31 @@ nodes:
       - 5c9e3c65-e1d4-454c-828e-bc6d7f4f0cce
       - bc8dc7ec-f88e-441d-9ec7-7b3d3f6179dd
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
+      isContextChild: false
   5c9e3c65-e1d4-454c-828e-bc6d7f4f0cce:
     id: 5c9e3c65-e1d4-454c-828e-bc6d7f4f0cce
     content: When rendering a zoom tab, set `rootNodeId` to the zoomed node's ID
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
+      isContextChild: false
   bc8dc7ec-f88e-441d-9ec7-7b3d3f6179dd:
     id: bc8dc7ec-f88e-441d-9ec7-7b3d3f6179dd
     content: The tree renders normally but starting from a different root
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
+      isContextChild: false
   975a9965-fe05-4579-b458-458fe63a08e4:
     id: 975a9965-fe05-4579-b458-458fe63a08e4
     content: Visual tab styling
@@ -10525,46 +10385,51 @@ nodes:
       - c2a1df0d-d4fc-4971-ac71-a2d6cc50b58a
       - fbd1f20a-cbf6-40fb-a6e4-af0e75957764
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
+      isContextChild: false
   e8a5ddf1-4e35-4965-9caf-994f1ac2a7d0:
     id: e8a5ddf1-4e35-4965-9caf-994f1ac2a7d0
     content: Add CSS class for zoom tabs to differentiate from regular file tabs
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
+      isContextChild: false
   48469924-d315-4111-b7b1-a98e0622231b:
     id: 48469924-d315-4111-b7b1-a98e0622231b
     content: Magnifying glass icon preceding name
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
+      isContextChild: false
   c2a1df0d-d4fc-4971-ac71-a2d6cc50b58a:
     id: c2a1df0d-d4fc-4971-ac71-a2d6cc50b58a
     content: Truncated node content with ellipsis, full name on hover
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
+      isContextChild: false
   fbd1f20a-cbf6-40fb-a6e4-af0e75957764:
     id: fbd1f20a-cbf6-40fb-a6e4-af0e75957764
     content: Fallback to "(untitled)" for empty nodes
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
+      isContextChild: false
   3159a3ad-5d20-4f91-9e67-6060cf946d01:
     id: 3159a3ad-5d20-4f91-9e67-6060cf946d01
     content: 'Phase 1: Core zoom infrastructure'
@@ -10573,47 +10438,52 @@ nodes:
       - ceba5cc9-068d-473c-9739-7d8590a68172
       - 76f5681a-5032-4460-9e5f-bab0410b2b81
     metadata:
-      status: pending
+      status: completed
       expanded: false
       deleted: false
       plugins: {}
+      isContextChild: false
   6dcc55d3-c5ff-44b2-957d-55b8a4b7b489:
     id: 6dcc55d3-c5ff-44b2-957d-55b8a4b7b489
     content: Extend `File` interface with zoom metadata
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
+      isContextChild: false
   ceba5cc9-068d-473c-9739-7d8590a68172:
     id: ceba5cc9-068d-473c-9739-7d8590a68172
     content: Add `openZoomTab(sourceFilePath, nodeId)` action to filesStore
     children:
       - 2817ca3d-8419-4f76-aa35-617302211775
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
+      isContextChild: false
   2817ca3d-8419-4f76-aa35-617302211775:
     id: 2817ca3d-8419-4f76-aa35-617302211775
     content: Check if zoom tab already exists for this node, focus it instead of duplicating
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
+      isContextChild: false
   76f5681a-5032-4460-9e5f-bab0410b2b81:
     id: 76f5681a-5032-4460-9e5f-bab0410b2b81
     content: Update storeManager to return existing store for zoom tabs based on sourceFilePath
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
+      isContextChild: false
   67101338-29d3-48a8-9d10-6745ab38319a:
     id: 67101338-29d3-48a8-9d10-6745ab38319a
     content: 'Phase 2: Context menu integration'
@@ -10621,28 +10491,31 @@ nodes:
       - 92439883-9319-4e6f-a5c1-2fde16318770
       - 4bfac580-4266-4b73-b7b5-0f5e2f4ac04d
     metadata:
-      status: pending
+      status: completed
       expanded: false
       deleted: false
       plugins: {}
+      isContextChild: false
   92439883-9319-4e6f-a5c1-2fde16318770:
     id: 92439883-9319-4e6f-a5c1-2fde16318770
     content: Add "Zoom" option to node context menu
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
+      isContextChild: false
   4bfac580-4266-4b73-b7b5-0f5e2f4ac04d:
     id: 4bfac580-4266-4b73-b7b5-0f5e2f4ac04d
     content: Wire up menu item to call `openZoomTab` action
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
+      isContextChild: false
   5d6ac4bb-a749-44e7-9108-1f7e0c316717:
     id: 5d6ac4bb-a749-44e7-9108-1f7e0c316717
     content: 'Phase 3: Workspace rendering'
@@ -10651,37 +10524,41 @@ nodes:
       - a0bd200e-a021-482f-a156-545cd1b8ec1d
       - 8d5ca953-5608-4bb2-9607-df8262836b32
     metadata:
-      status: pending
+      status: completed
       expanded: false
       deleted: false
       plugins: {}
+      isContextChild: false
   11afa9a5-8417-4d28-84d8-a6014c002709:
     id: 11afa9a5-8417-4d28-84d8-a6014c002709
     content: Detect zoom tabs in Workspace component
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
+      isContextChild: false
   a0bd200e-a021-482f-a156-545cd1b8ec1d:
     id: a0bd200e-a021-482f-a156-545cd1b8ec1d
     content: Pass zoomed node as root to Tree component
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
+      isContextChild: false
   8d5ca953-5608-4bb2-9607-df8262836b32:
     id: 8d5ca953-5608-4bb2-9607-df8262836b32
     content: 'Handle node deletion: close zoom tab automatically with visual transition'
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
+      isContextChild: false
   dacf314e-95c6-4ae9-95f1-b2103e1e87cb:
     id: dacf314e-95c6-4ae9-95f1-b2103e1e87cb
     content: 'Phase 4: Visual tab styling'
@@ -10691,46 +10568,51 @@ nodes:
       - d5dae82e-8a3e-4dfe-8bc2-1f9ae4bee3b9
       - 22c905c4-cf72-4ec4-937a-442c3510f35b
     metadata:
-      status: pending
+      status: completed
       expanded: false
       deleted: false
       plugins: {}
+      isContextChild: false
   383a3214-166c-4471-b293-d984672bdece:
     id: 383a3214-166c-4471-b293-d984672bdece
     content: Zoom tabs show magnifying glass icon preceding name
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
+      isContextChild: false
   197df944-db76-4844-82ce-52bbbf8690f0:
     id: 197df944-db76-4844-82ce-52bbbf8690f0
     content: Show truncated node content with ellipsis
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
+      isContextChild: false
   d5dae82e-8a3e-4dfe-8bc2-1f9ae4bee3b9:
     id: d5dae82e-8a3e-4dfe-8bc2-1f9ae4bee3b9
     content: Full node name displayed on hover tooltip
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
+      isContextChild: false
   22c905c4-cf72-4ec4-937a-442c3510f35b:
     id: 22c905c4-cf72-4ec4-937a-442c3510f35b
     content: Fallback to "(untitled)" for empty nodes
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
+      isContextChild: false
   02f4ed90-5a54-4b50-a1ff-b170f484e134:
     id: 02f4ed90-5a54-4b50-a1ff-b170f484e134
     content: 'Phase 5: Persistence'
@@ -10738,28 +10620,31 @@ nodes:
       - 0dd85c55-29c8-4a23-b213-6c399aa02cd9
       - 30a63875-c860-4f67-b0db-dc519fa48933
     metadata:
-      status: pending
+      status: completed
       expanded: false
       deleted: false
       plugins: {}
+      isContextChild: false
   0dd85c55-29c8-4a23-b213-6c399aa02cd9:
     id: 0dd85c55-29c8-4a23-b213-6c399aa02cd9
     content: Persist zoom tabs in session state
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
+      isContextChild: false
   30a63875-c860-4f67-b0db-dc519fa48933:
     id: 30a63875-c860-4f67-b0db-dc519fa48933
     content: On restore, validate zoomed node still exists before reopening
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
+      isContextChild: false
   e76a2c28-9f3a-4004-99fb-cbb12330f08c:
     id: e76a2c28-9f3a-4004-99fb-cbb12330f08c
     content: 'Phase 6: Testing'
@@ -10769,46 +10654,51 @@ nodes:
       - 081def3b-6f5d-4c68-b8d0-f1685a800e49
       - 6f406dba-5c05-485a-a546-46945fe52890
     metadata:
-      status: pending
+      status: completed
       expanded: false
       deleted: false
       plugins: {}
+      isContextChild: false
   81445d29-6420-4533-b476-0d1fc19c679d:
     id: 81445d29-6420-4533-b476-0d1fc19c679d
     content: Unit tests for filesStore zoom actions
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
+      isContextChild: false
   e4687373-adc6-4de6-b48a-c7e3ac55dbc9:
     id: e4687373-adc6-4de6-b48a-c7e3ac55dbc9
     content: 'Test: opening same zoom twice focuses existing tab'
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
+      isContextChild: false
   081def3b-6f5d-4c68-b8d0-f1685a800e49:
     id: 081def3b-6f5d-4c68-b8d0-f1685a800e49
     content: 'Test: deleting zoomed node closes zoom tab'
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
+      isContextChild: false
   6f406dba-5c05-485a-a546-46945fe52890:
     id: 6f406dba-5c05-485a-a546-46945fe52890
     content: 'Test: session restore with zoom tabs'
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
+      isContextChild: false
   5c86f6f5-3256-4088-ac1d-77bcaecf9e0c:
     id: 5c86f6f5-3256-4088-ac1d-77bcaecf9e0c
     content: Decisions
@@ -10818,46 +10708,51 @@ nodes:
       - 0c2797fc-c862-4ab9-babc-3202ca401046
       - 70bf12f5-5e87-489b-85c8-82209e46e0f5
     metadata:
-      status: pending
+      status: completed
       expanded: false
       deleted: false
       plugins: {}
+      isContextChild: false
   ef8c20af-601d-4a44-a250-c9d18af95e7b:
     id: ef8c20af-601d-4a44-a250-c9d18af95e7b
     content: Zoom tabs persist across sessions
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
+      isContextChild: false
   d324f7a1-dd54-42e5-8334-49162749f0ea:
     id: d324f7a1-dd54-42e5-8334-49162749f0ea
     content: Zooming from a zoom tab is disallowed (simplifies implementation)
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
+      isContextChild: false
   0c2797fc-c862-4ab9-babc-3202ca401046:
     id: 0c2797fc-c862-4ab9-babc-3202ca401046
     content: Deleted zoomed nodes auto-close their zoom tabs
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
+      isContextChild: false
   70bf12f5-5e87-489b-85c8-82209e46e0f5:
     id: 70bf12f5-5e87-489b-85c8-82209e46e0f5
     content: No visual indicator on zoomed node in parent view
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
+      isContextChild: false
   8193e2ce-ec73-4efa-8e8d-1b817638f82c:
     id: 8193e2ce-ec73-4efa-8e8d-1b817638f82c
     content: Run tests only on impacted files
@@ -10867,3 +10762,450 @@ nodes:
       isBlueprint: true
       isContextChild: true
       contextParentId: 6690289a-e02f-48bc-9225-a1083b7b324f
+  34231e2f-aa80-4c0e-83ed-32e9229ce8cf:
+    id: 34231e2f-aa80-4c0e-83ed-32e9229ce8cf
+    content: Need to keep watching the temp file during review and update it everytime the AI writes to it
+    children: []
+    metadata:
+      status: pending
+  da3362df-fa0c-471b-8906-3f82e514360c:
+    id: da3362df-fa0c-471b-8906-3f82e514360c
+    content: Build archive system
+    children:
+      - 4c8c2c5b-de33-46e6-8cee-86fc56747425
+      - cae7c364-00c6-4c9e-b1bb-20228cf6aa17
+      - 71b1e28a-13e6-473d-8d22-b0145c7305fe
+      - eb814e4f-6793-49b7-af82-7e89ba171e7c
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isContextChild: false
+  4c8c2c5b-de33-46e6-8cee-86fc56747425:
+    id: 4c8c2c5b-de33-46e6-8cee-86fc56747425
+    content: 'Phase 1: Core infrastructure'
+    children:
+      - 6c37a004-deea-4650-a7a2-b9d0c2e7c8b9
+      - 16cf0c7b-e3eb-4631-9d13-8936d81ff30c
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isContextChild: false
+  6c37a004-deea-4650-a7a2-b9d0c2e7c8b9:
+    id: 6c37a004-deea-4650-a7a2-b9d0c2e7c8b9
+    content: Add `completedAt` timestamp to node metadata
+    children:
+      - 8d887d74-9081-4c37-b0dc-ec6dd28f9b31
+      - 3c71a774-a23e-4028-b8d5-af5f0f9843c0
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isContextChild: false
+  8d887d74-9081-4c37-b0dc-ec6dd28f9b31:
+    id: 8d887d74-9081-4c37-b0dc-ec6dd28f9b31
+    content: Set when node status changes to completed or abandoned
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isContextChild: false
+  3c71a774-a23e-4028-b8d5-af5f0f9843c0:
+    id: 3c71a774-a23e-4028-b8d5-af5f0f9843c0
+    content: Clear when status returns to empty
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isContextChild: false
+  16cf0c7b-e3eb-4631-9d13-8936d81ff30c:
+    id: 16cf0c7b-e3eb-4631-9d13-8936d81ff30c
+    content: Add hidden `archiveRootId` to document structure (sibling to `rootNodeId`)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isContextChild: false
+  cae7c364-00c6-4c9e-b1bb-20228cf6aa17:
+    id: cae7c364-00c6-4c9e-b1bb-20228cf6aa17
+    content: 'Phase 2: Archive action'
+    children:
+      - cb71521d-3d38-4b32-93d8-0526e6102075
+      - 04c18184-24c8-4165-8b9b-58782d337eee
+      - d2199c6b-2e5c-4831-b035-4f50cde82016
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isContextChild: false
+  cb71521d-3d38-4b32-93d8-0526e6102075:
+    id: cb71521d-3d38-4b32-93d8-0526e6102075
+    content: Add 'Archive' item under 'Archive' top-level menu
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isContextChild: false
+  04c18184-24c8-4165-8b9b-58782d337eee:
+    id: 04c18184-24c8-4165-8b9b-58782d337eee
+    content: Archive dialog
+    children:
+      - 922408bc-5359-42b2-bfba-122d5c3873a8
+      - 61a1e86f-cf46-44bb-801f-044eedb53141
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isContextChild: false
+  922408bc-5359-42b2-bfba-122d5c3873a8:
+    id: 922408bc-5359-42b2-bfba-122d5c3873a8
+    content: 'Explain what archiving does: "Moves completed/abandoned nodes and their descendants to archive"'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isContextChild: false
+  61a1e86f-cf46-44bb-801f-044eedb53141:
+    id: 61a1e86f-cf46-44bb-801f-044eedb53141
+    content: Date filter (on by default)
+    children:
+      - db4750bc-49ea-485b-90b0-e56273d574ab
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isContextChild: false
+  db4750bc-49ea-485b-90b0-e56273d574ab:
+    id: db4750bc-49ea-485b-90b0-e56273d574ab
+    content: '"Older than" date picker (default: 1 week ago)'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isContextChild: false
+  d2199c6b-2e5c-4831-b035-4f50cde82016:
+    id: d2199c6b-2e5c-4831-b035-4f50cde82016
+    content: Archive operation
+    children:
+      - b92d1ea1-07f6-42d6-8ea6-80e876031ad5
+      - af4e8c29-9cc9-45f9-bf9b-bcd5afb51d7f
+      - c1e101a0-05dc-4052-8b64-000ddff7d231
+      - 1cfd366b-9aae-401d-9be7-f360c4665c7a
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isContextChild: false
+  b92d1ea1-07f6-42d6-8ea6-80e876031ad5:
+    id: b92d1ea1-07f6-42d6-8ea6-80e876031ad5
+    content: Move matching nodes to archive root
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isContextChild: false
+  af4e8c29-9cc9-45f9-bf9b-bcd5afb51d7f:
+    id: af4e8c29-9cc9-45f9-bf9b-bcd5afb51d7f
+    content: Blueprint nodes never get archived - they stay in main tree
+    children:
+      - abd7451b-7351-47bd-88b7-737aface1866
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isContextChild: false
+  abd7451b-7351-47bd-88b7-737aface1866:
+    id: abd7451b-7351-47bd-88b7-737aface1866
+    content: If blueprint is ancestor of archived node, copy ancestor and strip blueprint metadata
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isContextChild: false
+  c1e101a0-05dc-4052-8b64-000ddff7d231:
+    id: c1e101a0-05dc-4052-8b64-000ddff7d231
+    content: Recreate ancestor path in archive (for structural context)
+    children:
+      - cb241048-3141-49e6-ac97-7564627b77aa
+      - 96f7b016-35a0-498e-a6dd-c0a8a39ad378
+      - bd8b4a16-2ac3-4ff1-aa05-5fe15399e4bb
+      - 4a2a5de5-0ca3-42e0-956d-39e1e7ca07d3
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isContextChild: false
+  cb241048-3141-49e6-ac97-7564627b77aa:
+    id: cb241048-3141-49e6-ac97-7564627b77aa
+    content: Strip blueprint metadata from ancestor copies
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isContextChild: false
+  96f7b016-35a0-498e-a6dd-c0a8a39ad378:
+    id: 96f7b016-35a0-498e-a6dd-c0a8a39ad378
+    content: Match existing ancestors by content + hierarchy position (snapshot approach)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isContextChild: false
+  bd8b4a16-2ac3-4ff1-aa05-5fe15399e4bb:
+    id: bd8b4a16-2ac3-4ff1-aa05-5fe15399e4bb
+    content: Generate new IDs for ancestor copies
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isContextChild: false
+  4a2a5de5-0ca3-42e0-956d-39e1e7ca07d3:
+    id: 4a2a5de5-0ca3-42e0-956d-39e1e7ca07d3
+    content: Duplicate paths are acceptable - represent different structural contexts at different times
+    children:
+      - 380d5c2d-2243-4d34-83ad-3ee692ed40f3
+      - b9b838b1-5f0e-45f7-a1d3-aa2f466b79df
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isContextChild: false
+  1cfd366b-9aae-401d-9be7-f360c4665c7a:
+    id: 1cfd366b-9aae-401d-9be7-f360c4665c7a
+    content: Make entire operation a single undoable command (bypass 100-item limit)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isContextChild: false
+  71b1e28a-13e6-473d-8d22-b0145c7305fe:
+    id: 71b1e28a-13e6-473d-8d22-b0145c7305fe
+    content: 'Phase 3: Archive viewing'
+    children:
+      - bf7609e7-147e-4721-8aac-a0067fddbf37
+      - db459848-8e92-4852-9513-33bcd4378af7
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isContextChild: false
+  bf7609e7-147e-4721-8aac-a0067fddbf37:
+    id: bf7609e7-147e-4721-8aac-a0067fddbf37
+    content: Add 'View Archive' to View menu (Ctrl+Shift+A toggle)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isContextChild: false
+  db459848-8e92-4852-9513-33bcd4378af7:
+    id: db459848-8e92-4852-9513-33bcd4378af7
+    content: Archive panel
+    children:
+      - 86aac9a2-9f0b-403a-87af-7412b5864c57
+      - 1852bd07-03bd-4fba-806b-2185bffe064e
+      - 96546627-1bc2-40db-9f06-ef4502f04fbe
+      - d76c7b2d-78f8-4205-8e9c-d9bdff03631e
+      - 165ed6e2-b7db-4c87-aef7-fb6c47c441c0
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isContextChild: false
+  86aac9a2-9f0b-403a-87af-7412b5864c57:
+    id: 86aac9a2-9f0b-403a-87af-7412b5864c57
+    content: Opens as zoom-style panel with archive icon instead of magnifying glass
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isContextChild: false
+  1852bd07-03bd-4fba-806b-2185bffe064e:
+    id: 1852bd07-03bd-4fba-806b-2185bffe064e
+    content: 'Read-only mode: no edit, delete, cut, move'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isContextChild: false
+  96546627-1bc2-40db-9f06-ef4502f04fbe:
+    id: 96546627-1bc2-40db-9f06-ef4502f04fbe
+    content: Allow copy to clipboard for pasting elsewhere
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isContextChild: false
+  d76c7b2d-78f8-4205-8e9c-d9bdff03631e:
+    id: d76c7b2d-78f8-4205-8e9c-d9bdff03631e
+    content: Collapsed by default
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isContextChild: false
+  165ed6e2-b7db-4c87-aef7-fb6c47c441c0:
+    id: 165ed6e2-b7db-4c87-aef7-fb6c47c441c0
+    content: Uses same store as parent file (like zoom panels)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isContextChild: false
+  eb814e4f-6793-49b7-af82-7e89ba171e7c:
+    id: eb814e4f-6793-49b7-af82-7e89ba171e7c
+    content: 'Phase 4: Archive filtering & export'
+    children:
+      - 7231f215-60d4-4e66-a3ad-15e39d3b17fc
+      - 191b9dc8-195d-4031-ac48-c49a75cbd039
+      - 424e97c0-7941-499d-990a-4a50938e0eff
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isContextChild: false
+  7231f215-60d4-4e66-a3ad-15e39d3b17fc:
+    id: 7231f215-60d4-4e66-a3ad-15e39d3b17fc
+    content: Date-based filtering within archive view
+    children:
+      - 985703a0-ba61-40bd-af62-e89c61e616ac
+      - aa8af235-ec78-447d-bfd8-f554143646b3
+      - b43d28f0-fc4a-4b82-9c7b-3d06a4ef1e3d
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isContextChild: false
+  985703a0-ba61-40bd-af62-e89c61e616ac:
+    id: 985703a0-ba61-40bd-af62-e89c61e616ac
+    content: '"Older than" filter'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isContextChild: false
+  aa8af235-ec78-447d-bfd8-f554143646b3:
+    id: aa8af235-ec78-447d-bfd8-f554143646b3
+    content: '"Newer than" filter'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isContextChild: false
+  b43d28f0-fc4a-4b82-9c7b-3d06a4ef1e3d:
+    id: b43d28f0-fc4a-4b82-9c7b-3d06a4ef1e3d
+    content: Combined for date range (changelog/status report use cases)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isContextChild: false
+  191b9dc8-195d-4031-ac48-c49a75cbd039:
+    id: 191b9dc8-195d-4031-ac48-c49a75cbd039
+    content: 'Filter UI: unobtrusive but discoverable placement in archive panel'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isContextChild: false
+  424e97c0-7941-499d-990a-4a50938e0eff:
+    id: 424e97c0-7941-499d-990a-4a50938e0eff
+    content: 'Future: export filtered results to changelog/status report formats'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isContextChild: false
+  380d5c2d-2243-4d34-83ad-3ee692ed40f3:
+    id: 380d5c2d-2243-4d34-83ad-3ee692ed40f3
+    content: We should only have duplicates if names/hierarchy have changed.
+    children: []
+    metadata:
+      status: pending
+      isContextChild: false
+  b9b838b1-5f0e-45f7-a1d3-aa2f466b79df:
+    id: b9b838b1-5f0e-45f7-a1d3-aa2f466b79df
+    content: If the nodes are the same name, same hierarchy, we use the old node, move the new archived content into it
+    children: []
+    metadata:
+      status: pending
+      isContextChild: false
+  ed0a2c9f-033c-4ab5-ae40-874821a58839:
+    id: ed0a2c9f-033c-4ab5-ae40-874821a58839
+    content: Exactly the same as contexts
+    children: []
+    metadata:
+      status: pending
+      isContextChild: false
+  2f169003-a51e-4d5c-8476-ff283d77cd38:
+    id: 2f169003-a51e-4d5c-8476-ff283d77cd38
+    content: But with 'Actions' metadata
+    children: []
+    metadata:
+      status: pending
+  f5be00fb-5aad-4f9a-8ecb-d79eaf0aafbb:
+    id: f5be00fb-5aad-4f9a-8ecb-d79eaf0aafbb
+    content: And we don't apply them, we run them from where they are
+    children: []
+    metadata:
+      status: pending
