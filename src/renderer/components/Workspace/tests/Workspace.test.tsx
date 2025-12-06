@@ -16,6 +16,7 @@ vi.mock('../../TabBar', () => ({
 vi.mock('../../../store/storeManager', () => ({
   storeManager: {
     getStoreForFile: vi.fn(),
+    getZoomInfo: vi.fn(() => null),
   },
 }));
 

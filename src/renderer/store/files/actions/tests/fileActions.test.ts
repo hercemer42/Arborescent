@@ -60,6 +60,7 @@ describe('fileActions', () => {
     closeFile: Mock;
     markAsSaved: Mock;
     setActiveFile: Mock;
+    openZoomTab: Mock;
   };
   let get: () => typeof state;
   let mockStorage: StorageService;
@@ -75,6 +76,7 @@ describe('fileActions', () => {
       closeFile: vi.fn(),
       markAsSaved: vi.fn(),
       setActiveFile: vi.fn(),
+      openZoomTab: vi.fn(),
     };
 
     get = () => state;
@@ -488,6 +490,11 @@ describe('fileActions', () => {
         Promise.resolve(path.startsWith('/tmp'))
       );
 
+      // Track files as they're opened so the activeFile check works
+      state.openFile.mockImplementation((path: string, displayName: string) => {
+        state.files.push({ path, displayName });
+      });
+
       await actions.initializeSession();
 
       expect(state.openFile).toHaveBeenNthCalledWith(1, '/test/file1.arbo', 'file1.arbo', false);
@@ -653,6 +660,121 @@ describe('fileActions', () => {
       expect(state.setActiveFile).not.toHaveBeenCalled();
       // Should create new file when all files fail to restore
       expect(createBlankDocument as ReturnType<typeof vi.fn>).toHaveBeenCalled();
+    });
+
+    it('should restore zoom tabs after their source files', async () => {
+      const zoomPath = 'zoom:///test/file.arbo#node-123';
+      vi.mocked(mockStorage.getSession).mockResolvedValue({
+        openFiles: ['/test/file.arbo', zoomPath],
+        activeFilePath: zoomPath,
+      });
+      vi.mocked(mockStorage.getTempFiles).mockResolvedValue([]);
+      vi.mocked(mockStorage.isTempFile).mockResolvedValue(false);
+
+      state.files = [];
+      state.openFile.mockImplementation((path: string, displayName: string) => {
+        state.files.push({ path, displayName });
+      });
+      state.openZoomTab.mockImplementation((sourceFilePath: string, nodeId: string) => {
+        const zoomTabPath = `zoom://${sourceFilePath}#${nodeId}`;
+        state.files.push({ path: zoomTabPath, displayName: 'Test node', zoomSource: { sourceFilePath, zoomedNodeId: nodeId } });
+      });
+
+      vi.mocked(storeManager.getStoreForFile).mockReturnValue({
+        getState: () => ({
+          nodes: {
+            'node-123': { id: 'node-123', content: 'Test node', children: [], metadata: {} },
+          },
+          actions: {
+            loadFromPath: vi.fn(() => Promise.resolve({ created: '', author: '' })),
+          },
+        }),
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      } as any);
+
+      await actions.initializeSession();
+
+      expect(state.openFile).toHaveBeenCalledWith('/test/file.arbo', 'file.arbo', false);
+      expect(state.openZoomTab).toHaveBeenCalledWith('/test/file.arbo', 'node-123', 'Test node');
+      expect(state.setActiveFile).toHaveBeenCalledWith(zoomPath);
+    });
+
+    it('should skip zoom tabs if source file was not restored', async () => {
+      const zoomPath = 'zoom:///test/file.arbo#node-123';
+      vi.mocked(mockStorage.getSession).mockResolvedValue({
+        openFiles: [zoomPath], // Only zoom tab, no source file
+        activeFilePath: zoomPath,
+      });
+      vi.mocked(mockStorage.getTempFiles).mockResolvedValue([]);
+      vi.mocked(mockStorage.createTempFile).mockResolvedValue('/tmp/untitled-1.arbo');
+
+      state.files = [];
+
+      vi.mocked(storeManager.getStoreForFile).mockReturnValue({
+        getState: () => ({
+          actions: {
+            loadFromPath: vi.fn(() => Promise.resolve({ created: '', author: '' })),
+            initialize: vi.fn(),
+            selectNode: vi.fn(),
+            setFilePath: vi.fn(),
+          },
+        }),
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      } as any);
+
+      await actions.initializeSession();
+
+      // Should not open the zoom tab
+      expect(state.openFile).not.toHaveBeenCalledWith(zoomPath, expect.any(String), expect.any(Boolean));
+      // Should log error about skipping
+      expect(logger.error).toHaveBeenCalledWith(
+        'Skipping zoom tab - source file not available: /test/file.arbo',
+        undefined,
+        'SessionRestore',
+        false
+      );
+    });
+
+    it('should skip zoom tabs if zoomed node no longer exists', async () => {
+      const zoomPath = 'zoom:///test/file.arbo#deleted-node';
+      vi.mocked(mockStorage.getSession).mockResolvedValue({
+        openFiles: ['/test/file.arbo', zoomPath],
+        activeFilePath: '/test/file.arbo',
+      });
+      vi.mocked(mockStorage.getTempFiles).mockResolvedValue([]);
+      vi.mocked(mockStorage.isTempFile).mockResolvedValue(false);
+
+      state.files = [];
+      state.openFile.mockImplementation((path: string, displayName: string) => {
+        state.files.push({ path, displayName });
+      });
+
+      vi.mocked(storeManager.getStoreForFile).mockReturnValue({
+        getState: () => ({
+          nodes: {
+            // Node 'deleted-node' does not exist
+            'other-node': { id: 'other-node', content: 'Other', children: [], metadata: {} },
+          },
+          actions: {
+            loadFromPath: vi.fn(() => Promise.resolve({ created: '', author: '' })),
+          },
+        }),
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      } as any);
+
+      await actions.initializeSession();
+
+      // Should open the source file
+      expect(state.openFile).toHaveBeenCalledWith('/test/file.arbo', 'file.arbo', false);
+      // Should NOT open the zoom tab since node doesn't exist
+      expect(state.openFile).not.toHaveBeenCalledWith(zoomPath, expect.any(String), expect.any(Boolean));
+      // Should log error about missing node
+      expect(logger.error).toHaveBeenCalledWith(
+        'Skipping zoom tab - zoomed node no longer exists: deleted-node',
+        undefined,
+        'SessionRestore',
+        false
+      );
     });
   });
 

@@ -11,6 +11,7 @@ import './Workspace.css';
 export const Workspace = memo(function Workspace() {
   const activeFilePath = useFilesStore((state) => state.activeFilePath);
   const activeStore = activeFilePath ? storeManager.getStoreForFile(activeFilePath) : null;
+  const zoomInfo = activeFilePath ? storeManager.getZoomInfo(activeFilePath) : null;
   const workspaceRef = useRef<HTMLElement>(null);
 
   useWorkspaceKeyboard(workspaceRef, activeStore);
@@ -24,7 +25,7 @@ export const Workspace = memo(function Workspace() {
     <main className={`workspace ${blueprintModeEnabled ? 'blueprint-mode' : ''}`} ref={workspaceRef}>
       <TreeStoreContext.Provider value={activeStore}>
         <TabBar />
-        <Tree />
+        <Tree zoomedNodeId={zoomInfo?.nodeId} />
       </TreeStoreContext.Provider>
     </main>
   );

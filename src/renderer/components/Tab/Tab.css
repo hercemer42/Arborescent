@@ -10,6 +10,7 @@
   color: var(--gray-500);
   max-width: 200px;
   min-width: 80px;
+  border-right: 1px solid var(--gray-300);
 }
 
 .tab:hover {
@@ -64,4 +65,33 @@
 /* Blueprint mode styling */
 .tab.active.blueprint-mode {
   background: var(--sky-100);
+}
+
+/* Zoom tab styling */
+.tab.zoom-tab {
+  background-color: var(--gray-50);
+  padding-left: 8px;
+  border-left: none;
+  border-right: none;
+  background-image: linear-gradient(var(--gray-400) 33%, transparent 33%);
+  background-position: left;
+  background-size: 1px 6px;
+  background-repeat: repeat-y;
+}
+
+.tab.zoom-tab.active {
+  background-color: var(--white);
+}
+
+.tab.zoom-tab.zoom-tab-last {
+  border-right: 1px solid var(--gray-300);
+}
+
+.tab.has-zoom-right {
+  border-right: none;
+}
+
+.tab-zoom-icon {
+  font-size: 12px;
+  flex-shrink: 0;
 }

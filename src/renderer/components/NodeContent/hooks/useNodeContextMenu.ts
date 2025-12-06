@@ -8,6 +8,7 @@ import { PluginCommandRegistry } from '../../../../../plugins/core/renderer/Comm
 import { useTerminalStore } from '../../../store/terminal/terminalStore';
 import { useFeedbackActions } from '../../Feedback/hooks/useFeedbackActions';
 import { usePanelStore } from '../../../store/panel/panelStore';
+import { useFilesStore } from '../../../store/files/filesStore';
 import { buildContextSubmenu } from './useContextSubmenu';
 import { buildBlueprintSubmenu } from './useBlueprintSubmenu';
 import { logger } from '../../../services/logger';
@@ -30,6 +31,9 @@ export function useNodeContextMenu(node: TreeNode) {
   const { handleCancel } = useFeedbackActions();
   const showTerminal = usePanelStore((state) => state.showTerminal);
   const openIconPicker = useIconPickerStore((state) => state.open);
+  const activeFile = useFilesStore((state) => state.getActiveFile());
+  const openZoomTab = useFilesStore((state) => state.openZoomTab);
+  const isZoomTab = !!activeFile?.zoomSource;
 
   function convertToContextMenuItem(
     item: PluginContextMenuItem,
@@ -132,6 +136,11 @@ export function useNodeContextMenu(node: TreeNode) {
       await writeToClipboard(formattedContent, 'ContextMenu');
     };
 
+    const handleZoom = () => {
+      if (!activeFile || isZoomTab) return;
+      openZoomTab(activeFile.path, node.id, node.content);
+    };
+
     // Build submenus
     const executeSubmenu = buildExecuteSubmenu({
       node,
@@ -225,10 +234,15 @@ export function useNodeContextMenu(node: TreeNode) {
         onClick: handleCopyToClipboard,
         disabled: false,
       },
+      ...(!isZoomTab ? [{
+        label: 'Zoom',
+        onClick: handleZoom,
+        disabled: false,
+      }] : []),
     ];
 
     return [...pluginItems, ...baseMenuItems];
-  }, [node, store, enabledPlugins, showTerminal, handleCancel, openIconPicker]);
+  }, [node, store, enabledPlugins, showTerminal, handleCancel, openIconPicker, activeFile, isZoomTab, openZoomTab]);
 
   const handleContextMenu = useCallback(async (e: React.MouseEvent) => {
     e.preventDefault();

@@ -2,7 +2,7 @@
 
 This document records key architectural choices made during development sessions.
 
-**Last Updated:** 2025-11-13
+**Last Updated:** 2025-12-06
 
 **When updating this file:** Be concise - focus on the decision, pattern, and rationale. Avoid verbose explanations.
 
@@ -699,7 +699,7 @@ npm run test:coverage     # Run tests with coverage report
 **Coverage Configuration:**
 - **Provider:** V8 (faster than Istanbul)
 - **Reporters:** text, json, html, lcov
-- **Current Coverage:** 85.55% (812 tests)
+- **Current Coverage:** 76.86% (1606 tests)
 - **Target Thresholds:** 70% (2025 industry standard for production)
 
 **Integration Test Suite:**

@@ -3,10 +3,16 @@ import { createFileActions, FileActions } from './actions/fileActions';
 import { StorageService } from '@platform';
 import { SessionState } from '@shared/interfaces';
 
+export interface ZoomSource {
+  sourceFilePath: string;
+  zoomedNodeId: string;
+}
+
 export interface File {
   path: string;
   displayName: string;
   isTemporary?: boolean;
+  zoomSource?: ZoomSource;
 }
 
 interface FilesState {
@@ -18,6 +24,9 @@ interface FilesState {
   setActiveFile: (path: string) => void;
   closeActiveFile: () => void;
   markAsSaved: (oldPath: string, newPath: string, newDisplayName: string) => void;
+  openZoomTab: (sourceFilePath: string, nodeId: string, nodeContent: string) => void;
+  closeZoomTabsForNode: (nodeId: string) => void;
+  getActiveFile: () => File | null;
 
   actions: FileActions;
 }
@@ -107,6 +116,95 @@ export const useFilesStore = create<FilesState>((set, get) => ({
     });
     const newState = get();
     persistSession(newState.files, newState.activeFilePath);
+  },
+
+  openZoomTab: (sourceFilePath: string, nodeId: string, nodeContent: string) => {
+    const { files } = get();
+
+    // Check if zoom tab already exists for this node
+    const existingZoom = files.find(
+      f => f.zoomSource?.sourceFilePath === sourceFilePath && f.zoomSource?.zoomedNodeId === nodeId
+    );
+
+    if (existingZoom) {
+      // Focus existing zoom tab
+      set({ activeFilePath: existingZoom.path });
+      const newState = get();
+      persistSession(newState.files, newState.activeFilePath);
+      return;
+    }
+
+    // Generate unique path for zoom tab (virtual path, not a real file)
+    const zoomPath = `zoom://${sourceFilePath}#${nodeId}`;
+    const displayName = nodeContent.trim() || '(untitled)';
+    const truncatedName = displayName.length > 20 ? displayName.slice(0, 20) + '...' : displayName;
+
+    const newZoomTab: File = {
+      path: zoomPath,
+      displayName: truncatedName,
+      zoomSource: { sourceFilePath, zoomedNodeId: nodeId },
+    };
+
+    // Find insertion position: after source file and any existing zoom tabs for that file
+    const sourceIndex = files.findIndex(f => f.path === sourceFilePath);
+    let insertIndex: number;
+
+    if (sourceIndex === -1) {
+      // Source file not found (shouldn't happen), append to end
+      insertIndex = files.length;
+    } else {
+      // Find the last zoom tab for this source file
+      insertIndex = sourceIndex + 1;
+      while (insertIndex < files.length && files[insertIndex].zoomSource?.sourceFilePath === sourceFilePath) {
+        insertIndex++;
+      }
+    }
+
+    const newFiles = [
+      ...files.slice(0, insertIndex),
+      newZoomTab,
+      ...files.slice(insertIndex),
+    ];
+
+    set({
+      files: newFiles,
+      activeFilePath: zoomPath,
+    });
+    const newState = get();
+    persistSession(newState.files, newState.activeFilePath);
+  },
+
+  closeZoomTabsForNode: (nodeId: string) => {
+    const { files, activeFilePath } = get();
+    const zoomTabsToClose = files.filter(f => f.zoomSource?.zoomedNodeId === nodeId);
+
+    if (zoomTabsToClose.length === 0) return;
+
+    const newFiles = files.filter(f => f.zoomSource?.zoomedNodeId !== nodeId);
+
+    let newActiveFilePath = activeFilePath;
+    if (zoomTabsToClose.some(f => f.path === activeFilePath)) {
+      if (newFiles.length > 0) {
+        // Switch to the source file if possible
+        const sourceFilePath = zoomTabsToClose.find(f => f.path === activeFilePath)?.zoomSource?.sourceFilePath;
+        const sourceFile = sourceFilePath ? newFiles.find(f => f.path === sourceFilePath) : null;
+        newActiveFilePath = sourceFile?.path || newFiles[0]?.path || null;
+      } else {
+        newActiveFilePath = null;
+      }
+    }
+
+    set({
+      files: newFiles,
+      activeFilePath: newActiveFilePath,
+    });
+    const newState = get();
+    persistSession(newState.files, newState.activeFilePath);
+  },
+
+  getActiveFile: () => {
+    const { files, activeFilePath } = get();
+    return files.find(f => f.path === activeFilePath) || null;
   },
 
   actions: createFileActions(get, storageService),

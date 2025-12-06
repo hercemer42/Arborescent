@@ -25,6 +25,7 @@ type StoreState = {
   closeFile: (path: string) => void;
   markAsSaved: (oldPath: string, newPath: string, newDisplayName: string) => void;
   setActiveFile: (path: string) => void;
+  openZoomTab: (sourceFilePath: string, nodeId: string, nodeContent: string) => void;
 };
 type StoreGetter = () => StoreState;
 
@@ -95,14 +96,42 @@ export const createFileActions = (get: StoreGetter, storage: StorageService): Fi
     return tempPath;
   }
 
+  function parseZoomPath(filePath: string): { sourceFilePath: string; nodeId: string } | null {
+    if (!filePath.startsWith('zoom://')) return null;
+    const withoutPrefix = filePath.slice('zoom://'.length);
+    const hashIndex = withoutPrefix.lastIndexOf('#');
+    if (hashIndex === -1) return null;
+    return {
+      sourceFilePath: withoutPrefix.slice(0, hashIndex),
+      nodeId: withoutPrefix.slice(hashIndex + 1),
+    };
+  }
+
   async function restoreSessionFiles(): Promise<boolean> {
     const session = await storage.getSession();
     if (!session || session.openFiles.length === 0) {
       return false;
     }
 
+    const { openFile } = get();
     let restoredAny = false;
+
+    // First pass: restore regular files (not zoom tabs)
+    // Zoom tabs need their source file loaded first
+    const regularFiles: string[] = [];
+    const zoomTabs: Array<{ path: string; sourceFilePath: string; nodeId: string }> = [];
+
     for (const filePath of session.openFiles) {
+      const zoomInfo = parseZoomPath(filePath);
+      if (zoomInfo) {
+        zoomTabs.push({ path: filePath, ...zoomInfo });
+      } else {
+        regularFiles.push(filePath);
+      }
+    }
+
+    // Restore regular files first
+    for (const filePath of regularFiles) {
       try {
         await open(filePath, 'SessionRestore', false);
         restoredAny = true;
@@ -116,13 +145,59 @@ export const createFileActions = (get: StoreGetter, storage: StorageService): Fi
       }
     }
 
+    // Then restore zoom tabs (only if their source file was restored)
+    for (const zoom of zoomTabs) {
+      try {
+        // Check if source file was restored
+        const { files } = get();
+        const sourceFileRestored = files.some(f => f.path === zoom.sourceFilePath);
+        if (!sourceFileRestored) {
+          logger.error(
+            `Skipping zoom tab - source file not available: ${zoom.sourceFilePath}`,
+            undefined,
+            'SessionRestore',
+            false
+          );
+          continue;
+        }
+
+        // Check if zoomed node still exists
+        const store = storeManager.getStoreForFile(zoom.sourceFilePath);
+        const node = store.getState().nodes[zoom.nodeId];
+        if (!node) {
+          logger.error(
+            `Skipping zoom tab - zoomed node no longer exists: ${zoom.nodeId}`,
+            undefined,
+            'SessionRestore',
+            false
+          );
+          continue;
+        }
+
+        const { openZoomTab } = get();
+        openZoomTab(zoom.sourceFilePath, zoom.nodeId, node.content);
+        restoredAny = true;
+      } catch (error) {
+        logger.error(
+          `Failed to restore zoom tab: ${zoom.path}`,
+          error instanceof Error ? error : undefined,
+          'SessionRestore',
+          false
+        );
+      }
+    }
+
     if (restoredAny && session.activeFilePath) {
-      const { setActiveFile } = get();
-      setActiveFile(session.activeFilePath);
+      const { setActiveFile, files } = get();
+      // Only set active if it was restored
+      const activeWasRestored = files.some(f => f.path === session.activeFilePath);
+      if (activeWasRestored) {
+        setActiveFile(session.activeFilePath);
+      }
     }
 
     if (restoredAny) {
-      logger.success(`Restored ${session.openFiles.length} file(s)`, 'SessionRestore', false);
+      logger.success(`Restored ${regularFiles.length + zoomTabs.length} file(s)`, 'SessionRestore', false);
     }
 
     return restoredAny;
@@ -220,7 +295,8 @@ export const createFileActions = (get: StoreGetter, storage: StorageService): Fi
   async function saveActiveFile(): Promise<void> {
     try {
       const { activeFilePath } = get();
-      const currentFilePath = activeFilePath;
+      const zoomInfo = activeFilePath ? parseZoomPath(activeFilePath) : null;
+      const currentFilePath = zoomInfo ? zoomInfo.sourceFilePath : activeFilePath;
 
       const isTemporary = currentFilePath && await storage.isTempFile(currentFilePath);
       const path = (isTemporary || !currentFilePath)

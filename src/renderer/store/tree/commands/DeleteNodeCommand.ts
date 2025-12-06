@@ -1,6 +1,7 @@
 import { BaseCommand } from './Command';
 import { TreeNode } from '../../../../shared/types';
 import { removeNodeFromRegistry, addNodesToRegistry } from '../../../services/ancestry';
+import { useFilesStore } from '../../files/filesStore';
 
 /**
  * Captures a node and all its descendants for restoration
@@ -92,6 +93,11 @@ export class DeleteNodeCommand extends BaseCommand {
     });
 
     this.triggerAutosave?.();
+
+    useFilesStore.getState().closeZoomTabsForNode(this.nodeId);
+    this.descendantSnapshots.forEach((_, nodeId) => {
+      useFilesStore.getState().closeZoomTabsForNode(nodeId);
+    });
   }
 
   undo(): void {

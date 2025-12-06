@@ -8,19 +8,25 @@ import { useTreeClick } from './hooks/useTreeClick';
 import { useVisibleChildren } from './hooks/useVisibleChildren';
 import './Tree.css';
 
-export const Tree = memo(function Tree() {
+interface TreeProps {
+  zoomedNodeId?: string;
+}
+
+export const Tree = memo(function Tree({ zoomedNodeId }: TreeProps) {
   const rootNodeId = useStore((state) => state.rootNodeId);
-  const rootNodeChildren = useStore((state) =>
-    state.nodes[state.rootNodeId]?.children
-  );
+  const nodes = useStore((state) => state.nodes);
   const blueprintModeEnabled = useStore((state) => state.blueprintModeEnabled);
+
+  const displayRootId = zoomedNodeId || rootNodeId;
+  const displayRootNode = nodes[displayRootId];
+  const displayChildren = displayRootNode?.children;
 
   useTree();
   const { sensors, activeId, draggedNodeIds, draggedNodeDepth, dropAnimation, handleDragStart, handleDragEnd } = useTreeDragDrop();
   const { handleTreeClick } = useTreeClick();
-  const visibleChildren = useVisibleChildren(rootNodeChildren);
+  const visibleChildren = useVisibleChildren(displayChildren);
 
-  if (!rootNodeId || !rootNodeChildren) {
+  if (!displayRootId || !displayChildren) {
     return null;
   }
 

@@ -1,13 +1,32 @@
 import { createTreeStore, TreeStore } from './tree/treeStore';
 
+function parseZoomPath(filePath: string): { sourceFilePath: string; nodeId: string } | null {
+  if (!filePath.startsWith('zoom://')) return null;
+  const withoutPrefix = filePath.slice('zoom://'.length);
+  const hashIndex = withoutPrefix.lastIndexOf('#');
+  if (hashIndex === -1) return null;
+  return {
+    sourceFilePath: withoutPrefix.slice(0, hashIndex),
+    nodeId: withoutPrefix.slice(hashIndex + 1),
+  };
+}
+
 class StoreManager {
   private stores = new Map<string, TreeStore>();
 
   getStoreForFile(filePath: string): TreeStore {
-    if (!this.stores.has(filePath)) {
-      this.stores.set(filePath, createTreeStore());
+    // For zoom tabs, return the store for the source file
+    const zoomInfo = parseZoomPath(filePath);
+    const actualPath = zoomInfo ? zoomInfo.sourceFilePath : filePath;
+
+    if (!this.stores.has(actualPath)) {
+      this.stores.set(actualPath, createTreeStore());
     }
-    return this.stores.get(filePath)!;
+    return this.stores.get(actualPath)!;
+  }
+
+  getZoomInfo(filePath: string): { sourceFilePath: string; nodeId: string } | null {
+    return parseZoomPath(filePath);
   }
 
   async closeFile(filePath: string): Promise<void> {
