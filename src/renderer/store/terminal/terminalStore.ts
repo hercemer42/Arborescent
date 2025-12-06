@@ -11,6 +11,7 @@ export interface TerminalInfo {
   cwd: string;
   shellCommand: string;
   shellArgs: string[];
+  pinnedToBottom: boolean;
 }
 
 interface TerminalState {
@@ -22,6 +23,7 @@ interface TerminalState {
   removeTerminal: (id: string) => void;
   setActiveTerminal: (id: string | null) => void;
   updateTerminal: (id: string, updates: Partial<TerminalInfo>) => void;
+  togglePinnedToBottom: (id: string) => void;
   openTerminal: () => Promise<string | null>;
   sendNodeToTerminal: (node: TreeNode, nodes: Record<string, TreeNode>) => Promise<void>;
   executeNodeInTerminal: (node: TreeNode, nodes: Record<string, TreeNode>) => Promise<void>;
@@ -61,6 +63,13 @@ export const useTerminalStore = create<TerminalState>((set, get) => ({
     set((state) => ({
       terminals: state.terminals.map((t) =>
         t.id === id ? { ...t, ...updates } : t
+      ),
+    })),
+
+  togglePinnedToBottom: (id: string) =>
+    set((state) => ({
+      terminals: state.terminals.map((t) =>
+        t.id === id ? { ...t, pinnedToBottom: !t.pinnedToBottom } : t
       ),
     })),
 

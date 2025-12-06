@@ -1,3 +1,4 @@
+import { Anchor } from 'lucide-react';
 import { useTerminalStore } from '../../store/terminal/terminalStore';
 import { usePanelStore } from '../../store/panel/panelStore';
 import { Terminal } from './Terminal';
@@ -6,10 +7,13 @@ import './TerminalPanel.css';
 import { useTerminalPanel } from './hooks/useTerminalPanel';
 
 export function TerminalPanel() {
-  const { terminals, activeTerminalId, setActiveTerminal } = useTerminalStore();
+  const { terminals, activeTerminalId, setActiveTerminal, togglePinnedToBottom } = useTerminalStore();
   const panelPosition = usePanelStore((state) => state.panelPosition);
   const togglePanelPosition = usePanelStore((state) => state.togglePanelPosition);
   const { handleNewTerminal, handleCloseTerminal } = useTerminalPanel();
+
+  const activeTerminal = terminals.find((t) => t.id === activeTerminalId);
+  const isPinned = activeTerminal?.pinnedToBottom ?? true;
 
   return (
     <div className="terminal-panel">
@@ -28,13 +32,24 @@ export function TerminalPanel() {
             +
           </button>
         </div>
-        <button
-          onClick={togglePanelPosition}
-          className="toggle-panel-button"
-          title={`Switch to ${panelPosition === 'side' ? 'bottom' : 'side'} panel`}
-        >
-          {panelPosition === 'side' ? '⬇' : '➡'}
-        </button>
+        <div className="terminal-tabs-right">
+          {activeTerminalId && (
+            <button
+              onClick={() => togglePinnedToBottom(activeTerminalId)}
+              className={`anchor-toggle-button ${isPinned ? 'anchored' : ''}`}
+              title={isPinned ? 'Unanchor from bottom' : 'Anchor to bottom'}
+            >
+              <Anchor size={16} />
+            </button>
+          )}
+          <button
+            onClick={togglePanelPosition}
+            className="toggle-panel-button"
+            title={`Switch to ${panelPosition === 'side' ? 'bottom' : 'side'} panel`}
+          >
+            {panelPosition === 'side' ? '⬇' : '➡'}
+          </button>
+        </div>
       </div>
 
       <div className="terminal-content">
@@ -44,7 +59,7 @@ export function TerminalPanel() {
             className="terminal-wrapper"
             style={{ display: activeTerminalId === term.id ? 'block' : 'none' }}
           >
-            <Terminal id={term.id} />
+            <Terminal id={term.id} pinnedToBottom={term.pinnedToBottom} />
           </div>
         ))}
       </div>

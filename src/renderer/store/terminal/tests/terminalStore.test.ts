@@ -18,6 +18,7 @@ vi.mock('../../../services/terminalService', () => ({
     cwd: '/home/user',
     shellCommand: '/bin/bash',
     shellArgs: [],
+    pinnedToBottom: true,
   }),
 }));
 
@@ -34,7 +35,7 @@ describe('terminalStore', () => {
   describe('openTerminal', () => {
     it('should return existing terminal ID if one exists', async () => {
       useTerminalStore.setState({
-        terminals: [{ id: 'existing-terminal', title: 'Terminal', cwd: '/', shellCommand: '/bin/bash', shellArgs: [] }],
+        terminals: [{ id: 'existing-terminal', title: 'Terminal', cwd: '/', shellCommand: '/bin/bash', shellArgs: [], pinnedToBottom: true }],
         activeTerminalId: 'existing-terminal',
       });
 
@@ -84,7 +85,7 @@ describe('terminalStore', () => {
       window.electron.terminalWrite = mockTerminalWrite;
 
       useTerminalStore.setState({
-        terminals: [{ id: 'existing-terminal', title: 'Terminal', cwd: '/', shellCommand: '/bin/bash', shellArgs: [] }],
+        terminals: [{ id: 'existing-terminal', title: 'Terminal', cwd: '/', shellCommand: '/bin/bash', shellArgs: [], pinnedToBottom: true }],
         activeTerminalId: 'existing-terminal',
       });
 
@@ -123,13 +124,45 @@ describe('terminalStore', () => {
       window.electron.terminalWrite = mockTerminalWrite;
 
       useTerminalStore.setState({
-        terminals: [{ id: 'existing-terminal', title: 'Terminal', cwd: '/', shellCommand: '/bin/bash', shellArgs: [] }],
+        terminals: [{ id: 'existing-terminal', title: 'Terminal', cwd: '/', shellCommand: '/bin/bash', shellArgs: [], pinnedToBottom: true }],
         activeTerminalId: 'existing-terminal',
       });
 
       await useTerminalStore.getState().executeNodeInTerminal(mockNode, { 'test-node': mockNode });
 
       expect(mockTerminalWrite).toHaveBeenCalled();
+    });
+  });
+
+  describe('togglePinnedToBottom', () => {
+    it('should toggle pinnedToBottom state for a terminal', () => {
+      useTerminalStore.setState({
+        terminals: [{ id: 'terminal-1', title: 'Terminal', cwd: '/', shellCommand: '/bin/bash', shellArgs: [], pinnedToBottom: true }],
+        activeTerminalId: 'terminal-1',
+      });
+
+      useTerminalStore.getState().togglePinnedToBottom('terminal-1');
+
+      expect(useTerminalStore.getState().terminals[0].pinnedToBottom).toBe(false);
+
+      useTerminalStore.getState().togglePinnedToBottom('terminal-1');
+
+      expect(useTerminalStore.getState().terminals[0].pinnedToBottom).toBe(true);
+    });
+
+    it('should not affect other terminals', () => {
+      useTerminalStore.setState({
+        terminals: [
+          { id: 'terminal-1', title: 'Terminal 1', cwd: '/', shellCommand: '/bin/bash', shellArgs: [], pinnedToBottom: true },
+          { id: 'terminal-2', title: 'Terminal 2', cwd: '/', shellCommand: '/bin/bash', shellArgs: [], pinnedToBottom: true },
+        ],
+        activeTerminalId: 'terminal-1',
+      });
+
+      useTerminalStore.getState().togglePinnedToBottom('terminal-1');
+
+      expect(useTerminalStore.getState().terminals[0].pinnedToBottom).toBe(false);
+      expect(useTerminalStore.getState().terminals[1].pinnedToBottom).toBe(true);
     });
   });
 });

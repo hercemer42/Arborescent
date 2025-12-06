@@ -25,6 +25,7 @@ describe('Terminal', () => {
 
     expect(useTerminal).toHaveBeenCalledWith({
       id: 'test-terminal-123',
+      pinnedToBottom: true,
       onResize: undefined,
     });
   });
@@ -37,6 +38,7 @@ describe('Terminal', () => {
 
     expect(useTerminal).toHaveBeenCalledWith({
       id: 'test-terminal',
+      pinnedToBottom: true,
       onResize: mockOnResize,
     });
   });

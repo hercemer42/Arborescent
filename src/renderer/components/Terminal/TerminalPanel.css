@@ -77,6 +77,38 @@
   border-color: var(--blue-500);
 }
 
+.terminal-tabs-right {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+.anchor-toggle-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  background: none;
+  border: none;
+  color: var(--gray-400);
+  cursor: pointer;
+  transition: background-color 0.1s, color 0.1s;
+}
+
+.anchor-toggle-button:hover {
+  background: var(--gray-100);
+  color: var(--blue-500);
+}
+
+.anchor-toggle-button.anchored {
+  color: var(--blue-500);
+}
+
+.anchor-toggle-button.anchored:hover {
+  color: var(--blue-600);
+}
+
 .toggle-panel-button {
   padding: 8px 16px;
   background: none;
@@ -86,7 +118,6 @@
   font-size: 16px;
   transition: background-color 0.1s;
   flex-shrink: 0;
-  margin-left: auto;
 }
 
 .toggle-panel-button:hover {

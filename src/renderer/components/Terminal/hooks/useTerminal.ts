@@ -6,18 +6,18 @@ import { useTerminalKeyboard } from './useTerminalKeyboard';
 
 interface UseTerminalOptions {
   id: string;
+  pinnedToBottom?: boolean;
   onResize?: (cols: number, rows: number) => void;
 }
 
-/**
- * Hook to manage xterm.js terminal instance lifecycle
- * Handles initialization, event listeners, resize, and cleanup
- */
-export function useTerminal({ id, onResize }: UseTerminalOptions) {
+export function useTerminal({ id, pinnedToBottom = true, onResize }: UseTerminalOptions) {
   const terminalRef = useRef<HTMLDivElement>(null);
   const xtermRef = useRef<XTerm | null>(null);
   const fitAddonRef = useRef<FitAddon | null>(null);
+  const pinnedToBottomRef = useRef(pinnedToBottom);
   const [isInitialized, setIsInitialized] = useState(false);
+
+  pinnedToBottomRef.current = pinnedToBottom;
 
   // Initialization effect - waits for element to have dimensions
   useEffect(() => {
@@ -86,7 +86,9 @@ export function useTerminal({ id, onResize }: UseTerminalOptions) {
     // Listen for PTY output
     const removeDataListener = window.electron.onTerminalData(id, (data) => {
       xterm.write(data);
-      xterm.scrollToBottom();
+      if (pinnedToBottomRef.current) {
+        xterm.scrollToBottom();
+      }
     });
 
     // Listen for terminal exit

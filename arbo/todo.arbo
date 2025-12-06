@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2025-12-06T06:57:05.540Z'
+updated: '2025-12-06T07:16:25.805Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -5405,14 +5405,14 @@ nodes:
       status: completed
   e8824b29-eb18-4031-9e35-b321a864d418:
     id: e8824b29-eb18-4031-9e35-b321a864d418
-    content: Review
+    content: Functional review
     children:
       - af1ebc0d-26dd-4a75-982f-03a9dbe2bc84
     metadata:
       status: pending
       isContextDeclaration: true
       contextIcon: Search
-      expanded: false
+      expanded: true
   af1ebc0d-26dd-4a75-982f-03a9dbe2bc84:
     id: af1ebc0d-26dd-4a75-982f-03a9dbe2bc84
     content: "You are reviewing a hierarchical task list.\_ Please :"
@@ -5421,6 +5421,8 @@ nodes:
       - 9e75dae5-0ca1-4ccb-96db-eccceaba398d
       - 0a61fab2-e033-43e2-b83f-c554ef870539
       - eebd1360-854f-4dcc-936c-27ac861d2d6c
+      - 9f1e3dbf-0429-4815-a0fd-226c2aab3c00
+      - ec1a7856-c57d-4df4-93b9-b8cc30b1375c
       - ec997616-4bea-481e-b803-b9b37830da13
     metadata:
       status: pending
@@ -5633,11 +5635,10 @@ nodes:
     id: 984247e7-2d55-4b93-80e8-f84818901621
     content: Backlog
     children:
-      - b129c479-f708-479c-a1a1-47f6a692247a
-      - 7f0a454b-cbd9-42e7-9935-1cd7b0e5d7fe
-      - a9f7096f-1bdc-42c5-8d6c-161dd38f3e61
+      - 767e88bf-91ff-4771-9eb2-7e25fa73ae57
       - fae59a45-bfd7-4c23-85fa-b566ee48e16b
       - 689714e9-1848-44a8-8227-9551c21ba4bf
+      - b129c479-f708-479c-a1a1-47f6a692247a
       - d7597faa-0b34-400e-985a-de035508cdb1
       - 40729a78-ee9c-4599-aa83-57f189199c3c
       - 65b74e0f-88fe-41c6-9910-8bac806adc6f
@@ -6048,7 +6049,7 @@ nodes:
       - ee62f343-86cb-423b-87ab-63236876a259
     metadata:
       status: pending
-      expanded: true
+      expanded: false
       deleted: false
       plugins: {}
       isContextDeclaration: true
@@ -7029,7 +7030,8 @@ nodes:
   77963e20-53e9-4db7-8802-8c718f202cef:
     id: 77963e20-53e9-4db7-8802-8c718f202cef
     content: In progress
-    children: []
+    children:
+      - 682650c3-1af5-4533-a4d3-403beb2d7bb7
     metadata:
       status: pending
       appliedContextIds:
@@ -9082,104 +9084,6 @@ nodes:
     children: []
     metadata:
       status: completed
-  a9f7096f-1bdc-42c5-8d6c-161dd38f3e61:
-    id: a9f7096f-1bdc-42c5-8d6c-161dd38f3e61
-    content: Add 'lock' icon for terminal
-    children:
-      - a3f47c29-7bb9-4e38-9afe-f5644eec05ec
-      - 645ca234-db17-47d6-aed4-21ed84e6d010
-      - b1b2c707-6a75-4b98-92e4-3eeb5b645e2f
-      - 70d43e63-5adb-459b-b835-9fd355e7ac69
-      - 1f7eeed8-beee-4900-9fc7-7722be7f4195
-    metadata:
-      status: pending
-      expanded: false
-  a3f47c29-7bb9-4e38-9afe-f5644eec05ec:
-    id: a3f47c29-7bb9-4e38-9afe-f5644eec05ec
-    content: Add it into the terminal tab
-    children: []
-    metadata:
-      status: pending
-  645ca234-db17-47d6-aed4-21ed84e6d010:
-    id: 645ca234-db17-47d6-aed4-21ed84e6d010
-    content: It displays a unlock icon by default
-    children:
-      - d9d59ce8-f748-4007-bf41-bf4abdb5e4e6
-    metadata:
-      status: pending
-  d9d59ce8-f748-4007-bf41-bf4abdb5e4e6:
-    id: d9d59ce8-f748-4007-bf41-bf4abdb5e4e6
-    content: When hovering over we see a tooltip 'Auto scroll to bottom'
-    children: []
-    metadata:
-      status: pending
-  b1b2c707-6a75-4b98-92e4-3eeb5b645e2f:
-    id: b1b2c707-6a75-4b98-92e4-3eeb5b645e2f
-    content: Clicking on it changes the icon to a locked one
-    children:
-      - a6776965-48d7-448f-a721-c47f167527df
-    metadata:
-      status: pending
-  a6776965-48d7-448f-a721-c47f167527df:
-    id: a6776965-48d7-448f-a721-c47f167527df
-    content: When hovering over it we see a tooltip 'Disable auto scroll'
-    children: []
-    metadata:
-      status: pending
-  28ef3106-0447-4f80-a7d0-1004c14eb3bc:
-    id: 28ef3106-0447-4f80-a7d0-1004c14eb3bc
-    content: This activates the scroll to bottom feature
-    children:
-      - 958fdef7-7799-44d0-96ce-69ae3af3bea1
-      - 29abe9b9-6977-4968-a536-21c1b91a5354
-      - 1c444f95-5394-405e-9c9a-6ece3547400d
-    metadata:
-      status: pending
-  958fdef7-7799-44d0-96ce-69ae3af3bea1:
-    id: 958fdef7-7799-44d0-96ce-69ae3af3bea1
-    content: This exists already but is currently on by default
-    children: []
-    metadata:
-      status: pending
-  70d43e63-5adb-459b-b835-9fd355e7ac69:
-    id: 70d43e63-5adb-459b-b835-9fd355e7ac69
-    content: When 'Auto scroll to bottom' is active
-    children:
-      - 28ef3106-0447-4f80-a7d0-1004c14eb3bc
-    metadata:
-      status: pending
-  29abe9b9-6977-4968-a536-21c1b91a5354:
-    id: 29abe9b9-6977-4968-a536-21c1b91a5354
-    content: It maintains the scroll to the bottom of the terminal
-    children: []
-    metadata:
-      status: pending
-  1c444f95-5394-405e-9c9a-6ece3547400d:
-    id: 1c444f95-5394-405e-9c9a-6ece3547400d
-    content: This compensates for issues where programs such as claude code redraw the terminal lines, forcing a scroll to the top
-    children: []
-    metadata:
-      status: pending
-  1f7eeed8-beee-4900-9fc7-7722be7f4195:
-    id: 1f7eeed8-beee-4900-9fc7-7722be7f4195
-    content: When 'Disable auto scroll is active'
-    children:
-      - 43569007-654f-4e4d-845b-26fafa9e71f4
-      - 79e1ab20-1f92-4670-b7d8-df96b1d4ff78
-    metadata:
-      status: pending
-  43569007-654f-4e4d-845b-26fafa9e71f4:
-    id: 43569007-654f-4e4d-845b-26fafa9e71f4
-    content: We do not try to maintain the scroll position programatically
-    children: []
-    metadata:
-      status: pending
-  79e1ab20-1f92-4670-b7d8-df96b1d4ff78:
-    id: 79e1ab20-1f92-4670-b7d8-df96b1d4ff78
-    content: We fall back on the existing terminal behavior
-    children: []
-    metadata:
-      status: pending
   cd583b91-1d4d-4517-b775-3e699ce7fd8b:
     id: cd583b91-1d4d-4517-b775-3e699ce7fd8b
     content: Normal copy/cut behavior is maintained
@@ -9495,15 +9399,6 @@ nodes:
     children: []
     metadata:
       status: completed
-  7f0a454b-cbd9-42e7-9935-1cd7b0e5d7fe:
-    id: 7f0a454b-cbd9-42e7-9935-1cd7b0e5d7fe
-    content: Maintain choice of context for 'Execute' and 'Collaborate' separately one from the other
-    children: []
-    metadata:
-      status: pending
-      appliedContextIds:
-        - 9b46397c-c452-421c-b408-46b040d99c9e
-      activeContextId: 9b46397c-c452-421c-b408-46b040d99c9e
   6690289a-e02f-48bc-9225-a1083b7b324f:
     id: 6690289a-e02f-48bc-9225-a1083b7b324f
     content: Bug fix
@@ -9662,6 +9557,7 @@ nodes:
       - 465b7a80-b545-4fb5-a1f2-305e89f460e9
     metadata:
       status: pending
+      expanded: false
   465b7a80-b545-4fb5-a1f2-305e89f460e9:
     id: 465b7a80-b545-4fb5-a1f2-305e89f460e9
     content: Think about how to define, apply them
@@ -9718,6 +9614,301 @@ nodes:
   689714e9-1848-44a8-8227-9551c21ba4bf:
     id: 689714e9-1848-44a8-8227-9551c21ba4bf
     content: Zoom feature
+    children: []
+    metadata:
+      status: pending
+  682650c3-1af5-4533-a4d3-403beb2d7bb7:
+    id: 682650c3-1af5-4533-a4d3-403beb2d7bb7
+    content: Add scroll lock toggle to terminal
+    children:
+      - e2e449f7-ab8a-4ad5-8f30-f9a0d60caee1
+      - 41a089a0-113a-4887-b96c-04713f92a2cf
+      - 1bea29a9-2d9f-4888-b015-0902061b6f45
+      - d04d377f-e240-4e90-b116-3118e61fc7a3
+    metadata:
+      status: pending
+      expanded: false
+      deleted: false
+      plugins: {}
+      appliedContextIds:
+        - 9b46397c-c452-421c-b408-46b040d99c9e
+      activeContextId: 9b46397c-c452-421c-b408-46b040d99c9e
+  e2e449f7-ab8a-4ad5-8f30-f9a0d60caee1:
+    id: e2e449f7-ab8a-4ad5-8f30-f9a0d60caee1
+    content: Add toggle button to terminal tab bar
+    children:
+      - 6144054b-4332-422f-aea4-0e0c47d87a7c
+      - 31d5ccd7-a3df-49a8-84c9-74885ad8e1ab
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6144054b-4332-422f-aea4-0e0c47d87a7c:
+    id: 6144054b-4332-422f-aea4-0e0c47d87a7c
+    content: Use anchor icon (normal = locked to bottom, dimmed = free scroll)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  31d5ccd7-a3df-49a8-84c9-74885ad8e1ab:
+    id: 31d5ccd7-a3df-49a8-84c9-74885ad8e1ab
+    content: Position next to existing terminal tab controls
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  41a089a0-113a-4887-b96c-04713f92a2cf:
+    id: 41a089a0-113a-4887-b96c-04713f92a2cf
+    content: 'Default state: Pinned (auto-scroll ON)'
+    children:
+      - b68a2d6e-c844-4436-857b-8e8595f77b97
+      - e337e330-00ff-47e8-b202-240603ef5024
+      - f621d849-b18f-4f1b-b1cd-04f8ff2c00bc
+      - e985e379-8fc1-45b1-b182-ffd340823185
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b68a2d6e-c844-4436-857b-8e8595f77b97:
+    id: b68a2d6e-c844-4436-857b-8e8595f77b97
+    content: Show filled pin icon
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e337e330-00ff-47e8-b202-240603ef5024:
+    id: e337e330-00ff-47e8-b202-240603ef5024
+    content: 'Tooltip: "Unpin from bottom"'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f621d849-b18f-4f1b-b1cd-04f8ff2c00bc:
+    id: f621d849-b18f-4f1b-b1cd-04f8ff2c00bc
+    content: Terminal auto-scrolls to bottom on new output
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e985e379-8fc1-45b1-b182-ffd340823185:
+    id: e985e379-8fc1-45b1-b182-ffd340823185
+    content: Compensates for programs like Claude Code that redraw terminal lines
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1bea29a9-2d9f-4888-b015-0902061b6f45:
+    id: 1bea29a9-2d9f-4888-b015-0902061b6f45
+    content: Unpinned state (auto-scroll OFF)
+    children:
+      - f6b07a7c-42ed-4e07-ab92-c0f1925d25a5
+      - 4b439ee5-1ca9-4af3-b58f-a9169add6a9c
+      - 32ba87d4-558a-4f8c-9261-9a4bb13486e9
+      - 6ab1462d-b7ff-4705-b5fd-d4aca023a7fa
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f6b07a7c-42ed-4e07-ab92-c0f1925d25a5:
+    id: f6b07a7c-42ed-4e07-ab92-c0f1925d25a5
+    content: Show outline/empty pin icon
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4b439ee5-1ca9-4af3-b58f-a9169add6a9c:
+    id: 4b439ee5-1ca9-4af3-b58f-a9169add6a9c
+    content: 'Tooltip: "Pin to bottom"'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  32ba87d4-558a-4f8c-9261-9a4bb13486e9:
+    id: 32ba87d4-558a-4f8c-9261-9a4bb13486e9
+    content: No programmatic scroll intervention
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6ab1462d-b7ff-4705-b5fd-d4aca023a7fa:
+    id: 6ab1462d-b7ff-4705-b5fd-d4aca023a7fa
+    content: Falls back to native terminal scroll behavior
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d04d377f-e240-4e90-b116-3118e61fc7a3:
+    id: d04d377f-e240-4e90-b116-3118e61fc7a3
+    content: Store state per terminal instance
+    children:
+      - 503da461-4c3f-445f-b88b-87d2f853632e
+      - cb461c10-7977-43c2-8610-5c86f299dcab
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  503da461-4c3f-445f-b88b-87d2f853632e:
+    id: 503da461-4c3f-445f-b88b-87d2f853632e
+    content: Each terminal tab maintains its own pin state
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  cb461c10-7977-43c2-8610-5c86f299dcab:
+    id: cb461c10-7977-43c2-8610-5c86f299dcab
+    content: State does not need to persist across app restarts
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  767e88bf-91ff-4771-9eb2-7e25fa73ae57:
+    id: 767e88bf-91ff-4771-9eb2-7e25fa73ae57
+    content: Blueprint export/import
+    children:
+      - 9aa1f072-ccda-4f75-963c-8508dfb5ec1c
+      - f1f799dc-837a-4b94-9acf-7102c647d63f
+      - 5b202b28-53ad-4636-acca-6aaea8017eb3
+      - 847c6a8c-2801-4ed6-a0a1-244636dbca5f
+      - 321f9dbc-b3fe-4696-a1c3-32faf3f95ed0
+    metadata:
+      status: pending
+  9aa1f072-ccda-4f75-963c-8508dfb5ec1c:
+    id: 9aa1f072-ccda-4f75-963c-8508dfb5ec1c
+    content: Change 'View' top menu option to 'Blueprint'
+    children: []
+    metadata:
+      status: pending
+  f1f799dc-837a-4b94-9acf-7102c647d63f:
+    id: f1f799dc-837a-4b94-9acf-7102c647d63f
+    content: Add item 'Export to blueprint'
+    children:
+      - 5f099413-3b59-4537-ae29-78ba1fbb2f58
+      - 78c50ae3-d908-4c55-ac43-4130f54dff86
+    metadata:
+      status: pending
+  5f099413-3b59-4537-ae29-78ba1fbb2f58:
+    id: 5f099413-3b59-4537-ae29-78ba1fbb2f58
+    content: When clicking, reuse the existing save interface
+    children: []
+    metadata:
+      status: pending
+  78c50ae3-d908-4c55-ac43-4130f54dff86:
+    id: 78c50ae3-d908-4c55-ac43-4130f54dff86
+    content: Save the arbo file with everything stripped except for blueprint nodes
+    children: []
+    metadata:
+      status: pending
+  5b202b28-53ad-4636-acca-6aaea8017eb3:
+    id: 5b202b28-53ad-4636-acca-6aaea8017eb3
+    content: Have a metadata on the arbo file to distinguish it as a blueprint
+    children: []
+    metadata:
+      status: pending
+  321f9dbc-b3fe-4696-a1c3-32faf3f95ed0:
+    id: 321f9dbc-b3fe-4696-a1c3-32faf3f95ed0
+    content: When opening a blueprint file, open in blueprint mode by default
+    children:
+      - b9181ab7-f15c-4d77-b495-bf0e5675428b
+    metadata:
+      status: pending
+  b9181ab7-f15c-4d77-b495-bf0e5675428b:
+    id: b9181ab7-f15c-4d77-b495-bf0e5675428b
+    content: 'When attempting to turn off blueprint mode, first prompt the user :'
+    children:
+      - b203c6f9-9ebe-4f27-897a-fb10755e5ed4
+    metadata:
+      status: pending
+  b203c6f9-9ebe-4f27-897a-fb10755e5ed4:
+    id: b203c6f9-9ebe-4f27-897a-fb10755e5ed4
+    content: "'This is a blueprint file, turning off blueprint mode will turn it into a regular file.\_ Are you sure ?'"
+    children:
+      - f0bedcea-3682-4742-91af-0591c366fd0f
+    metadata:
+      status: pending
+  f0bedcea-3682-4742-91af-0591c366fd0f:
+    id: f0bedcea-3682-4742-91af-0591c366fd0f
+    content: Change the wording of this as needed for clarity
+    children: []
+    metadata:
+      status: pending
+  847c6a8c-2801-4ed6-a0a1-244636dbca5f:
+    id: 847c6a8c-2801-4ed6-a0a1-244636dbca5f
+    content: Add an item 'Import from blueprint'
+    children:
+      - 2a677c32-59c0-43a8-a6fb-a3f44a98eb35
+      - b2a10d79-61e1-4af6-a8c3-a02695401741
+      - 770f35af-9795-4ee7-9216-aef1122c2c9e
+      - 5b07795a-e55f-4f40-be90-09f44897b54e
+      - 0d5c3085-814d-44ed-add7-472d32ad46fa
+    metadata:
+      status: pending
+  2a677c32-59c0-43a8-a6fb-a3f44a98eb35:
+    id: 2a677c32-59c0-43a8-a6fb-a3f44a98eb35
+    content: Creates an untitled file based on the blueprint
+    children: []
+    metadata:
+      status: pending
+  b2a10d79-61e1-4af6-a8c3-a02695401741:
+    id: b2a10d79-61e1-4af6-a8c3-a02695401741
+    content: Removes the blueprint metadata from the file
+    children: []
+    metadata:
+      status: pending
+  770f35af-9795-4ee7-9216-aef1122c2c9e:
+    id: 770f35af-9795-4ee7-9216-aef1122c2c9e
+    content: Starts in normal mode
+    children: []
+    metadata:
+      status: pending
+  5b07795a-e55f-4f40-be90-09f44897b54e:
+    id: 5b07795a-e55f-4f40-be90-09f44897b54e
+    content: Have to save as normal to persist the file
+    children: []
+    metadata:
+      status: pending
+  0d5c3085-814d-44ed-add7-472d32ad46fa:
+    id: 0d5c3085-814d-44ed-add7-472d32ad46fa
+    content: Does not propose the blueprint file name as the default one
+    children: []
+    metadata:
+      status: pending
+  9f1e3dbf-0429-4815-a0fd-226c2aab3c00:
+    id: 9f1e3dbf-0429-4815-a0fd-226c2aab3c00
+    content: Point out any bad UX design
+    children: []
+    metadata:
+      status: pending
+  ec1a7856-c57d-4df4-93b9-b8cc30b1375c:
+    id: ec1a7856-c57d-4df4-93b9-b8cc30b1375c
+    content: State if you think the return on investment in relation to implementation time or added complexity is poor.
     children: []
     metadata:
       status: pending
