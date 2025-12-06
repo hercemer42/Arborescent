@@ -12,6 +12,7 @@ export const TabBar = memo(function TabBar() {
   const setActiveFile = useFilesStore((state) => state.setActiveFile);
   const closeFile = useFilesStore((state) => state.actions.closeFile);
   const blueprintModeEnabled = useStore((state) => state.blueprintModeEnabled);
+  const summaryModeEnabled = useStore((state) => state.summaryModeEnabled);
 
   if (files.length === 0) {
     return null;
@@ -30,6 +31,7 @@ export const TabBar = memo(function TabBar() {
               fullName={fullName}
               isActive={file.path === activeFilePath}
               isBlueprintMode={blueprintModeEnabled}
+              isSummaryMode={summaryModeEnabled}
               isZoomTab={isZoomTab}
               isLastInGroup={isLastInGroup}
               hasZoomToRight={hasZoomToRight}

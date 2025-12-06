@@ -13,6 +13,7 @@ import { createHistoryActions, HistoryActions } from './actions/historyActions';
 import { createCollaborateActions, CollaborateActions } from './actions/collaborateActions';
 import { createClipboardActions, ClipboardActions } from './actions/clipboardActions';
 import { createExecuteActions, ExecuteActions } from './actions/executeActions';
+import { createSummaryActions, SummaryActions } from './actions/summaryActions';
 import { HistoryManager } from './commands/HistoryManager';
 import { StorageService } from '@platform';
 
@@ -46,8 +47,11 @@ export interface TreeState {
   contextDeclarations: ContextDeclarationInfo[]; // Cached list of context declarations
   blueprintModeEnabled: boolean; // When true, only blueprint nodes are shown
   isFileBlueprintFile: boolean; // Whether the loaded file is a blueprint file
+  summaryModeEnabled: boolean; // When true, shows only resolved nodes within date range
+  summaryDateFrom: string | null; // Start date for summary filter (ISO string, date only)
+  summaryDateTo: string | null; // End date for summary filter (ISO string, date only)
 
-  actions: NodeActions & ContextActions & BlueprintActions & NavigationActions & PersistenceActions & NodeMovementActions & NodeDeletionActions & VisualEffectsActions & SelectionActions & HistoryActions & CollaborateActions & ClipboardActions & ExecuteActions;
+  actions: NodeActions & ContextActions & BlueprintActions & NavigationActions & PersistenceActions & NodeMovementActions & NodeDeletionActions & VisualEffectsActions & SelectionActions & HistoryActions & CollaborateActions & ClipboardActions & ExecuteActions & SummaryActions;
 }
 
 const storageService = new StorageService();
@@ -109,6 +113,9 @@ export function createTreeStore(treeType: TreeType = 'workspace') {
       contextDeclarations: [],
       blueprintModeEnabled: false,
       isFileBlueprintFile: false,
+      summaryModeEnabled: false,
+      summaryDateFrom: null,
+      summaryDateTo: null,
 
       actions: {
         ...createNodeActions(get, set, persistenceActions.autoSave),
@@ -124,6 +131,7 @@ export function createTreeStore(treeType: TreeType = 'workspace') {
         ...collaborateActions,
         ...clipboardActions,
         ...executeActions,
+        ...createSummaryActions(get, set, persistenceActions.autoSave),
       },
     };
   });

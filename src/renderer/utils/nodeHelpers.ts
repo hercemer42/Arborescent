@@ -1,7 +1,57 @@
-import { TreeNode } from '../../shared/types';
+import { TreeNode, NodeStatus } from '../../shared/types';
 import { AncestorRegistry } from '../services/ancestry';
 import { v4 as uuidv4 } from 'uuid';
 import { exportNodeAsMarkdown } from './markdown';
+
+/**
+ * Check if a resolved date falls within the given range.
+ * Both bounds are inclusive. If a bound is null, it's treated as unbounded.
+ */
+function isResolvedInRange(
+  resolvedAt: string | undefined,
+  dateFrom: string | null,
+  dateTo: string | null
+): boolean {
+  if (!resolvedAt) return false;
+  const date = resolvedAt.split('T')[0];
+  if (dateFrom && date < dateFrom) return false;
+  if (dateTo && date > dateTo) return false;
+  return true;
+}
+
+/**
+ * Compute the set of node IDs visible in summary mode.
+ * Includes resolved nodes within date range and all their ancestors.
+ */
+export function computeSummaryVisibleNodeIds(
+  nodes: Record<string, TreeNode>,
+  rootNodeId: string,
+  ancestorRegistry: AncestorRegistry,
+  dateFrom: string | null,
+  dateTo: string | null
+): Set<string> {
+  const visibleIds = new Set<string>();
+
+  for (const [nodeId, node] of Object.entries(nodes)) {
+    const status = node.metadata.status as NodeStatus | undefined;
+    const resolvedAt = node.metadata.resolvedAt as string | undefined;
+
+    if ((status === 'completed' || status === 'abandoned') &&
+        isResolvedInRange(resolvedAt, dateFrom, dateTo)) {
+      visibleIds.add(nodeId);
+      const ancestors = ancestorRegistry[nodeId] || [];
+      for (const ancestorId of ancestors) {
+        visibleIds.add(ancestorId);
+      }
+    }
+  }
+
+  if (visibleIds.size > 0) {
+    visibleIds.add(rootNodeId);
+  }
+
+  return visibleIds;
+}
 
 /**
  * Get applied context IDs from a node's metadata.

@@ -13,6 +13,8 @@ describe('persistenceActions', () => {
     contextDeclarations: { nodeId: string; content: string; icon: string }[];
     blueprintModeEnabled: boolean;
     isFileBlueprintFile: boolean;
+    summaryDateFrom: string | null;
+    summaryDateTo: string | null;
   };
   let setState: (partial: Partial<typeof state>) => void;
   let actions: ReturnType<typeof createPersistenceActions>;
@@ -37,6 +39,8 @@ describe('persistenceActions', () => {
       contextDeclarations: [],
       blueprintModeEnabled: false,
       isFileBlueprintFile: false,
+      summaryDateFrom: null,
+      summaryDateTo: null,
     };
 
     setState = (partial) => {

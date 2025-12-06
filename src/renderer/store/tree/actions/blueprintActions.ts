@@ -22,6 +22,7 @@ type StoreState = {
   blueprintModeEnabled: boolean;
   isFileBlueprintFile: boolean;
   activeNodeId: string | null;
+  summaryModeEnabled: boolean;
 };
 type StoreSetter = (partial: Partial<StoreState> | ((state: StoreState) => Partial<StoreState>)) => void;
 
@@ -110,7 +111,7 @@ export const createBlueprintActions = (
 
     // Clear selection when entering blueprint mode
     if (newMode) {
-      set({ blueprintModeEnabled: true, activeNodeId: null });
+      set({ blueprintModeEnabled: true, summaryModeEnabled: false, activeNodeId: null });
       logger.info('Blueprint mode enabled', 'Blueprint');
     } else {
       // If this is a blueprint file, show warning dialog before converting

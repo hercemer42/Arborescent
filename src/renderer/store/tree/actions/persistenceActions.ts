@@ -29,6 +29,8 @@ type StoreState = {
   contextDeclarations: ContextDeclarationInfo[];
   blueprintModeEnabled: boolean;
   isFileBlueprintFile: boolean;
+  summaryDateFrom: string | null;
+  summaryDateTo: string | null;
 };
 type StoreSetter = (partial: Partial<StoreState>) => void;
 type StoreGetter = () => StoreState;
@@ -45,8 +47,8 @@ export const createPersistenceActions = (
   }
 
   async function performSave(path: string, fileMeta?: { created: string; author: string }): Promise<void> {
-    const { nodes, rootNodeId, isFileBlueprintFile } = get();
-    const arboFile = createArboFile(nodes, rootNodeId, fileMeta, isFileBlueprintFile);
+    const { nodes, rootNodeId, isFileBlueprintFile, summaryDateFrom, summaryDateTo } = get();
+    const arboFile = createArboFile(nodes, rootNodeId, fileMeta, isFileBlueprintFile, summaryDateFrom, summaryDateTo);
     await storage.saveDocument(path, arboFile);
   }
 
@@ -91,6 +93,8 @@ export const createPersistenceActions = (
       contextDeclarations,
       isFileBlueprintFile: isBlueprint,
       blueprintModeEnabled: isBlueprint,
+      summaryDateFrom: data.summaryDateFrom || null,
+      summaryDateTo: data.summaryDateTo || null,
     });
 
     // Restore collaboration state if there's collaboration metadata

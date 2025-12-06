@@ -65,7 +65,9 @@ export function createArboFile(
   nodes: Record<string, TreeNode>,
   rootNodeId: string,
   existingMeta?: { created: string; author: string },
-  isBlueprint?: boolean
+  isBlueprint?: boolean,
+  summaryDateFrom?: string | null,
+  summaryDateTo?: string | null
 ): ArboFile {
   const file: ArboFile = {
     format: 'Arborescent',
@@ -79,6 +81,14 @@ export function createArboFile(
 
   if (isBlueprint) {
     file.isBlueprint = true;
+  }
+
+  if (summaryDateFrom) {
+    file.summaryDateFrom = summaryDateFrom;
+  }
+
+  if (summaryDateTo) {
+    file.summaryDateTo = summaryDateTo;
   }
 
   return file;

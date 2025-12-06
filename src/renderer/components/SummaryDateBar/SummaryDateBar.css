@@ -1,0 +1,52 @@
+.summary-date-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 6px 12px;
+  background: var(--gray-100);
+  border-bottom: 1px solid var(--gray-200);
+  font-size: 12px;
+}
+
+.summary-date-bar-label {
+  color: var(--gray-500);
+  font-weight: 500;
+}
+
+.summary-date-bar-field {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.summary-date-bar-field label {
+  color: var(--gray-500);
+}
+
+.summary-date-bar-field input[type="date"] {
+  padding: 2px 6px;
+  border: 1px solid var(--gray-300);
+  border-radius: 3px;
+  background: var(--white);
+  font-size: 12px;
+  color: var(--gray-600);
+}
+
+.summary-date-bar-field input[type="date"]:focus {
+  outline: none;
+  border-color: var(--green-500);
+}
+
+.summary-date-bar-clear {
+  padding: 0 4px;
+  border: none;
+  background: none;
+  color: var(--gray-400);
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 1;
+}
+
+.summary-date-bar-clear:hover {
+  color: var(--gray-600);
+}

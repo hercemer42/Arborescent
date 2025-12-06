@@ -10,6 +10,8 @@ export interface ArboFile {
   author: string;
   treeType?: TreeType;
   isBlueprint?: boolean;
+  summaryDateFrom?: string;
+  summaryDateTo?: string;
   rootNodeId: string;
   nodes: Record<string, TreeNode>;
 }

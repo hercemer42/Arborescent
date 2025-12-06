@@ -145,6 +145,9 @@ describe('collaborateActions', () => {
       contextDeclarations: [],
       blueprintModeEnabled: false,
       isFileBlueprintFile: false,
+      summaryModeEnabled: false,
+      summaryDateFrom: null,
+      summaryDateTo: null,
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       actions: {} as any,
     };

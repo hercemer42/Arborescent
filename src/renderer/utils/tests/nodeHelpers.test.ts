@@ -14,6 +14,7 @@ import {
   getNodeAndDescendantIds,
   getParentId,
   getAllDescendants,
+  computeSummaryVisibleNodeIds,
 } from '../nodeHelpers';
 import { TreeNode } from '@shared/types';
 
@@ -1095,5 +1096,182 @@ describe('getParentId', () => {
       'deeply-nested': ['root', 'level-1', 'level-2', 'level-3'],
     };
     expect(getParentId('deeply-nested', ancestorRegistry, 'root')).toBe('level-3');
+  });
+});
+
+describe('computeSummaryVisibleNodeIds', () => {
+  const createNode = (id: string, children: string[] = [], metadata = {}): TreeNode => ({
+    id,
+    content: `Node ${id}`,
+    children,
+    metadata,
+  });
+
+  it('should return empty set when no resolved nodes', () => {
+    const nodes = {
+      'root': createNode('root', ['child']),
+      'child': createNode('child', [], { status: 'pending' }),
+    };
+    const ancestorRegistry = { 'child': ['root'] };
+
+    const result = computeSummaryVisibleNodeIds(nodes, 'root', ancestorRegistry, '2025-01-01', '2025-01-07');
+    expect(result.size).toBe(0);
+  });
+
+  it('should include completed node within date range', () => {
+    const nodes = {
+      'root': createNode('root', ['child']),
+      'child': createNode('child', [], { status: 'completed', resolvedAt: '2025-01-03T10:00:00Z' }),
+    };
+    const ancestorRegistry = { 'child': ['root'] };
+
+    const result = computeSummaryVisibleNodeIds(nodes, 'root', ancestorRegistry, '2025-01-01', '2025-01-07');
+    expect(result.has('child')).toBe(true);
+    expect(result.has('root')).toBe(true);
+  });
+
+  it('should include abandoned node within date range', () => {
+    const nodes = {
+      'root': createNode('root', ['child']),
+      'child': createNode('child', [], { status: 'abandoned', resolvedAt: '2025-01-03T10:00:00Z' }),
+    };
+    const ancestorRegistry = { 'child': ['root'] };
+
+    const result = computeSummaryVisibleNodeIds(nodes, 'root', ancestorRegistry, '2025-01-01', '2025-01-07');
+    expect(result.has('child')).toBe(true);
+    expect(result.has('root')).toBe(true);
+  });
+
+  it('should exclude completed node before date range', () => {
+    const nodes = {
+      'root': createNode('root', ['child']),
+      'child': createNode('child', [], { status: 'completed', resolvedAt: '2024-12-25T10:00:00Z' }),
+    };
+    const ancestorRegistry = { 'child': ['root'] };
+
+    const result = computeSummaryVisibleNodeIds(nodes, 'root', ancestorRegistry, '2025-01-01', '2025-01-07');
+    expect(result.size).toBe(0);
+  });
+
+  it('should exclude completed node after date range', () => {
+    const nodes = {
+      'root': createNode('root', ['child']),
+      'child': createNode('child', [], { status: 'completed', resolvedAt: '2025-01-10T10:00:00Z' }),
+    };
+    const ancestorRegistry = { 'child': ['root'] };
+
+    const result = computeSummaryVisibleNodeIds(nodes, 'root', ancestorRegistry, '2025-01-01', '2025-01-07');
+    expect(result.size).toBe(0);
+  });
+
+  it('should include node on exact dateFrom boundary', () => {
+    const nodes = {
+      'root': createNode('root', ['child']),
+      'child': createNode('child', [], { status: 'completed', resolvedAt: '2025-01-01T00:00:00Z' }),
+    };
+    const ancestorRegistry = { 'child': ['root'] };
+
+    const result = computeSummaryVisibleNodeIds(nodes, 'root', ancestorRegistry, '2025-01-01', '2025-01-07');
+    expect(result.has('child')).toBe(true);
+  });
+
+  it('should include node on exact dateTo boundary', () => {
+    const nodes = {
+      'root': createNode('root', ['child']),
+      'child': createNode('child', [], { status: 'completed', resolvedAt: '2025-01-07T23:59:59Z' }),
+    };
+    const ancestorRegistry = { 'child': ['root'] };
+
+    const result = computeSummaryVisibleNodeIds(nodes, 'root', ancestorRegistry, '2025-01-01', '2025-01-07');
+    expect(result.has('child')).toBe(true);
+  });
+
+  it('should include all ancestors of resolved node', () => {
+    const nodes = {
+      'root': createNode('root', ['parent']),
+      'parent': createNode('parent', ['child']),
+      'child': createNode('child', [], { status: 'completed', resolvedAt: '2025-01-03T10:00:00Z' }),
+    };
+    const ancestorRegistry = {
+      'parent': ['root'],
+      'child': ['root', 'parent'],
+    };
+
+    const result = computeSummaryVisibleNodeIds(nodes, 'root', ancestorRegistry, '2025-01-01', '2025-01-07');
+    expect(result.has('child')).toBe(true);
+    expect(result.has('parent')).toBe(true);
+    expect(result.has('root')).toBe(true);
+  });
+
+  it('should work with null dateFrom (no lower bound)', () => {
+    const nodes = {
+      'root': createNode('root', ['child']),
+      'child': createNode('child', [], { status: 'completed', resolvedAt: '2020-01-01T10:00:00Z' }),
+    };
+    const ancestorRegistry = { 'child': ['root'] };
+
+    const result = computeSummaryVisibleNodeIds(nodes, 'root', ancestorRegistry, null, '2025-01-07');
+    expect(result.has('child')).toBe(true);
+  });
+
+  it('should work with null dateTo (no upper bound)', () => {
+    const nodes = {
+      'root': createNode('root', ['child']),
+      'child': createNode('child', [], { status: 'completed', resolvedAt: '2030-01-01T10:00:00Z' }),
+    };
+    const ancestorRegistry = { 'child': ['root'] };
+
+    const result = computeSummaryVisibleNodeIds(nodes, 'root', ancestorRegistry, '2025-01-01', null);
+    expect(result.has('child')).toBe(true);
+  });
+
+  it('should work with both dates null (all resolved nodes)', () => {
+    const nodes = {
+      'root': createNode('root', ['child']),
+      'child': createNode('child', [], { status: 'completed', resolvedAt: '2025-01-03T10:00:00Z' }),
+    };
+    const ancestorRegistry = { 'child': ['root'] };
+
+    const result = computeSummaryVisibleNodeIds(nodes, 'root', ancestorRegistry, null, null);
+    expect(result.has('child')).toBe(true);
+  });
+
+  it('should exclude pending nodes', () => {
+    const nodes = {
+      'root': createNode('root', ['child']),
+      'child': createNode('child', [], { status: 'pending', resolvedAt: '2025-01-03T10:00:00Z' }),
+    };
+    const ancestorRegistry = { 'child': ['root'] };
+
+    const result = computeSummaryVisibleNodeIds(nodes, 'root', ancestorRegistry, '2025-01-01', '2025-01-07');
+    expect(result.size).toBe(0);
+  });
+
+  it('should exclude completed nodes without resolvedAt', () => {
+    const nodes = {
+      'root': createNode('root', ['child']),
+      'child': createNode('child', [], { status: 'completed' }),
+    };
+    const ancestorRegistry = { 'child': ['root'] };
+
+    const result = computeSummaryVisibleNodeIds(nodes, 'root', ancestorRegistry, '2025-01-01', '2025-01-07');
+    expect(result.size).toBe(0);
+  });
+
+  it('should handle multiple resolved nodes in range', () => {
+    const nodes = {
+      'root': createNode('root', ['child1', 'child2']),
+      'child1': createNode('child1', [], { status: 'completed', resolvedAt: '2025-01-02T10:00:00Z' }),
+      'child2': createNode('child2', [], { status: 'abandoned', resolvedAt: '2025-01-05T10:00:00Z' }),
+    };
+    const ancestorRegistry = {
+      'child1': ['root'],
+      'child2': ['root'],
+    };
+
+    const result = computeSummaryVisibleNodeIds(nodes, 'root', ancestorRegistry, '2025-01-01', '2025-01-07');
+    expect(result.has('child1')).toBe(true);
+    expect(result.has('child2')).toBe(true);
+    expect(result.has('root')).toBe(true);
   });
 });

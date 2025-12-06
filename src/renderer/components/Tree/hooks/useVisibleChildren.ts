@@ -1,49 +1,68 @@
 import { useMemo } from 'react';
 import { useStore } from '../../../store/tree/useStore';
 import { TreeNode } from '../../../../shared/types';
+import { computeSummaryVisibleNodeIds } from '../../../utils/nodeHelpers';
 
 /**
- * Returns visible children filtered by blueprint mode.
- * In blueprint mode, only children with isBlueprint=true are shown.
+ * Compute visibility status string for children based on filter mode.
  */
-export function useVisibleChildren(children: string[] | undefined): string[] {
+function useChildVisibilityStatus(children: string[] | undefined): string | null {
   const blueprintModeEnabled = useStore((state) => state.blueprintModeEnabled);
+  const summaryModeEnabled = useStore((state) => state.summaryModeEnabled);
 
-  // Only subscribe to relevant child nodes' isBlueprint status when in blueprint mode
-  const childBlueprintStatus = useStore((state) => {
-    if (!children || !blueprintModeEnabled) return null;
-    // Return a string key that changes only when blueprint status of children changes
+  // Blueprint mode: check isBlueprint metadata
+  const blueprintStatus = useStore((state) => {
+    if (!children || !blueprintModeEnabled || summaryModeEnabled) return null;
     return children.map(id => state.nodes[id]?.metadata.isBlueprint ? '1' : '0').join('');
   });
 
-  return useMemo(() => {
-    if (!children) return [];
-    if (!blueprintModeEnabled) return children;
-    if (!childBlueprintStatus) return children;
-    // Filter based on the status string
-    return children.filter((_, index) => childBlueprintStatus[index] === '1');
-  }, [children, blueprintModeEnabled, childBlueprintStatus]);
+  // Summary mode: compute visible set and check membership
+  const summaryStatus = useStore((state) => {
+    if (!children || !summaryModeEnabled) return null;
+    const visibleIds = computeSummaryVisibleNodeIds(
+      state.nodes,
+      state.rootNodeId,
+      state.ancestorRegistry,
+      state.summaryDateFrom,
+      state.summaryDateTo
+    );
+    return children.map(id => visibleIds.has(id) ? '1' : '0').join('');
+  });
+
+  if (summaryModeEnabled) return summaryStatus;
+  if (blueprintModeEnabled) return blueprintStatus;
+  return null;
 }
 
 /**
- * Returns visible children for a specific node, filtered by blueprint mode.
+ * Returns visible children filtered by blueprint or summary mode.
  */
-export function useNodeVisibleChildren(node: TreeNode | undefined): string[] {
+export function useVisibleChildren(children: string[] | undefined): string[] {
   const blueprintModeEnabled = useStore((state) => state.blueprintModeEnabled);
-  const children = node?.children;
-
-  // Only subscribe to relevant child nodes' isBlueprint status when in blueprint mode
-  const childBlueprintStatus = useStore((state) => {
-    if (!children || !blueprintModeEnabled) return null;
-    // Return a string key that changes only when blueprint status of children changes
-    return children.map(id => state.nodes[id]?.metadata.isBlueprint ? '1' : '0').join('');
-  });
+  const summaryModeEnabled = useStore((state) => state.summaryModeEnabled);
+  const visibilityStatus = useChildVisibilityStatus(children);
 
   return useMemo(() => {
     if (!children) return [];
-    if (!blueprintModeEnabled) return children;
-    if (!childBlueprintStatus) return children;
-    // Filter based on the status string
-    return children.filter((_, index) => childBlueprintStatus[index] === '1');
-  }, [children, blueprintModeEnabled, childBlueprintStatus]);
+    if (!blueprintModeEnabled && !summaryModeEnabled) return children;
+    if (!visibilityStatus) return children;
+    return children.filter((_, index) => visibilityStatus[index] === '1');
+  }, [children, blueprintModeEnabled, summaryModeEnabled, visibilityStatus]);
+}
+
+/**
+ * Returns visible children for a specific node, filtered by blueprint or summary mode.
+ */
+export function useNodeVisibleChildren(node: TreeNode | undefined): string[] {
+  const children = node?.children;
+  const blueprintModeEnabled = useStore((state) => state.blueprintModeEnabled);
+  const summaryModeEnabled = useStore((state) => state.summaryModeEnabled);
+  const visibilityStatus = useChildVisibilityStatus(children);
+
+  return useMemo(() => {
+    if (!children) return [];
+    if (!blueprintModeEnabled && !summaryModeEnabled) return children;
+    if (!visibilityStatus) return children;
+    return children.filter((_, index) => visibilityStatus[index] === '1');
+  }, [children, blueprintModeEnabled, summaryModeEnabled, visibilityStatus]);
 }

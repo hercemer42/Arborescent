@@ -39,14 +39,10 @@ describe('ToggleStatusCommand', () => {
 
       cmd.execute();
 
-      expect(setNodes).toHaveBeenCalledWith({
-        node1: {
-          id: 'node1',
-          content: 'Test node',
-          children: [],
-          metadata: { status: 'completed' },
-        },
-      });
+      expect(setNodes).toHaveBeenCalled();
+      const updatedNodes = setNodes.mock.calls[0][0];
+      expect(updatedNodes.node1.metadata.status).toBe('completed');
+      expect(updatedNodes.node1.metadata.resolvedAt).toBeDefined();
     });
 
     it('should toggle from completed to failed', () => {
@@ -62,14 +58,10 @@ describe('ToggleStatusCommand', () => {
 
       cmd.execute();
 
-      expect(setNodes).toHaveBeenCalledWith({
-        node1: {
-          id: 'node1',
-          content: 'Test node',
-          children: [],
-          metadata: { status: 'abandoned' },
-        },
-      });
+      expect(setNodes).toHaveBeenCalled();
+      const updatedNodes = setNodes.mock.calls[0][0];
+      expect(updatedNodes.node1.metadata.status).toBe('abandoned');
+      expect(updatedNodes.node1.metadata.resolvedAt).toBeDefined();
     });
 
     it('should toggle from failed to pending', () => {
@@ -85,14 +77,10 @@ describe('ToggleStatusCommand', () => {
 
       cmd.execute();
 
-      expect(setNodes).toHaveBeenCalledWith({
-        node1: {
-          id: 'node1',
-          content: 'Test node',
-          children: [],
-          metadata: { status: 'pending' },
-        },
-      });
+      expect(setNodes).toHaveBeenCalled();
+      const updatedNodes = setNodes.mock.calls[0][0];
+      expect(updatedNodes.node1.metadata.status).toBe('pending');
+      expect(updatedNodes.node1.metadata.resolvedAt).toBeUndefined();
     });
 
     it('should handle node without status (treat as pending)', () => {
@@ -108,14 +96,10 @@ describe('ToggleStatusCommand', () => {
 
       cmd.execute();
 
-      expect(setNodes).toHaveBeenCalledWith({
-        node1: {
-          id: 'node1',
-          content: 'Test node',
-          children: [],
-          metadata: { status: 'completed' },
-        },
-      });
+      expect(setNodes).toHaveBeenCalled();
+      const updatedNodes = setNodes.mock.calls[0][0];
+      expect(updatedNodes.node1.metadata.status).toBe('completed');
+      expect(updatedNodes.node1.metadata.resolvedAt).toBeDefined();
     });
 
     it('should trigger autosave', () => {
@@ -148,7 +132,7 @@ describe('ToggleStatusCommand', () => {
   });
 
   describe('undo', () => {
-    it('should restore old status', () => {
+    it('should restore old status and clear resolvedAt', () => {
       const cmd = new ToggleStatusCommand(
         'node1',
         getNodes,
@@ -161,14 +145,10 @@ describe('ToggleStatusCommand', () => {
       setNodes.mockClear();
       cmd.undo();
 
-      expect(setNodes).toHaveBeenCalledWith({
-        node1: {
-          id: 'node1',
-          content: 'Test node',
-          children: [],
-          metadata: { status: 'pending' },
-        },
-      });
+      expect(setNodes).toHaveBeenCalled();
+      const updatedNodes = setNodes.mock.calls[0][0];
+      expect(updatedNodes.node1.metadata.status).toBe('pending');
+      expect(updatedNodes.node1.metadata.resolvedAt).toBeUndefined();
     });
 
     it('should select node and place cursor at end', () => {
@@ -205,7 +185,7 @@ describe('ToggleStatusCommand', () => {
   });
 
   describe('redo', () => {
-    it('should restore new status', () => {
+    it('should restore new status with resolvedAt', () => {
       const cmd = new ToggleStatusCommand(
         'node1',
         getNodes,
@@ -219,14 +199,10 @@ describe('ToggleStatusCommand', () => {
       setNodes.mockClear();
       cmd.redo();
 
-      expect(setNodes).toHaveBeenCalledWith({
-        node1: {
-          id: 'node1',
-          content: 'Test node',
-          children: [],
-          metadata: { status: 'completed' },
-        },
-      });
+      expect(setNodes).toHaveBeenCalled();
+      const updatedNodes = setNodes.mock.calls[0][0];
+      expect(updatedNodes.node1.metadata.status).toBe('completed');
+      expect(updatedNodes.node1.metadata.resolvedAt).toBeDefined();
     });
 
     it('should select node and place cursor at end', () => {

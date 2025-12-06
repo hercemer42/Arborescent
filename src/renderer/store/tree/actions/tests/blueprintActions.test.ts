@@ -25,6 +25,7 @@ describe('blueprintActions', () => {
     blueprintModeEnabled: boolean;
     isFileBlueprintFile: boolean;
     activeNodeId: string | null;
+    summaryModeEnabled: boolean;
   };
   let state: TestState;
   let setState: (partial: Partial<TestState> | ((state: TestState) => Partial<TestState>)) => void;
@@ -70,6 +71,7 @@ describe('blueprintActions', () => {
       blueprintModeEnabled: false,
       isFileBlueprintFile: false,
       activeNodeId: 'node-1',
+      summaryModeEnabled: false,
     };
 
     setState = (partial) => {
@@ -124,6 +126,15 @@ describe('blueprintActions', () => {
 
       expect(state.blueprintModeEnabled).toBe(false);
       expect(state.activeNodeId).toBe('node-1');
+    });
+
+    it('should disable summary mode when enabling blueprint mode', () => {
+      state.summaryModeEnabled = true;
+
+      actions.toggleBlueprintMode();
+
+      expect(state.blueprintModeEnabled).toBe(true);
+      expect(state.summaryModeEnabled).toBe(false);
     });
   });
 
