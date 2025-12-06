@@ -1,9 +1,9 @@
-export type NodeStatus = 'pending' | 'completed' | 'failed';
+export type NodeStatus = 'pending' | 'completed' | 'abandoned';
 
 export const STATUS_SYMBOLS: Record<NodeStatus, string> = {
   pending: '☐',
   completed: '✓',
-  failed: '✗',
+  abandoned: '✗',
 };
 
 export interface TransientMetadata {

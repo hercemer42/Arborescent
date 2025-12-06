@@ -52,7 +52,7 @@ describe('parseMarkdown', () => {
     const child1Id = parent.children[0];
     const child2Id = parent.children[1];
     expect(allNodes[child1Id].metadata.status).toBe('completed');
-    expect(allNodes[child2Id].metadata.status).toBe('failed');
+    expect(allNodes[child2Id].metadata.status).toBe('abandoned');
   });
 
   it('handles multiple siblings at same level', () => {
@@ -176,7 +176,7 @@ describe('parseMarkdown', () => {
 
     expect(rootNodes).toHaveLength(1);
     expect(rootNodes[0].content).toBe('Failed task');
-    expect(rootNodes[0].metadata.status).toBe('failed');
+    expect(rootNodes[0].metadata.status).toBe('abandoned');
   });
 
   describe('HTML comments are ignored', () => {

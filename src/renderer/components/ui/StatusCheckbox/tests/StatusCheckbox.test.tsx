@@ -20,12 +20,12 @@ describe('StatusCheckbox', () => {
     expect(button).toHaveAttribute('aria-label', 'Status: completed');
   });
 
-  it('should render failed status', () => {
-    render(<StatusCheckbox status="failed" onToggle={() => {}} />);
+  it('should render abandoned status', () => {
+    render(<StatusCheckbox status="abandoned" onToggle={() => {}} />);
     const button = screen.getByRole('button');
     expect(button).toHaveTextContent('✗');
     expect(button).toHaveClass('status-checkbox');
-    expect(button).toHaveAttribute('aria-label', 'Status: failed');
+    expect(button).toHaveAttribute('aria-label', 'Status: abandoned');
   });
 
   it('should call onToggle when clicked', async () => {

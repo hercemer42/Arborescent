@@ -34,7 +34,7 @@ export class ToggleStatusCommand extends BaseCommand {
     if (!currentStatus || currentStatus === 'pending') {
       newStatus = 'completed';
     } else if (currentStatus === 'completed') {
-      newStatus = 'failed';
+      newStatus = 'abandoned';
     } else {
       newStatus = 'pending';
     }

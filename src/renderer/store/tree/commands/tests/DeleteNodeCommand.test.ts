@@ -36,7 +36,7 @@ describe('DeleteNodeCommand', () => {
         id: 'child2',
         content: 'Child 2',
         children: [],
-        metadata: { status: 'failed' },
+        metadata: { status: 'abandoned' },
       },
     };
 
@@ -161,7 +161,7 @@ describe('DeleteNodeCommand', () => {
         id: 'child2',
         content: 'Child 2',
         children: [],
-        metadata: { status: 'failed' },
+        metadata: { status: 'abandoned' },
       });
       expect(stateUpdate.nodes['root'].children).toEqual(['child1', 'child2']);
     });

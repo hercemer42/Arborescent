@@ -8,7 +8,7 @@ import { ContextDeclarationInfo } from '../treeStore';
 const STATUS_MIGRATION_MAP: Record<string, NodeStatus> = {
   '☐': 'pending',
   '✓': 'completed',
-  '✗': 'failed',
+  '✗': 'abandoned',
 };
 
 export interface PersistenceActions {

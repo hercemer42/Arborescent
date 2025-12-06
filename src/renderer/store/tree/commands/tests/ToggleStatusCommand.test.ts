@@ -67,13 +67,13 @@ describe('ToggleStatusCommand', () => {
           id: 'node1',
           content: 'Test node',
           children: [],
-          metadata: { status: 'failed' },
+          metadata: { status: 'abandoned' },
         },
       });
     });
 
     it('should toggle from failed to pending', () => {
-      nodes.node1.metadata.status = 'failed';
+      nodes.node1.metadata.status = 'abandoned';
 
       const cmd = new ToggleStatusCommand(
         'node1',
@@ -277,7 +277,7 @@ describe('ToggleStatusCommand', () => {
 
       // completed -> failed
       cmd2.execute();
-      expect(nodes.node1.metadata.status).toBe('failed');
+      expect(nodes.node1.metadata.status).toBe('abandoned');
 
       // failed -> pending
       cmd3.execute();

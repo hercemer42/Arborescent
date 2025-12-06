@@ -35,7 +35,7 @@ describe('MoveNodeCommand', () => {
         id: 'child3',
         content: 'Child 3',
         children: [],
-        metadata: { status: 'failed' },
+        metadata: { status: 'abandoned' },
       },
     };
 

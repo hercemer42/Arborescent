@@ -26,6 +26,17 @@ vi.mock('../../../../utils/document', () => ({
     nodes: {},
     rootNodeId: 'root',
   })),
+  extractBlueprintNodes: vi.fn((nodes) => {
+    // Return only nodes with isBlueprint metadata
+    const result: Record<string, unknown> = {};
+    Object.entries(nodes).forEach(([id, node]) => {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      if ((node as any).metadata?.isBlueprint) {
+        result[id] = node;
+      }
+    });
+    return result;
+  }),
 }));
 
 vi.mock('../../../../data/defaultTemplate', () => ({
@@ -38,7 +49,7 @@ vi.mock('../../../../data/defaultTemplate', () => ({
 
 import { storeManager } from '../../../storeManager';
 import { logger } from '../../../../services/logger';
-import { createArboFile } from '../../../../utils/document';
+import { createArboFile, extractBlueprintNodes } from '../../../../utils/document';
 import { createBlankDocument } from '../../../../data/defaultTemplate';
 
 describe('fileActions', () => {
@@ -642,6 +653,221 @@ describe('fileActions', () => {
       expect(state.setActiveFile).not.toHaveBeenCalled();
       // Should create new file when all files fail to restore
       expect(createBlankDocument as ReturnType<typeof vi.fn>).toHaveBeenCalled();
+    });
+  });
+
+  describe('exportAsBlueprint', () => {
+    it('should export blueprint nodes to a new file', async () => {
+      const blueprintNodes = {
+        'node-1': { id: 'node-1', content: 'Blueprint', children: [], metadata: { isBlueprint: true } },
+      };
+      const allNodes = {
+        'root': { id: 'root', content: '', children: ['node-1', 'node-2'], metadata: {} },
+        'node-1': { id: 'node-1', content: 'Blueprint', children: [], metadata: { isBlueprint: true } },
+        'node-2': { id: 'node-2', content: 'Regular', children: [], metadata: {} },
+      };
+
+      vi.mocked(extractBlueprintNodes).mockReturnValue(blueprintNodes);
+      vi.mocked(storeManager.getStoreForFile).mockReturnValue({
+        getState: () => ({
+          nodes: allNodes,
+          rootNodeId: 'root',
+          fileMeta: { created: '2024-01-01', author: 'test' },
+          actions: { initialize: vi.fn() },
+        }),
+        setState: vi.fn(),
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      } as any);
+      vi.mocked(mockStorage.showSaveDialog).mockResolvedValue('/exported/blueprint.arbo');
+
+      await actions.exportAsBlueprint('/test/file.arbo');
+
+      expect(extractBlueprintNodes).toHaveBeenCalledWith(allNodes, 'root');
+      expect(createArboFile).toHaveBeenCalledWith(
+        blueprintNodes,
+        'root',
+        { created: '2024-01-01', author: 'test' },
+        true
+      );
+      expect(mockStorage.saveDocument).toHaveBeenCalledWith('/exported/blueprint.arbo', expect.any(Object));
+      expect(logger.success).toHaveBeenCalledWith('Blueprint exported: /exported/blueprint.arbo', 'BlueprintExport', true);
+    });
+
+    it('should error when no blueprint nodes exist', async () => {
+      vi.mocked(extractBlueprintNodes).mockReturnValue({});
+      vi.mocked(storeManager.getStoreForFile).mockReturnValue({
+        getState: () => ({
+          nodes: { root: { id: 'root', children: [], metadata: {} } },
+          rootNodeId: 'root',
+          fileMeta: null,
+        }),
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      } as any);
+
+      await actions.exportAsBlueprint('/test/file.arbo');
+
+      expect(logger.error).toHaveBeenCalledWith('No blueprint nodes to export', undefined, 'BlueprintExport', true);
+      expect(mockStorage.showSaveDialog).not.toHaveBeenCalled();
+    });
+
+    it('should do nothing when save dialog is cancelled', async () => {
+      vi.mocked(extractBlueprintNodes).mockReturnValue({
+        'node-1': { id: 'node-1', content: '', children: [], metadata: { isBlueprint: true } },
+      });
+      vi.mocked(storeManager.getStoreForFile).mockReturnValue({
+        getState: () => ({
+          nodes: { 'node-1': { id: 'node-1', content: '', children: [], metadata: { isBlueprint: true } } },
+          rootNodeId: 'root',
+          fileMeta: null,
+        }),
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      } as any);
+      vi.mocked(mockStorage.showSaveDialog).mockResolvedValue(null);
+
+      await actions.exportAsBlueprint('/test/file.arbo');
+
+      expect(mockStorage.saveDocument).not.toHaveBeenCalled();
+      expect(logger.success).not.toHaveBeenCalled();
+    });
+
+    it('should update store when exporting to same file path', async () => {
+      const blueprintNodes = {
+        'node-1': { id: 'node-1', content: 'Blueprint', children: [], metadata: { isBlueprint: true } },
+      };
+      const mockInitialize = vi.fn();
+      const mockSetState = vi.fn();
+
+      vi.mocked(extractBlueprintNodes).mockReturnValue(blueprintNodes);
+      vi.mocked(storeManager.getStoreForFile).mockReturnValue({
+        getState: () => ({
+          nodes: blueprintNodes,
+          rootNodeId: 'root',
+          fileMeta: null,
+          actions: { initialize: mockInitialize },
+        }),
+        setState: mockSetState,
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      } as any);
+      vi.mocked(mockStorage.showSaveDialog).mockResolvedValue('/test/file.arbo'); // Same path
+
+      await actions.exportAsBlueprint('/test/file.arbo');
+
+      expect(mockInitialize).toHaveBeenCalledWith(blueprintNodes, 'root');
+      expect(mockSetState).toHaveBeenCalledWith({
+        isFileBlueprintFile: true,
+        blueprintModeEnabled: true,
+      });
+    });
+
+    it('should log error on export failure', async () => {
+      const error = new Error('Export failed');
+      vi.mocked(extractBlueprintNodes).mockReturnValue({
+        'node-1': { id: 'node-1', content: '', children: [], metadata: { isBlueprint: true } },
+      });
+      vi.mocked(storeManager.getStoreForFile).mockReturnValue({
+        getState: () => ({
+          nodes: {},
+          rootNodeId: 'root',
+          fileMeta: null,
+        }),
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      } as any);
+      vi.mocked(mockStorage.showSaveDialog).mockResolvedValue('/exported/blueprint.arbo');
+      vi.mocked(mockStorage.saveDocument).mockRejectedValue(error);
+
+      await actions.exportAsBlueprint('/test/file.arbo');
+
+      expect(logger.error).toHaveBeenCalledWith(
+        'Failed to export blueprint: Export failed',
+        error,
+        'BlueprintExport',
+        true
+      );
+    });
+  });
+
+  describe('importFromBlueprint', () => {
+    const createMockArboFile = (overrides: Record<string, unknown> = {}) => ({
+      format: 'Arborescent' as const,
+      version: '1.0.0',
+      created: '2024-01-01',
+      updated: '2024-01-01',
+      author: 'test',
+      nodes: {},
+      rootNodeId: 'root',
+      ...overrides,
+    });
+
+    it('should import blueprint as new temp file', async () => {
+      const blueprintNodes = {
+        'root': { id: 'root', content: '', children: ['node-1'], metadata: {} },
+        'node-1': { id: 'node-1', content: 'Blueprint node', children: [], metadata: { isBlueprint: true } },
+      };
+      const blueprintData = createMockArboFile({
+        nodes: blueprintNodes,
+        rootNodeId: 'root',
+        isBlueprint: true,
+      });
+      const mockInitialize = vi.fn();
+      const mockSetFilePath = vi.fn();
+
+      vi.mocked(mockStorage.showOpenDialog).mockResolvedValue('/blueprints/template.arbo');
+      vi.mocked(mockStorage.loadDocument).mockResolvedValue(blueprintData);
+      vi.mocked(mockStorage.createTempFile).mockResolvedValue('/tmp/untitled-1.arbo');
+      vi.mocked(storeManager.getStoreForFile).mockReturnValue({
+        getState: () => ({
+          actions: {
+            initialize: mockInitialize,
+            setFilePath: mockSetFilePath,
+          },
+        }),
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      } as any);
+
+      await actions.importFromBlueprint();
+
+      expect(mockStorage.showOpenDialog).toHaveBeenCalled();
+      expect(mockStorage.loadDocument).toHaveBeenCalledWith('/blueprints/template.arbo');
+      expect(mockInitialize).toHaveBeenCalledWith(blueprintNodes, 'root');
+      expect(mockSetFilePath).toHaveBeenCalledWith('/tmp/untitled-1.arbo');
+      expect(state.openFile).toHaveBeenCalledWith('/tmp/untitled-1.arbo', 'Untitled 1', true);
+      expect(logger.success).toHaveBeenCalledWith('Blueprint imported as new file', 'BlueprintImport', true);
+    });
+
+    it('should error when file is not a blueprint', async () => {
+      vi.mocked(mockStorage.showOpenDialog).mockResolvedValue('/regular/file.arbo');
+      vi.mocked(mockStorage.loadDocument).mockResolvedValue(createMockArboFile({
+        isBlueprint: false,
+      }));
+
+      await actions.importFromBlueprint();
+
+      expect(logger.error).toHaveBeenCalledWith('Selected file is not a blueprint', undefined, 'BlueprintImport', true);
+      expect(state.openFile).not.toHaveBeenCalled();
+    });
+
+    it('should do nothing when open dialog is cancelled', async () => {
+      vi.mocked(mockStorage.showOpenDialog).mockResolvedValue(null);
+
+      await actions.importFromBlueprint();
+
+      expect(mockStorage.loadDocument).not.toHaveBeenCalled();
+      expect(state.openFile).not.toHaveBeenCalled();
+    });
+
+    it('should log error on import failure', async () => {
+      const error = new Error('Import failed');
+      vi.mocked(mockStorage.showOpenDialog).mockResolvedValue('/blueprints/template.arbo');
+      vi.mocked(mockStorage.loadDocument).mockRejectedValue(error);
+
+      await actions.importFromBlueprint();
+
+      expect(logger.error).toHaveBeenCalledWith(
+        'Failed to import blueprint: Import failed',
+        error,
+        'BlueprintImport',
+        true
+      );
     });
   });
 });

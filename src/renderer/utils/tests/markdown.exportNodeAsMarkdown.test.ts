@@ -100,7 +100,7 @@ describe('exportNodeAsMarkdown', () => {
       id: '3',
       content: 'Failed',
       children: [],
-      metadata: { status: 'failed', expanded: true, deleted: false },
+      metadata: { status: 'abandoned', expanded: true, deleted: false },
     };
     const parent: TreeNode = {
       id: '1',

@@ -128,11 +128,11 @@ describe('nodeActions', () => {
     it('should toggle status from completed to failed', () => {
       state.nodes['node-1'].metadata.status = 'completed';
       actions.toggleStatus('node-1');
-      expect(state.nodes['node-1'].metadata.status).toBe('failed');
+      expect(state.nodes['node-1'].metadata.status).toBe('abandoned');
     });
 
     it('should toggle status from failed to pending', () => {
-      state.nodes['node-1'].metadata.status = 'failed';
+      state.nodes['node-1'].metadata.status = 'abandoned';
       actions.toggleStatus('node-1');
       expect(state.nodes['node-1'].metadata.status).toBe('pending');
     });

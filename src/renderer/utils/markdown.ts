@@ -8,7 +8,7 @@ export type NodesMap = Record<string, TreeNode>;
 const ASCII_STATUS_SYMBOLS: Record<NodeStatus, string> = {
   pending: '[ ]',
   completed: '[x]',
-  failed: '[-]',
+  abandoned: '[-]',
 };
 
 // ============================================================================
@@ -146,7 +146,7 @@ function parseLine(line: string): ParsedLine | null {
       if (checkMark === ' ') {
         status = 'pending';
       } else if (checkMark === '-') {
-        status = 'failed';
+        status = 'abandoned';
       } else {
         status = 'completed';
       }
