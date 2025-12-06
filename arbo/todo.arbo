@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2025-12-06T07:16:25.805Z'
+updated: '2025-12-06T08:21:18.092Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -602,6 +602,7 @@ nodes:
       - a59a24aa-f55a-478c-9960-3bed5acd2851
       - 8541a984-fcca-479d-a9ca-494878f45de3
       - bf10afa4-0959-4dd4-9e78-dfadbdd81d9c
+      - 682650c3-1af5-4533-a4d3-403beb2d7bb7
     metadata:
       status: completed
       expanded: false
@@ -5635,7 +5636,7 @@ nodes:
     id: 984247e7-2d55-4b93-80e8-f84818901621
     content: Backlog
     children:
-      - 767e88bf-91ff-4771-9eb2-7e25fa73ae57
+      - e704d493-6653-4e28-8748-cf2363ba1c58
       - fae59a45-bfd7-4c23-85fa-b566ee48e16b
       - 689714e9-1848-44a8-8227-9551c21ba4bf
       - b129c479-f708-479c-a1a1-47f6a692247a
@@ -7031,7 +7032,7 @@ nodes:
     id: 77963e20-53e9-4db7-8802-8c718f202cef
     content: In progress
     children:
-      - 682650c3-1af5-4533-a4d3-403beb2d7bb7
+      - 99fc7f25-912e-4c50-88c8-c179d7213ae5
     metadata:
       status: pending
       appliedContextIds:
@@ -8293,8 +8294,11 @@ nodes:
     id: fae59a45-bfd7-4c23-85fa-b566ee48e16b
     content: Build archive system
     children:
+      - f6b7f766-03fe-4598-ad1d-294d020c5737
       - 917c9184-9e42-436b-bd84-b6041321e4ea
       - 31a137de-6ac0-4237-b788-b75c9c27f0ce
+      - 1d062c51-b893-4f68-872f-6549f529502c
+      - d14bf816-804a-4967-aa66-b35b4ca5f2f2
     metadata:
       status: pending
       expanded: true
@@ -9607,7 +9611,7 @@ nodes:
       status: pending
   31a137de-6ac0-4237-b788-b75c9c27f0ce:
     id: 31a137de-6ac0-4237-b788-b75c9c27f0ce
-    content: ''
+    content: Under it have an 'Archive' item
     children: []
     metadata:
       status: pending
@@ -9789,117 +9793,6 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  767e88bf-91ff-4771-9eb2-7e25fa73ae57:
-    id: 767e88bf-91ff-4771-9eb2-7e25fa73ae57
-    content: Blueprint export/import
-    children:
-      - 9aa1f072-ccda-4f75-963c-8508dfb5ec1c
-      - f1f799dc-837a-4b94-9acf-7102c647d63f
-      - 5b202b28-53ad-4636-acca-6aaea8017eb3
-      - 847c6a8c-2801-4ed6-a0a1-244636dbca5f
-      - 321f9dbc-b3fe-4696-a1c3-32faf3f95ed0
-    metadata:
-      status: pending
-  9aa1f072-ccda-4f75-963c-8508dfb5ec1c:
-    id: 9aa1f072-ccda-4f75-963c-8508dfb5ec1c
-    content: Change 'View' top menu option to 'Blueprint'
-    children: []
-    metadata:
-      status: pending
-  f1f799dc-837a-4b94-9acf-7102c647d63f:
-    id: f1f799dc-837a-4b94-9acf-7102c647d63f
-    content: Add item 'Export to blueprint'
-    children:
-      - 5f099413-3b59-4537-ae29-78ba1fbb2f58
-      - 78c50ae3-d908-4c55-ac43-4130f54dff86
-    metadata:
-      status: pending
-  5f099413-3b59-4537-ae29-78ba1fbb2f58:
-    id: 5f099413-3b59-4537-ae29-78ba1fbb2f58
-    content: When clicking, reuse the existing save interface
-    children: []
-    metadata:
-      status: pending
-  78c50ae3-d908-4c55-ac43-4130f54dff86:
-    id: 78c50ae3-d908-4c55-ac43-4130f54dff86
-    content: Save the arbo file with everything stripped except for blueprint nodes
-    children: []
-    metadata:
-      status: pending
-  5b202b28-53ad-4636-acca-6aaea8017eb3:
-    id: 5b202b28-53ad-4636-acca-6aaea8017eb3
-    content: Have a metadata on the arbo file to distinguish it as a blueprint
-    children: []
-    metadata:
-      status: pending
-  321f9dbc-b3fe-4696-a1c3-32faf3f95ed0:
-    id: 321f9dbc-b3fe-4696-a1c3-32faf3f95ed0
-    content: When opening a blueprint file, open in blueprint mode by default
-    children:
-      - b9181ab7-f15c-4d77-b495-bf0e5675428b
-    metadata:
-      status: pending
-  b9181ab7-f15c-4d77-b495-bf0e5675428b:
-    id: b9181ab7-f15c-4d77-b495-bf0e5675428b
-    content: 'When attempting to turn off blueprint mode, first prompt the user :'
-    children:
-      - b203c6f9-9ebe-4f27-897a-fb10755e5ed4
-    metadata:
-      status: pending
-  b203c6f9-9ebe-4f27-897a-fb10755e5ed4:
-    id: b203c6f9-9ebe-4f27-897a-fb10755e5ed4
-    content: "'This is a blueprint file, turning off blueprint mode will turn it into a regular file.\_ Are you sure ?'"
-    children:
-      - f0bedcea-3682-4742-91af-0591c366fd0f
-    metadata:
-      status: pending
-  f0bedcea-3682-4742-91af-0591c366fd0f:
-    id: f0bedcea-3682-4742-91af-0591c366fd0f
-    content: Change the wording of this as needed for clarity
-    children: []
-    metadata:
-      status: pending
-  847c6a8c-2801-4ed6-a0a1-244636dbca5f:
-    id: 847c6a8c-2801-4ed6-a0a1-244636dbca5f
-    content: Add an item 'Import from blueprint'
-    children:
-      - 2a677c32-59c0-43a8-a6fb-a3f44a98eb35
-      - b2a10d79-61e1-4af6-a8c3-a02695401741
-      - 770f35af-9795-4ee7-9216-aef1122c2c9e
-      - 5b07795a-e55f-4f40-be90-09f44897b54e
-      - 0d5c3085-814d-44ed-add7-472d32ad46fa
-    metadata:
-      status: pending
-  2a677c32-59c0-43a8-a6fb-a3f44a98eb35:
-    id: 2a677c32-59c0-43a8-a6fb-a3f44a98eb35
-    content: Creates an untitled file based on the blueprint
-    children: []
-    metadata:
-      status: pending
-  b2a10d79-61e1-4af6-a8c3-a02695401741:
-    id: b2a10d79-61e1-4af6-a8c3-a02695401741
-    content: Removes the blueprint metadata from the file
-    children: []
-    metadata:
-      status: pending
-  770f35af-9795-4ee7-9216-aef1122c2c9e:
-    id: 770f35af-9795-4ee7-9216-aef1122c2c9e
-    content: Starts in normal mode
-    children: []
-    metadata:
-      status: pending
-  5b07795a-e55f-4f40-be90-09f44897b54e:
-    id: 5b07795a-e55f-4f40-be90-09f44897b54e
-    content: Have to save as normal to persist the file
-    children: []
-    metadata:
-      status: pending
-  0d5c3085-814d-44ed-add7-472d32ad46fa:
-    id: 0d5c3085-814d-44ed-add7-472d32ad46fa
-    content: Does not propose the blueprint file name as the default one
-    children: []
-    metadata:
-      status: pending
   9f1e3dbf-0429-4815-a0fd-226c2aab3c00:
     id: 9f1e3dbf-0429-4815-a0fd-226c2aab3c00
     content: Point out any bad UX design
@@ -9909,6 +9802,363 @@ nodes:
   ec1a7856-c57d-4df4-93b9-b8cc30b1375c:
     id: ec1a7856-c57d-4df4-93b9-b8cc30b1375c
     content: State if you think the return on investment in relation to implementation time or added complexity is poor.
+    children: []
+    metadata:
+      status: pending
+  99fc7f25-912e-4c50-88c8-c179d7213ae5:
+    id: 99fc7f25-912e-4c50-88c8-c179d7213ae5
+    content: Blueprint export/import
+    children:
+      - f7a09ced-5fbc-49e4-8abe-36e3b2802358
+      - f11c4247-3779-4f4e-9923-f61726f43b90
+      - c32f00ab-b258-4474-8d7e-d8becdb8aea4
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f7a09ced-5fbc-49e4-8abe-36e3b2802358:
+    id: f7a09ced-5fbc-49e4-8abe-36e3b2802358
+    content: Export blueprint
+    children:
+      - 0cb647bf-96c4-4ac0-beb0-3df746e78440
+      - c7d66285-3ba3-4df7-8426-3bb34328af6d
+      - baab62a4-ee6e-4eec-9643-9f6c00f390ed
+      - 9a0f964c-3c1f-4c5c-9611-2b071838232e
+      - 2fcb2fba-f85c-4c0c-9c0d-80327e5e3c94
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0cb647bf-96c4-4ac0-beb0-3df746e78440:
+    id: 0cb647bf-96c4-4ac0-beb0-3df746e78440
+    content: Add 'Export as Blueprint...' menu item under 'File'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c7d66285-3ba3-4df7-8426-3bb34328af6d:
+    id: c7d66285-3ba3-4df7-8426-3bb34328af6d
+    content: Reuse existing save dialog interface
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  baab62a4-ee6e-4eec-9643-9f6c00f390ed:
+    id: baab62a4-ee6e-4eec-9643-9f6c00f390ed
+    content: Strip all non-blueprint nodes from the exported file
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9a0f964c-3c1f-4c5c-9611-2b071838232e:
+    id: 9a0f964c-3c1f-4c5c-9611-2b071838232e
+    content: 'Add `isBlueprint: true` metadata flag to the file'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f11c4247-3779-4f4e-9923-f61726f43b90:
+    id: f11c4247-3779-4f4e-9923-f61726f43b90
+    content: Import blueprint
+    children:
+      - 91509392-a0d5-42c3-82ee-e1fbc32e11ab
+      - 61981154-ceb4-4d94-8235-272d7862e0ca
+      - 4f92753d-1c15-42d1-8122-1d866ca6a63f
+      - b0cf59ec-3cac-45e7-8675-a90232c9a3ac
+      - 3fac0baf-26b0-481c-a58d-727572077f90
+      - 7743c9ad-ec15-43ae-884c-7ad4902640bc
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  91509392-a0d5-42c3-82ee-e1fbc32e11ab:
+    id: 91509392-a0d5-42c3-82ee-e1fbc32e11ab
+    content: Add 'Import from Blueprint...' menu item under 'File'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4f92753d-1c15-42d1-8122-1d866ca6a63f:
+    id: 4f92753d-1c15-42d1-8122-1d866ca6a63f
+    content: Create new untitled document based on blueprint structure
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b0cf59ec-3cac-45e7-8675-a90232c9a3ac:
+    id: b0cf59ec-3cac-45e7-8675-a90232c9a3ac
+    content: Remove `isBlueprint` metadata from the imported copy
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3fac0baf-26b0-481c-a58d-727572077f90:
+    id: 3fac0baf-26b0-481c-a58d-727572077f90
+    content: Start in normal mode (not blueprint mode)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7743c9ad-ec15-43ae-884c-7ad4902640bc:
+    id: 7743c9ad-ec15-43ae-884c-7ad4902640bc
+    content: Default filename should NOT suggest the blueprint filename
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c32f00ab-b258-4474-8d7e-d8becdb8aea4:
+    id: c32f00ab-b258-4474-8d7e-d8becdb8aea4
+    content: Blueprint file behavior
+    children:
+      - dd352b91-9156-4ffa-82e4-d6bbb3fa4ca7
+      - 9fc0772c-c250-4d04-95ae-d238520fdf9f
+      - 4d26a110-1aff-49e0-98a8-d5d65ab5c0b2
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  dd352b91-9156-4ffa-82e4-d6bbb3fa4ca7:
+    id: dd352b91-9156-4ffa-82e4-d6bbb3fa4ca7
+    content: Auto-detect blueprint files on open (via metadata)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9fc0772c-c250-4d04-95ae-d238520fdf9f:
+    id: 9fc0772c-c250-4d04-95ae-d238520fdf9f
+    content: Open blueprint files in blueprint mode by default
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4d26a110-1aff-49e0-98a8-d5d65ab5c0b2:
+    id: 4d26a110-1aff-49e0-98a8-d5d65ab5c0b2
+    content: Do not allow exiting blueprint mode on a blueprint file
+    children:
+      - 6bd1f1cb-1705-433c-8951-afa15228ff00
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2541928d-f53f-4069-9f56-498e131b2d2e:
+    id: 2541928d-f53f-4069-9f56-498e131b2d2e
+    content: Offer "Convert" and "Cancel" buttons (not just Yes/No)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6bd1f1cb-1705-433c-8951-afa15228ff00:
+    id: 6bd1f1cb-1705-433c-8951-afa15228ff00
+    content: 'Suggested wording: "This file is a blueprint template. Exiting blueprint mode will convert it to a regular file. Continue?"'
+    children:
+      - 2541928d-f53f-4069-9f56-498e131b2d2e
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1d062c51-b893-4f68-872f-6549f529502c:
+    id: 1d062c51-b893-4f68-872f-6549f529502c
+    content: When clicking on 'Archive' open a dialog box
+    children:
+      - 57940dea-50a2-4cae-a10a-f72191fc5246
+      - 0c788826-ba3b-4112-b740-aac49196b9d7
+    metadata:
+      status: pending
+  57940dea-50a2-4cae-a10a-f72191fc5246:
+    id: 57940dea-50a2-4cae-a10a-f72191fc5246
+    content: Let the user know what archive will do
+    children:
+      - 4206beee-a3cb-4043-9fd6-6cbf68734f4e
+      - 80a747b4-261f-46f9-9fac-d8cd38fc39b0
+    metadata:
+      status: pending
+  f6b7f766-03fe-4598-ad1d-294d020c5737:
+    id: f6b7f766-03fe-4598-ad1d-294d020c5737
+    content: Add Timestamp to each node metadata for when a node was marked as completed or abandoned
+    children:
+      - 669053e5-ec17-484f-9a85-bf2abddc3e82
+    metadata:
+      status: pending
+  e704d493-6653-4e28-8748-cf2363ba1c58:
+    id: e704d493-6653-4e28-8748-cf2363ba1c58
+    content: 'Change checkbox metadata to :'
+    children:
+      - 04a9dfe3-998e-4d42-9028-8edb6c014cac
+      - 8b5914ed-87a9-434e-9fd5-2825ac8d1842
+    metadata:
+      status: pending
+  04a9dfe3-998e-4d42-9028-8edb6c014cac:
+    id: 04a9dfe3-998e-4d42-9028-8edb6c014cac
+    content: When crossed = abandoned (instead of failed)
+    children: []
+    metadata:
+      status: pending
+  669053e5-ec17-484f-9a85-bf2abddc3e82:
+    id: 669053e5-ec17-484f-9a85-bf2abddc3e82
+    content: Clear timestamp when node is set to empty
+    children: []
+    metadata:
+      status: pending
+  4206beee-a3cb-4043-9fd6-6cbf68734f4e:
+    id: 4206beee-a3cb-4043-9fd6-6cbf68734f4e
+    content: Archives any nodes that have been checked as complete or abandoned
+    children: []
+    metadata:
+      status: pending
+  80a747b4-261f-46f9-9fac-d8cd38fc39b0:
+    id: 80a747b4-261f-46f9-9fac-d8cd38fc39b0
+    content: Archives any descendant nodes of a checked node
+    children: []
+    metadata:
+      status: pending
+  0c788826-ba3b-4112-b740-aac49196b9d7:
+    id: 0c788826-ba3b-4112-b740-aac49196b9d7
+    content: Have an optional date range
+    children:
+      - 7199312b-d1a7-4865-8311-f8b9ebe28eca
+      - 5de088f3-d41c-4c06-adbf-ba625bae316b
+      - d45e6910-b5f3-46ea-8565-890de6504698
+    metadata:
+      status: pending
+  7199312b-d1a7-4865-8311-f8b9ebe28eca:
+    id: 7199312b-d1a7-4865-8311-f8b9ebe28eca
+    content: Off by default
+    children: []
+    metadata:
+      status: pending
+  5de088f3-d41c-4c06-adbf-ba625bae316b:
+    id: 5de088f3-d41c-4c06-adbf-ba625bae316b
+    content: When activated, archives anything older than one week
+    children: []
+    metadata:
+      status: pending
+  d45e6910-b5f3-46ea-8565-890de6504698:
+    id: d45e6910-b5f3-46ea-8565-890de6504698
+    content: We need to show or explain to the user what it does when we archive
+    children: []
+    metadata:
+      status: pending
+  d14bf816-804a-4967-aa66-b35b4ca5f2f2:
+    id: d14bf816-804a-4967-aa66-b35b4ca5f2f2
+    content: Archiving a node moves it to an 'archive' node that is in the root but hidden (like the existing root node)
+    children:
+      - f8d002cd-17b1-48d5-b85c-8689ded71bec
+      - 1d0ff5e1-025f-4582-bd84-5fca9c1d850c
+    metadata:
+      status: pending
+  f8d002cd-17b1-48d5-b85c-8689ded71bec:
+    id: f8d002cd-17b1-48d5-b85c-8689ded71bec
+    content: This node and its descendants are not viewable or editable in normal mode
+    children: []
+    metadata:
+      status: pending
+  1d0ff5e1-025f-4582-bd84-5fca9c1d850c:
+    id: 1d0ff5e1-025f-4582-bd84-5fca9c1d850c
+    content: The entire ancestor path of the archive node is recreated in a simple form
+    children:
+      - 2b0a587f-9892-4bc4-93ae-11da5a9bd61b
+      - 74c48514-d7fd-4b1e-9c27-2fe42fc324a5
+      - 5c8ec4b5-04ec-48f9-9caa-c1f96235e41b
+    metadata:
+      status: pending
+  74c48514-d7fd-4b1e-9c27-2fe42fc324a5:
+    id: 74c48514-d7fd-4b1e-9c27-2fe42fc324a5
+    content: If the ancestor already exists we use the existing
+    children: []
+    metadata:
+      status: pending
+  2b0a587f-9892-4bc4-93ae-11da5a9bd61b:
+    id: 2b0a587f-9892-4bc4-93ae-11da5a9bd61b
+    content: We strip any blueprints from its ancestors
+    children: []
+    metadata:
+      status: pending
+  5c8ec4b5-04ec-48f9-9caa-c1f96235e41b:
+    id: 5c8ec4b5-04ec-48f9-9caa-c1f96235e41b
+    content: We regenerate IDs for the ancestors, to find them we check by name
+    children:
+      - d2db4033-5013-4cf8-95b2-4c13cd049b30
+      - b467eded-fca8-4a60-936d-e8bdfd59c892
+    metadata:
+      status: pending
+  d2db4033-5013-4cf8-95b2-4c13cd049b30:
+    id: d2db4033-5013-4cf8-95b2-4c13cd049b30
+    content: If the name and hierarchy of an ancestor is the same as an existing node in the archive, we use the existing
+    children: []
+    metadata:
+      status: pending
+  b467eded-fca8-4a60-936d-e8bdfd59c892:
+    id: b467eded-fca8-4a60-936d-e8bdfd59c892
+    content: ''
+    children: []
+    metadata:
+      status: pending
+  61981154-ceb4-4d94-8235-272d7862e0ca:
+    id: 61981154-ceb4-4d94-8235-272d7862e0ca
+    content: It should be before 'Export as Blueprint'
+    children: []
+    metadata:
+      status: pending
+  8b5914ed-87a9-434e-9fd5-2825ac8d1842:
+    id: 8b5914ed-87a9-434e-9fd5-2825ac8d1842
+    content: 'Rename any instances of ''status: failed'' in todo.arbo to ''status: abandoned'''
+    children: []
+    metadata:
+      status: pending
+  2fcb2fba-f85c-4c0c-9c0d-80327e5e3c94:
+    id: 2fcb2fba-f85c-4c0c-9c0d-80327e5e3c94
+    content: When exporting to the same filename as the current one
+    children:
+      - 52f066cc-ec7b-4fd8-a314-db80b2448995
+      - 87d5d3e2-f344-4242-9489-2e80adcccb68
+      - 9460ef36-bb24-4b1f-826d-9d35fc1bd893
+    metadata:
+      status: pending
+  87d5d3e2-f344-4242-9489-2e80adcccb68:
+    id: 87d5d3e2-f344-4242-9489-2e80adcccb68
+    content: Replaces the file with a blueprint file
+    children: []
+    metadata:
+      status: pending
+  9460ef36-bb24-4b1f-826d-9d35fc1bd893:
+    id: 9460ef36-bb24-4b1f-826d-9d35fc1bd893
+    content: Switches the current mode to blueprint (if not in it already)
+    children: []
+    metadata:
+      status: pending
+  52f066cc-ec7b-4fd8-a314-db80b2448995:
+    id: 52f066cc-ec7b-4fd8-a314-db80b2448995
+    content: Retains the existing warning when overwriting a file
     children: []
     metadata:
       status: pending

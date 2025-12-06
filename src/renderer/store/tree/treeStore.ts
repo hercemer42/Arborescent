@@ -45,6 +45,7 @@ export interface TreeState {
   feedbackFadingNodeIds: Set<string>; // Nodes fading out after feedback accepted
   contextDeclarations: ContextDeclarationInfo[]; // Cached list of context declarations
   blueprintModeEnabled: boolean; // When true, only blueprint nodes are shown
+  isFileBlueprintFile: boolean; // Whether the loaded file is a blueprint file
 
   actions: NodeActions & ContextActions & BlueprintActions & NavigationActions & PersistenceActions & NodeMovementActions & NodeDeletionActions & VisualEffectsActions & SelectionActions & HistoryActions & CollaborateActions & ClipboardActions & ExecuteActions;
 }
@@ -107,6 +108,7 @@ export function createTreeStore(treeType: TreeType = 'workspace') {
       feedbackFadingNodeIds: new Set(),
       contextDeclarations: [],
       blueprintModeEnabled: false,
+      isFileBlueprintFile: false,
 
       actions: {
         ...createNodeActions(get, set, persistenceActions.autoSave),

@@ -9,6 +9,7 @@ export interface ArboFile {
   updated: string;
   author: string;
   treeType?: TreeType;
+  isBlueprint?: boolean;
   rootNodeId: string;
   nodes: Record<string, TreeNode>;
 }

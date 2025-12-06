@@ -1,7 +1,7 @@
 import { StorageService } from '../../../../shared/interfaces';
 import { storeManager } from '../../storeManager';
 import { logger } from '../../../services/logger';
-import { createArboFile } from '../../../utils/document';
+import { createArboFile, extractBlueprintNodes } from '../../../utils/document';
 import { createBlankDocument } from '../../../data/defaultTemplate';
 import { File } from '../filesStore';
 import { getDisplayName } from '../../../../shared/utils/fileNaming';
@@ -14,6 +14,8 @@ export interface FileActions {
   saveFileAs: (filePath: string) => Promise<void>;
   loadAndOpenFile: (path: string, logContext?: string, showToast?: boolean) => Promise<void>;
   initializeSession: () => Promise<void>;
+  exportAsBlueprint: (filePath: string) => Promise<void>;
+  importFromBlueprint: () => Promise<void>;
 }
 
 type StoreState = {
@@ -280,6 +282,93 @@ export const createFileActions = (get: StoreGetter, storage: StorageService): Fi
     }
   }
 
+  async function exportAsBlueprint(filePath: string): Promise<void> {
+    try {
+      const store = storeManager.getStoreForFile(filePath);
+      const { nodes, rootNodeId, fileMeta } = store.getState();
+
+      // Extract only blueprint nodes
+      const blueprintNodes = extractBlueprintNodes(nodes, rootNodeId);
+
+      if (Object.keys(blueprintNodes).length === 0) {
+        logger.error('No blueprint nodes to export', undefined, 'BlueprintExport', true);
+        return;
+      }
+
+      // Show save dialog
+      const path = await storage.showSaveDialog();
+      if (!path) return;
+
+      // Create blueprint file with isBlueprint flag
+      const arboFile = createArboFile(blueprintNodes, rootNodeId, fileMeta || undefined, true);
+      await storage.saveDocument(path, arboFile);
+
+      // If exporting to the same path as the open file, update the store to reflect the new state
+      if (path === filePath) {
+        const { actions } = store.getState();
+        // Reinitialize with blueprint nodes only and set blueprint flags
+        actions.initialize(blueprintNodes, rootNodeId);
+        store.setState({
+          isFileBlueprintFile: true,
+          blueprintModeEnabled: true,
+        });
+      }
+
+      logger.success(`Blueprint exported: ${path}`, 'BlueprintExport', true);
+    } catch (error) {
+      logger.error(
+        `Failed to export blueprint: ${error instanceof Error ? error.message : 'Unknown error'}`,
+        error instanceof Error ? error : undefined,
+        'BlueprintExport',
+        true
+      );
+    }
+  }
+
+  async function importFromBlueprint(): Promise<void> {
+    try {
+      // Show open dialog to select blueprint file
+      const path = await storage.showOpenDialog();
+      if (!path) return;
+
+      // Load the blueprint file
+      const data = await storage.loadDocument(path);
+
+      if (!data.isBlueprint) {
+        logger.error('Selected file is not a blueprint', undefined, 'BlueprintImport', true);
+        return;
+      }
+
+      // Create a new temp file based on the blueprint
+      const { openFile } = get();
+
+      // Remove isBlueprint flag from the imported copy (it's now a regular file)
+      const importedNodes = { ...data.nodes };
+
+      const arboFile = createArboFile(importedNodes, data.rootNodeId);
+      const tempPath = await storage.createTempFile(arboFile);
+
+      const store = storeManager.getStoreForFile(tempPath);
+      const { actions } = store.getState();
+
+      actions.initialize(importedNodes, data.rootNodeId);
+      actions.setFilePath(tempPath);
+
+      // Open in normal mode (not blueprint mode)
+      const displayName = getDisplayName(tempPath, true);
+      openFile(tempPath, displayName, true);
+
+      logger.success('Blueprint imported as new file', 'BlueprintImport', true);
+    } catch (error) {
+      logger.error(
+        `Failed to import blueprint: ${error instanceof Error ? error.message : 'Unknown error'}`,
+        error instanceof Error ? error : undefined,
+        'BlueprintImport',
+        true
+      );
+    }
+  }
+
   return {
     closeFile,
     openFileWithDialog,
@@ -288,5 +377,7 @@ export const createFileActions = (get: StoreGetter, storage: StorageService): Fi
     saveFileAs,
     loadAndOpenFile,
     initializeSession,
+    exportAsBlueprint,
+    importFromBlueprint,
   };
 };

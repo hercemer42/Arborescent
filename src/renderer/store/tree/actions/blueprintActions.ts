@@ -20,6 +20,7 @@ type StoreState = {
   rootNodeId: string;
   ancestorRegistry: AncestorRegistry;
   blueprintModeEnabled: boolean;
+  isFileBlueprintFile: boolean;
   activeNodeId: string | null;
 };
 type StoreSetter = (partial: Partial<StoreState> | ((state: StoreState) => Partial<StoreState>)) => void;
@@ -104,17 +105,34 @@ export const createBlueprintActions = (
   }
 
   function toggleBlueprintMode(): void {
-    const { blueprintModeEnabled } = get();
+    const { blueprintModeEnabled, isFileBlueprintFile } = get();
     const newMode = !blueprintModeEnabled;
 
     // Clear selection when entering blueprint mode
     if (newMode) {
       set({ blueprintModeEnabled: true, activeNodeId: null });
+      logger.info('Blueprint mode enabled', 'Blueprint');
     } else {
-      set({ blueprintModeEnabled: false });
+      // If this is a blueprint file, show warning dialog before converting
+      if (isFileBlueprintFile) {
+        const confirmed = window.confirm(
+          'This file is a blueprint template.\n\n' +
+          'Exiting blueprint mode will convert it to a regular file. ' +
+          'You can also import it as a new document to keep the blueprint intact.\n\n' +
+          'Convert to regular file?'
+        );
+        if (!confirmed) {
+          return;
+        }
+        // Convert to regular file
+        set({ blueprintModeEnabled: false, isFileBlueprintFile: false });
+        triggerAutosave?.();
+        logger.info('Blueprint file converted to regular file', 'Blueprint');
+      } else {
+        set({ blueprintModeEnabled: false });
+        logger.info('Blueprint mode disabled', 'Blueprint');
+      }
     }
-
-    logger.info(`Blueprint mode ${newMode ? 'enabled' : 'disabled'}`, 'Blueprint');
   }
 
   return {

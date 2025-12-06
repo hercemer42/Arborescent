@@ -7,9 +7,18 @@ import { getKeyForAction } from '../../data/hotkeyConfig';
 import { formatHotkeyForDisplay } from '../../utils/hotkeyUtils';
 
 export function FileMenu() {
-  const { hasActiveFile } = useFileMenuState();
-  const { handleNew, handleOpen, handleSave, handleSaveAs, handleCloseTab, handleReload, handleQuit } =
-    useFileMenuActions();
+  const { hasActiveFile, hasBlueprintNodes } = useFileMenuState();
+  const {
+    handleNew,
+    handleOpen,
+    handleImportBlueprint,
+    handleExportBlueprint,
+    handleSave,
+    handleSaveAs,
+    handleCloseTab,
+    handleReload,
+    handleQuit,
+  } = useFileMenuActions();
 
   return (
     <Menu id="file" label="File">
@@ -22,6 +31,15 @@ export function FileMenu() {
         label="Open"
         shortcut={formatHotkeyForDisplay(getKeyForAction('file', 'open') || 'CmdOrCtrl+O')}
         onClick={handleOpen}
+      />
+      <MenuItem
+        label="Import from Blueprint..."
+        onClick={handleImportBlueprint}
+      />
+      <MenuItem
+        label="Export as Blueprint..."
+        onClick={handleExportBlueprint}
+        disabled={!hasActiveFile || !hasBlueprintNodes}
       />
       <MenuSeparator />
       <MenuItem

@@ -4,6 +4,8 @@ import { useFilesStore } from '../../../store/files/filesStore';
 interface FileMenuActions {
   handleNew: () => Promise<void>;
   handleOpen: () => Promise<void>;
+  handleImportBlueprint: () => Promise<void>;
+  handleExportBlueprint: () => Promise<void>;
   handleSave: () => Promise<void>;
   handleSaveAs: () => Promise<void>;
   handleCloseTab: () => Promise<void>;
@@ -25,6 +27,16 @@ export function useFileMenuActions(): FileMenuActions {
   const handleOpen = useCallback(async () => {
     await actions.openFileWithDialog();
   }, [actions]);
+
+  const handleImportBlueprint = useCallback(async () => {
+    await actions.importFromBlueprint();
+  }, [actions]);
+
+  const handleExportBlueprint = useCallback(async () => {
+    if (activeFilePath) {
+      await actions.exportAsBlueprint(activeFilePath);
+    }
+  }, [actions, activeFilePath]);
 
   const handleSave = useCallback(async () => {
     await actions.saveActiveFile();
@@ -53,6 +65,8 @@ export function useFileMenuActions(): FileMenuActions {
   return {
     handleNew,
     handleOpen,
+    handleImportBlueprint,
+    handleExportBlueprint,
     handleSave,
     handleSaveAs,
     handleCloseTab,

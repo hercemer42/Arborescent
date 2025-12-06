@@ -23,6 +23,7 @@ describe('blueprintActions', () => {
     rootNodeId: string;
     ancestorRegistry: Record<string, string[]>;
     blueprintModeEnabled: boolean;
+    isFileBlueprintFile: boolean;
     activeNodeId: string | null;
   };
   let state: TestState;
@@ -67,6 +68,7 @@ describe('blueprintActions', () => {
         'node-3': ['node-1', 'root'],
       },
       blueprintModeEnabled: false,
+      isFileBlueprintFile: false,
       activeNodeId: 'node-1',
     };
 

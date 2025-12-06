@@ -11,6 +11,8 @@ describe('persistenceActions', () => {
     currentFilePath: string | null;
     fileMeta: { created: string; author: string } | null;
     contextDeclarations: { nodeId: string; content: string; icon: string }[];
+    blueprintModeEnabled: boolean;
+    isFileBlueprintFile: boolean;
   };
   let setState: (partial: Partial<typeof state>) => void;
   let actions: ReturnType<typeof createPersistenceActions>;
@@ -33,6 +35,8 @@ describe('persistenceActions', () => {
       currentFilePath: null,
       fileMeta: null,
       contextDeclarations: [],
+      blueprintModeEnabled: false,
+      isFileBlueprintFile: false,
     };
 
     setState = (partial) => {
@@ -150,6 +154,61 @@ describe('persistenceActions', () => {
           rootNodeId: state.rootNodeId,
         })
       );
+    });
+  });
+
+  describe('blueprint file handling', () => {
+    it('should set isFileBlueprintFile and blueprintModeEnabled when loading a blueprint file', async () => {
+      const mockData = {
+        format: 'Arborescent' as const,
+        version: '1.0.0',
+        created: '2024-01-01',
+        updated: '2024-01-01',
+        author: 'Test',
+        isBlueprint: true,
+        rootNodeId: 'loaded-root',
+        nodes: {
+          'loaded-root': {
+            id: 'loaded-root',
+            content: 'Blueprint Root',
+            children: [],
+            metadata: { isBlueprint: true },
+          },
+        },
+      };
+
+      vi.mocked(mockStorage.loadDocument).mockResolvedValue(mockData);
+
+      await actions.loadFromPath('/test/blueprint.arbo');
+
+      expect(state.isFileBlueprintFile).toBe(true);
+      expect(state.blueprintModeEnabled).toBe(true);
+    });
+
+    it('should not set blueprint flags when loading a regular file', async () => {
+      const mockData = {
+        format: 'Arborescent' as const,
+        version: '1.0.0',
+        created: '2024-01-01',
+        updated: '2024-01-01',
+        author: 'Test',
+        rootNodeId: 'loaded-root',
+        nodes: {
+          'loaded-root': {
+            id: 'loaded-root',
+            content: 'Regular Root',
+            children: [],
+            metadata: {},
+          },
+        },
+      };
+
+      vi.mocked(mockStorage.loadDocument).mockResolvedValue(mockData);
+
+      await actions.loadFromPath('/test/regular.arbo');
+
+      expect(state.isFileBlueprintFile).toBe(false);
+      expect(state.blueprintModeEnabled).toBe(false);
     });
   });
 });

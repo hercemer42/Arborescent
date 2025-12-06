@@ -5,7 +5,11 @@ import { getKeyForAction } from '../../data/hotkeyConfig';
 import { formatHotkeyForDisplay } from '../../utils/hotkeyUtils';
 
 export function ViewMenu() {
-  const { hasActiveFile, blueprintModeEnabled, handleToggleBlueprintMode } = useViewMenuState();
+  const {
+    hasActiveFile,
+    blueprintModeEnabled,
+    handleToggleBlueprintMode,
+  } = useViewMenuState();
 
   return (
     <Menu id="view" label="View">

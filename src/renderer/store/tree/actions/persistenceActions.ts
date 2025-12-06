@@ -27,6 +27,8 @@ type StoreState = {
   currentFilePath: string | null;
   fileMeta: { created: string; author: string } | null;
   contextDeclarations: ContextDeclarationInfo[];
+  blueprintModeEnabled: boolean;
+  isFileBlueprintFile: boolean;
 };
 type StoreSetter = (partial: Partial<StoreState>) => void;
 type StoreGetter = () => StoreState;
@@ -43,8 +45,8 @@ export const createPersistenceActions = (
   }
 
   async function performSave(path: string, fileMeta?: { created: string; author: string }): Promise<void> {
-    const { nodes, rootNodeId } = get();
-    const arboFile = createArboFile(nodes, rootNodeId, fileMeta);
+    const { nodes, rootNodeId, isFileBlueprintFile } = get();
+    const arboFile = createArboFile(nodes, rootNodeId, fileMeta, isFileBlueprintFile);
     await storage.saveDocument(path, arboFile);
   }
 
@@ -79,6 +81,7 @@ export const createPersistenceActions = (
     }
 
     const contextDeclarations = getContextDeclarations(migratedNodes);
+    const isBlueprint = data.isBlueprint === true;
 
     set({
       ...updateAncestorRegistry(data.rootNodeId, migratedNodes),
@@ -86,6 +89,8 @@ export const createPersistenceActions = (
       currentFilePath: path,
       fileMeta: { created: data.created, author: data.author },
       contextDeclarations,
+      isFileBlueprintFile: isBlueprint,
+      blueprintModeEnabled: isBlueprint,
     });
 
     // Restore collaboration state if there's collaboration metadata

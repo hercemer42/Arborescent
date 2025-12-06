@@ -34,6 +34,8 @@ describe('FileMenu', () => {
   const defaultActions = {
     handleNew: vi.fn(),
     handleOpen: vi.fn(),
+    handleImportBlueprint: vi.fn(),
+    handleExportBlueprint: vi.fn(),
     handleSave: vi.fn(),
     handleSaveAs: vi.fn(),
     handleCloseTab: vi.fn(),
@@ -55,7 +57,7 @@ describe('FileMenu', () => {
     useMenuBarStore.setState({ openMenuId: null });
 
     // Default mocks
-    mockUseFileMenuState.mockReturnValue({ hasActiveFile: true });
+    mockUseFileMenuState.mockReturnValue({ hasActiveFile: true, hasBlueprintNodes: false });
     mockUseFileMenuActions.mockReturnValue(defaultActions);
     mockGetKeyForAction.mockImplementation((context, action) => {
       const keys: Record<string, string> = {
@@ -117,7 +119,7 @@ describe('FileMenu', () => {
 
   describe('disabled state', () => {
     it('should disable Save when no active file', () => {
-      mockUseFileMenuState.mockReturnValue({ hasActiveFile: false });
+      mockUseFileMenuState.mockReturnValue({ hasActiveFile: false, hasBlueprintNodes: false });
       renderFileMenu();
 
       const saveItem = screen.getByText('Save').closest('button');
@@ -125,7 +127,7 @@ describe('FileMenu', () => {
     });
 
     it('should disable Save As when no active file', () => {
-      mockUseFileMenuState.mockReturnValue({ hasActiveFile: false });
+      mockUseFileMenuState.mockReturnValue({ hasActiveFile: false, hasBlueprintNodes: false });
       renderFileMenu();
 
       const saveAsItem = screen.getByText('Save As').closest('button');
@@ -133,7 +135,7 @@ describe('FileMenu', () => {
     });
 
     it('should disable Close Tab when no active file', () => {
-      mockUseFileMenuState.mockReturnValue({ hasActiveFile: false });
+      mockUseFileMenuState.mockReturnValue({ hasActiveFile: false, hasBlueprintNodes: false });
       renderFileMenu();
 
       const closeTabItem = screen.getByText('Close Tab').closest('button');
@@ -141,7 +143,7 @@ describe('FileMenu', () => {
     });
 
     it('should enable Save, Save As, Close Tab when active file exists', () => {
-      mockUseFileMenuState.mockReturnValue({ hasActiveFile: true });
+      mockUseFileMenuState.mockReturnValue({ hasActiveFile: true, hasBlueprintNodes: false });
       renderFileMenu();
 
       const saveItem = screen.getByText('Save').closest('button');
@@ -154,7 +156,7 @@ describe('FileMenu', () => {
     });
 
     it('should always enable New regardless of active file', () => {
-      mockUseFileMenuState.mockReturnValue({ hasActiveFile: false });
+      mockUseFileMenuState.mockReturnValue({ hasActiveFile: false, hasBlueprintNodes: false });
       renderFileMenu();
 
       const newItem = screen.getByText('New').closest('button');
@@ -162,7 +164,7 @@ describe('FileMenu', () => {
     });
 
     it('should always enable Open regardless of active file', () => {
-      mockUseFileMenuState.mockReturnValue({ hasActiveFile: false });
+      mockUseFileMenuState.mockReturnValue({ hasActiveFile: false, hasBlueprintNodes: false });
       renderFileMenu();
 
       const openItem = screen.getByText('Open').closest('button');
@@ -170,7 +172,7 @@ describe('FileMenu', () => {
     });
 
     it('should always enable Reload Application regardless of active file', () => {
-      mockUseFileMenuState.mockReturnValue({ hasActiveFile: false });
+      mockUseFileMenuState.mockReturnValue({ hasActiveFile: false, hasBlueprintNodes: false });
       renderFileMenu();
 
       const reloadItem = screen.getByText('Reload Application').closest('button');
@@ -178,7 +180,7 @@ describe('FileMenu', () => {
     });
 
     it('should always enable Quit regardless of active file', () => {
-      mockUseFileMenuState.mockReturnValue({ hasActiveFile: false });
+      mockUseFileMenuState.mockReturnValue({ hasActiveFile: false, hasBlueprintNodes: false });
       renderFileMenu();
 
       const quitItem = screen.getByText('Quit').closest('button');
@@ -251,7 +253,7 @@ describe('FileMenu', () => {
     });
 
     it('should not call handleSave when Save is disabled and clicked', () => {
-      mockUseFileMenuState.mockReturnValue({ hasActiveFile: false });
+      mockUseFileMenuState.mockReturnValue({ hasActiveFile: false, hasBlueprintNodes: false });
       renderFileMenu();
 
       const saveItem = screen.getByText('Save');
@@ -261,7 +263,7 @@ describe('FileMenu', () => {
     });
 
     it('should not call handleSaveAs when Save As is disabled and clicked', () => {
-      mockUseFileMenuState.mockReturnValue({ hasActiveFile: false });
+      mockUseFileMenuState.mockReturnValue({ hasActiveFile: false, hasBlueprintNodes: false });
       renderFileMenu();
 
       const saveAsItem = screen.getByText('Save As');
@@ -271,7 +273,7 @@ describe('FileMenu', () => {
     });
 
     it('should not call handleCloseTab when Close Tab is disabled and clicked', () => {
-      mockUseFileMenuState.mockReturnValue({ hasActiveFile: false });
+      mockUseFileMenuState.mockReturnValue({ hasActiveFile: false, hasBlueprintNodes: false });
       renderFileMenu();
 
       const closeTabItem = screen.getByText('Close Tab');
@@ -313,7 +315,7 @@ describe('FileMenu', () => {
     });
 
     it('should not close menu when disabled item is clicked', () => {
-      mockUseFileMenuState.mockReturnValue({ hasActiveFile: false });
+      mockUseFileMenuState.mockReturnValue({ hasActiveFile: false, hasBlueprintNodes: false });
       renderFileMenu();
       expect(useMenuBarStore.getState().openMenuId).toBe('file');
 
