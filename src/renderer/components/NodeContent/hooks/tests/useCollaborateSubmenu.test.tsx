@@ -28,7 +28,6 @@ describe('buildCollaborateSubmenu', () => {
       const node = createNode('regular-node');
       const result = buildCollaborateSubmenu({ ...defaultParams, node });
 
-      expect(result).toHaveLength(2);
       expect(result[0].label).toBe('In terminal');
       expect(result[1].label).toBe('In browser');
     });
@@ -39,6 +38,16 @@ describe('buildCollaborateSubmenu', () => {
 
       expect(result[0].disabled).toBe(true);
       expect(result[1].disabled).toBe(true);
+    });
+
+    it('should show hint message when no context applied', () => {
+      const node = createNode('regular-node');
+      const result = buildCollaborateSubmenu({ ...defaultParams, node, hasEffectiveContext: false });
+
+      expect(result).toHaveLength(4);
+      expect(result[2].label).toBe('-');
+      expect(result[3].label).toBe('Apply context to enable');
+      expect(result[3].disabled).toBe(true);
     });
 
     it('should enable actions when context is applied', () => {
@@ -172,7 +181,7 @@ describe('buildCollaborateSubmenu', () => {
       const onSetActiveContext = vi.fn();
       const node = createNode('task-node', {
         appliedContextIds: ['ctx-1', 'ctx-2'],
-        activeContextId: 'ctx-1',
+        activeCollaborateContextId: 'ctx-1',
       });
       const nodes = {
         'task-node': node,
@@ -185,14 +194,14 @@ describe('buildCollaborateSubmenu', () => {
       // Click the non-active context (ctx-2) - index 5 in new structure
       result[5].onClick?.();
 
-      expect(onSetActiveContext).toHaveBeenCalledWith('task-node', 'ctx-2');
+      expect(onSetActiveContext).toHaveBeenCalledWith('task-node', 'ctx-2', 'collaborate');
     });
 
     it('should not call onSetActiveContext when clicking active context', () => {
       const onSetActiveContext = vi.fn();
       const node = createNode('task-node', {
         appliedContextIds: ['ctx-1', 'ctx-2'],
-        activeContextId: 'ctx-1',
+        activeCollaborateContextId: 'ctx-1',
       });
       const nodes = {
         'task-node': node,

@@ -5,13 +5,15 @@ import { useToastStore } from '../../toast/toastStore';
 import { ContextDeclarationInfo } from '../treeStore';
 import { AncestorRegistry } from '../../../services/ancestry';
 
+export type ContextActionType = 'execute' | 'collaborate';
+
 export interface ContextActions {
   declareAsContext: (nodeId: string, icon?: string, color?: string) => void;
   setContextIcon: (nodeId: string, icon: string, color?: string) => void;
   removeContextDeclaration: (nodeId: string) => void;
   applyContext: (nodeId: string, contextNodeId: string) => void;
   removeAppliedContext: (nodeId: string, contextNodeId?: string) => void;
-  setActiveContext: (nodeId: string, contextNodeId: string) => void;
+  setActiveContext: (nodeId: string, contextNodeId: string, actionType?: ContextActionType) => void;
   addToBundle: (nodeId: string, contextNodeId: string) => void;
   removeFromBundle: (nodeId: string, contextNodeId: string) => void;
   refreshContextDeclarations: () => void;
@@ -305,7 +307,7 @@ export const createContextActions = (
     triggerAutosave?.();
   }
 
-  function setActiveContext(nodeId: string, contextNodeId: string): void {
+  function setActiveContext(nodeId: string, contextNodeId: string, actionType?: ContextActionType): void {
     const { nodes, ancestorRegistry } = get();
     const node = nodes[nodeId];
     if (!node) return;
@@ -316,13 +318,17 @@ export const createContextActions = (
       return;
     }
 
+    const metadataKey = actionType === 'execute' ? 'activeExecuteContextId'
+      : actionType === 'collaborate' ? 'activeCollaborateContextId'
+      : 'activeContextId';
+
     set({
       nodes: updateNodeMetadata(nodes, nodeId, {
-        activeContextId: contextNodeId,
+        [metadataKey]: contextNodeId,
       }),
     });
 
-    logger.info(`Active context set to ${contextNodeId} for node ${nodeId}`, 'Context');
+    logger.info(`Active ${actionType || 'default'} context set to ${contextNodeId} for node ${nodeId}`, 'Context');
 
     triggerAutosave?.();
   }

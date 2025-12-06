@@ -81,11 +81,19 @@ export function getEffectiveContextIds(
   return result;
 }
 
+export type ContextActionType = 'execute' | 'collaborate';
+
+function getActiveContextMetadataKey(actionType?: ContextActionType): string {
+  if (actionType === 'execute') return 'activeExecuteContextId';
+  if (actionType === 'collaborate') return 'activeCollaborateContextId';
+  return 'activeContextId';
+}
+
 /**
- * Get the active context ID for collaboration.
+ * Get the active context ID for a given action type.
  *
  * Priority:
- * 1. Node's explicit activeContextId if set and valid in effective contexts
+ * 1. Node's explicit activeContextId (action-specific) if set and valid
  * 2. Node's first directly applied context (if node has its own contexts)
  * 3. Nearest ancestor's activeContextId (if inheriting)
  * 4. First inherited context from nearest ancestor
@@ -93,7 +101,8 @@ export function getEffectiveContextIds(
 export function getActiveContextId(
   nodeId: string,
   nodes: Record<string, TreeNode>,
-  ancestorRegistry: AncestorRegistry
+  ancestorRegistry: AncestorRegistry,
+  actionType?: ContextActionType
 ): string | undefined {
   const node = nodes[nodeId];
   if (!node) return undefined;
@@ -101,27 +110,24 @@ export function getActiveContextId(
   const effectiveContexts = getEffectiveContextIds(nodeId, nodes, ancestorRegistry);
   if (effectiveContexts.length === 0) return undefined;
 
-  // Check if node has explicit activeContextId that's still valid
-  const activeId = node.metadata.activeContextId as string | undefined;
+  const metadataKey = getActiveContextMetadataKey(actionType);
+
+  const activeId = node.metadata[metadataKey] as string | undefined;
   if (activeId && effectiveContexts.includes(activeId)) {
     return activeId;
   }
 
-  // If node has its own contexts, use the first one
   const nodeContexts = getAppliedContextIds(node);
   if (nodeContexts.length > 0) {
     return nodeContexts[0];
   }
 
-  // Inheriting from ancestors - find the nearest ancestor with contexts
-  // and use their activeContextId if valid, otherwise their first context
   for (const ancestorId of getAncestorsClosestFirst(nodeId, ancestorRegistry)) {
     const ancestor = nodes[ancestorId];
     if (!ancestor) continue;
     const ancestorContexts = getAppliedContextIds(ancestor);
     if (ancestorContexts.length > 0) {
-      // Use ancestor's activeContextId if set and valid
-      const ancestorActiveId = ancestor.metadata.activeContextId as string | undefined;
+      const ancestorActiveId = ancestor.metadata[metadataKey] as string | undefined;
       if (ancestorActiveId && ancestorContexts.includes(ancestorActiveId)) {
         return ancestorActiveId;
       }

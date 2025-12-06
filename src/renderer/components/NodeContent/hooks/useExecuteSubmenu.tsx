@@ -1,6 +1,7 @@
 import { TreeNode } from '../../../../shared/types';
 import { ContextMenuItem } from '../../ui/ContextMenu';
 import { AncestorRegistry } from '../../../services/ancestry';
+import { ContextActionType } from '../../../utils/nodeHelpers';
 import { buildContextAwareSubmenu } from './useContextAwareSubmenu';
 
 interface BuildExecuteSubmenuParams {
@@ -10,7 +11,7 @@ interface BuildExecuteSubmenuParams {
   hasEffectiveContext: boolean;
   onExecuteInBrowser: () => void;
   onExecuteInTerminal: () => void;
-  onSetActiveContext: (nodeId: string, contextId: string) => void;
+  onSetActiveContext: (nodeId: string, contextId: string, actionType?: ContextActionType) => void;
 }
 
 export function buildExecuteSubmenu({
@@ -27,6 +28,7 @@ export function buildExecuteSubmenu({
     nodes,
     ancestorRegistry,
     hasEffectiveContext,
+    actionType: 'execute',
     onTerminalAction: onExecuteInTerminal,
     onBrowserAction: onExecuteInBrowser,
     onSetActiveContext,
