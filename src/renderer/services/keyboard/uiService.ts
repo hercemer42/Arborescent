@@ -90,6 +90,14 @@ async function handleUIShortcuts(event: KeyboardEvent): Promise<void> {
     return;
   }
 
+  // Toggle summary mode
+  if (matchesHotkey(event, 'view', 'toggleSummaryMode')) {
+    event.preventDefault();
+    const store = getActiveStore();
+    store?.getState().actions.toggleSummaryMode();
+    return;
+  }
+
   // Reload application
   if (matchesHotkey(event, 'file', 'reload')) {
     event.preventDefault();

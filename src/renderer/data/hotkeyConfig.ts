@@ -44,6 +44,7 @@ export interface HotkeyConfig {
     toggleTerminal: string;
     toggleBrowser: string;
     toggleBlueprintMode: string;
+    toggleSummaryMode: string;
   };
 }
 

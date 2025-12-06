@@ -156,6 +156,7 @@ describe('hotkeyConfig', () => {
           toggleTerminal: 'CmdOrCtrl+T',
           toggleBrowser: 'CmdOrCtrl+B',
           toggleBlueprintMode: 'CmdOrCtrl+Shift+B',
+          toggleSummaryMode: 'CmdOrCtrl+Shift+U',
         },
       };
 
@@ -210,6 +211,7 @@ describe('hotkeyConfig', () => {
           toggleTerminal: 'CmdOrCtrl+T',
           toggleBrowser: 'CmdOrCtrl+B',
           toggleBlueprintMode: 'CmdOrCtrl+Shift+B',
+          toggleSummaryMode: 'CmdOrCtrl+Shift+U',
         },
       };
 

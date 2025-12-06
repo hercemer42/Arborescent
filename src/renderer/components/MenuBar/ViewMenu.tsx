@@ -26,6 +26,7 @@ export function ViewMenu() {
       <MenuSeparator />
       <MenuItem
         label="Summary Mode"
+        shortcut={formatHotkeyForDisplay(getKeyForAction('view', 'toggleSummaryMode') || 'CmdOrCtrl+Shift+U')}
         checked={summaryModeEnabled}
         onClick={handleToggleSummaryMode}
         disabled={!hasActiveFile}

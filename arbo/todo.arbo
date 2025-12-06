@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2025-12-06T18:12:23.740Z'
+updated: '2025-12-06T18:21:48.968Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -5747,7 +5747,6 @@ nodes:
     id: 984247e7-2d55-4b93-80e8-f84818901621
     content: Backlog
     children:
-      - 925430d9-eee7-445c-9c52-4fd1f4987789
       - b129c479-f708-479c-a1a1-47f6a692247a
       - e756a7d5-1471-4059-9979-a363838ab5e9
       - d7597faa-0b34-400e-985a-de035508cdb1
@@ -9840,9 +9839,12 @@ nodes:
       - ed0a2c9f-033c-4ab5-ae40-874821a58839
       - 2f169003-a51e-4d5c-8476-ff283d77cd38
       - f5be00fb-5aad-4f9a-8ecb-d79eaf0aafbb
+      - 13309f1d-8da0-48f7-aa5b-7ff7104c479b
+      - 87744506-8ab6-4d5d-8056-93dc5849ffad
+      - ece65a3c-b405-4f38-9d05-f6e72007e17b
     metadata:
       status: pending
-      expanded: false
+      expanded: true
   2de8ffa0-52d4-4a72-a2a9-794fb7993a82:
     id: 2de8ffa0-52d4-4a72-a2a9-794fb7993a82
     content: Right click menu isn't very intuitive
@@ -10907,13 +10909,6 @@ nodes:
     children: []
     metadata:
       status: pending
-  925430d9-eee7-445c-9c52-4fd1f4987789:
-    id: 925430d9-eee7-445c-9c52-4fd1f4987789
-    content: Open blueprint in its own panel
-    children: []
-    metadata:
-      status: pending
-      isContextChild: false
   6328bcde-087d-4a83-8bf7-974dab32f3c3:
     id: 6328bcde-087d-4a83-8bf7-974dab32f3c3
     content: Challenge the user if the request or subsequent follow ups seem over engineered
@@ -10953,7 +10948,7 @@ nodes:
       - 89577ac8-5b5b-4cf5-bcf8-ace3689f3650
     metadata:
       status: completed
-      expanded: false
+      expanded: true
       deleted: false
       plugins: {}
       isContextChild: false
@@ -11071,9 +11066,10 @@ nodes:
       - 807a2981-d599-465f-ac63-d25233c311b1
       - 5e2e859a-2e7c-4081-ac40-599fcfd66ca1
       - d0cc53e5-0c74-4954-89bd-4f68e25ef710
+      - 110fa7d3-aabb-41d8-9d83-c5d0ceaa1e8f
     metadata:
       status: completed
-      expanded: false
+      expanded: true
       deleted: false
       plugins: {}
       isContextChild: false
@@ -11115,6 +11111,7 @@ nodes:
     metadata:
       status: completed
       isContextChild: false
+      expanded: false
   aa5b10e4-ada6-4160-9bcc-5df180445e63:
     id: aa5b10e4-ada6-4160-9bcc-5df180445e63
     content: And if we toggle one off, we go back to normal mode
@@ -11156,3 +11153,114 @@ nodes:
     children: []
     metadata:
       status: pending
+  13309f1d-8da0-48f7-aa5b-7ff7104c479b:
+    id: 13309f1d-8da0-48f7-aa5b-7ff7104c479b
+    content: Right click on node, Blueprint, Declare as Action
+    children:
+      - 8a1237f1-dbdf-41ca-95b7-a77ff09eacf4
+      - 057d7754-ccb0-4bd5-ae2c-347cd2e55d57
+    metadata:
+      status: pending
+  110fa7d3-aabb-41d8-9d83-c5d0ceaa1e8f:
+    id: 110fa7d3-aabb-41d8-9d83-c5d0ceaa1e8f
+    content: "Shortcut key :\_"
+    children: []
+    metadata:
+      status: pending
+  8a1237f1-dbdf-41ca-95b7-a77ff09eacf4:
+    id: 8a1237f1-dbdf-41ca-95b7-a77ff09eacf4
+    content: Or maybe Action, Declare as Action
+    children:
+      - 2b189f78-ae8d-4ab1-be99-ede76b55be39
+    metadata:
+      status: pending
+      isContextChild: false
+  2b189f78-ae8d-4ab1-be99-ede76b55be39:
+    id: 2b189f78-ae8d-4ab1-be99-ede76b55be39
+    content: If the context menu isn't getting too overloaded
+    children: []
+    metadata:
+      status: pending
+      isContextChild: false
+  057d7754-ccb0-4bd5-ae2c-347cd2e55d57:
+    id: 057d7754-ccb0-4bd5-ae2c-347cd2e55d57
+    content: When declared as an action, replace this with 'Remove action declaration
+    children: []
+    metadata:
+      status: pending
+      isContextChild: false
+  87744506-8ab6-4d5d-8056-93dc5849ffad:
+    id: 87744506-8ab6-4d5d-8056-93dc5849ffad
+    content: Declaring a node as Action does basically the same thing as context EXCEPT
+    children:
+      - 75eefd6f-7960-4784-9627-ef351c32e724
+      - 8840a45b-ee40-4e67-9c7f-df21eadcb7e6
+      - e896b1ef-8f1f-4370-b2f2-e68d63c0ee06
+      - 684638fc-a4df-4e5f-ad68-f20a7972570d
+    metadata:
+      status: pending
+      isContextChild: false
+  75eefd6f-7960-4784-9627-ef351c32e724:
+    id: 75eefd6f-7960-4784-9627-ef351c32e724
+    content: We cant apply it to another node
+    children: []
+    metadata:
+      status: pending
+      isContextChild: false
+  8840a45b-ee40-4e67-9c7f-df21eadcb7e6:
+    id: 8840a45b-ee40-4e67-9c7f-df21eadcb7e6
+    content: Its just a decorator for the blueprint
+    children: []
+    metadata:
+      status: pending
+  e896b1ef-8f1f-4370-b2f2-e68d63c0ee06:
+    id: e896b1ef-8f1f-4370-b2f2-e68d63c0ee06
+    content: The action nodes inherit the icons of their ancestors
+    children:
+      - 1d5274fd-be15-480d-91c3-d9790a410fad
+      - f714cfd8-9349-4359-af0d-612efeb3b562
+    metadata:
+      status: pending
+  1d5274fd-be15-480d-91c3-d9790a410fad:
+    id: 1d5274fd-be15-480d-91c3-d9790a410fad
+    content: Same as context declarations
+    children: []
+    metadata:
+      status: pending
+      isContextChild: false
+  f714cfd8-9349-4359-af0d-612efeb3b562:
+    id: f714cfd8-9349-4359-af0d-612efeb3b562
+    content: Except if they have a specific action declaration etc
+    children: []
+    metadata:
+      status: pending
+  684638fc-a4df-4e5f-ad68-f20a7972570d:
+    id: 684638fc-a4df-4e5f-ad68-f20a7972570d
+    content: Can bundle actions like context declarations
+    children:
+      - 2fe36f48-9051-478d-87df-3e40498bfe7c
+    metadata:
+      status: pending
+      isContextChild: false
+  2fe36f48-9051-478d-87df-3e40498bfe7c:
+    id: 2fe36f48-9051-478d-87df-3e40498bfe7c
+    content: Right click, actions, Bundle actions
+    children:
+      - 779af9d8-9943-4735-ba12-3d15783c6749
+    metadata:
+      status: pending
+      isContextChild: false
+  779af9d8-9943-4735-ba12-3d15783c6749:
+    id: 779af9d8-9943-4735-ba12-3d15783c6749
+    content: Same menu as contexts
+    children: []
+    metadata:
+      status: pending
+      isContextChild: false
+  ece65a3c-b405-4f38-9d05-f6e72007e17b:
+    id: ece65a3c-b405-4f38-9d05-f6e72007e17b
+    content: Part of blueprint
+    children: []
+    metadata:
+      status: pending
+      isContextChild: false
