@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2025-12-07T19:50:09.853Z'
+updated: '2025-12-07T20:04:25.411Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -6117,7 +6117,7 @@ nodes:
       - 00757321-75c1-44a9-981f-2362add1989f
     metadata:
       status: pending
-      expanded: true
+      expanded: false
       deleted: false
       plugins: {}
       isContextDeclaration: true
@@ -6775,8 +6775,7 @@ nodes:
   0cc62ae1-1a7a-4aa4-bc6a-d817cabd672c:
     id: 0cc62ae1-1a7a-4aa4-bc6a-d817cabd672c
     content: Refactor
-    children:
-      - dfcda7c1-f818-45dc-ace5-802ea0f460a0
+    children: []
     metadata:
       status: pending
       expanded: true
@@ -9538,10 +9537,11 @@ nodes:
       - a6d315e0-ea62-47a9-973e-74331e8f0139
       - d297e25a-add5-474b-af7a-1c130eab9930
       - 1dafbd35-70a1-4920-ba69-c61e7d5dbc8a
+      - 9c0a2ade-f9bb-4d04-b2a8-b142eaeb8d88
     metadata:
       status: pending
       isContextDeclaration: false
-      blueprintIcon: CheckSquare2
+      blueprintIcon: CheckSquare
       blueprintColor: '#22c55e'
       isBlueprint: true
       expanded: true
@@ -9555,6 +9555,7 @@ nodes:
       deleted: false
       plugins: {}
       isBlueprint: true
+      isContextDeclaration: false
   d297e25a-add5-474b-af7a-1c130eab9930:
     id: d297e25a-add5-474b-af7a-1c130eab9930
     content: There are no linting errors
@@ -9565,6 +9566,7 @@ nodes:
       deleted: false
       plugins: {}
       isBlueprint: true
+      isContextDeclaration: false
   1dafbd35-70a1-4920-ba69-c61e7d5dbc8a:
     id: 1dafbd35-70a1-4920-ba69-c61e7d5dbc8a
     content: There are no typescript errors
@@ -9575,6 +9577,7 @@ nodes:
       deleted: false
       plugins: {}
       isBlueprint: true
+      isContextDeclaration: false
   79b693ca-27ce-4410-8617-8092d7e81b07:
     id: 79b693ca-27ce-4410-8617-8092d7e81b07
     content: Bugs
@@ -12136,6 +12139,7 @@ nodes:
     metadata:
       status: pending
       isBlueprint: true
+      isContextDeclaration: false
   1f25c3b9-ef26-4402-8979-695a1d2274f9:
     id: 1f25c3b9-ef26-4402-8979-695a1d2274f9
     content: Check if you need to add tests
@@ -12143,6 +12147,7 @@ nodes:
     metadata:
       status: pending
       isBlueprint: true
+      isContextDeclaration: false
   ac483450-9717-4a84-a8a5-d6750db36d2a:
     id: ac483450-9717-4a84-a8a5-d6750db36d2a
     content: Is undoable
@@ -13237,203 +13242,10 @@ nodes:
     children: []
     metadata:
       status: pending
-  dfcda7c1-f818-45dc-ace5-802ea0f460a0:
-    id: dfcda7c1-f818-45dc-ace5-802ea0f460a0
-    content: Refactoring Tasks from Review
-    children:
-      - 4d5f5c52-1b59-4cdc-9f53-2eff63d789fc
-      - c51c8863-7689-4ac8-95a4-ccc358b293ab
-      - 581afd42-1744-4e27-a184-86784d654e26
-      - 3cc9431f-b2bb-4c67-a372-51734f2fec2c
-      - 26431056-c663-4aff-b943-35f58da97f0b
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-      activeExecuteContextId: 64ea2af4-332b-44a6-8b88-78535cc9b79a
-  4d5f5c52-1b59-4cdc-9f53-2eff63d789fc:
-    id: 4d5f5c52-1b59-4cdc-9f53-2eff63d789fc
-    content: 'Medium Priority: Delete abandoned code'
-    children:
-      - 46bfdc0f-52d6-45c2-870f-462acbc6e1f5
-      - 7cee47a4-71d1-4fb6-83c6-6441aeb56af9
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  46bfdc0f-52d6-45c2-870f-462acbc6e1f5:
-    id: 46bfdc0f-52d6-45c2-870f-462acbc6e1f5
-    content: Delete `src/renderer/components/NodeGutter/GutterContextIndicator/BundleTooltip.tsx`
+  9c0a2ade-f9bb-4d04-b2a8-b142eaeb8d88:
+    id: 9c0a2ade-f9bb-4d04-b2a8-b142eaeb8d88
+    content: Don't commit, I'll do that
     children: []
     metadata:
       status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  7cee47a4-71d1-4fb6-83c6-6441aeb56af9:
-    id: 7cee47a4-71d1-4fb6-83c6-6441aeb56af9
-    content: 'Note: No longer imported after switching to ActionContextTooltip.tsx'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  c51c8863-7689-4ac8-95a4-ccc358b293ab:
-    id: c51c8863-7689-4ac8-95a4-ccc358b293ab
-    content: 'Medium Priority: Remove dead code after execution migration'
-    children:
-      - eee61a4a-1df1-4bc3-8ca1-324a5b426d00
-      - dbb3b24d-4db6-4094-bc94-277ff4dadc2e
-      - cbc16b12-c1ea-4bd1-82bd-8c14e3fa6ee2
-      - 63cc68d0-4ce2-4f1d-b7dd-f9301cc61eed
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  eee61a4a-1df1-4bc3-8ca1-324a5b426d00:
-    id: eee61a4a-1df1-4bc3-8ca1-324a5b426d00
-    content: Remove `getEffectiveContextIds` from nodeHelpers.ts (only used by old model)
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  dbb3b24d-4db6-4094-bc94-277ff4dadc2e:
-    id: dbb3b24d-4db6-4094-bc94-277ff4dadc2e
-    content: Remove `getActiveContextId` from nodeHelpers.ts (replaced by `getActiveContextIdWithInheritance`)
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  cbc16b12-c1ea-4bd1-82bd-8c14e3fa6ee2:
-    id: cbc16b12-c1ea-4bd1-82bd-8c14e3fa6ee2
-    content: Remove associated tests in nodeHelpers.test.ts
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  63cc68d0-4ce2-4f1d-b7dd-f9301cc61eed:
-    id: 63cc68d0-4ce2-4f1d-b7dd-f9301cc61eed
-    content: 'Note: Wait until execution migration is complete and tested'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  581afd42-1744-4e27-a184-86784d654e26:
-    id: 581afd42-1744-4e27-a184-86784d654e26
-    content: 'Low Priority: Consolidate CSS'
-    children:
-      - 2a8c6211-bf92-4f26-9f48-5413d0110d3e
-      - 3ed682fd-d6de-4a9b-b444-d42d7ec1ec46
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  2a8c6211-bf92-4f26-9f48-5413d0110d3e:
-    id: 2a8c6211-bf92-4f26-9f48-5413d0110d3e
-    content: Consider merging `.context-bundle-badge` and `.context-applied-badge` styles
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  3ed682fd-d6de-4a9b-b444-d42d7ec1ec46:
-    id: 3ed682fd-d6de-4a9b-b444-d42d7ec1ec46
-    content: Both have identical positioning and sizing, differ only in color variable
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  3cc9431f-b2bb-4c67-a372-51734f2fec2c:
-    id: 3cc9431f-b2bb-4c67-a372-51734f2fec2c
-    content: 'Low Priority: Test coverage'
-    children:
-      - 0d615a3b-d6bc-49ee-9587-cea14a19d124
-      - ee4e41bf-5543-424a-9424-638637565cd3
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  0d615a3b-d6bc-49ee-9587-cea14a19d124:
-    id: 0d615a3b-d6bc-49ee-9587-cea14a19d124
-    content: Add dedicated test file for `useActionContexts` hook
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ee4e41bf-5543-424a-9424-638637565cd3:
-    id: ee4e41bf-5543-424a-9424-638637565cd3
-    content: Currently only tested indirectly through GutterContextIndicator.test.tsx
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  26431056-c663-4aff-b943-35f58da97f0b:
-    id: 26431056-c663-4aff-b943-35f58da97f0b
-    content: Standard checks (after refactoring)
-    children:
-      - 533370d8-6411-48fb-b7a4-0b6219c2ca0e
-      - bde27507-1321-40cc-8602-558e39534087
-      - 8862137a-53b1-4078-b1eb-f761e7f7a02d
-      - c94bae62-627d-4155-8212-8ccbb87503fa
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  533370d8-6411-48fb-b7a4-0b6219c2ca0e:
-    id: 533370d8-6411-48fb-b7a4-0b6219c2ca0e
-    content: All automated tests updated and passing
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  bde27507-1321-40cc-8602-558e39534087:
-    id: bde27507-1321-40cc-8602-558e39534087
-    content: Check if behavior changes require new tests
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  8862137a-53b1-4078-b1eb-f761e7f7a02d:
-    id: 8862137a-53b1-4078-b1eb-f761e7f7a02d
-    content: No linting errors
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  c94bae62-627d-4155-8212-8ccbb87503fa:
-    id: c94bae62-627d-4155-8212-8ccbb87503fa
-    content: No TypeScript errors
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
+      isBlueprint: true
