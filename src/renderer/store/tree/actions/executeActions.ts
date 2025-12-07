@@ -27,7 +27,8 @@ export function createExecuteActions(
         const { contextPrefix, nodeContent } = buildContentWithContext(
           nodeId,
           state.nodes,
-          state.ancestorRegistry
+          state.ancestorRegistry,
+          'execute'
         );
 
         const clipboardContent = contextPrefix + nodeContent;
@@ -64,7 +65,8 @@ export function createExecuteActions(
         const { contextPrefix, nodeContent } = buildContentWithContext(
           nodeId,
           state.nodes,
-          state.ancestorRegistry
+          state.ancestorRegistry,
+          'execute'
         );
 
         const terminalContent = contextPrefix + nodeContent;

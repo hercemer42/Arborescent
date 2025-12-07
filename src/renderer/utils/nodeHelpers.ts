@@ -266,21 +266,22 @@ export function resolveHyperlinkedContexts(
 }
 
 /**
- * Get all contexts to send for collaboration.
+ * Get all contexts to send for collaboration/execution.
  *
- * Returns the active applied context ID. Hyperlinked content within the context
- * is resolved during export (see exportContextAsMarkdown).
+ * Returns the active context ID for the given action type, using inheritance from ancestors.
+ * Hyperlinked content within the context is resolved during export (see exportContextAsMarkdown).
  * Works the same for all nodes (including context declarations).
  */
 export function getContextsForCollaboration(
   nodeId: string,
   nodes: Record<string, TreeNode>,
-  ancestorRegistry: AncestorRegistry
+  ancestorRegistry: AncestorRegistry,
+  actionType?: ContextActionType
 ): string[] {
   const node = nodes[nodeId];
   if (!node) return [];
 
-  const activeContextId = getActiveContextId(nodeId, nodes, ancestorRegistry);
+  const activeContextId = getActiveContextIdWithInheritance(nodeId, nodes, ancestorRegistry, actionType);
   if (!activeContextId) {
     return [];
   }
@@ -291,14 +292,15 @@ export function getContextsForCollaboration(
 /**
  * Build the content to send for collaboration or execution.
  *
- * Combines context prefix (from applied contexts) with the node content.
+ * Combines context prefix (from selected contexts) with the node content.
  * Context content is exported with hyperlinks resolved inline (preserving tree order).
  * Used by both collaborate and execute actions.
  */
 export function buildContentWithContext(
   nodeId: string,
   nodes: Record<string, TreeNode>,
-  ancestorRegistry: AncestorRegistry
+  ancestorRegistry: AncestorRegistry,
+  actionType?: ContextActionType
 ): { contextPrefix: string; nodeContent: string } {
   const node = nodes[nodeId];
   if (!node) return { contextPrefix: '', nodeContent: '' };
@@ -306,7 +308,7 @@ export function buildContentWithContext(
   const nodeContent = exportNodeAsMarkdown(node, nodes);
 
   let contextPrefix = '';
-  const contextIds = getContextsForCollaboration(nodeId, nodes, ancestorRegistry);
+  const contextIds = getContextsForCollaboration(nodeId, nodes, ancestorRegistry, actionType);
   for (const contextId of contextIds) {
     const contextNode = nodes[contextId];
     if (contextNode) {

@@ -401,8 +401,8 @@ describe('collaborateActions', () => {
       mockState.ancestorRegistry['context-node'] = ['root'];
       mockState.ancestorRegistry['context-child'] = ['root', 'context-node'];
 
-      // Apply context to child1
-      mockState.nodes.child1.metadata.appliedContextIds = ['context-node'];
+      // Select context for collaborate action on child1
+      mockState.nodes.child1.metadata.activeCollaborateContextId = 'context-node';
 
       await actions.collaborate('child1');
 
@@ -427,8 +427,8 @@ describe('collaborateActions', () => {
     });
 
     it('should handle missing context node gracefully', async () => {
-      // Apply a non-existent context
-      mockState.nodes.child1.metadata.appliedContextIds = ['non-existent-context'];
+      // Select a non-existent context
+      mockState.nodes.child1.metadata.activeCollaborateContextId = 'non-existent-context';
 
       await actions.collaborate('child1');
 
@@ -543,8 +543,8 @@ describe('collaborateActions', () => {
       mockState.ancestorRegistry['context-node'] = ['root'];
       mockState.ancestorRegistry['context-child'] = ['root', 'context-node'];
 
-      // Apply context to child1
-      mockState.nodes.child1.metadata.appliedContextIds = ['context-node'];
+      // Select context for collaborate action on child1
+      mockState.nodes.child1.metadata.activeCollaborateContextId = 'context-node';
 
       await actions.collaborateInTerminal('child1', 'terminal-1');
 
@@ -575,8 +575,8 @@ describe('collaborateActions', () => {
       const { executeInTerminal } = await import('../../../../services/terminalExecution');
       vi.mocked(executeInTerminal).mockResolvedValue(undefined);
 
-      // Apply a non-existent context
-      mockState.nodes.child1.metadata.appliedContextIds = ['non-existent-context'];
+      // Select a non-existent context
+      mockState.nodes.child1.metadata.activeCollaborateContextId = 'non-existent-context';
 
       await actions.collaborateInTerminal('child1', 'terminal-1');
 
