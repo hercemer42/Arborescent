@@ -54,13 +54,6 @@ export function computeSummaryVisibleNodeIds(
 }
 
 /**
- * Get applied context IDs from a node's metadata.
- */
-function getAppliedContextIds(node: TreeNode | undefined): string[] {
-  return (node?.metadata.appliedContextIds as string[]) || [];
-}
-
-/**
  * Get ancestors from closest to furthest (reversed from registry order).
  */
 function getAncestorsClosestFirst(
@@ -91,46 +84,6 @@ function findClosestAncestor<T>(
   return undefined;
 }
 
-/**
- * Find effective contexts for a node by accumulating contexts from all ancestors.
- *
- * Returns all contexts: node's own contexts first, then ancestor contexts from
- * closest to furthest. Duplicates are removed (node's own contexts take precedence).
- */
-export function getEffectiveContextIds(
-  nodeId: string,
-  nodes: Record<string, TreeNode>,
-  ancestorRegistry: AncestorRegistry
-): string[] {
-  const node = nodes[nodeId];
-  if (!node) return [];
-
-  const result: string[] = [];
-  const seen = new Set<string>();
-
-  // Add node's own contexts first (only if context node exists)
-  for (const contextId of getAppliedContextIds(node)) {
-    if (!seen.has(contextId) && nodes[contextId]) {
-      result.push(contextId);
-      seen.add(contextId);
-    }
-  }
-
-  // Add ancestor contexts from closest to furthest (only if context node exists)
-  for (const ancestorId of getAncestorsClosestFirst(nodeId, ancestorRegistry)) {
-    const ancestor = nodes[ancestorId];
-    if (!ancestor) continue;
-    for (const contextId of getAppliedContextIds(ancestor)) {
-      if (!seen.has(contextId) && nodes[contextId]) {
-        result.push(contextId);
-        seen.add(contextId);
-      }
-    }
-  }
-
-  return result;
-}
-
 export type ContextActionType = 'execute' | 'collaborate';
 
 function getActiveContextMetadataKey(actionType?: ContextActionType): string {
@@ -140,59 +93,9 @@ function getActiveContextMetadataKey(actionType?: ContextActionType): string {
 }
 
 /**
- * Get the active context ID for a given action type.
- *
- * Priority:
- * 1. Node's explicit activeContextId (action-specific) if set and valid
- * 2. Node's first directly applied context (if node has its own contexts)
- * 3. Nearest ancestor's activeContextId (if inheriting)
- * 4. First inherited context from nearest ancestor
- */
-export function getActiveContextId(
-  nodeId: string,
-  nodes: Record<string, TreeNode>,
-  ancestorRegistry: AncestorRegistry,
-  actionType?: ContextActionType
-): string | undefined {
-  const node = nodes[nodeId];
-  if (!node) return undefined;
-
-  const effectiveContexts = getEffectiveContextIds(nodeId, nodes, ancestorRegistry);
-  if (effectiveContexts.length === 0) return undefined;
-
-  const metadataKey = getActiveContextMetadataKey(actionType);
-
-  const activeId = node.metadata[metadataKey] as string | undefined;
-  if (activeId && effectiveContexts.includes(activeId)) {
-    return activeId;
-  }
-
-  const nodeContexts = getAppliedContextIds(node);
-  if (nodeContexts.length > 0) {
-    return nodeContexts[0];
-  }
-
-  for (const ancestorId of getAncestorsClosestFirst(nodeId, ancestorRegistry)) {
-    const ancestor = nodes[ancestorId];
-    if (!ancestor) continue;
-    const ancestorContexts = getAppliedContextIds(ancestor);
-    if (ancestorContexts.length > 0) {
-      const ancestorActiveId = ancestor.metadata[metadataKey] as string | undefined;
-      if (ancestorActiveId && ancestorContexts.includes(ancestorActiveId)) {
-        return ancestorActiveId;
-      }
-      return ancestorContexts[0];
-    }
-  }
-
-  return undefined;
-}
-
-/**
  * Get the active context ID for a given action type, with ancestor inheritance.
  *
- * Unlike getActiveContextId which relies on appliedContextIds, this function
- * checks for explicitly selected contexts (activeExecuteContextId/activeCollaborateContextId)
+ * Checks for explicitly selected contexts (activeExecuteContextId/activeCollaborateContextId)
  * and inherits from ancestors if the node has no explicit selection.
  */
 export function getActiveContextIdWithInheritance(
