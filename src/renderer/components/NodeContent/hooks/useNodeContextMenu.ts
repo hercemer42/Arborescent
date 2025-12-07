@@ -173,8 +173,6 @@ export function useNodeContextMenu(node: TreeNode) {
         removeContextDeclaration: actions.removeContextDeclaration,
         applyContext: actions.applyContext,
         removeAppliedContext: actions.removeAppliedContext,
-        addToBundle: actions.addToBundle,
-        removeFromBundle: actions.removeFromBundle,
       },
     });
 

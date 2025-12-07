@@ -2,13 +2,16 @@ import { create } from 'zustand';
 
 /**
  * Store for tracking "Copy as Hyperlink" operations.
- * Stores just the node ID that was copied - content is fetched at paste time.
+ * Stores the node ID, content, and source file path.
+ * Hyperlinks only work within the same document.
  */
 export interface HyperlinkClipboardContent {
   /** Node ID that was copied as hyperlink */
   nodeId: string;
   /** Content snapshot at copy time (for hyperlink display) */
   content: string;
+  /** Source file path (to prevent cross-document hyperlinks) */
+  sourceFilePath: string;
   /** Timestamp when content was cached */
   timestamp: number;
 }
@@ -18,7 +21,7 @@ interface HyperlinkClipboardState {
 }
 
 interface HyperlinkClipboardActions {
-  setCache: (nodeId: string, content: string) => void;
+  setCache: (nodeId: string, content: string, sourceFilePath: string) => void;
   getCache: () => HyperlinkClipboardContent | null;
   clearCache: () => void;
   hasCache: () => boolean;
@@ -29,11 +32,12 @@ export type HyperlinkClipboardStore = HyperlinkClipboardState & HyperlinkClipboa
 export const useHyperlinkClipboardStore = create<HyperlinkClipboardStore>((set, get) => ({
   cache: null,
 
-  setCache: (nodeId: string, content: string) => {
+  setCache: (nodeId: string, content: string, sourceFilePath: string) => {
     set({
       cache: {
         nodeId,
         content,
+        sourceFilePath,
         timestamp: Date.now(),
       },
     });

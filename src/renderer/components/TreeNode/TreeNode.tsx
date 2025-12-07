@@ -7,7 +7,7 @@ import { useNodeEffects } from './hooks/useNodeEffects';
 import { useNodeDragDrop } from './hooks/useNodeDragDrop';
 import { useNodeToggle } from './hooks/useNodeToggle';
 import { useNodeIconClick } from './hooks/useNodeIconClick';
-import { useAppliedContexts, useActiveContext, useBundledContexts } from './hooks/useAppliedContexts';
+import { useAppliedContexts, useActiveContext } from './hooks/useAppliedContexts';
 import { usePluginIndicators } from '../NodeGutter/hooks/usePluginIndicators';
 import { useNodeVisibleChildren } from '../Tree/hooks/useVisibleChildren';
 import './TreeNode.css';
@@ -30,7 +30,6 @@ export const TreeNode = memo(function TreeNode({ nodeId, depth = 0 }: TreeNodePr
   const isCutNode = node?.metadata.transient?.isCut === true;
 
   const appliedContexts = useAppliedContexts(node);
-  const bundledContexts = useBundledContexts(node);
   const activeContext = useActiveContext(node);
 
   const expanded = node?.metadata.expanded ?? true;
@@ -87,7 +86,6 @@ export const TreeNode = memo(function TreeNode({ nodeId, depth = 0 }: TreeNodePr
           contextIcon={node.metadata.blueprintIcon as string | undefined}
           contextColor={node.metadata.blueprintColor as string | undefined}
           onIconClick={handleIconClick}
-          bundledContexts={bundledContexts}
           appliedContexts={appliedContexts}
           activeContext={activeContext}
         />

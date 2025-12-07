@@ -76,6 +76,74 @@ export function exportNodeAsMarkdown(node: TreeNode, nodes: NodesMap, depth: num
 }
 
 /**
+ * Exports a context declaration node as markdown, resolving hyperlinks inline.
+ * When a hyperlink node is encountered, the linked node and its descendants are
+ * exported in place of the hyperlink, preserving tree order.
+ *
+ * @param node - The context node to export
+ * @param nodes - Map of all nodes
+ * @param depth - Current depth level (0 = root, maps to # heading)
+ * @param contextNodeId - The ID of the context declaration (to prevent circular refs)
+ * @returns Markdown formatted string with hyperlinks resolved inline
+ */
+export function exportContextAsMarkdown(
+  node: TreeNode,
+  nodes: NodesMap,
+  depth: number = 0,
+  contextNodeId?: string
+): string {
+  // Skip deleted nodes
+  if (node.metadata.deleted) {
+    return '';
+  }
+
+  // If this is a hyperlink node, export the linked content instead
+  if (node.metadata.isHyperlink === true) {
+    const linkedNodeId = node.metadata.linkedNodeId as string | undefined;
+    if (linkedNodeId && nodes[linkedNodeId] && linkedNodeId !== contextNodeId) {
+      // Export the linked node and its descendants (using regular export, no further hyperlink resolution)
+      return exportNodeAsMarkdown(nodes[linkedNodeId], nodes, depth);
+    }
+    // Skip hyperlinks to non-existent or circular references
+    return '';
+  }
+
+  let markdown = '';
+
+  // Get ASCII status symbol
+  const status = node.metadata.status || 'pending';
+  const statusSymbol = ASCII_STATUS_SYMBOLS[status];
+
+  const headingPrefix = createHeadingPrefix(depth);
+
+  // Format current node content
+  if (node.content && node.content.trim()) {
+    const contentLines = node.content.split('\n');
+    contentLines.forEach((line, index) => {
+      if (index === 0) {
+        // First line as heading with status symbol
+        markdown += `${headingPrefix} ${statusSymbol} ${line}\n`;
+      } else {
+        // Subsequent lines as plain text (preserve multi-line content)
+        markdown += `${line}\n`;
+      }
+    });
+  }
+
+  // Export children recursively, resolving hyperlinks
+  if (node.children && node.children.length > 0) {
+    node.children.forEach((childId: string) => {
+      const childNode = nodes[childId];
+      if (childNode) {
+        markdown += exportContextAsMarkdown(childNode, nodes, depth + 1, contextNodeId);
+      }
+    });
+  }
+
+  return markdown;
+}
+
+/**
  * Exports multiple nodes as markdown, each starting at depth 0.
  * Used for multi-selection cut/copy where selected nodes become siblings.
  *

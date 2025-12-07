@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { exportNodeAsMarkdown, exportMultipleNodesAsMarkdown } from '../markdown';
+import { exportNodeAsMarkdown, exportMultipleNodesAsMarkdown, exportContextAsMarkdown } from '../markdown';
 import type { TreeNode } from '../../../shared/types';
 
 describe('exportNodeAsMarkdown', () => {
@@ -318,6 +318,145 @@ describe('exportMultipleNodesAsMarkdown', () => {
 
     expect(result).toBe(
       '# [ ] Parent 1\n## [ ] Child 1\n### [ ] Grandchild\n# [ ] Parent 2\n## [x] Child 2\n'
+    );
+  });
+});
+
+describe('exportContextAsMarkdown', () => {
+  it('resolves hyperlinks inline in tree order', () => {
+    const contextNode: TreeNode = {
+      id: 'ctx',
+      content: 'Context declaration',
+      children: ['child1', 'hyperlink', 'child2'],
+      metadata: { status: 'pending', isContextDeclaration: true },
+    };
+    const child1: TreeNode = {
+      id: 'child1',
+      content: 'Child before hyperlink',
+      children: [],
+      metadata: { status: 'pending' },
+    };
+    const hyperlinkNode: TreeNode = {
+      id: 'hyperlink',
+      content: 'Link to external',
+      children: [],
+      metadata: { status: 'pending', isHyperlink: true, linkedNodeId: 'linked' },
+    };
+    const child2: TreeNode = {
+      id: 'child2',
+      content: 'Child after hyperlink',
+      children: [],
+      metadata: { status: 'pending' },
+    };
+    const linkedNode: TreeNode = {
+      id: 'linked',
+      content: 'External content',
+      children: ['linked-child'],
+      metadata: { status: 'completed' },
+    };
+    const linkedChild: TreeNode = {
+      id: 'linked-child',
+      content: 'Linked child content',
+      children: [],
+      metadata: { status: 'pending' },
+    };
+    const nodes = { ctx: contextNode, child1, hyperlink: hyperlinkNode, child2, linked: linkedNode, 'linked-child': linkedChild };
+
+    const result = exportContextAsMarkdown(contextNode, nodes, 0, 'ctx');
+
+    // Linked content should appear in the position of the hyperlink
+    expect(result).toBe(
+      '# [ ] Context declaration\n' +
+      '## [ ] Child before hyperlink\n' +
+      '## [x] External content\n' +
+      '### [ ] Linked child content\n' +
+      '## [ ] Child after hyperlink\n'
+    );
+  });
+
+  it('skips hyperlinks to non-existent nodes', () => {
+    const contextNode: TreeNode = {
+      id: 'ctx',
+      content: 'Context',
+      children: ['hyperlink'],
+      metadata: { status: 'pending', isContextDeclaration: true },
+    };
+    const hyperlinkNode: TreeNode = {
+      id: 'hyperlink',
+      content: 'Broken link',
+      children: [],
+      metadata: { status: 'pending', isHyperlink: true, linkedNodeId: 'deleted' },
+    };
+    const nodes = { ctx: contextNode, hyperlink: hyperlinkNode };
+
+    const result = exportContextAsMarkdown(contextNode, nodes, 0, 'ctx');
+
+    // Hyperlink to non-existent node should be skipped
+    expect(result).toBe('# [ ] Context\n');
+  });
+
+  it('skips hyperlinks that point back to context declaration (circular ref)', () => {
+    const contextNode: TreeNode = {
+      id: 'ctx',
+      content: 'Context',
+      children: ['hyperlink'],
+      metadata: { status: 'pending', isContextDeclaration: true },
+    };
+    const hyperlinkNode: TreeNode = {
+      id: 'hyperlink',
+      content: 'Self reference',
+      children: [],
+      metadata: { status: 'pending', isHyperlink: true, linkedNodeId: 'ctx' },
+    };
+    const nodes = { ctx: contextNode, hyperlink: hyperlinkNode };
+
+    const result = exportContextAsMarkdown(contextNode, nodes, 0, 'ctx');
+
+    // Hyperlink to self should be skipped
+    expect(result).toBe('# [ ] Context\n');
+  });
+
+  it('handles nested hyperlinks (depth=1, no recursive resolution)', () => {
+    const contextNode: TreeNode = {
+      id: 'ctx',
+      content: 'Context',
+      children: ['hyperlink1'],
+      metadata: { status: 'pending', isContextDeclaration: true },
+    };
+    const hyperlink1: TreeNode = {
+      id: 'hyperlink1',
+      content: 'Link 1',
+      children: [],
+      metadata: { status: 'pending', isHyperlink: true, linkedNodeId: 'linked' },
+    };
+    const linkedNode: TreeNode = {
+      id: 'linked',
+      content: 'Linked content',
+      children: ['hyperlink2'],
+      metadata: { status: 'pending' },
+    };
+    const hyperlink2: TreeNode = {
+      id: 'hyperlink2',
+      content: 'Nested link',
+      children: [],
+      metadata: { status: 'pending', isHyperlink: true, linkedNodeId: 'deep' },
+    };
+    const deepNode: TreeNode = {
+      id: 'deep',
+      content: 'Deep content',
+      children: [],
+      metadata: { status: 'completed' },
+    };
+    const nodes = { ctx: contextNode, hyperlink1, linked: linkedNode, hyperlink2, deep: deepNode };
+
+    const result = exportContextAsMarkdown(contextNode, nodes, 0, 'ctx');
+
+    // Hyperlink2 within linked content is NOT resolved (depth=1)
+    // It gets exported as a regular node (its content, not the linked content)
+    expect(result).toBe(
+      '# [ ] Context\n' +
+      '## [ ] Linked content\n' +
+      '### [ ] Nested link\n'
     );
   });
 });

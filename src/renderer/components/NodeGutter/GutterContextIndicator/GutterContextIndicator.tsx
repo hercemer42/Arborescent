@@ -1,6 +1,6 @@
 import { memo, createElement } from 'react';
 import { getIconByName, DEFAULT_CONTEXT_ICON } from '../../ui/IconPicker/IconPicker';
-import { AppliedContext, BundledContext } from '../../TreeNode/hooks/useAppliedContexts';
+import { AppliedContext } from '../../TreeNode/hooks/useAppliedContexts';
 import { useBundleTooltip } from './hooks/useBundleTooltip';
 import { BundleTooltip } from './BundleTooltip';
 import './GutterContextIndicator.css';
@@ -9,7 +9,6 @@ interface GutterContextIndicatorProps {
   isContextDeclaration: boolean;
   contextIcon?: string;
   contextColor?: string;
-  bundledContexts: BundledContext[];
   appliedContexts: AppliedContext[];
   activeContext?: AppliedContext;
   onIconClick?: () => void;
@@ -19,7 +18,6 @@ export const GutterContextIndicator = memo(function GutterContextIndicator({
   isContextDeclaration,
   contextIcon,
   contextColor,
-  bundledContexts,
   appliedContexts,
   activeContext,
   onIconClick,
@@ -53,35 +51,34 @@ export const GutterContextIndicator = memo(function GutterContextIndicator({
   }
 
   // Context declaration nodes: show declaration icon
-  // Only show "+" badge when there are bundled or applied contexts
+  // Only show "+" badge when there are applied contexts
   if (!DeclarationIcon) return null;
 
-  const hasBundledOrApplied = bundledContexts.length > 0 || appliedContexts.length > 0;
+  const hasApplied = appliedContexts.length > 0;
 
   return (
     <button
-      ref={hasBundledOrApplied ? bundleRef : undefined}
-      className={`gutter-context-indicator ${hasBundledOrApplied ? 'context-bundle' : 'context-declaration'}`}
-      onMouseEnter={hasBundledOrApplied ? handleMouseEnter : undefined}
-      onMouseLeave={hasBundledOrApplied ? handleMouseLeave : undefined}
+      ref={hasApplied ? bundleRef : undefined}
+      className={`gutter-context-indicator ${hasApplied ? 'context-bundle' : 'context-declaration'}`}
+      onMouseEnter={hasApplied ? handleMouseEnter : undefined}
+      onMouseLeave={hasApplied ? handleMouseLeave : undefined}
       onClick={handleIconClick}
       title="Click to change icon"
       style={contextColor ? { color: contextColor } : undefined}
     >
       <span className="context-bundle-indicator" style={contextColor ? { color: contextColor } : undefined}>
         {createElement(DeclarationIcon, { size: 16 })}
-        {hasBundledOrApplied && (
+        {hasApplied && (
           <span
             className="context-bundle-badge"
             style={contextColor ? { backgroundColor: contextColor } : undefined}
           >+</span>
         )}
       </span>
-      {hasBundledOrApplied && showTooltip && (
+      {hasApplied && showTooltip && (
         <BundleTooltip
           declarationIcon={DeclarationIcon}
           declarationColor={contextColor}
-          bundledContexts={bundledContexts}
           appliedContexts={appliedContexts}
           position={tooltipPosition}
         />

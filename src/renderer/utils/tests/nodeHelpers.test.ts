@@ -9,7 +9,7 @@ import {
   getNextSiblingId,
   findClosestAncestorWithMetadata,
   getActiveContextId,
-  resolveBundledContexts,
+  resolveHyperlinkedContexts,
   getContextsForCollaboration,
   getNodeAndDescendantIds,
   getParentId,
@@ -834,7 +834,7 @@ describe('getActiveContextId', () => {
   });
 });
 
-describe('resolveBundledContexts', () => {
+describe('resolveHyperlinkedContexts', () => {
   const createNode = (id: string, children: string[] = [], metadata = {}): TreeNode => ({
     id,
     content: `Node ${id}`,
@@ -842,58 +842,69 @@ describe('resolveBundledContexts', () => {
     metadata,
   });
 
-  it('should return just the context node when no bundle', () => {
+  it('should return empty array when no hyperlinks in descendants', () => {
     const nodes = {
-      'ctx-1': createNode('ctx-1', [], { isContextDeclaration: true }),
+      'ctx-1': createNode('ctx-1', ['child-1'], { isContextDeclaration: true }),
+      'child-1': createNode('child-1', [], {}),
     };
 
-    expect(resolveBundledContexts('ctx-1', nodes)).toEqual(['ctx-1']);
+    expect(resolveHyperlinkedContexts('ctx-1', nodes)).toEqual([]);
   });
 
-  it('should resolve bundled contexts in order', () => {
+  it('should resolve hyperlinked nodes in descendants', () => {
     const nodes = {
-      'bundle': createNode('bundle', [], { isContextDeclaration: true, bundledContextIds: ['ctx-1', 'ctx-2'] }),
-      'ctx-1': createNode('ctx-1', [], { isContextDeclaration: true }),
-      'ctx-2': createNode('ctx-2', [], { isContextDeclaration: true }),
+      'ctx-1': createNode('ctx-1', ['hyperlink-1', 'hyperlink-2'], { isContextDeclaration: true }),
+      'hyperlink-1': createNode('hyperlink-1', [], { isHyperlink: true, linkedNodeId: 'linked-node-1' }),
+      'hyperlink-2': createNode('hyperlink-2', [], { isHyperlink: true, linkedNodeId: 'linked-node-2' }),
+      'linked-node-1': createNode('linked-node-1', [], {}),
+      'linked-node-2': createNode('linked-node-2', [], {}),
     };
 
-    // Bundled contexts come first, then the bundle itself
-    expect(resolveBundledContexts('bundle', nodes)).toEqual(['ctx-1', 'ctx-2', 'bundle']);
+    const result = resolveHyperlinkedContexts('ctx-1', nodes);
+    expect(result).toEqual(['linked-node-1', 'linked-node-2']);
   });
 
-  it('should resolve nested bundles', () => {
+  it('should skip hyperlinks to non-existent nodes', () => {
     const nodes = {
-      'outer-bundle': createNode('outer-bundle', [], { isContextDeclaration: true, bundledContextIds: ['inner-bundle'] }),
-      'inner-bundle': createNode('inner-bundle', [], { isContextDeclaration: true, bundledContextIds: ['ctx-1'] }),
-      'ctx-1': createNode('ctx-1', [], { isContextDeclaration: true }),
+      'ctx-1': createNode('ctx-1', ['hyperlink-1'], { isContextDeclaration: true }),
+      'hyperlink-1': createNode('hyperlink-1', [], { isHyperlink: true, linkedNodeId: 'deleted-node' }),
     };
 
-    // Deepest first: ctx-1, then inner-bundle, then outer-bundle
-    expect(resolveBundledContexts('outer-bundle', nodes)).toEqual(['ctx-1', 'inner-bundle', 'outer-bundle']);
+    expect(resolveHyperlinkedContexts('ctx-1', nodes)).toEqual([]);
   });
 
-  it('should handle circular references gracefully', () => {
+  it('should skip hyperlinks that point to the context declaration itself', () => {
     const nodes = {
-      'ctx-a': createNode('ctx-a', [], { isContextDeclaration: true, bundledContextIds: ['ctx-b'] }),
-      'ctx-b': createNode('ctx-b', [], { isContextDeclaration: true, bundledContextIds: ['ctx-a'] }),
+      'ctx-1': createNode('ctx-1', ['hyperlink-1'], { isContextDeclaration: true }),
+      'hyperlink-1': createNode('hyperlink-1', [], { isHyperlink: true, linkedNodeId: 'ctx-1' }),
     };
 
-    // Should not infinite loop
-    const result = resolveBundledContexts('ctx-a', nodes);
-    expect(result).toContain('ctx-a');
-    expect(result).toContain('ctx-b');
+    expect(resolveHyperlinkedContexts('ctx-1', nodes)).toEqual([]);
   });
 
-  it('should deduplicate contexts', () => {
+  it('should deduplicate linked nodes', () => {
     const nodes = {
-      'bundle': createNode('bundle', [], { isContextDeclaration: true, bundledContextIds: ['ctx-1', 'inner-bundle'] }),
-      'inner-bundle': createNode('inner-bundle', [], { isContextDeclaration: true, bundledContextIds: ['ctx-1'] }),
-      'ctx-1': createNode('ctx-1', [], { isContextDeclaration: true }),
+      'ctx-1': createNode('ctx-1', ['hyperlink-1', 'hyperlink-2'], { isContextDeclaration: true }),
+      'hyperlink-1': createNode('hyperlink-1', [], { isHyperlink: true, linkedNodeId: 'linked-node' }),
+      'hyperlink-2': createNode('hyperlink-2', [], { isHyperlink: true, linkedNodeId: 'linked-node' }),
+      'linked-node': createNode('linked-node', [], {}),
     };
 
-    const result = resolveBundledContexts('bundle', nodes);
-    // ctx-1 should only appear once
-    expect(result.filter(id => id === 'ctx-1')).toHaveLength(1);
+    const result = resolveHyperlinkedContexts('ctx-1', nodes);
+    expect(result).toHaveLength(1);
+    expect(result).toEqual(['linked-node']);
+  });
+
+  it('should find hyperlinks in nested descendants', () => {
+    const nodes = {
+      'ctx-1': createNode('ctx-1', ['child-1'], { isContextDeclaration: true }),
+      'child-1': createNode('child-1', ['grandchild-1'], {}),
+      'grandchild-1': createNode('grandchild-1', ['hyperlink-1'], {}),
+      'hyperlink-1': createNode('hyperlink-1', [], { isHyperlink: true, linkedNodeId: 'linked-node' }),
+      'linked-node': createNode('linked-node', [], {}),
+    };
+
+    expect(resolveHyperlinkedContexts('ctx-1', nodes)).toEqual(['linked-node']);
   });
 });
 
@@ -905,20 +916,23 @@ describe('getContextsForCollaboration', () => {
     metadata,
   });
 
-  it('should resolve active context and its bundle for regular node', () => {
+  it('should return active context ID (hyperlinks resolved during export)', () => {
     const nodes = {
-      'task': createNode('task', [], { appliedContextIds: ['bundle-ctx'], activeContextId: 'bundle-ctx' }),
-      'bundle-ctx': createNode('bundle-ctx', [], { isContextDeclaration: true, bundledContextIds: ['ctx-1', 'ctx-2'] }),
-      'ctx-1': createNode('ctx-1', [], { isContextDeclaration: true }),
-      'ctx-2': createNode('ctx-2', [], { isContextDeclaration: true }),
+      'task': createNode('task', [], { appliedContextIds: ['ctx-with-links'], activeContextId: 'ctx-with-links' }),
+      'ctx-with-links': createNode('ctx-with-links', ['hyperlink-1', 'hyperlink-2'], { isContextDeclaration: true }),
+      'hyperlink-1': createNode('hyperlink-1', [], { isHyperlink: true, linkedNodeId: 'linked-1' }),
+      'hyperlink-2': createNode('hyperlink-2', [], { isHyperlink: true, linkedNodeId: 'linked-2' }),
+      'linked-1': createNode('linked-1', [], {}),
+      'linked-2': createNode('linked-2', [], {}),
     };
-    const ancestorRegistry = { 'task': [] };
+    const ancestorRegistry = { 'task': [], 'ctx-with-links': [], 'hyperlink-1': ['ctx-with-links'], 'hyperlink-2': ['ctx-with-links'] };
 
     const result = getContextsForCollaboration('task', nodes, ancestorRegistry);
-    expect(result).toEqual(['ctx-1', 'ctx-2', 'bundle-ctx']);
+    // Returns just the context ID - hyperlinks are resolved during export
+    expect(result).toEqual(['ctx-with-links']);
   });
 
-  it('should return just active context if not a bundle', () => {
+  it('should return active context', () => {
     const nodes = {
       'task': createNode('task', [], { appliedContextIds: ['ctx-1'], activeContextId: 'ctx-1' }),
       'ctx-1': createNode('ctx-1', [], { isContextDeclaration: true }),
@@ -926,38 +940,6 @@ describe('getContextsForCollaboration', () => {
     const ancestorRegistry = { 'task': [] };
 
     expect(getContextsForCollaboration('task', nodes, ancestorRegistry)).toEqual(['ctx-1']);
-  });
-
-  it('should use applied contexts for context declaration node, not bundled', () => {
-    const nodes = {
-      'bundle-ctx': createNode('bundle-ctx', [], {
-        isContextDeclaration: true,
-        bundledContextIds: ['ctx-1'],
-        appliedContextIds: ['ctx-2'],
-      }),
-      'ctx-1': createNode('ctx-1', [], { isContextDeclaration: true }),
-      'ctx-2': createNode('ctx-2', [], { isContextDeclaration: true }),
-    };
-    const ancestorRegistry = { 'bundle-ctx': [] };
-
-    const result = getContextsForCollaboration('bundle-ctx', nodes, ancestorRegistry);
-    // Context declarations use their applied contexts for collaboration, not bundled
-    expect(result).toEqual(['ctx-2']);
-  });
-
-  it('should return empty for context declaration without applied contexts', () => {
-    const nodes = {
-      'bundle-ctx': createNode('bundle-ctx', [], {
-        isContextDeclaration: true,
-        bundledContextIds: ['ctx-1'],
-      }),
-      'ctx-1': createNode('ctx-1', [], { isContextDeclaration: true }),
-    };
-    const ancestorRegistry = { 'bundle-ctx': [] };
-
-    const result = getContextsForCollaboration('bundle-ctx', nodes, ancestorRegistry);
-    // No applied contexts means no contexts for collaboration
-    expect(result).toEqual([]);
   });
 
   it('should return empty array when no context', () => {

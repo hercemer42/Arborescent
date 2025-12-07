@@ -1,17 +1,16 @@
 import { createPortal } from 'react-dom';
 import { createElement } from 'react';
 import { getIconByName, LucideIcon } from '../../ui/IconPicker/IconPicker';
-import { AppliedContext, BundledContext } from '../../TreeNode/hooks/useAppliedContexts';
+import { AppliedContext } from '../../TreeNode/hooks/useAppliedContexts';
 
 interface BundleTooltipProps {
   declarationIcon: LucideIcon | null;
   declarationColor?: string;
-  bundledContexts: BundledContext[];
   appliedContexts: AppliedContext[];
   position: { top: number; left: number };
 }
 
-export function BundleTooltip({ declarationIcon, declarationColor, bundledContexts, appliedContexts, position }: BundleTooltipProps) {
+export function BundleTooltip({ declarationIcon, declarationColor, appliedContexts, position }: BundleTooltipProps) {
   return createPortal(
     <div
       className="context-bundle-tooltip"
@@ -28,22 +27,6 @@ export function BundleTooltip({ declarationIcon, declarationColor, bundledContex
         </span>
         <span className="tooltip-name">This node</span>
       </div>
-      {bundledContexts.length > 0 && (
-        <>
-          <div className="context-bundle-tooltip-title" style={{ marginTop: '8px' }}>Bundled declarations:</div>
-          {bundledContexts.map((ctx, index) => {
-            const Icon = ctx.icon ? getIconByName(ctx.icon) : null;
-            return (
-              <div key={`bundled-${index}`} className="context-bundle-tooltip-item">
-                <span style={ctx.color ? { color: ctx.color } : undefined}>
-                  {Icon && createElement(Icon, { size: 12, className: 'tooltip-icon' })}
-                </span>
-                <span className="tooltip-name">{ctx.name || 'Context'}</span>
-              </div>
-            );
-          })}
-        </>
-      )}
       {appliedContexts.length > 0 && (
         <>
           <div className="context-bundle-tooltip-title" style={{ marginTop: '8px' }}>Applied contexts:</div>

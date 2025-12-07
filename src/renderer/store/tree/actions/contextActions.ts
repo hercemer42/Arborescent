@@ -13,8 +13,6 @@ export interface ContextActions {
   applyContext: (nodeId: string, contextNodeId: string) => void;
   removeAppliedContext: (nodeId: string, contextNodeId?: string) => void;
   setActiveContext: (nodeId: string, contextNodeId: string, actionType?: ContextActionType) => void;
-  addToBundle: (nodeId: string, contextNodeId: string) => void;
-  removeFromBundle: (nodeId: string, contextNodeId: string) => void;
   refreshContextDeclarations: () => void;
 }
 
@@ -35,30 +33,27 @@ function buildContextDeclarations(nodes: Record<string, TreeNode>): ContextDecla
 }
 
 /**
- * Remove a context ID from a metadata array field across all nodes.
+ * Remove a context ID from appliedContextIds across all nodes.
  */
-function removeContextFromMetadataArray(
+function removeAppliedContextFromAllNodes(
   contextNodeId: string,
-  nodes: Record<string, TreeNode>,
-  metadataKey: 'appliedContextIds' | 'bundledContextIds'
+  nodes: Record<string, TreeNode>
 ): Record<string, TreeNode> {
   let updatedNodes = nodes;
 
   for (const node of Object.values(nodes)) {
-    const ids = (node.metadata[metadataKey] as string[]) || [];
+    const ids = (node.metadata.appliedContextIds as string[]) || [];
     if (ids.includes(contextNodeId)) {
       const newIds = ids.filter(id => id !== contextNodeId);
       const metadataUpdates: Record<string, unknown> = {
-        [metadataKey]: newIds.length > 0 ? newIds : undefined,
+        appliedContextIds: newIds.length > 0 ? newIds : undefined,
       };
 
-      if (metadataKey === 'appliedContextIds') {
-        const currentActiveContextId = node.metadata.activeContextId as string | undefined;
-        if (newIds.length === 0) {
-          metadataUpdates.activeContextId = undefined;
-        } else if (currentActiveContextId === contextNodeId) {
-          metadataUpdates.activeContextId = newIds[0];
-        }
+      const currentActiveContextId = node.metadata.activeContextId as string | undefined;
+      if (newIds.length === 0) {
+        metadataUpdates.activeContextId = undefined;
+      } else if (currentActiveContextId === contextNodeId) {
+        metadataUpdates.activeContextId = newIds[0];
       }
 
       updatedNodes = updateNodeMetadata(updatedNodes, node.id, metadataUpdates);
@@ -156,14 +151,12 @@ export const createContextActions = (
         isContextDeclaration: false,
         blueprintIcon: undefined,
         blueprintColor: undefined,
-        bundledContextIds: undefined,
       });
     } else {
       updatedNodes = updateNodeMetadata(nodes, nodeId, {
         isContextDeclaration: false,
         blueprintIcon: undefined,
         blueprintColor: undefined,
-        bundledContextIds: undefined,
         isBlueprint: false,
       });
 
@@ -179,8 +172,7 @@ export const createContextActions = (
       }
     }
 
-    updatedNodes = removeContextFromMetadataArray(nodeId, updatedNodes, 'appliedContextIds');
-    updatedNodes = removeContextFromMetadataArray(nodeId, updatedNodes, 'bundledContextIds');
+    updatedNodes = removeAppliedContextFromAllNodes(nodeId, updatedNodes);
 
     set({ nodes: updatedNodes });
 
@@ -289,60 +281,12 @@ export const createContextActions = (
     triggerAutosave?.();
   }
 
-  function addToBundle(nodeId: string, contextNodeId: string): void {
-    const { nodes } = get();
-    const node = nodes[nodeId];
-    const contextNode = nodes[contextNodeId];
-    if (!node || !contextNode) return;
-
-    if (node.metadata.isContextDeclaration !== true) return;
-    if (contextNode.metadata.isContextDeclaration !== true) return;
-
-    const existingBundleIds = (node.metadata.bundledContextIds as string[]) || [];
-
-    if (existingBundleIds.includes(contextNodeId)) return;
-    if (nodeId === contextNodeId) return;
-
-    const newBundleIds = [...existingBundleIds, contextNodeId];
-
-    set({
-      nodes: updateNodeMetadata(nodes, nodeId, {
-        bundledContextIds: newBundleIds,
-      }),
-    });
-
-    logger.info(`Context ${contextNodeId} added to bundle of node ${nodeId}`, 'Context');
-
-    triggerAutosave?.();
-  }
-
-  function removeFromBundle(nodeId: string, contextNodeId: string): void {
-    const { nodes } = get();
-    const node = nodes[nodeId];
-    if (!node) return;
-
-    const existingBundleIds = (node.metadata.bundledContextIds as string[]) || [];
-    const newBundleIds = existingBundleIds.filter(id => id !== contextNodeId);
-
-    set({
-      nodes: updateNodeMetadata(nodes, nodeId, {
-        bundledContextIds: newBundleIds.length > 0 ? newBundleIds : undefined,
-      }),
-    });
-
-    logger.info(`Context ${contextNodeId} removed from bundle of node ${nodeId}`, 'Context');
-
-    triggerAutosave?.();
-  }
-
   return {
     declareAsContext,
     removeContextDeclaration,
     applyContext,
     removeAppliedContext,
     setActiveContext,
-    addToBundle,
-    removeFromBundle,
     refreshContextDeclarations,
   };
 };

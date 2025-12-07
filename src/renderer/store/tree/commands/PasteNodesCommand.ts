@@ -141,7 +141,6 @@ export class PasteNodesCommand extends BaseCommand {
           ...node.metadata,
           // Clear context declaration metadata (can't paste context declarations)
           isContextDeclaration: undefined,
-          bundledContextIds: undefined,
           // Only clear blueprint icon/color if this was a context declaration
           // (regular blueprints keep their icon)
           blueprintIcon: wasContextDeclaration ? undefined : node.metadata.blueprintIcon,

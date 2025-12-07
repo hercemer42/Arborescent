@@ -228,7 +228,7 @@ describe('NodeGutter', () => {
       expect(container.querySelector('.gutter-context-indicator.context-applied')).not.toBeInTheDocument();
     });
 
-    it('should show declaration indicator when context declaration has bundled contexts', () => {
+    it('should show declaration indicator when context declaration has applied contexts', () => {
       const mockOnToggle = vi.fn();
       const { container } = render(
         <NodeGutter
@@ -238,7 +238,7 @@ describe('NodeGutter', () => {
           pluginIndicators={[]}
           isContextDeclaration={true}
           contextIcon="flag"
-          bundledContexts={[{ icon: 'star', color: undefined, name: 'My Context' }]}
+          appliedContexts={[{ icon: 'star', color: undefined, name: 'My Context' }]}
         />
       );
 

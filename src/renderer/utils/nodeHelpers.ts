@@ -1,7 +1,7 @@
 import { TreeNode, NodeStatus } from '../../shared/types';
 import { AncestorRegistry } from '../services/ancestry';
 import { v4 as uuidv4 } from 'uuid';
-import { exportNodeAsMarkdown } from './markdown';
+import { exportNodeAsMarkdown, exportContextAsMarkdown } from './markdown';
 
 /**
  * Check if a resolved date falls within the given range.
@@ -189,45 +189,40 @@ export function getActiveContextId(
 }
 
 /**
- * Get bundled context IDs from a node's metadata.
+ * Find hyperlinks within a context declaration's descendants.
+ * Returns linked node IDs that exist and are not the context declaration itself.
+ * Does NOT recursively resolve hyperlinks within included nodes (depth = 1).
  */
-function getBundledContextIds(node: TreeNode | undefined): string[] {
-  return (node?.metadata.bundledContextIds as string[]) || [];
-}
-
-/**
- * Recursively resolve bundled contexts for a context node.
- *
- * Bundles are context declarations bundled into this context declaration.
- * Resolution is depth-first: nested contexts appear before the parent.
- */
-export function resolveBundledContexts(
+export function resolveHyperlinkedContexts(
   contextNodeId: string,
-  nodes: Record<string, TreeNode>,
-  visited: Set<string> = new Set()
+  nodes: Record<string, TreeNode>
 ): string[] {
-  if (visited.has(contextNodeId)) {
-    return [];
-  }
-  visited.add(contextNodeId);
-
   const contextNode = nodes[contextNodeId];
   if (!contextNode) return [];
 
   const result: string[] = [];
-  const bundledContextIds = getBundledContextIds(contextNode);
+  const descendantIds = getAllDescendants(contextNodeId, nodes);
 
-  for (const bundledId of bundledContextIds) {
-    const nestedContexts = resolveBundledContexts(bundledId, nodes, visited);
-    for (const nestedId of nestedContexts) {
-      if (!result.includes(nestedId)) {
-        result.push(nestedId);
+  for (const descendantId of descendantIds) {
+    const descendant = nodes[descendantId];
+    if (!descendant) continue;
+
+    // Check if descendant is a hyperlink
+    if (descendant.metadata.isHyperlink === true) {
+      const linkedNodeId = descendant.metadata.linkedNodeId as string | undefined;
+      if (!linkedNodeId) continue;
+
+      // Skip if linked node doesn't exist
+      if (!nodes[linkedNodeId]) continue;
+
+      // Skip if linked node is the current context declaration (circular reference)
+      if (linkedNodeId === contextNodeId) continue;
+
+      // Add the linked node if not already included
+      if (!result.includes(linkedNodeId)) {
+        result.push(linkedNodeId);
       }
     }
-  }
-
-  if (!result.includes(contextNodeId)) {
-    result.push(contextNodeId);
   }
 
   return result;
@@ -236,7 +231,8 @@ export function resolveBundledContexts(
 /**
  * Get all contexts to send for collaboration.
  *
- * Gets the active applied context and resolves its bundled contexts.
+ * Returns the active applied context ID. Hyperlinked content within the context
+ * is resolved during export (see exportContextAsMarkdown).
  * Works the same for all nodes (including context declarations).
  */
 export function getContextsForCollaboration(
@@ -252,13 +248,14 @@ export function getContextsForCollaboration(
     return [];
   }
 
-  return resolveBundledContexts(activeContextId, nodes);
+  return [activeContextId];
 }
 
 /**
  * Build the content to send for collaboration or execution.
  *
  * Combines context prefix (from applied contexts) with the node content.
+ * Context content is exported with hyperlinks resolved inline (preserving tree order).
  * Used by both collaborate and execute actions.
  */
 export function buildContentWithContext(
@@ -276,7 +273,8 @@ export function buildContentWithContext(
   for (const contextId of contextIds) {
     const contextNode = nodes[contextId];
     if (contextNode) {
-      contextPrefix += exportNodeAsMarkdown(contextNode, nodes) + '\n';
+      // Use exportContextAsMarkdown to resolve hyperlinks in tree order
+      contextPrefix += exportContextAsMarkdown(contextNode, nodes, 0, contextId) + '\n';
     }
   }
 

@@ -73,6 +73,7 @@ type StoreState = {
   ancestorRegistry: AncestorRegistry;
   activeNodeId: string | null;
   multiSelectedNodeIds: Set<string>;
+  currentFilePath: string | null;
 };
 
 type StoreActions = {
@@ -615,15 +616,16 @@ export const createClipboardActions = (
 
   function copyAsHyperlink(): 'copied' | 'no-selection' {
     const state = get();
-    const { activeNodeId, nodes } = state;
+    const { activeNodeId, nodes, currentFilePath } = state;
 
     if (!activeNodeId) return 'no-selection';
+    if (!currentFilePath) return 'no-selection';
 
     const node = nodes[activeNodeId];
     if (!node) return 'no-selection';
 
-    // Store the node ID and content snapshot in hyperlink cache
-    useHyperlinkClipboardStore.getState().setCache(activeNodeId, node.content);
+    // Store the node ID, content snapshot, and source file path in hyperlink cache
+    useHyperlinkClipboardStore.getState().setCache(activeNodeId, node.content, currentFilePath);
 
     flashNodes(activeNodeId, visualEffects);
     logger.info('Copied node as hyperlink', 'ClipboardActions');
@@ -635,6 +637,13 @@ export const createClipboardActions = (
     if (!hyperlinkCache) return 'no-content';
 
     const state = get();
+    const { currentFilePath } = state;
+
+    // Block cross-document hyperlinks - silently do nothing
+    if (!currentFilePath || hyperlinkCache.sourceFilePath !== currentFilePath) {
+      return 'no-content';
+    }
+
     const targetParentId = state.activeNodeId || state.rootNodeId;
     if (!targetParentId) return 'no-content';
 

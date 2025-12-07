@@ -87,7 +87,7 @@ export function useNodeMouse(nodeId: string, listeners?: DraggableSyntheticListe
     }
 
     // Hyperlink text click: skip selection, let onClick handler navigate
-    const isClickingOnHyperlink = target.classList.contains('hyperlink-text');
+    const isClickingOnHyperlink = target?.classList?.contains('hyperlink-text');
     if (isClickingOnHyperlink && !hasModifierKey) {
       return;
     }

@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2025-12-07T15:50:31.187Z'
+updated: '2025-12-07T16:42:57.436Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -613,6 +613,7 @@ nodes:
       - 2383dbd1-21dd-46c4-b3f7-9363a8853b40
       - 6adeeddb-5c95-4c72-8342-b59c59345083
       - 81ca7867-a9cf-4183-81e6-27c2ec6e667d
+      - 9498231c-b177-41b5-a38c-1e7ba4f5f26e
     metadata:
       status: completed
       expanded: false
@@ -5432,7 +5433,7 @@ nodes:
       status: pending
       isContextDeclaration: true
       blueprintIcon: Search
-      expanded: true
+      expanded: false
       blueprintColor: '#0ea5e9'
       isBlueprint: true
   af1ebc0d-26dd-4a75-982f-03a9dbe2bc84:
@@ -5697,7 +5698,6 @@ nodes:
     id: 984247e7-2d55-4b93-80e8-f84818901621
     content: Backlog
     children:
-      - 0fb8716f-32c4-45dc-80ff-17b51c2199d0
       - e756a7d5-1471-4059-9979-a363838ab5e9
       - d7597faa-0b34-400e-985a-de035508cdb1
       - 40729a78-ee9c-4599-aa83-57f189199c3c
@@ -5714,7 +5714,7 @@ nodes:
       - 382ddb47-39df-4546-978c-66b3a2306480
     metadata:
       status: pending
-      expanded: false
+      expanded: true
       appliedContextIds:
         - e8824b29-eb18-4031-9e35-b321a864d418
       activeContextId: e8824b29-eb18-4031-9e35-b321a864d418
@@ -6093,7 +6093,7 @@ nodes:
       isBlueprint: true
       blueprintIcon: Layers2
       blueprintColor: '#0ea5e9'
-      expanded: true
+      expanded: false
   9a8f1538-7eb7-4e2d-9e0f-46e2c00675f4:
     id: 9a8f1538-7eb7-4e2d-9e0f-46e2c00675f4
     content: Implementation
@@ -6105,7 +6105,7 @@ nodes:
       - 6690289a-e02f-48bc-9225-a1083b7b324f
     metadata:
       status: pending
-      expanded: false
+      expanded: true
       isBlueprint: true
       blueprintIcon: Layers2
   9b46397c-c452-421c-b408-46b040d99c9e:
@@ -6392,6 +6392,7 @@ nodes:
     id: cc94b377-246d-45ae-b938-2d3906892aa1
     content: Implement major feature
     children:
+      - 4971695c-b11e-4bcf-870c-2e6c37995b9d
       - 1dbf6444-7207-4916-8fa7-7c1bb54f8499
       - c2b50240-2e86-4a10-ae72-530187e5e6f0
       - 2d2f84ae-d30a-4ddd-a127-c1e7acd15c63
@@ -6399,13 +6400,11 @@ nodes:
       - 869e317f-ec2a-4d2d-a8bb-8bc22d84e326
     metadata:
       status: pending
-      expanded: false
+      expanded: true
       deleted: false
       plugins: {}
       isContextDeclaration: true
       blueprintIcon: Hammer
-      bundledContextIds:
-        - 9b46397c-c452-421c-b408-46b040d99c9e
       blueprintColor: '#c47f09'
       isBlueprint: true
   c2b50240-2e86-4a10-ae72-530187e5e6f0:
@@ -7152,7 +7151,7 @@ nodes:
     id: 77963e20-53e9-4db7-8802-8c718f202cef
     content: In progress
     children:
-      - 9498231c-b177-41b5-a38c-1e7ba4f5f26e
+      - 11970639-be1e-40f1-98ba-78bf6dd96348
     metadata:
       status: pending
       appliedContextIds:
@@ -9633,6 +9632,7 @@ nodes:
       isBlueprint: true
       blueprintIcon: Star
       blueprintColor: '#64748b'
+      isContextDeclaration: false
   6e6f1d73-3ad7-46c6-879e-19036d650556:
     id: 6e6f1d73-3ad7-46c6-879e-19036d650556
     content: Review since last commit
@@ -9645,42 +9645,52 @@ nodes:
       - 0985b5a6-8be4-43f5-95f2-c5c76575708e
     metadata:
       status: pending
+      isBlueprint: true
+      blueprintIcon: Eye
+      blueprintColor: '#0ea5e9'
+      expanded: false
   4264aa2a-e101-4dd6-b971-1d0deb8ce03d:
     id: 4264aa2a-e101-4dd6-b971-1d0deb8ce03d
     content: Review all code implemented since last commit
     children: []
     metadata:
       status: pending
+      isBlueprint: true
   e8b96096-b0ba-42f8-91cd-37fea6028a85:
     id: e8b96096-b0ba-42f8-91cd-37fea6028a85
     content: Read arbo/architecture.md
     children: []
     metadata:
       status: pending
+      isBlueprint: true
   71a10f84-1849-4545-9352-d8827c3250d7:
     id: 71a10f84-1849-4545-9352-d8827c3250d7
     content: Insure it is consistent withe the global architecture
     children: []
     metadata:
       status: pending
+      isBlueprint: true
   443ed04c-12ba-43fb-a6b2-e3b14da356a3:
     id: 443ed04c-12ba-43fb-a6b2-e3b14da356a3
     content: Identify any refactoring opportunities
     children: []
     metadata:
       status: pending
+      isBlueprint: true
   0985b5a6-8be4-43f5-95f2-c5c76575708e:
     id: 0985b5a6-8be4-43f5-95f2-c5c76575708e
     content: Give the user a report of refactoring opportunities and their priority
     children: []
     metadata:
       status: pending
+      isBlueprint: true
   9d367ab4-0554-4138-8caf-2b9aaf770c5f:
     id: 9d367ab4-0554-4138-8caf-2b9aaf770c5f
     content: Made sure any abandoned attempts are deleted
     children: []
     metadata:
       status: pending
+      isBlueprint: true
   2de8ffa0-52d4-4a72-a2a9-794fb7993a82:
     id: 2de8ffa0-52d4-4a72-a2a9-794fb7993a82
     content: Right click menu isn't very intuitive
@@ -12270,21 +12280,6 @@ nodes:
     metadata:
       status: completed
       resolvedAt: '2025-12-07T15:46:22.350Z'
-  0fb8716f-32c4-45dc-80ff-17b51c2199d0:
-    id: 0fb8716f-32c4-45dc-80ff-17b51c2199d0
-    content: Use hyperlinks instead of content declaration bundling
-    children:
-      - adfa85f8-3723-464d-be13-70101b311c6b
-      - e523a0e5-0c10-4bf4-bfae-2b891c640027
-    metadata:
-      status: pending
-      expanded: false
-  adfa85f8-3723-464d-be13-70101b311c6b:
-    id: adfa85f8-3723-464d-be13-70101b311c6b
-    content: Remove context bundling feature
-    children: []
-    metadata:
-      status: pending
   a6d315e0-ea62-47a9-973e-74331e8f0139:
     id: a6d315e0-ea62-47a9-973e-74331e8f0139
     content: If you have changed the behavior but not the tests and they are still passing
@@ -12300,40 +12295,6 @@ nodes:
     metadata:
       status: pending
       isBlueprint: true
-  e523a0e5-0c10-4bf4-bfae-2b891c640027:
-    id: e523a0e5-0c10-4bf4-bfae-2b891c640027
-    content: 'When there is a hyperlink as a descendant of a context declaration then :'
-    children:
-      - 238a2729-e492-4735-b069-cd837023b129
-    metadata:
-      status: pending
-  238a2729-e492-4735-b069-cd837023b129:
-    id: 238a2729-e492-4735-b069-cd837023b129
-    content: When calculating the context, include the referenced node and its descendants
-    children:
-      - 390a7562-1a3a-45d9-b8e3-998d629c3f2c
-      - 973d66b5-09c7-4c3a-b691-cfb9cce2248e
-    metadata:
-      status: pending
-  390a7562-1a3a-45d9-b8e3-998d629c3f2c:
-    id: 390a7562-1a3a-45d9-b8e3-998d629c3f2c
-    content: Also include any references within the referenced node
-    children: []
-    metadata:
-      status: pending
-  973d66b5-09c7-4c3a-b691-cfb9cce2248e:
-    id: 973d66b5-09c7-4c3a-b691-cfb9cce2248e
-    content: If there is a circular reference back to the original context declaration, don't include it
-    children:
-      - 1d768d50-7edc-4133-80c7-2a19a1829545
-    metadata:
-      status: pending
-  1d768d50-7edc-4133-80c7-2a19a1829545:
-    id: 1d768d50-7edc-4133-80c7-2a19a1829545
-    content: Should just be a simple check - if reference = current context declaration, return
-    children: []
-    metadata:
-      status: pending
   ac483450-9717-4a84-a8a5-d6750db36d2a:
     id: ac483450-9717-4a84-a8a5-d6750db36d2a
     content: Is undoable
@@ -12523,7 +12484,8 @@ nodes:
       - 6330c6fc-aeef-4ec2-ae5a-120b5390767e
       - 8ff4de9a-fcd5-43c3-a293-6f85be133ea4
     metadata:
-      status: pending
+      status: completed
+      resolvedAt: '2025-12-07T16:01:14.228Z'
   da4e7d04-7809-4959-a490-ec2cd3327040:
     id: da4e7d04-7809-4959-a490-ec2cd3327040
     content: Hyperlink between arbo files
@@ -12531,46 +12493,349 @@ nodes:
       - f9085699-9ceb-447c-a6c9-bce37ca73a49
       - d488d724-5eba-44f9-8efc-a2b6cbeeb210
     metadata:
-      status: pending
+      status: completed
+      resolvedAt: '2025-12-07T16:01:12.882Z'
   9498231c-b177-41b5-a38c-1e7ba4f5f26e:
     id: 9498231c-b177-41b5-a38c-1e7ba4f5f26e
     content: Hyperlink behavior between panels
     children:
       - 20788a7f-0df3-4734-8c79-d52ea9aede21
       - da4e7d04-7809-4959-a490-ec2cd3327040
+      - 494e1164-c8eb-4d4b-b161-0f8fcba6e75e
     metadata:
-      status: pending
+      status: completed
       appliedContextIds:
         - 9b46397c-c452-421c-b408-46b040d99c9e
       activeContextId: 9b46397c-c452-421c-b408-46b040d99c9e
+      resolvedAt: '2025-12-07T16:01:14.847Z'
+      expanded: false
   6330c6fc-aeef-4ec2-ae5a-120b5390767e:
     id: 6330c6fc-aeef-4ec2-ae5a-120b5390767e
     content: Opens the main panel and browses to the link as normal
     children: []
     metadata:
-      status: pending
+      status: completed
+      resolvedAt: '2025-12-07T16:01:13.752Z'
   f9085699-9ceb-447c-a6c9-bce37ca73a49:
     id: f9085699-9ceb-447c-a6c9-bce37ca73a49
     content: Should not work
     children: []
     metadata:
-      status: pending
+      status: completed
+      resolvedAt: '2025-12-07T16:01:11.499Z'
   d488d724-5eba-44f9-8efc-a2b6cbeeb210:
     id: d488d724-5eba-44f9-8efc-a2b6cbeeb210
     content: When pasting from a 'Copy as hyperlink' into a different document
     children:
       - 6cd4dfb3-bb88-4e70-80c5-523cfefb6512
     metadata:
-      status: pending
+      status: completed
+      resolvedAt: '2025-12-07T16:01:11.976Z'
   6cd4dfb3-bb88-4e70-80c5-523cfefb6512:
     id: 6cd4dfb3-bb88-4e70-80c5-523cfefb6512
     content: Nothing happens
     children: []
     metadata:
-      status: pending
+      status: completed
+      resolvedAt: '2025-12-07T16:01:10.412Z'
   8ff4de9a-fcd5-43c3-a293-6f85be133ea4:
     id: 8ff4de9a-fcd5-43c3-a293-6f85be133ea4
     content: Zoom panel remains open in the background
     children: []
     metadata:
+      status: completed
+      resolvedAt: '2025-12-07T16:01:13.310Z'
+  494e1164-c8eb-4d4b-b161-0f8fcba6e75e:
+    id: 494e1164-c8eb-4d4b-b161-0f8fcba6e75e
+    content: Hyperlink when in blueprint mode
+    children:
+      - 74d003de-5e34-4585-9d1a-e328c72a8723
+      - 6be1aeeb-62f1-415a-9361-5b3e3eba9ae6
+    metadata:
+      status: completed
+      resolvedAt: '2025-12-07T16:01:09.391Z'
+  74d003de-5e34-4585-9d1a-e328c72a8723:
+    id: 74d003de-5e34-4585-9d1a-e328c72a8723
+    content: If linked to a blueprint mode, browse to it
+    children: []
+    metadata:
+      status: completed
+      resolvedAt: '2025-12-07T16:01:09.822Z'
+  6be1aeeb-62f1-415a-9361-5b3e3eba9ae6:
+    id: 6be1aeeb-62f1-415a-9361-5b3e3eba9ae6
+    content: If linked to a non blueprint mode, deactivate blueprint mode and browse to it
+    children: []
+    metadata:
+      status: completed
+      resolvedAt: '2025-12-07T16:01:08.267Z'
+  11970639-be1e-40f1-98ba-78bf6dd96348:
+    id: 11970639-be1e-40f1-98ba-78bf6dd96348
+    content: Use hyperlinks instead of context declaration bundling
+    children:
+      - 76f2d19a-7b7b-4375-a5b4-cbbc3c4ce7a3
+      - b6818c4e-e67c-4a11-b60c-dc0d2b8e423c
+      - 3bec39f0-f8c1-4dbd-91c7-5b5a0acc64a7
+      - a42cc375-f754-4898-ace6-ad61c2d2e2b8
+    metadata:
       status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  76f2d19a-7b7b-4375-a5b4-cbbc3c4ce7a3:
+    id: 76f2d19a-7b7b-4375-a5b4-cbbc3c4ce7a3
+    content: Remove context bundling feature
+    children:
+      - ce46c3ff-ea11-45a6-a9df-1fc6afb7413e
+      - 81827019-e2b0-40c6-8816-a5842f41c8b3
+      - 5f927233-6145-4cef-969d-50a637314e60
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ce46c3ff-ea11-45a6-a9df-1fc6afb7413e:
+    id: ce46c3ff-ea11-45a6-a9df-1fc6afb7413e
+    content: Remove bundledContextIds from node metadata
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  81827019-e2b0-40c6-8816-a5842f41c8b3:
+    id: 81827019-e2b0-40c6-8816-a5842f41c8b3
+    content: Remove addToBundle/removeFromBundle actions
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5f927233-6145-4cef-969d-50a637314e60:
+    id: 5f927233-6145-4cef-969d-50a637314e60
+    content: Remove bundle UI from context menu
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b6818c4e-e67c-4a11-b60c-dc0d2b8e423c:
+    id: b6818c4e-e67c-4a11-b60c-dc0d2b8e423c
+    content: Include hyperlinked content in context calculation
+    children:
+      - 3fb62c41-740f-4b65-bd97-ebfa0acedc4b
+      - b30a6708-22ae-468a-a1fe-07b070171cbc
+      - a65f67a7-3e91-41b9-8d6a-0184908fc85b
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3fb62c41-740f-4b65-bd97-ebfa0acedc4b:
+    id: 3fb62c41-740f-4b65-bd97-ebfa0acedc4b
+    content: 'When calculating context for a context declaration:'
+    children:
+      - 819c9238-840c-4373-8b0f-4b9f3a5d740d
+      - eb14ce70-180f-4ae4-b871-78d39f241ce6
+      - 53b9db6c-ac57-44e4-a9e0-d58a62039379
+      - ca04dc6f-03ab-4dae-bfad-54894aaf6942
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  819c9238-840c-4373-8b0f-4b9f3a5d740d:
+    id: 819c9238-840c-4373-8b0f-4b9f3a5d740d
+    content: Traverse descendants looking for hyperlink nodes
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  eb14ce70-180f-4ae4-b871-78d39f241ce6:
+    id: eb14ce70-180f-4ae4-b871-78d39f241ce6
+    content: For each hyperlink, resolve the linked node
+    children:
+      - fddcc6c0-312e-4d7f-b7e2-663e798d8a9b
+      - 66d513ad-d36c-4ba3-a329-72671d9105ee
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fddcc6c0-312e-4d7f-b7e2-663e798d8a9b:
+    id: fddcc6c0-312e-4d7f-b7e2-663e798d8a9b
+    content: Skip if linked node doesn't exist (already deleted)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  66d513ad-d36c-4ba3-a329-72671d9105ee:
+    id: 66d513ad-d36c-4ba3-a329-72671d9105ee
+    content: Skip if linked node is the current context declaration (direct circular reference)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  53b9db6c-ac57-44e4-a9e0-d58a62039379:
+    id: 53b9db6c-ac57-44e4-a9e0-d58a62039379
+    content: Include the linked node and its descendants in context output
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ca04dc6f-03ab-4dae-bfad-54894aaf6942:
+    id: ca04dc6f-03ab-4dae-bfad-54894aaf6942
+    content: Do NOT recursively resolve hyperlinks within included nodes (depth = 1)
+    children:
+      - 38399481-8f0e-440a-882b-4f15593b4612
+      - f0518396-141d-4ad6-9dc6-5594f82d33d5
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  38399481-8f0e-440a-882b-4f15593b4612:
+    id: 38399481-8f0e-440a-882b-4f15593b4612
+    content: This naturally prevents circular reference chains
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f0518396-141d-4ad6-9dc6-5594f82d33d5:
+    id: f0518396-141d-4ad6-9dc6-5594f82d33d5
+    content: Keeps implementation simple and predictable
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b30a6708-22ae-468a-a1fe-07b070171cbc:
+    id: b30a6708-22ae-468a-a1fe-07b070171cbc
+    content: Update context export/collaboration to use new resolution logic
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3bec39f0-f8c1-4dbd-91c7-5b5a0acc64a7:
+    id: 3bec39f0-f8c1-4dbd-91c7-5b5a0acc64a7
+    content: Migrate existing bundled contexts to hyperlinks
+    children:
+      - 8def78b0-e614-4fb7-a64c-08963783ef83
+      - bc18a378-7d4d-4de5-ab19-839bd92343aa
+      - 86a37f9f-4712-4ea7-a819-ddceaae20aed
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8def78b0-e614-4fb7-a64c-08963783ef83:
+    id: 8def78b0-e614-4fb7-a64c-08963783ef83
+    content: /home/brian/dev/Arborescent/arbo/todo.arbo
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  bc18a378-7d4d-4de5-ab19-839bd92343aa:
+    id: bc18a378-7d4d-4de5-ab19-839bd92343aa
+    content: /home/brian/Documents/Todo/dev.arbo
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  86a37f9f-4712-4ea7-a819-ddceaae20aed:
+    id: 86a37f9f-4712-4ea7-a819-ddceaae20aed
+    content: For each bundled context, create hyperlink to the bundled declaration
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a42cc375-f754-4898-ace6-ad61c2d2e2b8:
+    id: a42cc375-f754-4898-ace6-ad61c2d2e2b8
+    content: Implementation notes
+    children:
+      - b204324f-392e-4752-89c4-88f73128c1a7
+      - 749a0d68-ee1c-4bca-8558-43e5cf455c88
+      - 4a56265d-b24b-47e6-9c1f-87c136cca157
+      - 44770e65-be51-4c10-ba6b-2c6b4dd3d09d
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b204324f-392e-4752-89c4-88f73128c1a7:
+    id: b204324f-392e-4752-89c4-88f73128c1a7
+    content: 'Hyperlinks to context declarations: just include content, ignore context semantics'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  749a0d68-ee1c-4bca-8558-43e5cf455c88:
+    id: 749a0d68-ee1c-4bca-8558-43e5cf455c88
+    content: 'Performance: no concern - already traversing descendants for context calculation'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4a56265d-b24b-47e6-9c1f-87c136cca157:
+    id: 4a56265d-b24b-47e6-9c1f-87c136cca157
+    content: Simpler than bundling - leverages existing hyperlink infrastructure
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  44770e65-be51-4c10-ba6b-2c6b4dd3d09d:
+    id: 44770e65-be51-4c10-ba6b-2c6b4dd3d09d
+    content: 'ROI: Good - removes hidden complexity, adds visible intuitive linking'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a65f67a7-3e91-41b9-8d6a-0184908fc85b:
+    id: a65f67a7-3e91-41b9-8d6a-0184908fc85b
+    content: Context resolution respects order links are in
+    children: []
+    metadata:
+      status: pending
+  4971695c-b11e-4bcf-870c-2e6c37995b9d:
+    id: 4971695c-b11e-4bcf-870c-2e6c37995b9d
+    content: First consider minor feature context
+    children:
+      - 976a9105-8f8e-49c0-bfbe-a46f83371dc8
+    metadata:
+      status: pending
+      isBlueprint: true
+  976a9105-8f8e-49c0-bfbe-a46f83371dc8:
+    id: 976a9105-8f8e-49c0-bfbe-a46f83371dc8
+    content: ''
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true

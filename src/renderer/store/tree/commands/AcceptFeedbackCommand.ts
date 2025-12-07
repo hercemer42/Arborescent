@@ -100,9 +100,6 @@ export class AcceptFeedbackCommand extends BaseCommand {
     if (collaboratingNode.metadata.blueprintColor) {
       preservedMetadata.blueprintColor = collaboratingNode.metadata.blueprintColor;
     }
-    if (collaboratingNode.metadata.bundledContextIds) {
-      preservedMetadata.bundledContextIds = collaboratingNode.metadata.bundledContextIds;
-    }
 
     const updatedNewNodesMap = {
       ...this.newNodesMap,

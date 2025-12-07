@@ -58,14 +58,14 @@ vi.mock('../../../clipboard/clipboardCacheStore', () => ({
 }));
 
 // Mock hyperlink clipboard cache store
-type MockHyperlinkCacheType = { nodeId: string; content: string; timestamp: number } | null;
+type MockHyperlinkCacheType = { nodeId: string; content: string; sourceFilePath: string; timestamp: number } | null;
 let currentMockHyperlinkCache: MockHyperlinkCacheType = null;
 
 vi.mock('../../../clipboard/hyperlinkClipboardStore', () => ({
   useHyperlinkClipboardStore: {
     getState: () => ({
-      setCache: vi.fn((nodeId: string, content: string) => {
-        currentMockHyperlinkCache = { nodeId, content, timestamp: Date.now() };
+      setCache: vi.fn((nodeId: string, content: string, sourceFilePath: string) => {
+        currentMockHyperlinkCache = { nodeId, content, sourceFilePath, timestamp: Date.now() };
       }),
       getCache: vi.fn(() => currentMockHyperlinkCache),
       clearCache: vi.fn(() => {
@@ -98,6 +98,7 @@ describe('clipboardActions', () => {
     ancestorRegistry: Record<string, string[]>;
     activeNodeId: string | null;
     multiSelectedNodeIds: Set<string>;
+    currentFilePath: string | null;
   };
 
   // Helper to check if a node is marked as cut via transient metadata
@@ -187,6 +188,7 @@ describe('clipboardActions', () => {
       },
       activeNodeId: null,
       multiSelectedNodeIds: new Set(),
+      currentFilePath: '/test/file.arbo',
     };
 
     setState = (partial) => {
@@ -443,10 +445,11 @@ describe('clipboardActions', () => {
       // Empty clipboard and no regular cache
       mockClipboard.readText.mockResolvedValueOnce('');
       currentMockCache = null;
-      // But has hyperlink cache
+      // But has hyperlink cache (same file path as current file)
       currentMockHyperlinkCache = {
         nodeId: 'node-2',
         content: 'Task 2',
+        sourceFilePath: '/test/file.arbo',
         timestamp: Date.now(),
       };
 
@@ -904,6 +907,7 @@ describe('clipboardActions', () => {
         currentMockHyperlinkCache = {
           nodeId: 'node-2',
           content: 'Task 2',
+          sourceFilePath: '/test/file.arbo',
           timestamp: Date.now(),
         };
         state.activeNodeId = 'node-1';
@@ -918,6 +922,7 @@ describe('clipboardActions', () => {
         currentMockHyperlinkCache = {
           nodeId: 'node-2',
           content: 'Task 2',
+          sourceFilePath: '/test/file.arbo',
           timestamp: Date.now(),
         };
         state.activeNodeId = null;
@@ -940,6 +945,7 @@ describe('clipboardActions', () => {
         currentMockHyperlinkCache = {
           nodeId: 'node-1',
           content: 'Task 1',
+          sourceFilePath: '/test/file.arbo',
           timestamp: Date.now(),
         };
         state.activeNodeId = 'hyperlink-node';
@@ -957,6 +963,7 @@ describe('clipboardActions', () => {
         currentMockHyperlinkCache = {
           nodeId: 'node-2',
           content: 'Task 2',
+          sourceFilePath: '/test/file.arbo',
           timestamp: Date.now(),
         };
         state.activeNodeId = 'node-1';
@@ -965,6 +972,21 @@ describe('clipboardActions', () => {
 
         // Flash is called with the new node ID (UUID)
         expect(mockFlashNode).toHaveBeenCalled();
+      });
+
+      it('should block pasting hyperlink from different document', () => {
+        currentMockHyperlinkCache = {
+          nodeId: 'node-2',
+          content: 'Task 2',
+          sourceFilePath: '/different/file.arbo',
+          timestamp: Date.now(),
+        };
+        state.activeNodeId = 'node-1';
+
+        const result = actions.pasteAsHyperlink();
+
+        expect(result).toBe('no-content');
+        expect(mockExecuteCommand).not.toHaveBeenCalled();
       });
     });
 
@@ -981,6 +1003,7 @@ describe('clipboardActions', () => {
         currentMockHyperlinkCache = {
           nodeId: 'node-1',
           content: 'Task 1',
+          sourceFilePath: '/test/file.arbo',
           timestamp: Date.now(),
         };
 

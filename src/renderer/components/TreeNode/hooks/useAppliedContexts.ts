@@ -9,11 +9,6 @@ export interface AppliedContext {
   name: string;
 }
 
-export interface BundledContext {
-  icon: string | undefined;
-  color: string | undefined;
-  name: string;
-}
 
 export function useAppliedContexts(node: TreeNode | undefined): AppliedContext[] {
   const appliedContextIds = (node?.metadata.appliedContextIds as string[]) || [];
@@ -74,34 +69,3 @@ export function useActiveContext(node: TreeNode | undefined): AppliedContext | u
   }, [activeContextData]);
 }
 
-export function useBundledContexts(node: TreeNode | undefined): BundledContext[] {
-  const isContextDeclaration = node?.metadata.isContextDeclaration === true;
-  const bundledContextIds = (node?.metadata.bundledContextIds as string[]) || [];
-
-  const bundledContextsData = useStore((state) => {
-    if (!isContextDeclaration || bundledContextIds.length === 0) return null;
-
-    const parts: string[] = [];
-    for (const contextId of bundledContextIds) {
-      const contextNode = state.nodes[contextId];
-      if (contextNode) {
-        parts.push(`${contextId}:${contextNode.metadata.blueprintIcon ?? ''}:${contextNode.metadata.blueprintColor ?? ''}:${contextNode.content}`);
-      }
-    }
-    return parts.join('|');
-  });
-
-  return useMemo(() => {
-    if (!bundledContextsData) return [];
-
-    const parts = bundledContextsData.split('|');
-    return parts.map(part => {
-      const [, icon, color, ...contentParts] = part.split(':');
-      return {
-        icon: icon || undefined,
-        color: color || undefined,
-        name: contentParts.join(':'),
-      };
-    });
-  }, [bundledContextsData]);
-}

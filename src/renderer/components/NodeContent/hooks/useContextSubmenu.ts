@@ -16,8 +16,6 @@ interface BuildContextSubmenuParams {
     removeContextDeclaration: (nodeId: string) => void;
     applyContext: (nodeId: string, contextNodeId: string) => void;
     removeAppliedContext: (nodeId: string, contextNodeId?: string) => void;
-    addToBundle: (nodeId: string, contextNodeId: string) => void;
-    removeFromBundle: (nodeId: string, contextNodeId: string) => void;
   };
 }
 
@@ -31,7 +29,6 @@ export function buildContextSubmenu({
 }: BuildContextSubmenuParams): ContextMenuItem | null {
   const isContextDeclaration = node.metadata.isContextDeclaration === true;
   const appliedContextIds = (node.metadata.appliedContextIds as string[]) || [];
-  const bundledContextIds = (node.metadata.bundledContextIds as string[]) || [];
   const hasAppliedContext = appliedContextIds.length > 0;
 
   const canDeclareAsContext = (() => {
@@ -96,28 +93,6 @@ export function buildContextSubmenu({
     });
   }
 
-  const bundleDeclarationItems: ContextMenuItem[] = isContextDeclaration
-    ? contextDeclarations
-        .filter(ctx => ctx.nodeId !== node.id)
-        .map(ctx => {
-          const Icon = getIconByName(ctx.icon);
-          const isBundled = bundledContextIds.includes(ctx.nodeId);
-          return {
-            label: ctx.content.length > 30 ? ctx.content.slice(0, 30) + '...' : ctx.content,
-            onClick: () => {
-              if (isBundled) {
-                actions.removeFromBundle(node.id, ctx.nodeId);
-              } else {
-                actions.addToBundle(node.id, ctx.nodeId);
-              }
-            },
-            icon: Icon ? createElement(Icon, { size: 14 }) : undefined,
-            radioSelected: isBundled,
-            keepOpenOnClick: true,
-          };
-        })
-    : [];
-
   const submenuItems: ContextMenuItem[] = [];
 
   submenuItems.push({
@@ -144,14 +119,6 @@ export function buildContextSubmenu({
     submenuItems.push({
       label: 'Remove context declaration',
       onClick: handleRemoveContextDeclaration,
-    });
-  }
-
-  if (isContextDeclaration) {
-    submenuItems.push({
-      label: 'Bundle declarations',
-      submenu: bundleDeclarationItems,
-      disabled: bundleDeclarationItems.length === 0,
     });
   }
 
