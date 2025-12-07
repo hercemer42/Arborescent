@@ -1,7 +1,7 @@
 import { BaseCommand } from './Command';
 import { TreeNode } from '../../../../shared/types';
 import { moveNodeInRegistry, AncestorRegistry } from '../../../services/ancestry';
-import { getAllDescendants, updateNodeMetadata } from '../../../utils/nodeHelpers';
+import { getIsContextChild, getAllDescendants, updateNodeMetadata } from '../../../utils/nodeHelpers';
 
 /**
  * Command for moving a node to a new parent/position
@@ -70,8 +70,10 @@ export class MoveNodeCommand extends BaseCommand {
       children: newChildren,
     };
 
-    // If moving into a blueprint, inherit blueprint status
-    if (newParent.metadata.isBlueprint === true) {
+    // Inherit blueprint status only when moving into a context tree
+    const parentIsContextDeclaration = newParent.metadata.isContextDeclaration === true;
+    const parentIsContextChild = getIsContextChild(this.newParentId, nodes, ancestorRegistry);
+    if (parentIsContextDeclaration || parentIsContextChild) {
       updatedNodes = this.inheritBlueprintStatus(updatedNodes, this.nodeId, nodes);
     }
 
@@ -97,33 +99,24 @@ export class MoveNodeCommand extends BaseCommand {
     this.triggerAutosave?.();
   }
 
-  /**
-   * Inherit blueprint status for a moved node and its descendants.
-   * Called when moving into a blueprint tree.
-   */
   private inheritBlueprintStatus(
     nodes: Record<string, TreeNode>,
     nodeId: string,
     originalNodes: Record<string, TreeNode>
   ): Record<string, TreeNode> {
     let updatedNodes = nodes;
-
-    // Get all nodes to update (moved node + descendants)
     const nodeIdsToUpdate = [nodeId, ...getAllDescendants(nodeId, nodes)];
 
     for (const id of nodeIdsToUpdate) {
       const n = updatedNodes[id];
       if (!n || n.metadata.isBlueprint === true) continue;
 
-      // Capture previous state for undo
       const original = originalNodes[id];
       if (original) {
         this.previousBlueprintStates.set(id, original.metadata.isBlueprint as boolean | undefined);
       }
 
-      updatedNodes = updateNodeMetadata(updatedNodes, id, {
-        isBlueprint: true,
-      });
+      updatedNodes = updateNodeMetadata(updatedNodes, id, { isBlueprint: true });
     }
 
     return updatedNodes;
@@ -158,11 +151,9 @@ export class MoveNodeCommand extends BaseCommand {
       children: oldChildren,
     };
 
-    // Restore blueprint status for all affected nodes
-    for (const [nodeId, previousBlueprintState] of this.previousBlueprintStates) {
-      updatedNodes = updateNodeMetadata(updatedNodes, nodeId, {
-        isBlueprint: previousBlueprintState,
-      });
+    // Restore blueprint status for nodes that were modified
+    for (const [nodeId, previousState] of this.previousBlueprintStates) {
+      updatedNodes = updateNodeMetadata(updatedNodes, nodeId, { isBlueprint: previousState });
     }
 
     // Incremental update: update ancestors for moved node and descendants

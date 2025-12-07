@@ -1,6 +1,7 @@
 import { BaseCommand } from './Command';
 import { TreeNode } from '../../../../shared/types';
 import { addNodesToRegistry, removeNodeFromRegistry, AncestorRegistry } from '../../../services/ancestry';
+import { getIsContextChild } from '../../../utils/nodeHelpers';
 import { v4 as uuidv4 } from 'uuid';
 
 /**
@@ -80,9 +81,13 @@ export class PasteNodesCommand extends BaseCommand {
     const parent = nodes[this.targetParentId];
     if (!parent) return;
 
-    // Process pasted nodes: inherit blueprint status, clear context declaration metadata
-    const parentIsBlueprint = parent.metadata.isBlueprint === true;
-    const processedNodes = this.processNodesForPaste(this.remappedNodes, parentIsBlueprint);
+    // Check if pasting into a context tree
+    const parentIsContextDeclaration = parent.metadata.isContextDeclaration === true;
+    const parentIsContextChild = getIsContextChild(this.targetParentId, nodes, ancestorRegistry);
+    const parentIsContextTree = parentIsContextDeclaration || parentIsContextChild;
+
+    // Process pasted nodes: clear context declaration metadata, inherit blueprint if in context tree
+    const processedNodes = this.processNodesForPaste(this.remappedNodes, parentIsContextTree);
 
     // Add all processed nodes to the tree
     const updatedNodes = { ...nodes, ...processedNodes };
@@ -117,13 +122,13 @@ export class PasteNodesCommand extends BaseCommand {
   }
 
   /**
-   * Process nodes for pasting: inherit blueprint status, clear context declaration metadata.
-   * When pasting into a blueprint, all pasted nodes become blueprints.
+   * Process nodes for pasting: clear context declaration metadata.
    * Context declaration metadata is always cleared (can't paste a context into another tree).
+   * If pasting into a context tree, set isBlueprint: true on all pasted nodes.
    */
   private processNodesForPaste(
     nodesToUpdate: Record<string, TreeNode>,
-    parentIsBlueprint: boolean
+    parentIsContextTree: boolean
   ): Record<string, TreeNode> {
     const result: Record<string, TreeNode> = {};
 
@@ -134,8 +139,6 @@ export class PasteNodesCommand extends BaseCommand {
         ...node,
         metadata: {
           ...node.metadata,
-          // Inherit blueprint status from parent
-          isBlueprint: parentIsBlueprint ? true : node.metadata.isBlueprint,
           // Clear context declaration metadata (can't paste context declarations)
           isContextDeclaration: undefined,
           bundledContextIds: undefined,
@@ -143,6 +146,8 @@ export class PasteNodesCommand extends BaseCommand {
           // (regular blueprints keep their icon)
           blueprintIcon: wasContextDeclaration ? undefined : node.metadata.blueprintIcon,
           blueprintColor: wasContextDeclaration ? undefined : node.metadata.blueprintColor,
+          // Inherit blueprint status when pasting into a context tree
+          isBlueprint: parentIsContextTree ? true : node.metadata.isBlueprint,
         },
       };
     }
