@@ -1,7 +1,7 @@
 import { BaseCommand } from './Command';
 import { TreeNode } from '../../../../shared/types';
 import { addNodeToRegistry, removeNodeFromRegistry, AncestorRegistry } from '../../../services/ancestry';
-import { createTreeNode } from '../../../utils/nodeHelpers';
+import { createTreeNode, getIsContextChild } from '../../../utils/nodeHelpers';
 
 /**
  * Command for creating a new node
@@ -38,8 +38,11 @@ export class CreateNodeCommand extends BaseCommand {
     // Build initial metadata
     const metadata: Record<string, unknown> = { status: 'pending', ...this.initialMetadata };
 
-    // Inherit blueprint status from parent
-    if (parent.metadata.isBlueprint === true) {
+    // Only inherit blueprint status if parent is part of a context tree
+    // (context declaration or context child) - regular blueprints don't auto-propagate
+    const parentIsContextDeclaration = parent.metadata.isContextDeclaration === true;
+    const parentIsContextChild = getIsContextChild(this.parentId, nodes, ancestorRegistry);
+    if (parentIsContextDeclaration || parentIsContextChild) {
       metadata.isBlueprint = true;
     }
 

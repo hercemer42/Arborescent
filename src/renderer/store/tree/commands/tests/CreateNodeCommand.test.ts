@@ -234,4 +234,67 @@ describe('CreateNodeCommand', () => {
       expect(triggerAutosave).toHaveBeenCalled();
     });
   });
+
+  describe('blueprint inheritance', () => {
+    it('should NOT inherit isBlueprint from regular blueprint parent', () => {
+      nodes['child1'].metadata.isBlueprint = true;
+
+      const cmd = new CreateNodeCommand(
+        'newNode',
+        'child1',
+        0,
+        'New content',
+        getState,
+        setState,
+        triggerAutosave
+      );
+
+      cmd.execute();
+
+      const stateUpdate = setState.mock.calls[0][0];
+      expect(stateUpdate.nodes['newNode'].metadata.isBlueprint).toBeUndefined();
+    });
+
+    it('should inherit isBlueprint from context declaration parent', () => {
+      nodes['child1'].metadata.isContextDeclaration = true;
+      nodes['child1'].metadata.isBlueprint = true;
+
+      const cmd = new CreateNodeCommand(
+        'newNode',
+        'child1',
+        0,
+        'New content',
+        getState,
+        setState,
+        triggerAutosave
+      );
+
+      cmd.execute();
+
+      const stateUpdate = setState.mock.calls[0][0];
+      expect(stateUpdate.nodes['newNode'].metadata.isBlueprint).toBe(true);
+    });
+
+    it('should inherit isBlueprint from context child parent', () => {
+      // Set up: root is context declaration, child1 is context child (derived)
+      nodes['root'].metadata.isContextDeclaration = true;
+      nodes['root'].metadata.isBlueprint = true;
+      nodes['child1'].metadata.isBlueprint = true;
+
+      const cmd = new CreateNodeCommand(
+        'newNode',
+        'child1',
+        0,
+        'New content',
+        getState,
+        setState,
+        triggerAutosave
+      );
+
+      cmd.execute();
+
+      const stateUpdate = setState.mock.calls[0][0];
+      expect(stateUpdate.nodes['newNode'].metadata.isBlueprint).toBe(true);
+    });
+  });
 });
