@@ -11,14 +11,17 @@ import { DeleteMultipleNodesCommand } from '../commands/DeleteMultipleNodesComma
 import { PasteNodesCommand } from '../commands/PasteNodesCommand';
 import { MoveNodeCommand } from '../commands/MoveNodeCommand';
 import { MarkCutCommand } from '../commands/MarkCutCommand';
+import { CreateNodeCommand } from '../commands/CreateNodeCommand';
 import { Command } from '../commands/Command';
 import { logger } from '../../../services/logger';
 import { writeToClipboard, readFromClipboard } from '../../../services/clipboardService';
 import { VisualEffectsActions } from './visualEffectsActions';
 import { notifyError } from '../../../services/notification';
 import { useClipboardCacheStore, ClipboardCacheContent } from '../../clipboard/clipboardCacheStore';
+import { useHyperlinkClipboardStore } from '../../clipboard/hyperlinkClipboardStore';
 import { useToastStore } from '../../toast/toastStore';
 import { AncestorRegistry } from '../../../services/ancestry';
+import { v4 as uuidv4 } from 'uuid';
 
 export interface ClipboardActions {
   /**
@@ -45,6 +48,23 @@ export interface ClipboardActions {
    * Returns 'deleted' if nodes were deleted, 'no-selection' if nothing selected.
    */
   deleteSelectedNodes: () => 'deleted' | 'no-selection';
+
+  /**
+   * Copy the active node as a hyperlink reference.
+   * Returns 'copied' if successful, 'no-selection' if no node selected.
+   */
+  copyAsHyperlink: () => 'copied' | 'no-selection';
+
+  /**
+   * Paste a hyperlink as a child of the active node.
+   * Returns 'pasted' if successful, 'no-content' if no hyperlink in cache.
+   */
+  pasteAsHyperlink: () => 'pasted' | 'no-content';
+
+  /**
+   * Check if there's a hyperlink in the clipboard cache.
+   */
+  hasHyperlinkCache: () => boolean;
 }
 
 type StoreState = {
@@ -525,6 +545,13 @@ export const createClipboardActions = (
     const targetParentId = state.activeNodeId || state.rootNodeId;
     if (!targetParentId) return 'no-content';
 
+    // Hyperlinks cannot have children
+    const targetParent = state.nodes[targetParentId];
+    if (targetParent?.metadata.isHyperlink === true) {
+      useToastStore.getState().addToast('Cannot paste into a hyperlink node', 'error');
+      return 'no-content';
+    }
+
     const cache = useClipboardCacheStore.getState().getCache();
     const ctx: PasteContext = {
       state,
@@ -582,10 +609,82 @@ export const createClipboardActions = (
     return 'deleted';
   }
 
+  function copyAsHyperlink(): 'copied' | 'no-selection' {
+    const state = get();
+    const { activeNodeId, nodes } = state;
+
+    if (!activeNodeId) return 'no-selection';
+
+    const node = nodes[activeNodeId];
+    if (!node) return 'no-selection';
+
+    // Store the node ID and content snapshot in hyperlink cache
+    useHyperlinkClipboardStore.getState().setCache(activeNodeId, node.content);
+
+    flashNodes(activeNodeId, visualEffects);
+    logger.info('Copied node as hyperlink', 'ClipboardActions');
+    return 'copied';
+  }
+
+  function pasteAsHyperlink(): 'pasted' | 'no-content' {
+    const hyperlinkCache = useHyperlinkClipboardStore.getState().getCache();
+    if (!hyperlinkCache) return 'no-content';
+
+    const state = get();
+    const targetParentId = state.activeNodeId || state.rootNodeId;
+    if (!targetParentId) return 'no-content';
+
+    const targetParent = state.nodes[targetParentId];
+    if (!targetParent) return 'no-content';
+
+    // Hyperlinks cannot be children of other hyperlinks
+    if (targetParent.metadata.isHyperlink === true) {
+      useToastStore.getState().addToast('Cannot add hyperlink as child of another hyperlink', 'error');
+      return 'no-content';
+    }
+
+    const newNodeId = uuidv4();
+    const position = targetParent.children.length;
+
+    const command = new CreateNodeCommand(
+      newNodeId,
+      targetParentId,
+      position,
+      hyperlinkCache.content, // Use the snapshot content
+      () => {
+        const currentState = get();
+        return {
+          nodes: currentState.nodes,
+          rootNodeId: currentState.rootNodeId,
+          ancestorRegistry: currentState.ancestorRegistry,
+        };
+      },
+      (partial) => set(partial as Partial<StoreState>),
+      triggerAutosave,
+      {
+        isHyperlink: true,
+        linkedNodeId: hyperlinkCache.nodeId,
+      }
+    );
+
+    getActions().executeCommand(command);
+    flashNodes(newNodeId, visualEffects);
+
+    logger.info('Pasted hyperlink', 'ClipboardActions');
+    return 'pasted';
+  }
+
+  function hasHyperlinkCache(): boolean {
+    return useHyperlinkClipboardStore.getState().hasCache();
+  }
+
   return {
     cutNodes,
     copyNodes,
     pasteNodes,
     deleteSelectedNodes,
+    copyAsHyperlink,
+    pasteAsHyperlink,
+    hasHyperlinkCache,
   };
 };

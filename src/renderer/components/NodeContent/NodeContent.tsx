@@ -1,4 +1,5 @@
 import { memo, createElement } from 'react';
+import { Link } from 'lucide-react';
 import { TreeNode } from '../../../shared/types';
 import { StatusCheckbox } from '../ui/StatusCheckbox';
 import { ContextMenu } from '../ui/ContextMenu';
@@ -7,6 +8,7 @@ import { useBlueprintIconClick } from './hooks/useBlueprintIconClick';
 import { useContextIconClick } from './hooks/useContextIconClick';
 import { useContextIcon } from './hooks/useContextIcon';
 import { useBlueprintIcon } from './hooks/useBlueprintIcon';
+import { useHyperlinkNavigation } from './hooks/useHyperlinkNavigation';
 import './NodeContent.css';
 
 interface NodeContentProps {
@@ -31,12 +33,28 @@ function NodeContentComponent({
 
   const handleBlueprintIconClick = useBlueprintIconClick(node.id, node);
   const handleContextIconClick = useContextIconClick(node.id, node);
+  const { navigateToLinkedNode } = useHyperlinkNavigation(node);
 
   const { isContextDeclaration, isContextChild, ContextIcon, contextColor } = useContextIcon(node);
   const { BlueprintIcon, blueprintColor, isInherited: isInheritingBlueprintIcon } = useBlueprintIcon(node);
 
-  // Render the status area (checkbox, blueprint icon, or context icon)
+  const isHyperlink = node.metadata.isHyperlink === true;
+
+  // Render the status area (checkbox, blueprint icon, context icon, or hyperlink icon)
   const renderStatusArea = () => {
+    // Hyperlink node - Link icon
+    if (isHyperlink) {
+      return (
+        <button
+          className="hyperlink-indicator"
+          title="Click to navigate to linked node"
+          onClick={navigateToLinkedNode}
+        >
+          <Link size={19} />
+        </button>
+      );
+    }
+
     // Context declaration - clickable icon (no badge - badge is only in gutter)
     if (isContextDeclaration && ContextIcon) {
       return (
@@ -105,11 +123,12 @@ function NodeContentComponent({
 
         <div
           ref={contentRef}
-          className="node-text"
-          contentEditable
+          className={`node-text ${isHyperlink ? 'hyperlink-text' : ''}`}
+          contentEditable={!isHyperlink}
           suppressContentEditableWarning
           spellCheck={false}
-          onInput={handleInput}
+          onInput={isHyperlink ? undefined : handleInput}
+          onClick={isHyperlink ? navigateToLinkedNode : undefined}
         />
       </div>
 

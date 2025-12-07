@@ -19,6 +19,7 @@ import { buildCollaborateSubmenu } from './useCollaborateSubmenu';
 import { buildExecuteSubmenu } from './useExecuteSubmenu';
 import { getPositionFromPoint } from '../../../utils/position';
 import { useIconPickerStore } from '../../../store/iconPicker/iconPickerStore';
+import { useHyperlinkClipboardStore } from '../../../store/clipboard/hyperlinkClipboardStore';
 
 export function useNodeContextMenu(node: TreeNode) {
   const treeType = useStore((state) => state.treeType);
@@ -187,24 +188,29 @@ export function useNodeContextMenu(node: TreeNode) {
       onRemoveFromBlueprint: () => actions.removeFromBlueprint(node.id, true),
     });
 
-    // Base menu items
+    const isHyperlink = node.metadata.isHyperlink === true;
+
+    // Base menu items - hyperlinks have limited options
     const baseMenuItems: ContextMenuItem[] = [
-      {
+      // Execute/Collaborate hidden for hyperlinks - they're just references
+      ...(!isHyperlink ? [{
         label: 'Execute',
         submenu: executeSubmenu,
-      },
-      {
+      }] : []),
+      ...(!isHyperlink ? [{
         label: 'Collaborate',
         submenu: collaborateSubmenu,
         disabled: collaborateDisabled,
-      },
+      }] : []),
       ...(isNodeBeingCollaborated ? [{
         label: 'Cancel collaboration',
         onClick: handleCancel,
         disabled: false,
       }] : []),
-      ...(contextMenuItem ? [contextMenuItem] : []),
-      ...(blueprintMenuItem ? [blueprintMenuItem] : []),
+      // Context menu hidden for hyperlinks
+      ...(!isHyperlink && contextMenuItem ? [contextMenuItem] : []),
+      // Blueprint menu hidden for hyperlinks
+      ...(!isHyperlink && blueprintMenuItem ? [blueprintMenuItem] : []),
       {
         label: 'Edit',
         submenu: [
@@ -220,10 +226,11 @@ export function useNodeContextMenu(node: TreeNode) {
             label: 'Cut',
             onClick: () => actions.cutNodes(),
           },
-          {
+          // Paste hidden for hyperlinks - no children allowed
+          ...(!isHyperlink ? [{
             label: 'Paste',
             onClick: () => actions.pasteNodes(),
-          },
+          }] : []),
           {
             label: 'Delete',
             onClick: handleDelete,
@@ -236,9 +243,21 @@ export function useNodeContextMenu(node: TreeNode) {
         onClick: handleCopyToClipboard,
         disabled: false,
       },
-      ...(!isZoomTab ? [{
+      // Zoom hidden for hyperlinks - they're single-line references
+      ...(!isZoomTab && !isHyperlink ? [{
         label: 'Zoom',
         onClick: handleZoom,
+        disabled: false,
+      }] : []),
+      // Hyperlink actions - only for non-hyperlink nodes
+      ...(!isHyperlink ? [{
+        label: 'Copy as Hyperlink',
+        onClick: () => actions.copyAsHyperlink(),
+        disabled: false,
+      }] : []),
+      ...(useHyperlinkClipboardStore.getState().hasCache() && !isHyperlink ? [{
+        label: 'Paste as Hyperlink',
+        onClick: () => actions.pasteAsHyperlink(),
         disabled: false,
       }] : []),
     ];

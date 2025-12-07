@@ -52,6 +52,11 @@ export const createNodeActions = (
     const node = nodes[nodeId];
     if (!node) return;
 
+    // Prevent editing of hyperlinks
+    if (node.metadata.isHyperlink === true) {
+      return;
+    }
+
     // Prevent editing of node in collaboration
     if (collaboratingNodeId === nodeId) {
       useToastStore.getState().addToast(

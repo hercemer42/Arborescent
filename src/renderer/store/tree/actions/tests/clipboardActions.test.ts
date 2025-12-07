@@ -57,6 +57,25 @@ vi.mock('../../../clipboard/clipboardCacheStore', () => ({
   },
 }));
 
+// Mock hyperlink clipboard cache store
+type MockHyperlinkCacheType = { nodeId: string; content: string; timestamp: number } | null;
+let currentMockHyperlinkCache: MockHyperlinkCacheType = null;
+
+vi.mock('../../../clipboard/hyperlinkClipboardStore', () => ({
+  useHyperlinkClipboardStore: {
+    getState: () => ({
+      setCache: vi.fn((nodeId: string, content: string) => {
+        currentMockHyperlinkCache = { nodeId, content, timestamp: Date.now() };
+      }),
+      getCache: vi.fn(() => currentMockHyperlinkCache),
+      clearCache: vi.fn(() => {
+        currentMockHyperlinkCache = null;
+      }),
+      hasCache: vi.fn(() => currentMockHyperlinkCache !== null),
+    }),
+  },
+}));
+
 // Mock error notification
 vi.mock('../../../../utils/errorNotification', () => ({
   notifyError: vi.fn(),
@@ -803,6 +822,177 @@ describe('clipboardActions', () => {
       );
       // Cut state should remain (not cleared on blocked paste)
       expect(isNodeCut('blueprint-child')).toBe(true);
+    });
+  });
+
+  describe('hyperlink actions', () => {
+    beforeEach(() => {
+      // Reset hyperlink cache
+      currentMockHyperlinkCache = null;
+      mockAddToast.mockClear();
+    });
+
+    describe('copyAsHyperlink', () => {
+      it('should return no-selection when no active node', () => {
+        state.activeNodeId = null;
+
+        const result = actions.copyAsHyperlink();
+
+        expect(result).toBe('no-selection');
+        expect(currentMockHyperlinkCache).toBeNull();
+      });
+
+      it('should cache node as hyperlink when active node exists', () => {
+        state.activeNodeId = 'node-1';
+
+        const result = actions.copyAsHyperlink();
+
+        expect(result).toBe('copied');
+        expect(currentMockHyperlinkCache).not.toBeNull();
+        expect(currentMockHyperlinkCache?.nodeId).toBe('node-1');
+        expect(currentMockHyperlinkCache?.content).toBe('Task 1');
+      });
+
+      it('should flash the copied node', () => {
+        state.activeNodeId = 'node-2';
+
+        actions.copyAsHyperlink();
+
+        expect(mockFlashNode).toHaveBeenCalledWith('node-2', 'light');
+      });
+
+      it('should return no-selection when active node does not exist', () => {
+        state.activeNodeId = 'non-existent';
+
+        const result = actions.copyAsHyperlink();
+
+        expect(result).toBe('no-selection');
+      });
+    });
+
+    describe('pasteAsHyperlink', () => {
+      it('should return no-content when no hyperlink cache', () => {
+        currentMockHyperlinkCache = null;
+        state.activeNodeId = 'node-1';
+
+        const result = actions.pasteAsHyperlink();
+
+        expect(result).toBe('no-content');
+      });
+
+      it('should paste hyperlink as child of active node', () => {
+        currentMockHyperlinkCache = {
+          nodeId: 'node-2',
+          content: 'Task 2',
+          timestamp: Date.now(),
+        };
+        state.activeNodeId = 'node-1';
+
+        const result = actions.pasteAsHyperlink();
+
+        expect(result).toBe('pasted');
+        expect(mockExecuteCommand).toHaveBeenCalled();
+      });
+
+      it('should paste hyperlink as child of root when no active node', () => {
+        currentMockHyperlinkCache = {
+          nodeId: 'node-2',
+          content: 'Task 2',
+          timestamp: Date.now(),
+        };
+        state.activeNodeId = null;
+
+        const result = actions.pasteAsHyperlink();
+
+        expect(result).toBe('pasted');
+        expect(mockExecuteCommand).toHaveBeenCalled();
+      });
+
+      it('should block pasting hyperlink into another hyperlink', () => {
+        // Setup hyperlink node
+        state.nodes['hyperlink-node'] = {
+          id: 'hyperlink-node',
+          content: 'Link to something',
+          children: [],
+          metadata: { isHyperlink: true, linkedNodeId: 'node-2' },
+        };
+        state.ancestorRegistry['hyperlink-node'] = ['root'];
+        currentMockHyperlinkCache = {
+          nodeId: 'node-1',
+          content: 'Task 1',
+          timestamp: Date.now(),
+        };
+        state.activeNodeId = 'hyperlink-node';
+
+        const result = actions.pasteAsHyperlink();
+
+        expect(result).toBe('no-content');
+        expect(mockAddToast).toHaveBeenCalledWith(
+          'Cannot add hyperlink as child of another hyperlink',
+          'error'
+        );
+      });
+
+      it('should flash the pasted hyperlink node', () => {
+        currentMockHyperlinkCache = {
+          nodeId: 'node-2',
+          content: 'Task 2',
+          timestamp: Date.now(),
+        };
+        state.activeNodeId = 'node-1';
+
+        actions.pasteAsHyperlink();
+
+        // Flash is called with the new node ID (UUID)
+        expect(mockFlashNode).toHaveBeenCalled();
+      });
+    });
+
+    describe('hasHyperlinkCache', () => {
+      it('should return false when no cache', () => {
+        currentMockHyperlinkCache = null;
+
+        const result = actions.hasHyperlinkCache();
+
+        expect(result).toBe(false);
+      });
+
+      it('should return true when cache exists', () => {
+        currentMockHyperlinkCache = {
+          nodeId: 'node-1',
+          content: 'Task 1',
+          timestamp: Date.now(),
+        };
+
+        const result = actions.hasHyperlinkCache();
+
+        expect(result).toBe(true);
+      });
+    });
+
+    describe('pasteNodes with hyperlinks', () => {
+      it('should block pasting into hyperlink nodes', async () => {
+        // Setup hyperlink node
+        state.nodes['hyperlink-node'] = {
+          id: 'hyperlink-node',
+          content: 'Link to something',
+          children: [],
+          metadata: { isHyperlink: true, linkedNodeId: 'node-2' },
+        };
+        state.ancestorRegistry['hyperlink-node'] = ['root'];
+        state.activeNodeId = 'hyperlink-node';
+
+        // Setup clipboard with content
+        mockClipboard.readText.mockResolvedValueOnce('# Pasted Node');
+
+        const result = await actions.pasteNodes();
+
+        expect(result).toBe('no-content');
+        expect(mockAddToast).toHaveBeenCalledWith(
+          'Cannot paste into a hyperlink node',
+          'error'
+        );
+      });
     });
   });
 });
