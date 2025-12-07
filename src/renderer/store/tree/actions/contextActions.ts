@@ -1,5 +1,5 @@
 import { TreeNode } from '../../../../shared/types';
-import { updateNodeMetadata, getEffectiveContextIds, getAllDescendants } from '../../../utils/nodeHelpers';
+import { updateNodeMetadata, getAllDescendants } from '../../../utils/nodeHelpers';
 import { logger } from '../../../services/logger';
 import { useToastStore } from '../../toast/toastStore';
 import { ContextDeclarationInfo } from '../treeStore';
@@ -12,7 +12,7 @@ export interface ContextActions {
   removeContextDeclaration: (nodeId: string) => void;
   applyContext: (nodeId: string, contextNodeId: string) => void;
   removeAppliedContext: (nodeId: string, contextNodeId?: string) => void;
-  setActiveContext: (nodeId: string, contextNodeId: string, actionType?: ContextActionType) => void;
+  setActiveContext: (nodeId: string, contextNodeId: string | null, actionType?: ContextActionType) => void;
   refreshContextDeclarations: () => void;
 }
 
@@ -255,14 +255,14 @@ export const createContextActions = (
     triggerAutosave?.();
   }
 
-  function setActiveContext(nodeId: string, contextNodeId: string, actionType?: ContextActionType): void {
-    const { nodes, ancestorRegistry } = get();
+  function setActiveContext(nodeId: string, contextNodeId: string | null, actionType?: ContextActionType): void {
+    const { nodes } = get();
     const node = nodes[nodeId];
     if (!node) return;
 
-    const effectiveContextIds = getEffectiveContextIds(nodeId, nodes, ancestorRegistry);
-    if (!effectiveContextIds.includes(contextNodeId)) {
-      useToastStore.getState().addToast('Context is not available for this node', 'error');
+    // Validate context exists if setting (not clearing)
+    if (contextNodeId !== null && !nodes[contextNodeId]) {
+      useToastStore.getState().addToast('Context does not exist', 'error');
       return;
     }
 
@@ -272,11 +272,15 @@ export const createContextActions = (
 
     set({
       nodes: updateNodeMetadata(nodes, nodeId, {
-        [metadataKey]: contextNodeId,
+        [metadataKey]: contextNodeId === null ? undefined : contextNodeId,
       }),
     });
 
-    logger.info(`Active ${actionType || 'default'} context set to ${contextNodeId} for node ${nodeId}`, 'Context');
+    if (contextNodeId === null) {
+      logger.info(`Active ${actionType || 'default'} context cleared for node ${nodeId}`, 'Context');
+    } else {
+      logger.info(`Active ${actionType || 'default'} context set to ${contextNodeId} for node ${nodeId}`, 'Context');
+    }
 
     triggerAutosave?.();
   }

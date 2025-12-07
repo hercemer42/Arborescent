@@ -13,7 +13,8 @@ interface NodeGutterProps {
   contextColor?: string;
   onIconClick?: () => void;
   appliedContexts?: AppliedContext[];
-  activeContext?: AppliedContext;
+  executeContext?: AppliedContext;
+  collaborateContext?: AppliedContext;
 }
 
 export const NodeGutter = memo(function NodeGutter({
@@ -26,7 +27,8 @@ export const NodeGutter = memo(function NodeGutter({
   contextColor,
   onIconClick,
   appliedContexts = [],
-  activeContext,
+  executeContext,
+  collaborateContext,
 }: NodeGutterProps) {
   return (
     <div className="node-gutter">
@@ -35,7 +37,8 @@ export const NodeGutter = memo(function NodeGutter({
         contextIcon={contextIcon}
         contextColor={contextColor}
         appliedContexts={appliedContexts}
-        activeContext={activeContext}
+        executeContext={executeContext}
+        collaborateContext={collaborateContext}
         onIconClick={onIconClick}
       />
       {pluginIndicators.length > 0 && (

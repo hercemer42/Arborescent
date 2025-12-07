@@ -6,12 +6,6 @@ import { createTreeStore, TreeStore } from '../../../../store/tree/treeStore';
 import type { TreeNode } from '@shared/types';
 import * as pluginStore from '../../../../store/plugins/pluginStore';
 
-// Helper to find item in submenu
-function findInSubmenu(items: { label: string; submenu?: { label: string }[] }[], parentLabel: string, childLabel: string) {
-  const parent = items.find(item => item.label === parentLabel);
-  return parent?.submenu?.find(sub => sub.label === childLabel);
-}
-
 // Helper to create mock event with DOM elements
 function createMockContextMenuEvent(x: number, y: number) {
   const mockContentEditable = document.createElement('div');
@@ -174,17 +168,14 @@ describe('useNodeContextMenu', () => {
     expect(declareItem).toBeDefined();
   });
 
-  it('should not show Declare as context when parent is not a blueprint', async () => {
+  it('should not show Context menu when parent is not a blueprint and node is not a context declaration', async () => {
     const { result } = renderHook(() => useNodeContextMenu(mockNode), { wrapper });
 
     await openContextMenu(result);
 
+    // Context menu should not appear at all when parent is not a blueprint
     const contextMenu = result.current.contextMenuItems.find(item => item.label === 'Context');
-    expect(contextMenu).toBeDefined();
-
-    // No parent blueprint, so Declare as context should not be available
-    const declareItem = contextMenu?.submenu?.find(item => item.label === 'Declare as context');
-    expect(declareItem).toBeUndefined();
+    expect(contextMenu).toBeUndefined();
   });
 
   it('should show Remove context declaration in Context submenu when node is a context', async () => {
@@ -311,7 +302,7 @@ describe('useNodeContextMenu', () => {
     expect(collaborateMenu?.submenu?.find(item => item.label === 'In terminal')).toBeDefined();
   });
 
-  it('should have correct menu order: Execute, Collaborate, Context, Edit, Copy to Clipboard', async () => {
+  it('should have correct menu order: Execute, Collaborate, Edit, Copy to Clipboard', async () => {
     const { result } = renderHook(() => useNodeContextMenu(mockNode), { wrapper });
 
     await openContextMenu(result);
@@ -319,78 +310,21 @@ describe('useNodeContextMenu', () => {
     const labels = result.current.contextMenuItems.map(item => item.label);
     const executeIndex = labels.indexOf('Execute');
     const collaborateIndex = labels.indexOf('Collaborate');
-    const contextIndex = labels.indexOf('Context');
     const editIndex = labels.indexOf('Edit');
     const copyIndex = labels.indexOf('Copy to Clipboard');
 
     expect(executeIndex).toBeLessThan(collaborateIndex);
-    expect(collaborateIndex).toBeLessThan(contextIndex);
-    expect(contextIndex).toBeLessThan(editIndex);
+    expect(collaborateIndex).toBeLessThan(editIndex);
     expect(editIndex).toBeLessThan(copyIndex);
   });
 
-  describe('context application', () => {
-    it('should show "Apply context" in Context submenu when node has no context', async () => {
-      const { result } = renderHook(() => useNodeContextMenu(mockNode), { wrapper });
-
-      await openContextMenu(result);
-
-      const applyContextItem = findInSubmenu(result.current.contextMenuItems, 'Context', 'Apply context');
-      expect(applyContextItem).toBeDefined();
-    });
-
-    it('should show "Remove context" in Context submenu when node has context applied', async () => {
-      const nodeWithContext: TreeNode = {
-        ...mockNode,
-        metadata: { appliedContextIds: ['context-node'] },
-      };
-
-      store.setState({
-        nodes: { 'test-node': nodeWithContext },
-      });
-
-      const { result } = renderHook(() => useNodeContextMenu(nodeWithContext), { wrapper });
-
-      await openContextMenu(result);
-
-      const removeContextItem = findInSubmenu(result.current.contextMenuItems, 'Context', 'Remove context');
-      expect(removeContextItem).toBeDefined();
-    });
-
-    it('should show "Apply context" in Context submenu for a context declaration (for bundling)', async () => {
-      const contextDeclarationNode: TreeNode = {
-        ...mockNode,
-        metadata: { isContextDeclaration: true, contextIcon: 'star' },
-      };
-      const otherContextNode: TreeNode = {
-        id: 'other-context',
-        content: 'Other Context',
-        children: [],
-        metadata: { isContextDeclaration: true, contextIcon: 'flag' },
-      };
-
-      store.setState({
-        nodes: { 'test-node': contextDeclarationNode, 'other-context': otherContextNode },
-        contextDeclarations: [
-          { nodeId: 'test-node', content: 'Test', icon: 'star' },
-          { nodeId: 'other-context', content: 'Other Context', icon: 'flag' },
-        ],
-      });
-
-      const { result } = renderHook(() => useNodeContextMenu(contextDeclarationNode), { wrapper });
-
-      await openContextMenu(result);
-
-      const applyContextItem = findInSubmenu(result.current.contextMenuItems, 'Context', 'Apply context');
-      expect(applyContextItem).toBeDefined();
-    });
-
-    it('should show available context declarations in Apply context submenu', async () => {
+  describe('context selection in execute/collaborate', () => {
+    it('should show available contexts in Execute submenu', async () => {
       const contextNode: TreeNode = {
         id: 'context-node',
         content: 'My Context',
         children: [],
-        metadata: { isContextDeclaration: true, contextIcon: 'star' },
+        metadata: { isContextDeclaration: true, blueprintIcon: 'star' },
       };
 
       store.setState({
@@ -411,21 +345,44 @@ describe('useNodeContextMenu', () => {
 
       await openContextMenu(result);
 
-      const contextMenu = result.current.contextMenuItems.find(item => item.label === 'Context');
-      const applyContextItem = contextMenu?.submenu?.find(item => item.label === 'Apply context');
-      expect(applyContextItem?.submenu).toBeDefined();
-      expect(applyContextItem?.submenu?.length).toBe(1);
-      expect(applyContextItem?.submenu?.[0].label).toBe('My Context');
+      const executeMenu = result.current.contextMenuItems.find(item => item.label === 'Execute');
+      // Should have base actions + separator + heading + context
+      expect(executeMenu?.submenu?.length).toBeGreaterThan(2);
+      expect(executeMenu?.submenu?.find(item => item.label === 'Available contexts')).toBeDefined();
+      expect(executeMenu?.submenu?.find(item => item.label === 'My Context')).toBeDefined();
     });
 
-    it('should disable Apply context when no context declarations exist', async () => {
+    it('should show available contexts in Collaborate submenu', async () => {
+      const contextNode: TreeNode = {
+        id: 'context-node',
+        content: 'My Context',
+        children: [],
+        metadata: { isContextDeclaration: true, blueprintIcon: 'star' },
+      };
+
+      store.setState({
+        nodes: {
+          'test-node': mockNode,
+          'context-node': contextNode,
+        },
+        ancestorRegistry: {
+          'test-node': [],
+          'context-node': [],
+        },
+        contextDeclarations: [
+          { nodeId: 'context-node', content: 'My Context', icon: 'star' },
+        ],
+      });
+
       const { result } = renderHook(() => useNodeContextMenu(mockNode), { wrapper });
 
       await openContextMenu(result);
 
-      const contextMenu = result.current.contextMenuItems.find(item => item.label === 'Context');
-      const applyContextItem = contextMenu?.submenu?.find(item => item.label === 'Apply context');
-      expect(applyContextItem?.disabled).toBe(true);
+      const collaborateMenu = result.current.contextMenuItems.find(item => item.label === 'Collaborate');
+      // Should have base actions + separator + heading + context
+      expect(collaborateMenu?.submenu?.length).toBeGreaterThan(2);
+      expect(collaborateMenu?.submenu?.find(item => item.label === 'Available contexts')).toBeDefined();
+      expect(collaborateMenu?.submenu?.find(item => item.label === 'My Context')).toBeDefined();
     });
   });
 

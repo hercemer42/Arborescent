@@ -27,6 +27,31 @@
   cursor: default;
 }
 
+.context-applied-indicator {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.context-applied-badge {
+  position: absolute;
+  bottom: -2px;
+  right: -4px;
+  font-size: 0.6rem;
+  font-weight: 600;
+  background: var(--sky-400);
+  color: white;
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  pointer-events: none;
+}
+
 /* Context bundle indicator (gear with count badge inside) */
 .gutter-context-indicator.context-bundle {
   position: relative;
@@ -104,7 +129,7 @@
 }
 
 .context-bundle-tooltip-item .tooltip-icon {
-  color: var(--sky-500);
+  color: inherit;
   width: 12px;
 }
 

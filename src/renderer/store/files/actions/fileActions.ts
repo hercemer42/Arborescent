@@ -113,7 +113,6 @@ export const createFileActions = (get: StoreGetter, storage: StorageService): Fi
       return false;
     }
 
-    const { openFile } = get();
     let restoredAny = false;
 
     // First pass: restore regular files (not zoom tabs)

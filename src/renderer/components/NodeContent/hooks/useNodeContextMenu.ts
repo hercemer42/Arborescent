@@ -14,7 +14,7 @@ import { buildBlueprintSubmenu } from './useBlueprintSubmenu';
 import { logger } from '../../../services/logger';
 import { writeToClipboard } from '../../../services/clipboardService';
 import { exportNodeAsMarkdown } from '../../../utils/markdown';
-import { hasAncestorWithPluginSession, getEffectiveContextIds } from '../../../utils/nodeHelpers';
+import { hasAncestorWithPluginSession } from '../../../utils/nodeHelpers';
 import { buildCollaborateSubmenu } from './useCollaborateSubmenu';
 import { buildExecuteSubmenu } from './useExecuteSubmenu';
 import { getPositionFromPoint } from '../../../utils/position';
@@ -75,7 +75,6 @@ export function useNodeContextMenu(node: TreeNode) {
     const pluginItems = pluginResults.flat().map((item) => convertToContextMenuItem(item, node));
 
     // Compute context-related values
-    const hasEffectiveContext = getEffectiveContextIds(node.id, nodes, ancestorRegistry).length > 0;
     const isNodeBeingCollaborated = collaboratingNodeId === node.id;
     const collaborateDisabled = !!collaboratingNodeId;
 
@@ -141,38 +140,43 @@ export function useNodeContextMenu(node: TreeNode) {
       openZoomTab(activeFile.path, node.id, node.content);
     };
 
+    // Wrap setActiveContext to rebuild menu items after selection
+    const handleSetActiveContext = async (nodeId: string, contextId: string | null, actionType?: 'execute' | 'collaborate') => {
+      actions.setActiveContext(nodeId, contextId, actionType);
+      // Rebuild menu items to reflect new selection state
+      const newItems = await buildMenuItems();
+      setMenuItems(newItems);
+    };
+
     // Build submenus
     const executeSubmenu = buildExecuteSubmenu({
       node,
       nodes,
       ancestorRegistry,
-      hasEffectiveContext,
+      contextDeclarations,
       onExecuteInBrowser: handleExecuteInBrowser,
       onExecuteInTerminal: handleExecuteInTerminal,
-      onSetActiveContext: actions.setActiveContext,
+      onSetActiveContext: handleSetActiveContext,
     });
 
     const collaborateSubmenu = buildCollaborateSubmenu({
       node,
       nodes,
       ancestorRegistry,
-      hasEffectiveContext,
+      contextDeclarations,
       onCollaborate: handleCollaborate,
       onCollaborateInTerminal: handleCollaborateInTerminal,
-      onSetActiveContext: actions.setActiveContext,
+      onSetActiveContext: handleSetActiveContext,
     });
 
     const contextMenuItem = buildContextSubmenu({
       node,
       nodes,
       ancestorRegistry,
-      contextDeclarations,
       openIconPicker,
       actions: {
         declareAsContext: actions.declareAsContext,
         removeContextDeclaration: actions.removeContextDeclaration,
-        applyContext: actions.applyContext,
-        removeAppliedContext: actions.removeAppliedContext,
       },
     });
 

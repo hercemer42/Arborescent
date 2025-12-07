@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2025-12-07T18:00:02.968Z'
+updated: '2025-12-07T19:26:58.294Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -7150,17 +7150,19 @@ nodes:
     id: 77963e20-53e9-4db7-8802-8c718f202cef
     content: In progress
     children:
-      - 6a915765-2ce1-469f-8e45-084d5be8ccc7
+      - 060c0911-82b9-43e3-a925-856938f2e409
     metadata:
       status: pending
       appliedContextIds:
         - cc94b377-246d-45ae-b938-2d3906892aa1
         - e8824b29-eb18-4031-9e35-b321a864d418
+        - 1e2f062a-bbaa-4a02-b58b-a94ab15d8d74
       activeContextId: cc94b377-246d-45ae-b938-2d3906892aa1
       expanded: true
       isBlueprint: true
       blueprintIcon: Cog
       blueprintColor: '#14b8a6'
+      activeExecuteContextId: 1e2f062a-bbaa-4a02-b58b-a94ab15d8d74
   709d1979-03ab-41b4-a89b-9d8877ad23e8:
     id: 709d1979-03ab-41b4-a89b-9d8877ad23e8
     content: Move the 'Execute' menu to the top, followed by collaborate, then context, then edit, then copy to clipboard
@@ -9602,13 +9604,11 @@ nodes:
     id: c4473311-2e42-48ae-9191-d3807dc55a4c
     content: Problems
     children:
-      - 34231e2f-aa80-4c0e-83ed-32e9229ce8cf
-      - 2de8ffa0-52d4-4a72-a2a9-794fb7993a82
-      - 1c8404e4-7366-47e4-8705-e82c8fa62b0d
       - 961266f6-255e-4968-9621-2f07cab3ab85
       - db714231-a7b7-47a8-88e8-51bf78efac6b
       - 478ee368-f376-4eaf-8c26-4ffe92d01205
       - 76ce9beb-1ae9-43e2-b9a0-77883996755c
+      - ef4c36b2-0553-4a0d-b699-89ce03f09f68
     metadata:
       status: pending
       expanded: true
@@ -9688,34 +9688,6 @@ nodes:
     metadata:
       status: pending
       isBlueprint: true
-  2de8ffa0-52d4-4a72-a2a9-794fb7993a82:
-    id: 2de8ffa0-52d4-4a72-a2a9-794fb7993a82
-    content: Right click menu isn't very intuitive
-    children:
-      - 6438b2cc-0ef1-4553-8a33-7426eaaacbd2
-      - 403f6ac4-e5d5-438c-8622-061a25f8dea5
-    metadata:
-      status: pending
-      expanded: true
-  6438b2cc-0ef1-4553-8a33-7426eaaacbd2:
-    id: 6438b2cc-0ef1-4553-8a33-7426eaaacbd2
-    content: Consider adding all contexts underneath execute/collaborate and remove add/remove contexts
-    children: []
-    metadata:
-      status: pending
-  403f6ac4-e5d5-438c-8622-061a25f8dea5:
-    id: 403f6ac4-e5d5-438c-8622-061a25f8dea5
-    content: Consider having context declarations only available under blueprint mode
-    children:
-      - 52499a9c-07f2-42ac-b451-acfaf3d3774a
-    metadata:
-      status: pending
-  52499a9c-07f2-42ac-b451-acfaf3d3774a:
-    id: 52499a9c-07f2-42ac-b451-acfaf3d3774a
-    content: Maybe only if there is other blueprint related stuff
-    children: []
-    metadata:
-      status: pending
   682650c3-1af5-4533-a4d3-403beb2d7bb7:
     id: 682650c3-1af5-4533-a4d3-403beb2d7bb7
     content: Add scroll lock toggle to terminal
@@ -10587,12 +10559,6 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  34231e2f-aa80-4c0e-83ed-32e9229ce8cf:
-    id: 34231e2f-aa80-4c0e-83ed-32e9229ce8cf
-    content: Need to keep watching the temp file during review and update it everytime the AI writes to it
-    children: []
-    metadata:
-      status: pending
   6328bcde-087d-4a83-8bf7-974dab32f3c3:
     id: 6328bcde-087d-4a83-8bf7-974dab32f3c3
     content: Challenge the user if the request or subsequent follow ups seem over engineered
@@ -12873,29 +12839,6 @@ nodes:
     metadata:
       status: pending
       isBlueprint: true
-  6a915765-2ce1-469f-8e45-084d5be8ccc7:
-    id: 6a915765-2ce1-469f-8e45-084d5be8ccc7
-    content: Keep watching the temp file during review
-    children:
-      - 4e88905a-bddc-4676-93fe-cdbc689911c0
-    metadata:
-      status: pending
-      appliedContextIds:
-        - 9b46397c-c452-421c-b408-46b040d99c9e
-      activeContextId: 9b46397c-c452-421c-b408-46b040d99c9e
-      activeCollaborateContextId: 9b46397c-c452-421c-b408-46b040d99c9e
-  4e88905a-bddc-4676-93fe-cdbc689911c0:
-    id: 4e88905a-bddc-4676-93fe-cdbc689911c0
-    content: Update the review panel whenever the AI writes to the file
-    children: []
-    metadata:
-      status: pending
-  1c8404e4-7366-47e4-8705-e82c8fa62b0d:
-    id: 1c8404e4-7366-47e4-8705-e82c8fa62b0d
-    content: We can no longer select a different applied context
-    children: []
-    metadata:
-      status: pending
   2e636a30-ba2b-4939-a6ad-70ae64e9e8d5:
     id: 2e636a30-ba2b-4939-a6ad-70ae64e9e8d5
     content: Suggest how to improve this
@@ -12937,6 +12880,345 @@ nodes:
   cb06cd21-9163-45fe-be61-5616f48032f7:
     id: cb06cd21-9163-45fe-be61-5616f48032f7
     content: Update context to try and prevent that from happening
+    children: []
+    metadata:
+      status: pending
+  ef4c36b2-0553-4a0d-b699-89ce03f09f68:
+    id: ef4c36b2-0553-4a0d-b699-89ce03f09f68
+    content: Review navigation flow, think I saw some issues
+    children: []
+    metadata:
+      status: pending
+  060c0911-82b9-43e3-a925-856938f2e409:
+    id: 060c0911-82b9-43e3-a925-856938f2e409
+    content: Right click menu isn't very intuitive
+    children:
+      - 0320f465-dc75-47b8-b775-31f64aa85288
+      - e3d60031-c2d2-433d-974e-740aa98833b4
+      - cc871e4e-a4ed-4a47-9d87-6e4775a06aa5
+      - 400e6530-58c2-415a-abcc-2a1a32a88551
+      - f3ff2e8a-c81b-48d1-a823-26ea88afc07e
+      - 9fc51c5b-140e-4c89-a0a4-330c3b790b50
+      - 54bec295-8479-46d1-9221-0cb6d747aa5d
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0320f465-dc75-47b8-b775-31f64aa85288:
+    id: 0320f465-dc75-47b8-b775-31f64aa85288
+    content: Remove the apply/remove context menus
+    children:
+      - 50820875-617a-4690-b4e8-7a511765f5f9
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  50820875-617a-4690-b4e8-7a511765f5f9:
+    id: 50820875-617a-4690-b4e8-7a511765f5f9
+    content: Good simplification - reduces menu clutter
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e3d60031-c2d2-433d-974e-740aa98833b4:
+    id: e3d60031-c2d2-433d-974e-740aa98833b4
+    content: Just list all available contexts underneath the Execute and Collaborate options
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cc871e4e-a4ed-4a47-9d87-6e4775a06aa5:
+    id: cc871e4e-a4ed-4a47-9d87-6e4775a06aa5
+    content: Use the same list we have now, just change 'Applied contexts' to 'Available contexts'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  400e6530-58c2-415a-abcc-2a1a32a88551:
+    id: 400e6530-58c2-415a-abcc-2a1a32a88551
+    content: Do not have a default context, the user must select one
+    children:
+      - 0ff6552f-8b92-4c64-95a0-cb64572d1a8d
+      - c737113f-6c44-4b61-ae0e-ebac8cb321f9
+      - 0f2f8872-843f-4c58-90f8-4947b8767bd7
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0ff6552f-8b92-4c64-95a0-cb64572d1a8d:
+    id: 0ff6552f-8b92-4c64-95a0-cb64572d1a8d
+    content: This persists (like it currently does for choice of applied contexts)
+    children:
+      - e9b58cbc-fe4c-4961-a32d-7d9b2bab23e9
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e9b58cbc-fe4c-4961-a32d-7d9b2bab23e9:
+    id: e9b58cbc-fe4c-4961-a32d-7d9b2bab23e9
+    content: Execute and collaborate both have different choice persistence
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c737113f-6c44-4b61-ae0e-ebac8cb321f9:
+    id: c737113f-6c44-4b61-ae0e-ebac8cb321f9
+    content: Add a means to clear chosen context in the execute/collaborate menus
+    children:
+      - 8a6f3d20-1ca4-4bd7-a2ad-dbb9c3ac96d3
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8a6f3d20-1ca4-4bd7-a2ad-dbb9c3ac96d3:
+    id: 8a6f3d20-1ca4-4bd7-a2ad-dbb9c3ac96d3
+    content: Second click on a checked context to uncheck should do it
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0f2f8872-843f-4c58-90f8-4947b8767bd7:
+    id: 0f2f8872-843f-4c58-90f8-4947b8767bd7
+    content: However if an ancestor has a selected context, its descendants should inherit that default option
+    children:
+      - 2a1b4bf1-0bdb-4a26-acdb-fd986e2683fd
+      - b1fa2a87-2790-4f04-a4d2-4e43b5e2b2f0
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2a1b4bf1-0bdb-4a26-acdb-fd986e2683fd:
+    id: 2a1b4bf1-0bdb-4a26-acdb-fd986e2683fd
+    content: We have something similar in place for applied contexts currently
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b1fa2a87-2790-4f04-a4d2-4e43b5e2b2f0:
+    id: b1fa2a87-2790-4f04-a4d2-4e43b5e2b2f0
+    content: 'Clarify: child''s explicit selection should override inherited context'
+    children:
+      - 83235775-842d-4e7d-a3a6-08b4aab57d08
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  83235775-842d-4e7d-a3a6-08b4aab57d08:
+    id: 83235775-842d-4e7d-a3a6-08b4aab57d08
+    content: Standard inheritance pattern - explicit overrides implicit
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f3ff2e8a-c81b-48d1-a823-26ea88afc07e:
+    id: f3ff2e8a-c81b-48d1-a823-26ea88afc07e
+    content: We still show an icon in the gutter when there is a chosen context active
+    children:
+      - 56f2ce7f-acef-497a-9180-32ce59dd8176
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  56f2ce7f-acef-497a-9180-32ce59dd8176:
+    id: 56f2ce7f-acef-497a-9180-32ce59dd8176
+    content: When there is a context applied to both execute and collaborate
+    children:
+      - 5ea48afa-e848-438d-9599-c9726f9e8fca
+      - 5bdc11dd-e23d-4a70-89fe-fbb632257d65
+      - 7a4e697c-cc91-4909-a4d0-5b387b9ce088
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5ea48afa-e848-438d-9599-c9726f9e8fca:
+    id: 5ea48afa-e848-438d-9599-c9726f9e8fca
+    content: Show execute context icon by default (execute is more common action)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9fc51c5b-140e-4c89-a0a4-330c3b790b50:
+    id: 9fc51c5b-140e-4c89-a0a4-330c3b790b50
+    content: Fix the bug where we can no longer select a different applied context
+    children:
+      - aa76cf39-081b-4401-bfcc-b98e1df38a52
+      - e12c4621-b5c0-46dc-bfe3-f99827dd32d8
+    metadata:
+      status: pending
+      expanded: false
+      deleted: false
+      plugins: {}
+  aa76cf39-081b-4401-bfcc-b98e1df38a52:
+    id: aa76cf39-081b-4401-bfcc-b98e1df38a52
+    content: Issue was once one checkbox was selected, we couldn't select another one
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e12c4621-b5c0-46dc-bfe3-f99827dd32d8:
+    id: e12c4621-b5c0-46dc-bfe3-f99827dd32d8
+    content: Likely a radio button behavior instead of checkbox - verify implementation
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  54bec295-8479-46d1-9221-0cb6d747aa5d:
+    id: 54bec295-8479-46d1-9221-0cb6d747aa5d
+    content: 'Observation: Good use of existing code'
+    children:
+      - e79b1d01-c95d-4e12-86ae-818857c85735
+      - 1271a3e2-c2bc-4e49-952a-fc509d4df7e9
+    metadata:
+      status: pending
+      expanded: false
+      deleted: false
+      plugins: {}
+  e79b1d01-c95d-4e12-86ae-818857c85735:
+    id: e79b1d01-c95d-4e12-86ae-818857c85735
+    content: Reusing bundled context indicator and tooltip reduces implementation time
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1271a3e2-c2bc-4e49-952a-fc509d4df7e9:
+    id: 1271a3e2-c2bc-4e49-952a-fc509d4df7e9
+    content: Removing gutter click-to-change maintains consistency with nodeContent
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cfbd35a8-4656-43ab-8519-aa7250fef59f:
+    id: cfbd35a8-4656-43ab-8519-aa7250fef59f
+    content: Likewise can reuse the tooltip we had for bundled contexts
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fe9c283f-1e8c-4e89-bf73-f4c5ea8a7fe9:
+    id: fe9c283f-1e8c-4e89-bf73-f4c5ea8a7fe9
+    content: However there used to be both a rollover (to tell you can change the icon) and a tooltip
+    children:
+      - d264829a-2f36-4994-9fd4-8291d009facd
+      - 74feb169-9e25-427c-ab28-0e5d1a8b87f3
+      - 5cc9469c-51f2-4a3e-b066-81b8b527c4fa
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d264829a-2f36-4994-9fd4-8291d009facd:
+    id: d264829a-2f36-4994-9fd4-8291d009facd
+    content: They overlapped
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  74feb169-9e25-427c-ab28-0e5d1a8b87f3:
+    id: 74feb169-9e25-427c-ab28-0e5d1a8b87f3
+    content: We can remove the click change icon from the gutter
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5cc9469c-51f2-4a3e-b066-81b8b527c4fa:
+    id: 5cc9469c-51f2-4a3e-b066-81b8b527c4fa
+    content: We do that now for the icon in nodeContent
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7a4e697c-cc91-4909-a4d0-5b387b9ce088:
+    id: 7a4e697c-cc91-4909-a4d0-5b387b9ce088
+    content: 'Hover tooltip shows both: "Execute: [context1], Collaborate: [context2]"'
+    children:
+      - cfbd35a8-4656-43ab-8519-aa7250fef59f
+      - 184997cd-133d-4257-95e6-6b9b7994fa13
+      - fe9c283f-1e8c-4e89-bf73-f4c5ea8a7fe9
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b84ccda1-b675-4133-8fdd-d21e492a8a96:
+    id: b84ccda1-b675-4133-8fdd-d21e492a8a96
+    content: If you go back a few commits you can find where we had this before we deleted bundled contexts
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d69fd909-62a3-4d2b-87fe-4350fab9e9c6:
+    id: d69fd909-62a3-4d2b-87fe-4350fab9e9c6
+    content: Just reuse the same one
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5bdc11dd-e23d-4a70-89fe-fbb632257d65:
+    id: 5bdc11dd-e23d-4a70-89fe-fbb632257d65
+    content: Add + indicator when collaborate also has a context
+    children:
+      - b84ccda1-b675-4133-8fdd-d21e492a8a96
+      - d69fd909-62a3-4d2b-87fe-4350fab9e9c6
+      - 69f58e84-4459-478a-81ba-e6320ad9fe80
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  69f58e84-4459-478a-81ba-e6320ad9fe80:
+    id: 69f58e84-4459-478a-81ba-e6320ad9fe80
+    content: It's the same colour as the collaborate icon
+    children: []
+    metadata:
+      status: pending
+  184997cd-133d-4257-95e6-6b9b7994fa13:
+    id: 184997cd-133d-4257-95e6-6b9b7994fa13
+    content: The icon colours are maintained
     children: []
     metadata:
       status: pending

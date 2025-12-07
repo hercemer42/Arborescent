@@ -2,7 +2,7 @@ import { memo, createElement } from 'react';
 import { getIconByName, DEFAULT_CONTEXT_ICON } from '../../ui/IconPicker/IconPicker';
 import { AppliedContext } from '../../TreeNode/hooks/useAppliedContexts';
 import { useBundleTooltip } from './hooks/useBundleTooltip';
-import { BundleTooltip } from './BundleTooltip';
+import { ActionContextTooltip } from './ActionContextTooltip';
 import './GutterContextIndicator.css';
 
 interface GutterContextIndicatorProps {
@@ -10,7 +10,8 @@ interface GutterContextIndicatorProps {
   contextIcon?: string;
   contextColor?: string;
   appliedContexts: AppliedContext[];
-  activeContext?: AppliedContext;
+  executeContext?: AppliedContext;
+  collaborateContext?: AppliedContext;
   onIconClick?: () => void;
 }
 
@@ -19,7 +20,8 @@ export const GutterContextIndicator = memo(function GutterContextIndicator({
   contextIcon,
   contextColor,
   appliedContexts,
-  activeContext,
+  executeContext,
+  collaborateContext,
   onIconClick,
 }: GutterContextIndicatorProps) {
   const {
@@ -32,36 +34,56 @@ export const GutterContextIndicator = memo(function GutterContextIndicator({
   } = useBundleTooltip(onIconClick);
   const DeclarationIcon = getIconByName(contextIcon || DEFAULT_CONTEXT_ICON);
 
-  // Regular nodes (including context children): show the active context's icon if they have applied contexts
+  // Regular nodes: show context icons
   if (!isContextDeclaration) {
-    if (!activeContext) return null;
+    const hasExecuteContext = executeContext !== undefined;
+    const hasCollaborateContext = collaborateContext !== undefined;
+    const hasBothContexts = hasExecuteContext && hasCollaborateContext;
 
-    const ActiveIcon = activeContext.icon ? getIconByName(activeContext.icon) : null;
-    if (!ActiveIcon) return null;
+    // No contexts selected
+    if (!hasExecuteContext && !hasCollaborateContext) return null;
+
+    // Show execute context icon (or collaborate if no execute), with + badge when both selected
+    const primaryContext = executeContext || collaborateContext;
+    const PrimaryIcon = primaryContext?.icon ? getIconByName(primaryContext.icon) : null;
+    if (!PrimaryIcon || !primaryContext) return null;
 
     return (
       <span
+        ref={bundleRef}
         className="gutter-context-indicator context-applied"
-        title={activeContext.name ? `Context: ${activeContext.name}` : 'Has context applied'}
-        style={activeContext.color ? { color: activeContext.color } : undefined}
+        style={primaryContext.color ? { color: primaryContext.color } : undefined}
+        onMouseEnter={hasBothContexts ? handleMouseEnter : undefined}
+        onMouseLeave={hasBothContexts ? handleMouseLeave : undefined}
       >
-        {createElement(ActiveIcon, { size: 16 })}
+        <span className="context-applied-indicator">
+          {createElement(PrimaryIcon, { size: 16 })}
+          {hasBothContexts && collaborateContext && (
+            <span
+              className="context-applied-badge"
+              style={collaborateContext.color ? { backgroundColor: collaborateContext.color } : undefined}
+            >+</span>
+          )}
+        </span>
+        {showTooltip && hasBothContexts && (
+          <ActionContextTooltip
+            executeContext={executeContext}
+            collaborateContext={collaborateContext}
+            position={tooltipPosition}
+          />
+        )}
       </span>
     );
   }
 
-  // Context declaration nodes: show declaration icon
-  // Only show "+" badge when there are applied contexts
+  // Context declaration nodes: show declaration icon (clickable to change)
   if (!DeclarationIcon) return null;
 
   const hasApplied = appliedContexts.length > 0;
 
   return (
     <button
-      ref={hasApplied ? bundleRef : undefined}
       className={`gutter-context-indicator ${hasApplied ? 'context-bundle' : 'context-declaration'}`}
-      onMouseEnter={hasApplied ? handleMouseEnter : undefined}
-      onMouseLeave={hasApplied ? handleMouseLeave : undefined}
       onClick={handleIconClick}
       title="Click to change icon"
       style={contextColor ? { color: contextColor } : undefined}
@@ -75,14 +97,6 @@ export const GutterContextIndicator = memo(function GutterContextIndicator({
           >+</span>
         )}
       </span>
-      {hasApplied && showTooltip && (
-        <BundleTooltip
-          declarationIcon={DeclarationIcon}
-          declarationColor={contextColor}
-          appliedContexts={appliedContexts}
-          position={tooltipPosition}
-        />
-      )}
     </button>
   );
 });

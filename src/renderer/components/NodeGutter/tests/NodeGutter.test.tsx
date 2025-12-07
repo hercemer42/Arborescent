@@ -148,7 +148,7 @@ describe('NodeGutter', () => {
   });
 
   describe('applied context indicator', () => {
-    it('should render active context icon when activeContext is provided', () => {
+    it('should render execute context icon when executeContext is provided', () => {
       const mockOnToggle = vi.fn();
       const { container } = render(
         <NodeGutter
@@ -156,7 +156,7 @@ describe('NodeGutter', () => {
           expanded={true}
           onToggle={mockOnToggle}
           pluginIndicators={[]}
-          activeContext={{ icon: 'star', color: undefined, name: 'My Context' }}
+          executeContext={{ icon: 'star', color: undefined, name: 'My Context' }}
         />
       );
 
@@ -165,7 +165,7 @@ describe('NodeGutter', () => {
       expect(indicator?.querySelector('svg')).toBeInTheDocument();
     });
 
-    it('should show only one active context icon even with multiple contexts', () => {
+    it('should show only one context icon even with multiple contexts', () => {
       const mockOnToggle = vi.fn();
       const { container } = render(
         <NodeGutter
@@ -173,16 +173,16 @@ describe('NodeGutter', () => {
           expanded={true}
           onToggle={mockOnToggle}
           pluginIndicators={[]}
-          activeContext={{ icon: 'star', color: undefined, name: 'Context 1' }}
+          executeContext={{ icon: 'star', color: undefined, name: 'Context 1' }}
         />
       );
 
-      // Only one indicator for active context
+      // Only one indicator for primary context
       const indicators = container.querySelectorAll('.gutter-context-indicator.context-applied');
       expect(indicators).toHaveLength(1);
     });
 
-    it('should show tooltip with context name when activeContext is set', () => {
+    it('should show + badge when both execute and collaborate contexts are set', () => {
       const mockOnToggle = vi.fn();
       const { container } = render(
         <NodeGutter
@@ -190,15 +190,15 @@ describe('NodeGutter', () => {
           expanded={true}
           onToggle={mockOnToggle}
           pluginIndicators={[]}
-          activeContext={{ icon: 'star', color: undefined, name: 'My Context' }}
+          executeContext={{ icon: 'star', color: undefined, name: 'Execute Context' }}
+          collaborateContext={{ icon: 'flag', color: undefined, name: 'Collaborate Context' }}
         />
       );
 
-      const indicator = container.querySelector('.gutter-context-indicator.context-applied');
-      expect(indicator).toHaveAttribute('title', 'Context: My Context');
+      expect(container.querySelector('.context-bundle-badge')).toBeInTheDocument();
     });
 
-    it('should show generic tooltip when activeContext name is empty', () => {
+    it('should not show + badge when only execute context is set', () => {
       const mockOnToggle = vi.fn();
       const { container } = render(
         <NodeGutter
@@ -206,12 +206,11 @@ describe('NodeGutter', () => {
           expanded={true}
           onToggle={mockOnToggle}
           pluginIndicators={[]}
-          activeContext={{ icon: 'star', color: undefined, name: '' }}
+          executeContext={{ icon: 'star', color: undefined, name: 'Execute Context' }}
         />
       );
 
-      const indicator = container.querySelector('.gutter-context-indicator.context-applied');
-      expect(indicator).toHaveAttribute('title', 'Has context applied');
+      expect(container.querySelector('.context-bundle-badge')).not.toBeInTheDocument();
     });
 
     it('should not render applied context icon when not provided', () => {

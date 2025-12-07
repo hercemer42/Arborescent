@@ -189,6 +189,43 @@ export function getActiveContextId(
 }
 
 /**
+ * Get the active context ID for a given action type, with ancestor inheritance.
+ *
+ * Unlike getActiveContextId which relies on appliedContextIds, this function
+ * checks for explicitly selected contexts (activeExecuteContextId/activeCollaborateContextId)
+ * and inherits from ancestors if the node has no explicit selection.
+ */
+export function getActiveContextIdWithInheritance(
+  nodeId: string,
+  nodes: Record<string, TreeNode>,
+  ancestorRegistry: AncestorRegistry,
+  actionType?: ContextActionType
+): string | undefined {
+  const node = nodes[nodeId];
+  if (!node) return undefined;
+
+  const metadataKey = getActiveContextMetadataKey(actionType);
+
+  // Check node's own explicit selection
+  const activeId = node.metadata[metadataKey] as string | undefined;
+  if (activeId && nodes[activeId]) {
+    return activeId;
+  }
+
+  // Inherit from ancestors (closest first)
+  for (const ancestorId of getAncestorsClosestFirst(nodeId, ancestorRegistry)) {
+    const ancestor = nodes[ancestorId];
+    if (!ancestor) continue;
+    const ancestorActiveId = ancestor.metadata[metadataKey] as string | undefined;
+    if (ancestorActiveId && nodes[ancestorActiveId]) {
+      return ancestorActiveId;
+    }
+  }
+
+  return undefined;
+}
+
+/**
  * Find hyperlinks within a context declaration's descendants.
  * Returns linked node IDs that exist and are not the context declaration itself.
  * Does NOT recursively resolve hyperlinks within included nodes (depth = 1).
