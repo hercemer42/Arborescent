@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2025-12-06T18:21:48.968Z'
+updated: '2025-12-07T09:41:05.764Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -608,6 +608,8 @@ nodes:
       - 33ab614c-1a87-4e7e-a050-a86935b99fb2
       - 99fc7f25-912e-4c50-88c8-c179d7213ae5
       - e704d493-6653-4e28-8748-cf2363ba1c58
+      - 04ce74c2-3b33-46f1-8911-1d2f5b2c865e
+      - be5b9581-2645-4f33-8fdf-a6805b552761
     metadata:
       status: completed
       expanded: false
@@ -5700,7 +5702,7 @@ nodes:
       status: pending
       isContextDeclaration: true
       contextIcon: Recycle
-      expanded: false
+      expanded: true
       contextColor: '#a855f7'
       isBlueprint: true
       isContextChild: false
@@ -5747,7 +5749,6 @@ nodes:
     id: 984247e7-2d55-4b93-80e8-f84818901621
     content: Backlog
     children:
-      - b129c479-f708-479c-a1a1-47f6a692247a
       - e756a7d5-1471-4059-9979-a363838ab5e9
       - d7597faa-0b34-400e-985a-de035508cdb1
       - 40729a78-ee9c-4599-aa83-57f189199c3c
@@ -6913,8 +6914,6 @@ nodes:
     id: 0cc62ae1-1a7a-4aa4-bc6a-d817cabd672c
     content: Refactor
     children:
-      - 50665911-da0b-40c5-9e9a-ccdee244ced0
-      - 4bd59bd5-2b47-4deb-b0cc-c03638af9ef7
       - ed7e514b-3881-49da-b2d7-7ef2ba126b9e
     metadata:
       status: pending
@@ -7290,7 +7289,7 @@ nodes:
     id: 77963e20-53e9-4db7-8802-8c718f202cef
     content: In progress
     children:
-      - 04ce74c2-3b33-46f1-8911-1d2f5b2c865e
+      - 39b20f81-4b40-46b7-bf68-8f61b8f89427
     metadata:
       status: pending
       appliedContextIds:
@@ -9730,7 +9729,8 @@ nodes:
   79b693ca-27ce-4410-8617-8092d7e81b07:
     id: 79b693ca-27ce-4410-8617-8092d7e81b07
     content: Bugs
-    children: []
+    children:
+      - 3d320a6f-91e1-48f6-87f1-b7d8dd56d39a
     metadata:
       status: pending
       appliedContextIds:
@@ -9780,7 +9780,7 @@ nodes:
       - 6e6f1d73-3ad7-46c6-879e-19036d650556
     metadata:
       status: pending
-      expanded: false
+      expanded: true
       isBlueprint: true
       blueprintIcon: Star
       blueprintColor: '#64748b'
@@ -9832,19 +9832,6 @@ nodes:
     children: []
     metadata:
       status: pending
-  b129c479-f708-479c-a1a1-47f6a692247a:
-    id: b129c479-f708-479c-a1a1-47f6a692247a
-    content: Actions - should belong to blueprint
-    children:
-      - ed0a2c9f-033c-4ab5-ae40-874821a58839
-      - 2f169003-a51e-4d5c-8476-ff283d77cd38
-      - f5be00fb-5aad-4f9a-8ecb-d79eaf0aafbb
-      - 13309f1d-8da0-48f7-aa5b-7ff7104c479b
-      - 87744506-8ab6-4d5d-8056-93dc5849ffad
-      - ece65a3c-b405-4f38-9d05-f6e72007e17b
-    metadata:
-      status: pending
-      expanded: true
   2de8ffa0-52d4-4a72-a2a9-794fb7993a82:
     id: 2de8ffa0-52d4-4a72-a2a9-794fb7993a82
     content: Right click menu isn't very intuitive
@@ -10811,25 +10798,6 @@ nodes:
     children: []
     metadata:
       status: pending
-  ed0a2c9f-033c-4ab5-ae40-874821a58839:
-    id: ed0a2c9f-033c-4ab5-ae40-874821a58839
-    content: Exactly the same as contexts
-    children: []
-    metadata:
-      status: pending
-      isContextChild: false
-  2f169003-a51e-4d5c-8476-ff283d77cd38:
-    id: 2f169003-a51e-4d5c-8476-ff283d77cd38
-    content: But with 'Actions' metadata
-    children: []
-    metadata:
-      status: pending
-  f5be00fb-5aad-4f9a-8ecb-d79eaf0aafbb:
-    id: f5be00fb-5aad-4f9a-8ecb-d79eaf0aafbb
-    content: And we don't apply them, we run them from where they are
-    children: []
-    metadata:
-      status: pending
   e756a7d5-1471-4059-9979-a363838ab5e9:
     id: e756a7d5-1471-4059-9979-a363838ab5e9
     content: Execute should check off what is done
@@ -10948,7 +10916,7 @@ nodes:
       - 89577ac8-5b5b-4cf5-bcf8-ace3689f3650
     metadata:
       status: completed
-      expanded: true
+      expanded: false
       deleted: false
       plugins: {}
       isContextChild: false
@@ -11125,12 +11093,6 @@ nodes:
     children: []
     metadata:
       status: completed
-  50665911-da0b-40c5-9e9a-ccdee244ced0:
-    id: 50665911-da0b-40c5-9e9a-ccdee244ced0
-    content: SummaryDateBar.tsx needs its own hooks file
-    children: []
-    metadata:
-      status: pending
       isContextChild: false
   27b1fe0a-de41-4509-b655-3aab2f18fc0a:
     id: 27b1fe0a-de41-4509-b655-3aab2f18fc0a
@@ -11141,24 +11103,10 @@ nodes:
       isBlueprint: true
       isContextChild: true
       contextParentId: 9b46397c-c452-421c-b408-46b040d99c9e
-  4bd59bd5-2b47-4deb-b0cc-c03638af9ef7:
-    id: 4bd59bd5-2b47-4deb-b0cc-c03638af9ef7
-    content: Tab memo in tab.tsx should be in hooks file
-    children: []
-    metadata:
-      status: pending
   ed7e514b-3881-49da-b2d7-7ef2ba126b9e:
     id: ed7e514b-3881-49da-b2d7-7ef2ba126b9e
-    content: ''
+    content: Refactor context declaration icon inheritance to match method used for cascading blueprints
     children: []
-    metadata:
-      status: pending
-  13309f1d-8da0-48f7-aa5b-7ff7104c479b:
-    id: 13309f1d-8da0-48f7-aa5b-7ff7104c479b
-    content: Right click on node, Blueprint, Declare as Action
-    children:
-      - 8a1237f1-dbdf-41ca-95b7-a77ff09eacf4
-      - 057d7754-ccb0-4bd5-ae2c-347cd2e55d57
     metadata:
       status: pending
   110fa7d3-aabb-41d8-9d83-c5d0ceaa1e8f:
@@ -11167,100 +11115,307 @@ nodes:
     children: []
     metadata:
       status: pending
-  8a1237f1-dbdf-41ca-95b7-a77ff09eacf4:
-    id: 8a1237f1-dbdf-41ca-95b7-a77ff09eacf4
-    content: Or maybe Action, Declare as Action
+      isContextChild: false
+  be5b9581-2645-4f33-8fdf-a6805b552761:
+    id: be5b9581-2645-4f33-8fdf-a6805b552761
+    content: Add subtree to Blueprint
     children:
-      - 2b189f78-ae8d-4ab1-be99-ede76b55be39
+      - 116416a8-425c-4e44-84e3-0183108accf9
+      - 5cfc42a4-04f3-4eca-b86e-0c148c5991ee
+      - 75bcd138-29fb-40ca-ba21-13b858ffca53
     metadata:
-      status: pending
+      status: completed
+      expanded: false
+      deleted: false
+      plugins: {}
       isContextChild: false
-  2b189f78-ae8d-4ab1-be99-ede76b55be39:
-    id: 2b189f78-ae8d-4ab1-be99-ede76b55be39
-    content: If the context menu isn't getting too overloaded
-    children: []
-    metadata:
-      status: pending
-      isContextChild: false
-  057d7754-ccb0-4bd5-ae2c-347cd2e55d57:
-    id: 057d7754-ccb0-4bd5-ae2c-347cd2e55d57
-    content: When declared as an action, replace this with 'Remove action declaration
-    children: []
-    metadata:
-      status: pending
-      isContextChild: false
-  87744506-8ab6-4d5d-8056-93dc5849ffad:
-    id: 87744506-8ab6-4d5d-8056-93dc5849ffad
-    content: Declaring a node as Action does basically the same thing as context EXCEPT
+  116416a8-425c-4e44-84e3-0183108accf9:
+    id: 116416a8-425c-4e44-84e3-0183108accf9
+    content: Implementation
     children:
-      - 75eefd6f-7960-4784-9627-ef351c32e724
-      - 8840a45b-ee40-4e67-9c7f-df21eadcb7e6
-      - e896b1ef-8f1f-4370-b2f2-e68d63c0ee06
-      - 684638fc-a4df-4e5f-ad68-f20a7972570d
+      - ffe6f5b7-8e6c-49e8-9a79-6c3b3e10c506
+      - c54b7327-362f-4637-b126-211895e5e08c
+      - 87cb6b32-9f03-4285-b925-68ae1e7e66f1
     metadata:
-      status: pending
+      status: completed
+      expanded: false
+      deleted: false
+      plugins: {}
       isContextChild: false
-  75eefd6f-7960-4784-9627-ef351c32e724:
-    id: 75eefd6f-7960-4784-9627-ef351c32e724
-    content: We cant apply it to another node
-    children: []
-    metadata:
-      status: pending
-      isContextChild: false
-  8840a45b-ee40-4e67-9c7f-df21eadcb7e6:
-    id: 8840a45b-ee40-4e67-9c7f-df21eadcb7e6
-    content: Its just a decorator for the blueprint
-    children: []
-    metadata:
-      status: pending
-  e896b1ef-8f1f-4370-b2f2-e68d63c0ee06:
-    id: e896b1ef-8f1f-4370-b2f2-e68d63c0ee06
-    content: The action nodes inherit the icons of their ancestors
+  ffe6f5b7-8e6c-49e8-9a79-6c3b3e10c506:
+    id: ffe6f5b7-8e6c-49e8-9a79-6c3b3e10c506
+    content: Add cascade support to addToBlueprint action
     children:
-      - 1d5274fd-be15-480d-91c3-d9790a410fad
-      - f714cfd8-9349-4359-af0d-612efeb3b562
+      - 07a264d1-5552-4a20-ba20-3c65b824efee
+      - 9d8ef677-1ff2-4abf-9a15-c3c3e4778a73
     metadata:
-      status: pending
-  1d5274fd-be15-480d-91c3-d9790a410fad:
-    id: 1d5274fd-be15-480d-91c3-d9790a410fad
-    content: Same as context declarations
-    children: []
-    metadata:
-      status: pending
+      status: completed
+      expanded: false
+      deleted: false
+      plugins: {}
       isContextChild: false
-  f714cfd8-9349-4359-af0d-612efeb3b562:
-    id: f714cfd8-9349-4359-af0d-612efeb3b562
-    content: Except if they have a specific action declaration etc
+  07a264d1-5552-4a20-ba20-3c65b824efee:
+    id: 07a264d1-5552-4a20-ba20-3c65b824efee
+    content: Already exists for removeFromBlueprint, mirror the pattern
     children: []
     metadata:
-      status: pending
-  684638fc-a4df-4e5f-ad68-f20a7972570d:
-    id: 684638fc-a4df-4e5f-ad68-f20a7972570d
-    content: Can bundle actions like context declarations
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+      isContextChild: false
+  9d8ef677-1ff2-4abf-9a15-c3c3e4778a73:
+    id: 9d8ef677-1ff2-4abf-9a15-c3c3e4778a73
+    content: 'Already implemented - just sets isBlueprint: true on descendants'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+      isContextChild: false
+  c54b7327-362f-4637-b126-211895e5e08c:
+    id: c54b7327-362f-4637-b126-211895e5e08c
+    content: 'Context menu: Right click > Blueprint > Add with descendants'
     children:
-      - 2fe36f48-9051-478d-87df-3e40498bfe7c
+      - 08880f20-137f-41f7-962f-701093497f8c
+      - 992b8b68-512d-4a17-8000-965475d6251c
     metadata:
-      status: pending
+      status: completed
+      expanded: false
+      deleted: false
+      plugins: {}
       isContextChild: false
-  2fe36f48-9051-478d-87df-3e40498bfe7c:
-    id: 2fe36f48-9051-478d-87df-3e40498bfe7c
-    content: Right click, actions, Bundle actions
+  08880f20-137f-41f7-962f-701093497f8c:
+    id: 08880f20-137f-41f7-962f-701093497f8c
+    content: Already implemented
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+      isContextChild: false
+  992b8b68-512d-4a17-8000-965475d6251c:
+    id: 992b8b68-512d-4a17-8000-965475d6251c
+    content: Icon picker appears after clicking (same flow as single-node add)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+      isContextChild: false
+  87cb6b32-9f03-4285-b925-68ae1e7e66f1:
+    id: 87cb6b32-9f03-4285-b925-68ae1e7e66f1
+    content: Keep existing "Add to Blueprint" for single-node case
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+      isContextChild: false
+  5cfc42a4-04f3-4eca-b86e-0c148c5991ee:
+    id: 5cfc42a4-04f3-4eca-b86e-0c148c5991ee
+    content: Behavior
     children:
-      - 779af9d8-9943-4735-ba12-3d15783c6749
+      - 36b8a02a-f9ba-408b-8d44-b110ffaccda5
+      - 4e3b14bc-6498-4143-9394-355c50a7fecf
+      - d3cbb8be-37c7-4c1f-99cb-b2599f04ad9f
+      - 878bad98-920f-4b96-9cfc-253bac81a443
     metadata:
-      status: pending
+      status: completed
+      expanded: false
+      deleted: false
+      plugins: {}
       isContextChild: false
-  779af9d8-9943-4735-ba12-3d15783c6749:
-    id: 779af9d8-9943-4735-ba12-3d15783c6749
-    content: Same menu as contexts
+  36b8a02a-f9ba-408b-8d44-b110ffaccda5:
+    id: 36b8a02a-f9ba-408b-8d44-b110ffaccda5
+    content: 'Node and all descendants get isBlueprint: true'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+      isContextChild: false
+  4e3b14bc-6498-4143-9394-355c50a7fecf:
+    id: 4e3b14bc-6498-4143-9394-355c50a7fecf
+    content: All become visible in blueprint mode
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+      isContextChild: false
+  d3cbb8be-37c7-4c1f-99cb-b2599f04ad9f:
+    id: d3cbb8be-37c7-4c1f-99cb-b2599f04ad9f
+    content: All included in blueprint export
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+      isContextChild: false
+  878bad98-920f-4b96-9cfc-253bac81a443:
+    id: 878bad98-920f-4b96-9cfc-253bac81a443
+    content: All inherit the nearest ancestor's icon
+    children:
+      - b7658910-a682-47e5-b656-66f4e27e8456
+      - 792e2ee8-e2d7-4398-b732-75fb501e2385
+      - 8f2cbef1-890a-4fda-9072-7837c2826bd7
+      - 6f787300-79ba-4daf-8ace-ec7a2f31ccb9
+    metadata:
+      status: completed
+      expanded: false
+      deleted: false
+      plugins: {}
+      isContextChild: false
+  b7658910-a682-47e5-b656-66f4e27e8456:
+    id: b7658910-a682-47e5-b656-66f4e27e8456
+    content: Nodes without blueprintIcon metadata inherit from ancestor
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+      isContextChild: false
+  792e2ee8-e2d7-4398-b732-75fb501e2385:
+    id: 792e2ee8-e2d7-4398-b732-75fb501e2385
+    content: Look up ancestorRegistry to find first ancestor with blueprintIcon
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+      isContextChild: false
+  8f2cbef1-890a-4fda-9072-7837c2826bd7:
+    id: 8f2cbef1-890a-4fda-9072-7837c2826bd7
+    content: Inherited icons rendered at reduced opacity (0.5)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+      isContextChild: false
+  6f787300-79ba-4daf-8ace-ec7a2f31ccb9:
+    id: 6f787300-79ba-4daf-8ace-ec7a2f31ccb9
+    content: Setting an icon on a node makes it stop inheriting (has its own icon)
+    children:
+      - 3d70d72c-5fb8-4ab1-a241-e2cb8754103e
+      - f927ede9-6c21-4a87-be19-24a6a1a9df59
+    metadata:
+      status: completed
+      expanded: false
+      deleted: false
+      plugins: {}
+      isContextChild: false
+  75bcd138-29fb-40ca-ba21-13b858ffca53:
+    id: 75bcd138-29fb-40ca-ba21-13b858ffca53
+    content: Refactor needed
+    children:
+      - e5974bed-8390-4c50-817c-6f2ce9215cf3
+      - 6960060e-2684-422d-a321-423a4cbbc74a
+      - b69c41bb-f16f-43fc-b4b8-052f271e1e93
+    metadata:
+      status: completed
+      expanded: false
+      deleted: false
+      plugins: {}
+      isContextChild: false
+  e5974bed-8390-4c50-817c-6f2ce9215cf3:
+    id: e5974bed-8390-4c50-817c-6f2ce9215cf3
+    content: Revert isBlueprintChild/blueprintParentId changes (over-engineered)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+      isContextChild: false
+  6960060e-2684-422d-a321-423a4cbbc74a:
+    id: 6960060e-2684-422d-a321-423a4cbbc74a
+    content: Update NodeContent.tsx to derive inheritance from ancestorRegistry
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+      isContextChild: false
+  b69c41bb-f16f-43fc-b4b8-052f271e1e93:
+    id: b69c41bb-f16f-43fc-b4b8-052f271e1e93
+    content: Keep CSS for lighter inherited icons
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+      isContextChild: false
+  3d70d72c-5fb8-4ab1-a241-e2cb8754103e:
+    id: 3d70d72c-5fb8-4ab1-a241-e2cb8754103e
+    content: In this case its descendants inherit the new icon
+    children: []
+    metadata:
+      status: completed
+      isContextChild: false
+  f927ede9-6c21-4a87-be19-24a6a1a9df59:
+    id: f927ede9-6c21-4a87-be19-24a6a1a9df59
+    content: There is no transparency on a node that has its own icon
+    children: []
+    metadata:
+      status: completed
+      isContextChild: false
+  3d320a6f-91e1-48f6-87f1-b7d8dd56d39a:
+    id: 3d320a6f-91e1-48f6-87f1-b7d8dd56d39a
+    content: The inherited icons are not transparent
     children: []
     metadata:
       status: pending
       isContextChild: false
-  ece65a3c-b405-4f38-9d05-f6e72007e17b:
-    id: ece65a3c-b405-4f38-9d05-f6e72007e17b
-    content: Part of blueprint
+  39b20f81-4b40-46b7-bf68-8f61b8f89427:
+    id: 39b20f81-4b40-46b7-bf68-8f61b8f89427
+    content: Refactor context declarations and descendants to act like blueprints
+    children:
+      - 603dd8a4-5fe5-41e2-8531-8f3e7f3eb435
+      - 50d432c1-ee33-427d-9e66-6a802b368e5f
+      - 5d949ea1-d57d-48be-9a4f-8e9a24bb2fe7
+      - e8a0b83d-e005-48af-8f31-84c2fe4a8ad2
+    metadata:
+      status: pending
+      appliedContextIds:
+        - e8824b29-eb18-4031-9e35-b321a864d418
+      activeContextId: e8824b29-eb18-4031-9e35-b321a864d418
+      feedbackTempFile: /home/brian/.config/arborescent/temp-files/feedback-39b20f81-4b40-46b7-bf68-8f61b8f89427.arbo
+  603dd8a4-5fe5-41e2-8531-8f3e7f3eb435:
+    id: 603dd8a4-5fe5-41e2-8531-8f3e7f3eb435
+    content: Replace contextIcon/contextColour with blueprintIcon/blueprintColor etc
     children: []
     metadata:
       status: pending
       isContextChild: false
+  50d432c1-ee33-427d-9e66-6a802b368e5f:
+    id: 50d432c1-ee33-427d-9e66-6a802b368e5f
+    content: Fill in the blanks
+    children: []
+    metadata:
+      status: pending
+  5d949ea1-d57d-48be-9a4f-8e9a24bb2fe7:
+    id: 5d949ea1-d57d-48be-9a4f-8e9a24bb2fe7
+    content: etc
+    children: []
+    metadata:
+      status: pending
+  e8a0b83d-e005-48af-8f31-84c2fe4a8ad2:
+    id: e8a0b83d-e005-48af-8f31-84c2fe4a8ad2
+    content: etc
+    children: []
+    metadata:
+      status: pending

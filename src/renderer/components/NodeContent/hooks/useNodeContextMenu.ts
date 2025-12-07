@@ -182,6 +182,7 @@ export function useNodeContextMenu(node: TreeNode) {
       node,
       getNodes: () => store.getState().nodes,
       onAddToBlueprint: () => actions.addToBlueprint(node.id),
+      onAddToBlueprintWithDescendants: () => actions.addToBlueprint(node.id, true),
       onRemoveFromBlueprint: () => actions.removeFromBlueprint(node.id, true),
     });
 

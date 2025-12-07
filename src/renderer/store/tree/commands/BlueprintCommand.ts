@@ -87,7 +87,35 @@ export class BlueprintCommand extends BaseCommand {
       }
     }
 
+    // If cascade, also add all descendants
+    if (this.cascade) {
+      updatedNodes = this.addDescendants(this.nodeId, updatedNodes, nodes);
+    }
+
     this.setNodes(updatedNodes);
+  }
+
+  private addDescendants(
+    nodeId: string,
+    updatedNodes: Record<string, TreeNode>,
+    originalNodes: Record<string, TreeNode>
+  ): Record<string, TreeNode> {
+    const node = updatedNodes[nodeId];
+    if (!node) return updatedNodes;
+
+    for (const childId of node.children) {
+      const child = updatedNodes[childId];
+      if (child && child.metadata.isBlueprint !== true) {
+        this.captureState(childId, originalNodes);
+        updatedNodes = updateNodeMetadata(updatedNodes, childId, {
+          isBlueprint: true,
+        });
+        this.affectedNodeIds.push(childId);
+      }
+      updatedNodes = this.addDescendants(childId, updatedNodes, originalNodes);
+    }
+
+    return updatedNodes;
   }
 
   private executeRemove(nodes: Record<string, TreeNode>): void {

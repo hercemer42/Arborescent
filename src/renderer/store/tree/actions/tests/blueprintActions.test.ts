@@ -157,5 +157,84 @@ describe('blueprintActions', () => {
 
       expect(mockTriggerAutosave).toHaveBeenCalled();
     });
+
+  });
+
+  describe('addToBlueprint', () => {
+    beforeEach(() => {
+      // Reset nodes to have non-blueprint nodes for testing
+      state.nodes = {
+        'root': {
+          id: 'root',
+          content: 'Root',
+          children: ['parent'],
+          metadata: { isBlueprint: true },
+        },
+        'parent': {
+          id: 'parent',
+          content: 'Parent',
+          children: ['child-1', 'child-2'],
+          metadata: {},
+        },
+        'child-1': {
+          id: 'child-1',
+          content: 'Child 1',
+          children: ['grandchild'],
+          metadata: {},
+        },
+        'child-2': {
+          id: 'child-2',
+          content: 'Child 2',
+          children: [],
+          metadata: {},
+        },
+        'grandchild': {
+          id: 'grandchild',
+          content: 'Grandchild',
+          children: [],
+          metadata: {},
+        },
+      };
+      state.ancestorRegistry = {
+        'root': [],
+        'parent': ['root'],
+        'child-1': ['root', 'parent'],
+        'child-2': ['root', 'parent'],
+        'grandchild': ['root', 'parent', 'child-1'],
+      };
+    });
+
+    it('should add single node to blueprint without cascade', () => {
+      actions.addToBlueprint('parent');
+
+      expect(state.nodes['parent'].metadata.isBlueprint).toBe(true);
+      expect(state.nodes['child-1'].metadata.isBlueprint).toBeUndefined();
+      expect(state.nodes['child-2'].metadata.isBlueprint).toBeUndefined();
+    });
+
+    it('should add node and all descendants with cascade', () => {
+      actions.addToBlueprint('parent', true);
+
+      expect(state.nodes['parent'].metadata.isBlueprint).toBe(true);
+      expect(state.nodes['child-1'].metadata.isBlueprint).toBe(true);
+      expect(state.nodes['child-2'].metadata.isBlueprint).toBe(true);
+      expect(state.nodes['grandchild'].metadata.isBlueprint).toBe(true);
+    });
+
+    it('should add descendants even if parent is already blueprint', () => {
+      state.nodes['parent'].metadata.isBlueprint = true;
+
+      actions.addToBlueprint('parent', true);
+
+      expect(state.nodes['child-1'].metadata.isBlueprint).toBe(true);
+      expect(state.nodes['child-2'].metadata.isBlueprint).toBe(true);
+      expect(state.nodes['grandchild'].metadata.isBlueprint).toBe(true);
+    });
+
+    it('should trigger autosave after adding with cascade', () => {
+      actions.addToBlueprint('parent', true);
+
+      expect(mockTriggerAutosave).toHaveBeenCalled();
+    });
   });
 });

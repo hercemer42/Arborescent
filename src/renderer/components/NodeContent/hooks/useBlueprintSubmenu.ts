@@ -5,6 +5,7 @@ interface BuildBlueprintSubmenuParams {
   node: TreeNode;
   getNodes: () => Record<string, TreeNode>;
   onAddToBlueprint: () => void;
+  onAddToBlueprintWithDescendants: () => void;
   onRemoveFromBlueprint: () => void;
 }
 
@@ -24,6 +25,7 @@ export function buildBlueprintSubmenu({
   node,
   getNodes,
   onAddToBlueprint,
+  onAddToBlueprintWithDescendants,
   onRemoveFromBlueprint,
 }: BuildBlueprintSubmenuParams): ContextMenuItem | null {
   // Hide Blueprint menu for context declarations and context children
@@ -32,11 +34,12 @@ export function buildBlueprintSubmenu({
   }
 
   const isBlueprint = node.metadata.isBlueprint === true;
+  const hasChildren = node.children.length > 0;
 
   const handleRemove = () => {
     const nodes = getNodes();
-    const hasChildren = hasDescendantBlueprints(node.id, nodes);
-    if (hasChildren) {
+    const hasDescendants = hasDescendantBlueprints(node.id, nodes);
+    if (hasDescendants) {
       const confirmed = window.confirm(
         'This will also remove all descendant nodes from the blueprint. Continue?'
       );
@@ -52,6 +55,12 @@ export function buildBlueprintSubmenu({
       label: 'Add to Blueprint',
       onClick: onAddToBlueprint,
     });
+    if (hasChildren) {
+      submenuItems.push({
+        label: 'Add with descendants',
+        onClick: onAddToBlueprintWithDescendants,
+      });
+    }
   } else {
     submenuItems.push({
       label: 'Remove from Blueprint',

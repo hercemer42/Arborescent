@@ -9,7 +9,7 @@ import { Command } from '../commands/Command';
 export const DEFAULT_BLUEPRINT_ICON = 'Layers2';
 
 export interface BlueprintActions {
-  addToBlueprint: (nodeId: string) => void;
+  addToBlueprint: (nodeId: string, cascade?: boolean) => void;
   removeFromBlueprint: (nodeId: string, cascade?: boolean) => void;
   setBlueprintIcon: (nodeId: string, icon: string, color?: string) => void;
   toggleBlueprintMode: () => void;
@@ -53,20 +53,22 @@ export const createBlueprintActions = (
     }
   }
 
-  function addToBlueprint(nodeId: string): void {
+  function addToBlueprint(nodeId: string, cascade: boolean = false): void {
     const { nodes } = get();
     const node = nodes[nodeId];
     if (!node) return;
 
-    if (node.metadata.isBlueprint === true) {
+    // If not cascading and node is already blueprint, show info
+    if (!cascade && node.metadata.isBlueprint === true) {
       useToastStore.getState().addToast('Node is already a blueprint', 'info');
       return;
     }
 
-    runBlueprintCommand(nodeId, 'add', false);
+    runBlueprintCommand(nodeId, 'add', cascade);
 
-    useToastStore.getState().addToast('Added to blueprint', 'success');
-    logger.info(`Node ${nodeId} added to blueprint`, 'Blueprint');
+    const message = cascade ? 'Added subtree to blueprint' : 'Added to blueprint';
+    useToastStore.getState().addToast(message, 'success');
+    logger.info(`Node ${nodeId} added to blueprint${cascade ? ' (with descendants)' : ''}`, 'Blueprint');
   }
 
   function removeFromBlueprint(nodeId: string, cascade: boolean = false): void {

@@ -667,6 +667,61 @@ export function getContextDeclarationId(node: TreeNode): string | undefined {
 }
 
 /**
+ * Get inherited context icon and color from the nearest ancestor that is a context declaration.
+ * Returns undefined if node is a context declaration itself or has no context declaration ancestor.
+ */
+export function getInheritedContextIcon(
+  nodeId: string,
+  nodes: Record<string, TreeNode>,
+  ancestorRegistry: AncestorRegistry
+): { icon: string; color: string | undefined } | undefined {
+  const node = nodes[nodeId];
+  if (!node || node.metadata.isContextDeclaration) return undefined;
+
+  const ancestors = ancestorRegistry[nodeId] || [];
+  for (let i = ancestors.length - 1; i >= 0; i--) {
+    const ancestor = nodes[ancestors[i]];
+    if (ancestor?.metadata.isContextDeclaration) {
+      const icon = ancestor.metadata.contextIcon as string | undefined;
+      if (icon) {
+        return {
+          icon,
+          color: ancestor.metadata.contextColor as string | undefined,
+        };
+      }
+      return undefined;
+    }
+  }
+  return undefined;
+}
+
+/**
+ * Get inherited blueprint icon and color from the nearest ancestor with a blueprintIcon.
+ * Returns undefined if node has its own icon or no ancestor has an icon.
+ */
+export function getInheritedBlueprintIcon(
+  nodeId: string,
+  nodes: Record<string, TreeNode>,
+  ancestorRegistry: AncestorRegistry
+): { icon: string; color: string | undefined } | undefined {
+  const node = nodes[nodeId];
+  if (!node || node.metadata.blueprintIcon) return undefined;
+
+  const ancestors = ancestorRegistry[nodeId] || [];
+  // Walk from nearest to furthest ancestor
+  for (let i = ancestors.length - 1; i >= 0; i--) {
+    const ancestor = nodes[ancestors[i]];
+    if (ancestor?.metadata.blueprintIcon) {
+      return {
+        icon: ancestor.metadata.blueprintIcon as string,
+        color: ancestor.metadata.blueprintColor as string | undefined,
+      };
+    }
+  }
+  return undefined;
+}
+
+/**
  * Clone a node and all its descendants with new UUIDs.
  * Recursively traverses from the given node, creating deep clones with fresh IDs.
  *
