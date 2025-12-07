@@ -195,7 +195,7 @@ describe('NodeGutter', () => {
         />
       );
 
-      expect(container.querySelector('.context-bundle-badge')).toBeInTheDocument();
+      expect(container.querySelector('.context-applied-badge')).toBeInTheDocument();
     });
 
     it('should not show + badge when only execute context is set', () => {
@@ -295,7 +295,7 @@ describe('NodeGutter', () => {
       expect(container.querySelector('.gutter-context-indicator')).not.toBeInTheDocument();
     });
 
-    it('should render context indicator as clickable button in gutter', () => {
+    it('should render context indicator as span in gutter', () => {
       const mockOnToggle = vi.fn();
       const { container } = render(
         <NodeGutter
@@ -309,8 +309,8 @@ describe('NodeGutter', () => {
 
       const indicator = container.querySelector('.gutter-context-indicator');
       expect(indicator).toBeInTheDocument();
-      // Context declaration indicator in gutter is clickable to change icon
-      expect(indicator?.tagName.toLowerCase()).toBe('button');
+      // Context declaration indicator in gutter is a span (not clickable, shows tooltip on hover)
+      expect(indicator?.tagName.toLowerCase()).toBe('span');
     });
 
     it('should render context indicator alongside chevron and plugin indicators', () => {
@@ -327,8 +327,8 @@ describe('NodeGutter', () => {
 
       expect(container.querySelector('.gutter-context-indicator')).toBeInTheDocument();
       expect(screen.getByText('🤖')).toBeInTheDocument();
-      // Both expand toggle and context indicator are buttons
-      expect(screen.getAllByRole('button')).toHaveLength(2);
+      // Only expand toggle is a button (context indicator is now a span)
+      expect(screen.getAllByRole('button')).toHaveLength(1);
     });
   });
 });

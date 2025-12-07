@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2025-12-07T20:38:46.760Z'
+updated: '2025-12-07T20:48:56.953Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -615,6 +615,7 @@ nodes:
       - 81ca7867-a9cf-4183-81e6-27c2ec6e667d
       - 9498231c-b177-41b5-a38c-1e7ba4f5f26e
       - 11970639-be1e-40f1-98ba-78bf6dd96348
+      - 060c0911-82b9-43e3-a925-856938f2e409
     metadata:
       status: completed
       expanded: false
@@ -5717,6 +5718,7 @@ nodes:
       isBlueprint: true
       blueprintIcon: LayoutList
       blueprintColor: '#a855f7'
+      activeExecuteContextId: e8824b29-eb18-4031-9e35-b321a864d418
   7872f73c-b9d7-40a7-bcea-d0573548106c:
     id: 7872f73c-b9d7-40a7-bcea-d0573548106c
     content: Don't include an element that is already implemented, check the code first
@@ -7150,7 +7152,7 @@ nodes:
     id: 77963e20-53e9-4db7-8802-8c718f202cef
     content: In progress
     children:
-      - 060c0911-82b9-43e3-a925-856938f2e409
+      - 160f9d4a-8666-4f46-9862-7c613c20b337
     metadata:
       status: pending
       appliedContextIds:
@@ -12909,7 +12911,7 @@ nodes:
       - 54bec295-8479-46d1-9221-0cb6d747aa5d
     metadata:
       status: completed
-      expanded: true
+      expanded: false
       deleted: false
       plugins: {}
       resolvedAt: '2025-12-07T20:38:33.497Z'
@@ -13265,9 +13267,89 @@ nodes:
       - 9ba5a760-54bc-4341-9e50-5611c0f0acd4
     metadata:
       status: pending
+      expanded: false
   9ba5a760-54bc-4341-9e50-5611c0f0acd4:
     id: 9ba5a760-54bc-4341-9e50-5611c0f0acd4
     content: If we don't do patterns we can better use the gutter space
     children: []
     metadata:
       status: pending
+  160f9d4a-8666-4f46-9862-7c613c20b337:
+    id: 160f9d4a-8666-4f46-9862-7c613c20b337
+    content: Add + icon to context declaration icons when they have an applied action context
+    children:
+      - 58855bce-74c1-4dc3-8878-d846bedb223b
+      - e679c4a8-98dd-4800-a626-f7c8235e291c
+      - cf479d13-73ec-4dfe-b785-e365662ea68e
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  58855bce-74c1-4dc3-8878-d846bedb223b:
+    id: 58855bce-74c1-4dc3-8878-d846bedb223b
+    content: 'Bug: Context declarations don''t show + badge for action contexts'
+    children:
+      - e428c55f-868b-4852-8423-c4a70b410a59
+      - 96a13c9c-bec1-446f-acab-8306e32a0155
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e428c55f-868b-4852-8423-c4a70b410a59:
+    id: e428c55f-868b-4852-8423-c4a70b410a59
+    content: Current logic checks `appliedContexts.length > 0` (old model)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  96a13c9c-bec1-446f-acab-8306e32a0155:
+    id: 96a13c9c-bec1-446f-acab-8306e32a0155
+    content: Should also check `executeContext` or `collaborateContext` (new model)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e679c4a8-98dd-4800-a626-f7c8235e291c:
+    id: e679c4a8-98dd-4800-a626-f7c8235e291c
+    content: Fix in GutterContextIndicator.tsx lines 83-101
+    children:
+      - 57396932-95b1-4292-a9da-808f936a7722
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  57396932-95b1-4292-a9da-808f936a7722:
+    id: 57396932-95b1-4292-a9da-808f936a7722
+    content: 'Change `hasApplied` logic to include action contexts:'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  cf479d13-73ec-4dfe-b785-e365662ea68e:
+    id: cf479d13-73ec-4dfe-b785-e365662ea68e
+    content: Decide badge color when context declaration has action context
+    children:
+      - b80760cb-8ebd-4a58-810d-c528e419a59b
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b80760cb-8ebd-4a58-810d-c528e419a59b:
+    id: b80760cb-8ebd-4a58-810d-c528e419a59b
+    content: 'Option A: Use declaration''s `contextColor` (current behavior for appliedContexts)'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}

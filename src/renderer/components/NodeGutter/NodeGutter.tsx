@@ -9,9 +9,9 @@ interface NodeGutterProps {
   onToggle: () => void;
   pluginIndicators: React.ReactNode[];
   isContextDeclaration?: boolean;
+  contextName?: string;
   contextIcon?: string;
   contextColor?: string;
-  onIconClick?: () => void;
   appliedContexts?: AppliedContext[];
   executeContext?: AppliedContext;
   collaborateContext?: AppliedContext;
@@ -23,9 +23,9 @@ export const NodeGutter = memo(function NodeGutter({
   onToggle,
   pluginIndicators,
   isContextDeclaration = false,
+  contextName,
   contextIcon,
   contextColor,
-  onIconClick,
   appliedContexts = [],
   executeContext,
   collaborateContext,
@@ -34,12 +34,12 @@ export const NodeGutter = memo(function NodeGutter({
     <div className="node-gutter">
       <GutterContextIndicator
         isContextDeclaration={isContextDeclaration}
+        contextName={contextName}
         contextIcon={contextIcon}
         contextColor={contextColor}
         appliedContexts={appliedContexts}
         executeContext={executeContext}
         collaborateContext={collaborateContext}
-        onIconClick={onIconClick}
       />
       {pluginIndicators.length > 0 && (
         <span className="gutter-plugin-indicators">

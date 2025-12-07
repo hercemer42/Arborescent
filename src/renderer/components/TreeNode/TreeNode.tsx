@@ -6,7 +6,6 @@ import { useNodeMouse } from './hooks/useNodeMouse';
 import { useNodeEffects } from './hooks/useNodeEffects';
 import { useNodeDragDrop } from './hooks/useNodeDragDrop';
 import { useNodeToggle } from './hooks/useNodeToggle';
-import { useNodeIconClick } from './hooks/useNodeIconClick';
 import { useAppliedContexts, useActionContexts } from './hooks/useAppliedContexts';
 import { usePluginIndicators } from '../NodeGutter/hooks/usePluginIndicators';
 import { useNodeVisibleChildren } from '../Tree/hooks/useVisibleChildren';
@@ -42,7 +41,6 @@ export const TreeNode = memo(function TreeNode({ nodeId, depth = 0 }: TreeNodePr
   const { isDragging, isOver, dropPosition, setRefs, attributes, listeners } = useNodeDragDrop(nodeId, nodeRef);
   const { handleMouseDown, handleMouseMove, handleClick, wrappedListeners } = useNodeMouse(nodeId, listeners);
   const handleToggle = useNodeToggle(nodeId, expanded, contentLength);
-  const handleIconClick = useNodeIconClick(nodeId, node);
   const pluginIndicators = usePluginIndicators(node);
 
   if (!node) {
@@ -83,9 +81,9 @@ export const TreeNode = memo(function TreeNode({ nodeId, depth = 0 }: TreeNodePr
           onToggle={handleToggle}
           pluginIndicators={pluginIndicators}
           isContextDeclaration={node.metadata.isContextDeclaration === true}
+          contextName={node.content}
           contextIcon={node.metadata.blueprintIcon as string | undefined}
           contextColor={node.metadata.blueprintColor as string | undefined}
-          onIconClick={handleIconClick}
           appliedContexts={appliedContexts}
           executeContext={executeContext}
           collaborateContext={collaborateContext}

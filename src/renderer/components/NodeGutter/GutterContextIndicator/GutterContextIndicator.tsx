@@ -3,26 +3,27 @@ import { getIconByName, DEFAULT_CONTEXT_ICON } from '../../ui/IconPicker/IconPic
 import { AppliedContext } from '../../TreeNode/hooks/useAppliedContexts';
 import { useBundleTooltip } from './hooks/useBundleTooltip';
 import { ActionContextTooltip } from './ActionContextTooltip';
+import { DeclarationContextTooltip } from './DeclarationContextTooltip';
 import './GutterContextIndicator.css';
 
 interface GutterContextIndicatorProps {
   isContextDeclaration: boolean;
+  contextName?: string;
   contextIcon?: string;
   contextColor?: string;
   appliedContexts: AppliedContext[];
   executeContext?: AppliedContext;
   collaborateContext?: AppliedContext;
-  onIconClick?: () => void;
 }
 
 export const GutterContextIndicator = memo(function GutterContextIndicator({
   isContextDeclaration,
+  contextName,
   contextIcon,
   contextColor,
   appliedContexts,
   executeContext,
   collaborateContext,
-  onIconClick,
 }: GutterContextIndicatorProps) {
   const {
     bundleRef,
@@ -30,8 +31,7 @@ export const GutterContextIndicator = memo(function GutterContextIndicator({
     tooltipPosition,
     handleMouseEnter,
     handleMouseLeave,
-    handleIconClick,
-  } = useBundleTooltip(onIconClick);
+  } = useBundleTooltip();
   const DeclarationIcon = getIconByName(contextIcon || DEFAULT_CONTEXT_ICON);
 
   // Regular nodes: show context icons
@@ -77,17 +77,23 @@ export const GutterContextIndicator = memo(function GutterContextIndicator({
     );
   }
 
-  // Context declaration nodes: show declaration icon (clickable to change)
+  // Context declaration nodes: show declaration icon with tooltip on hover
   if (!DeclarationIcon) return null;
 
-  const hasApplied = appliedContexts.length > 0;
+  const hasApplied = appliedContexts.length > 0 || executeContext !== undefined || collaborateContext !== undefined;
+  const declarationContext: AppliedContext = {
+    icon: contextIcon || DEFAULT_CONTEXT_ICON,
+    color: contextColor,
+    name: contextName || 'Context',
+  };
 
   return (
-    <button
+    <span
+      ref={bundleRef}
       className={`gutter-context-indicator ${hasApplied ? 'context-bundle' : 'context-declaration'}`}
-      onClick={handleIconClick}
-      title="Click to change icon"
       style={contextColor ? { color: contextColor } : undefined}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
     >
       <span className="context-bundle-indicator" style={contextColor ? { color: contextColor } : undefined}>
         {createElement(DeclarationIcon, { size: 16 })}
@@ -98,6 +104,14 @@ export const GutterContextIndicator = memo(function GutterContextIndicator({
           >+</span>
         )}
       </span>
-    </button>
+      {showTooltip && (
+        <DeclarationContextTooltip
+          declarationContext={declarationContext}
+          executeContext={executeContext}
+          collaborateContext={collaborateContext}
+          position={tooltipPosition}
+        />
+      )}
+    </span>
   );
 });
