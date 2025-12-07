@@ -1,4 +1,4 @@
-import { watch, FSWatcher } from 'fs';
+import { watchFile, unwatchFile, Stats } from 'fs';
 import { readFile } from 'fs/promises';
 import { logger } from './logger';
 
@@ -8,11 +8,10 @@ import { logger } from './logger';
  * Sends content to renderer when file changes
  */
 export class FeedbackFileWatcher {
-  private watcher: FSWatcher | null = null;
   private watchedFilePath: string | null = null;
   private lastContent: string = '';
+  private lastMtime: number = 0;
   private onChange: ((content: string) => void) | null = null;
-  private debounceTimer: NodeJS.Timeout | null = null;
 
   /**
    * Start watching a file for changes
@@ -24,36 +23,20 @@ export class FeedbackFileWatcher {
     this.watchedFilePath = filePath;
     this.onChange = onChange;
     this.lastContent = '';
+    this.lastMtime = 0;
 
     try {
-      this.watcher = watch(filePath, { persistent: true }, (eventType) => {
-        if (eventType === 'change') {
-          this.handleFileChange();
+      watchFile(filePath, { interval: 500 }, (curr: Stats, prev: Stats) => {
+        if (curr.mtimeMs !== prev.mtimeMs && curr.mtimeMs !== this.lastMtime) {
+          this.lastMtime = curr.mtimeMs;
+          this.readAndNotify();
         }
-      });
-
-      this.watcher.on('error', (error) => {
-        logger.error('File watcher error', error, 'FeedbackFileWatcher');
       });
 
       logger.info(`Started watching file: ${filePath}`, 'FeedbackFileWatcher');
     } catch (error) {
       logger.error('Failed to start file watcher', error as Error, 'FeedbackFileWatcher');
     }
-  }
-
-  /**
-   * Handle file change event with debouncing
-   */
-  private handleFileChange(): void {
-    // Debounce to avoid multiple rapid reads
-    if (this.debounceTimer) {
-      clearTimeout(this.debounceTimer);
-    }
-
-    this.debounceTimer = setTimeout(async () => {
-      await this.readAndNotify();
-    }, 200);
   }
 
   /**
@@ -81,23 +64,15 @@ export class FeedbackFileWatcher {
    * Stop watching the file
    */
   stop(): void {
-    if (this.debounceTimer) {
-      clearTimeout(this.debounceTimer);
-      this.debounceTimer = null;
-    }
-
-    if (this.watcher) {
-      this.watcher.close();
-      this.watcher = null;
-    }
-
     if (this.watchedFilePath) {
+      unwatchFile(this.watchedFilePath);
       logger.info(`Stopped watching file: ${this.watchedFilePath}`, 'FeedbackFileWatcher');
     }
 
     this.watchedFilePath = null;
     this.onChange = null;
     this.lastContent = '';
+    this.lastMtime = 0;
   }
 
   /**
@@ -111,7 +86,7 @@ export class FeedbackFileWatcher {
    * Check if watcher is running
    */
   isRunning(): boolean {
-    return this.watcher !== null;
+    return this.watchedFilePath !== null;
   }
 }
 

@@ -7,6 +7,7 @@ import { TreeStore } from '../../../store/tree/treeStore';
 interface FeedbackState {
   collaboratingNodeId: string | null;
   feedbackStore: TreeStore | null;
+  feedbackVersion: number;
 }
 
 /**
@@ -31,12 +32,17 @@ export function useFeedbackState(): FeedbackState {
     () => null
   );
 
-  // Get feedback store for the active file
-  // Fetched on each render - becomes available when processIncomingFeedbackContent initializes it
+  const feedbackVersion = useSyncExternalStore(
+    (callback) => feedbackTreeStore.subscribeToVersion(callback),
+    () => feedbackTreeStore.getVersion(),
+    () => 0
+  );
+
   const feedbackStore = activeFilePath ? feedbackTreeStore.getStoreForFile(activeFilePath) : null;
 
   return {
     collaboratingNodeId,
     feedbackStore,
+    feedbackVersion,
   };
 }

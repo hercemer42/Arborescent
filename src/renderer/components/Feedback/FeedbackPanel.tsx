@@ -9,7 +9,7 @@ import { FeedbackTabBar } from './FeedbackTabBar';
 import './FeedbackPanel.css';
 
 export function FeedbackPanel() {
-  const { collaboratingNodeId, feedbackStore } = useFeedbackState();
+  const { collaboratingNodeId, feedbackStore, feedbackVersion } = useFeedbackState();
   const hasFeedbackContent = useFeedbackClipboard(collaboratingNodeId);
   const { handleCancel, handleAccept } = useFeedbackActions();
   const panelRef = useRef<HTMLDivElement>(null);
@@ -37,7 +37,7 @@ export function FeedbackPanel() {
       <div className="feedback-content">
         {hasFeedbackContent && feedbackStore ? (
           <TreeStoreContext.Provider value={feedbackStore}>
-            <Tree />
+            <Tree key={feedbackVersion} />
           </TreeStoreContext.Provider>
         ) : (
           <div className="feedback-waiting">

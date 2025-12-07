@@ -46,6 +46,8 @@ vi.mock('../hooks/useFeedbackActions', () => ({
 vi.mock('../../../store/feedback/feedbackTreeStore', () => ({
   feedbackTreeStore: {
     getStoreForFile: vi.fn(() => mockFeedbackStore),
+    getVersion: vi.fn(() => 0),
+    subscribeToVersion: vi.fn(() => () => {}),
   },
 }));
 

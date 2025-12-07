@@ -11,6 +11,8 @@ import type { TreeNode } from '../../../shared/types';
  */
 class FeedbackTreeStoreManager {
   private stores = new Map<string, TreeStore>();
+  private version = 0;
+  private versionListeners = new Set<() => void>();
 
   /**
    * Initialize the feedback store for a specific file with parsed nodes
@@ -22,6 +24,21 @@ class FeedbackTreeStoreManager {
 
     const store = this.stores.get(filePath)!;
     store.getState().actions.initialize(nodes, rootNodeId);
+
+    this.version++;
+    this.versionListeners.forEach(listener => listener());
+  }
+
+  /**
+   * Subscribe to version changes
+   */
+  subscribeToVersion(listener: () => void): () => void {
+    this.versionListeners.add(listener);
+    return () => this.versionListeners.delete(listener);
+  }
+
+  getVersion(): number {
+    return this.version;
   }
 
   /**
