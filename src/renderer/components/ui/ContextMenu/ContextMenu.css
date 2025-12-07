@@ -81,15 +81,10 @@
   padding: 4px 0;
   min-width: 180px;
   max-width: 250px;
-  max-height: 300px;
-  overflow: visible;
+  max-height: calc(100vh - 100px);
+  overflow-y: auto;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
   z-index: 1001;
-}
-
-/* Scrollable submenu for long lists (like context selection) */
-.context-menu-submenu.scrollable {
-  overflow-y: auto;
 }
 
 /* Nested submenus need higher z-index */
