@@ -19,7 +19,6 @@ import { buildCollaborateSubmenu } from './useCollaborateSubmenu';
 import { buildExecuteSubmenu } from './useExecuteSubmenu';
 import { getPositionFromPoint } from '../../../utils/position';
 import { useIconPickerStore } from '../../../store/iconPicker/iconPickerStore';
-import { useHyperlinkClipboardStore } from '../../../store/clipboard/hyperlinkClipboardStore';
 
 export function useNodeContextMenu(node: TreeNode) {
   const treeType = useStore((state) => state.treeType);
@@ -222,6 +221,11 @@ export function useNodeContextMenu(node: TreeNode) {
             label: 'Copy',
             onClick: () => actions.copyNodes(),
           },
+          // Copy as Hyperlink - only for non-hyperlink nodes
+          ...(!isHyperlink ? [{
+            label: 'Copy as Hyperlink',
+            onClick: () => actions.copyAsHyperlink(),
+          }] : []),
           {
             label: 'Cut',
             onClick: () => actions.cutNodes(),
@@ -247,17 +251,6 @@ export function useNodeContextMenu(node: TreeNode) {
       ...(!isZoomTab && !isHyperlink ? [{
         label: 'Zoom',
         onClick: handleZoom,
-        disabled: false,
-      }] : []),
-      // Hyperlink actions - only for non-hyperlink nodes
-      ...(!isHyperlink ? [{
-        label: 'Copy as Hyperlink',
-        onClick: () => actions.copyAsHyperlink(),
-        disabled: false,
-      }] : []),
-      ...(useHyperlinkClipboardStore.getState().hasCache() && !isHyperlink ? [{
-        label: 'Paste as Hyperlink',
-        onClick: () => actions.pasteAsHyperlink(),
         disabled: false,
       }] : []),
     ];

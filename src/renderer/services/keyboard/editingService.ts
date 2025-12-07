@@ -119,6 +119,18 @@ function handleEditingShortcuts(event: KeyboardEvent): void {
     return;
   }
 
+  // Block text modification for hyperlink nodes
+  // Allow navigation keys, shortcuts, but block typing/backspace/delete
+  if (activeNode.metadata.isHyperlink === true) {
+    const isTyping = event.key.length === 1 && !event.ctrlKey && !event.metaKey;
+    const isTextDelete = (event.key === 'Backspace' || event.key === 'Delete') && !event.ctrlKey && !event.metaKey;
+
+    if (isTyping || isTextDelete) {
+      event.preventDefault();
+      return;
+    }
+  }
+
   // Reset remembered X on typing
   if (event.key.length === 1 || event.key === 'Backspace' || event.key === 'Delete') {
     store.actions.setRememberedVisualX(null);

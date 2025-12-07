@@ -124,7 +124,7 @@ function NodeContentComponent({
         <div
           ref={contentRef}
           className={`node-text ${isHyperlink ? 'hyperlink-text' : ''}`}
-          contentEditable={!isHyperlink}
+          contentEditable
           suppressContentEditableWarning
           spellCheck={false}
           onInput={isHyperlink ? undefined : handleInput}

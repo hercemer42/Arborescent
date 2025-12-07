@@ -437,6 +437,24 @@ describe('clipboardActions', () => {
 
       expect(result).toBe('no-content');
     });
+
+    it('should paste hyperlink when regular cache is empty and hyperlink cache exists', async () => {
+      state.activeNodeId = 'node-1';
+      // Empty clipboard and no regular cache
+      mockClipboard.readText.mockResolvedValueOnce('');
+      currentMockCache = null;
+      // But has hyperlink cache
+      currentMockHyperlinkCache = {
+        nodeId: 'node-2',
+        content: 'Task 2',
+        timestamp: Date.now(),
+      };
+
+      const result = await actions.pasteNodes();
+
+      expect(result).toBe('pasted');
+      expect(mockExecuteCommand).toHaveBeenCalled();
+    });
   });
 
   describe('deleteSelectedNodes', () => {
@@ -665,6 +683,7 @@ describe('clipboardActions', () => {
 
       it('should fall back to clipboard when cache is empty', async () => {
         currentMockCache = null;
+        currentMockHyperlinkCache = null; // Clear hyperlink cache too
         state.activeNodeId = 'node-1';
         mockClipboard.readText.mockResolvedValueOnce('# External Content');
 
@@ -681,6 +700,7 @@ describe('clipboardActions', () => {
           timestamp: Date.now(),
           isCut: false,
         };
+        currentMockHyperlinkCache = null; // Clear hyperlink cache too
         state.activeNodeId = 'node-1';
         mockClipboard.readText.mockResolvedValueOnce('# External Content');
 

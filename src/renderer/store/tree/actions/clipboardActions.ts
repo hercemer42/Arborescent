@@ -574,6 +574,10 @@ export const createClipboardActions = (
       if (copyResult !== null) return copyResult;
     }
 
+    // Check for hyperlink cache before falling back to external clipboard
+    const hyperlinkResult = pasteAsHyperlink();
+    if (hyperlinkResult === 'pasted') return 'pasted';
+
     // Fall back to external clipboard
     return handleExternalPaste(ctx);
   }

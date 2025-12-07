@@ -86,6 +86,12 @@ export function useNodeMouse(nodeId: string, listeners?: DraggableSyntheticListe
       return;
     }
 
+    // Hyperlink text click: skip selection, let onClick handler navigate
+    const isClickingOnHyperlink = target.classList.contains('hyperlink-text');
+    if (isClickingOnHyperlink && !hasModifierKey) {
+      return;
+    }
+
     // Handle Ctrl/Cmd+Click: ONLY toggle node multi-selection
     if (isCtrlOrCmd && !isShift) {
       actions.toggleNodeSelection(nodeId);
