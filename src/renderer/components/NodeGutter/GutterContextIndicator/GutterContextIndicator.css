@@ -22,9 +22,11 @@
 
 /* Applied context indicator - not clickable, slightly faded */
 .gutter-context-indicator.context-applied {
+  position: relative;
   color: var(--sky-400);
   opacity: 0.5;
   cursor: default;
+  z-index: 10;
 }
 
 .context-applied-indicator {
@@ -38,6 +40,7 @@
   position: absolute;
   bottom: -2px;
   right: -4px;
+  cursor: pointer;
   font-size: 0.6rem;
   font-weight: 600;
   background: var(--sky-400);
@@ -49,8 +52,8 @@
   align-items: center;
   justify-content: center;
   line-height: 1;
-  pointer-events: none;
 }
+
 
 /* Context bundle indicator (gear with count badge inside) */
 .gutter-context-indicator.context-bundle {

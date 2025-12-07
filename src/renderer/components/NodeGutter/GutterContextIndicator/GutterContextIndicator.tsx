@@ -62,6 +62,7 @@ export const GutterContextIndicator = memo(function GutterContextIndicator({
             <span
               className="context-applied-badge"
               style={collaborateContext.color ? { backgroundColor: collaborateContext.color } : undefined}
+              onMouseEnter={handleMouseEnter}
             >+</span>
           )}
         </span>
