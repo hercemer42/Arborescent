@@ -9,7 +9,6 @@ export type ContextActionType = 'execute' | 'collaborate';
 
 export interface ContextActions {
   declareAsContext: (nodeId: string, icon?: string, color?: string) => void;
-  setContextIcon: (nodeId: string, icon: string, color?: string) => void;
   removeContextDeclaration: (nodeId: string) => void;
   applyContext: (nodeId: string, contextNodeId: string) => void;
   removeAppliedContext: (nodeId: string, contextNodeId?: string) => void;
@@ -29,8 +28,8 @@ function buildContextDeclarations(nodes: Record<string, TreeNode>): ContextDecla
     .map(node => ({
       nodeId: node.id,
       content: node.content || 'Untitled context',
-      icon: (node.metadata.contextIcon as string) || 'lightbulb',
-      color: node.metadata.contextColor as string | undefined,
+      icon: (node.metadata.blueprintIcon as string) || 'lightbulb',
+      color: node.metadata.blueprintColor as string | undefined,
     }))
     .sort((a, b) => a.content.localeCompare(b.content));
 }
@@ -101,16 +100,14 @@ export const createContextActions = (
       return;
     }
 
-    const contextIcon = icon || 'lightbulb';
-    const contextColor = color || undefined;
+    const blueprintIcon = icon || 'lightbulb';
+    const blueprintColor = color || undefined;
 
     let updatedNodes = updateNodeMetadata(nodes, nodeId, {
       isContextDeclaration: true,
-      contextIcon,
-      contextColor,
+      blueprintIcon,
+      blueprintColor,
       isBlueprint: true,
-      isContextChild: false,
-      contextParentId: undefined,
     });
 
     const descendantIds = getAllDescendants(nodeId, nodes);
@@ -132,32 +129,12 @@ export const createContextActions = (
 
       updatedNodes = updateNodeMetadata(updatedNodes, descendantId, {
         isBlueprint: true,
-        isContextChild: true,
-        contextParentId: nodeId,
       });
     }
 
     set({ nodes: updatedNodes });
 
-    logger.info(`Node ${nodeId} declared as context with icon ${contextIcon}`, 'Context');
-
-    triggerAutosave?.();
-    refreshContextDeclarations();
-  }
-
-  function setContextIcon(nodeId: string, icon: string, color?: string): void {
-    const { nodes } = get();
-    const node = nodes[nodeId];
-    if (!node) return;
-
-    set({
-      nodes: updateNodeMetadata(nodes, nodeId, {
-        contextIcon: icon,
-        contextColor: color,
-      }),
-    });
-
-    logger.info(`Context icon updated to ${icon} for node ${nodeId}`, 'Context');
+    logger.info(`Node ${nodeId} declared as context with icon ${blueprintIcon}`, 'Context');
 
     triggerAutosave?.();
     refreshContextDeclarations();
@@ -168,58 +145,37 @@ export const createContextActions = (
     const node = nodes[nodeId];
     if (!node) return;
 
-    let ancestorContextId: string | undefined;
     const ancestors = ancestorRegistry[nodeId] || [];
-    for (let i = ancestors.length - 1; i >= 0; i--) {
-      const ancestorId = ancestors[i];
-      const ancestor = nodes[ancestorId];
-      if (ancestor?.metadata.isContextDeclaration === true) {
-        ancestorContextId = ancestorId;
-        break;
-      }
-    }
+    const hasAncestorContext = ancestors.some(
+      ancestorId => nodes[ancestorId]?.metadata.isContextDeclaration === true
+    );
 
     let updatedNodes: Record<string, TreeNode>;
-    if (ancestorContextId) {
+    if (hasAncestorContext) {
       updatedNodes = updateNodeMetadata(nodes, nodeId, {
         isContextDeclaration: false,
-        contextIcon: undefined,
-        contextColor: undefined,
+        blueprintIcon: undefined,
+        blueprintColor: undefined,
         bundledContextIds: undefined,
-        isContextChild: true,
-        contextParentId: ancestorContextId,
       });
     } else {
       updatedNodes = updateNodeMetadata(nodes, nodeId, {
         isContextDeclaration: false,
-        contextIcon: undefined,
-        contextColor: undefined,
+        blueprintIcon: undefined,
+        blueprintColor: undefined,
         bundledContextIds: undefined,
         isBlueprint: false,
-        isContextChild: false,
-        contextParentId: undefined,
       });
-    }
 
-    const descendantIds = getAllDescendants(nodeId, nodes);
-    for (const descendantId of descendantIds) {
-      const descendant = updatedNodes[descendantId];
-      if (!descendant) continue;
+      const descendantIds = getAllDescendants(nodeId, nodes);
+      for (const descendantId of descendantIds) {
+        const descendant = updatedNodes[descendantId];
+        if (!descendant) continue;
+        if (descendant.metadata.isContextDeclaration === true) continue;
 
-      if (descendant.metadata.isContextDeclaration === true) continue;
-
-      if (descendant.metadata.contextParentId === nodeId) {
-        if (ancestorContextId) {
-          updatedNodes = updateNodeMetadata(updatedNodes, descendantId, {
-            contextParentId: ancestorContextId,
-          });
-        } else {
-          updatedNodes = updateNodeMetadata(updatedNodes, descendantId, {
-            isBlueprint: false,
-            isContextChild: false,
-            contextParentId: undefined,
-          });
-        }
+        updatedNodes = updateNodeMetadata(updatedNodes, descendantId, {
+          isBlueprint: false,
+        });
       }
     }
 
@@ -381,7 +337,6 @@ export const createContextActions = (
 
   return {
     declareAsContext,
-    setContextIcon,
     removeContextDeclaration,
     applyContext,
     removeAppliedContext,

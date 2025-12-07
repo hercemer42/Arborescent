@@ -1,9 +1,12 @@
 import { TreeNode } from '../../../../shared/types';
 import { ContextMenuItem } from '../../ui/ContextMenu';
+import { getIsContextChild } from '../../../utils/nodeHelpers';
+import { AncestorRegistry } from '../../../services/ancestry';
 
 interface BuildBlueprintSubmenuParams {
   node: TreeNode;
   getNodes: () => Record<string, TreeNode>;
+  getAncestorRegistry: () => AncestorRegistry;
   onAddToBlueprint: () => void;
   onAddToBlueprintWithDescendants: () => void;
   onRemoveFromBlueprint: () => void;
@@ -24,12 +27,14 @@ function hasDescendantBlueprints(nodeId: string, nodes: Record<string, TreeNode>
 export function buildBlueprintSubmenu({
   node,
   getNodes,
+  getAncestorRegistry,
   onAddToBlueprint,
   onAddToBlueprintWithDescendants,
   onRemoveFromBlueprint,
 }: BuildBlueprintSubmenuParams): ContextMenuItem | null {
   // Hide Blueprint menu for context declarations and context children
-  if (node.metadata.isContextDeclaration === true || node.metadata.isContextChild === true) {
+  const isContextChild = getIsContextChild(node.id, getNodes(), getAncestorRegistry());
+  if (node.metadata.isContextDeclaration === true || isContextChild) {
     return null;
   }
 

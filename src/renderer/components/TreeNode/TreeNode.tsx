@@ -84,8 +84,8 @@ export const TreeNode = memo(function TreeNode({ nodeId, depth = 0 }: TreeNodePr
           onToggle={handleToggle}
           pluginIndicators={pluginIndicators}
           isContextDeclaration={node.metadata.isContextDeclaration === true}
-          contextIcon={node.metadata.contextIcon as string | undefined}
-          contextColor={node.metadata.contextColor as string | undefined}
+          contextIcon={node.metadata.blueprintIcon as string | undefined}
+          contextColor={node.metadata.blueprintColor as string | undefined}
           onIconClick={handleIconClick}
           bundledContexts={bundledContexts}
           appliedContexts={appliedContexts}

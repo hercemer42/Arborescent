@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 import { TreeNode } from '../../../../shared/types';
 import { useStore } from '../../../store/tree/useStore';
 import { getIconByName, LucideIcon } from '../../ui/IconPicker/IconPicker';
-import { getInheritedContextIcon } from '../../../utils/nodeHelpers';
+import { getInheritedBlueprintIcon, getIsContextChild } from '../../../utils/nodeHelpers';
 
 interface ContextIconResult {
   isContextDeclaration: boolean;
@@ -13,27 +13,38 @@ interface ContextIconResult {
 
 export function useContextIcon(node: TreeNode): ContextIconResult {
   const isContextDeclaration = node.metadata.isContextDeclaration === true;
-  const isContextChild = node.metadata.isContextChild === true;
 
-  const inheritedContextData = useStore((state) => {
-    if (isContextDeclaration || !isContextChild) return null;
-    const result = getInheritedContextIcon(node.id, state.nodes, state.ancestorRegistry);
-    if (!result) return null;
-    return `${result.icon}:${result.color ?? ''}`;
+  const contextData = useStore((state) => {
+    if (isContextDeclaration) return 'declaration';
+    const isChild = getIsContextChild(node.id, state.nodes, state.ancestorRegistry);
+    if (!isChild) return null;
+    const inherited = getInheritedBlueprintIcon(node.id, state.nodes, state.ancestorRegistry);
+    if (!inherited) return 'child:';
+    return `child:${inherited.icon}:${inherited.color ?? ''}`;
   });
 
-  const inheritedContext = useMemo(() => {
-    if (!inheritedContextData) return undefined;
-    const [icon, color] = inheritedContextData.split(':');
-    return { icon, color: color || undefined };
-  }, [inheritedContextData]);
+  const { isContextChild, inheritedIcon } = useMemo(() => {
+    if (!contextData || contextData === 'declaration') {
+      return { isContextChild: false, inheritedIcon: undefined };
+    }
+    const parts = contextData.split(':');
+    if (parts[0] === 'child') {
+      const icon = parts[1] || undefined;
+      const color = parts[2] || undefined;
+      return {
+        isContextChild: true,
+        inheritedIcon: icon ? { icon, color } : undefined,
+      };
+    }
+    return { isContextChild: false, inheritedIcon: undefined };
+  }, [contextData]);
 
   const contextIcon = isContextDeclaration
-    ? node.metadata.contextIcon as string | undefined
-    : inheritedContext?.icon;
+    ? node.metadata.blueprintIcon as string | undefined
+    : inheritedIcon?.icon;
   const contextColor = isContextDeclaration
-    ? node.metadata.contextColor as string | undefined
-    : inheritedContext?.color;
+    ? node.metadata.blueprintColor as string | undefined
+    : inheritedIcon?.color;
   const ContextIcon = contextIcon ? getIconByName(contextIcon) ?? undefined : undefined;
 
   return {

@@ -9,11 +9,7 @@ interface BlueprintState {
   blueprintColor: string | undefined;
   // Context-related fields
   isContextDeclaration: boolean | undefined;
-  contextIcon: string | undefined;
-  contextColor: string | undefined;
   bundledContextIds: string[] | undefined;
-  isContextChild: boolean | undefined;
-  contextParentId: string | undefined;
 }
 
 /**
@@ -139,11 +135,7 @@ export class BlueprintCommand extends BaseCommand {
       blueprintIcon: undefined,
       blueprintColor: undefined,
       isContextDeclaration: false,
-      contextIcon: undefined,
-      contextColor: undefined,
       bundledContextIds: undefined,
-      isContextChild: false,
-      contextParentId: undefined,
     });
     this.affectedNodeIds.push(this.nodeId);
 
@@ -182,11 +174,7 @@ export class BlueprintCommand extends BaseCommand {
           blueprintIcon: undefined,
           blueprintColor: undefined,
           isContextDeclaration: false,
-          contextIcon: undefined,
-          contextColor: undefined,
           bundledContextIds: undefined,
-          isContextChild: false,
-          contextParentId: undefined,
         });
         this.affectedNodeIds.push(childId);
         updatedNodes = this.removeDescendants(childId, updatedNodes, originalNodes);
@@ -204,11 +192,7 @@ export class BlueprintCommand extends BaseCommand {
         blueprintIcon: node.metadata.blueprintIcon as string | undefined,
         blueprintColor: node.metadata.blueprintColor as string | undefined,
         isContextDeclaration: node.metadata.isContextDeclaration as boolean | undefined,
-        contextIcon: node.metadata.contextIcon as string | undefined,
-        contextColor: node.metadata.contextColor as string | undefined,
         bundledContextIds: node.metadata.bundledContextIds as string[] | undefined,
-        isContextChild: node.metadata.isContextChild as boolean | undefined,
-        contextParentId: node.metadata.contextParentId as string | undefined,
       });
     }
   }
@@ -280,11 +264,7 @@ export class BlueprintCommand extends BaseCommand {
           blueprintIcon: previousState.blueprintIcon,
           blueprintColor: previousState.blueprintColor,
           isContextDeclaration: previousState.isContextDeclaration,
-          contextIcon: previousState.contextIcon,
-          contextColor: previousState.contextColor,
           bundledContextIds: previousState.bundledContextIds,
-          isContextChild: previousState.isContextChild,
-          contextParentId: previousState.contextParentId,
         });
       }
     }

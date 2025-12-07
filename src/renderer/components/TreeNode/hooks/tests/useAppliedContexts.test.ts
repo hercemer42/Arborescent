@@ -45,7 +45,7 @@ describe('useAppliedContexts', () => {
   });
 
   it('should return applied context info for single context', () => {
-    const contextNode = createNode('ctx-1', { contextIcon: 'star' });
+    const contextNode = createNode('ctx-1', { blueprintIcon: 'star' });
     contextNode.content = 'My Context';
     const node = createNode('node-1', { appliedContextIds: ['ctx-1'] });
     const nodes = { 'node-1': node, 'ctx-1': contextNode };
@@ -63,9 +63,9 @@ describe('useAppliedContexts', () => {
   });
 
   it('should return applied context info for multiple contexts', () => {
-    const ctx1 = createNode('ctx-1', { contextIcon: 'star' });
+    const ctx1 = createNode('ctx-1', { blueprintIcon: 'star' });
     ctx1.content = 'Context 1';
-    const ctx2 = createNode('ctx-2', { contextIcon: 'flag' });
+    const ctx2 = createNode('ctx-2', { blueprintIcon: 'flag' });
     ctx2.content = 'Context 2';
     const node = createNode('node-1', { appliedContextIds: ['ctx-1', 'ctx-2'] });
     const nodes = { 'node-1': node, 'ctx-1': ctx1, 'ctx-2': ctx2 };
@@ -83,7 +83,7 @@ describe('useAppliedContexts', () => {
   });
 
   it('should filter out missing context nodes', () => {
-    const ctx1 = createNode('ctx-1', { contextIcon: 'star' });
+    const ctx1 = createNode('ctx-1', { blueprintIcon: 'star' });
     ctx1.content = 'Context 1';
     const node = createNode('node-1', { appliedContextIds: ['ctx-1', 'missing-ctx'] });
     const nodes = { 'node-1': node, 'ctx-1': ctx1 };

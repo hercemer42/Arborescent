@@ -22,7 +22,7 @@ describe('getContextDeclarations', () => {
 
   it('should find nodes marked as context declarations', () => {
     const nodes: Record<string, TreeNode> = {
-      'node-1': createNode('node-1', 'Context A', { isContextDeclaration: true, contextIcon: 'star' }),
+      'node-1': createNode('node-1', 'Context A', { isContextDeclaration: true, blueprintIcon: 'star' }),
       'node-2': createNode('node-2', 'Task 2'),
     };
 
@@ -37,9 +37,9 @@ describe('getContextDeclarations', () => {
 
   it('should return multiple context declarations', () => {
     const nodes: Record<string, TreeNode> = {
-      'node-1': createNode('node-1', 'Context A', { isContextDeclaration: true, contextIcon: 'star' }),
+      'node-1': createNode('node-1', 'Context A', { isContextDeclaration: true, blueprintIcon: 'star' }),
       'node-2': createNode('node-2', 'Task 2'),
-      'node-3': createNode('node-3', 'Context B', { isContextDeclaration: true, contextIcon: 'flag' }),
+      'node-3': createNode('node-3', 'Context B', { isContextDeclaration: true, blueprintIcon: 'flag' }),
     };
 
     const result = getContextDeclarations(nodes);
@@ -48,9 +48,9 @@ describe('getContextDeclarations', () => {
 
   it('should sort context declarations by content alphabetically', () => {
     const nodes: Record<string, TreeNode> = {
-      'node-1': createNode('node-1', 'Zebra Context', { isContextDeclaration: true, contextIcon: 'star' }),
-      'node-2': createNode('node-2', 'Apple Context', { isContextDeclaration: true, contextIcon: 'flag' }),
-      'node-3': createNode('node-3', 'Middle Context', { isContextDeclaration: true, contextIcon: 'bell' }),
+      'node-1': createNode('node-1', 'Zebra Context', { isContextDeclaration: true, blueprintIcon: 'star' }),
+      'node-2': createNode('node-2', 'Apple Context', { isContextDeclaration: true, blueprintIcon: 'flag' }),
+      'node-3': createNode('node-3', 'Middle Context', { isContextDeclaration: true, blueprintIcon: 'bell' }),
     };
 
     const result = getContextDeclarations(nodes);
@@ -59,7 +59,7 @@ describe('getContextDeclarations', () => {
     expect(result[2].content).toBe('Zebra Context');
   });
 
-  it('should use default icon "lightbulb" when contextIcon is not set', () => {
+  it('should use default icon "lightbulb" when blueprintIcon is not set', () => {
     const nodes: Record<string, TreeNode> = {
       'node-1': createNode('node-1', 'Context A', { isContextDeclaration: true }),
     };
@@ -70,7 +70,7 @@ describe('getContextDeclarations', () => {
 
   it('should use "Untitled context" when content is empty', () => {
     const nodes: Record<string, TreeNode> = {
-      'node-1': createNode('node-1', '', { isContextDeclaration: true, contextIcon: 'star' }),
+      'node-1': createNode('node-1', '', { isContextDeclaration: true, blueprintIcon: 'star' }),
     };
 
     const result = getContextDeclarations(nodes);
@@ -80,7 +80,7 @@ describe('getContextDeclarations', () => {
   it('should not include nodes where isContextDeclaration is false', () => {
     const nodes: Record<string, TreeNode> = {
       'node-1': createNode('node-1', 'Context A', { isContextDeclaration: false }),
-      'node-2': createNode('node-2', 'Context B', { isContextDeclaration: true, contextIcon: 'star' }),
+      'node-2': createNode('node-2', 'Context B', { isContextDeclaration: true, blueprintIcon: 'star' }),
     };
 
     const result = getContextDeclarations(nodes);

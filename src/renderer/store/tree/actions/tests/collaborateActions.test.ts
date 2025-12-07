@@ -388,7 +388,7 @@ describe('collaborateActions', () => {
         id: 'context-node',
         content: 'You are a helpful assistant',
         children: ['context-child'],
-        metadata: { isContextDeclaration: true, contextIcon: 'star' },
+        metadata: { isContextDeclaration: true, blueprintIcon: 'star' },
       };
       const contextChild: TreeNode = {
         id: 'context-child',
@@ -530,7 +530,7 @@ describe('collaborateActions', () => {
         id: 'context-node',
         content: 'You are a helpful assistant',
         children: ['context-child'],
-        metadata: { isContextDeclaration: true, contextIcon: 'star' },
+        metadata: { isContextDeclaration: true, blueprintIcon: 'star' },
       };
       const contextChild: TreeNode = {
         id: 'context-child',

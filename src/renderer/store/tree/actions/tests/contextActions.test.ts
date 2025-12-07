@@ -1,6 +1,7 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { createContextActions } from '../contextActions';
 import type { TreeNode } from '@shared/types';
+import { getIsContextChild, getContextDeclarationId } from '../../../../utils/nodeHelpers';
 
 describe('contextActions', () => {
   type TestState = {
@@ -76,12 +77,12 @@ describe('contextActions', () => {
 
     it('should set default icon to lightbulb', () => {
       actions.declareAsContext('node-1');
-      expect(state.nodes['node-1'].metadata.contextIcon).toBe('lightbulb');
+      expect(state.nodes['node-1'].metadata.blueprintIcon).toBe('lightbulb');
     });
 
     it('should set custom icon when provided', () => {
       actions.declareAsContext('node-1', 'star');
-      expect(state.nodes['node-1'].metadata.contextIcon).toBe('star');
+      expect(state.nodes['node-1'].metadata.blueprintIcon).toBe('star');
     });
 
     it('should trigger autosave', () => {
@@ -101,33 +102,19 @@ describe('contextActions', () => {
     });
   });
 
-  describe('setContextIcon', () => {
-    it('should update the context icon', () => {
-      state.nodes['node-1'].metadata.isContextDeclaration = true;
-      state.nodes['node-1'].metadata.contextIcon = 'lightbulb';
-      actions.setContextIcon('node-1', 'star');
-      expect(state.nodes['node-1'].metadata.contextIcon).toBe('star');
-    });
-
-    it('should trigger autosave', () => {
-      actions.setContextIcon('node-1', 'star');
-      expect(mockTriggerAutosave).toHaveBeenCalled();
-    });
-  });
-
   describe('removeContextDeclaration', () => {
     it('should set isContextDeclaration to false', () => {
       state.nodes['node-1'].metadata.isContextDeclaration = true;
-      state.nodes['node-1'].metadata.contextIcon = 'lightbulb';
+      state.nodes['node-1'].metadata.blueprintIcon = 'lightbulb';
       actions.removeContextDeclaration('node-1');
       expect(state.nodes['node-1'].metadata.isContextDeclaration).toBe(false);
     });
 
-    it('should clear the context icon', () => {
+    it('should clear the blueprint icon', () => {
       state.nodes['node-1'].metadata.isContextDeclaration = true;
-      state.nodes['node-1'].metadata.contextIcon = 'lightbulb';
+      state.nodes['node-1'].metadata.blueprintIcon = 'lightbulb';
       actions.removeContextDeclaration('node-1');
-      expect(state.nodes['node-1'].metadata.contextIcon).toBeUndefined();
+      expect(state.nodes['node-1'].metadata.blueprintIcon).toBeUndefined();
     });
 
     it('should trigger autosave', () => {
@@ -138,7 +125,7 @@ describe('contextActions', () => {
     it('should clear appliedContextIds from nodes that had this context applied', () => {
       // Set up node-1 as a context declaration
       state.nodes['node-1'].metadata.isContextDeclaration = true;
-      state.nodes['node-1'].metadata.contextIcon = 'star';
+      state.nodes['node-1'].metadata.blueprintIcon = 'star';
       // Apply context to node-2 and node-3
       state.nodes['node-2'].metadata.appliedContextIds = ['node-1'];
       state.nodes['node-3'].metadata.appliedContextIds = ['node-1'];
@@ -152,7 +139,7 @@ describe('contextActions', () => {
     it('should only remove the specific context from appliedContextIds', () => {
       // Set up node-1 as a context declaration
       state.nodes['node-1'].metadata.isContextDeclaration = true;
-      state.nodes['node-1'].metadata.contextIcon = 'star';
+      state.nodes['node-1'].metadata.blueprintIcon = 'star';
       // node-2 has multiple contexts applied
       state.nodes['node-2'].metadata.appliedContextIds = ['node-1', 'other-context'];
 
@@ -166,7 +153,7 @@ describe('contextActions', () => {
     beforeEach(() => {
       // Set up node-1 as a context declaration
       state.nodes['node-1'].metadata.isContextDeclaration = true;
-      state.nodes['node-1'].metadata.contextIcon = 'star';
+      state.nodes['node-1'].metadata.blueprintIcon = 'star';
     });
 
     it('should add context to appliedContextIds on the target node', () => {
@@ -203,7 +190,7 @@ describe('contextActions', () => {
 
     it('should allow applying multiple contexts', () => {
       state.nodes['node-3'].metadata.isContextDeclaration = true;
-      state.nodes['node-3'].metadata.contextIcon = 'flag';
+      state.nodes['node-3'].metadata.blueprintIcon = 'flag';
 
       actions.applyContext('node-2', 'node-1');
       expect(state.nodes['node-2'].metadata.appliedContextIds).toEqual(['node-1']);
@@ -225,7 +212,7 @@ describe('contextActions', () => {
 
     it('should keep existing activeContextId when additional contexts applied', () => {
       state.nodes['node-3'].metadata.isContextDeclaration = true;
-      state.nodes['node-3'].metadata.contextIcon = 'flag';
+      state.nodes['node-3'].metadata.blueprintIcon = 'flag';
 
       actions.applyContext('node-2', 'node-1');
       expect(state.nodes['node-2'].metadata.activeContextId).toBe('node-1');
@@ -300,18 +287,16 @@ describe('contextActions', () => {
       // Set up a nested context structure:
       // root (blueprint)
       //   └── node-1 (context declaration)
-      //       └── node-3 (context child)
+      //       └── node-3 (context child - derived from ancestors)
       //           └── nested-child (child of node-3)
       state.nodes['node-1'].metadata = {
         ...state.nodes['node-1'].metadata,
         isContextDeclaration: true,
-        contextIcon: 'star',
+        blueprintIcon: 'star',
         isBlueprint: true,
       };
       state.nodes['node-3'].metadata = {
         ...state.nodes['node-3'].metadata,
-        isContextChild: true,
-        contextParentId: 'node-1',
         isBlueprint: true,
       };
       state.nodes['node-3'].children = ['nested-child'];
@@ -320,8 +305,6 @@ describe('contextActions', () => {
         content: 'Nested Child',
         children: [],
         metadata: {
-          isContextChild: true,
-          contextParentId: 'node-1',
           isBlueprint: true,
         },
       };
@@ -334,13 +317,12 @@ describe('contextActions', () => {
 
       // node-3 should now be a context declaration, NOT a child
       expect(state.nodes['node-3'].metadata.isContextDeclaration).toBe(true);
-      expect(state.nodes['node-3'].metadata.contextIcon).toBe('flag');
-      expect(state.nodes['node-3'].metadata.isContextChild).toBe(false);
-      expect(state.nodes['node-3'].metadata.contextParentId).toBeUndefined();
+      expect(state.nodes['node-3'].metadata.blueprintIcon).toBe('flag');
+      expect(getIsContextChild('node-3', state.nodes, state.ancestorRegistry)).toBe(false);
 
-      // nested-child should now point to node-3, not node-1
-      expect(state.nodes['nested-child'].metadata.isContextChild).toBe(true);
-      expect(state.nodes['nested-child'].metadata.contextParentId).toBe('node-3');
+      // nested-child should now point to node-3, not node-1 (derived from ancestors)
+      expect(getIsContextChild('nested-child', state.nodes, state.ancestorRegistry)).toBe(true);
+      expect(getContextDeclarationId('nested-child', state.nodes, state.ancestorRegistry)).toBe('node-3');
     });
 
     it('should inherit ancestor context when nested context is removed', () => {
@@ -350,10 +332,10 @@ describe('contextActions', () => {
       // Then remove the nested context declaration
       actions.removeContextDeclaration('node-3');
 
-      // node-3 should now be a context child of node-1 again
+      // node-3 should now be a context child of node-1 again (derived from ancestors)
       expect(state.nodes['node-3'].metadata.isContextDeclaration).toBe(false);
-      expect(state.nodes['node-3'].metadata.isContextChild).toBe(true);
-      expect(state.nodes['node-3'].metadata.contextParentId).toBe('node-1');
+      expect(getIsContextChild('node-3', state.nodes, state.ancestorRegistry)).toBe(true);
+      expect(getContextDeclarationId('node-3', state.nodes, state.ancestorRegistry)).toBe('node-1');
       // Should keep blueprint status since it's still in a context tree
       expect(state.nodes['node-3'].metadata.isBlueprint).toBe(true);
     });
@@ -362,15 +344,15 @@ describe('contextActions', () => {
       // First declare node-3 as nested context
       actions.declareAsContext('node-3', 'flag');
 
-      // Verify nested-child points to node-3
-      expect(state.nodes['nested-child'].metadata.contextParentId).toBe('node-3');
+      // Verify nested-child points to node-3 (derived from ancestors)
+      expect(getContextDeclarationId('nested-child', state.nodes, state.ancestorRegistry)).toBe('node-3');
 
       // Remove the nested context declaration
       actions.removeContextDeclaration('node-3');
 
       // nested-child should now point to the ancestor context (node-1)
-      expect(state.nodes['nested-child'].metadata.isContextChild).toBe(true);
-      expect(state.nodes['nested-child'].metadata.contextParentId).toBe('node-1');
+      expect(getIsContextChild('nested-child', state.nodes, state.ancestorRegistry)).toBe(true);
+      expect(getContextDeclarationId('nested-child', state.nodes, state.ancestorRegistry)).toBe('node-1');
     });
 
     it('should skip nested context subtrees when declaring parent as context', () => {
@@ -392,14 +374,14 @@ describe('contextActions', () => {
 
       // node-3 should STILL be its own context declaration (not overwritten)
       expect(state.nodes['node-3'].metadata.isContextDeclaration).toBe(true);
-      expect(state.nodes['node-3'].metadata.contextIcon).toBe('flag');
+      expect(state.nodes['node-3'].metadata.blueprintIcon).toBe('flag');
 
-      // nested-child should still point to node-3 (not changed to node-1)
-      expect(state.nodes['nested-child'].metadata.contextParentId).toBe('node-3');
+      // nested-child should still point to node-3 (derived from ancestors)
+      expect(getContextDeclarationId('nested-child', state.nodes, state.ancestorRegistry)).toBe('node-3');
 
-      // sibling should be a context child of node-1
-      expect(state.nodes['sibling'].metadata.isContextChild).toBe(true);
-      expect(state.nodes['sibling'].metadata.contextParentId).toBe('node-1');
+      // sibling should be a context child of node-1 (derived from ancestors)
+      expect(getIsContextChild('sibling', state.nodes, state.ancestorRegistry)).toBe(true);
+      expect(getContextDeclarationId('sibling', state.nodes, state.ancestorRegistry)).toBe('node-1');
     });
   });
 

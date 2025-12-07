@@ -181,6 +181,7 @@ export function useNodeContextMenu(node: TreeNode) {
     const blueprintMenuItem = buildBlueprintSubmenu({
       node,
       getNodes: () => store.getState().nodes,
+      getAncestorRegistry: () => store.getState().ancestorRegistry,
       onAddToBlueprint: () => actions.addToBlueprint(node.id),
       onAddToBlueprintWithDescendants: () => actions.addToBlueprint(node.id, true),
       onRemoveFromBlueprint: () => actions.removeFromBlueprint(node.id, true),

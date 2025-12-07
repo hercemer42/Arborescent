@@ -94,8 +94,11 @@ export class AcceptFeedbackCommand extends BaseCommand {
     if (collaboratingNode.metadata.isContextDeclaration) {
       preservedMetadata.isContextDeclaration = collaboratingNode.metadata.isContextDeclaration;
     }
-    if (collaboratingNode.metadata.contextIcon) {
-      preservedMetadata.contextIcon = collaboratingNode.metadata.contextIcon;
+    if (collaboratingNode.metadata.blueprintIcon) {
+      preservedMetadata.blueprintIcon = collaboratingNode.metadata.blueprintIcon;
+    }
+    if (collaboratingNode.metadata.blueprintColor) {
+      preservedMetadata.blueprintColor = collaboratingNode.metadata.blueprintColor;
     }
     if (collaboratingNode.metadata.bundledContextIds) {
       preservedMetadata.bundledContextIds = collaboratingNode.metadata.bundledContextIds;

@@ -2,7 +2,6 @@ import { BaseCommand } from './Command';
 import { TreeNode } from '../../../../shared/types';
 import { addNodesToRegistry, removeNodeFromRegistry, AncestorRegistry } from '../../../services/ancestry';
 import { v4 as uuidv4 } from 'uuid';
-import { getContextDeclarationId } from '../../../utils/nodeHelpers';
 
 /**
  * Command for pasting nodes from clipboard (with hierarchy preservation)
@@ -81,21 +80,9 @@ export class PasteNodesCommand extends BaseCommand {
     const parent = nodes[this.targetParentId];
     if (!parent) return;
 
-    // Check if target parent is part of a context declaration tree
-    const targetContextDeclarationId = getContextDeclarationId(parent);
-
-    // Process pasted nodes to update context metadata
-    let processedNodes = this.remappedNodes;
-    if (targetContextDeclarationId) {
-      // Pasting into a context tree - set context metadata on all pasted nodes
-      processedNodes = this.updateNodesWithContextMetadata(
-        this.remappedNodes,
-        targetContextDeclarationId
-      );
-    } else {
-      // Pasting into non-context tree - clear any context metadata
-      processedNodes = this.clearContextMetadata(this.remappedNodes);
-    }
+    // Process pasted nodes: inherit blueprint status, clear context declaration metadata
+    const parentIsBlueprint = parent.metadata.isBlueprint === true;
+    const processedNodes = this.processNodesForPaste(this.remappedNodes, parentIsBlueprint);
 
     // Add all processed nodes to the tree
     const updatedNodes = { ...nodes, ...processedNodes };
@@ -130,65 +117,34 @@ export class PasteNodesCommand extends BaseCommand {
   }
 
   /**
-   * Update all nodes with context metadata when pasting into a context tree.
-   * Clears any existing context declaration metadata (can't paste a context into another context).
+   * Process nodes for pasting: inherit blueprint status, clear context declaration metadata.
+   * When pasting into a blueprint, all pasted nodes become blueprints.
+   * Context declaration metadata is always cleared (can't paste a context into another tree).
    */
-  private updateNodesWithContextMetadata(
+  private processNodesForPaste(
     nodesToUpdate: Record<string, TreeNode>,
-    contextDeclarationId: string
+    parentIsBlueprint: boolean
   ): Record<string, TreeNode> {
     const result: Record<string, TreeNode> = {};
 
     for (const [nodeId, node] of Object.entries(nodesToUpdate)) {
+      const wasContextDeclaration = node.metadata.isContextDeclaration === true;
+
       result[nodeId] = {
         ...node,
         metadata: {
           ...node.metadata,
-          isBlueprint: true,
-          isContextChild: true,
-          contextParentId: contextDeclarationId,
-          // Clear any existing context declaration metadata
+          // Inherit blueprint status from parent
+          isBlueprint: parentIsBlueprint ? true : node.metadata.isBlueprint,
+          // Clear context declaration metadata (can't paste context declarations)
           isContextDeclaration: undefined,
-          contextIcon: undefined,
-          contextColor: undefined,
           bundledContextIds: undefined,
+          // Only clear blueprint icon/color if this was a context declaration
+          // (regular blueprints keep their icon)
+          blueprintIcon: wasContextDeclaration ? undefined : node.metadata.blueprintIcon,
+          blueprintColor: wasContextDeclaration ? undefined : node.metadata.blueprintColor,
         },
       };
-    }
-
-    return result;
-  }
-
-  /**
-   * Clear context metadata when pasting into a non-context tree.
-   */
-  private clearContextMetadata(
-    nodesToUpdate: Record<string, TreeNode>
-  ): Record<string, TreeNode> {
-    const result: Record<string, TreeNode> = {};
-
-    for (const [nodeId, node] of Object.entries(nodesToUpdate)) {
-      // Only clear if node had context metadata
-      if (
-        node.metadata.isContextDeclaration ||
-        node.metadata.isContextChild ||
-        node.metadata.contextParentId
-      ) {
-        result[nodeId] = {
-          ...node,
-          metadata: {
-            ...node.metadata,
-            isContextDeclaration: undefined,
-            contextIcon: undefined,
-            contextColor: undefined,
-            bundledContextIds: undefined,
-            isContextChild: undefined,
-            contextParentId: undefined,
-          },
-        };
-      } else {
-        result[nodeId] = node;
-      }
     }
 
     return result;

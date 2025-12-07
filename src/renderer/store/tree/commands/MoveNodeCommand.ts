@@ -1,7 +1,7 @@
 import { BaseCommand } from './Command';
 import { TreeNode } from '../../../../shared/types';
 import { moveNodeInRegistry, AncestorRegistry } from '../../../services/ancestry';
-import { getContextDeclarationId, getAllDescendants, updateNodeMetadata } from '../../../utils/nodeHelpers';
+import { getAllDescendants, updateNodeMetadata } from '../../../utils/nodeHelpers';
 
 /**
  * Command for moving a node to a new parent/position
@@ -10,12 +10,7 @@ import { getContextDeclarationId, getAllDescendants, updateNodeMetadata } from '
 export class MoveNodeCommand extends BaseCommand {
   private oldParentId: string | null = null;
   private oldPosition: number = -1;
-  private oldContextDeclarationId: string | undefined = undefined;
-  private previousContextStates: Map<string, {
-    isContextChild: boolean | undefined;
-    contextParentId: string | undefined;
-    isBlueprint: boolean | undefined;
-  }> = new Map();
+  private previousBlueprintStates: Map<string, boolean | undefined> = new Map();
 
   constructor(
     private nodeId: string,
@@ -51,11 +46,8 @@ export class MoveNodeCommand extends BaseCommand {
 
     this.oldPosition = oldParent.children.indexOf(this.nodeId);
 
-    // Capture old context declaration ID for the moved node (before move)
-    this.oldContextDeclarationId = getContextDeclarationId(node);
-
-    // Clear previous context states
-    this.previousContextStates.clear();
+    // Clear previous blueprint states
+    this.previousBlueprintStates.clear();
 
     // Perform the move
     let updatedNodes = { ...nodes };
@@ -78,13 +70,10 @@ export class MoveNodeCommand extends BaseCommand {
       children: newChildren,
     };
 
-    // Update context metadata based on new parent
-    const newContextDeclarationId = getContextDeclarationId(newParent);
-    updatedNodes = this.updateContextMetadata(
-      updatedNodes,
-      this.nodeId,
-      newContextDeclarationId
-    );
+    // If moving into a blueprint, inherit blueprint status
+    if (newParent.metadata.isBlueprint === true) {
+      updatedNodes = this.inheritBlueprintStatus(updatedNodes, this.nodeId, nodes);
+    }
 
     // Incremental update: update ancestors for moved node and descendants
     const newAncestorRegistry = moveNodeInRegistry(
@@ -109,51 +98,32 @@ export class MoveNodeCommand extends BaseCommand {
   }
 
   /**
-   * Update context metadata for a moved node and its descendants.
-   * Skip nodes that are context declarations themselves (they maintain their own context).
+   * Inherit blueprint status for a moved node and its descendants.
+   * Called when moving into a blueprint tree.
    */
-  private updateContextMetadata(
+  private inheritBlueprintStatus(
     nodes: Record<string, TreeNode>,
     nodeId: string,
-    newContextDeclarationId: string | undefined
+    originalNodes: Record<string, TreeNode>
   ): Record<string, TreeNode> {
     let updatedNodes = nodes;
-    const node = nodes[nodeId];
-    if (!node) return updatedNodes;
 
-    // Get all nodes to update (moved node + descendants, excluding context declarations)
-    const nodeIdsToUpdate = [nodeId, ...getAllDescendants(nodeId, nodes)].filter(id => {
-      const n = nodes[id];
-      // Skip if this is a context declaration - it keeps its own context
-      return n && n.metadata.isContextDeclaration !== true;
-    });
+    // Get all nodes to update (moved node + descendants)
+    const nodeIdsToUpdate = [nodeId, ...getAllDescendants(nodeId, nodes)];
 
     for (const id of nodeIdsToUpdate) {
       const n = updatedNodes[id];
-      if (!n) continue;
+      if (!n || n.metadata.isBlueprint === true) continue;
 
       // Capture previous state for undo
-      this.previousContextStates.set(id, {
-        isContextChild: n.metadata.isContextChild as boolean | undefined,
-        contextParentId: n.metadata.contextParentId as string | undefined,
-        isBlueprint: n.metadata.isBlueprint as boolean | undefined,
-      });
-
-      if (newContextDeclarationId) {
-        // Moving into a context tree
-        updatedNodes = updateNodeMetadata(updatedNodes, id, {
-          isBlueprint: true,
-          isContextChild: true,
-          contextParentId: newContextDeclarationId,
-        });
-      } else {
-        // Moving out of a context tree
-        updatedNodes = updateNodeMetadata(updatedNodes, id, {
-          isContextChild: false,
-          contextParentId: undefined,
-          // Note: we don't clear isBlueprint - that's managed by blueprint actions
-        });
+      const original = originalNodes[id];
+      if (original) {
+        this.previousBlueprintStates.set(id, original.metadata.isBlueprint as boolean | undefined);
       }
+
+      updatedNodes = updateNodeMetadata(updatedNodes, id, {
+        isBlueprint: true,
+      });
     }
 
     return updatedNodes;
@@ -188,12 +158,10 @@ export class MoveNodeCommand extends BaseCommand {
       children: oldChildren,
     };
 
-    // Restore context metadata for all affected nodes
-    for (const [nodeId, previousState] of this.previousContextStates) {
+    // Restore blueprint status for all affected nodes
+    for (const [nodeId, previousBlueprintState] of this.previousBlueprintStates) {
       updatedNodes = updateNodeMetadata(updatedNodes, nodeId, {
-        isContextChild: previousState.isContextChild,
-        contextParentId: previousState.contextParentId,
-        isBlueprint: previousState.isBlueprint,
+        isBlueprint: previousBlueprintState,
       });
     }
 

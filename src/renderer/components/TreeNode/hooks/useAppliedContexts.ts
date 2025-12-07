@@ -25,7 +25,7 @@ export function useAppliedContexts(node: TreeNode | undefined): AppliedContext[]
     for (const contextId of appliedContextIds) {
       const contextNode = state.nodes[contextId];
       if (contextNode) {
-        parts.push(`${contextId}:${contextNode.metadata.contextIcon ?? ''}:${contextNode.metadata.contextColor ?? ''}:${contextNode.content}`);
+        parts.push(`${contextId}:${contextNode.metadata.blueprintIcon ?? ''}:${contextNode.metadata.blueprintColor ?? ''}:${contextNode.content}`);
       }
     }
     return parts.join('|');
@@ -59,7 +59,7 @@ export function useActiveContext(node: TreeNode | undefined): AppliedContext | u
     const contextNode = state.nodes[activeContextId];
     if (!contextNode) return null;
 
-    return `${contextNode.metadata.contextIcon ?? ''}:${contextNode.metadata.contextColor ?? ''}:${contextNode.content}`;
+    return `${contextNode.metadata.blueprintIcon ?? ''}:${contextNode.metadata.blueprintColor ?? ''}:${contextNode.content}`;
   });
 
   return useMemo(() => {
@@ -85,7 +85,7 @@ export function useBundledContexts(node: TreeNode | undefined): BundledContext[]
     for (const contextId of bundledContextIds) {
       const contextNode = state.nodes[contextId];
       if (contextNode) {
-        parts.push(`${contextId}:${contextNode.metadata.contextIcon ?? ''}:${contextNode.metadata.contextColor ?? ''}:${contextNode.content}`);
+        parts.push(`${contextId}:${contextNode.metadata.blueprintIcon ?? ''}:${contextNode.metadata.blueprintColor ?? ''}:${contextNode.content}`);
       }
     }
     return parts.join('|');

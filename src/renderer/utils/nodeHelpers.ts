@@ -645,7 +645,7 @@ export function getContextDeclarations(
     .map(node => ({
       nodeId: node.id,
       content: node.content || 'Untitled context',
-      icon: (node.metadata.contextIcon as string) || 'lightbulb',
+      icon: (node.metadata.blueprintIcon as string) || 'lightbulb',
     }))
     .sort((a, b) => a.content.localeCompare(b.content));
 }
@@ -653,46 +653,53 @@ export function getContextDeclarations(
 /**
  * Get the context declaration ID for a node.
  * Returns the node's own ID if it's a context declaration,
- * the contextParentId if it's a context child,
+ * the nearest ancestor context declaration ID if it's a context child,
  * or undefined if the node is not part of a context tree.
  */
-export function getContextDeclarationId(node: TreeNode): string | undefined {
+export function getContextDeclarationId(
+  nodeId: string,
+  nodes: Record<string, TreeNode>,
+  ancestorRegistry: AncestorRegistry
+): string | undefined {
+  const node = nodes[nodeId];
+  if (!node) return undefined;
+
   if (node.metadata.isContextDeclaration === true) {
     return node.id;
   }
-  if (node.metadata.isContextChild === true) {
-    return node.metadata.contextParentId as string | undefined;
+
+  // Find nearest ancestor that is a context declaration
+  // ancestorRegistry[nodeId] has immediate parent at index 0, furthest at end
+  const ancestors = ancestorRegistry[nodeId] || [];
+  for (let i = 0; i < ancestors.length; i++) {
+    const ancestor = nodes[ancestors[i]];
+    if (ancestor?.metadata.isContextDeclaration === true) {
+      return ancestors[i];
+    }
   }
   return undefined;
 }
 
 /**
- * Get inherited context icon and color from the nearest ancestor that is a context declaration.
- * Returns undefined if node is a context declaration itself or has no context declaration ancestor.
+ * Check if a node is a context child by looking for a context declaration ancestor.
+ * Returns true if any ancestor has isContextDeclaration.
  */
-export function getInheritedContextIcon(
+export function getIsContextChild(
   nodeId: string,
   nodes: Record<string, TreeNode>,
   ancestorRegistry: AncestorRegistry
-): { icon: string; color: string | undefined } | undefined {
+): boolean {
   const node = nodes[nodeId];
-  if (!node || node.metadata.isContextDeclaration) return undefined;
+  if (!node || node.metadata.isContextDeclaration) return false;
 
   const ancestors = ancestorRegistry[nodeId] || [];
   for (let i = ancestors.length - 1; i >= 0; i--) {
     const ancestor = nodes[ancestors[i]];
     if (ancestor?.metadata.isContextDeclaration) {
-      const icon = ancestor.metadata.contextIcon as string | undefined;
-      if (icon) {
-        return {
-          icon,
-          color: ancestor.metadata.contextColor as string | undefined,
-        };
-      }
-      return undefined;
+      return true;
     }
   }
-  return undefined;
+  return false;
 }
 
 /**

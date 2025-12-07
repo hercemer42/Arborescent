@@ -40,7 +40,7 @@ function createContextHeading(): ContextMenuItem {
 
 function createContextInfoItem(contextNode: TreeNode | undefined): ContextMenuItem {
   const contextName = contextNode?.content.slice(0, 30) || 'Context';
-  const iconName = contextNode?.metadata.contextIcon as string | undefined;
+  const iconName = contextNode?.metadata.blueprintIcon as string | undefined;
   const Icon = iconName ? getIconByName(iconName) : null;
 
   return {
@@ -60,7 +60,7 @@ function createContextSelectionItem(
   actionType?: ContextActionType
 ): ContextMenuItem {
   const contextName = contextNode?.content.slice(0, 30) || 'Context';
-  const iconName = contextNode?.metadata.contextIcon as string | undefined;
+  const iconName = contextNode?.metadata.blueprintIcon as string | undefined;
   const Icon = iconName ? getIconByName(iconName) : null;
 
   return {
