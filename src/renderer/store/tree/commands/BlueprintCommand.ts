@@ -9,6 +9,7 @@ interface BlueprintState {
   blueprintColor: string | undefined;
   // Context-related fields
   isContextDeclaration: boolean | undefined;
+  appliedContextId: string | undefined;
 }
 
 /**
@@ -134,6 +135,7 @@ export class BlueprintCommand extends BaseCommand {
       blueprintIcon: undefined,
       blueprintColor: undefined,
       isContextDeclaration: false,
+      appliedContextId: undefined,
     });
     this.affectedNodeIds.push(this.nodeId);
 
@@ -172,6 +174,7 @@ export class BlueprintCommand extends BaseCommand {
           blueprintIcon: undefined,
           blueprintColor: undefined,
           isContextDeclaration: false,
+          appliedContextId: undefined,
         });
         this.affectedNodeIds.push(childId);
         updatedNodes = this.removeDescendants(childId, updatedNodes, originalNodes);
@@ -189,12 +192,13 @@ export class BlueprintCommand extends BaseCommand {
         blueprintIcon: node.metadata.blueprintIcon as string | undefined,
         blueprintColor: node.metadata.blueprintColor as string | undefined,
         isContextDeclaration: node.metadata.isContextDeclaration as boolean | undefined,
+        appliedContextId: node.metadata.appliedContextId as string | undefined,
       });
     }
   }
 
   /**
-   * Remove deleted context declarations from appliedContextIds of all nodes in the tree.
+   * Remove deleted context declarations from appliedContextIds and appliedContextId of all nodes in the tree.
    */
   private removeContextFromAllNodes(nodes: Record<string, TreeNode>): Record<string, TreeNode> {
     let updatedNodes = nodes;
@@ -202,13 +206,25 @@ export class BlueprintCommand extends BaseCommand {
     for (const node of Object.values(nodes)) {
       const appliedContextIds = (node.metadata.appliedContextIds as string[]) || [];
       const activeContextId = node.metadata.activeContextId as string | undefined;
+      const appliedContextId = node.metadata.appliedContextId as string | undefined;
+
+      // Check if this node references any removed context declarations
+      const hasRemovedAppliedIds = appliedContextIds.some(
+        id => this.removedContextDeclarationIds.includes(id)
+      );
+      const hasRemovedAppliedContextId = appliedContextId && this.removedContextDeclarationIds.includes(appliedContextId);
+
+      if (!hasRemovedAppliedIds && !hasRemovedAppliedContextId) {
+        continue;
+      }
+
+      const metadataUpdates: Record<string, unknown> = {};
 
       // Filter out removed contexts from appliedContextIds
-      const newAppliedIds = appliedContextIds.filter(
-        id => !this.removedContextDeclarationIds.includes(id)
-      );
-      if (newAppliedIds.length !== appliedContextIds.length) {
-        const metadataUpdates: Record<string, unknown> = {};
+      if (hasRemovedAppliedIds) {
+        const newAppliedIds = appliedContextIds.filter(
+          id => !this.removedContextDeclarationIds.includes(id)
+        );
         metadataUpdates.appliedContextIds = newAppliedIds.length > 0 ? newAppliedIds : undefined;
 
         // Handle activeContextId
@@ -218,14 +234,19 @@ export class BlueprintCommand extends BaseCommand {
           // Promote first remaining context to active
           metadataUpdates.activeContextId = newAppliedIds[0];
         }
-
-        // Capture state for this node if not already captured
-        if (!this.previousStates.has(node.id)) {
-          this.captureState(node.id, nodes);
-          this.affectedNodeIds.push(node.id);
-        }
-        updatedNodes = updateNodeMetadata(updatedNodes, node.id, metadataUpdates);
       }
+
+      // Clear appliedContextId if it references a removed context
+      if (hasRemovedAppliedContextId) {
+        metadataUpdates.appliedContextId = undefined;
+      }
+
+      // Capture state for this node if not already captured
+      if (!this.previousStates.has(node.id)) {
+        this.captureState(node.id, nodes);
+        this.affectedNodeIds.push(node.id);
+      }
+      updatedNodes = updateNodeMetadata(updatedNodes, node.id, metadataUpdates);
     }
 
     return updatedNodes;
@@ -244,6 +265,7 @@ export class BlueprintCommand extends BaseCommand {
           blueprintIcon: previousState.blueprintIcon,
           blueprintColor: previousState.blueprintColor,
           isContextDeclaration: previousState.isContextDeclaration,
+          appliedContextId: previousState.appliedContextId,
         });
       }
     }
