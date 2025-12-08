@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2025-12-08T06:51:18.421Z'
+updated: '2025-12-08T06:53:13.589Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -622,6 +622,7 @@ nodes:
       - 36578209-7617-45b1-8954-0de4675bcba9
       - b8d14ff1-2195-4365-a1f2-3ec2bc042211
       - 478ee368-f376-4eaf-8c26-4ffe92d01205
+      - 766c2a6f-9c50-40c0-948a-6df7bdde9b59
     metadata:
       status: completed
       expanded: false
@@ -14783,8 +14784,7 @@ nodes:
   42d1ada9-ebf9-409e-869f-3378555383ed:
     id: 42d1ada9-ebf9-409e-869f-3378555383ed
     content: Minor feature
-    children:
-      - 27f7c38b-0bfd-4945-8ddd-f02ba9857966
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -14829,125 +14829,6 @@ nodes:
     metadata:
       status: pending
       isBlueprint: true
-  27f7c38b-0bfd-4945-8ddd-f02ba9857966:
-    id: 27f7c38b-0bfd-4945-8ddd-f02ba9857966
-    content: Split node on Enter key when cursor is in middle of content
-    children:
-      - f424a2d4-f3db-41a2-a3ad-8a9e8bd429f5
-      - dc91c7d5-f572-409d-bad4-297ff178b943
-      - ba570729-fefd-44bb-ab37-af9a53502c50
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f424a2d4-f3db-41a2-a3ad-8a9e8bd429f5:
-    id: f424a2d4-f3db-41a2-a3ad-8a9e8bd429f5
-    content: Behavior
-    children:
-      - cbd2c3c0-c992-4bfb-85e0-0f49981507e5
-      - bb88db3c-7c09-4c11-91ba-da1e6f212ff4
-      - 3133293e-c692-4fd0-84ab-82bf1d5268b2
-      - 7c49bfa8-1f82-4e53-893e-1b7264f4de43
-      - cb7851fc-bebe-479b-9397-34b376193563
-      - 2a4b04bf-2f71-4153-a91f-0ce27308939d
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  cbd2c3c0-c992-4bfb-85e0-0f49981507e5:
-    id: cbd2c3c0-c992-4bfb-85e0-0f49981507e5
-    content: Text before cursor stays in original node
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  bb88db3c-7c09-4c11-91ba-da1e6f212ff4:
-    id: bb88db3c-7c09-4c11-91ba-da1e6f212ff4
-    content: Text after cursor moves to new sibling node (created below)
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  3133293e-c692-4fd0-84ab-82bf1d5268b2:
-    id: 3133293e-c692-4fd0-84ab-82bf1d5268b2
-    content: Focus new node with cursor at position 0
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  7c49bfa8-1f82-4e53-893e-1b7264f4de43:
-    id: 7c49bfa8-1f82-4e53-893e-1b7264f4de43
-    content: If text is selected, delete selection first, then split at resulting cursor position
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  cb7851fc-bebe-479b-9397-34b376193563:
-    id: cb7851fc-bebe-479b-9397-34b376193563
-    content: Children stay with original node
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  2a4b04bf-2f71-4153-a91f-0ce27308939d:
-    id: 2a4b04bf-2f71-4153-a91f-0ce27308939d
-    content: New node defaults to pending status
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  dc91c7d5-f572-409d-bad4-297ff178b943:
-    id: dc91c7d5-f572-409d-bad4-297ff178b943
-    content: This should be undoable as a single action
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ba570729-fefd-44bb-ab37-af9a53502c50:
-    id: ba570729-fefd-44bb-ab37-af9a53502c50
-    content: Edge cases (no special handling needed)
-    children:
-      - 2eb78472-cb57-4c5f-a538-2c6793ba5012
-      - 1ab94d4e-6ecc-4e83-9f4e-8aae07106715
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  2eb78472-cb57-4c5f-a538-2c6793ba5012:
-    id: 2eb78472-cb57-4c5f-a538-2c6793ba5012
-    content: 'Cursor at start: original node becomes empty, all content moves to new sibling below'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  1ab94d4e-6ecc-4e83-9f4e-8aae07106715:
-    id: 1ab94d4e-6ecc-4e83-9f4e-8aae07106715
-    content: 'Cursor at end: empty sibling created below (current behavior, unchanged)'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
   c57b5f8e-e7f4-4729-84a7-9a28a679eeab:
     id: c57b5f8e-e7f4-4729-84a7-9a28a679eeab
     content: handleEditingShortcuts is a bit long
@@ -14960,3 +14841,122 @@ nodes:
     children: []
     metadata:
       status: pending
+  766c2a6f-9c50-40c0-948a-6df7bdde9b59:
+    id: 766c2a6f-9c50-40c0-948a-6df7bdde9b59
+    content: Split node on Enter key when cursor is in middle of content
+    children:
+      - 90a56776-ec55-454f-8b1e-862f075a9235
+      - cd698694-8546-4cdb-af6b-4f26a067fa8a
+      - 8bcc13b9-aa5a-4a40-9ae4-af3146910129
+    metadata:
+      status: completed
+      expanded: false
+      deleted: false
+      plugins: {}
+  90a56776-ec55-454f-8b1e-862f075a9235:
+    id: 90a56776-ec55-454f-8b1e-862f075a9235
+    content: Behavior
+    children:
+      - b95ea3ac-1bf6-4571-9a79-bc2ec5e1ffde
+      - b50f8787-5f30-44a5-907b-140152254921
+      - 340057d9-2d13-407b-b861-f06b98beb331
+      - 723cb00c-733b-4a4d-a16a-880197343755
+      - 647efb55-b373-4fdc-ab34-98085f9d3cd3
+      - 86bd9ea9-1796-4a77-b233-9c8f8af2d896
+    metadata:
+      status: completed
+      expanded: false
+      deleted: false
+      plugins: {}
+  b95ea3ac-1bf6-4571-9a79-bc2ec5e1ffde:
+    id: b95ea3ac-1bf6-4571-9a79-bc2ec5e1ffde
+    content: Text before cursor stays in original node
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b50f8787-5f30-44a5-907b-140152254921:
+    id: b50f8787-5f30-44a5-907b-140152254921
+    content: Text after cursor moves to new sibling node (created below)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  340057d9-2d13-407b-b861-f06b98beb331:
+    id: 340057d9-2d13-407b-b861-f06b98beb331
+    content: Focus new node with cursor at position 0
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  723cb00c-733b-4a4d-a16a-880197343755:
+    id: 723cb00c-733b-4a4d-a16a-880197343755
+    content: If text is selected, delete selection first, then split at resulting cursor position
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  647efb55-b373-4fdc-ab34-98085f9d3cd3:
+    id: 647efb55-b373-4fdc-ab34-98085f9d3cd3
+    content: Children stay with original node
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  86bd9ea9-1796-4a77-b233-9c8f8af2d896:
+    id: 86bd9ea9-1796-4a77-b233-9c8f8af2d896
+    content: New node defaults to pending status
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cd698694-8546-4cdb-af6b-4f26a067fa8a:
+    id: cd698694-8546-4cdb-af6b-4f26a067fa8a
+    content: This should be undoable as a single action
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8bcc13b9-aa5a-4a40-9ae4-af3146910129:
+    id: 8bcc13b9-aa5a-4a40-9ae4-af3146910129
+    content: Edge cases (no special handling needed)
+    children:
+      - e2fbea5c-b045-4358-8745-a415e912095f
+      - 8cefdf8a-6573-4c19-82d2-1f9da3479a6a
+    metadata:
+      status: completed
+      expanded: false
+      deleted: false
+      plugins: {}
+  e2fbea5c-b045-4358-8745-a415e912095f:
+    id: e2fbea5c-b045-4358-8745-a415e912095f
+    content: 'Cursor at start: original node becomes empty, all content moves to new sibling below'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8cefdf8a-6573-4c19-82d2-1f9da3479a6a:
+    id: 8cefdf8a-6573-4c19-82d2-1f9da3479a6a
+    content: 'Cursor at end: empty sibling created below (current behavior, unchanged)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}

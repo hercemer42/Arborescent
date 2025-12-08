@@ -22,6 +22,64 @@ function getCursorPositionFromRange(element: HTMLElement, range: Range, useStart
   return preCaretRange.toString().length;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type StoreState = ReturnType<NonNullable<ReturnType<typeof getActiveStore>>['getState']>;
+
+/**
+ * Handle Enter key: create new sibling or split node at cursor
+ */
+function handleEnterKey(element: HTMLElement, store: StoreState, activeNodeId: string): void {
+  const content = convertFromContentEditable(element);
+
+  // Handle text selection: delete selected text and split at selection start
+  const selection = window.getSelection();
+  if (selection && !selection.isCollapsed) {
+    const range = selection.getRangeAt(0);
+    const selStart = Math.min(
+      getCursorPositionFromRange(element, range, true),
+      getCursorPositionFromRange(element, range, false)
+    );
+    const selEnd = Math.max(
+      getCursorPositionFromRange(element, range, true),
+      getCursorPositionFromRange(element, range, false)
+    );
+    const contentWithoutSelection = content.slice(0, selStart) + content.slice(selEnd);
+    store.actions.splitNode(activeNodeId, contentWithoutSelection, selStart);
+    return;
+  }
+
+  const cursorPos = getCursorPosition(element);
+
+  // Cursor at end: create empty sibling
+  if (cursorPos >= content.length) {
+    store.actions.createNode(activeNodeId);
+    return;
+  }
+
+  // Cursor mid-content: split node
+  store.actions.splitNode(activeNodeId, content, cursorPos);
+}
+
+/**
+ * Handle delete node shortcut
+ */
+function handleDeleteNode(store: StoreState, activeNodeId: string): void {
+  if (store.multiSelectedNodeIds && store.multiSelectedNodeIds.size > 0) {
+    store.actions.deleteSelectedNodes();
+    return;
+  }
+
+  const deleted = store.actions.deleteNode(activeNodeId);
+  if (!deleted) {
+    const confirmed = window.confirm(
+      'This node has children. Deleting it will also delete all its children. Are you sure?'
+    );
+    if (confirmed) {
+      store.actions.deleteNode(activeNodeId, true);
+    }
+  }
+}
+
 /**
  * Handles editing keyboard shortcuts
  */
@@ -40,8 +98,7 @@ function handleEditingShortcuts(event: KeyboardEvent): void {
   // Move node up
   if (matchesHotkey(event, 'navigation', 'moveNodeUp')) {
     event.preventDefault();
-    const position = getCursorPosition(element);
-    store.actions.setCursorPosition(position);
+    store.actions.setCursorPosition(getCursorPosition(element));
     store.actions.moveNodeUp(activeNodeId);
     return;
   }
@@ -49,8 +106,7 @@ function handleEditingShortcuts(event: KeyboardEvent): void {
   // Move node down
   if (matchesHotkey(event, 'navigation', 'moveNodeDown')) {
     event.preventDefault();
-    const position = getCursorPosition(element);
-    store.actions.setCursorPosition(position);
+    store.actions.setCursorPosition(getCursorPosition(element));
     store.actions.moveNodeDown(activeNodeId);
     return;
   }
@@ -58,46 +114,14 @@ function handleEditingShortcuts(event: KeyboardEvent): void {
   // Create new sibling after (or split node if cursor is mid-content)
   if (matchesHotkey(event, 'editing', 'newSiblingAfter')) {
     event.preventDefault();
-
-    // Get content from DOM and cursor position
-    const content = convertFromContentEditable(element);
-    let cursorPos = getCursorPosition(element);
-
-    // Handle text selection: delete selected text and adjust cursor
-    const selection = window.getSelection();
-    if (selection && !selection.isCollapsed) {
-      const selStart = Math.min(
-        getCursorPositionFromRange(element, selection.getRangeAt(0), true),
-        getCursorPositionFromRange(element, selection.getRangeAt(0), false)
-      );
-      const selEnd = Math.max(
-        getCursorPositionFromRange(element, selection.getRangeAt(0), true),
-        getCursorPositionFromRange(element, selection.getRangeAt(0), false)
-      );
-      // Remove selected text from content
-      const contentWithoutSelection = content.slice(0, selStart) + content.slice(selEnd);
-      cursorPos = selStart;
-      // Split with selection removed
-      store.actions.splitNode(activeNodeId, contentWithoutSelection, cursorPos);
-      return;
-    }
-
-    // If cursor is at end of content, use standard createNode behavior
-    if (cursorPos >= content.length) {
-      store.actions.createNode(activeNodeId);
-      return;
-    }
-
-    // Split node at cursor position
-    store.actions.splitNode(activeNodeId, content, cursorPos);
+    handleEnterKey(element, store, activeNodeId);
     return;
   }
 
   // Outdent
   if (matchesHotkey(event, 'editing', 'outdent')) {
     event.preventDefault();
-    const position = getCursorPosition(element);
-    store.actions.setCursorPosition(position);
+    store.actions.setCursorPosition(getCursorPosition(element));
     store.actions.setRememberedVisualX(null);
     store.actions.outdentNode(activeNodeId);
     return;
@@ -106,8 +130,7 @@ function handleEditingShortcuts(event: KeyboardEvent): void {
   // Indent
   if (matchesHotkey(event, 'editing', 'indent')) {
     event.preventDefault();
-    const position = getCursorPosition(element);
-    store.actions.setCursorPosition(position);
+    store.actions.setCursorPosition(getCursorPosition(element));
     store.actions.setRememberedVisualX(null);
     store.actions.indentNode(activeNodeId);
     return;
@@ -121,36 +144,18 @@ function handleEditingShortcuts(event: KeyboardEvent): void {
     return;
   }
 
-  // Delete node - delegate to deleteSelectedNodes which handles multi-selection
+  // Delete node
   if (matchesHotkey(event, 'actions', 'deleteNode')) {
     event.preventDefault();
-    const position = getCursorPosition(element);
-    store.actions.setCursorPosition(position);
-
-    // Check if there's a multi-selection
-    if (store.multiSelectedNodeIds && store.multiSelectedNodeIds.size > 0) {
-      store.actions.deleteSelectedNodes();
-      return;
-    }
-
-    // Single node deletion
-    const deleted = store.actions.deleteNode(activeNodeId);
-    if (!deleted) {
-      const confirmed = window.confirm(
-        'This node has children. Deleting it will also delete all its children. Are you sure?'
-      );
-      if (confirmed) {
-        store.actions.deleteNode(activeNodeId, true);
-      }
-    }
+    store.actions.setCursorPosition(getCursorPosition(element));
+    handleDeleteNode(store, activeNodeId);
     return;
   }
 
-  // Expand/collapse node - CmdOrCtrl+T
+  // Expand/collapse node
   if (matchesHotkey(event, 'navigation', 'expandCollapse')) {
     event.preventDefault();
-    const position = getCursorPosition(element);
-    store.actions.setCursorPosition(position);
+    store.actions.setCursorPosition(getCursorPosition(element));
     store.actions.toggleNode(activeNodeId);
     return;
   }
@@ -158,18 +163,15 @@ function handleEditingShortcuts(event: KeyboardEvent): void {
   // Toggle task status
   if (matchesHotkey(event, 'actions', 'toggleTaskStatus')) {
     event.preventDefault();
-    const position = getCursorPosition(element);
-    store.actions.setCursorPosition(position);
+    store.actions.setCursorPosition(getCursorPosition(element));
     store.actions.toggleStatus(activeNodeId);
     return;
   }
 
   // Block text modification for hyperlink nodes
-  // Allow navigation keys, shortcuts, but block typing/backspace/delete
   if (activeNode.metadata.isHyperlink === true) {
     const isTyping = event.key.length === 1 && !event.ctrlKey && !event.metaKey;
     const isTextDelete = (event.key === 'Backspace' || event.key === 'Delete') && !event.ctrlKey && !event.metaKey;
-
     if (isTyping || isTextDelete) {
       event.preventDefault();
       return;
