@@ -1,3 +1,4 @@
+import { createPortal } from 'react-dom';
 import { useContextMenuBehavior } from './hooks/useContextMenuBehavior';
 import { useMenuPosition } from './hooks/useMenuPosition';
 import { Submenu } from './Submenu';
@@ -41,11 +42,15 @@ export function ContextMenu({ x, y, items, onClose }: ContextMenuProps) {
   const childWouldFlip = menuRight + SUBMENU_WIDTH > window.innerWidth;
   const arrow = childWouldFlip ? '‹' : '›';
 
-  return (
+  return createPortal(
     <div
       ref={menuRef}
       className="context-menu"
-      style={{ left: `${position.x}px`, top: `${position.y}px` }}
+      style={{
+        left: `${position.x}px`,
+        top: `${position.y}px`,
+        visibility: position.measured ? 'visible' : 'hidden',
+      }}
     >
       {items.map((item, index) => (
         <div
@@ -72,6 +77,7 @@ export function ContextMenu({ x, y, items, onClose }: ContextMenuProps) {
           )}
         </div>
       ))}
-    </div>
+    </div>,
+    document.body
   );
 }

@@ -9,7 +9,6 @@ import { useTerminalStore } from '../../../store/terminal/terminalStore';
 import { useFeedbackActions } from '../../Feedback/hooks/useFeedbackActions';
 import { usePanelStore } from '../../../store/panel/panelStore';
 import { useFilesStore } from '../../../store/files/filesStore';
-import { buildContextSubmenu } from './useContextSubmenu';
 import { buildBlueprintSubmenu } from './useBlueprintSubmenu';
 import { logger } from '../../../services/logger';
 import { writeToClipboard } from '../../../services/clipboardService';
@@ -148,6 +147,20 @@ export function useNodeContextMenu(node: TreeNode) {
       setMenuItems(newItems);
     };
 
+    // Wrap setAppliedContext to rebuild menu items after selection
+    const handleSetAppliedContext = async (contextId: string | null) => {
+      actions.setAppliedContext(node.id, contextId);
+      // Rebuild menu items to reflect new selection state
+      const newItems = await buildMenuItems();
+      setMenuItems(newItems);
+    };
+
+    const handleDeclareAsContext = () => {
+      openIconPicker(null, (selection) => {
+        actions.declareAsContext(node.id, selection.icon, selection.color);
+      });
+    };
+
     // Build submenus
     const executeSubmenu = buildExecuteSubmenu({
       node,
@@ -169,24 +182,19 @@ export function useNodeContextMenu(node: TreeNode) {
       onSetActiveContext: handleSetActiveContext,
     });
 
-    const contextMenuItem = buildContextSubmenu({
-      node,
-      nodes,
-      ancestorRegistry,
-      openIconPicker,
-      actions: {
-        declareAsContext: actions.declareAsContext,
-        removeContextDeclaration: actions.removeContextDeclaration,
-      },
-    });
-
+    // Use fresh node from state for blueprint menu (needed for keepOpenOnClick to show updated checkboxes)
+    const freshNode = nodes[node.id] || node;
     const blueprintMenuItem = buildBlueprintSubmenu({
-      node,
+      node: freshNode,
       getNodes: () => store.getState().nodes,
       getAncestorRegistry: () => store.getState().ancestorRegistry,
+      contextDeclarations,
       onAddToBlueprint: () => actions.addToBlueprint(node.id),
       onAddToBlueprintWithDescendants: () => actions.addToBlueprint(node.id, true),
       onRemoveFromBlueprint: () => actions.removeFromBlueprint(node.id, true),
+      onDeclareAsContext: handleDeclareAsContext,
+      onRemoveContextDeclaration: () => actions.removeContextDeclaration(node.id),
+      onSetAppliedContext: handleSetAppliedContext,
     });
 
     const isHyperlink = node.metadata.isHyperlink === true;
@@ -208,8 +216,6 @@ export function useNodeContextMenu(node: TreeNode) {
         onClick: handleCancel,
         disabled: false,
       }] : []),
-      // Context menu hidden for hyperlinks
-      ...(!isHyperlink && contextMenuItem ? [contextMenuItem] : []),
       // Blueprint menu hidden for hyperlinks
       ...(!isHyperlink && blueprintMenuItem ? [blueprintMenuItem] : []),
       {

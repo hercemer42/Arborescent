@@ -13,6 +13,7 @@ export interface ContextActions {
   applyContext: (nodeId: string, contextNodeId: string) => void;
   removeAppliedContext: (nodeId: string, contextNodeId?: string) => void;
   setActiveContext: (nodeId: string, contextNodeId: string | null, actionType?: ContextActionType) => void;
+  setAppliedContext: (nodeId: string, contextNodeId: string | null) => void;
   refreshContextDeclarations: () => void;
 }
 
@@ -285,12 +286,43 @@ export const createContextActions = (
     triggerAutosave?.();
   }
 
+  function setAppliedContext(nodeId: string, contextNodeId: string | null): void {
+    const { nodes } = get();
+    const node = nodes[nodeId];
+    if (!node) return;
+
+    // Only allow on blueprint nodes
+    if (node.metadata.isBlueprint !== true) {
+      return;
+    }
+
+    // Validate context exists if setting (not clearing)
+    if (contextNodeId !== null && !nodes[contextNodeId]) {
+      return;
+    }
+
+    set({
+      nodes: updateNodeMetadata(nodes, nodeId, {
+        appliedContextId: contextNodeId === null ? undefined : contextNodeId,
+      }),
+    });
+
+    if (contextNodeId === null) {
+      logger.info(`Applied context cleared for node ${nodeId}`, 'Context');
+    } else {
+      logger.info(`Applied context set to ${contextNodeId} for node ${nodeId}`, 'Context');
+    }
+
+    triggerAutosave?.();
+  }
+
   return {
     declareAsContext,
     removeContextDeclaration,
     applyContext,
     removeAppliedContext,
     setActiveContext,
+    setAppliedContext,
     refreshContextDeclarations,
   };
 };

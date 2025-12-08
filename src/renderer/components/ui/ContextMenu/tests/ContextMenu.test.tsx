@@ -18,11 +18,11 @@ describe('ContextMenu', () => {
   });
 
   it('should render at specified coordinates', () => {
-    const { container } = render(
+    render(
       <ContextMenu x={100} y={200} items={defaultItems} onClose={mockOnClose} />
     );
 
-    const menu = container.querySelector('.context-menu') as HTMLElement;
+    const menu = document.body.querySelector('.context-menu') as HTMLElement;
     expect(menu).toBeDefined();
     expect(menu?.style.left).toBe('100px');
     expect(menu?.style.top).toBe('200px');
@@ -132,22 +132,22 @@ describe('ContextMenu', () => {
   });
 
   it('should not close when clicking inside menu', () => {
-    const { container } = render(
+    render(
       <ContextMenu x={100} y={200} items={defaultItems} onClose={mockOnClose} />
     );
 
-    const menu = container.querySelector('.context-menu');
+    const menu = document.body.querySelector('.context-menu');
     fireEvent.mouseDown(menu!);
 
     expect(mockOnClose).not.toHaveBeenCalled();
   });
 
   it('should render empty menu with no items', () => {
-    const { container } = render(
+    render(
       <ContextMenu x={100} y={200} items={[]} onClose={mockOnClose} />
     );
 
-    const menu = container.querySelector('.context-menu');
+    const menu = document.body.querySelector('.context-menu');
     expect(menu).toBeDefined();
     expect(menu?.children.length).toBe(0);
   });
@@ -179,17 +179,17 @@ describe('ContextMenu', () => {
   });
 
   it('should update position when props change', () => {
-    const { container, rerender } = render(
+    const { rerender } = render(
       <ContextMenu x={100} y={200} items={defaultItems} onClose={mockOnClose} />
     );
 
-    let menu = container.querySelector('.context-menu') as HTMLElement;
+    let menu = document.body.querySelector('.context-menu') as HTMLElement;
     expect(menu?.style.left).toBe('100px');
     expect(menu?.style.top).toBe('200px');
 
     rerender(<ContextMenu x={300} y={400} items={defaultItems} onClose={mockOnClose} />);
 
-    menu = container.querySelector('.context-menu') as HTMLElement;
+    menu = document.body.querySelector('.context-menu') as HTMLElement;
     expect(menu?.style.left).toBe('300px');
     expect(menu?.style.top).toBe('400px');
   });

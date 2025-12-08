@@ -5,15 +5,13 @@ import { AppliedContext } from '../../TreeNode/hooks/useAppliedContexts';
 
 interface DeclarationContextTooltipProps {
   declarationContext: AppliedContext;
-  executeContext?: AppliedContext;
-  collaborateContext?: AppliedContext;
+  appliedContext?: AppliedContext;
   position: { top: number; left: number };
 }
 
 export function DeclarationContextTooltip({
   declarationContext,
-  executeContext,
-  collaborateContext,
+  appliedContext,
   position,
 }: DeclarationContextTooltipProps) {
   return createPortal(
@@ -32,25 +30,14 @@ export function DeclarationContextTooltip({
         </span>
         <span className="tooltip-name">{declarationContext.name}</span>
       </div>
-      {executeContext && (
+      {appliedContext && (
         <>
-          <div className="context-bundle-tooltip-title" style={{ marginTop: '8px' }}>Execute:</div>
+          <div className="context-bundle-tooltip-title" style={{ marginTop: '8px' }}>Applied:</div>
           <div className="context-bundle-tooltip-item">
-            <span style={executeContext.color ? { color: executeContext.color } : undefined}>
-              {executeContext.icon && createElement(getIconByName(executeContext.icon)!, { size: 12, className: 'tooltip-icon' })}
+            <span style={appliedContext.color ? { color: appliedContext.color } : undefined}>
+              {appliedContext.icon && createElement(getIconByName(appliedContext.icon)!, { size: 12, className: 'tooltip-icon' })}
             </span>
-            <span className="tooltip-name">{executeContext.name || 'Context'}</span>
-          </div>
-        </>
-      )}
-      {collaborateContext && (
-        <>
-          <div className="context-bundle-tooltip-title" style={{ marginTop: '8px' }}>Collaborate:</div>
-          <div className="context-bundle-tooltip-item">
-            <span style={collaborateContext.color ? { color: collaborateContext.color } : undefined}>
-              {collaborateContext.icon && createElement(getIconByName(collaborateContext.icon)!, { size: 12, className: 'tooltip-icon' })}
-            </span>
-            <span className="tooltip-name">{collaborateContext.name || 'Context'}</span>
+            <span className="tooltip-name">{appliedContext.name || 'Context'}</span>
           </div>
         </>
       )}

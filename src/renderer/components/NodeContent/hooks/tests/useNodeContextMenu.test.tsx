@@ -139,7 +139,7 @@ describe('useNodeContextMenu', () => {
     expect(editMenu?.submenu?.find(item => item.label === 'Paste')).toBeDefined();
   });
 
-  it('should have Context submenu with Declare as context when parent is blueprint', async () => {
+  it('should have Blueprint submenu with Declare as Context when parent is blueprint', async () => {
     // Set up a tree where test-node has a blueprint parent
     const parentNode: TreeNode = {
       id: 'parent-node',
@@ -161,24 +161,26 @@ describe('useNodeContextMenu', () => {
 
     await openContextMenu(result);
 
-    const contextMenu = result.current.contextMenuItems.find(item => item.label === 'Context');
-    expect(contextMenu).toBeDefined();
+    const blueprintMenu = result.current.contextMenuItems.find(item => item.label === 'Blueprint');
+    expect(blueprintMenu).toBeDefined();
 
-    const declareItem = contextMenu?.submenu?.find(item => item.label === 'Declare as context');
+    const declareItem = blueprintMenu?.submenu?.find(item => item.label === 'Declare as Context');
     expect(declareItem).toBeDefined();
   });
 
-  it('should not show Context menu when parent is not a blueprint and node is not a context declaration', async () => {
+  it('should not show Declare as Context in Blueprint menu when parent is not a blueprint', async () => {
     const { result } = renderHook(() => useNodeContextMenu(mockNode), { wrapper });
 
     await openContextMenu(result);
 
-    // Context menu should not appear at all when parent is not a blueprint
-    const contextMenu = result.current.contextMenuItems.find(item => item.label === 'Context');
-    expect(contextMenu).toBeUndefined();
+    // Blueprint menu should exist (for Add to Blueprint) but not have Declare as Context
+    const blueprintMenu = result.current.contextMenuItems.find(item => item.label === 'Blueprint');
+    expect(blueprintMenu).toBeDefined();
+    const declareItem = blueprintMenu?.submenu?.find(item => item.label === 'Declare as Context');
+    expect(declareItem).toBeUndefined();
   });
 
-  it('should show Remove context declaration in Context submenu when node is a context', async () => {
+  it('should show Remove Context Declaration in Blueprint submenu when node is a context', async () => {
     const contextNode: TreeNode = {
       ...mockNode,
       metadata: { isContextDeclaration: true, contextIcon: 'lightbulb' },
@@ -192,9 +194,9 @@ describe('useNodeContextMenu', () => {
 
     await openContextMenu(result);
 
-    const contextMenu = result.current.contextMenuItems.find(item => item.label === 'Context');
-    const removeItem = contextMenu?.submenu?.find(item => item.label === 'Remove context declaration');
-    const declareItem = contextMenu?.submenu?.find(item => item.label === 'Declare as context');
+    const blueprintMenu = result.current.contextMenuItems.find(item => item.label === 'Blueprint');
+    const removeItem = blueprintMenu?.submenu?.find(item => item.label === 'Remove Context Declaration');
+    const declareItem = blueprintMenu?.submenu?.find(item => item.label === 'Declare as Context');
     expect(removeItem).toBeDefined();
     expect(declareItem).toBeUndefined();
   });

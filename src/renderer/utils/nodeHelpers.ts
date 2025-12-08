@@ -93,10 +93,49 @@ function getActiveContextMetadataKey(actionType?: ContextActionType): string {
 }
 
 /**
+ * Get the applied context ID with inheritance from blueprint ancestors.
+ * Used for gutter display and as the default fallback for execute/collaborate.
+ *
+ * Walks ancestors looking for blueprint nodes with appliedContextId set.
+ * Returns the first found applied context.
+ */
+export function getAppliedContextIdWithInheritance(
+  nodeId: string,
+  nodes: Record<string, TreeNode>,
+  ancestorRegistry: AncestorRegistry
+): string | undefined {
+  const node = nodes[nodeId];
+  if (!node) return undefined;
+
+  // Check node's own applied context (only if blueprint)
+  if (node.metadata.isBlueprint === true) {
+    const appliedId = node.metadata.appliedContextId as string | undefined;
+    if (appliedId && nodes[appliedId]) {
+      return appliedId;
+    }
+  }
+
+  // Inherit from ancestors (closest first) - only blueprint ancestors
+  for (const ancestorId of getAncestorsClosestFirst(nodeId, ancestorRegistry)) {
+    const ancestor = nodes[ancestorId];
+    if (!ancestor) continue;
+    if (ancestor.metadata.isBlueprint !== true) continue;
+    const ancestorAppliedId = ancestor.metadata.appliedContextId as string | undefined;
+    if (ancestorAppliedId && nodes[ancestorAppliedId]) {
+      return ancestorAppliedId;
+    }
+  }
+
+  return undefined;
+}
+
+/**
  * Get the active context ID for a given action type, with ancestor inheritance.
  *
- * Checks for explicitly selected contexts (activeExecuteContextId/activeCollaborateContextId)
- * and inherits from ancestors if the node has no explicit selection.
+ * Fallback chain:
+ * 1. Check explicit execute/collaborate context on node
+ * 2. Check ancestors for explicit execute/collaborate context
+ * 3. Fall back to inherited appliedContextId from blueprint ancestors
  */
 export function getActiveContextIdWithInheritance(
   nodeId: string,
@@ -115,7 +154,7 @@ export function getActiveContextIdWithInheritance(
     return activeId;
   }
 
-  // Inherit from ancestors (closest first)
+  // Inherit explicit selection from ancestors (closest first)
   for (const ancestorId of getAncestorsClosestFirst(nodeId, ancestorRegistry)) {
     const ancestor = nodes[ancestorId];
     if (!ancestor) continue;
@@ -125,7 +164,8 @@ export function getActiveContextIdWithInheritance(
     }
   }
 
-  return undefined;
+  // Fall back to inherited applied context
+  return getAppliedContextIdWithInheritance(nodeId, nodes, ancestorRegistry);
 }
 
 /**

@@ -148,7 +148,7 @@ describe('NodeGutter', () => {
   });
 
   describe('applied context indicator', () => {
-    it('should render execute context icon when executeContext is provided', () => {
+    it('should render applied context icon when appliedContext is provided', () => {
       const mockOnToggle = vi.fn();
       const { container } = render(
         <NodeGutter
@@ -156,61 +156,13 @@ describe('NodeGutter', () => {
           expanded={true}
           onToggle={mockOnToggle}
           pluginIndicators={[]}
-          executeContext={{ icon: 'star', color: undefined, name: 'My Context' }}
+          appliedContext={{ icon: 'star', color: undefined, name: 'My Context' }}
         />
       );
 
       const indicator = container.querySelector('.gutter-context-indicator.context-applied');
       expect(indicator).toBeInTheDocument();
       expect(indicator?.querySelector('svg')).toBeInTheDocument();
-    });
-
-    it('should show only one context icon even with multiple contexts', () => {
-      const mockOnToggle = vi.fn();
-      const { container } = render(
-        <NodeGutter
-          hasChildren={false}
-          expanded={true}
-          onToggle={mockOnToggle}
-          pluginIndicators={[]}
-          executeContext={{ icon: 'star', color: undefined, name: 'Context 1' }}
-        />
-      );
-
-      // Only one indicator for primary context
-      const indicators = container.querySelectorAll('.gutter-context-indicator.context-applied');
-      expect(indicators).toHaveLength(1);
-    });
-
-    it('should show + badge when both execute and collaborate contexts are set', () => {
-      const mockOnToggle = vi.fn();
-      const { container } = render(
-        <NodeGutter
-          hasChildren={false}
-          expanded={true}
-          onToggle={mockOnToggle}
-          pluginIndicators={[]}
-          executeContext={{ icon: 'star', color: undefined, name: 'Execute Context' }}
-          collaborateContext={{ icon: 'flag', color: undefined, name: 'Collaborate Context' }}
-        />
-      );
-
-      expect(container.querySelector('.context-applied-badge')).toBeInTheDocument();
-    });
-
-    it('should not show + badge when only execute context is set', () => {
-      const mockOnToggle = vi.fn();
-      const { container } = render(
-        <NodeGutter
-          hasChildren={false}
-          expanded={true}
-          onToggle={mockOnToggle}
-          pluginIndicators={[]}
-          executeContext={{ icon: 'star', color: undefined, name: 'Execute Context' }}
-        />
-      );
-
-      expect(container.querySelector('.context-bundle-badge')).not.toBeInTheDocument();
     });
 
     it('should not render applied context icon when not provided', () => {
@@ -227,7 +179,7 @@ describe('NodeGutter', () => {
       expect(container.querySelector('.gutter-context-indicator.context-applied')).not.toBeInTheDocument();
     });
 
-    it('should show declaration indicator when context declaration has applied contexts', () => {
+    it('should show declaration indicator when context declaration has applied context', () => {
       const mockOnToggle = vi.fn();
       const { container } = render(
         <NodeGutter
@@ -237,7 +189,7 @@ describe('NodeGutter', () => {
           pluginIndicators={[]}
           isContextDeclaration={true}
           contextIcon="flag"
-          appliedContexts={[{ icon: 'star', color: undefined, name: 'My Context' }]}
+          appliedContext={{ icon: 'star', color: undefined, name: 'My Context' }}
         />
       );
 

@@ -35,6 +35,7 @@ describe('useMenuPosition', () => {
 
     expect(result.current.x).toBe(100);
     expect(result.current.y).toBe(100);
+    expect(result.current.measured).toBe(true);
   });
 
   it('should adjust x when menu would overflow right edge', () => {
@@ -74,9 +75,9 @@ describe('useMenuPosition', () => {
 
     const { result } = renderHook(() => useMenuPosition(menuRef, 100, 600));
 
-    // Should be adjusted to fit: 768 - 300 - 8 = 460
+    // Should be adjusted to fit: 768 - 300 - 32 = 436 (32px margin for status bar)
     expect(result.current.x).toBe(100);
-    expect(result.current.y).toBe(460);
+    expect(result.current.y).toBe(436);
   });
 
   it('should adjust both x and y when menu would overflow both edges', () => {
@@ -96,7 +97,7 @@ describe('useMenuPosition', () => {
     const { result } = renderHook(() => useMenuPosition(menuRef, 900, 600));
 
     expect(result.current.x).toBe(816); // 1024 - 200 - 8
-    expect(result.current.y).toBe(460); // 768 - 300 - 8
+    expect(result.current.y).toBe(436); // 768 - 300 - 32 (32px margin for status bar)
   });
 
   it('should ensure minimum margin from left edge', () => {
@@ -139,12 +140,13 @@ describe('useMenuPosition', () => {
     expect(result.current.y).toBe(8); // Minimum margin
   });
 
-  it('should return initial position when ref is null', () => {
+  it('should return initial position with measured false when ref is null', () => {
     const menuRef = { current: null };
 
     const { result } = renderHook(() => useMenuPosition(menuRef, 100, 200));
 
     expect(result.current.x).toBe(100);
     expect(result.current.y).toBe(200);
+    expect(result.current.measured).toBe(false);
   });
 });

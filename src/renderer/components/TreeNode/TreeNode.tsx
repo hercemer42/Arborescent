@@ -6,7 +6,7 @@ import { useNodeMouse } from './hooks/useNodeMouse';
 import { useNodeEffects } from './hooks/useNodeEffects';
 import { useNodeDragDrop } from './hooks/useNodeDragDrop';
 import { useNodeToggle } from './hooks/useNodeToggle';
-import { useAppliedContexts, useActionContexts } from './hooks/useAppliedContexts';
+import { useAppliedContext } from './hooks/useAppliedContexts';
 import { usePluginIndicators } from '../NodeGutter/hooks/usePluginIndicators';
 import { useNodeVisibleChildren } from '../Tree/hooks/useVisibleChildren';
 import './TreeNode.css';
@@ -28,8 +28,7 @@ export const TreeNode = memo(function TreeNode({ nodeId, depth = 0 }: TreeNodePr
   const isFeedbackFading = useStore((state) => state.feedbackFadingNodeIds.has(nodeId));
   const isCutNode = node?.metadata.transient?.isCut === true;
 
-  const appliedContexts = useAppliedContexts(node);
-  const { executeContext, collaborateContext } = useActionContexts(node);
+  const appliedContext = useAppliedContext(node);
 
   const expanded = node?.metadata.expanded ?? true;
   const contentLength = node?.content.length ?? 0;
@@ -84,9 +83,7 @@ export const TreeNode = memo(function TreeNode({ nodeId, depth = 0 }: TreeNodePr
           contextName={node.content}
           contextIcon={node.metadata.blueprintIcon as string | undefined}
           contextColor={node.metadata.blueprintColor as string | undefined}
-          appliedContexts={appliedContexts}
-          executeContext={executeContext}
-          collaborateContext={collaborateContext}
+          appliedContext={appliedContext}
         />
 
         <NodeContent
