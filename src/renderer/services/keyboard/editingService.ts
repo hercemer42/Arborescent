@@ -1,12 +1,26 @@
 import { getActiveStore, getActiveNodeElement } from './shared';
 import { getCursorPosition } from '../cursorService';
 import { matchesHotkey } from '../../data/hotkeyConfig';
-import { convertToContentEditable } from '../../utils/contentConversion';
+import { convertToContentEditable, convertFromContentEditable } from '../../utils/contentConversion';
 
 /**
  * Keyboard editing service
  * Handles all editing-related keyboard shortcuts
  */
+
+/**
+ * Get cursor position from a range's start or end point
+ */
+function getCursorPositionFromRange(element: HTMLElement, range: Range, useStart: boolean): number {
+  const preCaretRange = range.cloneRange();
+  preCaretRange.selectNodeContents(element);
+  if (useStart) {
+    preCaretRange.setEnd(range.startContainer, range.startOffset);
+  } else {
+    preCaretRange.setEnd(range.endContainer, range.endOffset);
+  }
+  return preCaretRange.toString().length;
+}
 
 /**
  * Handles editing keyboard shortcuts
@@ -41,10 +55,41 @@ function handleEditingShortcuts(event: KeyboardEvent): void {
     return;
   }
 
-  // Create new sibling after
+  // Create new sibling after (or split node if cursor is mid-content)
   if (matchesHotkey(event, 'editing', 'newSiblingAfter')) {
     event.preventDefault();
-    store.actions.createNode(activeNodeId);
+
+    // Get content from DOM and cursor position
+    const content = convertFromContentEditable(element);
+    let cursorPos = getCursorPosition(element);
+
+    // Handle text selection: delete selected text and adjust cursor
+    const selection = window.getSelection();
+    if (selection && !selection.isCollapsed) {
+      const selStart = Math.min(
+        getCursorPositionFromRange(element, selection.getRangeAt(0), true),
+        getCursorPositionFromRange(element, selection.getRangeAt(0), false)
+      );
+      const selEnd = Math.max(
+        getCursorPositionFromRange(element, selection.getRangeAt(0), true),
+        getCursorPositionFromRange(element, selection.getRangeAt(0), false)
+      );
+      // Remove selected text from content
+      const contentWithoutSelection = content.slice(0, selStart) + content.slice(selEnd);
+      cursorPos = selStart;
+      // Split with selection removed
+      store.actions.splitNode(activeNodeId, contentWithoutSelection, cursorPos);
+      return;
+    }
+
+    // If cursor is at end of content, use standard createNode behavior
+    if (cursorPos >= content.length) {
+      store.actions.createNode(activeNodeId);
+      return;
+    }
+
+    // Split node at cursor position
+    store.actions.splitNode(activeNodeId, content, cursorPos);
     return;
   }
 

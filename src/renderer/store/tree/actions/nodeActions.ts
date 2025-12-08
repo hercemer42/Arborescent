@@ -5,6 +5,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { ContentEditCommand } from '../commands/ContentEditCommand';
 import { ToggleStatusCommand } from '../commands/ToggleStatusCommand';
 import { CreateNodeCommand } from '../commands/CreateNodeCommand';
+import { SplitNodeCommand } from '../commands/SplitNodeCommand';
 import { logger } from '../../../services/logger';
 import { useToastStore } from '../../toast/toastStore';
 
@@ -16,6 +17,7 @@ export interface NodeActions {
   setCursorPosition: (position: number) => void;
   setRememberedVisualX: (visualX: number | null) => void;
   createNode: (currentNodeId: string) => void;
+  splitNode: (nodeId: string, content: string, cursorPosition: number) => void;
 }
 
 type StoreState = {
@@ -171,6 +173,46 @@ export const createNodeActions = (
     state.actions.executeCommand(command);
   }
 
+  function splitNode(nodeId: string, content: string, cursorPosition: number): void {
+    const state = get() as StoreState & { actions?: { executeCommand?: (cmd: unknown) => void } };
+    const { nodes } = state;
+    const node = nodes[nodeId];
+    if (!node) return;
+
+    // Prevent splitting hyperlinks
+    if (node.metadata.isHyperlink === true) {
+      return;
+    }
+
+    if (!state.actions?.executeCommand) {
+      throw new Error('Command system not initialized - cannot split node with undo/redo support');
+    }
+
+    const contentBefore = content.slice(0, cursorPosition);
+    const contentAfter = content.slice(cursorPosition);
+    const newNodeId = generateId();
+
+    const command = new SplitNodeCommand(
+      nodeId,
+      newNodeId,
+      content,
+      contentBefore,
+      contentAfter,
+      cursorPosition,
+      () => {
+        const currentState = get() as StoreState;
+        return {
+          nodes: currentState.nodes,
+          rootNodeId: currentState.rootNodeId,
+          ancestorRegistry: currentState.ancestorRegistry,
+        };
+      },
+      (partial) => set(partial as Partial<StoreState>),
+      triggerAutosave
+    );
+    state.actions.executeCommand(command);
+  }
+
   return {
     selectNode,
     updateContent,
@@ -179,5 +221,6 @@ export const createNodeActions = (
     setCursorPosition,
     setRememberedVisualX,
     createNode,
+    splitNode,
   };
 };

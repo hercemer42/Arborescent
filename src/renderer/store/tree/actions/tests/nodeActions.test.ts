@@ -261,4 +261,54 @@ describe('nodeActions', () => {
       expect(state.nodes[newNodeId].metadata.status).toBe('pending');
     });
   });
+
+  describe('splitNode', () => {
+    it('should split node content at cursor position', () => {
+      actions.splitNode('node-1', 'Task 1', 4);
+
+      expect(state.nodes['node-1'].content).toBe('Task');
+      const newNodeId = state.nodes['root'].children[1];
+      expect(state.nodes[newNodeId].content).toBe(' 1');
+    });
+
+    it('should create new sibling after source node', () => {
+      actions.splitNode('node-1', 'Task 1', 4);
+
+      expect(state.nodes['root'].children).toHaveLength(3);
+      expect(state.nodes['root'].children[0]).toBe('node-1');
+      expect(state.nodes['root'].children[2]).toBe('node-2');
+    });
+
+    it('should select new node with cursor at position 0', () => {
+      actions.splitNode('node-1', 'Task 1', 4);
+
+      const newNodeId = state.nodes['root'].children[1];
+      expect(state.activeNodeId).toBe(newNodeId);
+      expect(state.cursorPosition).toBe(0);
+    });
+
+    it('should handle split at beginning (cursor at 0)', () => {
+      actions.splitNode('node-1', 'Task 1', 0);
+
+      expect(state.nodes['node-1'].content).toBe('');
+      const newNodeId = state.nodes['root'].children[1];
+      expect(state.nodes[newNodeId].content).toBe('Task 1');
+    });
+
+    it('should not split hyperlink nodes', () => {
+      state.nodes['node-1'].metadata.isHyperlink = true;
+
+      actions.splitNode('node-1', 'Task 1', 4);
+
+      expect(state.nodes['node-1'].content).toBe('Task 1');
+      expect(state.nodes['root'].children).toHaveLength(2);
+    });
+
+    it('should create new node with pending status', () => {
+      actions.splitNode('node-1', 'Task 1', 4);
+
+      const newNodeId = state.nodes['root'].children[1];
+      expect(state.nodes[newNodeId].metadata.status).toBe('pending');
+    });
+  });
 });
