@@ -111,4 +111,18 @@ describe('TabBar', () => {
     expect(storeManager.closeFile).toHaveBeenCalledWith('/path/file1.arbo');
     expect(useFilesStore.getState().files).toHaveLength(0);
   });
+
+  it('should show full file path as tooltip on hover', () => {
+    useFilesStore.setState({
+      files: [
+        { path: '/home/user/documents/project/file1.arbo', displayName: 'file1.arbo' },
+      ],
+      activeFilePath: '/home/user/documents/project/file1.arbo',
+    });
+
+    renderWithProvider(<TabBar />);
+
+    const tab = screen.getByText('file1.arbo').closest('.tab');
+    expect(tab).toHaveAttribute('title', '/home/user/documents/project/file1.arbo');
+  });
 });

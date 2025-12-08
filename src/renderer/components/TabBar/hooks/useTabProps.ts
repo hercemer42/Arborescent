@@ -1,5 +1,4 @@
 import { File } from '../../../store/files/filesStore';
-import { storeManager } from '../../../store/storeManager';
 
 export interface TabProps {
   isZoomTab: boolean;
@@ -11,12 +10,8 @@ export interface TabProps {
 export function getTabProps(file: File, nextFile: File | undefined): TabProps {
   const isZoomTab = !!file.zoomSource;
 
-  let fullName: string | undefined;
-  if (isZoomTab && file.zoomSource) {
-    const store = storeManager.getStoreForFile(file.path);
-    const node = store.getState().nodes[file.zoomSource.zoomedNodeId];
-    fullName = node?.content || '(untitled)';
-  }
+  // Show full file path on hover for saved files only (not temp files or zoom tabs)
+  const fullName = (!isZoomTab && !file.isTemporary) ? file.path : undefined;
 
   const isLastInGroup = isZoomTab && (
     !nextFile ||
