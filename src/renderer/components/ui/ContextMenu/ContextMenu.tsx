@@ -5,7 +5,7 @@ import { Submenu } from './Submenu';
 import './ContextMenu.css';
 
 export interface ContextMenuItem {
-  label: string;
+  label?: string;
   onClick?: () => void;
   danger?: boolean;
   disabled?: boolean;
@@ -14,6 +14,7 @@ export interface ContextMenuItem {
   icon?: React.ReactNode;
   radioSelected?: boolean;
   keepOpenOnClick?: boolean;
+  separator?: boolean;
 }
 
 interface ContextMenuProps {
@@ -53,29 +54,33 @@ export function ContextMenu({ x, y, items, onClose }: ContextMenuProps) {
       }}
     >
       {items.map((item, index) => (
-        <div
-          key={index}
-          className="context-menu-item-wrapper"
-        >
-          <button
-            className={`context-menu-item ${item.danger ? 'danger' : ''} ${item.submenu ? 'has-submenu' : ''} ${item.radioSelected !== undefined ? 'has-radio' : ''}`}
-            onClick={() => handleItemClick(item, index)}
-            disabled={item.disabled}
-            title={item.disabled && item.disabledTooltip ? item.disabledTooltip : undefined}
+        item.separator ? (
+          <div key={index} className="context-menu-separator" />
+        ) : (
+          <div
+            key={index}
+            className="context-menu-item-wrapper"
           >
-            {item.radioSelected !== undefined && (
-              <span className="context-menu-item-radio">
-                {item.radioSelected ? '◉' : '○'}
-              </span>
+            <button
+              className={`context-menu-item ${item.danger ? 'danger' : ''} ${item.submenu ? 'has-submenu' : ''} ${item.radioSelected !== undefined ? 'has-radio' : ''}`}
+              onClick={() => handleItemClick(item, index)}
+              disabled={item.disabled}
+              title={item.disabled && item.disabledTooltip ? item.disabledTooltip : undefined}
+            >
+              {item.radioSelected !== undefined && (
+                <span className="context-menu-item-radio">
+                  {item.radioSelected ? '◉' : '○'}
+                </span>
+              )}
+              {item.icon && <span className="context-menu-item-icon">{item.icon}</span>}
+              <span className="context-menu-item-label">{item.label}</span>
+              {item.submenu && <span className="context-menu-submenu-arrow">{arrow}</span>}
+            </button>
+            {item.submenu && openSubmenu === index && (
+              <Submenu items={item.submenu} onClose={onClose} />
             )}
-            {item.icon && <span className="context-menu-item-icon">{item.icon}</span>}
-            <span className="context-menu-item-label">{item.label}</span>
-            {item.submenu && <span className="context-menu-submenu-arrow">{arrow}</span>}
-          </button>
-          {item.submenu && openSubmenu === index && (
-            <Submenu items={item.submenu} onClose={onClose} />
-          )}
-        </div>
+          </div>
+        )
       ))}
     </div>,
     document.body

@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2025-12-08T07:35:00.743Z'
+updated: '2025-12-08T08:44:00.801Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -39,12 +39,6 @@ nodes:
     metadata:
       status: completed
       expanded: false
-  i6yepfx52:
-    id: i6yepfx52
-    content: The JSON file is flat but perhaps should be imbrecated - also we should have .arbo file extensions
-    children: []
-    metadata:
-      status: pending
   qo4eickz9:
     id: qo4eickz9
     content: Audio and visual alert when claude has done something or needs something
@@ -57,33 +51,10 @@ nodes:
     id: pdt35vy1z
     content: File management
     children:
-      - i6yepfx52
-      - csovhwc4s
-      - vtm9cep7j
       - jnuzwknho
-      - o8mrjsr09
     metadata:
       status: pending
-      expanded: false
-  csovhwc4s:
-    id: csovhwc4s
-    content: We don't default the file extension
-    children: []
-    metadata:
-      status: pending
-  vtm9cep7j:
-    id: vtm9cep7j
-    content: Separate the autosave file from the user saved file (optional, it's not code)
-    children:
-      - lb5oddd8o
-    metadata:
-      status: pending
-  lb5oddd8o:
-    id: lb5oddd8o
-    content: Have a dot after the text name when the content is not saved
-    children: []
-    metadata:
-      status: pending
+      expanded: true
   byqndehy4:
     id: byqndehy4
     content: Claude integration
@@ -95,12 +66,6 @@ nodes:
   jnuzwknho:
     id: jnuzwknho
     content: Show path on hover on tab
-    children: []
-    metadata:
-      status: pending
-  o8mrjsr09:
-    id: o8mrjsr09
-    content: New file from node
     children: []
     metadata:
       status: pending
@@ -2148,27 +2113,6 @@ nodes:
     children: []
     metadata:
       status: completed
-  40729a78-ee9c-4599-aa83-57f189199c3c:
-    id: 40729a78-ee9c-4599-aa83-57f189199c3c
-    content: Security
-    children:
-      - b0b87860-dc20-4138-9b88-0a7ec82d8e94
-    metadata:
-      status: pending
-      expanded: false
-  b0b87860-dc20-4138-9b88-0a7ec82d8e94:
-    id: b0b87860-dc20-4138-9b88-0a7ec82d8e94
-    content: Potential vulnerability in the 'send to terminal' code
-    children:
-      - 263c0065-f86e-4fc4-bf60-1f22f8c39526
-    metadata:
-      status: pending
-  263c0065-f86e-4fc4-bf60-1f22f8c39526:
-    id: 263c0065-f86e-4fc4-bf60-1f22f8c39526
-    content: Be sure only the user can exploit this
-    children: []
-    metadata:
-      status: pending
   1ba28725-58a8-4ca5-8eee-050984a2c410:
     id: 1ba28725-58a8-4ca5-8eee-050984a2c410
     content: Keyboard shortcut
@@ -5444,7 +5388,7 @@ nodes:
       status: pending
       isContextDeclaration: true
       blueprintIcon: Search
-      expanded: true
+      expanded: false
       blueprintColor: '#0ea5e9'
       isBlueprint: true
   af1ebc0d-26dd-4a75-982f-03a9dbe2bc84:
@@ -5703,15 +5647,15 @@ nodes:
     id: 984247e7-2d55-4b93-80e8-f84818901621
     content: Backlog
     children:
+      - 5d4608ba-2edf-45b6-80b5-e5e8286861f2
+      - pdt35vy1z
       - d7597faa-0b34-400e-985a-de035508cdb1
-      - 40729a78-ee9c-4599-aa83-57f189199c3c
       - 65b74e0f-88fe-41c6-9910-8bac806adc6f
       - 6573b620-bfc0-4c5b-8d92-13b9ace3461d
       - ce2de4b4-cc94-4106-a61b-26ce1089e97e
       - 24bfe3b9-597f-4762-8e2d-fba9507772d3
       - 5288b678-63dc-4672-b1b3-8e2b540c04de
       - 1420f7da-e115-4f89-befa-f046a07ba964
-      - pdt35vy1z
       - 0vzl7mppk
       - 8ee5326d-1eec-45be-aa26-d11ae0e57284
       - 07dbd367-fd7c-41a6-94bc-3f7c5f57e668
@@ -6130,7 +6074,7 @@ nodes:
       - 00757321-75c1-44a9-981f-2362add1989f
     metadata:
       status: pending
-      expanded: true
+      expanded: false
       deleted: false
       plugins: {}
       isContextDeclaration: true
@@ -6788,7 +6732,8 @@ nodes:
   0cc62ae1-1a7a-4aa4-bc6a-d817cabd672c:
     id: 0cc62ae1-1a7a-4aa4-bc6a-d817cabd672c
     content: Refactor
-    children: []
+    children:
+      - f2d49469-de68-47c5-bef1-0c60c499dd30
     metadata:
       status: pending
       expanded: true
@@ -14965,3 +14910,29 @@ nodes:
     metadata:
       status: pending
       isBlueprint: true
+  5d4608ba-2edf-45b6-80b5-e5e8286861f2:
+    id: 5d4608ba-2edf-45b6-80b5-e5e8286861f2
+    content: Implement a spellchecker
+    children:
+      - 0e3ffd90-28b3-4c0f-a38d-d1bee81a9838
+      - a444951f-e84c-4073-8c0b-7eb8108fed79
+    metadata:
+      status: pending
+  0e3ffd90-28b3-4c0f-a38d-d1bee81a9838:
+    id: 0e3ffd90-28b3-4c0f-a38d-d1bee81a9838
+    content: Keep it simple
+    children: []
+    metadata:
+      status: pending
+  a444951f-e84c-4073-8c0b-7eb8108fed79:
+    id: a444951f-e84c-4073-8c0b-7eb8108fed79
+    content: Detects system language, uses that for now
+    children: []
+    metadata:
+      status: pending
+  f2d49469-de68-47c5-bef1-0c60c499dd30:
+    id: f2d49469-de68-47c5-bef1-0c60c499dd30
+    content: Can make a dedicated hook for right click spell checker
+    children: []
+    metadata:
+      status: pending

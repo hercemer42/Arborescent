@@ -5,6 +5,7 @@ import { TreeStoreContext } from '../../../../store/tree/TreeStoreContext';
 import { createTreeStore, TreeStore } from '../../../../store/tree/treeStore';
 import type { TreeNode } from '@shared/types';
 import * as pluginStore from '../../../../store/plugins/pluginStore';
+import * as spellcheck from '../../../../services/spellcheck';
 
 // Helper to create mock event with DOM elements
 function createMockContextMenuEvent(x: number, y: number) {
@@ -575,6 +576,137 @@ describe('useNodeContextMenu', () => {
       const actionLabels = result.current.contextMenuItems.map(item => item.label);
       expect(actionLabels).toContain('Action 1');
       expect(actionLabels).toContain('Action 2');
+    });
+  });
+
+  describe('spellcheck integration', () => {
+    beforeEach(() => {
+      // Mock window.getSelection
+      vi.spyOn(window, 'getSelection').mockReturnValue(null);
+    });
+
+    it('should show full context menu when no word is selected', async () => {
+      const { result } = renderHook(() => useNodeContextMenu(mockNode), { wrapper });
+
+      await openContextMenu(result);
+
+      // Should have normal menu items
+      expect(result.current.contextMenuItems.find(item => item.label === 'Execute')).toBeDefined();
+      expect(result.current.contextMenuItems.find(item => item.label === 'Edit')).toBeDefined();
+    });
+
+    it('should show full context menu when word is spelled correctly', async () => {
+      // Mock selection with a correctly spelled word
+      const mockTextNode = document.createTextNode('hello world');
+      const mockRange = {
+        startContainer: mockTextNode,
+        startOffset: 2, // In the middle of 'hello'
+      };
+      vi.spyOn(window, 'getSelection').mockReturnValue({
+        rangeCount: 1,
+        getRangeAt: () => mockRange,
+      } as unknown as Selection);
+
+      vi.spyOn(spellcheck, 'checkWord').mockReturnValue({ misspelled: false, suggestions: [] });
+
+      const { result } = renderHook(() => useNodeContextMenu(mockNode), { wrapper });
+
+      await openContextMenu(result);
+
+      // Should have normal menu items
+      expect(result.current.contextMenuItems.find(item => item.label === 'Execute')).toBeDefined();
+      expect(result.current.contextMenuItems.find(item => item.label === 'Edit')).toBeDefined();
+    });
+
+    it('should show only spell suggestions when word is misspelled', async () => {
+      // Mock selection with a misspelled word
+      const mockTextNode = document.createTextNode('helllo world');
+      const mockRange = {
+        startContainer: mockTextNode,
+        startOffset: 3, // In the middle of 'helllo'
+      };
+      vi.spyOn(window, 'getSelection').mockReturnValue({
+        rangeCount: 1,
+        getRangeAt: () => mockRange,
+      } as unknown as Selection);
+
+      vi.spyOn(spellcheck, 'checkWord').mockReturnValue({
+        misspelled: true,
+        suggestions: ['hello', 'hallo'],
+      });
+
+      const { result } = renderHook(() => useNodeContextMenu(mockNode), { wrapper });
+
+      await openContextMenu(result);
+
+      // Should ONLY have spell suggestions
+      expect(result.current.contextMenuItems.length).toBe(2);
+      expect(result.current.contextMenuItems[0].label).toBe('hello');
+      expect(result.current.contextMenuItems[1].label).toBe('hallo');
+
+      // Should NOT have normal menu items
+      expect(result.current.contextMenuItems.find(item => item.label === 'Execute')).toBeUndefined();
+      expect(result.current.contextMenuItems.find(item => item.label === 'Edit')).toBeUndefined();
+    });
+
+    it('should show "No suggestions" when misspelled word has no suggestions', async () => {
+      const mockTextNode = document.createTextNode('xyzabc');
+      const mockRange = {
+        startContainer: mockTextNode,
+        startOffset: 3,
+      };
+      vi.spyOn(window, 'getSelection').mockReturnValue({
+        rangeCount: 1,
+        getRangeAt: () => mockRange,
+      } as unknown as Selection);
+
+      vi.spyOn(spellcheck, 'checkWord').mockReturnValue({
+        misspelled: true,
+        suggestions: [],
+      });
+
+      const { result } = renderHook(() => useNodeContextMenu(mockNode), { wrapper });
+
+      await openContextMenu(result);
+
+      expect(result.current.contextMenuItems.length).toBe(1);
+      expect(result.current.contextMenuItems[0].label).toBe('No suggestions');
+      expect(result.current.contextMenuItems[0].disabled).toBe(true);
+    });
+
+    it('should replace misspelled word when suggestion is clicked', async () => {
+      const mockTextNode = document.createTextNode('helllo world');
+      const mockRange = {
+        startContainer: mockTextNode,
+        startOffset: 3,
+      };
+      vi.spyOn(window, 'getSelection').mockReturnValue({
+        rangeCount: 1,
+        getRangeAt: () => mockRange,
+      } as unknown as Selection);
+
+      vi.spyOn(spellcheck, 'checkWord').mockReturnValue({
+        misspelled: true,
+        suggestions: ['hello'],
+      });
+
+      // Create a parent element to receive the input event
+      const parent = document.createElement('div');
+      parent.appendChild(mockTextNode);
+      const dispatchSpy = vi.spyOn(parent, 'dispatchEvent');
+
+      const { result } = renderHook(() => useNodeContextMenu(mockNode), { wrapper });
+
+      await openContextMenu(result);
+
+      // Click the suggestion
+      act(() => {
+        result.current.contextMenuItems[0].onClick?.();
+      });
+
+      // Check that the text was replaced
+      expect(mockTextNode.textContent).toBe('hello world');
+      expect(dispatchSpy).toHaveBeenCalled();
     });
   });
 });

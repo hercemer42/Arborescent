@@ -18,6 +18,7 @@ import { buildCollaborateSubmenu } from './useCollaborateSubmenu';
 import { buildExecuteSubmenu } from './useExecuteSubmenu';
 import { getPositionFromPoint } from '../../../utils/position';
 import { useIconPickerStore } from '../../../store/iconPicker/iconPickerStore';
+import { useSpellcheck } from './useSpellcheck';
 
 export function useNodeContextMenu(node: TreeNode) {
   const treeType = useStore((state) => state.treeType);
@@ -27,6 +28,7 @@ export function useNodeContextMenu(node: TreeNode) {
   const [contextMenu, setContextMenu] = useState<{ x: number; y: number } | null>(null);
   const [menuItems, setMenuItems] = useState<ContextMenuItem[]>([]);
 
+  const { captureWordAtCursor, buildSpellMenuItems } = useSpellcheck();
   const { handleCancel } = useFeedbackActions();
   const showTerminal = usePanelStore((state) => state.showTerminal);
   const openIconPicker = useIconPickerStore((state) => state.open);
@@ -57,6 +59,12 @@ export function useNodeContextMenu(node: TreeNode) {
   const buildMenuItems = useCallback(async () => {
     const state = store.getState();
     const { nodes, ancestorRegistry, collaboratingNodeId, contextDeclarations, actions } = state;
+
+    // Spell check - if clicking on misspelled word, only show suggestions
+    const spellItems = buildSpellMenuItems();
+    if (spellItems) {
+      return spellItems;
+    }
 
     // Plugin items
     const hasAncestorSession = hasAncestorWithPluginSession(node.id, nodes, ancestorRegistry);
@@ -264,11 +272,14 @@ export function useNodeContextMenu(node: TreeNode) {
     ];
 
     return [...pluginItems, ...baseMenuItems];
-  }, [node, store, enabledPlugins, showTerminal, handleCancel, openIconPicker, activeFile, isZoomTab, openZoomTab]);
+  }, [node, store, enabledPlugins, showTerminal, handleCancel, openIconPicker, activeFile, isZoomTab, openZoomTab, buildSpellMenuItems]);
 
   const handleContextMenu = useCallback(async (e: React.MouseEvent) => {
     e.preventDefault();
     if (isFeedbackTree) return;
+
+    // Capture word at cursor for spell checking
+    captureWordAtCursor();
 
     // Focus the node at the right-click position
     const { actions } = store.getState();
@@ -282,12 +293,11 @@ export function useNodeContextMenu(node: TreeNode) {
       actions.selectNode(node.id, position);
     }
 
-    setContextMenu({ x: e.clientX, y: e.clientY });
-
     // Build menu items lazily when menu is opened
     const items = await buildMenuItems();
     setMenuItems(items);
-  }, [node.id, store, isFeedbackTree, buildMenuItems]);
+    setContextMenu({ x: e.clientX, y: e.clientY });
+  }, [node.id, store, isFeedbackTree, buildMenuItems, captureWordAtCursor]);
 
   const handleDelete = useCallback(() => {
     const { actions } = store.getState();
