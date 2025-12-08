@@ -366,6 +366,7 @@ function handleCopyPaste(
 
 /**
  * Handle external paste from system clipboard markdown.
+ * Returns 'no-content' for plain text to allow browser native paste at cursor.
  */
 async function handleExternalPaste(ctx: PasteContext): Promise<PasteResult> {
   const { state, targetParentId, actions, get, set, triggerAutosave, visualEffects } = ctx;
@@ -374,7 +375,12 @@ async function handleExternalPaste(ctx: PasteContext): Promise<PasteResult> {
   if (!clipboardText) return 'no-content';
 
   const parsed = parseMarkdown(clipboardText);
-  if (parsed.rootNodes.length === 0) return 'no-content';
+
+  // If markdown parsing yielded no nodes, return 'no-content' to allow
+  // browser native paste behavior (inserts text at cursor position)
+  if (parsed.rootNodes.length === 0) {
+    return 'no-content';
+  }
 
   // Blueprint validation
   if (!isTargetBlueprint(targetParentId, state.nodes) && containsBlueprintNodes(parsed.allNodes)) {
@@ -404,7 +410,7 @@ async function handleExternalPaste(ctx: PasteContext): Promise<PasteResult> {
   actions.executeCommand(command);
   flashNodes(command.getPastedRootIds(), visualEffects);
 
-  logger.info(`Pasted ${parsed.rootNodes.length} node(s) from clipboard markdown`, 'ClipboardActions');
+  logger.info(`Pasted ${parsed.rootNodes.length} node(s) from clipboard`, 'ClipboardActions');
   return 'pasted';
 }
 

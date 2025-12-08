@@ -440,6 +440,23 @@ describe('clipboardActions', () => {
       expect(result).toBe('no-content');
     });
 
+    it('should return no-content for plain text to allow browser native paste', async () => {
+      const { parseMarkdown } = await import('../../../../utils/markdown');
+      // Override parseMarkdown to return empty rootNodes for this call
+      vi.mocked(parseMarkdown).mockReturnValueOnce({ rootNodes: [], allNodes: {} });
+
+      state.activeNodeId = 'node-1';
+      currentMockCache = null;
+      currentMockHyperlinkCache = null;
+      mockClipboard.readText.mockResolvedValueOnce('Just some plain text');
+
+      const result = await actions.pasteNodes();
+
+      // Returns no-content so uiService falls back to document.execCommand('paste')
+      expect(result).toBe('no-content');
+      expect(mockExecuteCommand).not.toHaveBeenCalled();
+    });
+
     it('should paste hyperlink when regular cache is empty and hyperlink cache exists', async () => {
       state.activeNodeId = 'node-1';
       // Empty clipboard and no regular cache

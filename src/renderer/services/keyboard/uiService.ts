@@ -157,9 +157,16 @@ async function handleUIShortcuts(event: KeyboardEvent): Promise<void> {
     if (store) {
       const result = await store.getState().actions.pasteNodes();
 
-      // If no valid markdown nodes, fall through to default paste behavior
+      // If no valid markdown nodes, insert plain text at cursor position
       if (result === 'no-content' && isContentEditableFocused()) {
-        document.execCommand('paste');
+        try {
+          const text = await navigator.clipboard.readText();
+          if (text) {
+            document.execCommand('insertText', false, text);
+          }
+        } catch {
+          // Clipboard access denied or empty - silently ignore
+        }
       }
     }
     return;
