@@ -148,6 +148,7 @@ describe('collaborateActions', () => {
       summaryModeEnabled: false,
       summaryDateFrom: null,
       summaryDateTo: null,
+      summaryVisibleNodeIds: null,
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       actions: {} as any,
     };

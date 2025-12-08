@@ -15,7 +15,8 @@ export class ToggleStatusCommand extends BaseCommand {
     private getNodes: () => Record<string, TreeNode>,
     private setNodes: (nodes: Record<string, TreeNode>) => void,
     private selectNode: (nodeId: string, cursorPosition: number) => void,
-    private triggerAutosave?: () => void
+    private triggerAutosave?: () => void,
+    private onStatusChange?: () => void
   ) {
     super();
     this.description = `Toggle status ${nodeId}`;
@@ -62,6 +63,7 @@ export class ToggleStatusCommand extends BaseCommand {
     });
 
     this.triggerAutosave?.();
+    this.onStatusChange?.();
   }
 
   undo(): void {
@@ -85,6 +87,7 @@ export class ToggleStatusCommand extends BaseCommand {
     // Select node and place cursor at end
     this.selectNode(this.nodeId, node.content.length);
     this.triggerAutosave?.();
+    this.onStatusChange?.();
   }
 
   redo(): void {
@@ -108,5 +111,6 @@ export class ToggleStatusCommand extends BaseCommand {
     // Select node and place cursor at end
     this.selectNode(this.nodeId, node.content.length);
     this.triggerAutosave?.();
+    this.onStatusChange?.();
   }
 }

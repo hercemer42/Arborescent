@@ -14,9 +14,12 @@ vi.mock('../../../services/logger', () => ({
 describe('summaryActions', () => {
   let state: {
     nodes: Record<string, TreeNode>;
+    rootNodeId: string;
+    ancestorRegistry: Record<string, string[]>;
     summaryModeEnabled: boolean;
     summaryDateFrom: string | null;
     summaryDateTo: string | null;
+    summaryVisibleNodeIds: Set<string> | null;
     activeNodeId: string | null;
     blueprintModeEnabled: boolean;
   };
@@ -36,9 +39,12 @@ describe('summaryActions', () => {
           metadata: {},
         },
       },
+      rootNodeId: 'root',
+      ancestorRegistry: {},
       summaryModeEnabled: false,
       summaryDateFrom: null,
       summaryDateTo: null,
+      summaryVisibleNodeIds: null,
       activeNodeId: 'root',
       blueprintModeEnabled: false,
     };

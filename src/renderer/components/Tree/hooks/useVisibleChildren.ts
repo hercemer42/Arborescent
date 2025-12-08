@@ -1,7 +1,6 @@
 import { useMemo } from 'react';
 import { useStore } from '../../../store/tree/useStore';
 import { TreeNode } from '../../../../shared/types';
-import { computeSummaryVisibleNodeIds } from '../../../utils/nodeHelpers';
 
 /**
  * Compute visibility status string for children based on filter mode.
@@ -16,16 +15,11 @@ function useChildVisibilityStatus(children: string[] | undefined): string | null
     return children.map(id => state.nodes[id]?.metadata.isBlueprint ? '1' : '0').join('');
   });
 
-  // Summary mode: compute visible set and check membership
+  // Summary mode: use pre-computed visible set from store
   const summaryStatus = useStore((state) => {
     if (!children || !summaryModeEnabled) return null;
-    const visibleIds = computeSummaryVisibleNodeIds(
-      state.nodes,
-      state.rootNodeId,
-      state.ancestorRegistry,
-      state.summaryDateFrom,
-      state.summaryDateTo
-    );
+    const visibleIds = state.summaryVisibleNodeIds;
+    if (!visibleIds) return null;
     return children.map(id => visibleIds.has(id) ? '1' : '0').join('');
   });
 

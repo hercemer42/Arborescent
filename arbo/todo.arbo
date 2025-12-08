@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2025-12-08T06:53:13.589Z'
+updated: '2025-12-08T07:27:53.364Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -6124,12 +6124,13 @@ nodes:
       - 5e0fa846-276d-4d99-ae49-a3f05b46b75c
       - 3239dd15-5f50-4999-84ac-b84b71b742be
       - 6a7c5b51-8827-40a1-9a86-89dcb26ddf40
+      - e2cbe11a-e285-4a36-9989-1cf70bb395ba
       - b9bf8973-53bf-4343-92ac-2adf1b3aadd0
       - ee62f343-86cb-423b-87ab-63236876a259
       - 00757321-75c1-44a9-981f-2362add1989f
     metadata:
       status: pending
-      expanded: false
+      expanded: true
       deleted: false
       plugins: {}
       isContextDeclaration: true
@@ -6787,9 +6788,7 @@ nodes:
   0cc62ae1-1a7a-4aa4-bc6a-d817cabd672c:
     id: 0cc62ae1-1a7a-4aa4-bc6a-d817cabd672c
     content: Refactor
-    children:
-      - c57b5f8e-e7f4-4729-84a7-9a28a679eeab
-      - ef20e14f-ab05-4a9b-8e36-bf6377e15b48
+    children: []
     metadata:
       status: pending
       expanded: true
@@ -9598,7 +9597,8 @@ nodes:
   79b693ca-27ce-4410-8617-8092d7e81b07:
     id: 79b693ca-27ce-4410-8617-8092d7e81b07
     content: Bugs
-    children: []
+    children:
+      - d7f2f96d-edfc-4a92-8fbb-6fc50810ce36
     metadata:
       status: pending
       appliedContextIds:
@@ -9624,8 +9624,7 @@ nodes:
   c4473311-2e42-48ae-9191-d3807dc55a4c:
     id: c4473311-2e42-48ae-9191-d3807dc55a4c
     content: Problems
-    children:
-      - d7f2f96d-edfc-4a92-8fbb-6fc50810ce36
+    children: []
     metadata:
       status: pending
       expanded: true
@@ -14829,18 +14828,6 @@ nodes:
     metadata:
       status: pending
       isBlueprint: true
-  c57b5f8e-e7f4-4729-84a7-9a28a679eeab:
-    id: c57b5f8e-e7f4-4729-84a7-9a28a679eeab
-    content: handleEditingShortcuts is a bit long
-    children: []
-    metadata:
-      status: pending
-  ef20e14f-ab05-4a9b-8e36-bf6377e15b48:
-    id: ef20e14f-ab05-4a9b-8e36-bf6377e15b48
-    content: ''
-    children: []
-    metadata:
-      status: pending
   766c2a6f-9c50-40c0-948a-6df7bdde9b59:
     id: 766c2a6f-9c50-40c0-948a-6df7bdde9b59
     content: Split node on Enter key when cursor is in middle of content
@@ -14960,3 +14947,42 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
+  e2cbe11a-e285-4a36-9989-1cf70bb395ba:
+    id: e2cbe11a-e285-4a36-9989-1cf70bb395ba
+    content: Performance
+    children:
+      - 8e4bba08-3be4-4cbb-990c-5e4449de2dd9
+      - 2d363884-8e06-417d-9d19-d8587eaf626f
+      - eab3b032-09d7-49fb-80bc-6bcd2ab4cd7b
+    metadata:
+      status: pending
+      isBlueprint: true
+  8e4bba08-3be4-4cbb-990c-5e4449de2dd9:
+    id: 8e4bba08-3be4-4cbb-990c-5e4449de2dd9
+    content: Be careful to not run expensive computes for all nodes whenever a node is updated
+    children:
+      - 02287549-c8d4-4a02-8779-4166661a7a0b
+    metadata:
+      status: pending
+      isBlueprint: true
+  02287549-c8d4-4a02-8779-4166661a7a0b:
+    id: 02287549-c8d4-4a02-8779-4166661a7a0b
+    content: Be sure to use memoization
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  2d363884-8e06-417d-9d19-d8587eaf626f:
+    id: 2d363884-8e06-417d-9d19-d8587eaf626f
+    content: Use a store cache where possible, update only when necessary
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  eab3b032-09d7-49fb-80bc-6bcd2ab4cd7b:
+    id: eab3b032-09d7-49fb-80bc-6bcd2ab4cd7b
+    content: Avoid subscribing to the entire state.nodes object when not needed
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true

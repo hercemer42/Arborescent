@@ -14,12 +14,12 @@ interface TreeProps {
 
 export const Tree = memo(function Tree({ zoomedNodeId }: TreeProps) {
   const rootNodeId = useStore((state) => state.rootNodeId);
-  const nodes = useStore((state) => state.nodes);
   const blueprintModeEnabled = useStore((state) => state.blueprintModeEnabled);
 
   const displayRootId = zoomedNodeId || rootNodeId;
-  const displayRootNode = nodes[displayRootId];
-  const displayChildren = displayRootNode?.children;
+
+  // Only subscribe to the specific node's children, not the entire nodes object
+  const displayChildren = useStore((state) => state.nodes[displayRootId]?.children);
 
   useTree();
   const { sensors, activeId, draggedNodeIds, draggedNodeDepth, dropAnimation, handleDragStart, handleDragEnd } = useTreeDragDrop();

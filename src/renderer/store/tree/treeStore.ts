@@ -50,6 +50,7 @@ export interface TreeState {
   summaryModeEnabled: boolean; // When true, shows only resolved nodes within date range
   summaryDateFrom: string | null; // Start date for summary filter (ISO string, date only)
   summaryDateTo: string | null; // End date for summary filter (ISO string, date only)
+  summaryVisibleNodeIds: Set<string> | null; // Cached set of visible node IDs in summary mode
 
   actions: NodeActions & ContextActions & BlueprintActions & NavigationActions & PersistenceActions & NodeMovementActions & NodeDeletionActions & VisualEffectsActions & SelectionActions & HistoryActions & CollaborateActions & ClipboardActions & ExecuteActions & SummaryActions;
 }
@@ -116,6 +117,7 @@ export function createTreeStore(treeType: TreeType = 'workspace') {
       summaryModeEnabled: false,
       summaryDateFrom: null,
       summaryDateTo: null,
+      summaryVisibleNodeIds: null,
 
       actions: {
         ...createNodeActions(get, set, persistenceActions.autoSave),

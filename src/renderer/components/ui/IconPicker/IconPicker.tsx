@@ -84,6 +84,9 @@ function getCuratedIcons(): { Icon: LucideIcon; name: string }[] {
 const ALL_ICONS = getAllLucideIcons();
 const CURATED_ICONS = getCuratedIcons();
 
+// Map for O(1) icon lookup by name
+const ICON_MAP = new Map(ALL_ICONS.map(item => [item.name, item.Icon]));
+
 export const CONTEXT_ICONS = ALL_ICONS;
 export const DEFAULT_CONTEXT_ICON = 'Lightbulb';
 
@@ -242,14 +245,10 @@ export function IconPicker({ selectedIcon, selectedColor, onSelect, onClose }: I
 // Helper to get icon component by name
 // Returns TriangleAlert (warning) as fallback for unknown icons
 export function getIconByName(name: string): LucideIcon | null {
-  const found = CONTEXT_ICONS.find(item => item.name === name);
-  if (found) {
-    return found.Icon;
-  }
+  const icon = ICON_MAP.get(name);
+  if (icon) return icon;
   // Fallback for old FontAwesome icon names - return warning icon
-  if (name && name.length > 0) {
-    return TriangleAlert;
-  }
+  if (name && name.length > 0) return TriangleAlert;
   return null;
 }
 
