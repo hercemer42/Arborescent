@@ -1,4 +1,4 @@
-import { memo, useMemo } from 'react';
+import { memo } from 'react';
 import { DndContext, DragOverlay, pointerWithin, Modifier } from '@dnd-kit/core';
 import { TreeNode } from '../TreeNode';
 import { useStore } from '../../store/tree/useStore';

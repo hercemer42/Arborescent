@@ -2,6 +2,11 @@ import { useEffect, RefObject } from 'react';
 import { initializeNavigationService, initializeEditingService } from '../services/keyboard/keyboard';
 import { initializeUIService } from '../services/keyboard/uiService';
 
+// Force full reload on HMR - keyboard event listeners don't survive partial updates cleanly
+if (import.meta.hot) {
+  import.meta.hot.decline();
+}
+
 export interface KeyboardServicesOptions {
   /** Include global UI service (cut/copy/paste, save, etc.). Default: false */
   includeUIService?: boolean;
