@@ -1,10 +1,8 @@
 import { useState, useCallback } from 'react';
 import { useStore } from '../../../store/tree/useStore';
 import { useActiveTreeStore } from '../../../store/tree/TreeStoreContext';
-import { TreeNode, NodeContext, PluginContextMenuItem } from '../../../../shared/types';
+import { TreeNode } from '../../../../shared/types';
 import { ContextMenuItem } from '../../ui/ContextMenu';
-import { usePluginStore } from '../../../store/plugins/pluginStore';
-import { PluginCommandRegistry } from '../../../../../plugins/core/renderer/CommandRegistry';
 import { useTerminalStore } from '../../../store/terminal/terminalStore';
 import { useFeedbackActions } from '../../Feedback/hooks/useFeedbackActions';
 import { usePanelStore } from '../../../store/panel/panelStore';
@@ -12,7 +10,6 @@ import { useFilesStore } from '../../../store/files/filesStore';
 import { buildBlueprintSubmenu } from './useBlueprintSubmenu';
 import { buildStatusSubmenu } from './useStatusSubmenu';
 import { logger } from '../../../services/logger';
-import { hasAncestorWithPluginSession } from '../../../utils/nodeHelpers';
 import { buildCollaborateSubmenu } from './useCollaborateSubmenu';
 import { buildExecuteSubmenu } from './useExecuteSubmenu';
 import { getPositionFromPoint } from '../../../utils/position';
@@ -24,7 +21,6 @@ import { formatHotkeyForDisplay } from '../../../utils/hotkeyUtils';
 export function useNodeContextMenu(node: TreeNode) {
   const treeType = useStore((state) => state.treeType);
   const isFeedbackTree = treeType === 'feedback';
-  const enabledPlugins = usePluginStore((state) => state.enabledPlugins);
   const store = useActiveTreeStore();
   const [contextMenu, setContextMenu] = useState<{ x: number; y: number } | null>(null);
   const [menuItems, setMenuItems] = useState<ContextMenuItem[]>([]);
@@ -37,25 +33,6 @@ export function useNodeContextMenu(node: TreeNode) {
   const openZoomTab = useFilesStore((state) => state.openZoomTab);
   const isZoomTab = !!activeFile?.zoomSource;
 
-  function convertToContextMenuItem(
-    item: PluginContextMenuItem,
-    targetNode: TreeNode
-  ): ContextMenuItem {
-    return {
-      label: item.label,
-      onClick: () => {
-        const state = store.getState();
-        PluginCommandRegistry.execute(item.id, {
-          node: targetNode,
-          actions: state.actions,
-          nodes: state.nodes,
-        });
-      },
-      disabled: item.disabled,
-      danger: false,
-    };
-  }
-
   // Build all menu items when context menu is opened (lazy evaluation)
   const buildMenuItems = useCallback(async () => {
     const state = store.getState();
@@ -66,21 +43,6 @@ export function useNodeContextMenu(node: TreeNode) {
     if (spellItems) {
       return spellItems;
     }
-
-    // Plugin items
-    const hasAncestorSession = hasAncestorWithPluginSession(node.id, nodes, ancestorRegistry);
-    const nodeContext: NodeContext = { hasAncestorSession };
-
-    const pluginResults = await Promise.all(
-      enabledPlugins.map(async (plugin) => {
-        const result = await plugin.extensionPoints.provideNodeContextMenuItems?.(
-          node,
-          nodeContext
-        );
-        return result || [];
-      })
-    );
-    const pluginItems = pluginResults.flat().map((item) => convertToContextMenuItem(item, node));
 
     // Compute context-related values
     const isNodeBeingCollaborated = collaboratingNodeId === node.id;
@@ -273,8 +235,8 @@ export function useNodeContextMenu(node: TreeNode) {
       }] : []),
     ];
 
-    return [...pluginItems, ...baseMenuItems];
-  }, [node, store, enabledPlugins, showTerminal, handleCancel, openIconPicker, activeFile, isZoomTab, openZoomTab, buildSpellMenuItems]);
+    return baseMenuItems;
+  }, [node, store, showTerminal, handleCancel, openIconPicker, activeFile, isZoomTab, openZoomTab, buildSpellMenuItems]);
 
   const handleContextMenu = useCallback(async (e: React.MouseEvent) => {
     e.preventDefault();

@@ -7,7 +7,6 @@ interface NodeGutterProps {
   hasChildren: boolean;
   expanded: boolean;
   onToggle: () => void;
-  pluginIndicators: React.ReactNode[];
   isContextDeclaration?: boolean;
   contextName?: string;
   contextIcon?: string;
@@ -20,7 +19,6 @@ export const NodeGutter = memo(function NodeGutter({
   hasChildren,
   expanded,
   onToggle,
-  pluginIndicators,
   isContextDeclaration = false,
   contextName,
   contextIcon,
@@ -37,15 +35,6 @@ export const NodeGutter = memo(function NodeGutter({
         contextColor={contextColor}
         appliedContext={appliedContext}
       />
-      {pluginIndicators.length > 0 && (
-        <span className="gutter-plugin-indicators">
-          {pluginIndicators.map((indicator, i) => (
-            <span key={i} className="gutter-plugin-indicator">
-              {indicator}
-            </span>
-          ))}
-        </span>
-      )}
       {hasChildren && (
         <div className="gutter-expand-toggle">
           <button

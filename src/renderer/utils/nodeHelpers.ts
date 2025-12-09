@@ -568,22 +568,6 @@ export function wrapNodesWithHiddenRoot(
 export type DropZone = 'before' | 'after' | 'child';
 
 /**
- * Check if a node has any ancestor with plugin session data.
- * Used to determine if context should inherit plugin state from parent nodes.
- */
-export function hasAncestorWithPluginSession(
-  nodeId: string,
-  nodes: Record<string, TreeNode>,
-  ancestorRegistry: AncestorRegistry
-): boolean {
-  const ancestors = ancestorRegistry[nodeId] || [];
-  return ancestors.some((ancestorId) => {
-    const ancestor = nodes[ancestorId];
-    return ancestor && ancestor.metadata.plugins && Object.keys(ancestor.metadata.plugins).length > 0;
-  });
-}
-
-/**
  * Validate whether a drag and drop operation is valid.
  * Prevents dropping a node onto itself, its descendants, or other invalid targets.
  */

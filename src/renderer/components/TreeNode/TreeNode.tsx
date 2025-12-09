@@ -7,7 +7,6 @@ import { useNodeEffects } from './hooks/useNodeEffects';
 import { useNodeDragDrop } from './hooks/useNodeDragDrop';
 import { useNodeToggle } from './hooks/useNodeToggle';
 import { useAppliedContext } from './hooks/useAppliedContexts';
-import { usePluginIndicators } from '../NodeGutter/hooks/usePluginIndicators';
 import { useNodeVisibleChildren } from '../Tree/hooks/useVisibleChildren';
 import { useHiddenSearchMatches } from './hooks/useHiddenSearchMatches';
 import './TreeNode.css';
@@ -46,7 +45,6 @@ export const TreeNode = memo(function TreeNode({ nodeId, depth = 0 }: TreeNodePr
   const { isDragging, isOver, dropPosition, setRefs, attributes, listeners } = useNodeDragDrop(nodeId, nodeRef);
   const { handleMouseDown, handleMouseMove, handleClick, wrappedListeners } = useNodeMouse(nodeId, listeners);
   const handleToggle = useNodeToggle(nodeId, expanded, contentLength);
-  const pluginIndicators = usePluginIndicators(node);
 
   if (!node) {
     return null;
@@ -84,7 +82,6 @@ export const TreeNode = memo(function TreeNode({ nodeId, depth = 0 }: TreeNodePr
           hasChildren={hasChildren}
           expanded={expanded}
           onToggle={handleToggle}
-          pluginIndicators={pluginIndicators}
           isContextDeclaration={node.metadata.isContextDeclaration === true}
           contextName={node.content}
           contextIcon={node.metadata.blueprintIcon as string | undefined}

@@ -1,5 +1,4 @@
 import { contextBridge, ipcRenderer } from 'electron';
-import { pluginPreloadAPI } from '../../plugins/core/preload/preload';
 
 contextBridge.exposeInMainWorld('electron', {
   platform: process.platform,
@@ -92,5 +91,4 @@ contextBridge.exposeInMainWorld('electron', {
   savePreferences: (preferencesData: string) =>
     ipcRenderer.invoke('save-preferences', preferencesData),
   getPreferences: () => ipcRenderer.invoke('get-preferences'),
-  ...pluginPreloadAPI,
 });

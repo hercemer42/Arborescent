@@ -1,10 +1,9 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
-import { renderHook, act, waitFor } from '@testing-library/react';
+import { renderHook, act } from '@testing-library/react';
 import { useNodeContextMenu } from '../useNodeContextMenu';
 import { TreeStoreContext } from '../../../../store/tree/TreeStoreContext';
 import { createTreeStore, TreeStore } from '../../../../store/tree/treeStore';
 import type { TreeNode } from '@shared/types';
-import * as pluginStore from '../../../../store/plugins/pluginStore';
 import * as spellcheck from '../../../../services/spellcheck';
 
 // Helper to create mock event with DOM elements
@@ -68,17 +67,6 @@ describe('useNodeContextMenu', () => {
       } as any,
     });
 
-    vi.spyOn(pluginStore, 'usePluginStore').mockImplementation((selector) => {
-      const state = {
-        plugins: [],
-        enabledPlugins: [],
-        registerPlugin: vi.fn(),
-        unregisterPlugin: vi.fn(),
-        enablePlugin: vi.fn(),
-        disablePlugin: vi.fn(),
-      };
-      return selector ? selector(state) : state;
-    });
   });
 
   const wrapper = ({ children }: { children: React.ReactNode }) => (
@@ -305,7 +293,7 @@ describe('useNodeContextMenu', () => {
     expect(collaborateMenu?.submenu?.find(item => item.label === 'In terminal')).toBeDefined();
   });
 
-  it('should have correct menu order: Execute, Collaborate, Edit, Copy to Clipboard', async () => {
+  it('should have correct menu order: Execute, Collaborate, Edit', async () => {
     const { result } = renderHook(() => useNodeContextMenu(mockNode), { wrapper });
 
     await openContextMenu(result);
@@ -314,11 +302,9 @@ describe('useNodeContextMenu', () => {
     const executeIndex = labels.indexOf('Execute');
     const collaborateIndex = labels.indexOf('Collaborate');
     const editIndex = labels.indexOf('Edit');
-    const copyIndex = labels.indexOf('Copy to Clipboard');
 
     expect(executeIndex).toBeLessThan(collaborateIndex);
     expect(collaborateIndex).toBeLessThan(editIndex);
-    expect(editIndex).toBeLessThan(copyIndex);
   });
 
   describe('context selection in execute/collaborate', () => {
@@ -386,196 +372,6 @@ describe('useNodeContextMenu', () => {
       expect(collaborateMenu?.submenu?.length).toBeGreaterThan(2);
       expect(collaborateMenu?.submenu?.find(item => item.label === 'Available contexts')).toBeDefined();
       expect(collaborateMenu?.submenu?.find(item => item.label === 'My Context')).toBeDefined();
-    });
-  });
-
-  describe('plugin integration', () => {
-    it('should include plugin menu items before base items', async () => {
-      const provideNodeContextMenuItems = vi.fn(() => [
-        { id: 'plugin:action', label: 'Plugin Action' },
-      ]);
-
-      const mockPlugin = {
-        manifest: { name: 'test-plugin', version: '1.0.0', displayName: 'Test', enabled: true, builtin: false },
-        initialize: vi.fn(),
-        dispose: vi.fn(),
-        extensionPoints: {
-          provideNodeContextMenuItems,
-        },
-      };
-
-      vi.spyOn(pluginStore, 'usePluginStore').mockImplementation((selector) => {
-        const state = {
-          plugins: [mockPlugin],
-          enabledPlugins: [mockPlugin],
-          registerPlugin: vi.fn(),
-          unregisterPlugin: vi.fn(),
-          enablePlugin: vi.fn(),
-          disablePlugin: vi.fn(),
-        };
-        return selector ? selector(state) : state;
-      });
-
-      const { result } = renderHook(() => useNodeContextMenu(mockNode), { wrapper });
-
-      const mockEvent = createMockContextMenuEvent(100, 200);
-
-      await act(async () => {
-        result.current.handleContextMenu(mockEvent);
-      });
-
-      await waitFor(() => {
-        expect(result.current.contextMenuItems.length).toBeGreaterThan(1);
-      });
-
-      expect(result.current.contextMenuItems[0].label).toBe('Plugin Action');
-    });
-
-    it('should pass hasAncestorSession=false when no ancestor has session', async () => {
-      const provideNodeContextMenuItems = vi.fn(() => []);
-
-      const mockPlugin = {
-        manifest: { name: 'test-plugin', version: '1.0.0', displayName: 'Test', enabled: true, builtin: false },
-        initialize: vi.fn(),
-        dispose: vi.fn(),
-        extensionPoints: {
-          provideNodeContextMenuItems,
-        },
-      };
-
-      vi.spyOn(pluginStore, 'usePluginStore').mockImplementation((selector) => {
-        const state = {
-          plugins: [mockPlugin],
-          enabledPlugins: [mockPlugin],
-          registerPlugin: vi.fn(),
-          unregisterPlugin: vi.fn(),
-          enablePlugin: vi.fn(),
-          disablePlugin: vi.fn(),
-        };
-        return selector ? selector(state) : state;
-      });
-
-      const { result } = renderHook(() => useNodeContextMenu(mockNode), { wrapper });
-
-      const mockEvent = createMockContextMenuEvent(100, 200);
-
-      await act(async () => {
-        result.current.handleContextMenu(mockEvent);
-      });
-
-      expect(provideNodeContextMenuItems).toHaveBeenCalledWith(mockNode, { hasAncestorSession: false });
-    });
-
-    it('should pass hasAncestorSession=true when ancestor has plugin metadata', async () => {
-      const ancestorNode: TreeNode = {
-        id: 'ancestor-node',
-        content: 'Ancestor',
-        children: ['test-node'],
-        metadata: {
-          plugins: {
-            'test-plugin': { sessionId: 'session-123' },
-          },
-        },
-      };
-
-      store.setState({
-        nodes: {
-          'test-node': mockNode,
-          'ancestor-node': ancestorNode,
-        },
-        ancestorRegistry: {
-          'test-node': ['ancestor-node'],
-        },
-      });
-
-      const provideNodeContextMenuItems = vi.fn(() => []);
-
-      const mockPlugin = {
-        manifest: { name: 'test-plugin', version: '1.0.0', displayName: 'Test', enabled: true, builtin: false },
-        initialize: vi.fn(),
-        dispose: vi.fn(),
-        extensionPoints: {
-          provideNodeContextMenuItems,
-        },
-      };
-
-      vi.spyOn(pluginStore, 'usePluginStore').mockImplementation((selector) => {
-        const state = {
-          plugins: [mockPlugin],
-          enabledPlugins: [mockPlugin],
-          registerPlugin: vi.fn(),
-          unregisterPlugin: vi.fn(),
-          enablePlugin: vi.fn(),
-          disablePlugin: vi.fn(),
-        };
-        return selector ? selector(state) : state;
-      });
-
-      const { result } = renderHook(() => useNodeContextMenu(mockNode), { wrapper });
-
-      const mockEvent = createMockContextMenuEvent(100, 200);
-
-      await act(async () => {
-        result.current.handleContextMenu(mockEvent);
-      });
-
-      expect(provideNodeContextMenuItems).toHaveBeenCalledWith(mockNode, { hasAncestorSession: true });
-    });
-
-    it('should handle multiple plugins', async () => {
-      const provideNodeContextMenuItems1 = vi.fn(() => [
-        { id: 'plugin1:action1', label: 'Action 1' },
-      ]);
-
-      const provideNodeContextMenuItems2 = vi.fn(() => [
-        { id: 'plugin2:action2', label: 'Action 2' },
-      ]);
-
-      const mockPlugin1 = {
-        manifest: { name: 'plugin1', version: '1.0.0', displayName: 'Plugin 1', enabled: true, builtin: false },
-        initialize: vi.fn(),
-        dispose: vi.fn(),
-        extensionPoints: {
-          provideNodeContextMenuItems: provideNodeContextMenuItems1,
-        },
-      };
-
-      const mockPlugin2 = {
-        manifest: { name: 'plugin2', version: '1.0.0', displayName: 'Plugin 2', enabled: true, builtin: false },
-        initialize: vi.fn(),
-        dispose: vi.fn(),
-        extensionPoints: {
-          provideNodeContextMenuItems: provideNodeContextMenuItems2,
-        },
-      };
-
-      vi.spyOn(pluginStore, 'usePluginStore').mockImplementation((selector) => {
-        const state = {
-          plugins: [mockPlugin1, mockPlugin2],
-          enabledPlugins: [mockPlugin1, mockPlugin2],
-          registerPlugin: vi.fn(),
-          unregisterPlugin: vi.fn(),
-          enablePlugin: vi.fn(),
-          disablePlugin: vi.fn(),
-        };
-        return selector ? selector(state) : state;
-      });
-
-      const { result } = renderHook(() => useNodeContextMenu(mockNode), { wrapper });
-
-      const mockEvent = createMockContextMenuEvent(100, 200);
-
-      await act(async () => {
-        result.current.handleContextMenu(mockEvent);
-      });
-
-      await waitFor(() => {
-        expect(result.current.contextMenuItems.length).toBeGreaterThan(1);
-      });
-
-      const actionLabels = result.current.contextMenuItems.map(item => item.label);
-      expect(actionLabels).toContain('Action 1');
-      expect(actionLabels).toContain('Action 2');
     });
   });
 

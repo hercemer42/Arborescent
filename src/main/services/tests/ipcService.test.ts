@@ -3,7 +3,6 @@ import { ipcMain, dialog, BrowserWindow } from 'electron';
 import { vol } from 'memfs';
 import { registerIpcHandlers } from '../ipcService';
 import { logger } from '../logger';
-import { registerPluginHandlers } from '../../../../plugins/core/main/registerHandlers';
 
 // Mock electron
 vi.mock('electron', () => ({
@@ -51,10 +50,6 @@ vi.mock('../logger', () => ({
   },
 }));
 
-vi.mock('../../../../plugins/core/main/registerHandlers', () => ({
-  registerPluginHandlers: vi.fn(),
-}));
-
 describe('ipcService', () => {
   let handlers: Map<string, (...args: unknown[]) => Promise<unknown>>;
   let mockWindow: BrowserWindow | null;
@@ -72,17 +67,9 @@ describe('ipcService', () => {
     vi.mocked(ipcMain.handle).mockImplementation((channel: string, handler: any) => {
       handlers.set(channel, handler);
     });
-
-    vi.mocked(registerPluginHandlers).mockResolvedValue(undefined);
   });
 
   describe('registerIpcHandlers', () => {
-    it('should register plugin handlers first', async () => {
-      await registerIpcHandlers(() => mockWindow);
-
-      expect(registerPluginHandlers).toHaveBeenCalled();
-    });
-
     it('should register all IPC handlers', async () => {
       await registerIpcHandlers(() => mockWindow);
 

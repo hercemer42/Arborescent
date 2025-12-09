@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2025-12-09T15:39:49.687Z'
+updated: '2025-12-09T16:14:20.783Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -525,6 +525,7 @@ nodes:
       - c98016fe-f4fb-41ce-aafc-d51f33ec2303
       - 45bd7268-9183-4664-a675-88e6073621d1
       - 0f5a2c8b-3991-4ed9-ba23-fa4198b0fe88
+      - a7508f21-00cf-4d96-a748-b02b41577a37
     metadata:
       status: completed
       expanded: false
@@ -6578,13 +6579,7 @@ nodes:
     id: 0cc62ae1-1a7a-4aa4-bc6a-d817cabd672c
     content: Refactor
     children:
-      - 3adc6bf4-64ed-402b-8eb0-ac9876e23828
-      - ff4c14ca-db84-4653-ade9-4126fb1b672e
-      - 5e809747-650d-4767-a434-d9adb3362da9
-      - d9aed4c5-f700-4f03-b7f7-f13bc82823c3
-      - ca43fe46-764b-4e85-b4dc-7692cdc5b0be
-      - 4c9692ab-183c-4c53-aae4-dc6432e0c87f
-      - 2d2066aa-de5f-4366-a241-0a8d3c08c489
+      - 53e9add9-1b8f-4ae3-ac36-51e73197a389
     metadata:
       status: pending
       expanded: true
@@ -14679,8 +14674,7 @@ nodes:
   ac4c627f-c512-40b9-ad55-11b439495b7e:
     id: ac4c627f-c512-40b9-ad55-11b439495b7e
     content: Major feature
-    children:
-      - 63f84ffc-90b0-40e2-b470-8773b70bf420
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -15501,7 +15495,6 @@ nodes:
     id: 92b16d87-27dc-486d-a605-4228e2b5206c
     content: For release
     children:
-      - 53e9add9-1b8f-4ae3-ac36-51e73197a389
       - e80b50cc-21cc-4a4f-a2ee-0daf1b1fe757
       - 810093d7-6e57-42ce-bb6e-58bdaff3d8c3
       - 4966bd3d-fe8d-4094-840f-a0f791c07d6c
@@ -15515,6 +15508,7 @@ nodes:
       - 80181e68-762c-4686-ac23-1fa585d1bfe5
       - a2d18d0e-fc20-4791-b93c-3b92b2b4b4d4
       - e897dedf-fd94-4cda-9a00-d79bf0371787
+      - c7298184-a1d1-4ce5-aef3-743d1ce3ec82
     metadata:
       status: pending
       expanded: true
@@ -15972,197 +15966,6 @@ nodes:
     children: []
     metadata:
       status: pending
-  3adc6bf4-64ed-402b-8eb0-ac9876e23828:
-    id: 3adc6bf4-64ed-402b-8eb0-ac9876e23828
-    content: Need different css files for globals - light and dark
-    children: []
-    metadata:
-      status: pending
-  ff4c14ca-db84-4653-ade9-4126fb1b672e:
-    id: ff4c14ca-db84-4653-ade9-4126fb1b672e
-    content: HotkeyEditDialog needs hooks file
-    children: []
-    metadata:
-      status: pending
-  5e809747-650d-4767-a434-d9adb3362da9:
-    id: 5e809747-650d-4767-a434-d9adb3362da9
-    content: KeyboardShortcutsDialog needs hooks file
-    children: []
-    metadata:
-      status: pending
-  d9aed4c5-f700-4f03-b7f7-f13bc82823c3:
-    id: d9aed4c5-f700-4f03-b7f7-f13bc82823c3
-    content: Same goes for ShortcutRow
-    children: []
-    metadata:
-      status: pending
-  ca43fe46-764b-4e85-b4dc-7692cdc5b0be:
-    id: ca43fe46-764b-4e85-b4dc-7692cdc5b0be
-    content: There is duplication between KeyboardShortcutsDialog and useKeyboardShortcuts
-    children: []
-    metadata:
-      status: pending
-  4c9692ab-183c-4c53-aae4-dc6432e0c87f:
-    id: 4c9692ab-183c-4c53-aae4-dc6432e0c87f
-    content: useShortcutContextMenu defines a component, that should be in it's own file, not a hooks (or back in main component file)
-    children: []
-    metadata:
-      status: pending
-  2d2066aa-de5f-4366-a241-0a8d3c08c489:
-    id: 2d2066aa-de5f-4366-a241-0a8d3c08c489
-    content: need hooks file for MenuSubMenu.tsx
-    children: []
-    metadata:
-      status: pending
-  63f84ffc-90b0-40e2-b470-8773b70bf420:
-    id: 63f84ffc-90b0-40e2-b470-8773b70bf420
-    content: Actions improvements
-    children:
-      - d41fd225-7a8b-44a7-b8c1-d1a7c5cd93e9
-      - f2d66432-d771-4fda-9bd4-4359edd6e776
-      - c6ec258e-ae4d-4374-b3a5-8eafd38772bd
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  d41fd225-7a8b-44a7-b8c1-d1a7c5cd93e9:
-    id: d41fd225-7a8b-44a7-b8c1-d1a7c5cd93e9
-    content: Add actions to Edit menu (top bar)
-    children:
-      - 1669c1a7-b0a0-45b9-bf2a-258e83a6efc2
-      - feeade73-7d1b-466b-8e06-ed35d70bd0a4
-      - db058bed-5a30-4809-89c3-34d0c058bfcc
-      - a4b86f6f-a932-4c55-834c-ea2534f4103c
-      - 15dc2d38-6183-4811-a231-31a68475cd4d
-      - 64391211-2b82-4795-8e9a-c5a4b5290b7e
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  1669c1a7-b0a0-45b9-bf2a-258e83a6efc2:
-    id: 1669c1a7-b0a0-45b9-bf2a-258e83a6efc2
-    content: Toggle Task Status (already has Ctrl+K)
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  feeade73-7d1b-466b-8e06-ed35d70bd0a4:
-    id: feeade73-7d1b-466b-8e06-ed35d70bd0a4
-    content: Separator
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  db058bed-5a30-4809-89c3-34d0c058bfcc:
-    id: db058bed-5a30-4809-89c3-34d0c058bfcc
-    content: Indent (already has Tab)
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  a4b86f6f-a932-4c55-834c-ea2534f4103c:
-    id: a4b86f6f-a932-4c55-834c-ea2534f4103c
-    content: Outdent (already has Shift+Tab)
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  15dc2d38-6183-4811-a231-31a68475cd4d:
-    id: 15dc2d38-6183-4811-a231-31a68475cd4d
-    content: Separator
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  64391211-2b82-4795-8e9a-c5a4b5290b7e:
-    id: 64391211-2b82-4795-8e9a-c5a4b5290b7e
-    content: Select All (needs new hotkey Ctrl+A)
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f2d66432-d771-4fda-9bd4-4359edd6e776:
-    id: f2d66432-d771-4fda-9bd4-4359edd6e776
-    content: Add new hotkeys
-    children:
-      - 45b8d13e-d296-4ba3-b4a6-f18fb363af91
-      - db44a67a-686f-40ae-94c9-04e6eef5a892
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  45b8d13e-d296-4ba3-b4a6-f18fb363af91:
-    id: 45b8d13e-d296-4ba3-b4a6-f18fb363af91
-    content: 'Execute (in terminal, with active context): Ctrl+E'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  db44a67a-686f-40ae-94c9-04e6eef5a892:
-    id: db44a67a-686f-40ae-94c9-04e6eef5a892
-    content: 'Collaborate (with active context): Ctrl+Shift+Enter'
-    children:
-      - 2f7e44c8-03f4-4b75-8430-0b337a935584
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  2f7e44c8-03f4-4b75-8430-0b337a935584:
-    id: 2f7e44c8-03f4-4b75-8430-0b337a935584
-    content: If no context is set, do nothing (or show subtle toast)
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  c6ec258e-ae4d-4374-b3a5-8eafd38772bd:
-    id: c6ec258e-ae4d-4374-b3a5-8eafd38772bd
-    content: Show hotkeys in context menu
-    children:
-      - 7e1c70f5-5392-452b-878c-a378dad7d5bd
-      - 11233bac-6992-475a-9db7-6d8cf8169090
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  7e1c70f5-5392-452b-878c-a378dad7d5bd:
-    id: 7e1c70f5-5392-452b-878c-a378dad7d5bd
-    content: Display hotkey next to menu item label (same format as top menu)
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  11233bac-6992-475a-9db7-6d8cf8169090:
-    id: 11233bac-6992-475a-9db7-6d8cf8169090
-    content: No hotkeys for submenu triggers
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
   e80b50cc-21cc-4a4f-a2ee-0daf1b1fe757:
     id: e80b50cc-21cc-4a4f-a2ee-0daf1b1fe757
     content: Move 'Blueprint mode' and 'Summary mode' to their own panels.
@@ -16172,6 +15975,161 @@ nodes:
   810093d7-6e57-42ce-bb6e-58bdaff3d8c3:
     id: 810093d7-6e57-42ce-bb6e-58bdaff3d8c3
     content: What about commands to open review, browser, terminal panels from top menu ?
+    children: []
+    metadata:
+      status: pending
+  a7508f21-00cf-4d96-a748-b02b41577a37:
+    id: a7508f21-00cf-4d96-a748-b02b41577a37
+    content: Actions improvements
+    children:
+      - 2f726777-b4cd-4d9b-af65-f05c4403ec7e
+      - fb64b14a-c110-459a-a78d-76113a112219
+      - 5915aaa7-2cec-4055-8fd5-6944a09c6c59
+    metadata:
+      status: completed
+      expanded: false
+      deleted: false
+      plugins: {}
+  2f726777-b4cd-4d9b-af65-f05c4403ec7e:
+    id: 2f726777-b4cd-4d9b-af65-f05c4403ec7e
+    content: Add actions to Edit menu (top bar)
+    children:
+      - 455b6cc6-4e5d-4ed2-ac86-2b0092a69ff8
+      - 18981740-26cc-4a06-9fb2-f5e86ea7bae7
+      - c7fb1c1e-37eb-4a98-908e-80e823b6872f
+      - 3be9e020-ee9d-4aa4-a127-b29a9f42d102
+      - d0945f2d-51b8-4eac-968e-2264ce681687
+      - 1520fea9-7707-4643-b534-57961d3c271a
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  455b6cc6-4e5d-4ed2-ac86-2b0092a69ff8:
+    id: 455b6cc6-4e5d-4ed2-ac86-2b0092a69ff8
+    content: Toggle Task Status (already has Ctrl+K)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  18981740-26cc-4a06-9fb2-f5e86ea7bae7:
+    id: 18981740-26cc-4a06-9fb2-f5e86ea7bae7
+    content: Separator
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c7fb1c1e-37eb-4a98-908e-80e823b6872f:
+    id: c7fb1c1e-37eb-4a98-908e-80e823b6872f
+    content: Indent (already has Tab)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3be9e020-ee9d-4aa4-a127-b29a9f42d102:
+    id: 3be9e020-ee9d-4aa4-a127-b29a9f42d102
+    content: Outdent (already has Shift+Tab)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d0945f2d-51b8-4eac-968e-2264ce681687:
+    id: d0945f2d-51b8-4eac-968e-2264ce681687
+    content: Separator
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1520fea9-7707-4643-b534-57961d3c271a:
+    id: 1520fea9-7707-4643-b534-57961d3c271a
+    content: Select All (needs new hotkey Ctrl+A)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fb64b14a-c110-459a-a78d-76113a112219:
+    id: fb64b14a-c110-459a-a78d-76113a112219
+    content: Add new hotkeys
+    children:
+      - 926cd0bb-d370-409d-84e2-16ef880b8c30
+      - 9935cd3c-936b-471b-b0bf-237e849b3b83
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  926cd0bb-d370-409d-84e2-16ef880b8c30:
+    id: 926cd0bb-d370-409d-84e2-16ef880b8c30
+    content: 'Execute (in terminal, with active context): Ctrl+E'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9935cd3c-936b-471b-b0bf-237e849b3b83:
+    id: 9935cd3c-936b-471b-b0bf-237e849b3b83
+    content: 'Collaborate (with active context): Ctrl+Shift+Enter'
+    children:
+      - 6e41442c-432c-4e84-a966-cad2470566b3
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6e41442c-432c-4e84-a966-cad2470566b3:
+    id: 6e41442c-432c-4e84-a966-cad2470566b3
+    content: If no context is set, do nothing (or show subtle toast)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5915aaa7-2cec-4055-8fd5-6944a09c6c59:
+    id: 5915aaa7-2cec-4055-8fd5-6944a09c6c59
+    content: Show hotkeys in context menu
+    children:
+      - b55423cc-19e8-44aa-9530-0b2d21c72f10
+      - c1a135f8-6e3e-45a3-9f72-207afc5e8ae2
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b55423cc-19e8-44aa-9530-0b2d21c72f10:
+    id: b55423cc-19e8-44aa-9530-0b2d21c72f10
+    content: Display hotkey next to menu item label (same format as top menu)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c1a135f8-6e3e-45a3-9f72-207afc5e8ae2:
+    id: c1a135f8-6e3e-45a3-9f72-207afc5e8ae2
+    content: No hotkeys for submenu triggers
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c7298184-a1d1-4ce5-aef3-743d1ce3ec82:
+    id: c7298184-a1d1-4ce5-aef3-743d1ce3ec82
+    content: Change application name to Arborescent with a capital A
     children: []
     metadata:
       status: pending

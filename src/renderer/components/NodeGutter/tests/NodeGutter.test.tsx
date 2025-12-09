@@ -11,7 +11,6 @@ describe('NodeGutter', () => {
         hasChildren={false}
         expanded={true}
         onToggle={mockOnToggle}
-        pluginIndicators={[]}
       />
     );
 
@@ -25,7 +24,6 @@ describe('NodeGutter', () => {
         hasChildren={true}
         expanded={true}
         onToggle={mockOnToggle}
-        pluginIndicators={[]}
       />
     );
 
@@ -41,7 +39,6 @@ describe('NodeGutter', () => {
         hasChildren={false}
         expanded={true}
         onToggle={mockOnToggle}
-        pluginIndicators={[]}
       />
     );
 
@@ -56,7 +53,6 @@ describe('NodeGutter', () => {
         hasChildren={true}
         expanded={false}
         onToggle={mockOnToggle}
-        pluginIndicators={[]}
       />
     );
 
@@ -72,7 +68,6 @@ describe('NodeGutter', () => {
         hasChildren={true}
         expanded={true}
         onToggle={mockOnToggle}
-        pluginIndicators={[]}
       />
     );
 
@@ -89,7 +84,6 @@ describe('NodeGutter', () => {
         hasChildren={true}
         expanded={true}
         onToggle={mockOnToggle}
-        pluginIndicators={[]}
       />
     );
 
@@ -97,54 +91,6 @@ describe('NodeGutter', () => {
     await user.click(button);
 
     expect(mockOnToggle).toHaveBeenCalledTimes(1);
-  });
-
-  it('should render plugin indicators when provided', () => {
-    const mockOnToggle = vi.fn();
-    const indicators = ['🤖', '✨'];
-
-    render(
-      <NodeGutter
-        hasChildren={false}
-        expanded={true}
-        onToggle={mockOnToggle}
-        pluginIndicators={indicators}
-      />
-    );
-
-    expect(screen.getByText('🤖')).toBeInTheDocument();
-    expect(screen.getByText('✨')).toBeInTheDocument();
-  });
-
-  it('should not render plugin indicators section when none provided', () => {
-    const mockOnToggle = vi.fn();
-    const { container } = render(
-      <NodeGutter
-        hasChildren={false}
-        expanded={true}
-        onToggle={mockOnToggle}
-        pluginIndicators={[]}
-      />
-    );
-
-    expect(container.querySelector('.gutter-plugin-indicators')).not.toBeInTheDocument();
-  });
-
-  it('should render both plugin indicators and chevron', () => {
-    const mockOnToggle = vi.fn();
-    const indicators = ['🤖'];
-
-    render(
-      <NodeGutter
-        hasChildren={true}
-        expanded={true}
-        onToggle={mockOnToggle}
-        pluginIndicators={indicators}
-      />
-    );
-
-    expect(screen.getByText('🤖')).toBeInTheDocument();
-    expect(screen.getByRole('button')).toBeInTheDocument();
   });
 
   describe('applied context indicator', () => {
@@ -155,7 +101,6 @@ describe('NodeGutter', () => {
           hasChildren={false}
           expanded={true}
           onToggle={mockOnToggle}
-          pluginIndicators={[]}
           appliedContext={{ icon: 'star', color: undefined, name: 'My Context' }}
         />
       );
@@ -172,7 +117,6 @@ describe('NodeGutter', () => {
           hasChildren={false}
           expanded={true}
           onToggle={mockOnToggle}
-          pluginIndicators={[]}
         />
       );
 
@@ -186,7 +130,6 @@ describe('NodeGutter', () => {
           hasChildren={false}
           expanded={true}
           onToggle={mockOnToggle}
-          pluginIndicators={[]}
           isContextDeclaration={true}
           contextIcon="flag"
           appliedContext={{ icon: 'star', color: undefined, name: 'My Context' }}
@@ -207,7 +150,6 @@ describe('NodeGutter', () => {
           hasChildren={false}
           expanded={true}
           onToggle={mockOnToggle}
-          pluginIndicators={[]}
           isContextDeclaration={true}
         />
       );
@@ -225,7 +167,6 @@ describe('NodeGutter', () => {
           hasChildren={false}
           expanded={true}
           onToggle={mockOnToggle}
-          pluginIndicators={[]}
           isContextDeclaration={false}
         />
       );
@@ -240,7 +181,6 @@ describe('NodeGutter', () => {
           hasChildren={false}
           expanded={true}
           onToggle={mockOnToggle}
-          pluginIndicators={[]}
         />
       );
 
@@ -254,7 +194,6 @@ describe('NodeGutter', () => {
           hasChildren={false}
           expanded={true}
           onToggle={mockOnToggle}
-          pluginIndicators={[]}
           isContextDeclaration={true}
         />
       );
@@ -265,20 +204,18 @@ describe('NodeGutter', () => {
       expect(indicator?.tagName.toLowerCase()).toBe('span');
     });
 
-    it('should render context indicator alongside chevron and plugin indicators', () => {
+    it('should render context indicator alongside chevron', () => {
       const mockOnToggle = vi.fn();
       const { container } = render(
         <NodeGutter
           hasChildren={true}
           expanded={true}
           onToggle={mockOnToggle}
-          pluginIndicators={['🤖']}
           isContextDeclaration={true}
         />
       );
 
       expect(container.querySelector('.gutter-context-indicator')).toBeInTheDocument();
-      expect(screen.getByText('🤖')).toBeInTheDocument();
       // Only expand toggle is a button (context indicator is now a span)
       expect(screen.getAllByRole('button')).toHaveLength(1);
     });

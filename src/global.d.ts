@@ -1,7 +1,5 @@
 // Global type definitions for Arborescent
 
-import type { PluginPreloadAPI } from '../plugins/core/preload/preload';
-
 declare global {
   interface Window {
     electron: {
@@ -54,7 +52,7 @@ declare global {
       terminalDestroy: (id: string) => Promise<void>;
       onTerminalData: (id: string, callback: (data: string) => void) => () => void;
       onTerminalExit: (id: string, callback: (exitInfo: { exitCode: number; signal?: number }) => void) => () => void;
-    } & PluginPreloadAPI;
+    };
   }
 }
 
