@@ -4,6 +4,46 @@ import { File } from '../../../../store/files/filesStore';
 
 describe('getTabProps', () => {
 
+  describe('displayName', () => {
+    it('should strip .arbo extension from display name', () => {
+      const file: File = {
+        path: '/home/user/documents/project/file.arbo',
+        displayName: 'file.arbo',
+      };
+
+      const result = getTabProps(file, undefined);
+
+      expect(result.displayName).toBe('file');
+    });
+
+    it('should preserve display name without .arbo extension', () => {
+      const file: File = {
+        path: '/tmp/untitled.arbo',
+        displayName: 'Untitled',
+        isTemporary: true,
+      };
+
+      const result = getTabProps(file, undefined);
+
+      expect(result.displayName).toBe('Untitled');
+    });
+
+    it('should preserve zoom tab display names', () => {
+      const file: File = {
+        path: 'zoom:///path/source.arbo#node-1',
+        displayName: 'Some content...',
+        zoomSource: {
+          sourceFilePath: '/path/source.arbo',
+          zoomedNodeId: 'node-1',
+        },
+      };
+
+      const result = getTabProps(file, undefined);
+
+      expect(result.displayName).toBe('Some content...');
+    });
+  });
+
   describe('fullName', () => {
     it('should return file path as fullName for saved files', () => {
       const file: File = {

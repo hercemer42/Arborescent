@@ -22,12 +22,12 @@ export const TabBar = memo(function TabBar() {
     <div className="tab-bar">
       <div className="tab-bar-tabs">
         {files.map((file, index) => {
-          const { isZoomTab, fullName, isLastInGroup, hasZoomToRight } = getTabProps(file, files[index + 1]);
+          const { displayName, isZoomTab, fullName, isLastInGroup, hasZoomToRight } = getTabProps(file, files[index + 1]);
 
           return (
             <Tab
               key={file.path}
-              displayName={file.displayName}
+              displayName={displayName}
               fullName={fullName}
               isActive={file.path === activeFilePath}
               isBlueprintMode={blueprintModeEnabled}

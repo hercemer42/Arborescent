@@ -54,8 +54,9 @@ describe('TabBar', () => {
 
     renderWithProvider(<TabBar />);
 
-    expect(screen.getByText('file1.arbo')).toBeInTheDocument();
-    expect(screen.getByText('file2.arbo')).toBeInTheDocument();
+    // Extension is stripped in display
+    expect(screen.getByText('file1')).toBeInTheDocument();
+    expect(screen.getByText('file2')).toBeInTheDocument();
   });
 
   it('should highlight active tab', () => {
@@ -69,8 +70,8 @@ describe('TabBar', () => {
 
     renderWithProvider(<TabBar />);
 
-    const activeTab = screen.getByText('file1.arbo').closest('.tab');
-    const inactiveTab = screen.getByText('file2.arbo').closest('.tab');
+    const activeTab = screen.getByText('file1').closest('.tab');
+    const inactiveTab = screen.getByText('file2').closest('.tab');
 
     expect(activeTab).toHaveClass('active');
     expect(inactiveTab).not.toHaveClass('active');
@@ -88,7 +89,7 @@ describe('TabBar', () => {
 
     renderWithProvider(<TabBar />);
 
-    await user.click(screen.getByText('file2.arbo'));
+    await user.click(screen.getByText('file2'));
 
     expect(useFilesStore.getState().activeFilePath).toBe('/path/file2.arbo');
   });
@@ -122,7 +123,7 @@ describe('TabBar', () => {
 
     renderWithProvider(<TabBar />);
 
-    const tab = screen.getByText('file1.arbo').closest('.tab');
+    const tab = screen.getByText('file1').closest('.tab');
     expect(tab).toHaveAttribute('title', '/home/user/documents/project/file1.arbo');
   });
 });
