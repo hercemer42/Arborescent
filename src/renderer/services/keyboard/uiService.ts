@@ -182,10 +182,12 @@ async function handleUIShortcuts(event: KeyboardEvent): Promise<void> {
       const result = await store.getState().actions.pasteNodes();
 
       // If no valid markdown nodes, insert plain text at cursor position
+      // Use execCommand for proper undo/redo support
       if (result === 'no-content' && isContentEditableFocused()) {
         try {
           const text = await navigator.clipboard.readText();
           if (text) {
+            // execCommand('insertText') integrates with browser undo stack
             document.execCommand('insertText', false, text);
           }
         } catch {

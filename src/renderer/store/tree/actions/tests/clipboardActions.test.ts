@@ -15,8 +15,8 @@ vi.mock('../../../../utils/markdown', () => ({
     if (!text || text.trim() === '') {
       return { rootNodes: [], allNodes: {} };
     }
-    const lines = text.split('\n').filter((l) => l.trim());
-    const rootNodes: TreeNode[] = lines.map((line, i) => ({
+    const lines = text.split('\n').filter((l: string) => l.trim());
+    const rootNodes: TreeNode[] = lines.map((line: string, i: number) => ({
       id: `parsed-${i}`,
       content: line.replace(/^#\s*/, ''),
       children: [],
@@ -30,6 +30,25 @@ vi.mock('../../../../utils/markdown', () => ({
   }),
 }));
 
+// Default parseMarkdown implementation - for restoration after test overrides
+const defaultParseMarkdownImpl = (text: string) => {
+  if (!text || text.trim() === '') {
+    return { rootNodes: [], allNodes: {} };
+  }
+  const lines = text.split('\n').filter((l: string) => l.trim());
+  const rootNodes: TreeNode[] = lines.map((line: string, i: number) => ({
+    id: `parsed-${i}`,
+    content: line.replace(/^#\s*/, ''),
+    children: [],
+    metadata: {},
+  }));
+  const allNodes: Record<string, TreeNode> = {};
+  rootNodes.forEach((n) => {
+    allNodes[n.id] = n;
+  });
+  return { rootNodes, allNodes };
+};
+
 // Mock logger
 vi.mock('../../../../services/logger', () => ({
   logger: {
@@ -38,15 +57,21 @@ vi.mock('../../../../services/logger', () => ({
   },
 }));
 
+// Mock clipboard service
+vi.mock('../../../../services/clipboardService', () => ({
+  writeToClipboard: vi.fn(),
+  readFromClipboard: vi.fn(),
+}));
+
 // Mock clipboard cache store
-type MockCacheType = { rootNodeIds: string[]; allCutNodeIds?: string[]; timestamp: number; isCut: boolean } | null;
+type MockCacheType = { rootNodeIds: string[]; allCutNodeIds?: string[]; timestamp: number; isCut: boolean; clipboardText: string } | null;
 let currentMockCache: MockCacheType = null;
 
 vi.mock('../../../clipboard/clipboardCacheStore', () => ({
   useClipboardCacheStore: {
     getState: () => ({
-      setCache: vi.fn((rootNodeIds: string[], isCut: boolean, allCutNodeIds?: string[]) => {
-        currentMockCache = { rootNodeIds, allCutNodeIds, timestamp: Date.now(), isCut };
+      setCache: vi.fn((rootNodeIds: string[], isCut: boolean, clipboardText: string, allCutNodeIds?: string[]) => {
+        currentMockCache = { rootNodeIds, allCutNodeIds, timestamp: Date.now(), isCut, clipboardText };
       }),
       getCache: vi.fn(() => currentMockCache),
       clearCache: vi.fn(() => {
@@ -116,23 +141,33 @@ describe('clipboardActions', () => {
   let visualEffects: VisualEffectsActions;
   let actions: ClipboardActions;
 
-  // Mock clipboard
-  const mockClipboard = {
-    writeText: vi.fn().mockResolvedValue(undefined),
-    readText: vi.fn().mockResolvedValue(''),
-  };
+  // Mock clipboard content - tracks what was written so read returns it
+  let mockClipboardContent = '';
+  // Clipboard service mock functions
+  let mockWriteToClipboard: ReturnType<typeof vi.fn>;
+  let mockReadFromClipboard: ReturnType<typeof vi.fn>;
 
-  beforeEach(() => {
+  beforeEach(async () => {
     vi.clearAllMocks();
-    // Clear the clipboard cache for each test
-    currentMockCache = null;
 
-    // Setup navigator.clipboard mock
-    Object.defineProperty(navigator, 'clipboard', {
-      value: mockClipboard,
-      writable: true,
-      configurable: true,
+    // Restore parseMarkdown to default implementation
+    const { parseMarkdown } = await import('../../../../utils/markdown');
+    vi.mocked(parseMarkdown).mockImplementation(defaultParseMarkdownImpl);
+
+    // Configure clipboard service mocks
+    const { writeToClipboard, readFromClipboard } = await import('../../../../services/clipboardService');
+    mockWriteToClipboard = vi.mocked(writeToClipboard);
+    mockReadFromClipboard = vi.mocked(readFromClipboard);
+    mockWriteToClipboard.mockImplementation((text: string) => {
+      mockClipboardContent = text;
+      return Promise.resolve(true);
     });
+    mockReadFromClipboard.mockImplementation(() => Promise.resolve(mockClipboardContent));
+
+    // Clear the clipboard cache and content for each test
+    currentMockCache = null;
+    currentMockHyperlinkCache = null;
+    mockClipboardContent = '';
 
     mockExecuteCommand = vi.fn((command: { execute: () => void }) => {
       command.execute();
@@ -220,7 +255,7 @@ describe('clipboardActions', () => {
         const result = await actions.cutNodes();
 
         expect(result).toBe('no-selection');
-        expect(mockClipboard.writeText).not.toHaveBeenCalled();
+        expect(mockWriteToClipboard).not.toHaveBeenCalled();
       });
 
       it('should cut active node to clipboard', async () => {
@@ -229,7 +264,7 @@ describe('clipboardActions', () => {
         const result = await actions.cutNodes();
 
         expect(result).toBe('cut');
-        expect(mockClipboard.writeText).toHaveBeenCalledWith('# Task 1');
+        expect(mockWriteToClipboard).toHaveBeenCalledWith('# Task 1', expect.any(String));
       });
 
       it('should mark node as cut (not delete)', async () => {
@@ -269,7 +304,7 @@ describe('clipboardActions', () => {
         const result = await actions.cutNodes();
 
         expect(result).toBe('cut');
-        expect(mockClipboard.writeText).toHaveBeenCalled();
+        expect(mockWriteToClipboard).toHaveBeenCalled();
       });
 
       it('should mark all selected nodes as cut', async () => {
@@ -295,7 +330,7 @@ describe('clipboardActions', () => {
 
     it('should return no-selection on clipboard error', async () => {
       state.activeNodeId = 'node-1';
-      mockClipboard.writeText.mockRejectedValueOnce(new Error('Clipboard error'));
+      mockWriteToClipboard.mockResolvedValueOnce(false);
 
       const result = await actions.cutNodes();
 
@@ -324,7 +359,7 @@ describe('clipboardActions', () => {
         const result = await actions.copyNodes();
 
         expect(result).toBe('no-selection');
-        expect(mockClipboard.writeText).not.toHaveBeenCalled();
+        expect(mockWriteToClipboard).not.toHaveBeenCalled();
       });
 
       it('should copy active node to clipboard', async () => {
@@ -333,7 +368,7 @@ describe('clipboardActions', () => {
         const result = await actions.copyNodes();
 
         expect(result).toBe('copied');
-        expect(mockClipboard.writeText).toHaveBeenCalledWith('# Task 1');
+        expect(mockWriteToClipboard).toHaveBeenCalledWith('# Task 1', expect.any(String));
       });
 
       it('should flash the copied node', async () => {
@@ -360,7 +395,7 @@ describe('clipboardActions', () => {
         const result = await actions.copyNodes();
 
         expect(result).toBe('copied');
-        expect(mockClipboard.writeText).toHaveBeenCalled();
+        expect(mockWriteToClipboard).toHaveBeenCalled();
       });
 
       it('should flash all selected nodes', async () => {
@@ -376,7 +411,7 @@ describe('clipboardActions', () => {
 
     it('should return no-selection on clipboard error', async () => {
       state.activeNodeId = 'node-1';
-      mockClipboard.writeText.mockRejectedValueOnce(new Error('Clipboard error'));
+      mockWriteToClipboard.mockResolvedValueOnce(false);
 
       const result = await actions.copyNodes();
 
@@ -386,7 +421,7 @@ describe('clipboardActions', () => {
 
   describe('pasteNodes', () => {
     it('should return no-content when clipboard is empty', async () => {
-      mockClipboard.readText.mockResolvedValueOnce('');
+      mockClipboardContent = '';
 
       const result = await actions.pasteNodes();
 
@@ -395,7 +430,7 @@ describe('clipboardActions', () => {
 
     it('should paste nodes as children of active node', async () => {
       state.activeNodeId = 'node-1';
-      mockClipboard.readText.mockResolvedValueOnce('# Pasted Node');
+      mockClipboardContent = '# Pasted Node';
 
       const result = await actions.pasteNodes();
 
@@ -405,7 +440,7 @@ describe('clipboardActions', () => {
 
     it('should paste nodes under root when no active node', async () => {
       state.activeNodeId = null;
-      mockClipboard.readText.mockResolvedValueOnce('# Pasted Node');
+      mockClipboardContent = '# Pasted Node';
 
       const result = await actions.pasteNodes();
 
@@ -415,7 +450,7 @@ describe('clipboardActions', () => {
 
     it('should flash pasted nodes', async () => {
       state.activeNodeId = 'node-1';
-      mockClipboard.readText.mockResolvedValueOnce('# Pasted Node');
+      mockClipboardContent = '# Pasted Node';
 
       await actions.pasteNodes();
 
@@ -423,7 +458,7 @@ describe('clipboardActions', () => {
     });
 
     it('should return no-content on clipboard error', async () => {
-      mockClipboard.readText.mockRejectedValueOnce(new Error('Clipboard error'));
+      mockReadFromClipboard.mockResolvedValueOnce(null);
 
       const result = await actions.pasteNodes();
 
@@ -433,7 +468,7 @@ describe('clipboardActions', () => {
     it('should return no-content when no target parent', async () => {
       state.activeNodeId = null;
       state.rootNodeId = '';
-      mockClipboard.readText.mockResolvedValueOnce('# Pasted Node');
+      mockClipboardContent = '# Pasted Node';
 
       const result = await actions.pasteNodes();
 
@@ -442,13 +477,18 @@ describe('clipboardActions', () => {
 
     it('should return no-content for plain text to allow browser native paste', async () => {
       const { parseMarkdown } = await import('../../../../utils/markdown');
-      // Override parseMarkdown to return empty rootNodes for this call
-      vi.mocked(parseMarkdown).mockReturnValueOnce({ rootNodes: [], allNodes: {} });
+      // Override parseMarkdown to return empty rootNodes for plain text
+      vi.mocked(parseMarkdown).mockImplementation((text: string) => {
+        if (text === 'Just some plain text') {
+          return { rootNodes: [], allNodes: {} };
+        }
+        return defaultParseMarkdownImpl(text);
+      });
 
       state.activeNodeId = 'node-1';
       currentMockCache = null;
       currentMockHyperlinkCache = null;
-      mockClipboard.readText.mockResolvedValueOnce('Just some plain text');
+      mockClipboardContent = 'Just some plain text';
 
       const result = await actions.pasteNodes();
 
@@ -460,7 +500,7 @@ describe('clipboardActions', () => {
     it('should paste hyperlink when regular cache is empty and hyperlink cache exists', async () => {
       state.activeNodeId = 'node-1';
       // Empty clipboard and no regular cache
-      mockClipboard.readText.mockResolvedValueOnce('');
+      mockClipboardContent = '';
       currentMockCache = null;
       // But has hyperlink cache (same file path as current file)
       currentMockHyperlinkCache = {
@@ -474,6 +514,68 @@ describe('clipboardActions', () => {
 
       expect(result).toBe('pasted');
       expect(mockExecuteCommand).toHaveBeenCalled();
+    });
+
+    describe('internal cache paste (cut/copy then paste)', () => {
+      it('should return pasted when internal copy cache exists and clipboard matches', async () => {
+        const cachedMarkdown = '# Task 2';
+        // Set up internal cache (simulates copying a node)
+        currentMockCache = {
+          rootNodeIds: ['node-2'],
+          timestamp: Date.now(),
+          isCut: false,
+          clipboardText: cachedMarkdown,
+        };
+        state.activeNodeId = 'node-1';
+        // Clipboard matches cache - cache is valid
+        mockClipboardContent = cachedMarkdown;
+
+        const result = await actions.pasteNodes();
+
+        expect(result).toBe('pasted');
+        expect(mockExecuteCommand).toHaveBeenCalled();
+      });
+
+      it('should return pasted when internal cut cache exists and clipboard matches', async () => {
+        const cachedMarkdown = '# Task 2';
+        // Set up internal cache (simulates cutting a node)
+        currentMockCache = {
+          rootNodeIds: ['node-2'],
+          allCutNodeIds: ['node-2'],
+          timestamp: Date.now(),
+          isCut: true,
+          clipboardText: cachedMarkdown,
+        };
+        state.activeNodeId = 'node-1';
+        state.nodes['node-2'].metadata = { ...state.nodes['node-2'].metadata, transient: { isCut: true } };
+        // Clipboard matches cache - cache is valid
+        mockClipboardContent = cachedMarkdown;
+
+        const result = await actions.pasteNodes();
+
+        expect(result).toBe('pasted');
+        expect(mockExecuteCommand).toHaveBeenCalled();
+      });
+
+      it('should ignore stale cache when clipboard content changed externally', async () => {
+        // Set up internal cache with original copied content
+        currentMockCache = {
+          rootNodeIds: ['node-2'],
+          timestamp: Date.now(),
+          isCut: false,
+          clipboardText: '# Task 2',
+        };
+        state.activeNodeId = 'node-1';
+        // Clipboard has DIFFERENT content (user copied something else externally)
+        // Using empty string so parseMarkdown returns empty rootNodes naturally
+        mockClipboardContent = '';
+
+        const result = await actions.pasteNodes();
+
+        // Cache is stale (clipboard empty != '# Task 2'), falls through to external paste
+        // Empty clipboard returns no-content
+        expect(result).toBe('no-content');
+      });
     });
   });
 
@@ -557,7 +659,7 @@ describe('clipboardActions', () => {
       const result = await actions.cutNodes();
 
       expect(result).toBe('no-selection');
-      expect(mockClipboard.writeText).not.toHaveBeenCalled();
+      expect(mockWriteToClipboard).not.toHaveBeenCalled();
     });
 
     it('should fail delete if root node is selected', () => {
@@ -575,7 +677,7 @@ describe('clipboardActions', () => {
       const result = await actions.copyNodes();
 
       expect(result).toBe('copied');
-      expect(mockClipboard.writeText).toHaveBeenCalled();
+      expect(mockWriteToClipboard).toHaveBeenCalled();
     });
 
     it('should fail cut if root is in multi-selection (indicates bug)', async () => {
@@ -640,29 +742,33 @@ describe('clipboardActions', () => {
 
     describe('paste from cache', () => {
       it('should paste from cache when nodes exist (copy)', async () => {
+        const cachedMarkdown = '# Task 1';
         // Setup cache referencing existing nodes (copy, not cut)
         currentMockCache = {
           rootNodeIds: ['node-1'],
           timestamp: Date.now(),
           isCut: false,
+          clipboardText: cachedMarkdown,
         };
         state.activeNodeId = 'node-2';
+        // Clipboard matches cache - cache is valid
+        mockClipboardContent = cachedMarkdown;
 
         const result = await actions.pasteNodes();
 
         expect(result).toBe('pasted');
         expect(mockExecuteCommand).toHaveBeenCalled();
-        // Should NOT read from system clipboard when cache is available
-        expect(mockClipboard.readText).not.toHaveBeenCalled();
       });
 
       it('should move nodes when pasting cut cache', async () => {
+        const cachedMarkdown = '# Task 2';
         // Setup cache as cut operation
         currentMockCache = {
           rootNodeIds: ['node-2'],
           allCutNodeIds: ['node-2'],
           timestamp: Date.now(),
           isCut: true,
+          clipboardText: cachedMarkdown,
         };
         // Mark node as cut via transient metadata
         state.nodes['node-2'] = {
@@ -670,6 +776,8 @@ describe('clipboardActions', () => {
           metadata: { ...state.nodes['node-2'].metadata, transient: { isCut: true } },
         };
         state.activeNodeId = 'node-1'; // paste into node-1
+        // Clipboard matches cache - cache is valid
+        mockClipboardContent = cachedMarkdown;
 
         const result = await actions.pasteNodes();
 
@@ -680,12 +788,14 @@ describe('clipboardActions', () => {
       });
 
       it('should cancel when pasting cut nodes into same parent', async () => {
+        const cachedMarkdown = '# Task 2';
         // node-2 is already a child of root, pasting into root should be a no-op
         currentMockCache = {
           rootNodeIds: ['node-2'],
           allCutNodeIds: ['node-2'],
           timestamp: Date.now(),
           isCut: true,
+          clipboardText: cachedMarkdown,
         };
         // Mark node as cut via transient metadata
         state.nodes['node-2'] = {
@@ -693,6 +803,8 @@ describe('clipboardActions', () => {
           metadata: { ...state.nodes['node-2'].metadata, transient: { isCut: true } },
         };
         state.activeNodeId = null; // paste into root (node-2's current parent)
+        // Clipboard matches cache - cache is valid
+        mockClipboardContent = cachedMarkdown;
 
         const result = await actions.pasteNodes();
 
@@ -705,29 +817,32 @@ describe('clipboardActions', () => {
         currentMockCache = null;
         currentMockHyperlinkCache = null; // Clear hyperlink cache too
         state.activeNodeId = 'node-1';
-        mockClipboard.readText.mockResolvedValueOnce('# External Content');
+        mockClipboardContent = '# External Content';
 
         const result = await actions.pasteNodes();
 
         expect(result).toBe('pasted');
-        expect(mockClipboard.readText).toHaveBeenCalled();
+        expect(mockReadFromClipboard).toHaveBeenCalled();
       });
 
       it('should fall back to clipboard when cached nodes no longer exist', async () => {
+        const cachedMarkdown = '# Deleted Node';
         // Cache references non-existent nodes (copy case)
         currentMockCache = {
           rootNodeIds: ['deleted-node'],
           timestamp: Date.now(),
           isCut: false,
+          clipboardText: cachedMarkdown,
         };
         currentMockHyperlinkCache = null; // Clear hyperlink cache too
         state.activeNodeId = 'node-1';
-        mockClipboard.readText.mockResolvedValueOnce('# External Content');
+        // Clipboard matches cache - cache is valid, but nodes don't exist
+        mockClipboardContent = cachedMarkdown;
 
         const result = await actions.pasteNodes();
 
+        // Falls back to external paste since nodes don't exist
         expect(result).toBe('pasted');
-        expect(mockClipboard.readText).toHaveBeenCalled();
       });
     });
 
@@ -1043,7 +1158,7 @@ describe('clipboardActions', () => {
         state.activeNodeId = 'hyperlink-node';
 
         // Setup clipboard with content
-        mockClipboard.readText.mockResolvedValueOnce('# Pasted Node');
+        mockClipboardContent = '# Pasted Node';
 
         const result = await actions.pasteNodes();
 
@@ -1064,7 +1179,7 @@ describe('clipboardActions', () => {
         state.ancestorRegistry['external-link-node'] = ['root'];
         state.activeNodeId = 'external-link-node';
 
-        mockClipboard.readText.mockResolvedValueOnce('# Pasted Node');
+        mockClipboardContent = '# Pasted Node';
 
         const result = await actions.pasteNodes();
 
@@ -1079,7 +1194,7 @@ describe('clipboardActions', () => {
     describe('external URL detection', () => {
       it('should create external link node when pasting http URL', async () => {
         state.activeNodeId = 'node-1';
-        mockClipboard.readText.mockResolvedValueOnce('https://example.com/page');
+        mockClipboardContent = 'https://example.com/page';
 
         const result = await actions.pasteNodes();
 
@@ -1094,7 +1209,7 @@ describe('clipboardActions', () => {
 
       it('should create external link node when pasting http URL with whitespace', async () => {
         state.activeNodeId = 'node-1';
-        mockClipboard.readText.mockResolvedValueOnce('  http://example.com  \n');
+        mockClipboardContent = '  http://example.com  \n';
 
         const result = await actions.pasteNodes();
 
@@ -1108,7 +1223,7 @@ describe('clipboardActions', () => {
 
       it('should not treat non-URL text as external link', async () => {
         state.activeNodeId = 'node-1';
-        mockClipboard.readText.mockResolvedValueOnce('# Regular markdown');
+        mockClipboardContent = '# Regular markdown';
 
         const result = await actions.pasteNodes();
 
@@ -1122,7 +1237,7 @@ describe('clipboardActions', () => {
       it('should add external link as child of active node', async () => {
         state.activeNodeId = 'node-1';
         const originalChildCount = state.nodes['node-1'].children.length;
-        mockClipboard.readText.mockResolvedValueOnce('https://github.com');
+        mockClipboardContent = 'https://github.com';
 
         await actions.pasteNodes();
 

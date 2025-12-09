@@ -8,7 +8,7 @@ describe('clipboardCacheStore', () => {
 
   describe('setCache', () => {
     it('should store root node IDs', () => {
-      useClipboardCacheStore.getState().setCache(['node-1', 'node-2'], false);
+      useClipboardCacheStore.getState().setCache(['node-1', 'node-2'], false, '# Node 1\n# Node 2');
 
       const cache = useClipboardCacheStore.getState().getCache();
       expect(cache).not.toBeNull();
@@ -18,7 +18,7 @@ describe('clipboardCacheStore', () => {
     it('should include timestamp', () => {
       const before = Date.now();
 
-      useClipboardCacheStore.getState().setCache(['node-1'], false);
+      useClipboardCacheStore.getState().setCache(['node-1'], false, '# Node 1');
 
       const after = Date.now();
       const cache = useClipboardCacheStore.getState().getCache();
@@ -28,25 +28,33 @@ describe('clipboardCacheStore', () => {
     });
 
     it('should replace existing cache', () => {
-      useClipboardCacheStore.getState().setCache(['first'], false);
-      useClipboardCacheStore.getState().setCache(['second'], false);
+      useClipboardCacheStore.getState().setCache(['first'], false, '# First');
+      useClipboardCacheStore.getState().setCache(['second'], false, '# Second');
 
       const cache = useClipboardCacheStore.getState().getCache();
       expect(cache?.rootNodeIds).toEqual(['second']);
     });
 
     it('should store isCut flag for copy operation', () => {
-      useClipboardCacheStore.getState().setCache(['node-1'], false);
+      useClipboardCacheStore.getState().setCache(['node-1'], false, '# Node 1');
 
       const cache = useClipboardCacheStore.getState().getCache();
       expect(cache?.isCut).toBe(false);
     });
 
     it('should store isCut flag for cut operation', () => {
-      useClipboardCacheStore.getState().setCache(['node-1'], true);
+      useClipboardCacheStore.getState().setCache(['node-1'], true, '# Node 1');
 
       const cache = useClipboardCacheStore.getState().getCache();
       expect(cache?.isCut).toBe(true);
+    });
+
+    it('should store clipboard text for cache validation', () => {
+      const clipboardText = '# Node 1';
+      useClipboardCacheStore.getState().setCache(['node-1'], false, clipboardText);
+
+      const cache = useClipboardCacheStore.getState().getCache();
+      expect(cache?.clipboardText).toBe(clipboardText);
     });
   });
 
@@ -57,7 +65,7 @@ describe('clipboardCacheStore', () => {
     });
 
     it('should return cached content', () => {
-      useClipboardCacheStore.getState().setCache(['node-1'], false);
+      useClipboardCacheStore.getState().setCache(['node-1'], false, '# Node 1');
 
       const cache = useClipboardCacheStore.getState().getCache();
       expect(cache).not.toBeNull();
@@ -67,7 +75,7 @@ describe('clipboardCacheStore', () => {
 
   describe('clearCache', () => {
     it('should clear cached content', () => {
-      useClipboardCacheStore.getState().setCache(['node-1'], false);
+      useClipboardCacheStore.getState().setCache(['node-1'], false, '# Node 1');
       useClipboardCacheStore.getState().clearCache();
 
       const cache = useClipboardCacheStore.getState().getCache();
@@ -81,13 +89,13 @@ describe('clipboardCacheStore', () => {
     });
 
     it('should return true when cache has content', () => {
-      useClipboardCacheStore.getState().setCache(['node-1'], false);
+      useClipboardCacheStore.getState().setCache(['node-1'], false, '# Node 1');
 
       expect(useClipboardCacheStore.getState().hasCache()).toBe(true);
     });
 
     it('should return false after cache is cleared', () => {
-      useClipboardCacheStore.getState().setCache(['node-1'], false);
+      useClipboardCacheStore.getState().setCache(['node-1'], false, '# Node 1');
       useClipboardCacheStore.getState().clearCache();
 
       expect(useClipboardCacheStore.getState().hasCache()).toBe(false);

@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2025-12-09T17:01:52.037Z'
+updated: '2025-12-09T18:20:39.066Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -6155,7 +6155,7 @@ nodes:
       - bf7a428b-6e45-4024-8eea-a1491604e927
     metadata:
       status: pending
-      expanded: false
+      expanded: true
       deleted: false
       plugins: {}
       isContextDeclaration: true
@@ -6276,6 +6276,7 @@ nodes:
     children:
       - 504e6f7a-3dae-41f0-b7c6-9f63ba66900d
       - 6328bcde-087d-4a83-8bf7-974dab32f3c3
+      - 1a4afd5a-a5bb-4073-a467-f730b24f2a65
     metadata:
       status: pending
       expanded: true
@@ -16255,5 +16256,44 @@ nodes:
     children: []
     metadata:
       status: pending
+  1a4afd5a-a5bb-4073-a467-f730b24f2a65:
+    id: 1a4afd5a-a5bb-4073-a467-f730b24f2a65
+    content: Automated testing
+    children:
+      - e05aa3ca-f7aa-4086-ae26-db404d6e55e4
+      - 57edc3d9-fbda-4b6c-a800-c49bd8f4dd2a
+      - 804b0413-b5c7-4e87-9561-8447bc3a1737
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e05aa3ca-f7aa-4086-ae26-db404d6e55e4:
+    id: e05aa3ca-f7aa-4086-ae26-db404d6e55e4
+    content: Mock at the right level - mock the imported module, not underlying APIs
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  57edc3d9-fbda-4b6c-a800-c49bd8f4dd2a:
+    id: 57edc3d9-fbda-4b6c-a800-c49bd8f4dd2a
+    content: Test isolation - clear all shared state in beforeEach, not just some of it
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  804b0413-b5c7-4e87-9561-8447bc3a1737:
+    id: 804b0413-b5c7-4e87-9561-8447bc3a1737
+    content: Avoid mockReturnValueOnce - use mockImplementation with conditionals instead
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
 summaryDateFrom: '2025-12-08'
 summaryDateTo: '2025-12-09'

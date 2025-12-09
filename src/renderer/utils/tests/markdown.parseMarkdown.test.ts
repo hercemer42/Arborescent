@@ -190,4 +190,36 @@ describe('parseMarkdown', () => {
       expect(rootNodes[0].metadata.appliedContextIds).toBeUndefined();
     });
   });
+
+  describe('plain text without markdown headings', () => {
+    it('returns empty result for plain text without headings', () => {
+      const plainText = 'hello world';
+      const { rootNodes, allNodes } = parseMarkdown(plainText);
+
+      expect(rootNodes).toHaveLength(0);
+      expect(Object.keys(allNodes)).toHaveLength(0);
+    });
+
+    it('returns empty result for multi-line plain text', () => {
+      const plainText = 'first line\nsecond line\nthird line';
+      const { rootNodes, allNodes } = parseMarkdown(plainText);
+
+      expect(rootNodes).toHaveLength(0);
+      expect(Object.keys(allNodes)).toHaveLength(0);
+    });
+
+    it('returns empty result for empty string', () => {
+      const { rootNodes, allNodes } = parseMarkdown('');
+
+      expect(rootNodes).toHaveLength(0);
+      expect(Object.keys(allNodes)).toHaveLength(0);
+    });
+
+    it('returns empty result for whitespace only', () => {
+      const { rootNodes, allNodes } = parseMarkdown('   \n  \n   ');
+
+      expect(rootNodes).toHaveLength(0);
+      expect(Object.keys(allNodes)).toHaveLength(0);
+    });
+  });
 });

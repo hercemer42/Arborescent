@@ -14,6 +14,8 @@ export interface ClipboardCacheContent {
   timestamp: number;
   /** Whether this is a cut (move) or copy operation */
   isCut: boolean;
+  /** The markdown text written to clipboard, used to detect if clipboard was overwritten externally */
+  clipboardText: string;
 }
 
 interface ClipboardCacheState {
@@ -22,8 +24,8 @@ interface ClipboardCacheState {
 }
 
 interface ClipboardCacheActions {
-  /** Set the clipboard cache with copied/cut node IDs */
-  setCache: (rootNodeIds: string[], isCut: boolean, allCutNodeIds?: string[]) => void;
+  /** Set the clipboard cache with copied/cut node IDs and the clipboard text */
+  setCache: (rootNodeIds: string[], isCut: boolean, clipboardText: string, allCutNodeIds?: string[]) => void;
   /** Get the current cache content */
   getCache: () => ClipboardCacheContent | null;
   /** Clear the cache */
@@ -37,13 +39,14 @@ export type ClipboardCacheStore = ClipboardCacheState & ClipboardCacheActions;
 export const useClipboardCacheStore = create<ClipboardCacheStore>((set, get) => ({
   cache: null,
 
-  setCache: (rootNodeIds: string[], isCut: boolean, allCutNodeIds?: string[]) => {
+  setCache: (rootNodeIds: string[], isCut: boolean, clipboardText: string, allCutNodeIds?: string[]) => {
     set({
       cache: {
         rootNodeIds,
         allCutNodeIds,
         timestamp: Date.now(),
         isCut,
+        clipboardText,
       },
     });
   },

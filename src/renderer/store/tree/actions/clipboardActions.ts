@@ -571,7 +571,7 @@ export const createClipboardActions = (
     actions.executeCommand(command);
 
     // Cache the root node IDs and all cut IDs for paste operation
-    useClipboardCacheStore.getState().setCache(nodeIds, true, allCutIds);
+    useClipboardCacheStore.getState().setCache(nodeIds, true, markdown, allCutIds);
 
     logger.info(`Cut ${nodeIds.length} node(s)`, 'ClipboardActions');
     return 'cut';
@@ -594,7 +594,7 @@ export const createClipboardActions = (
 
     // Cache node IDs for internal paste
     const nodeIds = getNodeIdsFromSelection(selection);
-    useClipboardCacheStore.getState().setCache(nodeIds, false);
+    useClipboardCacheStore.getState().setCache(nodeIds, false, markdown);
 
     flashNodes(nodeIds, visualEffects);
 
@@ -627,8 +627,13 @@ export const createClipboardActions = (
       clearCutState,
     };
 
-    // Try cut-paste first
-    if (cache) {
+    // Check if cache is still valid by comparing clipboard content
+    // If user copied something else externally, the cache is stale
+    const clipboardText = await readFromClipboard('ClipboardActions:paste');
+    const cacheIsValid = cache && clipboardText === cache.clipboardText;
+
+    // Try cut-paste first (only if cache is valid)
+    if (cacheIsValid) {
       const cutResult = handleCutPaste(cache, ctx);
       if (cutResult !== null) return cutResult;
 
