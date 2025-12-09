@@ -1,24 +1,23 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 
-// Mock typo-js before importing spellcheck module
-const mockCheck = vi.fn();
+// Mock nspell before importing spellcheck module
+const mockCorrect = vi.fn();
 const mockSuggest = vi.fn();
 
-vi.mock('typo-js', () => {
+vi.mock('nspell', () => {
   return {
     default: vi.fn().mockImplementation(() => ({
-      check: mockCheck,
+      correct: mockCorrect,
       suggest: mockSuggest,
-      loaded: true,
     })),
   };
 });
 
-vi.mock('typo-js/dictionaries/en_US/en_US.aff?raw', () => ({
+vi.mock('../../assets/dictionaries/en.aff?raw', () => ({
   default: 'mock aff data',
 }));
 
-vi.mock('typo-js/dictionaries/en_US/en_US.dic?raw', () => ({
+vi.mock('../../assets/dictionaries/en.dic?raw', () => ({
   default: 'mock dic data',
 }));
 
@@ -35,32 +34,32 @@ describe('spellcheck', () => {
   describe('initSpellcheck', () => {
     it('should initialize the dictionary', () => {
       // Already initialized in beforeEach
-      expect(mockCheck).toBeDefined();
+      expect(mockCorrect).toBeDefined();
     });
   });
 
   describe('isMisspelled', () => {
     it('should return false for correctly spelled words', () => {
-      mockCheck.mockReturnValue(true);
+      mockCorrect.mockReturnValue(true);
       expect(isMisspelled('hello')).toBe(false);
-      expect(mockCheck).toHaveBeenCalledWith('hello');
+      expect(mockCorrect).toHaveBeenCalledWith('hello');
     });
 
     it('should return true for misspelled words', () => {
-      mockCheck.mockReturnValue(false);
+      mockCorrect.mockReturnValue(false);
       expect(isMisspelled('helllo')).toBe(true);
-      expect(mockCheck).toHaveBeenCalledWith('helllo');
+      expect(mockCorrect).toHaveBeenCalledWith('helllo');
     });
 
     it('should return false for words shorter than 2 characters', () => {
       expect(isMisspelled('a')).toBe(false);
-      expect(mockCheck).not.toHaveBeenCalled();
+      expect(mockCorrect).not.toHaveBeenCalled();
     });
 
     it('should return false for numbers', () => {
       expect(isMisspelled('123')).toBe(false);
       expect(isMisspelled('456789')).toBe(false);
-      expect(mockCheck).not.toHaveBeenCalled();
+      expect(mockCorrect).not.toHaveBeenCalled();
     });
 
     it('should return false for words with multiple uppercase letters (likely code)', () => {
@@ -69,14 +68,14 @@ describe('spellcheck', () => {
       expect(isMisspelled('API')).toBe(false);
       expect(isMisspelled('HTML')).toBe(false);
       expect(isMisspelled('XMLHttpRequest')).toBe(false);
-      expect(mockCheck).not.toHaveBeenCalled();
+      expect(mockCorrect).not.toHaveBeenCalled();
     });
 
     it('should check simple camelCase words with one uppercase', () => {
       // Words like "camelCase" with only one uppercase are still checked
-      mockCheck.mockReturnValue(false);
+      mockCorrect.mockReturnValue(false);
       expect(isMisspelled('camelCase')).toBe(true);
-      expect(mockCheck).toHaveBeenCalledWith('camelCase');
+      expect(mockCorrect).toHaveBeenCalledWith('camelCase');
     });
   });
 
@@ -103,13 +102,13 @@ describe('spellcheck', () => {
 
   describe('checkWord', () => {
     it('should return misspelled: false for correctly spelled words', () => {
-      mockCheck.mockReturnValue(true);
+      mockCorrect.mockReturnValue(true);
       const result = checkWord('hello');
       expect(result).toEqual({ misspelled: false, suggestions: [] });
     });
 
     it('should return misspelled: true with suggestions for misspelled words', () => {
-      mockCheck.mockReturnValue(false);
+      mockCorrect.mockReturnValue(false);
       mockSuggest.mockReturnValue(['hello', 'hallo']);
       const result = checkWord('helllo');
       expect(result).toEqual({

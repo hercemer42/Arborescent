@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2025-12-09T22:07:21.652Z'
+updated: '2025-12-09T22:43:26.819Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -516,6 +516,7 @@ nodes:
       - c78918da-7741-4ffe-8d47-4a42a4ec35d8
       - 792b7b44-6bfb-4ff6-9151-1b092d688998
       - 25df27c2-c4a0-4d81-9ef5-997c096c2bf1
+      - 7bc450dd-64ef-40d6-a60b-8c7d74634c1c
     metadata:
       status: completed
       expanded: false
@@ -9344,7 +9345,7 @@ nodes:
       blueprintIcon: Bug
       blueprintColor: '#ef4444'
       appliedContextId: 6690289a-e02f-48bc-9225-a1083b7b324f
-      expanded: false
+      expanded: true
   aff16275-6d8e-49c9-b862-76875858d4af:
     id: aff16275-6d8e-49c9-b862-76875858d4af
     content: Avoid adding comments specific to the bug fix unless really needed
@@ -15268,8 +15269,7 @@ nodes:
   c25cf481-a0d1-495d-9cea-498f1135eb8c:
     id: c25cf481-a0d1-495d-9cea-498f1135eb8c
     content: Minor feature
-    children:
-      - 7bc450dd-64ef-40d6-a60b-8c7d74634c1c
+    children: []
     metadata:
       status: completed
       expanded: true
@@ -15394,6 +15394,7 @@ nodes:
       - cc522bbb-99fe-499f-b9d8-a62c7ce50575
       - 8210b1f6-ba52-4657-ae8f-39c3ed91ef61
       - 0a6b6c63-425c-4994-8419-d8f06c7a930d
+      - 5040deb6-0361-42e4-84a6-7afeb8b9a5f8
     metadata:
       status: pending
       expanded: true
@@ -16422,7 +16423,8 @@ nodes:
   3881490a-b11c-4052-ad46-020faad5bb2b:
     id: 3881490a-b11c-4052-ad46-020faad5bb2b
     content: In progress
-    children: []
+    children:
+      - 66e52be2-6759-442d-9bf4-e0b62c1d9f13
     metadata:
       status: pending
       appliedContextIds:
@@ -16448,14 +16450,14 @@ nodes:
     content: Browser improvements
     children:
       - 6f15ed4b-1184-47b0-b1bf-6bcc7a048f46
-      - 07f6ea7e-47b7-4f0b-8713-f4e56d14a823
       - 4f682959-5584-46a0-b142-3a9a3d567599
       - 746bf172-b3d9-4bae-a840-99114315fdd1
     metadata:
-      status: pending
-      expanded: true
+      status: completed
+      expanded: false
       deleted: false
       plugins: {}
+      resolvedAt: '2025-12-09T22:40:10.533Z'
   6f15ed4b-1184-47b0-b1bf-6bcc7a048f46:
     id: 6f15ed4b-1184-47b0-b1bf-6bcc7a048f46
     content: Hide navigation bar when no active tab
@@ -16463,76 +16465,52 @@ nodes:
       - 4e6deaa6-a6d7-4e60-b2f4-571d51c9e343
       - da9fcb34-3d70-4180-8a41-ce48108fdb3b
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
+      resolvedAt: '2025-12-09T22:40:10.533Z'
   4e6deaa6-a6d7-4e60-b2f4-571d51c9e343:
     id: 4e6deaa6-a6d7-4e60-b2f4-571d51c9e343
     content: Back/forward/search bar should disappear when there are no browser tabs open
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
+      resolvedAt: '2025-12-09T22:40:10.533Z'
   da9fcb34-3d70-4180-8a41-ce48108fdb3b:
     id: da9fcb34-3d70-4180-8a41-ce48108fdb3b
     content: This declutters the UI when browser panel is empty
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  07f6ea7e-47b7-4f0b-8713-f4e56d14a823:
-    id: 07f6ea7e-47b7-4f0b-8713-f4e56d14a823
-    content: Fix back/forward icon sizing and placement
-    children:
-      - 89ebbc64-b4e4-4cdf-80b4-5187c555abc5
-      - 838b8ef1-4b1c-4418-a76c-f5960705e9d7
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  89ebbc64-b4e4-4cdf-80b4-5187c555abc5:
-    id: 89ebbc64-b4e4-4cdf-80b4-5187c555abc5
-    content: Make them 20% bigger
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  838b8ef1-4b1c-4418-a76c-f5960705e9d7:
-    id: 838b8ef1-4b1c-4418-a76c-f5960705e9d7
-    content: Move them up 5 pixels
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
+      resolvedAt: '2025-12-09T22:40:10.533Z'
   4f682959-5584-46a0-b142-3a9a3d567599:
     id: 4f682959-5584-46a0-b142-3a9a3d567599
     content: Handle non-URL input in URL bar
     children:
       - 29c708f0-3b0f-4dfc-99ad-13adf86855d8
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
+      resolvedAt: '2025-12-09T22:40:10.533Z'
   29c708f0-3b0f-4dfc-99ad-13adf86855d8:
     id: 29c708f0-3b0f-4dfc-99ad-13adf86855d8
     content: Treat as search query and redirect to search engine (ecosia)
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
+      resolvedAt: '2025-12-09T22:40:10.533Z'
   746bf172-b3d9-4bae-a840-99114315fdd1:
     id: 746bf172-b3d9-4bae-a840-99114315fdd1
     content: URL bar styling for better visual distinction
@@ -16541,36 +16519,52 @@ nodes:
       - 13cc6393-8baa-47f0-8335-dd07946ee475
       - af383008-24b5-49a7-9f31-53c45b195fe6
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
+      resolvedAt: '2025-12-09T22:40:10.533Z'
   44419486-1b93-4d1f-9b97-8af7b6ee911c:
     id: 44419486-1b93-4d1f-9b97-8af7b6ee911c
     content: Slightly darker in light theme
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
+      resolvedAt: '2025-12-09T22:40:10.533Z'
   13cc6393-8baa-47f0-8335-dd07946ee475:
     id: 13cc6393-8baa-47f0-8335-dd07946ee475
     content: Slightly lighter in dark theme
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
+      resolvedAt: '2025-12-09T22:40:10.533Z'
   af383008-24b5-49a7-9f31-53c45b195fe6:
     id: af383008-24b5-49a7-9f31-53c45b195fe6
     content: Creates subtle input field accordance
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
+      resolvedAt: '2025-12-09T22:40:10.533Z'
+  66e52be2-6759-442d-9bf4-e0b62c1d9f13:
+    id: 66e52be2-6759-442d-9bf4-e0b62c1d9f13
+    content: There are a bunch of deprecation warnings with npm install
+    children: []
+    metadata:
+      status: pending
+  5040deb6-0361-42e4-84a6-7afeb8b9a5f8:
+    id: 5040deb6-0361-42e4-84a6-7afeb8b9a5f8
+    content: Clean up comments
+    children: []
+    metadata:
+      status: pending
 summaryDateFrom: '2025-12-08'
 summaryDateTo: '2025-12-09'
