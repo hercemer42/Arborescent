@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2025-12-09T19:37:30.324Z'
+updated: '2025-12-09T20:54:23.539Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -70,7 +70,7 @@ nodes:
       - gnwc7enq6
     metadata:
       status: pending
-      expanded: false
+      expanded: true
   gnwc7enq6:
     id: gnwc7enq6
     content: should have different logging level depending on development environment
@@ -529,6 +529,7 @@ nodes:
       - 42f6288a-d579-40ef-981d-ea59c974a7be
       - c78918da-7741-4ffe-8d47-4a42a4ec35d8
       - 792b7b44-6bfb-4ff6-9151-1b092d688998
+      - 25df27c2-c4a0-4d81-9ef5-997c096c2bf1
     metadata:
       status: completed
       expanded: false
@@ -6540,7 +6541,7 @@ nodes:
       - a4c333be-a8a4-4c0f-8148-b2260507f5ad
     metadata:
       status: pending
-      expanded: true
+      expanded: false
       appliedContextIds:
         - 64ea2af4-332b-44a6-8b88-78535cc9b79a
       activeContextId: 64ea2af4-332b-44a6-8b88-78535cc9b79a
@@ -9358,6 +9359,7 @@ nodes:
       blueprintIcon: Bug
       blueprintColor: '#ef4444'
       appliedContextId: 6690289a-e02f-48bc-9225-a1083b7b324f
+      expanded: false
   aff16275-6d8e-49c9-b862-76875858d4af:
     id: aff16275-6d8e-49c9-b862-76875858d4af
     content: Avoid adding comments specific to the bug fix unless really needed
@@ -9392,7 +9394,7 @@ nodes:
       - 6ab534a2-2956-454c-9c6a-e459314e0b5c
     metadata:
       status: pending
-      expanded: true
+      expanded: false
       isBlueprint: true
       blueprintIcon: Star
       blueprintColor: '#64748b'
@@ -15287,8 +15289,7 @@ nodes:
   c25cf481-a0d1-495d-9cea-498f1135eb8c:
     id: c25cf481-a0d1-495d-9cea-498f1135eb8c
     content: Minor feature
-    children:
-      - 25df27c2-c4a0-4d81-9ef5-997c096c2bf1
+    children: []
     metadata:
       status: completed
       expanded: true
@@ -15404,20 +15405,6 @@ nodes:
     children: []
     metadata:
       status: pending
-  80181e68-762c-4686-ac23-1fa585d1bfe5:
-    id: 80181e68-762c-4686-ac23-1fa585d1bfe5
-    content: Change shell to user default ?
-    children:
-      - a4c3b599-817b-4083-8144-5630cc960835
-    metadata:
-      status: pending
-      expanded: false
-  a4c3b599-817b-4083-8144-5630cc960835:
-    id: a4c3b599-817b-4083-8144-5630cc960835
-    content: For instance, zsh on linux, powershell in windows etc
-    children: []
-    metadata:
-      status: pending
   a2d18d0e-fc20-4791-b93c-3b92b2b4b4d4:
     id: a2d18d0e-fc20-4791-b93c-3b92b2b4b4d4
     content: Improve drag/drop highlighting
@@ -15451,7 +15438,6 @@ nodes:
     content: For release
     children:
       - b66833c8-6369-4349-8b98-3c10ffc437dd
-      - 80181e68-762c-4686-ac23-1fa585d1bfe5
       - 0vzl7mppk
       - a2d18d0e-fc20-4791-b93c-3b92b2b4b4d4
       - e897dedf-fd94-4cda-9a00-d79bf0371787
@@ -16438,10 +16424,11 @@ nodes:
       - 42464ffe-bdaa-4e0f-ba97-a6de7cb7c3f8
       - efb1c175-a912-466e-adad-f3075c9f40d7
     metadata:
-      status: pending
-      expanded: true
+      status: completed
+      expanded: false
       deleted: false
       plugins: {}
+      resolvedAt: '2025-12-09T20:37:30.332Z'
   42464ffe-bdaa-4e0f-ba97-a6de7cb7c3f8:
     id: 42464ffe-bdaa-4e0f-ba97-a6de7cb7c3f8
     content: 'Problem: Spellcheck suggestions block access to other context menu actions'
@@ -16449,67 +16436,75 @@ nodes:
       - a9b16532-d073-4e01-8813-f7fe08543c2f
       - 261fc2cb-9484-4d35-9e4d-262a752c883d
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
+      resolvedAt: '2025-12-09T20:37:31.016Z'
   a9b16532-d073-4e01-8813-f7fe08543c2f:
     id: a9b16532-d073-4e01-8813-f7fe08543c2f
     content: Root nodes often contain project names, technical terms, or intentional non-words
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
+      resolvedAt: '2025-12-09T20:37:31.491Z'
   261fc2cb-9484-4d35-9e4d-262a752c883d:
     id: 261fc2cb-9484-4d35-9e4d-262a752c883d
     content: Users need access to Execute, Collaborate, and other actions even when word is "misspelled"
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
+      resolvedAt: '2025-12-09T20:37:32.591Z'
   efb1c175-a912-466e-adad-f3075c9f40d7:
     id: efb1c175-a912-466e-adad-f3075c9f40d7
     content: 'Solution: Show context menu items below the suggestion list'
     children:
+      - 23c50cbd-3490-4afb-a442-c792d2f114a8
       - eedc1cbe-8597-4da5-b6a0-c0721f9a3921
       - 870f3c8e-e4a9-44c3-90db-c91bbac26215
       - 6908e5dd-e2da-43e9-b141-4a400d6fc24a
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
+      resolvedAt: '2025-12-09T20:37:33.132Z'
   eedc1cbe-8597-4da5-b6a0-c0721f9a3921:
     id: eedc1cbe-8597-4da5-b6a0-c0721f9a3921
     content: Spellcheck suggestions appear first (if any)
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
+      resolvedAt: '2025-12-09T20:37:34.555Z'
   870f3c8e-e4a9-44c3-90db-c91bbac26215:
     id: 870f3c8e-e4a9-44c3-90db-c91bbac26215
     content: Divider line
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
+      resolvedAt: '2025-12-09T20:37:35.387Z'
   6908e5dd-e2da-43e9-b141-4a400d6fc24a:
     id: 6908e5dd-e2da-43e9-b141-4a400d6fc24a
     content: Standard context menu items follow (Execute, Collaborate, Copy, etc.)
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
+      resolvedAt: '2025-12-09T20:37:36.035Z'
   3881490a-b11c-4052-ad46-020faad5bb2b:
     id: 3881490a-b11c-4052-ad46-020faad5bb2b
     content: In progress
@@ -16527,5 +16522,12 @@ nodes:
       blueprintColor: '#14b8a6'
       activeExecuteContextId: 1e2f062a-bbaa-4a02-b58b-a94ab15d8d74
       activeCollaborateContextId: 1e2f062a-bbaa-4a02-b58b-a94ab15d8d74
+  23c50cbd-3490-4afb-a442-c792d2f114a8:
+    id: 23c50cbd-3490-4afb-a442-c792d2f114a8
+    content: Use local spellchecker with nspell
+    children: []
+    metadata:
+      status: completed
+      resolvedAt: '2025-12-09T20:37:33.691Z'
 summaryDateFrom: '2025-12-08'
 summaryDateTo: '2025-12-09'
