@@ -12,12 +12,13 @@ const config: ForgeConfig = {
   packagerConfig: {
     asar: false, // Disable asar to allow native modules to load properly
     prune: false, // Don't prune node_modules - we have external dependencies like node-pty
+    executableName: 'arborescent', // Keep executable lowercase for Linux compatibility
   },
   rebuildConfig: {},
   hooks: {
     postPackage: async () => {
       // After packaging, copy node-pty to the app directory
-      const appPath = join(process.cwd(), 'out', 'arborescent-linux-x64', 'resources', 'app');
+      const appPath = join(process.cwd(), 'out', 'Arborescent-linux-x64', 'resources', 'app');
       const nodePtySource = join(process.cwd(), 'node_modules', 'node-pty');
       const nodePtyDest = join(appPath, 'node_modules', 'node-pty');
 
