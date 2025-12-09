@@ -10,7 +10,7 @@ export function useNodeContent(node: TreeNode) {
 
   const hasChildren = node.children.length > 0;
 
-  const { contentRef, handleInput } = useNodeEditing(node);
+  const { contentRef, setContentRef, handleInput } = useNodeEditing(node);
 
   useNodeCursor(node, contentRef);
 
@@ -26,6 +26,7 @@ export function useNodeContent(node: TreeNode) {
     isSelected,
     toggleStatus,
     contentRef,
+    setContentRef,
     handleInput,
     handleContextMenu,
     contextMenu,

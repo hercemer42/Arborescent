@@ -1,4 +1,5 @@
 import { useFilesStore } from '../../store/files/filesStore';
+import { useSearchStore } from '../../store/search/searchStore';
 import { matchesHotkey } from '../../data/hotkeyConfig';
 import { hasTextSelection, isContentEditableFocused } from '../../utils/selectionUtils';
 import { getActiveStore } from './shared';
@@ -28,6 +29,13 @@ async function handleUIShortcuts(event: KeyboardEvent): Promise<void> {
   if (matchesHotkey(event, 'file', 'open')) {
     event.preventDefault();
     useFilesStore.getState().actions.openFileWithDialog();
+    return;
+  }
+
+  // Open search
+  if (matchesHotkey(event, 'search', 'openSearch')) {
+    event.preventDefault();
+    useSearchStore.getState().openSearch();
     return;
   }
 

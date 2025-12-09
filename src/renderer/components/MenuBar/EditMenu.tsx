@@ -4,11 +4,13 @@ import { MenuSeparator } from './MenuSeparator';
 import { useEditMenuState, useEditMenuActions } from './hooks';
 import { getKeyForAction } from '../../data/hotkeyConfig';
 import { formatHotkeyForDisplay } from '../../utils/hotkeyUtils';
+import { useSearchStore } from '../../store/search/searchStore';
 
 export function EditMenu() {
   const { canUndo, canRedo, canCut, canCopy, canPaste, canDelete } = useEditMenuState();
   const { handleUndo, handleRedo, handleCut, handleCopy, handlePaste, handleDelete } =
     useEditMenuActions();
+  const openSearch = useSearchStore((state) => state.openSearch);
 
   return (
     <Menu id="edit" label="Edit">
@@ -44,6 +46,12 @@ export function EditMenu() {
         shortcut={formatHotkeyForDisplay('CmdOrCtrl+V')}
         disabled={!canPaste}
         onClick={handlePaste}
+      />
+      <MenuSeparator />
+      <MenuItem
+        label="Find"
+        shortcut={formatHotkeyForDisplay(getKeyForAction('search', 'openSearch') || 'CmdOrCtrl+F')}
+        onClick={openSearch}
       />
       <MenuSeparator />
       <MenuItem

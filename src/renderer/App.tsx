@@ -3,10 +3,12 @@ import { ToastContainer } from './components/Toast';
 import { Workspace } from './components/Workspace';
 import { Panel } from './components/Panel';
 import { BottomStatusBar } from './components/BottomStatusBar/BottomStatusBar';
+import { SearchBar } from './components/SearchBar';
 import { AppMenuBar } from './components/MenuBar';
 import { IconPickerDialog } from './components/ui/IconPicker/IconPickerDialog';
 import { useToastStore } from './store/toast/toastStore';
 import { usePanelStore } from './store/panel/panelStore';
+import { useSearchStore } from './store/search/searchStore';
 import { useAppErrorHandling } from './useAppErrorHandling';
 import { useAppInitialization } from './hooks';
 import './App.css';
@@ -21,6 +23,7 @@ export function App() {
 
   const toasts = useToastStore((state) => state.toasts);
   const removeToast = useToastStore((state) => state.removeToast);
+  const isSearchOpen = useSearchStore((state) => state.isOpen);
 
   // Memoize to prevent re-initialization on every render
   const handleInitComplete = useCallback(() => setIsInitializing(false), []);
@@ -46,7 +49,7 @@ export function App() {
         </div>
       )}
 
-      <BottomStatusBar />
+      {isSearchOpen ? <SearchBar /> : <BottomStatusBar />}
       <IconPickerDialog />
     </div>
   );

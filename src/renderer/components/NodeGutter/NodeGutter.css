@@ -58,3 +58,29 @@
   opacity: 1;
   color: var(--gray-700);
 }
+
+/* Hidden search matches indicator - chevron with blue background and white text */
+.expand-toggle-button.has-hidden-matches {
+  color: var(--white);
+  opacity: 1;
+  padding: 0 4px;
+  line-height: 1;
+  position: relative;
+  z-index: 1;
+}
+
+.expand-toggle-button.has-hidden-matches::before {
+  content: '';
+  position: absolute;
+  inset: 2px 0 0 0;
+  background-color: var(--blue-500);
+  z-index: -1;
+}
+
+.expand-toggle-button.has-hidden-matches:hover {
+  color: var(--white);
+}
+
+.expand-toggle-button.has-hidden-matches:hover::before {
+  background-color: var(--blue-500);
+}

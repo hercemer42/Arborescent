@@ -130,7 +130,7 @@ describe('hotkeyConfig', () => {
           saveEdit: 'Escape',
           deleteLine: 'd',
           newSiblingAfter: 'o',
-          newChildNode: 'Shift+O',
+          newSiblingNoSplit: 'Shift+O',
           indent: '>',
           outdent: '<',
         },
@@ -157,6 +157,9 @@ describe('hotkeyConfig', () => {
           toggleBrowser: 'CmdOrCtrl+B',
           toggleBlueprintMode: 'CmdOrCtrl+Shift+B',
           toggleSummaryMode: 'CmdOrCtrl+Shift+U',
+        },
+        search: {
+          openSearch: 'CmdOrCtrl+F',
         },
       };
 
@@ -185,7 +188,7 @@ describe('hotkeyConfig', () => {
           saveEdit: 'Escape',
           deleteLine: 'd',
           newSiblingAfter: 'o',
-          newChildNode: 'Shift+O',
+          newSiblingNoSplit: 'Shift+O',
           indent: '>',
           outdent: '<',
         },
@@ -212,6 +215,9 @@ describe('hotkeyConfig', () => {
           toggleBrowser: 'CmdOrCtrl+B',
           toggleBlueprintMode: 'CmdOrCtrl+Shift+B',
           toggleSummaryMode: 'CmdOrCtrl+Shift+U',
+        },
+        search: {
+          openSearch: 'CmdOrCtrl+F',
         },
       };
 

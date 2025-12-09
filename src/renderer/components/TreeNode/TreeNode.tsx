@@ -9,6 +9,7 @@ import { useNodeToggle } from './hooks/useNodeToggle';
 import { useAppliedContext } from './hooks/useAppliedContexts';
 import { usePluginIndicators } from '../NodeGutter/hooks/usePluginIndicators';
 import { useNodeVisibleChildren } from '../Tree/hooks/useVisibleChildren';
+import { useHiddenSearchMatches } from './hooks/useHiddenSearchMatches';
 import './TreeNode.css';
 
 interface TreeNodeProps {
@@ -31,6 +32,11 @@ export const TreeNode = memo(function TreeNode({ nodeId, depth = 0 }: TreeNodePr
   const appliedContext = useAppliedContext(node);
 
   const expanded = node?.metadata.expanded ?? true;
+  const isCollapsed = !expanded;
+
+  // Check for hidden search matches in collapsed descendants
+  const hasHiddenSearchMatches = useHiddenSearchMatches(nodeId, isCollapsed);
+
   const contentLength = node?.content.length ?? 0;
 
   const visibleChildren = useNodeVisibleChildren(node);
@@ -84,6 +90,7 @@ export const TreeNode = memo(function TreeNode({ nodeId, depth = 0 }: TreeNodePr
           contextIcon={node.metadata.blueprintIcon as string | undefined}
           contextColor={node.metadata.blueprintColor as string | undefined}
           appliedContext={appliedContext}
+          hasHiddenSearchMatches={hasHiddenSearchMatches}
         />
 
         <NodeContent

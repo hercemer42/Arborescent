@@ -46,6 +46,9 @@ export interface HotkeyConfig {
     toggleBlueprintMode: string;
     toggleSummaryMode: string;
   };
+  search: {
+    openSearch: string;
+  };
 }
 
 export type HotkeyContext = keyof HotkeyConfig;

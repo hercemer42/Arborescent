@@ -9,6 +9,7 @@ import { useContextIconClick } from './hooks/useContextIconClick';
 import { useContextIcon } from './hooks/useContextIcon';
 import { useBlueprintIcon } from './hooks/useBlueprintIcon';
 import { useHyperlinkNavigation } from './hooks/useHyperlinkNavigation';
+import { useSearchHighlight } from './hooks/useSearchHighlight';
 import './NodeContent.css';
 
 interface NodeContentProps {
@@ -23,7 +24,7 @@ function NodeContentComponent({
   const {
     isSelected,
     toggleStatus,
-    contentRef,
+    setContentRef,
     handleInput,
     handleContextMenu,
     contextMenu,
@@ -40,6 +41,9 @@ function NodeContentComponent({
 
   const isHyperlink = node.metadata.isHyperlink === true;
   const isLink = isHyperlink || isExternalLink;
+
+  // Search highlighting
+  const { highlightedContent } = useSearchHighlight(node.id, node.content, isSelected);
 
   // Render the status area (checkbox, blueprint icon, context icon, or hyperlink icon)
   const renderStatusArea = () => {
@@ -123,15 +127,25 @@ function NodeContentComponent({
           {renderStatusArea()}
         </div>
 
-        <div
-          ref={contentRef}
-          className={`node-text ${isLink ? 'hyperlink-text' : ''}`}
-          contentEditable={!isLink}
-          suppressContentEditableWarning
-          spellCheck={isSelected}
-          onInput={isLink ? undefined : handleInput}
-          onClick={isLink ? navigateToLinkedNode : undefined}
-        />
+        {highlightedContent ? (
+          // Non-editable highlighted content when search is active
+          <div
+            className={`node-text ${isLink ? 'hyperlink-text' : ''}`}
+            onClick={isLink ? navigateToLinkedNode : undefined}
+            dangerouslySetInnerHTML={{ __html: highlightedContent }}
+          />
+        ) : (
+          // Editable content when no search or node is selected
+          <div
+            ref={setContentRef}
+            className={`node-text ${isLink ? 'hyperlink-text' : ''}`}
+            contentEditable={!isLink}
+            suppressContentEditableWarning
+            spellCheck={isSelected}
+            onInput={isLink ? undefined : handleInput}
+            onClick={isLink ? navigateToLinkedNode : undefined}
+          />
+        )}
       </div>
 
       {contextMenu && (

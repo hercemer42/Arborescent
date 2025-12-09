@@ -13,6 +13,7 @@ interface NodeGutterProps {
   contextIcon?: string;
   contextColor?: string;
   appliedContext?: AppliedContext;
+  hasHiddenSearchMatches?: boolean;
 }
 
 export const NodeGutter = memo(function NodeGutter({
@@ -25,6 +26,7 @@ export const NodeGutter = memo(function NodeGutter({
   contextIcon,
   contextColor,
   appliedContext,
+  hasHiddenSearchMatches = false,
 }: NodeGutterProps) {
   return (
     <div className="node-gutter">
@@ -51,7 +53,11 @@ export const NodeGutter = memo(function NodeGutter({
               e.stopPropagation();
               onToggle();
             }}
-            className={`expand-toggle-button ${expanded ? 'expanded' : 'collapsed'}`}
+            className={[
+              'expand-toggle-button',
+              expanded ? 'expanded' : 'collapsed',
+              hasHiddenSearchMatches && 'has-hidden-matches',
+            ].filter(Boolean).join(' ')}
           >
             {expanded ? '⌄' : '›'}
           </button>
