@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2025-12-09T19:02:43.808Z'
+updated: '2025-12-09T19:37:30.324Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -528,6 +528,7 @@ nodes:
       - a7508f21-00cf-4d96-a748-b02b41577a37
       - 42f6288a-d579-40ef-981d-ea59c974a7be
       - c78918da-7741-4ffe-8d47-4a42a4ec35d8
+      - 792b7b44-6bfb-4ff6-9151-1b092d688998
     metadata:
       status: completed
       expanded: false
@@ -6156,7 +6157,7 @@ nodes:
       - bf7a428b-6e45-4024-8eea-a1491604e927
     metadata:
       status: pending
-      expanded: true
+      expanded: false
       deleted: false
       plugins: {}
       isContextDeclaration: true
@@ -9347,6 +9348,7 @@ nodes:
     content: Bugs
     children:
       - 5cc686fc-7651-4d83-9ccf-78a29d1dff13
+      - 3881490a-b11c-4052-ad46-020faad5bb2b
     metadata:
       status: pending
       appliedContextIds:
@@ -15285,7 +15287,8 @@ nodes:
   c25cf481-a0d1-495d-9cea-498f1135eb8c:
     id: c25cf481-a0d1-495d-9cea-498f1135eb8c
     content: Minor feature
-    children: []
+    children:
+      - 25df27c2-c4a0-4d81-9ef5-997c096c2bf1
     metadata:
       status: completed
       expanded: true
@@ -15447,17 +15450,15 @@ nodes:
     id: 92b16d87-27dc-486d-a605-4228e2b5206c
     content: For release
     children:
-      - 4966bd3d-fe8d-4094-840f-a0f791c07d6c
-      - cc522bbb-99fe-499f-b9d8-a62c7ce50575
       - b66833c8-6369-4349-8b98-3c10ffc437dd
-      - 8210b1f6-ba52-4657-ae8f-39c3ed91ef61
-      - 792b7b44-6bfb-4ff6-9151-1b092d688998
-      - 0c262229-5d10-430b-8f2e-f2e062470c13
-      - 0vzl7mppk
       - 80181e68-762c-4686-ac23-1fa585d1bfe5
+      - 0vzl7mppk
       - a2d18d0e-fc20-4791-b93c-3b92b2b4b4d4
       - e897dedf-fd94-4cda-9a00-d79bf0371787
       - c7298184-a1d1-4ce5-aef3-743d1ce3ec82
+      - 4966bd3d-fe8d-4094-840f-a0f791c07d6c
+      - cc522bbb-99fe-499f-b9d8-a62c7ce50575
+      - 8210b1f6-ba52-4657-ae8f-39c3ed91ef61
     metadata:
       status: pending
       expanded: true
@@ -15854,26 +15855,6 @@ nodes:
     children: []
     metadata:
       status: pending
-  0c262229-5d10-430b-8f2e-f2e062470c13:
-    id: 0c262229-5d10-430b-8f2e-f2e062470c13
-    content: Display context menu under suggestions
-    children:
-      - 7b5dee57-520d-41b7-890e-a8d8d095a8bf
-      - ca3817f5-7d06-44f5-83b4-2bc5fba3cab3
-    metadata:
-      status: pending
-  7b5dee57-520d-41b7-890e-a8d8d095a8bf:
-    id: 7b5dee57-520d-41b7-890e-a8d8d095a8bf
-    content: Sometimes the root node is something we don't want to correct the spelling for
-    children: []
-    metadata:
-      status: pending
-  ca3817f5-7d06-44f5-83b4-2bc5fba3cab3:
-    id: ca3817f5-7d06-44f5-83b4-2bc5fba3cab3
-    content: We want to be able to execute etc
-    children: []
-    metadata:
-      status: pending
   98375944-9925-4a48-a93f-cca6273b342d:
     id: 98375944-9925-4a48-a93f-cca6273b342d
     content: Hide back/forth/search bar in browser window when there is no active tab
@@ -15890,6 +15871,7 @@ nodes:
       - d7330071-d7b9-4ae0-8d88-2e4b50302290
     metadata:
       status: pending
+      expanded: false
   61a18435-bc45-42f4-8789-f93dbfe361fd:
     id: 61a18435-bc45-42f4-8789-f93dbfe361fd
     content: "When typing non website,\_"
@@ -16449,5 +16431,101 @@ nodes:
     metadata:
       status: completed
       resolvedAt: '2025-12-09T19:02:34.560Z'
+  25df27c2-c4a0-4d81-9ef5-997c096c2bf1:
+    id: 25df27c2-c4a0-4d81-9ef5-997c096c2bf1
+    content: Display context menu under suggestions
+    children:
+      - 42464ffe-bdaa-4e0f-ba97-a6de7cb7c3f8
+      - efb1c175-a912-466e-adad-f3075c9f40d7
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  42464ffe-bdaa-4e0f-ba97-a6de7cb7c3f8:
+    id: 42464ffe-bdaa-4e0f-ba97-a6de7cb7c3f8
+    content: 'Problem: Spellcheck suggestions block access to other context menu actions'
+    children:
+      - a9b16532-d073-4e01-8813-f7fe08543c2f
+      - 261fc2cb-9484-4d35-9e4d-262a752c883d
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a9b16532-d073-4e01-8813-f7fe08543c2f:
+    id: a9b16532-d073-4e01-8813-f7fe08543c2f
+    content: Root nodes often contain project names, technical terms, or intentional non-words
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  261fc2cb-9484-4d35-9e4d-262a752c883d:
+    id: 261fc2cb-9484-4d35-9e4d-262a752c883d
+    content: Users need access to Execute, Collaborate, and other actions even when word is "misspelled"
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  efb1c175-a912-466e-adad-f3075c9f40d7:
+    id: efb1c175-a912-466e-adad-f3075c9f40d7
+    content: 'Solution: Show context menu items below the suggestion list'
+    children:
+      - eedc1cbe-8597-4da5-b6a0-c0721f9a3921
+      - 870f3c8e-e4a9-44c3-90db-c91bbac26215
+      - 6908e5dd-e2da-43e9-b141-4a400d6fc24a
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  eedc1cbe-8597-4da5-b6a0-c0721f9a3921:
+    id: eedc1cbe-8597-4da5-b6a0-c0721f9a3921
+    content: Spellcheck suggestions appear first (if any)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  870f3c8e-e4a9-44c3-90db-c91bbac26215:
+    id: 870f3c8e-e4a9-44c3-90db-c91bbac26215
+    content: Divider line
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6908e5dd-e2da-43e9-b141-4a400d6fc24a:
+    id: 6908e5dd-e2da-43e9-b141-4a400d6fc24a
+    content: Standard context menu items follow (Execute, Collaborate, Copy, etc.)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3881490a-b11c-4052-ad46-020faad5bb2b:
+    id: 3881490a-b11c-4052-ad46-020faad5bb2b
+    content: In progress
+    children: []
+    metadata:
+      status: pending
+      appliedContextIds:
+        - cc94b377-246d-45ae-b938-2d3906892aa1
+        - e8824b29-eb18-4031-9e35-b321a864d418
+        - 1e2f062a-bbaa-4a02-b58b-a94ab15d8d74
+      activeContextId: cc94b377-246d-45ae-b938-2d3906892aa1
+      expanded: true
+      isBlueprint: true
+      blueprintIcon: Cog
+      blueprintColor: '#14b8a6'
+      activeExecuteContextId: 1e2f062a-bbaa-4a02-b58b-a94ab15d8d74
+      activeCollaborateContextId: 1e2f062a-bbaa-4a02-b58b-a94ab15d8d74
 summaryDateFrom: '2025-12-08'
 summaryDateTo: '2025-12-09'

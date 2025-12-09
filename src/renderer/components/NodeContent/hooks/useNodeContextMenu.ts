@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useRef } from 'react';
 import { useStore } from '../../../store/tree/useStore';
 import { useActiveTreeStore } from '../../../store/tree/TreeStoreContext';
 import { TreeNode } from '../../../../shared/types';
@@ -24,6 +24,7 @@ export function useNodeContextMenu(node: TreeNode) {
   const store = useActiveTreeStore();
   const [contextMenu, setContextMenu] = useState<{ x: number; y: number } | null>(null);
   const [menuItems, setMenuItems] = useState<ContextMenuItem[]>([]);
+  const menuOpenRef = useRef(false);
 
   const { captureWordAtCursor, buildSpellMenuItems } = useSpellcheck();
   const { handleCancel } = useFeedbackActions();
@@ -38,11 +39,8 @@ export function useNodeContextMenu(node: TreeNode) {
     const state = store.getState();
     const { nodes, ancestorRegistry, collaboratingNodeId, contextDeclarations, actions } = state;
 
-    // Spell check - if clicking on misspelled word, only show suggestions
+    // Spell check - get suggestions for misspelled word (if any)
     const spellItems = buildSpellMenuItems();
-    if (spellItems) {
-      return spellItems;
-    }
 
     // Compute context-related values
     const isNodeBeingCollaborated = collaboratingNodeId === node.id;
@@ -235,6 +233,15 @@ export function useNodeContextMenu(node: TreeNode) {
       }] : []),
     ];
 
+    // Combine spell suggestions with regular menu items
+    if (spellItems && spellItems.length > 0) {
+      return [
+        ...spellItems,
+        { separator: true, label: '', onClick: () => {} },
+        ...baseMenuItems,
+      ];
+    }
+
     return baseMenuItems;
   }, [node, store, showTerminal, handleCancel, openIconPicker, activeFile, isZoomTab, openZoomTab, buildSpellMenuItems]);
 
@@ -257,6 +264,8 @@ export function useNodeContextMenu(node: TreeNode) {
       actions.selectNode(node.id, position);
     }
 
+    menuOpenRef.current = true;
+
     // Build menu items lazily when menu is opened
     const items = await buildMenuItems();
     setMenuItems(items);
@@ -276,11 +285,16 @@ export function useNodeContextMenu(node: TreeNode) {
     }
   }, [node.id, store]);
 
+  const closeContextMenu = useCallback(() => {
+    setContextMenu(null);
+    menuOpenRef.current = false;
+  }, []);
+
   return {
     contextMenu,
     contextMenuItems: menuItems,
     handleContextMenu,
     handleDelete,
-    closeContextMenu: () => setContextMenu(null),
+    closeContextMenu,
   };
 }

@@ -1,6 +1,6 @@
 import { useRef, useCallback } from 'react';
 import { ContextMenuItem } from '../../ui/ContextMenu';
-import { initSpellcheck, checkWord } from '../../../services/spellcheck';
+import { initSpellcheck, checkWordFast, getSuggestions } from '../../../services/spellcheck';
 
 // Initialize spellcheck on module load
 initSpellcheck();
@@ -43,6 +43,35 @@ function getWordAtCursor(): WordContext | null {
 }
 
 /**
+ * Build menu items for spelling suggestions
+ */
+function buildSuggestionItems(
+  suggestions: string[],
+  wordContext: WordContext
+): ContextMenuItem[] {
+  if (suggestions.length === 0) {
+    return [{
+      label: 'No suggestions',
+      disabled: true,
+      onClick: () => {},
+    }];
+  }
+
+  return suggestions.map((suggestion) => ({
+    label: suggestion,
+    onClick: () => {
+      const { textNode, start, end } = wordContext;
+      if (textNode.textContent) {
+        const before = textNode.textContent.slice(0, start);
+        const after = textNode.textContent.slice(end);
+        textNode.textContent = before + suggestion + after;
+        textNode.parentElement?.dispatchEvent(new Event('input', { bubbles: true }));
+      }
+    },
+  }));
+}
+
+/**
  * Hook for spellcheck functionality in context menus.
  * Captures the word at cursor on right-click and provides spell suggestions.
  */
@@ -57,47 +86,24 @@ export function useSpellcheck() {
   }, []);
 
   /**
-   * Build spell suggestion menu items if the captured word is misspelled.
-   * Returns the menu items if misspelled, or null if not misspelled/no word captured.
+   * Build spell menu items synchronously (nspell is fast).
    */
   const buildSpellMenuItems = useCallback((): ContextMenuItem[] | null => {
     const wordContext = wordContextRef.current;
     if (!wordContext) return null;
 
-    const result = checkWord(wordContext.word);
-    if (!result?.misspelled) return null;
+    const misspelled = checkWordFast(wordContext.word);
+    if (!misspelled) return null;
 
-    const spellItems: ContextMenuItem[] = [];
-
-    if (result.suggestions.length > 0) {
-      result.suggestions.forEach((suggestion) => {
-        spellItems.push({
-          label: suggestion,
-          onClick: () => {
-            const { textNode, start, end } = wordContext;
-            if (textNode.textContent) {
-              const before = textNode.textContent.slice(0, start);
-              const after = textNode.textContent.slice(end);
-              textNode.textContent = before + suggestion + after;
-              // Trigger input event to update the node content
-              textNode.parentElement?.dispatchEvent(new Event('input', { bubbles: true }));
-            }
-          },
-        });
-      });
-    } else {
-      spellItems.push({
-        label: 'No suggestions',
-        disabled: true,
-        onClick: () => {},
-      });
-    }
-
-    return spellItems;
+    const suggestions = getSuggestions(wordContext.word);
+    return buildSuggestionItems(suggestions, wordContext);
   }, []);
 
   return {
     captureWordAtCursor,
     buildSpellMenuItems,
+    // Keep these for API compatibility, but they're no longer needed
+    suggestionsVersion: 0,
+    precomputeCurrentWord: () => {},
   };
 }
