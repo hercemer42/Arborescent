@@ -249,6 +249,44 @@ function handleLineNavigation(event: KeyboardEvent): void {
 }
 
 /**
+ * Check if the active node is a link (hyperlink or external link)
+ */
+function isActiveLinkNode(): boolean {
+  const activeStore = getActiveStore();
+  if (!activeStore) return false;
+
+  const store = activeStore.getState();
+  const activeNodeId = store.activeNodeId;
+  if (!activeNodeId) return false;
+
+  const node = store.nodes[activeNodeId];
+  if (!node) return false;
+
+  return node.metadata.isHyperlink === true || node.metadata.isExternalLink === true;
+}
+
+/**
+ * Handle navigation for link nodes (non-editable, immediate cross-node nav)
+ */
+function handleLinkNodeNavigation(direction: 'up' | 'down' | 'left' | 'right', event: KeyboardEvent): void {
+  event.preventDefault();
+
+  const activeStore = getActiveStore();
+  if (!activeStore) return;
+
+  const store = activeStore.getState();
+  store.actions.setRememberedVisualX(null);
+
+  if (direction === 'up' || direction === 'left') {
+    store.actions.moveUp(undefined, 0);
+  } else {
+    store.actions.moveDown(0, 0);
+  }
+
+  scrollToActiveNode();
+}
+
+/**
  * Main keyboard event handler for navigation
  */
 function handleKeyDown(event: KeyboardEvent): void {
@@ -272,6 +310,15 @@ function handleKeyDown(event: KeyboardEvent): void {
       if (activeStore) {
         activeStore.getState().actions.setRememberedVisualX(null);
       }
+      return;
+    }
+
+    // Link nodes: immediate cross-node navigation (no cursor within node)
+    if (isActiveLinkNode()) {
+      const direction = event.key === 'ArrowUp' ? 'up' :
+                       event.key === 'ArrowDown' ? 'down' :
+                       event.key === 'ArrowLeft' ? 'left' : 'right';
+      handleLinkNodeNavigation(direction, event);
       return;
     }
 

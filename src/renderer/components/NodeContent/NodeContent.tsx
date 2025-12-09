@@ -126,7 +126,7 @@ function NodeContentComponent({
         <div
           ref={contentRef}
           className={`node-text ${isLink ? 'hyperlink-text' : ''}`}
-          contentEditable
+          contentEditable={!isLink}
           suppressContentEditableWarning
           spellCheck={isSelected}
           onInput={isLink ? undefined : handleInput}

@@ -300,4 +300,121 @@ describe('navigationService', () => {
       expect(store.getState().rememberedVisualX).toBeNull();
     });
   });
+
+  describe('link node navigation', () => {
+    beforeEach(() => {
+      cleanup = initializeKeyboardNavigation();
+
+      // Set up a tree with regular and link nodes
+      store.setState({
+        nodes: {
+          'root': { id: 'root', content: 'Root', children: ['node-1', 'link-node', 'node-2'], metadata: { isRoot: true } },
+          'node-1': { id: 'node-1', content: 'Node 1', children: [], metadata: {} },
+          'link-node': { id: 'link-node', content: 'https://example.com', children: [], metadata: { isExternalLink: true, externalUrl: 'https://example.com' } },
+          'node-2': { id: 'node-2', content: 'Node 2', children: [], metadata: {} },
+        },
+        rootNodeId: 'root',
+        activeNodeId: 'link-node',
+        cursorPosition: 0,
+        rememberedVisualX: null,
+        ancestorRegistry: {
+          'node-1': ['root'],
+          'link-node': ['root'],
+          'node-2': ['root'],
+        },
+      });
+
+      // Create DOM structure
+      container.innerHTML = `
+        <div data-node-id="root">
+          <div contenteditable="true">Root</div>
+        </div>
+        <div data-node-id="node-1">
+          <div contenteditable="true">Node 1</div>
+        </div>
+        <div data-node-id="link-node">
+          <div contenteditable="false">https://example.com</div>
+        </div>
+        <div data-node-id="node-2">
+          <div contenteditable="true">Node 2</div>
+        </div>
+      `;
+    });
+
+    it('should navigate to previous node on ArrowUp for external link node', () => {
+      const linkElement = container.querySelector('[data-node-id="link-node"] [contenteditable]') as HTMLElement;
+      linkElement.focus();
+
+      const event = new KeyboardEvent('keydown', { key: 'ArrowUp', bubbles: true });
+      window.dispatchEvent(event);
+
+      expect(store.getState().activeNodeId).toBe('node-1');
+    });
+
+    it('should navigate to next node on ArrowDown for external link node', () => {
+      const linkElement = container.querySelector('[data-node-id="link-node"] [contenteditable]') as HTMLElement;
+      linkElement.focus();
+
+      const event = new KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true });
+      window.dispatchEvent(event);
+
+      expect(store.getState().activeNodeId).toBe('node-2');
+    });
+
+    it('should navigate to previous node on ArrowLeft for external link node', () => {
+      const linkElement = container.querySelector('[data-node-id="link-node"] [contenteditable]') as HTMLElement;
+      linkElement.focus();
+
+      const event = new KeyboardEvent('keydown', { key: 'ArrowLeft', bubbles: true });
+      window.dispatchEvent(event);
+
+      expect(store.getState().activeNodeId).toBe('node-1');
+    });
+
+    it('should navigate to next node on ArrowRight for external link node', () => {
+      const linkElement = container.querySelector('[data-node-id="link-node"] [contenteditable]') as HTMLElement;
+      linkElement.focus();
+
+      const event = new KeyboardEvent('keydown', { key: 'ArrowRight', bubbles: true });
+      window.dispatchEvent(event);
+
+      expect(store.getState().activeNodeId).toBe('node-2');
+    });
+
+    it('should navigate immediately for hyperlink nodes', () => {
+      // Change the link node to be an internal hyperlink instead
+      store.setState({
+        nodes: {
+          ...store.getState().nodes,
+          'link-node': {
+            id: 'link-node',
+            content: 'Link to Node 1',
+            children: [],
+            metadata: { isHyperlink: true, linkedNodeId: 'node-1' },
+          },
+        },
+      });
+
+      const linkElement = container.querySelector('[data-node-id="link-node"] [contenteditable]') as HTMLElement;
+      linkElement.focus();
+
+      const event = new KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true });
+      window.dispatchEvent(event);
+
+      expect(store.getState().activeNodeId).toBe('node-2');
+    });
+
+    it('should set rememberedVisualX to 0 when navigating from link node', () => {
+      store.setState({ rememberedVisualX: 100 });
+
+      const linkElement = container.querySelector('[data-node-id="link-node"] [contenteditable]') as HTMLElement;
+      linkElement.focus();
+
+      const event = new KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true });
+      window.dispatchEvent(event);
+
+      // Link nodes have no cursor, so rememberedVisualX is set to 0 (start of node)
+      expect(store.getState().rememberedVisualX).toBe(0);
+    });
+  });
 });
