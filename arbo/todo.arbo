@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2025-12-09T05:24:22.084Z'
+updated: '2025-12-09T06:02:00.785Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -593,9 +593,11 @@ nodes:
       - 766c2a6f-9c50-40c0-948a-6df7bdde9b59
       - 5d4608ba-2edf-45b6-80b5-e5e8286861f2
       - pdt35vy1z
+      - 15f96fee-97b9-43f4-8ae4-68c72e7c8346
+      - c25cf481-a0d1-495d-9cea-498f1135eb8c
     metadata:
       status: completed
-      expanded: false
+      expanded: true
       isBlueprint: true
       blueprintIcon: FolderCheck
       blueprintColor: '#22c55e'
@@ -5658,6 +5660,7 @@ nodes:
       - 9ad1e933-9370-4c68-b814-05b5a67b9a6d
       - c8c469d7-b2f8-411f-9798-72d20ddf0f6c
       - 8210b1f6-ba52-4657-ae8f-39c3ed91ef61
+      - a0aec444-134d-4f8c-a308-af5d0bd45dba
       - d7597faa-0b34-400e-985a-de035508cdb1
       - 65b74e0f-88fe-41c6-9910-8bac806adc6f
       - 6573b620-bfc0-4c5b-8d92-13b9ace3461d
@@ -6742,8 +6745,7 @@ nodes:
     id: 0cc62ae1-1a7a-4aa4-bc6a-d817cabd672c
     content: Refactor
     children:
-      - c8e8dd2a-1f0b-4ed6-8682-78aedaae06fa
-      - 1c6806e7-e5e7-4cf9-a824-7db7785a1c16
+      - 9b5ed251-4d3a-4b6d-aac5-cc41ab59de13
     metadata:
       status: pending
       expanded: true
@@ -7118,7 +7120,6 @@ nodes:
     id: 77963e20-53e9-4db7-8802-8c718f202cef
     content: In progress
     children:
-      - 42d1ada9-ebf9-409e-869f-3378555383ed
       - ac4c627f-c512-40b9-ad55-11b439495b7e
     metadata:
       status: pending
@@ -9553,7 +9554,8 @@ nodes:
     id: 79b693ca-27ce-4410-8617-8092d7e81b07
     content: Bugs
     children:
-      - 9b5ed251-4d3a-4b6d-aac5-cc41ab59de13
+      - 60323f25-27f5-4318-8278-db33b50f19c9
+      - 3cbf3503-1956-4c42-8c2f-928c630af320
     metadata:
       status: pending
       appliedContextIds:
@@ -14836,22 +14838,10 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  42d1ada9-ebf9-409e-869f-3378555383ed:
-    id: 42d1ada9-ebf9-409e-869f-3378555383ed
-    content: Minor feature
-    children: []
-    metadata:
-      status: pending
-      isBlueprint: true
-      blueprintIcon: Wrench
-      blueprintColor: '#14b8a6'
-      appliedContextId: 9b46397c-c452-421c-b408-46b040d99c9e
-      activeExecuteContextId: 9b46397c-c452-421c-b408-46b040d99c9e
   ac4c627f-c512-40b9-ad55-11b439495b7e:
     id: ac4c627f-c512-40b9-ad55-11b439495b7e
     content: Major feature
-    children:
-      - 338b14da-2699-42ca-b6ef-64cb8a42c2fd
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -14860,7 +14850,7 @@ nodes:
       appliedContextId: cc94b377-246d-45ae-b938-2d3906892aa1
       activeExecuteContextId: cc94b377-246d-45ae-b938-2d3906892aa1
       activeCollaborateContextId: e8824b29-eb18-4031-9e35-b321a864d418
-      expanded: false
+      expanded: true
   c0dff20f-d3bd-4780-b0f6-fe9fa6e0b53c:
     id: c0dff20f-d3bd-4780-b0f6-fe9fa6e0b53c
     content: Stick to functional concerns, this isn't a technical analysis
@@ -15083,7 +15073,7 @@ nodes:
       expanded: false
       deleted: false
       plugins: {}
-      resolvedAt: '2025-12-09T03:06:04.863Z'
+      resolvedAt: '2025-12-09T05:35:28.669Z'
   03f2388b-2e48-4e78-8e28-45f20751eec8:
     id: 03f2388b-2e48-4e78-8e28-45f20751eec8
     content: On paste, detect if clipboard content starts with http:// or https://
@@ -15165,7 +15155,9 @@ nodes:
   9ad1e933-9370-4c68-b814-05b5a67b9a6d:
     id: 9ad1e933-9370-4c68-b814-05b5a67b9a6d
     content: Settings menu
-    children: []
+    children:
+      - dc8bf9b2-975a-44b3-942b-a22b1be9e15e
+      - 797ed870-11ce-4314-9cb9-0db8919460c2
     metadata:
       status: pending
   c8c469d7-b2f8-411f-9798-72d20ddf0f6c:
@@ -15174,329 +15166,9 @@ nodes:
     children: []
     metadata:
       status: pending
-  338b14da-2699-42ca-b6ef-64cb8a42c2fd:
-    id: 338b14da-2699-42ca-b6ef-64cb8a42c2fd
-    content: Search tool
-    children:
-      - ae4f397e-ccf9-44d4-8c1d-1eac96d164ff
-      - 171af8ce-e724-49bf-bf86-17240180cb26
-      - 25a798b4-ccb0-4bfb-9799-e43075595137
-      - 70f74521-c161-484a-a549-e21a32f7ddbc
-      - 6c92a516-4f0f-4b9b-92ab-0445dc2c5089
-      - a4073155-0f16-466d-ac8e-fb8589ccfa03
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-      activeExecuteContextId: cc94b377-246d-45ae-b938-2d3906892aa1
-  ae4f397e-ccf9-44d4-8c1d-1eac96d164ff:
-    id: ae4f397e-ccf9-44d4-8c1d-1eac96d164ff
-    content: Activation
-    children:
-      - 83534211-1858-4c51-a008-893ddd52c3cc
-      - 9e2ccc84-4c30-4651-a551-f982c6b9e064
-      - 18609478-caf8-4e44-a58b-951593bb35f9
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  83534211-1858-4c51-a008-893ddd52c3cc:
-    id: 83534211-1858-4c51-a008-893ddd52c3cc
-    content: Ctrl+F keyboard shortcut
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  9e2ccc84-4c30-4651-a551-f982c6b9e064:
-    id: 9e2ccc84-4c30-4651-a551-f982c6b9e064
-    content: Edit menu option
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  18609478-caf8-4e44-a58b-951593bb35f9:
-    id: 18609478-caf8-4e44-a58b-951593bb35f9
-    content: Escape to close/dismiss
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  171af8ce-e724-49bf-bf86-17240180cb26:
-    id: 171af8ce-e724-49bf-bf86-17240180cb26
-    content: UI
-    children:
-      - d91f1262-4220-4f1e-9455-6339e8dbbc52
-      - 7b7d0564-7696-408e-b7c0-53282110722f
-      - fdaa742c-5fbe-4ed4-971c-819f36a72e67
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  d91f1262-4220-4f1e-9455-6339e8dbbc52:
-    id: d91f1262-4220-4f1e-9455-6339e8dbbc52
-    content: Search input appears in status bar area
-    children:
-      - f206d4d4-0063-4fc9-bbf9-0248ab936fb3
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f206d4d4-0063-4fc9-bbf9-0248ab936fb3:
-    id: f206d4d4-0063-4fc9-bbf9-0248ab936fb3
-    content: Keeps tree visible while searching
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  7b7d0564-7696-408e-b7c0-53282110722f:
-    id: 7b7d0564-7696-408e-b7c0-53282110722f
-    content: Show match count (e.g., "3 of 12 matches")
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  fdaa742c-5fbe-4ed4-971c-819f36a72e67:
-    id: fdaa742c-5fbe-4ed4-971c-819f36a72e67
-    content: Clear button to reset search
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  25a798b4-ccb0-4bfb-9799-e43075595137:
-    id: 25a798b4-ccb0-4bfb-9799-e43075595137
-    content: Search behavior
-    children:
-      - 67ca7a8f-03a0-475d-a55a-e9043aa17012
-      - be878d77-392c-442c-9bd0-883e8358a6bf
-      - 9f5f4628-7489-4189-a3ba-9bfdfc8bfde6
-      - 15aeaa6c-eb61-44de-8f4f-e438718e4b9c
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  67ca7a8f-03a0-475d-a55a-e9043aa17012:
-    id: 67ca7a8f-03a0-475d-a55a-e9043aa17012
-    content: Search node content only (simplest starting point)
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  9f5f4628-7489-4189-a3ba-9bfdfc8bfde6:
-    id: 9f5f4628-7489-4189-a3ba-9bfdfc8bfde6
-    content: Case-insensitive by default
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  15aeaa6c-eb61-44de-8f4f-e438718e4b9c:
-    id: 15aeaa6c-eb61-44de-8f4f-e438718e4b9c
-    content: Real-time filtering as you type (debounced ~150ms)
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  70f74521-c161-484a-a549-e21a32f7ddbc:
-    id: 70f74521-c161-484a-a549-e21a32f7ddbc
-    content: Result navigation
-    children:
-      - 13c96f3b-aee5-42fd-a163-e2a4d88bef5f
-      - 4205e0a5-ea8a-4298-a672-de5b5fd61481
-      - 1af10f92-3675-407b-86c0-cb57d3978554
-      - 1ef21049-a301-4a05-b0ff-327f174d7f48
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  13c96f3b-aee5-42fd-a163-e2a4d88bef5f:
-    id: 13c96f3b-aee5-42fd-a163-e2a4d88bef5f
-    content: Enter or F3 to go to next match
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  4205e0a5-ea8a-4298-a672-de5b5fd61481:
-    id: 4205e0a5-ea8a-4298-a672-de5b5fd61481
-    content: Shift+Enter or Shift+F3 to go to previous match
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  1af10f92-3675-407b-86c0-cb57d3978554:
-    id: 1af10f92-3675-407b-86c0-cb57d3978554
-    content: Auto-expand collapsed ancestors when navigating to a match
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  1ef21049-a301-4a05-b0ff-327f174d7f48:
-    id: 1ef21049-a301-4a05-b0ff-327f174d7f48
-    content: Auto-scroll to bring match into view
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  a4073155-0f16-466d-ac8e-fb8589ccfa03:
-    id: a4073155-0f16-466d-ac8e-fb8589ccfa03
-    content: Visual feedback
-    children:
-      - fa17fb8a-1be8-4b30-91e8-05ec5e539547
-      - edd4def4-8ee6-43f5-8e4b-9e73607ab193
-      - ec1dd5b0-cc63-4cf0-9b56-8e8e28cbfe10
-      - 08ff36b3-50df-4fb9-a178-9e98dad11114
-      - 3ab6536a-f688-430a-8364-bd016b71d5c7
-      - 61de875c-9be4-4ddb-9d18-4b6f554e63d7
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  fa17fb8a-1be8-4b30-91e8-05ec5e539547:
-    id: fa17fb8a-1be8-4b30-91e8-05ec5e539547
-    content: Highlight all matching text in tree
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  be878d77-392c-442c-9bd0-883e8358a6bf:
-    id: be878d77-392c-442c-9bd0-883e8358a6bf
-    content: Search within all nodes (collapsed or otherwise)
-    children: []
-    metadata:
-      status: pending
-  3ab6536a-f688-430a-8364-bd016b71d5c7:
-    id: 3ab6536a-f688-430a-8364-bd016b71d5c7
-    content: Don't expand matches at the time of highlighting, only when browsing to them
-    children: []
-    metadata:
-      status: pending
-  ec1dd5b0-cc63-4cf0-9b56-8e8e28cbfe10:
-    id: ec1dd5b0-cc63-4cf0-9b56-8e8e28cbfe10
-    content: Don't highlight node, just text
-    children: []
-    metadata:
-      status: pending
-  08ff36b3-50df-4fb9-a178-9e98dad11114:
-    id: 08ff36b3-50df-4fb9-a178-9e98dad11114
-    content: Increase highlight when focusing on a particular match
-    children:
-      - 69f51d8b-b94f-40ae-95d4-bb2b14e0f304
-    metadata:
-      status: pending
-  69f51d8b-b94f-40ae-95d4-bb2b14e0f304:
-    id: 69f51d8b-b94f-40ae-95d4-bb2b14e0f304
-    content: Also do this on first match
-    children: []
-    metadata:
-      status: pending
-  edd4def4-8ee6-43f5-8e4b-9e73607ab193:
-    id: edd4def4-8ee6-43f5-8e4b-9e73607ab193
-    content: Use a blue background for highlight, change text to white
-    children: []
-    metadata:
-      status: pending
-  61de875c-9be4-4ddb-9d18-4b6f554e63d7:
-    id: 61de875c-9be4-4ddb-9d18-4b6f554e63d7
-    content: When there is a text match in a child of a collapsed node
-    children:
-      - b2030c61-69fa-45ed-b569-f4757a6e465f
-      - 91e6eaf3-ce88-4560-8bdd-7c95385330c9
-    metadata:
-      status: pending
-  b2030c61-69fa-45ed-b569-f4757a6e465f:
-    id: b2030c61-69fa-45ed-b569-f4757a6e465f
-    content: Add the same blue highlight as per a text match on the chevron of the collapsed node
-    children: []
-    metadata:
-      status: pending
-  91e6eaf3-ce88-4560-8bdd-7c95385330c9:
-    id: 91e6eaf3-ce88-4560-8bdd-7c95385330c9
-    content: Also change chevron to white
-    children: []
-    metadata:
-      status: pending
-  6c92a516-4f0f-4b9b-92ab-0445dc2c5089:
-    id: 6c92a516-4f0f-4b9b-92ab-0445dc2c5089
-    content: Focusing behavior
-    children:
-      - 2cebe3b8-a33b-47a2-81fa-d8e14983ab0d
-      - 418e9a7e-8e81-4d69-8959-7cafe5dd375f
-    metadata:
-      status: pending
-  2cebe3b8-a33b-47a2-81fa-d8e14983ab0d:
-    id: 2cebe3b8-a33b-47a2-81fa-d8e14983ab0d
-    content: Focusing doesn't place the cursor in the element
-    children: []
-    metadata:
-      status: pending
-  418e9a7e-8e81-4d69-8959-7cafe5dd375f:
-    id: 418e9a7e-8e81-4d69-8959-7cafe5dd375f
-    content: It just highlights it a little darker, and browses to it
-    children: []
-    metadata:
-      status: pending
-  c8e8dd2a-1f0b-4ed6-8682-78aedaae06fa:
-    id: c8e8dd2a-1f0b-4ed6-8682-78aedaae06fa
-    content: In useSearchHighlight
-    children:
-      - 407ea6e3-23df-4c29-b5c7-4ebd90e2efd5
-      - ae88eb4a-f818-4023-8be3-b2c48ab89de5
-    metadata:
-      status: pending
   9b5ed251-4d3a-4b6d-aac5-cc41ab59de13:
     id: 9b5ed251-4d3a-4b6d-aac5-cc41ab59de13
     content: Reverse the new node behavior - new empty node on return, move contents after cursor down with ctrl+return
-    children: []
-    metadata:
-      status: pending
-  ae88eb4a-f818-4023-8be3-b2c48ab89de5:
-    id: ae88eb4a-f818-4023-8be3-b2c48ab89de5
-    content: what are the escapes in the regex about ?
-    children: []
-    metadata:
-      status: pending
-  407ea6e3-23df-4c29-b5c7-4ebd90e2efd5:
-    id: 407ea6e3-23df-4c29-b5c7-4ebd90e2efd5
-    content: "you do this : scapes HTML special characters to prevent XSS\_ - why ?"
-    children: []
-    metadata:
-      status: pending
-  1c6806e7-e5e7-4cf9-a824-7db7785a1c16:
-    id: 1c6806e7-e5e7-4cf9-a824-7db7785a1c16
-    content: searchBar.tsx needs a hooks file
     children: []
     metadata:
       status: pending
@@ -15506,3 +15178,477 @@ nodes:
     children: []
     metadata:
       status: pending
+  15f96fee-97b9-43f4-8ae4-68c72e7c8346:
+    id: 15f96fee-97b9-43f4-8ae4-68c72e7c8346
+    content: Search tool
+    children:
+      - 0914d6ce-e85f-4132-8fac-4b2692e9b634
+      - d3dc3f81-c2b8-4d13-987b-6167f9cf9157
+      - 3e86d732-4fe9-4342-abd6-40bff38190b9
+      - f9cc5465-9b63-41f9-8e8c-06e76bd03911
+      - 61715884-baf7-464d-850b-8aca7729aea5
+      - 49f06349-f4c0-420a-b352-1548746e5f21
+    metadata:
+      status: completed
+      expanded: false
+      deleted: false
+      plugins: {}
+  0914d6ce-e85f-4132-8fac-4b2692e9b634:
+    id: 0914d6ce-e85f-4132-8fac-4b2692e9b634
+    content: Activation
+    children:
+      - 99e828bd-cf43-4415-990d-b1721d110bf6
+      - 6c05a9e8-228c-468b-9729-1381a1caf541
+      - de99dab1-0156-429e-891f-0d28ca418996
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  99e828bd-cf43-4415-990d-b1721d110bf6:
+    id: 99e828bd-cf43-4415-990d-b1721d110bf6
+    content: Ctrl+F keyboard shortcut
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6c05a9e8-228c-468b-9729-1381a1caf541:
+    id: 6c05a9e8-228c-468b-9729-1381a1caf541
+    content: Edit menu option
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  de99dab1-0156-429e-891f-0d28ca418996:
+    id: de99dab1-0156-429e-891f-0d28ca418996
+    content: Escape to close/dismiss
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d3dc3f81-c2b8-4d13-987b-6167f9cf9157:
+    id: d3dc3f81-c2b8-4d13-987b-6167f9cf9157
+    content: UI
+    children:
+      - 107cfa88-fe80-495e-8309-cc0aecdc2c2f
+      - 3164ba75-e2b7-4eff-af10-ae46d5783f83
+      - bfe1db8d-8bc9-40a5-a150-dbb489a87ada
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  107cfa88-fe80-495e-8309-cc0aecdc2c2f:
+    id: 107cfa88-fe80-495e-8309-cc0aecdc2c2f
+    content: Search input appears in status bar area
+    children:
+      - a231a1a3-1935-4ed3-9891-7403e3bffedf
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a231a1a3-1935-4ed3-9891-7403e3bffedf:
+    id: a231a1a3-1935-4ed3-9891-7403e3bffedf
+    content: Keeps tree visible while searching
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3164ba75-e2b7-4eff-af10-ae46d5783f83:
+    id: 3164ba75-e2b7-4eff-af10-ae46d5783f83
+    content: Show match count (e.g., "3 of 12 matches")
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bfe1db8d-8bc9-40a5-a150-dbb489a87ada:
+    id: bfe1db8d-8bc9-40a5-a150-dbb489a87ada
+    content: Clear button to reset search
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3e86d732-4fe9-4342-abd6-40bff38190b9:
+    id: 3e86d732-4fe9-4342-abd6-40bff38190b9
+    content: Search behavior
+    children:
+      - 94e4d513-ef8e-4355-a0c1-d27dedd4838a
+      - bd060dd4-249f-4eed-97ca-c63555ba1e8a
+      - ab36e8d2-a86c-4e3c-9312-79181e686633
+      - ede22c5f-ce65-4b46-844f-74ebb92112c5
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  94e4d513-ef8e-4355-a0c1-d27dedd4838a:
+    id: 94e4d513-ef8e-4355-a0c1-d27dedd4838a
+    content: Search node content only (simplest starting point)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bd060dd4-249f-4eed-97ca-c63555ba1e8a:
+    id: bd060dd4-249f-4eed-97ca-c63555ba1e8a
+    content: Search within all nodes (collapsed or otherwise)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ab36e8d2-a86c-4e3c-9312-79181e686633:
+    id: ab36e8d2-a86c-4e3c-9312-79181e686633
+    content: Case-insensitive by default
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ede22c5f-ce65-4b46-844f-74ebb92112c5:
+    id: ede22c5f-ce65-4b46-844f-74ebb92112c5
+    content: Real-time filtering as you type (debounced ~150ms)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f9cc5465-9b63-41f9-8e8c-06e76bd03911:
+    id: f9cc5465-9b63-41f9-8e8c-06e76bd03911
+    content: Result navigation
+    children:
+      - 1bb1296d-140f-4bff-86ac-642007b1da94
+      - 3c58db14-1000-4592-9f62-c760330af35a
+      - 2e956ae5-48fa-461f-831b-a3059ebbe46d
+      - 1e8e94c7-5537-4a86-95be-e26e617f1150
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1bb1296d-140f-4bff-86ac-642007b1da94:
+    id: 1bb1296d-140f-4bff-86ac-642007b1da94
+    content: Enter or F3 to go to next match
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3c58db14-1000-4592-9f62-c760330af35a:
+    id: 3c58db14-1000-4592-9f62-c760330af35a
+    content: Shift+Enter or Shift+F3 to go to previous match
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2e956ae5-48fa-461f-831b-a3059ebbe46d:
+    id: 2e956ae5-48fa-461f-831b-a3059ebbe46d
+    content: Auto-expand collapsed ancestors when navigating to a match
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1e8e94c7-5537-4a86-95be-e26e617f1150:
+    id: 1e8e94c7-5537-4a86-95be-e26e617f1150
+    content: Auto-scroll to bring match into view
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  61715884-baf7-464d-850b-8aca7729aea5:
+    id: 61715884-baf7-464d-850b-8aca7729aea5
+    content: Focusing behavior
+    children:
+      - d0339c29-4577-4450-a49f-1577e5cae684
+      - c9e57ea0-0c97-41a8-8b08-6128dc0f258e
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d0339c29-4577-4450-a49f-1577e5cae684:
+    id: d0339c29-4577-4450-a49f-1577e5cae684
+    content: Focusing doesn't place the cursor in the element
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c9e57ea0-0c97-41a8-8b08-6128dc0f258e:
+    id: c9e57ea0-0c97-41a8-8b08-6128dc0f258e
+    content: It just highlights it a little darker, and browses to it
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  49f06349-f4c0-420a-b352-1548746e5f21:
+    id: 49f06349-f4c0-420a-b352-1548746e5f21
+    content: Visual feedback
+    children:
+      - 4a69bd8e-4997-4f25-b22f-b3ae373e9b60
+      - 3e7c5cef-86ac-46b5-864a-2065e1fa0ee8
+      - 74f9b8cb-67b7-46b5-89ae-f334af4d4e1a
+      - 516adb87-262a-4dfe-b867-e602811fcb27
+      - 5f8ff01f-0c35-4371-b7cc-21a2928265cc
+      - e1c3d74d-9124-4ba0-92e7-1c45cf1f6b8b
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4a69bd8e-4997-4f25-b22f-b3ae373e9b60:
+    id: 4a69bd8e-4997-4f25-b22f-b3ae373e9b60
+    content: Highlight all matching text in tree
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3e7c5cef-86ac-46b5-864a-2065e1fa0ee8:
+    id: 3e7c5cef-86ac-46b5-864a-2065e1fa0ee8
+    content: Use a blue background for highlight, change text to white
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  74f9b8cb-67b7-46b5-89ae-f334af4d4e1a:
+    id: 74f9b8cb-67b7-46b5-89ae-f334af4d4e1a
+    content: Don't highlight node, just text
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  516adb87-262a-4dfe-b867-e602811fcb27:
+    id: 516adb87-262a-4dfe-b867-e602811fcb27
+    content: Increase highlight when focusing on a particular match
+    children:
+      - e29713bc-8c28-4f37-945f-55cb0f10f66d
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e29713bc-8c28-4f37-945f-55cb0f10f66d:
+    id: e29713bc-8c28-4f37-945f-55cb0f10f66d
+    content: Also do this on first match
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5f8ff01f-0c35-4371-b7cc-21a2928265cc:
+    id: 5f8ff01f-0c35-4371-b7cc-21a2928265cc
+    content: Don't expand matches at the time of highlighting, only when browsing to them
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e1c3d74d-9124-4ba0-92e7-1c45cf1f6b8b:
+    id: e1c3d74d-9124-4ba0-92e7-1c45cf1f6b8b
+    content: When there is a text match in a child of a collapsed node
+    children:
+      - 3c279c33-90a7-4a1a-9846-ee10974a300f
+      - bf39a89a-125a-490a-9f9e-051f53fc2e79
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3c279c33-90a7-4a1a-9846-ee10974a300f:
+    id: 3c279c33-90a7-4a1a-9846-ee10974a300f
+    content: Add the same blue highlight as per a text match on the chevron of the collapsed node
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bf39a89a-125a-490a-9f9e-051f53fc2e79:
+    id: bf39a89a-125a-490a-9f9e-051f53fc2e79
+    content: Also change chevron to white
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a0aec444-134d-4f8c-a308-af5d0bd45dba:
+    id: a0aec444-134d-4f8c-a308-af5d0bd45dba
+    content: "Check if\_"
+    children: []
+    metadata:
+      status: pending
+  dc8bf9b2-975a-44b3-942b-a22b1be9e15e:
+    id: dc8bf9b2-975a-44b3-942b-a22b1be9e15e
+    content: Hotkey definition
+    children: []
+    metadata:
+      status: pending
+  797ed870-11ce-4314-9cb9-0db8919460c2:
+    id: 797ed870-11ce-4314-9cb9-0db8919460c2
+    content: Dark colour scheme
+    children: []
+    metadata:
+      status: pending
+  c25cf481-a0d1-495d-9cea-498f1135eb8c:
+    id: c25cf481-a0d1-495d-9cea-498f1135eb8c
+    content: Minor feature
+    children:
+      - 45bd7268-9183-4664-a675-88e6073621d1
+      - 2672a0ea-174d-48a0-82e4-822f3ded5762
+      - 6770d734-7be9-4fe5-ac95-4190b6d986dd
+      - a7749520-c888-4285-9975-54e711234678
+    metadata:
+      status: completed
+      expanded: false
+      deleted: false
+      plugins: {}
+      blueprintIcon: Wrench
+      blueprintColor: '#14b8a6'
+      activeExecuteContextId: 9b46397c-c452-421c-b408-46b040d99c9e
+      resolvedAt: '2025-12-09T06:01:07.426Z'
+  45bd7268-9183-4664-a675-88e6073621d1:
+    id: 45bd7268-9183-4664-a675-88e6073621d1
+    content: Add a 'Status' submenu in the context menu
+    children:
+      - 264d804c-a90c-4640-9fee-bdeb8b8c78c1
+      - ae2cc8a5-f2b2-4432-99d1-e2f37c636e75
+      - b8902b3a-aa3f-4ea4-bdfc-60cb07640df5
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+      resolvedAt: '2025-12-09T06:01:07.948Z'
+  264d804c-a90c-4640-9fee-bdeb8b8c78c1:
+    id: 264d804c-a90c-4640-9fee-bdeb8b8c78c1
+    content: Add it after 'Edit'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+      resolvedAt: '2025-12-09T06:01:08.415Z'
+  ae2cc8a5-f2b2-4432-99d1-e2f37c636e75:
+    id: ae2cc8a5-f2b2-4432-99d1-e2f37c636e75
+    content: Under it, add 'Mark all as complete'
+    children:
+      - fdc7e7ae-3e61-4308-80a4-bda1e14d6c82
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+      resolvedAt: '2025-12-09T06:01:09.020Z'
+  fdc7e7ae-3e61-4308-80a4-bda1e14d6c82:
+    id: fdc7e7ae-3e61-4308-80a4-bda1e14d6c82
+    content: This marks the node itself, and all descendants of a node as complete, regardless of their current status
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+      resolvedAt: '2025-12-09T06:01:09.689Z'
+  b8902b3a-aa3f-4ea4-bdfc-60cb07640df5:
+    id: b8902b3a-aa3f-4ea4-bdfc-60cb07640df5
+    content: Add 'Mark all as incomplete'
+    children:
+      - 9c398a9a-5889-4f8f-a6d8-46cd82933f46
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+      resolvedAt: '2025-12-09T06:01:10.329Z'
+  9c398a9a-5889-4f8f-a6d8-46cd82933f46:
+    id: 9c398a9a-5889-4f8f-a6d8-46cd82933f46
+    content: This marks the node itself, and all descendants of a node as incomplete, regardless of their current status
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+      resolvedAt: '2025-12-09T06:01:10.865Z'
+  2672a0ea-174d-48a0-82e4-822f3ded5762:
+    id: 2672a0ea-174d-48a0-82e4-822f3ded5762
+    content: Does not appear on blueprint or link nodes
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+      resolvedAt: '2025-12-09T06:01:11.513Z'
+  6770d734-7be9-4fe5-ac95-4190b6d986dd:
+    id: 6770d734-7be9-4fe5-ac95-4190b6d986dd
+    content: Does not appear if node has no children
+    children: []
+    metadata:
+      status: completed
+      resolvedAt: '2025-12-09T06:01:12.036Z'
+  60323f25-27f5-4318-8278-db33b50f19c9:
+    id: 60323f25-27f5-4318-8278-db33b50f19c9
+    content: Collaborate and Execute seem to be sharing the choice of context
+    children:
+      - 6fb735ff-4836-41aa-b55a-4d340cdf8acb
+    metadata:
+      status: pending
+  6fb735ff-4836-41aa-b55a-4d340cdf8acb:
+    id: 6fb735ff-4836-41aa-b55a-4d340cdf8acb
+    content: They should be independant
+    children: []
+    metadata:
+      status: pending
+  3cbf3503-1956-4c42-8c2f-928c630af320:
+    id: 3cbf3503-1956-4c42-8c2f-928c630af320
+    content: "When sending context to execute, if the content is long and Claude gives a summary, it doesn't execute - I assume it's interpreting the carriage return as part of the text.\_ Perhaps add a short delay before sending the return keystroke ?\_ Actually perhaps this is where the [I it detects in the context is coming from."
+    children: []
+    metadata:
+      status: pending
+  a7749520-c888-4285-9975-54e711234678:
+    id: a7749520-c888-4285-9975-54e711234678
+    content: Is undoable
+    children: []
+    metadata:
+      status: completed
+      resolvedAt: '2025-12-09T06:01:12.536Z'
+summaryDateFrom: '2025-12-08'
+summaryDateTo: '2025-12-09'

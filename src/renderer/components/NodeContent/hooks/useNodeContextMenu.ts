@@ -10,6 +10,7 @@ import { useFeedbackActions } from '../../Feedback/hooks/useFeedbackActions';
 import { usePanelStore } from '../../../store/panel/panelStore';
 import { useFilesStore } from '../../../store/files/filesStore';
 import { buildBlueprintSubmenu } from './useBlueprintSubmenu';
+import { buildStatusSubmenu } from './useStatusSubmenu';
 import { logger } from '../../../services/logger';
 import { writeToClipboard } from '../../../services/clipboardService';
 import { exportNodeAsMarkdown } from '../../../utils/markdown';
@@ -205,6 +206,12 @@ export function useNodeContextMenu(node: TreeNode) {
       onSetAppliedContext: handleSetAppliedContext,
     });
 
+    const statusMenuItem = buildStatusSubmenu({
+      node: freshNode,
+      onMarkAllAsComplete: () => actions.markAllAsComplete(node.id),
+      onMarkAllAsIncomplete: () => actions.markAllAsIncomplete(node.id),
+    });
+
     const isHyperlink = node.metadata.isHyperlink === true;
 
     // Base menu items - hyperlinks have limited options
@@ -258,6 +265,8 @@ export function useNodeContextMenu(node: TreeNode) {
           },
         ],
       },
+      // Status submenu - hidden for blueprint/hyperlink nodes and nodes without children
+      ...(statusMenuItem ? [statusMenuItem] : []),
       {
         label: 'Copy to Clipboard',
         onClick: handleCopyToClipboard,

@@ -4,6 +4,7 @@ import { AncestorRegistry } from '../../../services/ancestry';
 import { v4 as uuidv4 } from 'uuid';
 import { ContentEditCommand } from '../commands/ContentEditCommand';
 import { ToggleStatusCommand } from '../commands/ToggleStatusCommand';
+import { SetStatusBatchCommand } from '../commands/SetStatusBatchCommand';
 import { CreateNodeCommand } from '../commands/CreateNodeCommand';
 import { SplitNodeCommand } from '../commands/SplitNodeCommand';
 import { logger } from '../../../services/logger';
@@ -14,6 +15,8 @@ export interface NodeActions {
   updateContent: (nodeId: string, content: string) => void;
   updateStatus: (nodeId: string, status: NodeStatus) => void;
   toggleStatus: (nodeId: string) => void;
+  markAllAsComplete: (nodeId: string) => void;
+  markAllAsIncomplete: (nodeId: string) => void;
   setCursorPosition: (position: number) => void;
   setRememberedVisualX: (visualX: number | null) => void;
   createNode: (currentNodeId: string) => void;
@@ -110,6 +113,48 @@ export const createNodeActions = (
       () => (get() as StoreState).nodes,
       (updatedNodes) => set({ nodes: updatedNodes }),
       (nodeId, cursorPosition) => set({ activeNodeId: nodeId, cursorPosition }),
+      triggerAutosave,
+      () => state.actions?.refreshSummaryVisibleNodeIds?.()
+    );
+    state.actions.executeCommand(command);
+  }
+
+  function markAllAsComplete(nodeId: string): void {
+    const state = get() as StoreState & { actions?: { executeCommand?: (cmd: unknown) => void; refreshSummaryVisibleNodeIds?: () => void } };
+    const { nodes } = state;
+    const node = nodes[nodeId];
+    if (!node) return;
+
+    if (!state.actions?.executeCommand) {
+      throw new Error('Command system not initialized - cannot mark all as complete with undo/redo support');
+    }
+
+    const command = new SetStatusBatchCommand(
+      nodeId,
+      'completed',
+      () => (get() as StoreState).nodes,
+      (updatedNodes) => set({ nodes: updatedNodes }),
+      triggerAutosave,
+      () => state.actions?.refreshSummaryVisibleNodeIds?.()
+    );
+    state.actions.executeCommand(command);
+  }
+
+  function markAllAsIncomplete(nodeId: string): void {
+    const state = get() as StoreState & { actions?: { executeCommand?: (cmd: unknown) => void; refreshSummaryVisibleNodeIds?: () => void } };
+    const { nodes } = state;
+    const node = nodes[nodeId];
+    if (!node) return;
+
+    if (!state.actions?.executeCommand) {
+      throw new Error('Command system not initialized - cannot mark all as incomplete with undo/redo support');
+    }
+
+    const command = new SetStatusBatchCommand(
+      nodeId,
+      'pending',
+      () => (get() as StoreState).nodes,
+      (updatedNodes) => set({ nodes: updatedNodes }),
       triggerAutosave,
       () => state.actions?.refreshSummaryVisibleNodeIds?.()
     );
@@ -220,6 +265,8 @@ export const createNodeActions = (
     updateContent,
     updateStatus,
     toggleStatus,
+    markAllAsComplete,
+    markAllAsIncomplete,
     setCursorPosition,
     setRememberedVisualX,
     createNode,
