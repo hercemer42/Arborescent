@@ -210,6 +210,20 @@ async function handleUIShortcuts(event: KeyboardEvent): Promise<void> {
     return;
   }
 
+  // Clear selection with Escape
+  if (matchesHotkey(event, 'editing', 'cancelEdit')) {
+    const store = getActiveStore();
+    if (!store) return;
+
+    const state = store.getState();
+    if (state.multiSelectedNodeIds && state.multiSelectedNodeIds.size > 0) {
+      event.preventDefault();
+      state.actions.clearSelection();
+    }
+    // Let editingService handle blur/revert if a node is focused
+    return;
+  }
+
   // Execute in terminal (with active context)
   if (matchesHotkey(event, 'actions', 'execute')) {
     event.preventDefault();

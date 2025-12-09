@@ -164,11 +164,12 @@ function handleEditingShortcuts(event: KeyboardEvent): void {
     return;
   }
 
-  // Cancel edit
+  // Cancel edit and clear selections
   if (matchesHotkey(event, 'editing', 'cancelEdit')) {
     event.preventDefault();
     convertToContentEditable(element, activeNode.content);
     element.blur();
+    store.actions.clearSelection();
     return;
   }
 
