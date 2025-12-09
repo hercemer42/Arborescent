@@ -6,6 +6,7 @@ declare global {
   interface Window {
     electron: {
       platform: NodeJS.Platform;
+      openExternal: (url: string) => Promise<void>;
       readFile: (path: string) => Promise<string>;
       writeFile: (path: string, content: string) => Promise<void>;
       showOpenDialog: () => Promise<string | null>;

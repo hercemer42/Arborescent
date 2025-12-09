@@ -54,8 +54,8 @@ export const createNodeActions = (
     const node = nodes[nodeId];
     if (!node) return;
 
-    // Prevent editing of hyperlinks
-    if (node.metadata.isHyperlink === true) {
+    // Prevent editing of link nodes (hyperlinks and external links)
+    if (node.metadata.isHyperlink === true || node.metadata.isExternalLink === true) {
       return;
     }
 
@@ -180,8 +180,8 @@ export const createNodeActions = (
     const node = nodes[nodeId];
     if (!node) return;
 
-    // Prevent splitting hyperlinks
-    if (node.metadata.isHyperlink === true) {
+    // Prevent splitting link nodes (hyperlinks and external links)
+    if (node.metadata.isHyperlink === true || node.metadata.isExternalLink === true) {
       return;
     }
 

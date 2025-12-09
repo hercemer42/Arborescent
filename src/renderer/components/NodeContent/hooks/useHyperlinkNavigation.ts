@@ -9,7 +9,19 @@ export function useHyperlinkNavigation(node: TreeNode) {
   const activeFile = useFilesStore((state) => state.getActiveFile());
   const setActiveFile = useFilesStore((state) => state.setActiveFile);
 
+  const isExternalLink = node.metadata.isExternalLink === true;
+  const externalUrl = node.metadata.externalUrl as string | undefined;
+
   const navigateToLinkedNode = useCallback(() => {
+    // Handle external links - open in browser
+    if (isExternalLink && externalUrl) {
+      window.electron.openExternal(externalUrl).catch(() => {
+        useToastStore.getState().addToast('Failed to open link', 'error');
+      });
+      return;
+    }
+
+    // Handle internal hyperlinks
     const linkedNodeId = node.metadata.linkedNodeId as string | undefined;
     if (!linkedNodeId) return;
 
@@ -45,7 +57,7 @@ export function useHyperlinkNavigation(node: TreeNode) {
     // Select the target node and scroll to it
     actions.selectNode(linkedNodeId, 0);
     store.setState({ scrollToNodeId: linkedNodeId });
-  }, [node.metadata.linkedNodeId, store, activeFile, setActiveFile]);
+  }, [node.metadata.linkedNodeId, store, activeFile, setActiveFile, isExternalLink, externalUrl]);
 
-  return { navigateToLinkedNode };
+  return { navigateToLinkedNode, isExternalLink };
 }

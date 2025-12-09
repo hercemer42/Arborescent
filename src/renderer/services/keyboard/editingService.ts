@@ -168,8 +168,9 @@ function handleEditingShortcuts(event: KeyboardEvent): void {
     return;
   }
 
-  // Block text modification for hyperlink nodes
-  if (activeNode.metadata.isHyperlink === true) {
+  // Block text modification for link nodes (hyperlinks and external links)
+  const isLinkNode = activeNode.metadata.isHyperlink === true || activeNode.metadata.isExternalLink === true;
+  if (isLinkNode) {
     const isTyping = event.key.length === 1 && !event.ctrlKey && !event.metaKey;
     const isTextDelete = (event.key === 'Backspace' || event.key === 'Delete') && !event.ctrlKey && !event.metaKey;
     if (isTyping || isTextDelete) {

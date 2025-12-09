@@ -971,7 +971,7 @@ describe('clipboardActions', () => {
 
         expect(result).toBe('no-content');
         expect(mockAddToast).toHaveBeenCalledWith(
-          'Cannot add hyperlink as child of another hyperlink',
+          'Cannot add hyperlink as child of a link node',
           'error'
         );
       });
@@ -1049,9 +1049,84 @@ describe('clipboardActions', () => {
 
         expect(result).toBe('no-content');
         expect(mockAddToast).toHaveBeenCalledWith(
-          'Cannot paste into a hyperlink node',
+          'Cannot paste into a link node',
           'error'
         );
+      });
+
+      it('should block pasting into external link nodes', async () => {
+        state.nodes['external-link-node'] = {
+          id: 'external-link-node',
+          content: 'https://example.com',
+          children: [],
+          metadata: { isExternalLink: true, externalUrl: 'https://example.com' },
+        };
+        state.ancestorRegistry['external-link-node'] = ['root'];
+        state.activeNodeId = 'external-link-node';
+
+        mockClipboard.readText.mockResolvedValueOnce('# Pasted Node');
+
+        const result = await actions.pasteNodes();
+
+        expect(result).toBe('no-content');
+        expect(mockAddToast).toHaveBeenCalledWith(
+          'Cannot paste into a link node',
+          'error'
+        );
+      });
+    });
+
+    describe('external URL detection', () => {
+      it('should create external link node when pasting http URL', async () => {
+        state.activeNodeId = 'node-1';
+        mockClipboard.readText.mockResolvedValueOnce('https://example.com/page');
+
+        const result = await actions.pasteNodes();
+
+        expect(result).toBe('pasted');
+        const newNode = Object.values(state.nodes).find(
+          (n) => n.metadata.isExternalLink === true
+        );
+        expect(newNode).toBeDefined();
+        expect(newNode?.content).toBe('https://example.com/page');
+        expect(newNode?.metadata.externalUrl).toBe('https://example.com/page');
+      });
+
+      it('should create external link node when pasting http URL with whitespace', async () => {
+        state.activeNodeId = 'node-1';
+        mockClipboard.readText.mockResolvedValueOnce('  http://example.com  \n');
+
+        const result = await actions.pasteNodes();
+
+        expect(result).toBe('pasted');
+        const newNode = Object.values(state.nodes).find(
+          (n) => n.metadata.isExternalLink === true
+        );
+        expect(newNode).toBeDefined();
+        expect(newNode?.content).toBe('http://example.com');
+      });
+
+      it('should not treat non-URL text as external link', async () => {
+        state.activeNodeId = 'node-1';
+        mockClipboard.readText.mockResolvedValueOnce('# Regular markdown');
+
+        const result = await actions.pasteNodes();
+
+        expect(result).toBe('pasted');
+        const externalLinkNode = Object.values(state.nodes).find(
+          (n) => n.metadata.isExternalLink === true
+        );
+        expect(externalLinkNode).toBeUndefined();
+      });
+
+      it('should add external link as child of active node', async () => {
+        state.activeNodeId = 'node-1';
+        const originalChildCount = state.nodes['node-1'].children.length;
+        mockClipboard.readText.mockResolvedValueOnce('https://github.com');
+
+        await actions.pasteNodes();
+
+        expect(state.nodes['node-1'].children.length).toBe(originalChildCount + 1);
       });
     });
   });

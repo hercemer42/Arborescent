@@ -3,6 +3,7 @@ import { pluginPreloadAPI } from '../../plugins/core/preload/preload';
 
 contextBridge.exposeInMainWorld('electron', {
   platform: process.platform,
+  openExternal: (url: string) => ipcRenderer.invoke('open-external', url),
   readFile: (path: string) => ipcRenderer.invoke('read-file', path),
   writeFile: (path: string, content: string) =>
     ipcRenderer.invoke('write-file', path, content),

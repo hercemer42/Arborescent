@@ -33,21 +33,23 @@ function NodeContentComponent({
 
   const handleBlueprintIconClick = useBlueprintIconClick(node.id, node);
   const handleContextIconClick = useContextIconClick(node.id, node);
-  const { navigateToLinkedNode } = useHyperlinkNavigation(node);
+  const { navigateToLinkedNode, isExternalLink } = useHyperlinkNavigation(node);
 
   const { isContextDeclaration, isContextChild, ContextIcon, contextColor } = useContextIcon(node);
   const { BlueprintIcon, blueprintColor, isInherited: isInheritingBlueprintIcon } = useBlueprintIcon(node);
 
   const isHyperlink = node.metadata.isHyperlink === true;
+  const isLink = isHyperlink || isExternalLink;
 
   // Render the status area (checkbox, blueprint icon, context icon, or hyperlink icon)
   const renderStatusArea = () => {
-    // Hyperlink node - Link icon
-    if (isHyperlink) {
+    // Link node (internal hyperlink or external URL)
+    if (isLink) {
+      const title = isExternalLink ? 'Click to open in browser' : 'Click to navigate to linked node';
       return (
         <button
           className="hyperlink-indicator"
-          title="Click to navigate to linked node"
+          title={title}
           onClick={navigateToLinkedNode}
         >
           <Link size={19} />
@@ -123,12 +125,12 @@ function NodeContentComponent({
 
         <div
           ref={contentRef}
-          className={`node-text ${isHyperlink ? 'hyperlink-text' : ''}`}
+          className={`node-text ${isLink ? 'hyperlink-text' : ''}`}
           contentEditable
           suppressContentEditableWarning
           spellCheck={isSelected}
-          onInput={isHyperlink ? undefined : handleInput}
-          onClick={isHyperlink ? navigateToLinkedNode : undefined}
+          onInput={isLink ? undefined : handleInput}
+          onClick={isLink ? navigateToLinkedNode : undefined}
         />
       </div>
 

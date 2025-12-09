@@ -365,6 +365,56 @@ function handleCopyPaste(
 }
 
 /**
+ * Check if text is an external URL (starts with http:// or https://)
+ */
+function isExternalUrl(text: string): boolean {
+  const trimmed = text.trim();
+  return trimmed.startsWith('http://') || trimmed.startsWith('https://');
+}
+
+/**
+ * Handle pasting an external URL as a link node.
+ */
+function handleExternalUrlPaste(
+  url: string,
+  ctx: PasteContext
+): PasteResult {
+  const { state, targetParentId, actions, get, set, triggerAutosave, visualEffects } = ctx;
+  const trimmedUrl = url.trim();
+
+  const newNodeId = uuidv4();
+  const targetParent = state.nodes[targetParentId];
+  const position = targetParent ? targetParent.children.length : 0;
+
+  const command = new CreateNodeCommand(
+    newNodeId,
+    targetParentId,
+    position,
+    trimmedUrl,
+    () => {
+      const currentState = get();
+      return {
+        nodes: currentState.nodes,
+        rootNodeId: currentState.rootNodeId,
+        ancestorRegistry: currentState.ancestorRegistry,
+      };
+    },
+    (partial) => set(partial as Partial<StoreState>),
+    triggerAutosave,
+    {
+      isExternalLink: true,
+      externalUrl: trimmedUrl,
+    }
+  );
+
+  actions.executeCommand(command);
+  visualEffects.flashNode(newNodeId, 'light');
+
+  logger.info('Pasted external URL as link node', 'ClipboardActions');
+  return 'pasted';
+}
+
+/**
  * Handle external paste from system clipboard markdown.
  * Returns 'no-content' for plain text to allow browser native paste at cursor.
  */
@@ -373,6 +423,11 @@ async function handleExternalPaste(ctx: PasteContext): Promise<PasteResult> {
 
   const clipboardText = await readFromClipboard('ClipboardActions:paste');
   if (!clipboardText) return 'no-content';
+
+  // Check if clipboard contains an external URL
+  if (isExternalUrl(clipboardText)) {
+    return handleExternalUrlPaste(clipboardText, ctx);
+  }
 
   const parsed = parseMarkdown(clipboardText);
 
@@ -552,10 +607,11 @@ export const createClipboardActions = (
     const targetParentId = state.activeNodeId || state.rootNodeId;
     if (!targetParentId) return 'no-content';
 
-    // Hyperlinks cannot have children
+    // Link nodes (hyperlinks and external links) cannot have children
     const targetParent = state.nodes[targetParentId];
-    if (targetParent?.metadata.isHyperlink === true) {
-      useToastStore.getState().addToast('Cannot paste into a hyperlink node', 'error');
+    const isLinkNode = targetParent?.metadata.isHyperlink === true || targetParent?.metadata.isExternalLink === true;
+    if (isLinkNode) {
+      useToastStore.getState().addToast('Cannot paste into a link node', 'error');
       return 'no-content';
     }
 
@@ -656,9 +712,10 @@ export const createClipboardActions = (
     const targetParent = state.nodes[targetParentId];
     if (!targetParent) return 'no-content';
 
-    // Hyperlinks cannot be children of other hyperlinks
-    if (targetParent.metadata.isHyperlink === true) {
-      useToastStore.getState().addToast('Cannot add hyperlink as child of another hyperlink', 'error');
+    // Link nodes cannot have children
+    const isLinkNode = targetParent.metadata.isHyperlink === true || targetParent.metadata.isExternalLink === true;
+    if (isLinkNode) {
+      useToastStore.getState().addToast('Cannot add hyperlink as child of a link node', 'error');
       return 'no-content';
     }
 

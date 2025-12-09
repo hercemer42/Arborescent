@@ -96,6 +96,7 @@ afterEach(() => {
 
 global.window.electron = {
   platform: 'linux',
+  openExternal: vi.fn(),
   readFile: vi.fn(),
   writeFile: vi.fn(),
   showOpenDialog: vi.fn(),
