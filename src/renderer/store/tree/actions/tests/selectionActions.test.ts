@@ -10,6 +10,8 @@ describe('selectionActions', () => {
     multiSelectedNodeIds: Set<string>;
     lastSelectedNodeId: string | null;
     rootNodeId: string;
+    summaryModeEnabled: boolean;
+    summaryVisibleNodeIds: Set<string> | null;
   };
 
   let state: TestState;
@@ -74,6 +76,8 @@ describe('selectionActions', () => {
       multiSelectedNodeIds: new Set<string>(),
       lastSelectedNodeId: null,
       rootNodeId: 'root',
+      summaryModeEnabled: false,
+      summaryVisibleNodeIds: null,
     };
 
     setState = (partial: Partial<TestState>) => {
@@ -363,6 +367,61 @@ describe('selectionActions', () => {
       expect(nodes).toContain('node-2');
       expect(nodes).toContain('node-3-1');
       expect(nodes).toHaveLength(3);
+    });
+  });
+
+  describe('summary mode filtering', () => {
+    it('should only select visible nodes in summary mode', () => {
+      // Enable summary mode with only some nodes visible
+      state.summaryModeEnabled = true;
+      state.summaryVisibleNodeIds = new Set(['node-1', 'node-1-1', 'node-2']);
+      // node-1-2 is NOT visible
+
+      actions.toggleNodeSelection('node-1');
+
+      // Should include node-1 and node-1-1 (visible descendants)
+      expect(state.multiSelectedNodeIds.has('node-1')).toBe(true);
+      expect(state.multiSelectedNodeIds.has('node-1-1')).toBe(true);
+      // Should NOT include node-1-2 (not visible in summary mode)
+      expect(state.multiSelectedNodeIds.has('node-1-2')).toBe(false);
+    });
+
+    it('should not select invisible node in summary mode', () => {
+      state.summaryModeEnabled = true;
+      state.summaryVisibleNodeIds = new Set(['node-1', 'node-2']);
+      // node-1-1 is NOT visible
+
+      actions.toggleNodeSelection('node-1-1');
+
+      // Should not add invisible node to selection
+      expect(state.multiSelectedNodeIds.has('node-1-1')).toBe(false);
+      expect(state.multiSelectedNodeIds.size).toBe(0);
+    });
+
+    it('should select all descendants when summary mode disabled', () => {
+      state.summaryModeEnabled = false;
+      state.summaryVisibleNodeIds = null;
+
+      actions.toggleNodeSelection('node-1');
+
+      // All descendants should be selected
+      expect(state.multiSelectedNodeIds.has('node-1')).toBe(true);
+      expect(state.multiSelectedNodeIds.has('node-1-1')).toBe(true);
+      expect(state.multiSelectedNodeIds.has('node-1-2')).toBe(true);
+    });
+
+    it('should only add visible nodes in summary mode via addToSelection', () => {
+      state.summaryModeEnabled = true;
+      state.summaryVisibleNodeIds = new Set(['node-1', 'node-3', 'node-3-1']);
+      // node-1-1, node-1-2, node-2 are NOT visible
+
+      actions.addToSelection(['node-1', 'node-3']);
+
+      expect(state.multiSelectedNodeIds.has('node-1')).toBe(true);
+      expect(state.multiSelectedNodeIds.has('node-1-1')).toBe(false);
+      expect(state.multiSelectedNodeIds.has('node-1-2')).toBe(false);
+      expect(state.multiSelectedNodeIds.has('node-3')).toBe(true);
+      expect(state.multiSelectedNodeIds.has('node-3-1')).toBe(true);
     });
   });
 });

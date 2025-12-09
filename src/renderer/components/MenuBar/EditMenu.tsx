@@ -92,9 +92,9 @@ export function EditMenu() {
       />
       <MenuSeparator />
       <MenuItem
-        label="Select All"
+        label="Select All Nodes"
         shortcut={formatHotkeyForDisplay(
-          getKeyForAction('actions', 'selectAll') || 'CmdOrCtrl+A'
+          getKeyForAction('actions', 'selectAll') || 'CmdOrCtrl+Shift+A'
         )}
         disabled={!canSelectAll}
         onClick={handleSelectAll}

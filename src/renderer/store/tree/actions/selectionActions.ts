@@ -17,21 +17,41 @@ type StoreState = {
   multiSelectedNodeIds: Set<string>;
   lastSelectedNodeId: string | null;
   rootNodeId: string;
+  summaryModeEnabled: boolean;
+  summaryVisibleNodeIds: Set<string> | null;
 };
 
 type StoreSetter = (partial: Partial<StoreState>) => void;
 
 /**
- * Create a selection set containing a node and all its descendants
+ * Create a selection set containing a node and all its visible descendants.
+ * In summary mode, only includes nodes that are in summaryVisibleNodeIds.
  */
 function createSelectionWithDescendants(
   nodeId: string,
-  nodes: Record<string, TreeNode>
+  nodes: Record<string, TreeNode>,
+  summaryModeEnabled: boolean,
+  summaryVisibleNodeIds: Set<string> | null
 ): Set<string> {
   const selection = new Set<string>();
+
+  // In summary mode, only select if node is visible
+  if (summaryModeEnabled && summaryVisibleNodeIds && !summaryVisibleNodeIds.has(nodeId)) {
+    return selection;
+  }
+
   selection.add(nodeId);
   const descendants = getAllDescendants(nodeId, nodes);
-  descendants.forEach(descId => selection.add(descId));
+  descendants.forEach(descId => {
+    // In summary mode, only include visible descendants
+    if (summaryModeEnabled && summaryVisibleNodeIds) {
+      if (summaryVisibleNodeIds.has(descId)) {
+        selection.add(descId);
+      }
+    } else {
+      selection.add(descId);
+    }
+  });
   return selection;
 }
 
@@ -41,7 +61,7 @@ export const createSelectionActions = (
   set: StoreSetter
 ): SelectionActions => {
   function toggleNodeSelection(nodeId: string): void {
-    const { multiSelectedNodeIds, nodes, ancestorRegistry } = get();
+    const { multiSelectedNodeIds, nodes, ancestorRegistry, summaryModeEnabled, summaryVisibleNodeIds } = get();
     const newSelection = new Set(multiSelectedNodeIds);
 
     if (newSelection.has(nodeId)) {
@@ -54,14 +74,14 @@ export const createSelectionActions = (
       }
 
       // Remove this node and all its descendants
-      const nodeWithDescendants = createSelectionWithDescendants(nodeId, nodes);
+      const nodeWithDescendants = createSelectionWithDescendants(nodeId, nodes, summaryModeEnabled, summaryVisibleNodeIds);
       nodeWithDescendants.forEach(id => newSelection.delete(id));
 
       // Keep anchor unchanged when deselecting (don't set anchor to a removed node)
       set({ multiSelectedNodeIds: newSelection });
     } else {
       // Adding to selection: add this node and all its descendants
-      const nodeWithDescendants = createSelectionWithDescendants(nodeId, nodes);
+      const nodeWithDescendants = createSelectionWithDescendants(nodeId, nodes, summaryModeEnabled, summaryVisibleNodeIds);
       nodeWithDescendants.forEach(id => newSelection.add(id));
 
       // Update anchor so Shift+Click can create range from this node
@@ -70,11 +90,11 @@ export const createSelectionActions = (
   }
 
   function selectRange(nodeId: string): void {
-    const { lastSelectedNodeId, nodes, rootNodeId, ancestorRegistry } = get();
+    const { lastSelectedNodeId, nodes, rootNodeId, ancestorRegistry, summaryModeEnabled, summaryVisibleNodeIds } = get();
 
     if (!lastSelectedNodeId) {
       // First Shift+Click: select this node and set as anchor
-      const newSelection = createSelectionWithDescendants(nodeId, nodes);
+      const newSelection = createSelectionWithDescendants(nodeId, nodes, summaryModeEnabled, summaryVisibleNodeIds);
       set({ multiSelectedNodeIds: newSelection, lastSelectedNodeId: nodeId });
       return;
     }
@@ -88,7 +108,7 @@ export const createSelectionActions = (
 
     if (startIndex === -1 || endIndex === -1) {
       // One of the nodes not found, just select this node and set as new anchor
-      const newSelection = createSelectionWithDescendants(nodeId, nodes);
+      const newSelection = createSelectionWithDescendants(nodeId, nodes, summaryModeEnabled, summaryVisibleNodeIds);
       set({ multiSelectedNodeIds: newSelection, lastSelectedNodeId: nodeId });
       return;
     }
@@ -105,7 +125,7 @@ export const createSelectionActions = (
     const { multiSelectedNodeIds } = get();
     const newSelection = new Set(multiSelectedNodeIds);
     rangeNodes.forEach(id => {
-      const nodeSelection = createSelectionWithDescendants(id, nodes);
+      const nodeSelection = createSelectionWithDescendants(id, nodes, summaryModeEnabled, summaryVisibleNodeIds);
       nodeSelection.forEach(selectedId => newSelection.add(selectedId));
     });
 
@@ -114,12 +134,12 @@ export const createSelectionActions = (
   }
 
   function addToSelection(nodeIds: string[]): void {
-    const { multiSelectedNodeIds, nodes } = get();
+    const { multiSelectedNodeIds, nodes, summaryModeEnabled, summaryVisibleNodeIds } = get();
     const newSelection = new Set(multiSelectedNodeIds);
 
     // Add each node and all its descendants
     nodeIds.forEach(id => {
-      const nodeWithDescendants = createSelectionWithDescendants(id, nodes);
+      const nodeWithDescendants = createSelectionWithDescendants(id, nodes, summaryModeEnabled, summaryVisibleNodeIds);
       nodeWithDescendants.forEach(selectedId => newSelection.add(selectedId));
     });
 
@@ -158,14 +178,14 @@ export const createSelectionActions = (
   }
 
   function selectAllNodes(): void {
-    const { nodes, rootNodeId } = get();
+    const { nodes, rootNodeId, summaryModeEnabled, summaryVisibleNodeIds } = get();
     const rootNode = nodes[rootNodeId];
     if (!rootNode || rootNode.children.length === 0) return;
 
     // Select all visible nodes (all children of root, recursively)
     const newSelection = new Set<string>();
     for (const childId of rootNode.children) {
-      const nodeSelection = createSelectionWithDescendants(childId, nodes);
+      const nodeSelection = createSelectionWithDescendants(childId, nodes, summaryModeEnabled, summaryVisibleNodeIds);
       nodeSelection.forEach(id => newSelection.add(id));
     }
 
