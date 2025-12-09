@@ -111,9 +111,22 @@ function handleEditingShortcuts(event: KeyboardEvent): void {
     return;
   }
 
+  // Create new sibling without splitting (Ctrl+Enter)
+  if (matchesHotkey(event, 'editing', 'newSiblingNoSplit')) {
+    event.preventDefault();
+    store.actions.createNode(activeNodeId);
+    return;
+  }
+
   // Create new sibling after (or split node if cursor is mid-content)
   if (matchesHotkey(event, 'editing', 'newSiblingAfter')) {
     event.preventDefault();
+    // Link nodes: just create new sibling (no splitting)
+    const isLinkNode = activeNode.metadata.isHyperlink === true || activeNode.metadata.isExternalLink === true;
+    if (isLinkNode) {
+      store.actions.createNode(activeNodeId);
+      return;
+    }
     handleEnterKey(element, store, activeNodeId);
     return;
   }

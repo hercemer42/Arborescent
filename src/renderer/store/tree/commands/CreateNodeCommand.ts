@@ -24,7 +24,8 @@ export class CreateNodeCommand extends BaseCommand {
       cursorPosition?: number;
     }) => void,
     private triggerAutosave?: () => void,
-    private initialMetadata?: Record<string, unknown>
+    private initialMetadata?: Record<string, unknown>,
+    private previousActiveNodeId?: string
   ) {
     super();
     this.description = `Create node ${newNodeId}`;
@@ -98,13 +99,16 @@ export class CreateNodeCommand extends BaseCommand {
     // Incremental update: remove the node (no descendants for a newly created node)
     const newAncestorRegistry = removeNodeFromRegistry(ancestorRegistry, this.newNodeId, nodes);
 
-    // Place cursor at end of parent's content
-    const cursorPosition = updatedNodes[this.parentId].content.length;
+    // Return to the node we were in before creating, or fall back to parent
+    const returnToNodeId = this.previousActiveNodeId && updatedNodes[this.previousActiveNodeId]
+      ? this.previousActiveNodeId
+      : this.parentId;
+    const cursorPosition = updatedNodes[returnToNodeId].content.length;
 
     this.setState({
       nodes: updatedNodes,
       ancestorRegistry: newAncestorRegistry,
-      activeNodeId: this.parentId,
+      activeNodeId: returnToNodeId,
       cursorPosition,
     });
 

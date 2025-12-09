@@ -169,7 +169,8 @@ export const createNodeActions = (
       },
       (partial) => set(partial as Partial<StoreState>),
       triggerAutosave,
-      initialMetadata
+      initialMetadata,
+      currentNodeId // Pass the original node for undo
     );
     state.actions.executeCommand(command);
   }

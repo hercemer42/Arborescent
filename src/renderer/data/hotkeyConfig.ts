@@ -18,7 +18,7 @@ export interface HotkeyConfig {
     saveEdit: string;
     deleteLine: string;
     newSiblingAfter: string;
-    newChildNode: string;
+    newSiblingNoSplit: string;
     indent: string;
     outdent: string;
   };
