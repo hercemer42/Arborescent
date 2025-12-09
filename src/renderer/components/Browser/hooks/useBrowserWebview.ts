@@ -53,6 +53,8 @@ export function useBrowserWebview({ id, url, onWebviewReady }: UseBrowserWebview
 
     const handleDidFailLoad = (e: Event) => {
       const errorEvent = e as unknown as { errorDescription: string; errorCode: number };
+      // ERR_ABORTED (-3) is common and benign - happens during redirects or when navigation is cancelled
+      if (errorEvent.errorCode === -3) return;
       logger.warn(`Browser failed to load: ${errorEvent.errorDescription} (${errorEvent.errorCode})`, 'Browser');
     };
 

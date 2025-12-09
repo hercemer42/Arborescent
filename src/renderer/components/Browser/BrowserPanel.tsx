@@ -48,18 +48,20 @@ export function BrowserPanel() {
         onNewTab={handleNewBrowser}
         onTogglePanelPosition={togglePanelPosition}
       />
-      <BrowserNavBar
-        canGoBack={canGoBack}
-        canGoForward={canGoForward}
-        addressBarValue={addressBarValue}
-        onBack={handleBack}
-        onForward={handleForward}
-        onReload={handleReload}
-        onAddressBarChange={setAddressBarValue}
-        onAddressBarSubmit={handleAddressBarSubmit}
-        onAddressBarFocus={() => setIsEditingAddress(true)}
-        onAddressBarBlur={() => setIsEditingAddress(false)}
-      />
+      {activeTabId && (
+        <BrowserNavBar
+          canGoBack={canGoBack}
+          canGoForward={canGoForward}
+          addressBarValue={addressBarValue}
+          onBack={handleBack}
+          onForward={handleForward}
+          onReload={handleReload}
+          onAddressBarChange={setAddressBarValue}
+          onAddressBarSubmit={handleAddressBarSubmit}
+          onAddressBarFocus={() => setIsEditingAddress(true)}
+          onAddressBarBlur={() => setIsEditingAddress(false)}
+        />
+      )}
       <BrowserContent
         tabs={tabs}
         activeTabId={activeTabId}

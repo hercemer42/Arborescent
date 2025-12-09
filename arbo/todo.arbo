@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2025-12-09T21:41:05.576Z'
+updated: '2025-12-09T22:07:21.652Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -5444,7 +5444,6 @@ nodes:
     content: Backlog
     children:
       - 92b16d87-27dc-486d-a605-4228e2b5206c
-      - 0a6b6c63-425c-4994-8419-d8f06c7a930d
       - d7597faa-0b34-400e-985a-de035508cdb1
       - 65b74e0f-88fe-41c6-9910-8bac806adc6f
       - 6573b620-bfc0-4c5b-8d92-13b9ace3461d
@@ -9296,7 +9295,7 @@ nodes:
       blueprintIcon: CheckSquare
       blueprintColor: '#22c55e'
       isBlueprint: true
-      expanded: false
+      expanded: true
   ce9cfecb-f289-494b-8ff2-482e4b29d193:
     id: ce9cfecb-f289-494b-8ff2-482e4b29d193
     content: All the automated tests are updated and passing
@@ -9380,7 +9379,7 @@ nodes:
       - 6ab534a2-2956-454c-9c6a-e459314e0b5c
     metadata:
       status: pending
-      expanded: false
+      expanded: true
       isBlueprint: true
       blueprintIcon: Star
       blueprintColor: '#64748b'
@@ -9400,7 +9399,7 @@ nodes:
       isBlueprint: true
       blueprintIcon: Eye
       blueprintColor: '#0ea5e9'
-      expanded: false
+      expanded: true
   4264aa2a-e101-4dd6-b971-1d0deb8ce03d:
     id: 4264aa2a-e101-4dd6-b971-1d0deb8ce03d
     content: Review all code implemented since last commit
@@ -15269,7 +15268,8 @@ nodes:
   c25cf481-a0d1-495d-9cea-498f1135eb8c:
     id: c25cf481-a0d1-495d-9cea-498f1135eb8c
     content: Minor feature
-    children: []
+    children:
+      - 7bc450dd-64ef-40d6-a60b-8c7d74634c1c
     metadata:
       status: completed
       expanded: true
@@ -15385,46 +15385,15 @@ nodes:
     children: []
     metadata:
       status: pending
-  a2d18d0e-fc20-4791-b93c-3b92b2b4b4d4:
-    id: a2d18d0e-fc20-4791-b93c-3b92b2b4b4d4
-    content: Improve drag/drop highlighting
-    children:
-      - 3cf4b652-2946-47d2-94db-c0e228cc43e1
-      - 38b9d619-6de7-43ef-a093-b73acc48090e
-      - 7ee28524-c7fc-4f33-acc4-e2ed4e024aa7
-      - 917701cf-0d57-4d87-9111-20fbe269e42c
-      - d607b4b7-4e0e-4afd-9b40-4da48ccb9053
-    metadata:
-      status: pending
-      expanded: true
-  3cf4b652-2946-47d2-94db-c0e228cc43e1:
-    id: 3cf4b652-2946-47d2-94db-c0e228cc43e1
-    content: Make it obvious where we are dragging into
-    children: []
-    metadata:
-      status: pending
-  38b9d619-6de7-43ef-a093-b73acc48090e:
-    id: 38b9d619-6de7-43ef-a093-b73acc48090e
-    content: Onto, on top of, under
-    children: []
-    metadata:
-      status: pending
-  7ee28524-c7fc-4f33-acc4-e2ed4e024aa7:
-    id: 7ee28524-c7fc-4f33-acc4-e2ed4e024aa7
-    content: At what indent level
-    children: []
-    metadata:
-      status: pending
   92b16d87-27dc-486d-a605-4228e2b5206c:
     id: 92b16d87-27dc-486d-a605-4228e2b5206c
     content: For release
     children:
-      - a2d18d0e-fc20-4791-b93c-3b92b2b4b4d4
-      - e897dedf-fd94-4cda-9a00-d79bf0371787
       - c7298184-a1d1-4ce5-aef3-743d1ce3ec82
       - 4966bd3d-fe8d-4094-840f-a0f791c07d6c
       - cc522bbb-99fe-499f-b9d8-a62c7ce50575
       - 8210b1f6-ba52-4657-ae8f-39c3ed91ef61
+      - 0a6b6c63-425c-4994-8419-d8f06c7a930d
     metadata:
       status: pending
       expanded: true
@@ -15812,41 +15781,6 @@ nodes:
   792b7b44-6bfb-4ff6-9151-1b092d688998:
     id: 792b7b44-6bfb-4ff6-9151-1b092d688998
     content: Clear selections with 'Escape' in addition to focused node
-    children: []
-    metadata:
-      status: pending
-  0d2bbe25-91b5-40e1-98ab-7c2f4933637d:
-    id: 0d2bbe25-91b5-40e1-98ab-7c2f4933637d
-    content: Back/forward icons in browser are wrong size, place
-    children: []
-    metadata:
-      status: pending
-  98375944-9925-4a48-a93f-cca6273b342d:
-    id: 98375944-9925-4a48-a93f-cca6273b342d
-    content: Hide back/forth/search bar in browser window when there is no active tab
-    children: []
-    metadata:
-      status: pending
-  e897dedf-fd94-4cda-9a00-d79bf0371787:
-    id: e897dedf-fd94-4cda-9a00-d79bf0371787
-    content: Browser improvements
-    children:
-      - 98375944-9925-4a48-a93f-cca6273b342d
-      - 0d2bbe25-91b5-40e1-98ab-7c2f4933637d
-      - 61a18435-bc45-42f4-8789-f93dbfe361fd
-      - d7330071-d7b9-4ae0-8d88-2e4b50302290
-    metadata:
-      status: pending
-      expanded: false
-  61a18435-bc45-42f4-8789-f93dbfe361fd:
-    id: 61a18435-bc45-42f4-8789-f93dbfe361fd
-    content: "When typing non website,\_"
-    children: []
-    metadata:
-      status: pending
-  d7330071-d7b9-4ae0-8d88-2e4b50302290:
-    id: d7330071-d7b9-4ae0-8d88-2e4b50302290
-    content: URL bar should be slightly darker/lighter than background depending on theme
     children: []
     metadata:
       status: pending
@@ -16509,17 +16443,134 @@ nodes:
     metadata:
       status: completed
       resolvedAt: '2025-12-09T20:37:33.691Z'
-  917701cf-0d57-4d87-9111-20fbe269e42c:
-    id: 917701cf-0d57-4d87-9111-20fbe269e42c
-    content: Used to have this before
+  7bc450dd-64ef-40d6-a60b-8c7d74634c1c:
+    id: 7bc450dd-64ef-40d6-a60b-8c7d74634c1c
+    content: Browser improvements
+    children:
+      - 6f15ed4b-1184-47b0-b1bf-6bcc7a048f46
+      - 07f6ea7e-47b7-4f0b-8713-f4e56d14a823
+      - 4f682959-5584-46a0-b142-3a9a3d567599
+      - 746bf172-b3d9-4bae-a840-99114315fdd1
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6f15ed4b-1184-47b0-b1bf-6bcc7a048f46:
+    id: 6f15ed4b-1184-47b0-b1bf-6bcc7a048f46
+    content: Hide navigation bar when no active tab
+    children:
+      - 4e6deaa6-a6d7-4e60-b2f4-571d51c9e343
+      - da9fcb34-3d70-4180-8a41-ce48108fdb3b
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4e6deaa6-a6d7-4e60-b2f4-571d51c9e343:
+    id: 4e6deaa6-a6d7-4e60-b2f4-571d51c9e343
+    content: Back/forward/search bar should disappear when there are no browser tabs open
     children: []
     metadata:
       status: pending
-  d607b4b7-4e0e-4afd-9b40-4da48ccb9053:
-    id: d607b4b7-4e0e-4afd-9b40-4da48ccb9053
-    content: The highlight border for drag positioning should follow the contentEditable and checkbox, not the whole node
+      expanded: true
+      deleted: false
+      plugins: {}
+  da9fcb34-3d70-4180-8a41-ce48108fdb3b:
+    id: da9fcb34-3d70-4180-8a41-ce48108fdb3b
+    content: This declutters the UI when browser panel is empty
     children: []
     metadata:
       status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  07f6ea7e-47b7-4f0b-8713-f4e56d14a823:
+    id: 07f6ea7e-47b7-4f0b-8713-f4e56d14a823
+    content: Fix back/forward icon sizing and placement
+    children:
+      - 89ebbc64-b4e4-4cdf-80b4-5187c555abc5
+      - 838b8ef1-4b1c-4418-a76c-f5960705e9d7
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  89ebbc64-b4e4-4cdf-80b4-5187c555abc5:
+    id: 89ebbc64-b4e4-4cdf-80b4-5187c555abc5
+    content: Make them 20% bigger
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  838b8ef1-4b1c-4418-a76c-f5960705e9d7:
+    id: 838b8ef1-4b1c-4418-a76c-f5960705e9d7
+    content: Move them up 5 pixels
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4f682959-5584-46a0-b142-3a9a3d567599:
+    id: 4f682959-5584-46a0-b142-3a9a3d567599
+    content: Handle non-URL input in URL bar
+    children:
+      - 29c708f0-3b0f-4dfc-99ad-13adf86855d8
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  29c708f0-3b0f-4dfc-99ad-13adf86855d8:
+    id: 29c708f0-3b0f-4dfc-99ad-13adf86855d8
+    content: Treat as search query and redirect to search engine (ecosia)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  746bf172-b3d9-4bae-a840-99114315fdd1:
+    id: 746bf172-b3d9-4bae-a840-99114315fdd1
+    content: URL bar styling for better visual distinction
+    children:
+      - 44419486-1b93-4d1f-9b97-8af7b6ee911c
+      - 13cc6393-8baa-47f0-8335-dd07946ee475
+      - af383008-24b5-49a7-9f31-53c45b195fe6
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  44419486-1b93-4d1f-9b97-8af7b6ee911c:
+    id: 44419486-1b93-4d1f-9b97-8af7b6ee911c
+    content: Slightly darker in light theme
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  13cc6393-8baa-47f0-8335-dd07946ee475:
+    id: 13cc6393-8baa-47f0-8335-dd07946ee475
+    content: Slightly lighter in dark theme
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  af383008-24b5-49a7-9f31-53c45b195fe6:
+    id: af383008-24b5-49a7-9f31-53c45b195fe6
+    content: Creates subtle input field accordance
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
 summaryDateFrom: '2025-12-08'
 summaryDateTo: '2025-12-09'

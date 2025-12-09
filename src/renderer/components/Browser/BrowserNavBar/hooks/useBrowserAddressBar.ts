@@ -21,7 +21,9 @@ export function useBrowserAddressBar({ activeTabId, tabs, getActiveWebview }: Us
     const webview = getActiveWebview();
     if (webview && addressBarValue) {
       const url = normalizeUrl(addressBarValue);
-      webview.loadURL(url);
+      // Catch rejected promise - ERR_ABORTED is common during redirects
+      // Cast to Promise since Electron's loadURL returns a Promise but types don't reflect it
+      (webview.loadURL(url) as unknown as Promise<void>).catch(() => {});
       setIsEditingAddress(false);
     }
   }, [addressBarValue, getActiveWebview]);

@@ -1,3 +1,4 @@
+import { ArrowBigLeft, ArrowBigRight } from 'lucide-react';
 import './BrowserNavBar.css';
 
 interface BrowserNavBarProps {
@@ -33,7 +34,7 @@ export function BrowserNavBar({
         className="browser-nav-button"
         title="Back"
       >
-        ←
+        <ArrowBigLeft size={18} />
       </button>
       <button
         onClick={onForward}
@@ -41,7 +42,7 @@ export function BrowserNavBar({
         className="browser-nav-button"
         title="Forward"
       >
-        →
+        <ArrowBigRight size={18} />
       </button>
       <button onClick={onReload} className="browser-nav-button" title="Reload">
         ↻

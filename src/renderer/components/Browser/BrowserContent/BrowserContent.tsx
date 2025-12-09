@@ -16,7 +16,7 @@ export function BrowserContent({ tabs, activeTabId, onWebviewReady }: BrowserCon
           key={tab.id}
           className={`browser-wrapper ${activeTabId !== tab.id ? 'hidden' : ''}`}
         >
-          <Browser id={tab.id} url={tab.url} onWebviewReady={onWebviewReady} />
+          <Browser id={tab.id} initialUrl={tab.url} onWebviewReady={onWebviewReady} />
         </div>
       ))}
     </div>
