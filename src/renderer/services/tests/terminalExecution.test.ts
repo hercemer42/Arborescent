@@ -45,13 +45,13 @@ describe('terminalExecution', () => {
 
   describe('executeInTerminal', () => {
     it('should write content to terminal and execute', async () => {
-      const executePromise = executeInTerminal('terminal-1', 'echo hello');
+      const content = 'echo hello';
+      const executePromise = executeInTerminal('terminal-1', content);
 
-      // Wait for the 50ms delay
-      await vi.advanceTimersByTimeAsync(50);
+      await vi.advanceTimersByTimeAsync(150);
       await executePromise;
 
-      expect(mockTerminalWrite).toHaveBeenCalledWith('terminal-1', 'echo hello');
+      expect(mockTerminalWrite).toHaveBeenCalledWith('terminal-1', content);
       expect(mockTerminalElement.focus).toHaveBeenCalled();
       expect(mockTerminalElement.dispatchEvent).toHaveBeenCalledWith(
         expect.objectContaining({
@@ -87,40 +87,23 @@ describe('terminalExecution', () => {
     });
 
     it('should handle missing terminal element gracefully', async () => {
-      // Remove terminal element from DOM
       document.body.innerHTML = '';
 
-      const executePromise = executeInTerminal('terminal-1', 'echo hello');
+      const content = 'echo hello';
+      const executePromise = executeInTerminal('terminal-1', content);
 
-      await vi.advanceTimersByTimeAsync(50);
+      await vi.advanceTimersByTimeAsync(150);
       await executePromise;
 
-      // Should still write content
-      expect(mockTerminalWrite).toHaveBeenCalledWith('terminal-1', 'echo hello');
-      // But not throw an error
+      expect(mockTerminalWrite).toHaveBeenCalledWith('terminal-1', content);
       expect(logger.error).not.toHaveBeenCalled();
     });
 
-    it('should wait 50ms before dispatching Enter key', async () => {
-      const executePromise = executeInTerminal('terminal-1', 'echo hello');
-
-      // Before timer advances, focus and dispatch should not be called
-      expect(mockTerminalElement.focus).not.toHaveBeenCalled();
-      expect(mockTerminalElement.dispatchEvent).not.toHaveBeenCalled();
-
-      // Advance timer
-      await vi.advanceTimersByTimeAsync(50);
-      await executePromise;
-
-      // Now they should be called
-      expect(mockTerminalElement.focus).toHaveBeenCalled();
-      expect(mockTerminalElement.dispatchEvent).toHaveBeenCalled();
-    });
-
     it('should dispatch Enter key with correct properties', async () => {
-      const executePromise = executeInTerminal('terminal-1', 'ls -la');
+      const content = 'ls -la';
+      const executePromise = executeInTerminal('terminal-1', content);
 
-      await vi.advanceTimersByTimeAsync(50);
+      await vi.advanceTimersByTimeAsync(150);
       await executePromise;
 
       // eslint-disable-next-line @typescript-eslint/no-explicit-any

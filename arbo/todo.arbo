@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2025-12-09T06:02:00.785Z'
+updated: '2025-12-09T06:30:16.849Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -545,7 +545,6 @@ nodes:
     content: Features
     children:
       - 565dde0a-864b-41f9-86ff-dbdf40ac4dd0
-      - c98016fe-f4fb-41ce-aafc-d51f33ec2303
       - 77963e20-53e9-4db7-8802-8c718f202cef
       - 984247e7-2d55-4b93-80e8-f84818901621
     metadata:
@@ -594,10 +593,11 @@ nodes:
       - 5d4608ba-2edf-45b6-80b5-e5e8286861f2
       - pdt35vy1z
       - 15f96fee-97b9-43f4-8ae4-68c72e7c8346
-      - c25cf481-a0d1-495d-9cea-498f1135eb8c
+      - c98016fe-f4fb-41ce-aafc-d51f33ec2303
+      - 45bd7268-9183-4664-a675-88e6073621d1
     metadata:
       status: completed
-      expanded: true
+      expanded: false
       isBlueprint: true
       blueprintIcon: FolderCheck
       blueprintColor: '#22c55e'
@@ -5654,13 +5654,12 @@ nodes:
     id: 984247e7-2d55-4b93-80e8-f84818901621
     content: Backlog
     children:
+      - 9ad1e933-9370-4c68-b814-05b5a67b9a6d
+      - c8c469d7-b2f8-411f-9798-72d20ddf0f6c
       - 4966bd3d-fe8d-4094-840f-a0f791c07d6c
       - cc522bbb-99fe-499f-b9d8-a62c7ce50575
       - b66833c8-6369-4349-8b98-3c10ffc437dd
-      - 9ad1e933-9370-4c68-b814-05b5a67b9a6d
-      - c8c469d7-b2f8-411f-9798-72d20ddf0f6c
       - 8210b1f6-ba52-4657-ae8f-39c3ed91ef61
-      - a0aec444-134d-4f8c-a308-af5d0bd45dba
       - d7597faa-0b34-400e-985a-de035508cdb1
       - 65b74e0f-88fe-41c6-9910-8bac806adc6f
       - 6573b620-bfc0-4c5b-8d92-13b9ace3461d
@@ -6744,8 +6743,7 @@ nodes:
   0cc62ae1-1a7a-4aa4-bc6a-d817cabd672c:
     id: 0cc62ae1-1a7a-4aa4-bc6a-d817cabd672c
     content: Refactor
-    children:
-      - 9b5ed251-4d3a-4b6d-aac5-cc41ab59de13
+    children: []
     metadata:
       status: pending
       expanded: true
@@ -7120,6 +7118,7 @@ nodes:
     id: 77963e20-53e9-4db7-8802-8c718f202cef
     content: In progress
     children:
+      - c25cf481-a0d1-495d-9cea-498f1135eb8c
       - ac4c627f-c512-40b9-ad55-11b439495b7e
     metadata:
       status: pending
@@ -9554,7 +9553,6 @@ nodes:
     id: 79b693ca-27ce-4410-8617-8092d7e81b07
     content: Bugs
     children:
-      - 60323f25-27f5-4318-8278-db33b50f19c9
       - 3cbf3503-1956-4c42-8c2f-928c630af320
     metadata:
       status: pending
@@ -14841,7 +14839,8 @@ nodes:
   ac4c627f-c512-40b9-ad55-11b439495b7e:
     id: ac4c627f-c512-40b9-ad55-11b439495b7e
     content: Major feature
-    children: []
+    children:
+      - a68b24f8-f917-4739-add5-59b3796f7b61
     metadata:
       status: pending
       isBlueprint: true
@@ -15043,7 +15042,9 @@ nodes:
   4966bd3d-fe8d-4094-840f-a0f791c07d6c:
     id: 4966bd3d-fe8d-4094-840f-a0f791c07d6c
     content: Build and test on Mac, Ubuntu, Arch, Windows
-    children: []
+    children:
+      - 4accfc5d-1f75-492f-a34d-0005c1dff351
+      - 3e884ffb-0f2a-43c7-8a46-0ad06fe44f45
     metadata:
       status: pending
   cc522bbb-99fe-499f-b9d8-a62c7ce50575:
@@ -15162,14 +15163,9 @@ nodes:
       status: pending
   c8c469d7-b2f8-411f-9798-72d20ddf0f6c:
     id: c8c469d7-b2f8-411f-9798-72d20ddf0f6c
-    content: Should context menu actions also be available in top bar ?
-    children: []
-    metadata:
-      status: pending
-  9b5ed251-4d3a-4b6d-aac5-cc41ab59de13:
-    id: 9b5ed251-4d3a-4b6d-aac5-cc41ab59de13
-    content: Reverse the new node behavior - new empty node on return, move contents after cursor down with ctrl+return
-    children: []
+    content: Make context menu actions also be available in top bar
+    children:
+      - 9bd07f59-cbee-4410-ba5d-1a0bdc81209a
     metadata:
       status: pending
   8210b1f6-ba52-4657-ae8f-39c3ed91ef61:
@@ -15507,12 +15503,6 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  a0aec444-134d-4f8c-a308-af5d0bd45dba:
-    id: a0aec444-134d-4f8c-a308-af5d0bd45dba
-    content: "Check if\_"
-    children: []
-    metadata:
-      status: pending
   dc8bf9b2-975a-44b3-942b-a22b1be9e15e:
     id: dc8bf9b2-975a-44b3-942b-a22b1be9e15e
     content: Hotkey definition
@@ -15528,20 +15518,18 @@ nodes:
   c25cf481-a0d1-495d-9cea-498f1135eb8c:
     id: c25cf481-a0d1-495d-9cea-498f1135eb8c
     content: Minor feature
-    children:
-      - 45bd7268-9183-4664-a675-88e6073621d1
-      - 2672a0ea-174d-48a0-82e4-822f3ded5762
-      - 6770d734-7be9-4fe5-ac95-4190b6d986dd
-      - a7749520-c888-4285-9975-54e711234678
+    children: []
     metadata:
       status: completed
-      expanded: false
+      expanded: true
       deleted: false
       plugins: {}
       blueprintIcon: Wrench
       blueprintColor: '#14b8a6'
       activeExecuteContextId: 9b46397c-c452-421c-b408-46b040d99c9e
       resolvedAt: '2025-12-09T06:01:07.426Z'
+      isBlueprint: true
+      appliedContextId: 9b46397c-c452-421c-b408-46b040d99c9e
   45bd7268-9183-4664-a675-88e6073621d1:
     id: 45bd7268-9183-4664-a675-88e6073621d1
     content: Add a 'Status' submenu in the context menu
@@ -15549,9 +15537,12 @@ nodes:
       - 264d804c-a90c-4640-9fee-bdeb8b8c78c1
       - ae2cc8a5-f2b2-4432-99d1-e2f37c636e75
       - b8902b3a-aa3f-4ea4-bdfc-60cb07640df5
+      - 2672a0ea-174d-48a0-82e4-822f3ded5762
+      - 6770d734-7be9-4fe5-ac95-4190b6d986dd
+      - a7749520-c888-4285-9975-54e711234678
     metadata:
       status: completed
-      expanded: true
+      expanded: false
       deleted: false
       plugins: {}
       resolvedAt: '2025-12-09T06:01:07.948Z'
@@ -15624,19 +15615,6 @@ nodes:
     metadata:
       status: completed
       resolvedAt: '2025-12-09T06:01:12.036Z'
-  60323f25-27f5-4318-8278-db33b50f19c9:
-    id: 60323f25-27f5-4318-8278-db33b50f19c9
-    content: Collaborate and Execute seem to be sharing the choice of context
-    children:
-      - 6fb735ff-4836-41aa-b55a-4d340cdf8acb
-    metadata:
-      status: pending
-  6fb735ff-4836-41aa-b55a-4d340cdf8acb:
-    id: 6fb735ff-4836-41aa-b55a-4d340cdf8acb
-    content: They should be independant
-    children: []
-    metadata:
-      status: pending
   3cbf3503-1956-4c42-8c2f-928c630af320:
     id: 3cbf3503-1956-4c42-8c2f-928c630af320
     content: "When sending context to execute, if the content is long and Claude gives a summary, it doesn't execute - I assume it's interpreting the carriage return as part of the text.\_ Perhaps add a short delay before sending the return keystroke ?\_ Actually perhaps this is where the [I it detects in the context is coming from."
@@ -15650,5 +15628,43 @@ nodes:
     metadata:
       status: completed
       resolvedAt: '2025-12-09T06:01:12.536Z'
+  9bd07f59-cbee-4410-ba5d-1a0bdc81209a:
+    id: 9bd07f59-cbee-4410-ba5d-1a0bdc81209a
+    content: Fill in recommended menu layout here
+    children: []
+    metadata:
+      status: pending
+  4accfc5d-1f75-492f-a34d-0005c1dff351:
+    id: 4accfc5d-1f75-492f-a34d-0005c1dff351
+    content: Start getting emulators setup
+    children: []
+    metadata:
+      status: pending
+  3e884ffb-0f2a-43c7-8a46-0ad06fe44f45:
+    id: 3e884ffb-0f2a-43c7-8a46-0ad06fe44f45
+    content: Skip windows ?
+    children: []
+    metadata:
+      status: pending
+  fc1216b7-3b2a-4fd4-9d16-a8d58ba5f9e9:
+    id: fc1216b7-3b2a-4fd4-9d16-a8d58ba5f9e9
+    content: Hotkey definition
+    children: []
+    metadata:
+      status: pending
+  93f67b93-1b55-446c-9374-b837af7db851:
+    id: 93f67b93-1b55-446c-9374-b837af7db851
+    content: Dark colour scheme
+    children: []
+    metadata:
+      status: pending
+  a68b24f8-f917-4739-add5-59b3796f7b61:
+    id: a68b24f8-f917-4739-add5-59b3796f7b61
+    content: Settings menu
+    children:
+      - fc1216b7-3b2a-4fd4-9d16-a8d58ba5f9e9
+      - 93f67b93-1b55-446c-9374-b837af7db851
+    metadata:
+      status: pending
 summaryDateFrom: '2025-12-08'
 summaryDateTo: '2025-12-09'

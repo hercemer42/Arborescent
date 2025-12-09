@@ -1,7 +1,7 @@
 import { logger } from './logger';
 
 /**
- * Writes content to terminal and executes it by simulating Enter key press
+ * Writes content to terminal and executes it by simulating Enter key press.
  */
 export async function executeInTerminal(terminalId: string, content: string): Promise<void> {
   if (!content.trim()) {
@@ -11,15 +11,14 @@ export async function executeInTerminal(terminalId: string, content: string): Pr
 
   await window.electron.terminalWrite(terminalId, content);
 
-  // Wait a moment for text to be written
-  await new Promise(resolve => setTimeout(resolve, 50));
+  // Short delay to let Claude Code process the pasted content
+  await new Promise(resolve => setTimeout(resolve, 150));
 
   // Focus and send Enter key event to the terminal
   const terminalElement = document.querySelector('.terminal-container .xterm-helper-textarea') as HTMLTextAreaElement;
   if (terminalElement) {
     terminalElement.focus();
 
-    // Dispatch Enter key event
     const enterEvent = new KeyboardEvent('keydown', {
       key: 'Enter',
       code: 'Enter',
