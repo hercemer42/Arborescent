@@ -142,6 +142,9 @@ describe('hotkeyConfig', () => {
           cut: 'CmdOrCtrl+X',
           copy: 'CmdOrCtrl+C',
           paste: 'CmdOrCtrl+V',
+          selectAll: 'CmdOrCtrl+A',
+          execute: 'CmdOrCtrl+E',
+          collaborate: 'CmdOrCtrl+Shift+Return',
         },
         file: {
           new: 'CmdOrCtrl+N',
@@ -200,6 +203,9 @@ describe('hotkeyConfig', () => {
           cut: 'CmdOrCtrl+X',
           copy: 'CmdOrCtrl+C',
           paste: 'CmdOrCtrl+V',
+          selectAll: 'CmdOrCtrl+A',
+          execute: 'CmdOrCtrl+E',
+          collaborate: 'CmdOrCtrl+Shift+Return',
         },
         file: {
           new: 'CmdOrCtrl+N',

@@ -8,6 +8,7 @@ export interface SelectionActions {
   addToSelection: (nodeIds: string[]) => void;
   clearSelection: () => void;
   getNodesToMove: () => string[];
+  selectAllNodes: () => void;
 }
 
 type StoreState = {
@@ -156,11 +157,30 @@ export const createSelectionActions = (
     });
   }
 
+  function selectAllNodes(): void {
+    const { nodes, rootNodeId } = get();
+    const rootNode = nodes[rootNodeId];
+    if (!rootNode || rootNode.children.length === 0) return;
+
+    // Select all visible nodes (all children of root, recursively)
+    const newSelection = new Set<string>();
+    for (const childId of rootNode.children) {
+      const nodeSelection = createSelectionWithDescendants(childId, nodes);
+      nodeSelection.forEach(id => newSelection.add(id));
+    }
+
+    set({
+      multiSelectedNodeIds: newSelection,
+      lastSelectedNodeId: rootNode.children[0],
+    });
+  }
+
   return {
     toggleNodeSelection,
     selectRange,
     addToSelection,
     clearSelection,
     getNodesToMove,
+    selectAllNodes,
   };
 };

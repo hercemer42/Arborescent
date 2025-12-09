@@ -7,6 +7,10 @@ interface EditMenuState {
   canCopy: boolean;
   canPaste: boolean;
   canDelete: boolean;
+  canToggleStatus: boolean;
+  canIndent: boolean;
+  canOutdent: boolean;
+  canSelectAll: boolean;
 }
 
 /**
@@ -25,6 +29,10 @@ export function useEditMenuState(): EditMenuState {
       canCopy: false,
       canPaste: false,
       canDelete: false,
+      canToggleStatus: false,
+      canIndent: false,
+      canOutdent: false,
+      canSelectAll: false,
     };
   }
 
@@ -48,6 +56,16 @@ export function useEditMenuState(): EditMenuState {
   // The actual paste logic will determine if it's valid markdown or should fall through
   const canPaste = !isCollaborating;
 
+  // Toggle status requires active node and not collaborating
+  const canToggleStatus = activeNodeId !== null && !isCollaborating;
+
+  // Indent/Outdent require active node and not collaborating
+  const canIndent = activeNodeId !== null && !isCollaborating;
+  const canOutdent = activeNodeId !== null && !isCollaborating;
+
+  // Select all requires at least one node to exist
+  const canSelectAll = Object.keys(treeState.nodes).length > 1;
+
   return {
     canUndo,
     canRedo,
@@ -55,5 +73,9 @@ export function useEditMenuState(): EditMenuState {
     canCopy,
     canPaste,
     canDelete,
+    canToggleStatus,
+    canIndent,
+    canOutdent,
+    canSelectAll,
   };
 }

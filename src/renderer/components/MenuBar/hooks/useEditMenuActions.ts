@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import { useActiveTreeActions } from './useActiveTreeStore';
+import { useActiveTreeActions, useActiveTreeStore } from './useActiveTreeStore';
 import { logger } from '../../../services/logger';
 import { hasTextSelection, isContentEditableFocused } from '../../../utils/selectionUtils';
 
@@ -10,6 +10,10 @@ interface EditMenuActions {
   handleCopy: () => Promise<void>;
   handlePaste: () => Promise<void>;
   handleDelete: () => void;
+  handleToggleStatus: () => void;
+  handleIndent: () => void;
+  handleOutdent: () => void;
+  handleSelectAll: () => void;
 }
 
 /**
@@ -19,6 +23,7 @@ interface EditMenuActions {
  */
 export function useEditMenuActions(): EditMenuActions {
   const actions = useActiveTreeActions();
+  const treeState = useActiveTreeStore();
 
   const handleUndo = useCallback(() => {
     if (!actions) return;
@@ -72,6 +77,26 @@ export function useEditMenuActions(): EditMenuActions {
     actions.deleteSelectedNodes();
   }, [actions]);
 
+  const handleToggleStatus = useCallback(() => {
+    if (!actions || !treeState?.activeNodeId) return;
+    actions.toggleStatus(treeState.activeNodeId);
+  }, [actions, treeState?.activeNodeId]);
+
+  const handleIndent = useCallback(() => {
+    if (!actions || !treeState?.activeNodeId) return;
+    actions.indentNode(treeState.activeNodeId);
+  }, [actions, treeState?.activeNodeId]);
+
+  const handleOutdent = useCallback(() => {
+    if (!actions || !treeState?.activeNodeId) return;
+    actions.outdentNode(treeState.activeNodeId);
+  }, [actions, treeState?.activeNodeId]);
+
+  const handleSelectAll = useCallback(() => {
+    if (!actions) return;
+    actions.selectAllNodes();
+  }, [actions]);
+
   return {
     handleUndo,
     handleRedo,
@@ -79,5 +104,9 @@ export function useEditMenuActions(): EditMenuActions {
     handleCopy,
     handlePaste,
     handleDelete,
+    handleToggleStatus,
+    handleIndent,
+    handleOutdent,
+    handleSelectAll,
   };
 }

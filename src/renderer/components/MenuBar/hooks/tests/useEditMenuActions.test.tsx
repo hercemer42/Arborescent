@@ -7,6 +7,7 @@ import { logger } from '../../../../services/logger';
 // Mock dependencies
 vi.mock('../useActiveTreeStore', () => ({
   useActiveTreeActions: vi.fn(),
+  useActiveTreeStore: vi.fn(),
 }));
 
 vi.mock('../../../../services/logger', () => ({
@@ -18,9 +19,17 @@ vi.mock('../../../../services/logger', () => ({
 
 describe('useEditMenuActions', () => {
   const mockUseActiveTreeActions = vi.mocked(useActiveTreeStoreModule.useActiveTreeActions);
+  const mockUseActiveTreeStore = vi.mocked(useActiveTreeStoreModule.useActiveTreeStore);
 
   beforeEach(() => {
     vi.clearAllMocks();
+
+    // Default mock for useActiveTreeStore
+    mockUseActiveTreeStore.mockReturnValue({
+      activeNodeId: null,
+      nodes: {},
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } as any);
 
     // Define window.getSelection if it doesn't exist (jsdom may not have it)
     if (!window.getSelection) {

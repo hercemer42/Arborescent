@@ -12,14 +12,14 @@ import { useFilesStore } from '../../../store/files/filesStore';
 import { buildBlueprintSubmenu } from './useBlueprintSubmenu';
 import { buildStatusSubmenu } from './useStatusSubmenu';
 import { logger } from '../../../services/logger';
-import { writeToClipboard } from '../../../services/clipboardService';
-import { exportNodeAsMarkdown } from '../../../utils/markdown';
 import { hasAncestorWithPluginSession } from '../../../utils/nodeHelpers';
 import { buildCollaborateSubmenu } from './useCollaborateSubmenu';
 import { buildExecuteSubmenu } from './useExecuteSubmenu';
 import { getPositionFromPoint } from '../../../utils/position';
 import { useIconPickerStore } from '../../../store/iconPicker/iconPickerStore';
 import { useSpellcheck } from './useSpellcheck';
+import { getKeyForAction } from '../../../data/hotkeyConfig';
+import { formatHotkeyForDisplay } from '../../../utils/hotkeyUtils';
 
 export function useNodeContextMenu(node: TreeNode) {
   const treeType = useStore((state) => state.treeType);
@@ -137,12 +137,6 @@ export function useNodeContextMenu(node: TreeNode) {
       }
     };
 
-    const handleCopyToClipboard = async () => {
-      const currentNodes = store.getState().nodes;
-      const formattedContent = exportNodeAsMarkdown(node, currentNodes);
-      await writeToClipboard(formattedContent, 'ContextMenu');
-    };
-
     const handleZoom = () => {
       if (!activeFile || isZoomTab) return;
       openZoomTab(activeFile.path, node.id, node.content);
@@ -243,6 +237,7 @@ export function useNodeContextMenu(node: TreeNode) {
           {
             label: 'Copy',
             onClick: () => actions.copyNodes(),
+            shortcut: formatHotkeyForDisplay(getKeyForAction('actions', 'copy') || ''),
           },
           // Copy as Hyperlink - only for non-hyperlink nodes
           ...(!isHyperlink ? [{
@@ -252,26 +247,24 @@ export function useNodeContextMenu(node: TreeNode) {
           {
             label: 'Cut',
             onClick: () => actions.cutNodes(),
+            shortcut: formatHotkeyForDisplay(getKeyForAction('actions', 'cut') || ''),
           },
           // Paste hidden for hyperlinks - no children allowed
           ...(!isHyperlink ? [{
             label: 'Paste',
             onClick: () => actions.pasteNodes(),
+            shortcut: formatHotkeyForDisplay(getKeyForAction('actions', 'paste') || ''),
           }] : []),
           {
             label: 'Delete',
             onClick: handleDelete,
             danger: true,
+            shortcut: formatHotkeyForDisplay(getKeyForAction('actions', 'deleteNode') || ''),
           },
         ],
       },
       // Status submenu - hidden for blueprint/hyperlink nodes and nodes without children
       ...(statusMenuItem ? [statusMenuItem] : []),
-      {
-        label: 'Copy to Clipboard',
-        onClick: handleCopyToClipboard,
-        disabled: false,
-      },
       // Zoom hidden for hyperlinks - they're single-line references
       ...(!isZoomTab && !isHyperlink ? [{
         label: 'Zoom',

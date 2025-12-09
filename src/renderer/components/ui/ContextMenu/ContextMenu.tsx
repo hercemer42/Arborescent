@@ -15,6 +15,7 @@ export interface ContextMenuItem {
   radioSelected?: boolean;
   keepOpenOnClick?: boolean;
   separator?: boolean;
+  shortcut?: string;
 }
 
 interface ContextMenuProps {
@@ -74,6 +75,9 @@ export function ContextMenu({ x, y, items, onClose }: ContextMenuProps) {
               )}
               {item.icon && <span className="context-menu-item-icon">{item.icon}</span>}
               <span className="context-menu-item-label">{item.label}</span>
+              {item.shortcut && !item.submenu && (
+                <span className="context-menu-item-shortcut">{item.shortcut}</span>
+              )}
               {item.submenu && <span className="context-menu-submenu-arrow">{arrow}</span>}
             </button>
             {item.submenu && openSubmenu === index && (

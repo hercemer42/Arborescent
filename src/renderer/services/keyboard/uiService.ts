@@ -1,8 +1,10 @@
 import { useFilesStore } from '../../store/files/filesStore';
 import { useSearchStore } from '../../store/search/searchStore';
+import { useToastStore } from '../../store/toast/toastStore';
 import { matchesHotkey } from '../../data/hotkeyConfig';
 import { hasTextSelection, isContentEditableFocused } from '../../utils/selectionUtils';
 import { getActiveStore } from './shared';
+import { getActiveContextIdWithInheritance } from '../../utils/nodeHelpers';
 
 /**
  * Handles UI keyboard shortcuts
@@ -177,6 +179,70 @@ async function handleUIShortcuts(event: KeyboardEvent): Promise<void> {
         }
       }
     }
+    return;
+  }
+
+  // Select All
+  if (matchesHotkey(event, 'actions', 'selectAll')) {
+    // If in contenteditable, let browser handle text selection
+    if (isContentEditableFocused()) {
+      return;
+    }
+    event.preventDefault();
+    const store = getActiveStore();
+    store?.getState().actions.selectAllNodes();
+    return;
+  }
+
+  // Execute in terminal (with active context)
+  if (matchesHotkey(event, 'actions', 'execute')) {
+    event.preventDefault();
+    const store = getActiveStore();
+    if (!store) return;
+
+    const state = store.getState();
+    const activeNodeId = state.activeNodeId;
+    if (!activeNodeId) return;
+
+    // Check if context is set
+    const contextId = getActiveContextIdWithInheritance(
+      activeNodeId,
+      state.nodes,
+      state.ancestorRegistry,
+      'execute'
+    );
+    if (!contextId) {
+      useToastStore.getState().addToast('No context set for this node', 'info');
+      return;
+    }
+
+    state.actions.executeInTerminalWithContext(activeNodeId);
+    return;
+  }
+
+  // Collaborate (with active context)
+  if (matchesHotkey(event, 'actions', 'collaborate')) {
+    event.preventDefault();
+    const store = getActiveStore();
+    if (!store) return;
+
+    const state = store.getState();
+    const activeNodeId = state.activeNodeId;
+    if (!activeNodeId) return;
+
+    // Check if context is set
+    const contextId = getActiveContextIdWithInheritance(
+      activeNodeId,
+      state.nodes,
+      state.ancestorRegistry,
+      'collaborate'
+    );
+    if (!contextId) {
+      useToastStore.getState().addToast('No context set for this node', 'info');
+      return;
+    }
+
+    state.actions.collaborate(activeNodeId);
     return;
   }
 }

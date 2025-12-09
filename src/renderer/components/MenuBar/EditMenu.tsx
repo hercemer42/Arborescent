@@ -7,9 +7,30 @@ import { formatHotkeyForDisplay } from '../../utils/hotkeyUtils';
 import { useSearchStore } from '../../store/search/searchStore';
 
 export function EditMenu() {
-  const { canUndo, canRedo, canCut, canCopy, canPaste, canDelete } = useEditMenuState();
-  const { handleUndo, handleRedo, handleCut, handleCopy, handlePaste, handleDelete } =
-    useEditMenuActions();
+  const {
+    canUndo,
+    canRedo,
+    canCut,
+    canCopy,
+    canPaste,
+    canDelete,
+    canToggleStatus,
+    canIndent,
+    canOutdent,
+    canSelectAll,
+  } = useEditMenuState();
+  const {
+    handleUndo,
+    handleRedo,
+    handleCut,
+    handleCopy,
+    handlePaste,
+    handleDelete,
+    handleToggleStatus,
+    handleIndent,
+    handleOutdent,
+    handleSelectAll,
+  } = useEditMenuActions();
   const openSearch = useSearchStore((state) => state.openSearch);
 
   return (
@@ -46,6 +67,37 @@ export function EditMenu() {
         shortcut={formatHotkeyForDisplay('CmdOrCtrl+V')}
         disabled={!canPaste}
         onClick={handlePaste}
+      />
+      <MenuSeparator />
+      <MenuItem
+        label="Toggle Task Status"
+        shortcut={formatHotkeyForDisplay(
+          getKeyForAction('actions', 'toggleTaskStatus') || 'CmdOrCtrl+K'
+        )}
+        disabled={!canToggleStatus}
+        onClick={handleToggleStatus}
+      />
+      <MenuSeparator />
+      <MenuItem
+        label="Indent"
+        shortcut={formatHotkeyForDisplay(getKeyForAction('editing', 'indent') || 'Tab')}
+        disabled={!canIndent}
+        onClick={handleIndent}
+      />
+      <MenuItem
+        label="Outdent"
+        shortcut={formatHotkeyForDisplay(getKeyForAction('editing', 'outdent') || 'Shift+Tab')}
+        disabled={!canOutdent}
+        onClick={handleOutdent}
+      />
+      <MenuSeparator />
+      <MenuItem
+        label="Select All"
+        shortcut={formatHotkeyForDisplay(
+          getKeyForAction('actions', 'selectAll') || 'CmdOrCtrl+A'
+        )}
+        disabled={!canSelectAll}
+        onClick={handleSelectAll}
       />
       <MenuSeparator />
       <MenuItem

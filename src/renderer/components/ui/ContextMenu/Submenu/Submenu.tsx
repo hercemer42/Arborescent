@@ -73,6 +73,9 @@ export function Submenu({ items, onClose, emptyMessage = 'No items available' }:
               )}
               {item.icon && <span className="context-menu-item-icon">{item.icon}</span>}
               <span className="context-menu-item-label">{item.label}</span>
+              {item.shortcut && !item.submenu && (
+                <span className="context-menu-item-shortcut">{item.shortcut}</span>
+              )}
               {item.submenu && <span className="context-menu-submenu-arrow">{arrow}</span>}
             </button>
             {item.submenu && openSubmenu === index && (

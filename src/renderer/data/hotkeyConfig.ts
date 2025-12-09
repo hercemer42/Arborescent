@@ -30,6 +30,9 @@ export interface HotkeyConfig {
     cut: string;
     copy: string;
     paste: string;
+    selectAll: string;
+    execute: string;
+    collaborate: string;
   };
   file: {
     new: string;
