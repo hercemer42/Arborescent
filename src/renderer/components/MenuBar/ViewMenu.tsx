@@ -10,8 +10,14 @@ export function ViewMenu() {
     hasActiveFile,
     blueprintModeEnabled,
     summaryModeEnabled,
+    terminalOpen,
+    browserOpen,
+    feedbackOpen,
     handleToggleBlueprintMode,
     handleToggleSummaryMode,
+    handleToggleTerminal,
+    handleToggleBrowser,
+    handleToggleFeedback,
   } = useViewMenuState();
 
   return (
@@ -23,13 +29,31 @@ export function ViewMenu() {
         onClick={handleToggleBlueprintMode}
         disabled={!hasActiveFile}
       />
-      <MenuSeparator />
       <MenuItem
         label="Summary Mode"
         shortcut={formatHotkeyForDisplay(getKeyForAction('view', 'toggleSummaryMode') || 'CmdOrCtrl+Shift+U')}
         checked={summaryModeEnabled}
         onClick={handleToggleSummaryMode}
         disabled={!hasActiveFile}
+      />
+      <MenuSeparator />
+      <MenuItem
+        label="Terminal"
+        shortcut={formatHotkeyForDisplay(getKeyForAction('view', 'toggleTerminal') || 'CmdOrCtrl+`')}
+        checked={terminalOpen}
+        onClick={handleToggleTerminal}
+      />
+      <MenuItem
+        label="Browser"
+        shortcut={formatHotkeyForDisplay(getKeyForAction('view', 'toggleBrowser') || 'CmdOrCtrl+B')}
+        checked={browserOpen}
+        onClick={handleToggleBrowser}
+      />
+      <MenuItem
+        label="Review"
+        shortcut={formatHotkeyForDisplay(getKeyForAction('view', 'toggleFeedback') || 'CmdOrCtrl+Shift+F')}
+        checked={feedbackOpen}
+        onClick={handleToggleFeedback}
       />
     </Menu>
   );

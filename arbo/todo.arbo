@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2025-12-09T16:14:20.783Z'
+updated: '2025-12-09T16:43:20.373Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -14,8 +14,8 @@ nodes:
       - 79b693ca-27ce-4410-8617-8092d7e81b07
       - f5c33654-69b4-492a-a6e3-6d13e4dec80d
       - 2f83a0af-280e-4e67-8306-31a8e02c9500
-      - c4473311-2e42-48ae-9191-d3807dc55a4c
       - d5fe0eff-b1c6-4986-b6a3-70a0ea46f096
+      - c4473311-2e42-48ae-9191-d3807dc55a4c
       - 9bfbb401-dcb6-4f92-a34b-e9b3982c676f
       - f5e3f44c-6de7-4bd9-ad8d-7f51cdf059f1
     metadata:
@@ -552,6 +552,7 @@ nodes:
       isBlueprint: true
       blueprintIcon: Brain
       blueprintColor: '#0ea5e9'
+      appliedContextId: 0d19da53-f3a7-4ee4-b495-b59f127671fa
   2ce5b181-5461-486c-be65-159e5e98de54:
     id: 2ce5b181-5461-486c-be65-159e5e98de54
     content: Mobile app
@@ -5286,63 +5287,14 @@ nodes:
     metadata:
       status: pending
       isBlueprint: true
-  93bfee3f-ca61-4114-9b02-12123cb6980a:
-    id: 93bfee3f-ca61-4114-9b02-12123cb6980a
-    content: Analysis
-    children:
-      - 30907cd3-7b4f-4507-bd31-e1cd25b01d0c
-      - 27c0ce83-9e3d-4627-9c9b-027eaa89b2a5
-    metadata:
-      status: pending
-      expanded: false
-      deleted: false
-      plugins: {}
-      isBlueprint: true
-      blueprintIcon: Microscope
-      blueprintColor: '#a855f7'
-      isContextDeclaration: true
-  30907cd3-7b4f-4507-bd31-e1cd25b01d0c:
-    id: 30907cd3-7b4f-4507-bd31-e1cd25b01d0c
-    content: Apply base context (Need to be able to reference contexts - context within context)
-    children:
-      - 43849d24-35a2-4a0d-a2f4-456b5165a6e7
-    metadata:
-      status: pending
-      isBlueprint: true
-  43849d24-35a2-4a0d-a2f4-456b5165a6e7:
-    id: 43849d24-35a2-4a0d-a2f4-456b5165a6e7
-    content: Extend a context ?
-    children: []
-    metadata:
-      status: pending
-      isBlueprint: true
-  27c0ce83-9e3d-4627-9c9b-027eaa89b2a5:
-    id: 27c0ce83-9e3d-4627-9c9b-027eaa89b2a5
-    content: Please analyze the existing functional documentation if it exists for context
-    children:
-      - d2d85209-7047-4ff1-b370-f1bb872ce503
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-      isBlueprint: true
-  d2d85209-7047-4ff1-b370-f1bb872ce503:
-    id: d2d85209-7047-4ff1-b370-f1bb872ce503
-    content: You can find it in arbo/documentation/functional
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-      isBlueprint: true
   0d19da53-f3a7-4ee4-b495-b59f127671fa:
     id: 0d19da53-f3a7-4ee4-b495-b59f127671fa
     content: Brainstorming
     children:
       - a16fa143-942d-4f74-a229-8e015a30df14
+      - 270b22dc-7a02-4573-aafe-ebb48ffe8e0f
       - fb175b88-269f-45a4-ad32-c4592816b154
+      - 3666246b-6557-4e87-9b1d-02d9292fe157
     metadata:
       status: pending
       expanded: false
@@ -5352,7 +5304,7 @@ nodes:
       isContextDeclaration: true
   a16fa143-942d-4f74-a229-8e015a30df14:
     id: a16fa143-942d-4f74-a229-8e015a30df14
-    content: Analyze the following ideation session
+    content: Analyze the following feature ideas
     children: []
     metadata:
       status: pending
@@ -5815,8 +5767,10 @@ nodes:
       plugins: {}
   fb175b88-269f-45a4-ad32-c4592816b154:
     id: fb175b88-269f-45a4-ad32-c4592816b154
-    content: Provide ideas and feedback
-    children: []
+    content: Expand the list with functional recommendations
+    children:
+      - 6f183ad1-988e-413a-83e2-30b5b08fc898
+      - 111dc3fc-8344-4110-8e05-ef7332471a99
     metadata:
       status: pending
       isBlueprint: true
@@ -5882,7 +5836,6 @@ nodes:
     content: Functional
     children:
       - e8824b29-eb18-4031-9e35-b321a864d418
-      - 93bfee3f-ca61-4114-9b02-12123cb6980a
       - 0d19da53-f3a7-4ee4-b495-b59f127671fa
       - 7bd340ba-cef3-4f8d-bf48-e5afe0c9c8c6
       - 1e2f062a-bbaa-4a02-b58b-a94ab15d8d74
@@ -6579,7 +6532,8 @@ nodes:
     id: 0cc62ae1-1a7a-4aa4-bc6a-d817cabd672c
     content: Refactor
     children:
-      - 53e9add9-1b8f-4ae3-ac36-51e73197a389
+      - 92796c60-443b-46cd-bcd3-5bca0ee98c3c
+      - a4c333be-a8a4-4c0f-8148-b2260507f5ad
     metadata:
       status: pending
       expanded: true
@@ -9388,7 +9342,8 @@ nodes:
   79b693ca-27ce-4410-8617-8092d7e81b07:
     id: 79b693ca-27ce-4410-8617-8092d7e81b07
     content: Bugs
-    children: []
+    children:
+      - bb1056fb-acca-4b71-a6b2-aa5e3904a907
     metadata:
       status: pending
       appliedContextIds:
@@ -15327,7 +15282,8 @@ nodes:
   c25cf481-a0d1-495d-9cea-498f1135eb8c:
     id: c25cf481-a0d1-495d-9cea-498f1135eb8c
     content: Minor feature
-    children: []
+    children:
+      - 42f6288a-d579-40ef-981d-ea59c974a7be
     metadata:
       status: completed
       expanded: true
@@ -15443,12 +15399,6 @@ nodes:
     children: []
     metadata:
       status: pending
-  53e9add9-1b8f-4ae3-ac36-51e73197a389:
-    id: 53e9add9-1b8f-4ae3-ac36-51e73197a389
-    content: Remove unused plugin system (for now)
-    children: []
-    metadata:
-      status: pending
   80181e68-762c-4686-ac23-1fa585d1bfe5:
     id: 80181e68-762c-4686-ac23-1fa585d1bfe5
     content: Change shell to user default ?
@@ -15495,8 +15445,6 @@ nodes:
     id: 92b16d87-27dc-486d-a605-4228e2b5206c
     content: For release
     children:
-      - e80b50cc-21cc-4a4f-a2ee-0daf1b1fe757
-      - 810093d7-6e57-42ce-bb6e-58bdaff3d8c3
       - 4966bd3d-fe8d-4094-840f-a0f791c07d6c
       - cc522bbb-99fe-499f-b9d8-a62c7ce50575
       - b66833c8-6369-4349-8b98-3c10ffc437dd
@@ -15966,18 +15914,6 @@ nodes:
     children: []
     metadata:
       status: pending
-  e80b50cc-21cc-4a4f-a2ee-0daf1b1fe757:
-    id: e80b50cc-21cc-4a4f-a2ee-0daf1b1fe757
-    content: Move 'Blueprint mode' and 'Summary mode' to their own panels.
-    children: []
-    metadata:
-      status: pending
-  810093d7-6e57-42ce-bb6e-58bdaff3d8c3:
-    id: 810093d7-6e57-42ce-bb6e-58bdaff3d8c3
-    content: What about commands to open review, browser, terminal panels from top menu ?
-    children: []
-    metadata:
-      status: pending
   a7508f21-00cf-4d96-a748-b02b41577a37:
     id: a7508f21-00cf-4d96-a748-b02b41577a37
     content: Actions improvements
@@ -16130,6 +16066,189 @@ nodes:
   c7298184-a1d1-4ce5-aef3-743d1ce3ec82:
     id: c7298184-a1d1-4ce5-aef3-743d1ce3ec82
     content: Change application name to Arborescent with a capital A
+    children: []
+    metadata:
+      status: pending
+  53e9add9-1b8f-4ae3-ac36-51e73197a389:
+    id: 53e9add9-1b8f-4ae3-ac36-51e73197a389
+    content: Remove unused plugin system (for now)
+    children: []
+    metadata:
+      status: completed
+      resolvedAt: '2025-12-09T16:27:18.997Z'
+  92796c60-443b-46cd-bcd3-5bca0ee98c3c:
+    id: 92796c60-443b-46cd-bcd3-5bca0ee98c3c
+    content: Done
+    children:
+      - 53e9add9-1b8f-4ae3-ac36-51e73197a389
+    metadata:
+      status: pending
+      isBlueprint: true
+      blueprintIcon: FolderCheck
+      blueprintColor: '#22c55e'
+      expanded: false
+  a4c333be-a8a4-4c0f-8148-b2260507f5ad:
+    id: a4c333be-a8a4-4c0f-8148-b2260507f5ad
+    content: In progress
+    children: []
+    metadata:
+      status: pending
+      appliedContextIds:
+        - cc94b377-246d-45ae-b938-2d3906892aa1
+        - e8824b29-eb18-4031-9e35-b321a864d418
+        - 1e2f062a-bbaa-4a02-b58b-a94ab15d8d74
+      activeContextId: cc94b377-246d-45ae-b938-2d3906892aa1
+      expanded: true
+      isBlueprint: true
+      blueprintIcon: Cog
+      blueprintColor: '#14b8a6'
+      activeExecuteContextId: 1e2f062a-bbaa-4a02-b58b-a94ab15d8d74
+      activeCollaborateContextId: 1e2f062a-bbaa-4a02-b58b-a94ab15d8d74
+  42f6288a-d579-40ef-981d-ea59c974a7be:
+    id: 42f6288a-d579-40ef-981d-ea59c974a7be
+    content: Add panel toggle commands to View menu
+    children:
+      - 434c76c8-8096-4bc4-aa12-b2583545113a
+      - e1bea19e-7916-4b87-ac7c-8dd0205b5f9a
+      - dd18fb9d-4665-442e-97ea-85d13efda926
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  434c76c8-8096-4bc4-aa12-b2583545113a:
+    id: 434c76c8-8096-4bc4-aa12-b2583545113a
+    content: Toggle Terminal
+    children:
+      - e9ac6272-58bc-4fdc-9c66-0a0ec5863106
+      - b66e19d1-891d-4321-b2a9-d753666bba8b
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e9ac6272-58bc-4fdc-9c66-0a0ec5863106:
+    id: e9ac6272-58bc-4fdc-9c66-0a0ec5863106
+    content: Show checkmark when panel is open
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b66e19d1-891d-4321-b2a9-d753666bba8b:
+    id: b66e19d1-891d-4321-b2a9-d753666bba8b
+    content: Assign keyboard shortcut
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e1bea19e-7916-4b87-ac7c-8dd0205b5f9a:
+    id: e1bea19e-7916-4b87-ac7c-8dd0205b5f9a
+    content: Toggle Browser
+    children:
+      - cd4f35ae-0980-4abd-af4d-a9f3be4e21e3
+      - 615bace4-d7c8-4145-82c7-c20452358171
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  cd4f35ae-0980-4abd-af4d-a9f3be4e21e3:
+    id: cd4f35ae-0980-4abd-af4d-a9f3be4e21e3
+    content: Show checkmark when panel is open
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  615bace4-d7c8-4145-82c7-c20452358171:
+    id: 615bace4-d7c8-4145-82c7-c20452358171
+    content: Assign keyboard shortcut
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  dd18fb9d-4665-442e-97ea-85d13efda926:
+    id: dd18fb9d-4665-442e-97ea-85d13efda926
+    content: Toggle Review
+    children:
+      - 3d61a474-1573-4773-b038-2732caa4404b
+      - 0059f000-1ea8-46d9-968a-869799676c9b
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3d61a474-1573-4773-b038-2732caa4404b:
+    id: 3d61a474-1573-4773-b038-2732caa4404b
+    content: Show checkmark when panel is open
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0059f000-1ea8-46d9-968a-869799676c9b:
+    id: 0059f000-1ea8-46d9-968a-869799676c9b
+    content: Assign keyboard shortcut
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  270b22dc-7a02-4573-aafe-ebb48ffe8e0f:
+    id: 270b22dc-7a02-4573-aafe-ebb48ffe8e0f
+    content: Consider the ROI and warn the user if you have doubts
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  111dc3fc-8344-4110-8e05-ef7332471a99:
+    id: 111dc3fc-8344-4110-8e05-ef7332471a99
+    content: Add any realistic alternatives
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  3666246b-6557-4e87-9b1d-02d9292fe157:
+    id: 3666246b-6557-4e87-9b1d-02d9292fe157
+    content: This is a non technical discussion
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  6f183ad1-988e-413a-83e2-30b5b08fc898:
+    id: 6f183ad1-988e-413a-83e2-30b5b08fc898
+    content: Group each concept
+    children:
+      - 70e23158-ef4c-4780-9b2c-e486e36870b4
+    metadata:
+      status: pending
+      isBlueprint: true
+  70e23158-ef4c-4780-9b2c-e486e36870b4:
+    id: 70e23158-ef4c-4780-9b2c-e486e36870b4
+    content: Further group into MVP and future features
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  bb1056fb-acca-4b71-a6b2-aa5e3904a907:
+    id: bb1056fb-acca-4b71-a6b2-aa5e3904a907
+    content: Copy/paste in summary mode also selects hidden nodes
+    children:
+      - 756c19a0-6b3a-46f1-af54-9a42a0a32e3a
+    metadata:
+      status: pending
+  756c19a0-6b3a-46f1-af54-9a42a0a32e3a:
+    id: 756c19a0-6b3a-46f1-af54-9a42a0a32e3a
+    content: Should only select visible nodes
     children: []
     metadata:
       status: pending

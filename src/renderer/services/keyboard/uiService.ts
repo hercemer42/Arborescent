@@ -92,6 +92,20 @@ async function handleUIShortcuts(event: KeyboardEvent): Promise<void> {
     return;
   }
 
+  // Toggle feedback/review panel
+  if (matchesHotkey(event, 'view', 'toggleFeedback')) {
+    event.preventDefault();
+    const { usePanelStore } = await import('../../store/panel/panelStore');
+    const panelStore = usePanelStore.getState();
+
+    if (panelStore.activeContent === 'feedback') {
+      panelStore.hidePanel();
+    } else {
+      panelStore.showFeedback();
+    }
+    return;
+  }
+
   // Toggle blueprint mode
   if (matchesHotkey(event, 'view', 'toggleBlueprintMode')) {
     event.preventDefault();
