@@ -3,6 +3,7 @@ import { useFilesStore } from '../store/files/filesStore';
 import { useBrowserStore } from '../store/browser/browserStore';
 import { useTerminalStore } from '../store/terminal/terminalStore';
 import { usePanelStore } from '../store/panel/panelStore';
+import { usePreferencesStore } from '../store/preferences/preferencesStore';
 import { logger } from '../services/logger';
 
 /**
@@ -14,11 +15,13 @@ export function useAppInitialization(onComplete: () => void) {
     const initializeSession = useFilesStore.getState().actions.initializeSession;
     const restoreBrowserSession = useBrowserStore.getState().actions.restoreSession;
     const restorePanelSession = usePanelStore.getState().restoreSession;
+    const loadPreferences = usePreferencesStore.getState().loadPreferences;
 
     Promise.all([
       initializeSession(),
       restoreBrowserSession(),
       restorePanelSession(),
+      loadPreferences(),
     ])
       .then(async () => {
         // Auto-create a terminal if none exist AND terminal panel is active

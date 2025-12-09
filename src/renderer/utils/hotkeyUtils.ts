@@ -126,3 +126,31 @@ export function formatHotkeyForDisplay(accelerator: string): string {
 
   return mac ? formatted.join('') : formatted.join('+');
 }
+
+/**
+ * Convert a KeyboardEvent to Electron accelerator notation.
+ */
+export function keyEventToNotation(event: KeyboardEvent): string {
+  const parts: string[] = [];
+
+  if (event.ctrlKey || event.metaKey) {
+    parts.push('CmdOrCtrl');
+  }
+  if (event.shiftKey) {
+    parts.push('Shift');
+  }
+  if (event.altKey) {
+    parts.push('Alt');
+  }
+
+  // Normalize key
+  let key = event.key;
+  if (key === ' ') {
+    key = 'Space';
+  } else if (key.length === 1) {
+    key = key.toUpperCase();
+  }
+
+  parts.push(key);
+  return parts.join('+');
+}

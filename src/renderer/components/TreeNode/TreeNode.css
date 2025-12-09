@@ -7,22 +7,22 @@
 
 /* Active node (cursor is in it, editing) */
 .tree-node-wrapper.selected {
-  border-top: 1px solid white;
-  border-bottom: 1px solid white;
+  border-top: 1px solid var(--white);
+  border-bottom: 1px solid var(--white);
 }
 
 /* Collapsed parent - full row highlight with borders */
 .tree-node-wrapper.collapsed-parent {
-  background-color: rgba(33, 150, 243, 0.1);
-  border-top: 1px solid white;
-  border-bottom: 1px solid white;
+  background-color: var(--selection-collapsed);
+  border-top: 1px solid var(--white);
+  border-bottom: 1px solid var(--white);
 }
 
 /* Multi-selected nodes - full row highlight with borders */
 .tree-node-wrapper.multi-selected {
-  background-color: rgba(0, 128, 128, 0.15);
-  border-top: 1px solid white;
-  border-bottom: 1px solid white;
+  background-color: var(--selection-multi);
+  border-top: 1px solid var(--white);
+  border-bottom: 1px solid var(--white);
 }
 
 /* Node in collaboration - amber/orange highlight with borders */
@@ -54,14 +54,14 @@
 
 /* Multi-selected + collapsed - layered backgrounds with transparency */
 .tree-node-wrapper.collapsed-parent.multi-selected {
-  background-color: rgba(33, 150, 243, 0.1);
+  background-color: var(--selection-collapsed);
 }
 
 .tree-node-wrapper.collapsed-parent.multi-selected::before {
   content: '';
   position: absolute;
   inset: 0;
-  background-color: rgba(0, 128, 128, 0.15);
+  background-color: var(--selection-multi);
   pointer-events: none;
   z-index: 0;
 }

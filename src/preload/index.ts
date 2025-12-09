@@ -88,5 +88,9 @@ contextBridge.exposeInMainWorld('electron', {
     ipcRenderer.removeAllListeners('main-error');
     ipcRenderer.on('main-error', (_event, message) => callback(message));
   },
+  // Preferences IPC
+  savePreferences: (preferencesData: string) =>
+    ipcRenderer.invoke('save-preferences', preferencesData),
+  getPreferences: () => ipcRenderer.invoke('get-preferences'),
   ...pluginPreloadAPI,
 });

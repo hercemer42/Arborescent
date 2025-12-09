@@ -128,6 +128,8 @@ global.window.electron = {
   setMenuSaveHandler: vi.fn(),
   setMenuSaveAsHandler: vi.fn(),
   setMainErrorHandler: vi.fn(),
+  savePreferences: vi.fn(),
+  getPreferences: vi.fn().mockResolvedValue(null),
   terminalCreate: vi.fn().mockResolvedValue({ id: 'test', title: 'Test', cwd: '/test', shellCommand: 'bash', shellArgs: [] }),
   terminalWrite: vi.fn(),
   terminalResize: vi.fn(),

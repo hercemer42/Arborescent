@@ -1,10 +1,13 @@
 import { Menu } from './Menu';
 import { MenuItem } from './MenuItem';
 import { MenuSeparator } from './MenuSeparator';
+import { MenuSubmenu } from './MenuSubmenu';
 import { useFileMenuState } from './hooks/useFileMenuState';
 import { useFileMenuActions } from './hooks/useFileMenuActions';
 import { getKeyForAction } from '../../data/hotkeyConfig';
 import { formatHotkeyForDisplay } from '../../utils/hotkeyUtils';
+import { usePreferencesStore } from '../../store/preferences/preferencesStore';
+import { useUIStore } from '../../store/ui/uiStore';
 
 export function FileMenu() {
   const { hasActiveFile, hasBlueprintNodes } = useFileMenuState();
@@ -19,6 +22,9 @@ export function FileMenu() {
     handleReload,
     handleQuit,
   } = useFileMenuActions();
+  const theme = usePreferencesStore((state) => state.theme);
+  const setTheme = usePreferencesStore((state) => state.setTheme);
+  const openKeyboardShortcuts = useUIStore((state) => state.openKeyboardShortcuts);
 
   return (
     <Menu id="file" label="File">
@@ -61,6 +67,25 @@ export function FileMenu() {
         disabled={!hasActiveFile}
         onClick={handleCloseTab}
       />
+      <MenuSeparator />
+      <MenuSubmenu label="Preferences">
+        <MenuSubmenu label="Theme">
+          <MenuItem
+            label="Light"
+            checked={theme === 'light'}
+            onClick={() => setTheme('light')}
+          />
+          <MenuItem
+            label="Dark"
+            checked={theme === 'dark'}
+            onClick={() => setTheme('dark')}
+          />
+        </MenuSubmenu>
+        <MenuItem
+          label="Keyboard Shortcuts..."
+          onClick={openKeyboardShortcuts}
+        />
+      </MenuSubmenu>
       <MenuSeparator />
       <MenuItem
         label="Reload Application"

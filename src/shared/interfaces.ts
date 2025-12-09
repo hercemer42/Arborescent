@@ -5,6 +5,15 @@ export interface SessionState {
   activeFilePath: string | null;
 }
 
+export type Theme = 'light' | 'dark';
+
+export interface UserPreferences {
+  theme: Theme;
+  // Hotkeys stored as generic JSON object to avoid coupling to HotkeyConfig type
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  hotkeys?: any;
+}
+
 export interface BrowserTab {
   id: string;
   title: string;
@@ -39,6 +48,8 @@ export interface StorageService {
   getBrowserSession(): Promise<BrowserSession | null>;
   savePanelSession(session: PanelSession): Promise<void>;
   getPanelSession(): Promise<PanelSession | null>;
+  savePreferences(preferences: UserPreferences): Promise<void>;
+  getPreferences(): Promise<UserPreferences | null>;
 }
 
 export interface MenuService {

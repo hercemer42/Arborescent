@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2025-12-09T06:45:32.532Z'
+updated: '2025-12-09T14:56:45.375Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -39,14 +39,6 @@ nodes:
     metadata:
       status: completed
       expanded: false
-  qo4eickz9:
-    id: qo4eickz9
-    content: Audio and visual alert when claude has done something or needs something
-    children:
-      - abc92459-4a6d-4048-8751-1282b904b6d6
-    metadata:
-      status: pending
-      expanded: false
   pdt35vy1z:
     id: pdt35vy1z
     content: File management
@@ -78,7 +70,7 @@ nodes:
       - gnwc7enq6
     metadata:
       status: pending
-      expanded: true
+      expanded: false
   gnwc7enq6:
     id: gnwc7enq6
     content: should have different logging level depending on development environment
@@ -145,27 +137,6 @@ nodes:
     children: []
     metadata:
       status: completed
-  abc92459-4a6d-4048-8751-1282b904b6d6:
-    id: abc92459-4a6d-4048-8751-1282b904b6d6
-    content: Similar to what we currently have in i3
-    children:
-      - b79d0854-a3ea-4c10-801e-a1ffdb16d627
-      - afc82f17-0de5-4a3c-b9bb-bfb1954c9799
-    metadata:
-      status: pending
-  b79d0854-a3ea-4c10-801e-a1ffdb16d627:
-    id: b79d0854-a3ea-4c10-801e-a1ffdb16d627
-    content: Need to find different icons
-    children: []
-    metadata:
-      status: pending
-  afc82f17-0de5-4a3c-b9bb-bfb1954c9799:
-    id: afc82f17-0de5-4a3c-b9bb-bfb1954c9799
-    content: Need to create a status bar
-    children:
-      - 83c73c8b-478b-41d0-82ac-f3395fd86937
-    metadata:
-      status: pending
   0f9c1312-d773-45bb-9d54-7ef0fc4f58a9:
     id: 0f9c1312-d773-45bb-9d54-7ef0fc4f58a9
     content: Plugin architecture to keep the core concept abstract and allow for specific customizations for each user/need
@@ -474,20 +445,6 @@ nodes:
       - 545c3c8e-f3fa-405d-8404-183ee71248e0
     metadata:
       status: pending
-  ce2de4b4-cc94-4106-a61b-26ce1089e97e:
-    id: ce2de4b4-cc94-4106-a61b-26ce1089e97e
-    content: Settings UI
-    children:
-      - fd5f2142-2b28-4147-b3b4-d581d5b9225d
-    metadata:
-      status: pending
-      expanded: false
-  fd5f2142-2b28-4147-b3b4-d581d5b9225d:
-    id: fd5f2142-2b28-4147-b3b4-d581d5b9225d
-    content: Plugin activate/deactivate
-    children: []
-    metadata:
-      status: pending
   67b4c175-a885-41f5-a825-78f435509683:
     id: 67b4c175-a885-41f5-a825-78f435509683
     content: Make sure PLUGIN_DEVELOPMENT.md is updated
@@ -773,12 +730,6 @@ nodes:
   19a90e4b-61aa-4f1c-b0f0-9282975318d3:
     id: 19a90e4b-61aa-4f1c-b0f0-9282975318d3
     content: Add permission model in manifest - Add permissions array to manifest.json declaring required capabilities (workspace:read, notifications:show, claude:sessions:read). Enables permission review and potential future permission prompts.
-    children: []
-    metadata:
-      status: pending
-  83c73c8b-478b-41d0-82ac-f3395fd86937:
-    id: 83c73c8b-478b-41d0-82ac-f3395fd86937
-    content: Or should we do it as a visual indicator on the node ?
     children: []
     metadata:
       status: pending
@@ -1234,21 +1185,6 @@ nodes:
     children: []
     metadata:
       status: completed
-  07dbd367-fd7c-41a6-94bc-3f7c5f57e668:
-    id: 07dbd367-fd7c-41a6-94bc-3f7c5f57e668
-    content: Reimagine/remove Claude code plugin
-    children:
-      - 29b1c516-3ac2-48a3-91bf-07146b824880
-      - qo4eickz9
-    metadata:
-      status: pending
-      expanded: false
-  29b1c516-3ac2-48a3-91bf-07146b824880:
-    id: 29b1c516-3ac2-48a3-91bf-07146b824880
-    content: "\_And the 'hooks' we made for IPC"
-    children: []
-    metadata:
-      status: pending
   e15d77fa-c719-45d4-9207-ff759d86e58f:
     id: e15d77fa-c719-45d4-9207-ff759d86e58f
     content: Terminal integration
@@ -5563,21 +5499,12 @@ nodes:
     id: 984247e7-2d55-4b93-80e8-f84818901621
     content: Backlog
     children:
-      - 9ad1e933-9370-4c68-b814-05b5a67b9a6d
-      - c8c469d7-b2f8-411f-9798-72d20ddf0f6c
-      - 4966bd3d-fe8d-4094-840f-a0f791c07d6c
-      - cc522bbb-99fe-499f-b9d8-a62c7ce50575
-      - b66833c8-6369-4349-8b98-3c10ffc437dd
-      - 8210b1f6-ba52-4657-ae8f-39c3ed91ef61
-      - 53e9add9-1b8f-4ae3-ac36-51e73197a389
-      - 0vzl7mppk
+      - 92b16d87-27dc-486d-a605-4228e2b5206c
       - 0a6b6c63-425c-4994-8419-d8f06c7a930d
       - d7597faa-0b34-400e-985a-de035508cdb1
       - 65b74e0f-88fe-41c6-9910-8bac806adc6f
       - 6573b620-bfc0-4c5b-8d92-13b9ace3461d
-      - ce2de4b4-cc94-4106-a61b-26ce1089e97e
       - 5288b678-63dc-4672-b1b3-8e2b540c04de
-      - 07dbd367-fd7c-41a6-94bc-3f7c5f57e668
     metadata:
       status: pending
       expanded: true
@@ -6649,7 +6576,14 @@ nodes:
   0cc62ae1-1a7a-4aa4-bc6a-d817cabd672c:
     id: 0cc62ae1-1a7a-4aa4-bc6a-d817cabd672c
     content: Refactor
-    children: []
+    children:
+      - 3adc6bf4-64ed-402b-8eb0-ac9876e23828
+      - ff4c14ca-db84-4653-ade9-4126fb1b672e
+      - 5e809747-650d-4767-a434-d9adb3362da9
+      - d9aed4c5-f700-4f03-b7f7-f13bc82823c3
+      - ca43fe46-764b-4e85-b4dc-7692cdc5b0be
+      - 4c9692ab-183c-4c53-aae4-dc6432e0c87f
+      - 2d2066aa-de5f-4366-a241-0a8d3c08c489
     metadata:
       status: pending
       expanded: true
@@ -14745,7 +14679,7 @@ nodes:
     id: ac4c627f-c512-40b9-ad55-11b439495b7e
     content: Major feature
     children:
-      - a68b24f8-f917-4739-add5-59b3796f7b61
+      - 0f5a2c8b-3991-4ed9-ba23-fa4198b0fe88
     metadata:
       status: pending
       isBlueprint: true
@@ -14952,6 +14886,7 @@ nodes:
       - 3e884ffb-0f2a-43c7-8a46-0ad06fe44f45
     metadata:
       status: pending
+      expanded: false
   cc522bbb-99fe-499f-b9d8-a62c7ce50575:
     id: cc522bbb-99fe-499f-b9d8-a62c7ce50575
     content: Help nodes for onboarding
@@ -14959,6 +14894,7 @@ nodes:
       - d2f85efd-9234-4349-a5d0-147807aef97e
     metadata:
       status: pending
+      expanded: false
   d2f85efd-9234-4349-a5d0-147807aef97e:
     id: d2f85efd-9234-4349-a5d0-147807aef97e
     content: Separate blueprint or part of default ?
@@ -15058,14 +14994,6 @@ nodes:
     children: []
     metadata:
       status: pending
-  9ad1e933-9370-4c68-b814-05b5a67b9a6d:
-    id: 9ad1e933-9370-4c68-b814-05b5a67b9a6d
-    content: Settings menu
-    children:
-      - dc8bf9b2-975a-44b3-942b-a22b1be9e15e
-      - 797ed870-11ce-4314-9cb9-0db8919460c2
-    metadata:
-      status: pending
   c8c469d7-b2f8-411f-9798-72d20ddf0f6c:
     id: c8c469d7-b2f8-411f-9798-72d20ddf0f6c
     content: Make context menu actions also be available in top bar
@@ -15073,6 +15001,7 @@ nodes:
       - 9bd07f59-cbee-4410-ba5d-1a0bdc81209a
     metadata:
       status: pending
+      expanded: true
   8210b1f6-ba52-4657-ae8f-39c3ed91ef61:
     id: 8210b1f6-ba52-4657-ae8f-39c3ed91ef61
     content: Move archi doc into nodes (link to major feature update)
@@ -15408,18 +15337,6 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  dc8bf9b2-975a-44b3-942b-a22b1be9e15e:
-    id: dc8bf9b2-975a-44b3-942b-a22b1be9e15e
-    content: Hotkey definition
-    children: []
-    metadata:
-      status: pending
-  797ed870-11ce-4314-9cb9-0db8919460c2:
-    id: 797ed870-11ce-4314-9cb9-0db8919460c2
-    content: Dark colour scheme
-    children: []
-    metadata:
-      status: pending
   c25cf481-a0d1-495d-9cea-498f1135eb8c:
     id: c25cf481-a0d1-495d-9cea-498f1135eb8c
     content: Minor feature
@@ -15545,29 +15462,601 @@ nodes:
     children: []
     metadata:
       status: pending
-  fc1216b7-3b2a-4fd4-9d16-a8d58ba5f9e9:
-    id: fc1216b7-3b2a-4fd4-9d16-a8d58ba5f9e9
-    content: Hotkey definition
-    children: []
-    metadata:
-      status: pending
-  93f67b93-1b55-446c-9374-b837af7db851:
-    id: 93f67b93-1b55-446c-9374-b837af7db851
-    content: Dark colour scheme
-    children: []
-    metadata:
-      status: pending
-  a68b24f8-f917-4739-add5-59b3796f7b61:
-    id: a68b24f8-f917-4739-add5-59b3796f7b61
-    content: Settings menu
-    children:
-      - fc1216b7-3b2a-4fd4-9d16-a8d58ba5f9e9
-      - 93f67b93-1b55-446c-9374-b837af7db851
-    metadata:
-      status: pending
   53e9add9-1b8f-4ae3-ac36-51e73197a389:
     id: 53e9add9-1b8f-4ae3-ac36-51e73197a389
     content: Remove unused plugin system (for now)
+    children: []
+    metadata:
+      status: pending
+  80181e68-762c-4686-ac23-1fa585d1bfe5:
+    id: 80181e68-762c-4686-ac23-1fa585d1bfe5
+    content: Change shell to user default ?
+    children:
+      - a4c3b599-817b-4083-8144-5630cc960835
+    metadata:
+      status: pending
+      expanded: false
+  a4c3b599-817b-4083-8144-5630cc960835:
+    id: a4c3b599-817b-4083-8144-5630cc960835
+    content: For instance, zsh on linux, powershell in windows etc
+    children: []
+    metadata:
+      status: pending
+  a2d18d0e-fc20-4791-b93c-3b92b2b4b4d4:
+    id: a2d18d0e-fc20-4791-b93c-3b92b2b4b4d4
+    content: Improve drag/drop highlighting
+    children:
+      - 3cf4b652-2946-47d2-94db-c0e228cc43e1
+      - 38b9d619-6de7-43ef-a093-b73acc48090e
+      - 7ee28524-c7fc-4f33-acc4-e2ed4e024aa7
+    metadata:
+      status: pending
+      expanded: false
+  3cf4b652-2946-47d2-94db-c0e228cc43e1:
+    id: 3cf4b652-2946-47d2-94db-c0e228cc43e1
+    content: Make it obvious where we are dragging into
+    children: []
+    metadata:
+      status: pending
+  38b9d619-6de7-43ef-a093-b73acc48090e:
+    id: 38b9d619-6de7-43ef-a093-b73acc48090e
+    content: Onto, on top of, under
+    children: []
+    metadata:
+      status: pending
+  7ee28524-c7fc-4f33-acc4-e2ed4e024aa7:
+    id: 7ee28524-c7fc-4f33-acc4-e2ed4e024aa7
+    content: At what indent level
+    children: []
+    metadata:
+      status: pending
+  92b16d87-27dc-486d-a605-4228e2b5206c:
+    id: 92b16d87-27dc-486d-a605-4228e2b5206c
+    content: For release
+    children:
+      - bf1f044f-2f61-44d6-90ef-2afdf1b37a90
+      - 53e9add9-1b8f-4ae3-ac36-51e73197a389
+      - 4966bd3d-fe8d-4094-840f-a0f791c07d6c
+      - cc522bbb-99fe-499f-b9d8-a62c7ce50575
+      - b66833c8-6369-4349-8b98-3c10ffc437dd
+      - 8210b1f6-ba52-4657-ae8f-39c3ed91ef61
+      - 3d9275b7-663d-46e1-bd46-564a9dc02283
+      - 792b7b44-6bfb-4ff6-9151-1b092d688998
+      - 0c262229-5d10-430b-8f2e-f2e062470c13
+      - 0vzl7mppk
+      - 80181e68-762c-4686-ac23-1fa585d1bfe5
+      - a2d18d0e-fc20-4791-b93c-3b92b2b4b4d4
+      - e897dedf-fd94-4cda-9a00-d79bf0371787
+    metadata:
+      status: pending
+  3d9275b7-663d-46e1-bd46-564a9dc02283:
+    id: 3d9275b7-663d-46e1-bd46-564a9dc02283
+    content: If there are children, CTRL + Enter follows same rules as per Enter
+    children:
+      - ab60da0f-1eff-4cf7-a025-18fe704e3608
+    metadata:
+      status: pending
+  ab60da0f-1eff-4cf7-a025-18fe704e3608:
+    id: ab60da0f-1eff-4cf7-a025-18fe704e3608
+    content: Create first child instead of sibling
+    children: []
+    metadata:
+      status: pending
+  0f5a2c8b-3991-4ed9-ba23-fa4198b0fe88:
+    id: 0f5a2c8b-3991-4ed9-ba23-fa4198b0fe88
+    content: Preferences
+    children:
+      - af6d4354-8ffa-4ebc-84d8-bc40a7a8bcf1
+      - 6faf37d5-0370-46be-afc2-f6a21fb32d42
+      - 8b5f8408-8fbf-49eb-942e-8b15f00dda1e
+      - 46fd3052-5a77-4bde-b0b9-cfc056570194
+    metadata:
+      status: pending
+      expanded: false
+      deleted: false
+      plugins: {}
+  af6d4354-8ffa-4ebc-84d8-bc40a7a8bcf1:
+    id: af6d4354-8ffa-4ebc-84d8-bc40a7a8bcf1
+    content: Under 'File' add 'Preferences' sub menu
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6faf37d5-0370-46be-afc2-f6a21fb32d42:
+    id: 6faf37d5-0370-46be-afc2-f6a21fb32d42
+    content: Under 'Preferences' add 'Keyboard shortcuts' and 'Themes'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8b5f8408-8fbf-49eb-942e-8b15f00dda1e:
+    id: 8b5f8408-8fbf-49eb-942e-8b15f00dda1e
+    content: Keyboard shortcuts
+    children:
+      - 67d36e7a-9197-4f40-a3a7-a852eec419bf
+      - c6d3955a-d319-4abe-b264-6b1bffd4a9c3
+      - b321bad1-ea6b-46e8-9e25-3ef100745275
+      - d90e3a39-f111-49fe-bf4d-7395d1f9ae21
+      - 74b2a7bd-9774-47a9-ab7b-7a15cab09863
+      - 2794cbb0-4e4f-4ff0-9a70-47ebcda5d68c
+      - 98780c3e-e55d-459d-ac47-ad90c0bdd4f8
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  67d36e7a-9197-4f40-a3a7-a852eec419bf:
+    id: 67d36e7a-9197-4f40-a3a7-a852eec419bf
+    content: On first launch, a copy of the default hotkeys is created in the user profile folder
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c6d3955a-d319-4abe-b264-6b1bffd4a9c3:
+    id: c6d3955a-d319-4abe-b264-6b1bffd4a9c3
+    content: The program will reference this on loading for all hotkey definitions
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b321bad1-ea6b-46e8-9e25-3ef100745275:
+    id: b321bad1-ea6b-46e8-9e25-3ef100745275
+    content: List all available commands and their shortcuts
+    children:
+      - 9a94d8f0-c7b5-4887-93e6-3ff5b84e40b7
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9a94d8f0-c7b5-4887-93e6-3ff5b84e40b7:
+    id: 9a94d8f0-c7b5-4887-93e6-3ff5b84e40b7
+    content: Group commands by category (Navigation, Editing, View, etc.) for easier scanning
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d90e3a39-f111-49fe-bf4d-7395d1f9ae21:
+    id: d90e3a39-f111-49fe-bf4d-7395d1f9ae21
+    content: Have an 'edit' button to the left of each command
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  74b2a7bd-9774-47a9-ab7b-7a15cab09863:
+    id: 74b2a7bd-9774-47a9-ab7b-7a15cab09863
+    content: Clicking 'edit' produces a popup
+    children:
+      - 45fbc07b-dde1-451e-829d-d0bd4eb3680d
+      - debfb8fc-bca4-463e-acd6-cf2f7efada55
+      - d9713359-4fab-481e-b817-e0f693875db2
+      - 130f589e-8858-47d8-b423-541bd10eef6e
+      - d4de6161-4448-435f-854a-133e913040dc
+      - 803e2d5f-b5bb-4c69-bab8-3cdc44f071f8
+      - 743fc2fb-4874-4c92-bae2-6e8343717ec0
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  45fbc07b-dde1-451e-829d-d0bd4eb3680d:
+    id: 45fbc07b-dde1-451e-829d-d0bd4eb3680d
+    content: It has text 'Press desired key combination, then press ENTER'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  debfb8fc-bca4-463e-acd6-cf2f7efada55:
+    id: debfb8fc-bca4-463e-acd6-cf2f7efada55
+    content: It has a text box that is focused with the cursor in it
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d9713359-4fab-481e-b817-e0f693875db2:
+    id: d9713359-4fab-481e-b817-e0f693875db2
+    content: Pressing a key combination writes that key combination into the text box
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  130f589e-8858-47d8-b423-541bd10eef6e:
+    id: 130f589e-8858-47d8-b423-541bd10eef6e
+    content: Pressing a different key combination overwrites it
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d4de6161-4448-435f-854a-133e913040dc:
+    id: d4de6161-4448-435f-854a-133e913040dc
+    content: Pressing enter changes the hotkey
+    children:
+      - 51591722-04c9-43d5-bf5d-ef2d4891161c
+      - 1494507f-6153-4610-bc60-c2c48011ea8a
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  51591722-04c9-43d5-bf5d-ef2d4891161c:
+    id: 51591722-04c9-43d5-bf5d-ef2d4891161c
+    content: Changes it in local memory for the session
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1494507f-6153-4610-bc60-c2c48011ea8a:
+    id: 1494507f-6153-4610-bc60-c2c48011ea8a
+    content: Changes it in the user profile file
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  803e2d5f-b5bb-4c69-bab8-3cdc44f071f8:
+    id: 803e2d5f-b5bb-4c69-bab8-3cdc44f071f8
+    content: If the hotkey is already in use, enter is disabled
+    children:
+      - c9827458-33d3-4861-baf9-ce5b516b14f3
+      - 9076c8fe-3a04-40f7-a208-4099a969963e
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c9827458-33d3-4861-baf9-ce5b516b14f3:
+    id: c9827458-33d3-4861-baf9-ce5b516b14f3
+    content: The text is greyed out
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9076c8fe-3a04-40f7-a208-4099a969963e:
+    id: 9076c8fe-3a04-40f7-a208-4099a969963e
+    content: We display underneath in red
+    children:
+      - 9b3efb3e-e399-477f-a99d-8d5a51e95e4f
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9b3efb3e-e399-477f-a99d-8d5a51e95e4f:
+    id: 9b3efb3e-e399-477f-a99d-8d5a51e95e4f
+    content: Hotkey already in use, pick another
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  743fc2fb-4874-4c92-bae2-6e8343717ec0:
+    id: 743fc2fb-4874-4c92-bae2-6e8343717ec0
+    content: Hitting 'Escape' closes the dialog with no changes
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2794cbb0-4e4f-4ff0-9a70-47ebcda5d68c:
+    id: 2794cbb0-4e4f-4ff0-9a70-47ebcda5d68c
+    content: There is a 'Restore defaults' button on the bottom right
+    children:
+      - a4a6c020-7a89-4bcb-9e0b-4b10cb61e27a
+      - f2d8f1a9-b789-44ad-b24f-e9865c60a547
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a4a6c020-7a89-4bcb-9e0b-4b10cb61e27a:
+    id: a4a6c020-7a89-4bcb-9e0b-4b10cb61e27a
+    content: This restores all defaults with an 'Are you sure' prompt
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f2d8f1a9-b789-44ad-b24f-e9865c60a547:
+    id: f2d8f1a9-b789-44ad-b24f-e9865c60a547
+    content: Restores for the session and to the user's profile
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  46fd3052-5a77-4bde-b0b9-cfc056570194:
+    id: 46fd3052-5a77-4bde-b0b9-cfc056570194
+    content: Themes
+    children:
+      - 96cd3573-b1f7-451c-9a24-e75788e67299
+      - 5f0aad9f-c8d5-4c66-b94f-08a85baeffd7
+      - baa68cdd-3826-4d73-9e6a-5699303ee447
+      - 65357268-8c0c-4f3c-911e-1b04bafb29ea
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  96cd3573-b1f7-451c-9a24-e75788e67299:
+    id: 96cd3573-b1f7-451c-9a24-e75788e67299
+    content: In this sub menu, there are two themes - light and dark
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5f0aad9f-c8d5-4c66-b94f-08a85baeffd7:
+    id: 5f0aad9f-c8d5-4c66-b94f-08a85baeffd7
+    content: Light theme is the current one
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  baa68cdd-3826-4d73-9e6a-5699303ee447:
+    id: baa68cdd-3826-4d73-9e6a-5699303ee447
+    content: Dark is a new theme
+    children:
+      - 0329700a-9f92-4ded-8970-9e84cc1ed1ed
+      - 5bdc622a-912e-4e15-a2d8-32d9eccff3b7
+      - 8651d6f7-d662-4afd-a1ba-58dec4682070
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0329700a-9f92-4ded-8970-9e84cc1ed1ed:
+    id: 0329700a-9f92-4ded-8970-9e84cc1ed1ed
+    content: Do something similar to VS code default dark theme
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5bdc622a-912e-4e15-a2d8-32d9eccff3b7:
+    id: 5bdc622a-912e-4e15-a2d8-32d9eccff3b7
+    content: Try to keep the colours otherwise similar to light theme
+    children:
+      - 7efa1b4e-fab0-4d15-baea-337044a3d901
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7efa1b4e-fab0-4d15-baea-337044a3d901:
+    id: 7efa1b4e-fab0-4d15-baea-337044a3d901
+    content: Darken if necessary for contrast
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8651d6f7-d662-4afd-a1ba-58dec4682070:
+    id: 8651d6f7-d662-4afd-a1ba-58dec4682070
+    content: Activate xterm default dark theme also
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  65357268-8c0c-4f3c-911e-1b04bafb29ea:
+    id: 65357268-8c0c-4f3c-911e-1b04bafb29ea
+    content: Save theme preference to user profile so it persists across sessions
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  98780c3e-e55d-459d-ac47-ad90c0bdd4f8:
+    id: 98780c3e-e55d-459d-ac47-ad90c0bdd4f8
+    content: Right click menu
+    children:
+      - 0584a9bb-782d-4f5e-b3f9-36c0890be3ea
+      - 506aa754-a3bd-4ac0-a99a-c49f26d84c37
+    metadata:
+      status: pending
+  0b6fbd7d-d845-43a8-a202-30af26aeb94c:
+    id: 0b6fbd7d-d845-43a8-a202-30af26aeb94c
+    content: This removes the hotkey entirely
+    children: []
+    metadata:
+      status: pending
+  506aa754-a3bd-4ac0-a99a-c49f26d84c37:
+    id: 506aa754-a3bd-4ac0-a99a-c49f26d84c37
+    content: There is an option 'Reset hotkey'
+    children:
+      - 07cacdfc-7cde-4d2d-8122-e1d3be137997
+      - 9f4fc747-d1e8-48ed-a477-3e02e82a750e
+    metadata:
+      status: pending
+  0584a9bb-782d-4f5e-b3f9-36c0890be3ea:
+    id: 0584a9bb-782d-4f5e-b3f9-36c0890be3ea
+    content: There is an option 'Remove hotkey'
+    children:
+      - 0b6fbd7d-d845-43a8-a202-30af26aeb94c
+    metadata:
+      status: pending
+  07cacdfc-7cde-4d2d-8122-e1d3be137997:
+    id: 07cacdfc-7cde-4d2d-8122-e1d3be137997
+    content: This resets the hotkey to default
+    children: []
+    metadata:
+      status: pending
+  9f4fc747-d1e8-48ed-a477-3e02e82a750e:
+    id: 9f4fc747-d1e8-48ed-a477-3e02e82a750e
+    content: Greyed out if hotkey is already default
+    children: []
+    metadata:
+      status: pending
+  792b7b44-6bfb-4ff6-9151-1b092d688998:
+    id: 792b7b44-6bfb-4ff6-9151-1b092d688998
+    content: Clear selections with 'Escape' in addition to focused node
+    children: []
+    metadata:
+      status: pending
+  0d2bbe25-91b5-40e1-98ab-7c2f4933637d:
+    id: 0d2bbe25-91b5-40e1-98ab-7c2f4933637d
+    content: Back/forward icons in browser are wrong size, place
+    children: []
+    metadata:
+      status: pending
+  0c262229-5d10-430b-8f2e-f2e062470c13:
+    id: 0c262229-5d10-430b-8f2e-f2e062470c13
+    content: Display context menu under suggestions
+    children:
+      - 7b5dee57-520d-41b7-890e-a8d8d095a8bf
+      - ca3817f5-7d06-44f5-83b4-2bc5fba3cab3
+    metadata:
+      status: pending
+  7b5dee57-520d-41b7-890e-a8d8d095a8bf:
+    id: 7b5dee57-520d-41b7-890e-a8d8d095a8bf
+    content: Sometimes the root node is something we don't want to correct the spelling for
+    children: []
+    metadata:
+      status: pending
+  ca3817f5-7d06-44f5-83b4-2bc5fba3cab3:
+    id: ca3817f5-7d06-44f5-83b4-2bc5fba3cab3
+    content: We want to be able to execute etc
+    children: []
+    metadata:
+      status: pending
+  98375944-9925-4a48-a93f-cca6273b342d:
+    id: 98375944-9925-4a48-a93f-cca6273b342d
+    content: Hide back/forth/search bar in browser window when there is no active tab
+    children: []
+    metadata:
+      status: pending
+  e897dedf-fd94-4cda-9a00-d79bf0371787:
+    id: e897dedf-fd94-4cda-9a00-d79bf0371787
+    content: Browser improvements
+    children:
+      - 98375944-9925-4a48-a93f-cca6273b342d
+      - 0d2bbe25-91b5-40e1-98ab-7c2f4933637d
+      - 61a18435-bc45-42f4-8789-f93dbfe361fd
+      - d7330071-d7b9-4ae0-8d88-2e4b50302290
+    metadata:
+      status: pending
+  61a18435-bc45-42f4-8789-f93dbfe361fd:
+    id: 61a18435-bc45-42f4-8789-f93dbfe361fd
+    content: "When typing non website,\_"
+    children: []
+    metadata:
+      status: pending
+  d7330071-d7b9-4ae0-8d88-2e4b50302290:
+    id: d7330071-d7b9-4ae0-8d88-2e4b50302290
+    content: URL bar should be slightly darker/lighter than background depending on theme
+    children: []
+    metadata:
+      status: pending
+  70311030-002c-4584-9a51-c6dd03c79e13:
+    id: 70311030-002c-4584-9a51-c6dd03c79e13
+    content: All actions should have hotkeys
+    children:
+      - d836cacd-5c0a-41b8-9b17-edae9afa7be4
+      - 42847704-659d-4e13-af28-38073d034aca
+    metadata:
+      status: pending
+  bf1f044f-2f61-44d6-90ef-2afdf1b37a90:
+    id: bf1f044f-2f61-44d6-90ef-2afdf1b37a90
+    content: Actions improvements
+    children:
+      - c8c469d7-b2f8-411f-9798-72d20ddf0f6c
+      - 70311030-002c-4584-9a51-c6dd03c79e13
+    metadata:
+      status: pending
+  d836cacd-5c0a-41b8-9b17-edae9afa7be4:
+    id: d836cacd-5c0a-41b8-9b17-edae9afa7be4
+    content: Define default hotkeys
+    children: []
+    metadata:
+      status: pending
+  42847704-659d-4e13-af28-38073d034aca:
+    id: 42847704-659d-4e13-af28-38073d034aca
+    content: Show hotkeys in context menu
+    children:
+      - 298a473b-09be-4a96-8eb3-051b39dcc153
+    metadata:
+      status: pending
+  298a473b-09be-4a96-8eb3-051b39dcc153:
+    id: 298a473b-09be-4a96-8eb3-051b39dcc153
+    content: No hotkeys for opening sub menus
+    children: []
+    metadata:
+      status: pending
+  3adc6bf4-64ed-402b-8eb0-ac9876e23828:
+    id: 3adc6bf4-64ed-402b-8eb0-ac9876e23828
+    content: Need different css files for globals - light and dark
+    children: []
+    metadata:
+      status: pending
+  ff4c14ca-db84-4653-ade9-4126fb1b672e:
+    id: ff4c14ca-db84-4653-ade9-4126fb1b672e
+    content: HotkeyEditDialog needs hooks file
+    children: []
+    metadata:
+      status: pending
+  5e809747-650d-4767-a434-d9adb3362da9:
+    id: 5e809747-650d-4767-a434-d9adb3362da9
+    content: KeyboardShortcutsDialog needs hooks file
+    children: []
+    metadata:
+      status: pending
+  d9aed4c5-f700-4f03-b7f7-f13bc82823c3:
+    id: d9aed4c5-f700-4f03-b7f7-f13bc82823c3
+    content: Same goes for ShortcutRow
+    children: []
+    metadata:
+      status: pending
+  ca43fe46-764b-4e85-b4dc-7692cdc5b0be:
+    id: ca43fe46-764b-4e85-b4dc-7692cdc5b0be
+    content: There is duplication between KeyboardShortcutsDialog and useKeyboardShortcuts
+    children: []
+    metadata:
+      status: pending
+  4c9692ab-183c-4c53-aae4-dc6432e0c87f:
+    id: 4c9692ab-183c-4c53-aae4-dc6432e0c87f
+    content: useShortcutContextMenu defines a component, that should be in it's own file, not a hooks (or back in main component file)
+    children: []
+    metadata:
+      status: pending
+  2d2066aa-de5f-4366-a241-0a8d3c08c489:
+    id: 2d2066aa-de5f-4366-a241-0a8d3c08c489
+    content: need hooks file for MenuSubMenu.tsx
     children: []
     metadata:
       status: pending

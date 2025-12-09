@@ -113,7 +113,7 @@ describe('FileMenu', () => {
       const { container } = renderFileMenu();
 
       const separators = container.querySelectorAll('.menu-separator');
-      expect(separators.length).toBe(3); // After Open, after Save As, after Close Tab
+      expect(separators.length).toBe(4); // After Export, after Save As, after Close Tab, after Preferences
     });
   });
 

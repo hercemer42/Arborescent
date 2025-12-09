@@ -1,0 +1,1 @@
+export { KeyboardShortcutsDialog } from './KeyboardShortcutsDialog';

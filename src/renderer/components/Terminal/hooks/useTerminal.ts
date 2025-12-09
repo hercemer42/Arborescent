@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
 import { Terminal as XTerm } from '@xterm/xterm';
 import { FitAddon } from '@xterm/addon-fit';
-import { LIGHT_THEME } from '../terminalThemes';
+import { LIGHT_THEME, DARK_THEME } from '../terminalThemes';
 import { useTerminalKeyboard } from './useTerminalKeyboard';
+import { usePreferencesStore } from '../../../store/preferences/preferencesStore';
 
 interface UseTerminalOptions {
   id: string;
@@ -16,6 +17,7 @@ export function useTerminal({ id, pinnedToBottom = true, onResize }: UseTerminal
   const fitAddonRef = useRef<FitAddon | null>(null);
   const pinnedToBottomRef = useRef(pinnedToBottom);
   const [isInitialized, setIsInitialized] = useState(false);
+  const theme = usePreferencesStore((state) => state.theme);
 
   pinnedToBottomRef.current = pinnedToBottom;
 
@@ -37,7 +39,7 @@ export function useTerminal({ id, pinnedToBottom = true, onResize }: UseTerminal
         cursorBlink: true,
         fontSize: 14,
         fontFamily: 'Menlo, Monaco, "Courier New", monospace',
-        theme: LIGHT_THEME,
+        theme: theme === 'dark' ? DARK_THEME : LIGHT_THEME,
       });
 
       const fitAddon = new FitAddon();
@@ -70,6 +72,13 @@ export function useTerminal({ id, pinnedToBottom = true, onResize }: UseTerminal
 
   // Setup keyboard shortcuts
   useTerminalKeyboard(xtermRef.current);
+
+  // Update theme when it changes
+  useEffect(() => {
+    if (xtermRef.current) {
+      xtermRef.current.options.theme = theme === 'dark' ? DARK_THEME : LIGHT_THEME;
+    }
+  }, [theme]);
 
   // Main effect - sets up event handlers after initialization
   useEffect(() => {

@@ -1,6 +1,6 @@
 import * as yaml from 'js-yaml';
 import { ArboFile } from '../../../shared/types';
-import { StorageService as IStorageService, SessionState, BrowserSession, PanelSession } from '../../../shared/interfaces';
+import { StorageService as IStorageService, SessionState, BrowserSession, PanelSession, UserPreferences } from '../../../shared/interfaces';
 import { getNextUntitledNumber } from '../../../shared/utils/fileNaming';
 
 export class Storage implements IStorageService {
@@ -108,6 +108,21 @@ export class Storage implements IStorageService {
     if (!sessionData) return null;
     try {
       return JSON.parse(sessionData) as PanelSession;
+    } catch {
+      return null;
+    }
+  }
+
+  async savePreferences(preferences: UserPreferences): Promise<void> {
+    const preferencesData = JSON.stringify(preferences, null, 2);
+    await window.electron.savePreferences(preferencesData);
+  }
+
+  async getPreferences(): Promise<UserPreferences | null> {
+    const preferencesData = await window.electron.getPreferences();
+    if (!preferencesData) return null;
+    try {
+      return JSON.parse(preferencesData) as UserPreferences;
     } catch {
       return null;
     }
