@@ -667,6 +667,20 @@ export function getIsContextChild(
 }
 
 /**
+ * Check if a new node created under the given parent should inherit isBlueprint.
+ * Returns true if the parent is a context declaration or is itself a context child.
+ */
+export function shouldInheritBlueprint(
+  parentId: string,
+  nodes: Record<string, TreeNode>,
+  ancestorRegistry: AncestorRegistry
+): boolean {
+  const parent = nodes[parentId];
+  if (!parent) return false;
+  return parent.metadata.isContextDeclaration === true || getIsContextChild(parentId, nodes, ancestorRegistry);
+}
+
+/**
  * Get inherited blueprint icon and color from the nearest ancestor with a blueprintIcon.
  * Returns undefined if node has its own icon or no ancestor has an icon.
  */

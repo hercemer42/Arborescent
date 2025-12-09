@@ -20,7 +20,8 @@ export interface NodeActions {
   setCursorPosition: (position: number) => void;
   setRememberedVisualX: (visualX: number | null) => void;
   createNode: (currentNodeId: string) => void;
-  splitNode: (nodeId: string, content: string, cursorPosition: number) => void;
+  createNodeBefore: (currentNodeId: string) => void;
+  splitNode: (nodeId: string, content: string, cursorPosition: number, createAsChild?: boolean) => void;
 }
 
 type StoreState = {
@@ -220,7 +221,46 @@ export const createNodeActions = (
     state.actions.executeCommand(command);
   }
 
-  function splitNode(nodeId: string, content: string, cursorPosition: number): void {
+  function createNodeBefore(currentNodeId: string): void {
+    const state = get() as StoreState & { actions?: { executeCommand?: (cmd: unknown) => void } };
+    const { nodes, rootNodeId, ancestorRegistry, blueprintModeEnabled } = state;
+    const currentNode = nodes[currentNodeId];
+    if (!currentNode) return;
+
+    const newNodeId = generateId();
+
+    // Create as sibling before current node
+    const ancestors = ancestorRegistry[currentNodeId] || [];
+    const parentId = ancestors[ancestors.length - 1] || rootNodeId;
+    const parent = nodes[parentId];
+    if (!parent) return;
+    const position = parent.children.indexOf(currentNodeId);
+
+    if (!state.actions?.executeCommand) {
+      throw new Error('Command system not initialized - cannot create node with undo/redo support');
+    }
+
+    // In blueprint mode, new nodes inherit isBlueprint from parent
+    const initialMetadata = blueprintModeEnabled ? { isBlueprint: true } : undefined;
+
+    const command = new CreateNodeCommand(
+      newNodeId,
+      parentId,
+      position,
+      '',
+      () => {
+        const currentState = get() as StoreState;
+        return { nodes: currentState.nodes, rootNodeId: currentState.rootNodeId, ancestorRegistry: currentState.ancestorRegistry };
+      },
+      (partial) => set(partial as Partial<StoreState>),
+      triggerAutosave,
+      initialMetadata,
+      currentNodeId // Pass the original node for undo
+    );
+    state.actions.executeCommand(command);
+  }
+
+  function splitNode(nodeId: string, content: string, cursorPosition: number, createAsChild: boolean = false): void {
     const state = get() as StoreState & { actions?: { executeCommand?: (cmd: unknown) => void } };
     const { nodes } = state;
     const node = nodes[nodeId];
@@ -255,7 +295,8 @@ export const createNodeActions = (
         };
       },
       (partial) => set(partial as Partial<StoreState>),
-      triggerAutosave
+      triggerAutosave,
+      createAsChild
     );
     state.actions.executeCommand(command);
   }
@@ -270,6 +311,7 @@ export const createNodeActions = (
     setCursorPosition,
     setRememberedVisualX,
     createNode,
+    createNodeBefore,
     splitNode,
   };
 };

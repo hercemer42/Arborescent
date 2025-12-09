@@ -1,11 +1,25 @@
 import { BaseCommand } from './Command';
 import { TreeNode } from '../../../../shared/types';
 import { addNodeToRegistry, removeNodeFromRegistry, AncestorRegistry } from '../../../services/ancestry';
-import { createTreeNode, getIsContextChild } from '../../../utils/nodeHelpers';
+import { createTreeNode, shouldInheritBlueprint } from '../../../utils/nodeHelpers';
+
+type State = {
+  nodes: Record<string, TreeNode>;
+  rootNodeId: string;
+  ancestorRegistry: AncestorRegistry;
+};
+
+type SetState = (partial: {
+  nodes?: Record<string, TreeNode>;
+  ancestorRegistry?: AncestorRegistry;
+  activeNodeId?: string;
+  cursorPosition?: number;
+}) => void;
 
 /**
  * Command for splitting a node at the cursor position.
- * Content before cursor stays in original node, content after moves to new sibling.
+ * Content before cursor stays in original node, content after moves to new node.
+ * By default creates a sibling, but can create as first child with createAsChild option.
  */
 export class SplitNodeCommand extends BaseCommand {
   constructor(
@@ -15,21 +29,29 @@ export class SplitNodeCommand extends BaseCommand {
     private contentBefore: string,
     private contentAfter: string,
     private originalCursorPosition: number,
-    private getState: () => {
-      nodes: Record<string, TreeNode>;
-      rootNodeId: string;
-      ancestorRegistry: AncestorRegistry;
-    },
-    private setState: (partial: {
-      nodes?: Record<string, TreeNode>;
-      ancestorRegistry?: AncestorRegistry;
-      activeNodeId?: string;
-      cursorPosition?: number;
-    }) => void,
-    private triggerAutosave?: () => void
+    private getState: () => State,
+    private setState: SetState,
+    private triggerAutosave?: () => void,
+    private createAsChild: boolean = false
   ) {
     super();
     this.description = `Split node ${sourceNodeId}`;
+  }
+
+  private getTargetParentId(ancestorRegistry: AncestorRegistry, rootNodeId: string): string {
+    if (this.createAsChild) {
+      return this.sourceNodeId;
+    }
+    const ancestors = ancestorRegistry[this.sourceNodeId] || [];
+    return ancestors[ancestors.length - 1] || rootNodeId;
+  }
+
+  private getInsertPosition(nodes: Record<string, TreeNode>, targetParentId: string): number {
+    if (this.createAsChild) {
+      return 0;
+    }
+    const parent = nodes[targetParentId];
+    return parent ? parent.children.indexOf(this.sourceNodeId) + 1 : 0;
   }
 
   execute(): void {
@@ -37,106 +59,72 @@ export class SplitNodeCommand extends BaseCommand {
     const sourceNode = nodes[this.sourceNodeId];
     if (!sourceNode) return;
 
-    // Find parent of source node
-    const ancestors = ancestorRegistry[this.sourceNodeId] || [];
-    const parentId = ancestors[ancestors.length - 1] || rootNodeId;
-    const parent = nodes[parentId];
-    if (!parent) return;
+    const targetParentId = this.getTargetParentId(ancestorRegistry, rootNodeId);
+    const targetParent = nodes[targetParentId];
+    if (!targetParent) return;
 
-    // Find position after source node in parent's children
-    const sourceIndex = parent.children.indexOf(this.sourceNodeId);
-    const newPosition = sourceIndex + 1;
-
-    // Build metadata for new node
+    const newPosition = this.getInsertPosition(nodes, targetParentId);
     const metadata: Record<string, unknown> = { status: 'pending' };
-
-    // Inherit blueprint status if parent is part of a context tree
-    const parentIsContextDeclaration = parent.metadata.isContextDeclaration === true;
-    const parentIsContextChild = getIsContextChild(parentId, nodes, ancestorRegistry);
-    if (parentIsContextDeclaration || parentIsContextChild) {
+    if (shouldInheritBlueprint(targetParentId, nodes, ancestorRegistry)) {
       metadata.isBlueprint = true;
     }
+    const newNode = createTreeNode(this.newNodeId, { content: this.contentAfter, metadata });
 
-    // Create new node with content after cursor
-    const newNode = createTreeNode(this.newNodeId, {
-      content: this.contentAfter,
-      metadata,
-    });
-
-    // Update parent's children to include new node
-    const updatedChildren = [...parent.children];
+    const updatedChildren = [...targetParent.children];
     updatedChildren.splice(newPosition, 0, this.newNodeId);
 
-    // Update source node with content before cursor
-    const updatedSourceNode = {
-      ...sourceNode,
-      content: this.contentBefore,
-    };
-
-    const updatedNodes = {
+    const updatedNodes: Record<string, TreeNode> = {
       ...nodes,
-      [this.sourceNodeId]: updatedSourceNode,
       [this.newNodeId]: newNode,
-      [parentId]: {
-        ...parent,
-        children: updatedChildren,
+      [this.sourceNodeId]: {
+        ...sourceNode,
+        content: this.contentBefore,
+        ...(this.createAsChild && { children: updatedChildren }),
       },
     };
 
-    // Add new node to ancestry registry
-    const newAncestorRegistry = addNodeToRegistry(ancestorRegistry, this.newNodeId, parentId);
+    if (!this.createAsChild) {
+      updatedNodes[targetParentId] = { ...targetParent, children: updatedChildren };
+    }
 
     this.setState({
       nodes: updatedNodes,
-      ancestorRegistry: newAncestorRegistry,
+      ancestorRegistry: addNodeToRegistry(ancestorRegistry, this.newNodeId, targetParentId),
       activeNodeId: this.newNodeId,
       cursorPosition: 0,
     });
-
     this.triggerAutosave?.();
   }
 
   undo(): void {
     const { nodes, ancestorRegistry, rootNodeId } = this.getState();
     const sourceNode = nodes[this.sourceNodeId];
-    const newNode = nodes[this.newNodeId];
-    if (!sourceNode || !newNode) return;
+    if (!sourceNode || !nodes[this.newNodeId]) return;
 
-    // Find parent
-    const ancestors = ancestorRegistry[this.sourceNodeId] || [];
-    const parentId = ancestors[ancestors.length - 1] || rootNodeId;
-    const parent = nodes[parentId];
-    if (!parent) return;
+    const targetParentId = this.getTargetParentId(ancestorRegistry, rootNodeId);
+    const targetParent = nodes[targetParentId];
+    if (!targetParent) return;
 
-    // Remove new node from parent's children
-    const updatedChildren = parent.children.filter(id => id !== this.newNodeId);
-
-    // Restore source node's original content
-    const restoredSourceNode = {
-      ...sourceNode,
-      content: this.originalContent,
-    };
-
-    // Remove new node from nodes
-    const updatedNodes = { ...nodes };
+    const updatedChildren = targetParent.children.filter(id => id !== this.newNodeId);
+    const updatedNodes: Record<string, TreeNode> = { ...nodes };
     delete updatedNodes[this.newNodeId];
 
-    updatedNodes[this.sourceNodeId] = restoredSourceNode;
-    updatedNodes[parentId] = {
-      ...parent,
-      children: updatedChildren,
+    updatedNodes[this.sourceNodeId] = {
+      ...sourceNode,
+      content: this.originalContent,
+      ...(this.createAsChild && { children: updatedChildren }),
     };
 
-    // Remove new node from ancestry registry
-    const newAncestorRegistry = removeNodeFromRegistry(ancestorRegistry, this.newNodeId, nodes);
+    if (!this.createAsChild) {
+      updatedNodes[targetParentId] = { ...targetParent, children: updatedChildren };
+    }
 
     this.setState({
       nodes: updatedNodes,
-      ancestorRegistry: newAncestorRegistry,
+      ancestorRegistry: removeNodeFromRegistry(ancestorRegistry, this.newNodeId, nodes),
       activeNodeId: this.sourceNodeId,
       cursorPosition: this.originalCursorPosition,
     });
-
     this.triggerAutosave?.();
   }
 }

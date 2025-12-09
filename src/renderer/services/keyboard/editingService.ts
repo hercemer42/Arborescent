@@ -27,9 +27,13 @@ type StoreState = ReturnType<NonNullable<ReturnType<typeof getActiveStore>>['get
 
 /**
  * Handle Enter key: create new sibling or split node at cursor
+ * @param createAsChild - If true and node has children, create as first child instead of sibling
  */
-function handleEnterKey(element: HTMLElement, store: StoreState, activeNodeId: string): void {
+function handleEnterKey(element: HTMLElement, store: StoreState, activeNodeId: string, createAsChild: boolean = false): void {
   const content = convertFromContentEditable(element);
+  const activeNode = store.nodes[activeNodeId];
+  const hasChildren = activeNode && activeNode.children.length > 0;
+  const shouldCreateAsChild = createAsChild && hasChildren;
 
   // Handle text selection: delete selected text and split at selection start
   const selection = window.getSelection();
@@ -44,20 +48,31 @@ function handleEnterKey(element: HTMLElement, store: StoreState, activeNodeId: s
       getCursorPositionFromRange(element, range, false)
     );
     const contentWithoutSelection = content.slice(0, selStart) + content.slice(selEnd);
-    store.actions.splitNode(activeNodeId, contentWithoutSelection, selStart);
+    store.actions.splitNode(activeNodeId, contentWithoutSelection, selStart, shouldCreateAsChild);
     return;
   }
 
   const cursorPos = getCursorPosition(element);
 
-  // Cursor at end: create empty sibling
-  if (cursorPos >= content.length) {
-    store.actions.createNode(activeNodeId);
+  // Cursor at start: create empty sibling above (same behavior regardless of createAsChild)
+  if (cursorPos === 0 && content.length > 0) {
+    store.actions.createNodeBefore(activeNodeId);
     return;
   }
 
-  // Cursor mid-content: split node
-  store.actions.splitNode(activeNodeId, content, cursorPos);
+  // Cursor at end: create empty node (as child if applicable, else sibling)
+  if (cursorPos >= content.length) {
+    if (shouldCreateAsChild) {
+      // Create empty first child
+      store.actions.splitNode(activeNodeId, content, content.length, true);
+    } else {
+      store.actions.createNode(activeNodeId);
+    }
+    return;
+  }
+
+  // Cursor mid-content: split node (as child if applicable)
+  store.actions.splitNode(activeNodeId, content, cursorPos, shouldCreateAsChild);
 }
 
 /**
@@ -111,14 +126,7 @@ function handleEditingShortcuts(event: KeyboardEvent): void {
     return;
   }
 
-  // Create new sibling without splitting (Ctrl+Enter)
-  if (matchesHotkey(event, 'editing', 'newSiblingNoSplit')) {
-    event.preventDefault();
-    store.actions.createNode(activeNodeId);
-    return;
-  }
-
-  // Create new sibling after (or split node if cursor is mid-content)
+  // Ctrl+Enter: split at cursor, create as child if node has children
   if (matchesHotkey(event, 'editing', 'newSiblingAfter')) {
     event.preventDefault();
     // Link nodes: just create new sibling (no splitting)
@@ -127,7 +135,14 @@ function handleEditingShortcuts(event: KeyboardEvent): void {
       store.actions.createNode(activeNodeId);
       return;
     }
-    handleEnterKey(element, store, activeNodeId);
+    handleEnterKey(element, store, activeNodeId, true);
+    return;
+  }
+
+  // Enter: create blank node (no splitting)
+  if (matchesHotkey(event, 'editing', 'newSiblingNoSplit')) {
+    event.preventDefault();
+    store.actions.createNode(activeNodeId);
     return;
   }
 

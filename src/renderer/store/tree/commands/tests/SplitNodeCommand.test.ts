@@ -296,4 +296,147 @@ describe('SplitNodeCommand', () => {
       expect(stateUpdate.nodes['newNode'].metadata.isBlueprint).toBe(true);
     });
   });
+
+  describe('createAsChild option', () => {
+    beforeEach(() => {
+      // Setup node with existing children
+      nodes['child1'].children = ['grandchild1'];
+      nodes['grandchild1'] = {
+        id: 'grandchild1',
+        content: 'Grandchild',
+        children: [],
+        metadata: {},
+      };
+      ancestorRegistry['grandchild1'] = ['root', 'child1'];
+    });
+
+    it('should create new node as first child when createAsChild is true', () => {
+      const cmd = new SplitNodeCommand(
+        'child1',
+        'newNode',
+        'Hello World',
+        'Hello',
+        ' World',
+        5,
+        getState,
+        setState,
+        triggerAutosave,
+        true // createAsChild
+      );
+
+      cmd.execute();
+
+      const stateUpdate = setState.mock.calls[0][0];
+      // New node should be first child of child1, pushing grandchild1 down
+      expect(stateUpdate.nodes['child1'].children).toEqual(['newNode', 'grandchild1']);
+    });
+
+    it('should update source node content when creating as child', () => {
+      const cmd = new SplitNodeCommand(
+        'child1',
+        'newNode',
+        'Hello World',
+        'Hello',
+        ' World',
+        5,
+        getState,
+        setState,
+        triggerAutosave,
+        true
+      );
+
+      cmd.execute();
+
+      const stateUpdate = setState.mock.calls[0][0];
+      expect(stateUpdate.nodes['child1'].content).toBe('Hello');
+      expect(stateUpdate.nodes['newNode'].content).toBe(' World');
+    });
+
+    it('should add new node to ancestry with source node as parent', () => {
+      const cmd = new SplitNodeCommand(
+        'child1',
+        'newNode',
+        'Hello World',
+        'Hello',
+        ' World',
+        5,
+        getState,
+        setState,
+        triggerAutosave,
+        true
+      );
+
+      cmd.execute();
+
+      const stateUpdate = setState.mock.calls[0][0];
+      expect(stateUpdate.ancestorRegistry['newNode']).toEqual(['root', 'child1']);
+    });
+
+    it('should not affect sibling nodes when creating as child', () => {
+      const cmd = new SplitNodeCommand(
+        'child1',
+        'newNode',
+        'Hello World',
+        'Hello',
+        ' World',
+        5,
+        getState,
+        setState,
+        triggerAutosave,
+        true
+      );
+
+      cmd.execute();
+
+      const stateUpdate = setState.mock.calls[0][0];
+      // root's children should remain unchanged
+      expect(stateUpdate.nodes['root'].children).toEqual(['child1', 'child2']);
+    });
+
+    describe('undo with createAsChild', () => {
+      it('should remove new node from source children on undo', () => {
+        const cmd = new SplitNodeCommand(
+          'child1',
+          'newNode',
+          'Hello World',
+          'Hello',
+          ' World',
+          5,
+          getState,
+          setState,
+          triggerAutosave,
+          true
+        );
+
+        cmd.execute();
+        setState.mockClear();
+        cmd.undo();
+
+        const stateUpdate = setState.mock.calls[0][0];
+        expect(stateUpdate.nodes['child1'].children).toEqual(['grandchild1']);
+      });
+
+      it('should restore source node content on undo', () => {
+        const cmd = new SplitNodeCommand(
+          'child1',
+          'newNode',
+          'Hello World',
+          'Hello',
+          ' World',
+          5,
+          getState,
+          setState,
+          triggerAutosave,
+          true
+        );
+
+        cmd.execute();
+        setState.mockClear();
+        cmd.undo();
+
+        const stateUpdate = setState.mock.calls[0][0];
+        expect(stateUpdate.nodes['child1'].content).toBe('Hello World');
+      });
+    });
+  });
 });
