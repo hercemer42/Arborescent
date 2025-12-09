@@ -32,7 +32,7 @@ function calculateDropTarget(
   const currentParentId = nodeAncestors[nodeAncestors.length - 1] || rootNodeId;
 
   if (dropZone === 'child') {
-    // Drop as child of target
+    // Drop as first child of target
     const target = nodes[targetNodeId];
     if (!target) return null;
 
@@ -49,7 +49,7 @@ function calculateDropTarget(
 
     return {
       targetParentId: targetNodeId,
-      insertAt: 'end',
+      insertAt: 'start',
     };
   } else {
     // Drop as sibling (before or after)

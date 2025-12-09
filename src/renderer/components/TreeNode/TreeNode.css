@@ -73,22 +73,38 @@
   z-index: 1;
 }
 
-/* Drop zones */
-.tree-node-wrapper.drop-before .node-content {
-  box-shadow: inset 0 2px 0 0 var(--blue-500);
-  transition: none;
+/* Drop zones - line indicator respects indent level */
+.tree-node-wrapper.drop-before .node-content::after,
+.tree-node-wrapper.drop-after .node-content::after {
+  content: '';
+  position: absolute;
+  left: calc(var(--indent-width, 0px) + 15px); /* indent + base padding */
+  right: 0;
+  height: 2px;
+  background-color: var(--blue-500);
+  pointer-events: none;
+  z-index: 10;
 }
 
-.tree-node-wrapper.drop-after .node-content {
-  box-shadow: inset 0 -2px 0 0 var(--blue-500);
-  transition: none;
+.tree-node-wrapper.drop-before .node-content::after {
+  top: -1px;
 }
 
-.tree-node-wrapper.drop-child .node-content {
-  background-color: var(--blue-100);
-  outline: 2px solid var(--blue-500);
-  outline-offset: -2px;
-  transition: none;
+.tree-node-wrapper.drop-after .node-content::after {
+  bottom: -1px;
+}
+
+/* drop-child: indented line below, becomes first child */
+.tree-node-wrapper.drop-child .node-content::after {
+  content: '';
+  position: absolute;
+  left: calc(var(--indent-width, 0px) + 35px); /* indent + base padding + one level deeper */
+  right: 0;
+  bottom: -1px;
+  height: 2px;
+  background-color: var(--blue-500);
+  pointer-events: none;
+  z-index: 10;
 }
 
 /* Cut nodes - 30% opacity to indicate pending move */

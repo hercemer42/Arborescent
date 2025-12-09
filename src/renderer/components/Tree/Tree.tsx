@@ -1,5 +1,5 @@
-import { memo } from 'react';
-import { DndContext, DragOverlay, pointerWithin } from '@dnd-kit/core';
+import { memo, useMemo } from 'react';
+import { DndContext, DragOverlay, pointerWithin, Modifier } from '@dnd-kit/core';
 import { TreeNode } from '../TreeNode';
 import { useStore } from '../../store/tree/useStore';
 import { useTree } from './hooks/useTree';
@@ -7,6 +7,12 @@ import { useTreeDragDrop } from './hooks/useTreeDragDrop';
 import { useTreeClick } from './hooks/useTreeClick';
 import { useVisibleChildren } from './hooks/useVisibleChildren';
 import './Tree.css';
+
+// Offset the drag ghost up by 6px so it doesn't obscure the drop indicator line
+const ghostOffsetModifier: Modifier = ({ transform }) => ({
+  ...transform,
+  y: transform.y - 6,
+});
 
 interface TreeProps {
   zoomedNodeId?: string;
@@ -42,9 +48,9 @@ export const Tree = memo(function Tree({ zoomedNodeId }: TreeProps) {
           <TreeNode key={childId} nodeId={childId} depth={0} />
         ))}
       </div>
-      <DragOverlay dropAnimation={dropAnimation}>
+      <DragOverlay dropAnimation={dropAnimation} modifiers={[ghostOffsetModifier]}>
         {activeId ? (
-          <div>
+          <div className="drag-ghost">
             {draggedNodeIds.map((nodeId) => (
               <TreeNode key={nodeId} nodeId={nodeId} depth={draggedNodeDepth} />
             ))}
