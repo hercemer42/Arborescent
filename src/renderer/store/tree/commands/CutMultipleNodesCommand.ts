@@ -1,10 +1,6 @@
 import { TreeNode } from '../../../../shared/types';
 import { MultiNodeDeletionCommand } from './MultiNodeDeletionCommand';
 
-/**
- * Command for cutting multiple nodes at once (single undo operation).
- * Identical to delete but with different description for undo history.
- */
 export class CutMultipleNodesCommand extends MultiNodeDeletionCommand {
   constructor(
     nodeIds: string[],
@@ -32,9 +28,6 @@ export class CutMultipleNodesCommand extends MultiNodeDeletionCommand {
     this.description = `Cut ${nodeIds.length} node(s)`;
   }
 
-  /**
-   * Alias for getDeletedNodeIds for semantic clarity
-   */
   getCutNodeIds(): string[] {
     return this.getDeletedNodeIds();
   }

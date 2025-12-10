@@ -58,9 +58,6 @@ export function createCollaborateActions(
   _visualEffects: VisualEffectsActions,
   autoSave: () => void
 ): CollaborateActions {
-  /**
-   * Update node metadata with feedback temp file path
-   */
   function setFeedbackTempFile(nodeId: string, tempFilePath: string | undefined): void {
     const nodes = get().nodes;
     const node = nodes[nodeId];
@@ -77,9 +74,6 @@ export function createCollaborateActions(
     });
   }
 
-  /**
-   * Show error toast for collaboration already in progress
-   */
   function showCollaborationInProgressError(): void {
     useToastStore.getState().addToast(
       'Collaboration already in progress - Please finish or cancel the current collaboration first',

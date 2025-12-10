@@ -2,10 +2,6 @@ import { TreeNode } from '../../shared/types';
 
 export type AncestorRegistry = Record<string, string[]>;
 
-/**
- * Build the ancestor registry from scratch by traversing the tree.
- * Use this only for initial load - prefer incremental updates for mutations.
- */
 export function buildAncestorRegistry(
   rootId: string,
   nodes: Record<string, TreeNode>
@@ -27,14 +23,6 @@ export function buildAncestorRegistry(
   return registry;
 }
 
-// =============================================================================
-// Incremental Update Functions
-// =============================================================================
-
-/**
- * Add a newly created node to the registry.
- * O(1) - just adds one entry.
- */
 export function addNodeToRegistry(
   registry: AncestorRegistry,
   nodeId: string,
@@ -47,10 +35,6 @@ export function addNodeToRegistry(
   };
 }
 
-/**
- * Remove a node and all its descendants from the registry.
- * O(d) where d is the number of descendants.
- */
 export function removeNodeFromRegistry(
   registry: AncestorRegistry,
   nodeId: string,
@@ -72,10 +56,6 @@ export function removeNodeFromRegistry(
   return newRegistry;
 }
 
-/**
- * Update registry after moving a node to a new parent.
- * O(d) where d is the number of descendants of the moved node.
- */
 export function moveNodeInRegistry(
   registry: AncestorRegistry,
   nodeId: string,
@@ -101,10 +81,6 @@ export function moveNodeInRegistry(
   return newRegistry;
 }
 
-/**
- * Add multiple nodes (e.g., from paste) to the registry.
- * Traverses from root nodes down to set correct ancestors.
- */
 export function addNodesToRegistry(
   registry: AncestorRegistry,
   rootNodeIds: string[],
@@ -133,10 +109,6 @@ export function addNodesToRegistry(
   return newRegistry;
 }
 
-/**
- * Validate that the ancestor registry is in sync with the nodes structure.
- * Only runs in development mode.
- */
 function validateAncestorRegistry(
   nodes: Record<string, TreeNode>,
   rootNodeId: string,
@@ -146,7 +118,6 @@ function validateAncestorRegistry(
 
   const freshRegistry = buildAncestorRegistry(rootNodeId, nodes);
 
-  // Check for missing or extra keys
   const registryKeys = new Set(Object.keys(ancestorRegistry));
   const freshKeys = new Set(Object.keys(freshRegistry));
 
@@ -162,7 +133,6 @@ function validateAncestorRegistry(
     }
   }
 
-  // Check for mismatched ancestors
   for (const [nodeId, ancestors] of Object.entries(freshRegistry)) {
     const currentAncestors = ancestorRegistry[nodeId];
     if (!currentAncestors) continue;
@@ -178,22 +148,12 @@ function validateAncestorRegistry(
   }
 }
 
-/**
- * Central function to update the ancestor registry after any structural mutation.
- * This should be called after any operation that modifies the tree structure
- * (create, delete, move, paste nodes).
- *
- * @param rootNodeId - The root node ID of the tree
- * @param nodes - The updated nodes map
- * @returns Object with nodes and ancestorRegistry to spread into setState
- */
 export function updateAncestorRegistry(
   rootNodeId: string,
   nodes: Record<string, TreeNode>
 ): { nodes: Record<string, TreeNode>; ancestorRegistry: AncestorRegistry } {
   const ancestorRegistry = buildAncestorRegistry(rootNodeId, nodes);
 
-  // Validate in development mode
   validateAncestorRegistry(nodes, rootNodeId, ancestorRegistry);
 
   return { nodes, ancestorRegistry };

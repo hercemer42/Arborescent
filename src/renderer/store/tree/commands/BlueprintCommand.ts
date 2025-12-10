@@ -7,14 +7,10 @@ interface BlueprintState {
   isBlueprint: boolean | undefined;
   blueprintIcon: string | undefined;
   blueprintColor: string | undefined;
-  // Context-related fields
   isContextDeclaration: boolean | undefined;
   appliedContextId: string | undefined;
 }
 
-/**
- * Command for adding/removing nodes from blueprint
- */
 export class BlueprintCommand extends BaseCommand {
   private previousStates: Map<string, BlueprintState> = new Map();
   private affectedNodeIds: string[] = [];
@@ -40,7 +36,6 @@ export class BlueprintCommand extends BaseCommand {
     const node = nodes[this.nodeId];
     if (!node) return;
 
-    // Clear previous state tracking
     this.previousStates.clear();
     this.affectedNodeIds = [];
     this.removedContextDeclarationIds = [];
@@ -53,7 +48,6 @@ export class BlueprintCommand extends BaseCommand {
 
     this.triggerAutosave?.();
 
-    // If any context declarations were removed, refresh the declarations list
     if (this.removedContextDeclarationIds.length > 0) {
       this.refreshContextDeclarations?.();
     }
@@ -63,14 +57,12 @@ export class BlueprintCommand extends BaseCommand {
     const ancestorRegistry = this.getAncestorRegistry();
     let updatedNodes = nodes;
 
-    // Capture and update this node
     this.captureState(this.nodeId, nodes);
     updatedNodes = updateNodeMetadata(updatedNodes, this.nodeId, {
       isBlueprint: true,
     });
     this.affectedNodeIds.push(this.nodeId);
 
-    // Paint-up: mark all ancestors as blueprints
     const ancestors = ancestorRegistry[this.nodeId] || [];
     for (const ancestorId of ancestors) {
       const ancestor = updatedNodes[ancestorId];
@@ -83,7 +75,6 @@ export class BlueprintCommand extends BaseCommand {
       }
     }
 
-    // If cascade, also add all descendants
     if (this.cascade) {
       updatedNodes = this.addDescendants(this.nodeId, updatedNodes, nodes);
     }
@@ -117,18 +108,15 @@ export class BlueprintCommand extends BaseCommand {
   private executeRemove(nodes: Record<string, TreeNode>): void {
     const rootNodeId = this.getRootNodeId();
 
-    // Can't remove root from blueprint
     if (this.nodeId === rootNodeId) return;
 
     let updatedNodes = nodes;
     const node = updatedNodes[this.nodeId];
 
-    // Track if this node is a context declaration
     if (node?.metadata.isContextDeclaration === true) {
       this.removedContextDeclarationIds.push(this.nodeId);
     }
 
-    // Capture and update this node - clear blueprint and context metadata
     this.captureState(this.nodeId, nodes);
     updatedNodes = updateNodeMetadata(updatedNodes, this.nodeId, {
       isBlueprint: false,
@@ -139,12 +127,10 @@ export class BlueprintCommand extends BaseCommand {
     });
     this.affectedNodeIds.push(this.nodeId);
 
-    // If cascade, also remove all descendants
     if (this.cascade) {
       updatedNodes = this.removeDescendants(this.nodeId, updatedNodes, nodes);
     }
 
-    // Clean up any references to removed context declarations from all nodes
     if (this.removedContextDeclarationIds.length > 0) {
       updatedNodes = this.removeContextFromAllNodes(updatedNodes);
     }
@@ -163,7 +149,6 @@ export class BlueprintCommand extends BaseCommand {
     for (const childId of node.children) {
       const child = updatedNodes[childId];
       if (child && child.metadata.isBlueprint === true) {
-        // Track if this child is a context declaration
         if (child.metadata.isContextDeclaration === true) {
           this.removedContextDeclarationIds.push(childId);
         }
@@ -197,9 +182,6 @@ export class BlueprintCommand extends BaseCommand {
     }
   }
 
-  /**
-   * Remove deleted context declarations from appliedContextIds and appliedContextId of all nodes in the tree.
-   */
   private removeContextFromAllNodes(nodes: Record<string, TreeNode>): Record<string, TreeNode> {
     let updatedNodes = nodes;
 
@@ -208,7 +190,6 @@ export class BlueprintCommand extends BaseCommand {
       const activeContextId = node.metadata.activeContextId as string | undefined;
       const appliedContextId = node.metadata.appliedContextId as string | undefined;
 
-      // Check if this node references any removed context declarations
       const hasRemovedAppliedIds = appliedContextIds.some(
         id => this.removedContextDeclarationIds.includes(id)
       );
@@ -220,28 +201,23 @@ export class BlueprintCommand extends BaseCommand {
 
       const metadataUpdates: Record<string, unknown> = {};
 
-      // Filter out removed contexts from appliedContextIds
       if (hasRemovedAppliedIds) {
         const newAppliedIds = appliedContextIds.filter(
           id => !this.removedContextDeclarationIds.includes(id)
         );
         metadataUpdates.appliedContextIds = newAppliedIds.length > 0 ? newAppliedIds : undefined;
 
-        // Handle activeContextId
         if (newAppliedIds.length === 0) {
           metadataUpdates.activeContextId = undefined;
         } else if (activeContextId && this.removedContextDeclarationIds.includes(activeContextId)) {
-          // Promote first remaining context to active
           metadataUpdates.activeContextId = newAppliedIds[0];
         }
       }
 
-      // Clear appliedContextId if it references a removed context
       if (hasRemovedAppliedContextId) {
         metadataUpdates.appliedContextId = undefined;
       }
 
-      // Capture state for this node if not already captured
       if (!this.previousStates.has(node.id)) {
         this.captureState(node.id, nodes);
         this.affectedNodeIds.push(node.id);
@@ -256,7 +232,6 @@ export class BlueprintCommand extends BaseCommand {
     const nodes = this.getNodes();
     let updatedNodes = nodes;
 
-    // Restore all affected nodes to their previous states
     for (const nodeId of this.affectedNodeIds) {
       const previousState = this.previousStates.get(nodeId);
       if (previousState) {
@@ -273,7 +248,6 @@ export class BlueprintCommand extends BaseCommand {
     this.setNodes(updatedNodes);
     this.triggerAutosave?.();
 
-    // If context declarations were removed, refresh after undo restores them
     if (this.removedContextDeclarationIds.length > 0) {
       this.refreshContextDeclarations?.();
     }

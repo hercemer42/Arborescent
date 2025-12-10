@@ -8,12 +8,7 @@ import { registerFeedbackFileHandlers } from './handlers/feedbackFileHandlers';
 import { registerShellHandlers } from './handlers/shellHandlers';
 import { registerPreferencesHandlers } from './handlers/preferencesHandlers';
 
-/**
- * Register all IPC handlers
- * Coordinates registration of handlers from different modules
- */
 export async function registerIpcHandlers(getMainWindow: () => BrowserWindow | null) {
-  // Application handlers
   registerFileHandlers();
   registerDialogHandlers(getMainWindow);
   registerSessionHandlers();

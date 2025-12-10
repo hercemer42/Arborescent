@@ -3,10 +3,6 @@ import { useFilesStore } from '../../../store/files/filesStore';
 import { storeManager } from '../../../store/storeManager';
 import { TreeState } from '../../../store/tree/treeStore';
 
-/**
- * Hook to access the active tree store from outside the TreeStoreContext.
- * Uses useSyncExternalStore to properly subscribe to store changes.
- */
 export function useActiveTreeStore(): TreeState | null {
   const activeFilePath = useFilesStore((state) => state.activeFilePath);
 
@@ -25,10 +21,6 @@ export function useActiveTreeStore(): TreeState | null {
   );
 }
 
-/**
- * Hook to get just the actions from the active tree store.
- * Actions are stable references so this is safe to use in callbacks.
- */
 export function useActiveTreeActions(): TreeState['actions'] | null {
   const activeFilePath = useFilesStore((state) => state.activeFilePath);
 

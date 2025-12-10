@@ -12,13 +12,12 @@ type DocumentWithCaretRange = Document & {
 };
 
 export function getRangeFromPoint(x: number, y: number): Range | null {
-  // Try caretRangeFromPoint first (Chrome/Safari/Edge)
   const docWithCaretRange = document as DocumentWithCaretRange;
   if (docWithCaretRange.caretRangeFromPoint) {
     return docWithCaretRange.caretRangeFromPoint(x, y);
   }
 
-  // Fall back to caretPositionFromPoint (Firefox)
+  // Firefox fallback
   const doc = document as DocumentWithCaretPosition;
   if (!doc.caretPositionFromPoint) return null;
 
@@ -43,7 +42,6 @@ export function getPositionFromPoint(
     return 0;
   }
 
-  // Verify the range is within the target element
   let node: Node | null = range.startContainer;
   let isWithinElement = false;
   while (node) {

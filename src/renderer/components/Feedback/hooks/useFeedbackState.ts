@@ -10,14 +10,9 @@ interface FeedbackState {
   feedbackVersion: number;
 }
 
-/**
- * Hook to get the current feedback state for the active file
- * Returns the collaborating node ID and the feedback tree store
- */
 export function useFeedbackState(): FeedbackState {
   const activeFilePath = useFilesStore((state) => state.activeFilePath);
 
-  // Subscribe to tree store changes for the active file
   const collaboratingNodeId = useSyncExternalStore(
     (callback) => {
       if (!activeFilePath) return () => {};

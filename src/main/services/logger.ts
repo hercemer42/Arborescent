@@ -1,6 +1,5 @@
 import { BaseLogger } from '../../shared/services/logger/BaseLogger';
 
-// Allow injection for testing
 let electronModule: typeof import('electron') | null = null;
 
 export function setElectronModule(mod: typeof import('electron') | null): void {
@@ -13,7 +12,6 @@ class MainLogger extends BaseLogger {
 
     if (notifyRenderer) {
       try {
-        // Use injected module for testing, or lazy import for production
         const electron =
           electronModule ??
           // eslint-disable-next-line @typescript-eslint/no-require-imports
@@ -23,7 +21,7 @@ class MainLogger extends BaseLogger {
           mainWindow.webContents.send('main-error', message);
         }
       } catch {
-        // Electron not available (e.g., in worker thread) - skip renderer notification
+        // Electron not available (e.g., in worker thread)
       }
     }
   }

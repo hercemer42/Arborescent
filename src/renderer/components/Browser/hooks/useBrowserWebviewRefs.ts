@@ -1,9 +1,5 @@
 import { useRef, useCallback } from 'react';
 
-/**
- * Hook to manage webview element references
- * Provides registration and retrieval of webview elements by ID
- */
 export function useBrowserWebviewRefs(activeTabId: string | null) {
   const webviewRefs = useRef<Map<string, HTMLWebViewElement>>(new Map());
 

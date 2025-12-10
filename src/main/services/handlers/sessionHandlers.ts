@@ -1,9 +1,6 @@
 import { ipcMain } from 'electron';
 import { saveJsonFile, loadJsonFile } from '../utils/persistence';
 
-/**
- * Register session persistence IPC handlers
- */
 export function registerSessionHandlers(): void {
   ipcMain.handle('save-session', async (_, sessionData: string) => {
     await saveJsonFile('session.json', sessionData, 'Session');

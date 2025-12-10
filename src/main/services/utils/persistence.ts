@@ -3,9 +3,6 @@ import path from 'node:path';
 import { app } from 'electron';
 import { logger } from '../logger';
 
-/**
- * Get the last saved directory from persistent storage
- */
 export async function getLastSavedDirectory(): Promise<string | undefined> {
   try {
     const userDataPath = app.getPath('userData');
@@ -17,9 +14,6 @@ export async function getLastSavedDirectory(): Promise<string | undefined> {
   }
 }
 
-/**
- * Save directory for next time
- */
 export async function saveLastUsedDirectory(filePath: string): Promise<void> {
   try {
     const directory = path.dirname(filePath);
@@ -32,9 +26,6 @@ export async function saveLastUsedDirectory(filePath: string): Promise<void> {
   }
 }
 
-/**
- * Save JSON file to userData directory
- */
 export async function saveJsonFile(fileName: string, content: string, logName: string): Promise<void> {
   try {
     const userDataPath = app.getPath('userData');
@@ -46,9 +37,6 @@ export async function saveJsonFile(fileName: string, content: string, logName: s
   }
 }
 
-/**
- * Load JSON file from userData directory
- */
 export async function loadJsonFile(fileName: string, logName: string): Promise<string | null> {
   try {
     const userDataPath = app.getPath('userData');

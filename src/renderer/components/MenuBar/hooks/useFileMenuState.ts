@@ -7,10 +7,6 @@ interface FileMenuState {
   hasBlueprintNodes: boolean;
 }
 
-/**
- * Hook to derive enabled/disabled states for File menu items.
- * Subscribes to relevant store state and returns boolean flags.
- */
 export function useFileMenuState(): FileMenuState {
   const activeFilePath = useFilesStore((state) => state.activeFilePath);
 

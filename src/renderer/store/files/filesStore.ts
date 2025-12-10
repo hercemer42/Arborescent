@@ -121,20 +121,17 @@ export const useFilesStore = create<FilesState>((set, get) => ({
   openZoomTab: (sourceFilePath: string, nodeId: string, nodeContent: string) => {
     const { files } = get();
 
-    // Check if zoom tab already exists for this node
     const existingZoom = files.find(
       f => f.zoomSource?.sourceFilePath === sourceFilePath && f.zoomSource?.zoomedNodeId === nodeId
     );
 
     if (existingZoom) {
-      // Focus existing zoom tab
       set({ activeFilePath: existingZoom.path });
       const newState = get();
       persistSession(newState.files, newState.activeFilePath);
       return;
     }
 
-    // Generate unique path for zoom tab (virtual path, not a real file)
     const zoomPath = `zoom://${sourceFilePath}#${nodeId}`;
     const displayName = nodeContent.trim() || '(untitled)';
     const truncatedName = displayName.length > 20 ? displayName.slice(0, 20) + '...' : displayName;
@@ -145,15 +142,12 @@ export const useFilesStore = create<FilesState>((set, get) => ({
       zoomSource: { sourceFilePath, zoomedNodeId: nodeId },
     };
 
-    // Find insertion position: after source file and any existing zoom tabs for that file
     const sourceIndex = files.findIndex(f => f.path === sourceFilePath);
     let insertIndex: number;
 
     if (sourceIndex === -1) {
-      // Source file not found (shouldn't happen), append to end
       insertIndex = files.length;
     } else {
-      // Find the last zoom tab for this source file
       insertIndex = sourceIndex + 1;
       while (insertIndex < files.length && files[insertIndex].zoomSource?.sourceFilePath === sourceFilePath) {
         insertIndex++;
@@ -185,7 +179,6 @@ export const useFilesStore = create<FilesState>((set, get) => ({
     let newActiveFilePath = activeFilePath;
     if (zoomTabsToClose.some(f => f.path === activeFilePath)) {
       if (newFiles.length > 0) {
-        // Switch to the source file if possible
         const sourceFilePath = zoomTabsToClose.find(f => f.path === activeFilePath)?.zoomSource?.sourceFilePath;
         const sourceFile = sourceFilePath ? newFiles.find(f => f.path === sourceFilePath) : null;
         newActiveFilePath = sourceFile?.path || newFiles[0]?.path || null;

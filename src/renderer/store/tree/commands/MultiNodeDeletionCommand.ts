@@ -2,9 +2,6 @@ import { BaseCommand } from './Command';
 import { TreeNode } from '../../../../shared/types';
 import { removeNodeFromRegistry, addNodesToRegistry, AncestorRegistry } from '../../../services/ancestry';
 
-/**
- * Captures a node and all its descendants for restoration
- */
 interface DeletedNodeSnapshot {
   node: TreeNode;
   parentId: string;
@@ -32,10 +29,6 @@ type FindPreviousNodeFn = (
   ancestorRegistry: AncestorRegistry
 ) => string | null;
 
-/**
- * Base command for deleting multiple nodes at once (single undo operation).
- * Used by both cut and delete operations.
- */
 export class MultiNodeDeletionCommand extends BaseCommand {
   private snapshots: Map<string, DeletedNodeSnapshot> = new Map();
   private allDescendants: Map<string, TreeNode> = new Map();
@@ -58,7 +51,6 @@ export class MultiNodeDeletionCommand extends BaseCommand {
 
     const nextNodeId = this.findNextSelection(nodes, rootNodeId, ancestorRegistry);
 
-    // Incremental update: remove each node and its descendants from registry
     let newAncestorRegistry = ancestorRegistry;
     for (const nodeId of this.nodeIds) {
       newAncestorRegistry = removeNodeFromRegistry(newAncestorRegistry, nodeId, nodes);
@@ -75,8 +67,6 @@ export class MultiNodeDeletionCommand extends BaseCommand {
 
     const updatedNodes = this.restoreNodes(nodes);
 
-    // Incremental update: add each restored node and its descendants back to registry
-    // Group nodes by parent for efficient batch addition
     const nodesByParent = new Map<string, string[]>();
     for (const [nodeId, snapshot] of this.snapshots) {
       const existing = nodesByParent.get(snapshot.parentId) || [];
@@ -93,14 +83,9 @@ export class MultiNodeDeletionCommand extends BaseCommand {
     this.triggerAutosave?.();
   }
 
-  /**
-   * Get the IDs of nodes that were deleted
-   */
   getDeletedNodeIds(): string[] {
     return this.nodeIds;
   }
-
-  // --- Private helpers ---
 
   private captureSnapshots(
     nodes: Record<string, TreeNode>,
@@ -204,12 +189,10 @@ export class MultiNodeDeletionCommand extends BaseCommand {
   private restoreNodes(nodes: Record<string, TreeNode>): Record<string, TreeNode> {
     const updatedNodes = { ...nodes };
 
-    // Restore all descendants first
     this.allDescendants.forEach((node, nodeId) => {
       updatedNodes[nodeId] = { ...node };
     });
 
-    // Restore nodes in reverse order to maintain correct sibling positions
     const sortedSnapshots = Array.from(this.snapshots.entries()).sort(
       ([, a], [, b]) => b.position - a.position
     );
@@ -219,7 +202,6 @@ export class MultiNodeDeletionCommand extends BaseCommand {
 
       const parent = updatedNodes[snapshot.parentId];
       if (parent) {
-        // Filter out the node ID first to avoid duplicates, then insert at correct position
         const updatedChildren = parent.children.filter((id) => id !== nodeId);
         updatedChildren.splice(snapshot.position, 0, nodeId);
 

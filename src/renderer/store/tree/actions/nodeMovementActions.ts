@@ -27,22 +27,18 @@ function calculateDropTarget(
 ): { targetParentId: string; insertAt: 'start' | 'end' | number } | null {
   const { nodes, rootNodeId, ancestorRegistry } = state;
 
-  // Get node's current parent
   const nodeAncestors = ancestorRegistry[nodeId] || [];
   const currentParentId = nodeAncestors[nodeAncestors.length - 1] || rootNodeId;
 
   if (dropZone === 'child') {
-    // Drop as first child of target
     const target = nodes[targetNodeId];
     if (!target) return null;
 
-    // Don't allow dropping a node onto itself or its descendants
     const targetAncestors = ancestorRegistry[targetNodeId] || [];
     if (nodeId === targetNodeId || targetAncestors.includes(nodeId)) {
       return null;
     }
 
-    // If already a child of this parent, do nothing
     if (currentParentId === targetNodeId) {
       return null;
     }
@@ -52,7 +48,6 @@ function calculateDropTarget(
       insertAt: 'start',
     };
   } else {
-    // Drop as sibling (before or after)
     const targetAncestors = ancestorRegistry[targetNodeId] || [];
     const targetParentId = targetAncestors[targetAncestors.length - 1] || rootNodeId;
     const targetParent = nodes[targetParentId];
@@ -126,7 +121,6 @@ function moveNodeVertically(
   const currentIndex = parent.children.indexOf(nodeId);
   if (currentIndex < 0) return;
 
-  // Determine target position
   const canSwapWithinParent = direction === 'up'
     ? currentIndex > 0
     : currentIndex < parent.children.length - 1;
@@ -144,7 +138,6 @@ function moveNodeVertically(
     newPosition = moveInfo.newPosition;
   }
 
-  // Execute the move
   if (!state.actions?.executeCommand) {
     throw new Error('Command system not initialized - cannot move node with undo/redo support');
   }
@@ -174,9 +167,6 @@ export const createNodeMovementActions = (
   visualEffects?: VisualEffectsActions,
   navigation?: NavigationActions
 ): NodeMovementActions => {
-  /**
-   * Helper to execute a move command with less boilerplate
-   */
   function executeMoveCommand(nodeId: string, newParentId: string, newPosition: number): void {
     const state = get() as StoreState & { actions?: { executeCommand?: (cmd: unknown) => void } };
 
@@ -220,17 +210,14 @@ export const createNodeMovementActions = (
     const newParent = nodes[newParentId];
     if (!newParent) return;
 
-    // Move selection up before reparenting if parent is collapsed
     const isCollapsed = !(newParent.metadata.expanded ?? true) && newParent.children.length > 0;
     if (isCollapsed && navigation) {
       const fullState = get() as StoreState & { cursorPosition: number; rememberedVisualX: number | null };
       navigation.moveUp(fullState.cursorPosition, fullState.rememberedVisualX);
     }
 
-    // Execute the move
     executeMoveCommand(nodeId, newParentId, newParent.children.length);
 
-    // Flash effect after moving into collapsed parent
     if (visualEffects && isCollapsed) {
       visualEffects.flashNode(newParentId, 'medium');
     }
@@ -257,10 +244,8 @@ export const createNodeMovementActions = (
 
     const parentIndexInGrandparent = grandparent.children.indexOf(currentParentId);
 
-    // Execute the move
     executeMoveCommand(nodeId, grandparentId, parentIndexInGrandparent + 1);
 
-    // Scroll to maintain visual position
     if (visualEffects) {
       visualEffects.scrollToNode(nodeId);
     }
@@ -284,21 +269,17 @@ export const createNodeMovementActions = (
     const state = get() as StoreState;
     const { nodes } = state;
 
-    // Calculate drop target position
     const dropTarget = calculateDropTarget(nodeId, targetNodeId, dropZone, state);
     if (!dropTarget) return;
 
     const { targetParentId, insertAt } = dropTarget;
 
-    // Convert insertAt to numeric position
     const newPosition = insertAt === 'start' ? 0
       : insertAt === 'end' ? (nodes[targetParentId]?.children.length ?? 0)
       : insertAt;
 
-    // Execute the move
     executeMoveCommand(nodeId, targetParentId, newPosition);
 
-    // Flash effect
     if (visualEffects) {
       if (dropZone === 'child') {
         const target = get().nodes[targetNodeId];

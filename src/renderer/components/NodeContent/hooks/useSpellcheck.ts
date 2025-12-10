@@ -2,7 +2,6 @@ import { useRef, useCallback } from 'react';
 import { ContextMenuItem } from '../../ui/ContextMenu';
 import { initSpellcheck, checkWordFast, getSuggestions } from '../../../services/spellcheck';
 
-// Initialize spellcheck on module load
 initSpellcheck();
 
 interface WordContext {
@@ -12,9 +11,6 @@ interface WordContext {
   textNode: Text;
 }
 
-/**
- * Get the word at the current cursor position
- */
 function getWordAtCursor(): WordContext | null {
   const selection = window.getSelection();
   if (!selection || selection.rangeCount === 0) return null;
@@ -42,9 +38,6 @@ function getWordAtCursor(): WordContext | null {
   };
 }
 
-/**
- * Build menu items for spelling suggestions
- */
 function buildSuggestionItems(
   suggestions: string[],
   wordContext: WordContext
@@ -71,23 +64,13 @@ function buildSuggestionItems(
   }));
 }
 
-/**
- * Hook for spellcheck functionality in context menus.
- * Captures the word at cursor on right-click and provides spell suggestions.
- */
 export function useSpellcheck() {
   const wordContextRef = useRef<WordContext | null>(null);
 
-  /**
-   * Capture the word at cursor position. Call this in handleContextMenu.
-   */
   const captureWordAtCursor = useCallback(() => {
     wordContextRef.current = getWordAtCursor();
   }, []);
 
-  /**
-   * Build spell menu items synchronously (nspell is fast).
-   */
   const buildSpellMenuItems = useCallback((): ContextMenuItem[] | null => {
     const wordContext = wordContextRef.current;
     if (!wordContext) return null;
@@ -102,7 +85,6 @@ export function useSpellcheck() {
   return {
     captureWordAtCursor,
     buildSpellMenuItems,
-    // Keep these for API compatibility, but they're no longer needed
     suggestionsVersion: 0,
     precomputeCurrentWord: () => {},
   };

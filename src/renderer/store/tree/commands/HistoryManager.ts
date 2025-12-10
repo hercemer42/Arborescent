@@ -1,19 +1,13 @@
 import { Command } from './Command';
 
 const MAX_HISTORY_SIZE = 100;
-const MERGE_TIMEOUT_MS = 1000; // Merge commands within 1 second
+const MERGE_TIMEOUT_MS = 1000;
 
-/**
- * Manages undo/redo history for a tree store
- */
 export class HistoryManager {
   private history: Command[] = [];
   private currentIndex = -1;
   private lastExecuteTime = 0;
 
-  /**
-   * Execute a command and add it to history
-   */
   executeCommand(command: Command): void {
     // Try to merge with the last command if possible
     const now = Date.now();
@@ -52,9 +46,6 @@ export class HistoryManager {
     this.lastExecuteTime = now;
   }
 
-  /**
-   * Undo the last command
-   */
   undo(): boolean {
     if (!this.canUndo()) {
       return false;
@@ -67,9 +58,6 @@ export class HistoryManager {
     return true;
   }
 
-  /**
-   * Redo the next command
-   */
   redo(): boolean {
     if (!this.canRedo()) {
       return false;
@@ -87,32 +75,20 @@ export class HistoryManager {
     return true;
   }
 
-  /**
-   * Check if undo is available
-   */
   canUndo(): boolean {
     return this.currentIndex >= 0;
   }
 
-  /**
-   * Check if redo is available
-   */
   canRedo(): boolean {
     return this.currentIndex < this.history.length - 1;
   }
 
-  /**
-   * Clear all history
-   */
   clear(): void {
     this.history = [];
     this.currentIndex = -1;
     this.lastExecuteTime = 0;
   }
 
-  /**
-   * Get history info for debugging
-   */
   getHistoryInfo(): { size: number; currentIndex: number; canUndo: boolean; canRedo: boolean } {
     return {
       size: this.history.length,

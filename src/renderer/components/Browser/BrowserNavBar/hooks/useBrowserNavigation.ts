@@ -4,10 +4,6 @@ interface UseBrowserNavigationOptions {
   getActiveWebview: () => HTMLWebViewElement | null;
 }
 
-/**
- * Hook to manage browser navigation state and actions
- * Handles back, forward, and reload functionality
- */
 export function useBrowserNavigation({ getActiveWebview }: UseBrowserNavigationOptions) {
   const [canGoBack, setCanGoBack] = useState(false);
   const [canGoForward, setCanGoForward] = useState(false);

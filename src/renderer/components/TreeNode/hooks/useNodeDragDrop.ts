@@ -6,12 +6,10 @@ export type DropPosition = 'before' | 'after' | 'child';
 export function useNodeDragDrop(nodeId: string, nodeRef: React.RefObject<HTMLDivElement | null>) {
   const [dropPosition, setDropPosition] = useState<DropPosition | null>(null);
 
-  // Setup draggable
   const { attributes, listeners, setNodeRef: setDraggableRef, isDragging } = useDraggable({
     id: nodeId,
   });
 
-  // Setup droppable
   const { setNodeRef: setDroppableRef, isOver } = useDroppable({
     id: nodeId,
     data: {
@@ -19,14 +17,12 @@ export function useNodeDragDrop(nodeId: string, nodeRef: React.RefObject<HTMLDiv
     },
   });
 
-  // Track mouse movement to determine drop position
   useEffect(() => {
     if (!isOver || !nodeRef.current) {
       setDropPosition(null);
       return;
     }
 
-    // Set default to 'child' immediately to avoid gap
     setDropPosition('child');
 
     const handleMouseMove = (e: MouseEvent) => {
@@ -36,7 +32,6 @@ export function useNodeDragDrop(nodeId: string, nodeRef: React.RefObject<HTMLDiv
       const y = e.clientY - rect.top;
       const height = rect.height;
 
-      // Three zones: top 33% = before, middle 33% = after (sibling), bottom 33% = child (first child)
       const topThreshold = height * 0.33;
       const middleThreshold = height * 0.66;
 
@@ -56,7 +51,6 @@ export function useNodeDragDrop(nodeId: string, nodeRef: React.RefObject<HTMLDiv
     };
   }, [isOver]);
 
-  // Combine refs
   const setRefs = useCallback((element: HTMLDivElement | null) => {
     nodeRef.current = element;
     setDraggableRef(element);

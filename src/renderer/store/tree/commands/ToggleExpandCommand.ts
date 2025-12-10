@@ -1,8 +1,5 @@
 import { TreeNode } from '../../../../shared/types';
 
-/**
- * Command to toggle a node's expanded/collapsed state
- */
 export class ToggleExpandCommand {
   private oldExpanded: boolean;
   private newExpanded: boolean;
@@ -23,16 +20,11 @@ export class ToggleExpandCommand {
     const node = nodes[this.nodeId];
     if (!node) return;
 
-    // Only allow toggling if the node has children
     if (node.children.length === 0) return;
 
-    // Capture old state
     this.oldExpanded = node.metadata?.expanded ?? true;
-
-    // Calculate new state
     this.newExpanded = !this.oldExpanded;
 
-    // Update node
     this.setNodes({
       ...nodes,
       [this.nodeId]: {
@@ -52,7 +44,6 @@ export class ToggleExpandCommand {
     const node = nodes[this.nodeId];
     if (!node) return;
 
-    // Restore old state
     this.setNodes({
       ...nodes,
       [this.nodeId]: {
@@ -64,7 +55,6 @@ export class ToggleExpandCommand {
       },
     });
 
-    // Select the node and place cursor at end
     this.selectNode(this.nodeId, node.content.length);
 
     this.triggerAutosave?.();
@@ -75,7 +65,6 @@ export class ToggleExpandCommand {
     const node = nodes[this.nodeId];
     if (!node) return;
 
-    // Restore new state
     this.setNodes({
       ...nodes,
       [this.nodeId]: {
@@ -87,14 +76,12 @@ export class ToggleExpandCommand {
       },
     });
 
-    // Select the node and place cursor at end
     this.selectNode(this.nodeId, node.content.length);
 
     this.triggerAutosave?.();
   }
 
   canMergeWith(): boolean {
-    // Never merge expand/collapse commands
     return false;
   }
 }

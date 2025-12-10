@@ -6,13 +6,11 @@ import { createApplicationMenu } from './services/menuService';
 import { registerTerminalHandlers, cleanupTerminals } from './ipc/terminalHandlers';
 import { logger } from './services/logger';
 
-// Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (started) {
   app.quit();
 }
 
-// Set different userData paths for development and production builds
-// This prevents conflicts when running both environments simultaneously
+// Separate userData paths for dev/prod to avoid conflicts
 if (MAIN_WINDOW_VITE_DEV_SERVER_URL) {
   const userDataPath = app.getPath('userData');
   app.setPath('userData', `${userDataPath}-dev`);
@@ -26,7 +24,6 @@ let mainWindow: BrowserWindow | null = null;
 const createWindow = async () => {
   await registerIpcHandlers(() => mainWindow);
 
-  // Create the browser window.
   mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
@@ -40,7 +37,6 @@ const createWindow = async () => {
 
   createApplicationMenu();
 
-  // and load the index.html of the app.
   if (MAIN_WINDOW_VITE_DEV_SERVER_URL) {
     mainWindow.loadURL(MAIN_WINDOW_VITE_DEV_SERVER_URL);
   } else {
@@ -49,12 +45,10 @@ const createWindow = async () => {
     );
   }
 
-  // Open the DevTools in development mode only.
   if (MAIN_WINDOW_VITE_DEV_SERVER_URL) {
     mainWindow.webContents.openDevTools();
   }
 
-  // Allow Ctrl+Shift+I to toggle DevTools in production too
   mainWindow.webContents.on('before-input-event', (event, input) => {
     if (input.control && input.shift && input.key.toLowerCase() === 'i') {
       mainWindow?.webContents.toggleDevTools();
@@ -66,23 +60,16 @@ const createWindow = async () => {
     mainWindow = null;
   });
 
-  // Register terminal handlers after window is created
   registerTerminalHandlers(mainWindow);
 };
 
-// This method will be called when Electron has finished
-// initialization and is ready to create browser windows.
-// Some APIs can only be used after this event occurs.
 app.on('ready', createWindow);
 
-// Clean up terminals before app quits
 app.on('before-quit', () => {
   cleanupTerminals();
 });
 
-// Quit when all windows are closed, except on macOS. There, it's common
-// for applications and their menu bar to stay active until the user quits
-// explicitly with Cmd + Q.
+// macOS convention: keep app running until explicit Cmd+Q
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
     app.quit();

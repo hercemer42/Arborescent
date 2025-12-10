@@ -1,10 +1,6 @@
 import { BaseCommand } from './Command';
 import { TreeNode } from '../../../../shared/types';
 
-/**
- * Command for editing node content
- * Supports merging consecutive edits for better UX
- */
 export class ContentEditCommand extends BaseCommand {
   private oldContent: string;
   private newContent: string;
@@ -37,8 +33,6 @@ export class ContentEditCommand extends BaseCommand {
       },
     });
 
-    // Don't set cursor during normal execution - browser handles it naturally
-    // Cursor position is only set during undo/redo
     this.triggerAutosave?.();
   }
 
@@ -55,7 +49,6 @@ export class ContentEditCommand extends BaseCommand {
       },
     });
 
-    // Select this node and place cursor at end of old content
     this.selectNode(this.nodeId, this.oldContent.length);
     this.triggerAutosave?.();
   }
@@ -73,7 +66,6 @@ export class ContentEditCommand extends BaseCommand {
       },
     });
 
-    // Select this node and place cursor at end of new content
     this.selectNode(this.nodeId, this.newContent.length);
     this.triggerAutosave?.();
   }
@@ -83,31 +75,24 @@ export class ContentEditCommand extends BaseCommand {
       return false;
     }
 
-    // Only merge if editing the same node
     if (other.nodeId !== this.nodeId) {
       return false;
     }
 
-    // Only merge if the old content of the new command matches our new content
-    // This ensures we're continuing from where we left off
     if (other.oldContent !== this.newContent) {
       return false;
     }
 
-    // Don't merge if a space was just added or removed
-    // Contenteditable inserts &nbsp; (char 160) not regular space (char 32)
-    // Use regex to catch all whitespace characters
+    // Don't merge on whitespace changes - creates natural undo boundaries
     if (other.newContent.length > other.oldContent.length) {
-      // Something was added
       const lastChar = other.newContent[other.newContent.length - 1];
       if (/\s/.test(lastChar)) {
-        return false; // Whitespace added - new undo step
+        return false;
       }
     } else if (other.newContent.length < other.oldContent.length) {
-      // Something was removed - check if any removed characters were whitespace
       const removed = other.oldContent.substring(other.newContent.length);
       if (/\s/.test(removed)) {
-        return false; // Whitespace removed - new undo step
+        return false;
       }
     }
 
@@ -119,7 +104,6 @@ export class ContentEditCommand extends BaseCommand {
       return;
     }
 
-    // Update our new content to be the final state from the merged command
     this.newContent = other.newContent;
   }
 }

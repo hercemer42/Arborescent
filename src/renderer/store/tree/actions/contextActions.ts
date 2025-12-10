@@ -17,10 +17,6 @@ export interface ContextActions {
   refreshContextDeclarations: () => void;
 }
 
-/**
- * Build context declarations array from nodes.
- * Called asynchronously after context-related operations.
- */
 function buildContextDeclarations(nodes: Record<string, TreeNode>): ContextDeclarationInfo[] {
   return Object.values(nodes)
     .filter(node => node.metadata.isContextDeclaration === true)
@@ -33,9 +29,6 @@ function buildContextDeclarations(nodes: Record<string, TreeNode>): ContextDecla
     .sort((a, b) => a.content.localeCompare(b.content));
 }
 
-/**
- * Remove a context ID from appliedContextIds across all nodes.
- */
 function removeAppliedContextFromAllNodes(
   contextNodeId: string,
   nodes: Record<string, TreeNode>
@@ -261,7 +254,6 @@ export const createContextActions = (
     const node = nodes[nodeId];
     if (!node) return;
 
-    // Validate context exists if setting (not clearing)
     if (contextNodeId !== null && !nodes[contextNodeId]) {
       useToastStore.getState().addToast('Context does not exist', 'error');
       return;
@@ -291,12 +283,10 @@ export const createContextActions = (
     const node = nodes[nodeId];
     if (!node) return;
 
-    // Only allow on blueprint nodes
     if (node.metadata.isBlueprint !== true) {
       return;
     }
 
-    // Validate context exists if setting (not clearing)
     if (contextNodeId !== null && !nodes[contextNodeId]) {
       return;
     }

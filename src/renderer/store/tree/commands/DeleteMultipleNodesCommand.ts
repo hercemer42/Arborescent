@@ -1,10 +1,6 @@
 import { TreeNode } from '../../../../shared/types';
 import { MultiNodeDeletionCommand } from './MultiNodeDeletionCommand';
 
-/**
- * Command for deleting multiple nodes at once (single undo operation).
- * Used for multi-selection delete operations.
- */
 export class DeleteMultipleNodesCommand extends MultiNodeDeletionCommand {
   constructor(
     nodeIds: string[],

@@ -1,8 +1,5 @@
 import { getRangeFromPoint } from '../../utils/position';
 
-/**
- * Detects if cursor is at the first line of a multiline element
- */
 export function isAtFirstLine(element: HTMLElement): boolean {
   const selection = window.getSelection();
   if (!selection || selection.rangeCount === 0) return true;
@@ -25,9 +22,6 @@ export function isAtFirstLine(element: HTMLElement): boolean {
   return cursorRect.top - elementRect.top < lineHeight / 2;
 }
 
-/**
- * Detects if cursor is at the last line of a multiline element
- */
 export function isAtLastLine(element: HTMLElement): boolean {
   const selection = window.getSelection();
   if (!selection || selection.rangeCount === 0) return true;
@@ -50,10 +44,6 @@ export function isAtLastLine(element: HTMLElement): boolean {
   return elementRect.bottom - cursorRect.bottom < lineHeight / 2;
 }
 
-/**
- * Moves cursor up one line within the same element
- * Returns true if successful, false if at first line
- */
 export function moveCursorUpOneLine(element: HTMLElement, targetX: number): boolean {
   const selection = window.getSelection();
   if (!selection || selection.rangeCount === 0) return false;
@@ -98,10 +88,6 @@ export function moveCursorUpOneLine(element: HTMLElement, targetX: number): bool
   return false;
 }
 
-/**
- * Moves cursor down one line within the same element
- * Returns true if successful, false if at last line
- */
 export function moveCursorDownOneLine(element: HTMLElement, targetX: number): boolean {
   const selection = window.getSelection();
   if (!selection || selection.rangeCount === 0) return false;
@@ -147,9 +133,6 @@ export function moveCursorDownOneLine(element: HTMLElement, targetX: number): bo
   return false;
 }
 
-/**
- * Gets the current horizontal cursor position (X coordinate)
- */
 export function getCurrentCursorX(): number {
   const selection = window.getSelection();
   if (!selection || selection.rangeCount === 0) return 0;
@@ -159,9 +142,6 @@ export function getCurrentCursorX(): number {
   return rect.left;
 }
 
-/**
- * Gets the left offset of an element (for handling indentation)
- */
 export function getElementLeftOffset(element: HTMLElement): number {
   return element.getBoundingClientRect().left;
 }

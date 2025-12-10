@@ -1,9 +1,6 @@
 import { BaseCommand } from './Command';
 import { TreeNode, NodeStatus } from '../../../../shared/types';
 
-/**
- * Command for toggling node task status
- */
 export class ToggleStatusCommand extends BaseCommand {
   private oldStatus: NodeStatus | undefined;
   private newStatus: NodeStatus | undefined;
@@ -27,11 +24,9 @@ export class ToggleStatusCommand extends BaseCommand {
     const node = nodes[this.nodeId];
     if (!node) return;
 
-    // Capture old state
     this.oldStatus = node.metadata?.status as NodeStatus | undefined;
     this.oldResolvedAt = node.metadata?.resolvedAt as string | undefined;
 
-    // Calculate new status
     const currentStatus = node.metadata?.status;
     let newStatus: NodeStatus | undefined;
 
@@ -45,11 +40,9 @@ export class ToggleStatusCommand extends BaseCommand {
 
     this.newStatus = newStatus;
 
-    // Set resolvedAt when transitioning to completed/abandoned, clear when going to pending
     const isResolved = newStatus === 'completed' || newStatus === 'abandoned';
     this.newResolvedAt = isResolved ? new Date().toISOString() : undefined;
 
-    // Update node
     this.setNodes({
       ...nodes,
       [this.nodeId]: {
@@ -71,7 +64,6 @@ export class ToggleStatusCommand extends BaseCommand {
     const node = nodes[this.nodeId];
     if (!node) return;
 
-    // Restore old status and resolvedAt
     this.setNodes({
       ...nodes,
       [this.nodeId]: {
@@ -84,7 +76,6 @@ export class ToggleStatusCommand extends BaseCommand {
       },
     });
 
-    // Select node and place cursor at end
     this.selectNode(this.nodeId, node.content.length);
     this.triggerAutosave?.();
     this.onStatusChange?.();
@@ -95,7 +86,6 @@ export class ToggleStatusCommand extends BaseCommand {
     const node = nodes[this.nodeId];
     if (!node) return;
 
-    // Apply new status and resolvedAt
     this.setNodes({
       ...nodes,
       [this.nodeId]: {
@@ -108,7 +98,6 @@ export class ToggleStatusCommand extends BaseCommand {
       },
     });
 
-    // Select node and place cursor at end
     this.selectNode(this.nodeId, node.content.length);
     this.triggerAutosave?.();
     this.onStatusChange?.();

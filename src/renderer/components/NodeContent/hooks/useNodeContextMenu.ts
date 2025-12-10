@@ -34,19 +34,15 @@ export function useNodeContextMenu(node: TreeNode) {
   const openZoomTab = useFilesStore((state) => state.openZoomTab);
   const isZoomTab = !!activeFile?.zoomSource;
 
-  // Build all menu items when context menu is opened (lazy evaluation)
   const buildMenuItems = useCallback(async () => {
     const state = store.getState();
     const { nodes, ancestorRegistry, collaboratingNodeId, contextDeclarations, actions } = state;
 
-    // Spell check - get suggestions for misspelled word (if any)
     const spellItems = buildSpellMenuItems();
 
-    // Compute context-related values
     const isNodeBeingCollaborated = collaboratingNodeId === node.id;
     const collaborateDisabled = !!collaboratingNodeId;
 
-    // Handlers
     const handleCollaborate = async () => {
       try {
         await actions.collaborate(node.id);
@@ -102,18 +98,14 @@ export function useNodeContextMenu(node: TreeNode) {
       openZoomTab(activeFile.path, node.id, node.content);
     };
 
-    // Wrap setActiveContext to rebuild menu items after selection
     const handleSetActiveContext = async (nodeId: string, contextId: string | null, actionType?: 'execute' | 'collaborate') => {
       actions.setActiveContext(nodeId, contextId, actionType);
-      // Rebuild menu items to reflect new selection state
       const newItems = await buildMenuItems();
       setMenuItems(newItems);
     };
 
-    // Wrap setAppliedContext to rebuild menu items after selection
     const handleSetAppliedContext = async (contextId: string | null) => {
       actions.setAppliedContext(node.id, contextId);
-      // Rebuild menu items to reflect new selection state
       const newItems = await buildMenuItems();
       setMenuItems(newItems);
     };
@@ -124,7 +116,6 @@ export function useNodeContextMenu(node: TreeNode) {
       });
     };
 
-    // Build submenus
     const executeSubmenu = buildExecuteSubmenu({
       node,
       nodes,
@@ -145,7 +136,6 @@ export function useNodeContextMenu(node: TreeNode) {
       onSetActiveContext: handleSetActiveContext,
     });
 
-    // Use fresh node from state for blueprint menu (needed for keepOpenOnClick to show updated checkboxes)
     const freshNode = nodes[node.id] || node;
     const blueprintMenuItem = buildBlueprintSubmenu({
       node: freshNode,
@@ -168,9 +158,7 @@ export function useNodeContextMenu(node: TreeNode) {
 
     const isHyperlink = node.metadata.isHyperlink === true;
 
-    // Base menu items - hyperlinks have limited options
     const baseMenuItems: ContextMenuItem[] = [
-      // Execute/Collaborate hidden for hyperlinks - they're just references
       ...(!isHyperlink ? [{
         label: 'Execute',
         submenu: executeSubmenu,
@@ -185,7 +173,6 @@ export function useNodeContextMenu(node: TreeNode) {
         onClick: handleCancel,
         disabled: false,
       }] : []),
-      // Blueprint menu hidden for hyperlinks
       ...(!isHyperlink && blueprintMenuItem ? [blueprintMenuItem] : []),
       {
         label: 'Edit',
@@ -199,7 +186,6 @@ export function useNodeContextMenu(node: TreeNode) {
             onClick: () => actions.copyNodes(),
             shortcut: formatHotkeyForDisplay(getKeyForAction('actions', 'copy') || ''),
           },
-          // Copy as Hyperlink - only for non-hyperlink nodes
           ...(!isHyperlink ? [{
             label: 'Copy as Hyperlink',
             onClick: () => actions.copyAsHyperlink(),
@@ -209,7 +195,6 @@ export function useNodeContextMenu(node: TreeNode) {
             onClick: () => actions.cutNodes(),
             shortcut: formatHotkeyForDisplay(getKeyForAction('actions', 'cut') || ''),
           },
-          // Paste hidden for hyperlinks - no children allowed
           ...(!isHyperlink ? [{
             label: 'Paste',
             onClick: () => actions.pasteNodes(),
@@ -223,9 +208,7 @@ export function useNodeContextMenu(node: TreeNode) {
           },
         ],
       },
-      // Status submenu - hidden for blueprint/hyperlink nodes and nodes without children
       ...(statusMenuItem ? [statusMenuItem] : []),
-      // Zoom hidden for hyperlinks - they're single-line references
       ...(!isZoomTab && !isHyperlink ? [{
         label: 'Zoom',
         onClick: handleZoom,
@@ -233,7 +216,6 @@ export function useNodeContextMenu(node: TreeNode) {
       }] : []),
     ];
 
-    // Combine spell suggestions with regular menu items
     if (spellItems && spellItems.length > 0) {
       return [
         ...spellItems,
@@ -249,10 +231,8 @@ export function useNodeContextMenu(node: TreeNode) {
     e.preventDefault();
     if (isFeedbackTree) return;
 
-    // Capture word at cursor for spell checking
     captureWordAtCursor();
 
-    // Focus the node at the right-click position
     const { actions } = store.getState();
     const wrapperElement = e.currentTarget as HTMLElement;
     const contentEditableElement = wrapperElement.querySelector('.node-text') as HTMLElement;
@@ -266,7 +246,6 @@ export function useNodeContextMenu(node: TreeNode) {
 
     menuOpenRef.current = true;
 
-    // Build menu items lazily when menu is opened
     const items = await buildMenuItems();
     setMenuItems(items);
     setContextMenu({ x: e.clientX, y: e.clientY });

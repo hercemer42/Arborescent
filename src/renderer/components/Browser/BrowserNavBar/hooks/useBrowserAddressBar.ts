@@ -8,10 +8,6 @@ interface UseBrowserAddressBarOptions {
   getActiveWebview: () => HTMLWebViewElement | null;
 }
 
-/**
- * Hook to manage browser address bar state and submission
- * Handles URL input, editing state, and navigation
- */
 export function useBrowserAddressBar({ activeTabId, tabs, getActiveWebview }: UseBrowserAddressBarOptions) {
   const [addressBarValue, setAddressBarValue] = useState('');
   const [isEditingAddress, setIsEditingAddress] = useState(false);
@@ -21,8 +17,7 @@ export function useBrowserAddressBar({ activeTabId, tabs, getActiveWebview }: Us
     const webview = getActiveWebview();
     if (webview && addressBarValue) {
       const url = normalizeUrl(addressBarValue);
-      // Catch rejected promise - ERR_ABORTED is common during redirects
-      // Cast to Promise since Electron's loadURL returns a Promise but types don't reflect it
+      // Electron types don't reflect that loadURL returns a Promise
       (webview.loadURL(url) as unknown as Promise<void>).catch(() => {});
       setIsEditingAddress(false);
     }
@@ -41,7 +36,6 @@ export function useBrowserAddressBar({ activeTabId, tabs, getActiveWebview }: Us
     }
   }, [isEditingAddress, getActiveWebview]);
 
-  // Update address bar when active tab changes
   useEffect(() => {
     if (!isEditingAddress) {
       const activeTab = tabs.find((tab) => tab.id === activeTabId);

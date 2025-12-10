@@ -11,13 +11,9 @@ export interface TerminalInfo {
   shellArgs: string[];
 }
 
-// Track disposables for each terminal so we can clean them up
 const terminalDisposables: Map<string, IDisposable[]> = new Map();
 
 export function registerTerminalHandlers(mainWindow: Electron.BrowserWindow) {
-  /**
-   * Create a new terminal
-   */
   ipcMain.handle(
     'terminal:create',
     async (
@@ -33,14 +29,12 @@ export function registerTerminalHandlers(mainWindow: Electron.BrowserWindow) {
 
         const disposables: IDisposable[] = [];
 
-        // Forward PTY output to renderer (with destroyed check)
         disposables.push(terminal.ptyProcess.onData((data: string) => {
           if (!mainWindow.isDestroyed()) {
             mainWindow.webContents.send(`terminal:data:${id}`, data);
           }
         }));
 
-        // Forward PTY exit event (with destroyed check)
         disposables.push(terminal.ptyProcess.onExit(({ exitCode, signal }) => {
           if (!mainWindow.isDestroyed()) {
             mainWindow.webContents.send(`terminal:exit:${id}`, { exitCode, signal });
@@ -63,9 +57,6 @@ export function registerTerminalHandlers(mainWindow: Electron.BrowserWindow) {
     }
   );
 
-  /**
-   * Write data to a terminal
-   */
   ipcMain.handle(
     'terminal:write',
     async (_event: IpcMainInvokeEvent, id: string, data: string): Promise<void> => {
@@ -78,9 +69,6 @@ export function registerTerminalHandlers(mainWindow: Electron.BrowserWindow) {
     }
   );
 
-  /**
-   * Resize a terminal
-   */
   ipcMain.handle(
     'terminal:resize',
     async (_event: IpcMainInvokeEvent, id: string, cols: number, rows: number): Promise<void> => {
@@ -93,14 +81,10 @@ export function registerTerminalHandlers(mainWindow: Electron.BrowserWindow) {
     }
   );
 
-  /**
-   * Destroy a terminal
-   */
   ipcMain.handle(
     'terminal:destroy',
     async (_event: IpcMainInvokeEvent, id: string): Promise<void> => {
       try {
-        // Dispose listeners first
         const disposables = terminalDisposables.get(id);
         if (disposables) {
           disposables.forEach(d => d.dispose());
@@ -115,9 +99,6 @@ export function registerTerminalHandlers(mainWindow: Electron.BrowserWindow) {
   );
 }
 
-/**
- * Dispose listeners for a specific terminal
- */
 export function disposeTerminalListeners(id: string) {
   const disposables = terminalDisposables.get(id);
   if (disposables) {
@@ -126,11 +107,8 @@ export function disposeTerminalListeners(id: string) {
   }
 }
 
-/**
- * Cleanup terminals on app quit
- */
 export function cleanupTerminals() {
-  // Dispose all listeners first to prevent "Object has been destroyed" errors
+  // Dispose listeners first to prevent "Object has been destroyed" errors
   for (const [id] of terminalDisposables) {
     disposeTerminalListeners(id);
   }

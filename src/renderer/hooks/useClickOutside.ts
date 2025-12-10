@@ -1,9 +1,5 @@
 import { useEffect, RefObject } from 'react';
 
-/**
- * Hook that calls a callback when a click occurs outside the referenced element.
- * Commonly used for closing dropdowns, menus, and modals.
- */
 export function useClickOutside(
   ref: RefObject<HTMLElement | null>,
   onClickOutside: () => void

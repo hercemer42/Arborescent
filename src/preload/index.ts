@@ -31,7 +31,6 @@ contextBridge.exposeInMainWorld('electron', {
     ipcRenderer.invoke('save-temp-files-metadata', metadata),
   getTempFilesMetadata: () => ipcRenderer.invoke('get-temp-files-metadata'),
   isTempFile: (filePath: string) => ipcRenderer.invoke('is-temp-file', filePath),
-  // Clipboard monitoring IPC
   startClipboardMonitor: () => ipcRenderer.invoke('start-clipboard-monitor'),
   stopClipboardMonitor: () => ipcRenderer.invoke('stop-clipboard-monitor'),
   onClipboardContentDetected: (callback: (content: string) => void) => {
@@ -39,7 +38,6 @@ contextBridge.exposeInMainWorld('electron', {
     ipcRenderer.on('clipboard-content-detected', listener);
     return () => ipcRenderer.removeListener('clipboard-content-detected', listener);
   },
-  // Feedback file watching IPC
   startFeedbackFileWatcher: (filePath: string) => ipcRenderer.invoke('start-feedback-file-watcher', filePath),
   stopFeedbackFileWatcher: () => ipcRenderer.invoke('stop-feedback-file-watcher'),
   getFeedbackFilePath: () => ipcRenderer.invoke('get-feedback-file-path'),
@@ -48,7 +46,6 @@ contextBridge.exposeInMainWorld('electron', {
     ipcRenderer.on('feedback-file-content-detected', listener);
     return () => ipcRenderer.removeListener('feedback-file-content-detected', listener);
   },
-  // Terminal IPC
   terminalCreate: (id: string, title: string, shellCommand?: string, shellArgs?: string[], cwd?: string) =>
     ipcRenderer.invoke('terminal:create', id, title, shellCommand, shellArgs, cwd),
   terminalWrite: (id: string, data: string) =>
@@ -87,7 +84,6 @@ contextBridge.exposeInMainWorld('electron', {
     ipcRenderer.removeAllListeners('main-error');
     ipcRenderer.on('main-error', (_event, message) => callback(message));
   },
-  // Preferences IPC
   savePreferences: (preferencesData: string) =>
     ipcRenderer.invoke('save-preferences', preferencesData),
   getPreferences: () => ipcRenderer.invoke('get-preferences'),

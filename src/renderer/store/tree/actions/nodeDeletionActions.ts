@@ -22,9 +22,6 @@ type StoreState = {
 };
 type StoreSetter = (partial: Partial<StoreState>) => void;
 
-/**
- * Clears a node's content (used when deleting the last root-level node)
- */
 function clearNodeContent(
   nodeId: string,
   state: StoreState,
@@ -63,7 +60,6 @@ export const createNodeDeletionActions = (
     const node = nodes[nodeId];
     if (!node) return true;
 
-    // Prevent deletion of node in collaboration
     if (collaboratingNodeId === nodeId) {
       useToastStore.getState().addToast(
         'Cannot delete node in collaboration - Please finish or cancel the collaboration first',
@@ -73,7 +69,6 @@ export const createNodeDeletionActions = (
       return false;
     }
 
-    // Require confirmation if node has children
     if (node.children.length > 0 && !confirmed) return false;
 
     const parentInfo = getParentNode(nodeId, state);
@@ -81,7 +76,6 @@ export const createNodeDeletionActions = (
 
     const { parentId, parent } = parentInfo;
 
-    // If this is the last root-level node, just clear its content (not undoable)
     if (isLastRootLevelNode(parentId, rootNodeId, parent)) {
       clearNodeContent(nodeId, state, set, triggerAutosave);
       return true;

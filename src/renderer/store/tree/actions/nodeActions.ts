@@ -58,12 +58,10 @@ export const createNodeActions = (
     const node = nodes[nodeId];
     if (!node) return;
 
-    // Prevent editing of link nodes (hyperlinks and external links)
     if (node.metadata.isHyperlink === true || node.metadata.isExternalLink === true) {
       return;
     }
 
-    // Prevent editing of node in collaboration
     if (collaboratingNodeId === nodeId) {
       useToastStore.getState().addToast(
         'Cannot edit node in collaboration - Please finish or cancel the collaboration first',
@@ -180,16 +178,13 @@ export const createNodeActions = (
     const isExpanded = currentNode.metadata.expanded ?? true;
     const hasChildren = currentNode.children.length > 0;
 
-    // Determine where to create the node
     let parentId: string;
     let position: number;
 
     if (isExpanded && hasChildren) {
-      // Create as first child of current node
       parentId = currentNodeId;
       position = 0;
     } else {
-      // Create as sibling after current node
       const ancestors = ancestorRegistry[currentNodeId] || [];
       parentId = ancestors[ancestors.length - 1] || rootNodeId;
       const parent = nodes[parentId];
@@ -201,7 +196,6 @@ export const createNodeActions = (
       throw new Error('Command system not initialized - cannot create node with undo/redo support');
     }
 
-    // In blueprint mode, new nodes inherit isBlueprint from parent
     const initialMetadata = blueprintModeEnabled ? { isBlueprint: true } : undefined;
 
     const command = new CreateNodeCommand(
@@ -216,7 +210,7 @@ export const createNodeActions = (
       (partial) => set(partial as Partial<StoreState>),
       triggerAutosave,
       initialMetadata,
-      currentNodeId // Pass the original node for undo
+      currentNodeId
     );
     state.actions.executeCommand(command);
   }
@@ -229,7 +223,6 @@ export const createNodeActions = (
 
     const newNodeId = generateId();
 
-    // Create as sibling before current node
     const ancestors = ancestorRegistry[currentNodeId] || [];
     const parentId = ancestors[ancestors.length - 1] || rootNodeId;
     const parent = nodes[parentId];
@@ -240,7 +233,6 @@ export const createNodeActions = (
       throw new Error('Command system not initialized - cannot create node with undo/redo support');
     }
 
-    // In blueprint mode, new nodes inherit isBlueprint from parent
     const initialMetadata = blueprintModeEnabled ? { isBlueprint: true } : undefined;
 
     const command = new CreateNodeCommand(
@@ -255,7 +247,7 @@ export const createNodeActions = (
       (partial) => set(partial as Partial<StoreState>),
       triggerAutosave,
       initialMetadata,
-      currentNodeId // Pass the original node for undo
+      currentNodeId
     );
     state.actions.executeCommand(command);
   }
@@ -266,7 +258,6 @@ export const createNodeActions = (
     const node = nodes[nodeId];
     if (!node) return;
 
-    // Prevent splitting link nodes (hyperlinks and external links)
     if (node.metadata.isHyperlink === true || node.metadata.isExternalLink === true) {
       return;
     }

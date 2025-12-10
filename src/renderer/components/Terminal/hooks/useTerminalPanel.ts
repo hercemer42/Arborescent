@@ -1,10 +1,6 @@
 import { useCallback } from 'react';
 import { useTerminalStore } from '../../../store/terminal/terminalStore';
 
-/**
- * Hook to manage terminal panel operations.
- * Delegates to store actions which contain all the business logic.
- */
 export function useTerminalPanel() {
   const terminals = useTerminalStore((state) => state.terminals);
   const createNewTerminal = useTerminalStore((state) => state.createNewTerminal);

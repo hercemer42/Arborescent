@@ -8,14 +8,8 @@ interface BrowserProps {
   onWebviewReady?: (id: string, webview: HTMLWebViewElement | null) => void;
 }
 
-/**
- * Browser component that renders a webview.
- * Note: Only uses initialUrl to set the initial src attribute.
- * All subsequent URL changes should be done via webview.loadURL() to avoid
- * Electron's internal error logging when src attribute changes.
- */
 export function Browser({ id, initialUrl, onWebviewReady }: BrowserProps) {
-  // Store initial URL in ref to prevent re-renders from changing src
+  // Ref prevents src attribute changes which trigger Electron error logging
   const initialUrlRef = useRef(initialUrl);
   const { setWebviewRef } = useBrowserWebview({ id, url: initialUrl, onWebviewReady });
 

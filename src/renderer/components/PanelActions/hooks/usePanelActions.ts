@@ -6,9 +6,6 @@ import { useTerminalPanel } from '../../Terminal/hooks/useTerminalPanel';
 import { useFilesStore } from '../../../store/files/filesStore';
 import { storeManager } from '../../../store/storeManager';
 
-/**
- * Hook to manage panel toggle actions for terminal, browser, and feedback
- */
 export function usePanelActions() {
   const activeContent = usePanelStore((state) => state.activeContent);
   const showTerminal = usePanelStore((state) => state.showTerminal);

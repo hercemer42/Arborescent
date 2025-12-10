@@ -14,10 +14,6 @@ interface ResizablePanelProps {
   children: ReactNode;
 }
 
-/**
- * Generic resizable panel component
- * Can be positioned at the bottom or side of the main content area
- */
 export function ResizablePanel({
   contentRef,
   panelPosition,

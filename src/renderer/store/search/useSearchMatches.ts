@@ -1,10 +1,6 @@
 import { useMemo } from 'react';
 import { TreeNode } from '../../../shared/types';
 
-/**
- * Get all nodes matching a search query in tree order (depth-first).
- * Searches all nodes regardless of collapsed state.
- */
 function getMatchingNodeIds(
   query: string,
   nodes: Record<string, TreeNode>,
@@ -19,12 +15,10 @@ function getMatchingNodeIds(
     const node = nodes[nodeId];
     if (!node) return;
 
-    // Check if node content matches (case-insensitive)
     if (node.content.toLowerCase().includes(lowerQuery)) {
       matches.push(nodeId);
     }
 
-    // Traverse children in order
     for (const childId of node.children) {
       traverse(childId);
     }
@@ -34,10 +28,6 @@ function getMatchingNodeIds(
   return matches;
 }
 
-/**
- * Hook to compute search matches from nodes.
- * Memoized to avoid recomputing on every render.
- */
 export function useSearchMatches(
   query: string,
   nodes: Record<string, TreeNode>,

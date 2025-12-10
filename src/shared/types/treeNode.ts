@@ -20,8 +20,8 @@ export interface TreeNode {
     created?: string;
     updated?: string;
     plugins?: Record<string, Record<string, unknown>>;
-    feedbackTempFile?: string; // Path to temporary file storing feedback content
-    transient?: TransientMetadata; // In-memory only, not persisted to file
+    feedbackTempFile?: string;
+    transient?: TransientMetadata;
     [key: string]: unknown;
   };
 }

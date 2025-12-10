@@ -14,10 +14,6 @@ interface UsePanelResizeOptions {
   setPanelWidth: (width: number) => void;
 }
 
-/**
- * Generic hook to handle panel resize functionality
- * Works with any panel that can be positioned at the bottom or side
- */
 export function usePanelResize({
   contentRef,
   panelPosition,

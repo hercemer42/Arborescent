@@ -3,9 +3,6 @@ import { TreeNode } from '../../../../shared/types';
 import { addNodeToRegistry, removeNodeFromRegistry, AncestorRegistry } from '../../../services/ancestry';
 import { createTreeNode, shouldInheritBlueprint } from '../../../utils/nodeHelpers';
 
-/**
- * Command for creating a new node
- */
 export class CreateNodeCommand extends BaseCommand {
   constructor(
     private newNodeId: string,
@@ -36,21 +33,17 @@ export class CreateNodeCommand extends BaseCommand {
     const parent = nodes[this.parentId];
     if (!parent) return;
 
-    // Build initial metadata
     const metadata: Record<string, unknown> = { status: 'pending', ...this.initialMetadata };
 
-    // Inherit blueprint status if parent is part of a context tree
     if (shouldInheritBlueprint(this.parentId, nodes, ancestorRegistry)) {
       metadata.isBlueprint = true;
     }
 
-    // Create the new node with default pending status and any initial metadata
     const newNode = createTreeNode(this.newNodeId, {
       content: this.initialContent,
       metadata,
     });
 
-    // Insert into parent's children
     const updatedChildren = [...parent.children];
     updatedChildren.splice(this.position, 0, this.newNodeId);
 
@@ -63,7 +56,6 @@ export class CreateNodeCommand extends BaseCommand {
       },
     };
 
-    // Incremental update: just add the new node
     const newAncestorRegistry = addNodeToRegistry(ancestorRegistry, this.newNodeId, this.parentId);
 
     this.setState({
@@ -81,10 +73,8 @@ export class CreateNodeCommand extends BaseCommand {
     const parent = nodes[this.parentId];
     if (!parent) return;
 
-    // Remove from parent's children
     const updatedChildren = parent.children.filter(id => id !== this.newNodeId);
 
-    // Remove the node
     const updatedNodes = { ...nodes };
     delete updatedNodes[this.newNodeId];
 
@@ -93,10 +83,8 @@ export class CreateNodeCommand extends BaseCommand {
       children: updatedChildren,
     };
 
-    // Incremental update: remove the node (no descendants for a newly created node)
     const newAncestorRegistry = removeNodeFromRegistry(ancestorRegistry, this.newNodeId, nodes);
 
-    // Return to the node we were in before creating, or fall back to parent
     const returnToNodeId = this.previousActiveNodeId && updatedNodes[this.previousActiveNodeId]
       ? this.previousActiveNodeId
       : this.parentId;

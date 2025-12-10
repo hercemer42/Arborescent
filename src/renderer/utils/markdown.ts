@@ -4,38 +4,18 @@ import { createTreeNode } from './nodeHelpers';
 
 export type NodesMap = Record<string, TreeNode>;
 
-// ASCII checkbox symbols for export (more reliable across tools and encodings)
 const ASCII_STATUS_SYMBOLS: Record<NodeStatus, string> = {
   pending: '[ ]',
   completed: '[x]',
   abandoned: '[-]',
 };
 
-// ============================================================================
-// Export Functions
-// ============================================================================
-
-/**
- * Creates a markdown heading prefix for the given depth level
- * # for depth 0, ## for depth 1, etc. (capped at 6 levels)
- */
 function createHeadingPrefix(depth: number): string {
   const headingLevel = Math.min(depth + 1, 6);
   return '#'.repeat(headingLevel);
 }
 
-/**
- * Exports a node and its descendants as markdown with heading levels for hierarchy.
- * Uses # for root, ## for children, ### for grandchildren, etc.
- * Skips deleted nodes.
- *
- * @param node - The node to export
- * @param nodes - Map of all nodes
- * @param depth - Current depth level (0 = root, maps to # heading)
- * @returns Markdown formatted string with heading hierarchy and ASCII checkbox symbols
- */
 export function exportNodeAsMarkdown(node: TreeNode, nodes: NodesMap, depth: number = 0): string {
-  // Skip deleted nodes
   if (node.metadata.deleted) {
     return '';
   }
@@ -48,21 +28,17 @@ export function exportNodeAsMarkdown(node: TreeNode, nodes: NodesMap, depth: num
 
   const headingPrefix = createHeadingPrefix(depth);
 
-  // Format current node content
   if (node.content && node.content.trim()) {
     const contentLines = node.content.split('\n');
     contentLines.forEach((line, index) => {
       if (index === 0) {
-        // First line as heading with status symbol
         markdown += `${headingPrefix} ${statusSymbol} ${line}\n`;
       } else {
-        // Subsequent lines as plain text (preserve multi-line content)
         markdown += `${line}\n`;
       }
     });
   }
 
-  // Export children recursively
   if (node.children && node.children.length > 0) {
     node.children.forEach((childId: string) => {
       const childNode = nodes[childId];
@@ -75,62 +51,42 @@ export function exportNodeAsMarkdown(node: TreeNode, nodes: NodesMap, depth: num
   return markdown;
 }
 
-/**
- * Exports a context declaration node as markdown, resolving hyperlinks inline.
- * When a hyperlink node is encountered, the linked node and its descendants are
- * exported in place of the hyperlink, preserving tree order.
- *
- * @param node - The context node to export
- * @param nodes - Map of all nodes
- * @param depth - Current depth level (0 = root, maps to # heading)
- * @param contextNodeId - The ID of the context declaration (to prevent circular refs)
- * @returns Markdown formatted string with hyperlinks resolved inline
- */
 export function exportContextAsMarkdown(
   node: TreeNode,
   nodes: NodesMap,
   depth: number = 0,
   contextNodeId?: string
 ): string {
-  // Skip deleted nodes
   if (node.metadata.deleted) {
     return '';
   }
 
-  // If this is a hyperlink node, export the linked content instead
   if (node.metadata.isHyperlink === true) {
     const linkedNodeId = node.metadata.linkedNodeId as string | undefined;
     if (linkedNodeId && nodes[linkedNodeId] && linkedNodeId !== contextNodeId) {
-      // Export the linked node and its descendants (using regular export, no further hyperlink resolution)
       return exportNodeAsMarkdown(nodes[linkedNodeId], nodes, depth);
     }
-    // Skip hyperlinks to non-existent or circular references
     return '';
   }
 
   let markdown = '';
 
-  // Get ASCII status symbol
   const status = node.metadata.status || 'pending';
   const statusSymbol = ASCII_STATUS_SYMBOLS[status];
 
   const headingPrefix = createHeadingPrefix(depth);
 
-  // Format current node content
   if (node.content && node.content.trim()) {
     const contentLines = node.content.split('\n');
     contentLines.forEach((line, index) => {
       if (index === 0) {
-        // First line as heading with status symbol
         markdown += `${headingPrefix} ${statusSymbol} ${line}\n`;
       } else {
-        // Subsequent lines as plain text (preserve multi-line content)
         markdown += `${line}\n`;
       }
     });
   }
 
-  // Export children recursively, resolving hyperlinks
   if (node.children && node.children.length > 0) {
     node.children.forEach((childId: string) => {
       const childNode = nodes[childId];
@@ -143,14 +99,6 @@ export function exportContextAsMarkdown(
   return markdown;
 }
 
-/**
- * Exports multiple nodes as markdown, each starting at depth 0.
- * Used for multi-selection cut/copy where selected nodes become siblings.
- *
- * @param nodeIds - Array of node IDs to export (should be root-level selections, not descendants)
- * @param nodes - Map of all nodes
- * @returns Markdown string with all nodes as top-level siblings
- */
 export function exportMultipleNodesAsMarkdown(nodeIds: string[], nodes: NodesMap): string {
   return nodeIds
     .map((nodeId) => {
@@ -162,27 +110,17 @@ export function exportMultipleNodesAsMarkdown(nodeIds: string[], nodes: NodesMap
     .join('');
 }
 
-// ============================================================================
-// Parse Functions
-// ============================================================================
-
 interface ParsedLine {
   depth: number;
   status: NodeStatus;
   content: string;
 }
 
-/**
- * Parse a markdown line to extract depth (from heading level), status, and content
- * Format: # ☐ Content (depth 0), ## ☐ Content (depth 1), etc.
- */
 function parseLine(line: string): ParsedLine | null {
   const trimmedLine = line.trim();
 
-  // Check if line starts with markdown heading
   const headingMatch = trimmedLine.match(/^(#{1,6})\s+(.*)$/);
   if (!headingMatch) {
-    // Not a heading line, skip
     return null;
   }
 
@@ -190,23 +128,19 @@ function parseLine(line: string): ParsedLine | null {
   const depth = headingLevel - 1; // # = depth 0, ## = depth 1, etc.
   const remainder = headingMatch[2];
 
-  // Check if remainder starts with a status symbol
   let status: NodeStatus = 'pending';
   let content = '';
 
-  // Find which status symbol matches (Unicode symbols)
   let foundStatus = false;
   for (const [key, symbol] of Object.entries(STATUS_SYMBOLS)) {
     if (remainder.startsWith(symbol)) {
       status = key as NodeStatus;
-      // Remove status symbol and leading space
       content = remainder.substring(symbol.length).trim();
       foundStatus = true;
       break;
     }
   }
 
-  // Also check for ASCII checkbox syntax: [ ], [x], [X], [-]
   if (!foundStatus) {
     const checkboxMatch = remainder.match(/^\[([xX -])\]\s*(.*)/);
     if (checkboxMatch) {
@@ -223,12 +157,10 @@ function parseLine(line: string): ParsedLine | null {
     }
   }
 
-  // If no status symbol found, use the whole remainder as content
   if (!foundStatus) {
     content = remainder.trim();
   }
 
-  // Skip empty content
   if (content === '') {
     return null;
   }
@@ -241,17 +173,10 @@ export interface ParsedMarkdownResult {
   allNodes: Record<string, TreeNode>;
 }
 
-/**
- * Parse markdown content back into tree nodes
- * Returns root nodes array and a map of all nodes (including children)
- */
 export function parseMarkdown(markdown: string): ParsedMarkdownResult {
-  // Strip code block markers if present (```markdown or ``` at start/end)
   let content = markdown.trim();
   if (content.startsWith('```')) {
-    // Remove opening code fence (and optional language specifier)
     content = content.replace(/^```[a-z]*\n?/i, '');
-    // Remove closing code fence
     content = content.replace(/\n?```\s*$/, '');
   }
 
@@ -264,14 +189,11 @@ export function parseMarkdown(markdown: string): ParsedMarkdownResult {
     const parsed = parseLine(line);
 
     if (!parsed) {
-      // This might be a continuation line for multi-line content
-      // For now, we'll skip it - the user can handle multi-line manually
       continue;
     }
 
     const { depth, status, content } = parsed;
 
-    // Create new node
     const newNode = createTreeNode(uuidv4(), {
       content,
       metadata: {
@@ -282,20 +204,15 @@ export function parseMarkdown(markdown: string): ParsedMarkdownResult {
       },
     });
 
-    // Add to allNodes map
     allNodes[newNode.id] = newNode;
 
-    // Find parent based on depth
     if (depth === 0) {
-      // Root level node
       rootNodes.push(newNode);
       stack.length = 0;
       stack.push({ node: newNode, depth: 0 });
     } else {
-      // Find the parent - it should be the last node with depth = currentDepth - 1
       let parent: TreeNode | null = null;
 
-      // Pop stack until we find the correct parent
       while (stack.length > 0 && stack[stack.length - 1].depth >= depth) {
         stack.pop();
       }
@@ -307,7 +224,6 @@ export function parseMarkdown(markdown: string): ParsedMarkdownResult {
       if (parent) {
         parent.children.push(newNode.id);
       } else {
-        // No parent found, treat as root
         rootNodes.push(newNode);
       }
 

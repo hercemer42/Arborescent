@@ -1,5 +1,3 @@
-// Global type definitions for Arborescent
-
 declare global {
   interface Window {
     electron: {
@@ -36,10 +34,8 @@ declare global {
       setMenuSaveHandler: (callback: () => void) => void;
       setMenuSaveAsHandler: (callback: () => void) => void;
       setMainErrorHandler: (callback: (message: string) => void) => void;
-      // Preferences IPC
       savePreferences: (preferencesData: string) => Promise<void>;
       getPreferences: () => Promise<string | null>;
-      // Terminal IPC
       terminalCreate: (id: string, title: string, shellCommand?: string, shellArgs?: string[], cwd?: string) => Promise<{
         id: string;
         title: string;

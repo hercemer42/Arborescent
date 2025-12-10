@@ -14,9 +14,6 @@ export interface Terminal {
 class TerminalManagerClass {
   private terminals: Map<string, Terminal> = new Map();
 
-  /**
-   * Create a new terminal instance
-   */
   create(
     id: string,
     title: string,
@@ -52,9 +49,6 @@ class TerminalManagerClass {
     return terminal;
   }
 
-  /**
-   * Write data to a terminal
-   */
   write(id: string, data: string): void {
     const terminal = this.terminals.get(id);
     if (!terminal) {
@@ -65,9 +59,6 @@ class TerminalManagerClass {
     terminal.ptyProcess.write(data);
   }
 
-  /**
-   * Resize a terminal
-   */
   resize(id: string, cols: number, rows: number): void {
     const terminal = this.terminals.get(id);
     if (!terminal) {
@@ -78,9 +69,6 @@ class TerminalManagerClass {
     terminal.ptyProcess.resize(cols, rows);
   }
 
-  /**
-   * Destroy a terminal
-   */
   destroy(id: string): void {
     const terminal = this.terminals.get(id);
     if (!terminal) {
@@ -92,17 +80,10 @@ class TerminalManagerClass {
     logger.info(`Destroyed terminal ${id}`, 'Terminal Manager');
   }
 
-  /**
-   * Get a terminal by ID
-   */
   get(id: string): Terminal | undefined {
     return this.terminals.get(id);
   }
 
-
-  /**
-   * Destroy all terminals
-   */
   destroyAll(): void {
     for (const [id] of this.terminals) {
       this.destroy(id);

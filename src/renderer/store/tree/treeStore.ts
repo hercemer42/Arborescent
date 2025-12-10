@@ -17,7 +17,6 @@ import { createSummaryActions, SummaryActions } from './actions/summaryActions';
 import { HistoryManager } from './commands/HistoryManager';
 import { StorageService } from '@platform';
 
-// Cached context declaration info
 export interface ContextDeclarationInfo {
   nodeId: string;
   content: string;
@@ -30,9 +29,9 @@ export interface TreeState {
   rootNodeId: string;
   treeType: TreeType;
   ancestorRegistry: Record<string, string[]>;
-  activeNodeId: string | null; // The single node being edited (cursor placement)
-  multiSelectedNodeIds: Set<string>; // Nodes selected for bulk operations (drag, delete, etc.)
-  lastSelectedNodeId: string | null; // For Shift+Click range selection anchor
+  activeNodeId: string | null;
+  multiSelectedNodeIds: Set<string>;
+  lastSelectedNodeId: string | null;
   cursorPosition: number;
   rememberedVisualX: number | null;
   currentFilePath: string | null;
@@ -40,29 +39,23 @@ export interface TreeState {
   flashingNodeIds: Set<string>;
   flashingIntensity: 'light' | 'medium';
   scrollToNodeId: string | null;
-  deletingNodeIds: Set<string>; // Nodes being animated out before deletion
-  deleteAnimationCallback: (() => void) | null; // Callback to execute when delete animation completes
-  collaboratingNodeId: string | null; // Node currently in collaboration
-  feedbackFadingNodeIds: Set<string>; // Nodes fading out after feedback accepted
-  contextDeclarations: ContextDeclarationInfo[]; // Cached list of context declarations
-  blueprintModeEnabled: boolean; // When true, only blueprint nodes are shown
-  isFileBlueprintFile: boolean; // Whether the loaded file is a blueprint file
-  summaryModeEnabled: boolean; // When true, shows only resolved nodes within date range
-  summaryDateFrom: string | null; // Start date for summary filter (ISO string, date only)
-  summaryDateTo: string | null; // End date for summary filter (ISO string, date only)
-  summaryVisibleNodeIds: Set<string> | null; // Cached set of visible node IDs in summary mode
+  deletingNodeIds: Set<string>;
+  deleteAnimationCallback: (() => void) | null;
+  collaboratingNodeId: string | null;
+  feedbackFadingNodeIds: Set<string>;
+  contextDeclarations: ContextDeclarationInfo[];
+  blueprintModeEnabled: boolean;
+  isFileBlueprintFile: boolean;
+  summaryModeEnabled: boolean;
+  summaryDateFrom: string | null;
+  summaryDateTo: string | null;
+  summaryVisibleNodeIds: Set<string> | null;
 
   actions: NodeActions & ContextActions & BlueprintActions & NavigationActions & PersistenceActions & NodeMovementActions & NodeDeletionActions & VisualEffectsActions & SelectionActions & HistoryActions & CollaborateActions & ClipboardActions & ExecuteActions & SummaryActions;
 }
 
 const storageService = new StorageService();
 
-/**
- * We use a factory pattern instead of a singleton because each open file needs its own
- * independent tree state.
- * The storeManager handles store lifecycle, and TreeStoreContext allows switching
- * between file stores without prop drilling
- */
 export function createTreeStore(treeType: TreeType = 'workspace') {
   return create<TreeState>((set, get) => {
     const historyManager = new HistoryManager();
@@ -78,8 +71,6 @@ export function createTreeStore(treeType: TreeType = 'workspace') {
 
     const contextActions = createContextActions(get, set, persistenceActions.autoSave);
 
-    // clipboardActions needs access to executeCommand and deleteNode, which are created above
-    // We use a getter function to access them lazily after the store is created
     const clipboardActions = createClipboardActions(
       get,
       set,

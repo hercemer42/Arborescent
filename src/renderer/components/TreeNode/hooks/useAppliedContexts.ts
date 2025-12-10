@@ -8,10 +8,6 @@ export interface AppliedContext {
   name: string;
 }
 
-/**
- * Get the applied context for a node (explicit only, not inherited).
- * Used for gutter display - only shows on nodes where appliedContextId is set.
- */
 export function useAppliedContext(node: TreeNode | undefined): AppliedContext | undefined {
   const nodeId = node?.id;
   const appliedContextId = node?.metadata.appliedContextId as string | undefined;
@@ -37,19 +33,13 @@ export function useAppliedContext(node: TreeNode | undefined): AppliedContext | 
   }, [contextData]);
 }
 
-/**
- * @deprecated Use useAppliedContext instead
- * Legacy hook for backwards compatibility - returns empty array
- */
+// @deprecated - Use useAppliedContext instead
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function useAppliedContexts(node: TreeNode | undefined): AppliedContext[] {
   return [];
 }
 
-/**
- * @deprecated Execute/collaborate contexts are no longer shown in gutter
- * Legacy hook for backwards compatibility
- */
+// @deprecated - Execute/collaborate contexts are no longer shown in gutter
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function useActionContexts(node: TreeNode | undefined): { executeContext: undefined; collaborateContext: undefined } {
   return { executeContext: undefined, collaborateContext: undefined };

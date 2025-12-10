@@ -5,10 +5,6 @@ interface UseBrowserTabManagementOptions {
   unregisterWebview: (id: string) => void;
 }
 
-/**
- * Hook to manage browser tab operations
- * Handles creating and closing tabs
- */
 export function useBrowserTabManagement({ unregisterWebview }: UseBrowserTabManagementOptions) {
   const actions = useBrowserStore((state) => state.actions);
 

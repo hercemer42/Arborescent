@@ -1,9 +1,5 @@
 import { ArboFile, TreeNode } from '../../shared/types';
 
-/**
- * Strip transient metadata from a node before persisting.
- * The entire `metadata.transient` object is removed.
- */
 function stripTransientMetadata(node: TreeNode): TreeNode {
   if (!node.metadata.transient) {
     return node;
@@ -14,9 +10,6 @@ function stripTransientMetadata(node: TreeNode): TreeNode {
   return { ...node, metadata: cleanedMetadata };
 }
 
-/**
- * Strip transient metadata from all nodes before persisting.
- */
 function stripTransientMetadataFromNodes(
   nodes: Record<string, TreeNode>
 ): Record<string, TreeNode> {
@@ -27,10 +20,6 @@ function stripTransientMetadataFromNodes(
   return result;
 }
 
-/**
- * Extract only blueprint nodes from a tree, preserving structure and content.
- * Non-blueprint nodes are removed, and their children references are filtered.
- */
 export function extractBlueprintNodes(
   nodes: Record<string, TreeNode>,
   rootNodeId: string
@@ -51,7 +40,6 @@ export function extractBlueprintNodes(
       };
     }
 
-    // Recursively check all children regardless of current node's blueprint status
     for (const childId of node.children) {
       collectBlueprintNode(childId);
     }

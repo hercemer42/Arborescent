@@ -16,11 +16,6 @@ type SetState = (partial: {
   cursorPosition?: number;
 }) => void;
 
-/**
- * Command for splitting a node at the cursor position.
- * Content before cursor stays in original node, content after moves to new node.
- * By default creates a sibling, but can create as first child with createAsChild option.
- */
 export class SplitNodeCommand extends BaseCommand {
   constructor(
     private sourceNodeId: string,

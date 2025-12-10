@@ -1,9 +1,5 @@
 import { useEffect, useState } from 'react';
 
-/**
- * Hook to manage flash messages displayed after collaboration actions
- * Listens for collaboration-accepted and collaboration-canceled events
- */
 export function useFlashMessage() {
   const [flashMessage, setFlashMessage] = useState<string | null>(null);
 

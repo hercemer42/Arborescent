@@ -5,19 +5,12 @@ import { feedbackTreeStore } from '../../store/feedback/feedbackTreeStore';
 import { deleteFeedbackTempFile } from './feedbackTempFileService';
 import { logger } from '../logger';
 
-/**
- * Result of parsing feedback content
- */
 export interface ParsedFeedbackContent {
   nodes: Record<string, TreeNode>;
   rootNodeId: string;
   nodeCount: number;
 }
 
-/**
- * Parse markdown content and validate it has exactly one root node
- * Returns null if content is invalid
- */
 export function parseFeedbackContent(content: string): ParsedFeedbackContent | null {
   let rootNodes, allNodes;
   try {
@@ -43,10 +36,6 @@ export function parseFeedbackContent(content: string): ParsedFeedbackContent | n
   };
 }
 
-/**
- * Initialize the feedback store with parsed content
- * Wraps content with a hidden root node
- */
 export function initializeFeedbackStore(
   filePath: string,
   parsedContent: ParsedFeedbackContent
@@ -60,10 +49,6 @@ export function initializeFeedbackStore(
   logger.info(`Initialized feedback store with ${parsedContent.nodeCount} nodes`, 'FeedbackService');
 }
 
-/**
- * Extract content nodes from feedback store, excluding hidden root
- * Returns null if feedback store is empty or invalid
- */
 export function extractFeedbackContent(
   filePath: string
 ): { rootNodeId: string; nodes: Record<string, TreeNode> } | null {
@@ -81,27 +66,19 @@ export function extractFeedbackContent(
     return null;
   }
 
-  // Get actual content root (first child of hidden root)
   const actualRootNodeId = hiddenRoot.children[0];
 
-  // Filter out the hidden root from the nodes map
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { [feedbackRootNodeId]: _hiddenRoot, ...contentNodes } = feedbackNodes;
 
   return { rootNodeId: actualRootNodeId, nodes: contentNodes };
 }
 
-/**
- * Stop all feedback monitors (clipboard, file watcher)
- */
 export async function stopFeedbackMonitors(): Promise<void> {
   await window.electron.stopClipboardMonitor();
   await window.electron.stopFeedbackFileWatcher();
 }
 
-/**
- * Clean up feedback resources for a file
- */
 export async function cleanupFeedback(filePath: string, tempFilePath?: string): Promise<void> {
   await stopFeedbackMonitors();
   if (tempFilePath) {
@@ -110,9 +87,6 @@ export async function cleanupFeedback(filePath: string, tempFilePath?: string): 
   feedbackTreeStore.clearFile(filePath);
 }
 
-/**
- * Find node with feedbackTempFile metadata
- */
 export function findCollaboratingNode(
   nodes: Record<string, TreeNode>
 ): [string, TreeNode] | null {

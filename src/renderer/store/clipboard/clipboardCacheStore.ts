@@ -1,36 +1,21 @@
 import { create } from 'zustand';
 
-/**
- * Cached clipboard content for internal copy/paste operations.
- * Stores just the root node IDs - the actual nodes are looked up from
- * the tree store at paste time, preserving full metadata.
- */
 export interface ClipboardCacheContent {
-  /** Root node IDs that were copied/cut (top-level selections) */
   rootNodeIds: string[];
-  /** All node IDs marked as cut (roots + descendants), only set for cut operations */
   allCutNodeIds?: string[];
-  /** Timestamp when content was cached */
   timestamp: number;
-  /** Whether this is a cut (move) or copy operation */
   isCut: boolean;
-  /** The markdown text written to clipboard, used to detect if clipboard was overwritten externally */
   clipboardText: string;
 }
 
 interface ClipboardCacheState {
-  /** Cached clipboard content, or null if empty */
   cache: ClipboardCacheContent | null;
 }
 
 interface ClipboardCacheActions {
-  /** Set the clipboard cache with copied/cut node IDs and the clipboard text */
   setCache: (rootNodeIds: string[], isCut: boolean, clipboardText: string, allCutNodeIds?: string[]) => void;
-  /** Get the current cache content */
   getCache: () => ClipboardCacheContent | null;
-  /** Clear the cache */
   clearCache: () => void;
-  /** Check if cache has content */
   hasCache: () => boolean;
 }
 

@@ -2,20 +2,15 @@ import { useMemo } from 'react';
 import { useStore } from '../../../store/tree/useStore';
 import { TreeNode } from '../../../../shared/types';
 
-/**
- * Compute visibility status string for children based on filter mode.
- */
 function useChildVisibilityStatus(children: string[] | undefined): string | null {
   const blueprintModeEnabled = useStore((state) => state.blueprintModeEnabled);
   const summaryModeEnabled = useStore((state) => state.summaryModeEnabled);
 
-  // Blueprint mode: check isBlueprint metadata
   const blueprintStatus = useStore((state) => {
     if (!children || !blueprintModeEnabled || summaryModeEnabled) return null;
     return children.map(id => state.nodes[id]?.metadata.isBlueprint ? '1' : '0').join('');
   });
 
-  // Summary mode: use pre-computed visible set from store
   const summaryStatus = useStore((state) => {
     if (!children || !summaryModeEnabled) return null;
     const visibleIds = state.summaryVisibleNodeIds;
@@ -28,9 +23,6 @@ function useChildVisibilityStatus(children: string[] | undefined): string | null
   return null;
 }
 
-/**
- * Returns visible children filtered by blueprint or summary mode.
- */
 export function useVisibleChildren(children: string[] | undefined): string[] {
   const blueprintModeEnabled = useStore((state) => state.blueprintModeEnabled);
   const summaryModeEnabled = useStore((state) => state.summaryModeEnabled);
@@ -44,9 +36,6 @@ export function useVisibleChildren(children: string[] | undefined): string[] {
   }, [children, blueprintModeEnabled, summaryModeEnabled, visibilityStatus]);
 }
 
-/**
- * Returns visible children for a specific node, filtered by blueprint or summary mode.
- */
 export function useNodeVisibleChildren(node: TreeNode | undefined): string[] {
   const children = node?.children;
   const blueprintModeEnabled = useStore((state) => state.blueprintModeEnabled);

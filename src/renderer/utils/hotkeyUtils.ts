@@ -24,7 +24,6 @@ export function parseKeyNotation(notation: string): KeyBinding {
     switch (modifier) {
       case 'cmdorctrl':
       case 'commandorcontrol':
-        // Electron's cross-platform modifier: Cmd on Mac, Ctrl on Windows/Linux
         binding.ctrl = true;
         binding.meta = true;
         break;
@@ -65,7 +64,6 @@ export function matchesKeyBinding(event: KeyboardEvent, binding: KeyBinding): bo
   const isCmdOrCtrlBinding = binding.ctrl && binding.meta;
 
   if (isCmdOrCtrlBinding) {
-    // For "CmdOrCtrl" bindings: match if EITHER ctrl OR meta is pressed (cross-platform)
     const hasModifier = eventCtrl || eventMeta;
     if (!hasModifier) return false;
 
@@ -86,14 +84,8 @@ export function matchesKeyNotation(event: KeyboardEvent, notation: string): bool
   return matchesKeyBinding(event, binding);
 }
 
-/**
- * Detect if running on macOS.
- */
 const isMac = (): boolean => navigator.platform?.includes('Mac') ?? false;
 
-/**
- * Format an Electron accelerator for display with platform-specific symbols.
- */
 export function formatHotkeyForDisplay(accelerator: string): string {
   if (!accelerator) return '';
 
@@ -127,9 +119,6 @@ export function formatHotkeyForDisplay(accelerator: string): string {
   return mac ? formatted.join('') : formatted.join('+');
 }
 
-/**
- * Convert a KeyboardEvent to Electron accelerator notation.
- */
 export function keyEventToNotation(event: KeyboardEvent): string {
   const parts: string[] = [];
 
@@ -143,7 +132,6 @@ export function keyEventToNotation(event: KeyboardEvent): string {
     parts.push('Alt');
   }
 
-  // Normalize key
   let key = event.key;
   if (key === ' ') {
     key = 'Space';

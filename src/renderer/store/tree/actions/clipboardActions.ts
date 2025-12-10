@@ -24,46 +24,12 @@ import { AncestorRegistry } from '../../../services/ancestry';
 import { v4 as uuidv4 } from 'uuid';
 
 export interface ClipboardActions {
-  /**
-   * Cut selected nodes to clipboard.
-   * Returns 'cut' if nodes were cut, 'no-selection' if nothing selected.
-   */
   cutNodes: () => Promise<'cut' | 'no-selection'>;
-
-  /**
-   * Copy selected nodes to clipboard.
-   * Returns 'copied' if nodes were copied, 'no-selection' if nothing selected.
-   */
   copyNodes: () => Promise<'copied' | 'no-selection'>;
-
-  /**
-   * Paste nodes from clipboard as children of active node (or root).
-   * Returns 'pasted' if nodes were pasted/moved, 'no-content' if clipboard had no valid nodes,
-   * 'blocked' if blueprint validation failed, 'cancelled' if pasting cut nodes into same parent.
-   */
   pasteNodes: () => Promise<'pasted' | 'no-content' | 'blocked' | 'cancelled'>;
-
-  /**
-   * Delete selected nodes (multi-selection or single active node).
-   * Returns 'deleted' if nodes were deleted, 'no-selection' if nothing selected.
-   */
   deleteSelectedNodes: () => 'deleted' | 'no-selection';
-
-  /**
-   * Copy the active node as a hyperlink reference.
-   * Returns 'copied' if successful, 'no-selection' if no node selected.
-   */
   copyAsHyperlink: () => 'copied' | 'no-selection';
-
-  /**
-   * Paste a hyperlink as a child of the active node.
-   * Returns 'pasted' if successful, 'no-content' if no hyperlink in cache.
-   */
   pasteAsHyperlink: () => 'pasted' | 'no-content';
-
-  /**
-   * Check if there's a hyperlink in the clipboard cache.
-   */
   hasHyperlinkCache: () => boolean;
 }
 
@@ -84,19 +50,10 @@ type StoreActions = {
 
 type StoreSetter = (partial: Partial<StoreState>) => void;
 
-/**
- * Check if any nodes in selection have isRoot metadata.
- * Returns true if root node is in the selection (indicates a bug).
- */
 function selectionContainsRoot(nodeIds: string[], nodes: Record<string, TreeNode>): boolean {
   return nodeIds.some((id) => nodes[id]?.metadata.isRoot === true);
 }
 
-/**
- * Filter a selection to only include "root level" nodes.
- * Removes any nodes whose ancestor is also in the selection.
- * This prevents duplicates when exporting/cloning hierarchies.
- */
 function getRootLevelSelections(
   nodeIds: string[],
   ancestorRegistry: Record<string, string[]>
@@ -104,7 +61,6 @@ function getRootLevelSelections(
   const selectionSet = new Set(nodeIds);
   return nodeIds.filter((nodeId) => {
     const ancestors = ancestorRegistry[nodeId] || [];
-    // Keep this node only if none of its ancestors are in the selection
     return !ancestors.some((ancestorId) => selectionSet.has(ancestorId));
   });
 }
@@ -114,21 +70,14 @@ type SelectionResult =
   | { type: 'single'; nodeId: string }
   | { type: 'none' };
 
-/**
- * Get the current selection - either multi-selected nodes or single active node.
- * For multi-selection, filters to root-level nodes only (removes descendants)
- * and sorts by tree order.
- */
 function getSelection(state: StoreState): SelectionResult {
   const { activeNodeId, nodes, multiSelectedNodeIds, ancestorRegistry, rootNodeId } = state;
 
   if (multiSelectedNodeIds.size > 0) {
-    // Filter to only root-level selections (exclude nodes whose ancestors are also selected)
     const rootLevelIds = getRootLevelSelections(
       Array.from(multiSelectedNodeIds),
       ancestorRegistry
     );
-    // Sort by tree order (not selection order)
     const sortedIds = sortNodeIdsByTreeOrder(rootLevelIds, rootNodeId, nodes, ancestorRegistry);
     return { type: 'multi', nodeIds: sortedIds };
   }
@@ -140,9 +89,6 @@ function getSelection(state: StoreState): SelectionResult {
   return { type: 'none' };
 }
 
-/**
- * Export nodes as markdown - handles both single and multi-selection.
- */
 function exportSelectionAsMarkdown(
   selection: SelectionResult,
   nodes: Record<string, TreeNode>
@@ -157,10 +103,6 @@ function exportSelectionAsMarkdown(
   return null;
 }
 
-
-/**
- * Flash one or more nodes with visual feedback.
- */
 function flashNodes(
   nodeIds: string | string[],
   visualEffects: VisualEffectsActions
@@ -168,26 +110,16 @@ function flashNodes(
   visualEffects.flashNode(nodeIds, 'light');
 }
 
-
-/**
- * Get all node IDs from a selection (as array).
- */
 function getNodeIdsFromSelection(selection: SelectionResult): string[] {
   if (selection.type === 'multi') return selection.nodeIds;
   if (selection.type === 'single') return [selection.nodeId];
   return [];
 }
 
-/**
- * Check if any nodes in the map have the isBlueprint flag.
- */
 function containsBlueprintNodes(nodesMap: Record<string, TreeNode>): boolean {
   return Object.values(nodesMap).some((node) => node.metadata.isBlueprint === true);
 }
 
-/**
- * Check if the target parent is a blueprint node.
- */
 function isTargetBlueprint(targetParentId: string, nodes: Record<string, TreeNode>): boolean {
   const targetParent = nodes[targetParentId];
   return targetParent?.metadata.isBlueprint === true;
@@ -206,28 +138,19 @@ interface PasteContext {
   clearCutState: () => void;
 }
 
-/**
- * Check if target is invalid for move:
- * - Moving node into itself
- * - Moving node into its descendant
- * - Moving node into its current parent (no-op)
- */
 function isInvalidMoveTarget(
   nodeIds: string[],
   targetParentId: string,
   rootNodeId: string,
   ancestorRegistry: Record<string, string[]>
 ): boolean {
-  // Can't move a node into itself
   if (nodeIds.includes(targetParentId)) {
     return true;
   }
-  // Can't move a node into one of its descendants
   const targetAncestors = ancestorRegistry[targetParentId] || [];
   if (nodeIds.some((id) => targetAncestors.includes(id))) {
     return true;
   }
-  // Can't move nodes that are already in the target parent (no-op)
   const firstNodeParent = getParentId(nodeIds[0], ancestorRegistry, rootNodeId);
   const allSameParent = nodeIds.every(
     (id) => getParentId(id, ancestorRegistry, rootNodeId) === firstNodeParent
@@ -238,10 +161,6 @@ function isInvalidMoveTarget(
   return false;
 }
 
-/**
- * Handle cut-paste (move operation).
- * Returns null if this handler doesn't apply.
- */
 function handleCutPaste(
   cache: ClipboardCacheContent,
   ctx: PasteContext
@@ -258,20 +177,17 @@ function handleCutPaste(
     return 'no-content';
   }
 
-  // Check if move target is invalid (into self, descendant, or same parent)
   if (isInvalidMoveTarget(nodesToMove, targetParentId, state.rootNodeId, state.ancestorRegistry)) {
     clearCutState();
     logger.info('Paste cancelled - invalid move target', 'ClipboardActions');
     return 'cancelled';
   }
 
-  // Build map of cut nodes for blueprint validation
   const cutNodesMap: Record<string, TreeNode> = {};
   for (const id of nodesToMove) {
     cutNodesMap[id] = state.nodes[id];
   }
 
-  // Blueprint validation: block moving blueprint nodes into non-blueprint parent
   if (!isTargetBlueprint(targetParentId, state.nodes) && containsBlueprintNodes(cutNodesMap)) {
     useToastStore.getState().addToast(
       'Cannot move blueprint nodes into a non-blueprint parent',
@@ -280,7 +196,6 @@ function handleCutPaste(
     return 'blocked';
   }
 
-  // Move each node to the new parent
   for (const nodeId of nodesToMove) {
     const targetParent = state.nodes[targetParentId];
     const newPosition = targetParent ? targetParent.children.length : 0;
@@ -311,10 +226,6 @@ function handleCutPaste(
   return 'pasted';
 }
 
-/**
- * Handle copy-paste (clone operation) from internal cache.
- * Returns null if this handler doesn't apply.
- */
 function handleCopyPaste(
   cache: ClipboardCacheContent,
   ctx: PasteContext
@@ -328,10 +239,9 @@ function handleCopyPaste(
 
   if (newRootNodes.length === 0) {
     useClipboardCacheStore.getState().clearCache();
-    return null; // Fall through to external paste
+    return null;
   }
 
-  // Blueprint validation
   if (!isTargetBlueprint(targetParentId, state.nodes) && containsBlueprintNodes(newNodesMap)) {
     useToastStore.getState().addToast(
       'Cannot paste blueprint nodes into a non-blueprint parent',
@@ -364,17 +274,11 @@ function handleCopyPaste(
   return 'pasted';
 }
 
-/**
- * Check if text is an external URL (starts with http:// or https://)
- */
 function isExternalUrl(text: string): boolean {
   const trimmed = text.trim();
   return trimmed.startsWith('http://') || trimmed.startsWith('https://');
 }
 
-/**
- * Handle pasting an external URL as a link node.
- */
 function handleExternalUrlPaste(
   url: string,
   ctx: PasteContext
@@ -414,30 +318,22 @@ function handleExternalUrlPaste(
   return 'pasted';
 }
 
-/**
- * Handle external paste from system clipboard markdown.
- * Returns 'no-content' for plain text to allow browser native paste at cursor.
- */
 async function handleExternalPaste(ctx: PasteContext): Promise<PasteResult> {
   const { state, targetParentId, actions, get, set, triggerAutosave, visualEffects } = ctx;
 
   const clipboardText = await readFromClipboard('ClipboardActions:paste');
   if (!clipboardText) return 'no-content';
 
-  // Check if clipboard contains an external URL
   if (isExternalUrl(clipboardText)) {
     return handleExternalUrlPaste(clipboardText, ctx);
   }
 
   const parsed = parseMarkdown(clipboardText);
 
-  // If markdown parsing yielded no nodes, return 'no-content' to allow
-  // browser native paste behavior (inserts text at cursor position)
   if (parsed.rootNodes.length === 0) {
     return 'no-content';
   }
 
-  // Blueprint validation
   if (!isTargetBlueprint(targetParentId, state.nodes) && containsBlueprintNodes(parsed.allNodes)) {
     useToastStore.getState().addToast(
       'Cannot paste blueprint nodes into a non-blueprint parent',
@@ -476,10 +372,6 @@ export const createClipboardActions = (
   visualEffects: VisualEffectsActions,
   triggerAutosave?: () => void
 ): ClipboardActions => {
-  /**
-   * Clear any existing cut state by removing transient.isCut from all nodes.
-   * This is a direct state update, not a command (doesn't go through undo).
-   */
   function clearCutState(): void {
     const cache = useClipboardCacheStore.getState().getCache();
     const cutIds = cache?.allCutNodeIds || [];
@@ -506,9 +398,6 @@ export const createClipboardActions = (
     useClipboardCacheStore.getState().clearCache();
   }
 
-  /**
-   * Execute deletion for multi-selection using a command.
-   */
   function executeMultiNodeDelete(nodeIds: string[]): void {
     const actions = getActions();
     visualEffects.startDeleteAnimation(nodeIds, () => {
@@ -528,9 +417,6 @@ export const createClipboardActions = (
     });
   }
 
-  /**
-   * Execute deletion for a single node.
-   */
   function executeSingleNodeDelete(nodeId: string): void {
     const actions = getActions();
     visualEffects.startDeleteAnimation(nodeId, () => {
@@ -557,10 +443,8 @@ export const createClipboardActions = (
     const success = await writeToClipboard(markdown, 'ClipboardActions:cut');
     if (!success) return 'no-selection';
 
-    // Clear any previous cut state before marking new nodes
     clearCutState();
 
-    // Mark nodes as cut (including all descendants) via command
     const allCutIds = getNodeAndDescendantIds(nodeIds, state.nodes);
     const actions = getActions();
     const command = new MarkCutCommand(
@@ -570,7 +454,6 @@ export const createClipboardActions = (
     );
     actions.executeCommand(command);
 
-    // Cache the root node IDs and all cut IDs for paste operation
     useClipboardCacheStore.getState().setCache(nodeIds, true, markdown, allCutIds);
 
     logger.info(`Cut ${nodeIds.length} node(s)`, 'ClipboardActions');
@@ -589,10 +472,8 @@ export const createClipboardActions = (
     const success = await writeToClipboard(markdown, 'ClipboardActions:copy');
     if (!success) return 'no-selection';
 
-    // Clear any previous cut state
     clearCutState();
 
-    // Cache node IDs for internal paste
     const nodeIds = getNodeIdsFromSelection(selection);
     useClipboardCacheStore.getState().setCache(nodeIds, false, markdown);
 
@@ -607,7 +488,6 @@ export const createClipboardActions = (
     const targetParentId = state.activeNodeId || state.rootNodeId;
     if (!targetParentId) return 'no-content';
 
-    // Link nodes (hyperlinks and external links) cannot have children
     const targetParent = state.nodes[targetParentId];
     const isLinkNode = targetParent?.metadata.isHyperlink === true || targetParent?.metadata.isExternalLink === true;
     if (isLinkNode) {
@@ -627,26 +507,20 @@ export const createClipboardActions = (
       clearCutState,
     };
 
-    // Check if cache is still valid by comparing clipboard content
-    // If user copied something else externally, the cache is stale
     const clipboardText = await readFromClipboard('ClipboardActions:paste');
     const cacheIsValid = cache && clipboardText === cache.clipboardText;
 
-    // Try cut-paste first (only if cache is valid)
     if (cacheIsValid) {
       const cutResult = handleCutPaste(cache, ctx);
       if (cutResult !== null) return cutResult;
 
-      // Try copy-paste from cache
       const copyResult = handleCopyPaste(cache, ctx);
       if (copyResult !== null) return copyResult;
     }
 
-    // Check for hyperlink cache before falling back to external clipboard
     const hyperlinkResult = pasteAsHyperlink();
     if (hyperlinkResult === 'pasted') return 'pasted';
 
-    // Fall back to external clipboard
     return handleExternalPaste(ctx);
   }
 
@@ -663,7 +537,6 @@ export const createClipboardActions = (
       return 'no-selection';
     }
 
-    // Clear cut state if we're deleting cut nodes
     const cache = useClipboardCacheStore.getState().getCache();
     const cutIds = cache?.allCutNodeIds || [];
     if (cutIds.length > 0 && nodeIds.some((id) => cutIds.includes(id))) {
@@ -691,7 +564,6 @@ export const createClipboardActions = (
     const node = nodes[activeNodeId];
     if (!node) return 'no-selection';
 
-    // Store the node ID, content snapshot, and source file path in hyperlink cache
     useHyperlinkClipboardStore.getState().setCache(activeNodeId, node.content, currentFilePath);
 
     flashNodes(activeNodeId, visualEffects);
@@ -706,7 +578,6 @@ export const createClipboardActions = (
     const state = get();
     const { currentFilePath } = state;
 
-    // Block cross-document hyperlinks - silently do nothing
     if (!currentFilePath || hyperlinkCache.sourceFilePath !== currentFilePath) {
       return 'no-content';
     }
@@ -717,7 +588,6 @@ export const createClipboardActions = (
     const targetParent = state.nodes[targetParentId];
     if (!targetParent) return 'no-content';
 
-    // Link nodes cannot have children
     const isLinkNode = targetParent.metadata.isHyperlink === true || targetParent.metadata.isExternalLink === true;
     if (isLinkNode) {
       useToastStore.getState().addToast('Cannot add hyperlink as child of a link node', 'error');

@@ -13,9 +13,6 @@ interface FileMenuActions {
   handleQuit: () => void;
 }
 
-/**
- * Hook providing action handlers for File menu items.
- */
 export function useFileMenuActions(): FileMenuActions {
   const actions = useFilesStore((state) => state.actions);
   const activeFilePath = useFilesStore((state) => state.activeFilePath);

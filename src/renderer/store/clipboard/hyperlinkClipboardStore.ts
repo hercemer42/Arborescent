@@ -1,18 +1,9 @@
 import { create } from 'zustand';
 
-/**
- * Store for tracking "Copy as Hyperlink" operations.
- * Stores the node ID, content, and source file path.
- * Hyperlinks only work within the same document.
- */
 export interface HyperlinkClipboardContent {
-  /** Node ID that was copied as hyperlink */
   nodeId: string;
-  /** Content snapshot at copy time (for hyperlink display) */
   content: string;
-  /** Source file path (to prevent cross-document hyperlinks) */
   sourceFilePath: string;
-  /** Timestamp when content was cached */
   timestamp: number;
 }
 

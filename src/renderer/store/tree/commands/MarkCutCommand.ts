@@ -1,11 +1,6 @@
 import { TreeNode } from '../../../../shared/types';
 import { BaseCommand } from './Command';
 
-/**
- * Command for marking nodes as cut (non-destructive).
- * Sets metadata.transient.isCut = true on nodes.
- * Undoing this command clears the cut state.
- */
 export class MarkCutCommand extends BaseCommand {
   description = 'Mark nodes as cut';
 
@@ -54,7 +49,6 @@ export class MarkCutCommand extends BaseCommand {
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const { isCut, ...restTransient } = transient || {};
 
-        // If transient is now empty, remove it entirely
         const newMetadata =
           Object.keys(restTransient).length > 0
             ? { ...restMetadata, transient: restTransient }

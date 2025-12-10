@@ -8,10 +8,6 @@ interface UseBrowserWebviewOptions {
   onWebviewReady?: (id: string, webview: HTMLWebViewElement | null) => void;
 }
 
-/**
- * Hook to manage webview lifecycle and events
- * Handles webview ref, event listeners, and state updates
- */
 export function useBrowserWebview({ id, url, onWebviewReady }: UseBrowserWebviewOptions) {
   const webviewRef = useRef<HTMLWebViewElement | null>(null);
   const updateTabTitle = useBrowserStore((state) => state.actions.updateTabTitle);
@@ -53,7 +49,7 @@ export function useBrowserWebview({ id, url, onWebviewReady }: UseBrowserWebview
 
     const handleDidFailLoad = (e: Event) => {
       const errorEvent = e as unknown as { errorDescription: string; errorCode: number };
-      // ERR_ABORTED (-3) is common and benign - happens during redirects or when navigation is cancelled
+      // ERR_ABORTED (-3) is benign, happens during redirects
       if (errorEvent.errorCode === -3) return;
       logger.warn(`Browser failed to load: ${errorEvent.errorDescription} (${errorEvent.errorCode})`, 'Browser');
     };

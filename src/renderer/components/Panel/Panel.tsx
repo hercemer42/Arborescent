@@ -10,10 +10,6 @@ interface PanelProps {
   contentRef: RefObject<HTMLDivElement | null>;
 }
 
-/**
- * Unified panel component that can display either terminal or browser content
- * The panel configuration (position, size) is shared regardless of content type
- */
 export function Panel({ contentRef }: PanelProps) {
   const panelPosition = usePanelStore((state) => state.panelPosition);
   const panelHeight = usePanelStore((state) => state.panelHeight);

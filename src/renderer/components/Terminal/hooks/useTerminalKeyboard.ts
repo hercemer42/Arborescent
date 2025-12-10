@@ -1,10 +1,6 @@
 import { useEffect } from 'react';
 import { Terminal as XTerm } from '@xterm/xterm';
 
-/**
- * Hook to handle terminal keyboard shortcuts for copy/paste
- * Implements standard terminal shortcuts: Ctrl+Shift+C/V
- */
 export function useTerminalKeyboard(xterm: XTerm | null) {
   useEffect(() => {
     if (!xterm) return;

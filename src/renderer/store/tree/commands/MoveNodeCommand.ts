@@ -3,10 +3,6 @@ import { TreeNode } from '../../../../shared/types';
 import { moveNodeInRegistry, AncestorRegistry } from '../../../services/ancestry';
 import { getIsContextChild, getAllDescendants, updateNodeMetadata } from '../../../utils/nodeHelpers';
 
-/**
- * Command for moving a node to a new parent/position
- * This handles drag-drop, indent, outdent
- */
 export class MoveNodeCommand extends BaseCommand {
   private oldParentId: string | null = null;
   private oldPosition: number = -1;
@@ -38,27 +34,21 @@ export class MoveNodeCommand extends BaseCommand {
     const node = nodes[this.nodeId];
     if (!node) return;
 
-    // Capture old position
     const ancestors = ancestorRegistry[this.nodeId] || [];
     this.oldParentId = ancestors[ancestors.length - 1] || rootNodeId;
     const oldParent = nodes[this.oldParentId];
     if (!oldParent) return;
 
     this.oldPosition = oldParent.children.indexOf(this.nodeId);
-
-    // Clear previous blueprint states
     this.previousBlueprintStates.clear();
 
-    // Perform the move
     let updatedNodes = { ...nodes };
 
-    // Remove from old parent
     updatedNodes[this.oldParentId] = {
       ...oldParent,
       children: oldParent.children.filter(id => id !== this.nodeId),
     };
 
-    // Add to new parent
     const newParent = updatedNodes[this.newParentId];
     if (!newParent) return;
 
@@ -70,14 +60,12 @@ export class MoveNodeCommand extends BaseCommand {
       children: newChildren,
     };
 
-    // Inherit blueprint status only when moving into a context tree
     const parentIsContextDeclaration = newParent.metadata.isContextDeclaration === true;
     const parentIsContextChild = getIsContextChild(this.newParentId, nodes, ancestorRegistry);
     if (parentIsContextDeclaration || parentIsContextChild) {
       updatedNodes = this.inheritBlueprintStatus(updatedNodes, this.nodeId, nodes);
     }
 
-    // Incremental update: update ancestors for moved node and descendants
     const newAncestorRegistry = moveNodeInRegistry(
       ancestorRegistry,
       this.nodeId,
@@ -85,7 +73,6 @@ export class MoveNodeCommand extends BaseCommand {
       updatedNodes
     );
 
-    // Select the moved node and place cursor at end of its content
     const movedNode = updatedNodes[this.nodeId];
     const cursorPosition = movedNode ? movedNode.content.length : 0;
 
@@ -127,10 +114,8 @@ export class MoveNodeCommand extends BaseCommand {
 
     const { nodes, ancestorRegistry } = this.getState();
 
-    // Move back to old position
     let updatedNodes = { ...nodes };
 
-    // Remove from current parent
     const currentParent = updatedNodes[this.newParentId];
     if (!currentParent) return;
 
@@ -139,7 +124,6 @@ export class MoveNodeCommand extends BaseCommand {
       children: currentParent.children.filter(id => id !== this.nodeId),
     };
 
-    // Add back to old parent
     const oldParent = updatedNodes[this.oldParentId];
     if (!oldParent) return;
 
@@ -151,12 +135,10 @@ export class MoveNodeCommand extends BaseCommand {
       children: oldChildren,
     };
 
-    // Restore blueprint status for nodes that were modified
     for (const [nodeId, previousState] of this.previousBlueprintStates) {
       updatedNodes = updateNodeMetadata(updatedNodes, nodeId, { isBlueprint: previousState });
     }
 
-    // Incremental update: update ancestors for moved node and descendants
     const newAncestorRegistry = moveNodeInRegistry(
       ancestorRegistry,
       this.nodeId,
@@ -164,7 +146,6 @@ export class MoveNodeCommand extends BaseCommand {
       updatedNodes
     );
 
-    // Select the moved node and place cursor at end of its content
     const movedNode = updatedNodes[this.nodeId];
     const cursorPosition = movedNode ? movedNode.content.length : 0;
 

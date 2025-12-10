@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2025-12-09T23:30:57.000Z'
+updated: '2025-12-09T23:51:54.712Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -6051,6 +6051,7 @@ nodes:
     children:
       - f34d3e31-6adf-4f21-b8d7-20e0b0cf1c00
       - e9f83c64-7825-4969-b60d-828938e0f9cf
+      - 1a4afd5a-a5bb-4073-a467-f730b24f2a65
     metadata:
       status: pending
       expanded: true
@@ -6142,6 +6143,7 @@ nodes:
       - 565e741a-337a-46cc-83bf-97fd39e1dff3
       - 869e317f-ec2a-4d2d-a8bb-8bc22d84e326
       - bf7a428b-6e45-4024-8eea-a1491604e927
+      - 7dcca48a-11f1-4245-aff7-651b3e03edbc
     metadata:
       status: pending
       expanded: false
@@ -6265,7 +6267,6 @@ nodes:
     children:
       - 504e6f7a-3dae-41f0-b7c6-9f63ba66900d
       - 6328bcde-087d-4a83-8bf7-974dab32f3c3
-      - 1a4afd5a-a5bb-4073-a467-f730b24f2a65
     metadata:
       status: pending
       expanded: true
@@ -12989,9 +12990,12 @@ nodes:
     content: Gutter refactor
     children:
       - 9ba5a760-54bc-4341-9e50-5611c0f0acd4
+      - e0a89015-f08b-4e26-be9a-67d0ccc1540e
+      - 651f330f-ada9-4bd0-bbf1-770333e30ab1
+      - 5482526e-64d3-415a-aa11-f54d6159aa7a
     metadata:
       status: pending
-      expanded: false
+      expanded: true
   9ba5a760-54bc-4341-9e50-5611c0f0acd4:
     id: 9ba5a760-54bc-4341-9e50-5611c0f0acd4
     content: If we don't do patterns we can better use the gutter space
@@ -16132,6 +16136,7 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
+      isBlueprint: true
   e05aa3ca-f7aa-4086-ae26-db404d6e55e4:
     id: e05aa3ca-f7aa-4086-ae26-db404d6e55e4
     content: Mock at the right level - mock the imported module, not underlying APIs
@@ -16141,6 +16146,7 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
+      isBlueprint: true
   57edc3d9-fbda-4b6c-a800-c49bd8f4dd2a:
     id: 57edc3d9-fbda-4b6c-a800-c49bd8f4dd2a
     content: Test isolation - clear all shared state in beforeEach, not just some of it
@@ -16150,6 +16156,7 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
+      isBlueprint: true
   804b0413-b5c7-4e87-9561-8447bc3a1737:
     id: 804b0413-b5c7-4e87-9561-8447bc3a1737
     content: Avoid mockReturnValueOnce - use mockImplementation with conditionals instead
@@ -16159,6 +16166,7 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
+      isBlueprint: true
   5cc686fc-7651-4d83-9ccf-78a29d1dff13:
     id: 5cc686fc-7651-4d83-9ccf-78a29d1dff13
     content: Done
@@ -16549,6 +16557,55 @@ nodes:
   5040deb6-0361-42e4-84a6-7afeb8b9a5f8:
     id: 5040deb6-0361-42e4-84a6-7afeb8b9a5f8
     content: Clean up comments
+    children: []
+    metadata:
+      status: pending
+  7dcca48a-11f1-4245-aff7-651b3e03edbc:
+    id: 7dcca48a-11f1-4245-aff7-651b3e03edbc
+    content: Documentation
+    children:
+      - fc72c8a4-a70f-4aed-9f73-962f0948b8fb
+      - b69663ad-d129-4df0-bb7d-1d00ea05350d
+      - 655a8d92-351d-41f2-b585-ef8256d105df
+    metadata:
+      status: pending
+      isBlueprint: true
+  fc72c8a4-a70f-4aed-9f73-962f0948b8fb:
+    id: fc72c8a4-a70f-4aed-9f73-962f0948b8fb
+    content: The code should be self documenting, comments should
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  b69663ad-d129-4df0-bb7d-1d00ea05350d:
+    id: b69663ad-d129-4df0-bb7d-1d00ea05350d
+    content: Don't use JSdoc conventions
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  655a8d92-351d-41f2-b585-ef8256d105df:
+    id: 655a8d92-351d-41f2-b585-ef8256d105df
+    content: Do explain WHY we've done something only if it's unconventional or difficult to understand
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  e0a89015-f08b-4e26-be9a-67d0ccc1540e:
+    id: e0a89015-f08b-4e26-be9a-67d0ccc1540e
+    content: Increase space between icons and carets a little
+    children: []
+    metadata:
+      status: pending
+  651f330f-ada9-4bd0-bbf1-770333e30ab1:
+    id: 651f330f-ada9-4bd0-bbf1-770333e30ab1
+    content: Otherwise reduce gutter width a little
+    children: []
+    metadata:
+      status: pending
+  5482526e-64d3-415a-aa11-f54d6159aa7a:
+    id: 5482526e-64d3-415a-aa11-f54d6159aa7a
+    content: Get rid of left hand space reserved for icon that was never used
     children: []
     metadata:
       status: pending

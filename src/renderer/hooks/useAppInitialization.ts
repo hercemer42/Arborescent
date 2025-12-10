@@ -6,10 +6,6 @@ import { usePanelStore } from '../store/panel/panelStore';
 import { usePreferencesStore } from '../store/preferences/preferencesStore';
 import { logger } from '../services/logger';
 
-/**
- * Hook to handle app-level initialization on startup
- * Restores sessions and auto-creates terminal if needed
- */
 export function useAppInitialization(onComplete: () => void) {
   useEffect(() => {
     const initializeSession = useFilesStore.getState().actions.initializeSession;
@@ -24,7 +20,6 @@ export function useAppInitialization(onComplete: () => void) {
       loadPreferences(),
     ])
       .then(async () => {
-        // Auto-create a terminal if none exist AND terminal panel is active
         const activeContent = usePanelStore.getState().activeContent;
         const terminalStore = useTerminalStore.getState();
         if (terminalStore.terminals.length === 0 && activeContent === 'terminal') {

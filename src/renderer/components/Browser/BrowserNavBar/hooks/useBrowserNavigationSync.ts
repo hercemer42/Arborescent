@@ -7,10 +7,6 @@ interface UseBrowserNavigationSyncOptions {
   updateAddressBarFromWebview: () => void;
 }
 
-/**
- * Hook to synchronize navigation state between webview and UI
- * Listens to webview navigation events and updates UI accordingly
- */
 export function useBrowserNavigationSync({
   activeTabId,
   getActiveWebview,

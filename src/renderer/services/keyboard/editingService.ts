@@ -3,14 +3,6 @@ import { getCursorPosition } from '../cursorService';
 import { matchesHotkey } from '../../data/hotkeyConfig';
 import { convertToContentEditable, convertFromContentEditable } from '../../utils/contentConversion';
 
-/**
- * Keyboard editing service
- * Handles all editing-related keyboard shortcuts
- */
-
-/**
- * Get cursor position from a range's start or end point
- */
 function getCursorPositionFromRange(element: HTMLElement, range: Range, useStart: boolean): number {
   const preCaretRange = range.cloneRange();
   preCaretRange.selectNodeContents(element);
@@ -25,17 +17,12 @@ function getCursorPositionFromRange(element: HTMLElement, range: Range, useStart
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type StoreState = ReturnType<NonNullable<ReturnType<typeof getActiveStore>>['getState']>;
 
-/**
- * Handle Enter key: create new sibling or split node at cursor
- * @param createAsChild - If true and node has children, create as first child instead of sibling
- */
 function handleEnterKey(element: HTMLElement, store: StoreState, activeNodeId: string, createAsChild: boolean = false): void {
   const content = convertFromContentEditable(element);
   const activeNode = store.nodes[activeNodeId];
   const hasChildren = activeNode && activeNode.children.length > 0;
   const shouldCreateAsChild = createAsChild && hasChildren;
 
-  // Handle text selection: delete selected text and split at selection start
   const selection = window.getSelection();
   if (selection && !selection.isCollapsed) {
     const range = selection.getRangeAt(0);
@@ -54,16 +41,13 @@ function handleEnterKey(element: HTMLElement, store: StoreState, activeNodeId: s
 
   const cursorPos = getCursorPosition(element);
 
-  // Cursor at start: create empty sibling above (same behavior regardless of createAsChild)
   if (cursorPos === 0 && content.length > 0) {
     store.actions.createNodeBefore(activeNodeId);
     return;
   }
 
-  // Cursor at end: create empty node (as child if applicable, else sibling)
   if (cursorPos >= content.length) {
     if (shouldCreateAsChild) {
-      // Create empty first child
       store.actions.splitNode(activeNodeId, content, content.length, true);
     } else {
       store.actions.createNode(activeNodeId);
@@ -71,13 +55,9 @@ function handleEnterKey(element: HTMLElement, store: StoreState, activeNodeId: s
     return;
   }
 
-  // Cursor mid-content: split node (as child if applicable)
   store.actions.splitNode(activeNodeId, content, cursorPos, shouldCreateAsChild);
 }
 
-/**
- * Handle delete node shortcut
- */
 function handleDeleteNode(store: StoreState, activeNodeId: string): void {
   if (store.multiSelectedNodeIds && store.multiSelectedNodeIds.size > 0) {
     store.actions.deleteSelectedNodes();
@@ -95,9 +75,6 @@ function handleDeleteNode(store: StoreState, activeNodeId: string): void {
   }
 }
 
-/**
- * Handles editing keyboard shortcuts
- */
 function handleEditingShortcuts(event: KeyboardEvent): void {
   const activeStore = getActiveStore();
   const element = getActiveNodeElement();
@@ -110,7 +87,6 @@ function handleEditingShortcuts(event: KeyboardEvent): void {
   const activeNode = store.nodes[activeNodeId];
   if (!activeNode) return;
 
-  // Move node up
   if (matchesHotkey(event, 'navigation', 'moveNodeUp')) {
     event.preventDefault();
     store.actions.setCursorPosition(getCursorPosition(element));
@@ -118,7 +94,6 @@ function handleEditingShortcuts(event: KeyboardEvent): void {
     return;
   }
 
-  // Move node down
   if (matchesHotkey(event, 'navigation', 'moveNodeDown')) {
     event.preventDefault();
     store.actions.setCursorPosition(getCursorPosition(element));
@@ -126,10 +101,9 @@ function handleEditingShortcuts(event: KeyboardEvent): void {
     return;
   }
 
-  // Ctrl+Enter: split at cursor, create as child if node has children
   if (matchesHotkey(event, 'editing', 'newSiblingAfter')) {
     event.preventDefault();
-    // Link nodes: just create new sibling (no splitting)
+    // Link nodes can't be split
     const isLinkNode = activeNode.metadata.isHyperlink === true || activeNode.metadata.isExternalLink === true;
     if (isLinkNode) {
       store.actions.createNode(activeNodeId);
@@ -139,14 +113,12 @@ function handleEditingShortcuts(event: KeyboardEvent): void {
     return;
   }
 
-  // Enter: create blank node (no splitting)
   if (matchesHotkey(event, 'editing', 'newSiblingNoSplit')) {
     event.preventDefault();
     store.actions.createNode(activeNodeId);
     return;
   }
 
-  // Outdent
   if (matchesHotkey(event, 'editing', 'outdent')) {
     event.preventDefault();
     store.actions.setCursorPosition(getCursorPosition(element));
@@ -155,7 +127,6 @@ function handleEditingShortcuts(event: KeyboardEvent): void {
     return;
   }
 
-  // Indent
   if (matchesHotkey(event, 'editing', 'indent')) {
     event.preventDefault();
     store.actions.setCursorPosition(getCursorPosition(element));
@@ -164,7 +135,6 @@ function handleEditingShortcuts(event: KeyboardEvent): void {
     return;
   }
 
-  // Cancel edit and clear selections
   if (matchesHotkey(event, 'editing', 'cancelEdit')) {
     event.preventDefault();
     convertToContentEditable(element, activeNode.content);
@@ -173,7 +143,6 @@ function handleEditingShortcuts(event: KeyboardEvent): void {
     return;
   }
 
-  // Delete node
   if (matchesHotkey(event, 'actions', 'deleteNode')) {
     event.preventDefault();
     store.actions.setCursorPosition(getCursorPosition(element));
@@ -181,7 +150,6 @@ function handleEditingShortcuts(event: KeyboardEvent): void {
     return;
   }
 
-  // Expand/collapse node
   if (matchesHotkey(event, 'navigation', 'expandCollapse')) {
     event.preventDefault();
     store.actions.setCursorPosition(getCursorPosition(element));
@@ -189,7 +157,6 @@ function handleEditingShortcuts(event: KeyboardEvent): void {
     return;
   }
 
-  // Toggle task status
   if (matchesHotkey(event, 'actions', 'toggleTaskStatus')) {
     event.preventDefault();
     store.actions.setCursorPosition(getCursorPosition(element));
@@ -197,20 +164,15 @@ function handleEditingShortcuts(event: KeyboardEvent): void {
     return;
   }
 
-  // Reset remembered X on typing
   if (event.key.length === 1 || event.key === 'Backspace' || event.key === 'Delete') {
     store.actions.setRememberedVisualX(null);
   }
 }
 
-/**
- * Main keyboard event handler for editing shortcuts
- */
 function handleKeyDown(event: KeyboardEvent): void {
   const activeStore = getActiveStore();
 
-  // Handle undo/redo (doesn't require active element)
-  // Must preventDefault AND stopPropagation to prevent contentEditable native undo
+  // stopPropagation prevents contentEditable's native undo
   if (matchesHotkey(event, 'actions', 'undo')) {
     event.preventDefault();
     event.stopPropagation();
@@ -235,10 +197,6 @@ function handleKeyDown(event: KeyboardEvent): void {
   handleEditingShortcuts(event);
 }
 
-/**
- * Initializes the editing keyboard service
- * Call this once when the app starts
- */
 export function initializeEditingService(target: HTMLElement | Window = window): () => void {
   target.addEventListener('keydown', handleKeyDown as EventListener, true);
 

@@ -1,13 +1,5 @@
 import { logger } from '../logger';
 
-/**
- * Service for managing temporary feedback files
- * These files store feedback content during a collaboration session to enable crash recovery
- */
-
-/**
- * Compute a simple hash of the content for validation
- */
 export function computeContentHash(content: string): string {
   let hash = 0;
   for (let i = 0; i < content.length; i++) {
@@ -18,10 +10,6 @@ export function computeContentHash(content: string): string {
   return Math.abs(hash).toString(36);
 }
 
-/**
- * Save feedback content to a temporary file
- * Returns the file path and content hash
- */
 export async function saveFeedbackContent(
   nodeId: string,
   content: string
@@ -40,10 +28,6 @@ export async function saveFeedbackContent(
   }
 }
 
-/**
- * Load feedback content from a temporary file
- * Validates the content hash if provided
- */
 export async function loadFeedbackContent(
   filePath: string,
   expectedHash?: string
@@ -77,9 +61,6 @@ export async function loadFeedbackContent(
   }
 }
 
-/**
- * Delete a feedback temporary file
- */
 export async function deleteFeedbackTempFile(filePath: string): Promise<void> {
   try {
     await window.electron.deleteTempFile(filePath);

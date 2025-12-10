@@ -2,9 +2,6 @@ import { ipcMain, dialog, BrowserWindow } from 'electron';
 import { logger } from '../logger';
 import { getLastSavedDirectory, saveLastUsedDirectory } from '../utils/persistence';
 
-/**
- * Register dialog-related IPC handlers
- */
 export function registerDialogHandlers(getMainWindow: () => BrowserWindow | null): void {
   ipcMain.handle('show-open-dialog', async () => {
     const mainWindow = getMainWindow();
@@ -34,7 +31,6 @@ export function registerDialogHandlers(getMainWindow: () => BrowserWindow | null
   ipcMain.handle('show-save-dialog', async (_event, providedDefaultPath?: string) => {
     const mainWindow = getMainWindow();
 
-    // Use provided default path (e.g., current file's directory), or fall back to last saved directory
     const defaultPath = providedDefaultPath || await getLastSavedDirectory();
 
     const options = {
@@ -50,7 +46,6 @@ export function registerDialogHandlers(getMainWindow: () => BrowserWindow | null
       return null;
     }
 
-    // Ensure .arbo extension is always present (cross-platform consistency)
     let filePath = result.filePath;
     if (!filePath.endsWith('.arbo')) {
       filePath = `${filePath}.arbo`;

@@ -3,9 +3,6 @@ import { promises as fs } from 'node:fs';
 import path from 'node:path';
 import { logger } from '../logger';
 
-/**
- * Register temporary file management IPC handlers
- */
 export function registerTempFileHandlers(): void {
   ipcMain.handle('get-temp-dir', async () => {
     const tempDir = path.join(app.getPath('userData'), 'temp-files');
@@ -53,7 +50,6 @@ export function registerTempFileHandlers(): void {
     }
   });
 
-  // Generic temp file read handler
   ipcMain.handle('read-temp-file', async (_, filePath: string) => {
     try {
       const content = await fs.readFile(filePath, 'utf-8');
@@ -65,7 +61,6 @@ export function registerTempFileHandlers(): void {
     }
   });
 
-  // Check if a file is in the temp directory
   ipcMain.handle('is-temp-file', async (_, filePath: string) => {
     const tempDir = path.join(app.getPath('userData'), 'temp-files');
     return filePath.startsWith(tempDir);

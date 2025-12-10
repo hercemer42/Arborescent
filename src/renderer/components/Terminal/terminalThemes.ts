@@ -1,9 +1,6 @@
 import { ITheme } from '@xterm/xterm';
 
-/**
- * Dark theme for terminal
- * Kept for future theme switching feature
- */
+// Kept for future theme switching feature
 export const DARK_THEME: ITheme = {
   background: '#1e1e1e',
   foreground: '#d4d4d4',
@@ -26,9 +23,6 @@ export const DARK_THEME: ITheme = {
   brightWhite: '#e5e5e5',
 };
 
-/**
- * Light theme for terminal (default)
- */
 export const LIGHT_THEME: ITheme = {
   background: '#ffffff',
   foreground: '#1e1e1e',

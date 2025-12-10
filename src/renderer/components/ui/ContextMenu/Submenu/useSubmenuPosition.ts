@@ -5,10 +5,6 @@ interface SubmenuPosition {
   flipVertical: boolean;
 }
 
-/**
- * Hook that detects if a submenu would overflow viewport boundaries
- * and returns flags to flip its position.
- */
 export function useSubmenuPosition(
   submenuRef: RefObject<HTMLDivElement | null>
 ): SubmenuPosition {

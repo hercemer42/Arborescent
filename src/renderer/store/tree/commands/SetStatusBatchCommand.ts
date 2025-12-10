@@ -7,10 +7,6 @@ interface NodeStatusState {
   resolvedAt: string | undefined;
 }
 
-/**
- * Command for setting status on a node and all its descendants.
- * Used for "Mark all as complete" and "Mark all as incomplete" actions.
- */
 export class SetStatusBatchCommand extends BaseCommand {
   private previousStates: Map<string, NodeStatusState> = new Map();
   private affectedNodeIds: string[] = [];
@@ -36,11 +32,9 @@ export class SetStatusBatchCommand extends BaseCommand {
     this.previousStates.clear();
     this.affectedNodeIds = [];
 
-    // Set resolvedAt for completed/abandoned, clear for pending
     const isResolved = this.targetStatus === 'completed' || this.targetStatus === 'abandoned';
     this.resolvedAt = isResolved ? new Date().toISOString() : undefined;
 
-    // Get node + all descendants
     const descendantIds = getAllDescendants(this.nodeId, nodes);
     const allNodeIds = [this.nodeId, ...descendantIds];
 
@@ -50,14 +44,12 @@ export class SetStatusBatchCommand extends BaseCommand {
       const targetNode = updatedNodes[id];
       if (!targetNode) continue;
 
-      // Capture previous state
       this.previousStates.set(id, {
         status: targetNode.metadata.status as NodeStatus | undefined,
         resolvedAt: targetNode.metadata.resolvedAt as string | undefined,
       });
       this.affectedNodeIds.push(id);
 
-      // Update status
       updatedNodes = {
         ...updatedNodes,
         [id]: {

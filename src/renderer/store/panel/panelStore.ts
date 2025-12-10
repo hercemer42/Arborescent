@@ -19,7 +19,6 @@ interface PanelState {
   panelWidth: number;
   activeContent: PanelContentType;
 
-  // Actions
   setPanelPosition: (position: PanelPosition) => void;
   togglePanelPosition: () => void;
   setPanelHeight: (height: number) => void;

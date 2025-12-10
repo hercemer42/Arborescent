@@ -3,10 +3,6 @@ import { useFilesStore } from '../../../store/files/filesStore';
 import { storeManager } from '../../../store/storeManager';
 import { feedbackTreeStore } from '../../../store/feedback/feedbackTreeStore';
 
-/**
- * Hook to compute the feedback status message
- * Returns null if no collaboration is in progress
- */
 export function useFeedbackStatus(): string | null {
   const activeFilePath = useFilesStore((state) => state.activeFilePath);
 

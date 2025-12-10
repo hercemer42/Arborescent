@@ -16,11 +16,6 @@ interface EditMenuActions {
   handleSelectAll: () => void;
 }
 
-/**
- * Hook providing action handlers for Edit menu items.
- * Handles the logic for determining whether to use default browser behavior
- * or custom tree operations.
- */
 export function useEditMenuActions(): EditMenuActions {
   const actions = useActiveTreeActions();
   const treeState = useActiveTreeStore();
@@ -40,7 +35,6 @@ export function useEditMenuActions(): EditMenuActions {
   const handleCut = useCallback(async () => {
     if (!actions) return;
 
-    // If text is selected in contenteditable, let browser handle it
     if (hasTextSelection()) {
       document.execCommand('cut');
       return;
@@ -52,7 +46,6 @@ export function useEditMenuActions(): EditMenuActions {
   const handleCopy = useCallback(async () => {
     if (!actions) return;
 
-    // If text is selected in contenteditable, let browser handle it
     if (hasTextSelection()) {
       document.execCommand('copy');
       return;
@@ -66,7 +59,6 @@ export function useEditMenuActions(): EditMenuActions {
 
     const result = await actions.pasteNodes();
 
-    // If no valid markdown nodes, fall through to default paste behavior
     if (result === 'no-content' && isContentEditableFocused()) {
       document.execCommand('paste');
     }
