@@ -57,9 +57,18 @@ function calculateDropTarget(
     const targetIndex = targetParent.children.indexOf(targetNodeId);
     if (targetIndex < 0) return null;
 
+    let insertAt = dropZone === 'before' ? targetIndex : targetIndex + 1;
+
+    if (currentParentId === targetParentId) {
+      const nodeIndex = targetParent.children.indexOf(nodeId);
+      if (nodeIndex >= 0 && nodeIndex < targetIndex) {
+        insertAt -= 1;
+      }
+    }
+
     return {
       targetParentId,
-      insertAt: dropZone === 'before' ? targetIndex : targetIndex + 1,
+      insertAt,
     };
   }
 }

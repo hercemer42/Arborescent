@@ -32,12 +32,12 @@ export function useNodeDragDrop(nodeId: string, nodeRef: React.RefObject<HTMLDiv
       const y = e.clientY - rect.top;
       const height = rect.height;
 
-      const topThreshold = height * 0.33;
-      const middleThreshold = height * 0.66;
+      const topThreshold = height * 0.25;
+      const bottomThreshold = height * 0.75;
 
       if (y <= topThreshold) {
         setDropPosition('before');
-      } else if (y <= middleThreshold) {
+      } else if (y >= bottomThreshold) {
         setDropPosition('after');
       } else {
         setDropPosition('child');

@@ -88,11 +88,12 @@
 .tree-node-wrapper.drop-child .node-content::after {
   content: '';
   position: absolute;
-  left: calc(var(--indent-width, 0px) + 35px);
+  top: 0;
+  bottom: 0;
+  left: calc(var(--indent-width, 0px) + 10px);
   right: 0;
-  bottom: -1px;
-  height: 2px;
-  background-color: var(--blue-500);
+  border: 2px solid var(--blue-500);
+  border-radius: 2px;
   pointer-events: none;
   z-index: 10;
 }

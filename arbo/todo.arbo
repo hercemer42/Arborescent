@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2025-12-10T00:29:00.144Z'
+updated: '2025-12-10T00:44:43.892Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -517,6 +517,7 @@ nodes:
       - 792b7b44-6bfb-4ff6-9151-1b092d688998
       - 25df27c2-c4a0-4d81-9ef5-997c096c2bf1
       - 7bc450dd-64ef-40d6-a60b-8c7d74634c1c
+      - d87082fc-4e05-4080-b652-c69897022374
     metadata:
       status: completed
       expanded: false
@@ -9297,7 +9298,7 @@ nodes:
       blueprintIcon: CheckSquare
       blueprintColor: '#22c55e'
       isBlueprint: true
-      expanded: true
+      expanded: false
   ce9cfecb-f289-494b-8ff2-482e4b29d193:
     id: ce9cfecb-f289-494b-8ff2-482e4b29d193
     content: All the automated tests are updated and passing
@@ -9381,7 +9382,7 @@ nodes:
       - 6ab534a2-2956-454c-9c6a-e459314e0b5c
     metadata:
       status: pending
-      expanded: true
+      expanded: false
       isBlueprint: true
       blueprintIcon: Star
       blueprintColor: '#64748b'
@@ -9401,7 +9402,7 @@ nodes:
       isBlueprint: true
       blueprintIcon: Eye
       blueprintColor: '#0ea5e9'
-      expanded: true
+      expanded: false
   4264aa2a-e101-4dd6-b971-1d0deb8ce03d:
     id: 4264aa2a-e101-4dd6-b971-1d0deb8ce03d
     content: Review all code implemented since last commit
@@ -12985,23 +12986,6 @@ nodes:
     metadata:
       status: pending
       isBlueprint: true
-  0a6b6c63-425c-4994-8419-d8f06c7a930d:
-    id: 0a6b6c63-425c-4994-8419-d8f06c7a930d
-    content: Gutter refactor
-    children:
-      - 9ba5a760-54bc-4341-9e50-5611c0f0acd4
-      - e0a89015-f08b-4e26-be9a-67d0ccc1540e
-      - 651f330f-ada9-4bd0-bbf1-770333e30ab1
-      - 5482526e-64d3-415a-aa11-f54d6159aa7a
-    metadata:
-      status: pending
-      expanded: true
-  9ba5a760-54bc-4341-9e50-5611c0f0acd4:
-    id: 9ba5a760-54bc-4341-9e50-5611c0f0acd4
-    content: If we don't do patterns we can better use the gutter space
-    children: []
-    metadata:
-      status: pending
   160f9d4a-8666-4f46-9862-7c613c20b337:
     id: 160f9d4a-8666-4f46-9862-7c613c20b337
     content: Add + icon to context declaration icons when they have an applied action context
@@ -15273,7 +15257,8 @@ nodes:
   c25cf481-a0d1-495d-9cea-498f1135eb8c:
     id: c25cf481-a0d1-495d-9cea-498f1135eb8c
     content: Minor feature
-    children: []
+    children:
+      - cddba8cd-67ca-4f60-a2d9-cbbe41815200
     metadata:
       status: completed
       expanded: true
@@ -15396,8 +15381,6 @@ nodes:
       - 4966bd3d-fe8d-4094-840f-a0f791c07d6c
       - cc522bbb-99fe-499f-b9d8-a62c7ce50575
       - 8210b1f6-ba52-4657-ae8f-39c3ed91ef61
-      - 0a6b6c63-425c-4994-8419-d8f06c7a930d
-      - 5040deb6-0361-42e4-84a6-7afeb8b9a5f8
     metadata:
       status: pending
       expanded: true
@@ -16554,12 +16537,6 @@ nodes:
       deleted: false
       plugins: {}
       resolvedAt: '2025-12-09T22:40:10.533Z'
-  5040deb6-0361-42e4-84a6-7afeb8b9a5f8:
-    id: 5040deb6-0361-42e4-84a6-7afeb8b9a5f8
-    content: Clean up comments
-    children: []
-    metadata:
-      status: pending
   7dcca48a-11f1-4245-aff7-651b3e03edbc:
     id: 7dcca48a-11f1-4245-aff7-651b3e03edbc
     content: Documentation
@@ -16591,21 +16568,66 @@ nodes:
     metadata:
       status: pending
       isBlueprint: true
-  e0a89015-f08b-4e26-be9a-67d0ccc1540e:
-    id: e0a89015-f08b-4e26-be9a-67d0ccc1540e
-    content: Increase space between icons and carets a little
+  d87082fc-4e05-4080-b652-c69897022374:
+    id: d87082fc-4e05-4080-b652-c69897022374
+    content: Gutter cleanup
+    children:
+      - cc3281ad-0b62-4df8-b225-aebfbe217991
+      - 183d9252-ceb1-476e-b51a-8025112f9ffb
+      - 3b23ff9a-f0db-4e84-a274-e1fbf005cf33
+    metadata:
+      status: completed
+      expanded: false
+      deleted: false
+      plugins: {}
+      resolvedAt: '2025-12-10T00:43:34.889Z'
+  cc3281ad-0b62-4df8-b225-aebfbe217991:
+    id: cc3281ad-0b62-4df8-b225-aebfbe217991
+    content: Remove unused left-hand icon space (reserved for dropped feature)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+      resolvedAt: '2025-12-10T00:43:34.889Z'
+  183d9252-ceb1-476e-b51a-8025112f9ffb:
+    id: 183d9252-ceb1-476e-b51a-8025112f9ffb
+    content: Reduce overall gutter width
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+      resolvedAt: '2025-12-10T00:43:34.889Z'
+  3b23ff9a-f0db-4e84-a274-e1fbf005cf33:
+    id: 3b23ff9a-f0db-4e84-a274-e1fbf005cf33
+    content: Move context icons slightly left to increase spacing between icons and caret
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+      resolvedAt: '2025-12-10T00:43:34.889Z'
+  cddba8cd-67ca-4f60-a2d9-cbbe41815200:
+    id: cddba8cd-67ca-4f60-a2d9-cbbe41815200
+    content: Do need to restore the 'drop over' functionality
+    children:
+      - cdb2fcfa-4321-4820-a8aa-b57a2cf25ba2
+      - 2aa5058b-2dc9-42e8-b2d3-551728576870
+    metadata:
+      status: pending
+  cdb2fcfa-4321-4820-a8aa-b57a2cf25ba2:
+    id: cdb2fcfa-4321-4820-a8aa-b57a2cf25ba2
+    content: We can't currently drop into a collapsed node
     children: []
     metadata:
       status: pending
-  651f330f-ada9-4bd0-bbf1-770333e30ab1:
-    id: 651f330f-ada9-4bd0-bbf1-770333e30ab1
-    content: Otherwise reduce gutter width a little
-    children: []
-    metadata:
-      status: pending
-  5482526e-64d3-415a-aa11-f54d6159aa7a:
-    id: 5482526e-64d3-415a-aa11-f54d6159aa7a
-    content: Get rid of left hand space reserved for icon that was never used
+  2aa5058b-2dc9-42e8-b2d3-551728576870:
+    id: 2aa5058b-2dc9-42e8-b2d3-551728576870
+    content: Check back a few commits ago.
     children: []
     metadata:
       status: pending
