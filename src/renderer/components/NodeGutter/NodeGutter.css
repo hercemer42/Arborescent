@@ -1,15 +1,14 @@
-/* Node gutter - fixed width with centered icon and right-aligned toggle */
 .node-gutter {
-  width: 60px;
+  width: 48px;
   flex-shrink: 0;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+  padding-left: 4px;
   position: relative;
   border-right: 1px solid rgba(0, 0, 0, 0.05);
 }
 
-/* Expand toggle in gutter - positioned at right edge */
 .gutter-expand-toggle {
   position: absolute;
   right: 3px;
@@ -29,24 +28,20 @@
   transition: opacity 0.15s;
 }
 
-/* Collapsed nodes: chevron always visible */
 .expand-toggle-button.collapsed {
   opacity: 1;
   transform: translateY(-1px);
 }
 
-/* Expanded chevron: adjust position to align with collapsed chevron */
 .expand-toggle-button.expanded {
   transform: translate(6px, -4px);
 }
 
-/* Expanded nodes: show chevron only on hover */
 .expand-toggle-button:hover {
   opacity: 1;
   color: var(--gray-700);
 }
 
-/* Hidden search matches indicator - chevron with blue background and white text */
 .expand-toggle-button.has-hidden-matches {
   color: var(--white);
   opacity: 1;

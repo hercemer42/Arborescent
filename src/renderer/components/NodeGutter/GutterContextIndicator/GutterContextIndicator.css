@@ -1,4 +1,3 @@
-/* Context indicator base styles */
 .gutter-context-indicator {
   font-size: 1rem;
   padding: 2px 4px;
@@ -8,7 +7,6 @@
   border: none;
 }
 
-/* Context declaration indicator - clickable button, solid color */
 .gutter-context-indicator.context-declaration {
   color: var(--sky-500);
   opacity: 0.9;
@@ -20,7 +18,6 @@
   background-color: color-mix(in srgb, var(--sky-500) 10%, transparent);
 }
 
-/* Applied context indicator - not clickable, slightly faded */
 .gutter-context-indicator.context-applied {
   position: relative;
   color: var(--sky-400);
@@ -54,8 +51,6 @@
   line-height: 1;
 }
 
-
-/* Context bundle indicator (gear with count badge inside) */
 .gutter-context-indicator.context-bundle {
   position: relative;
   display: flex;
@@ -72,7 +67,6 @@
 
 .context-bundle-indicator {
   position: relative;
-  padding: 2px 4px;
   color: var(--sky-500);
   font-size: 1rem;
   opacity: 0.9;
@@ -100,7 +94,6 @@
   padding-left: 1px;
 }
 
-/* Bundle tooltip */
 .context-bundle-tooltip {
   position: fixed;
   background-color: var(--gray-50);
