@@ -170,27 +170,6 @@ function handleEditingShortcuts(event: KeyboardEvent): void {
 }
 
 function handleKeyDown(event: KeyboardEvent): void {
-  const activeStore = getActiveStore();
-
-  // stopPropagation prevents contentEditable's native undo
-  if (matchesHotkey(event, 'actions', 'undo')) {
-    event.preventDefault();
-    event.stopPropagation();
-    if (activeStore) {
-      activeStore.getState().actions.undo();
-    }
-    return;
-  }
-
-  if (matchesHotkey(event, 'actions', 'redo')) {
-    event.preventDefault();
-    event.stopPropagation();
-    if (activeStore) {
-      activeStore.getState().actions.redo();
-    }
-    return;
-  }
-
   const element = getActiveNodeElement();
   if (!element) return;
 

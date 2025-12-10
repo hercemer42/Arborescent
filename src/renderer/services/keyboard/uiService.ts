@@ -2,11 +2,29 @@ import { useFilesStore } from '../../store/files/filesStore';
 import { useSearchStore } from '../../store/search/searchStore';
 import { useToastStore } from '../../store/toast/toastStore';
 import { matchesHotkey } from '../../data/hotkeyConfig';
-import { hasTextSelection, isContentEditableFocused } from '../../utils/selectionUtils';
+import { hasTextSelection, isContentEditableFocused, isFocusInPanel } from '../../utils/selectionUtils';
 import { getActiveStore } from './shared';
 import { getActiveContextIdWithInheritance } from '../../utils/nodeHelpers';
 
 async function handleUIShortcuts(event: KeyboardEvent): Promise<void> {
+  if (matchesHotkey(event, 'actions', 'undo')) {
+    if (isFocusInPanel()) return;
+    event.preventDefault();
+    event.stopPropagation();
+    const store = getActiveStore();
+    store?.getState().actions.undo();
+    return;
+  }
+
+  if (matchesHotkey(event, 'actions', 'redo')) {
+    if (isFocusInPanel()) return;
+    event.preventDefault();
+    event.stopPropagation();
+    const store = getActiveStore();
+    store?.getState().actions.redo();
+    return;
+  }
+
   if (matchesHotkey(event, 'file', 'save')) {
     event.preventDefault();
     useFilesStore.getState().actions.saveActiveFile();

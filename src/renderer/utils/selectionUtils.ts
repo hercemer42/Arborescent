@@ -18,3 +18,9 @@ export function isContentEditableFocused(): boolean {
   const activeElement = document.activeElement;
   return activeElement?.hasAttribute('contenteditable') ?? false;
 }
+
+export function isFocusInPanel(): boolean {
+  const activeElement = document.activeElement;
+  if (!activeElement) return false;
+  return activeElement.closest('.unified-panel') !== null;
+}
