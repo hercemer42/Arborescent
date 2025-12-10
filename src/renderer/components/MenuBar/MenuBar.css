@@ -1,11 +1,9 @@
-/* Overlay to capture clicks outside menu */
 .menu-bar-overlay {
   position: fixed;
   inset: 0;
   z-index: 999;
 }
 
-/* MenuBar container */
 .menu-bar {
   display: flex;
   align-items: center;
@@ -16,12 +14,10 @@
   flex-shrink: 0;
 }
 
-/* Individual menu container */
 .menu {
   position: relative;
 }
 
-/* Menu trigger button */
 .menu-trigger {
   display: flex;
   align-items: center;
@@ -43,7 +39,6 @@
   background-color: var(--gray-200);
 }
 
-/* Menu dropdown panel */
 .menu-dropdown {
   position: absolute;
   top: 100%;
@@ -58,7 +53,6 @@
   z-index: 1000;
 }
 
-/* Menu item */
 .menu-item {
   display: flex;
   align-items: center;
@@ -94,7 +88,6 @@
   background-color: var(--red-50);
 }
 
-/* Menu item with checkbox */
 .menu-item.has-checkbox {
   padding-left: 8px;
 }
@@ -109,12 +102,10 @@
   color: var(--gray-600);
 }
 
-/* Menu item label */
 .menu-item-label {
   flex: 1;
 }
 
-/* Keyboard shortcut display */
 .menu-item-shortcut {
   margin-left: 24px;
   color: var(--gray-400);
@@ -125,14 +116,12 @@
   color: var(--gray-300);
 }
 
-/* Menu separator */
 .menu-separator {
   height: 1px;
   background-color: var(--gray-200);
   margin: 4px 0;
 }
 
-/* Submenu */
 .menu-submenu-wrapper {
   position: relative;
 }

@@ -8,13 +8,12 @@
   position: relative;
 }
 
-/* Indent guide lines */
 .node-content::before {
   content: '';
   position: absolute;
   top: -1px;
   bottom: -1px;
-  left: 24px; /* base padding (15px) + checkbox offset (9px) */
+  left: 24px;
   width: var(--indent-width, 0);
   background-image: repeating-linear-gradient(
     to right,
@@ -113,7 +112,6 @@
   border-color: var(--gray-600);
 }
 
-/* Hyperlink styles */
 .hyperlink-indicator {
   display: flex;
   align-items: center;
@@ -138,7 +136,6 @@
   cursor: pointer;
 }
 
-/* Selected link node indicator (since contentEditable is off) */
 .node-content.selected .hyperlink-text {
   background-color: var(--blue-100);
   border-radius: 2px;
@@ -146,13 +143,11 @@
   margin: -1px -2px;
 }
 
-/* Search highlighting - text level */
 .node-text mark.search-highlight {
   background: #06c;
   color: #fff;
 }
 
-/* Current/focused search match - more intense */
 .node-text mark.search-highlight-current {
   background: #004c99;
 }

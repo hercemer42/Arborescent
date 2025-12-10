@@ -5,39 +5,33 @@
   border-bottom: 1px solid transparent;
 }
 
-/* Active node (cursor is in it, editing) */
 .tree-node-wrapper.selected {
   border-top: 1px solid var(--white);
   border-bottom: 1px solid var(--white);
 }
 
-/* Collapsed parent - full row highlight with borders */
 .tree-node-wrapper.collapsed-parent {
   background-color: var(--selection-collapsed);
   border-top: 1px solid var(--white);
   border-bottom: 1px solid var(--white);
 }
 
-/* Multi-selected nodes - full row highlight with borders */
 .tree-node-wrapper.multi-selected {
   background-color: var(--selection-multi);
   border-top: 1px solid var(--white);
   border-bottom: 1px solid var(--white);
 }
 
-/* Node in collaboration - amber/orange highlight with borders */
 .tree-node-wrapper.collaborating {
   background-color: rgba(255, 152, 0, 0.15);
   border-top: 1px solid rgb(255, 193, 7);
   border-bottom: 1px solid rgb(255, 193, 7);
 }
 
-/* Descendant of node in collaboration - lighter amber highlight */
 .tree-node-wrapper.collaborating-descendant {
   background-color: rgba(255, 152, 0, 0.08);
 }
 
-/* Feedback accepted - fade out transition */
 .tree-node-wrapper.feedback-fading {
   background-color: rgba(255, 152, 0, 0.15);
   animation: feedback-fade-out 1.5s ease-out forwards;
@@ -52,7 +46,6 @@
   }
 }
 
-/* Multi-selected + collapsed - layered backgrounds with transparency */
 .tree-node-wrapper.collapsed-parent.multi-selected {
   background-color: var(--selection-collapsed);
 }
@@ -66,19 +59,17 @@
   z-index: 0;
 }
 
-/* Place node content above the ::before background overlay */
 .tree-node-wrapper > .node-gutter,
 .tree-node-wrapper > .node-content {
   position: relative;
   z-index: 1;
 }
 
-/* Drop zones - line indicator respects indent level */
 .tree-node-wrapper.drop-before .node-content::after,
 .tree-node-wrapper.drop-after .node-content::after {
   content: '';
   position: absolute;
-  left: calc(var(--indent-width, 0px) + 15px); /* indent + base padding */
+  left: calc(var(--indent-width, 0px) + 15px);
   right: 0;
   height: 2px;
   background-color: var(--blue-500);
@@ -94,11 +85,10 @@
   bottom: -1px;
 }
 
-/* drop-child: indented line below, becomes first child */
 .tree-node-wrapper.drop-child .node-content::after {
   content: '';
   position: absolute;
-  left: calc(var(--indent-width, 0px) + 35px); /* indent + base padding + one level deeper */
+  left: calc(var(--indent-width, 0px) + 35px);
   right: 0;
   bottom: -1px;
   height: 2px;
@@ -107,12 +97,10 @@
   z-index: 10;
 }
 
-/* Cut nodes - 30% opacity to indicate pending move */
 .tree-node-wrapper.cut-node {
   opacity: 0.5;
 }
 
-/* Flash animations */
 .tree-node-wrapper.flashing-light .node-content {
   animation: flash-light 0.5s ease-out;
 }
@@ -121,7 +109,6 @@
   animation: flash-medium 0.5s ease-out;
 }
 
-/* Delete animation for cut/delete - flash then fade out */
 .tree-node-wrapper.deleting .node-content {
   animation: delete-flash 0.3s ease-out forwards;
 }
@@ -158,4 +145,3 @@
     opacity: 0;
   }
 }
-

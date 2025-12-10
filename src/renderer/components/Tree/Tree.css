@@ -4,7 +4,6 @@
   overflow-y: auto;
 }
 
-/* Scrollbar styling - lighter thumb, keep the track/gap design */
 .tree::-webkit-scrollbar {
   width: 12px;
 }
@@ -23,19 +22,16 @@
   background-color: var(--gray-400);
 }
 
-/* Blueprint mode - top border to complete the workspace border */
 .tree.blueprint-mode {
   border-top: 3px solid var(--sky-500);
 }
 
-/* Make DragOverlay instant and snappy */
 .dnd-drag-overlay {
   animation: none !important;
   transition: none !important;
   cursor: grabbing;
 }
 
-/* Ghost preview while dragging - semi-transparent so drop indicator shows through */
 .drag-ghost {
   opacity: 0.5;
   pointer-events: none;
