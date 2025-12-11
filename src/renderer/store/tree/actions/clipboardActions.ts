@@ -22,6 +22,7 @@ import { useHyperlinkClipboardStore } from '../../clipboard/hyperlinkClipboardSt
 import { useToastStore } from '../../toast/toastStore';
 import { AncestorRegistry } from '../../../services/ancestry';
 import { v4 as uuidv4 } from 'uuid';
+import { storeManager } from '../../storeManager';
 
 export interface ClipboardActions {
   cutNodes: () => Promise<'cut' | 'no-selection'>;
@@ -189,12 +190,15 @@ function handleCutPaste(
   }
 
   if (!isTargetBlueprint(targetParentId, state.nodes) && containsBlueprintNodes(cutNodesMap)) {
+    clearCutState();
     useToastStore.getState().addToast(
       'Cannot move blueprint nodes into a non-blueprint parent',
       'error'
     );
     return 'blocked';
   }
+
+  clearCutState();
 
   for (const nodeId of nodesToMove) {
     const targetParent = state.nodes[targetParentId];
@@ -219,7 +223,6 @@ function handleCutPaste(
     actions.executeCommand(command);
   }
 
-  clearCutState();
   flashNodes(nodesToMove, visualEffects);
 
   logger.info(`Moved ${nodesToMove.length} node(s)`, 'ClipboardActions');
@@ -377,8 +380,17 @@ export const createClipboardActions = (
     const cutIds = cache?.allCutNodeIds || [];
 
     if (cutIds.length > 0) {
-      const state = get();
-      const updatedNodes = { ...state.nodes };
+      const currentState = get();
+      const sourceFilePath = cache?.sourceFilePath;
+      const currentFilePath = currentState.currentFilePath;
+
+      const targetStore = sourceFilePath && sourceFilePath !== currentFilePath
+        ? storeManager.getStoreForFile(sourceFilePath)
+        : null;
+
+      const targetNodes = targetStore ? targetStore.getState().nodes : currentState.nodes;
+      const updatedNodes = { ...targetNodes };
+
       for (const nodeId of cutIds) {
         const node = updatedNodes[nodeId];
         if (node) {
@@ -392,7 +404,12 @@ export const createClipboardActions = (
           updatedNodes[nodeId] = { ...node, metadata: newMetadata };
         }
       }
-      set({ nodes: updatedNodes });
+
+      if (targetStore) {
+        targetStore.setState({ nodes: updatedNodes });
+      } else {
+        set({ nodes: updatedNodes });
+      }
     }
 
     useClipboardCacheStore.getState().clearCache();
@@ -454,7 +471,7 @@ export const createClipboardActions = (
     );
     actions.executeCommand(command);
 
-    useClipboardCacheStore.getState().setCache(nodeIds, true, markdown, allCutIds);
+    useClipboardCacheStore.getState().setCache(nodeIds, true, markdown, allCutIds, state.currentFilePath || undefined);
 
     logger.info(`Cut ${nodeIds.length} node(s)`, 'ClipboardActions');
     return 'cut';

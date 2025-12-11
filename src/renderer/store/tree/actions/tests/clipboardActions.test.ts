@@ -976,8 +976,7 @@ describe('clipboardActions', () => {
         'Cannot move blueprint nodes into a non-blueprint parent',
         'error'
       );
-      // Cut state should remain (not cleared on blocked paste)
-      expect(isNodeCut('blueprint-child')).toBe(true);
+      expect(isNodeCut('blueprint-child')).toBe(false);
     });
   });
 

@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2025-12-11T15:09:34.168Z'
+updated: '2025-12-11T15:21:50.748Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -12,11 +12,11 @@ nodes:
     children:
       - 0cc62ae1-1a7a-4aa4-bc6a-d817cabd672c
       - 79b693ca-27ce-4410-8617-8092d7e81b07
-      - f5c33654-69b4-492a-a6e3-6d13e4dec80d
       - 2f83a0af-280e-4e67-8306-31a8e02c9500
       - d5fe0eff-b1c6-4986-b6a3-70a0ea46f096
       - c4473311-2e42-48ae-9191-d3807dc55a4c
       - 9bfbb401-dcb6-4f92-a34b-e9b3982c676f
+      - f5c33654-69b4-492a-a6e3-6d13e4dec80d
       - bf007448-0f9f-4e68-ba31-a9def979ec2d
       - f5e3f44c-6de7-4bd9-ad8d-7f51cdf059f1
     metadata:
@@ -474,6 +474,7 @@ nodes:
     id: 565dde0a-864b-41f9-86ff-dbdf40ac4dd0
     content: Done
     children:
+      - cddba8cd-67ca-4f60-a2d9-cbbe41815200
       - 44jmbkqfv
       - e15d77fa-c719-45d4-9207-ff759d86e58f
       - byqndehy4
@@ -538,7 +539,9 @@ nodes:
     id: d5fe0eff-b1c6-4986-b6a3-70a0ea46f096
     content: Ideas
     children:
+      - 84000edd-4081-4ae9-b099-da078464e235
       - 2ce5b181-5461-486c-be65-159e5e98de54
+      - 962ac208-be21-40da-b8a0-144b60005793
     metadata:
       status: pending
       expanded: false
@@ -549,43 +552,36 @@ nodes:
   2ce5b181-5461-486c-be65-159e5e98de54:
     id: 2ce5b181-5461-486c-be65-159e5e98de54
     content: Mobile app
-    children:
-      - 30ee4a6f-59a2-4ec8-a78f-2068542d8886
-    metadata:
-      status: pending
-      expanded: true
-  30ee4a6f-59a2-4ec8-a78f-2068542d8886:
-    id: 30ee4a6f-59a2-4ec8-a78f-2068542d8886
-    content: Easy as possible to use, as a neurodivergent aid
     children: []
     metadata:
       status: pending
+      expanded: true
   9bfbb401-dcb6-4f92-a34b-e9b3982c676f:
     id: 9bfbb401-dcb6-4f92-a34b-e9b3982c676f
-    content: Philosophy
+    content: Project philosophy
     children:
-      - 17de3fdf-e5f6-4dec-9e4b-df1cadec2db9
+      - 70eecb43-acfd-4175-875c-c0b056287694
       - f15111b1-9e2d-46e9-b84c-e12b9053e230
     metadata:
       status: pending
-      expanded: false
+      expanded: true
       isBlueprint: true
       blueprintIcon: Sun
       blueprintColor: '#f97316'
   f15111b1-9e2d-46e9-b84c-e12b9053e230:
     id: f15111b1-9e2d-46e9-b84c-e12b9053e230
-    content: Neurodivergent compatible
+    content: Optimized to be neurodivergent friendly
     children:
+      - 869029e9-cf75-40d2-a677-acac98c68470
       - c882ae02-4134-41c9-89de-39e04fb749c5
       - 64ef60c9-40fe-43c8-9b48-0000d28e024a
-      - 789d86bb-3069-43eb-9e71-2ca2d0779302
       - 50de00c5-8138-491b-9063-eeb5145fc4e2
     metadata:
       status: pending
       expanded: true
   c882ae02-4134-41c9-89de-39e04fb749c5:
     id: c882ae02-4134-41c9-89de-39e04fb749c5
-    content: UI as simple as possible
+    content: UI as simple as possible to avoid visual distractions
     children: []
     metadata:
       status: pending
@@ -595,21 +591,9 @@ nodes:
     children: []
     metadata:
       status: pending
-  789d86bb-3069-43eb-9e71-2ca2d0779302:
-    id: 789d86bb-3069-43eb-9e71-2ca2d0779302
-    content: As simple as possible in it's base form, plugins off by default
-    children: []
-    metadata:
-      status: pending
   50de00c5-8138-491b-9063-eeb5145fc4e2:
     id: 50de00c5-8138-491b-9063-eeb5145fc4e2
     content: Complexity is emergent, discoverable, configurable - respect cognitive load
-    children: []
-    metadata:
-      status: pending
-  17de3fdf-e5f6-4dec-9e4b-df1cadec2db9:
-    id: 17de3fdf-e5f6-4dec-9e4b-df1cadec2db9
-    content: Accessible
     children: []
     metadata:
       status: pending
@@ -9111,7 +9095,7 @@ nodes:
       blueprintIcon: CheckSquare
       blueprintColor: '#22c55e'
       isBlueprint: true
-      expanded: true
+      expanded: false
   ce9cfecb-f289-494b-8ff2-482e4b29d193:
     id: ce9cfecb-f289-494b-8ff2-482e4b29d193
     content: All the automated tests are updated and passing
@@ -14980,8 +14964,7 @@ nodes:
   c25cf481-a0d1-495d-9cea-498f1135eb8c:
     id: c25cf481-a0d1-495d-9cea-498f1135eb8c
     content: Minor feature
-    children:
-      - cddba8cd-67ca-4f60-a2d9-cbbe41815200
+    children: []
     metadata:
       status: completed
       expanded: true
@@ -15864,6 +15847,7 @@ nodes:
     id: 5cc686fc-7651-4d83-9ccf-78a29d1dff13
     content: Done
     children:
+      - 1c5caa24-018b-4f1d-85c8-3232d93deb1c
       - dfef7d4f-c35c-43c4-b1ac-f84c8c916785
     metadata:
       status: pending
@@ -16118,7 +16102,6 @@ nodes:
     id: 3881490a-b11c-4052-ad46-020faad5bb2b
     content: In progress
     children:
-      - 1c5caa24-018b-4f1d-85c8-3232d93deb1c
       - d39f7ab4-3d32-4e18-8c96-69b38cee3766
       - 8d46b8b4-8531-49ad-a223-b5856af3f562
     metadata:
@@ -16300,19 +16283,23 @@ nodes:
       - cdb2fcfa-4321-4820-a8aa-b57a2cf25ba2
       - 2aa5058b-2dc9-42e8-b2d3-551728576870
     metadata:
-      status: pending
+      status: completed
+      resolvedAt: '2025-12-11T15:20:35.289Z'
+      expanded: false
   cdb2fcfa-4321-4820-a8aa-b57a2cf25ba2:
     id: cdb2fcfa-4321-4820-a8aa-b57a2cf25ba2
     content: We can't currently drop into a collapsed node
     children: []
     metadata:
-      status: pending
+      status: completed
+      resolvedAt: '2025-12-11T15:20:35.807Z'
   2aa5058b-2dc9-42e8-b2d3-551728576870:
     id: 2aa5058b-2dc9-42e8-b2d3-551728576870
     content: Check back a few commits ago.
     children: []
     metadata:
-      status: pending
+      status: completed
+      resolvedAt: '2025-12-11T15:20:36.331Z'
   c9a0cf38-c449-47a0-b687-359ca5ddd57e:
     id: c9a0cf38-c449-47a0-b687-359ca5ddd57e
     content: Directory Structure
@@ -17223,7 +17210,7 @@ nodes:
       - c9a0cf38-c449-47a0-b687-359ca5ddd57e
     metadata:
       status: pending
-      expanded: true
+      expanded: false
       isBlueprint: true
       blueprintIcon: LayoutList
       blueprintColor: '#14b8a6'
@@ -17272,13 +17259,6 @@ nodes:
     metadata:
       status: pending
       isBlueprint: true
-  1c5caa24-018b-4f1d-85c8-3232d93deb1c:
-    id: 1c5caa24-018b-4f1d-85c8-3232d93deb1c
-    content: If I have a link in the clipboard and then copy text, the link is pasted instead of the text
-    children: []
-    metadata:
-      status: pending
-      activeExecuteContextId: 6690289a-e02f-48bc-9225-a1083b7b324f
   d39f7ab4-3d32-4e18-8c96-69b38cee3766:
     id: d39f7ab4-3d32-4e18-8c96-69b38cee3766
     content: Sometimes we get into a state (not sure how) where a cut node we didn't paste, or perhaps pasted and undid, is greyed out, and subsequent copy and paste leave it greyed out
@@ -17387,5 +17367,72 @@ nodes:
     metadata:
       status: pending
       isBlueprint: true
+  1c5caa24-018b-4f1d-85c8-3232d93deb1c:
+    id: 1c5caa24-018b-4f1d-85c8-3232d93deb1c
+    content: If I have a link in the clipboard and then copy text, the link is pasted instead of the text
+    children: []
+    metadata:
+      status: completed
+      activeExecuteContextId: 6690289a-e02f-48bc-9225-a1083b7b324f
+      resolvedAt: '2025-12-11T15:10:24.267Z'
+  667b62b6-2780-4fc6-a78f-1550bd0723a9:
+    id: 667b62b6-2780-4fc6-a78f-1550bd0723a9
+    content: It's a cognitive scaffolding tool for complex thinking and AI collaboration
+    children: []
+    metadata:
+      status: pending
+  84000edd-4081-4ae9-b099-da078464e235:
+    id: 84000edd-4081-4ae9-b099-da078464e235
+    content: Collaborative web app
+    children: []
+    metadata:
+      status: pending
+  962ac208-be21-40da-b8a0-144b60005793:
+    id: 962ac208-be21-40da-b8a0-144b60005793
+    content: Blueprint store
+    children: []
+    metadata:
+      status: pending
+  7f1b308e-f535-4ec4-a275-2c83e37f8636:
+    id: 7f1b308e-f535-4ec4-a275-2c83e37f8636
+    content: It lets you decompose projects as trees, with reusable contexts that automatically attach when you send any part of your work to an AI.
+    children: []
+    metadata:
+      status: pending
+  75876c94-2397-4790-a87b-ec40eed8e840:
+    id: 75876c94-2397-4790-a87b-ec40eed8e840
+    content: Refine what works, and every future collaboration will get better.
+    children: []
+    metadata:
+      status: pending
+  70eecb43-acfd-4175-875c-c0b056287694:
+    id: 70eecb43-acfd-4175-875c-c0b056287694
+    content: What is Arborescent ?
+    children:
+      - 667b62b6-2780-4fc6-a78f-1550bd0723a9
+      - 7f1b308e-f535-4ec4-a275-2c83e37f8636
+      - f1c77257-f2eb-4799-bbe1-6b238e6ccfca
+      - 75876c94-2397-4790-a87b-ec40eed8e840
+      - 26de1686-300c-4561-b85f-30935105331b
+    metadata:
+      status: pending
+  26de1686-300c-4561-b85f-30935105331b:
+    id: 26de1686-300c-4561-b85f-30935105331b
+    content: I've used it to build itself, and it has fundamentally changed the way I work
+    children: []
+    metadata:
+      status: pending
+  869029e9-cf75-40d2-a677-acac98c68470:
+    id: 869029e9-cf75-40d2-a677-acac98c68470
+    content: Tree structure maps to unique thinking styles
+    children: []
+    metadata:
+      status: pending
+  f1c77257-f2eb-4799-bbe1-6b238e6ccfca:
+    id: f1c77257-f2eb-4799-bbe1-6b238e6ccfca
+    content: The blueprint feature lets you export the meta-structure, so you can share your workflow with a team or the community
+    children: []
+    metadata:
+      status: pending
 summaryDateFrom: '2025-12-08'
 summaryDateTo: '2025-12-09'
