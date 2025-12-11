@@ -83,14 +83,14 @@ vi.mock('../../../clipboard/clipboardCacheStore', () => ({
 }));
 
 // Mock hyperlink clipboard cache store
-type MockHyperlinkCacheType = { nodeId: string; content: string; sourceFilePath: string; timestamp: number } | null;
+type MockHyperlinkCacheType = { nodeId: string; content: string; sourceFilePath: string; timestamp: number; clipboardTextAtCopy: string } | null;
 let currentMockHyperlinkCache: MockHyperlinkCacheType = null;
 
 vi.mock('../../../clipboard/hyperlinkClipboardStore', () => ({
   useHyperlinkClipboardStore: {
     getState: () => ({
-      setCache: vi.fn((nodeId: string, content: string, sourceFilePath: string) => {
-        currentMockHyperlinkCache = { nodeId, content, sourceFilePath, timestamp: Date.now() };
+      setCache: vi.fn((nodeId: string, content: string, sourceFilePath: string, clipboardTextAtCopy: string) => {
+        currentMockHyperlinkCache = { nodeId, content, sourceFilePath, timestamp: Date.now(), clipboardTextAtCopy };
       }),
       getCache: vi.fn(() => currentMockHyperlinkCache),
       clearCache: vi.fn(() => {
@@ -508,6 +508,7 @@ describe('clipboardActions', () => {
         content: 'Task 2',
         sourceFilePath: '/test/file.arbo',
         timestamp: Date.now(),
+        clipboardTextAtCopy: '',
       };
 
       const result = await actions.pasteNodes();
@@ -988,19 +989,19 @@ describe('clipboardActions', () => {
     });
 
     describe('copyAsHyperlink', () => {
-      it('should return no-selection when no active node', () => {
+      it('should return no-selection when no active node', async () => {
         state.activeNodeId = null;
 
-        const result = actions.copyAsHyperlink();
+        const result = await actions.copyAsHyperlink();
 
         expect(result).toBe('no-selection');
         expect(currentMockHyperlinkCache).toBeNull();
       });
 
-      it('should cache node as hyperlink when active node exists', () => {
+      it('should cache node as hyperlink when active node exists', async () => {
         state.activeNodeId = 'node-1';
 
-        const result = actions.copyAsHyperlink();
+        const result = await actions.copyAsHyperlink();
 
         expect(result).toBe('copied');
         expect(currentMockHyperlinkCache).not.toBeNull();
@@ -1008,29 +1009,31 @@ describe('clipboardActions', () => {
         expect(currentMockHyperlinkCache?.content).toBe('Task 1');
       });
 
-      it('should flash the copied node', () => {
+      it('should flash the copied node', async () => {
         state.activeNodeId = 'node-2';
 
-        actions.copyAsHyperlink();
+        await actions.copyAsHyperlink();
 
         expect(mockFlashNode).toHaveBeenCalledWith('node-2', 'light');
       });
 
-      it('should return no-selection when active node does not exist', () => {
+      it('should return no-selection when active node does not exist', async () => {
         state.activeNodeId = 'non-existent';
 
-        const result = actions.copyAsHyperlink();
+        const result = await actions.copyAsHyperlink();
 
         expect(result).toBe('no-selection');
       });
     });
 
     describe('pasteAsHyperlink', () => {
+      const matchingClipboardText = 'original clipboard content';
+
       it('should return no-content when no hyperlink cache', () => {
         currentMockHyperlinkCache = null;
         state.activeNodeId = 'node-1';
 
-        const result = actions.pasteAsHyperlink();
+        const result = actions.pasteAsHyperlink(matchingClipboardText);
 
         expect(result).toBe('no-content');
       });
@@ -1041,10 +1044,11 @@ describe('clipboardActions', () => {
           content: 'Task 2',
           sourceFilePath: '/test/file.arbo',
           timestamp: Date.now(),
+          clipboardTextAtCopy: matchingClipboardText,
         };
         state.activeNodeId = 'node-1';
 
-        const result = actions.pasteAsHyperlink();
+        const result = actions.pasteAsHyperlink(matchingClipboardText);
 
         expect(result).toBe('pasted');
         expect(mockExecuteCommand).toHaveBeenCalled();
@@ -1056,10 +1060,11 @@ describe('clipboardActions', () => {
           content: 'Task 2',
           sourceFilePath: '/test/file.arbo',
           timestamp: Date.now(),
+          clipboardTextAtCopy: matchingClipboardText,
         };
         state.activeNodeId = null;
 
-        const result = actions.pasteAsHyperlink();
+        const result = actions.pasteAsHyperlink(matchingClipboardText);
 
         expect(result).toBe('pasted');
         expect(mockExecuteCommand).toHaveBeenCalled();
@@ -1079,10 +1084,11 @@ describe('clipboardActions', () => {
           content: 'Task 1',
           sourceFilePath: '/test/file.arbo',
           timestamp: Date.now(),
+          clipboardTextAtCopy: matchingClipboardText,
         };
         state.activeNodeId = 'hyperlink-node';
 
-        const result = actions.pasteAsHyperlink();
+        const result = actions.pasteAsHyperlink(matchingClipboardText);
 
         expect(result).toBe('no-content');
         expect(mockAddToast).toHaveBeenCalledWith(
@@ -1097,10 +1103,11 @@ describe('clipboardActions', () => {
           content: 'Task 2',
           sourceFilePath: '/test/file.arbo',
           timestamp: Date.now(),
+          clipboardTextAtCopy: matchingClipboardText,
         };
         state.activeNodeId = 'node-1';
 
-        actions.pasteAsHyperlink();
+        actions.pasteAsHyperlink(matchingClipboardText);
 
         // Flash is called with the new node ID (UUID)
         expect(mockFlashNode).toHaveBeenCalled();
@@ -1112,10 +1119,27 @@ describe('clipboardActions', () => {
           content: 'Task 2',
           sourceFilePath: '/different/file.arbo',
           timestamp: Date.now(),
+          clipboardTextAtCopy: matchingClipboardText,
         };
         state.activeNodeId = 'node-1';
 
-        const result = actions.pasteAsHyperlink();
+        const result = actions.pasteAsHyperlink(matchingClipboardText);
+
+        expect(result).toBe('no-content');
+        expect(mockExecuteCommand).not.toHaveBeenCalled();
+      });
+
+      it('should return no-content when clipboard has changed since hyperlink was copied', () => {
+        currentMockHyperlinkCache = {
+          nodeId: 'node-2',
+          content: 'Task 2',
+          sourceFilePath: '/test/file.arbo',
+          timestamp: Date.now(),
+          clipboardTextAtCopy: 'original content',
+        };
+        state.activeNodeId = 'node-1';
+
+        const result = actions.pasteAsHyperlink('different clipboard content');
 
         expect(result).toBe('no-content');
         expect(mockExecuteCommand).not.toHaveBeenCalled();
@@ -1137,6 +1161,7 @@ describe('clipboardActions', () => {
           content: 'Task 1',
           sourceFilePath: '/test/file.arbo',
           timestamp: Date.now(),
+          clipboardTextAtCopy: '',
         };
 
         const result = actions.hasHyperlinkCache();

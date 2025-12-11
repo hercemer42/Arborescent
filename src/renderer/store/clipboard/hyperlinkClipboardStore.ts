@@ -5,6 +5,7 @@ export interface HyperlinkClipboardContent {
   content: string;
   sourceFilePath: string;
   timestamp: number;
+  clipboardTextAtCopy: string;
 }
 
 interface HyperlinkClipboardState {
@@ -12,7 +13,7 @@ interface HyperlinkClipboardState {
 }
 
 interface HyperlinkClipboardActions {
-  setCache: (nodeId: string, content: string, sourceFilePath: string) => void;
+  setCache: (nodeId: string, content: string, sourceFilePath: string, clipboardTextAtCopy: string) => void;
   getCache: () => HyperlinkClipboardContent | null;
   clearCache: () => void;
   hasCache: () => boolean;
@@ -23,13 +24,14 @@ export type HyperlinkClipboardStore = HyperlinkClipboardState & HyperlinkClipboa
 export const useHyperlinkClipboardStore = create<HyperlinkClipboardStore>((set, get) => ({
   cache: null,
 
-  setCache: (nodeId: string, content: string, sourceFilePath: string) => {
+  setCache: (nodeId: string, content: string, sourceFilePath: string, clipboardTextAtCopy: string) => {
     set({
       cache: {
         nodeId,
         content,
         sourceFilePath,
         timestamp: Date.now(),
+        clipboardTextAtCopy,
       },
     });
   },

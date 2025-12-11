@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2025-12-11T14:58:29.995Z'
+updated: '2025-12-11T15:09:34.168Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -5312,7 +5312,7 @@ nodes:
       - e4c88a77-6205-4d2f-9b2f-a6427b27a821
       - f1bc1b2c-5d25-46e0-92c8-24854c6d4fbf
       - f8df3ec7-9e2e-401e-9250-5013208ab343
-      - 7872f73c-b9d7-40a7-bcea-d0573548106c
+      - e87d0f5a-8e4b-4ed0-b1bc-a9d1c4836915
     metadata:
       status: pending
       isContextDeclaration: true
@@ -5463,13 +5463,6 @@ nodes:
       blueprintColor: '#a855f7'
       activeExecuteContextId: e8824b29-eb18-4031-9e35-b321a864d418
       appliedContextId: e8824b29-eb18-4031-9e35-b321a864d418
-  7872f73c-b9d7-40a7-bcea-d0573548106c:
-    id: 7872f73c-b9d7-40a7-bcea-d0573548106c
-    content: Don't include an element that is already implemented, check the code first
-    children: []
-    metadata:
-      status: pending
-      isBlueprint: true
   b8521434-96cd-4258-b87e-876dc7276241:
     id: b8521434-96cd-4258-b87e-876dc7276241
     content: Context System Redesign
@@ -6062,7 +6055,7 @@ nodes:
       isBlueprint: true
   cc94b377-246d-45ae-b938-2d3906892aa1:
     id: cc94b377-246d-45ae-b938-2d3906892aa1
-    content: Implement major feature
+    content: Implement a major feature
     children:
       - 7edf262e-ab8a-4149-b2b0-c74f8aa60401
       - bf7a428b-6e45-4024-8eea-a1491604e927
@@ -9095,7 +9088,7 @@ nodes:
       blueprintIcon: Bug
       blueprintColor: '#ef4444'
       isBlueprint: true
-      expanded: true
+      expanded: false
   21179aff-4cb0-4e06-877a-6b13488017b3:
     id: 21179aff-4cb0-4e06-877a-6b13488017b3
     content: Perform the below bug fixes
@@ -16125,7 +16118,6 @@ nodes:
     id: 3881490a-b11c-4052-ad46-020faad5bb2b
     content: In progress
     children:
-      - 2ceb222c-bdd3-4ffb-bd61-0c127909fd2a
       - 1c5caa24-018b-4f1d-85c8-3232d93deb1c
       - d39f7ab4-3d32-4e18-8c96-69b38cee3766
       - 8d46b8b4-8531-49ad-a223-b5856af3f562
@@ -16140,7 +16132,7 @@ nodes:
       isBlueprint: true
       blueprintIcon: Cog
       blueprintColor: '#14b8a6'
-      activeExecuteContextId: 1e2f062a-bbaa-4a02-b58b-a94ab15d8d74
+      activeExecuteContextId: 6690289a-e02f-48bc-9225-a1083b7b324f
       activeCollaborateContextId: 1e2f062a-bbaa-4a02-b58b-a94ab15d8d74
   23c50cbd-3490-4afb-a442-c792d2f114a8:
     id: 23c50cbd-3490-4afb-a442-c792d2f114a8
@@ -16321,13 +16313,6 @@ nodes:
     children: []
     metadata:
       status: pending
-  2ceb222c-bdd3-4ffb-bd61-0c127909fd2a:
-    id: 2ceb222c-bdd3-4ffb-bd61-0c127909fd2a
-    content: CTRL/Shift and home/end doesn't select the text, just moves the cursor
-    children: []
-    metadata:
-      status: pending
-      activeExecuteContextId: 6690289a-e02f-48bc-9225-a1083b7b324f
   c9a0cf38-c449-47a0-b687-359ca5ddd57e:
     id: c9a0cf38-c449-47a0-b687-359ca5ddd57e
     content: Directory Structure
@@ -17293,12 +17278,14 @@ nodes:
     children: []
     metadata:
       status: pending
+      activeExecuteContextId: 6690289a-e02f-48bc-9225-a1083b7b324f
   d39f7ab4-3d32-4e18-8c96-69b38cee3766:
     id: d39f7ab4-3d32-4e18-8c96-69b38cee3766
     content: Sometimes we get into a state (not sure how) where a cut node we didn't paste, or perhaps pasted and undid, is greyed out, and subsequent copy and paste leave it greyed out
     children: []
     metadata:
       status: pending
+      activeExecuteContextId: 6690289a-e02f-48bc-9225-a1083b7b324f
   7edf262e-ab8a-4149-b2b0-c74f8aa60401:
     id: 7edf262e-ab8a-4149-b2b0-c74f8aa60401
     content: Implement a feature
@@ -17328,6 +17315,7 @@ nodes:
     children: []
     metadata:
       status: pending
+      activeCollaborateContextId: 6690289a-e02f-48bc-9225-a1083b7b324f
   40e10a1b-8c3c-4687-9acd-65a8cd791d19:
     id: 40e10a1b-8c3c-4687-9acd-65a8cd791d19
     content: Standard checks
@@ -17388,6 +17376,13 @@ nodes:
   ce6097ec-77c7-4ee5-aff9-253a8cbb67c8:
     id: ce6097ec-77c7-4ee5-aff9-253a8cbb67c8
     content: Add tests for the specific steps that led to the bug
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  e87d0f5a-8e4b-4ed0-b1bc-a9d1c4836915:
+    id: e87d0f5a-8e4b-4ed0-b1bc-a9d1c4836915
+    content: Do highlight if there is a technical constraint that makes the feature difficult to implement
     children: []
     metadata:
       status: pending

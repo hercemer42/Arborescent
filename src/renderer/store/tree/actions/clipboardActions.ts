@@ -28,8 +28,8 @@ export interface ClipboardActions {
   copyNodes: () => Promise<'copied' | 'no-selection'>;
   pasteNodes: () => Promise<'pasted' | 'no-content' | 'blocked' | 'cancelled'>;
   deleteSelectedNodes: () => 'deleted' | 'no-selection';
-  copyAsHyperlink: () => 'copied' | 'no-selection';
-  pasteAsHyperlink: () => 'pasted' | 'no-content';
+  copyAsHyperlink: () => Promise<'copied' | 'no-selection'>;
+  pasteAsHyperlink: (currentClipboardText: string) => 'pasted' | 'no-content';
   hasHyperlinkCache: () => boolean;
 }
 
@@ -518,7 +518,7 @@ export const createClipboardActions = (
       if (copyResult !== null) return copyResult;
     }
 
-    const hyperlinkResult = pasteAsHyperlink();
+    const hyperlinkResult = pasteAsHyperlink(clipboardText || '');
     if (hyperlinkResult === 'pasted') return 'pasted';
 
     return handleExternalPaste(ctx);
@@ -554,7 +554,7 @@ export const createClipboardActions = (
     return 'deleted';
   }
 
-  function copyAsHyperlink(): 'copied' | 'no-selection' {
+  async function copyAsHyperlink(): Promise<'copied' | 'no-selection'> {
     const state = get();
     const { activeNodeId, nodes, currentFilePath } = state;
 
@@ -564,16 +564,22 @@ export const createClipboardActions = (
     const node = nodes[activeNodeId];
     if (!node) return 'no-selection';
 
-    useHyperlinkClipboardStore.getState().setCache(activeNodeId, node.content, currentFilePath);
+    const currentClipboardText = await readFromClipboard('ClipboardActions:copyAsHyperlink') || '';
+    useHyperlinkClipboardStore.getState().setCache(activeNodeId, node.content, currentFilePath, currentClipboardText);
 
     flashNodes(activeNodeId, visualEffects);
     logger.info('Copied node as hyperlink', 'ClipboardActions');
     return 'copied';
   }
 
-  function pasteAsHyperlink(): 'pasted' | 'no-content' {
+  function pasteAsHyperlink(currentClipboardText: string): 'pasted' | 'no-content' {
     const hyperlinkCache = useHyperlinkClipboardStore.getState().getCache();
     if (!hyperlinkCache) return 'no-content';
+
+    if (currentClipboardText !== hyperlinkCache.clipboardTextAtCopy) {
+      useHyperlinkClipboardStore.getState().clearCache();
+      return 'no-content';
+    }
 
     const state = get();
     const { currentFilePath } = state;
