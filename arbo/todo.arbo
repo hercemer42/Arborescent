@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2025-12-10T00:44:43.892Z'
+updated: '2025-12-11T14:58:29.995Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -17,6 +17,7 @@ nodes:
       - d5fe0eff-b1c6-4986-b6a3-70a0ea46f096
       - c4473311-2e42-48ae-9191-d3807dc55a4c
       - 9bfbb401-dcb6-4f92-a34b-e9b3982c676f
+      - bf007448-0f9f-4e68-ba31-a9def979ec2d
       - f5e3f44c-6de7-4bd9-ad8d-7f51cdf059f1
     metadata:
       created: '2025-10-11T00:00:00.000Z'
@@ -5406,6 +5407,7 @@ nodes:
     content: Refactor
     children:
       - 59f2421c-d726-43ec-8347-ccf2874922a4
+      - 160d7300-fc7a-49ab-94ca-b3e3d5840b66
       - edd6bde4-a422-43f9-8839-9af88651293b
       - a34c70fb-bfe7-4955-9fa0-2e56076f4c9d
     metadata:
@@ -5424,7 +5426,7 @@ nodes:
       isBlueprint: true
   edd6bde4-a422-43f9-8839-9af88651293b:
     id: edd6bde4-a422-43f9-8839-9af88651293b
-    content: Challenge the user if you think the refactor ideas are not consistent with the project architecture
+    content: Challenge the user if you think the refactor ideas are not consistent with the project conventions
     children: []
     metadata:
       status: pending
@@ -5838,7 +5840,7 @@ nodes:
       expanded: true
   9a8f1538-7eb7-4e2d-9e0f-46e2c00675f4:
     id: 9a8f1538-7eb7-4e2d-9e0f-46e2c00675f4
-    content: Implementation
+    content: Technical
     children:
       - 9b46397c-c452-421c-b408-46b040d99c9e
       - cc94b377-246d-45ae-b938-2d3906892aa1
@@ -5848,18 +5850,20 @@ nodes:
       status: pending
       expanded: true
       isBlueprint: true
-      blueprintIcon: Layers2
+      blueprintIcon: Boxes
+      activeCollaborateContextId: e8824b29-eb18-4031-9e35-b321a864d418
+      appliedContextId: e8824b29-eb18-4031-9e35-b321a864d418
+      blueprintColor: '#a855f7'
   9b46397c-c452-421c-b408-46b040d99c9e:
     id: 9b46397c-c452-421c-b408-46b040d99c9e
-    content: Implement minor feature
+    content: Implement a feature
     children:
-      - c23bb465-c70f-4229-8a78-f1275d3e05d0
+      - ad66e76d-ff03-4282-8589-e4dcdb9a0271
+      - a2fe0068-728a-46e2-9bd2-0776b75f3785
       - 19f2aeca-f4da-4efa-a790-5de2fdfd3c85
       - 5e0fa846-276d-4d99-ae49-a3f05b46b75c
+      - 565e741a-337a-46cc-83bf-97fd39e1dff3
       - 3239dd15-5f50-4999-84ac-b84b71b742be
-      - 6a7c5b51-8827-40a1-9a86-89dcb26ddf40
-      - e2cbe11a-e285-4a36-9989-1cf70bb395ba
-      - b9bf8973-53bf-4343-92ac-2adf1b3aadd0
       - ee62f343-86cb-423b-87ab-63236876a259
       - 00757321-75c1-44a9-981f-2362add1989f
     metadata:
@@ -5876,28 +5880,20 @@ nodes:
     content: Understand & Plan
     children:
       - 6045ae69-1afd-4579-b088-53443a35a23b
-      - 86a0215b-68ad-4b93-8890-e43ca7623095
+      - 760fca4c-7ad7-4b7b-9aa3-91325e45e524
       - dd931d08-014a-4084-8522-9981433eadb9
-      - 7740eda7-57e1-43b0-8194-39789136af7f
+      - 6328bcde-087d-4a83-8bf7-974dab32f3c3
+      - 6d0f96f7-457f-4bf5-b091-71efecc01b7f
+      - 52c39879-2b10-40e6-89f7-e0c35bbb5474
     metadata:
       status: pending
-      expanded: true
+      expanded: false
       deleted: false
       plugins: {}
       isBlueprint: true
   6045ae69-1afd-4579-b088-53443a35a23b:
     id: 6045ae69-1afd-4579-b088-53443a35a23b
     content: Review the feature requirements and clarify any ambiguities
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-      isBlueprint: true
-  86a0215b-68ad-4b93-8890-e43ca7623095:
-    id: 86a0215b-68ad-4b93-8890-e43ca7623095
-    content: Examine relevant existing code before implementing
     children: []
     metadata:
       status: pending
@@ -5920,13 +5916,12 @@ nodes:
     content: Implementation Guidelines
     children:
       - e0c94a91-a69c-4a42-9184-01b852347016
-      - 27b1fe0a-de41-4509-b655-3aab2f18fc0a
       - f3f21746-1d29-4fce-a4f5-3edd0311770b
       - fa14fd30-8137-4fa7-b6aa-4799cb5c3454
       - 44bbbce0-f6c3-4cc0-97ed-ae182dd653e8
     metadata:
       status: pending
-      expanded: true
+      expanded: false
       deleted: false
       plugins: {}
       isBlueprint: true
@@ -5981,41 +5976,6 @@ nodes:
       deleted: false
       plugins: {}
       isBlueprint: true
-  6a7c5b51-8827-40a1-9a86-89dcb26ddf40:
-    id: 6a7c5b51-8827-40a1-9a86-89dcb26ddf40
-    content: Code Quality
-    children:
-      - f0fe0cb0-8e88-4f07-91b1-2eb2f93dde40
-      - fd2e1eef-7de2-41cb-9c14-4921e1f87af5
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-      isBlueprint: true
-  f0fe0cb0-8e88-4f07-91b1-2eb2f93dde40:
-    id: f0fe0cb0-8e88-4f07-91b1-2eb2f93dde40
-    content: Ensure no linting or TypeScript errors in the entire project
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-      isBlueprint: true
-  fd2e1eef-7de2-41cb-9c14-4921e1f87af5:
-    id: fd2e1eef-7de2-41cb-9c14-4921e1f87af5
-    content: Writing Comments
-    children:
-      - 0e6d1b24-74b5-4890-818c-15f2b0f15b46
-      - 1873772c-99e0-4cfb-813e-c7f2495cd5ce
-      - 94fad8da-0d1e-4d30-bc0c-fb9c3b5da13d
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-      isBlueprint: true
   0e6d1b24-74b5-4890-818c-15f2b0f15b46:
     id: 0e6d1b24-74b5-4890-818c-15f2b0f15b46
     content: Prefer refactoring with descriptive naming over adding comments
@@ -6046,39 +6006,6 @@ nodes:
       deleted: false
       plugins: {}
       isBlueprint: true
-  b9bf8973-53bf-4343-92ac-2adf1b3aadd0:
-    id: b9bf8973-53bf-4343-92ac-2adf1b3aadd0
-    content: Testing
-    children:
-      - f34d3e31-6adf-4f21-b8d7-20e0b0cf1c00
-      - e9f83c64-7825-4969-b60d-828938e0f9cf
-      - 1a4afd5a-a5bb-4073-a467-f730b24f2a65
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-      isBlueprint: true
-  f34d3e31-6adf-4f21-b8d7-20e0b0cf1c00:
-    id: f34d3e31-6adf-4f21-b8d7-20e0b0cf1c00
-    content: Create automated tests for the new functionality and ensure they pass
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-      isBlueprint: true
-  e9f83c64-7825-4969-b60d-828938e0f9cf:
-    id: e9f83c64-7825-4969-b60d-828938e0f9cf
-    content: Ensure any existing tests for edited files still pass
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-      isBlueprint: true
   ee62f343-86cb-423b-87ab-63236876a259:
     id: ee62f343-86cb-423b-87ab-63236876a259
     content: Reporting
@@ -6087,7 +6014,7 @@ nodes:
       - 9105404e-4bfc-43c1-b954-96f9f03a9db5
     metadata:
       status: pending
-      expanded: true
+      expanded: false
       deleted: false
       plugins: {}
       isBlueprint: true
@@ -6137,14 +6064,8 @@ nodes:
     id: cc94b377-246d-45ae-b938-2d3906892aa1
     content: Implement major feature
     children:
-      - 4971695c-b11e-4bcf-870c-2e6c37995b9d
-      - 1dbf6444-7207-4916-8fa7-7c1bb54f8499
-      - c2b50240-2e86-4a10-ae72-530187e5e6f0
-      - 2d2f84ae-d30a-4ddd-a127-c1e7acd15c63
-      - 565e741a-337a-46cc-83bf-97fd39e1dff3
-      - 869e317f-ec2a-4d2d-a8bb-8bc22d84e326
+      - 7edf262e-ab8a-4149-b2b0-c74f8aa60401
       - bf7a428b-6e45-4024-8eea-a1491604e927
-      - 7dcca48a-11f1-4245-aff7-651b3e03edbc
     metadata:
       status: pending
       expanded: false
@@ -6154,78 +6075,11 @@ nodes:
       blueprintIcon: Hammer
       blueprintColor: '#c47f09'
       isBlueprint: true
-  c2b50240-2e86-4a10-ae72-530187e5e6f0:
-    id: c2b50240-2e86-4a10-ae72-530187e5e6f0
-    content: Architecture Review
-    children:
-      - a2fe0068-728a-46e2-9bd2-0776b75f3785
-      - 88d420f1-54e1-41c9-9e81-c1aa9eb5fc00
-      - 280e1199-b94d-4918-9ac3-ad944e7d866a
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-      isBlueprint: true
   a2fe0068-728a-46e2-9bd2-0776b75f3785:
     id: a2fe0068-728a-46e2-9bd2-0776b75f3785
-    content: Read the architecture file at arbo/architecture.md
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-      isBlueprint: true
-  88d420f1-54e1-41c9-9e81-c1aa9eb5fc00:
-    id: 88d420f1-54e1-41c9-9e81-c1aa9eb5fc00
-    content: Consider the architecture guidelines throughout implementation
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-      isBlueprint: true
-  280e1199-b94d-4918-9ac3-ad944e7d866a:
-    id: 280e1199-b94d-4918-9ac3-ad944e7d866a
-    content: If making significant architectural changes, update arbo/architecture.md accordingly
+    content: 'Follow the project conventions :'
     children:
-      - 4f64fa1e-0c64-46cf-8813-15e59050a540
-      - 8e0e9fa4-b64f-4497-9024-683ff8cbabea
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-      isBlueprint: true
-  4f64fa1e-0c64-46cf-8813-15e59050a540:
-    id: 4f64fa1e-0c64-46cf-8813-15e59050a540
-    content: Be brief, avoid long code examples
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-      isBlueprint: true
-  8e0e9fa4-b64f-4497-9024-683ff8cbabea:
-    id: 8e0e9fa4-b64f-4497-9024-683ff8cbabea
-    content: Correct any existing inconsistencies in the documentation
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-      isBlueprint: true
-  2d2f84ae-d30a-4ddd-a127-c1e7acd15c63:
-    id: 2d2f84ae-d30a-4ddd-a127-c1e7acd15c63
-    content: Planning
-    children:
-      - 760fca4c-7ad7-4b7b-9aa3-91325e45e524
-      - 52c39879-2b10-40e6-89f7-e0c35bbb5474
-      - 6d0f96f7-457f-4bf5-b091-71efecc01b7f
+      - c84e7728-e416-4612-ab34-45556a472ddc
     metadata:
       status: pending
       expanded: true
@@ -6267,37 +6121,15 @@ nodes:
     content: Quality Assurance
     children:
       - 504e6f7a-3dae-41f0-b7c6-9f63ba66900d
-      - 6328bcde-087d-4a83-8bf7-974dab32f3c3
     metadata:
       status: pending
-      expanded: true
+      expanded: false
       deleted: false
       plugins: {}
       isBlueprint: true
   504e6f7a-3dae-41f0-b7c6-9f63ba66900d:
     id: 504e6f7a-3dae-41f0-b7c6-9f63ba66900d
     content: Ensure total automated test coverage levels are consistent with what is declared in the project architecture
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-      isBlueprint: true
-  869e317f-ec2a-4d2d-a8bb-8bc22d84e326:
-    id: 869e317f-ec2a-4d2d-a8bb-8bc22d84e326
-    content: Reporting
-    children:
-      - 2c001b63-f8f8-4633-952b-fd1c539d024c
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-      isBlueprint: true
-  2c001b63-f8f8-4633-952b-fd1c539d024c:
-    id: 2c001b63-f8f8-4633-952b-fd1c539d024c
-    content: Summarize any modifications made to arbo/architecture.md
     children: []
     metadata:
       status: pending
@@ -8596,20 +8428,6 @@ nodes:
     children: []
     metadata:
       status: completed
-  c23bb465-c70f-4229-8a78-f1275d3e05d0:
-    id: c23bb465-c70f-4229-8a78-f1275d3e05d0
-    content: You will consider the following instructions and then use the given specification to code a minor feature
-    children: []
-    metadata:
-      status: pending
-      isBlueprint: true
-  1dbf6444-7207-4916-8fa7-7c1bb54f8499:
-    id: 1dbf6444-7207-4916-8fa7-7c1bb54f8499
-    content: You will code a major feature by adding the following to the minor feature instructions
-    children: []
-    metadata:
-      status: pending
-      isBlueprint: true
   19f2aeca-f4da-4efa-a790-5de2fdfd3c85:
     id: 19f2aeca-f4da-4efa-a790-5de2fdfd3c85
     content: You will not update the feedback panel file if you have previously done that, this is a coding task
@@ -9266,8 +9084,10 @@ nodes:
     id: 6690289a-e02f-48bc-9225-a1083b7b324f
     content: Bug fix
     children:
+      - ea883597-c1ca-4d7f-92d4-8380601cc505
       - 21179aff-4cb0-4e06-877a-6b13488017b3
       - aff16275-6d8e-49c9-b862-76875858d4af
+      - ce6097ec-77c7-4ee5-aff9-253a8cbb67c8
       - d0d86ec6-ac28-41a2-9e65-0ae9cf2fb722
     metadata:
       status: pending
@@ -9275,7 +9095,7 @@ nodes:
       blueprintIcon: Bug
       blueprintColor: '#ef4444'
       isBlueprint: true
-      expanded: false
+      expanded: true
   21179aff-4cb0-4e06-877a-6b13488017b3:
     id: 21179aff-4cb0-4e06-877a-6b13488017b3
     content: Perform the below bug fixes
@@ -9298,7 +9118,7 @@ nodes:
       blueprintIcon: CheckSquare
       blueprintColor: '#22c55e'
       isBlueprint: true
-      expanded: false
+      expanded: true
   ce9cfecb-f289-494b-8ff2-482e4b29d193:
     id: ce9cfecb-f289-494b-8ff2-482e4b29d193
     content: All the automated tests are updated and passing
@@ -9382,7 +9202,7 @@ nodes:
       - 6ab534a2-2956-454c-9c6a-e459314e0b5c
     metadata:
       status: pending
-      expanded: false
+      expanded: true
       isBlueprint: true
       blueprintIcon: Star
       blueprintColor: '#64748b'
@@ -10509,13 +10329,6 @@ nodes:
     children: []
     metadata:
       status: completed
-  27b1fe0a-de41-4509-b655-3aab2f18fc0a:
-    id: 27b1fe0a-de41-4509-b655-3aab2f18fc0a
-    content: Be sure to put logic in seperate hooks or actions file, and template only in component file
-    children: []
-    metadata:
-      status: pending
-      isBlueprint: true
   110fa7d3-aabb-41d8-9d83-c5d0ceaa1e8f:
     id: 110fa7d3-aabb-41d8-9d83-c5d0ceaa1e8f
     content: "Shortcut key :\_"
@@ -12106,9 +11919,6 @@ nodes:
       - 494e1164-c8eb-4d4b-b161-0f8fcba6e75e
     metadata:
       status: completed
-      appliedContextIds:
-        - 9b46397c-c452-421c-b408-46b040d99c9e
-      activeContextId: 9b46397c-c452-421c-b408-46b040d99c9e
       resolvedAt: '2025-12-07T16:01:14.847Z'
       expanded: false
   6330c6fc-aeef-4ec2-ae5a-120b5390767e:
@@ -12452,40 +12262,6 @@ nodes:
     metadata:
       status: completed
       resolvedAt: '2025-12-07T16:44:29.407Z'
-  4971695c-b11e-4bcf-870c-2e6c37995b9d:
-    id: 4971695c-b11e-4bcf-870c-2e6c37995b9d
-    content: 'First consider minor feature context :'
-    children:
-      - a77e268f-7cb4-4c5f-ba54-ae914361fe07
-    metadata:
-      status: pending
-      isBlueprint: true
-  a77e268f-7cb4-4c5f-ba54-ae914361fe07:
-    id: a77e268f-7cb4-4c5f-ba54-ae914361fe07
-    content: Implement minor feature
-    children: []
-    metadata:
-      status: pending
-      isHyperlink: true
-      linkedNodeId: 9b46397c-c452-421c-b408-46b040d99c9e
-      isBlueprint: true
-  bf7a428b-6e45-4024-8eea-a1491604e927:
-    id: bf7a428b-6e45-4024-8eea-a1491604e927
-    content: 'Lastly do standard checks on all files :'
-    children:
-      - 40e10a1b-8c3c-4687-9acd-65a8cd791d19
-    metadata:
-      status: pending
-      isBlueprint: true
-  40e10a1b-8c3c-4687-9acd-65a8cd791d19:
-    id: 40e10a1b-8c3c-4687-9acd-65a8cd791d19
-    content: Standard checks
-    children: []
-    metadata:
-      status: pending
-      isHyperlink: true
-      linkedNodeId: 6ab534a2-2956-454c-9c6a-e459314e0b5c
-      isBlueprint: true
   b3186f51-5a4d-45e9-bfa3-f43a5c40a869:
     id: b3186f51-5a4d-45e9-bfa3-f43a5c40a869
     content: Standard checks
@@ -12534,13 +12310,6 @@ nodes:
     content: 'Lastly do standard checks on changed files only :'
     children:
       - 1569c486-b6a7-405d-b99d-eeea9b0c59dc
-    metadata:
-      status: pending
-      isBlueprint: true
-  7740eda7-57e1-43b0-8194-39789136af7f:
-    id: 7740eda7-57e1-43b0-8194-39789136af7f
-    content: "The first version of this product is not\_"
-    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -14746,45 +14515,6 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  e2cbe11a-e285-4a36-9989-1cf70bb395ba:
-    id: e2cbe11a-e285-4a36-9989-1cf70bb395ba
-    content: Performance
-    children:
-      - 8e4bba08-3be4-4cbb-990c-5e4449de2dd9
-      - 2d363884-8e06-417d-9d19-d8587eaf626f
-      - eab3b032-09d7-49fb-80bc-6bcd2ab4cd7b
-    metadata:
-      status: pending
-      isBlueprint: true
-  8e4bba08-3be4-4cbb-990c-5e4449de2dd9:
-    id: 8e4bba08-3be4-4cbb-990c-5e4449de2dd9
-    content: Be careful to not run expensive computes for all nodes whenever a node is updated
-    children:
-      - 02287549-c8d4-4a02-8779-4166661a7a0b
-    metadata:
-      status: pending
-      isBlueprint: true
-  02287549-c8d4-4a02-8779-4166661a7a0b:
-    id: 02287549-c8d4-4a02-8779-4166661a7a0b
-    content: Be sure to use memoization
-    children: []
-    metadata:
-      status: pending
-      isBlueprint: true
-  2d363884-8e06-417d-9d19-d8587eaf626f:
-    id: 2d363884-8e06-417d-9d19-d8587eaf626f
-    content: Use a store cache where possible, update only when necessary
-    children: []
-    metadata:
-      status: pending
-      isBlueprint: true
-  eab3b032-09d7-49fb-80bc-6bcd2ab4cd7b:
-    id: eab3b032-09d7-49fb-80bc-6bcd2ab4cd7b
-    content: Avoid subscribing to the entire state.nodes object when not needed
-    children: []
-    metadata:
-      status: pending
-      isBlueprint: true
   5d4608ba-2edf-45b6-80b5-e5e8286861f2:
     id: 5d4608ba-2edf-45b6-80b5-e5e8286861f2
     content: Implement a spellchecker
@@ -16107,19 +15837,6 @@ nodes:
     metadata:
       status: completed
       resolvedAt: '2025-12-09T18:21:45.670Z'
-  1a4afd5a-a5bb-4073-a467-f730b24f2a65:
-    id: 1a4afd5a-a5bb-4073-a467-f730b24f2a65
-    content: Automated testing
-    children:
-      - e05aa3ca-f7aa-4086-ae26-db404d6e55e4
-      - 57edc3d9-fbda-4b6c-a800-c49bd8f4dd2a
-      - 804b0413-b5c7-4e87-9561-8447bc3a1737
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-      isBlueprint: true
   e05aa3ca-f7aa-4086-ae26-db404d6e55e4:
     id: e05aa3ca-f7aa-4086-ae26-db404d6e55e4
     content: Mock at the right level - mock the imported module, not underlying APIs
@@ -16407,7 +16124,11 @@ nodes:
   3881490a-b11c-4052-ad46-020faad5bb2b:
     id: 3881490a-b11c-4052-ad46-020faad5bb2b
     content: In progress
-    children: []
+    children:
+      - 2ceb222c-bdd3-4ffb-bd61-0c127909fd2a
+      - 1c5caa24-018b-4f1d-85c8-3232d93deb1c
+      - d39f7ab4-3d32-4e18-8c96-69b38cee3766
+      - 8d46b8b4-8531-49ad-a223-b5856af3f562
     metadata:
       status: pending
       appliedContextIds:
@@ -16537,37 +16258,6 @@ nodes:
       deleted: false
       plugins: {}
       resolvedAt: '2025-12-09T22:40:10.533Z'
-  7dcca48a-11f1-4245-aff7-651b3e03edbc:
-    id: 7dcca48a-11f1-4245-aff7-651b3e03edbc
-    content: Documentation
-    children:
-      - fc72c8a4-a70f-4aed-9f73-962f0948b8fb
-      - b69663ad-d129-4df0-bb7d-1d00ea05350d
-      - 655a8d92-351d-41f2-b585-ef8256d105df
-    metadata:
-      status: pending
-      isBlueprint: true
-  fc72c8a4-a70f-4aed-9f73-962f0948b8fb:
-    id: fc72c8a4-a70f-4aed-9f73-962f0948b8fb
-    content: The code should be self documenting, comments should
-    children: []
-    metadata:
-      status: pending
-      isBlueprint: true
-  b69663ad-d129-4df0-bb7d-1d00ea05350d:
-    id: b69663ad-d129-4df0-bb7d-1d00ea05350d
-    content: Don't use JSdoc conventions
-    children: []
-    metadata:
-      status: pending
-      isBlueprint: true
-  655a8d92-351d-41f2-b585-ef8256d105df:
-    id: 655a8d92-351d-41f2-b585-ef8256d105df
-    content: Do explain WHY we've done something only if it's unconventional or difficult to understand
-    children: []
-    metadata:
-      status: pending
-      isBlueprint: true
   d87082fc-4e05-4080-b652-c69897022374:
     id: d87082fc-4e05-4080-b652-c69897022374
     content: Gutter cleanup
@@ -16631,5 +16321,1076 @@ nodes:
     children: []
     metadata:
       status: pending
+  2ceb222c-bdd3-4ffb-bd61-0c127909fd2a:
+    id: 2ceb222c-bdd3-4ffb-bd61-0c127909fd2a
+    content: CTRL/Shift and home/end doesn't select the text, just moves the cursor
+    children: []
+    metadata:
+      status: pending
+      activeExecuteContextId: 6690289a-e02f-48bc-9225-a1083b7b324f
+  c9a0cf38-c449-47a0-b687-359ca5ddd57e:
+    id: c9a0cf38-c449-47a0-b687-359ca5ddd57e
+    content: Directory Structure
+    children:
+      - 2b3ef83d-e81b-46bc-ad0b-bf1ff2c0222a
+      - 6f44b704-667a-4d9a-91b6-8a2f7c7e41b1
+      - f615c466-1352-4220-9293-99ed869f6344
+      - 38ab38b2-68ce-4e74-b621-a64c1efa5567
+      - 7fa6ff19-95e4-4f6d-b7be-de546074c195
+      - 298521af-68fc-46a8-b4b7-853ae697d4b8
+    metadata:
+      status: pending
+      expanded: false
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  2b3ef83d-e81b-46bc-ad0b-bf1ff2c0222a:
+    id: 2b3ef83d-e81b-46bc-ad0b-bf1ff2c0222a
+    content: Separate main process, renderer, shared, and platform-specific code
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  6f44b704-667a-4d9a-91b6-8a2f7c7e41b1:
+    id: 6f44b704-667a-4d9a-91b6-8a2f7c7e41b1
+    content: Platform implementations behind interfaces for swappability
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  f615c466-1352-4220-9293-99ed869f6344:
+    id: f615c466-1352-4220-9293-99ed869f6344
+    content: Shared types and interfaces used by both processes live in shared/
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  38ab38b2-68ce-4e74-b621-a64c1efa5567:
+    id: 38ab38b2-68ce-4e74-b621-a64c1efa5567
+    content: IPC handlers organized in services/handlers/ subdirectory
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  7fa6ff19-95e4-4f6d-b7be-de546074c195:
+    id: 7fa6ff19-95e4-4f6d-b7be-de546074c195
+    content: Single preload file exposing platform APIs via contextBridge
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  298521af-68fc-46a8-b4b7-853ae697d4b8:
+    id: 298521af-68fc-46a8-b4b7-853ae697d4b8
+    content: 'Layout:'
+    children:
+      - 0d51bba3-4b76-4410-a2a1-c9433f1f5aba
+      - 11749362-6eea-46f0-8e15-ff1c5c2ef5f9
+      - 2ed099fd-efab-4712-a01c-daa6bced49a3
+      - 1a5a543e-6ad1-4fb1-9f65-c5d9d147d119
+      - 023f57e9-220b-4751-9105-f338541fe174
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  0d51bba3-4b76-4410-a2a1-c9433f1f5aba:
+    id: 0d51bba3-4b76-4410-a2a1-c9433f1f5aba
+    content: src/main/ - Electron main process
+    children:
+      - 48ba159f-e45d-4385-8276-cd1b3053d328
+      - e4a0fd2a-c70d-4af0-b12a-c98b097be890
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  48ba159f-e45d-4385-8276-cd1b3053d328:
+    id: 48ba159f-e45d-4385-8276-cd1b3053d328
+    content: services/handlers/ - IPC handlers by feature
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  e4a0fd2a-c70d-4af0-b12a-c98b097be890:
+    id: e4a0fd2a-c70d-4af0-b12a-c98b097be890
+    content: services/utils/ - Main process utilities
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  11749362-6eea-46f0-8e15-ff1c5c2ef5f9:
+    id: 11749362-6eea-46f0-8e15-ff1c5c2ef5f9
+    content: src/preload/ - Context bridge definitions
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  2ed099fd-efab-4712-a01c-daa6bced49a3:
+    id: 2ed099fd-efab-4712-a01c-daa6bced49a3
+    content: src/platforms/electron/services/ - Platform implementations
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  1a5a543e-6ad1-4fb1-9f65-c5d9d147d119:
+    id: 1a5a543e-6ad1-4fb1-9f65-c5d9d147d119
+    content: src/renderer/ - React application
+    children:
+      - 10d90016-2179-448d-a67e-86aee3ffc1ae
+      - 235b7606-5e96-4a5e-9310-fc14421622d0
+      - 079916e9-35c9-444a-9452-7f0551dfdb7c
+      - 01b41cb8-17f9-401e-a61b-4b370886ca16
+      - 15710838-9302-4bed-abf7-885cf62799cb
+      - f9195ac2-eabd-4ce7-8eef-0c8657e22f61
+      - a4e6d434-4f35-4f33-84c3-ab8cca02f9ca
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  10d90016-2179-448d-a67e-86aee3ffc1ae:
+    id: 10d90016-2179-448d-a67e-86aee3ffc1ae
+    content: components/ - UI components with co-located hooks/
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  235b7606-5e96-4a5e-9310-fc14421622d0:
+    id: 235b7606-5e96-4a5e-9310-fc14421622d0
+    content: components/ui/ - Reusable UI primitives
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  079916e9-35c9-444a-9452-7f0551dfdb7c:
+    id: 079916e9-35c9-444a-9452-7f0551dfdb7c
+    content: store/ - Zustand stores with actions/ subdirectories
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  01b41cb8-17f9-401e-a61b-4b370886ca16:
+    id: 01b41cb8-17f9-401e-a61b-4b370886ca16
+    content: services/ - Side-effect services (keyboard/, feedback/, etc.)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  15710838-9302-4bed-abf7-885cf62799cb:
+    id: 15710838-9302-4bed-abf7-885cf62799cb
+    content: hooks/ - Shared hooks used by multiple components
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  f9195ac2-eabd-4ce7-8eef-0c8657e22f61:
+    id: f9195ac2-eabd-4ce7-8eef-0c8657e22f61
+    content: utils/ - Pure utility functions
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  a4e6d434-4f35-4f33-84c3-ab8cca02f9ca:
+    id: a4e6d434-4f35-4f33-84c3-ab8cca02f9ca
+    content: data/ - Static data and configuration
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  023f57e9-220b-4751-9105-f338541fe174:
+    id: 023f57e9-220b-4751-9105-f338541fe174
+    content: src/shared/ - Cross-process code
+    children:
+      - 26926c7f-fff6-49fb-9dfb-d0a93f4b6ace
+      - e8b83d64-2c4d-4ab8-9bc0-7c0ffc1162a5
+      - 73b6b425-0ed2-45a8-a11f-d5c9bc1a9ca1
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  26926c7f-fff6-49fb-9dfb-d0a93f4b6ace:
+    id: 26926c7f-fff6-49fb-9dfb-d0a93f4b6ace
+    content: types/ - Shared type definitions
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  e8b83d64-2c4d-4ab8-9bc0-7c0ffc1162a5:
+    id: e8b83d64-2c4d-4ab8-9bc0-7c0ffc1162a5
+    content: utils/ - Platform-agnostic utilities
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  73b6b425-0ed2-45a8-a11f-d5c9bc1a9ca1:
+    id: 73b6b425-0ed2-45a8-a11f-d5c9bc1a9ca1
+    content: services/ - Shared service base classes
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  c339136b-ffd9-4a57-b29d-fe464f35fdff:
+    id: c339136b-ffd9-4a57-b29d-fe464f35fdff
+    content: Organization
+    children:
+      - afb2c23b-8244-4b26-b0f9-cb5ea9c617fb
+      - 9820f85d-5816-44a9-a60c-8bc6fbe8d81c
+      - b85dc16e-0c41-44ea-8680-c83b82fd467b
+      - 6a2abb4b-dd36-447a-b2a5-6e727990e613
+      - 6ac4502a-fcf9-4c2d-9779-4d723c4b86e3
+      - e8266ae0-ccd6-4c6f-b5b5-f08791b81ba7
+      - 522840c5-d598-4f05-bc95-054c27321ffa
+      - 1562bb8a-2ee4-4977-bd59-11638faed4ef
+      - 5b4ba120-e410-472a-b0f2-bd43e452c5ad
+      - 0303c78e-0b29-4094-ba80-715c0e999713
+    metadata:
+      status: pending
+      expanded: false
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  afb2c23b-8244-4b26-b0f9-cb5ea9c617fb:
+    id: afb2c23b-8244-4b26-b0f9-cb5ea9c617fb
+    content: Co-locate single-use code with its consumer
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  9820f85d-5816-44a9-a60c-8bc6fbe8d81c:
+    id: 9820f85d-5816-44a9-a60c-8bc6fbe8d81c
+    content: Centralize shared code in store/, services/, or utils/
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  b85dc16e-0c41-44ea-8680-c83b82fd467b:
+    id: b85dc16e-0c41-44ea-8680-c83b82fd467b
+    content: When unsure, start co-located and move when second consumer appears
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  6a2abb4b-dd36-447a-b2a5-6e727990e613:
+    id: 6a2abb4b-dd36-447a-b2a5-6e727990e613
+    content: Components in own directories with co-located hooks/styles
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  6ac4502a-fcf9-4c2d-9779-4d723c4b86e3:
+    id: 6ac4502a-fcf9-4c2d-9779-4d723c4b86e3
+    content: Clean separation between components and hooks
+    children:
+      - 79a2117d-c3d3-43df-92b3-807a2ed86f5e
+      - 97f61d7f-0247-44d3-a9d6-736ae2968ba4
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  79a2117d-c3d3-43df-92b3-807a2ed86f5e:
+    id: 79a2117d-c3d3-43df-92b3-807a2ed86f5e
+    content: Components hold templates only
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  97f61d7f-0247-44d3-a9d6-736ae2968ba4:
+    id: 97f61d7f-0247-44d3-a9d6-736ae2968ba4
+    content: Hooks hold logic only
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  e8266ae0-ccd6-4c6f-b5b5-f08791b81ba7:
+    id: e8266ae0-ccd6-4c6f-b5b5-f08791b81ba7
+    content: Barrel exports (index.ts) for clean imports
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  522840c5-d598-4f05-bc95-054c27321ffa:
+    id: 522840c5-d598-4f05-bc95-054c27321ffa
+    content: Split complex hooks into focused single-responsibility hooks
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  1562bb8a-2ee4-4977-bd59-11638faed4ef:
+    id: 1562bb8a-2ee4-4977-bd59-11638faed4ef
+    content: Main hook composes specialized hooks and returns combined interface
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  5b4ba120-e410-472a-b0f2-bd43e452c5ad:
+    id: 5b4ba120-e410-472a-b0f2-bd43e452c5ad
+    content: Services for side effects and external interactions (DOM, IPC, I/O, API, event listeners)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  0303c78e-0b29-4094-ba80-715c0e999713:
+    id: 0303c78e-0b29-4094-ba80-715c0e999713
+    content: Utils are pure functions with no side effects
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  a81454cb-99e5-4b64-94e0-32c34612fe4c:
+    id: a81454cb-99e5-4b64-94e0-32c34612fe4c
+    content: State Management
+    children:
+      - 3bc893c3-c70a-4872-9514-6b76e69c4927
+      - 965ef6b2-1123-44c3-8f63-a6f73a4bfd9d
+      - 5f8a0ab0-e855-4a03-a2c2-7000a128f3c4
+      - 144d9881-1741-4f8a-b392-01a29ceea2f7
+      - ab9343e0-0c55-4d64-b1d1-92e5a84eb41b
+      - a8023867-bbe0-4221-9da0-dd9122e89399
+    metadata:
+      status: pending
+      expanded: false
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  3bc893c3-c70a-4872-9514-6b76e69c4927:
+    id: 3bc893c3-c70a-4872-9514-6b76e69c4927
+    content: Zustand stores in store/ directory
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  965ef6b2-1123-44c3-8f63-a6f73a4bfd9d:
+    id: 965ef6b2-1123-44c3-8f63-a6f73a4bfd9d
+    content: Actions organized by domain in separate files (nodeActions, navigationActions, etc.)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  5f8a0ab0-e855-4a03-a2c2-7000a128f3c4:
+    id: 5f8a0ab0-e855-4a03-a2c2-7000a128f3c4
+    content: Action factories use named functions, not inline arrows (better stack traces)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  144d9881-1741-4f8a-b392-01a29ceea2f7:
+    id: 144d9881-1741-4f8a-b392-01a29ceea2f7
+    content: Factory pattern when multiple store instances needed
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  ab9343e0-0c55-4d64-b1d1-92e5a84eb41b:
+    id: ab9343e0-0c55-4d64-b1d1-92e5a84eb41b
+    content: Context provider to give components access to correct store instance
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  a8023867-bbe0-4221-9da0-dd9122e89399:
+    id: a8023867-bbe0-4221-9da0-dd9122e89399
+    content: Use getState() in event handlers for one-time reads (no subscription overhead)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  ff258b1a-0404-4542-955a-c0984134e096:
+    id: ff258b1a-0404-4542-955a-c0984134e096
+    content: IPC Communication
+    children:
+      - e79ce4d8-7772-4420-934d-cfba5e0ae700
+      - 083b6647-b8cc-40cf-9f5f-16c0ce991e55
+      - 69ab9946-0b8d-425b-b993-f8aed459a3b9
+      - ef440ee6-b6c1-4be6-b90c-142f49a90b31
+      - 819007db-d50d-408e-ac43-2286b815370a
+      - 061fb93f-5e6a-432b-8fba-608aeb13caff
+    metadata:
+      status: pending
+      expanded: false
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  e79ce4d8-7772-4420-934d-cfba5e0ae700:
+    id: e79ce4d8-7772-4420-934d-cfba5e0ae700
+    content: All IPC exposed through contextBridge.exposeInMainWorld()
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  083b6647-b8cc-40cf-9f5f-16c0ce991e55:
+    id: 083b6647-b8cc-40cf-9f5f-16c0ce991e55
+    content: Handler modules organized by feature (fileHandlers, sessionHandlers, etc.)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  69ab9946-0b8d-425b-b993-f8aed459a3b9:
+    id: 69ab9946-0b8d-425b-b993-f8aed459a3b9
+    content: Single registerIpcHandlers() function imports and registers all handlers
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  ef440ee6-b6c1-4be6-b90c-142f49a90b31:
+    id: ef440ee6-b6c1-4be6-b90c-142f49a90b31
+    content: 'Channel naming: hierarchical with colons (terminal:create, file:save)'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  819007db-d50d-408e-ac43-2286b815370a:
+    id: 819007db-d50d-408e-ac43-2286b815370a
+    content: ipcRenderer.invoke() for request-response, .on() for events
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  061fb93f-5e6a-432b-8fba-608aeb13caff:
+    id: 061fb93f-5e6a-432b-8fba-608aeb13caff
+    content: Subscription methods return cleanup functions for unsubscribing
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  bcc9f76c-db73-4709-9d14-31c7e072ec79:
+    id: bcc9f76c-db73-4709-9d14-31c7e072ec79
+    content: Error Handling
+    children:
+      - 8fe1c93e-decb-4906-9175-03008658e698
+      - 308d44d9-c976-4ce6-afa3-a53217322fa2
+      - 1f2d008e-1d5d-4154-91bf-aa37298dc51e
+      - 77e71135-518c-48ff-aff0-d35f88dddd09
+    metadata:
+      status: pending
+      expanded: false
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  8fe1c93e-decb-4906-9175-03008658e698:
+    id: 8fe1c93e-decb-4906-9175-03008658e698
+    content: Logger with level-based filtering and context tagging
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  308d44d9-c976-4ce6-afa3-a53217322fa2:
+    id: 308d44d9-c976-4ce6-afa3-a53217322fa2
+    content: Main process errors propagate to renderer via IPC for user display
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  1f2d008e-1d5d-4154-91bf-aa37298dc51e:
+    id: 1f2d008e-1d5d-4154-91bf-aa37298dc51e
+    content: Toast notifications for user-facing errors
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  77e71135-518c-48ff-aff0-d35f88dddd09:
+    id: 77e71135-518c-48ff-aff0-d35f88dddd09
+    content: Graceful fallbacks for missing files or parse errors
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  b31579f3-9b97-4f16-a707-abd5127f063a:
+    id: b31579f3-9b97-4f16-a707-abd5127f063a
+    content: Naming
+    children:
+      - ea9416e0-3f10-4bc1-a1ce-d5fc25166b65
+      - bb23ca44-1790-4c94-a347-cc45ba2ca00d
+      - 8e4436ef-00c4-4870-b581-d5d633385e84
+      - a4e5e278-1004-4b67-a92d-dbd2cb898075
+      - d1e9666e-ae3e-4f04-b6e6-43adc78c500b
+    metadata:
+      status: pending
+      expanded: false
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  ea9416e0-3f10-4bc1-a1ce-d5fc25166b65:
+    id: ea9416e0-3f10-4bc1-a1ce-d5fc25166b65
+    content: PascalCase for components and classes
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  bb23ca44-1790-4c94-a347-cc45ba2ca00d:
+    id: bb23ca44-1790-4c94-a347-cc45ba2ca00d
+    content: camelCase for functions, hooks, and utilities
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  8e4436ef-00c4-4870-b581-d5d633385e84:
+    id: 8e4436ef-00c4-4870-b581-d5d633385e84
+    content: Hooks start with "use"
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  a4e5e278-1004-4b67-a92d-dbd2cb898075:
+    id: a4e5e278-1004-4b67-a92d-dbd2cb898075
+    content: Don't repeat directory name in filename (services/Storage.ts not services/StorageService.ts)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  d1e9666e-ae3e-4f04-b6e6-43adc78c500b:
+    id: d1e9666e-ae3e-4f04-b6e6-43adc78c500b
+    content: File names match exported symbols
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  5a9af227-6128-49bd-bf7b-9c629f21922f:
+    id: 5a9af227-6128-49bd-bf7b-9c629f21922f
+    content: Code Style
+    children:
+      - 9340cbe1-8c20-4c4a-bef7-967fc1c50207
+      - 63c18668-e252-4f1e-ad34-b91cef49ff07
+      - 2313f9d8-21eb-4294-8947-0ccbe33581e3
+      - 0fe87273-b72e-4202-8ac1-87d5ad81a49c
+      - 9ba66580-fb81-49ea-8fd2-40fce9c05837
+    metadata:
+      status: pending
+      expanded: false
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  effc1cb0-a160-496f-812f-678c17cb9aa9:
+    id: effc1cb0-a160-496f-812f-678c17cb9aa9
+    content: Comments for "why" not "what"
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  9340cbe1-8c20-4c4a-bef7-967fc1c50207:
+    id: 9340cbe1-8c20-4c4a-bef7-967fc1c50207
+    content: If code needs a comment explaining what it does, refactor to a named function
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  63c18668-e252-4f1e-ad34-b91cef49ff07:
+    id: 63c18668-e252-4f1e-ad34-b91cef49ff07
+    content: Plain CSS with custom properties, no preprocessors
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  2313f9d8-21eb-4294-8947-0ccbe33581e3:
+    id: 2313f9d8-21eb-4294-8947-0ccbe33581e3
+    content: Component styles in co-located .css files
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  0fe87273-b72e-4202-8ac1-87d5ad81a49c:
+    id: 0fe87273-b72e-4202-8ac1-87d5ad81a49c
+    content: Theme variables in globals.css
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  216eaf8c-587d-4542-8fb3-f6f9c82e93b1:
+    id: 216eaf8c-587d-4542-8fb3-f6f9c82e93b1
+    content: Performance
+    children:
+      - 340e912e-2c75-4476-a078-035e4c879599
+      - 6189efdc-7391-436a-a52e-097947571ba9
+      - 3eef42e2-12da-4e7c-b9b0-2b02d6504fb4
+      - 376dd2e2-9c38-4bf3-8ad9-82b3526d107d
+      - 24d5957d-9a3b-4ff2-811f-9abd59e7e87e
+    metadata:
+      status: pending
+      expanded: false
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  340e912e-2c75-4476-a078-035e4c879599:
+    id: 340e912e-2c75-4476-a078-035e4c879599
+    content: React.memo() for components that receive stable props
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  6189efdc-7391-436a-a52e-097947571ba9:
+    id: 6189efdc-7391-436a-a52e-097947571ba9
+    content: useCallback for event handlers passed as props
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  3eef42e2-12da-4e7c-b9b0-2b02d6504fb4:
+    id: 3eef42e2-12da-4e7c-b9b0-2b02d6504fb4
+    content: Selective Zustand subscriptions (subscribe only to what component needs)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  a94da547-23e5-47d9-bdc4-8e60a0b7538d:
+    id: a94da547-23e5-47d9-bdc4-8e60a0b7538d
+    content: Testing
+    children:
+      - ffd1fc55-c825-4abd-a16c-0c1d709008cf
+      - beb83120-28ba-419a-85e8-dfd914b17aa4
+      - db647b51-b88e-4928-b116-a3f5e58bd8d9
+      - 8fca3c92-dffb-4fe8-90e2-6c5411774f7d
+      - 804b0413-b5c7-4e87-9561-8447bc3a1737
+      - 57edc3d9-fbda-4b6c-a800-c49bd8f4dd2a
+      - e05aa3ca-f7aa-4086-ae26-db404d6e55e4
+    metadata:
+      status: pending
+      expanded: false
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  ffd1fc55-c825-4abd-a16c-0c1d709008cf:
+    id: ffd1fc55-c825-4abd-a16c-0c1d709008cf
+    content: Tests in tests/ subdirectories within modules
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  beb83120-28ba-419a-85e8-dfd914b17aa4:
+    id: beb83120-28ba-419a-85e8-dfd914b17aa4
+    content: Unit tests for actions, hooks, utilities
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  db647b51-b88e-4928-b116-a3f5e58bd8d9:
+    id: db647b51-b88e-4928-b116-a3f5e58bd8d9
+    content: Integration tests for critical workflows only
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  8fca3c92-dffb-4fe8-90e2-6c5411774f7d:
+    id: 8fca3c92-dffb-4fe8-90e2-6c5411774f7d
+    content: Mock services via dependency injection
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  ffec56ac-262d-4724-961c-fc742d9985c7:
+    id: ffec56ac-262d-4724-961c-fc742d9985c7
+    content: Persistence
+    children:
+      - 374561f6-e5c9-493e-9111-83d9a30c29b8
+      - c721a38d-574b-4eb2-a11d-57303d285b34
+      - ca2946c9-1d20-45e0-9bd5-dda74273f960
+    metadata:
+      status: pending
+      expanded: false
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  374561f6-e5c9-493e-9111-83d9a30c29b8:
+    id: 374561f6-e5c9-493e-9111-83d9a30c29b8
+    content: Session data as JSON files in userData directory
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  c721a38d-574b-4eb2-a11d-57303d285b34:
+    id: c721a38d-574b-4eb2-a11d-57303d285b34
+    content: Separate files for different session types (main, preferences, etc.)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  ca2946c9-1d20-45e0-9bd5-dda74273f960:
+    id: ca2946c9-1d20-45e0-9bd5-dda74273f960
+    content: Separate userData paths for dev/prod to avoid conflicts
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  9ba66580-fb81-49ea-8fd2-40fce9c05837:
+    id: 9ba66580-fb81-49ea-8fd2-40fce9c05837
+    content: No inline styles
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  bf007448-0f9f-4e68-ba31-a9def979ec2d:
+    id: bf007448-0f9f-4e68-ba31-a9def979ec2d
+    content: Conventions
+    children:
+      - ffec56ac-262d-4724-961c-fc742d9985c7
+      - a94da547-23e5-47d9-bdc4-8e60a0b7538d
+      - 216eaf8c-587d-4542-8fb3-f6f9c82e93b1
+      - 5a9af227-6128-49bd-bf7b-9c629f21922f
+      - edea2e63-af51-4075-8c78-aa7dcaa80184
+      - b31579f3-9b97-4f16-a707-abd5127f063a
+      - bcc9f76c-db73-4709-9d14-31c7e072ec79
+      - ff258b1a-0404-4542-955a-c0984134e096
+      - a81454cb-99e5-4b64-94e0-32c34612fe4c
+      - c339136b-ffd9-4a57-b29d-fe464f35fdff
+      - c9a0cf38-c449-47a0-b687-359ca5ddd57e
+    metadata:
+      status: pending
+      expanded: true
+      isBlueprint: true
+      blueprintIcon: LayoutList
+      blueprintColor: '#14b8a6'
+      isContextDeclaration: false
+  edea2e63-af51-4075-8c78-aa7dcaa80184:
+    id: edea2e63-af51-4075-8c78-aa7dcaa80184
+    content: Comments
+    children:
+      - effc1cb0-a160-496f-812f-678c17cb9aa9
+      - 94fad8da-0d1e-4d30-bc0c-fb9c3b5da13d
+      - 1873772c-99e0-4cfb-813e-c7f2495cd5ce
+      - 0e6d1b24-74b5-4890-818c-15f2b0f15b46
+      - 105c84c5-6181-4414-867e-2efc892ee2dc
+      - 33437c60-1890-4cc8-aa5c-3d168d306ca6
+    metadata:
+      status: pending
+      isBlueprint: true
+      expanded: false
+  376dd2e2-9c38-4bf3-8ad9-82b3526d107d:
+    id: 376dd2e2-9c38-4bf3-8ad9-82b3526d107d
+    content: Use a store cache where possible, update only when necessary
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  24d5957d-9a3b-4ff2-811f-9abd59e7e87e:
+    id: 24d5957d-9a3b-4ff2-811f-9abd59e7e87e
+    content: Avoid subscribing to the entire state.nodes object when not needed
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  c84e7728-e416-4612-ab34-45556a472ddc:
+    id: c84e7728-e416-4612-ab34-45556a472ddc
+    content: Conventions
+    children: []
+    metadata:
+      status: pending
+      isHyperlink: true
+      linkedNodeId: bf007448-0f9f-4e68-ba31-a9def979ec2d
+      isBlueprint: true
+  ad66e76d-ff03-4282-8589-e4dcdb9a0271:
+    id: ad66e76d-ff03-4282-8589-e4dcdb9a0271
+    content: You will consider the following instructions and then use the given specification to code a feature
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  1c5caa24-018b-4f1d-85c8-3232d93deb1c:
+    id: 1c5caa24-018b-4f1d-85c8-3232d93deb1c
+    content: If I have a link in the clipboard and then copy text, the link is pasted instead of the text
+    children: []
+    metadata:
+      status: pending
+  d39f7ab4-3d32-4e18-8c96-69b38cee3766:
+    id: d39f7ab4-3d32-4e18-8c96-69b38cee3766
+    content: Sometimes we get into a state (not sure how) where a cut node we didn't paste, or perhaps pasted and undid, is greyed out, and subsequent copy and paste leave it greyed out
+    children: []
+    metadata:
+      status: pending
+  7edf262e-ab8a-4149-b2b0-c74f8aa60401:
+    id: 7edf262e-ab8a-4149-b2b0-c74f8aa60401
+    content: Implement a feature
+    children: []
+    metadata:
+      status: pending
+      isHyperlink: true
+      linkedNodeId: 9b46397c-c452-421c-b408-46b040d99c9e
+      isBlueprint: true
+  33437c60-1890-4cc8-aa5c-3d168d306ca6:
+    id: 33437c60-1890-4cc8-aa5c-3d168d306ca6
+    content: Don't use JS doc conventions
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  105c84c5-6181-4414-867e-2efc892ee2dc:
+    id: 105c84c5-6181-4414-867e-2efc892ee2dc
+    content: Code should be self readable, use declarative naming instead of comments
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  8d46b8b4-8531-49ad-a223-b5856af3f562:
+    id: 8d46b8b4-8531-49ad-a223-b5856af3f562
+    content: Spell check doesn't always work, for example shows nothing for the word 'summarize'
+    children: []
+    metadata:
+      status: pending
+  40e10a1b-8c3c-4687-9acd-65a8cd791d19:
+    id: 40e10a1b-8c3c-4687-9acd-65a8cd791d19
+    content: Standard checks
+    children: []
+    metadata:
+      status: pending
+      isHyperlink: true
+      linkedNodeId: 6ab534a2-2956-454c-9c6a-e459314e0b5c
+      isBlueprint: true
+  bf7a428b-6e45-4024-8eea-a1491604e927:
+    id: bf7a428b-6e45-4024-8eea-a1491604e927
+    content: 'Do standard checks on all files :'
+    children:
+      - 40e10a1b-8c3c-4687-9acd-65a8cd791d19
+    metadata:
+      status: pending
+      isBlueprint: true
+  a667aade-4b1f-4a54-9fa9-7ff31fcec679:
+    id: a667aade-4b1f-4a54-9fa9-7ff31fcec679
+    content: Conventions
+    children: []
+    metadata:
+      status: pending
+      isHyperlink: true
+      linkedNodeId: bf007448-0f9f-4e68-ba31-a9def979ec2d
+      isBlueprint: true
+  160d7300-fc7a-49ab-94ca-b3e3d5840b66:
+    id: 160d7300-fc7a-49ab-94ca-b3e3d5840b66
+    content: 'Follow the project conventions :'
+    children:
+      - a667aade-4b1f-4a54-9fa9-7ff31fcec679
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  56c13b47-01b3-4c77-8501-b0b033302287:
+    id: 56c13b47-01b3-4c77-8501-b0b033302287
+    content: Conventions
+    children: []
+    metadata:
+      status: pending
+      isHyperlink: true
+      linkedNodeId: bf007448-0f9f-4e68-ba31-a9def979ec2d
+      isBlueprint: true
+  ea883597-c1ca-4d7f-92d4-8380601cc505:
+    id: ea883597-c1ca-4d7f-92d4-8380601cc505
+    content: 'Follow the project conventions :'
+    children:
+      - 56c13b47-01b3-4c77-8501-b0b033302287
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  ce6097ec-77c7-4ee5-aff9-253a8cbb67c8:
+    id: ce6097ec-77c7-4ee5-aff9-253a8cbb67c8
+    content: Add tests for the specific steps that led to the bug
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
 summaryDateFrom: '2025-12-08'
 summaryDateTo: '2025-12-09'

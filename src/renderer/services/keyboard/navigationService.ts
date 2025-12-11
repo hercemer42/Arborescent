@@ -175,7 +175,7 @@ function handleLineNavigation(event: KeyboardEvent): void {
   const store = activeStore.getState();
 
   if (event.key === 'Home' || event.key === 'End') {
-    if (event.ctrlKey || event.metaKey || event.altKey) {
+    if (event.ctrlKey || event.metaKey || event.altKey || event.shiftKey) {
       return;
     }
 

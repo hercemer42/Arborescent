@@ -172,6 +172,48 @@ describe('navigationService', () => {
       expect(store.getState().rememberedVisualX).toBeNull();
     });
 
+    it('should not intercept Shift+Home for text selection', () => {
+      container.innerHTML = `
+        <div data-node-id="node-1">
+          <div contenteditable="true">Node 1</div>
+        </div>
+      `;
+      (container.querySelector('[contenteditable]') as HTMLElement).focus();
+
+      store.setState({ rememberedVisualX: 100 });
+
+      const event = new KeyboardEvent('keydown', {
+        key: 'Home',
+        shiftKey: true,
+        bubbles: true,
+      });
+      window.dispatchEvent(event);
+
+      // rememberedVisualX should NOT be reset because we didn't handle the event
+      expect(store.getState().rememberedVisualX).toBe(100);
+    });
+
+    it('should not intercept Shift+End for text selection', () => {
+      container.innerHTML = `
+        <div data-node-id="node-1">
+          <div contenteditable="true">Node 1</div>
+        </div>
+      `;
+      (container.querySelector('[contenteditable]') as HTMLElement).focus();
+
+      store.setState({ rememberedVisualX: 100 });
+
+      const event = new KeyboardEvent('keydown', {
+        key: 'End',
+        shiftKey: true,
+        bubbles: true,
+      });
+      window.dispatchEvent(event);
+
+      // rememberedVisualX should NOT be reset because we didn't handle the event
+      expect(store.getState().rememberedVisualX).toBe(100);
+    });
+
     it('should reset rememberedVisualX on PageUp key', async () => {
       container.innerHTML = `
         <div data-node-id="node-1">
