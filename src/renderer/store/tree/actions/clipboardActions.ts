@@ -582,6 +582,8 @@ export const createClipboardActions = (
     if (!node) return 'no-selection';
 
     const currentClipboardText = await readFromClipboard('ClipboardActions:copyAsHyperlink') || '';
+
+    useClipboardCacheStore.getState().clearCache();
     useHyperlinkClipboardStore.getState().setCache(activeNodeId, node.content, currentFilePath, currentClipboardText);
 
     flashNodes(activeNodeId, visualEffects);

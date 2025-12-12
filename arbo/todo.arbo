@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2025-12-12T13:42:56.072Z'
+updated: '2025-12-12T13:49:50.079Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -465,7 +465,7 @@ nodes:
       - 984247e7-2d55-4b93-80e8-f84818901621
     metadata:
       status: pending
-      expanded: false
+      expanded: true
       isBlueprint: true
       blueprintIcon: Boxes
       blueprintColor: '#a855f7'
@@ -14322,7 +14322,8 @@ nodes:
   ac4c627f-c512-40b9-ad55-11b439495b7e:
     id: ac4c627f-c512-40b9-ad55-11b439495b7e
     content: Major feature
-    children: []
+    children:
+      - 4c2b177a-ebee-4003-879a-93e828162dc9
     metadata:
       status: pending
       isBlueprint: true
@@ -15057,6 +15058,7 @@ nodes:
       - 1be855d0-fbb1-4fbf-aee9-fe25b8d9f20b
       - 5b16abaf-a2dc-4248-aaa5-37e03f64d774
       - 2b5efb39-5c1f-49cd-866e-9e142516cfc6
+      - 63a58473-dad8-404d-afc4-c9ed2711c894
     metadata:
       status: pending
       expanded: true
@@ -15817,6 +15819,7 @@ nodes:
     id: 5cc686fc-7651-4d83-9ccf-78a29d1dff13
     content: Done
     children:
+      - 868358fb-d2b2-474f-b352-ebc3491bef1e
       - d39f7ab4-3d32-4e18-8c96-69b38cee3766
       - 1c5caa24-018b-4f1d-85c8-3232d93deb1c
       - dfef7d4f-c35c-43c4-b1ac-f84c8c916785
@@ -16073,8 +16076,8 @@ nodes:
     id: 3881490a-b11c-4052-ad46-020faad5bb2b
     content: In progress
     children:
-      - 868358fb-d2b2-474f-b352-ebc3491bef1e
       - 6d06353d-993c-476f-a48f-a0b55c86f1ec
+      - 2a9c4e7b-4a1d-4661-9d7f-b76a90579a28
     metadata:
       status: pending
       appliedContextIds:
@@ -17181,7 +17184,7 @@ nodes:
       - c9a0cf38-c449-47a0-b687-359ca5ddd57e
     metadata:
       status: pending
-      expanded: true
+      expanded: false
       isBlueprint: true
       blueprintIcon: LayoutList
       blueprintColor: '#14b8a6'
@@ -17266,8 +17269,9 @@ nodes:
     content: Spell check doesn't always work, for example shows nothing for the word 'summarize'
     children: []
     metadata:
-      status: pending
+      status: completed
       activeCollaborateContextId: 6690289a-e02f-48bc-9225-a1083b7b324f
+      resolvedAt: '2025-12-12T13:45:33.200Z'
   40e10a1b-8c3c-4687-9acd-65a8cd791d19:
     id: 40e10a1b-8c3c-4687-9acd-65a8cd791d19
     content: Standard checks
@@ -17405,7 +17409,8 @@ nodes:
     content: Right clicking on 'doesn't' gives a spellcheck suggestion of 'does' but the word wasn't highlighted as a spelling error
     children: []
     metadata:
-      status: pending
+      status: completed
+      resolvedAt: '2025-12-12T13:45:33.200Z'
   848977fa-0d2e-4f1b-92f4-a276c5e4841d:
     id: 848977fa-0d2e-4f1b-92f4-a276c5e4841d
     content: Keep in mind the project philosophy
@@ -17415,7 +17420,7 @@ nodes:
       isBlueprint: true
   6d06353d-993c-476f-a48f-a0b55c86f1ec:
     id: 6d06353d-993c-476f-a48f-a0b55c86f1ec
-    content: Issue with copy/paste hyperlink
+    content: If we copy and paste a node, then copy a node as a hyperlink, on paste we paste the first node, and not the hyperlink
     children: []
     metadata:
       status: pending
@@ -17431,8 +17436,11 @@ nodes:
     children:
       - 8d46b8b4-8531-49ad-a223-b5856af3f562
       - 91694315-e6a1-4822-adea-7e6cf6321339
+      - 970dad19-fd98-4204-ae14-df8cfe183d6d
     metadata:
-      status: pending
+      status: completed
+      resolvedAt: '2025-12-12T13:45:33.200Z'
+      expanded: false
   1be855d0-fbb1-4fbf-aee9-fe25b8d9f20b:
     id: 1be855d0-fbb1-4fbf-aee9-fe25b8d9f20b
     content: Add documentation context
@@ -17503,6 +17511,45 @@ nodes:
   2f2fe59d-cc4a-4b53-9384-a48a96127d15:
     id: 2f2fe59d-cc4a-4b53-9384-a48a96127d15
     content: Insure
+    children: []
+    metadata:
+      status: pending
+  970dad19-fd98-4204-ae14-df8cfe183d6d:
+    id: 970dad19-fd98-4204-ae14-df8cfe183d6d
+    content: Decided to use system spell check libraries instead
+    children: []
+    metadata:
+      status: completed
+      resolvedAt: '2025-12-12T13:45:33.200Z'
+  4c2b177a-ebee-4003-879a-93e828162dc9:
+    id: 4c2b177a-ebee-4003-879a-93e828162dc9
+    content: Create temporary file for context
+    children:
+      - 9e1747e9-3070-450d-9520-16f45552c224
+    metadata:
+      status: pending
+  9e1747e9-3070-450d-9520-16f45552c224:
+    id: 9e1747e9-3070-450d-9520-16f45552c224
+    content: ''
+    children: []
+    metadata:
+      status: pending
+  2a9c4e7b-4a1d-4661-9d7f-b76a90579a28:
+    id: 2a9c4e7b-4a1d-4661-9d7f-b76a90579a28
+    content: ctrl+w in the terminal or browser view closes the arbo tabs and not the terminal/browser tabs
+    children: []
+    metadata:
+      status: pending
+  63a58473-dad8-404d-afc4-c9ed2711c894:
+    id: 63a58473-dad8-404d-afc4-c9ed2711c894
+    content: Rename todo.arbo
+    children:
+      - 6c78b6b8-77b5-44b8-8368-f9667fffb70e
+    metadata:
+      status: pending
+  6c78b6b8-77b5-44b8-8368-f9667fffb70e:
+    id: 6c78b6b8-77b5-44b8-8368-f9667fffb70e
+    content: Think about where it should live
     children: []
     metadata:
       status: pending

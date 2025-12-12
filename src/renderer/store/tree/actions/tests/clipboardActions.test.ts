@@ -1169,6 +1169,28 @@ describe('clipboardActions', () => {
       });
     });
 
+    describe('copy then copyAsHyperlink then paste', () => {
+      it('should paste hyperlink when copyAsHyperlink follows regular copy', async () => {
+        state.activeNodeId = 'node-1';
+        await actions.copyNodes();
+        expect(currentMockCache).not.toBeNull();
+
+        state.activeNodeId = 'node-2';
+        await actions.copyAsHyperlink();
+        expect(currentMockCache).toBeNull();
+        expect(currentMockHyperlinkCache).not.toBeNull();
+
+        state.activeNodeId = 'node-1';
+        const result = await actions.pasteNodes();
+
+        expect(result).toBe('pasted');
+        const newNode = Object.values(state.nodes).find(
+          (n) => n.metadata.isHyperlink === true && n.metadata.linkedNodeId === 'node-2'
+        );
+        expect(newNode).toBeDefined();
+      });
+    });
+
     describe('pasteNodes with hyperlinks', () => {
       it('should block pasting into hyperlink nodes', async () => {
         // Setup hyperlink node
