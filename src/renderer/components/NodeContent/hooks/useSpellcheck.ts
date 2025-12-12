@@ -1,46 +1,41 @@
 import { useRef, useCallback } from 'react';
 import { ContextMenuItem } from '../../ui/ContextMenu';
-import { initSpellcheck, checkWordFast, getSuggestions } from '../../../services/spellcheck';
+import { useSpellcheckStore } from '../../../store/spellcheck/spellcheckStore';
+import { getRangeFromPoint } from '../../../utils/position';
 
-initSpellcheck();
-
-interface WordContext {
-  word: string;
-  start: number;
-  end: number;
-  textNode: Text;
+function isWordChar(char: string): boolean {
+  return /\w/.test(char) || char === "'";
 }
 
-function getWordAtCursor(): WordContext | null {
-  const selection = window.getSelection();
-  if (!selection || selection.rangeCount === 0) return null;
-
-  const range = selection.getRangeAt(0);
+function getWordFromRange(range: Range): string | null {
   const textNode = range.startContainer;
   if (textNode.nodeType !== Node.TEXT_NODE || !textNode.textContent) return null;
 
   const text = textNode.textContent;
   const offset = range.startOffset;
 
-  // Find word boundaries
   let start = offset;
   let end = offset;
-  while (start > 0 && /\w/.test(text[start - 1])) start--;
-  while (end < text.length && /\w/.test(text[end])) end++;
+  while (start > 0 && isWordChar(text[start - 1])) start--;
+  while (end < text.length && isWordChar(text[end])) end++;
 
   if (start >= end) return null;
 
-  return {
-    word: text.slice(start, end),
-    start,
-    end,
-    textNode: textNode as Text,
-  };
+  let word = text.slice(start, end);
+  while (word.startsWith("'")) word = word.slice(1);
+  while (word.endsWith("'")) word = word.slice(0, -1);
+
+  return word.length > 0 ? word : null;
+}
+
+function getWordAtPoint(x: number, y: number): string | null {
+  const range = getRangeFromPoint(x, y);
+  if (!range) return null;
+  return getWordFromRange(range);
 }
 
 function buildSuggestionItems(
-  suggestions: string[],
-  wordContext: WordContext
+  suggestions: string[]
 ): ContextMenuItem[] {
   if (suggestions.length === 0) {
     return [{
@@ -53,39 +48,35 @@ function buildSuggestionItems(
   return suggestions.map((suggestion) => ({
     label: suggestion,
     onClick: () => {
-      const { textNode, start, end } = wordContext;
-      if (textNode.textContent) {
-        const before = textNode.textContent.slice(0, start);
-        const after = textNode.textContent.slice(end);
-        textNode.textContent = before + suggestion + after;
-        textNode.parentElement?.dispatchEvent(new Event('input', { bubbles: true }));
-      }
+      // Use Electron's replaceMisspelling API for proper spellcheck state handling
+      window.electron.replaceMisspelling(suggestion);
     },
   }));
 }
 
 export function useSpellcheck() {
-  const wordContextRef = useRef<WordContext | null>(null);
+  const capturedWordRef = useRef<string | null>(null);
 
-  const captureWordAtCursor = useCallback(() => {
-    wordContextRef.current = getWordAtCursor();
+  const captureWordAtPoint = useCallback((x: number, y: number) => {
+    capturedWordRef.current = getWordAtPoint(x, y);
   }, []);
 
   const buildSpellMenuItems = useCallback((): ContextMenuItem[] | null => {
-    const wordContext = wordContextRef.current;
-    if (!wordContext) return null;
+    const capturedWord = capturedWordRef.current;
+    if (!capturedWord) return null;
 
-    const misspelled = checkWordFast(wordContext.word);
-    if (!misspelled) return null;
+    // Read directly from store to get current values (not stale hook values)
+    const { misspelledWord, suggestions } = useSpellcheckStore.getState();
 
-    const suggestions = getSuggestions(wordContext.word);
-    return buildSuggestionItems(suggestions, wordContext);
+    if (!misspelledWord || capturedWord.toLowerCase() !== misspelledWord.toLowerCase()) {
+      return null;
+    }
+
+    return buildSuggestionItems(suggestions);
   }, []);
 
   return {
-    captureWordAtCursor,
+    captureWordAtPoint,
     buildSpellMenuItems,
-    suggestionsVersion: 0,
-    precomputeCurrentWord: () => {},
   };
 }

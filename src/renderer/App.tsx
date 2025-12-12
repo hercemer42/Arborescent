@@ -12,7 +12,7 @@ import { usePanelStore } from './store/panel/panelStore';
 import { useSearchStore } from './store/search/searchStore';
 import { useUIStore } from './store/ui/uiStore';
 import { useAppErrorHandling } from './useAppErrorHandling';
-import { useAppInitialization } from './hooks';
+import { useAppInitialization, useSpellcheckListener } from './hooks';
 import './App.css';
 
 export function App() {
@@ -33,6 +33,7 @@ export function App() {
   const handleInitComplete = useCallback(() => setIsInitializing(false), []);
   useAppInitialization(handleInitComplete);
   useAppErrorHandling();
+  useSpellcheckListener();
 
   return (
     <div className="app">

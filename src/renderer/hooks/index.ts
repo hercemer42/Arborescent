@@ -5,3 +5,4 @@ export { useClickOutside } from './useClickOutside';
 export { useDialogBehavior } from './useDialogBehavior';
 export { useTreeContainer } from './useTreeContainer';
 export { useKeyboardServices } from './useKeyboardServices';
+export { useSpellcheckListener } from './useSpellcheckListener';

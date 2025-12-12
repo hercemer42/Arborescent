@@ -1,83 +1,70 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { renderHook, act } from '@testing-library/react';
 import { useSpellcheck } from '../useSpellcheck';
-import * as spellcheck from '../../../../services/spellcheck';
+import { useSpellcheckStore } from '../../../../store/spellcheck/spellcheckStore';
+
+function mockCaretRangeFromPoint(range: Range | null) {
+  Object.defineProperty(document, 'caretRangeFromPoint', {
+    value: vi.fn().mockReturnValue(range),
+    writable: true,
+    configurable: true,
+  });
+}
+
+function createMockRange(textNode: Text, offset: number): Range {
+  const range = document.createRange();
+  range.setStart(textNode, offset);
+  range.collapse(true);
+  return range;
+}
 
 describe('useSpellcheck', () => {
   beforeEach(() => {
     vi.clearAllMocks();
-    // Default: no selection
-    vi.spyOn(window, 'getSelection').mockReturnValue(null);
+    mockCaretRangeFromPoint(null);
+    useSpellcheckStore.getState().clear();
   });
 
-  describe('captureWordAtCursor', () => {
-    it('should capture word at cursor position', () => {
+  describe('captureWordAtPoint', () => {
+    it('should capture word at click position', () => {
       const mockTextNode = document.createTextNode('hello world');
-      const mockRange = {
-        startContainer: mockTextNode,
-        startOffset: 2, // In the middle of 'hello'
-      };
-      vi.spyOn(window, 'getSelection').mockReturnValue({
-        rangeCount: 1,
-        getRangeAt: () => mockRange,
-      } as unknown as Selection);
+      const range = createMockRange(mockTextNode, 2);
+      mockCaretRangeFromPoint(range);
 
       const { result } = renderHook(() => useSpellcheck());
 
       act(() => {
-        result.current.captureWordAtCursor();
-      });
-
-      // buildSpellMenuItems should now have context to work with
-      vi.spyOn(spellcheck, 'checkWordFast').mockReturnValue(false);
-      const items = result.current.buildSpellMenuItems();
-      expect(items).toBeNull(); // Word is correctly spelled
-    });
-
-    it('should handle no selection', () => {
-      vi.spyOn(window, 'getSelection').mockReturnValue(null);
-
-      const { result } = renderHook(() => useSpellcheck());
-
-      act(() => {
-        result.current.captureWordAtCursor();
+        result.current.captureWordAtPoint(100, 50);
       });
 
       const items = result.current.buildSpellMenuItems();
       expect(items).toBeNull();
     });
 
-    it('should handle selection with no range', () => {
-      vi.spyOn(window, 'getSelection').mockReturnValue({
-        rangeCount: 0,
-        getRangeAt: vi.fn(),
-      } as unknown as Selection);
+    it('should handle no range at point', () => {
+      mockCaretRangeFromPoint(null);
 
       const { result } = renderHook(() => useSpellcheck());
 
       act(() => {
-        result.current.captureWordAtCursor();
+        result.current.captureWordAtPoint(100, 50);
       });
 
       const items = result.current.buildSpellMenuItems();
       expect(items).toBeNull();
     });
 
-    it('should handle non-text node selection', () => {
+    it('should handle non-text node at point', () => {
       const mockElement = document.createElement('div');
-      const mockRange = {
-        startContainer: mockElement,
-        startOffset: 0,
-      };
-      vi.spyOn(window, 'getSelection').mockReturnValue({
-        rangeCount: 1,
-        getRangeAt: () => mockRange,
-      } as unknown as Selection);
+      const range = document.createRange();
+      range.setStart(mockElement, 0);
+      range.collapse(true);
+      mockCaretRangeFromPoint(range);
 
       const { result } = renderHook(() => useSpellcheck());
 
       act(() => {
-        result.current.captureWordAtCursor();
+        result.current.captureWordAtPoint(100, 50);
       });
 
       const items = result.current.buildSpellMenuItems();
@@ -92,45 +79,53 @@ describe('useSpellcheck', () => {
       expect(items).toBeNull();
     });
 
-    it('should return null when word is spelled correctly', () => {
+    it('should return null when store has no misspelled word', () => {
       const mockTextNode = document.createTextNode('hello world');
-      const mockRange = {
-        startContainer: mockTextNode,
-        startOffset: 2,
-      };
-      vi.spyOn(window, 'getSelection').mockReturnValue({
-        rangeCount: 1,
-        getRangeAt: () => mockRange,
-      } as unknown as Selection);
-      vi.spyOn(spellcheck, 'checkWordFast').mockReturnValue(false);
+      const range = createMockRange(mockTextNode, 2);
+      mockCaretRangeFromPoint(range);
 
       const { result } = renderHook(() => useSpellcheck());
 
       act(() => {
-        result.current.captureWordAtCursor();
+        result.current.captureWordAtPoint(100, 50);
       });
 
       const items = result.current.buildSpellMenuItems();
       expect(items).toBeNull();
     });
 
-    it('should return suggestions synchronously when word is misspelled', () => {
-      const mockTextNode = document.createTextNode('helllo world');
-      const mockRange = {
-        startContainer: mockTextNode,
-        startOffset: 3,
-      };
-      vi.spyOn(window, 'getSelection').mockReturnValue({
-        rangeCount: 1,
-        getRangeAt: () => mockRange,
-      } as unknown as Selection);
-      vi.spyOn(spellcheck, 'checkWordFast').mockReturnValue(true);
-      vi.spyOn(spellcheck, 'getSuggestions').mockReturnValue(['hello', 'hallo']);
+    it('should return null when captured word does not match store misspelled word', () => {
+      const mockTextNode = document.createTextNode('hello world');
+      const range = createMockRange(mockTextNode, 2);
+      mockCaretRangeFromPoint(range);
+
+      act(() => {
+        useSpellcheckStore.getState().setSuggestions('different', ['suggestion']);
+      });
 
       const { result } = renderHook(() => useSpellcheck());
 
       act(() => {
-        result.current.captureWordAtCursor();
+        result.current.captureWordAtPoint(100, 50);
+      });
+
+      const items = result.current.buildSpellMenuItems();
+      expect(items).toBeNull();
+    });
+
+    it('should return suggestions when captured word matches store misspelled word', () => {
+      const mockTextNode = document.createTextNode('helllo world');
+      const range = createMockRange(mockTextNode, 3);
+      mockCaretRangeFromPoint(range);
+
+      act(() => {
+        useSpellcheckStore.getState().setSuggestions('helllo', ['hello', 'hallo']);
+      });
+
+      const { result } = renderHook(() => useSpellcheck());
+
+      act(() => {
+        result.current.captureWordAtPoint(100, 50);
       });
 
       const items = result.current.buildSpellMenuItems();
@@ -140,49 +135,39 @@ describe('useSpellcheck', () => {
       expect(items![1].label).toBe('hallo');
     });
 
-    it('should return multiple suggestions when available', () => {
-      const mockTextNode = document.createTextNode('helllo world');
-      const mockRange = {
-        startContainer: mockTextNode,
-        startOffset: 3,
-      };
-      vi.spyOn(window, 'getSelection').mockReturnValue({
-        rangeCount: 1,
-        getRangeAt: () => mockRange,
-      } as unknown as Selection);
-      vi.spyOn(spellcheck, 'checkWordFast').mockReturnValue(true);
-      vi.spyOn(spellcheck, 'getSuggestions').mockReturnValue(['hello', 'hallo', 'hullo']);
+    it('should match case-insensitively', () => {
+      const mockTextNode = document.createTextNode('Helllo world');
+      const range = createMockRange(mockTextNode, 3);
+      mockCaretRangeFromPoint(range);
+
+      act(() => {
+        useSpellcheckStore.getState().setSuggestions('helllo', ['hello']);
+      });
 
       const { result } = renderHook(() => useSpellcheck());
 
       act(() => {
-        result.current.captureWordAtCursor();
+        result.current.captureWordAtPoint(100, 50);
       });
 
       const items = result.current.buildSpellMenuItems();
-      expect(items).toHaveLength(3);
+      expect(items).not.toBeNull();
       expect(items![0].label).toBe('hello');
-      expect(items![1].label).toBe('hallo');
-      expect(items![2].label).toBe('hullo');
     });
 
     it('should return "No suggestions" when misspelled with no suggestions', () => {
       const mockTextNode = document.createTextNode('xyzabc');
-      const mockRange = {
-        startContainer: mockTextNode,
-        startOffset: 3,
-      };
-      vi.spyOn(window, 'getSelection').mockReturnValue({
-        rangeCount: 1,
-        getRangeAt: () => mockRange,
-      } as unknown as Selection);
-      vi.spyOn(spellcheck, 'checkWordFast').mockReturnValue(true);
-      vi.spyOn(spellcheck, 'getSuggestions').mockReturnValue([]);
+      const range = createMockRange(mockTextNode, 3);
+      mockCaretRangeFromPoint(range);
+
+      act(() => {
+        useSpellcheckStore.getState().setSuggestions('xyzabc', []);
+      });
 
       const { result } = renderHook(() => useSpellcheck());
 
       act(() => {
-        result.current.captureWordAtCursor();
+        result.current.captureWordAtPoint(100, 50);
       });
 
       const items = result.current.buildSpellMenuItems();
@@ -190,31 +175,43 @@ describe('useSpellcheck', () => {
       expect(items![0].disabled).toBe(true);
     });
 
-    it('should replace word when suggestion is clicked', () => {
+    it('should not clear store after building menu items (cleared at context menu start)', () => {
       const mockTextNode = document.createTextNode('helllo world');
-      const parent = document.createElement('div');
-      parent.appendChild(mockTextNode);
+      const range = createMockRange(mockTextNode, 3);
+      mockCaretRangeFromPoint(range);
 
-      const mockRange = {
-        startContainer: mockTextNode,
-        startOffset: 3,
-      };
-      vi.spyOn(window, 'getSelection').mockReturnValue({
-        rangeCount: 1,
-        getRangeAt: () => mockRange,
-      } as unknown as Selection);
-      vi.spyOn(spellcheck, 'checkWordFast').mockReturnValue(true);
-      vi.spyOn(spellcheck, 'getSuggestions').mockReturnValue(['hello']);
-
-      const dispatchSpy = vi.spyOn(parent, 'dispatchEvent');
+      act(() => {
+        useSpellcheckStore.getState().setSuggestions('helllo', ['hello']);
+      });
 
       const { result } = renderHook(() => useSpellcheck());
 
       act(() => {
-        result.current.captureWordAtCursor();
+        result.current.captureWordAtPoint(100, 50);
       });
 
-      // Click the suggestion
+      result.current.buildSpellMenuItems();
+
+      // Store is NOT cleared here - it's cleared at context menu start instead
+      expect(useSpellcheckStore.getState().misspelledWord).toBe('helllo');
+      expect(useSpellcheckStore.getState().suggestions).toEqual(['hello']);
+    });
+
+    it('should call replaceMisspelling when suggestion is clicked', () => {
+      const mockTextNode = document.createTextNode('helllo world');
+      const range = createMockRange(mockTextNode, 3);
+      mockCaretRangeFromPoint(range);
+
+      act(() => {
+        useSpellcheckStore.getState().setSuggestions('helllo', ['hello']);
+      });
+
+      const { result } = renderHook(() => useSpellcheck());
+
+      act(() => {
+        result.current.captureWordAtPoint(100, 50);
+      });
+
       const items = result.current.buildSpellMenuItems();
       expect(items![0].label).toBe('hello');
 
@@ -222,81 +219,85 @@ describe('useSpellcheck', () => {
         items![0].onClick?.();
       });
 
-      expect(mockTextNode.textContent).toBe('hello world');
-      expect(dispatchSpy).toHaveBeenCalled();
+      expect(window.electron.replaceMisspelling).toHaveBeenCalledWith('hello');
     });
   });
 
   describe('word boundary detection', () => {
     it('should detect word at start of text', () => {
       const mockTextNode = document.createTextNode('hello world');
-      const mockRange = {
-        startContainer: mockTextNode,
-        startOffset: 0,
-      };
-      vi.spyOn(window, 'getSelection').mockReturnValue({
-        rangeCount: 1,
-        getRangeAt: () => mockRange,
-      } as unknown as Selection);
-      vi.spyOn(spellcheck, 'checkWordFast').mockReturnValue(true);
-      vi.spyOn(spellcheck, 'getSuggestions').mockReturnValue(['hi']);
+      const range = createMockRange(mockTextNode, 0);
+      mockCaretRangeFromPoint(range);
+
+      act(() => {
+        useSpellcheckStore.getState().setSuggestions('hello', ['hi']);
+      });
 
       const { result } = renderHook(() => useSpellcheck());
 
       act(() => {
-        result.current.captureWordAtCursor();
+        result.current.captureWordAtPoint(100, 50);
       });
 
       const items = result.current.buildSpellMenuItems();
       expect(items).not.toBeNull();
-      expect(spellcheck.checkWordFast).toHaveBeenCalledWith('hello');
     });
 
     it('should detect word at end of text', () => {
       const mockTextNode = document.createTextNode('hello world');
-      const mockRange = {
-        startContainer: mockTextNode,
-        startOffset: 11, // After 'world'
-      };
-      vi.spyOn(window, 'getSelection').mockReturnValue({
-        rangeCount: 1,
-        getRangeAt: () => mockRange,
-      } as unknown as Selection);
-      vi.spyOn(spellcheck, 'checkWordFast').mockReturnValue(true);
-      vi.spyOn(spellcheck, 'getSuggestions').mockReturnValue(['word']);
+      const range = createMockRange(mockTextNode, 11);
+      mockCaretRangeFromPoint(range);
+
+      act(() => {
+        useSpellcheckStore.getState().setSuggestions('world', ['word']);
+      });
 
       const { result } = renderHook(() => useSpellcheck());
 
       act(() => {
-        result.current.captureWordAtCursor();
+        result.current.captureWordAtPoint(100, 50);
       });
 
       const items = result.current.buildSpellMenuItems();
       expect(items).not.toBeNull();
-      expect(spellcheck.checkWordFast).toHaveBeenCalledWith('world');
     });
 
-    it('should handle cursor between words (at space)', () => {
-      const mockTextNode = document.createTextNode('hello world');
-      const mockRange = {
-        startContainer: mockTextNode,
-        startOffset: 5, // At the space
-      };
-      vi.spyOn(window, 'getSelection').mockReturnValue({
-        rangeCount: 1,
-        getRangeAt: () => mockRange,
-      } as unknown as Selection);
+    it('should detect contractions as single words', () => {
+      const mockTextNode = document.createTextNode("it doesn't work");
+      const range = createMockRange(mockTextNode, 6);
+      mockCaretRangeFromPoint(range);
+
+      act(() => {
+        useSpellcheckStore.getState().setSuggestions("doesn't", ['does not']);
+      });
 
       const { result } = renderHook(() => useSpellcheck());
 
       act(() => {
-        result.current.captureWordAtCursor();
+        result.current.captureWordAtPoint(100, 50);
       });
 
-      // Should still find 'hello' since we expand backward
-      vi.spyOn(spellcheck, 'checkWordFast').mockReturnValue(false);
       const items = result.current.buildSpellMenuItems();
-      expect(items).toBeNull();
+      expect(items).not.toBeNull();
+    });
+
+    it('should strip leading apostrophes from quoted words', () => {
+      const mockTextNode = document.createTextNode("the word 'hello' is here");
+      const range = createMockRange(mockTextNode, 10);
+      mockCaretRangeFromPoint(range);
+
+      act(() => {
+        useSpellcheckStore.getState().setSuggestions('hello', ['hi']);
+      });
+
+      const { result } = renderHook(() => useSpellcheck());
+
+      act(() => {
+        result.current.captureWordAtPoint(100, 50);
+      });
+
+      const items = result.current.buildSpellMenuItems();
+      expect(items).not.toBeNull();
     });
   });
 });

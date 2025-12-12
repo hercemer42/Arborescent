@@ -141,7 +141,7 @@ function NodeContentComponent({
             className={`node-text ${isLink ? 'hyperlink-text' : ''}`}
             contentEditable={!isLink}
             suppressContentEditableWarning
-            spellCheck={isSelected}
+            spellCheck={!isLink}
             onInput={isLink ? undefined : handleInput}
             onClick={isLink ? navigateToLinkedNode : undefined}
           />

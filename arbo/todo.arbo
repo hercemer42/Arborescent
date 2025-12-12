@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2025-12-11T15:21:50.748Z'
+updated: '2025-12-12T13:42:56.072Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -139,7 +139,7 @@ nodes:
       - bd4e87a5-132a-484d-82f0-52b6de115e60
     metadata:
       status: completed
-      expanded: false
+      expanded: true
   c88262d6-21ba-41bd-aab7-51b96d0ed062:
     id: c88262d6-21ba-41bd-aab7-51b96d0ed062
     content: 'Follow VS Code model: built-in extensions use same API as marketplace extensions, all can be disabled by users'
@@ -202,7 +202,7 @@ nodes:
       - 78d77e98-d6a2-47a2-9290-6e3d0b77ded8
     metadata:
       status: completed
-      expanded: false
+      expanded: true
   6c5180fc-e306-4a8d-a1e2-df403b3e2eb6:
     id: 6c5180fc-e306-4a8d-a1e2-df403b3e2eb6
     content: There's stuff in ipcService belonging to the plugin, same for storage.ts, index.ts
@@ -465,7 +465,7 @@ nodes:
       - 984247e7-2d55-4b93-80e8-f84818901621
     metadata:
       status: pending
-      expanded: true
+      expanded: false
       isBlueprint: true
       blueprintIcon: Boxes
       blueprintColor: '#a855f7'
@@ -561,42 +561,14 @@ nodes:
     content: Project philosophy
     children:
       - 70eecb43-acfd-4175-875c-c0b056287694
-      - f15111b1-9e2d-46e9-b84c-e12b9053e230
+      - 79eca573-ccce-4e91-8339-15ac386b818c
     metadata:
       status: pending
-      expanded: true
+      expanded: false
       isBlueprint: true
       blueprintIcon: Sun
       blueprintColor: '#f97316'
-  f15111b1-9e2d-46e9-b84c-e12b9053e230:
-    id: f15111b1-9e2d-46e9-b84c-e12b9053e230
-    content: Optimized to be neurodivergent friendly
-    children:
-      - 869029e9-cf75-40d2-a677-acac98c68470
-      - c882ae02-4134-41c9-89de-39e04fb749c5
-      - 64ef60c9-40fe-43c8-9b48-0000d28e024a
-      - 50de00c5-8138-491b-9063-eeb5145fc4e2
-    metadata:
-      status: pending
-      expanded: true
-  c882ae02-4134-41c9-89de-39e04fb749c5:
-    id: c882ae02-4134-41c9-89de-39e04fb749c5
-    content: UI as simple as possible to avoid visual distractions
-    children: []
-    metadata:
-      status: pending
-  64ef60c9-40fe-43c8-9b48-0000d28e024a:
-    id: 64ef60c9-40fe-43c8-9b48-0000d28e024a
-    content: As stable as possible to avoid frustration
-    children: []
-    metadata:
-      status: pending
-  50de00c5-8138-491b-9063-eeb5145fc4e2:
-    id: 50de00c5-8138-491b-9063-eeb5145fc4e2
-    content: Complexity is emergent, discoverable, configurable - respect cognitive load
-    children: []
-    metadata:
-      status: pending
+      appliedContextId: e8824b29-eb18-4031-9e35-b321a864d418
   2090c20b-13eb-459d-9cae-ece1084e9d04:
     id: 2090c20b-13eb-459d-9cae-ece1084e9d04
     content: we have plugin registry in plugins/main, should it not be in plugins, core, main ?
@@ -5220,13 +5192,14 @@ nodes:
       status: pending
       isContextDeclaration: true
       blueprintIcon: Search
-      expanded: false
+      expanded: true
       blueprintColor: '#0ea5e9'
       isBlueprint: true
   af1ebc0d-26dd-4a75-982f-03a9dbe2bc84:
     id: af1ebc0d-26dd-4a75-982f-03a9dbe2bc84
     content: "You are reviewing a hierarchical task list.\_ Please :"
     children:
+      - 848977fa-0d2e-4f1b-92f4-a276c5e4841d
       - 20c4a563-f66e-4e4c-a3d5-06e090b46a12
       - 9e75dae5-0ca1-4ccb-96db-eccceaba398d
       - 0a61fab2-e033-43e2-b83f-c554ef870539
@@ -5274,7 +5247,7 @@ nodes:
       - 3666246b-6557-4e87-9b1d-02d9292fe157
     metadata:
       status: pending
-      expanded: false
+      expanded: true
       isBlueprint: true
       blueprintIcon: BrainCircuit
       blueprintColor: '#f97316'
@@ -9190,16 +9163,16 @@ nodes:
     children:
       - e8b96096-b0ba-42f8-91cd-37fea6028a85
       - 4264aa2a-e101-4dd6-b971-1d0deb8ce03d
-      - 71a10f84-1849-4545-9352-d8827c3250d7
       - 9d367ab4-0554-4138-8caf-2b9aaf770c5f
       - 443ed04c-12ba-43fb-a6b2-e3b14da356a3
       - 0985b5a6-8be4-43f5-95f2-c5c76575708e
+      - 2f2fe59d-cc4a-4b53-9384-a48a96127d15
     metadata:
       status: pending
       isBlueprint: true
       blueprintIcon: Eye
       blueprintColor: '#0ea5e9'
-      expanded: false
+      expanded: true
   4264aa2a-e101-4dd6-b971-1d0deb8ce03d:
     id: 4264aa2a-e101-4dd6-b971-1d0deb8ce03d
     content: Review all code implemented since last commit
@@ -9209,14 +9182,7 @@ nodes:
       isBlueprint: true
   e8b96096-b0ba-42f8-91cd-37fea6028a85:
     id: e8b96096-b0ba-42f8-91cd-37fea6028a85
-    content: Read arbo/architecture.md
-    children: []
-    metadata:
-      status: pending
-      isBlueprint: true
-  71a10f84-1849-4545-9352-d8827c3250d7:
-    id: 71a10f84-1849-4545-9352-d8827c3250d7
-    content: Insure it is consistent withe the global architecture
+    content: 'Insure consistency with the project conventions :'
     children: []
     metadata:
       status: pending
@@ -14629,7 +14595,8 @@ nodes:
   8210b1f6-ba52-4657-ae8f-39c3ed91ef61:
     id: 8210b1f6-ba52-4657-ae8f-39c3ed91ef61
     content: Move archi doc into nodes (link to major feature update)
-    children: []
+    children:
+      - b3b1b52c-7737-4ea7-8fcd-552d2db6abeb
     metadata:
       status: pending
   15f96fee-97b9-43f4-8ae4-68c72e7c8346:
@@ -15087,6 +15054,9 @@ nodes:
       - 4966bd3d-fe8d-4094-840f-a0f791c07d6c
       - cc522bbb-99fe-499f-b9d8-a62c7ce50575
       - 8210b1f6-ba52-4657-ae8f-39c3ed91ef61
+      - 1be855d0-fbb1-4fbf-aee9-fe25b8d9f20b
+      - 5b16abaf-a2dc-4248-aaa5-37e03f64d774
+      - 2b5efb39-5c1f-49cd-866e-9e142516cfc6
     metadata:
       status: pending
       expanded: true
@@ -15847,6 +15817,7 @@ nodes:
     id: 5cc686fc-7651-4d83-9ccf-78a29d1dff13
     content: Done
     children:
+      - d39f7ab4-3d32-4e18-8c96-69b38cee3766
       - 1c5caa24-018b-4f1d-85c8-3232d93deb1c
       - dfef7d4f-c35c-43c4-b1ac-f84c8c916785
     metadata:
@@ -16102,8 +16073,8 @@ nodes:
     id: 3881490a-b11c-4052-ad46-020faad5bb2b
     content: In progress
     children:
-      - d39f7ab4-3d32-4e18-8c96-69b38cee3766
-      - 8d46b8b4-8531-49ad-a223-b5856af3f562
+      - 868358fb-d2b2-474f-b352-ebc3491bef1e
+      - 6d06353d-993c-476f-a48f-a0b55c86f1ec
     metadata:
       status: pending
       appliedContextIds:
@@ -17210,7 +17181,7 @@ nodes:
       - c9a0cf38-c449-47a0-b687-359ca5ddd57e
     metadata:
       status: pending
-      expanded: false
+      expanded: true
       isBlueprint: true
       blueprintIcon: LayoutList
       blueprintColor: '#14b8a6'
@@ -17264,8 +17235,9 @@ nodes:
     content: Sometimes we get into a state (not sure how) where a cut node we didn't paste, or perhaps pasted and undid, is greyed out, and subsequent copy and paste leave it greyed out
     children: []
     metadata:
-      status: pending
+      status: completed
       activeExecuteContextId: 6690289a-e02f-48bc-9225-a1083b7b324f
+      resolvedAt: '2025-12-11T15:22:50.707Z'
   7edf262e-ab8a-4149-b2b0-c74f8aa60401:
     id: 7edf262e-ab8a-4149-b2b0-c74f8aa60401
     content: Implement a feature
@@ -17401,7 +17373,7 @@ nodes:
       status: pending
   75876c94-2397-4790-a87b-ec40eed8e840:
     id: 75876c94-2397-4790-a87b-ec40eed8e840
-    content: Refine what works, and every future collaboration will get better.
+    content: Refine what works, and every future collaboration gets better.
     children: []
     metadata:
       status: pending
@@ -17422,15 +17394,115 @@ nodes:
     children: []
     metadata:
       status: pending
-  869029e9-cf75-40d2-a677-acac98c68470:
-    id: 869029e9-cf75-40d2-a677-acac98c68470
-    content: Tree structure maps to unique thinking styles
-    children: []
-    metadata:
-      status: pending
   f1c77257-f2eb-4799-bbe1-6b238e6ccfca:
     id: f1c77257-f2eb-4799-bbe1-6b238e6ccfca
     content: The blueprint feature lets you export the meta-structure, so you can share your workflow with a team or the community
+    children: []
+    metadata:
+      status: pending
+  91694315-e6a1-4822-adea-7e6cf6321339:
+    id: 91694315-e6a1-4822-adea-7e6cf6321339
+    content: Right clicking on 'doesn't' gives a spellcheck suggestion of 'does' but the word wasn't highlighted as a spelling error
+    children: []
+    metadata:
+      status: pending
+  848977fa-0d2e-4f1b-92f4-a276c5e4841d:
+    id: 848977fa-0d2e-4f1b-92f4-a276c5e4841d
+    content: Keep in mind the project philosophy
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  6d06353d-993c-476f-a48f-a0b55c86f1ec:
+    id: 6d06353d-993c-476f-a48f-a0b55c86f1ec
+    content: Issue with copy/paste hyperlink
+    children: []
+    metadata:
+      status: pending
+  b3b1b52c-7737-4ea7-8fcd-552d2db6abeb:
+    id: b3b1b52c-7737-4ea7-8fcd-552d2db6abeb
+    content: Torch archi doc
+    children: []
+    metadata:
+      status: pending
+  868358fb-d2b2-474f-b352-ebc3491bef1e:
+    id: 868358fb-d2b2-474f-b352-ebc3491bef1e
+    content: Spell checker
+    children:
+      - 8d46b8b4-8531-49ad-a223-b5856af3f562
+      - 91694315-e6a1-4822-adea-7e6cf6321339
+    metadata:
+      status: pending
+  1be855d0-fbb1-4fbf-aee9-fe25b8d9f20b:
+    id: 1be855d0-fbb1-4fbf-aee9-fe25b8d9f20b
+    content: Add documentation context
+    children: []
+    metadata:
+      status: pending
+  5b16abaf-a2dc-4248-aaa5-37e03f64d774:
+    id: 5b16abaf-a2dc-4248-aaa5-37e03f64d774
+    content: Add project philosophy node as link to functional contexts
+    children: []
+    metadata:
+      status: pending
+  79eca573-ccce-4e91-8339-15ac386b818c:
+    id: 79eca573-ccce-4e91-8339-15ac386b818c
+    content: Designed for focus and low cognitive load
+    children:
+      - 7d266be1-06d5-42f0-95c3-7446ac2be274
+      - 1c061b64-2ff7-4957-bb05-6149ebf29f66
+      - 5686f540-4fc2-4dd9-860c-4bc20610505c
+      - d794687c-6b9e-4ce5-a5c6-a94e2419c754
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7d266be1-06d5-42f0-95c3-7446ac2be274:
+    id: 7d266be1-06d5-42f0-95c3-7446ac2be274
+    content: Tree structure supports non-linear thinking
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1c061b64-2ff7-4957-bb05-6149ebf29f66:
+    id: 1c061b64-2ff7-4957-bb05-6149ebf29f66
+    content: UI minimizes visual noise
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5686f540-4fc2-4dd9-860c-4bc20610505c:
+    id: 5686f540-4fc2-4dd9-860c-4bc20610505c
+    content: Predictable, stable behavior
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d794687c-6b9e-4ce5-a5c6-a94e2419c754:
+    id: d794687c-6b9e-4ce5-a5c6-a94e2419c754
+    content: Complexity is emergent, discoverable, configurable
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2b5efb39-5c1f-49cd-866e-9e142516cfc6:
+    id: 2b5efb39-5c1f-49cd-866e-9e142516cfc6
+    content: Create a new file from default blueprint
+    children: []
+    metadata:
+      status: pending
+  2f2fe59d-cc4a-4b53-9384-a48a96127d15:
+    id: 2f2fe59d-cc4a-4b53-9384-a48a96127d15
+    content: Insure
     children: []
     metadata:
       status: pending

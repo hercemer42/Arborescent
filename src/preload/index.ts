@@ -87,4 +87,10 @@ contextBridge.exposeInMainWorld('electron', {
   savePreferences: (preferencesData: string) =>
     ipcRenderer.invoke('save-preferences', preferencesData),
   getPreferences: () => ipcRenderer.invoke('get-preferences'),
+  onContextMenuParams: (callback: (data: { x: number; y: number; misspelledWord: string | null; suggestions: string[] }) => void) => {
+    const listener = (_event: Electron.IpcRendererEvent, data: { x: number; y: number; misspelledWord: string | null; suggestions: string[] }) => callback(data);
+    ipcRenderer.on('context-menu-params', listener);
+    return () => ipcRenderer.removeListener('context-menu-params', listener);
+  },
+  replaceMisspelling: (suggestion: string) => ipcRenderer.invoke('replace-misspelling', suggestion),
 });

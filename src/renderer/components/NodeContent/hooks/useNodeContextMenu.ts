@@ -15,6 +15,7 @@ import { buildExecuteSubmenu } from './useExecuteSubmenu';
 import { getPositionFromPoint } from '../../../utils/position';
 import { useIconPickerStore } from '../../../store/iconPicker/iconPickerStore';
 import { useSpellcheck } from './useSpellcheck';
+import { waitForSpellcheckUpdate, useSpellcheckStore } from '../../../store/spellcheck/spellcheckStore';
 import { getKeyForAction } from '../../../data/hotkeyConfig';
 import { formatHotkeyForDisplay } from '../../../utils/hotkeyUtils';
 
@@ -26,7 +27,7 @@ export function useNodeContextMenu(node: TreeNode) {
   const [menuItems, setMenuItems] = useState<ContextMenuItem[]>([]);
   const menuOpenRef = useRef(false);
 
-  const { captureWordAtCursor, buildSpellMenuItems } = useSpellcheck();
+  const { captureWordAtPoint, buildSpellMenuItems } = useSpellcheck();
   const { handleCancel } = useFeedbackActions();
   const showTerminal = usePanelStore((state) => state.showTerminal);
   const openIconPicker = useIconPickerStore((state) => state.open);
@@ -228,10 +229,12 @@ export function useNodeContextMenu(node: TreeNode) {
   }, [node, store, showTerminal, handleCancel, openIconPicker, activeFile, isZoomTab, openZoomTab, buildSpellMenuItems]);
 
   const handleContextMenu = useCallback(async (e: React.MouseEvent) => {
-    e.preventDefault();
+    // Let Electron's context-menu event fire to capture spell data
     if (isFeedbackTree) return;
 
-    captureWordAtCursor();
+    useSpellcheckStore.getState().clear();
+
+    captureWordAtPoint(e.clientX, e.clientY);
 
     const { actions } = store.getState();
     const wrapperElement = e.currentTarget as HTMLElement;
@@ -246,10 +249,12 @@ export function useNodeContextMenu(node: TreeNode) {
 
     menuOpenRef.current = true;
 
+    await waitForSpellcheckUpdate();
+
     const items = await buildMenuItems();
     setMenuItems(items);
     setContextMenu({ x: e.clientX, y: e.clientY });
-  }, [node.id, store, isFeedbackTree, buildMenuItems, captureWordAtCursor]);
+  }, [node.id, store, isFeedbackTree, buildMenuItems, captureWordAtPoint]);
 
   const handleDelete = useCallback(() => {
     const { actions } = store.getState();

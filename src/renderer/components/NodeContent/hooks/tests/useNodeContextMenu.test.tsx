@@ -4,7 +4,7 @@ import { useNodeContextMenu } from '../useNodeContextMenu';
 import { TreeStoreContext } from '../../../../store/tree/TreeStoreContext';
 import { createTreeStore, TreeStore } from '../../../../store/tree/treeStore';
 import type { TreeNode } from '@shared/types';
-import * as spellcheck from '../../../../services/spellcheck';
+import { useSpellcheckStore } from '../../../../store/spellcheck/spellcheckStore';
 
 // Helper to create mock event with DOM elements
 function createMockContextMenuEvent(x: number, y: number) {
@@ -75,10 +75,13 @@ describe('useNodeContextMenu', () => {
 
   // Helper to open context menu and wait for items to be populated
   async function openContextMenu(result: { current: ReturnType<typeof useNodeContextMenu> }) {
+    vi.useFakeTimers();
     const mockEvent = createMockContextMenuEvent(100, 200);
     await act(async () => {
-      await result.current.handleContextMenu(mockEvent);
+      result.current.handleContextMenu(mockEvent);
+      await vi.advanceTimersByTimeAsync(550);
     });
+    vi.useRealTimers();
   }
 
   it('should initialize with no context menu', () => {
@@ -191,16 +194,20 @@ describe('useNodeContextMenu', () => {
   });
 
   it('should set context menu position on handleContextMenu', async () => {
+    vi.useFakeTimers();
     const { result } = renderHook(() => useNodeContextMenu(mockNode), { wrapper });
 
     const mockEvent = createMockContextMenuEvent(100, 200);
 
     await act(async () => {
       result.current.handleContextMenu(mockEvent);
+      // Advance timers to allow waitForSpellcheckUpdate to timeout
+      await vi.advanceTimersByTimeAsync(550);
     });
 
-    expect(mockEvent.preventDefault).toHaveBeenCalled();
+    // Note: preventDefault is NOT called - we let Electron handle it
     expect(result.current.contextMenu).toEqual({ x: 100, y: 200 });
+    vi.useRealTimers();
   });
 
   it('should focus node when right-clicking', async () => {
@@ -218,12 +225,14 @@ describe('useNodeContextMenu', () => {
   });
 
   it('should close context menu', async () => {
+    vi.useFakeTimers();
     const { result } = renderHook(() => useNodeContextMenu(mockNode), { wrapper });
 
     const mockEvent = createMockContextMenuEvent(100, 200);
 
     await act(async () => {
       result.current.handleContextMenu(mockEvent);
+      await vi.advanceTimersByTimeAsync(550);
     });
 
     expect(result.current.contextMenu).toEqual({ x: 100, y: 200 });
@@ -233,6 +242,7 @@ describe('useNodeContextMenu', () => {
     });
 
     expect(result.current.contextMenu).toBe(null);
+    vi.useRealTimers();
   });
 
   it('should delete node without children', () => {
@@ -376,72 +386,88 @@ describe('useNodeContextMenu', () => {
   });
 
   describe('spellcheck integration', () => {
+    function mockCaretRangeFromPoint(range: Range | null) {
+      Object.defineProperty(document, 'caretRangeFromPoint', {
+        value: vi.fn().mockReturnValue(range),
+        writable: true,
+        configurable: true,
+      });
+    }
+
+    function createMockRange(textNode: Text, offset: number): Range {
+      const range = document.createRange();
+      range.setStart(textNode, offset);
+      range.collapse(true);
+      return range;
+    }
+
     beforeEach(() => {
-      // Mock window.getSelection
-      vi.spyOn(window, 'getSelection').mockReturnValue(null);
+      vi.useFakeTimers();
+      mockCaretRangeFromPoint(null);
+      useSpellcheckStore.getState().clear();
     });
+
+    afterEach(() => {
+      vi.useRealTimers();
+    });
+
+    async function openContextMenuWithTimers(result: { current: ReturnType<typeof useNodeContextMenu> }) {
+      const mockEvent = createMockContextMenuEvent(100, 200);
+      await act(async () => {
+        result.current.handleContextMenu(mockEvent);
+        await vi.advanceTimersByTimeAsync(550);
+      });
+    }
 
     it('should show full context menu when no word is selected', async () => {
       const { result } = renderHook(() => useNodeContextMenu(mockNode), { wrapper });
 
-      await openContextMenu(result);
+      await openContextMenuWithTimers(result);
 
-      // Should have normal menu items
       expect(result.current.contextMenuItems.find(item => item.label === 'Execute')).toBeDefined();
       expect(result.current.contextMenuItems.find(item => item.label === 'Edit')).toBeDefined();
     });
 
-    it('should show full context menu when word is spelled correctly', async () => {
-      // Mock selection with a correctly spelled word
+    it('should show full context menu when no misspelled word in store', async () => {
       const mockTextNode = document.createTextNode('hello world');
-      const mockRange = {
-        startContainer: mockTextNode,
-        startOffset: 2, // In the middle of 'hello'
-      };
-      vi.spyOn(window, 'getSelection').mockReturnValue({
-        rangeCount: 1,
-        getRangeAt: () => mockRange,
-      } as unknown as Selection);
-
-      vi.spyOn(spellcheck, 'checkWord').mockReturnValue({ misspelled: false, suggestions: [] });
+      const range = createMockRange(mockTextNode, 2);
+      mockCaretRangeFromPoint(range);
 
       const { result } = renderHook(() => useNodeContextMenu(mockNode), { wrapper });
 
-      await openContextMenu(result);
+      await openContextMenuWithTimers(result);
 
-      // Should have normal menu items
       expect(result.current.contextMenuItems.find(item => item.label === 'Execute')).toBeDefined();
       expect(result.current.contextMenuItems.find(item => item.label === 'Edit')).toBeDefined();
     });
 
-    it('should show spell suggestions (or loading placeholder) and regular menu items when word is misspelled', async () => {
-      // Mock selection with a misspelled word
+    it('should show spell suggestions and regular menu items when word is misspelled', async () => {
       const mockTextNode = document.createTextNode('helllo world');
-      const mockRange = {
-        startContainer: mockTextNode,
-        startOffset: 3, // In the middle of 'helllo'
-      };
-      vi.spyOn(window, 'getSelection').mockReturnValue({
-        rangeCount: 1,
-        getRangeAt: () => mockRange,
-      } as unknown as Selection);
-
-      vi.spyOn(spellcheck, 'checkWordFast').mockReturnValue(true);
-      vi.spyOn(spellcheck, 'getSuggestions').mockReturnValue(['hello', 'hallo']);
+      const range = createMockRange(mockTextNode, 3);
+      mockCaretRangeFromPoint(range);
 
       const { result } = renderHook(() => useNodeContextMenu(mockNode), { wrapper });
 
-      await openContextMenu(result);
+      const mockEvent = createMockContextMenuEvent(100, 200);
+      await act(async () => {
+        // Start context menu (this clears store and starts waiting)
+        const menuPromise = result.current.handleContextMenu(mockEvent);
 
-      // First item should be either loading placeholder or a suggestion (depends on cache state)
+        // Simulate Electron IPC arriving after a short delay with spell suggestions
+        await vi.advanceTimersByTimeAsync(50);
+        useSpellcheckStore.getState().setSuggestions('helllo', ['hello', 'hallo']);
+
+        // Let the wait complete
+        await vi.advanceTimersByTimeAsync(500);
+        await menuPromise;
+      });
+
       const firstLabel = result.current.contextMenuItems[0].label;
-      expect(['Suggestions loading...', 'hello', 'No suggestions']).toContain(firstLabel);
+      expect(['hello', 'hallo']).toContain(firstLabel);
 
-      // Should have separator after spell items
       const separatorIndex = result.current.contextMenuItems.findIndex(item => item.separator);
       expect(separatorIndex).toBeGreaterThan(0);
 
-      // Should ALSO have normal menu items - this is the key improvement
       expect(result.current.contextMenuItems.find(item => item.label === 'Execute')).toBeDefined();
       expect(result.current.contextMenuItems.find(item => item.label === 'Edit')).toBeDefined();
     });

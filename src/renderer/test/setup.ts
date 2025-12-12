@@ -104,4 +104,6 @@ global.window.electron = {
   terminalDestroy: vi.fn(),
   onTerminalData: vi.fn().mockReturnValue(vi.fn()),
   onTerminalExit: vi.fn().mockReturnValue(vi.fn()),
+  onContextMenuParams: vi.fn().mockReturnValue(vi.fn()),
+  replaceMisspelling: vi.fn().mockResolvedValue(undefined),
 };

@@ -1,4 +1,4 @@
-import { app, BrowserWindow } from 'electron';
+import { app, BrowserWindow, ipcMain } from 'electron';
 import path from 'node:path';
 import started from 'electron-squirrel-startup';
 import { registerIpcHandlers } from './services/ipcService';
@@ -21,6 +21,10 @@ if (MAIN_WINDOW_VITE_DEV_SERVER_URL) {
 
 let mainWindow: BrowserWindow | null = null;
 
+ipcMain.handle('replace-misspelling', (_event, suggestion: string) => {
+  mainWindow?.webContents.replaceMisspelling(suggestion);
+});
+
 const createWindow = async () => {
   await registerIpcHandlers(() => mainWindow);
 
@@ -32,8 +36,20 @@ const createWindow = async () => {
       contextIsolation: true,
       nodeIntegration: false,
       webviewTag: true,
+      spellcheck: true,
     },
   });
+
+  const availableLangs = mainWindow.webContents.session.availableSpellCheckerLanguages;
+  const preferredLangs = app.getPreferredSystemLanguages();
+  const langsToSet = preferredLangs.filter(lang => availableLangs.includes(lang));
+
+  if (langsToSet.length > 0) {
+    mainWindow.webContents.session.setSpellCheckerLanguages(langsToSet);
+    logger.info(`[Spellcheck] Languages: ${langsToSet.join(', ')}`, 'Main');
+  } else {
+    logger.warn(`[Spellcheck] No matching dictionaries for preferred languages: ${preferredLangs.join(', ')}`, 'Main');
+  }
 
   createApplicationMenu();
 
@@ -54,6 +70,17 @@ const createWindow = async () => {
       mainWindow?.webContents.toggleDevTools();
       event.preventDefault();
     }
+  });
+
+  mainWindow.webContents.on('context-menu', (event, params) => {
+    event.preventDefault();
+
+    mainWindow?.webContents.send('context-menu-params', {
+      x: params.x,
+      y: params.y,
+      misspelledWord: params.misspelledWord || null,
+      suggestions: params.dictionarySuggestions || [],
+    });
   });
 
   mainWindow.on('closed', () => {
