@@ -473,4 +473,105 @@ describe('useNodeContextMenu', () => {
     });
 
   });
+
+  describe('feedback tree menu', () => {
+    beforeEach(() => {
+      store.setState({
+        treeType: 'feedback',
+      });
+    });
+
+    it('should only show Edit submenu in feedback tree', async () => {
+      const { result } = renderHook(() => useNodeContextMenu(mockNode), { wrapper });
+
+      await openContextMenu(result);
+
+      // Should have Edit submenu
+      const editMenu = result.current.contextMenuItems.find(item => item.label === 'Edit');
+      expect(editMenu).toBeDefined();
+
+      // Should NOT have Execute, Collaborate, Blueprint, Status, Zoom
+      expect(result.current.contextMenuItems.find(item => item.label === 'Execute')).toBeUndefined();
+      expect(result.current.contextMenuItems.find(item => item.label === 'Collaborate')).toBeUndefined();
+      expect(result.current.contextMenuItems.find(item => item.label === 'Blueprint')).toBeUndefined();
+      expect(result.current.contextMenuItems.find(item => item.label === 'Status')).toBeUndefined();
+      expect(result.current.contextMenuItems.find(item => item.label === 'Zoom')).toBeUndefined();
+    });
+
+    it('should have Select, Copy, Cut, Paste, Delete in feedback Edit submenu', async () => {
+      const { result } = renderHook(() => useNodeContextMenu(mockNode), { wrapper });
+
+      await openContextMenu(result);
+
+      const editMenu = result.current.contextMenuItems.find(item => item.label === 'Edit');
+      expect(editMenu?.submenu?.find(item => item.label === 'Select')).toBeDefined();
+      expect(editMenu?.submenu?.find(item => item.label === 'Copy')).toBeDefined();
+      expect(editMenu?.submenu?.find(item => item.label === 'Cut')).toBeDefined();
+      expect(editMenu?.submenu?.find(item => item.label === 'Paste')).toBeDefined();
+      expect(editMenu?.submenu?.find(item => item.label === 'Delete')).toBeDefined();
+    });
+
+    it('should not have Copy as Hyperlink in feedback Edit submenu', async () => {
+      const { result } = renderHook(() => useNodeContextMenu(mockNode), { wrapper });
+
+      await openContextMenu(result);
+
+      const editMenu = result.current.contextMenuItems.find(item => item.label === 'Edit');
+      expect(editMenu?.submenu?.find(item => item.label === 'Copy as Hyperlink')).toBeUndefined();
+    });
+
+    it('should show spell suggestions before Edit submenu in feedback tree', async () => {
+      vi.useFakeTimers();
+
+      const mockTextNode = document.createTextNode('helllo world');
+      const range = document.createRange();
+      range.setStart(mockTextNode, 3);
+      range.collapse(true);
+
+      Object.defineProperty(document, 'caretRangeFromPoint', {
+        value: vi.fn().mockReturnValue(range),
+        writable: true,
+        configurable: true,
+      });
+
+      const { result } = renderHook(() => useNodeContextMenu(mockNode), { wrapper });
+
+      const mockEvent = createMockContextMenuEvent(100, 200);
+      await act(async () => {
+        const menuPromise = result.current.handleContextMenu(mockEvent);
+        await vi.advanceTimersByTimeAsync(50);
+        useSpellcheckStore.getState().setSuggestions('helllo', ['hello', 'hallo']);
+        await vi.advanceTimersByTimeAsync(500);
+        await menuPromise;
+      });
+
+      // First items should be spell suggestions
+      const firstLabel = result.current.contextMenuItems[0].label;
+      expect(['hello', 'hallo']).toContain(firstLabel);
+
+      // Should have separator between spell items and Edit
+      const separatorIndex = result.current.contextMenuItems.findIndex(item => item.separator);
+      expect(separatorIndex).toBeGreaterThan(0);
+
+      // Edit should come after separator
+      const editIndex = result.current.contextMenuItems.findIndex(item => item.label === 'Edit');
+      expect(editIndex).toBeGreaterThan(separatorIndex);
+
+      // Still should not have Execute/Collaborate
+      expect(result.current.contextMenuItems.find(item => item.label === 'Execute')).toBeUndefined();
+      expect(result.current.contextMenuItems.find(item => item.label === 'Collaborate')).toBeUndefined();
+
+      vi.useRealTimers();
+    });
+
+    it('should mark Delete as danger in feedback Edit submenu', async () => {
+      const { result } = renderHook(() => useNodeContextMenu(mockNode), { wrapper });
+
+      await openContextMenu(result);
+
+      const editMenu = result.current.contextMenuItems.find(item => item.label === 'Edit');
+      const deleteItem = editMenu?.submenu?.find(item => item.label === 'Delete');
+      expect(deleteItem?.danger).toBe(true);
+    });
+  });
 });

@@ -228,10 +228,65 @@ export function useNodeContextMenu(node: TreeNode) {
     return baseMenuItems;
   }, [node, store, showTerminal, handleCancel, openIconPicker, activeFile, isZoomTab, openZoomTab, buildSpellMenuItems]);
 
-  const handleContextMenu = useCallback(async (e: React.MouseEvent) => {
-    // Let Electron's context-menu event fire to capture spell data
-    if (isFeedbackTree) return;
+  const buildFeedbackMenuItems = useCallback(async () => {
+    const { actions } = store.getState();
+    const spellItems = buildSpellMenuItems();
 
+    const handleDelete = () => {
+      const deleted = actions.deleteNode(node.id);
+      if (!deleted) {
+        const confirmed = window.confirm(
+          'This node has children. Deleting it will also delete all its children. Are you sure?'
+        );
+        if (confirmed) {
+          actions.deleteNode(node.id, true);
+        }
+      }
+    };
+
+    const editSubmenu: ContextMenuItem = {
+      label: 'Edit',
+      submenu: [
+        {
+          label: 'Select',
+          onClick: () => actions.toggleNodeSelection(node.id),
+        },
+        {
+          label: 'Copy',
+          onClick: () => actions.copyNodes(),
+          shortcut: formatHotkeyForDisplay(getKeyForAction('actions', 'copy') || ''),
+        },
+        {
+          label: 'Cut',
+          onClick: () => actions.cutNodes(),
+          shortcut: formatHotkeyForDisplay(getKeyForAction('actions', 'cut') || ''),
+        },
+        {
+          label: 'Paste',
+          onClick: () => actions.pasteNodes(),
+          shortcut: formatHotkeyForDisplay(getKeyForAction('actions', 'paste') || ''),
+        },
+        {
+          label: 'Delete',
+          onClick: handleDelete,
+          danger: true,
+          shortcut: formatHotkeyForDisplay(getKeyForAction('actions', 'deleteNode') || ''),
+        },
+      ],
+    };
+
+    if (spellItems && spellItems.length > 0) {
+      return [
+        ...spellItems,
+        { separator: true, label: '', onClick: () => {} },
+        editSubmenu,
+      ];
+    }
+
+    return [editSubmenu];
+  }, [node, store, buildSpellMenuItems]);
+
+  const handleContextMenu = useCallback(async (e: React.MouseEvent) => {
     useSpellcheckStore.getState().clear();
 
     captureWordAtPoint(e.clientX, e.clientY);
@@ -251,10 +306,10 @@ export function useNodeContextMenu(node: TreeNode) {
 
     await waitForSpellcheckUpdate();
 
-    const items = await buildMenuItems();
+    const items = isFeedbackTree ? await buildFeedbackMenuItems() : await buildMenuItems();
     setMenuItems(items);
     setContextMenu({ x: e.clientX, y: e.clientY });
-  }, [node.id, store, isFeedbackTree, buildMenuItems, captureWordAtPoint]);
+  }, [node.id, store, isFeedbackTree, buildMenuItems, buildFeedbackMenuItems, captureWordAtPoint]);
 
   const handleDelete = useCallback(() => {
     const { actions } = store.getState();
