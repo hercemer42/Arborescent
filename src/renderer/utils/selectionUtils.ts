@@ -22,5 +22,6 @@ export function isContentEditableFocused(): boolean {
 export function isFocusInPanel(): boolean {
   const activeElement = document.activeElement;
   if (!activeElement) return false;
+  if (activeElement.tagName.toLowerCase() === 'webview') return true;
   return activeElement.closest('.unified-panel') !== null;
 }

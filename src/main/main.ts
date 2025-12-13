@@ -92,6 +92,19 @@ const createWindow = async () => {
 
 app.on('ready', createWindow);
 
+// Handle keyboard shortcuts for webview contents (browser panel)
+app.on('web-contents-created', (_event, contents) => {
+  if (contents.getType() === 'webview') {
+    contents.on('before-input-event', (event, input) => {
+      // Ctrl+W or Cmd+W to close browser tab
+      if ((input.control || input.meta) && input.key.toLowerCase() === 'w') {
+        event.preventDefault();
+        mainWindow?.webContents.send('close-browser-tab');
+      }
+    });
+  }
+});
+
 app.on('before-quit', () => {
   cleanupTerminals();
 });

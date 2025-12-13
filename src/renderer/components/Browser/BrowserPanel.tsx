@@ -8,6 +8,7 @@ import { useBrowserNavigation } from './BrowserNavBar/hooks/useBrowserNavigation
 import { useBrowserAddressBar } from './BrowserNavBar/hooks/useBrowserAddressBar';
 import { useBrowserTabManagement } from './BrowserTabBar/hooks/useBrowserTabManagement';
 import { useBrowserNavigationSync } from './BrowserNavBar/hooks/useBrowserNavigationSync';
+import { useBrowserCloseShortcut } from './hooks/useBrowserCloseShortcut';
 import './BrowserPanel.css';
 
 export function BrowserPanel() {
@@ -36,6 +37,8 @@ export function BrowserPanel() {
 
   // Sync navigation state with webview events
   useBrowserNavigationSync({ activeTabId, getActiveWebview, updateNavigationState, updateAddressBarFromWebview });
+
+  useBrowserCloseShortcut({ activeTabId, onClose: handleCloseBrowser });
 
   return (
     <div className="browser-panel">

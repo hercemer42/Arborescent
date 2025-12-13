@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2025-12-13T07:40:26.958Z'
+updated: '2025-12-13T08:23:47.474Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -558,7 +558,7 @@ nodes:
       expanded: true
   9bfbb401-dcb6-4f92-a34b-e9b3982c676f:
     id: 9bfbb401-dcb6-4f92-a34b-e9b3982c676f
-    content: Project philosophy
+    content: Philosophy
     children:
       - 70eecb43-acfd-4175-875c-c0b056287694
       - 79eca573-ccce-4e91-8339-15ac386b818c
@@ -5192,7 +5192,7 @@ nodes:
       status: pending
       isContextDeclaration: true
       blueprintIcon: Search
-      expanded: true
+      expanded: false
       blueprintColor: '#0ea5e9'
       isBlueprint: true
   af1ebc0d-26dd-4a75-982f-03a9dbe2bc84:
@@ -5241,13 +5241,14 @@ nodes:
     id: 0d19da53-f3a7-4ee4-b495-b59f127671fa
     content: Brainstorming
     children:
+      - cf05c8d6-6e82-43fd-95f7-03ad599d38c5
       - a16fa143-942d-4f74-a229-8e015a30df14
       - 270b22dc-7a02-4573-aafe-ebb48ffe8e0f
       - fb175b88-269f-45a4-ad32-c4592816b154
       - 3666246b-6557-4e87-9b1d-02d9292fe157
     metadata:
       status: pending
-      expanded: true
+      expanded: false
       isBlueprint: true
       blueprintIcon: BrainCircuit
       blueprintColor: '#f97316'
@@ -9155,9 +9156,10 @@ nodes:
     children:
       - 6e6f1d73-3ad7-46c6-879e-19036d650556
       - 6ab534a2-2956-454c-9c6a-e459314e0b5c
+      - e43903b2-2184-4cbd-84ec-9cd24ea536e2
     metadata:
       status: pending
-      expanded: true
+      expanded: false
       isBlueprint: true
       blueprintIcon: Star
       blueprintColor: '#64748b'
@@ -9166,18 +9168,17 @@ nodes:
     id: 6e6f1d73-3ad7-46c6-879e-19036d650556
     content: Review since last commit
     children:
-      - e8b96096-b0ba-42f8-91cd-37fea6028a85
       - 4264aa2a-e101-4dd6-b971-1d0deb8ce03d
+      - e8b96096-b0ba-42f8-91cd-37fea6028a85
       - 9d367ab4-0554-4138-8caf-2b9aaf770c5f
       - 443ed04c-12ba-43fb-a6b2-e3b14da356a3
       - 0985b5a6-8be4-43f5-95f2-c5c76575708e
-      - 2f2fe59d-cc4a-4b53-9384-a48a96127d15
     metadata:
       status: pending
       isBlueprint: true
       blueprintIcon: Eye
       blueprintColor: '#0ea5e9'
-      expanded: true
+      expanded: false
   4264aa2a-e101-4dd6-b971-1d0deb8ce03d:
     id: 4264aa2a-e101-4dd6-b971-1d0deb8ce03d
     content: Review all code implemented since last commit
@@ -9188,10 +9189,12 @@ nodes:
   e8b96096-b0ba-42f8-91cd-37fea6028a85:
     id: e8b96096-b0ba-42f8-91cd-37fea6028a85
     content: 'Insure consistency with the project conventions :'
-    children: []
+    children:
+      - 315bf9ae-cd9a-49d2-be3a-14b269500d24
     metadata:
       status: pending
       isBlueprint: true
+      expanded: true
   443ed04c-12ba-43fb-a6b2-e3b14da356a3:
     id: 443ed04c-12ba-43fb-a6b2-e3b14da356a3
     content: Identify any refactoring opportunities
@@ -14597,13 +14600,6 @@ nodes:
       deleted: false
       plugins: {}
       resolvedAt: '2025-12-09T03:06:07.796Z'
-  8210b1f6-ba52-4657-ae8f-39c3ed91ef61:
-    id: 8210b1f6-ba52-4657-ae8f-39c3ed91ef61
-    content: Move archi doc into nodes (link to major feature update)
-    children:
-      - b3b1b52c-7737-4ea7-8fcd-552d2db6abeb
-    metadata:
-      status: pending
   15f96fee-97b9-43f4-8ae4-68c72e7c8346:
     id: 15f96fee-97b9-43f4-8ae4-68c72e7c8346
     content: Search tool
@@ -15058,9 +15054,7 @@ nodes:
     children:
       - 4966bd3d-fe8d-4094-840f-a0f791c07d6c
       - cc522bbb-99fe-499f-b9d8-a62c7ce50575
-      - 8210b1f6-ba52-4657-ae8f-39c3ed91ef61
       - 1be855d0-fbb1-4fbf-aee9-fe25b8d9f20b
-      - 5b16abaf-a2dc-4248-aaa5-37e03f64d774
       - 2b5efb39-5c1f-49cd-866e-9e142516cfc6
       - 0053985b-19d7-4115-943b-57e0f47d0fd0
       - 63a58473-dad8-404d-afc4-c9ed2711c894
@@ -15825,6 +15819,7 @@ nodes:
     id: 5cc686fc-7651-4d83-9ccf-78a29d1dff13
     content: Done
     children:
+      - 6d06353d-993c-476f-a48f-a0b55c86f1ec
       - 868358fb-d2b2-474f-b352-ebc3491bef1e
       - d39f7ab4-3d32-4e18-8c96-69b38cee3766
       - 1c5caa24-018b-4f1d-85c8-3232d93deb1c
@@ -16082,8 +16077,8 @@ nodes:
     id: 3881490a-b11c-4052-ad46-020faad5bb2b
     content: In progress
     children:
-      - 6d06353d-993c-476f-a48f-a0b55c86f1ec
       - 2a9c4e7b-4a1d-4661-9d7f-b76a90579a28
+      - da046c53-abfe-48f3-b048-af18eb443a68
     metadata:
       status: pending
       appliedContextIds:
@@ -17420,7 +17415,8 @@ nodes:
   848977fa-0d2e-4f1b-92f4-a276c5e4841d:
     id: 848977fa-0d2e-4f1b-92f4-a276c5e4841d
     content: Keep in mind the project philosophy
-    children: []
+    children:
+      - 657fcbd5-dc2e-4b21-ab4c-22f96c03930e
     metadata:
       status: pending
       isBlueprint: true
@@ -17429,13 +17425,8 @@ nodes:
     content: If we copy and paste a node, then copy a node as a hyperlink, on paste we paste the first node, and not the hyperlink
     children: []
     metadata:
-      status: pending
-  b3b1b52c-7737-4ea7-8fcd-552d2db6abeb:
-    id: b3b1b52c-7737-4ea7-8fcd-552d2db6abeb
-    content: Torch archi doc
-    children: []
-    metadata:
-      status: pending
+      status: completed
+      resolvedAt: '2025-12-13T07:55:18.568Z'
   868358fb-d2b2-474f-b352-ebc3491bef1e:
     id: 868358fb-d2b2-474f-b352-ebc3491bef1e
     content: Spell checker
@@ -17450,12 +17441,6 @@ nodes:
   1be855d0-fbb1-4fbf-aee9-fe25b8d9f20b:
     id: 1be855d0-fbb1-4fbf-aee9-fe25b8d9f20b
     content: Add documentation context
-    children: []
-    metadata:
-      status: pending
-  5b16abaf-a2dc-4248-aaa5-37e03f64d774:
-    id: 5b16abaf-a2dc-4248-aaa5-37e03f64d774
-    content: Add project philosophy node as link to functional contexts
     children: []
     metadata:
       status: pending
@@ -17514,12 +17499,6 @@ nodes:
     children: []
     metadata:
       status: pending
-  2f2fe59d-cc4a-4b53-9384-a48a96127d15:
-    id: 2f2fe59d-cc4a-4b53-9384-a48a96127d15
-    content: Insure
-    children: []
-    metadata:
-      status: pending
   970dad19-fd98-4204-ae14-df8cfe183d6d:
     id: 970dad19-fd98-4204-ae14-df8cfe183d6d
     content: Decided to use system spell check libraries instead
@@ -17561,7 +17540,7 @@ nodes:
       - be704eae-317c-46b9-b92d-36685225cda6
     metadata:
       status: abandoned
-      expanded: true
+      expanded: false
       deleted: false
       plugins: {}
       resolvedAt: '2025-12-13T07:40:09.592Z'
@@ -18807,6 +18786,73 @@ nodes:
   50d841f9-3ba9-4f87-af62-e95a5332b173:
     id: 50d841f9-3ba9-4f87-af62-e95a5332b173
     content: Test with copilot
+    children: []
+    metadata:
+      status: pending
+  657fcbd5-dc2e-4b21-ab4c-22f96c03930e:
+    id: 657fcbd5-dc2e-4b21-ab4c-22f96c03930e
+    content: Philosophy
+    children: []
+    metadata:
+      status: pending
+      isHyperlink: true
+      linkedNodeId: 9bfbb401-dcb6-4f92-a34b-e9b3982c676f
+      isBlueprint: true
+  5e2a7cdb-ea42-4ba7-a315-cabc8a9c6a34:
+    id: 5e2a7cdb-ea42-4ba7-a315-cabc8a9c6a34
+    content: Philosophy
+    children: []
+    metadata:
+      status: pending
+      isHyperlink: true
+      linkedNodeId: 9bfbb401-dcb6-4f92-a34b-e9b3982c676f
+      isBlueprint: true
+  cf05c8d6-6e82-43fd-95f7-03ad599d38c5:
+    id: cf05c8d6-6e82-43fd-95f7-03ad599d38c5
+    content: Keep in mind the project philosophy
+    children:
+      - 5e2a7cdb-ea42-4ba7-a315-cabc8a9c6a34
+    metadata:
+      status: pending
+      isBlueprint: true
+  e43903b2-2184-4cbd-84ec-9cd24ea536e2:
+    id: e43903b2-2184-4cbd-84ec-9cd24ea536e2
+    content: Clean up comments
+    children:
+      - e7c804ef-54bc-4c6c-b783-c39357069ae0
+    metadata:
+      status: pending
+      isBlueprint: true
+      blueprintIcon: MessageCircle
+      blueprintColor: '#a855f7'
+      expanded: false
+  e7c804ef-54bc-4c6c-b783-c39357069ae0:
+    id: e7c804ef-54bc-4c6c-b783-c39357069ae0
+    content: 'Clean up the comments to be sure they match the following conventions :'
+    children:
+      - d36f2f96-76df-458f-a4c2-8c9718cd4f36
+    metadata:
+      status: pending
+      isBlueprint: true
+  d36f2f96-76df-458f-a4c2-8c9718cd4f36:
+    id: d36f2f96-76df-458f-a4c2-8c9718cd4f36
+    content: Comments
+    children: []
+    metadata:
+      status: pending
+      isHyperlink: true
+      linkedNodeId: edea2e63-af51-4075-8c78-aa7dcaa80184
+  315bf9ae-cd9a-49d2-be3a-14b269500d24:
+    id: 315bf9ae-cd9a-49d2-be3a-14b269500d24
+    content: Conventions
+    children: []
+    metadata:
+      status: pending
+      isHyperlink: true
+      linkedNodeId: bf007448-0f9f-4e68-ba31-a9def979ec2d
+  da046c53-abfe-48f3-b048-af18eb443a68:
+    id: da046c53-abfe-48f3-b048-af18eb443a68
+    content: Long text doesn't wrap and pushes the panels to the side
     children: []
     metadata:
       status: pending

@@ -50,6 +50,7 @@ declare global {
       onTerminalExit: (id: string, callback: (exitInfo: { exitCode: number; signal?: number }) => void) => () => void;
       onContextMenuParams: (callback: (data: { x: number; y: number; misspelledWord: string | null; suggestions: string[] }) => void) => () => void;
       replaceMisspelling: (suggestion: string) => Promise<void>;
+      onCloseBrowserTab: (callback: () => void) => () => void;
     };
   }
 }

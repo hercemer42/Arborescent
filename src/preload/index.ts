@@ -93,4 +93,9 @@ contextBridge.exposeInMainWorld('electron', {
     return () => ipcRenderer.removeListener('context-menu-params', listener);
   },
   replaceMisspelling: (suggestion: string) => ipcRenderer.invoke('replace-misspelling', suggestion),
+  onCloseBrowserTab: (callback: () => void) => {
+    const listener = () => callback();
+    ipcRenderer.on('close-browser-tab', listener);
+    return () => ipcRenderer.removeListener('close-browser-tab', listener);
+  },
 });

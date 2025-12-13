@@ -54,6 +54,32 @@ async function handleUIShortcuts(event: KeyboardEvent): Promise<void> {
 
   if (matchesHotkey(event, 'file', 'closeTab')) {
     event.preventDefault();
+
+    if (isFocusInPanel()) {
+      const { usePanelStore } = await import('../../store/panel/panelStore');
+      const panelStore = usePanelStore.getState();
+
+      if (panelStore.activeContent === 'terminal') {
+        const { useTerminalStore } = await import('../../store/terminal/terminalStore');
+        const terminalStore = useTerminalStore.getState();
+        if (terminalStore.activeTerminalId) {
+          await terminalStore.closeTerminal(terminalStore.activeTerminalId);
+        }
+        return;
+      }
+
+      if (panelStore.activeContent === 'browser') {
+        const { useBrowserStore } = await import('../../store/browser/browserStore');
+        const browserStore = useBrowserStore.getState();
+        if (browserStore.activeTabId) {
+          browserStore.actions.closeTab(browserStore.activeTabId);
+        }
+        return;
+      }
+
+      return;
+    }
+
     const activeFilePath = useFilesStore.getState().activeFilePath;
     if (activeFilePath) {
       useFilesStore.getState().closeFile(activeFilePath);
