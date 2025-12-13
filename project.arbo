@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2025-12-13T08:28:07.906Z'
+updated: '2025-12-13T08:43:28.580Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -474,6 +474,7 @@ nodes:
     id: 565dde0a-864b-41f9-86ff-dbdf40ac4dd0
     content: Done
     children:
+      - 4a1f9ce5-2e63-4760-9485-3d5b2cfebe22
       - cddba8cd-67ca-4f60-a2d9-cbbe41815200
       - 44jmbkqfv
       - e15d77fa-c719-45d4-9207-ff759d86e58f
@@ -15059,6 +15060,7 @@ nodes:
       - 0053985b-19d7-4115-943b-57e0f47d0fd0
       - 63a58473-dad8-404d-afc4-c9ed2711c894
       - 50d841f9-3ba9-4f87-af62-e95a5332b173
+      - 2ea55700-ee7a-4057-9b72-3b0aa00589a7
     metadata:
       status: pending
       expanded: true
@@ -15819,6 +15821,7 @@ nodes:
     id: 5cc686fc-7651-4d83-9ccf-78a29d1dff13
     content: Done
     children:
+      - da046c53-abfe-48f3-b048-af18eb443a68
       - 6d06353d-993c-476f-a48f-a0b55c86f1ec
       - 868358fb-d2b2-474f-b352-ebc3491bef1e
       - d39f7ab4-3d32-4e18-8c96-69b38cee3766
@@ -16076,8 +16079,7 @@ nodes:
   3881490a-b11c-4052-ad46-020faad5bb2b:
     id: 3881490a-b11c-4052-ad46-020faad5bb2b
     content: In progress
-    children:
-      - da046c53-abfe-48f3-b048-af18eb443a68
+    children: []
     metadata:
       status: pending
       appliedContextIds:
@@ -18849,12 +18851,35 @@ nodes:
     children:
       - b785b4f8-91fe-4bea-bcde-e84586024b7a
     metadata:
-      status: pending
+      status: completed
+      resolvedAt: '2025-12-13T08:31:47.139Z'
+      expanded: false
   b785b4f8-91fe-4bea-bcde-e84586024b7a:
     id: b785b4f8-91fe-4bea-bcde-e84586024b7a
     content: Can't drag the panel to the left
     children: []
     metadata:
+      status: completed
+      resolvedAt: '2025-12-13T08:31:47.654Z'
+  4a1f9ce5-2e63-4760-9485-3d5b2cfebe22:
+    id: 4a1f9ce5-2e63-4760-9485-3d5b2cfebe22
+    content: Summary mode dates should default to within the last week in a new session
+    children: []
+    metadata:
       status: pending
-summaryDateFrom: '2025-12-08'
-summaryDateTo: '2025-12-09'
+  2ea55700-ee7a-4057-9b72-3b0aa00589a7:
+    id: 2ea55700-ee7a-4057-9b72-3b0aa00589a7
+    content: In summary mode, should have a way to build a report
+    children:
+      - eae7199d-6e1d-4a38-94a0-9612b713b3c3
+    metadata:
+      status: pending
+      expanded: false
+  eae7199d-6e1d-4a38-94a0-9612b713b3c3:
+    id: eae7199d-6e1d-4a38-94a0-9612b713b3c3
+    content: Currently can't do it because we'd need to multi-select nodes and collaborate
+    children: []
+    metadata:
+      status: pending
+summaryDateFrom: '2025-12-06'
+summaryDateTo: '2025-12-13'

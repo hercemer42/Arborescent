@@ -93,8 +93,8 @@ export const createPersistenceActions = (
       contextDeclarations,
       isFileBlueprintFile: isBlueprint,
       blueprintModeEnabled: isBlueprint,
-      summaryDateFrom: data.summaryDateFrom || null,
-      summaryDateTo: data.summaryDateTo || null,
+      summaryDateFrom: null,
+      summaryDateTo: null,
     });
 
     // Restore collaboration state if there's collaboration metadata
