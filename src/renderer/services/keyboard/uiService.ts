@@ -2,13 +2,13 @@ import { useFilesStore } from '../../store/files/filesStore';
 import { useSearchStore } from '../../store/search/searchStore';
 import { useToastStore } from '../../store/toast/toastStore';
 import { matchesHotkey } from '../../data/hotkeyConfig';
-import { hasTextSelection, isContentEditableFocused, isFocusInPanel } from '../../utils/selectionUtils';
+import { hasTextSelection, isContentEditableFocused, isFocusInPanel, isFocusInTerminalOrBrowser } from '../../utils/selectionUtils';
 import { getActiveStore } from './shared';
 import { getActiveContextIdWithInheritance } from '../../utils/nodeHelpers';
 
 async function handleUIShortcuts(event: KeyboardEvent): Promise<void> {
   if (matchesHotkey(event, 'actions', 'undo')) {
-    if (isFocusInPanel()) return;
+    if (isFocusInTerminalOrBrowser()) return;
     event.preventDefault();
     event.stopPropagation();
     const store = getActiveStore();
@@ -17,7 +17,7 @@ async function handleUIShortcuts(event: KeyboardEvent): Promise<void> {
   }
 
   if (matchesHotkey(event, 'actions', 'redo')) {
-    if (isFocusInPanel()) return;
+    if (isFocusInTerminalOrBrowser()) return;
     event.preventDefault();
     event.stopPropagation();
     const store = getActiveStore();

@@ -25,3 +25,12 @@ export function isFocusInPanel(): boolean {
   if (activeElement.tagName.toLowerCase() === 'webview') return true;
   return activeElement.closest('.unified-panel') !== null;
 }
+
+export function isFocusInTerminalOrBrowser(): boolean {
+  const activeElement = document.activeElement;
+  if (!activeElement) return false;
+  if (activeElement.tagName.toLowerCase() === 'webview') return true;
+  if (activeElement.closest('.terminal-panel')) return true;
+  if (activeElement.closest('.browser-panel')) return true;
+  return false;
+}
