@@ -2,176 +2,90 @@
 
 ## Project Overview
 
-**Arborescent** is a local-first development workflow tool. It organizes project tasks, architecture decisions, and implementation work in a hierarchical tree structure. The primary feature is exporting optimized context files that AI coding assistants can read, eliminating the need to re-explain your project on every prompt.
-
-**Current Phase:** v0.1 MVP - Building the first brick
-**Goal:** Working Electron app with tree UI and basic export functionality
+**Arborescent** is a cognitive scaffolding tool for complex thinking and AI collaboration. It organizes work in hierarchical trees with reusable contexts that automatically attach when sending content to AI.
 
 ## Tech Stack
 
-- **Desktop:** Electron (local-first, file system access)
-- **Frontend:** React 18 + TypeScript (strict mode)
-- **Styling:** CSS (custom)
+- **Desktop:** Electron + Vite + Electron Forge
+- **Frontend:** React 19 + TypeScript (strict mode)
+- **Styling:** Plain CSS with custom properties
 - **State:** Zustand (organized actions pattern)
-- **Build:** Vite + Electron Forge
+- **Drag & Drop:** @dnd-kit
+- **Terminal:** xterm.js
 
 ## Architecture
 
-### High-Level Structure
 ```
 src/
-├── main/         # Electron main process (Node.js, file system, IPC)
-├── preload/      # Security bridge (context bridge)
-├── renderer/     # React app (components, store, services)
-│   ├── components/    # Each has: Component.tsx, .css, hooks, index.ts
-│   ├── store/         # Zustand with organized actions/
-│   ├── services/      # Infrastructure (file I/O, hotkeys)
-│   └── data/          # Sample data, templates
-└── shared/       # Shared types (organized by domain)
+├── main/           # Electron main process
+│   └── services/   # IPC handlers by feature
+├── preload/        # Context bridge (single file)
+├── renderer/       # React app
+│   ├── components/ # UI with co-located hooks/styles
+│   ├── store/      # Zustand stores with actions/
+│   ├── services/   # Side effects (keyboard, feedback, etc.)
+│   ├── hooks/      # Shared hooks
+│   ├── utils/      # Pure utility functions
+│   └── data/       # Static data and config
+└── shared/         # Cross-process types and utils
 ```
 
-**📋 See `arbo/architecture.md` for detailed conventions and decisions.**
+## Key Features
 
-### Data Model
-```typescript
-interface Node {
-  id: string;
-  type: 'project' | 'section' | 'task' | 'doc';
-  content: string;
-  children: string[];      // IDs of child nodes
-  metadata: {
-    status?: '☐' | '✓' | '✗';
-    created?: string;
-    updated?: string;
-    [key: string]: any;
-  };
-}
+- **Tree-based decomposition** - Unlimited nesting, keyboard-first navigation
+- **Reusable contexts** - Define once, apply anywhere, inherited by children
+- **Blueprints** - Export workflow structure without content for sharing
+- **AI collaboration** - Right-click to send to browser or terminal with context attached
+- **Terminal integration** - Built-in terminal emulator with file watching for AI responses
+- **Multi-file support** - Tabbed interface with session persistence
 
-interface Document {
-  version: '1.0';
-  rootNodeId: string;
-  nodes: Record<string, Node>;  // Map of ID → Node
-}
-```
+## Conventions
 
-## Feature Progress (v0.1)
+### Code Organization
+- Components hold templates only; hooks hold logic
+- Business logic in store actions, not components
+- Services for side effects (DOM, IPC, I/O)
+- Utils are pure functions
+- Co-locate single-use code; centralize shared code
 
-### ✅ Completed
-- [x] Recursive tree component (expand/collapse)
-- [x] Click to select node
-- [x] Inline editing
-- [x] Save/load tree to JSON file
-- [x] Application reload menu
-- [x] Keyboard navigation (arrow keys)
-- [x] Status cycling for tasks (☐ → ✓ → ✗)
-- [x] Create sibling node (Enter key)
-- [x] Indent node (Tab key - make child of previous sibling)
-- [x] Outdent node (Shift+Tab - make sibling of parent)
-- [x] Delete node (Ctrl+D hotkey + right-click context menu)
+### State Management
+- Zustand stores in `store/` directory
+- Actions organized by domain in separate files
+- Use `getState()` in event handlers (no subscription overhead)
 
-### 🚧 In Progress / Todo
-- [ ] Cycle node type (project → section → task → doc)
-- [ ] New project (clear tree, start fresh)
-- [ ] Export current node + ancestors to markdown
-- [ ] Save to `.arborescent/current.md`
-- [ ] Undo/redo functionality
+### Testing
+- Tests in `tests/` subdirectories within modules
+- Mock services via dependency injection
+- Integration tests for critical workflows only
 
-### 🔮 Future (Out of Scope for MVP)
-- Template marketplace
-- Multiple views (canvas, timeline)
-- Search/filter
-- Drag-and-drop reordering
-- Cloud sync
-- VSCode extension
+### Styling
+- Plain CSS with custom properties in co-located `.css` files
+- Theme variables in `globals.css`
+- No inline styles
 
-## Key Decisions
-
-### Why Electron?
-- Local files (privacy, no server needed)
-- File system access without upload
-- Works offline
-- Can add web version later (reuse React components)
-
-### Why Custom Tree?
-- Need domain-specific behavior (status cycling, type cycling)
-- Better learning (understand tree algorithms)
-- No library lock-in
-
-### Why Zustand?
-- Props drilling became painful
-- Lighter than Redux
-- Actions pattern keeps business logic organized
-
-## Target User Workflow
-
-```
-1. User opens Arborescent
-2. Creates project structure:
-   Project: My App
-   ├─ Architecture
-   │  └─ Use Hexagonal pattern
-   └─ Features
-      └─ Authentication
-         ├─ User registration ✓
-         └─ Password reset ☐
-
-3. Right-click "Password reset" node
-4. Select "Export for AI"
-5. File created: .arborescent/current.md
-
-6. In terminal/IDE:
-   "@.arborescent/current.md implement this"
-
-7. AI has full context, implements correctly
-
-8. Mark task complete (Tab → ✓)
-9. Move to next task
-```
+### Comments
+- Comments explain "why" not "what"
+- Prefer descriptive naming over comments
+- No JSDoc conventions
 
 ## Commands
 
-See `package.json` scripts for all available commands.
-
-## Success Criteria
-
-**MVP is done when:**
-- [ ] Can create/edit/delete nodes
-- [x] Tree saves to local JSON file
-- [x] Can load saved trees
-- [ ] Export generates markdown with context
-- [x] Works on Linux
-- [ ] Package as distributable
-- [ ] Use it daily for one week
-
-**Goal:** Ship something usable and iterate based on actual usage.
-
-## Development Principles
-
-1. **Ship fast** - Working demo over perfect architecture
-2. **YAGNI** - Don't build features until needed
-3. **Use it yourself** - Dogfood early and often
-4. **Iterate** - MVP doesn't need to be perfect
-
----
-
-## Quick Start for AI
-
-When implementing features for Arborescent:
-
-1. **Check this file** for current state and feature progress
-2. **Read `arbo/architecture.md`** for detailed architectural decisions and conventions
-3. **Follow TypeScript strict mode** (no implicit any)
-4. **Business logic in store actions** (not hooks or components)
-5. **Hooks for React-specific code** (effects, refs, listeners)
-6. **Use barrel exports** - import from directory: `from './components/Tree'`
-7. **Test manually** as you build
-8. **Do not create git commits** - User handles all commits
-
-**Architecture Layers:**
-```
-Components → Hooks (React) → Store Actions (Logic) → Services (Infrastructure)
+```bash
+npm start           # Development
+npm run test:run    # Run tests
+npm run lint        # Lint check
+npm run type-check  # TypeScript check
+npm run make        # Build installer
 ```
 
-**Current focus:** Completing CRUD operations and keyboard shortcuts
+## For AI Assistants
 
-*Last updated: 2025-10-11*
+1. **Read files before editing** - Understand existing code first
+2. **Follow existing patterns** - Check similar code in the codebase
+3. **Avoid over-engineering** - Only what's needed for the task
+4. **Don't commit** - User handles all git operations
+5. **Run checks** - `npm run type-check && npm run lint && npm run test:run`
+
+## File Format
+
+`.arbo` files are YAML-based, human-readable, version-control friendly.

@@ -65,7 +65,7 @@ Arborescent uses `.arbo` files (YAML-based) for tree storage with autosave. Huma
 ### Tech stack
 
 - **Electron** + **Vite** — Desktop framework and build tooling
-- **React** + **TypeScript** — UI and type safety
+- **React 19** + **TypeScript** — UI and type safety
 - **Zustand** — State management
 - **@dnd-kit** — Drag and drop
 - **xterm.js** — Terminal emulation

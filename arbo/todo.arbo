@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2025-12-12T13:49:50.079Z'
+updated: '2025-12-13T07:40:26.958Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -5409,6 +5409,7 @@ nodes:
       - 65b74e0f-88fe-41c6-9910-8bac806adc6f
       - 6573b620-bfc0-4c5b-8d92-13b9ace3461d
       - 5288b678-63dc-4672-b1b3-8e2b540c04de
+      - e2876839-8e7a-4261-a56d-e657d4384bb3
     metadata:
       status: pending
       expanded: true
@@ -5816,6 +5817,10 @@ nodes:
       - 3239dd15-5f50-4999-84ac-b84b71b742be
       - ee62f343-86cb-423b-87ab-63236876a259
       - 00757321-75c1-44a9-981f-2362add1989f
+      - 86aff490-a46f-495d-90e0-c4240c89d3f3
+      - f0d6224c-a2fe-4f4a-aed6-1038bd179093
+      - 54953ba8-aff5-4153-9302-91906dc7dbaf
+      - d1d542ab-31ca-41ec-86a2-09a1a68f873e
     metadata:
       status: pending
       expanded: false
@@ -14322,8 +14327,7 @@ nodes:
   ac4c627f-c512-40b9-ad55-11b439495b7e:
     id: ac4c627f-c512-40b9-ad55-11b439495b7e
     content: Major feature
-    children:
-      - 4c2b177a-ebee-4003-879a-93e828162dc9
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -15058,7 +15062,9 @@ nodes:
       - 1be855d0-fbb1-4fbf-aee9-fe25b8d9f20b
       - 5b16abaf-a2dc-4248-aaa5-37e03f64d774
       - 2b5efb39-5c1f-49cd-866e-9e142516cfc6
+      - 0053985b-19d7-4115-943b-57e0f47d0fd0
       - 63a58473-dad8-404d-afc4-c9ed2711c894
+      - 50d841f9-3ba9-4f87-af62-e95a5332b173
     metadata:
       status: pending
       expanded: true
@@ -17521,19 +17527,6 @@ nodes:
     metadata:
       status: completed
       resolvedAt: '2025-12-12T13:45:33.200Z'
-  4c2b177a-ebee-4003-879a-93e828162dc9:
-    id: 4c2b177a-ebee-4003-879a-93e828162dc9
-    content: Create temporary file for context
-    children:
-      - 9e1747e9-3070-450d-9520-16f45552c224
-    metadata:
-      status: pending
-  9e1747e9-3070-450d-9520-16f45552c224:
-    id: 9e1747e9-3070-450d-9520-16f45552c224
-    content: ''
-    children: []
-    metadata:
-      status: pending
   2a9c4e7b-4a1d-4661-9d7f-b76a90579a28:
     id: 2a9c4e7b-4a1d-4661-9d7f-b76a90579a28
     content: ctrl+w in the terminal or browser view closes the arbo tabs and not the terminal/browser tabs
@@ -17550,6 +17543,1270 @@ nodes:
   6c78b6b8-77b5-44b8-8368-f9667fffb70e:
     id: 6c78b6b8-77b5-44b8-8368-f9667fffb70e
     content: Think about where it should live
+    children: []
+    metadata:
+      status: pending
+  0053985b-19d7-4115-943b-57e0f47d0fd0:
+    id: 0053985b-19d7-4115-943b-57e0f47d0fd0
+    content: Create online documentation
+    children: []
+    metadata:
+      status: pending
+  e2876839-8e7a-4261-a56d-e657d4384bb3:
+    id: e2876839-8e7a-4261-a56d-e657d4384bb3
+    content: Create temporary file for context
+    children:
+      - 887ae0d1-133e-4265-b3a3-81d2005f890f
+      - fa15a9cd-03df-4a58-bc28-f60db2f15b5d
+      - be704eae-317c-46b9-b92d-36685225cda6
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+      resolvedAt: '2025-12-13T07:40:09.592Z'
+  887ae0d1-133e-4265-b3a3-81d2005f890f:
+    id: 887ae0d1-133e-4265-b3a3-81d2005f890f
+    content: 'Problem: terminal may have input buffer limits that can truncate/corrupt large context pastes'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fa15a9cd-03df-4a58-bc28-f60db2f15b5d:
+    id: fa15a9cd-03df-4a58-bc28-f60db2f15b5d
+    content: When executing or collaborating in the terminal
+    children:
+      - c1e814af-c1eb-4b02-9468-63b4792abd89
+      - 9ef23c65-5888-4d9b-9472-575390674e96
+      - 508b8154-f612-415b-91ff-f231ea4d7e77
+      - d2eae061-0681-4295-a72a-fe406f97cb97
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c1e814af-c1eb-4b02-9468-63b4792abd89:
+    id: c1e814af-c1eb-4b02-9468-63b4792abd89
+    content: Export the applied context to a temporary file
+    children:
+      - 0881e90f-31a6-4c47-9add-01082a581776
+      - 4cdc45ac-89c2-4caa-9cc5-383faf299f5f
+      - e4a9a73c-6914-45f0-afa3-f008c6357a5c
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0881e90f-31a6-4c47-9add-01082a581776:
+    id: 0881e90f-31a6-4c47-9add-01082a581776
+    content: Reuse temp file architecture from feedback panel
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4cdc45ac-89c2-4caa-9cc5-383faf299f5f:
+    id: 4cdc45ac-89c2-4caa-9cc5-383faf299f5f
+    content: Distinct file from feedback temp file
+    children:
+      - dfb0e403-65ef-40f4-88dc-892dcef7b387
+      - dad2ba7c-73cf-4b02-aca7-c42f162b9e55
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  dfb0e403-65ef-40f4-88dc-892dcef7b387:
+    id: dfb0e403-65ef-40f4-88dc-892dcef7b387
+    content: 'Feedback file: holds AI responses during collaboration'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  dad2ba7c-73cf-4b02-aca7-c42f162b9e55:
+    id: dad2ba7c-73cf-4b02-aca7-c42f162b9e55
+    content: 'Context file: holds the applied context declaration'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e4a9a73c-6914-45f0-afa3-f008c6357a5c:
+    id: e4a9a73c-6914-45f0-afa3-f008c6357a5c
+    content: Use session-based cleanup (existing mechanism)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9ef23c65-5888-4d9b-9472-575390674e96:
+    id: 9ef23c65-5888-4d9b-9472-575390674e96
+    content: 'Clipboard contains: the list as markdown only'
+    children:
+      - 8ff143e8-f8ac-48be-98fb-5acbabc5121c
+      - addc619a-57d8-4da2-a374-6ab0bf8d11a1
+      - 99cac490-75ed-4d4a-aab5-7ee513c41a76
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8ff143e8-f8ac-48be-98fb-5acbabc5121c:
+    id: 8ff143e8-f8ac-48be-98fb-5acbabc5121c
+    content: Automatic paste into terminal (already implemented)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  addc619a-57d8-4da2-a374-6ab0bf8d11a1:
+    id: addc619a-57d8-4da2-a374-6ab0bf8d11a1
+    content: Automatic enter after short delay (already implemented)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  99cac490-75ed-4d4a-aab5-7ee513c41a76:
+    id: 99cac490-75ed-4d4a-aab5-7ee513c41a76
+    content: List is typically shorter, avoids buffer limits
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  508b8154-f612-415b-91ff-f231ea4d7e77:
+    id: 508b8154-f612-415b-91ff-f231ea4d7e77
+    content: 'Prompt includes: instruction to read the context temp file'
+    children:
+      - ad53b6ac-e27f-4f74-855a-90a0d22bcb7e
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ad53b6ac-e27f-4f74-855a-90a0d22bcb7e:
+    id: ad53b6ac-e27f-4f74-855a-90a0d22bcb7e
+    content: AI reads context from file before processing the list
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d2eae061-0681-4295-a72a-fe406f97cb97:
+    id: d2eae061-0681-4295-a72a-fe406f97cb97
+    content: Fallback if file creation fails
+    children:
+      - ac3a5d35-d977-40b4-a8c0-29125baccc41
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ac3a5d35-d977-40b4-a8c0-29125baccc41:
+    id: ac3a5d35-d977-40b4-a8c0-29125baccc41
+    content: Revert to inline context with warning
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  be704eae-317c-46b9-b92d-36685225cda6:
+    id: be704eae-317c-46b9-b92d-36685225cda6
+    content: Keep executing or collaborating in the browser as it is now
+    children:
+      - b8e5d2be-e8a7-411c-9b8f-47cf7981f18f
+      - 6a3d0cd7-ad5e-4ca0-8b77-b717b34e7d05
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b8e5d2be-e8a7-411c-9b8f-47cf7981f18f:
+    id: b8e5d2be-e8a7-411c-9b8f-47cf7981f18f
+    content: Browser doesn't have same input limits
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6a3d0cd7-ad5e-4ca0-8b77-b717b34e7d05:
+    id: 6a3d0cd7-ad5e-4ca0-8b77-b717b34e7d05
+    content: Consistent with current behavior
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  86aff490-a46f-495d-90e0-c4240c89d3f3:
+    id: 86aff490-a46f-495d-90e0-c4240c89d3f3
+    content: Major feature
+    children:
+      - 8fafed46-f532-4503-886d-b2efa6b5ed40
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  8fafed46-f532-4503-886d-b2efa6b5ed40:
+    id: 8fafed46-f532-4503-886d-b2efa6b5ed40
+    content: Create temporary file for context
+    children:
+      - bc2f4c65-55da-4804-b5b6-24ebbfe74235
+      - 4d8ef109-2901-4523-ac6c-b6fd069e51b2
+      - ed94f530-1a42-4133-8b31-8689ffc09eae
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  bc2f4c65-55da-4804-b5b6-24ebbfe74235:
+    id: bc2f4c65-55da-4804-b5b6-24ebbfe74235
+    content: 'Problem: terminal may have input buffer limits that can truncate/corrupt large context pastes'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  4d8ef109-2901-4523-ac6c-b6fd069e51b2:
+    id: 4d8ef109-2901-4523-ac6c-b6fd069e51b2
+    content: When executing or collaborating in the terminal
+    children:
+      - cde36774-11fc-487e-a5fd-208a85bc5ec0
+      - ee7caf3f-8b38-4e92-a172-1a4260d7ad43
+      - 623c7df9-a652-4b7c-b60c-54c295e43469
+      - 054c4b0f-c25b-40b7-8e1c-ae5988614e6d
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  cde36774-11fc-487e-a5fd-208a85bc5ec0:
+    id: cde36774-11fc-487e-a5fd-208a85bc5ec0
+    content: Export the applied context to a temporary file
+    children:
+      - 35c33ea0-bbf5-4e62-a4aa-5d56f5395ecc
+      - 8fc81ba7-6f5a-404b-839a-3f4ecad92a0f
+      - fed8380e-4805-492f-b274-8f6f7c31427e
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  35c33ea0-bbf5-4e62-a4aa-5d56f5395ecc:
+    id: 35c33ea0-bbf5-4e62-a4aa-5d56f5395ecc
+    content: Reuse temp file architecture from feedback panel
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  8fc81ba7-6f5a-404b-839a-3f4ecad92a0f:
+    id: 8fc81ba7-6f5a-404b-839a-3f4ecad92a0f
+    content: Distinct file from feedback temp file
+    children:
+      - 7c267501-4512-4ab7-8391-fbd7e444437c
+      - fae9e8c6-5ef6-4d91-9991-870cc79e389f
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  7c267501-4512-4ab7-8391-fbd7e444437c:
+    id: 7c267501-4512-4ab7-8391-fbd7e444437c
+    content: 'Feedback file: holds AI responses during collaboration'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  fae9e8c6-5ef6-4d91-9991-870cc79e389f:
+    id: fae9e8c6-5ef6-4d91-9991-870cc79e389f
+    content: 'Context file: holds the applied context declaration'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  fed8380e-4805-492f-b274-8f6f7c31427e:
+    id: fed8380e-4805-492f-b274-8f6f7c31427e
+    content: Use session-based cleanup (existing mechanism)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  ee7caf3f-8b38-4e92-a172-1a4260d7ad43:
+    id: ee7caf3f-8b38-4e92-a172-1a4260d7ad43
+    content: 'Clipboard contains: the list as markdown only'
+    children:
+      - 5a9ce760-ab36-45ce-ae49-68fd56b4d9ff
+      - 2be17363-af95-4c1e-9c0c-5b7834f6ff49
+      - 8f5024f4-c6f5-4774-863e-bf51ed547017
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  5a9ce760-ab36-45ce-ae49-68fd56b4d9ff:
+    id: 5a9ce760-ab36-45ce-ae49-68fd56b4d9ff
+    content: Automatic paste into terminal (already implemented)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  2be17363-af95-4c1e-9c0c-5b7834f6ff49:
+    id: 2be17363-af95-4c1e-9c0c-5b7834f6ff49
+    content: Automatic enter after short delay (already implemented)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  8f5024f4-c6f5-4774-863e-bf51ed547017:
+    id: 8f5024f4-c6f5-4774-863e-bf51ed547017
+    content: List is typically shorter, avoids buffer limits
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  623c7df9-a652-4b7c-b60c-54c295e43469:
+    id: 623c7df9-a652-4b7c-b60c-54c295e43469
+    content: 'Prompt includes: instruction to read the context temp file'
+    children:
+      - d320768e-f6b5-417a-bffa-b401d50b9bbf
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  d320768e-f6b5-417a-bffa-b401d50b9bbf:
+    id: d320768e-f6b5-417a-bffa-b401d50b9bbf
+    content: AI reads context from file before processing the list
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  054c4b0f-c25b-40b7-8e1c-ae5988614e6d:
+    id: 054c4b0f-c25b-40b7-8e1c-ae5988614e6d
+    content: Fallback if file creation fails
+    children:
+      - 88e1a81c-1316-48da-b9bc-345cb69f31b9
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  88e1a81c-1316-48da-b9bc-345cb69f31b9:
+    id: 88e1a81c-1316-48da-b9bc-345cb69f31b9
+    content: Revert to inline context with warning
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  ed94f530-1a42-4133-8b31-8689ffc09eae:
+    id: ed94f530-1a42-4133-8b31-8689ffc09eae
+    content: Keep executing or collaborating in the browser as it is now
+    children:
+      - 367019ea-4608-424c-a7e3-99dc67b372e2
+      - 241cf06d-fa28-49c0-894a-642cff55017c
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  367019ea-4608-424c-a7e3-99dc67b372e2:
+    id: 367019ea-4608-424c-a7e3-99dc67b372e2
+    content: Browser doesn't have same input limits
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  241cf06d-fa28-49c0-894a-642cff55017c:
+    id: 241cf06d-fa28-49c0-894a-642cff55017c
+    content: Consistent with current behavior
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  f0d6224c-a2fe-4f4a-aed6-1038bd179093:
+    id: f0d6224c-a2fe-4f4a-aed6-1038bd179093
+    content: Implement a feature
+    children:
+      - 3798b773-c555-45b1-9b84-6630112fc3ca
+      - c255153f-5c21-4d0b-b406-eaf882c4f6bc
+      - bfd63233-b297-4aae-9685-cb4b31c2f7a3
+      - 03eaa51c-042a-4140-8067-5943225c067f
+      - 8ac9daf7-3df6-48a0-880a-3ec47ce956dc
+      - 6c282197-c4f7-4884-bb62-856c6596f45f
+      - ef4a42a9-fc4f-4d50-a6fc-26d3bfab362f
+      - 208e4387-5325-4b2a-b830-be3e10162851
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  3798b773-c555-45b1-9b84-6630112fc3ca:
+    id: 3798b773-c555-45b1-9b84-6630112fc3ca
+    content: You will consider the following instructions and then use the given specification to code a feature
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  c255153f-5c21-4d0b-b406-eaf882c4f6bc:
+    id: c255153f-5c21-4d0b-b406-eaf882c4f6bc
+    content: 'Follow the project conventions :'
+    children:
+      - 8663a6b5-91f4-4c8e-81b1-0ca3deb902b7
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  8663a6b5-91f4-4c8e-81b1-0ca3deb902b7:
+    id: 8663a6b5-91f4-4c8e-81b1-0ca3deb902b7
+    content: Conventions
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  bfd63233-b297-4aae-9685-cb4b31c2f7a3:
+    id: bfd63233-b297-4aae-9685-cb4b31c2f7a3
+    content: You will not update the feedback panel file if you have previously done that, this is a coding task
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  03eaa51c-042a-4140-8067-5943225c067f:
+    id: 03eaa51c-042a-4140-8067-5943225c067f
+    content: Understand & Plan
+    children:
+      - 9ace2cde-f719-42de-9c18-8da6960da8b7
+      - 241bb2b6-2340-47d3-b5cb-0f784d76198a
+      - 7f68380a-ca10-435c-8684-ac8f94bd6dab
+      - f0df57db-fdb6-4c42-93ec-8c29962bc747
+      - 51ffab77-0cfc-42ed-b3e8-00524807dc0b
+      - 59c3c04d-40d1-4e28-8bf9-a6e788b64e7a
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  9ace2cde-f719-42de-9c18-8da6960da8b7:
+    id: 9ace2cde-f719-42de-9c18-8da6960da8b7
+    content: Review the feature requirements and clarify any ambiguities
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  241bb2b6-2340-47d3-b5cb-0f784d76198a:
+    id: 241bb2b6-2340-47d3-b5cb-0f784d76198a
+    content: Break down the feature into logical implementation phases
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  7f68380a-ca10-435c-8684-ac8f94bd6dab:
+    id: 7f68380a-ca10-435c-8684-ac8f94bd6dab
+    content: Challenge design, functional, or architectural decisions if something seems wrong or unclear
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  f0df57db-fdb6-4c42-93ec-8c29962bc747:
+    id: f0df57db-fdb6-4c42-93ec-8c29962bc747
+    content: Challenge the user if the request or subsequent follow ups seem over engineered
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  51ffab77-0cfc-42ed-b3e8-00524807dc0b:
+    id: 51ffab77-0cfc-42ed-b3e8-00524807dc0b
+    content: For lengthy implementations, check in with the user at logical milestones before proceeding
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  59c3c04d-40d1-4e28-8bf9-a6e788b64e7a:
+    id: 59c3c04d-40d1-4e28-8bf9-a6e788b64e7a
+    content: If there are complex architectural decisions involving refactoring or new patterns, summarize them briefly before implementing
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  8ac9daf7-3df6-48a0-880a-3ec47ce956dc:
+    id: 8ac9daf7-3df6-48a0-880a-3ec47ce956dc
+    content: Quality Assurance
+    children:
+      - 278cfa26-407a-43b4-a854-6842e5df1970
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  278cfa26-407a-43b4-a854-6842e5df1970:
+    id: 278cfa26-407a-43b4-a854-6842e5df1970
+    content: Ensure total automated test coverage levels are consistent with what is declared in the project architecture
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  6c282197-c4f7-4884-bb62-856c6596f45f:
+    id: 6c282197-c4f7-4884-bb62-856c6596f45f
+    content: Implementation Guidelines
+    children:
+      - 3a617d99-2f13-4874-b82a-b3f12d3999a3
+      - 1d1073b6-3fc1-41c3-934e-052b174cdf1e
+      - 690de0d1-66a5-4b60-a8ca-f1d02b4bddfc
+      - df14b354-7d1f-4941-b0be-a88ec2885bfa
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  3a617d99-2f13-4874-b82a-b3f12d3999a3:
+    id: 3a617d99-2f13-4874-b82a-b3f12d3999a3
+    content: Reuse existing code as much as possible
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  1d1073b6-3fc1-41c3-934e-052b174cdf1e:
+    id: 1d1073b6-3fc1-41c3-934e-052b174cdf1e
+    content: Refactor existing code if needed for reusability
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  690de0d1-66a5-4b60-a8ca-f1d02b4bddfc:
+    id: 690de0d1-66a5-4b60-a8ca-f1d02b4bddfc
+    content: Handle edge cases and error conditions appropriately
+    children:
+      - 0dd14e6c-19bc-4c41-8744-eef9b5137feb
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  0dd14e6c-19bc-4c41-8744-eef9b5137feb:
+    id: 0dd14e6c-19bc-4c41-8744-eef9b5137feb
+    content: Skip marginal cases if implementing them would add significant complexity for little benefit
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  df14b354-7d1f-4941-b0be-a88ec2885bfa:
+    id: df14b354-7d1f-4941-b0be-a88ec2885bfa
+    content: If a requested functionality is not possible to implement, prompt the user before implementing an alternative
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  ef4a42a9-fc4f-4d50-a6fc-26d3bfab362f:
+    id: ef4a42a9-fc4f-4d50-a6fc-26d3bfab362f
+    content: Reporting
+    children:
+      - 3f5254ea-8ec0-41b0-8658-f1f2cb77c90c
+      - fec819fa-c90d-4520-b7e5-f269491357de
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  3f5254ea-8ec0-41b0-8658-f1f2cb77c90c:
+    id: 3f5254ea-8ec0-41b0-8658-f1f2cb77c90c
+    content: Provide a short summary describing what was implemented
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  fec819fa-c90d-4520-b7e5-f269491357de:
+    id: fec819fa-c90d-4520-b7e5-f269491357de
+    content: 'List any requested functionality that was not implemented, including:'
+    children:
+      - a7fc70f1-4082-4473-a307-ee49be4c3f5d
+      - 8a5ec028-2e23-4ed0-ae4f-c7e06c0bcab9
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  a7fc70f1-4082-4473-a307-ee49be4c3f5d:
+    id: a7fc70f1-4082-4473-a307-ee49be4c3f5d
+    content: Edge cases deemed too marginal relative to their complexity
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  8a5ec028-2e23-4ed0-ae4f-c7e06c0bcab9:
+    id: 8a5ec028-2e23-4ed0-ae4f-c7e06c0bcab9
+    content: Features that were not possible or required alternative approaches
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  208e4387-5325-4b2a-b830-be3e10162851:
+    id: 208e4387-5325-4b2a-b830-be3e10162851
+    content: 'Lastly do standard checks on changed files only :'
+    children:
+      - 0d8acd04-cc2e-4ca5-ae20-18e0cef49ba3
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  0d8acd04-cc2e-4ca5-ae20-18e0cef49ba3:
+    id: 0d8acd04-cc2e-4ca5-ae20-18e0cef49ba3
+    content: Standard checks
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  54953ba8-aff5-4153-9302-91906dc7dbaf:
+    id: 54953ba8-aff5-4153-9302-91906dc7dbaf
+    content: Major feature
+    children:
+      - 5a056dab-fabf-4a93-b3fd-378e2d8505d4
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  5a056dab-fabf-4a93-b3fd-378e2d8505d4:
+    id: 5a056dab-fabf-4a93-b3fd-378e2d8505d4
+    content: Create temporary file for context
+    children:
+      - 26ea14b4-0cae-4644-955e-fd3437103c27
+      - 2acbf408-0555-4431-b6a3-042478a1f1fa
+      - 7b50b5b0-9b80-4527-b7cf-163ee82e6b3e
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  26ea14b4-0cae-4644-955e-fd3437103c27:
+    id: 26ea14b4-0cae-4644-955e-fd3437103c27
+    content: 'Problem: terminal may have input buffer limits that can truncate/corrupt large context pastes'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  2acbf408-0555-4431-b6a3-042478a1f1fa:
+    id: 2acbf408-0555-4431-b6a3-042478a1f1fa
+    content: When executing or collaborating in the terminal
+    children:
+      - a9d14a9c-3302-4b6f-a2ad-523ca93cdc72
+      - 91645e42-a6ee-4775-9fba-487ae2c8787e
+      - 85a73436-4693-4287-aba5-804bc3d04b6b
+      - c7ffee1c-0062-4d92-ae61-15dbda2a1ee5
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  a9d14a9c-3302-4b6f-a2ad-523ca93cdc72:
+    id: a9d14a9c-3302-4b6f-a2ad-523ca93cdc72
+    content: Export the applied context to a temporary file
+    children:
+      - 38776091-ef73-436e-a98e-f77365a3426b
+      - 6d6378ee-388e-428c-9270-2118cf0aef7b
+      - e386451d-7511-4f2a-962d-9215a5c05baa
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  38776091-ef73-436e-a98e-f77365a3426b:
+    id: 38776091-ef73-436e-a98e-f77365a3426b
+    content: Reuse temp file architecture from feedback panel
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  6d6378ee-388e-428c-9270-2118cf0aef7b:
+    id: 6d6378ee-388e-428c-9270-2118cf0aef7b
+    content: Distinct file from feedback temp file
+    children:
+      - c9675c53-52eb-4fbe-8d97-d17ba3331f1e
+      - 4d36ddab-e227-4f82-adfc-6709cba7c45c
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  c9675c53-52eb-4fbe-8d97-d17ba3331f1e:
+    id: c9675c53-52eb-4fbe-8d97-d17ba3331f1e
+    content: 'Feedback file: holds AI responses during collaboration'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  4d36ddab-e227-4f82-adfc-6709cba7c45c:
+    id: 4d36ddab-e227-4f82-adfc-6709cba7c45c
+    content: 'Context file: holds the applied context declaration'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  e386451d-7511-4f2a-962d-9215a5c05baa:
+    id: e386451d-7511-4f2a-962d-9215a5c05baa
+    content: Use session-based cleanup (existing mechanism)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  91645e42-a6ee-4775-9fba-487ae2c8787e:
+    id: 91645e42-a6ee-4775-9fba-487ae2c8787e
+    content: 'Clipboard contains: the list as markdown only'
+    children:
+      - 90fb7966-de54-43c0-adef-eecc04f6536b
+      - 2a8d6b45-2662-4581-bda8-19b713a78a12
+      - 52b21400-f83e-4591-b083-5f1461d94717
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  90fb7966-de54-43c0-adef-eecc04f6536b:
+    id: 90fb7966-de54-43c0-adef-eecc04f6536b
+    content: Automatic paste into terminal (already implemented)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  2a8d6b45-2662-4581-bda8-19b713a78a12:
+    id: 2a8d6b45-2662-4581-bda8-19b713a78a12
+    content: Automatic enter after short delay (already implemented)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  52b21400-f83e-4591-b083-5f1461d94717:
+    id: 52b21400-f83e-4591-b083-5f1461d94717
+    content: List is typically shorter, avoids buffer limits
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  85a73436-4693-4287-aba5-804bc3d04b6b:
+    id: 85a73436-4693-4287-aba5-804bc3d04b6b
+    content: 'Prompt includes: instruction to read the context temp file'
+    children:
+      - 4446a8e5-3c25-4f34-8b8d-e51c2bcbfa8c
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  4446a8e5-3c25-4f34-8b8d-e51c2bcbfa8c:
+    id: 4446a8e5-3c25-4f34-8b8d-e51c2bcbfa8c
+    content: AI reads context from file before processing the list
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  c7ffee1c-0062-4d92-ae61-15dbda2a1ee5:
+    id: c7ffee1c-0062-4d92-ae61-15dbda2a1ee5
+    content: Fallback if file creation fails
+    children:
+      - d7052c5b-4f8d-4745-adde-fd110e43935c
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  d7052c5b-4f8d-4745-adde-fd110e43935c:
+    id: d7052c5b-4f8d-4745-adde-fd110e43935c
+    content: Revert to inline context with warning
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  7b50b5b0-9b80-4527-b7cf-163ee82e6b3e:
+    id: 7b50b5b0-9b80-4527-b7cf-163ee82e6b3e
+    content: Keep executing or collaborating in the browser as it is now
+    children:
+      - f527ec2c-1b82-4452-93dc-913f265de26c
+      - daa3778b-708f-48bc-94b7-29d17ecd81af
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  f527ec2c-1b82-4452-93dc-913f265de26c:
+    id: f527ec2c-1b82-4452-93dc-913f265de26c
+    content: Browser doesn't have same input limits
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  daa3778b-708f-48bc-94b7-29d17ecd81af:
+    id: daa3778b-708f-48bc-94b7-29d17ecd81af
+    content: Consistent with current behavior
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  d1d542ab-31ca-41ec-86a2-09a1a68f873e:
+    id: d1d542ab-31ca-41ec-86a2-09a1a68f873e
+    content: Implement a feature
+    children:
+      - 02aeb6a3-d8fc-4ba9-81a2-be20d5b619ae
+      - cedce47e-c4d7-4ab1-bc31-83a21033ff34
+      - b0d7bf19-0450-453b-953e-d87c5b24db80
+      - 52278b96-08bf-4f47-9ed5-247e0de2e4a3
+      - 4656e688-4804-4216-b91f-1f55a4a5d522
+      - f3a62169-bcc9-41b0-9b52-4985bd6aee8b
+      - 6335463e-a5ea-4199-a167-c96a17c2f349
+      - 345101c2-7c81-457e-aeb5-b8d2addd4402
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  02aeb6a3-d8fc-4ba9-81a2-be20d5b619ae:
+    id: 02aeb6a3-d8fc-4ba9-81a2-be20d5b619ae
+    content: You will consider the following instructions and then use the given specification to code a feature
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  cedce47e-c4d7-4ab1-bc31-83a21033ff34:
+    id: cedce47e-c4d7-4ab1-bc31-83a21033ff34
+    content: 'Follow the project conventions :'
+    children:
+      - f969b3f6-0052-4085-b157-e6d490e76f9d
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  f969b3f6-0052-4085-b157-e6d490e76f9d:
+    id: f969b3f6-0052-4085-b157-e6d490e76f9d
+    content: Conventions
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  b0d7bf19-0450-453b-953e-d87c5b24db80:
+    id: b0d7bf19-0450-453b-953e-d87c5b24db80
+    content: You will not update the feedback panel file if you have previously done that, this is a coding task
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  52278b96-08bf-4f47-9ed5-247e0de2e4a3:
+    id: 52278b96-08bf-4f47-9ed5-247e0de2e4a3
+    content: Understand & Plan
+    children:
+      - f93f8f88-78a3-4fd2-ad42-e8fff42df5cc
+      - 25816cbc-f6b8-4b5f-a02b-8a673d71a4ec
+      - 1ad90c4b-c207-4a38-95dd-6cd6cc15e699
+      - af3f5e3b-5c82-447d-8837-28c2b56868e0
+      - fac69372-613c-4210-89dc-3706325a2521
+      - 2e2e4517-dac1-44ca-be67-34c1a0348ce6
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  f93f8f88-78a3-4fd2-ad42-e8fff42df5cc:
+    id: f93f8f88-78a3-4fd2-ad42-e8fff42df5cc
+    content: Review the feature requirements and clarify any ambiguities
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  25816cbc-f6b8-4b5f-a02b-8a673d71a4ec:
+    id: 25816cbc-f6b8-4b5f-a02b-8a673d71a4ec
+    content: Break down the feature into logical implementation phases
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  1ad90c4b-c207-4a38-95dd-6cd6cc15e699:
+    id: 1ad90c4b-c207-4a38-95dd-6cd6cc15e699
+    content: Challenge design, functional, or architectural decisions if something seems wrong or unclear
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  af3f5e3b-5c82-447d-8837-28c2b56868e0:
+    id: af3f5e3b-5c82-447d-8837-28c2b56868e0
+    content: Challenge the user if the request or subsequent follow ups seem over engineered
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  fac69372-613c-4210-89dc-3706325a2521:
+    id: fac69372-613c-4210-89dc-3706325a2521
+    content: For lengthy implementations, check in with the user at logical milestones before proceeding
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  2e2e4517-dac1-44ca-be67-34c1a0348ce6:
+    id: 2e2e4517-dac1-44ca-be67-34c1a0348ce6
+    content: If there are complex architectural decisions involving refactoring or new patterns, summarize them briefly before implementing
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  4656e688-4804-4216-b91f-1f55a4a5d522:
+    id: 4656e688-4804-4216-b91f-1f55a4a5d522
+    content: Quality Assurance
+    children:
+      - e9ed855f-f214-4763-8a68-70e3d381c47f
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  e9ed855f-f214-4763-8a68-70e3d381c47f:
+    id: e9ed855f-f214-4763-8a68-70e3d381c47f
+    content: Ensure total automated test coverage levels are consistent with what is declared in the project architecture
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  f3a62169-bcc9-41b0-9b52-4985bd6aee8b:
+    id: f3a62169-bcc9-41b0-9b52-4985bd6aee8b
+    content: Implementation Guidelines
+    children:
+      - c4012542-429d-45e7-9e7c-6be8329c11df
+      - 87d53edf-17fb-4745-bfee-ddb10a294b00
+      - 652825b8-8546-4935-a160-cb8530f37191
+      - ed8f8e7f-309a-442e-9ccd-96dbaa8a4fae
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  c4012542-429d-45e7-9e7c-6be8329c11df:
+    id: c4012542-429d-45e7-9e7c-6be8329c11df
+    content: Reuse existing code as much as possible
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  87d53edf-17fb-4745-bfee-ddb10a294b00:
+    id: 87d53edf-17fb-4745-bfee-ddb10a294b00
+    content: Refactor existing code if needed for reusability
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  652825b8-8546-4935-a160-cb8530f37191:
+    id: 652825b8-8546-4935-a160-cb8530f37191
+    content: Handle edge cases and error conditions appropriately
+    children:
+      - b54c7620-299a-4acd-8d2d-03fa3bd6dc74
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  b54c7620-299a-4acd-8d2d-03fa3bd6dc74:
+    id: b54c7620-299a-4acd-8d2d-03fa3bd6dc74
+    content: Skip marginal cases if implementing them would add significant complexity for little benefit
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  ed8f8e7f-309a-442e-9ccd-96dbaa8a4fae:
+    id: ed8f8e7f-309a-442e-9ccd-96dbaa8a4fae
+    content: If a requested functionality is not possible to implement, prompt the user before implementing an alternative
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  6335463e-a5ea-4199-a167-c96a17c2f349:
+    id: 6335463e-a5ea-4199-a167-c96a17c2f349
+    content: Reporting
+    children:
+      - 5247d5a4-7860-4614-a09b-652ff2e3a803
+      - 98be8b87-3429-497e-9f13-0d3f2d1c7d63
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  5247d5a4-7860-4614-a09b-652ff2e3a803:
+    id: 5247d5a4-7860-4614-a09b-652ff2e3a803
+    content: Provide a short summary describing what was implemented
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  98be8b87-3429-497e-9f13-0d3f2d1c7d63:
+    id: 98be8b87-3429-497e-9f13-0d3f2d1c7d63
+    content: 'List any requested functionality that was not implemented, including:'
+    children:
+      - 22c6372c-e671-487a-93ca-2a45b9570a63
+      - 33eb3b44-15d9-461d-9eb9-0050a5f7c60d
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  22c6372c-e671-487a-93ca-2a45b9570a63:
+    id: 22c6372c-e671-487a-93ca-2a45b9570a63
+    content: Edge cases deemed too marginal relative to their complexity
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  33eb3b44-15d9-461d-9eb9-0050a5f7c60d:
+    id: 33eb3b44-15d9-461d-9eb9-0050a5f7c60d
+    content: Features that were not possible or required alternative approaches
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  345101c2-7c81-457e-aeb5-b8d2addd4402:
+    id: 345101c2-7c81-457e-aeb5-b8d2addd4402
+    content: 'Lastly do standard checks on changed files only :'
+    children:
+      - dd6d0582-221f-4c03-9061-f222bbadf800
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  dd6d0582-221f-4c03-9061-f222bbadf800:
+    id: dd6d0582-221f-4c03-9061-f222bbadf800
+    content: Standard checks
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  50d841f9-3ba9-4f87-af62-e95a5332b173:
+    id: 50d841f9-3ba9-4f87-af62-e95a5332b173
+    content: Test with copilot
     children: []
     metadata:
       status: pending
