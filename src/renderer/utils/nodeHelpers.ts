@@ -149,12 +149,18 @@ export function getContextsForCollaboration(
 export function buildContentWithContext(
   nodeId: string,
   nodes: Record<string, TreeNode>,
-  ancestorRegistry: AncestorRegistry
+  ancestorRegistry: AncestorRegistry,
+  resolveHyperlinks: boolean = false
 ): { contextPrefix: string; nodeContent: string } {
   const node = nodes[nodeId];
   if (!node) return { contextPrefix: '', nodeContent: '' };
 
-  const nodeContent = exportNodeAsMarkdown(node, nodes);
+  let nodeContent: string;
+  if (resolveHyperlinks && isBlueprintNode(nodeId, nodes, ancestorRegistry)) {
+    nodeContent = exportContextAsMarkdown(node, nodes, 0, nodeId);
+  } else {
+    nodeContent = exportNodeAsMarkdown(node, nodes);
+  }
 
   let contextPrefix = '';
   const contextIds = getContextsForCollaboration(nodeId, nodes, ancestorRegistry);
@@ -506,6 +512,18 @@ export function getIsContextChild(
     }
   }
   return false;
+}
+
+export function isBlueprintNode(
+  nodeId: string,
+  nodes: Record<string, TreeNode>,
+  ancestorRegistry: AncestorRegistry
+): boolean {
+  const node = nodes[nodeId];
+  if (!node) return false;
+  if (node.metadata.isBlueprint === true) return true;
+  if (node.metadata.isContextDeclaration === true) return true;
+  return getIsContextChild(nodeId, nodes, ancestorRegistry);
 }
 
 export function shouldInheritBlueprint(

@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2025-12-15T15:39:10.821Z'
+updated: '2025-12-15T16:41:07.574Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -527,7 +527,7 @@ nodes:
       - d87082fc-4e05-4080-b652-c69897022374
     metadata:
       status: completed
-      expanded: true
+      expanded: false
       isBlueprint: true
       blueprintIcon: FolderCheck
       blueprintColor: '#22c55e'
@@ -5411,6 +5411,8 @@ nodes:
     content: Backlog
     children:
       - 92b16d87-27dc-486d-a605-4228e2b5206c
+      - 2fe3a40d-e6bd-40b7-8bf1-e4374e91ed05
+      - 2ea55700-ee7a-4057-9b72-3b0aa00589a7
       - 48749574-3d80-42ad-819c-35269903a60b
       - 75ae4f0b-d9ad-4022-b6de-36ccee2d4a10
       - d7597faa-0b34-400e-985a-de035508cdb1
@@ -5825,13 +5827,12 @@ nodes:
       - 3239dd15-5f50-4999-84ac-b84b71b742be
       - ee62f343-86cb-423b-87ab-63236876a259
       - 00757321-75c1-44a9-981f-2362add1989f
-      - 86aff490-a46f-495d-90e0-c4240c89d3f3
       - f0d6224c-a2fe-4f4a-aed6-1038bd179093
       - 54953ba8-aff5-4153-9302-91906dc7dbaf
       - d1d542ab-31ca-41ec-86a2-09a1a68f873e
     metadata:
       status: pending
-      expanded: false
+      expanded: true
       deleted: false
       plugins: {}
       isContextDeclaration: true
@@ -14938,7 +14939,8 @@ nodes:
   c25cf481-a0d1-495d-9cea-498f1135eb8c:
     id: c25cf481-a0d1-495d-9cea-498f1135eb8c
     content: Minor feature
-    children: []
+    children:
+      - 93636741-7002-467c-bc57-eb512b813e96
     metadata:
       status: completed
       expanded: true
@@ -15046,11 +15048,7 @@ nodes:
     id: 92b16d87-27dc-486d-a605-4228e2b5206c
     content: For release
     children:
-      - 2de48b9d-ee07-467e-a332-19d2a873ed30
-      - 2ea55700-ee7a-4057-9b72-3b0aa00589a7
-      - 2fe3a40d-e6bd-40b7-8bf1-e4374e91ed05
       - 1be855d0-fbb1-4fbf-aee9-fe25b8d9f20b
-      - 6258293d-9835-4fa5-b7b4-362cedb36daf
       - cc522bbb-99fe-499f-b9d8-a62c7ce50575
       - 0053985b-19d7-4115-943b-57e0f47d0fd0
       - 50d841f9-3ba9-4f87-af62-e95a5332b173
@@ -15618,9 +15616,7 @@ nodes:
   a4c333be-a8a4-4c0f-8148-b2260507f5ad:
     id: a4c333be-a8a4-4c0f-8148-b2260507f5ad
     content: In progress
-    children:
-      - 4ae089d5-f01f-49c8-ba28-6d56375264df
-      - f87efadf-ec09-446a-bc7a-01adff1e3990
+    children: []
     metadata:
       status: pending
       appliedContextIds:
@@ -17712,236 +17708,6 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  86aff490-a46f-495d-90e0-c4240c89d3f3:
-    id: 86aff490-a46f-495d-90e0-c4240c89d3f3
-    content: Major feature
-    children:
-      - 8fafed46-f532-4503-886d-b2efa6b5ed40
-    metadata:
-      status: pending
-      expanded: false
-      deleted: false
-      plugins: {}
-      isBlueprint: true
-  8fafed46-f532-4503-886d-b2efa6b5ed40:
-    id: 8fafed46-f532-4503-886d-b2efa6b5ed40
-    content: Create temporary file for context
-    children:
-      - bc2f4c65-55da-4804-b5b6-24ebbfe74235
-      - 4d8ef109-2901-4523-ac6c-b6fd069e51b2
-      - ed94f530-1a42-4133-8b31-8689ffc09eae
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-      isBlueprint: true
-  bc2f4c65-55da-4804-b5b6-24ebbfe74235:
-    id: bc2f4c65-55da-4804-b5b6-24ebbfe74235
-    content: 'Problem: terminal may have input buffer limits that can truncate/corrupt large context pastes'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-      isBlueprint: true
-  4d8ef109-2901-4523-ac6c-b6fd069e51b2:
-    id: 4d8ef109-2901-4523-ac6c-b6fd069e51b2
-    content: When executing or collaborating in the terminal
-    children:
-      - cde36774-11fc-487e-a5fd-208a85bc5ec0
-      - ee7caf3f-8b38-4e92-a172-1a4260d7ad43
-      - 623c7df9-a652-4b7c-b60c-54c295e43469
-      - 054c4b0f-c25b-40b7-8e1c-ae5988614e6d
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-      isBlueprint: true
-  cde36774-11fc-487e-a5fd-208a85bc5ec0:
-    id: cde36774-11fc-487e-a5fd-208a85bc5ec0
-    content: Export the applied context to a temporary file
-    children:
-      - 35c33ea0-bbf5-4e62-a4aa-5d56f5395ecc
-      - 8fc81ba7-6f5a-404b-839a-3f4ecad92a0f
-      - fed8380e-4805-492f-b274-8f6f7c31427e
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-      isBlueprint: true
-  35c33ea0-bbf5-4e62-a4aa-5d56f5395ecc:
-    id: 35c33ea0-bbf5-4e62-a4aa-5d56f5395ecc
-    content: Reuse temp file architecture from feedback panel
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-      isBlueprint: true
-  8fc81ba7-6f5a-404b-839a-3f4ecad92a0f:
-    id: 8fc81ba7-6f5a-404b-839a-3f4ecad92a0f
-    content: Distinct file from feedback temp file
-    children:
-      - 7c267501-4512-4ab7-8391-fbd7e444437c
-      - fae9e8c6-5ef6-4d91-9991-870cc79e389f
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-      isBlueprint: true
-  7c267501-4512-4ab7-8391-fbd7e444437c:
-    id: 7c267501-4512-4ab7-8391-fbd7e444437c
-    content: 'Feedback file: holds AI responses during collaboration'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-      isBlueprint: true
-  fae9e8c6-5ef6-4d91-9991-870cc79e389f:
-    id: fae9e8c6-5ef6-4d91-9991-870cc79e389f
-    content: 'Context file: holds the applied context declaration'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-      isBlueprint: true
-  fed8380e-4805-492f-b274-8f6f7c31427e:
-    id: fed8380e-4805-492f-b274-8f6f7c31427e
-    content: Use session-based cleanup (existing mechanism)
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-      isBlueprint: true
-  ee7caf3f-8b38-4e92-a172-1a4260d7ad43:
-    id: ee7caf3f-8b38-4e92-a172-1a4260d7ad43
-    content: 'Clipboard contains: the list as markdown only'
-    children:
-      - 5a9ce760-ab36-45ce-ae49-68fd56b4d9ff
-      - 2be17363-af95-4c1e-9c0c-5b7834f6ff49
-      - 8f5024f4-c6f5-4774-863e-bf51ed547017
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-      isBlueprint: true
-  5a9ce760-ab36-45ce-ae49-68fd56b4d9ff:
-    id: 5a9ce760-ab36-45ce-ae49-68fd56b4d9ff
-    content: Automatic paste into terminal (already implemented)
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-      isBlueprint: true
-  2be17363-af95-4c1e-9c0c-5b7834f6ff49:
-    id: 2be17363-af95-4c1e-9c0c-5b7834f6ff49
-    content: Automatic enter after short delay (already implemented)
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-      isBlueprint: true
-  8f5024f4-c6f5-4774-863e-bf51ed547017:
-    id: 8f5024f4-c6f5-4774-863e-bf51ed547017
-    content: List is typically shorter, avoids buffer limits
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-      isBlueprint: true
-  623c7df9-a652-4b7c-b60c-54c295e43469:
-    id: 623c7df9-a652-4b7c-b60c-54c295e43469
-    content: 'Prompt includes: instruction to read the context temp file'
-    children:
-      - d320768e-f6b5-417a-bffa-b401d50b9bbf
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-      isBlueprint: true
-  d320768e-f6b5-417a-bffa-b401d50b9bbf:
-    id: d320768e-f6b5-417a-bffa-b401d50b9bbf
-    content: AI reads context from file before processing the list
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-      isBlueprint: true
-  054c4b0f-c25b-40b7-8e1c-ae5988614e6d:
-    id: 054c4b0f-c25b-40b7-8e1c-ae5988614e6d
-    content: Fallback if file creation fails
-    children:
-      - 88e1a81c-1316-48da-b9bc-345cb69f31b9
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-      isBlueprint: true
-  88e1a81c-1316-48da-b9bc-345cb69f31b9:
-    id: 88e1a81c-1316-48da-b9bc-345cb69f31b9
-    content: Revert to inline context with warning
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-      isBlueprint: true
-  ed94f530-1a42-4133-8b31-8689ffc09eae:
-    id: ed94f530-1a42-4133-8b31-8689ffc09eae
-    content: Keep executing or collaborating in the browser as it is now
-    children:
-      - 367019ea-4608-424c-a7e3-99dc67b372e2
-      - 241cf06d-fa28-49c0-894a-642cff55017c
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-      isBlueprint: true
-  367019ea-4608-424c-a7e3-99dc67b372e2:
-    id: 367019ea-4608-424c-a7e3-99dc67b372e2
-    content: Browser doesn't have same input limits
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-      isBlueprint: true
-  241cf06d-fa28-49c0-894a-642cff55017c:
-    id: 241cf06d-fa28-49c0-894a-642cff55017c
-    content: Consistent with current behavior
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-      isBlueprint: true
   f0d6224c-a2fe-4f4a-aed6-1038bd179093:
     id: f0d6224c-a2fe-4f4a-aed6-1038bd179093
     content: Implement a feature
@@ -18856,9 +18622,10 @@ nodes:
       resolvedAt: '2025-12-15T15:39:08.816Z'
   2ea55700-ee7a-4057-9b72-3b0aa00589a7:
     id: 2ea55700-ee7a-4057-9b72-3b0aa00589a7
-    content: In summary mode, should have a way to build a report
+    content: In summary mode, we should have a way to build a report
     children:
       - eae7199d-6e1d-4a38-94a0-9612b713b3c3
+      - 76ef038e-22c7-4f14-88ee-b8190e0b0dcd
     metadata:
       status: pending
       expanded: false
@@ -18880,232 +18647,6 @@ nodes:
     children: []
     metadata:
       status: pending
-  7c4ff6ab-ca77-422f-b839-7dbf7cd44261:
-    id: 7c4ff6ab-ca77-422f-b839-7dbf7cd44261
-    content: File menu � "New from template" submenu?
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  bf3b1cbd-4195-4630-8282-d03915416840:
-    id: bf3b1cbd-4195-4630-8282-d03915416840
-    content: Or just ship them in a folder for users to copy manually?
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  1ff0edfe-8f91-41c9-a96a-69347c4c6bb5:
-    id: 1ff0edfe-8f91-41c9-a96a-69347c4c6bb5
-    content: The simpler approach may be sufficient for launch
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e985ad3a-e66f-4f38-834f-493e2cdca58d:
-    id: e985ad3a-e66f-4f38-834f-493e2cdca58d
-    content: 'Clarify: How will users access these templates?'
-    children:
-      - 7c4ff6ab-ca77-422f-b839-7dbf7cd44261
-      - bf3b1cbd-4195-4630-8282-d03915416840
-      - 1ff0edfe-8f91-41c9-a96a-69347c4c6bb5
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ff68e9f8-6bfb-416a-a625-9f869f5860d2:
-    id: ff68e9f8-6bfb-416a-a625-9f869f5860d2
-    content: 'Problem Breakdown (created: blueprint-problem-breakdown.arbo)'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  70335c63-97c4-46dd-9b24-25e1c4eb6fc9:
-    id: 70335c63-97c4-46dd-9b24-25e1c4eb6fc9
-    content: 'Research (created: blueprint-research.arbo)'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  dbe671f4-d122-440e-9334-61250b2b5f2f:
-    id: dbe671f4-d122-440e-9334-61250b2b5f2f
-    content: 'Question: Is this too specific for a default template?'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  a298fbe5-b3c5-4255-9546-78639dd4ef9a:
-    id: a298fbe5-b3c5-4255-9546-78639dd4ef9a
-    content: You forgot this
-    children: []
-    metadata:
-      status: pending
-  668499d3-7c4e-4752-9f9b-ce00cbc0418f:
-    id: 668499d3-7c4e-4752-9f9b-ce00cbc0418f
-    content: 'React/Electron project (exists: blueprint-react-electron.arbo)'
-    children:
-      - dbe671f4-d122-440e-9334-61250b2b5f2f
-      - a298fbe5-b3c5-4255-9546-78639dd4ef9a
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  5a5f446b-d33c-4d31-b059-739a783a489c:
-    id: 5a5f446b-d33c-4d31-b059-739a783a489c
-    content: Problem Breakdown covers decision-making, planning, decomposition
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  9e383f60-c90c-4f4d-ae08-64195f526b5b:
-    id: 9e383f60-c90c-4f4d-ae08-64195f526b5b
-    content: Research covers learning, investigation, synthesis
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  bdf7a567-d97d-4284-a56d-27d8724047b4:
-    id: bdf7a567-d97d-4284-a56d-27d8724047b4
-    content: A third execution-focused template (Project Plan) could round it out
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  4df2461a-a62f-4baa-afe6-93c254081f20:
-    id: 4df2461a-a62f-4baa-afe6-93c254081f20
-    content: Too many templates may overwhelm new users
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ac8b0233-a33c-4320-b343-8ac2a6ff8b1d:
-    id: ac8b0233-a33c-4320-b343-8ac2a6ff8b1d
-    content: 'Question: Is 2-3 templates enough?'
-    children:
-      - 5a5f446b-d33c-4d31-b059-739a783a489c
-      - 9e383f60-c90c-4f4d-ae08-64195f526b5b
-      - bdf7a567-d97d-4284-a56d-27d8724047b4
-      - 4df2461a-a62f-4baa-afe6-93c254081f20
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  46811434-49da-40af-91a2-1b43dcbd1ed2:
-    id: 46811434-49da-40af-91a2-1b43dcbd1ed2
-    content: Bundled templates
-    children:
-      - ff68e9f8-6bfb-416a-a625-9f869f5860d2
-      - 70335c63-97c4-46dd-9b24-25e1c4eb6fc9
-      - 668499d3-7c4e-4752-9f9b-ce00cbc0418f
-      - ac8b0233-a33c-4320-b343-8ac2a6ff8b1d
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  024a576e-0d35-4f5a-b603-cd98652191af:
-    id: 024a576e-0d35-4f5a-b603-cd98652191af
-    content: Unclear how this relates to blueprints
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ad5ee3a4-91cf-4367-8492-d582ea75a8fc:
-    id: ad5ee3a4-91cf-4367-8492-d582ea75a8fc
-    content: What problem does this solve?
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  d34203e8-11c7-406b-8de5-328e2200dbc4:
-    id: d34203e8-11c7-406b-8de5-328e2200dbc4
-    content: '"Apply to node" feature for review panel'
-    children:
-      - 024a576e-0d35-4f5a-b603-cd98652191af
-      - ad5ee3a4-91cf-4367-8492-d582ea75a8fc
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  034169b6-0fed-41e0-acf0-8de1a4578430:
-    id: 034169b6-0fed-41e0-acf0-8de1a4578430
-    content: Unclear what this means
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  b4d0ad96-b19b-46bd-8b78-929fcc69d5a0:
-    id: b4d0ad96-b19b-46bd-8b78-929fcc69d5a0
-    content: Needs definition before it can be evaluated
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  adee78ef-5901-46ef-b03b-8bc960015f34:
-    id: adee78ef-5901-46ef-b03b-8bc960015f34
-    content: '"Pattern" feature'
-    children:
-      - 034169b6-0fed-41e0-acf0-8de1a4578430
-      - b4d0ad96-b19b-46bd-8b78-929fcc69d5a0
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  a3a8e5b5-08f3-41c0-9623-ecb32d8c8175:
-    id: a3a8e5b5-08f3-41c0-9623-ecb32d8c8175
-    content: Unrelated items - should these be separate tasks?
-    children:
-      - d34203e8-11c7-406b-8de5-328e2200dbc4
-      - adee78ef-5901-46ef-b03b-8bc960015f34
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  2de48b9d-ee07-467e-a332-19d2a873ed30:
-    id: 2de48b9d-ee07-467e-a332-19d2a873ed30
-    content: Create a new file from default blueprint
-    children:
-      - e985ad3a-e66f-4f38-834f-493e2cdca58d
-      - 46811434-49da-40af-91a2-1b43dcbd1ed2
-      - a3a8e5b5-08f3-41c0-9623-ecb32d8c8175
-    metadata:
-      status: pending
-      expanded: false
-      deleted: false
-      plugins: {}
   d3a52033-98ff-4a45-bd8e-f2ec4360fd5c:
     id: d3a52033-98ff-4a45-bd8e-f2ec4360fd5c
     content: "ctrl z not working in review panel, undoes main panel instead.\_ However ctrl C and ctrl x are ok"
@@ -19352,32 +18893,6 @@ nodes:
     children: []
     metadata:
       status: pending
-  4ae089d5-f01f-49c8-ba28-6d56375264df:
-    id: 4ae089d5-f01f-49c8-ba28-6d56375264df
-    content: Remove toaster when context has changed
-    children: []
-    metadata:
-      status: pending
-  f87efadf-ec09-446a-bc7a-01adff1e3990:
-    id: f87efadf-ec09-446a-bc7a-01adff1e3990
-    content: When unchecking a context, if there is an inherited contex that is selected, but there's no visual indication to tell us why
-    children:
-      - 11452df9-49c3-478c-b158-ebed801f6f30
-      - c1fe667f-7ba3-4f27-898b-4e1dec546e30
-    metadata:
-      status: pending
-  11452df9-49c3-478c-b158-ebed801f6f30:
-    id: 11452df9-49c3-478c-b158-ebed801f6f30
-    content: We should always have the inherited context have a 'default' after it, and greyed out when selected (can't be unselected)
-    children: []
-    metadata:
-      status: pending
-  c1fe667f-7ba3-4f27-898b-4e1dec546e30:
-    id: c1fe667f-7ba3-4f27-898b-4e1dec546e30
-    content: Actually this problem only seems to occur when the inherited context iso
-    children: []
-    metadata:
-      status: pending
   68f39796-a961-4ddc-8064-f19277378c4e:
     id: 68f39796-a961-4ddc-8064-f19277378c4e
     content: Restore ability to apply a context to any node
@@ -19389,7 +18904,7 @@ nodes:
       - ef4d743e-f800-4069-8bdc-ef12a81c9ffe
     metadata:
       status: completed
-      expanded: true
+      expanded: false
       deleted: false
       plugins: {}
   68ba5fc4-a430-43c5-8fff-b1306452c6af:
@@ -19807,19 +19322,100 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  6258293d-9835-4fa5-b7b4-362cedb36daf:
-    id: 6258293d-9835-4fa5-b7b4-362cedb36daf
-    content: Figure out a way for actions to inherit hyperlinks
-    children:
-      - 22181e5c-513e-4f7c-86b5-17b18de9052b
-    metadata:
-      status: pending
-      expanded: false
-  22181e5c-513e-4f7c-86b5-17b18de9052b:
-    id: 22181e5c-513e-4f7c-86b5-17b18de9052b
-    content: Resolve hyperlinks when sending to terminal/browser ?
+  76ef038e-22c7-4f14-88ee-b8190e0b0dcd:
+    id: 76ef038e-22c7-4f14-88ee-b8190e0b0dcd
+    content: Trick is to apply a context to all nodes in the summary tree
     children: []
     metadata:
       status: pending
+  93636741-7002-467c-bc57-eb512b813e96:
+    id: 93636741-7002-467c-bc57-eb512b813e96
+    content: Resolve blueprint hyperlinks on execute
+    children:
+      - 9af418ba-2856-4117-bb9c-2420440f6994
+      - 7d2b8023-59d3-4e40-956e-966cbe7aa9d4
+      - 09d4aab9-ac4c-42ce-adc4-4a1fe05a65a2
+      - f45be505-0ed4-4d24-aea4-117da65a6ca8
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9af418ba-2856-4117-bb9c-2420440f6994:
+    id: 9af418ba-2856-4117-bb9c-2420440f6994
+    content: When executing in terminal or browser, not when collaborating
+    children:
+      - 31126296-273d-48bf-8b24-6450d0c1902a
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  31126296-273d-48bf-8b24-6450d0c1902a:
+    id: 31126296-273d-48bf-8b24-6450d0c1902a
+    content: 'Rationale: Collaborate opens feedback panel for writing back to tree - resolving linked content would complicate review'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7d2b8023-59d3-4e40-956e-966cbe7aa9d4:
+    id: 7d2b8023-59d3-4e40-956e-966cbe7aa9d4
+    content: If a blueprint node has a direct descendant that is a hyperlink node
+    children:
+      - 8f236c96-b152-442a-816b-21d483cebc86
+      - 25911eb8-54fd-498e-b19e-a05a1f039cdf
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8f236c96-b152-442a-816b-21d483cebc86:
+    id: 8f236c96-b152-442a-816b-21d483cebc86
+    content: Resolve all content of the linked node (not limited to blueprint content)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  25911eb8-54fd-498e-b19e-a05a1f039cdf:
+    id: 25911eb8-54fd-498e-b19e-a05a1f039cdf
+    content: This mirrors existing context declaration behavior, applied to blueprint nodes with hyperlink children
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  09d4aab9-ac4c-42ce-adc4-4a1fe05a65a2:
+    id: 09d4aab9-ac4c-42ce-adc4-4a1fe05a65a2
+    content: This facilitates user-made 'action' nodes where instructions are sent with linked references resolved
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f45be505-0ed4-4d24-aea4-117da65a6ca8:
+    id: f45be505-0ed4-4d24-aea4-117da65a6ca8
+    content: Avoid circular references using existing context declaration logic
+    children:
+      - 3355c9ce-045f-4665-b2b1-fa4c0e3f3814
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3355c9ce-045f-4665-b2b1-fa4c0e3f3814:
+    id: 3355c9ce-045f-4665-b2b1-fa4c0e3f3814
+    content: Refactor shared resolution code into nodeHelpers for reuse
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
 summaryDateFrom: '2025-12-06'
 summaryDateTo: '2025-12-13'
