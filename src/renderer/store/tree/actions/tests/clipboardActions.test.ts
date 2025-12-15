@@ -1091,7 +1091,7 @@ describe('clipboardActions', () => {
 
         expect(result).toBe('no-content');
         expect(mockAddToast).toHaveBeenCalledWith(
-          'Cannot add hyperlink as child of a link node',
+          'Cannot add hyperlink as child of a link branch',
           'error'
         );
       });
@@ -1210,7 +1210,7 @@ describe('clipboardActions', () => {
 
         expect(result).toBe('no-content');
         expect(mockAddToast).toHaveBeenCalledWith(
-          'Cannot paste into a link node',
+          'Cannot paste into a link branch',
           'error'
         );
       });
@@ -1231,7 +1231,7 @@ describe('clipboardActions', () => {
 
         expect(result).toBe('no-content');
         expect(mockAddToast).toHaveBeenCalledWith(
-          'Cannot paste into a link node',
+          'Cannot paste into a link branch',
           'error'
         );
       });

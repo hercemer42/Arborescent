@@ -29,7 +29,7 @@ export function useHyperlinkNavigation(node: TreeNode) {
     const targetNode = nodes[linkedNodeId];
 
     if (!targetNode) {
-      useToastStore.getState().addToast('Linked node not found', 'error');
+      useToastStore.getState().addToast('Linked branch not found', 'error');
       return;
     }
 

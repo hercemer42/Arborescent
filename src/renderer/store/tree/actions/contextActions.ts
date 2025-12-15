@@ -85,7 +85,7 @@ export const createContextActions = (
     const parentId = ancestors[ancestors.length - 1];
     const parent = parentId ? nodes[parentId] : null;
     if (!parent || parent.metadata.isBlueprint !== true) {
-      useToastStore.getState().addToast('Can only declare context on nodes with a blueprint parent', 'error');
+      useToastStore.getState().addToast('Can only declare context on branches with a blueprint parent', 'error');
       return;
     }
 

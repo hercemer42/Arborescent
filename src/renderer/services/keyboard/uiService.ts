@@ -251,7 +251,7 @@ async function handleUIShortcuts(event: KeyboardEvent): Promise<void> {
       'execute'
     );
     if (!contextId) {
-      useToastStore.getState().addToast('No context set for this node', 'info');
+      useToastStore.getState().addToast('No context set for this branch', 'info');
       return;
     }
 
@@ -275,7 +275,7 @@ async function handleUIShortcuts(event: KeyboardEvent): Promise<void> {
       'collaborate'
     );
     if (!contextId) {
-      useToastStore.getState().addToast('No context set for this node', 'info');
+      useToastStore.getState().addToast('No context set for this branch', 'info');
       return;
     }
 

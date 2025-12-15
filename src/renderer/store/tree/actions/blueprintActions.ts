@@ -60,7 +60,7 @@ export const createBlueprintActions = (
 
     // If not cascading and node is already blueprint, show info
     if (!cascade && node.metadata.isBlueprint === true) {
-      useToastStore.getState().addToast('Node is already a blueprint', 'info');
+      useToastStore.getState().addToast('Branch is already a blueprint', 'info');
       return;
     }
 

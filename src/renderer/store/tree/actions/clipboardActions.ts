@@ -508,7 +508,7 @@ export const createClipboardActions = (
     const targetParent = state.nodes[targetParentId];
     const isLinkNode = targetParent?.metadata.isHyperlink === true || targetParent?.metadata.isExternalLink === true;
     if (isLinkNode) {
-      useToastStore.getState().addToast('Cannot paste into a link node', 'error');
+      useToastStore.getState().addToast('Cannot paste into a link branch', 'error');
       return 'no-content';
     }
 
@@ -615,7 +615,7 @@ export const createClipboardActions = (
 
     const isLinkNode = targetParent.metadata.isHyperlink === true || targetParent.metadata.isExternalLink === true;
     if (isLinkNode) {
-      useToastStore.getState().addToast('Cannot add hyperlink as child of a link node', 'error');
+      useToastStore.getState().addToast('Cannot add hyperlink as child of a link branch', 'error');
       return 'no-content';
     }
 

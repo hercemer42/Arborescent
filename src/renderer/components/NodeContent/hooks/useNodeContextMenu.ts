@@ -86,7 +86,7 @@ export function useNodeContextMenu(node: TreeNode) {
       const deleted = actions.deleteNode(node.id);
       if (!deleted) {
         const confirmed = window.confirm(
-          'This node has children. Deleting it will also delete all its children. Are you sure?'
+          'This branch has children. Deleting it will also delete all its children. Are you sure?'
         );
         if (confirmed) {
           actions.deleteNode(node.id, true);
@@ -236,7 +236,7 @@ export function useNodeContextMenu(node: TreeNode) {
       const deleted = actions.deleteNode(node.id);
       if (!deleted) {
         const confirmed = window.confirm(
-          'This node has children. Deleting it will also delete all its children. Are you sure?'
+          'This branch has children. Deleting it will also delete all its children. Are you sure?'
         );
         if (confirmed) {
           actions.deleteNode(node.id, true);
@@ -316,7 +316,7 @@ export function useNodeContextMenu(node: TreeNode) {
     const deleted = actions.deleteNode(node.id);
     if (!deleted) {
       const confirmed = window.confirm(
-        'This node has children. Deleting it will also delete all its children. Are you sure?'
+        'This branch has children. Deleting it will also delete all its children. Are you sure?'
       );
       if (confirmed) {
         actions.deleteNode(node.id, true);

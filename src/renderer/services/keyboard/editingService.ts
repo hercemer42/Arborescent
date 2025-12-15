@@ -67,7 +67,7 @@ function handleDeleteNode(store: StoreState, activeNodeId: string): void {
   const deleted = store.actions.deleteNode(activeNodeId);
   if (!deleted) {
     const confirmed = window.confirm(
-      'This node has children. Deleting it will also delete all its children. Are you sure?'
+      'This branch has children. Deleting it will also delete all its children. Are you sure?'
     );
     if (confirmed) {
       store.actions.deleteNode(activeNodeId, true);
