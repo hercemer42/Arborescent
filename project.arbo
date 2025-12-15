@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2025-12-13T12:40:43.183Z'
+updated: '2025-12-15T12:02:34.664Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -474,6 +474,7 @@ nodes:
     id: 565dde0a-864b-41f9-86ff-dbdf40ac4dd0
     content: Done
     children:
+      - 2fe15dab-4d78-48db-ad5f-4c8322337ba5
       - 4a1f9ce5-2e63-4760-9485-3d5b2cfebe22
       - cddba8cd-67ca-4f60-a2d9-cbbe41815200
       - 44jmbkqfv
@@ -5407,6 +5408,8 @@ nodes:
     content: Backlog
     children:
       - 92b16d87-27dc-486d-a605-4228e2b5206c
+      - 48749574-3d80-42ad-819c-35269903a60b
+      - 75ae4f0b-d9ad-4022-b6de-36ccee2d4a10
       - d7597faa-0b34-400e-985a-de035508cdb1
       - 65b74e0f-88fe-41c6-9910-8bac806adc6f
       - 6573b620-bfc0-4c5b-8d92-13b9ace3461d
@@ -14331,8 +14334,7 @@ nodes:
   ac4c627f-c512-40b9-ad55-11b439495b7e:
     id: ac4c627f-c512-40b9-ad55-11b439495b7e
     content: Major feature
-    children:
-      - 2de48b9d-ee07-467e-a332-19d2a873ed30
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -14503,7 +14505,7 @@ nodes:
       expanded: false
   cc522bbb-99fe-499f-b9d8-a62c7ce50575:
     id: cc522bbb-99fe-499f-b9d8-a62c7ce50575
-    content: Help nodes for onboarding
+    content: Help branches for onboarding
     children:
       - d2f85efd-9234-4349-a5d0-147807aef97e
     metadata:
@@ -14934,8 +14936,7 @@ nodes:
   c25cf481-a0d1-495d-9cea-498f1135eb8c:
     id: c25cf481-a0d1-495d-9cea-498f1135eb8c
     content: Minor feature
-    children:
-      - 2fe15dab-4d78-48db-ad5f-4c8322337ba5
+    children: []
     metadata:
       status: completed
       expanded: true
@@ -15057,11 +15058,18 @@ nodes:
     children:
       - 4966bd3d-fe8d-4094-840f-a0f791c07d6c
       - cc522bbb-99fe-499f-b9d8-a62c7ce50575
+      - 2de48b9d-ee07-467e-a332-19d2a873ed30
       - 1be855d0-fbb1-4fbf-aee9-fe25b8d9f20b
       - 1c0d0565-aced-4527-b0c9-61f71617168a
       - 0053985b-19d7-4115-943b-57e0f47d0fd0
       - 50d841f9-3ba9-4f87-af62-e95a5332b173
+      - 41691f56-cf04-4609-8009-8d0b50b36ec7
       - 2ea55700-ee7a-4057-9b72-3b0aa00589a7
+      - 9a38a539-0a71-497b-ba8f-148df72c9ddb
+      - fdbbfb4f-a888-4982-a783-f61800d4009c
+      - 3ccb2029-faee-4da4-ad66-211f77277afa
+      - e5ad2c66-f085-482e-8010-5fb1a2cf93d7
+      - 53f32915-6bee-44f3-8a84-e2b9a9a82eb8
     metadata:
       status: pending
       expanded: true
@@ -17188,7 +17196,7 @@ nodes:
       - c9a0cf38-c449-47a0-b687-359ca5ddd57e
     metadata:
       status: pending
-      expanded: true
+      expanded: false
       isBlueprint: true
       blueprintIcon: LayoutList
       blueprintColor: '#14b8a6'
@@ -19340,6 +19348,141 @@ nodes:
   2fe15dab-4d78-48db-ad5f-4c8322337ba5:
     id: 2fe15dab-4d78-48db-ad5f-4c8322337ba5
     content: restore context menu in review panel, with spelling suggestions and edit sub menu only, hide all the rest
+    children: []
+    metadata:
+      status: completed
+      resolvedAt: '2025-12-13T12:58:23.088Z'
+  9a38a539-0a71-497b-ba8f-148df72c9ddb:
+    id: 9a38a539-0a71-497b-ba8f-148df72c9ddb
+    content: Register domain + setup basic website
+    children: []
+    metadata:
+      status: pending
+  48749574-3d80-42ad-819c-35269903a60b:
+    id: 48749574-3d80-42ad-819c-35269903a60b
+    content: Direct integrations
+    children:
+      - 8f2669c5-20ac-4eca-9d54-9af14ce438a4
+      - 5e8df60a-b79a-45a9-aba4-d836b4e71368
+      - edc85252-da4d-45f1-97e3-b3a9ae4e3350
+      - b5b471b7-2b97-42c1-b94f-5f1b87003ccf
+    metadata:
+      status: pending
+      expanded: false
+  8f2669c5-20ac-4eca-9d54-9af14ce438a4:
+    id: 8f2669c5-20ac-4eca-9d54-9af14ce438a4
+    content: Claude
+    children: []
+    metadata:
+      status: pending
+  5e8df60a-b79a-45a9-aba4-d836b4e71368:
+    id: 5e8df60a-b79a-45a9-aba4-d836b4e71368
+    content: Copilot
+    children: []
+    metadata:
+      status: pending
+  edc85252-da4d-45f1-97e3-b3a9ae4e3350:
+    id: edc85252-da4d-45f1-97e3-b3a9ae4e3350
+    content: Gemini
+    children: []
+    metadata:
+      status: pending
+  b5b471b7-2b97-42c1-b94f-5f1b87003ccf:
+    id: b5b471b7-2b97-42c1-b94f-5f1b87003ccf
+    content: Collaborate over API
+    children:
+      - 8489fb71-057c-48c6-8b71-1488f437ab1a
+    metadata:
+      status: pending
+  8489fb71-057c-48c6-8b71-1488f437ab1a:
+    id: 8489fb71-057c-48c6-8b71-1488f437ab1a
+    content: Write results to feedback panel
+    children: []
+    metadata:
+      status: pending
+  75ae4f0b-d9ad-4022-b6de-36ccee2d4a10:
+    id: 75ae4f0b-d9ad-4022-b6de-36ccee2d4a10
+    content: Expand 'done'
+    children:
+      - ccc87887-7316-438b-a6b1-911d8bda7520
+      - 31a6a605-6d0c-44ca-9105-15d3637abf75
+      - 8ab3cfec-6635-4c06-b510-997b263da5fa
+      - a72fc615-6b6c-4e8f-abdf-b2a69e231918
+      - fc2804b7-2512-481c-917b-750f3fe19146
+      - ca219e4d-c224-45a8-b28d-1eca90ea6728
+    metadata:
+      status: pending
+      expanded: false
+  ccc87887-7316-438b-a6b1-911d8bda7520:
+    id: ccc87887-7316-438b-a6b1-911d8bda7520
+    content: If we can have steps, and each step can have different criteria for what is done
+    children: []
+    metadata:
+      status: pending
+  31a6a605-6d0c-44ca-9105-15d3637abf75:
+    id: 31a6a605-6d0c-44ca-9105-15d3637abf75
+    content: How would checking off that checkbox look like ?
+    children: []
+    metadata:
+      status: pending
+  8ab3cfec-6635-4c06-b510-997b263da5fa:
+    id: 8ab3cfec-6635-4c06-b510-997b263da5fa
+    content: For instance, if we can define a DoR/DoD - and apply it to a node
+    children: []
+    metadata:
+      status: pending
+  a72fc615-6b6c-4e8f-abdf-b2a69e231918:
+    id: a72fc615-6b6c-4e8f-abdf-b2a69e231918
+    content: And then have a checklist for each tree in that node
+    children: []
+    metadata:
+      status: pending
+  fc2804b7-2512-481c-917b-750f3fe19146:
+    id: fc2804b7-2512-481c-917b-750f3fe19146
+    content: And it's only when the checklist is done that we check off the node
+    children: []
+    metadata:
+      status: pending
+  ca219e4d-c224-45a8-b28d-1eca90ea6728:
+    id: ca219e4d-c224-45a8-b28d-1eca90ea6728
+    content: This is getting back to 'patterns'
+    children: []
+    metadata:
+      status: pending
+  fdbbfb4f-a888-4982-a783-f61800d4009c:
+    id: fdbbfb4f-a888-4982-a783-f61800d4009c
+    content: Think again about context setup
+    children:
+      - f2911754-c6b8-4d60-866c-7f6ca3a43fc5
+    metadata:
+      status: pending
+  f2911754-c6b8-4d60-866c-7f6ca3a43fc5:
+    id: f2911754-c6b8-4d60-866c-7f6ca3a43fc5
+    content: It's not very intuitive
+    children: []
+    metadata:
+      status: pending
+  3ccb2029-faee-4da4-ad66-211f77277afa:
+    id: 3ccb2029-faee-4da4-ad66-211f77277afa
+    content: HTML links should open in browser panel, duh...
+    children: []
+    metadata:
+      status: pending
+  53f32915-6bee-44f3-8a84-e2b9a9a82eb8:
+    id: 53f32915-6bee-44f3-8a84-e2b9a9a82eb8
+    content: Change 'node' to 'branch' in UI
+    children: []
+    metadata:
+      status: pending
+  41691f56-cf04-4609-8009-8d0b50b36ec7:
+    id: 41691f56-cf04-4609-8009-8d0b50b36ec7
+    content: Post releases to gitlab
+    children: []
+    metadata:
+      status: pending
+  e5ad2c66-f085-482e-8010-5fb1a2cf93d7:
+    id: e5ad2c66-f085-482e-8010-5fb1a2cf93d7
+    content: Update readme
     children: []
     metadata:
       status: pending

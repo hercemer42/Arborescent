@@ -1,53 +1,37 @@
 # Arborescent
 
-**Cognitive scaffolding for complex thinking and AI collaboration.**
+**Cognitive scaffolding for critical thinking and AI collaboration.**
 
-Structure your thinking. Supercharge your AI interactions. Share what works.
+Distill your thoughts.  Refine your context.  Compound your results.
 
 ![Screenshot placeholder](docs/screenshot.png)
 
 ## Why Arborescent?
 
-AI is only as good as the context you give it. Arborescent lets you build that context once, refine it over time, and reuse it everywhere.
+AI is at its best when the human is in the driver's seat.  Arborescent keeps you there.
 
 ## What it does
 
-Arborescent lets you decompose projects as trees, with reusable contexts that automatically attach when you send any part of your work to an AI. Refine what works, and every future collaboration gets better.
+Decompose and execute your ideas with AI collaboration. Refine your contexts through feedback loops. Every collaboration gets more precise.
 
-The blueprint feature lets you export the meta-structure—your workflow logic without the project content—so you can share it with a team, refine it together, or contribute it to the community.
+Blueprints let you encode and share that expertise, or import it from your team or community. What one person knows, everyone does.
 
 ## Key features
 
-- **Tree-based decomposition** — Break complex projects into manageable parts with unlimited nesting
-- **Reusable contexts** — Define contexts once, apply them to any node. Child nodes inherit parent contexts automatically. When you refine a context, every node using it improves.
-- **Blueprints** — Export your workflow structure stripped of project content. Share your organizational logic with others, or import theirs.
-- **Keyboard-first editing** — Navigate with arrow keys, create with Enter, restructure with Tab
-- **Two-click AI export** — Right-click any node, send to any AI in the browser or terminal to build or review
-
-### Also includes
-
-- Multi-file support with tabbed interface and session persistence
-- Status tracking (incomplete/complete/blocked)
-- Drag and drop with multi-select
-- Integrated terminal emulator
-- Plugin system (Claude Code integration included)
+- **Tree-based decomposition** — Hierarchical structure, drag and drop, keyboard-first navigation.
+- **Reusable contexts** — Define contexts for each need, apply them to any branch. Changes are inherited automatically.
+- **Blueprints** — Encode and share your workflow. Import expertise from your community or team.
+- **AI integration** — Send any branch to browser or terminal AI to build or review.
+- **Integrated terminal and browser** — No context switching, optimized for flow.
 
 ## Quick start
 
-1. [Download the latest release](https://github.com/yourrepo/arborescent/releases)
-2. Open Arborescent and create a new file
-3. Build your tree: Enter creates siblings, Tab indents, arrow keys navigate
-4. Right-click any node → "Contexts" to attach reusable context
-5. Right-click any node → "Send to AI" to export with context attached
-
-## Philosophy
-
-Designed for focus and low cognitive load:
-
-- Tree structure supports non-linear thinking
-- UI minimizes visual noise
-- Predictable, stable behavior
-- Complexity is emergent, discoverable, configurable
+1. [Download the latest release](releases)
+2. Open Arborescent and create a new file.
+3. Build your tree: Enter creates a new branch, Tab indents, arrow keys navigate. [Full documentation here.](docs/README.md)
+4. Right-click any branch → "Blueprint" → "Declare as context" to declare it as context for an AI.
+5. Right-click any branch → "Execute or Collaborate", tag the context, send it to the browser or terminal.
+6. Right-click any branch → "Blueprint" → "Add to blueprint", declare it as meta-structure for export.
 
 ## Example blueprints
 
@@ -56,7 +40,7 @@ Designed for focus and low cognitive load:
 
 ## File format
 
-Arborescent uses `.arbo` files (YAML-based) for tree storage with autosave. Human-readable, version-control friendly.
+Arborescent uses `.arbo` files which are YAML based to be human-readable and version-control friendly.
 
 ---
 
@@ -65,7 +49,7 @@ Arborescent uses `.arbo` files (YAML-based) for tree storage with autosave. Huma
 ### Tech stack
 
 - **Electron** + **Vite** — Desktop framework and build tooling
-- **React 19** + **TypeScript** — UI and type safety
+- **React** + **TypeScript** — UI and type safety
 - **Zustand** — State management
 - **@dnd-kit** — Drag and drop
 - **xterm.js** — Terminal emulation
@@ -104,5 +88,3 @@ GPL-3.0-only
 ## Learn more
 
 - [Documentation](docs/README.md)
-- [Creating blueprints](docs/blueprints.md)
-- [Plugin development](docs/plugins.md)
