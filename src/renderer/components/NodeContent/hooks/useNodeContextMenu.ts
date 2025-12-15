@@ -158,13 +158,23 @@ export function useNodeContextMenu(node: TreeNode) {
     });
 
     const isHyperlink = node.metadata.isHyperlink === true;
+    const isExternalLink = node.metadata.isExternalLink === true;
+    const externalUrl = node.metadata.externalUrl as string | undefined;
 
     const baseMenuItems: ContextMenuItem[] = [
-      ...(!isHyperlink ? [{
+      ...(isExternalLink && externalUrl ? [{
+        label: 'Open in external browser',
+        onClick: () => {
+          window.electron.openExternal(externalUrl).catch(() => {
+            logger.error('Failed to open external link', new Error('openExternal failed'), 'Context Menu');
+          });
+        },
+      }] : []),
+      ...(!isHyperlink && !isExternalLink ? [{
         label: 'Execute',
         submenu: executeSubmenu,
       }] : []),
-      ...(!isHyperlink ? [{
+      ...(!isHyperlink && !isExternalLink ? [{
         label: 'Collaborate',
         submenu: collaborateSubmenu,
         disabled: collaborateDisabled,
@@ -174,7 +184,7 @@ export function useNodeContextMenu(node: TreeNode) {
         onClick: handleCancel,
         disabled: false,
       }] : []),
-      ...(!isHyperlink && blueprintMenuItem ? [blueprintMenuItem] : []),
+      ...(!isHyperlink && !isExternalLink && blueprintMenuItem ? [blueprintMenuItem] : []),
       {
         label: 'Edit',
         submenu: [
@@ -209,8 +219,8 @@ export function useNodeContextMenu(node: TreeNode) {
           },
         ],
       },
-      ...(statusMenuItem ? [statusMenuItem] : []),
-      ...(!isZoomTab && !isHyperlink ? [{
+      ...(!isExternalLink && statusMenuItem ? [statusMenuItem] : []),
+      ...(!isZoomTab && !isHyperlink && !isExternalLink ? [{
         label: 'Zoom',
         onClick: handleZoom,
         disabled: false,

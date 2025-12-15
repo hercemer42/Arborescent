@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2025-12-15T12:36:32.870Z'
+updated: '2025-12-15T12:46:58.420Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -474,6 +474,7 @@ nodes:
     id: 565dde0a-864b-41f9-86ff-dbdf40ac4dd0
     content: Done
     children:
+      - 53f32915-6bee-44f3-8a84-e2b9a9a82eb8
       - 2fe15dab-4d78-48db-ad5f-4c8322337ba5
       - 4a1f9ce5-2e63-4760-9485-3d5b2cfebe22
       - cddba8cd-67ca-4f60-a2d9-cbbe41815200
@@ -14937,7 +14938,8 @@ nodes:
   c25cf481-a0d1-495d-9cea-498f1135eb8c:
     id: c25cf481-a0d1-495d-9cea-498f1135eb8c
     content: Minor feature
-    children: []
+    children:
+      - 3ccb2029-faee-4da4-ad66-211f77277afa
     metadata:
       status: completed
       expanded: true
@@ -15068,9 +15070,7 @@ nodes:
       - 2ea55700-ee7a-4057-9b72-3b0aa00589a7
       - 9a38a539-0a71-497b-ba8f-148df72c9ddb
       - fdbbfb4f-a888-4982-a783-f61800d4009c
-      - 3ccb2029-faee-4da4-ad66-211f77277afa
       - e5ad2c66-f085-482e-8010-5fb1a2cf93d7
-      - 53f32915-6bee-44f3-8a84-e2b9a9a82eb8
     metadata:
       status: pending
       expanded: true
@@ -19466,8 +19466,11 @@ nodes:
       status: pending
   3ccb2029-faee-4da4-ad66-211f77277afa:
     id: 3ccb2029-faee-4da4-ad66-211f77277afa
-    content: HTML links should open in browser panel, duh...
-    children: []
+    content: HTML links should open in browser panel and not call system default browser
+    children:
+      - 3c5d04bb-83e9-4d96-b895-38f33ab71908
+      - 8d21b9cd-7743-45df-a734-de0460c5aa6f
+      - 84eff767-32aa-425f-8c23-55f7b0aa0263
     metadata:
       status: pending
   53f32915-6bee-44f3-8a84-e2b9a9a82eb8:
@@ -19475,7 +19478,8 @@ nodes:
     content: Change 'node' to 'branch' in UI
     children: []
     metadata:
-      status: pending
+      status: completed
+      resolvedAt: '2025-12-15T12:45:11.100Z'
   41691f56-cf04-4609-8009-8d0b50b36ec7:
     id: 41691f56-cf04-4609-8009-8d0b50b36ec7
     content: Post releases to gitlab
@@ -19526,6 +19530,24 @@ nodes:
   2f729f27-a246-41bf-9137-e527b61bc166:
     id: 2f729f27-a246-41bf-9137-e527b61bc166
     content: Maybe something to explain my workflow for the react-electron blueprint
+    children: []
+    metadata:
+      status: pending
+  3c5d04bb-83e9-4d96-b895-38f33ab71908:
+    id: 3c5d04bb-83e9-4d96-b895-38f33ab71908
+    content: Click - open in browser panel
+    children: []
+    metadata:
+      status: pending
+  8d21b9cd-7743-45df-a734-de0460c5aa6f:
+    id: 8d21b9cd-7743-45df-a734-de0460c5aa6f
+    content: Shit+click - open in user's default browser
+    children: []
+    metadata:
+      status: pending
+  84eff767-32aa-425f-8c23-55f7b0aa0263:
+    id: 84eff767-32aa-425f-8c23-55f7b0aa0263
+    content: Right-click context menu option - open in external browser
     children: []
     metadata:
       status: pending

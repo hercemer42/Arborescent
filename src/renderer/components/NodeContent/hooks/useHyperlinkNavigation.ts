@@ -3,21 +3,31 @@ import { TreeNode } from '../../../../shared/types';
 import { useActiveTreeStore } from '../../../store/tree/TreeStoreContext';
 import { useToastStore } from '../../../store/toast/toastStore';
 import { useFilesStore } from '../../../store/files/filesStore';
+import { useBrowserStore } from '../../../store/browser/browserStore';
+import { usePanelStore } from '../../../store/panel/panelStore';
 
 export function useHyperlinkNavigation(node: TreeNode) {
   const store = useActiveTreeStore();
   const activeFile = useFilesStore((state) => state.getActiveFile());
   const setActiveFile = useFilesStore((state) => state.setActiveFile);
+  const addBrowserTab = useBrowserStore((state) => state.actions.addTab);
+  const showBrowser = usePanelStore((state) => state.showBrowser);
 
   const isExternalLink = node.metadata.isExternalLink === true;
   const externalUrl = node.metadata.externalUrl as string | undefined;
 
+  const openInExternalBrowser = useCallback(() => {
+    if (!externalUrl) return;
+    window.electron.openExternal(externalUrl).catch(() => {
+      useToastStore.getState().addToast('Failed to open link', 'error');
+    });
+  }, [externalUrl]);
+
   const navigateToLinkedNode = useCallback(() => {
-    // Handle external links - open in browser
+    // Handle external links - open in browser panel
     if (isExternalLink && externalUrl) {
-      window.electron.openExternal(externalUrl).catch(() => {
-        useToastStore.getState().addToast('Failed to open link', 'error');
-      });
+      addBrowserTab(externalUrl);
+      showBrowser();
       return;
     }
 
@@ -57,7 +67,7 @@ export function useHyperlinkNavigation(node: TreeNode) {
     // Select the target node and scroll to it
     actions.selectNode(linkedNodeId, 0);
     store.setState({ scrollToNodeId: linkedNodeId });
-  }, [node.metadata.linkedNodeId, store, activeFile, setActiveFile, isExternalLink, externalUrl]);
+  }, [node.metadata.linkedNodeId, store, activeFile, setActiveFile, isExternalLink, externalUrl, addBrowserTab, showBrowser]);
 
-  return { navigateToLinkedNode, isExternalLink };
+  return { navigateToLinkedNode, isExternalLink, openInExternalBrowser };
 }

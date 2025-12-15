@@ -574,4 +574,66 @@ describe('useNodeContextMenu', () => {
       expect(deleteItem?.danger).toBe(true);
     });
   });
+
+  describe('external link menu', () => {
+    const externalLinkNode: TreeNode = {
+      id: 'external-link-node',
+      content: 'https://example.com',
+      children: [],
+      metadata: {
+        isExternalLink: true,
+        externalUrl: 'https://example.com',
+      },
+    };
+
+    beforeEach(() => {
+      store.setState({
+        nodes: { 'external-link-node': externalLinkNode },
+        rootNodeId: 'external-link-node',
+        ancestorRegistry: {
+          'external-link-node': [],
+        },
+      });
+    });
+
+    it('should show Open in external browser option for external links', async () => {
+      const { result } = renderHook(() => useNodeContextMenu(externalLinkNode), { wrapper });
+
+      await openContextMenu(result);
+
+      const openExternalItem = result.current.contextMenuItems.find(
+        item => item.label === 'Open in external browser'
+      );
+      expect(openExternalItem).toBeDefined();
+    });
+
+    it('should not show Execute, Collaborate, Blueprint for external links', async () => {
+      const { result } = renderHook(() => useNodeContextMenu(externalLinkNode), { wrapper });
+
+      await openContextMenu(result);
+
+      expect(result.current.contextMenuItems.find(item => item.label === 'Execute')).toBeUndefined();
+      expect(result.current.contextMenuItems.find(item => item.label === 'Collaborate')).toBeUndefined();
+      expect(result.current.contextMenuItems.find(item => item.label === 'Blueprint')).toBeUndefined();
+    });
+
+    it('should not show Status or Zoom for external links', async () => {
+      const { result } = renderHook(() => useNodeContextMenu(externalLinkNode), { wrapper });
+
+      await openContextMenu(result);
+
+      expect(result.current.contextMenuItems.find(item => item.label === 'Status')).toBeUndefined();
+      expect(result.current.contextMenuItems.find(item => item.label === 'Zoom')).toBeUndefined();
+    });
+
+    it('should still show Edit submenu for external links', async () => {
+      const { result } = renderHook(() => useNodeContextMenu(externalLinkNode), { wrapper });
+
+      await openContextMenu(result);
+
+      const editMenu = result.current.contextMenuItems.find(item => item.label === 'Edit');
+      expect(editMenu).toBeDefined();
+      expect(editMenu?.submenu?.find(item => item.label === 'Delete')).toBeDefined();
+    });
+  });
 });

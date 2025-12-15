@@ -49,7 +49,9 @@ function NodeContentComponent({
   const renderStatusArea = () => {
     // Link node (internal hyperlink or external URL)
     if (isLink) {
-      const title = isExternalLink ? 'Click to open in browser' : 'Click to navigate to linked node';
+      const title = isExternalLink
+        ? 'Click to open in browser panel'
+        : 'Click to navigate to linked branch';
       return (
         <button
           className="hyperlink-indicator"
