@@ -50,7 +50,7 @@ describe('buildCollaborateSubmenu', () => {
     });
 
     it('should enable actions when context is selected', () => {
-      const node = createNode('regular-node', { activeCollaborateContextId: 'ctx-1' });
+      const node = createNode('regular-node', { appliedContextId: 'ctx-1' });
       const ctxNode = createNode('ctx-1', { isContextDeclaration: true });
       const nodes = { 'regular-node': node, 'ctx-1': ctxNode };
       const contextDeclarations = [createContextDeclaration('ctx-1', 'Context 1')];
@@ -92,7 +92,7 @@ describe('buildCollaborateSubmenu', () => {
     });
 
     it('should show multiple contexts with selection indicator', () => {
-      const node = createNode('task-node', { activeCollaborateContextId: 'ctx-1' });
+      const node = createNode('task-node', { appliedContextId: 'ctx-1' });
       const ctx1 = createNode('ctx-1', { isContextDeclaration: true, blueprintIcon: 'star' });
       ctx1.content = 'Context One';
       const ctx2 = createNode('ctx-2', { isContextDeclaration: true, blueprintIcon: 'flag' });
@@ -116,7 +116,7 @@ describe('buildCollaborateSubmenu', () => {
 
     it('should inherit context selection from ancestors', () => {
       const node = createNode('child-node');
-      const parentNode = createNode('parent-node', { activeCollaborateContextId: 'ctx-1' });
+      const parentNode = createNode('parent-node', { appliedContextId: 'ctx-1' });
       const ctx1 = createNode('ctx-1', { isContextDeclaration: true });
       ctx1.content = 'Parent Context';
 
@@ -139,8 +139,7 @@ describe('buildCollaborateSubmenu', () => {
         contextDeclarations,
       });
 
-      // Child should inherit parent's selection
-      expect(result[4].label).toBe('Parent Context');
+      expect(result[4].label).toBe('Parent Context (inherited)');
       expect(result[4].radioSelected).toBe(true);
     });
   });
@@ -148,7 +147,7 @@ describe('buildCollaborateSubmenu', () => {
   describe('context selection', () => {
     it('should call onSetActiveContext when clicking non-active context', () => {
       const onSetActiveContext = vi.fn();
-      const node = createNode('task-node', { activeCollaborateContextId: 'ctx-1' });
+      const node = createNode('task-node', { appliedContextId: 'ctx-1' });
       const nodes = {
         'task-node': node,
         'ctx-1': createNode('ctx-1', { isContextDeclaration: true }),
@@ -164,12 +163,12 @@ describe('buildCollaborateSubmenu', () => {
       // Click the non-active context (ctx-2) - index 5
       result[5].onClick?.();
 
-      expect(onSetActiveContext).toHaveBeenCalledWith('task-node', 'ctx-2', 'collaborate');
+      expect(onSetActiveContext).toHaveBeenCalledWith('task-node', 'ctx-2');
     });
 
     it('should call onSetActiveContext with null when clicking active context to clear', () => {
       const onSetActiveContext = vi.fn();
-      const node = createNode('task-node', { activeCollaborateContextId: 'ctx-1' });
+      const node = createNode('task-node', { appliedContextId: 'ctx-1' });
       const nodes = {
         'task-node': node,
         'ctx-1': createNode('ctx-1', { isContextDeclaration: true }),
@@ -181,14 +180,14 @@ describe('buildCollaborateSubmenu', () => {
       // Click the active context to clear it
       result[4].onClick?.();
 
-      expect(onSetActiveContext).toHaveBeenCalledWith('task-node', null, 'collaborate');
+      expect(onSetActiveContext).toHaveBeenCalledWith('task-node', null);
     });
   });
 
   describe('click handlers', () => {
     it('should call onCollaborateInTerminal when In terminal is clicked', () => {
       const onCollaborateInTerminal = vi.fn();
-      const node = createNode('regular-node', { activeCollaborateContextId: 'ctx-1' });
+      const node = createNode('regular-node', { appliedContextId: 'ctx-1' });
       const nodes = { 'regular-node': node, 'ctx-1': createNode('ctx-1', { isContextDeclaration: true }) };
       const contextDeclarations = [createContextDeclaration('ctx-1', 'Context 1')];
 
@@ -200,7 +199,7 @@ describe('buildCollaborateSubmenu', () => {
 
     it('should call onCollaborate when In browser is clicked', () => {
       const onCollaborate = vi.fn();
-      const node = createNode('regular-node', { activeCollaborateContextId: 'ctx-1' });
+      const node = createNode('regular-node', { appliedContextId: 'ctx-1' });
       const nodes = { 'regular-node': node, 'ctx-1': createNode('ctx-1', { isContextDeclaration: true }) };
       const contextDeclarations = [createContextDeclaration('ctx-1', 'Context 1')];
 

@@ -1,8 +1,8 @@
 import { describe, it, expect } from 'vitest';
-import { getActiveContextIdWithInheritance } from '../nodeHelpers';
+import { getAppliedContextIdWithInheritance } from '../nodeHelpers';
 import { TreeNode } from '@shared/types';
 
-describe('Execute and Collaborate context independence', () => {
+describe('Unified context system', () => {
   const createNode = (id: string, metadata = {}): TreeNode => ({
     id,
     content: `Node ${id}`,
@@ -10,116 +10,77 @@ describe('Execute and Collaborate context independence', () => {
     metadata,
   });
 
-  it('should store and retrieve Execute context independently from Collaborate', () => {
+  it('should use appliedContextId', () => {
     const nodes: Record<string, TreeNode> = {
       'task': createNode('task', {
-        activeExecuteContextId: 'ctx-exec',
-        activeCollaborateContextId: 'ctx-collab',
+        appliedContextId: 'ctx-1',
       }),
-      'ctx-exec': createNode('ctx-exec', { isContextDeclaration: true }),
-      'ctx-collab': createNode('ctx-collab', { isContextDeclaration: true }),
+      'ctx-1': createNode('ctx-1', { isContextDeclaration: true }),
     };
     const ancestorRegistry = { 'task': [] };
 
-    const executeContext = getActiveContextIdWithInheritance('task', nodes, ancestorRegistry, 'execute');
-    const collaborateContext = getActiveContextIdWithInheritance('task', nodes, ancestorRegistry, 'collaborate');
+    const appliedContext = getAppliedContextIdWithInheritance('task', nodes, ancestorRegistry);
 
-    expect(executeContext).toBe('ctx-exec');
-    expect(collaborateContext).toBe('ctx-collab');
-    expect(executeContext).not.toBe(collaborateContext);
+    expect(appliedContext).toBe('ctx-1');
   });
 
-  it('should allow Execute to have a context while Collaborate has none', () => {
-    const nodes: Record<string, TreeNode> = {
-      'task': createNode('task', {
-        activeExecuteContextId: 'ctx-exec',
-        // No activeCollaborateContextId
-      }),
-      'ctx-exec': createNode('ctx-exec', { isContextDeclaration: true }),
-    };
-    const ancestorRegistry = { 'task': [] };
-
-    const executeContext = getActiveContextIdWithInheritance('task', nodes, ancestorRegistry, 'execute');
-    const collaborateContext = getActiveContextIdWithInheritance('task', nodes, ancestorRegistry, 'collaborate');
-
-    expect(executeContext).toBe('ctx-exec');
-    expect(collaborateContext).toBeUndefined();
-  });
-
-  it('should allow Collaborate to have a context while Execute has none', () => {
-    const nodes: Record<string, TreeNode> = {
-      'task': createNode('task', {
-        // No activeExecuteContextId
-        activeCollaborateContextId: 'ctx-collab',
-      }),
-      'ctx-collab': createNode('ctx-collab', { isContextDeclaration: true }),
-    };
-    const ancestorRegistry = { 'task': [] };
-
-    const executeContext = getActiveContextIdWithInheritance('task', nodes, ancestorRegistry, 'execute');
-    const collaborateContext = getActiveContextIdWithInheritance('task', nodes, ancestorRegistry, 'collaborate');
-
-    expect(executeContext).toBeUndefined();
-    expect(collaborateContext).toBe('ctx-collab');
-  });
-
-  it('should fall back to shared appliedContextId when neither has explicit selection', () => {
-    const nodes: Record<string, TreeNode> = {
-      'task': createNode('task'),
-      'blueprint-parent': createNode('blueprint-parent', {
-        isBlueprint: true,
-        appliedContextId: 'ctx-default',
-      }),
-      'ctx-default': createNode('ctx-default', { isContextDeclaration: true }),
-    };
-    const ancestorRegistry = { 'task': ['blueprint-parent'] };
-
-    const executeContext = getActiveContextIdWithInheritance('task', nodes, ancestorRegistry, 'execute');
-    const collaborateContext = getActiveContextIdWithInheritance('task', nodes, ancestorRegistry, 'collaborate');
-
-    // Both should fall back to the shared default
-    expect(executeContext).toBe('ctx-default');
-    expect(collaborateContext).toBe('ctx-default');
-  });
-
-  it('should use explicit selection over shared fallback', () => {
-    const nodes: Record<string, TreeNode> = {
-      'task': createNode('task', {
-        activeExecuteContextId: 'ctx-exec',
-        // No activeCollaborateContextId - will fall back
-      }),
-      'blueprint-parent': createNode('blueprint-parent', {
-        isBlueprint: true,
-        appliedContextId: 'ctx-default',
-      }),
-      'ctx-exec': createNode('ctx-exec', { isContextDeclaration: true }),
-      'ctx-default': createNode('ctx-default', { isContextDeclaration: true }),
-    };
-    const ancestorRegistry = { 'task': ['blueprint-parent'] };
-
-    const executeContext = getActiveContextIdWithInheritance('task', nodes, ancestorRegistry, 'execute');
-    const collaborateContext = getActiveContextIdWithInheritance('task', nodes, ancestorRegistry, 'collaborate');
-
-    expect(executeContext).toBe('ctx-exec'); // Explicit selection
-    expect(collaborateContext).toBe('ctx-default'); // Falls back to shared default
-  });
-
-  it('should inherit Execute context from ancestor independently of Collaborate', () => {
+  it('should inherit context from ancestor', () => {
     const nodes: Record<string, TreeNode> = {
       'task': createNode('task'),
       'parent': createNode('parent', {
-        activeExecuteContextId: 'ctx-parent-exec',
-        activeCollaborateContextId: 'ctx-parent-collab',
+        appliedContextId: 'ctx-parent',
       }),
-      'ctx-parent-exec': createNode('ctx-parent-exec', { isContextDeclaration: true }),
-      'ctx-parent-collab': createNode('ctx-parent-collab', { isContextDeclaration: true }),
+      'ctx-parent': createNode('ctx-parent', { isContextDeclaration: true }),
     };
     const ancestorRegistry = { 'task': ['parent'] };
 
-    const executeContext = getActiveContextIdWithInheritance('task', nodes, ancestorRegistry, 'execute');
-    const collaborateContext = getActiveContextIdWithInheritance('task', nodes, ancestorRegistry, 'collaborate');
+    const context = getAppliedContextIdWithInheritance('task', nodes, ancestorRegistry);
 
-    expect(executeContext).toBe('ctx-parent-exec');
-    expect(collaborateContext).toBe('ctx-parent-collab');
+    expect(context).toBe('ctx-parent');
+  });
+
+  it('should allow descendant to override inherited context', () => {
+    const nodes: Record<string, TreeNode> = {
+      'task': createNode('task', {
+        appliedContextId: 'ctx-child',
+      }),
+      'parent': createNode('parent', {
+        appliedContextId: 'ctx-parent',
+      }),
+      'ctx-parent': createNode('ctx-parent', { isContextDeclaration: true }),
+      'ctx-child': createNode('ctx-child', { isContextDeclaration: true }),
+    };
+    const ancestorRegistry = { 'task': ['parent'] };
+
+    const context = getAppliedContextIdWithInheritance('task', nodes, ancestorRegistry);
+
+    // Child's explicit context overrides parent's
+    expect(context).toBe('ctx-child');
+  });
+
+  it('should return undefined when no context is set', () => {
+    const nodes: Record<string, TreeNode> = {
+      'task': createNode('task'),
+    };
+    const ancestorRegistry = { 'task': [] };
+
+    const context = getAppliedContextIdWithInheritance('task', nodes, ancestorRegistry);
+
+    expect(context).toBeUndefined();
+  });
+
+  it('should allow any node to have an applied context (not just blueprints)', () => {
+    const nodes: Record<string, TreeNode> = {
+      'regular-node': createNode('regular-node', {
+        // Not a blueprint, but still has appliedContextId
+        appliedContextId: 'ctx-1',
+      }),
+      'ctx-1': createNode('ctx-1', { isContextDeclaration: true }),
+    };
+    const ancestorRegistry = { 'regular-node': [] };
+
+    const context = getAppliedContextIdWithInheritance('regular-node', nodes, ancestorRegistry);
+
+    expect(context).toBe('ctx-1');
   });
 });

@@ -393,9 +393,9 @@ describe('contextActions', () => {
       state.nodes['node-2'].metadata.activeContextId = 'node-1';
     });
 
-    it('should set activeContextId on the node', () => {
+    it('should set appliedContextId on the node', () => {
       actions.setActiveContext('node-2', 'node-3');
-      expect(state.nodes['node-2'].metadata.activeContextId).toBe('node-3');
+      expect(state.nodes['node-2'].metadata.appliedContextId).toBe('node-3');
     });
 
     it('should trigger autosave', () => {
@@ -408,16 +408,17 @@ describe('contextActions', () => {
       expect(mockTriggerAutosave).not.toHaveBeenCalled();
     });
 
-    it('should allow setting activeContextId on context declarations', () => {
+    it('should allow setting appliedContextId on context declarations', () => {
       state.nodes['node-2'].metadata.isContextDeclaration = true;
       actions.setActiveContext('node-2', 'node-3');
-      expect(state.nodes['node-2'].metadata.activeContextId).toBe('node-3');
+      expect(state.nodes['node-2'].metadata.appliedContextId).toBe('node-3');
       expect(mockTriggerAutosave).toHaveBeenCalled();
     });
 
-    it('should not set activeContextId for context not applied to node', () => {
-      actions.setActiveContext('node-2', 'non-applied-context');
-      expect(state.nodes['node-2'].metadata.activeContextId).toBe('node-1');
+    it('should not set appliedContextId for non-existent context', () => {
+      actions.setActiveContext('node-2', 'non-existent-context');
+      // Should not change since context doesn't exist
+      expect(state.nodes['node-2'].metadata.appliedContextId).toBeUndefined();
       expect(mockTriggerAutosave).not.toHaveBeenCalled();
     });
   });

@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2025-12-15T12:46:58.420Z'
+updated: '2025-12-15T15:39:10.821Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -474,6 +474,8 @@ nodes:
     id: 565dde0a-864b-41f9-86ff-dbdf40ac4dd0
     content: Done
     children:
+      - 68f39796-a961-4ddc-8064-f19277378c4e
+      - 3ccb2029-faee-4da4-ad66-211f77277afa
       - 53f32915-6bee-44f3-8a84-e2b9a9a82eb8
       - 2fe15dab-4d78-48db-ad5f-4c8322337ba5
       - 4a1f9ce5-2e63-4760-9485-3d5b2cfebe22
@@ -525,7 +527,7 @@ nodes:
       - d87082fc-4e05-4080-b652-c69897022374
     metadata:
       status: completed
-      expanded: false
+      expanded: true
       isBlueprint: true
       blueprintIcon: FolderCheck
       blueprintColor: '#22c55e'
@@ -6322,7 +6324,7 @@ nodes:
       - a4c333be-a8a4-4c0f-8148-b2260507f5ad
     metadata:
       status: pending
-      expanded: false
+      expanded: true
       appliedContextIds:
         - 64ea2af4-332b-44a6-8b88-78535cc9b79a
       activeContextId: 64ea2af4-332b-44a6-8b88-78535cc9b79a
@@ -9164,7 +9166,7 @@ nodes:
       - e43903b2-2184-4cbd-84ec-9cd24ea536e2
     metadata:
       status: pending
-      expanded: false
+      expanded: true
       isBlueprint: true
       blueprintIcon: Star
       blueprintColor: '#64748b'
@@ -14498,12 +14500,10 @@ nodes:
   4966bd3d-fe8d-4094-840f-a0f791c07d6c:
     id: 4966bd3d-fe8d-4094-840f-a0f791c07d6c
     content: Build and test on Mac, Ubuntu, Arch, Windows
-    children:
-      - 4accfc5d-1f75-492f-a34d-0005c1dff351
-      - 3e884ffb-0f2a-43c7-8a46-0ad06fe44f45
+    children: []
     metadata:
       status: pending
-      expanded: false
+      expanded: true
   cc522bbb-99fe-499f-b9d8-a62c7ce50575:
     id: cc522bbb-99fe-499f-b9d8-a62c7ce50575
     content: Help branches for onboarding
@@ -14512,7 +14512,7 @@ nodes:
       - d2f85efd-9234-4349-a5d0-147807aef97e
     metadata:
       status: pending
-      expanded: true
+      expanded: false
   d2f85efd-9234-4349-a5d0-147807aef97e:
     id: d2f85efd-9234-4349-a5d0-147807aef97e
     content: Separate blueprint or part of default ?
@@ -14938,8 +14938,7 @@ nodes:
   c25cf481-a0d1-495d-9cea-498f1135eb8c:
     id: c25cf481-a0d1-495d-9cea-498f1135eb8c
     content: Minor feature
-    children:
-      - 3ccb2029-faee-4da4-ad66-211f77277afa
+    children: []
     metadata:
       status: completed
       expanded: true
@@ -15043,33 +15042,21 @@ nodes:
     metadata:
       status: completed
       resolvedAt: '2025-12-09T06:01:12.536Z'
-  4accfc5d-1f75-492f-a34d-0005c1dff351:
-    id: 4accfc5d-1f75-492f-a34d-0005c1dff351
-    content: Start getting emulators setup
-    children: []
-    metadata:
-      status: pending
-  3e884ffb-0f2a-43c7-8a46-0ad06fe44f45:
-    id: 3e884ffb-0f2a-43c7-8a46-0ad06fe44f45
-    content: Skip windows ?
-    children: []
-    metadata:
-      status: pending
   92b16d87-27dc-486d-a605-4228e2b5206c:
     id: 92b16d87-27dc-486d-a605-4228e2b5206c
     content: For release
     children:
-      - 4966bd3d-fe8d-4094-840f-a0f791c07d6c
-      - cc522bbb-99fe-499f-b9d8-a62c7ce50575
       - 2de48b9d-ee07-467e-a332-19d2a873ed30
+      - 2ea55700-ee7a-4057-9b72-3b0aa00589a7
+      - 2fe3a40d-e6bd-40b7-8bf1-e4374e91ed05
       - 1be855d0-fbb1-4fbf-aee9-fe25b8d9f20b
-      - 1c0d0565-aced-4527-b0c9-61f71617168a
+      - 6258293d-9835-4fa5-b7b4-362cedb36daf
+      - cc522bbb-99fe-499f-b9d8-a62c7ce50575
       - 0053985b-19d7-4115-943b-57e0f47d0fd0
       - 50d841f9-3ba9-4f87-af62-e95a5332b173
-      - 41691f56-cf04-4609-8009-8d0b50b36ec7
-      - 2ea55700-ee7a-4057-9b72-3b0aa00589a7
       - 9a38a539-0a71-497b-ba8f-148df72c9ddb
-      - fdbbfb4f-a888-4982-a783-f61800d4009c
+      - 4966bd3d-fe8d-4094-840f-a0f791c07d6c
+      - 41691f56-cf04-4609-8009-8d0b50b36ec7
       - e5ad2c66-f085-482e-8010-5fb1a2cf93d7
     metadata:
       status: pending
@@ -15631,7 +15618,9 @@ nodes:
   a4c333be-a8a4-4c0f-8148-b2260507f5ad:
     id: a4c333be-a8a4-4c0f-8148-b2260507f5ad
     content: In progress
-    children: []
+    children:
+      - 4ae089d5-f01f-49c8-ba28-6d56375264df
+      - f87efadf-ec09-446a-bc7a-01adff1e3990
     metadata:
       status: pending
       appliedContextIds:
@@ -17197,7 +17186,7 @@ nodes:
       - c9a0cf38-c449-47a0-b687-359ca5ddd57e
     metadata:
       status: pending
-      expanded: false
+      expanded: true
       isBlueprint: true
       blueprintIcon: LayoutList
       blueprintColor: '#14b8a6'
@@ -17458,6 +17447,7 @@ nodes:
       - bd5b4746-f7cf-482f-b32b-d58e3493a80e
     metadata:
       status: pending
+      expanded: false
   79eca573-ccce-4e91-8339-15ac386b818c:
     id: 79eca573-ccce-4e91-8339-15ac386b818c
     content: Designed for focus and low cognitive load
@@ -17521,6 +17511,7 @@ nodes:
       - 8b1bdc8b-bbbc-4beb-bb5c-b88cf2201c81
     metadata:
       status: pending
+      expanded: false
   e2876839-8e7a-4261-a56d-e657d4384bb3:
     id: e2876839-8e7a-4261-a56d-e657d4384bb3
     content: Create temporary file for context
@@ -18815,10 +18806,10 @@ nodes:
       isBlueprint: true
       blueprintIcon: MessageCircle
       blueprintColor: '#a855f7'
-      expanded: false
+      expanded: true
   e7c804ef-54bc-4c6c-b783-c39357069ae0:
     id: e7c804ef-54bc-4c6c-b783-c39357069ae0
-    content: 'Clean up the comments to be sure they match the following conventions :'
+    content: 'Clean up the comments made since last commit to be sure they match the following conventions :'
     children:
       - d36f2f96-76df-458f-a4c2-8c9718cd4f36
     metadata:
@@ -18861,7 +18852,8 @@ nodes:
     content: Summary mode dates should default to within the last week in a new session
     children: []
     metadata:
-      status: pending
+      status: completed
+      resolvedAt: '2025-12-15T15:39:08.816Z'
   2ea55700-ee7a-4057-9b72-3b0aa00589a7:
     id: 2ea55700-ee7a-4057-9b72-3b0aa00589a7
     content: In summary mode, should have a way to build a report
@@ -18885,232 +18877,6 @@ nodes:
   bd5b4746-f7cf-482f-b32b-d58e3493a80e:
     id: bd5b4746-f7cf-482f-b32b-d58e3493a80e
     content: Or just a context to use acceptance criteria to output documentation ?
-    children: []
-    metadata:
-      status: pending
-  1c0d0565-aced-4527-b0c9-61f71617168a:
-    id: 1c0d0565-aced-4527-b0c9-61f71617168a
-    content: Create a new file from default blueprint
-    children:
-      - 48597318-e1db-4ce7-8b7e-c2d7a47f296c
-      - e4f79e2e-9568-4987-9158-dd465f2b7c7f
-      - 84e892a4-fc0e-4630-8f9f-64be74626c8b
-    metadata:
-      status: pending
-      expanded: false
-      deleted: false
-      plugins: {}
-  48597318-e1db-4ce7-8b7e-c2d7a47f296c:
-    id: 48597318-e1db-4ce7-8b7e-c2d7a47f296c
-    content: 'Clarify: How will users access these templates?'
-    children:
-      - 55b83d9f-d545-43ff-b076-ce48a8c2e2aa
-      - 6d214798-6c82-4549-a2a3-050dae19792f
-      - b4c63639-b3ce-483c-8be5-9f65744a8bd5
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  55b83d9f-d545-43ff-b076-ce48a8c2e2aa:
-    id: 55b83d9f-d545-43ff-b076-ce48a8c2e2aa
-    content: File menu � "New from template" submenu?
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  6d214798-6c82-4549-a2a3-050dae19792f:
-    id: 6d214798-6c82-4549-a2a3-050dae19792f
-    content: Or just ship them in a folder for users to copy manually?
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  b4c63639-b3ce-483c-8be5-9f65744a8bd5:
-    id: b4c63639-b3ce-483c-8be5-9f65744a8bd5
-    content: The simpler approach may be sufficient for launch
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e4f79e2e-9568-4987-9158-dd465f2b7c7f:
-    id: e4f79e2e-9568-4987-9158-dd465f2b7c7f
-    content: Bundled templates
-    children:
-      - 5a6f0de3-71b5-470e-a542-004c02e0792d
-      - 67ded8b7-b0d0-441c-a9db-55a09151a36c
-      - 55ff6167-a95e-4103-8af8-a4b79aae505f
-      - 7c63e3bc-42b6-41e5-b8f2-a7fcee93be2b
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  5a6f0de3-71b5-470e-a542-004c02e0792d:
-    id: 5a6f0de3-71b5-470e-a542-004c02e0792d
-    content: 'Problem Breakdown (created: blueprint-problem-breakdown.arbo)'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  67ded8b7-b0d0-441c-a9db-55a09151a36c:
-    id: 67ded8b7-b0d0-441c-a9db-55a09151a36c
-    content: 'Research (created: blueprint-research.arbo)'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  55ff6167-a95e-4103-8af8-a4b79aae505f:
-    id: 55ff6167-a95e-4103-8af8-a4b79aae505f
-    content: 'React/Electron project (exists: blueprint-react-electron.arbo)'
-    children:
-      - 1c75818e-f785-43c4-802d-c4a42b6d11cc
-      - 8f50ec9e-fc3c-438c-8e0e-3f5503a91ecc
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  1c75818e-f785-43c4-802d-c4a42b6d11cc:
-    id: 1c75818e-f785-43c4-802d-c4a42b6d11cc
-    content: 'Question: Is this too specific for a default template?'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  7c63e3bc-42b6-41e5-b8f2-a7fcee93be2b:
-    id: 7c63e3bc-42b6-41e5-b8f2-a7fcee93be2b
-    content: 'Question: Is 2-3 templates enough?'
-    children:
-      - bc5e511c-e7a4-4701-8b7a-4b2ae28c5caf
-      - 70179197-5262-4c61-8515-0d0389ed0040
-      - 5dfca0d6-b387-482c-90b0-a4a7b23a394e
-      - 26f23eb7-e39f-4456-b5c9-3721dba4ac57
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  bc5e511c-e7a4-4701-8b7a-4b2ae28c5caf:
-    id: bc5e511c-e7a4-4701-8b7a-4b2ae28c5caf
-    content: Problem Breakdown covers decision-making, planning, decomposition
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  70179197-5262-4c61-8515-0d0389ed0040:
-    id: 70179197-5262-4c61-8515-0d0389ed0040
-    content: Research covers learning, investigation, synthesis
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  5dfca0d6-b387-482c-90b0-a4a7b23a394e:
-    id: 5dfca0d6-b387-482c-90b0-a4a7b23a394e
-    content: A third execution-focused template (Project Plan) could round it out
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  26f23eb7-e39f-4456-b5c9-3721dba4ac57:
-    id: 26f23eb7-e39f-4456-b5c9-3721dba4ac57
-    content: Too many templates may overwhelm new users
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  84e892a4-fc0e-4630-8f9f-64be74626c8b:
-    id: 84e892a4-fc0e-4630-8f9f-64be74626c8b
-    content: Unrelated items - should these be separate tasks?
-    children:
-      - 37cb932b-5e27-424d-a532-a5605953bdf1
-      - a4d771a7-df0d-4885-bbfb-d220e1ac4e80
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  37cb932b-5e27-424d-a532-a5605953bdf1:
-    id: 37cb932b-5e27-424d-a532-a5605953bdf1
-    content: '"Apply to node" feature for review panel'
-    children:
-      - 24b5481d-fc11-42a9-98a0-b9f520b2eaeb
-      - 10aa484c-823a-4b23-8765-175a2181cc01
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  24b5481d-fc11-42a9-98a0-b9f520b2eaeb:
-    id: 24b5481d-fc11-42a9-98a0-b9f520b2eaeb
-    content: Unclear how this relates to blueprints
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  10aa484c-823a-4b23-8765-175a2181cc01:
-    id: 10aa484c-823a-4b23-8765-175a2181cc01
-    content: What problem does this solve?
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  a4d771a7-df0d-4885-bbfb-d220e1ac4e80:
-    id: a4d771a7-df0d-4885-bbfb-d220e1ac4e80
-    content: '"Pattern" feature'
-    children:
-      - 413a2e8c-1a76-438d-bf3c-9a6883e48c64
-      - 25130532-f81f-473e-802d-f3a44c99b91d
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  413a2e8c-1a76-438d-bf3c-9a6883e48c64:
-    id: 413a2e8c-1a76-438d-bf3c-9a6883e48c64
-    content: Unclear what this means
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  25130532-f81f-473e-802d-f3a44c99b91d:
-    id: 25130532-f81f-473e-802d-f3a44c99b91d
-    content: Needs definition before it can be evaluated
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  8f50ec9e-fc3c-438c-8e0e-3f5503a91ecc:
-    id: 8f50ec9e-fc3c-438c-8e0e-3f5503a91ecc
-    content: You forgot this
     children: []
     metadata:
       status: pending
@@ -19451,19 +19217,6 @@ nodes:
     children: []
     metadata:
       status: pending
-  fdbbfb4f-a888-4982-a783-f61800d4009c:
-    id: fdbbfb4f-a888-4982-a783-f61800d4009c
-    content: Think again about context setup
-    children:
-      - f2911754-c6b8-4d60-866c-7f6ca3a43fc5
-    metadata:
-      status: pending
-  f2911754-c6b8-4d60-866c-7f6ca3a43fc5:
-    id: f2911754-c6b8-4d60-866c-7f6ca3a43fc5
-    content: It's not very intuitive
-    children: []
-    metadata:
-      status: pending
   3ccb2029-faee-4da4-ad66-211f77277afa:
     id: 3ccb2029-faee-4da4-ad66-211f77277afa
     content: HTML links should open in browser panel and not call system default browser
@@ -19472,7 +19225,9 @@ nodes:
       - 8d21b9cd-7743-45df-a734-de0460c5aa6f
       - 84eff767-32aa-425f-8c23-55f7b0aa0263
     metadata:
-      status: pending
+      status: completed
+      resolvedAt: '2025-12-15T13:12:19.436Z'
+      expanded: false
   53f32915-6bee-44f3-8a84-e2b9a9a82eb8:
     id: 53f32915-6bee-44f3-8a84-e2b9a9a82eb8
     content: Change 'node' to 'branch' in UI
@@ -19483,15 +19238,12 @@ nodes:
   41691f56-cf04-4609-8009-8d0b50b36ec7:
     id: 41691f56-cf04-4609-8009-8d0b50b36ec7
     content: Post releases to gitlab
-    children: []
+    children:
+      - 8164dbec-a31f-408d-85ed-f3b2496b5883
+      - 4e281b34-4064-445d-b49e-733e0e815602
     metadata:
       status: pending
-  e5ad2c66-f085-482e-8010-5fb1a2cf93d7:
-    id: e5ad2c66-f085-482e-8010-5fb1a2cf93d7
-    content: Update readme
-    children: []
-    metadata:
-      status: pending
+      expanded: false
   8b1bdc8b-bbbc-4beb-bb5c-b88cf2201c81:
     id: 8b1bdc8b-bbbc-4beb-bb5c-b88cf2201c81
     content: In docs folder
@@ -19538,16 +19290,534 @@ nodes:
     content: Click - open in browser panel
     children: []
     metadata:
-      status: pending
+      status: completed
+      resolvedAt: '2025-12-15T13:12:19.436Z'
   8d21b9cd-7743-45df-a734-de0460c5aa6f:
     id: 8d21b9cd-7743-45df-a734-de0460c5aa6f
     content: Shit+click - open in user's default browser
     children: []
     metadata:
-      status: pending
+      status: completed
+      resolvedAt: '2025-12-15T13:12:19.436Z'
   84eff767-32aa-425f-8c23-55f7b0aa0263:
     id: 84eff767-32aa-425f-8c23-55f7b0aa0263
     content: Right-click context menu option - open in external browser
+    children: []
+    metadata:
+      status: completed
+      resolvedAt: '2025-12-15T13:12:19.436Z'
+  2fe3a40d-e6bd-40b7-8bf1-e4374e91ed05:
+    id: 2fe3a40d-e6bd-40b7-8bf1-e4374e91ed05
+    content: Fix mac menus to be native
+    children:
+      - c17f7fc5-5d2d-429a-8592-225487854013
+      - 8694d226-9305-45c8-812f-04722335d926
+      - a0457a41-abe7-4420-9ac3-7058ccbe67e8
+    metadata:
+      status: pending
+      expanded: false
+  c17f7fc5-5d2d-429a-8592-225487854013:
+    id: c17f7fc5-5d2d-429a-8592-225487854013
+    content: Is there an argument for using all native menus ?
+    children: []
+    metadata:
+      status: pending
+  8694d226-9305-45c8-812f-04722335d926:
+    id: 8694d226-9305-45c8-812f-04722335d926
+    content: What will happen in windows ?
+    children: []
+    metadata:
+      status: pending
+  a0457a41-abe7-4420-9ac3-7058ccbe67e8:
+    id: a0457a41-abe7-4420-9ac3-7058ccbe67e8
+    content: What does VS Code do ?
+    children: []
+    metadata:
+      status: pending
+  8164dbec-a31f-408d-85ed-f3b2496b5883:
+    id: 8164dbec-a31f-408d-85ed-f3b2496b5883
+    content: under 'Releases' folder
+    children: []
+    metadata:
+      status: pending
+  4e281b34-4064-445d-b49e-733e0e815602:
+    id: 4e281b34-4064-445d-b49e-733e0e815602
+    content: Make sure readme link works
+    children: []
+    metadata:
+      status: pending
+  e5ad2c66-f085-482e-8010-5fb1a2cf93d7:
+    id: e5ad2c66-f085-482e-8010-5fb1a2cf93d7
+    content: Insure readme is up to date
+    children: []
+    metadata:
+      status: pending
+  4ae089d5-f01f-49c8-ba28-6d56375264df:
+    id: 4ae089d5-f01f-49c8-ba28-6d56375264df
+    content: Remove toaster when context has changed
+    children: []
+    metadata:
+      status: pending
+  f87efadf-ec09-446a-bc7a-01adff1e3990:
+    id: f87efadf-ec09-446a-bc7a-01adff1e3990
+    content: When unchecking a context, if there is an inherited contex that is selected, but there's no visual indication to tell us why
+    children:
+      - 11452df9-49c3-478c-b158-ebed801f6f30
+      - c1fe667f-7ba3-4f27-898b-4e1dec546e30
+    metadata:
+      status: pending
+  11452df9-49c3-478c-b158-ebed801f6f30:
+    id: 11452df9-49c3-478c-b158-ebed801f6f30
+    content: We should always have the inherited context have a 'default' after it, and greyed out when selected (can't be unselected)
+    children: []
+    metadata:
+      status: pending
+  c1fe667f-7ba3-4f27-898b-4e1dec546e30:
+    id: c1fe667f-7ba3-4f27-898b-4e1dec546e30
+    content: Actually this problem only seems to occur when the inherited context iso
+    children: []
+    metadata:
+      status: pending
+  68f39796-a961-4ddc-8064-f19277378c4e:
+    id: 68f39796-a961-4ddc-8064-f19277378c4e
+    content: Restore ability to apply a context to any node
+    children:
+      - 68ba5fc4-a430-43c5-8fff-b1306452c6af
+      - 366f7213-3334-4149-952b-a52671eab295
+      - eda8e882-d9b1-4e62-8725-8a79768844cc
+      - 387e7820-bf07-4262-b06c-e7c9fdbd29b2
+      - ef4d743e-f800-4069-8bdc-ef12a81c9ffe
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  68ba5fc4-a430-43c5-8fff-b1306452c6af:
+    id: 68ba5fc4-a430-43c5-8fff-b1306452c6af
+    content: Remove the restriction to set a default context to a blueprint node only
+    children:
+      - 48abe3fd-a8c8-408d-b5d1-60dfc37f9898
+      - e5393e50-4feb-42bf-9355-7207c9a350c1
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  48abe3fd-a8c8-408d-b5d1-60dfc37f9898:
+    id: 48abe3fd-a8c8-408d-b5d1-60dfc37f9898
+    content: They get the same gutter icon is per a context applied to a blueprint
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e5393e50-4feb-42bf-9355-7207c9a350c1:
+    id: e5393e50-4feb-42bf-9355-7207c9a350c1
+    content: It does not change the blueprint status of that node
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  366f7213-3334-4149-952b-a52671eab295:
+    id: 366f7213-3334-4149-952b-a52671eab295
+    content: Add 'Set context' to the root of the context menu
+    children:
+      - 3da13923-7b41-4b1b-8e18-772b08ac3e31
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3da13923-7b41-4b1b-8e18-772b08ac3e31:
+    id: 3da13923-7b41-4b1b-8e18-772b08ac3e31
+    content: Place it after 'Collaborate' and before 'Blueprint'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  eda8e882-d9b1-4e62-8725-8a79768844cc:
+    id: eda8e882-d9b1-4e62-8725-8a79768844cc
+    content: Unify execute and collaborate contexts into a single applied context
+    children:
+      - 5172cd58-9081-49b6-9ec4-7cec3deb03f8
+      - 544a3f9d-e6c0-4eff-8fcc-75b21c33e649
+      - 69b2aa5e-7511-47a3-ba2a-c8860a3b79db
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5172cd58-9081-49b6-9ec4-7cec3deb03f8:
+    id: 5172cd58-9081-49b6-9ec4-7cec3deb03f8
+    content: One applied context per node, stored once
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  544a3f9d-e6c0-4eff-8fcc-75b21c33e649:
+    id: 544a3f9d-e6c0-4eff-8fcc-75b21c33e649
+    content: 'Three UI entry points for setting it (convenience/discoverability):'
+    children:
+      - 40212f0e-0fed-45db-8e8f-625061c05d32
+      - 7039fd21-5955-4409-ab52-448d14be3fc5
+      - 9443c767-ad7c-42c2-a634-700e295ef413
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  40212f0e-0fed-45db-8e8f-625061c05d32:
+    id: 40212f0e-0fed-45db-8e8f-625061c05d32
+    content: '''Set context'' menu (top-level, explicit)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7039fd21-5955-4409-ab52-448d14be3fc5:
+    id: 7039fd21-5955-4409-ab52-448d14be3fc5
+    content: Execute submenu context selection
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9443c767-ad7c-42c2-a634-700e295ef413:
+    id: 9443c767-ad7c-42c2-a634-700e295ef413
+    content: Collaborate submenu context selection
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  69b2aa5e-7511-47a3-ba2a-c8860a3b79db:
+    id: 69b2aa5e-7511-47a3-ba2a-c8860a3b79db
+    content: All three read/write the same value
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  387e7820-bf07-4262-b06c-e7c9fdbd29b2:
+    id: 387e7820-bf07-4262-b06c-e7c9fdbd29b2
+    content: Context inheritance
+    children:
+      - 523abf8a-a689-4fa7-abd8-6e96feb98fa1
+      - 03c72a04-9e35-4ca2-b772-02e8bc0967a2
+      - 35b2c8a2-63b2-41ac-87dc-f4b9241cb2e1
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  523abf8a-a689-4fa7-abd8-6e96feb98fa1:
+    id: 523abf8a-a689-4fa7-abd8-6e96feb98fa1
+    content: All descendants inherit the applied context
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  03c72a04-9e35-4ca2-b772-02e8bc0967a2:
+    id: 03c72a04-9e35-4ca2-b772-02e8bc0967a2
+    content: Descendants do not display the gutter icon
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  35b2c8a2-63b2-41ac-87dc-f4b9241cb2e1:
+    id: 35b2c8a2-63b2-41ac-87dc-f4b9241cb2e1
+    content: A descendant can override with its own applied context
+    children:
+      - 4521b8ce-1551-4abf-a89e-a68e19b971bb
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4521b8ce-1551-4abf-a89e-a68e19b971bb:
+    id: 4521b8ce-1551-4abf-a89e-a68e19b971bb
+    content: Its descendants then inherit the new context
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ef4d743e-f800-4069-8bdc-ef12a81c9ffe:
+    id: ef4d743e-f800-4069-8bdc-ef12a81c9ffe
+    content: Inheritance and display
+    children:
+      - 84665a96-9e69-4473-83d5-0dfc31e16d5c
+      - e662b9a5-cc9a-48ef-8b90-a11a9e3fd5f8
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  84665a96-9e69-4473-83d5-0dfc31e16d5c:
+    id: 84665a96-9e69-4473-83d5-0dfc31e16d5c
+    content: Menu behavior
+    children:
+      - 7d2f5db4-e0ec-4d4f-a644-8de3c579b3a0
+      - ae8badd7-ca2b-464f-bec4-2e49dc4368ba
+      - e37185d2-a40c-43a8-a643-cab89854fc1e
+      - 9960ab26-508b-450c-b4e4-90e91266e2ff
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7d2f5db4-e0ec-4d4f-a644-8de3c579b3a0:
+    id: 7d2f5db4-e0ec-4d4f-a644-8de3c579b3a0
+    content: If the branch has an inherited context, display '(inherited)' to the right of the context item
+    children:
+      - ee5e02c8-4ed6-4620-bca3-ed845c4d3544
+      - a7b1c644-ca7a-4bd8-bf64-5a4020a9a68a
+      - cedddc20-0e19-4edb-b05f-f99eecfc114c
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ee5e02c8-4ed6-4620-bca3-ed845c4d3544:
+    id: ee5e02c8-4ed6-4620-bca3-ed845c4d3544
+    content: This applies regardless of whether the ancestor is a direct parent or distant ancestor
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a7b1c644-ca7a-4bd8-bf64-5a4020a9a68a:
+    id: a7b1c644-ca7a-4bd8-bf64-5a4020a9a68a
+    content: This applies regardless of whether the ancestor is a blueprint or non-blueprint node
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cedddc20-0e19-4edb-b05f-f99eecfc114c:
+    id: cedddc20-0e19-4edb-b05f-f99eecfc114c
+    content: Only display '(inherited)' for the closest inherited context
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ae8badd7-ca2b-464f-bec4-2e49dc4368ba:
+    id: ae8badd7-ca2b-464f-bec4-2e49dc4368ba
+    content: Inherited context selection states
+    children:
+      - c2f5031f-4d46-438b-a6fc-fcc79d6ef549
+      - c86bb541-3db2-4054-8136-308402863955
+      - 57a62a44-8281-4184-a428-4a63f9109562
+      - 7f3153f0-14d0-410e-abad-0d9995668278
+      - b9d29511-2f0d-4c73-83ec-eb9c88454b81
+      - d4010bac-5eb6-4f50-839d-4c92f6a39ce4
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c2f5031f-4d46-438b-a6fc-fcc79d6ef549:
+    id: c2f5031f-4d46-438b-a6fc-fcc79d6ef549
+    content: 'If no explicit context is selected: inherited context is checked and greyed out (cannot be unselected)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c86bb541-3db2-4054-8136-308402863955:
+    id: c86bb541-3db2-4054-8136-308402863955
+    content: 'If user clicks the inherited context: it remains checked and greyed out (no-op)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  57a62a44-8281-4184-a428-4a63f9109562:
+    id: 57a62a44-8281-4184-a428-4a63f9109562
+    content: 'If a different context is selected: inherited context is unchecked, not greyed out, still shows ''(inherited)'''
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7f3153f0-14d0-410e-abad-0d9995668278:
+    id: 7f3153f0-14d0-410e-abad-0d9995668278
+    content: 'If the explicit context is unselected: inherited context becomes checked and greyed out again'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b9d29511-2f0d-4c73-83ec-eb9c88454b81:
+    id: b9d29511-2f0d-4c73-83ec-eb9c88454b81
+    content: 'Invariant: a branch with an inherited context always has an effective context (either inherited or explicit)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d4010bac-5eb6-4f50-839d-4c92f6a39ce4:
+    id: d4010bac-5eb6-4f50-839d-4c92f6a39ce4
+    content: If the context is removed from the ancestor node, the descendant falls back to the next inherited context or none
+    children:
+      - 4bf35f45-695d-4a6a-bc15-06d123b8fd78
+      - 8c4fe16d-4552-4545-a01a-019b9575848b
+      - 27530446-97df-499e-b82b-bf5f983275a7
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4bf35f45-695d-4a6a-bc15-06d123b8fd78:
+    id: 4bf35f45-695d-4a6a-bc15-06d123b8fd78
+    content: If descendant has its own explicit context, that remains unaffected
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8c4fe16d-4552-4545-a01a-019b9575848b:
+    id: 8c4fe16d-4552-4545-a01a-019b9575848b
+    content: If descendant has no explicit context, it inherits from next ancestor up the chain
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  27530446-97df-499e-b82b-bf5f983275a7:
+    id: 27530446-97df-499e-b82b-bf5f983275a7
+    content: If no ancestor has a context, descendant has no context selected
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e37185d2-a40c-43a8-a643-cab89854fc1e:
+    id: e37185d2-a40c-43a8-a643-cab89854fc1e
+    content: This replaces any current use of 'default' after a context name
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9960ab26-508b-450c-b4e4-90e91266e2ff:
+    id: 9960ab26-508b-450c-b4e4-90e91266e2ff
+    content: If the branch has no inherited context
+    children:
+      - 54ad518c-b1b3-4848-a2ca-2138d5b35b90
+      - e5046acc-b84e-439c-a5a3-90baf75a1fd5
+      - de1c0238-bd8f-499c-a713-afb7076b1c95
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  54ad518c-b1b3-4848-a2ca-2138d5b35b90:
+    id: 54ad518c-b1b3-4848-a2ca-2138d5b35b90
+    content: No suffix displayed after context names
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e5046acc-b84e-439c-a5a3-90baf75a1fd5:
+    id: e5046acc-b84e-439c-a5a3-90baf75a1fd5
+    content: No context selected by default
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  de1c0238-bd8f-499c-a713-afb7076b1c95:
+    id: de1c0238-bd8f-499c-a713-afb7076b1c95
+    content: When unchecking a context, no contexts are selected
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e662b9a5-cc9a-48ef-8b90-a11a9e3fd5f8:
+    id: e662b9a5-cc9a-48ef-8b90-a11a9e3fd5f8
+    content: Gutter behavior
+    children:
+      - d37de967-c30d-4c0f-ac59-c514383ffb5c
+      - 53ff3b0e-fce0-4a02-9271-cd4c153768f7
+      - 275f4587-5665-4004-b37c-61d191eb4c72
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d37de967-c30d-4c0f-ac59-c514383ffb5c:
+    id: d37de967-c30d-4c0f-ac59-c514383ffb5c
+    content: Gutter only shows context icon for branches with an explicit (non-inherited) context
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  53ff3b0e-fce0-4a02-9271-cd4c153768f7:
+    id: 53ff3b0e-fce0-4a02-9271-cd4c153768f7
+    content: Inherited contexts do not display a gutter icon
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  275f4587-5665-4004-b37c-61d191eb4c72:
+    id: 275f4587-5665-4004-b37c-61d191eb4c72
+    content: This distinguishes "ownership" (gutter) from "effective context" (menu)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6258293d-9835-4fa5-b7b4-362cedb36daf:
+    id: 6258293d-9835-4fa5-b7b4-362cedb36daf
+    content: Figure out a way for actions to inherit hyperlinks
+    children:
+      - 22181e5c-513e-4f7c-86b5-17b18de9052b
+    metadata:
+      status: pending
+      expanded: false
+  22181e5c-513e-4f7c-86b5-17b18de9052b:
+    id: 22181e5c-513e-4f7c-86b5-17b18de9052b
+    content: Resolve hyperlinks when sending to terminal/browser ?
     children: []
     metadata:
       status: pending

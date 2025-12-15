@@ -12,7 +12,7 @@ export interface ContextActions {
   removeContextDeclaration: (nodeId: string) => void;
   applyContext: (nodeId: string, contextNodeId: string) => void;
   removeAppliedContext: (nodeId: string, contextNodeId?: string) => void;
-  setActiveContext: (nodeId: string, contextNodeId: string | null, actionType?: ContextActionType) => void;
+  setActiveContext: (nodeId: string, contextNodeId: string | null) => void;
   setAppliedContext: (nodeId: string, contextNodeId: string | null) => void;
   refreshContextDeclarations: () => void;
 }
@@ -249,33 +249,8 @@ export const createContextActions = (
     triggerAutosave?.();
   }
 
-  function setActiveContext(nodeId: string, contextNodeId: string | null, actionType?: ContextActionType): void {
-    const { nodes } = get();
-    const node = nodes[nodeId];
-    if (!node) return;
-
-    if (contextNodeId !== null && !nodes[contextNodeId]) {
-      useToastStore.getState().addToast('Context does not exist', 'error');
-      return;
-    }
-
-    const metadataKey = actionType === 'execute' ? 'activeExecuteContextId'
-      : actionType === 'collaborate' ? 'activeCollaborateContextId'
-      : 'activeContextId';
-
-    set({
-      nodes: updateNodeMetadata(nodes, nodeId, {
-        [metadataKey]: contextNodeId === null ? undefined : contextNodeId,
-      }),
-    });
-
-    if (contextNodeId === null) {
-      logger.info(`Active ${actionType || 'default'} context cleared for node ${nodeId}`, 'Context');
-    } else {
-      logger.info(`Active ${actionType || 'default'} context set to ${contextNodeId} for node ${nodeId}`, 'Context');
-    }
-
-    triggerAutosave?.();
+  function setActiveContext(nodeId: string, contextNodeId: string | null): void {
+    setAppliedContext(nodeId, contextNodeId);
   }
 
   function setAppliedContext(nodeId: string, contextNodeId: string | null): void {
@@ -283,11 +258,8 @@ export const createContextActions = (
     const node = nodes[nodeId];
     if (!node) return;
 
-    if (node.metadata.isBlueprint !== true) {
-      return;
-    }
-
     if (contextNodeId !== null && !nodes[contextNodeId]) {
+      useToastStore.getState().addToast('Context does not exist', 'error');
       return;
     }
 

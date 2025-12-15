@@ -1,22 +1,17 @@
-import { createElement } from 'react';
 import { TreeNode } from '../../../../shared/types';
 import { ContextMenuItem } from '../../ui/ContextMenu';
 import { getIsContextChild } from '../../../utils/nodeHelpers';
 import { AncestorRegistry } from '../../../services/ancestry';
-import { ContextDeclarationInfo } from '../../../store/tree/treeStore';
-import { getIconByName } from '../../ui/IconPicker/IconPicker';
 
 interface BuildBlueprintSubmenuParams {
   node: TreeNode;
   getNodes: () => Record<string, TreeNode>;
   getAncestorRegistry: () => AncestorRegistry;
-  contextDeclarations: ContextDeclarationInfo[];
   onAddToBlueprint: () => void;
   onAddToBlueprintWithDescendants: () => void;
   onRemoveFromBlueprint: () => void;
   onDeclareAsContext: () => void;
   onRemoveContextDeclaration: () => void;
-  onSetAppliedContext: (contextId: string | null) => void;
 }
 
 function hasDescendantBlueprints(nodeId: string, nodes: Record<string, TreeNode>): boolean {
@@ -33,66 +28,15 @@ function hasDescendantBlueprints(nodeId: string, nodes: Record<string, TreeNode>
 
 const SEPARATOR: ContextMenuItem = { label: '-', onClick: () => {} };
 
-function buildApplyContextSubmenu(
-  nodeId: string,
-  getNodes: () => Record<string, TreeNode>,
-  contextDeclarations: ContextDeclarationInfo[],
-  onSetAppliedContext: (contextId: string | null) => void
-): ContextMenuItem[] {
-  const nodes = getNodes();
-  const node = nodes[nodeId];
-  const currentAppliedId = node?.metadata.appliedContextId as string | undefined;
-
-  const submenuItems: ContextMenuItem[] = [];
-
-  // Add each available context
-  for (const context of contextDeclarations) {
-    // Don't show the node itself as an option
-    if (context.nodeId === node.id) continue;
-
-    const contextName = context.content.length > 30 ? context.content.slice(0, 30) + '...' : context.content;
-    const Icon = getIconByName(context.icon);
-    const isSelected = context.nodeId === currentAppliedId;
-
-    submenuItems.push({
-      label: contextName,
-      icon: Icon ? createElement(Icon, { size: 14, style: context.color ? { color: context.color } : undefined }) : undefined,
-      radioSelected: isSelected,
-      keepOpenOnClick: true,
-      onClick: () => {
-        if (isSelected) {
-          // Toggle off
-          onSetAppliedContext(null);
-        } else {
-          onSetAppliedContext(context.nodeId);
-        }
-      },
-    });
-  }
-
-  // Add close option at the end
-  if (submenuItems.length > 0) {
-    submenuItems.push({ label: '-', onClick: () => {} });
-    submenuItems.push({
-      label: 'Close',
-      onClick: () => {},
-    });
-  }
-
-  return submenuItems;
-}
-
 export function buildBlueprintSubmenu({
   node,
   getNodes,
   getAncestorRegistry,
-  contextDeclarations,
   onAddToBlueprint,
   onAddToBlueprintWithDescendants,
   onRemoveFromBlueprint,
   onDeclareAsContext,
   onRemoveContextDeclaration,
-  onSetAppliedContext,
 }: BuildBlueprintSubmenuParams): ContextMenuItem | null {
   const nodes = getNodes();
   const ancestorRegistry = getAncestorRegistry();
@@ -158,14 +102,6 @@ export function buildBlueprintSubmenu({
     });
   }
 
-  // Set default context submenu (only for blueprint nodes)
-  if (isBlueprint && contextDeclarations.length > 0) {
-    if (submenuItems.length > 0) submenuItems.push(SEPARATOR);
-    submenuItems.push({
-      label: 'Set default context',
-      submenu: buildApplyContextSubmenu(node.id, getNodes, contextDeclarations, onSetAppliedContext),
-    });
-  }
 
   // Only show menu if there's something to display
   if (submenuItems.length === 0) {

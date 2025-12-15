@@ -659,9 +659,9 @@ describe('getContextsForCollaboration', () => {
     metadata,
   });
 
-  it('should return active context ID (hyperlinks resolved during export)', () => {
+  it('should return applied context ID (hyperlinks resolved during export)', () => {
     const nodes = {
-      'task': createNode('task', [], { appliedContextIds: ['ctx-with-links'], activeContextId: 'ctx-with-links' }),
+      'task': createNode('task', [], { appliedContextId: 'ctx-with-links' }),
       'ctx-with-links': createNode('ctx-with-links', ['hyperlink-1', 'hyperlink-2'], { isContextDeclaration: true }),
       'hyperlink-1': createNode('hyperlink-1', [], { isHyperlink: true, linkedNodeId: 'linked-1' }),
       'hyperlink-2': createNode('hyperlink-2', [], { isHyperlink: true, linkedNodeId: 'linked-2' }),
@@ -675,9 +675,9 @@ describe('getContextsForCollaboration', () => {
     expect(result).toEqual(['ctx-with-links']);
   });
 
-  it('should return active context', () => {
+  it('should return applied context', () => {
     const nodes = {
-      'task': createNode('task', [], { appliedContextIds: ['ctx-1'], activeContextId: 'ctx-1' }),
+      'task': createNode('task', [], { appliedContextId: 'ctx-1' }),
       'ctx-1': createNode('ctx-1', [], { isContextDeclaration: true }),
     };
     const ancestorRegistry = { 'task': [] };
@@ -694,9 +694,9 @@ describe('getContextsForCollaboration', () => {
     expect(getContextsForCollaboration('task', nodes, ancestorRegistry)).toEqual([]);
   });
 
-  it('should use inherited active context', () => {
+  it('should use inherited applied context', () => {
     const nodes = {
-      'parent': createNode('parent', ['task'], { appliedContextIds: ['ctx-1'], activeContextId: 'ctx-1' }),
+      'parent': createNode('parent', ['task'], { appliedContextId: 'ctx-1' }),
       'task': createNode('task'),
       'ctx-1': createNode('ctx-1', [], { isContextDeclaration: true }),
     };

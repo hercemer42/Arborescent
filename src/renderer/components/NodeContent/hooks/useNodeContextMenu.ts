@@ -1,4 +1,4 @@
-import { useState, useCallback, useRef } from 'react';
+import { useState, useCallback, useRef, createElement } from 'react';
 import { useStore } from '../../../store/tree/useStore';
 import { useActiveTreeStore } from '../../../store/tree/TreeStoreContext';
 import { TreeNode } from '../../../../shared/types';
@@ -18,6 +18,87 @@ import { useSpellcheck } from './useSpellcheck';
 import { waitForSpellcheckUpdate, useSpellcheckStore } from '../../../store/spellcheck/spellcheckStore';
 import { getKeyForAction } from '../../../data/hotkeyConfig';
 import { formatHotkeyForDisplay } from '../../../utils/hotkeyUtils';
+import { ContextDeclarationInfo } from '../../../store/tree/treeStore';
+import { getIconByName } from '../../ui/IconPicker/IconPicker';
+import { getInheritedContextId } from '../../../utils/nodeHelpers';
+import { AncestorRegistry } from '../../../services/ancestry';
+
+interface BuildSetContextSubmenuParams {
+  node: TreeNode;
+  nodes: Record<string, TreeNode>;
+  ancestorRegistry: AncestorRegistry;
+  contextDeclarations: ContextDeclarationInfo[];
+  onSetAppliedContext: (contextId: string | null) => void;
+}
+
+function buildSetContextSubmenu({
+  node,
+  nodes,
+  ancestorRegistry,
+  contextDeclarations,
+  onSetAppliedContext,
+}: BuildSetContextSubmenuParams): ContextMenuItem[] | null {
+  if (contextDeclarations.length === 0) {
+    return null;
+  }
+
+  const explicitContextId = node.metadata.appliedContextId as string | undefined;
+  const inheritedContextId = getInheritedContextId(node.id, nodes, ancestorRegistry);
+
+  const submenuItems: ContextMenuItem[] = [];
+
+  const ancestors = ancestorRegistry[node.id] || [];
+  const availableContexts = contextDeclarations.filter(
+    ctx => ctx.nodeId !== node.id && !ancestors.includes(ctx.nodeId)
+  );
+
+  if (availableContexts.length === 0) {
+    return null;
+  }
+
+  for (const context of availableContexts) {
+    const contextName = context.content.length > 30 ? context.content.slice(0, 30) + '...' : context.content;
+    const Icon = getIconByName(context.icon);
+    const isActive = context.nodeId === explicitContextId;
+    const isInherited = context.nodeId === inheritedContextId;
+    const isInheritedAndNoExplicit = isInherited && !explicitContextId;
+
+    let label = contextName;
+    if (isInherited) {
+      label += ' (inherited)';
+    }
+
+    submenuItems.push({
+      label,
+      icon: Icon ? createElement(Icon, { size: 14, style: context.color ? { color: context.color } : undefined }) : undefined,
+      radioSelected: isInheritedAndNoExplicit ? true : isActive,
+      keepOpenOnClick: true,
+      disabled: isInheritedAndNoExplicit,
+      onClick: () => {
+        if (isInheritedAndNoExplicit) {
+          return;
+        }
+        if (isActive) {
+          onSetAppliedContext(null);
+        } else if (isInherited) {
+          onSetAppliedContext(null);
+        } else {
+          onSetAppliedContext(context.nodeId);
+        }
+      },
+    });
+  }
+
+  if (submenuItems.length > 0) {
+    submenuItems.push({ label: '-', onClick: () => {} });
+    submenuItems.push({
+      label: 'Close',
+      onClick: () => {},
+    });
+  }
+
+  return submenuItems;
+}
 
 export function useNodeContextMenu(node: TreeNode) {
   const treeType = useStore((state) => state.treeType);
@@ -99,8 +180,8 @@ export function useNodeContextMenu(node: TreeNode) {
       openZoomTab(activeFile.path, node.id, node.content);
     };
 
-    const handleSetActiveContext = async (nodeId: string, contextId: string | null, actionType?: 'execute' | 'collaborate') => {
-      actions.setActiveContext(nodeId, contextId, actionType);
+    const handleSetActiveContext = async (nodeId: string, contextId: string | null) => {
+      actions.setActiveContext(nodeId, contextId);
       const newItems = await buildMenuItems();
       setMenuItems(newItems);
     };
@@ -117,8 +198,11 @@ export function useNodeContextMenu(node: TreeNode) {
       });
     };
 
+    // Get fresh node state from store (important for menu updates after context changes)
+    const freshNode = nodes[node.id] || node;
+
     const executeSubmenu = buildExecuteSubmenu({
-      node,
+      node: freshNode,
       nodes,
       ancestorRegistry,
       contextDeclarations,
@@ -128,7 +212,7 @@ export function useNodeContextMenu(node: TreeNode) {
     });
 
     const collaborateSubmenu = buildCollaborateSubmenu({
-      node,
+      node: freshNode,
       nodes,
       ancestorRegistry,
       contextDeclarations,
@@ -137,18 +221,22 @@ export function useNodeContextMenu(node: TreeNode) {
       onSetActiveContext: handleSetActiveContext,
     });
 
-    const freshNode = nodes[node.id] || node;
+    const setContextSubmenu = buildSetContextSubmenu({
+      node: freshNode,
+      nodes,
+      ancestorRegistry,
+      contextDeclarations,
+      onSetAppliedContext: handleSetAppliedContext,
+    });
     const blueprintMenuItem = buildBlueprintSubmenu({
       node: freshNode,
       getNodes: () => store.getState().nodes,
       getAncestorRegistry: () => store.getState().ancestorRegistry,
-      contextDeclarations,
       onAddToBlueprint: () => actions.addToBlueprint(node.id),
       onAddToBlueprintWithDescendants: () => actions.addToBlueprint(node.id, true),
       onRemoveFromBlueprint: () => actions.removeFromBlueprint(node.id, true),
       onDeclareAsContext: handleDeclareAsContext,
       onRemoveContextDeclaration: () => actions.removeContextDeclaration(node.id),
-      onSetAppliedContext: handleSetAppliedContext,
     });
 
     const statusMenuItem = buildStatusSubmenu({
@@ -157,9 +245,9 @@ export function useNodeContextMenu(node: TreeNode) {
       onMarkAllAsIncomplete: () => actions.markAllAsIncomplete(node.id),
     });
 
-    const isHyperlink = node.metadata.isHyperlink === true;
-    const isExternalLink = node.metadata.isExternalLink === true;
-    const externalUrl = node.metadata.externalUrl as string | undefined;
+    const isHyperlink = freshNode.metadata.isHyperlink === true;
+    const isExternalLink = freshNode.metadata.isExternalLink === true;
+    const externalUrl = freshNode.metadata.externalUrl as string | undefined;
 
     const baseMenuItems: ContextMenuItem[] = [
       ...(isExternalLink && externalUrl ? [{
@@ -183,6 +271,10 @@ export function useNodeContextMenu(node: TreeNode) {
         label: 'Cancel collaboration',
         onClick: handleCancel,
         disabled: false,
+      }] : []),
+      ...(!isHyperlink && !isExternalLink && setContextSubmenu ? [{
+        label: 'Set context',
+        submenu: setContextSubmenu,
       }] : []),
       ...(!isHyperlink && !isExternalLink && blueprintMenuItem ? [blueprintMenuItem] : []),
       {

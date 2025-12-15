@@ -50,7 +50,7 @@ describe('buildExecuteSubmenu', () => {
     });
 
     it('should enable actions when context is selected', () => {
-      const node = createNode('regular-node', { activeExecuteContextId: 'ctx-1' });
+      const node = createNode('regular-node', { appliedContextId: 'ctx-1' });
       const ctxNode = createNode('ctx-1', { isContextDeclaration: true });
       const nodes = { 'regular-node': node, 'ctx-1': ctxNode };
       const contextDeclarations = [createContextDeclaration('ctx-1', 'Context 1')];
@@ -111,7 +111,7 @@ describe('buildExecuteSubmenu', () => {
   describe('context selection', () => {
     it('should call onSetActiveContext when clicking non-active context', () => {
       const onSetActiveContext = vi.fn();
-      const node = createNode('task-node', { activeExecuteContextId: 'ctx-1' });
+      const node = createNode('task-node', { appliedContextId: 'ctx-1' });
       const nodes = {
         'task-node': node,
         'ctx-1': createNode('ctx-1', { isContextDeclaration: true }),
@@ -127,12 +127,12 @@ describe('buildExecuteSubmenu', () => {
       // Click the non-active context (ctx-2)
       result[5].onClick?.();
 
-      expect(onSetActiveContext).toHaveBeenCalledWith('task-node', 'ctx-2', 'execute');
+      expect(onSetActiveContext).toHaveBeenCalledWith('task-node', 'ctx-2');
     });
 
     it('should call onSetActiveContext with null when clicking active context to clear', () => {
       const onSetActiveContext = vi.fn();
-      const node = createNode('task-node', { activeExecuteContextId: 'ctx-1' });
+      const node = createNode('task-node', { appliedContextId: 'ctx-1' });
       const nodes = {
         'task-node': node,
         'ctx-1': createNode('ctx-1', { isContextDeclaration: true }),
@@ -144,7 +144,7 @@ describe('buildExecuteSubmenu', () => {
       // Click the active context to clear it
       result[4].onClick?.();
 
-      expect(onSetActiveContext).toHaveBeenCalledWith('task-node', null, 'execute');
+      expect(onSetActiveContext).toHaveBeenCalledWith('task-node', null);
     });
   });
 });

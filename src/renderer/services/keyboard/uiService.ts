@@ -4,7 +4,7 @@ import { useToastStore } from '../../store/toast/toastStore';
 import { matchesHotkey } from '../../data/hotkeyConfig';
 import { hasTextSelection, isContentEditableFocused, isFocusInPanel, isFocusInTerminalOrBrowser } from '../../utils/selectionUtils';
 import { getActiveStore } from './shared';
-import { getActiveContextIdWithInheritance } from '../../utils/nodeHelpers';
+import { getAppliedContextIdWithInheritance } from '../../utils/nodeHelpers';
 
 async function handleUIShortcuts(event: KeyboardEvent): Promise<void> {
   if (matchesHotkey(event, 'actions', 'undo')) {
@@ -244,11 +244,10 @@ async function handleUIShortcuts(event: KeyboardEvent): Promise<void> {
     const activeNodeId = state.activeNodeId;
     if (!activeNodeId) return;
 
-    const contextId = getActiveContextIdWithInheritance(
+    const contextId = getAppliedContextIdWithInheritance(
       activeNodeId,
       state.nodes,
-      state.ancestorRegistry,
-      'execute'
+      state.ancestorRegistry
     );
     if (!contextId) {
       useToastStore.getState().addToast('No context set for this branch', 'info');
@@ -268,11 +267,10 @@ async function handleUIShortcuts(event: KeyboardEvent): Promise<void> {
     const activeNodeId = state.activeNodeId;
     if (!activeNodeId) return;
 
-    const contextId = getActiveContextIdWithInheritance(
+    const contextId = getAppliedContextIdWithInheritance(
       activeNodeId,
       state.nodes,
-      state.ancestorRegistry,
-      'collaborate'
+      state.ancestorRegistry
     );
     if (!contextId) {
       useToastStore.getState().addToast('No context set for this branch', 'info');

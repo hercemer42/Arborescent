@@ -402,8 +402,8 @@ describe('collaborateActions', () => {
       mockState.ancestorRegistry['context-node'] = ['root'];
       mockState.ancestorRegistry['context-child'] = ['root', 'context-node'];
 
-      // Select context for collaborate action on child1
-      mockState.nodes.child1.metadata.activeCollaborateContextId = 'context-node';
+      // Set applied context on child1
+      mockState.nodes.child1.metadata.appliedContextId = 'context-node';
 
       await actions.collaborate('child1');
 
@@ -429,7 +429,7 @@ describe('collaborateActions', () => {
 
     it('should handle missing context node gracefully', async () => {
       // Select a non-existent context
-      mockState.nodes.child1.metadata.activeCollaborateContextId = 'non-existent-context';
+      mockState.nodes.child1.metadata.appliedContextId = 'non-existent-context';
 
       await actions.collaborate('child1');
 
@@ -526,7 +526,6 @@ describe('collaborateActions', () => {
       const { executeInTerminal } = await import('../../../../services/terminalExecution');
       vi.mocked(executeInTerminal).mockResolvedValue(undefined);
 
-      // Add a context node with children
       const contextNode: TreeNode = {
         id: 'context-node',
         content: 'You are a helpful assistant',
@@ -544,17 +543,13 @@ describe('collaborateActions', () => {
       mockState.ancestorRegistry['context-node'] = ['root'];
       mockState.ancestorRegistry['context-child'] = ['root', 'context-node'];
 
-      // Select context for collaborate action on child1
-      mockState.nodes.child1.metadata.activeCollaborateContextId = 'context-node';
+      mockState.nodes.child1.metadata.appliedContextId = 'context-node';
 
       await actions.collaborateInTerminal('child1', 'terminal-1');
 
       const terminalContent = vi.mocked(executeInTerminal).mock.calls[0][1];
-      // Context should appear in markdown format BEFORE the output format instruction
-      // Should include the context node and its children (with status checkboxes)
       expect(terminalContent).toContain('You are a helpful assistant');
       expect(terminalContent).toContain('Be concise and accurate');
-      // Context comes before OUTPUT FORMAT
       const contextPos = terminalContent.indexOf('You are a helpful assistant');
       const outputFormatPos = terminalContent.indexOf('OUTPUT FORMAT:');
       expect(contextPos).toBeLessThan(outputFormatPos);
@@ -577,7 +572,7 @@ describe('collaborateActions', () => {
       vi.mocked(executeInTerminal).mockResolvedValue(undefined);
 
       // Select a non-existent context
-      mockState.nodes.child1.metadata.activeCollaborateContextId = 'non-existent-context';
+      mockState.nodes.child1.metadata.appliedContextId = 'non-existent-context';
 
       await actions.collaborateInTerminal('child1', 'terminal-1');
 

@@ -1,7 +1,6 @@
 import { TreeNode } from '../../../../shared/types';
 import { ContextMenuItem } from '../../ui/ContextMenu';
 import { AncestorRegistry } from '../../../services/ancestry';
-import { ContextActionType } from '../../../utils/nodeHelpers';
 import { ContextDeclarationInfo } from '../../../store/tree/treeStore';
 import { buildContextAwareSubmenu } from './useContextAwareSubmenu';
 
@@ -12,7 +11,7 @@ interface BuildCollaborateSubmenuParams {
   contextDeclarations: ContextDeclarationInfo[];
   onCollaborate: () => void;
   onCollaborateInTerminal: () => void;
-  onSetActiveContext: (nodeId: string, contextId: string | null, actionType?: ContextActionType) => void;
+  onSetActiveContext: (nodeId: string, contextId: string | null) => void;
 }
 
 export function buildCollaborateSubmenu({
@@ -30,7 +29,6 @@ export function buildCollaborateSubmenu({
     ancestorRegistry,
     contextDeclarations,
     requiresContext: true,
-    actionType: 'collaborate',
     onTerminalAction: onCollaborateInTerminal,
     onBrowserAction: onCollaborate,
     onSetActiveContext,

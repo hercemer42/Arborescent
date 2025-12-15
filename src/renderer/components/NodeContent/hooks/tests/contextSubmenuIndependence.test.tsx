@@ -4,7 +4,7 @@ import { buildCollaborateSubmenu } from '../useCollaborateSubmenu';
 import { TreeNode } from '../../../../../shared/types';
 import { ContextDeclarationInfo } from '../../../../store/tree/treeStore';
 
-describe('Execute and Collaborate submenu independence', () => {
+describe('Execute and Collaborate submenu unified context', () => {
   const createNode = (id: string, metadata = {}): TreeNode => ({
     id,
     content: `Node ${id}`,
@@ -18,19 +18,18 @@ describe('Execute and Collaborate submenu independence', () => {
     icon: 'lightbulb',
   });
 
-  it('should show different contexts as selected in Execute vs Collaborate', () => {
+  it('should show same context selected in both Execute and Collaborate', () => {
     const node = createNode('task', {
-      activeExecuteContextId: 'ctx-exec',
-      activeCollaborateContextId: 'ctx-collab',
+      appliedContextId: 'ctx-unified',
     });
     const nodes = {
       'task': node,
-      'ctx-exec': createNode('ctx-exec', { isContextDeclaration: true }),
-      'ctx-collab': createNode('ctx-collab', { isContextDeclaration: true }),
+      'ctx-unified': createNode('ctx-unified', { isContextDeclaration: true }),
+      'ctx-other': createNode('ctx-other', { isContextDeclaration: true }),
     };
     const contextDeclarations = [
-      createContextDeclaration('ctx-exec', 'Execute Context'),
-      createContextDeclaration('ctx-collab', 'Collaborate Context'),
+      createContextDeclaration('ctx-unified', 'Unified Context'),
+      createContextDeclaration('ctx-other', 'Other Context'),
     ];
     const ancestorRegistry = { 'task': [] };
 
@@ -54,25 +53,22 @@ describe('Execute and Collaborate submenu independence', () => {
       onSetActiveContext: vi.fn(),
     });
 
-    // Find context items (after separator and heading)
-    const executeCtxExec = executeMenu.find(item => item.label === 'Execute Context');
-    const executeCtxCollab = executeMenu.find(item => item.label === 'Collaborate Context');
-    const collaborateCtxExec = collaborateMenu.find(item => item.label === 'Execute Context');
-    const collaborateCtxCollab = collaborateMenu.find(item => item.label === 'Collaborate Context');
+    // Find context items
+    const executeCtxUnified = executeMenu.find(item => item.label === 'Unified Context');
+    const executeCtxOther = executeMenu.find(item => item.label === 'Other Context');
+    const collaborateCtxUnified = collaborateMenu.find(item => item.label === 'Unified Context');
+    const collaborateCtxOther = collaborateMenu.find(item => item.label === 'Other Context');
 
-    // In Execute menu: ctx-exec should be selected, ctx-collab should not
-    expect(executeCtxExec?.radioSelected).toBe(true);
-    expect(executeCtxCollab?.radioSelected).toBe(false);
-
-    // In Collaborate menu: ctx-collab should be selected, ctx-exec should not
-    expect(collaborateCtxExec?.radioSelected).toBe(false);
-    expect(collaborateCtxCollab?.radioSelected).toBe(true);
+    // Both menus should show ctx-unified as selected
+    expect(executeCtxUnified?.radioSelected).toBe(true);
+    expect(executeCtxOther?.radioSelected).toBe(false);
+    expect(collaborateCtxUnified?.radioSelected).toBe(true);
+    expect(collaborateCtxOther?.radioSelected).toBe(false);
   });
 
-  it('should NOT share selection when only Execute has explicit context', () => {
+  it('should share selection when context is set via appliedContextId', () => {
     const node = createNode('task', {
-      activeExecuteContextId: 'ctx-a',
-      // No activeCollaborateContextId
+      appliedContextId: 'ctx-a',
     });
     const nodes = {
       'task': node,
@@ -105,14 +101,55 @@ describe('Execute and Collaborate submenu independence', () => {
       onSetActiveContext: vi.fn(),
     });
 
-    // Execute: ctx-a selected
+    // Both: ctx-a selected
     const executeCtxA = executeMenu.find(item => item.label === 'Context A');
-    expect(executeCtxA?.radioSelected).toBe(true);
-
-    // Collaborate: nothing selected (no explicit selection, no fallback)
     const collaborateCtxA = collaborateMenu.find(item => item.label === 'Context A');
-    const collaborateCtxB = collaborateMenu.find(item => item.label === 'Context B');
-    expect(collaborateCtxA?.radioSelected).toBe(false);
-    expect(collaborateCtxB?.radioSelected).toBe(false);
+    expect(executeCtxA?.radioSelected).toBe(true);
+    expect(collaborateCtxA?.radioSelected).toBe(true);
+  });
+
+  it('should inherit same context selection in both menus from ancestor', () => {
+    const childNode = createNode('child-task');
+    const parentNode = createNode('parent', {
+      appliedContextId: 'ctx-parent',
+    });
+    const nodes = {
+      'child-task': childNode,
+      'parent': parentNode,
+      'ctx-parent': createNode('ctx-parent', { isContextDeclaration: true }),
+    };
+    const contextDeclarations = [
+      createContextDeclaration('ctx-parent', 'Parent Context'),
+    ];
+    const ancestorRegistry = {
+      'child-task': ['parent'],
+      'parent': [],
+    };
+
+    const executeMenu = buildExecuteSubmenu({
+      node: childNode,
+      nodes,
+      ancestorRegistry,
+      contextDeclarations,
+      onExecuteInBrowser: vi.fn(),
+      onExecuteInTerminal: vi.fn(),
+      onSetActiveContext: vi.fn(),
+    });
+
+    const collaborateMenu = buildCollaborateSubmenu({
+      node: childNode,
+      nodes,
+      ancestorRegistry,
+      contextDeclarations,
+      onCollaborate: vi.fn(),
+      onCollaborateInTerminal: vi.fn(),
+      onSetActiveContext: vi.fn(),
+    });
+
+    // Both menus should inherit and show the parent's context as selected
+    const executeParentCtx = executeMenu.find(item => item.label?.includes('Parent Context'));
+    const collaborateParentCtx = collaborateMenu.find(item => item.label?.includes('Parent Context'));
+    expect(executeParentCtx?.radioSelected).toBe(true);
+    expect(collaborateParentCtx?.radioSelected).toBe(true);
   });
 });

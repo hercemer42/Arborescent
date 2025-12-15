@@ -70,14 +70,6 @@ function findClosestAncestor<T>(
   return undefined;
 }
 
-export type ContextActionType = 'execute' | 'collaborate';
-
-function getActiveContextMetadataKey(actionType?: ContextActionType): string {
-  if (actionType === 'execute') return 'activeExecuteContextId';
-  if (actionType === 'collaborate') return 'activeCollaborateContextId';
-  return 'activeContextId';
-}
-
 export function getAppliedContextIdWithInheritance(
   nodeId: string,
   nodes: Record<string, TreeNode>,
@@ -86,52 +78,28 @@ export function getAppliedContextIdWithInheritance(
   const node = nodes[nodeId];
   if (!node) return undefined;
 
-  if (node.metadata.isBlueprint === true) {
-    const appliedId = node.metadata.appliedContextId as string | undefined;
-    if (appliedId && nodes[appliedId]) {
-      return appliedId;
-    }
+  const appliedId = node.metadata.appliedContextId as string | undefined;
+  if (appliedId && nodes[appliedId]) {
+    return appliedId;
   }
 
+  return getInheritedContextId(nodeId, nodes, ancestorRegistry);
+}
+
+export function getInheritedContextId(
+  nodeId: string,
+  nodes: Record<string, TreeNode>,
+  ancestorRegistry: AncestorRegistry
+): string | undefined {
   for (const ancestorId of getAncestorsClosestFirst(nodeId, ancestorRegistry)) {
     const ancestor = nodes[ancestorId];
     if (!ancestor) continue;
-    if (ancestor.metadata.isBlueprint !== true) continue;
     const ancestorAppliedId = ancestor.metadata.appliedContextId as string | undefined;
     if (ancestorAppliedId && nodes[ancestorAppliedId]) {
       return ancestorAppliedId;
     }
   }
-
   return undefined;
-}
-
-export function getActiveContextIdWithInheritance(
-  nodeId: string,
-  nodes: Record<string, TreeNode>,
-  ancestorRegistry: AncestorRegistry,
-  actionType?: ContextActionType
-): string | undefined {
-  const node = nodes[nodeId];
-  if (!node) return undefined;
-
-  const metadataKey = getActiveContextMetadataKey(actionType);
-
-  const activeId = node.metadata[metadataKey] as string | undefined;
-  if (activeId && nodes[activeId]) {
-    return activeId;
-  }
-
-  for (const ancestorId of getAncestorsClosestFirst(nodeId, ancestorRegistry)) {
-    const ancestor = nodes[ancestorId];
-    if (!ancestor) continue;
-    const ancestorActiveId = ancestor.metadata[metadataKey] as string | undefined;
-    if (ancestorActiveId && nodes[ancestorActiveId]) {
-      return ancestorActiveId;
-    }
-  }
-
-  return getAppliedContextIdWithInheritance(nodeId, nodes, ancestorRegistry);
 }
 
 export function resolveHyperlinkedContexts(
@@ -165,13 +133,12 @@ export function resolveHyperlinkedContexts(
 export function getContextsForCollaboration(
   nodeId: string,
   nodes: Record<string, TreeNode>,
-  ancestorRegistry: AncestorRegistry,
-  actionType?: ContextActionType
+  ancestorRegistry: AncestorRegistry
 ): string[] {
   const node = nodes[nodeId];
   if (!node) return [];
 
-  const activeContextId = getActiveContextIdWithInheritance(nodeId, nodes, ancestorRegistry, actionType);
+  const activeContextId = getAppliedContextIdWithInheritance(nodeId, nodes, ancestorRegistry);
   if (!activeContextId) {
     return [];
   }
@@ -182,8 +149,7 @@ export function getContextsForCollaboration(
 export function buildContentWithContext(
   nodeId: string,
   nodes: Record<string, TreeNode>,
-  ancestorRegistry: AncestorRegistry,
-  actionType?: ContextActionType
+  ancestorRegistry: AncestorRegistry
 ): { contextPrefix: string; nodeContent: string } {
   const node = nodes[nodeId];
   if (!node) return { contextPrefix: '', nodeContent: '' };
@@ -191,7 +157,7 @@ export function buildContentWithContext(
   const nodeContent = exportNodeAsMarkdown(node, nodes);
 
   let contextPrefix = '';
-  const contextIds = getContextsForCollaboration(nodeId, nodes, ancestorRegistry, actionType);
+  const contextIds = getContextsForCollaboration(nodeId, nodes, ancestorRegistry);
   for (const contextId of contextIds) {
     const contextNode = nodes[contextId];
     if (contextNode) {

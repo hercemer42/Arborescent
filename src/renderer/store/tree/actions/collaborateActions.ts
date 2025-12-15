@@ -129,8 +129,7 @@ export function createCollaborateActions(
         const { contextPrefix, nodeContent } = buildContentWithContext(
           nodeId,
           state.nodes,
-          state.ancestorRegistry,
-          'collaborate'
+          state.ancestorRegistry
         );
 
         const clipboardContent = contextPrefix + COLLABORATE_INSTRUCTION_WEB + '\n\nHere is the content:\n\n' + nodeContent;
@@ -180,8 +179,7 @@ export function createCollaborateActions(
         const { contextPrefix, nodeContent } = buildContentWithContext(
           nodeId,
           state.nodes,
-          state.ancestorRegistry,
-          'collaborate'
+          state.ancestorRegistry
         );
 
         const terminalInstruction = `${contextPrefix}${COLLABORATE_INSTRUCTION_TERMINAL}
