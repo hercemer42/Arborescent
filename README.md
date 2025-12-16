@@ -1,20 +1,26 @@
 # Arborescent
 
-**Cognitive scaffolding for critical thinking and AI collaboration.**
+**Cognitive scaffolding for critical thinking and AI-augmented workflows.**
 
-Distill your thoughts.  Refine your context.  Compound your results.
+Distill your thoughts.  Control the outcome.  Compound your results.
 
 ![Screenshot placeholder](docs/screenshot.png)
 
 ## Why Arborescent?
 
-AI is at its best when the human is in the driver's seat.  Arborescent keeps you there.
+Because a tool is only as good as the user.
+
+The AI space is full of tools claiming to automate everything.  But you lose the vision, and the complexity can spiral out of control.
+Arborescent takes a different path - systematic decomposition with human judgement at every decision point.
+
+You get the same performance gains, while staying firmly in command.
 
 ## What it does
 
-Decompose and execute your ideas with AI collaboration. Refine your contexts through feedback loops. Every collaboration gets more precise.
+Break down complex problems into tree structures, attach your context, and send it to an AI.  Validate the outcome and optimize your prompts through feedback loops. Every iteration sharpens your ideas and improves the AI's responses.
 
-Blueprints let you encode and share that expertise, or import it from your team or community. What one person knows, everyone does.
+Blueprints let you encode and share your workflows, or import them from your team or community. 
+Human expertise as the force multiplier for AI collaboration, and not the other way around.
 
 ## Key features
 
