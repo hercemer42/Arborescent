@@ -46,6 +46,12 @@ async function handleUIShortcuts(event: KeyboardEvent): Promise<void> {
     return;
   }
 
+  if (matchesHotkey(event, 'file', 'new')) {
+    event.preventDefault();
+    useFilesStore.getState().actions.createNewFile();
+    return;
+  }
+
   if (matchesHotkey(event, 'search', 'openSearch')) {
     event.preventDefault();
     useSearchStore.getState().openSearch();
