@@ -136,7 +136,7 @@ export function createCollaborateActions(
         await navigator.clipboard.writeText(clipboardContent);
 
         useToastStore.getState().addToast(
-          'Content copied to clipboard - Paste to collaborator, then copy response to continue',
+          'Content copied to clipboard - Paste to AI, then copy the response.',
           'info'
         );
 
