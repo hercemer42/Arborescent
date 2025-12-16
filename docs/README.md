@@ -20,7 +20,7 @@ Arborescent is a cognitive scaffolding tool for complex thinking and AI collabor
 
 ### Branches
 
-Everything in Arborescent is a **branch** (node). Branches form a tree hierarchy where:
+Everything in Arborescent is a **branch**. Branches form a tree hierarchy where:
 - Each branch can have children
 - Children can be expanded or collapsed
 - Branches have a status: pending, completed, or abandoned
@@ -50,17 +50,13 @@ Arborescent uses `.arbo` files in YAML format, designed to be human-readable and
 | Move left/right | `←` / `→` |
 | Expand/collapse | `Ctrl+T` |
 
-Arrow keys navigate through branches line by line, including within multi-line content. The cursor maintains horizontal position as you move between branches.
-
 ### Creating Branches
 
 | Action | Shortcut |
 |--------|----------|
-| New sibling below | `Enter` (at end of content) |
-| Split branch at cursor | `Enter` (mid-content) |
-| New child | `Ctrl+Enter` |
-
-When pressing `Enter` with cursor in the middle of text, the branch splits: text before cursor stays, text after becomes a new sibling below.
+| New sibling below | `Enter`on a branch without descendents|
+| New first child | `Enter` on a branch that has descendents |
+| Split branch at cursor | `Ctrl + Enter` |
 
 ### Editing
 
@@ -83,8 +79,6 @@ When pressing `Enter` with cursor in the middle of text, the branch splits: text
 | Copy as hyperlink | Edit menu |
 | Select all | `Ctrl+Shift+A` |
 
-**Cut behavior**: Cutting a branch marks it visually (30% opacity) instead of removing it immediately. Pasting moves the branch to the new location. Cutting something else cancels the previous cut.
-
 **Multi-selection**: Hold `Ctrl` and click to select multiple branches. Hold `Shift` and click to select a range. Cut/copy/delete operations work on all selected branches.
 
 ### Undo/Redo
@@ -94,7 +88,7 @@ When pressing `Enter` with cursor in the middle of text, the branch splits: text
 | Undo | `Ctrl+Z` |
 | Redo | `Ctrl+Shift+Z` |
 
-All operations are undoable including text edits, branch operations, and status changes. Each file maintains its own undo history (up to 100 operations).
+Each file maintains its own undo history (up to 100 operations).
 
 ### Search
 
@@ -104,8 +98,6 @@ All operations are undoable including text edits, branch operations, and status 
 | Next match | `Enter` or `F3` |
 | Previous match | `Shift+Enter` or `Shift+F3` |
 | Close search | `Escape` |
-
-Search finds text within all branches. Matches are highlighted in blue. Navigate between matches to auto-expand collapsed ancestors and scroll into view.
 
 ---
 
@@ -119,15 +111,12 @@ Right-click a branch → **Blueprint** → **Add to Blueprint**
 
 - Choose an icon and color for the branch
 - The branch and all ancestors are automatically added to the blueprint
-- Children are not automatically included (add them explicitly if needed)
 
 To add a branch with all its descendants: **Blueprint** → **Add with Descendants**
 
 ### Visual Indicators
 
-Blueprint branches display a custom icon instead of the standard checkbox. Icons can be:
-- Set per branch (click to change)
-- Inherited from ancestors (displayed at reduced opacity)
+Blueprint branches display a custom icon instead of the standard checkbox. Icons can be set per branch (click to change)
 
 ### Blueprint Mode
 
@@ -148,8 +137,8 @@ Blueprint mode filters the view to show only blueprint branches. This helps focu
 - The exported file opens in blueprint mode by default
 
 **Import from Blueprint** (File menu):
-- Creates a new untitled document from the blueprint structure
-- Opens in normal mode for filling in content
+- Creates a new untitled document based on the blueprint structure
+- Opens in normal mode
 
 ---
 
@@ -163,20 +152,19 @@ Right-click a branch → **Blueprint** → **Declare as Context**
 
 Requirements:
 - The branch's parent must be a blueprint
-- Choose an icon (this identifies the context in menus)
+- Choose an icon to identify the context
 
 Context declaration:
 - Makes the branch and all descendants part of the blueprint
-- Descendants display the context's icon (non-clickable, reduced opacity)
-- The context content is sent to AI when used in execute/collaborate
+- The context is sent to AI when applied to a branch and used to execute or collaborate
 
 ### Applying a Context
 
-Right-click a blueprint branch → **Blueprint** → **Apply Context**
+Right-click a blueprint branch → **Set context** or directly in **Execute** or **Colaborate**
 
 - Select from available contexts
 - The applied context's icon appears in the gutter
-- Descendants inherit the applied context (shown in menus with "(default)" suffix)
+- Descendants inherit the applied context
 
 ### Context Inheritance
 
@@ -185,16 +173,10 @@ Applied contexts flow down the tree:
 2. A descendant can override with its own explicit context
 3. The closest ancestor's context wins
 
-In the Execute/Collaborate menus:
-- Inherited contexts show "(default)" suffix
-- Clicking an inherited context has no effect (cannot uncheck)
-- Selecting a different context overrides the inheritance
-
 ### Hyperlinks in Contexts
 
 Context declarations can include hyperlinks to other branches. When the context is sent to AI:
 - Hyperlinked content is resolved and included
-- Circular references are automatically prevented
 
 ---
 
@@ -211,10 +193,8 @@ Right-click → **Execute** → **In Terminal** or **In Browser**
 | Execute with context | `Ctrl+E` |
 
 Execute sends content to the AI for immediate action:
-- **In Terminal**: Opens terminal panel, sends content, simulates Enter
-- **In Browser**: Copies to clipboard, opens browser panel
-
-No feedback loop—results appear in the terminal/browser.
+- **In Terminal**: Opens terminal panel, sends content, executes automatically
+- **In Browser**: Copies to clipboard, opens browser panel.  The user then opens their AI tool and pastes the content manually.  This is for tools like Claude Code on the web.
 
 ### Collaborate
 
@@ -229,11 +209,13 @@ Collaborate initiates a feedback loop:
 2. AI response appears in the Feedback panel
 3. You can edit the response
 4. Accept to replace your original branch, or Cancel
+5. Repeat the process to further refine your thinking
 
-**During collaboration**:
-- The branch is highlighted (cannot be edited or deleted)
-- Only one collaboration per file at a time
-- Collaboration state persists across app restarts
+How it works :
+
+In terminal mode, built in instructions tell the AI to write the reply to a temporary file. Arborescent watches this file, and when it changes, displays the results in the feedback panel.
+
+In browser mode, built in instructions tell the AI to give the reply in markdown format in a code block. The user pastes into the AI and copies the result. Arborescent watches for changes to the clipboard, and when it detects the appropriate format, it displays the results in the feedback panel.
 
 ### Context Selection
 
@@ -244,7 +226,7 @@ Both Execute and Collaborate menus show available contexts:
 
 ### Blueprint Hyperlink Resolution
 
-When executing (not collaborating) a blueprint branch that contains hyperlinks:
+When executing a blueprint branch that contains hyperlinks:
 - Hyperlink content is resolved and included
 - This enables "action" branches that reference other content
 
@@ -260,11 +242,10 @@ Hyperlinks reference other branches in the same file.
 2. Navigate to destination
 3. Paste (`Ctrl+V`)
 
-The hyperlink appears as a child with blue underlined text (the source branch's content at time of creation).
-
 ### Behavior
 
-- **Click**: Navigate to the linked branch
+- **Click**: Navigate to the linked branch in a new tab in Arborescent's browser panel
+- **Ctrl+Click**: Navigate to the linked branch in your default browser
 - **Edit**: Content is read-only (reflects source at creation time)
 - **Delete**: Hyperlinks can be deleted normally
 - **Copy**: Creates a new hyperlink to the same target
