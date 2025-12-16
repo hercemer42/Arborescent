@@ -2,13 +2,17 @@
 
 Blueprints capture your workflow structure. Export them to share with others, or import community blueprints to jumpstart new projects.
 
+## Getting Started
+
+Check the [blueprints folder](../blueprints/) for ready-to-use templates you can import.
+
 ## Adding to a Blueprint
 
 Right-click any branch → **Blueprint** → **Add to Blueprint**. Choose an icon and color.
 
 The branch becomes part of your blueprint. Its ancestors are automatically included (a blueprint must form a connected path to the root).
 
-To include descendants too: **Blueprint** → **Add with Descendants**.
+To include descendants too: **Blueprint** → **Add with descendants**.
 
 Blueprint branches display custom icons instead of checkboxes. Click the icon to change it.
 

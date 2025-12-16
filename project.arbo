@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2025-12-16T14:37:05.950Z'
+updated: '2025-12-16T14:54:00.505Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -15626,7 +15626,7 @@ nodes:
     id: a4c333be-a8a4-4c0f-8148-b2260507f5ad
     content: In progress
     children:
-      - c357e5d9-5317-46d8-b560-f7e69bf853fa
+      - 9f827385-b169-4996-898a-c797b0519cf2
     metadata:
       status: pending
       appliedContextIds:
@@ -16088,7 +16088,8 @@ nodes:
   3881490a-b11c-4052-ad46-020faad5bb2b:
     id: 3881490a-b11c-4052-ad46-020faad5bb2b
     content: In progress
-    children: []
+    children:
+      - 21c2e459-e2d1-4fa3-b904-c406d9996056
     metadata:
       status: pending
       appliedContextIds:
@@ -19931,120 +19932,126 @@ nodes:
       isHyperlink: true
       linkedNodeId: 5752a9e6-7729-4d54-bd24-66f26a48e87b
       isBlueprint: true
-  c357e5d9-5317-46d8-b560-f7e69bf853fa:
-    id: c357e5d9-5317-46d8-b560-f7e69bf853fa
-    content: Documentation
-    children:
-      - c4a32fd0-3cf7-40d4-a091-8508a3863d74
-      - 5a3a9393-b07c-43c0-91e7-7b3190dc848b
-      - b50a73ce-ea3f-4fa6-a474-39c6941a59c1
-      - e386f633-a5f5-46d4-adeb-b8e22a756a52
-      - dbfbdd11-134c-4e0b-aefc-512b7be02e74
-      - b781acb5-05b8-41f5-9652-d0b32a75a9cc
-    metadata:
-      status: pending
-  059bd7dd-839f-44f3-909d-e5da8a435a54:
-    id: 059bd7dd-839f-44f3-909d-e5da8a435a54
-    content: In the quick start, we don't mention that a context declaration must be in a blueprint branch (or in the root) - might confuse some people if they try to do it in a nested list and don't find he menu option.
-    children: []
-    metadata:
-      status: pending
-  da85be96-f7fe-4b33-8610-cf9039ee3bbf:
-    id: da85be96-f7fe-4b33-8610-cf9039ee3bbf
-    content: "Do we need to say 'That's the core loop: decompose your thinking into branches, attach context, send to AI.' ?\_ I mean - we've already said 'Quick start' so it stands to reason ?"
-    children: []
-    metadata:
-      status: pending
-  5a3a9393-b07c-43c0-91e7-7b3190dc848b:
-    id: 5a3a9393-b07c-43c0-91e7-7b3190dc848b
-    content: workflow.md
-    children:
-      - 4c4ebb22-37a9-43a8-88cb-f24bdcc82cf5
-      - 8b2e2e1c-a7c8-4674-b1f1-6e17cf470e03
-      - c267ccd0-82a8-4ba0-ade3-5c1498542c29
-      - d2afbafc-8da5-492a-970d-a823a5c8367b
-    metadata:
-      status: pending
-  c4a32fd0-3cf7-40d4-a091-8508a3863d74:
-    id: c4a32fd0-3cf7-40d4-a091-8508a3863d74
-    content: README.md
-    children:
-      - 059bd7dd-839f-44f3-909d-e5da8a435a54
-      - da85be96-f7fe-4b33-8610-cf9039ee3bbf
-    metadata:
-      status: pending
-  4c4ebb22-37a9-43a8-88cb-f24bdcc82cf5:
-    id: 4c4ebb22-37a9-43a8-88cb-f24bdcc82cf5
-    content: Leading with 'The main loop' is a bit clunky...
-    children: []
-    metadata:
-      status: pending
-  8b2e2e1c-a7c8-4674-b1f1-6e17cf470e03:
-    id: 8b2e2e1c-a7c8-4674-b1f1-6e17cf470e03
-    content: '''Send to AI'' needs a minimal bit about technical details'
-    children:
-      - 715c58ee-9dee-4797-b7aa-31cdecd494a0
-    metadata:
-      status: pending
-  715c58ee-9dee-4797-b7aa-31cdecd494a0:
-    id: 715c58ee-9dee-4797-b7aa-31cdecd494a0
-    content: The user needs to understand the mechanism of the temporary file for terminal, or clipboard watching for browser - so they understand if something goes wrong
-    children: []
-    metadata:
-      status: pending
-  c267ccd0-82a8-4ba0-ade3-5c1498542c29:
-    id: c267ccd0-82a8-4ba0-ade3-5c1498542c29
-    content: There are no keyboard shortcuts for collaborate or execute, you made them up
-    children: []
-    metadata:
-      status: pending
-  d2afbafc-8da5-492a-970d-a823a5c8367b:
-    id: d2afbafc-8da5-492a-970d-a823a5c8367b
-    content: link to blueprint doc in blueprint reference
-    children: []
-    metadata:
-      status: pending
-  b50a73ce-ea3f-4fa6-a474-39c6941a59c1:
-    id: b50a73ce-ea3f-4fa6-a474-39c6941a59c1
-    content: Need to mention somewhere the 'anchor' functionality for the terminal - to get around the bug in claude code (and maybe others) where it scrolls the terminal up to the top when it's thinking.
-    children: []
-    metadata:
-      status: pending
-  e386f633-a5f5-46d4-adeb-b8e22a756a52:
-    id: e386f633-a5f5-46d4-adeb-b8e22a756a52
-    content: context.md
-    children:
-      - 89161e25-fc7e-4ac3-b1f5-8d04ecfd821c
-    metadata:
-      status: pending
-  89161e25-fc7e-4ac3-b1f5-8d04ecfd821c:
-    id: 89161e25-fc7e-4ac3-b1f5-8d04ecfd821c
-    content: It's not 'Blueprint' - 'Apply context' anymore - check the current code base for the new behavior
-    children: []
-    metadata:
-      status: pending
-  dbfbdd11-134c-4e0b-aefc-512b7be02e74:
-    id: dbfbdd11-134c-4e0b-aefc-512b7be02e74
-    content: blueprints.md
-    children:
-      - 9b173de3-43d8-48a1-9c0e-e86e216b43ce
-    metadata:
-      status: pending
-  9b173de3-43d8-48a1-9c0e-e86e216b43ce:
-    id: 9b173de3-43d8-48a1-9c0e-e86e216b43ce
-    content: Reference and link to a project folder in the repo 'blueprints' where we can get some starting blueprints (they don't exist yet)
-    children: []
-    metadata:
-      status: pending
   d6fd8b04-762f-42a9-bec7-74161406b9e7:
     id: d6fd8b04-762f-42a9-bec7-74161406b9e7
     content: in 'blueprints' folder
     children: []
     metadata:
       status: pending
-  b781acb5-05b8-41f5-9652-d0b32a75a9cc:
-    id: b781acb5-05b8-41f5-9652-d0b32a75a9cc
-    content: We don't mention drag & drop, ctrl + shift click to select etc anywhere
+  21c2e459-e2d1-4fa3-b904-c406d9996056:
+    id: 21c2e459-e2d1-4fa3-b904-c406d9996056
+    content: Hotkeys for execute and collaborate
+    children:
+      - 63d7731f-fc58-48d7-9f12-aee63f835fc8
+    metadata:
+      status: pending
+  9f827385-b169-4996-898a-c797b0519cf2:
+    id: 9f827385-b169-4996-898a-c797b0519cf2
+    content: Documentation
+    children:
+      - 3d391e1d-fa64-4b6b-8dba-1866fd386026
+      - d53a6739-7d64-4bea-9cd9-75a31821422a
+      - dcd6c759-cf6f-41dd-9d40-330ecf11c957
+    metadata:
+      status: pending
+  fb64685a-9f98-40bd-990b-ea9c7af9b131:
+    id: fb64685a-9f98-40bd-990b-ea9c7af9b131
+    content: "Context instructions are still not quite there.\_ "
+    children:
+      - 0d72ae98-0557-4a1e-8fd4-e23080b64e9d
+      - e3e9967c-a108-413e-a8ea-12e2970d6054
+      - 191f1311-aa78-432c-b4cf-90ae068acb89
+      - c9247d3d-1292-4b47-9082-82de92ef9814
+      - 61b9c759-5e6b-46d2-a9aa-1e3507ad0a7a
+    metadata:
+      status: pending
+  03dec189-5b2d-46dd-99c0-45f3be134189:
+    id: 03dec189-5b2d-46dd-99c0-45f3be134189
+    content: Collaborate
+    children: []
+    metadata:
+      status: pending
+  5ea5d6ad-a5bd-48c8-9b61-e605e0c5c294:
+    id: 5ea5d6ad-a5bd-48c8-9b61-e605e0c5c294
+    content: Execute
+    children: []
+    metadata:
+      status: pending
+  86da178f-0c74-4b86-bea6-0682294ee138:
+    id: 86da178f-0c74-4b86-bea6-0682294ee138
+    content: Set context
+    children: []
+    metadata:
+      status: pending
+  e3e9967c-a108-413e-a8ea-12e2970d6054:
+    id: e3e9967c-a108-413e-a8ea-12e2970d6054
+    content: Changing in one changes for the others.
+    children: []
+    metadata:
+      status: pending
+  191f1311-aa78-432c-b4cf-90ae068acb89:
+    id: 191f1311-aa78-432c-b4cf-90ae068acb89
+    content: That applies the default context for that branch and its descendants
+    children: []
+    metadata:
+      status: pending
+  c9247d3d-1292-4b47-9082-82de92ef9814:
+    id: c9247d3d-1292-4b47-9082-82de92ef9814
+    content: It sets the icon in the gutter
+    children: []
+    metadata:
+      status: pending
+  0d72ae98-0557-4a1e-8fd4-e23080b64e9d:
+    id: 0d72ae98-0557-4a1e-8fd4-e23080b64e9d
+    content: 'There are currently three places you can select a context, they all do the same thing :'
+    children:
+      - 03dec189-5b2d-46dd-99c0-45f3be134189
+      - 5ea5d6ad-a5bd-48c8-9b61-e605e0c5c294
+      - 86da178f-0c74-4b86-bea6-0682294ee138
+    metadata:
+      status: pending
+  61b9c759-5e6b-46d2-a9aa-1e3507ad0a7a:
+    id: 61b9c759-5e6b-46d2-a9aa-1e3507ad0a7a
+    content: Selecting another context in a descendant through any of those 3 menus then overrides the ancestor context for that branch and its descendants
+    children: []
+    metadata:
+      status: pending
+  d53a6739-7d64-4bea-9cd9-75a31821422a:
+    id: d53a6739-7d64-4bea-9cd9-75a31821422a
+    content: Be sure we use 'branch' instead of 'node' everywhere
+    children: []
+    metadata:
+      status: pending
+  fbf8d171-47d8-41fe-bc7f-397ccb166303:
+    id: fbf8d171-47d8-41fe-bc7f-397ccb166303
+    content: CTRL+K cycles from completed, abandoned, unchecked
+    children: []
+    metadata:
+      status: pending
+  dcd6c759-cf6f-41dd-9d40-330ecf11c957:
+    id: dcd6c759-cf6f-41dd-9d40-330ecf11c957
+    content: workflow.md
+    children:
+      - fbf8d171-47d8-41fe-bc7f-397ccb166303
+      - 3b8db02b-7443-406a-bd48-44fc4aaec2df
+    metadata:
+      status: pending
+  3d391e1d-fa64-4b6b-8dba-1866fd386026:
+    id: 3d391e1d-fa64-4b6b-8dba-1866fd386026
+    content: contexts.md
+    children:
+      - fb64685a-9f98-40bd-990b-ea9c7af9b131
+    metadata:
+      status: pending
+  63d7731f-fc58-48d7-9f12-aee63f835fc8:
+    id: 63d7731f-fc58-48d7-9f12-aee63f835fc8
+    content: Update in doc
+    children: []
+    metadata:
+      status: pending
+  3b8db02b-7443-406a-bd48-44fc4aaec2df:
+    id: 3b8db02b-7443-406a-bd48-44fc4aaec2df
+    content: Would be good to have something brief about blueprint capabilities with a link to the blueprint doc
     children: []
     metadata:
       status: pending
