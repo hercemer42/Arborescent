@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2025-12-16T14:54:00.505Z'
+updated: '2025-12-16T15:45:04.969Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -475,6 +475,7 @@ nodes:
     id: 565dde0a-864b-41f9-86ff-dbdf40ac4dd0
     content: Done
     children:
+      - 0053985b-19d7-4115-943b-57e0f47d0fd0
       - 93636741-7002-467c-bc57-eb512b813e96
       - 68f39796-a961-4ddc-8064-f19277378c4e
       - 3ccb2029-faee-4da4-ad66-211f77277afa
@@ -571,7 +572,7 @@ nodes:
       - 55fba45a-26da-4bb7-8f30-4be88cf8dff2
     metadata:
       status: pending
-      expanded: true
+      expanded: false
       isBlueprint: true
       blueprintIcon: Sun
       blueprintColor: '#f97316'
@@ -5421,6 +5422,7 @@ nodes:
       - 65b74e0f-88fe-41c6-9910-8bac806adc6f
       - 6573b620-bfc0-4c5b-8d92-13b9ace3461d
       - 5288b678-63dc-4672-b1b3-8e2b540c04de
+      - 9a38a539-0a71-497b-ba8f-148df72c9ddb
       - e2876839-8e7a-4261-a56d-e657d4384bb3
     metadata:
       status: pending
@@ -14518,9 +14520,10 @@ nodes:
     children:
       - f9104bb2-5aac-4a95-8f5a-efbbf89cc871
       - d2f85efd-9234-4349-a5d0-147807aef97e
+      - c2456dc5-c9f8-4ea4-88e7-ef6ad89adad3
     metadata:
       status: pending
-      expanded: false
+      expanded: true
   d2f85efd-9234-4349-a5d0-147807aef97e:
     id: d2f85efd-9234-4349-a5d0-147807aef97e
     content: Separate blueprint or part of default ?
@@ -15054,12 +15057,8 @@ nodes:
     id: 92b16d87-27dc-486d-a605-4228e2b5206c
     content: For release
     children:
-      - 4b3d4760-3063-4a72-be01-45b90de26559
-      - a5912fd3-9de5-49fc-ac00-a3cc2f41d455
       - cc522bbb-99fe-499f-b9d8-a62c7ce50575
-      - 0053985b-19d7-4115-943b-57e0f47d0fd0
       - 50d841f9-3ba9-4f87-af62-e95a5332b173
-      - 9a38a539-0a71-497b-ba8f-148df72c9ddb
       - 4966bd3d-fe8d-4094-840f-a0f791c07d6c
       - 41691f56-cf04-4609-8009-8d0b50b36ec7
       - e5ad2c66-f085-482e-8010-5fb1a2cf93d7
@@ -15625,8 +15624,7 @@ nodes:
   a4c333be-a8a4-4c0f-8148-b2260507f5ad:
     id: a4c333be-a8a4-4c0f-8148-b2260507f5ad
     content: In progress
-    children:
-      - 9f827385-b169-4996-898a-c797b0519cf2
+    children: []
     metadata:
       status: pending
       appliedContextIds:
@@ -17556,10 +17554,11 @@ nodes:
     id: 0053985b-19d7-4115-943b-57e0f47d0fd0
     content: Create documentation
     children:
-      - 8b1bdc8b-bbbc-4beb-bb5c-b88cf2201c81
+      - 4ac4cbcf-839b-4b18-9e04-272e3f87ebc9
     metadata:
-      status: pending
+      status: completed
       expanded: false
+      resolvedAt: '2025-12-16T15:16:09.128Z'
   e2876839-8e7a-4261-a56d-e657d4384bb3:
     id: e2876839-8e7a-4261-a56d-e657d4384bb3
     content: Create temporary file for context
@@ -18701,12 +18700,6 @@ nodes:
     metadata:
       status: completed
       resolvedAt: '2025-12-13T12:58:23.088Z'
-  9a38a539-0a71-497b-ba8f-148df72c9ddb:
-    id: 9a38a539-0a71-497b-ba8f-148df72c9ddb
-    content: Register domain + setup basic website
-    children: []
-    metadata:
-      status: pending
   48749574-3d80-42ad-819c-35269903a60b:
     id: 48749574-3d80-42ad-819c-35269903a60b
     content: Direct integrations
@@ -18825,33 +18818,6 @@ nodes:
     metadata:
       status: pending
       expanded: false
-  8b1bdc8b-bbbc-4beb-bb5c-b88cf2201c81:
-    id: 8b1bdc8b-bbbc-4beb-bb5c-b88cf2201c81
-    content: In docs folder
-    children:
-      - 097ee8c0-4a43-44b8-b88f-1d40fe70557a
-      - 1030b6da-6272-448e-bd40-48ed876be2ff
-      - c9213bb6-2f19-4dd7-9c06-f18f20af8261
-    metadata:
-      status: pending
-  097ee8c0-4a43-44b8-b88f-1d40fe70557a:
-    id: 097ee8c0-4a43-44b8-b88f-1d40fe70557a
-    content: README.md or something else ?
-    children: []
-    metadata:
-      status: pending
-  1030b6da-6272-448e-bd40-48ed876be2ff:
-    id: 1030b6da-6272-448e-bd40-48ed876be2ff
-    content: Covers basic interactions, not more
-    children: []
-    metadata:
-      status: pending
-  c9213bb6-2f19-4dd7-9c06-f18f20af8261:
-    id: c9213bb6-2f19-4dd7-9c06-f18f20af8261
-    content: Link back to main README
-    children: []
-    metadata:
-      status: pending
   f9104bb2-5aac-4a95-8f5a-efbbf89cc871:
     id: f9104bb2-5aac-4a95-8f5a-efbbf89cc871
     content: Do I need it ? Or part of a specific blueprint ?
@@ -18859,7 +18825,7 @@ nodes:
       - 2f729f27-a246-41bf-9137-e527b61bc166
     metadata:
       status: pending
-      expanded: false
+      expanded: true
   2f729f27-a246-41bf-9137-e527b61bc166:
     id: 2f729f27-a246-41bf-9137-e527b61bc166
     content: Maybe something to explain my workflow for the react-electron blueprint
@@ -19542,25 +19508,6 @@ nodes:
       blueprintColor: '#11386f'
       isBlueprint: true
       appliedContextId: 0058432d-a010-473b-a707-ace2b1dee169
-  4b3d4760-3063-4a72-be01-45b90de26559:
-    id: 4b3d4760-3063-4a72-be01-45b90de26559
-    content: API integration
-    children:
-      - be29bdaa-d5bd-4d6c-9da5-9a09e12282d6
-    metadata:
-      status: pending
-  be29bdaa-d5bd-4d6c-9da5-9a09e12282d6:
-    id: be29bdaa-d5bd-4d6c-9da5-9a09e12282d6
-    content: Use for demo
-    children: []
-    metadata:
-      status: pending
-  a5912fd3-9de5-49fc-ac00-a3cc2f41d455:
-    id: a5912fd3-9de5-49fc-ac00-a3cc2f41d455
-    content: Finish documentation
-    children: []
-    metadata:
-      status: pending
   4a24bd5f-7858-4d3e-8e10-6e09d39a2b0a:
     id: 4a24bd5f-7858-4d3e-8e10-6e09d39a2b0a
     content: Warn the user if there is anything that is unclear or inconsistent
@@ -19945,113 +19892,37 @@ nodes:
       - 63d7731f-fc58-48d7-9f12-aee63f835fc8
     metadata:
       status: pending
-  9f827385-b169-4996-898a-c797b0519cf2:
-    id: 9f827385-b169-4996-898a-c797b0519cf2
-    content: Documentation
-    children:
-      - 3d391e1d-fa64-4b6b-8dba-1866fd386026
-      - d53a6739-7d64-4bea-9cd9-75a31821422a
-      - dcd6c759-cf6f-41dd-9d40-330ecf11c957
-    metadata:
-      status: pending
-  fb64685a-9f98-40bd-990b-ea9c7af9b131:
-    id: fb64685a-9f98-40bd-990b-ea9c7af9b131
-    content: "Context instructions are still not quite there.\_ "
-    children:
-      - 0d72ae98-0557-4a1e-8fd4-e23080b64e9d
-      - e3e9967c-a108-413e-a8ea-12e2970d6054
-      - 191f1311-aa78-432c-b4cf-90ae068acb89
-      - c9247d3d-1292-4b47-9082-82de92ef9814
-      - 61b9c759-5e6b-46d2-a9aa-1e3507ad0a7a
-    metadata:
-      status: pending
-  03dec189-5b2d-46dd-99c0-45f3be134189:
-    id: 03dec189-5b2d-46dd-99c0-45f3be134189
-    content: Collaborate
-    children: []
-    metadata:
-      status: pending
-  5ea5d6ad-a5bd-48c8-9b61-e605e0c5c294:
-    id: 5ea5d6ad-a5bd-48c8-9b61-e605e0c5c294
-    content: Execute
-    children: []
-    metadata:
-      status: pending
-  86da178f-0c74-4b86-bea6-0682294ee138:
-    id: 86da178f-0c74-4b86-bea6-0682294ee138
-    content: Set context
-    children: []
-    metadata:
-      status: pending
-  e3e9967c-a108-413e-a8ea-12e2970d6054:
-    id: e3e9967c-a108-413e-a8ea-12e2970d6054
-    content: Changing in one changes for the others.
-    children: []
-    metadata:
-      status: pending
-  191f1311-aa78-432c-b4cf-90ae068acb89:
-    id: 191f1311-aa78-432c-b4cf-90ae068acb89
-    content: That applies the default context for that branch and its descendants
-    children: []
-    metadata:
-      status: pending
-  c9247d3d-1292-4b47-9082-82de92ef9814:
-    id: c9247d3d-1292-4b47-9082-82de92ef9814
-    content: It sets the icon in the gutter
-    children: []
-    metadata:
-      status: pending
-  0d72ae98-0557-4a1e-8fd4-e23080b64e9d:
-    id: 0d72ae98-0557-4a1e-8fd4-e23080b64e9d
-    content: 'There are currently three places you can select a context, they all do the same thing :'
-    children:
-      - 03dec189-5b2d-46dd-99c0-45f3be134189
-      - 5ea5d6ad-a5bd-48c8-9b61-e605e0c5c294
-      - 86da178f-0c74-4b86-bea6-0682294ee138
-    metadata:
-      status: pending
-  61b9c759-5e6b-46d2-a9aa-1e3507ad0a7a:
-    id: 61b9c759-5e6b-46d2-a9aa-1e3507ad0a7a
-    content: Selecting another context in a descendant through any of those 3 menus then overrides the ancestor context for that branch and its descendants
-    children: []
-    metadata:
-      status: pending
-  d53a6739-7d64-4bea-9cd9-75a31821422a:
-    id: d53a6739-7d64-4bea-9cd9-75a31821422a
-    content: Be sure we use 'branch' instead of 'node' everywhere
-    children: []
-    metadata:
-      status: pending
-  fbf8d171-47d8-41fe-bc7f-397ccb166303:
-    id: fbf8d171-47d8-41fe-bc7f-397ccb166303
-    content: CTRL+K cycles from completed, abandoned, unchecked
-    children: []
-    metadata:
-      status: pending
-  dcd6c759-cf6f-41dd-9d40-330ecf11c957:
-    id: dcd6c759-cf6f-41dd-9d40-330ecf11c957
-    content: workflow.md
-    children:
-      - fbf8d171-47d8-41fe-bc7f-397ccb166303
-      - 3b8db02b-7443-406a-bd48-44fc4aaec2df
-    metadata:
-      status: pending
-  3d391e1d-fa64-4b6b-8dba-1866fd386026:
-    id: 3d391e1d-fa64-4b6b-8dba-1866fd386026
-    content: contexts.md
-    children:
-      - fb64685a-9f98-40bd-990b-ea9c7af9b131
-    metadata:
-      status: pending
   63d7731f-fc58-48d7-9f12-aee63f835fc8:
     id: 63d7731f-fc58-48d7-9f12-aee63f835fc8
     content: Update in doc
     children: []
     metadata:
       status: pending
-  3b8db02b-7443-406a-bd48-44fc4aaec2df:
-    id: 3b8db02b-7443-406a-bd48-44fc4aaec2df
-    content: Would be good to have something brief about blueprint capabilities with a link to the blueprint doc
+  4ac4cbcf-839b-4b18-9e04-272e3f87ebc9:
+    id: 4ac4cbcf-839b-4b18-9e04-272e3f87ebc9
+    content: 'Based on blueprint conventions :'
+    children:
+      - b2c1e79a-a777-4699-8172-24b2afbd3060
+    metadata:
+      status: completed
+      resolvedAt: '2025-12-16T15:16:09.600Z'
+  b2c1e79a-a777-4699-8172-24b2afbd3060:
+    id: b2c1e79a-a777-4699-8172-24b2afbd3060
+    content: Documentation
+    children: []
+    metadata:
+      status: pending
+      isHyperlink: true
+      linkedNodeId: 5752a9e6-7729-4d54-bd24-66f26a48e87b
+  9a38a539-0a71-497b-ba8f-148df72c9ddb:
+    id: 9a38a539-0a71-497b-ba8f-148df72c9ddb
+    content: Register domain + setup basic website
+    children: []
+    metadata:
+      status: pending
+  c2456dc5-c9f8-4ea4-88e7-ef6ad89adad3:
+    id: c2456dc5-c9f8-4ea4-88e7-ef6ad89adad3
+    content: Perhaps just tighten up the existing blueprint
     children: []
     metadata:
       status: pending
