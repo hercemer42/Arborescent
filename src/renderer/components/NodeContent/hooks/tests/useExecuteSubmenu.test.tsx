@@ -73,7 +73,7 @@ describe('buildExecuteSubmenu', () => {
 
       // Structure: In terminal, In browser, separator, heading, context
       expect(result).toHaveLength(5);
-      expect(result[3].label).toBe('Available contexts');
+      expect(result[3].label).toBe('Apply a context');
       expect(result[4].label).toBe('My Context');
     });
 

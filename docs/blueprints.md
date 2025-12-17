@@ -33,15 +33,16 @@ Share this file with your team or community. It contains your workflow structure
 **File** → **Import from Blueprint** creates a new document from a blueprint file.
 
 The imported structure becomes your starting point. Fill in the content branches while the blueprint structure guides your workflow.
+Modify the blueprint to fine tune it to your own way of working.
 
 ## Context Declarations
 
-[Contexts](contexts.md) are a special type of blueprint. When you declare a context, the branch and its descendants automatically become blueprints.
+[Contexts](contexts.md) are a special type of blueprint branch. When you declare a context, the branch and its descendants automatically become blueprints.
 
-Context declaration branches show their icon both in place of the checkbox and in the gutter.
+Context declarations display an icon in the gutter.
 
 ## Removing from Blueprint
 
-Right-click → **Blueprint** → **Remove from Blueprint**.
+Right-click → **Blueprint** → **Remove from Blueprint**. or **Remove Context Declaration**
 
 If the branch has blueprint descendants, you'll be asked whether to remove them too.

@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2025-12-16T15:52:41.833Z'
+updated: '2025-12-17T11:27:47.762Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -572,7 +572,7 @@ nodes:
       - 55fba45a-26da-4bb7-8f30-4be88cf8dff2
     metadata:
       status: pending
-      expanded: false
+      expanded: true
       isBlueprint: true
       blueprintIcon: Sun
       blueprintColor: '#f97316'
@@ -14516,7 +14516,7 @@ nodes:
       expanded: true
   cc522bbb-99fe-499f-b9d8-a62c7ce50575:
     id: cc522bbb-99fe-499f-b9d8-a62c7ce50575
-    content: Help branches for onboarding
+    content: Help branches for on-boarding
     children:
       - f9104bb2-5aac-4a95-8f5a-efbbf89cc871
       - d2f85efd-9234-4349-a5d0-147807aef97e
@@ -15057,6 +15057,7 @@ nodes:
     id: 92b16d87-27dc-486d-a605-4228e2b5206c
     content: For release
     children:
+      - 21c2e459-e2d1-4fa3-b904-c406d9996056
       - cc522bbb-99fe-499f-b9d8-a62c7ce50575
       - 53ed4c1a-62e0-4a2c-a7af-b0805be12087
       - 50d841f9-3ba9-4f87-af62-e95a5332b173
@@ -16087,7 +16088,7 @@ nodes:
     id: 3881490a-b11c-4052-ad46-020faad5bb2b
     content: In progress
     children:
-      - 21c2e459-e2d1-4fa3-b904-c406d9996056
+      - a13e5bd1-95d8-46ce-ba59-765feeb38a73
     metadata:
       status: pending
       appliedContextIds:
@@ -19445,6 +19446,7 @@ nodes:
       - d6fd8b04-762f-42a9-bec7-74161406b9e7
       - 9860aa8a-06ae-4eb7-b42b-caacfb5c331f
       - 0fbc68dd-1ac7-4a56-94f9-1fdac20654a5
+      - 842e0663-8331-407c-8e1a-3b2a07183b7c
     metadata:
       status: pending
   9860aa8a-06ae-4eb7-b42b-caacfb5c331f:
@@ -19521,18 +19523,11 @@ nodes:
     content: What is Arborescent ?
     children:
       - 56c670dc-e012-4991-86ff-49094a264ece
-      - b187618e-b49a-4450-98f3-c436ced7ae64
     metadata:
       status: pending
   56c670dc-e012-4991-86ff-49094a264ece:
     id: 56c670dc-e012-4991-86ff-49094a264ece
     content: Read the README.md in this project's root folder
-    children: []
-    metadata:
-      status: pending
-  b187618e-b49a-4450-98f3-c436ced7ae64:
-    id: b187618e-b49a-4450-98f3-c436ced7ae64
-    content: Consider the core
     children: []
     metadata:
       status: pending
@@ -19930,6 +19925,25 @@ nodes:
   0fbc68dd-1ac7-4a56-94f9-1fdac20654a5:
     id: 0fbc68dd-1ac7-4a56-94f9-1fdac20654a5
     content: Option to load from menu
+    children: []
+    metadata:
+      status: pending
+  842e0663-8331-407c-8e1a-3b2a07183b7c:
+    id: 842e0663-8331-407c-8e1a-3b2a07183b7c
+    content: Mention in readme, perhaps in quick start ;
+    children:
+      - e62e0fe6-6168-4518-9568-43b0c649015a
+    metadata:
+      status: pending
+  e62e0fe6-6168-4518-9568-43b0c649015a:
+    id: e62e0fe6-6168-4518-9568-43b0c649015a
+    content: '''Load this blueprint for a new react-electron project'''
+    children: []
+    metadata:
+      status: pending
+  a13e5bd1-95d8-46ce-ba59-765feeb38a73:
+    id: a13e5bd1-95d8-46ce-ba59-765feeb38a73
+    content: When applying a reviewed node, we clear any applied contexts on the root node, we should not (we don't care about any descendants)
     children: []
     metadata:
       status: pending

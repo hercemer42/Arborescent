@@ -77,7 +77,7 @@ describe('buildCollaborateSubmenu', () => {
       expect(result[0].label).toBe('In terminal');
       expect(result[1].label).toBe('In browser');
       expect(result[2].label).toBe('-'); // separator
-      expect(result[3].label).toBe('Available contexts'); // heading
+      expect(result[3].label).toBe('Apply a context'); // heading
       expect(result[4].label).toBe('My Context');
     });
 

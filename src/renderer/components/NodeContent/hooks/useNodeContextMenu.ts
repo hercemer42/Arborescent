@@ -273,7 +273,7 @@ export function useNodeContextMenu(node: TreeNode) {
         disabled: false,
       }] : []),
       ...(!isHyperlink && !isExternalLink && setContextSubmenu ? [{
-        label: 'Set context',
+        label: 'Apply context',
         submenu: setContextSubmenu,
       }] : []),
       ...(!isHyperlink && !isExternalLink && blueprintMenuItem ? [blueprintMenuItem] : []),

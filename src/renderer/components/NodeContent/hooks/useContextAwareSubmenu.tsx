@@ -36,7 +36,7 @@ function createBaseActions(
 
 function createContextHeading(): ContextMenuItem {
   return {
-    label: 'Available contexts',
+    label: 'Apply a context',
     onClick: () => {},
     disabled: true,
   };

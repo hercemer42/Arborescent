@@ -4,7 +4,9 @@ Contexts are reusable instructions for AI. Define them once, apply them anywhere
 
 ## Creating a Context
 
-Write your AI instructions as a branch with children containing the details. Then right-click → **Blueprint** → **Declare as Context**. Choose an icon to identify it.
+Contexts should be generic and reusable. Your regular branches contain specific content for a particular task.
+
+To create a context: write a branch containing the reusable instructions. Then right-click → **Blueprint** → **Declare as Context**. Choose an icon to identify it.
 
 Note: The branch must be a child of a blueprint branch, or be at the root level.
 
@@ -16,29 +18,27 @@ Code Review  ← declare this as context
 └── Suggest performance improvements
 ```
 
-The branch and all its children become the context content. When you select this context, everything underneath is sent to the AI.
+When you apply this context and execute a branch, the context instructions are sent alongside your branch content.
 
-## Selecting a Context
+## Applying a Context
 
-Three places to select a context—they all work the same way:
+Three places to apply a context—they all work the same way:
 
-- Right-click → **Execute** → select context
-- Right-click → **Collaborate** → select context
-- Right-click → **Set context** → select context
+- Right-click → **Execute** → apply context
+- Right-click → **Collaborate** → apply context
+- Right-click → **Apply context** → select from list
 
-Selecting a context in any of these menus updates all three. The selected context:
+Applying a context in any of these menus updates all three. The applied context:
 
 - Becomes the default for that branch and all its descendants
 - Shows an icon in the gutter (left margin)
-- Persists until you select a different one
+- Persists until you apply a different one
 
 ## Inheritance
 
-Contexts flow down the tree. When you select a context on a branch, all descendants inherit it.
+Contexts flow down the tree. When you apply a context to a branch, all descendants inherit it.
 
-A descendant can override by selecting a different context (through any of the three menus). That override then applies to that branch and its descendants.
-
-In the menus, inherited contexts show "(default)" next to them.
+A descendant can override by applying a different context. That override then applies to that branch and its descendants.
 
 ## Including Other Content
 

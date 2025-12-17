@@ -1,6 +1,6 @@
 # Core Workflow
 
-Decompose → add context → send to AI → refine. Repeat.
+Decompose → add context → send your prompt → refine. Repeat.
 
 ## Decompose Your Thinking
 
@@ -8,17 +8,15 @@ Break down problems into branches. Press `Enter` to create siblings, `Tab` to cr
 
 Each branch has a status: unchecked, completed, or abandoned. Press `Ctrl+K` to cycle through them. The tree structure lets you think non-linearly—jump between branches, collapse what you're not working on, expand when you need detail.
 
-**Drag and drop** to reorganize. Hold `Ctrl` while dropping to copy instead of move.
-
-**Multi-select** with `Ctrl+Click` (individual branches) or `Shift+Click` (range). Cut, copy, or delete multiple branches at once.
+**Multi-select** with `Ctrl+Click` (individual branches) or `Shift+Click` (range). Then drag to move, or cut/copy/delete multiple branches at once.
 
 ## Add Context
 
 Before sending work to an AI, attach a [context](contexts.md). Contexts are reusable instructions that tell the AI how to respond — your project conventions, coding style, review criteria.
 
-Right-click any branch → **Execute** or **Collaborate** → select a context from the list. The context applies to that branch and all its descendants.
+Right-click any branch → **Execute** or **Collaborate** → apply a context from the list. The context applies to that branch and all its descendants.
 
-## Send to AI
+## Send Your Prompt
 
 Two ways to send your work:
 
@@ -38,7 +36,7 @@ Keyboard shortcuts: `Ctrl+E` for Execute (in terminal), `Ctrl+Shift+Enter` for C
 
 ### How it works
 
-**Terminal mode**: Instructions tell the AI to write its response to a temporary file. Arborescent watches this file and displays the result in the Feedback panel when it changes.  If you want to iterate on these changes, you can prompt it in the terminal to update the temporary file.  Be careful, it will override any changes you made.
+**Terminal mode**: Instructions tell the AI to write its response to a temporary file. Arborescent watches this file and displays the result in the Feedback panel when it changes.
 
 **Browser mode**: Instructions tell the AI to format its response as markdown in a code block. Copy the AI's response to your clipboard. Arborescent watches the clipboard and displays the result when it detects a compatible format.
 
@@ -72,4 +70,4 @@ Drag the panel edge to resize. Toggle between side and bottom position with the 
 
 ### Terminal scroll lock
 
-Some terminal AI tools (like Claude Code) redraw the screen while processing, which can scroll you away from the output. Click the anchor icon in the terminal tab bar to toggle auto-scroll.  Click it again to turn it off.
+Some terminal AI tools (like Claude Code) redraw the screen while processing, which can scroll you away from the output. Click the anchor icon in the terminal tab bar to fix the view to the bottom of the terminal.  Click it again to turn it off.

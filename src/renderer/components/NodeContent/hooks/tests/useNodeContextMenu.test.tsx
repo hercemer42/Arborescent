@@ -347,7 +347,7 @@ describe('useNodeContextMenu', () => {
       const executeMenu = result.current.contextMenuItems.find(item => item.label === 'Execute');
       // Should have base actions + separator + heading + context
       expect(executeMenu?.submenu?.length).toBeGreaterThan(2);
-      expect(executeMenu?.submenu?.find(item => item.label === 'Available contexts')).toBeDefined();
+      expect(executeMenu?.submenu?.find(item => item.label === 'Apply a context')).toBeDefined();
       expect(executeMenu?.submenu?.find(item => item.label === 'My Context')).toBeDefined();
     });
 
@@ -380,7 +380,7 @@ describe('useNodeContextMenu', () => {
       const collaborateMenu = result.current.contextMenuItems.find(item => item.label === 'Collaborate');
       // Should have base actions + separator + heading + context
       expect(collaborateMenu?.submenu?.length).toBeGreaterThan(2);
-      expect(collaborateMenu?.submenu?.find(item => item.label === 'Available contexts')).toBeDefined();
+      expect(collaborateMenu?.submenu?.find(item => item.label === 'Apply a context')).toBeDefined();
       expect(collaborateMenu?.submenu?.find(item => item.label === 'My Context')).toBeDefined();
     });
   });

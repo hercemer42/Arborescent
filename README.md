@@ -7,7 +7,7 @@
 ## What it does
 
 Break down complex problems into tree structures.
-Attach contexts to any branch and export as an optimized AI prompt.
+Attach contexts to any branch and send as an optimized AI prompt.
 Refine your structure and contexts until you get the results you want.
 
 Save what works as a blueprint to share with your team or community. 
@@ -17,14 +17,13 @@ Save what works as a blueprint to share with your team or community.
 - **Tree-based decomposition** — Hierarchical structure, drag and drop, keyboard navigation.
 - **Reusable contexts** — Define contexts once, apply them to any branch. Changes are inherited automatically.
 - **Blueprints** — Share your workflow or import from your community or team.
-- **AI integration** — Export any branch as an optimized prompt.
-- **Integrated terminal and browser** — Work without context switching.
+- **AI integration** — Build your prompt and send it to the integrated terminal or browser.
 
 ## Quick start
 
 1. [Download the latest release](__releases__)
 2. Build your tree
-3. Right-click any branch to export your prompt
+3. Right-click any branch to send your prompt
 
 ## Example blueprints
 
