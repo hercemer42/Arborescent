@@ -1,38 +1,43 @@
 # Arborescent
 
-**A tree editor for organizing your AI workflow**
-
-![Screenshot placeholder](docs/screenshot.png)
+**An outliner for project decomposition and AI workflows**
 
 ## What it does
 
-Break down complex problems into tree structures.
-Attach contexts to any branch and send as an optimized AI prompt.
-Refine your structure and contexts until you get the results you want.
+Break down complex projects into hierarchical task lists.  
+Build and execute AI prompts with reusable contexts.  
+Share your workflows with your community or team.  
 
-Save what works as a blueprint to share with your team or community. 
+## Why Arborescent ?
+
+The current market is full of paid AI workflow tools with complex features.  
+Arborescent is free under the GPL license, easy to use, and it gets the job done.  
+Here is Arborescent building itself :
+
+![Screenshot placeholder](docs/screenshot.png)
 
 ## Key features
 
-- **Tree-based decomposition** — Hierarchical structure, drag and drop, keyboard navigation.
-- **Reusable contexts** — Define contexts once, apply them to any branch. Changes are inherited automatically.
-- **Blueprints** — Share your workflow or import from your community or team.
+- **Tree-based decomposition** — Fully featured outliner with keyboard navigation and drag and drop.
 - **AI integration** — Build your prompt and send it to the integrated terminal or browser.
+- **Reusable contexts** — Define contexts once, apply them to any branch. Changes are inherited automatically.
+- **Blueprints** — Export your core workflow or import from your community or team.
 
 ## Quick start
 
 1. [Download the latest release](__releases__)
-2. Build your tree
-3. Right-click any branch to send your prompt
+2. Break down your task
+3. Open your preferred AI in the terminal or browser
+4. Right-click to send your prompt
 
 ## Example blueprints
 
-- [React + Electron Development](blueprints/react-electron.arbo) — Full dev workflow with conventions, contexts for features/bugs/refactoring, and standard checks
+- [React + Electron Development](blueprints/react-electron.arbo) — Full dev workflow with conventions and contexts for features/bugs/refactoring.
 - More coming soon
 
-## File format
+## Learn more
 
-Arborescent uses `.arbo` files which are YAML based to be human-readable and version-control friendly.
+- [Documentation](docs/README.md)
 
 ---
 
@@ -76,7 +81,3 @@ npm run make          # Create installers
 GPL-3.0-only
 
 ---
-
-## Learn more
-
-- [Documentation](docs/README.md)

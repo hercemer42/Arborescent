@@ -5,6 +5,7 @@ Blueprints capture your workflow structure. Export them to share with others, or
 ## Getting Started
 
 Check the [blueprints folder](../blueprints/) for ready-to-use templates you can import.
+Arborescent uses `.arbo` files which are YAML based to be human-readable and version-control friendly.
 
 ## Adding to a Blueprint
 
