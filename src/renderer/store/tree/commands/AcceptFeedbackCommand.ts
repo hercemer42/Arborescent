@@ -1,6 +1,6 @@
 import { BaseCommand } from './Command';
 import { TreeNode } from '../../../../shared/types';
-import { removeNodeFromRegistry, addNodesToRegistry, buildAncestorRegistry, AncestorRegistry } from '../../../services/ancestry';
+import { addNodesToRegistry, buildAncestorRegistry, AncestorRegistry } from '../../../services/ancestry';
 import { getAllDescendants, captureNodePosition } from '../../../utils/nodeHelpers';
 import { DEFAULT_BLUEPRINT_ICON } from '../actions/blueprintActions';
 
@@ -86,14 +86,14 @@ export class AcceptFeedbackCommand extends BaseCommand {
     return { icon: DEFAULT_BLUEPRINT_ICON };
   }
 
-  private applyBlueprintMetadata(
+  private applyBlueprintMetadataWithOriginalId(
     nodesMap: Record<string, TreeNode>,
     blueprintIcon: { icon: string; color?: string }
   ): Record<string, TreeNode> {
     const result: Record<string, TreeNode> = {};
 
     for (const [id, node] of Object.entries(nodesMap)) {
-      const isRootNode = id === this.newRootNodeId;
+      const isRootNode = id === this.collaboratingNodeId;
       result[id] = {
         ...node,
         metadata: {
@@ -114,12 +114,10 @@ export class AcceptFeedbackCommand extends BaseCommand {
   ): { mergedNodesMap: Record<string, TreeNode>; updatedNewNodesMap: Record<string, TreeNode> } {
     const mergedNodesMap = { ...state.nodes };
 
-    delete mergedNodesMap[this.collaboratingNodeId];
     for (const id of this.snapshot!.descendants.keys()) {
       delete mergedNodesMap[id];
     }
 
-    const newRootNode = this.newNodesMap[this.newRootNodeId];
     const preservedMetadata: Record<string, unknown> = {};
 
     if (collaboratingNode.metadata.appliedContextIds) {
@@ -128,7 +126,9 @@ export class AcceptFeedbackCommand extends BaseCommand {
     if (collaboratingNode.metadata.activeContextId) {
       preservedMetadata.activeContextId = collaboratingNode.metadata.activeContextId;
     }
-
+    if (collaboratingNode.metadata.appliedContextId) {
+      preservedMetadata.appliedContextId = collaboratingNode.metadata.appliedContextId;
+    }
     if (collaboratingNode.metadata.isContextDeclaration) {
       preservedMetadata.isContextDeclaration = collaboratingNode.metadata.isContextDeclaration;
     }
@@ -138,45 +138,47 @@ export class AcceptFeedbackCommand extends BaseCommand {
     if (collaboratingNode.metadata.blueprintColor) {
       preservedMetadata.blueprintColor = collaboratingNode.metadata.blueprintColor;
     }
+    if (collaboratingNode.metadata.isBlueprint) {
+      preservedMetadata.isBlueprint = collaboratingNode.metadata.isBlueprint;
+    }
 
-    let updatedNewNodesMap = {
-      ...this.newNodesMap,
-      [this.newRootNodeId]: {
-        ...newRootNode,
-        metadata: { ...newRootNode.metadata, ...preservedMetadata },
-      },
-    };
+    let updatedNewNodesMap: Record<string, TreeNode> = {};
+
+    for (const [id, node] of Object.entries(this.newNodesMap)) {
+      if (id === this.newRootNodeId) {
+        updatedNewNodesMap[this.collaboratingNodeId] = {
+          ...node,
+          id: this.collaboratingNodeId,
+          metadata: { ...node.metadata, ...preservedMetadata },
+        };
+      } else {
+        updatedNewNodesMap[id] = node;
+      }
+    }
 
     if (state.blueprintModeEnabled) {
       const effectiveIcon = this.getEffectiveBlueprintIcon(collaboratingNode, state);
-      updatedNewNodesMap = this.applyBlueprintMetadata(updatedNewNodesMap, effectiveIcon);
+      updatedNewNodesMap = this.applyBlueprintMetadataWithOriginalId(updatedNewNodesMap, effectiveIcon);
     }
 
     Object.assign(mergedNodesMap, updatedNewNodesMap);
-
-    const parent = mergedNodesMap[this.snapshot!.parentId];
-    if (parent) {
-      mergedNodesMap[this.snapshot!.parentId] = {
-        ...parent,
-        children: parent.children.map(id =>
-          id === this.collaboratingNodeId ? this.newRootNodeId : id
-        ),
-      };
-    }
 
     return { mergedNodesMap, updatedNewNodesMap };
   }
 
   private buildAncestorRegistryForExecute(
     state: ReturnType<typeof this.getState>,
-    mergedNodesMap: Record<string, TreeNode>,
-    updatedRootNodeId: string
+    mergedNodesMap: Record<string, TreeNode>
   ): AncestorRegistry {
     if (this.snapshot!.wasRootNode) {
-      return buildAncestorRegistry(updatedRootNodeId, mergedNodesMap);
+      return buildAncestorRegistry(this.collaboratingNodeId, mergedNodesMap);
     }
-    const registry = removeNodeFromRegistry(state.ancestorRegistry, this.collaboratingNodeId, state.nodes);
-    return addNodesToRegistry(registry, [this.newRootNodeId], this.snapshot!.parentId, mergedNodesMap);
+    const registry = { ...state.ancestorRegistry };
+    for (const descendantId of this.snapshot!.descendants.keys()) {
+      delete registry[descendantId];
+    }
+    const newDescendantIds = getAllDescendants(this.collaboratingNodeId, mergedNodesMap);
+    return addNodesToRegistry(registry, newDescendantIds, this.collaboratingNodeId, mergedNodesMap);
   }
 
   execute(): void {
@@ -186,17 +188,16 @@ export class AcceptFeedbackCommand extends BaseCommand {
 
     this.snapshot = this.captureSnapshot(collaboratingNode, state);
     const { mergedNodesMap, updatedNewNodesMap } = this.buildMergedNodes(state, collaboratingNode);
-    const updatedRootNodeId = this.snapshot.wasRootNode ? this.newRootNodeId : state.rootNodeId;
-    const newNodeIds = [this.newRootNodeId, ...getAllDescendants(this.newRootNodeId, updatedNewNodesMap)];
-    const newAncestorRegistry = this.buildAncestorRegistryForExecute(state, mergedNodesMap, updatedRootNodeId);
+    const newNodeIds = [this.collaboratingNodeId, ...getAllDescendants(this.collaboratingNodeId, updatedNewNodesMap)];
+    const newAncestorRegistry = this.buildAncestorRegistryForExecute(state, mergedNodesMap);
 
     this.setState({
       nodes: mergedNodesMap,
       ancestorRegistry: newAncestorRegistry,
-      rootNodeId: updatedRootNodeId,
+      rootNodeId: state.rootNodeId,
       collaboratingNodeId: null,
       feedbackFadingNodeIds: new Set(newNodeIds),
-      activeNodeId: this.newRootNodeId,
+      activeNodeId: this.collaboratingNodeId,
     });
 
     this.triggerAutosave?.();
@@ -208,9 +209,10 @@ export class AcceptFeedbackCommand extends BaseCommand {
 
     const state = this.getState();
     const restoredNodesMap = { ...state.nodes };
+    const currentNode = restoredNodesMap[this.collaboratingNodeId];
+    const newDescendantIds = currentNode ? getAllDescendants(this.collaboratingNodeId, restoredNodesMap) : [];
 
-    const newNodeIds = [this.newRootNodeId, ...getAllDescendants(this.newRootNodeId, this.newNodesMap)];
-    for (const id of newNodeIds) {
+    for (const id of newDescendantIds) {
       delete restoredNodesMap[id];
     }
 
@@ -219,32 +221,22 @@ export class AcceptFeedbackCommand extends BaseCommand {
       restoredNodesMap[nodeId] = { ...node };
     });
 
-    const parent = restoredNodesMap[this.snapshot.parentId];
-    if (parent) {
-      restoredNodesMap[this.snapshot.parentId] = {
-        ...parent,
-        children: parent.children.map(id =>
-          id === this.newRootNodeId ? this.snapshot!.collaboratingNodeId : id
-        ),
-      };
-    }
-
-    const restoredRootNodeId = this.snapshot.wasRootNode
-      ? this.snapshot.collaboratingNodeId
-      : state.rootNodeId;
-
     let newAncestorRegistry: AncestorRegistry;
     if (this.snapshot.wasRootNode) {
-      newAncestorRegistry = buildAncestorRegistry(restoredRootNodeId, restoredNodesMap);
+      newAncestorRegistry = buildAncestorRegistry(this.snapshot.collaboratingNodeId, restoredNodesMap);
     } else {
-      const registry = removeNodeFromRegistry(state.ancestorRegistry, this.newRootNodeId, this.newNodesMap);
-      newAncestorRegistry = addNodesToRegistry(registry, [this.snapshot.collaboratingNodeId], this.snapshot.parentId, restoredNodesMap);
+      const registry = { ...state.ancestorRegistry };
+      for (const id of newDescendantIds) {
+        delete registry[id];
+      }
+      const originalDescendantIds = Array.from(this.snapshot.descendants.keys());
+      newAncestorRegistry = addNodesToRegistry(registry, originalDescendantIds, this.collaboratingNodeId, restoredNodesMap);
     }
 
     this.setState({
       nodes: restoredNodesMap,
       ancestorRegistry: newAncestorRegistry,
-      rootNodeId: restoredRootNodeId,
+      rootNodeId: state.rootNodeId,
       collaboratingNodeId: null,
       feedbackFadingNodeIds: new Set(),
       activeNodeId: this.snapshot.collaboratingNodeId,
