@@ -1,10 +1,8 @@
 # Contexts
 
-Contexts are reusable instructions for AI. Define them once, apply them anywhere.
+Contexts are reusable instructions for AI that you can apply anywhere in the tree.
 
 ## Creating a Context
-
-Contexts should be generic and reusable. Your regular branches contain specific content for a particular task.
 
 To create a context: write a branch containing the reusable instructions. Then right-click → **Blueprint** → **Declare as Context**. Choose an icon to identify it.
 
@@ -44,4 +42,4 @@ A descendant can override by applying a different context. That override then ap
 
 Context declarations can include hyperlinks to other branches. Right-click a branch → **Edit** → **Copy as Hyperlink**, then paste inside your context declaration.
 
-When the context is sent to AI, hyperlinked content is resolved and included. This lets you reference shared definitions, examples, other contexts, or specifications without duplicating them.
+When the context is sent to AI, hyperlinked content is resolved and included. This lets you reference shared definitions, specifications, or even other contexts, without duplicating them.

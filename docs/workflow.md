@@ -1,38 +1,41 @@
 # Core Workflow
 
-Decompose → add context → send your prompt → refine. Repeat.
+## Break Down Your Project
 
-## Decompose Your Thinking
+Break down your project into branches. Press `Enter` to create siblings, `Tab` to indent, and `Shift+Tab` to outdent. Arrow keys navigate. `Ctrl+↑` and `Ctrl+↓` reorder branches.
 
-Break down problems into branches. Press `Enter` to create siblings, `Tab` to create children. Arrow keys navigate. `Ctrl+↑` and `Ctrl+↓` reorder branches.
+Each branch has a status: unchecked, completed, or abandoned. Press `Ctrl+K` to cycle through them. Expand and collapse branches with `Ctrl+T`.
 
-Each branch has a status: unchecked, completed, or abandoned. Press `Ctrl+K` to cycle through them. The tree structure lets you think non-linearly—jump between branches, collapse what you're not working on, expand when you need detail.
+**Multi-select** with `Ctrl+Click` or `Shift+Click` (range), then drag to move, or cut/copy/delete.
 
-**Multi-select** with `Ctrl+Click` (individual branches) or `Shift+Click` (range). Then drag to move, or cut/copy/delete multiple branches at once.
+## Apply Context
 
-## Add Context
-
-Before sending work to an AI, attach a [context](contexts.md). Contexts are reusable instructions that tell the AI how to respond — your project conventions, coding style, review criteria.
+Before sending your prompt to an AI, you can apply a [context](contexts.md). Contexts are reusable instructions that tell the AI how to respond — they can be project conventions, coding style, review criteria, whatever you don't want to repeat.
 
 Right-click any branch → **Execute** or **Collaborate** → apply a context from the list. The context applies to that branch and all its descendants.
+
+## Log In to Your AI
+
+Before sending prompts, open the Terminal panel (`` Ctrl+` ``) or Browser panel (`Ctrl+B`) and log into your preferred AI.
 
 ## Send Your Prompt
 
 Two ways to send your work:
 
-**Execute** sends content for immediate action. Use this when you want the AI to do something—generate code, answer a question, run a command.
+**Execute** sends content for immediate action. Use this when you want the AI to do something—like generate code or answer a question.
 
-- **In Terminal**: Content goes directly to your terminal AI (like Claude Code).
+- **In Terminal**: Content goes directly to your terminal AI.
 - **In Browser**: Content is copied to clipboard. Paste it into your browser-based AI.
 
 **Collaborate** initiates a feedback loop. Use this when you want to refine your thinking with AI assistance.
 
-- Content is sent with instructions for the AI to review and suggest changes
-- The AI response appears in the Feedback panel (right side)
-- Edit the response if needed
-- Accept to replace your original branch, or Cancel to keep it
+- Content is sent with instructions for the AI to review and suggest changes.
+- The AI response appears in the Feedback panel (right side).
+- Edit the response if needed.
+- Accept to replace your original branch, or Cancel to keep it.
+- There is a default context provided to review a list and suggest improvements. You can replace this with your own custom context, for instance critique a list, reduce it, translate it etc.
 
-Keyboard shortcuts: `Ctrl+E` for Execute (in terminal), `Ctrl+Shift+Enter` for Collaborate (in terminal). Both require a context to be set first.
+Keyboard shortcuts: `Ctrl+E` for Execute (in terminal), `Ctrl+Shift+Enter` for Collaborate (in terminal).  (Be sure to log in to your AI first)
 
 ### How it works
 
@@ -44,11 +47,13 @@ Keyboard shortcuts: `Ctrl+E` for Execute (in terminal), `Ctrl+Shift+Enter` for C
 
 Each iteration improves your work:
 
-1. Review what the AI produced, keep or modify only what works for you.
+1. Review what the AI produced
 2. Update your branch or context based on what worked
 3. Send again with the refined context
 
 Your contexts compound over time. A context that started as "write clean code" evolves into detailed conventions specific to your project. Try running a review on a context itself to refine it!
+
+If you have a context or other content you'd like to share, add it to a [blueprints](blueprints.md)
 
 ## View Modes
 
@@ -70,4 +75,4 @@ Drag the panel edge to resize. Toggle between side and bottom position with the 
 
 ### Terminal scroll lock
 
-Some terminal AI tools (like Claude Code) redraw the screen while processing, which can scroll you away from the output. Click the anchor icon in the terminal tab bar to fix the view to the bottom of the terminal.  Click it again to turn it off.
+Some terminal AI tools (like Claude Code) redraw the screen while processing, which can scroll you away from the output. Click the anchor icon in the terminal tab bar to fix the view to the bottom of the terminal. Click it again to turn it off.

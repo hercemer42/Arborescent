@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2025-12-17T11:27:47.762Z'
+updated: '2025-12-18T14:35:27.076Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -12,6 +12,8 @@ nodes:
     children:
       - 0cc62ae1-1a7a-4aa4-bc6a-d817cabd672c
       - 79b693ca-27ce-4410-8617-8092d7e81b07
+      - bf35dbb1-9402-471d-ae08-e8a2d74bbc5e
+      - 77963e20-53e9-4db7-8802-8c718f202cef
       - 2f83a0af-280e-4e67-8306-31a8e02c9500
       - d5fe0eff-b1c6-4986-b6a3-70a0ea46f096
       - c4473311-2e42-48ae-9191-d3807dc55a4c
@@ -461,9 +463,8 @@ nodes:
     content: Features
     children:
       - 565dde0a-864b-41f9-86ff-dbdf40ac4dd0
-      - bf35dbb1-9402-471d-ae08-e8a2d74bbc5e
-      - 77963e20-53e9-4db7-8802-8c718f202cef
       - 984247e7-2d55-4b93-80e8-f84818901621
+      - 188622ee-bacb-4220-92c3-9ff37694e691
     metadata:
       status: pending
       expanded: true
@@ -572,7 +573,7 @@ nodes:
       - 55fba45a-26da-4bb7-8f30-4be88cf8dff2
     metadata:
       status: pending
-      expanded: true
+      expanded: false
       isBlueprint: true
       blueprintIcon: Sun
       blueprintColor: '#f97316'
@@ -5199,7 +5200,7 @@ nodes:
     metadata:
       status: pending
       isContextDeclaration: true
-      blueprintIcon: Search
+      blueprintIcon: Eye
       expanded: false
       blueprintColor: '#0ea5e9'
       isBlueprint: true
@@ -5434,7 +5435,6 @@ nodes:
       blueprintIcon: LayoutList
       blueprintColor: '#a855f7'
       activeExecuteContextId: e8824b29-eb18-4031-9e35-b321a864d418
-      appliedContextId: e8824b29-eb18-4031-9e35-b321a864d418
   b8521434-96cd-4258-b87e-876dc7276241:
     id: b8521434-96cd-4258-b87e-876dc7276241
     content: Context System Redesign
@@ -6333,7 +6333,7 @@ nodes:
       - a4c333be-a8a4-4c0f-8148-b2260507f5ad
     metadata:
       status: pending
-      expanded: true
+      expanded: false
       appliedContextIds:
         - 64ea2af4-332b-44a6-8b88-78535cc9b79a
       activeContextId: 64ea2af4-332b-44a6-8b88-78535cc9b79a
@@ -9139,7 +9139,7 @@ nodes:
       blueprintIcon: Bug
       blueprintColor: '#ef4444'
       appliedContextId: 6690289a-e02f-48bc-9225-a1083b7b324f
-      expanded: true
+      expanded: false
   aff16275-6d8e-49c9-b862-76875858d4af:
     id: aff16275-6d8e-49c9-b862-76875858d4af
     content: Avoid adding comments specific to the bug fix unless really needed
@@ -14949,7 +14949,8 @@ nodes:
   c25cf481-a0d1-495d-9cea-498f1135eb8c:
     id: c25cf481-a0d1-495d-9cea-498f1135eb8c
     content: Minor feature
-    children: []
+    children:
+      - c744c030-4885-4d76-ae16-7b2ff62c40e1
     metadata:
       status: completed
       expanded: true
@@ -15057,6 +15058,7 @@ nodes:
     id: 92b16d87-27dc-486d-a605-4228e2b5206c
     content: For release
     children:
+      - b2e784c1-1540-4219-8bc5-9787fe9d11aa
       - 21c2e459-e2d1-4fa3-b904-c406d9996056
       - cc522bbb-99fe-499f-b9d8-a62c7ce50575
       - 53ed4c1a-62e0-4a2c-a7af-b0805be12087
@@ -17278,7 +17280,7 @@ nodes:
       - 5752a9e6-7729-4d54-bd24-66f26a48e87b
     metadata:
       status: pending
-      expanded: true
+      expanded: false
       isBlueprint: true
       blueprintIcon: LayoutList
       blueprintColor: '#14b8a6'
@@ -19468,7 +19470,7 @@ nodes:
       blueprintIcon: BookA
       blueprintColor: '#0c6f9d'
       isContextDeclaration: true
-      expanded: true
+      expanded: false
   bfe8794a-2209-4c09-ba88-c4c951928b76:
     id: bfe8794a-2209-4c09-ba88-c4c951928b76
     content: 'Document this feature given the following conventions :'
@@ -19944,6 +19946,166 @@ nodes:
   a13e5bd1-95d8-46ce-ba59-765feeb38a73:
     id: a13e5bd1-95d8-46ce-ba59-765feeb38a73
     content: When applying a reviewed node, we clear any applied contexts on the root node, we should not (we don't care about any descendants)
+    children: []
+    metadata:
+      status: pending
+  c744c030-4885-4d76-ae16-7b2ff62c40e1:
+    id: c744c030-4885-4d76-ae16-7b2ff62c40e1
+    content: Add default context for collaboration
+    children:
+      - 8e518e64-eb10-4e67-ac34-b888e521394e
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8e518e64-eb10-4e67-ac34-b888e521394e:
+    id: 8e518e64-eb10-4e67-ac34-b888e521394e
+    content: Add 'Basic review (default)' to the Collaborate context menu
+    children:
+      - e3bd9ef0-57f0-46fb-8c0f-b55f4cd69569
+      - 743dc1c9-5656-4c72-9f0f-334c28222a4d
+      - f5f78532-a4a6-482a-82e9-cee1053e45d0
+      - 8b2e20f2-77e6-4b1b-9038-0be91c94a96d
+      - a4e5f262-e602-4fb2-9341-734142d90613
+      - 8520578d-f9a1-471e-885b-64817803b16f
+      - 2a7b7c76-b392-4e5a-88f1-658f17540f69
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e3bd9ef0-57f0-46fb-8c0f-b55f4cd69569:
+    id: e3bd9ef0-57f0-46fb-8c0f-b55f4cd69569
+    content: Position it at the top of the context list
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  743dc1c9-5656-4c72-9f0f-334c28222a4d:
+    id: 743dc1c9-5656-4c72-9f0f-334c28222a4d
+    content: It is selected by default when no applied or inherited context exists
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2a7b7c76-b392-4e5a-88f1-658f17540f69:
+    id: 2a7b7c76-b392-4e5a-88f1-658f17540f69
+    content: 'The default applies the following hardcoded instructions:'
+    children:
+      - 49c91540-b80f-4a55-9f06-56100df5f6b8
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  49c91540-b80f-4a55-9f06-56100df5f6b8:
+    id: 49c91540-b80f-4a55-9f06-56100df5f6b8
+    content: '"You are reviewing a hierarchical task list. Please:"'
+    children:
+      - ec21a0b6-6e1d-4aff-bcdc-4d852a361de9
+      - b3fccd9b-ec75-43da-ba7b-f69223b2f7a3
+      - 5e4a57cc-a439-4ada-9cd8-8e1e2ecfa162
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ec21a0b6-6e1d-4aff-bcdc-4d852a361de9:
+    id: ec21a0b6-6e1d-4aff-bcdc-4d852a361de9
+    content: '"Analyze the content and suggest improvements, additions or reorganization"'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b3fccd9b-ec75-43da-ba7b-f69223b2f7a3:
+    id: b3fccd9b-ec75-43da-ba7b-f69223b2f7a3
+    content: '"Add any missing items that would make the list more complete"'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5e4a57cc-a439-4ada-9cd8-8e1e2ecfa162:
+    id: 5e4a57cc-a439-4ada-9cd8-8e1e2ecfa162
+    content: '"Fix any issues or inconsistencies that you find"'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  188622ee-bacb-4220-92c3-9ff37694e691:
+    id: 188622ee-bacb-4220-92c3-9ff37694e691
+    content: Archived
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+      blueprintIcon: Archive
+      blueprintColor: '#c47f09'
+  b2e784c1-1540-4219-8bc5-9787fe9d11aa:
+    id: b2e784c1-1540-4219-8bc5-9787fe9d11aa
+    content: Need to clean up cruft in default blueprint
+    children:
+      - 8e9b0c15-2a32-4e1e-9f0e-2f3f5541c834
+    metadata:
+      status: pending
+  8e9b0c15-2a32-4e1e-9f0e-2f3f5541c834:
+    id: 8e9b0c15-2a32-4e1e-9f0e-2f3f5541c834
+    content: "appliedContextId vs appliedContextIds vs activeContextId vs activeExecuteContextId vs activeCollaborateContextId\_"
+    children: []
+    metadata:
+      status: pending
+  f5f78532-a4a6-482a-82e9-cee1053e45d0:
+    id: f5f78532-a4a6-482a-82e9-cee1053e45d0
+    content: Once there is an inherited or applied context, then those are selected instead.
+    children: []
+    metadata:
+      status: pending
+  a4e5f262-e602-4fb2-9341-734142d90613:
+    id: a4e5f262-e602-4fb2-9341-734142d90613
+    content: If there are no inherited or applied contexts, then it cannot be unselected
+    children:
+      - 7e41d7b2-1bff-4a64-85fa-e7e5741d7a23
+    metadata:
+      status: pending
+  7e41d7b2-1bff-4a64-85fa-e7e5741d7a23:
+    id: 7e41d7b2-1bff-4a64-85fa-e7e5741d7a23
+    content: It is greyed out
+    children: []
+    metadata:
+      status: pending
+  8520578d-f9a1-471e-885b-64817803b16f:
+    id: 8520578d-f9a1-471e-885b-64817803b16f
+    content: It only appears in the collaborate menu
+    children:
+      - dae63993-0e03-46f0-bf1e-d6909dc3901c
+      - 076b2084-0b51-46b5-81fd-995a5fb825cc
+    metadata:
+      status: pending
+  dae63993-0e03-46f0-bf1e-d6909dc3901c:
+    id: dae63993-0e03-46f0-bf1e-d6909dc3901c
+    content: It does not appear in the execute menu
+    children: []
+    metadata:
+      status: pending
+  076b2084-0b51-46b5-81fd-995a5fb825cc:
+    id: 076b2084-0b51-46b5-81fd-995a5fb825cc
+    content: It does not apply when executing
+    children: []
+    metadata:
+      status: pending
+  8b2e20f2-77e6-4b1b-9038-0be91c94a96d:
+    id: 8b2e20f2-77e6-4b1b-9038-0be91c94a96d
+    content: If there is an inherited context it does not appear at all
     children: []
     metadata:
       status: pending
