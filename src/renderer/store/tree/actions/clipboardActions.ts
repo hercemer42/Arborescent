@@ -41,6 +41,7 @@ type StoreState = {
   activeNodeId: string | null;
   multiSelectedNodeIds: Set<string>;
   currentFilePath: string | null;
+  blueprintModeEnabled: boolean;
 };
 
 type StoreActions = {
@@ -171,6 +172,13 @@ function handleCutPaste(
   }
 
   const { state, targetParentId, actions, get, set, triggerAutosave, visualEffects, clearCutState } = ctx;
+
+  const isCrossFileCut = cache.sourceFilePath && cache.sourceFilePath !== state.currentFilePath;
+
+  if (isCrossFileCut) {
+    return handleCrossFileCutPaste(cache, ctx);
+  }
+
   const nodesToMove = cache.rootNodeIds.filter((id) => state.nodes[id]);
 
   if (nodesToMove.length === 0) {
@@ -229,33 +237,38 @@ function handleCutPaste(
   return 'pasted';
 }
 
-function handleCopyPaste(
+function handleCrossFileCutPaste(
   cache: ClipboardCacheContent,
   ctx: PasteContext
-): PasteResult | null {
-  if (cache.isCut || cache.rootNodeIds.length === 0) {
-    return null;
-  }
+): PasteResult {
+  const { state, targetParentId, actions, get, set, triggerAutosave, visualEffects, clearCutState } = ctx;
 
-  const { state, targetParentId, actions, get, set, triggerAutosave, visualEffects } = ctx;
-  const { newRootNodes, newNodesMap } = cloneNodesWithNewIds(cache.rootNodeIds, state.nodes);
+  const sourceStore = storeManager.getStoreForFile(cache.sourceFilePath!);
+  const sourceState = sourceStore.getState();
+  const sourceNodes = sourceState.nodes;
+
+  const { newRootNodes, newNodesMap, idMapping } = cloneNodesWithNewIds(cache.rootNodeIds, sourceNodes);
 
   if (newRootNodes.length === 0) {
-    useClipboardCacheStore.getState().clearCache();
-    return null;
+    clearCutState();
+    return 'no-content';
   }
 
-  if (!isTargetBlueprint(targetParentId, state.nodes) && containsBlueprintNodes(newNodesMap)) {
+  const finalNodesMap = remapNodeReferences(newNodesMap, state.nodes, idMapping);
+
+  if (!isTargetBlueprint(targetParentId, state.nodes) && containsBlueprintNodes(finalNodesMap)) {
+    clearCutState();
     useToastStore.getState().addToast(
-      'Cannot paste blueprint nodes into a non-blueprint parent',
+      'Cannot move blueprint nodes into a non-blueprint parent',
       'error'
     );
     return 'blocked';
   }
 
-  const command = new PasteNodesCommand(
+  // Execute paste command in target file
+  const pasteCommand = new PasteNodesCommand(
     newRootNodes,
-    newNodesMap,
+    finalNodesMap,
     targetParentId,
     () => {
       const currentState = get();
@@ -267,7 +280,147 @@ function handleCopyPaste(
     },
     (partial) => set(partial as Partial<StoreState>),
     triggerAutosave,
+    true,
     true
+  );
+
+  actions.executeCommand(pasteCommand);
+  flashNodes(pasteCommand.getPastedRootIds(), visualEffects);
+
+  // Clear cut styling BEFORE delete captures nodes for undo
+  clearCutState();
+
+  // Execute delete command in source file (separate undo stack)
+  // Get fresh state after clearCutState updated the source store
+  const deleteCommand = new DeleteMultipleNodesCommand(
+    cache.rootNodeIds,
+    () => ({
+      nodes: sourceStore.getState().nodes,
+      rootNodeId: sourceStore.getState().rootNodeId,
+      ancestorRegistry: sourceStore.getState().ancestorRegistry,
+    }),
+    (partial) => sourceStore.setState(partial),
+    findPreviousNode,
+    sourceStore.getState().actions.autoSave
+  );
+
+  sourceStore.getState().actions.executeCommand(deleteCommand);
+
+  logger.info(`Moved ${newRootNodes.length} node(s) across files`, 'ClipboardActions');
+  return 'pasted';
+}
+
+
+function getSourceNodes(
+  cache: ClipboardCacheContent,
+  currentFilePath: string | null,
+  currentNodes: Record<string, TreeNode>
+): Record<string, TreeNode> | null {
+  if (!cache.sourceFilePath || cache.sourceFilePath === currentFilePath) {
+    return currentNodes;
+  }
+
+  const sourceStore = storeManager.getStoreForFile(cache.sourceFilePath);
+  if (!sourceStore) {
+    return null;
+  }
+
+  return sourceStore.getState().nodes;
+}
+
+function remapNodeReferences(
+  nodesMap: Record<string, TreeNode>,
+  targetNodes: Record<string, TreeNode>,
+  idMapping: Record<string, string>
+): Record<string, TreeNode> {
+  const result: Record<string, TreeNode> = {};
+
+  for (const [id, node] of Object.entries(nodesMap)) {
+    const metadata = { ...node.metadata };
+
+    // Strip transient metadata (isCut, etc.) - shouldn't persist across files
+    if (metadata.transient) {
+      delete metadata.transient;
+    }
+
+    const appliedContextId = metadata.appliedContextId as string | undefined;
+    if (appliedContextId) {
+      const remappedContextId = idMapping[appliedContextId];
+      if (remappedContextId) {
+        metadata.appliedContextId = remappedContextId;
+      } else if (!targetNodes[appliedContextId]) {
+        delete metadata.appliedContextId;
+      }
+    }
+
+    const linkedNodeId = metadata.linkedNodeId as string | undefined;
+    if (linkedNodeId) {
+      const remappedLinkId = idMapping[linkedNodeId];
+      if (remappedLinkId) {
+        metadata.linkedNodeId = remappedLinkId;
+      } else if (!targetNodes[linkedNodeId]) {
+        delete metadata.linkedNodeId;
+        delete metadata.isHyperlink;
+      }
+    }
+
+    result[id] = { ...node, metadata };
+  }
+
+  return result;
+}
+
+function handleCopyPaste(
+  cache: ClipboardCacheContent,
+  ctx: PasteContext
+): PasteResult | null {
+  if (cache.isCut || cache.rootNodeIds.length === 0) {
+    return null;
+  }
+
+  const { state, targetParentId, actions, get, set, triggerAutosave, visualEffects } = ctx;
+
+  const sourceNodes = getSourceNodes(cache, state.currentFilePath, state.nodes);
+  if (!sourceNodes) {
+    return null;
+  }
+
+  const { newRootNodes, newNodesMap, idMapping } = cloneNodesWithNewIds(cache.rootNodeIds, sourceNodes);
+
+  if (newRootNodes.length === 0) {
+    useClipboardCacheStore.getState().clearCache();
+    return null;
+  }
+
+  const isCrossFilePaste = cache.sourceFilePath && cache.sourceFilePath !== state.currentFilePath;
+  const finalNodesMap = isCrossFilePaste
+    ? remapNodeReferences(newNodesMap, state.nodes, idMapping)
+    : newNodesMap;
+
+  if (!isTargetBlueprint(targetParentId, state.nodes) && containsBlueprintNodes(finalNodesMap)) {
+    useToastStore.getState().addToast(
+      'Cannot paste blueprint nodes into a non-blueprint parent',
+      'error'
+    );
+    return 'blocked';
+  }
+
+  const command = new PasteNodesCommand(
+    newRootNodes,
+    finalNodesMap,
+    targetParentId,
+    () => {
+      const currentState = get();
+      return {
+        nodes: currentState.nodes,
+        rootNodeId: currentState.rootNodeId,
+        ancestorRegistry: currentState.ancestorRegistry,
+      };
+    },
+    (partial) => set(partial as Partial<StoreState>),
+    triggerAutosave,
+    true,
+    !!isCrossFilePaste
   );
 
   actions.executeCommand(command);
@@ -292,6 +445,7 @@ function handleExternalUrlPaste(
   const newNodeId = uuidv4();
   const targetParent = state.nodes[targetParentId];
   const position = targetParent ? targetParent.children.length : 0;
+  const isTargetParentBlueprint = targetParent?.metadata.isBlueprint === true;
 
   const command = new CreateNodeCommand(
     newNodeId,
@@ -311,6 +465,7 @@ function handleExternalUrlPaste(
     {
       isExternalLink: true,
       externalUrl: trimmedUrl,
+      ...(isTargetParentBlueprint && { isBlueprint: true }),
     }
   );
 
@@ -483,6 +638,16 @@ export const createClipboardActions = (
 
     if (selection.type === 'none') return 'no-selection';
 
+    const nodeIds = getNodeIdsFromSelection(selection);
+
+    if (state.blueprintModeEnabled) {
+      const hasNonBlueprint = nodeIds.some(id => !state.nodes[id]?.metadata.isBlueprint);
+      if (hasNonBlueprint) {
+        useToastStore.getState().addToast('Cannot copy a non-blueprint branch in blueprint mode', 'error');
+        return 'no-selection';
+      }
+    }
+
     const markdown = exportSelectionAsMarkdown(selection, state.nodes);
     if (!markdown) return 'no-selection';
 
@@ -491,8 +656,7 @@ export const createClipboardActions = (
 
     clearCutState();
 
-    const nodeIds = getNodeIdsFromSelection(selection);
-    useClipboardCacheStore.getState().setCache(nodeIds, false, markdown);
+    useClipboardCacheStore.getState().setCache(nodeIds, false, markdown, undefined, state.currentFilePath || undefined);
 
     flashNodes(nodeIds, visualEffects);
 
@@ -621,6 +785,7 @@ export const createClipboardActions = (
 
     const newNodeId = uuidv4();
     const position = targetParent.children.length;
+    const isTargetParentBlueprint = targetParent.metadata.isBlueprint === true;
 
     const command = new CreateNodeCommand(
       newNodeId,
@@ -640,6 +805,7 @@ export const createClipboardActions = (
       {
         isHyperlink: true,
         linkedNodeId: hyperlinkCache.nodeId,
+        ...(isTargetParentBlueprint && { isBlueprint: true }),
       }
     );
 

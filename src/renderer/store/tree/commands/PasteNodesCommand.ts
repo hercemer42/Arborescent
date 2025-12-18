@@ -8,6 +8,7 @@ export class PasteNodesCommand extends BaseCommand {
   private pastedNodeIds: string[] = [];
   private remappedNodes: Record<string, TreeNode> = {};
   private rootNodeIds: string[] = [];
+  private preserveContextDeclarations: boolean = false;
 
   constructor(
     private parsedRootNodes: TreeNode[],
@@ -21,10 +22,12 @@ export class PasteNodesCommand extends BaseCommand {
       cursorPosition?: number;
     }) => void,
     private triggerAutosave?: () => void,
-    skipPrepare: boolean = false
+    skipPrepare: boolean = false,
+    preserveContextDeclarations: boolean = false
   ) {
     super();
     this.description = `Paste ${parsedRootNodes.length} node(s)`;
+    this.preserveContextDeclarations = preserveContextDeclarations;
     if (skipPrepare) {
       this.remappedNodes = parsedAllNodes;
       this.pastedNodeIds = Object.keys(parsedAllNodes);
@@ -100,14 +103,15 @@ export class PasteNodesCommand extends BaseCommand {
 
     for (const [nodeId, node] of Object.entries(nodesToUpdate)) {
       const wasContextDeclaration = node.metadata.isContextDeclaration === true;
+      const keepContextDeclaration = this.preserveContextDeclarations && wasContextDeclaration;
 
       result[nodeId] = {
         ...node,
         metadata: {
           ...node.metadata,
-          isContextDeclaration: undefined,
-          blueprintIcon: wasContextDeclaration ? undefined : node.metadata.blueprintIcon,
-          blueprintColor: wasContextDeclaration ? undefined : node.metadata.blueprintColor,
+          isContextDeclaration: keepContextDeclaration ? true : undefined,
+          blueprintIcon: keepContextDeclaration ? node.metadata.blueprintIcon : (wasContextDeclaration ? undefined : node.metadata.blueprintIcon),
+          blueprintColor: keepContextDeclaration ? node.metadata.blueprintColor : (wasContextDeclaration ? undefined : node.metadata.blueprintColor),
           isBlueprint: parentIsContextTree ? true : node.metadata.isBlueprint,
         },
       };

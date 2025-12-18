@@ -64,14 +64,14 @@ vi.mock('../../../../services/clipboardService', () => ({
 }));
 
 // Mock clipboard cache store
-type MockCacheType = { rootNodeIds: string[]; allCutNodeIds?: string[]; timestamp: number; isCut: boolean; clipboardText: string } | null;
+type MockCacheType = { rootNodeIds: string[]; allCutNodeIds?: string[]; sourceFilePath?: string; timestamp: number; isCut: boolean; clipboardText: string } | null;
 let currentMockCache: MockCacheType = null;
 
 vi.mock('../../../clipboard/clipboardCacheStore', () => ({
   useClipboardCacheStore: {
     getState: () => ({
-      setCache: vi.fn((rootNodeIds: string[], isCut: boolean, clipboardText: string, allCutNodeIds?: string[]) => {
-        currentMockCache = { rootNodeIds, allCutNodeIds, timestamp: Date.now(), isCut, clipboardText };
+      setCache: vi.fn((rootNodeIds: string[], isCut: boolean, clipboardText: string, allCutNodeIds?: string[], sourceFilePath?: string) => {
+        currentMockCache = { rootNodeIds, allCutNodeIds, sourceFilePath, timestamp: Date.now(), isCut, clipboardText };
       }),
       getCache: vi.fn(() => currentMockCache),
       clearCache: vi.fn(() => {
@@ -116,6 +116,14 @@ vi.mock('../../../toast/toastStore', () => ({
   },
 }));
 
+// Mock storeManager for cross-file paste
+const mockStoreFiles: Record<string, { getState: () => { nodes: Record<string, TreeNode> } }> = {};
+vi.mock('../../../storeManager', () => ({
+  storeManager: {
+    getStoreForFile: (filePath: string) => mockStoreFiles[filePath] || null,
+  },
+}));
+
 describe('clipboardActions', () => {
   type TestState = {
     nodes: Record<string, TreeNode>;
@@ -124,6 +132,7 @@ describe('clipboardActions', () => {
     activeNodeId: string | null;
     multiSelectedNodeIds: Set<string>;
     currentFilePath: string | null;
+    blueprintModeEnabled: boolean;
   };
 
   // Helper to check if a node is marked as cut via transient metadata
@@ -224,6 +233,7 @@ describe('clipboardActions', () => {
       activeNodeId: null,
       multiSelectedNodeIds: new Set(),
       currentFilePath: '/test/file.arbo',
+      blueprintModeEnabled: false,
     };
 
     setState = (partial) => {
@@ -416,6 +426,38 @@ describe('clipboardActions', () => {
       const result = await actions.copyNodes();
 
       expect(result).toBe('no-selection');
+    });
+
+    describe('blueprint mode restriction', () => {
+      it('should block copying non-blueprint node in blueprint mode', async () => {
+        state.blueprintModeEnabled = true;
+        state.activeNodeId = 'node-1';
+
+        const result = await actions.copyNodes();
+
+        expect(result).toBe('no-selection');
+        expect(mockAddToast).toHaveBeenCalledWith(
+          'Cannot copy a non-blueprint branch in blueprint mode',
+          'error'
+        );
+      });
+
+      it('should allow copying blueprint node in blueprint mode', async () => {
+        state.blueprintModeEnabled = true;
+        state.nodes['blueprint-node'] = {
+          id: 'blueprint-node',
+          content: 'Blueprint',
+          children: [],
+          metadata: { isBlueprint: true },
+        };
+        state.ancestorRegistry['blueprint-node'] = ['root'];
+        state.activeNodeId = 'blueprint-node';
+
+        const result = await actions.copyNodes();
+
+        expect(result).toBe('copied');
+        expect(mockAddToast).not.toHaveBeenCalled();
+      });
     });
   });
 
@@ -977,6 +1019,356 @@ describe('clipboardActions', () => {
         'error'
       );
       expect(isNodeCut('blueprint-child')).toBe(false);
+    });
+  });
+
+  describe('cross-file paste', () => {
+    const sourceFilePath = '/source/file.arbo';
+    const targetFilePath = '/test/file.arbo';
+
+    beforeEach(() => {
+      mockAddToast.mockClear();
+      state.currentFilePath = targetFilePath;
+
+      for (const key of Object.keys(mockStoreFiles)) {
+        delete mockStoreFiles[key];
+      }
+    });
+
+    it('should paste blueprint nodes from another file when source store is available', async () => {
+      const sourceNodes: Record<string, TreeNode> = {
+        'source-bp': {
+          id: 'source-bp',
+          content: 'Source Blueprint',
+          children: [],
+          metadata: { isBlueprint: true, blueprintIcon: 'star' },
+        },
+      };
+      mockStoreFiles[sourceFilePath] = { getState: () => ({ nodes: sourceNodes }) };
+
+      state.nodes['blueprint-parent'] = {
+        id: 'blueprint-parent',
+        content: 'Blueprint Parent',
+        children: [],
+        metadata: { isBlueprint: true },
+      };
+      state.nodes.root.children.push('blueprint-parent');
+      state.ancestorRegistry['blueprint-parent'] = ['root'];
+
+      const cachedMarkdown = '# Source Blueprint';
+      currentMockCache = {
+        rootNodeIds: ['source-bp'],
+        sourceFilePath,
+        timestamp: Date.now(),
+        isCut: false,
+        clipboardText: cachedMarkdown,
+      };
+      mockClipboardContent = cachedMarkdown;
+      state.activeNodeId = 'blueprint-parent';
+
+      const result = await actions.pasteNodes();
+
+      expect(result).toBe('pasted');
+      expect(mockExecuteCommand).toHaveBeenCalled();
+    });
+
+    it('should fall back to markdown paste when source store is not available', async () => {
+      const cachedMarkdown = '# Source Node';
+      currentMockCache = {
+        rootNodeIds: ['source-node'],
+        sourceFilePath,
+        timestamp: Date.now(),
+        isCut: false,
+        clipboardText: cachedMarkdown,
+      };
+      mockClipboardContent = cachedMarkdown;
+      state.activeNodeId = 'node-1';
+
+      const result = await actions.pasteNodes();
+
+      expect(result).toBe('pasted');
+    });
+
+    it('should strip invalid appliedContextId when pasting cross-file', async () => {
+      const sourceNodes: Record<string, TreeNode> = {
+        'source-node': {
+          id: 'source-node',
+          content: 'Node with context',
+          children: [],
+          metadata: { appliedContextId: 'context-from-source-file' },
+        },
+      };
+      mockStoreFiles[sourceFilePath] = { getState: () => ({ nodes: sourceNodes }) };
+
+      const cachedMarkdown = '# Node with context';
+      currentMockCache = {
+        rootNodeIds: ['source-node'],
+        sourceFilePath,
+        timestamp: Date.now(),
+        isCut: false,
+        clipboardText: cachedMarkdown,
+      };
+      mockClipboardContent = cachedMarkdown;
+      state.activeNodeId = 'node-1';
+
+      const result = await actions.pasteNodes();
+
+      expect(result).toBe('pasted');
+      const pastedNodes = Object.values(state.nodes).filter(
+        (n) => n.content === 'Node with context' && n.id !== 'source-node'
+      );
+      expect(pastedNodes).toHaveLength(1);
+      expect(pastedNodes[0].metadata.appliedContextId).toBeUndefined();
+    });
+
+    it('should keep valid appliedContextId when context exists in target file', async () => {
+      state.nodes['target-context'] = {
+        id: 'target-context',
+        content: 'Target Context',
+        children: [],
+        metadata: { isContextDeclaration: true },
+      };
+      state.ancestorRegistry['target-context'] = ['root'];
+
+      const sourceNodes: Record<string, TreeNode> = {
+        'source-node': {
+          id: 'source-node',
+          content: 'Node with valid context',
+          children: [],
+          metadata: { appliedContextId: 'target-context' },
+        },
+      };
+      mockStoreFiles[sourceFilePath] = { getState: () => ({ nodes: sourceNodes }) };
+
+      const cachedMarkdown = '# Node with valid context';
+      currentMockCache = {
+        rootNodeIds: ['source-node'],
+        sourceFilePath,
+        timestamp: Date.now(),
+        isCut: false,
+        clipboardText: cachedMarkdown,
+      };
+      mockClipboardContent = cachedMarkdown;
+      state.activeNodeId = 'node-1';
+
+      const result = await actions.pasteNodes();
+
+      expect(result).toBe('pasted');
+      const pastedNodes = Object.values(state.nodes).filter(
+        (n) => n.content === 'Node with valid context' && n.id !== 'source-node'
+      );
+      expect(pastedNodes).toHaveLength(1);
+      expect(pastedNodes[0].metadata.appliedContextId).toBe('target-context');
+    });
+
+    it('should preserve isContextDeclaration on cross-file paste', async () => {
+      const sourceNodes: Record<string, TreeNode> = {
+        'source-context': {
+          id: 'source-context',
+          content: 'My Context',
+          children: [],
+          metadata: { isContextDeclaration: true, isBlueprint: true, blueprintIcon: 'star', blueprintColor: '#ff0000' },
+        },
+      };
+      mockStoreFiles[sourceFilePath] = { getState: () => ({ nodes: sourceNodes }) };
+
+      state.nodes['blueprint-parent'] = {
+        id: 'blueprint-parent',
+        content: 'Blueprint Parent',
+        children: [],
+        metadata: { isBlueprint: true },
+      };
+      state.nodes.root.children.push('blueprint-parent');
+      state.ancestorRegistry['blueprint-parent'] = ['root'];
+
+      const cachedMarkdown = '# My Context';
+      currentMockCache = {
+        rootNodeIds: ['source-context'],
+        sourceFilePath,
+        timestamp: Date.now(),
+        isCut: false,
+        clipboardText: cachedMarkdown,
+      };
+      mockClipboardContent = cachedMarkdown;
+      state.activeNodeId = 'blueprint-parent';
+
+      const result = await actions.pasteNodes();
+
+      expect(result).toBe('pasted');
+      const pastedContext = Object.values(state.nodes).find(
+        (n) => n.content === 'My Context' && n.id !== 'source-context'
+      );
+      expect(pastedContext).toBeDefined();
+      expect(pastedContext?.metadata.isContextDeclaration).toBe(true);
+      expect(pastedContext?.metadata.blueprintIcon).toBe('star');
+      expect(pastedContext?.metadata.blueprintColor).toBe('#ff0000');
+    });
+
+    it('should remap appliedContextId when context declaration is within copied subtree', async () => {
+      const sourceNodes: Record<string, TreeNode> = {
+        'source-parent': {
+          id: 'source-parent',
+          content: 'Parent',
+          children: ['source-context', 'source-task'],
+          metadata: {},
+        },
+        'source-context': {
+          id: 'source-context',
+          content: 'My Context',
+          children: [],
+          metadata: { isContextDeclaration: true },
+        },
+        'source-task': {
+          id: 'source-task',
+          content: 'Task using context',
+          children: [],
+          metadata: { appliedContextId: 'source-context' },
+        },
+      };
+      mockStoreFiles[sourceFilePath] = { getState: () => ({ nodes: sourceNodes }) };
+
+      const cachedMarkdown = '# Parent';
+      currentMockCache = {
+        rootNodeIds: ['source-parent'],
+        sourceFilePath,
+        timestamp: Date.now(),
+        isCut: false,
+        clipboardText: cachedMarkdown,
+      };
+      mockClipboardContent = cachedMarkdown;
+      state.activeNodeId = 'node-1';
+
+      const result = await actions.pasteNodes();
+
+      expect(result).toBe('pasted');
+      const pastedTask = Object.values(state.nodes).find(
+        (n) => n.content === 'Task using context' && n.id !== 'source-task'
+      );
+      const pastedContext = Object.values(state.nodes).find(
+        (n) => n.content === 'My Context' && n.id !== 'source-context'
+      );
+      expect(pastedTask).toBeDefined();
+      expect(pastedContext).toBeDefined();
+      expect(pastedTask?.metadata.appliedContextId).toBe(pastedContext?.id);
+    });
+
+    it('should remap linkedNodeId when linked node is within copied subtree', async () => {
+      const sourceNodes: Record<string, TreeNode> = {
+        'source-parent': {
+          id: 'source-parent',
+          content: 'Parent',
+          children: ['source-target', 'source-link'],
+          metadata: {},
+        },
+        'source-target': {
+          id: 'source-target',
+          content: 'Target Node',
+          children: [],
+          metadata: {},
+        },
+        'source-link': {
+          id: 'source-link',
+          content: 'Link to target',
+          children: [],
+          metadata: { isHyperlink: true, linkedNodeId: 'source-target' },
+        },
+      };
+      mockStoreFiles[sourceFilePath] = { getState: () => ({ nodes: sourceNodes }) };
+
+      const cachedMarkdown = '# Parent';
+      currentMockCache = {
+        rootNodeIds: ['source-parent'],
+        sourceFilePath,
+        timestamp: Date.now(),
+        isCut: false,
+        clipboardText: cachedMarkdown,
+      };
+      mockClipboardContent = cachedMarkdown;
+      state.activeNodeId = 'node-1';
+
+      const result = await actions.pasteNodes();
+
+      expect(result).toBe('pasted');
+      const pastedLink = Object.values(state.nodes).find(
+        (n) => n.content === 'Link to target' && n.id !== 'source-link'
+      );
+      const pastedTarget = Object.values(state.nodes).find(
+        (n) => n.content === 'Target Node' && n.id !== 'source-target'
+      );
+      expect(pastedLink).toBeDefined();
+      expect(pastedTarget).toBeDefined();
+      expect(pastedLink?.metadata.isHyperlink).toBe(true);
+      expect(pastedLink?.metadata.linkedNodeId).toBe(pastedTarget?.id);
+    });
+
+    it('should strip hyperlink when linked node not in copied subtree or target file', async () => {
+      const sourceNodes: Record<string, TreeNode> = {
+        'source-link': {
+          id: 'source-link',
+          content: 'Broken link',
+          children: [],
+          metadata: { isHyperlink: true, linkedNodeId: 'node-not-copied' },
+        },
+      };
+      mockStoreFiles[sourceFilePath] = { getState: () => ({ nodes: sourceNodes }) };
+
+      const cachedMarkdown = '# Broken link';
+      currentMockCache = {
+        rootNodeIds: ['source-link'],
+        sourceFilePath,
+        timestamp: Date.now(),
+        isCut: false,
+        clipboardText: cachedMarkdown,
+      };
+      mockClipboardContent = cachedMarkdown;
+      state.activeNodeId = 'node-1';
+
+      const result = await actions.pasteNodes();
+
+      expect(result).toBe('pasted');
+      const pastedLink = Object.values(state.nodes).find(
+        (n) => n.content === 'Broken link' && n.id !== 'source-link'
+      );
+      expect(pastedLink).toBeDefined();
+      expect(pastedLink?.metadata.isHyperlink).toBeUndefined();
+      expect(pastedLink?.metadata.linkedNodeId).toBeUndefined();
+    });
+
+    it('should not strip context references when pasting within same file', async () => {
+      state.nodes['local-context'] = {
+        id: 'local-context',
+        content: 'Local Context',
+        children: [],
+        metadata: { isContextDeclaration: true },
+      };
+      state.nodes['node-with-context'] = {
+        id: 'node-with-context',
+        content: 'Node with local context',
+        children: [],
+        metadata: { appliedContextId: 'local-context' },
+      };
+      state.ancestorRegistry['local-context'] = ['root'];
+      state.ancestorRegistry['node-with-context'] = ['root'];
+
+      const cachedMarkdown = '# Node with local context';
+      currentMockCache = {
+        rootNodeIds: ['node-with-context'],
+        sourceFilePath: targetFilePath,
+        timestamp: Date.now(),
+        isCut: false,
+        clipboardText: cachedMarkdown,
+      };
+      mockClipboardContent = cachedMarkdown;
+      state.activeNodeId = 'node-1';
+
+      const result = await actions.pasteNodes();
+
+      expect(result).toBe('pasted');
+      const pastedNodes = Object.values(state.nodes).filter(
+        (n) => n.content === 'Node with local context' && n.id !== 'node-with-context'
+      );
+      expect(pastedNodes).toHaveLength(1);
+      expect(pastedNodes[0].metadata.appliedContextId).toBe('local-context');
     });
   });
 

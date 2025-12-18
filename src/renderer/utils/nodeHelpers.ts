@@ -584,7 +584,7 @@ function cloneNodeTreeRecursive(
 export function cloneNodesWithNewIds(
   rootNodeIds: string[],
   nodes: Record<string, TreeNode>
-): { newRootNodes: TreeNode[]; newNodesMap: Record<string, TreeNode> } {
+): { newRootNodes: TreeNode[]; newNodesMap: Record<string, TreeNode>; idMapping: Record<string, string> } {
   const idMapping: Record<string, string> = {};
   const newNodesMap: Record<string, TreeNode> = {};
 
@@ -596,5 +596,5 @@ export function cloneNodesWithNewIds(
     .map((oldId) => newNodesMap[idMapping[oldId]])
     .filter(Boolean);
 
-  return { newRootNodes, newNodesMap };
+  return { newRootNodes, newNodesMap, idMapping };
 }
