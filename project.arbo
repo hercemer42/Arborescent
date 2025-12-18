@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2025-12-18T17:41:56.685Z'
+updated: '2025-12-18T18:25:38.730Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -476,6 +476,7 @@ nodes:
     id: 565dde0a-864b-41f9-86ff-dbdf40ac4dd0
     content: Done
     children:
+      - 3a7242f9-d80d-4d4f-ae1d-cf3cf596ad5b
       - 0f1e2ba5-936e-48ec-a770-e62727e89568
       - c744c030-4885-4d76-ae16-7b2ff62c40e1
       - 0053985b-19d7-4115-943b-57e0f47d0fd0
@@ -5429,7 +5430,7 @@ nodes:
       - e2876839-8e7a-4261-a56d-e657d4384bb3
     metadata:
       status: pending
-      expanded: false
+      expanded: true
       appliedContextIds:
         - e8824b29-eb18-4031-9e35-b321a864d418
       activeContextId: e8824b29-eb18-4031-9e35-b321a864d418
@@ -14948,8 +14949,7 @@ nodes:
   c25cf481-a0d1-495d-9cea-498f1135eb8c:
     id: c25cf481-a0d1-495d-9cea-498f1135eb8c
     content: Minor feature
-    children:
-      - 3a7242f9-d80d-4d4f-ae1d-cf3cf596ad5b
+    children: []
     metadata:
       status: completed
       expanded: true
@@ -17106,7 +17106,7 @@ nodes:
       - 24d5957d-9a3b-4ff2-811f-9abd59e7e87e
     metadata:
       status: pending
-      expanded: true
+      expanded: false
       deleted: false
       plugins: {}
       isBlueprint: true
@@ -19228,9 +19228,12 @@ nodes:
       blueprintColor: '#c47f09'
   b2e784c1-1540-4219-8bc5-9787fe9d11aa:
     id: b2e784c1-1540-4219-8bc5-9787fe9d11aa
-    content: Need to clean up cruft in default blueprint
+    content: Need to clean up cruft in default blueprints
     children:
+      - db71288b-2948-40fb-9243-8d423d7af97d
       - 8e9b0c15-2a32-4e1e-9f0e-2f3f5541c834
+      - 8d47c6dc-7170-403b-bd97-f8387ea1696d
+      - 1ac51033-346b-4cf9-a562-03382eee4046
     metadata:
       status: pending
   8e9b0c15-2a32-4e1e-9f0e-2f3f5541c834:
@@ -19505,45 +19508,75 @@ nodes:
       - d34cd859-345e-4d2c-a6ee-d4209d1f8973
       - c6090114-7b2a-4de9-8990-295a27c2e42e
     metadata:
-      status: pending
-      expanded: true
+      status: completed
+      expanded: false
       deleted: false
       plugins: {}
+      resolvedAt: '2025-12-18T18:24:46.969Z'
   d34cd859-345e-4d2c-a6ee-d4209d1f8973:
     id: d34cd859-345e-4d2c-a6ee-d4209d1f8973
     content: The reviewed nodes should be blueprints
     children:
       - bcaccfb4-78eb-44ac-960c-3b0ae0cda88f
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
+      resolvedAt: '2025-12-18T18:24:48.321Z'
   bcaccfb4-78eb-44ac-960c-3b0ae0cda88f:
     id: bcaccfb4-78eb-44ac-960c-3b0ae0cda88f
     content: Applies to all context declarations (review, expand, etc. - whatever the applied context defines)
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
+      resolvedAt: '2025-12-18T18:24:48.753Z'
   c6090114-7b2a-4de9-8990-295a27c2e42e:
     id: c6090114-7b2a-4de9-8990-295a27c2e42e
     content: They should inherit the icon of the parent sent for review
     children:
       - 542e6d30-2063-4b01-95c2-2df37bccc185
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
+      resolvedAt: '2025-12-18T18:24:49.253Z'
   542e6d30-2063-4b01-95c2-2df37bccc185:
     id: 542e6d30-2063-4b01-95c2-2df37bccc185
     content: 'Fallback: Use default blueprint node icon if parent has no icon set'
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
+      resolvedAt: '2025-12-18T18:24:49.953Z'
+  db71288b-2948-40fb-9243-8d423d7af97d:
+    id: db71288b-2948-40fb-9243-8d423d7af97d
+    content: 'in the blueprints folder, some nodes may have the following metadata :'
+    children: []
+    metadata:
+      status: pending
+  8d47c6dc-7170-403b-bd97-f8387ea1696d:
+    id: 8d47c6dc-7170-403b-bd97-f8387ea1696d
+    content: some of that might be obselescent
+    children:
+      - aedab413-a7b7-46ac-9d4f-fc2331cc4a74
+    metadata:
+      status: pending
+  aedab413-a7b7-46ac-9d4f-fc2331cc4a74:
+    id: aedab413-a7b7-46ac-9d4f-fc2331cc4a74
+    content: Clean it up
+    children: []
+    metadata:
+      status: pending
+  1ac51033-346b-4cf9-a562-03382eee4046:
+    id: 1ac51033-346b-4cf9-a562-03382eee4046
+    content: also, the main project.arbo file could also have that metadata, likewise clean it up
+    children: []
+    metadata:
+      status: pending
