@@ -7,14 +7,17 @@ import { useToastStore } from '../../toast/toastStore';
 import { usePanelStore } from '../../panel/panelStore';
 import { VisualEffectsActions } from './visualEffectsActions';
 import { AcceptFeedbackCommand } from '../commands/AcceptFeedbackCommand';
+import { DEFAULT_BLUEPRINT_ICON } from './blueprintActions';
 import {
   parseFeedbackContent,
   initializeFeedbackStore,
   extractFeedbackContent,
   cleanupFeedback,
   findCollaboratingNode,
+  ParsedFeedbackContent,
 } from '../../../services/feedback/feedbackService';
 import { feedbackTreeStore } from '../../feedback/feedbackTreeStore';
+import { AncestorRegistry } from '../../../services/ancestry';
 
 export type ContentSource = 'clipboard' | 'file' | 'restore';
 
@@ -58,6 +61,57 @@ export interface CollaborateActions {
   processIncomingFeedbackContent: (content: string, source: ContentSource, skipSave?: boolean) => Promise<ProcessFeedbackContentResult>;
   finishCancel: () => Promise<void>;
   finishAccept: () => Promise<void>;
+}
+
+function getEffectiveBlueprintIcon(
+  node: TreeNode,
+  nodes: Record<string, TreeNode>,
+  ancestorRegistry: AncestorRegistry
+): { icon: string; color?: string } {
+  if (node.metadata.blueprintIcon) {
+    return {
+      icon: node.metadata.blueprintIcon as string,
+      color: node.metadata.blueprintColor as string | undefined,
+    };
+  }
+
+  const ancestors = ancestorRegistry[node.id] || [];
+  for (let i = ancestors.length - 1; i >= 0; i--) {
+    const ancestor = nodes[ancestors[i]];
+    if (ancestor?.metadata.blueprintIcon) {
+      return {
+        icon: ancestor.metadata.blueprintIcon as string,
+        color: ancestor.metadata.blueprintColor as string | undefined,
+      };
+    }
+  }
+
+  return { icon: DEFAULT_BLUEPRINT_ICON };
+}
+
+function applyBlueprintMetadataToFeedback(
+  parsedContent: ParsedFeedbackContent,
+  blueprintIcon: { icon: string; color?: string }
+): ParsedFeedbackContent {
+  const updatedNodes: Record<string, TreeNode> = {};
+
+  for (const [id, node] of Object.entries(parsedContent.nodes)) {
+    const isRootNode = id === parsedContent.rootNodeId;
+    updatedNodes[id] = {
+      ...node,
+      metadata: {
+        ...node.metadata,
+        isBlueprint: true,
+        ...(isRootNode && { blueprintIcon: blueprintIcon.icon }),
+        ...(isRootNode && blueprintIcon.color && { blueprintColor: blueprintIcon.color }),
+      },
+    };
+  }
+
+  return {
+    ...parsedContent,
+    nodes: updatedNodes,
+  };
 }
 
 export function createCollaborateActions(
@@ -269,7 +323,7 @@ ${nodeContent}`;
       source: ContentSource,
       skipSave: boolean = false
     ): Promise<ProcessFeedbackContentResult> => {
-      const { collaboratingNodeId, currentFilePath } = get();
+      const { collaboratingNodeId, currentFilePath, blueprintModeEnabled, nodes, ancestorRegistry } = get();
 
       if (!collaboratingNodeId || !currentFilePath) {
         logger.warn(`Received ${source} content but no active collaboration or file`, 'CollaborateActions');
@@ -279,13 +333,22 @@ ${nodeContent}`;
       logger.info(`Processing ${source} content`, 'CollaborateActions');
 
       // Parse the content
-      const parsedContent = parseFeedbackContent(content);
+      let parsedContent = parseFeedbackContent(content);
       if (!parsedContent) {
         return { success: false };
       }
 
-      // Initialize feedback store
-      initializeFeedbackStore(currentFilePath, parsedContent);
+      // Apply blueprint metadata if in blueprint mode
+      if (blueprintModeEnabled) {
+        const collaboratingNode = nodes[collaboratingNodeId];
+        if (collaboratingNode) {
+          const effectiveIcon = getEffectiveBlueprintIcon(collaboratingNode, nodes, ancestorRegistry);
+          parsedContent = applyBlueprintMetadataToFeedback(parsedContent, effectiveIcon);
+        }
+      }
+
+      // Initialize feedback store (pass blueprintModeEnabled so new nodes also get blueprint metadata)
+      initializeFeedbackStore(currentFilePath, parsedContent, blueprintModeEnabled);
       usePanelStore.getState().showFeedback();
 
       // Stop clipboard monitor - we have content now

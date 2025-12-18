@@ -2,6 +2,7 @@ import { BaseCommand } from './Command';
 import { TreeNode } from '../../../../shared/types';
 import { removeNodeFromRegistry, addNodesToRegistry, buildAncestorRegistry, AncestorRegistry } from '../../../services/ancestry';
 import { getAllDescendants, captureNodePosition } from '../../../utils/nodeHelpers';
+import { DEFAULT_BLUEPRINT_ICON } from '../actions/blueprintActions';
 
 interface CollaborationSnapshot {
   collaboratingNodeId: string;
@@ -23,6 +24,7 @@ export class AcceptFeedbackCommand extends BaseCommand {
       nodes: Record<string, TreeNode>;
       rootNodeId: string;
       ancestorRegistry: Record<string, string[]>;
+      blueprintModeEnabled: boolean;
     },
     private setState: (partial: {
       nodes?: Record<string, TreeNode>;
@@ -59,6 +61,53 @@ export class AcceptFeedbackCommand extends BaseCommand {
     };
   }
 
+  private getEffectiveBlueprintIcon(
+    node: TreeNode,
+    state: ReturnType<typeof this.getState>
+  ): { icon: string; color?: string } {
+    if (node.metadata.blueprintIcon) {
+      return {
+        icon: node.metadata.blueprintIcon as string,
+        color: node.metadata.blueprintColor as string | undefined,
+      };
+    }
+
+    const ancestors = state.ancestorRegistry[node.id] || [];
+    for (let i = ancestors.length - 1; i >= 0; i--) {
+      const ancestor = state.nodes[ancestors[i]];
+      if (ancestor?.metadata.blueprintIcon) {
+        return {
+          icon: ancestor.metadata.blueprintIcon as string,
+          color: ancestor.metadata.blueprintColor as string | undefined,
+        };
+      }
+    }
+
+    return { icon: DEFAULT_BLUEPRINT_ICON };
+  }
+
+  private applyBlueprintMetadata(
+    nodesMap: Record<string, TreeNode>,
+    blueprintIcon: { icon: string; color?: string }
+  ): Record<string, TreeNode> {
+    const result: Record<string, TreeNode> = {};
+
+    for (const [id, node] of Object.entries(nodesMap)) {
+      const isRootNode = id === this.newRootNodeId;
+      result[id] = {
+        ...node,
+        metadata: {
+          ...node.metadata,
+          isBlueprint: true,
+          ...(isRootNode && { blueprintIcon: blueprintIcon.icon }),
+          ...(isRootNode && blueprintIcon.color && { blueprintColor: blueprintIcon.color }),
+        },
+      };
+    }
+
+    return result;
+  }
+
   private buildMergedNodes(
     state: ReturnType<typeof this.getState>,
     collaboratingNode: TreeNode
@@ -90,13 +139,18 @@ export class AcceptFeedbackCommand extends BaseCommand {
       preservedMetadata.blueprintColor = collaboratingNode.metadata.blueprintColor;
     }
 
-    const updatedNewNodesMap = {
+    let updatedNewNodesMap = {
       ...this.newNodesMap,
       [this.newRootNodeId]: {
         ...newRootNode,
         metadata: { ...newRootNode.metadata, ...preservedMetadata },
       },
     };
+
+    if (state.blueprintModeEnabled) {
+      const effectiveIcon = this.getEffectiveBlueprintIcon(collaboratingNode, state);
+      updatedNewNodesMap = this.applyBlueprintMetadata(updatedNewNodesMap, effectiveIcon);
+    }
 
     Object.assign(mergedNodesMap, updatedNewNodesMap);
 

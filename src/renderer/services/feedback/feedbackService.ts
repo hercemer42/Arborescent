@@ -38,7 +38,8 @@ export function parseFeedbackContent(content: string): ParsedFeedbackContent | n
 
 export function initializeFeedbackStore(
   filePath: string,
-  parsedContent: ParsedFeedbackContent
+  parsedContent: ParsedFeedbackContent,
+  blueprintModeEnabled: boolean = false
 ): void {
   const { nodes: nodesWithHiddenRoot, rootNodeId: hiddenRootId } = wrapNodesWithHiddenRoot(
     parsedContent.nodes,
@@ -46,6 +47,14 @@ export function initializeFeedbackStore(
     'feedback-root'
   );
   feedbackTreeStore.initialize(filePath, nodesWithHiddenRoot, hiddenRootId);
+
+  if (blueprintModeEnabled) {
+    const store = feedbackTreeStore.getStoreForFile(filePath);
+    if (store) {
+      store.setState({ blueprintModeEnabled: true });
+    }
+  }
+
   logger.info(`Initialized feedback store with ${parsedContent.nodeCount} nodes`, 'FeedbackService');
 }
 

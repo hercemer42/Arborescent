@@ -332,6 +332,148 @@ describe('collaborateActions', () => {
 
       expect(mockSet).not.toHaveBeenCalled();
     });
+
+    describe('blueprint mode', () => {
+      it('should mark all new nodes as blueprints when blueprintModeEnabled is true', () => {
+        mockState.collaboratingNodeId = 'child1';
+        mockState.blueprintModeEnabled = true;
+
+        const newRootNode: TreeNode = {
+          id: 'new-child1',
+          content: 'Updated Child 1',
+          children: ['new-grandchild1'],
+          metadata: { plugins: {} },
+        };
+
+        const newGrandchild: TreeNode = {
+          id: 'new-grandchild1',
+          content: 'Updated Grandchild 1',
+          children: [],
+          metadata: { plugins: {} },
+        };
+
+        actions.acceptFeedback('new-child1', {
+          'new-child1': newRootNode,
+          'new-grandchild1': newGrandchild,
+        });
+
+        const setCall = mockSet.mock.calls[0][0] as Partial<TreeState>;
+        expect(setCall.nodes!['new-child1'].metadata.isBlueprint).toBe(true);
+        expect(setCall.nodes!['new-grandchild1'].metadata.isBlueprint).toBe(true);
+      });
+
+      it('should inherit blueprintIcon from collaborating node when in blueprint mode', () => {
+        mockState.collaboratingNodeId = 'child1';
+        mockState.blueprintModeEnabled = true;
+        mockState.nodes.child1.metadata.blueprintIcon = 'Star';
+        mockState.nodes.child1.metadata.blueprintColor = '#ff0000';
+
+        const newRootNode: TreeNode = {
+          id: 'new-child1',
+          content: 'Updated Child 1',
+          children: [],
+          metadata: { plugins: {} },
+        };
+
+        actions.acceptFeedback('new-child1', {
+          'new-child1': newRootNode,
+        });
+
+        const setCall = mockSet.mock.calls[0][0] as Partial<TreeState>;
+        expect(setCall.nodes!['new-child1'].metadata.blueprintIcon).toBe('Star');
+        expect(setCall.nodes!['new-child1'].metadata.blueprintColor).toBe('#ff0000');
+      });
+
+      it('should inherit blueprintIcon from ancestor when collaborating node has none', () => {
+        mockState.collaboratingNodeId = 'grandchild1';
+        mockState.blueprintModeEnabled = true;
+        mockState.nodes.child1.metadata.blueprintIcon = 'Folder';
+        mockState.nodes.child1.metadata.blueprintColor = '#00ff00';
+
+        const newRootNode: TreeNode = {
+          id: 'new-grandchild1',
+          content: 'Updated Grandchild 1',
+          children: [],
+          metadata: { plugins: {} },
+        };
+
+        actions.acceptFeedback('new-grandchild1', {
+          'new-grandchild1': newRootNode,
+        });
+
+        const setCall = mockSet.mock.calls[0][0] as Partial<TreeState>;
+        expect(setCall.nodes!['new-grandchild1'].metadata.blueprintIcon).toBe('Folder');
+        expect(setCall.nodes!['new-grandchild1'].metadata.blueprintColor).toBe('#00ff00');
+      });
+
+      it('should use default blueprint icon when no ancestor has one', () => {
+        mockState.collaboratingNodeId = 'child1';
+        mockState.blueprintModeEnabled = true;
+
+        const newRootNode: TreeNode = {
+          id: 'new-child1',
+          content: 'Updated Child 1',
+          children: [],
+          metadata: { plugins: {} },
+        };
+
+        actions.acceptFeedback('new-child1', {
+          'new-child1': newRootNode,
+        });
+
+        const setCall = mockSet.mock.calls[0][0] as Partial<TreeState>;
+        expect(setCall.nodes!['new-child1'].metadata.blueprintIcon).toBe('Layers2');
+      });
+
+      it('should only apply blueprintIcon to root node, not descendants', () => {
+        mockState.collaboratingNodeId = 'child1';
+        mockState.blueprintModeEnabled = true;
+        mockState.nodes.child1.metadata.blueprintIcon = 'Star';
+
+        const newRootNode: TreeNode = {
+          id: 'new-child1',
+          content: 'Updated Child 1',
+          children: ['new-grandchild1'],
+          metadata: { plugins: {} },
+        };
+
+        const newGrandchild: TreeNode = {
+          id: 'new-grandchild1',
+          content: 'Updated Grandchild 1',
+          children: [],
+          metadata: { plugins: {} },
+        };
+
+        actions.acceptFeedback('new-child1', {
+          'new-child1': newRootNode,
+          'new-grandchild1': newGrandchild,
+        });
+
+        const setCall = mockSet.mock.calls[0][0] as Partial<TreeState>;
+        expect(setCall.nodes!['new-child1'].metadata.blueprintIcon).toBe('Star');
+        expect(setCall.nodes!['new-grandchild1'].metadata.blueprintIcon).toBeUndefined();
+      });
+
+      it('should not apply blueprint metadata when blueprintModeEnabled is false', () => {
+        mockState.collaboratingNodeId = 'child1';
+        mockState.blueprintModeEnabled = false;
+
+        const newRootNode: TreeNode = {
+          id: 'new-child1',
+          content: 'Updated Child 1',
+          children: [],
+          metadata: { plugins: {} },
+        };
+
+        actions.acceptFeedback('new-child1', {
+          'new-child1': newRootNode,
+        });
+
+        const setCall = mockSet.mock.calls[0][0] as Partial<TreeState>;
+        expect(setCall.nodes!['new-child1'].metadata.isBlueprint).toBeUndefined();
+        expect(setCall.nodes!['new-child1'].metadata.blueprintIcon).toBeUndefined();
+      });
+    });
   });
 
   describe('collaborate', () => {
@@ -692,6 +834,108 @@ describe('collaborateActions', () => {
         expect(logger.info).toHaveBeenCalledWith(
           'No current file path, skipping collaboration restore',
           'CollaborateActions'
+        );
+      });
+    });
+
+    describe('processIncomingFeedbackContent blueprint mode', () => {
+      const validMarkdownContent = '# [ ] Root task\n## [ ] Child task';
+
+      beforeEach(() => {
+        mockState.currentFilePath = '/test/file.arbo';
+        mockState.collaboratingNodeId = 'child1';
+
+        mockParseFeedbackContent.mockReturnValue({
+          nodes: {
+            'feedback-root': { id: 'feedback-root', content: 'Root task', children: ['feedback-child'], metadata: {} },
+            'feedback-child': { id: 'feedback-child', content: 'Child task', children: [], metadata: {} },
+          },
+          rootNodeId: 'feedback-root',
+          nodeCount: 2,
+        });
+      });
+
+      it('should apply blueprint metadata to feedback nodes when blueprintModeEnabled is true', async () => {
+        mockState.blueprintModeEnabled = true;
+
+        await actions.processIncomingFeedbackContent(validMarkdownContent, 'clipboard');
+
+        expect(mockInitializeFeedbackStore).toHaveBeenCalledWith(
+          '/test/file.arbo',
+          expect.objectContaining({
+            nodes: expect.objectContaining({
+              'feedback-root': expect.objectContaining({
+                metadata: expect.objectContaining({ isBlueprint: true }),
+              }),
+              'feedback-child': expect.objectContaining({
+                metadata: expect.objectContaining({ isBlueprint: true }),
+              }),
+            }),
+          }),
+          true
+        );
+      });
+
+      it('should apply blueprintIcon from collaborating node when in blueprint mode', async () => {
+        mockState.blueprintModeEnabled = true;
+        mockState.nodes.child1.metadata.blueprintIcon = 'Star';
+        mockState.nodes.child1.metadata.blueprintColor = '#ff0000';
+
+        await actions.processIncomingFeedbackContent(validMarkdownContent, 'clipboard');
+
+        expect(mockInitializeFeedbackStore).toHaveBeenCalledWith(
+          '/test/file.arbo',
+          expect.objectContaining({
+            nodes: expect.objectContaining({
+              'feedback-root': expect.objectContaining({
+                metadata: expect.objectContaining({
+                  isBlueprint: true,
+                  blueprintIcon: 'Star',
+                  blueprintColor: '#ff0000',
+                }),
+              }),
+            }),
+          }),
+          true
+        );
+      });
+
+      it('should use default blueprint icon when collaborating node has none', async () => {
+        mockState.blueprintModeEnabled = true;
+
+        await actions.processIncomingFeedbackContent(validMarkdownContent, 'clipboard');
+
+        expect(mockInitializeFeedbackStore).toHaveBeenCalledWith(
+          '/test/file.arbo',
+          expect.objectContaining({
+            nodes: expect.objectContaining({
+              'feedback-root': expect.objectContaining({
+                metadata: expect.objectContaining({
+                  isBlueprint: true,
+                  blueprintIcon: 'Layers2',
+                }),
+              }),
+            }),
+          }),
+          true
+        );
+      });
+
+      it('should NOT apply blueprint metadata when blueprintModeEnabled is false', async () => {
+        mockState.blueprintModeEnabled = false;
+
+        await actions.processIncomingFeedbackContent(validMarkdownContent, 'clipboard');
+
+        expect(mockInitializeFeedbackStore).toHaveBeenCalledWith(
+          '/test/file.arbo',
+          expect.objectContaining({
+            nodes: expect.objectContaining({
+              'feedback-root': expect.objectContaining({
+                metadata: expect.not.objectContaining({ isBlueprint: true }),
+              }),
+            }),
+          }),
+          false
         );
       });
     });
