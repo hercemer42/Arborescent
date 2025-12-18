@@ -18,6 +18,14 @@ import { feedbackTreeStore } from '../../feedback/feedbackTreeStore';
 
 export type ContentSource = 'clipboard' | 'file' | 'restore';
 
+// Default review instructions when no custom context is applied
+const DEFAULT_REVIEW_CONTEXT = `You are reviewing a hierarchical task list. Please:
+- Analyze the content and suggest improvements, additions or reorganization
+- Add any missing items that would make the list more complete
+- Fix any issues or inconsistencies that you find
+
+`;
+
 // Base instruction for collaboration requests
 const COLLABORATE_INSTRUCTION_BASE = `OUTPUT FORMAT:
 - Must have exactly one root node (single # heading)
@@ -132,7 +140,8 @@ export function createCollaborateActions(
           state.ancestorRegistry
         );
 
-        const clipboardContent = contextPrefix + COLLABORATE_INSTRUCTION_WEB + '\n\nHere is the content:\n\n' + nodeContent;
+        const effectiveContext = contextPrefix || DEFAULT_REVIEW_CONTEXT;
+        const clipboardContent = effectiveContext + COLLABORATE_INSTRUCTION_WEB + '\n\nHere is the content:\n\n' + nodeContent;
         await navigator.clipboard.writeText(clipboardContent);
 
         useToastStore.getState().addToast(
@@ -182,7 +191,8 @@ export function createCollaborateActions(
           state.ancestorRegistry
         );
 
-        const terminalInstruction = `${contextPrefix}${COLLABORATE_INSTRUCTION_TERMINAL}
+        const effectiveContext = contextPrefix || DEFAULT_REVIEW_CONTEXT;
+        const terminalInstruction = `${effectiveContext}${COLLABORATE_INSTRUCTION_TERMINAL}
 
 IMPORTANT: Write your reviewed/updated list to this file: ${feedbackResponseFile}
 Do NOT make any changes to the code.

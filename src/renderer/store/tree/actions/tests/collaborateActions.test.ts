@@ -418,24 +418,25 @@ describe('collaborateActions', () => {
       expect(contextPos).toBeLessThan(outputFormatPos);
     });
 
-    it('should not include context if node has no applied context', async () => {
+    it('should use default review instructions when node has no applied context', async () => {
       await actions.collaborate('child1');
 
       const clipboardContent = mockClipboardWriteText.mock.calls[0][0];
-      // Should start with the instruction (no context prefix)
-      expect(clipboardContent).toMatch(/^OUTPUT FORMAT:/);
+      // Should include default review instructions when no custom context
+      expect(clipboardContent).toContain('You are reviewing a hierarchical task list');
+      expect(clipboardContent).toContain('Analyze the content and suggest improvements');
       expect(clipboardContent).not.toContain('You are a helpful assistant');
     });
 
-    it('should handle missing context node gracefully', async () => {
+    it('should use default review instructions when context node is missing', async () => {
       // Select a non-existent context
       mockState.nodes.child1.metadata.appliedContextId = 'non-existent-context';
 
       await actions.collaborate('child1');
 
       const clipboardContent = mockClipboardWriteText.mock.calls[0][0];
-      // Should still work, just without the context prefix
-      expect(clipboardContent).toMatch(/^OUTPUT FORMAT:/);
+      // Should use default instructions when referenced context doesn't exist
+      expect(clipboardContent).toContain('You are reviewing a hierarchical task list');
       expect(mockSet).toHaveBeenCalledWith({ collaboratingNodeId: 'child1' });
     });
   });
@@ -555,19 +556,20 @@ describe('collaborateActions', () => {
       expect(contextPos).toBeLessThan(outputFormatPos);
     });
 
-    it('should not include context if node has no applied context', async () => {
+    it('should use default review instructions when node has no applied context', async () => {
       const { executeInTerminal } = await import('../../../../services/terminalExecution');
       vi.mocked(executeInTerminal).mockResolvedValue(undefined);
 
       await actions.collaborateInTerminal('child1', 'terminal-1');
 
       const terminalContent = vi.mocked(executeInTerminal).mock.calls[0][1];
-      // Should start with the instruction (no context prefix)
-      expect(terminalContent).toMatch(/^OUTPUT FORMAT:/);
+      // Should include default review instructions when no custom context
+      expect(terminalContent).toContain('You are reviewing a hierarchical task list');
+      expect(terminalContent).toContain('Analyze the content and suggest improvements');
       expect(terminalContent).not.toContain('You are a helpful assistant');
     });
 
-    it('should handle missing context node gracefully', async () => {
+    it('should use default review instructions when context node is missing', async () => {
       const { executeInTerminal } = await import('../../../../services/terminalExecution');
       vi.mocked(executeInTerminal).mockResolvedValue(undefined);
 
@@ -577,8 +579,8 @@ describe('collaborateActions', () => {
       await actions.collaborateInTerminal('child1', 'terminal-1');
 
       const terminalContent = vi.mocked(executeInTerminal).mock.calls[0][1];
-      // Should still work, just without the context prefix
-      expect(terminalContent).toMatch(/^OUTPUT FORMAT:/);
+      // Should use default instructions when referenced context doesn't exist
+      expect(terminalContent).toContain('You are reviewing a hierarchical task list');
       expect(mockSet).toHaveBeenCalledWith({ collaboratingNodeId: 'child1' });
     });
   });

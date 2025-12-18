@@ -146,5 +146,6 @@ describe('buildExecuteSubmenu', () => {
 
       expect(onSetActiveContext).toHaveBeenCalledWith('task-node', null);
     });
+
   });
 });

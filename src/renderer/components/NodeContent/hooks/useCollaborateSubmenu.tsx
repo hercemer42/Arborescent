@@ -29,6 +29,7 @@ export function buildCollaborateSubmenu({
     ancestorRegistry,
     contextDeclarations,
     requiresContext: true,
+    includeDefaultContext: true,
     onTerminalAction: onCollaborateInTerminal,
     onBrowserAction: onCollaborate,
     onSetActiveContext,

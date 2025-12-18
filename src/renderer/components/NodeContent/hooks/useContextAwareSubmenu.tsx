@@ -12,10 +12,12 @@ export interface ContextAwareSubmenuParams {
   ancestorRegistry: AncestorRegistry;
   contextDeclarations: ContextDeclarationInfo[];
   requiresContext?: boolean;
+  includeDefaultContext?: boolean;
   onTerminalAction: () => void;
   onBrowserAction: () => void;
   onSetActiveContext: (nodeId: string, contextId: string | null) => void;
 }
+
 
 function getExplicitContextId(node: TreeNode): string | undefined {
   return node.metadata.appliedContextId as string | undefined;
@@ -39,6 +41,28 @@ function createContextHeading(): ContextMenuItem {
     label: 'Apply a context',
     onClick: () => {},
     disabled: true,
+  };
+}
+
+interface DefaultContextItemParams {
+  isActive: boolean;
+  nodeId: string;
+  onSetActiveContext: (nodeId: string, contextId: string | null) => void;
+}
+
+function createDefaultContextItem({ isActive, nodeId, onSetActiveContext }: DefaultContextItemParams): ContextMenuItem {
+  const Icon = getIconByName('Eye');
+  return {
+    label: 'Basic review (default)',
+    icon: Icon ? createElement(Icon, { size: 14 }) : undefined,
+    radioSelected: isActive,
+    keepOpenOnClick: true,
+    disabled: isActive,
+    onClick: () => {
+      if (!isActive) {
+        onSetActiveContext(nodeId, null);
+      }
+    },
   };
 }
 
@@ -66,23 +90,20 @@ function createContextSelectionItem({
   }
 
   const Icon = getIconByName(context.icon);
-
-  const isInheritedAndNoExplicit = isInherited && !hasExplicitContext;
+  const isInheritedActive = isInherited && !hasExplicitContext;
 
   return {
     label: contextName,
     icon: Icon ? createElement(Icon, { size: 14, style: context.color ? { color: context.color } : undefined }) : undefined,
-    radioSelected: isInheritedAndNoExplicit ? true : (isActive && !isInherited),
+    radioSelected: isInheritedActive ? true : (isActive && !isInherited),
     keepOpenOnClick: true,
-    disabled: isInheritedAndNoExplicit,
+    disabled: isInheritedActive,
     onClick: () => {
-      if (isInheritedAndNoExplicit) {
+      if (isInheritedActive) {
         return;
       }
 
-      if (isActive && !isInherited) {
-        onSetActiveContext(nodeId, null);
-      } else if (isInherited) {
+      if (isInherited || isActive) {
         onSetActiveContext(nodeId, null);
       } else {
         onSetActiveContext(nodeId, context.nodeId);
@@ -97,6 +118,7 @@ export function buildContextAwareSubmenu({
   ancestorRegistry,
   contextDeclarations,
   requiresContext = false,
+  includeDefaultContext = false,
   onTerminalAction,
   onBrowserAction,
   onSetActiveContext,
@@ -111,10 +133,10 @@ export function buildContextAwareSubmenu({
   );
 
   const hasContext = effectiveContextId !== undefined;
-  const actionsDisabled = requiresContext && !hasContext;
+  const actionsDisabled = requiresContext && !hasContext && !includeDefaultContext;
   const baseActions = createBaseActions(onTerminalAction, onBrowserAction, actionsDisabled);
 
-  if (availableContexts.length === 0) {
+  if (availableContexts.length === 0 && !includeDefaultContext) {
     if (requiresContext) {
       return [
         ...baseActions,
@@ -129,6 +151,14 @@ export function buildContextAwareSubmenu({
     SEPARATOR,
     createContextHeading(),
   ];
+
+  if (includeDefaultContext && !inheritedContextId) {
+    contextItems.push(createDefaultContextItem({
+      isActive: !explicitContextId,
+      nodeId: node.id,
+      onSetActiveContext,
+    }));
+  }
 
   const selectionItems = availableContexts.map((context) => {
     const isActive = context.nodeId === explicitContextId;
