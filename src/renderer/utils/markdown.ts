@@ -20,6 +20,10 @@ export function exportNodeAsMarkdown(node: TreeNode, nodes: NodesMap, depth: num
     return '';
   }
 
+  if (node.metadata.isHyperlink === true) {
+    return '';
+  }
+
   let markdown = '';
 
   // Get ASCII status symbol

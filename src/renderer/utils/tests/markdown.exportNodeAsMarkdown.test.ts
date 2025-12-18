@@ -451,12 +451,10 @@ describe('exportContextAsMarkdown', () => {
 
     const result = exportContextAsMarkdown(contextNode, nodes, 0, 'ctx');
 
-    // Hyperlink2 within linked content is NOT resolved (depth=1)
-    // It gets exported as a regular node (its content, not the linked content)
+    // Hyperlink2 within linked content is skipped (hyperlinks are not included in exported content)
     expect(result).toBe(
       '# [ ] Context\n' +
-      '## [ ] Linked content\n' +
-      '### [ ] Nested link\n'
+      '## [ ] Linked content\n'
     );
   });
 });
