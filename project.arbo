@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2025-12-19T09:46:02.832Z'
+updated: '2025-12-19T10:18:21.532Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -9128,6 +9128,7 @@ nodes:
       - 5cc686fc-7651-4d83-9ccf-78a29d1dff13
       - 3881490a-b11c-4052-ad46-020faad5bb2b
       - 5fcc7b6b-25d0-4c23-8529-f8a6b9af81e8
+      - e9d700c8-784f-4b3f-9099-7be9ab864158
     metadata:
       status: pending
       appliedContextIds:
@@ -14944,7 +14945,8 @@ nodes:
   c25cf481-a0d1-495d-9cea-498f1135eb8c:
     id: c25cf481-a0d1-495d-9cea-498f1135eb8c
     content: Minor feature
-    children: []
+    children:
+      - 01e05f8c-fee7-4c80-8f10-754b2ad9fed0
     metadata:
       status: completed
       expanded: true
@@ -15051,7 +15053,6 @@ nodes:
     id: 92b16d87-27dc-486d-a605-4228e2b5206c
     content: For release
     children:
-      - 01e05f8c-fee7-4c80-8f10-754b2ad9fed0
       - cc522bbb-99fe-499f-b9d8-a62c7ce50575
       - 53ed4c1a-62e0-4a2c-a7af-b0805be12087
       - 50d841f9-3ba9-4f87-af62-e95a5332b173
@@ -19586,15 +19587,10 @@ nodes:
     id: 7f0fcbd8-9de9-4898-8224-4cce6c4405ac
     content: The automated return doesn't work in copilot when pasting text blocks
     children:
-      - 222219a4-905f-4408-b66a-54f5f4b52858
+      - 8f1dceb7-5e15-4e36-8239-b61a93d122a3
     metadata:
-      status: pending
-  222219a4-905f-4408-b66a-54f5f4b52858:
-    id: 222219a4-905f-4408-b66a-54f5f4b52858
-    content: It sends a return before, but leaves the text block unsent
-    children: []
-    metadata:
-      status: pending
+      status: abandoned
+      resolvedAt: '2025-12-19T10:14:59.140Z'
   50094f48-9164-487d-987e-2a6917d0b3f6:
     id: 50094f48-9164-487d-987e-2a6917d0b3f6
     content: CTRL + E for execute in terminal
@@ -19830,8 +19826,7 @@ nodes:
   5fcc7b6b-25d0-4c23-8529-f8a6b9af81e8:
     id: 5fcc7b6b-25d0-4c23-8529-f8a6b9af81e8
     content: Backlog
-    children:
-      - 7f0fcbd8-9de9-4898-8224-4cce6c4405ac
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -19885,3 +19880,27 @@ nodes:
     children: []
     metadata:
       status: pending
+  8f1dceb7-5e15-4e36-8239-b61a93d122a3:
+    id: 8f1dceb7-5e15-4e36-8239-b61a93d122a3
+    content: In claude code it pastes the text block and then executes
+    children:
+      - 83b335a5-177a-41d5-b639-490b619a5f19
+    metadata:
+      status: pending
+  83b335a5-177a-41d5-b639-490b619a5f19:
+    id: 83b335a5-177a-41d5-b639-490b619a5f19
+    content: That way the user doesn't have to press return as well
+    children: []
+    metadata:
+      status: pending
+  e9d700c8-784f-4b3f-9099-7be9ab864158:
+    id: e9d700c8-784f-4b3f-9099-7be9ab864158
+    content: Archived
+    children:
+      - 7f0fcbd8-9de9-4898-8224-4cce6c4405ac
+    metadata:
+      status: pending
+      isBlueprint: true
+      blueprintIcon: Archive
+      blueprintColor: '#c47f09'
+      expanded: false

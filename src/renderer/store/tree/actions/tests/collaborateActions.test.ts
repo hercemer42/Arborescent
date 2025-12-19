@@ -608,6 +608,14 @@ describe('collaborateActions', () => {
       );
       expect(executeInTerminal).toHaveBeenCalledWith(
         'terminal-1',
+        expect.stringContaining('mkdir -p')
+      );
+      expect(executeInTerminal).toHaveBeenCalledWith(
+        'terminal-1',
+        expect.stringContaining('cat <<\'EOF\' >')
+      );
+      expect(executeInTerminal).toHaveBeenCalledWith(
+        'terminal-1',
         expect.stringContaining('Child 1')
       );
       expect(mockSet).toHaveBeenCalledWith({ collaboratingNodeId: 'child1' });

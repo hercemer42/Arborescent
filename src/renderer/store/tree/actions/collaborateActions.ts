@@ -55,9 +55,15 @@ function buildWebCollaboratePrompt(reviewContext: string, content: string): stri
 }
 
 function buildTerminalCollaboratePrompt(reviewContext: string, content: string, outputFilePath: string): string {
+  const outputDir = outputFilePath.substring(0, outputFilePath.lastIndexOf('/'));
   const outputTarget = `IMPORTANT: Write your reviewed/updated list to this file: ${outputFilePath}
 Do NOT make any changes to the code.
 Only write to the file once - fully consider your response beforehand.
+
+Use this command to write the file safely:
+mkdir -p ${outputDir} && cat <<'EOF' > ${outputFilePath}
+[Your content here]
+EOF
 
 Output the complete updated list.`;
 
