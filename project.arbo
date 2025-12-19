@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2025-12-19T10:56:02.368Z'
+updated: '2025-12-19T18:31:21.900Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -401,7 +401,7 @@ nodes:
       status: completed
   6573b620-bfc0-4c5b-8d92-13b9ace3461d:
     id: 6573b620-bfc0-4c5b-8d92-13b9ace3461d
-    content: Tests
+    content: Expand integration & end to end tests
     children:
       - 96b138b9-3004-4087-a4af-ea2f58abc68e
     metadata:
@@ -471,7 +471,6 @@ nodes:
       isBlueprint: true
       blueprintIcon: Boxes
       blueprintColor: '#a855f7'
-      appliedContextId: e8824b29-eb18-4031-9e35-b321a864d418
   565dde0a-864b-41f9-86ff-dbdf40ac4dd0:
     id: 565dde0a-864b-41f9-86ff-dbdf40ac4dd0
     content: Done
@@ -749,72 +748,6 @@ nodes:
     children: []
     metadata:
       status: completed
-  d7597faa-0b34-400e-985a-de035508cdb1:
-    id: d7597faa-0b34-400e-985a-de035508cdb1
-    content: Doc
-    children:
-      - dc47dab9-a096-4f31-a0e6-6cf91c26299a
-      - cb06cd21-9163-45fe-be61-5616f48032f7
-      - d053981a-608c-4a30-945a-f0aec466a572
-      - 96e9597f-9b07-4638-b960-4430507fbfb9
-      - 3992c938-c113-48ad-b88c-0fb0f4411daa
-      - f8465cf9-dd7a-433d-bd45-4f8dfa8920a2
-      - 52028dd3-abbc-42e7-9415-11313d556b91
-      - 59724865-e1d7-466d-b34f-14f08d0bd9cc
-      - 16978390-8839-400d-a02a-83948bad8f4d
-      - a37a4248-b9c2-4197-9469-9e738fefe8ea
-    metadata:
-      status: pending
-      expanded: false
-  d053981a-608c-4a30-945a-f0aec466a572:
-    id: d053981a-608c-4a30-945a-f0aec466a572
-    content: Add widespread doc
-    children: []
-    metadata:
-      status: pending
-  96e9597f-9b07-4638-b960-4430507fbfb9:
-    id: 96e9597f-9b07-4638-b960-4430507fbfb9
-    content: Make master doc for each component (folder? system? component?)
-    children: []
-    metadata:
-      status: pending
-  3992c938-c113-48ad-b88c-0fb0f4411daa:
-    id: 3992c938-c113-48ad-b88c-0fb0f4411daa
-    content: Have coherent naming convention
-    children: []
-    metadata:
-      status: pending
-  f8465cf9-dd7a-433d-bd45-4f8dfa8920a2:
-    id: f8465cf9-dd7a-433d-bd45-4f8dfa8920a2
-    content: Tie arbo context to docs
-    children: []
-    metadata:
-      status: pending
-  52028dd3-abbc-42e7-9415-11313d556b91:
-    id: 52028dd3-abbc-42e7-9415-11313d556b91
-    content: Pick a document model - we used to do this remember ?
-    children: []
-    metadata:
-      status: pending
-  59724865-e1d7-466d-b34f-14f08d0bd9cc:
-    id: 59724865-e1d7-466d-b34f-14f08d0bd9cc
-    content: Changelog
-    children: []
-    metadata:
-      status: pending
-  16978390-8839-400d-a02a-83948bad8f4d:
-    id: 16978390-8839-400d-a02a-83948bad8f4d
-    content: Master architecture file
-    children:
-      - fa8b9544-c3e1-42ff-8162-96d87a087bda
-    metadata:
-      status: pending
-  fa8b9544-c3e1-42ff-8162-96d87a087bda:
-    id: fa8b9544-c3e1-42ff-8162-96d87a087bda
-    content: What goes in there ?
-    children: []
-    metadata:
-      status: pending
   280ebc7a-a04f-43e0-bf3d-560e5016cbc1:
     id: 280ebc7a-a04f-43e0-bf3d-560e5016cbc1
     content: '5'
@@ -1167,62 +1100,6 @@ nodes:
     children: []
     metadata:
       status: completed
-  a37a4248-b9c2-4197-9469-9e738fefe8ea:
-    id: a37a4248-b9c2-4197-9469-9e738fefe8ea
-    content: IMPORTANT - each feature should have acceptance criteria
-    children:
-      - d3bffd85-b0d4-4d4f-a7fe-d260e1cba7ad
-      - 4a195f9d-138e-4f68-9da5-0d9829322195
-      - 3d53a26c-c7cc-49cd-a3e9-1a298132bcf2
-      - d6196365-b040-4515-8a12-0142cad89ee8
-      - a433188a-94dd-4e90-a8bf-1090374d803b
-      - 6caef70c-283f-4073-b628-be7a788ad0bb
-    metadata:
-      status: pending
-      expanded: true
-  d3bffd85-b0d4-4d4f-a7fe-d260e1cba7ad:
-    id: d3bffd85-b0d4-4d4f-a7fe-d260e1cba7ad
-    content: Those acceptance criteria form in-folder documentation
-    children: []
-    metadata:
-      status: pending
-  4a195f9d-138e-4f68-9da5-0d9829322195:
-    id: 4a195f9d-138e-4f68-9da5-0d9829322195
-    content: Updating a feature or fixing a bug updates the acceptance criteria
-    children: []
-    metadata:
-      status: pending
-  3d53a26c-c7cc-49cd-a3e9-1a298132bcf2:
-    id: 3d53a26c-c7cc-49cd-a3e9-1a298132bcf2
-    content: The acceptance criteria maps to tests (to see if it's the same file)
-    children: []
-    metadata:
-      status: pending
-  d6196365-b040-4515-8a12-0142cad89ee8:
-    id: d6196365-b040-4515-8a12-0142cad89ee8
-    content: It is built into the context
-    children: []
-    metadata:
-      status: pending
-  a433188a-94dd-4e90-a8bf-1090374d803b:
-    id: a433188a-94dd-4e90-a8bf-1090374d803b
-    content: It can be exported to feature documentation
-    children: []
-    metadata:
-      status: pending
-  6caef70c-283f-4073-b628-be7a788ad0bb:
-    id: 6caef70c-283f-4073-b628-be7a788ad0bb
-    content: Ideally all of this is managed by the context associated with a feature, and we export from that feature
-    children:
-      - d11ce2a2-5256-401f-907d-d8a0f5127de1
-    metadata:
-      status: pending
-  d11ce2a2-5256-401f-907d-d8a0f5127de1:
-    id: d11ce2a2-5256-401f-907d-d8a0f5127de1
-    content: So we keep 'done' in the feature as documentation, and pass that as context
-    children: []
-    metadata:
-      status: pending
   f48e2a15-a829-483b-90a7-a4613759f5a6:
     id: f48e2a15-a829-483b-90a7-a4613759f5a6
     content: Bugs
@@ -5225,6 +5102,8 @@ nodes:
       - a2f3111f-8678-4f58-9c36-18419bc4177d
       - ec997616-4bea-481e-b803-b9b37830da13
       - b273f207-bd13-41bf-8415-4a2eeab1e7b8
+      - 89b8e19a-634e-4a9a-9152-bffd700a9821
+      - f01e8702-c5c9-49da-bd96-0cebefbb7804
     metadata:
       status: pending
       expanded: true
@@ -5387,7 +5266,7 @@ nodes:
       status: pending
       isContextDeclaration: true
       blueprintIcon: Recycle
-      expanded: true
+      expanded: false
       blueprintColor: '#a855f7'
       isBlueprint: true
   59f2421c-d726-43ec-8347-ccf2874922a4:
@@ -5413,7 +5292,7 @@ nodes:
       - 9a8f1538-7eb7-4e2d-9e0f-46e2c00675f4
     metadata:
       status: pending
-      expanded: true
+      expanded: false
       isBlueprint: true
       blueprintIcon: BrainCog
       blueprintColor: '#14b8a6'
@@ -5421,17 +5300,16 @@ nodes:
     id: 984247e7-2d55-4b93-80e8-f84818901621
     content: Backlog
     children:
+      - ccd6416e-f83d-4ae8-ab7b-3b127cecdd32
       - 92b16d87-27dc-486d-a605-4228e2b5206c
+      - b82ab806-5034-47b1-8fbc-7b388030b107
+      - 550cf0db-6b43-43d9-8d43-7956b3fdc2d8
       - 2fe3a40d-e6bd-40b7-8bf1-e4374e91ed05
       - 2ea55700-ee7a-4057-9b72-3b0aa00589a7
       - 48749574-3d80-42ad-819c-35269903a60b
       - 75ae4f0b-d9ad-4022-b6de-36ccee2d4a10
-      - d7597faa-0b34-400e-985a-de035508cdb1
-      - 65b74e0f-88fe-41c6-9910-8bac806adc6f
       - 6573b620-bfc0-4c5b-8d92-13b9ace3461d
       - 5288b678-63dc-4672-b1b3-8e2b540c04de
-      - 9a38a539-0a71-497b-ba8f-148df72c9ddb
-      - e2876839-8e7a-4261-a56d-e657d4384bb3
     metadata:
       status: pending
       expanded: true
@@ -5809,7 +5687,7 @@ nodes:
       isBlueprint: true
       blueprintIcon: Layers2
       blueprintColor: '#0ea5e9'
-      expanded: true
+      expanded: false
   9a8f1538-7eb7-4e2d-9e0f-46e2c00675f4:
     id: 9a8f1538-7eb7-4e2d-9e0f-46e2c00675f4
     content: Technical
@@ -6715,7 +6593,7 @@ nodes:
         - e8824b29-eb18-4031-9e35-b321a864d418
         - 1e2f062a-bbaa-4a02-b58b-a94ab15d8d74
       activeContextId: cc94b377-246d-45ae-b938-2d3906892aa1
-      expanded: true
+      expanded: false
       isBlueprint: true
       blueprintIcon: Cog
       blueprintColor: '#14b8a6'
@@ -9140,7 +9018,7 @@ nodes:
       blueprintIcon: Bug
       blueprintColor: '#ef4444'
       appliedContextId: 6690289a-e02f-48bc-9225-a1083b7b324f
-      expanded: true
+      expanded: false
   aff16275-6d8e-49c9-b862-76875858d4af:
     id: aff16275-6d8e-49c9-b862-76875858d4af
     content: Avoid adding comments specific to the bug fix unless really needed
@@ -9176,7 +9054,7 @@ nodes:
       - e43903b2-2184-4cbd-84ec-9cd24ea536e2
     metadata:
       status: pending
-      expanded: true
+      expanded: false
       isBlueprint: true
       blueprintIcon: Star
       blueprintColor: '#64748b'
@@ -10302,7 +10180,8 @@ nodes:
     content: "Shortcut key :\_"
     children: []
     metadata:
-      status: pending
+      status: completed
+      resolvedAt: '2025-12-19T18:13:12.994Z'
   be5b9581-2645-4f33-8fdf-a6805b552761:
     id: be5b9581-2645-4f33-8fdf-a6805b552761
     content: Add subtree to Blueprint
@@ -12349,18 +12228,6 @@ nodes:
     metadata:
       status: completed
       resolvedAt: '2025-12-08T06:33:08.441Z'
-  dc47dab9-a096-4f31-a0e6-6cf91c26299a:
-    id: dc47dab9-a096-4f31-a0e6-6cf91c26299a
-    content: Update project comments to remove ones that are contextual to a specific problem in time and make no sense in hindsight
-    children: []
-    metadata:
-      status: pending
-  cb06cd21-9163-45fe-be61-5616f48032f7:
-    id: cb06cd21-9163-45fe-be61-5616f48032f7
-    content: Update context to try and prevent that from happening
-    children: []
-    metadata:
-      status: pending
   060c0911-82b9-43e3-a925-856938f2e409:
     id: 060c0911-82b9-43e3-a925-856938f2e409
     content: Right click menu isn't very intuitive
@@ -14344,17 +14211,6 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  ac4c627f-c512-40b9-ad55-11b439495b7e:
-    id: ac4c627f-c512-40b9-ad55-11b439495b7e
-    content: Major feature
-    children: []
-    metadata:
-      status: pending
-      isBlueprint: true
-      blueprintIcon: Hammer
-      blueprintColor: '#c47f09'
-      appliedContextId: cc94b377-246d-45ae-b938-2d3906892aa1
-      expanded: true
   c0dff20f-d3bd-4780-b0f6-fe9fa6e0b53c:
     id: c0dff20f-d3bd-4780-b0f6-fe9fa6e0b53c
     content: Stick to functional concerns, this isn't a technical analysis
@@ -14507,11 +14363,12 @@ nodes:
       resolvedAt: '2025-12-08T09:03:20.596Z'
   4966bd3d-fe8d-4094-840f-a0f791c07d6c:
     id: 4966bd3d-fe8d-4094-840f-a0f791c07d6c
-    content: Build and test on Mac, Ubuntu, Arch, Windows
-    children: []
+    content: Build and test on Linux (2 or 3 distros) Mac, Windows
+    children:
+      - 9e012c5b-9ea8-431a-8561-2a3183de63fa
     metadata:
       status: pending
-      expanded: true
+      expanded: false
   c98016fe-f4fb-41ce-aafc-d51f33ec2303:
     id: c98016fe-f4fb-41ce-aafc-d51f33ec2303
     content: External URL links
@@ -15038,14 +14895,15 @@ nodes:
     id: 92b16d87-27dc-486d-a605-4228e2b5206c
     content: For release
     children:
-      - 53ed4c1a-62e0-4a2c-a7af-b0805be12087
       - 4966bd3d-fe8d-4094-840f-a0f791c07d6c
+      - 9aa2f482-89db-40a7-aafa-92e03e781138
       - 41691f56-cf04-4609-8009-8d0b50b36ec7
       - e5ad2c66-f085-482e-8010-5fb1a2cf93d7
+      - 41c651ca-6e37-4610-a362-0c72ac2c7da4
       - f4d16e7f-646a-47e2-99a0-aa436b86bb6b
     metadata:
       status: pending
-      expanded: true
+      expanded: false
   0f5a2c8b-3991-4ed9-ba23-fa4198b0fe88:
     id: 0f5a2c8b-3991-4ed9-ba23-fa4198b0fe88
     content: Preferences
@@ -15055,28 +14913,31 @@ nodes:
       - 8b5f8408-8fbf-49eb-942e-8b15f00dda1e
       - 46fd3052-5a77-4bde-b0b9-cfc056570194
     metadata:
-      status: pending
+      status: completed
       expanded: false
       deleted: false
       plugins: {}
+      resolvedAt: '2025-12-19T18:11:32.757Z'
   af6d4354-8ffa-4ebc-84d8-bc40a7a8bcf1:
     id: af6d4354-8ffa-4ebc-84d8-bc40a7a8bcf1
     content: Under 'File' add 'Preferences' sub menu
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
+      resolvedAt: '2025-12-19T18:11:32.757Z'
   6faf37d5-0370-46be-afc2-f6a21fb32d42:
     id: 6faf37d5-0370-46be-afc2-f6a21fb32d42
     content: Under 'Preferences' add 'Keyboard shortcuts' and 'Themes'
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
+      resolvedAt: '2025-12-19T18:11:32.757Z'
   8b5f8408-8fbf-49eb-942e-8b15f00dda1e:
     id: 8b5f8408-8fbf-49eb-942e-8b15f00dda1e
     content: Keyboard shortcuts
@@ -15089,56 +14950,62 @@ nodes:
       - 2794cbb0-4e4f-4ff0-9a70-47ebcda5d68c
       - 98780c3e-e55d-459d-ac47-ad90c0bdd4f8
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
+      resolvedAt: '2025-12-19T18:11:32.757Z'
   67d36e7a-9197-4f40-a3a7-a852eec419bf:
     id: 67d36e7a-9197-4f40-a3a7-a852eec419bf
     content: On first launch, a copy of the default hotkeys is created in the user profile folder
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
+      resolvedAt: '2025-12-19T18:11:32.757Z'
   c6d3955a-d319-4abe-b264-6b1bffd4a9c3:
     id: c6d3955a-d319-4abe-b264-6b1bffd4a9c3
     content: The program will reference this on loading for all hotkey definitions
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
+      resolvedAt: '2025-12-19T18:11:32.757Z'
   b321bad1-ea6b-46e8-9e25-3ef100745275:
     id: b321bad1-ea6b-46e8-9e25-3ef100745275
     content: List all available commands and their shortcuts
     children:
       - 9a94d8f0-c7b5-4887-93e6-3ff5b84e40b7
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
+      resolvedAt: '2025-12-19T18:11:32.757Z'
   9a94d8f0-c7b5-4887-93e6-3ff5b84e40b7:
     id: 9a94d8f0-c7b5-4887-93e6-3ff5b84e40b7
     content: Group commands by category (Navigation, Editing, View, etc.) for easier scanning
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
+      resolvedAt: '2025-12-19T18:11:32.757Z'
   d90e3a39-f111-49fe-bf4d-7395d1f9ae21:
     id: d90e3a39-f111-49fe-bf4d-7395d1f9ae21
     content: Have an 'edit' button to the left of each command
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
+      resolvedAt: '2025-12-19T18:11:32.757Z'
   74b2a7bd-9774-47a9-ab7b-7a15cab09863:
     id: 74b2a7bd-9774-47a9-ab7b-7a15cab09863
     content: Clicking 'edit' produces a popup
@@ -15151,46 +15018,51 @@ nodes:
       - 803e2d5f-b5bb-4c69-bab8-3cdc44f071f8
       - 743fc2fb-4874-4c92-bae2-6e8343717ec0
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
+      resolvedAt: '2025-12-19T18:11:32.757Z'
   45fbc07b-dde1-451e-829d-d0bd4eb3680d:
     id: 45fbc07b-dde1-451e-829d-d0bd4eb3680d
     content: It has text 'Press desired key combination, then press ENTER'
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
+      resolvedAt: '2025-12-19T18:11:32.757Z'
   debfb8fc-bca4-463e-acd6-cf2f7efada55:
     id: debfb8fc-bca4-463e-acd6-cf2f7efada55
     content: It has a text box that is focused with the cursor in it
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
+      resolvedAt: '2025-12-19T18:11:32.757Z'
   d9713359-4fab-481e-b817-e0f693875db2:
     id: d9713359-4fab-481e-b817-e0f693875db2
     content: Pressing a key combination writes that key combination into the text box
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
+      resolvedAt: '2025-12-19T18:11:32.757Z'
   130f589e-8858-47d8-b423-541bd10eef6e:
     id: 130f589e-8858-47d8-b423-541bd10eef6e
     content: Pressing a different key combination overwrites it
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
+      resolvedAt: '2025-12-19T18:11:32.757Z'
   d4de6161-4448-435f-854a-133e913040dc:
     id: d4de6161-4448-435f-854a-133e913040dc
     content: Pressing enter changes the hotkey
@@ -15198,28 +15070,31 @@ nodes:
       - 51591722-04c9-43d5-bf5d-ef2d4891161c
       - 1494507f-6153-4610-bc60-c2c48011ea8a
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
+      resolvedAt: '2025-12-19T18:11:32.757Z'
   51591722-04c9-43d5-bf5d-ef2d4891161c:
     id: 51591722-04c9-43d5-bf5d-ef2d4891161c
     content: Changes it in local memory for the session
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
+      resolvedAt: '2025-12-19T18:11:32.757Z'
   1494507f-6153-4610-bc60-c2c48011ea8a:
     id: 1494507f-6153-4610-bc60-c2c48011ea8a
     content: Changes it in the user profile file
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
+      resolvedAt: '2025-12-19T18:11:32.757Z'
   803e2d5f-b5bb-4c69-bab8-3cdc44f071f8:
     id: 803e2d5f-b5bb-4c69-bab8-3cdc44f071f8
     content: If the hotkey is already in use, enter is disabled
@@ -15227,47 +15102,52 @@ nodes:
       - c9827458-33d3-4861-baf9-ce5b516b14f3
       - 9076c8fe-3a04-40f7-a208-4099a969963e
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
+      resolvedAt: '2025-12-19T18:11:32.757Z'
   c9827458-33d3-4861-baf9-ce5b516b14f3:
     id: c9827458-33d3-4861-baf9-ce5b516b14f3
     content: The text is greyed out
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
+      resolvedAt: '2025-12-19T18:11:32.757Z'
   9076c8fe-3a04-40f7-a208-4099a969963e:
     id: 9076c8fe-3a04-40f7-a208-4099a969963e
     content: We display underneath in red
     children:
       - 9b3efb3e-e399-477f-a99d-8d5a51e95e4f
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
+      resolvedAt: '2025-12-19T18:11:32.757Z'
   9b3efb3e-e399-477f-a99d-8d5a51e95e4f:
     id: 9b3efb3e-e399-477f-a99d-8d5a51e95e4f
     content: Hotkey already in use, pick another
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
+      resolvedAt: '2025-12-19T18:11:32.757Z'
   743fc2fb-4874-4c92-bae2-6e8343717ec0:
     id: 743fc2fb-4874-4c92-bae2-6e8343717ec0
     content: Hitting 'Escape' closes the dialog with no changes
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
+      resolvedAt: '2025-12-19T18:11:32.757Z'
   2794cbb0-4e4f-4ff0-9a70-47ebcda5d68c:
     id: 2794cbb0-4e4f-4ff0-9a70-47ebcda5d68c
     content: There is a 'Restore defaults' button on the bottom right
@@ -15275,28 +15155,31 @@ nodes:
       - a4a6c020-7a89-4bcb-9e0b-4b10cb61e27a
       - f2d8f1a9-b789-44ad-b24f-e9865c60a547
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
+      resolvedAt: '2025-12-19T18:11:32.757Z'
   a4a6c020-7a89-4bcb-9e0b-4b10cb61e27a:
     id: a4a6c020-7a89-4bcb-9e0b-4b10cb61e27a
     content: This restores all defaults with an 'Are you sure' prompt
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
+      resolvedAt: '2025-12-19T18:11:32.757Z'
   f2d8f1a9-b789-44ad-b24f-e9865c60a547:
     id: f2d8f1a9-b789-44ad-b24f-e9865c60a547
     content: Restores for the session and to the user's profile
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
+      resolvedAt: '2025-12-19T18:11:32.757Z'
   46fd3052-5a77-4bde-b0b9-cfc056570194:
     id: 46fd3052-5a77-4bde-b0b9-cfc056570194
     content: Themes
@@ -15306,28 +15189,31 @@ nodes:
       - baa68cdd-3826-4d73-9e6a-5699303ee447
       - 65357268-8c0c-4f3c-911e-1b04bafb29ea
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
+      resolvedAt: '2025-12-19T18:11:32.757Z'
   96cd3573-b1f7-451c-9a24-e75788e67299:
     id: 96cd3573-b1f7-451c-9a24-e75788e67299
     content: In this sub menu, there are two themes - light and dark
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
+      resolvedAt: '2025-12-19T18:11:32.757Z'
   5f0aad9f-c8d5-4c66-b94f-08a85baeffd7:
     id: 5f0aad9f-c8d5-4c66-b94f-08a85baeffd7
     content: Light theme is the current one
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
+      resolvedAt: '2025-12-19T18:11:32.757Z'
   baa68cdd-3826-4d73-9e6a-5699303ee447:
     id: baa68cdd-3826-4d73-9e6a-5699303ee447
     content: Dark is a new theme
@@ -15336,56 +15222,62 @@ nodes:
       - 5bdc622a-912e-4e15-a2d8-32d9eccff3b7
       - 8651d6f7-d662-4afd-a1ba-58dec4682070
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
+      resolvedAt: '2025-12-19T18:11:32.757Z'
   0329700a-9f92-4ded-8970-9e84cc1ed1ed:
     id: 0329700a-9f92-4ded-8970-9e84cc1ed1ed
     content: Do something similar to VS code default dark theme
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
+      resolvedAt: '2025-12-19T18:11:32.757Z'
   5bdc622a-912e-4e15-a2d8-32d9eccff3b7:
     id: 5bdc622a-912e-4e15-a2d8-32d9eccff3b7
     content: Try to keep the colours otherwise similar to light theme
     children:
       - 7efa1b4e-fab0-4d15-baea-337044a3d901
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
+      resolvedAt: '2025-12-19T18:11:32.757Z'
   7efa1b4e-fab0-4d15-baea-337044a3d901:
     id: 7efa1b4e-fab0-4d15-baea-337044a3d901
     content: Darken if necessary for contrast
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
+      resolvedAt: '2025-12-19T18:11:32.757Z'
   8651d6f7-d662-4afd-a1ba-58dec4682070:
     id: 8651d6f7-d662-4afd-a1ba-58dec4682070
     content: Activate xterm default dark theme also
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
+      resolvedAt: '2025-12-19T18:11:32.757Z'
   65357268-8c0c-4f3c-911e-1b04bafb29ea:
     id: 65357268-8c0c-4f3c-911e-1b04bafb29ea
     content: Save theme preference to user profile so it persists across sessions
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
+      resolvedAt: '2025-12-19T18:11:32.757Z'
   98780c3e-e55d-459d-ac47-ad90c0bdd4f8:
     id: 98780c3e-e55d-459d-ac47-ad90c0bdd4f8
     content: Right click menu
@@ -15393,13 +15285,15 @@ nodes:
       - 0584a9bb-782d-4f5e-b3f9-36c0890be3ea
       - 506aa754-a3bd-4ac0-a99a-c49f26d84c37
     metadata:
-      status: pending
+      status: completed
+      resolvedAt: '2025-12-19T18:11:32.757Z'
   0b6fbd7d-d845-43a8-a202-30af26aeb94c:
     id: 0b6fbd7d-d845-43a8-a202-30af26aeb94c
     content: This removes the hotkey entirely
     children: []
     metadata:
-      status: pending
+      status: completed
+      resolvedAt: '2025-12-19T18:11:32.757Z'
   506aa754-a3bd-4ac0-a99a-c49f26d84c37:
     id: 506aa754-a3bd-4ac0-a99a-c49f26d84c37
     content: There is an option 'Reset hotkey'
@@ -15407,32 +15301,37 @@ nodes:
       - 07cacdfc-7cde-4d2d-8122-e1d3be137997
       - 9f4fc747-d1e8-48ed-a477-3e02e82a750e
     metadata:
-      status: pending
+      status: completed
+      resolvedAt: '2025-12-19T18:11:32.757Z'
   0584a9bb-782d-4f5e-b3f9-36c0890be3ea:
     id: 0584a9bb-782d-4f5e-b3f9-36c0890be3ea
     content: There is an option 'Remove hotkey'
     children:
       - 0b6fbd7d-d845-43a8-a202-30af26aeb94c
     metadata:
-      status: pending
+      status: completed
+      resolvedAt: '2025-12-19T18:11:32.757Z'
   07cacdfc-7cde-4d2d-8122-e1d3be137997:
     id: 07cacdfc-7cde-4d2d-8122-e1d3be137997
     content: This resets the hotkey to default
     children: []
     metadata:
-      status: pending
+      status: completed
+      resolvedAt: '2025-12-19T18:11:32.757Z'
   9f4fc747-d1e8-48ed-a477-3e02e82a750e:
     id: 9f4fc747-d1e8-48ed-a477-3e02e82a750e
     content: Greyed out if hotkey is already default
     children: []
     metadata:
-      status: pending
+      status: completed
+      resolvedAt: '2025-12-19T18:11:32.757Z'
   792b7b44-6bfb-4ff6-9151-1b092d688998:
     id: 792b7b44-6bfb-4ff6-9151-1b092d688998
     content: Clear selections with 'Escape' in addition to focused node
     children: []
     metadata:
-      status: pending
+      status: completed
+      resolvedAt: '2025-12-19T18:13:37.604Z'
   a7508f21-00cf-4d96-a748-b02b41577a37:
     id: a7508f21-00cf-4d96-a748-b02b41577a37
     content: Actions improvements
@@ -17254,7 +17153,7 @@ nodes:
       - 5752a9e6-7729-4d54-bd24-66f26a48e87b
     metadata:
       status: pending
-      expanded: true
+      expanded: false
       isBlueprint: true
       blueprintIcon: LayoutList
       blueprintColor: '#14b8a6'
@@ -17846,6 +17745,7 @@ nodes:
     id: 48749574-3d80-42ad-819c-35269903a60b
     content: Direct integrations
     children:
+      - 65b74e0f-88fe-41c6-9910-8bac806adc6f
       - 8f2669c5-20ac-4eca-9d54-9af14ce438a4
       - 5e8df60a-b79a-45a9-aba4-d836b4e71368
       - edc85252-da4d-45f1-97e3-b3a9ae4e3350
@@ -17886,7 +17786,7 @@ nodes:
       status: pending
   75ae4f0b-d9ad-4022-b6de-36ccee2d4a10:
     id: 75ae4f0b-d9ad-4022-b6de-36ccee2d4a10
-    content: Expand 'done'
+    content: Create checklists/patterns
     children:
       - ccc87887-7316-438b-a6b1-911d8bda7520
       - 31a6a605-6d0c-44ca-9105-15d3637abf75
@@ -18030,6 +17930,7 @@ nodes:
       - d7d3b1a2-a5b2-47c8-8c5b-ec67aea40e22
     metadata:
       status: pending
+      expanded: false
   68f39796-a961-4ddc-8064-f19277378c4e:
     id: 68f39796-a961-4ddc-8064-f19277378c4e
     content: Restore ability to apply a context to any node
@@ -18566,18 +18467,12 @@ nodes:
   f4d16e7f-646a-47e2-99a0-aa436b86bb6b:
     id: f4d16e7f-646a-47e2-99a0-aa436b86bb6b
     content: Versioning
-    children: []
-    metadata:
-      status: pending
-  53ed4c1a-62e0-4a2c-a7af-b0805be12087:
-    id: 53ed4c1a-62e0-4a2c-a7af-b0805be12087
-    content: Some other blueprints
     children:
-      - d6fd8b04-762f-42a9-bec7-74161406b9e7
-      - 0fbc68dd-1ac7-4a56-94f9-1fdac20654a5
-      - 842e0663-8331-407c-8e1a-3b2a07183b7c
+      - afa8a934-8b37-4dfe-a874-9c7804024567
+      - 8252aaf8-8775-4640-ba62-64b7d6d2edd7
     metadata:
       status: pending
+      expanded: false
   0058432d-a010-473b-a707-ace2b1dee169:
     id: 0058432d-a010-473b-a707-ace2b1dee169
     content: Documentation
@@ -18998,12 +18893,6 @@ nodes:
       isHyperlink: true
       linkedNodeId: 5752a9e6-7729-4d54-bd24-66f26a48e87b
       isBlueprint: true
-  d6fd8b04-762f-42a9-bec7-74161406b9e7:
-    id: d6fd8b04-762f-42a9-bec7-74161406b9e7
-    content: in 'blueprints' folder
-    children: []
-    metadata:
-      status: pending
   21c2e459-e2d1-4fa3-b904-c406d9996056:
     id: 21c2e459-e2d1-4fa3-b904-c406d9996056
     content: Hotkeys for execute and collaborate
@@ -19037,31 +18926,6 @@ nodes:
       status: pending
       isHyperlink: true
       linkedNodeId: 5752a9e6-7729-4d54-bd24-66f26a48e87b
-  9a38a539-0a71-497b-ba8f-148df72c9ddb:
-    id: 9a38a539-0a71-497b-ba8f-148df72c9ddb
-    content: Register domain + setup basic website
-    children: []
-    metadata:
-      status: pending
-  0fbc68dd-1ac7-4a56-94f9-1fdac20654a5:
-    id: 0fbc68dd-1ac7-4a56-94f9-1fdac20654a5
-    content: Option to load from menu
-    children: []
-    metadata:
-      status: pending
-  842e0663-8331-407c-8e1a-3b2a07183b7c:
-    id: 842e0663-8331-407c-8e1a-3b2a07183b7c
-    content: Mention in readme, perhaps in quick start ;
-    children:
-      - e62e0fe6-6168-4518-9568-43b0c649015a
-    metadata:
-      status: pending
-  e62e0fe6-6168-4518-9568-43b0c649015a:
-    id: e62e0fe6-6168-4518-9568-43b0c649015a
-    content: '''Load this blueprint for a new react-electron project'''
-    children: []
-    metadata:
-      status: pending
   c744c030-4885-4d76-ae16-7b2ff62c40e1:
     id: c744c030-4885-4d76-ae16-7b2ff62c40e1
     content: Add default context for collaboration
@@ -19167,12 +19031,14 @@ nodes:
   188622ee-bacb-4220-92c3-9ff37694e691:
     id: 188622ee-bacb-4220-92c3-9ff37694e691
     content: Archived
-    children: []
+    children:
+      - e2876839-8e7a-4261-a56d-e657d4384bb3
     metadata:
       status: pending
       isBlueprint: true
       blueprintIcon: Archive
       blueprintColor: '#c47f09'
+      expanded: false
   b2e784c1-1540-4219-8bc5-9787fe9d11aa:
     id: b2e784c1-1540-4219-8bc5-9787fe9d11aa
     content: Need to clean up cruft in default blueprints
@@ -19871,3 +19737,214 @@ nodes:
     children: []
     metadata:
       status: pending
+  9aa2f482-89db-40a7-aafa-92e03e781138:
+    id: 9aa2f482-89db-40a7-aafa-92e03e781138
+    content: Create GIF for readme
+    children:
+      - 77029507-a64f-42ca-875e-e651d1f9e04e
+      - 39e81f69-6ba3-462a-9749-f2a27feb913a
+      - e323957d-cca1-4f26-b7f2-4d7738eebfb7
+      - c9d903d3-dedc-4e7c-801c-d1abd39b02e5
+    metadata:
+      status: pending
+      expanded: false
+  afa8a934-8b37-4dfe-a874-9c7804024567:
+    id: afa8a934-8b37-4dfe-a874-9c7804024567
+    content: Post version to Gitlab
+    children: []
+    metadata:
+      status: pending
+  8252aaf8-8775-4640-ba62-64b7d6d2edd7:
+    id: 8252aaf8-8775-4640-ba62-64b7d6d2edd7
+    content: Whatever else needs to be done
+    children: []
+    metadata:
+      status: pending
+  77029507-a64f-42ca-875e-e651d1f9e04e:
+    id: 77029507-a64f-42ca-875e-e651d1f9e04e
+    content: Start with only blueprint shown
+    children: []
+    metadata:
+      status: pending
+  39e81f69-6ba3-462a-9749-f2a27feb913a:
+    id: 39e81f69-6ba3-462a-9749-f2a27feb913a
+    content: Expand backlog and new feature
+    children:
+      - 51565651-aa89-4e73-91f0-3716eeb7150a
+    metadata:
+      status: pending
+  51565651-aa89-4e73-91f0-3716eeb7150a:
+    id: 51565651-aa89-4e73-91f0-3716eeb7150a
+    content: Add one/two items
+    children: []
+    metadata:
+      status: pending
+  e323957d-cca1-4f26-b7f2-4d7738eebfb7:
+    id: e323957d-cca1-4f26-b7f2-4d7738eebfb7
+    content: Send it for review in browser via right click menu
+    children:
+      - 0fed8a77-f7c5-46a7-aa1d-801ad1f12163
+    metadata:
+      status: pending
+  0fed8a77-f7c5-46a7-aa1d-801ad1f12163:
+    id: 0fed8a77-f7c5-46a7-aa1d-801ad1f12163
+    content: Edit some replies, accept
+    children: []
+    metadata:
+      status: pending
+  c9d903d3-dedc-4e7c-801c-d1abd39b02e5:
+    id: c9d903d3-dedc-4e7c-801c-d1abd39b02e5
+    content: Move it to 'Minor Feature'
+    children:
+      - 94f4488f-23e6-4ca2-94bd-f60d3866f553
+      - e7097a13-2ee7-4e5a-82f0-8c926d874515
+    metadata:
+      status: pending
+  e7097a13-2ee7-4e5a-82f0-8c926d874515:
+    id: e7097a13-2ee7-4e5a-82f0-8c926d874515
+    content: Execute it in terminal
+    children: []
+    metadata:
+      status: pending
+  94f4488f-23e6-4ca2-94bd-f60d3866f553:
+    id: 94f4488f-23e6-4ca2-94bd-f60d3866f553
+    content: Apply a context
+    children: []
+    metadata:
+      status: pending
+  41c651ca-6e37-4610-a362-0c72ac2c7da4:
+    id: 41c651ca-6e37-4610-a362-0c72ac2c7da4
+    content: Major decision blueprint
+    children:
+      - 6be9edac-4f08-4bfc-bb31-2507ea786193
+    metadata:
+      status: pending
+      expanded: false
+  6be9edac-4f08-4bfc-bb31-2507ea786193:
+    id: 6be9edac-4f08-4bfc-bb31-2507ea786193
+    content: Or house project or something like that
+    children: []
+    metadata:
+      status: pending
+  550cf0db-6b43-43d9-8d43-7956b3fdc2d8:
+    id: 550cf0db-6b43-43d9-8d43-7956b3fdc2d8
+    content: Add shortcut for zoom mode
+    children:
+      - c9f17b1d-ae80-4f28-bb4f-787e68111c4b
+      - aa5c742c-e812-491c-8f1b-32e27d69cbf0
+      - f1a7b584-0125-44a9-bb0e-e6a86729bd26
+    metadata:
+      status: pending
+      expanded: false
+      deleted: false
+      plugins: {}
+  9e012c5b-9ea8-431a-8561-2a3183de63fa:
+    id: 9e012c5b-9ea8-431a-8561-2a3183de63fa
+    content: Make sure to test temporary folder, file persistence, zoom/review persistance etc
+    children: []
+    metadata:
+      status: pending
+  c9f17b1d-ae80-4f28-bb4f-787e68111c4b:
+    id: c9f17b1d-ae80-4f28-bb4f-787e68111c4b
+    content: CTRL + M
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  aa5c742c-e812-491c-8f1b-32e27d69cbf0:
+    id: aa5c742c-e812-491c-8f1b-32e27d69cbf0
+    content: Opens the current node in a new zoomed tab
+    children:
+      - 158722b6-dbd4-45a1-8a1e-3132ba347767
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  158722b6-dbd4-45a1-8a1e-3132ba347767:
+    id: 158722b6-dbd4-45a1-8a1e-3132ba347767
+    content: Uses the current zoom functionality
+    children: []
+    metadata:
+      status: pending
+  f1a7b584-0125-44a9-bb0e-e6a86729bd26:
+    id: f1a7b584-0125-44a9-bb0e-e6a86729bd26
+    content: No exit zoom mode, just close the tab to return to main view (CTRL + W)
+    children: []
+    metadata:
+      status: pending
+  ac4c627f-c512-40b9-ad55-11b439495b7e:
+    id: ac4c627f-c512-40b9-ad55-11b439495b7e
+    content: Major feature
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+      blueprintIcon: Hammer
+      blueprintColor: '#c47f09'
+      appliedContextId: cc94b377-246d-45ae-b938-2d3906892aa1
+      expanded: true
+  b82ab806-5034-47b1-8fbc-7b388030b107:
+    id: b82ab806-5034-47b1-8fbc-7b388030b107
+    content: Highlight a hyperlinked node on navigation
+    children:
+      - 6020d18c-5195-4b61-b657-db01c2b783b6
+      - f332b0d0-664b-46c6-b95b-88695f2dd2e4
+      - 17eeb253-6c7c-45fe-bec2-fd805c13d9b2
+    metadata:
+      status: pending
+      expanded: false
+      deleted: false
+      plugins: {}
+  6020d18c-5195-4b61-b657-db01c2b783b6:
+    id: 6020d18c-5195-4b61-b657-db01c2b783b6
+    content: 'Current behavior: cursor moves to target node but it''s subtle'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f332b0d0-664b-46c6-b95b-88695f2dd2e4:
+    id: f332b0d0-664b-46c6-b95b-88695f2dd2e4
+    content: Add temporary flash highlight when navigating to a hyperlinked node
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  17eeb253-6c7c-45fe-bec2-fd805c13d9b2:
+    id: 17eeb253-6c7c-45fe-bec2-fd805c13d9b2
+    content: Reuse existing flash highlight animation
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ccd6416e-f83d-4ae8-ab7b-3b127cecdd32:
+    id: ccd6416e-f83d-4ae8-ab7b-3b127cecdd32
+    content: Copy file path on right click on a tab
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  89b8e19a-634e-4a9a-9152-bffd700a9821:
+    id: 89b8e19a-634e-4a9a-9152-bffd700a9821
+    content: Do not offer affirmations or encouragement
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  f01e8702-c5c9-49da-bd96-0cebefbb7804:
+    id: f01e8702-c5c9-49da-bd96-0cebefbb7804
+    content: Do not offer ideas if you think they are out of scope
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true

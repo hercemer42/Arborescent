@@ -14,7 +14,7 @@ The current market is full of paid AI workflow tools with complex features.
 Arborescent is free under the GPL license, easy to use, and it gets the job done.  
 Here is Arborescent building itself :
 
-![Screenshot placeholder](docs/screenshot.png)
+![Arborescent building Arborescent](docs/screenshot.png)
 
 ## Key features
 
