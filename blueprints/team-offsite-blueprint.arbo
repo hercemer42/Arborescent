@@ -1,0 +1,531 @@
+format: Arborescent
+version: 1.0.0
+created: '2025-12-19T00:00:00.000Z'
+updated: '2025-12-19T11:44:14.500Z'
+author: Arborescent
+rootNodeId: root
+nodes:
+  root:
+    id: root
+    type: project
+    content: Team Offsite
+    children:
+      - team-context
+      - goals
+      - work-sessions
+      - team-building
+      - logistics
+      - schedule
+      - participants
+      - followup
+      - contexts
+    metadata:
+      created: '2025-12-19T00:00:00.000Z'
+      isRoot: true
+      isBlueprint: true
+  team-context:
+    id: team-context
+    content: Team Context
+    children:
+      - team-context-challenges
+      - team-context-dynamics
+      - team-context-wins
+    metadata:
+      status: pending
+      expanded: true
+      isBlueprint: true
+      blueprintIcon: Users
+      blueprintColor: '#8b5cf6'
+  team-context-challenges:
+    id: team-context-challenges
+    content: Current challenges or pain points
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  team-context-dynamics:
+    id: team-context-dynamics
+    content: Team dynamics that need attention
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  team-context-wins:
+    id: team-context-wins
+    content: Recent wins to celebrate
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  goals:
+    id: goals
+    content: Goals
+    children:
+      - goals-work
+      - goals-team
+      - goals-success
+    metadata:
+      status: pending
+      expanded: true
+      isBlueprint: true
+      blueprintIcon: Target
+      blueprintColor: '#22c55e'
+      appliedContextId: ctx-outcomes
+  goals-work:
+    id: goals-work
+    content: 'Work outcomes: What decisions or alignment do we need?'
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  goals-team:
+    id: goals-team
+    content: 'Team outcomes: Trust, connection, understanding'
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  goals-success:
+    id: goals-success
+    content: How will we know the offsite was successful?
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  work-sessions:
+    id: work-sessions
+    content: Work Sessions
+    children:
+      - work-session-1
+    metadata:
+      status: pending
+      expanded: true
+      isBlueprint: true
+      blueprintIcon: Presentation
+      blueprintColor: '#0ea5e9'
+      appliedContextId: ctx-session
+  work-session-1:
+    id: work-session-1
+    content: 'Session: Topic name'
+    children:
+      - work-session-1-goal
+      - work-session-1-format
+      - work-session-1-materials
+    metadata:
+      status: pending
+      expanded: true
+      isBlueprint: true
+  work-session-1-goal:
+    id: work-session-1-goal
+    content: Goal and desired outcome
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  work-session-1-format:
+    id: work-session-1-format
+    content: Format (presentation, workshop, discussion)
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  work-session-1-materials:
+    id: work-session-1-materials
+    content: Materials or prep needed
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  team-building:
+    id: team-building
+    content: Team Building
+    children:
+      - team-building-icebreakers
+      - team-building-activities
+      - team-building-social
+    metadata:
+      status: pending
+      expanded: true
+      isBlueprint: true
+      blueprintIcon: Heart
+      blueprintColor: '#ec4899'
+      appliedContextId: ctx-inclusion
+  team-building-icebreakers:
+    id: team-building-icebreakers
+    content: Icebreakers and warm-ups
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  team-building-activities:
+    id: team-building-activities
+    content: Group activities
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  team-building-social:
+    id: team-building-social
+    content: Social time (meals, informal hangout)
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  logistics:
+    id: logistics
+    content: Logistics
+    children:
+      - logistics-venue
+      - logistics-travel
+      - logistics-budget
+      - logistics-dietary
+      - logistics-equipment
+    metadata:
+      status: pending
+      expanded: true
+      isBlueprint: true
+      blueprintIcon: ClipboardList
+      blueprintColor: '#f59e0b'
+  logistics-venue:
+    id: logistics-venue
+    content: Venue and accommodation
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  logistics-travel:
+    id: logistics-travel
+    content: Travel arrangements
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  logistics-budget:
+    id: logistics-budget
+    content: Budget
+    children:
+      - logistics-budget-venue
+      - logistics-budget-travel
+      - logistics-budget-food
+      - logistics-budget-activities
+      - logistics-budget-contingency
+    metadata:
+      status: pending
+      expanded: true
+      isBlueprint: true
+  logistics-budget-venue:
+    id: logistics-budget-venue
+    content: Venue and accommodation costs
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  logistics-budget-travel:
+    id: logistics-budget-travel
+    content: Travel (flights, trains, mileage)
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  logistics-budget-food:
+    id: logistics-budget-food
+    content: Food and drinks
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  logistics-budget-activities:
+    id: logistics-budget-activities
+    content: Activities and materials
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  logistics-budget-contingency:
+    id: logistics-budget-contingency
+    content: Contingency (10-15%)
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  logistics-dietary:
+    id: logistics-dietary
+    content: Dietary requirements and allergies
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  logistics-equipment:
+    id: logistics-equipment
+    content: Equipment (projector, whiteboards, supplies)
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  schedule:
+    id: schedule
+    content: Schedule
+    children:
+      - schedule-day1
+    metadata:
+      status: pending
+      expanded: true
+      isBlueprint: true
+      blueprintIcon: Calendar
+      blueprintColor: '#64748b'
+      appliedContextId: ctx-energy
+  schedule-day1:
+    id: schedule-day1
+    content: Day 1
+    children:
+      - schedule-day1-morning
+      - schedule-day1-afternoon
+      - schedule-day1-evening
+    metadata:
+      status: pending
+      expanded: true
+      isBlueprint: true
+  schedule-day1-morning:
+    id: schedule-day1-morning
+    content: Morning
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  schedule-day1-afternoon:
+    id: schedule-day1-afternoon
+    content: Afternoon
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  schedule-day1-evening:
+    id: schedule-day1-evening
+    content: Evening
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  participants:
+    id: participants
+    content: Participants
+    children:
+      - participants-attendees
+      - participants-roles
+      - participants-considerations
+    metadata:
+      status: pending
+      expanded: true
+      isBlueprint: true
+      blueprintIcon: UserCheck
+      blueprintColor: '#6366f1'
+  participants-attendees:
+    id: participants-attendees
+    content: Attendee list
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  participants-roles:
+    id: participants-roles
+    content: Roles (facilitator, note-taker, timekeeper)
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  participants-considerations:
+    id: participants-considerations
+    content: Special considerations (remote participants, accessibility)
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  followup:
+    id: followup
+    content: Follow-up
+    children:
+      - followup-actions
+      - followup-feedback
+      - followup-momentum
+    metadata:
+      status: pending
+      expanded: true
+      isBlueprint: true
+      blueprintIcon: CheckCircle
+      blueprintColor: '#22c55e'
+  followup-actions:
+    id: followup-actions
+    content: Action items and owners
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  followup-feedback:
+    id: followup-feedback
+    content: Feedback collection plan
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  followup-momentum:
+    id: followup-momentum
+    content: How to maintain momentum after the offsite
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  contexts:
+    id: contexts
+    content: Contexts
+    children:
+      - ctx-session
+      - ctx-energy
+      - ctx-inclusion
+      - ctx-outcomes
+    metadata:
+      status: pending
+      expanded: true
+      isBlueprint: true
+      blueprintIcon: FileCode
+      blueprintColor: '#64748b'
+  ctx-session:
+    id: ctx-session
+    content: Session design
+    children:
+      - ctx-session-1
+      - ctx-session-2
+      - ctx-session-3
+    metadata:
+      status: pending
+      expanded: false
+      isContextDeclaration: true
+      isBlueprint: true
+      blueprintIcon: Lightbulb
+      blueprintColor: '#0ea5e9'
+  ctx-session-1:
+    id: ctx-session-1
+    content: Is the goal clear? What specific outcome should this session produce?
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  ctx-session-2:
+    id: ctx-session-2
+    content: Is the format right? (presentation for info sharing, workshop for creation, discussion for decisions)
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  ctx-session-3:
+    id: ctx-session-3
+    content: Is there a decision-making fallback if consensus fails?
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  ctx-energy:
+    id: ctx-energy
+    content: Energy check
+    children:
+      - ctx-energy-1
+      - ctx-energy-2
+      - ctx-energy-3
+    metadata:
+      status: pending
+      expanded: false
+      isContextDeclaration: true
+      isBlueprint: true
+      blueprintIcon: Battery
+      blueprintColor: '#f59e0b'
+  ctx-energy-1:
+    id: ctx-energy-1
+    content: Is the schedule too packed? Where are the breathing moments?
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  ctx-energy-2:
+    id: ctx-energy-2
+    content: Are high-energy and low-energy activities balanced?
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  ctx-energy-3:
+    id: ctx-energy-3
+    content: Is there time for informal connection, not just structured activities?
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  ctx-inclusion:
+    id: ctx-inclusion
+    content: Inclusion review
+    children:
+      - ctx-inclusion-1
+      - ctx-inclusion-2
+      - ctx-inclusion-3
+    metadata:
+      status: pending
+      expanded: false
+      isContextDeclaration: true
+      isBlueprint: true
+      blueprintIcon: HeartHandshake
+      blueprintColor: '#ec4899'
+  ctx-inclusion-1:
+    id: ctx-inclusion-1
+    content: Will introverts feel comfortable? Is there quiet time?
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  ctx-inclusion-2:
+    id: ctx-inclusion-2
+    content: Are activities accessible to everyone (physical ability, dietary, etc)?
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  ctx-inclusion-3:
+    id: ctx-inclusion-3
+    content: Will remote or new team members feel included?
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  ctx-outcomes:
+    id: ctx-outcomes
+    content: Outcome focus
+    children:
+      - ctx-outcomes-1
+      - ctx-outcomes-2
+      - ctx-outcomes-3
+    metadata:
+      status: pending
+      expanded: false
+      isContextDeclaration: true
+      isBlueprint: true
+      blueprintIcon: Target
+      blueprintColor: '#22c55e'
+  ctx-outcomes-1:
+    id: ctx-outcomes-1
+    content: Will we leave with concrete decisions, not just discussions?
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  ctx-outcomes-2:
+    id: ctx-outcomes-2
+    content: Are action items assigned to specific people with deadlines?
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  ctx-outcomes-3:
+    id: ctx-outcomes-3
+    content: What will be different in 2 weeks because of this offsite?
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+isBlueprint: true

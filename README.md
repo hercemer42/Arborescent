@@ -32,8 +32,10 @@ Here is Arborescent building itself :
 
 ## Example blueprints
 
-- [React + Electron Development](blueprints/react-electron.arbo) — Full dev workflow with conventions and contexts for features/bugs/refactoring.
-- More coming soon
+- [React + Electron Development](blueprints/react-electron-blueprint.arbo) — Dev workflow with conventions and contexts for features/bugs/refactoring.
+- [NestJS + React Development](blueprints/nestjs-react-blueprint.arbo) — Dev workflow with backend and frontend conventions.
+- [Research Project](blueprints/research-project-blueprint.arbo) — Research workflow with sources, findings, analysis, and review contexts.
+- [Team Offsite](blueprints/team-offsite-blueprint.arbo) — Plan team offsites with sessions, logistics, and budget.
 
 ## Learn more
 

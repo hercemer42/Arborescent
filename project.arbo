@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2025-12-19T10:18:21.532Z'
+updated: '2025-12-19T10:56:02.368Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -476,6 +476,8 @@ nodes:
     id: 565dde0a-864b-41f9-86ff-dbdf40ac4dd0
     content: Done
     children:
+      - 50d841f9-3ba9-4f87-af62-e95a5332b173
+      - 01e05f8c-fee7-4c80-8f10-754b2ad9fed0
       - 21c2e459-e2d1-4fa3-b904-c406d9996056
       - b2e784c1-1540-4219-8bc5-9787fe9d11aa
       - 3a7242f9-d80d-4d4f-ae1d-cf3cf596ad5b
@@ -14510,22 +14512,6 @@ nodes:
     metadata:
       status: pending
       expanded: true
-  cc522bbb-99fe-499f-b9d8-a62c7ce50575:
-    id: cc522bbb-99fe-499f-b9d8-a62c7ce50575
-    content: Help branches for on-boarding
-    children:
-      - f9104bb2-5aac-4a95-8f5a-efbbf89cc871
-      - d2f85efd-9234-4349-a5d0-147807aef97e
-      - c2456dc5-c9f8-4ea4-88e7-ef6ad89adad3
-    metadata:
-      status: pending
-      expanded: true
-  d2f85efd-9234-4349-a5d0-147807aef97e:
-    id: d2f85efd-9234-4349-a5d0-147807aef97e
-    content: Separate blueprint or part of default ?
-    children: []
-    metadata:
-      status: pending
   c98016fe-f4fb-41ce-aafc-d51f33ec2303:
     id: c98016fe-f4fb-41ce-aafc-d51f33ec2303
     content: External URL links
@@ -14945,8 +14931,7 @@ nodes:
   c25cf481-a0d1-495d-9cea-498f1135eb8c:
     id: c25cf481-a0d1-495d-9cea-498f1135eb8c
     content: Minor feature
-    children:
-      - 01e05f8c-fee7-4c80-8f10-754b2ad9fed0
+    children: []
     metadata:
       status: completed
       expanded: true
@@ -15053,9 +15038,7 @@ nodes:
     id: 92b16d87-27dc-486d-a605-4228e2b5206c
     content: For release
     children:
-      - cc522bbb-99fe-499f-b9d8-a62c7ce50575
       - 53ed4c1a-62e0-4a2c-a7af-b0805be12087
-      - 50d841f9-3ba9-4f87-af62-e95a5332b173
       - 4966bd3d-fe8d-4094-840f-a0f791c07d6c
       - 41691f56-cf04-4609-8009-8d0b50b36ec7
       - e5ad2c66-f085-482e-8010-5fb1a2cf93d7
@@ -17744,7 +17727,8 @@ nodes:
     content: Test with copilot and gemini
     children: []
     metadata:
-      status: pending
+      status: completed
+      resolvedAt: '2025-12-19T10:23:24.024Z'
   657fcbd5-dc2e-4b21-ab4c-22f96c03930e:
     id: 657fcbd5-dc2e-4b21-ab4c-22f96c03930e
     content: Philosophy
@@ -17976,20 +17960,6 @@ nodes:
     metadata:
       status: pending
       expanded: false
-  f9104bb2-5aac-4a95-8f5a-efbbf89cc871:
-    id: f9104bb2-5aac-4a95-8f5a-efbbf89cc871
-    content: Do I need it ? Or part of a specific blueprint ?
-    children:
-      - 2f729f27-a246-41bf-9137-e527b61bc166
-    metadata:
-      status: pending
-      expanded: true
-  2f729f27-a246-41bf-9137-e527b61bc166:
-    id: 2f729f27-a246-41bf-9137-e527b61bc166
-    content: Maybe something to explain my workflow for the react-electron blueprint
-    children: []
-    metadata:
-      status: pending
   3c5d04bb-83e9-4d96-b895-38f33ab71908:
     id: 3c5d04bb-83e9-4d96-b895-38f33ab71908
     content: Click - open in browser panel
@@ -18057,6 +18027,7 @@ nodes:
     children:
       - 94fcea85-400e-4f8b-8df4-fb8f5940e973
       - eaaded66-93ef-4c73-a6f2-357a57f8a92d
+      - d7d3b1a2-a5b2-47c8-8c5b-ec67aea40e22
     metadata:
       status: pending
   68f39796-a961-4ddc-8064-f19277378c4e:
@@ -18603,15 +18574,8 @@ nodes:
     content: Some other blueprints
     children:
       - d6fd8b04-762f-42a9-bec7-74161406b9e7
-      - 9860aa8a-06ae-4eb7-b42b-caacfb5c331f
       - 0fbc68dd-1ac7-4a56-94f9-1fdac20654a5
       - 842e0663-8331-407c-8e1a-3b2a07183b7c
-    metadata:
-      status: pending
-  9860aa8a-06ae-4eb7-b42b-caacfb5c331f:
-    id: 9860aa8a-06ae-4eb7-b42b-caacfb5c331f
-    content: Generic software
-    children: []
     metadata:
       status: pending
   0058432d-a010-473b-a707-ace2b1dee169:
@@ -19076,12 +19040,6 @@ nodes:
   9a38a539-0a71-497b-ba8f-148df72c9ddb:
     id: 9a38a539-0a71-497b-ba8f-148df72c9ddb
     content: Register domain + setup basic website
-    children: []
-    metadata:
-      status: pending
-  c2456dc5-c9f8-4ea4-88e7-ef6ad89adad3:
-    id: c2456dc5-c9f8-4ea4-88e7-ef6ad89adad3
-    content: Perhaps just tighten up the existing blueprint
     children: []
     metadata:
       status: pending
@@ -19873,13 +19831,16 @@ nodes:
     children:
       - 3501d915-2e9c-45b7-91a3-3a6c5525b761
     metadata:
-      status: pending
+      status: completed
+      resolvedAt: '2025-12-19T10:23:09.789Z'
+      expanded: false
   3501d915-2e9c-45b7-91a3-3a6c5525b761:
     id: 3501d915-2e9c-45b7-91a3-3a6c5525b761
     content: "Copilot does it like this : mkdir -p /home/brian/.config/Arborescent-dev/temp-files && cat <<'EOF' >\_ \_/home/brian/.config/Arborescent-dev/temp-files/feedback-response-<id>.md"
     children: []
     metadata:
-      status: pending
+      status: completed
+      resolvedAt: '2025-12-19T10:23:10.716Z'
   8f1dceb7-5e15-4e36-8239-b61a93d122a3:
     id: 8f1dceb7-5e15-4e36-8239-b61a93d122a3
     content: In claude code it pastes the text block and then executes
@@ -19904,3 +19865,9 @@ nodes:
       blueprintIcon: Archive
       blueprintColor: '#c47f09'
       expanded: false
+  d7d3b1a2-a5b2-47c8-8c5b-ec67aea40e22:
+    id: d7d3b1a2-a5b2-47c8-8c5b-ec67aea40e22
+    content: Links to blueprints
+    children: []
+    metadata:
+      status: pending
