@@ -9,7 +9,8 @@ interface KeyBinding {
 export function parseKeyNotation(notation: string): KeyBinding {
   const parts = notation.split('+');
   const rawKey = parts[parts.length - 1];
-  const key = rawKey.length === 1 ? rawKey.toLowerCase() : rawKey;
+  const normalizedKey = rawKey.toLowerCase() === 'return' ? 'Enter' : rawKey;
+  const key = normalizedKey.length === 1 ? normalizedKey.toLowerCase() : normalizedKey;
 
   const binding: KeyBinding = {
     key,

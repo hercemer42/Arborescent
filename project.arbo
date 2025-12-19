@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2025-12-18T18:26:14.180Z'
+updated: '2025-12-19T09:46:02.832Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -476,6 +476,8 @@ nodes:
     id: 565dde0a-864b-41f9-86ff-dbdf40ac4dd0
     content: Done
     children:
+      - 21c2e459-e2d1-4fa3-b904-c406d9996056
+      - b2e784c1-1540-4219-8bc5-9787fe9d11aa
       - 3a7242f9-d80d-4d4f-ae1d-cf3cf596ad5b
       - 0f1e2ba5-936e-48ec-a770-e62727e89568
       - c744c030-4885-4d76-ae16-7b2ff62c40e1
@@ -9125,6 +9127,7 @@ nodes:
     children:
       - 5cc686fc-7651-4d83-9ccf-78a29d1dff13
       - 3881490a-b11c-4052-ad46-020faad5bb2b
+      - 5fcc7b6b-25d0-4c23-8529-f8a6b9af81e8
     metadata:
       status: pending
       appliedContextIds:
@@ -9134,7 +9137,7 @@ nodes:
       blueprintIcon: Bug
       blueprintColor: '#ef4444'
       appliedContextId: 6690289a-e02f-48bc-9225-a1083b7b324f
-      expanded: false
+      expanded: true
   aff16275-6d8e-49c9-b862-76875858d4af:
     id: aff16275-6d8e-49c9-b862-76875858d4af
     content: Avoid adding comments specific to the bug fix unless really needed
@@ -14941,8 +14944,7 @@ nodes:
   c25cf481-a0d1-495d-9cea-498f1135eb8c:
     id: c25cf481-a0d1-495d-9cea-498f1135eb8c
     content: Minor feature
-    children:
-      - b2e784c1-1540-4219-8bc5-9787fe9d11aa
+    children: []
     metadata:
       status: completed
       expanded: true
@@ -15049,7 +15051,7 @@ nodes:
     id: 92b16d87-27dc-486d-a605-4228e2b5206c
     content: For release
     children:
-      - 21c2e459-e2d1-4fa3-b904-c406d9996056
+      - 01e05f8c-fee7-4c80-8f10-754b2ad9fed0
       - cc522bbb-99fe-499f-b9d8-a62c7ce50575
       - 53ed4c1a-62e0-4a2c-a7af-b0805be12087
       - 50d841f9-3ba9-4f87-af62-e95a5332b173
@@ -15818,6 +15820,9 @@ nodes:
     id: 5cc686fc-7651-4d83-9ccf-78a29d1dff13
     content: Done
     children:
+      - 03238058-24ff-4f1d-956f-4a4d52bdbe85
+      - bd901a31-fc48-4f06-ba8b-dd6d7eb892ab
+      - a13e5bd1-95d8-46ce-ba59-765feeb38a73
       - d3a52033-98ff-4a45-bd8e-f2ec4360fd5c
       - da046c53-abfe-48f3-b048-af18eb443a68
       - 6d06353d-993c-476f-a48f-a0b55c86f1ec
@@ -16077,8 +16082,7 @@ nodes:
   3881490a-b11c-4052-ad46-020faad5bb2b:
     id: 3881490a-b11c-4052-ad46-020faad5bb2b
     content: In progress
-    children:
-      - a13e5bd1-95d8-46ce-ba59-765feeb38a73
+    children: []
     metadata:
       status: pending
       appliedContextIds:
@@ -18049,7 +18053,9 @@ nodes:
   e5ad2c66-f085-482e-8010-5fb1a2cf93d7:
     id: e5ad2c66-f085-482e-8010-5fb1a2cf93d7
     content: Insure readme is up to date
-    children: []
+    children:
+      - 94fcea85-400e-4f8b-8df4-fb8f5940e973
+      - eaaded66-93ef-4c73-a6f2-357a57f8a92d
     metadata:
       status: pending
   68f39796-a961-4ddc-8064-f19277378c4e:
@@ -19037,15 +19043,19 @@ nodes:
     id: 21c2e459-e2d1-4fa3-b904-c406d9996056
     content: Hotkeys for execute and collaborate
     children:
-      - 63d7731f-fc58-48d7-9f12-aee63f835fc8
+      - 50094f48-9164-487d-987e-2a6917d0b3f6
+      - 1f47c303-f685-4531-b2b3-5c23f4e17a7d
+      - f1897e7b-5739-4d15-b268-12d0557363e3
+      - 7aa3f1e4-0ffe-482b-a1a5-1b05ae6df02f
+      - 5fb02f25-7e12-4fcd-9822-742cdcdf1599
+      - 1eeebc47-c71c-4819-a33c-197531f86971
+      - ce7753a6-3dfc-4fb1-9178-d5aaa4bd13ef
     metadata:
-      status: pending
-  63d7731f-fc58-48d7-9f12-aee63f835fc8:
-    id: 63d7731f-fc58-48d7-9f12-aee63f835fc8
-    content: Update in doc
-    children: []
-    metadata:
-      status: pending
+      status: completed
+      expanded: false
+      deleted: false
+      plugins: {}
+      resolvedAt: '2025-12-19T09:42:59.272Z'
   4ac4cbcf-839b-4b18-9e04-272e3f87ebc9:
     id: 4ac4cbcf-839b-4b18-9e04-272e3f87ebc9
     content: 'Based on blueprint conventions :'
@@ -19090,12 +19100,6 @@ nodes:
   e62e0fe6-6168-4518-9568-43b0c649015a:
     id: e62e0fe6-6168-4518-9568-43b0c649015a
     content: '''Load this blueprint for a new react-electron project'''
-    children: []
-    metadata:
-      status: pending
-  a13e5bd1-95d8-46ce-ba59-765feeb38a73:
-    id: a13e5bd1-95d8-46ce-ba59-765feeb38a73
-    content: When applying a reviewed node, we clear any applied contexts on the root node, we should not (we don't care about any descendants)
     children: []
     metadata:
       status: pending
@@ -19219,13 +19223,16 @@ nodes:
       - 8d47c6dc-7170-403b-bd97-f8387ea1696d
       - 1ac51033-346b-4cf9-a562-03382eee4046
     metadata:
-      status: pending
+      status: completed
+      resolvedAt: '2025-12-19T07:12:14.798Z'
+      expanded: false
   8e9b0c15-2a32-4e1e-9f0e-2f3f5541c834:
     id: 8e9b0c15-2a32-4e1e-9f0e-2f3f5541c834
     content: "appliedContextId vs appliedContextIds vs activeContextId vs activeExecuteContextId vs activeCollaborateContextId\_"
     children: []
     metadata:
-      status: pending
+      status: completed
+      resolvedAt: '2025-12-19T07:12:15.644Z'
   f5f78532-a4a6-482a-82e9-cee1053e45d0:
     id: f5f78532-a4a6-482a-82e9-cee1053e45d0
     content: Once there is an inherited or applied context, then those are selected instead.
@@ -19544,23 +19551,337 @@ nodes:
     content: 'in the blueprints folder, some nodes may have the following metadata :'
     children: []
     metadata:
-      status: pending
+      status: completed
+      resolvedAt: '2025-12-19T07:12:15.224Z'
   8d47c6dc-7170-403b-bd97-f8387ea1696d:
     id: 8d47c6dc-7170-403b-bd97-f8387ea1696d
     content: some of that might be obselescent
     children:
       - aedab413-a7b7-46ac-9d4f-fc2331cc4a74
     metadata:
-      status: pending
+      status: completed
+      resolvedAt: '2025-12-19T07:12:16.380Z'
   aedab413-a7b7-46ac-9d4f-fc2331cc4a74:
     id: aedab413-a7b7-46ac-9d4f-fc2331cc4a74
     content: Clean it up
     children: []
     metadata:
-      status: pending
+      status: completed
+      resolvedAt: '2025-12-19T07:12:17.108Z'
   1ac51033-346b-4cf9-a562-03382eee4046:
     id: 1ac51033-346b-4cf9-a562-03382eee4046
     content: also, the main project.arbo file could also have that metadata, likewise clean it up
+    children: []
+    metadata:
+      status: completed
+      resolvedAt: '2025-12-19T07:12:17.564Z'
+  a13e5bd1-95d8-46ce-ba59-765feeb38a73:
+    id: a13e5bd1-95d8-46ce-ba59-765feeb38a73
+    content: When applying a reviewed node, we clear any applied contexts on the root node, we should not (we don't care about any descendants)
+    children: []
+    metadata:
+      status: completed
+      resolvedAt: '2025-12-19T08:50:17.033Z'
+  7f0fcbd8-9de9-4898-8224-4cce6c4405ac:
+    id: 7f0fcbd8-9de9-4898-8224-4cce6c4405ac
+    content: The automated return doesn't work in copilot when pasting text blocks
+    children:
+      - 222219a4-905f-4408-b66a-54f5f4b52858
+    metadata:
+      status: pending
+  222219a4-905f-4408-b66a-54f5f4b52858:
+    id: 222219a4-905f-4408-b66a-54f5f4b52858
+    content: It sends a return before, but leaves the text block unsent
+    children: []
+    metadata:
+      status: pending
+  50094f48-9164-487d-987e-2a6917d0b3f6:
+    id: 50094f48-9164-487d-987e-2a6917d0b3f6
+    content: CTRL + E for execute in terminal
+    children:
+      - 606a254d-86e4-4a2f-98f1-ba933c414649
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+      resolvedAt: '2025-12-19T09:42:59.272Z'
+  606a254d-86e4-4a2f-98f1-ba933c414649:
+    id: 606a254d-86e4-4a2f-98f1-ba933c414649
+    content: Keep as-is
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+      resolvedAt: '2025-12-19T09:42:59.272Z'
+  1f47c303-f685-4531-b2b3-5c23f4e17a7d:
+    id: 1f47c303-f685-4531-b2b3-5c23f4e17a7d
+    content: CTRL + SHIFT + E for execute in browser
+    children:
+      - 1526dcc5-b4e6-43f5-ba1f-b5b61bf5a54c
+      - 6547c857-c931-4073-a3ef-dd51a4acac25
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+      resolvedAt: '2025-12-19T09:42:59.272Z'
+  1526dcc5-b4e6-43f5-ba1f-b5b61bf5a54c:
+    id: 1526dcc5-b4e6-43f5-ba1f-b5b61bf5a54c
+    content: Add hotkey route that triggers the existing “execute in browser” behavior
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+      resolvedAt: '2025-12-19T09:42:59.272Z'
+  6547c857-c931-4073-a3ef-dd51a4acac25:
+    id: 6547c857-c931-4073-a3ef-dd51a4acac25
+    content: Ensure it only works from the workspace (not inside terminal/browser panels)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+      resolvedAt: '2025-12-19T09:42:59.272Z'
+  f1897e7b-5739-4d15-b268-12d0557363e3:
+    id: f1897e7b-5739-4d15-b268-12d0557363e3
+    content: CTRL + SHIFT + ENTER for collaborate in browser
+    children:
+      - 557bcb47-1c67-4de8-a976-db2dc0edf7a9
+      - 405a2d03-eb69-4741-9e1c-f622b0ac411a
+      - e2d3e0e4-c538-4e0a-bcd1-dc5cda7b3baa
+      - 3f3152ea-e666-426a-a7ce-6f9b8f5cad60
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+      resolvedAt: '2025-12-19T09:42:59.272Z'
+  557bcb47-1c67-4de8-a976-db2dc0edf7a9:
+    id: 557bcb47-1c67-4de8-a976-db2dc0edf7a9
+    content: Normalize key naming inconsistencies (standardize on `Enter` everywhere)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+      resolvedAt: '2025-12-19T09:42:59.272Z'
+  405a2d03-eb69-4741-9e1c-f622b0ac411a:
+    id: 405a2d03-eb69-4741-9e1c-f622b0ac411a
+    content: Fix dispatch so it works reliably from the workspace
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+      resolvedAt: '2025-12-19T09:42:59.272Z'
+  e2d3e0e4-c538-4e0a-bcd1-dc5cda7b3baa:
+    id: e2d3e0e4-c538-4e0a-bcd1-dc5cda7b3baa
+    content: Auto-open the browser panel when starting collaboration
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+      resolvedAt: '2025-12-19T09:42:59.272Z'
+  3f3152ea-e666-426a-a7ce-6f9b8f5cad60:
+    id: 3f3152ea-e666-426a-a7ce-6f9b8f5cad60
+    content: Ensure it does not trigger from inside terminal/browser panels
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+      resolvedAt: '2025-12-19T09:42:59.272Z'
+  7aa3f1e4-0ffe-482b-a1a5-1b05ae6df02f:
+    id: 7aa3f1e4-0ffe-482b-a1a5-1b05ae6df02f
+    content: CTRL + ALT + ENTER for collaborate in terminal
+    children:
+      - 69c41f5f-3fda-4587-9263-25a5999554c7
+      - 26bee65a-d1ab-44f9-91a4-337d14f6effe
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+      resolvedAt: '2025-12-19T09:42:59.272Z'
+  69c41f5f-3fda-4587-9263-25a5999554c7:
+    id: 69c41f5f-3fda-4587-9263-25a5999554c7
+    content: Add hotkey route that triggers the existing “collaborate in terminal” behavior
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+      resolvedAt: '2025-12-19T09:42:59.272Z'
+  26bee65a-d1ab-44f9-91a4-337d14f6effe:
+    id: 26bee65a-d1ab-44f9-91a4-337d14f6effe
+    content: Ensure it only works from the workspace (not inside the terminal panel)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+      resolvedAt: '2025-12-19T09:42:59.272Z'
+  5fb02f25-7e12-4fcd-9822-742cdcdf1599:
+    id: 5fb02f25-7e12-4fcd-9822-742cdcdf1599
+    content: Defaults + config UI
+    children:
+      - 0ae5b2e8-1001-4f86-9fbb-99cadc628271
+      - 4e48c87e-b1e3-4991-8064-fef5581e3bbf
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+      resolvedAt: '2025-12-19T09:42:59.272Z'
+  0ae5b2e8-1001-4f86-9fbb-99cadc628271:
+    id: 0ae5b2e8-1001-4f86-9fbb-99cadc628271
+    content: Add defaults for the two new hotkeys (execute-in-browser, collaborate-in-terminal)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+      resolvedAt: '2025-12-19T09:42:59.272Z'
+  4e48c87e-b1e3-4991-8064-fef5581e3bbf:
+    id: 4e48c87e-b1e3-4991-8064-fef5581e3bbf
+    content: Add the two new actions to the hotkey configuration panel with clear labels
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+      resolvedAt: '2025-12-19T09:42:59.272Z'
+  1eeebc47-c71c-4819-a33c-197531f86971:
+    id: 1eeebc47-c71c-4819-a33c-197531f86971
+    content: Documentation
+    children:
+      - 6c0247ec-5005-450c-82b8-dfde2cc573cd
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+      resolvedAt: '2025-12-19T09:42:59.272Z'
+  6c0247ec-5005-450c-82b8-dfde2cc573cd:
+    id: 6c0247ec-5005-450c-82b8-dfde2cc573cd
+    content: Update shortcut reference to include the 4 AI hotkeys
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+      resolvedAt: '2025-12-19T09:42:59.272Z'
+  ce7753a6-3dfc-4fb1-9178-d5aaa4bd13ef:
+    id: ce7753a6-3dfc-4fb1-9178-d5aaa4bd13ef
+    content: Tests
+    children:
+      - 2091ada3-40c4-4803-a302-1d9fb4c806ff
+      - 6c57a8d7-dc7d-4d4c-8c74-77d4d9a29db3
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+      resolvedAt: '2025-12-19T09:42:59.272Z'
+  2091ada3-40c4-4803-a302-1d9fb4c806ff:
+    id: 2091ada3-40c4-4803-a302-1d9fb4c806ff
+    content: Add unit tests for hotkey matching/dispatch, specifically Enter vs Return
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+      resolvedAt: '2025-12-19T09:42:59.272Z'
+  6c57a8d7-dc7d-4d4c-8c74-77d4d9a29db3:
+    id: 6c57a8d7-dc7d-4d4c-8c74-77d4d9a29db3
+    content: Add unit tests that hotkeys do not fire when focus is in terminal/browser panels
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+      resolvedAt: '2025-12-19T09:42:59.272Z'
+  bd901a31-fc48-4f06-ba8b-dd6d7eb892ab:
+    id: bd901a31-fc48-4f06-ba8b-dd6d7eb892ab
+    content: |
+      It only updated the collaboration block with clarification (instructions, context, content) - should also do the same for all 4 modes (execute in browser and terminal, collaborate in browser and terminal)
+    children: []
+    metadata:
+      status: completed
+      resolvedAt: '2025-12-19T09:40:18.600Z'
+  5fcc7b6b-25d0-4c23-8529-f8a6b9af81e8:
+    id: 5fcc7b6b-25d0-4c23-8529-f8a6b9af81e8
+    content: Backlog
+    children:
+      - 7f0fcbd8-9de9-4898-8224-4cce6c4405ac
+    metadata:
+      status: pending
+      isBlueprint: true
+      blueprintIcon: LayoutList
+      blueprintColor: '#a855f7'
+  03238058-24ff-4f1d-956f-4a4d52bdbe85:
+    id: 03238058-24ff-4f1d-956f-4a4d52bdbe85
+    content: It doesn't consider the default context applied in collaborate mode ("Basic review (default)")
+    children:
+      - 49ba6211-12c5-4e3a-8605-65f9016f85e8
+      - 4a395ff1-c9f2-4a86-b647-4a3d051606b8
+    metadata:
+      status: completed
+      resolvedAt: '2025-12-19T09:40:16.734Z'
+  49ba6211-12c5-4e3a-8605-65f9016f85e8:
+    id: 49ba6211-12c5-4e3a-8605-65f9016f85e8
+    content: It just says no context is available
+    children: []
+    metadata:
+      status: completed
+      resolvedAt: '2025-12-19T09:40:17.103Z'
+  4a395ff1-c9f2-4a86-b647-4a3d051606b8:
+    id: 4a395ff1-c9f2-4a86-b647-4a3d051606b8
+    content: It should apply the default instead
+    children: []
+    metadata:
+      status: completed
+      resolvedAt: '2025-12-19T09:40:17.765Z'
+  eaaded66-93ef-4c73-a6f2-357a57f8a92d:
+    id: eaaded66-93ef-4c73-a6f2-357a57f8a92d
+    content: Status - Beta
+    children: []
+    metadata:
+      status: pending
+  94fcea85-400e-4f8b-8df4-fb8f5940e973:
+    id: 94fcea85-400e-4f8b-8df4-fb8f5940e973
+    content: Fix links
+    children: []
+    metadata:
+      status: pending
+  01e05f8c-fee7-4c80-8f10-754b2ad9fed0:
+    id: 01e05f8c-fee7-4c80-8f10-754b2ad9fed0
+    content: Improve file writing by adding specific instruction
+    children:
+      - 3501d915-2e9c-45b7-91a3-3a6c5525b761
+    metadata:
+      status: pending
+  3501d915-2e9c-45b7-91a3-3a6c5525b761:
+    id: 3501d915-2e9c-45b7-91a3-3a6c5525b761
+    content: "Copilot does it like this : mkdir -p /home/brian/.config/Arborescent-dev/temp-files && cat <<'EOF' >\_ \_/home/brian/.config/Arborescent-dev/temp-files/feedback-response-<id>.md"
     children: []
     metadata:
       status: pending

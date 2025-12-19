@@ -242,6 +242,7 @@ async function handleUIShortcuts(event: KeyboardEvent): Promise<void> {
   }
 
   if (matchesHotkey(event, 'actions', 'execute')) {
+    if (isFocusInTerminalOrBrowser()) return;
     event.preventDefault();
     const store = getActiveStore();
     if (!store) return;
@@ -264,7 +265,8 @@ async function handleUIShortcuts(event: KeyboardEvent): Promise<void> {
     return;
   }
 
-  if (matchesHotkey(event, 'actions', 'collaborate')) {
+  if (matchesHotkey(event, 'actions', 'executeInBrowser')) {
+    if (isFocusInTerminalOrBrowser()) return;
     event.preventDefault();
     const store = getActiveStore();
     if (!store) return;
@@ -283,7 +285,46 @@ async function handleUIShortcuts(event: KeyboardEvent): Promise<void> {
       return;
     }
 
+    state.actions.executeInBrowser(activeNodeId);
+    return;
+  }
+
+  if (matchesHotkey(event, 'actions', 'collaborate')) {
+    if (isFocusInTerminalOrBrowser()) return;
+    event.preventDefault();
+    const store = getActiveStore();
+    if (!store) return;
+
+    const state = store.getState();
+    const activeNodeId = state.activeNodeId;
+    if (!activeNodeId) return;
+
+    // Collaborate always has a default review context.
     state.actions.collaborate(activeNodeId);
+    return;
+  }
+
+  if (matchesHotkey(event, 'actions', 'collaborateInTerminal')) {
+    if (isFocusInTerminalOrBrowser()) return;
+    event.preventDefault();
+    const store = getActiveStore();
+    if (!store) return;
+
+    const state = store.getState();
+    const activeNodeId = state.activeNodeId;
+    if (!activeNodeId) return;
+
+    // Collaborate always has a default review context.
+    const { useTerminalStore } = await import('../../store/terminal/terminalStore');
+    const terminalId = await useTerminalStore.getState().openTerminal();
+    if (!terminalId) {
+      useToastStore.getState().addToast('No terminal available', 'error');
+      return;
+    }
+
+    const { usePanelStore } = await import('../../store/panel/panelStore');
+    usePanelStore.getState().showTerminal();
+    await state.actions.collaborateInTerminal(activeNodeId, terminalId);
     return;
   }
 }

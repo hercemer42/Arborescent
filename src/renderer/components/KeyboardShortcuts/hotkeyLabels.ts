@@ -36,7 +36,9 @@ export const ACTION_LABELS: Record<string, string> = {
   paste: 'Paste',
   selectAll: 'Select All',
   execute: 'Execute in Terminal',
-  collaborate: 'Collaborate',
+  executeInBrowser: 'Execute in Browser',
+  collaborate: 'Collaborate in Browser',
+  collaborateInTerminal: 'Collaborate in Terminal',
   // File
   new: 'New File',
   save: 'Save',

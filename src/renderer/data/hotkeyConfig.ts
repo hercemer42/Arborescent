@@ -32,7 +32,9 @@ export interface HotkeyConfig {
     paste: string;
     selectAll: string;
     execute: string;
+    executeInBrowser: string;
     collaborate: string;
+    collaborateInTerminal: string;
   };
   file: {
     new: string;

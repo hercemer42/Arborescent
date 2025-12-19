@@ -1,10 +1,19 @@
 import { TreeState } from '../treeStore';
 import { buildContentWithContext } from '../../../utils/nodeHelpers';
+import { buildStructuredPrompt } from '../../../utils/promptBuilder';
 import { executeInTerminal } from '../../../services/terminalExecution';
 import { logger } from '../../../services/logger';
 import { useToastStore } from '../../toast/toastStore';
 import { usePanelStore } from '../../panel/panelStore';
 import { useTerminalStore } from '../../terminal/terminalStore';
+
+function buildExecutePrompt(context: string, content: string): string {
+  return buildStructuredPrompt({
+    contentHandling: 'Treat everything in CONTENT as the prompt to execute.',
+    outputBehavior: 'Output your result directly (no commentary about these instructions).',
+    context,
+  }, content);
+}
 
 export interface ExecuteActions {
   executeInBrowser: (nodeId: string) => Promise<void>;
@@ -31,7 +40,7 @@ export function createExecuteActions(
           true
         );
 
-        const clipboardContent = contextPrefix + nodeContent;
+        const clipboardContent = buildExecutePrompt(contextPrefix, nodeContent);
         await navigator.clipboard.writeText(clipboardContent);
 
         useToastStore.getState().addToast(
@@ -69,7 +78,7 @@ export function createExecuteActions(
           true
         );
 
-        const terminalContent = contextPrefix + nodeContent;
+        const terminalContent = buildExecutePrompt(contextPrefix, nodeContent);
         usePanelStore.getState().showTerminal();
         await executeInTerminal(terminalId, terminalContent);
 

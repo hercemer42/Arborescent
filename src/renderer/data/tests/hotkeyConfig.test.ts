@@ -144,7 +144,9 @@ describe('hotkeyConfig', () => {
           paste: 'CmdOrCtrl+V',
           selectAll: 'CmdOrCtrl+A',
           execute: 'CmdOrCtrl+E',
-          collaborate: 'CmdOrCtrl+Shift+Return',
+          executeInBrowser: 'CmdOrCtrl+Shift+E',
+          collaborate: 'CmdOrCtrl+Shift+Enter',
+          collaborateInTerminal: 'CmdOrCtrl+Alt+Enter',
         },
         file: {
           new: 'CmdOrCtrl+N',
@@ -206,7 +208,9 @@ describe('hotkeyConfig', () => {
           paste: 'CmdOrCtrl+V',
           selectAll: 'CmdOrCtrl+A',
           execute: 'CmdOrCtrl+E',
-          collaborate: 'CmdOrCtrl+Shift+Return',
+          executeInBrowser: 'CmdOrCtrl+Shift+E',
+          collaborate: 'CmdOrCtrl+Shift+Enter',
+          collaborateInTerminal: 'CmdOrCtrl+Alt+Enter',
         },
         file: {
           new: 'CmdOrCtrl+N',
