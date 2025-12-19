@@ -1,0 +1,347 @@
+format: Arborescent
+version: 1.0.0
+created: '2025-12-19T00:00:00.000Z'
+updated: '2025-12-19T11:26:39.415Z'
+author: Arborescent
+rootNodeId: root
+nodes:
+  root:
+    id: root
+    type: project
+    content: Research Project
+    children:
+      - question
+      - sources
+      - findings
+      - analysis
+      - open-questions
+      - contexts
+    metadata:
+      created: '2025-12-19T00:00:00.000Z'
+      isRoot: true
+      isBlueprint: true
+  question:
+    id: question
+    content: Research Question
+    children:
+      - question-main
+      - question-scope
+      - question-sub
+    metadata:
+      status: pending
+      expanded: true
+      isBlueprint: true
+      blueprintIcon: HelpCircle
+      blueprintColor: '#8b5cf6'
+  question-main:
+    id: question-main
+    content: 'Main question: What are you trying to understand or answer?'
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  question-scope:
+    id: question-scope
+    content: 'Scope: What''s in bounds? What''s explicitly out of bounds?'
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  question-sub:
+    id: question-sub
+    content: Sub-questions
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  sources:
+    id: sources
+    content: Sources
+    children:
+      - sources-example
+    metadata:
+      status: pending
+      expanded: true
+      isBlueprint: true
+      blueprintIcon: Library
+      blueprintColor: '#0ea5e9'
+      appliedContextId: ctx-evaluate
+  sources-example:
+    id: sources-example
+    content: 'Example: Article/Book/Interview title (link or citation)'
+    children:
+      - sources-example-notes
+    metadata:
+      status: pending
+      expanded: true
+      isBlueprint: true
+      blueprintIcon: FileText
+      blueprintColor: '#64748b'
+  sources-example-notes:
+    id: sources-example-notes
+    content: Key points and quotes from this source
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  findings:
+    id: findings
+    content: Findings
+    children:
+      - findings-theme-1
+    metadata:
+      status: pending
+      expanded: true
+      isBlueprint: true
+      blueprintIcon: Layers
+      blueprintColor: '#22c55e'
+  findings-theme-1:
+    id: findings-theme-1
+    content: Theme or category
+    children:
+      - findings-theme-1-point
+    metadata:
+      status: pending
+      expanded: true
+      isBlueprint: true
+  findings-theme-1-point:
+    id: findings-theme-1-point
+    content: Specific finding or insight
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  analysis:
+    id: analysis
+    content: Analysis
+    children:
+      - analysis-patterns
+      - analysis-contradictions
+      - analysis-conclusions
+    metadata:
+      status: pending
+      expanded: true
+      isBlueprint: true
+      blueprintIcon: BrainCog
+      blueprintColor: '#f59e0b'
+      appliedContextId: ctx-synthesize
+  analysis-patterns:
+    id: analysis-patterns
+    content: Patterns across sources
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  analysis-contradictions:
+    id: analysis-contradictions
+    content: Contradictions or tensions
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  analysis-conclusions:
+    id: analysis-conclusions
+    content: Emerging conclusions
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+      appliedContextId: ctx-challenge
+  open-questions:
+    id: open-questions
+    content: Open Questions
+    children:
+      - open-questions-gaps
+      - open-questions-next
+    metadata:
+      status: pending
+      expanded: true
+      isBlueprint: true
+      blueprintIcon: CircleHelp
+      blueprintColor: '#ec4899'
+      appliedContextId: ctx-gaps
+  open-questions-gaps:
+    id: open-questions-gaps
+    content: What's still unclear or missing?
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  open-questions-next:
+    id: open-questions-next
+    content: What to investigate next
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  contexts:
+    id: contexts
+    content: Contexts
+    children:
+      - ctx-evaluate
+      - ctx-synthesize
+      - ctx-gaps
+      - ctx-challenge
+    metadata:
+      status: pending
+      expanded: true
+      isBlueprint: true
+      blueprintIcon: FileCode
+      blueprintColor: '#64748b'
+  ctx-evaluate:
+    id: ctx-evaluate
+    content: Evaluate source
+    children:
+      - ctx-eval-1
+      - ctx-eval-2
+      - ctx-eval-3
+      - ctx-eval-4
+    metadata:
+      status: pending
+      expanded: false
+      isContextDeclaration: true
+      isBlueprint: true
+      blueprintIcon: Scale
+      blueprintColor: '#0ea5e9'
+  ctx-eval-1:
+    id: ctx-eval-1
+    content: Assess credibility and potential biases
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  ctx-eval-2:
+    id: ctx-eval-2
+    content: Extract key claims and evidence
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  ctx-eval-3:
+    id: ctx-eval-3
+    content: Note what this source uniquely contributes
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  ctx-eval-4:
+    id: ctx-eval-4
+    content: Identify claims that need verification from other sources
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  ctx-synthesize:
+    id: ctx-synthesize
+    content: Synthesize findings
+    children:
+      - ctx-synth-1
+      - ctx-synth-2
+      - ctx-synth-3
+      - ctx-synth-4
+    metadata:
+      status: pending
+      expanded: false
+      isContextDeclaration: true
+      isBlueprint: true
+      blueprintIcon: Combine
+      blueprintColor: '#f59e0b'
+  ctx-synth-1:
+    id: ctx-synth-1
+    content: Look for patterns and themes across findings
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  ctx-synth-2:
+    id: ctx-synth-2
+    content: Identify contradictions between sources
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  ctx-synth-3:
+    id: ctx-synth-3
+    content: Weigh evidence strength for competing claims
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  ctx-synth-4:
+    id: ctx-synth-4
+    content: Propose tentative conclusions with confidence levels
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  ctx-gaps:
+    id: ctx-gaps
+    content: Find gaps
+    children:
+      - ctx-gaps-1
+      - ctx-gaps-2
+      - ctx-gaps-3
+    metadata:
+      status: pending
+      expanded: false
+      isContextDeclaration: true
+      isBlueprint: true
+      blueprintIcon: Search
+      blueprintColor: '#ec4899'
+  ctx-gaps-1:
+    id: ctx-gaps-1
+    content: What aspects of the research question remain unanswered?
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  ctx-gaps-2:
+    id: ctx-gaps-2
+    content: What perspectives or source types are missing?
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  ctx-gaps-3:
+    id: ctx-gaps-3
+    content: What assumptions haven't been tested?
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  ctx-challenge:
+    id: ctx-challenge
+    content: Challenge conclusions
+    children:
+      - ctx-chal-1
+      - ctx-chal-2
+      - ctx-chal-3
+    metadata:
+      status: pending
+      expanded: false
+      isContextDeclaration: true
+      isBlueprint: true
+      blueprintIcon: Swords
+      blueprintColor: '#ef4444'
+  ctx-chal-1:
+    id: ctx-chal-1
+    content: Play devil's advocate - argue the opposite position
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  ctx-chal-2:
+    id: ctx-chal-2
+    content: Identify the weakest points in the reasoning
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  ctx-chal-3:
+    id: ctx-chal-3
+    content: What would it take to change this conclusion?
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+isBlueprint: true
