@@ -25,7 +25,7 @@ Here is Arborescent building itself :
 
 ## Quick start
 
-1. [Download the latest release](__releases__)
+1. [Download the latest release](https://gitlab.com/hercemer42/Arborescent/-/releases)
 2. Break down your task
 3. Open your preferred AI in the terminal or browser
 4. Right-click to send your prompt
