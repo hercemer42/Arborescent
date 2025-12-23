@@ -8,11 +8,13 @@ Break down complex projects into hierarchical task lists.
 Build and execute AI prompts with reusable contexts.  
 Share your workflows with your community or team.  
 
-## Why Arborescent ?
+## Why Arborescent?
 
-The current market is full of paid AI workflow tools with complex features.  
-Arborescent is free under the GPL license, easy to use, and it gets the job done.  
-Here is Arborescent building itself :
+AI works best when you tell it exactly what you want.  
+Arborescent keeps you in control, supercharging your AI workflow.  
+Free and open source under GPL.  
+
+Here is Arborescent building itself:
 
 ![Arborescent building Arborescent](docs/screenshot.png)
 
@@ -81,5 +83,3 @@ npm run make          # Create installers
 ## License
 
 GPL-3.0-only
-
----
