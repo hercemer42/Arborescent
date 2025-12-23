@@ -92,11 +92,13 @@ export function FileMenu() {
         shortcut={formatHotkeyForDisplay(getKeyForAction('file', 'reload') || 'CmdOrCtrl+R')}
         onClick={handleReload}
       />
-      <MenuItem
-        label="Quit"
-        shortcut={formatHotkeyForDisplay(getKeyForAction('file', 'quit') || 'CmdOrCtrl+Q')}
-        onClick={handleQuit}
-      />
+      {window.electron.platform !== 'darwin' && (
+        <MenuItem
+          label="Quit"
+          shortcut={formatHotkeyForDisplay(getKeyForAction('file', 'quit') || 'CmdOrCtrl+Q')}
+          onClick={handleQuit}
+        />
+      )}
     </Menu>
   );
 }

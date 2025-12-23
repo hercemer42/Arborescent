@@ -25,6 +25,10 @@ ipcMain.handle('replace-misspelling', (_event, suggestion: string) => {
   mainWindow?.webContents.replaceMisspelling(suggestion);
 });
 
+ipcMain.handle('app-quit', () => {
+  app.quit();
+});
+
 const createWindow = async () => {
   await registerIpcHandlers(() => mainWindow);
 

@@ -93,6 +93,7 @@ contextBridge.exposeInMainWorld('electron', {
     return () => ipcRenderer.removeListener('context-menu-params', listener);
   },
   replaceMisspelling: (suggestion: string) => ipcRenderer.invoke('replace-misspelling', suggestion),
+  appQuit: () => ipcRenderer.invoke('app-quit'),
   onCloseBrowserTab: (callback: () => void) => {
     const listener = () => callback();
     ipcRenderer.on('close-browser-tab', listener);

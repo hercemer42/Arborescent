@@ -1,5 +1,6 @@
 import * as pty from 'node-pty';
 import * as os from 'os';
+import { execSync } from 'child_process';
 import { logger } from './logger';
 
 export interface Terminal {
@@ -11,14 +12,41 @@ export interface Terminal {
   shellArgs: string[];
 }
 
+const isWindows = process.platform === 'win32';
+
+function commandExists(cmd: string): boolean {
+  try {
+    const checkCmd = isWindows ? `where ${cmd}` : `which ${cmd}`;
+    execSync(checkCmd, { stdio: 'ignore' });
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+function getWindowsShell(): { shell: string; args: string[] } {
+  // Prefer PowerShell Core, then Windows PowerShell, then cmd
+  if (commandExists('pwsh')) {
+    return { shell: 'pwsh', args: ['-NoLogo'] };
+  }
+  if (commandExists('powershell')) {
+    return { shell: 'powershell', args: ['-NoLogo'] };
+  }
+  return { shell: process.env.COMSPEC || 'cmd.exe', args: [] };
+}
+
+const { shell: defaultShell, args: defaultShellArgs } = isWindows
+  ? getWindowsShell()
+  : { shell: process.env.SHELL || 'bash', args: ['-l'] };
+
 class TerminalManagerClass {
   private terminals: Map<string, Terminal> = new Map();
 
   create(
     id: string,
     title: string,
-    shellCommand: string = process.env.SHELL || 'bash',
-    shellArgs: string[] = [],
+    shellCommand: string = defaultShell,
+    shellArgs: string[] = defaultShellArgs,
     cwd: string = os.homedir()
   ): Terminal {
     if (this.terminals.has(id)) {

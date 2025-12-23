@@ -106,5 +106,6 @@ global.window.electron = {
   onTerminalExit: vi.fn().mockReturnValue(vi.fn()),
   onContextMenuParams: vi.fn().mockReturnValue(vi.fn()),
   replaceMisspelling: vi.fn().mockResolvedValue(undefined),
+  appQuit: vi.fn().mockResolvedValue(undefined),
   onCloseBrowserTab: vi.fn().mockReturnValue(vi.fn()),
 };

@@ -56,7 +56,7 @@ export function useFileMenuActions(): FileMenuActions {
   }, []);
 
   const handleQuit = useCallback(() => {
-    window.close();
+    window.electron.appQuit();
   }, []);
 
   return {

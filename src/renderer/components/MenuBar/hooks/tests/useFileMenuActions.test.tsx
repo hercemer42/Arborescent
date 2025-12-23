@@ -207,13 +207,7 @@ describe('useFileMenuActions', () => {
   });
 
   describe('handleQuit', () => {
-    it('should call window.close', () => {
-      const mockClose = vi.fn();
-      Object.defineProperty(window, 'close', {
-        value: mockClose,
-        writable: true,
-      });
-
+    it('should call window.electron.appQuit', () => {
       mockUseFilesStore.mockImplementation((selector) => {
         const state = {
           actions: mockActions,
@@ -228,7 +222,7 @@ describe('useFileMenuActions', () => {
         result.current.handleQuit();
       });
 
-      expect(mockClose).toHaveBeenCalledTimes(1);
+      expect(window.electron.appQuit).toHaveBeenCalledTimes(1);
     });
   });
 

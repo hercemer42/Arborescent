@@ -17,16 +17,22 @@ const config: ForgeConfig = {
   },
   rebuildConfig: {},
   hooks: {
-    postPackage: async () => {
-      // After packaging, copy node-pty to the app directory
-      const appPath = join(process.cwd(), 'out', 'Arborescent-linux-x64', 'resources', 'app');
-      const nodePtySource = join(process.cwd(), 'node_modules', 'node-pty');
-      const nodePtyDest = join(appPath, 'node_modules', 'node-pty');
+    postPackage: async (_config, options) => {
+      for (const outputPath of options.outputPaths) {
+        const appPath = options.platform === 'darwin'
+          ? join(outputPath, 'arborescent.app', 'Contents', 'Resources', 'app')
+          : join(outputPath, 'resources', 'app');
 
-      if (existsSync(appPath) && existsSync(nodePtySource)) {
-        console.log('Copying node-pty to packaged app...');
-        cpSync(nodePtySource, nodePtyDest, { recursive: true });
-        console.log('node-pty copied successfully');
+        const nodePtySource = join(process.cwd(), 'node_modules', 'node-pty');
+        const nodePtyDest = join(appPath, 'node_modules', 'node-pty');
+
+        if (existsSync(appPath) && existsSync(nodePtySource)) {
+          console.log(`Copying node-pty to packaged app at ${nodePtyDest}...`);
+          cpSync(nodePtySource, nodePtyDest, { recursive: true });
+          console.log('node-pty copied successfully');
+        } else {
+          console.warn(`Could not copy node-pty: appPath=${appPath} exists=${existsSync(appPath)}, source exists=${existsSync(nodePtySource)}`);
+        }
       }
     },
   },
