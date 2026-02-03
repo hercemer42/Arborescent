@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-02-02T15:27:08.804Z'
+updated: '2026-02-03T11:57:37.718Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -19029,6 +19029,7 @@ nodes:
     id: 188622ee-bacb-4220-92c3-9ff37694e691
     content: Archived
     children:
+      - 137dd504-820b-4aee-965e-89bf39a7e32d
       - 9aa2f482-89db-40a7-aafa-92e03e781138
       - e2876839-8e7a-4261-a56d-e657d4384bb3
     metadata:
@@ -19877,8 +19878,7 @@ nodes:
   ac4c627f-c512-40b9-ad55-11b439495b7e:
     id: ac4c627f-c512-40b9-ad55-11b439495b7e
     content: Major feature
-    children:
-      - 137dd504-820b-4aee-965e-89bf39a7e32d
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -19960,9 +19960,8 @@ nodes:
     content: Fix keyboard listeners
     children:
       - 0776f1ff-1a54-444f-8e77-407be4138513
-      - 234edbb9-3665-48a8-8edf-39141d62dba7
-      - 5a73bce9-0c18-48c7-a976-f82dd3970d7a
-      - e4aeea39-9979-40e2-8daf-e1d8da67b9b8
+      - e70552cb-30f5-4714-8027-3ca710e6d732
+      - fafb89f0-40c6-46c2-a6e5-3b75e523763d
     metadata:
       status: pending
   234edbb9-3665-48a8-8edf-39141d62dba7:
@@ -19983,10 +19982,11 @@ nodes:
       - 19707f43-95ed-4274-8adb-f460fdb6f1a4
       - 1e17c2df-4539-494a-8f38-02d95fc98bcf
     metadata:
-      status: pending
-      expanded: true
+      status: abandoned
+      expanded: false
       deleted: false
       plugins: {}
+      resolvedAt: '2026-02-03T11:45:44.918Z'
   0776f1ff-1a54-444f-8e77-407be4138513:
     id: 0776f1ff-1a54-444f-8e77-407be4138513
     content: Currently they don't always register properly and so cause problems when starting the application
@@ -20619,5 +20619,27 @@ nodes:
     id: 7576de1e-9c9b-4e03-a58e-584345c8504b
     content: '0219271320'
     children: []
+    metadata:
+      status: pending
+  f496dd7c-9f69-4e57-9f2e-65fdf2a9788c:
+    id: f496dd7c-9f69-4e57-9f2e-65fdf2a9788c
+    content: Isolate hotkeys as appropriate for each section
+    children: []
+    metadata:
+      status: pending
+  e70552cb-30f5-4714-8027-3ca710e6d732:
+    id: e70552cb-30f5-4714-8027-3ca710e6d732
+    content: Hotkeys meant for the tree view are also firing when focused on the terminal tab but we don't want them to.
+    children: []
+    metadata:
+      status: pending
+  fafb89f0-40c6-46c2-a6e5-3b75e523763d:
+    id: fafb89f0-40c6-46c2-a6e5-3b75e523763d
+    content: 'We need to :'
+    children:
+      - 234edbb9-3665-48a8-8edf-39141d62dba7
+      - 5a73bce9-0c18-48c7-a976-f82dd3970d7a
+      - f496dd7c-9f69-4e57-9f2e-65fdf2a9788c
+      - e4aeea39-9979-40e2-8daf-e1d8da67b9b8
     metadata:
       status: pending

@@ -90,7 +90,9 @@ export const useTerminalStore = create<TerminalState>((set, get) => ({
 
     try {
       const formattedContent = exportNodeAsMarkdown(node, nodes);
-      await window.electron.terminalWrite(terminalId, formattedContent + '\n');
+      // Wrap in bracketed paste mode so terminals treat it as a single paste
+      const bracketedContent = `\x1b[200~${formattedContent}\x1b[201~\n`;
+      await window.electron.terminalWrite(terminalId, bracketedContent);
       logger.info('Sent content to terminal', 'TerminalStore');
     } catch (error) {
       logger.error('Failed to send to terminal', error as Error, 'TerminalStore');
