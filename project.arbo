@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2025-12-23T10:52:07.310Z'
+updated: '2026-02-02T15:27:08.804Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -471,6 +471,7 @@ nodes:
       isBlueprint: true
       blueprintIcon: Boxes
       blueprintColor: '#a855f7'
+      appliedContextId: e8824b29-eb18-4031-9e35-b321a864d418
   565dde0a-864b-41f9-86ff-dbdf40ac4dd0:
     id: 565dde0a-864b-41f9-86ff-dbdf40ac4dd0
     content: Done
@@ -5086,7 +5087,7 @@ nodes:
       status: pending
       isContextDeclaration: true
       blueprintIcon: Eye
-      expanded: false
+      expanded: true
       blueprintColor: '#0ea5e9'
       isBlueprint: true
   af1ebc0d-26dd-4a75-982f-03a9dbe2bc84:
@@ -5120,7 +5121,7 @@ nodes:
       isBlueprint: true
   9e75dae5-0ca1-4ccb-96db-eccceaba398d:
     id: 9e75dae5-0ca1-4ccb-96db-eccceaba398d
-    content: Add any missing items that would make the list more complete
+    content: "Add any missing items that would make the list more complete\_"
     children:
       - c0dff20f-d3bd-4780-b0f6-fe9fa6e0b53c
     metadata:
@@ -5301,6 +5302,7 @@ nodes:
     id: 984247e7-2d55-4b93-80e8-f84818901621
     content: Backlog
     children:
+      - cd1ea603-77fe-40ec-a033-154bd7921ac2
       - 92b16d87-27dc-486d-a605-4228e2b5206c
       - b82ab806-5034-47b1-8fbc-7b388030b107
       - 550cf0db-6b43-43d9-8d43-7956b3fdc2d8
@@ -5310,6 +5312,7 @@ nodes:
       - 75ae4f0b-d9ad-4022-b6de-36ccee2d4a10
       - 6573b620-bfc0-4c5b-8d92-13b9ace3461d
       - 5288b678-63dc-4672-b1b3-8e2b540c04de
+      - 7576de1e-9c9b-4e03-a58e-584345c8504b
     metadata:
       status: pending
       expanded: true
@@ -5687,7 +5690,7 @@ nodes:
       isBlueprint: true
       blueprintIcon: Layers2
       blueprintColor: '#0ea5e9'
-      expanded: false
+      expanded: true
   9a8f1538-7eb7-4e2d-9e0f-46e2c00675f4:
     id: 9a8f1538-7eb7-4e2d-9e0f-46e2c00675f4
     content: Technical
@@ -6213,7 +6216,7 @@ nodes:
       - a4c333be-a8a4-4c0f-8148-b2260507f5ad
     metadata:
       status: pending
-      expanded: false
+      expanded: true
       appliedContextIds:
         - 64ea2af4-332b-44a6-8b88-78535cc9b79a
       activeContextId: 64ea2af4-332b-44a6-8b88-78535cc9b79a
@@ -6593,7 +6596,7 @@ nodes:
         - e8824b29-eb18-4031-9e35-b321a864d418
         - 1e2f062a-bbaa-4a02-b58b-a94ab15d8d74
       activeContextId: cc94b377-246d-45ae-b938-2d3906892aa1
-      expanded: false
+      expanded: true
       isBlueprint: true
       blueprintIcon: Cog
       blueprintColor: '#14b8a6'
@@ -8967,7 +8970,7 @@ nodes:
       blueprintIcon: CheckSquare
       blueprintColor: '#22c55e'
       isBlueprint: true
-      expanded: false
+      expanded: true
   ce9cfecb-f289-494b-8ff2-482e4b29d193:
     id: ce9cfecb-f289-494b-8ff2-482e4b29d193
     content: All the automated tests are updated and passing
@@ -9054,7 +9057,7 @@ nodes:
       - e43903b2-2184-4cbd-84ec-9cd24ea536e2
     metadata:
       status: pending
-      expanded: false
+      expanded: true
       isBlueprint: true
       blueprintIcon: Star
       blueprintColor: '#64748b'
@@ -9073,7 +9076,7 @@ nodes:
       isBlueprint: true
       blueprintIcon: Eye
       blueprintColor: '#0ea5e9'
-      expanded: false
+      expanded: true
   4264aa2a-e101-4dd6-b971-1d0deb8ce03d:
     id: 4264aa2a-e101-4dd6-b971-1d0deb8ce03d
     content: Review all code implemented since last commit
@@ -14895,8 +14898,6 @@ nodes:
     id: 92b16d87-27dc-486d-a605-4228e2b5206c
     content: For release
     children:
-      - aa7e272a-7ba8-4ff7-b9ec-3fb045d2869f
-      - 88956704-3d55-43cd-a659-215a98139a33
       - 4966bd3d-fe8d-4094-840f-a0f791c07d6c
       - 41691f56-cf04-4609-8009-8d0b50b36ec7
       - e5ad2c66-f085-482e-8010-5fb1a2cf93d7
@@ -15482,39 +15483,34 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  53e9add9-1b8f-4ae3-ac36-51e73197a389:
-    id: 53e9add9-1b8f-4ae3-ac36-51e73197a389
-    content: Remove unused plugin system (for now)
-    children: []
-    metadata:
-      status: completed
-      resolvedAt: '2025-12-09T16:27:18.997Z'
   92796c60-443b-46cd-bcd3-5bca0ee98c3c:
     id: 92796c60-443b-46cd-bcd3-5bca0ee98c3c
     content: Done
-    children:
-      - 53e9add9-1b8f-4ae3-ac36-51e73197a389
+    children: []
     metadata:
       status: pending
       isBlueprint: true
       blueprintIcon: FolderCheck
       blueprintColor: '#22c55e'
-      expanded: false
+      expanded: true
   a4c333be-a8a4-4c0f-8148-b2260507f5ad:
     id: a4c333be-a8a4-4c0f-8148-b2260507f5ad
     content: In progress
     children: []
     metadata:
       status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
       appliedContextIds:
         - cc94b377-246d-45ae-b938-2d3906892aa1
         - e8824b29-eb18-4031-9e35-b321a864d418
         - 1e2f062a-bbaa-4a02-b58b-a94ab15d8d74
       activeContextId: cc94b377-246d-45ae-b938-2d3906892aa1
-      expanded: true
-      isBlueprint: true
+      appliedContextId: 1e2f062a-bbaa-4a02-b58b-a94ab15d8d74
       blueprintIcon: Cog
       blueprintColor: '#14b8a6'
+      isBlueprint: true
   42f6288a-d579-40ef-981d-ea59c974a7be:
     id: 42f6288a-d579-40ef-981d-ea59c974a7be
     content: Add panel toggle commands to View menu
@@ -18473,7 +18469,7 @@ nodes:
       - 8252aaf8-8775-4640-ba62-64b7d6d2edd7
     metadata:
       status: pending
-      expanded: false
+      expanded: true
   0058432d-a010-473b-a707-ace2b1dee169:
     id: 0058432d-a010-473b-a707-ace2b1dee169
     content: Documentation
@@ -19881,7 +19877,8 @@ nodes:
   ac4c627f-c512-40b9-ad55-11b439495b7e:
     id: ac4c627f-c512-40b9-ad55-11b439495b7e
     content: Major feature
-    children: []
+    children:
+      - 137dd504-820b-4aee-965e-89bf39a7e32d
     metadata:
       status: pending
       isBlueprint: true
@@ -19951,15 +19948,676 @@ nodes:
     metadata:
       status: pending
       isBlueprint: true
-  aa7e272a-7ba8-4ff7-b9ec-3fb045d2869f:
-    id: aa7e272a-7ba8-4ff7-b9ec-3fb045d2869f
-    content: is it right to install stuff in .config ?
+  cd1ea603-77fe-40ec-a033-154bd7921ac2:
+    id: cd1ea603-77fe-40ec-a033-154bd7921ac2
+    content: V 0.1.1
+    children:
+      - 8895f54d-c90a-4bc8-9f1f-17c97b67a3b8
+    metadata:
+      status: pending
+  8895f54d-c90a-4bc8-9f1f-17c97b67a3b8:
+    id: 8895f54d-c90a-4bc8-9f1f-17c97b67a3b8
+    content: Fix keyboard listeners
+    children:
+      - 0776f1ff-1a54-444f-8e77-407be4138513
+      - 234edbb9-3665-48a8-8edf-39141d62dba7
+      - 5a73bce9-0c18-48c7-a976-f82dd3970d7a
+      - e4aeea39-9979-40e2-8daf-e1d8da67b9b8
+    metadata:
+      status: pending
+  234edbb9-3665-48a8-8edf-39141d62dba7:
+    id: 234edbb9-3665-48a8-8edf-39141d62dba7
+    content: Add context so that they register on application start but only trigger in the right pane
     children: []
     metadata:
       status: pending
-  88956704-3d55-43cd-a659-215a98139a33:
-    id: 88956704-3d55-43cd-a659-215a98139a33
-    content: build issue with rpm - do we need rpm ?
+  137dd504-820b-4aee-965e-89bf39a7e32d:
+    id: 137dd504-820b-4aee-965e-89bf39a7e32d
+    content: Native AI Integrations via Plugin System
+    children:
+      - f6c1ffa4-320b-4ea3-81dd-bd89bd8d1ae8
+      - be6a1d0a-f866-40d3-83f1-91b93adfac95
+      - 3141caef-1d79-4605-b39d-c45e2dcfd1c7
+      - de629925-95c7-4606-983e-6729903f33dc
+      - b50ba250-c96e-4e2e-801d-1da5b3587826
+      - 19707f43-95ed-4274-8adb-f460fdb6f1a4
+      - 1e17c2df-4539-494a-8f38-02d95fc98bcf
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0776f1ff-1a54-444f-8e77-407be4138513:
+    id: 0776f1ff-1a54-444f-8e77-407be4138513
+    content: Currently they don't always register properly and so cause problems when starting the application
+    children: []
+    metadata:
+      status: pending
+  5a73bce9-0c18-48c7-a976-f82dd3970d7a:
+    id: 5a73bce9-0c18-48c7-a976-f82dd3970d7a
+    content: Refactor existing implementation to use context
+    children: []
+    metadata:
+      status: pending
+  e4aeea39-9979-40e2-8daf-e1d8da67b9b8:
+    id: e4aeea39-9979-40e2-8daf-e1d8da67b9b8
+    content: Summarize what to test
+    children: []
+    metadata:
+      status: pending
+  f6c1ffa4-320b-4ea3-81dd-bd89bd8d1ae8:
+    id: f6c1ffa4-320b-4ea3-81dd-bd89bd8d1ae8
+    content: Simple plugin architecture
+    children:
+      - 3ef9b807-e204-4e75-9225-8d9ed3237e38
+      - d26f0e54-0906-425e-bfb5-f6bcddb78755
+      - 347bfd85-a934-4516-9aef-33b49c18b0c5
+      - ec94255f-0cac-4c84-bc7d-6be64def02f8
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3ef9b807-e204-4e75-9225-8d9ed3237e38:
+    id: 3ef9b807-e204-4e75-9225-8d9ed3237e38
+    content: Design decisions
+    children:
+      - 0f009906-5626-4035-ba51-9dce181d3413
+      - 0c96f4bb-bfd1-4a96-8024-169cb8661706
+      - 1ff58c87-d39e-4fe9-b0ac-5900bde8818d
+      - 4c563927-ab3c-4481-9c9c-75e0dbef67a2
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0f009906-5626-4035-ba51-9dce181d3413:
+    id: 0f009906-5626-4035-ba51-9dce181d3413
+    content: Not resurrecting the old complex worker-thread plugin system
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0c96f4bb-bfd1-4a96-8024-169cb8661706:
+    id: 0c96f4bb-bfd1-4a96-8024-169cb8661706
+    content: 'Simpler approach: plugins are ES modules exporting a collaborate function'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1ff58c87-d39e-4fe9-b0ac-5900bde8818d:
+    id: 1ff58c87-d39e-4fe9-b0ac-5900bde8818d
+    content: No sandboxing - acceptable for technical user base
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4c563927-ab3c-4481-9c9c-75e0dbef67a2:
+    id: 4c563927-ab3c-4481-9c9c-75e0dbef67a2
+    content: Core app handles discovery, settings, menu integration
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d26f0e54-0906-425e-bfb5-f6bcddb78755:
+    id: d26f0e54-0906-425e-bfb5-f6bcddb78755
+    content: Plugin interface
+    children:
+      - ba48c6bf-7603-4adf-85fa-70eb440ca2ff
+      - 5199c082-a5a3-4f58-9b0c-326dc3c626bf
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ba48c6bf-7603-4adf-85fa-70eb440ca2ff:
+    id: ba48c6bf-7603-4adf-85fa-70eb440ca2ff
+    content: Define CollaboratePlugin interface
+    children:
+      - 0262d04d-5325-4344-bfd1-c6457d15a8e1
+      - 308e89bc-7861-4c7f-a90a-9fe1535fc51e
+      - 86fb5768-f921-4258-8ede-03e9bee48840
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0262d04d-5325-4344-bfd1-c6457d15a8e1:
+    id: 0262d04d-5325-4344-bfd1-c6457d15a8e1
+    content: 'manifest: name, displayName, description'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  308e89bc-7861-4c7f-a90a-9fe1535fc51e:
+    id: 308e89bc-7861-4c7f-a90a-9fe1535fc51e
+    content: 'collaborate(request): Promise<string>'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  86fb5768-f921-4258-8ede-03e9bee48840:
+    id: 86fb5768-f921-4258-8ede-03e9bee48840
+    content: 'settingsSchema: optional array of setting fields (for API keys, model selection, etc.)'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5199c082-a5a3-4f58-9b0c-326dc3c626bf:
+    id: 5199c082-a5a3-4f58-9b0c-326dc3c626bf
+    content: Define CollaborateRequest interface
+    children:
+      - c3a04317-c0eb-40cd-88ac-3693d5c0a7c5
+      - 94d7a981-2dd9-4a0b-b86d-18e17fcd4f50
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c3a04317-c0eb-40cd-88ac-3693d5c0a7c5:
+    id: c3a04317-c0eb-40cd-88ac-3693d5c0a7c5
+    content: 'content: the formatted prompt'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  94d7a981-2dd9-4a0b-b86d-18e17fcd4f50:
+    id: 94d7a981-2dd9-4a0b-b86d-18e17fcd4f50
+    content: 'settings: plugin-specific config values'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  347bfd85-a934-4516-9aef-33b49c18b0c5:
+    id: 347bfd85-a934-4516-9aef-33b49c18b0c5
+    content: Plugin discovery
+    children:
+      - ad39145c-04f5-4362-abb2-0efce6fc39a7
+      - 64fa51f9-1a8a-45d6-bf42-b478cdacaf29
+      - 56653dac-6d44-49b9-b151-721cc568434b
+      - 5d727976-9486-4d66-a32e-f9f05cdccd20
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ad39145c-04f5-4362-abb2-0efce6fc39a7:
+    id: ad39145c-04f5-4362-abb2-0efce6fc39a7
+    content: Scan plugins directory for manifest files
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  64fa51f9-1a8a-45d6-bf42-b478cdacaf29:
+    id: 64fa51f9-1a8a-45d6-bf42-b478cdacaf29
+    content: Load plugin modules dynamically
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  56653dac-6d44-49b9-b151-721cc568434b:
+    id: 56653dac-6d44-49b9-b151-721cc568434b
+    content: Built-in plugins ship with the app
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5d727976-9486-4d66-a32e-f9f05cdccd20:
+    id: 5d727976-9486-4d66-a32e-f9f05cdccd20
+    content: User plugins in a separate directory
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ec94255f-0cac-4c84-bc7d-6be64def02f8:
+    id: ec94255f-0cac-4c84-bc7d-6be64def02f8
+    content: Plugin settings
+    children:
+      - c9969674-4780-414c-a209-3d792b926f7e
+      - 7b485870-189a-4c98-89eb-806a6e7920dd
+      - 780b00ae-57b3-47f5-839b-7297b2cb1add
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c9969674-4780-414c-a209-3d792b926f7e:
+    id: c9969674-4780-414c-a209-3d792b926f7e
+    content: Core app stores settings per plugin
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7b485870-189a-4c98-89eb-806a6e7920dd:
+    id: 7b485870-189a-4c98-89eb-806a6e7920dd
+    content: Generic settings UI generated from plugin's settingsSchema
+    children:
+      - 8aee195a-9b8a-4f09-8bd8-818e89cc5006
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  780b00ae-57b3-47f5-839b-7297b2cb1add:
+    id: 780b00ae-57b3-47f5-839b-7297b2cb1add
+    content: API keys encrypted and stored by core app
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  be6a1d0a-f866-40d3-83f1-91b93adfac95:
+    id: be6a1d0a-f866-40d3-83f1-91b93adfac95
+    content: Built-in plugins
+    children:
+      - c82a5e6a-f715-4739-b4a4-9e4363316277
+      - c59ec272-f648-47cc-ac78-9fabfd079efc
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c82a5e6a-f715-4739-b4a4-9e4363316277:
+    id: c82a5e6a-f715-4739-b4a4-9e4363316277
+    content: OpenAI plugin
+    children:
+      - 0492ce99-3b50-4665-a77d-03c0ef74464b
+      - 3f1bf625-6ee5-46f5-9e49-f2092ae3af79
+      - d865ffbc-d7d1-479a-8471-482f1680d943
+      - 2d7c4537-4ece-4743-a87f-8551ee1ed199
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0492ce99-3b50-4665-a77d-03c0ef74464b:
+    id: 0492ce99-3b50-4665-a77d-03c0ef74464b
+    content: Migrate existing API call code to plugin format
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3f1bf625-6ee5-46f5-9e49-f2092ae3af79:
+    id: 3f1bf625-6ee5-46f5-9e49-f2092ae3af79
+    content: 'Settings: API key, model selection'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d865ffbc-d7d1-479a-8471-482f1680d943:
+    id: d865ffbc-d7d1-479a-8471-482f1680d943
+    content: Fetch available models from API
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2d7c4537-4ece-4743-a87f-8551ee1ed199:
+    id: 2d7c4537-4ece-4743-a87f-8551ee1ed199
+    content: Smart default model selection
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c59ec272-f648-47cc-ac78-9fabfd079efc:
+    id: c59ec272-f648-47cc-ac78-9fabfd079efc
+    content: Anthropic plugin
+    children:
+      - 161bcacf-45b7-4353-8598-ff090d7421df
+      - 0ba2afde-60f0-454c-81ed-4244e3710b26
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  161bcacf-45b7-4353-8598-ff090d7421df:
+    id: 161bcacf-45b7-4353-8598-ff090d7421df
+    content: Same structure as OpenAI
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0ba2afde-60f0-454c-81ed-4244e3710b26:
+    id: 0ba2afde-60f0-454c-81ed-4244e3710b26
+    content: 'Settings: API key, model selection'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3141caef-1d79-4605-b39d-c45e2dcfd1c7:
+    id: 3141caef-1d79-4605-b39d-c45e2dcfd1c7
+    content: API key management (already implemented)
+    children:
+      - cc2b5556-6a39-42b0-9bf9-4b55f564e7b0
+      - 7236b954-5732-42b3-80da-97b1ef869e57
+      - df9a4e43-3e73-4198-a986-eed389af70f2
+      - 5ec2828c-39fb-4d23-ac1b-984f7c4c3760
+      - 04f5c399-1012-4906-ac30-d16ba52ce9bd
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cc2b5556-6a39-42b0-9bf9-4b55f564e7b0:
+    id: cc2b5556-6a39-42b0-9bf9-4b55f564e7b0
+    content: Encrypted storage using AES-256-CBC with machine-derived key
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7236b954-5732-42b3-80da-97b1ef869e57:
+    id: 7236b954-5732-42b3-80da-97b1ef869e57
+    content: Validate key before storing (test API call)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  df9a4e43-3e73-4198-a986-eed389af70f2:
+    id: df9a4e43-3e73-4198-a986-eed389af70f2
+    content: Show clear error messages for invalid keys
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5ec2828c-39fb-4d23-ac1b-984f7c4c3760:
+    id: 5ec2828c-39fb-4d23-ac1b-984f7c4c3760
+    content: Keys persist across application restarts
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  04f5c399-1012-4906-ac30-d16ba52ce9bd:
+    id: 04f5c399-1012-4906-ac30-d16ba52ce9bd
+    content: Re-prompt if API returns auth error
+    children:
+      - 7fd5eab3-5102-469f-a76b-b509ae1b30a7
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7fd5eab3-5102-469f-a76b-b509ae1b30a7:
+    id: 7fd5eab3-5102-469f-a76b-b509ae1b30a7
+    content: Currently clears bad key but doesn't re-prompt
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  de629925-95c7-4606-983e-6729903f33dc:
+    id: de629925-95c7-4606-983e-6729903f33dc
+    content: Preferences UI (already implemented)
+    children:
+      - 4a9c95aa-e225-482c-acc7-bd2943aea2cc
+      - 1ea0161d-cafc-4665-aa69-fc0b67c327e2
+      - 489df535-2f0b-482d-a581-30953374796f
+      - 94a1f8f1-16d1-486b-8d32-6d5cd3144b01
+      - 39aa0d05-b9b0-46eb-8d54-11e9ee04ebdc
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4a9c95aa-e225-482c-acc7-bd2943aea2cc:
+    id: 4a9c95aa-e225-482c-acc7-bd2943aea2cc
+    content: Integrations dialog accessible from Settings menu
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1ea0161d-cafc-4665-aa69-fc0b67c327e2:
+    id: 1ea0161d-cafc-4665-aa69-fc0b67c327e2
+    content: 'Per integration: API key entry with show/hide toggle'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  489df535-2f0b-482d-a581-30953374796f:
+    id: 489df535-2f0b-482d-a581-30953374796f
+    content: 'Per integration: Model selection dropdown'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  94a1f8f1-16d1-486b-8d32-6d5cd3144b01:
+    id: 94a1f8f1-16d1-486b-8d32-6d5cd3144b01
+    content: Option to delete stored key
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  39aa0d05-b9b0-46eb-8d54-11e9ee04ebdc:
+    id: 39aa0d05-b9b0-46eb-8d54-11e9ee04ebdc
+    content: Refresh button to reload models from API
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b50ba250-c96e-4e2e-801d-1da5b3587826:
+    id: b50ba250-c96e-4e2e-801d-1da5b3587826
+    content: Update Collaborate menu
+    children:
+      - d2f15923-cc9b-4989-93ac-c648e4ca9fee
+      - 77af2f47-a6cc-4d1c-a5e7-31c20770a93b
+      - 82aef8fa-33b0-49a9-a834-c98921de32db
+      - d3160089-0653-4024-9b4c-03f20befce3f
+      - fa2e92ef-59a6-44a2-88ab-61bf2503c949
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d2f15923-cc9b-4989-93ac-c648e4ca9fee:
+    id: d2f15923-cc9b-4989-93ac-c648e4ca9fee
+    content: Keep existing 'In terminal' and 'In browser' options
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  77af2f47-a6cc-4d1c-a5e7-31c20770a93b:
+    id: 77af2f47-a6cc-4d1c-a5e7-31c20770a93b
+    content: Dynamically populate from discovered plugins
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  82aef8fa-33b0-49a9-a834-c98921de32db:
+    id: 82aef8fa-33b0-49a9-a834-c98921de32db
+    content: Options clickable even without stored keys
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d3160089-0653-4024-9b4c-03f20befce3f:
+    id: d3160089-0653-4024-9b4c-03f20befce3f
+    content: If no stored key, clicking opens settings dialog
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fa2e92ef-59a6-44a2-88ab-61bf2503c949:
+    id: fa2e92ef-59a6-44a2-88ab-61bf2503c949
+    content: After entering key and closing dialog, collaboration proceeds automatically
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  19707f43-95ed-4274-8adb-f460fdb6f1a4:
+    id: 19707f43-95ed-4274-8adb-f460fdb6f1a4
+    content: Collaboration behavior (already implemented)
+    children:
+      - 8187c71a-9bec-4e98-b61f-8a74d3ac4c30
+      - b1c8c564-cf55-4eb6-9054-4774efd4b0fe
+      - b66b31d1-ec1a-42c7-899c-2eb7180edb06
+      - b8325378-1486-4373-9dfa-85a84d1a973c
+      - 02cac5d3-549a-46b5-b0c4-328d5f0e6f4e
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8187c71a-9bec-4e98-b61f-8a74d3ac4c30:
+    id: 8187c71a-9bec-4e98-b61f-8a74d3ac4c30
+    content: Send context and format instructions to selected API
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b1c8c564-cf55-4eb6-9054-4774efd4b0fe:
+    id: b1c8c564-cf55-4eb6-9054-4774efd4b0fe
+    content: Wait for complete response (no streaming)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b66b31d1-ec1a-42c7-899c-2eb7180edb06:
+    id: b66b31d1-ec1a-42c7-899c-2eb7180edb06
+    content: Display response in feedback panel
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b8325378-1486-4373-9dfa-85a84d1a973c:
+    id: b8325378-1486-4373-9dfa-85a84d1a973c
+    content: Handle errors with user feedback
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  02cac5d3-549a-46b5-b0c4-328d5f0e6f4e:
+    id: 02cac5d3-549a-46b5-b0c4-328d5f0e6f4e
+    content: Display 'Waiting for response from API' for API integrations
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1e17c2df-4539-494a-8f38-02d95fc98bcf:
+    id: 1e17c2df-4539-494a-8f38-02d95fc98bcf
+    content: Documentation
+    children:
+      - 6182b808-8f14-42fe-9052-2e770dfe83c7
+      - 3feab6e5-0638-4010-a5f5-a00c5611f0c4
+      - 8c731098-4a5e-4d27-b189-385cdc70cd17
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6182b808-8f14-42fe-9052-2e770dfe83c7:
+    id: 6182b808-8f14-42fe-9052-2e770dfe83c7
+    content: Document the plugin interface for third-party developers
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3feab6e5-0638-4010-a5f5-a00c5611f0c4:
+    id: 3feab6e5-0638-4010-a5f5-a00c5611f0c4
+    content: Provide example plugin (e.g., local LLM template)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8c731098-4a5e-4d27-b189-385cdc70cd17:
+    id: 8c731098-4a5e-4d27-b189-385cdc70cd17
+    content: Update main docs with native integration feature
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8aee195a-9b8a-4f09-8bd8-818e89cc5006:
+    id: 8aee195a-9b8a-4f09-8bd8-818e89cc5006
+    content: Additional plugins added to the list in the order they are scanned
+    children: []
+    metadata:
+      status: pending
+  7576de1e-9c9b-4e03-a58e-584345c8504b:
+    id: 7576de1e-9c9b-4e03-a58e-584345c8504b
+    content: '0219271320'
     children: []
     metadata:
       status: pending

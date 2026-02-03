@@ -32,6 +32,8 @@ Here is Arborescent building itself:
 3. Open your preferred AI in the terminal or browser
 4. Right-click to send your prompt
 
+This is an early release — if you find bugs or have feedback, please [open an issue](https://gitlab.com/hercemer42/Arborescent/-/issues).
+
 ## Example blueprints
 
 - [React + Electron Development](blueprints/react-electron-blueprint.arbo) — Dev workflow with conventions and contexts for features/bugs/refactoring.

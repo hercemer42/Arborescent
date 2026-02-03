@@ -2,7 +2,7 @@ import { useFilesStore } from '../../store/files/filesStore';
 import { useSearchStore } from '../../store/search/searchStore';
 import { useToastStore } from '../../store/toast/toastStore';
 import { matchesHotkey } from '../../data/hotkeyConfig';
-import { hasTextSelection, isContentEditableFocused, isFocusInPanel, isFocusInTerminalOrBrowser } from '../../utils/selectionUtils';
+import { hasTextSelection, isContentEditableFocused, isFocusInPanel, isFocusInTerminalOrBrowser, isInputOrTextareaFocused } from '../../utils/selectionUtils';
 import { getActiveStore } from './shared';
 import { getAppliedContextIdWithInheritance } from '../../utils/nodeHelpers';
 
@@ -199,6 +199,9 @@ async function handleUIShortcuts(event: KeyboardEvent): Promise<void> {
   }
 
   if (matchesHotkey(event, 'actions', 'paste')) {
+    if (isInputOrTextareaFocused()) {
+      return;
+    }
     event.preventDefault();
     const store = getActiveStore();
     if (store) {

@@ -11,13 +11,13 @@
 }
 
 .tree-node-wrapper.collapsed-parent {
-  background-color: var(--selection-collapsed);
+  background-color: var(--blue-10);
   border-top: 1px solid var(--white);
   border-bottom: 1px solid var(--white);
 }
 
 .tree-node-wrapper.multi-selected {
-  background-color: var(--selection-multi);
+  background-color: var(--teal-15);
   border-top: 1px solid var(--white);
   border-bottom: 1px solid var(--white);
 }
@@ -47,14 +47,14 @@
 }
 
 .tree-node-wrapper.collapsed-parent.multi-selected {
-  background-color: var(--selection-collapsed);
+  background-color: var(--blue-10);
 }
 
 .tree-node-wrapper.collapsed-parent.multi-selected::before {
   content: '';
   position: absolute;
   inset: 0;
-  background-color: var(--selection-multi);
+  background-color: var(--teal-15);
   pointer-events: none;
   z-index: 0;
 }

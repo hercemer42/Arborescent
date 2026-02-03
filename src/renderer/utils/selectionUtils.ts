@@ -34,3 +34,10 @@ export function isFocusInTerminalOrBrowser(): boolean {
   if (activeElement.closest('.browser-panel')) return true;
   return false;
 }
+
+export function isInputOrTextareaFocused(): boolean {
+  const activeElement = document.activeElement;
+  if (!activeElement) return false;
+  const tagName = activeElement.tagName.toLowerCase();
+  return tagName === 'input' || tagName === 'textarea';
+}
