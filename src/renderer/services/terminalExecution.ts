@@ -6,9 +6,7 @@ export async function executeInTerminal(terminalId: string, content: string): Pr
     return;
   }
 
-  // Wrap in bracketed paste mode so terminals treat it as a single paste
-  const bracketedContent = `\x1b[200~${content}\x1b[201~`;
-  await window.electron.terminalWrite(terminalId, bracketedContent);
+  await window.electron.terminalWrite(terminalId, content);
 
   await new Promise(resolve => setTimeout(resolve, 150));
 
