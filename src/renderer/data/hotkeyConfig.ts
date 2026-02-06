@@ -8,15 +8,11 @@ export interface HotkeyConfig {
     moveLeft: string;
     moveRight: string;
     expandCollapse: string;
-    toggleNode: string;
     moveNodeUp: string;
     moveNodeDown: string;
   };
   editing: {
-    startEdit: string;
     cancelEdit: string;
-    saveEdit: string;
-    deleteLine: string;
     newSiblingAfter: string;
     newSiblingNoSplit: string;
     indent: string;

@@ -158,6 +158,7 @@ async function handleUIShortcuts(event: KeyboardEvent): Promise<void> {
 
   if (matchesHotkey(event, 'view', 'toggleSummaryMode')) {
     event.preventDefault();
+    event.stopPropagation();
     const store = getActiveStore();
     store?.getState().actions.toggleSummaryMode();
     return;
