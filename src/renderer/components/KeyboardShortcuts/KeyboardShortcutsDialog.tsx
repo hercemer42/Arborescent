@@ -4,6 +4,7 @@ import { ShortcutRow } from './ShortcutRow';
 import { HotkeyEditDialog } from './HotkeyEditDialog';
 import { getActionLabel, getCategoryLabel } from './hotkeyLabels';
 import './KeyboardShortcutsDialog.css';
+import { useModalHotkeyContext } from '../../hooks';
 
 interface KeyboardShortcutsDialogProps {
   isOpen: boolean;
@@ -23,6 +24,8 @@ export function KeyboardShortcutsDialog({ isOpen, onClose }: KeyboardShortcutsDi
     getConflict,
     isDefault,
   } = useKeyboardShortcuts();
+
+  useModalHotkeyContext(isOpen);
 
   if (!isOpen) return null;
 

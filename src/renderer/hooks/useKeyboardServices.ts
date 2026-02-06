@@ -1,6 +1,7 @@
 import { useEffect, RefObject } from 'react';
 import { initializeNavigationService, initializeEditingService } from '../services/keyboard/keyboard';
 import { initializeUIService } from '../services/keyboard/uiService';
+import { KeyboardServicesOptions } from '../services/keyboard/types';
 
 // Keyboard listeners don't survive HMR partial updates
 if (import.meta.hot) {
@@ -9,28 +10,26 @@ if (import.meta.hot) {
   });
 }
 
-export interface KeyboardServicesOptions {
-  includeUIService?: boolean;
-}
-
 export function useKeyboardServices(
   containerRef: RefObject<HTMLElement | null>,
   options: KeyboardServicesOptions = {}
 ): void {
-  const { includeUIService = false } = options;
+  const { includeUIService = false, isInitialized = true } = options;
 
   useEffect(() => {
-    if (!containerRef.current) return;
+    if (!containerRef.current || !isInitialized) return;
+    
     const cleanupNav = initializeNavigationService(containerRef.current);
     const cleanupEdit = initializeEditingService(containerRef.current);
+    
     return () => {
       cleanupNav();
       cleanupEdit();
     };
-  }, [containerRef]);
+  }, [containerRef, isInitialized]);
 
   useEffect(() => {
-    if (!includeUIService) return;
+    if (!includeUIService || !isInitialized) return;
     return initializeUIService(window);
-  }, [includeUIService]);
+  }, [includeUIService, isInitialized]);
 }

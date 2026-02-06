@@ -2,6 +2,7 @@ import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { initializeKeyboardNavigation, resetRememberedPosition } from '../keyboard';
 import { registerTreeContainer, unregisterTreeContainer } from '../../treeContainerRegistry';
 import { createTreeStore, TreeStore } from '../../../store/tree/treeStore';
+import { setHotkeyContext, setInitialized } from '../hotkeyContext';
 
 // Mock Range.getBoundingClientRect which jsdom doesn't implement
 Range.prototype.getBoundingClientRect = function () {
@@ -14,6 +15,10 @@ describe('navigationService', () => {
   let container: HTMLDivElement;
 
   beforeEach(() => {
+    // Set up hotkey context for tests
+    setInitialized(true);
+    setHotkeyContext('tree');
+
     store = createTreeStore();
     store.setState({
       nodes: {

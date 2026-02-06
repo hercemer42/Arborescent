@@ -8,6 +8,7 @@ import {
 } from './multilineHelpers';
 import { getCursorPosition } from '../cursorService';
 import { getRangeFromPoint } from '../../utils/position';
+import { useHotkeyContextStore } from '../../store/hotkey/hotkeyContextStore';
 
 const NAVIGATION_THROTTLE_MS = 50;
 let lastNavigationTime = 0;
@@ -238,6 +239,11 @@ function handleLinkNodeNavigation(direction: 'up' | 'down' | 'left' | 'right', e
 }
 
 function handleKeyDown(event: KeyboardEvent): void {
+  const { isInitialized, isHotkeyActiveInContext } = useHotkeyContextStore.getState();
+  if (!isInitialized || !isHotkeyActiveInContext('tree')) {
+    return;
+  }
+
   const element = getActiveNodeElement();
   if (!element) return;
 

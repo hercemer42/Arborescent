@@ -5,8 +5,14 @@ import { matchesHotkey } from '../../data/hotkeyConfig';
 import { hasTextSelection, isContentEditableFocused, isFocusInPanel, isFocusInTerminalOrBrowser, isInputOrTextareaFocused } from '../../utils/selectionUtils';
 import { getActiveStore } from './shared';
 import { getAppliedContextIdWithInheritance } from '../../utils/nodeHelpers';
+import { useHotkeyContextStore } from '../../store/hotkey/hotkeyContextStore';
 
 async function handleUIShortcuts(event: KeyboardEvent): Promise<void> {
+  const { isInitialized, isHotkeyActiveInContext } = useHotkeyContextStore.getState();
+  if (!isInitialized || !isHotkeyActiveInContext('global')) {
+    return;
+  }
+
   if (matchesHotkey(event, 'actions', 'undo')) {
     if (isFocusInTerminalOrBrowser()) return;
     event.preventDefault();

@@ -2,6 +2,7 @@ import { getActiveStore, getActiveNodeElement } from './shared';
 import { getCursorPosition } from '../cursorService';
 import { matchesHotkey } from '../../data/hotkeyConfig';
 import { convertToContentEditable, convertFromContentEditable } from '../../utils/contentConversion';
+import { useHotkeyContextStore } from '../../store/hotkey/hotkeyContextStore';
 
 function getCursorPositionFromRange(element: HTMLElement, range: Range, useStart: boolean): number {
   const preCaretRange = range.cloneRange();
@@ -170,6 +171,11 @@ function handleEditingShortcuts(event: KeyboardEvent): void {
 }
 
 function handleKeyDown(event: KeyboardEvent): void {
+  const { isInitialized, isHotkeyActiveInContext } = useHotkeyContextStore.getState();
+  if (!isInitialized || !isHotkeyActiveInContext('tree')) {
+    return;
+  }
+
   const element = getActiveNodeElement();
   if (!element) return;
 

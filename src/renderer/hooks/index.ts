@@ -6,3 +6,4 @@ export { useDialogBehavior } from './useDialogBehavior';
 export { useTreeContainer } from './useTreeContainer';
 export { useKeyboardServices } from './useKeyboardServices';
 export { useSpellcheckListener } from './useSpellcheckListener';
+export { useHotkeyContext, useModalHotkeyContext } from './useHotkeyContext';
