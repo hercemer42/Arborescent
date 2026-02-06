@@ -1,7 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { resetHotkeyConfig } from '../../../data/hotkeyConfig';
 import { initializeUIService } from '../uiService';
-import { setHotkeyContext, setInitialized } from '../hotkeyContext';
+import { useHotkeyContextStore } from '../../../store/hotkey/hotkeyContextStore';
 
 const mockCollaborate = vi.fn();
 
@@ -49,9 +49,9 @@ vi.mock('../../../store/search/searchStore', () => ({
 
 describe('uiService (collaborate hotkeys)', () => {
   beforeEach(() => {
-    // Set up hotkey context for tests
-    setInitialized(true);
-    setHotkeyContext('tree');
+    const hotkeyStore = useHotkeyContextStore.getState();
+    hotkeyStore.setInitialized(true);
+    hotkeyStore.setContext('tree');
     resetHotkeyConfig();
     mockCollaborate.mockReset();
   });

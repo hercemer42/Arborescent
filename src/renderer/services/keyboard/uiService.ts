@@ -309,8 +309,9 @@ async function handleUIShortcuts(event: KeyboardEvent): Promise<void> {
     const activeNodeId = state.activeNodeId;
     if (!activeNodeId) return;
 
-    // Collaborate always has a default review context.
-    state.actions.collaborate(activeNodeId);
+    if (isHotkeyActiveInContext('tree') || isHotkeyActiveInContext('global')) {
+      state.actions.collaborate(activeNodeId);
+    }
     return;
   }
 
