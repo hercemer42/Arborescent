@@ -165,6 +165,7 @@ async function handleUIShortcuts(event: KeyboardEvent): Promise<void> {
   }
 
   if (matchesHotkey(event, 'file', 'reload')) {
+    if (isFocusInTerminalOrBrowser()) return;
     event.preventDefault();
     window.location.reload();
     return;

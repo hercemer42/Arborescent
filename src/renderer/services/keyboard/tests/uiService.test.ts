@@ -5,11 +5,13 @@ import { useHotkeyContextStore } from '../../../store/hotkey/hotkeyContextStore'
 
 const mockCollaborate = vi.fn();
 
+let isFocusInTerminalOrBrowserMock = false;
+
 vi.mock('../../../utils/selectionUtils', () => ({
   hasTextSelection: () => false,
   isContentEditableFocused: () => false,
   isFocusInPanel: () => false,
-  isFocusInTerminalOrBrowser: () => false,
+  isFocusInTerminalOrBrowser: () => isFocusInTerminalOrBrowserMock,
 }));
 
 vi.mock('../shared', () => ({
@@ -47,6 +49,12 @@ vi.mock('../../../store/search/searchStore', () => ({
   },
 }));
 
+const mockReload = vi.fn();
+Object.defineProperty(window, 'location', {
+  value: { reload: mockReload },
+  writable: true,
+});
+
 describe('uiService (collaborate hotkeys)', () => {
   beforeEach(() => {
     const hotkeyStore = useHotkeyContextStore.getState();
@@ -66,6 +74,44 @@ describe('uiService (collaborate hotkeys)', () => {
     }));
 
     expect(mockCollaborate).toHaveBeenCalledWith('node-1');
+    cleanup();
+  });
+});
+
+describe('uiService (reload hotkey)', () => {
+  beforeEach(() => {
+    const hotkeyStore = useHotkeyContextStore.getState();
+    hotkeyStore.setInitialized(true);
+    hotkeyStore.setContext('global');
+    resetHotkeyConfig();
+    mockReload.mockReset();
+  });
+
+  it('should reload when Ctrl+R is pressed outside terminal/browser', () => {
+    const cleanup = initializeUIService(window);
+
+    window.dispatchEvent(new KeyboardEvent('keydown', {
+      key: 'r',
+      ctrlKey: true,
+    }));
+
+    expect(mockReload).toHaveBeenCalled();
+    cleanup();
+  });
+
+  it('should not reload when Ctrl+R is pressed in terminal/browser', () => {
+    isFocusInTerminalOrBrowserMock = true;
+
+    const cleanup = initializeUIService(window);
+
+    window.dispatchEvent(new KeyboardEvent('keydown', {
+      key: 'r',
+      ctrlKey: true,
+    }));
+
+    expect(mockReload).not.toHaveBeenCalled();
+    
+    isFocusInTerminalOrBrowserMock = false;
     cleanup();
   });
 });
