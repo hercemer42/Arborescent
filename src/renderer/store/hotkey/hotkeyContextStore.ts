@@ -1,6 +1,15 @@
 import { create } from 'zustand';
 import { HotkeyContext } from '../../services/keyboard/types';
 
+function getContextFromFocus(): HotkeyContext {
+  const activeElement = document.activeElement;
+  if (!activeElement) return 'tree';
+  if (activeElement.tagName.toLowerCase() === 'webview') return 'browser';
+  if ((activeElement as Element).closest('.terminal-panel')) return 'terminal';
+  if ((activeElement as Element).closest('.browser-panel')) return 'browser';
+  return 'tree';
+}
+
 interface HotkeyContextState {
   context: HotkeyContext;
   isInitialized: boolean;
@@ -18,14 +27,16 @@ export const useHotkeyContextStore = create<HotkeyContextState>((set, get) => ({
 
   isHotkeyActiveInContext: (requiredContext) => {
     const { context, isInitialized } = get();
-    
+
     if (!isInitialized) return false;
-    
-    if (requiredContext === 'global') return true;
-    
+
     if (context === 'modal') return false;
-    
-    return context === requiredContext;
+
+    if (requiredContext === 'global') return true;
+
+    // Determine context from actual DOM focus, not stored panel visibility
+    const focusContext = getContextFromFocus();
+    return focusContext === requiredContext;
   }
 }));
 

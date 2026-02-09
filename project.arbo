@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-02-09T11:56:50.403Z'
+updated: '2026-02-09T13:30:08.852Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -22477,28 +22477,31 @@ nodes:
       - 4e21fdc5-d02f-4cec-8d66-a3784f153aeb
       - 5b096f39-fff9-4dba-9572-babf41c00c3f
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
+      resolvedAt: '2026-02-09T13:10:32.890Z'
   0757620b-98bd-49c3-8be7-bd443d493abf:
     id: 0757620b-98bd-49c3-8be7-bd443d493abf
     content: Single workflow file (build.yml) triggered manually (workflow_dispatch)
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
+      resolvedAt: '2026-02-09T13:10:32.890Z'
   6fd389d5-0605-453d-8b75-d2b227148391:
     id: 6fd389d5-0605-453d-8b75-d2b227148391
     content: Run tests on Linux
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
+      resolvedAt: '2026-02-09T13:10:32.890Z'
   3d9a5b31-a88e-41c2-b246-fde06cba7559:
     id: 3d9a5b31-a88e-41c2-b246-fde06cba7559
     content: Build for Linux, macOS, and Windows
@@ -22506,59 +22509,66 @@ nodes:
       - 95e11bc4-abec-4be3-a0ab-06a62905124f
       - 49a150cd-5e09-4695-99de-eab52825a0e6
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
+      resolvedAt: '2026-02-09T13:10:32.890Z'
   95e11bc4-abec-4be3-a0ab-06a62905124f:
     id: 95e11bc4-abec-4be3-a0ab-06a62905124f
     content: macOS and Windows builds likely require running on their respective GitHub runners — Electron Forge cannot fully cross-compile (e.g. macOS .dmg needs a macOS runner)
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
+      resolvedAt: '2026-02-09T13:10:32.890Z'
   49a150cd-5e09-4695-99de-eab52825a0e6:
     id: 49a150cd-5e09-4695-99de-eab52825a0e6
     content: 'Note: macOS runners consume free minutes at 10x the Linux rate — that''s ok, usage should be low'
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
+      resolvedAt: '2026-02-09T13:10:32.890Z'
   4e21fdc5-d02f-4cec-8d66-a3784f153aeb:
     id: 4e21fdc5-d02f-4cec-8d66-a3784f153aeb
     content: Upload build artifacts so they are downloadable from the workflow run
     children:
       - a1a5590a-743b-4ec7-856d-a734ceeab04b
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
+      resolvedAt: '2026-02-09T13:10:32.890Z'
   a1a5590a-743b-4ec7-856d-a734ceeab04b:
     id: a1a5590a-743b-4ec7-856d-a734ceeab04b
     content: Without this, the builds run but produce nothing accessible — the artifacts are the whole point
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
+      resolvedAt: '2026-02-09T13:10:32.890Z'
   5b096f39-fff9-4dba-9572-babf41c00c3f:
     id: 5b096f39-fff9-4dba-9572-babf41c00c3f
     content: No code signing required
     children: []
     metadata:
-      status: pending
+      status: completed
+      resolvedAt: '2026-02-09T13:10:32.890Z'
   4a86722c-45e4-4ecb-a025-92f3cea69211:
     id: 4a86722c-45e4-4ecb-a025-92f3cea69211
     content: Manual trigger, don't run on every push
     children: []
     metadata:
-      status: pending
+      status: completed
+      resolvedAt: '2026-02-09T13:10:32.890Z'
   9196129d-34b8-40d4-b51c-b43c58d1ba64:
     id: 9196129d-34b8-40d4-b51c-b43c58d1ba64
     content: Update GitHub profile
