@@ -29,8 +29,6 @@ jobs:
         include:
           - os: ubuntu-latest
             artifact-name: linux
-          - os: macos-13
-            artifact-name: macos
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
@@ -61,5 +59,4 @@ jobs:
           gh release create "${{ github.ref_name }}" \
             --title "${{ github.ref_name }}" \
             --generate-notes \
-            artifacts/arborescent-linux/deb/x64/*.deb \
-            artifacts/arborescent-macos/zip/darwin/*/*.zip
+            artifacts/arborescent-linux/deb/x64/*.deb
