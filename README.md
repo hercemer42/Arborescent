@@ -4,17 +4,19 @@
 
 ## What it does
 
-Break down complex projects into hierarchical task lists.  
-Build and execute AI prompts with reusable contexts.  
+Decompose complex projects into solvable tasks.  
+Build with AI using reusable contexts.
 Share your workflows with your community or team.  
 
 ## Why Arborescent?
 
-AI works best when you tell it exactly what you want.  
-Arborescent keeps you in control, supercharging your AI workflow.  
-Free and open source under GPL.  
+Building with AI without oversight means losing control over your vision and architecture, ending up with something that doesn't scale.
+Arborescent lets you define and share your context and workflows, giving you full control over what you make while cutting out the repetition.
+As teams and communities encode their expertise into shared blueprints, AI interactions get better for everyone. Beginners stay relevant by benefiting from senior experience.
+Over time, human knowledge and AI capability compound — each making the other more effective.
+Free and open source under GPL.
 
-Here is Arborescent building itself:
+Here is Arborescent being used to build itself:
 
 ![Arborescent building Arborescent](docs/screenshot.png)
 
@@ -23,16 +25,17 @@ Here is Arborescent building itself:
 - **Tree-based decomposition** — Fully featured outliner with keyboard navigation and drag and drop.
 - **AI integration** — Build your prompt and send it to the integrated terminal or browser.
 - **Reusable contexts** — Define contexts once, apply them to any branch. Changes are inherited automatically.
-- **Blueprints** — Export your core workflow or import from your community or team.
+- **Blueprints** — Create, share, and import workflows for your team or community.
 
 ## Quick start
 
-1. [Download the latest release](https://gitlab.com/hercemer42/Arborescent/-/releases)
+1. [Download the latest release](https://github.com/hercemer42/Arborescent/releases)
 2. Break down your task
 3. Open your preferred AI in the terminal or browser
 4. Right-click to send your prompt
 
-This is an early release — if you find bugs or have feedback, please [open an issue](https://gitlab.com/hercemer42/Arborescent/-/issues).
+This is an early release — if you find bugs or have feedback, please [open an issue](https://github.com/hercemer42/Arborescent/issues).
+If you run into any blockers, restart the application with Ctrl + R without losing your work.
 
 ## Example blueprints
 

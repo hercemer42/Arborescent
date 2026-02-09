@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-02-06T15:10:59.577Z'
+updated: '2026-02-08T11:05:08.657Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -471,7 +471,6 @@ nodes:
       isBlueprint: true
       blueprintIcon: Boxes
       blueprintColor: '#a855f7'
-      appliedContextId: e8824b29-eb18-4031-9e35-b321a864d418
   565dde0a-864b-41f9-86ff-dbdf40ac4dd0:
     id: 565dde0a-864b-41f9-86ff-dbdf40ac4dd0
     content: Done
@@ -5088,7 +5087,7 @@ nodes:
       status: pending
       isContextDeclaration: true
       blueprintIcon: Eye
-      expanded: false
+      expanded: true
       blueprintColor: '#0ea5e9'
       isBlueprint: true
   af1ebc0d-26dd-4a75-982f-03a9dbe2bc84:
@@ -5297,7 +5296,7 @@ nodes:
       - 9a8f1538-7eb7-4e2d-9e0f-46e2c00675f4
     metadata:
       status: pending
-      expanded: false
+      expanded: true
       isBlueprint: true
       blueprintIcon: BrainCog
       blueprintColor: '#14b8a6'
@@ -5703,10 +5702,9 @@ nodes:
       - 6690289a-e02f-48bc-9225-a1083b7b324f
     metadata:
       status: pending
-      expanded: false
+      expanded: true
       isBlueprint: true
       blueprintIcon: Boxes
-      appliedContextId: e8824b29-eb18-4031-9e35-b321a864d418
       blueprintColor: '#a855f7'
   9b46397c-c452-421c-b408-46b040d99c9e:
     id: 9b46397c-c452-421c-b408-46b040d99c9e
@@ -14900,11 +14898,14 @@ nodes:
     id: 92b16d87-27dc-486d-a605-4228e2b5206c
     content: For release
     children:
+      - 167e33fb-0aa2-4603-aee5-546be45d79fa
+      - 592a7f85-c2bb-4133-877d-26f32ff8d4ff
       - 4966bd3d-fe8d-4094-840f-a0f791c07d6c
       - 41691f56-cf04-4609-8009-8d0b50b36ec7
+      - 7728ad80-8bc8-4f78-852b-364e60ccc150
+      - 8c80ca64-4f38-49a9-8b2f-8f96d71ad1fb
       - e5ad2c66-f085-482e-8010-5fb1a2cf93d7
-      - 41c651ca-6e37-4610-a362-0c72ac2c7da4
-      - f4d16e7f-646a-47e2-99a0-aa436b86bb6b
+      - 08c7c675-b422-4522-812a-0ad7e33589e1
     metadata:
       status: pending
       expanded: true
@@ -18464,15 +18465,6 @@ nodes:
       deleted: false
       plugins: {}
       resolvedAt: '2025-12-15T16:44:15.976Z'
-  f4d16e7f-646a-47e2-99a0-aa436b86bb6b:
-    id: f4d16e7f-646a-47e2-99a0-aa436b86bb6b
-    content: Versioning
-    children:
-      - afa8a934-8b37-4dfe-a874-9c7804024567
-      - 8252aaf8-8775-4640-ba62-64b7d6d2edd7
-    metadata:
-      status: pending
-      expanded: true
   0058432d-a010-473b-a707-ace2b1dee169:
     id: 0058432d-a010-473b-a707-ace2b1dee169
     content: Documentation
@@ -19653,7 +19645,9 @@ nodes:
   5fcc7b6b-25d0-4c23-8529-f8a6b9af81e8:
     id: 5fcc7b6b-25d0-4c23-8529-f8a6b9af81e8
     content: Backlog
-    children: []
+    children:
+      - 533210b8-5c42-48f7-ab9a-bea602ae7ed2
+      - b49e3e4c-7d13-427c-b9e8-098630bd7a96
     metadata:
       status: pending
       isBlueprint: true
@@ -19752,18 +19746,6 @@ nodes:
       status: abandoned
       expanded: false
       resolvedAt: '2025-12-22T17:49:40.016Z'
-  afa8a934-8b37-4dfe-a874-9c7804024567:
-    id: afa8a934-8b37-4dfe-a874-9c7804024567
-    content: Post version to Gitlab
-    children: []
-    metadata:
-      status: pending
-  8252aaf8-8775-4640-ba62-64b7d6d2edd7:
-    id: 8252aaf8-8775-4640-ba62-64b7d6d2edd7
-    content: Whatever else needs to be done
-    children: []
-    metadata:
-      status: pending
   77029507-a64f-42ca-875e-e651d1f9e04e:
     id: 77029507-a64f-42ca-875e-e651d1f9e04e
     content: Start with only blueprint shown
@@ -19816,20 +19798,6 @@ nodes:
     children: []
     metadata:
       status: pending
-  41c651ca-6e37-4610-a362-0c72ac2c7da4:
-    id: 41c651ca-6e37-4610-a362-0c72ac2c7da4
-    content: Major decision blueprint
-    children:
-      - 6be9edac-4f08-4bfc-bb31-2507ea786193
-    metadata:
-      status: pending
-      expanded: false
-  6be9edac-4f08-4bfc-bb31-2507ea786193:
-    id: 6be9edac-4f08-4bfc-bb31-2507ea786193
-    content: Or house project or something like that
-    children: []
-    metadata:
-      status: pending
   550cf0db-6b43-43d9-8d43-7956b3fdc2d8:
     id: 550cf0db-6b43-43d9-8d43-7956b3fdc2d8
     content: Add shortcut for zoom mode
@@ -19839,7 +19807,7 @@ nodes:
       - f1a7b584-0125-44a9-bb0e-e6a86729bd26
     metadata:
       status: pending
-      expanded: false
+      expanded: true
       deleted: false
       plugins: {}
   9e012c5b-9ea8-431a-8561-2a3183de63fa:
@@ -19899,7 +19867,7 @@ nodes:
       - 17eeb253-6c7c-45fe-bec2-fd805c13d9b2
     metadata:
       status: pending
-      expanded: false
+      expanded: true
       deleted: false
       plugins: {}
   6020d18c-5195-4b61-b657-db01c2b783b6:
@@ -21142,3 +21110,1355 @@ nodes:
     metadata:
       status: pending
       isBlueprint: true
+  7728ad80-8bc8-4f78-852b-364e60ccc150:
+    id: 7728ad80-8bc8-4f78-852b-364e60ccc150
+    content: Move repo to github
+    children:
+      - 4942ec6d-44ce-4594-bd67-92e16a955f68
+    metadata:
+      status: pending
+  8c80ca64-4f38-49a9-8b2f-8f96d71ad1fb:
+    id: 8c80ca64-4f38-49a9-8b2f-8f96d71ad1fb
+    content: Mirror it on gitlab
+    children: []
+    metadata:
+      status: pending
+  08c7c675-b422-4522-812a-0ad7e33589e1:
+    id: 08c7c675-b422-4522-812a-0ad7e33589e1
+    content: Update version to 0.11 or whatever
+    children: []
+    metadata:
+      status: pending
+  592a7f85-c2bb-4133-877d-26f32ff8d4ff:
+    id: 592a7f85-c2bb-4133-877d-26f32ff8d4ff
+    content: Demo video
+    children:
+      - 60d38028-2076-4147-96a5-b45d17f2a435
+      - 23a19492-6748-4e7f-94d9-291b2de349d4
+      - a4738fca-0eec-4e01-bfff-13bc29a0bc5c
+      - 1cb4e4ee-b7a9-49b1-8849-4ca5333c00dc
+      - d4690a33-af44-4bf3-94f7-55e8683b58dd
+      - 295bcfbc-d90b-435d-a753-e2d1d28e4a02
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4942ec6d-44ce-4594-bd67-92e16a955f68:
+    id: 4942ec6d-44ce-4594-bd67-92e16a955f68
+    content: Update this in readme
+    children: []
+    metadata:
+      status: pending
+  533210b8-5c42-48f7-ab9a-bea602ae7ed2:
+    id: 533210b8-5c42-48f7-ab9a-bea602ae7ed2
+    content: Navigation doesn't work well in zoom mode
+    children:
+      - c7c934e4-a2d8-413f-9267-d9e477e1bf53
+      - cbc2fc3a-7964-4137-81ff-4d4c74e9239c
+      - 51f0f1f4-4e09-4364-9f52-3a607f6a2ab8
+      - 0c31178a-af75-4ab6-ad93-ce756eb32aa2
+    metadata:
+      status: pending
+  c7c934e4-a2d8-413f-9267-d9e477e1bf53:
+    id: c7c934e4-a2d8-413f-9267-d9e477e1bf53
+    content: Return sometimes adds line in content editable
+    children: []
+    metadata:
+      status: pending
+  cbc2fc3a-7964-4137-81ff-4d4c74e9239c:
+    id: cbc2fc3a-7964-4137-81ff-4d4c74e9239c
+    content: Navigation arrows sometimes just navigate to start and end of content editable
+    children: []
+    metadata:
+      status: pending
+  b49e3e4c-7d13-427c-b9e8-098630bd7a96:
+    id: b49e3e4c-7d13-427c-b9e8-098630bd7a96
+    content: ''
+    children: []
+    metadata:
+      status: pending
+  51f0f1f4-4e09-4364-9f52-3a607f6a2ab8:
+    id: 51f0f1f4-4e09-4364-9f52-3a607f6a2ab8
+    content: See if this reproduces in normal mode (maybe, it's inconsistent)
+    children: []
+    metadata:
+      status: pending
+  0c31178a-af75-4ab6-ad93-ce756eb32aa2:
+    id: 0c31178a-af75-4ab6-ad93-ce756eb32aa2
+    content: See if it's related to the fix we added to give keyboard shortcuts context
+    children: []
+    metadata:
+      status: pending
+  269a5010-11f8-43ab-bb68-56a305956cb5:
+    id: 269a5010-11f8-43ab-bb68-56a305956cb5
+    content: Image URL detection
+    children:
+      - ce37d31e-d79d-4c13-b4b3-85496ea10a8b
+      - 7858949b-410f-4e19-b084-8bbca5353d8c
+      - 3840dc48-bcd2-40aa-9a89-4a07762ea771
+      - 4542649d-3d80-4d48-bf07-e292f664025a
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ce37d31e-d79d-4c13-b4b3-85496ea10a8b:
+    id: ce37d31e-d79d-4c13-b4b3-85496ea10a8b
+    content: A URL ending in a known image extension (.png, .jpg, .jpeg, .gif, .webp, .svg) is treated as an image URL
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7858949b-410f-4e19-b084-8bbca5353d8c:
+    id: 7858949b-410f-4e19-b084-8bbca5353d8c
+    content: Detection follows existing link detection rules
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3840dc48-bcd2-40aa-9a89-4a07762ea771:
+    id: 3840dc48-bcd2-40aa-9a89-4a07762ea771
+    content: Detection triggers when the node loses focus
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4542649d-3d80-4d48-bf07-e292f664025a:
+    id: 4542649d-3d80-4d48-bf07-e292f664025a
+    content: Existing image URLs are detected on file load
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c359b0a8-3a76-4c99-aec2-94e15fe1a688:
+    id: c359b0a8-3a76-4c99-aec2-94e15fe1a688
+    content: Image preview display
+    children:
+      - b935f84a-5fac-4d7b-95b1-e8ecafbbc6b0
+      - 2b80fc3c-d137-4c99-bea5-6d10f375497e
+      - d9433032-bae3-464e-a42a-54337a6f8feb
+      - 67e8b1c0-96bf-4a4e-bc94-319856d0cb77
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b935f84a-5fac-4d7b-95b1-e8ecafbbc6b0:
+    id: b935f84a-5fac-4d7b-95b1-e8ecafbbc6b0
+    content: The image appears beneath the node text, aligned past the gutter
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2b80fc3c-d137-4c99-bea5-6d10f375497e:
+    id: 2b80fc3c-d137-4c99-bea5-6d10f375497e
+    content: 'Max preview width: 400px, or native size if smaller'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d9433032-bae3-464e-a42a-54337a6f8feb:
+    id: d9433032-bae3-464e-a42a-54337a6f8feb
+    content: Scales down preserving aspect ratio if it exceeds available panel width or height
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  67e8b1c0-96bf-4a4e-bc94-319856d0cb77:
+    id: 67e8b1c0-96bf-4a4e-bc94-319856d0cb77
+    content: Clicking the URL text opens the full image in the integrated browser
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f22bf05a-6479-4956-9e96-dfa9d9740c7a:
+    id: f22bf05a-6479-4956-9e96-dfa9d9740c7a
+    content: Collapse and expand
+    children:
+      - fa886d52-202b-4299-93e4-dc1d0e5e3f46
+      - d8887412-e0c6-4445-8b2c-c40dce0fd9e4
+      - f383d295-576b-438b-a442-7d7b25ed7a3a
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fa886d52-202b-4299-93e4-dc1d0e5e3f46:
+    id: fa886d52-202b-4299-93e4-dc1d0e5e3f46
+    content: Image nodes can collapse/expand even without children
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d8887412-e0c6-4445-8b2c-c40dce0fd9e4:
+    id: d8887412-e0c6-4445-8b2c-c40dce0fd9e4
+    content: Collapsing hides the preview, expanding shows it
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f383d295-576b-438b-a442-7d7b25ed7a3a:
+    id: f383d295-576b-438b-a442-7d7b25ed7a3a
+    content: Standard caret and highlighting apply
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6791bfab-704f-4d20-be23-1df80efebd22:
+    id: 6791bfab-704f-4d20-be23-1df80efebd22
+    content: Error state
+    children:
+      - d84c76e9-d4ce-4121-a72a-9a1d477cb5b6
+      - 24bb7a98-7a28-42c1-b314-351d12828c8f
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d84c76e9-d4ce-4121-a72a-9a1d477cb5b6:
+    id: d84c76e9-d4ce-4121-a72a-9a1d477cb5b6
+    content: If the image fails to load, show "Image failed to load" with a retry icon beneath the node
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  24bb7a98-7a28-42c1-b314-351d12828c8f:
+    id: 24bb7a98-7a28-42c1-b314-351d12828c8f
+    content: If the URL is edited, the preview re-evaluates automatically
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d0e2a636-6071-45f0-8472-4fe0c37556a1:
+    id: d0e2a636-6071-45f0-8472-4fe0c37556a1
+    content: Blueprint behavior
+    children:
+      - 05a0201a-7582-4856-8795-219785c355ba
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  05a0201a-7582-4856-8795-219785c355ba:
+    id: 05a0201a-7582-4856-8795-219785c355ba
+    content: Image previews do not render in blueprint mode
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  167e33fb-0aa2-4603-aee5-546be45d79fa:
+    id: 167e33fb-0aa2-4603-aee5-546be45d79fa
+    content: Image preview for URL nodes
+    children:
+      - 269a5010-11f8-43ab-bb68-56a305956cb5
+      - c359b0a8-3a76-4c99-aec2-94e15fe1a688
+      - f22bf05a-6479-4956-9e96-dfa9d9740c7a
+      - 6791bfab-704f-4d20-be23-1df80efebd22
+      - d0e2a636-6071-45f0-8472-4fe0c37556a1
+    metadata:
+      status: pending
+      expanded: false
+  60d38028-2076-4147-96a5-b45d17f2a435:
+    id: 60d38028-2076-4147-96a5-b45d17f2a435
+    content: 1. Hook
+    children:
+      - 9ad7cf12-1115-4c2e-bf3f-31096e19eaee
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9ad7cf12-1115-4c2e-bf3f-31096e19eaee:
+    id: 9ad7cf12-1115-4c2e-bf3f-31096e19eaee
+    content: 0:00 - 0:20
+    children:
+      - 56e88cf6-ecc1-4e68-b690-4e656bf653a5
+      - 474563c2-1e4d-4f82-81c3-4ae9332f118d
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  56e88cf6-ecc1-4e68-b690-4e656bf653a5:
+    id: 56e88cf6-ecc1-4e68-b690-4e656bf653a5
+    content: Welcome to Arborescent, an outliner for project decomposition and AI collaboration
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  474563c2-1e4d-4f82-81c3-4ae9332f118d:
+    id: 474563c2-1e4d-4f82-81c3-4ae9332f118d
+    content: Show the tool in use on a real project while delivering the tagline
+    children:
+      - dd51ebef-c343-42f1-80fb-cc75c8f1f81d
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  dd51ebef-c343-42f1-80fb-cc75c8f1f81d:
+    id: dd51ebef-c343-42f1-80fb-cc75c8f1f81d
+    content: No need to explain what's on screen yet — let the viewer absorb the interface visually while the voiceover sets up the pitch
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  23a19492-6748-4e7f-94d9-291b2de349d4:
+    id: 23a19492-6748-4e7f-94d9-291b2de349d4
+    content: 2. The problem
+    children:
+      - eda5a747-3641-4f5b-ac81-1f10c2b0ebaf
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  eda5a747-3641-4f5b-ac81-1f10c2b0ebaf:
+    id: eda5a747-3641-4f5b-ac81-1f10c2b0ebaf
+    content: 0:20 - 1:00
+    children:
+      - 0ab072cf-bd33-4ba1-aa8f-b840b648fe1b
+      - 01b2b98e-1b7b-4137-a35a-60a70c8a78d7
+      - 88a15f5b-ae76-4186-b7a8-3425fa1b5f4c
+      - 0e947c4f-31db-4da5-8260-580d4d0242a1
+      - b5099a01-939a-4f4e-a739-c4fca6d09caf
+      - fa28d67c-d771-4b60-8198-dc56fc817f15
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0ab072cf-bd33-4ba1-aa8f-b840b648fe1b:
+    id: 0ab072cf-bd33-4ba1-aa8f-b840b648fe1b
+    content: Show Arborescent on screen (empty file or start screen) while narrating the problem
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  01b2b98e-1b7b-4137-a35a-60a70c8a78d7:
+    id: 01b2b98e-1b7b-4137-a35a-60a70c8a78d7
+    content: Arborescent was built from a software development perspective, although it can be used for anything.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  88a15f5b-ae76-4186-b7a8-3425fa1b5f4c:
+    id: 88a15f5b-ae76-4186-b7a8-3425fa1b5f4c
+    content: The problem I had was translating requirements scattered across multiple sources
+    children:
+      - 7b718d0e-1247-4ffa-ae8b-d82bac184fe1
+      - 0ee0ac3a-b86b-40a5-b6ff-5c6f6c479e76
+      - 47adcf60-ab1f-44d9-8a5b-d0d72f3c0647
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7b718d0e-1247-4ffa-ae8b-d82bac184fe1:
+    id: 7b718d0e-1247-4ffa-ae8b-d82bac184fe1
+    content: User stories on Notion
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0ee0ac3a-b86b-40a5-b6ff-5c6f6c479e76:
+    id: 0ee0ac3a-b86b-40a5-b6ff-5c6f6c479e76
+    content: Code conventions on GitLab
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  47adcf60-ab1f-44d9-8a5b-d0d72f3c0647:
+    id: 47adcf60-ab1f-44d9-8a5b-d0d72f3c0647
+    content: Test plans on Jira
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0e947c4f-31db-4da5-8260-580d4d0242a1:
+    id: 0e947c4f-31db-4da5-8260-580d4d0242a1
+    content: I've traditionally used simple text files to assemble and decompose the various pieces, but this gets unwieldy for larger projects, and involves a lot of copy and paste with AI assisted workflows.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b5099a01-939a-4f4e-a739-c4fca6d09caf:
+    id: b5099a01-939a-4f4e-a739-c4fca6d09caf
+    content: I also noticed that a lot of context repeats itself. Each company will have different product, developer and QA preferences that need to be respected, but ensuring an AI has the right context at the start of every problem session involved a lot of repetition.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fa28d67c-d771-4b60-8198-dc56fc817f15:
+    id: fa28d67c-d771-4b60-8198-dc56fc817f15
+    content: I needed something that bridged this gap between structured thinking and AI assisted workflows.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a4738fca-0eec-4e01-bfff-13bc29a0bc5c:
+    id: a4738fca-0eec-4e01-bfff-13bc29a0bc5c
+    content: 3. Core outliner
+    children:
+      - 58ac28d5-7ece-4cf2-83fe-334161235e9a
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  58ac28d5-7ece-4cf2-83fe-334161235e9a:
+    id: 58ac28d5-7ece-4cf2-83fe-334161235e9a
+    content: 1:00 - 2:00
+    children:
+      - b8df1948-1e40-456e-998a-b4f84e351b7d
+      - 4c589a34-bc48-4905-8b21-1137d6da1b66
+      - 584f8798-dad4-4229-9ae2-2fe3bfae6b60
+      - 61a6f1eb-2673-4678-a936-ffd1b07b650a
+      - b05919c2-16a7-428a-815a-4d62eefeae9c
+      - 27aa7b9f-4dd9-4654-ab8d-9961d87b3635
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b8df1948-1e40-456e-998a-b4f84e351b7d:
+    id: b8df1948-1e40-456e-998a-b4f84e351b7d
+    content: At its core, Arborescent is an efficient outliner built for speed, that can be used for any purpose. In this example we'll use it to make a recipe for banana bread.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4c589a34-bc48-4905-8b21-1137d6da1b66:
+    id: 4c589a34-bc48-4905-8b21-1137d6da1b66
+    content: 'It''s built to be keyboard first, let me show you:'
+    children:
+      - dcbcd06e-b0aa-4fa3-99fa-d8008442ed1d
+      - af1e47bf-d14b-4ab5-b334-640d49542ba5
+      - 059e3d72-44b7-44a0-a62e-c68f1ed7fe6e
+      - 4a257894-88f8-4473-882a-1bace1aa5554
+      - aaac023c-2021-4a11-9e38-2d58905dc77d
+      - 2d810afe-8a3d-406c-8cc9-c700009808bc
+      - ac101ef9-7bff-4d52-94a8-e1db078d0d3d
+      - 67450bcf-54a8-4b4f-b122-9a567be9828e
+      - 1b3a5108-1ef6-4a62-91d1-820e21dfc9b0
+      - 10ddcfc5-9d89-41da-acb6-2bbbe020f891
+      - 8133ae7c-f59c-4f45-beb5-32e2a8771715
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  dcbcd06e-b0aa-4fa3-99fa-d8008442ed1d:
+    id: dcbcd06e-b0aa-4fa3-99fa-d8008442ed1d
+    content: Enter to create a new node
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  af1e47bf-d14b-4ab5-b334-640d49542ba5:
+    id: af1e47bf-d14b-4ab5-b334-640d49542ba5
+    content: Ctrl + Enter to split one
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  059e3d72-44b7-44a0-a62e-c68f1ed7fe6e:
+    id: 059e3d72-44b7-44a0-a62e-c68f1ed7fe6e
+    content: Tab to indent it
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4a257894-88f8-4473-882a-1bace1aa5554:
+    id: 4a257894-88f8-4473-882a-1bace1aa5554
+    content: Shift + Tab to outdent it
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  aaac023c-2021-4a11-9e38-2d58905dc77d:
+    id: aaac023c-2021-4a11-9e38-2d58905dc77d
+    content: Navigate with arrow keys
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2d810afe-8a3d-406c-8cc9-c700009808bc:
+    id: 2d810afe-8a3d-406c-8cc9-c700009808bc
+    content: Ctrl + arrow keys to move a node
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ac101ef9-7bff-4d52-94a8-e1db078d0d3d:
+    id: ac101ef9-7bff-4d52-94a8-e1db078d0d3d
+    content: Toggle branches with Ctrl + T
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  67450bcf-54a8-4b4f-b122-9a567be9828e:
+    id: 67450bcf-54a8-4b4f-b122-9a567be9828e
+    content: Delete with Ctrl + D
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1b3a5108-1ef6-4a62-91d1-820e21dfc9b0:
+    id: 1b3a5108-1ef6-4a62-91d1-820e21dfc9b0
+    content: Undo/redo with Ctrl + Z and Ctrl + Shift + Z
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  10ddcfc5-9d89-41da-acb6-2bbbe020f891:
+    id: 10ddcfc5-9d89-41da-acb6-2bbbe020f891
+    content: Click and drag, range selection with Ctrl + click, multiple selection with Shift + click
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8133ae7c-f59c-4f45-beb5-32e2a8771715:
+    id: 8133ae7c-f59c-4f45-beb5-32e2a8771715
+    content: Spellcheck is integrated
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  584f8798-dad4-4229-9ae2-2fe3bfae6b60:
+    id: 584f8798-dad4-4229-9ae2-2fe3bfae6b60
+    content: We can zoom in on a node to concentrate on one particular section
+    children:
+      - be9e0a9f-7537-4a7a-b0d4-07f0e9a6ec3b
+      - 795aaf13-af06-4623-8186-d58cdffcf45d
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  be9e0a9f-7537-4a7a-b0d4-07f0e9a6ec3b:
+    id: be9e0a9f-7537-4a7a-b0d4-07f0e9a6ec3b
+    content: This updates the content in the main section in real time
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  795aaf13-af06-4623-8186-d58cdffcf45d:
+    id: 795aaf13-af06-4623-8186-d58cdffcf45d
+    content: We can have as many zoom tabs as we like
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  61a6f1eb-2673-4678-a936-ffd1b07b650a:
+    id: 61a6f1eb-2673-4678-a936-ffd1b07b650a
+    content: Once we have built a list we can collaborate with our favourite AI tool, either in a terminal tool like Claude Code, Copilot or Mistral Vibe, or with a browser based AI.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b05919c2-16a7-428a-815a-4d62eefeae9c:
+    id: b05919c2-16a7-428a-815a-4d62eefeae9c
+    content: Here I'll show you a browser based workflow with our banana bread recipe
+    children:
+      - 86f0e126-3784-4b1d-8c8a-c7ebd48d7e4a
+      - 025a8dd3-396f-478f-8792-84b89c1a2e24
+      - 43f79b77-a138-4968-95a1-01cfba3b5139
+      - 7fc7748d-8802-4c71-ab13-a9af32f1a8ce
+      - ac63cfa6-3479-40d6-88c2-dc513b233a21
+      - 2f93723b-51f5-48a6-ad42-ad4470fbd73d
+      - 6b7afc07-6f8d-4c65-8d36-72265a398498
+      - 75e2ef89-1b92-4726-88a0-5d3ecb44fbf2
+      - ed5c8cbe-56f6-4c7e-abd5-6d0a5e15a74e
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  86f0e126-3784-4b1d-8c8a-c7ebd48d7e4a:
+    id: 86f0e126-3784-4b1d-8c8a-c7ebd48d7e4a
+    content: We right click on our node and select collaborate, in browser
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  025a8dd3-396f-478f-8792-84b89c1a2e24:
+    id: 025a8dd3-396f-478f-8792-84b89c1a2e24
+    content: It opens the browser panel
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  43f79b77-a138-4968-95a1-01cfba3b5139:
+    id: 43f79b77-a138-4968-95a1-01cfba3b5139
+    content: We log into our favourite AI — in this case I'm using Mistral's Le Chat
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7fc7748d-8802-4c71-ab13-a9af32f1a8ce:
+    id: 7fc7748d-8802-4c71-ab13-a9af32f1a8ce
+    content: We paste the content into the chat window and hit enter
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ac63cfa6-3479-40d6-88c2-dc513b233a21:
+    id: ac63cfa6-3479-40d6-88c2-dc513b233a21
+    content: The tool automatically adds guidelines so that the AI knows what we want from it and what format we would like the feedback in
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2f93723b-51f5-48a6-ad42-ad4470fbd73d:
+    id: 2f93723b-51f5-48a6-ad42-ad4470fbd73d
+    content: We copy the response, and it automatically opens the feedback panel with the suggested revisions
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6b7afc07-6f8d-4c65-8d36-72265a398498:
+    id: 6b7afc07-6f8d-4c65-8d36-72265a398498
+    content: We can further refine in the AI chat window and copy again to automatically override the content in the feedback panel
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  75e2ef89-1b92-4726-88a0-5d3ecb44fbf2:
+    id: 75e2ef89-1b92-4726-88a0-5d3ecb44fbf2
+    content: Or we can further refine directly in the feedback panel
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ed5c8cbe-56f6-4c7e-abd5-6d0a5e15a74e:
+    id: ed5c8cbe-56f6-4c7e-abd5-6d0a5e15a74e
+    content: Once we're done we accept the changes and it updates the node
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  27aa7b9f-4dd9-4654-ab8d-9961d87b3635:
+    id: 27aa7b9f-4dd9-4654-ab8d-9961d87b3635
+    content: So we've just used AI to refine a banana bread recipe. Now let's see what it looks like with a real software project.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1cb4e4ee-b7a9-49b1-8849-4ca5333c00dc:
+    id: 1cb4e4ee-b7a9-49b1-8849-4ca5333c00dc
+    content: 4. The context system and AI execution
+    children:
+      - a7d6433f-dd9e-4e99-b7eb-cb26144246e2
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a7d6433f-dd9e-4e99-b7eb-cb26144246e2:
+    id: a7d6433f-dd9e-4e99-b7eb-cb26144246e2
+    content: 2:00 - 3:30
+    children:
+      - 938646df-9d4e-4d6f-b298-b3e8cd9d7e16
+      - 24f33324-63d2-4864-b1d2-3d52639e289c
+      - 4a78f88a-28a5-4013-9aee-9138501e4a86
+      - ad454410-9202-4ee4-9e83-2d8e7ea7b0b5
+      - 2869eddb-03c8-4125-a9a9-888d24c90659
+      - 58d7219e-40f5-45a4-a8a2-b1ac0bb29675
+      - cc7feeac-0db4-4dc0-9838-2080ab55bbdd
+      - 4b04b616-8b69-4f02-9d49-e5ff1a503a1b
+      - 1b5df8a8-8ff1-4c59-94ab-35fa447b6fe1
+      - d272df09-279a-4832-affd-ac068d336536
+      - dfea087e-ff1f-4871-9edd-8e90d1f40440
+      - 501cb8f2-e29d-4da3-b678-56342cd05caa
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  938646df-9d4e-4d6f-b298-b3e8cd9d7e16:
+    id: 938646df-9d4e-4d6f-b298-b3e8cd9d7e16
+    content: We'll show Arborescent building itself.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  24f33324-63d2-4864-b1d2-3d52639e289c:
+    id: 24f33324-63d2-4864-b1d2-3d52639e289c
+    content: The feature we want to add is image links
+    children:
+      - 89ae53d4-53d5-4ec8-bb10-b3ae51378d5b
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  89ae53d4-53d5-4ec8-bb10-b3ae51378d5b:
+    id: 89ae53d4-53d5-4ec8-bb10-b3ae51378d5b
+    content: A friend who plays D&D asked me to add this so he can use Arborescent for planning his campaigns
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4a78f88a-28a5-4013-9aee-9138501e4a86:
+    id: 4a78f88a-28a5-4013-9aee-9138501e4a86
+    content: We've already used the collaborate feature to refine these acceptance criteria, and now we're ready to execute them.
+    children:
+      - c7e8c897-940a-4780-970f-4b0896fc23c6
+      - 0f2bd4e9-440c-40eb-89e6-d59701d4c328
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c7e8c897-940a-4780-970f-4b0896fc23c6:
+    id: c7e8c897-940a-4780-970f-4b0896fc23c6
+    content: Briefly show the acceptance criteria on screen — don't read them out, let the viewer scan while you summarize
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0f2bd4e9-440c-40eb-89e6-d59701d4c328:
+    id: 0f2bd4e9-440c-40eb-89e6-d59701d4c328
+    content: '"These are the acceptance criteria we refined with the AI. Now we need to execute them."'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ad454410-9202-4ee4-9e83-2d8e7ea7b0b5:
+    id: ad454410-9202-4ee4-9e83-2d8e7ea7b0b5
+    content: But hold on!
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2869eddb-03c8-4125-a9a9-888d24c90659:
+    id: 2869eddb-03c8-4125-a9a9-888d24c90659
+    content: We haven't told the project about what architecture we're using. We're relying on the tool to have already created a context file like Claude does with Claude.md for example.
+    children:
+      - f6917d67-30ee-404a-9f6c-46bd7a8d88f5
+      - a431acbf-559a-4d07-9097-b51be10dbd3b
+      - c0fb9fd7-0a9a-4bb3-b23d-a045bede22f5
+      - c3151143-1f76-42f0-b8e6-9d0e1af7573c
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f6917d67-30ee-404a-9f6c-46bd7a8d88f5:
+    id: f6917d67-30ee-404a-9f6c-46bd7a8d88f5
+    content: The problem with this is that we can't control what it puts in there, and it tends to ignore it as a session goes on
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a431acbf-559a-4d07-9097-b51be10dbd3b:
+    id: a431acbf-559a-4d07-9097-b51be10dbd3b
+    content: We'll have our own preferences or company preferences that we want to integrate into our context
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c0fb9fd7-0a9a-4bb3-b23d-a045bede22f5:
+    id: c0fb9fd7-0a9a-4bb3-b23d-a045bede22f5
+    content: So we need a way to give it context on how we'd like to build the project
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c3151143-1f76-42f0-b8e6-9d0e1af7573c:
+    id: c3151143-1f76-42f0-b8e6-9d0e1af7573c
+    content: This is where Arborescent's context system comes in
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  58d7219e-40f5-45a4-a8a2-b1ac0bb29675:
+    id: 58d7219e-40f5-45a4-a8a2-b1ac0bb29675
+    content: Let's make a basic one. We create a new node — Implement a feature
+    children:
+      - 77437033-17e9-46de-b1e9-2e9969682588
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  77437033-17e9-46de-b1e9-2e9969682588:
+    id: 77437033-17e9-46de-b1e9-2e9969682588
+    content: 'Type out a basic context:'
+    children:
+      - 1886cc12-6f5b-4e2a-a9a9-fc9b1478cb9c
+      - 68d677d9-7bf6-444c-a1e3-6a4c2626b16a
+      - b1de934d-68a2-40fe-926a-0b4881874c1d
+      - 990f4ab5-ca30-47c1-a1b0-f9fe2dfc5b79
+      - efdde5eb-b0d5-46b2-bad7-e8a46231afd9
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1886cc12-6f5b-4e2a-a9a9-fc9b1478cb9c:
+    id: 1886cc12-6f5b-4e2a-a9a9-fc9b1478cb9c
+    content: Consider the following instructions and implement the feature
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  68d677d9-7bf6-444c-a1e3-6a4c2626b16a:
+    id: 68d677d9-7bf6-444c-a1e3-6a4c2626b16a
+    content: Don't add unnecessary comments if the code is already readable
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b1de934d-68a2-40fe-926a-0b4881874c1d:
+    id: b1de934d-68a2-40fe-926a-0b4881874c1d
+    content: Prefer native functionality over library imports where possible
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  990f4ab5-ca30-47c1-a1b0-f9fe2dfc5b79:
+    id: 990f4ab5-ca30-47c1-a1b0-f9fe2dfc5b79
+    content: Prefer roll your own over library imports for simple code maintainability
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  cc7feeac-0db4-4dc0-9838-2080ab55bbdd:
+    id: cc7feeac-0db4-4dc0-9838-2080ab55bbdd
+    content: Now we right click on that node and declare it as a context — it gets a symbol denoting it as a blueprint, and a gutter symbol indicating it is a context. All contexts are blueprints, and I'll explain what a blueprint is in the next section.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4b04b616-8b69-4f02-9d49-e5ff1a503a1b:
+    id: 4b04b616-8b69-4f02-9d49-e5ff1a503a1b
+    content: Now that we have our context, we can apply it when we execute or collaborate
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1b5df8a8-8ff1-4c59-94ab-35fa447b6fe1:
+    id: 1b5df8a8-8ff1-4c59-94ab-35fa447b6fe1
+    content: We execute in the terminal
+    children:
+      - 39da2576-0c62-4496-abd4-eaa354e78166
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  39da2576-0c62-4496-abd4-eaa354e78166:
+    id: 39da2576-0c62-4496-abd4-eaa354e78166
+    content: Open the terminal and our favourite AI CLI tool — I'm using Claude Code here, but Mistral Vibe and GitHub Copilot also work well
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d272df09-279a-4832-affd-ac068d336536:
+    id: d272df09-279a-4832-affd-ac068d336536
+    content: The context is automatically sent to the AI which performs the desired tasks
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  dfea087e-ff1f-4871-9edd-8e90d1f40440:
+    id: dfea087e-ff1f-4871-9edd-8e90d1f40440
+    content: We can add other types of contexts too — product context for creating acceptance criteria, specific context for refactors or bug fixes
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  501cb8f2-e29d-4da3-b678-56342cd05caa:
+    id: 501cb8f2-e29d-4da3-b678-56342cd05caa
+    content: And that brings me to the blueprint system
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d4690a33-af44-4bf3-94f7-55e8683b58dd:
+    id: d4690a33-af44-4bf3-94f7-55e8683b58dd
+    content: 5. Blueprints
+    children:
+      - 19c815da-7654-46aa-ad75-7215e1a03cac
+      - ed17ea4d-30e7-420c-91fa-70e7e833b495
+      - 92beff42-9c5f-4429-a0f5-2ec841b7073e
+      - a7c16183-14e0-4a3f-b209-52a27c9fa4e6
+      - 7b17e263-6d89-42d1-9760-3809b7ff5c20
+      - b92da6d3-847e-4ec7-bc4a-f8b8d506e53b
+      - bef4e71c-0352-4251-9027-ea6c7ba6c7be
+      - 227d28ed-6135-40e2-a9ff-159f8628ef4a
+      - 66675ffb-1f0f-4432-9855-8a8307aba24c
+      - 2c352996-6c9e-45cc-a302-aeabdf599e8a
+      - fa43f8f9-8823-41c4-9e0f-5eaede775923
+      - 56f14fb6-a2d3-41f6-8bb4-6abea3361b48
+      - 170924e5-3a8a-4239-b7a0-33fb7b36d2b9
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  19c815da-7654-46aa-ad75-7215e1a03cac:
+    id: 19c815da-7654-46aa-ad75-7215e1a03cac
+    content: 3:30 - 5:00
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ed17ea4d-30e7-420c-91fa-70e7e833b495:
+    id: ed17ea4d-30e7-420c-91fa-70e7e833b495
+    content: As you've seen, a context node is considered part of the blueprint
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  92beff42-9c5f-4429-a0f5-2ec841b7073e:
+    id: 92beff42-9c5f-4429-a0f5-2ec841b7073e
+    content: The blueprint is the reusable workflow part of an Arborescent project
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a7c16183-14e0-4a3f-b209-52a27c9fa4e6:
+    id: a7c16183-14e0-4a3f-b209-52a27c9fa4e6
+    content: We can turn any node or branch into a blueprint by right clicking on it
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7b17e263-6d89-42d1-9760-3809b7ff5c20:
+    id: 7b17e263-6d89-42d1-9760-3809b7ff5c20
+    content: It behaves the same as any other node, but gets an icon showing it's a blueprint node
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b92da6d3-847e-4ec7-bc4a-f8b8d506e53b:
+    id: b92da6d3-847e-4ec7-bc4a-f8b8d506e53b
+    content: Let's create a context node and add it to the blueprint — we can use it to organize our contexts
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  bef4e71c-0352-4251-9027-ea6c7ba6c7be:
+    id: bef4e71c-0352-4251-9027-ea6c7ba6c7be
+    content: Blueprints allow you to visually organize your workflows, but also to export them
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  227d28ed-6135-40e2-a9ff-159f8628ef4a:
+    id: 227d28ed-6135-40e2-a9ff-159f8628ef4a
+    content: Exporting as a blueprint creates a new file that strips all non-blueprint nodes
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  66675ffb-1f0f-4432-9855-8a8307aba24c:
+    id: 66675ffb-1f0f-4432-9855-8a8307aba24c
+    content: We can either open that new file as a blueprint project to refine further, or use it to create a new Arbo project
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2c352996-6c9e-45cc-a302-aeabdf599e8a:
+    id: 2c352996-6c9e-45cc-a302-aeabdf599e8a
+    content: There are some default blueprints that ship with Arborescent
+    children:
+      - 9d86106d-cde4-4af9-96c9-493c326ce81d
+      - f76251ba-e01f-417d-bc72-557547d2cb24
+      - 2e6d2141-88be-415c-a74a-cbea247e2f1d
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9d86106d-cde4-4af9-96c9-493c326ce81d:
+    id: 9d86106d-cde4-4af9-96c9-493c326ce81d
+    content: A couple of development-specific blueprints
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f76251ba-e01f-417d-bc72-557547d2cb24:
+    id: f76251ba-e01f-417d-bc72-557547d2cb24
+    content: A research project blueprint
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2e6d2141-88be-415c-a74a-cbea247e2f1d:
+    id: 2e6d2141-88be-415c-a74a-cbea247e2f1d
+    content: A blueprint to help plan a teambuilding event
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fa43f8f9-8823-41c4-9e0f-5eaede775923:
+    id: fa43f8f9-8823-41c4-9e0f-5eaede775923
+    content: Here's the one I created while making Arborescent
+    children:
+      - c2c6c29e-8cca-4bbd-894b-9c3e08a98e48
+      - 69c7005c-dca9-4151-a918-c7813aea3e41
+      - 66cad75a-397a-4f9d-bcfb-abc475d2d9fe
+      - c8688fc1-aec1-423c-ab5c-b3fbb069819d
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c2c6c29e-8cca-4bbd-894b-9c3e08a98e48:
+    id: c2c6c29e-8cca-4bbd-894b-9c3e08a98e48
+    content: Different nodes for technical and functional contexts, project conventions, project philosophy
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  69c7005c-dca9-4151-a918-c7813aea3e41:
+    id: 69c7005c-dca9-4151-a918-c7813aea3e41
+    content: You can link contexts to each other to reuse parts of them — for example I've linked the project conventions to my new feature context
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  66cad75a-397a-4f9d-bcfb-abc475d2d9fe:
+    id: 66cad75a-397a-4f9d-bcfb-abc475d2d9fe
+    content: It should be easy enough to adapt this to other stacks and convention preferences
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c8688fc1-aec1-423c-ab5c-b3fbb069819d:
+    id: c8688fc1-aec1-423c-ab5c-b3fbb069819d
+    content: 'Here''s a typical workflow for me:'
+    children:
+      - 32ae844b-b25b-4009-a68d-fb789b27b771
+      - 748aadee-d0e7-469f-97a2-bb07ed132ed3
+      - 82526b9d-de4e-4700-ba8c-82ad9184aa35
+      - 356e1591-597b-4b54-ba93-09babc35de2e
+      - 5ffc59e5-69fd-4aa9-afc5-727cd042e718
+      - ec00709c-1a25-4d96-8e9e-62208a43efdb
+      - e811592b-8031-414c-aa01-f6c4696074fa
+      - 53660539-5bcc-4157-8e33-a738316dc88f
+      - 68821e8a-c52c-435f-b0be-75f393ce0b64
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  32ae844b-b25b-4009-a68d-fb789b27b771:
+    id: 32ae844b-b25b-4009-a68d-fb789b27b771
+    content: Write acceptance criteria, then review them from a functional perspective
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  748aadee-d0e7-469f-97a2-bb07ed132ed3:
+    id: 748aadee-d0e7-469f-97a2-bb07ed132ed3
+    content: Code them using my new feature context
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  82526b9d-de4e-4700-ba8c-82ad9184aa35:
+    id: 82526b9d-de4e-4700-ba8c-82ad9184aa35
+    content: Review the code manually and create a refactor list
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  356e1591-597b-4b54-ba93-09babc35de2e:
+    id: 356e1591-597b-4b54-ba93-09babc35de2e
+    content: Send the refactor list using a special context
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5ffc59e5-69fd-4aa9-afc5-727cd042e718:
+    id: 5ffc59e5-69fd-4aa9-afc5-727cd042e718
+    content: Test the application and note any bugs
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ec00709c-1a25-4d96-8e9e-62208a43efdb:
+    id: ec00709c-1a25-4d96-8e9e-62208a43efdb
+    content: Send the bugs with a special context to fix them
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e811592b-8031-414c-aa01-f6c4696074fa:
+    id: e811592b-8031-414c-aa01-f6c4696074fa
+    content: Another manual review then repeat until happy
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  53660539-5bcc-4157-8e33-a738316dc88f:
+    id: 53660539-5bcc-4157-8e33-a738316dc88f
+    content: Review the code with "Review since last commit" to make sure it's clean
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  68821e8a-c52c-435f-b0be-75f393ce0b64:
+    id: 68821e8a-c52c-435f-b0be-75f393ce0b64
+    content: Commit
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  56f14fb6-a2d3-41f6-8bb4-6abea3361b48:
+    id: 56f14fb6-a2d3-41f6-8bb4-6abea3361b48
+    content: The idea of blueprints is that you can share and refine them with your team, or open source them to share with a community. If you have blueprints you would like to share, you can make a merge request to add them to the project defaults.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  295bcfbc-d90b-435d-a753-e2d1d28e4a02:
+    id: 295bcfbc-d90b-435d-a753-e2d1d28e4a02
+    content: 6. Closing
+    children:
+      - 42428681-2efd-4fc9-8195-908b546848f6
+      - c88ce0b8-827c-4fd0-8f78-51483f1c7ccf
+      - 3de7f54e-4a87-479f-859f-b5c8ec4b0fda
+      - 2a27ce65-4e0c-47b0-bc25-96230c222e23
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  42428681-2efd-4fc9-8195-908b546848f6:
+    id: 42428681-2efd-4fc9-8195-908b546848f6
+    content: 5:00 - 5:30
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c88ce0b8-827c-4fd0-8f78-51483f1c7ccf:
+    id: c88ce0b8-827c-4fd0-8f78-51483f1c7ccf
+    content: Arborescent is a powerful tool for organizing projects and workflows, AI powered or not.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3de7f54e-4a87-479f-859f-b5c8ec4b0fda:
+    id: 3de7f54e-4a87-479f-859f-b5c8ec4b0fda
+    content: The project is open source under the GPL licence — feel free to contribute, fork, make a feature request, or contact me with your ideas on the project Discord.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  efdde5eb-b0d5-46b2-bad7-e8a46231afd9:
+    id: efdde5eb-b0d5-46b2-bad7-e8a46231afd9
+    content: Use zustand store management if there is too much props passing
+    children: []
+    metadata:
+      status: pending
+  170924e5-3a8a-4239-b7a0-33fb7b36d2b9:
+    id: 170924e5-3a8a-4239-b7a0-33fb7b36d2b9
+    content: All arbo files including blueprints are in YAML format and human readable, so you can commit arbo files to your git projects and review the changes with your colleauges.
+    children: []
+    metadata:
+      status: pending
+  2a27ce65-4e0c-47b0-bc25-96230c222e23:
+    id: 2a27ce65-4e0c-47b0-bc25-96230c222e23
+    content: The project link is in the video description below.
+    children: []
+    metadata:
+      status: pending
