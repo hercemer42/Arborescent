@@ -10,10 +10,10 @@ Share your workflows with your community or team.
 
 ## Why Arborescent?
 
-Building with AI without oversight means losing control over your vision and architecture, ending up with something that doesn't scale.
-Arborescent lets you define and share your context and workflows, giving you full creative control while cutting out the repetition.
-As teams and communities encode their expertise into shared blueprints, AI interactions get better for everyone. Beginners stay relevant by benefiting from senior experience.
-Over time, human knowledge and AI capability compound — each making the other more effective.
+Building with AI without oversight means losing control over your vision and architecture, ending up with something that doesn't scale.  
+Arborescent lets you define and share your context and workflows, giving you full creative control while cutting out the repetition.  
+As teams and communities encode their expertise into shared blueprints, AI interactions get better for everyone. Beginners stay relevant by benefiting from senior experience.  
+Over time, human knowledge and AI capability compound — each making the other more effective.  
 
 Arborscent is free and open source under GPL.
 
