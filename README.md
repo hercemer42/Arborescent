@@ -15,7 +15,7 @@ Arborescent lets you define and share your context and workflows, giving you ful
 As teams and communities encode their expertise into shared blueprints, AI interactions get better for everyone. Beginners stay relevant by benefiting from senior experience.  
 Over time, human knowledge and AI capability compound — each making the other more effective.  
 
-Arborscent is free and open source under GPL.
+Arborescent is free and open source under GPL.
 
 Here is Arborescent being used to build itself:
 
