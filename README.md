@@ -11,10 +11,11 @@ Share your workflows with your community or team.
 ## Why Arborescent?
 
 Building with AI without oversight means losing control over your vision and architecture, ending up with something that doesn't scale.
-Arborescent lets you define and share your context and workflows, giving you full control over what you make while cutting out the repetition.
+Arborescent lets you define and share your context and workflows, giving you full creative control while cutting out the repetition.
 As teams and communities encode their expertise into shared blueprints, AI interactions get better for everyone. Beginners stay relevant by benefiting from senior experience.
 Over time, human knowledge and AI capability compound — each making the other more effective.
-Free and open source under GPL.
+
+Arborscent is free and open source under GPL.
 
 Here is Arborescent being used to build itself:
 
@@ -25,7 +26,7 @@ Here is Arborescent being used to build itself:
 - **Tree-based decomposition** — Fully featured outliner with keyboard navigation and drag and drop.
 - **AI integration** — Build your prompt and send it to the integrated terminal or browser.
 - **Reusable contexts** — Define contexts once, apply them to any branch. Changes are inherited automatically.
-- **Blueprints** — Create, share, and import workflows for your team or community.
+- **Knowledge as infrastructure** — Encode your context and workflows as blueprints, share with your team or community.
 
 ## Quick start
 
