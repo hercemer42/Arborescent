@@ -17,6 +17,8 @@ As teams and communities encode their expertise into shared blueprints, AI inter
 
 Arborescent is free and open source under GPL.
 
+[See it in action](https://youtu.be/0UzHpRWUo6E)
+
 Here is Arborescent being used to build itself:
 
 ![Arborescent building Arborescent](docs/screenshot.png)
