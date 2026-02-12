@@ -13,7 +13,7 @@ export function createBlankDocument(): {
     nodes: {
       [rootId]: createTreeNode(rootId, {
         children: [firstNodeId],
-        metadata: { isRoot: true },
+        metadata: { isRoot: true, isBlueprint: true },
       }),
       [firstNodeId]: createTreeNode(firstNodeId, {
         metadata: { status: 'pending' },

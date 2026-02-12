@@ -35,7 +35,7 @@ Here is Arborescent being used to build itself:
 3. Open your preferred AI in the terminal or browser
 4. Right-click to send your prompt
 
-This is an early release — if you find bugs or have feedback, please [open an issue](https://github.com/hercemer42/Arborescent/issues).
+This is an early release — if you find bugs or have feedback, please [open an issue](https://github.com/hercemer42/Arborescent/issues).  
 If you run into any blockers, restart the application with Ctrl + R without losing your work.
 
 ## Example blueprints
@@ -88,4 +88,4 @@ npm run make          # Create installers
 
 ## License
 
-GPL-3.0-only
+GPL-3.0
