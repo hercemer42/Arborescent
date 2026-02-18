@@ -157,7 +157,7 @@ export function buildContentWithContext(
 
   let nodeContent: string;
   if (resolveHyperlinks && isBlueprintNode(nodeId, nodes, ancestorRegistry)) {
-    nodeContent = exportContextAsMarkdown(node, nodes, 0, nodeId);
+    nodeContent = exportContextAsMarkdown(node, nodes, 0, new Set([nodeId]));
   } else {
     nodeContent = exportNodeAsMarkdown(node, nodes);
   }
@@ -167,7 +167,7 @@ export function buildContentWithContext(
   for (const contextId of contextIds) {
     const contextNode = nodes[contextId];
     if (contextNode) {
-        contextPrefix += exportContextAsMarkdown(contextNode, nodes, 0, contextId) + '\n';
+        contextPrefix += exportContextAsMarkdown(contextNode, nodes, 0, new Set([contextId])) + '\n';
     }
   }
 

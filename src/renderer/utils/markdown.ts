@@ -59,7 +59,7 @@ export function exportContextAsMarkdown(
   node: TreeNode,
   nodes: NodesMap,
   depth: number = 0,
-  contextNodeId?: string
+  visitedNodeIds?: Set<string>
 ): string {
   if (node.metadata.deleted) {
     return '';
@@ -67,8 +67,10 @@ export function exportContextAsMarkdown(
 
   if (node.metadata.isHyperlink === true) {
     const linkedNodeId = node.metadata.linkedNodeId as string | undefined;
-    if (linkedNodeId && nodes[linkedNodeId] && linkedNodeId !== contextNodeId) {
-      return exportNodeAsMarkdown(nodes[linkedNodeId], nodes, depth);
+    if (linkedNodeId && nodes[linkedNodeId] && !visitedNodeIds?.has(linkedNodeId)) {
+      const newVisited = new Set(visitedNodeIds);
+      newVisited.add(linkedNodeId);
+      return exportContextAsMarkdown(nodes[linkedNodeId], nodes, depth, newVisited);
     }
     return '';
   }
@@ -95,7 +97,7 @@ export function exportContextAsMarkdown(
     node.children.forEach((childId: string) => {
       const childNode = nodes[childId];
       if (childNode) {
-        markdown += exportContextAsMarkdown(childNode, nodes, depth + 1, contextNodeId);
+        markdown += exportContextAsMarkdown(childNode, nodes, depth + 1, visitedNodeIds);
       }
     });
   }

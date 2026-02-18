@@ -362,7 +362,7 @@ describe('exportContextAsMarkdown', () => {
     };
     const nodes = { ctx: contextNode, child1, hyperlink: hyperlinkNode, child2, linked: linkedNode, 'linked-child': linkedChild };
 
-    const result = exportContextAsMarkdown(contextNode, nodes, 0, 'ctx');
+    const result = exportContextAsMarkdown(contextNode, nodes, 0, new Set(['ctx']));
 
     // Linked content should appear in the position of the hyperlink
     expect(result).toBe(
@@ -389,7 +389,7 @@ describe('exportContextAsMarkdown', () => {
     };
     const nodes = { ctx: contextNode, hyperlink: hyperlinkNode };
 
-    const result = exportContextAsMarkdown(contextNode, nodes, 0, 'ctx');
+    const result = exportContextAsMarkdown(contextNode, nodes, 0, new Set(['ctx']));
 
     // Hyperlink to non-existent node should be skipped
     expect(result).toBe('# [ ] Context\n');
@@ -410,13 +410,13 @@ describe('exportContextAsMarkdown', () => {
     };
     const nodes = { ctx: contextNode, hyperlink: hyperlinkNode };
 
-    const result = exportContextAsMarkdown(contextNode, nodes, 0, 'ctx');
+    const result = exportContextAsMarkdown(contextNode, nodes, 0, new Set(['ctx']));
 
     // Hyperlink to self should be skipped
     expect(result).toBe('# [ ] Context\n');
   });
 
-  it('handles nested hyperlinks (depth=1, no recursive resolution)', () => {
+  it('handles nested hyperlinks with recursive resolution', () => {
     const contextNode: TreeNode = {
       id: 'ctx',
       content: 'Context',
@@ -449,12 +449,92 @@ describe('exportContextAsMarkdown', () => {
     };
     const nodes = { ctx: contextNode, hyperlink1, linked: linkedNode, hyperlink2, deep: deepNode };
 
-    const result = exportContextAsMarkdown(contextNode, nodes, 0, 'ctx');
+    const result = exportContextAsMarkdown(contextNode, nodes, 0, new Set(['ctx']));
 
-    // Hyperlink2 within linked content is skipped (hyperlinks are not included in exported content)
+    // Nested hyperlinks are now recursively resolved
     expect(result).toBe(
       '# [ ] Context\n' +
-      '## [ ] Linked content\n'
+      '## [ ] Linked content\n' +
+      '### [x] Deep content\n'
+    );
+  });
+
+  it('handles circular references at depth > 1 (A → B → A)', () => {
+    const nodeA: TreeNode = {
+      id: 'a',
+      content: 'Node A',
+      children: ['link-to-b'],
+      metadata: { status: 'pending' },
+    };
+    const linkToB: TreeNode = {
+      id: 'link-to-b',
+      content: 'Link to B',
+      children: [],
+      metadata: { status: 'pending', isHyperlink: true, linkedNodeId: 'b' },
+    };
+    const nodeB: TreeNode = {
+      id: 'b',
+      content: 'Node B',
+      children: ['link-to-a'],
+      metadata: { status: 'pending' },
+    };
+    const linkToA: TreeNode = {
+      id: 'link-to-a',
+      content: 'Link to A',
+      children: [],
+      metadata: { status: 'pending', isHyperlink: true, linkedNodeId: 'a' },
+    };
+    const nodes = { a: nodeA, 'link-to-b': linkToB, b: nodeB, 'link-to-a': linkToA };
+
+    const result = exportContextAsMarkdown(nodeA, nodes, 0, new Set(['a']));
+
+    // B is resolved, but the back-link to A is skipped (circular)
+    expect(result).toBe(
+      '# [ ] Node A\n' +
+      '## [ ] Node B\n'
+    );
+  });
+
+  it('resolves longer hyperlink chains (A → B → C)', () => {
+    const nodeA: TreeNode = {
+      id: 'a',
+      content: 'Node A',
+      children: ['link-to-b'],
+      metadata: { status: 'pending' },
+    };
+    const linkToB: TreeNode = {
+      id: 'link-to-b',
+      content: 'Link to B',
+      children: [],
+      metadata: { status: 'pending', isHyperlink: true, linkedNodeId: 'b' },
+    };
+    const nodeB: TreeNode = {
+      id: 'b',
+      content: 'Node B',
+      children: ['link-to-c'],
+      metadata: { status: 'pending' },
+    };
+    const linkToC: TreeNode = {
+      id: 'link-to-c',
+      content: 'Link to C',
+      children: [],
+      metadata: { status: 'pending', isHyperlink: true, linkedNodeId: 'c' },
+    };
+    const nodeC: TreeNode = {
+      id: 'c',
+      content: 'Node C',
+      children: [],
+      metadata: { status: 'completed' },
+    };
+    const nodes = { a: nodeA, 'link-to-b': linkToB, b: nodeB, 'link-to-c': linkToC, c: nodeC };
+
+    const result = exportContextAsMarkdown(nodeA, nodes, 0, new Set(['a']));
+
+    // Full chain is resolved: A → B → C
+    expect(result).toBe(
+      '# [ ] Node A\n' +
+      '## [ ] Node B\n' +
+      '### [x] Node C\n'
     );
   });
 });
