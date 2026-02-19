@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-02-18T16:53:23.146Z'
+updated: '2026-02-19T13:14:57.891Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -5272,7 +5272,7 @@ nodes:
       status: pending
       isContextDeclaration: true
       blueprintIcon: Recycle
-      expanded: false
+      expanded: true
       blueprintColor: '#a855f7'
       isBlueprint: true
   59f2421c-d726-43ec-8347-ccf2874922a4:
@@ -5316,7 +5316,7 @@ nodes:
       - 5288b678-63dc-4672-b1b3-8e2b540c04de
     metadata:
       status: pending
-      expanded: true
+      expanded: false
       appliedContextIds:
         - e8824b29-eb18-4031-9e35-b321a864d418
       activeContextId: e8824b29-eb18-4031-9e35-b321a864d418
@@ -5925,7 +5925,7 @@ nodes:
       - bf7a428b-6e45-4024-8eea-a1491604e927
     metadata:
       status: pending
-      expanded: false
+      expanded: true
       deleted: false
       plugins: {}
       isContextDeclaration: true
@@ -6219,7 +6219,7 @@ nodes:
       - a4c333be-a8a4-4c0f-8148-b2260507f5ad
     metadata:
       status: pending
-      expanded: false
+      expanded: true
       appliedContextIds:
         - 64ea2af4-332b-44a6-8b88-78535cc9b79a
       activeContextId: 64ea2af4-332b-44a6-8b88-78535cc9b79a
@@ -9059,6 +9059,7 @@ nodes:
       - 4264aa2a-e101-4dd6-b971-1d0deb8ce03d
       - e8b96096-b0ba-42f8-91cd-37fea6028a85
       - 9d367ab4-0554-4138-8caf-2b9aaf770c5f
+      - c7009a9e-eecb-46e1-82ad-2e8370e90ee5
       - 443ed04c-12ba-43fb-a6b2-e3b14da356a3
       - 0985b5a6-8be4-43f5-95f2-c5c76575708e
     metadata:
@@ -15486,7 +15487,13 @@ nodes:
   a4c333be-a8a4-4c0f-8148-b2260507f5ad:
     id: a4c333be-a8a4-4c0f-8148-b2260507f5ad
     content: In progress
-    children: []
+    children:
+      - 49aa1182-603a-4666-b220-eed28f1c7287
+      - 03a04b6f-3c36-4c90-8488-3c2110dbfaf1
+      - f364674a-a805-4dd3-bbe6-40897a4cc244
+      - 1b9ba584-15f3-42b5-8bca-686d1df53793
+      - 0f08fb22-2663-49a9-902b-7d6cfeeea7e3
+      - 4c9eabd6-86f4-4b0d-92bb-a41b5c390e52
     metadata:
       status: pending
       expanded: true
@@ -15500,7 +15507,6 @@ nodes:
       blueprintIcon: Cog
       blueprintColor: '#14b8a6'
       isBlueprint: true
-      appliedContextId: 1e2f062a-bbaa-4a02-b58b-a94ab15d8d74
   42f6288a-d579-40ef-981d-ea59c974a7be:
     id: 42f6288a-d579-40ef-981d-ea59c974a7be
     content: Add panel toggle commands to View menu
@@ -17142,7 +17148,7 @@ nodes:
       - 5752a9e6-7729-4d54-bd24-66f26a48e87b
     metadata:
       status: pending
-      expanded: true
+      expanded: false
       isBlueprint: true
       blueprintIcon: LayoutList
       blueprintColor: '#14b8a6'
@@ -24255,6 +24261,7 @@ nodes:
       - 70f2edbc-379e-4273-b4c5-03b6b050ba95
       - d499d253-9df4-429f-9286-9f781ae458a5
       - 5a1a78bb-2265-4017-bfb2-e0388a395cd9
+      - a642758f-e52c-45ff-97f0-c37ccda2719b
       - 4c6ec09f-34b8-44bd-ab91-ab14e4531045
     metadata:
       status: pending
@@ -24307,6 +24314,7 @@ nodes:
       - efa74368-fc42-4a11-ae82-7016b10005e7
       - d82d32bd-8cb4-4c91-9012-f9d33b4a3370
       - c45c20c8-6fa4-423a-9ef4-78a9542090de
+      - a58ec68c-551c-4748-b031-4580270d37b9
       - 7c1787fe-1f86-43dc-b1a5-46481be74830
       - b05fd475-9cb6-4e35-985a-c3d727ac0030
     metadata:
@@ -24316,7 +24324,7 @@ nodes:
       plugins: {}
   efa74368-fc42-4a11-ae82-7016b10005e7:
     id: efa74368-fc42-4a11-ae82-7016b10005e7
-    content: Right click on a blueprint node → Blueprint → Declare as workflow
+    content: Right click on any node that has a blueprint as a parent → Blueprint → Declare as workflow
     children: []
     metadata:
       status: pending
@@ -24334,7 +24342,7 @@ nodes:
       plugins: {}
   c45c20c8-6fa4-423a-9ef4-78a9542090de:
     id: c45c20c8-6fa4-423a-9ef4-78a9542090de
-    content: A workflow node is automatically a blueprint node
+    content: Adding a node as a workflow node automatically adds it as a blueprint node
     children: []
     metadata:
       status: pending
@@ -24375,6 +24383,7 @@ nodes:
     children:
       - 058c68e4-2901-4548-890a-2a2d78363309
       - 68c3a885-1dfd-4b6d-91e8-a6b96f51cecd
+      - 2ff04dc3-c2ef-4f4a-820a-6ef31622c2a8
     metadata:
       status: pending
       expanded: true
@@ -24382,7 +24391,7 @@ nodes:
       plugins: {}
   058c68e4-2901-4548-890a-2a2d78363309:
     id: 058c68e4-2901-4548-890a-2a2d78363309
-    content: 'Workflow node: small play symbol to the left of the blueprint icon (does not replace it)'
+    content: 'Workflow node: small play symbol overlaid (not inline) to the left of the blueprint icon (does not replace it)'
     children: []
     metadata:
       status: pending
@@ -24402,7 +24411,7 @@ nodes:
       plugins: {}
   82c6d06b-3d27-492c-836a-f067c3d36c96:
     id: 82c6d06b-3d27-492c-836a-f067c3d36c96
-    content: Numbers are small, black (white in dark mode), centered
+    content: Numbers are small, black (white in dark mode), centered, overlaid (not inline)
     children: []
     metadata:
       status: pending
@@ -24425,6 +24434,7 @@ nodes:
       - 460701f8-cf02-4763-9c77-17df512ea117
       - de6113c1-4e8e-45c9-867e-b70d337d9cca
       - a3dfe008-fdf3-4032-a616-86c8502b0cee
+      - 513bcd5f-a053-46b4-993e-4feb49021a1a
       - 0778e27d-1c74-46cf-be47-88c95366b2cd
       - c4815b2d-36a6-4864-96e1-596bdc18c949
       - b17f1ef5-7c1e-4ee8-891d-85251be45b83
@@ -24523,3 +24533,203 @@ nodes:
     metadata:
       status: pending
       isBlueprint: true
+  a58ec68c-551c-4748-b031-4580270d37b9:
+    id: a58ec68c-551c-4748-b031-4580270d37b9
+    content: All immediate children are automatically added as workflow steps
+    children:
+      - 4969c76f-6696-441b-82f8-1acbc3790f5b
+      - 6aa5a812-7be9-4c43-9ef0-9f1f932c9e8b
+    metadata:
+      status: pending
+  4969c76f-6696-441b-82f8-1acbc3790f5b:
+    id: 4969c76f-6696-441b-82f8-1acbc3790f5b
+    content: A workflow step is also a blueprint
+    children: []
+    metadata:
+      status: pending
+  6aa5a812-7be9-4c43-9ef0-9f1f932c9e8b:
+    id: 6aa5a812-7be9-4c43-9ef0-9f1f932c9e8b
+    content: If any workflow step is not already a blueprint, add it as one
+    children: []
+    metadata:
+      status: pending
+  2ff04dc3-c2ef-4f4a-820a-6ef31622c2a8:
+    id: 2ff04dc3-c2ef-4f4a-820a-6ef31622c2a8
+    content: Important that the workflow play icon and workflow step numbered icons do not disrupt the existing visual placement
+    children: []
+    metadata:
+      status: pending
+  a642758f-e52c-45ff-97f0-c37ccda2719b:
+    id: a642758f-e52c-45ff-97f0-c37ccda2719b
+    content: Edge cases
+    children:
+      - edc4b1b8-3343-4d49-9eb6-6c5f1310ee96
+      - e5152a23-2f36-485a-80e1-7b85f51f73b0
+    metadata:
+      status: pending
+  edc4b1b8-3343-4d49-9eb6-6c5f1310ee96:
+    id: edc4b1b8-3343-4d49-9eb6-6c5f1310ee96
+    content: "Disable the 'remove from blueprint' option from the context menu for workflow nodes and workflow steps.\_ They can only be removed from the blueprint once they are removed from the workflow"
+    children: []
+    metadata:
+      status: pending
+  e5152a23-2f36-485a-80e1-7b85f51f73b0:
+    id: e5152a23-2f36-485a-80e1-7b85f51f73b0
+    content: Adding a child node to a workflow automatically declares it as a blueprint and adds it as a workflow step
+    children: []
+    metadata:
+      status: pending
+  c7009a9e-eecb-46e1-82ad-2e8370e90ee5:
+    id: c7009a9e-eecb-46e1-82ad-2e8370e90ee5
+    content: Insure that the tests were updated for all edited files
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  f364674a-a805-4dd3-bbe6-40897a4cc244:
+    id: f364674a-a805-4dd3-bbe6-40897a4cc244
+    content: Add tests for edited files
+    children:
+      - f8810b1d-f673-447c-8531-00bb203093ac
+      - 37235024-e8d8-4e40-b2ab-a272af8bb03c
+      - d849faa2-bdd7-4d59-99f1-8fb02a59ee33
+      - 235e2854-59df-4230-a011-3d54f8e67050
+    metadata:
+      status: pending
+  f8810b1d-f673-447c-8531-00bb203093ac:
+    id: f8810b1d-f673-447c-8531-00bb203093ac
+    content: nodeContext.tsx
+    children: []
+    metadata:
+      status: pending
+  1b9ba584-15f3-42b5-8bca-686d1df53793:
+    id: 1b9ba584-15f3-42b5-8bca-686d1df53793
+    content: there are many helper functions in workflow actions that look like they should be in a helpers file
+    children:
+      - 7af059cd-03b5-4e75-b871-99bc0360bc8a
+    metadata:
+      status: pending
+  37235024-e8d8-4e40-b2ab-a272af8bb03c:
+    id: 37235024-e8d8-4e40-b2ab-a272af8bb03c
+    content: useBlueprintSubMenu.tsx
+    children: []
+    metadata:
+      status: pending
+  7af059cd-03b5-4e75-b871-99bc0360bc8a:
+    id: 7af059cd-03b5-4e75-b871-99bc0360bc8a
+    content: Do you agree ? Verify they are pure functions
+    children: []
+    metadata:
+      status: pending
+  0f08fb22-2663-49a9-902b-7d6cfeeea7e3:
+    id: 0f08fb22-2663-49a9-902b-7d6cfeeea7e3
+    content: useNodeContextMenu
+    children:
+      - a95c9d5d-33e6-4f7d-8b5d-07c3c77aa491
+      - 0af586a8-5172-4b24-a787-4712d47d6946
+      - 48b2f1d7-0ff3-4810-beae-ff155d9dd853
+    metadata:
+      status: pending
+  a95c9d5d-33e6-4f7d-8b5d-07c3c77aa491:
+    id: a95c9d5d-33e6-4f7d-8b5d-07c3c77aa491
+    content: remove the truncateLabel
+    children: []
+    metadata:
+      status: pending
+  0af586a8-5172-4b24-a787-4712d47d6946:
+    id: 0af586a8-5172-4b24-a787-4712d47d6946
+    content: don't display the next/previous node labels under the context menu next/previous steps
+    children:
+      - 8d46494c-90fa-4c67-b55b-b96245d13a3f
+    metadata:
+      status: pending
+  8d46494c-90fa-4c67-b55b-b96245d13a3f:
+    id: 8d46494c-90fa-4c67-b55b-b96245d13a3f
+    content: We can already see the next/previous node names visually in the tree
+    children: []
+    metadata:
+      status: pending
+  513bcd5f-a053-46b4-993e-4feb49021a1a:
+    id: 513bcd5f-a053-46b4-993e-4feb49021a1a
+    content: Don't add the actual step names in next/previous step
+    children: []
+    metadata:
+      status: pending
+  48b2f1d7-0ff3-4810-beae-ff155d9dd853:
+    id: 48b2f1d7-0ff3-4810-beae-ff155d9dd853
+    content: file is getting big, should we refactor into smaller files ?
+    children:
+      - 2bace6a9-59a4-477f-9589-8e34d8f7b26a
+    metadata:
+      status: pending
+  2bace6a9-59a4-477f-9589-8e34d8f7b26a:
+    id: 2bace6a9-59a4-477f-9589-8e34d8f7b26a
+    content: "A file per submenu item ?\_"
+    children: []
+    metadata:
+      status: pending
+  d849faa2-bdd7-4d59-99f1-8fb02a59ee33:
+    id: d849faa2-bdd7-4d59-99f1-8fb02a59ee33
+    content: useNodeContextMenu.tsx
+    children: []
+    metadata:
+      status: pending
+  4c9eabd6-86f4-4b0d-92bb-a41b5c390e52:
+    id: 4c9eabd6-86f4-4b0d-92bb-a41b5c390e52
+    content: workflowActions.ts
+    children:
+      - c2e3eb5d-a096-4176-994c-cbd1ddaf18ad
+      - 8a19ee74-b067-4e95-8ce6-3807c27f25b1
+    metadata:
+      status: pending
+  c2e3eb5d-a096-4176-994c-cbd1ddaf18ad:
+    id: c2e3eb5d-a096-4176-994c-cbd1ddaf18ad
+    content: getWorkflowContext poorly named, implied it relates to the app's context feature
+    children:
+      - b809f59f-fd18-49b9-9af2-0f318ef9014a
+    metadata:
+      status: pending
+  b809f59f-fd18-49b9-9af2-0f318ef9014a:
+    id: b809f59f-fd18-49b9-9af2-0f318ef9014a
+    content: Find another name
+    children: []
+    metadata:
+      status: pending
+  8a19ee74-b067-4e95-8ce6-3807c27f25b1:
+    id: 8a19ee74-b067-4e95-8ce6-3807c27f25b1
+    content: in createWorkflowActions there are toast messages
+    children:
+      - 564b6f07-e742-4439-8c1f-ce652419d6b6
+      - 687cb96d-ef5a-404a-be6b-7cc3e51a662d
+    metadata:
+      status: pending
+  564b6f07-e742-4439-8c1f-ce652419d6b6:
+    id: 564b6f07-e742-4439-8c1f-ce652419d6b6
+    content: but aren't these actions already blocked contextually ?
+    children: []
+    metadata:
+      status: pending
+  687cb96d-ef5a-404a-be6b-7cc3e51a662d:
+    id: 687cb96d-ef5a-404a-be6b-7cc3e51a662d
+    content: If so, will those toast messages actually display ?
+    children: []
+    metadata:
+      status: pending
+  235e2854-59df-4230-a011-3d54f8e67050:
+    id: 235e2854-59df-4230-a011-3d54f8e67050
+    content: BlueprintCommands.tsx
+    children: []
+    metadata:
+      status: pending
+  49aa1182-603a-4666-b220-eed28f1c7287:
+    id: 49aa1182-603a-4666-b220-eed28f1c7287
+    content: Why did you not add tests for NodeContext.tsx ?
+    children: []
+    metadata:
+      status: pending
+  03a04b6f-3c36-4c90-8488-3c2110dbfaf1:
+    id: 03a04b6f-3c36-4c90-8488-3c2110dbfaf1
+    content: Remove little '-' separating next/previous steps from the others in the context menu - it's not necessary
+    children: []
+    metadata:
+      status: pending

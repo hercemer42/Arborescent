@@ -533,7 +533,9 @@ export function shouldInheritBlueprint(
 ): boolean {
   const parent = nodes[parentId];
   if (!parent) return false;
-  return parent.metadata.isContextDeclaration === true || getIsContextChild(parentId, nodes, ancestorRegistry);
+  return parent.metadata.isContextDeclaration === true
+    || parent.metadata.isWorkflow === true
+    || getIsContextChild(parentId, nodes, ancestorRegistry);
 }
 
 export function getInheritedBlueprintIcon(

@@ -1,5 +1,5 @@
 import { memo, createElement } from 'react';
-import { Link } from 'lucide-react';
+import { Link, Play } from 'lucide-react';
 import { TreeNode } from '../../../shared/types';
 import { StatusCheckbox } from '../ui/StatusCheckbox';
 import { ContextMenu } from '../ui/ContextMenu';
@@ -10,6 +10,7 @@ import { useContextIcon } from './hooks/useContextIcon';
 import { useBlueprintIcon } from './hooks/useBlueprintIcon';
 import { useHyperlinkNavigation } from './hooks/useHyperlinkNavigation';
 import { useSearchHighlight } from './hooks/useSearchHighlight';
+import { useWorkflowIndicator } from './hooks/useWorkflowIndicator';
 import './NodeContent.css';
 
 interface NodeContentProps {
@@ -38,6 +39,7 @@ function NodeContentComponent({
 
   const { isContextDeclaration, isContextChild, ContextIcon, contextColor } = useContextIcon(node);
   const { BlueprintIcon, blueprintColor, isInherited: isInheritingBlueprintIcon } = useBlueprintIcon(node);
+  const { isWorkflow, stepNumber } = useWorkflowIndicator(node);
 
   const isHyperlink = node.metadata.isHyperlink === true;
   const isLink = isHyperlink || isExternalLink;
@@ -95,14 +97,24 @@ function NodeContentComponent({
         ? 'blueprint-indicator blueprint-inherited'
         : 'blueprint-indicator';
       return (
-        <button
-          className={blueprintClass}
-          title="Click to change icon"
-          onClick={handleBlueprintIconClick}
-          style={blueprintColor ? { color: blueprintColor } : undefined}
-        >
-          {createElement(BlueprintIcon, { size: 19 })}
-        </button>
+        <span className="blueprint-icon-wrapper">
+          <button
+            className={blueprintClass}
+            title="Click to change icon"
+            onClick={handleBlueprintIconClick}
+            style={blueprintColor ? { color: blueprintColor } : undefined}
+          >
+            {createElement(BlueprintIcon, { size: 19 })}
+          </button>
+          {isWorkflow && (
+            <span className="workflow-indicator">
+              <Play size={10} fill="currentColor" />
+            </span>
+          )}
+          {stepNumber !== null && (
+            <span className="workflow-step-number">{stepNumber}</span>
+          )}
+        </span>
       );
     }
 

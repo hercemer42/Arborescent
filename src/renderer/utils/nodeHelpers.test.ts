@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { getContextDeclarations } from './nodeHelpers';
+import { getContextDeclarations, shouldInheritBlueprint } from './nodeHelpers';
 import type { TreeNode } from '../../shared/types';
 
 describe('getContextDeclarations', () => {
@@ -93,5 +93,41 @@ describe('getContextDeclarations', () => {
 
     const result = getContextDeclarations(nodes);
     expect(result).toEqual([]);
+  });
+});
+
+describe('shouldInheritBlueprint', () => {
+  const createNode = (id: string, metadata: Record<string, unknown> = {}): TreeNode => ({
+    id,
+    content: '',
+    children: [],
+    metadata,
+  });
+
+  it('should return true when parent is a workflow node', () => {
+    const nodes: Record<string, TreeNode> = {
+      'workflow': createNode('workflow', { isBlueprint: true, isWorkflow: true }),
+    };
+    const ancestorRegistry = { 'workflow': [] };
+
+    expect(shouldInheritBlueprint('workflow', nodes, ancestorRegistry)).toBe(true);
+  });
+
+  it('should return false when parent is a regular node', () => {
+    const nodes: Record<string, TreeNode> = {
+      'regular': createNode('regular'),
+    };
+    const ancestorRegistry = { 'regular': [] };
+
+    expect(shouldInheritBlueprint('regular', nodes, ancestorRegistry)).toBe(false);
+  });
+
+  it('should return true when parent is a context declaration', () => {
+    const nodes: Record<string, TreeNode> = {
+      'context': createNode('context', { isContextDeclaration: true }),
+    };
+    const ancestorRegistry = { 'context': [] };
+
+    expect(shouldInheritBlueprint('context', nodes, ancestorRegistry)).toBe(true);
   });
 });

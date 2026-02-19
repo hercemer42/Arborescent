@@ -14,6 +14,7 @@ import { createCollaborateActions, CollaborateActions } from './actions/collabor
 import { createClipboardActions, ClipboardActions } from './actions/clipboardActions';
 import { createExecuteActions, ExecuteActions } from './actions/executeActions';
 import { createSummaryActions, SummaryActions } from './actions/summaryActions';
+import { createWorkflowActions, WorkflowActions } from './actions/workflowActions';
 import { HistoryManager } from './commands/HistoryManager';
 import { StorageService } from '@platform';
 
@@ -51,7 +52,7 @@ export interface TreeState {
   summaryDateTo: string | null;
   summaryVisibleNodeIds: Set<string> | null;
 
-  actions: NodeActions & ContextActions & BlueprintActions & NavigationActions & PersistenceActions & NodeMovementActions & NodeDeletionActions & VisualEffectsActions & SelectionActions & HistoryActions & CollaborateActions & ClipboardActions & ExecuteActions & SummaryActions;
+  actions: NodeActions & ContextActions & BlueprintActions & NavigationActions & PersistenceActions & NodeMovementActions & NodeDeletionActions & VisualEffectsActions & SelectionActions & HistoryActions & CollaborateActions & ClipboardActions & ExecuteActions & SummaryActions & WorkflowActions;
 }
 
 const storageService = new StorageService();
@@ -125,6 +126,7 @@ export function createTreeStore(treeType: TreeType = 'workspace') {
         ...clipboardActions,
         ...executeActions,
         ...createSummaryActions(get, set, persistenceActions.autoSave),
+        ...createWorkflowActions(get, set, persistenceActions.autoSave, historyActions.executeCommand, visualEffectsActions),
       },
     };
   });

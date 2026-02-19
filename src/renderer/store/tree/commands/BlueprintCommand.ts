@@ -9,6 +9,7 @@ interface BlueprintState {
   blueprintColor: string | undefined;
   isContextDeclaration: boolean | undefined;
   appliedContextId: string | undefined;
+  isWorkflow: boolean | undefined;
 }
 
 export class BlueprintCommand extends BaseCommand {
@@ -124,6 +125,7 @@ export class BlueprintCommand extends BaseCommand {
       blueprintColor: undefined,
       isContextDeclaration: false,
       appliedContextId: undefined,
+      isWorkflow: undefined,
     });
     this.affectedNodeIds.push(this.nodeId);
 
@@ -160,6 +162,7 @@ export class BlueprintCommand extends BaseCommand {
           blueprintColor: undefined,
           isContextDeclaration: false,
           appliedContextId: undefined,
+          isWorkflow: undefined,
         });
         this.affectedNodeIds.push(childId);
         updatedNodes = this.removeDescendants(childId, updatedNodes, originalNodes);
@@ -178,6 +181,7 @@ export class BlueprintCommand extends BaseCommand {
         blueprintColor: node.metadata.blueprintColor as string | undefined,
         isContextDeclaration: node.metadata.isContextDeclaration as boolean | undefined,
         appliedContextId: node.metadata.appliedContextId as string | undefined,
+        isWorkflow: node.metadata.isWorkflow as boolean | undefined,
       });
     }
   }
@@ -241,6 +245,7 @@ export class BlueprintCommand extends BaseCommand {
           blueprintColor: previousState.blueprintColor,
           isContextDeclaration: previousState.isContextDeclaration,
           appliedContextId: previousState.appliedContextId,
+          isWorkflow: previousState.isWorkflow,
         });
       }
     }

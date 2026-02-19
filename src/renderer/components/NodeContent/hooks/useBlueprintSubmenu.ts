@@ -2,6 +2,7 @@ import { TreeNode } from '../../../../shared/types';
 import { ContextMenuItem } from '../../ui/ContextMenu';
 import { getIsContextChild } from '../../../utils/nodeHelpers';
 import { AncestorRegistry } from '../../../services/ancestry';
+import { hasAncestorWorkflow, hasDescendantWorkflow } from '../../../utils/workflowHelpers';
 
 interface BuildBlueprintSubmenuParams {
   node: TreeNode;
@@ -12,6 +13,8 @@ interface BuildBlueprintSubmenuParams {
   onRemoveFromBlueprint: () => void;
   onDeclareAsContext: () => void;
   onRemoveContextDeclaration: () => void;
+  onDeclareAsWorkflow?: () => void;
+  onRemoveFromWorkflow?: () => void;
 }
 
 function hasDescendantBlueprints(nodeId: string, nodes: Record<string, TreeNode>): boolean {
@@ -37,6 +40,8 @@ export function buildBlueprintSubmenu({
   onRemoveFromBlueprint,
   onDeclareAsContext,
   onRemoveContextDeclaration,
+  onDeclareAsWorkflow,
+  onRemoveFromWorkflow,
 }: BuildBlueprintSubmenuParams): ContextMenuItem | null {
   const nodes = getNodes();
   const ancestorRegistry = getAncestorRegistry();
@@ -64,6 +69,9 @@ export function buildBlueprintSubmenu({
 
   const submenuItems: ContextMenuItem[] = [];
 
+  const isWorkflowOrStep = node.metadata.isWorkflow === true
+    || parent?.metadata.isWorkflow === true;
+
   // Blueprint add/remove items (not for context declarations or context children)
   if (!isContextDeclaration && !isContextChild) {
     if (!isBlueprint) {
@@ -77,7 +85,7 @@ export function buildBlueprintSubmenu({
           onClick: onAddToBlueprintWithDescendants,
         });
       }
-    } else {
+    } else if (!isWorkflowOrStep) {
       submenuItems.push({
         label: 'Remove from Blueprint',
         onClick: handleRemove,
@@ -102,6 +110,27 @@ export function buildBlueprintSubmenu({
     });
   }
 
+  const isWorkflow = node.metadata.isWorkflow === true;
+  const canDeclareAsWorkflow = parent?.metadata.isBlueprint === true
+    && !isWorkflow
+    && !hasAncestorWorkflow(node.id, nodes, ancestorRegistry)
+    && !hasDescendantWorkflow(node.id, nodes);
+
+  if (canDeclareAsWorkflow && onDeclareAsWorkflow) {
+    if (submenuItems.length > 0) submenuItems.push(SEPARATOR);
+    submenuItems.push({
+      label: 'Declare as Workflow',
+      onClick: onDeclareAsWorkflow,
+    });
+  }
+
+  if (isWorkflow && onRemoveFromWorkflow) {
+    if (submenuItems.length > 0) submenuItems.push(SEPARATOR);
+    submenuItems.push({
+      label: 'Remove from Workflow',
+      onClick: onRemoveFromWorkflow,
+    });
+  }
 
   // Only show menu if there's something to display
   if (submenuItems.length === 0) {

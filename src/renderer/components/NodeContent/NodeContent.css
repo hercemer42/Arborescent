@@ -143,6 +143,40 @@
   margin: -1px -2px;
 }
 
+.blueprint-icon-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.workflow-indicator {
+  position: absolute;
+  left: -10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 10px;
+  height: 10px;
+  color: var(--gray-600);
+  pointer-events: none;
+}
+
+.workflow-step-number {
+  position: absolute;
+  left: -10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 12px;
+  height: 12px;
+  font-size: 9px;
+  font-weight: 700;
+  color: var(--gray-600);
+  line-height: 1;
+  pointer-events: none;
+}
+
 .node-text mark.search-highlight {
   background: #06c;
   color: #fff;
