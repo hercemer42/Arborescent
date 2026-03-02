@@ -1,7 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { ipcMain, dialog, BrowserWindow } from 'electron';
 import { vol } from 'memfs';
-import { registerIpcHandlers } from '../ipcService';
+import { registerIpcHandlers } from '../../handlers';
 import { logger } from '../logger';
 
 // Mock electron
@@ -329,7 +329,7 @@ describe('ipcService', () => {
     });
 
     it('should start clipboard monitor when handler is called', async () => {
-      const clipboardMonitorModule = await import('../clipboardMonitor');
+      const clipboardMonitorModule = await import('../../services/clipboardMonitor');
       const startSpy = vi.spyOn(clipboardMonitorModule.clipboardMonitor, 'start');
 
       await registerIpcHandlers(() => mockWindow);
@@ -341,7 +341,7 @@ describe('ipcService', () => {
     });
 
     it('should not start monitor if no window available', async () => {
-      const clipboardMonitorModule = await import('../clipboardMonitor');
+      const clipboardMonitorModule = await import('../../services/clipboardMonitor');
       const startSpy = vi.spyOn(clipboardMonitorModule.clipboardMonitor, 'start');
 
       await registerIpcHandlers(() => null);
@@ -353,7 +353,7 @@ describe('ipcService', () => {
     });
 
     it('should stop clipboard monitor when handler is called', async () => {
-      const clipboardMonitorModule = await import('../clipboardMonitor');
+      const clipboardMonitorModule = await import('../../services/clipboardMonitor');
       const stopSpy = vi.spyOn(clipboardMonitorModule.clipboardMonitor, 'stop');
 
       await registerIpcHandlers(() => mockWindow);
@@ -373,7 +373,7 @@ describe('ipcService', () => {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } as any;
 
-      const clipboardMonitorModule = await import('../clipboardMonitor');
+      const clipboardMonitorModule = await import('../../services/clipboardMonitor');
       let monitorCallback: ((content: string) => void) | undefined;
       vi.spyOn(clipboardMonitorModule.clipboardMonitor, 'start').mockImplementation((callback) => {
         monitorCallback = callback;

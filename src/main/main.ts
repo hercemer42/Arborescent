@@ -1,7 +1,7 @@
 import { app, BrowserWindow, ipcMain } from 'electron';
 import path from 'node:path';
 import started from 'electron-squirrel-startup';
-import { registerIpcHandlers } from './services/ipcService';
+import { registerIpcHandlers } from './handlers';
 import { createApplicationMenu } from './services/menuService';
 import { registerTerminalHandlers, cleanupTerminals } from './handlers/terminalHandlers';
 import { logger } from './services/logger';
