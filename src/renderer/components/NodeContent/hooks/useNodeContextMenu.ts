@@ -18,7 +18,7 @@ import { getPositionFromPoint } from '../../../utils/position';
 import { useIconPickerStore } from '../../../store/iconPicker/iconPickerStore';
 import { useSpellcheck } from './useSpellcheck';
 import { waitForSpellcheckUpdate, useSpellcheckStore } from '../../../store/spellcheck/spellcheckStore';
-import { getKeyForAction } from '../../../data/hotkeyConfig';
+import { getKeyForAction } from '../../../utils/hotkeyConfig';
 import { formatHotkeyForDisplay } from '../../../utils/hotkeyUtils';
 
 export function useNodeContextMenu(node: TreeNode) {

@@ -2,7 +2,7 @@ import { Menu } from './Menu';
 import { MenuItem } from './MenuItem';
 import { MenuSeparator } from './MenuSeparator';
 import { useViewMenuState } from './hooks/useViewMenuState';
-import { getKeyForAction } from '../../data/hotkeyConfig';
+import { getKeyForAction } from '../../utils/hotkeyConfig';
 import { formatHotkeyForDisplay } from '../../utils/hotkeyUtils';
 
 export function ViewMenu() {

@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { resetHotkeyConfig } from '../../../data/hotkeyConfig';
+import { resetHotkeyConfig } from '../../../utils/hotkeyConfig';
 import { initializeUIService } from '../uiService';
 import { useHotkeyContextStore } from '../../../store/hotkey/hotkeyContextStore';
 

@@ -1,7 +1,7 @@
 import { useFilesStore } from '../../store/files/filesStore';
 import { useSearchStore } from '../../store/search/searchStore';
 import { useToastStore } from '../../store/toast/toastStore';
-import { matchesHotkey } from '../../data/hotkeyConfig';
+import { matchesHotkey } from '../../utils/hotkeyConfig';
 import { hasTextSelection, isContentEditableFocused, isFocusInPanel, isFocusInTerminalOrBrowser, isInputOrTextareaFocused } from '../../utils/selectionUtils';
 import { getActiveStore } from './shared';
 import { getAppliedContextIdWithInheritance } from '../../utils/nodeHelpers';

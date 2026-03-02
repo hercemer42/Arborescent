@@ -7,3 +7,4 @@ export { useTreeContainer } from './useTreeContainer';
 export { useKeyboardServices } from './useKeyboardServices';
 export { useSpellcheckListener } from './useSpellcheckListener';
 export { useHotkeyContext, useModalHotkeyContext } from './useHotkeyContext';
+export { useAppErrorHandling } from './useAppErrorHandling';

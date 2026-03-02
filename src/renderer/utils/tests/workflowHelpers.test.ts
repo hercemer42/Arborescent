@@ -6,8 +6,8 @@ import {
   getWorkflowStepPosition,
   hasAncestorWorkflow,
   hasDescendantWorkflow,
-} from './workflowHelpers';
-import type { TreeNode } from '../../shared/types';
+} from '../workflowHelpers';
+import type { TreeNode } from '../../../shared/types';
 
 describe('workflowHelpers', () => {
   const createNodes = (): Record<string, TreeNode> => ({

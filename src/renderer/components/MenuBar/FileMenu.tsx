@@ -4,7 +4,7 @@ import { MenuSeparator } from './MenuSeparator';
 import { MenuSubmenu } from './MenuSubmenu';
 import { useFileMenuState } from './hooks/useFileMenuState';
 import { useFileMenuActions } from './hooks/useFileMenuActions';
-import { getKeyForAction } from '../../data/hotkeyConfig';
+import { getKeyForAction } from '../../utils/hotkeyConfig';
 import { formatHotkeyForDisplay } from '../../utils/hotkeyUtils';
 import { usePreferencesStore } from '../../store/preferences/preferencesStore';
 import { useUIStore } from '../../store/ui/uiStore';

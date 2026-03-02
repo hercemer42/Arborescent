@@ -1,6 +1,6 @@
 import { getActiveStore, getActiveNodeElement } from './shared';
 import { getCursorPosition } from '../cursorService';
-import { matchesHotkey } from '../../data/hotkeyConfig';
+import { matchesHotkey } from '../../utils/hotkeyConfig';
 import { convertToContentEditable, convertFromContentEditable } from '../../utils/contentConversion';
 import { useHotkeyContextStore } from '../../store/hotkey/hotkeyContextStore';
 

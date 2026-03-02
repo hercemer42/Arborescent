@@ -3,7 +3,7 @@ import { render, screen, waitFor } from '@testing-library/react';
 import { App } from '../App';
 
 // Mock child components
-vi.mock('../components/Toast', () => ({
+vi.mock('../components/ui/Toast', () => ({
   ToastContainer: ({ toasts, onRemove }: { toasts: unknown[]; onRemove: (id: string) => void }) => (
     <div data-testid="toast-container">
       {(toasts as Array<{ id: string; message: string }>).map((toast) => (
@@ -23,7 +23,7 @@ vi.mock('../components/MenuBar', () => ({
   AppMenuBar: () => <div data-testid="menubar">MenuBar</div>,
 }));
 
-vi.mock('../useAppErrorHandling', () => ({
+vi.mock('../hooks/useAppErrorHandling', () => ({
   useAppErrorHandling: vi.fn(),
 }));
 
@@ -102,7 +102,7 @@ vi.mock('../store/panel/panelStore', () => {
   return { usePanelStore: usePanelStoreMock };
 });
 
-import { useAppErrorHandling } from '../useAppErrorHandling';
+import { useAppErrorHandling } from '../hooks/useAppErrorHandling';
 
 describe('App', () => {
   beforeEach(() => {

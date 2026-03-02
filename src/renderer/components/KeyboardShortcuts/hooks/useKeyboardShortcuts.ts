@@ -1,7 +1,7 @@
 import { useState, useCallback } from 'react';
 import { usePreferencesStore } from '../../../store/preferences/preferencesStore';
-import { HotkeyConfig } from '../../../data/hotkeyConfig';
-import defaultHotkeys from '../../../data/defaultHotkeys.json';
+import { HotkeyConfig } from '../../../utils/hotkeyConfig';
+import defaultHotkeys from '../../../utils/defaultHotkeys.json';
 import { getActionLabel } from '../hotkeyLabels';
 
 function getHotkeyValue(config: HotkeyConfig, category: string, action: string): string {

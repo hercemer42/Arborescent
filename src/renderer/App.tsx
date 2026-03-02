@@ -11,8 +11,7 @@ import { useToastStore } from './store/toast/toastStore';
 import { usePanelStore } from './store/panel/panelStore';
 import { useSearchStore } from './store/search/searchStore';
 import { useUIStore } from './store/ui/uiStore';
-import { useAppErrorHandling } from './useAppErrorHandling';
-import { useAppInitialization, useSpellcheckListener, useHotkeyContext } from './hooks';
+import { useAppErrorHandling, useAppInitialization, useSpellcheckListener, useHotkeyContext } from './hooks';
 import './App.css';
 
 export function App() {

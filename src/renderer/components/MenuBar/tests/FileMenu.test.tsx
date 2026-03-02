@@ -5,7 +5,7 @@ import { FileMenu } from '../FileMenu';
 import { useMenuBarStore } from '../store';
 import * as useFileMenuStateModule from '../hooks/useFileMenuState';
 import * as useFileMenuActionsModule from '../hooks/useFileMenuActions';
-import * as hotkeyConfigModule from '../../../data/hotkeyConfig';
+import * as hotkeyConfigModule from '../../../utils/hotkeyConfig';
 import * as hotkeyUtilsModule from '../../../utils/hotkeyUtils';
 
 // Mock dependencies
@@ -17,7 +17,7 @@ vi.mock('../hooks/useFileMenuActions', () => ({
   useFileMenuActions: vi.fn(),
 }));
 
-vi.mock('../../../data/hotkeyConfig', () => ({
+vi.mock('../../../utils/hotkeyConfig', () => ({
   getKeyForAction: vi.fn(),
 }));
 

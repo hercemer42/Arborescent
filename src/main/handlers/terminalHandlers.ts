@@ -1,5 +1,5 @@
 import { ipcMain, IpcMainInvokeEvent } from 'electron';
-import { TerminalManager } from '../services/TerminalManager';
+import { TerminalManager } from '../services/terminalManager';
 import { logger } from '../services/logger';
 import { IDisposable } from 'node-pty';
 

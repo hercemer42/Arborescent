@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
-import { useToastStore } from './store/toast/toastStore';
-import { logger } from './services/logger';
+import { useToastStore } from '../store/toast/toastStore';
+import { logger } from '../services/logger';
 
 export function useAppErrorHandling() {
   const addToast = useToastStore((state) => state.addToast);

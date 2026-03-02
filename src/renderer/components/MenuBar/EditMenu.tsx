@@ -2,7 +2,7 @@ import { Menu } from './Menu';
 import { MenuItem } from './MenuItem';
 import { MenuSeparator } from './MenuSeparator';
 import { useEditMenuState, useEditMenuActions } from './hooks';
-import { getKeyForAction } from '../../data/hotkeyConfig';
+import { getKeyForAction } from '../../utils/hotkeyConfig';
 import { formatHotkeyForDisplay } from '../../utils/hotkeyUtils';
 import { useSearchStore } from '../../store/search/searchStore';
 

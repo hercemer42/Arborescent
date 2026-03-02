@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach } from 'vitest';
-import { useClipboardCacheStore } from './clipboardCacheStore';
+import { useClipboardCacheStore } from '../clipboardCacheStore';
 
 describe('clipboardCacheStore', () => {
   beforeEach(() => {

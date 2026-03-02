@@ -39,7 +39,7 @@ vi.mock('../../../../utils/document', () => ({
   }),
 }));
 
-vi.mock('../../../../data/defaultTemplate', () => ({
+vi.mock('../../../../utils/defaultTemplate', () => ({
   createBlankDocument: vi.fn(() => ({
     nodes: { root: { id: 'root', content: '', children: [], metadata: {} } },
     rootNodeId: 'root',

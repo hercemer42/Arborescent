@@ -1,12 +1,12 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { renderHook } from '@testing-library/react';
 import { useAppErrorHandling } from '../useAppErrorHandling';
-import { useToastStore } from '../store/toast/toastStore';
-import { logger } from '../services/logger';
+import { useToastStore } from '../../store/toast/toastStore';
+import { logger } from '../../services/logger';
 
 // Mock dependencies
-vi.mock('../store/toast/toastStore');
-vi.mock('../services/logger', () => ({
+vi.mock('../../store/toast/toastStore');
+vi.mock('../../services/logger', () => ({
   logger: {
     setToastCallback: vi.fn(),
     error: vi.fn(),
