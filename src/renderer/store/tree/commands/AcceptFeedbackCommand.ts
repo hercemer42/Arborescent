@@ -1,6 +1,6 @@
 import { BaseCommand } from './Command';
 import { TreeNode } from '../../../../shared/types';
-import { addNodesToRegistry, buildAncestorRegistry, AncestorRegistry } from '../../../services/ancestry';
+import { addNodesToRegistry, buildAncestorRegistry, AncestorRegistry } from '../../../utils/ancestry';
 import { getAllDescendants, captureNodePosition } from '../../../utils/nodeHelpers';
 import { DEFAULT_BLUEPRINT_ICON } from '../actions/blueprintActions';
 

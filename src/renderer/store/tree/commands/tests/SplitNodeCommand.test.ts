@@ -1,7 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { SplitNodeCommand } from '../SplitNodeCommand';
 import { TreeNode } from '../../../../../shared/types';
-import { AncestorRegistry } from '../../../../services/ancestry';
+import { AncestorRegistry } from '../../../../utils/ancestry';
 
 describe('SplitNodeCommand', () => {
   let nodes: Record<string, TreeNode>;

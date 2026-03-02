@@ -1,5 +1,5 @@
 import { TreeNode } from '../../shared/types';
-import { AncestorRegistry } from '../services/ancestry';
+import { AncestorRegistry } from '../utils/ancestry';
 
 export function isWorkflowNode(nodeId: string, nodes: Record<string, TreeNode>): boolean {
   const node = nodes[nodeId];

@@ -1,6 +1,6 @@
 import { BaseCommand } from './Command';
 import { TreeNode } from '../../../../shared/types';
-import { addNodesToRegistry, removeNodeFromRegistry, AncestorRegistry } from '../../../services/ancestry';
+import { addNodesToRegistry, removeNodeFromRegistry, AncestorRegistry } from '../../../utils/ancestry';
 import { getIsContextChild } from '../../../utils/nodeHelpers';
 import { v4 as uuidv4 } from 'uuid';
 

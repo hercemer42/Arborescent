@@ -1,7 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { BlueprintCommand } from '../BlueprintCommand';
 import { TreeNode } from '../../../../../shared/types';
-import { AncestorRegistry } from '../../../../services/ancestry';
+import { AncestorRegistry } from '../../../../utils/ancestry';
 
 describe('BlueprintCommand', () => {
   let nodes: Record<string, TreeNode>;

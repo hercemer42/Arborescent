@@ -1,6 +1,6 @@
 import { BaseCommand } from './Command';
 import { TreeNode } from '../../../../shared/types';
-import { removeNodeFromRegistry, addNodesToRegistry, AncestorRegistry } from '../../../services/ancestry';
+import { removeNodeFromRegistry, addNodesToRegistry, AncestorRegistry } from '../../../utils/ancestry';
 
 interface DeletedNodeSnapshot {
   node: TreeNode;

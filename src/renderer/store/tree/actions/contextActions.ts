@@ -3,7 +3,7 @@ import { updateNodeMetadata, getAllDescendants } from '../../../utils/nodeHelper
 import { logger } from '../../../services/logger';
 import { useToastStore } from '../../toast/toastStore';
 import { ContextDeclarationInfo } from '../treeStore';
-import { AncestorRegistry } from '../../../services/ancestry';
+import { AncestorRegistry } from '../../../utils/ancestry';
 
 export type ContextActionType = 'execute' | 'collaborate';
 

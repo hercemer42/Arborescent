@@ -18,7 +18,7 @@ import {
   ParsedFeedbackContent,
 } from '../../../services/feedback/feedbackService';
 import { feedbackTreeStore } from '../../feedback/feedbackTreeStore';
-import { AncestorRegistry } from '../../../services/ancestry';
+import { AncestorRegistry } from '../../../utils/ancestry';
 
 export type ContentSource = 'clipboard' | 'file' | 'restore';
 

@@ -2,7 +2,7 @@ import { createElement } from 'react';
 import { TreeNode } from '../../../../shared/types';
 import { ContextMenuItem } from '../../ui/ContextMenu';
 import { getInheritedContextId } from '../../../utils/nodeHelpers';
-import { AncestorRegistry } from '../../../services/ancestry';
+import { AncestorRegistry } from '../../../utils/ancestry';
 import { getIconByName } from '../../ui/IconPicker/IconPicker';
 import { ContextDeclarationInfo } from '../../../store/tree/treeStore';
 

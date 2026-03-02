@@ -1,7 +1,7 @@
 import { BaseCommand } from './Command';
 import { TreeNode } from '../../../../shared/types';
 import { updateNodeMetadata } from '../../../utils/nodeHelpers';
-import { AncestorRegistry } from '../../../services/ancestry';
+import { AncestorRegistry } from '../../../utils/ancestry';
 
 interface BlueprintState {
   isBlueprint: boolean | undefined;

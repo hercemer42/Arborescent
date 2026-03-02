@@ -1,6 +1,6 @@
 import { TreeNode, NodeStatus } from '../../../../shared/types';
 import { StorageService } from '../../../../shared/interfaces';
-import { updateAncestorRegistry, AncestorRegistry } from '../../../services/ancestry';
+import { updateAncestorRegistry, AncestorRegistry } from '../../../utils/ancestry';
 import { createArboFile } from '../../../utils/document';
 import { getContextDeclarations } from '../../../utils/nodeHelpers';
 import { ContextDeclarationInfo } from '../treeStore';

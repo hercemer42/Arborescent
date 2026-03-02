@@ -1,6 +1,6 @@
 import { TreeNode, NodeStatus } from '../../../../shared/types';
 import { updateNodeMetadata } from '../../../utils/nodeHelpers';
-import { AncestorRegistry } from '../../../services/ancestry';
+import { AncestorRegistry } from '../../../utils/ancestry';
 import { v4 as uuidv4 } from 'uuid';
 import { ContentEditCommand } from '../commands/ContentEditCommand';
 import { ToggleStatusCommand } from '../commands/ToggleStatusCommand';

@@ -20,7 +20,7 @@ import { notifyError } from '../../../services/notification';
 import { useClipboardCacheStore, ClipboardCacheContent } from '../../clipboard/clipboardCacheStore';
 import { useHyperlinkClipboardStore } from '../../clipboard/hyperlinkClipboardStore';
 import { useToastStore } from '../../toast/toastStore';
-import { AncestorRegistry } from '../../../services/ancestry';
+import { AncestorRegistry } from '../../../utils/ancestry';
 import { v4 as uuidv4 } from 'uuid';
 import { storeManager } from '../../storeManager';
 

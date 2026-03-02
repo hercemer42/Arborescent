@@ -2,7 +2,7 @@ import { TreeNode } from '../../../../shared/types';
 import { updateNodeMetadata } from '../../../utils/nodeHelpers';
 import { logger } from '../../../services/logger';
 import { useToastStore } from '../../toast/toastStore';
-import { AncestorRegistry } from '../../../services/ancestry';
+import { AncestorRegistry } from '../../../utils/ancestry';
 import { MoveNodeCommand } from '../commands/MoveNodeCommand';
 import { Command } from '../commands/Command';
 import { VisualEffectsActions } from './visualEffectsActions';

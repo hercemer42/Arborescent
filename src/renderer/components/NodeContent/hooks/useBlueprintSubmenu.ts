@@ -1,7 +1,7 @@
 import { TreeNode } from '../../../../shared/types';
 import { ContextMenuItem } from '../../ui/ContextMenu';
 import { getIsContextChild } from '../../../utils/nodeHelpers';
-import { AncestorRegistry } from '../../../services/ancestry';
+import { AncestorRegistry } from '../../../utils/ancestry';
 import { hasAncestorWorkflow, hasDescendantWorkflow } from '../../../utils/workflowHelpers';
 
 interface BuildBlueprintSubmenuParams {

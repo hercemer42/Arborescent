@@ -1,6 +1,6 @@
 import { TreeNode } from '../../../../shared/types';
 import { ContextMenuItem } from '../../ui/ContextMenu';
-import { AncestorRegistry } from '../../../services/ancestry';
+import { AncestorRegistry } from '../../../utils/ancestry';
 import { ContextDeclarationInfo } from '../../../store/tree/treeStore';
 import { buildContextAwareSubmenu } from './useContextAwareSubmenu';
 

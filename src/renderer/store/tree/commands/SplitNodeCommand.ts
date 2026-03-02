@@ -1,6 +1,6 @@
 import { BaseCommand } from './Command';
 import { TreeNode } from '../../../../shared/types';
-import { addNodeToRegistry, removeNodeFromRegistry, AncestorRegistry } from '../../../services/ancestry';
+import { addNodeToRegistry, removeNodeFromRegistry, AncestorRegistry } from '../../../utils/ancestry';
 import { createTreeNode, shouldInheritBlueprint } from '../../../utils/nodeHelpers';
 
 type State = {

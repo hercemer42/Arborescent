@@ -1,6 +1,6 @@
 import { BaseCommand } from './Command';
 import { TreeNode } from '../../../../shared/types';
-import { moveNodeInRegistry, AncestorRegistry } from '../../../services/ancestry';
+import { moveNodeInRegistry, AncestorRegistry } from '../../../utils/ancestry';
 import { getIsContextChild, getAllDescendants, updateNodeMetadata } from '../../../utils/nodeHelpers';
 
 export class MoveNodeCommand extends BaseCommand {

@@ -1,5 +1,5 @@
 import { TreeNode, NodeStatus } from '../../shared/types';
-import { AncestorRegistry } from '../services/ancestry';
+import { AncestorRegistry } from '../utils/ancestry';
 import { v4 as uuidv4 } from 'uuid';
 import { exportNodeAsMarkdown, exportContextAsMarkdown } from './markdown';
 
