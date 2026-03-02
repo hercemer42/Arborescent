@@ -1,5 +1,5 @@
 import { ipcMain, BrowserWindow } from 'electron';
-import { feedbackFileWatcher } from '../feedbackFileWatcher';
+import { feedbackFileWatcher } from '../services/feedbackFileWatcher';
 
 export function registerFeedbackFileHandlers(getMainWindow: () => BrowserWindow | null): void {
   ipcMain.handle('start-feedback-file-watcher', async (_event, filePath: string) => {

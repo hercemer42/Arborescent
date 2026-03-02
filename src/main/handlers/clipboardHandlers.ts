@@ -1,5 +1,5 @@
 import { ipcMain, BrowserWindow } from 'electron';
-import { clipboardMonitor } from '../clipboardMonitor';
+import { clipboardMonitor } from '../services/clipboardMonitor';
 
 export function registerClipboardHandlers(getMainWindow: () => BrowserWindow | null): void {
   ipcMain.handle('start-clipboard-monitor', async () => {

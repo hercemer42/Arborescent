@@ -1,5 +1,5 @@
 import { ipcMain } from 'electron';
-import { saveJsonFile, loadJsonFile } from '../utils/persistence';
+import { saveJsonFile, loadJsonFile } from '../services/utils/persistence';
 
 export function registerSessionHandlers(): void {
   ipcMain.handle('save-session', async (_, sessionData: string) => {

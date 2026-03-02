@@ -1,7 +1,7 @@
 import { ipcMain, app } from 'electron';
 import { promises as fs } from 'node:fs';
 import path from 'node:path';
-import { logger } from '../logger';
+import { logger } from '../services/logger';
 
 export function registerTempFileHandlers(): void {
   ipcMain.handle('get-temp-dir', async () => {

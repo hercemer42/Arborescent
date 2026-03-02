@@ -1,5 +1,5 @@
 import { ipcMain } from 'electron';
-import { saveJsonFile, loadJsonFile } from '../utils/persistence';
+import { saveJsonFile, loadJsonFile } from '../services/utils/persistence';
 
 export function registerPreferencesHandlers(): void {
   ipcMain.handle('save-preferences', async (_, preferencesData: string) => {

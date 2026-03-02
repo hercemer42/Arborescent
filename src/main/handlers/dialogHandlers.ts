@@ -1,6 +1,6 @@
 import { ipcMain, dialog, BrowserWindow } from 'electron';
-import { logger } from '../logger';
-import { getLastSavedDirectory, saveLastUsedDirectory } from '../utils/persistence';
+import { logger } from '../services/logger';
+import { getLastSavedDirectory, saveLastUsedDirectory } from '../services/utils/persistence';
 
 export function registerDialogHandlers(getMainWindow: () => BrowserWindow | null): void {
   ipcMain.handle('show-open-dialog', async () => {

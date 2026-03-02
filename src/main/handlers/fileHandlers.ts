@@ -1,6 +1,6 @@
 import { ipcMain } from 'electron';
 import { promises as fs } from 'node:fs';
-import { logger } from '../logger';
+import { logger } from '../services/logger';
 
 export function registerFileHandlers(): void {
   ipcMain.handle('read-file', async (_, filePath: string) => {
