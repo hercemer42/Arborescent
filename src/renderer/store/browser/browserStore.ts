@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { createBrowserActions, BrowserActions } from './actions/browserActions';
-import { StorageService } from '@platform';
+import { StorageService } from '../../services/storageService';
 import { BrowserTab } from '../../../shared/interfaces';
 
 export type { BrowserTab };

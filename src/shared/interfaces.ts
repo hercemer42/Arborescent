@@ -51,14 +51,3 @@ export interface StorageService {
   savePreferences(preferences: UserPreferences): Promise<void>;
   getPreferences(): Promise<UserPreferences | null>;
 }
-
-export interface MenuService {
-  onMenuNew(callback: () => void): void;
-  onMenuOpen(callback: () => void): void;
-  onMenuSave(callback: () => void): void;
-  onMenuSaveAs(callback: () => void): void;
-}
-
-export interface ErrorService {
-  onError(callback: (message: string) => void): void;
-}

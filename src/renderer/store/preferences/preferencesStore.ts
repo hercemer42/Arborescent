@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { Theme, UserPreferences } from '../../../shared/interfaces';
-import { StorageService } from '@platform';
+import { StorageService } from '../../services/storageService';
 import { HotkeyConfig, setHotkeyConfig, resetHotkeyConfig } from '../../data/hotkeyConfig';
 import defaultHotkeys from '../../data/defaultHotkeys.json';
 

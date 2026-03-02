@@ -1,11 +1,11 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import * as yaml from 'js-yaml';
-import { Storage } from '../Storage';
-import { ArboFile } from '../../../../shared/types';
-import { SessionState } from '../../../../shared/interfaces';
+import { StorageService } from '../storageService';
+import { ArboFile } from '../../../shared/types';
+import { SessionState } from '../../../shared/interfaces';
 
-describe('Storage', () => {
-  let storage: Storage;
+describe('StorageService', () => {
+  let storage: StorageService;
 
   const mockArboFile: ArboFile = {
     format: 'Arborescent',
@@ -25,7 +25,7 @@ describe('Storage', () => {
   };
 
   beforeEach(() => {
-    storage = new Storage();
+    storage = new StorageService();
     vi.clearAllMocks();
   });
 

@@ -16,7 +16,7 @@ import { createExecuteActions, ExecuteActions } from './actions/executeActions';
 import { createSummaryActions, SummaryActions } from './actions/summaryActions';
 import { createWorkflowActions, WorkflowActions } from './actions/workflowActions';
 import { HistoryManager } from './commands/HistoryManager';
-import { StorageService } from '@platform';
+import { StorageService } from '../../services/storageService';
 
 export interface ContextDeclarationInfo {
   nodeId: string;

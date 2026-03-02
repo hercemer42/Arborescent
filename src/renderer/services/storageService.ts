@@ -1,9 +1,9 @@
 import * as yaml from 'js-yaml';
-import { ArboFile } from '../../../shared/types';
-import { StorageService as IStorageService, SessionState, BrowserSession, PanelSession, UserPreferences } from '../../../shared/interfaces';
-import { getNextUntitledNumber } from '../../../shared/utils/fileNaming';
+import { ArboFile } from '../../shared/types';
+import { StorageService as IStorageService, SessionState, BrowserSession, PanelSession, UserPreferences } from '../../shared/interfaces';
+import { getNextUntitledNumber } from '../../shared/utils/fileNaming';
 
-export class Storage implements IStorageService {
+export class StorageService implements IStorageService {
   async loadDocument(filePath: string): Promise<ArboFile> {
     const content = await window.electron.readFile(filePath);
     const data = yaml.load(content) as ArboFile;
@@ -127,5 +127,4 @@ export class Storage implements IStorageService {
       return null;
     }
   }
-
 }

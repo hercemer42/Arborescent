@@ -1,6 +1,5 @@
 import { create } from 'zustand';
-import { StorageService } from '../../../shared/interfaces';
-import { Storage } from '../../../platforms/electron/services/Storage';
+import { StorageService } from '../../services/storageService';
 import { logger } from '../../services/logger';
 
 export type PanelPosition = 'side' | 'bottom';
@@ -31,7 +30,7 @@ interface PanelState {
   restoreSession: () => Promise<void>;
 }
 
-const storage: StorageService = new Storage();
+const storage = new StorageService();
 
 async function savePanelSession(state: PanelState): Promise<void> {
   const session: PanelSession = {

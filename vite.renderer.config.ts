@@ -7,11 +7,7 @@ export default defineConfig(({ mode }) => ({
     'process.env.NODE_ENV': JSON.stringify(mode),
   },
   plugins: [react()],
-  resolve: {
-    alias: {
-      '@platform': path.resolve(__dirname, 'src/platforms'),
-    },
-  },
+  resolve: {},
   server: {
     watch: {
       ignored: ['**/coverage/**'],

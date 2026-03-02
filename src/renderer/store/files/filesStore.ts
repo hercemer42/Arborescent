@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { createFileActions, FileActions } from './actions/fileActions';
-import { StorageService } from '@platform';
+import { StorageService } from '../../services/storageService';
 import { SessionState } from '@shared/interfaces';
 
 export interface ZoomSource {

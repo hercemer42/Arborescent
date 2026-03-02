@@ -4,8 +4,7 @@ import { useTree } from '../useTree';
 import { TreeStoreContext } from '../../../../store/tree/TreeStoreContext';
 import { createTreeStore, TreeStore } from '../../../../store/tree/treeStore';
 
-vi.mock('@platform/menu');
-vi.mock('@platform/storage');
+vi.mock('../../../../services/storageService');
 
 describe('useTree', () => {
   let store: TreeStore;

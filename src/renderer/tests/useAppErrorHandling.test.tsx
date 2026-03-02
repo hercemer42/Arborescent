@@ -13,23 +13,11 @@ vi.mock('../services/logger', () => ({
   },
 }));
 
-vi.mock('@platform', () => ({
-  ErrorService: vi.fn().mockImplementation(() => ({
-    onError: vi.fn((callback) => {
-      // Store callback for testing
-      mockErrorCallback = callback;
-    }),
-  })),
-}));
-
-let mockErrorCallback: ((message: string) => void) | null = null;
-
 describe('useAppErrorHandling', () => {
   const mockAddToast = vi.fn();
 
   beforeEach(() => {
     vi.clearAllMocks();
-    mockErrorCallback = null;
     vi.mocked(useToastStore).mockReturnValue(mockAddToast);
   });
 
@@ -39,17 +27,18 @@ describe('useAppErrorHandling', () => {
     expect(logger.setToastCallback).toHaveBeenCalledWith(mockAddToast);
   });
 
-  it('should register error handler with ErrorService', () => {
+  it('should register error handler with window.electron', () => {
     renderHook(() => useAppErrorHandling());
 
-    expect(mockErrorCallback).toBeDefined();
+    expect(window.electron.setMainErrorHandler).toHaveBeenCalledWith(expect.any(Function));
   });
 
-  it('should log errors from ErrorService', () => {
+  it('should log errors from main process', () => {
     renderHook(() => useAppErrorHandling());
 
-    // Trigger error callback
-    mockErrorCallback!('Test error message');
+    // Get the callback that was passed to setMainErrorHandler
+    const errorCallback = vi.mocked(window.electron.setMainErrorHandler).mock.calls[0][0];
+    errorCallback('Test error message');
 
     expect(logger.error).toHaveBeenCalledWith('Test error message', undefined, 'Main Process', true);
   });

@@ -1,9 +1,6 @@
 import { useEffect } from 'react';
-import { MenuService } from '@platform';
 import { useStore } from '../../../store/tree/useStore';
 import { useFilesStore } from '../../../store/files/filesStore';
-
-const menuService = new MenuService();
 
 export function useTreeMenu() {
   const currentFilePath = useStore((state) => state.currentFilePath);
@@ -18,9 +15,9 @@ export function useTreeMenu() {
     const handleSave = () => saveActiveFile();
     const handleSaveAs = () => currentFilePath && saveFileAs(currentFilePath);
 
-    menuService.onMenuNew(handleNew);
-    menuService.onMenuOpen(handleLoad);
-    menuService.onMenuSave(handleSave);
-    menuService.onMenuSaveAs(handleSaveAs);
+    window.electron.setMenuNewHandler(handleNew);
+    window.electron.setMenuOpenHandler(handleLoad);
+    window.electron.setMenuSaveHandler(handleSave);
+    window.electron.setMenuSaveAsHandler(handleSaveAs);
   }, [currentFilePath, createNewFile, openFileWithDialog, saveActiveFile, saveFileAs]);
 }

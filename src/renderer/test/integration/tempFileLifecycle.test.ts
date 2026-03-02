@@ -2,7 +2,7 @@ import { describe, it, expect, beforeEach, vi } from 'vitest';
 import * as yaml from 'js-yaml';
 import { useFilesStore } from '../../store/files/filesStore';
 import { storeManager } from '../../store/storeManager';
-import { StorageService } from '@platform';
+import { StorageService } from '../../services/storageService';
 
 /**
  * Integration Test: Temporary File Lifecycle
