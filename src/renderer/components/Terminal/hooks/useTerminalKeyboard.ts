@@ -1,8 +1,10 @@
 import { useEffect } from 'react';
 import { Terminal as XTerm } from '@xterm/xterm';
 
-export function useTerminalKeyboard(xterm: XTerm | null) {
+export function useTerminalKeyboard(xtermRef: React.RefObject<XTerm | null>, isReady: boolean) {
   useEffect(() => {
+    if (!isReady) return;
+    const xterm = xtermRef.current;
     if (!xterm) return;
 
     // Handle copy/paste with standard terminal shortcuts (Ctrl+Shift+C/V)
@@ -36,5 +38,5 @@ export function useTerminalKeyboard(xterm: XTerm | null) {
 
       return true; // Let xterm handle all other keys
     });
-  }, [xterm]);
+  }, [xtermRef, isReady]);
 }

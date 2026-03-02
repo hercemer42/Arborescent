@@ -40,6 +40,8 @@ class FeedbackTreeStoreManager {
 
   clearFile(filePath: string): void {
     this.stores.delete(filePath);
+    this.version++;
+    this.versionListeners.forEach(listener => listener());
   }
 
   hasFeedback(filePath: string): boolean {

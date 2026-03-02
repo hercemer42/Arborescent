@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useState } from 'react';
 import { useBrowserWebview } from './hooks/useBrowserWebview';
 import './Browser.css';
 
@@ -9,15 +9,15 @@ interface BrowserProps {
 }
 
 export function Browser({ id, initialUrl, onWebviewReady }: BrowserProps) {
-  // Ref prevents src attribute changes which trigger Electron error logging
-  const initialUrlRef = useRef(initialUrl);
+  // Prevents src attribute changes which trigger Electron error logging
+  const [stableUrl] = useState(initialUrl);
   const { setWebviewRef } = useBrowserWebview({ id, url: initialUrl, onWebviewReady });
 
   return (
     <div className="browser-container">
       <webview
         ref={setWebviewRef}
-        src={initialUrlRef.current}
+        src={stableUrl}
         className="browser-webview"
         partition="persist:browser"
       />

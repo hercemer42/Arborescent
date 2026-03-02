@@ -19,11 +19,8 @@ export function useNodeDragDrop(nodeId: string, nodeRef: React.RefObject<HTMLDiv
 
   useEffect(() => {
     if (!isOver || !nodeRef.current) {
-      setDropPosition(null);
       return;
     }
-
-    setDropPosition('child');
 
     const handleMouseMove = (e: MouseEvent) => {
       if (!nodeRef.current) return;
@@ -48,19 +45,20 @@ export function useNodeDragDrop(nodeId: string, nodeRef: React.RefObject<HTMLDiv
 
     return () => {
       document.removeEventListener('mousemove', handleMouseMove);
+      setDropPosition(null);
     };
-  }, [isOver]);
+  }, [isOver, nodeRef]);
 
   const setRefs = useCallback((element: HTMLDivElement | null) => {
     nodeRef.current = element;
     setDraggableRef(element);
     setDroppableRef(element);
-  }, [setDraggableRef, setDroppableRef]);
+  }, [nodeRef, setDraggableRef, setDroppableRef]);
 
   return {
     isDragging,
     isOver,
-    dropPosition: isOver ? dropPosition : null,
+    dropPosition: isOver ? (dropPosition ?? 'child') : null,
     setRefs,
     attributes,
     listeners,

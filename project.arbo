@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-02-19T13:14:57.891Z'
+updated: '2026-03-01T13:10:13.424Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -474,6 +474,7 @@ nodes:
     id: 565dde0a-864b-41f9-86ff-dbdf40ac4dd0
     content: Done
     children:
+      - 2e7d3b78-a686-46d6-a87a-7b1fdc13fca8
       - 92b16d87-27dc-486d-a605-4228e2b5206c
       - 8895f54d-c90a-4bc8-9f1f-17c97b67a3b8
       - ccd6416e-f83d-4ae8-ab7b-3b127cecdd32
@@ -5298,7 +5299,7 @@ nodes:
       - 9a8f1538-7eb7-4e2d-9e0f-46e2c00675f4
     metadata:
       status: pending
-      expanded: true
+      expanded: false
       isBlueprint: true
       blueprintIcon: BrainCog
       blueprintColor: '#14b8a6'
@@ -5306,6 +5307,9 @@ nodes:
     id: 984247e7-2d55-4b93-80e8-f84818901621
     content: Backlog
     children:
+      - 5316e4cc-3b05-4df4-9f04-e55206009302
+      - 1b042a84-748d-4b32-bee9-f2031727c811
+      - 0b8d15ca-ea15-4817-aa86-45d795dc5047
       - b82ab806-5034-47b1-8fbc-7b388030b107
       - 550cf0db-6b43-43d9-8d43-7956b3fdc2d8
       - 2fe3a40d-e6bd-40b7-8bf1-e4374e91ed05
@@ -5316,7 +5320,7 @@ nodes:
       - 5288b678-63dc-4672-b1b3-8e2b540c04de
     metadata:
       status: pending
-      expanded: false
+      expanded: true
       appliedContextIds:
         - e8824b29-eb18-4031-9e35-b321a864d418
       activeContextId: e8824b29-eb18-4031-9e35-b321a864d418
@@ -6219,7 +6223,7 @@ nodes:
       - a4c333be-a8a4-4c0f-8148-b2260507f5ad
     metadata:
       status: pending
-      expanded: true
+      expanded: false
       appliedContextIds:
         - 64ea2af4-332b-44a6-8b88-78535cc9b79a
       activeContextId: 64ea2af4-332b-44a6-8b88-78535cc9b79a
@@ -9047,7 +9051,7 @@ nodes:
       - e43903b2-2184-4cbd-84ec-9cd24ea536e2
     metadata:
       status: pending
-      expanded: true
+      expanded: false
       isBlueprint: true
       blueprintIcon: Star
       blueprintColor: '#64748b'
@@ -15487,13 +15491,7 @@ nodes:
   a4c333be-a8a4-4c0f-8148-b2260507f5ad:
     id: a4c333be-a8a4-4c0f-8148-b2260507f5ad
     content: In progress
-    children:
-      - 49aa1182-603a-4666-b220-eed28f1c7287
-      - 03a04b6f-3c36-4c90-8488-3c2110dbfaf1
-      - f364674a-a805-4dd3-bbe6-40897a4cc244
-      - 1b9ba584-15f3-42b5-8bca-686d1df53793
-      - 0f08fb22-2663-49a9-902b-7d6cfeeea7e3
-      - 4c9eabd6-86f4-4b0d-92bb-a41b5c390e52
+    children: []
     metadata:
       status: pending
       expanded: true
@@ -19796,8 +19794,7 @@ nodes:
   ac4c627f-c512-40b9-ad55-11b439495b7e:
     id: ac4c627f-c512-40b9-ad55-11b439495b7e
     content: Major feature
-    children:
-      - 2e7d3b78-a686-46d6-a87a-7b1fdc13fca8
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -24265,7 +24262,7 @@ nodes:
       - 4c6ec09f-34b8-44bd-ab91-ab14e4531045
     metadata:
       status: pending
-      expanded: true
+      expanded: false
       deleted: false
       plugins: {}
   52394811-4009-474a-ae02-058e192c50fa:
@@ -24586,150 +24583,154 @@ nodes:
     metadata:
       status: pending
       isBlueprint: true
-  f364674a-a805-4dd3-bbe6-40897a4cc244:
-    id: f364674a-a805-4dd3-bbe6-40897a4cc244
-    content: Add tests for edited files
-    children:
-      - f8810b1d-f673-447c-8531-00bb203093ac
-      - 37235024-e8d8-4e40-b2ab-a272af8bb03c
-      - d849faa2-bdd7-4d59-99f1-8fb02a59ee33
-      - 235e2854-59df-4230-a011-3d54f8e67050
-    metadata:
-      status: pending
-  f8810b1d-f673-447c-8531-00bb203093ac:
-    id: f8810b1d-f673-447c-8531-00bb203093ac
-    content: nodeContext.tsx
-    children: []
-    metadata:
-      status: pending
-  1b9ba584-15f3-42b5-8bca-686d1df53793:
-    id: 1b9ba584-15f3-42b5-8bca-686d1df53793
-    content: there are many helper functions in workflow actions that look like they should be in a helpers file
-    children:
-      - 7af059cd-03b5-4e75-b871-99bc0360bc8a
-    metadata:
-      status: pending
-  37235024-e8d8-4e40-b2ab-a272af8bb03c:
-    id: 37235024-e8d8-4e40-b2ab-a272af8bb03c
-    content: useBlueprintSubMenu.tsx
-    children: []
-    metadata:
-      status: pending
-  7af059cd-03b5-4e75-b871-99bc0360bc8a:
-    id: 7af059cd-03b5-4e75-b871-99bc0360bc8a
-    content: Do you agree ? Verify they are pure functions
-    children: []
-    metadata:
-      status: pending
-  0f08fb22-2663-49a9-902b-7d6cfeeea7e3:
-    id: 0f08fb22-2663-49a9-902b-7d6cfeeea7e3
-    content: useNodeContextMenu
-    children:
-      - a95c9d5d-33e6-4f7d-8b5d-07c3c77aa491
-      - 0af586a8-5172-4b24-a787-4712d47d6946
-      - 48b2f1d7-0ff3-4810-beae-ff155d9dd853
-    metadata:
-      status: pending
-  a95c9d5d-33e6-4f7d-8b5d-07c3c77aa491:
-    id: a95c9d5d-33e6-4f7d-8b5d-07c3c77aa491
-    content: remove the truncateLabel
-    children: []
-    metadata:
-      status: pending
-  0af586a8-5172-4b24-a787-4712d47d6946:
-    id: 0af586a8-5172-4b24-a787-4712d47d6946
-    content: don't display the next/previous node labels under the context menu next/previous steps
-    children:
-      - 8d46494c-90fa-4c67-b55b-b96245d13a3f
-    metadata:
-      status: pending
-  8d46494c-90fa-4c67-b55b-b96245d13a3f:
-    id: 8d46494c-90fa-4c67-b55b-b96245d13a3f
-    content: We can already see the next/previous node names visually in the tree
-    children: []
-    metadata:
-      status: pending
   513bcd5f-a053-46b4-993e-4feb49021a1a:
     id: 513bcd5f-a053-46b4-993e-4feb49021a1a
     content: Don't add the actual step names in next/previous step
     children: []
     metadata:
       status: pending
-  48b2f1d7-0ff3-4810-beae-ff155d9dd853:
-    id: 48b2f1d7-0ff3-4810-beae-ff155d9dd853
-    content: file is getting big, should we refactor into smaller files ?
+  0b8d15ca-ea15-4817-aa86-45d795dc5047:
+    id: 0b8d15ca-ea15-4817-aa86-45d795dc5047
+    content: Improve YAML readability
     children:
-      - 2bace6a9-59a4-477f-9589-8e34d8f7b26a
+      - 5ca2bf3f-2bdc-450d-88c9-e0b63f5d26e8
+      - 9c0ad5e8-b02a-4052-85c2-5accae12a203
+      - ae6b5543-d1f0-4239-9652-372e81eb28a8
     metadata:
       status: pending
-  2bace6a9-59a4-477f-9589-8e34d8f7b26a:
-    id: 2bace6a9-59a4-477f-9589-8e34d8f7b26a
-    content: "A file per submenu item ?\_"
-    children: []
-    metadata:
-      status: pending
-  d849faa2-bdd7-4d59-99f1-8fb02a59ee33:
-    id: d849faa2-bdd7-4d59-99f1-8fb02a59ee33
-    content: useNodeContextMenu.tsx
-    children: []
-    metadata:
-      status: pending
-  4c9eabd6-86f4-4b0d-92bb-a41b5c390e52:
-    id: 4c9eabd6-86f4-4b0d-92bb-a41b5c390e52
-    content: workflowActions.ts
+      expanded: false
+  5ca2bf3f-2bdc-450d-88c9-e0b63f5d26e8:
+    id: 5ca2bf3f-2bdc-450d-88c9-e0b63f5d26e8
+    content: Some templates don't use UUIDs for node IDs
     children:
-      - c2e3eb5d-a096-4176-994c-cbd1ddaf18ad
-      - 8a19ee74-b067-4e95-8ce6-3807c27f25b1
+      - a44d4c84-ef9c-496c-a39b-1f5830f0cc49
+      - a0db4b9c-6ae8-4348-be5b-64174637a7c0
+      - 0a8e86f2-41cc-47fc-9e0d-fce38ff47fa6
     metadata:
       status: pending
-  c2e3eb5d-a096-4176-994c-cbd1ddaf18ad:
-    id: c2e3eb5d-a096-4176-994c-cbd1ddaf18ad
-    content: getWorkflowContext poorly named, implied it relates to the app's context feature
+  a44d4c84-ef9c-496c-a39b-1f5830f0cc49:
+    id: a44d4c84-ef9c-496c-a39b-1f5830f0cc49
+    content: They instead use the node contents as identifiers
+    children: []
+    metadata:
+      status: pending
+  a0db4b9c-6ae8-4348-be5b-64174637a7c0:
+    id: a0db4b9c-6ae8-4348-be5b-64174637a7c0
+    content: This is brittle
+    children: []
+    metadata:
+      status: pending
+  0a8e86f2-41cc-47fc-9e0d-fce38ff47fa6:
+    id: 0a8e86f2-41cc-47fc-9e0d-fce38ff47fa6
+    content: Need to fix it while maintaining backwards compatibility
+    children: []
+    metadata:
+      status: pending
+  9c0ad5e8-b02a-4052-85c2-5accae12a203:
+    id: 9c0ad5e8-b02a-4052-85c2-5accae12a203
+    content: Nodes aren't nested in YAML file and so hierarchy isn't visible
     children:
-      - b809f59f-fd18-49b9-9af2-0f318ef9014a
+      - 1d115953-fd20-4811-b355-71cdecb43811
     metadata:
       status: pending
-  b809f59f-fd18-49b9-9af2-0f318ef9014a:
-    id: b809f59f-fd18-49b9-9af2-0f318ef9014a
-    content: Find another name
+  1d115953-fd20-4811-b355-71cdecb43811:
+    id: 1d115953-fd20-4811-b355-71cdecb43811
+    content: Should be nested and parsed as a flat structure on opening, and nested while saving
     children: []
     metadata:
       status: pending
-  8a19ee74-b067-4e95-8ce6-3807c27f25b1:
-    id: 8a19ee74-b067-4e95-8ce6-3807c27f25b1
-    content: in createWorkflowActions there are toast messages
+  ae6b5543-d1f0-4239-9652-372e81eb28a8:
+    id: ae6b5543-d1f0-4239-9652-372e81eb28a8
+    content: Nodes contain metadata that make it harder to read
     children:
-      - 564b6f07-e742-4439-8c1f-ce652419d6b6
-      - 687cb96d-ef5a-404a-be6b-7cc3e51a662d
+      - b8fa99bd-93b1-4294-a312-799afa5b8ffd
+      - ba522d64-43fb-4299-bc5b-85bc4f7347a5
     metadata:
       status: pending
-  564b6f07-e742-4439-8c1f-ce652419d6b6:
-    id: 564b6f07-e742-4439-8c1f-ce652419d6b6
-    content: but aren't these actions already blocked contextually ?
+  b8fa99bd-93b1-4294-a312-799afa5b8ffd:
+    id: b8fa99bd-93b1-4294-a312-799afa5b8ffd
+    content: Possibly have two files, one with node hierarchy, one with metadata
     children: []
     metadata:
       status: pending
-  687cb96d-ef5a-404a-be6b-7cc3e51a662d:
-    id: 687cb96d-ef5a-404a-be6b-7cc3e51a662d
-    content: If so, will those toast messages actually display ?
+  ba522d64-43fb-4299-bc5b-85bc4f7347a5:
+    id: ba522d64-43fb-4299-bc5b-85bc4f7347a5
+    content: Or two trees within one file
     children: []
     metadata:
       status: pending
-  235e2854-59df-4230-a011-3d54f8e67050:
-    id: 235e2854-59df-4230-a011-3d54f8e67050
-    content: BlueprintCommands.tsx
+  5316e4cc-3b05-4df4-9f04-e55206009302:
+    id: 5316e4cc-3b05-4df4-9f04-e55206009302
+    content: Update docs with workflow feature
     children: []
     metadata:
       status: pending
-  49aa1182-603a-4666-b220-eed28f1c7287:
-    id: 49aa1182-603a-4666-b220-eed28f1c7287
-    content: Why did you not add tests for NodeContext.tsx ?
+  1b042a84-748d-4b32-bee9-f2031727c811:
+    id: 1b042a84-748d-4b32-bee9-f2031727c811
+    content: Integrate with Claude SDK to enable parallelized tasks
+    children:
+      - ea66b610-cfba-4bb7-b2ea-35b75cd8627d
+      - b1b8d2ea-f07a-4e54-8d75-8fa67f720b85
+    metadata:
+      status: pending
+  ea66b610-cfba-4bb7-b2ea-35b75cd8627d:
+    id: ea66b610-cfba-4bb7-b2ea-35b75cd8627d
+    content: Create an adapter for the Claude SDK
     children: []
     metadata:
       status: pending
-  03a04b6f-3c36-4c90-8488-3c2110dbfaf1:
-    id: 03a04b6f-3c36-4c90-8488-3c2110dbfaf1
-    content: Remove little '-' separating next/previous steps from the others in the context menu - it's not necessary
+  b1b8d2ea-f07a-4e54-8d75-8fa67f720b85:
+    id: b1b8d2ea-f07a-4e54-8d75-8fa67f720b85
+    content: Enable types for workflow steps
+    children:
+      - c4019eec-af78-468e-88da-d1f7c3fd7a40
+      - afbae4d0-d907-45d9-839c-ac4cfd171404
+      - a7c84a2c-9a5a-427c-ab8b-654e3d26e724
+    metadata:
+      status: pending
+  c4019eec-af78-468e-88da-d1f7c3fd7a40:
+    id: c4019eec-af78-468e-88da-d1f7c3fd7a40
+    content: Autonomous
+    children:
+      - 8028cc72-d335-40b9-9b56-f3ee0e05ffc9
+    metadata:
+      status: pending
+  a7c84a2c-9a5a-427c-ab8b-654e3d26e724:
+    id: a7c84a2c-9a5a-427c-ab8b-654e3d26e724
+    content: Manual
+    children:
+      - 6a389e83-8568-4cc7-a597-b8d7161fe7dd
+      - 70a97481-28d6-4f33-9da6-70753cfbcb21
+    metadata:
+      status: pending
+  8028cc72-d335-40b9-9b56-f3ee0e05ffc9:
+    id: 8028cc72-d335-40b9-9b56-f3ee0e05ffc9
+    content: If the workflow step is autonomous, on completion it automatically sends the node to the next step and executes it
+    children: []
+    metadata:
+      status: pending
+  6a389e83-8568-4cc7-a597-b8d7161fe7dd:
+    id: 6a389e83-8568-4cc7-a597-b8d7161fe7dd
+    content: If the workflow is manual, the user must send the next step and manually execute
+    children: []
+    metadata:
+      status: pending
+  afbae4d0-d907-45d9-839c-ac4cfd171404:
+    id: afbae4d0-d907-45d9-839c-ac4cfd171404
+    content: Autonomous with validation
+    children:
+      - 2ed83f3d-a7de-46ac-a2ca-9a7036e89d20
+    metadata:
+      status: pending
+  2ed83f3d-a7de-46ac-a2ca-9a7036e89d20:
+    id: 2ed83f3d-a7de-46ac-a2ca-9a7036e89d20
+    content: At the end of the step, the user is prompted to continue or not
+    children: []
+    metadata:
+      status: pending
+  70a97481-28d6-4f33-9da6-70753cfbcb21:
+    id: 70a97481-28d6-4f33-9da6-70753cfbcb21
+    content: 2*3NkHfZAaPU@4#kv6
     children: []
     metadata:
       status: pending

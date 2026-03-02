@@ -19,6 +19,7 @@ interface EditMenuActions {
 export function useEditMenuActions(): EditMenuActions {
   const actions = useActiveTreeActions();
   const treeState = useActiveTreeStore();
+  const activeNodeId = treeState?.activeNodeId ?? null;
 
   const handleUndo = useCallback(() => {
     if (!actions) return;
@@ -70,19 +71,19 @@ export function useEditMenuActions(): EditMenuActions {
   }, [actions]);
 
   const handleToggleStatus = useCallback(() => {
-    if (!actions || !treeState?.activeNodeId) return;
-    actions.toggleStatus(treeState.activeNodeId);
-  }, [actions, treeState?.activeNodeId]);
+    if (!actions || !activeNodeId) return;
+    actions.toggleStatus(activeNodeId);
+  }, [actions, activeNodeId]);
 
   const handleIndent = useCallback(() => {
-    if (!actions || !treeState?.activeNodeId) return;
-    actions.indentNode(treeState.activeNodeId);
-  }, [actions, treeState?.activeNodeId]);
+    if (!actions || !activeNodeId) return;
+    actions.indentNode(activeNodeId);
+  }, [actions, activeNodeId]);
 
   const handleOutdent = useCallback(() => {
-    if (!actions || !treeState?.activeNodeId) return;
-    actions.outdentNode(treeState.activeNodeId);
-  }, [actions, treeState?.activeNodeId]);
+    if (!actions || !activeNodeId) return;
+    actions.outdentNode(activeNodeId);
+  }, [actions, activeNodeId]);
 
   const handleSelectAll = useCallback(() => {
     if (!actions) return;

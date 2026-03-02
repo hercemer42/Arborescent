@@ -1,4 +1,4 @@
-import { useRef, useState, useLayoutEffect } from 'react';
+import { useRef } from 'react';
 import { useSubmenuBehavior } from './useSubmenuBehavior';
 import { useSubmenuPosition } from './useSubmenuPosition';
 import { ContextMenuItem } from '../ContextMenu';
@@ -18,19 +18,9 @@ export function Submenu({ items, onClose, emptyMessage = 'No items available' }:
     openSubmenu,
     handleItemClick,
   } = useSubmenuBehavior(onClose);
-  const { flipHorizontal, flipVertical } = useSubmenuPosition(submenuRef);
-  const [childWouldFlip, setChildWouldFlip] = useState(false);
+  const { flipHorizontal, flipVertical, submenuRight } = useSubmenuPosition(submenuRef);
 
-  // Predict where child submenus will open based on this submenu's final position
-  // Children flip left if there's not enough room on the right
-  useLayoutEffect(() => {
-    const rect = submenuRef.current?.getBoundingClientRect();
-    if (!rect) return;
-
-    const wouldFlip = rect.right + SUBMENU_WIDTH > window.innerWidth;
-    setChildWouldFlip(wouldFlip);
-  }, [flipHorizontal]);
-
+  const childWouldFlip = submenuRight > 0 && (submenuRight + SUBMENU_WIDTH > window.innerWidth);
   const arrow = childWouldFlip ? '‹' : '›';
 
   const classNames = [

@@ -24,16 +24,39 @@ vi.mock('../../../../services/feedback/feedbackTempFileService', () => ({
   loadFeedbackContent: vi.fn().mockResolvedValue(null),
 }));
 
-const { mockFeedbackTreeClearFile, mockFeedbackTreeGetStoreForFile } = vi.hoisted(() => ({
-  mockFeedbackTreeClearFile: vi.fn(),
-  mockFeedbackTreeGetStoreForFile: vi.fn(() => null),
-}));
+const { mockFeedbackTreeClearFile, mockFeedbackTreeStore } = vi.hoisted(() => {
+  let hasContent = false;
+  const versionListeners = new Set<() => void>();
+
+  const notifyListeners = () => versionListeners.forEach(l => l());
+
+  const clearFile = vi.fn(() => {
+    hasContent = false;
+    notifyListeners();
+  });
+
+  const store = {
+    clearFile,
+    getStoreForFile: () => null,
+    hasFeedback: () => hasContent,
+    subscribeToVersion: (listener: () => void) => {
+      versionListeners.add(listener);
+      return () => versionListeners.delete(listener);
+    },
+    _setHasContent: (value: boolean) => {
+      hasContent = value;
+      notifyListeners();
+    },
+  };
+
+  return {
+    mockFeedbackTreeClearFile: clearFile,
+    mockFeedbackTreeStore: store,
+  };
+});
 
 vi.mock('../../../../store/feedback/feedbackTreeStore', () => ({
-  feedbackTreeStore: {
-    clearFile: mockFeedbackTreeClearFile,
-    getStoreForFile: mockFeedbackTreeGetStoreForFile,
-  },
+  feedbackTreeStore: mockFeedbackTreeStore,
 }));
 
 vi.mock('../../../../store/files/filesStore', () => ({
@@ -54,9 +77,9 @@ describe('useFeedbackClipboard', () => {
   let fileCallback: (content: string) => void;
 
   beforeEach(() => {
-    vi.clearAllMocks();
     mockProcessIncomingFeedbackContent.mockClear();
     mockFeedbackTreeClearFile.mockClear();
+    mockFeedbackTreeStore._setHasContent(false);
     mockCleanup = vi.fn();
     mockOnClipboardContentDetected = vi.fn((callback) => {
       clipboardCallback = callback;
@@ -67,8 +90,11 @@ describe('useFeedbackClipboard', () => {
       return mockCleanup;
     });
 
-    // Default: processIncomingFeedbackContent returns success
-    mockProcessIncomingFeedbackContent.mockResolvedValue({ success: true, nodeCount: 1 });
+    // Default: processIncomingFeedbackContent returns success and populates the store
+    mockProcessIncomingFeedbackContent.mockImplementation(async () => {
+      mockFeedbackTreeStore._setHasContent(true);
+      return { success: true, nodeCount: 1 };
+    });
 
     global.window = {
       electron: {
@@ -130,7 +156,7 @@ describe('useFeedbackClipboard', () => {
   });
 
   it('should not set hasFeedbackContent when action fails', async () => {
-    mockProcessIncomingFeedbackContent.mockResolvedValue({ success: false });
+    mockProcessIncomingFeedbackContent.mockImplementation(async () => ({ success: false }));
 
     const { result } = renderHook(() => useFeedbackClipboard('node-1'));
 

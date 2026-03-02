@@ -194,6 +194,18 @@ describe('ContextMenu', () => {
     expect(menu?.style.top).toBe('400px');
   });
 
+  it('should show right arrow for submenu items', () => {
+    const submenuItems: ContextMenuItem[] = [
+      { label: 'Parent', submenu: [{ label: 'Child', onClick: vi.fn() }] },
+    ];
+
+    render(<ContextMenu x={100} y={200} items={submenuItems} onClose={mockOnClose} />);
+
+    const arrow = document.body.querySelector('.context-menu-submenu-arrow');
+    expect(arrow).toBeDefined();
+    expect(arrow?.textContent).toBe('›');
+  });
+
   it('should handle items with both danger and disabled flags', () => {
     const complexItems: ContextMenuItem[] = [
       { label: 'Normal', onClick: mockItem1Click },

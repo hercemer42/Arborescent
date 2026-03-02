@@ -19,7 +19,9 @@ export function useTerminal({ id, pinnedToBottom = true, onResize }: UseTerminal
   const [isInitialized, setIsInitialized] = useState(false);
   const theme = usePreferencesStore((state) => state.theme);
 
-  pinnedToBottomRef.current = pinnedToBottom;
+  useEffect(() => {
+    pinnedToBottomRef.current = pinnedToBottom;
+  }, [pinnedToBottom]);
 
   // Initialization effect - waits for element to have dimensions
   useEffect(() => {
@@ -50,6 +52,7 @@ export function useTerminal({ id, pinnedToBottom = true, onResize }: UseTerminal
 
       xtermRef.current = xterm;
       fitAddonRef.current = fitAddon;
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- shared between sync and ResizeObserver paths
       setIsInitialized(true);
     };
 
@@ -68,10 +71,10 @@ export function useTerminal({ id, pinnedToBottom = true, onResize }: UseTerminal
         resizeObserver.disconnect();
       };
     }
-  }, [id, isInitialized]);
+  }, [id, isInitialized, theme]);
 
   // Setup keyboard shortcuts
-  useTerminalKeyboard(xtermRef.current);
+  useTerminalKeyboard(xtermRef, isInitialized);
 
   // Update theme when it changes
   useEffect(() => {

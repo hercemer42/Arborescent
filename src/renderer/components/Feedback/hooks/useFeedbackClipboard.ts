@@ -1,12 +1,16 @@
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useCallback, useSyncExternalStore } from 'react';
 import { useFilesStore } from '../../../store/files/filesStore';
 import { feedbackTreeStore } from '../../../store/feedback/feedbackTreeStore';
 import { storeManager } from '../../../store/storeManager';
 import type { ContentSource } from '../../../store/tree/actions/collaborateActions';
 
 export function useFeedbackClipboard(collaboratingNodeId: string | null) {
-  const [hasFeedbackContent, setHasFeedbackContent] = useState<boolean>(false);
   const activeFilePath = useFilesStore((state) => state.activeFilePath);
+
+  const hasFeedbackContent = useSyncExternalStore(
+    feedbackTreeStore.subscribeToVersion.bind(feedbackTreeStore),
+    () => activeFilePath ? feedbackTreeStore.hasFeedback(activeFilePath) : false,
+  );
 
   const handleFeedbackContent = useCallback(async (content: string, source: ContentSource, skipSave: boolean = false) => {
     if (!collaboratingNodeId || !activeFilePath) {
@@ -14,10 +18,7 @@ export function useFeedbackClipboard(collaboratingNodeId: string | null) {
     }
 
     const store = storeManager.getStoreForFile(activeFilePath);
-    const result = await store.getState().actions.processIncomingFeedbackContent(content, source, skipSave);
-    if (result.success) {
-      setHasFeedbackContent(true);
-    }
+    await store.getState().actions.processIncomingFeedbackContent(content, source, skipSave);
   }, [collaboratingNodeId, activeFilePath]);
 
   useEffect(() => {
@@ -39,26 +40,8 @@ export function useFeedbackClipboard(collaboratingNodeId: string | null) {
   useEffect(() => {
     if (!collaboratingNodeId && activeFilePath) {
       feedbackTreeStore.clearFile(activeFilePath);
-      setHasFeedbackContent(false);
     }
   }, [collaboratingNodeId, activeFilePath]);
-
-  useEffect(() => {
-    if (collaboratingNodeId && activeFilePath && !hasFeedbackContent) {
-      const feedbackStore = feedbackTreeStore.getStoreForFile(activeFilePath);
-      if (feedbackStore) {
-        try {
-          const { nodes, rootNodeId } = feedbackStore.getState();
-          const hasNodes = rootNodeId && nodes[rootNodeId]?.children?.length > 0;
-          if (hasNodes) {
-            setHasFeedbackContent(true);
-          }
-        } catch {
-          // Store not ready yet
-        }
-      }
-    }
-  }, [collaboratingNodeId, activeFilePath, hasFeedbackContent]);
 
   useEffect(() => {
     if (collaboratingNodeId && !hasFeedbackContent) {

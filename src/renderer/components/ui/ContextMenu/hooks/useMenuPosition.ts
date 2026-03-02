@@ -7,6 +7,7 @@ interface Position {
 
 interface MenuPosition extends Position {
   measured: boolean;
+  menuWidth: number;
 }
 
 export function useMenuPosition(
@@ -14,12 +15,13 @@ export function useMenuPosition(
   initialX: number,
   initialY: number
 ): MenuPosition {
-  const [position, setPosition] = useState<MenuPosition>({ x: initialX, y: initialY, measured: false });
+  const [position, setPosition] = useState<MenuPosition>({ x: initialX, y: initialY, measured: false, menuWidth: 0 });
 
   useLayoutEffect(() => {
     const menu = menuRef.current;
     if (!menu) {
-      setPosition({ x: initialX, y: initialY, measured: false });
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- useLayoutEffect DOM measurement
+      setPosition({ x: initialX, y: initialY, measured: false, menuWidth: 0 });
       return;
     }
 
@@ -43,7 +45,8 @@ export function useMenuPosition(
     adjustedX = Math.max(8, adjustedX);
     adjustedY = Math.max(8, adjustedY);
 
-    setPosition({ x: adjustedX, y: adjustedY, measured: true });
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- useLayoutEffect DOM measurement
+    setPosition({ x: adjustedX, y: adjustedY, measured: true, menuWidth });
   }, [menuRef, initialX, initialY]);
 
   return position;

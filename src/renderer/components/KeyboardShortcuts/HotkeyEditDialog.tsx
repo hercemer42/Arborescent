@@ -30,7 +30,7 @@ export function HotkeyEditDialog({
   return (
     <div className="hotkey-edit-overlay" onClick={onCancel}>
       <div className="hotkey-edit-dialog" onClick={(e) => e.stopPropagation()}>
-        <h3>Set shortcut for "{actionLabel}"</h3>
+        <h3>Set shortcut for {"'"}{actionLabel}{"'"}</h3>
         <p>Press desired key combination, then press ENTER</p>
 
         <input
@@ -45,7 +45,7 @@ export function HotkeyEditDialog({
 
         {hasConflict && (
           <p className="hotkey-edit-conflict">
-            Already in use by "{conflict.label}" — pick another
+            Already in use by {"'"}{conflict.label}{"'"} — pick another
           </p>
         )}
 

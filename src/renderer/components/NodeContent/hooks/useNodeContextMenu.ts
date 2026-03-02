@@ -1,4 +1,4 @@
-import { useState, useCallback, useRef } from 'react';
+import { useState, useCallback, useRef, useEffect } from 'react';
 import { useStore } from '../../../store/tree/useStore';
 import { useActiveTreeStore } from '../../../store/tree/TreeStoreContext';
 import { TreeNode } from '../../../../shared/types';
@@ -28,6 +28,7 @@ export function useNodeContextMenu(node: TreeNode) {
   const [contextMenu, setContextMenu] = useState<{ x: number; y: number } | null>(null);
   const [menuItems, setMenuItems] = useState<ContextMenuItem[]>([]);
   const menuOpenRef = useRef(false);
+  const buildMenuItemsRef = useRef<() => Promise<ContextMenuItem[]>>(async () => []);
 
   const { captureWordAtPoint, buildSpellMenuItems } = useSpellcheck();
   const { handleCancel } = useFeedbackActions();
@@ -103,13 +104,13 @@ export function useNodeContextMenu(node: TreeNode) {
 
     const handleSetActiveContext = async (nodeId: string, contextId: string | null) => {
       actions.setActiveContext(nodeId, contextId);
-      const newItems = await buildMenuItems();
+      const newItems = await buildMenuItemsRef.current();
       setMenuItems(newItems);
     };
 
     const handleSetAppliedContext = async (contextId: string | null) => {
       actions.setAppliedContext(node.id, contextId);
-      const newItems = await buildMenuItems();
+      const newItems = await buildMenuItemsRef.current();
       setMenuItems(newItems);
     };
 
@@ -260,6 +261,9 @@ export function useNodeContextMenu(node: TreeNode) {
 
     return baseMenuItems;
   }, [node, store, showTerminal, handleCancel, openIconPicker, activeFile, isZoomTab, openZoomTab, buildSpellMenuItems]);
+  useEffect(() => {
+    buildMenuItemsRef.current = buildMenuItems;
+  }, [buildMenuItems]);
 
   const buildFeedbackMenuItems = useCallback(async () => {
     const { actions } = store.getState();

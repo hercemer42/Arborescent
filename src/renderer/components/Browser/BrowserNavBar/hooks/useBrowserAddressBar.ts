@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useMemo } from 'react';
 import { BrowserTab } from '../../../../store/browser/browserStore';
 import { normalizeUrl } from '../../../../utils/urlHelpers';
 
@@ -9,8 +9,15 @@ interface UseBrowserAddressBarOptions {
 }
 
 export function useBrowserAddressBar({ activeTabId, tabs, getActiveWebview }: UseBrowserAddressBarOptions) {
-  const [addressBarValue, setAddressBarValue] = useState('');
+  const [editingValue, setEditingValue] = useState('');
   const [isEditingAddress, setIsEditingAddress] = useState(false);
+
+  const activeTabUrl = useMemo(() => {
+    const activeTab = tabs.find((tab) => tab.id === activeTabId);
+    return activeTab?.url ?? '';
+  }, [activeTabId, tabs]);
+
+  const addressBarValue = isEditingAddress ? editingValue : activeTabUrl;
 
   const handleAddressBarSubmit = useCallback((e?: React.FormEvent) => {
     e?.preventDefault();
@@ -28,7 +35,7 @@ export function useBrowserAddressBar({ activeTabId, tabs, getActiveWebview }: Us
       const webview = getActiveWebview();
       if (webview) {
         try {
-          setAddressBarValue(webview.getURL());
+          setEditingValue(webview.getURL());
         } catch {
           // Webview not ready yet
         }
@@ -36,18 +43,9 @@ export function useBrowserAddressBar({ activeTabId, tabs, getActiveWebview }: Us
     }
   }, [isEditingAddress, getActiveWebview]);
 
-  useEffect(() => {
-    if (!isEditingAddress) {
-      const activeTab = tabs.find((tab) => tab.id === activeTabId);
-      if (activeTab) {
-        setAddressBarValue(activeTab.url);
-      }
-    }
-  }, [activeTabId, tabs, isEditingAddress]);
-
   return {
     addressBarValue,
-    setAddressBarValue,
+    setAddressBarValue: setEditingValue,
     isEditingAddress,
     setIsEditingAddress,
     handleAddressBarSubmit,

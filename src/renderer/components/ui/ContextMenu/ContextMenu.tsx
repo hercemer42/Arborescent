@@ -37,11 +37,8 @@ export function ContextMenu({ x, y, items, onClose }: ContextMenuProps) {
 
   const position = useMenuPosition(menuRef, x, y);
 
-  // Predict if submenus would need to flip based on menu's right edge
-  // Use measured width if available, otherwise estimate
-  const menuWidth = menuRef.current?.getBoundingClientRect().width ?? 150;
-  const menuRight = position.x + menuWidth;
-  const childWouldFlip = menuRight + SUBMENU_WIDTH > window.innerWidth;
+  // Derive submenu flip direction from measured menu width
+  const childWouldFlip = position.measured && (position.x + position.menuWidth + SUBMENU_WIDTH > window.innerWidth);
   const arrow = childWouldFlip ? '‹' : '›';
 
   return createPortal(

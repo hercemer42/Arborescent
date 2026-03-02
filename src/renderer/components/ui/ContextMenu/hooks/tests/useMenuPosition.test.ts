@@ -36,6 +36,7 @@ describe('useMenuPosition', () => {
     expect(result.current.x).toBe(100);
     expect(result.current.y).toBe(100);
     expect(result.current.measured).toBe(true);
+    expect(result.current.menuWidth).toBe(200);
   });
 
   it('should adjust x when menu would overflow right edge', () => {
@@ -148,5 +149,6 @@ describe('useMenuPosition', () => {
     expect(result.current.x).toBe(100);
     expect(result.current.y).toBe(200);
     expect(result.current.measured).toBe(false);
+    expect(result.current.menuWidth).toBe(0);
   });
 });

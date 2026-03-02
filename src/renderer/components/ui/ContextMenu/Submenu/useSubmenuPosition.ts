@@ -1,17 +1,22 @@
 import { RefObject, useState, useLayoutEffect } from 'react';
+import { createStore, useStore } from 'zustand';
 
 interface SubmenuPosition {
   flipHorizontal: boolean;
   flipVertical: boolean;
+  submenuRight: number;
 }
+
+const defaultPosition: SubmenuPosition = {
+  flipHorizontal: false,
+  flipVertical: false,
+  submenuRight: 0,
+};
 
 export function useSubmenuPosition(
   submenuRef: RefObject<HTMLDivElement | null>
 ): SubmenuPosition {
-  const [position, setPosition] = useState<SubmenuPosition>({
-    flipHorizontal: false,
-    flipVertical: false,
-  });
+  const [store] = useState(() => createStore<SubmenuPosition>(() => defaultPosition));
 
   useLayoutEffect(() => {
     const submenu = submenuRef.current;
@@ -24,8 +29,8 @@ export function useSubmenuPosition(
     const flipHorizontal = rect.right > viewportWidth;
     const flipVertical = rect.bottom > viewportHeight;
 
-    setPosition({ flipHorizontal, flipVertical });
-  }, [submenuRef]);
+    store.setState({ flipHorizontal, flipVertical, submenuRight: rect.right });
+  }, [submenuRef, store]);
 
-  return position;
+  return useStore(store);
 }
