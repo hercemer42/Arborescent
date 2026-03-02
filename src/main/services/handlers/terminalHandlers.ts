@@ -1,6 +1,6 @@
 import { ipcMain, IpcMainInvokeEvent } from 'electron';
-import { TerminalManager } from '../services/TerminalManager';
-import { logger } from '../services/logger';
+import { TerminalManager } from '../TerminalManager';
+import { logger } from '../logger';
 import { IDisposable } from 'node-pty';
 
 export interface TerminalInfo {

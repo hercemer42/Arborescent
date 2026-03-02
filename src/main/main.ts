@@ -3,7 +3,7 @@ import path from 'node:path';
 import started from 'electron-squirrel-startup';
 import { registerIpcHandlers } from './services/ipcService';
 import { createApplicationMenu } from './services/menuService';
-import { registerTerminalHandlers, cleanupTerminals } from './ipc/terminalHandlers';
+import { registerTerminalHandlers, cleanupTerminals } from './services/handlers/terminalHandlers';
 import { logger } from './services/logger';
 
 if (started) {
