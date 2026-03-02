@@ -1,5 +1,5 @@
 import { TreeNode } from '../../shared/types';
-import { createTreeNode } from '../utils/nodeHelpers';
+import { createTreeNode } from './nodeHelpers';
 
 export function createBlankDocument(): {
   nodes: Record<string, TreeNode>;

@@ -2,7 +2,7 @@ import { StorageService } from '../../../../shared/interfaces';
 import { storeManager } from '../../storeManager';
 import { logger } from '../../../services/logger';
 import { createArboFile, extractBlueprintNodes } from '../../../utils/document';
-import { createBlankDocument } from '../../../data/defaultTemplate';
+import { createBlankDocument } from '../../../utils/defaultTemplate';
 import { File } from '../filesStore';
 import { getDisplayName } from '../../../../shared/utils/fileNaming';
 

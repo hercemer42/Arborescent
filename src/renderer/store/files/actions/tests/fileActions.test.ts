@@ -50,7 +50,7 @@ vi.mock('../../../../data/defaultTemplate', () => ({
 import { storeManager } from '../../../storeManager';
 import { logger } from '../../../../services/logger';
 import { createArboFile, extractBlueprintNodes } from '../../../../utils/document';
-import { createBlankDocument } from '../../../../data/defaultTemplate';
+import { createBlankDocument } from '../../../../utils/defaultTemplate';
 
 describe('fileActions', () => {
   let state: {
