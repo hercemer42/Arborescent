@@ -5,8 +5,7 @@ import defaultHotkeys from '../../../utils/defaultHotkeys.json';
 import { getActionLabel } from '../hotkeyLabels';
 
 function getHotkeyValue(config: HotkeyConfig, category: string, action: string): string {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  return (config as any)[category]?.[action] ?? '';
+  return config[category]?.[action] ?? '';
 }
 
 interface EditingAction {
@@ -60,8 +59,7 @@ export function useKeyboardShortcuts() {
 
     // Check all categories and actions for conflicts
     for (const category of Object.keys(hotkeys)) {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const categoryHotkeys = (hotkeys as any)[category] as Record<string, string>;
+      const categoryHotkeys = hotkeys[category];
       for (const action of Object.keys(categoryHotkeys)) {
         // Skip the action being edited
         if (category === editingAction.category && action === editingAction.action) {

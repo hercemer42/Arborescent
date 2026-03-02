@@ -43,8 +43,7 @@ export function KeyboardShortcutsDialog({ isOpen, onClose }: KeyboardShortcutsDi
 
         <div className="keyboard-shortcuts-content">
           {categories.map((category) => {
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            const categoryHotkeys = (hotkeys as any)[category] as Record<string, string>;
+            const categoryHotkeys = hotkeys[category];
             return (
               <div key={category} className="keyboard-shortcuts-category">
                 <h3>{getCategoryLabel(category)}</h3>
@@ -77,8 +76,7 @@ export function KeyboardShortcutsDialog({ isOpen, onClose }: KeyboardShortcutsDi
           <HotkeyEditDialog
             actionLabel={getActionLabel(editingAction.action)}
             currentHotkey={
-              // eslint-disable-next-line @typescript-eslint/no-explicit-any
-              ((hotkeys as any)[editingAction.category] as Record<string, string>)?.[editingAction.action] ?? ''
+              hotkeys[editingAction.category]?.[editingAction.action] ?? ''
             }
             conflict={getConflict()}
             onConfirm={handleEditConfirm}

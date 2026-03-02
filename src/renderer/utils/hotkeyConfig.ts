@@ -2,6 +2,7 @@ import defaultHotkeysData from './defaultHotkeys.json';
 import { matchesKeyNotation } from '../utils/hotkeyUtils';
 
 export interface HotkeyConfig {
+  [category: string]: Record<string, string>;
   navigation: {
     moveUp: string;
     moveDown: string;
@@ -65,7 +66,7 @@ export function getKeyForAction(
   context: HotkeyContext,
   action: string
 ): string | undefined {
-  return (currentConfig[context] as Record<string, string>)?.[action];
+  return currentConfig[context]?.[action];
 }
 
 export function matchesHotkey(
