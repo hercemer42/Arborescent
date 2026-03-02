@@ -1,6 +1,7 @@
 import { useState, useCallback, useMemo } from 'react';
 import { BrowserTab } from '../../../../store/browser/browserStore';
 import { normalizeUrl } from '../../../../utils/urlHelpers';
+import { logger } from '../../../../services/logger';
 
 interface UseBrowserAddressBarOptions {
   activeTabId: string | null;
@@ -25,7 +26,9 @@ export function useBrowserAddressBar({ activeTabId, tabs, getActiveWebview }: Us
     if (webview && addressBarValue) {
       const url = normalizeUrl(addressBarValue);
       // Electron types don't reflect that loadURL returns a Promise
-      (webview.loadURL(url) as unknown as Promise<void>).catch(() => {});
+      (webview.loadURL(url) as unknown as Promise<void>).catch((error) => {
+        logger.error('Failed to load URL', error as Error, 'Browser', false);
+      });
       setIsEditingAddress(false);
     }
   }, [addressBarValue, getActiveWebview]);
@@ -36,8 +39,8 @@ export function useBrowserAddressBar({ activeTabId, tabs, getActiveWebview }: Us
       if (webview) {
         try {
           setEditingValue(webview.getURL());
-        } catch {
-          // Webview not ready yet
+        } catch (error) {
+          logger.error('Failed to read webview URL', error as Error, 'Browser', false);
         }
       }
     }
