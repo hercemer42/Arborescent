@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { renderHook } from '@testing-library/react';
-import { useAppliedContext, useAppliedContexts, useActionContexts } from '../useAppliedContexts';
+import { useAppliedContext } from '../useAppliedContexts';
 import { TreeNode } from '../../../../../shared/types';
 
 // Mock the useStore hook
@@ -100,24 +100,5 @@ describe('useAppliedContext', () => {
 
     const { result } = renderHook(() => useAppliedContext(node));
     expect(result.current?.name).toBe('Context: with: colons');
-  });
-});
-
-describe('useAppliedContexts (legacy)', () => {
-  it('should return empty array for backwards compatibility', () => {
-    const node = { id: 'test', content: '', children: [], metadata: {} };
-    const { result } = renderHook(() => useAppliedContexts(node));
-    expect(result.current).toEqual([]);
-  });
-});
-
-describe('useActionContexts (legacy)', () => {
-  it('should return undefined for both contexts for backwards compatibility', () => {
-    const node = { id: 'test', content: '', children: [], metadata: {} };
-    const { result } = renderHook(() => useActionContexts(node));
-    expect(result.current).toEqual({
-      executeContext: undefined,
-      collaborateContext: undefined,
-    });
   });
 });
