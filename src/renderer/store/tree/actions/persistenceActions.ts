@@ -1,4 +1,5 @@
 import { TreeNode, NodeStatus } from '../../../../shared/types';
+import { logger } from '../../../services/logger';
 import { StorageService } from '../../../../shared/interfaces';
 import { updateAncestorRegistry, AncestorRegistry } from '../../../utils/ancestry';
 import { createArboFile } from '../../../utils/document';
@@ -126,7 +127,7 @@ export const createPersistenceActions = (
         try {
           await performSave(currentFilePath, fileMeta || undefined);
         } catch (error) {
-          console.error('Autosave failed:', error);
+          logger.error('Autosave failed', error as Error, 'Persistence');
         }
       }
       autosaveTimeout = null;

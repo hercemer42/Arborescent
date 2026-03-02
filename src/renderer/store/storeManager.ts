@@ -1,4 +1,5 @@
 import { createTreeStore, TreeStore } from './tree/treeStore';
+import { logger } from '../services/logger';
 
 function parseZoomPath(filePath: string): { sourceFilePath: string; nodeId: string } | null {
   if (!filePath.startsWith('zoom://')) return null;
@@ -38,7 +39,7 @@ class StoreManager {
       try {
         await actions.saveToPath(currentFilePath, fileMeta || undefined);
       } catch (error) {
-        console.error(`Failed to save file before closing: ${error}`);
+        logger.error('Failed to save file before closing', error as Error, 'StoreManager');
       }
     }
 
