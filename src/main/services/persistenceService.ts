@@ -1,7 +1,7 @@
 import { promises as fs } from 'node:fs';
 import path from 'node:path';
 import { app } from 'electron';
-import { logger } from '../logger';
+import { logger } from './logger';
 
 export async function getLastSavedDirectory(): Promise<string | undefined> {
   try {
