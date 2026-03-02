@@ -3,7 +3,7 @@ import { usePanelStore } from '../../store/panel/panelStore';
 import { TerminalPanel } from '../Terminal/TerminalPanel';
 import { BrowserPanel } from '../Browser/BrowserPanel';
 import { FeedbackPanel } from '../Feedback/FeedbackPanel';
-import { ResizablePanel } from '../ResizablePanel';
+import { ResizablePanel } from '../ui/ResizablePanel';
 import './Panel.css';
 
 interface PanelProps {

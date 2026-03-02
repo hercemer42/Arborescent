@@ -1,5 +1,5 @@
 import { RefObject, ReactNode } from 'react';
-import { usePanelResize } from '../../hooks/usePanelResize';
+import { usePanelResize } from '../../../hooks/usePanelResize';
 import './ResizablePanel.css';
 
 interface ResizablePanelProps {

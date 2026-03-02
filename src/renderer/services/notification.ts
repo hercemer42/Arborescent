@@ -1,6 +1,6 @@
 import { logger } from './logger';
 import { useToastStore } from '../store/toast/toastStore';
-import { ToastType } from '../components/Toast';
+import { ToastType } from '../components/ui/Toast';
 
 export function notifyError(
   message: string,

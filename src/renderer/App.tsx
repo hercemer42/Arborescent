@@ -1,5 +1,5 @@
 import { useState, useRef, useCallback } from 'react';
-import { ToastContainer } from './components/Toast';
+import { ToastContainer } from './components/ui/Toast';
 import { Workspace } from './components/Workspace';
 import { Panel } from './components/Panel';
 import { BottomStatusBar } from './components/BottomStatusBar/BottomStatusBar';

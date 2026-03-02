@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { logger } from '../logger';
-import { ToastType } from '../../components/Toast';
+import { ToastType } from '../../components/ui/Toast';
 
 describe('Renderer Logger', () => {
   const mockToastCallback = vi.fn();

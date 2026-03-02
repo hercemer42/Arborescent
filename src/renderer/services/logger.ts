@@ -1,4 +1,4 @@
-import { ToastType } from '../components/Toast';
+import { ToastType } from '../components/ui/Toast';
 import { BaseLogger } from '../../shared/services/logger/BaseLogger';
 
 type ToastCallback = (message: string, type: ToastType) => void;
