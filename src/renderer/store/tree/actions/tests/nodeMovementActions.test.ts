@@ -499,7 +499,7 @@ describe('nodeMovementActions', () => {
       actions.dropNode('node-2', 'node-1', 'child');
 
       expect(mockAddToast).toHaveBeenCalledWith(
-        'Cannot place a workflow node in a non-blueprint node',
+        'Cannot place a blueprint node in a non-blueprint node',
         'error'
       );
     });
@@ -544,6 +544,26 @@ describe('nodeMovementActions', () => {
       );
     });
 
+    it('should allow dropping a workflow into a nested workflow (itself a child of a workflow)', () => {
+      // node-1 is a workflow, node-3 is a nested workflow inside node-1
+      state.nodes['node-1'] = {
+        ...state.nodes['node-1'],
+        metadata: { ...state.nodes['node-1'].metadata, isBlueprint: true, isWorkflow: true },
+      };
+      state.nodes['node-3'] = {
+        ...state.nodes['node-3'],
+        metadata: { ...state.nodes['node-3'].metadata, isBlueprint: true, isWorkflow: true },
+      };
+      state.nodes['node-2'] = {
+        ...state.nodes['node-2'],
+        metadata: { ...state.nodes['node-2'].metadata, isWorkflow: true, isBlueprint: true },
+      };
+
+      actions.dropNode('node-2', 'node-3', 'child');
+
+      expect(state.nodes['node-3'].children).toContain('node-2');
+    });
+
     it('should reject dropping a workflow node into a context', () => {
       state.nodes['node-1'] = {
         ...state.nodes['node-1'],
@@ -586,6 +606,231 @@ describe('nodeMovementActions', () => {
         'Cannot place a workflow node in a context',
         'error'
       );
+    });
+  });
+
+  describe('workflow keyboard movement constraints', () => {
+    it('should prevent indenting a workflow into a non-blueprint sibling', () => {
+      // node-2 is a workflow, node-1 is not a blueprint — indent would make node-2 a child of node-1
+      state.nodes['node-2'] = {
+        ...state.nodes['node-2'],
+        metadata: { ...state.nodes['node-2'].metadata, isWorkflow: true, isBlueprint: true },
+      };
+
+      actions.indentNode('node-2');
+
+      expect(state.nodes['root'].children).toContain('node-2');
+      expect(state.nodes['node-1'].children).not.toContain('node-2');
+      expect(mockAddToast).toHaveBeenCalledWith(
+        'Cannot place a blueprint node in a non-blueprint node',
+        'error'
+      );
+    });
+
+    it('should allow indenting a workflow into a blueprint sibling', () => {
+      state.nodes['node-2'] = {
+        ...state.nodes['node-2'],
+        metadata: { ...state.nodes['node-2'].metadata, isWorkflow: true, isBlueprint: true },
+      };
+      state.nodes['node-1'] = {
+        ...state.nodes['node-1'],
+        metadata: { ...state.nodes['node-1'].metadata, isBlueprint: true },
+      };
+
+      actions.indentNode('node-2');
+
+      expect(state.nodes['node-1'].children).toContain('node-2');
+    });
+
+    it('should prevent indenting a workflow into a context', () => {
+      state.nodes['node-2'] = {
+        ...state.nodes['node-2'],
+        metadata: { ...state.nodes['node-2'].metadata, isWorkflow: true, isBlueprint: true },
+      };
+      state.nodes['node-1'] = {
+        ...state.nodes['node-1'],
+        metadata: { ...state.nodes['node-1'].metadata, isBlueprint: true, isContextDeclaration: true },
+      };
+
+      actions.indentNode('node-2');
+
+      expect(state.nodes['node-1'].children).not.toContain('node-2');
+      expect(mockAddToast).toHaveBeenCalledWith(
+        'Cannot place a workflow node in a context',
+        'error'
+      );
+    });
+
+    it('should prevent indenting a workflow into a workflow step', () => {
+      // node-1 is a workflow step (child of a workflow root)
+      state.nodes['root'] = {
+        ...state.nodes['root'],
+        metadata: { ...state.nodes['root'].metadata, isWorkflow: true },
+      };
+      state.nodes['node-1'] = {
+        ...state.nodes['node-1'],
+        metadata: { ...state.nodes['node-1'].metadata, isBlueprint: true },
+      };
+      state.nodes['node-2'] = {
+        ...state.nodes['node-2'],
+        metadata: { ...state.nodes['node-2'].metadata, isWorkflow: true, isBlueprint: true },
+      };
+
+      actions.indentNode('node-2');
+
+      expect(state.nodes['node-1'].children).not.toContain('node-2');
+      expect(mockAddToast).toHaveBeenCalledWith(
+        'Cannot place a workflow node in a workflow step',
+        'error'
+      );
+    });
+
+    it('should prevent moving a workflow up into a non-blueprint sibling parent', () => {
+      // node-3 is a workflow inside node-1. Moving up should try to go into node-1's previous sibling's parent.
+      // But let's set up: node-1 has children [wf-node], node-2 has children []. Moving wf-node up
+      // when it's the first child should try to move to previous sibling parent.
+      state.nodes['node-1'].children = [];
+      state.nodes['node-2'].children = ['wf-node'];
+      state.nodes['wf-node'] = {
+        id: 'wf-node',
+        content: 'Workflow',
+        children: [],
+        metadata: { isWorkflow: true, isBlueprint: true },
+      };
+      state.ancestorRegistry['wf-node'] = ['root', 'node-2'];
+
+      // Moving wf-node up: it's the first child of node-2, so it tries to go into node-1 (previous sibling)
+      // node-1 is not a blueprint, so it should be rejected
+      actions.moveNodeUp('wf-node');
+
+      expect(state.nodes['node-2'].children).toContain('wf-node');
+      expect(state.nodes['node-1'].children).not.toContain('wf-node');
+      expect(mockAddToast).toHaveBeenCalledWith(
+        'Cannot place a blueprint node in a non-blueprint node',
+        'error'
+      );
+    });
+
+    it('should prevent moving a workflow down into a non-blueprint sibling parent', () => {
+      state.nodes['node-1'].children = ['wf-node'];
+      state.nodes['node-2'].children = [];
+      state.nodes['wf-node'] = {
+        id: 'wf-node',
+        content: 'Workflow',
+        children: [],
+        metadata: { isWorkflow: true, isBlueprint: true },
+      };
+      state.ancestorRegistry['wf-node'] = ['root', 'node-1'];
+
+      // Moving wf-node down: it's the last child of node-1, so it tries to go into node-2 (next sibling)
+      // node-2 is not a blueprint, so it should be rejected
+      actions.moveNodeDown('wf-node');
+
+      expect(state.nodes['node-1'].children).toContain('wf-node');
+      expect(state.nodes['node-2'].children).not.toContain('wf-node');
+      expect(mockAddToast).toHaveBeenCalledWith(
+        'Cannot place a blueprint node in a non-blueprint node',
+        'error'
+      );
+    });
+  });
+
+  describe('blueprint keyboard movement constraints', () => {
+    it('should prevent indenting a blueprint node into a non-blueprint sibling', () => {
+      state.nodes['node-1'] = {
+        ...state.nodes['node-1'],
+        metadata: { status: 'pending' },
+      };
+      state.nodes['node-2'] = {
+        ...state.nodes['node-2'],
+        metadata: { ...state.nodes['node-2'].metadata, isBlueprint: true },
+      };
+
+      actions.indentNode('node-2');
+
+      expect(state.nodes['node-1'].children).not.toContain('node-2');
+      expect(mockAddToast).toHaveBeenCalledWith(
+        'Cannot place a blueprint node in a non-blueprint node',
+        'error'
+      );
+    });
+
+    it('should allow indenting a blueprint node into a blueprint sibling', () => {
+      state.nodes['node-1'] = {
+        ...state.nodes['node-1'],
+        metadata: { ...state.nodes['node-1'].metadata, isBlueprint: true },
+      };
+      state.nodes['node-2'] = {
+        ...state.nodes['node-2'],
+        metadata: { ...state.nodes['node-2'].metadata, isBlueprint: true },
+      };
+
+      actions.indentNode('node-2');
+
+      expect(state.nodes['node-1'].children).toContain('node-2');
+    });
+
+    it('should prevent indenting a context node into a non-blueprint sibling', () => {
+      state.nodes['node-2'] = {
+        ...state.nodes['node-2'],
+        metadata: { ...state.nodes['node-2'].metadata, isBlueprint: true, isContextDeclaration: true },
+      };
+
+      actions.indentNode('node-2');
+
+      expect(state.nodes['node-1'].children).not.toContain('node-2');
+      expect(mockAddToast).toHaveBeenCalledWith(
+        'Cannot place a blueprint node in a non-blueprint node',
+        'error'
+      );
+    });
+
+    it('should prevent moving a blueprint node up into a non-blueprint sibling parent', () => {
+      state.nodes['node-2'].children = ['bp-node'];
+      state.nodes['bp-node'] = {
+        id: 'bp-node',
+        content: 'Blueprint',
+        children: [],
+        metadata: { isBlueprint: true },
+      };
+      state.ancestorRegistry['bp-node'] = ['root', 'node-2'];
+
+      // bp-node is the first child of node-2, moving up tries to go into node-1
+      actions.moveNodeUp('bp-node');
+
+      expect(state.nodes['node-2'].children).toContain('bp-node');
+      expect(state.nodes['node-1'].children).not.toContain('bp-node');
+      expect(mockAddToast).toHaveBeenCalledWith(
+        'Cannot place a blueprint node in a non-blueprint node',
+        'error'
+      );
+    });
+
+    it('should prevent moving a blueprint node down into a non-blueprint sibling parent', () => {
+      state.nodes['node-1'].children = ['bp-node'];
+      state.nodes['bp-node'] = {
+        id: 'bp-node',
+        content: 'Blueprint',
+        children: [],
+        metadata: { isBlueprint: true },
+      };
+      state.ancestorRegistry['bp-node'] = ['root', 'node-1'];
+
+      // bp-node is the last child of node-1, moving down tries to go into node-2
+      actions.moveNodeDown('bp-node');
+
+      expect(state.nodes['node-1'].children).toContain('bp-node');
+      expect(state.nodes['node-2'].children).not.toContain('bp-node');
+      expect(mockAddToast).toHaveBeenCalledWith(
+        'Cannot place a blueprint node in a non-blueprint node',
+        'error'
+      );
+    });
+
+    it('should allow non-blueprint nodes to move freely', () => {
+      actions.indentNode('node-2');
+
+      expect(state.nodes['node-1'].children).toContain('node-2');
     });
   });
 });

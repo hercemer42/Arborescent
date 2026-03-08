@@ -74,6 +74,45 @@ function calculateDropTarget(
   }
 }
 
+function validateNodeMove(
+  nodeId: string,
+  newParentId: string,
+  state: StoreState
+): string | null {
+  const { nodes, ancestorRegistry } = state;
+  const sourceNode = nodes[nodeId];
+  if (!sourceNode) return null;
+
+  const effectiveParent = nodes[newParentId];
+  const isSourceBlueprint = sourceNode.metadata.isBlueprint === true;
+  const isSourceWorkflow = sourceNode.metadata.isWorkflow === true;
+
+  if (isSourceBlueprint && effectiveParent && effectiveParent.metadata.isBlueprint !== true) {
+    return 'Cannot place a blueprint node in a non-blueprint node';
+  }
+
+  if (!isSourceWorkflow) return null;
+
+  const targetAncestors = ancestorRegistry[newParentId] || [];
+  if (
+    effectiveParent?.metadata.isContextDeclaration === true
+    || targetAncestors.some(id => nodes[id]?.metadata.isContextDeclaration === true)
+  ) {
+    return 'Cannot place a workflow node in a context';
+  }
+
+  const grandparentId = targetAncestors[targetAncestors.length - 1];
+  if (
+    grandparentId
+    && nodes[grandparentId]?.metadata.isWorkflow === true
+    && effectiveParent?.metadata.isWorkflow !== true
+  ) {
+    return 'Cannot place a workflow node in a workflow step';
+  }
+
+  return null;
+}
+
 function calculateSwapPosition(
   currentIndex: number,
   direction: 'up' | 'down'
@@ -148,6 +187,14 @@ function moveNodeVertically(
     newPosition = moveInfo.newPosition;
   }
 
+  if (newParentId !== parentId) {
+    const error = validateNodeMove(nodeId, newParentId, state);
+    if (error) {
+      useToastStore.getState().addToast(error, 'error');
+      return;
+    }
+  }
+
   if (!state.actions?.executeCommand) {
     throw new Error('Command system not initialized - cannot move node with undo/redo support');
   }
@@ -179,6 +226,12 @@ export const createNodeMovementActions = (
 ): NodeMovementActions => {
   function executeMoveCommand(nodeId: string, newParentId: string, newPosition: number): void {
     const state = get() as StoreState & { actions?: { executeCommand?: (cmd: unknown) => void } };
+
+    const error = validateNodeMove(nodeId, newParentId, state);
+    if (error) {
+      useToastStore.getState().addToast(error, 'error');
+      return;
+    }
 
     if (!state.actions?.executeCommand) {
       throw new Error('Command system not initialized - cannot move node with undo/redo support');
@@ -283,38 +336,6 @@ export const createNodeMovementActions = (
     if (!dropTarget) return;
 
     const { targetParentId, insertAt } = dropTarget;
-
-    const sourceNode = nodes[nodeId];
-    if (sourceNode?.metadata.isWorkflow === true) {
-      const effectiveParent = nodes[targetParentId];
-      if (effectiveParent && effectiveParent.metadata.isBlueprint !== true) {
-        useToastStore.getState().addToast(
-          'Cannot place a workflow node in a non-blueprint node',
-          'error'
-        );
-        return;
-      }
-      const targetAncestors = state.ancestorRegistry[targetParentId] || [];
-      if (
-        effectiveParent?.metadata.isContextDeclaration === true
-        || targetAncestors.some(id => nodes[id]?.metadata.isContextDeclaration === true)
-      ) {
-        useToastStore.getState().addToast(
-          'Cannot place a workflow node in a context',
-          'error'
-        );
-        return;
-      }
-      const parentAncestors = state.ancestorRegistry[targetParentId] || [];
-      const grandparentId = parentAncestors[parentAncestors.length - 1];
-      if (grandparentId && nodes[grandparentId]?.metadata.isWorkflow === true) {
-        useToastStore.getState().addToast(
-          'Cannot place a workflow node in a workflow step',
-          'error'
-        );
-        return;
-      }
-    }
 
     const newPosition = insertAt === 'start' ? 0
       : insertAt === 'end' ? (nodes[targetParentId]?.children.length ?? 0)
