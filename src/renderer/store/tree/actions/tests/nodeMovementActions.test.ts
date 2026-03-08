@@ -5,6 +5,17 @@ import type { AncestorRegistry } from '../../../../utils/ancestry';
 import type { VisualEffectsActions } from '../visualEffectsActions';
 import type { NavigationActions } from '../navigationActions';
 
+const { mockAddToast } = vi.hoisted(() => ({
+  mockAddToast: vi.fn(),
+}));
+vi.mock('../../../toast/toastStore', () => ({
+  useToastStore: {
+    getState: () => ({
+      addToast: mockAddToast,
+    }),
+  },
+}));
+
 describe('nodeMovementActions', () => {
   type TestState = {
     nodes: Record<string, TreeNode>;
@@ -22,6 +33,7 @@ describe('nodeMovementActions', () => {
   let mockExecuteCommand: ReturnType<typeof vi.fn>;
 
   beforeEach(() => {
+    mockAddToast.mockClear();
     mockExecuteCommand = vi.fn((command: { execute: () => void }) => {
       // Execute the command immediately in tests
       command.execute();
@@ -463,6 +475,117 @@ describe('nodeMovementActions', () => {
       actions.dropNode('node-4', 'node-2', 'before');
 
       expect(state.nodes['root'].children).toEqual(['node-1', 'node-4', 'node-2', 'node-3']);
+    });
+
+    it('should reject dropping a workflow node into a non-blueprint node', () => {
+      state.nodes['node-2'] = {
+        ...state.nodes['node-2'],
+        metadata: { ...state.nodes['node-2'].metadata, isWorkflow: true, isBlueprint: true },
+      };
+
+      const originalChildren = [...state.nodes['node-1'].children];
+
+      actions.dropNode('node-2', 'node-1', 'child');
+
+      expect(state.nodes['node-1'].children).toEqual(originalChildren);
+    });
+
+    it('should show toast error when dropping workflow into non-blueprint', () => {
+      state.nodes['node-2'] = {
+        ...state.nodes['node-2'],
+        metadata: { ...state.nodes['node-2'].metadata, isWorkflow: true, isBlueprint: true },
+      };
+
+      actions.dropNode('node-2', 'node-1', 'child');
+
+      expect(mockAddToast).toHaveBeenCalledWith(
+        'Cannot place a workflow node in a non-blueprint node',
+        'error'
+      );
+    });
+
+    it('should allow dropping a workflow node into a blueprint node', () => {
+      state.nodes['node-2'] = {
+        ...state.nodes['node-2'],
+        metadata: { ...state.nodes['node-2'].metadata, isWorkflow: true, isBlueprint: true },
+      };
+      state.nodes['node-1'] = {
+        ...state.nodes['node-1'],
+        metadata: { ...state.nodes['node-1'].metadata, isBlueprint: true },
+      };
+
+      actions.dropNode('node-2', 'node-1', 'child');
+
+      expect(state.nodes['node-1'].children).toContain('node-2');
+    });
+
+    it('should reject dropping a workflow node into a workflow step', () => {
+      // node-1 is a workflow, node-3 is its child (a step)
+      state.nodes['node-1'] = {
+        ...state.nodes['node-1'],
+        metadata: { ...state.nodes['node-1'].metadata, isBlueprint: true, isWorkflow: true },
+      };
+      state.nodes['node-3'] = {
+        ...state.nodes['node-3'],
+        metadata: { ...state.nodes['node-3'].metadata, isBlueprint: true },
+      };
+      state.nodes['node-2'] = {
+        ...state.nodes['node-2'],
+        metadata: { ...state.nodes['node-2'].metadata, isWorkflow: true, isBlueprint: true },
+      };
+
+      const originalChildren = [...state.nodes['node-3'].children];
+      actions.dropNode('node-2', 'node-3', 'child');
+
+      expect(state.nodes['node-3'].children).toEqual(originalChildren);
+      expect(mockAddToast).toHaveBeenCalledWith(
+        'Cannot place a workflow node in a workflow step',
+        'error'
+      );
+    });
+
+    it('should reject dropping a workflow node into a context', () => {
+      state.nodes['node-1'] = {
+        ...state.nodes['node-1'],
+        metadata: { ...state.nodes['node-1'].metadata, isBlueprint: true, isContextDeclaration: true },
+      };
+      state.nodes['node-2'] = {
+        ...state.nodes['node-2'],
+        metadata: { ...state.nodes['node-2'].metadata, isWorkflow: true, isBlueprint: true },
+      };
+
+      const originalChildren = [...state.nodes['node-1'].children];
+      actions.dropNode('node-2', 'node-1', 'child');
+
+      expect(state.nodes['node-1'].children).toEqual(originalChildren);
+      expect(mockAddToast).toHaveBeenCalledWith(
+        'Cannot place a workflow node in a context',
+        'error'
+      );
+    });
+
+    it('should reject dropping a workflow node into a descendant of a context', () => {
+      state.nodes['node-1'] = {
+        ...state.nodes['node-1'],
+        metadata: { ...state.nodes['node-1'].metadata, isBlueprint: true, isContextDeclaration: true },
+      };
+      state.nodes['node-3'] = {
+        ...state.nodes['node-3'],
+        metadata: { ...state.nodes['node-3'].metadata, isBlueprint: true },
+      };
+      state.nodes['node-2'] = {
+        ...state.nodes['node-2'],
+        metadata: { ...state.nodes['node-2'].metadata, isWorkflow: true, isBlueprint: true },
+      };
+
+      const originalChildren = [...state.nodes['node-3'].children];
+      actions.dropNode('node-2', 'node-3', 'child');
+
+      expect(state.nodes['node-3'].children).toEqual(originalChildren);
+      expect(mockAddToast).toHaveBeenCalledWith(
+        'Cannot place a workflow node in a context',
+        'error'
+      );
     });
   });
 });

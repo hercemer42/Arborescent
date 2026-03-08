@@ -9,10 +9,13 @@ vi.mock('../../../services/logger', () => ({
   },
 }));
 
-vi.mock('../../toast/toastStore', () => ({
+const { mockAddToast } = vi.hoisted(() => ({
+  mockAddToast: vi.fn(),
+}));
+vi.mock('../../../toast/toastStore', () => ({
   useToastStore: {
     getState: () => ({
-      addToast: vi.fn(),
+      addToast: mockAddToast,
     }),
   },
 }));
@@ -108,6 +111,7 @@ describe('createWorkflowActions', () => {
       state = { ...state, ...partial };
     };
 
+    mockAddToast.mockClear();
     mockTriggerAutosave = vi.fn();
     mockExecuteCommand = vi.fn((command) => command.execute());
     mockVisualEffects = {
@@ -153,15 +157,7 @@ describe('createWorkflowActions', () => {
       expect(state.nodes['step-2'].metadata.isBlueprint).toBe(true);
     });
 
-    it('should be a no-op if parent is not a blueprint', () => {
-      state.nodes['root'].metadata.isBlueprint = undefined;
-
-      actions.declareAsWorkflow('workflow-candidate');
-
-      expect(state.nodes['workflow-candidate'].metadata.isWorkflow).toBeUndefined();
-    });
-
-    it('should be a no-op if ancestor already has isWorkflow', () => {
+    it('should allow nesting when ancestor already has isWorkflow', () => {
       state.nodes['workflow-candidate'] = {
         ...state.nodes['workflow-candidate'],
         metadata: { ...state.nodes['workflow-candidate'].metadata, isWorkflow: true },
@@ -169,14 +165,22 @@ describe('createWorkflowActions', () => {
 
       actions.declareAsWorkflow('step-1');
 
-      expect(state.nodes['step-1'].metadata.isWorkflow).toBeUndefined();
+      expect(state.nodes['step-1'].metadata.isWorkflow).toBe(true);
     });
 
-    it('should be a no-op if descendant already has isWorkflow', () => {
+    it('should allow declaring as workflow when descendant already has isWorkflow', () => {
       state.nodes['step-1'] = {
         ...state.nodes['step-1'],
         metadata: { ...state.nodes['step-1'].metadata, isWorkflow: true },
       };
+
+      actions.declareAsWorkflow('workflow-candidate');
+
+      expect(state.nodes['workflow-candidate'].metadata.isWorkflow).toBe(true);
+    });
+
+    it('should be a no-op if parent is not a blueprint', () => {
+      state.nodes['root'].metadata.isBlueprint = undefined;
 
       actions.declareAsWorkflow('workflow-candidate');
 
@@ -187,6 +191,23 @@ describe('createWorkflowActions', () => {
       actions.declareAsWorkflow('workflow-candidate');
 
       expect(mockTriggerAutosave).toHaveBeenCalled();
+    });
+
+    it('should go through executeCommand for undo support', () => {
+      actions.declareAsWorkflow('workflow-candidate');
+
+      expect(mockExecuteCommand).toHaveBeenCalled();
+      const command = mockExecuteCommand.mock.calls[0][0];
+      expect(command.description).toContain('workflow-candidate');
+    });
+
+    it('should be undoable via command', () => {
+      actions.declareAsWorkflow('workflow-candidate');
+
+      const command = mockExecuteCommand.mock.calls[0][0];
+      command.undo();
+
+      expect(state.nodes['workflow-candidate'].metadata.isWorkflow).toBeUndefined();
     });
   });
 
@@ -205,10 +226,92 @@ describe('createWorkflowActions', () => {
       expect(state.nodes['workflow-candidate'].metadata.isBlueprint).toBe(true);
     });
 
+    it('should cascade removal to descendant workflows', () => {
+      state.nodes['step-1'] = {
+        ...state.nodes['step-1'],
+        metadata: { ...state.nodes['step-1'].metadata, isWorkflow: true },
+      };
+
+      actions.removeFromWorkflow('workflow-candidate');
+
+      expect(state.nodes['workflow-candidate'].metadata.isWorkflow).toBeUndefined();
+      expect(state.nodes['step-1'].metadata.isWorkflow).toBeUndefined();
+    });
+
+    it('should cascade removal through multiple nesting levels', () => {
+      state.nodes['step-1'] = {
+        ...state.nodes['step-1'],
+        metadata: { ...state.nodes['step-1'].metadata, isWorkflow: true },
+      };
+      state.nodes['item-a'] = {
+        ...state.nodes['item-a'],
+        metadata: { ...state.nodes['item-a'].metadata, isWorkflow: true },
+      };
+
+      actions.removeFromWorkflow('workflow-candidate');
+
+      expect(state.nodes['workflow-candidate'].metadata.isWorkflow).toBeUndefined();
+      expect(state.nodes['step-1'].metadata.isWorkflow).toBeUndefined();
+      expect(state.nodes['item-a'].metadata.isWorkflow).toBeUndefined();
+    });
+
+    it('should keep isBlueprint on cascaded descendants', () => {
+      state.nodes['step-1'] = {
+        ...state.nodes['step-1'],
+        metadata: { ...state.nodes['step-1'].metadata, isWorkflow: true },
+      };
+
+      actions.removeFromWorkflow('workflow-candidate');
+
+      expect(state.nodes['step-1'].metadata.isBlueprint).toBe(true);
+    });
+
     it('should trigger autosave', () => {
       actions.removeFromWorkflow('workflow-candidate');
 
       expect(mockTriggerAutosave).toHaveBeenCalled();
+    });
+
+    it('should go through executeCommand for undo support', () => {
+      actions.removeFromWorkflow('workflow-candidate');
+
+      expect(mockExecuteCommand).toHaveBeenCalled();
+      const command = mockExecuteCommand.mock.calls[0][0];
+      expect(command.description).toContain('workflow-candidate');
+    });
+
+    it('should show warning toast when descendant workflows exist', () => {
+      state.nodes['step-1'] = {
+        ...state.nodes['step-1'],
+        metadata: { ...state.nodes['step-1'].metadata, isWorkflow: true },
+      };
+
+      actions.removeFromWorkflow('workflow-candidate');
+
+      expect(mockAddToast).toHaveBeenCalledWith(
+        'Removed workflow and nested workflows',
+        'warning'
+      );
+    });
+
+    it('should show info toast when no descendant workflows exist', () => {
+      actions.removeFromWorkflow('workflow-candidate');
+
+      expect(mockAddToast).toHaveBeenCalledWith('Removed from workflow', 'info');
+    });
+
+    it('should be undoable via command including cascaded descendants', () => {
+      state.nodes['step-1'] = {
+        ...state.nodes['step-1'],
+        metadata: { ...state.nodes['step-1'].metadata, isWorkflow: true },
+      };
+
+      actions.removeFromWorkflow('workflow-candidate');
+      const command = mockExecuteCommand.mock.calls[0][0];
+      command.undo();
+
+      expect(state.nodes['workflow-candidate'].metadata.isWorkflow).toBe(true);
+      expect(state.nodes['step-1'].metadata.isWorkflow).toBe(true);
     });
   });
 
@@ -239,6 +342,34 @@ describe('createWorkflowActions', () => {
       actions.moveToNextStep('item-c');
 
       expect(mockExecuteCommand).not.toHaveBeenCalled();
+    });
+
+    it('should expand collapsed workflow ancestor when navigating into nested workflow', () => {
+      // Set up a nested workflow
+      state.nodes['workflow-candidate'] = {
+        ...state.nodes['workflow-candidate'],
+        children: ['step-1', 'nested-wf'],
+        metadata: { ...state.nodes['workflow-candidate'].metadata, isWorkflow: true },
+      };
+      state.nodes['nested-wf'] = {
+        id: 'nested-wf',
+        content: 'Nested',
+        children: ['nested-step'],
+        metadata: { isBlueprint: true, isWorkflow: true, expanded: false },
+      };
+      state.nodes['nested-step'] = {
+        id: 'nested-step',
+        content: 'Nested Step',
+        children: [],
+        metadata: { isBlueprint: true },
+      };
+      state.ancestorRegistry['nested-wf'] = ['root', 'workflow-candidate'];
+      state.ancestorRegistry['nested-step'] = ['root', 'workflow-candidate', 'nested-wf'];
+
+      actions.moveToNextStep('item-a');
+
+      expect(state.nodes['nested-wf'].metadata.expanded).toBe(true);
+      expect(state.nodes['nested-step'].children).toContain('item-a');
     });
   });
 

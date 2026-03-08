@@ -1,7 +1,11 @@
 import { TreeNode } from '../../../../shared/types';
 import { ContextMenuItem } from '../../ui/ContextMenu';
 import { AncestorRegistry } from '../../../utils/ancestry';
-import { isChildOfWorkflowStep, getWorkflowStepPosition } from '../../../utils/workflowHelpers';
+import {
+  isChildOfWorkflowStep,
+  findNextStepTarget,
+  findPreviousStepTarget,
+} from '../../../utils/workflowHelpers';
 
 interface BuildWorkflowStepSubmenuParams {
   node: TreeNode;
@@ -21,19 +25,16 @@ export function buildWorkflowStepSubmenu({
 }: BuildWorkflowStepSubmenuParams): ContextMenuItem[] {
   if (!isChildOfWorkflowStep(node.id, nodes, ancestorRegistry)) return [];
 
-  const position = getWorkflowStepPosition(node.id, nodes, ancestorRegistry);
-  if (!position) return [];
-
   const items: ContextMenuItem[] = [];
 
-  if (position.currentStepIndex < position.totalSteps - 1) {
+  if (findNextStepTarget(node.id, nodes, ancestorRegistry)) {
     items.push({
       label: 'Next step',
       onClick: () => actions.moveToNextStep(node.id),
     });
   }
 
-  if (position.currentStepIndex > 0) {
+  if (findPreviousStepTarget(node.id, nodes, ancestorRegistry)) {
     items.push({
       label: 'Previous step',
       onClick: () => actions.moveToPreviousStep(node.id),

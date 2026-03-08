@@ -3,6 +3,7 @@ import { AncestorRegistry } from '../../../utils/ancestry';
 import { VisualEffectsActions } from './visualEffectsActions';
 import { NavigationActions } from './navigationActions';
 import { MoveNodeCommand } from '../commands/MoveNodeCommand';
+import { useToastStore } from '../../toast/toastStore';
 
 export interface NodeMovementActions {
   indentNode: (nodeId: string) => void;
@@ -282,6 +283,38 @@ export const createNodeMovementActions = (
     if (!dropTarget) return;
 
     const { targetParentId, insertAt } = dropTarget;
+
+    const sourceNode = nodes[nodeId];
+    if (sourceNode?.metadata.isWorkflow === true) {
+      const effectiveParent = nodes[targetParentId];
+      if (effectiveParent && effectiveParent.metadata.isBlueprint !== true) {
+        useToastStore.getState().addToast(
+          'Cannot place a workflow node in a non-blueprint node',
+          'error'
+        );
+        return;
+      }
+      const targetAncestors = state.ancestorRegistry[targetParentId] || [];
+      if (
+        effectiveParent?.metadata.isContextDeclaration === true
+        || targetAncestors.some(id => nodes[id]?.metadata.isContextDeclaration === true)
+      ) {
+        useToastStore.getState().addToast(
+          'Cannot place a workflow node in a context',
+          'error'
+        );
+        return;
+      }
+      const parentAncestors = state.ancestorRegistry[targetParentId] || [];
+      const grandparentId = parentAncestors[parentAncestors.length - 1];
+      if (grandparentId && nodes[grandparentId]?.metadata.isWorkflow === true) {
+        useToastStore.getState().addToast(
+          'Cannot place a workflow node in a workflow step',
+          'error'
+        );
+        return;
+      }
+    }
 
     const newPosition = insertAt === 'start' ? 0
       : insertAt === 'end' ? (nodes[targetParentId]?.children.length ?? 0)

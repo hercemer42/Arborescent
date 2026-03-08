@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+### Features
+
+- **Nested workflows**: Declare workflow steps as sub-workflows with depth-first step numbering, cross-boundary navigation, cascading removal, drag constraints, and full undo/redo support
+
 ## 0.1.0 - Initial Release
 
 First public release of Arborescent.

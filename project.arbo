@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-03-01T13:10:13.424Z'
+updated: '2026-03-08T20:20:49.899Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -13,10 +13,10 @@ nodes:
       - d5fe0eff-b1c6-4986-b6a3-70a0ea46f096
       - 2f83a0af-280e-4e67-8306-31a8e02c9500
       - 0cc62ae1-1a7a-4aa4-bc6a-d817cabd672c
-      - f5c33654-69b4-492a-a6e3-6d13e4dec80d
       - 79b693ca-27ce-4410-8617-8092d7e81b07
       - 9bfbb401-dcb6-4f92-a34b-e9b3982c676f
       - bf007448-0f9f-4e68-ba31-a9def979ec2d
+      - f5c33654-69b4-492a-a6e3-6d13e4dec80d
       - f5e3f44c-6de7-4bd9-ad8d-7f51cdf059f1
     metadata:
       created: '2025-10-11T00:00:00.000Z'
@@ -5095,12 +5095,14 @@ nodes:
       isBlueprint: true
   af1ebc0d-26dd-4a75-982f-03a9dbe2bc84:
     id: af1ebc0d-26dd-4a75-982f-03a9dbe2bc84
-    content: "You are reviewing a hierarchical task list.\_ Please :"
+    content: "You are reviewing a task list.\_ Please :"
     children:
       - 848977fa-0d2e-4f1b-92f4-a276c5e4841d
       - 20c4a563-f66e-4e4c-a3d5-06e090b46a12
+      - 2a9521fe-ffe9-4586-b424-76f728eda6d5
       - 9e75dae5-0ca1-4ccb-96db-eccceaba398d
       - 0a61fab2-e033-43e2-b83f-c554ef870539
+      - 8b4835f4-b4b2-4fcb-b881-9144640beaf5
       - eebd1360-854f-4dcc-936c-27ac861d2d6c
       - 9f1e3dbf-0429-4815-a0fd-226c2aab3c00
       - ec1a7856-c57d-4df4-93b9-b8cc30b1375c
@@ -5264,7 +5266,7 @@ nodes:
       isBlueprint: true
   64ea2af4-332b-44a6-8b88-78535cc9b79a:
     id: 64ea2af4-332b-44a6-8b88-78535cc9b79a
-    content: Refactor
+    content: User refactor
     children:
       - 59f2421c-d726-43ec-8347-ccf2874922a4
       - edd6bde4-a422-43f9-8839-9af88651293b
@@ -5273,7 +5275,7 @@ nodes:
       status: pending
       isContextDeclaration: true
       blueprintIcon: Recycle
-      expanded: true
+      expanded: false
       blueprintColor: '#a855f7'
       isBlueprint: true
   59f2421c-d726-43ec-8347-ccf2874922a4:
@@ -5687,6 +5689,7 @@ nodes:
     content: Functional
     children:
       - e8824b29-eb18-4031-9e35-b321a864d418
+      - deb660c8-6073-4216-9b36-e9c224b68408
       - e6860559-af1d-4a28-be70-9e27ba35335f
       - 0d19da53-f3a7-4ee4-b495-b59f127671fa
       - 7bd340ba-cef3-4f8d-bf48-e5afe0c9c8c6
@@ -5697,13 +5700,18 @@ nodes:
       isBlueprint: true
       blueprintIcon: Layers2
       blueprintColor: '#0ea5e9'
-      expanded: false
+      expanded: true
   9a8f1538-7eb7-4e2d-9e0f-46e2c00675f4:
     id: 9a8f1538-7eb7-4e2d-9e0f-46e2c00675f4
     content: Technical
     children:
+      - 64ec6c6b-566e-4956-bff9-55ac881f4fdb
+      - 75556cda-47e6-45d5-ad2d-12689057427e
+      - 22a32663-eb92-44e0-a844-d6219409f63b
       - 9b46397c-c452-421c-b408-46b040d99c9e
       - cc94b377-246d-45ae-b938-2d3906892aa1
+      - 4c3f0d67-a500-484f-8ccb-5dbf959ea27f
+      - 1d30a613-a651-436c-bb2b-1fb3062af9fb
       - 64ea2af4-332b-44a6-8b88-78535cc9b79a
       - 6690289a-e02f-48bc-9225-a1083b7b324f
     metadata:
@@ -5741,11 +5749,10 @@ nodes:
       - 760fca4c-7ad7-4b7b-9aa3-91325e45e524
       - dd931d08-014a-4084-8522-9981433eadb9
       - 6328bcde-087d-4a83-8bf7-974dab32f3c3
-      - 6d0f96f7-457f-4bf5-b091-71efecc01b7f
       - 52c39879-2b10-40e6-89f7-e0c35bbb5474
     metadata:
       status: pending
-      expanded: false
+      expanded: true
       deleted: false
       plugins: {}
       isBlueprint: true
@@ -5929,7 +5936,7 @@ nodes:
       - bf7a428b-6e45-4024-8eea-a1491604e927
     metadata:
       status: pending
-      expanded: true
+      expanded: false
       deleted: false
       plugins: {}
       isContextDeclaration: true
@@ -5949,7 +5956,7 @@ nodes:
       isBlueprint: true
   760fca4c-7ad7-4b7b-9aa3-91325e45e524:
     id: 760fca4c-7ad7-4b7b-9aa3-91325e45e524
-    content: Break down the feature into logical implementation phases
+    content: Break down the feature into logical implementation phases or follow those already outlined
     children: []
     metadata:
       status: pending
@@ -5960,16 +5967,6 @@ nodes:
   52c39879-2b10-40e6-89f7-e0c35bbb5474:
     id: 52c39879-2b10-40e6-89f7-e0c35bbb5474
     content: If there are complex architectural decisions involving refactoring or new patterns, summarize them briefly before implementing
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-      isBlueprint: true
-  6d0f96f7-457f-4bf5-b091-71efecc01b7f:
-    id: 6d0f96f7-457f-4bf5-b091-71efecc01b7f
-    content: For lengthy implementations, check in with the user at logical milestones before proceeding
     children: []
     metadata:
       status: pending
@@ -6594,8 +6591,13 @@ nodes:
     id: 77963e20-53e9-4db7-8802-8c718f202cef
     content: In progress
     children:
+      - 00714a63-f267-4ab1-a285-73ae4198eb42
+      - b38966d3-b238-4d64-9eed-74d4ab983c28
       - c25cf481-a0d1-495d-9cea-498f1135eb8c
       - ac4c627f-c512-40b9-ad55-11b439495b7e
+      - 333cb3e7-a25e-4d18-9dfa-82cf75328fff
+      - fbf20e91-d852-4406-9815-952fa7727f33
+      - bdceb696-248d-4199-9182-db0689445c07
     metadata:
       status: pending
       appliedContextIds:
@@ -8981,7 +8983,8 @@ nodes:
   ce9cfecb-f289-494b-8ff2-482e4b29d193:
     id: ce9cfecb-f289-494b-8ff2-482e4b29d193
     content: All the automated tests are updated and passing
-    children: []
+    children:
+      - bbe17f66-d747-4cf0-8602-721ce87663fe
     metadata:
       status: pending
       expanded: true
@@ -9028,7 +9031,7 @@ nodes:
       blueprintIcon: Bug
       blueprintColor: '#ef4444'
       appliedContextId: 6690289a-e02f-48bc-9225-a1083b7b324f
-      expanded: false
+      expanded: true
   aff16275-6d8e-49c9-b862-76875858d4af:
     id: aff16275-6d8e-49c9-b862-76875858d4af
     content: Avoid adding comments specific to the bug fix unless really needed
@@ -9046,7 +9049,6 @@ nodes:
     id: f5c33654-69b4-492a-a6e3-6d13e4dec80d
     content: Actions
     children:
-      - 6e6f1d73-3ad7-46c6-879e-19036d650556
       - 6ab534a2-2956-454c-9c6a-e459314e0b5c
       - e43903b2-2184-4cbd-84ec-9cd24ea536e2
     metadata:
@@ -9059,13 +9061,7 @@ nodes:
   6e6f1d73-3ad7-46c6-879e-19036d650556:
     id: 6e6f1d73-3ad7-46c6-879e-19036d650556
     content: Review since last commit
-    children:
-      - 4264aa2a-e101-4dd6-b971-1d0deb8ce03d
-      - e8b96096-b0ba-42f8-91cd-37fea6028a85
-      - 9d367ab4-0554-4138-8caf-2b9aaf770c5f
-      - c7009a9e-eecb-46e1-82ad-2e8370e90ee5
-      - 443ed04c-12ba-43fb-a6b2-e3b14da356a3
-      - 0985b5a6-8be4-43f5-95f2-c5c76575708e
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -9081,27 +9077,13 @@ nodes:
       isBlueprint: true
   e8b96096-b0ba-42f8-91cd-37fea6028a85:
     id: e8b96096-b0ba-42f8-91cd-37fea6028a85
-    content: 'Insure consistency with the project conventions :'
+    content: 'Refactor any code not consistent with the project conventions :'
     children:
       - 315bf9ae-cd9a-49d2-be3a-14b269500d24
     metadata:
       status: pending
       isBlueprint: true
       expanded: true
-  443ed04c-12ba-43fb-a6b2-e3b14da356a3:
-    id: 443ed04c-12ba-43fb-a6b2-e3b14da356a3
-    content: Identify any refactoring opportunities
-    children: []
-    metadata:
-      status: pending
-      isBlueprint: true
-  0985b5a6-8be4-43f5-95f2-c5c76575708e:
-    id: 0985b5a6-8be4-43f5-95f2-c5c76575708e
-    content: Give the user a report of refactoring opportunities and their priority
-    children: []
-    metadata:
-      status: pending
-      isBlueprint: true
   9d367ab4-0554-4138-8caf-2b9aaf770c5f:
     id: 9d367ab4-0554-4138-8caf-2b9aaf770c5f
     content: Made sure any abandoned attempts are deleted
@@ -14786,7 +14768,7 @@ nodes:
       plugins: {}
   c25cf481-a0d1-495d-9cea-498f1135eb8c:
     id: c25cf481-a0d1-495d-9cea-498f1135eb8c
-    content: Minor feature
+    content: Implement a minor feature
     children: []
     metadata:
       status: completed
@@ -16902,7 +16884,7 @@ nodes:
       - 9ba66580-fb81-49ea-8fd2-40fce9c05837
     metadata:
       status: pending
-      expanded: true
+      expanded: false
       deleted: false
       plugins: {}
       isBlueprint: true
@@ -16973,7 +16955,7 @@ nodes:
       - 24d5957d-9a3b-4ff2-811f-9abd59e7e87e
     metadata:
       status: pending
-      expanded: true
+      expanded: false
       deleted: false
       plugins: {}
       isBlueprint: true
@@ -17024,7 +17006,7 @@ nodes:
       - e05aa3ca-f7aa-4086-ae26-db404d6e55e4
     metadata:
       status: pending
-      expanded: true
+      expanded: false
       deleted: false
       plugins: {}
       isBlueprint: true
@@ -17082,7 +17064,7 @@ nodes:
       - ca2946c9-1d20-45e0-9bd5-dda74273f960
     metadata:
       status: pending
-      expanded: true
+      expanded: false
       deleted: false
       plugins: {}
       isBlueprint: true
@@ -17682,6 +17664,7 @@ nodes:
       status: pending
       isHyperlink: true
       linkedNodeId: bf007448-0f9f-4e68-ba31-a9def979ec2d
+      isBlueprint: true
   da046c53-abfe-48f3-b048-af18eb443a68:
     id: da046c53-abfe-48f3-b048-af18eb443a68
     content: Long unbroken text like a url doesn't wrap and pushes the panels to the side
@@ -18439,7 +18422,7 @@ nodes:
       blueprintIcon: BookA
       blueprintColor: '#0c6f9d'
       isContextDeclaration: true
-      expanded: false
+      expanded: true
   bfe8794a-2209-4c09-ba88-c4c951928b76:
     id: bfe8794a-2209-4c09-ba88-c4c951928b76
     content: 'Document this feature given the following conventions :'
@@ -18521,7 +18504,7 @@ nodes:
       - 5191dd94-f159-4fbf-9e17-6d95318a7e4a
     metadata:
       status: pending
-      expanded: false
+      expanded: true
       deleted: false
       plugins: {}
       isBlueprint: true
@@ -19607,13 +19590,14 @@ nodes:
     id: 5fcc7b6b-25d0-4c23-8529-f8a6b9af81e8
     content: Backlog
     children:
+      - 9f4cb1c1-95ba-4523-9b59-86d02c56a0ed
       - 533210b8-5c42-48f7-ab9a-bea602ae7ed2
     metadata:
       status: pending
       isBlueprint: true
       blueprintIcon: LayoutList
       blueprintColor: '#a855f7'
-      expanded: false
+      expanded: true
   03238058-24ff-4f1d-956f-4a4d52bdbe85:
     id: 03238058-24ff-4f1d-956f-4a4d52bdbe85
     content: It doesn't consider the default context applied in collaborate mode ("Basic review (default)")
@@ -19793,7 +19777,7 @@ nodes:
       status: pending
   ac4c627f-c512-40b9-ad55-11b439495b7e:
     id: ac4c627f-c512-40b9-ad55-11b439495b7e
-    content: Major feature
+    content: Implement a major feature
     children: []
     metadata:
       status: pending
@@ -24197,10 +24181,7 @@ nodes:
     id: e6860559-af1d-4a28-be70-9e27ba35335f
     content: Restructure
     children:
-      - 3a032861-3708-4a21-9782-49b8e9f450d7
-      - bced461c-6ef5-498a-99d4-02be074931aa
-      - e7785597-3c35-4a68-8c49-03e0787bede4
-      - 9935acf0-c061-4d42-a5de-52e10ed8e61f
+      - 55ad9a01-b924-4159-a452-e521e3d3d2dd
     metadata:
       status: pending
       expanded: false
@@ -24209,46 +24190,6 @@ nodes:
       isContextDeclaration: true
       blueprintIcon: Blocks
       blueprintColor: '#22c55e'
-      isBlueprint: true
-  3a032861-3708-4a21-9782-49b8e9f450d7:
-    id: 3a032861-3708-4a21-9782-49b8e9f450d7
-    content: Restructure the following hierarchical list
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-      isBlueprint: true
-  bced461c-6ef5-498a-99d4-02be074931aa:
-    id: bced461c-6ef5-498a-99d4-02be074931aa
-    content: Remove any duplication
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-      isBlueprint: true
-  e7785597-3c35-4a68-8c49-03e0787bede4:
-    id: e7785597-3c35-4a68-8c49-03e0787bede4
-    content: Preserve all unique information
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-      isBlueprint: true
-  9935acf0-c061-4d42-a5de-52e10ed8e61f:
-    id: 9935acf0-c061-4d42-a5de-52e10ed8e61f
-    content: Reorder logically
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
       isBlueprint: true
   2e7d3b78-a686-46d6-a87a-7b1fdc13fca8:
     id: 2e7d3b78-a686-46d6-a87a-7b1fdc13fca8
@@ -24525,7 +24466,7 @@ nodes:
       plugins: {}
   b475ed9b-0598-4d70-b4cd-cb286392046e:
     id: b475ed9b-0598-4d70-b4cd-cb286392046e
-    content: Write unit tests before coding anything else
+    content: Write unit tests before coding anything else, or if they are present, verify them.
     children: []
     metadata:
       status: pending
@@ -24673,12 +24614,15 @@ nodes:
       - b1b8d2ea-f07a-4e54-8d75-8fa67f720b85
     metadata:
       status: pending
+      isBlueprint: true
+      expanded: false
   ea66b610-cfba-4bb7-b2ea-35b75cd8627d:
     id: ea66b610-cfba-4bb7-b2ea-35b75cd8627d
     content: Create an adapter for the Claude SDK
     children: []
     metadata:
       status: pending
+      isBlueprint: true
   b1b8d2ea-f07a-4e54-8d75-8fa67f720b85:
     id: b1b8d2ea-f07a-4e54-8d75-8fa67f720b85
     content: Enable types for workflow steps
@@ -24688,6 +24632,7 @@ nodes:
       - a7c84a2c-9a5a-427c-ab8b-654e3d26e724
     metadata:
       status: pending
+      isBlueprint: true
   c4019eec-af78-468e-88da-d1f7c3fd7a40:
     id: c4019eec-af78-468e-88da-d1f7c3fd7a40
     content: Autonomous
@@ -24731,6 +24676,2874 @@ nodes:
   70a97481-28d6-4f33-9da6-70753cfbcb21:
     id: 70a97481-28d6-4f33-9da6-70753cfbcb21
     content: 2*3NkHfZAaPU@4#kv6
+    children: []
+    metadata:
+      status: pending
+  8b4835f4-b4b2-4fcb-b881-9144640beaf5:
+    id: 8b4835f4-b4b2-4fcb-b881-9144640beaf5
+    content: Consider the existing functionality in the code base related to the feature
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  deb660c8-6073-4216-9b36-e9c224b68408:
+    id: deb660c8-6073-4216-9b36-e9c224b68408
+    content: Go deep
+    children:
+      - 6d573c6e-3071-4aee-b567-e4abdbb6d598
+      - c0decc70-02d7-434f-a556-9b86352a594b
+      - bc81f8f1-b17b-4349-965d-732a2ef66ebf
+      - 6cb9f8b4-1297-4dbf-9ebc-0cd66ab929ec
+      - 99eced63-7ee2-4b5f-921e-c17df512a515
+    metadata:
+      status: pending
+      isBlueprint: true
+      blueprintIcon: ZoomIn
+      blueprintColor: '#c47f09'
+      isContextDeclaration: true
+      expanded: false
+  6d573c6e-3071-4aee-b567-e4abdbb6d598:
+    id: 6d573c6e-3071-4aee-b567-e4abdbb6d598
+    content: Analyze the following task list
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  6cb9f8b4-1297-4dbf-9ebc-0cd66ab929ec:
+    id: 6cb9f8b4-1297-4dbf-9ebc-0cd66ab929ec
+    content: Think of any edge cases that need to be considered
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  aae503cd-baba-4967-827c-b43fa1f842ad:
+    id: aae503cd-baba-4967-827c-b43fa1f842ad
+    content: Philosophy
+    children: []
+    metadata:
+      status: pending
+      isHyperlink: true
+      linkedNodeId: 9bfbb401-dcb6-4f92-a34b-e9b3982c676f
+      isBlueprint: true
+  c0decc70-02d7-434f-a556-9b86352a594b:
+    id: c0decc70-02d7-434f-a556-9b86352a594b
+    content: Keep in mind the project philosophy
+    children:
+      - aae503cd-baba-4967-827c-b43fa1f842ad
+    metadata:
+      status: pending
+      isBlueprint: true
+  bc81f8f1-b17b-4349-965d-732a2ef66ebf:
+    id: bc81f8f1-b17b-4349-965d-732a2ef66ebf
+    content: Think like a product owner, not a software developer
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  99eced63-7ee2-4b5f-921e-c17df512a515:
+    id: 99eced63-7ee2-4b5f-921e-c17df512a515
+    content: Think of any unforeseen outcomes that would threaten the ROI
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  75556cda-47e6-45d5-ad2d-12689057427e:
+    id: 75556cda-47e6-45d5-ad2d-12689057427e
+    content: Write a test plan
+    children:
+      - 4d3d31a5-5e2e-46a2-acfc-3e4890a0e1f6
+      - 05841793-e05f-435c-91b0-df00ce963edc
+    metadata:
+      status: pending
+      expanded: false
+      deleted: false
+      plugins: {}
+      isContextDeclaration: true
+      blueprintIcon: ZoomIn
+      blueprintColor: '#22c55e'
+      isBlueprint: true
+  4d3d31a5-5e2e-46a2-acfc-3e4890a0e1f6:
+    id: 4d3d31a5-5e2e-46a2-acfc-3e4890a0e1f6
+    content: Analyze the target task list
+    children:
+      - da45d79a-7e2e-4282-979d-0ca86459263a
+      - 1749b038-beb1-47ef-b3f2-9ec18e5fda2e
+      - f85452e7-5820-4428-a122-b52356d11441
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  da45d79a-7e2e-4282-979d-0ca86459263a:
+    id: da45d79a-7e2e-4282-979d-0ca86459263a
+    content: Identify all user-facing behaviors and expected outcomes
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  1749b038-beb1-47ef-b3f2-9ec18e5fda2e:
+    id: 1749b038-beb1-47ef-b3f2-9ec18e5fda2e
+    content: Identify all state transitions and data flows
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  f85452e7-5820-4428-a122-b52356d11441:
+    id: f85452e7-5820-4428-a122-b52356d11441
+    content: Note any ambiguous or underspecified requirements
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  05841793-e05f-435c-91b0-df00ce963edc:
+    id: 05841793-e05f-435c-91b0-df00ce963edc
+    content: Create test plan
+    children:
+      - ba93fe6f-0623-4d4d-8699-2d6bac900841
+      - 8ecb0fbd-e642-4bdb-b3f7-206f34035680
+      - bf55f629-5392-4cd0-a0d8-29a763de3b22
+      - 58d28c39-b4c0-4a5c-b5de-e5bdfa211394
+      - c3de9cd0-7fab-4951-b093-88c4167aefa9
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  8ecb0fbd-e642-4bdb-b3f7-206f34035680:
+    id: 8ecb0fbd-e642-4bdb-b3f7-206f34035680
+    content: Define scope and objectives
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  bf55f629-5392-4cd0-a0d8-29a763de3b22:
+    id: bf55f629-5392-4cd0-a0d8-29a763de3b22
+    content: Identify entry and exit criteria
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  58d28c39-b4c0-4a5c-b5de-e5bdfa211394:
+    id: 58d28c39-b4c0-4a5c-b5de-e5bdfa211394
+    content: List environments and prerequisites
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  c3de9cd0-7fab-4951-b093-88c4167aefa9:
+    id: c3de9cd0-7fab-4951-b093-88c4167aefa9
+    content: Highlight risks
+    children:
+      - f12f6701-5142-40bf-bfe9-cf430d9cfa96
+      - 041c93f0-272a-417b-9e91-bbad795ff190
+      - 44ee73f5-2f18-4eaf-a215-357dfe550594
+      - 5d110729-a4a7-4951-b632-14a1b6fc7ffb
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  f12f6701-5142-40bf-bfe9-cf430d9cfa96:
+    id: f12f6701-5142-40bf-bfe9-cf430d9cfa96
+    content: Identify areas with highest likelihood of defects
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  041c93f0-272a-417b-9e91-bbad795ff190:
+    id: 041c93f0-272a-417b-9e91-bbad795ff190
+    content: Identify areas where failures would have the greatest impact
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  44ee73f5-2f18-4eaf-a215-357dfe550594:
+    id: 44ee73f5-2f18-4eaf-a215-357dfe550594
+    content: Note any dependencies on external systems or data
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  5d110729-a4a7-4951-b632-14a1b6fc7ffb:
+    id: 5d110729-a4a7-4951-b632-14a1b6fc7ffb
+    content: Flag any requirements that are ambiguous or likely to change
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  1b2715fa-919d-4db0-9dc8-57c81be38db8:
+    id: 1b2715fa-919d-4db0-9dc8-57c81be38db8
+    content: Create test cases in code
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  4d629e92-25c3-4dc7-896f-877b1a0492f9:
+    id: 4d629e92-25c3-4dc7-896f-877b1a0492f9
+    content: Follow existing testing conventions in the codebase
+    children:
+      - cc9765af-ec32-4350-889f-00f35d2d9735
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  64cac01b-cede-4674-ac02-74ee2682aa7b:
+    id: 64cac01b-cede-4674-ac02-74ee2682aa7b
+    content: Cover happy-path scenarios
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  87650943-9a07-4a9a-8af8-b09b8d4eef4c:
+    id: 87650943-9a07-4a9a-8af8-b09b8d4eef4c
+    content: Cover edge cases
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  ed265496-df9c-4bce-9a5d-9d680b98bfbf:
+    id: ed265496-df9c-4bce-9a5d-9d680b98bfbf
+    content: Boundary values and limits
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  6bcd849d-f754-4730-bd05-cec2feafa8c4:
+    id: 6bcd849d-f754-4730-bd05-cec2feafa8c4
+    content: Empty, null, and undefined inputs
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  440f5d53-9494-4213-b28e-e7b80b3640f2:
+    id: 440f5d53-9494-4213-b28e-e7b80b3640f2
+    content: Error and failure states
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  ca0db1c9-32b3-4399-ac6e-a402ffea2dff:
+    id: ca0db1c9-32b3-4399-ac6e-a402ffea2dff
+    content: Concurrent or repeated interactions
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  c359eeb9-7ed6-4f0d-9ee7-de770022df60:
+    id: c359eeb9-7ed6-4f0d-9ee7-de770022df60
+    content: Cover accessibility and UX considerations where applicable
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  fb137760-5aea-4f55-a911-184983142305:
+    id: fb137760-5aea-4f55-a911-184983142305
+    content: If the eventual DOM implementation is uncertain, write the test title only and leave the body empty
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  b66cf5bf-e174-440e-a1af-2530b2194eef:
+    id: b66cf5bf-e174-440e-a1af-2530b2194eef
+    content: Do not write any production code — only tests
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  cc9765af-ec32-4350-889f-00f35d2d9735:
+    id: cc9765af-ec32-4350-889f-00f35d2d9735
+    content: Testing
+    children: []
+    metadata:
+      status: pending
+      isHyperlink: true
+      linkedNodeId: a94da547-23e5-47d9-bdc4-8e60a0b7538d
+      isBlueprint: true
+  2a9521fe-ffe9-4586-b424-76f728eda6d5:
+    id: 2a9521fe-ffe9-4586-b424-76f728eda6d5
+    content: Push back if there is no use case identified
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  1ed4ba76-be27-49f7-847f-02ae4d2f3701:
+    id: 1ed4ba76-be27-49f7-847f-02ae4d2f3701
+    content: Problem statement
+    children:
+      - 98bc227f-394e-4881-a7a2-d7cc2634fccd
+      - e466e335-837c-4dca-b9d5-978bd1d8568b
+      - 0884b015-b102-40a5-943e-a6787f7186e0
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  98bc227f-394e-4881-a7a2-d7cc2634fccd:
+    id: 98bc227f-394e-4881-a7a2-d7cc2634fccd
+    content: Identify the user pain point or need the feature addresses
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  e466e335-837c-4dca-b9d5-978bd1d8568b:
+    id: e466e335-837c-4dca-b9d5-978bd1d8568b
+    content: State who the user is (role/persona)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  0884b015-b102-40a5-943e-a6787f7186e0:
+    id: 0884b015-b102-40a5-943e-a6787f7186e0
+    content: Describe the current experience and why it is insufficient
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  38a459a9-f4d9-496e-8105-ba26f17f2f19:
+    id: 38a459a9-f4d9-496e-8105-ba26f17f2f19
+    content: Use cases
+    children:
+      - 64c0748e-7862-4342-8b80-602254ddc938
+      - 34ef936f-316b-4745-a884-b987a307e09a
+      - 23c096ad-4c06-4bbf-b586-65e2709f201f
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  64c0748e-7862-4342-8b80-602254ddc938:
+    id: 64c0748e-7862-4342-8b80-602254ddc938
+    content: Define the primary use case (happy path)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  34ef936f-316b-4745-a884-b987a307e09a:
+    id: 34ef936f-316b-4745-a884-b987a307e09a
+    content: Identify secondary and alternative use cases
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  23c096ad-4c06-4bbf-b586-65e2709f201f:
+    id: 23c096ad-4c06-4bbf-b586-65e2709f201f
+    content: Identify edge cases and error scenarios
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  d1d12292-fd00-4cdd-9ce2-fbe64f75f49a:
+    id: d1d12292-fd00-4cdd-9ce2-fbe64f75f49a
+    content: Acceptance criteria
+    children:
+      - afd97882-4e78-4ebb-a4ec-3c82880687b4
+      - ea41b647-32fd-4273-b954-eedc207d766d
+      - 259232b4-441c-40e5-b9b7-553b24373f40
+      - a0a0513c-37dd-4bf5-a20a-81c5ec6729ce
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  afd97882-4e78-4ebb-a4ec-3c82880687b4:
+    id: afd97882-4e78-4ebb-a4ec-3c82880687b4
+    content: Write each criterion as a testable statement
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  ea41b647-32fd-4273-b954-eedc207d766d:
+    id: ea41b647-32fd-4273-b954-eedc207d766d
+    content: Cover functional requirements
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  259232b4-441c-40e5-b9b7-553b24373f40:
+    id: 259232b4-441c-40e5-b9b7-553b24373f40
+    content: Cover non-functional requirements (performance, accessibility, etc.)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  a0a0513c-37dd-4bf5-a20a-81c5ec6729ce:
+    id: a0a0513c-37dd-4bf5-a20a-81c5ec6729ce
+    content: Define what "done" looks like
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  c5dafa6b-b288-4821-a2a6-1507e3e50a4b:
+    id: c5dafa6b-b288-4821-a2a6-1507e3e50a4b
+    content: Constraints and assumptions
+    children:
+      - 1aa65387-40a1-4a67-8369-3166e56f98fb
+      - c4232b4a-e58d-44cd-954c-81cc39b34b3a
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  1aa65387-40a1-4a67-8369-3166e56f98fb:
+    id: 1aa65387-40a1-4a67-8369-3166e56f98fb
+    content: Note any technical constraints or dependencies
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  c4232b4a-e58d-44cd-954c-81cc39b34b3a:
+    id: c4232b4a-e58d-44cd-954c-81cc39b34b3a
+    content: Document assumptions made about user behavior or system state
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  2423c864-41c5-4a27-a429-e6989c679a71:
+    id: 2423c864-41c5-4a27-a429-e6989c679a71
+    content: Housekeeping
+    children:
+      - a9050d52-dd1d-4ae9-9904-682cfe7fc5f7
+      - 3127b88e-9a7f-4f2c-b4df-f40b4257ce12
+      - 9c2bdc70-eeb7-4409-a18b-1b54e002d9cf
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  a9050d52-dd1d-4ae9-9904-682cfe7fc5f7:
+    id: a9050d52-dd1d-4ae9-9904-682cfe7fc5f7
+    content: Remove any duplication across sections
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  3127b88e-9a7f-4f2c-b4df-f40b4257ce12:
+    id: 3127b88e-9a7f-4f2c-b4df-f40b4257ce12
+    content: Preserve all unique information from the original list
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  9c2bdc70-eeb7-4409-a18b-1b54e002d9cf:
+    id: 9c2bdc70-eeb7-4409-a18b-1b54e002d9cf
+    content: Reorder items logically within each section
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  55ad9a01-b924-4159-a452-e521e3d3d2dd:
+    id: 55ad9a01-b924-4159-a452-e521e3d3d2dd
+    content: Restructure as user story
+    children:
+      - 1ed4ba76-be27-49f7-847f-02ae4d2f3701
+      - 38a459a9-f4d9-496e-8105-ba26f17f2f19
+      - d1d12292-fd00-4cdd-9ce2-fbe64f75f49a
+      - c5dafa6b-b288-4821-a2a6-1507e3e50a4b
+      - 2423c864-41c5-4a27-a429-e6989c679a71
+    metadata:
+      status: pending
+      isBlueprint: true
+  ba93fe6f-0623-4d4d-8699-2d6bac900841:
+    id: ba93fe6f-0623-4d4d-8699-2d6bac900841
+    content: Add a node as the last child of the parent node to be reviewed titled 'Test plan'
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  b38966d3-b238-4d64-9eed-74d4ab983c28:
+    id: b38966d3-b238-4d64-9eed-74d4ab983c28
+    content: Write a test plan
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+      blueprintIcon: ZoomIn
+      blueprintColor: '#22c55e'
+      appliedContextId: 75556cda-47e6-45d5-ad2d-12689057427e
+  7fea2910-cc32-43bf-8380-b49f1e5b2587:
+    id: 7fea2910-cc32-43bf-8380-b49f1e5b2587
+    content: Allow workflows to be nested
+    children:
+      - 94123196-afb9-491c-8a39-2110d48937f2
+      - 4853308c-8f88-483d-b9b6-6528ba5d1656
+      - 04a360a4-fca9-4835-8210-690402381a94
+      - a4312d34-7fc6-4cf8-be75-a0b46843fa36
+      - ee7fb238-b728-421d-a286-2cd8b9c7db69
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  22a32663-eb92-44e0-a844-d6219409f63b:
+    id: 22a32663-eb92-44e0-a844-d6219409f63b
+    content: Implement automated tests (TDD)
+    children:
+      - 81638916-1b50-4341-97e8-b3d7bcd0a8a6
+      - b66cf5bf-e174-440e-a1af-2530b2194eef
+      - fb137760-5aea-4f55-a911-184983142305
+      - c359eeb9-7ed6-4f0d-9ee7-de770022df60
+      - ca0db1c9-32b3-4399-ac6e-a402ffea2dff
+      - 440f5d53-9494-4213-b28e-e7b80b3640f2
+      - 6bcd849d-f754-4730-bd05-cec2feafa8c4
+      - ed265496-df9c-4bce-9a5d-9d680b98bfbf
+      - 87650943-9a07-4a9a-8af8-b09b8d4eef4c
+      - 64cac01b-cede-4674-ac02-74ee2682aa7b
+      - 4d629e92-25c3-4dc7-896f-877b1a0492f9
+      - 1b2715fa-919d-4db0-9dc8-57c81be38db8
+    metadata:
+      status: pending
+      isContextDeclaration: true
+      blueprintIcon: ListChecks
+      blueprintColor: '#c47f09'
+      isBlueprint: true
+      expanded: false
+  81638916-1b50-4341-97e8-b3d7bcd0a8a6:
+    id: 81638916-1b50-4341-97e8-b3d7bcd0a8a6
+    content: Analyse the following list and create automated tests
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  64ec6c6b-566e-4956-bff9-55ac881f4fdb:
+    id: 64ec6c6b-566e-4956-bff9-55ac881f4fdb
+    content: Technical refinement
+    children:
+      - 83d888eb-b2ed-43bc-9905-952b080589bf
+      - 3b53a0c2-5ad2-4d11-b60d-32044d9617b0
+    metadata:
+      status: pending
+      expanded: false
+      deleted: false
+      plugins: {}
+      isContextDeclaration: true
+      blueprintIcon: Gem
+      blueprintColor: '#64748b'
+      isBlueprint: true
+  83d888eb-b2ed-43bc-9905-952b080589bf:
+    id: 83d888eb-b2ed-43bc-9905-952b080589bf
+    content: Analyse the source requirement
+    children:
+      - 165cb4c1-7e73-4fa4-b2a2-8e6375c2dd6e
+      - c1b15a7f-d5f4-40ae-9604-8a0311366f1d
+      - b9577e8b-fb30-48d0-ac6b-76fea9600fdd
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  165cb4c1-7e73-4fa4-b2a2-8e6375c2dd6e:
+    id: 165cb4c1-7e73-4fa4-b2a2-8e6375c2dd6e
+    content: Identify the user-facing goal and acceptance criteria
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  c1b15a7f-d5f4-40ae-9604-8a0311366f1d:
+    id: c1b15a7f-d5f4-40ae-9604-8a0311366f1d
+    content: Clarify ambiguities or missing detail in the requirement
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  b9577e8b-fb30-48d0-ac6b-76fea9600fdd:
+    id: b9577e8b-fb30-48d0-ac6b-76fea9600fdd
+    content: Identify affected areas of the codebase
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  3b53a0c2-5ad2-4d11-b60d-32044d9617b0:
+    id: 3b53a0c2-5ad2-4d11-b60d-32044d9617b0
+    content: Add a 'Technical specifications' node
+    children:
+      - e9f32f6c-40ee-4150-9a48-453b92207537
+      - 32ea145e-7a05-40e7-a177-befff59f056e
+      - 7f1811ad-c96f-4504-97c8-5ce832ab23d6
+      - f120798a-3356-4951-90ec-acdcb5826e22
+      - 9822c195-3f04-4bbc-a8d3-a2503890bedf
+      - dc442104-31c7-4b71-ac74-71ea36cb3bff
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  32ea145e-7a05-40e7-a177-befff59f056e:
+    id: 32ea145e-7a05-40e7-a177-befff59f056e
+    content: Define inputs, outputs, and key interfaces
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  7f1811ad-c96f-4504-97c8-5ce832ab23d6:
+    id: 7f1811ad-c96f-4504-97c8-5ce832ab23d6
+    content: Document constraints and non-functional requirements (performance, security, accessibility)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  f120798a-3356-4951-90ec-acdcb5826e22:
+    id: f120798a-3356-4951-90ec-acdcb5826e22
+    content: Break down the task into technical steps
+    children:
+      - 6415a15e-30f2-4267-866e-ffa5f7def984
+      - 26b24e87-04b4-4a55-a454-c98ecb154309
+      - 739b1908-b9c6-45e8-a231-ecac27d1942a
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  6415a15e-30f2-4267-866e-ffa5f7def984:
+    id: 6415a15e-30f2-4267-866e-ffa5f7def984
+    content: Enumerate discrete, independently testable units of work
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  26b24e87-04b4-4a55-a454-c98ecb154309:
+    id: 26b24e87-04b4-4a55-a454-c98ecb154309
+    content: Identify dependencies between steps and order accordingly
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  739b1908-b9c6-45e8-a231-ecac27d1942a:
+    id: 739b1908-b9c6-45e8-a231-ecac27d1942a
+    content: Estimate relative effort per step (S/M/L)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  9822c195-3f04-4bbc-a8d3-a2503890bedf:
+    id: 9822c195-3f04-4bbc-a8d3-a2503890bedf
+    content: Identify risks and edge cases
+    children:
+      - 66181ea9-6b56-4e2c-b484-5931e0c1bf2a
+      - dfcc8e42-7545-48cc-bde1-a365c32471a1
+      - 4080638c-5465-47ba-98ea-687a46649a04
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  66181ea9-6b56-4e2c-b484-5931e0c1bf2a:
+    id: 66181ea9-6b56-4e2c-b484-5931e0c1bf2a
+    content: List known edge cases and how they should be handled
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  dfcc8e42-7545-48cc-bde1-a365c32471a1:
+    id: dfcc8e42-7545-48cc-bde1-a365c32471a1
+    content: Flag external dependencies or integration points
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  4080638c-5465-47ba-98ea-687a46649a04:
+    id: 4080638c-5465-47ba-98ea-687a46649a04
+    content: Highlight any complexity that might call the ROI into question
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  dc442104-31c7-4b71-ac74-71ea36cb3bff:
+    id: dc442104-31c7-4b71-ac74-71ea36cb3bff
+    content: Formulate an implementation plan
+    children:
+      - 90ec466a-67a2-4bcc-bc6f-2e972e2d82ce
+      - 17b273b1-be57-441f-b6f8-a7f1c7dc3a7e
+      - eca779a1-ad61-4c8e-a8db-ca32c4ab04f7
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  90ec466a-67a2-4bcc-bc6f-2e972e2d82ce:
+    id: 90ec466a-67a2-4bcc-bc6f-2e972e2d82ce
+    content: Define the order of PRs or changesets
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  17b273b1-be57-441f-b6f8-a7f1c7dc3a7e:
+    id: 17b273b1-be57-441f-b6f8-a7f1c7dc3a7e
+    content: Specify a testing strategy (unit, integration, manual)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  eca779a1-ad61-4c8e-a8db-ca32c4ab04f7:
+    id: eca779a1-ad61-4c8e-a8db-ca32c4ab04f7
+    content: Identify what can be parallelised across contributors
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  00714a63-f267-4ab1-a285-73ae4198eb42:
+    id: 00714a63-f267-4ab1-a285-73ae4198eb42
+    content: Technical refinement
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+      blueprintIcon: Gem
+      blueprintColor: '#64748b'
+      appliedContextId: 64ec6c6b-566e-4956-bff9-55ac881f4fdb
+  e9f32f6c-40ee-4150-9a48-453b92207537:
+    id: e9f32f6c-40ee-4150-9a48-453b92207537
+    content: Add all of the below under this one one node
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  94123196-afb9-491c-8a39-2110d48937f2:
+    id: 94123196-afb9-491c-8a39-2110d48937f2
+    content: Problem statement
+    children:
+      - 0f2e134a-f24a-4773-8c1c-db2322eb5239
+      - 506eafb9-e61f-4dc2-8561-b70ca27f9d5f
+      - f872161d-3ee7-4a77-ad6f-48b38d13987e
+      - dfbe70d7-0a91-4d25-b730-6d913981659b
+      - 468ebbcc-506f-49f3-a279-1a3f1b5b0838
+    metadata:
+      status: pending
+      expanded: false
+      deleted: false
+      plugins: {}
+  0f2e134a-f24a-4773-8c1c-db2322eb5239:
+    id: 0f2e134a-f24a-4773-8c1c-db2322eb5239
+    content: As a user building multi-phase AI workflows (e.g. refinement, TDD, dev, refactor, QA), I need to organize sub-workflows within a parent workflow
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  506eafb9-e61f-4dc2-8561-b70ca27f9d5f:
+    id: 506eafb9-e61f-4dc2-8561-b70ca27f9d5f
+    content: Currently workflows are flat — a workflow has steps but steps cannot themselves be workflows
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f872161d-3ee7-4a77-ad6f-48b38d13987e:
+    id: f872161d-3ee7-4a77-ad6f-48b38d13987e
+    content: The guards `hasAncestorWorkflow()` and `hasDescendantWorkflow()` in workflowHelpers.ts explicitly block nesting
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  dfbe70d7-0a91-4d25-b730-6d913981659b:
+    id: dfbe70d7-0a91-4d25-b730-6d913981659b
+    content: This prevents expressing naturally hierarchical processes where a phase (e.g. "dev") has its own sequential sub-steps that must all complete before the next phase begins
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  468ebbcc-506f-49f3-a279-1a3f1b5b0838:
+    id: 468ebbcc-506f-49f3-a279-1a3f1b5b0838
+    content: Nested workflows lay the groundwork for future automated sequential task completion
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4853308c-8f88-483d-b9b6-6528ba5d1656:
+    id: 4853308c-8f88-483d-b9b6-6528ba5d1656
+    content: Use cases
+    children:
+      - 42c0567b-e2d2-46d9-8beb-f3fb1db44a13
+      - f9298391-0759-4649-9351-2505d264c566
+      - 3611603d-5d86-4a4a-803c-04e132d669db
+      - 925db335-7b1b-4129-8f15-dfd511eaef3a
+      - a57cab9a-f2c4-4595-92f6-89f108ef50a4
+      - 80bcef71-bed1-460c-b00b-e4d142d61ca8
+      - 79e68bf8-d62a-4499-80d4-c1223c5accd4
+      - d74c5c7c-16eb-49b3-be1c-c48390d94b67
+    metadata:
+      status: pending
+      expanded: false
+      deleted: false
+      plugins: {}
+  42c0567b-e2d2-46d9-8beb-f3fb1db44a13:
+    id: 42c0567b-e2d2-46d9-8beb-f3fb1db44a13
+    content: 'Primary: declare a workflow step as a sub-workflow, giving it its own ordered steps while remaining part of the parent sequence'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f9298391-0759-4649-9351-2505d264c566:
+    id: f9298391-0759-4649-9351-2505d264c566
+    content: 'Secondary: navigate the full workflow tree depth-first using "move to next/previous step", crossing workflow boundaries seamlessly'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3611603d-5d86-4a4a-803c-04e132d669db:
+    id: 3611603d-5d86-4a4a-803c-04e132d669db
+    content: 'Secondary: remove a nested workflow, reverting it and its descendants to non-workflow status'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  925db335-7b1b-4129-8f15-dfd511eaef3a:
+    id: 925db335-7b1b-4129-8f15-dfd511eaef3a
+    content: 'Secondary: drag a workflow node into another workflow, merging it into the new sequence'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a57cab9a-f2c4-4595-92f6-89f108ef50a4:
+    id: a57cab9a-f2c4-4595-92f6-89f108ef50a4
+    content: 'Edge case: declare the only remaining step of a parent workflow as a sub-workflow, leaving the parent with zero direct steps'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  80bcef71-bed1-460c-b00b-e4d142d61ca8:
+    id: 80bcef71-bed1-460c-b00b-e4d142d61ca8
+    content: 'Edge case: nested workflow has zero children but still displays as a workflow (play icon)'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  79e68bf8-d62a-4499-80d4-c1223c5accd4:
+    id: 79e68bf8-d62a-4499-80d4-c1223c5accd4
+    content: 'Edge case: undo after declaring a nested workflow restores the original step number and removes workflow status'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d74c5c7c-16eb-49b3-be1c-c48390d94b67:
+    id: d74c5c7c-16eb-49b3-be1c-c48390d94b67
+    content: 'Error: attempt to drag a workflow node into a non-blueprint node — drag is rejected with toast "Cannot place a workflow node in a non-blueprint node"'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  04a360a4-fca9-4835-8210-690402381a94:
+    id: 04a360a4-fca9-4835-8210-690402381a94
+    content: Acceptance criteria
+    children:
+      - d2cc682c-6bbd-42f6-aebf-86c3d2627dd2
+      - 8291836d-2bca-4556-8be3-1f90fce0d7cd
+      - 513ec45c-b916-40db-be08-8eeacd329985
+      - 48756d67-fcc7-4858-a4e2-1ae11eb41984
+      - 0074a527-3063-40f1-9181-64e5952ab96a
+      - b518e13d-7cc1-481b-a76a-216f158ab771
+      - d40ac772-9451-499a-9745-edc16d8082a0
+      - 39ae4a3a-0e1f-45ad-85aa-c97ea6d892a3
+      - 5beb210f-af79-4ef3-b490-1f4312c30b23
+      - 211a8cda-5325-4ce1-897a-5c213b7d50de
+      - 819accec-8520-4b1b-82ac-f92cd0ac911a
+      - c2a62d67-67d7-4e5b-a8bb-dd39da67614f
+      - b72da9c9-21e4-4a2e-b663-198ec6c9782a
+      - cd28c477-7444-4cf2-afc8-cb3b9b0392ca
+      - 6aee83b7-ee36-4e54-8129-eb2958ad349a
+      - 94fe4f93-3023-485e-863b-cfe178d4a1ec
+      - 40cc5b31-c0e1-430a-aa3c-a872bf95916a
+      - 96987307-4449-4f80-bdff-726602d3fd9a
+      - a947e5bf-b645-417c-a9d4-e0e23bb8b866
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d2cc682c-6bbd-42f6-aebf-86c3d2627dd2:
+    id: d2cc682c-6bbd-42f6-aebf-86c3d2627dd2
+    content: A workflow step can be declared as a workflow if its parent is already a workflow
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8291836d-2bca-4556-8be3-1f90fce0d7cd:
+    id: 8291836d-2bca-4556-8be3-1f90fce0d7cd
+    content: Declaring a step as a workflow removes its step number and recalculates remaining step numbers in the parent
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  513ec45c-b916-40db-be08-8eeacd329985:
+    id: 513ec45c-b916-40db-be08-8eeacd329985
+    content: A nested workflow's icon can be set independently of its parent workflow
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  48756d67-fcc7-4858-a4e2-1ae11eb41984:
+    id: 48756d67-fcc7-4858-a4e2-1ae11eb41984
+    content: Step numbering follows depth-first traversal (royal succession order) across the entire workflow tree
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0074a527-3063-40f1-9181-64e5952ab96a:
+    id: 0074a527-3063-40f1-9181-64e5952ab96a
+    content: '"Move to next step" enters a nested workflow''s first step before continuing to the next sibling'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b518e13d-7cc1-481b-a76a-216f158ab771:
+    id: b518e13d-7cc1-481b-a76a-216f158ab771
+    content: '"Move to previous step" reverses the same depth-first traversal'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d40ac772-9451-499a-9745-edc16d8082a0:
+    id: d40ac772-9451-499a-9745-edc16d8082a0
+    content: When the last step of the deepest nested workflow is reached, traversal continues to the next sibling of the nearest ancestor workflow with remaining siblings
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  39ae4a3a-0e1f-45ad-85aa-c97ea6d892a3:
+    id: 39ae4a3a-0e1f-45ad-85aa-c97ea6d892a3
+    content: Collapsed nodes auto-expand when "move to next/previous step" navigates into them
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5beb210f-af79-4ef3-b490-1f4312c30b23:
+    id: 5beb210f-af79-4ef3-b490-1f4312c30b23
+    content: No menu item to declare as workflow appears when the parent is not a workflow
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  211a8cda-5325-4ce1-897a-5c213b7d50de:
+    id: 211a8cda-5325-4ce1-897a-5c213b7d50de
+    content: Removing a workflow that has descendant workflows shows a toast warning before proceeding
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  819accec-8520-4b1b-82ac-f92cd0ac911a:
+    id: 819accec-8520-4b1b-82ac-f92cd0ac911a
+    content: Removing a workflow strips workflow and workflow step status from all descendants
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c2a62d67-67d7-4e5b-a8bb-dd39da67614f:
+    id: c2a62d67-67d7-4e5b-a8bb-dd39da67614f
+    content: Deleting a nested workflow node recalculates step numbers in the parent workflow
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b72da9c9-21e4-4a2e-b663-198ec6c9782a:
+    id: b72da9c9-21e4-4a2e-b663-198ec6c9782a
+    content: Dragging a workflow into another workflow recalculates steps in both the original and new ancestor trees
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  cd28c477-7444-4cf2-afc8-cb3b9b0392ca:
+    id: cd28c477-7444-4cf2-afc8-cb3b9b0392ca
+    content: Dragging a workflow into a blueprint node treats it as its own root workflow and recalculates steps for both trees
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6aee83b7-ee36-4e54-8129-eb2958ad349a:
+    id: 6aee83b7-ee36-4e54-8129-eb2958ad349a
+    content: Dragging a workflow into a non-blueprint node is prevented with a toast error
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a947e5bf-b645-417c-a9d4-e0e23bb8b866:
+    id: a947e5bf-b645-417c-a9d4-e0e23bb8b866
+    content: Undo fully restores prior state including step numbers and workflow status
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a4312d34-7fc6-4cf8-be75-a0b46843fa36:
+    id: a4312d34-7fc6-4cf8-be75-a0b46843fa36
+    content: Technical specifications
+    children:
+      - 6e40e906-4053-4fa0-a0b6-6fe0b0099bb5
+      - 2f88dbe3-4045-4d6c-810c-1685bb784bd6
+      - 066c81a8-2619-4723-9287-653cd4c6ad4c
+      - 42678d3c-d78b-4dc5-93a3-3ba4b1cb8e6f
+      - 62fc129a-a348-43c6-8105-f034f295d10d
+      - e12c53da-748c-400d-a552-deaa755927c1
+      - b807036e-e33c-48aa-a19f-c025d11acde5
+      - 8a94c6bc-b812-4563-a020-502dc73604a2
+      - ac9e1626-90ad-40c1-9a01-60b23ade9264
+      - 5bcbb0ee-1ab9-4199-9606-78b62ebf750b
+    metadata:
+      status: pending
+      expanded: false
+      deleted: false
+      plugins: {}
+  6e40e906-4053-4fa0-a0b6-6fe0b0099bb5:
+    id: 6e40e906-4053-4fa0-a0b6-6fe0b0099bb5
+    content: Data model — no schema changes required
+    children:
+      - 36ad29ae-64ff-44d2-b799-1f7e7e1e437e
+      - 6086de78-90d2-49e0-99b8-3cab5fc0aa4e
+      - 115b46ba-0914-45d5-a39f-0ce2b2c36015
+    metadata:
+      status: pending
+      expanded: false
+      deleted: false
+      plugins: {}
+  36ad29ae-64ff-44d2-b799-1f7e7e1e437e:
+    id: 36ad29ae-64ff-44d2-b799-1f7e7e1e437e
+    content: 'Existing metadata fields are sufficient: isWorkflow, isBlueprint on TreeNode.metadata'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6086de78-90d2-49e0-99b8-3cab5fc0aa4e:
+    id: 6086de78-90d2-49e0-99b8-3cab5fc0aa4e
+    content: Step numbers are already computed dynamically from array index via getWorkflowStepNumber() — no stored field to migrate
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  115b46ba-0914-45d5-a39f-0ce2b2c36015:
+    id: 115b46ba-0914-45d5-a39f-0ce2b2c36015
+    content: 'A nested workflow node will have both isWorkflow: true and be a direct child of another workflow node (currently these are mutually exclusive by guard logic)'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2f88dbe3-4045-4d6c-810c-1685bb784bd6:
+    id: 2f88dbe3-4045-4d6c-810c-1685bb784bd6
+    content: Files requiring changes
+    children:
+      - 0c24af5a-6ce9-40c1-85be-52b326343827
+      - b6386b0b-615e-4245-9b6f-61160dec75f2
+      - 5c16981a-ca8a-4023-b3a3-28f6229e5d98
+      - fae96f69-353e-4851-99f8-9502636918d8
+      - 29438a40-9a9d-42b8-a71c-10eed416261d
+      - 213cffb0-f9c0-45ad-b25e-3dd96188638d
+      - 21868f2f-90e4-4cab-b0df-12bb04f4e66a
+      - 20ba5478-9c34-421e-8b56-071a903ec388
+    metadata:
+      status: pending
+      expanded: false
+      deleted: false
+      plugins: {}
+  0c24af5a-6ce9-40c1-85be-52b326343827:
+    id: 0c24af5a-6ce9-40c1-85be-52b326343827
+    content: workflowHelpers.ts — remove/relax hasAncestorWorkflow and hasDescendantWorkflow guards; add depth-first traversal functions for cross-boundary navigation
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b6386b0b-615e-4245-9b6f-61160dec75f2:
+    id: b6386b0b-615e-4245-9b6f-61160dec75f2
+    content: workflowActions.ts — update declareAsWorkflow to allow nesting; update removeFromWorkflow to cascade through descendants; rewrite moveToNextStep/moveToPreviousStep for depth-first cross-boundary traversal
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5c16981a-ca8a-4023-b3a3-28f6229e5d98:
+    id: 5c16981a-ca8a-4023-b3a3-28f6229e5d98
+    content: 'useBlueprintSubmenu.ts — change menu visibility: allow "Declare as Workflow" when parent isWorkflow (currently blocked by ancestor check)'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fae96f69-353e-4851-99f8-9502636918d8:
+    id: fae96f69-353e-4851-99f8-9502636918d8
+    content: useWorkflowIndicator.ts — handle display for nodes that are both a workflow and a step of a parent workflow (show workflow icon, not step number)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  29438a40-9a9d-42b8-a71c-10eed416261d:
+    id: 29438a40-9a9d-42b8-a71c-10eed416261d
+    content: useWorkflowStepSubmenu.ts — update next/previous step availability to account for cross-boundary navigation
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  213cffb0-f9c0-45ad-b25e-3dd96188638d:
+    id: 213cffb0-f9c0-45ad-b25e-3dd96188638d
+    content: 'nodeHelpers.ts (isValidDrop) — add workflow-specific drop validation: reject drops into non-blueprint nodes when source isWorkflow'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  21868f2f-90e4-4cab-b0df-12bb04f4e66a:
+    id: 21868f2f-90e4-4cab-b0df-12bb04f4e66a
+    content: useNodeDragDrop.ts or useTreeDragDrop.ts — integrate workflow drop validation and trigger toast on rejection
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  20ba5478-9c34-421e-8b56-071a903ec388:
+    id: 20ba5478-9c34-421e-8b56-071a903ec388
+    content: MoveNodeCommand.ts — may need to handle step recalculation in both source and target workflow subtrees on execute/undo
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  066c81a8-2619-4723-9287-653cd4c6ad4c:
+    id: 066c81a8-2619-4723-9287-653cd4c6ad4c
+    content: New utility functions needed in workflowHelpers.ts
+    children:
+      - db7bd43f-b5ef-4bf1-9de3-bf60324117ad
+      - 70d7bcfd-ab7f-45ab-b9d5-929f30908805
+      - fd3f3114-b8f4-4961-a5ce-2346738dc843
+      - 1ecf25e1-3ed9-4981-a826-8ff9eaf9f1c6
+    metadata:
+      status: pending
+      expanded: false
+      deleted: false
+      plugins: {}
+  db7bd43f-b5ef-4bf1-9de3-bf60324117ad:
+    id: db7bd43f-b5ef-4bf1-9de3-bf60324117ad
+    content: 'getNextWorkflowStep(nodeId, nodes, ancestorRegistry) — depth-first: if current node isWorkflow with children, return first child; else return next sibling; if no next sibling, walk up to nearest ancestor workflow with a next sibling'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  70d7bcfd-ab7f-45ab-b9d5-929f30908805:
+    id: 70d7bcfd-ab7f-45ab-b9d5-929f30908805
+    content: 'getPreviousWorkflowStep(nodeId, nodes, ancestorRegistry) — reverse depth-first: previous sibling''s deepest last descendant workflow step; if no previous sibling, return parent workflow'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fd3f3114-b8f4-4961-a5ce-2346738dc843:
+    id: fd3f3114-b8f4-4961-a5ce-2346738dc843
+    content: getWorkflowRoot(nodeId, nodes, ancestorRegistry) — walk ancestors to find the outermost workflow node
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1ecf25e1-3ed9-4981-a826-8ff9eaf9f1c6:
+    id: 1ecf25e1-3ed9-4981-a826-8ff9eaf9f1c6
+    content: cascadeRemoveWorkflow(nodeId, nodes) — recursively strip isWorkflow from node and all descendant workflows, returning list of affected node IDs for undo tracking
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  42678d3c-d78b-4dc5-93a3-3ba4b1cb8e6f:
+    id: 42678d3c-d78b-4dc5-93a3-3ba4b1cb8e6f
+    content: Key implementation detail — step number computation
+    children:
+      - 1edeec9c-b820-452d-817f-9cb4d3bd9abe
+      - ea8d507d-5c4c-42bf-acf6-76162e94365d
+      - e6f9608e-3896-424a-89ff-b56152726e0d
+    metadata:
+      status: pending
+      expanded: false
+      deleted: false
+      plugins: {}
+  1edeec9c-b820-452d-817f-9cb4d3bd9abe:
+    id: 1edeec9c-b820-452d-817f-9cb4d3bd9abe
+    content: getWorkflowStepNumber() currently returns childIndex + 1 for direct children of a workflow that are not themselves workflows
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ea8d507d-5c4c-42bf-acf6-76162e94365d:
+    id: ea8d507d-5c4c-42bf-acf6-76162e94365d
+    content: With nesting, a child that isWorkflow should return null (no step number) — this is consistent with current behaviour since workflows show a play icon instead
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e6f9608e-3896-424a-89ff-b56152726e0d:
+    id: e6f9608e-3896-424a-89ff-b56152726e0d
+    content: No change needed to step numbering logic itself — the guard removal is what enables nesting
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  62fc129a-a348-43c6-8105-f034f295d10d:
+    id: 62fc129a-a348-43c6-8105-f034f295d10d
+    content: Key implementation detail — navigation rewrite
+    children:
+      - 4d1adcb5-2d21-4b4a-8efe-0d3c8d60ece1
+      - 524eb218-9b94-4467-b139-9ab48fcaff16
+      - 812c3c4f-c516-4e08-85b2-52199e8ae0c1
+      - f88d6a9f-08fc-41ed-8ec0-e5dd7aaad2c1
+    metadata:
+      status: pending
+      expanded: false
+      deleted: false
+      plugins: {}
+  4d1adcb5-2d21-4b4a-8efe-0d3c8d60ece1:
+    id: 4d1adcb5-2d21-4b4a-8efe-0d3c8d60ece1
+    content: Current moveToNextStep/moveToPreviousStep use getWorkflowStepPosition() which only considers direct children of a single workflow
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  524eb218-9b94-4467-b139-9ab48fcaff16:
+    id: 524eb218-9b94-4467-b139-9ab48fcaff16
+    content: 'New navigation must implement full depth-first traversal: entering nested workflows and exiting back to parent workflows'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  812c3c4f-c516-4e08-85b2-52199e8ae0c1:
+    id: 812c3c4f-c516-4e08-85b2-52199e8ae0c1
+    content: Navigation should move the active node (activeNodeId), not physically move the node via MoveNodeCommand — clarify with product whether navigation means "advance focus" or "move the node"
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f88d6a9f-08fc-41ed-8ec0-e5dd7aaad2c1:
+    id: f88d6a9f-08fc-41ed-8ec0-e5dd7aaad2c1
+    content: 'Auto-expand: when navigating into a collapsed node, call expandNode() on each collapsed ancestor in the path before setting activeNodeId'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e12c53da-748c-400d-a552-deaa755927c1:
+    id: e12c53da-748c-400d-a552-deaa755927c1
+    content: Key implementation detail — removal cascading
+    children:
+      - 8b210992-4594-4bba-8b4e-7f68bda4f5cc
+      - a4f5163c-f3fa-4156-99f5-cfb90e9b3f1e
+      - 56de240c-f4c7-4df9-9f08-e889a24afec0
+      - bd8876cf-1b3e-4f3f-8308-9b2010e9c4cb
+    metadata:
+      status: pending
+      expanded: false
+      deleted: false
+      plugins: {}
+  8b210992-4594-4bba-8b4e-7f68bda4f5cc:
+    id: 8b210992-4594-4bba-8b4e-7f68bda4f5cc
+    content: removeFromWorkflow currently only strips isWorkflow from the target node
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a4f5163c-f3fa-4156-99f5-cfb90e9b3f1e:
+    id: a4f5163c-f3fa-4156-99f5-cfb90e9b3f1e
+    content: With nesting, must also strip isWorkflow from all descendant workflows recursively
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  56de240c-f4c7-4df9-9f08-e889a24afec0:
+    id: 56de240c-f4c7-4df9-9f08-e889a24afec0
+    content: Should be wrapped in a single Command for atomic undo — DeclareWorkflowCommand and RemoveWorkflowCommand may be cleaner than inline mutations
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  bd8876cf-1b3e-4f3f-8308-9b2010e9c4cb:
+    id: bd8876cf-1b3e-4f3f-8308-9b2010e9c4cb
+    content: Toast warning ("This workflow contains nested workflows that will also be removed") when hasDescendantWorkflow(nodeId) is true
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b807036e-e33c-48aa-a19f-c025d11acde5:
+    id: b807036e-e33c-48aa-a19f-c025d11acde5
+    content: Key implementation detail — drag-and-drop constraints
+    children:
+      - 78e6e6bd-4df0-478f-9383-174549400a6e
+      - ebd83f76-4216-4033-84c0-ab382ab1bf36
+      - 0ae88377-dd21-4523-bc67-efddcf125626
+      - 7dd05b48-1164-4d00-abc9-d4f6cd060008
+      - 88533787-9d59-4006-a972-94795c56e855
+    metadata:
+      status: pending
+      expanded: false
+      deleted: false
+      plugins: {}
+  78e6e6bd-4df0-478f-9383-174549400a6e:
+    id: 78e6e6bd-4df0-478f-9383-174549400a6e
+    content: 'Current isValidDrop() in nodeHelpers.ts checks: not self, not descendant, not invalid sibling position'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ebd83f76-4216-4033-84c0-ab382ab1bf36:
+    id: ebd83f76-4216-4033-84c0-ab382ab1bf36
+    content: 'New check needed: if source node isWorkflow and drop target''s effective parent is not isBlueprint, reject'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0ae88377-dd21-4523-bc67-efddcf125626:
+    id: 0ae88377-dd21-4523-bc67-efddcf125626
+    content: Drop zone 'child' means target becomes parent; drop zone 'before'/'after' means target's parent becomes parent
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7dd05b48-1164-4d00-abc9-d4f6cd060008:
+    id: 7dd05b48-1164-4d00-abc9-d4f6cd060008
+    content: Toast on rejection should use existing toast infrastructure (showToast from store)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  88533787-9d59-4006-a972-94795c56e855:
+    id: 88533787-9d59-4006-a972-94795c56e855
+    content: After valid drop, trigger step recalculation in both old and new parent workflow subtrees
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8a94c6bc-b812-4563-a020-502dc73604a2:
+    id: 8a94c6bc-b812-4563-a020-502dc73604a2
+    content: Constraints and assumptions
+    children:
+      - e0496fd3-84e5-4c44-98c1-73302f49e5b1
+      - 16f26b75-ee53-4834-a554-b24c5b25d8ab
+      - 3d539dce-33fd-4298-8f76-00f880d75ec3
+      - 01dbcb52-237c-4d0b-b1f6-4a5fd716403d
+      - 179a20e8-38dd-4dbc-a001-016b08ade980
+    metadata:
+      status: pending
+      expanded: false
+      deleted: false
+      plugins: {}
+  e0496fd3-84e5-4c44-98c1-73302f49e5b1:
+    id: e0496fd3-84e5-4c44-98c1-73302f49e5b1
+    content: Step recalculation can be scoped to the affected workflow subtree rather than the full tree — getWorkflowStepNumber already operates per-workflow
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  16f26b75-ee53-4834-a554-b24c5b25d8ab:
+    id: 16f26b75-ee53-4834-a554-b24c5b25d8ab
+    content: Existing depth-first traversal utilities in ancestry.ts (buildAncestorRegistry, isDescendant) can support cross-boundary navigation
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3d539dce-33fd-4298-8f76-00f880d75ec3:
+    id: 3d539dce-33fd-4298-8f76-00f880d75ec3
+    content: Users will self-limit nesting depth since tree indentation provides natural visual feedback on complexity
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  01dbcb52-237c-4d0b-b1f6-4a5fd716403d:
+    id: 01dbcb52-237c-4d0b-b1f6-4a5fd716403d
+    content: MoveNodeCommand already handles blueprint inheritance and ancestorRegistry updates — extending it for workflow step recalculation should be incremental
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  179a20e8-38dd-4dbc-a001-016b08ade980:
+    id: 179a20e8-38dd-4dbc-a001-016b08ade980
+    content: The existing Command/HistoryManager pattern (max 100 commands, 1s merge window) is sufficient for nested workflow operations
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ac9e1626-90ad-40c1-9a01-60b23ade9264:
+    id: ac9e1626-90ad-40c1-9a01-60b23ade9264
+    content: Implementation plan
+    children:
+      - 1071a126-2b34-458d-9a3a-a49414dda9d9
+      - 66df20af-56ce-4530-8264-a05360eb2e13
+      - 2b9fe8cf-e1bb-4d65-9ba3-11e539d0e99e
+      - 49755512-3865-4f51-8046-d38103d6f358
+    metadata:
+      status: pending
+      expanded: false
+      deleted: false
+      plugins: {}
+  1071a126-2b34-458d-9a3a-a49414dda9d9:
+    id: 1071a126-2b34-458d-9a3a-a49414dda9d9
+    content: Phase 1 — Core nesting support
+    children:
+      - 83d59784-a128-42a4-9339-5678d086dea8
+      - 73eb8c57-7958-47c8-90a1-c79f78d9232f
+      - 3a0826ed-605e-4a4e-b267-b8a8c646294d
+      - 87a94b50-f6b5-42e5-b51f-df66cec7205c
+      - 416d502d-40f7-4742-88e8-b2c3c86c7e1e
+      - f39d9e62-a83b-4522-b20f-d30224134dd7
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  83d59784-a128-42a4-9339-5678d086dea8:
+    id: 83d59784-a128-42a4-9339-5678d086dea8
+    content: Remove hasAncestorWorkflow and hasDescendantWorkflow guards from declareAsWorkflow validation
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  73eb8c57-7958-47c8-90a1-c79f78d9232f:
+    id: 73eb8c57-7958-47c8-90a1-c79f78d9232f
+    content: Update useBlueprintSubmenu.ts to show "Declare as Workflow" for workflow steps
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3a0826ed-605e-4a4e-b267-b8a8c646294d:
+    id: 3a0826ed-605e-4a4e-b267-b8a8c646294d
+    content: Update useWorkflowIndicator.ts to return isWorkflow icon (not step number) when a node is both a workflow and a step
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  87a94b50-f6b5-42e5-b51f-df66cec7205c:
+    id: 87a94b50-f6b5-42e5-b51f-df66cec7205c
+    content: Update removeFromWorkflow to cascade isWorkflow removal through descendants
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  416d502d-40f7-4742-88e8-b2c3c86c7e1e:
+    id: 416d502d-40f7-4742-88e8-b2c3c86c7e1e
+    content: Add toast warning on removal when descendant workflows exist
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f39d9e62-a83b-4522-b20f-d30224134dd7:
+    id: f39d9e62-a83b-4522-b20f-d30224134dd7
+    content: Write unit tests for declare/remove with 2-3 levels of nesting
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  66df20af-56ce-4530-8264-a05360eb2e13:
+    id: 66df20af-56ce-4530-8264-a05360eb2e13
+    content: Phase 2 — Depth-first navigation
+    children:
+      - 8d214cb3-bf37-4c13-a106-5c87589c25c6
+      - a3b561a4-0cb0-4a57-bea8-4b312266c1ce
+      - d50e9165-8a2e-48cd-986c-34bdf7959116
+      - 7927a7a8-60ff-4eda-86b6-7e021950d679
+      - d7fa2875-9e63-4038-ba34-cce83a9605e0
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8d214cb3-bf37-4c13-a106-5c87589c25c6:
+    id: 8d214cb3-bf37-4c13-a106-5c87589c25c6
+    content: Implement getNextWorkflowStep and getPreviousWorkflowStep in workflowHelpers.ts
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a3b561a4-0cb0-4a57-bea8-4b312266c1ce:
+    id: a3b561a4-0cb0-4a57-bea8-4b312266c1ce
+    content: Rewrite moveToNextStep and moveToPreviousStep to use new traversal functions
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d50e9165-8a2e-48cd-986c-34bdf7959116:
+    id: d50e9165-8a2e-48cd-986c-34bdf7959116
+    content: Add auto-expand for collapsed nodes in the navigation path
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7927a7a8-60ff-4eda-86b6-7e021950d679:
+    id: 7927a7a8-60ff-4eda-86b6-7e021950d679
+    content: Update useWorkflowStepSubmenu.ts to show next/previous based on new traversal boundaries
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d7fa2875-9e63-4038-ba34-cce83a9605e0:
+    id: d7fa2875-9e63-4038-ba34-cce83a9605e0
+    content: Write unit tests for navigation across 2-3 nesting levels including boundary cases
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2b9fe8cf-e1bb-4d65-9ba3-11e539d0e99e:
+    id: 2b9fe8cf-e1bb-4d65-9ba3-11e539d0e99e
+    content: Phase 3 — Drag-and-drop constraints
+    children:
+      - 7987f210-5b2d-4fd0-9e1d-d375b5f879c3
+      - 06cb08a6-66f6-4afe-bf37-525e2200d541
+      - b371d7cc-d1c3-4b30-9d89-39b8c1451225
+      - accc4a41-2db2-4a60-9286-7a11897e6fc8
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7987f210-5b2d-4fd0-9e1d-d375b5f879c3:
+    id: 7987f210-5b2d-4fd0-9e1d-d375b5f879c3
+    content: Add workflow-aware validation to isValidDrop or a new validateWorkflowDrop function
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  06cb08a6-66f6-4afe-bf37-525e2200d541:
+    id: 06cb08a6-66f6-4afe-bf37-525e2200d541
+    content: Integrate toast error for rejected workflow drops
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b371d7cc-d1c3-4b30-9d89-39b8c1451225:
+    id: b371d7cc-d1c3-4b30-9d89-39b8c1451225
+    content: Add step recalculation trigger after successful workflow node drops
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  accc4a41-2db2-4a60-9286-7a11897e6fc8:
+    id: accc4a41-2db2-4a60-9286-7a11897e6fc8
+    content: Write integration tests for drag scenarios (workflow→workflow, workflow→blueprint, workflow→non-blueprint)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  49755512-3865-4f51-8046-d38103d6f358:
+    id: 49755512-3865-4f51-8046-d38103d6f358
+    content: Phase 4 — Undo/redo hardening
+    children:
+      - 25b1447a-5fcd-4c26-ad11-cc2d06f0bc65
+      - 67a0e9e4-9c9e-46cd-ba6c-70aa25a0fdff
+      - c32e54c1-d8a9-45a5-a772-4673cd31ab66
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  25b1447a-5fcd-4c26-ad11-cc2d06f0bc65:
+    id: 25b1447a-5fcd-4c26-ad11-cc2d06f0bc65
+    content: Consider introducing DeclareWorkflowCommand and RemoveWorkflowCommand for atomic multi-node operations
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  67a0e9e4-9c9e-46cd-ba6c-70aa25a0fdff:
+    id: 67a0e9e4-9c9e-46cd-ba6c-70aa25a0fdff
+    content: Verify undo restores step numbers, workflow status, and icon state across all affected nodes
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c32e54c1-d8a9-45a5-a772-4673cd31ab66:
+    id: c32e54c1-d8a9-45a5-a772-4673cd31ab66
+    content: Write undo/redo tests for each phase's operations
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5bcbb0ee-1ab9-4199-9606-78b62ebf750b:
+    id: 5bcbb0ee-1ab9-4199-9606-78b62ebf750b
+    content: Risks and complexity
+    children:
+      - 325a20a2-5282-4399-9bb5-998a51747d8c
+      - 5cc39ef7-d2fd-4312-a926-12572e667045
+      - 713022aa-986f-425d-a185-35cbaf67f911
+      - 32641a7c-0c52-479e-bc90-89f63ab7368e
+      - 49f5e839-dcaf-4e57-b116-867b9a29f9f8
+    metadata:
+      status: pending
+      expanded: false
+      deleted: false
+      plugins: {}
+  325a20a2-5282-4399-9bb5-998a51747d8c:
+    id: 325a20a2-5282-4399-9bb5-998a51747d8c
+    content: Depth-first navigation rewrite is the highest-effort change — current navigation assumes single-level workflows and physically moves nodes rather than advancing focus
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5cc39ef7-d2fd-4312-a926-12572e667045:
+    id: 5cc39ef7-d2fd-4312-a926-12572e667045
+    content: Need to clarify whether "move to next step" means advancing active focus or physically relocating a node — the current implementation does the latter via MoveNodeCommand, which may not be the desired UX for nested workflows
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  713022aa-986f-425d-a185-35cbaf67f911:
+    id: 713022aa-986f-425d-a185-35cbaf67f911
+    content: Drag-and-drop validation adds complexity to an already nuanced drop zone system — careful to avoid breaking existing non-workflow drag behaviour
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  32641a7c-0c52-479e-bc90-89f63ab7368e:
+    id: 32641a7c-0c52-479e-bc90-89f63ab7368e
+    content: Cascading removal across deep nesting must be atomic for undo — if done as multiple separate mutations, undo could leave partially-removed workflow state
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  49f5e839-dcaf-4e57-b116-867b9a29f9f8:
+    id: 49f5e839-dcaf-4e57-b116-867b9a29f9f8
+    content: 'ROI is strong: the implementation is mostly guard removal and traversal logic extension, leveraging existing infrastructure (Command pattern, ancestorRegistry, metadata flags)'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ee7fb238-b728-421d-a286-2cd8b9c7db69:
+    id: ee7fb238-b728-421d-a286-2cd8b9c7db69
+    content: Test plan
+    children:
+      - fe373617-1026-42e2-8b5b-07f131a83f90
+      - 29e23ba1-02bf-4fb9-90a9-970139d157d7
+      - 76db0b12-1afb-4b1c-983d-bdbe238c6d0d
+      - c4bd8fee-1583-4693-b83d-1f5d5d2453bb
+      - 67896f1e-8286-4dd3-b0b8-a1853ec2fdee
+      - bc7b746c-0326-4938-b699-92cf34e35d7a
+      - 2f8d359d-6777-4d5d-8bbb-5dcae6021245
+      - 95a29fc1-b107-4b13-aa00-dbbbd91bbe59
+      - 356a3348-e02a-4ffd-bd51-1db5f73c5917
+      - ef589b9f-9943-4b6f-a9fc-075e50b31bd3
+      - d1ce5d40-67b7-4e1c-bf3e-4dbe39944cc1
+    metadata:
+      status: pending
+      expanded: false
+      deleted: false
+      plugins: {}
+  fe373617-1026-42e2-8b5b-07f131a83f90:
+    id: fe373617-1026-42e2-8b5b-07f131a83f90
+    content: Scope and objectives
+    children:
+      - bb4b0512-8a74-475a-9c21-6a3964b9383a
+      - 2a7350e9-473f-4317-b328-e3eebcd88979
+      - 87261e50-9697-486f-918b-f1be8c07413e
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  bb4b0512-8a74-475a-9c21-6a3964b9383a:
+    id: bb4b0512-8a74-475a-9c21-6a3964b9383a
+    content: Verify nested workflow declaration, step recalculation, depth-first navigation, removal cascading, and drag constraints
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2a7350e9-473f-4317-b328-e3eebcd88979:
+    id: 2a7350e9-473f-4317-b328-e3eebcd88979
+    content: Unit tests for workflowHelpers (step numbering, traversal) and workflowActions (declare, remove)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  87261e50-9697-486f-918b-f1be8c07413e:
+    id: 87261e50-9697-486f-918b-f1be8c07413e
+    content: Integration tests for drag-and-drop workflow constraints and undo/redo
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  29e23ba1-02bf-4fb9-90a9-970139d157d7:
+    id: 29e23ba1-02bf-4fb9-90a9-970139d157d7
+    content: Entry and exit criteria
+    children:
+      - 3c3d1b05-6ee1-4066-b5b0-dbfcf493a23b
+      - 3188608c-61d2-47c8-a34a-76ac6d4ae3a1
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3c3d1b05-6ee1-4066-b5b0-dbfcf493a23b:
+    id: 3c3d1b05-6ee1-4066-b5b0-dbfcf493a23b
+    content: 'Entry: existing flat workflow tests pass, workflow declaration and removal actions work for single-level workflows'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3188608c-61d2-47c8-a34a-76ac6d4ae3a1:
+    id: 3188608c-61d2-47c8-a34a-76ac6d4ae3a1
+    content: 'Exit: all test cases below pass, no regressions in existing workflow tests'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  76db0b12-1afb-4b1c-983d-bdbe238c6d0d:
+    id: 76db0b12-1afb-4b1c-983d-bdbe238c6d0d
+    content: Environments and prerequisites
+    children:
+      - b54f40f4-e1c0-419e-8ad5-a12295fb9ba1
+      - 86691b9b-1946-462c-a194-228744f593f7
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b54f40f4-e1c0-419e-8ad5-a12295fb9ba1:
+    id: b54f40f4-e1c0-419e-8ad5-a12295fb9ba1
+    content: Vitest with existing store mocking patterns
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  86691b9b-1946-462c-a194-228744f593f7:
+    id: 86691b9b-1946-462c-a194-228744f593f7
+    content: Test tree fixtures with 2-3 levels of nested workflows
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c4bd8fee-1583-4693-b83d-1f5d5d2453bb:
+    id: c4bd8fee-1583-4693-b83d-1f5d5d2453bb
+    content: Risks
+    children:
+      - 99aa4531-6775-4eb9-a1f5-0be3423a4ffe
+      - 5700dbcd-683a-4547-aa6f-5d39a4703fb5
+      - 2ca283d8-9737-41db-8b8e-6f18bf93e477
+      - 350e6e2b-c0b1-4478-b317-9b8ea85c07ba
+      - 7d12d785-8e54-4ede-9ad6-302a60e44bd1
+      - 57664ab2-d018-4a1f-b763-dbf5d522dd23
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  99aa4531-6775-4eb9-a1f5-0be3423a4ffe:
+    id: 99aa4531-6775-4eb9-a1f5-0be3423a4ffe
+    content: 'Highest defect likelihood: depth-first step numbering recalculation across nested boundaries — off-by-one errors and missed recalculations when workflows are added, removed, or moved'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5700dbcd-683a-4547-aa6f-5d39a4703fb5:
+    id: 5700dbcd-683a-4547-aa6f-5d39a4703fb5
+    content: 'Highest defect likelihood: drag-and-drop validation — correctly distinguishing workflow, blueprint, and non-blueprint targets across nesting levels'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2ca283d8-9737-41db-8b8e-6f18bf93e477:
+    id: 2ca283d8-9737-41db-8b8e-6f18bf93e477
+    content: 'Highest impact area: step navigation crossing workflow boundaries — incorrect traversal would break the core user workflow and block future automated execution'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  350e6e2b-c0b1-4478-b317-9b8ea85c07ba:
+    id: 350e6e2b-c0b1-4478-b317-9b8ea85c07ba
+    content: 'Highest impact area: removal cascading — silently stripping workflow status from deeply nested descendants could cause data loss if undo fails'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7d12d785-8e54-4ede-9ad6-302a60e44bd1:
+    id: 7d12d785-8e54-4ede-9ad6-302a60e44bd1
+    content: 'Dependency: drag-and-drop tests depend on MoveNodeCommand behavior; changes there could affect nested workflow constraints'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  57664ab2-d018-4a1f-b763-dbf5d522dd23:
+    id: 57664ab2-d018-4a1f-b763-dbf5d522dd23
+    content: 'Likely to change: toast warning behavior on removal — the threshold for when to warn may evolve as nesting patterns emerge in real usage'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  67896f1e-8286-4dd3-b0b8-a1853ec2fdee:
+    id: 67896f1e-8286-4dd3-b0b8-a1853ec2fdee
+    content: Test cases — declaring nested workflows
+    children:
+      - c4e01cf5-02f8-474f-8759-25da91fbe02b
+      - 7bafbfad-be89-47eb-a399-6c2f31492ef1
+      - db3b5db2-d6ea-4c33-ba45-21f67e7b465a
+      - 66ce463a-5a9f-4cf2-8557-aa50ed4c73e1
+      - 5c821408-48fd-47f5-8c68-5845a4500284
+      - 1b0d288f-1589-4b75-b067-8ea90c8f444c
+      - f401f559-28f1-497e-baf8-f616545694cc
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c4e01cf5-02f8-474f-8759-25da91fbe02b:
+    id: c4e01cf5-02f8-474f-8759-25da91fbe02b
+    content: Declaring a workflow step as a workflow sets isWorkflow true on the node
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7bafbfad-be89-47eb-a399-6c2f31492ef1:
+    id: 7bafbfad-be89-47eb-a399-6c2f31492ef1
+    content: Declaring a workflow step as a workflow removes the step number from that node
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  db3b5db2-d6ea-4c33-ba45-21f67e7b465a:
+    id: db3b5db2-d6ea-4c33-ba45-21f67e7b465a
+    content: Remaining sibling steps renumber correctly after a step becomes a workflow (e.g. steps 1,2,3 → step 2 becomes workflow → remaining step renumbers to 1)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  66ce463a-5a9f-4cf2-8557-aa50ed4c73e1:
+    id: 66ce463a-5a9f-4cf2-8557-aa50ed4c73e1
+    content: Cannot declare a node as a workflow if its parent is not a workflow
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5c821408-48fd-47f5-8c68-5845a4500284:
+    id: 5c821408-48fd-47f5-8c68-5845a4500284
+    content: Can declare a workflow step as a workflow when the parent is already a nested workflow (3+ levels deep)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1b0d288f-1589-4b75-b067-8ea90c8f444c:
+    id: 1b0d288f-1589-4b75-b067-8ea90c8f444c
+    content: Declaring the only step of a parent workflow as a sub-workflow leaves the parent with zero direct steps
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f401f559-28f1-497e-baf8-f616545694cc:
+    id: f401f559-28f1-497e-baf8-f616545694cc
+    content: Workflow icon on a nested workflow is independent of parent workflow icon
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  bc7b746c-0326-4938-b699-92cf34e35d7a:
+    id: bc7b746c-0326-4938-b699-92cf34e35d7a
+    content: Test cases — step numbering (depth-first traversal)
+    children:
+      - b7381666-c19b-4c23-ae24-672a8c046fd7
+      - 35f2e8cb-9c65-4a27-b792-0104d1131130
+      - e84e0ee9-ccca-4264-a673-f8d60b1519ee
+      - d730d045-f80f-4dcc-a854-0bc3bac8aca2
+      - 3408465f-2c4c-45e6-a177-a955ad61a4b2
+      - 23c9b92b-2d13-4905-8dc5-9ac573f66051
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b7381666-c19b-4c23-ae24-672a8c046fd7:
+    id: b7381666-c19b-4c23-ae24-672a8c046fd7
+    content: Steps within a single nested workflow number from 1
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  35f2e8cb-9c65-4a27-b792-0104d1131130:
+    id: 35f2e8cb-9c65-4a27-b792-0104d1131130
+    content: Steps across sibling workflows number independently (each starts from 1)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e84e0ee9-ccca-4264-a673-f8d60b1519ee:
+    id: e84e0ee9-ccca-4264-a673-f8d60b1519ee
+    content: getWorkflowStepNumber returns correct numbers for deeply nested steps (3 levels)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d730d045-f80f-4dcc-a854-0bc3bac8aca2:
+    id: d730d045-f80f-4dcc-a854-0bc3bac8aca2
+    content: Adding a child to a nested workflow correctly assigns the next step number
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3408465f-2c4c-45e6-a177-a955ad61a4b2:
+    id: 3408465f-2c4c-45e6-a177-a955ad61a4b2
+    content: Removing a step from a nested workflow recalculates sibling step numbers
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  23c9b92b-2d13-4905-8dc5-9ac573f66051:
+    id: 23c9b92b-2d13-4905-8dc5-9ac573f66051
+    content: Reordering steps within a nested workflow updates step numbers
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2f8d359d-6777-4d5d-8bbb-5dcae6021245:
+    id: 2f8d359d-6777-4d5d-8bbb-5dcae6021245
+    content: Test cases — navigation
+    children:
+      - 6c3dfe96-8e16-405c-a726-0f49caa56908
+      - 4e86a0d7-1d98-44e3-9f15-3ddc4acd006f
+      - 6c7a8b51-efed-44f7-842c-14545cc40aea
+      - 4db850e1-ff50-4e28-82a8-75b1b9a005f0
+      - 1454ac0a-c78f-4dcb-ac0b-4d864ffb3425
+      - d5007c89-a4fb-4bb4-854d-3f684da75f8e
+      - e5d33080-89f6-489e-9e7d-f7dfa44556d9
+      - a4328d7b-6062-4794-bde1-459b2f7cafed
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6c3dfe96-8e16-405c-a726-0f49caa56908:
+    id: 6c3dfe96-8e16-405c-a726-0f49caa56908
+    content: '"Move to next step" from a nested workflow enters its first child step'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4e86a0d7-1d98-44e3-9f15-3ddc4acd006f:
+    id: 4e86a0d7-1d98-44e3-9f15-3ddc4acd006f
+    content: '"Move to next step" from the last step of a nested workflow continues to the next sibling of the parent workflow'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6c7a8b51-efed-44f7-842c-14545cc40aea:
+    id: 6c7a8b51-efed-44f7-842c-14545cc40aea
+    content: '"Move to next step" from the last step of the deepest nested workflow traverses up to the nearest ancestor with remaining siblings'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4db850e1-ff50-4e28-82a8-75b1b9a005f0:
+    id: 4db850e1-ff50-4e28-82a8-75b1b9a005f0
+    content: '"Move to previous step" reverses into the last step of the preceding nested workflow'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1454ac0a-c78f-4dcb-ac0b-4d864ffb3425:
+    id: 1454ac0a-c78f-4dcb-ac0b-4d864ffb3425
+    content: '"Move to previous step" from the first step of a nested workflow goes to the workflow node''s preceding sibling in the parent'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d5007c89-a4fb-4bb4-854d-3f684da75f8e:
+    id: d5007c89-a4fb-4bb4-854d-3f684da75f8e
+    content: Navigation at the very first step of the root workflow has no previous
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e5d33080-89f6-489e-9e7d-f7dfa44556d9:
+    id: e5d33080-89f6-489e-9e7d-f7dfa44556d9
+    content: Navigation at the very last step of the entire tree has no next
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a4328d7b-6062-4794-bde1-459b2f7cafed:
+    id: a4328d7b-6062-4794-bde1-459b2f7cafed
+    content: Navigation auto-expands collapsed nodes when the target step is hidden
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  95a29fc1-b107-4b13-aa00-dbbbd91bbe59:
+    id: 95a29fc1-b107-4b13-aa00-dbbbd91bbe59
+    content: Test cases — removal
+    children:
+      - 7cb0e47c-738e-4299-9866-c5a5054b82a5
+      - a2a3863d-7cfb-46c3-ac6c-6547fe53c6be
+      - 0e80cb4f-7234-414d-9afd-6f557c5c5b5d
+      - 9cd93796-900e-4c99-b327-f9e27869aaff
+      - c73cd6ea-11f7-4abb-bbe1-503573486be3
+      - 131b1923-b57f-4cbf-941e-bc430676f2cb
+      - 55db4aed-2709-4a04-bc8b-36171607751c
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7cb0e47c-738e-4299-9866-c5a5054b82a5:
+    id: 7cb0e47c-738e-4299-9866-c5a5054b82a5
+    content: Removing a nested workflow strips isWorkflow from the node
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a2a3863d-7cfb-46c3-ac6c-6547fe53c6be:
+    id: a2a3863d-7cfb-46c3-ac6c-6547fe53c6be
+    content: Removing a nested workflow strips workflow step status from all its descendants
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0e80cb4f-7234-414d-9afd-6f557c5c5b5d:
+    id: 0e80cb4f-7234-414d-9afd-6f557c5c5b5d
+    content: Removing a nested workflow that has its own nested workflows cascades removal through all levels
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9cd93796-900e-4c99-b327-f9e27869aaff:
+    id: 9cd93796-900e-4c99-b327-f9e27869aaff
+    content: Removing a nested workflow shows a toast warning when descendant workflows exist
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c73cd6ea-11f7-4abb-bbe1-503573486be3:
+    id: c73cd6ea-11f7-4abb-bbe1-503573486be3
+    content: Removing a nested workflow does not show a toast warning when no descendant workflows exist
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  131b1923-b57f-4cbf-941e-bc430676f2cb:
+    id: 131b1923-b57f-4cbf-941e-bc430676f2cb
+    content: After removal, the node reappears as a numbered step in the parent workflow with correct step number
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  55db4aed-2709-4a04-bc8b-36171607751c:
+    id: 55db4aed-2709-4a04-bc8b-36171607751c
+    content: Parent workflow step numbers recalculate after nested workflow removal
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  356a3348-e02a-4ffd-bd51-1db5f73c5917:
+    id: 356a3348-e02a-4ffd-bd51-1db5f73c5917
+    content: Test cases — drag and drop
+    children:
+      - 295b32d6-109f-4c85-a1b0-03cb9838caf8
+      - f59806ff-cd7f-4311-a410-b735acaec131
+      - 8ca06629-1c9c-4718-ab65-69d52f27c4ee
+      - 38860ea0-dc94-4744-87ef-c0ce71eb9db9
+      - a6057c11-ba19-4593-8e30-dba9b00f3c64
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  295b32d6-109f-4c85-a1b0-03cb9838caf8:
+    id: 295b32d6-109f-4c85-a1b0-03cb9838caf8
+    content: Dragging a workflow into another workflow recalculates steps in both source and target trees
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f59806ff-cd7f-4311-a410-b735acaec131:
+    id: f59806ff-cd7f-4311-a410-b735acaec131
+    content: Dragging a workflow into a blueprint node establishes it as the first workflow in that chain
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8ca06629-1c9c-4718-ab65-69d52f27c4ee:
+    id: 8ca06629-1c9c-4718-ab65-69d52f27c4ee
+    content: Dragging a workflow into a non-blueprint node is rejected
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  38860ea0-dc94-4744-87ef-c0ce71eb9db9:
+    id: 38860ea0-dc94-4744-87ef-c0ce71eb9db9
+    content: Toast error displays when drag into non-blueprint node is attempted
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a6057c11-ba19-4593-8e30-dba9b00f3c64:
+    id: a6057c11-ba19-4593-8e30-dba9b00f3c64
+    content: Step numbers in the original parent recalculate after a workflow is dragged out
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ef589b9f-9943-4b6f-a9fc-075e50b31bd3:
+    id: ef589b9f-9943-4b6f-a9fc-075e50b31bd3
+    content: Test cases — undo
+    children:
+      - 7c9d8e05-8c16-459f-ac3c-b25482f68d8e
+      - 2c0bd03a-4ef6-4a7d-aa3c-cfc19feb9fd5
+      - 720f1c39-aea4-4901-a897-093759c7f855
+      - 4b861211-ea2d-4254-98c5-f1a64474e76d
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7c9d8e05-8c16-459f-ac3c-b25482f68d8e:
+    id: 7c9d8e05-8c16-459f-ac3c-b25482f68d8e
+    content: Undo after declaring a nested workflow restores the original step number
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2c0bd03a-4ef6-4a7d-aa3c-cfc19feb9fd5:
+    id: 2c0bd03a-4ef6-4a7d-aa3c-cfc19feb9fd5
+    content: Undo after declaring a nested workflow removes isWorkflow from the node
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  720f1c39-aea4-4901-a897-093759c7f855:
+    id: 720f1c39-aea4-4901-a897-093759c7f855
+    content: Undo after removing a nested workflow restores workflow and step status on all affected descendants
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4b861211-ea2d-4254-98c5-f1a64474e76d:
+    id: 4b861211-ea2d-4254-98c5-f1a64474e76d
+    content: Undo after dragging a workflow restores step numbers in both source and target trees
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d1ce5d40-67b7-4e1c-bf3e-4dbe39944cc1:
+    id: d1ce5d40-67b7-4e1c-bf3e-4dbe39944cc1
+    content: Test cases — edge cases
+    children:
+      - f50b59a0-b37a-4b85-ab2f-b78bc731bf62
+      - 93e52c12-f2ff-4ba1-a5a7-11911652b9cf
+      - 757ec572-31ad-4f30-9744-7c3a74aec04d
+      - 4b42019b-7070-4698-a2a5-8061549aaf0c
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f50b59a0-b37a-4b85-ab2f-b78bc731bf62:
+    id: f50b59a0-b37a-4b85-ab2f-b78bc731bf62
+    content: Nested workflow with zero children displays workflow icon (play icon), not a step number
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  93e52c12-f2ff-4ba1-a5a7-11911652b9cf:
+    id: 93e52c12-f2ff-4ba1-a5a7-11911652b9cf
+    content: Multiple sequential declare-and-remove cycles on the same node produce consistent state
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  757ec572-31ad-4f30-9744-7c3a74aec04d:
+    id: 757ec572-31ad-4f30-9744-7c3a74aec04d
+    content: Deeply nested workflows (4+ levels) calculate step numbers correctly
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4b42019b-7070-4698-a2a5-8061549aaf0c:
+    id: 4b42019b-7070-4698-a2a5-8061549aaf0c
+    content: Declaring multiple siblings as workflows within the same parent recalculates correctly for each
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1d30a613-a651-436c-bb2b-1fb3062af9fb:
+    id: 1d30a613-a651-436c-bb2b-1fb3062af9fb
+    content: AI refactor
+    children:
+      - 6e6f1d73-3ad7-46c6-879e-19036d650556
+      - e8b96096-b0ba-42f8-91cd-37fea6028a85
+      - c7009a9e-eecb-46e1-82ad-2e8370e90ee5
+      - 9d367ab4-0554-4138-8caf-2b9aaf770c5f
+      - 4264aa2a-e101-4dd6-b971-1d0deb8ce03d
+      - 9f82ccb2-5099-4ad0-b8f2-3bba6e3554da
+    metadata:
+      status: pending
+      isContextDeclaration: true
+      blueprintIcon: Recycle
+      blueprintColor: '#f97316'
+      isBlueprint: true
+      expanded: false
+  9f82ccb2-5099-4ad0-b8f2-3bba6e3554da:
+    id: 9f82ccb2-5099-4ad0-b8f2-3bba6e3554da
+    content: Run the standard checks
+    children:
+      - 70ba01a7-e23b-41bb-bdbb-b534af31d512
+    metadata:
+      status: pending
+      isBlueprint: true
+  70ba01a7-e23b-41bb-bdbb-b534af31d512:
+    id: 70ba01a7-e23b-41bb-bdbb-b534af31d512
+    content: Standard checks
+    children: []
+    metadata:
+      status: pending
+      isHyperlink: true
+      linkedNodeId: 6ab534a2-2956-454c-9c6a-e459314e0b5c
+      isBlueprint: true
+  333cb3e7-a25e-4d18-9dfa-82cf75328fff:
+    id: 333cb3e7-a25e-4d18-9dfa-82cf75328fff
+    content: AI refactor
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+      blueprintIcon: Recycle
+      blueprintColor: '#f97316'
+      appliedContextId: 1d30a613-a651-436c-bb2b-1fb3062af9fb
+      expanded: true
+  bbe17f66-d747-4cf0-8602-721ce87663fe:
+    id: bbe17f66-d747-4cf0-8602-721ce87663fe
+    content: Make sure there are no empty tests
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  4c3f0d67-a500-484f-8ccb-5dbf959ea27f:
+    id: 4c3f0d67-a500-484f-8ccb-5dbf959ea27f
+    content: Run test pass & fix
+    children:
+      - 644adefe-d77d-45d2-b414-a398eb757cef
+      - 4d290f54-4c8e-405e-8a92-880d3bb821f9
+      - 0789dbb2-688c-470d-9d13-d798f204135a
+    metadata:
+      status: pending
+      expanded: false
+      deleted: false
+      plugins: {}
+      isContextDeclaration: true
+      blueprintIcon: BugPlay
+      blueprintColor: '#a855f7'
+      isBlueprint: true
+  644adefe-d77d-45d2-b414-a398eb757cef:
+    id: 644adefe-d77d-45d2-b414-a398eb757cef
+    content: Review code changes against acceptance criteria
+    children:
+      - 23ada69a-b570-45f6-8381-082353a2bcd5
+      - 4ebe94b3-2309-4f7f-a114-85fef0189f51
+      - 7ffc9b4f-76e8-4424-9199-2220c4028166
+      - bcef20d2-481e-4687-bdae-b2b0b946f10d
+      - 8670805b-0f95-41ce-87b6-c7d5db7f620c
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  23ada69a-b570-45f6-8381-082353a2bcd5:
+    id: 23ada69a-b570-45f6-8381-082353a2bcd5
+    content: Identify all files changed since last commit
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  4ebe94b3-2309-4f7f-a114-85fef0189f51:
+    id: 4ebe94b3-2309-4f7f-a114-85fef0189f51
+    content: For each acceptance criterion, locate the code that implements it
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  7ffc9b4f-76e8-4424-9199-2220c4028166:
+    id: 7ffc9b4f-76e8-4424-9199-2220c4028166
+    content: Verify the implemented behavior matches the criterion semantically, not just structurally
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  bcef20d2-481e-4687-bdae-b2b0b946f10d:
+    id: bcef20d2-481e-4687-bdae-b2b0b946f10d
+    content: Implement any acceptance criteria with no corresponding implementation
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  4d290f54-4c8e-405e-8a92-880d3bb821f9:
+    id: 4d290f54-4c8e-405e-8a92-880d3bb821f9
+    content: Validate test coverage against test plan
+    children:
+      - 9721ac87-5510-4469-ae67-58901cea7bee
+      - 2fed93bb-038a-47bd-b55c-8937f44aa608
+      - fb05ad76-3a36-485a-b3db-615ee991374b
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  9721ac87-5510-4469-ae67-58901cea7bee:
+    id: 9721ac87-5510-4469-ae67-58901cea7bee
+    content: For each risk identified in the test plan, confirm a test case exists
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  2fed93bb-038a-47bd-b55c-8937f44aa608:
+    id: 2fed93bb-038a-47bd-b55c-8937f44aa608
+    content: Verify test assertions match the expected behavior described in the acceptance criteria
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  fb05ad76-3a36-485a-b3db-615ee991374b:
+    id: fb05ad76-3a36-485a-b3db-615ee991374b
+    content: Fix any test that asserts local/simplified behavior where the spec requires global/cross-cutting behavior
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  0789dbb2-688c-470d-9d13-d798f204135a:
+    id: 0789dbb2-688c-470d-9d13-d798f204135a
+    content: Fix discrepancies
+    children:
+      - 1353c81d-f7db-434f-ac37-2f96cdc42699
+      - 5a68c3bf-2988-43f1-9506-7e0977c9dc77
+      - 517ac982-e2c4-47fe-a3c4-a234cd78c5c3
+      - b03ee44d-9cb2-4ee6-97ec-05ff2bdfda00
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  1353c81d-f7db-434f-ac37-2f96cdc42699:
+    id: 1353c81d-f7db-434f-ac37-2f96cdc42699
+    content: For each issue found, implement the missing or corrected behavior
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  5a68c3bf-2988-43f1-9506-7e0977c9dc77:
+    id: 5a68c3bf-2988-43f1-9506-7e0977c9dc77
+    content: Update or add tests to match the corrected behavior
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  517ac982-e2c4-47fe-a3c4-a234cd78c5c3:
+    id: 517ac982-e2c4-47fe-a3c4-a234cd78c5c3
+    content: Run all tests, lint, and type checks to confirm no regressions
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  b03ee44d-9cb2-4ee6-97ec-05ff2bdfda00:
+    id: b03ee44d-9cb2-4ee6-97ec-05ff2bdfda00
+    content: Generate a report for the user on what was fixed
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  fbf20e91-d852-4406-9815-952fa7727f33:
+    id: fbf20e91-d852-4406-9815-952fa7727f33
+    content: Test pass & fix
+    children:
+      - 7fea2910-cc32-43bf-8380-b49f1e5b2587
+    metadata:
+      status: pending
+      appliedContextId: 4c3f0d67-a500-484f-8ccb-5dbf959ea27f
+      isBlueprint: true
+      blueprintIcon: BugPlay
+      blueprintColor: '#a855f7'
+      expanded: false
+  8670805b-0f95-41ce-87b6-c7d5db7f620c:
+    id: 8670805b-0f95-41ce-87b6-c7d5db7f620c
+    content: If there is an implementation that does not have a corresponding acceptance criteria, confirm with the user
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  94fe4f93-3023-485e-863b-cfe178d4a1ec:
+    id: 94fe4f93-3023-485e-863b-cfe178d4a1ec
+    content: Dragging a workflow into a workflow-step is prevented with a toast error
+    children: []
+    metadata:
+      status: pending
+  40cc5b31-c0e1-430a-aa3c-a872bf95916a:
+    id: 40cc5b31-c0e1-430a-aa3c-a872bf95916a
+    content: Dragging a workflow into a context or its descendant is prevented with a toast error
+    children: []
+    metadata:
+      status: pending
+  96987307-4449-4f80-bdff-726602d3fd9a:
+    id: 96987307-4449-4f80-bdff-726602d3fd9a
+    content: Cannot declare a context or its descendant as a workflow, no menu option
+    children: []
+    metadata:
+      status: pending
+  bdceb696-248d-4199-9182-db0689445c07:
+    id: bdceb696-248d-4199-9182-db0689445c07
+    content: Document
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+      blueprintIcon: BookA
+      blueprintColor: '#1074a2'
+      appliedContextId: 0058432d-a010-473b-a707-ace2b1dee169
+  9f4cb1c1-95ba-4523-9b59-86d02c56a0ed:
+    id: 9f4cb1c1-95ba-4523-9b59-86d02c56a0ed
+    content: Can use keyboard to move blueprint/context/workflow nodes into forbidden nodes
     children: []
     metadata:
       status: pending

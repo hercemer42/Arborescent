@@ -138,7 +138,7 @@ describe('buildBlueprintSubmenu', () => {
     expect(result!.submenu!.some(item => item.label === 'Remove from Workflow')).toBe(true);
   });
 
-  it('should not show Declare as Workflow when ancestor has workflow', () => {
+  it('should show Declare as Workflow when ancestor has workflow (nesting allowed)', () => {
     const nodes: Record<string, TreeNode> = {
       'root': createNode('root', { children: ['workflow'], metadata: { isBlueprint: true } }),
       'workflow': createNode('workflow', { children: ['step'], metadata: { isBlueprint: true, isWorkflow: true } }),
@@ -158,7 +158,7 @@ describe('buildBlueprintSubmenu', () => {
       ...defaultHandlers,
     });
 
-    expect(result!.submenu!.some(item => item.label === 'Declare as Workflow')).toBe(false);
+    expect(result!.submenu!.some(item => item.label === 'Declare as Workflow')).toBe(true);
   });
 
   it('should return null when nothing to display', () => {
@@ -202,5 +202,35 @@ describe('buildBlueprintSubmenu', () => {
     workflowItem?.onClick?.();
 
     expect(onDeclareAsWorkflow).toHaveBeenCalled();
+  });
+
+  it('should not show Declare as Workflow for a context node', () => {
+    const result = buildBlueprintSubmenu(buildParams({
+      node: createNode('target', { metadata: { isBlueprint: true, isContextDeclaration: true } }),
+    }));
+
+    expect(result!.submenu!.some(item => item.label === 'Declare as Workflow')).toBe(false);
+  });
+
+  it('should not show Declare as Workflow for a descendant of a context', () => {
+    const nodes = {
+      'root': createNode('root', { children: ['ctx'], metadata: { isBlueprint: true } }),
+      'ctx': createNode('ctx', { children: ['child'], metadata: { isBlueprint: true, isContextDeclaration: true } }),
+      'child': createNode('child', { children: ['target'], metadata: { isBlueprint: true } }),
+      'target': createNode('target', { metadata: { isBlueprint: true } }),
+    };
+    const result = buildBlueprintSubmenu({
+      node: nodes['target'],
+      getNodes: () => nodes,
+      getAncestorRegistry: () => ({
+        'root': [],
+        'ctx': ['root'],
+        'child': ['root', 'ctx'],
+        'target': ['root', 'ctx', 'child'],
+      }),
+      ...defaultHandlers,
+    });
+
+    expect(result!.submenu!.some(item => item.label === 'Declare as Workflow')).toBe(false);
   });
 });

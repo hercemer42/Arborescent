@@ -6,6 +6,9 @@ import {
   getWorkflowStepPosition,
   hasAncestorWorkflow,
   hasDescendantWorkflow,
+  collectDescendantWorkflows,
+  findNextStepTarget,
+  findPreviousStepTarget,
 } from '../workflowHelpers';
 import type { TreeNode } from '../../../shared/types';
 
@@ -197,6 +200,241 @@ describe('workflowHelpers', () => {
     it('should return false for missing nodes', () => {
       const nodes = createNodes();
       expect(hasDescendantWorkflow('nonexistent', nodes)).toBe(false);
+    });
+  });
+
+  describe('nested workflows', () => {
+    const createNestedNodes = (): Record<string, TreeNode> => ({
+      'root': {
+        id: 'root',
+        content: 'Root',
+        children: ['parent-workflow'],
+        metadata: { isBlueprint: true },
+      },
+      'parent-workflow': {
+        id: 'parent-workflow',
+        content: 'Parent Workflow',
+        children: ['step-1', 'nested-workflow', 'step-3'],
+        metadata: { isBlueprint: true, isWorkflow: true },
+      },
+      'step-1': {
+        id: 'step-1',
+        content: 'Step 1',
+        children: [],
+        metadata: { isBlueprint: true },
+      },
+      'nested-workflow': {
+        id: 'nested-workflow',
+        content: 'Nested Workflow',
+        children: ['nested-step-1', 'nested-step-2'],
+        metadata: { isBlueprint: true, isWorkflow: true },
+      },
+      'step-3': {
+        id: 'step-3',
+        content: 'Step 3',
+        children: [],
+        metadata: { isBlueprint: true },
+      },
+      'nested-step-1': {
+        id: 'nested-step-1',
+        content: 'Nested Step 1',
+        children: [],
+        metadata: { isBlueprint: true },
+      },
+      'nested-step-2': {
+        id: 'nested-step-2',
+        content: 'Nested Step 2',
+        children: [],
+        metadata: { isBlueprint: true },
+      },
+    });
+
+    const nestedAncestorRegistry: Record<string, string[]> = {
+      'root': [],
+      'parent-workflow': ['root'],
+      'step-1': ['root', 'parent-workflow'],
+      'nested-workflow': ['root', 'parent-workflow'],
+      'step-3': ['root', 'parent-workflow'],
+      'nested-step-1': ['root', 'parent-workflow', 'nested-workflow'],
+      'nested-step-2': ['root', 'parent-workflow', 'nested-workflow'],
+    };
+
+    // Extended fixture with items inside steps (for navigation tests)
+    const createNestedNodesWithItems = (): Record<string, TreeNode> => ({
+      ...createNestedNodes(),
+      'step-1': {
+        id: 'step-1',
+        content: 'Step 1',
+        children: ['item-x'],
+        metadata: { isBlueprint: true },
+      },
+      'step-3': {
+        id: 'step-3',
+        content: 'Step 3',
+        children: ['item-w'],
+        metadata: { isBlueprint: true },
+      },
+      'nested-step-1': {
+        id: 'nested-step-1',
+        content: 'Nested Step 1',
+        children: ['item-y'],
+        metadata: { isBlueprint: true },
+      },
+      'nested-step-2': {
+        id: 'nested-step-2',
+        content: 'Nested Step 2',
+        children: ['item-z'],
+        metadata: { isBlueprint: true },
+      },
+      'item-x': { id: 'item-x', content: 'Item X', children: [], metadata: { isBlueprint: true } },
+      'item-y': { id: 'item-y', content: 'Item Y', children: [], metadata: { isBlueprint: true } },
+      'item-z': { id: 'item-z', content: 'Item Z', children: [], metadata: { isBlueprint: true } },
+      'item-w': { id: 'item-w', content: 'Item W', children: [], metadata: { isBlueprint: true } },
+    });
+
+    const nestedItemAncestorRegistry: Record<string, string[]> = {
+      ...nestedAncestorRegistry,
+      'item-x': ['root', 'parent-workflow', 'step-1'],
+      'item-y': ['root', 'parent-workflow', 'nested-workflow', 'nested-step-1'],
+      'item-z': ['root', 'parent-workflow', 'nested-workflow', 'nested-step-2'],
+      'item-w': ['root', 'parent-workflow', 'step-3'],
+    };
+
+    describe('getWorkflowStepNumber with nesting', () => {
+      it('should return null for a child that is itself a workflow', () => {
+        const nodes = createNestedNodes();
+        expect(getWorkflowStepNumber('nested-workflow', nodes, nestedAncestorRegistry)).toBe(null);
+      });
+
+      it('should use global depth-first numbering across nested workflows', () => {
+        const nodes = createNestedNodes();
+        expect(getWorkflowStepNumber('step-1', nodes, nestedAncestorRegistry)).toBe(1);
+        expect(getWorkflowStepNumber('nested-step-1', nodes, nestedAncestorRegistry)).toBe(2);
+        expect(getWorkflowStepNumber('nested-step-2', nodes, nestedAncestorRegistry)).toBe(3);
+        expect(getWorkflowStepNumber('step-3', nodes, nestedAncestorRegistry)).toBe(4);
+      });
+
+      it('should number correctly at 4+ nesting levels', () => {
+        const nodes = createNestedNodes();
+        // Add a deeply nested workflow inside nested-step-1
+        nodes['nested-step-1'] = {
+          ...nodes['nested-step-1'],
+          children: ['deep-wf'],
+          metadata: { isBlueprint: true, isWorkflow: true },
+        };
+        nodes['deep-wf'] = {
+          id: 'deep-wf',
+          content: 'Deep WF',
+          children: ['deep-step-1', 'deep-step-2'],
+          metadata: { isBlueprint: true, isWorkflow: true },
+        };
+        nodes['deep-step-1'] = {
+          id: 'deep-step-1',
+          content: 'Deep Step 1',
+          children: [],
+          metadata: { isBlueprint: true },
+        };
+        nodes['deep-step-2'] = {
+          id: 'deep-step-2',
+          content: 'Deep Step 2',
+          children: [],
+          metadata: { isBlueprint: true },
+        };
+
+        const deepRegistry: Record<string, string[]> = {
+          ...nestedAncestorRegistry,
+          'deep-wf': ['root', 'parent-workflow', 'nested-workflow', 'nested-step-1'],
+          'deep-step-1': ['root', 'parent-workflow', 'nested-workflow', 'nested-step-1', 'deep-wf'],
+          'deep-step-2': ['root', 'parent-workflow', 'nested-workflow', 'nested-step-1', 'deep-wf'],
+        };
+
+        // step-1=1, nested-step-1 is now a workflow (null), deep-step-1=2, deep-step-2=3, nested-step-2=4, step-3=5
+        expect(getWorkflowStepNumber('step-1', nodes, deepRegistry)).toBe(1);
+        expect(getWorkflowStepNumber('nested-step-1', nodes, deepRegistry)).toBe(null);
+        expect(getWorkflowStepNumber('deep-step-1', nodes, deepRegistry)).toBe(2);
+        expect(getWorkflowStepNumber('deep-step-2', nodes, deepRegistry)).toBe(3);
+        expect(getWorkflowStepNumber('nested-step-2', nodes, deepRegistry)).toBe(4);
+        expect(getWorkflowStepNumber('step-3', nodes, deepRegistry)).toBe(5);
+      });
+    });
+
+    describe('findNextStepTarget', () => {
+      it('should cross into a nested workflow from a parent step', () => {
+        // item-x is child of step-1, next step should enter nested-workflow
+        const nodes = createNestedNodesWithItems();
+        expect(findNextStepTarget('item-x', nodes, nestedItemAncestorRegistry)).toBe('nested-step-1');
+      });
+
+      it('should exit a nested workflow to the parent step', () => {
+        // item-z is child of nested-step-2 (last step). Next should be step-3 of parent
+        const nodes = createNestedNodesWithItems();
+        expect(findNextStepTarget('item-z', nodes, nestedItemAncestorRegistry)).toBe('step-3');
+      });
+
+      it('should return null at the very last step of the entire tree', () => {
+        const nodes = createNestedNodesWithItems();
+        expect(findNextStepTarget('item-w', nodes, nestedItemAncestorRegistry)).toBe(null);
+      });
+
+      it('should move between steps within a nested workflow', () => {
+        const nodes = createNestedNodesWithItems();
+        expect(findNextStepTarget('item-y', nodes, nestedItemAncestorRegistry)).toBe('nested-step-2');
+      });
+    });
+
+    describe('findPreviousStepTarget', () => {
+      it('should cross out of a nested workflow to the parent step', () => {
+        // item-y is in nested-step-1 (first step). Previous should be step-1 of parent
+        const nodes = createNestedNodesWithItems();
+        expect(findPreviousStepTarget('item-y', nodes, nestedItemAncestorRegistry)).toBe('step-1');
+      });
+
+      it('should enter a nested workflow from a subsequent parent step', () => {
+        // item-w is in step-3. Previous should enter nested-workflow's last step
+        const nodes = createNestedNodesWithItems();
+        expect(findPreviousStepTarget('item-w', nodes, nestedItemAncestorRegistry)).toBe('nested-step-2');
+      });
+
+      it('should return null at the very first step of the entire tree', () => {
+        const nodes = createNestedNodesWithItems();
+        expect(findPreviousStepTarget('item-x', nodes, nestedItemAncestorRegistry)).toBe(null);
+      });
+
+      it('should move between steps within a nested workflow', () => {
+        const nodes = createNestedNodesWithItems();
+        expect(findPreviousStepTarget('item-z', nodes, nestedItemAncestorRegistry)).toBe('nested-step-1');
+      });
+    });
+
+    describe('collectDescendantWorkflows', () => {
+      it('should return all descendant workflow IDs', () => {
+        const nodes = createNestedNodes();
+        const result = collectDescendantWorkflows('parent-workflow', nodes);
+        expect(result).toEqual(['nested-workflow']);
+      });
+
+      it('should return empty array when no descendant workflows', () => {
+        const nodes = createNestedNodes();
+        expect(collectDescendantWorkflows('nested-workflow', nodes)).toEqual([]);
+      });
+
+      it('should find deeply nested workflows', () => {
+        const nodes = createNestedNodes();
+        nodes['deep-workflow'] = {
+          id: 'deep-workflow',
+          content: 'Deep',
+          children: [],
+          metadata: { isBlueprint: true, isWorkflow: true },
+        };
+        nodes['nested-step-1'] = {
+          ...nodes['nested-step-1'],
+          children: ['deep-workflow'],
+        };
+        const result = collectDescendantWorkflows('parent-workflow', nodes);
+        expect(result).toContain('nested-workflow');
+        expect(result).toContain('deep-workflow');
+        expect(result).toHaveLength(2);
+      });
     });
   });
 });

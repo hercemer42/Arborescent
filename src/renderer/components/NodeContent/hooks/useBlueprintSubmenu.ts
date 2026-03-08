@@ -2,7 +2,6 @@ import { TreeNode } from '../../../../shared/types';
 import { ContextMenuItem } from '../../ui/ContextMenu';
 import { getIsContextChild } from '../../../utils/nodeHelpers';
 import { AncestorRegistry } from '../../../utils/ancestry';
-import { hasAncestorWorkflow, hasDescendantWorkflow } from '../../../utils/workflowHelpers';
 
 interface BuildBlueprintSubmenuParams {
   node: TreeNode;
@@ -111,10 +110,11 @@ export function buildBlueprintSubmenu({
   }
 
   const isWorkflow = node.metadata.isWorkflow === true;
+  const isInContext = node.metadata.isContextDeclaration === true
+    || ancestors.some(id => nodes[id]?.metadata.isContextDeclaration === true);
   const canDeclareAsWorkflow = parent?.metadata.isBlueprint === true
     && !isWorkflow
-    && !hasAncestorWorkflow(node.id, nodes, ancestorRegistry)
-    && !hasDescendantWorkflow(node.id, nodes);
+    && !isInContext;
 
   if (canDeclareAsWorkflow && onDeclareAsWorkflow) {
     if (submenuItems.length > 0) submenuItems.push(SEPARATOR);

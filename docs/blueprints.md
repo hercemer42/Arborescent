@@ -42,6 +42,10 @@ Modify the blueprint to fine tune it to your own way of working.
 
 Context declarations display an icon in the gutter.
 
+## Workflows
+
+Declare a blueprint branch as a [workflow](workflows.md) to organize its children as numbered sequential steps. Move items through the steps, and nest workflows within workflows for multi-phase processes.
+
 ## Removing from Blueprint
 
 Right-click → **Blueprint** → **Remove from Blueprint**. or **Remove Context Declaration**

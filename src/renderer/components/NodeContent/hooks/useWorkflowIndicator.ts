@@ -1,5 +1,6 @@
 import { TreeNode } from '../../../../shared/types';
 import { useStore } from '../../../store/tree/useStore';
+import { getWorkflowStepNumber } from '../../../utils/workflowHelpers';
 
 interface WorkflowIndicator {
   isWorkflow: boolean;
@@ -10,15 +11,8 @@ export function useWorkflowIndicator(node: TreeNode): WorkflowIndicator {
   const isWorkflow = node.metadata.isWorkflow === true;
 
   const stepNumber = useStore((state) => {
-    const ancestors = state.ancestorRegistry[node.id] || [];
-    const parentId = ancestors[ancestors.length - 1];
-    if (!parentId) return null;
-
-    const parent = state.nodes[parentId];
-    if (!parent || parent.metadata.isWorkflow !== true) return null;
-
-    const index = parent.children.indexOf(node.id);
-    return index >= 0 ? index + 1 : null;
+    if (isWorkflow) return null;
+    return getWorkflowStepNumber(node.id, state.nodes, state.ancestorRegistry);
   });
 
   return { isWorkflow, stepNumber };

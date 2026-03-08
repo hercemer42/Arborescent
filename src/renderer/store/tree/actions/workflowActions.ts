@@ -4,12 +4,14 @@ import { logger } from '../../../services/logger';
 import { useToastStore } from '../../toast/toastStore';
 import { AncestorRegistry } from '../../../utils/ancestry';
 import { MoveNodeCommand } from '../commands/MoveNodeCommand';
+import { DeclareWorkflowCommand } from '../commands/DeclareWorkflowCommand';
+import { RemoveWorkflowCommand } from '../commands/RemoveWorkflowCommand';
 import { Command } from '../commands/Command';
 import { VisualEffectsActions } from './visualEffectsActions';
 import {
-  hasAncestorWorkflow,
-  hasDescendantWorkflow,
-  getWorkflowStepPosition,
+  collectDescendantWorkflows,
+  findNextStepTarget,
+  findPreviousStepTarget,
 } from '../../../utils/workflowHelpers';
 
 export interface WorkflowActions {
@@ -46,29 +48,23 @@ export const createWorkflowActions = (
       if (!parent || parent.metadata.isBlueprint !== true) return;
     }
 
-    if (hasAncestorWorkflow(nodeId, nodes, ancestorRegistry)) return;
-    if (hasDescendantWorkflow(nodeId, nodes)) return;
     if (node.metadata.isWorkflow === true) return;
 
-    let updatedNodes = updateNodeMetadata(get().nodes, nodeId, {
-      isBlueprint: true,
-      isWorkflow: true,
-    });
+    const command = new DeclareWorkflowCommand(
+      nodeId,
+      () => get().nodes,
+      (updatedNodes) => set({ nodes: updatedNodes }),
+      triggerAutosave
+    );
 
-    for (const childId of node.children) {
-      const child = updatedNodes[childId];
-      if (child && child.metadata.isBlueprint !== true) {
-        updatedNodes = updateNodeMetadata(updatedNodes, childId, {
-          isBlueprint: true,
-        });
-      }
+    if (executeCommand) {
+      executeCommand(command);
+    } else {
+      command.execute();
     }
-
-    set({ nodes: updatedNodes });
 
     useToastStore.getState().addToast('Declared as workflow', 'success');
     logger.info(`Node ${nodeId} declared as workflow`, 'Workflow');
-    triggerAutosave?.();
   }
 
   function removeFromWorkflow(nodeId: string): void {
@@ -76,27 +72,57 @@ export const createWorkflowActions = (
     const node = nodes[nodeId];
     if (!node || node.metadata.isWorkflow !== true) return;
 
-    set({
-      nodes: updateNodeMetadata(get().nodes, nodeId, {
-        isWorkflow: undefined,
-      }),
-    });
+    const descendantWorkflows = collectDescendantWorkflows(nodeId, nodes);
 
-    useToastStore.getState().addToast('Removed from workflow', 'info');
+    const command = new RemoveWorkflowCommand(
+      nodeId,
+      () => get().nodes,
+      (updatedNodes) => set({ nodes: updatedNodes }),
+      triggerAutosave
+    );
+
+    if (executeCommand) {
+      executeCommand(command);
+    } else {
+      command.execute();
+    }
+
+    if (descendantWorkflows.length > 0) {
+      useToastStore.getState().addToast(
+        'Removed workflow and nested workflows',
+        'warning'
+      );
+    } else {
+      useToastStore.getState().addToast('Removed from workflow', 'info');
+    }
     logger.info(`Node ${nodeId} removed from workflow`, 'Workflow');
-    triggerAutosave?.();
+  }
+
+  function expandAncestorsToStep(stepId: string): void {
+    const { nodes, ancestorRegistry } = get();
+    const ancestors = ancestorRegistry[stepId] || [];
+    let updatedNodes = nodes;
+    let needsUpdate = false;
+
+    for (const ancestorId of ancestors) {
+      const ancestor = updatedNodes[ancestorId];
+      if (ancestor && ancestor.children.length > 0 && ancestor.metadata.expanded === false) {
+        updatedNodes = updateNodeMetadata(updatedNodes, ancestorId, { expanded: true });
+        needsUpdate = true;
+      }
+    }
+
+    if (needsUpdate) {
+      set({ nodes: updatedNodes });
+    }
   }
 
   function moveToNextStep(nodeId: string): void {
     const { nodes, ancestorRegistry } = get();
-    const position = getWorkflowStepPosition(nodeId, nodes, ancestorRegistry);
-    if (!position) return;
+    const nextStepId = findNextStepTarget(nodeId, nodes, ancestorRegistry);
+    if (!nextStepId) return;
 
-    const { workflowNodeId, currentStepIndex, totalSteps } = position;
-    if (currentStepIndex >= totalSteps - 1) return;
-
-    const workflow = nodes[workflowNodeId];
-    const nextStepId = workflow.children[currentStepIndex + 1];
+    expandAncestorsToStep(nextStepId);
 
     const command = new MoveNodeCommand(
       nodeId,
@@ -119,14 +145,10 @@ export const createWorkflowActions = (
 
   function moveToPreviousStep(nodeId: string): void {
     const { nodes, ancestorRegistry } = get();
-    const position = getWorkflowStepPosition(nodeId, nodes, ancestorRegistry);
-    if (!position) return;
+    const prevStepId = findPreviousStepTarget(nodeId, nodes, ancestorRegistry);
+    if (!prevStepId) return;
 
-    const { workflowNodeId, currentStepIndex } = position;
-    if (currentStepIndex <= 0) return;
-
-    const workflow = nodes[workflowNodeId];
-    const prevStepId = workflow.children[currentStepIndex - 1];
+    expandAncestorsToStep(prevStepId);
 
     const command = new MoveNodeCommand(
       nodeId,
