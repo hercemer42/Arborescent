@@ -6,22 +6,5 @@ export async function executeInTerminal(terminalId: string, content: string): Pr
     return;
   }
 
-  await window.electron.terminalWrite(terminalId, content);
-
-  await new Promise(resolve => setTimeout(resolve, 150));
-
-  const terminalElement = document.querySelector('.terminal-container .xterm-helper-textarea') as HTMLTextAreaElement;
-  if (terminalElement) {
-    terminalElement.focus();
-
-    const enterEvent = new KeyboardEvent('keydown', {
-      key: 'Enter',
-      code: 'Enter',
-      keyCode: 13,
-      which: 13,
-      bubbles: true,
-      cancelable: true,
-    });
-    terminalElement.dispatchEvent(enterEvent);
-  }
+  await window.electron.terminalWrite(terminalId, content + '\r');
 }

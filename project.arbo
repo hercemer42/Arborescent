@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-03-09T10:14:48.956Z'
+updated: '2026-03-09T10:49:33.162Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -473,6 +473,7 @@ nodes:
     id: 565dde0a-864b-41f9-86ff-dbdf40ac4dd0
     content: Done
     children:
+      - 911bbdec-12fa-45ba-b84d-2ba945888928
       - 7fea2910-cc32-43bf-8380-b49f1e5b2587
       - 9f4cb1c1-95ba-4523-9b59-86d02c56a0ed
       - 2e7d3b78-a686-46d6-a87a-7b1fdc13fca8
@@ -5310,8 +5311,9 @@ nodes:
     id: 984247e7-2d55-4b93-80e8-f84818901621
     content: Backlog
     children:
-      - 7b067938-c6c1-4a40-afbd-495218514986
+      - 2bc9cb97-6351-427b-b426-3e1a983e596e
       - 1b042a84-748d-4b32-bee9-f2031727c811
+      - 41e1cdfe-d083-48a0-b414-3f92d8c2e5d2
       - 0b8d15ca-ea15-4817-aa86-45d795dc5047
       - b82ab806-5034-47b1-8fbc-7b388030b107
       - 550cf0db-6b43-43d9-8d43-7956b3fdc2d8
@@ -27459,8 +27461,7 @@ nodes:
   bdceb696-248d-4199-9182-db0689445c07:
     id: bdceb696-248d-4199-9182-db0689445c07
     content: Document
-    children:
-      - 911bbdec-12fa-45ba-b84d-2ba945888928
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -27485,7 +27486,8 @@ nodes:
   4c43c117-e89a-460c-9900-7ea15b8cc0e0:
     id: 4c43c117-e89a-460c-9900-7ea15b8cc0e0
     content: Product review
-    children: []
+    children:
+      - f0f27878-1a15-4bd6-9181-f72eff44de89
     metadata:
       status: pending
       appliedContextId: e8824b29-eb18-4031-9e35-b321a864d418
@@ -27529,97 +27531,6 @@ nodes:
   ebbae30f-8d8d-4cf9-84b8-d537e0e6a5cf:
     id: ebbae30f-8d8d-4cf9-84b8-d537e0e6a5cf
     content: ''
-    children: []
-    metadata:
-      status: pending
-  7b067938-c6c1-4a40-afbd-495218514986:
-    id: 7b067938-c6c1-4a40-afbd-495218514986
-    content: Refactor context indicators
-    children:
-      - b5fcdab2-5261-463c-9559-3c154207a055
-      - f68dd26f-f534-4aa8-a2c4-2229b4c2984d
-      - 2e6a9b30-ceac-4a10-89cc-5b15c79455ae
-      - b750f89d-de5d-4b0d-a082-4ae347168f9e
-    metadata:
-      status: pending
-      expanded: false
-  f68dd26f-f534-4aa8-a2c4-2229b4c2984d:
-    id: f68dd26f-f534-4aa8-a2c4-2229b4c2984d
-    content: For context declarations, remove the gutter icon.
-    children:
-      - 9d7435b0-5c8b-4773-93c3-9ae325c14391
-    metadata:
-      status: pending
-  b5fcdab2-5261-463c-9559-3c154207a055:
-    id: b5fcdab2-5261-463c-9559-3c154207a055
-    content: There is too much ambiguity in the gutter.
-    children:
-      - a2c8eca1-bdc7-428d-960d-8256f3e1b09e
-    metadata:
-      status: pending
-  a2c8eca1-bdc7-428d-960d-8256f3e1b09e:
-    id: a2c8eca1-bdc7-428d-960d-8256f3e1b09e
-    content: The lowered transparency for an applied context isn't a sufficient visual indication that it's an applied context and not a context declaration.
-    children: []
-    metadata:
-      status: pending
-  9d7435b0-5c8b-4773-93c3-9ae325c14391:
-    id: 9d7435b0-5c8b-4773-93c3-9ae325c14391
-    content: Replace it with a 'c' in an overlay to the left of the node icon
-    children:
-      - 6f0bf3cc-dc0b-4ac4-bcb8-d9bf638464ac
-    metadata:
-      status: pending
-  6f0bf3cc-dc0b-4ac4-bcb8-d9bf638464ac:
-    id: 6f0bf3cc-dc0b-4ac4-bcb8-d9bf638464ac
-    content: Use the same visual system as used for workflow and workflow steps icons
-    children: []
-    metadata:
-      status: pending
-  8d14ebd2-c1bf-4ecd-94b6-dfc66a78e106:
-    id: 8d14ebd2-c1bf-4ecd-94b6-dfc66a78e106
-    content: Remove the 'Declared' from the existing sidebar hover tool-tip.
-    children: []
-    metadata:
-      status: pending
-  d652afa7-21a5-4d3b-b79c-4e2c84b5330d:
-    id: d652afa7-21a5-4d3b-b79c-4e2c84b5330d
-    content: Only show the tool-tip when hovering over an applied context icon
-    children: []
-    metadata:
-      status: pending
-  da5e72b7-83a2-437c-9d6c-da120304ef34:
-    id: da5e72b7-83a2-437c-9d6c-da120304ef34
-    content: Use the same tool-tip that currently shows when hovering over a declared icon.
-    children: []
-    metadata:
-      status: pending
-  33d56de4-ce5f-4380-b204-ebabdb110265:
-    id: 33d56de4-ce5f-4380-b204-ebabdb110265
-    content: Only show the tool-tip when there is an applied context
-    children: []
-    metadata:
-      status: pending
-  b750f89d-de5d-4b0d-a082-4ae347168f9e:
-    id: b750f89d-de5d-4b0d-a082-4ae347168f9e
-    content: Sidebar hover tool-tip
-    children:
-      - 8d14ebd2-c1bf-4ecd-94b6-dfc66a78e106
-      - d652afa7-21a5-4d3b-b79c-4e2c84b5330d
-      - da5e72b7-83a2-437c-9d6c-da120304ef34
-      - 33d56de4-ce5f-4380-b204-ebabdb110265
-    metadata:
-      status: pending
-  2e6a9b30-ceac-4a10-89cc-5b15c79455ae:
-    id: 2e6a9b30-ceac-4a10-89cc-5b15c79455ae
-    content: For context applications, retain the gutter icon but remove the transparency
-    children:
-      - 5e7ac2a5-2947-457c-815d-6ba1c4e5ddfe
-    metadata:
-      status: pending
-  5e7ac2a5-2947-457c-815d-6ba1c4e5ddfe:
-    id: 5e7ac2a5-2947-457c-815d-6ba1c4e5ddfe
-    content: They should be fully opaque
     children: []
     metadata:
       status: pending
@@ -29140,3 +29051,115 @@ nodes:
     metadata:
       status: pending
       isBlueprint: true
+  2bc9cb97-6351-427b-b426-3e1a983e596e:
+    id: 2bc9cb97-6351-427b-b426-3e1a983e596e
+    content: Write directly to stdin when execuiting
+    children:
+      - 25309d0e-cd74-4910-8f5c-c7ef6de7f53f
+      - 4c224598-c08a-4b7f-be33-2ab75c631c81
+    metadata:
+      status: pending
+      expanded: false
+  25309d0e-cd74-4910-8f5c-c7ef6de7f53f:
+    id: 25309d0e-cd74-4910-8f5c-c7ef6de7f53f
+    content: Currently the execute mode uses clipboard to copy/paste to an open terminal window
+    children:
+      - b36455ea-e6f5-4e2a-bd69-0365a77b7b61
+      - b2f791da-e963-4c60-8e11-bab35e5579de
+    metadata:
+      status: pending
+  4c224598-c08a-4b7f-be33-2ab75c631c81:
+    id: 4c224598-c08a-4b7f-be33-2ab75c631c81
+    content: Instead, it should write directly to stidn
+    children:
+      - f6f758f7-195e-49ce-a808-5633e8924caf
+    metadata:
+      status: pending
+  b36455ea-e6f5-4e2a-bd69-0365a77b7b61:
+    id: b36455ea-e6f5-4e2a-bd69-0365a77b7b61
+    content: This is flaky as sometimes the content doesn't paste and sometimes it doesn't execute
+    children: []
+    metadata:
+      status: pending
+  b2f791da-e963-4c60-8e11-bab35e5579de:
+    id: b2f791da-e963-4c60-8e11-bab35e5579de
+    content: To make it possible to automate tasks in sequence, we need to improve this
+    children: []
+    metadata:
+      status: pending
+  f6f758f7-195e-49ce-a808-5633e8924caf:
+    id: f6f758f7-195e-49ce-a808-5633e8924caf
+    content: This should be possible to do via pty.write() of node-pty
+    children: []
+    metadata:
+      status: pending
+  35b399bf-e040-4ba1-8813-27aef5442f7d:
+    id: 35b399bf-e040-4ba1-8813-27aef5442f7d
+    content: This is flaky as sometimes the content doesn't paste and sometimes it doesn't execute
+    children: []
+    metadata:
+      status: pending
+  2b66b60c-9ca8-40af-b30a-3e58ae59843d:
+    id: 2b66b60c-9ca8-40af-b30a-3e58ae59843d
+    content: To make it possible to automate tasks in sequence, we need to improve this
+    children: []
+    metadata:
+      status: pending
+  69f99915-ec42-4b27-bec4-9b12c4e2841e:
+    id: 69f99915-ec42-4b27-bec4-9b12c4e2841e
+    content: Currently the execute mode uses clipboard to copy/paste to an open terminal window
+    children:
+      - 35b399bf-e040-4ba1-8813-27aef5442f7d
+      - 2b66b60c-9ca8-40af-b30a-3e58ae59843d
+    metadata:
+      status: pending
+  e262da73-08f4-4f82-8ff5-2b8264e94287:
+    id: e262da73-08f4-4f82-8ff5-2b8264e94287
+    content: This should be possible to do via pty.write() of node-pty
+    children: []
+    metadata:
+      status: pending
+  301c2695-646e-4da2-9fc0-bb244160fada:
+    id: 301c2695-646e-4da2-9fc0-bb244160fada
+    content: Instead, it should write directly to stidn
+    children:
+      - e262da73-08f4-4f82-8ff5-2b8264e94287
+    metadata:
+      status: pending
+  f0f27878-1a15-4bd6-9181-f72eff44de89:
+    id: f0f27878-1a15-4bd6-9181-f72eff44de89
+    content: Write directly to stdin when execuiting
+    children:
+      - 69f99915-ec42-4b27-bec4-9b12c4e2841e
+      - 301c2695-646e-4da2-9fc0-bb244160fada
+    metadata:
+      status: pending
+      expanded: false
+      feedbackTempFile: /home/brian/.config/Arborescent/temp-files/feedback-f0f27878-1a15-4bd6-9181-f72eff44de89.arbo
+  41e1cdfe-d083-48a0-b414-3f92d8c2e5d2:
+    id: 41e1cdfe-d083-48a0-b414-3f92d8c2e5d2
+    content: Move collaborate/execute as a function of the context
+    children:
+      - effa617a-ff3a-4954-9a1d-d6840e6f2322
+      - 67a3ce40-ce61-4f3f-8978-7d257162ace3
+      - 4d15ca9a-8a6c-45c7-998a-76101d04e890
+    metadata:
+      status: pending
+  effa617a-ff3a-4954-9a1d-d6840e6f2322:
+    id: effa617a-ff3a-4954-9a1d-d6840e6f2322
+    content: Currently we have collaborate/execute in the right-click menu
+    children: []
+    metadata:
+      status: pending
+  67a3ce40-ce61-4f3f-8978-7d257162ace3:
+    id: 67a3ce40-ce61-4f3f-8978-7d257162ace3
+    content: Which we choose is directly tied to the context type
+    children: []
+    metadata:
+      status: pending
+  4d15ca9a-8a6c-45c7-998a-76101d04e890:
+    id: 4d15ca9a-8a6c-45c7-998a-76101d04e890
+    content: We can just make this relation directly, and reduce the complexity of the right-click menu
+    children: []
+    metadata:
+      status: pending
