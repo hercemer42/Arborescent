@@ -40,7 +40,7 @@ Modify the blueprint to fine tune it to your own way of working.
 
 [Contexts](contexts.md) are a special type of blueprint branch. When you declare a context, the branch and its descendants automatically become blueprints.
 
-Context declarations display an icon in the gutter.
+Context declarations are marked with a Asterisk overlay to the left of the node icon.
 
 ## Workflows
 

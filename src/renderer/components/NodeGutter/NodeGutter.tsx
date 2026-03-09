@@ -7,10 +7,6 @@ interface NodeGutterProps {
   hasChildren: boolean;
   expanded: boolean;
   onToggle: () => void;
-  isContextDeclaration?: boolean;
-  contextName?: string;
-  contextIcon?: string;
-  contextColor?: string;
   appliedContext?: AppliedContext;
   hasHiddenSearchMatches?: boolean;
 }
@@ -19,20 +15,12 @@ export const NodeGutter = memo(function NodeGutter({
   hasChildren,
   expanded,
   onToggle,
-  isContextDeclaration = false,
-  contextName,
-  contextIcon,
-  contextColor,
   appliedContext,
   hasHiddenSearchMatches = false,
 }: NodeGutterProps) {
   return (
     <div className="node-gutter">
       <GutterContextIndicator
-        isContextDeclaration={isContextDeclaration}
-        contextName={contextName}
-        contextIcon={contextIcon}
-        contextColor={contextColor}
         appliedContext={appliedContext}
       />
       {hasChildren && (

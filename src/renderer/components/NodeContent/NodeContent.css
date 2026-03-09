@@ -84,6 +84,25 @@
   cursor: default;
 }
 
+.context-icon-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.context-declaration-overlay {
+  position: absolute;
+  left: -12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  color: var(--gray-600);
+  pointer-events: none;
+}
+
 .node-icon {
   font-size: 1rem;
 }

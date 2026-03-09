@@ -8,95 +8,191 @@ describe('GutterContextIndicator', () => {
     vi.clearAllMocks();
   });
 
-  describe('regular nodes', () => {
-    it('should render nothing when no applied context', () => {
+  describe('when no applied context', () => {
+    it('should render nothing for a regular node', () => {
       const { container } = render(
-        <GutterContextIndicator
-          isContextDeclaration={false}
-        />
+        <GutterContextIndicator />
       );
       expect(container.firstChild).toBeNull();
     });
 
-    it('should render applied context icon when appliedContext is set', () => {
-      const appliedContext: AppliedContext = { icon: 'star', color: undefined, name: 'Applied Context' };
+    it('should render nothing for a context declaration node', () => {
       const { container } = render(
-        <GutterContextIndicator
-          isContextDeclaration={false}
-          appliedContext={appliedContext}
-        />
+        <GutterContextIndicator />
       );
-      expect(container.querySelector('.context-applied')).toBeInTheDocument();
-    });
-
-    it('should apply color styling when appliedContext has color', () => {
-      const appliedContext: AppliedContext = { icon: 'star', color: '#ff0000', name: 'Applied Context' };
-      const { container } = render(
-        <GutterContextIndicator
-          isContextDeclaration={false}
-          appliedContext={appliedContext}
-        />
-      );
-      const indicator = container.querySelector('.context-applied');
-      expect(indicator).toHaveStyle({ color: '#ff0000' });
+      expect(container.firstChild).toBeNull();
     });
   });
 
-  describe('context declaration nodes', () => {
-    it('should render declaration icon without + badge when no applied context', () => {
+  describe('with applied context', () => {
+    const appliedContext: AppliedContext = { icon: 'star', color: undefined, name: 'My Context' };
+
+    it('should render applied context icon', () => {
       const { container } = render(
-        <GutterContextIndicator
-          isContextDeclaration={true}
-          contextIcon="lightbulb"
-        />
+        <GutterContextIndicator appliedContext={appliedContext} />
       );
-      expect(container.querySelector('.context-declaration')).toBeInTheDocument();
+      expect(container.querySelector('.context-applied')).toBeInTheDocument();
+      expect(container.querySelector('svg')).toBeInTheDocument();
+    });
+
+    it('should render at full opacity with no inline opacity style', () => {
+      const { container } = render(
+        <GutterContextIndicator appliedContext={appliedContext} />
+      );
+      const indicator = container.querySelector('.context-applied');
+      expect(indicator).toBeInTheDocument();
+      expect(indicator).not.toHaveStyle({ opacity: '0.6' });
+      expect(indicator).not.toHaveStyle({ opacity: 0.6 });
+    });
+
+    it('should apply color via CSS custom property when appliedContext has color', () => {
+      const coloredContext: AppliedContext = { icon: 'star', color: '#ff0000', name: 'Red Context' };
+      const { container } = render(
+        <GutterContextIndicator appliedContext={coloredContext} />
+      );
+      const indicator = container.querySelector('.context-applied') as HTMLElement;
+      expect(indicator.style.getPropertyValue('--applied-context-color')).toBe('#ff0000');
+    });
+
+    it('should not apply color styling when appliedContext has no color', () => {
+      const { container } = render(
+        <GutterContextIndicator appliedContext={appliedContext} />
+      );
+      const indicator = container.querySelector('.context-applied');
+      expect(indicator).not.toHaveAttribute('style');
+    });
+
+    it('should render nothing when appliedContext has no icon', () => {
+      const noIconContext: AppliedContext = { icon: undefined, color: undefined, name: 'No Icon' };
+      const { container } = render(
+        <GutterContextIndicator appliedContext={noIconContext} />
+      );
+      expect(container.firstChild).toBeNull();
+    });
+
+    it('should not render as a button (non-clickable)', () => {
+      const { container } = render(
+        <GutterContextIndicator appliedContext={appliedContext} />
+      );
+      expect(container.querySelector('button')).not.toBeInTheDocument();
+    });
+  });
+
+  describe('context declaration with applied context (combo case)', () => {
+    const appliedContext: AppliedContext = { icon: 'flag', color: '#00ff00', name: 'Applied From Ancestor' };
+
+    it('should render applied context icon at full opacity', () => {
+      const { container } = render(
+        <GutterContextIndicator appliedContext={appliedContext} />
+      );
+      expect(container.querySelector('.context-applied')).toBeInTheDocument();
+      expect(container.querySelector('svg')).toBeInTheDocument();
+    });
+
+    it('should not render declaration icon or bundle badge', () => {
+      const { container } = render(
+        <GutterContextIndicator appliedContext={appliedContext} />
+      );
+      expect(container.querySelector('.context-declaration')).not.toBeInTheDocument();
+      expect(container.querySelector('.context-bundle')).not.toBeInTheDocument();
       expect(container.querySelector('.context-bundle-badge')).not.toBeInTheDocument();
     });
+  });
 
-    it('should render + badge when has applied context', () => {
-      const appliedContext: AppliedContext = { icon: 'flag', color: undefined, name: 'Applied Context' };
+  describe('declaration-specific classes removed', () => {
+    const appliedContext: AppliedContext = { icon: 'star', color: undefined, name: 'My Context' };
+
+    it('should not render .context-declaration class', () => {
       const { container } = render(
-        <GutterContextIndicator
-          isContextDeclaration={true}
-          contextIcon="Lightbulb"
-          appliedContext={appliedContext}
-        />
+        <GutterContextIndicator appliedContext={appliedContext} />
       );
-      expect(container.querySelector('.context-bundle-badge')?.textContent).toBe('+');
-      expect(container.querySelector('.context-bundle')).toBeInTheDocument();
+      expect(container.querySelector('.context-declaration')).not.toBeInTheDocument();
     });
 
-    it('should show tooltip on hover with declaration info', () => {
+    it('should not render .context-bundle class', () => {
       const { container } = render(
-        <GutterContextIndicator
-          isContextDeclaration={true}
-          contextName="My Context"
-          contextIcon="lightbulb"
-        />
+        <GutterContextIndicator appliedContext={appliedContext} />
+      );
+      expect(container.querySelector('.context-bundle')).not.toBeInTheDocument();
+    });
+
+    it('should not render .context-bundle-badge', () => {
+      const { container } = render(
+        <GutterContextIndicator appliedContext={appliedContext} />
+      );
+      expect(container.querySelector('.context-bundle-badge')).not.toBeInTheDocument();
+    });
+  });
+
+  describe('tooltip', () => {
+    const appliedContext: AppliedContext = { icon: 'star', color: '#00ff00', name: 'Design Guidelines' };
+
+    it('should show tooltip on hover over applied context icon', () => {
+      const { container } = render(
+        <GutterContextIndicator appliedContext={appliedContext} />
+      );
+      const indicator = container.querySelector('.gutter-context-indicator');
+      expect(indicator).toBeInTheDocument();
+      if (indicator) fireEvent.mouseEnter(indicator);
+      expect(screen.getByText('Applied context:')).toBeInTheDocument();
+    });
+
+    it('should display the correct context name in tooltip', () => {
+      const { container } = render(
+        <GutterContextIndicator appliedContext={appliedContext} />
       );
       const indicator = container.querySelector('.gutter-context-indicator');
       if (indicator) fireEvent.mouseEnter(indicator);
-      expect(screen.getByText('Declared:')).toBeInTheDocument();
-      expect(screen.getByText('My Context')).toBeInTheDocument();
+      expect(screen.getByText('Design Guidelines')).toBeInTheDocument();
     });
 
-    it('should show tooltip with applied context when set', () => {
-      const appliedContext: AppliedContext = { icon: 'star', color: undefined, name: 'Applied Context' };
+    it('should display the context icon in tooltip', () => {
       const { container } = render(
-        <GutterContextIndicator
-          isContextDeclaration={true}
-          contextName="My Context"
-          contextIcon="lightbulb"
-          appliedContext={appliedContext}
-        />
+        <GutterContextIndicator appliedContext={appliedContext} />
       );
       const indicator = container.querySelector('.gutter-context-indicator');
       if (indicator) fireEvent.mouseEnter(indicator);
-      expect(screen.getByText('Declared:')).toBeInTheDocument();
-      expect(screen.getByText('My Context')).toBeInTheDocument();
-      expect(screen.getByText('Applied:')).toBeInTheDocument();
-      expect(screen.getByText('Applied Context')).toBeInTheDocument();
+      const tooltipItem = document.querySelector('.applied-context-tooltip-item');
+      expect(tooltipItem?.querySelector('svg')).toBeInTheDocument();
+    });
+
+    it('should not show "Declared:" label in tooltip', () => {
+      const { container } = render(
+        <GutterContextIndicator appliedContext={appliedContext} />
+      );
+      const indicator = container.querySelector('.gutter-context-indicator');
+      if (indicator) fireEvent.mouseEnter(indicator);
+      expect(screen.queryByText('Declared:')).not.toBeInTheDocument();
+    });
+
+    it('should not show "Applied:" label (old format) in tooltip', () => {
+      const { container } = render(
+        <GutterContextIndicator appliedContext={appliedContext} />
+      );
+      const indicator = container.querySelector('.gutter-context-indicator');
+      if (indicator) fireEvent.mouseEnter(indicator);
+      expect(screen.queryByText('Applied:')).not.toBeInTheDocument();
+    });
+
+    it('should hide tooltip on mouse leave', () => {
+      const { container } = render(
+        <GutterContextIndicator appliedContext={appliedContext} />
+      );
+      const indicator = container.querySelector('.gutter-context-indicator');
+      if (indicator) {
+        fireEvent.mouseEnter(indicator);
+        expect(screen.getByText('Applied context:')).toBeInTheDocument();
+        fireEvent.mouseLeave(indicator);
+        expect(screen.queryByText('Applied context:')).not.toBeInTheDocument();
+      }
+    });
+
+    it('should not render tooltip when there is no applied context', () => {
+      const { container } = render(
+        <GutterContextIndicator />
+      );
+      expect(container.firstChild).toBeNull();
+      expect(screen.queryByText('Applied context:')).not.toBeInTheDocument();
     });
   });
 });

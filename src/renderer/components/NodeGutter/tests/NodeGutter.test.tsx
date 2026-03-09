@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { NodeGutter } from '../NodeGutter';
 
@@ -120,104 +120,99 @@ describe('NodeGutter', () => {
         />
       );
 
-      expect(container.querySelector('.gutter-context-indicator.context-applied')).not.toBeInTheDocument();
-    });
-
-    it('should show declaration indicator when context declaration has applied context', () => {
-      const mockOnToggle = vi.fn();
-      const { container } = render(
-        <NodeGutter
-          hasChildren={false}
-          expanded={true}
-          onToggle={mockOnToggle}
-          isContextDeclaration={true}
-          contextIcon="flag"
-          appliedContext={{ icon: 'star', color: undefined, name: 'My Context' }}
-        />
-      );
-
-      // Should show declaration icon with + badge (context-bundle class), not applied context
-      expect(container.querySelector('.gutter-context-indicator.context-bundle')).toBeInTheDocument();
-      expect(container.querySelector('.gutter-context-indicator.context-applied')).not.toBeInTheDocument();
-    });
-  });
-
-  describe('context declaration indicator', () => {
-    it('should render context indicator when isContextDeclaration is true', () => {
-      const mockOnToggle = vi.fn();
-      const { container } = render(
-        <NodeGutter
-          hasChildren={false}
-          expanded={true}
-          onToggle={mockOnToggle}
-          isContextDeclaration={true}
-        />
-      );
-
-      const indicator = container.querySelector('.gutter-context-indicator');
-      expect(indicator).toBeInTheDocument();
-      // FontAwesome renders an SVG icon
-      expect(indicator?.querySelector('svg')).toBeInTheDocument();
-    });
-
-    it('should not render context indicator when isContextDeclaration is false', () => {
-      const mockOnToggle = vi.fn();
-      const { container } = render(
-        <NodeGutter
-          hasChildren={false}
-          expanded={true}
-          onToggle={mockOnToggle}
-          isContextDeclaration={false}
-        />
-      );
-
       expect(container.querySelector('.gutter-context-indicator')).not.toBeInTheDocument();
     });
 
-    it('should not render context indicator when isContextDeclaration is undefined', () => {
-      const mockOnToggle = vi.fn();
-      const { container } = render(
-        <NodeGutter
-          hasChildren={false}
-          expanded={true}
-          onToggle={mockOnToggle}
-        />
-      );
-
-      expect(container.querySelector('.gutter-context-indicator')).not.toBeInTheDocument();
-    });
-
-    it('should render context indicator as span in gutter', () => {
-      const mockOnToggle = vi.fn();
-      const { container } = render(
-        <NodeGutter
-          hasChildren={false}
-          expanded={true}
-          onToggle={mockOnToggle}
-          isContextDeclaration={true}
-        />
-      );
-
-      const indicator = container.querySelector('.gutter-context-indicator');
-      expect(indicator).toBeInTheDocument();
-      // Context declaration indicator in gutter is a span (not clickable, shows tooltip on hover)
-      expect(indicator?.tagName.toLowerCase()).toBe('span');
-    });
-
-    it('should render context indicator alongside chevron', () => {
+    it('should render applied context icon alongside chevron', () => {
       const mockOnToggle = vi.fn();
       const { container } = render(
         <NodeGutter
           hasChildren={true}
           expanded={true}
           onToggle={mockOnToggle}
-          isContextDeclaration={true}
+          appliedContext={{ icon: 'star', color: undefined, name: 'My Context' }}
         />
       );
 
-      expect(container.querySelector('.gutter-context-indicator')).toBeInTheDocument();
-      // Only expand toggle is a button (context indicator is now a span)
+      expect(container.querySelector('.gutter-context-indicator.context-applied')).toBeInTheDocument();
       expect(screen.getAllByRole('button')).toHaveLength(1);
+    });
+
+    it('should show tooltip on hover with applied context info', () => {
+      const mockOnToggle = vi.fn();
+      const { container } = render(
+        <NodeGutter
+          hasChildren={false}
+          expanded={true}
+          onToggle={mockOnToggle}
+          appliedContext={{ icon: 'star', color: undefined, name: 'My Context' }}
+        />
+      );
+
+      const indicator = container.querySelector('.gutter-context-indicator');
+      if (indicator) fireEvent.mouseEnter(indicator);
+      expect(screen.getByText('Applied context:')).toBeInTheDocument();
+      expect(screen.getByText('My Context')).toBeInTheDocument();
+    });
+  });
+
+  describe('context declaration with applied context', () => {
+    it('should render .context-applied not .context-bundle when declaration has applied context', () => {
+      const mockOnToggle = vi.fn();
+      const { container } = render(
+        <NodeGutter
+          hasChildren={false}
+          expanded={true}
+          onToggle={mockOnToggle}
+          appliedContext={{ icon: 'star', color: undefined, name: 'My Context' }}
+        />
+      );
+
+      expect(container.querySelector('.gutter-context-indicator.context-applied')).toBeInTheDocument();
+      expect(container.querySelector('.gutter-context-indicator.context-bundle')).not.toBeInTheDocument();
+    });
+  });
+
+  describe('no declaration-specific rendering in gutter', () => {
+    it('should not render any gutter indicator when only appliedContext is absent', () => {
+      const mockOnToggle = vi.fn();
+      const { container } = render(
+        <NodeGutter
+          hasChildren={false}
+          expanded={true}
+          onToggle={mockOnToggle}
+        />
+      );
+
+      expect(container.querySelector('.gutter-context-indicator')).not.toBeInTheDocument();
+    });
+
+    it('should not render .context-bundle class', () => {
+      const mockOnToggle = vi.fn();
+      const { container } = render(
+        <NodeGutter
+          hasChildren={false}
+          expanded={true}
+          onToggle={mockOnToggle}
+          appliedContext={{ icon: 'star', color: undefined, name: 'My Context' }}
+        />
+      );
+
+      expect(container.querySelector('.context-bundle')).not.toBeInTheDocument();
+    });
+
+    it('should not render .context-declaration class', () => {
+      const mockOnToggle = vi.fn();
+      const { container } = render(
+        <NodeGutter
+          hasChildren={false}
+          expanded={true}
+          onToggle={mockOnToggle}
+          appliedContext={{ icon: 'star', color: undefined, name: 'My Context' }}
+        />
+      );
+
+      expect(container.querySelector('.context-declaration')).not.toBeInTheDocument();
     });
   });
 });

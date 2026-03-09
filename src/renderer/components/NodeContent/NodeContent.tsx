@@ -1,5 +1,5 @@
 import { memo, createElement } from 'react';
-import { Link, Play } from 'lucide-react';
+import { Asterisk, Link, Play } from 'lucide-react';
 import { TreeNode } from '../../../shared/types';
 import { StatusCheckbox } from '../ui/StatusCheckbox';
 import { ContextMenu } from '../ui/ContextMenu';
@@ -65,17 +65,21 @@ function NodeContentComponent({
       );
     }
 
-    // Context declaration - clickable icon (no badge - badge is only in gutter)
     if (isContextDeclaration && ContextIcon) {
       return (
-        <button
-          className="context-indicator context-declaration"
-          title="Click to change icon"
-          onClick={handleContextIconClick}
-          style={contextColor ? { color: contextColor } : undefined}
-        >
-          {createElement(ContextIcon, { size: 19 })}
-        </button>
+        <span className="context-icon-wrapper">
+          <button
+            className="context-indicator context-declaration"
+            title="Click to change icon"
+            onClick={handleContextIconClick}
+            style={contextColor ? { color: contextColor } : undefined}
+          >
+            {createElement(ContextIcon, { size: 19 })}
+          </button>
+          <span className="context-declaration-overlay">
+            <Asterisk size={13} />
+          </span>
+        </span>
       );
     }
 

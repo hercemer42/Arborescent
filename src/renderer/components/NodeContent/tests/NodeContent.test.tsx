@@ -119,4 +119,140 @@ describe('NodeContent', () => {
     expect(input).toHaveFocus();
   });
 
+  describe('context declaration overlay', () => {
+    const contextDeclarationNode: TreeNode = {
+      id: 'context-decl',
+      content: 'My Context',
+      children: [],
+      metadata: {
+        isContextDeclaration: true,
+        isBlueprint: true,
+        blueprintIcon: 'lightbulb',
+        blueprintColor: '#3b82f6',
+      },
+    };
+
+    beforeEach(() => {
+      store.setState({
+        nodes: {
+          'context-decl': contextDeclarationNode,
+        },
+        ancestorRegistry: {
+          'context-decl': [],
+        },
+      });
+    });
+
+    it('should render Asterisk overlay icon for context declarations', () => {
+      const { container } = renderWithProvider(
+        <NodeContent node={contextDeclarationNode} depth={0} />
+      );
+      expect(container.querySelector('.context-declaration-overlay')).toBeInTheDocument();
+    });
+
+    it('should render Asterisk overlay within a wrapper span', () => {
+      const { container } = renderWithProvider(
+        <NodeContent node={contextDeclarationNode} depth={0} />
+      );
+      const overlay = container.querySelector('.context-declaration-overlay');
+      expect(overlay?.parentElement?.tagName.toLowerCase()).toBe('span');
+    });
+
+    it('should still render the context icon button for click-to-change', () => {
+      const { container } = renderWithProvider(
+        <NodeContent node={contextDeclarationNode} depth={0} />
+      );
+      const iconButton = container.querySelector('.context-indicator.context-declaration');
+      expect(iconButton).toBeInTheDocument();
+      expect(iconButton?.tagName.toLowerCase()).toBe('button');
+    });
+
+    it('should render both overlay and context icon together', () => {
+      const { container } = renderWithProvider(
+        <NodeContent node={contextDeclarationNode} depth={0} />
+      );
+      expect(container.querySelector('.context-declaration-overlay')).toBeInTheDocument();
+      expect(container.querySelector('.context-indicator.context-declaration')).toBeInTheDocument();
+    });
+  });
+
+  describe('context child nodes', () => {
+    const contextDeclNode: TreeNode = {
+      id: 'context-parent',
+      content: 'Parent Context',
+      children: ['context-child-1'],
+      metadata: {
+        isContextDeclaration: true,
+        isBlueprint: true,
+        blueprintIcon: 'lightbulb',
+        blueprintColor: '#3b82f6',
+      },
+    };
+
+    const contextChildNode: TreeNode = {
+      id: 'context-child-1',
+      content: 'Child Node',
+      children: [],
+      metadata: {
+        isBlueprint: true,
+      },
+    };
+
+    beforeEach(() => {
+      store.setState({
+        nodes: {
+          'context-parent': contextDeclNode,
+          'context-child-1': contextChildNode,
+        },
+        ancestorRegistry: {
+          'context-parent': [],
+          'context-child-1': ['context-parent'],
+        },
+      });
+    });
+
+    it('should not render Asterisk overlay for context child nodes', () => {
+      const { container } = renderWithProvider(
+        <NodeContent node={contextChildNode} depth={1} />
+      );
+      expect(container.querySelector('.context-declaration-overlay')).not.toBeInTheDocument();
+    });
+
+    it('should render inherited context icon at reduced opacity', () => {
+      const { container } = renderWithProvider(
+        <NodeContent node={contextChildNode} depth={1} />
+      );
+      const contextChild = container.querySelector('.context-indicator.context-child');
+      expect(contextChild).toBeInTheDocument();
+    });
+  });
+
+  describe('regular nodes', () => {
+    it('should not render Asterisk overlay for regular nodes', () => {
+      const { container } = renderWithProvider(
+        <NodeContent node={mockNode} depth={0} />
+      );
+      expect(container.querySelector('.context-declaration-overlay')).not.toBeInTheDocument();
+    });
+
+    it('should not render Asterisk overlay for blueprint nodes', () => {
+      const blueprintNode: TreeNode = {
+        id: 'blueprint-1',
+        content: 'Blueprint',
+        children: [],
+        metadata: { isBlueprint: true, blueprintIcon: 'folder' },
+      };
+
+      store.setState({
+        nodes: { 'blueprint-1': blueprintNode },
+        ancestorRegistry: { 'blueprint-1': [] },
+      });
+
+      const { container } = renderWithProvider(
+        <NodeContent node={blueprintNode} depth={0} />
+      );
+      expect(container.querySelector('.context-declaration-overlay')).not.toBeInTheDocument();
+    });
+  });
+
 });

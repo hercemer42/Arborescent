@@ -82,10 +82,6 @@ export const TreeNode = memo(function TreeNode({ nodeId, depth = 0 }: TreeNodePr
           hasChildren={hasChildren}
           expanded={expanded}
           onToggle={handleToggle}
-          isContextDeclaration={node.metadata.isContextDeclaration === true}
-          contextName={node.content}
-          contextIcon={node.metadata.blueprintIcon as string | undefined}
-          contextColor={node.metadata.blueprintColor as string | undefined}
           appliedContext={appliedContext}
           hasHiddenSearchMatches={hasHiddenSearchMatches}
         />

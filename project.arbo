@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-03-08T20:37:48.385Z'
+updated: '2026-03-09T10:14:48.956Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -460,7 +460,6 @@ nodes:
     content: Features
     children:
       - 984247e7-2d55-4b93-80e8-f84818901621
-      - bf35dbb1-9402-471d-ae08-e8a2d74bbc5e
       - 77963e20-53e9-4db7-8802-8c718f202cef
       - 565dde0a-864b-41f9-86ff-dbdf40ac4dd0
       - 188622ee-bacb-4220-92c3-9ff37694e691
@@ -5303,7 +5302,7 @@ nodes:
       - 9a8f1538-7eb7-4e2d-9e0f-46e2c00675f4
     metadata:
       status: pending
-      expanded: false
+      expanded: true
       isBlueprint: true
       blueprintIcon: BrainCog
       blueprintColor: '#14b8a6'
@@ -5311,7 +5310,7 @@ nodes:
     id: 984247e7-2d55-4b93-80e8-f84818901621
     content: Backlog
     children:
-      - 5316e4cc-3b05-4df4-9f04-e55206009302
+      - 7b067938-c6c1-4a40-afbd-495218514986
       - 1b042a84-748d-4b32-bee9-f2031727c811
       - 0b8d15ca-ea15-4817-aa86-45d795dc5047
       - b82ab806-5034-47b1-8fbc-7b388030b107
@@ -5711,7 +5710,6 @@ nodes:
       - 75556cda-47e6-45d5-ad2d-12689057427e
       - 22a32663-eb92-44e0-a844-d6219409f63b
       - 9b46397c-c452-421c-b408-46b040d99c9e
-      - cc94b377-246d-45ae-b938-2d3906892aa1
       - 4c3f0d67-a500-484f-8ccb-5dbf959ea27f
       - 1d30a613-a651-436c-bb2b-1fb3062af9fb
       - 64ea2af4-332b-44a6-8b88-78535cc9b79a
@@ -5929,21 +5927,6 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-      isBlueprint: true
-  cc94b377-246d-45ae-b938-2d3906892aa1:
-    id: cc94b377-246d-45ae-b938-2d3906892aa1
-    content: Implement a major feature
-    children:
-      - 7edf262e-ab8a-4149-b2b0-c74f8aa60401
-      - bf7a428b-6e45-4024-8eea-a1491604e927
-    metadata:
-      status: pending
-      expanded: false
-      deleted: false
-      plugins: {}
-      isContextDeclaration: true
-      blueprintIcon: Hammer
-      blueprintColor: '#c47f09'
       isBlueprint: true
   a2fe0068-728a-46e2-9bd2-0776b75f3785:
     id: a2fe0068-728a-46e2-9bd2-0776b75f3785
@@ -6591,12 +6574,15 @@ nodes:
       status: completed
   77963e20-53e9-4db7-8802-8c718f202cef:
     id: 77963e20-53e9-4db7-8802-8c718f202cef
-    content: In progress
+    content: Workflow
     children:
+      - 4c43c117-e89a-460c-9900-7ea15b8cc0e0
+      - d96ce5f9-1c66-4a32-8170-6e2abdb4cc17
+      - 87a11a28-4295-467f-ac54-746692494413
       - 00714a63-f267-4ab1-a285-73ae4198eb42
       - b38966d3-b238-4d64-9eed-74d4ab983c28
+      - 9a392715-9ea2-4269-b35c-812b8998e3ec
       - c25cf481-a0d1-495d-9cea-498f1135eb8c
-      - ac4c627f-c512-40b9-ad55-11b439495b7e
       - 333cb3e7-a25e-4d18-9dfa-82cf75328fff
       - fbf20e91-d852-4406-9815-952fa7727f33
       - bdceb696-248d-4199-9182-db0689445c07
@@ -6612,6 +6598,7 @@ nodes:
       isBlueprint: true
       blueprintIcon: Cog
       blueprintColor: '#14b8a6'
+      isWorkflow: true
   709d1979-03ab-41b4-a89b-9d8877ad23e8:
     id: 709d1979-03ab-41b4-a89b-9d8877ad23e8
     content: Move the 'Execute' menu to the top, followed by collaborate, then context, then edit, then copy to clipboard
@@ -9034,7 +9021,7 @@ nodes:
       blueprintIcon: Bug
       blueprintColor: '#ef4444'
       appliedContextId: 6690289a-e02f-48bc-9225-a1083b7b324f
-      expanded: true
+      expanded: false
   aff16275-6d8e-49c9-b862-76875858d4af:
     id: aff16275-6d8e-49c9-b862-76875858d4af
     content: Avoid adding comments specific to the bug fix unless really needed
@@ -9083,6 +9070,7 @@ nodes:
     content: 'Refactor any code not consistent with the project conventions :'
     children:
       - 315bf9ae-cd9a-49d2-be3a-14b269500d24
+      - 17864c32-1811-422e-b4f9-a4fe2d653b3e
     metadata:
       status: pending
       isBlueprint: true
@@ -12137,13 +12125,13 @@ nodes:
       isBlueprint: true
   00757321-75c1-44a9-981f-2362add1989f:
     id: 00757321-75c1-44a9-981f-2362add1989f
-    content: 'Lastly do standard checks on changed files only :'
+    content: 'Lastly do standard checks on all files :'
     children:
       - 1569c486-b6a7-405d-b99d-eeea9b0c59dc
     metadata:
       status: pending
       isBlueprint: true
-      expanded: false
+      expanded: true
   1e2f062a-bbaa-4a02-b58b-a94ab15d8d74:
     id: 1e2f062a-bbaa-4a02-b58b-a94ab15d8d74
     content: Verification
@@ -14771,7 +14759,7 @@ nodes:
       plugins: {}
   c25cf481-a0d1-495d-9cea-498f1135eb8c:
     id: c25cf481-a0d1-495d-9cea-498f1135eb8c
-    content: Implement a minor feature
+    content: Implement the feature
     children: []
     metadata:
       status: completed
@@ -17190,15 +17178,6 @@ nodes:
     metadata:
       status: completed
       resolvedAt: '2025-12-11T15:22:50.707Z'
-  7edf262e-ab8a-4149-b2b0-c74f8aa60401:
-    id: 7edf262e-ab8a-4149-b2b0-c74f8aa60401
-    content: Implement a feature
-    children: []
-    metadata:
-      status: pending
-      isHyperlink: true
-      linkedNodeId: 9b46397c-c452-421c-b408-46b040d99c9e
-      isBlueprint: true
   33437c60-1890-4cc8-aa5c-3d168d306ca6:
     id: 33437c60-1890-4cc8-aa5c-3d168d306ca6
     content: Don't use JS doc conventions
@@ -17222,23 +17201,6 @@ nodes:
     metadata:
       status: completed
       resolvedAt: '2025-12-12T13:45:33.200Z'
-  40e10a1b-8c3c-4687-9acd-65a8cd791d19:
-    id: 40e10a1b-8c3c-4687-9acd-65a8cd791d19
-    content: Standard checks
-    children: []
-    metadata:
-      status: pending
-      isHyperlink: true
-      linkedNodeId: 6ab534a2-2956-454c-9c6a-e459314e0b5c
-      isBlueprint: true
-  bf7a428b-6e45-4024-8eea-a1491604e927:
-    id: bf7a428b-6e45-4024-8eea-a1491604e927
-    content: 'Do standard checks on all files :'
-    children:
-      - 40e10a1b-8c3c-4687-9acd-65a8cd791d19
-    metadata:
-      status: pending
-      isBlueprint: true
   a667aade-4b1f-4a54-9fa9-7ff31fcec679:
     id: a667aade-4b1f-4a54-9fa9-7ff31fcec679
     content: Conventions
@@ -18419,6 +18381,7 @@ nodes:
       - bfe8794a-2209-4c09-ba88-c4c951928b76
       - a14c2a95-a7a4-4128-9b32-9f5cb9c3a45a
       - 4a24bd5f-7858-4d3e-8e10-6e09d39a2b0a
+      - 6b112872-41f7-4a7a-bc7d-7a2fa3dd05f6
     metadata:
       status: pending
       isBlueprint: true
@@ -18457,17 +18420,6 @@ nodes:
     metadata:
       status: pending
       isBlueprint: true
-  bf35dbb1-9402-471d-ae08-e8a2d74bbc5e:
-    id: bf35dbb1-9402-471d-ae08-e8a2d74bbc5e
-    content: Document
-    children: []
-    metadata:
-      status: pending
-      isContextDeclaration: false
-      blueprintIcon: BookA
-      blueprintColor: '#11386f'
-      isBlueprint: true
-      appliedContextId: 0058432d-a010-473b-a707-ace2b1dee169
   4a24bd5f-7858-4d3e-8e10-6e09d39a2b0a:
     id: 4a24bd5f-7858-4d3e-8e10-6e09d39a2b0a
     content: Warn the user if there is anything that is unclear or inconsistent
@@ -18507,7 +18459,7 @@ nodes:
       - 5191dd94-f159-4fbf-9e17-6d95318a7e4a
     metadata:
       status: pending
-      expanded: true
+      expanded: false
       deleted: false
       plugins: {}
       isBlueprint: true
@@ -19593,13 +19545,15 @@ nodes:
     id: 5fcc7b6b-25d0-4c23-8529-f8a6b9af81e8
     content: Backlog
     children:
+      - bbf5afa8-47fc-46c5-9ddf-62502640b74e
+      - 26dc74b0-c926-4461-b81a-7b6cd95864f6
       - 533210b8-5c42-48f7-ab9a-bea602ae7ed2
     metadata:
       status: pending
       isBlueprint: true
       blueprintIcon: LayoutList
       blueprintColor: '#a855f7'
-      expanded: true
+      expanded: false
   03238058-24ff-4f1d-956f-4a4d52bdbe85:
     id: 03238058-24ff-4f1d-956f-4a4d52bdbe85
     content: It doesn't consider the default context applied in collaborate mode ("Basic review (default)")
@@ -19777,17 +19731,6 @@ nodes:
     children: []
     metadata:
       status: pending
-  ac4c627f-c512-40b9-ad55-11b439495b7e:
-    id: ac4c627f-c512-40b9-ad55-11b439495b7e
-    content: Implement a major feature
-    children: []
-    metadata:
-      status: pending
-      isBlueprint: true
-      blueprintIcon: Hammer
-      blueprintColor: '#c47f09'
-      appliedContextId: cc94b377-246d-45ae-b938-2d3906892aa1
-      expanded: true
   b82ab806-5034-47b1-8fbc-7b388030b107:
     id: b82ab806-5034-47b1-8fbc-7b388030b107
     content: Highlight a hyperlinked node on navigation
@@ -24602,12 +24545,6 @@ nodes:
     children: []
     metadata:
       status: pending
-  5316e4cc-3b05-4df4-9f04-e55206009302:
-    id: 5316e4cc-3b05-4df4-9f04-e55206009302
-    content: Update docs with workflow feature
-    children: []
-    metadata:
-      status: pending
   1b042a84-748d-4b32-bee9-f2031727c811:
     id: 1b042a84-748d-4b32-bee9-f2031727c811
     content: Integrate with Claude SDK to enable parallelized tasks
@@ -24616,15 +24553,17 @@ nodes:
       - b1b8d2ea-f07a-4e54-8d75-8fa67f720b85
     metadata:
       status: pending
-      isBlueprint: true
+      isBlueprint: false
       expanded: false
+      isContextDeclaration: false
   ea66b610-cfba-4bb7-b2ea-35b75cd8627d:
     id: ea66b610-cfba-4bb7-b2ea-35b75cd8627d
     content: Create an adapter for the Claude SDK
     children: []
     metadata:
       status: pending
-      isBlueprint: true
+      isBlueprint: false
+      isContextDeclaration: false
   b1b8d2ea-f07a-4e54-8d75-8fa67f720b85:
     id: b1b8d2ea-f07a-4e54-8d75-8fa67f720b85
     content: Enable types for workflow steps
@@ -24632,9 +24571,11 @@ nodes:
       - c4019eec-af78-468e-88da-d1f7c3fd7a40
       - afbae4d0-d907-45d9-839c-ac4cfd171404
       - a7c84a2c-9a5a-427c-ab8b-654e3d26e724
+      - ebbae30f-8d8d-4cf9-84b8-d537e0e6a5cf
     metadata:
       status: pending
-      isBlueprint: true
+      isBlueprint: false
+      isContextDeclaration: false
   c4019eec-af78-468e-88da-d1f7c3fd7a40:
     id: c4019eec-af78-468e-88da-d1f7c3fd7a40
     content: Autonomous
@@ -24647,7 +24588,6 @@ nodes:
     content: Manual
     children:
       - 6a389e83-8568-4cc7-a597-b8d7161fe7dd
-      - 70a97481-28d6-4f33-9da6-70753cfbcb21
     metadata:
       status: pending
   8028cc72-d335-40b9-9b56-f3ee0e05ffc9:
@@ -24658,13 +24598,13 @@ nodes:
       status: pending
   6a389e83-8568-4cc7-a597-b8d7161fe7dd:
     id: 6a389e83-8568-4cc7-a597-b8d7161fe7dd
-    content: If the workflow is manual, the user must send the next step and manually execute
+    content: If the workflow is manual, the user is responsible for running it
     children: []
     metadata:
       status: pending
   afbae4d0-d907-45d9-839c-ac4cfd171404:
     id: afbae4d0-d907-45d9-839c-ac4cfd171404
-    content: Autonomous with validation
+    content: Checkpoint
     children:
       - 2ed83f3d-a7de-46ac-a2ca-9a7036e89d20
     metadata:
@@ -24672,12 +24612,6 @@ nodes:
   2ed83f3d-a7de-46ac-a2ca-9a7036e89d20:
     id: 2ed83f3d-a7de-46ac-a2ca-9a7036e89d20
     content: At the end of the step, the user is prompted to continue or not
-    children: []
-    metadata:
-      status: pending
-  70a97481-28d6-4f33-9da6-70753cfbcb21:
-    id: 70a97481-28d6-4f33-9da6-70753cfbcb21
-    content: 2*3NkHfZAaPU@4#kv6
     children: []
     metadata:
       status: pending
@@ -24899,16 +24833,6 @@ nodes:
   5d110729-a4a7-4951-b632-14a1b6fc7ffb:
     id: 5d110729-a4a7-4951-b632-14a1b6fc7ffb
     content: Flag any requirements that are ambiguous or likely to change
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-      isBlueprint: true
-  1b2715fa-919d-4db0-9dc8-57c81be38db8:
-    id: 1b2715fa-919d-4db0-9dc8-57c81be38db8
-    content: Create test cases in code
     children: []
     metadata:
       status: pending
@@ -25297,6 +25221,7 @@ nodes:
     children:
       - 81638916-1b50-4341-97e8-b3d7bcd0a8a6
       - b66cf5bf-e174-440e-a1af-2530b2194eef
+      - 5fcbaf63-52df-4f25-b452-6365602e8f8c
       - fb137760-5aea-4f55-a911-184983142305
       - c359eeb9-7ed6-4f0d-9ee7-de770022df60
       - ca0db1c9-32b3-4399-ac6e-a402ffea2dff
@@ -25306,7 +25231,6 @@ nodes:
       - 87650943-9a07-4a9a-8af8-b09b8d4eef4c
       - 64cac01b-cede-4674-ac02-74ee2682aa7b
       - 4d629e92-25c3-4dc7-896f-877b1a0492f9
-      - 1b2715fa-919d-4db0-9dc8-57c81be38db8
     metadata:
       status: pending
       isContextDeclaration: true
@@ -25316,7 +25240,7 @@ nodes:
       expanded: false
   81638916-1b50-4341-97e8-b3d7bcd0a8a6:
     id: 81638916-1b50-4341-97e8-b3d7bcd0a8a6
-    content: Analyse the following list and create automated tests
+    content: Analyse the following list and code automated tests
     children: []
     metadata:
       status: pending
@@ -27535,7 +27459,8 @@ nodes:
   bdceb696-248d-4199-9182-db0689445c07:
     id: bdceb696-248d-4199-9182-db0689445c07
     content: Document
-    children: []
+    children:
+      - 911bbdec-12fa-45ba-b84d-2ba945888928
     metadata:
       status: pending
       isBlueprint: true
@@ -27557,3 +27482,1661 @@ nodes:
       isBlueprint: true
       blueprintIcon: User
       blueprintColor: '#ef4444'
+  4c43c117-e89a-460c-9900-7ea15b8cc0e0:
+    id: 4c43c117-e89a-460c-9900-7ea15b8cc0e0
+    content: Product review
+    children: []
+    metadata:
+      status: pending
+      appliedContextId: e8824b29-eb18-4031-9e35-b321a864d418
+      isBlueprint: true
+      blueprintIcon: Eye
+      blueprintColor: '#0ea5e9'
+  d96ce5f9-1c66-4a32-8170-6e2abdb4cc17:
+    id: d96ce5f9-1c66-4a32-8170-6e2abdb4cc17
+    content: Product refinement
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+      blueprintIcon: ZoomIn
+      blueprintColor: '#c47f09'
+      appliedContextId: deb660c8-6073-4216-9b36-e9c224b68408
+  87a11a28-4295-467f-ac54-746692494413:
+    id: 87a11a28-4295-467f-ac54-746692494413
+    content: User story creation
+    children: []
+    metadata:
+      status: completed
+      appliedContextId: e6860559-af1d-4a28-be70-9e27ba35335f
+      resolvedAt: '2026-03-08T21:15:28.213Z'
+      isBlueprint: true
+      blueprintIcon: Blocks
+      blueprintColor: '#14b8a6'
+  26dc74b0-c926-4461-b81a-7b6cd95864f6:
+    id: 26dc74b0-c926-4461-b81a-7b6cd95864f6
+    content: Declaring a node as a blueprint, context or workflow should clear it's metadata (checked, resolvedAt etc)
+    children:
+      - f2c53414-e3a2-4561-8d96-4690342da2c8
+    metadata:
+      status: pending
+  f2c53414-e3a2-4561-8d96-4690342da2c8:
+    id: f2c53414-e3a2-4561-8d96-4690342da2c8
+    content: Also clean up templates
+    children: []
+    metadata:
+      status: pending
+  ebbae30f-8d8d-4cf9-84b8-d537e0e6a5cf:
+    id: ebbae30f-8d8d-4cf9-84b8-d537e0e6a5cf
+    content: ''
+    children: []
+    metadata:
+      status: pending
+  7b067938-c6c1-4a40-afbd-495218514986:
+    id: 7b067938-c6c1-4a40-afbd-495218514986
+    content: Refactor context indicators
+    children:
+      - b5fcdab2-5261-463c-9559-3c154207a055
+      - f68dd26f-f534-4aa8-a2c4-2229b4c2984d
+      - 2e6a9b30-ceac-4a10-89cc-5b15c79455ae
+      - b750f89d-de5d-4b0d-a082-4ae347168f9e
+    metadata:
+      status: pending
+      expanded: false
+  f68dd26f-f534-4aa8-a2c4-2229b4c2984d:
+    id: f68dd26f-f534-4aa8-a2c4-2229b4c2984d
+    content: For context declarations, remove the gutter icon.
+    children:
+      - 9d7435b0-5c8b-4773-93c3-9ae325c14391
+    metadata:
+      status: pending
+  b5fcdab2-5261-463c-9559-3c154207a055:
+    id: b5fcdab2-5261-463c-9559-3c154207a055
+    content: There is too much ambiguity in the gutter.
+    children:
+      - a2c8eca1-bdc7-428d-960d-8256f3e1b09e
+    metadata:
+      status: pending
+  a2c8eca1-bdc7-428d-960d-8256f3e1b09e:
+    id: a2c8eca1-bdc7-428d-960d-8256f3e1b09e
+    content: The lowered transparency for an applied context isn't a sufficient visual indication that it's an applied context and not a context declaration.
+    children: []
+    metadata:
+      status: pending
+  9d7435b0-5c8b-4773-93c3-9ae325c14391:
+    id: 9d7435b0-5c8b-4773-93c3-9ae325c14391
+    content: Replace it with a 'c' in an overlay to the left of the node icon
+    children:
+      - 6f0bf3cc-dc0b-4ac4-bcb8-d9bf638464ac
+    metadata:
+      status: pending
+  6f0bf3cc-dc0b-4ac4-bcb8-d9bf638464ac:
+    id: 6f0bf3cc-dc0b-4ac4-bcb8-d9bf638464ac
+    content: Use the same visual system as used for workflow and workflow steps icons
+    children: []
+    metadata:
+      status: pending
+  8d14ebd2-c1bf-4ecd-94b6-dfc66a78e106:
+    id: 8d14ebd2-c1bf-4ecd-94b6-dfc66a78e106
+    content: Remove the 'Declared' from the existing sidebar hover tool-tip.
+    children: []
+    metadata:
+      status: pending
+  d652afa7-21a5-4d3b-b79c-4e2c84b5330d:
+    id: d652afa7-21a5-4d3b-b79c-4e2c84b5330d
+    content: Only show the tool-tip when hovering over an applied context icon
+    children: []
+    metadata:
+      status: pending
+  da5e72b7-83a2-437c-9d6c-da120304ef34:
+    id: da5e72b7-83a2-437c-9d6c-da120304ef34
+    content: Use the same tool-tip that currently shows when hovering over a declared icon.
+    children: []
+    metadata:
+      status: pending
+  33d56de4-ce5f-4380-b204-ebabdb110265:
+    id: 33d56de4-ce5f-4380-b204-ebabdb110265
+    content: Only show the tool-tip when there is an applied context
+    children: []
+    metadata:
+      status: pending
+  b750f89d-de5d-4b0d-a082-4ae347168f9e:
+    id: b750f89d-de5d-4b0d-a082-4ae347168f9e
+    content: Sidebar hover tool-tip
+    children:
+      - 8d14ebd2-c1bf-4ecd-94b6-dfc66a78e106
+      - d652afa7-21a5-4d3b-b79c-4e2c84b5330d
+      - da5e72b7-83a2-437c-9d6c-da120304ef34
+      - 33d56de4-ce5f-4380-b204-ebabdb110265
+    metadata:
+      status: pending
+  2e6a9b30-ceac-4a10-89cc-5b15c79455ae:
+    id: 2e6a9b30-ceac-4a10-89cc-5b15c79455ae
+    content: For context applications, retain the gutter icon but remove the transparency
+    children:
+      - 5e7ac2a5-2947-457c-815d-6ba1c4e5ddfe
+    metadata:
+      status: pending
+  5e7ac2a5-2947-457c-815d-6ba1c4e5ddfe:
+    id: 5e7ac2a5-2947-457c-815d-6ba1c4e5ddfe
+    content: They should be fully opaque
+    children: []
+    metadata:
+      status: pending
+  911bbdec-12fa-45ba-b84d-2ba945888928:
+    id: 911bbdec-12fa-45ba-b84d-2ba945888928
+    content: Refactor context indicators
+    children:
+      - f695dc35-60da-4bf3-a5a1-cd37a601eb24
+      - cc2c33a3-8888-4fca-b8b8-0b9c014215e3
+      - d083ff56-b7e4-445d-a134-1e935deab545
+      - a9c71f5e-6d06-4b0e-9414-998f66cf17be
+      - f26ed895-0c05-4a37-81b4-5b5333ec6604
+      - 870c8690-96c1-4a64-a361-15148fa332bc
+    metadata:
+      status: pending
+      expanded: false
+      deleted: false
+      plugins: {}
+  f695dc35-60da-4bf3-a5a1-cd37a601eb24:
+    id: f695dc35-60da-4bf3-a5a1-cd37a601eb24
+    content: Problem statement
+    children:
+      - d6fa3605-18a9-4556-a194-f1321fb1eaef
+      - 6c3d2223-9f13-466c-8e01-fadc4a3e8040
+      - ee8f4f2a-7f77-43e6-a9c7-61cadcef4c6e
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d6fa3605-18a9-4556-a194-f1321fb1eaef:
+    id: d6fa3605-18a9-4556-a194-f1321fb1eaef
+    content: As a user building structured workflows with contexts, I cannot quickly distinguish context declarations from applied contexts in the gutter
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6c3d2223-9f13-466c-8e01-fadc4a3e8040:
+    id: 6c3d2223-9f13-466c-8e01-fadc4a3e8040
+    content: The current visual distinction relies solely on a subtle opacity difference (0.9 vs 0.6), which is insufficient to scan at a glance
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ee8f4f2a-7f77-43e6-a9c7-61cadcef4c6e:
+    id: ee8f4f2a-7f77-43e6-a9c7-61cadcef4c6e
+    content: This ambiguity increases cognitive load when navigating trees with multiple context layers
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  cc2c33a3-8888-4fca-b8b8-0b9c014215e3:
+    id: cc2c33a3-8888-4fca-b8b8-0b9c014215e3
+    content: Use cases
+    children:
+      - 8f48a34d-ea3c-430e-8856-5379eebb6343
+      - de5e748d-12b4-4f7a-a2df-563824132fe8
+      - e3ad2025-6f67-4de1-b9fa-8b53833caadc
+      - da8d3a95-bb4b-442a-8e1c-f812268b512c
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8f48a34d-ea3c-430e-8856-5379eebb6343:
+    id: 8f48a34d-ea3c-430e-8856-5379eebb6343
+    content: 'Primary: user scans the tree and immediately identifies which nodes are context declarations vs which nodes have contexts applied to them'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  de5e748d-12b4-4f7a-a2df-563824132fe8:
+    id: de5e748d-12b4-4f7a-a2df-563824132fe8
+    content: 'Secondary: user hovers an applied context gutter icon to see which context is providing guidance to that subtree'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e3ad2025-6f67-4de1-b9fa-8b53833caadc:
+    id: e3ad2025-6f67-4de1-b9fa-8b53833caadc
+    content: 'Edge case: a context declaration node also has an applied context from an ancestor — the gutter shows only the applied context icon (fully opaque), the Layers overlay on the node icon identifies it as a declaration'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  da8d3a95-bb4b-442a-8e1c-f812268b512c:
+    id: da8d3a95-bb4b-442a-8e1c-f812268b512c
+    content: 'Edge case: nested context declarations — multiple nodes in a subtree each show their own Layers overlay independently'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d083ff56-b7e4-445d-a134-1e935deab545:
+    id: d083ff56-b7e4-445d-a134-1e935deab545
+    content: Acceptance criteria
+    children:
+      - dec11c5f-01d7-4df0-b68d-0232499b181b
+      - c48a1041-8cb6-414e-8833-26206b6517e6
+      - 88d4adf9-7bf8-4d54-a813-462919203f67
+      - dfebb7af-fdb8-460c-b3b3-6878344de088
+      - 27abf780-fd81-4f19-8216-4f01751fad6c
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  dec11c5f-01d7-4df0-b68d-0232499b181b:
+    id: dec11c5f-01d7-4df0-b68d-0232499b181b
+    content: Context declaration overlay
+    children:
+      - fdaf490c-f72a-4747-937e-08f7bfbf9e64
+      - cac6408d-6a60-46fc-bb4c-9b5d4e409f55
+      - 9a499ff7-a692-453e-a52c-730f48a2a401
+      - 4bf3dff1-02e8-4cee-b3c4-c667df1f793c
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fdaf490c-f72a-4747-937e-08f7bfbf9e64:
+    id: fdaf490c-f72a-4747-937e-08f7bfbf9e64
+    content: Context declarations display a lucide bookmark icon as an overlay to the left of the node icon in the content area
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  cac6408d-6a60-46fc-bb4c-9b5d4e409f55:
+    id: cac6408d-6a60-46fc-bb4c-9b5d4e409f55
+    content: The overlay uses the same positioning and styling system as workflow and step indicators
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9a499ff7-a692-453e-a52c-730f48a2a401:
+    id: 9a499ff7-a692-453e-a52c-730f48a2a401
+    content: Context declaration icons no longer appear in the gutter
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4bf3dff1-02e8-4cee-b3c4-c667df1f793c:
+    id: 4bf3dff1-02e8-4cee-b3c4-c667df1f793c
+    content: The existing bundle badge ("+1") on declaration gutter icons is removed
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c48a1041-8cb6-414e-8833-26206b6517e6:
+    id: c48a1041-8cb6-414e-8833-26206b6517e6
+    content: Applied context gutter icon
+    children:
+      - f94816a5-a57a-49bd-9129-ae18ba238e11
+      - 8c115ecb-21c4-46cf-a239-c4fc31567765
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f94816a5-a57a-49bd-9129-ae18ba238e11:
+    id: f94816a5-a57a-49bd-9129-ae18ba238e11
+    content: Applied context icons in the gutter render at full opacity (no transparency)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8c115ecb-21c4-46cf-a239-c4fc31567765:
+    id: 8c115ecb-21c4-46cf-a239-c4fc31567765
+    content: Applied context gutter icons remain non-clickable
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  88d4adf9-7bf8-4d54-a813-462919203f67:
+    id: 88d4adf9-7bf8-4d54-a813-462919203f67
+    content: Tooltip
+    children:
+      - e7d1ed13-5f09-4842-b14e-960d6e734758
+      - b21f96a2-4e79-4115-af39-aff5fc603842
+      - 0a208851-4bc5-45bb-a359-33261281409b
+      - 26ddf2d9-2e71-4547-ba97-78368f459cf7
+      - ffc744ff-4b91-44c4-a5ac-ff280eb3749f
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e7d1ed13-5f09-4842-b14e-960d6e734758:
+    id: e7d1ed13-5f09-4842-b14e-960d6e734758
+    content: Tooltip only appears when hovering over an applied context gutter icon
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b21f96a2-4e79-4115-af39-aff5fc603842:
+    id: b21f96a2-4e79-4115-af39-aff5fc603842
+    content: Tooltip shows the applied context's icon and name
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0a208851-4bc5-45bb-a359-33261281409b:
+    id: 0a208851-4bc5-45bb-a359-33261281409b
+    content: Tooltip label reads "Applied context:" (replacing the previous "Applied:" label)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  26ddf2d9-2e71-4547-ba97-78368f459cf7:
+    id: 26ddf2d9-2e71-4547-ba97-78368f459cf7
+    content: No "Declared:" section appears in the tooltip
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ffc744ff-4b91-44c4-a5ac-ff280eb3749f:
+    id: ffc744ff-4b91-44c4-a5ac-ff280eb3749f
+    content: On a context declaration node that also has an applied context, the tooltip describes only the applied context
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  dfebb7af-fdb8-460c-b3b3-6878344de088:
+    id: dfebb7af-fdb8-460c-b3b3-6878344de088
+    content: Context children (descendants of a declaration) are unchanged
+    children:
+      - 37299dc8-6c4b-46e1-b82f-8b7d8f7b4eea
+      - 9c13b302-ed3a-41df-9f63-6a40dd116396
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  37299dc8-6c4b-46e1-b82f-8b7d8f7b4eea:
+    id: 37299dc8-6c4b-46e1-b82f-8b7d8f7b4eea
+    content: They continue to show inherited icon at 0.5 opacity in the content area
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9c13b302-ed3a-41df-9f63-6a40dd116396:
+    id: 9c13b302-ed3a-41df-9f63-6a40dd116396
+    content: They do not receive a Layers overlay
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  27abf780-fd81-4f19-8216-4f01751fad6c:
+    id: 27abf780-fd81-4f19-8216-4f01751fad6c
+    content: The Layers icon is legible at the overlay render size — verify before finalizing the icon choice
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a9c71f5e-6d06-4b0e-9414-998f66cf17be:
+    id: a9c71f5e-6d06-4b0e-9414-998f66cf17be
+    content: Technical specifications
+    children:
+      - d7e358c1-78e4-4209-b3a9-121e614aba77
+      - ed0b93b6-0426-455c-89c2-172f08818339
+      - 9de607e7-fefd-4c41-a16f-7833f43651dc
+      - a40f50e8-bcc7-4442-8ffd-deabca94878b
+      - fc041c72-6d1a-4d8e-acb4-b6269140d0fa
+      - 4730b551-4ed9-4582-9342-69d0811933b7
+      - d3873ca7-8fa5-4ca1-9085-140fb899f56d
+      - 44029c3d-e57d-4ed0-acb3-1cd4a3aafa63
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d7e358c1-78e4-4209-b3a9-121e614aba77:
+    id: d7e358c1-78e4-4209-b3a9-121e614aba77
+    content: Affected files
+    children:
+      - 59d01f72-6eae-4269-8d49-015948ecf275
+      - 4fa91b1d-a429-44c7-9e4e-0f5df3c5feae
+      - e45dc630-af21-4750-be44-10dfce453dfe
+      - 87206d59-bb13-40c4-a852-6e8748c66584
+      - 8c0aaaa9-27fa-4412-b742-ff61ec11a21e
+      - d8fd4d2b-cb69-4a93-98c3-2a13b8a8e0d6
+      - d1842883-0572-4182-be52-00d3aa4d6a4e
+      - 059567d8-b191-4f0b-9af9-fbf66d6d6a12
+      - 3da65670-ee7a-43e1-b319-4239241b745a
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  59d01f72-6eae-4269-8d49-015948ecf275:
+    id: 59d01f72-6eae-4269-8d49-015948ecf275
+    content: NodeContent.tsx (lines 69-79) — context declaration rendering in renderStatusArea()
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4fa91b1d-a429-44c7-9e4e-0f5df3c5feae:
+    id: 4fa91b1d-a429-44c7-9e4e-0f5df3c5feae
+    content: NodeContent.css (lines 60-85) — context-indicator styles; (lines 146-178) — overlay reference styles
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e45dc630-af21-4750-be44-10dfce453dfe:
+    id: e45dc630-af21-4750-be44-10dfce453dfe
+    content: GutterContextIndicator.tsx — declaration path (lines 51-87) to be removed; applied path (lines 33-49) to be simplified
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  87206d59-bb13-40c4-a852-6e8748c66584:
+    id: 87206d59-bb13-40c4-a852-6e8748c66584
+    content: GutterContextIndicator.css — declaration/bundle styles to be removed; applied opacity to change
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8c0aaaa9-27fa-4412-b742-ff61ec11a21e:
+    id: 8c0aaaa9-27fa-4412-b742-ff61ec11a21e
+    content: DeclarationContextTooltip.tsx — remove "Declared:" section, rename "Applied:" label, simplify props
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d8fd4d2b-cb69-4a93-98c3-2a13b8a8e0d6:
+    id: d8fd4d2b-cb69-4a93-98c3-2a13b8a8e0d6
+    content: useBundleTooltip.ts — reuse for applied context hover (rename for clarity)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d1842883-0572-4182-be52-00d3aa4d6a4e:
+    id: d1842883-0572-4182-be52-00d3aa4d6a4e
+    content: useContextIcon.ts — no changes needed, already returns isContextDeclaration
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  059567d8-b191-4f0b-9af9-fbf66d6d6a12:
+    id: 059567d8-b191-4f0b-9af9-fbf66d6d6a12
+    content: GutterContextIndicator.test.tsx — update all declaration and bundle test cases
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3da65670-ee7a-43e1-b319-4239241b745a:
+    id: 3da65670-ee7a-43e1-b319-4239241b745a
+    content: NodeGutter.test.tsx — update context-bundle assertion (line 140)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ed0b93b6-0426-455c-89c2-172f08818339:
+    id: ed0b93b6-0426-455c-89c2-172f08818339
+    content: 'Step 1: Add Layers overlay to context declarations in NodeContent (effort: S)'
+    children:
+      - 739b4301-9503-4474-8f59-77777c524c2b
+      - eff9edc5-d774-4cdb-9e29-18fd63faeead
+      - ea2a289f-484f-4fb9-b8b5-57983405b984
+      - dbf56b25-7c16-4685-867c-274710cfdb51
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  739b4301-9503-4474-8f59-77777c524c2b:
+    id: 739b4301-9503-4474-8f59-77777c524c2b
+    content: Wrap the context declaration button (lines 69-79) in a span with class analogous to .blueprint-icon-wrapper
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  eff9edc5-d774-4cdb-9e29-18fd63faeead:
+    id: eff9edc5-d774-4cdb-9e29-18fd63faeead
+    content: 'Add a Layers icon span using the same absolute positioning pattern as .workflow-indicator (left: -10px, 10x10px)'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ea2a289f-484f-4fb9-b8b5-57983405b984:
+    id: ea2a289f-484f-4fb9-b8b5-57983405b984
+    content: Add .context-declaration-overlay CSS to NodeContent.css mirroring .workflow-indicator styles
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  dbf56b25-7c16-4685-867c-274710cfdb51:
+    id: dbf56b25-7c16-4685-867c-274710cfdb51
+    content: Keep the existing context icon button and its click-to-change behavior unchanged
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9de607e7-fefd-4c41-a16f-7833f43651dc:
+    id: 9de607e7-fefd-4c41-a16f-7833f43651dc
+    content: 'Step 2: Simplify GutterContextIndicator (effort: M)'
+    children:
+      - f1ca2b77-f327-4d7d-b4d6-ee9316d4f596
+      - 878ad6c9-acd8-4f46-82da-ba66fdfaa068
+      - 251352f9-ce16-4046-ab24-818aaab99062
+      - 2dea4ec9-32d8-46b8-b430-db0034d38639
+      - efccee96-4016-415a-9880-41a6bbe97551
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f1ca2b77-f327-4d7d-b4d6-ee9316d4f596:
+    id: f1ca2b77-f327-4d7d-b4d6-ee9316d4f596
+    content: Remove the entire declaration rendering path (lines 51-87)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  878ad6c9-acd8-4f46-82da-ba66fdfaa068:
+    id: 878ad6c9-acd8-4f46-82da-ba66fdfaa068
+    content: 'For applied contexts (lines 33-49): remove opacity 0.6, render at full opacity'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  251352f9-ce16-4046-ab24-818aaab99062:
+    id: 251352f9-ce16-4046-ab24-818aaab99062
+    content: 'For context declaration nodes that also have an applied context: render only the applied context icon in the gutter (same as any other applied context)'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2dea4ec9-32d8-46b8-b430-db0034d38639:
+    id: 2dea4ec9-32d8-46b8-b430-db0034d38639
+    content: Remove isContextDeclaration, contextName, contextIcon, contextColor props — only appliedContext is needed
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  efccee96-4016-415a-9880-41a6bbe97551:
+    id: efccee96-4016-415a-9880-41a6bbe97551
+    content: Propagate prop removal upstream through NodeGutter.tsx and TreeNode.tsx (lines 81-90)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a40f50e8-bcc7-4442-8ffd-deabca94878b:
+    id: a40f50e8-bcc7-4442-8ffd-deabca94878b
+    content: 'Step 3: Refactor tooltip to applied-context-only (effort: S)'
+    children:
+      - 430335c2-4402-4423-ada4-e9f5afade943
+      - 688f831f-41c8-42f0-9ede-096d7f016ee2
+      - d441b1a6-5852-4da1-a235-0db63078f197
+      - ec01bf4d-94c7-4c09-9ee3-d800bfa02ec9
+      - 1c5b2ac0-f18d-4d72-a271-85e76e5653ff
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  430335c2-4402-4423-ada4-e9f5afade943:
+    id: 430335c2-4402-4423-ada4-e9f5afade943
+    content: 'Simplify DeclarationContextTooltip.tsx: remove declarationContext prop, keep only appliedContext and position'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  688f831f-41c8-42f0-9ede-096d7f016ee2:
+    id: 688f831f-41c8-42f0-9ede-096d7f016ee2
+    content: Remove the "Declared:" section rendering (lines 26-32)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d441b1a6-5852-4da1-a235-0db63078f197:
+    id: d441b1a6-5852-4da1-a235-0db63078f197
+    content: Change the "Applied:" label to "Applied context:" (line 34)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ec01bf4d-94c7-4c09-9ee3-d800bfa02ec9:
+    id: ec01bf4d-94c7-4c09-9ee3-d800bfa02ec9
+    content: Move tooltip trigger from declaration hover to applied context hover in GutterContextIndicator
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1c5b2ac0-f18d-4d72-a271-85e76e5653ff:
+    id: 1c5b2ac0-f18d-4d72-a271-85e76e5653ff
+    content: Rename useBundleTooltip.ts to useAppliedContextTooltip.ts for clarity
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fc041c72-6d1a-4d8e-acb4-b6269140d0fa:
+    id: fc041c72-6d1a-4d8e-acb4-b6269140d0fa
+    content: 'Step 4: Clean up CSS (effort: S)'
+    children:
+      - d07b70cd-a927-4d39-af10-2b1ef51e97ea
+      - d5ca7f4e-4b2b-42ae-9308-30cf46e8e784
+      - 33a00288-1546-446c-97d5-4a41393de864
+      - a3aea512-dac3-4b35-81ed-5c5ac13c40b0
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d07b70cd-a927-4d39-af10-2b1ef51e97ea:
+    id: d07b70cd-a927-4d39-af10-2b1ef51e97ea
+    content: 'GutterContextIndicator.css: remove .context-declaration, .context-bundle, .context-bundle-indicator, .context-bundle-badge classes'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d5ca7f4e-4b2b-42ae-9308-30cf46e8e784:
+    id: d5ca7f4e-4b2b-42ae-9308-30cf46e8e784
+    content: 'GutterContextIndicator.css: update .context-applied to remove opacity: 0.6'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  33a00288-1546-446c-97d5-4a41393de864:
+    id: 33a00288-1546-446c-97d5-4a41393de864
+    content: Keep .context-bundle-tooltip and child styles (still used for applied context tooltip)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a3aea512-dac3-4b35-81ed-5c5ac13c40b0:
+    id: a3aea512-dac3-4b35-81ed-5c5ac13c40b0
+    content: Rename .context-bundle-tooltip to .applied-context-tooltip for clarity
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4730b551-4ed9-4582-9342-69d0811933b7:
+    id: 4730b551-4ed9-4582-9342-69d0811933b7
+    content: 'Step 5: Update tests (effort: M)'
+    children:
+      - 9525b783-e74c-4b2a-ba12-be93043d12eb
+      - 041c35f7-d0e6-49f6-9ba1-828829ae7f55
+      - 33d8fdd9-98ab-4fdf-bb5f-f9894c448c9b
+      - cfb0b7ba-da7d-4684-b787-11d11d597a44
+      - 041c1a6d-ba4a-48b9-9686-94a231bc4b98
+      - de5c255c-c013-43bc-a25a-cd2a527d6a83
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9525b783-e74c-4b2a-ba12-be93043d12eb:
+    id: 9525b783-e74c-4b2a-ba12-be93043d12eb
+    content: 'GutterContextIndicator.test.tsx: remove tests for .context-declaration class rendering (lines 46-55)'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  041c35f7-d0e6-49f6-9ba1-828829ae7f55:
+    id: 041c35f7-d0e6-49f6-9ba1-828829ae7f55
+    content: 'GutterContextIndicator.test.tsx: remove tests for .context-bundle and badge rendering (lines 57-68)'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  33d8fdd9-98ab-4fdf-bb5f-f9894c448c9b:
+    id: 33d8fdd9-98ab-4fdf-bb5f-f9894c448c9b
+    content: 'GutterContextIndicator.test.tsx: update tooltip tests — tooltip now triggers on applied context hover, not declaration hover'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  cfb0b7ba-da7d-4684-b787-11d11d597a44:
+    id: cfb0b7ba-da7d-4684-b787-11d11d597a44
+    content: 'NodeGutter.test.tsx: update assertion at line 140 — context declarations with applied contexts should render .context-applied, not .context-bundle'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  041c1a6d-ba4a-48b9-9686-94a231bc4b98:
+    id: 041c1a6d-ba4a-48b9-9686-94a231bc4b98
+    content: 'Add new test: context declaration without applied context renders nothing in gutter'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  de5c255c-c013-43bc-a25a-cd2a527d6a83:
+    id: de5c255c-c013-43bc-a25a-cd2a527d6a83
+    content: 'Add new test: applied context renders at full opacity (no transparency style)'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d3873ca7-8fa5-4ca1-9085-140fb899f56d:
+    id: d3873ca7-8fa5-4ca1-9085-140fb899f56d
+    content: Risks and edge cases
+    children:
+      - 13b58140-cba5-43b0-9fea-8855dfbb1d03
+      - d3803c27-8cd6-4ae1-a2db-759825c82245
+      - b9dbe689-9607-4ae1-8ca8-e2d9308072ef
+      - 662eefab-d5a9-46c1-9831-ede24d02b9db
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  13b58140-cba5-43b0-9fea-8855dfbb1d03:
+    id: 13b58140-cba5-43b0-9fea-8855dfbb1d03
+    content: The Layers icon has fine detail (stacked rectangles) that may not read well at 10x10px — test visually before merging
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d3803c27-8cd6-4ae1-a2db-759825c82245:
+    id: d3803c27-8cd6-4ae1-a2db-759825c82245
+    content: Context declarations currently render through a separate code path from blueprints in NodeContent.tsx — adding the wrapper span is straightforward but must not break the existing click-to-change-icon behavior
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b9dbe689-9607-4ae1-8ca8-e2d9308072ef:
+    id: b9dbe689-9607-4ae1-8ca8-e2d9308072ef
+    content: Removing declaration props from GutterContextIndicator changes the interface across three files (TreeNode → NodeGutter → GutterContextIndicator) — ensure all prop threading is updated
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  662eefab-d5a9-46c1-9831-ede24d02b9db:
+    id: 662eefab-d5a9-46c1-9831-ede24d02b9db
+    content: The tooltip portal (z-index 9999, fixed positioning) is well-tested and the positioning logic in useBundleTooltip is reusable without changes beyond renaming
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  44029c3d-e57d-4ed0-acb3-1cd4a3aafa63:
+    id: 44029c3d-e57d-4ed0-acb3-1cd4a3aafa63
+    content: Implementation plan
+    children:
+      - 766bd5ba-0b9a-4245-b40b-5ca70dae391a
+      - 1c2b50bf-dc44-4221-9c71-d67308ad8093
+      - ee94da7c-8247-466c-a96f-208c9f42e797
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  766bd5ba-0b9a-4245-b40b-5ca70dae391a:
+    id: 766bd5ba-0b9a-4245-b40b-5ca70dae391a
+    content: Single PR containing all steps — changes are tightly coupled and cannot ship independently
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1c2b50bf-dc44-4221-9c71-d67308ad8093:
+    id: 1c2b50bf-dc44-4221-9c71-d67308ad8093
+    content: 'Testing strategy: update existing unit tests (step 5), then manual verification of all four visual states (declaration only, applied only, declaration + applied, context child)'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ee94da7c-8247-466c-a96f-208c9f42e797:
+    id: ee94da7c-8247-466c-a96f-208c9f42e797
+    content: No parallelisation opportunity — single contributor, sequential steps
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f26ed895-0c05-4a37-81b4-5b5333ec6604:
+    id: f26ed895-0c05-4a37-81b4-5b5333ec6604
+    content: Constraints and assumptions
+    children:
+      - 4d98affa-e495-4315-a40c-bc7c6db5370e
+      - 074719dd-c329-4d1a-9f35-5f189df71491
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4d98affa-e495-4315-a40c-bc7c6db5370e:
+    id: 4d98affa-e495-4315-a40c-bc7c6db5370e
+    content: No workflow node can also be a context declaration, so the Layers overlay and workflow Play overlay will never compete for the same position
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  074719dd-c329-4d1a-9f35-5f189df71491:
+    id: 074719dd-c329-4d1a-9f35-5f189df71491
+    content: Assumes users will recognize the Layers icon as meaning "context declaration" without onboarding — acceptable since the icon supplements the existing context icon in the content area
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  870c8690-96c1-4a64-a361-15148fa332bc:
+    id: 870c8690-96c1-4a64-a361-15148fa332bc
+    content: Test plan
+    children:
+      - 265a8f49-d1c4-4ef1-995c-5478d7cf4d05
+      - 0b77d511-bfcd-4fd0-b34a-96292d24a65a
+      - 583cb6b7-15b3-4129-aac5-65225d679b43
+      - d4a46b57-92e7-492d-b359-64af09ddd5a2
+      - 31bf322e-4641-44ad-a784-138e79f10f0a
+      - 2ae0a8fa-da83-4b1c-914e-517c9addde99
+      - 54f0e0a5-5b9c-471a-8ad2-9595cc3389b9
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  265a8f49-d1c4-4ef1-995c-5478d7cf4d05:
+    id: 265a8f49-d1c4-4ef1-995c-5478d7cf4d05
+    content: Scope and objectives
+    children:
+      - 87c2b2a4-223d-4189-972a-ee2ac3b203ce
+      - 11ab712c-8830-4dbb-b369-02332289fdc7
+      - 7a9ddd20-a84b-408e-8bf9-69de515a5152
+      - cdbee3c8-ac44-4b9a-bead-1c0f2f8f56f8
+      - 460e0d38-fcd4-4580-a2f1-ae6161f47dbf
+      - 5156aef9-3945-47a0-9411-055aeed19042
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  87c2b2a4-223d-4189-972a-ee2ac3b203ce:
+    id: 87c2b2a4-223d-4189-972a-ee2ac3b203ce
+    content: Verify that context declarations no longer render any icon in the gutter
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  11ab712c-8830-4dbb-b369-02332289fdc7:
+    id: 11ab712c-8830-4dbb-b369-02332289fdc7
+    content: Verify that context declarations display a Layers overlay on the node icon in the content area
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7a9ddd20-a84b-408e-8bf9-69de515a5152:
+    id: 7a9ddd20-a84b-408e-8bf9-69de515a5152
+    content: Verify that applied context gutter icons render at full opacity
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  cdbee3c8-ac44-4b9a-bead-1c0f2f8f56f8:
+    id: cdbee3c8-ac44-4b9a-bead-1c0f2f8f56f8
+    content: Verify that the tooltip appears only on applied context hover with correct content
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  460e0d38-fcd4-4580-a2f1-ae6161f47dbf:
+    id: 460e0d38-fcd4-4580-a2f1-ae6161f47dbf
+    content: Verify that context children remain visually unchanged
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5156aef9-3945-47a0-9411-055aeed19042:
+    id: 5156aef9-3945-47a0-9411-055aeed19042
+    content: Verify no regressions in workflow indicator rendering
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0b77d511-bfcd-4fd0-b34a-96292d24a65a:
+    id: 0b77d511-bfcd-4fd0-b34a-96292d24a65a
+    content: Entry criteria
+    children:
+      - 6d91f404-d764-4e18-9fe7-03d6482b48df
+      - 5c0e8ba2-f31b-41fb-ba5b-87775a37d9cb
+      - 0646f20e-c3a5-4b3c-a218-63713f5e7408
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6d91f404-d764-4e18-9fe7-03d6482b48df:
+    id: 6d91f404-d764-4e18-9fe7-03d6482b48df
+    content: All five implementation steps are complete
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5c0e8ba2-f31b-41fb-ba5b-87775a37d9cb:
+    id: 5c0e8ba2-f31b-41fb-ba5b-87775a37d9cb
+    content: Existing unit tests updated and passing
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0646f20e-c3a5-4b3c-a218-63713f5e7408:
+    id: 0646f20e-c3a5-4b3c-a218-63713f5e7408
+    content: No TypeScript compilation errors
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  583cb6b7-15b3-4129-aac5-65225d679b43:
+    id: 583cb6b7-15b3-4129-aac5-65225d679b43
+    content: Exit criteria
+    children:
+      - baa03451-5f97-4257-bcff-bb3fcd633f28
+      - 3a1f989e-72fc-4127-a2e0-e49ed9694f13
+      - 1e6c6d24-6031-4448-b07b-3b552fdc8be1
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  baa03451-5f97-4257-bcff-bb3fcd633f28:
+    id: baa03451-5f97-4257-bcff-bb3fcd633f28
+    content: All unit tests pass
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3a1f989e-72fc-4127-a2e0-e49ed9694f13:
+    id: 3a1f989e-72fc-4127-a2e0-e49ed9694f13
+    content: All manual test scenarios below verified in the running app
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1e6c6d24-6031-4448-b07b-3b552fdc8be1:
+    id: 1e6c6d24-6031-4448-b07b-3b552fdc8be1
+    content: No visual regressions in unrelated node types (workflows, blueprints, regular nodes)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d4a46b57-92e7-492d-b359-64af09ddd5a2:
+    id: d4a46b57-92e7-492d-b359-64af09ddd5a2
+    content: Unit tests (Vitest + React Testing Library)
+    children:
+      - 6ab2603d-bc58-4239-8f4b-791bc448b71f
+      - 714a7792-c94d-4aab-b756-90ec43ca726c
+      - 00ec9124-554e-4b01-8ed5-f10df106a985
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6ab2603d-bc58-4239-8f4b-791bc448b71f:
+    id: 6ab2603d-bc58-4239-8f4b-791bc448b71f
+    content: GutterContextIndicator
+    children:
+      - 294bd477-eccf-41b0-8875-f1a7a7625b0b
+      - 47928f61-8685-4d58-9271-ef5427c8bc2c
+      - bce6b71d-8368-4027-96c7-3ba235112f90
+      - 29355cfd-d6ad-4e5b-83ed-05369b9057ea
+      - efbe0cbb-148e-40a2-8b54-95310e3554e0
+      - bc58b996-a74f-4b69-b099-36339abff41f
+      - ed214bb3-4464-4742-a965-cab75fe022f5
+      - eb21644a-25f4-4590-98cd-ab97a74e98c5
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  294bd477-eccf-41b0-8875-f1a7a7625b0b:
+    id: 294bd477-eccf-41b0-8875-f1a7a7625b0b
+    content: Renders nothing when node is a context declaration with no applied context
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  47928f61-8685-4d58-9271-ef5427c8bc2c:
+    id: 47928f61-8685-4d58-9271-ef5427c8bc2c
+    content: Renders applied context icon at full opacity (no inline opacity style) when node has an applied context
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  bce6b71d-8368-4027-96c7-3ba235112f90:
+    id: bce6b71d-8368-4027-96c7-3ba235112f90
+    content: Renders applied context icon at full opacity when node is a context declaration AND has an applied context
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  29355cfd-d6ad-4e5b-83ed-05369b9057ea:
+    id: 29355cfd-d6ad-4e5b-83ed-05369b9057ea
+    content: Does not render any declaration-specific classes (.context-declaration, .context-bundle, .context-bundle-badge)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  efbe0cbb-148e-40a2-8b54-95310e3554e0:
+    id: efbe0cbb-148e-40a2-8b54-95310e3554e0
+    content: Tooltip appears on hover over applied context icon
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  bc58b996-a74f-4b69-b099-36339abff41f:
+    id: bc58b996-a74f-4b69-b099-36339abff41f
+    content: Tooltip contains "Applied context:" label (not "Declared:" or "Applied:")
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ed214bb3-4464-4742-a965-cab75fe022f5:
+    id: ed214bb3-4464-4742-a965-cab75fe022f5
+    content: Tooltip displays the correct context name and icon
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  eb21644a-25f4-4590-98cd-ab97a74e98c5:
+    id: eb21644a-25f4-4590-98cd-ab97a74e98c5
+    content: Tooltip does not appear when there is no applied context
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  714a7792-c94d-4aab-b756-90ec43ca726c:
+    id: 714a7792-c94d-4aab-b756-90ec43ca726c
+    content: NodeContent (context declaration overlay)
+    children:
+      - 8a1575a4-3f70-478b-bf1b-a7c37b6e8483
+      - 45da806d-1a69-485b-8242-584f0793085a
+      - e9a5e911-0b9e-442d-9330-00710d503749
+      - 04b2c85f-df5a-452d-b186-326e73a26912
+      - 2126c3c5-eac2-488f-9dea-d677e42d651e
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8a1575a4-3f70-478b-bf1b-a7c37b6e8483:
+    id: 8a1575a4-3f70-478b-bf1b-a7c37b6e8483
+    content: Context declaration nodes render a Layers icon with .context-declaration-overlay class
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  45da806d-1a69-485b-8242-584f0793085a:
+    id: 45da806d-1a69-485b-8242-584f0793085a
+    content: Layers overlay is positioned within a wrapper span (analogous to .blueprint-icon-wrapper)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e9a5e911-0b9e-442d-9330-00710d503749:
+    id: e9a5e911-0b9e-442d-9330-00710d503749
+    content: Context declaration nodes still render their context icon button (click-to-change preserved)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  04b2c85f-df5a-452d-b186-326e73a26912:
+    id: 04b2c85f-df5a-452d-b186-326e73a26912
+    content: Context child nodes do not render a Layers overlay
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2126c3c5-eac2-488f-9dea-d677e42d651e:
+    id: 2126c3c5-eac2-488f-9dea-d677e42d651e
+    content: Regular (non-context) nodes do not render a Layers overlay
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  00ec9124-554e-4b01-8ed5-f10df106a985:
+    id: 00ec9124-554e-4b01-8ed5-f10df106a985
+    content: NodeGutter
+    children:
+      - eaffd9e5-83c2-4aa0-afb2-88adc28bdea1
+      - c114ddde-f086-4e9e-9447-244a9e3344c7
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  eaffd9e5-83c2-4aa0-afb2-88adc28bdea1:
+    id: eaffd9e5-83c2-4aa0-afb2-88adc28bdea1
+    content: Context declaration with applied context renders .context-applied (not .context-bundle)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c114ddde-f086-4e9e-9447-244a9e3344c7:
+    id: c114ddde-f086-4e9e-9447-244a9e3344c7
+    content: Props interface no longer includes isContextDeclaration, contextName, contextIcon, contextColor
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  31bf322e-4641-44ad-a784-138e79f10f0a:
+    id: 31bf322e-4641-44ad-a784-138e79f10f0a
+    content: Manual test scenarios
+    children:
+      - 45108eb2-f003-42d2-93f2-37cc63c19b36
+      - 2612128c-119b-48e1-abc9-21c7b3cc2448
+      - 7ce901e6-2977-4ca0-ade5-9b1a51a0be0a
+      - 89f05a0d-a455-493d-8181-4bc98f4982ba
+      - 5e824e39-f2db-4e27-b844-2149a951a647
+      - 7f7246d1-016d-451a-85bb-328a2a02f3b9
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  45108eb2-f003-42d2-93f2-37cc63c19b36:
+    id: 45108eb2-f003-42d2-93f2-37cc63c19b36
+    content: Scenario 1 — Context declaration only (no applied context)
+    children:
+      - 0340a8fa-7dfa-4747-b308-3d78778fbe24
+      - f50b7e39-0266-4381-ba9a-18e07c202655
+      - 4a8779b0-3dce-480c-abb7-6da5658a966e
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0340a8fa-7dfa-4747-b308-3d78778fbe24:
+    id: 0340a8fa-7dfa-4747-b308-3d78778fbe24
+    content: 'Gutter: empty (no icon)'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f50b7e39-0266-4381-ba9a-18e07c202655:
+    id: f50b7e39-0266-4381-ba9a-18e07c202655
+    content: 'Content area: Layers overlay visible to the left of the context icon'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4a8779b0-3dce-480c-abb7-6da5658a966e:
+    id: 4a8779b0-3dce-480c-abb7-6da5658a966e
+    content: 'Content area: context icon is clickable and opens icon picker'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2612128c-119b-48e1-abc9-21c7b3cc2448:
+    id: 2612128c-119b-48e1-abc9-21c7b3cc2448
+    content: Scenario 2 — Node with applied context (not a declaration)
+    children:
+      - a0de6eeb-656e-4c86-9bd3-f7ff32655449
+      - a7080e8a-5942-4fcc-9826-c0682f02c008
+      - 68a12ce9-6abc-4614-baf3-723eedbde30e
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a0de6eeb-656e-4c86-9bd3-f7ff32655449:
+    id: a0de6eeb-656e-4c86-9bd3-f7ff32655449
+    content: 'Gutter: applied context icon at full opacity'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a7080e8a-5942-4fcc-9826-c0682f02c008:
+    id: a7080e8a-5942-4fcc-9826-c0682f02c008
+    content: 'Hover gutter icon: tooltip appears with "Applied context:" label, icon, and name'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  68a12ce9-6abc-4614-baf3-723eedbde30e:
+    id: 68a12ce9-6abc-4614-baf3-723eedbde30e
+    content: 'Content area: inherited context icon at 0.5 opacity, non-clickable'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7ce901e6-2977-4ca0-ade5-9b1a51a0be0a:
+    id: 7ce901e6-2977-4ca0-ade5-9b1a51a0be0a
+    content: Scenario 3 — Context declaration with applied context from ancestor
+    children:
+      - f956d252-42d5-492d-9322-68756a1b43db
+      - ea2df52e-fcf3-4959-b41d-7b021105ad24
+      - 72005ce6-f8a4-479d-8f3c-0c5cd9499e09
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f956d252-42d5-492d-9322-68756a1b43db:
+    id: f956d252-42d5-492d-9322-68756a1b43db
+    content: 'Gutter: applied context icon at full opacity (declaration''s own icon does not appear in gutter)'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ea2df52e-fcf3-4959-b41d-7b021105ad24:
+    id: ea2df52e-fcf3-4959-b41d-7b021105ad24
+    content: 'Hover gutter icon: tooltip shows only the applied context info, no "Declared:" section'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  72005ce6-f8a4-479d-8f3c-0c5cd9499e09:
+    id: 72005ce6-f8a4-479d-8f3c-0c5cd9499e09
+    content: 'Content area: Layers overlay visible to the left of the declaration''s own icon'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  89f05a0d-a455-493d-8181-4bc98f4982ba:
+    id: 89f05a0d-a455-493d-8181-4bc98f4982ba
+    content: Scenario 4 — Nested context declarations
+    children:
+      - 58515070-8b31-4a04-8e32-2dc63cf06435
+      - 77f876d5-ec87-473b-8ce5-9be59381d36e
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  58515070-8b31-4a04-8e32-2dc63cf06435:
+    id: 58515070-8b31-4a04-8e32-2dc63cf06435
+    content: Both declaration nodes show their own Layers overlay independently
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  77f876d5-ec87-473b-8ce5-9be59381d36e:
+    id: 77f876d5-ec87-473b-8ce5-9be59381d36e
+    content: Children of each declaration show the correct inherited icon at 0.5 opacity
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5e824e39-f2db-4e27-b844-2149a951a647:
+    id: 5e824e39-f2db-4e27-b844-2149a951a647
+    content: Scenario 5 — Context child deep in tree
+    children:
+      - a343b0c7-623a-4f38-814a-4552bd3df774
+      - f4288f55-3a6e-478d-a01c-1f36f8eecb36
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a343b0c7-623a-4f38-814a-4552bd3df774:
+    id: a343b0c7-623a-4f38-814a-4552bd3df774
+    content: 'Gutter: applied context icon at full opacity (if applied context exists)'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f4288f55-3a6e-478d-a01c-1f36f8eecb36:
+    id: f4288f55-3a6e-478d-a01c-1f36f8eecb36
+    content: 'Content area: inherited icon at 0.5 opacity, no Layers overlay'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7f7246d1-016d-451a-85bb-328a2a02f3b9:
+    id: 7f7246d1-016d-451a-85bb-328a2a02f3b9
+    content: Scenario 6 — Non-context nodes (regression check)
+    children:
+      - 2c844826-d095-43cc-9fc2-f286e42a67d3
+      - be43de2f-7e8e-43ce-a51a-082238a0ac49
+      - aa15b79a-f7e7-41b6-bd91-51865d579f80
+      - 2511ec0b-b43d-43aa-97f0-8aca36e82ea4
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2c844826-d095-43cc-9fc2-f286e42a67d3:
+    id: 2c844826-d095-43cc-9fc2-f286e42a67d3
+    content: 'Workflow nodes: Play icon overlay renders correctly, unaffected'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  be43de2f-7e8e-43ce-a51a-082238a0ac49:
+    id: be43de2f-7e8e-43ce-a51a-082238a0ac49
+    content: 'Workflow step nodes: step number renders correctly, unaffected'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  aa15b79a-f7e7-41b6-bd91-51865d579f80:
+    id: aa15b79a-f7e7-41b6-bd91-51865d579f80
+    content: 'Blueprint nodes: blueprint icon renders correctly, unaffected'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2511ec0b-b43d-43aa-97f0-8aca36e82ea4:
+    id: 2511ec0b-b43d-43aa-97f0-8aca36e82ea4
+    content: 'Regular nodes: checkbox renders correctly, unaffected'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2ae0a8fa-da83-4b1c-914e-517c9addde99:
+    id: 2ae0a8fa-da83-4b1c-914e-517c9addde99
+    content: Risk areas — highest defect likelihood
+    children:
+      - 53db5b58-de32-4c1e-b601-32830cfadc1f
+      - d2db7617-e5a1-4087-a366-71c82803a9d6
+      - 1dc6835a-a614-4a48-aac9-0451ccf2a748
+      - 858f2925-fe9f-4b2b-827f-45bcc28769aa
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  53db5b58-de32-4c1e-b601-32830cfadc1f:
+    id: 53db5b58-de32-4c1e-b601-32830cfadc1f
+    content: Layers overlay positioning — new CSS that mirrors .workflow-indicator may interact unexpectedly with context icon sizing (19px vs blueprint icon sizing)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d2db7617-e5a1-4087-a366-71c82803a9d6:
+    id: d2db7617-e5a1-4087-a366-71c82803a9d6
+    content: Prop removal cascade — removing four props from GutterContextIndicator through NodeGutter and TreeNode is the change with the widest blast radius; a missed reference causes a build failure (caught by TypeScript) but could also cause subtle rendering issues if defaults mask the error
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1dc6835a-a614-4a48-aac9-0451ccf2a748:
+    id: 1dc6835a-a614-4a48-aac9-0451ccf2a748
+    content: Tooltip trigger migration — moving hover behavior from the declaration span to the applied context span; if the ref or event handlers are wired incorrectly, the tooltip silently fails to appear
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  858f2925-fe9f-4b2b-827f-45bcc28769aa:
+    id: 858f2925-fe9f-4b2b-827f-45bcc28769aa
+    content: Context declaration + applied context combo — this is the state where old and new behaviors diverge the most; the gutter now shows a completely different icon (applied) than before (declaration with badge)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  54f0e0a5-5b9c-471a-8ad2-9595cc3389b9:
+    id: 54f0e0a5-5b9c-471a-8ad2-9595cc3389b9
+    content: Risk areas — highest impact if defective
+    children:
+      - f9a7a596-77db-4fd1-9094-844613776a7b
+      - e6400fd5-68f2-4147-ab9b-20cdc96fb3f2
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f9a7a596-77db-4fd1-9094-844613776a7b:
+    id: f9a7a596-77db-4fd1-9094-844613776a7b
+    content: Context declarations becoming invisible in the gutter — if the Layers overlay fails to render, declarations lose all visual distinction and become indistinguishable from regular blueprint nodes
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e6400fd5-68f2-4147-ab9b-20cdc96fb3f2:
+    id: e6400fd5-68f2-4147-ab9b-20cdc96fb3f2
+    content: Applied context tooltip breaking — tooltip is the only way to identify which context is applied to a subtree; if it fails, the user loses that information entirely
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9a392715-9ea2-4269-b35c-812b8998e3ec:
+    id: 9a392715-9ea2-4269-b35c-812b8998e3ec
+    content: Implement automated tests (TDD)
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+      appliedContextId: 22a32663-eb92-44e0-a844-d6219409f63b
+      blueprintIcon: ListChecks
+      blueprintColor: '#c47f09'
+      expanded: true
+  5fcbaf63-52df-4f25-b452-6365602e8f8c:
+    id: 5fcbaf63-52df-4f25-b452-6365602e8f8c
+    content: Validate them against the test plan if one is provided
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  bbf5afa8-47fc-46c5-9ddf-62502640b74e:
+    id: bbf5afa8-47fc-46c5-9ddf-62502640b74e
+    content: Applied contexts list does not refresh when changes are made to contexts
+    children: []
+    metadata:
+      status: pending
+  17864c32-1811-422e-b4f9-a4fe2d653b3e:
+    id: 17864c32-1811-422e-b4f9-a4fe2d653b3e
+    content: If something is inconsistent, fix it, don't make an exception
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  6b112872-41f7-4a7a-bc7d-7a2fa3dd05f6:
+    id: 6b112872-41f7-4a7a-bc7d-7a2fa3dd05f6
+    content: Don't over-focus on the feature details, focus on what the user needs to use the tool.
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
