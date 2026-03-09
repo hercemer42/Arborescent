@@ -28,10 +28,8 @@ export interface HotkeyConfig {
     copy: string;
     paste: string;
     selectAll: string;
-    execute: string;
-    executeInBrowser: string;
-    collaborate: string;
-    collaborateInTerminal: string;
+    sendInTerminal: string;
+    sendInBrowser: string;
   };
   file: {
     new: string;

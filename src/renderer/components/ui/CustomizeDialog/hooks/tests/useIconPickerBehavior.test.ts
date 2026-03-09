@@ -1,7 +1,7 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { renderHook, act } from '@testing-library/react';
 import { useIconPickerBehavior } from '../useIconPickerBehavior';
-import { LucideIcon } from '../../IconPicker';
+import { LucideIcon } from '../../CustomizeDialog';
 
 describe('useIconPickerBehavior', () => {
   const mockOnSelect = vi.fn();

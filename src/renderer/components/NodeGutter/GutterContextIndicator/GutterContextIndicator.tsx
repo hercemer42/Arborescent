@@ -1,5 +1,5 @@
 import { memo, createElement } from 'react';
-import { getIconByName } from '../../ui/IconPicker/IconPicker';
+import { getIconByName } from '../../ui/CustomizeDialog/CustomizeDialog';
 import { AppliedContext } from '../../TreeNode/hooks/useAppliedContexts';
 import { useAppliedContextTooltip } from './hooks/useAppliedContextTooltip';
 import { AppliedContextTooltip } from './AppliedContextTooltip';

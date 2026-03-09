@@ -2,6 +2,7 @@ import { TreeNode } from '../../../../shared/types';
 import { ContextMenuItem } from '../../ui/ContextMenu';
 import { getIsContextChild } from '../../../utils/nodeHelpers';
 import { AncestorRegistry } from '../../../utils/ancestry';
+import { ContextMode } from '../../../store/tree/treeStore';
 
 interface BuildBlueprintSubmenuParams {
   node: TreeNode;
@@ -12,6 +13,7 @@ interface BuildBlueprintSubmenuParams {
   onRemoveFromBlueprint: () => void;
   onDeclareAsContext: () => void;
   onRemoveContextDeclaration: () => void;
+  onSetContextMode?: (mode: ContextMode) => void;
   onDeclareAsWorkflow?: () => void;
   onRemoveFromWorkflow?: () => void;
 }
@@ -39,6 +41,7 @@ export function buildBlueprintSubmenu({
   onRemoveFromBlueprint,
   onDeclareAsContext,
   onRemoveContextDeclaration,
+  onSetContextMode,
   onDeclareAsWorkflow,
   onRemoveFromWorkflow,
 }: BuildBlueprintSubmenuParams): ContextMenuItem | null {
@@ -103,6 +106,30 @@ export function buildBlueprintSubmenu({
 
   if (isContextDeclaration) {
     if (submenuItems.length > 0) submenuItems.push(SEPARATOR);
+
+    if (onSetContextMode) {
+      const currentMode = (node.metadata.contextMode as ContextMode) || 'collaborate';
+      submenuItems.push({
+        label: 'Context mode',
+        submenu: [
+          {
+            label: 'Collaborate',
+            radioSelected: currentMode === 'collaborate',
+            keepOpenOnClick: true,
+            disabled: currentMode === 'collaborate',
+            onClick: () => onSetContextMode('collaborate'),
+          },
+          {
+            label: 'Execute',
+            radioSelected: currentMode === 'execute',
+            keepOpenOnClick: true,
+            disabled: currentMode === 'execute',
+            onClick: () => onSetContextMode('execute'),
+          },
+        ],
+      });
+    }
+
     submenuItems.push({
       label: 'Remove Context Declaration',
       onClick: onRemoveContextDeclaration,

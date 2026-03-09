@@ -18,11 +18,14 @@ import { createWorkflowActions, WorkflowActions } from './actions/workflowAction
 import { HistoryManager } from './commands/HistoryManager';
 import { StorageService } from '../../services/storageService';
 
+export type ContextMode = 'collaborate' | 'execute';
+
 export interface ContextDeclarationInfo {
   nodeId: string;
   content: string;
   icon: string;
   color?: string;
+  mode: ContextMode;
 }
 
 export interface TreeState {
@@ -70,7 +73,7 @@ export function createTreeStore(treeType: TreeType = 'workspace') {
     const collaborateActions = createCollaborateActions(get, set, visualEffectsActions, persistenceActions.autoSave);
     const executeActions = createExecuteActions(get);
 
-    const contextActions = createContextActions(get, set, persistenceActions.autoSave);
+    const contextActions = createContextActions(get, set, persistenceActions.autoSave, historyActions.executeCommand);
 
     const clipboardActions = createClipboardActions(
       get,

@@ -20,6 +20,7 @@ vi.mock('../shared', () => ({
       activeNodeId: 'node-1',
       nodes: { 'node-1': { id: 'node-1', content: 'Node', children: [], metadata: {} } },
       ancestorRegistry: {},
+      contextDeclarations: [],
       actions: {
         collaborate: mockCollaborate,
       },
@@ -29,6 +30,7 @@ vi.mock('../shared', () => ({
 
 vi.mock('../../../utils/nodeHelpers', () => ({
   getAppliedContextIdWithInheritance: () => null,
+  resolveContextMode: () => 'collaborate',
 }));
 
 vi.mock('../../../store/toast/toastStore', () => ({
@@ -55,7 +57,7 @@ Object.defineProperty(window, 'location', {
   writable: true,
 });
 
-describe('uiService (collaborate hotkeys)', () => {
+describe('uiService (sendInBrowser hotkey)', () => {
   beforeEach(() => {
     const hotkeyStore = useHotkeyContextStore.getState();
     hotkeyStore.setInitialized(true);
@@ -64,11 +66,11 @@ describe('uiService (collaborate hotkeys)', () => {
     mockCollaborate.mockReset();
   });
 
-  it('should allow collaborate hotkey even when no context is set (default review context)', () => {
+  it('should allow sendInBrowser hotkey even when no context is set (defaults to collaborate mode)', () => {
     const cleanup = initializeUIService(window);
 
     window.dispatchEvent(new KeyboardEvent('keydown', {
-      key: 'Enter',
+      key: 'e',
       ctrlKey: true,
       shiftKey: true,
     }));

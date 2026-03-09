@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { TreeNode } from '../../../../shared/types';
 import { useStore } from '../../../store/tree/useStore';
-import { getIconByName, LucideIcon } from '../../ui/IconPicker/IconPicker';
+import { getIconByName, LucideIcon } from '../../ui/CustomizeDialog/CustomizeDialog';
 
 interface ContextIconResult {
   isContextDeclaration: boolean;

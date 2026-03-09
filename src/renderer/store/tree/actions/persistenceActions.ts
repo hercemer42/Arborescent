@@ -83,6 +83,29 @@ export const createPersistenceActions = (
       };
     }
 
+    Object.keys(migratedNodes).forEach(nodeId => {
+      const node = migratedNodes[nodeId];
+      let needsUpdate = false;
+      const updatedMetadata = { ...node.metadata };
+
+      if (node.metadata.isContextDeclaration === true && !node.metadata.contextMode) {
+        updatedMetadata.contextMode = 'collaborate';
+        needsUpdate = true;
+      }
+
+      if (node.metadata.appliedContextIds !== undefined) {
+        delete updatedMetadata.appliedContextIds;
+        needsUpdate = true;
+      }
+
+      if (needsUpdate) {
+        migratedNodes[nodeId] = {
+          ...node,
+          metadata: updatedMetadata,
+        };
+      }
+    });
+
     const contextDeclarations = getContextDeclarations(migratedNodes);
     const isBlueprint = data.isBlueprint === true;
 

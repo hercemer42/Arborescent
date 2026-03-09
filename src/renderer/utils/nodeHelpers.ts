@@ -70,6 +70,12 @@ function findClosestAncestor<T>(
   return undefined;
 }
 
+export const BASIC_EXECUTE_CONTEXT_ID = '__basic_execute__';
+
+function isSyntheticContextId(id: string): boolean {
+  return id === BASIC_EXECUTE_CONTEXT_ID;
+}
+
 export function getAppliedContextIdWithInheritance(
   nodeId: string,
   nodes: Record<string, TreeNode>,
@@ -79,7 +85,7 @@ export function getAppliedContextIdWithInheritance(
   if (!node) return undefined;
 
   const appliedId = node.metadata.appliedContextId as string | undefined;
-  if (appliedId && nodes[appliedId]) {
+  if (appliedId && (nodes[appliedId] || isSyntheticContextId(appliedId))) {
     return appliedId;
   }
 
@@ -95,7 +101,7 @@ export function getInheritedContextId(
     const ancestor = nodes[ancestorId];
     if (!ancestor) continue;
     const ancestorAppliedId = ancestor.metadata.appliedContextId as string | undefined;
-    if (ancestorAppliedId && nodes[ancestorAppliedId]) {
+    if (ancestorAppliedId && (nodes[ancestorAppliedId] || isSyntheticContextId(ancestorAppliedId))) {
       return ancestorAppliedId;
     }
   }
@@ -139,7 +145,7 @@ export function getContextsForCollaboration(
   if (!node) return [];
 
   const activeContextId = getAppliedContextIdWithInheritance(nodeId, nodes, ancestorRegistry);
-  if (!activeContextId) {
+  if (!activeContextId || isSyntheticContextId(activeContextId)) {
     return [];
   }
 
@@ -463,15 +469,33 @@ export function isValidDrop(
 
 export function getContextDeclarations(
   nodes: Record<string, TreeNode>
-): { nodeId: string; content: string; icon: string }[] {
+): { nodeId: string; content: string; icon: string; color?: string; mode: 'collaborate' | 'execute' }[] {
   return Object.values(nodes)
     .filter(node => node.metadata.isContextDeclaration === true)
     .map(node => ({
       nodeId: node.id,
       content: node.content || 'Untitled context',
       icon: (node.metadata.blueprintIcon as string) || 'lightbulb',
+      color: node.metadata.blueprintColor as string | undefined,
+      mode: (node.metadata.contextMode as 'collaborate' | 'execute') || 'collaborate',
     }))
     .sort((a, b) => a.content.localeCompare(b.content));
+}
+
+export function resolveContextMode(
+  contextId: string | undefined,
+  nodes: Record<string, TreeNode>,
+  contextDeclarations: { nodeId: string; mode: 'collaborate' | 'execute' }[],
+): 'collaborate' | 'execute' {
+  if (!contextId) return 'collaborate';
+  if (contextId === BASIC_EXECUTE_CONTEXT_ID) return 'execute';
+  const declaration = contextDeclarations.find(d => d.nodeId === contextId);
+  if (declaration) return declaration.mode;
+  const contextNode = nodes[contextId];
+  if (contextNode) {
+    return (contextNode.metadata.contextMode as 'collaborate' | 'execute') || 'collaborate';
+  }
+  return 'collaborate';
 }
 
 export function getContextDeclarationId(

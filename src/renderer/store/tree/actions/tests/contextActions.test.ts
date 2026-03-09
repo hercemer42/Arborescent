@@ -6,7 +6,7 @@ import { getIsContextChild, getContextDeclarationId } from '../../../../utils/no
 describe('contextActions', () => {
   type TestState = {
     nodes: Record<string, TreeNode>;
-    contextDeclarations: { nodeId: string; content: string; icon: string }[];
+    contextDeclarations: { nodeId: string; content: string; icon: string; mode: 'collaborate' | 'execute' }[];
     ancestorRegistry: Record<string, string[]>;
   };
   let state: TestState;
@@ -420,6 +420,12 @@ describe('contextActions', () => {
       // Should not change since context doesn't exist
       expect(state.nodes['node-2'].metadata.appliedContextId).toBeUndefined();
       expect(mockTriggerAutosave).not.toHaveBeenCalled();
+    });
+
+    it('should accept BASIC_EXECUTE_CONTEXT_ID as a synthetic context', () => {
+      actions.setActiveContext('node-2', '__basic_execute__');
+      expect(state.nodes['node-2'].metadata.appliedContextId).toBe('__basic_execute__');
+      expect(mockTriggerAutosave).toHaveBeenCalled();
     });
   });
 });

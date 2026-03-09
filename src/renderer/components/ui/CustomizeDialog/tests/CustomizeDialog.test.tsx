@@ -1,9 +1,9 @@
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { IconPicker, getIconByName, DEFAULT_CONTEXT_ICON } from '../IconPicker';
+import { CustomizeDialog, getIconByName, DEFAULT_CONTEXT_ICON } from '../CustomizeDialog';
 
-describe('IconPicker', () => {
+describe('CustomizeDialog', () => {
   const mockOnSelect = vi.fn();
   const mockOnClose = vi.fn();
 
@@ -13,18 +13,18 @@ describe('IconPicker', () => {
 
   it('should render the dialog with header', () => {
     render(
-      <IconPicker
+      <CustomizeDialog
         onSelect={mockOnSelect}
         onClose={mockOnClose}
       />
     );
 
-    expect(screen.getByText('Customize icon')).toBeInTheDocument();
+    expect(screen.getByText('Customize')).toBeInTheDocument();
   });
 
   it('should render curated icons by default (50 icons)', () => {
     const { container } = render(
-      <IconPicker
+      <CustomizeDialog
         onSelect={mockOnSelect}
         onClose={mockOnClose}
       />
@@ -36,7 +36,7 @@ describe('IconPicker', () => {
 
   it('should render search input', () => {
     render(
-      <IconPicker
+      <CustomizeDialog
         onSelect={mockOnSelect}
         onClose={mockOnClose}
       />
@@ -47,7 +47,7 @@ describe('IconPicker', () => {
 
   it('should show "More icons" button by default', () => {
     render(
-      <IconPicker
+      <CustomizeDialog
         onSelect={mockOnSelect}
         onClose={mockOnClose}
       />
@@ -59,7 +59,7 @@ describe('IconPicker', () => {
   it('should filter icons when searching', async () => {
     const user = userEvent.setup();
     const { container } = render(
-      <IconPicker
+      <CustomizeDialog
         onSelect={mockOnSelect}
         onClose={mockOnClose}
       />
@@ -77,7 +77,7 @@ describe('IconPicker', () => {
   it('should show no results message when search has no matches', async () => {
     const user = userEvent.setup();
     render(
-      <IconPicker
+      <CustomizeDialog
         onSelect={mockOnSelect}
         onClose={mockOnClose}
       />
@@ -91,7 +91,7 @@ describe('IconPicker', () => {
 
   it('should highlight selected icon', () => {
     const { container } = render(
-      <IconPicker
+      <CustomizeDialog
         selectedIcon="Star"
         onSelect={mockOnSelect}
         onClose={mockOnClose}
@@ -106,7 +106,7 @@ describe('IconPicker', () => {
   it('should call onSelect with icon and color when Apply is clicked', async () => {
     const user = userEvent.setup();
     const { container } = render(
-      <IconPicker
+      <CustomizeDialog
         onSelect={mockOnSelect}
         onClose={mockOnClose}
       />
@@ -126,7 +126,7 @@ describe('IconPicker', () => {
   it('should call onClose after clicking Apply', async () => {
     const user = userEvent.setup();
     const { container } = render(
-      <IconPicker
+      <CustomizeDialog
         onSelect={mockOnSelect}
         onClose={mockOnClose}
       />
@@ -144,7 +144,7 @@ describe('IconPicker', () => {
   it('should call onClose when close button is clicked', async () => {
     const user = userEvent.setup();
     render(
-      <IconPicker
+      <CustomizeDialog
         onSelect={mockOnSelect}
         onClose={mockOnClose}
       />
@@ -158,7 +158,7 @@ describe('IconPicker', () => {
 
   it('should call onClose when Escape is pressed', () => {
     render(
-      <IconPicker
+      <CustomizeDialog
         onSelect={mockOnSelect}
         onClose={mockOnClose}
       />
@@ -171,7 +171,7 @@ describe('IconPicker', () => {
 
   it('should call onClose when clicking outside the dialog', () => {
     const { container } = render(
-      <IconPicker
+      <CustomizeDialog
         onSelect={mockOnSelect}
         onClose={mockOnClose}
       />
@@ -185,7 +185,7 @@ describe('IconPicker', () => {
 
   it('should not call onClose when clicking inside the dialog', () => {
     const { container } = render(
-      <IconPicker
+      <CustomizeDialog
         onSelect={mockOnSelect}
         onClose={mockOnClose}
       />
@@ -200,7 +200,7 @@ describe('IconPicker', () => {
   it('should show icon name on hover', async () => {
     const user = userEvent.setup();
     const { container } = render(
-      <IconPicker
+      <CustomizeDialog
         onSelect={mockOnSelect}
         onClose={mockOnClose}
       />

@@ -12,10 +12,10 @@ import { buildStatusSubmenu } from './useStatusSubmenu';
 import { buildWorkflowStepSubmenu } from './useWorkflowStepSubmenu';
 import { buildSetContextSubmenu } from './useSetContextSubmenu';
 import { logger } from '../../../services/logger';
-import { buildCollaborateSubmenu } from './useCollaborateSubmenu';
-import { buildExecuteSubmenu } from './useExecuteSubmenu';
+import { buildSendSubmenu } from './useSendSubmenu';
+import { ContextMode } from '../../../store/tree/treeStore';
 import { getPositionFromPoint } from '../../../utils/position';
-import { useIconPickerStore } from '../../../store/iconPicker/iconPickerStore';
+import { useCustomizeDialogStore } from '../../../store/customizeDialog/customizeDialogStore';
 import { useSpellcheck } from './useSpellcheck';
 import { waitForSpellcheckUpdate, useSpellcheckStore } from '../../../store/spellcheck/spellcheckStore';
 import { getKeyForAction } from '../../../utils/hotkeyConfig';
@@ -33,7 +33,7 @@ export function useNodeContextMenu(node: TreeNode) {
   const { captureWordAtPoint, buildSpellMenuItems } = useSpellcheck();
   const { handleCancel } = useFeedbackActions();
   const showTerminal = usePanelStore((state) => state.showTerminal);
-  const openIconPicker = useIconPickerStore((state) => state.open);
+  const openCustomizeDialog = useCustomizeDialogStore((state) => state.open);
   const activeFile = useFilesStore((state) => state.getActiveFile());
   const openZoomTab = useFilesStore((state) => state.openZoomTab);
   const isZoomTab = !!activeFile?.zoomSource;
@@ -45,43 +45,42 @@ export function useNodeContextMenu(node: TreeNode) {
     const spellItems = buildSpellMenuItems();
 
     const isNodeBeingCollaborated = collaboratingNodeId === node.id;
-    const collaborateDisabled = !!collaboratingNodeId;
 
-    const handleCollaborate = async () => {
-      try {
-        await actions.collaborate(node.id);
-      } catch (error) {
-        logger.error('Failed to start collaboration', error as Error, 'Context Menu');
+    const handleSendInTerminal = async (mode: ContextMode) => {
+      if (mode === 'execute') {
+        try {
+          await actions.executeInTerminalWithContext(node.id);
+        } catch (error) {
+          logger.error('Failed to execute in terminal', error as Error, 'Context Menu');
+        }
+      } else {
+        const terminalId = await useTerminalStore.getState().openTerminal();
+        if (!terminalId) {
+          logger.error('Failed to create terminal', new Error('No terminal available'), 'Context Menu');
+          return;
+        }
+        try {
+          showTerminal();
+          await actions.collaborateInTerminal(node.id, terminalId);
+        } catch (error) {
+          logger.error('Failed to collaborate in terminal', error as Error, 'Context Menu');
+        }
       }
     };
 
-    const handleCollaborateInTerminal = async () => {
-      const terminalId = await useTerminalStore.getState().openTerminal();
-      if (!terminalId) {
-        logger.error('Failed to create terminal', new Error('No terminal available'), 'Context Menu');
-        return;
-      }
-      try {
-        showTerminal();
-        await actions.collaborateInTerminal(node.id, terminalId);
-      } catch (error) {
-        logger.error('Failed to collaborate in terminal', error as Error, 'Context Menu');
-      }
-    };
-
-    const handleExecuteInBrowser = async () => {
-      try {
-        await actions.executeInBrowser(node.id);
-      } catch (error) {
-        logger.error('Failed to execute in browser', error as Error, 'Context Menu');
-      }
-    };
-
-    const handleExecuteInTerminal = async () => {
-      try {
-        await actions.executeInTerminalWithContext(node.id);
-      } catch (error) {
-        logger.error('Failed to execute in terminal', error as Error, 'Context Menu');
+    const handleSendInBrowser = async (mode: ContextMode) => {
+      if (mode === 'execute') {
+        try {
+          await actions.executeInBrowser(node.id);
+        } catch (error) {
+          logger.error('Failed to execute in browser', error as Error, 'Context Menu');
+        }
+      } else {
+        try {
+          await actions.collaborate(node.id);
+        } catch (error) {
+          logger.error('Failed to start collaboration', error as Error, 'Context Menu');
+        }
       }
     };
 
@@ -114,31 +113,25 @@ export function useNodeContextMenu(node: TreeNode) {
       setMenuItems(newItems);
     };
 
-    const handleDeclareAsContext = () => {
-      openIconPicker(null, (selection) => {
-        actions.declareAsContext(node.id, selection.icon, selection.color);
-      });
-    };
-
     const freshNode = nodes[node.id] || node;
 
-    const executeSubmenu = buildExecuteSubmenu({
-      node: freshNode,
-      nodes,
-      ancestorRegistry,
-      contextDeclarations,
-      onExecuteInBrowser: handleExecuteInBrowser,
-      onExecuteInTerminal: handleExecuteInTerminal,
-      onSetActiveContext: handleSetActiveContext,
-    });
+    const handleDeclareAsContext = () => {
+      const existingIcon = freshNode.metadata.blueprintIcon as string | undefined;
+      const existingColor = freshNode.metadata.blueprintColor as string | undefined;
+      const existingMode = (freshNode.metadata.contextMode as 'collaborate' | 'execute') || 'collaborate';
+      openCustomizeDialog(existingIcon || null, (selection) => {
+        actions.declareAsContext(node.id, selection.icon, selection.color, selection.mode);
+      }, existingColor || null, { showModeToggle: true, selectedMode: existingMode });
+    };
 
-    const collaborateSubmenu = buildCollaborateSubmenu({
+    const sendSubmenu = buildSendSubmenu({
       node: freshNode,
       nodes,
       ancestorRegistry,
       contextDeclarations,
-      onCollaborate: handleCollaborate,
-      onCollaborateInTerminal: handleCollaborateInTerminal,
+      collaboratingNodeId,
+      onSendInTerminal: handleSendInTerminal,
+      onSendInBrowser: handleSendInBrowser,
       onSetActiveContext: handleSetActiveContext,
     });
 
@@ -150,6 +143,14 @@ export function useNodeContextMenu(node: TreeNode) {
       onSetAppliedContext: handleSetAppliedContext,
     });
 
+    const handleSetContextMode = async (mode: ContextMode) => {
+      const icon = freshNode.metadata.blueprintIcon as string | undefined;
+      const color = freshNode.metadata.blueprintColor as string | undefined;
+      actions.declareAsContext(node.id, icon, color, mode);
+      const newItems = await buildMenuItemsRef.current();
+      setMenuItems(newItems);
+    };
+
     const blueprintMenuItem = buildBlueprintSubmenu({
       node: freshNode,
       getNodes: () => store.getState().nodes,
@@ -159,6 +160,7 @@ export function useNodeContextMenu(node: TreeNode) {
       onRemoveFromBlueprint: () => actions.removeFromBlueprint(node.id, true),
       onDeclareAsContext: handleDeclareAsContext,
       onRemoveContextDeclaration: () => actions.removeContextDeclaration(node.id),
+      onSetContextMode: handleSetContextMode,
       onDeclareAsWorkflow: () => actions.declareAsWorkflow(node.id),
       onRemoveFromWorkflow: () => actions.removeFromWorkflow(node.id),
     });
@@ -191,13 +193,8 @@ export function useNodeContextMenu(node: TreeNode) {
         },
       }] : []),
       ...(!isHyperlink && !isExternalLink ? [{
-        label: 'Execute',
-        submenu: executeSubmenu,
-      }] : []),
-      ...(!isHyperlink && !isExternalLink ? [{
-        label: 'Collaborate',
-        submenu: collaborateSubmenu,
-        disabled: collaborateDisabled,
+        label: 'Send',
+        submenu: sendSubmenu,
       }] : []),
       ...(isNodeBeingCollaborated ? [{
         label: 'Cancel collaboration',
@@ -260,7 +257,7 @@ export function useNodeContextMenu(node: TreeNode) {
     }
 
     return baseMenuItems;
-  }, [node, store, showTerminal, handleCancel, openIconPicker, activeFile, isZoomTab, openZoomTab, buildSpellMenuItems]);
+  }, [node, store, showTerminal, handleCancel, openCustomizeDialog, activeFile, isZoomTab, openZoomTab, buildSpellMenuItems]);
   useEffect(() => {
     buildMenuItemsRef.current = buildMenuItems;
   }, [buildMenuItems]);

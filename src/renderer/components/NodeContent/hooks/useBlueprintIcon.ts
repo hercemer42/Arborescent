@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 import { Boxes } from 'lucide-react';
 import { TreeNode } from '../../../../shared/types';
 import { useStore } from '../../../store/tree/useStore';
-import { getIconByName, LucideIcon } from '../../ui/IconPicker/IconPicker';
+import { getIconByName, LucideIcon } from '../../ui/CustomizeDialog/CustomizeDialog';
 import { DEFAULT_BLUEPRINT_ICON } from '../../../store/tree/actions/blueprintActions';
 
 interface BlueprintIconResult {

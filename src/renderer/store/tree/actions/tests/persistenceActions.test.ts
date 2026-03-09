@@ -10,7 +10,7 @@ describe('persistenceActions', () => {
     ancestorRegistry: Record<string, string[]>;
     currentFilePath: string | null;
     fileMeta: { created: string; author: string } | null;
-    contextDeclarations: { nodeId: string; content: string; icon: string }[];
+    contextDeclarations: { nodeId: string; content: string; icon: string; mode: 'collaborate' | 'execute' }[];
     blueprintModeEnabled: boolean;
     isFileBlueprintFile: boolean;
     summaryDateFrom: string | null;

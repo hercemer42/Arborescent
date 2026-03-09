@@ -4,8 +4,9 @@ import { useToastStore } from '../../store/toast/toastStore';
 import { matchesHotkey } from '../../utils/hotkeyConfig';
 import { hasTextSelection, isContentEditableFocused, isFocusInPanel, isFocusInTerminalOrBrowser, isInputOrTextareaFocused } from '../../utils/selectionUtils';
 import { getActiveStore } from './shared';
-import { getAppliedContextIdWithInheritance } from '../../utils/nodeHelpers';
+import { getAppliedContextIdWithInheritance, resolveContextMode } from '../../utils/nodeHelpers';
 import { useHotkeyContextStore } from '../../store/hotkey/hotkeyContextStore';
+import { ContextMode } from '../../store/tree/treeStore';
 
 async function handleUIShortcuts(event: KeyboardEvent): Promise<void> {
   const { isInitialized, isHotkeyActiveInContext } = useHotkeyContextStore.getState();
@@ -252,7 +253,7 @@ async function handleUIShortcuts(event: KeyboardEvent): Promise<void> {
     return;
   }
 
-  if (matchesHotkey(event, 'actions', 'execute')) {
+  if (matchesHotkey(event, 'actions', 'sendInTerminal')) {
     if (isFocusInTerminalOrBrowser()) return;
     event.preventDefault();
     const store = getActiveStore();
@@ -267,16 +268,26 @@ async function handleUIShortcuts(event: KeyboardEvent): Promise<void> {
       state.nodes,
       state.ancestorRegistry
     );
-    if (!contextId) {
-      useToastStore.getState().addToast('No context set for this branch', 'info');
-      return;
-    }
 
-    state.actions.executeInTerminalWithContext(activeNodeId);
+    const mode: ContextMode = resolveContextMode(contextId, state.nodes, state.contextDeclarations);
+
+    if (mode === 'execute') {
+      state.actions.executeInTerminalWithContext(activeNodeId);
+    } else {
+      const { useTerminalStore } = await import('../../store/terminal/terminalStore');
+      const terminalId = await useTerminalStore.getState().openTerminal();
+      if (!terminalId) {
+        useToastStore.getState().addToast('No terminal available', 'error');
+        return;
+      }
+      const { usePanelStore } = await import('../../store/panel/panelStore');
+      usePanelStore.getState().showTerminal();
+      await state.actions.collaborateInTerminal(activeNodeId, terminalId);
+    }
     return;
   }
 
-  if (matchesHotkey(event, 'actions', 'executeInBrowser')) {
+  if (matchesHotkey(event, 'actions', 'sendInBrowser')) {
     if (isFocusInTerminalOrBrowser()) return;
     event.preventDefault();
     const store = getActiveStore();
@@ -291,52 +302,14 @@ async function handleUIShortcuts(event: KeyboardEvent): Promise<void> {
       state.nodes,
       state.ancestorRegistry
     );
-    if (!contextId) {
-      useToastStore.getState().addToast('No context set for this branch', 'info');
-      return;
-    }
 
-    state.actions.executeInBrowser(activeNodeId);
-    return;
-  }
+    const mode: ContextMode = resolveContextMode(contextId, state.nodes, state.contextDeclarations);
 
-  if (matchesHotkey(event, 'actions', 'collaborate')) {
-    if (isFocusInTerminalOrBrowser()) return;
-    event.preventDefault();
-    const store = getActiveStore();
-    if (!store) return;
-
-    const state = store.getState();
-    const activeNodeId = state.activeNodeId;
-    if (!activeNodeId) return;
-
-    if (isHotkeyActiveInContext('tree') || isHotkeyActiveInContext('global')) {
+    if (mode === 'execute') {
+      state.actions.executeInBrowser(activeNodeId);
+    } else {
       state.actions.collaborate(activeNodeId);
     }
-    return;
-  }
-
-  if (matchesHotkey(event, 'actions', 'collaborateInTerminal')) {
-    if (isFocusInTerminalOrBrowser()) return;
-    event.preventDefault();
-    const store = getActiveStore();
-    if (!store) return;
-
-    const state = store.getState();
-    const activeNodeId = state.activeNodeId;
-    if (!activeNodeId) return;
-
-    // Collaborate always has a default review context.
-    const { useTerminalStore } = await import('../../store/terminal/terminalStore');
-    const terminalId = await useTerminalStore.getState().openTerminal();
-    if (!terminalId) {
-      useToastStore.getState().addToast('No terminal available', 'error');
-      return;
-    }
-
-    const { usePanelStore } = await import('../../store/panel/panelStore');
-    usePanelStore.getState().showTerminal();
-    await state.actions.collaborateInTerminal(activeNodeId, terminalId);
     return;
   }
 }

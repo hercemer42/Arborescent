@@ -3,8 +3,9 @@ import * as LucideIcons from 'lucide-react';
 import { LucideProps, TriangleAlert } from 'lucide-react';
 import { useIconPickerBehavior } from './hooks/useIconPickerBehavior';
 import { useIconPickerColors } from './hooks/useIconPickerColors';
-import { IconSelection } from '../../../store/iconPicker/iconPickerStore';
-import './IconPicker.css';
+import { IconSelection } from '../../../store/customizeDialog/customizeDialogStore';
+import { ContextMode } from '../../../store/tree/treeStore';
+import './CustomizeDialog.css';
 
 // Type for Lucide icon components
 export type LucideIcon = ComponentType<LucideProps>;
@@ -90,14 +91,17 @@ const ICON_MAP = new Map(ALL_ICONS.map(item => [item.name, item.Icon]));
 export const CONTEXT_ICONS = ALL_ICONS;
 export const DEFAULT_CONTEXT_ICON = 'Lightbulb';
 
-interface IconPickerProps {
+interface CustomizeDialogProps {
   selectedIcon?: string;
   selectedColor?: string | null;
+  selectedMode?: ContextMode | null;
+  showModeToggle?: boolean;
+  onModeChange?: (mode: ContextMode) => void;
   onSelect: (selection: IconSelection) => void;
   onClose: () => void;
 }
 
-export function IconPicker({ selectedIcon, selectedColor, onSelect, onClose }: IconPickerProps) {
+export function CustomizeDialog({ selectedIcon, selectedColor, selectedMode, showModeToggle, onModeChange, onSelect, onClose }: CustomizeDialogProps) {
   const [currentIcon, setCurrentIcon] = useState(selectedIcon || '');
 
   const {
@@ -133,7 +137,11 @@ export function IconPicker({ selectedIcon, selectedColor, onSelect, onClose }: I
 
   const handleConfirm = () => {
     if (currentIcon) {
-      onSelect({ icon: currentIcon, color: currentColor || undefined });
+      onSelect({
+        icon: currentIcon,
+        color: currentColor || undefined,
+        mode: showModeToggle ? (selectedMode || 'collaborate') : undefined,
+      });
       onClose();
     }
   };
@@ -142,7 +150,7 @@ export function IconPicker({ selectedIcon, selectedColor, onSelect, onClose }: I
     <div className="icon-picker-overlay">
       <div ref={dialogRef} className="icon-picker-dialog">
         <div className="icon-picker-header">
-          <h3>Customize icon</h3>
+          <h3>Customize</h3>
           <button className="icon-picker-close" onClick={onClose}>×</button>
         </div>
 
@@ -215,6 +223,26 @@ export function IconPicker({ selectedIcon, selectedColor, onSelect, onClose }: I
             </div>
           </div>
         </div>
+
+        {showModeToggle && (
+          <div className="icon-picker-mode-section">
+            <div className="icon-picker-mode-label">Context mode</div>
+            <div className="icon-picker-mode-toggle">
+              <button
+                className={`icon-picker-mode-option ${selectedMode === 'collaborate' ? 'selected' : ''}`}
+                onClick={() => onModeChange?.('collaborate')}
+              >
+                Collaborate
+              </button>
+              <button
+                className={`icon-picker-mode-option ${selectedMode === 'execute' ? 'selected' : ''}`}
+                onClick={() => onModeChange?.('execute')}
+              >
+                Execute
+              </button>
+            </div>
+          </div>
+        )}
 
         <div className="icon-picker-footer">
           <div className="icon-picker-preview-icon">

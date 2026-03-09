@@ -101,7 +101,7 @@ describe('NodeGutter', () => {
           hasChildren={false}
           expanded={true}
           onToggle={mockOnToggle}
-          appliedContext={{ icon: 'star', color: undefined, name: 'My Context' }}
+          appliedContext={{ icon: 'star', color: undefined, name: 'My Context', mode: 'collaborate' }}
         />
       );
 
@@ -130,7 +130,7 @@ describe('NodeGutter', () => {
           hasChildren={true}
           expanded={true}
           onToggle={mockOnToggle}
-          appliedContext={{ icon: 'star', color: undefined, name: 'My Context' }}
+          appliedContext={{ icon: 'star', color: undefined, name: 'My Context', mode: 'collaborate' }}
         />
       );
 
@@ -145,7 +145,7 @@ describe('NodeGutter', () => {
           hasChildren={false}
           expanded={true}
           onToggle={mockOnToggle}
-          appliedContext={{ icon: 'star', color: undefined, name: 'My Context' }}
+          appliedContext={{ icon: 'star', color: undefined, name: 'My Context', mode: 'collaborate' }}
         />
       );
 
@@ -164,7 +164,7 @@ describe('NodeGutter', () => {
           hasChildren={false}
           expanded={true}
           onToggle={mockOnToggle}
-          appliedContext={{ icon: 'star', color: undefined, name: 'My Context' }}
+          appliedContext={{ icon: 'star', color: undefined, name: 'My Context', mode: 'collaborate' }}
         />
       );
 
@@ -194,7 +194,7 @@ describe('NodeGutter', () => {
           hasChildren={false}
           expanded={true}
           onToggle={mockOnToggle}
-          appliedContext={{ icon: 'star', color: undefined, name: 'My Context' }}
+          appliedContext={{ icon: 'star', color: undefined, name: 'My Context', mode: 'collaborate' }}
         />
       );
 
@@ -208,7 +208,7 @@ describe('NodeGutter', () => {
           hasChildren={false}
           expanded={true}
           onToggle={mockOnToggle}
-          appliedContext={{ icon: 'star', color: undefined, name: 'My Context' }}
+          appliedContext={{ icon: 'star', color: undefined, name: 'My Context', mode: 'collaborate' }}
         />
       );
 

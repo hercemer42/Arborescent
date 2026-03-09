@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState, useMemo, useCallback } from 'react';
 import { useDialogBehavior } from '../../../../hooks';
-import { LucideIcon } from '../IconPicker';
+import { LucideIcon } from '../CustomizeDialog';
 
 interface IconItem {
   Icon: LucideIcon;

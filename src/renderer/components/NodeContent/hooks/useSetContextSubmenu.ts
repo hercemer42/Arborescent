@@ -3,7 +3,7 @@ import { TreeNode } from '../../../../shared/types';
 import { ContextMenuItem } from '../../ui/ContextMenu';
 import { AncestorRegistry } from '../../../utils/ancestry';
 import { ContextDeclarationInfo } from '../../../store/tree/treeStore';
-import { getIconByName } from '../../ui/IconPicker/IconPicker';
+import { getIconByName } from '../../ui/CustomizeDialog/CustomizeDialog';
 import { getInheritedContextId } from '../../../utils/nodeHelpers';
 
 interface BuildSetContextSubmenuParams {

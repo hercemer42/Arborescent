@@ -17,6 +17,7 @@ describe('buildBlueprintSubmenu', () => {
     onRemoveFromBlueprint: vi.fn(),
     onDeclareAsContext: vi.fn(),
     onRemoveContextDeclaration: vi.fn(),
+    onSetContextMode: vi.fn(),
     onDeclareAsWorkflow: vi.fn(),
     onRemoveFromWorkflow: vi.fn(),
   };
@@ -232,5 +233,61 @@ describe('buildBlueprintSubmenu', () => {
     });
 
     expect(result!.submenu!.some(item => item.label === 'Declare as Workflow')).toBe(false);
+  });
+
+  describe('context mode submenu', () => {
+    it('should show Context mode submenu for context declarations', () => {
+      const result = buildBlueprintSubmenu(buildParams({
+        node: createNode('target', { metadata: { isBlueprint: true, isContextDeclaration: true, contextMode: 'collaborate' } }),
+      }));
+
+      const modeItem = result!.submenu!.find(item => item.label === 'Context mode');
+      expect(modeItem).toBeDefined();
+      expect(modeItem!.submenu).toHaveLength(2);
+    });
+
+    it('should show Collaborate as selected when context mode is collaborate', () => {
+      const result = buildBlueprintSubmenu(buildParams({
+        node: createNode('target', { metadata: { isBlueprint: true, isContextDeclaration: true, contextMode: 'collaborate' } }),
+      }));
+
+      const modeItem = result!.submenu!.find(item => item.label === 'Context mode');
+      const collaborateOption = modeItem!.submenu!.find(item => item.label === 'Collaborate');
+      const executeOption = modeItem!.submenu!.find(item => item.label === 'Execute');
+      expect(collaborateOption?.radioSelected).toBe(true);
+      expect(executeOption?.radioSelected).toBe(false);
+    });
+
+    it('should show Execute as selected when context mode is execute', () => {
+      const result = buildBlueprintSubmenu(buildParams({
+        node: createNode('target', { metadata: { isBlueprint: true, isContextDeclaration: true, contextMode: 'execute' } }),
+      }));
+
+      const modeItem = result!.submenu!.find(item => item.label === 'Context mode');
+      const executeOption = modeItem!.submenu!.find(item => item.label === 'Execute');
+      expect(executeOption?.radioSelected).toBe(true);
+    });
+
+    it('should call onSetContextMode when clicking a mode option', () => {
+      const onSetContextMode = vi.fn();
+      const result = buildBlueprintSubmenu(buildParams({
+        node: createNode('target', { metadata: { isBlueprint: true, isContextDeclaration: true, contextMode: 'collaborate' } }),
+        handlers: { onSetContextMode },
+      }));
+
+      const modeItem = result!.submenu!.find(item => item.label === 'Context mode');
+      const executeOption = modeItem!.submenu!.find(item => item.label === 'Execute');
+      executeOption?.onClick?.();
+      expect(onSetContextMode).toHaveBeenCalledWith('execute');
+    });
+
+    it('should not show Context mode submenu for non-context declarations', () => {
+      const result = buildBlueprintSubmenu(buildParams({
+        node: createNode('target', { metadata: { isBlueprint: true } }),
+      }));
+
+      const modeItem = result!.submenu!.find(item => item.label === 'Context mode');
+      expect(modeItem).toBeUndefined();
+    });
   });
 });

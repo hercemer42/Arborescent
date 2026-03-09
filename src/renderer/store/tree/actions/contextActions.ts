@@ -1,14 +1,15 @@
 import { TreeNode } from '../../../../shared/types';
-import { updateNodeMetadata, getAllDescendants } from '../../../utils/nodeHelpers';
+import { updateNodeMetadata, BASIC_EXECUTE_CONTEXT_ID } from '../../../utils/nodeHelpers';
 import { logger } from '../../../services/logger';
 import { useToastStore } from '../../toast/toastStore';
-import { ContextDeclarationInfo } from '../treeStore';
+import { ContextDeclarationInfo, ContextMode } from '../treeStore';
 import { AncestorRegistry } from '../../../utils/ancestry';
-
-export type ContextActionType = 'execute' | 'collaborate';
+import { Command } from '../commands/Command';
+import { DeclareContextCommand } from '../commands/DeclareContextCommand';
+import { RemoveContextCommand } from '../commands/RemoveContextCommand';
 
 export interface ContextActions {
-  declareAsContext: (nodeId: string, icon?: string, color?: string) => void;
+  declareAsContext: (nodeId: string, icon?: string, color?: string, mode?: ContextMode) => void;
   removeContextDeclaration: (nodeId: string) => void;
   applyContext: (nodeId: string, contextNodeId: string) => void;
   removeAppliedContext: (nodeId: string, contextNodeId?: string) => void;
@@ -25,36 +26,9 @@ function buildContextDeclarations(nodes: Record<string, TreeNode>): ContextDecla
       content: node.content || 'Untitled context',
       icon: (node.metadata.blueprintIcon as string) || 'lightbulb',
       color: node.metadata.blueprintColor as string | undefined,
+      mode: (node.metadata.contextMode as ContextMode) || 'collaborate',
     }))
     .sort((a, b) => a.content.localeCompare(b.content));
-}
-
-function removeAppliedContextFromAllNodes(
-  contextNodeId: string,
-  nodes: Record<string, TreeNode>
-): Record<string, TreeNode> {
-  let updatedNodes = nodes;
-
-  for (const node of Object.values(nodes)) {
-    const ids = (node.metadata.appliedContextIds as string[]) || [];
-    if (ids.includes(contextNodeId)) {
-      const newIds = ids.filter(id => id !== contextNodeId);
-      const metadataUpdates: Record<string, unknown> = {
-        appliedContextIds: newIds.length > 0 ? newIds : undefined,
-      };
-
-      const currentActiveContextId = node.metadata.activeContextId as string | undefined;
-      if (newIds.length === 0) {
-        metadataUpdates.activeContextId = undefined;
-      } else if (currentActiveContextId === contextNodeId) {
-        metadataUpdates.activeContextId = newIds[0];
-      }
-
-      updatedNodes = updateNodeMetadata(updatedNodes, node.id, metadataUpdates);
-    }
-  }
-
-  return updatedNodes;
 }
 
 type StoreState = {
@@ -67,7 +41,8 @@ type StoreSetter = (partial: Partial<StoreState> | ((state: StoreState) => Parti
 export const createContextActions = (
   get: () => StoreState,
   set: StoreSetter,
-  triggerAutosave?: () => void
+  triggerAutosave?: () => void,
+  executeCommand?: (command: Command) => void
 ): ContextActions => {
   function refreshContextDeclarations(): void {
     const { nodes } = get();
@@ -76,7 +51,7 @@ export const createContextActions = (
     }, 0);
   }
 
-  function declareAsContext(nodeId: string, icon?: string, color?: string): void {
+  function declareAsContext(nodeId: string, icon?: string, color?: string, mode?: ContextMode): void {
     const { nodes, ancestorRegistry } = get();
     const node = nodes[nodeId];
     if (!node) return;
@@ -91,90 +66,50 @@ export const createContextActions = (
 
     const blueprintIcon = icon || 'lightbulb';
     const blueprintColor = color || undefined;
+    const contextMode = mode || 'collaborate';
 
-    let updatedNodes = updateNodeMetadata(nodes, nodeId, {
-      isContextDeclaration: true,
+    const command = new DeclareContextCommand(
+      nodeId,
       blueprintIcon,
       blueprintColor,
-      isBlueprint: true,
-    });
+      contextMode,
+      () => get().nodes,
+      (updatedNodes) => set({ nodes: updatedNodes }),
+      triggerAutosave,
+      refreshContextDeclarations
+    );
 
-    const descendantIds = getAllDescendants(nodeId, nodes);
-    const nestedContextIds = new Set<string>();
-
-    for (const descendantId of descendantIds) {
-      const descendant = updatedNodes[descendantId];
-      if (descendant?.metadata.isContextDeclaration === true) {
-        nestedContextIds.add(descendantId);
-        const nestedDescendants = getAllDescendants(descendantId, nodes);
-        for (const nestedId of nestedDescendants) {
-          nestedContextIds.add(nestedId);
-        }
-      }
+    if (executeCommand) {
+      executeCommand(command);
+    } else {
+      command.execute();
     }
-
-    for (const descendantId of descendantIds) {
-      if (nestedContextIds.has(descendantId)) continue;
-
-      updatedNodes = updateNodeMetadata(updatedNodes, descendantId, {
-        isBlueprint: true,
-      });
-    }
-
-    set({ nodes: updatedNodes });
 
     logger.info(`Node ${nodeId} declared as context with icon ${blueprintIcon}`, 'Context');
-
-    triggerAutosave?.();
-    refreshContextDeclarations();
   }
 
   function removeContextDeclaration(nodeId: string): void {
-    const { nodes, ancestorRegistry } = get();
+    const { nodes } = get();
     const node = nodes[nodeId];
     if (!node) return;
 
-    const ancestors = ancestorRegistry[nodeId] || [];
-    const hasAncestorContext = ancestors.some(
-      ancestorId => nodes[ancestorId]?.metadata.isContextDeclaration === true
+    const command = new RemoveContextCommand(
+      nodeId,
+      () => get().nodes,
+      () => get().ancestorRegistry,
+      (updatedNodes) => set({ nodes: updatedNodes }),
+      triggerAutosave,
+      refreshContextDeclarations
     );
 
-    let updatedNodes: Record<string, TreeNode>;
-    if (hasAncestorContext) {
-      updatedNodes = updateNodeMetadata(nodes, nodeId, {
-        isContextDeclaration: false,
-        blueprintIcon: undefined,
-        blueprintColor: undefined,
-      });
+    if (executeCommand) {
+      executeCommand(command);
     } else {
-      updatedNodes = updateNodeMetadata(nodes, nodeId, {
-        isContextDeclaration: false,
-        blueprintIcon: undefined,
-        blueprintColor: undefined,
-        isBlueprint: false,
-      });
-
-      const descendantIds = getAllDescendants(nodeId, nodes);
-      for (const descendantId of descendantIds) {
-        const descendant = updatedNodes[descendantId];
-        if (!descendant) continue;
-        if (descendant.metadata.isContextDeclaration === true) continue;
-
-        updatedNodes = updateNodeMetadata(updatedNodes, descendantId, {
-          isBlueprint: false,
-        });
-      }
+      command.execute();
     }
-
-    updatedNodes = removeAppliedContextFromAllNodes(nodeId, updatedNodes);
-
-    set({ nodes: updatedNodes });
 
     useToastStore.getState().addToast('Context declaration removed', 'info');
     logger.info(`Context declaration removed from node ${nodeId}`, 'Context');
-
-    triggerAutosave?.();
-    refreshContextDeclarations();
   }
 
   function applyContext(nodeId: string, contextNodeId: string): void {
@@ -258,7 +193,7 @@ export const createContextActions = (
     const node = nodes[nodeId];
     if (!node) return;
 
-    if (contextNodeId !== null && !nodes[contextNodeId]) {
+    if (contextNodeId !== null && contextNodeId !== BASIC_EXECUTE_CONTEXT_ID && !nodes[contextNodeId]) {
       useToastStore.getState().addToast('Context does not exist', 'error');
       return;
     }

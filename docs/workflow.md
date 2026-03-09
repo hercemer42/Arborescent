@@ -12,7 +12,7 @@ Each branch has a status: unchecked, completed, or abandoned. Press `Ctrl+K` to 
 
 Before sending your prompt to an AI, you can apply a [context](contexts.md). Contexts are reusable instructions that tell the AI how to respond — they can be project conventions, coding style, review criteria, whatever you don't want to repeat.
 
-Right-click any branch → **Execute** or **Collaborate** → apply a context from the list. The context applies to that branch and all its descendants.
+Right-click any branch → **Send** → apply a context from the list. The context applies to that branch and all its descendants.
 
 ## Log In to Your AI
 
@@ -20,22 +20,27 @@ Before sending prompts, open the Terminal panel (`` Ctrl+` ``) or Browser panel 
 
 ## Send Your Prompt
 
-Two ways to send your work:
+Right-click any branch → **Send** → **In terminal** or **In browser**.
 
-**Execute** sends content for immediate action. Use this when you want the AI to do something—like generate code or answer a question.
+What happens depends on the context's mode:
 
-- **In Terminal**: Content goes directly to your terminal AI.
-- **In Browser**: Content is copied to clipboard. Paste it into your browser-based AI.
+**Execute** sends content for immediate action. Use this when you want the AI to do something — generate code, answer a question, run a task.
+
+- **In terminal**: Content goes directly to your terminal AI.
+- **In browser**: Content is copied to clipboard. Paste it into your browser-based AI.
 
 **Collaborate** initiates a feedback loop. Use this when you want to refine your thinking with AI assistance.
 
 - Content is sent with instructions for the AI to review and suggest changes.
-- The AI response appears in the Feedback panel (right side).
-- Edit the response if needed.
-- Accept to replace your original branch, or Cancel to keep it.
-- There is a default context provided to review a list and suggest improvements. You can replace this with your own custom context, for instance critique a list, reduce it, translate it etc.
+- The AI response appears in the Feedback panel.
+- Edit the response if needed, then Accept or Cancel.
 
-Keyboard shortcuts: `Ctrl+E` for Execute (in terminal), `Ctrl+Shift+Enter` for Collaborate (in terminal).  (Be sure to log in to your AI first)
+Two built-in contexts are available when no user-defined context is applied:
+
+- **Basic review** (collaborate) — Reviews your content and suggests improvements. This is the default.
+- **Basic execution** (execute) — Executes the task described in your content directly.
+
+Keyboard shortcuts: `Ctrl+E` (send in terminal), `Ctrl+Shift+E` (send in browser). The applied context's mode determines whether it executes or collaborates.
 
 ### How it works
 

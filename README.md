@@ -35,7 +35,7 @@ Here is Arborescent being used to build itself:
 1. [Download the latest release](https://github.com/hercemer42/Arborescent/releases)
 2. Break down your task
 3. Open your preferred AI in the terminal or browser
-4. Right-click to send your prompt
+4. Right-click → **Send** to send your prompt
 
 This is an early release — if you find bugs or have feedback, please [open an issue](https://github.com/hercemer42/Arborescent/issues).  
 If you run into any blockers, restart the application with Ctrl + R without losing your work.

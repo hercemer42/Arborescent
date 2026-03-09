@@ -292,33 +292,32 @@ describe('useNodeContextMenu', () => {
     mockConfirm.mockRestore();
   });
 
-  it('should have Collaborate submenu with In browser and In terminal options', async () => {
+  it('should have Send submenu with In browser and In terminal options', async () => {
     const { result } = renderHook(() => useNodeContextMenu(mockNode), { wrapper });
 
     await openContextMenu(result);
 
-    const collaborateMenu = result.current.contextMenuItems.find(item => item.label === 'Collaborate');
-    expect(collaborateMenu).toBeDefined();
-    expect(collaborateMenu?.submenu?.find(item => item.label === 'In browser')).toBeDefined();
-    expect(collaborateMenu?.submenu?.find(item => item.label === 'In terminal')).toBeDefined();
+    const sendMenu = result.current.contextMenuItems.find(item => item.label === 'Send');
+    expect(sendMenu).toBeDefined();
+    expect(sendMenu?.submenu?.find(item => item.label === 'In browser')).toBeDefined();
+    expect(sendMenu?.submenu?.find(item => item.label === 'In terminal')).toBeDefined();
   });
 
-  it('should have correct menu order: Execute, Collaborate, Edit', async () => {
+  it('should have correct menu order: Send, Edit', async () => {
     const { result } = renderHook(() => useNodeContextMenu(mockNode), { wrapper });
 
     await openContextMenu(result);
 
     const labels = result.current.contextMenuItems.map(item => item.label);
-    const executeIndex = labels.indexOf('Execute');
-    const collaborateIndex = labels.indexOf('Collaborate');
+    const sendIndex = labels.indexOf('Send');
     const editIndex = labels.indexOf('Edit');
 
-    expect(executeIndex).toBeLessThan(collaborateIndex);
-    expect(collaborateIndex).toBeLessThan(editIndex);
+    expect(sendIndex).toBeGreaterThanOrEqual(0);
+    expect(sendIndex).toBeLessThan(editIndex);
   });
 
-  describe('context selection in execute/collaborate', () => {
-    it('should show available contexts in Execute submenu', async () => {
+  describe('context selection in Send submenu', () => {
+    it('should show available contexts in Send submenu', async () => {
       const contextNode: TreeNode = {
         id: 'context-node',
         content: 'My Context',
@@ -336,7 +335,7 @@ describe('useNodeContextMenu', () => {
           'context-node': [],
         },
         contextDeclarations: [
-          { nodeId: 'context-node', content: 'My Context', icon: 'star' },
+          { nodeId: 'context-node', content: 'My Context', icon: 'star', mode: 'collaborate' },
         ],
       });
 
@@ -344,44 +343,11 @@ describe('useNodeContextMenu', () => {
 
       await openContextMenu(result);
 
-      const executeMenu = result.current.contextMenuItems.find(item => item.label === 'Execute');
+      const sendMenu = result.current.contextMenuItems.find(item => item.label === 'Send');
       // Should have base actions + separator + heading + context
-      expect(executeMenu?.submenu?.length).toBeGreaterThan(2);
-      expect(executeMenu?.submenu?.find(item => item.label === 'Apply a context')).toBeDefined();
-      expect(executeMenu?.submenu?.find(item => item.label === 'My Context')).toBeDefined();
-    });
-
-    it('should show available contexts in Collaborate submenu', async () => {
-      const contextNode: TreeNode = {
-        id: 'context-node',
-        content: 'My Context',
-        children: [],
-        metadata: { isContextDeclaration: true, blueprintIcon: 'star' },
-      };
-
-      store.setState({
-        nodes: {
-          'test-node': mockNode,
-          'context-node': contextNode,
-        },
-        ancestorRegistry: {
-          'test-node': [],
-          'context-node': [],
-        },
-        contextDeclarations: [
-          { nodeId: 'context-node', content: 'My Context', icon: 'star' },
-        ],
-      });
-
-      const { result } = renderHook(() => useNodeContextMenu(mockNode), { wrapper });
-
-      await openContextMenu(result);
-
-      const collaborateMenu = result.current.contextMenuItems.find(item => item.label === 'Collaborate');
-      // Should have base actions + separator + heading + context
-      expect(collaborateMenu?.submenu?.length).toBeGreaterThan(2);
-      expect(collaborateMenu?.submenu?.find(item => item.label === 'Apply a context')).toBeDefined();
-      expect(collaborateMenu?.submenu?.find(item => item.label === 'My Context')).toBeDefined();
+      expect(sendMenu?.submenu?.length).toBeGreaterThan(2);
+      expect(sendMenu?.submenu?.find(item => item.label === 'Apply a context')).toBeDefined();
+      expect(sendMenu?.submenu?.find(item => item.label === 'My Context')).toBeDefined();
     });
   });
 
@@ -424,7 +390,7 @@ describe('useNodeContextMenu', () => {
 
       await openContextMenuWithTimers(result);
 
-      expect(result.current.contextMenuItems.find(item => item.label === 'Execute')).toBeDefined();
+      expect(result.current.contextMenuItems.find(item => item.label === 'Send')).toBeDefined();
       expect(result.current.contextMenuItems.find(item => item.label === 'Edit')).toBeDefined();
     });
 
@@ -437,7 +403,7 @@ describe('useNodeContextMenu', () => {
 
       await openContextMenuWithTimers(result);
 
-      expect(result.current.contextMenuItems.find(item => item.label === 'Execute')).toBeDefined();
+      expect(result.current.contextMenuItems.find(item => item.label === 'Send')).toBeDefined();
       expect(result.current.contextMenuItems.find(item => item.label === 'Edit')).toBeDefined();
     });
 
@@ -468,7 +434,7 @@ describe('useNodeContextMenu', () => {
       const separatorIndex = result.current.contextMenuItems.findIndex(item => item.separator);
       expect(separatorIndex).toBeGreaterThan(0);
 
-      expect(result.current.contextMenuItems.find(item => item.label === 'Execute')).toBeDefined();
+      expect(result.current.contextMenuItems.find(item => item.label === 'Send')).toBeDefined();
       expect(result.current.contextMenuItems.find(item => item.label === 'Edit')).toBeDefined();
     });
 
@@ -490,9 +456,8 @@ describe('useNodeContextMenu', () => {
       const editMenu = result.current.contextMenuItems.find(item => item.label === 'Edit');
       expect(editMenu).toBeDefined();
 
-      // Should NOT have Execute, Collaborate, Blueprint, Status, Zoom
-      expect(result.current.contextMenuItems.find(item => item.label === 'Execute')).toBeUndefined();
-      expect(result.current.contextMenuItems.find(item => item.label === 'Collaborate')).toBeUndefined();
+      // Should NOT have Send, Blueprint, Status, Zoom
+      expect(result.current.contextMenuItems.find(item => item.label === 'Send')).toBeUndefined();
       expect(result.current.contextMenuItems.find(item => item.label === 'Blueprint')).toBeUndefined();
       expect(result.current.contextMenuItems.find(item => item.label === 'Status')).toBeUndefined();
       expect(result.current.contextMenuItems.find(item => item.label === 'Zoom')).toBeUndefined();
@@ -557,9 +522,8 @@ describe('useNodeContextMenu', () => {
       const editIndex = result.current.contextMenuItems.findIndex(item => item.label === 'Edit');
       expect(editIndex).toBeGreaterThan(separatorIndex);
 
-      // Still should not have Execute/Collaborate
-      expect(result.current.contextMenuItems.find(item => item.label === 'Execute')).toBeUndefined();
-      expect(result.current.contextMenuItems.find(item => item.label === 'Collaborate')).toBeUndefined();
+      // Still should not have Send
+      expect(result.current.contextMenuItems.find(item => item.label === 'Send')).toBeUndefined();
 
       vi.useRealTimers();
     });
@@ -607,13 +571,12 @@ describe('useNodeContextMenu', () => {
       expect(openExternalItem).toBeDefined();
     });
 
-    it('should not show Execute, Collaborate, Blueprint for external links', async () => {
+    it('should not show Send or Blueprint for external links', async () => {
       const { result } = renderHook(() => useNodeContextMenu(externalLinkNode), { wrapper });
 
       await openContextMenu(result);
 
-      expect(result.current.contextMenuItems.find(item => item.label === 'Execute')).toBeUndefined();
-      expect(result.current.contextMenuItems.find(item => item.label === 'Collaborate')).toBeUndefined();
+      expect(result.current.contextMenuItems.find(item => item.label === 'Send')).toBeUndefined();
       expect(result.current.contextMenuItems.find(item => item.label === 'Blueprint')).toBeUndefined();
     });
 

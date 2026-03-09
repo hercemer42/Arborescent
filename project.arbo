@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-03-09T10:49:33.162Z'
+updated: '2026-03-09T15:09:03.590Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -5150,6 +5150,7 @@ nodes:
       - cf05c8d6-6e82-43fd-95f7-03ad599d38c5
       - a16fa143-942d-4f74-a229-8e015a30df14
       - 270b22dc-7a02-4573-aafe-ebb48ffe8e0f
+      - f36b80da-4046-40c7-bd0e-0606cfe0975c
       - fb175b88-269f-45a4-ad32-c4592816b154
       - 3666246b-6557-4e87-9b1d-02d9292fe157
     metadata:
@@ -5311,9 +5312,7 @@ nodes:
     id: 984247e7-2d55-4b93-80e8-f84818901621
     content: Backlog
     children:
-      - 2bc9cb97-6351-427b-b426-3e1a983e596e
       - 1b042a84-748d-4b32-bee9-f2031727c811
-      - 41e1cdfe-d083-48a0-b414-3f92d8c2e5d2
       - 0b8d15ca-ea15-4817-aa86-45d795dc5047
       - b82ab806-5034-47b1-8fbc-7b388030b107
       - 550cf0db-6b43-43d9-8d43-7956b3fdc2d8
@@ -5332,7 +5331,7 @@ nodes:
       isBlueprint: true
       blueprintIcon: LayoutList
       blueprintColor: '#a855f7'
-      appliedContextId: e8824b29-eb18-4031-9e35-b321a864d418
+      appliedContextId: 0d19da53-f3a7-4ee4-b495-b59f127671fa
   b8521434-96cd-4258-b87e-876dc7276241:
     id: b8521434-96cd-4258-b87e-876dc7276241
     content: Context System Redesign
@@ -5627,6 +5626,7 @@ nodes:
     children:
       - 6f183ad1-988e-413a-83e2-30b5b08fc898
       - 111dc3fc-8344-4110-8e05-ef7332471a99
+      - 68aab223-b6c1-46df-b80a-34f8898c4a67
     metadata:
       status: pending
       isBlueprint: true
@@ -6201,13 +6201,14 @@ nodes:
       isBlueprint: true
   0cc62ae1-1a7a-4aa4-bc6a-d817cabd672c:
     id: 0cc62ae1-1a7a-4aa4-bc6a-d817cabd672c
-    content: Refactor
+    content: User refactor
     children:
       - 92796c60-443b-46cd-bcd3-5bca0ee98c3c
       - a4c333be-a8a4-4c0f-8148-b2260507f5ad
+      - 40dda755-258b-46e5-b208-1dd30ccfca1d
     metadata:
       status: pending
-      expanded: false
+      expanded: true
       appliedContextIds:
         - 64ea2af4-332b-44a6-8b88-78535cc9b79a
       activeContextId: 64ea2af4-332b-44a6-8b88-78535cc9b79a
@@ -18384,13 +18385,14 @@ nodes:
       - a14c2a95-a7a4-4128-9b32-9f5cb9c3a45a
       - 4a24bd5f-7858-4d3e-8e10-6e09d39a2b0a
       - 6b112872-41f7-4a7a-bc7d-7a2fa3dd05f6
+      - ea5b5fea-402a-4ec9-aa4f-8a4647c20d0c
     metadata:
       status: pending
       isBlueprint: true
       blueprintIcon: BookA
       blueprintColor: '#0c6f9d'
       isContextDeclaration: true
-      expanded: true
+      expanded: false
   bfe8794a-2209-4c09-ba88-c4c951928b76:
     id: bfe8794a-2209-4c09-ba88-c4c951928b76
     content: 'Document this feature given the following conventions :'
@@ -19547,7 +19549,9 @@ nodes:
     id: 5fcc7b6b-25d0-4c23-8529-f8a6b9af81e8
     content: Backlog
     children:
+      - f1368f57-d8b2-46ce-99f0-79069355a299
       - bbf5afa8-47fc-46c5-9ddf-62502640b74e
+      - 46f6965a-8da4-4dab-9e25-7dd3d2773bd7
       - 26dc74b0-c926-4461-b81a-7b6cd95864f6
       - 533210b8-5c42-48f7-ab9a-bea602ae7ed2
     metadata:
@@ -19555,7 +19559,7 @@ nodes:
       isBlueprint: true
       blueprintIcon: LayoutList
       blueprintColor: '#a855f7'
-      expanded: false
+      expanded: true
   03238058-24ff-4f1d-956f-4a4d52bdbe85:
     id: 03238058-24ff-4f1d-956f-4a4d52bdbe85
     content: It doesn't consider the default context applied in collaborate mode ("Basic review (default)")
@@ -24549,74 +24553,22 @@ nodes:
       status: pending
   1b042a84-748d-4b32-bee9-f2031727c811:
     id: 1b042a84-748d-4b32-bee9-f2031727c811
-    content: Integrate with Claude SDK to enable parallelized tasks
+    content: Workflow automation
     children:
-      - ea66b610-cfba-4bb7-b2ea-35b75cd8627d
-      - b1b8d2ea-f07a-4e54-8d75-8fa67f720b85
+      - c43bb448-4774-462c-8fce-426cbe05c771
+      - 5d139218-0412-4eb9-ace6-14820ac6a497
+      - 3ca13558-1be2-41a9-b7fe-562da82af55d
+      - 5c7425f7-f032-474e-b5ad-c2f01aad3caf
+      - 8c275ef0-95e9-42e8-bba5-4f2dd73e54cc
+      - c06d8364-1748-4d8f-b250-9e9f06bcbcf1
+      - e907dae8-abc5-4ae3-a774-d9b2c681f813
+      - facc3297-de32-4491-9342-822dccc67bd3
+      - 0a88cce3-b9ae-423b-8f33-aa9f1ea05074
     metadata:
       status: pending
-      isBlueprint: false
-      expanded: false
-      isContextDeclaration: false
-  ea66b610-cfba-4bb7-b2ea-35b75cd8627d:
-    id: ea66b610-cfba-4bb7-b2ea-35b75cd8627d
-    content: Create an adapter for the Claude SDK
-    children: []
-    metadata:
-      status: pending
-      isBlueprint: false
-      isContextDeclaration: false
-  b1b8d2ea-f07a-4e54-8d75-8fa67f720b85:
-    id: b1b8d2ea-f07a-4e54-8d75-8fa67f720b85
-    content: Enable types for workflow steps
-    children:
-      - c4019eec-af78-468e-88da-d1f7c3fd7a40
-      - afbae4d0-d907-45d9-839c-ac4cfd171404
-      - a7c84a2c-9a5a-427c-ab8b-654e3d26e724
-      - ebbae30f-8d8d-4cf9-84b8-d537e0e6a5cf
-    metadata:
-      status: pending
-      isBlueprint: false
-      isContextDeclaration: false
-  c4019eec-af78-468e-88da-d1f7c3fd7a40:
-    id: c4019eec-af78-468e-88da-d1f7c3fd7a40
-    content: Autonomous
-    children:
-      - 8028cc72-d335-40b9-9b56-f3ee0e05ffc9
-    metadata:
-      status: pending
-  a7c84a2c-9a5a-427c-ab8b-654e3d26e724:
-    id: a7c84a2c-9a5a-427c-ab8b-654e3d26e724
-    content: Manual
-    children:
-      - 6a389e83-8568-4cc7-a597-b8d7161fe7dd
-    metadata:
-      status: pending
-  8028cc72-d335-40b9-9b56-f3ee0e05ffc9:
-    id: 8028cc72-d335-40b9-9b56-f3ee0e05ffc9
-    content: If the workflow step is autonomous, on completion it automatically sends the node to the next step and executes it
-    children: []
-    metadata:
-      status: pending
-  6a389e83-8568-4cc7-a597-b8d7161fe7dd:
-    id: 6a389e83-8568-4cc7-a597-b8d7161fe7dd
-    content: If the workflow is manual, the user is responsible for running it
-    children: []
-    metadata:
-      status: pending
-  afbae4d0-d907-45d9-839c-ac4cfd171404:
-    id: afbae4d0-d907-45d9-839c-ac4cfd171404
-    content: Checkpoint
-    children:
-      - 2ed83f3d-a7de-46ac-a2ca-9a7036e89d20
-    metadata:
-      status: pending
-  2ed83f3d-a7de-46ac-a2ca-9a7036e89d20:
-    id: 2ed83f3d-a7de-46ac-a2ca-9a7036e89d20
-    content: At the end of the step, the user is prompted to continue or not
-    children: []
-    metadata:
-      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
   8b4835f4-b4b2-4fcb-b881-9144640beaf5:
     id: 8b4835f4-b4b2-4fcb-b881-9144640beaf5
     content: Consider the existing functionality in the code base related to the feature
@@ -27477,7 +27429,8 @@ nodes:
   74459170-c406-4138-ab6f-6b717545e61a:
     id: 74459170-c406-4138-ab6f-6b717545e61a
     content: Validate
-    children: []
+    children:
+      - daeb4326-6a81-4b77-ac8e-e410ac8c493b
     metadata:
       status: pending
       isBlueprint: true
@@ -27486,14 +27439,13 @@ nodes:
   4c43c117-e89a-460c-9900-7ea15b8cc0e0:
     id: 4c43c117-e89a-460c-9900-7ea15b8cc0e0
     content: Product review
-    children:
-      - f0f27878-1a15-4bd6-9181-f72eff44de89
+    children: []
     metadata:
       status: pending
-      appliedContextId: e8824b29-eb18-4031-9e35-b321a864d418
       isBlueprint: true
       blueprintIcon: Eye
       blueprintColor: '#0ea5e9'
+      expanded: true
   d96ce5f9-1c66-4a32-8170-6e2abdb4cc17:
     id: d96ce5f9-1c66-4a32-8170-6e2abdb4cc17
     content: Product refinement
@@ -27525,12 +27477,6 @@ nodes:
   f2c53414-e3a2-4561-8d96-4690342da2c8:
     id: f2c53414-e3a2-4561-8d96-4690342da2c8
     content: Also clean up templates
-    children: []
-    metadata:
-      status: pending
-  ebbae30f-8d8d-4cf9-84b8-d537e0e6a5cf:
-    id: ebbae30f-8d8d-4cf9-84b8-d537e0e6a5cf
-    content: ''
     children: []
     metadata:
       status: pending
@@ -29051,115 +28997,3411 @@ nodes:
     metadata:
       status: pending
       isBlueprint: true
-  2bc9cb97-6351-427b-b426-3e1a983e596e:
-    id: 2bc9cb97-6351-427b-b426-3e1a983e596e
-    content: Write directly to stdin when execuiting
+  68aab223-b6c1-46df-b80a-34f8898c4a67:
+    id: 68aab223-b6c1-46df-b80a-34f8898c4a67
+    content: Be concrete about your suggestions, propose a UI flow
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  f36b80da-4046-40c7-bd0e-0606cfe0975c:
+    id: f36b80da-4046-40c7-bd0e-0606cfe0975c
+    content: Think like a product manager, not a developer
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  daeb4326-6a81-4b77-ac8e-e410ac8c493b:
+    id: daeb4326-6a81-4b77-ac8e-e410ac8c493b
+    content: Unify collaborate and execute under a single context-driven "Send" action
     children:
-      - 25309d0e-cd74-4910-8f5c-c7ef6de7f53f
-      - 4c224598-c08a-4b7f-be33-2ab75c631c81
+      - 5d896bbc-9040-470d-a89b-b752445f3287
+      - 43dd9e34-b1c0-417b-a59f-2e85712f0c46
+      - ea20a37f-190c-40db-800f-b7e1eee4ba0c
     metadata:
       status: pending
       expanded: false
-  25309d0e-cd74-4910-8f5c-c7ef6de7f53f:
-    id: 25309d0e-cd74-4910-8f5c-c7ef6de7f53f
-    content: Currently the execute mode uses clipboard to copy/paste to an open terminal window
+      deleted: false
+      plugins: {}
+  5d896bbc-9040-470d-a89b-b752445f3287:
+    id: 5d896bbc-9040-470d-a89b-b752445f3287
+    content: Source requirement analysis
     children:
-      - b36455ea-e6f5-4e2a-bd69-0365a77b7b61
-      - b2f791da-e963-4c60-8e11-bab35e5579de
+      - 02fbfa55-776f-438d-b6b3-016bca251102
+      - 94a615d9-6880-4c6d-9360-985466f1e03a
+      - abba50f2-4476-4a14-934d-cf695ff25d4e
+      - b1f661d7-f4f5-42c6-9469-afb9405a6551
     metadata:
       status: pending
-  4c224598-c08a-4b7f-be33-2ab75c631c81:
-    id: 4c224598-c08a-4b7f-be33-2ab75c631c81
-    content: Instead, it should write directly to stidn
+      expanded: true
+      deleted: false
+      plugins: {}
+  02fbfa55-776f-438d-b6b3-016bca251102:
+    id: 02fbfa55-776f-438d-b6b3-016bca251102
+    content: User-facing goal
     children:
-      - f6f758f7-195e-49ce-a808-5633e8924caf
+      - cb3e0b08-d30c-46e5-95a2-8347102ac8a5
+      - 089726fe-a5d1-45fb-91d0-1e7fa1dd0602
+      - e3131892-5608-42a5-a6d2-1e032e536752
     metadata:
       status: pending
-  b36455ea-e6f5-4e2a-bd69-0365a77b7b61:
-    id: b36455ea-e6f5-4e2a-bd69-0365a77b7b61
-    content: This is flaky as sometimes the content doesn't paste and sometimes it doesn't execute
+      expanded: true
+      deleted: false
+      plugins: {}
+  cb3e0b08-d30c-46e5-95a2-8347102ac8a5:
+    id: cb3e0b08-d30c-46e5-95a2-8347102ac8a5
+    content: Replace separate "Execute" and "Collaborate" menu items with a single "Send" action
     children: []
     metadata:
       status: pending
-  b2f791da-e963-4c60-8e11-bab35e5579de:
-    id: b2f791da-e963-4c60-8e11-bab35e5579de
-    content: To make it possible to automate tasks in sequence, we need to improve this
+      expanded: true
+      deleted: false
+      plugins: {}
+  089726fe-a5d1-45fb-91d0-1e7fa1dd0602:
+    id: 089726fe-a5d1-45fb-91d0-1e7fa1dd0602
+    content: The context's mode property determines which action fires
     children: []
     metadata:
       status: pending
-  f6f758f7-195e-49ce-a808-5633e8924caf:
-    id: f6f758f7-195e-49ce-a808-5633e8924caf
-    content: This should be possible to do via pty.write() of node-pty
+      expanded: true
+      deleted: false
+      plugins: {}
+  e3131892-5608-42a5-a6d2-1e032e536752:
+    id: e3131892-5608-42a5-a6d2-1e032e536752
+    content: Enable future automation by encoding action intent in the context model
     children: []
     metadata:
       status: pending
-  35b399bf-e040-4ba1-8813-27aef5442f7d:
-    id: 35b399bf-e040-4ba1-8813-27aef5442f7d
-    content: This is flaky as sometimes the content doesn't paste and sometimes it doesn't execute
-    children: []
-    metadata:
-      status: pending
-  2b66b60c-9ca8-40af-b30a-3e58ae59843d:
-    id: 2b66b60c-9ca8-40af-b30a-3e58ae59843d
-    content: To make it possible to automate tasks in sequence, we need to improve this
-    children: []
-    metadata:
-      status: pending
-  69f99915-ec42-4b27-bec4-9b12c4e2841e:
-    id: 69f99915-ec42-4b27-bec4-9b12c4e2841e
-    content: Currently the execute mode uses clipboard to copy/paste to an open terminal window
+      expanded: true
+      deleted: false
+      plugins: {}
+  94a615d9-6880-4c6d-9360-985466f1e03a:
+    id: 94a615d9-6880-4c6d-9360-985466f1e03a
+    content: Acceptance criteria identified
     children:
-      - 35b399bf-e040-4ba1-8813-27aef5442f7d
-      - 2b66b60c-9ca8-40af-b30a-3e58ae59843d
+      - 34080533-042c-4c81-9c44-b13f35698c40
+      - b5f56a70-974f-4256-a615-89e9266bed9f
+      - 604295a0-ade9-4a56-97ae-4c07ddcf62e0
+      - 63c26afc-5053-438b-9be5-07c36c2b43f0
+      - a0996aab-78a3-4c72-b9ed-830b3b1528f4
+      - c5384f5e-1908-4557-8f43-a11ee00270d9
     metadata:
       status: pending
-  e262da73-08f4-4f82-8ff5-2b8264e94287:
-    id: e262da73-08f4-4f82-8ff5-2b8264e94287
-    content: This should be possible to do via pty.write() of node-pty
+      expanded: true
+      deleted: false
+      plugins: {}
+  34080533-042c-4c81-9c44-b13f35698c40:
+    id: 34080533-042c-4c81-9c44-b13f35698c40
+    content: Built-in "Basic review" (collaborate) and "Basic execution" (execute) contexts exist by default
     children: []
     metadata:
       status: pending
-  301c2695-646e-4da2-9fc0-bb244160fada:
-    id: 301c2695-646e-4da2-9fc0-bb244160fada
-    content: Instead, it should write directly to stidn
+      expanded: true
+      deleted: false
+      plugins: {}
+  b5f56a70-974f-4256-a615-89e9266bed9f:
+    id: b5f56a70-974f-4256-a615-89e9266bed9f
+    content: Context declarations carry a mode property (collaborate or execute)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  604295a0-ade9-4a56-97ae-4c07ddcf62e0:
+    id: 604295a0-ade9-4a56-97ae-4c07ddcf62e0
+    content: Single "Send" submenu with "In terminal" / "In browser" actions and context picker
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  63c26afc-5053-438b-9be5-07c36c2b43f0:
+    id: 63c26afc-5053-438b-9be5-07c36c2b43f0
+    content: '"Apply context" remains separate'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a0996aab-78a3-4c72-b9ed-830b3b1528f4:
+    id: a0996aab-78a3-4c72-b9ed-830b3b1528f4
+    content: Keyboard shortcuts reduce from four to two
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c5384f5e-1908-4557-8f43-a11ee00270d9:
+    id: c5384f5e-1908-4557-8f43-a11ee00270d9
+    content: Gutter indicator shows context mode
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  abba50f2-4476-4a14-934d-cf695ff25d4e:
+    id: abba50f2-4476-4a14-934d-cf695ff25d4e
+    content: Ambiguities and missing detail
     children:
-      - e262da73-08f4-4f82-8ff5-2b8264e94287
+      - 83a1511c-99bf-4dc3-bc38-43e4b16f91e3
+      - a8a2bd11-7595-433d-984e-c881e590e6f3
+      - 8f37dfb9-866b-4980-ab47-a3d35fbe62fd
+      - d387a8e8-3f7e-4d3a-bc34-5553f86718bc
+      - 9254fca4-a797-4d9f-88c6-740e4ee07877
     metadata:
       status: pending
-  f0f27878-1a15-4bd6-9181-f72eff44de89:
-    id: f0f27878-1a15-4bd6-9181-f72eff44de89
-    content: Write directly to stdin when execuiting
+      expanded: true
+      deleted: false
+      plugins: {}
+  83a1511c-99bf-4dc3-bc38-43e4b16f91e3:
+    id: 83a1511c-99bf-4dc3-bc38-43e4b16f91e3
+    content: '"Basic execution" is not a real node — needs to be a hardcoded default like DEFAULT_REVIEW_CONTEXT, or a synthetic node injected into the context declarations list'
     children:
-      - 69f99915-ec42-4b27-bec4-9b12c4e2841e
-      - 301c2695-646e-4da2-9fc0-bb244160fada
+      - 99ae6029-5b15-455f-ab03-c9077f5c71c1
     metadata:
       status: pending
-      expanded: false
-      feedbackTempFile: /home/brian/.config/Arborescent/temp-files/feedback-f0f27878-1a15-4bd6-9181-f72eff44de89.arbo
-  41e1cdfe-d083-48a0-b414-3f92d8c2e5d2:
-    id: 41e1cdfe-d083-48a0-b414-3f92d8c2e5d2
-    content: Move collaborate/execute as a function of the context
+      expanded: true
+      deleted: false
+      plugins: {}
+  99ae6029-5b15-455f-ab03-c9077f5c71c1:
+    id: 99ae6029-5b15-455f-ab03-c9077f5c71c1
+    content: Current "Basic review" is a hardcoded string in collaborateActions.ts (DEFAULT_REVIEW_CONTEXT), not a tree node — "Basic execution" should follow the same pattern
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a8a2bd11-7595-433d-984e-c881e590e6f3:
+    id: a8a2bd11-7595-433d-984e-c881e590e6f3
+    content: When collaboration is in progress and "Send" is disabled — should the entire submenu be disabled, or just the action triggers at the top?
     children:
-      - effa617a-ff3a-4954-9a1d-d6840e6f2322
-      - 67a3ce40-ce61-4f3f-8978-7d257162ace3
-      - 4d15ca9a-8a6c-45c7-998a-76101d04e890
+      - c89fa635-81ad-4928-97c0-6c5a5579f78c
     metadata:
       status: pending
-  effa617a-ff3a-4954-9a1d-d6840e6f2322:
-    id: effa617a-ff3a-4954-9a1d-d6840e6f2322
-    content: Currently we have collaborate/execute in the right-click menu
+      expanded: true
+      deleted: false
+      plugins: {}
+  c89fa635-81ad-4928-97c0-6c5a5579f78c:
+    id: c89fa635-81ad-4928-97c0-6c5a5579f78c
+    content: 'Recommendation: disable only the action triggers, keep context picker functional so user can still change context'
     children: []
     metadata:
       status: pending
-  67a3ce40-ce61-4f3f-8978-7d257162ace3:
-    id: 67a3ce40-ce61-4f3f-8978-7d257162ace3
-    content: Which we choose is directly tied to the context type
+      expanded: true
+      deleted: false
+      plugins: {}
+  8f37dfb9-866b-4980-ab47-a3d35fbe62fd:
+    id: 8f37dfb9-866b-4980-ab47-a3d35fbe62fd
+    content: What happens when a user changes a context's mode via the declaration flow — is this undoable?
+    children:
+      - 7f8a8109-d1dc-4e2e-9c09-0a108d6b8183
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7f8a8109-d1dc-4e2e-9c09-0a108d6b8183:
+    id: 7f8a8109-d1dc-4e2e-9c09-0a108d6b8183
+    content: Should use the command pattern (like DeclareContextCommand) for undo/redo support
     children: []
     metadata:
       status: pending
-  4d15ca9a-8a6c-45c7-998a-76101d04e890:
-    id: 4d15ca9a-8a6c-45c7-998a-76101d04e890
-    content: We can just make this relation directly, and reduce the complexity of the right-click menu
+      expanded: true
+      deleted: false
+      plugins: {}
+  d387a8e8-3f7e-4d3a-bc34-5553f86718bc:
+    id: d387a8e8-3f7e-4d3a-bc34-5553f86718bc
+    content: The spec says "Apply context remains separate" — should the Apply Context submenu also show mode headings, or just list contexts flat as it does today?
     children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9254fca4-a797-4d9f-88c6-740e4ee07877:
+    id: 9254fca4-a797-4d9f-88c6-740e4ee07877
+    content: Should the "Send" submenu label show the current mode? e.g. "Send (review)" — the earlier review removed this but it aids discoverability
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b1f661d7-f4f5-42c6-9469-afb9405a6551:
+    id: b1f661d7-f4f5-42c6-9469-afb9405a6551
+    content: Affected areas of the codebase
+    children:
+      - 403be907-a59d-4d51-a804-477402b03868
+      - eb44f653-fd84-4a0e-a1cb-c9a33b14adf0
+      - 1bbf9b75-c069-46f2-b5ea-3bc9f7b6d922
+      - f644786e-95df-45dd-91a2-ccee5aa61e2e
+      - 0563864b-2b2b-48a3-b7e3-7be182a6e17c
+      - 9c75a844-f9e3-46c5-8ec9-1ceaab0c40d0
+      - 589e55b5-01ca-489c-a02f-0cf1148f45cc
+      - ea0405c9-6179-4b74-b042-c8398518b2fb
+      - a0a7735c-015a-4ea3-8344-0c32c50191f6
+      - 519cb830-4ad8-4742-bddd-eab7b198ed52
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  403be907-a59d-4d51-a804-477402b03868:
+    id: 403be907-a59d-4d51-a804-477402b03868
+    content: 'Context model: node metadata in shared/types/treeNode.ts — add contextMode field to declaration metadata'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  eb44f653-fd84-4a0e-a1cb-c9a33b14adf0:
+    id: eb44f653-fd84-4a0e-a1cb-c9a33b14adf0
+    content: 'Context actions: contextActions.ts — declareAsContext, setAppliedContext, refreshContextDeclarations'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1bbf9b75-c069-46f2-b5ea-3bc9f7b6d922:
+    id: 1bbf9b75-c069-46f2-b5ea-3bc9f7b6d922
+    content: 'Collaborate actions: collaborateActions.ts — DEFAULT_REVIEW_CONTEXT, collaborate, collaborateInTerminal'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f644786e-95df-45dd-91a2-ccee5aa61e2e:
+    id: f644786e-95df-45dd-91a2-ccee5aa61e2e
+    content: 'Execute actions: executeActions.ts — buildExecutePrompt, executeInBrowser, executeInTerminalWithContext'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0563864b-2b2b-48a3-b7e3-7be182a6e17c:
+    id: 0563864b-2b2b-48a3-b7e3-7be182a6e17c
+    content: 'Menu builders: useNodeContextMenu.ts, useContextAwareSubmenu.tsx, useExecuteSubmenu.tsx, useCollaborateSubmenu.tsx, useSetContextSubmenu.ts'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9c75a844-f9e3-46c5-8ec9-1ceaab0c40d0:
+    id: 9c75a844-f9e3-46c5-8ec9-1ceaab0c40d0
+    content: 'Declaration UI: IconPickerDialog.tsx and iconPickerStore.ts — add mode toggle'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  589e55b5-01ca-489c-a02f-0cf1148f45cc:
+    id: 589e55b5-01ca-489c-a02f-0cf1148f45cc
+    content: 'Keyboard: defaultHotkeys.json, hotkeyConfig.ts, uiService.ts handlers (lines 255-341)'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ea0405c9-6179-4b74-b042-c8398518b2fb:
+    id: ea0405c9-6179-4b74-b042-c8398518b2fb
+    content: 'Gutter: GutterContextIndicator.tsx, AppliedContextTooltip.tsx, useAppliedContexts.ts'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a0a7735c-015a-4ea3-8344-0c32c50191f6:
+    id: a0a7735c-015a-4ea3-8344-0c32c50191f6
+    content: 'Persistence: persistenceActions.ts — migration for existing .arbo files'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  519cb830-4ad8-4742-bddd-eab7b198ed52:
+    id: 519cb830-4ad8-4742-bddd-eab7b198ed52
+    content: 'Helpers: nodeHelpers.ts — new mode-aware context resolution functions'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  43dd9e34-b1c0-417b-a59f-2e85712f0c46:
+    id: 43dd9e34-b1c0-417b-a59f-2e85712f0c46
+    content: Technical specifications
+    children:
+      - 00e9b3ac-e931-4d84-ac28-3006b76ed4f4
+      - a867d9ad-82bd-4f45-b836-912641a0e193
+      - a93a8881-fc56-4eb2-9315-8b0e309a8a15
+      - 1a45597e-c676-4609-852f-407357309791
+      - 29f9e7e9-a148-42b1-9cc3-ba717fa17fcd
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  00e9b3ac-e931-4d84-ac28-3006b76ed4f4:
+    id: 00e9b3ac-e931-4d84-ac28-3006b76ed4f4
+    content: Inputs, outputs, and key interfaces
+    children:
+      - a030a475-5206-4aa0-8a39-9686aa334335
+      - 1cda1c16-654e-4afb-92e2-f3e3058a06de
+      - 56391ac6-2d69-4f5c-9842-da43a5dc5334
+      - 0cc22f99-e19d-4224-8ca5-ac08f20c6f59
+      - 2f758c9d-c882-42ff-a71b-8d8ade0e189e
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a030a475-5206-4aa0-8a39-9686aa334335:
+    id: a030a475-5206-4aa0-8a39-9686aa334335
+    content: 'New metadata field on context declaration nodes: contextMode: ''collaborate'' | ''execute'''
+    children:
+      - e0184c6e-5e06-44d0-bd90-fdd56916b60f
+      - 9b3b8336-9235-4f23-b39d-3b8af8df2f2f
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e0184c6e-5e06-44d0-bd90-fdd56916b60f:
+    id: e0184c6e-5e06-44d0-bd90-fdd56916b60f
+    content: Stored in node.metadata alongside existing blueprintIcon and blueprintColor
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9b3b8336-9235-4f23-b39d-3b8af8df2f2f:
+    id: 9b3b8336-9235-4f23-b39d-3b8af8df2f2f
+    content: No schema change needed — metadata is Record<string, unknown>
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1cda1c16-654e-4afb-92e2-f3e3058a06de:
+    id: 1cda1c16-654e-4afb-92e2-f3e3058a06de
+    content: ContextDeclarationInfo type gains a mode field
+    children:
+      - 09993e4e-213b-4c8e-b6e4-9eef999cd3e2
+      - e2d68346-e73b-4ae2-b4c4-7375e3ed7366
+      - 6bef1be4-6136-4c42-849a-4f681b7482a3
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  09993e4e-213b-4c8e-b6e4-9eef999cd3e2:
+    id: 09993e4e-213b-4c8e-b6e4-9eef999cd3e2
+    content: 'Current: { nodeId, content, icon, color? }'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e2d68346-e73b-4ae2-b4c4-7375e3ed7366:
+    id: e2d68346-e73b-4ae2-b4c4-7375e3ed7366
+    content: 'New: { nodeId, content, icon, color?, mode: ''collaborate'' | ''execute'' }'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6bef1be4-6136-4c42-849a-4f681b7482a3:
+    id: 6bef1be4-6136-4c42-849a-4f681b7482a3
+    content: Populated by refreshContextDeclarations from declaration node metadata
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  56391ac6-2d69-4f5c-9842-da43a5dc5334:
+    id: 56391ac6-2d69-4f5c-9842-da43a5dc5334
+    content: IconSelection interface gains a mode field
+    children:
+      - c845c874-5d66-4355-8776-09945ca4bceb
+      - d02c3a0e-a0e6-4533-b07c-53fe9768c9f0
+      - 8f3e3b00-3c17-4a8b-ac80-b2cfb5b24e1b
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c845c874-5d66-4355-8776-09945ca4bceb:
+    id: c845c874-5d66-4355-8776-09945ca4bceb
+    content: 'Current: { icon, color? }'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d02c3a0e-a0e6-4533-b07c-53fe9768c9f0:
+    id: d02c3a0e-a0e6-4533-b07c-53fe9768c9f0
+    content: 'New: { icon, color?, mode?: ''collaborate'' | ''execute'' }'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8f3e3b00-3c17-4a8b-ac80-b2cfb5b24e1b:
+    id: 8f3e3b00-3c17-4a8b-ac80-b2cfb5b24e1b
+    content: Used in declaration flow when user picks icon + mode
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0cc22f99-e19d-4224-8ca5-ac08f20c6f59:
+    id: 0cc22f99-e19d-4224-8ca5-ac08f20c6f59
+    content: DEFAULT_EXECUTE_CONTEXT constant in executeActions.ts or a shared location
+    children:
+      - ac9774ee-a27b-4e96-a4e0-276f3c3beecb
+      - 4dddeb3f-cf91-4132-84f7-137af1909f1a
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ac9774ee-a27b-4e96-a4e0-276f3c3beecb:
+    id: ac9774ee-a27b-4e96-a4e0-276f3c3beecb
+    content: Parallels DEFAULT_REVIEW_CONTEXT in collaborateActions.ts
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4dddeb3f-cf91-4132-84f7-137af1909f1a:
+    id: 4dddeb3f-cf91-4132-84f7-137af1909f1a
+    content: 'Content: "Execute the task described in the content. Follow any instructions precisely. If the task is ambiguous, ask for clarification before proceeding."'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2f758c9d-c882-42ff-a71b-8d8ade0e189e:
+    id: 2f758c9d-c882-42ff-a71b-8d8ade0e189e
+    content: AppliedContext interface gains a mode field
+    children:
+      - 7d69ebbc-3127-4d62-ba01-f021a005fb80
+      - 6f0acae8-97fa-411f-90a5-842f25a1abf0
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7d69ebbc-3127-4d62-ba01-f021a005fb80:
+    id: 7d69ebbc-3127-4d62-ba01-f021a005fb80
+    content: 'Current: { icon, color, name }'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6f0acae8-97fa-411f-90a5-842f25a1abf0:
+    id: 6f0acae8-97fa-411f-90a5-842f25a1abf0
+    content: 'New: { icon, color, name, mode: ''collaborate'' | ''execute'' }'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a867d9ad-82bd-4f45-b836-912641a0e193:
+    id: a867d9ad-82bd-4f45-b836-912641a0e193
+    content: Constraints and non-functional requirements
+    children:
+      - dcd0e3e0-826f-414d-9e62-7b0e8051052f
+      - 843698af-58dd-4611-b743-6d49619710a7
+      - 04cc22ee-af38-410a-95d3-efa254fdc18d
+      - 7c90cc70-db72-4473-83e0-51d68746fd9e
+      - 7f4dc3bf-d61f-49b3-9a14-6886ba808061
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  dcd0e3e0-826f-414d-9e62-7b0e8051052f:
+    id: dcd0e3e0-826f-414d-9e62-7b0e8051052f
+    content: Migration must be non-breaking — existing .arbo files without contextMode must load correctly
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  843698af-58dd-4611-b743-6d49619710a7:
+    id: 843698af-58dd-4611-b743-6d49619710a7
+    content: Mode defaults to 'collaborate' for any context declaration missing the field
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  04cc22ee-af38-410a-95d3-efa254fdc18d:
+    id: 04cc22ee-af38-410a-95d3-efa254fdc18d
+    content: Branches with no applied context resolve to "Basic review" (collaborate mode) at send time
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7c90cc70-db72-4473-83e0-51d68746fd9e:
+    id: 7c90cc70-db72-4473-83e0-51d68746fd9e
+    content: Undo/redo must work for mode changes on context declarations
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7f4dc3bf-d61f-49b3-9a14-6886ba808061:
+    id: 7f4dc3bf-d61f-49b3-9a14-6886ba808061
+    content: Blueprint sharing preserves mode — no special handling needed since metadata is generic
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a93a8881-fc56-4eb2-9315-8b0e309a8a15:
+    id: a93a8881-fc56-4eb2-9315-8b0e309a8a15
+    content: Technical steps
+    children:
+      - 1e9955b1-2843-4493-aced-422bcef344ef
+      - 88dbc3b2-b35c-4aaa-88b1-53d38522eb7a
+      - 1449a440-6b12-466b-a73b-e2901bc2965d
+      - 610d70ba-c83e-4193-a615-10f9d481b8d6
+      - 95cc3350-c1dc-498c-8248-5bed1b253696
+      - c57baeaa-2f4f-43b3-9cb1-06c9669cb6e2
+      - 33a89a80-e251-4b12-8a9a-4f0e77d9f48e
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1e9955b1-2843-4493-aced-422bcef344ef:
+    id: 1e9955b1-2843-4493-aced-422bcef344ef
+    content: 'Step 1: Add contextMode to context model and declaration flow (S)'
+    children:
+      - d57e9fca-2abb-40b7-8612-1e733450447b
+      - 78f7a733-b665-4412-8b51-d567d0cb13b6
+      - c1a2aed4-d271-4c71-9d84-c4b863f2fbeb
+      - 9a8b00e4-6a9e-49d3-bd48-4168e7a4b9d0
+      - dcd31c34-046a-4f94-8bae-9d166ccd1ac2
+      - f403021d-f478-4172-8310-9b2d5b47db4f
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d57e9fca-2abb-40b7-8612-1e733450447b:
+    id: d57e9fca-2abb-40b7-8612-1e733450447b
+    content: Add contextMode field to ContextDeclarationInfo type
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  78f7a733-b665-4412-8b51-d567d0cb13b6:
+    id: 78f7a733-b665-4412-8b51-d567d0cb13b6
+    content: Update refreshContextDeclarations to read contextMode from declaration node metadata
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c1a2aed4-d271-4c71-9d84-c4b863f2fbeb:
+    id: c1a2aed4-d271-4c71-9d84-c4b863f2fbeb
+    content: 'Update declareAsContext to accept and store mode (default: ''collaborate'')'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9a8b00e4-6a9e-49d3-bd48-4168e7a4b9d0:
+    id: 9a8b00e4-6a9e-49d3-bd48-4168e7a4b9d0
+    content: Update IconPickerDialog to show mode toggle (Collaborate / Execute)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  dcd31c34-046a-4f94-8bae-9d166ccd1ac2:
+    id: dcd31c34-046a-4f94-8bae-9d166ccd1ac2
+    content: Update iconPickerStore IconSelection interface
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f403021d-f478-4172-8310-9b2d5b47db4f:
+    id: f403021d-f478-4172-8310-9b2d5b47db4f
+    content: 'Dependencies: none — this is the foundation'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  88dbc3b2-b35c-4aaa-88b1-53d38522eb7a:
+    id: 88dbc3b2-b35c-4aaa-88b1-53d38522eb7a
+    content: 'Step 2: Add "Basic execution" default context (S)'
+    children:
+      - a4582954-58cb-4d65-b440-d2e8015f785d
+      - 95dbdfae-b429-4853-a5eb-284bffc67d56
+      - d7564a20-ad09-4bf4-9425-20f7bd058793
+      - 213886dd-c30a-4ea0-ac5a-4d35378314b7
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a4582954-58cb-4d65-b440-d2e8015f785d:
+    id: a4582954-58cb-4d65-b440-d2e8015f785d
+    content: Add DEFAULT_EXECUTE_CONTEXT constant
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  95dbdfae-b429-4853-a5eb-284bffc67d56:
+    id: 95dbdfae-b429-4853-a5eb-284bffc67d56
+    content: Add "Basic execution" entry to context picker alongside existing "Basic review (default)"
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d7564a20-ad09-4bf4-9425-20f7bd058793:
+    id: d7564a20-ad09-4bf4-9425-20f7bd058793
+    content: Wire into useContextAwareSubmenu so it appears in all context pickers
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  213886dd-c30a-4ea0-ac5a-4d35378314b7:
+    id: 213886dd-c30a-4ea0-ac5a-4d35378314b7
+    content: 'Dependencies: Step 1 (mode field must exist)'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1449a440-6b12-466b-a73b-e2901bc2965d:
+    id: 1449a440-6b12-466b-a73b-e2901bc2965d
+    content: 'Step 3: Build unified "Send" submenu (M)'
+    children:
+      - daa7ef69-4f30-4cc1-9abd-38c8e170626c
+      - 1b58b8bb-f672-43c9-94fd-2de2203285e1
+      - 68c2d234-537b-47c8-81a0-40d4173f998a
+      - a76f69a2-ff76-4c0b-8914-f21bea582be1
+      - 84880b48-4d30-4bb2-95f1-73d251fd29f6
+      - 717eea6d-7abd-4a8f-ba4d-6d8b6a5f66f7
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  daa7ef69-4f30-4cc1-9abd-38c8e170626c:
+    id: daa7ef69-4f30-4cc1-9abd-38c8e170626c
+    content: Create useSendSubmenu hook that combines execute and collaborate submenu logic
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1b58b8bb-f672-43c9-94fd-2de2203285e1:
+    id: 1b58b8bb-f672-43c9-94fd-2de2203285e1
+    content: 'Top section: "In terminal" / "In browser" action triggers'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  68c2d234-537b-47c8-81a0-40d4173f998a:
+    id: 68c2d234-537b-47c8-81a0-40d4173f998a
+    content: 'Bottom section: context picker with built-ins first, then user-declared grouped by mode heading'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a76f69a2-ff76-4c0b-8914-f21bea582be1:
+    id: a76f69a2-ff76-4c0b-8914-f21bea582be1
+    content: Action triggers resolve mode from selected context and dispatch to collaborate or execute accordingly
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  84880b48-4d30-4bb2-95f1-73d251fd29f6:
+    id: 84880b48-4d30-4bb2-95f1-73d251fd29f6
+    content: Disable action triggers (not context picker) when collaboration is in progress and selected context is collaborate-mode
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  717eea6d-7abd-4a8f-ba4d-6d8b6a5f66f7:
+    id: 717eea6d-7abd-4a8f-ba4d-6d8b6a5f66f7
+    content: 'Dependencies: Steps 1 and 2'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  610d70ba-c83e-4193-a615-10f9d481b8d6:
+    id: 610d70ba-c83e-4193-a615-10f9d481b8d6
+    content: 'Step 4: Replace menu items in useNodeContextMenu (S)'
+    children:
+      - 69b8244e-a586-4734-a829-44e24588cbc1
+      - 599f949b-dc35-45d6-baa3-06efc051ab53
+      - 29558851-6a33-4265-a8f3-6c3b12e55a6a
+      - e6c52ff8-91fe-4618-a8ea-35039d525d7b
+      - 76f61b8e-a0c6-48db-bbdb-295b787d13d5
+      - bfc9a2df-7f8d-4c27-bd1f-7dabe9c83816
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  69b8244e-a586-4734-a829-44e24588cbc1:
+    id: 69b8244e-a586-4734-a829-44e24588cbc1
+    content: Remove standalone "Execute" and "Collaborate" menu entries
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  599f949b-dc35-45d6-baa3-06efc051ab53:
+    id: 599f949b-dc35-45d6-baa3-06efc051ab53
+    content: Add single "Send" entry with submenu from Step 3
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  29558851-6a33-4265-a8f3-6c3b12e55a6a:
+    id: 29558851-6a33-4265-a8f3-6c3b12e55a6a
+    content: Keep "Cancel collaboration" as standalone item, positioned after "Send"
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e6c52ff8-91fe-4618-a8ea-35039d525d7b:
+    id: e6c52ff8-91fe-4618-a8ea-35039d525d7b
+    content: Keep "Apply context" as separate menu item
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  76f61b8e-a0c6-48db-bbdb-295b787d13d5:
+    id: 76f61b8e-a0c6-48db-bbdb-295b787d13d5
+    content: '"Send" hidden for hyperlinks and external links (same conditions as current)'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  bfc9a2df-7f8d-4c27-bd1f-7dabe9c83816:
+    id: bfc9a2df-7f8d-4c27-bd1f-7dabe9c83816
+    content: 'Dependencies: Step 3'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  95cc3350-c1dc-498c-8248-5bed1b253696:
+    id: 95cc3350-c1dc-498c-8248-5bed1b253696
+    content: 'Step 5: Update keyboard shortcuts (S)'
+    children:
+      - 2670181d-40fc-4658-a94f-690a077dc6ec
+      - e9bf6ede-1d9b-43a9-af16-485a7b34650e
+      - 4fff050c-dbef-452f-b47a-572e461307ae
+      - dcc81fc2-5bc3-4bea-ab65-0fe9efe00db7
+      - cd5c7beb-2f16-4276-a321-7ed546da6f60
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2670181d-40fc-4658-a94f-690a077dc6ec:
+    id: 2670181d-40fc-4658-a94f-690a077dc6ec
+    content: 'Replace four shortcuts with two: "Send in terminal" and "Send in browser"'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e9bf6ede-1d9b-43a9-af16-485a7b34650e:
+    id: e9bf6ede-1d9b-43a9-af16-485a7b34650e
+    content: 'Update defaultHotkeys.json — suggested: Ctrl+Enter (terminal), Ctrl+Shift+Enter (browser)'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4fff050c-dbef-452f-b47a-572e461307ae:
+    id: 4fff050c-dbef-452f-b47a-572e461307ae
+    content: Update handlers in uiService.ts to resolve context mode and dispatch accordingly
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  dcc81fc2-5bc3-4bea-ab65-0fe9efe00db7:
+    id: dcc81fc2-5bc3-4bea-ab65-0fe9efe00db7
+    content: Update hotkeyConfig.ts type definitions
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  cd5c7beb-2f16-4276-a321-7ed546da6f60:
+    id: cd5c7beb-2f16-4276-a321-7ed546da6f60
+    content: 'Dependencies: Step 3 (reuse mode resolution logic)'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c57baeaa-2f4f-43b3-9cb1-06c9669cb6e2:
+    id: c57baeaa-2f4f-43b3-9cb1-06c9669cb6e2
+    content: 'Step 6: Update gutter indicator (S)'
+    children:
+      - 7baf3dbd-a456-4a26-a9a3-b2c9685453f4
+      - 4533c5ca-44c0-46bf-81aa-b458f6c61de8
+      - 9fc0b741-30ea-4336-83fa-255957b4ca22
+      - 72717553-f16b-45d2-ad24-6db6e5fa83e2
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7baf3dbd-a456-4a26-a9a3-b2c9685453f4:
+    id: 7baf3dbd-a456-4a26-a9a3-b2c9685453f4
+    content: Add mode to AppliedContext interface in useAppliedContexts.ts
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4533c5ca-44c0-46bf-81aa-b458f6c61de8:
+    id: 4533c5ca-44c0-46bf-81aa-b458f6c61de8
+    content: Show mode distinction in GutterContextIndicator (e.g. subtle visual cue on the icon)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9fc0b741-30ea-4336-83fa-255957b4ca22:
+    id: 9fc0b741-30ea-4336-83fa-255957b4ca22
+    content: Add mode label to AppliedContextTooltip
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  72717553-f16b-45d2-ad24-6db6e5fa83e2:
+    id: 72717553-f16b-45d2-ad24-6db6e5fa83e2
+    content: 'Dependencies: Step 1'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  33a89a80-e251-4b12-8a9a-4f0e77d9f48e:
+    id: 33a89a80-e251-4b12-8a9a-4f0e77d9f48e
+    content: 'Step 7: Migration for existing .arbo files (S)'
+    children:
+      - a5127f7c-e8b6-4186-af91-1353b764bfbe
+      - c9b478c6-0cdc-4a66-b887-3513ffbe9d1d
+      - 609e202e-7df3-47b3-8651-5835cb19cb73
+      - 0165f003-6a21-429a-b234-d611348f33cd
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a5127f7c-e8b6-4186-af91-1353b764bfbe:
+    id: a5127f7c-e8b6-4186-af91-1353b764bfbe
+    content: In persistenceActions.ts loadFromPath, add migration pass
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c9b478c6-0cdc-4a66-b887-3513ffbe9d1d:
+    id: c9b478c6-0cdc-4a66-b887-3513ffbe9d1d
+    content: 'Any context declaration node missing contextMode gets contextMode: ''collaborate'''
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  609e202e-7df3-47b3-8651-5835cb19cb73:
+    id: 609e202e-7df3-47b3-8651-5835cb19cb73
+    content: No change needed for appliedContextId — mode is resolved from the declaration, not the application
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0165f003-6a21-429a-b234-d611348f33cd:
+    id: 0165f003-6a21-429a-b234-d611348f33cd
+    content: 'Dependencies: Step 1'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1a45597e-c676-4609-852f-407357309791:
+    id: 1a45597e-c676-4609-852f-407357309791
+    content: Risks and edge cases
+    children:
+      - ed0bb75b-d4de-4d96-a756-83854cc65493
+      - 99148559-e5aa-4e39-9b76-86b23b211285
+      - 85aaabfc-6d81-4e7f-ae27-9045dcfd2d74
+      - 7706b25c-8f93-470a-bac0-6cae7a773379
+      - 1577694d-ec1c-4bc5-83f7-2690c05f530b
+      - 7d9e7bdb-b12e-4b69-bdc6-e751c6900b28
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ed0bb75b-d4de-4d96-a756-83854cc65493:
+    id: ed0bb75b-d4de-4d96-a756-83854cc65493
+    content: Mode lives on the declaration, not the application — changing a declaration's mode silently changes behavior on all branches using it
+    children:
+      - 67f38843-ea33-47e0-9809-fdb1cdddefd6
+      - aace4e26-23e9-4666-8478-44c7f82c0118
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  67f38843-ea33-47e0-9809-fdb1cdddefd6:
+    id: 67f38843-ea33-47e0-9809-fdb1cdddefd6
+    content: Acceptable per spec, consistent with how context content changes propagate
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  aace4e26-23e9-4666-8478-44c7f82c0118:
+    id: aace4e26-23e9-4666-8478-44c7f82c0118
+    content: Mode changes should be undoable via command pattern
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  99148559-e5aa-4e39-9b76-86b23b211285:
+    id: 99148559-e5aa-4e39-9b76-86b23b211285
+    content: Collaboration in progress when mode is changed on the active context
+    children:
+      - ab7fc15b-61fd-46dd-9dba-cacebfbff44f
+      - 8ffd1b6d-0094-4bf4-bef3-ecfcdc4f45c8
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ab7fc15b-61fd-46dd-9dba-cacebfbff44f:
+    id: ab7fc15b-61fd-46dd-9dba-cacebfbff44f
+    content: In-progress collaboration must not be affected
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8ffd1b6d-0094-4bf4-bef3-ecfcdc4f45c8:
+    id: 8ffd1b6d-0094-4bf4-bef3-ecfcdc4f45c8
+    content: Store the mode at collaboration start time, not resolve it dynamically during collaboration
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  85aaabfc-6d81-4e7f-ae27-9045dcfd2d74:
+    id: 85aaabfc-6d81-4e7f-ae27-9045dcfd2d74
+    content: Context picker in "Send" submenu combines all contexts — could get long
+    children:
+      - ec4fc3dc-a78a-4587-9d15-842d14b0380d
+      - c04a96a3-7318-4398-8761-75b8bcefeb2e
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ec4fc3dc-a78a-4587-9d15-842d14b0380d:
+    id: ec4fc3dc-a78a-4587-9d15-842d14b0380d
+    content: Headings ("Collaborate" / "Execute") help scannability
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c04a96a3-7318-4398-8761-75b8bcefeb2e:
+    id: c04a96a3-7318-4398-8761-75b8bcefeb2e
+    content: Acceptable for now — revisit if users report issues
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7706b25c-8f93-470a-bac0-6cae7a773379:
+    id: 7706b25c-8f93-470a-bac0-6cae7a773379
+    content: appliedContextId vs appliedContextIds inconsistency in current codebase
+    children:
+      - 4305377c-d28a-4981-bde1-5ab3ed251859
+      - 3ae743ec-8a29-4b2f-8420-f10270097dac
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4305377c-d28a-4981-bde1-5ab3ed251859:
+    id: 4305377c-d28a-4981-bde1-5ab3ed251859
+    content: Both singular and plural forms exist in metadata — resolve to singular during this work
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3ae743ec-8a29-4b2f-8420-f10270097dac:
+    id: 3ae743ec-8a29-4b2f-8420-f10270097dac
+    content: Migration should clean up any stale appliedContextIds arrays
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1577694d-ec1c-4bc5-83f7-2690c05f530b:
+    id: 1577694d-ec1c-4bc5-83f7-2690c05f530b
+    content: '"Basic review" and "Basic execution" are not tree nodes — they are synthetic entries in the context picker'
+    children:
+      - fc76fee2-983a-42f1-8bd6-4dc720ed11a6
+      - fbc100e6-c055-4bc5-a23c-c110c873ef1c
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fc76fee2-983a-42f1-8bd6-4dc720ed11a6:
+    id: fc76fee2-983a-42f1-8bd6-4dc720ed11a6
+    content: Must not appear in "Apply context" standalone menu (they have no node ID to apply)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fbc100e6-c055-4bc5-a23c-c110c873ef1c:
+    id: fbc100e6-c055-4bc5-a23c-c110c873ef1c
+    content: 'Or: give them stable synthetic IDs that the system recognizes as built-in'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7d9e7bdb-b12e-4b69-bdc6-e751c6900b28:
+    id: 7d9e7bdb-b12e-4b69-bdc6-e751c6900b28
+    content: Icon picker dialog is shared between blueprint declaration and context declaration
+    children:
+      - b78e77d6-291a-4ddb-aee2-6aadfb914d5c
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b78e77d6-291a-4ddb-aee2-6aadfb914d5c:
+    id: b78e77d6-291a-4ddb-aee2-6aadfb914d5c
+    content: Mode toggle must only appear for context declarations, not general blueprint icon changes
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  29f9e7e9-a148-42b1-9cc3-ba717fa17fcd:
+    id: 29f9e7e9-a148-42b1-9cc3-ba717fa17fcd
+    content: Implementation plan
+    children:
+      - 7b6fe462-c0d2-4b88-9b26-48d4ad9d76c1
+      - 9a888785-60f5-4324-8f11-dce9ef3be8dd
+      - 837176e2-63eb-4f80-b828-31daff5bf688
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7b6fe462-c0d2-4b88-9b26-48d4ad9d76c1:
+    id: 7b6fe462-c0d2-4b88-9b26-48d4ad9d76c1
+    content: 'Phase 1 — Foundation (Steps 1, 2, 7): context model + default execution context + migration'
+    children:
+      - 95e9d455-226f-4624-9911-be0828df21b6
+      - ddb97917-a5bd-44e2-9ebf-4151699ee0a7
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  95e9d455-226f-4624-9911-be0828df21b6:
+    id: 95e9d455-226f-4624-9911-be0828df21b6
+    content: Can be merged as a single changeset
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ddb97917-a5bd-44e2-9ebf-4151699ee0a7:
+    id: ddb97917-a5bd-44e2-9ebf-4151699ee0a7
+    content: 'Testing: unit tests for mode on ContextDeclarationInfo, migration of old .arbo files'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9a888785-60f5-4324-8f11-dce9ef3be8dd:
+    id: 9a888785-60f5-4324-8f11-dce9ef3be8dd
+    content: 'Phase 2 — Menu unification (Steps 3, 4): build Send submenu, replace old menu items'
+    children:
+      - 6a3e5877-a397-43cb-887f-62ab945aebd3
+      - a6c86340-953c-4aab-93a5-a7055904cbdd
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6a3e5877-a397-43cb-887f-62ab945aebd3:
+    id: 6a3e5877-a397-43cb-887f-62ab945aebd3
+    content: Largest changeset — involves new hook and menu restructuring
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a6c86340-953c-4aab-93a5-a7055904cbdd:
+    id: a6c86340-953c-4aab-93a5-a7055904cbdd
+    content: 'Testing: manual testing of all menu flows, unit tests for mode resolution logic'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  837176e2-63eb-4f80-b828-31daff5bf688:
+    id: 837176e2-63eb-4f80-b828-31daff5bf688
+    content: 'Phase 3 — Shortcuts and indicators (Steps 5, 6): keyboard shortcuts + gutter updates'
+    children:
+      - 4de0ef2b-17ce-499a-96d0-147ce1795821
+      - ebed4dbd-4eda-46ee-b224-2d8570811212
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4de0ef2b-17ce-499a-96d0-147ce1795821:
+    id: 4de0ef2b-17ce-499a-96d0-147ce1795821
+    content: Can be parallelised — shortcuts and gutter work are independent
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ebed4dbd-4eda-46ee-b224-2d8570811212:
+    id: ebed4dbd-4eda-46ee-b224-2d8570811212
+    content: 'Testing: keyboard shortcut mapping tests, visual verification of gutter indicators'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ea20a37f-190c-40db-800f-b7e1eee4ba0c:
+    id: ea20a37f-190c-40db-800f-b7e1eee4ba0c
+    content: Test plan
+    children:
+      - 19beb30c-5dce-44fb-bc7f-7c12623d3c06
+      - bfbaec7c-e324-43f7-8a22-c4d62586047b
+      - 7b66f17f-9c27-41fc-bf99-2d64bd1b72b6
+      - fe6a308f-b3d2-41e3-a5ac-ca3db78b4b10
+      - 20727807-ef07-4c29-bb9a-d274bd867527
+      - 420118d0-12c1-4616-a936-ed16ab2510c0
+      - d917e38f-0363-4dc6-9ce9-8d327c8ca213
+      - 09f77639-4367-418f-84f7-d8f3045d8595
+      - cd229e6f-daf8-4439-80f4-43473a437b82
+      - 53f6871b-c738-4fd3-8b40-5b9c7ba108e3
+      - 20d2eed6-8ba8-4799-bd18-b9b9a0035c53
+      - fbe9499d-3df9-4d94-b4ea-0b1146e4950e
+      - 26fd0e8f-6097-4c0c-a23e-69948a62f21f
+      - 740c21cb-5fc3-4cc9-9f9c-091c29694c18
+      - e5747e6f-b423-4c03-9537-a01119c6dfdb
+      - 9b5c524b-e768-4b53-83c6-3b1835a676be
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  19beb30c-5dce-44fb-bc7f-7c12623d3c06:
+    id: 19beb30c-5dce-44fb-bc7f-7c12623d3c06
+    content: Scope and objectives
+    children:
+      - d51b1fbe-d573-4148-a32d-23f2250bf72c
+      - b075a1e4-08cb-4f13-a39d-1155df7b7ca2
+      - 2a600cda-4f8c-4a38-a190-87de85c6b68c
+      - 7d43398b-c0ec-4d0a-a8f9-26e30d1edab3
+      - 1ab5e96f-1d31-49f3-9400-36f2e1467c64
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d51b1fbe-d573-4148-a32d-23f2250bf72c:
+    id: d51b1fbe-d573-4148-a32d-23f2250bf72c
+    content: Verify that the unified "Send" action correctly dispatches collaborate or execute based on context mode
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b075a1e4-08cb-4f13-a39d-1155df7b7ca2:
+    id: b075a1e4-08cb-4f13-a39d-1155df7b7ca2
+    content: Verify built-in default contexts ("Basic review", "Basic execution") behave identically to user-declared contexts
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2a600cda-4f8c-4a38-a190-87de85c6b68c:
+    id: 2a600cda-4f8c-4a38-a190-87de85c6b68c
+    content: Verify migration preserves existing behavior for users upgrading from the old menu structure
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7d43398b-c0ec-4d0a-a8f9-26e30d1edab3:
+    id: 7d43398b-c0ec-4d0a-a8f9-26e30d1edab3
+    content: Verify undo/redo works for all new operations (mode declaration, mode changes)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1ab5e96f-1d31-49f3-9400-36f2e1467c64:
+    id: 1ab5e96f-1d31-49f3-9400-36f2e1467c64
+    content: Verify no regressions in existing collaborate and execute flows
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  bfbaec7c-e324-43f7-8a22-c4d62586047b:
+    id: bfbaec7c-e324-43f7-8a22-c4d62586047b
+    content: Entry criteria
+    children:
+      - 73230490-6c57-47a4-b3f5-30a4948b8c8c
+      - 2fa629b5-cb13-4a57-a401-d650ab7a30b9
+      - 23e6ba9e-787e-40e7-807d-708b1148c41b
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  73230490-6c57-47a4-b3f5-30a4948b8c8c:
+    id: 73230490-6c57-47a4-b3f5-30a4948b8c8c
+    content: All seven technical steps are implemented
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2fa629b5-cb13-4a57-a401-d650ab7a30b9:
+    id: 2fa629b5-cb13-4a57-a401-d650ab7a30b9
+    content: Existing test suite passes (vitest)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  23e6ba9e-787e-40e7-807d-708b1148c41b:
+    id: 23e6ba9e-787e-40e7-807d-708b1148c41b
+    content: Application builds and launches without errors
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7b66f17f-9c27-41fc-bf99-2d64bd1b72b6:
+    id: 7b66f17f-9c27-41fc-bf99-2d64bd1b72b6
+    content: Exit criteria
+    children:
+      - 576b8900-52ac-4c5b-8ef2-0d503aaabd99
+      - b47e962b-a324-46f8-bc00-c933f6c47097
+      - 57bb52f8-9153-4395-b4d5-7786be533791
+      - 2c429230-c966-4b54-8ca2-2a26db4bd892
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  576b8900-52ac-4c5b-8ef2-0d503aaabd99:
+    id: 576b8900-52ac-4c5b-8ef2-0d503aaabd99
+    content: All test cases below pass
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b47e962b-a324-46f8-bc00-c933f6c47097:
+    id: b47e962b-a324-46f8-bc00-c933f6c47097
+    content: No regressions in existing collaborate/execute functionality
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  57bb52f8-9153-4395-b4d5-7786be533791:
+    id: 57bb52f8-9153-4395-b4d5-7786be533791
+    content: Manual walkthrough of all menu flows completes without issues
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2c429230-c966-4b54-8ca2-2a26db4bd892:
+    id: 2c429230-c966-4b54-8ca2-2a26db4bd892
+    content: Migration tested against at least one real .arbo file with existing context declarations
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fe6a308f-b3d2-41e3-a5ac-ca3db78b4b10:
+    id: fe6a308f-b3d2-41e3-a5ac-ca3db78b4b10
+    content: Environments and prerequisites
+    children:
+      - e0194bde-c42d-42e3-9c89-947a0fd3e3a6
+      - f609db43-b4d6-43a0-9875-90e62a900b8c
+      - 9bd6a15d-063d-44ca-8ca1-4ed848d422e6
+      - 905d871a-68fe-4637-ab46-809395090101
+      - 1d4fb4a3-04dd-4e11-bde0-d11e0c280b47
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e0194bde-c42d-42e3-9c89-947a0fd3e3a6:
+    id: e0194bde-c42d-42e3-9c89-947a0fd3e3a6
+    content: Electron dev environment (npm start)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f609db43-b4d6-43a0-9875-90e62a900b8c:
+    id: f609db43-b4d6-43a0-9875-90e62a900b8c
+    content: At least one .arbo project file with existing context declarations (project.arbo)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9bd6a15d-063d-44ca-8ca1-4ed848d422e6:
+    id: 9bd6a15d-063d-44ca-8ca1-4ed848d422e6
+    content: At least one .arbo project file with no context declarations (new project)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  905d871a-68fe-4637-ab46-809395090101:
+    id: 905d871a-68fe-4637-ab46-809395090101
+    content: Terminal panel available and functional
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1d4fb4a3-04dd-4e11-bde0-d11e0c280b47:
+    id: 1d4fb4a3-04dd-4e11-bde0-d11e0c280b47
+    content: Browser panel available and functional
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  20727807-ef07-4c29-bb9a-d274bd867527:
+    id: 20727807-ef07-4c29-bb9a-d274bd867527
+    content: Test cases — Context model and declaration
+    children:
+      - 1e647d00-0dd4-41b6-804c-f133cad631cf
+      - e7a73221-3736-42ba-aa22-d7c1e3aed968
+      - 93a5181c-56e5-4fcf-acf8-ff09d1d88c42
+      - 8d5e5d4e-ce27-4b30-b1f9-2d812043ebfc
+      - 81589888-b7dc-457c-bf05-2296f535221c
+      - b0b64306-b0e1-4b64-a122-e1e7d42c5b8c
+      - cbedd041-d8f4-4ce6-873e-db8fcdd19b9c
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1e647d00-0dd4-41b6-804c-f133cad631cf:
+    id: 1e647d00-0dd4-41b6-804c-f133cad631cf
+    content: Declaring a context shows mode toggle in the icon picker dialog
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e7a73221-3736-42ba-aa22-d7c1e3aed968:
+    id: e7a73221-3736-42ba-aa22-d7c1e3aed968
+    content: Mode defaults to "Collaborate" when not explicitly changed
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  93a5181c-56e5-4fcf-acf8-ff09d1d88c42:
+    id: 93a5181c-56e5-4fcf-acf8-ff09d1d88c42
+    content: 'Selecting "Execute" mode persists contextMode: ''execute'' in node metadata'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8d5e5d4e-ce27-4b30-b1f9-2d812043ebfc:
+    id: 8d5e5d4e-ce27-4b30-b1f9-2d812043ebfc
+    content: Mode is included in ContextDeclarationInfo after refreshContextDeclarations runs
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  81589888-b7dc-457c-bf05-2296f535221c:
+    id: 81589888-b7dc-457c-bf05-2296f535221c
+    content: Changing a context's mode updates the metadata (right-click → Blueprint → Declare as Context on existing declaration)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b0b64306-b0e1-4b64-a122-e1e7d42c5b8c:
+    id: b0b64306-b0e1-4b64-a122-e1e7d42c5b8c
+    content: Mode change is undoable via Ctrl+Z
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  cbedd041-d8f4-4ce6-873e-db8fcdd19b9c:
+    id: cbedd041-d8f4-4ce6-873e-db8fcdd19b9c
+    content: Mode toggle does not appear when changing a blueprint icon (non-context declaration)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  420118d0-12c1-4616-a936-ed16ab2510c0:
+    id: 420118d0-12c1-4616-a936-ed16ab2510c0
+    content: Test cases — Built-in default contexts
+    children:
+      - 1631bc1c-51af-426a-875f-34c3c398582d
+      - 9fd1a09b-2ca4-4b58-aaab-08945ce10a39
+      - 4a4587f4-132b-48fd-bed5-dc0d485bbe22
+      - 3ee993b1-6d7b-4570-8e08-0fc9e3c456bc
+      - 5269b0c2-411b-49e5-b740-933dbbe27a4f
+      - 3562689e-4bca-42b2-98ae-acc4993bce70
+      - 956778be-2e75-49ec-b297-63f9b98136c2
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1631bc1c-51af-426a-875f-34c3c398582d:
+    id: 1631bc1c-51af-426a-875f-34c3c398582d
+    content: '"Basic review (default)" appears in the Send submenu context picker'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9fd1a09b-2ca4-4b58-aaab-08945ce10a39:
+    id: 9fd1a09b-2ca4-4b58-aaab-08945ce10a39
+    content: '"Basic execution" appears in the Send submenu context picker'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4a4587f4-132b-48fd-bed5-dc0d485bbe22:
+    id: 4a4587f4-132b-48fd-bed5-dc0d485bbe22
+    content: Both built-ins appear above user-declared contexts
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3ee993b1-6d7b-4570-8e08-0fc9e3c456bc:
+    id: 3ee993b1-6d7b-4570-8e08-0fc9e3c456bc
+    content: '"Basic review" is selected by default when no context is applied'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5269b0c2-411b-49e5-b740-933dbbe27a4f:
+    id: 5269b0c2-411b-49e5-b740-933dbbe27a4f
+    content: Selecting "Basic review" and sending triggers collaborate behavior (feedback loop with accept/cancel)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3562689e-4bca-42b2-98ae-acc4993bce70:
+    id: 3562689e-4bca-42b2-98ae-acc4993bce70
+    content: Selecting "Basic execution" and sending triggers execute behavior (direct output, no feedback loop)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  956778be-2e75-49ec-b297-63f9b98136c2:
+    id: 956778be-2e75-49ec-b297-63f9b98136c2
+    content: Built-in contexts do not appear in the standalone "Apply context" menu (unless synthetic IDs are implemented)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d917e38f-0363-4dc6-9ce9-8d327c8ca213:
+    id: d917e38f-0363-4dc6-9ce9-8d327c8ca213
+    content: Test cases — Send submenu structure
+    children:
+      - dd860ef2-44e7-489d-8ee4-d24648fdc306
+      - 20925ae9-c5af-42a2-b7e4-64be8c02389f
+      - 73f8ff37-2921-4fff-8377-88d0a89900b5
+      - 08b27fe4-59ee-4a6b-aaf8-b048a265f76b
+      - c357b0b6-462b-4997-ac51-17abc9b4c060
+      - 0c317528-9350-41a3-b12a-ac138091aa79
+      - df958176-cc4a-4790-954b-7146e7593491
+      - 95594263-995b-4785-9f07-0319aade4f79
+      - 4dfe634f-eeaa-4dfb-9c83-65fe10abd906
+      - cbf6e67d-a5d1-4cdb-8c78-f9f50f2465d6
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  dd860ef2-44e7-489d-8ee4-d24648fdc306:
+    id: dd860ef2-44e7-489d-8ee4-d24648fdc306
+    content: '"Send" appears in the right-click menu where "Execute" and "Collaborate" previously appeared'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  20925ae9-c5af-42a2-b7e4-64be8c02389f:
+    id: 20925ae9-c5af-42a2-b7e4-64be8c02389f
+    content: '"Execute" and "Collaborate" no longer appear as standalone menu items'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  73f8ff37-2921-4fff-8377-88d0a89900b5:
+    id: 73f8ff37-2921-4fff-8377-88d0a89900b5
+    content: '"Send" submenu top section shows "In terminal" and "In browser"'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  08b27fe4-59ee-4a6b-aaf8-b048a265f76b:
+    id: 08b27fe4-59ee-4a6b-aaf8-b048a265f76b
+    content: '"Send" submenu bottom section shows context picker with radio selection'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c357b0b6-462b-4997-ac51-17abc9b4c060:
+    id: c357b0b6-462b-4997-ac51-17abc9b4c060
+    content: User-declared contexts are grouped under "Collaborate" and "Execute" headings
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0c317528-9350-41a3-b12a-ac138091aa79:
+    id: 0c317528-9350-41a3-b12a-ac138091aa79
+    content: Selecting a context in the picker updates the radio selection visually
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  df958176-cc4a-4790-954b-7146e7593491:
+    id: df958176-cc4a-4790-954b-7146e7593491
+    content: '"Send" is hidden for hyperlink nodes'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  95594263-995b-4785-9f07-0319aade4f79:
+    id: 95594263-995b-4785-9f07-0319aade4f79
+    content: '"Send" is hidden for external link nodes'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4dfe634f-eeaa-4dfb-9c83-65fe10abd906:
+    id: 4dfe634f-eeaa-4dfb-9c83-65fe10abd906
+    content: '"Cancel collaboration" appears as a standalone item after "Send" when collaboration is in progress'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  cbf6e67d-a5d1-4cdb-8c78-f9f50f2465d6:
+    id: cbf6e67d-a5d1-4cdb-8c78-f9f50f2465d6
+    content: '"Apply context" remains as a separate menu item and functions as before'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  09f77639-4367-418f-84f7-d8f3045d8595:
+    id: 09f77639-4367-418f-84f7-d8f3045d8595
+    content: Test cases — Send action dispatch
+    children:
+      - ce2e0654-f9ff-4045-9c44-04c373ca00cc
+      - ab74d3c8-98d9-4d82-93e3-fe77cde83295
+      - 27176182-13f1-4573-9b54-32de742b5390
+      - 1a3bc87a-a210-4816-af1e-073471f3f90b
+      - 7617a376-8db5-49aa-a8e9-f6f417c5730d
+      - 06aa5ed3-8594-4b5b-a76e-f673e16cb1f5
+      - c7019727-e4d7-427c-ace0-2846e4d1c4d1
+      - ed4f76c9-b6a2-4e75-aa64-eb3e0f73a6c7
+      - ffeaac46-796d-4322-bef3-093278c3711c
+      - 5dc3c0a3-e513-45cc-8af3-445db0740096
+      - 190454cc-f34c-4436-9372-702a6ef8ac4c
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ce2e0654-f9ff-4045-9c44-04c373ca00cc:
+    id: ce2e0654-f9ff-4045-9c44-04c373ca00cc
+    content: '"In terminal" with a collaborate-mode context triggers collaborateInTerminal'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ab74d3c8-98d9-4d82-93e3-fe77cde83295:
+    id: ab74d3c8-98d9-4d82-93e3-fe77cde83295
+    content: '"In browser" with a collaborate-mode context triggers collaborate (clipboard + browser panel)'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  27176182-13f1-4573-9b54-32de742b5390:
+    id: 27176182-13f1-4573-9b54-32de742b5390
+    content: '"In terminal" with an execute-mode context triggers executeInTerminalWithContext'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1a3bc87a-a210-4816-af1e-073471f3f90b:
+    id: 1a3bc87a-a210-4816-af1e-073471f3f90b
+    content: '"In browser" with an execute-mode context triggers executeInBrowser (clipboard + browser panel)'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7617a376-8db5-49aa-a8e9-f6f417c5730d:
+    id: 7617a376-8db5-49aa-a8e9-f6f417c5730d
+    content: Changing context in the picker and then clicking an action uses the newly selected context's mode
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  06aa5ed3-8594-4b5b-a76e-f673e16cb1f5:
+    id: 06aa5ed3-8594-4b5b-a76e-f673e16cb1f5
+    content: Action triggers are disabled when collaboration is in progress and selected context is collaborate-mode
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c7019727-e4d7-427c-ace0-2846e4d1c4d1:
+    id: c7019727-e4d7-427c-ace0-2846e4d1c4d1
+    content: Action triggers are enabled when collaboration is in progress but selected context is execute-mode
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ed4f76c9-b6a2-4e75-aa64-eb3e0f73a6c7:
+    id: ed4f76c9-b6a2-4e75-aa64-eb3e0f73a6c7
+    content: Sending with a user-declared collaborate context includes that context's content in the prompt
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ffeaac46-796d-4322-bef3-093278c3711c:
+    id: ffeaac46-796d-4322-bef3-093278c3711c
+    content: Sending with a user-declared execute context includes that context's content in the prompt
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5dc3c0a3-e513-45cc-8af3-445db0740096:
+    id: 5dc3c0a3-e513-45cc-8af3-445db0740096
+    content: Sending with "Basic review" includes DEFAULT_REVIEW_CONTEXT in the prompt
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  190454cc-f34c-4436-9372-702a6ef8ac4c:
+    id: 190454cc-f34c-4436-9372-702a6ef8ac4c
+    content: Sending with "Basic execution" includes DEFAULT_EXECUTE_CONTEXT in the prompt
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  cd229e6f-daf8-4439-80f4-43473a437b82:
+    id: cd229e6f-daf8-4439-80f4-43473a437b82
+    content: Test cases — Context inheritance and mode resolution
+    children:
+      - 59e1124c-94c8-4b59-9f50-12ecf422f84d
+      - d2af9827-b1cf-4e1f-9c29-51740bdb9308
+      - cec2e1a3-ed80-49c4-9d7a-7c3814353790
+      - bd183baf-ad17-4182-81a7-30440010c4ab
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  59e1124c-94c8-4b59-9f50-12ecf422f84d:
+    id: 59e1124c-94c8-4b59-9f50-12ecf422f84d
+    content: A branch with no applied context inherits its ancestor's context and uses that context's mode
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d2af9827-b1cf-4e1f-9c29-51740bdb9308:
+    id: d2af9827-b1cf-4e1f-9c29-51740bdb9308
+    content: A branch that overrides its inherited context uses the override's mode
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  cec2e1a3-ed80-49c4-9d7a-7c3814353790:
+    id: cec2e1a3-ed80-49c4-9d7a-7c3814353790
+    content: Changing a declaration's mode from collaborate to execute changes the behavior for all branches using that context on next send
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  bd183baf-ad17-4182-81a7-30440010c4ab:
+    id: bd183baf-ad17-4182-81a7-30440010c4ab
+    content: An in-progress collaboration is not affected when its context's mode is changed mid-collaboration
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  53f6871b-c738-4fd3-8b40-5b9c7ba108e3:
+    id: 53f6871b-c738-4fd3-8b40-5b9c7ba108e3
+    content: Test cases — Keyboard shortcuts
+    children:
+      - 0192f871-c3c3-45bb-a1f7-d69b68cd610b
+      - 445bd9a8-21c5-490a-a303-22daf2ec1233
+      - 1d768ba8-7fef-4a7d-8c8a-5b194ef01c95
+      - 7afa1526-eee5-448e-9cca-e1cecfc4b278
+      - ca1e5aa5-1db8-420a-86f4-5c88f3262ad0
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0192f871-c3c3-45bb-a1f7-d69b68cd610b:
+    id: 0192f871-c3c3-45bb-a1f7-d69b68cd610b
+    content: '"Send in terminal" shortcut triggers the correct action based on the applied context''s mode'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  445bd9a8-21c5-490a-a303-22daf2ec1233:
+    id: 445bd9a8-21c5-490a-a303-22daf2ec1233
+    content: '"Send in browser" shortcut triggers the correct action based on the applied context''s mode'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1d768ba8-7fef-4a7d-8c8a-5b194ef01c95:
+    id: 1d768ba8-7fef-4a7d-8c8a-5b194ef01c95
+    content: Old shortcuts (Ctrl+E, Ctrl+Shift+E, Ctrl+Shift+Enter, Ctrl+Alt+Enter) no longer function
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7afa1526-eee5-448e-9cca-e1cecfc4b278:
+    id: 7afa1526-eee5-448e-9cca-e1cecfc4b278
+    content: Shortcuts work on nodes with inherited contexts (not just explicitly applied)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ca1e5aa5-1db8-420a-86f4-5c88f3262ad0:
+    id: ca1e5aa5-1db8-420a-86f4-5c88f3262ad0
+    content: Shortcuts are blocked for hyperlink and external link nodes
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  20d2eed6-8ba8-4799-bd18-b9b9a0035c53:
+    id: 20d2eed6-8ba8-4799-bd18-b9b9a0035c53
+    content: Test cases — Gutter indicator
+    children:
+      - b1995367-7392-47b2-b85e-a0f873e8cad4
+      - 1f577677-efc7-464f-b32e-e004d7a8f15c
+      - 2bf12112-7db0-4930-aa66-7526ad4359dd
+      - 6c935dc9-0e44-4e92-9699-76bdfc420c37
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b1995367-7392-47b2-b85e-a0f873e8cad4:
+    id: b1995367-7392-47b2-b85e-a0f873e8cad4
+    content: Gutter icon visually distinguishes collaborate-mode contexts from execute-mode contexts
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1f577677-efc7-464f-b32e-e004d7a8f15c:
+    id: 1f577677-efc7-464f-b32e-e004d7a8f15c
+    content: Tooltip shows the context name and its mode
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2bf12112-7db0-4930-aa66-7526ad4359dd:
+    id: 2bf12112-7db0-4930-aa66-7526ad4359dd
+    content: Inherited contexts show mode correctly in the gutter
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6c935dc9-0e44-4e92-9699-76bdfc420c37:
+    id: 6c935dc9-0e44-4e92-9699-76bdfc420c37
+    content: Changing a context's mode updates the gutter indicator without requiring a reload
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fbe9499d-3df9-4d94-b4ea-0b1146e4950e:
+    id: fbe9499d-3df9-4d94-b4ea-0b1146e4950e
+    content: Test cases — Migration
+    children:
+      - 484bf746-c73e-4e81-b941-79a4ff1f1c69
+      - c17ec5d0-7b03-46dc-b8b3-15db2857cb70
+      - 599fff5c-e609-41bb-b5d7-bc1737f114b6
+      - eb01f639-d15a-49ed-a5b0-eebdb080de21
+      - 72878885-4bce-4704-8cfa-8190fb497dfd
+      - 947c43aa-aecd-4d59-bb25-ebe3e4c13f8e
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  484bf746-c73e-4e81-b941-79a4ff1f1c69:
+    id: 484bf746-c73e-4e81-b941-79a4ff1f1c69
+    content: Opening an existing .arbo file with context declarations that lack contextMode loads without errors
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c17ec5d0-7b03-46dc-b8b3-15db2857cb70:
+    id: c17ec5d0-7b03-46dc-b8b3-15db2857cb70
+    content: 'Migrated context declarations default to contextMode: ''collaborate'''
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  599fff5c-e609-41bb-b5d7-bc1737f114b6:
+    id: 599fff5c-e609-41bb-b5d7-bc1737f114b6
+    content: Branches with no applied context function as if "Basic review" is applied
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  eb01f639-d15a-49ed-a5b0-eebdb080de21:
+    id: eb01f639-d15a-49ed-a5b0-eebdb080de21
+    content: Saving after migration persists the contextMode field
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  72878885-4bce-4704-8cfa-8190fb497dfd:
+    id: 72878885-4bce-4704-8cfa-8190fb497dfd
+    content: Stale appliedContextIds (plural) arrays are cleaned up during migration
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  947c43aa-aecd-4d59-bb25-ebe3e4c13f8e:
+    id: 947c43aa-aecd-4d59-bb25-ebe3e4c13f8e
+    content: A new project created after the update has built-in contexts available immediately
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  26fd0e8f-6097-4c0c-a23e-69948a62f21f:
+    id: 26fd0e8f-6097-4c0c-a23e-69948a62f21f
+    content: Test cases — Blueprint sharing
+    children:
+      - 095708e6-95c8-4b77-b1bf-8a22d3df060e
+      - c6f4bf20-797a-4372-a669-771c8e6e0d0c
+      - 80ee2747-fe34-43ff-a809-fddcea46c84f
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  095708e6-95c8-4b77-b1bf-8a22d3df060e:
+    id: 095708e6-95c8-4b77-b1bf-8a22d3df060e
+    content: Exporting a blueprint with context declarations preserves mode in the .arbo file
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c6f4bf20-797a-4372-a669-771c8e6e0d0c:
+    id: c6f4bf20-797a-4372-a669-771c8e6e0d0c
+    content: Importing a blueprint with mode-tagged contexts makes those modes available in the target project
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  80ee2747-fe34-43ff-a809-fddcea46c84f:
+    id: 80ee2747-fe34-43ff-a809-fddcea46c84f
+    content: Copy/paste of a context declaration preserves mode metadata
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  740c21cb-5fc3-4cc9-9f9c-091c29694c18:
+    id: 740c21cb-5fc3-4cc9-9f9c-091c29694c18
+    content: Risks — highest likelihood of defects
+    children:
+      - d758211d-8a62-40c7-a478-beb5c82ca995
+      - 0014c33a-f7e3-4829-bff8-11ad13fa9da0
+      - 051ecf26-98e8-4dbd-9005-86e6a2d19584
+      - 6a841d8e-cf5d-415a-88ad-90ad72e5bb92
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d758211d-8a62-40c7-a478-beb5c82ca995:
+    id: d758211d-8a62-40c7-a478-beb5c82ca995
+    content: Mode resolution at send time — the dispatch logic that reads the selected context's mode and routes to collaborate vs execute is entirely new code with multiple paths
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0014c33a-f7e3-4829-bff8-11ad13fa9da0:
+    id: 0014c33a-f7e3-4829-bff8-11ad13fa9da0
+    content: Send submenu state management — the combined context picker must track selection, radio state, mode grouping, and disable state simultaneously
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  051ecf26-98e8-4dbd-9005-86e6a2d19584:
+    id: 051ecf26-98e8-4dbd-9005-86e6a2d19584
+    content: Migration edge cases — .arbo files with mixed old/new metadata, or files that have been partially migrated
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6a841d8e-cf5d-415a-88ad-90ad72e5bb92:
+    id: 6a841d8e-cf5d-415a-88ad-90ad72e5bb92
+    content: appliedContextId/appliedContextIds cleanup — resolving the existing inconsistency during migration risks breaking nodes that use the plural form
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e5747e6f-b423-4c03-9537-a01119c6dfdb:
+    id: e5747e6f-b423-4c03-9537-a01119c6dfdb
+    content: Risks — highest impact of failure
+    children:
+      - a8afb668-eb86-4718-91ab-8490b86881d2
+      - 6e99dde1-9276-4881-b7ed-2537630dcd42
+      - 0eec32c5-c35f-4336-b44f-4211ed28ba7b
+      - a035f065-a832-436f-8c06-1cdf8dfce6bd
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a8afb668-eb86-4718-91ab-8490b86881d2:
+    id: a8afb668-eb86-4718-91ab-8490b86881d2
+    content: Incorrect mode dispatch — sending as execute when collaborate was intended (or vice versa) could cause data loss or unexpected AI behavior
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6e99dde1-9276-4881-b7ed-2537630dcd42:
+    id: 6e99dde1-9276-4881-b7ed-2537630dcd42
+    content: Migration data loss — incorrectly migrating context declarations could strip existing context associations
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0eec32c5-c35f-4336-b44f-4211ed28ba7b:
+    id: 0eec32c5-c35f-4336-b44f-4211ed28ba7b
+    content: Keyboard shortcut collision — new shortcuts (Ctrl+Enter) may conflict with existing OS or Electron shortcuts
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a035f065-a832-436f-8c06-1cdf8dfce6bd:
+    id: a035f065-a832-436f-8c06-1cdf8dfce6bd
+    content: In-progress collaboration corruption — if mode changes retroactively affect an active collaboration, feedback could be lost or misrouted
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9b5c524b-e768-4b53-83c6-3b1835a676be:
+    id: 9b5c524b-e768-4b53-83c6-3b1835a676be
+    content: Risks — ambiguous or likely to change
+    children:
+      - 958466ed-766c-4f8c-a44e-57e4fd64621c
+      - d5ee8849-5301-4a60-a5a3-297f9474248c
+      - 96c0de81-b152-4b11-a420-39f4d1608d1c
+      - e18f5d0e-0d05-41f8-a7bf-c403c274f1df
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  958466ed-766c-4f8c-a44e-57e4fd64621c:
+    id: 958466ed-766c-4f8c-a44e-57e4fd64621c
+    content: Whether built-in contexts should have synthetic node IDs or remain hardcoded strings — affects "Apply context" menu behavior
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d5ee8849-5301-4a60-a5a3-297f9474248c:
+    id: d5ee8849-5301-4a60-a5a3-297f9474248c
+    content: Whether "Send" label should show current mode — removed from spec but aids discoverability
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  96c0de81-b152-4b11-a420-39f4d1608d1c:
+    id: 96c0de81-b152-4b11-a420-39f4d1608d1c
+    content: Whether "Apply context" standalone menu should show mode headings — unspecified
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e18f5d0e-0d05-41f8-a7bf-c403c274f1df:
+    id: e18f5d0e-0d05-41f8-a7bf-c403c274f1df
+    content: Exact keyboard shortcut bindings — Ctrl+Enter may conflict with other uses
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c43bb448-4774-462c-8fce-426cbe05c771:
+    id: c43bb448-4774-462c-8fce-426cbe05c771
+    content: Philosophy check
+    children:
+      - fc93b706-8f95-4852-959a-eecd99192f06
+      - 82e260e6-d2ec-4134-bcc5-b4c151aa3c98
+      - d2ab4bbd-f889-4d60-8da5-3037128f4742
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fc93b706-8f95-4852-959a-eecd99192f06:
+    id: fc93b706-8f95-4852-959a-eecd99192f06
+    content: 'Strong alignment: workflows already model sequential steps — adding execution semantics is a natural evolution'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  82e260e6-d2ec-4134-bcc5-b4c151aa3c98:
+    id: 82e260e6-d2ec-4134-bcc5-b4c151aa3c98
+    content: 'Risk: automation introduces unpredictability, which conflicts with "predictable, stable behavior"'
+    children:
+      - 3714a829-4d70-42ef-9e6c-54c0876f45ce
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3714a829-4d70-42ef-9e6c-54c0876f45ce:
+    id: 3714a829-4d70-42ef-9e6c-54c0876f45ce
+    content: 'Mitigation: default to Manual, require explicit opt-in for Autonomous'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d2ab4bbd-f889-4d60-8da5-3037128f4742:
+    id: d2ab4bbd-f889-4d60-8da5-3037128f4742
+    content: 'Risk: hook integration ties the product to Claude Code specifically'
+    children:
+      - 2fc69962-fdf5-46cb-bd77-13d2316f57da
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2fc69962-fdf5-46cb-bd77-13d2316f57da:
+    id: 2fc69962-fdf5-46cb-bd77-13d2316f57da
+    content: 'Consider: abstract the integration behind a generic "executor" interface so other tools can plug in later'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5d139218-0412-4eb9-ace6-14820ac6a497:
+    id: 5d139218-0412-4eb9-ace6-14820ac6a497
+    content: 'MVP: Step types and visual indicators'
+    children:
+      - 2be9814b-a903-4f6c-94b8-979bf5f656da
+      - ce0724a6-6668-41b1-bb98-b15efec0bde5
+      - cd1c3778-006c-429a-86c6-205c2ed0cbb1
+      - f1fd4a0d-fefe-42bc-b08e-73d372dd190d
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2be9814b-a903-4f6c-94b8-979bf5f656da:
+    id: 2be9814b-a903-4f6c-94b8-979bf5f656da
+    content: Step type model
+    children:
+      - deb8348b-c70b-4f3b-a7e0-e4fdbe09f594
+      - 3830c669-e0bd-432d-ba1a-b21a0757375a
+      - 558c5c8f-cc13-4cac-adf1-b064a72d0217
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  deb8348b-c70b-4f3b-a7e0-e4fdbe09f594:
+    id: deb8348b-c70b-4f3b-a7e0-e4fdbe09f594
+    content: Manual (default)
+    children:
+      - 734ea6c9-6f6f-4176-96e2-cb047051a88c
+      - 5052e761-af66-4881-8b3b-232dcd742eaa
+      - 5a8e140f-ef2f-445b-bb8e-354935968aab
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  734ea6c9-6f6f-4176-96e2-cb047051a88c:
+    id: 734ea6c9-6f6f-4176-96e2-cb047051a88c
+    content: Square border around step number
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5052e761-af66-4881-8b3b-232dcd742eaa:
+    id: 5052e761-af66-4881-8b3b-232dcd742eaa
+    content: User advances steps manually via existing "Next step" action
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5a8e140f-ef2f-445b-bb8e-354935968aab:
+    id: 5a8e140f-ef2f-445b-bb8e-354935968aab
+    content: No new behavior needed beyond the visual indicator — this is how workflows already work
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3830c669-e0bd-432d-ba1a-b21a0757375a:
+    id: 3830c669-e0bd-432d-ba1a-b21a0757375a
+    content: Checkpoint
+    children:
+      - 8bc798c6-4e01-45af-941d-6e8ef4c453ff
+      - aa108dc5-bbd1-45b7-a1d0-311f2906cf51
+      - 327460ad-a77e-4ff9-a5ff-c0d9ae489a74
+      - fb4822cf-f649-4f7a-98ae-4d00786626e1
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8bc798c6-4e01-45af-941d-6e8ef4c453ff:
+    id: 8bc798c6-4e01-45af-941d-6e8ef4c453ff
+    content: Triangle border around step number
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  aa108dc5-bbd1-45b7-a1d0-311f2906cf51:
+    id: aa108dc5-bbd1-45b7-a1d0-311f2906cf51
+    content: On completion, prompt the user with a confirmation dialog before advancing
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  327460ad-a77e-4ff9-a5ff-c0d9ae489a74:
+    id: 327460ad-a77e-4ff9-a5ff-c0d9ae489a74
+    content: 'UI flow: toast or inline prompt appears — "Step N complete for task ''X''. Continue to Step N+1?" with Continue / Stop buttons'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fb4822cf-f649-4f7a-98ae-4d00786626e1:
+    id: fb4822cf-f649-4f7a-98ae-4d00786626e1
+    content: If user stops, workflow pauses (see pause state below)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  558c5c8f-cc13-4cac-adf1-b064a72d0217:
+    id: 558c5c8f-cc13-4cac-adf1-b064a72d0217
+    content: Autonomous
+    children:
+      - 7aa70458-1f03-4a82-bbac-376879fd20d2
+      - 277dbb2d-c418-451d-a038-2b074ccaa133
+      - e6292707-8b27-4b7d-a2dd-5a783a19ed55
+      - 617c09b1-880e-48bf-ab03-632c9750c865
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7aa70458-1f03-4a82-bbac-376879fd20d2:
+    id: 7aa70458-1f03-4a82-bbac-376879fd20d2
+    content: Circle border around step number
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  277dbb2d-c418-451d-a038-2b074ccaa133:
+    id: 277dbb2d-c418-451d-a038-2b074ccaa133
+    content: On completion, automatically advance to next step and execute
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  617c09b1-880e-48bf-ab03-632c9750c865:
+    id: 617c09b1-880e-48bf-ab03-632c9750c865
+    content: 'Warn user on declaration: "This step will execute automatically. Ensure contexts are correctly configured."'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ce0724a6-6668-41b1-bb98-b15efec0bde5:
+    id: ce0724a6-6668-41b1-bb98-b15efec0bde5
+    content: Changing step types
+    children:
+      - 1fb43d72-5502-45d7-bf03-c73f489bfb80
+      - facc3297-de32-4491-9342-822dccc67bd3
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1fb43d72-5502-45d7-bf03-c73f489bfb80:
+    id: 1fb43d72-5502-45d7-bf03-c73f489bfb80
+    content: Right-click step → Blueprint → Step Type submenu
+    children:
+      - 24e7054a-24bc-4d3c-a584-102bb55a6d6c
+      - 649c304a-a3ef-4739-89b4-69709265e01f
+      - 59115adb-1275-4263-bc1d-265d79866a14
+      - cced391e-3c9e-435b-a2d3-1ea80e6de6f0
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  24e7054a-24bc-4d3c-a584-102bb55a6d6c:
+    id: 24e7054a-24bc-4d3c-a584-102bb55a6d6c
+    content: 'Three radio-style options: Manual (default), Autonomous, Checkpoint'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  649c304a-a3ef-4739-89b4-69709265e01f:
+    id: 649c304a-a3ef-4739-89b4-69709265e01f
+    content: Current type is checked
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  59115adb-1275-4263-bc1d-265d79866a14:
+    id: 59115adb-1275-4263-bc1d-265d79866a14
+    content: Changing type is undoable (command pattern)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  cd1c3778-006c-429a-86c6-205c2ed0cbb1:
+    id: cd1c3778-006c-429a-86c6-205c2ed0cbb1
+    content: Discoverability
+    children:
+      - 77ffae2e-2d87-4095-94e5-913f4c0a0b1c
+      - 04358520-be91-4766-9a82-9c27d5a852ee
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  77ffae2e-2d87-4095-94e5-913f4c0a0b1c:
+    id: 77ffae2e-2d87-4095-94e5-913f4c0a0b1c
+    content: 'When a user first declares a workflow, show a one-time toast: "All steps default to Manual. Right-click a step to change its type."'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  04358520-be91-4766-9a82-9c27d5a852ee:
+    id: 04358520-be91-4766-9a82-9c27d5a852ee
+    content: 'Step number tooltip on hover: "Step N (Manual/Autonomous/Checkpoint) — Right-click to change"'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f1fd4a0d-fefe-42bc-b08e-73d372dd190d:
+    id: f1fd4a0d-fefe-42bc-b08e-73d372dd190d
+    content: 'This group is high ROI: small implementation surface, high visual clarity, builds on existing systems'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3ca13558-1be2-41a9-b7fe-562da82af55d:
+    id: 3ca13558-1be2-41a9-b7fe-562da82af55d
+    content: 'MVP: Workflow execution state'
+    children:
+      - d2b4bf38-a1d5-4763-999b-c6f44366028f
+      - d57b8bbf-3bff-421e-8ecc-22eb3a41d61c
+      - 41b73000-9023-411b-a06d-a53580f813d2
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d2b4bf38-a1d5-4763-999b-c6f44366028f:
+    id: d2b4bf38-a1d5-4763-999b-c6f44366028f
+    content: Pause state
+    children:
+      - d41a2532-bfd1-4064-bcc5-042ed93e799d
+      - deedd57d-1a06-4561-8117-ce21a36c5b6a
+      - bb6b11fb-0db7-4e07-b1ad-60a558f7c20e
+      - cd1feea6-4030-4071-9f1c-07d651b1fb55
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d41a2532-bfd1-4064-bcc5-042ed93e799d:
+    id: d41a2532-bfd1-4064-bcc5-042ed93e799d
+    content: A workflow can be Idle, Running, or Paused
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  deedd57d-1a06-4561-8117-ce21a36c5b6a:
+    id: deedd57d-1a06-4561-8117-ce21a36c5b6a
+    content: 'Paused overlay: pause icon on the workflow node (left side, using existing overlay system)'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  bb6b11fb-0db7-4e07-b1ad-60a558f7c20e:
+    id: bb6b11fb-0db7-4e07-b1ad-60a558f7c20e
+    content: 'Running overlay: spinner or play icon on the workflow node'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  cd1feea6-4030-4071-9f1c-07d651b1fb55:
+    id: cd1feea6-4030-4071-9f1c-07d651b1fb55
+    content: Only one workflow can be Running at a time per terminal — warn if user tries to start a second
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d57b8bbf-3bff-421e-8ecc-22eb3a41d61c:
+    id: d57b8bbf-3bff-421e-8ecc-22eb3a41d61c
+    content: Starting a workflow
+    children:
+      - 267211f8-fc8e-4fdc-b1cc-6755074b7282
+      - 1989874d-9cb0-4a45-aa0e-0a259d550a44
+      - 1ae3c224-1c3b-4276-baa8-55ef312bf52f
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  267211f8-fc8e-4fdc-b1cc-6755074b7282:
+    id: 267211f8-fc8e-4fdc-b1cc-6755074b7282
+    content: Right-click workflow root → "Run Workflow" (only appears if workflow has at least one Autonomous or Checkpoint step)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1989874d-9cb0-4a45-aa0e-0a259d550a44:
+    id: 1989874d-9cb0-4a45-aa0e-0a259d550a44
+    content: This sends the first step's content to the active terminal
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1ae3c224-1c3b-4276-baa8-55ef312bf52f:
+    id: 1ae3c224-1c3b-4276-baa8-55ef312bf52f
+    content: 'Alternative: "Run from Step N" to resume partway through — consider for future'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  41b73000-9023-411b-a06d-a53580f813d2:
+    id: 41b73000-9023-411b-a06d-a53580f813d2
+    content: Pausing and resuming
+    children:
+      - 03e6dfd7-cb62-4cb2-a5e9-ca00bb986e33
+      - 04cd5e43-6906-4a7c-8233-2eeddcb44dd1
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  03e6dfd7-cb62-4cb2-a5e9-ca00bb986e33:
+    id: 03e6dfd7-cb62-4cb2-a5e9-ca00bb986e33
+    content: 'Pause: user clicks the running overlay, or a Checkpoint step completes and user declines to continue'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  04cd5e43-6906-4a7c-8233-2eeddcb44dd1:
+    id: 04cd5e43-6906-4a7c-8233-2eeddcb44dd1
+    content: 'Resume: right-click paused workflow → "Resume Workflow"'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5c7425f7-f032-474e-b5ad-c2f01aad3caf:
+    id: 5c7425f7-f032-474e-b5ad-c2f01aad3caf
+    content: 'Future: Claude Code hooks integration'
+    children:
+      - 97c25af3-3c71-49d9-9713-a09e3a4287e4
+      - 4a65ac77-0b1f-4b5f-ac02-432bfa38edd4
+      - 9a15e986-0d08-4ea3-9004-8d38c5cfaa8f
+      - 2bbbaafe-6dbe-447d-b191-73899a91654a
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  97c25af3-3c71-49d9-9713-a09e3a4287e4:
+    id: 97c25af3-3c71-49d9-9713-a09e3a4287e4
+    content: 'ROI warning: this is the highest-complexity part of the feature'
+    children:
+      - 0ee00fa8-138b-499d-a5d3-66b8566b9de0
+      - 2efd77aa-1f16-4cc9-a339-17f0022591c0
+      - 276776fe-a7ae-416d-937a-adbbd0f10d58
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0ee00fa8-138b-499d-a5d3-66b8566b9de0:
+    id: 0ee00fa8-138b-499d-a5d3-66b8566b9de0
+    content: Hooks are Claude Code-specific — limits audience to Claude Code users
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2efd77aa-1f16-4cc9-a339-17f0022591c0:
+    id: 2efd77aa-1f16-4cc9-a339-17f0022591c0
+    content: Terminal process management is fragile and OS-dependent
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  276776fe-a7ae-416d-937a-adbbd0f10d58:
+    id: 276776fe-a7ae-416d-937a-adbbd0f10d58
+    content: 'Recommendation: ship step types and manual execution first, validate the UX, then layer on automation'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4a65ac77-0b1f-4b5f-ac02-432bfa38edd4:
+    id: 4a65ac77-0b1f-4b5f-ac02-432bfa38edd4
+    content: Hook architecture
+    children:
+      - 80897d04-44cf-49b0-b3c9-a47d6863c248
+      - 40572e73-fa29-472e-a95b-15de862ccbb2
+      - d40f111d-8eb5-4a7b-955d-91f14390ba43
+      - 94b90874-869b-4bc1-851a-401f224a72e8
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  80897d04-44cf-49b0-b3c9-a47d6863c248:
+    id: 80897d04-44cf-49b0-b3c9-a47d6863c248
+    content: Arborescent runs a lightweight local HTTP server (e.g., localhost:PORT/arbo-hook)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  40572e73-fa29-472e-a95b-15de862ccbb2:
+    id: 40572e73-fa29-472e-a95b-15de862ccbb2
+    content: Claude Code hooks POST to this endpoint with event type and session metadata
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d40f111d-8eb5-4a7b-955d-91f14390ba43:
+    id: d40f111d-8eb5-4a7b-955d-91f14390ba43
+    content: Events to watch
+    children:
+      - 056b9e8a-ac01-44df-a8ed-68b0d5ad1719
+      - e4b2f903-20db-4ea7-9f42-0981ac39b139
+      - 896697ef-4a2d-43f9-bafa-3a4aa1f4a4ae
+      - 2bcee4a2-3e82-4a1c-a4da-d048ee982d27
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  056b9e8a-ac01-44df-a8ed-68b0d5ad1719:
+    id: 056b9e8a-ac01-44df-a8ed-68b0d5ad1719
+    content: Stop — AI has finished; advance to next step if Autonomous
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e4b2f903-20db-4ea7-9f42-0981ac39b139:
+    id: e4b2f903-20db-4ea7-9f42-0981ac39b139
+    content: Notification — AI wants user attention; show toast, pause workflow
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  896697ef-4a2d-43f9-bafa-3a4aa1f4a4ae:
+    id: 896697ef-4a2d-43f9-bafa-3a4aa1f4a4ae
+    content: pre-tool-use — AI is requesting confirmation; show toast with context, pause workflow
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2bcee4a2-3e82-4a1c-a4da-d048ee982d27:
+    id: 2bcee4a2-3e82-4a1c-a4da-d048ee982d27
+    content: SubagentComplete — if using subagents, track completion
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  94b90874-869b-4bc1-851a-401f224a72e8:
+    id: 94b90874-869b-4bc1-851a-401f224a72e8
+    content: Arborescent matches incoming hook events to the active workflow step using a session-to-step mapping
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9a15e986-0d08-4ea3-9004-8d38c5cfaa8f:
+    id: 9a15e986-0d08-4ea3-9004-8d38c5cfaa8f
+    content: Terminal session tracking
+    children:
+      - e7898fa8-48d5-4c11-999f-a7ae98ab5e62
+      - cabee2bc-0c10-4a8c-b12c-4774963aef8e
+      - 55ac6600-92b3-4502-9596-8ef443b56fd4
+      - 234bb7d2-af58-4972-b01c-ea3085cf6fd8
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e7898fa8-48d5-4c11-999f-a7ae98ab5e62:
+    id: e7898fa8-48d5-4c11-999f-a7ae98ab5e62
+    content: Each workflow run assigns a session ID
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  cabee2bc-0c10-4a8c-b12c-4774963aef8e:
+    id: cabee2bc-0c10-4a8c-b12c-4774963aef8e
+    content: Map session IDs to terminal tabs/windows
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  55ac6600-92b3-4502-9596-8ef443b56fd4:
+    id: 55ac6600-92b3-4502-9596-8ef443b56fd4
+    content: If the target terminal is not focused when the next step fires, focus it
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  234bb7d2-af58-4972-b01c-ea3085cf6fd8:
+    id: 234bb7d2-af58-4972-b01c-ea3085cf6fd8
+    content: 'Edge case: terminal closed mid-workflow → pause workflow, toast "Terminal closed — workflow paused"'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2bbbaafe-6dbe-447d-b191-73899a91654a:
+    id: 2bbbaafe-6dbe-447d-b191-73899a91654a
+    content: Sending content to terminal
+    children:
+      - d3b617b8-19de-43f0-b8ce-abad761fb4d5
+      - 6b38481e-f9c4-4de2-aebd-8df9f870fcfa
+      - 9c9eadf9-2bb3-49ac-8f0c-491a4303d23d
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d3b617b8-19de-43f0-b8ce-abad761fb4d5:
+    id: d3b617b8-19de-43f0-b8ce-abad761fb4d5
+    content: Reuse existing "Send" mechanism
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6b38481e-f9c4-4de2-aebd-8df9f870fcfa:
+    id: 6b38481e-f9c4-4de2-aebd-8df9f870fcfa
+    content: Auto-prepend context from the step's applied contexts
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9c9eadf9-2bb3-49ac-8f0c-491a4303d23d:
+    id: 9c9eadf9-2bb3-49ac-8f0c-491a4303d23d
+    content: Wait for terminal ready state before sending (avoid pasting into a busy prompt)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8c275ef0-95e9-42e8-bba5-4f2dd73e54cc:
+    id: 8c275ef0-95e9-42e8-bba5-4f2dd73e54cc
+    content: 'Future: Workflow progress visualization'
+    children:
+      - 0480f36e-bb8b-47f0-a006-6bda51cdfd56
+      - 504e7f76-2ae7-40c1-917f-7767f3acbb8d
+      - e5a40fe9-539e-45c1-872b-12d3e4a9fdb9
+      - ef1a6415-167b-4096-b4e1-f7cff63c2241
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0480f36e-bb8b-47f0-a006-6bda51cdfd56:
+    id: 0480f36e-bb8b-47f0-a006-6bda51cdfd56
+    content: Show a progress bar or step highlight on the workflow tree during execution
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  504e7f76-2ae7-40c1-917f-7767f3acbb8d:
+    id: 504e7f76-2ae7-40c1-917f-7767f3acbb8d
+    content: Completed steps get a checkmark overlay
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e5a40fe9-539e-45c1-872b-12d3e4a9fdb9:
+    id: e5a40fe9-539e-45c1-872b-12d3e4a9fdb9
+    content: Failed steps get an X overlay
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ef1a6415-167b-4096-b4e1-f7cff63c2241:
+    id: ef1a6415-167b-4096-b4e1-f7cff63c2241
+    content: This gives the user a glanceable view of where the workflow is
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c06d8364-1748-4d8f-b250-9e9f06bcbcf1:
+    id: c06d8364-1748-4d8f-b250-9e9f06bcbcf1
+    content: 'Future: Workflow templates for common patterns'
+    children:
+      - 9052db69-9319-438f-b0e0-07dc45c95cbc
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9052db69-9319-438f-b0e0-07dc45c95cbc:
+    id: 9052db69-9319-438f-b0e0-07dc45c95cbc
+    content: Pre-built step-type configurations for common dev workflows
+    children:
+      - b82697a2-cbf7-45c6-b47d-215398b73732
+      - 1fb9e49f-7596-4443-a3e4-ed4c23496ee9
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b82697a2-cbf7-45c6-b47d-215398b73732:
+    id: b82697a2-cbf7-45c6-b47d-215398b73732
+    content: 'Example: "Code Review" — Write (Autonomous) → Test (Autonomous) → Review (Checkpoint) → Merge (Manual)'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1fb9e49f-7596-4443-a3e4-ed4c23496ee9:
+    id: 1fb9e49f-7596-4443-a3e4-ed4c23496ee9
+    content: These could be bundled as blueprint presets
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e907dae8-abc5-4ae3-a774-d9b2c681f813:
+    id: e907dae8-abc5-4ae3-a774-d9b2c681f813
+    content: Alternative approaches considered
+    children:
+      - fd36e303-8c87-4fe9-84d7-a3b98fb136ff
+      - e6584d4a-403c-4c8f-9593-39fdb5f09a0e
+      - 236bbd42-b2a0-4369-904f-d11c9b568464
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fd36e303-8c87-4fe9-84d7-a3b98fb136ff:
+    id: fd36e303-8c87-4fe9-84d7-a3b98fb136ff
+    content: 'Alternative: use file watchers instead of hooks'
+    children:
+      - 109b5442-0c13-45b8-a755-4c40e09fa8df
+      - a0112300-8788-4a38-b125-a4ef8942dcae
+      - b07ad73f-8bb9-4edd-975e-e6de3e37e1fa
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  109b5442-0c13-45b8-a755-4c40e09fa8df:
+    id: 109b5442-0c13-45b8-a755-4c40e09fa8df
+    content: 'Pro: tool-agnostic'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a0112300-8788-4a38-b125-a4ef8942dcae:
+    id: a0112300-8788-4a38-b125-a4ef8942dcae
+    content: 'Con: less granular, can''t distinguish AI events from user edits'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b07ad73f-8bb9-4edd-975e-e6de3e37e1fa:
+    id: b07ad73f-8bb9-4edd-975e-e6de3e37e1fa
+    content: 'Verdict: hooks are better for AI-specific integration, but file watchers could supplement for non-AI workflows'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e6584d4a-403c-4c8f-9593-39fdb5f09a0e:
+    id: e6584d4a-403c-4c8f-9593-39fdb5f09a0e
+    content: 'Alternative: build a VS Code extension instead of terminal integration'
+    children:
+      - 20212943-2f7f-425b-8fd3-3d9d2c13d637
+      - 6712b32c-953f-4a33-b747-e57c04e36ab8
+      - 69a5b9ea-1796-4338-8c5c-4868a14d9d65
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  20212943-2f7f-425b-8fd3-3d9d2c13d637:
+    id: 20212943-2f7f-425b-8fd3-3d9d2c13d637
+    content: 'Pro: richer IDE integration'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6712b32c-953f-4a33-b747-e57c04e36ab8:
+    id: 6712b32c-953f-4a33-b747-e57c04e36ab8
+    content: 'Con: massive scope increase, locks to VS Code ecosystem'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  69a5b9ea-1796-4338-8c5c-4868a14d9d65:
+    id: 69a5b9ea-1796-4338-8c5c-4868a14d9d65
+    content: 'Verdict: terminal-first is more aligned with Arborescent''s tool-agnostic philosophy'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  236bbd42-b2a0-4369-904f-d11c9b568464:
+    id: 236bbd42-b2a0-4369-904f-d11c9b568464
+    content: 'Alternative: skip step types entirely, just add "auto-advance" as a per-step toggle'
+    children:
+      - 3266ebc0-455e-424a-9e5a-22eb0b103d2c
+      - 2e14c4c3-62aa-448e-af40-320cdf9995c6
+      - 75c12200-4df5-4ebb-9b73-8464b07e0c31
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3266ebc0-455e-424a-9e5a-22eb0b103d2c:
+    id: 3266ebc0-455e-424a-9e5a-22eb0b103d2c
+    content: 'Pro: simpler mental model (on/off)'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2e14c4c3-62aa-448e-af40-320cdf9995c6:
+    id: 2e14c4c3-62aa-448e-af40-320cdf9995c6
+    content: 'Con: loses the Checkpoint concept, which is the most valuable type for real workflows'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  75c12200-4df5-4ebb-9b73-8464b07e0c31:
+    id: 75c12200-4df5-4ebb-9b73-8464b07e0c31
+    content: 'Verdict: three types is worth the small complexity increase'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0a88cce3-b9ae-423b-8f33-aa9f1ea05074:
+    id: 0a88cce3-b9ae-423b-8f33-aa9f1ea05074
+    content: Recommended implementation order
+    children:
+      - d13205fc-5b84-44dd-8de3-2868a64f33da
+      - 1bf6dfc6-e452-469c-b718-d3fce162302b
+      - c0542a6d-bb44-485e-81f8-44caf393246a
+      - e93064bd-ae82-469b-afa1-b16273a7503b
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d13205fc-5b84-44dd-8de3-2868a64f33da:
+    id: d13205fc-5b84-44dd-8de3-2868a64f33da
+    content: 'Phase 1: Step types + visual indicators (MVP, standalone value)'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1bf6dfc6-e452-469c-b718-d3fce162302b:
+    id: 1bf6dfc6-e452-469c-b718-d3fce162302b
+    content: 'Phase 2: Workflow execution state — run/pause/resume (MVP, enables manual orchestration)'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c0542a6d-bb44-485e-81f8-44caf393246a:
+    id: c0542a6d-bb44-485e-81f8-44caf393246a
+    content: 'Phase 3: Claude Code hooks integration (future, enables automation)'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e93064bd-ae82-469b-afa1-b16273a7503b:
+    id: e93064bd-ae82-469b-afa1-b16273a7503b
+    content: 'Phase 4: Progress visualization and templates (future, polish)'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e6292707-8b27-4b7d-a2dd-5a783a19ed55:
+    id: e6292707-8b27-4b7d-a2dd-5a783a19ed55
+    content: "Display toaster message 'Step N complete for task 'X'.\_ Commencing Step N+1'"
+    children: []
+    metadata:
+      status: pending
+  cced391e-3c9e-435b-a2d3-1ea80e6de6f0:
+    id: cced391e-3c9e-435b-a2d3-1ea80e6de6f0
+    content: Show step type in tooltip on hover over step number
+    children: []
+    metadata:
+      status: pending
+  5939195a-5e08-4cf8-80d8-d7f922225dec:
+    id: 5939195a-5e08-4cf8-80d8-d7f922225dec
+    content: 'Pro: faster, more discoverable'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4a7f750c-a545-4440-859e-4d3b0dd335f9:
+    id: 4a7f750c-a545-4440-859e-4d3b0dd335f9
+    content: 'Con: accidental clicks could change execution behavior — too risky for an automation setting'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c2e0813e-1e05-46be-988d-9ee56df86ff9:
+    id: c2e0813e-1e05-46be-988d-9ee56df86ff9
+    content: 'Recommendation: use right-click menu only, but show step type in tooltip on hover over the step number'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  facc3297-de32-4491-9342-822dccc67bd3:
+    id: facc3297-de32-4491-9342-822dccc67bd3
+    content: 'Alternative considered: cycle through types by clicking the step number indicator'
+    children:
+      - 5939195a-5e08-4cf8-80d8-d7f922225dec
+      - 4a7f750c-a545-4440-859e-4d3b0dd335f9
+      - c2e0813e-1e05-46be-988d-9ee56df86ff9
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f1368f57-d8b2-46ce-99f0-79069355a299:
+    id: f1368f57-d8b2-46ce-99f0-79069355a299
+    content: When accepting reviewed content, sometimes it breaks placement of a new node - when attempting to place a new node within the tree, it places it instead as the first child node of the root node sent for review
+    children: []
+    metadata:
+      status: pending
+  40dda755-258b-46e5-b208-1dd30ccfca1d:
+    id: 40dda755-258b-46e5-b208-1dd30ccfca1d
+    content: Backlog
+    children:
+      - e0ee7112-5355-4c92-8c44-60fd93211979
+    metadata:
+      status: pending
+      isBlueprint: true
+      blueprintIcon: LayoutList
+      blueprintColor: '#a855f7'
+      expanded: true
+  46f6965a-8da4-4dab-9e25-7dd3d2773bd7:
+    id: 46f6965a-8da4-4dab-9e25-7dd3d2773bd7
+    content: Attempting to delete a multiple selection causes a hang for around 10 seconds then fails silently
+    children: []
+    metadata:
+      status: pending
+  2338ef1b-b810-43e4-93c1-e730b12c357b:
+    id: 2338ef1b-b810-43e4-93c1-e730b12c357b
+    content: IconPicker should be renamed as it's now doing more
+    children:
+      - d2aa07e7-fab3-489e-b1f7-32b9b82e3c32
+    metadata:
+      status: pending
+  ea5b5fea-402a-4ec9-aa4f-8a4647c20d0c:
+    id: ea5b5fea-402a-4ec9-aa4f-8a4647c20d0c
+    content: Add a line to the changelog
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  d2aa07e7-fab3-489e-b1f7-32b9b82e3c32:
+    id: d2aa07e7-fab3-489e-b1f7-32b9b82e3c32
+    content: Also now has wrong title
+    children:
+      - ee842c7a-bf03-4aec-bcfc-9bc0e02f6ee1
+      - 6b6472d8-7674-4069-bc47-1a333a5f150e
+    metadata:
+      status: pending
+  ee842c7a-bf03-4aec-bcfc-9bc0e02f6ee1:
+    id: ee842c7a-bf03-4aec-bcfc-9bc0e02f6ee1
+    content: Should just be 'Customize'
+    children: []
+    metadata:
+      status: pending
+  11ce9550-136c-4199-8046-094d246366ce:
+    id: 11ce9550-136c-4199-8046-094d246366ce
+    content: Not obvious where to change a context type - also need right click context menu item
+    children:
+      - a58191b1-912a-4d97-ae4d-59bbd25aa152
+    metadata:
+      status: pending
+  a58191b1-912a-4d97-ae4d-59bbd25aa152:
+    id: a58191b1-912a-4d97-ae4d-59bbd25aa152
+    content: Should be off the blueprint sub menu
+    children:
+      - 488ed261-29d6-4549-a1a0-1047cfab7ab5
+    metadata:
+      status: pending
+  488ed261-29d6-4549-a1a0-1047cfab7ab5:
+    id: 488ed261-29d6-4549-a1a0-1047cfab7ab5
+    content: Context type
+    children:
+      - 10cb2cf4-001b-46b1-a6a1-e5b940ff80b8
+    metadata:
+      status: pending
+  10cb2cf4-001b-46b1-a6a1-e5b940ff80b8:
+    id: 10cb2cf4-001b-46b1-a6a1-e5b940ff80b8
+    content: Bullet list, similar to context selection
+    children: []
+    metadata:
+      status: pending
+  6b6472d8-7674-4069-bc47-1a333a5f150e:
+    id: 6b6472d8-7674-4069-bc47-1a333a5f150e
+    content: '''Mode'' is ambiguous, change to ''Context mode'''
+    children: []
+    metadata:
+      status: pending
+  a92a7d6b-f979-4a5e-b404-b4c84c16a42d:
+    id: a92a7d6b-f979-4a5e-b404-b4c84c16a42d
+    content: Basic review should appear as a collaboration type not an execution type in sub menu
+    children: []
+    metadata:
+      status: pending
+  e0ee7112-5355-4c92-8c44-60fd93211979:
+    id: e0ee7112-5355-4c92-8c44-60fd93211979
+    content: Context refactor
+    children:
+      - 2338ef1b-b810-43e4-93c1-e730b12c357b
+      - 11ce9550-136c-4199-8046-094d246366ce
+      - a92a7d6b-f979-4a5e-b404-b4c84c16a42d
     metadata:
       status: pending

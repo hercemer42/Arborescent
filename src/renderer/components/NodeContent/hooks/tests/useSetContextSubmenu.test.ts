@@ -3,7 +3,7 @@ import { buildSetContextSubmenu } from '../useSetContextSubmenu';
 import type { TreeNode } from '../../../../../shared/types';
 import type { ContextDeclarationInfo } from '../../../../store/tree/treeStore';
 
-vi.mock('../../../ui/IconPicker/IconPicker', () => ({
+vi.mock('../../../ui/CustomizeDialog/CustomizeDialog', () => ({
   getIconByName: () => null,
 }));
 

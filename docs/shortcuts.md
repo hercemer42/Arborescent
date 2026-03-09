@@ -40,10 +40,8 @@
 
 | Action | Shortcut |
 |--------|----------|
-| Execute in terminal | `Ctrl+E` |
-| Execute in browser | `Ctrl+Shift+E` |
-| Collaborate in browser | `Ctrl+Shift+Enter` |
-| Collaborate in terminal | `Ctrl+Alt+Enter` |
+| Send in terminal | `Ctrl+E` |
+| Send in browser | `Ctrl+Shift+E` |
 
 ## View
 

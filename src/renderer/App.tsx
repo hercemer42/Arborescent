@@ -5,7 +5,7 @@ import { Panel } from './components/Panel';
 import { BottomStatusBar } from './components/BottomStatusBar/BottomStatusBar';
 import { SearchBar } from './components/SearchBar';
 import { AppMenuBar } from './components/MenuBar';
-import { IconPickerDialog } from './components/ui/IconPicker/IconPickerDialog';
+import { CustomizeDialogContainer } from './components/ui/CustomizeDialog/CustomizeDialogContainer';
 import { KeyboardShortcutsDialog } from './components/KeyboardShortcuts';
 import { useToastStore } from './store/toast/toastStore';
 import { usePanelStore } from './store/panel/panelStore';
@@ -55,7 +55,7 @@ export function App() {
       )}
 
       {isSearchOpen ? <SearchBar /> : <BottomStatusBar />}
-      <IconPickerDialog />
+      <CustomizeDialogContainer />
       <KeyboardShortcutsDialog
         isOpen={isKeyboardShortcutsOpen}
         onClose={closeKeyboardShortcuts}
