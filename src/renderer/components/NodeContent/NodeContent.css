@@ -227,3 +227,37 @@
   text-decoration-skip-ink: none;
   text-underline-offset: 2px;
 }
+
+.workflow-execution-overlay {
+  position: absolute;
+  right: -12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  pointer-events: auto;
+}
+
+.workflow-execution-overlay.running {
+  color: var(--green-500, #22c55e);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  animation: pulse 2s infinite;
+}
+
+.workflow-execution-overlay.running:hover {
+  color: var(--green-600, #16a34a);
+}
+
+.workflow-execution-overlay.paused {
+  color: var(--amber-500, #f59e0b);
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}

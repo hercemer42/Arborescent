@@ -149,6 +149,8 @@ describe('collaborateActions', () => {
       summaryDateFrom: null,
       summaryDateTo: null,
       summaryVisibleNodeIds: null,
+      workflowExecutionStates: {},
+      workflowSessionMap: {},
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       actions: {} as any,
     };

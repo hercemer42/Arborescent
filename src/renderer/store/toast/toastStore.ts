@@ -1,19 +1,24 @@
 import { create } from 'zustand';
 import { ToastItem, ToastType } from '../../components/ui/Toast';
 
+interface ToastOptions {
+  actions?: Array<{ label: string; onClick: () => void }>;
+  persistent?: boolean;
+}
+
 interface ToastState {
   toasts: ToastItem[];
-  addToast: (message: string, type: ToastType) => void;
+  addToast: (message: string, type: ToastType, options?: ToastOptions) => void;
   removeToast: (id: string) => void;
 }
 
 export const useToastStore = create<ToastState>((set) => ({
   toasts: [],
 
-  addToast: (message: string, type: ToastType) => {
+  addToast: (message: string, type: ToastType, options?: ToastOptions) => {
     const id = `${Date.now()}-${Math.random()}`;
     set((state) => ({
-      toasts: [...state.toasts, { id, message, type }],
+      toasts: [...state.toasts, { id, message, type, ...options }],
     }));
   },
 

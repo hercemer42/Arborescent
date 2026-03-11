@@ -281,3 +281,35 @@ export function collectDescendantWorkflows(
   }
   return result;
 }
+
+export type WorkflowExecutionEntry = { state: 'idle' | 'running' | 'paused'; terminalTabId: string };
+
+export function isEligibleForExecution(
+  nodeId: string,
+  nodes: Record<string, TreeNode>,
+  ancestorRegistry: AncestorRegistry,
+  executionStates: Record<string, WorkflowExecutionEntry>
+): boolean {
+  const node = nodes[nodeId];
+  if (!node) return false;
+
+  const ancestors = ancestorRegistry[nodeId];
+  if (!ancestors) return false;
+
+  if (node.metadata.isWorkflow === true) return false;
+  if (node.metadata.isContextDeclaration === true) return false;
+
+  const entry = executionStates[nodeId];
+  if (entry?.state === 'running') return false;
+
+  // Inside a workflow step (grandparent is a workflow)
+  if (getWorkflowStepPosition(nodeId, nodes, ancestorRegistry) !== null) return true;
+
+  // Direct child of workflow root — eligible only if it's a leaf node (not a step container)
+  const parentId = ancestors[ancestors.length - 1];
+  if (parentId && nodes[parentId]?.metadata.isWorkflow === true) {
+    return node.children.length === 0;
+  }
+
+  return false;
+}

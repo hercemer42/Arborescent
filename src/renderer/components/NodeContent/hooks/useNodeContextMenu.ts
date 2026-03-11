@@ -10,6 +10,7 @@ import { useFilesStore } from '../../../store/files/filesStore';
 import { buildBlueprintSubmenu } from './useBlueprintSubmenu';
 import { buildStatusSubmenu } from './useStatusSubmenu';
 import { buildWorkflowStepSubmenu } from './useWorkflowStepSubmenu';
+import { buildWorkflowExecutionSubmenu } from './useWorkflowExecutionSubmenu';
 import { buildSetContextSubmenu } from './useSetContextSubmenu';
 import { logger } from '../../../services/logger';
 import { buildSendSubmenu } from './useSendSubmenu';
@@ -179,11 +180,25 @@ export function useNodeContextMenu(node: TreeNode) {
       actions,
     });
 
+    const workflowExecutionItems = buildWorkflowExecutionSubmenu({
+      node: freshNode,
+      nodes,
+      ancestorRegistry,
+      workflowExecutionStates: state.workflowExecutionStates,
+      actions: {
+        startWorkflow: actions.startWorkflow,
+        pauseWorkflow: actions.pauseWorkflow,
+        resumeWorkflow: actions.resumeWorkflow,
+      },
+      getTerminalId: () => useTerminalStore.getState().openTerminal(),
+    });
+
     const isHyperlink = freshNode.metadata.isHyperlink === true;
     const isExternalLink = freshNode.metadata.isExternalLink === true;
     const externalUrl = freshNode.metadata.externalUrl as string | undefined;
 
     const baseMenuItems: ContextMenuItem[] = [
+      ...workflowExecutionItems,
       ...workflowItems,
       ...(isExternalLink && externalUrl ? [{
         label: 'Open in external browser',

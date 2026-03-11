@@ -1,9 +1,16 @@
 import { Toast, ToastType } from './Toast';
 
+export interface ToastAction {
+  label: string;
+  onClick: () => void;
+}
+
 export interface ToastItem {
   id: string;
   message: string;
   type: ToastType;
+  actions?: ToastAction[];
+  persistent?: boolean;
 }
 
 interface ToastContainerProps {

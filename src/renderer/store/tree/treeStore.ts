@@ -15,8 +15,11 @@ import { createClipboardActions, ClipboardActions } from './actions/clipboardAct
 import { createExecuteActions, ExecuteActions } from './actions/executeActions';
 import { createSummaryActions, SummaryActions } from './actions/summaryActions';
 import { createWorkflowActions, WorkflowActions } from './actions/workflowActions';
+import { createWorkflowExecutionActions, WorkflowExecutionActions, WorkflowExecutionEntry } from './actions/workflowExecutionActions';
 import { HistoryManager } from './commands/HistoryManager';
 import { StorageService } from '../../services/storageService';
+
+export type { WorkflowExecutionEntry };
 
 export type ContextMode = 'collaborate' | 'execute';
 
@@ -54,8 +57,10 @@ export interface TreeState {
   summaryDateFrom: string | null;
   summaryDateTo: string | null;
   summaryVisibleNodeIds: Set<string> | null;
+  workflowExecutionStates: Record<string, WorkflowExecutionEntry>;
+  workflowSessionMap: Record<string, string>;
 
-  actions: NodeActions & ContextActions & BlueprintActions & NavigationActions & PersistenceActions & NodeMovementActions & NodeDeletionActions & VisualEffectsActions & SelectionActions & HistoryActions & CollaborateActions & ClipboardActions & ExecuteActions & SummaryActions & WorkflowActions;
+  actions: NodeActions & ContextActions & BlueprintActions & NavigationActions & PersistenceActions & NodeMovementActions & NodeDeletionActions & VisualEffectsActions & SelectionActions & HistoryActions & CollaborateActions & ClipboardActions & ExecuteActions & SummaryActions & WorkflowActions & WorkflowExecutionActions;
 }
 
 const storageService = new StorageService();
@@ -113,6 +118,8 @@ export function createTreeStore(treeType: TreeType = 'workspace') {
       summaryDateFrom: null,
       summaryDateTo: null,
       summaryVisibleNodeIds: null,
+      workflowExecutionStates: {},
+      workflowSessionMap: {},
 
       actions: {
         ...createNodeActions(get, set, persistenceActions.autoSave),
@@ -130,6 +137,7 @@ export function createTreeStore(treeType: TreeType = 'workspace') {
         ...executeActions,
         ...createSummaryActions(get, set, persistenceActions.autoSave),
         ...createWorkflowActions(get, set, persistenceActions.autoSave, historyActions.executeCommand, visualEffectsActions),
+        ...createWorkflowExecutionActions(get, set, persistenceActions.autoSave, visualEffectsActions),
       },
     };
   });

@@ -1,5 +1,5 @@
 import { memo, createElement } from 'react';
-import { Asterisk, Link, Play } from 'lucide-react';
+import { Asterisk, Link, Pause, Play } from 'lucide-react';
 import { TreeNode } from '../../../shared/types';
 import { StatusCheckbox } from '../ui/StatusCheckbox';
 import { ContextMenu } from '../ui/ContextMenu';
@@ -11,6 +11,7 @@ import { useBlueprintIcon } from './hooks/useBlueprintIcon';
 import { useHyperlinkNavigation } from './hooks/useHyperlinkNavigation';
 import { useSearchHighlight } from './hooks/useSearchHighlight';
 import { useWorkflowIndicator, getStepTypeLabel } from './hooks/useWorkflowIndicator';
+import { useWorkflowExecutionOverlay } from './hooks/useWorkflowExecutionOverlay';
 import './NodeContent.css';
 
 interface NodeContentProps {
@@ -40,6 +41,7 @@ function NodeContentComponent({
   const { isContextDeclaration, isContextChild, ContextIcon, contextColor } = useContextIcon(node);
   const { BlueprintIcon, blueprintColor, isInherited: isInheritingBlueprintIcon } = useBlueprintIcon(node);
   const { isWorkflow, stepNumber, stepType } = useWorkflowIndicator(node);
+  const { executionState, pauseWorkflow } = useWorkflowExecutionOverlay(node);
 
   const isHyperlink = node.metadata.isHyperlink === true;
   const isLink = isHyperlink || isExternalLink;
@@ -121,6 +123,28 @@ function NodeContentComponent({
               title={`Step ${stepNumber} (${getStepTypeLabel(stepType)})`}
             >
               {stepNumber}
+            </span>
+          )}
+          {executionState === 'running' && (
+            <button
+              className="workflow-execution-overlay running"
+              title="Running — click to pause"
+              aria-label="Pause workflow"
+              onClick={(e) => {
+                e.stopPropagation();
+                pauseWorkflow();
+              }}
+            >
+              <Play size={8} fill="currentColor" />
+            </button>
+          )}
+          {executionState === 'paused' && (
+            <span
+              className="workflow-execution-overlay paused"
+              title="Paused"
+              aria-label="Workflow paused"
+            >
+              <Pause size={8} fill="currentColor" />
             </span>
           )}
         </span>

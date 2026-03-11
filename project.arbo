@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-03-11T11:08:05.987Z'
+updated: '2026-03-11T14:07:34.832Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -527,6 +527,7 @@ nodes:
       - 7bc450dd-64ef-40d6-a60b-8c7d74634c1c
       - d87082fc-4e05-4080-b652-c69897022374
       - 592a7f85-c2bb-4133-877d-26f32ff8d4ff
+      - 0b06bda5-252f-43f6-bb00-9043226b3dae
     metadata:
       status: completed
       expanded: false
@@ -564,7 +565,7 @@ nodes:
       - 188622ee-bacb-4220-92c3-9ff37694e691
     metadata:
       status: pending
-      expanded: false
+      expanded: true
       isBlueprint: true
       blueprintIcon: Brain
       blueprintColor: '#0ea5e9'
@@ -5094,6 +5095,7 @@ nodes:
       expanded: false
       blueprintColor: '#0ea5e9'
       isBlueprint: true
+      contextMode: collaborate
   af1ebc0d-26dd-4a75-982f-03a9dbe2bc84:
     id: af1ebc0d-26dd-4a75-982f-03a9dbe2bc84
     content: "You are reviewing a task list.\_ Please :"
@@ -5162,6 +5164,7 @@ nodes:
       blueprintIcon: BrainCircuit
       blueprintColor: '#f97316'
       isBlueprint: true
+      contextMode: collaborate
   64ea2af4-332b-44a6-8b88-78535cc9b79a:
     id: 64ea2af4-332b-44a6-8b88-78535cc9b79a
     content: User refactor
@@ -5176,6 +5179,7 @@ nodes:
       expanded: false
       blueprintColor: '#a855f7'
       isBlueprint: true
+      contextMode: execute
   59f2421c-d726-43ec-8347-ccf2874922a4:
     id: 59f2421c-d726-43ec-8347-ccf2874922a4
     content: Perform the below refactoring tasks
@@ -5199,7 +5203,7 @@ nodes:
       - 9a8f1538-7eb7-4e2d-9e0f-46e2c00675f4
     metadata:
       status: pending
-      expanded: true
+      expanded: false
       isBlueprint: true
       blueprintIcon: BrainCog
       blueprintColor: '#14b8a6'
@@ -5602,12 +5606,14 @@ nodes:
       blueprintIcon: Wrench
       blueprintColor: '#14b8a6'
       isBlueprint: true
+      contextMode: execute
   5e0fa846-276d-4d99-ae49-a3f05b46b75c:
     id: 5e0fa846-276d-4d99-ae49-a3f05b46b75c
     content: Understand & Plan
     children:
       - 6045ae69-1afd-4579-b088-53443a35a23b
       - 760fca4c-7ad7-4b7b-9aa3-91325e45e524
+      - f0f6211f-af3f-4f1d-8336-311634154ce3
       - dd931d08-014a-4084-8522-9981433eadb9
       - 6328bcde-087d-4a83-8bf7-974dab32f3c3
       - 52c39879-2b10-40e6-89f7-e0c35bbb5474
@@ -8766,6 +8772,7 @@ nodes:
       blueprintColor: '#ef4444'
       isBlueprint: true
       expanded: false
+      contextMode: execute
   21179aff-4cb0-4e06-877a-6b13488017b3:
     id: 21179aff-4cb0-4e06-877a-6b13488017b3
     content: Perform the below bug fixes
@@ -8839,8 +8846,6 @@ nodes:
       - e9d700c8-784f-4b3f-9099-7be9ab864158
     metadata:
       status: pending
-      appliedContextIds:
-        - 6690289a-e02f-48bc-9225-a1083b7b324f
       activeContextId: 6690289a-e02f-48bc-9225-a1083b7b324f
       isBlueprint: true
       blueprintIcon: TriangleAlert
@@ -9102,8 +9107,6 @@ nodes:
       expanded: false
       deleted: false
       plugins: {}
-      appliedContextIds:
-        - cc94b377-246d-45ae-b938-2d3906892aa1
       activeContextId: cc94b377-246d-45ae-b938-2d3906892aa1
   f7a09ced-5fbc-49e4-8abe-36e3b2802358:
     id: f7a09ced-5fbc-49e4-8abe-36e3b2802358
@@ -11973,6 +11976,7 @@ nodes:
       blueprintColor: '#14b8a6'
       isBlueprint: true
       expanded: false
+      contextMode: collaborate
   132e5564-e290-4d6c-8cae-f65f125ef78f:
     id: 132e5564-e290-4d6c-8cae-f65f125ef78f
     content: Check the following list against what is currently implemented
@@ -18114,6 +18118,7 @@ nodes:
       blueprintColor: '#0c6f9d'
       isContextDeclaration: true
       expanded: false
+      contextMode: collaborate
   bfe8794a-2209-4c09-ba88-c4c951928b76:
     id: bfe8794a-2209-4c09-ba88-c4c951928b76
     content: 'Document this feature given the following conventions :'
@@ -23832,19 +23837,20 @@ nodes:
     children:
       - 12221dfc-628a-4f1c-9280-7d4ac8e0dff7
       - 2e64b4cc-8a16-4eb6-a54d-80a2b7a1cff5
-      - c69740b9-efb2-46d6-aa2e-1279d41ac718
       - c87d1961-3f2a-409a-9eb9-0e0b5514d184
+      - 21aa87af-3028-4f86-80a6-0180cbb0adc7
       - 29c6e2d4-d200-4e04-8552-4913d4de3911
       - 144f87a7-9799-423c-ba47-40dff294fb8d
     metadata:
       status: pending
-      expanded: true
+      expanded: false
       deleted: false
       plugins: {}
       isContextDeclaration: true
       blueprintIcon: Blocks
       blueprintColor: '#22c55e'
       isBlueprint: true
+      contextMode: collaborate
   2e7d3b78-a686-46d6-a87a-7b1fdc13fca8:
     id: 2e7d3b78-a686-46d6-a87a-7b1fdc13fca8
     content: Workflows
@@ -24290,6 +24296,7 @@ nodes:
       blueprintIcon: ZoomIn
       blueprintColor: '#22c55e'
       isBlueprint: true
+      contextMode: execute
   4d3d31a5-5e2e-46a2-acfc-3e4890a0e1f6:
     id: 4d3d31a5-5e2e-46a2-acfc-3e4890a0e1f6
     content: Analyze the target task list
@@ -24603,6 +24610,7 @@ nodes:
       blueprintColor: '#c47f09'
       isBlueprint: true
       expanded: false
+      contextMode: execute
   81638916-1b50-4341-97e8-b3d7bcd0a8a6:
     id: 81638916-1b50-4341-97e8-b3d7bcd0a8a6
     content: Analyse the following list and code automated tests
@@ -24625,6 +24633,7 @@ nodes:
       blueprintIcon: Gem
       blueprintColor: '#64748b'
       isBlueprint: true
+      contextMode: execute
   83d888eb-b2ed-43bc-9905-952b080589bf:
     id: 83d888eb-b2ed-43bc-9905-952b080589bf
     content: Analyse the source requirement
@@ -24836,7 +24845,11 @@ nodes:
   00714a63-f267-4ab1-a285-73ae4198eb42:
     id: 00714a63-f267-4ab1-a285-73ae4198eb42
     content: Technical refinement
-    children: []
+    children:
+      - 0a62d0d8-639a-434d-8a54-46f77aff6739
+      - 90a40be5-3f48-4bd9-9f90-2884670a8ff3
+      - a30a4d15-15be-4c1c-9164-d699e6b82d42
+      - 545562f0-7717-474c-b37c-b93025d16a20
     metadata:
       status: pending
       isBlueprint: true
@@ -26585,6 +26598,7 @@ nodes:
       blueprintColor: '#f97316'
       isBlueprint: true
       expanded: false
+      contextMode: execute
   9f82ccb2-5099-4ad0-b8f2-3bba6e3554da:
     id: 9f82ccb2-5099-4ad0-b8f2-3bba6e3554da
     content: Run the standard checks
@@ -26636,6 +26650,7 @@ nodes:
       blueprintIcon: BugPlay
       blueprintColor: '#a855f7'
       isBlueprint: true
+      contextMode: execute
   644adefe-d77d-45d2-b414-a398eb757cef:
     id: 644adefe-d77d-45d2-b414-a398eb757cef
     content: Review code changes against acceptance criteria
@@ -26813,8 +26828,7 @@ nodes:
   87a11a28-4295-467f-ac54-746692494413:
     id: 87a11a28-4295-467f-ac54-746692494413
     content: Decomposition
-    children:
-      - 2219d6a5-961a-4af7-84e2-5b1ce8462abf
+    children: []
     metadata:
       status: completed
       appliedContextId: e6860559-af1d-4a28-be70-9e27ba35335f
@@ -35002,6 +35016,7 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
+      isBlueprint: true
   2e64b4cc-8a16-4eb6-a54d-80a2b7a1cff5:
     id: 2e64b4cc-8a16-4eb6-a54d-80a2b7a1cff5
     content: Please break it down into a list of user stories
@@ -35012,9 +35027,10 @@ nodes:
       - 5bfa9020-5db3-46c4-8be0-abefb83162f0
     metadata:
       status: pending
-      expanded: true
+      expanded: false
       deleted: false
       plugins: {}
+      isBlueprint: true
   08ab36c3-6a24-4558-a41c-55b50896f266:
     id: 08ab36c3-6a24-4558-a41c-55b50896f266
     content: Each one should be a discrete functional component with no content shared between them
@@ -35024,6 +35040,7 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
+      isBlueprint: true
   e972b8cb-f66f-4792-84ae-67c202a36371:
     id: e972b8cb-f66f-4792-84ae-67c202a36371
     content: Each one should be easy to code and reason about, and fit comfortably in the context window
@@ -35033,15 +35050,21 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
+      isBlueprint: true
   b3707296-2cac-4efd-a2e4-d137b110aad5:
     id: b3707296-2cac-4efd-a2e4-d137b110aad5
-    content: The user stories should be broken down by MVP
-    children: []
+    content: The user stories should be broken down by testable components
+    children:
+      - 7498a3e0-08d9-4459-ba73-b90177c39955
+      - 6044bacf-792c-4d65-8b6f-462ed4a0134c
+      - 525f114e-828a-496d-a616-a52eca60a83d
+      - 6d759906-6e13-46df-9ae2-1a624b116142
     metadata:
       status: pending
       expanded: true
       deleted: false
       plugins: {}
+      isBlueprint: true
   5bfa9020-5db3-46c4-8be0-abefb83162f0:
     id: 5bfa9020-5db3-46c4-8be0-abefb83162f0
     content: Don't be too granular in the decomposition. If a user story only has a couple of acceptance criteria, then include it with another
@@ -35051,6 +35074,7 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
+      isBlueprint: true
   c87d1961-3f2a-409a-9eb9-0e0b5514d184:
     id: c87d1961-3f2a-409a-9eb9-0e0b5514d184
     content: Use the following structure for each user story
@@ -35061,9 +35085,10 @@ nodes:
       - 7a927bcf-d118-4023-9c47-1c71d4e0229f
     metadata:
       status: pending
-      expanded: true
+      expanded: false
       deleted: false
       plugins: {}
+      isBlueprint: true
   dfe2a0e7-7ea5-4455-a27b-68ec01c65398:
     id: dfe2a0e7-7ea5-4455-a27b-68ec01c65398
     content: Problem statement
@@ -35076,6 +35101,7 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
+      isBlueprint: true
   954a0f2a-d174-411c-98d3-659316255c23:
     id: 954a0f2a-d174-411c-98d3-659316255c23
     content: Identify the user pain point or need the feature addresses
@@ -35085,6 +35111,7 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
+      isBlueprint: true
   90a47f71-b48e-41ba-ae5d-d2be87dffd76:
     id: 90a47f71-b48e-41ba-ae5d-d2be87dffd76
     content: State who the user is (role/persona)
@@ -35094,6 +35121,7 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
+      isBlueprint: true
   52472e3c-ed1f-43d1-8dda-97e718960bf3:
     id: 52472e3c-ed1f-43d1-8dda-97e718960bf3
     content: Describe the current experience and why it is insufficient
@@ -35103,6 +35131,7 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
+      isBlueprint: true
   ad14be1d-4bd0-4572-a415-a9f8e3b4ac44:
     id: ad14be1d-4bd0-4572-a415-a9f8e3b4ac44
     content: Use cases
@@ -35114,6 +35143,7 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
+      isBlueprint: true
   95aa20fe-2a1a-4130-b8b2-7f69d7e622a8:
     id: 95aa20fe-2a1a-4130-b8b2-7f69d7e622a8
     content: Define the primary use case (happy path)
@@ -35123,6 +35153,7 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
+      isBlueprint: true
   f7a6eea6-feec-4759-a6c0-9d660de43ec0:
     id: f7a6eea6-feec-4759-a6c0-9d660de43ec0
     content: Identify secondary and alternative use cases
@@ -35132,6 +35163,7 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
+      isBlueprint: true
   dcb668b7-da1b-49b1-aaa1-fb63f16e870f:
     id: dcb668b7-da1b-49b1-aaa1-fb63f16e870f
     content: Acceptance criteria
@@ -35145,6 +35177,7 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
+      isBlueprint: true
   0a3125b5-14de-4a28-b66e-54795ecbdf45:
     id: 0a3125b5-14de-4a28-b66e-54795ecbdf45
     content: Write each criterion as a testable statement
@@ -35154,6 +35187,7 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
+      isBlueprint: true
   12516114-7004-4357-a3e5-afdba2573dd3:
     id: 12516114-7004-4357-a3e5-afdba2573dd3
     content: Cover functional requirements
@@ -35163,6 +35197,7 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
+      isBlueprint: true
   d102fcca-db8a-4d3a-974c-88142f74894b:
     id: d102fcca-db8a-4d3a-974c-88142f74894b
     content: Cover edge cases and error handling
@@ -35173,6 +35208,7 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
+      isBlueprint: true
   d582dcff-e2cc-4533-aea2-b18816ec54db:
     id: d582dcff-e2cc-4533-aea2-b18816ec54db
     content: Only include reasonable edge cases
@@ -35183,6 +35219,7 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
+      isBlueprint: true
   003ff9ca-c961-4e16-9d81-933b5c37ec30:
     id: 003ff9ca-c961-4e16-9d81-933b5c37ec30
     content: Don't include minor ones unless there is technical complexity
@@ -35192,6 +35229,7 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
+      isBlueprint: true
   bed7648c-f140-423f-acdc-3bf7f3ec0040:
     id: bed7648c-f140-423f-acdc-3bf7f3ec0040
     content: Cover non-functional requirements (performance, accessibility, etc.)
@@ -35201,6 +35239,7 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
+      isBlueprint: true
   7a927bcf-d118-4023-9c47-1c71d4e0229f:
     id: 7a927bcf-d118-4023-9c47-1c71d4e0229f
     content: Constraints and assumptions
@@ -35212,6 +35251,7 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
+      isBlueprint: true
   f58f6914-be94-40bc-b334-4ea3652e1b91:
     id: f58f6914-be94-40bc-b334-4ea3652e1b91
     content: Note any technical constraints or dependencies
@@ -35222,6 +35262,7 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
+      isBlueprint: true
   8867bbeb-950e-43e2-98cd-48ba5012ca2d:
     id: 8867bbeb-950e-43e2-98cd-48ba5012ca2d
     content: Do highlight if there is a technical constraint that makes the feature difficult to implement
@@ -35231,6 +35272,7 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
+      isBlueprint: true
   fe1c346b-c1f6-43d6-961a-6d13a6feaa14:
     id: fe1c346b-c1f6-43d6-961a-6d13a6feaa14
     content: Document assumptions made about user behavior or system state
@@ -35240,6 +35282,7 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
+      isBlueprint: true
   29c6e2d4-d200-4e04-8552-4913d4de3911:
     id: 29c6e2d4-d200-4e04-8552-4913d4de3911
     content: Don't be technical in the descriptions unless required for functional context
@@ -35249,6 +35292,7 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
+      isBlueprint: true
   144f87a7-9799-423c-ba47-40dff294fb8d:
     id: 144f87a7-9799-423c-ba47-40dff294fb8d
     content: Remove any duplication across sections and preserve all unique information
@@ -35258,6 +35302,7 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
+      isBlueprint: true
   9491e99f-c707-4d6d-9ba0-1e49e87fee8b:
     id: 9491e99f-c707-4d6d-9ba0-1e49e87fee8b
     content: Release
@@ -35305,6 +35350,7 @@ nodes:
       blueprintIcon: BugPlay
       blueprintColor: '#a855f7'
       expanded: true
+      stepType: manual
   7b3e923e-b465-4444-ae7d-7fe0e80e3235:
     id: 7b3e923e-b465-4444-ae7d-7fe0e80e3235
     content: Code review & refactor
@@ -35314,6 +35360,7 @@ nodes:
       isBlueprint: true
       blueprintIcon: Recycle
       blueprintColor: '#22c55e'
+      appliedContextId: 64ea2af4-332b-44a6-8b88-78535cc9b79a
   ca7b201c-6d28-4504-9b6a-09d70a18912c:
     id: ca7b201c-6d28-4504-9b6a-09d70a18912c
     content: Final code review
@@ -35344,7 +35391,8 @@ nodes:
   0c1c74ed-ccdb-4278-a2f2-09b739effcfc:
     id: 0c1c74ed-ccdb-4278-a2f2-09b739effcfc
     content: Manual testing
-    children: []
+    children:
+      - 83478ae4-3c6f-4647-9d42-779a4de7d8a0
     metadata:
       status: pending
       isBlueprint: true
@@ -35410,9 +35458,10 @@ nodes:
       - b38966d3-b238-4d64-9eed-74d4ab983c28
       - 9a392715-9ea2-4269-b35c-812b8998e3ec
       - c25cf481-a0d1-495d-9cea-498f1135eb8c
+      - 6d973cbb-3c7c-4ac4-925d-ffd5d659332c
       - fbf20e91-d852-4406-9815-952fa7727f33
-      - 7b3e923e-b465-4444-ae7d-7fe0e80e3235
       - 333cb3e7-a25e-4d18-9dfa-82cf75328fff
+      - 7b3e923e-b465-4444-ae7d-7fe0e80e3235
       - 0bee331d-616e-48cf-bc86-24c9a09d7a67
       - 0c1c74ed-ccdb-4278-a2f2-09b739effcfc
       - 3d68c9ce-3b9b-4f79-ad99-4b6fd68e0e74
@@ -35432,28 +35481,6 @@ nodes:
       isBlueprint: true
       blueprintIcon: ClipboardClock
       blueprintColor: '#a855f7'
-  2219d6a5-961a-4af7-84e2-5b1ce8462abf:
-    id: 2219d6a5-961a-4af7-84e2-5b1ce8462abf
-    content: Workflow automation user stories
-    children:
-      - 0b06bda5-252f-43f6-bb00-9043226b3dae
-      - 83478ae4-3c6f-4647-9d42-779a4de7d8a0
-      - 0a62d0d8-639a-434d-8a54-46f77aff6739
-      - 90a40be5-3f48-4bd9-9f90-2884670a8ff3
-      - a30a4d15-15be-4c1c-9164-d699e6b82d42
-      - 545562f0-7717-474c-b37c-b93025d16a20
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  c69740b9-efb2-46d6-aa2e-1279d41ac718:
-    id: c69740b9-efb2-46d6-aa2e-1279d41ac718
-    content: If it's not possible, then they should be broken down by reviewable chunks
-    children: []
-    metadata:
-      status: pending
-      isBlueprint: true
   0b06bda5-252f-43f6-bb00-9043226b3dae:
     id: 0b06bda5-252f-43f6-bb00-9043226b3dae
     content: 'User Story 1: Define and display step types on workflow steps'
@@ -35727,289 +35754,15 @@ nodes:
     id: 83478ae4-3c6f-4647-9d42-779a4de7d8a0
     content: 'User Story 2: Workflow execution state, overlays, and controls'
     children:
-      - 0bd8b69f-8d1b-49f8-bd59-c565b7e2545a
-      - 80ff1d4c-422b-49b1-8eed-c022365728c1
-      - 10e27240-4795-400c-9774-1a0bb554b7ae
-      - 7f6df0b6-d72f-4d9b-8858-c191aca79c2d
+      - 52fb1ab7-8c9e-47b3-9b18-a96a2fcef2c7
+      - c367598d-6f0f-4041-af2a-e74383b85f02
+      - 77a8a651-8e27-40d4-bbbb-0417fac0e161
+      - 6d28d4f0-cbeb-4ac3-8a7d-4f953a0b2a38
+      - af5da0fc-9a5d-4951-b5ad-e672404b211d
+      - 8777a169-5b29-4278-aaf5-f5bb6c7433ab
     metadata:
-      status: pending
+      status: completed
       expanded: false
-      deleted: false
-      plugins: {}
-  0bd8b69f-8d1b-49f8-bd59-c565b7e2545a:
-    id: 0bd8b69f-8d1b-49f8-bd59-c565b7e2545a
-    content: Problem statement
-    children:
-      - 948f261d-066b-48ac-9c72-e97fa3051471
-      - 29b45d96-33c1-4cd0-b433-4268495bac6c
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  948f261d-066b-48ac-9c72-e97fa3051471:
-    id: 948f261d-066b-48ac-9c72-e97fa3051471
-    content: A user who wants to run a task node through a workflow needs the system to track which nodes are running, paused, or idle, and needs clear visual feedback and controls for each state
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  29b45d96-33c1-4cd0-b433-4268495bac6c:
-    id: 29b45d96-33c1-4cd0-b433-4268495bac6c
-    content: Currently there is no execution state concept — the user has no way to start, see, or control a running workflow
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  80ff1d4c-422b-49b1-8eed-c022365728c1:
-    id: 80ff1d4c-422b-49b1-8eed-c022365728c1
-    content: Use cases
-    children:
-      - 52771e48-0ccf-4efb-aaea-1940291cd24b
-      - d20b0bde-d0b9-4381-9527-3df2f010686a
-      - 4a4af4ec-c68b-43f8-b98d-1ea64af92690
-      - c3027237-7142-49f6-8f33-2ce890593b6c
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  52771e48-0ccf-4efb-aaea-1940291cd24b:
-    id: 52771e48-0ccf-4efb-aaea-1940291cd24b
-    content: 'Primary: User right-clicks a task node inside a workflow, selects "Start Workflow", sees a running overlay appear, clicks the overlay to pause, then right-clicks and selects "Resume Workflow"'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  d20b0bde-d0b9-4381-9527-3df2f010686a:
-    id: d20b0bde-d0b9-4381-9527-3df2f010686a
-    content: 'Secondary: User starts a workflow on a node at the workflow root — the node moves to the first step before execution begins'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  4a4af4ec-c68b-43f8-b98d-1ea64af92690:
-    id: 4a4af4ec-c68b-43f8-b98d-1ea64af92690
-    content: 'Secondary: User starts a workflow on a node already placed at step 3 — execution begins from step 3, skipping earlier steps'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  c3027237-7142-49f6-8f33-2ce890593b6c:
-    id: c3027237-7142-49f6-8f33-2ce890593b6c
-    content: 'Secondary: User presses Escape while a running node is selected to pause its workflow'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  10e27240-4795-400c-9774-1a0bb554b7ae:
-    id: 10e27240-4795-400c-9774-1a0bb554b7ae
-    content: Acceptance criteria
-    children:
-      - 5956914e-1da7-42a1-87eb-f6de751fc9ee
-      - 6dcd657d-b87c-4282-9fdc-603a1422a6d2
-      - 4cb124c5-849a-44f7-8395-c6eb9bbb3045
-      - dc32d93a-acf8-48db-964d-6507294a12a0
-      - 26fe8c35-0d1c-4c51-9486-984f641f9853
-      - 8d5eebd0-5146-4f95-853c-8a9e00254f3f
-      - 3109eb78-a9f8-42a3-a5c4-0bbfb2d8a7c5
-      - 55b44926-2c47-4f25-b08c-ea9ed3cc6f38
-      - 0a27d935-b000-437b-a990-c38a2f46a2c6
-      - b558a73d-b134-41e1-a78f-6def4a9b1409
-      - 444e0dad-1d93-4434-ad4c-674ef0d612cb
-      - 41d1a313-384e-4e2b-bd9c-3cb817abd23e
-      - 5803c82d-24c9-422c-8fe9-b4d260f1420d
-      - 4d45ffa5-1df0-4112-9080-95c1562f4af7
-      - 72724659-da48-471c-814a-95ac79c90f29
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  5956914e-1da7-42a1-87eb-f6de751fc9ee:
-    id: 5956914e-1da7-42a1-87eb-f6de751fc9ee
-    content: 'Nodes in a workflow have an execution state: Idle (no overlay), Running (play icon overlay), or Paused (pause icon overlay)'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  6dcd657d-b87c-4282-9fdc-603a1422a6d2:
-    id: 6dcd657d-b87c-4282-9fdc-603a1422a6d2
-    content: Execution state is transient (not persisted to project file)
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  4cb124c5-849a-44f7-8395-c6eb9bbb3045:
-    id: 4cb124c5-849a-44f7-8395-c6eb9bbb3045
-    content: Only direct children of workflow steps (or the workflow root) can be started — not the steps themselves or their ancestors
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  dc32d93a-acf8-48db-964d-6507294a12a0:
-    id: dc32d93a-acf8-48db-964d-6507294a12a0
-    content: '"Start Workflow" appears in the right-click menu for eligible non-running nodes inside a workflow'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  26fe8c35-0d1c-4c51-9486-984f641f9853:
-    id: 26fe8c35-0d1c-4c51-9486-984f641f9853
-    content: '"Pause Workflow" and "Resume Workflow" appear based on execution state, positioned as the first menu option'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  8d5eebd0-5146-4f95-853c-8a9e00254f3f:
-    id: 8d5eebd0-5146-4f95-853c-8a9e00254f3f
-    content: A node at the workflow root is moved to the first step on start
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  3109eb78-a9f8-42a3-a5c4-0bbfb2d8a7c5:
-    id: 3109eb78-a9f8-42a3-a5c4-0bbfb2d8a7c5
-    content: A node already inside a step starts from that step
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  55b44926-2c47-4f25-b08c-ea9ed3cc6f38:
-    id: 55b44926-2c47-4f25-b08c-ea9ed3cc6f38
-    content: Running overlay is clickable and triggers pause
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  0a27d935-b000-437b-a990-c38a2f46a2c6:
-    id: 0a27d935-b000-437b-a990-c38a2f46a2c6
-    content: Overlay positioning does not conflict with existing workflow indicator or step number overlays
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  b558a73d-b134-41e1-a78f-6def4a9b1409:
-    id: b558a73d-b134-41e1-a78f-6def4a9b1409
-    content: Escape key pauses the selected running node's workflow — does not fire when the user is editing a node
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  444e0dad-1d93-4434-ad4c-674ef0d612cb:
-    id: 444e0dad-1d93-4434-ad4c-674ef0d612cb
-    content: Multiple nodes can be in Running state simultaneously on different terminal tabs
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  41d1a313-384e-4e2b-bd9c-3cb817abd23e:
-    id: 41d1a313-384e-4e2b-bd9c-3cb817abd23e
-    content: Starting a workflow requires an available terminal tab with an AI assistant running — one running node per tab
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  5803c82d-24c9-422c-8fe9-b4d260f1420d:
-    id: 5803c82d-24c9-422c-8fe9-b4d260f1420d
-    content: If no terminal tab is available or the tab is already assigned, show an explanatory toast
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  4d45ffa5-1df0-4112-9080-95c1562f4af7:
-    id: 4d45ffa5-1df0-4112-9080-95c1562f4af7
-    content: Terminal assignment is released on pause, completion, or terminal close
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  72724659-da48-471c-814a-95ac79c90f29:
-    id: 72724659-da48-471c-814a-95ac79c90f29
-    content: On application restart, any nodes found in Running state are set to Paused with a toast
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  7f6df0b6-d72f-4d9b-8858-c191aca79c2d:
-    id: 7f6df0b6-d72f-4d9b-8858-c191aca79c2d
-    content: Constraints and assumptions
-    children:
-      - abcba874-d6bc-4419-b918-9fa418020874
-      - 3c25ddb0-5e07-454d-bc42-33633276d9d5
-      - 3d31c9f4-b103-42fe-bdd6-67d418979104
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  abcba874-d6bc-4419-b918-9fa418020874:
-    id: abcba874-d6bc-4419-b918-9fa418020874
-    content: Depends on User Story 1 (step types exist in metadata)
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  3c25ddb0-5e07-454d-bc42-33633276d9d5:
-    id: 3c25ddb0-5e07-454d-bc42-33633276d9d5
-    content: The overlay position must be resolved against the existing workflow play icon — may require contextual show/hide or repositioning
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  3d31c9f4-b103-42fe-bdd6-67d418979104:
-    id: 3d31c9f4-b103-42fe-bdd6-67d418979104
-    content: The Escape key is already bound to cancel-edit — the handler must be context-aware so cancel-edit takes priority when editing
-    children: []
-    metadata:
-      status: pending
-      expanded: true
       deleted: false
       plugins: {}
   0a62d0d8-639a-434d-8a54-46f77aff6739:
@@ -37002,6 +36755,1929 @@ nodes:
   88f4eb61-dd0f-4adc-a591-f4f16b75af5d:
     id: 88f4eb61-dd0f-4adc-a591-f4f16b75af5d
     content: Terminal close detection depends on existing terminal lifecycle events
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7498a3e0-08d9-4459-ba73-b90177c39955:
+    id: 7498a3e0-08d9-4459-ba73-b90177c39955
+    content: They should not be too small as to be time consuming to implement
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  6044bacf-792c-4d65-8b6f-462ed4a0134c:
+    id: 6044bacf-792c-4d65-8b6f-462ed4a0134c
+    content: They should not be to big as to be difficult to implement or reason about
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  525f114e-828a-496d-a616-a52eca60a83d:
+    id: 525f114e-828a-496d-a616-a52eca60a83d
+    content: They should comfortably fit in the context window
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  6d759906-6e13-46df-9ae2-1a624b116142:
+    id: 6d759906-6e13-46df-9ae2-1a624b116142
+    content: They do not need to represent an MVP but must be testable
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  21aa87af-3028-4f86-80a6-0180cbb0adc7:
+    id: 21aa87af-3028-4f86-80a6-0180cbb0adc7
+    content: They should not reference content in other user stories
+    children:
+      - 165525bb-c0c1-44e7-9eb5-80c870f0c9af
+    metadata:
+      status: pending
+      isBlueprint: true
+      expanded: false
+  165525bb-c0c1-44e7-9eb5-80c870f0c9af:
+    id: 165525bb-c0c1-44e7-9eb5-80c870f0c9af
+    content: Each user story should contain everything needed to implement it
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  f0f6211f-af3f-4f1d-8336-311634154ce3:
+    id: f0f6211f-af3f-4f1d-8336-311634154ce3
+    content: Complete all phases in this session
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  6d973cbb-3c7c-4ac4-925d-ffd5d659332c:
+    id: 6d973cbb-3c7c-4ac4-925d-ffd5d659332c
+    content: Feature verification
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+      appliedContextId: 1e2f062a-bbaa-4a02-b58b-a94ab15d8d74
+  52fb1ab7-8c9e-47b3-9b18-a96a2fcef2c7:
+    id: 52fb1ab7-8c9e-47b3-9b18-a96a2fcef2c7
+    content: Problem statement
+    children:
+      - 8880be44-d985-4924-bed2-b8621e6ccd05
+      - 2552e37b-8751-4af2-9995-559ed88aceda
+    metadata:
+      status: completed
+      expanded: false
+      deleted: false
+      plugins: {}
+  8880be44-d985-4924-bed2-b8621e6ccd05:
+    id: 8880be44-d985-4924-bed2-b8621e6ccd05
+    content: A user who wants to run a task node through a workflow needs the system to track which nodes are running, paused, or idle, and needs clear visual feedback and controls for each state
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2552e37b-8751-4af2-9995-559ed88aceda:
+    id: 2552e37b-8751-4af2-9995-559ed88aceda
+    content: Currently there is no execution state concept — the user has no way to start, see, or control a running workflow
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c367598d-6f0f-4041-af2a-e74383b85f02:
+    id: c367598d-6f0f-4041-af2a-e74383b85f02
+    content: Use cases
+    children:
+      - 0a7efe77-6b23-47b1-b97a-115120d16b69
+      - 3b18d73c-6949-4270-9219-22cad5888ea0
+      - f1fe422b-ff47-4b52-8643-ccd186081750
+      - 1d680db8-e661-4ce4-9f9e-1b307ad64575
+    metadata:
+      status: completed
+      expanded: false
+      deleted: false
+      plugins: {}
+  0a7efe77-6b23-47b1-b97a-115120d16b69:
+    id: 0a7efe77-6b23-47b1-b97a-115120d16b69
+    content: 'Primary: User right-clicks a task node inside a workflow, selects "Start Workflow", sees a running overlay appear, clicks the overlay to pause, then right-clicks and selects "Resume Workflow"'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3b18d73c-6949-4270-9219-22cad5888ea0:
+    id: 3b18d73c-6949-4270-9219-22cad5888ea0
+    content: 'Secondary: User starts a workflow on a node at the workflow root — the node moves to the first step before execution begins'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f1fe422b-ff47-4b52-8643-ccd186081750:
+    id: f1fe422b-ff47-4b52-8643-ccd186081750
+    content: 'Secondary: User starts a workflow on a node already placed at step 3 — execution begins from step 3, skipping earlier steps'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1d680db8-e661-4ce4-9f9e-1b307ad64575:
+    id: 1d680db8-e661-4ce4-9f9e-1b307ad64575
+    content: 'Secondary: User presses Escape while a running node is selected to pause its workflow'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  77a8a651-8e27-40d4-bbbb-0417fac0e161:
+    id: 77a8a651-8e27-40d4-bbbb-0417fac0e161
+    content: Acceptance criteria
+    children:
+      - 4182c3ad-223b-430c-90c1-e625da5e4a17
+      - f3a62872-69f6-451b-8a39-5a6028832440
+      - d7d772af-e6f9-4a75-8f84-6f7d726f897c
+      - abb85d0f-b152-49a6-be1e-2695cff34b4d
+      - 9a589791-5683-44a5-bd21-e29177cf649a
+      - 04f66aef-df21-4df6-9a0d-cdb3bf07ca4c
+      - 25dd5c23-205c-4ef5-a454-0d547630f621
+      - 83d5360c-087c-4a40-8078-54def23645af
+      - 95404e0e-2a28-447e-ab0e-ba1fb4cfacdb
+      - 5f5fc53a-abae-453c-851a-51b4b0740e2e
+      - eeb85107-cd91-4fdc-9aa4-52e3acb971fa
+      - b8e9c0dd-8d75-49c3-b69d-08f54ec47e94
+      - 81b14159-8afb-4b9c-bb77-d1e61c4dd316
+      - 51388193-949e-43ff-b00f-7c4e588ca8d2
+      - 7e8279df-4ca8-415e-9703-93c4e4d20829
+    metadata:
+      status: completed
+      expanded: false
+      deleted: false
+      plugins: {}
+  4182c3ad-223b-430c-90c1-e625da5e4a17:
+    id: 4182c3ad-223b-430c-90c1-e625da5e4a17
+    content: 'Nodes in a workflow have an execution state: Idle (no overlay), Running (play icon overlay), or Paused (pause icon overlay)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f3a62872-69f6-451b-8a39-5a6028832440:
+    id: f3a62872-69f6-451b-8a39-5a6028832440
+    content: Execution state is transient (not persisted to project file)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d7d772af-e6f9-4a75-8f84-6f7d726f897c:
+    id: d7d772af-e6f9-4a75-8f84-6f7d726f897c
+    content: Only direct children of workflow steps (or the workflow root) can be started — not the steps themselves or their ancestors
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  abb85d0f-b152-49a6-be1e-2695cff34b4d:
+    id: abb85d0f-b152-49a6-be1e-2695cff34b4d
+    content: '"Start Workflow" appears in the right-click menu for eligible non-running nodes inside a workflow'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9a589791-5683-44a5-bd21-e29177cf649a:
+    id: 9a589791-5683-44a5-bd21-e29177cf649a
+    content: '"Pause Workflow" and "Resume Workflow" appear based on execution state, positioned as the first menu option'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  04f66aef-df21-4df6-9a0d-cdb3bf07ca4c:
+    id: 04f66aef-df21-4df6-9a0d-cdb3bf07ca4c
+    content: A node at the workflow root is moved to the first step on start
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  25dd5c23-205c-4ef5-a454-0d547630f621:
+    id: 25dd5c23-205c-4ef5-a454-0d547630f621
+    content: A node already inside a step starts from that step
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  83d5360c-087c-4a40-8078-54def23645af:
+    id: 83d5360c-087c-4a40-8078-54def23645af
+    content: Running overlay is clickable and triggers pause
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  95404e0e-2a28-447e-ab0e-ba1fb4cfacdb:
+    id: 95404e0e-2a28-447e-ab0e-ba1fb4cfacdb
+    content: Overlay positioning does not conflict with existing workflow indicator or step number overlays
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5f5fc53a-abae-453c-851a-51b4b0740e2e:
+    id: 5f5fc53a-abae-453c-851a-51b4b0740e2e
+    content: Escape key pauses the selected running node's workflow
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  eeb85107-cd91-4fdc-9aa4-52e3acb971fa:
+    id: eeb85107-cd91-4fdc-9aa4-52e3acb971fa
+    content: Multiple nodes can be in Running state simultaneously on different terminal tabs
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b8e9c0dd-8d75-49c3-b69d-08f54ec47e94:
+    id: b8e9c0dd-8d75-49c3-b69d-08f54ec47e94
+    content: Starting a workflow requires an available terminal tab with an AI assistant running — one running node per tab
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  81b14159-8afb-4b9c-bb77-d1e61c4dd316:
+    id: 81b14159-8afb-4b9c-bb77-d1e61c4dd316
+    content: If no terminal tab is available or the tab is already assigned, show an explanatory toast
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  51388193-949e-43ff-b00f-7c4e588ca8d2:
+    id: 51388193-949e-43ff-b00f-7c4e588ca8d2
+    content: Terminal assignment is released on pause, completion, or terminal close
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7e8279df-4ca8-415e-9703-93c4e4d20829:
+    id: 7e8279df-4ca8-415e-9703-93c4e4d20829
+    content: On application restart, any nodes found in Running state are set to Paused with a toast
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6d28d4f0-cbeb-4ac3-8a7d-4f953a0b2a38:
+    id: 6d28d4f0-cbeb-4ac3-8a7d-4f953a0b2a38
+    content: Constraints and assumptions
+    children:
+      - a3264ddc-dbae-4f07-bd24-bb6840e26fcf
+      - 6fb8feb4-f30a-48de-9c4f-8244e4b7bfb6
+    metadata:
+      status: completed
+      expanded: false
+      deleted: false
+      plugins: {}
+  a3264ddc-dbae-4f07-bd24-bb6840e26fcf:
+    id: a3264ddc-dbae-4f07-bd24-bb6840e26fcf
+    content: The overlay position must be resolved against the existing workflow play icon — may require contextual show/hide or repositioning
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6fb8feb4-f30a-48de-9c4f-8244e4b7bfb6:
+    id: 6fb8feb4-f30a-48de-9c4f-8244e4b7bfb6
+    content: The Escape key is already bound to cancel-edit — the handler must be context-aware so that both editing is cancelled and the workflow is paused
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  af5da0fc-9a5d-4951-b5ad-e672404b211d:
+    id: af5da0fc-9a5d-4951-b5ad-e672404b211d
+    content: Technical specifications
+    children:
+      - e33d20e8-946d-48bc-9ad6-2b4c935d6561
+      - f1df14cf-146f-4f5c-ac48-04aa51e234a7
+      - 4ac6175d-93f1-4470-a97e-877bd52cdce3
+      - 60981a35-8ed3-46a2-83be-e556af4a8a13
+      - f387b203-cf2b-4059-b32e-8a7eb05ce470
+    metadata:
+      status: pending
+      expanded: false
+      deleted: false
+      plugins: {}
+  e33d20e8-946d-48bc-9ad6-2b4c935d6561:
+    id: e33d20e8-946d-48bc-9ad6-2b4c935d6561
+    content: Inputs, outputs, and key interfaces
+    children:
+      - 5079e723-5970-44b7-b54b-aa073c4773dc
+      - f49e1ac7-618b-4737-aca6-30160558ccde
+      - d98367e6-6ea6-4262-842d-d8870235cb95
+      - 12892ccd-c09a-44f9-8eaa-1a92d8c238cc
+      - 0be76109-2ff0-4a62-bbe2-04b32fca628c
+      - a3922aff-3b5c-420c-8e93-49c10d89e40b
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5079e723-5970-44b7-b54b-aa073c4773dc:
+    id: 5079e723-5970-44b7-b54b-aa073c4773dc
+    content: 'Input: User actions (right-click menu, overlay click, Escape key) targeting task nodes inside workflows'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f49e1ac7-618b-4737-aca6-30160558ccde:
+    id: f49e1ac7-618b-4737-aca6-30160558ccde
+    content: 'Output: Visual overlays (play/pause icons) on nodes, transient execution state, terminal assignment'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d98367e6-6ea6-4262-842d-d8870235cb95:
+    id: d98367e6-6ea6-4262-842d-d8870235cb95
+    content: 'New type: `ExecutionState = ''idle'' | ''running'' | ''paused''` — stored in `metadata.transient.executionState`'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  12892ccd-c09a-44f9-8eaa-1a92d8c238cc:
+    id: 12892ccd-c09a-44f9-8eaa-1a92d8c238cc
+    content: 'New type: `TerminalAssignment = { nodeId: string; terminalId: string }` — maps running nodes to terminal tabs'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  0be76109-2ff0-4a62-bbe2-04b32fca628c:
+    id: 0be76109-2ff0-4a62-bbe2-04b32fca628c
+    content: 'Extended interface: `TransientMetadata` gains `executionState?: ExecutionState` field (in `src/shared/types/treeNode.ts`)'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  a3922aff-3b5c-420c-8e93-49c10d89e40b:
+    id: a3922aff-3b5c-420c-8e93-49c10d89e40b
+    content: New store slice or standalone store for terminal assignment tracking (not on tree nodes — it's a cross-cutting concern)
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  f1df14cf-146f-4f5c-ac48-04aa51e234a7:
+    id: f1df14cf-146f-4f5c-ac48-04aa51e234a7
+    content: Constraints and non-functional requirements
+    children:
+      - 4a6c0903-66a6-4483-80ac-e79bc9355f4a
+      - fe6fe141-6f14-4819-a816-0a48ae93cb12
+      - 5ba46ed3-994c-434c-a042-207a73990776
+      - 5f5f7051-13dd-40f5-98f3-b3b22403bced
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4a6c0903-66a6-4483-80ac-e79bc9355f4a:
+    id: 4a6c0903-66a6-4483-80ac-e79bc9355f4a
+    content: Execution state must not appear in serialized `.arbo` files — existing serialization already strips `transient` metadata
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fe6fe141-6f14-4819-a816-0a48ae93cb12:
+    id: fe6fe141-6f14-4819-a816-0a48ae93cb12
+    content: Overlay click targets must be large enough for reliable interaction (minimum 16×16px hit area) despite small visual size
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5ba46ed3-994c-434c-a042-207a73990776:
+    id: 5ba46ed3-994c-434c-a042-207a73990776
+    content: Escape key handler must yield to cancel-edit when a node is being edited — check `editingService.ts` context before handling
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5f5f7051-13dd-40f5-98f3-b3b22403bced:
+    id: 5f5f7051-13dd-40f5-98f3-b3b22403bced
+    content: No new dependencies — overlays use existing Lucide icons (Play, Pause), CSS-only positioning
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4ac6175d-93f1-4470-a97e-877bd52cdce3:
+    id: 4ac6175d-93f1-4470-a97e-877bd52cdce3
+    content: Technical steps
+    children:
+      - cba911e8-bdc3-43ed-b39b-51f50165e224
+      - 9f0930b5-1b36-42b2-96b3-e6da98e0ff4b
+      - a5818e2a-eb21-4e31-83b2-6d69068f6d5a
+      - 8d9a3708-13a9-4237-8d4b-8b66b1576f64
+      - 3dfce498-870c-469b-8626-577271f4d805
+      - d867db58-03ca-4f3c-88a2-84abe2775678
+      - 47fd2988-8fa2-4735-93fa-1f9ee27119c3
+      - 14cbd16a-950a-4796-8477-86400b6c1191
+      - 7e54e9a4-0a13-45a6-af10-8688cce4296d
+      - 6c8d8ed5-8a27-488e-9deb-0b92810c4329
+      - c5e46e64-5223-49a2-b4f6-fc8c6e6317dc
+      - e49e5bb3-883a-447f-b8b5-fa6422a3b3a7
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  cba911e8-bdc3-43ed-b39b-51f50165e224:
+    id: cba911e8-bdc3-43ed-b39b-51f50165e224
+    content: 'Step 1 (S): Extend `TransientMetadata` with `executionState` field in `src/shared/types/treeNode.ts`'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  9f0930b5-1b36-42b2-96b3-e6da98e0ff4b:
+    id: 9f0930b5-1b36-42b2-96b3-e6da98e0ff4b
+    content: 'Step 2 (M): Create `executionStore.ts` — standalone Zustand store tracking `Record<nodeId, { terminalId, state }>` for all active executions, plus actions: `startExecution`, `pauseExecution`, `resumeExecution`, `releaseTerminal`, `recoverOnRestart`'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  a5818e2a-eb21-4e31-83b2-6d69068f6d5a:
+    id: a5818e2a-eb21-4e31-83b2-6d69068f6d5a
+    content: 'Step 3 (M): Create execution eligibility helper in `src/renderer/utils/workflowHelpers.ts` — `isEligibleForExecution(nodeId, nodes, ancestorRegistry)`: node is direct child of a workflow step or workflow root, is not itself a step/workflow/context, and is not already running'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8d9a3708-13a9-4237-8d4b-8b66b1576f64:
+    id: 8d9a3708-13a9-4237-8d4b-8b66b1576f64
+    content: 'Step 4 (M): Create `useWorkflowExecutionSubmenu.ts` hook — builds "Start Workflow" / "Pause Workflow" / "Resume Workflow" menu items; "Start" checks terminal availability and shows toast if unavailable; Pause/Resume positioned as first menu option'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3dfce498-870c-469b-8626-577271f4d805:
+    id: 3dfce498-870c-469b-8626-577271f4d805
+    content: 'Step 5 (S): Integrate execution submenu into `useNodeContextMenu.ts` — call new submenu builder, insert execution items before existing items'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d867db58-03ca-4f3c-88a2-84abe2775678:
+    id: d867db58-03ca-4f3c-88a2-84abe2775678
+    content: 'Step 6 (M): Create `useWorkflowExecutionOverlay.ts` hook — returns overlay component props (icon, onClick handler, visibility) based on node''s execution state; overlay renders Play icon for Running, Pause icon for Paused, nothing for Idle'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  47fd2988-8fa2-4735-93fa-1f9ee27119c3:
+    id: 47fd2988-8fa2-4735-93fa-1f9ee27119c3
+    content: 'Step 7 (M): Add overlay rendering in `NodeContent.tsx` — new `<span>` with click handler positioned to avoid conflict with existing workflow indicator (`left: -10px`) and step number; execution overlay positioned on the right side of the icon wrapper or as a badge'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  14cbd16a-950a-4796-8477-86400b6c1191:
+    id: 14cbd16a-950a-4796-8477-86400b6c1191
+    content: 'Step 8 (S): Add CSS for execution overlays in `NodeContent.css` — positioned at `right: -12px` to avoid left-side conflict; play icon with green tint, pause icon with amber tint; clickable with `pointer-events: auto` and `cursor: pointer`'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7e54e9a4-0a13-45a6-af10-8688cce4296d:
+    id: 7e54e9a4-0a13-45a6-af10-8688cce4296d
+    content: 'Step 9 (M): Add node-move-on-start logic — when starting a node at the workflow root, use existing `dropNode` action to move it to first step''s children; determine first step via `findNextStepTarget` from workflow helpers'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6c8d8ed5-8a27-488e-9deb-0b92810c4329:
+    id: 6c8d8ed5-8a27-488e-9deb-0b92810c4329
+    content: 'Step 10 (S): Add Escape key handler in `editingService.ts` — after cancel-edit check fails (node not being edited), check if active node is Running and call `pauseExecution`; only fires when not in edit mode'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c5e46e64-5223-49a2-b4f6-fc8c6e6317dc:
+    id: c5e46e64-5223-49a2-b4f6-fc8c6e6317dc
+    content: 'Step 11 (S): Add startup recovery — in app initialization (or store hydration), scan all nodes for `transient.executionState === ''running''`, set them to `''paused''`, show single aggregate toast'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e49e5bb3-883a-447f-b8b5-fa6422a3b3a7:
+    id: e49e5bb3-883a-447f-b8b5-fa6422a3b3a7
+    content: 'Step 12 (S): Add terminal close listener — when a terminal is removed via `removeTerminal`, release any node assigned to that terminal and set its state to Paused'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  60981a35-8ed3-46a2-83be-e556af4a8a13:
+    id: 60981a35-8ed3-46a2-83be-e556af4a8a13
+    content: Risks and edge cases
+    children:
+      - a2ddb910-25f8-4dd1-b819-9eb2e9a2728e
+      - d80b44db-b77f-4d78-a4fc-d6b780cba064
+      - 720ce4f4-ce00-4ce1-b27b-5321f6106941
+      - c7dcd7df-21d1-4ec3-8bb6-396714060fdb
+      - fc5ac5bc-abbb-4c6e-9152-83563715531f
+      - ae483b52-c071-4d45-b723-69dce443175b
+      - 83559545-7fce-43a7-ac9f-7ac0137c77da
+      - 25cffbfc-01c4-4a85-ba19-5a84030ed3c9
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a2ddb910-25f8-4dd1-b819-9eb2e9a2728e:
+    id: a2ddb910-25f8-4dd1-b819-9eb2e9a2728e
+    content: 'Overlay positioning conflict: existing workflow indicator and step number both use `left: -10px` absolute positioning inside `.blueprint-icon-wrapper` — execution overlay must use a different position (right side recommended) to avoid visual collision'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d80b44db-b77f-4d78-a4fc-d6b780cba064:
+    id: d80b44db-b77f-4d78-a4fc-d6b780cba064
+    content: '"AI assistant running" detection is undefined: the terminal store (`terminalStore.ts`) tracks terminals but has no concept of whether an AI assistant process is active in a tab — this needs a detection heuristic or a user-declared flag, and the AC should be clarified'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  720ce4f4-ce00-4ce1-b27b-5321f6106941:
+    id: 720ce4f4-ce00-4ce1-b27b-5321f6106941
+    content: 'Node moved during execution: if a Running node is dragged out of the workflow tree, execution state becomes orphaned — need to either block the move or auto-pause on move-out'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c7dcd7df-21d1-4ec3-8bb6-396714060fdb:
+    id: c7dcd7df-21d1-4ec3-8bb6-396714060fdb
+    content: 'Deleted node while running: if a Running node is deleted, must release its terminal assignment — hook into delete action'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fc5ac5bc-abbb-4c6e-9152-83563715531f:
+    id: fc5ac5bc-abbb-4c6e-9152-83563715531f
+    content: 'Undo of the start-move: starting a node at workflow root moves it to step 1; if the user undoes this move, the execution state and node position diverge — since execution state is transient and non-undoable, undo should also pause the execution'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ae483b52-c071-4d45-b723-69dce443175b:
+    id: ae483b52-c071-4d45-b723-69dce443175b
+    content: 'Race condition on rapid start/pause: debounce or guard against double-click on overlay toggling state too fast'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  83559545-7fce-43a7-ac9f-7ac0137c77da:
+    id: 83559545-7fce-43a7-ac9f-7ac0137c77da
+    content: 'Terminal tab count scaling: the AC says "multiple nodes Running simultaneously on different terminal tabs" but doesn''t cap the count — resource pressure from many concurrent xterm instances is a latent risk'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  25cffbfc-01c4-4a85-ba19-5a84030ed3c9:
+    id: 25cffbfc-01c4-4a85-ba19-5a84030ed3c9
+    content: 'Completion trigger undefined: the AC mentions "terminal assignment released on completion" but no AC defines what completion means — this story may need a follow-up story for step advancement and completion detection'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f387b203-cf2b-4059-b32e-8a7eb05ce470:
+    id: f387b203-cf2b-4059-b32e-8a7eb05ce470
+    content: Implementation plan
+    children:
+      - e2b4e69a-0480-4f97-8017-16fbb4d21e43
+      - 5ca32d66-8fb7-4d5c-a95a-d90665f181a2
+      - 12325d18-b65a-4955-b582-5ac7f010b955
+      - 73687e38-f44b-400b-ad93-ce1b7d903b17
+      - 030211eb-20ce-4382-912c-bf4c9b0768f6
+      - 491057e2-62d4-4c10-8cf5-c20a6970d990
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  e2b4e69a-0480-4f97-8017-16fbb4d21e43:
+    id: e2b4e69a-0480-4f97-8017-16fbb4d21e43
+    content: 'PR 1: Execution state foundation — Steps 1-3 (types, store, eligibility helper) with unit tests'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  5ca32d66-8fb7-4d5c-a95a-d90665f181a2:
+    id: 5ca32d66-8fb7-4d5c-a95a-d90665f181a2
+    content: 'PR 2: Context menu and overlays — Steps 4-8 (submenu, overlay hook, rendering, CSS) with unit tests and manual visual validation'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  12325d18-b65a-4955-b582-5ac7f010b955:
+    id: 12325d18-b65a-4955-b582-5ac7f010b955
+    content: 'PR 3: Start logic and keyboard — Steps 9-10 (move-on-start, Escape handler) with integration tests'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  73687e38-f44b-400b-ad93-ce1b7d903b17:
+    id: 73687e38-f44b-400b-ad93-ce1b7d903b17
+    content: 'PR 4: Lifecycle management — Steps 11-12 (restart recovery, terminal close cleanup) with unit tests'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  030211eb-20ce-4382-912c-bf4c9b0768f6:
+    id: 030211eb-20ce-4382-912c-bf4c9b0768f6
+    content: 'Testing strategy: unit tests for store actions, eligibility helper, and submenu builder via Vitest; manual testing for overlay positioning, click targets, and Escape key context-awareness; integration test for start → move → pause → resume flow'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  491057e2-62d4-4c10-8cf5-c20a6970d990:
+    id: 491057e2-62d4-4c10-8cf5-c20a6970d990
+    content: 'Parallelisation: PR 1 is the foundation; PR 2 and PR 3 can proceed in parallel once PR 1 merges; PR 4 depends on PR 2'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  8777a169-5b29-4278-aaf5-f5bb6c7433ab:
+    id: 8777a169-5b29-4278-aaf5-f5bb6c7433ab
+    content: Test plan
+    children:
+      - 4d90560c-35bb-4a6c-9352-bbcdb7a04d9a
+      - 7f0d10e9-36b9-4709-b3d9-ea77d38b10a3
+      - 0e05f9d0-b982-46f7-8705-50838785eb3b
+      - b73575b0-7b2a-4fd4-90df-7138f9bce7b9
+      - 807a14ca-da8b-4f25-ab19-a451ee51b538
+      - debb3ca0-1f20-4e8d-bd78-0726560f16b7
+      - 6fcda5c9-3634-40a3-ab6e-ab579c9d5805
+      - aba04207-9e69-415e-a9eb-e4f9c6c1ea52
+      - fb40c959-bdf2-4970-aedb-7da610c0bfef
+      - e923f141-a6be-45f4-b85b-08b5aea9a229
+      - 661c41ae-1112-49a2-b296-b66990bfb248
+      - 789efe27-49fa-4f19-a696-c5ec6b7a3809
+      - d2c6eff4-655c-4d6a-8ca2-594320e34a22
+      - 056ff9c0-b267-438c-96b5-d56e1f048527
+      - 0412e1d8-0d17-4776-ba2a-12c4f064d721
+      - 234b8e74-d9ae-47b3-b7a8-ff9efe3dd3a1
+      - 28573d4c-5cd7-4c71-a7a3-9ca386dd9f2b
+      - be0237e0-43cc-4414-9c47-be8f183b30f4
+      - b554d582-64c6-4ba6-b576-225485462f6f
+    metadata:
+      status: pending
+      expanded: false
+      deleted: false
+      plugins: {}
+  4d90560c-35bb-4a6c-9352-bbcdb7a04d9a:
+    id: 4d90560c-35bb-4a6c-9352-bbcdb7a04d9a
+    content: Scope and objectives
+    children:
+      - 0d677bf8-3ae3-4e87-9876-ce1e57b58617
+      - 33d74343-f7ae-43a9-b07a-47d11bdbcfb9
+      - 836b5b1b-a72a-45ab-9481-a3f795c05b0b
+      - 2dda4450-d7e6-4557-b3b2-319f4aa99259
+      - 92a83115-0d9a-4375-97f5-e352347e4d1b
+      - f8819134-5bfc-4522-a5ec-6c062ccb225e
+      - 078955d0-cc6a-46dc-853f-699f32731e68
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0d677bf8-3ae3-4e87-9876-ce1e57b58617:
+    id: 0d677bf8-3ae3-4e87-9876-ce1e57b58617
+    content: Verify all execution state transitions (Idle→Running, Running→Paused, Paused→Running, Running→Idle, Paused→Idle) produce correct transient state and visual feedback
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  33d74343-f7ae-43a9-b07a-47d11bdbcfb9:
+    id: 33d74343-f7ae-43a9-b07a-47d11bdbcfb9
+    content: Verify context menu items appear only for eligible nodes and reflect current execution state
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  836b5b1b-a72a-45ab-9481-a3f795c05b0b:
+    id: 836b5b1b-a72a-45ab-9481-a3f795c05b0b
+    content: Verify overlay rendering, positioning, and click interaction
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2dda4450-d7e6-4557-b3b2-319f4aa99259:
+    id: 2dda4450-d7e6-4557-b3b2-319f4aa99259
+    content: Verify terminal assignment lifecycle (acquire, release on pause/completion/close)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  92a83115-0d9a-4375-97f5-e352347e4d1b:
+    id: 92a83115-0d9a-4375-97f5-e352347e4d1b
+    content: Verify keyboard controls (Escape) respect editing context
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f8819134-5bfc-4522-a5ec-6c062ccb225e:
+    id: f8819134-5bfc-4522-a5ec-6c062ccb225e
+    content: Verify startup recovery sets orphaned Running nodes to Paused
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  078955d0-cc6a-46dc-853f-699f32731e68:
+    id: 078955d0-cc6a-46dc-853f-699f32731e68
+    content: Verify execution state is never persisted to `.arbo` files
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7f0d10e9-36b9-4709-b3d9-ea77d38b10a3:
+    id: 7f0d10e9-36b9-4709-b3d9-ea77d38b10a3
+    content: Entry and exit criteria
+    children:
+      - 70192718-9b8b-40ed-a609-c64b68789016
+      - 7030dfe7-02c5-483f-ad13-1c8c1d22e8ca
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  70192718-9b8b-40ed-a609-c64b68789016:
+    id: 70192718-9b8b-40ed-a609-c64b68789016
+    content: 'Entry: User Story 1 (step types) is merged; `TransientMetadata` type and execution store are compilable; at least one workflow with steps exists in a test `.arbo` file'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7030dfe7-02c5-483f-ad13-1c8c1d22e8ca:
+    id: 7030dfe7-02c5-483f-ad13-1c8c1d22e8ca
+    content: 'Exit: All unit tests pass; all manual test scenarios executed with no P1/P2 defects open; overlay positioning validated visually on both light and dark themes'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0e05f9d0-b982-46f7-8705-50838785eb3b:
+    id: 0e05f9d0-b982-46f7-8705-50838785eb3b
+    content: Environments and prerequisites
+    children:
+      - 57b9e729-f279-4e63-9b47-71a917945ace
+      - e0bb4436-9e6e-48a3-8c35-cb4b5d8b31d7
+      - 6760bec5-7713-4c35-9590-691ccba05ee2
+      - 9a796e50-bb7e-4bb9-a952-b04d3cf2ffa1
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  57b9e729-f279-4e63-9b47-71a917945ace:
+    id: 57b9e729-f279-4e63-9b47-71a917945ace
+    content: Vitest for unit and integration tests — mock Zustand stores, toast store, and terminal store
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e0bb4436-9e6e-48a3-8c35-cb4b5d8b31d7:
+    id: e0bb4436-9e6e-48a3-8c35-cb4b5d8b31d7
+    content: Electron dev build for manual overlay and keyboard testing
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6760bec5-7713-4c35-9590-691ccba05ee2:
+    id: 6760bec5-7713-4c35-9590-691ccba05ee2
+    content: 'Test fixture: `.arbo` file with a workflow containing at least 3 steps, with task nodes at the root, at step 1, and at step 3'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9a796e50-bb7e-4bb9-a952-b04d3cf2ffa1:
+    id: 9a796e50-bb7e-4bb9-a952-b04d3cf2ffa1
+    content: At least 2 terminal tabs open for multi-execution tests
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b73575b0-7b2a-4fd4-90df-7138f9bce7b9:
+    id: b73575b0-7b2a-4fd4-90df-7138f9bce7b9
+    content: Unit tests — execution store (`workflowExecutionActions.test.ts`)
+    children:
+      - 08cbbeae-a551-4942-a96b-1179542dce5a
+      - 3a31cb62-40e7-479d-aab9-f1508ac64be8
+      - ff8f3180-f451-4fee-a290-ae9c7fbbcc4a
+      - 93aa81b2-d446-47c8-b282-26e3278a9c30
+      - 3a2993a2-aa69-4402-9b02-05af15d3ce1d
+      - 476e5603-7bbf-4c25-bfd3-f6bcbb3ef7aa
+      - 732644f2-4420-4d4f-bcee-c0796268c032
+      - c023913e-71b5-4855-aeb3-ccf332428ffa
+      - 5ff7460c-afd5-46bf-bb0e-773bad22eb27
+      - b00085e8-deef-4406-84e6-8b2e83a676c3
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  08cbbeae-a551-4942-a96b-1179542dce5a:
+    id: 08cbbeae-a551-4942-a96b-1179542dce5a
+    content: '`startExecution` sets node state to Running and records terminal assignment'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3a31cb62-40e7-479d-aab9-f1508ac64be8:
+    id: 3a31cb62-40e7-479d-aab9-f1508ac64be8
+    content: '`startExecution` rejects if node is already Running (no-op or error)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ff8f3180-f451-4fee-a290-ae9c7fbbcc4a:
+    id: ff8f3180-f451-4fee-a290-ae9c7fbbcc4a
+    content: '`startExecution` rejects if terminal is already assigned to another node — returns failure'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  93aa81b2-d446-47c8-b282-26e3278a9c30:
+    id: 93aa81b2-d446-47c8-b282-26e3278a9c30
+    content: '`pauseExecution` transitions Running→Paused and releases terminal assignment'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3a2993a2-aa69-4402-9b02-05af15d3ce1d:
+    id: 3a2993a2-aa69-4402-9b02-05af15d3ce1d
+    content: '`pauseExecution` is a no-op on Idle or already-Paused nodes'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  476e5603-7bbf-4c25-bfd3-f6bcbb3ef7aa:
+    id: 476e5603-7bbf-4c25-bfd3-f6bcbb3ef7aa
+    content: '`resumeExecution` transitions Paused→Running and acquires a terminal'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  732644f2-4420-4d4f-bcee-c0796268c032:
+    id: 732644f2-4420-4d4f-bcee-c0796268c032
+    content: '`resumeExecution` rejects if no terminal is available — returns failure'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  c023913e-71b5-4855-aeb3-ccf332428ffa:
+    id: c023913e-71b5-4855-aeb3-ccf332428ffa
+    content: '`releaseTerminal` clears assignment for a given terminal ID and pauses the associated node'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5ff7460c-afd5-46bf-bb0e-773bad22eb27:
+    id: 5ff7460c-afd5-46bf-bb0e-773bad22eb27
+    content: '`recoverOnRestart` finds all Running entries, sets them to Paused, and returns the count for toast'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b00085e8-deef-4406-84e6-8b2e83a676c3:
+    id: b00085e8-deef-4406-84e6-8b2e83a676c3
+    content: Store state is isolated per test (no cross-test leakage)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  807a14ca-da8b-4f25-ab19-a451ee51b538:
+    id: 807a14ca-da8b-4f25-ab19-a451ee51b538
+    content: Unit tests — eligibility helper (`workflowExecutionEligibility.test.ts`)
+    children:
+      - 21e8a669-c159-4a6d-8153-2ce70c798369
+      - 1fe07acb-301a-4583-81d1-3e5d3cca3b19
+      - 987d0d0a-041c-4835-b95a-da11f431b68d
+      - c7e03c1b-95e7-48a1-b2c9-b2b06e1dd6b7
+      - 96005884-cae1-4480-8e1d-8c330e89365d
+      - a141591a-676b-42b7-aeb0-1a6ccd6db0fe
+      - 63c901dd-fcf0-4a76-af33-dbcaac313a45
+      - 92dc67a3-c519-4188-a396-1b8a1ea608f1
+      - 121f4164-42c1-45f7-81b2-d18d114d28f8
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  21e8a669-c159-4a6d-8153-2ce70c798369:
+    id: 21e8a669-c159-4a6d-8153-2ce70c798369
+    content: Direct child of a workflow step is eligible
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1fe07acb-301a-4583-81d1-3e5d3cca3b19:
+    id: 1fe07acb-301a-4583-81d1-3e5d3cca3b19
+    content: Direct child of the workflow root is eligible
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  987d0d0a-041c-4835-b95a-da11f431b68d:
+    id: 987d0d0a-041c-4835-b95a-da11f431b68d
+    content: A workflow step node itself is not eligible
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c7e03c1b-95e7-48a1-b2c9-b2b06e1dd6b7:
+    id: c7e03c1b-95e7-48a1-b2c9-b2b06e1dd6b7
+    content: A workflow root node is not eligible
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  96005884-cae1-4480-8e1d-8c330e89365d:
+    id: 96005884-cae1-4480-8e1d-8c330e89365d
+    content: An ancestor of a workflow step is not eligible
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a141591a-676b-42b7-aeb0-1a6ccd6db0fe:
+    id: a141591a-676b-42b7-aeb0-1a6ccd6db0fe
+    content: A context declaration node is not eligible
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  63c901dd-fcf0-4a76-af33-dbcaac313a45:
+    id: 63c901dd-fcf0-4a76-af33-dbcaac313a45
+    content: A node outside any workflow is not eligible
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  92dc67a3-c519-4188-a396-1b8a1ea608f1:
+    id: 92dc67a3-c519-4188-a396-1b8a1ea608f1
+    content: A node already in Running state is not eligible
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  121f4164-42c1-45f7-81b2-d18d114d28f8:
+    id: 121f4164-42c1-45f7-81b2-d18d114d28f8
+    content: A node in Paused state is eligible (can be resumed, though start would be blocked by menu logic)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  debb3ca0-1f20-4e8d-bd78-0726560f16b7:
+    id: debb3ca0-1f20-4e8d-bd78-0726560f16b7
+    content: Unit tests — execution submenu (`useWorkflowExecutionSubmenu.test.ts`)
+    children:
+      - 25536c12-8392-4d4d-8f8f-b336b8bf8b28
+      - 3413898c-63f1-49a3-818b-bf3ad8ba69bb
+      - 9a313e13-f9a8-42eb-8a3f-4eaf52523967
+      - 63ddbcd3-af5a-429e-8f60-4ae2b354c78d
+      - 92cdabc8-dbfd-4746-a398-d49ea0ec998e
+      - 36893118-54e7-4274-9eb3-ed6f768214ca
+      - 2f655457-bc27-4466-be88-bcb287d0be46
+      - 9ec6b4a2-d1e5-4345-8bb6-9c3e7875dcf5
+      - a655bf18-ad99-4861-9f52-301c3f3160f1
+      - a45b03a4-464e-4e1b-ad50-2d15ce2794c8
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  25536c12-8392-4d4d-8f8f-b336b8bf8b28:
+    id: 25536c12-8392-4d4d-8f8f-b336b8bf8b28
+    content: Idle eligible node shows "Start Workflow" menu item
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3413898c-63f1-49a3-818b-bf3ad8ba69bb:
+    id: 3413898c-63f1-49a3-818b-bf3ad8ba69bb
+    content: Running node shows "Pause Workflow" as first menu item, no "Start"
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9a313e13-f9a8-42eb-8a3f-4eaf52523967:
+    id: 9a313e13-f9a8-42eb-8a3f-4eaf52523967
+    content: Paused node shows "Resume Workflow" as first menu item, no "Start"
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  63ddbcd3-af5a-429e-8f60-4ae2b354c78d:
+    id: 63ddbcd3-af5a-429e-8f60-4ae2b354c78d
+    content: Idle non-eligible node shows no execution menu items
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  92cdabc8-dbfd-4746-a398-d49ea0ec998e:
+    id: 92cdabc8-dbfd-4746-a398-d49ea0ec998e
+    content: '"Start Workflow" click with available terminal calls `startExecution` and succeeds'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  36893118-54e7-4274-9eb3-ed6f768214ca:
+    id: 36893118-54e7-4274-9eb3-ed6f768214ca
+    content: '"Start Workflow" click with no available terminal shows explanatory toast and does not start'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2f655457-bc27-4466-be88-bcb287d0be46:
+    id: 2f655457-bc27-4466-be88-bcb287d0be46
+    content: '"Start Workflow" click when all terminals are assigned shows toast'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9ec6b4a2-d1e5-4345-8bb6-9c3e7875dcf5:
+    id: 9ec6b4a2-d1e5-4345-8bb6-9c3e7875dcf5
+    content: '"Pause Workflow" click calls `pauseExecution`'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a655bf18-ad99-4861-9f52-301c3f3160f1:
+    id: a655bf18-ad99-4861-9f52-301c3f3160f1
+    content: '"Resume Workflow" click with available terminal calls `resumeExecution`'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a45b03a4-464e-4e1b-ad50-2d15ce2794c8:
+    id: a45b03a4-464e-4e1b-ad50-2d15ce2794c8
+    content: '"Resume Workflow" click with no available terminal shows toast'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  6fcda5c9-3634-40a3-ab6e-ab579c9d5805:
+    id: 6fcda5c9-3634-40a3-ab6e-ab579c9d5805
+    content: Unit tests — overlay hook (`useWorkflowExecutionOverlay.test.ts`)
+    children:
+      - f3b234e2-c147-4628-b95b-ad6a31e58caf
+      - 492626c3-6bbe-4d7e-ae05-bdfceb7fcce1
+      - 4bdb51b3-0c4d-4745-926c-5b48231eef28
+      - 644ab224-e581-4470-9f1d-a2ec83127fb2
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f3b234e2-c147-4628-b95b-ad6a31e58caf:
+    id: f3b234e2-c147-4628-b95b-ad6a31e58caf
+    content: 'Idle node returns no overlay (visible: false)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  492626c3-6bbe-4d7e-ae05-bdfceb7fcce1:
+    id: 492626c3-6bbe-4d7e-ae05-bdfceb7fcce1
+    content: Running node returns play icon overlay with green tint and onClick handler
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4bdb51b3-0c4d-4745-926c-5b48231eef28:
+    id: 4bdb51b3-0c4d-4745-926c-5b48231eef28
+    content: Paused node returns pause icon overlay with amber tint and no onClick (or different handler)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  644ab224-e581-4470-9f1d-a2ec83127fb2:
+    id: 644ab224-e581-4470-9f1d-a2ec83127fb2
+    content: onClick handler calls `pauseExecution` for Running node
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  aba04207-9e69-415e-a9eb-e4f9c6c1ea52:
+    id: aba04207-9e69-415e-a9eb-e4f9c6c1ea52
+    content: Unit tests — node move on start (`workflowExecutionActions.test.ts`)
+    children:
+      - ecefceac-9acd-4fa5-9f15-a92a512e55a0
+      - d2881fbb-0d73-4ec0-8410-1d2b2ad6aed6
+      - 710d9bbb-917b-4040-8784-8e086e50ab52
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ecefceac-9acd-4fa5-9f15-a92a512e55a0:
+    id: ecefceac-9acd-4fa5-9f15-a92a512e55a0
+    content: Starting a node at workflow root moves it to first step's children
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d2881fbb-0d73-4ec0-8410-1d2b2ad6aed6:
+    id: d2881fbb-0d73-4ec0-8410-1d2b2ad6aed6
+    content: Starting a node already inside step 3 does not move it
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  710d9bbb-917b-4040-8784-8e086e50ab52:
+    id: 710d9bbb-917b-4040-8784-8e086e50ab52
+    content: Starting a node at workflow root when workflow has no steps shows error toast
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fb40c959-bdf2-4970-aedb-7da610c0bfef:
+    id: fb40c959-bdf2-4970-aedb-7da610c0bfef
+    content: Unit tests — Escape key handler (`escapeWorkflowPause.test.ts`)
+    children:
+      - 5620611f-742e-481a-9ff7-efae1eaf5202
+      - 07ccf54c-1737-4d3d-915f-9b179c59fba8
+      - fd84a176-a6c5-4ade-b6d8-f0afcf11e483
+      - 46f97329-ebee-4b5d-aa74-67a7210d574c
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5620611f-742e-481a-9ff7-efae1eaf5202:
+    id: 5620611f-742e-481a-9ff7-efae1eaf5202
+    content: Escape while editing a node cancels edit — does not pause workflow
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  07ccf54c-1737-4d3d-915f-9b179c59fba8:
+    id: 07ccf54c-1737-4d3d-915f-9b179c59fba8
+    content: Escape while not editing and selected node is Running calls `pauseExecution`
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fd84a176-a6c5-4ade-b6d8-f0afcf11e483:
+    id: fd84a176-a6c5-4ade-b6d8-f0afcf11e483
+    content: Escape while not editing and selected node is Idle or Paused does nothing
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  46f97329-ebee-4b5d-aa74-67a7210d574c:
+    id: 46f97329-ebee-4b5d-aa74-67a7210d574c
+    content: Escape while no node is selected does nothing
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e923f141-a6be-45f4-b85b-08b5aea9a229:
+    id: e923f141-a6be-45f4-b85b-08b5aea9a229
+    content: Unit tests — startup recovery (`workflowExecutionActions.test.ts`)
+    children:
+      - 6b2207be-88a5-4a08-92f6-7eacac9e744c
+      - 725e3834-ddcf-42e8-8839-a84c186f78fc
+      - 701f1b94-23f3-4b7b-b283-c009538a72dc
+      - 59eeb5a3-d649-4950-8653-083107ecd733
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6b2207be-88a5-4a08-92f6-7eacac9e744c:
+    id: 6b2207be-88a5-4a08-92f6-7eacac9e744c
+    content: Nodes with `transient.executionState === 'running'` are set to Paused
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  725e3834-ddcf-42e8-8839-a84c186f78fc:
+    id: 725e3834-ddcf-42e8-8839-a84c186f78fc
+    content: A single toast is shown with the count of recovered nodes
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  701f1b94-23f3-4b7b-b283-c009538a72dc:
+    id: 701f1b94-23f3-4b7b-b283-c009538a72dc
+    content: Nodes already Paused or Idle are not affected
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  59eeb5a3-d649-4950-8653-083107ecd733:
+    id: 59eeb5a3-d649-4950-8653-083107ecd733
+    content: Terminal assignments for recovered nodes are cleared
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  661c41ae-1112-49a2-b296-b66990bfb248:
+    id: 661c41ae-1112-49a2-b296-b66990bfb248
+    content: Unit tests — terminal close cleanup (`workflowExecutionEdgeCases.test.ts`)
+    children:
+      - 68caa66d-fbe5-44f9-bc51-9f6a55923fa6
+      - 8f40483a-d888-416f-a332-3f747f66a0eb
+      - 578b5d8f-16bc-4456-9d3b-6e456b23a2cb
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  68caa66d-fbe5-44f9-bc51-9f6a55923fa6:
+    id: 68caa66d-fbe5-44f9-bc51-9f6a55923fa6
+    content: Closing a terminal assigned to a Running node pauses that node and releases assignment
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8f40483a-d888-416f-a332-3f747f66a0eb:
+    id: 8f40483a-d888-416f-a332-3f747f66a0eb
+    content: Closing a terminal not assigned to any node has no side effects
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  578b5d8f-16bc-4456-9d3b-6e456b23a2cb:
+    id: 578b5d8f-16bc-4456-9d3b-6e456b23a2cb
+    content: Closing a terminal assigned to a Paused node clears the assignment without state change
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  789efe27-49fa-4f19-a696-c5ec6b7a3809:
+    id: 789efe27-49fa-4f19-a696-c5ec6b7a3809
+    content: Unit tests — edge cases beyond test plan (`workflowExecutionEdgeCases.test.ts`)
+    children:
+      - 8f019c4a-fa6d-4f11-9a26-18076e4b4df5
+      - 8a41c297-20f2-4df1-a547-8b773c454126
+      - ecd4dc54-c18d-46d4-b820-a8c65adadc15
+      - 9412f9ad-4bcd-4d67-8f84-3a8d348e4ebd
+      - b4bdefca-248e-44d4-9105-c226895cf7fc
+      - 7f391105-d63b-4037-ae17-51c57ab01ab6
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8f019c4a-fa6d-4f11-9a26-18076e4b4df5:
+    id: 8f019c4a-fa6d-4f11-9a26-18076e4b4df5
+    content: Running node deleted releases execution state and terminal
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8a41c297-20f2-4df1-a547-8b773c454126:
+    id: 8a41c297-20f2-4df1-a547-8b773c454126
+    content: Step deleted while node is at that step pauses the node
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ecd4dc54-c18d-46d4-b820-a8c65adadc15:
+    id: ecd4dc54-c18d-46d4-b820-a8c65adadc15
+    content: Tree edits while running (step reorder, step insertion) advance correctly
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9412f9ad-4bcd-4d67-8f84-3a8d348e4ebd:
+    id: 9412f9ad-4bcd-4d67-8f84-3a8d348e4ebd
+    content: Running node moved manually pauses and allows resume from new position
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b4bdefca-248e-44d4-9105-c226895cf7fc:
+    id: b4bdefca-248e-44d4-9105-c226895cf7fc
+    content: One node per terminal tab enforcement
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7f391105-d63b-4037-ae17-51c57ab01ab6:
+    id: 7f391105-d63b-4037-ae17-51c57ab01ab6
+    content: Execution state stored only in workflowExecutionStates, not in node metadata
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d2c6eff4-655c-4d6a-8ca2-594320e34a22:
+    id: d2c6eff4-655c-4d6a-8ca2-594320e34a22
+    content: Unit tests — hook event handling (`workflowExecutionActions.test.ts`)
+    children:
+      - 594238df-b536-4cec-9a07-035fb5560c82
+      - 2fb19722-5666-4ca5-95e9-d1f96d1eb643
+      - 6622bf41-f78b-40c2-ac39-6d880ade9159
+      - 38f34012-4fcb-44da-bb9a-48b7577e4b42
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  594238df-b536-4cec-9a07-035fb5560c82:
+    id: 594238df-b536-4cec-9a07-035fb5560c82
+    content: Stop event advances autonomous steps, shows checkpoint prompt, leaves manual steps
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2fb19722-5666-4ca5-95e9-d1f96d1eb643:
+    id: 2fb19722-5666-4ca5-95e9-d1f96d1eb643
+    content: Step type evaluated at arrival time, not at workflow start
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6622bf41-f78b-40c2-ac39-6d880ade9159:
+    id: 6622bf41-f78b-40c2-ac39-6d880ade9159
+    content: Unknown session_id ignored
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  38f34012-4fcb-44da-bb9a-48b7577e4b42:
+    id: 38f34012-4fcb-44da-bb9a-48b7577e4b42
+    content: Notification event pauses workflow and shows toast
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  056ff9c0-b267-438c-96b5-d56e1f048527:
+    id: 056ff9c0-b267-438c-96b5-d56e1f048527
+    content: Unit tests — toast with action buttons (`toastActionButtons.test.ts`)
+    children:
+      - 897414cf-3e61-480a-8b49-0857dde7f3bf
+      - a947fa55-ffb2-44f5-9f25-5d8a19397be3
+      - 4e8d91e1-7bd4-4a4c-9b80-13865fbc4f9c
+      - 9d9fd3ed-aef8-4aa2-9464-b9ec81785f76
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  897414cf-3e61-480a-8b49-0857dde7f3bf:
+    id: 897414cf-3e61-480a-8b49-0857dde7f3bf
+    content: Toast created with action button callbacks
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a947fa55-ffb2-44f5-9f25-5d8a19397be3:
+    id: a947fa55-ffb2-44f5-9f25-5d8a19397be3
+    content: Backwards compatible with no-action toasts
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4e8d91e1-7bd4-4a4c-9b80-13865fbc4f9c:
+    id: 4e8d91e1-7bd4-4a4c-9b80-13865fbc4f9c
+    content: Checkpoint confirmation toast with Continue and Stop
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9d9fd3ed-aef8-4aa2-9464-b9ec81785f76:
+    id: 9d9fd3ed-aef8-4aa2-9464-b9ec81785f76
+    content: Timeout dialog toast with Dismiss and Pause
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0412e1d8-0d17-4776-ba2a-12c4f064d721:
+    id: 0412e1d8-0d17-4776-ba2a-12c4f064d721
+    content: Unit tests — step type visual indicators (`useStepTypeIndicator.test.ts`, title-only)
+    children:
+      - 4b6d8c75-08ac-4ff6-bba1-5246a428df04
+      - e99fd8d1-3f28-4d60-8999-696e30cdd5cf
+      - c6db9b81-bd1c-4737-946c-27fcbc6f6188
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4b6d8c75-08ac-4ff6-bba1-5246a428df04:
+    id: 4b6d8c75-08ac-4ff6-bba1-5246a428df04
+    content: Border shape rendering for manual, checkpoint, autonomous
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e99fd8d1-3f28-4d60-8999-696e30cdd5cf:
+    id: e99fd8d1-3f28-4d60-8999-696e30cdd5cf
+    content: Tooltip text for each step type
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c6db9b81-bd1c-4737-946c-27fcbc6f6188:
+    id: c6db9b81-bd1c-4737-946c-27fcbc6f6188
+    content: Visual updates when stepType changes
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  234b8e74-d9ae-47b3-b7a8-ff9efe3dd3a1:
+    id: 234b8e74-d9ae-47b3-b7a8-ff9efe3dd3a1
+    content: Integration tests — full lifecycle flow
+    children:
+      - 54263d03-acdf-4840-a237-38191ec6c03a
+      - 01440035-5bdd-43cc-8882-ad4876e964c4
+      - 46b9a06b-2373-4bd0-8793-8fc625d4b793
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  54263d03-acdf-4840-a237-38191ec6c03a:
+    id: 54263d03-acdf-4840-a237-38191ec6c03a
+    content: Start → overlay appears → click overlay → pauses → right-click Resume → overlay changes → complete cycle (covered in parallel execution tests)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  01440035-5bdd-43cc-8882-ad4876e964c4:
+    id: 01440035-5bdd-43cc-8882-ad4876e964c4
+    content: Start node at root → node moves to step 1 → Running state → Escape → Paused
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  46b9a06b-2373-4bd0-8793-8fc625d4b793:
+    id: 46b9a06b-2373-4bd0-8793-8fc625d4b793
+    content: Two nodes started on two terminals → both show Running overlays → close one terminal → that node pauses, other stays Running
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  28573d4c-5cd7-4c71-a7a3-9ca386dd9f2b:
+    id: 28573d4c-5cd7-4c71-a7a3-9ca386dd9f2b
+    content: Manual tests — visual and interaction
+    children:
+      - 0b5543dd-9d82-4359-aa5d-630f63997b39
+      - a2c61e12-5ae4-4422-a8ca-d07e0f41a316
+      - 17e49269-cf24-433b-9dd1-4494426e5523
+      - 1929af98-f20f-4abe-bc73-9a166841c507
+      - c5d82bf3-e530-4f3d-bae2-8a9bb9a02959
+      - 46b15932-f7f6-4816-ae3a-daeb0131eb95
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0b5543dd-9d82-4359-aa5d-630f63997b39:
+    id: 0b5543dd-9d82-4359-aa5d-630f63997b39
+    content: Overlay icon is visually distinct from workflow indicator play icon and step number shapes
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a2c61e12-5ae4-4422-a8ca-d07e0f41a316:
+    id: a2c61e12-5ae4-4422-a8ca-d07e0f41a316
+    content: Overlay does not overlap or obscure step number or workflow indicator on any step type (manual/checkpoint/autonomous)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  17e49269-cf24-433b-9dd1-4494426e5523:
+    id: 17e49269-cf24-433b-9dd1-4494426e5523
+    content: Overlay click target is reliably hittable (16×16px minimum effective area)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1929af98-f20f-4abe-bc73-9a166841c507:
+    id: 1929af98-f20f-4abe-bc73-9a166841c507
+    content: Overlay renders correctly on both light and dark themes
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c5d82bf3-e530-4f3d-bae2-8a9bb9a02959:
+    id: c5d82bf3-e530-4f3d-bae2-8a9bb9a02959
+    content: Context menu items appear in correct position (execution items first when present)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  46b15932-f7f6-4816-ae3a-daeb0131eb95:
+    id: 46b15932-f7f6-4816-ae3a-daeb0131eb95
+    content: Save and reload project file — execution state is gone, no stale overlays appear
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  be0237e0-43cc-4414-9c47-be8f183b30f4:
+    id: be0237e0-43cc-4414-9c47-be8f183b30f4
+    content: Manual tests — edge cases
+    children:
+      - e08572a6-f830-46d1-936c-9f5a35ddbc39
+      - e29519ca-e14e-4c24-bd08-2f906469bf21
+      - ca334fb2-97c6-45bf-9ef6-1d0ed6e1149c
+      - 6bd652f4-63c9-4376-993f-d2eea8b754c3
+      - 146fe584-5f6a-434f-a061-35fbfa7221fb
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e08572a6-f830-46d1-936c-9f5a35ddbc39:
+    id: e08572a6-f830-46d1-936c-9f5a35ddbc39
+    content: Drag a Running node out of the workflow — verify it auto-pauses or is blocked
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e29519ca-e14e-4c24-bd08-2f906469bf21:
+    id: e29519ca-e14e-4c24-bd08-2f906469bf21
+    content: Delete a Running node — verify terminal assignment is released
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ca334fb2-97c6-45bf-9ef6-1d0ed6e1149c:
+    id: ca334fb2-97c6-45bf-9ef6-1d0ed6e1149c
+    content: Undo the move-on-start — verify execution is paused and state is consistent
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6bd652f4-63c9-4376-993f-d2eea8b754c3:
+    id: 6bd652f4-63c9-4376-993f-d2eea8b754c3
+    content: Rapid double-click on overlay — verify no state corruption
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  146fe584-5f6a-434f-a061-35fbfa7221fb:
+    id: 146fe584-5f6a-434f-a061-35fbfa7221fb
+    content: Start workflow on a node, then strip the parent's workflow declaration — verify execution is paused
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b554d582-64c6-4ba6-b576-225485462f6f:
+    id: b554d582-64c6-4ba6-b576-225485462f6f
+    content: Risks
+    children:
+      - feca7147-a993-4430-b6b1-b9b523b2c527
+      - d0eedc5c-6b59-42c5-8a34-e59cfbe4dbc4
+      - 8a2098b4-1d8e-4d95-8d4c-0f3ef2126bbc
+      - e6d80d02-55c3-4c65-a3e6-e6ca25715c00
+      - ae586219-0f8f-4821-89fd-82419fd8ac81
+      - e10c87fb-6550-432b-8b60-d7e3249e9b29
+      - b3041bf0-01e1-4078-b578-5c365297f6d6
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  feca7147-a993-4430-b6b1-b9b523b2c527:
+    id: feca7147-a993-4430-b6b1-b9b523b2c527
+    content: 'Highest defect likelihood: overlay positioning — CSS conflicts with existing left-positioned overlays are fragile across node content widths and step number digit counts'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d0eedc5c-6b59-42c5-8a34-e59cfbe4dbc4:
+    id: d0eedc5c-6b59-42c5-8a34-e59cfbe4dbc4
+    content: 'Highest defect likelihood: Escape key context detection — distinguishing "editing" from "not editing" depends on focus state and contentEditable, which can be unreliable'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8a2098b4-1d8e-4d95-8d4c-0f3ef2126bbc:
+    id: 8a2098b4-1d8e-4d95-8d4c-0f3ef2126bbc
+    content: 'Highest impact if failed: terminal assignment tracking — leaked assignments block future starts with no user-visible recovery path'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e6d80d02-55c3-4c65-a3e6-e6ca25715c00:
+    id: e6d80d02-55c3-4c65-a3e6-e6ca25715c00
+    content: 'Highest impact if failed: startup recovery — if Running state persists across restart without recovery, orphaned overlays confuse the user with no way to clear them'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ae586219-0f8f-4821-89fd-82419fd8ac81:
+    id: ae586219-0f8f-4821-89fd-82419fd8ac81
+    content: 'Dependency: terminal store has no "AI assistant running" detection — tests for terminal availability must mock this; real behavior depends on how this is resolved'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e10c87fb-6550-432b-8b60-d7e3249e9b29:
+    id: e10c87fb-6550-432b-8b60-d7e3249e9b29
+    content: 'Ambiguous requirement: "completion" is referenced but undefined — test plan covers pause and terminal-close release paths, but completion-triggered release cannot be tested until the trigger is specified'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b3041bf0-01e1-4078-b578-5c365297f6d6:
+    id: b3041bf0-01e1-4078-b578-5c365297f6d6
+    content: 'Likely to change: overlay positioning and icon choices may shift after visual review — keep CSS tests minimal and rely on manual visual validation'
     children: []
     metadata:
       status: pending

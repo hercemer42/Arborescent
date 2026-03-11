@@ -249,6 +249,18 @@ async function handleUIShortcuts(event: KeyboardEvent): Promise<void> {
     if (state.multiSelectedNodeIds && state.multiSelectedNodeIds.size > 0) {
       event.preventDefault();
       state.actions.clearSelection();
+      return;
+    }
+
+    const activeNodeId = state.activeNodeId;
+    if (activeNodeId) {
+      const executionEntry = state.workflowExecutionStates[activeNodeId];
+      if (executionEntry?.state === 'running') {
+        event.preventDefault();
+        event.stopPropagation();
+        state.actions.pauseWorkflow(activeNodeId);
+        return;
+      }
     }
     return;
   }
