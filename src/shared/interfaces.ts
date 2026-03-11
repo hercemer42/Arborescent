@@ -12,6 +12,7 @@ export interface UserPreferences {
   // Hotkeys stored as generic JSON object to avoid coupling to HotkeyConfig type
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   hotkeys?: any;
+  hasSeenWorkflowDeclarationToast?: boolean;
 }
 
 export interface BrowserTab {

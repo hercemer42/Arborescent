@@ -8,11 +8,13 @@ interface PreferencesState {
   theme: Theme;
   hotkeys: HotkeyConfig;
   isLoaded: boolean;
+  hasSeenWorkflowDeclarationToast: boolean;
 
   setTheme: (theme: Theme) => void;
   setHotkey: (category: string, action: string, key: string) => void;
   resetHotkeys: () => void;
   loadPreferences: () => Promise<void>;
+  markWorkflowDeclarationToastSeen: () => void;
 }
 
 const storageService = new StorageService();
@@ -21,22 +23,28 @@ function applyTheme(theme: Theme): void {
   document.documentElement.setAttribute('data-theme', theme);
 }
 
+function buildPreferences(state: PreferencesState): UserPreferences {
+  return {
+    theme: state.theme,
+    hotkeys: state.hotkeys,
+    hasSeenWorkflowDeclarationToast: state.hasSeenWorkflowDeclarationToast,
+  };
+}
+
 export const usePreferencesStore = create<PreferencesState>((set, get) => ({
   theme: 'light',
   hotkeys: defaultHotkeys as HotkeyConfig,
   isLoaded: false,
+  hasSeenWorkflowDeclarationToast: false,
 
   setTheme: (theme: Theme) => {
     applyTheme(theme);
     set({ theme });
-
-    const { hotkeys } = get();
-    const preferences: UserPreferences = { theme, hotkeys };
-    storageService.savePreferences(preferences);
+    storageService.savePreferences(buildPreferences(get()));
   },
 
   setHotkey: (category: string, action: string, key: string) => {
-    const { theme, hotkeys } = get();
+    const { hotkeys } = get();
     const newHotkeys = {
       ...hotkeys,
       [category]: {
@@ -47,20 +55,15 @@ export const usePreferencesStore = create<PreferencesState>((set, get) => ({
 
     setHotkeyConfig(newHotkeys);
     set({ hotkeys: newHotkeys });
-
-    const preferences: UserPreferences = { theme, hotkeys: newHotkeys };
-    storageService.savePreferences(preferences);
+    storageService.savePreferences(buildPreferences(get()));
   },
 
   resetHotkeys: () => {
-    const { theme } = get();
     const newHotkeys = defaultHotkeys as HotkeyConfig;
 
     resetHotkeyConfig();
     set({ hotkeys: newHotkeys });
-
-    const preferences: UserPreferences = { theme, hotkeys: newHotkeys };
-    storageService.savePreferences(preferences);
+    storageService.savePreferences(buildPreferences(get()));
   },
 
   loadPreferences: async () => {
@@ -69,13 +72,19 @@ export const usePreferencesStore = create<PreferencesState>((set, get) => ({
     if (preferences) {
       const theme = preferences.theme || 'light';
       const hotkeys = (preferences.hotkeys as HotkeyConfig) || (defaultHotkeys as HotkeyConfig);
+      const hasSeenWorkflowDeclarationToast = preferences.hasSeenWorkflowDeclarationToast || false;
 
       applyTheme(theme);
       setHotkeyConfig(hotkeys);
-      set({ theme, hotkeys, isLoaded: true });
+      set({ theme, hotkeys, hasSeenWorkflowDeclarationToast, isLoaded: true });
     } else {
       applyTheme('light');
       set({ isLoaded: true });
     }
+  },
+
+  markWorkflowDeclarationToastSeen: () => {
+    set({ hasSeenWorkflowDeclarationToast: true });
+    storageService.savePreferences(buildPreferences(get()));
   },
 }));

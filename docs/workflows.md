@@ -10,6 +10,18 @@ The parent must be a blueprint. Contexts and their descendants cannot be workflo
 
 To remove: right-click → **Blueprint** → **Remove from Workflow**. Both actions are undoable with `Ctrl+Z`.
 
+## Step Types
+
+Each workflow step has a type that controls how it will be handled during workflow execution. Right-click a step → **Blueprint** → **Step Type** to change it.
+
+- **Manual** (default) — You advance the item to the next step yourself. Indicated by a square border around the step number.
+- **Checkpoint** — Pauses for your confirmation before continuing. Indicated by a triangle border.
+- **Autonomous** — Advances automatically when the AI finishes. Indicated by a circle border.
+
+Hover a step number to see its type in the tooltip (e.g. "Step 3 (Checkpoint)").
+
+Step type changes are undoable with `Ctrl+Z`. Setting a step to Autonomous shows a warning reminding you to verify your contexts are configured correctly.
+
 ## Moving Items Through Steps
 
 Right-click an item inside a workflow step → **Next step** or **Previous step**. The item physically moves to the adjacent step. Step numbers update automatically when you reorder, add, or remove steps.

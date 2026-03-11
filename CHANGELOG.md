@@ -5,6 +5,9 @@
 ### Features
 
 - **Nested workflows**: Declare workflow steps as sub-workflows with depth-first step numbering, cross-boundary navigation, cascading removal, drag constraints, and full undo/redo support
+- **Step types**: Assign Manual, Checkpoint, or Autonomous types to workflow steps via right-click menu, with distinct visual indicators (square/triangle/circle borders) and undoable changes
+- **Unified context modes**: Collaborate and Execute modes are now defined on context declarations instead of at send time, simplifying the send menu and making mode a property of the context itself
+- **Context indicator refactor**: Context declaration and applied context indicators consolidated with clearer visual hierarchy and tooltips
 
 ## 0.1.0 - Initial Release
 

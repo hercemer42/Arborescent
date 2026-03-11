@@ -20,6 +20,7 @@ describe('buildBlueprintSubmenu', () => {
     onSetContextMode: vi.fn(),
     onDeclareAsWorkflow: vi.fn(),
     onRemoveFromWorkflow: vi.fn(),
+    onSetStepType: vi.fn(),
   };
 
   const buildParams = (overrides: Record<string, unknown> = {}) => {
@@ -233,6 +234,139 @@ describe('buildBlueprintSubmenu', () => {
     });
 
     expect(result!.submenu!.some(item => item.label === 'Declare as Workflow')).toBe(false);
+  });
+
+  describe('step type submenu', () => {
+    const workflowNodes: Record<string, TreeNode> = {
+      'root': createNode('root', { children: ['workflow'], metadata: { isBlueprint: true } }),
+      'workflow': createNode('workflow', { children: ['step'], metadata: { isBlueprint: true, isWorkflow: true } }),
+      'step': createNode('step', { children: ['task'], metadata: { isBlueprint: true } }),
+      'task': createNode('task', { metadata: { isBlueprint: true } }),
+    };
+
+    const workflowAncestors: Record<string, string[]> = {
+      'root': [],
+      'workflow': ['root'],
+      'step': ['root', 'workflow'],
+      'task': ['root', 'workflow', 'step'],
+    };
+
+    it('should show Step Type submenu on workflow step nodes', () => {
+      const result = buildBlueprintSubmenu({
+        node: workflowNodes['step'],
+        getNodes: () => workflowNodes,
+        getAncestorRegistry: () => workflowAncestors,
+        ...defaultHandlers,
+      });
+
+      const stepTypeItem = result!.submenu!.find(item => item.label === 'Step Type');
+      expect(stepTypeItem).toBeDefined();
+      expect(stepTypeItem!.submenu).toHaveLength(3);
+    });
+
+    it('should show Manual as selected when no stepType is set (default)', () => {
+      const result = buildBlueprintSubmenu({
+        node: workflowNodes['step'],
+        getNodes: () => workflowNodes,
+        getAncestorRegistry: () => workflowAncestors,
+        ...defaultHandlers,
+      });
+
+      const stepTypeItem = result!.submenu!.find(item => item.label === 'Step Type');
+      const manual = stepTypeItem!.submenu!.find(item => item.label === 'Manual');
+      expect(manual!.radioSelected).toBe(true);
+    });
+
+    it('should show Checkpoint as selected when stepType is checkpoint', () => {
+      const nodesWithCheckpoint = {
+        ...workflowNodes,
+        'step': createNode('step', { children: ['task'], metadata: { isBlueprint: true, stepType: 'checkpoint' } }),
+      };
+
+      const result = buildBlueprintSubmenu({
+        node: nodesWithCheckpoint['step'],
+        getNodes: () => nodesWithCheckpoint,
+        getAncestorRegistry: () => workflowAncestors,
+        ...defaultHandlers,
+      });
+
+      const stepTypeItem = result!.submenu!.find(item => item.label === 'Step Type');
+      const checkpoint = stepTypeItem!.submenu!.find(item => item.label === 'Checkpoint');
+      expect(checkpoint!.radioSelected).toBe(true);
+      const manual = stepTypeItem!.submenu!.find(item => item.label === 'Manual');
+      expect(manual!.radioSelected).toBe(false);
+    });
+
+    it('should show Autonomous as selected when stepType is autonomous', () => {
+      const nodesWithAutonomous = {
+        ...workflowNodes,
+        'step': createNode('step', { children: ['task'], metadata: { isBlueprint: true, stepType: 'autonomous' } }),
+      };
+
+      const result = buildBlueprintSubmenu({
+        node: nodesWithAutonomous['step'],
+        getNodes: () => nodesWithAutonomous,
+        getAncestorRegistry: () => workflowAncestors,
+        ...defaultHandlers,
+      });
+
+      const stepTypeItem = result!.submenu!.find(item => item.label === 'Step Type');
+      const autonomous = stepTypeItem!.submenu!.find(item => item.label === 'Autonomous');
+      expect(autonomous!.radioSelected).toBe(true);
+    });
+
+    it('should not show Step Type submenu on non-step nodes', () => {
+      const result = buildBlueprintSubmenu({
+        node: workflowNodes['task'],
+        getNodes: () => workflowNodes,
+        getAncestorRegistry: () => workflowAncestors,
+        ...defaultHandlers,
+      });
+
+      const stepTypeItem = result!.submenu!.find(item => item.label === 'Step Type');
+      expect(stepTypeItem).toBeUndefined();
+    });
+
+    it('should not show Step Type submenu on the workflow node itself', () => {
+      const result = buildBlueprintSubmenu({
+        node: workflowNodes['workflow'],
+        getNodes: () => workflowNodes,
+        getAncestorRegistry: () => workflowAncestors,
+        ...defaultHandlers,
+      });
+
+      const stepTypeItem = result!.submenu!.find(item => item.label === 'Step Type');
+      expect(stepTypeItem).toBeUndefined();
+    });
+
+    it('should call onSetStepType when clicking a step type option', () => {
+      const onSetStepType = vi.fn();
+      const result = buildBlueprintSubmenu({
+        node: workflowNodes['step'],
+        getNodes: () => workflowNodes,
+        getAncestorRegistry: () => workflowAncestors,
+        ...defaultHandlers,
+        onSetStepType,
+      });
+
+      const stepTypeItem = result!.submenu!.find(item => item.label === 'Step Type');
+      const autonomous = stepTypeItem!.submenu!.find(item => item.label === 'Autonomous');
+      autonomous?.onClick?.();
+      expect(onSetStepType).toHaveBeenCalledWith('autonomous');
+    });
+
+    it('should disable the currently selected step type option', () => {
+      const result = buildBlueprintSubmenu({
+        node: workflowNodes['step'],
+        getNodes: () => workflowNodes,
+        getAncestorRegistry: () => workflowAncestors,
+        ...defaultHandlers,
+      });
+
+      const stepTypeItem = result!.submenu!.find(item => item.label === 'Step Type');
+      const manual = stepTypeItem!.submenu!.find(item => item.label === 'Manual');
+      expect(manual!.disabled).toBe(true);
+    });
   });
 
   describe('context mode submenu', () => {

@@ -10,7 +10,7 @@ import { useContextIcon } from './hooks/useContextIcon';
 import { useBlueprintIcon } from './hooks/useBlueprintIcon';
 import { useHyperlinkNavigation } from './hooks/useHyperlinkNavigation';
 import { useSearchHighlight } from './hooks/useSearchHighlight';
-import { useWorkflowIndicator } from './hooks/useWorkflowIndicator';
+import { useWorkflowIndicator, getStepTypeLabel } from './hooks/useWorkflowIndicator';
 import './NodeContent.css';
 
 interface NodeContentProps {
@@ -39,7 +39,7 @@ function NodeContentComponent({
 
   const { isContextDeclaration, isContextChild, ContextIcon, contextColor } = useContextIcon(node);
   const { BlueprintIcon, blueprintColor, isInherited: isInheritingBlueprintIcon } = useBlueprintIcon(node);
-  const { isWorkflow, stepNumber } = useWorkflowIndicator(node);
+  const { isWorkflow, stepNumber, stepType } = useWorkflowIndicator(node);
 
   const isHyperlink = node.metadata.isHyperlink === true;
   const isLink = isHyperlink || isExternalLink;
@@ -116,7 +116,12 @@ function NodeContentComponent({
             </span>
           )}
           {stepNumber !== null && (
-            <span className="workflow-step-number">{stepNumber}</span>
+            <span
+              className={`workflow-step-number step-type-${stepType}`}
+              title={`Step ${stepNumber} (${getStepTypeLabel(stepType)})`}
+            >
+              {stepNumber}
+            </span>
           )}
         </span>
       );

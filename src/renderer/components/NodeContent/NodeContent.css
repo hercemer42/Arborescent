@@ -196,6 +196,23 @@
   pointer-events: none;
 }
 
+.workflow-step-number.step-type-manual {
+  border: 1px solid var(--gray-500);
+  border-radius: 1px;
+}
+
+.workflow-step-number.step-type-checkpoint {
+  background:
+    linear-gradient(225deg, transparent 4px, var(--gray-500) 4px, var(--gray-500) 5px, transparent 5px),
+    linear-gradient(135deg, transparent 4px, var(--gray-500) 4px, var(--gray-500) 5px, transparent 5px),
+    linear-gradient(to top, var(--gray-500) 1px, transparent 1px);
+}
+
+.workflow-step-number.step-type-autonomous {
+  border: 1px solid var(--gray-500);
+  border-radius: 50%;
+}
+
 .node-text mark.search-highlight {
   background: #06c;
   color: #fff;

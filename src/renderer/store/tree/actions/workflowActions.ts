@@ -2,10 +2,12 @@ import { TreeNode } from '../../../../shared/types';
 import { updateNodeMetadata } from '../../../utils/nodeHelpers';
 import { logger } from '../../../services/logger';
 import { useToastStore } from '../../toast/toastStore';
+import { usePreferencesStore } from '../../preferences/preferencesStore';
 import { AncestorRegistry } from '../../../utils/ancestry';
 import { MoveNodeCommand } from '../commands/MoveNodeCommand';
 import { DeclareWorkflowCommand } from '../commands/DeclareWorkflowCommand';
 import { RemoveWorkflowCommand } from '../commands/RemoveWorkflowCommand';
+import { SetStepTypeCommand, StepType } from '../commands/SetStepTypeCommand';
 import { Command } from '../commands/Command';
 import { VisualEffectsActions } from './visualEffectsActions';
 import {
@@ -19,6 +21,7 @@ export interface WorkflowActions {
   removeFromWorkflow: (nodeId: string) => void;
   moveToNextStep: (nodeId: string) => void;
   moveToPreviousStep: (nodeId: string) => void;
+  setStepType: (nodeId: string, stepType: StepType) => void;
 }
 
 type StoreState = {
@@ -64,6 +67,16 @@ export const createWorkflowActions = (
     }
 
     useToastStore.getState().addToast('Declared as workflow', 'success');
+
+    const prefs = usePreferencesStore.getState();
+    if (!prefs.hasSeenWorkflowDeclarationToast) {
+      useToastStore.getState().addToast(
+        'All steps default to Manual. Right-click a step to change its type.',
+        'info'
+      );
+      prefs.markWorkflowDeclarationToastSeen();
+    }
+
     logger.info(`Node ${nodeId} declared as workflow`, 'Workflow');
   }
 
@@ -169,10 +182,40 @@ export const createWorkflowActions = (
     visualEffects?.scrollToNode(nodeId);
   }
 
+  function setStepType(nodeId: string, stepType: StepType): void {
+    const { nodes } = get();
+    const node = nodes[nodeId];
+    if (!node) return;
+
+    const command = new SetStepTypeCommand(
+      nodeId,
+      stepType,
+      () => get().nodes,
+      (updatedNodes) => set({ nodes: updatedNodes }),
+      triggerAutosave
+    );
+
+    if (executeCommand) {
+      executeCommand(command);
+    } else {
+      command.execute();
+    }
+
+    if (stepType === 'autonomous') {
+      useToastStore.getState().addToast(
+        'This step will execute automatically. Ensure contexts are correctly configured.',
+        'warning'
+      );
+    }
+
+    logger.info(`Step type set to ${stepType} for node ${nodeId}`, 'Workflow');
+  }
+
   return {
     declareAsWorkflow,
     removeFromWorkflow,
     moveToNextStep,
     moveToPreviousStep,
+    setStepType,
   };
 };

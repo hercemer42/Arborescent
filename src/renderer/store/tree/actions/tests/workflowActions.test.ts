@@ -9,13 +9,23 @@ vi.mock('../../../services/logger', () => ({
   },
 }));
 
-const { mockAddToast } = vi.hoisted(() => ({
+const { mockAddToast, mockMarkWorkflowDeclarationToastSeen, mockPrefsState } = vi.hoisted(() => ({
   mockAddToast: vi.fn(),
+  mockMarkWorkflowDeclarationToastSeen: vi.fn(),
+  mockPrefsState: { hasSeenWorkflowDeclarationToast: false },
 }));
 vi.mock('../../../toast/toastStore', () => ({
   useToastStore: {
     getState: () => ({
       addToast: mockAddToast,
+    }),
+  },
+}));
+vi.mock('../../../preferences/preferencesStore', () => ({
+  usePreferencesStore: {
+    getState: () => ({
+      ...mockPrefsState,
+      markWorkflowDeclarationToastSeen: mockMarkWorkflowDeclarationToastSeen,
     }),
   },
 }));
@@ -112,6 +122,8 @@ describe('createWorkflowActions', () => {
     };
 
     mockAddToast.mockClear();
+    mockMarkWorkflowDeclarationToastSeen.mockClear();
+    mockPrefsState.hasSeenWorkflowDeclarationToast = false;
     mockTriggerAutosave = vi.fn();
     mockExecuteCommand = vi.fn((command) => command.execute());
     mockVisualEffects = {
@@ -208,6 +220,28 @@ describe('createWorkflowActions', () => {
       command.undo();
 
       expect(state.nodes['workflow-candidate'].metadata.isWorkflow).toBeUndefined();
+    });
+
+    it('should show step type hint toast on first workflow declaration', () => {
+      actions.declareAsWorkflow('workflow-candidate');
+
+      expect(mockAddToast).toHaveBeenCalledWith(
+        'All steps default to Manual. Right-click a step to change its type.',
+        'info'
+      );
+      expect(mockMarkWorkflowDeclarationToastSeen).toHaveBeenCalled();
+    });
+
+    it('should not show step type hint toast on subsequent declarations', () => {
+      mockPrefsState.hasSeenWorkflowDeclarationToast = true;
+
+      actions.declareAsWorkflow('workflow-candidate');
+
+      const infoToastCalls = mockAddToast.mock.calls.filter(
+        (args: unknown[]) => args[1] === 'info'
+      );
+      expect(infoToastCalls).toHaveLength(0);
+      expect(mockMarkWorkflowDeclarationToastSeen).not.toHaveBeenCalled();
     });
   });
 
@@ -370,6 +404,67 @@ describe('createWorkflowActions', () => {
 
       expect(state.nodes['nested-wf'].metadata.expanded).toBe(true);
       expect(state.nodes['nested-step'].children).toContain('item-a');
+    });
+  });
+
+  describe('setStepType', () => {
+    beforeEach(() => {
+      state.nodes['workflow-candidate'] = {
+        ...state.nodes['workflow-candidate'],
+        metadata: { ...state.nodes['workflow-candidate'].metadata, isWorkflow: true },
+      };
+    });
+
+    it('should set stepType on the target node', () => {
+      actions.setStepType('step-1', 'checkpoint');
+
+      expect(state.nodes['step-1'].metadata.stepType).toBe('checkpoint');
+    });
+
+    it('should go through executeCommand for undo support', () => {
+      actions.setStepType('step-1', 'autonomous');
+
+      expect(mockExecuteCommand).toHaveBeenCalled();
+      const command = mockExecuteCommand.mock.calls[0][0];
+      expect(command.description).toContain('step-1');
+    });
+
+    it('should be undoable via command', () => {
+      actions.setStepType('step-1', 'checkpoint');
+
+      const command = mockExecuteCommand.mock.calls[0][0];
+      command.undo();
+
+      expect(state.nodes['step-1'].metadata.stepType).toBeUndefined();
+    });
+
+    it('should show warning toast when setting to autonomous', () => {
+      actions.setStepType('step-1', 'autonomous');
+
+      expect(mockAddToast).toHaveBeenCalledWith(
+        'This step will execute automatically. Ensure contexts are correctly configured.',
+        'warning'
+      );
+    });
+
+    it('should not show warning toast when setting to manual or checkpoint', () => {
+      actions.setStepType('step-1', 'manual');
+      expect(mockAddToast).not.toHaveBeenCalled();
+
+      actions.setStepType('step-1', 'checkpoint');
+      expect(mockAddToast).not.toHaveBeenCalled();
+    });
+
+    it('should trigger autosave', () => {
+      actions.setStepType('step-1', 'checkpoint');
+
+      expect(mockTriggerAutosave).toHaveBeenCalled();
+    });
+
+    it('should be a no-op for nonexistent nodes', () => {
+      actions.setStepType('nonexistent', 'checkpoint');
+
+      expect(mockExecuteCommand).not.toHaveBeenCalled();
     });
   });
 

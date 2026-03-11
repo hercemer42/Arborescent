@@ -163,6 +163,7 @@ export function useNodeContextMenu(node: TreeNode) {
       onSetContextMode: handleSetContextMode,
       onDeclareAsWorkflow: () => actions.declareAsWorkflow(node.id),
       onRemoveFromWorkflow: () => actions.removeFromWorkflow(node.id),
+      onSetStepType: (stepType) => actions.setStepType(node.id, stepType),
     });
 
     const statusMenuItem = buildStatusSubmenu({
