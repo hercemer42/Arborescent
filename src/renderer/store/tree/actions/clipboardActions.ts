@@ -209,7 +209,8 @@ function handleCutPaste(
   clearCutState();
 
   for (const nodeId of nodesToMove) {
-    const targetParent = state.nodes[targetParentId];
+    const currentNodes = get().nodes;
+    const targetParent = currentNodes[targetParentId];
     const newPosition = targetParent ? targetParent.children.length : 0;
 
     const command = new MoveNodeCommand(

@@ -830,6 +830,57 @@ describe('clipboardActions', () => {
         expect(isNodeCut('node-2')).toBe(false);
       });
 
+      it('should preserve order when cut/pasting multiple nodes', async () => {
+        // Add more children to root so we can cut multiple
+        state.nodes['node-4'] = {
+          id: 'node-4',
+          content: 'Task 4',
+          children: [],
+          metadata: {},
+        };
+        state.nodes['node-5'] = {
+          id: 'node-5',
+          content: 'Task 5',
+          children: [],
+          metadata: {},
+        };
+        state.nodes.root.children = ['node-1', 'node-2', 'node-4', 'node-5'];
+        state.ancestorRegistry['node-4'] = ['root'];
+        state.ancestorRegistry['node-5'] = ['root'];
+
+        const cachedMarkdown = '# Task 2\n# Task 4\n# Task 5';
+        currentMockCache = {
+          rootNodeIds: ['node-2', 'node-4', 'node-5'],
+          allCutNodeIds: ['node-2', 'node-4', 'node-5'],
+          timestamp: Date.now(),
+          isCut: true,
+          clipboardText: cachedMarkdown,
+        };
+        state.nodes['node-2'] = {
+          ...state.nodes['node-2'],
+          metadata: { ...state.nodes['node-2'].metadata, transient: { isCut: true } },
+        };
+        state.nodes['node-4'] = {
+          ...state.nodes['node-4'],
+          metadata: { ...state.nodes['node-4'].metadata, transient: { isCut: true } },
+        };
+        state.nodes['node-5'] = {
+          ...state.nodes['node-5'],
+          metadata: { ...state.nodes['node-5'].metadata, transient: { isCut: true } },
+        };
+        state.activeNodeId = 'node-1'; // paste into node-1
+        mockClipboardContent = cachedMarkdown;
+
+        const result = await actions.pasteNodes();
+
+        expect(result).toBe('pasted');
+        // Children should be in the same order they were cut: node-2, node-4, node-5
+        const node1Children = state.nodes['node-1'].children;
+        const cutNodeIndices = ['node-2', 'node-4', 'node-5'].map(id => node1Children.indexOf(id));
+        expect(cutNodeIndices[0]).toBeLessThan(cutNodeIndices[1]);
+        expect(cutNodeIndices[1]).toBeLessThan(cutNodeIndices[2]);
+      });
+
       it('should cancel when pasting cut nodes into same parent', async () => {
         const cachedMarkdown = '# Task 2';
         // node-2 is already a child of root, pasting into root should be a no-op
