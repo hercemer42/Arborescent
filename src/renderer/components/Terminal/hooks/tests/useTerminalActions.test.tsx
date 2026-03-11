@@ -104,41 +104,23 @@ describe('useTerminalActions', () => {
   });
 
   describe('executeInTerminal', () => {
-    it('should send content without newline and dispatch Enter key', async () => {
+    it('should send formatted content with carriage return to terminal', async () => {
       const mockTerminalWrite = vi.fn().mockResolvedValue(undefined);
       window.electron.terminalWrite = mockTerminalWrite;
 
       // Set up terminal store with active terminal
       useTerminalStore.setState({ activeTerminalId: 'terminal-1' });
 
-      // Mock querySelector to return a mock textarea
-      const mockTextarea = document.createElement('textarea');
-      mockTextarea.className = 'xterm-helper-textarea';
-      const dispatchEventSpy = vi.spyOn(mockTextarea, 'dispatchEvent');
-      const querySelectorSpy = vi
-        .spyOn(document, 'querySelector')
-        .mockReturnValue(mockTextarea);
-
       const { result } = renderHook(() => useTerminalActions());
 
       await result.current.executeInTerminal(mockNode, mockNodes);
 
       await waitFor(() => {
-        // Should write content without extra newline
         expect(mockTerminalWrite).toHaveBeenCalledWith(
           'terminal-1',
-          expect.not.stringContaining('\n\n')
-        );
-        // Should dispatch Enter key event
-        expect(dispatchEventSpy).toHaveBeenCalledWith(
-          expect.objectContaining({
-            key: 'Enter',
-            code: 'Enter',
-          })
+          expect.stringContaining('\r')
         );
       });
-
-      querySelectorSpy.mockRestore();
     });
 
     it('should not execute empty content', async () => {

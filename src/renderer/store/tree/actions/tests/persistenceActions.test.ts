@@ -7,6 +7,7 @@ describe('persistenceActions', () => {
   let state: {
     nodes: Record<string, TreeNode>;
     rootNodeId: string;
+    activeNodeId: string | null;
     ancestorRegistry: Record<string, string[]>;
     currentFilePath: string | null;
     fileMeta: { created: string; author: string } | null;
@@ -33,6 +34,7 @@ describe('persistenceActions', () => {
         },
       },
       rootNodeId: 'root',
+      activeNodeId: null,
       ancestorRegistry: {},
       currentFilePath: null,
       fileMeta: null,
@@ -124,7 +126,45 @@ describe('persistenceActions', () => {
       });
       expect(state.nodes['loaded-root'].metadata.isRoot).toBe(true);
       expect(state.rootNodeId).toBe('loaded-root');
+      expect(state.activeNodeId).toBe('loaded-root');
       expect(result).toEqual({ created: mockData.created, author: mockData.author });
+    });
+
+    it('should set activeNodeId to first child of root when root has children', async () => {
+      const mockData = {
+        format: 'Arborescent' as const,
+        version: '1.0.0',
+        created: '2025-01-01',
+        updated: '2025-01-02',
+        author: 'Test',
+        rootNodeId: 'loaded-root',
+        nodes: {
+          'loaded-root': {
+            id: 'loaded-root',
+            content: 'Loaded Project',
+            children: ['child-1', 'child-2'],
+            metadata: {},
+          },
+          'child-1': {
+            id: 'child-1',
+            content: 'First child',
+            children: [],
+            metadata: {},
+          },
+          'child-2': {
+            id: 'child-2',
+            content: 'Second child',
+            children: [],
+            metadata: {},
+          },
+        },
+      };
+
+      vi.mocked(mockStorage.loadDocument).mockResolvedValue(mockData);
+
+      await actions.loadFromPath('/test/path.arbo');
+
+      expect(state.activeNodeId).toBe('child-1');
     });
   });
 

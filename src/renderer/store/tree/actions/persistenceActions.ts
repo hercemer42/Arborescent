@@ -24,6 +24,7 @@ export interface PersistenceActions {
 type StoreState = {
   nodes: Record<string, TreeNode>;
   rootNodeId: string;
+  activeNodeId: string | null;
   ancestorRegistry: AncestorRegistry;
   currentFilePath: string | null;
   fileMeta: { created: string; author: string } | null;
@@ -109,9 +110,13 @@ export const createPersistenceActions = (
     const contextDeclarations = getContextDeclarations(migratedNodes);
     const isBlueprint = data.isBlueprint === true;
 
+    const loadedRoot = migratedNodes[data.rootNodeId];
+    const initialActiveNodeId = loadedRoot?.children?.[0] ?? data.rootNodeId;
+
     set({
       ...updateAncestorRegistry(data.rootNodeId, migratedNodes),
       rootNodeId: data.rootNodeId,
+      activeNodeId: initialActiveNodeId,
       currentFilePath: path,
       fileMeta: { created: data.created, author: data.author },
       contextDeclarations,
