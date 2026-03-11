@@ -246,8 +246,11 @@ describe('collaborateActions', () => {
       // Original ID is preserved, content is updated
       expect(setCall.nodes!['child1'].content).toBe('Updated Child 1');
       expect(setCall.nodes!['child1'].id).toBe('child1');
-      expect(setCall.nodes!['child1'].children).toEqual(['new-grandchild1']);
-      expect(setCall.nodes!['new-grandchild1']).toEqual(newGrandchild);
+      // Descendant IDs are regenerated (not the original 'new-grandchild1')
+      expect(setCall.nodes!['child1'].children).toHaveLength(1);
+      const grandchildId = setCall.nodes!['child1'].children[0];
+      expect(grandchildId).not.toBe('new-grandchild1');
+      expect(setCall.nodes![grandchildId].content).toBe('Updated Grandchild 1');
       // Old descendants are removed
       expect(setCall.nodes!['grandchild1']).toBeUndefined();
     });
@@ -297,8 +300,9 @@ describe('collaborateActions', () => {
       const setCall = mockSet.mock.calls[0][0] as Partial<TreeState>;
       // Original node keeps its registry entry
       expect(setCall.ancestorRegistry!['child1']).toEqual(['root']);
-      // New descendants get proper registry entries
-      expect(setCall.ancestorRegistry!['new-grandchild1']).toEqual(['root', 'child1']);
+      // Descendant IDs are regenerated — look up by traversing the tree
+      const grandchildId = setCall.nodes!['child1'].children[0];
+      expect(setCall.ancestorRegistry![grandchildId]).toEqual(['root', 'child1']);
       // Old descendants are removed
       expect(setCall.ancestorRegistry!['grandchild1']).toBeUndefined();
     });
@@ -367,7 +371,8 @@ describe('collaborateActions', () => {
         const setCall = mockSet.mock.calls[0][0] as Partial<TreeState>;
         // Original ID preserved, blueprint metadata applied
         expect(setCall.nodes!['child1'].metadata.isBlueprint).toBe(true);
-        expect(setCall.nodes!['new-grandchild1'].metadata.isBlueprint).toBe(true);
+        const grandchildId = setCall.nodes!['child1'].children[0];
+        expect(setCall.nodes![grandchildId].metadata.isBlueprint).toBe(true);
       });
 
       it('should inherit blueprintIcon from collaborating node when in blueprint mode', () => {
@@ -463,7 +468,8 @@ describe('collaborateActions', () => {
         const setCall = mockSet.mock.calls[0][0] as Partial<TreeState>;
         // Original ID preserved with icon, descendants don't get icon
         expect(setCall.nodes!['child1'].metadata.blueprintIcon).toBe('Star');
-        expect(setCall.nodes!['new-grandchild1'].metadata.blueprintIcon).toBeUndefined();
+        const grandchildId = setCall.nodes!['child1'].children[0];
+        expect(setCall.nodes![grandchildId].metadata.blueprintIcon).toBeUndefined();
       });
 
       it('should not apply blueprint metadata when blueprintModeEnabled is false', () => {
@@ -485,6 +491,41 @@ describe('collaborateActions', () => {
         // Original ID preserved, no blueprint metadata
         expect(setCall.nodes!['child1'].metadata.isBlueprint).toBeUndefined();
         expect(setCall.nodes!['child1'].metadata.blueprintIcon).toBeUndefined();
+      });
+
+      it('should propagate isBlueprint to descendants when collaborating node is a blueprint, even without blueprintModeEnabled', () => {
+        mockState.collaboratingNodeId = 'child1';
+        mockState.blueprintModeEnabled = false;
+        mockState.nodes.child1.metadata.isBlueprint = true;
+        mockState.nodes.child1.metadata.blueprintIcon = 'BrainCog';
+        mockState.nodes.child1.metadata.blueprintColor = '#14b8a6';
+
+        const newRootNode: TreeNode = {
+          id: 'new-child1',
+          content: 'Updated Child 1',
+          children: ['new-grandchild1'],
+          metadata: { plugins: {} },
+        };
+
+        const newGrandchild: TreeNode = {
+          id: 'new-grandchild1',
+          content: 'Updated Grandchild 1',
+          children: [],
+          metadata: { plugins: {} },
+        };
+
+        actions.acceptFeedback('new-child1', {
+          'new-child1': newRootNode,
+          'new-grandchild1': newGrandchild,
+        });
+
+        const setCall = mockSet.mock.calls[0][0] as Partial<TreeState>;
+        expect(setCall.nodes!['child1'].metadata.isBlueprint).toBe(true);
+        expect(setCall.nodes!['child1'].metadata.blueprintIcon).toBe('BrainCog');
+        const grandchildId = setCall.nodes!['child1'].children[0];
+        expect(setCall.nodes![grandchildId].metadata.isBlueprint).toBe(true);
+        // Icon only on root, not descendants
+        expect(setCall.nodes![grandchildId].metadata.blueprintIcon).toBeUndefined();
       });
     });
   });

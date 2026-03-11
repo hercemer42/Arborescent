@@ -3,6 +3,7 @@ import { TreeNode } from '../../../../shared/types';
 import { addNodesToRegistry, buildAncestorRegistry, AncestorRegistry } from '../../../utils/ancestry';
 import { getAllDescendants, captureNodePosition } from '../../../utils/nodeHelpers';
 import { DEFAULT_BLUEPRINT_ICON } from '../actions/blueprintActions';
+import { v4 as uuidv4 } from 'uuid';
 
 interface CollaborationSnapshot {
   collaboratingNodeId: string;
@@ -144,19 +145,36 @@ export class AcceptFeedbackCommand extends BaseCommand {
 
     let updatedNewNodesMap: Record<string, TreeNode> = {};
 
-    for (const [id, node] of Object.entries(this.newNodesMap)) {
-      if (id === this.newRootNodeId) {
-        updatedNewNodesMap[this.collaboratingNodeId] = {
-          ...node,
-          id: this.collaboratingNodeId,
-          metadata: { ...node.metadata, ...preservedMetadata },
-        };
-      } else {
-        updatedNewNodesMap[id] = node;
+    // Build ID remapping: root → collaboratingNodeId, all descendants → fresh UUIDs
+    const idMap: Record<string, string> = {};
+    idMap[this.newRootNodeId] = this.collaboratingNodeId;
+    for (const id of Object.keys(this.newNodesMap)) {
+      if (id !== this.newRootNodeId) {
+        idMap[id] = uuidv4();
       }
     }
 
-    if (state.blueprintModeEnabled) {
+    for (const [id, node] of Object.entries(this.newNodesMap)) {
+      const newId = idMap[id];
+      const remappedChildren = node.children.map((childId) => idMap[childId] || childId);
+
+      if (id === this.newRootNodeId) {
+        updatedNewNodesMap[newId] = {
+          ...node,
+          id: newId,
+          children: remappedChildren,
+          metadata: { ...node.metadata, ...preservedMetadata },
+        };
+      } else {
+        updatedNewNodesMap[newId] = {
+          ...node,
+          id: newId,
+          children: remappedChildren,
+        };
+      }
+    }
+
+    if (state.blueprintModeEnabled || collaboratingNode.metadata.isBlueprint) {
       const effectiveIcon = this.getEffectiveBlueprintIcon(collaboratingNode, state);
       updatedNewNodesMap = this.applyBlueprintMetadataWithOriginalId(updatedNewNodesMap, effectiveIcon);
     }

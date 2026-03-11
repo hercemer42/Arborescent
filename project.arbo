@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-03-11T10:16:50.657Z'
+updated: '2026-03-11T10:51:35.089Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -21,103 +21,103 @@ nodes:
       created: '2025-10-11T00:00:00.000Z'
       isRoot: true
       isBlueprint: true
-  44jmbkqfv:
-    id: 44jmbkqfv
+  4ab2ab46-a707-4a58-b41e-2d568d171c18:
+    id: 4ab2ab46-a707-4a58-b41e-2d568d171c18
     content: Implement the done/delete system
     children:
-      - 7yv24ywtt
-      - cij2x0vpx
-      - o64287195
-      - dhcbknjlb
-      - 1wf47fb81
-      - 2wbxyk587
-      - k4yiytyw0
-      - njrw983i4
-      - vmp8qtbbt
-      - rupbtgixt
+      - 34f953c7-2d1e-4370-ad4e-038e881ac555
+      - a8a41d42-7a0b-4c44-81df-c4a7fa815b21
+      - 56069448-dddd-4b99-be15-9f4c52f26887
+      - c40a7d0e-704d-4df3-be9b-aefad53267c2
+      - f823f50e-e334-460d-be54-498d5afcf58a
+      - e1cf1f86-36c4-404f-98c3-1112a21078dc
+      - 6ff23560-52b8-4c0e-be0a-3cd0a7d89ddd
+      - 3354b50d-ed14-4713-af31-26f263cdf214
+      - c54c64fd-e2ee-489d-89bc-9e7b2d6e885a
+      - 02f80b84-23cc-4263-a517-6380114e58b5
     metadata:
       status: completed
       expanded: false
-  pdt35vy1z:
-    id: pdt35vy1z
+  7dddcc50-85c7-4f41-a5a7-59382264199b:
+    id: 7dddcc50-85c7-4f41-a5a7-59382264199b
     content: File management
     children:
-      - jnuzwknho
+      - 780308a8-524e-4588-af39-106cb04de50f
     metadata:
       status: completed
       expanded: false
       resolvedAt: '2025-12-08T09:03:22.281Z'
-  byqndehy4:
-    id: byqndehy4
+  595dc2f2-6e22-492d-99ee-28ab38a43fb9:
+    id: 595dc2f2-6e22-492d-99ee-28ab38a43fb9
     content: Claude integration
     children:
       - e9bb0de8-a33a-4054-8902-466a58ae3a1a
     metadata:
       status: completed
       expanded: false
-  jnuzwknho:
-    id: jnuzwknho
+  780308a8-524e-4588-af39-106cb04de50f:
+    id: 780308a8-524e-4588-af39-106cb04de50f
     content: Show path on hover on tab
     children: []
     metadata:
       status: completed
       resolvedAt: '2025-12-08T09:03:23.557Z'
-  7yv24ywtt:
-    id: 7yv24ywtt
+  34f953c7-2d1e-4370-ad4e-038e881ac555:
+    id: 34f953c7-2d1e-4370-ad4e-038e881ac555
     content: Soft delete anything that is deleted so that it is hidden in the view but not actually removed
     children: []
     metadata:
       status: completed
-  cij2x0vpx:
-    id: cij2x0vpx
+  a8a41d42-7a0b-4c44-81df-c4a7fa815b21:
+    id: a8a41d42-7a0b-4c44-81df-c4a7fa815b21
     content: Have a buffer of deletions, anything that goes over 10 gets permadeleted
     children: []
     metadata:
       status: completed
-  o64287195:
-    id: o64287195
+  56069448-dddd-4b99-be15-9f4c52f26887:
+    id: 56069448-dddd-4b99-be15-9f4c52f26887
     content: "Each mark on the buffer includes a node and all its ancestors - that is if a node has 10 descendants, the entire branch still only counts for one mark on the buffer\_"
     children: []
     metadata:
       status: completed
-  dhcbknjlb:
-    id: dhcbknjlb
+  c40a7d0e-704d-4df3-be9b-aefad53267c2:
+    id: c40a7d0e-704d-4df3-be9b-aefad53267c2
     content: ctrl + shift + d undoes node deletions until it hits the buffer limit
     children: []
     metadata:
       status: completed
-  1wf47fb81:
-    id: 1wf47fb81
+  f823f50e-e334-460d-be54-498d5afcf58a:
+    id: f823f50e-e334-460d-be54-498d5afcf58a
     content: at end make tests, check linting, typescript, coverage
     children: []
     metadata:
       status: completed
-  2wbxyk587:
-    id: 2wbxyk587
+  e1cf1f86-36c4-404f-98c3-1112a21078dc:
+    id: e1cf1f86-36c4-404f-98c3-1112a21078dc
     content: No comments !
     children: []
     metadata:
       status: completed
-  k4yiytyw0:
-    id: k4yiytyw0
+  6ff23560-52b8-4c0e-be0a-3cd0a7d89ddd:
+    id: 6ff23560-52b8-4c0e-be0a-3cd0a7d89ddd
     content: visibleChildren is repeated twice in tree.tsx and treenode.tsx - it should be in the nodeHelper util
     children: []
     metadata:
       status: completed
-  njrw983i4:
-    id: njrw983i4
+  3354b50d-ed14-4713-af31-26f263cdf214:
+    id: 3354b50d-ed14-4713-af31-26f263cdf214
     content: deleteNode in treeStructureActions is responsible for too much
     children: []
     metadata:
       status: completed
-  vmp8qtbbt:
-    id: vmp8qtbbt
+  c54c64fd-e2ee-489d-89bc-9e7b2d6e885a:
+    id: c54c64fd-e2ee-489d-89bc-9e7b2d6e885a
     content: treeStructureActions is too big and should be divided
     children: []
     metadata:
       status: completed
-  rupbtgixt:
-    id: rupbtgixt
+  02f80b84-23cc-4263-a517-6380114e58b5:
+    id: 02f80b84-23cc-4263-a517-6380114e58b5
     content: Soft deleted node children accounted for when we warn about deleting ancestors
     children: []
     metadata:
@@ -481,9 +481,9 @@ nodes:
       - 2fe15dab-4d78-48db-ad5f-4c8322337ba5
       - 4a1f9ce5-2e63-4760-9485-3d5b2cfebe22
       - cddba8cd-67ca-4f60-a2d9-cbbe41815200
-      - 44jmbkqfv
+      - 4ab2ab46-a707-4a58-b41e-2d568d171c18
       - e15d77fa-c719-45d4-9207-ff759d86e58f
-      - byqndehy4
+      - 595dc2f2-6e22-492d-99ee-28ab38a43fb9
       - e139f106-5ea4-4bdc-92e3-15cecbcebe39
       - 9f235582-5298-4b91-bf99-1927a312e702
       - a015d694-46fb-41f2-86ce-493d8bb90098
@@ -514,7 +514,7 @@ nodes:
       - 478ee368-f376-4eaf-8c26-4ffe92d01205
       - 766c2a6f-9c50-40c0-948a-6df7bdde9b59
       - 5d4608ba-2edf-45b6-80b5-e5e8286861f2
-      - pdt35vy1z
+      - 7dddcc50-85c7-4f41-a5a7-59382264199b
       - 15f96fee-97b9-43f4-8ae4-68c72e7c8346
       - c98016fe-f4fb-41ce-aafc-d51f33ec2303
       - 45bd7268-9183-4664-a675-88e6073621d1
@@ -21956,7 +21956,6 @@ nodes:
     children:
       - c560e7de-7238-411a-b262-a7ea276e944c
       - c03d6a6d-96ff-4e39-835a-15e013ade77d
-      - aa7b3b46-654c-4658-a0c9-11698095e88d
     metadata:
       status: completed
       expanded: true
@@ -23141,7 +23140,6 @@ nodes:
     children:
       - 7931f794-13d1-4588-9a08-6450e4c91210
       - 557bfcd6-553c-4077-85ff-a2fc7737f700
-      - aa7b3b46-654c-4658-a0c9-11698095e88d
     metadata:
       status: completed
       expanded: true
@@ -35038,8 +35036,7 @@ nodes:
   b3707296-2cac-4efd-a2e4-d137b110aad5:
     id: b3707296-2cac-4efd-a2e4-d137b110aad5
     content: The user stories should be broken down by MVP
-    children:
-      - 11021cea-e7d8-4cab-8e0a-e096ef199348
+    children: []
     metadata:
       status: pending
       expanded: true
