@@ -15,6 +15,7 @@ import { buildContentWithContext } from '../../../utils/nodeHelpers';
 import { buildExecutePrompt } from '../../../utils/promptBuilder';
 import { executeInTerminal } from '../../../services/terminalExecution';
 import { DEFAULT_EXECUTE_CONTEXT } from './executeActions';
+import { usePreferencesStore } from '../../preferences/preferencesStore';
 
 export type { WorkflowExecutionEntry };
 
@@ -49,11 +50,13 @@ export const createWorkflowExecutionActions = (
   visualEffects?: VisualEffectsActions
 ): WorkflowExecutionActions => {
 
-  const STEP_TIMEOUT_MS = 10 * 60 * 1000; // 10 minutes
+  const DEFAULT_STEP_TIMEOUT_MINUTES = 10;
   const stepTimeouts = new Map<string, ReturnType<typeof setTimeout>>();
 
   function startStepTimeout(nodeId: string): void {
     clearStepTimeout(nodeId);
+    const timeoutMinutes = usePreferencesStore.getState().stepTimeoutMinutes ?? DEFAULT_STEP_TIMEOUT_MINUTES;
+    if (timeoutMinutes <= 0) return;
     stepTimeouts.set(nodeId, setTimeout(() => {
       const { workflowExecutionStates } = get();
       const entry = workflowExecutionStates[nodeId];
@@ -68,7 +71,7 @@ export const createWorkflowExecutionActions = (
           ],
         }
       );
-    }, STEP_TIMEOUT_MS));
+    }, timeoutMinutes * 60 * 1000));
   }
 
   function clearStepTimeout(nodeId: string): void {
@@ -160,10 +163,9 @@ export const createWorkflowExecutionActions = (
       },
     });
 
-    const { workflowSessionMap } = get();
-    if (Object.keys(workflowSessionMap).length === 0) {
+    if (!usePreferencesStore.getState().hasReceivedHookEvent) {
       useToastStore.getState().addToast(
-        'Configure Claude Code hooks to enable automatic workflow advancement.',
+        'Configure Claude Code hooks to enable automatic workflow advancement. Run `echo $ARBORESCENT_HOOK_PORT` in your terminal to verify environment variables are set. See docs/workflows.md for setup instructions.',
         'info'
       );
     }
@@ -306,6 +308,10 @@ export const createWorkflowExecutionActions = (
 
     updatedMap[sessionId] = terminalId;
     set({ workflowSessionMap: updatedMap });
+
+    if (!usePreferencesStore.getState().hasReceivedHookEvent) {
+      usePreferencesStore.getState().markHookEventReceived();
+    }
 
     logger.info(`Registered session ${sessionId} for terminal ${terminalId}`, 'WorkflowExecution');
   }

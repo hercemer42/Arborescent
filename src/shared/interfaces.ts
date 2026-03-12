@@ -13,6 +13,8 @@ export interface UserPreferences {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   hotkeys?: any;
   hasSeenWorkflowDeclarationToast?: boolean;
+  hasReceivedHookEvent?: boolean;
+  stepTimeoutMinutes?: number;
 }
 
 export interface BrowserTab {

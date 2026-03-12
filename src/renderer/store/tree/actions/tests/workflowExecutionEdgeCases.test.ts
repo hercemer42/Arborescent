@@ -25,6 +25,20 @@ vi.mock('../../../services/terminalExecution', () => ({
   executeInTerminal: vi.fn().mockResolvedValue(undefined),
 }));
 
+const { mockHasReceivedHookEvent } = vi.hoisted(() => ({
+  mockHasReceivedHookEvent: { value: true },
+}));
+
+vi.mock('@/store/preferences/preferencesStore', () => ({
+  usePreferencesStore: {
+    getState: () => ({
+      hasReceivedHookEvent: mockHasReceivedHookEvent.value,
+      stepTimeoutMinutes: 10,
+      markHookEventReceived: vi.fn(),
+    }),
+  },
+}));
+
 describe('workflow execution edge cases', () => {
   type TestState = {
     nodes: Record<string, TreeNode>;
@@ -47,6 +61,9 @@ describe('workflow execution edge cases', () => {
   let actions: ReturnType<typeof createWorkflowExecutionActions>;
 
   beforeEach(() => {
+    vi.clearAllMocks();
+    mockHasReceivedHookEvent.value = true;
+
     state = {
       nodes: {
         'root': {
@@ -337,8 +354,8 @@ describe('workflow execution edge cases', () => {
 
   describe('hook configuration awareness', () => {
     it('should show setup guide on first Start Workflow if no hook ever received', () => {
-      state.workflowSessionMap = {}; // No sessions ever registered
-      state.workflowExecutionStates = {}; // Clear running state so task-a is eligible
+      mockHasReceivedHookEvent.value = false;
+      state.workflowExecutionStates = {};
 
       actions.startWorkflow('task-a', 'terminal-1');
 
@@ -349,15 +366,13 @@ describe('workflow execution edge cases', () => {
     });
 
     it('should not show setup guide if hooks have been received previously', () => {
-      state.workflowExecutionStates = {}; // Clear running state so task-a is eligible
-      actions.registerSession('session-abc', 'terminal-1');
-      mockAddToast.mockClear();
+      mockHasReceivedHookEvent.value = true;
+      state.workflowExecutionStates = {};
 
       actions.startWorkflow('task-a', 'terminal-1');
 
-      // Should not show hook setup guide toast
       const hookSetupCalls = mockAddToast.mock.calls.filter(
-        (args: unknown[]) => typeof args[0] === 'string' && args[0].includes('hooks')
+        (args: unknown[]) => typeof args[0] === 'string' && (args[0] as string).includes('hooks')
       );
       expect(hookSetupCalls).toHaveLength(0);
     });

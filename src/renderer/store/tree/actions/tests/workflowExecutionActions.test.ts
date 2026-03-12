@@ -25,6 +25,16 @@ vi.mock('../../../services/terminalExecution', () => ({
   executeInTerminal: vi.fn().mockResolvedValue(undefined),
 }));
 
+vi.mock('@/store/preferences/preferencesStore', () => ({
+  usePreferencesStore: {
+    getState: () => ({
+      hasReceivedHookEvent: true,
+      stepTimeoutMinutes: 10,
+      markHookEventReceived: vi.fn(),
+    }),
+  },
+}));
+
 describe('createWorkflowExecutionActions', () => {
   type TestState = {
     nodes: Record<string, TreeNode>;
@@ -128,7 +138,7 @@ describe('createWorkflowExecutionActions', () => {
       state = { ...state, ...partial };
     };
 
-    mockAddToast.mockClear();
+    vi.clearAllMocks();
     mockTriggerAutosave = vi.fn();
     mockVisualEffects = {
       flashNode: vi.fn(),

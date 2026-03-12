@@ -9,12 +9,16 @@ interface PreferencesState {
   hotkeys: HotkeyConfig;
   isLoaded: boolean;
   hasSeenWorkflowDeclarationToast: boolean;
+  hasReceivedHookEvent: boolean;
+  stepTimeoutMinutes: number;
 
   setTheme: (theme: Theme) => void;
   setHotkey: (category: string, action: string, key: string) => void;
   resetHotkeys: () => void;
   loadPreferences: () => Promise<void>;
   markWorkflowDeclarationToastSeen: () => void;
+  markHookEventReceived: () => void;
+  setStepTimeoutMinutes: (minutes: number) => void;
 }
 
 const storageService = new StorageService();
@@ -28,6 +32,8 @@ function buildPreferences(state: PreferencesState): UserPreferences {
     theme: state.theme,
     hotkeys: state.hotkeys,
     hasSeenWorkflowDeclarationToast: state.hasSeenWorkflowDeclarationToast,
+    hasReceivedHookEvent: state.hasReceivedHookEvent,
+    stepTimeoutMinutes: state.stepTimeoutMinutes,
   };
 }
 
@@ -36,6 +42,8 @@ export const usePreferencesStore = create<PreferencesState>((set, get) => ({
   hotkeys: defaultHotkeys as HotkeyConfig,
   isLoaded: false,
   hasSeenWorkflowDeclarationToast: false,
+  hasReceivedHookEvent: false,
+  stepTimeoutMinutes: 10,
 
   setTheme: (theme: Theme) => {
     applyTheme(theme);
@@ -73,10 +81,12 @@ export const usePreferencesStore = create<PreferencesState>((set, get) => ({
       const theme = preferences.theme || 'light';
       const hotkeys = (preferences.hotkeys as HotkeyConfig) || (defaultHotkeys as HotkeyConfig);
       const hasSeenWorkflowDeclarationToast = preferences.hasSeenWorkflowDeclarationToast || false;
+      const hasReceivedHookEvent = preferences.hasReceivedHookEvent || false;
+      const stepTimeoutMinutes = preferences.stepTimeoutMinutes ?? 10;
 
       applyTheme(theme);
       setHotkeyConfig(hotkeys);
-      set({ theme, hotkeys, hasSeenWorkflowDeclarationToast, isLoaded: true });
+      set({ theme, hotkeys, hasSeenWorkflowDeclarationToast, hasReceivedHookEvent, stepTimeoutMinutes, isLoaded: true });
     } else {
       applyTheme('light');
       set({ isLoaded: true });
@@ -85,6 +95,16 @@ export const usePreferencesStore = create<PreferencesState>((set, get) => ({
 
   markWorkflowDeclarationToastSeen: () => {
     set({ hasSeenWorkflowDeclarationToast: true });
+    storageService.savePreferences(buildPreferences(get()));
+  },
+
+  markHookEventReceived: () => {
+    set({ hasReceivedHookEvent: true });
+    storageService.savePreferences(buildPreferences(get()));
+  },
+
+  setStepTimeoutMinutes: (minutes: number) => {
+    set({ stepTimeoutMinutes: minutes });
     storageService.savePreferences(buildPreferences(get()));
   },
 }));

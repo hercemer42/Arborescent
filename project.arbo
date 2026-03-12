@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-03-12T11:51:34.716Z'
+updated: '2026-03-12T14:34:03.206Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -458,6 +458,8 @@ nodes:
     id: 565dde0a-864b-41f9-86ff-dbdf40ac4dd0
     content: Done
     children:
+      - 0a62d0d8-639a-434d-8a54-46f77aff6739
+      - 90a40be5-3f48-4bd9-9f90-2884670a8ff3
       - 83478ae4-3c6f-4647-9d42-779a4de7d8a0
       - daeb4326-6a81-4b77-ac8e-e410ac8c493b
       - 911bbdec-12fa-45ba-b84d-2ba945888928
@@ -24686,6 +24688,7 @@ nodes:
     content: Add a 'Technical specifications' node
     children:
       - e9f32f6c-40ee-4150-9a48-453b92207537
+      - d4480798-cca1-4734-b452-b7cddd5afa58
       - 32ea145e-7a05-40e7-a177-befff59f056e
       - 7f1811ad-c96f-4504-97c8-5ce832ab23d6
       - f120798a-3356-4951-90ec-acdcb5826e22
@@ -24850,7 +24853,6 @@ nodes:
     id: 00714a63-f267-4ab1-a285-73ae4198eb42
     content: Technical refinement
     children:
-      - a30a4d15-15be-4c1c-9164-d699e6b82d42
       - 545562f0-7717-474c-b37c-b93025d16a20
     metadata:
       status: pending
@@ -26802,7 +26804,7 @@ nodes:
     id: bdceb696-248d-4199-9182-db0689445c07
     content: Documentation
     children:
-      - 0a62d0d8-639a-434d-8a54-46f77aff6739
+      - a30a4d15-15be-4c1c-9164-d699e6b82d42
     metadata:
       status: pending
       isBlueprint: true
@@ -34450,7 +34452,7 @@ nodes:
       - c0b354e9-aaa0-409e-ab47-6f534d03a97f
     metadata:
       status: pending
-      expanded: true
+      expanded: false
       isBlueprint: true
       blueprintIcon: FileWarning
       blueprintColor: '#f97316'
@@ -35344,8 +35346,7 @@ nodes:
   7b3e923e-b465-4444-ae7d-7fe0e80e3235:
     id: 7b3e923e-b465-4444-ae7d-7fe0e80e3235
     content: Code review & refactor
-    children:
-      - 90a40be5-3f48-4bd9-9f90-2884670a8ff3
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -35789,12 +35790,14 @@ nodes:
     id: a30a4d15-15be-4c1c-9164-d699e6b82d42
     content: 'User Story 5: Workflow execution orchestrator'
     children:
-      - ce5d1301-eb57-4013-805e-dcc90979effc
-      - 554ba439-263a-4907-9d91-2624e36f705b
-      - 7ccc3832-0637-46f7-bd3b-b4fa9d5fc091
-      - 929875cb-190b-426f-b66b-545dc3115a23
+      - 967f9142-4d1b-414f-b841-762d0d6bdf70
+      - c8206c0e-c152-4a71-a78a-872eb01f4fcd
+      - fe4af9df-d9d2-4144-94ff-333f78d8f625
+      - 9d1ae8a5-c44b-4c78-8e56-9f37111df853
+      - ceb2f223-38a8-4436-87d5-d27c9fd21f02
+      - fb919bad-636a-4ebc-bd2e-f306a09cca3e
     metadata:
-      status: pending
+      status: completed
       expanded: false
       deleted: false
       plugins: {}
@@ -38140,6 +38143,7 @@ nodes:
       - fec95767-3f85-4b19-8701-45264a0da512
     metadata:
       status: pending
+      expanded: false
   9b1484a5-b39f-4ece-be42-8ee29288c289:
     id: 9b1484a5-b39f-4ece-be42-8ee29288c289
     content: And I think we can reduce to the same process
@@ -38179,272 +38183,6 @@ nodes:
     children: []
     metadata:
       status: pending
-  ce5d1301-eb57-4013-805e-dcc90979effc:
-    id: ce5d1301-eb57-4013-805e-dcc90979effc
-    content: Problem statement
-    children:
-      - 632555e0-3c6e-4a9b-8394-9e21736bac7e
-      - 3b7216a5-98e5-4688-b962-1e27081bea8f
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  632555e0-3c6e-4a9b-8394-9e21736bac7e:
-    id: 632555e0-3c6e-4a9b-8394-9e21736bac7e
-    content: With step types defined, execution state tracked, node advancement built, and hook events flowing in, the system needs a central orchestrator that coordinates the full workflow lifecycle across parallel executions
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  3b7216a5-98e5-4688-b962-1e27081bea8f:
-    id: 3b7216a5-98e5-4688-b962-1e27081bea8f
-    content: Without this, the individual pieces exist but nothing drives the workflow forward end-to-end
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  554ba439-263a-4907-9d91-2624e36f705b:
-    id: 554ba439-263a-4907-9d91-2624e36f705b
-    content: Use cases
-    children:
-      - 725748b8-25a0-4f07-8301-eb64e28c683b
-      - ac745e43-4bca-4ff9-a396-79bfe4c7f341
-      - 6788b9c1-9d30-4ba4-be25-d38e4e2e3640
-      - 3be3e151-ba52-4f6a-b60a-77cc38896eb4
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  725748b8-25a0-4f07-8301-eb64e28c683b:
-    id: 725748b8-25a0-4f07-8301-eb64e28c683b
-    content: 'Primary: A 3-step workflow (Autonomous → Checkpoint → Manual) — AI finishes step 1, node auto-advances and sends to terminal; AI finishes step 2, workflow pauses with notification; user resumes and advances to step 3 (manual), workflow pauses; user sends manually, AI finishes, workflow completes'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ac745e43-4bca-4ff9-a396-79bfe4c7f341:
-    id: ac745e43-4bca-4ff9-a396-79bfe4c7f341
-    content: 'Secondary: Two nodes run through the same workflow in parallel on separate terminal tabs, each progressing independently'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  6788b9c1-9d30-4ba4-be25-d38e4e2e3640:
-    id: 6788b9c1-9d30-4ba4-be25-d38e4e2e3640
-    content: 'Secondary: A step has no hook event for 10 minutes — timeout dialog appears offering to dismiss or pause'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  3be3e151-ba52-4f6a-b60a-77cc38896eb4:
-    id: 3be3e151-ba52-4f6a-b60a-77cc38896eb4
-    content: 'Secondary: User changes a step type mid-run — when the node arrives at the modified step, the new type is evaluated (not the type at workflow start)'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  7ccc3832-0637-46f7-bd3b-b4fa9d5fc091:
-    id: 7ccc3832-0637-46f7-bd3b-b4fa9d5fc091
-    content: Acceptance criteria
-    children:
-      - 2f789e48-aed9-494d-83fc-b1c7d2c47940
-      - ba5c8dd2-ef3c-4916-adfc-9cb9ed4a466d
-      - 338692f2-fc52-487c-9fa5-24cf7cfdf922
-      - f6f15c30-cd5d-43bb-921a-ea6c4a53f00e
-      - c93adedd-8f28-4ede-a402-b6467b28f134
-      - 30f46ba7-6fe5-4c78-9561-52230b4b7daf
-      - 7afcdd61-ac9a-417e-b047-596a06b13c0b
-      - f4fafd4c-9e2e-4551-b143-567a2adf929c
-      - d498b338-c53e-486f-8e73-ac4b489e2ade
-      - 08a6af4a-3435-4057-a6df-c05f5633ae9c
-      - 19c9836b-7e1a-4cad-828a-50c92fdc7326
-      - 35ada416-2be8-4a7e-96da-8ac13eb43453
-      - 1832a91f-7964-40db-946d-f996a0363eb1
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  2f789e48-aed9-494d-83fc-b1c7d2c47940:
-    id: 2f789e48-aed9-494d-83fc-b1c7d2c47940
-    content: 'On Stop event for a running node at an Autonomous step: advance node and send content to terminal with next step''s contexts'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  ba5c8dd2-ef3c-4916-adfc-9cb9ed4a466d:
-    id: ba5c8dd2-ef3c-4916-adfc-9cb9ed4a466d
-    content: 'On Stop event for a running node at a Checkpoint step: pause workflow and show toast "Step complete for [name]"'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  338692f2-fc52-487c-9fa5-24cf7cfdf922:
-    id: 338692f2-fc52-487c-9fa5-24cf7cfdf922
-    content: 'On Stop event for a running node at a Manual step: no automated action — node stays, user must manually advance'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  f6f15c30-cd5d-43bb-921a-ea6c4a53f00e:
-    id: f6f15c30-cd5d-43bb-921a-ea6c4a53f00e
-    content: 'On Notification event: show toast and pause the affected node''s workflow'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  c93adedd-8f28-4ede-a402-b6467b28f134:
-    id: c93adedd-8f28-4ede-a402-b6467b28f134
-    content: Step type is evaluated at the moment the node arrives at a step, not when the workflow was started
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  30f46ba7-6fe5-4c78-9561-52230b4b7daf:
-    id: 30f46ba7-6fe5-4c78-9561-52230b4b7daf
-    content: 'Step timeout: configurable interval (default 10 minutes) — shows dialog after timeout with no hook activity'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  7afcdd61-ac9a-417e-b047-596a06b13c0b:
-    id: 7afcdd61-ac9a-417e-b047-596a06b13c0b
-    content: On first "Start Workflow", if the hook endpoint has never received any request, show a setup guide with instructions for configuring the AI tool's hooks (includes auth token and endpoint URL)
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f4fafd4c-9e2e-4551-b143-567a2adf929c:
-    id: f4fafd4c-9e2e-4551-b143-567a2adf929c
-    content: The hook-received flag is persisted in preferences so the guide doesn't reappear
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  d498b338-c53e-486f-8e73-ac4b489e2ade:
-    id: d498b338-c53e-486f-8e73-ac4b489e2ade
-    content: 'Parallel execution: multiple nodes advance independently with no cross-contamination of state'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  08a6af4a-3435-4057-a6df-c05f5633ae9c:
-    id: 08a6af4a-3435-4057-a6df-c05f5633ae9c
-    content: Hook event processing is non-blocking — advancement and UI updates happen asynchronously
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  19c9836b-7e1a-4cad-828a-50c92fdc7326:
-    id: 19c9836b-7e1a-4cad-828a-50c92fdc7326
-    content: File saves during automated advancement are debounced to avoid rapid writes
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  35ada416-2be8-4a7e-96da-8ac13eb43453:
-    id: 35ada416-2be8-4a7e-96da-8ac13eb43453
-    content: 'On advancement to a Manual step: node moves but content is NOT sent to terminal, workflow pauses with waiting notification'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  1832a91f-7964-40db-946d-f996a0363eb1:
-    id: 1832a91f-7964-40db-946d-f996a0363eb1
-    content: 'On advancement to an Autonomous or Checkpoint step: content is sent to the assigned terminal'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  929875cb-190b-426f-b66b-545dc3115a23:
-    id: 929875cb-190b-426f-b66b-545dc3115a23
-    content: Constraints and assumptions
-    children:
-      - d9070e1f-5e80-4af5-bb9e-f5456683bccc
-      - 9039a048-c1f4-4673-9f6d-1250c533d5d7
-      - 5dcc44f7-1c78-43a7-897b-de6e85cd478c
-      - 8d61b368-5aec-4577-929c-24a7d8699c1f
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  d9070e1f-5e80-4af5-bb9e-f5456683bccc:
-    id: d9070e1f-5e80-4af5-bb9e-f5456683bccc
-    content: Depends on User Stories 2, 3, and 4 (execution state, advancement, hook server)
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  9039a048-c1f4-4673-9f6d-1250c533d5d7:
-    id: 9039a048-c1f4-4673-9f6d-1250c533d5d7
-    content: The orchestrator is the highest-complexity integration point — concurrent nodes with mixed step types is the most likely area for defects
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  5dcc44f7-1c78-43a7-897b-de6e85cd478c:
-    id: 5dcc44f7-1c78-43a7-897b-de6e85cd478c
-    content: Sending to the wrong terminal during Autonomous advancement is the highest-impact failure mode
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  8d61b368-5aec-4577-929c-24a7d8699c1f:
-    id: 8d61b368-5aec-4577-929c-24a7d8699c1f
-    content: Sending content from the menu (executeInTerminalWithContext) does NOT resume a paused workflow — resuming is an explicit action
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
   ea31471b-b6f8-4c9b-a53e-3d52e0740d0e:
     id: ea31471b-b6f8-4c9b-a53e-3d52e0740d0e
     content: Problem statement
@@ -40374,6 +40112,1457 @@ nodes:
   b828fb46-a5d0-48ab-a36c-659563b81bd9:
     id: b828fb46-a5d0-48ab-a36c-659563b81bd9
     content: 'SessionStart event: unclear whether Claude Code emits this natively or if the hook script must synthesize it from lifecycle events'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d4480798-cca1-4734-b452-b7cddd5afa58:
+    id: d4480798-cca1-4734-b452-b7cddd5afa58
+    content: Give a summary of the general approach, architecture, and key concepts
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  967f9142-4d1b-414f-b841-762d0d6bdf70:
+    id: 967f9142-4d1b-414f-b841-762d0d6bdf70
+    content: Problem statement
+    children:
+      - a9e56911-e8e0-457e-8088-96eb9940d740
+      - 20bb124f-4ac5-499c-943d-6619f342365e
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a9e56911-e8e0-457e-8088-96eb9940d740:
+    id: a9e56911-e8e0-457e-8088-96eb9940d740
+    content: With step types defined, execution state tracked, node advancement built, and hook events flowing in, the system needs a central orchestrator that coordinates the full workflow lifecycle across parallel executions
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  20bb124f-4ac5-499c-943d-6619f342365e:
+    id: 20bb124f-4ac5-499c-943d-6619f342365e
+    content: Without this, the individual pieces exist but nothing drives the workflow forward end-to-end
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c8206c0e-c152-4a71-a78a-872eb01f4fcd:
+    id: c8206c0e-c152-4a71-a78a-872eb01f4fcd
+    content: Use cases
+    children:
+      - 046d1ad1-6663-41fb-b230-391f66332772
+      - a5f76181-91f4-40ec-91b5-50851ad61aed
+      - dbf0c642-d144-405c-bf87-8767d5abc1cb
+      - b114ac7f-46e5-46fc-9005-152ffdd07ba5
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  046d1ad1-6663-41fb-b230-391f66332772:
+    id: 046d1ad1-6663-41fb-b230-391f66332772
+    content: 'Primary: A 3-step workflow (Autonomous → Checkpoint → Manual) — AI finishes step 1, node auto-advances and sends to terminal; AI finishes step 2, workflow pauses with notification; user resumes and advances to step 3 (manual), workflow pauses; user sends manually, AI finishes, workflow completes'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a5f76181-91f4-40ec-91b5-50851ad61aed:
+    id: a5f76181-91f4-40ec-91b5-50851ad61aed
+    content: 'Secondary: Two nodes run through the same workflow in parallel on separate terminal tabs, each progressing independently'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  dbf0c642-d144-405c-bf87-8767d5abc1cb:
+    id: dbf0c642-d144-405c-bf87-8767d5abc1cb
+    content: 'Secondary: A step has no hook event for 10 minutes — timeout dialog appears offering to dismiss or pause'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b114ac7f-46e5-46fc-9005-152ffdd07ba5:
+    id: b114ac7f-46e5-46fc-9005-152ffdd07ba5
+    content: 'Secondary: User changes a step type mid-run — when the node arrives at the modified step, the new type is evaluated (not the type at workflow start)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fe4af9df-d9d2-4144-94ff-333f78d8f625:
+    id: fe4af9df-d9d2-4144-94ff-333f78d8f625
+    content: Acceptance criteria
+    children:
+      - 3f617130-093d-4a38-9fbc-b9052e056539
+      - db738dbc-6765-4fa5-bbd7-74a3bffc481b
+      - 6d74f5b6-350b-4244-b193-c9cb3c34a59e
+      - e6e504f7-5ea4-45ed-bb13-d1281c577c30
+      - 841f0f51-9d64-419f-b653-393d556b8f04
+      - 6c326599-2c9c-4ea0-adc6-a95e60a7ecc1
+      - c8fe0e3b-845c-48d8-8c88-b8d5060e2d5c
+      - 3b7f5d17-394e-46df-b120-b583f1ac0d25
+      - 3754a04a-18c7-4e6d-aafc-b7c558185547
+      - df0a1d16-a57b-4c9c-83d8-5670f4a81379
+      - bb3d4f75-8d98-42ed-9c3a-94358be908b4
+      - 3eb1fa5f-b317-4703-8d02-afdbfb0deb46
+      - 12f1fd86-a66a-4b51-85bc-672a63677a26
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3f617130-093d-4a38-9fbc-b9052e056539:
+    id: 3f617130-093d-4a38-9fbc-b9052e056539
+    content: 'On Stop event for a running node at an Autonomous step: advance node and send content to terminal with next step''s contexts'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  db738dbc-6765-4fa5-bbd7-74a3bffc481b:
+    id: db738dbc-6765-4fa5-bbd7-74a3bffc481b
+    content: 'On Stop event for a running node at a Checkpoint step: pause workflow and show toast "Step complete for [name]"'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6d74f5b6-350b-4244-b193-c9cb3c34a59e:
+    id: 6d74f5b6-350b-4244-b193-c9cb3c34a59e
+    content: 'On Stop event for a running node at a Manual step: no automated action — node stays, user must manually advance'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e6e504f7-5ea4-45ed-bb13-d1281c577c30:
+    id: e6e504f7-5ea4-45ed-bb13-d1281c577c30
+    content: 'On Notification event: show toast and pause the affected node''s workflow'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  841f0f51-9d64-419f-b653-393d556b8f04:
+    id: 841f0f51-9d64-419f-b653-393d556b8f04
+    content: Step type is evaluated at the moment the node arrives at a step, not when the workflow was started
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6c326599-2c9c-4ea0-adc6-a95e60a7ecc1:
+    id: 6c326599-2c9c-4ea0-adc6-a95e60a7ecc1
+    content: 'Step timeout: configurable interval (default 10 minutes) — shows dialog after timeout with no hook activity'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c8fe0e3b-845c-48d8-8c88-b8d5060e2d5c:
+    id: c8fe0e3b-845c-48d8-8c88-b8d5060e2d5c
+    content: On first "Start Workflow", if the hook endpoint has never received any request, show a setup guide with instructions for configuring the AI tool's hooks (includes auth token and endpoint URL)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3b7f5d17-394e-46df-b120-b583f1ac0d25:
+    id: 3b7f5d17-394e-46df-b120-b583f1ac0d25
+    content: The hook-received flag is persisted in preferences so the guide doesn't reappear
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3754a04a-18c7-4e6d-aafc-b7c558185547:
+    id: 3754a04a-18c7-4e6d-aafc-b7c558185547
+    content: 'Parallel execution: multiple nodes advance independently with no cross-contamination of state'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  df0a1d16-a57b-4c9c-83d8-5670f4a81379:
+    id: df0a1d16-a57b-4c9c-83d8-5670f4a81379
+    content: Hook event processing is non-blocking — advancement and UI updates happen asynchronously
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bb3d4f75-8d98-42ed-9c3a-94358be908b4:
+    id: bb3d4f75-8d98-42ed-9c3a-94358be908b4
+    content: File saves during automated advancement are debounced to avoid rapid writes
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3eb1fa5f-b317-4703-8d02-afdbfb0deb46:
+    id: 3eb1fa5f-b317-4703-8d02-afdbfb0deb46
+    content: 'On advancement to a Manual step: node moves but content is NOT sent to terminal, workflow pauses with waiting notification'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  12f1fd86-a66a-4b51-85bc-672a63677a26:
+    id: 12f1fd86-a66a-4b51-85bc-672a63677a26
+    content: 'On advancement to an Autonomous or Checkpoint step: content is sent to the assigned terminal'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9d1ae8a5-c44b-4c78-8e56-9f37111df853:
+    id: 9d1ae8a5-c44b-4c78-8e56-9f37111df853
+    content: Constraints and assumptions
+    children:
+      - b82e8d75-045d-4417-a70c-80ec57c6b5ae
+      - c15966da-7891-4b51-8db8-f64eb56e540c
+      - e3d3d172-22ab-4786-a0df-f31f09c70056
+      - dd256f88-7827-4067-9d44-0594e39247cd
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b82e8d75-045d-4417-a70c-80ec57c6b5ae:
+    id: b82e8d75-045d-4417-a70c-80ec57c6b5ae
+    content: Depends on User Stories 2, 3, and 4 (execution state, advancement, hook server)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c15966da-7891-4b51-8db8-f64eb56e540c:
+    id: c15966da-7891-4b51-8db8-f64eb56e540c
+    content: The orchestrator is the highest-complexity integration point — concurrent nodes with mixed step types is the most likely area for defects
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e3d3d172-22ab-4786-a0df-f31f09c70056:
+    id: e3d3d172-22ab-4786-a0df-f31f09c70056
+    content: Sending to the wrong terminal during Autonomous advancement is the highest-impact failure mode
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  dd256f88-7827-4067-9d44-0594e39247cd:
+    id: dd256f88-7827-4067-9d44-0594e39247cd
+    content: Sending content from the menu (executeInTerminalWithContext) does NOT resume a paused workflow — resuming is an explicit action
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ceb2f223-38a8-4436-87d5-d27c9fd21f02:
+    id: ceb2f223-38a8-4436-87d5-d27c9fd21f02
+    content: Technical specifications
+    children:
+      - 5404f9a4-aeb1-420b-b8aa-9d649e650d6b
+      - 93221937-a516-4f39-8fa1-1b48abbd895f
+      - de35cbad-12c8-4f1c-9cd3-e5681ddc6560
+      - 0fa703db-0678-4489-95a8-9e9b73540219
+      - 7de3a7bc-f5aa-4c2c-9a4d-7c4e8e350fc6
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5404f9a4-aeb1-420b-b8aa-9d649e650d6b:
+    id: 5404f9a4-aeb1-420b-b8aa-9d649e650d6b
+    content: Inputs, outputs, and key interfaces
+    children:
+      - 87d783f3-d317-4ca9-a961-c6a69ec35adc
+      - ed891648-019d-4166-8a03-43b7d3135fea
+      - 739da10f-a221-4178-9502-b438412a90e7
+      - f21d34aa-0a31-435c-b341-cb4dc3966c5c
+      - b9bff5c9-fd72-4449-8e40-79095d2ef0ac
+      - 3fcd0f96-231b-440d-b92c-9dd3c160c55c
+      - 21e169bb-a943-4ae2-a40b-610b835dad7d
+      - e79d03a1-919c-4ade-b913-332b8ea45cd8
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  87d783f3-d317-4ca9-a961-c6a69ec35adc:
+    id: 87d783f3-d317-4ca9-a961-c6a69ec35adc
+    content: 'Input: `hasReceivedHookEvent` boolean in `UserPreferences` — persisted flag indicating whether the hook endpoint has ever received a request in any session'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ed891648-019d-4166-8a03-43b7d3135fea:
+    id: ed891648-019d-4166-8a03-43b7d3135fea
+    content: 'Input: `stepTimeoutMinutes` number in `UserPreferences` — configurable timeout interval (default 10), read by `startStepTimeout` each time it fires'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  739da10f-a221-4178-9502-b438412a90e7:
+    id: 739da10f-a221-4178-9502-b438412a90e7
+    content: 'Output: Updated preferences store with new fields, saved to disk via `StorageService`'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f21d34aa-0a31-435c-b341-cb4dc3966c5c:
+    id: f21d34aa-0a31-435c-b341-cb4dc3966c5c
+    content: 'Key interface — `preferencesStore`: new state field `hasReceivedHookEvent`, new action `markHookEventReceived()`'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b9bff5c9-fd72-4449-8e40-79095d2ef0ac:
+    id: b9bff5c9-fd72-4449-8e40-79095d2ef0ac
+    content: 'Key interface — `preferencesStore`: new state field `stepTimeoutMinutes`, new action `setStepTimeoutMinutes(minutes: number)`'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3fcd0f96-231b-440d-b92c-9dd3c160c55c:
+    id: 3fcd0f96-231b-440d-b92c-9dd3c160c55c
+    content: 'Key interface — `workflowExecutionActions.registerSession()`: calls `markHookEventReceived()` on first hook arrival'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  21e169bb-a943-4ae2-a40b-610b835dad7d:
+    id: 21e169bb-a943-4ae2-a40b-610b835dad7d
+    content: 'Key interface — `workflowExecutionActions.startWorkflow()`: checks `hasReceivedHookEvent` from preferences store (not session map emptiness) to decide whether to show setup guide'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e79d03a1-919c-4ade-b913-332b8ea45cd8:
+    id: e79d03a1-919c-4ade-b913-332b8ea45cd8
+    content: 'Key interface — `workflowExecutionActions.startStepTimeout()`: reads `stepTimeoutMinutes` from preferences store instead of hard-coded constant'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  93221937-a516-4f39-8fa1-1b48abbd895f:
+    id: 93221937-a516-4f39-8fa1-1b48abbd895f
+    content: Constraints and non-functional requirements
+    children:
+      - bf1afaa1-bc18-479b-ad90-d6365dd421f4
+      - 72229bd9-93f6-43af-81b4-885a3d7dab89
+      - d28fa760-1bec-4441-b822-55e8d7292ac8
+      - f682c194-2de7-4176-abe7-3f1c791758f5
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bf1afaa1-bc18-479b-ad90-d6365dd421f4:
+    id: bf1afaa1-bc18-479b-ad90-d6365dd421f4
+    content: 'Cross-store read: tree store actions read from preferences store via `usePreferencesStore.getState()` — one-time reads via `getState()` avoid subscription overhead'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  72229bd9-93f6-43af-81b4-885a3d7dab89:
+    id: 72229bd9-93f6-43af-81b4-885a3d7dab89
+    content: No new UI components required for timeout configuration — preference is set programmatically or via future settings panel
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d28fa760-1bec-4441-b822-55e8d7292ac8:
+    id: d28fa760-1bec-4441-b822-55e8d7292ac8
+    content: Setup guide toast must include actionable information — endpoint URL and auth token hint, not just "configure hooks"
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f682c194-2de7-4176-abe7-3f1c791758f5:
+    id: f682c194-2de7-4176-abe7-3f1c791758f5
+    content: 'Backwards compatible: missing preference fields default to `false` / `10` on load'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  de35cbad-12c8-4f1c-9cd3-e5681ddc6560:
+    id: de35cbad-12c8-4f1c-9cd3-e5681ddc6560
+    content: Technical steps
+    children:
+      - 10d7621f-f214-4aec-a708-8a0c9f7424a2
+      - 1bef83df-24ec-41bb-aca8-231c7632a8b9
+      - 36f5ac53-a36c-4981-a496-010cdb198dba
+      - 86231b30-ed0b-4dbf-9557-1f792fede475
+      - 02da8e75-7121-4788-a8fd-04d23e8e5f22
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  10d7621f-f214-4aec-a708-8a0c9f7424a2:
+    id: 10d7621f-f214-4aec-a708-8a0c9f7424a2
+    content: 'Step 1: Add `hasReceivedHookEvent` preference — S'
+    children:
+      - ecd4a2ea-5ac2-41d0-8ec8-b2e10f01593f
+      - bcd8eb26-e0c1-44bb-a8fc-e0b9d4f74903
+      - adff82a2-23e1-4435-84b1-e4600f3482d5
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ecd4a2ea-5ac2-41d0-8ec8-b2e10f01593f:
+    id: ecd4a2ea-5ac2-41d0-8ec8-b2e10f01593f
+    content: 'Add `hasReceivedHookEvent: boolean` to `UserPreferences` interface in `shared/interfaces`'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bcd8eb26-e0c1-44bb-a8fc-e0b9d4f74903:
+    id: bcd8eb26-e0c1-44bb-a8fc-e0b9d4f74903
+    content: Add state field and `markHookEventReceived()` action to `preferencesStore`
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  adff82a2-23e1-4435-84b1-e4600f3482d5:
+    id: adff82a2-23e1-4435-84b1-e4600f3482d5
+    content: Load with default `false`, persist on change via `buildPreferences`
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1bef83df-24ec-41bb-aca8-231c7632a8b9:
+    id: 1bef83df-24ec-41bb-aca8-231c7632a8b9
+    content: 'Step 2: Wire setup guide to persisted flag — S'
+    children:
+      - 1e97e4ff-b539-4d59-98f3-d2fc9ff184d0
+      - a9ccff51-e68e-4cf4-b3a2-645a05fe2d5f
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1e97e4ff-b539-4d59-98f3-d2fc9ff184d0:
+    id: 1e97e4ff-b539-4d59-98f3-d2fc9ff184d0
+    content: 'In `startWorkflow()`: replace `Object.keys(workflowSessionMap).length === 0` check with `!usePreferencesStore.getState().hasReceivedHookEvent`'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a9ccff51-e68e-4cf4-b3a2-645a05fe2d5f:
+    id: a9ccff51-e68e-4cf4-b3a2-645a05fe2d5f
+    content: 'Upgrade toast message to include setup instructions: mention hook endpoint, env vars, and link to docs'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  36f5ac53-a36c-4981-a496-010cdb198dba:
+    id: 36f5ac53-a36c-4981-a496-010cdb198dba
+    content: 'Step 3: Set flag on first hook event — S'
+    children:
+      - 3755ce07-b5b0-4fb4-9b35-b824d33d1af8
+      - 7ac3c417-e8e4-4b34-b3b2-4faa3c62fdc8
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3755ce07-b5b0-4fb4-9b35-b824d33d1af8:
+    id: 3755ce07-b5b0-4fb4-9b35-b824d33d1af8
+    content: 'In `registerSession()`: call `usePreferencesStore.getState().markHookEventReceived()` if flag is currently false'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7ac3c417-e8e4-4b34-b3b2-4faa3c62fdc8:
+    id: 7ac3c417-e8e4-4b34-b3b2-4faa3c62fdc8
+    content: Guard with `if (!usePreferencesStore.getState().hasReceivedHookEvent)` to avoid unnecessary writes after the first time
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  86231b30-ed0b-4dbf-9557-1f792fede475:
+    id: 86231b30-ed0b-4dbf-9557-1f792fede475
+    content: 'Step 4: Make step timeout configurable — S'
+    children:
+      - 714518f4-380e-4fba-adb6-9dcdedb492f7
+      - 965ffc4c-9d94-49c3-981f-5f6db8a8c314
+      - d2ed8cd2-339b-4c0f-b05d-b36c8fd2810c
+      - 6cbe642d-a00f-41a5-b04f-a908802a3a04
+      - 0bfe6722-2533-4dea-86be-2098572fb88d
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  714518f4-380e-4fba-adb6-9dcdedb492f7:
+    id: 714518f4-380e-4fba-adb6-9dcdedb492f7
+    content: 'Add `stepTimeoutMinutes: number` to `UserPreferences` interface'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  965ffc4c-9d94-49c3-981f-5f6db8a8c314:
+    id: 965ffc4c-9d94-49c3-981f-5f6db8a8c314
+    content: 'Add state field and `setStepTimeoutMinutes(minutes: number)` action to `preferencesStore`'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d2ed8cd2-339b-4c0f-b05d-b36c8fd2810c:
+    id: d2ed8cd2-339b-4c0f-b05d-b36c8fd2810c
+    content: Load with default `10`, persist on change
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6cbe642d-a00f-41a5-b04f-a908802a3a04:
+    id: 6cbe642d-a00f-41a5-b04f-a908802a3a04
+    content: 'In `startStepTimeout()`: replace `STEP_TIMEOUT_MS` constant with `usePreferencesStore.getState().stepTimeoutMinutes * 60 * 1000`'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0bfe6722-2533-4dea-86be-2098572fb88d:
+    id: 0bfe6722-2533-4dea-86be-2098572fb88d
+    content: Remove the `STEP_TIMEOUT_MS` constant
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  02da8e75-7121-4788-a8fd-04d23e8e5f22:
+    id: 02da8e75-7121-4788-a8fd-04d23e8e5f22
+    content: 'Step 5: Update tests — M'
+    children:
+      - ef61f63d-0cb5-49c8-bb59-c243fd13e73b
+      - 8013fb12-1846-4394-9ebf-efad67f64f4d
+      - e1b8c39d-5d92-4f3e-9fb8-a385f7509db0
+      - ff00e099-23da-43bc-91d8-1b5f36c8c718
+      - a1fa4b59-63c1-4b2a-bf1b-4d9fe1a0dbc6
+      - b5b8454b-944a-4d9b-b5ee-ec7d740ceb86
+      - 6a889588-79a2-4d8e-acef-6c9e192a0949
+      - 87a1adb0-b49e-4e07-bbed-a3a95622c7c1
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ef61f63d-0cb5-49c8-bb59-c243fd13e73b:
+    id: ef61f63d-0cb5-49c8-bb59-c243fd13e73b
+    content: Test `markHookEventReceived` action persists flag
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8013fb12-1846-4394-9ebf-efad67f64f4d:
+    id: 8013fb12-1846-4394-9ebf-efad67f64f4d
+    content: Test `startWorkflow` shows setup guide only when `hasReceivedHookEvent` is false
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e1b8c39d-5d92-4f3e-9fb8-a385f7509db0:
+    id: e1b8c39d-5d92-4f3e-9fb8-a385f7509db0
+    content: Test `startWorkflow` does not show setup guide when `hasReceivedHookEvent` is true
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ff00e099-23da-43bc-91d8-1b5f36c8c718:
+    id: ff00e099-23da-43bc-91d8-1b5f36c8c718
+    content: Test `registerSession` calls `markHookEventReceived` on first arrival
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a1fa4b59-63c1-4b2a-bf1b-4d9fe1a0dbc6:
+    id: a1fa4b59-63c1-4b2a-bf1b-4d9fe1a0dbc6
+    content: Test `registerSession` does not call `markHookEventReceived` when flag already true
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b5b8454b-944a-4d9b-b5ee-ec7d740ceb86:
+    id: b5b8454b-944a-4d9b-b5ee-ec7d740ceb86
+    content: Test `startStepTimeout` uses timeout from preferences store
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6a889588-79a2-4d8e-acef-6c9e192a0949:
+    id: 6a889588-79a2-4d8e-acef-6c9e192a0949
+    content: Test `setStepTimeoutMinutes` persists value
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  87a1adb0-b49e-4e07-bbed-a3a95622c7c1:
+    id: 87a1adb0-b49e-4e07-bbed-a3a95622c7c1
+    content: Update existing tests that assert on the old session-map-empty toast to use the new flag-based check
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0fa703db-0678-4489-95a8-9e9b73540219:
+    id: 0fa703db-0678-4489-95a8-9e9b73540219
+    content: Risks and edge cases
+    children:
+      - 0168dc7d-c83f-4e1c-95df-3bacb1a6b7ba
+      - 317784c7-0283-437a-918f-4e2b5037971d
+      - e23e24c3-cfa9-4777-a363-2bd58a51dfcd
+      - 25ee00ae-2475-4504-80ef-f49e8eb7f47e
+      - ebe3d967-98a6-4791-adde-370b26f1c577
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0168dc7d-c83f-4e1c-95df-3bacb1a6b7ba:
+    id: 0168dc7d-c83f-4e1c-95df-3bacb1a6b7ba
+    content: 'Cross-store dependency: tree store actions calling `usePreferencesStore.getState()` creates a coupling — acceptable since it''s a one-time read pattern already used elsewhere in the codebase, not a subscription'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  317784c7-0283-437a-918f-4e2b5037971d:
+    id: 317784c7-0283-437a-918f-4e2b5037971d
+    content: 'Preferences not yet loaded when first workflow starts: `loadPreferences` is async and runs on app init — if a workflow starts before load completes, `hasReceivedHookEvent` defaults to `false`, which is the safe direction (shows guide)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e23e24c3-cfa9-4777-a363-2bd58a51dfcd:
+    id: e23e24c3-cfa9-4777-a363-2bd58a51dfcd
+    content: 'Step timeout of 0: should disable the timeout entirely — add guard in `startStepTimeout` to skip if `stepTimeoutMinutes <= 0`'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  25ee00ae-2475-4504-80ef-f49e8eb7f47e:
+    id: 25ee00ae-2475-4504-80ef-f49e8eb7f47e
+    content: 'Setup guide toast currently fires on every start with empty session map (e.g. after restart) — the persisted flag fixes this: once set, it never shows again even after restart'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ebe3d967-98a6-4791-adde-370b26f1c577:
+    id: ebe3d967-98a6-4791-adde-370b26f1c577
+    content: Notification event AC was already implemented at `workflowExecutionActions.ts:338-342` but was incorrectly marked as pending — now marked [x]
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7de3a7bc-f5aa-4c2c-9a4d-7c4e8e350fc6:
+    id: 7de3a7bc-f5aa-4c2c-9a4d-7c4e8e350fc6
+    content: Implementation plan
+    children:
+      - 2719d401-fa44-4a09-a9a9-5a7ee791d83e
+      - 709ad343-f717-426e-a972-229e253810d1
+      - e5ec594e-4633-4a57-9ad8-5f446e225689
+      - 2fa6ace9-cf3e-4900-ad06-f79b120700fe
+      - afa624ec-bbd9-4266-bfa8-5ff3b0c3726d
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2719d401-fa44-4a09-a9a9-5a7ee791d83e:
+    id: 2719d401-fa44-4a09-a9a9-5a7ee791d83e
+    content: 'Changeset 1: Steps 1-3 — preferences flag + wiring (pure state + logic, no UI)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  709ad343-f717-426e-a972-229e253810d1:
+    id: 709ad343-f717-426e-a972-229e253810d1
+    content: 'Changeset 2: Step 4 — configurable timeout (independent of changeset 1)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e5ec594e-4633-4a57-9ad8-5f446e225689:
+    id: e5ec594e-4633-4a57-9ad8-5f446e225689
+    content: 'Changeset 3: Step 5 — tests for both changesets'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2fa6ace9-cf3e-4900-ad06-f79b120700fe:
+    id: 2fa6ace9-cf3e-4900-ad06-f79b120700fe
+    content: 'Testing strategy: unit tests for preference actions, unit tests for startWorkflow guide logic, unit tests for registerSession flag-setting, unit tests for configurable timeout. No integration tests needed — the hook→store flow is already covered by US4 tests'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  afa624ec-bbd9-4266-bfa8-5ff3b0c3726d:
+    id: afa624ec-bbd9-4266-bfa8-5ff3b0c3726d
+    content: 'Parallelisation: Changesets 1 and 2 are independent and can be developed in parallel. Changeset 3 depends on both'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fb919bad-636a-4ebc-bd2e-f306a09cca3e:
+    id: fb919bad-636a-4ebc-bd2e-f306a09cca3e
+    content: Test plan
+    children:
+      - 17cafe45-01e7-4e5c-87e9-4f5a8498bdde
+      - d8ff2848-fe62-4d7f-bd30-beb13ae1b83b
+      - 46ea250c-b10d-4846-ab55-519e23477649
+      - cc8c8da0-7c18-4298-be9e-f94b66dcec99
+      - 9b55fe18-70aa-407c-96af-38f969063071
+      - 9e702ce9-17aa-4ff2-950d-52fe5e3dc9c2
+      - 1509347b-2892-443b-b398-b926c1d09f90
+      - 175c5745-cea6-469a-bb8c-fb36956373d4
+      - 318645d9-7e69-4ac1-bf8d-2ef4db9c9a55
+      - d0c633b0-05d0-4ccb-9067-96c589aa17e2
+      - 647042b0-4fce-4f81-ac3b-1586511101a8
+      - f3c234de-edf8-4aa7-aefb-7ac8881d33e8
+      - aa1d8a92-4b39-4879-befc-b7f030b7b7fa
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  17cafe45-01e7-4e5c-87e9-4f5a8498bdde:
+    id: 17cafe45-01e7-4e5c-87e9-4f5a8498bdde
+    content: Scope and objectives
+    children:
+      - ad977767-2a7b-4e8b-8993-b42fd2e7e881
+      - 4d37ff9e-f413-48dd-bb42-5ac80a1f9ade
+      - b67015f1-4aeb-46d9-8584-efb50716ba38
+      - 50bc7ddc-169f-4edb-b057-955c37949148
+      - 50c4ab2d-5684-4bef-bc3c-03d5bb636006
+      - 08fd8c30-ca9d-46ef-82f8-8ad01ceb0bba
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ad977767-2a7b-4e8b-8993-b42fd2e7e881:
+    id: ad977767-2a7b-4e8b-8993-b42fd2e7e881
+    content: Verify the `hasReceivedHookEvent` preference flag is correctly persisted, loaded, and used to control setup guide display
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4d37ff9e-f413-48dd-bb42-5ac80a1f9ade:
+    id: 4d37ff9e-f413-48dd-bb42-5ac80a1f9ade
+    content: Verify the setup guide toast appears only on first workflow start when hooks have never been received, and never again after the flag is set
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b67015f1-4aeb-46d9-8584-efb50716ba38:
+    id: b67015f1-4aeb-46d9-8584-efb50716ba38
+    content: Verify the step timeout reads from the configurable `stepTimeoutMinutes` preference instead of a hard-coded constant
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  50bc7ddc-169f-4edb-b057-955c37949148:
+    id: 50bc7ddc-169f-4edb-b057-955c37949148
+    content: Verify `stepTimeoutMinutes` of 0 disables the timeout entirely
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  50c4ab2d-5684-4bef-bc3c-03d5bb636006:
+    id: 50c4ab2d-5684-4bef-bc3c-03d5bb636006
+    content: Verify backwards compatibility when loading preferences that lack the new fields
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  08fd8c30-ca9d-46ef-82f8-8ad01ceb0bba:
+    id: 08fd8c30-ca9d-46ef-82f8-8ad01ceb0bba
+    content: 'Out of scope: hook server HTTP handling (covered by US4), step-type-specific advancement behavior (covered by existing tests), parallel execution (covered by existing tests)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d8ff2848-fe62-4d7f-bd30-beb13ae1b83b:
+    id: d8ff2848-fe62-4d7f-bd30-beb13ae1b83b
+    content: Entry and exit criteria
+    children:
+      - a925685c-8b16-4b2d-8ad6-a8918e6d2122
+      - 3e0a84f4-cf90-40ec-bf2a-41c9dd61a87a
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a925685c-8b16-4b2d-8ad6-a8918e6d2122:
+    id: a925685c-8b16-4b2d-8ad6-a8918e6d2122
+    content: 'Entry: `hasReceivedHookEvent` and `stepTimeoutMinutes` added to `UserPreferences` interface and `preferencesStore`, `startWorkflow` and `registerSession` wired to preferences, `startStepTimeout` reads from preferences'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3e0a84f4-cf90-40ec-bf2a-41c9dd61a87a:
+    id: 3e0a84f4-cf90-40ec-bf2a-41c9dd61a87a
+    content: 'Exit: All unit tests pass, existing workflow execution tests updated and still passing, no regressions in full test suite'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  46ea250c-b10d-4846-ab55-519e23477649:
+    id: 46ea250c-b10d-4846-ab55-519e23477649
+    content: Environments and prerequisites
+    children:
+      - 6e430c69-6955-485a-86b5-a63f94af060e
+      - 571512cf-74fa-4fb6-b0da-ee7d2bd95641
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6e430c69-6955-485a-86b5-a63f94af060e:
+    id: 6e430c69-6955-485a-86b5-a63f94af060e
+    content: 'Unit tests: Vitest with jsdom environment, `vi.mock` for `preferencesStore` in workflow execution action tests, `vi.mock` for `StorageService` in preferences store tests'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  571512cf-74fa-4fb6-b0da-ee7d2bd95641:
+    id: 571512cf-74fa-4fb6-b0da-ee7d2bd95641
+    content: 'Mock pattern: use `vi.hoisted()` for persistent mock refs to `usePreferencesStore.getState()`, matching existing project convention'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cc8c8da0-7c18-4298-be9e-f94b66dcec99:
+    id: cc8c8da0-7c18-4298-be9e-f94b66dcec99
+    content: Unit tests — Preferences store (`src/renderer/store/preferences/tests/preferencesStore.test.ts`)
+    children:
+      - a3f032d9-11b3-497e-9d24-3610156ca06c
+      - ce0591fe-09a3-4a2d-a556-d3f2ee522838
+      - ecc565a9-0286-427c-9513-820a8e0a7794
+      - fa5c6cee-eaee-4723-b707-a6920a0ed48f
+      - 6014a3c8-5406-4b3e-b580-7480947e075c
+      - a0134d1a-cd71-46e3-8979-e03c7b28aab4
+      - f636ec30-88ad-435b-8f5c-0dced52c5083
+      - 48ba22e8-d766-4372-8e90-36a7381fba79
+      - 2a2c3907-f22c-4c38-b97a-bb68761b1765
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a3f032d9-11b3-497e-9d24-3610156ca06c:
+    id: a3f032d9-11b3-497e-9d24-3610156ca06c
+    content: '`markHookEventReceived` sets `hasReceivedHookEvent` to true'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ce0591fe-09a3-4a2d-a556-d3f2ee522838:
+    id: ce0591fe-09a3-4a2d-a556-d3f2ee522838
+    content: '`markHookEventReceived` calls `StorageService.savePreferences` with the updated flag'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ecc565a9-0286-427c-9513-820a8e0a7794:
+    id: ecc565a9-0286-427c-9513-820a8e0a7794
+    content: '`markHookEventReceived` is idempotent — calling twice does not double-save'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fa5c6cee-eaee-4723-b707-a6920a0ed48f:
+    id: fa5c6cee-eaee-4723-b707-a6920a0ed48f
+    content: '`setStepTimeoutMinutes` updates state and persists via `StorageService`'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6014a3c8-5406-4b3e-b580-7480947e075c:
+    id: 6014a3c8-5406-4b3e-b580-7480947e075c
+    content: '`setStepTimeoutMinutes` with value 0 is accepted (no validation rejection)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a0134d1a-cd71-46e3-8979-e03c7b28aab4:
+    id: a0134d1a-cd71-46e3-8979-e03c7b28aab4
+    content: '`loadPreferences` with missing `hasReceivedHookEvent` defaults to `false`'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f636ec30-88ad-435b-8f5c-0dced52c5083:
+    id: f636ec30-88ad-435b-8f5c-0dced52c5083
+    content: '`loadPreferences` with missing `stepTimeoutMinutes` defaults to `10`'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  48ba22e8-d766-4372-8e90-36a7381fba79:
+    id: 48ba22e8-d766-4372-8e90-36a7381fba79
+    content: '`loadPreferences` with existing values preserves them'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2a2c3907-f22c-4c38-b97a-bb68761b1765:
+    id: 2a2c3907-f22c-4c38-b97a-bb68761b1765
+    content: '`buildPreferences` includes both new fields in the serialized output'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9b55fe18-70aa-407c-96af-38f969063071:
+    id: 9b55fe18-70aa-407c-96af-38f969063071
+    content: Unit tests — Setup guide display (`src/renderer/store/tree/actions/tests/workflowExecutionActions.test.ts`)
+    children:
+      - ca02de18-8b4c-4ad4-a5bf-0e2f28ca6613
+      - f235901b-f650-42cc-8e61-bbf72b00f80d
+      - a89730f2-4c2f-47a9-be0a-addddd70e7be
+      - 5a592d5a-1cea-4192-841c-5b8c7915277f
+      - 17153159-fde1-401e-8f9a-badd87aab017
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ca02de18-8b4c-4ad4-a5bf-0e2f28ca6613:
+    id: ca02de18-8b4c-4ad4-a5bf-0e2f28ca6613
+    content: '`startWorkflow` shows setup guide toast when `hasReceivedHookEvent` is false'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f235901b-f650-42cc-8e61-bbf72b00f80d:
+    id: f235901b-f650-42cc-8e61-bbf72b00f80d
+    content: '`startWorkflow` does not show setup guide toast when `hasReceivedHookEvent` is true'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a89730f2-4c2f-47a9-be0a-addddd70e7be:
+    id: a89730f2-4c2f-47a9-be0a-addddd70e7be
+    content: Setup guide toast message contains actionable content (mentions hooks/configuration)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5a592d5a-1cea-4192-841c-5b8c7915277f:
+    id: 5a592d5a-1cea-4192-841c-5b8c7915277f
+    content: Setup guide toast appears regardless of whether `workflowSessionMap` is empty or not — only the persisted flag matters
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  17153159-fde1-401e-8f9a-badd87aab017:
+    id: 17153159-fde1-401e-8f9a-badd87aab017
+    content: Update existing "should show setup guide" test to mock `usePreferencesStore.getState()` instead of checking session map
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9e702ce9-17aa-4ff2-950d-52fe5e3dc9c2:
+    id: 9e702ce9-17aa-4ff2-950d-52fe5e3dc9c2
+    content: Unit tests — Hook-received flag setting (`src/renderer/store/tree/actions/tests/workflowExecutionActions.test.ts`)
+    children:
+      - b62e751e-74af-4758-a990-1c0a32238016
+      - cc6bfe06-7a6a-4c7f-a9ee-29dcb4877766
+      - d933d3c5-b35e-4f6d-a00f-e3d513ab8b0d
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b62e751e-74af-4758-a990-1c0a32238016:
+    id: b62e751e-74af-4758-a990-1c0a32238016
+    content: '`registerSession` calls `markHookEventReceived()` when `hasReceivedHookEvent` is false'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cc6bfe06-7a6a-4c7f-a9ee-29dcb4877766:
+    id: cc6bfe06-7a6a-4c7f-a9ee-29dcb4877766
+    content: '`registerSession` does not call `markHookEventReceived()` when `hasReceivedHookEvent` is already true'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d933d3c5-b35e-4f6d-a00f-e3d513ab8b0d:
+    id: d933d3c5-b35e-4f6d-a00f-e3d513ab8b0d
+    content: Flag is set on the first `registerSession` call across any terminal — not per-terminal
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1509347b-2892-443b-b398-b926c1d09f90:
+    id: 1509347b-2892-443b-b398-b926c1d09f90
+    content: Unit tests — Configurable step timeout (`src/renderer/store/tree/actions/tests/workflowExecutionActions.test.ts`)
+    children:
+      - 7f90ad24-aeb9-47fb-8b5f-838d0316e4c2
+      - 5d37887c-0fee-4bce-8dd1-a2ac3211a6c1
+      - 07f90327-12d8-4425-9cf2-8e228b483a43
+      - 904e2904-0019-41dc-99bd-73836edd7e27
+      - 86409db2-f53d-4ad9-995e-11dbb92c0b84
+      - 1401db9e-5367-4256-9894-a170faeadd52
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7f90ad24-aeb9-47fb-8b5f-838d0316e4c2:
+    id: 7f90ad24-aeb9-47fb-8b5f-838d0316e4c2
+    content: '`startStepTimeout` reads `stepTimeoutMinutes` from preferences store'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5d37887c-0fee-4bce-8dd1-a2ac3211a6c1:
+    id: 5d37887c-0fee-4bce-8dd1-a2ac3211a6c1
+    content: Timeout fires after the configured interval (use `vi.useFakeTimers`)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  07f90327-12d8-4425-9cf2-8e228b483a43:
+    id: 07f90327-12d8-4425-9cf2-8e228b483a43
+    content: Changing `stepTimeoutMinutes` affects subsequent timeouts, not already-running ones
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  904e2904-0019-41dc-99bd-73836edd7e27:
+    id: 904e2904-0019-41dc-99bd-73836edd7e27
+    content: '`stepTimeoutMinutes` of 0 skips timeout creation entirely (no `setTimeout` called)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  86409db2-f53d-4ad9-995e-11dbb92c0b84:
+    id: 86409db2-f53d-4ad9-995e-11dbb92c0b84
+    content: '`stepTimeoutMinutes` of 0 does not cause errors when `clearStepTimeout` is called'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1401db9e-5367-4256-9894-a170faeadd52:
+    id: 1401db9e-5367-4256-9894-a170faeadd52
+    content: Default timeout (preferences not loaded, falls back to 10) still works correctly
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  175c5745-cea6-469a-bb8c-fb36956373d4:
+    id: 175c5745-cea6-469a-bb8c-fb36956373d4
+    content: Unit tests — Existing test updates
+    children:
+      - 5908fb92-ad74-41d0-ab8e-78626b3515c9
+      - 83522ff0-64a3-4b86-8bc0-bfde3079b015
+      - 5cfdacde-4262-43c3-86e4-1f446be9d5e4
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5908fb92-ad74-41d0-ab8e-78626b3515c9:
+    id: 5908fb92-ad74-41d0-ab8e-78626b3515c9
+    content: Update `workflowExecutionEdgeCases.test.ts` "should show setup guide" test to mock preferences store
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  83522ff0-64a3-4b86-8bc0-bfde3079b015:
+    id: 83522ff0-64a3-4b86-8bc0-bfde3079b015
+    content: Update `workflowExecutionEdgeCases.test.ts` "should not show setup guide if hooks have been received" test to use preference flag
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5cfdacde-4262-43c3-86e4-1f446be9d5e4:
+    id: 5cfdacde-4262-43c3-86e4-1f446be9d5e4
+    content: Verify all existing timeout-related tests still pass with the preferences-based implementation
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  318645d9-7e69-4ac1-bf8d-2ef4db9c9a55:
+    id: 318645d9-7e69-4ac1-bf8d-2ef4db9c9a55
+    content: Manual test script
+    children:
+      - 83a21d7d-5000-4f74-a73b-bd8110588fc4
+      - bd886864-84dd-4b33-af94-069c85e4f73f
+      - 7dcd2e2d-3c62-4cb0-987e-bc561d3afee4
+      - 4f0e688b-8c12-4b99-8f10-22f4284added
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  83a21d7d-5000-4f74-a73b-bd8110588fc4:
+    id: 83a21d7d-5000-4f74-a73b-bd8110588fc4
+    content: 'Fresh install: start workflow → verify setup guide appears'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  bd886864-84dd-4b33-af94-069c85e4f73f:
+    id: bd886864-84dd-4b33-af94-069c85e4f73f
+    content: Receive a hook event → restart app → start workflow → verify setup guide does NOT appear
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7dcd2e2d-3c62-4cb0-987e-bc561d3afee4:
+    id: 7dcd2e2d-3c62-4cb0-987e-bc561d3afee4
+    content: Change step timeout in preferences → start workflow → verify new timeout interval applies
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4f0e688b-8c12-4b99-8f10-22f4284added:
+    id: 4f0e688b-8c12-4b99-8f10-22f4284added
+    content: Set step timeout to 0 → start workflow → verify no timeout warning fires
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d0c633b0-05d0-4ccb-9067-96c589aa17e2:
+    id: d0c633b0-05d0-4ccb-9067-96c589aa17e2
+    content: Risks — highest likelihood of defects
+    children:
+      - c09c73f7-924c-4d85-bf59-95f7eb9c6412
+      - 7566fdf1-6b73-447c-ac48-e8411daf63d6
+      - 9943d1cc-0fd7-4d1f-8af3-11234de4f698
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c09c73f7-924c-4d85-bf59-95f7eb9c6412:
+    id: c09c73f7-924c-4d85-bf59-95f7eb9c6412
+    content: 'Cross-store mock wiring: tests for `workflowExecutionActions` must mock `usePreferencesStore.getState()` — incorrect mock setup will cause false passes where tests don''t actually validate the preference-based behavior'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7566fdf1-6b73-447c-ac48-e8411daf63d6:
+    id: 7566fdf1-6b73-447c-ac48-e8411daf63d6
+    content: 'Existing test breakage: the two setup-guide tests in `workflowExecutionEdgeCases.test.ts` currently check session map emptiness — they will fail when the implementation switches to the preference flag, and must be updated in lockstep'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9943d1cc-0fd7-4d1f-8af3-11234de4f698:
+    id: 9943d1cc-0fd7-4d1f-8af3-11234de4f698
+    content: 'Fake timer interaction with preferences read: if `startStepTimeout` reads preferences at creation time vs at fire time, the test setup matters — verify the read happens at creation time (when the timeout is set, not when it fires)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  647042b0-4fce-4f81-ac3b-1586511101a8:
+    id: 647042b0-4fce-4f81-ac3b-1586511101a8
+    content: Risks — highest impact if failures occur
+    children:
+      - dbbacb3f-b443-499d-bd0c-807d1827989a
+      - 6879955d-abca-4bdc-a804-61d3f43caf17
+      - 6585f816-81fd-4d11-9a95-1630ed9197ff
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  dbbacb3f-b443-499d-bd0c-807d1827989a:
+    id: dbbacb3f-b443-499d-bd0c-807d1827989a
+    content: '`markHookEventReceived` not called on first hook → setup guide shows every time, annoying the user after they''ve already configured hooks'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6879955d-abca-4bdc-a804-61d3f43caf17:
+    id: 6879955d-abca-4bdc-a804-61d3f43caf17
+    content: Preference not persisted to disk → flag resets on restart, guide reappears
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6585f816-81fd-4d11-9a95-1630ed9197ff:
+    id: 6585f816-81fd-4d11-9a95-1630ed9197ff
+    content: '`stepTimeoutMinutes` read as undefined/NaN → `setTimeout(fn, NaN)` fires immediately, flooding toasts'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f3c234de-edf8-4aa7-aefb-7ac8881d33e8:
+    id: f3c234de-edf8-4aa7-aefb-7ac8881d33e8
+    content: Dependencies on external systems
+    children:
+      - e2958b24-8ac6-42af-b033-078507f595bf
+      - 3dc110b2-39b2-435f-b4ca-f5619454f8a8
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e2958b24-8ac6-42af-b033-078507f595bf:
+    id: e2958b24-8ac6-42af-b033-078507f595bf
+    content: '`StorageService` — preferences persistence relies on Electron IPC to main process file I/O; unit tests mock this entirely'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3dc110b2-39b2-435f-b4ca-f5619454f8a8:
+    id: 3dc110b2-39b2-435f-b4ca-f5619454f8a8
+    content: '`usePreferencesStore` — cross-store dependency from tree store actions; must be mocked in tree store action tests'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  aa1d8a92-4b39-4879-befc-b7f030b7b7fa:
+    id: aa1d8a92-4b39-4879-befc-b7f030b7b7fa
+    content: Ambiguous or likely-to-change requirements
+    children:
+      - d70de908-fffd-4c1b-8f74-f4915dc06860
+      - 1ed77573-2a4d-48f2-8249-ae5e1c758074
+      - 07961833-7b44-4d02-a41b-3c5678a2f671
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d70de908-fffd-4c1b-8f74-f4915dc06860:
+    id: d70de908-fffd-4c1b-8f74-f4915dc06860
+    content: 'Setup guide content: the AC says "instructions for configuring the AI tool''s hooks (includes auth token and endpoint URL)" — but the auth token and port are only available in terminal env vars, not directly in the renderer. The guide will reference env var names and docs, not actual values'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1ed77573-2a4d-48f2-8249-ae5e1c758074:
+    id: 1ed77573-2a4d-48f2-8249-ae5e1c758074
+    content: Whether `stepTimeoutMinutes` should have a minimum value or accept any positive number — current spec allows 0 (disable) but doesn't specify a maximum
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  07961833-7b44-4d02-a41b-3c5678a2f671:
+    id: 07961833-7b44-4d02-a41b-3c5678a2f671
+    content: Whether the setup guide should be a toast or a modal dialog — current implementation uses toast, AC says "show a setup guide" which could imply either
     children: []
     metadata:
       status: completed

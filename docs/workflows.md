@@ -38,9 +38,15 @@ A green flash and toast notification confirm each advancement. If the item reach
 
 Automated advancement bypasses the undo stack — you cannot undo an automated move with `Ctrl+Z`.
 
-If the terminal fails to accept content, the workflow pauses automatically and shows an error. A 10-minute timeout warns you if a step takes longer than expected.
+If the terminal fails to accept content, the workflow pauses automatically and shows an error. A timeout (10 minutes by default) warns you if a step has no activity, with options to dismiss or pause the workflow.
+
+If you manually move a running item to a different step, or close the terminal tab it's assigned to, the workflow pauses automatically.
 
 For automated advancement to work, you need to configure your AI tool to send hook events back to Arborescent. See [Hook Setup](#hook-setup) below.
+
+## Running Multiple Items
+
+You can run multiple items through the same workflow simultaneously — each in its own terminal tab. Each item advances independently based on the step types it encounters. Start each item with **Run Workflow** and select a different terminal tab for each one.
 
 ## Moving Items Manually
 
@@ -98,7 +104,7 @@ Add a hook to your Claude Code configuration (`~/.claude/hooks.json`) that POSTs
 
 The hook server binds to `127.0.0.1` only — it is not accessible from the network. The auth token is regenerated each time Arborescent starts.
 
-If the hook is not configured, workflows will start but never advance automatically. A toast notification reminds you to set up hooks when you first run a workflow.
+If the hook is not configured, workflows will start but never advance automatically. A setup guide appears the first time you run a workflow if no hook events have been received. Once hooks are working, the guide won't appear again.
 
 ## Dragging Workflows
 

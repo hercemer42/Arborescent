@@ -48,6 +48,16 @@ vi.mock('../executeActions', () => ({
   DEFAULT_EXECUTE_CONTEXT: 'default execute context',
 }));
 
+vi.mock('@/store/preferences/preferencesStore', () => ({
+  usePreferencesStore: {
+    getState: () => ({
+      hasReceivedHookEvent: true,
+      stepTimeoutMinutes: 10,
+      markHookEventReceived: vi.fn(),
+    }),
+  },
+}));
+
 describe('workflow advancement', () => {
   type TestState = {
     nodes: Record<string, TreeNode>;
@@ -140,12 +150,9 @@ describe('workflow advancement', () => {
       state = { ...state, ...partial };
     };
 
-    mockAddToast.mockClear();
-    mockExecuteInTerminal.mockClear();
+    vi.clearAllMocks();
     mockExecuteInTerminal.mockResolvedValue(undefined);
-    mockBuildContentWithContext.mockClear();
     mockBuildContentWithContext.mockReturnValue({ contextPrefix: '', nodeContent: 'mock content' });
-    mockBuildExecutePrompt.mockClear();
     mockBuildExecutePrompt.mockImplementation((_context: string, content: string) => `execute: ${content}`);
     mockTriggerAutosave = vi.fn();
     mockVisualEffects = {
