@@ -144,51 +144,50 @@ describe('workflow execution — preference integration', () => {
     vi.useRealTimers();
   });
 
-  describe('setup guide display', () => {
-    it('should show setup guide toast when hasReceivedHookEvent is false', () => {
+  describe('hook guidance in step timeout', () => {
+    beforeEach(() => {
+      vi.useFakeTimers();
+    });
+
+    it('should include hook setup guidance in timeout message when no hook event ever received', () => {
+      mockHasReceivedHookEvent.value = false;
+      mockStepTimeoutMinutes.value = 1;
+
+      actions.startWorkflow('task-a', 'terminal-1');
+      mockAddToast.mockClear();
+
+      vi.advanceTimersByTime(60 * 1000);
+
+      const timeoutCall = mockAddToast.mock.calls.find(
+        (args: unknown[]) => typeof args[0] === 'string' && (args[0] as string).includes('hooks')
+      );
+      expect(timeoutCall).toBeDefined();
+    });
+
+    it('should not include hook guidance in timeout message when hooks have been received', () => {
+      mockHasReceivedHookEvent.value = true;
+      mockStepTimeoutMinutes.value = 1;
+
+      actions.startWorkflow('task-a', 'terminal-1');
+      mockAddToast.mockClear();
+
+      vi.advanceTimersByTime(60 * 1000);
+
+      const timeoutCall = mockAddToast.mock.calls.find(
+        (args: unknown[]) => typeof args[0] === 'string' && (args[0] as string).includes('hooks')
+      );
+      expect(timeoutCall).toBeUndefined();
+    });
+
+    it('should not show hook guidance on startWorkflow itself', () => {
       mockHasReceivedHookEvent.value = false;
 
       actions.startWorkflow('task-a', 'terminal-1');
 
-      expect(mockAddToast).toHaveBeenCalledWith(
-        expect.stringContaining('hooks'),
-        expect.anything()
-      );
-    });
-
-    it('should not show setup guide toast when hasReceivedHookEvent is true', () => {
-      mockHasReceivedHookEvent.value = true;
-
-      actions.startWorkflow('task-a', 'terminal-1');
-
-      const hookSetupCalls = mockAddToast.mock.calls.filter(
+      const hookCalls = mockAddToast.mock.calls.filter(
         (args: unknown[]) => typeof args[0] === 'string' && (args[0] as string).includes('hooks')
       );
-      expect(hookSetupCalls).toHaveLength(0);
-    });
-
-    it('should show setup guide with actionable content about configuration', () => {
-      mockHasReceivedHookEvent.value = false;
-
-      actions.startWorkflow('task-a', 'terminal-1');
-
-      const hookSetupCall = mockAddToast.mock.calls.find(
-        (args: unknown[]) => typeof args[0] === 'string' && (args[0] as string).includes('hooks')
-      );
-      expect(hookSetupCall).toBeDefined();
-      expect(hookSetupCall![0]).toMatch(/hook|configure/i);
-    });
-
-    it('should check persisted flag regardless of session map state', () => {
-      mockHasReceivedHookEvent.value = true;
-      state.workflowSessionMap = {};
-
-      actions.startWorkflow('task-a', 'terminal-1');
-
-      const hookSetupCalls = mockAddToast.mock.calls.filter(
-        (args: unknown[]) => typeof args[0] === 'string' && (args[0] as string).includes('hooks')
-      );
-      expect(hookSetupCalls).toHaveLength(0);
+      expect(hookCalls).toHaveLength(0);
     });
   });
 

@@ -61,8 +61,12 @@ export const createWorkflowExecutionActions = (
       const { workflowExecutionStates } = get();
       const entry = workflowExecutionStates[nodeId];
       if (entry?.state !== 'running') return;
+      const hasHooks = usePreferencesStore.getState().hasReceivedHookEvent;
+      const message = hasHooks
+        ? 'Step is taking longer than expected. Verify your AI tool is running.'
+        : 'Step is taking longer than expected. Ensure Claude Code hooks are configured for automatic advancement. See docs/workflows.md for setup.';
       useToastStore.getState().addToast(
-        'Step is taking longer than expected. Verify your AI tool is running.',
+        message,
         'warning',
         {
           actions: [
@@ -116,13 +120,6 @@ export const createWorkflowExecutionActions = (
         [nodeId]: { state: 'running' as const, terminalTabId: terminalId },
       },
     });
-
-    if (!usePreferencesStore.getState().hasReceivedHookEvent) {
-      useToastStore.getState().addToast(
-        'Configure Claude Code hooks to enable automatic workflow advancement. Run `echo $ARBORESCENT_HOOK_PORT` in your terminal to verify environment variables are set. See docs/workflows.md for setup instructions.',
-        'info'
-      );
-    }
 
     startStepTimeout(nodeId);
     sendContentToTerminal(nodeId, terminalId);

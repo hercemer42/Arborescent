@@ -353,28 +353,16 @@ describe('workflow execution edge cases', () => {
   });
 
   describe('hook configuration awareness', () => {
-    it('should show setup guide on first Start Workflow if no hook ever received', () => {
+    it('should not show hook guidance on startWorkflow', () => {
       mockHasReceivedHookEvent.value = false;
       state.workflowExecutionStates = {};
 
       actions.startWorkflow('task-a', 'terminal-1');
 
-      expect(mockAddToast).toHaveBeenCalledWith(
-        expect.stringContaining('hooks'),
-        expect.anything()
-      );
-    });
-
-    it('should not show setup guide if hooks have been received previously', () => {
-      mockHasReceivedHookEvent.value = true;
-      state.workflowExecutionStates = {};
-
-      actions.startWorkflow('task-a', 'terminal-1');
-
-      const hookSetupCalls = mockAddToast.mock.calls.filter(
+      const hookCalls = mockAddToast.mock.calls.filter(
         (args: unknown[]) => typeof args[0] === 'string' && (args[0] as string).includes('hooks')
       );
-      expect(hookSetupCalls).toHaveLength(0);
+      expect(hookCalls).toHaveLength(0);
     });
   });
 
