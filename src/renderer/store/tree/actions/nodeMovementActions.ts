@@ -4,6 +4,7 @@ import { VisualEffectsActions } from './visualEffectsActions';
 import { NavigationActions } from './navigationActions';
 import { MoveNodeCommand } from '../commands/MoveNodeCommand';
 import { useToastStore } from '../../toast/toastStore';
+import { notifyMovementDisruption } from './workflowDisruption';
 
 export interface NodeMovementActions {
   indentNode: (nodeId: string) => void;
@@ -215,6 +216,10 @@ function moveNodeVertically(
     triggerAutosave
   );
   state.actions.executeCommand(command);
+
+  if (newParentId !== parentId) {
+    notifyMovementDisruption(get, nodeId);
+  }
 }
 
 export const createNodeMovementActions = (
@@ -237,6 +242,9 @@ export const createNodeMovementActions = (
       throw new Error('Command system not initialized - cannot move node with undo/redo support');
     }
 
+    const ancestors = state.ancestorRegistry[nodeId] || [];
+    const currentParentId = ancestors[ancestors.length - 1] || state.rootNodeId;
+
     const command = new MoveNodeCommand(
       nodeId,
       newParentId,
@@ -253,6 +261,11 @@ export const createNodeMovementActions = (
       triggerAutosave
     );
     state.actions.executeCommand(command);
+
+    if (newParentId !== currentParentId) {
+      const actions = (get() as StoreState & { actions?: { handleNodeMovedManually?: (id: string) => void } }).actions;
+      actions?.handleNodeMovedManually?.(nodeId);
+    }
   }
 
   function indentNode(nodeId: string): void {

@@ -40,9 +40,26 @@ Automated advancement bypasses the undo stack — you cannot undo an automated m
 
 If the terminal fails to accept content, the workflow pauses automatically and shows an error. A timeout (10 minutes by default) warns you if a step has no activity, with options to dismiss or pause the workflow.
 
-If you manually move a running item to a different step, or close the terminal tab it's assigned to, the workflow pauses automatically.
-
 For automated advancement to work, you need to configure your AI tool to send hook events back to Arborescent. See [Hook Setup](#hook-setup) below.
+
+## Pausing and Resuming
+
+A workflow pauses automatically when something disrupts the running item:
+
+- You close the terminal tab the item is running in
+- You move the item to a different step (drag, cut-paste, indent/outdent)
+- You delete the step the item is at
+- The application restarts while the item is running
+
+A toast notification tells you what happened. Reordering the item within the same step (`Ctrl+Up`/`Ctrl+Down` among siblings) does not pause it.
+
+Deleting a running item stops its workflow immediately and releases the terminal — there is nothing to resume.
+
+To resume a paused item, right-click it → **Resume Workflow**. It picks up from wherever it currently sits. If you moved the item before resuming, it continues from the new position.
+
+On app restart, all previously running items appear as paused. Reopen a terminal and resume them individually.
+
+Undoing a deletion (`Ctrl+Z`) restores the node but not its execution state — you need to start the workflow again.
 
 ## Running Multiple Items
 

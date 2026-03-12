@@ -6,6 +6,22 @@ import { useTerminalStore } from '../../../../store/terminal/terminalStore';
 // Mock the terminal store
 vi.mock('../../../../store/terminal/terminalStore');
 
+const { mockHandleTerminalClosed } = vi.hoisted(() => ({
+  mockHandleTerminalClosed: vi.fn(),
+}));
+
+vi.mock('../../../../store/storeManager', () => ({
+  storeManager: {
+    getAllStores: vi.fn(() => [{
+      getState: () => ({
+        actions: {
+          handleTerminalClosed: mockHandleTerminalClosed,
+        },
+      }),
+    }]),
+  },
+}));
+
 describe('useTerminalPanel', () => {
   const mockCreateNewTerminal = vi.fn();
   const mockCloseTerminal = vi.fn();
@@ -87,6 +103,19 @@ describe('useTerminalPanel', () => {
 
       // Should not throw
       await expect(result.current.handleCloseTerminal('terminal-123')).rejects.toThrow('Failed to close');
+    });
+
+    it('should notify all tree stores of terminal close for workflow disruption', async () => {
+      setupMock([]);
+      mockCloseTerminal.mockResolvedValue(undefined);
+
+      const { result } = renderHook(() => useTerminalPanel());
+
+      await result.current.handleCloseTerminal('terminal-456');
+
+      await waitFor(() => {
+        expect(mockHandleTerminalClosed).toHaveBeenCalledWith('terminal-456');
+      });
     });
   });
 });

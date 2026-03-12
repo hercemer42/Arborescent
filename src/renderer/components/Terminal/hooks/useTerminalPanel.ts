@@ -1,5 +1,6 @@
 import { useCallback } from 'react';
 import { useTerminalStore } from '../../../store/terminal/terminalStore';
+import { storeManager } from '../../../store/storeManager';
 
 export function useTerminalPanel() {
   const terminals = useTerminalStore((state) => state.terminals);
@@ -13,6 +14,9 @@ export function useTerminalPanel() {
 
   const handleCloseTerminal = useCallback(async (id: string) => {
     await closeTerminal(id);
+    for (const store of storeManager.getAllStores()) {
+      store.getState().actions.handleTerminalClosed(id);
+    }
   }, [closeTerminal]);
 
   return {

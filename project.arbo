@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-03-12T14:34:03.206Z'
+updated: '2026-03-12T15:38:35.784Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -458,9 +458,12 @@ nodes:
     id: 565dde0a-864b-41f9-86ff-dbdf40ac4dd0
     content: Done
     children:
+      - 0b06bda5-252f-43f6-bb00-9043226b3dae
+      - 83478ae4-3c6f-4647-9d42-779a4de7d8a0
       - 0a62d0d8-639a-434d-8a54-46f77aff6739
       - 90a40be5-3f48-4bd9-9f90-2884670a8ff3
-      - 83478ae4-3c6f-4647-9d42-779a4de7d8a0
+      - a30a4d15-15be-4c1c-9164-d699e6b82d42
+      - 545562f0-7717-474c-b37c-b93025d16a20
       - daeb4326-6a81-4b77-ac8e-e410ac8c493b
       - 911bbdec-12fa-45ba-b84d-2ba945888928
       - 7fea2910-cc32-43bf-8380-b49f1e5b2587
@@ -530,10 +533,9 @@ nodes:
       - 7bc450dd-64ef-40d6-a60b-8c7d74634c1c
       - d87082fc-4e05-4080-b652-c69897022374
       - 592a7f85-c2bb-4133-877d-26f32ff8d4ff
-      - 0b06bda5-252f-43f6-bb00-9043226b3dae
     metadata:
       status: completed
-      expanded: false
+      expanded: true
       isBlueprint: true
       blueprintIcon: FolderCheck
       blueprintColor: '#22c55e'
@@ -569,7 +571,7 @@ nodes:
       - 188622ee-bacb-4220-92c3-9ff37694e691
     metadata:
       status: pending
-      expanded: false
+      expanded: true
       isBlueprint: true
       blueprintIcon: Brain
       blueprintColor: '#0ea5e9'
@@ -24852,8 +24854,7 @@ nodes:
   00714a63-f267-4ab1-a285-73ae4198eb42:
     id: 00714a63-f267-4ab1-a285-73ae4198eb42
     content: Technical refinement
-    children:
-      - 545562f0-7717-474c-b37c-b93025d16a20
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -26803,8 +26804,7 @@ nodes:
   bdceb696-248d-4199-9182-db0689445c07:
     id: bdceb696-248d-4199-9182-db0689445c07
     content: Documentation
-    children:
-      - a30a4d15-15be-4c1c-9164-d699e6b82d42
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -35805,12 +35805,14 @@ nodes:
     id: 545562f0-7717-474c-b37c-b93025d16a20
     content: 'User Story 6: Graceful handling of disruptions during workflow execution'
     children:
-      - ea31471b-b6f8-4c9b-a53e-3d52e0740d0e
-      - 9f29e2f4-94b0-49fe-8d65-1e44a1776396
-      - 164f31da-2943-45f2-b29d-192462c3f071
-      - f09ff5fa-89c1-4fc6-be2b-67ce35fe23e1
+      - 3a28f78f-a8f2-441e-8f4c-fc2bd21a7d00
+      - 4197512b-9c9b-4515-89e4-df24b4032ca7
+      - c66d34e7-aa5b-41ae-bb2f-98a61256673b
+      - 6e401162-95b5-435a-9689-b2a0785ccbad
+      - 3ac2f6b3-1cc4-4c9a-8bfc-7d0a808df746
+      - 00cb9861-2ccd-4a63-a764-d99ca4686227
     metadata:
-      status: pending
+      status: completed
       expanded: false
       deleted: false
       plugins: {}
@@ -38183,212 +38185,6 @@ nodes:
     children: []
     metadata:
       status: pending
-  ea31471b-b6f8-4c9b-a53e-3d52e0740d0e:
-    id: ea31471b-b6f8-4c9b-a53e-3d52e0740d0e
-    content: Problem statement
-    children:
-      - c2bddc7a-e35b-4be3-a8a8-17fdb68f4b68
-      - f1a6f7b2-7ffa-4c58-976e-e8c898fa9ad4
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  c2bddc7a-e35b-4be3-a8a8-17fdb68f4b68:
-    id: c2bddc7a-e35b-4be3-a8a8-17fdb68f4b68
-    content: 'A user running automated workflows will encounter disruptions: terminal tabs closing, nodes being deleted or moved, steps being modified, or the application restarting'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f1a6f7b2-7ffa-4c58-976e-e8c898fa9ad4:
-    id: f1a6f7b2-7ffa-4c58-976e-e8c898fa9ad4
-    content: If these are not handled, workflows can enter corrupted states — running nodes with no terminal, advancement targeting deleted steps, or orphaned execution state
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  9f29e2f4-94b0-49fe-8d65-1e44a1776396:
-    id: 9f29e2f4-94b0-49fe-8d65-1e44a1776396
-    content: Use cases
-    children:
-      - 65a7c521-65d0-4a2b-b975-88cfe8198718
-      - bece412e-3d81-46ec-bb9d-e7a3b820f38d
-      - 5fe2c1db-8086-4ef7-a44d-318dd32ca6b1
-      - 74841904-7b55-4224-b9ee-4373c130401e
-      - ecf300be-44d9-4fc8-923f-4d2a56a508df
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  65a7c521-65d0-4a2b-b975-88cfe8198718:
-    id: 65a7c521-65d0-4a2b-b975-88cfe8198718
-    content: 'Primary: User closes a terminal tab while a node is running — the node pauses and a toast explains what happened, allowing the user to reopen a terminal and resume'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  bece412e-3d81-46ec-bb9d-e7a3b820f38d:
-    id: bece412e-3d81-46ec-bb9d-e7a3b820f38d
-    content: 'Secondary: User deletes a running node — the workflow stops and the terminal is released'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  5fe2c1db-8086-4ef7-a44d-318dd32ca6b1:
-    id: 5fe2c1db-8086-4ef7-a44d-318dd32ca6b1
-    content: 'Secondary: User manually moves a running node to a different step — the workflow pauses and the user can resume from the new position'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  74841904-7b55-4224-b9ee-4373c130401e:
-    id: 74841904-7b55-4224-b9ee-4373c130401e
-    content: 'Secondary: Application crashes or restarts while a node is running — on reload the node is shown as paused'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ecf300be-44d9-4fc8-923f-4d2a56a508df:
-    id: ecf300be-44d9-4fc8-923f-4d2a56a508df
-    content: 'Secondary: User deletes or reorders steps while a node is running at a different step — on next advancement the system uses the current tree state'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  164f31da-2943-45f2-b29d-192462c3f071:
-    id: 164f31da-2943-45f2-b29d-192462c3f071
-    content: Acceptance criteria
-    children:
-      - 6d453838-44d8-4183-8eb3-058ee15c90c7
-      - 57702607-4ba6-4793-8057-2639a938b8bc
-      - 6adb061b-2574-4082-a0e0-059f14f977de
-      - 4e2f8be9-4ee4-4baf-94c2-bca48f777b03
-      - b66a8215-c4d1-49ce-852f-8525722bbfbd
-      - 5728c553-c4e0-4256-9c55-41a173ae23c1
-      - 654bd451-0884-48dc-abcf-fc52d4ca2eb3
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  6d453838-44d8-4183-8eb3-058ee15c90c7:
-    id: 6d453838-44d8-4183-8eb3-058ee15c90c7
-    content: 'Terminal tab closed mid-workflow: pause all running nodes assigned to that tab, release terminal assignments, show toast'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  57702607-4ba6-4793-8057-2639a938b8bc:
-    id: 57702607-4ba6-4793-8057-2639a938b8bc
-    content: 'Running node deleted: stop its workflow, release terminal assignment, clear execution state'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  6adb061b-2574-4082-a0e0-059f14f977de:
-    id: 6adb061b-2574-4082-a0e0-059f14f977de
-    content: 'Step deleted while a node is at that step: pause the node, show toast'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  4e2f8be9-4ee4-4baf-94c2-bca48f777b03:
-    id: 4e2f8be9-4ee4-4baf-94c2-bca48f777b03
-    content: 'All steps removed from a workflow with running nodes: pause all affected nodes and complete their workflows'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  b66a8215-c4d1-49ce-852f-8525722bbfbd:
-    id: b66a8215-c4d1-49ce-852f-8525722bbfbd
-    content: 'User manually moves a running node to a different step: pause that node, allow user to resume from new position'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  5728c553-c4e0-4256-9c55-41a173ae23c1:
-    id: 5728c553-c4e0-4256-9c55-41a173ae23c1
-    content: 'Tree edits while a node is running at a different step: no immediate action — on next advancement, the current tree state is used'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  654bd451-0884-48dc-abcf-fc52d4ca2eb3:
-    id: 654bd451-0884-48dc-abcf-fc52d4ca2eb3
-    content: 'Application restarted with nodes in Running state: set all to Paused on load, show toast'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  f09ff5fa-89c1-4fc6-be2b-67ce35fe23e1:
-    id: f09ff5fa-89c1-4fc6-be2b-67ce35fe23e1
-    content: Constraints and assumptions
-    children:
-      - b6f1dbf6-eb84-435f-a81e-7e0b22fe3c1f
-      - a798faad-32b6-43d8-9a8b-600bd85ffada
-      - b16a5eb5-8cd2-4fc4-84c3-1522c77fbd28
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  b6f1dbf6-eb84-435f-a81e-7e0b22fe3c1f:
-    id: b6f1dbf6-eb84-435f-a81e-7e0b22fe3c1f
-    content: Depends on User Stories 2, 3, 4, and 5 (execution state, advancement, hooks, orchestrator)
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  a798faad-32b6-43d8-9a8b-600bd85ffada:
-    id: a798faad-32b6-43d8-9a8b-600bd85ffada
-    content: Edge case handlers are defensive code layered on top of the orchestrator — they should not introduce new mutation paths
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  b16a5eb5-8cd2-4fc4-84c3-1522c77fbd28:
-    id: b16a5eb5-8cd2-4fc4-84c3-1522c77fbd28
-    content: Terminal close detection depends on existing terminal lifecycle events
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
   9692fa14-b407-4595-8af9-30f68e3b0d1a:
     id: 9692fa14-b407-4595-8af9-30f68e3b0d1a
     content: When there are a lot of contexts, the top of the context menu gets truncated
@@ -41563,6 +41359,1450 @@ nodes:
   07961833-7b44-4d02-a41b-3c5678a2f671:
     id: 07961833-7b44-4d02-a41b-3c5678a2f671
     content: Whether the setup guide should be a toast or a modal dialog — current implementation uses toast, AC says "show a setup guide" which could imply either
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3a28f78f-a8f2-441e-8f4c-fc2bd21a7d00:
+    id: 3a28f78f-a8f2-441e-8f4c-fc2bd21a7d00
+    content: Problem statement
+    children:
+      - 3fac9f15-d9af-425d-b8d4-aac94dde156a
+      - 1b3eef99-3770-4371-8b7a-d19b8f1318be
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3fac9f15-d9af-425d-b8d4-aac94dde156a:
+    id: 3fac9f15-d9af-425d-b8d4-aac94dde156a
+    content: 'A user running automated workflows will encounter disruptions: terminal tabs closing, nodes being deleted or moved, steps being modified, or the application restarting'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1b3eef99-3770-4371-8b7a-d19b8f1318be:
+    id: 1b3eef99-3770-4371-8b7a-d19b8f1318be
+    content: If these are not handled, workflows can enter corrupted states — running nodes with no terminal, advancement targeting deleted steps, or orphaned execution state
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4197512b-9c9b-4515-89e4-df24b4032ca7:
+    id: 4197512b-9c9b-4515-89e4-df24b4032ca7
+    content: Use cases
+    children:
+      - 85c0638c-9320-40c8-b888-2331d537c4ce
+      - 662e1ee7-d374-4727-ac07-b18b071c557a
+      - d16a5c89-d107-4545-82d2-417cf47273dd
+      - a19eccb1-3cb5-4fbd-9c0f-e7f0a6e67c61
+      - 027a24ff-1e70-4ef9-8907-61c86bc4dd5e
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  85c0638c-9320-40c8-b888-2331d537c4ce:
+    id: 85c0638c-9320-40c8-b888-2331d537c4ce
+    content: 'Primary: User closes a terminal tab while a node is running — the node pauses and a toast explains what happened, allowing the user to reopen a terminal and resume'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  662e1ee7-d374-4727-ac07-b18b071c557a:
+    id: 662e1ee7-d374-4727-ac07-b18b071c557a
+    content: 'Secondary: User deletes a running node — the workflow stops and the terminal is released'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d16a5c89-d107-4545-82d2-417cf47273dd:
+    id: d16a5c89-d107-4545-82d2-417cf47273dd
+    content: 'Secondary: User manually moves a running node to a different step — the workflow pauses and the user can resume from the new position'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a19eccb1-3cb5-4fbd-9c0f-e7f0a6e67c61:
+    id: a19eccb1-3cb5-4fbd-9c0f-e7f0a6e67c61
+    content: 'Secondary: Application crashes or restarts while a node is running — on reload the node is shown as paused'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  027a24ff-1e70-4ef9-8907-61c86bc4dd5e:
+    id: 027a24ff-1e70-4ef9-8907-61c86bc4dd5e
+    content: 'Secondary: User deletes or reorders steps while a node is running at a different step — on next advancement the system uses the current tree state'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c66d34e7-aa5b-41ae-bb2f-98a61256673b:
+    id: c66d34e7-aa5b-41ae-bb2f-98a61256673b
+    content: Acceptance criteria
+    children:
+      - c0848ff1-f0af-4316-a85a-64bb6aaa1c6f
+      - ae060847-c4fc-49e9-8cb4-048786600341
+      - 75763b43-92b4-4a1b-9025-b808c19a64c8
+      - c0704923-fede-4618-a316-c7ef6abc44ee
+      - 3789b8e1-cf28-4eae-94aa-a9bb87df6708
+      - 8be113fa-bbc4-4008-ab57-de9a46f8514d
+      - 11f1a646-875e-4315-bfa0-e1bf63bdbdca
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c0848ff1-f0af-4316-a85a-64bb6aaa1c6f:
+    id: c0848ff1-f0af-4316-a85a-64bb6aaa1c6f
+    content: 'Terminal tab closed mid-workflow: pause all running nodes assigned to that tab, release terminal assignments, show toast'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ae060847-c4fc-49e9-8cb4-048786600341:
+    id: ae060847-c4fc-49e9-8cb4-048786600341
+    content: 'Running node deleted: stop its workflow, release terminal assignment, clear execution state'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  75763b43-92b4-4a1b-9025-b808c19a64c8:
+    id: 75763b43-92b4-4a1b-9025-b808c19a64c8
+    content: 'Step deleted while a node is at that step: pause the node, show toast'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c0704923-fede-4618-a316-c7ef6abc44ee:
+    id: c0704923-fede-4618-a316-c7ef6abc44ee
+    content: 'All steps removed from a workflow with running nodes: pause all affected nodes and complete their workflows'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3789b8e1-cf28-4eae-94aa-a9bb87df6708:
+    id: 3789b8e1-cf28-4eae-94aa-a9bb87df6708
+    content: 'User manually moves a running node to a different step: pause that node, allow user to resume from new position'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8be113fa-bbc4-4008-ab57-de9a46f8514d:
+    id: 8be113fa-bbc4-4008-ab57-de9a46f8514d
+    content: 'Tree edits while a node is running at a different step: no immediate action — on next advancement, the current tree state is used'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  11f1a646-875e-4315-bfa0-e1bf63bdbdca:
+    id: 11f1a646-875e-4315-bfa0-e1bf63bdbdca
+    content: 'Application restarted with nodes in Running state: set all to Paused on load, show toast'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6e401162-95b5-435a-9689-b2a0785ccbad:
+    id: 6e401162-95b5-435a-9689-b2a0785ccbad
+    content: Constraints and assumptions
+    children:
+      - 7ae98bb3-21a7-4b4a-b03e-1dc1fe96498f
+      - d31d9655-1de0-4774-a03f-4089ddf99f77
+      - be12383d-b589-4539-a92f-b1068c332e84
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7ae98bb3-21a7-4b4a-b03e-1dc1fe96498f:
+    id: 7ae98bb3-21a7-4b4a-b03e-1dc1fe96498f
+    content: Depends on User Stories 2, 3, 4, and 5 (execution state, advancement, hooks, orchestrator)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d31d9655-1de0-4774-a03f-4089ddf99f77:
+    id: d31d9655-1de0-4774-a03f-4089ddf99f77
+    content: Edge case handlers are defensive code layered on top of the orchestrator — they should not introduce new mutation paths
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  be12383d-b589-4539-a92f-b1068c332e84:
+    id: be12383d-b589-4539-a92f-b1068c332e84
+    content: Terminal close detection depends on existing terminal lifecycle events
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3ac2f6b3-1cc4-4c9a-8bfc-7d0a808df746:
+    id: 3ac2f6b3-1cc4-4c9a-8bfc-7d0a808df746
+    content: Technical specifications
+    children:
+      - 277f6cc4-6028-4b44-852b-f11379052461
+      - 72610193-8de8-4f76-9271-3d90189267ef
+      - b681c2d3-f700-4c20-ae50-7c99a798e4bf
+      - 5cefe11f-f063-486f-90a3-0c81ba3eabe6
+      - 41359a1a-797a-44d6-8b75-348da5bab29b
+      - e1950cee-e709-49ff-a5a5-0be12d8565fe
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  277f6cc4-6028-4b44-852b-f11379052461:
+    id: 277f6cc4-6028-4b44-852b-f11379052461
+    content: Summary
+    children:
+      - 6ba31cc5-ec85-4e40-a9f2-fc38e9a3831a
+      - 9585a3e0-d95a-4f19-bdd9-c5036bd58ff1
+      - c5ae1506-1342-4ca8-af41-df97f646fdba
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6ba31cc5-ec85-4e40-a9f2-fc38e9a3831a:
+    id: 6ba31cc5-ec85-4e40-a9f2-fc38e9a3831a
+    content: All 6 disruption handlers (`handleTerminalClosed`, `handleNodeDeleted`, `handleStepDeleted`, `handleAllStepsRemoved`, `handleNodeMovedManually`, `initializeExecutionState`) are already implemented in `workflowExecutionActions.ts` and unit-tested in `workflowExecutionEdgeCases.test.ts`
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9585a3e0-d95a-4f19-bdd9-c5036bd58ff1:
+    id: 9585a3e0-d95a-4f19-bdd9-c5036bd58ff1
+    content: The entire scope of US6 is wiring these handlers to their trigger points in the application — deletion commands, movement commands, terminal close, and app initialization
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c5ae1506-1342-4ca8-af41-df97f646fdba:
+    id: c5ae1506-1342-4ca8-af41-df97f646fdba
+    content: Integration follows the existing `get().actions.*` pattern for cross-action calls within the tree store, and component-level calls for cross-store wiring (terminal → tree)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  72610193-8de8-4f76-9271-3d90189267ef:
+    id: 72610193-8de8-4f76-9271-3d90189267ef
+    content: Inputs, outputs, and key interfaces
+    children:
+      - 50abd3af-7632-41fa-a033-9695c018fb62
+      - 1bcbb3bb-8ccf-4199-9e67-a99e9cb2b4ca
+      - 8b519381-575c-4610-b370-566357dfcef4
+      - 6e6ea099-46f4-47ad-9de5-7acaacf663ff
+      - 82c7ec03-fee8-491d-a34e-56f834fde82b
+      - 9de0066c-5bf1-44d1-8435-d769c4c0772a
+      - f2cb08a3-544b-426b-9211-7e5357354d85
+      - d1fdeed0-1080-435d-9e1b-2a03a053f17d
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  50abd3af-7632-41fa-a033-9695c018fb62:
+    id: 50abd3af-7632-41fa-a033-9695c018fb62
+    content: 'Input — `deleteNode()` in `nodeDeletionActions.ts`: after `DeleteNodeCommand.execute()`, needs to call `handleNodeDeleted` for the deleted node and any running descendants'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1bcbb3bb-8ccf-4199-9e67-a99e9cb2b4ca:
+    id: 1bcbb3bb-8ccf-4199-9e67-a99e9cb2b4ca
+    content: 'Input — `deleteSelectedNodes()` in `clipboardActions.ts`: after `DeleteMultipleNodesCommand.execute()`, needs to call `handleNodeDeleted` for each deleted node that has execution state'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8b519381-575c-4610-b370-566357dfcef4:
+    id: 8b519381-575c-4610-b370-566357dfcef4
+    content: 'Input — `executeMoveCommand()` and `moveNodeVertically()` in `nodeMovementActions.ts`: after `MoveNodeCommand.execute()`, needs to call `handleNodeMovedManually` when the node''s parent changed'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6e6ea099-46f4-47ad-9de5-7acaacf663ff:
+    id: 6e6ea099-46f4-47ad-9de5-7acaacf663ff
+    content: 'Input — terminal close in UI component: when `terminalStore.closeTerminal(id)` is called, also call `treeStore.actions.handleTerminalClosed(id)` using the tree store from context'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  82c7ec03-fee8-491d-a34e-56f834fde82b:
+    id: 82c7ec03-fee8-491d-a34e-56f834fde82b
+    content: 'Input — file/app initialization: call `initializeExecutionState()` during `useAppInitialization` or `initializeSession`'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9de0066c-5bf1-44d1-8435-d769c4c0772a:
+    id: 9de0066c-5bf1-44d1-8435-d769c4c0772a
+    content: 'Input — step deletion detection: after deleting a node, check if deleted node was a workflow step (parent is a workflow) to call `handleStepDeleted`, and check if the workflow now has zero step children to call `handleAllStepsRemoved`'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f2cb08a3-544b-426b-9211-7e5357354d85:
+    id: f2cb08a3-544b-426b-9211-7e5357354d85
+    content: Output — paused workflows with toast notifications, cleared execution state for deleted nodes
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d1fdeed0-1080-435d-9e1b-2a03a053f17d:
+    id: d1fdeed0-1080-435d-9e1b-2a03a053f17d
+    content: 'Key interface — `get().actions.handleNodeDeleted(nodeId)`: accessible within tree store action factories via the lazy `get()` pattern, matching existing `get().actions.executeCommand()` usage'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b681c2d3-f700-4c20-ae50-7c99a798e4bf:
+    id: b681c2d3-f700-4c20-ae50-7c99a798e4bf
+    content: Constraints and non-functional requirements
+    children:
+      - 43867589-4872-4b95-af3d-5d3f5b252735
+      - aa01cc57-6067-44c0-b71d-35dcbca64066
+      - 7642c8f1-2949-42ee-ac2a-3f139bb8e029
+      - 839c1e47-3de9-46c5-b64e-e889fb072921
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  43867589-4872-4b95-af3d-5d3f5b252735:
+    id: 43867589-4872-4b95-af3d-5d3f5b252735
+    content: 'Cross-store wiring: tree store is factory-created (`createTreeStore`), not a singleton — terminal store cannot import it directly. Terminal close must be wired at the component level where both stores are accessible'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  aa01cc57-6067-44c0-b71d-35dcbca64066:
+    id: aa01cc57-6067-44c0-b71d-35dcbca64066
+    content: 'Undo interaction: deleting a running node then undoing the delete restores the node but execution state stays cleared — user must re-start the workflow. This is acceptable (pause is the safe direction)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7642c8f1-2949-42ee-ac2a-3f139bb8e029:
+    id: 7642c8f1-2949-42ee-ac2a-3f139bb8e029
+    content: Within-parent reorder (Ctrl+Up/Down within same parent) must NOT trigger `handleNodeMovedManually` — only cross-parent moves should
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  839c1e47-3de9-46c5-b64e-e889fb072921:
+    id: 839c1e47-3de9-46c5-b64e-e889fb072921
+    content: '`handleNodeDeleted` must handle descendants: deleting a step that contains running nodes should clear execution state for those running descendants, not just the step itself'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5cefe11f-f063-486f-90a3-0c81ba3eabe6:
+    id: 5cefe11f-f063-486f-90a3-0c81ba3eabe6
+    content: Technical steps
+    children:
+      - e2ace15f-53e7-4e7b-8c7a-ceb181ff53c8
+      - 65b619c8-8730-4c19-87fa-86cfca417ac5
+      - 5742e0c4-e68b-4ce9-b189-204b178ca38f
+      - 31d43841-6fad-4f5d-af9e-e97e023b713c
+      - f2ac392a-4935-4616-bb2a-264b7b4d9980
+      - da5f2100-79b7-4d32-a27c-3c1c6ec6c9ba
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e2ace15f-53e7-4e7b-8c7a-ceb181ff53c8:
+    id: e2ace15f-53e7-4e7b-8c7a-ceb181ff53c8
+    content: 'Step 1: Wire `handleNodeDeleted` and `handleStepDeleted` in deletion paths — S'
+    children:
+      - 50b1b200-c468-4248-a959-44dcb59b4bb6
+      - 8523eda8-8550-49de-99df-475835304267
+      - 6f804c42-f000-4e1d-97c0-1a71284fac24
+      - 4e0d4a64-cbce-4b3e-944f-f63e8048ebd2
+      - 2adc705f-7151-438c-8486-2159481b3dbb
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  50b1b200-c468-4248-a959-44dcb59b4bb6:
+    id: 50b1b200-c468-4248-a959-44dcb59b4bb6
+    content: 'In `nodeDeletionActions.deleteNode()`: after `state.actions.executeCommand(command)`, call `get().actions.handleNodeDeleted(nodeId)` for the deleted node'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8523eda8-8550-49de-99df-475835304267:
+    id: 8523eda8-8550-49de-99df-475835304267
+    content: Before deletion, capture whether the node was a workflow step (parent `isWorkflow === true`) and the parent workflow ID
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6f804c42-f000-4e1d-97c0-1a71284fac24:
+    id: 6f804c42-f000-4e1d-97c0-1a71284fac24
+    content: 'After deletion, if the node was a step: call `get().actions.handleStepDeleted(nodeId)`'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4e0d4a64-cbce-4b3e-944f-f63e8048ebd2:
+    id: 4e0d4a64-cbce-4b3e-944f-f63e8048ebd2
+    content: 'After deletion, if the node was a step: check if the workflow now has zero step children and call `get().actions.handleAllStepsRemoved(workflowId)` if so'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2adc705f-7151-438c-8486-2159481b3dbb:
+    id: 2adc705f-7151-438c-8486-2159481b3dbb
+    content: 'Handle descendant cleanup: iterate over the deleted node''s descendants (captured pre-deletion) and call `handleNodeDeleted` for any with execution state'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  65b619c8-8730-4c19-87fa-86cfca417ac5:
+    id: 65b619c8-8730-4c19-87fa-86cfca417ac5
+    content: 'Step 2: Wire `handleNodeDeleted` in multi-delete path — S'
+    children:
+      - 75906795-1566-4387-a194-f421db534509
+      - dcfa71d5-5975-4494-865d-76ff98a75c21
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  75906795-1566-4387-a194-f421db534509:
+    id: 75906795-1566-4387-a194-f421db534509
+    content: 'In `clipboardActions.executeMultiNodeDelete()`: after `DeleteMultipleNodesCommand` executes, call `handleNodeDeleted` for each deleted node ID'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  dcfa71d5-5975-4494-865d-76ff98a75c21:
+    id: dcfa71d5-5975-4494-865d-76ff98a75c21
+    content: Same step/workflow detection as Step 1 for each deleted node
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5742e0c4-e68b-4ce9-b189-204b178ca38f:
+    id: 5742e0c4-e68b-4ce9-b189-204b178ca38f
+    content: 'Step 3: Wire `handleNodeMovedManually` in movement paths — S'
+    children:
+      - 2219ab97-cb7a-4cee-bd81-504fd4eadf6c
+      - b9ce2d04-4704-4c76-90d4-39be5456ef8e
+      - ef1399fe-5c5a-42cd-8176-ba0e3f4e0c7d
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2219ab97-cb7a-4cee-bd81-504fd4eadf6c:
+    id: 2219ab97-cb7a-4cee-bd81-504fd4eadf6c
+    content: 'In `nodeMovementActions.executeMoveCommand()`: capture current parent before command, compare with new parent after command — call `get().actions.handleNodeMovedManually(nodeId)` if parent changed'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b9ce2d04-4704-4c76-90d4-39be5456ef8e:
+    id: b9ce2d04-4704-4c76-90d4-39be5456ef8e
+    content: 'In `nodeMovementActions.moveNodeVertically()`: same pattern — only call handler when `newParentId !== parentId` (skip within-parent reorder)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ef1399fe-5c5a-42cd-8176-ba0e3f4e0c7d:
+    id: ef1399fe-5c5a-42cd-8176-ba0e3f4e0c7d
+    content: No change needed for `indentNode`, `outdentNode`, `dropNode` — they all route through `executeMoveCommand`
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  31d43841-6fad-4f5d-af9e-e97e023b713c:
+    id: 31d43841-6fad-4f5d-af9e-e97e023b713c
+    content: 'Step 4: Wire `handleTerminalClosed` from terminal close UI — S'
+    children:
+      - b023edc8-af35-4c22-bb4b-0b2d68dd1c01
+      - b45ed7d9-cf8b-4bfc-9fd0-cb850447004c
+      - 1c5f43b7-aca6-4a30-b8e5-e1ca23a510dc
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b023edc8-af35-4c22-bb4b-0b2d68dd1c01:
+    id: b023edc8-af35-4c22-bb4b-0b2d68dd1c01
+    content: Identify the component that calls `terminalStore.closeTerminal(id)` — likely a terminal tab close button
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b45ed7d9-cf8b-4bfc-9fd0-cb850447004c:
+    id: b45ed7d9-cf8b-4bfc-9fd0-cb850447004c
+    content: After the close call, also call `treeStore.actions.handleTerminalClosed(id)` using the tree store from context
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1c5f43b7-aca6-4a30-b8e5-e1ca23a510dc:
+    id: 1c5f43b7-aca6-4a30-b8e5-e1ca23a510dc
+    content: Alternatively, if terminal close is triggered from a hook, wire the cross-store call there
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f2ac392a-4935-4616-bb2a-264b7b4d9980:
+    id: f2ac392a-4935-4616-bb2a-264b7b4d9980
+    content: 'Step 5: Wire `initializeExecutionState` in app/file initialization — S'
+    children:
+      - 1044ee8a-90d8-4aaf-a44d-5fcd2168558b
+      - d0739db8-f50f-4926-a6f4-859e36d0fbe7
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1044ee8a-90d8-4aaf-a44d-5fcd2168558b:
+    id: 1044ee8a-90d8-4aaf-a44d-5fcd2168558b
+    content: 'In `useAppInitialization.ts`: after `initializeSession()` completes (which loads the file and populates tree state), call `treeStore.actions.initializeExecutionState()`'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d0739db8-f50f-4926-a6f4-859e36d0fbe7:
+    id: d0739db8-f50f-4926-a6f4-859e36d0fbe7
+    content: This is a no-op if `workflowExecutionStates` is empty (fresh load), but handles the case where execution states are persisted in the future or survive hot reload
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  da5f2100-79b7-4d32-a27c-3c1c6ec6c9ba:
+    id: da5f2100-79b7-4d32-a27c-3c1c6ec6c9ba
+    content: 'Step 6: Integration tests — M'
+    children:
+      - f3ebe6e9-b762-4ace-b5ac-c46f9b2dac15
+      - 44658b3a-0ed5-4db7-93c4-3448370b28f8
+      - 549a0f43-cf4e-4ab9-bb7e-72689712d29f
+      - 10832aa7-0174-4051-b745-87bba4dcab60
+      - 870f490a-e395-4cd6-9cd7-d7d56304e72a
+      - c5c55576-5a15-42e6-b55c-c9dd57c5080a
+      - 98e0363a-3c6e-43eb-88a1-076ad6269b20
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f3ebe6e9-b762-4ace-b5ac-c46f9b2dac15:
+    id: f3ebe6e9-b762-4ace-b5ac-c46f9b2dac15
+    content: Test that deleting a node with execution state clears that state (wiring test, not handler test)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  44658b3a-0ed5-4db7-93c4-3448370b28f8:
+    id: 44658b3a-0ed5-4db7-93c4-3448370b28f8
+    content: Test that deleting a step with running children pauses those children
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  549a0f43-cf4e-4ab9-bb7e-72689712d29f:
+    id: 549a0f43-cf4e-4ab9-bb7e-72689712d29f
+    content: Test that moving a running node to a different parent pauses it
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  10832aa7-0174-4051-b745-87bba4dcab60:
+    id: 10832aa7-0174-4051-b745-87bba4dcab60
+    content: Test that within-parent reorder does NOT pause a running node
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  870f490a-e395-4cd6-9cd7-d7d56304e72a:
+    id: 870f490a-e395-4cd6-9cd7-d7d56304e72a
+    content: Test that terminal close triggers workflow pause for affected nodes
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c5c55576-5a15-42e6-b55c-c9dd57c5080a:
+    id: c5c55576-5a15-42e6-b55c-c9dd57c5080a
+    content: Test that multi-node delete clears execution state for all deleted running nodes
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  98e0363a-3c6e-43eb-88a1-076ad6269b20:
+    id: 98e0363a-3c6e-43eb-88a1-076ad6269b20
+    content: Test that app initialization downgrades running to paused
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  41359a1a-797a-44d6-8b75-348da5bab29b:
+    id: 41359a1a-797a-44d6-8b75-348da5bab29b
+    content: Risks and edge cases
+    children:
+      - 5a3d0dfd-2356-4f64-a8b9-1d3171b700ea
+      - 4da3909c-4ee8-4c2c-95d5-9045c5bd9b0b
+      - 508382e6-26e8-48a7-a68e-5fd3806ce2af
+      - cc0f8033-f3dc-488c-b50f-b6f2330b67ff
+      - 4deab5f7-3408-4d30-8095-f58e23b6a1b5
+      - aa667edf-1cd2-460a-b230-a0fef96fdf26
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5a3d0dfd-2356-4f64-a8b9-1d3171b700ea:
+    id: 5a3d0dfd-2356-4f64-a8b9-1d3171b700ea
+    content: 'Cross-store terminal close wiring: the tree store is created per-tab via factory, and the terminal store is a singleton — the component calling `closeTerminal` must have access to the correct tree store instance via React context'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4da3909c-4ee8-4c2c-95d5-9045c5bd9b0b:
+    id: 4da3909c-4ee8-4c2c-95d5-9045c5bd9b0b
+    content: 'Deletion of a step containing running descendants: need both `handleStepDeleted(stepId)` for the step AND `handleNodeDeleted(descendantId)` for each running descendant — calling order matters (step first, then descendants)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  508382e6-26e8-48a7-a68e-5fd3806ce2af:
+    id: 508382e6-26e8-48a7-a68e-5fd3806ce2af
+    content: 'Multi-select delete including both a step and its running child: `handleNodeDeleted` for the child and `handleStepDeleted` for the step should both fire — guard against double-processing'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cc0f8033-f3dc-488c-b50f-b6f2330b67ff:
+    id: cc0f8033-f3dc-488c-b50f-b6f2330b67ff
+    content: '`handleAllStepsRemoved` detection: after deleting a step, need to check if the workflow has any remaining step children (direct children that are not workflows themselves) — this mirrors the logic in `moveNodeToFirstStepIfAtRoot`'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4deab5f7-3408-4d30-8095-f58e23b6a1b5:
+    id: 4deab5f7-3408-4d30-8095-f58e23b6a1b5
+    content: 'Cut-paste with a running node: `handleCutPaste` in clipboardActions creates `MoveNodeCommand` — this should also trigger `handleNodeMovedManually`. The wiring in `executeMoveCommand` may not cover cut-paste since it creates its own MoveNodeCommand directly'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  aa667edf-1cd2-460a-b230-a0fef96fdf26:
+    id: aa667edf-1cd2-460a-b230-a0fef96fdf26
+    content: 'Hot module reload in dev: execution state survives HMR since Zustand state persists — `initializeExecutionState` should handle this, but terminal sessions are lost, leaving stale terminal IDs in execution entries'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e1950cee-e709-49ff-a5a5-0be12d8565fe:
+    id: e1950cee-e709-49ff-a5a5-0be12d8565fe
+    content: Implementation plan
+    children:
+      - d6b9929d-d1ec-488b-b586-5deb2b2b5c00
+      - 8740f793-9438-4910-8750-3abb60ef3574
+      - b9d567c6-b473-4cc0-859a-f120128f4390
+      - 9b089873-84c7-4597-be4e-5bec0942f219
+      - aeb8fec4-7b6c-43ed-96fa-6e1ef79aab32
+      - 71ab7530-977e-45af-832b-19762940efb8
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d6b9929d-d1ec-488b-b586-5deb2b2b5c00:
+    id: d6b9929d-d1ec-488b-b586-5deb2b2b5c00
+    content: 'Changeset 1: Steps 1-3 — deletion and movement wiring (tree-store-internal, no cross-store) — can be developed and tested together'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8740f793-9438-4910-8750-3abb60ef3574:
+    id: 8740f793-9438-4910-8750-3abb60ef3574
+    content: 'Changeset 2: Step 4 — terminal close wiring (cross-store, requires identifying the UI component)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b9d567c6-b473-4cc0-859a-f120128f4390:
+    id: b9d567c6-b473-4cc0-859a-f120128f4390
+    content: 'Changeset 3: Step 5 — initialization wiring (straightforward, independent)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9b089873-84c7-4597-be4e-5bec0942f219:
+    id: 9b089873-84c7-4597-be4e-5bec0942f219
+    content: 'Changeset 4: Step 6 — integration tests for all changesets'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  aeb8fec4-7b6c-43ed-96fa-6e1ef79aab32:
+    id: aeb8fec4-7b6c-43ed-96fa-6e1ef79aab32
+    content: 'Testing strategy: integration tests that exercise the full path (e.g., call `deleteNode` and verify execution state is cleared), not just the handler in isolation (which is already covered by existing unit tests)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  71ab7530-977e-45af-832b-19762940efb8:
+    id: 71ab7530-977e-45af-832b-19762940efb8
+    content: 'Parallelisation: Changesets 1, 2, and 3 are independent. Changeset 4 depends on all three'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  00cb9861-2ccd-4a63-a764-d99ca4686227:
+    id: 00cb9861-2ccd-4a63-a764-d99ca4686227
+    content: Test plan
+    children:
+      - 32b7da2a-2a59-4505-b179-5dae58101cdd
+      - 2418bd91-c46c-4831-bc3b-0f4ba0643d81
+      - 7a5a5275-5c0c-4337-b05f-937c24985c92
+      - 4510782c-9b8d-45c7-ad2f-b41bfa29baae
+      - 42291495-88b9-4452-971e-7f87b16cdea5
+      - ba360891-2ba3-4a00-8db7-eb8f8590948b
+      - ba659082-97b6-4260-a522-f32821e4f696
+      - d8f6c067-a0f7-4b5e-82e4-96a61929109c
+      - abcf890f-3783-4915-b3ae-fd7b851e5830
+      - 8e2041bd-6dfd-4a6c-80bf-9159ecfd8779
+      - ceadf399-9406-4162-ae17-77cb74a2073a
+      - 79abc325-8ff8-4c9c-8730-6d2c66e9a505
+      - 352b8a7f-9e37-4054-a68a-2b8b62c9eb56
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  32b7da2a-2a59-4505-b179-5dae58101cdd:
+    id: 32b7da2a-2a59-4505-b179-5dae58101cdd
+    content: Scope and objectives
+    children:
+      - 236ad0bf-0a8e-4bcd-9708-c94b9f3c2b31
+      - a59c063c-89da-4c7a-bedd-0d2e8d672023
+      - 051075de-3546-49ca-a530-72ef6475a4bf
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  236ad0bf-0a8e-4bcd-9708-c94b9f3c2b31:
+    id: 236ad0bf-0a8e-4bcd-9708-c94b9f3c2b31
+    content: Verify that disruption handlers are called from the correct application trigger points — this is integration-level testing of the wiring, not re-testing handler behavior (already covered in `workflowExecutionEdgeCases.test.ts`)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a59c063c-89da-4c7a-bedd-0d2e8d672023:
+    id: a59c063c-89da-4c7a-bedd-0d2e8d672023
+    content: Existing handler unit tests (24 cases) validate state transitions. US6 integration tests validate that the right handler fires for the right user action
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  051075de-3546-49ca-a530-72ef6475a4bf:
+    id: 051075de-3546-49ca-a530-72ef6475a4bf
+    content: 'Out of scope: handler correctness (unit-tested), UI rendering after disruption, terminal store internals'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2418bd91-c46c-4831-bc3b-0f4ba0643d81:
+    id: 2418bd91-c46c-4831-bc3b-0f4ba0643d81
+    content: Entry and exit criteria
+    children:
+      - 206dea6b-e668-44b1-8286-c033e1f03517
+      - 3943fee7-8741-49f3-b563-8d0fd1efb722
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  206dea6b-e668-44b1-8286-c033e1f03517:
+    id: 206dea6b-e668-44b1-8286-c033e1f03517
+    content: 'Entry: handler wiring is complete in `nodeDeletionActions`, `clipboardActions`, `nodeMovementActions`, terminal close component, and `useAppInitialization`'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3943fee7-8741-49f3-b563-8d0fd1efb722:
+    id: 3943fee7-8741-49f3-b563-8d0fd1efb722
+    content: 'Exit: all integration tests pass, all existing unit tests still pass, no regressions in full test suite'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7a5a5275-5c0c-4337-b05f-937c24985c92:
+    id: 7a5a5275-5c0c-4337-b05f-937c24985c92
+    content: Environments and prerequisites
+    children:
+      - a3dbc108-cc48-4e10-b6ad-a1f08be25f4a
+      - cc156007-563d-4da6-a18b-8b518bb70afd
+      - c1ba6f95-d483-445d-bc5d-370d80518367
+      - 42c8e851-06f6-4cb8-9723-972c81eb99e9
+      - dad7fa68-e4b3-491f-94d3-292477516800
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a3dbc108-cc48-4e10-b6ad-a1f08be25f4a:
+    id: a3dbc108-cc48-4e10-b6ad-a1f08be25f4a
+    content: Integration tests use the action factory pattern with mock `get()`/`set()` — same as existing edge case tests, but exercising the higher-level action (e.g., `deleteNode`) rather than calling the handler directly
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cc156007-563d-4da6-a18b-8b518bb70afd:
+    id: cc156007-563d-4da6-a18b-8b518bb70afd
+    content: 'For deletion tests: need to mock `executeCommand` on the state object so `DeleteNodeCommand` runs via the action factory, and include `workflowExecutionStates` in the test state'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c1ba6f95-d483-445d-bc5d-370d80518367:
+    id: c1ba6f95-d483-445d-bc5d-370d80518367
+    content: 'For movement tests: same `executeCommand` mock pattern, with `workflowExecutionStates` tracking a running node'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  42c8e851-06f6-4cb8-9723-972c81eb99e9:
+    id: 42c8e851-06f6-4cb8-9723-972c81eb99e9
+    content: 'For terminal close: component-level test or hook test that verifies the cross-store call — may need `renderHook` with both store contexts'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  dad7fa68-e4b3-491f-94d3-292477516800:
+    id: dad7fa68-e4b3-491f-94d3-292477516800
+    content: 'Mock pattern: `vi.hoisted()` for persistent refs, `vi.mock()` for logger, toast, and preferences stores — matching existing convention'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4510782c-9b8d-45c7-ad2f-b41bfa29baae:
+    id: 4510782c-9b8d-45c7-ad2f-b41bfa29baae
+    content: Integration tests — deletion wiring (`src/renderer/store/tree/actions/tests/nodeDeletionActions.test.ts` or co-located)
+    children:
+      - 8b9f3619-fc77-4dc4-9da6-e194cf3d376c
+      - c9f2a9c2-8ed3-4afd-9aeb-d59fe094ce73
+      - a60953b7-3b37-4ed1-863a-5d211dffd0d3
+      - 9cbb7d64-4bde-4b3a-9b8c-871e69ec530f
+      - 0c6e2a59-2a3f-48e8-9ce7-0fe1b0395376
+      - 3db3fb30-7b46-47e6-9b66-50782f30d4ae
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8b9f3619-fc77-4dc4-9da6-e194cf3d376c:
+    id: 8b9f3619-fc77-4dc4-9da6-e194cf3d376c
+    content: '`deleteNode` with a running node: verify `workflowExecutionStates` entry is cleared after deletion'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c9f2a9c2-8ed3-4afd-9aeb-d59fe094ce73:
+    id: c9f2a9c2-8ed3-4afd-9aeb-d59fe094ce73
+    content: '`deleteNode` with a running node: verify toast is NOT shown for the deletion itself (handler clears state silently, distinct from handleStepDeleted which toasts)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a60953b7-3b37-4ed1-863a-5d211dffd0d3:
+    id: a60953b7-3b37-4ed1-863a-5d211dffd0d3
+    content: '`deleteNode` of a step containing a running child: verify the child''s execution state is cleared'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9cbb7d64-4bde-4b3a-9b8c-871e69ec530f:
+    id: 9cbb7d64-4bde-4b3a-9b8c-871e69ec530f
+    content: '`deleteNode` of a step that is the last step in a workflow with running nodes: verify `handleAllStepsRemoved` fires (execution state cleared, completion toast shown)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0c6e2a59-2a3f-48e8-9ce7-0fe1b0395376:
+    id: 0c6e2a59-2a3f-48e8-9ce7-0fe1b0395376
+    content: '`deleteNode` of a non-running node: verify no workflow state changes (no-op path)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3db3fb30-7b46-47e6-9b66-50782f30d4ae:
+    id: 3db3fb30-7b46-47e6-9b66-50782f30d4ae
+    content: '`deleteNode` of a node with no workflow ancestry: verify no crash, no workflow state changes'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  42291495-88b9-4452-971e-7f87b16cdea5:
+    id: 42291495-88b9-4452-971e-7f87b16cdea5
+    content: Integration tests — multi-delete wiring (`src/renderer/store/tree/actions/tests/clipboardActions.test.ts` or co-located)
+    children:
+      - ae6aa507-03c8-4d03-a00e-e6575179e779
+      - cca1ab72-9387-44bc-af36-6ba532b4cfb8
+      - ef9d4933-8fa4-4cf9-ac31-b634c836acee
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ae6aa507-03c8-4d03-a00e-e6575179e779:
+    id: ae6aa507-03c8-4d03-a00e-e6575179e779
+    content: 'Multi-delete including a running node: verify its execution state is cleared'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  cca1ab72-9387-44bc-af36-6ba532b4cfb8:
+    id: cca1ab72-9387-44bc-af36-6ba532b4cfb8
+    content: 'Multi-delete including a step with running children: verify children''s execution state is cleared'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  ef9d4933-8fa4-4cf9-ac31-b634c836acee:
+    id: ef9d4933-8fa4-4cf9-ac31-b634c836acee
+    content: 'Multi-delete of non-running nodes: verify no workflow state changes'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  ba360891-2ba3-4a00-8db7-eb8f8590948b:
+    id: ba360891-2ba3-4a00-8db7-eb8f8590948b
+    content: Integration tests — movement wiring (`src/renderer/store/tree/actions/tests/nodeMovementActions.test.ts` or co-located)
+    children:
+      - 912a6426-8b5f-4d90-9bca-0ad6b5552761
+      - 9762be12-634b-4316-9628-3362d96a83bb
+      - 8710c96b-a710-4bba-a834-4c6eefd3d556
+      - 0407e64f-074d-40d2-a03f-1ef0568a5389
+      - e17ff8e7-bbcc-407f-be31-f92d80141a05
+      - 9df61b48-8fec-4b62-8c76-a1a5da0af6cf
+      - 447f85b4-98c5-493e-8f0a-1ecfae16b8d2
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  912a6426-8b5f-4d90-9bca-0ad6b5552761:
+    id: 912a6426-8b5f-4d90-9bca-0ad6b5552761
+    content: '`executeMoveCommand` moving a running node to a different parent: verify workflow is paused'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9762be12-634b-4316-9628-3362d96a83bb:
+    id: 9762be12-634b-4316-9628-3362d96a83bb
+    content: '`moveNodeVertically` reordering a running node within the same parent: verify workflow is NOT paused'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8710c96b-a710-4bba-a834-4c6eefd3d556:
+    id: 8710c96b-a710-4bba-a834-4c6eefd3d556
+    content: '`moveNodeVertically` moving a running node to a sibling parent (cross-parent): verify workflow is paused'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0407e64f-074d-40d2-a03f-1ef0568a5389:
+    id: 0407e64f-074d-40d2-a03f-1ef0568a5389
+    content: '`dropNode` dropping a running node to a new parent: verify workflow is paused'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e17ff8e7-bbcc-407f-be31-f92d80141a05:
+    id: e17ff8e7-bbcc-407f-be31-f92d80141a05
+    content: '`indentNode` indenting a running node: verify workflow is paused (parent changes)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9df61b48-8fec-4b62-8c76-a1a5da0af6cf:
+    id: 9df61b48-8fec-4b62-8c76-a1a5da0af6cf
+    content: '`outdentNode` outdenting a running node: verify workflow is paused (parent changes)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  447f85b4-98c5-493e-8f0a-1ecfae16b8d2:
+    id: 447f85b4-98c5-493e-8f0a-1ecfae16b8d2
+    content: 'Moving a non-running node cross-parent: verify no crash, no workflow state changes'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ba659082-97b6-4260-a522-f32821e4f696:
+    id: ba659082-97b6-4260-a522-f32821e4f696
+    content: Integration tests — terminal close wiring
+    children:
+      - 440af4c3-55a0-4d44-a286-e99a760713b2
+      - 2b040858-dd92-4213-89d4-a3fcf039135f
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  440af4c3-55a0-4d44-a286-e99a760713b2:
+    id: 440af4c3-55a0-4d44-a286-e99a760713b2
+    content: 'Closing a terminal with a running workflow node: verify `handleTerminalClosed` is called with the correct terminal ID'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2b040858-dd92-4213-89d4-a3fcf039135f:
+    id: 2b040858-dd92-4213-89d4-a3fcf039135f
+    content: 'Closing a terminal with no running nodes: verify no crash'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d8f6c067-a0f7-4b5e-82e4-96a61929109c:
+    id: d8f6c067-a0f7-4b5e-82e4-96a61929109c
+    content: Integration tests — initialization wiring
+    children:
+      - 45af52e2-777b-4368-a371-139d2cc51689
+      - f81d23aa-cd3c-47cd-a94b-6896a5d98661
+      - 36c827b4-9fdc-49f2-8002-bd21221b0b47
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  45af52e2-777b-4368-a371-139d2cc51689:
+    id: 45af52e2-777b-4368-a371-139d2cc51689
+    content: 'App init with running execution states: verify all downgraded to paused'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f81d23aa-cd3c-47cd-a94b-6896a5d98661:
+    id: f81d23aa-cd3c-47cd-a94b-6896a5d98661
+    content: 'App init with empty execution states: verify no toast, no state changes'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  36c827b4-9fdc-49f2-8002-bd21221b0b47:
+    id: 36c827b4-9fdc-49f2-8002-bd21221b0b47
+    content: 'App init with already-paused execution states: verify no changes, no double-toast'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  abcf890f-3783-4915-b3ae-fd7b851e5830:
+    id: abcf890f-3783-4915-b3ae-fd7b851e5830
+    content: Manual test script
+    children:
+      - 11a22132-60b6-4fe8-aa48-95e935676f71
+      - 8569ff67-1016-41c7-8b13-3040c4ba2034
+      - d4e39ff2-7388-408c-9832-f6eb359328e2
+      - 6d40df57-790a-4bca-8b8c-f16b4461a066
+      - b27fbd21-b366-42a1-98d2-d4f4de39ead0
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  11a22132-60b6-4fe8-aa48-95e935676f71:
+    id: 11a22132-60b6-4fe8-aa48-95e935676f71
+    content: Start a workflow, close the terminal tab — verify toast appears and node shows as paused
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8569ff67-1016-41c7-8b13-3040c4ba2034:
+    id: 8569ff67-1016-41c7-8b13-3040c4ba2034
+    content: Start a workflow, delete the running node — verify no orphaned execution indicator
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d4e39ff2-7388-408c-9832-f6eb359328e2:
+    id: d4e39ff2-7388-408c-9832-f6eb359328e2
+    content: Start a workflow, drag the running node to a different step — verify it pauses
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6d40df57-790a-4bca-8b8c-f16b4461a066:
+    id: 6d40df57-790a-4bca-8b8c-f16b4461a066
+    content: Start a workflow, Ctrl+Up/Down the running node within the same step — verify it does NOT pause
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b27fbd21-b366-42a1-98d2-d4f4de39ead0:
+    id: b27fbd21-b366-42a1-98d2-d4f4de39ead0
+    content: Start a workflow, delete the step the node is in — verify the node pauses
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8e2041bd-6dfd-4a6c-80bf-9159ecfd8779:
+    id: 8e2041bd-6dfd-4a6c-80bf-9159ecfd8779
+    content: Risks — highest likelihood of defects
+    children:
+      - 34d554ed-5cfe-4ade-a0c8-e245282d6825
+      - 1c69f6e5-f117-45a0-9b8e-269e68d1e6cd
+      - 08ac5538-3d8d-4a13-9105-ce90824387b0
+      - 449e810e-86aa-4aeb-bb3f-36fd60ea0a4a
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  34d554ed-5cfe-4ade-a0c8-e245282d6825:
+    id: 34d554ed-5cfe-4ade-a0c8-e245282d6825
+    content: 'Wiring calls added after `executeCommand` in deletion/movement: the command executes synchronously inside `executeCommand`, but the post-command state must be read via `get()` not from the pre-command `state` variable — stale closure risk'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1c69f6e5-f117-45a0-9b8e-269e68d1e6cd:
+    id: 1c69f6e5-f117-45a0-9b8e-269e68d1e6cd
+    content: 'Within-parent vs cross-parent detection in `moveNodeVertically`: the `newParentId !== parentId` check must use the pre-command parent, not post-command — if the check reads post-command state, within-parent reorders could incorrectly trigger the handler'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  08ac5538-3d8d-4a13-9105-ce90824387b0:
+    id: 08ac5538-3d8d-4a13-9105-ce90824387b0
+    content: 'Multi-delete ordering: if node A is a step and node B is a running child of A, and both are deleted — the order of `handleNodeDeleted(B)` and `handleStepDeleted(A)` matters. If B''s state is already cleared by `handleNodeDeleted`, `handleStepDeleted(A)` becomes a no-op (safe), but the reverse order could try to pause an already-deleted node'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  449e810e-86aa-4aeb-bb3f-36fd60ea0a4a:
+    id: 449e810e-86aa-4aeb-bb3f-36fd60ea0a4a
+    content: 'Cut-paste bypass: `handleCutPaste` in `clipboardActions.ts` creates its own `MoveNodeCommand` directly (not via `executeMoveCommand`) — the wiring in `executeMoveCommand` won''t cover this path. Need separate wiring in `handleCutPaste` or refactor to route through `executeMoveCommand`'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ceadf399-9406-4162-ae17-77cb74a2073a:
+    id: ceadf399-9406-4162-ae17-77cb74a2073a
+    content: Risks — highest impact if failures occur
+    children:
+      - 04f06284-dac3-452a-ab17-b2ddd20549a7
+      - e0fe4adc-2b3c-432c-8a64-894c24b4912f
+      - dc0d4a13-3d3e-4b7c-af7c-f0d8fdad6877
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  04f06284-dac3-452a-ab17-b2ddd20549a7:
+    id: 04f06284-dac3-452a-ab17-b2ddd20549a7
+    content: 'Missing `handleNodeDeleted` call: orphaned execution state remains after node deletion — the UI could show a running indicator for a node that no longer exists, or the terminal could remain "occupied" preventing new workflows'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e0fe4adc-2b3c-432c-8a64-894c24b4912f:
+    id: e0fe4adc-2b3c-432c-8a64-894c24b4912f
+    content: 'Missing `handleTerminalClosed` call: a closed terminal leaves nodes in running state with a stale terminal ID — resuming would try to send to a non-existent terminal'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  dc0d4a13-3d3e-4b7c-af7c-f0d8fdad6877:
+    id: dc0d4a13-3d3e-4b7c-af7c-f0d8fdad6877
+    content: '`handleNodeMovedManually` firing on within-parent reorder: would pause workflows unexpectedly when users simply reorder items with Ctrl+Up/Down — frustrating false positives'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  79abc325-8ff8-4c9c-8730-6d2c66e9a505:
+    id: 79abc325-8ff8-4c9c-8730-6d2c66e9a505
+    content: Dependencies on external systems
+    children:
+      - c2eae108-56bb-4997-a85d-ccd9e9a3eecb
+      - f7fc1992-e942-4d83-a496-896909da171e
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c2eae108-56bb-4997-a85d-ccd9e9a3eecb:
+    id: c2eae108-56bb-4997-a85d-ccd9e9a3eecb
+    content: 'Terminal store: cross-store dependency for terminal close wiring — tree store instance must be accessible from the component/hook that calls `closeTerminal`'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f7fc1992-e942-4d83-a496-896909da171e:
+    id: f7fc1992-e942-4d83-a496-896909da171e
+    content: 'Command system: `executeCommand` runs commands synchronously — the integration assumes post-command state is immediately available via `get()`'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  352b8a7f-9e37-4054-a68a-2b8b62c9eb56:
+    id: 352b8a7f-9e37-4054-a68a-2b8b62c9eb56
+    content: Ambiguous or likely-to-change requirements
+    children:
+      - 86088d19-f24d-44dd-b193-3a030ca0f222
+      - 00bb84e3-d444-4a18-9436-65aebe5f4161
+      - e8f7734a-2490-4113-af54-b818bf5184cd
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  86088d19-f24d-44dd-b193-3a030ca0f222:
+    id: 86088d19-f24d-44dd-b193-3a030ca0f222
+    content: Whether descendant cleanup should be recursive or only one level deep — current spec says "running descendants" which implies recursive, but in practice running nodes are leaves (items inside steps), not intermediary branches
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  00bb84e3-d444-4a18-9436-65aebe5f4161:
+    id: 00bb84e3-d444-4a18-9436-65aebe5f4161
+    content: Whether `handleStepDeleted` should fire for steps with no running children — current handler checks ancestry and only pauses running nodes, so calling it for empty steps is a no-op (safe but unnecessary)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e8f7734a-2490-4113-af54-b818bf5184cd:
+    id: e8f7734a-2490-4113-af54-b818bf5184cd
+    content: Whether cut-paste of a running node should pause it — logically yes (it's a manual move), but cut-paste is often used as an alternative to drag-drop, and the user might expect the workflow to continue from the new location
     children: []
     metadata:
       status: completed

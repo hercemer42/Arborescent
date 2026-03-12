@@ -76,7 +76,12 @@ async function handleUIShortcuts(event: KeyboardEvent): Promise<void> {
         const { useTerminalStore } = await import('../../store/terminal/terminalStore');
         const terminalStore = useTerminalStore.getState();
         if (terminalStore.activeTerminalId) {
-          await terminalStore.closeTerminal(terminalStore.activeTerminalId);
+          const terminalId = terminalStore.activeTerminalId;
+          await terminalStore.closeTerminal(terminalId);
+          const { storeManager } = await import('../../store/storeManager');
+          for (const store of storeManager.getAllStores()) {
+            store.getState().actions.handleTerminalClosed(terminalId);
+          }
         }
         return;
       }

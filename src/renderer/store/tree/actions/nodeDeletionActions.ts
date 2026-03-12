@@ -3,10 +3,12 @@ import {
   isLastRootLevelNode,
   getParentNode,
   findPreviousNode,
+  getNodeAndDescendantIds,
 } from '../../../utils/nodeHelpers';
 import { DeleteNodeCommand } from '../commands/DeleteNodeCommand';
 import { logger } from '../../../services/logger';
 import { useToastStore } from '../../toast/toastStore';
+import { captureStepDeletions, notifyDeletionDisruption } from './workflowDisruption';
 
 export interface NodeDeletionActions {
   deleteNode: (nodeId: string, confirmed?: boolean) => boolean;
@@ -85,6 +87,9 @@ export const createNodeDeletionActions = (
       throw new Error('Command system not initialized - cannot delete node with undo/redo support');
     }
 
+    const descendantIds = getNodeAndDescendantIds([nodeId], nodes);
+    const stepDeletions = captureStepDeletions([nodeId], state);
+
     const command = new DeleteNodeCommand(
       nodeId,
       () => {
@@ -100,6 +105,8 @@ export const createNodeDeletionActions = (
       triggerAutosave
     );
     state.actions.executeCommand(command);
+
+    notifyDeletionDisruption(get, descendantIds, stepDeletions);
 
     return true;
   }

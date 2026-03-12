@@ -4,6 +4,7 @@ import { useBrowserStore } from '../store/browser/browserStore';
 import { useTerminalStore } from '../store/terminal/terminalStore';
 import { usePanelStore } from '../store/panel/panelStore';
 import { usePreferencesStore } from '../store/preferences/preferencesStore';
+import { storeManager } from '../store/storeManager';
 import { logger } from '../services/logger';
 
 export function useAppInitialization(onComplete: () => void) {
@@ -20,6 +21,10 @@ export function useAppInitialization(onComplete: () => void) {
       loadPreferences(),
     ])
       .then(async () => {
+        for (const store of storeManager.getAllStores()) {
+          store.getState().actions.initializeExecutionState();
+        }
+
         const activeContent = usePanelStore.getState().activeContent;
         const terminalStore = useTerminalStore.getState();
         if (terminalStore.terminals.length === 0 && activeContent === 'terminal') {

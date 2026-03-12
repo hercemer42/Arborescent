@@ -23,6 +23,7 @@ import { useToastStore } from '../../toast/toastStore';
 import { AncestorRegistry } from '../../../utils/ancestry';
 import { v4 as uuidv4 } from 'uuid';
 import { storeManager } from '../../storeManager';
+import { captureStepDeletions, notifyDeletionDisruption, notifyMovementDisruption } from './workflowDisruption';
 
 export interface ClipboardActions {
   cutNodes: () => Promise<'cut' | 'no-selection'>;
@@ -209,7 +210,11 @@ function handleCutPaste(
   clearCutState();
 
   for (const nodeId of nodesToMove) {
-    const currentNodes = get().nodes;
+    const preState = get();
+    const preAncestors = preState.ancestorRegistry[nodeId] || [];
+    const preParentId = preAncestors[preAncestors.length - 1] || preState.rootNodeId;
+
+    const currentNodes = preState.nodes;
     const targetParent = currentNodes[targetParentId];
     const newPosition = targetParent ? targetParent.children.length : 0;
 
@@ -230,6 +235,10 @@ function handleCutPaste(
     );
 
     actions.executeCommand(command);
+
+    if (targetParentId !== preParentId) {
+      notifyMovementDisruption(get, nodeId);
+    }
   }
 
   flashNodes(nodesToMove, visualEffects);
@@ -575,6 +584,10 @@ export const createClipboardActions = (
     const actions = getActions();
     visualEffects.startDeleteAnimation(nodeIds, () => {
       const currentState = get();
+
+      const allDeletedIds = getNodeAndDescendantIds(nodeIds, currentState.nodes);
+      const stepDeletions = captureStepDeletions(nodeIds, currentState);
+
       const command = new DeleteMultipleNodesCommand(
         nodeIds,
         () => ({
@@ -587,6 +600,8 @@ export const createClipboardActions = (
         triggerAutosave
       );
       actions.executeCommand(command);
+
+      notifyDeletionDisruption(get, allDeletedIds, stepDeletions);
     });
   }
 
