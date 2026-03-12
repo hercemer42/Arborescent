@@ -3,8 +3,10 @@ import { ContextMenuItem } from '../../ui/ContextMenu';
 import { AncestorRegistry } from '../../../utils/ancestry';
 import {
   isEligibleForExecution,
+  getWorkflowStepPosition,
   WorkflowExecutionEntry,
 } from '../../../utils/workflowHelpers';
+import { StepType } from '../../../store/tree/commands/SetStepTypeCommand';
 
 interface BuildWorkflowExecutionSubmenuParams {
   node: TreeNode;
@@ -39,6 +41,14 @@ export function buildWorkflowExecutionSubmenu({
   }
 
   if (entry?.state === 'paused') {
+    const position = getWorkflowStepPosition(node.id, nodes, ancestorRegistry);
+    const stepNode = position ? nodes[position.currentStepId] : null;
+    const stepType: StepType = (stepNode?.metadata.stepType as StepType) || 'manual';
+
+    if (stepType === 'manual' || stepType === 'checkpoint') {
+      return [];
+    }
+
     return [
       {
         label: 'Resume Workflow',

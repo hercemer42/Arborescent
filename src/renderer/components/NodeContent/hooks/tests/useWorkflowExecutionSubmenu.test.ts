@@ -229,7 +229,8 @@ describe('buildWorkflowExecutionSubmenu', () => {
   });
 
   describe('Resume Workflow menu item', () => {
-    it('should show "Resume Workflow" as first item for a paused node', () => {
+    it('should show "Resume Workflow" for a paused node at an autonomous step', () => {
+      nodes['step-1'].metadata.stepType = 'autonomous';
       workflowExecutionStates['task-a'] = { state: 'paused', terminalTabId: 'terminal-1' };
 
       const items = buildWorkflowExecutionSubmenu({
@@ -242,6 +243,37 @@ describe('buildWorkflowExecutionSubmenu', () => {
       });
 
       expect(items[0].label).toBe('Resume Workflow');
+    });
+
+    it('should not show "Resume Workflow" for a paused node at a manual step', () => {
+      workflowExecutionStates['task-a'] = { state: 'paused', terminalTabId: 'terminal-1' };
+
+      const items = buildWorkflowExecutionSubmenu({
+        node: nodes['task-a'],
+        nodes,
+        ancestorRegistry,
+        workflowExecutionStates,
+        actions: { startWorkflow: mockStartWorkflow, pauseWorkflow: mockPauseWorkflow, resumeWorkflow: mockResumeWorkflow },
+        getTerminalId: mockGetTerminalId,
+      });
+
+      expect(items).toHaveLength(0);
+    });
+
+    it('should not show "Resume Workflow" for a paused node at a checkpoint step', () => {
+      nodes['step-1'].metadata.stepType = 'checkpoint';
+      workflowExecutionStates['task-a'] = { state: 'paused', terminalTabId: 'terminal-1' };
+
+      const items = buildWorkflowExecutionSubmenu({
+        node: nodes['task-a'],
+        nodes,
+        ancestorRegistry,
+        workflowExecutionStates,
+        actions: { startWorkflow: mockStartWorkflow, pauseWorkflow: mockPauseWorkflow, resumeWorkflow: mockResumeWorkflow },
+        getTerminalId: mockGetTerminalId,
+      });
+
+      expect(items).toHaveLength(0);
     });
 
     it('should not show "Resume Workflow" for a running node', () => {
@@ -261,6 +293,7 @@ describe('buildWorkflowExecutionSubmenu', () => {
     });
 
     it('should call getTerminalId and pass result to resumeWorkflow when clicked', async () => {
+      nodes['step-1'].metadata.stepType = 'autonomous';
       workflowExecutionStates['task-a'] = { state: 'paused', terminalTabId: 'terminal-1' };
 
       const items = buildWorkflowExecutionSubmenu({
