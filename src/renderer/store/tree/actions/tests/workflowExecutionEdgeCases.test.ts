@@ -297,7 +297,7 @@ describe('workflow execution edge cases', () => {
       state.ancestorRegistry['task-a'] = ['root', 'workflow', 'step-3'];
 
       actions.handleNodeMovedManually('task-a');
-      actions.resumeWorkflow('task-a');
+      actions.resumeWorkflow('task-a', 'terminal-1');
 
       expect(state.workflowExecutionStates['task-a'].state).toBe('running');
       // Node should still be at step-3

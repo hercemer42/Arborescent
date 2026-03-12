@@ -21,8 +21,19 @@ vi.mock('../../../toast/toastStore', () => ({
   },
 }));
 
-vi.mock('../../../services/terminalExecution', () => ({
-  executeInTerminal: vi.fn().mockResolvedValue(undefined),
+const { mockExecuteInTerminal } = vi.hoisted(() => ({
+  mockExecuteInTerminal: vi.fn().mockResolvedValue(undefined),
+}));
+vi.mock('@/services/terminalExecution', () => ({
+  executeInTerminal: mockExecuteInTerminal,
+}));
+
+vi.mock('@/utils/nodeHelpers', () => ({
+  buildContentWithContext: () => ({ contextPrefix: 'mock context', nodeContent: 'mock content' }),
+}));
+
+vi.mock('@/utils/promptBuilder', () => ({
+  buildExecutePrompt: () => 'mock prompt',
 }));
 
 vi.mock('@/store/preferences/preferencesStore', () => ({
@@ -238,6 +249,11 @@ describe('createWorkflowExecutionActions', () => {
       expect(state.workflowExecutionStates['task-c'].state).toBe('running');
     });
 
+    it('should send content to the terminal on start', () => {
+      actions.startWorkflow('task-a', 'terminal-1');
+      expect(mockExecuteInTerminal).toHaveBeenCalledWith('terminal-1', expect.any(String));
+    });
+
     it('should trigger autosave after starting', () => {
       actions.startWorkflow('task-a', 'terminal-1');
       expect(mockTriggerAutosave).toHaveBeenCalled();
@@ -276,24 +292,66 @@ describe('createWorkflowExecutionActions', () => {
   });
 
   describe('resumeWorkflow', () => {
-    it('should set node execution state back to running', () => {
+    it('should set node execution state back to running with the provided terminal', () => {
       state.workflowExecutionStates['task-a'] = { state: 'paused', terminalTabId: 'terminal-1' };
 
-      actions.resumeWorkflow('task-a');
+      actions.resumeWorkflow('task-a', 'terminal-1');
 
       expect(state.workflowExecutionStates['task-a'].state).toBe('running');
+      expect(state.workflowExecutionStates['task-a'].terminalTabId).toBe('terminal-1');
+    });
+
+    it('should update terminal assignment when resuming on a different terminal', () => {
+      state.workflowExecutionStates['task-a'] = { state: 'paused', terminalTabId: 'terminal-1' };
+
+      actions.resumeWorkflow('task-a', 'terminal-2');
+
+      expect(state.workflowExecutionStates['task-a'].terminalTabId).toBe('terminal-2');
+    });
+
+    it('should re-send content to the terminal on resume', () => {
+      state.workflowExecutionStates['task-a'] = { state: 'paused', terminalTabId: 'terminal-1' };
+
+      actions.resumeWorkflow('task-a', 'terminal-1');
+
+      expect(mockExecuteInTerminal).toHaveBeenCalledWith('terminal-1', expect.any(String));
+    });
+
+    it('should show toast when no terminal is available', () => {
+      state.workflowExecutionStates['task-a'] = { state: 'paused', terminalTabId: 'terminal-1' };
+
+      actions.resumeWorkflow('task-a', null);
+
+      expect(state.workflowExecutionStates['task-a'].state).toBe('paused');
+      expect(mockAddToast).toHaveBeenCalledWith(
+        expect.stringContaining('terminal'),
+        'warning'
+      );
+    });
+
+    it('should reject if terminal is assigned to another running node', () => {
+      state.workflowExecutionStates['task-a'] = { state: 'paused', terminalTabId: 'terminal-1' };
+      state.workflowExecutionStates['task-c'] = { state: 'running', terminalTabId: 'terminal-2' };
+
+      actions.resumeWorkflow('task-a', 'terminal-2');
+
+      expect(state.workflowExecutionStates['task-a'].state).toBe('paused');
+      expect(mockAddToast).toHaveBeenCalledWith(
+        expect.stringContaining('already assigned'),
+        'warning'
+      );
     });
 
     it('should be a no-op if node is not paused', () => {
       state.workflowExecutionStates['task-a'] = { state: 'running', terminalTabId: 'terminal-1' };
 
-      actions.resumeWorkflow('task-a');
+      actions.resumeWorkflow('task-a', 'terminal-1');
 
       expect(state.workflowExecutionStates['task-a'].state).toBe('running');
     });
 
     it('should be a no-op if node has no execution state', () => {
-      actions.resumeWorkflow('task-a');
+      actions.resumeWorkflow('task-a', 'terminal-1');
       expect(state.workflowExecutionStates['task-a']).toBeUndefined();
     });
   });

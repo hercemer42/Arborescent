@@ -260,7 +260,7 @@ describe('buildWorkflowExecutionSubmenu', () => {
       expect(resumeItem).toBeUndefined();
     });
 
-    it('should call resumeWorkflow action when clicked', () => {
+    it('should call getTerminalId and pass result to resumeWorkflow when clicked', async () => {
       workflowExecutionStates['task-a'] = { state: 'paused', terminalTabId: 'terminal-1' };
 
       const items = buildWorkflowExecutionSubmenu({
@@ -274,7 +274,10 @@ describe('buildWorkflowExecutionSubmenu', () => {
       const resumeItem = items.find(i => i.label === 'Resume Workflow');
       resumeItem!.onClick!();
 
-      expect(mockResumeWorkflow).toHaveBeenCalledWith('task-a');
+      await vi.waitFor(() => {
+        expect(mockGetTerminalId).toHaveBeenCalled();
+        expect(mockResumeWorkflow).toHaveBeenCalledWith('task-a', 'terminal-1');
+      });
     });
   });
 

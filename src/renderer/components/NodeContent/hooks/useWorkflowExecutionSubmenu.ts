@@ -14,7 +14,7 @@ interface BuildWorkflowExecutionSubmenuParams {
   actions: {
     startWorkflow: (nodeId: string, terminalId: string | null) => void;
     pauseWorkflow: (nodeId: string) => void;
-    resumeWorkflow: (nodeId: string) => void;
+    resumeWorkflow: (nodeId: string, terminalId: string | null) => void;
   };
   getTerminalId: () => Promise<string | null>;
 }
@@ -42,7 +42,11 @@ export function buildWorkflowExecutionSubmenu({
     return [
       {
         label: 'Resume Workflow',
-        onClick: () => actions.resumeWorkflow(node.id),
+        onClick: () => {
+          getTerminalId().then((terminalId) => {
+            actions.resumeWorkflow(node.id, terminalId);
+          });
+        },
       },
     ];
   }

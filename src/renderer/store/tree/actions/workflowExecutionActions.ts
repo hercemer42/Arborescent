@@ -22,7 +22,7 @@ export type { WorkflowExecutionEntry };
 export interface WorkflowExecutionActions {
   startWorkflow: (nodeId: string, terminalId: string | null) => void;
   pauseWorkflow: (nodeId: string) => void;
-  resumeWorkflow: (nodeId: string) => void;
+  resumeWorkflow: (nodeId: string, terminalId: string | null) => void;
   completeWorkflow: (nodeId: string) => void;
   advanceNode: (nodeId: string) => void;
   registerSession: (sessionId: string, terminalId: string) => void;
@@ -171,6 +171,7 @@ export const createWorkflowExecutionActions = (
     }
 
     startStepTimeout(nodeId);
+    sendContentToTerminal(nodeId, terminalId);
     logger.info(`Started workflow execution for node ${nodeId} on terminal ${terminalId}`, 'WorkflowExecution');
     triggerAutosave?.();
   }
@@ -191,19 +192,33 @@ export const createWorkflowExecutionActions = (
     logger.info(`Paused workflow execution for node ${nodeId}`, 'WorkflowExecution');
   }
 
-  function resumeWorkflow(nodeId: string): void {
+  function resumeWorkflow(nodeId: string, terminalId: string | null): void {
     const { workflowExecutionStates } = get();
     const entry = workflowExecutionStates[nodeId];
     if (!entry || entry.state !== 'paused') return;
 
+    if (terminalId === null) {
+      useToastStore.getState().addToast('No terminal tab available. Open a terminal to resume workflow execution.', 'warning');
+      return;
+    }
+
+    const existingNodeId = findRunningNodeOnTerminal(terminalId);
+    if (existingNodeId && existingNodeId !== nodeId) {
+      useToastStore.getState().addToast('Terminal tab is already assigned to a running workflow node.', 'warning');
+      return;
+    }
+
     set({
       workflowExecutionStates: {
         ...workflowExecutionStates,
-        [nodeId]: { ...entry, state: 'running' },
+        [nodeId]: { state: 'running', terminalTabId: terminalId },
       },
     });
 
-    logger.info(`Resumed workflow execution for node ${nodeId}`, 'WorkflowExecution');
+    startStepTimeout(nodeId);
+    sendContentToTerminal(nodeId, terminalId);
+
+    logger.info(`Resumed workflow execution for node ${nodeId} on terminal ${terminalId}`, 'WorkflowExecution');
   }
 
   function completeWorkflow(nodeId: string): void {
@@ -281,19 +296,25 @@ export const createWorkflowExecutionActions = (
   }
 
   function sendContentToTerminal(nodeId: string, terminalId: string): void {
-    const { nodes, ancestorRegistry } = get();
-    const node = nodes[nodeId];
-    if (!node) return;
+    try {
+      const { nodes, ancestorRegistry } = get();
+      const node = nodes[nodeId];
+      if (!node) return;
 
-    const { contextPrefix, nodeContent } = buildContentWithContext(nodeId, nodes, ancestorRegistry, true);
+      const { contextPrefix, nodeContent } = buildContentWithContext(nodeId, nodes, ancestorRegistry, true);
 
-    const terminalContent = buildExecutePrompt(contextPrefix || DEFAULT_EXECUTE_CONTEXT, nodeContent);
+      const terminalContent = buildExecutePrompt(contextPrefix || DEFAULT_EXECUTE_CONTEXT, nodeContent);
 
-    executeInTerminal(terminalId, terminalContent).catch((error) => {
-      logger.error('Failed to send content to terminal after advancement', error as Error, 'WorkflowExecution');
+      executeInTerminal(terminalId, terminalContent).catch((error) => {
+        logger.error('Failed to send content to terminal after advancement', error as Error, 'WorkflowExecution');
+        pauseWorkflow(nodeId);
+        useToastStore.getState().addToast('Failed to send to terminal — workflow paused', 'error');
+      });
+    } catch (error) {
+      logger.error('Failed to build terminal content', error as Error, 'WorkflowExecution');
       pauseWorkflow(nodeId);
       useToastStore.getState().addToast('Failed to send to terminal — workflow paused', 'error');
-    });
+    }
   }
 
   function registerSession(sessionId: string, terminalId: string): void {
