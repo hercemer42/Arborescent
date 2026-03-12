@@ -340,18 +340,30 @@ export const createWorkflowExecutionActions = (
   function handleHookEvent(event: { session_id: string; hook_event_name: string; message?: string }): void {
     const { workflowSessionMap } = get();
     const terminalId = workflowSessionMap[event.session_id];
-    if (!terminalId) return;
+    if (!terminalId) {
+      logger.info(`Hook event ${event.hook_event_name} ignored: no terminal mapped for session ${event.session_id}`, 'WorkflowExecution');
+      return;
+    }
 
     const runningNodeId = findRunningNodeOnTerminal(terminalId);
-    if (!runningNodeId) return;
+    if (!runningNodeId) {
+      logger.info(`Hook event ${event.hook_event_name} ignored: no running node on terminal ${terminalId}`, 'WorkflowExecution');
+      return;
+    }
+
+    logger.info(`Hook event ${event.hook_event_name} for node ${runningNodeId} on terminal ${terminalId}`, 'WorkflowExecution');
 
     if (event.hook_event_name === 'Stop') {
       const { nodes, ancestorRegistry } = get();
       const position = getWorkflowStepPosition(runningNodeId, nodes, ancestorRegistry);
-      if (!position) return;
+      if (!position) {
+        logger.info(`Hook Stop ignored: node ${runningNodeId} has no workflow step position`, 'WorkflowExecution');
+        return;
+      }
 
       const stepNode = nodes[position.currentStepId];
       const stepType: StepType = (stepNode?.metadata.stepType as StepType) || 'manual';
+      logger.info(`Hook Stop at step ${position.currentStepId} (type=${stepType}) for node ${runningNodeId}`, 'WorkflowExecution');
 
       if (stepType === 'autonomous') {
         advanceNode(runningNodeId);

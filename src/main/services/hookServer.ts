@@ -77,6 +77,7 @@ export class HookServer {
     }
 
     if (!this.validateAuth(req, authToken)) {
+      logger.warn('Hook request rejected: invalid auth token', 'HookServer');
       res.writeHead(401);
       res.end();
       return;
@@ -85,10 +86,13 @@ export class HookServer {
     this.readBody(req, (body) => {
       const payload = this.parseAndValidate(body);
       if (!payload) {
+        logger.warn(`Hook request rejected: invalid payload body`, 'HookServer');
         res.writeHead(400);
         res.end();
         return;
       }
+
+      logger.info(`Hook received: ${payload.hook_event_name} (session=${payload.session_id}${payload.terminal_id ? `, terminal=${payload.terminal_id}` : ''})`, 'HookServer');
 
       try {
         onEvent(payload);
