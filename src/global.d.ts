@@ -52,6 +52,7 @@ declare global {
       replaceMisspelling: (suggestion: string) => Promise<void>;
       appQuit: () => Promise<void>;
       onCloseBrowserTab: (callback: () => void) => () => void;
+      onHookEvent: (callback: (event: { session_id: string; hook_event_name: string; terminal_id?: string; message?: string }) => void) => () => void;
     };
   }
 }

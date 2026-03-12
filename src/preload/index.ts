@@ -99,4 +99,9 @@ contextBridge.exposeInMainWorld('electron', {
     ipcRenderer.on('close-browser-tab', listener);
     return () => ipcRenderer.removeListener('close-browser-tab', listener);
   },
+  onHookEvent: (callback: (event: { session_id: string; hook_event_name: string; terminal_id?: string; message?: string }) => void) => {
+    const listener = (_event: Electron.IpcRendererEvent, data: { session_id: string; hook_event_name: string; terminal_id?: string; message?: string }) => callback(data);
+    ipcRenderer.on('hook-event', listener);
+    return () => ipcRenderer.removeListener('hook-event', listener);
+  },
 });

@@ -13,7 +13,10 @@ export interface TerminalInfo {
 
 const terminalDisposables: Map<string, IDisposable[]> = new Map();
 
-export function registerTerminalHandlers(mainWindow: Electron.BrowserWindow) {
+export function registerTerminalHandlers(
+  mainWindow: Electron.BrowserWindow,
+  hookEnv: Record<string, string> = {}
+) {
   ipcMain.handle(
     'terminal:create',
     async (
@@ -25,7 +28,10 @@ export function registerTerminalHandlers(mainWindow: Electron.BrowserWindow) {
       cwd?: string
     ): Promise<TerminalInfo> => {
       try {
-        const terminal = TerminalManager.create(id, title, shellCommand, shellArgs, cwd);
+        const extraEnv = Object.keys(hookEnv).length > 0
+          ? { ...hookEnv, ARBORESCENT_TERMINAL_ID: id }
+          : undefined;
+        const terminal = TerminalManager.create(id, title, shellCommand, shellArgs, cwd, extraEnv);
 
         const disposables: IDisposable[] = [];
 

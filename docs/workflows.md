@@ -40,6 +40,8 @@ Automated advancement bypasses the undo stack — you cannot undo an automated m
 
 If the terminal fails to accept content, the workflow pauses automatically and shows an error. A 10-minute timeout warns you if a step takes longer than expected.
 
+For automated advancement to work, you need to configure your AI tool to send hook events back to Arborescent. See [Hook Setup](#hook-setup) below.
+
 ## Moving Items Manually
 
 Right-click an item inside a workflow step → **Next step** or **Previous step**. The item physically moves to the adjacent step. Step numbers update automatically when you reorder, add, or remove steps.
@@ -61,6 +63,42 @@ Development Pipeline  ← workflow
 Navigation crosses boundaries automatically — "Next step" from step 1 enters the nested workflow, and "Next step" from step 4 continues to step 5. Collapsed branches expand as needed. "Previous step" reverses the same traversal.
 
 Removing a workflow that contains nested workflows strips workflow status from all descendants. The branches remain as blueprints.
+
+## Hook Setup
+
+Workflow automation requires your AI tool to notify Arborescent when it finishes processing. Arborescent runs a local HTTP server that receives these notifications.
+
+When you open a terminal tab, Arborescent injects three environment variables:
+
+- `ARBORESCENT_HOOK_PORT` — the port the hook server is listening on
+- `ARBORESCENT_AUTH_TOKEN` — a per-session auth token
+- `ARBORESCENT_TERMINAL_ID` — the terminal tab's unique ID
+
+### Claude Code
+
+Add a hook to your Claude Code configuration (`~/.claude/hooks.json`) that POSTs to Arborescent when a session starts and stops:
+
+```json
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "stop",
+        "command": "curl -s -X POST http://127.0.0.1:${ARBORESCENT_HOOK_PORT}/hook -H 'Authorization: Bearer '${ARBORESCENT_AUTH_TOKEN} -H 'Content-Type: application/json' -d '{\"session_id\": \"'${CLAUDE_SESSION_ID}'\", \"hook_event_name\": \"Stop\", \"terminal_id\": \"'${ARBORESCENT_TERMINAL_ID}'\"}'"
+      }
+    ],
+    "SessionStart": [
+      {
+        "command": "curl -s -X POST http://127.0.0.1:${ARBORESCENT_HOOK_PORT}/hook -H 'Authorization: Bearer '${ARBORESCENT_AUTH_TOKEN} -H 'Content-Type: application/json' -d '{\"session_id\": \"'${CLAUDE_SESSION_ID}'\", \"hook_event_name\": \"SessionStart\", \"terminal_id\": \"'${ARBORESCENT_TERMINAL_ID}'\"}'"
+      }
+    ]
+  }
+}
+```
+
+The hook server binds to `127.0.0.1` only — it is not accessible from the network. The auth token is regenerated each time Arborescent starts.
+
+If the hook is not configured, workflows will start but never advance automatically. A toast notification reminds you to set up hooks when you first run a workflow.
 
 ## Dragging Workflows
 

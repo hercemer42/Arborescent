@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-03-12T11:00:17.084Z'
+updated: '2026-03-12T11:51:34.716Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -567,7 +567,7 @@ nodes:
       - 188622ee-bacb-4220-92c3-9ff37694e691
     metadata:
       status: pending
-      expanded: true
+      expanded: false
       isBlueprint: true
       blueprintIcon: Brain
       blueprintColor: '#0ea5e9'
@@ -24300,7 +24300,7 @@ nodes:
       blueprintIcon: ZoomIn
       blueprintColor: '#22c55e'
       isBlueprint: true
-      contextMode: execute
+      contextMode: collaborate
   4d3d31a5-5e2e-46a2-acfc-3e4890a0e1f6:
     id: 4d3d31a5-5e2e-46a2-acfc-3e4890a0e1f6
     content: Analyze the target task list
@@ -24637,7 +24637,7 @@ nodes:
       blueprintIcon: Gem
       blueprintColor: '#64748b'
       isBlueprint: true
-      contextMode: execute
+      contextMode: collaborate
   83d888eb-b2ed-43bc-9905-952b080589bf:
     id: 83d888eb-b2ed-43bc-9905-952b080589bf
     content: Analyse the source requirement
@@ -24850,7 +24850,6 @@ nodes:
     id: 00714a63-f267-4ab1-a285-73ae4198eb42
     content: Technical refinement
     children:
-      - 90a40be5-3f48-4bd9-9f90-2884670a8ff3
       - a30a4d15-15be-4c1c-9164-d699e6b82d42
       - 545562f0-7717-474c-b37c-b93025d16a20
     metadata:
@@ -34440,6 +34439,7 @@ nodes:
     id: 13c5048b-15eb-4989-a6fc-25032e5c131f
     content: Problems
     children:
+      - 9692fa14-b407-4595-8af9-30f68e3b0d1a
       - 664f4e01-f14c-4f67-bc1a-fd08bd179bd1
       - 005c8b90-d200-4c09-b066-3a01c83f917d
       - 81e4a4b6-287a-48c4-a5c5-78ff927403d3
@@ -35344,7 +35344,8 @@ nodes:
   7b3e923e-b465-4444-ae7d-7fe0e80e3235:
     id: 7b3e923e-b465-4444-ae7d-7fe0e80e3235
     content: Code review & refactor
-    children: []
+    children:
+      - 90a40be5-3f48-4bd9-9f90-2884670a8ff3
     metadata:
       status: pending
       isBlueprint: true
@@ -35773,737 +35774,41 @@ nodes:
     id: 90a40be5-3f48-4bd9-9f90-2884670a8ff3
     content: 'User Story 4: HTTP hook server and session mapping'
     children:
-      - de72f50b-ed13-408f-9580-fbe8fcc66dd5
-      - 95fd8871-0c5f-40e1-aa1b-48f1fe7e29fe
-      - fd4f8fa7-7cca-45d4-a406-b55f672c71f4
-      - 8ab636e2-53d9-489c-846e-9188d3c559d1
+      - 486ffdcb-7e45-4cd5-90e5-d4504572d327
+      - 9fdeb5d5-49a9-475a-a760-bffc29d49fe5
+      - 10241c2c-e919-4ba2-b47e-17e9f6e6aa38
+      - 0dcae6b7-732e-443b-a95f-3fad4a9a7df6
+      - 7d35aa8b-e293-4fd6-9331-e1f91bf42edc
+      - 93d445f2-6d72-4d53-85e4-8135efd2ec5a
     metadata:
-      status: pending
+      status: completed
       expanded: false
-      deleted: false
-      plugins: {}
-  de72f50b-ed13-408f-9580-fbe8fcc66dd5:
-    id: de72f50b-ed13-408f-9580-fbe8fcc66dd5
-    content: Problem statement
-    children:
-      - 05ef4483-8f2a-4057-9fe6-cad6364ebb87
-      - df1a7e81-6ccf-4e18-bd18-ffd57e271fc8
-      - 79d1d10a-3fbb-416b-9d84-41fce7292826
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  05ef4483-8f2a-4057-9fe6-cad6364ebb87:
-    id: 05ef4483-8f2a-4057-9fe6-cad6364ebb87
-    content: For workflow automation to respond to AI completion events, Arborescent needs to receive signals from the AI tool running in the terminal
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  df1a7e81-6ccf-4e18-bd18-ffd57e271fc8:
-    id: df1a7e81-6ccf-4e18-bd18-ffd57e271fc8
-    content: Currently the app can send to the terminal but has no way to know when the AI finishes — there is no inbound communication channel
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  79d1d10a-3fbb-416b-9d84-41fce7292826:
-    id: 79d1d10a-3fbb-416b-9d84-41fce7292826
-    content: An HTTP endpoint combined with a session-to-terminal mapping provides this missing feedback loop
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  95fd8871-0c5f-40e1-aa1b-48f1fe7e29fe:
-    id: 95fd8871-0c5f-40e1-aa1b-48f1fe7e29fe
-    content: Use cases
-    children:
-      - ef338f61-649e-46ae-8e0d-b808381023d0
-      - ad3da96a-641c-439e-a540-af9a5ed7c771
-      - 668170ef-6cc7-4871-accf-75ba51bd44ba
-      - ae90413d-1ff6-47b8-ba4d-f7c58f8e0412
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ef338f61-649e-46ae-8e0d-b808381023d0:
-    id: ef338f61-649e-46ae-8e0d-b808381023d0
-    content: 'Primary: AI tool finishes processing and its hook POSTs a Stop event to the local endpoint — Arborescent looks up the session, identifies the terminal tab and assigned node, and routes the event for processing'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ad3da96a-641c-439e-a540-af9a5ed7c771:
-    id: ad3da96a-641c-439e-a540-af9a5ed7c771
-    content: 'Secondary: AI tool starts a new session — a SessionStart event maps the session ID to the originating terminal tab'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  668170ef-6cc7-4871-accf-75ba51bd44ba:
-    id: 668170ef-6cc7-4871-accf-75ba51bd44ba
-    content: 'Secondary: AI tool restarts in the same tab — a new SessionStart updates the mapping without disrupting running nodes'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ae90413d-1ff6-47b8-ba4d-f7c58f8e0412:
-    id: ae90413d-1ff6-47b8-ba4d-f7c58f8e0412
-    content: 'Secondary: AI tool sends a Notification event — Arborescent shows a toast and pauses the affected node''s workflow'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  fd4f8fa7-7cca-45d4-a406-b55f672c71f4:
-    id: fd4f8fa7-7cca-45d4-a406-b55f672c71f4
-    content: Acceptance criteria
-    children:
-      - 15b76cdb-c852-4292-8d5b-de240780c067
-      - b839fe17-990a-4a9c-9de2-4471f361bf5a
-      - 689e0642-b541-4706-845a-617e192c2e4c
-      - 0fc310d5-299b-4622-a625-cdc94d2a88ea
-      - 0838d46a-7360-4792-922c-62c8b7f65ac4
-      - 04d44f42-c770-4900-948a-9d4fc694b729
-      - 2a0423af-1c90-405f-b74f-eec553832308
-      - 3928dac7-f39b-4833-b518-10d70a216be7
-      - 58be6edf-44ba-46b7-9a03-560d8b05b421
-      - 2888cf12-5196-4c93-bc74-9085dcb79c0d
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  15b76cdb-c852-4292-8d5b-de240780c067:
-    id: 15b76cdb-c852-4292-8d5b-de240780c067
-    content: An HTTP server starts in the main process, bound to localhost only (no external network exposure)
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  b839fe17-990a-4a9c-9de2-4471f361bf5a:
-    id: b839fe17-990a-4a9c-9de2-4471f361bf5a
-    content: An auth token is generated per application session and displayed in the setup guide
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  689e0642-b541-4706-845a-617e192c2e4c:
-    id: 689e0642-b541-4706-845a-617e192c2e4c
-    content: The endpoint accepts a JSON payload with session_id, event type, and additional metadata
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  0fc310d5-299b-4622-a625-cdc94d2a88ea:
-    id: 0fc310d5-299b-4622-a625-cdc94d2a88ea
-    content: Requests with an invalid or missing auth token are rejected
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  0838d46a-7360-4792-922c-62c8b7f65ac4:
-    id: 0838d46a-7360-4792-922c-62c8b7f65ac4
-    content: Requests with an unknown session_id are gracefully ignored (no crash)
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  04d44f42-c770-4900-948a-9d4fc694b729:
-    id: 04d44f42-c770-4900-948a-9d4fc694b729
-    content: Parsed hook events are forwarded to the renderer process via IPC
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  2a0423af-1c90-405f-b74f-eec553832308:
-    id: 2a0423af-1c90-405f-b74f-eec553832308
-    content: 'On SessionStart: renderer maps session_id to the terminal tab that spawned the session'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  3928dac7-f39b-4833-b518-10d70a216be7:
-    id: 3928dac7-f39b-4833-b518-10d70a216be7
-    content: 'On Stop: renderer looks up session → terminal → node for advancement logic'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  58be6edf-44ba-46b7-9a03-560d8b05b421:
-    id: 58be6edf-44ba-46b7-9a03-560d8b05b421
-    content: 'On Notification: renderer shows toast and pauses the affected node''s workflow'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  2888cf12-5196-4c93-bc74-9085dcb79c0d:
-    id: 2888cf12-5196-4c93-bc74-9085dcb79c0d
-    content: When the AI tool restarts in the same tab (new SessionStart), the mapping updates cleanly
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  8ab636e2-53d9-489c-846e-9188d3c559d1:
-    id: 8ab636e2-53d9-489c-846e-9188d3c559d1
-    content: Constraints and assumptions
-    children:
-      - d0c7b55b-9dfc-4bb5-b914-76a2180d1fcc
-      - 8d01fb8e-b3db-4692-ac60-3d177f6c0dd0
-      - 812fed13-fc5b-4e18-84ae-d8cf9e4fc323
-      - 6270ebb5-19b5-4c84-842f-fa1f8f895d3d
-      - 8be71256-10fa-4f17-9dee-d3075c0a263a
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  d0c7b55b-9dfc-4bb5-b914-76a2180d1fcc:
-    id: d0c7b55b-9dfc-4bb5-b914-76a2180d1fcc
-    content: No HTTP server infrastructure exists yet in the main process — this is entirely new code and the largest single unit of new work
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  8d01fb8e-b3db-4692-ac60-3d177f6c0dd0:
-    id: 8d01fb8e-b3db-4692-ac60-3d177f6c0dd0
-    content: The correlation between SessionStart and a specific terminal tab is ambiguous — no explicit link exists between the AI tool's session_id and Arborescent's terminal tab ID; the implementation strategy needs early validation
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  812fed13-fc5b-4e18-84ae-d8cf9e4fc323:
-    id: 812fed13-fc5b-4e18-84ae-d8cf9e4fc323
-    content: Hook integration is initially Claude Code-specific but should be abstracted behind a generic interface for future AI tool support
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  6270ebb5-19b5-4c84-842f-fa1f8f895d3d:
-    id: 6270ebb5-19b5-4c84-842f-fa1f8f895d3d
-    content: The AI tool's hook API (payload format, event names, session ID behavior) is an external dependency that could change
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  8be71256-10fa-4f17-9dee-d3075c0a263a:
-    id: 8be71256-10fa-4f17-9dee-d3075c0a263a
-    content: Port conflicts and firewall interference are possible — mitigate by binding to localhost and allowing configurable port
-    children: []
-    metadata:
-      status: pending
-      expanded: true
       deleted: false
       plugins: {}
   a30a4d15-15be-4c1c-9164-d699e6b82d42:
     id: a30a4d15-15be-4c1c-9164-d699e6b82d42
     content: 'User Story 5: Workflow execution orchestrator'
     children:
-      - e8014a26-eb9a-40d4-a577-07d45a5096ee
-      - 33681e34-6bc2-44b2-b9ba-c3eba3b78b8e
-      - 9b1cbe9b-2f7d-4aab-beb3-337b583f901b
-      - a3f755aa-8ca2-4319-84d9-39286722e7ff
+      - ce5d1301-eb57-4013-805e-dcc90979effc
+      - 554ba439-263a-4907-9d91-2624e36f705b
+      - 7ccc3832-0637-46f7-bd3b-b4fa9d5fc091
+      - 929875cb-190b-426f-b66b-545dc3115a23
     metadata:
       status: pending
       expanded: false
-      deleted: false
-      plugins: {}
-  e8014a26-eb9a-40d4-a577-07d45a5096ee:
-    id: e8014a26-eb9a-40d4-a577-07d45a5096ee
-    content: Problem statement
-    children:
-      - 4fb563a1-308a-4898-b5ed-785074879476
-      - 23461626-cf11-48f9-83b0-8766803fe356
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  4fb563a1-308a-4898-b5ed-785074879476:
-    id: 4fb563a1-308a-4898-b5ed-785074879476
-    content: With step types defined, execution state tracked, node advancement built, and hook events flowing in, the system needs a central orchestrator that evaluates step types, makes advancement decisions, handles checkpoints, manages timeouts, and coordinates the full workflow lifecycle
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  23461626-cf11-48f9-83b0-8766803fe356:
-    id: 23461626-cf11-48f9-83b0-8766803fe356
-    content: Without this, the individual pieces exist but nothing drives the workflow forward end-to-end
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  33681e34-6bc2-44b2-b9ba-c3eba3b78b8e:
-    id: 33681e34-6bc2-44b2-b9ba-c3eba3b78b8e
-    content: Use cases
-    children:
-      - 8a13cb76-6416-46e6-a022-f9f69842e08d
-      - 4b9736e6-436a-48ee-ac37-dfcd30dc6388
-      - 081863e5-8397-4b4d-b256-4608c08bf9e4
-      - 357dea62-9594-4b41-a44d-4436a1f2c30f
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  8a13cb76-6416-46e6-a022-f9f69842e08d:
-    id: 8a13cb76-6416-46e6-a022-f9f69842e08d
-    content: 'Primary: A 3-step workflow (Autonomous → Checkpoint → Manual) — AI finishes step 1, node auto-advances and sends to terminal; AI finishes step 2, checkpoint prompt appears; user clicks Continue, node advances to step 3; AI finishes step 3, workflow completes'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  4b9736e6-436a-48ee-ac37-dfcd30dc6388:
-    id: 4b9736e6-436a-48ee-ac37-dfcd30dc6388
-    content: 'Secondary: Two nodes run through the same workflow in parallel on separate terminal tabs, each progressing independently'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  081863e5-8397-4b4d-b256-4608c08bf9e4:
-    id: 081863e5-8397-4b4d-b256-4608c08bf9e4
-    content: 'Secondary: A step has no hook event for 10 minutes — timeout dialog appears offering to dismiss or pause'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  357dea62-9594-4b41-a44d-4436a1f2c30f:
-    id: 357dea62-9594-4b41-a44d-4436a1f2c30f
-    content: 'Secondary: User changes a step type mid-run — when the node arrives at the modified step, the new type is evaluated (not the type at workflow start)'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  9b1cbe9b-2f7d-4aab-beb3-337b583f901b:
-    id: 9b1cbe9b-2f7d-4aab-beb3-337b583f901b
-    content: Acceptance criteria
-    children:
-      - 39a832ef-27f5-4169-8d68-cfdeacfb9b53
-      - 541f4919-0a95-4a1b-bd97-2ee94e6cf0f0
-      - 17f32727-b6ee-467a-9c90-faa6b99f909c
-      - 3fa1e8c6-e384-483f-bc98-2dbdde0f2f0b
-      - 2830ad87-6b7a-4dde-863e-7c20bd183157
-      - 30ed7674-3286-4a8f-973c-acd2de90f426
-      - 13226d05-7e69-4a0d-b0a4-e0720953a2c2
-      - cddeed08-db68-4b9d-a17e-4532d64b805c
-      - 0605873d-5037-4769-83c8-6c927215ed63
-      - 1a338c8b-2f9e-487c-9ea1-241800417167
-      - 6771524c-a330-43da-8891-0f20a9a8cb49
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  39a832ef-27f5-4169-8d68-cfdeacfb9b53:
-    id: 39a832ef-27f5-4169-8d68-cfdeacfb9b53
-    content: 'On Stop event for a running node at an Autonomous step: advance node and send content to terminal with next step''s contexts'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  541f4919-0a95-4a1b-bd97-2ee94e6cf0f0:
-    id: 541f4919-0a95-4a1b-bd97-2ee94e6cf0f0
-    content: 'On Stop event for a running node at a Checkpoint step: show toast "Step N complete. Continue to Step N+1?" with Continue (advances) and Stop (pauses) buttons'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  17f32727-b6ee-467a-9c90-faa6b99f909c:
-    id: 17f32727-b6ee-467a-9c90-faa6b99f909c
-    content: 'On Stop event for a running node at a Manual step: no automated action — node stays, user must manually advance'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  3fa1e8c6-e384-483f-bc98-2dbdde0f2f0b:
-    id: 3fa1e8c6-e384-483f-bc98-2dbdde0f2f0b
-    content: 'On Notification event: show toast and pause the affected node''s workflow'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  2830ad87-6b7a-4dde-863e-7c20bd183157:
-    id: 2830ad87-6b7a-4dde-863e-7c20bd183157
-    content: Step type is evaluated at the moment the node arrives at a step, not when the workflow was started
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  30ed7674-3286-4a8f-973c-acd2de90f426:
-    id: 30ed7674-3286-4a8f-973c-acd2de90f426
-    content: 'Step timeout: configurable interval (default 10 minutes) — shows dialog after timeout with no hook activity'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  13226d05-7e69-4a0d-b0a4-e0720953a2c2:
-    id: 13226d05-7e69-4a0d-b0a4-e0720953a2c2
-    content: On first "Start Workflow", if the hook endpoint has never received any request, show a setup guide with instructions for configuring the AI tool's hooks (includes auth token and endpoint URL)
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  cddeed08-db68-4b9d-a17e-4532d64b805c:
-    id: cddeed08-db68-4b9d-a17e-4532d64b805c
-    content: The hook-received flag is persisted in preferences so the guide doesn't reappear
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  0605873d-5037-4769-83c8-6c927215ed63:
-    id: 0605873d-5037-4769-83c8-6c927215ed63
-    content: 'Parallel execution: multiple nodes advance independently with no cross-contamination of state'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  1a338c8b-2f9e-487c-9ea1-241800417167:
-    id: 1a338c8b-2f9e-487c-9ea1-241800417167
-    content: Hook event processing is non-blocking — advancement and UI updates happen asynchronously
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  6771524c-a330-43da-8891-0f20a9a8cb49:
-    id: 6771524c-a330-43da-8891-0f20a9a8cb49
-    content: File saves during automated advancement are debounced to avoid rapid writes
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  a3f755aa-8ca2-4319-84d9-39286722e7ff:
-    id: a3f755aa-8ca2-4319-84d9-39286722e7ff
-    content: Constraints and assumptions
-    children:
-      - b953f49b-1547-4514-aecb-324efc10a15b
-      - 24ad5476-83dd-4ec8-a558-fe32294238f0
-      - 542901dc-4ccb-41e7-b601-2d1dab402e33
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  b953f49b-1547-4514-aecb-324efc10a15b:
-    id: b953f49b-1547-4514-aecb-324efc10a15b
-    content: Depends on User Stories 2, 3, and 4 (execution state, advancement, hook server)
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  24ad5476-83dd-4ec8-a558-fe32294238f0:
-    id: 24ad5476-83dd-4ec8-a558-fe32294238f0
-    content: The orchestrator is the highest-complexity integration point — concurrent nodes with mixed step types is the most likely area for defects
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  542901dc-4ccb-41e7-b601-2d1dab402e33:
-    id: 542901dc-4ccb-41e7-b601-2d1dab402e33
-    content: Sending to the wrong terminal during Autonomous advancement is the highest-impact failure mode
-    children: []
-    metadata:
-      status: pending
-      expanded: true
       deleted: false
       plugins: {}
   545562f0-7717-474c-b37c-b93025d16a20:
     id: 545562f0-7717-474c-b37c-b93025d16a20
     content: 'User Story 6: Graceful handling of disruptions during workflow execution'
     children:
-      - f2a5cd2b-c627-4031-ae24-f52dbb339e66
-      - 4efe9eba-140a-4e00-a26c-be18e13f4d62
-      - 81f7046a-015a-49c3-bb90-3f9c38f30fab
-      - 6dcfd045-285d-4b56-ad9c-e0118d11822b
+      - ea31471b-b6f8-4c9b-a53e-3d52e0740d0e
+      - 9f29e2f4-94b0-49fe-8d65-1e44a1776396
+      - 164f31da-2943-45f2-b29d-192462c3f071
+      - f09ff5fa-89c1-4fc6-be2b-67ce35fe23e1
     metadata:
       status: pending
       expanded: false
-      deleted: false
-      plugins: {}
-  f2a5cd2b-c627-4031-ae24-f52dbb339e66:
-    id: f2a5cd2b-c627-4031-ae24-f52dbb339e66
-    content: Problem statement
-    children:
-      - 586871d9-bb72-44e6-8af2-2346572b3c60
-      - 531bc928-7265-4f1c-b395-1b16af721741
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  586871d9-bb72-44e6-8af2-2346572b3c60:
-    id: 586871d9-bb72-44e6-8af2-2346572b3c60
-    content: 'A user running automated workflows will encounter disruptions: terminal tabs closing, nodes being deleted or moved, steps being modified, or the application restarting'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  531bc928-7265-4f1c-b395-1b16af721741:
-    id: 531bc928-7265-4f1c-b395-1b16af721741
-    content: If these are not handled, workflows can enter corrupted states — running nodes with no terminal, advancement targeting deleted steps, or orphaned execution state
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  4efe9eba-140a-4e00-a26c-be18e13f4d62:
-    id: 4efe9eba-140a-4e00-a26c-be18e13f4d62
-    content: Use cases
-    children:
-      - 2231b582-a187-4b26-9bd4-668318c0490f
-      - 3e758e00-3dc2-4a86-87c2-f47031db2614
-      - f1b19f0b-7080-4eb1-a262-28f1e3fc70aa
-      - 8acc7531-6af8-45f6-bb2c-2d947201ae3e
-      - 046cc39d-4863-4927-8267-29687d2008fe
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  2231b582-a187-4b26-9bd4-668318c0490f:
-    id: 2231b582-a187-4b26-9bd4-668318c0490f
-    content: 'Primary: User closes a terminal tab while a node is running — the node pauses and a toast explains what happened, allowing the user to reopen a terminal and resume'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  3e758e00-3dc2-4a86-87c2-f47031db2614:
-    id: 3e758e00-3dc2-4a86-87c2-f47031db2614
-    content: 'Secondary: User deletes a running node — the workflow stops and the terminal is released'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f1b19f0b-7080-4eb1-a262-28f1e3fc70aa:
-    id: f1b19f0b-7080-4eb1-a262-28f1e3fc70aa
-    content: 'Secondary: User manually moves a running node to a different step — the workflow pauses and the user can resume from the new position'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  8acc7531-6af8-45f6-bb2c-2d947201ae3e:
-    id: 8acc7531-6af8-45f6-bb2c-2d947201ae3e
-    content: 'Secondary: Application crashes or restarts while a node is running — on reload the node is shown as paused'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  046cc39d-4863-4927-8267-29687d2008fe:
-    id: 046cc39d-4863-4927-8267-29687d2008fe
-    content: 'Secondary: User deletes or reorders steps while a node is running at a different step — on next advancement the system uses the current tree state'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  81f7046a-015a-49c3-bb90-3f9c38f30fab:
-    id: 81f7046a-015a-49c3-bb90-3f9c38f30fab
-    content: Acceptance criteria
-    children:
-      - 6d9646fe-a71f-4fc2-b80d-213f0b64adb4
-      - 161cab04-cbe3-4fab-842e-b369ec6f8d09
-      - 634568b2-4c8d-4222-98de-97248d329e96
-      - ead6bd1e-669f-47c0-9f58-7d0236882b9d
-      - 73a771b1-c559-4247-80b0-e98419c16916
-      - 8fee5475-3716-4baa-b316-e696a2c53612
-      - a61e1f4c-cb14-4676-8fbc-78f802cbe74d
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  6d9646fe-a71f-4fc2-b80d-213f0b64adb4:
-    id: 6d9646fe-a71f-4fc2-b80d-213f0b64adb4
-    content: 'Terminal tab closed mid-workflow: pause all running nodes assigned to that tab, release terminal assignments, show toast'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  161cab04-cbe3-4fab-842e-b369ec6f8d09:
-    id: 161cab04-cbe3-4fab-842e-b369ec6f8d09
-    content: 'Running node deleted: stop its workflow, release terminal assignment, clear execution state'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  634568b2-4c8d-4222-98de-97248d329e96:
-    id: 634568b2-4c8d-4222-98de-97248d329e96
-    content: 'Step deleted while a node is at that step: pause the node, show toast'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ead6bd1e-669f-47c0-9f58-7d0236882b9d:
-    id: ead6bd1e-669f-47c0-9f58-7d0236882b9d
-    content: 'All steps removed from a workflow with running nodes: pause all affected nodes and complete their workflows'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  73a771b1-c559-4247-80b0-e98419c16916:
-    id: 73a771b1-c559-4247-80b0-e98419c16916
-    content: 'User manually moves a running node to a different step: pause that node, allow user to resume from new position'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  8fee5475-3716-4baa-b316-e696a2c53612:
-    id: 8fee5475-3716-4baa-b316-e696a2c53612
-    content: 'Tree edits while a node is running at a different step: no immediate action — on next advancement, the current tree state is used'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  a61e1f4c-cb14-4676-8fbc-78f802cbe74d:
-    id: a61e1f4c-cb14-4676-8fbc-78f802cbe74d
-    content: 'Application restarted with nodes in Running state: set all to Paused on load, show toast'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  6dcfd045-285d-4b56-ad9c-e0118d11822b:
-    id: 6dcfd045-285d-4b56-ad9c-e0118d11822b
-    content: Constraints and assumptions
-    children:
-      - e70bae00-9a41-4f06-b414-11e9fbecc293
-      - 2bf37e1a-3812-4ab2-ad4a-bc072b8c5a26
-      - 88f4eb61-dd0f-4adc-a591-f4f16b75af5d
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e70bae00-9a41-4f06-b414-11e9fbecc293:
-    id: e70bae00-9a41-4f06-b414-11e9fbecc293
-    content: Depends on User Stories 2, 3, 4, and 5 (execution state, advancement, hooks, orchestrator)
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  2bf37e1a-3812-4ab2-ad4a-bc072b8c5a26:
-    id: 2bf37e1a-3812-4ab2-ad4a-bc072b8c5a26
-    content: Edge case handlers are defensive code layered on top of the orchestrator — they should not introduce new mutation paths
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  88f4eb61-dd0f-4adc-a591-f4f16b75af5d:
-    id: 88f4eb61-dd0f-4adc-a591-f4f16b75af5d
-    content: Terminal close detection depends on existing terminal lifecycle events
-    children: []
-    metadata:
-      status: pending
-      expanded: true
       deleted: false
       plugins: {}
   7498a3e0-08d9-4459-ba73-b90177c39955:
@@ -38861,6 +38166,7 @@ nodes:
       - de31759d-9ced-404e-97af-69b29c5bd375
     metadata:
       status: pending
+      expanded: false
   520525f0-0345-42ee-8122-8e921d6f7d77:
     id: 520525f0-0345-42ee-8122-8e921d6f7d77
     content: Do we still need it ?
@@ -38873,3 +38179,2204 @@ nodes:
     children: []
     metadata:
       status: pending
+  ce5d1301-eb57-4013-805e-dcc90979effc:
+    id: ce5d1301-eb57-4013-805e-dcc90979effc
+    content: Problem statement
+    children:
+      - 632555e0-3c6e-4a9b-8394-9e21736bac7e
+      - 3b7216a5-98e5-4688-b962-1e27081bea8f
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  632555e0-3c6e-4a9b-8394-9e21736bac7e:
+    id: 632555e0-3c6e-4a9b-8394-9e21736bac7e
+    content: With step types defined, execution state tracked, node advancement built, and hook events flowing in, the system needs a central orchestrator that coordinates the full workflow lifecycle across parallel executions
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3b7216a5-98e5-4688-b962-1e27081bea8f:
+    id: 3b7216a5-98e5-4688-b962-1e27081bea8f
+    content: Without this, the individual pieces exist but nothing drives the workflow forward end-to-end
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  554ba439-263a-4907-9d91-2624e36f705b:
+    id: 554ba439-263a-4907-9d91-2624e36f705b
+    content: Use cases
+    children:
+      - 725748b8-25a0-4f07-8301-eb64e28c683b
+      - ac745e43-4bca-4ff9-a396-79bfe4c7f341
+      - 6788b9c1-9d30-4ba4-be25-d38e4e2e3640
+      - 3be3e151-ba52-4f6a-b60a-77cc38896eb4
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  725748b8-25a0-4f07-8301-eb64e28c683b:
+    id: 725748b8-25a0-4f07-8301-eb64e28c683b
+    content: 'Primary: A 3-step workflow (Autonomous → Checkpoint → Manual) — AI finishes step 1, node auto-advances and sends to terminal; AI finishes step 2, workflow pauses with notification; user resumes and advances to step 3 (manual), workflow pauses; user sends manually, AI finishes, workflow completes'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ac745e43-4bca-4ff9-a396-79bfe4c7f341:
+    id: ac745e43-4bca-4ff9-a396-79bfe4c7f341
+    content: 'Secondary: Two nodes run through the same workflow in parallel on separate terminal tabs, each progressing independently'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6788b9c1-9d30-4ba4-be25-d38e4e2e3640:
+    id: 6788b9c1-9d30-4ba4-be25-d38e4e2e3640
+    content: 'Secondary: A step has no hook event for 10 minutes — timeout dialog appears offering to dismiss or pause'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3be3e151-ba52-4f6a-b60a-77cc38896eb4:
+    id: 3be3e151-ba52-4f6a-b60a-77cc38896eb4
+    content: 'Secondary: User changes a step type mid-run — when the node arrives at the modified step, the new type is evaluated (not the type at workflow start)'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7ccc3832-0637-46f7-bd3b-b4fa9d5fc091:
+    id: 7ccc3832-0637-46f7-bd3b-b4fa9d5fc091
+    content: Acceptance criteria
+    children:
+      - 2f789e48-aed9-494d-83fc-b1c7d2c47940
+      - ba5c8dd2-ef3c-4916-adfc-9cb9ed4a466d
+      - 338692f2-fc52-487c-9fa5-24cf7cfdf922
+      - f6f15c30-cd5d-43bb-921a-ea6c4a53f00e
+      - c93adedd-8f28-4ede-a402-b6467b28f134
+      - 30f46ba7-6fe5-4c78-9561-52230b4b7daf
+      - 7afcdd61-ac9a-417e-b047-596a06b13c0b
+      - f4fafd4c-9e2e-4551-b143-567a2adf929c
+      - d498b338-c53e-486f-8e73-ac4b489e2ade
+      - 08a6af4a-3435-4057-a6df-c05f5633ae9c
+      - 19c9836b-7e1a-4cad-828a-50c92fdc7326
+      - 35ada416-2be8-4a7e-96da-8ac13eb43453
+      - 1832a91f-7964-40db-946d-f996a0363eb1
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2f789e48-aed9-494d-83fc-b1c7d2c47940:
+    id: 2f789e48-aed9-494d-83fc-b1c7d2c47940
+    content: 'On Stop event for a running node at an Autonomous step: advance node and send content to terminal with next step''s contexts'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ba5c8dd2-ef3c-4916-adfc-9cb9ed4a466d:
+    id: ba5c8dd2-ef3c-4916-adfc-9cb9ed4a466d
+    content: 'On Stop event for a running node at a Checkpoint step: pause workflow and show toast "Step complete for [name]"'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  338692f2-fc52-487c-9fa5-24cf7cfdf922:
+    id: 338692f2-fc52-487c-9fa5-24cf7cfdf922
+    content: 'On Stop event for a running node at a Manual step: no automated action — node stays, user must manually advance'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f6f15c30-cd5d-43bb-921a-ea6c4a53f00e:
+    id: f6f15c30-cd5d-43bb-921a-ea6c4a53f00e
+    content: 'On Notification event: show toast and pause the affected node''s workflow'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c93adedd-8f28-4ede-a402-b6467b28f134:
+    id: c93adedd-8f28-4ede-a402-b6467b28f134
+    content: Step type is evaluated at the moment the node arrives at a step, not when the workflow was started
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  30f46ba7-6fe5-4c78-9561-52230b4b7daf:
+    id: 30f46ba7-6fe5-4c78-9561-52230b4b7daf
+    content: 'Step timeout: configurable interval (default 10 minutes) — shows dialog after timeout with no hook activity'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7afcdd61-ac9a-417e-b047-596a06b13c0b:
+    id: 7afcdd61-ac9a-417e-b047-596a06b13c0b
+    content: On first "Start Workflow", if the hook endpoint has never received any request, show a setup guide with instructions for configuring the AI tool's hooks (includes auth token and endpoint URL)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f4fafd4c-9e2e-4551-b143-567a2adf929c:
+    id: f4fafd4c-9e2e-4551-b143-567a2adf929c
+    content: The hook-received flag is persisted in preferences so the guide doesn't reappear
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d498b338-c53e-486f-8e73-ac4b489e2ade:
+    id: d498b338-c53e-486f-8e73-ac4b489e2ade
+    content: 'Parallel execution: multiple nodes advance independently with no cross-contamination of state'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  08a6af4a-3435-4057-a6df-c05f5633ae9c:
+    id: 08a6af4a-3435-4057-a6df-c05f5633ae9c
+    content: Hook event processing is non-blocking — advancement and UI updates happen asynchronously
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  19c9836b-7e1a-4cad-828a-50c92fdc7326:
+    id: 19c9836b-7e1a-4cad-828a-50c92fdc7326
+    content: File saves during automated advancement are debounced to avoid rapid writes
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  35ada416-2be8-4a7e-96da-8ac13eb43453:
+    id: 35ada416-2be8-4a7e-96da-8ac13eb43453
+    content: 'On advancement to a Manual step: node moves but content is NOT sent to terminal, workflow pauses with waiting notification'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1832a91f-7964-40db-946d-f996a0363eb1:
+    id: 1832a91f-7964-40db-946d-f996a0363eb1
+    content: 'On advancement to an Autonomous or Checkpoint step: content is sent to the assigned terminal'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  929875cb-190b-426f-b66b-545dc3115a23:
+    id: 929875cb-190b-426f-b66b-545dc3115a23
+    content: Constraints and assumptions
+    children:
+      - d9070e1f-5e80-4af5-bb9e-f5456683bccc
+      - 9039a048-c1f4-4673-9f6d-1250c533d5d7
+      - 5dcc44f7-1c78-43a7-897b-de6e85cd478c
+      - 8d61b368-5aec-4577-929c-24a7d8699c1f
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d9070e1f-5e80-4af5-bb9e-f5456683bccc:
+    id: d9070e1f-5e80-4af5-bb9e-f5456683bccc
+    content: Depends on User Stories 2, 3, and 4 (execution state, advancement, hook server)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9039a048-c1f4-4673-9f6d-1250c533d5d7:
+    id: 9039a048-c1f4-4673-9f6d-1250c533d5d7
+    content: The orchestrator is the highest-complexity integration point — concurrent nodes with mixed step types is the most likely area for defects
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5dcc44f7-1c78-43a7-897b-de6e85cd478c:
+    id: 5dcc44f7-1c78-43a7-897b-de6e85cd478c
+    content: Sending to the wrong terminal during Autonomous advancement is the highest-impact failure mode
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8d61b368-5aec-4577-929c-24a7d8699c1f:
+    id: 8d61b368-5aec-4577-929c-24a7d8699c1f
+    content: Sending content from the menu (executeInTerminalWithContext) does NOT resume a paused workflow — resuming is an explicit action
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ea31471b-b6f8-4c9b-a53e-3d52e0740d0e:
+    id: ea31471b-b6f8-4c9b-a53e-3d52e0740d0e
+    content: Problem statement
+    children:
+      - c2bddc7a-e35b-4be3-a8a8-17fdb68f4b68
+      - f1a6f7b2-7ffa-4c58-976e-e8c898fa9ad4
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c2bddc7a-e35b-4be3-a8a8-17fdb68f4b68:
+    id: c2bddc7a-e35b-4be3-a8a8-17fdb68f4b68
+    content: 'A user running automated workflows will encounter disruptions: terminal tabs closing, nodes being deleted or moved, steps being modified, or the application restarting'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f1a6f7b2-7ffa-4c58-976e-e8c898fa9ad4:
+    id: f1a6f7b2-7ffa-4c58-976e-e8c898fa9ad4
+    content: If these are not handled, workflows can enter corrupted states — running nodes with no terminal, advancement targeting deleted steps, or orphaned execution state
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9f29e2f4-94b0-49fe-8d65-1e44a1776396:
+    id: 9f29e2f4-94b0-49fe-8d65-1e44a1776396
+    content: Use cases
+    children:
+      - 65a7c521-65d0-4a2b-b975-88cfe8198718
+      - bece412e-3d81-46ec-bb9d-e7a3b820f38d
+      - 5fe2c1db-8086-4ef7-a44d-318dd32ca6b1
+      - 74841904-7b55-4224-b9ee-4373c130401e
+      - ecf300be-44d9-4fc8-923f-4d2a56a508df
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  65a7c521-65d0-4a2b-b975-88cfe8198718:
+    id: 65a7c521-65d0-4a2b-b975-88cfe8198718
+    content: 'Primary: User closes a terminal tab while a node is running — the node pauses and a toast explains what happened, allowing the user to reopen a terminal and resume'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  bece412e-3d81-46ec-bb9d-e7a3b820f38d:
+    id: bece412e-3d81-46ec-bb9d-e7a3b820f38d
+    content: 'Secondary: User deletes a running node — the workflow stops and the terminal is released'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5fe2c1db-8086-4ef7-a44d-318dd32ca6b1:
+    id: 5fe2c1db-8086-4ef7-a44d-318dd32ca6b1
+    content: 'Secondary: User manually moves a running node to a different step — the workflow pauses and the user can resume from the new position'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  74841904-7b55-4224-b9ee-4373c130401e:
+    id: 74841904-7b55-4224-b9ee-4373c130401e
+    content: 'Secondary: Application crashes or restarts while a node is running — on reload the node is shown as paused'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ecf300be-44d9-4fc8-923f-4d2a56a508df:
+    id: ecf300be-44d9-4fc8-923f-4d2a56a508df
+    content: 'Secondary: User deletes or reorders steps while a node is running at a different step — on next advancement the system uses the current tree state'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  164f31da-2943-45f2-b29d-192462c3f071:
+    id: 164f31da-2943-45f2-b29d-192462c3f071
+    content: Acceptance criteria
+    children:
+      - 6d453838-44d8-4183-8eb3-058ee15c90c7
+      - 57702607-4ba6-4793-8057-2639a938b8bc
+      - 6adb061b-2574-4082-a0e0-059f14f977de
+      - 4e2f8be9-4ee4-4baf-94c2-bca48f777b03
+      - b66a8215-c4d1-49ce-852f-8525722bbfbd
+      - 5728c553-c4e0-4256-9c55-41a173ae23c1
+      - 654bd451-0884-48dc-abcf-fc52d4ca2eb3
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6d453838-44d8-4183-8eb3-058ee15c90c7:
+    id: 6d453838-44d8-4183-8eb3-058ee15c90c7
+    content: 'Terminal tab closed mid-workflow: pause all running nodes assigned to that tab, release terminal assignments, show toast'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  57702607-4ba6-4793-8057-2639a938b8bc:
+    id: 57702607-4ba6-4793-8057-2639a938b8bc
+    content: 'Running node deleted: stop its workflow, release terminal assignment, clear execution state'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6adb061b-2574-4082-a0e0-059f14f977de:
+    id: 6adb061b-2574-4082-a0e0-059f14f977de
+    content: 'Step deleted while a node is at that step: pause the node, show toast'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4e2f8be9-4ee4-4baf-94c2-bca48f777b03:
+    id: 4e2f8be9-4ee4-4baf-94c2-bca48f777b03
+    content: 'All steps removed from a workflow with running nodes: pause all affected nodes and complete their workflows'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b66a8215-c4d1-49ce-852f-8525722bbfbd:
+    id: b66a8215-c4d1-49ce-852f-8525722bbfbd
+    content: 'User manually moves a running node to a different step: pause that node, allow user to resume from new position'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5728c553-c4e0-4256-9c55-41a173ae23c1:
+    id: 5728c553-c4e0-4256-9c55-41a173ae23c1
+    content: 'Tree edits while a node is running at a different step: no immediate action — on next advancement, the current tree state is used'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  654bd451-0884-48dc-abcf-fc52d4ca2eb3:
+    id: 654bd451-0884-48dc-abcf-fc52d4ca2eb3
+    content: 'Application restarted with nodes in Running state: set all to Paused on load, show toast'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f09ff5fa-89c1-4fc6-be2b-67ce35fe23e1:
+    id: f09ff5fa-89c1-4fc6-be2b-67ce35fe23e1
+    content: Constraints and assumptions
+    children:
+      - b6f1dbf6-eb84-435f-a81e-7e0b22fe3c1f
+      - a798faad-32b6-43d8-9a8b-600bd85ffada
+      - b16a5eb5-8cd2-4fc4-84c3-1522c77fbd28
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b6f1dbf6-eb84-435f-a81e-7e0b22fe3c1f:
+    id: b6f1dbf6-eb84-435f-a81e-7e0b22fe3c1f
+    content: Depends on User Stories 2, 3, 4, and 5 (execution state, advancement, hooks, orchestrator)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a798faad-32b6-43d8-9a8b-600bd85ffada:
+    id: a798faad-32b6-43d8-9a8b-600bd85ffada
+    content: Edge case handlers are defensive code layered on top of the orchestrator — they should not introduce new mutation paths
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b16a5eb5-8cd2-4fc4-84c3-1522c77fbd28:
+    id: b16a5eb5-8cd2-4fc4-84c3-1522c77fbd28
+    content: Terminal close detection depends on existing terminal lifecycle events
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9692fa14-b407-4595-8af9-30f68e3b0d1a:
+    id: 9692fa14-b407-4595-8af9-30f68e3b0d1a
+    content: When there are a lot of contexts, the top of the context menu gets truncated
+    children:
+      - 87bd6b9f-7d94-43be-bb9f-9c17a07567b3
+    metadata:
+      status: pending
+  87bd6b9f-7d94-43be-bb9f-9c17a07567b3:
+    id: 87bd6b9f-7d94-43be-bb9f-9c17a07567b3
+    content: Depends on the vertical positioning of the node you are opening the context menu on
+    children: []
+    metadata:
+      status: pending
+  486ffdcb-7e45-4cd5-90e5-d4504572d327:
+    id: 486ffdcb-7e45-4cd5-90e5-d4504572d327
+    content: Problem statement
+    children:
+      - 3c8ccc5b-c93e-49d0-bb16-fdbf17221613
+      - 91c51542-3039-40c0-a27f-4a83e67b46f0
+      - 911c810d-c032-4752-8c29-470137d01e54
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3c8ccc5b-c93e-49d0-bb16-fdbf17221613:
+    id: 3c8ccc5b-c93e-49d0-bb16-fdbf17221613
+    content: For workflow automation to respond to AI completion events, Arborescent needs to receive signals from the AI tool running in the terminal
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  91c51542-3039-40c0-a27f-4a83e67b46f0:
+    id: 91c51542-3039-40c0-a27f-4a83e67b46f0
+    content: Currently the app can send to the terminal but has no way to know when the AI finishes — there is no inbound communication channel
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  911c810d-c032-4752-8c29-470137d01e54:
+    id: 911c810d-c032-4752-8c29-470137d01e54
+    content: An HTTP endpoint combined with a session-to-terminal mapping provides this missing feedback loop
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9fdeb5d5-49a9-475a-a760-bffc29d49fe5:
+    id: 9fdeb5d5-49a9-475a-a760-bffc29d49fe5
+    content: Use cases
+    children:
+      - 8623af2f-8dd8-4169-bf8e-2ad73a1cbc7c
+      - 19c0ec45-733c-4a07-8151-750b7cbb0be6
+      - 4b9a7c0e-93d9-45ef-8e51-bfae55272225
+      - 9899237c-5761-4bf1-bf94-4bc1d0ff00e4
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8623af2f-8dd8-4169-bf8e-2ad73a1cbc7c:
+    id: 8623af2f-8dd8-4169-bf8e-2ad73a1cbc7c
+    content: 'Primary: AI tool finishes processing and its hook POSTs a Stop event to the local endpoint — Arborescent looks up the session, identifies the terminal tab and assigned node, and routes the event for processing'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  19c0ec45-733c-4a07-8151-750b7cbb0be6:
+    id: 19c0ec45-733c-4a07-8151-750b7cbb0be6
+    content: 'Secondary: AI tool starts a new session — a SessionStart event maps the session ID to the originating terminal tab'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4b9a7c0e-93d9-45ef-8e51-bfae55272225:
+    id: 4b9a7c0e-93d9-45ef-8e51-bfae55272225
+    content: 'Secondary: AI tool restarts in the same tab — a new SessionStart updates the mapping without disrupting running nodes'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9899237c-5761-4bf1-bf94-4bc1d0ff00e4:
+    id: 9899237c-5761-4bf1-bf94-4bc1d0ff00e4
+    content: 'Secondary: AI tool sends a Notification event — Arborescent shows a toast and pauses the affected node''s workflow'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  10241c2c-e919-4ba2-b47e-17e9f6e6aa38:
+    id: 10241c2c-e919-4ba2-b47e-17e9f6e6aa38
+    content: Acceptance criteria
+    children:
+      - 40ef2c48-6926-4fc1-bcf1-1e44132d8961
+      - efb5cb1f-e0c3-4a9e-adb5-0722e8e1b64e
+      - ed56bd70-51de-4b7c-994c-ca3e7e5485ab
+      - 1b8a1136-c5b2-48eb-ab3c-8f27363f97d6
+      - db90fd62-f228-49e2-84f0-71903f5097b6
+      - d1f506bd-fd01-4672-aabb-d227a32d002e
+      - 62d6e0ef-e72e-48e0-8e7e-6b1e31bb82f2
+      - 81c97b60-9901-4a86-b1e1-98cfdc50e25f
+      - f0599950-8bf5-485b-8adc-b44dc4232a97
+      - 051ec4dc-1e77-4eb8-8fd8-1aab89161d97
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  40ef2c48-6926-4fc1-bcf1-1e44132d8961:
+    id: 40ef2c48-6926-4fc1-bcf1-1e44132d8961
+    content: An HTTP server starts in the main process, bound to localhost only (no external network exposure)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  efb5cb1f-e0c3-4a9e-adb5-0722e8e1b64e:
+    id: efb5cb1f-e0c3-4a9e-adb5-0722e8e1b64e
+    content: An auth token is generated per application session and displayed in the setup guide
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ed56bd70-51de-4b7c-994c-ca3e7e5485ab:
+    id: ed56bd70-51de-4b7c-994c-ca3e7e5485ab
+    content: The endpoint accepts a JSON payload with session_id, event type, and additional metadata
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1b8a1136-c5b2-48eb-ab3c-8f27363f97d6:
+    id: 1b8a1136-c5b2-48eb-ab3c-8f27363f97d6
+    content: Requests with an invalid or missing auth token are rejected
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  db90fd62-f228-49e2-84f0-71903f5097b6:
+    id: db90fd62-f228-49e2-84f0-71903f5097b6
+    content: Requests with an unknown session_id are gracefully ignored (no crash)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d1f506bd-fd01-4672-aabb-d227a32d002e:
+    id: d1f506bd-fd01-4672-aabb-d227a32d002e
+    content: Parsed hook events are forwarded to the renderer process via IPC
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  62d6e0ef-e72e-48e0-8e7e-6b1e31bb82f2:
+    id: 62d6e0ef-e72e-48e0-8e7e-6b1e31bb82f2
+    content: 'On SessionStart: renderer maps session_id to the terminal tab that spawned the session'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  81c97b60-9901-4a86-b1e1-98cfdc50e25f:
+    id: 81c97b60-9901-4a86-b1e1-98cfdc50e25f
+    content: 'On Stop: renderer looks up session → terminal → node for advancement logic'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f0599950-8bf5-485b-8adc-b44dc4232a97:
+    id: f0599950-8bf5-485b-8adc-b44dc4232a97
+    content: 'On Notification: renderer shows toast and pauses the affected node''s workflow'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  051ec4dc-1e77-4eb8-8fd8-1aab89161d97:
+    id: 051ec4dc-1e77-4eb8-8fd8-1aab89161d97
+    content: When the AI tool restarts in the same tab (new SessionStart), the mapping updates cleanly
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0dcae6b7-732e-443b-a95f-3fad4a9a7df6:
+    id: 0dcae6b7-732e-443b-a95f-3fad4a9a7df6
+    content: Constraints and assumptions
+    children:
+      - 0d8b7418-68ea-426b-89c6-1d74de20a22b
+      - efd5dec1-ec7b-443b-81ec-2d10db0fd4a6
+      - b1a7ab0a-722f-4196-a0be-5a2c4f9a170a
+      - ce086900-225c-4f23-9561-0d81f5b3e9f5
+      - aabf00a9-16f5-445b-9130-98a2c0da2b17
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0d8b7418-68ea-426b-89c6-1d74de20a22b:
+    id: 0d8b7418-68ea-426b-89c6-1d74de20a22b
+    content: No HTTP server infrastructure exists yet in the main process — this is entirely new code and the largest single unit of new work
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  efd5dec1-ec7b-443b-81ec-2d10db0fd4a6:
+    id: efd5dec1-ec7b-443b-81ec-2d10db0fd4a6
+    content: The correlation between SessionStart and a specific terminal tab is ambiguous — no explicit link exists between the AI tool's session_id and Arborescent's terminal tab ID; the implementation strategy needs early validation
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b1a7ab0a-722f-4196-a0be-5a2c4f9a170a:
+    id: b1a7ab0a-722f-4196-a0be-5a2c4f9a170a
+    content: Hook integration is initially Claude Code-specific but should be abstracted behind a generic interface for future AI tool support
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ce086900-225c-4f23-9561-0d81f5b3e9f5:
+    id: ce086900-225c-4f23-9561-0d81f5b3e9f5
+    content: The AI tool's hook API (payload format, event names, session ID behavior) is an external dependency that could change
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  aabf00a9-16f5-445b-9130-98a2c0da2b17:
+    id: aabf00a9-16f5-445b-9130-98a2c0da2b17
+    content: Port conflicts and firewall interference are possible — mitigate by binding to localhost and allowing configurable port
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7d35aa8b-e293-4fd6-9331-e1f91bf42edc:
+    id: 7d35aa8b-e293-4fd6-9331-e1f91bf42edc
+    content: Technical specifications
+    children:
+      - 8a83c5b8-b408-4c51-bfbd-3219a794317a
+      - d8a729e3-1020-4bf0-ad4a-8881f80831ea
+      - 3eb87029-6839-4c40-a2a8-eb4b68dd523e
+      - a4e3cc4a-274d-4d7e-9d25-25c705e499b8
+      - 05ed76db-cd08-4406-bf89-bd3fb3ac3cf1
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8a83c5b8-b408-4c51-bfbd-3219a794317a:
+    id: 8a83c5b8-b408-4c51-bfbd-3219a794317a
+    content: Inputs, outputs, and key interfaces
+    children:
+      - 411897bb-4b25-4e6a-93d7-f4ab847022d2
+      - dc4c3b97-fa8d-4849-a2ef-387aa1e6a97e
+      - b286c0fc-3192-4ae8-968c-06549f7d254a
+      - 573fa7f9-01c8-43d7-8b89-ba6250a98d1b
+      - dce61d42-92c8-4b7a-ac66-90b5b32dc296
+      - b2c3f457-42a0-47ac-a678-553598a83896
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  411897bb-4b25-4e6a-93d7-f4ab847022d2:
+    id: 411897bb-4b25-4e6a-93d7-f4ab847022d2
+    content: 'Input: HTTP POST to `localhost:<port>/hook` with JSON body `{ session_id: string, hook_event_name: string, terminal_id?: string, message?: string }`'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  dc4c3b97-fa8d-4849-a2ef-387aa1e6a97e:
+    id: dc4c3b97-fa8d-4849-a2ef-387aa1e6a97e
+    content: 'Input: `Authorization: Bearer <token>` header on every request'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b286c0fc-3192-4ae8-968c-06549f7d254a:
+    id: b286c0fc-3192-4ae8-968c-06549f7d254a
+    content: 'Output: IPC message `''hook-event''` forwarded from main to renderer with the parsed payload'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  573fa7f9-01c8-43d7-8b89-ba6250a98d1b:
+    id: 573fa7f9-01c8-43d7-8b89-ba6250a98d1b
+    content: 'Key interface — HookServer: `start(port: number): void`, `stop(): void`, `getPort(): number`, `getAuthToken(): string`'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  dce61d42-92c8-4b7a-ac66-90b5b32dc296:
+    id: dce61d42-92c8-4b7a-ac66-90b5b32dc296
+    content: 'Key interface — renderer listener: preload exposes `onHookEvent(callback)` returning a cleanup function, matching existing `onClipboardContentDetected` pattern'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b2c3f457-42a0-47ac-a678-553598a83896:
+    id: b2c3f457-42a0-47ac-a678-553598a83896
+    content: 'Terminal environment injection: `TerminalManager.create()` injects `ARBORESCENT_HOOK_PORT`, `ARBORESCENT_AUTH_TOKEN`, and `ARBORESCENT_TERMINAL_ID` into the spawned process env'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d8a729e3-1020-4bf0-ad4a-8881f80831ea:
+    id: d8a729e3-1020-4bf0-ad4a-8881f80831ea
+    content: Constraints and non-functional requirements
+    children:
+      - 4c063a34-46dd-45bc-981d-76e079412bee
+      - 23359582-a067-4331-8b4b-3027d4772f90
+      - 5610387d-7cc8-4aa2-b0ef-cd584c409410
+      - 8cd8d870-0085-4d5b-998c-729fbb6fd013
+      - 5db7be8a-af41-4e55-906d-296eecf937b7
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4c063a34-46dd-45bc-981d-76e079412bee:
+    id: 4c063a34-46dd-45bc-981d-76e079412bee
+    content: 'Security: Server MUST bind to `127.0.0.1` only (not `0.0.0.0`) — prevents external network access'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  23359582-a067-4331-8b4b-3027d4772f90:
+    id: 23359582-a067-4331-8b4b-3027d4772f90
+    content: 'Security: Auth token generated via `crypto.randomUUID()` per app session — not persisted across restarts'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5610387d-7cc8-4aa2-b0ef-cd584c409410:
+    id: 5610387d-7cc8-4aa2-b0ef-cd584c409410
+    content: 'Performance: HTTP request handling is lightweight JSON parsing + IPC send — no blocking operations'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8cd8d870-0085-4d5b-998c-729fbb6fd013:
+    id: 8cd8d870-0085-4d5b-998c-729fbb6fd013
+    content: 'Reliability: Server startup failure (port conflict) should warn the user via toast, not crash the app'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5db7be8a-af41-4e55-906d-296eecf937b7:
+    id: 5db7be8a-af41-4e55-906d-296eecf937b7
+    content: 'Accessibility: No UI impact — this is entirely backend infrastructure'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3eb87029-6839-4c40-a2a8-eb4b68dd523e:
+    id: 3eb87029-6839-4c40-a2a8-eb4b68dd523e
+    content: Technical steps
+    children:
+      - 22187c17-18a8-4cf0-8efe-08bbdf71eb23
+      - e3c55556-02f1-4282-a14e-71311c578379
+      - b9c761f5-c00a-4110-b21c-7b2318d07ad9
+      - e1ee75b4-6121-4787-8e48-53a3da56bb1e
+      - e8ae9afd-b14b-4b5d-b544-5853b06906b0
+      - 46969d38-8327-47a4-8a36-0b37db8d5745
+      - 5b9e0a5f-c426-4a16-b209-a1b4be05bb40
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  22187c17-18a8-4cf0-8efe-08bbdf71eb23:
+    id: 22187c17-18a8-4cf0-8efe-08bbdf71eb23
+    content: 'Step 1: Create HookServer service in main process — S'
+    children:
+      - a012bdb6-a4d8-49a5-9d24-a8712cf6a2ee
+      - 34ba9634-393c-41ee-9729-b98a1e0e48a3
+      - fa8e606b-8cd9-45b1-a6cc-2a8626a8388e
+      - 7141de99-7925-4333-afc6-9bd736392709
+      - 1e720ca6-d565-46d7-802b-4cb80d2611fa
+      - 7a8a414f-b70d-4421-9b30-0efd1397fe80
+      - 29a2a1ee-7381-4f8f-bec3-1c66f8f96a17
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a012bdb6-a4d8-49a5-9d24-a8712cf6a2ee:
+    id: a012bdb6-a4d8-49a5-9d24-a8712cf6a2ee
+    content: New file `src/main/services/hookServer.ts`
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  34ba9634-393c-41ee-9729-b98a1e0e48a3:
+    id: 34ba9634-393c-41ee-9729-b98a1e0e48a3
+    content: Uses Node.js built-in `http` module (no external dependency)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fa8e606b-8cd9-45b1-a6cc-2a8626a8388e:
+    id: fa8e606b-8cd9-45b1-a6cc-2a8626a8388e
+    content: '`HookServer` class with `start(port, authToken)`, `stop()`, `getPort()` methods'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7141de99-7925-4333-afc6-9bd736392709:
+    id: 7141de99-7925-4333-afc6-9bd736392709
+    content: 'POST `/hook` route: validate auth header, parse JSON body, emit event via callback'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1e720ca6-d565-46d7-802b-4cb80d2611fa:
+    id: 1e720ca6-d565-46d7-802b-4cb80d2611fa
+    content: All other routes and methods return 404/405
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7a8a414f-b70d-4421-9b30-0efd1397fe80:
+    id: 7a8a414f-b70d-4421-9b30-0efd1397fe80
+    content: Binds to `127.0.0.1` explicitly
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  29a2a1ee-7381-4f8f-bec3-1c66f8f96a17:
+    id: 29a2a1ee-7381-4f8f-bec3-1c66f8f96a17
+    content: Returns 401 for missing/invalid token, 400 for malformed JSON, 200 for accepted events
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e3c55556-02f1-4282-a14e-71311c578379:
+    id: e3c55556-02f1-4282-a14e-71311c578379
+    content: 'Step 2: Generate auth token and start server in main process — S'
+    children:
+      - efb91bfb-e406-4fcd-a775-29c38012f367
+      - a2de4c41-8027-4518-ae45-c69368f03875
+      - e433f904-be1c-4c4d-9a51-16df896a4e0d
+      - 9c687e6d-ffea-446c-a7db-0132751f170c
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  efb91bfb-e406-4fcd-a775-29c38012f367:
+    id: efb91bfb-e406-4fcd-a775-29c38012f367
+    content: 'In `main.ts` `createWindow()`: generate token via `crypto.randomUUID()`, start `HookServer` on configurable port (default 17832)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a2de4c41-8027-4518-ae45-c69368f03875:
+    id: a2de4c41-8027-4518-ae45-c69368f03875
+    content: Pass a callback to HookServer that calls `mainWindow.webContents.send('hook-event', payload)`
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e433f904-be1c-4c4d-9a51-16df896a4e0d:
+    id: e433f904-be1c-4c4d-9a51-16df896a4e0d
+    content: 'Graceful error handling: if port is in use, try next port (up to 3 attempts), then warn via toast'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9c687e6d-ffea-446c-a7db-0132751f170c:
+    id: 9c687e6d-ffea-446c-a7db-0132751f170c
+    content: Stop server on `before-quit`
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b9c761f5-c00a-4110-b21c-7b2318d07ad9:
+    id: b9c761f5-c00a-4110-b21c-7b2318d07ad9
+    content: 'Step 3: Inject environment variables into terminal spawn — S'
+    children:
+      - 25f09690-7137-4956-9969-26429d580764
+      - 0868124c-c637-4a0d-9f80-1c0141ab2b44
+      - b821bf79-ce98-4094-98e5-f2241ea379df
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  25f09690-7137-4956-9969-26429d580764:
+    id: 25f09690-7137-4956-9969-26429d580764
+    content: 'Modify `TerminalManager.create()` to accept optional `extraEnv: Record<string, string>`'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0868124c-c637-4a0d-9f80-1c0141ab2b44:
+    id: 0868124c-c637-4a0d-9f80-1c0141ab2b44
+    content: 'In `terminalHandlers.ts`: pass `{ ARBORESCENT_HOOK_PORT, ARBORESCENT_AUTH_TOKEN, ARBORESCENT_TERMINAL_ID: id }` as extraEnv'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b821bf79-ce98-4094-98e5-f2241ea379df:
+    id: b821bf79-ce98-4094-98e5-f2241ea379df
+    content: These env vars are inherited by Claude Code when it starts in the terminal
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e1ee75b4-6121-4787-8e48-53a3da56bb1e:
+    id: e1ee75b4-6121-4787-8e48-53a3da56bb1e
+    content: 'Step 4: Add preload bridge and renderer listener — S'
+    children:
+      - dcb058ce-cd9e-444e-845d-72b2ba996960
+      - 089cf511-d13c-4d8d-982c-4ac9b5df332c
+      - 29fc71c0-ec54-45da-968e-2fe0ba529a4a
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  dcb058ce-cd9e-444e-845d-72b2ba996960:
+    id: dcb058ce-cd9e-444e-845d-72b2ba996960
+    content: 'Preload: expose `onHookEvent(callback)` using the `ipcRenderer.on(''hook-event'', ...)` pattern (matches `onClipboardContentDetected`)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  089cf511-d13c-4d8d-982c-4ac9b5df332c:
+    id: 089cf511-d13c-4d8d-982c-4ac9b5df332c
+    content: 'Renderer: in the component that initializes the store (or a dedicated hook), register the listener'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  29fc71c0-ec54-45da-968e-2fe0ba529a4a:
+    id: 29fc71c0-ec54-45da-968e-2fe0ba529a4a
+    content: Listener dispatches to `registerSession` (on SessionStart, using `terminal_id` from the payload) and `handleHookEvent` (on Stop/Notification)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e8ae9afd-b14b-4b5d-b544-5853b06906b0:
+    id: e8ae9afd-b14b-4b5d-b544-5853b06906b0
+    content: 'Step 5: Claude Code hook script template — S'
+    children:
+      - 41c0e4d4-051e-4469-86bc-3934e0257f9e
+      - e9c21d4f-453a-425c-9401-de1f7f377d45
+      - d1aaa7d5-821d-438c-8478-7edacdf33f81
+      - 794bc100-be04-4db5-b132-eabb9d874a61
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  41c0e4d4-051e-4469-86bc-3934e0257f9e:
+    id: 41c0e4d4-051e-4469-86bc-3934e0257f9e
+    content: Provide a shell script or documentation for configuring Claude Code's `hooks.json`
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e9c21d4f-453a-425c-9401-de1f7f377d45:
+    id: e9c21d4f-453a-425c-9401-de1f7f377d45
+    content: Script reads `ARBORESCENT_HOOK_PORT`, `ARBORESCENT_AUTH_TOKEN`, `ARBORESCENT_TERMINAL_ID` from env
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d1aaa7d5-821d-438c-8478-7edacdf33f81:
+    id: d1aaa7d5-821d-438c-8478-7edacdf33f81
+    content: POSTs `{ session_id, hook_event_name, terminal_id }` to `localhost:<port>/hook` with Bearer auth
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  794bc100-be04-4db5-b132-eabb9d874a61:
+    id: 794bc100-be04-4db5-b132-eabb9d874a61
+    content: Session ID sourced from Claude Code's hook context (stdin JSON or env var — depends on Claude Code hooks API)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  46969d38-8327-47a4-8a36-0b37db8d5745:
+    id: 46969d38-8327-47a4-8a36-0b37db8d5745
+    content: 'Step 6: Setup guide'
+    children:
+      - 299045de-5836-4f6d-ace4-89f0d3b014ed
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+      resolvedAt: '2026-03-12T11:42:42.002Z'
+  299045de-5836-4f6d-ace4-89f0d3b014ed:
+    id: 299045de-5836-4f6d-ace4-89f0d3b014ed
+    content: Include a "Setup Guide" link or inline instructions for configuring Claude Code hooks
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+      resolvedAt: '2026-03-12T11:42:43.218Z'
+  5b9e0a5f-c426-4a16-b209-a1b4be05bb40:
+    id: 5b9e0a5f-c426-4a16-b209-a1b4be05bb40
+    content: 'Step 7: Integration tests — M'
+    children:
+      - 0f7e49e8-202e-4864-bc4a-7902b058f788
+      - 08c78d5d-1ba3-48fd-a072-8fb3d28b5fca
+      - 3e92e2bc-9633-4712-8937-a98a5f54a5df
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0f7e49e8-202e-4864-bc4a-7902b058f788:
+    id: 0f7e49e8-202e-4864-bc4a-7902b058f788
+    content: 'Test HookServer: valid auth accepted, invalid auth rejected, malformed JSON returns 400, unknown routes return 404'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  08c78d5d-1ba3-48fd-a072-8fb3d28b5fca:
+    id: 08c78d5d-1ba3-48fd-a072-8fb3d28b5fca
+    content: 'Test terminal env injection: spawned terminals include ARBORESCENT_* env vars'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3e92e2bc-9633-4712-8937-a98a5f54a5df:
+    id: 3e92e2bc-9633-4712-8937-a98a5f54a5df
+    content: 'Test end-to-end: POST to hook endpoint → IPC → renderer store dispatches registerSession/handleHookEvent'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a4e3cc4a-274d-4d7e-9d25-25c705e499b8:
+    id: a4e3cc4a-274d-4d7e-9d25-25c705e499b8
+    content: Risks and edge cases
+    children:
+      - 354d224e-fcc8-4de3-ad78-dbd36b712190
+      - 2ca5404e-bdd3-4d6d-ab90-6cb376d2d494
+      - 9279799c-a3e6-486a-b5f6-a5cfd7f4f3e2
+      - a90affe2-af25-4316-9af0-39196abaaeba
+      - 02a367c7-d2a2-47ab-aafe-ca3bc632bae0
+      - 6c2e5d54-0a1d-4273-8880-3af314fabbb9
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  354d224e-fcc8-4de3-ad78-dbd36b712190:
+    id: 354d224e-fcc8-4de3-ad78-dbd36b712190
+    content: 'Session-to-terminal correlation depends on env var inheritance — if the AI tool spawns in a subprocess that doesn''t inherit env, the terminal_id is lost. Mitigation: document requirement that AI tool must run directly in the Arborescent terminal'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2ca5404e-bdd3-4d6d-ab90-6cb376d2d494:
+    id: 2ca5404e-bdd3-4d6d-ab90-6cb376d2d494
+    content: 'Claude Code hooks API is an external dependency — payload format and event names could change between versions. Mitigation: isolate payload parsing behind an adapter so only one file needs updating'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9279799c-a3e6-486a-b5f6-a5cfd7f4f3e2:
+    id: 9279799c-a3e6-486a-b5f6-a5cfd7f4f3e2
+    content: 'Port conflicts if another instance of Arborescent is running or port is occupied. Mitigation: retry with incremental ports, surface the active port clearly in UI'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a90affe2-af25-4316-9af0-39196abaaeba:
+    id: a90affe2-af25-4316-9af0-39196abaaeba
+    content: 'Race condition: terminal created before server starts. Mitigation: start server before registering terminal handlers in `createWindow()`; env vars reference the port that was actually bound'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  02a367c7-d2a2-47ab-aafe-ca3bc632bae0:
+    id: 02a367c7-d2a2-47ab-aafe-ca3bc632bae0
+    content: Auth token leaks to child processes of the terminal. Risk is low (localhost only, single-user machine) but worth noting. The token is ephemeral (regenerated per app session)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6c2e5d54-0a1d-4273-8880-3af314fabbb9:
+    id: 6c2e5d54-0a1d-4273-8880-3af314fabbb9
+    content: If Claude Code hook script is not configured, workflows start but never advance — the existing "Configure Claude Code hooks" toast (shown when `workflowSessionMap` is empty) handles this UX gap
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  05ed76db-cd08-4406-bf89-bd3fb3ac3cf1:
+    id: 05ed76db-cd08-4406-bf89-bd3fb3ac3cf1
+    content: Implementation plan
+    children:
+      - 8c150639-07f0-4b71-a7f1-14d036e2cd57
+      - e7d6a874-c7c0-4943-adc9-efba9c9de04d
+      - b6340dc8-b619-44aa-97da-6860243fa9ef
+      - ca7a725a-28ad-430b-9851-2cb427ccabb9
+      - 4a2a5fa0-5a6c-4912-810a-447595ea4db2
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8c150639-07f0-4b71-a7f1-14d036e2cd57:
+    id: 8c150639-07f0-4b71-a7f1-14d036e2cd57
+    content: 'Changeset 1: Hook server + env injection (Steps 1–3) — pure backend, no UI changes, testable in isolation'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e7d6a874-c7c0-4943-adc9-efba9c9de04d:
+    id: e7d6a874-c7c0-4943-adc9-efba9c9de04d
+    content: 'Changeset 2: Preload bridge + renderer listener (Step 4) — wires the server to the existing store actions'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b6340dc8-b619-44aa-97da-6860243fa9ef:
+    id: b6340dc8-b619-44aa-97da-6860243fa9ef
+    content: 'Changeset 3: Hook script template + settings UI (Steps 5–6) — user-facing configuration'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ca7a725a-28ad-430b-9851-2cb427ccabb9:
+    id: ca7a725a-28ad-430b-9851-2cb427ccabb9
+    content: 'Testing strategy: Unit tests for HookServer (auth, routing, payload parsing), unit tests for env injection, integration test for full event flow (HTTP → IPC → store). Manual test: start Claude Code in terminal, verify session maps and Stop events advance nodes'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4a2a5fa0-5a6c-4912-810a-447595ea4db2:
+    id: 4a2a5fa0-5a6c-4912-810a-447595ea4db2
+    content: 'Parallelisation: Steps 1–3 and Step 5 can be developed in parallel (server infra vs hook script). Step 4 depends on Steps 1–3. Step 6 can proceed once port/token are available'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  93d445f2-6d72-4d53-85e4-8135efd2ec5a:
+    id: 93d445f2-6d72-4d53-85e4-8135efd2ec5a
+    content: Test plan
+    children:
+      - cbd29b57-8428-44ef-8273-85f9518e24fa
+      - 13314557-9c6f-4dc6-85cd-49abce6210d8
+      - ef53700b-651f-4636-9399-db827f2c57af
+      - 33d3e406-a8ab-45ba-b733-5674aca02869
+      - 62f35017-86aa-40d8-a5d5-e6758a395f16
+      - d2e89d34-6977-4946-8f59-62e3aef69e9f
+      - bf63eb97-7104-4a7b-975f-43b22d716862
+      - 109245da-eaa5-4733-9096-94d0051d5c27
+      - 94280807-45d9-4b2f-9a1f-fe6eefffa07d
+      - 217862d6-b731-4d1a-ab8e-ad17cff44371
+      - e3098bf4-9082-4829-bdfd-186177c6a50c
+      - f0935a3f-b969-4c6e-84a7-abc71d7826a1
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cbd29b57-8428-44ef-8273-85f9518e24fa:
+    id: cbd29b57-8428-44ef-8273-85f9518e24fa
+    content: Scope and objectives
+    children:
+      - 1e9bde81-4107-4138-85cb-fa2f642f78d4
+      - 81a50a07-bb81-44e1-a4aa-74b8008dcb10
+      - f21150d2-2c7c-4a90-abe6-4fcc833fed54
+      - 4f6d267b-60ee-4921-884d-798bb2143d9a
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1e9bde81-4107-4138-85cb-fa2f642f78d4:
+    id: 1e9bde81-4107-4138-85cb-fa2f642f78d4
+    content: Verify the HTTP hook server correctly receives, authenticates, validates, and forwards AI tool lifecycle events from terminal-hosted AI tools to the renderer process
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  81a50a07-bb81-44e1-a4aa-74b8008dcb10:
+    id: 81a50a07-bb81-44e1-a4aa-74b8008dcb10
+    content: Verify session-to-terminal correlation via environment variable injection
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f21150d2-2c7c-4a90-abe6-4fcc833fed54:
+    id: f21150d2-2c7c-4a90-abe6-4fcc833fed54
+    content: Verify graceful degradation under error conditions (port conflicts, malformed payloads, missing auth, unknown sessions)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4f6d267b-60ee-4921-884d-798bb2143d9a:
+    id: 4f6d267b-60ee-4921-884d-798bb2143d9a
+    content: 'Out of scope: renderer-side event handling (registerSession, handleHookEvent, advanceNode) — already tested in US3'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  13314557-9c6f-4dc6-85cd-49abce6210d8:
+    id: 13314557-9c6f-4dc6-85cd-49abce6210d8
+    content: Entry and exit criteria
+    children:
+      - bcb9a2d1-8dae-4f91-a426-d4ad0e2d3574
+      - 83930163-6f5d-4580-af8d-d246722bcf96
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bcb9a2d1-8dae-4f91-a426-d4ad0e2d3574:
+    id: bcb9a2d1-8dae-4f91-a426-d4ad0e2d3574
+    content: 'Entry: HookServer service implemented, env var injection in TerminalManager, preload bridge added, hook script template available'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  83930163-6f5d-4580-af8d-d246722bcf96:
+    id: 83930163-6f5d-4580-af8d-d246722bcf96
+    content: 'Exit: All unit tests pass, all integration tests pass, manual end-to-end test with Claude Code confirms session registration and Stop event forwarding'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ef53700b-651f-4636-9399-db827f2c57af:
+    id: ef53700b-651f-4636-9399-db827f2c57af
+    content: Environments and prerequisites
+    children:
+      - 56746665-dd8b-4df9-bbf5-2bf61eeea3e8
+      - adf94f08-418f-4f2d-bf1b-70ef99fde468
+      - e0a4fdc2-c479-47d0-b57b-a736fa33bf2b
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  56746665-dd8b-4df9-bbf5-2bf61eeea3e8:
+    id: 56746665-dd8b-4df9-bbf5-2bf61eeea3e8
+    content: 'Unit tests: Vitest, Node.js `http` module, no Electron dependencies (HookServer is pure Node)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  adf94f08-418f-4f2d-bf1b-70ef99fde468:
+    id: adf94f08-418f-4f2d-bf1b-70ef99fde468
+    content: 'Integration tests: Vitest with Electron IPC mocks (matching existing preload/handler test patterns)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e0a4fdc2-c479-47d0-b57b-a736fa33bf2b:
+    id: e0a4fdc2-c479-47d0-b57b-a736fa33bf2b
+    content: 'Manual tests: Running Arborescent instance with terminal tab, Claude Code installed and configured with hook script'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  33d3e406-a8ab-45ba-b733-5674aca02869:
+    id: 33d3e406-a8ab-45ba-b733-5674aca02869
+    content: Unit tests — HookServer service (`src/main/services/tests/hookServer.test.ts`)
+    children:
+      - fd087eb0-61c0-45be-83c2-cd8d4af10aad
+      - 932880b6-affd-4c8d-ad58-463753f44ab0
+      - e1620ded-f9a2-4191-b5fc-4e7608b4653d
+      - e9f047cd-42b3-4d8e-9d5f-5629e3587519
+      - 46bae894-9685-435b-be5f-477390ea378e
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fd087eb0-61c0-45be-83c2-cd8d4af10aad:
+    id: fd087eb0-61c0-45be-83c2-cd8d4af10aad
+    content: Authentication
+    children:
+      - d8b49abe-3374-42f6-bc46-d3d2342e4256
+      - 59aeb073-f3e1-4a6f-92ad-3215d8af53b7
+      - f92acc12-d1eb-440a-8c38-115517d085e1
+      - e76362e2-9005-40ea-8875-580533781b9a
+      - cb3fa658-d8b1-4354-9457-f91742998acb
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d8b49abe-3374-42f6-bc46-d3d2342e4256:
+    id: d8b49abe-3374-42f6-bc46-d3d2342e4256
+    content: Valid Bearer token returns 200
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  59aeb073-f3e1-4a6f-92ad-3215d8af53b7:
+    id: 59aeb073-f3e1-4a6f-92ad-3215d8af53b7
+    content: Missing Authorization header returns 401
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f92acc12-d1eb-440a-8c38-115517d085e1:
+    id: f92acc12-d1eb-440a-8c38-115517d085e1
+    content: Malformed Authorization header (no "Bearer" prefix) returns 401
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e76362e2-9005-40ea-8875-580533781b9a:
+    id: e76362e2-9005-40ea-8875-580533781b9a
+    content: Wrong token value returns 401
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cb3fa658-d8b1-4354-9457-f91742998acb:
+    id: cb3fa658-d8b1-4354-9457-f91742998acb
+    content: Empty token string returns 401
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  932880b6-affd-4c8d-ad58-463753f44ab0:
+    id: 932880b6-affd-4c8d-ad58-463753f44ab0
+    content: Request routing
+    children:
+      - e3587891-bb67-413c-bb26-dc2d789c5d81
+      - 6d3ecb8e-de6c-4213-9342-d91689669501
+      - 41ca5cef-9a4c-4e67-89a8-57cd6462b735
+      - eafcaa31-956e-4a29-8834-612e2c1a0a4e
+      - 3892f065-16b0-4436-a08d-bec97608ba2c
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e3587891-bb67-413c-bb26-dc2d789c5d81:
+    id: e3587891-bb67-413c-bb26-dc2d789c5d81
+    content: POST /hook with valid payload returns 200
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6d3ecb8e-de6c-4213-9342-d91689669501:
+    id: 6d3ecb8e-de6c-4213-9342-d91689669501
+    content: GET /hook returns 405 (Method Not Allowed)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  41ca5cef-9a4c-4e67-89a8-57cd6462b735:
+    id: 41ca5cef-9a4c-4e67-89a8-57cd6462b735
+    content: PUT /hook returns 405
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  eafcaa31-956e-4a29-8834-612e2c1a0a4e:
+    id: eafcaa31-956e-4a29-8834-612e2c1a0a4e
+    content: POST /other-path returns 404
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3892f065-16b0-4436-a08d-bec97608ba2c:
+    id: 3892f065-16b0-4436-a08d-bec97608ba2c
+    content: POST / (root) returns 404
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e1620ded-f9a2-4191-b5fc-4e7608b4653d:
+    id: e1620ded-f9a2-4191-b5fc-4e7608b4653d
+    content: Payload validation
+    children:
+      - 5ae692b4-de13-47ef-93c0-17cb659b1518
+      - cfc4da4a-ecab-4591-9f5c-d46bfb88ad0c
+      - 772d4721-6a48-4082-a147-e7c51b14b12d
+      - 24643511-7535-49fd-8cfd-fcf1e964590e
+      - bd4a8d2e-f8b6-4409-998e-be7b3565884f
+      - 63082d78-4270-48b7-80ad-e961d7dc7249
+      - 54204e61-75ac-4f74-9adc-bd1a3adf7b3e
+      - ac136d1a-aebc-4014-80e9-64f5c8fd263d
+      - 7ebd55dc-6832-4dff-b673-9d4041aaf1de
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5ae692b4-de13-47ef-93c0-17cb659b1518:
+    id: 5ae692b4-de13-47ef-93c0-17cb659b1518
+    content: Valid JSON with session_id and hook_event_name returns 200 and invokes callback
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cfc4da4a-ecab-4591-9f5c-d46bfb88ad0c:
+    id: cfc4da4a-ecab-4591-9f5c-d46bfb88ad0c
+    content: Empty body returns 400
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  772d4721-6a48-4082-a147-e7c51b14b12d:
+    id: 772d4721-6a48-4082-a147-e7c51b14b12d
+    content: Non-JSON content type with valid JSON still parses (no strict Content-Type requirement)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  24643511-7535-49fd-8cfd-fcf1e964590e:
+    id: 24643511-7535-49fd-8cfd-fcf1e964590e
+    content: Malformed JSON (syntax error) returns 400
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bd4a8d2e-f8b6-4409-998e-be7b3565884f:
+    id: bd4a8d2e-f8b6-4409-998e-be7b3565884f
+    content: JSON missing session_id returns 400
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  63082d78-4270-48b7-80ad-e961d7dc7249:
+    id: 63082d78-4270-48b7-80ad-e961d7dc7249
+    content: JSON missing hook_event_name returns 400
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  54204e61-75ac-4f74-9adc-bd1a3adf7b3e:
+    id: 54204e61-75ac-4f74-9adc-bd1a3adf7b3e
+    content: JSON with extra fields is accepted (forward-compatible)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ac136d1a-aebc-4014-80e9-64f5c8fd263d:
+    id: ac136d1a-aebc-4014-80e9-64f5c8fd263d
+    content: JSON with optional terminal_id is forwarded in callback payload
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7ebd55dc-6832-4dff-b673-9d4041aaf1de:
+    id: 7ebd55dc-6832-4dff-b673-9d4041aaf1de
+    content: JSON with optional message is forwarded in callback payload
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e9f047cd-42b3-4d8e-9d5f-5629e3587519:
+    id: e9f047cd-42b3-4d8e-9d5f-5629e3587519
+    content: Server lifecycle
+    children:
+      - 44b4a113-861b-4983-bcf5-08ab3b412d1c
+      - 91e33b51-4dce-4506-9fe6-8fc632870089
+      - 70a33b66-0b74-4ce1-8ddf-a2e98ab91f8d
+      - 69194fa1-4e0b-4284-8f22-858079dc85a1
+      - 800a0bd3-4d78-4053-81ee-757325cdcf2e
+      - 66f22f91-a2fa-45fb-a269-740c53cac7a5
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  44b4a113-861b-4983-bcf5-08ab3b412d1c:
+    id: 44b4a113-861b-4983-bcf5-08ab3b412d1c
+    content: Server starts and listens on specified port
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  91e33b51-4dce-4506-9fe6-8fc632870089:
+    id: 91e33b51-4dce-4506-9fe6-8fc632870089
+    content: Server binds to 127.0.0.1 (not 0.0.0.0)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  70a33b66-0b74-4ce1-8ddf-a2e98ab91f8d:
+    id: 70a33b66-0b74-4ce1-8ddf-a2e98ab91f8d
+    content: stop() closes the server and frees the port
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  69194fa1-4e0b-4284-8f22-858079dc85a1:
+    id: 69194fa1-4e0b-4284-8f22-858079dc85a1
+    content: getPort() returns the bound port after start
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  800a0bd3-4d78-4053-81ee-757325cdcf2e:
+    id: 800a0bd3-4d78-4053-81ee-757325cdcf2e
+    content: Calling stop() when not started does not throw
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  66f22f91-a2fa-45fb-a269-740c53cac7a5:
+    id: 66f22f91-a2fa-45fb-a269-740c53cac7a5
+    content: Calling start() when already started does not create duplicate listeners
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  46bae894-9685-435b-be5f-477390ea378e:
+    id: 46bae894-9685-435b-be5f-477390ea378e
+    content: Callback invocation
+    children:
+      - 0c9f142e-73e6-40b9-a419-cd3aca18fc21
+      - 6235b140-7488-41d0-b3c5-55d9fa303f11
+      - c3903e92-e329-4a4e-b19b-f051032c9ed3
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0c9f142e-73e6-40b9-a419-cd3aca18fc21:
+    id: 0c9f142e-73e6-40b9-a419-cd3aca18fc21
+    content: Callback receives parsed payload with all fields (session_id, hook_event_name, terminal_id, message)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6235b140-7488-41d0-b3c5-55d9fa303f11:
+    id: 6235b140-7488-41d0-b3c5-55d9fa303f11
+    content: Callback is not invoked for rejected requests (auth failure, bad payload)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c3903e92-e329-4a4e-b19b-f051032c9ed3:
+    id: c3903e92-e329-4a4e-b19b-f051032c9ed3
+    content: Server returns 200 even if callback throws (server does not crash)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  62f35017-86aa-40d8-a5d5-e6758a395f16:
+    id: 62f35017-86aa-40d8-a5d5-e6758a395f16
+    content: Unit tests — Terminal env injection (`src/main/services/tests/terminalManager.test.ts`)
+    children:
+      - 3da577b7-e9f2-4ee4-82f3-4d8ff82676ff
+      - 03c1a6cb-577c-4519-bed5-fb5fab80a8a2
+      - f6788d8d-1041-4fc2-a0a0-f3efb6f6a83d
+      - 5f396f55-bbbf-4dc4-9a10-e15b2c277778
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3da577b7-e9f2-4ee4-82f3-4d8ff82676ff:
+    id: 3da577b7-e9f2-4ee4-82f3-4d8ff82676ff
+    content: TerminalManager.create() with extraEnv merges vars into spawned process env
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  03c1a6cb-577c-4519-bed5-fb5fab80a8a2:
+    id: 03c1a6cb-577c-4519-bed5-fb5fab80a8a2
+    content: extraEnv does not overwrite existing process.env keys (or does — define expected behavior)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f6788d8d-1041-4fc2-a0a0-f3efb6f6a83d:
+    id: f6788d8d-1041-4fc2-a0a0-f3efb6f6a83d
+    content: TerminalManager.create() without extraEnv behaves as before (backwards compatible)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5f396f55-bbbf-4dc4-9a10-e15b2c277778:
+    id: 5f396f55-bbbf-4dc4-9a10-e15b2c277778
+    content: ARBORESCENT_HOOK_PORT, ARBORESCENT_AUTH_TOKEN, ARBORESCENT_TERMINAL_ID all appear in spawned env
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d2e89d34-6977-4946-8f59-62e3aef69e9f:
+    id: d2e89d34-6977-4946-8f59-62e3aef69e9f
+    content: Unit tests — Port retry logic (`src/main/tests/hookServerStartup.test.ts`)
+    children:
+      - 0c2bd302-7fbf-4099-9216-ca72596bdf79
+      - fc9d982c-3eb5-4698-8e57-1d4a5af6d1a1
+      - 47f7f10a-5270-4ff5-a1e0-7e7b89a61ebd
+      - 28e00f78-399f-4e03-bab6-b121113e3b8c
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0c2bd302-7fbf-4099-9216-ca72596bdf79:
+    id: 0c2bd302-7fbf-4099-9216-ca72596bdf79
+    content: 'First port available: server starts on default port'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fc9d982c-3eb5-4698-8e57-1d4a5af6d1a1:
+    id: fc9d982c-3eb5-4698-8e57-1d4a5af6d1a1
+    content: 'First port occupied: server retries on next port and succeeds'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  47f7f10a-5270-4ff5-a1e0-7e7b89a61ebd:
+    id: 47f7f10a-5270-4ff5-a1e0-7e7b89a61ebd
+    content: 'All 3 retry ports occupied: server does not start, warning callback invoked'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  28e00f78-399f-4e03-bab6-b121113e3b8c:
+    id: 28e00f78-399f-4e03-bab6-b121113e3b8c
+    content: Actually bound port matches getPort() return value after retry
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bf63eb97-7104-4a7b-975f-43b22d716862:
+    id: bf63eb97-7104-4a7b-975f-43b22d716862
+    content: Integration tests — Preload bridge and IPC (`src/main/tests/hookEventFlow.test.ts`)
+    children:
+      - 5d2b5dee-1776-408d-bc45-87fd8ac5dc29
+      - 3db3e563-6a36-407d-98d1-c3932693bc08
+      - 38273929-27e0-4e3c-854c-6d277b36b2d3
+      - a377eaa9-aa63-4edf-a4c0-0fa8fadbf0d1
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5d2b5dee-1776-408d-bc45-87fd8ac5dc29:
+    id: 5d2b5dee-1776-408d-bc45-87fd8ac5dc29
+    content: POST to hook endpoint triggers mainWindow.webContents.send('hook-event', payload)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3db3e563-6a36-407d-98d1-c3932693bc08:
+    id: 3db3e563-6a36-407d-98d1-c3932693bc08
+    content: Payload forwarded via IPC matches the HTTP POST body
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  38273929-27e0-4e3c-854c-6d277b36b2d3:
+    id: 38273929-27e0-4e3c-854c-6d277b36b2d3
+    content: Multiple rapid POSTs are all forwarded (no debouncing or dropping)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a377eaa9-aa63-4edf-a4c0-0fa8fadbf0d1:
+    id: a377eaa9-aa63-4edf-a4c0-0fa8fadbf0d1
+    content: POST with SessionStart event type + terminal_id is forwarded with terminal_id intact
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  109245da-eaa5-4733-9096-94d0051d5c27:
+    id: 109245da-eaa5-4733-9096-94d0051d5c27
+    content: Manual test script — End-to-end with Claude Code
+    children:
+      - 8e6c071e-51b6-4c32-8957-a8ad9b2ea4ef
+      - 18aba53b-a22d-40c7-9143-e25e578b19c0
+      - d39360c2-f524-409f-a77e-90173bfbaa23
+      - 0c22def2-a182-43d0-8b27-e2d4019f75d4
+      - 58bb3bbd-41dd-42aa-bb2a-e13c0b51b578
+      - dfb3b0eb-2a5d-41d9-b872-f5973ae840f2
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8e6c071e-51b6-4c32-8957-a8ad9b2ea4ef:
+    id: 8e6c071e-51b6-4c32-8957-a8ad9b2ea4ef
+    content: Start Arborescent, open terminal tab
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  18aba53b-a22d-40c7-9143-e25e578b19c0:
+    id: 18aba53b-a22d-40c7-9143-e25e578b19c0
+    content: 'Verify env vars visible: run `echo $ARBORESCENT_HOOK_PORT $ARBORESCENT_AUTH_TOKEN $ARBORESCENT_TERMINAL_ID` in terminal'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d39360c2-f524-409f-a77e-90173bfbaa23:
+    id: d39360c2-f524-409f-a77e-90173bfbaa23
+    content: Start Claude Code in the terminal, verify SessionStart event registers session in workflowSessionMap
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0c22def2-a182-43d0-8b27-e2d4019f75d4:
+    id: 0c22def2-a182-43d0-8b27-e2d4019f75d4
+    content: Place a node in a workflow step, start workflow, let Claude Code finish — verify Stop event advances node
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  58bb3bbd-41dd-42aa-bb2a-e13c0b51b578:
+    id: 58bb3bbd-41dd-42aa-bb2a-e13c0b51b578
+    content: Kill and restart Claude Code in same terminal — verify new session replaces old mapping, running workflow continues
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  dfb3b0eb-2a5d-41d9-b872-f5973ae840f2:
+    id: dfb3b0eb-2a5d-41d9-b872-f5973ae840f2
+    content: Start Claude Code in a terminal without Arborescent env vars — verify no crash, no events received
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  94280807-45d9-4b2f-9a1f-fe6eefffa07d:
+    id: 94280807-45d9-4b2f-9a1f-fe6eefffa07d
+    content: Risks — highest likelihood of defects
+    children:
+      - 92a1f922-8dc0-4675-a679-25232fcb43df
+      - f2b1decb-9580-4e2f-8b39-c1d7a665e3cc
+      - 726373c9-60f4-47d0-affd-5ebcd3cbd830
+      - 846bd26b-f3a2-442a-8348-337aa0a25603
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  92a1f922-8dc0-4675-a679-25232fcb43df:
+    id: 92a1f922-8dc0-4675-a679-25232fcb43df
+    content: 'Port retry logic: off-by-one errors in retry count, race between port check and bind'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f2b1decb-9580-4e2f-8b39-c1d7a665e3cc:
+    id: f2b1decb-9580-4e2f-8b39-c1d7a665e3cc
+    content: 'JSON body parsing: chunked transfer encoding from curl/scripts may arrive in multiple data events — must buffer before parsing'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  726373c9-60f4-47d0-affd-5ebcd3cbd830:
+    id: 726373c9-60f4-47d0-affd-5ebcd3cbd830
+    content: 'Auth header parsing: case sensitivity of "Bearer" prefix, whitespace trimming'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  846bd26b-f3a2-442a-8348-337aa0a25603:
+    id: 846bd26b-f3a2-442a-8348-337aa0a25603
+    content: 'Env var injection ordering: if server hasn''t started yet when first terminal is created, port/token env vars will be wrong'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  217862d6-b731-4d1a-ab8e-ad17cff44371:
+    id: 217862d6-b731-4d1a-ab8e-ad17cff44371
+    content: Risks — highest impact if failures occur
+    children:
+      - 4bbfaa33-b271-4515-aec6-0f5fd46c4856
+      - 57a4adca-8fc0-4e3b-9007-5db82a720295
+      - f0a93d4d-1164-41f2-942c-a222f4b9045d
+      - 38ee6d51-9b9e-4e7f-a8aa-8c10c1db2a98
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4bbfaa33-b271-4515-aec6-0f5fd46c4856:
+    id: 4bbfaa33-b271-4515-aec6-0f5fd46c4856
+    content: Server binding to 0.0.0.0 instead of 127.0.0.1 — exposes auth token to network (security)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  57a4adca-8fc0-4e3b-9007-5db82a720295:
+    id: 57a4adca-8fc0-4e3b-9007-5db82a720295
+    content: Auth token not validated — any local process could inject fake events to manipulate workflows
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f0a93d4d-1164-41f2-942c-a222f4b9045d:
+    id: f0a93d4d-1164-41f2-942c-a222f4b9045d
+    content: IPC channel mismatch between main and renderer — events silently lost, workflows never advance
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  38ee6d51-9b9e-4e7f-a8aa-8c10c1db2a98:
+    id: 38ee6d51-9b9e-4e7f-a8aa-8c10c1db2a98
+    content: Callback exception crashing the HTTP server — all subsequent hook events lost
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e3098bf4-9082-4829-bdfd-186177c6a50c:
+    id: e3098bf4-9082-4829-bdfd-186177c6a50c
+    content: Dependencies on external systems
+    children:
+      - d2bd9037-f99b-441d-8a02-fefe6f20d132
+      - 67d11ef6-0b03-4af6-8b96-120247737ecc
+      - d8808595-902d-4871-b2a9-075a676576d9
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d2bd9037-f99b-441d-8a02-fefe6f20d132:
+    id: d2bd9037-f99b-441d-8a02-fefe6f20d132
+    content: 'Claude Code hooks API: event names (Stop, Notification, SessionStart), payload schema, session_id format — all external and subject to change'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  67d11ef6-0b03-4af6-8b96-120247737ecc:
+    id: 67d11ef6-0b03-4af6-8b96-120247737ecc
+    content: Claude Code hook script must be manually configured by user — no auto-setup mechanism
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d8808595-902d-4871-b2a9-075a676576d9:
+    id: d8808595-902d-4871-b2a9-075a676576d9
+    content: 'node-pty environment inheritance: relies on spawned shell propagating env to child processes (Claude Code)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f0935a3f-b969-4c6e-84a7-abc71d7826a1:
+    id: f0935a3f-b969-4c6e-84a7-abc71d7826a1
+    content: Ambiguous or likely-to-change requirements
+    children:
+      - bc1d7b55-af16-42eb-b2a1-69d5de36dc2a
+      - b828fb46-a5d0-48ab-a36c-659563b81bd9
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bc1d7b55-af16-42eb-b2a1-69d5de36dc2a:
+    id: bc1d7b55-af16-42eb-b2a1-69d5de36dc2a
+    content: Claude Code hooks payload format is not pinned to a version — adapter pattern mitigates but doesn't eliminate risk
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b828fb46-a5d0-48ab-a36c-659563b81bd9:
+    id: b828fb46-a5d0-48ab-a36c-659563b81bd9
+    content: 'SessionStart event: unclear whether Claude Code emits this natively or if the hook script must synthesize it from lifecycle events'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}

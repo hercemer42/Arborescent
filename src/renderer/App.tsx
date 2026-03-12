@@ -11,7 +11,7 @@ import { useToastStore } from './store/toast/toastStore';
 import { usePanelStore } from './store/panel/panelStore';
 import { useSearchStore } from './store/search/searchStore';
 import { useUIStore } from './store/ui/uiStore';
-import { useAppErrorHandling, useAppInitialization, useSpellcheckListener, useHotkeyContext } from './hooks';
+import { useAppErrorHandling, useAppInitialization, useSpellcheckListener, useHotkeyContext, useHookEventListener } from './hooks';
 import './App.css';
 
 export function App() {
@@ -32,6 +32,7 @@ export function App() {
   const handleInitComplete = useCallback(() => setIsInitializing(false), []);
   useAppInitialization(handleInitComplete);
   useAppErrorHandling();
+  useHookEventListener();
   useSpellcheckListener();
   useHotkeyContext(isInitializing);
 

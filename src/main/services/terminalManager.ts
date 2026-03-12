@@ -47,19 +47,24 @@ class TerminalManagerClass {
     title: string,
     shellCommand: string = defaultShell,
     shellArgs: string[] = defaultShellArgs,
-    cwd: string = os.homedir()
+    cwd: string = os.homedir(),
+    extraEnv?: Record<string, string>
   ): Terminal {
     if (this.terminals.has(id)) {
       logger.warn(`Terminal ${id} already exists`, 'Terminal Manager');
       return this.terminals.get(id)!;
     }
 
+    const env = extraEnv
+      ? { ...process.env as { [key: string]: string }, ...extraEnv }
+      : process.env as { [key: string]: string };
+
     const ptyProcess = pty.spawn(shellCommand, shellArgs, {
       name: 'xterm-256color',
       cols: 80,
       rows: 24,
       cwd,
-      env: process.env as { [key: string]: string },
+      env,
     });
 
     const terminal: Terminal = {

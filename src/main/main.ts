@@ -1,10 +1,12 @@
 import { app, BrowserWindow, ipcMain } from 'electron';
 import path from 'node:path';
+import crypto from 'node:crypto';
 import started from 'electron-squirrel-startup';
 import { registerIpcHandlers } from './handlers';
 import { createApplicationMenu } from './services/menuService';
 import { registerTerminalHandlers, cleanupTerminals } from './handlers/terminalHandlers';
 import { logger } from './services/logger';
+import { startHookServerWithRetry, HookServer } from './services/hookServer';
 
 if (started) {
   app.quit();
@@ -20,6 +22,10 @@ if (MAIN_WINDOW_VITE_DEV_SERVER_URL) {
 }
 
 let mainWindow: BrowserWindow | null = null;
+let hookServer: HookServer | null = null;
+
+const DEFAULT_HOOK_PORT = 17832;
+const hookAuthToken = crypto.randomUUID();
 
 ipcMain.handle('replace-misspelling', (_event, suggestion: string) => {
   mainWindow?.webContents.replaceMisspelling(suggestion);
@@ -91,7 +97,29 @@ const createWindow = async () => {
     mainWindow = null;
   });
 
-  registerTerminalHandlers(mainWindow);
+  const hookResult = await startHookServerWithRetry(
+    DEFAULT_HOOK_PORT,
+    hookAuthToken,
+    (payload) => {
+      if (mainWindow && !mainWindow.isDestroyed()) {
+        mainWindow.webContents.send('hook-event', payload);
+      }
+    }
+  );
+
+  if (hookResult.server) {
+    hookServer = hookResult.server;
+    logger.info(`Hook server started on port ${hookResult.port}`, 'Main');
+  } else {
+    logger.warn('Hook server failed to start — workflow hooks will not work', 'Main');
+  }
+
+  const hookEnv: Record<string, string> = hookServer ? {
+    ARBORESCENT_HOOK_PORT: String(hookResult.port),
+    ARBORESCENT_AUTH_TOKEN: hookAuthToken,
+  } : {};
+
+  registerTerminalHandlers(mainWindow, hookEnv);
 };
 
 app.on('ready', createWindow);
@@ -111,6 +139,7 @@ app.on('web-contents-created', (_event, contents) => {
 
 app.on('before-quit', () => {
   cleanupTerminals();
+  hookServer?.stop();
 });
 
 // macOS convention: keep app running until explicit Cmd+Q

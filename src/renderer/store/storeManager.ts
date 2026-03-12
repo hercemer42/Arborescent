@@ -58,6 +58,10 @@ class StoreManager {
     return this.stores.has(filePath);
   }
 
+  getAllStores(): TreeStore[] {
+    return Array.from(this.stores.values());
+  }
+
   clearAll(): void {
     this.stores.clear();
   }
