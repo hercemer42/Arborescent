@@ -201,6 +201,77 @@ describe('MoveNodeCommand', () => {
     });
   });
 
+  describe('blueprint status on move into workflow', () => {
+    beforeEach(() => {
+      nodes['workflow'] = { id: 'workflow', content: 'Workflow', children: ['step-1'], metadata: { isBlueprint: true, isWorkflow: true } };
+      nodes['step-1'] = { id: 'step-1', content: 'Step 1', children: [], metadata: { isBlueprint: true } };
+      nodes['root'].children.push('workflow');
+      ancestorRegistry['workflow'] = ['root'];
+      ancestorRegistry['step-1'] = ['root', 'workflow'];
+    });
+
+    it('should make a non-blueprint node into a blueprint when moved into a workflow', () => {
+      const cmd = new MoveNodeCommand('child1', 'workflow', 1, getState, setState, triggerAutosave);
+      cmd.execute();
+
+      const stateUpdate = setState.mock.calls[0][0];
+      expect(stateUpdate.nodes['child1'].metadata.isBlueprint).toBe(true);
+    });
+
+    it('should not change blueprint status of descendants when moved into a workflow', () => {
+      nodes['child1'].children = ['grandchild'];
+      nodes['grandchild'] = { id: 'grandchild', content: 'Grandchild', children: [], metadata: {} };
+      ancestorRegistry['grandchild'] = ['root', 'child1'];
+
+      const cmd = new MoveNodeCommand('child1', 'workflow', 1, getState, setState, triggerAutosave);
+      cmd.execute();
+
+      const stateUpdate = setState.mock.calls[0][0];
+      expect(stateUpdate.nodes['child1'].metadata.isBlueprint).toBe(true);
+      expect(stateUpdate.nodes['grandchild'].metadata.isBlueprint).toBeUndefined();
+    });
+
+    it('should strip blueprint from node and descendants when moved into a step', () => {
+      nodes['child1'].metadata.isBlueprint = true;
+      nodes['child1'].children = ['grandchild'];
+      nodes['grandchild'] = { id: 'grandchild', content: 'Grandchild', children: [], metadata: { isBlueprint: true } };
+      ancestorRegistry['grandchild'] = ['root', 'child1'];
+
+      const cmd = new MoveNodeCommand('child1', 'step-1', 0, getState, setState, triggerAutosave);
+      cmd.execute();
+
+      const stateUpdate = setState.mock.calls[0][0];
+      expect(stateUpdate.nodes['child1'].metadata.isBlueprint).toBeUndefined();
+      expect(stateUpdate.nodes['grandchild'].metadata.isBlueprint).toBeUndefined();
+    });
+
+    it('should restore blueprint status on undo after move into workflow', () => {
+      const cmd = new MoveNodeCommand('child1', 'workflow', 1, getState, setState, triggerAutosave);
+      cmd.execute();
+      setState.mockClear();
+      cmd.undo();
+
+      const stateUpdate = setState.mock.calls[0][0];
+      expect(stateUpdate.nodes['child1'].metadata.isBlueprint).toBeUndefined();
+    });
+
+    it('should restore blueprint status on undo after move into step', () => {
+      nodes['child1'].metadata.isBlueprint = true;
+      nodes['child1'].children = ['grandchild'];
+      nodes['grandchild'] = { id: 'grandchild', content: 'Grandchild', children: [], metadata: { isBlueprint: true } };
+      ancestorRegistry['grandchild'] = ['root', 'child1'];
+
+      const cmd = new MoveNodeCommand('child1', 'step-1', 0, getState, setState, triggerAutosave);
+      cmd.execute();
+      setState.mockClear();
+      cmd.undo();
+
+      const stateUpdate = setState.mock.calls[0][0];
+      expect(stateUpdate.nodes['child1'].metadata.isBlueprint).toBe(true);
+      expect(stateUpdate.nodes['grandchild'].metadata.isBlueprint).toBe(true);
+    });
+  });
+
   describe('redo', () => {
     it('should move node to new position again', () => {
       const cmd = new MoveNodeCommand(

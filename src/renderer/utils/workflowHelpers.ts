@@ -302,14 +302,7 @@ export function isEligibleForExecution(
   const entry = executionStates[nodeId];
   if (entry?.state === 'running') return false;
 
-  // Inside a workflow step (grandparent is a workflow)
   if (getWorkflowStepPosition(nodeId, nodes, ancestorRegistry) !== null) return true;
-
-  // Direct child of workflow root — eligible only if it's a leaf node (not a step container)
-  const parentId = ancestors[ancestors.length - 1];
-  if (parentId && nodes[parentId]?.metadata.isWorkflow === true) {
-    return node.children.length === 0;
-  }
 
   return false;
 }

@@ -175,35 +175,6 @@ describe('createWorkflowExecutionActions', () => {
       });
     });
 
-    it('should move node from workflow root to first step before starting', () => {
-      // Add task-root as child of workflow root
-      state.nodes['workflow'].children = ['step-1', 'step-2', 'step-3', 'task-root'];
-      state.nodes['task-root'] = { id: 'task-root', content: 'Root Task', children: [], metadata: { isBlueprint: true } };
-      state.ancestorRegistry['task-root'] = ['root', 'workflow'];
-
-      actions.startWorkflow('task-root', 'terminal-1');
-
-      expect(state.nodes['step-1'].children).toContain('task-root');
-      expect(state.nodes['workflow'].children).not.toContain('task-root');
-    });
-
-    it('should start at workflow root without moving when workflow has no steps', () => {
-      state.nodes['workflow'].children = ['task-root'];
-      state.nodes['task-root'] = { id: 'task-root', content: 'Root Task', children: [], metadata: { isBlueprint: true } };
-      state.ancestorRegistry['task-root'] = ['root', 'workflow'];
-
-      actions.startWorkflow('task-root', 'terminal-1');
-
-      expect(state.workflowExecutionStates['task-root'].state).toBe('running');
-      expect(state.nodes['workflow'].children).toContain('task-root');
-    });
-
-    it('should start from current step if node is already inside a step', () => {
-      actions.startWorkflow('task-a', 'terminal-1');
-      expect(state.nodes['step-1'].children).toContain('task-a');
-      expect(state.workflowExecutionStates['task-a'].state).toBe('running');
-    });
-
     it('should reject if terminal tab is already assigned to another running node', () => {
       state.workflowExecutionStates['task-a'] = { state: 'running', terminalTabId: 'terminal-1' };
 

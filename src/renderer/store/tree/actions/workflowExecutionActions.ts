@@ -92,48 +92,6 @@ export const createWorkflowExecutionActions = (
     return null;
   }
 
-  function moveNodeToFirstStepIfAtRoot(
-    nodeId: string,
-    nodes: Record<string, TreeNode>,
-    registry: AncestorRegistry
-  ): { nodes: Record<string, TreeNode>; ancestorRegistry: AncestorRegistry } {
-    const ancestors = registry[nodeId];
-    const parentId = ancestors[ancestors.length - 1];
-    if (!parentId || nodes[parentId]?.metadata.isWorkflow !== true) {
-      return { nodes, ancestorRegistry: registry };
-    }
-
-    const workflow = nodes[parentId];
-    let firstStepId: string | null = null;
-    for (const childId of workflow.children) {
-      const child = nodes[childId];
-      if (child && child.metadata.isWorkflow !== true && child.children !== undefined && childId !== nodeId) {
-        firstStepId = childId;
-        break;
-      }
-    }
-
-    if (!firstStepId) {
-      return { nodes, ancestorRegistry: registry };
-    }
-
-    const updatedNodes = {
-      ...nodes,
-      [parentId]: {
-        ...nodes[parentId],
-        children: nodes[parentId].children.filter(id => id !== nodeId),
-      },
-      [firstStepId]: {
-        ...nodes[firstStepId],
-        children: [...nodes[firstStepId].children, nodeId],
-      },
-    };
-    return {
-      nodes: updatedNodes,
-      ancestorRegistry: moveNodeInRegistry(registry, nodeId, firstStepId, updatedNodes),
-    };
-  }
-
   function startWorkflow(nodeId: string, terminalId: string | null): void {
     if (terminalId === null) {
       useToastStore.getState().addToast('No terminal tab available. Open a terminal to start workflow execution.', 'warning');
@@ -152,13 +110,9 @@ export const createWorkflowExecutionActions = (
       return;
     }
 
-    const moved = moveNodeToFirstStepIfAtRoot(nodeId, nodes, ancestorRegistry);
-
     set({
-      nodes: moved.nodes,
-      ancestorRegistry: moved.ancestorRegistry,
       workflowExecutionStates: {
-        ...get().workflowExecutionStates,
+        ...workflowExecutionStates,
         [nodeId]: { state: 'running' as const, terminalTabId: terminalId },
       },
     });

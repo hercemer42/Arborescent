@@ -88,16 +88,6 @@ describe('isEligibleForExecution', () => {
       expect(result).toBe(true);
     });
 
-    it('should return true for a direct child of the workflow root', () => {
-      // A task node placed directly under the workflow (not inside a step)
-      nodes['workflow'].children.push('task-root');
-      nodes['task-root'] = { id: 'task-root', content: 'Root Task', children: [], metadata: { isBlueprint: true } };
-      ancestorRegistry['task-root'] = ['root', 'workflow'];
-
-      const result = isEligibleForExecution('task-root', nodes, ancestorRegistry, workflowExecutionStates);
-      expect(result).toBe(true);
-    });
-
     it('should return true for a node in Paused state (eligible for resume)', () => {
       workflowExecutionStates['task-a'] = { state: 'paused', terminalTabId: 'terminal-1' };
 
@@ -107,8 +97,17 @@ describe('isEligibleForExecution', () => {
   });
 
   describe('ineligible nodes', () => {
-    it('should return false for a workflow step node itself', () => {
+    it('should return false for a direct child of a workflow (step node)', () => {
       const result = isEligibleForExecution('step-1', nodes, ancestorRegistry, workflowExecutionStates);
+      expect(result).toBe(false);
+    });
+
+    it('should return false for a leaf node at the workflow root', () => {
+      nodes['workflow'].children.push('task-root');
+      nodes['task-root'] = { id: 'task-root', content: 'Root Task', children: [], metadata: { isBlueprint: true } };
+      ancestorRegistry['task-root'] = ['root', 'workflow'];
+
+      const result = isEligibleForExecution('task-root', nodes, ancestorRegistry, workflowExecutionStates);
       expect(result).toBe(false);
     });
 

@@ -1,7 +1,7 @@
 import { BaseCommand } from './Command';
 import { TreeNode } from '../../../../shared/types';
 import { moveNodeInRegistry, AncestorRegistry } from '../../../utils/ancestry';
-import { getIsContextChild, getAllDescendants, updateNodeMetadata } from '../../../utils/nodeHelpers';
+import { shouldInheritBlueprint, getAllDescendants, updateNodeMetadata } from '../../../utils/nodeHelpers';
 
 export class MoveNodeCommand extends BaseCommand {
   private oldParentId: string | null = null;
@@ -60,10 +60,10 @@ export class MoveNodeCommand extends BaseCommand {
       children: newChildren,
     };
 
-    const parentIsContextDeclaration = newParent.metadata.isContextDeclaration === true;
-    const parentIsContextChild = getIsContextChild(this.newParentId, nodes, ancestorRegistry);
-    if (parentIsContextDeclaration || parentIsContextChild) {
+    if (shouldInheritBlueprint(this.newParentId, nodes, ancestorRegistry)) {
       updatedNodes = this.inheritBlueprintStatus(updatedNodes, this.nodeId, nodes);
+    } else if (this.isWorkflowStep(this.newParentId, nodes, ancestorRegistry)) {
+      updatedNodes = this.stripBlueprintStatus(updatedNodes, this.nodeId, nodes);
     }
 
     const newAncestorRegistry = moveNodeInRegistry(
@@ -91,19 +91,47 @@ export class MoveNodeCommand extends BaseCommand {
     nodeId: string,
     originalNodes: Record<string, TreeNode>
   ): Record<string, TreeNode> {
+    const node = nodes[nodeId];
+    if (!node || node.metadata.isBlueprint === true) return nodes;
+
+    const original = originalNodes[nodeId];
+    if (original) {
+      this.previousBlueprintStates.set(nodeId, original.metadata.isBlueprint as boolean | undefined);
+    }
+
+    return updateNodeMetadata(nodes, nodeId, { isBlueprint: true });
+  }
+
+  private isWorkflowStep(
+    parentId: string,
+    nodes: Record<string, TreeNode>,
+    ancestorRegistry: AncestorRegistry
+  ): boolean {
+    const parent = nodes[parentId];
+    if (!parent || parent.metadata.isWorkflow === true) return false;
+    const parentAncestors = ancestorRegistry[parentId] || [];
+    const grandparentId = parentAncestors[parentAncestors.length - 1];
+    return grandparentId ? nodes[grandparentId]?.metadata.isWorkflow === true : false;
+  }
+
+  private stripBlueprintStatus(
+    nodes: Record<string, TreeNode>,
+    nodeId: string,
+    originalNodes: Record<string, TreeNode>
+  ): Record<string, TreeNode> {
     let updatedNodes = nodes;
     const nodeIdsToUpdate = [nodeId, ...getAllDescendants(nodeId, nodes)];
 
     for (const id of nodeIdsToUpdate) {
       const n = updatedNodes[id];
-      if (!n || n.metadata.isBlueprint === true) continue;
+      if (!n || n.metadata.isBlueprint !== true) continue;
 
       const original = originalNodes[id];
       if (original) {
         this.previousBlueprintStates.set(id, original.metadata.isBlueprint as boolean | undefined);
       }
 
-      updatedNodes = updateNodeMetadata(updatedNodes, id, { isBlueprint: true });
+      updatedNodes = updateNodeMetadata(updatedNodes, id, { isBlueprint: undefined });
     }
 
     return updatedNodes;
