@@ -7,7 +7,7 @@ import { createNavigationActions, NavigationActions } from './actions/navigation
 import { createPersistenceActions, PersistenceActions } from './actions/persistenceActions';
 import { createNodeMovementActions, NodeMovementActions } from './actions/nodeMovementActions';
 import { createNodeDeletionActions, NodeDeletionActions } from './actions/nodeDeletionActions';
-import { createVisualEffectsActions, VisualEffectsActions } from './actions/visualEffectsActions';
+import { createVisualEffectsActions, VisualEffectsActions, FlashIntensity } from './actions/visualEffectsActions';
 import { createSelectionActions, SelectionActions } from './actions/selectionActions';
 import { createHistoryActions, HistoryActions } from './actions/historyActions';
 import { createCollaborateActions, CollaborateActions } from './actions/collaborateActions';
@@ -44,7 +44,7 @@ export interface TreeState {
   currentFilePath: string | null;
   fileMeta: { created: string; author: string } | null;
   flashingNodeIds: Set<string>;
-  flashingIntensity: 'light' | 'medium';
+  flashingIntensity: FlashIntensity;
   scrollToNodeId: string | null;
   deletingNodeIds: Set<string>;
   deleteAnimationCallback: (() => void) | null;

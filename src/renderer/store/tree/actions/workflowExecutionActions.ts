@@ -7,9 +7,14 @@ import {
   isEligibleForExecution,
   findNextStepTarget,
   getWorkflowStepPosition,
+  getWorkflowStepNumber,
   WorkflowExecutionEntry,
 } from '../../../utils/workflowHelpers';
 import { StepType } from '../commands/SetStepTypeCommand';
+import { buildContentWithContext } from '../../../utils/nodeHelpers';
+import { buildExecutePrompt } from '../../../utils/promptBuilder';
+import { executeInTerminal } from '../../../services/terminalExecution';
+import { DEFAULT_EXECUTE_CONTEXT } from './executeActions';
 
 export type { WorkflowExecutionEntry };
 
@@ -254,11 +259,39 @@ export const createWorkflowExecutionActions = (
 
     const node = nodes[nodeId];
     const nodeName = node?.content || nodeId;
-    useToastStore.getState().addToast(`Advanced "${nodeName}" to next step`, 'info');
+    const stepNumber = getWorkflowStepNumber(nextStepId, updatedNodes, updatedRegistry);
+    const stepLabel = stepNumber !== null ? `Step ${stepNumber}` : 'next step';
 
-    visualEffects?.flashNode(nodeId, 'medium');
-    startStepTimeout(nodeId);
+    const nextStepNode = updatedNodes[nextStepId];
+    const nextStepType: StepType = (nextStepNode?.metadata.stepType as StepType) || 'manual';
+
+    visualEffects?.flashNode(nodeId, 'advance');
     triggerAutosave?.();
+
+    if (nextStepType === 'manual') {
+      pauseWorkflow(nodeId);
+      useToastStore.getState().addToast(`"${nodeName}" waiting at ${stepLabel}`, 'info');
+    } else {
+      useToastStore.getState().addToast(`Advanced "${nodeName}" to ${stepLabel}`, 'info');
+      startStepTimeout(nodeId);
+      sendContentToTerminal(nodeId, entry.terminalTabId);
+    }
+  }
+
+  function sendContentToTerminal(nodeId: string, terminalId: string): void {
+    const { nodes, ancestorRegistry } = get();
+    const node = nodes[nodeId];
+    if (!node) return;
+
+    const { contextPrefix, nodeContent } = buildContentWithContext(nodeId, nodes, ancestorRegistry, true);
+
+    const terminalContent = buildExecutePrompt(contextPrefix || DEFAULT_EXECUTE_CONTEXT, nodeContent);
+
+    executeInTerminal(terminalId, terminalContent).catch((error) => {
+      logger.error('Failed to send content to terminal after advancement', error as Error, 'WorkflowExecution');
+      pauseWorkflow(nodeId);
+      useToastStore.getState().addToast('Failed to send to terminal — workflow paused', 'error');
+    });
   }
 
   function registerSession(sessionId: string, terminalId: string): void {
@@ -296,18 +329,12 @@ export const createWorkflowExecutionActions = (
       if (stepType === 'autonomous') {
         advanceNode(runningNodeId);
       } else if (stepType === 'checkpoint') {
-        useToastStore.getState().addToast(
-          `Step complete. Review and continue workflow.`,
-          'info',
-          {
-            actions: [
-              { label: 'Continue', onClick: () => advanceNode(runningNodeId) },
-              { label: 'Stop', onClick: () => pauseWorkflow(runningNodeId) },
-            ],
-          }
-        );
+        pauseWorkflow(runningNodeId);
+        const { nodes: currentNodes } = get();
+        const runningNode = currentNodes[runningNodeId];
+        const runningNodeName = runningNode?.content || runningNodeId;
+        useToastStore.getState().addToast(`Step complete for "${runningNodeName}"`, 'info');
       }
-      // manual: do nothing
     } else if (event.hook_event_name === 'Notification') {
       pauseWorkflow(runningNodeId);
       const message = event.message || 'Workflow notification received';

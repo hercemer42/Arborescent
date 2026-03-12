@@ -44,6 +44,30 @@
   word-wrap: break-word;
 }
 
+.toast-actions {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.toast-action-button {
+  background: none;
+  border: 1px solid currentColor;
+  border-radius: 4px;
+  padding: 4px 12px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  color: inherit;
+  opacity: 0.85;
+  transition: opacity 0.2s;
+  white-space: nowrap;
+}
+
+.toast-action-button:hover {
+  opacity: 1;
+}
+
 .toast-close {
   background: none;
   border: none;

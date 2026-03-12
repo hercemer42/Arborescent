@@ -21,6 +21,10 @@ vi.mock('../../../toast/toastStore', () => ({
   },
 }));
 
+vi.mock('../../../services/terminalExecution', () => ({
+  executeInTerminal: vi.fn().mockResolvedValue(undefined),
+}));
+
 describe('createWorkflowExecutionActions', () => {
   type TestState = {
     nodes: Record<string, TreeNode>;
@@ -28,6 +32,7 @@ describe('createWorkflowExecutionActions', () => {
     ancestorRegistry: Record<string, string[]>;
     workflowExecutionStates: Record<string, { state: 'idle' | 'running' | 'paused'; terminalTabId: string }>;
     workflowSessionMap: Record<string, string>;
+    contextDeclarations: { nodeId: string; content: string; icon: string; color?: string; mode: 'collaborate' | 'execute' }[];
   };
 
   let state: TestState;
@@ -116,6 +121,7 @@ describe('createWorkflowExecutionActions', () => {
       },
       workflowExecutionStates: {},
       workflowSessionMap: {},
+      contextDeclarations: [],
     };
 
     setState = (partial) => {
@@ -370,7 +376,7 @@ describe('createWorkflowExecutionActions', () => {
 
       actions.advanceNode('task-a');
 
-      expect(mockVisualEffects.flashNode).toHaveBeenCalledWith('task-a', 'medium');
+      expect(mockVisualEffects.flashNode).toHaveBeenCalledWith('task-a', 'advance');
     });
 
     it('should complete workflow when node is at final step and has no next step', () => {
@@ -516,7 +522,7 @@ describe('createWorkflowExecutionActions', () => {
         expect(state.nodes['step-2'].children).toContain('task-a');
       });
 
-      it('should show checkpoint prompt when step type is checkpoint', () => {
+      it('should pause workflow and show toast when step type is checkpoint', () => {
         // Move task-a to step-2 (checkpoint)
         state.nodes['step-2'].children = ['task-a'];
         state.nodes['step-1'].children = ['task-b'];
@@ -527,10 +533,10 @@ describe('createWorkflowExecutionActions', () => {
           hook_event_name: 'Stop',
         });
 
+        expect(state.workflowExecutionStates['task-a'].state).toBe('paused');
         expect(mockAddToast).toHaveBeenCalledWith(
-          expect.stringContaining('Step'),
-          expect.anything(),
-          expect.objectContaining({ actions: expect.any(Array) })
+          expect.stringContaining('complete'),
+          'info'
         );
       });
 

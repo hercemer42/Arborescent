@@ -1,5 +1,7 @@
+export type FlashIntensity = 'light' | 'medium' | 'advance';
+
 export interface VisualEffectsActions {
-  flashNode: (nodeId: string | string[], intensity?: 'light' | 'medium') => void;
+  flashNode: (nodeId: string | string[], intensity?: FlashIntensity) => void;
   scrollToNode: (nodeId: string) => void;
   startDeleteAnimation: (nodeId: string | string[], onComplete?: () => void) => void;
   clearDeleteAnimation: (nodeId: string) => void;
@@ -7,7 +9,7 @@ export interface VisualEffectsActions {
 
 type StoreState = {
   flashingNodeIds: Set<string>;
-  flashingIntensity: 'light' | 'medium';
+  flashingIntensity: FlashIntensity;
   scrollToNodeId: string | null;
   deletingNodeIds: Set<string>;
   deleteAnimationCallback: (() => void) | null;
@@ -18,7 +20,7 @@ export const createVisualEffectsActions = (
   get: () => StoreState,
   set: StoreSetter
 ): VisualEffectsActions => {
-  function flashNode(nodeId: string | string[], intensity: 'light' | 'medium' = 'light'): void {
+  function flashNode(nodeId: string | string[], intensity: FlashIntensity = 'light'): void {
     const nodeIds = Array.isArray(nodeId) ? nodeId : [nodeId];
     set({ flashingNodeIds: new Set(nodeIds), flashingIntensity: intensity });
     setTimeout(() => {

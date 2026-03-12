@@ -21,6 +21,10 @@ vi.mock('../../../toast/toastStore', () => ({
   },
 }));
 
+vi.mock('../../../services/terminalExecution', () => ({
+  executeInTerminal: vi.fn().mockResolvedValue(undefined),
+}));
+
 describe('workflow execution edge cases', () => {
   type TestState = {
     nodes: Record<string, TreeNode>;
@@ -28,6 +32,7 @@ describe('workflow execution edge cases', () => {
     ancestorRegistry: Record<string, string[]>;
     workflowExecutionStates: Record<string, { state: 'idle' | 'running' | 'paused'; terminalTabId: string }>;
     workflowSessionMap: Record<string, string>;
+    contextDeclarations: { nodeId: string; content: string; icon: string; color?: string; mode: 'collaborate' | 'execute' }[];
   };
 
   let state: TestState;
@@ -96,6 +101,7 @@ describe('workflow execution edge cases', () => {
       workflowSessionMap: {
         'session-abc': 'terminal-1',
       },
+      contextDeclarations: [],
     };
 
     setState = (partial) => {

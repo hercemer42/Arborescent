@@ -1,8 +1,10 @@
 import { useEffect, useRef, useCallback } from 'react';
 import { useStore } from '../../../store/tree/useStore';
 
+import type { FlashIntensity } from '../../../store/tree/actions/visualEffectsActions';
+
 interface NodeEffectsResult {
-  flashIntensity: 'light' | 'medium' | null;
+  flashIntensity: FlashIntensity | null;
   isDeleting: boolean;
   nodeRef: React.RefObject<HTMLDivElement | null>;
   onAnimationEnd: (e: React.AnimationEvent) => void;

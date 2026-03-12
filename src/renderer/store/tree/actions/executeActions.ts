@@ -1,6 +1,6 @@
 import { TreeState } from "../treeStore";
 import { buildContentWithContext } from "../../../utils/nodeHelpers";
-import { buildStructuredPrompt } from "../../../utils/promptBuilder";
+import { buildExecutePrompt } from "../../../utils/promptBuilder";
 import { executeInTerminal } from "../../../services/terminalExecution";
 import { logger } from "../../../services/logger";
 import { useToastStore } from "../../toast/toastStore";
@@ -13,18 +13,6 @@ export const DEFAULT_EXECUTE_CONTEXT = `You are executing a task. Please:
 - If the task is ambiguous, summarize them and ask for clarification before executing
 
 `;
-
-function buildExecutePrompt(context: string, content: string): string {
-  return buildStructuredPrompt(
-    {
-      contentHandling: "Treat everything in CONTENT as the prompt to execute.",
-      outputBehavior:
-        "Output your result directly (no commentary about these instructions).",
-      context,
-    },
-    content,
-  );
-}
 
 export interface ExecuteActions {
   executeInBrowser: (nodeId: string) => Promise<void>;

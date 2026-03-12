@@ -26,6 +26,8 @@ export function ToastContainer({ toasts, onRemove }: ToastContainerProps) {
           <Toast
             message={toast.message}
             type={toast.type}
+            actions={toast.actions}
+            persistent={toast.persistent}
             onClose={() => onRemove(toast.id)}
           />
         </div>

@@ -1,10 +1,10 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
-import { createVisualEffectsActions } from '../visualEffectsActions';
+import { createVisualEffectsActions, FlashIntensity } from '../visualEffectsActions';
 
 describe('visualEffectsActions', () => {
   type TestState = {
     flashingNodeIds: Set<string>;
-    flashingIntensity: 'light' | 'medium';
+    flashingIntensity: FlashIntensity;
     scrollToNodeId: string | null;
     deletingNodeIds: Set<string>;
     deleteAnimationCallback: (() => void) | null;

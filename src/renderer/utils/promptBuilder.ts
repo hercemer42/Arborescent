@@ -40,3 +40,14 @@ ${contextSection}`;
 
 ${wrapContent(content)}`;
 }
+
+export function buildExecutePrompt(context: string, content: string): string {
+  return buildStructuredPrompt(
+    {
+      contentHandling: 'Treat everything in CONTENT as the prompt to execute.',
+      outputBehavior: 'Output your result directly (no commentary about these instructions).',
+      context,
+    },
+    content,
+  );
+}

@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-03-11T14:07:34.832Z'
+updated: '2026-03-12T11:00:17.084Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -458,6 +458,7 @@ nodes:
     id: 565dde0a-864b-41f9-86ff-dbdf40ac4dd0
     content: Done
     children:
+      - 83478ae4-3c6f-4647-9d42-779a4de7d8a0
       - daeb4326-6a81-4b77-ac8e-e410ac8c493b
       - 911bbdec-12fa-45ba-b84d-2ba945888928
       - 7fea2910-cc32-43bf-8380-b49f1e5b2587
@@ -547,6 +548,7 @@ nodes:
     id: d5fe0eff-b1c6-4986-b6a3-70a0ea46f096
     content: Opportunities
     children:
+      - 3999cfea-b344-4f92-b3ca-ffb9f740afc7
       - d77cf522-0636-4a76-b9bf-7b33b4cc65cb
       - 19073c24-aea5-4444-95e9-8ca4048c87a7
       - 84f82fb1-a98d-4b2d-8ea0-3005c3d1f252
@@ -5203,7 +5205,7 @@ nodes:
       - 9a8f1538-7eb7-4e2d-9e0f-46e2c00675f4
     metadata:
       status: pending
-      expanded: false
+      expanded: true
       isBlueprint: true
       blueprintIcon: BrainCog
       blueprintColor: '#14b8a6'
@@ -5561,6 +5563,7 @@ nodes:
       - e6860559-af1d-4a28-be70-9e27ba35335f
       - 1e2f062a-bbaa-4a02-b58b-a94ab15d8d74
       - 0058432d-a010-473b-a707-ace2b1dee169
+      - d83909a8-6ca6-4dca-8c64-7b4ee9aeb43b
     metadata:
       status: pending
       isBlueprint: true
@@ -5651,6 +5654,8 @@ nodes:
       - f3f21746-1d29-4fce-a4f5-3edd0311770b
       - fa14fd30-8137-4fa7-b6aa-4799cb5c3454
       - 44bbbce0-f6c3-4cc0-97ed-ae182dd653e8
+      - 455ed479-95ce-4fc9-84cb-ba8625241aa9
+      - edc367de-e1ac-43e4-903a-4c215e63f089
     metadata:
       status: pending
       expanded: true
@@ -8834,7 +8839,6 @@ nodes:
     id: 79b693ca-27ce-4410-8617-8092d7e81b07
     content: Issues
     children:
-      - e3be9d1b-ce19-41d0-9991-9ad61a8730bb
       - 75d12f7c-1e30-4551-93bf-e279e28b87ce
       - 533210b8-5c42-48f7-ab9a-bea602ae7ed2
       - 26dc74b0-c926-4461-b81a-7b6cd95864f6
@@ -18118,7 +18122,7 @@ nodes:
       blueprintColor: '#0c6f9d'
       isContextDeclaration: true
       expanded: false
-      contextMode: collaborate
+      contextMode: execute
   bfe8794a-2209-4c09-ba88-c4c951928b76:
     id: bfe8794a-2209-4c09-ba88-c4c951928b76
     content: 'Document this feature given the following conventions :'
@@ -24846,7 +24850,6 @@ nodes:
     id: 00714a63-f267-4ab1-a285-73ae4198eb42
     content: Technical refinement
     children:
-      - 0a62d0d8-639a-434d-8a54-46f77aff6739
       - 90a40be5-3f48-4bd9-9f90-2884670a8ff3
       - a30a4d15-15be-4c1c-9164-d699e6b82d42
       - 545562f0-7717-474c-b37c-b93025d16a20
@@ -26800,14 +26803,14 @@ nodes:
     id: bdceb696-248d-4199-9182-db0689445c07
     content: Documentation
     children:
-      - 503e53c0-5353-48d5-a1f2-5dc15e0ff045
+      - 0a62d0d8-639a-434d-8a54-46f77aff6739
     metadata:
       status: pending
       isBlueprint: true
       blueprintIcon: BookA
       blueprintColor: '#1074a2'
       appliedContextId: 0058432d-a010-473b-a707-ace2b1dee169
-      expanded: false
+      expanded: true
   9f4cb1c1-95ba-4523-9b59-86d02c56a0ed:
     id: 9f4cb1c1-95ba-4523-9b59-86d02c56a0ed
     content: Can use keyboard to move blueprint/context/workflow nodes into forbidden nodes
@@ -26838,7 +26841,7 @@ nodes:
       blueprintColor: '#14b8a6'
   26dc74b0-c926-4461-b81a-7b6cd95864f6:
     id: 26dc74b0-c926-4461-b81a-7b6cd95864f6
-    content: Declaring a node as a blueprint, context or workflow should clear it's metadata (checked, resolvedAt etc)
+    content: Declaring a node as a blueprint, context or workflow should clear its metadata (checked, resolvedAt etc)
     children:
       - f2c53414-e3a2-4561-8d96-4690342da2c8
     metadata:
@@ -30725,7 +30728,7 @@ nodes:
       - a4d39d36-bc4f-4e05-8537-8393b97051b1
     metadata:
       status: pending
-      expanded: true
+      expanded: false
       deleted: false
       plugins: {}
   d7f2b94c-af13-4ad4-9899-043ca68cfe9c:
@@ -34442,11 +34445,12 @@ nodes:
       - 81e4a4b6-287a-48c4-a5c5-78ff927403d3
       - e094e099-58f1-48a7-9bdb-323942f529d4
       - b82ab806-5034-47b1-8fbc-7b388030b107
+      - 503e53c0-5353-48d5-a1f2-5dc15e0ff045
       - 321fe1d0-3ca3-45f5-bab8-56dd0f003e78
       - c0b354e9-aaa0-409e-ab47-6f534d03a97f
     metadata:
       status: pending
-      expanded: false
+      expanded: true
       isBlueprint: true
       blueprintIcon: FileWarning
       blueprintColor: '#f97316'
@@ -35319,20 +35323,6 @@ nodes:
       isWorkflow: true
       blueprintIcon: CloudCheck
       blueprintColor: '#14b8a6'
-  e3be9d1b-ce19-41d0-9991-9ad61a8730bb:
-    id: e3be9d1b-ce19-41d0-9991-9ad61a8730bb
-    content: There is transparency on sub workflow icons that seems to vary
-    children:
-      - 8b7b64f5-fab6-4ee7-9df1-4f699a6ea0a6
-    metadata:
-      status: pending
-      expanded: false
-  8b7b64f5-fab6-4ee7-9df1-4f699a6ea0a6:
-    id: 8b7b64f5-fab6-4ee7-9df1-4f699a6ea0a6
-    content: Decide if desirable or not
-    children: []
-    metadata:
-      status: pending
   d77cf522-0636-4a76-b9bf-7b33b4cc65cb:
     id: d77cf522-0636-4a76-b9bf-7b33b4cc65cb
     content: Provide easy way to jump to context applied to a node
@@ -35391,8 +35381,7 @@ nodes:
   0c1c74ed-ccdb-4278-a2f2-09b739effcfc:
     id: 0c1c74ed-ccdb-4278-a2f2-09b739effcfc
     content: Manual testing
-    children:
-      - 83478ae4-3c6f-4647-9d42-779a4de7d8a0
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -35769,259 +35758,15 @@ nodes:
     id: 0a62d0d8-639a-434d-8a54-46f77aff6739
     content: 'User Story 3: Node advancement and interactive toasts'
     children:
-      - 43f54e0a-be68-407b-b1e1-480bdf81fa4d
-      - b46f7d33-b42d-4d78-9b1e-714a3f6d30a4
-      - 939ec45d-e2c5-4a1b-9fea-2b487d62d3bc
-      - e60ef46c-3835-462e-b3a0-40bf02408fba
+      - e193dda6-a218-440e-a686-82a59822de11
+      - 4e4f825a-f105-4192-bda2-30689a5a2702
+      - 525c66e3-3cbc-4a93-98a9-9fd1a1a54cc8
+      - 78a56359-304f-4e18-8048-d6fa73239f87
+      - 465c7134-8f50-4d33-8b1a-0338e9269501
+      - d1cb51a1-404b-4406-96dd-61ad75805f77
     metadata:
-      status: pending
+      status: completed
       expanded: false
-      deleted: false
-      plugins: {}
-  43f54e0a-be68-407b-b1e1-480bdf81fa4d:
-    id: 43f54e0a-be68-407b-b1e1-480bdf81fa4d
-    content: Problem statement
-    children:
-      - baa05211-d377-4492-b6aa-5f28f131fb2f
-      - 95374be9-7ebd-453a-8ef8-9c51336db5e3
-      - 59512183-0961-474e-996f-6464347f5aab
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  baa05211-d377-4492-b6aa-5f28f131fb2f:
-    id: baa05211-d377-4492-b6aa-5f28f131fb2f
-    content: When the AI finishes a step, the system needs to physically move the task node to the next workflow step, send the new step's content to the terminal, and provide visual and textual feedback
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  95374be9-7ebd-453a-8ef8-9c51336db5e3:
-    id: 95374be9-7ebd-453a-8ef8-9c51336db5e3
-    content: Automated movements must not pollute the undo stack, since undoing an automated move mid-workflow would corrupt the execution state
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  59512183-0961-474e-996f-6464347f5aab:
-    id: 59512183-0961-474e-996f-6464347f5aab
-    content: The toast system currently only shows dismissible messages — but Checkpoint steps and timeouts need prompts with action buttons the user can click
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  b46f7d33-b42d-4d78-9b1e-714a3f6d30a4:
-    id: b46f7d33-b42d-4d78-9b1e-714a3f6d30a4
-    content: Use cases
-    children:
-      - 414f2318-7eb9-4804-8675-ace75808e69a
-      - 63812222-2d62-4537-8695-7dd923dff428
-      - d39177dc-8174-4bf9-a047-0f2f05a3aeb5
-      - 1c972d28-f6ed-4605-9023-f0b506d7b3d9
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  414f2318-7eb9-4804-8675-ace75808e69a:
-    id: 414f2318-7eb9-4804-8675-ace75808e69a
-    content: 'Primary: AI completes an Autonomous step — the node automatically moves to the next step, content is sent to the terminal with the new step''s contexts, a flash and toast confirm the advancement'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  63812222-2d62-4537-8695-7dd923dff428:
-    id: 63812222-2d62-4537-8695-7dd923dff428
-    content: 'Secondary: Node at the last sub-step of a nested workflow (e.g. 2.3) advances to step 3 of the parent — seamless cross-boundary traversal'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  d39177dc-8174-4bf9-a047-0f2f05a3aeb5:
-    id: d39177dc-8174-4bf9-a047-0f2f05a3aeb5
-    content: 'Secondary: Node completes the final step — workflow ends, node returns to Idle, completion toast shown, node stays at the final step'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  1c972d28-f6ed-4605-9023-f0b506d7b3d9:
-    id: 1c972d28-f6ed-4605-9023-f0b506d7b3d9
-    content: 'Secondary: AI completes a Checkpoint step — a toast with Continue and Stop buttons appears and persists until the user clicks one'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  939ec45d-e2c5-4a1b-9fea-2b487d62d3bc:
-    id: 939ec45d-e2c5-4a1b-9fea-2b487d62d3bc
-    content: Acceptance criteria
-    children:
-      - 82ddc919-403a-443a-8c29-409b4b1a94aa
-      - 058af7e6-faac-4051-b61a-4ba5307eb9b9
-      - cefbbfec-071f-4f67-9cc7-b150458dc7f8
-      - ad11f393-be2b-4e88-83bb-aef0e4a6c526
-      - 417d3bea-5647-4598-83f3-3217fcc288c7
-      - 7237fd2e-5a76-4ca7-87dc-c71459a92c72
-      - fab349c1-f346-409c-b8e1-1051ad52b390
-      - acd61a65-3940-4202-b650-174efa3fe992
-      - 9da8309b-4282-40bd-b18c-ec05fa088f20
-      - ac4ca897-7911-45be-90da-9b3a0e253a06
-      - 6471f0bd-c237-4692-9e7b-ac4fd0d58b18
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  82ddc919-403a-443a-8c29-409b4b1a94aa:
-    id: 82ddc919-403a-443a-8c29-409b4b1a94aa
-    content: Advancing a node moves it to the next step using depth-first traversal (reuses existing navigation logic)
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  058af7e6-faac-4051-b61a-4ba5307eb9b9:
-    id: 058af7e6-faac-4051-b61a-4ba5307eb9b9
-    content: Advancement updates the ancestor registry and triggers debounced file persistence
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  cefbbfec-071f-4f67-9cc7-b150458dc7f8:
-    id: cefbbfec-071f-4f67-9cc7-b150458dc7f8
-    content: Advancement does NOT create an undo command or push to the history stack
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ad11f393-be2b-4e88-83bb-aef0e4a6c526:
-    id: ad11f393-be2b-4e88-83bb-aef0e4a6c526
-    content: Node content is sent to the assigned terminal prepended with the step's applied contexts
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  417d3bea-5647-4598-83f3-3217fcc288c7:
-    id: 417d3bea-5647-4598-83f3-3217fcc288c7
-    content: Each step inherits its context mode (execute or collaborate) from its applied contexts, defaulting to execute
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  7237fd2e-5a76-4ca7-87dc-c71459a92c72:
-    id: 7237fd2e-5a76-4ca7-87dc-c71459a92c72
-    content: 'On advancement: toast "Node [name] advanced to Step N" — view does NOT follow the node'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  fab349c1-f346-409c-b8e1-1051ad52b390:
-    id: fab349c1-f346-409c-b8e1-1051ad52b390
-    content: 'On completion: toast "Workflow complete for [node name]", node set to Idle, node remains at final step'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  acd61a65-3940-4202-b650-174efa3fe992:
-    id: acd61a65-3940-4202-b650-174efa3fe992
-    content: Nested workflow traversal works correctly (step 2 → 2.1 → 2.2 → step 3, and deeply nested 3+ levels)
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  9da8309b-4282-40bd-b18c-ec05fa088f20:
-    id: 9da8309b-4282-40bd-b18c-ec05fa088f20
-    content: A distinct flash effect (different color from copy/paste flash) is shown on the node after advancement
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ac4ca897-7911-45be-90da-9b3a0e253a06:
-    id: ac4ca897-7911-45be-90da-9b3a0e253a06
-    content: Toasts support an optional actions array with labeled buttons and callbacks
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  6471f0bd-c237-4692-9e7b-ac4fd0d58b18:
-    id: 6471f0bd-c237-4692-9e7b-ac4fd0d58b18
-    content: Toasts with actions do not auto-dismiss — they persist until the user clicks an action or manually dismisses
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e60ef46c-3835-462e-b3a0-40bf02408fba:
-    id: e60ef46c-3835-462e-b3a0-40bf02408fba
-    content: Constraints and assumptions
-    children:
-      - ef61bff7-2067-43a7-8d41-d6f0848bc40e
-      - c1096ea3-b112-4ca8-8623-86bfdb3e0e2d
-      - 899cc619-c07a-463e-b1df-b7820b116a83
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ef61bff7-2067-43a7-8d41-d6f0848bc40e:
-    id: ef61bff7-2067-43a7-8d41-d6f0848bc40e
-    content: Introduces a second store mutation path (bypassing undo) — this is intentional but increases risk of state inconsistency with the undo stack
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  c1096ea3-b112-4ca8-8623-86bfdb3e0e2d:
-    id: c1096ea3-b112-4ca8-8623-86bfdb3e0e2d
-    content: Depends on User Story 2 (execution state and terminal assignment)
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  899cc619-c07a-463e-b1df-b7820b116a83:
-    id: 899cc619-c07a-463e-b1df-b7820b116a83
-    content: Depends on existing terminal send infrastructure and workflow navigation helpers
-    children: []
-    metadata:
-      status: pending
-      expanded: true
       deleted: false
       plugins: {}
   90a40be5-3f48-4bd9-9f90-2884670a8ff3:
@@ -37546,7 +37291,7 @@ nodes:
       - 078955d0-cc6a-46dc-853f-699f32731e68
     metadata:
       status: completed
-      expanded: true
+      expanded: false
       deleted: false
       plugins: {}
   0d677bf8-3ae3-4e87-9876-ce1e57b58617:
@@ -37620,7 +37365,7 @@ nodes:
       - 7030dfe7-02c5-483f-ad13-1c8c1d22e8ca
     metadata:
       status: completed
-      expanded: true
+      expanded: false
       deleted: false
       plugins: {}
   70192718-9b8b-40ed-a609-c64b68789016:
@@ -37651,7 +37396,7 @@ nodes:
       - 9a796e50-bb7e-4bb9-a952-b04d3cf2ffa1
     metadata:
       status: pending
-      expanded: true
+      expanded: false
       deleted: false
       plugins: {}
   57b9e729-f279-4e63-9b47-71a917945ace:
@@ -37706,7 +37451,7 @@ nodes:
       - b00085e8-deef-4406-84e6-8b2e83a676c3
     metadata:
       status: completed
-      expanded: true
+      expanded: false
       deleted: false
       plugins: {}
   08cbbeae-a551-4942-a96b-1179542dce5a:
@@ -37814,7 +37559,7 @@ nodes:
       - 121f4164-42c1-45f7-81b2-d18d114d28f8
     metadata:
       status: completed
-      expanded: true
+      expanded: false
       deleted: false
       plugins: {}
   21e8a669-c159-4a6d-8153-2ce70c798369:
@@ -37914,7 +37659,7 @@ nodes:
       - a45b03a4-464e-4e1b-ad50-2d15ce2794c8
     metadata:
       status: completed
-      expanded: true
+      expanded: false
       deleted: false
       plugins: {}
   25536c12-8392-4d4d-8f8f-b336b8bf8b28:
@@ -38017,7 +37762,7 @@ nodes:
       - 644ab224-e581-4470-9f1d-a2ec83127fb2
     metadata:
       status: completed
-      expanded: true
+      expanded: false
       deleted: false
       plugins: {}
   f3b234e2-c147-4628-b95b-ad6a31e58caf:
@@ -38065,7 +37810,7 @@ nodes:
       - 710d9bbb-917b-4040-8784-8e086e50ab52
     metadata:
       status: completed
-      expanded: true
+      expanded: false
       deleted: false
       plugins: {}
   ecefceac-9acd-4fa5-9f15-a92a512e55a0:
@@ -38105,7 +37850,7 @@ nodes:
       - 46f97329-ebee-4b5d-aa74-67a7210d574c
     metadata:
       status: completed
-      expanded: true
+      expanded: false
       deleted: false
       plugins: {}
   5620611f-742e-481a-9ff7-efae1eaf5202:
@@ -38154,7 +37899,7 @@ nodes:
       - 59eeb5a3-d649-4950-8653-083107ecd733
     metadata:
       status: completed
-      expanded: true
+      expanded: false
       deleted: false
       plugins: {}
   6b2207be-88a5-4a08-92f6-7eacac9e744c:
@@ -38202,7 +37947,7 @@ nodes:
       - 578b5d8f-16bc-4456-9d3b-6e456b23a2cb
     metadata:
       status: completed
-      expanded: true
+      expanded: false
       deleted: false
       plugins: {}
   68caa66d-fbe5-44f9-bc51-9f6a55923fa6:
@@ -38244,7 +37989,7 @@ nodes:
       - 7f391105-d63b-4037-ae17-51c57ab01ab6
     metadata:
       status: completed
-      expanded: true
+      expanded: false
       deleted: false
       plugins: {}
   8f019c4a-fa6d-4f11-9a26-18076e4b4df5:
@@ -38311,7 +38056,7 @@ nodes:
       - 38f34012-4fcb-44da-bb9a-48b7577e4b42
     metadata:
       status: completed
-      expanded: true
+      expanded: false
       deleted: false
       plugins: {}
   594238df-b536-4cec-9a07-035fb5560c82:
@@ -38360,7 +38105,7 @@ nodes:
       - 9d9fd3ed-aef8-4aa2-9464-b9ec81785f76
     metadata:
       status: completed
-      expanded: true
+      expanded: false
       deleted: false
       plugins: {}
   897414cf-3e61-480a-8b49-0857dde7f3bf:
@@ -38408,7 +38153,7 @@ nodes:
       - c6db9b81-bd1c-4737-946c-27fcbc6f6188
     metadata:
       status: completed
-      expanded: true
+      expanded: false
       deleted: false
       plugins: {}
   4b6d8c75-08ac-4ff6-bba1-5246a428df04:
@@ -38447,7 +38192,7 @@ nodes:
       - 46b9a06b-2373-4bd0-8793-8fc625d4b793
     metadata:
       status: completed
-      expanded: true
+      expanded: false
       deleted: false
       plugins: {}
   54263d03-acdf-4840-a237-38191ec6c03a:
@@ -38489,7 +38234,7 @@ nodes:
       - 46b15932-f7f6-4816-ae3a-daeb0131eb95
     metadata:
       status: pending
-      expanded: true
+      expanded: false
       deleted: false
       plugins: {}
   0b5543dd-9d82-4359-aa5d-630f63997b39:
@@ -38557,7 +38302,7 @@ nodes:
       - 146fe584-5f6a-434f-a061-35fbfa7221fb
     metadata:
       status: pending
-      expanded: true
+      expanded: false
       deleted: false
       plugins: {}
   e08572a6-f830-46d1-936c-9f5a35ddbc39:
@@ -38618,7 +38363,7 @@ nodes:
       - b3041bf0-01e1-4078-b578-5c365297f6d6
     metadata:
       status: pending
-      expanded: true
+      expanded: false
       deleted: false
       plugins: {}
   feca7147-a993-4430-b6b1-b9b523b2c527:
@@ -38684,3 +38429,447 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
+  455ed479-95ce-4fc9-84cb-ba8625241aa9:
+    id: 455ed479-95ce-4fc9-84cb-ba8625241aa9
+    content: "Do NOT go beyond scope.\_ You could be on a step in a multi user story feature that will fill in the gaps later.\_ DO ask the user for clarification if you think there is a fundamental behavior that is missing."
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  edc367de-e1ac-43e4-903a-4c215e63f089:
+    id: edc367de-e1ac-43e4-903a-4c215e63f089
+    content: When an acceptance criteria describes a property of the system, don't assume it requires new behavior — check whether the existing code already satisfies it.
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  d83909a8-6ca6-4dca-8c64-7b4ee9aeb43b:
+    id: d83909a8-6ca6-4dca-8c64-7b4ee9aeb43b
+    content: Revise after discussion
+    children:
+      - 83e682bc-2b2f-4e62-b6d6-2f691e58a239
+      - 9e150cb7-7579-4d28-93d7-69681c55ca23
+    metadata:
+      status: pending
+      isContextDeclaration: true
+      blueprintIcon: MessageSquare
+      blueprintColor: '#c47f09'
+      isBlueprint: true
+      contextMode: collaborate
+      expanded: false
+  83e682bc-2b2f-4e62-b6d6-2f691e58a239:
+    id: 83e682bc-2b2f-4e62-b6d6-2f691e58a239
+    content: Revise the following specification based on our discussion
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  9e150cb7-7579-4d28-93d7-69681c55ca23:
+    id: 9e150cb7-7579-4d28-93d7-69681c55ca23
+    content: Check anything that is complete as done and anything not yet implemented as undone
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  e193dda6-a218-440e-a686-82a59822de11:
+    id: e193dda6-a218-440e-a686-82a59822de11
+    content: Problem statement
+    children:
+      - eb6dd68b-2f9a-4551-be95-2fb60b68ee5c
+      - 2835dd25-b44e-4f17-9518-d1f5367cb97a
+      - a0916061-47db-45a7-9367-ae84e2e3deaa
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  eb6dd68b-2f9a-4551-be95-2fb60b68ee5c:
+    id: eb6dd68b-2f9a-4551-be95-2fb60b68ee5c
+    content: When the AI finishes a step, the system needs to physically move the task node to the next workflow step, send the new step's content to the terminal, and provide visual and textual feedback
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2835dd25-b44e-4f17-9518-d1f5367cb97a:
+    id: 2835dd25-b44e-4f17-9518-d1f5367cb97a
+    content: Automated movements must not pollute the undo stack, since undoing an automated move mid-workflow would corrupt the execution state
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a0916061-47db-45a7-9367-ae84e2e3deaa:
+    id: a0916061-47db-45a7-9367-ae84e2e3deaa
+    content: The toast system currently only shows dismissible messages — but timeouts need prompts with action buttons the user can click
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4e4f825a-f105-4192-bda2-30689a5a2702:
+    id: 4e4f825a-f105-4192-bda2-30689a5a2702
+    content: Use cases
+    children:
+      - 6a79a9e2-9998-4aaf-bd97-aa9a29626be8
+      - a162e1a1-0df3-43fe-b777-8e9d5d74426f
+      - 5e8a88b2-af88-4a75-a6a8-dc258518422d
+      - 63e2173b-015b-4f6d-a2a6-0637c67fd0c2
+      - ddcce8a4-b2a6-4d0f-8d29-68d23673acf9
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6a79a9e2-9998-4aaf-bd97-aa9a29626be8:
+    id: 6a79a9e2-9998-4aaf-bd97-aa9a29626be8
+    content: 'Primary: AI completes an Autonomous step — the node automatically moves to the next step, content is sent to the terminal with the new step''s contexts, a flash and toast confirm the advancement'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a162e1a1-0df3-43fe-b777-8e9d5d74426f:
+    id: a162e1a1-0df3-43fe-b777-8e9d5d74426f
+    content: 'Secondary: Node at the last sub-step of a nested workflow (e.g. 2.3) advances to step 3 of the parent — seamless cross-boundary traversal'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5e8a88b2-af88-4a75-a6a8-dc258518422d:
+    id: 5e8a88b2-af88-4a75-a6a8-dc258518422d
+    content: 'Secondary: Node completes the final step — workflow ends, node returns to Idle, completion toast shown, node stays at the final step'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  63e2173b-015b-4f6d-a2a6-0637c67fd0c2:
+    id: 63e2173b-015b-4f6d-a2a6-0637c67fd0c2
+    content: 'Secondary: AI completes a Checkpoint step — workflow pauses, toast notifies user the step is complete'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ddcce8a4-b2a6-4d0f-8d29-68d23673acf9:
+    id: ddcce8a4-b2a6-4d0f-8d29-68d23673acf9
+    content: 'Secondary: Node advances to a Manual step — node moves but content is NOT sent to terminal, toast notifies user it is waiting for manual action'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  525c66e3-3cbc-4a93-98a9-9fd1a1a54cc8:
+    id: 525c66e3-3cbc-4a93-98a9-9fd1a1a54cc8
+    content: Acceptance criteria
+    children:
+      - c5de5b87-b5ac-4507-b233-b9babe688400
+      - a8616fe9-e0ae-4559-9032-b1c979ec732d
+      - ccb57390-0151-4419-8ff0-d50f3e1a8c5b
+      - 88214e57-382e-47df-8d56-587453677fe7
+      - c9753341-1811-4d5a-b8eb-193879d93ff5
+      - a4435607-7bee-488e-88e0-7da4125ab83e
+      - 875eed57-cac3-4920-ac56-e0c3277ae714
+      - 48fc12b3-2367-4ebe-a9e3-97d65a9349f9
+      - 224d330c-07a9-4e1d-ac84-14b2b70c66d7
+      - aa17fbf5-231b-489c-bf17-ff7cf5fdaf85
+      - 19c5576e-08e6-4218-87e2-2fea503f65bd
+      - e5117d1e-644b-4bb2-ac52-4605d231d10f
+      - 6056c724-c43d-4f4e-9dac-918fbec14f4e
+      - 3aeb25b5-12a2-4042-90cd-724cb2b6cfc3
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c5de5b87-b5ac-4507-b233-b9babe688400:
+    id: c5de5b87-b5ac-4507-b233-b9babe688400
+    content: Advancing a node moves it to the next step using depth-first traversal (reuses existing navigation logic)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a8616fe9-e0ae-4559-9032-b1c979ec732d:
+    id: a8616fe9-e0ae-4559-9032-b1c979ec732d
+    content: Advancement updates the ancestor registry and triggers debounced file persistence
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ccb57390-0151-4419-8ff0-d50f3e1a8c5b:
+    id: ccb57390-0151-4419-8ff0-d50f3e1a8c5b
+    content: Advancement does NOT create an undo command or push to the history stack
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  88214e57-382e-47df-8d56-587453677fe7:
+    id: 88214e57-382e-47df-8d56-587453677fe7
+    content: 'On Autonomous and Checkpoint steps: node content is sent to the assigned terminal prepended with the step''s applied contexts'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c9753341-1811-4d5a-b8eb-193879d93ff5:
+    id: c9753341-1811-4d5a-b8eb-193879d93ff5
+    content: 'On Manual steps: node advances but content is NOT sent to terminal'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a4435607-7bee-488e-88e0-7da4125ab83e:
+    id: a4435607-7bee-488e-88e0-7da4125ab83e
+    content: Each step inherits its context mode (execute or collaborate) from its applied contexts, defaulting to collaborate
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  875eed57-cac3-4920-ac56-e0c3277ae714:
+    id: 875eed57-cac3-4920-ac56-e0c3277ae714
+    content: 'On Autonomous advancement: toast "Advanced [name] to Step N" — view does NOT follow the node'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  48fc12b3-2367-4ebe-a9e3-97d65a9349f9:
+    id: 48fc12b3-2367-4ebe-a9e3-97d65a9349f9
+    content: 'On Checkpoint completion (Stop event): workflow pauses, toast "Step complete for [name]"'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  224d330c-07a9-4e1d-ac84-14b2b70c66d7:
+    id: 224d330c-07a9-4e1d-ac84-14b2b70c66d7
+    content: 'On Manual step arrival: toast "[name] waiting at Step N"'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  aa17fbf5-231b-489c-bf17-ff7cf5fdaf85:
+    id: aa17fbf5-231b-489c-bf17-ff7cf5fdaf85
+    content: 'On completion: toast "Workflow complete for [node name]", node set to Idle, node remains at final step'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  19c5576e-08e6-4218-87e2-2fea503f65bd:
+    id: 19c5576e-08e6-4218-87e2-2fea503f65bd
+    content: Nested workflow traversal works correctly (step 2 → 2.1 → 2.2 → step 3, and deeply nested 3+ levels)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e5117d1e-644b-4bb2-ac52-4605d231d10f:
+    id: e5117d1e-644b-4bb2-ac52-4605d231d10f
+    content: A distinct flash effect (different color from copy/paste flash) is shown on the node after advancement
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6056c724-c43d-4f4e-9dac-918fbec14f4e:
+    id: 6056c724-c43d-4f4e-9dac-918fbec14f4e
+    content: Toasts support an optional actions array with labeled buttons and callbacks
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3aeb25b5-12a2-4042-90cd-724cb2b6cfc3:
+    id: 3aeb25b5-12a2-4042-90cd-724cb2b6cfc3
+    content: Toasts with actions do not auto-dismiss — they persist until the user clicks an action or manually dismisses
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  78a56359-304f-4e18-8048-d6fa73239f87:
+    id: 78a56359-304f-4e18-8048-d6fa73239f87
+    content: Constraints and assumptions
+    children:
+      - bbdb3c4c-60ce-4bff-ba69-d968ec783de1
+      - 9c384a71-84c5-4ebb-ae29-ad57d9ede250
+      - c940e43a-c8a3-48c1-a806-241890f97d95
+      - d1ce5c1f-611a-4f0b-974b-e60726cf94c5
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bbdb3c4c-60ce-4bff-ba69-d968ec783de1:
+    id: bbdb3c4c-60ce-4bff-ba69-d968ec783de1
+    content: Introduces a second store mutation path (bypassing undo) — this is intentional but increases risk of state inconsistency with the undo stack
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9c384a71-84c5-4ebb-ae29-ad57d9ede250:
+    id: 9c384a71-84c5-4ebb-ae29-ad57d9ede250
+    content: Depends on User Story 2 (execution state and terminal assignment)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c940e43a-c8a3-48c1-a806-241890f97d95:
+    id: c940e43a-c8a3-48c1-a806-241890f97d95
+    content: Depends on existing terminal send infrastructure and workflow navigation helpers
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d1ce5c1f-611a-4f0b-974b-e60726cf94c5:
+    id: d1ce5c1f-611a-4f0b-974b-e60726cf94c5
+    content: Sending content from the menu (executeInTerminalWithContext) does NOT resume a paused workflow — resuming is an explicit action
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  465c7134-8f50-4d33-8b1a-0338e9269501:
+    id: 465c7134-8f50-4d33-8b1a-0338e9269501
+    content: Refactor
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d1cb51a1-404b-4406-96dd-61ad75805f77:
+    id: d1cb51a1-404b-4406-96dd-61ad75805f77
+    content: Documentation
+    children:
+      - 56fcbf7d-ffb5-4405-9447-0cfc4d270679
+      - f8038ea6-3c85-4d7f-a86a-18b3e972f7b7
+      - 45f497c4-8d46-4bf8-af54-243dcc71a652
+      - 8a0d4383-2022-4af1-a2c0-38360deacd92
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  56fcbf7d-ffb5-4405-9447-0cfc4d270679:
+    id: 56fcbf7d-ffb5-4405-9447-0cfc4d270679
+    content: Updated workflows.md with "Running a Workflow" section
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f8038ea6-3c85-4d7f-a86a-18b3e972f7b7:
+    id: f8038ea6-3c85-4d7f-a86a-18b3e972f7b7
+    content: Updated step type descriptions to include execution behavior
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  45f497c4-8d46-4bf8-af54-243dcc71a652:
+    id: 45f497c4-8d46-4bf8-af54-243dcc71a652
+    content: Renamed "Moving Items Through Steps" to "Moving Items Manually"
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8a0d4383-2022-4af1-a2c0-38360deacd92:
+    id: 8a0d4383-2022-4af1-a2c0-38360deacd92
+    content: Added changelog entry
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3999cfea-b344-4f92-b3ca-ffb9f740afc7:
+    id: 3999cfea-b344-4f92-b3ca-ffb9f740afc7
+    content: There's a blur between execute and collaborate
+    children:
+      - 9b1484a5-b39f-4ece-be42-8ee29288c289
+      - 43db60c9-9262-44bd-bdf3-184eeb4a88fe
+      - 796b752c-1e78-4eb7-8ca5-0856c26e2ad2
+      - fec95767-3f85-4b19-8701-45264a0da512
+    metadata:
+      status: pending
+  9b1484a5-b39f-4ece-be42-8ee29288c289:
+    id: 9b1484a5-b39f-4ece-be42-8ee29288c289
+    content: And I think we can reduce to the same process
+    children: []
+    metadata:
+      status: pending
+  43db60c9-9262-44bd-bdf3-184eeb4a88fe:
+    id: 43db60c9-9262-44bd-bdf3-184eeb4a88fe
+    content: If execute, we still send the temporary file instructions but just ask to update the steps that were checked off
+    children: []
+    metadata:
+      status: pending
+  796b752c-1e78-4eb7-8ca5-0856c26e2ad2:
+    id: 796b752c-1e78-4eb7-8ca5-0856c26e2ad2
+    content: If collaborate, as normal
+    children: []
+    metadata:
+      status: pending
+  fec95767-3f85-4b19-8701-45264a0da512:
+    id: fec95767-3f85-4b19-8701-45264a0da512
+    content: Think about how this impacts the feedback panel
+    children:
+      - 520525f0-0345-42ee-8122-8e921d6f7d77
+      - de31759d-9ced-404e-97af-69b29c5bd375
+    metadata:
+      status: pending
+  520525f0-0345-42ee-8122-8e921d6f7d77:
+    id: 520525f0-0345-42ee-8122-8e921d6f7d77
+    content: Do we still need it ?
+    children: []
+    metadata:
+      status: pending
+  de31759d-9ced-404e-97af-69b29c5bd375:
+    id: de31759d-9ced-404e-97af-69b29c5bd375
+    content: Maybe we need it unless it's automated, in which case we can use inputs/outputs instead ?
+    children: []
+    metadata:
+      status: pending
