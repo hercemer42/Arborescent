@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-03-12T15:38:35.784Z'
+updated: '2026-03-12T19:30:09.381Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -535,7 +535,7 @@ nodes:
       - 592a7f85-c2bb-4133-877d-26f32ff8d4ff
     metadata:
       status: completed
-      expanded: true
+      expanded: false
       isBlueprint: true
       blueprintIcon: FolderCheck
       blueprintColor: '#22c55e'
@@ -552,8 +552,12 @@ nodes:
     id: d5fe0eff-b1c6-4986-b6a3-70a0ea46f096
     content: Opportunities
     children:
+      - 7ca7c1ca-e879-4886-9349-0ed1b076d29a
+      - 1f631bc1-8444-40e1-a1d5-d3442b89c5ff
+      - a39b2ce6-d2d5-4589-b53f-a84c103d9fbf
       - 3999cfea-b344-4f92-b3ca-ffb9f740afc7
       - d77cf522-0636-4a76-b9bf-7b33b4cc65cb
+      - 234c29b2-67f3-424a-87ed-1fb53104aba2
       - 19073c24-aea5-4444-95e9-8ca4048c87a7
       - 84f82fb1-a98d-4b2d-8ea0-3005c3d1f252
       - 0b8d15ca-ea15-4817-aa86-45d795dc5047
@@ -34441,21 +34445,28 @@ nodes:
     id: 13c5048b-15eb-4989-a6fc-25032e5c131f
     content: Problems
     children:
+      - 025a647c-7f61-4fba-9256-9e1988c60881
+      - a53c7946-6b6f-4b67-ac43-b37c5a32dfc5
+      - 329b96ee-dc93-4391-9e2a-f03ff95288e5
+      - 564574d1-43b4-4bfa-9068-b7ef4621f9fd
+      - 33c9ccfe-2b9e-441f-a857-bf766dc09892
+      - ac6ff401-493a-4a33-8182-a96e4cd939c3
+      - 4446dd01-7caf-4953-8dd2-36153adb9cfa
       - 9692fa14-b407-4595-8af9-30f68e3b0d1a
       - 664f4e01-f14c-4f67-bc1a-fd08bd179bd1
       - 005c8b90-d200-4c09-b066-3a01c83f917d
       - 81e4a4b6-287a-48c4-a5c5-78ff927403d3
       - e094e099-58f1-48a7-9bdb-323942f529d4
       - b82ab806-5034-47b1-8fbc-7b388030b107
-      - 503e53c0-5353-48d5-a1f2-5dc15e0ff045
       - 321fe1d0-3ca3-45f5-bab8-56dd0f003e78
       - c0b354e9-aaa0-409e-ab47-6f534d03a97f
     metadata:
       status: pending
-      expanded: false
+      expanded: true
       isBlueprint: true
       blueprintIcon: FileWarning
       blueprintColor: '#f97316'
+      appliedContextId: 6690289a-e02f-48bc-9225-a1083b7b324f
   664f4e01-f14c-4f67-bc1a-fd08bd179bd1:
     id: 664f4e01-f14c-4f67-bc1a-fd08bd179bd1
     content: Can't decompose one node into several in feedback panel
@@ -34657,7 +34668,8 @@ nodes:
   321fe1d0-3ca3-45f5-bab8-56dd0f003e78:
     id: 321fe1d0-3ca3-45f5-bab8-56dd0f003e78
     content: Done
-    children: []
+    children:
+      - 503e53c0-5353-48d5-a1f2-5dc15e0ff045
     metadata:
       status: completed
       expanded: true
@@ -38192,6 +38204,7 @@ nodes:
       - 87bd6b9f-7d94-43be-bb9f-9c17a07567b3
     metadata:
       status: pending
+      expanded: false
   87bd6b9f-7d94-43be-bb9f-9c17a07567b3:
     id: 87bd6b9f-7d94-43be-bb9f-9c17a07567b3
     content: Depends on the vertical positioning of the node you are opening the context menu on
@@ -42809,3 +42822,160 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
+  4446dd01-7caf-4953-8dd2-36153adb9cfa:
+    id: 4446dd01-7caf-4953-8dd2-36153adb9cfa
+    content: No way to jump back and forth between user stories, problem/opportunities etc.
+    children:
+      - 9b114ae3-8029-449b-aeb7-97991c4f508e
+      - 7903f2d5-ff8d-4cdd-afc9-90951bd10007
+    metadata:
+      status: pending
+  9b114ae3-8029-449b-aeb7-97991c4f508e:
+    id: 9b114ae3-8029-449b-aeb7-97991c4f508e
+    content: Would be nice to have everything linked so we can have multi-node workflows
+    children: []
+    metadata:
+      status: pending
+  7903f2d5-ff8d-4cdd-afc9-90951bd10007:
+    id: 7903f2d5-ff8d-4cdd-afc9-90951bd10007
+    content: Conceptually, in any case we'll need to have a way to maintain relations between produced content
+    children: []
+    metadata:
+      status: pending
+  564574d1-43b4-4bfa-9068-b7ef4621f9fd:
+    id: 564574d1-43b4-4bfa-9068-b7ef4621f9fd
+    content: Checkbox for step type doesn't become selected when checked
+    children:
+      - dd7bbd6c-e7ee-43ad-91be-6f33dc309239
+    metadata:
+      status: pending
+  dd7bbd6c-e7ee-43ad-91be-6f33dc309239:
+    id: dd7bbd6c-e7ee-43ad-91be-6f33dc309239
+    content: It is selected if I close the menu then open again
+    children: []
+    metadata:
+      status: pending
+  ac6ff401-493a-4a33-8182-a96e4cd939c3:
+    id: ac6ff401-493a-4a33-8182-a96e4cd939c3
+    content: Triangle around checkpoint step is too wide and not high enough - maybe diamond or hex
+    children: []
+    metadata:
+      status: pending
+  7ca7c1ca-e879-4886-9349-0ed1b076d29a:
+    id: 7ca7c1ca-e879-4886-9349-0ed1b076d29a
+    content: Consider cycling through step types by clicking on them
+    children:
+      - 082c3889-0b5a-41c5-8b02-7ad1bb676b32
+      - e648d7a0-d9c1-49b1-a1e7-cd8a9e38603d
+    metadata:
+      status: pending
+  082c3889-0b5a-41c5-8b02-7ad1bb676b32:
+    id: 082c3889-0b5a-41c5-8b02-7ad1bb676b32
+    content: If we introduce inputs/outputs might not work so well
+    children: []
+    metadata:
+      status: pending
+  e648d7a0-d9c1-49b1-a1e7-cd8a9e38603d:
+    id: e648d7a0-d9c1-49b1-a1e7-cd8a9e38603d
+    content: Maybe a pop-up would be better when clicking on them
+    children: []
+    metadata:
+      status: pending
+  33c9ccfe-2b9e-441f-a857-bf766dc09892:
+    id: 33c9ccfe-2b9e-441f-a857-bf766dc09892
+    content: Right click menu is getting unwieldy and needs tidying up
+    children: []
+    metadata:
+      status: pending
+  234c29b2-67f3-424a-87ed-1fb53104aba2:
+    id: 234c29b2-67f3-424a-87ed-1fb53104aba2
+    content: Toolbar - right click menu is getting unweildy
+    children: []
+    metadata:
+      status: pending
+  a39b2ce6-d2d5-4589-b53f-a84c103d9fbf:
+    id: a39b2ce6-d2d5-4589-b53f-a84c103d9fbf
+    content: Make a generic software development blueprint with a blank conventions template
+    children: []
+    metadata:
+      status: pending
+  37580531-d264-4757-82ed-0176390ec79a:
+    id: 37580531-d264-4757-82ed-0176390ec79a
+    content: Should be a dialog box with a dismiss/keep, not a toast
+    children: []
+    metadata:
+      status: pending
+  deed249e-5ea4-416a-b111-f2d7426e2c73:
+    id: deed249e-5ea4-416a-b111-f2d7426e2c73
+    content: Keep toast only for ephemeral, non interactive
+    children: []
+    metadata:
+      status: pending
+  2cd3e1a6-3f5a-48ac-8059-e0b62daa1f98:
+    id: 2cd3e1a6-3f5a-48ac-8059-e0b62daa1f98
+    content: Otherwise have a box that comes up in the middle, with a message that can be copied, and a close button
+    children: []
+    metadata:
+      status: pending
+  329b96ee-dc93-4391-9e2a-f03ff95288e5:
+    id: 329b96ee-dc93-4391-9e2a-f03ff95288e5
+    content: Hook configuration toast doesn't stay for long enough
+    children:
+      - 37580531-d264-4757-82ed-0176390ec79a
+      - deed249e-5ea4-416a-b111-f2d7426e2c73
+      - 2cd3e1a6-3f5a-48ac-8059-e0b62daa1f98
+    metadata:
+      status: pending
+  025a647c-7f61-4fba-9256-9e1988c60881:
+    id: 025a647c-7f61-4fba-9256-9e1988c60881
+    content: Not seeing status icons on nodes in the workflow
+    children:
+      - b75e6436-b854-4ae7-8c43-9991f9276ccb
+    metadata:
+      status: pending
+  a53c7946-6b6f-4b67-ac43-b37c5a32dfc5:
+    id: a53c7946-6b6f-4b67-ac43-b37c5a32dfc5
+    content: The play icon to indicate a workflow node is confusing
+    children:
+      - 88646500-c444-42ef-9248-c5ff81c5ae70
+      - 80aa1758-9090-4476-b100-240fb61f85de
+    metadata:
+      status: pending
+  88646500-c444-42ef-9248-c5ff81c5ae70:
+    id: 88646500-c444-42ef-9248-c5ff81c5ae70
+    content: Feels like you can click on it, but you can't
+    children: []
+    metadata:
+      status: pending
+  80aa1758-9090-4476-b100-240fb61f85de:
+    id: 80aa1758-9090-4476-b100-240fb61f85de
+    content: Needs to be more abstract but signifies workload
+    children:
+      - 6d2922a4-c7dd-494d-9296-195c9d52718f
+    metadata:
+      status: pending
+  6d2922a4-c7dd-494d-9296-195c9d52718f:
+    id: 6d2922a4-c7dd-494d-9296-195c9d52718f
+    content: Cog ?
+    children: []
+    metadata:
+      status: pending
+  1f631bc1-8444-40e1-a1d5-d3442b89c5ff:
+    id: 1f631bc1-8444-40e1-a1d5-d3442b89c5ff
+    content: Add a 'continue workflow' for a node in a checkpoint that has finished.
+    children:
+      - 83e86012-24c4-464f-8cf9-e063157063e7
+    metadata:
+      status: pending
+  83e86012-24c4-464f-8cf9-e063157063e7:
+    id: 83e86012-24c4-464f-8cf9-e063157063e7
+    content: Sends it to the next step and runs it if it's an automated/checkpoint step
+    children: []
+    metadata:
+      status: pending
+  b75e6436-b854-4ae7-8c43-9991f9276ccb:
+    id: b75e6436-b854-4ae7-8c43-9991f9276ccb
+    content: Didn't we spec this ? I thought we had speced out play, pause, in progress icons in an overlay for nodes in a step
+    children: []
+    metadata:
+      status: pending

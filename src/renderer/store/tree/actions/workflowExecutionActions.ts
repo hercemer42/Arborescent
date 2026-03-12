@@ -585,17 +585,15 @@ export const createWorkflowExecutionActions = (
   function handleNodeMovedManually(nodeId: string): void {
     const { workflowExecutionStates } = get();
     const entry = workflowExecutionStates[nodeId];
-    if (!entry || entry.state !== "running") return;
+    if (!entry) return;
 
-    set({
-      workflowExecutionStates: {
-        ...workflowExecutionStates,
-        [nodeId]: { ...entry, state: "paused" },
-      },
-    });
+    clearStepTimeout(nodeId);
+    const updatedStates = { ...workflowExecutionStates };
+    delete updatedStates[nodeId];
+    set({ workflowExecutionStates: updatedStates });
 
     logger.info(
-      `Paused workflow for manually moved node ${nodeId}`,
+      `Cleared execution state for manually moved node ${nodeId}`,
       "WorkflowExecution",
     );
   }

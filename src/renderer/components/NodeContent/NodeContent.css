@@ -162,7 +162,8 @@
   margin: -1px -2px;
 }
 
-.blueprint-icon-wrapper {
+.blueprint-icon-wrapper,
+.checkbox-icon-wrapper {
   position: relative;
   display: flex;
   align-items: center;
@@ -228,9 +229,16 @@
   text-underline-offset: 2px;
 }
 
+.blueprint-icon-wrapper .workflow-execution-overlay {
+  right: -12px;
+}
+
+.checkbox-icon-wrapper .workflow-execution-overlay {
+  left: -12px;
+}
+
 .workflow-execution-overlay {
   position: absolute;
-  right: -12px;
   display: flex;
   align-items: center;
   justify-content: center;

@@ -286,27 +286,21 @@ describe('workflow execution edge cases', () => {
   });
 
   describe('running node moved manually', () => {
-    it('should pause when a running node is moved to a different step by the user', () => {
+    it('should clear execution state when a running node is moved', () => {
       actions.handleNodeMovedManually('task-a');
 
-      expect(state.workflowExecutionStates['task-a'].state).toBe('paused');
+      expect(state.workflowExecutionStates['task-a']).toBeUndefined();
     });
 
-    it('should allow resuming from the new position', () => {
-      // Move task-a to step-3 manually
-      state.nodes['step-3'].children = ['task-a'];
-      state.nodes['step-1'].children = [];
-      state.ancestorRegistry['task-a'] = ['root', 'workflow', 'step-3'];
+    it('should clear execution state when a paused node is moved', () => {
+      state.workflowExecutionStates['task-a'] = { state: 'paused', terminalTabId: 'terminal-1' };
 
       actions.handleNodeMovedManually('task-a');
-      actions.resumeWorkflow('task-a', 'terminal-1');
 
-      expect(state.workflowExecutionStates['task-a'].state).toBe('running');
-      // Node should still be at step-3
-      expect(state.nodes['step-3'].children).toContain('task-a');
+      expect(state.workflowExecutionStates['task-a']).toBeUndefined();
     });
 
-    it('should not pause if the moved node is not running', () => {
+    it('should be a no-op if the moved node has no execution state', () => {
       delete state.workflowExecutionStates['task-a'];
 
       actions.handleNodeMovedManually('task-a');

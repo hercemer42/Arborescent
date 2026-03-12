@@ -207,49 +207,49 @@ describe('workflow disruption — movement wiring', () => {
   });
 
   describe('moveNodeVertically — cross-parent move', () => {
-    it('should pause a running node when moved to a different parent via moveNodeDown', () => {
+    it('should clear execution state when moved to a different parent via moveNodeDown', () => {
       // task-a is the last child of step-1. Moving down crosses to step-2.
       state.nodes['step-1'].children = ['task-a'];
 
       movementActions.moveNodeDown('task-a');
 
-      expect(state.workflowExecutionStates['task-a'].state).toBe('paused');
+      expect(state.workflowExecutionStates['task-a']).toBeUndefined();
     });
 
-    it('should pause a running node when moved to a different parent via moveNodeUp', () => {
+    it('should clear execution state when moved to a different parent via moveNodeUp', () => {
       // task-c is the first child of step-2. Moving up crosses to step-1.
       state.workflowExecutionStates['task-c'] = { state: 'running', terminalTabId: 'terminal-2' };
 
       movementActions.moveNodeUp('task-c');
 
-      expect(state.workflowExecutionStates['task-c'].state).toBe('paused');
+      expect(state.workflowExecutionStates['task-c']).toBeUndefined();
     });
   });
 
   describe('indentNode — always cross-parent', () => {
-    it('should pause a running node when indented to a new parent', () => {
+    it('should clear execution state when indented to a new parent', () => {
       // Set up: two siblings under step-1, task-b can be indented into task-a
       state.workflowExecutionStates['task-b'] = { state: 'running', terminalTabId: 'terminal-2' };
 
       movementActions.indentNode('task-b');
 
-      expect(state.workflowExecutionStates['task-b'].state).toBe('paused');
+      expect(state.workflowExecutionStates['task-b']).toBeUndefined();
     });
   });
 
   describe('outdentNode — always cross-parent', () => {
-    it('should pause a running node when outdented to a new parent', () => {
+    it('should clear execution state when outdented to a new parent', () => {
       movementActions.outdentNode('task-a');
 
-      expect(state.workflowExecutionStates['task-a'].state).toBe('paused');
+      expect(state.workflowExecutionStates['task-a']).toBeUndefined();
     });
   });
 
   describe('dropNode — cross-parent', () => {
-    it('should pause a running node when dropped into a different parent', () => {
+    it('should clear execution state when dropped into a different parent', () => {
       movementActions.dropNode('task-a', 'step-2', 'child');
 
-      expect(state.workflowExecutionStates['task-a'].state).toBe('paused');
+      expect(state.workflowExecutionStates['task-a']).toBeUndefined();
     });
   });
 

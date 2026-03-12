@@ -153,10 +153,34 @@ function NodeContentComponent({
 
     // Regular node - checkbox
     return (
-      <StatusCheckbox
-        status={node.metadata.status}
-        onToggle={() => toggleStatus(node.id)}
-      />
+      <span className="checkbox-icon-wrapper">
+        <StatusCheckbox
+          status={node.metadata.status}
+          onToggle={() => toggleStatus(node.id)}
+        />
+        {executionState === 'running' && (
+          <button
+            className="workflow-execution-overlay running"
+            title="Running — click to pause"
+            aria-label="Pause workflow"
+            onClick={(e) => {
+              e.stopPropagation();
+              pauseWorkflow();
+            }}
+          >
+            <Play size={8} fill="currentColor" />
+          </button>
+        )}
+        {executionState === 'paused' && (
+          <span
+            className="workflow-execution-overlay paused"
+            title="Paused"
+            aria-label="Workflow paused"
+          >
+            <Pause size={8} fill="currentColor" />
+          </span>
+        )}
+      </span>
     );
   };
 
