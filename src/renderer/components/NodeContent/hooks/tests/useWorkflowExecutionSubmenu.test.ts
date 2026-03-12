@@ -314,6 +314,56 @@ describe('buildWorkflowExecutionSubmenu', () => {
     });
   });
 
+  describe('nested workflow steps', () => {
+    beforeEach(() => {
+      // Make step-1 a sub-workflow with its own steps
+      nodes['step-1'].metadata.isWorkflow = true;
+      nodes['step-1'].children = ['sub-step-1', 'sub-step-2'];
+      nodes['sub-step-1'] = {
+        id: 'sub-step-1',
+        content: 'Sub Step 1',
+        children: ['task-a'],
+        metadata: { isBlueprint: true },
+      };
+      nodes['sub-step-2'] = {
+        id: 'sub-step-2',
+        content: 'Sub Step 2',
+        children: [],
+        metadata: { isBlueprint: true },
+      };
+      ancestorRegistry['sub-step-1'] = ['root', 'workflow', 'step-1'];
+      ancestorRegistry['sub-step-2'] = ['root', 'workflow', 'step-1'];
+      ancestorRegistry['task-a'] = ['root', 'workflow', 'step-1', 'sub-step-1'];
+    });
+
+    it('should not show "Start Workflow" for a step of a sub-workflow', () => {
+      const items = buildWorkflowExecutionSubmenu({
+        node: nodes['sub-step-1'],
+        nodes,
+        ancestorRegistry,
+        workflowExecutionStates,
+        actions: { startWorkflow: mockStartWorkflow, pauseWorkflow: mockPauseWorkflow, resumeWorkflow: mockResumeWorkflow },
+        getTerminalId: mockGetTerminalId,
+      });
+
+      expect(items).toHaveLength(0);
+    });
+
+    it('should show "Start Workflow" for a task inside a step of a sub-workflow', () => {
+      const items = buildWorkflowExecutionSubmenu({
+        node: nodes['task-a'],
+        nodes,
+        ancestorRegistry,
+        workflowExecutionStates,
+        actions: { startWorkflow: mockStartWorkflow, pauseWorkflow: mockPauseWorkflow, resumeWorkflow: mockResumeWorkflow },
+        getTerminalId: mockGetTerminalId,
+      });
+
+      const startItem = items.find(i => i.label === 'Start Workflow');
+      expect(startItem).toBeDefined();
+    });
+  });
+
   describe('Step Type submenu', () => {
     // Step Type management is handled by buildBlueprintSubmenu, not buildWorkflowExecutionSubmenu
     it.skip('should show Step Type submenu on workflow step nodes', () => {

@@ -146,6 +146,39 @@ describe('isEligibleForExecution', () => {
     });
   });
 
+  describe('nested workflows', () => {
+    beforeEach(() => {
+      // Add sub-workflow: step-1 becomes a workflow with its own steps
+      nodes['step-1'].metadata.isWorkflow = true;
+      nodes['step-1'].children = ['sub-step-1', 'sub-step-2'];
+      nodes['sub-step-1'] = {
+        id: 'sub-step-1',
+        content: 'Sub Step 1',
+        children: ['task-a'],
+        metadata: { isBlueprint: true },
+      };
+      nodes['sub-step-2'] = {
+        id: 'sub-step-2',
+        content: 'Sub Step 2',
+        children: [],
+        metadata: { isBlueprint: true },
+      };
+      ancestorRegistry['sub-step-1'] = ['root', 'workflow', 'step-1'];
+      ancestorRegistry['sub-step-2'] = ['root', 'workflow', 'step-1'];
+      ancestorRegistry['task-a'] = ['root', 'workflow', 'step-1', 'sub-step-1'];
+    });
+
+    it('should return false for a step of a sub-workflow', () => {
+      const result = isEligibleForExecution('sub-step-1', nodes, ancestorRegistry, workflowExecutionStates);
+      expect(result).toBe(false);
+    });
+
+    it('should return true for a task inside a step of a sub-workflow', () => {
+      const result = isEligibleForExecution('task-a', nodes, ancestorRegistry, workflowExecutionStates);
+      expect(result).toBe(true);
+    });
+  });
+
   describe('boundary cases', () => {
     it('should return false for a nonexistent node ID', () => {
       const result = isEligibleForExecution('nonexistent', nodes, ancestorRegistry, workflowExecutionStates);

@@ -87,6 +87,9 @@ export function getWorkflowStepPosition(
   const parentId = ancestors[ancestors.length - 1];
   if (!parentId) return null;
 
+  const parent = nodes[parentId];
+  if (parent?.metadata.isWorkflow === true) return null;
+
   const parentAncestors = ancestorRegistry[parentId] || [];
   const grandparentId = parentAncestors[parentAncestors.length - 1];
   if (!grandparentId) return null;

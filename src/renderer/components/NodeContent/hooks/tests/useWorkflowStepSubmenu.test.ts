@@ -186,4 +186,53 @@ describe('buildWorkflowStepSubmenu', () => {
 
     expect(actions.moveToPreviousStep).toHaveBeenCalledWith('item-c');
   });
+
+  describe('nested workflow steps', () => {
+    const createNestedWorkflowTree = () => {
+      const { nodes, ancestorRegistry } = createWorkflowTree();
+      // Make step-1 a sub-workflow with its own steps
+      nodes['step-1'].metadata.isWorkflow = true;
+      nodes['step-1'].children = ['sub-step-1', 'sub-step-2'];
+      nodes['sub-step-1'] = {
+        id: 'sub-step-1',
+        content: 'Sub Step 1',
+        children: ['item-a'],
+        metadata: { isBlueprint: true },
+      };
+      nodes['sub-step-2'] = {
+        id: 'sub-step-2',
+        content: 'Sub Step 2',
+        children: [],
+        metadata: { isBlueprint: true },
+      };
+      ancestorRegistry['sub-step-1'] = ['root', 'workflow', 'step-1'];
+      ancestorRegistry['sub-step-2'] = ['root', 'workflow', 'step-1'];
+      ancestorRegistry['item-a'] = ['root', 'workflow', 'step-1', 'sub-step-1'];
+      return { nodes, ancestorRegistry };
+    };
+
+    it('should not show step navigation for a step of a sub-workflow', () => {
+      const { nodes, ancestorRegistry } = createNestedWorkflowTree();
+      const result = buildWorkflowStepSubmenu({
+        node: nodes['sub-step-1'],
+        nodes,
+        ancestorRegistry,
+        actions: defaultActions,
+      });
+
+      expect(result).toEqual([]);
+    });
+
+    it('should show step navigation for a task inside a step of a sub-workflow', () => {
+      const { nodes, ancestorRegistry } = createNestedWorkflowTree();
+      const result = buildWorkflowStepSubmenu({
+        node: nodes['item-a'],
+        nodes,
+        ancestorRegistry,
+        actions: defaultActions,
+      });
+
+      expect(result.some(item => item.label === 'Next step')).toBe(true);
+    });
+  });
 });
