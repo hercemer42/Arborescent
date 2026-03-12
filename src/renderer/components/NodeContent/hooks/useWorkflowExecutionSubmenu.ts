@@ -3,10 +3,8 @@ import { ContextMenuItem } from '../../ui/ContextMenu';
 import { AncestorRegistry } from '../../../utils/ancestry';
 import {
   isEligibleForExecution,
-  getWorkflowStepPosition,
   WorkflowExecutionEntry,
 } from '../../../utils/workflowHelpers';
-import { StepType } from '../../../store/tree/commands/SetStepTypeCommand';
 
 interface BuildWorkflowExecutionSubmenuParams {
   node: TreeNode;
@@ -15,8 +13,8 @@ interface BuildWorkflowExecutionSubmenuParams {
   workflowExecutionStates: Record<string, WorkflowExecutionEntry>;
   actions: {
     startWorkflow: (nodeId: string, terminalId: string | null) => void;
-    pauseWorkflow: (nodeId: string) => void;
-    resumeWorkflow: (nodeId: string, terminalId: string | null) => void;
+    stopWorkflow: (nodeId: string) => void;
+    continueWorkflow: (nodeId: string, terminalId: string | null) => void;
   };
   getTerminalId: () => Promise<string | null>;
 }
@@ -34,27 +32,19 @@ export function buildWorkflowExecutionSubmenu({
   if (entry?.state === 'running') {
     return [
       {
-        label: 'Pause Workflow',
-        onClick: () => actions.pauseWorkflow(node.id),
+        label: 'Stop Workflow',
+        onClick: () => actions.stopWorkflow(node.id),
       },
     ];
   }
 
-  if (entry?.state === 'paused') {
-    const position = getWorkflowStepPosition(node.id, nodes, ancestorRegistry);
-    const stepNode = position ? nodes[position.currentStepId] : null;
-    const stepType: StepType = (stepNode?.metadata.stepType as StepType) || 'manual';
-
-    if (stepType === 'manual' || stepType === 'checkpoint') {
-      return [];
-    }
-
+  if (entry?.state === 'awaiting-validation') {
     return [
       {
-        label: 'Resume Workflow',
+        label: 'Continue Workflow',
         onClick: () => {
           getTerminalId().then((terminalId) => {
-            actions.resumeWorkflow(node.id, terminalId);
+            actions.continueWorkflow(node.id, terminalId);
           });
         },
       },

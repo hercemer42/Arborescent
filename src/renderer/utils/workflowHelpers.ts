@@ -285,7 +285,7 @@ export function collectDescendantWorkflows(
   return result;
 }
 
-export type WorkflowExecutionEntry = { state: 'idle' | 'running' | 'paused'; terminalTabId: string };
+export type WorkflowExecutionEntry = { state: 'running' | 'awaiting-validation'; terminalTabId: string };
 
 export function isEligibleForExecution(
   nodeId: string,
@@ -303,7 +303,7 @@ export function isEligibleForExecution(
   if (node.metadata.isContextDeclaration === true) return false;
 
   const entry = executionStates[nodeId];
-  if (entry?.state === 'running') return false;
+  if (entry) return false;
 
   if (getWorkflowStepPosition(nodeId, nodes, ancestorRegistry) !== null) return true;
 

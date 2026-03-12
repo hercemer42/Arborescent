@@ -21,8 +21,8 @@ export type { WorkflowExecutionEntry };
 
 export interface WorkflowExecutionActions {
   startWorkflow: (nodeId: string, terminalId: string | null) => void;
-  pauseWorkflow: (nodeId: string) => void;
-  resumeWorkflow: (nodeId: string, terminalId: string | null) => void;
+  stopWorkflow: (nodeId: string) => void;
+  continueWorkflow: (nodeId: string, terminalId: string | null) => void;
   completeWorkflow: (nodeId: string) => void;
   advanceNode: (nodeId: string) => void;
   registerSession: (sessionId: string, terminalId: string) => void;
@@ -76,7 +76,7 @@ export const createWorkflowExecutionActions = (
           useToastStore.getState().addToast(message, "warning", {
             actions: [
               { label: "Dismiss", onClick: () => {} },
-              { label: "Pause", onClick: () => pauseWorkflow(nodeId) },
+              { label: "Stop", onClick: () => stopWorkflow(nodeId) },
             ],
           });
         },
@@ -154,35 +154,32 @@ export const createWorkflowExecutionActions = (
     triggerAutosave?.();
   }
 
-  function pauseWorkflow(nodeId: string): void {
+  function stopWorkflow(nodeId: string): void {
     const { workflowExecutionStates } = get();
     const entry = workflowExecutionStates[nodeId];
     if (!entry || entry.state !== "running") return;
 
     clearStepTimeout(nodeId);
-    set({
-      workflowExecutionStates: {
-        ...workflowExecutionStates,
-        [nodeId]: { ...entry, state: "paused" },
-      },
-    });
+    const updatedStates = { ...workflowExecutionStates };
+    delete updatedStates[nodeId];
+    set({ workflowExecutionStates: updatedStates });
 
     logger.info(
-      `Paused workflow execution for node ${nodeId}`,
+      `Stopped workflow execution for node ${nodeId}`,
       "WorkflowExecution",
     );
   }
 
-  function resumeWorkflow(nodeId: string, terminalId: string | null): void {
+  function continueWorkflow(nodeId: string, terminalId: string | null): void {
     const { workflowExecutionStates } = get();
     const entry = workflowExecutionStates[nodeId];
-    if (!entry || entry.state !== "paused") return;
+    if (!entry || entry.state !== "awaiting-validation") return;
 
     if (terminalId === null) {
       useToastStore
         .getState()
         .addToast(
-          "No terminal tab available. Open a terminal to resume workflow execution.",
+          "No terminal tab available. Open a terminal to continue workflow execution.",
           "warning",
         );
       return;
@@ -199,6 +196,7 @@ export const createWorkflowExecutionActions = (
       return;
     }
 
+    // Set to running on the terminal, then advance to next step
     set({
       workflowExecutionStates: {
         ...workflowExecutionStates,
@@ -206,13 +204,12 @@ export const createWorkflowExecutionActions = (
       },
     });
 
-    startStepTimeout(nodeId);
-    sendContentToTerminal(nodeId, terminalId);
-
     logger.info(
-      `Resumed workflow execution for node ${nodeId} on terminal ${terminalId}`,
+      `Continuing workflow execution for node ${nodeId} on terminal ${terminalId}`,
       "WorkflowExecution",
     );
+
+    advanceNode(nodeId);
   }
 
   function completeWorkflow(nodeId: string): void {
@@ -297,7 +294,7 @@ export const createWorkflowExecutionActions = (
     triggerAutosave?.();
 
     if (nextStepType === "manual") {
-      pauseWorkflow(nodeId);
+      stopWorkflow(nodeId);
       useToastStore
         .getState()
         .addToast(`"${nodeName}" waiting at ${stepLabel}`, "info");
@@ -334,10 +331,10 @@ export const createWorkflowExecutionActions = (
           error as Error,
           "WorkflowExecution",
         );
-        pauseWorkflow(nodeId);
+        stopWorkflow(nodeId);
         useToastStore
           .getState()
-          .addToast("Failed to send to terminal — workflow paused", "error");
+          .addToast("Failed to send to terminal — workflow stopped", "error");
       });
     } catch (error) {
       logger.error(
@@ -345,10 +342,10 @@ export const createWorkflowExecutionActions = (
         error as Error,
         "WorkflowExecution",
       );
-      pauseWorkflow(nodeId);
+      stopWorkflow(nodeId);
       useToastStore
         .getState()
-        .addToast("Failed to send to terminal — workflow paused", "error");
+        .addToast("Failed to send to terminal — workflow stopped", "error");
     }
   }
 
@@ -432,7 +429,18 @@ export const createWorkflowExecutionActions = (
       if (stepType === "autonomous") {
         advanceNode(runningNodeId);
       } else if (stepType === "checkpoint") {
-        pauseWorkflow(runningNodeId);
+        // Set to awaiting-validation — user must explicitly continue
+        const { workflowExecutionStates: currentStates } = get();
+        const currentEntry = currentStates[runningNodeId];
+        if (currentEntry) {
+          clearStepTimeout(runningNodeId);
+          set({
+            workflowExecutionStates: {
+              ...currentStates,
+              [runningNodeId]: { ...currentEntry, state: "awaiting-validation" },
+            },
+          });
+        }
         const { nodes: currentNodes, ancestorRegistry: currentRegistry } =
           get();
         const runningNode = currentNodes[runningNodeId];
@@ -453,7 +461,7 @@ export const createWorkflowExecutionActions = (
           );
       }
     } else if (event.hook_event_name === "Notification") {
-      pauseWorkflow(runningNodeId);
+      stopWorkflow(runningNodeId);
       const message = event.message || "Workflow notification received";
       useToastStore.getState().addToast(message, "warning");
     }
@@ -461,13 +469,13 @@ export const createWorkflowExecutionActions = (
 
   function initializeExecutionState(): void {
     const { workflowExecutionStates } = get();
-    let pausedCount = 0;
+    let stoppedCount = 0;
     const updatedStates: Record<string, WorkflowExecutionEntry> = {};
 
     for (const [nodeId, entry] of Object.entries(workflowExecutionStates)) {
       if (entry.state === "running") {
-        updatedStates[nodeId] = { ...entry, state: "paused" };
-        pausedCount++;
+        // Clear running entries on restart — terminal sessions are gone
+        stoppedCount++;
       } else {
         updatedStates[nodeId] = entry;
       }
@@ -478,17 +486,17 @@ export const createWorkflowExecutionActions = (
       workflowSessionMap: {},
     });
 
-    if (pausedCount > 0) {
+    if (stoppedCount > 0) {
       useToastStore
         .getState()
         .addToast(
-          `${pausedCount} workflow(s) paused on restart. Resume when ready.`,
+          `${stoppedCount} workflow(s) stopped on restart.`,
           "warning",
         );
     }
 
     logger.info(
-      `Initialized execution state, paused ${pausedCount} workflows`,
+      `Initialized execution state, stopped ${stoppedCount} workflows`,
       "WorkflowExecution",
     );
   }
@@ -499,13 +507,13 @@ export const createWorkflowExecutionActions = (
     let changed = false;
 
     for (const [nodeId, entry] of Object.entries(updatedStates)) {
-      if (entry.state === "running" && entry.terminalTabId === terminalId) {
-        updatedStates[nodeId] = { ...entry, state: "paused" };
+      if (entry.terminalTabId === terminalId && entry.state === "running") {
+        delete updatedStates[nodeId];
         const node = nodes[nodeId];
         const nodeName = node?.content || nodeId;
         useToastStore
           .getState()
-          .addToast(`"${nodeName}" paused — terminal closed`, "warning");
+          .addToast(`"${nodeName}" stopped — terminal closed`, "warning");
         changed = true;
       }
     }
@@ -540,7 +548,7 @@ export const createWorkflowExecutionActions = (
         if (ancestors) {
           const parentId = ancestors[ancestors.length - 1];
           if (parentId === stepId) {
-            updatedStates[nodeId] = { ...entry, state: "paused" };
+            delete updatedStates[nodeId];
             changed = true;
           }
         }
@@ -551,7 +559,7 @@ export const createWorkflowExecutionActions = (
       set({ workflowExecutionStates: updatedStates });
       useToastStore
         .getState()
-        .addToast("Step removed — affected workflows paused", "warning");
+        .addToast("Step removed — affected workflows stopped", "warning");
     }
   }
 
@@ -600,8 +608,8 @@ export const createWorkflowExecutionActions = (
 
   return {
     startWorkflow,
-    pauseWorkflow,
-    resumeWorkflow,
+    stopWorkflow,
+    continueWorkflow,
     completeWorkflow,
     advanceNode,
     registerSession,

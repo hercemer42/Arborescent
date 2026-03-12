@@ -41,7 +41,7 @@ function NodeContentComponent({
   const { isContextDeclaration, isContextChild, ContextIcon, contextColor } = useContextIcon(node);
   const { BlueprintIcon, blueprintColor, isInherited: isInheritingBlueprintIcon } = useBlueprintIcon(node);
   const { isWorkflow, stepNumber, stepType } = useWorkflowIndicator(node);
-  const { executionState, pauseWorkflow } = useWorkflowExecutionOverlay(node);
+  const { executionState, stopWorkflow } = useWorkflowExecutionOverlay(node);
 
   const isHyperlink = node.metadata.isHyperlink === true;
   const isLink = isHyperlink || isExternalLink;
@@ -128,21 +128,21 @@ function NodeContentComponent({
           {executionState === 'running' && (
             <button
               className="workflow-execution-overlay running"
-              title="Running — click to pause"
-              aria-label="Pause workflow"
+              title="Running — click to stop"
+              aria-label="Stop workflow"
               onClick={(e) => {
                 e.stopPropagation();
-                pauseWorkflow();
+                stopWorkflow();
               }}
             >
               <Play size={8} fill="currentColor" />
             </button>
           )}
-          {executionState === 'paused' && (
+          {executionState === 'awaiting-validation' && (
             <span
               className="workflow-execution-overlay paused"
-              title="Paused"
-              aria-label="Workflow paused"
+              title="Awaiting validation"
+              aria-label="Workflow awaiting validation"
             >
               <Pause size={8} fill="currentColor" />
             </span>
@@ -161,21 +161,21 @@ function NodeContentComponent({
         {executionState === 'running' && (
           <button
             className="workflow-execution-overlay running"
-            title="Running — click to pause"
-            aria-label="Pause workflow"
+            title="Running — click to stop"
+            aria-label="Stop workflow"
             onClick={(e) => {
               e.stopPropagation();
-              pauseWorkflow();
+              stopWorkflow();
             }}
           >
             <Play size={8} fill="currentColor" />
           </button>
         )}
-        {executionState === 'paused' && (
+        {executionState === 'awaiting-validation' && (
           <span
             className="workflow-execution-overlay paused"
-            title="Paused"
-            aria-label="Workflow paused"
+            title="Awaiting validation"
+            aria-label="Workflow awaiting validation"
           >
             <Pause size={8} fill="currentColor" />
           </span>

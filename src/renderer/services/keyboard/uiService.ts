@@ -263,7 +263,7 @@ async function handleUIShortcuts(event: KeyboardEvent): Promise<void> {
       if (executionEntry?.state === 'running') {
         event.preventDefault();
         event.stopPropagation();
-        state.actions.pauseWorkflow(activeNodeId);
+        state.actions.stopWorkflow(activeNodeId);
         return;
       }
     }

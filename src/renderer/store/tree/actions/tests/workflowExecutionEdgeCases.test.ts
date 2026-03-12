@@ -46,7 +46,7 @@ describe('workflow execution edge cases', () => {
     nodes: Record<string, TreeNode>;
     rootNodeId: string;
     ancestorRegistry: Record<string, string[]>;
-    workflowExecutionStates: Record<string, { state: 'idle' | 'running' | 'paused'; terminalTabId: string }>;
+    workflowExecutionStates: Record<string, { state: 'running' | 'awaiting-validation'; terminalTabId: string }>;
     workflowSessionMap: Record<string, string>;
     contextDeclarations: { nodeId: string; content: string; icon: string; color?: string; mode: 'collaborate' | 'execute' }[];
   };
@@ -139,13 +139,13 @@ describe('workflow execution edge cases', () => {
   });
 
   describe('terminal closed mid-workflow', () => {
-    it('should pause all running nodes assigned to the closed terminal', () => {
+    it('should clear execution state for running nodes assigned to the closed terminal', () => {
       actions.handleTerminalClosed('terminal-1');
 
-      expect(state.workflowExecutionStates['task-a'].state).toBe('paused');
+      expect(state.workflowExecutionStates['task-a']).toBeUndefined();
     });
 
-    it('should show toast identifying the paused node', () => {
+    it('should show toast identifying the stopped node', () => {
       actions.handleTerminalClosed('terminal-1');
 
       expect(mockAddToast).toHaveBeenCalledWith(
@@ -169,23 +169,22 @@ describe('workflow execution edge cases', () => {
       expect(state.workflowExecutionStates['task-a'].state).toBe('running');
     });
 
-    it('should not change state when closing a terminal assigned to a paused node', () => {
-      state.workflowExecutionStates['task-a'] = { state: 'paused', terminalTabId: 'terminal-1' };
+    it('should not change state when closing a terminal assigned to an awaiting-validation node', () => {
+      state.workflowExecutionStates['task-a'] = { state: 'awaiting-validation', terminalTabId: 'terminal-1' };
 
       actions.handleTerminalClosed('terminal-1');
 
-      expect(state.workflowExecutionStates['task-a'].state).toBe('paused');
+      expect(state.workflowExecutionStates['task-a'].state).toBe('awaiting-validation');
       expect(state.workflowExecutionStates['task-a'].terminalTabId).toBe('terminal-1');
     });
 
-    it('should pause multiple nodes if multiple are assigned to the same terminal', () => {
-      // This shouldn't happen (one node per tab), but test defensive behavior
+    it('should clear multiple nodes if multiple are assigned to the same terminal', () => {
       state.workflowExecutionStates['task-b'] = { state: 'running', terminalTabId: 'terminal-1' };
 
       actions.handleTerminalClosed('terminal-1');
 
-      expect(state.workflowExecutionStates['task-a'].state).toBe('paused');
-      expect(state.workflowExecutionStates['task-b'].state).toBe('paused');
+      expect(state.workflowExecutionStates['task-a']).toBeUndefined();
+      expect(state.workflowExecutionStates['task-b']).toBeUndefined();
     });
   });
 
@@ -214,10 +213,10 @@ describe('workflow execution edge cases', () => {
   });
 
   describe('step deleted while node is at that step', () => {
-    it('should pause the node when its current step is deleted', () => {
+    it('should clear execution state when its current step is deleted', () => {
       actions.handleStepDeleted('step-1');
 
-      expect(state.workflowExecutionStates['task-a'].state).toBe('paused');
+      expect(state.workflowExecutionStates['task-a']).toBeUndefined();
     });
 
     it('should show toast indicating step was removed', () => {
@@ -292,8 +291,8 @@ describe('workflow execution edge cases', () => {
       expect(state.workflowExecutionStates['task-a']).toBeUndefined();
     });
 
-    it('should clear execution state when a paused node is moved', () => {
-      state.workflowExecutionStates['task-a'] = { state: 'paused', terminalTabId: 'terminal-1' };
+    it('should clear execution state when an awaiting-validation node is moved', () => {
+      state.workflowExecutionStates['task-a'] = { state: 'awaiting-validation', terminalTabId: 'terminal-1' };
 
       actions.handleNodeMovedManually('task-a');
 
@@ -332,18 +331,16 @@ describe('workflow execution edge cases', () => {
       expect(state.workflowExecutionStates['task-b'].state).toBe('running');
     });
 
-    it('should allow starting on a terminal after its previous node is paused', () => {
-      actions.pauseWorkflow('task-a');
+    it('should allow starting on a terminal after its previous node is stopped', () => {
+      actions.stopWorkflow('task-a');
 
       state.nodes['step-2'].children = ['task-b'];
       state.nodes['task-b'] = { id: 'task-b', content: 'Task B', children: [], metadata: { isBlueprint: true } };
       state.ancestorRegistry['task-b'] = ['root', 'workflow', 'step-2'];
 
-      // Paused nodes should release the terminal
+      // Stopped nodes release the terminal
       actions.startWorkflow('task-b', 'terminal-1');
 
-      // Whether this is allowed depends on whether pause releases the terminal
-      // Spec says: "Release assignment on pause, completion, or terminal close"
       expect(state.workflowExecutionStates['task-b'].state).toBe('running');
     });
   });

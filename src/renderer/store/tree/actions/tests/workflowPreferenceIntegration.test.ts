@@ -48,7 +48,7 @@ describe('workflow execution — preference integration', () => {
     nodes: Record<string, TreeNode>;
     rootNodeId: string;
     ancestorRegistry: Record<string, string[]>;
-    workflowExecutionStates: Record<string, { state: 'idle' | 'running' | 'paused'; terminalTabId: string }>;
+    workflowExecutionStates: Record<string, { state: 'running' | 'awaiting-validation'; terminalTabId: string }>;
     workflowSessionMap: Record<string, string>;
     contextDeclarations: { nodeId: string; content: string; icon: string; color?: string; mode: 'collaborate' | 'execute' }[];
   };
@@ -297,7 +297,7 @@ describe('workflow execution — preference integration', () => {
 
       actions.startWorkflow('task-a', 'terminal-1');
 
-      expect(() => actions.pauseWorkflow('task-a')).not.toThrow();
+      expect(() => actions.stopWorkflow('task-a')).not.toThrow();
     });
 
     it('should use default 10 minutes when stepTimeoutMinutes is undefined', () => {

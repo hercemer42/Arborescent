@@ -15,7 +15,7 @@ To remove: right-click → **Blueprint** → **Remove from Workflow**. Both acti
 Each workflow step has a type that controls how it will be handled during workflow execution. Right-click a step → **Blueprint** → **Step Type** to change it.
 
 - **Manual** (default) — The item waits at the step for you to act. Nothing is sent to the terminal. Indicated by a square border around the step number.
-- **Checkpoint** — Content is sent to the terminal, but the workflow pauses when the AI finishes. Indicated by a triangle border.
+- **Checkpoint** — Content is sent to the terminal. When the AI finishes, the workflow awaits your validation before continuing. Indicated by a triangle border.
 - **Autonomous** — Content is sent and the item advances automatically when the AI finishes. Indicated by a circle border.
 
 Hover a step number to see its type in the tooltip (e.g. "Step 3 (Checkpoint)").
@@ -24,13 +24,13 @@ Step type changes are undoable with `Ctrl+Z`. Setting a step to Autonomous shows
 
 ## Running a Workflow
 
-Place an item inside a workflow step, then right-click → **Run Workflow** (requires a terminal tab open). The item's content is sent to the terminal and the workflow begins executing.
+Place an item inside a workflow step, then right-click → **Start Workflow** (requires a terminal tab open). The item's content is sent to the terminal and the workflow begins executing.
 
 What happens at each step depends on its type:
 
 - **Autonomous** — Content is sent to the terminal. When the AI finishes, the item automatically advances to the next step and sends again.
-- **Checkpoint** — Content is sent to the terminal. When the AI finishes, the workflow pauses and notifies you. Advance the item manually when ready.
-- **Manual** — The item moves to the step but nothing is sent. The workflow pauses and waits for you to act.
+- **Checkpoint** — Content is sent to the terminal. When the AI finishes, the item awaits your validation. Right-click → **Continue Workflow** to advance it to the next step and resume.
+- **Manual** — The item moves to the step but the workflow stops. Nothing is sent to the terminal. Use **Start Workflow** to run it again when ready.
 
 Each step's content is sent with its applied contexts. If no context is applied, a default execute context is used.
 
@@ -38,26 +38,28 @@ A green flash and toast notification confirm each advancement. If the item reach
 
 Automated advancement bypasses the undo stack — you cannot undo an automated move with `Ctrl+Z`.
 
-If the terminal fails to accept content, the workflow pauses automatically and shows an error. A timeout (10 minutes by default) warns you if a step has no activity, with options to dismiss or pause the workflow.
+If the terminal fails to accept content, the workflow stops automatically and shows an error. A timeout (10 minutes by default) warns you if a step has no activity, with options to dismiss or stop the workflow.
 
 For automated advancement to work, you need to configure your AI tool to send hook events back to Arborescent. See [Hook Setup](#hook-setup) below.
 
-## Pausing and Resuming
+## Stopping and Continuing
 
-A workflow pauses automatically when something disrupts the running item:
+You can stop a running workflow at any time: right-click → **Stop Workflow**, or press `Escape` while the running node is selected. The execution state is cleared — to run again, use **Start Workflow**.
+
+A workflow also stops automatically when something disrupts the running item:
 
 - You close the terminal tab the item is running in
 - You move the item to a different step (drag, cut-paste, indent/outdent)
 - You delete the step the item is at
 - The application restarts while the item is running
 
-A toast notification tells you what happened. Reordering the item within the same step (`Ctrl+Up`/`Ctrl+Down` among siblings) does not pause it.
+A toast notification tells you what happened. Reordering the item within the same step (`Ctrl+Up`/`Ctrl+Down` among siblings) does not stop it.
 
-Deleting a running item stops its workflow immediately and releases the terminal — there is nothing to resume.
+Deleting a running item stops its workflow immediately and releases the terminal.
 
-To resume a paused item, right-click it → **Resume Workflow**. It picks up from wherever it currently sits. If you moved the item before resuming, it continues from the new position.
+**Continue Workflow** is only available for checkpoint steps that have finished — it advances the item to the next step and resumes execution if that step is autonomous or checkpoint.
 
-On app restart, all previously running items appear as paused. Reopen a terminal and resume them individually.
+On app restart, all previously running items are stopped. Checkpoint items awaiting validation are preserved. Reopen a terminal and start or continue them as needed.
 
 Undoing a deletion (`Ctrl+Z`) restores the node but not its execution state — you need to start the workflow again.
 

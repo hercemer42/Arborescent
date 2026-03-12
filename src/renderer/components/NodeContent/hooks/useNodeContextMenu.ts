@@ -187,8 +187,8 @@ export function useNodeContextMenu(node: TreeNode) {
       workflowExecutionStates: state.workflowExecutionStates,
       actions: {
         startWorkflow: actions.startWorkflow,
-        pauseWorkflow: actions.pauseWorkflow,
-        resumeWorkflow: actions.resumeWorkflow,
+        stopWorkflow: actions.stopWorkflow,
+        continueWorkflow: actions.continueWorkflow,
       },
       getTerminalId: () => useTerminalStore.getState().openTerminal(),
     });

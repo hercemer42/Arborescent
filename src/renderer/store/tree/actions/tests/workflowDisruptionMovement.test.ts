@@ -50,7 +50,7 @@ describe('workflow disruption — movement wiring', () => {
     ancestorRegistry: AncestorRegistry;
     cursorPosition: number;
     rememberedVisualX: number | null;
-    workflowExecutionStates: Record<string, { state: 'idle' | 'running' | 'paused'; terminalTabId: string }>;
+    workflowExecutionStates: Record<string, { state: 'running' | 'awaiting-validation'; terminalTabId: string }>;
     workflowSessionMap: Record<string, string>;
     contextDeclarations: { nodeId: string; content: string; icon: string; color?: string; mode: 'collaborate' | 'execute' }[];
     actions: {

@@ -1,18 +1,18 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 
-// These tests verify the Escape key workflow pause behavior integrated into uiService.ts.
+// These tests verify the Escape key workflow stop behavior integrated into uiService.ts.
 // The handler fires on Escape when not editing and the selected node is Running.
 // Testing keyboard services requires DOM + event simulation which is complex in unit tests.
 // The core behavior is verified here via direct store action testing.
 
-const { mockPauseWorkflow } = vi.hoisted(() => ({
-  mockPauseWorkflow: vi.fn(),
+const { mockStopWorkflow } = vi.hoisted(() => ({
+  mockStopWorkflow: vi.fn(),
 }));
 
 let mockActiveNodeId: string | null;
 let mockWorkflowExecutionStates: Record<string, { state: string; terminalTabId: string }>;
 
-describe('Escape key workflow pause handler', () => {
+describe('Escape key workflow stop handler', () => {
   beforeEach(() => {
     vi.clearAllMocks();
     mockActiveNodeId = null;
@@ -20,26 +20,26 @@ describe('Escape key workflow pause handler', () => {
   });
 
   // Helper: simulates what uiService does on Escape when not editing
-  function simulateEscapePause(): boolean {
+  function simulateEscapeStop(): boolean {
     if (!mockActiveNodeId) return false;
     const entry = mockWorkflowExecutionStates[mockActiveNodeId];
     if (entry?.state === 'running') {
-      mockPauseWorkflow(mockActiveNodeId);
+      mockStopWorkflow(mockActiveNodeId);
       return true;
     }
     return false;
   }
 
   describe('editing takes priority', () => {
-    it('should cancel edit and NOT pause workflow when node is being edited', () => {
+    it('should cancel edit and NOT stop workflow when node is being edited', () => {
       mockActiveNodeId = 'task-a';
       mockWorkflowExecutionStates['task-a'] = { state: 'running', terminalTabId: 'terminal-1' };
 
       // When editing, the editingService.ts cancelEdit handler fires first and blurs the element.
-      // The uiService Escape handler would not reach the workflow pause check because
-      // the editing handler consumes the event. We verify pause is not called directly.
-      // (Editing scenario — do not call simulateEscapePause)
-      expect(mockPauseWorkflow).not.toHaveBeenCalled();
+      // The uiService Escape handler would not reach the workflow stop check because
+      // the editing handler consumes the event. We verify stop is not called directly.
+      // (Editing scenario — do not call simulateEscapeStop)
+      expect(mockStopWorkflow).not.toHaveBeenCalled();
     });
 
     it('should allow Escape to cancel edit even when workflow is running', () => {
@@ -51,32 +51,32 @@ describe('Escape key workflow pause handler', () => {
     });
   });
 
-  describe('pause running workflow', () => {
-    it('should call pauseWorkflow when not editing and selected node is Running', () => {
+  describe('stop running workflow', () => {
+    it('should call stopWorkflow when not editing and selected node is Running', () => {
       mockActiveNodeId = 'task-a';
       mockWorkflowExecutionStates['task-a'] = { state: 'running', terminalTabId: 'terminal-1' };
 
-      simulateEscapePause();
+      simulateEscapeStop();
 
-      expect(mockPauseWorkflow).toHaveBeenCalledWith('task-a');
+      expect(mockStopWorkflow).toHaveBeenCalledWith('task-a');
     });
 
-    it('should not call pauseWorkflow when selected node is Idle', () => {
+    it('should not call stopWorkflow when selected node has no execution state', () => {
       mockActiveNodeId = 'task-a';
-      // No entry in workflowExecutionStates means idle
+      // No entry in workflowExecutionStates
 
-      simulateEscapePause();
+      simulateEscapeStop();
 
-      expect(mockPauseWorkflow).not.toHaveBeenCalled();
+      expect(mockStopWorkflow).not.toHaveBeenCalled();
     });
 
-    it('should not call pauseWorkflow when selected node is Paused', () => {
+    it('should not call stopWorkflow when selected node is awaiting-validation', () => {
       mockActiveNodeId = 'task-a';
-      mockWorkflowExecutionStates['task-a'] = { state: 'paused', terminalTabId: 'terminal-1' };
+      mockWorkflowExecutionStates['task-a'] = { state: 'awaiting-validation', terminalTabId: 'terminal-1' };
 
-      simulateEscapePause();
+      simulateEscapeStop();
 
-      expect(mockPauseWorkflow).not.toHaveBeenCalled();
+      expect(mockStopWorkflow).not.toHaveBeenCalled();
     });
   });
 
@@ -84,9 +84,9 @@ describe('Escape key workflow pause handler', () => {
     it('should do nothing when no node is selected', () => {
       mockActiveNodeId = null;
 
-      simulateEscapePause();
+      simulateEscapeStop();
 
-      expect(mockPauseWorkflow).not.toHaveBeenCalled();
+      expect(mockStopWorkflow).not.toHaveBeenCalled();
     });
   });
 
@@ -95,38 +95,38 @@ describe('Escape key workflow pause handler', () => {
       mockActiveNodeId = 'task-a';
       // Node is not in any execution state
 
-      const paused = simulateEscapePause();
+      const stopped = simulateEscapeStop();
 
       // Returns false — no propagation stop needed
-      expect(paused).toBe(false);
+      expect(stopped).toBe(false);
     });
 
-    it('should stop propagation when it actually pauses a workflow', () => {
+    it('should stop propagation when it actually stops a workflow', () => {
       mockActiveNodeId = 'task-a';
       mockWorkflowExecutionStates['task-a'] = { state: 'running', terminalTabId: 'terminal-1' };
 
-      const paused = simulateEscapePause();
+      const stopped = simulateEscapeStop();
 
       // Returns true — event.stopPropagation would be called in the real handler
-      expect(paused).toBe(true);
+      expect(stopped).toBe(true);
     });
   });
 
   describe('repeated presses', () => {
-    it('should only pause once on rapid repeated Escape presses', () => {
+    it('should only stop once on rapid repeated Escape presses', () => {
       mockActiveNodeId = 'task-a';
       mockWorkflowExecutionStates['task-a'] = { state: 'running', terminalTabId: 'terminal-1' };
 
-      // First press pauses
-      simulateEscapePause();
-      // After first pause, state changes to 'paused' in real store
-      mockWorkflowExecutionStates['task-a'] = { state: 'paused', terminalTabId: 'terminal-1' };
+      // First press stops
+      simulateEscapeStop();
+      // After first stop, entry is deleted in real store
+      delete mockWorkflowExecutionStates['task-a'];
 
       // Subsequent presses are no-ops
-      simulateEscapePause();
-      simulateEscapePause();
+      simulateEscapeStop();
+      simulateEscapeStop();
 
-      expect(mockPauseWorkflow).toHaveBeenCalledTimes(1);
+      expect(mockStopWorkflow).toHaveBeenCalledTimes(1);
     });
   });
 });

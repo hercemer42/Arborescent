@@ -4,19 +4,19 @@ import { useStore } from '../../../store/tree/useStore';
 import { useActiveTreeStore } from '../../../store/tree/TreeStoreContext';
 
 export interface WorkflowExecutionOverlay {
-  executionState: 'idle' | 'running' | 'paused';
-  pauseWorkflow: () => void;
+  executionState: 'running' | 'awaiting-validation' | null;
+  stopWorkflow: () => void;
 }
 
 export function useWorkflowExecutionOverlay(node: TreeNode): WorkflowExecutionOverlay {
   const entry = useStore((state) => state.workflowExecutionStates[node.id]);
   const store = useActiveTreeStore();
 
-  const executionState = entry?.state || 'idle';
+  const executionState = entry?.state || null;
 
-  const pauseWorkflow = useCallback(() => {
-    store.getState().actions.pauseWorkflow(node.id);
+  const stopWorkflow = useCallback(() => {
+    store.getState().actions.stopWorkflow(node.id);
   }, [store, node.id]);
 
-  return { executionState, pauseWorkflow };
+  return { executionState, stopWorkflow };
 }

@@ -5,10 +5,10 @@ import { buildWorkflowExecutionSubmenu } from '../useWorkflowExecutionSubmenu';
 describe('buildWorkflowExecutionSubmenu', () => {
   let nodes: Record<string, TreeNode>;
   let ancestorRegistry: Record<string, string[]>;
-  let workflowExecutionStates: Record<string, { state: 'idle' | 'running' | 'paused'; terminalTabId: string }>;
+  let workflowExecutionStates: Record<string, { state: 'running' | 'awaiting-validation'; terminalTabId: string }>;
   let mockStartWorkflow: ReturnType<typeof vi.fn>;
-  let mockPauseWorkflow: ReturnType<typeof vi.fn>;
-  let mockResumeWorkflow: ReturnType<typeof vi.fn>;
+  let mockStopWorkflow: ReturnType<typeof vi.fn>;
+  let mockContinueWorkflow: ReturnType<typeof vi.fn>;
   let mockGetTerminalId: ReturnType<typeof vi.fn>;
 
   beforeEach(() => {
@@ -63,9 +63,15 @@ describe('buildWorkflowExecutionSubmenu', () => {
     workflowExecutionStates = {};
 
     mockStartWorkflow = vi.fn();
-    mockPauseWorkflow = vi.fn();
-    mockResumeWorkflow = vi.fn();
+    mockStopWorkflow = vi.fn();
+    mockContinueWorkflow = vi.fn();
     mockGetTerminalId = vi.fn().mockResolvedValue('terminal-1');
+  });
+
+  const buildActions = () => ({
+    startWorkflow: mockStartWorkflow,
+    stopWorkflow: mockStopWorkflow,
+    continueWorkflow: mockContinueWorkflow,
   });
 
   describe('Start Workflow menu item', () => {
@@ -75,7 +81,7 @@ describe('buildWorkflowExecutionSubmenu', () => {
         nodes,
         ancestorRegistry,
         workflowExecutionStates,
-        actions: { startWorkflow: mockStartWorkflow, pauseWorkflow: mockPauseWorkflow, resumeWorkflow: mockResumeWorkflow },
+        actions: buildActions(),
         getTerminalId: mockGetTerminalId,
       });
 
@@ -91,7 +97,7 @@ describe('buildWorkflowExecutionSubmenu', () => {
         nodes,
         ancestorRegistry,
         workflowExecutionStates,
-        actions: { startWorkflow: mockStartWorkflow, pauseWorkflow: mockPauseWorkflow, resumeWorkflow: mockResumeWorkflow },
+        actions: buildActions(),
         getTerminalId: mockGetTerminalId,
       });
 
@@ -105,7 +111,7 @@ describe('buildWorkflowExecutionSubmenu', () => {
         nodes,
         ancestorRegistry,
         workflowExecutionStates,
-        actions: { startWorkflow: mockStartWorkflow, pauseWorkflow: mockPauseWorkflow, resumeWorkflow: mockResumeWorkflow },
+        actions: buildActions(),
         getTerminalId: mockGetTerminalId,
       });
 
@@ -119,7 +125,7 @@ describe('buildWorkflowExecutionSubmenu', () => {
         nodes,
         ancestorRegistry,
         workflowExecutionStates,
-        actions: { startWorkflow: mockStartWorkflow, pauseWorkflow: mockPauseWorkflow, resumeWorkflow: mockResumeWorkflow },
+        actions: buildActions(),
         getTerminalId: mockGetTerminalId,
       });
 
@@ -133,7 +139,7 @@ describe('buildWorkflowExecutionSubmenu', () => {
         nodes,
         ancestorRegistry,
         workflowExecutionStates,
-        actions: { startWorkflow: mockStartWorkflow, pauseWorkflow: mockPauseWorkflow, resumeWorkflow: mockResumeWorkflow },
+        actions: buildActions(),
         getTerminalId: mockGetTerminalId,
       });
 
@@ -154,7 +160,7 @@ describe('buildWorkflowExecutionSubmenu', () => {
         nodes,
         ancestorRegistry,
         workflowExecutionStates,
-        actions: { startWorkflow: mockStartWorkflow, pauseWorkflow: mockPauseWorkflow, resumeWorkflow: mockResumeWorkflow },
+        actions: buildActions(),
         getTerminalId: mockGetTerminalId,
       });
 
@@ -172,7 +178,7 @@ describe('buildWorkflowExecutionSubmenu', () => {
         nodes,
         ancestorRegistry,
         workflowExecutionStates,
-        actions: { startWorkflow: mockStartWorkflow, pauseWorkflow: mockPauseWorkflow, resumeWorkflow: mockResumeWorkflow },
+        actions: buildActions(),
         getTerminalId: mockGetTerminalId,
       });
 
@@ -180,8 +186,8 @@ describe('buildWorkflowExecutionSubmenu', () => {
     });
   });
 
-  describe('Pause Workflow menu item', () => {
-    it('should show "Pause Workflow" as first item for a running node', () => {
+  describe('Stop Workflow menu item', () => {
+    it('should show "Stop Workflow" as first item for a running node', () => {
       workflowExecutionStates['task-a'] = { state: 'running', terminalTabId: 'terminal-1' };
 
       const items = buildWorkflowExecutionSubmenu({
@@ -189,28 +195,28 @@ describe('buildWorkflowExecutionSubmenu', () => {
         nodes,
         ancestorRegistry,
         workflowExecutionStates,
-        actions: { startWorkflow: mockStartWorkflow, pauseWorkflow: mockPauseWorkflow, resumeWorkflow: mockResumeWorkflow },
+        actions: buildActions(),
         getTerminalId: mockGetTerminalId,
       });
 
-      expect(items[0].label).toBe('Pause Workflow');
+      expect(items[0].label).toBe('Stop Workflow');
     });
 
-    it('should not show "Pause Workflow" for a non-running node', () => {
+    it('should not show "Stop Workflow" for a non-running node', () => {
       const items = buildWorkflowExecutionSubmenu({
         node: nodes['task-a'],
         nodes,
         ancestorRegistry,
         workflowExecutionStates,
-        actions: { startWorkflow: mockStartWorkflow, pauseWorkflow: mockPauseWorkflow, resumeWorkflow: mockResumeWorkflow },
+        actions: buildActions(),
         getTerminalId: mockGetTerminalId,
       });
 
-      const pauseItem = items.find(i => i.label === 'Pause Workflow');
-      expect(pauseItem).toBeUndefined();
+      const stopItem = items.find(i => i.label === 'Stop Workflow');
+      expect(stopItem).toBeUndefined();
     });
 
-    it('should call pauseWorkflow action when clicked', () => {
+    it('should call stopWorkflow action when clicked', () => {
       workflowExecutionStates['task-a'] = { state: 'running', terminalTabId: 'terminal-1' };
 
       const items = buildWorkflowExecutionSubmenu({
@@ -218,65 +224,33 @@ describe('buildWorkflowExecutionSubmenu', () => {
         nodes,
         ancestorRegistry,
         workflowExecutionStates,
-        actions: { startWorkflow: mockStartWorkflow, pauseWorkflow: mockPauseWorkflow, resumeWorkflow: mockResumeWorkflow },
+        actions: buildActions(),
         getTerminalId: mockGetTerminalId,
       });
-      const pauseItem = items.find(i => i.label === 'Pause Workflow');
-      pauseItem!.onClick!();
+      const stopItem = items.find(i => i.label === 'Stop Workflow');
+      stopItem!.onClick!();
 
-      expect(mockPauseWorkflow).toHaveBeenCalledWith('task-a');
+      expect(mockStopWorkflow).toHaveBeenCalledWith('task-a');
     });
   });
 
-  describe('Resume Workflow menu item', () => {
-    it('should show "Resume Workflow" for a paused node at an autonomous step', () => {
-      nodes['step-1'].metadata.stepType = 'autonomous';
-      workflowExecutionStates['task-a'] = { state: 'paused', terminalTabId: 'terminal-1' };
+  describe('Continue Workflow menu item', () => {
+    it('should show "Continue Workflow" for a node awaiting validation', () => {
+      workflowExecutionStates['task-a'] = { state: 'awaiting-validation', terminalTabId: 'terminal-1' };
 
       const items = buildWorkflowExecutionSubmenu({
         node: nodes['task-a'],
         nodes,
         ancestorRegistry,
         workflowExecutionStates,
-        actions: { startWorkflow: mockStartWorkflow, pauseWorkflow: mockPauseWorkflow, resumeWorkflow: mockResumeWorkflow },
+        actions: buildActions(),
         getTerminalId: mockGetTerminalId,
       });
 
-      expect(items[0].label).toBe('Resume Workflow');
+      expect(items[0].label).toBe('Continue Workflow');
     });
 
-    it('should not show "Resume Workflow" for a paused node at a manual step', () => {
-      workflowExecutionStates['task-a'] = { state: 'paused', terminalTabId: 'terminal-1' };
-
-      const items = buildWorkflowExecutionSubmenu({
-        node: nodes['task-a'],
-        nodes,
-        ancestorRegistry,
-        workflowExecutionStates,
-        actions: { startWorkflow: mockStartWorkflow, pauseWorkflow: mockPauseWorkflow, resumeWorkflow: mockResumeWorkflow },
-        getTerminalId: mockGetTerminalId,
-      });
-
-      expect(items).toHaveLength(0);
-    });
-
-    it('should not show "Resume Workflow" for a paused node at a checkpoint step', () => {
-      nodes['step-1'].metadata.stepType = 'checkpoint';
-      workflowExecutionStates['task-a'] = { state: 'paused', terminalTabId: 'terminal-1' };
-
-      const items = buildWorkflowExecutionSubmenu({
-        node: nodes['task-a'],
-        nodes,
-        ancestorRegistry,
-        workflowExecutionStates,
-        actions: { startWorkflow: mockStartWorkflow, pauseWorkflow: mockPauseWorkflow, resumeWorkflow: mockResumeWorkflow },
-        getTerminalId: mockGetTerminalId,
-      });
-
-      expect(items).toHaveLength(0);
-    });
-
-    it('should not show "Resume Workflow" for a running node', () => {
+    it('should not show "Continue Workflow" for a running node', () => {
       workflowExecutionStates['task-a'] = { state: 'running', terminalTabId: 'terminal-1' };
 
       const items = buildWorkflowExecutionSubmenu({
@@ -284,39 +258,37 @@ describe('buildWorkflowExecutionSubmenu', () => {
         nodes,
         ancestorRegistry,
         workflowExecutionStates,
-        actions: { startWorkflow: mockStartWorkflow, pauseWorkflow: mockPauseWorkflow, resumeWorkflow: mockResumeWorkflow },
+        actions: buildActions(),
         getTerminalId: mockGetTerminalId,
       });
 
-      const resumeItem = items.find(i => i.label === 'Resume Workflow');
-      expect(resumeItem).toBeUndefined();
+      const continueItem = items.find(i => i.label === 'Continue Workflow');
+      expect(continueItem).toBeUndefined();
     });
 
-    it('should call getTerminalId and pass result to resumeWorkflow when clicked', async () => {
-      nodes['step-1'].metadata.stepType = 'autonomous';
-      workflowExecutionStates['task-a'] = { state: 'paused', terminalTabId: 'terminal-1' };
+    it('should call getTerminalId and pass result to continueWorkflow when clicked', async () => {
+      workflowExecutionStates['task-a'] = { state: 'awaiting-validation', terminalTabId: 'terminal-1' };
 
       const items = buildWorkflowExecutionSubmenu({
         node: nodes['task-a'],
         nodes,
         ancestorRegistry,
         workflowExecutionStates,
-        actions: { startWorkflow: mockStartWorkflow, pauseWorkflow: mockPauseWorkflow, resumeWorkflow: mockResumeWorkflow },
+        actions: buildActions(),
         getTerminalId: mockGetTerminalId,
       });
-      const resumeItem = items.find(i => i.label === 'Resume Workflow');
-      resumeItem!.onClick!();
+      const continueItem = items.find(i => i.label === 'Continue Workflow');
+      continueItem!.onClick!();
 
       await vi.waitFor(() => {
         expect(mockGetTerminalId).toHaveBeenCalled();
-        expect(mockResumeWorkflow).toHaveBeenCalledWith('task-a', 'terminal-1');
+        expect(mockContinueWorkflow).toHaveBeenCalledWith('task-a', 'terminal-1');
       });
     });
   });
 
   describe('nested workflow steps', () => {
     beforeEach(() => {
-      // Make step-1 a sub-workflow with its own steps
       nodes['step-1'].metadata.isWorkflow = true;
       nodes['step-1'].children = ['sub-step-1', 'sub-step-2'];
       nodes['sub-step-1'] = {
@@ -342,7 +314,7 @@ describe('buildWorkflowExecutionSubmenu', () => {
         nodes,
         ancestorRegistry,
         workflowExecutionStates,
-        actions: { startWorkflow: mockStartWorkflow, pauseWorkflow: mockPauseWorkflow, resumeWorkflow: mockResumeWorkflow },
+        actions: buildActions(),
         getTerminalId: mockGetTerminalId,
       });
 
@@ -355,97 +327,12 @@ describe('buildWorkflowExecutionSubmenu', () => {
         nodes,
         ancestorRegistry,
         workflowExecutionStates,
-        actions: { startWorkflow: mockStartWorkflow, pauseWorkflow: mockPauseWorkflow, resumeWorkflow: mockResumeWorkflow },
+        actions: buildActions(),
         getTerminalId: mockGetTerminalId,
       });
 
       const startItem = items.find(i => i.label === 'Start Workflow');
       expect(startItem).toBeDefined();
-    });
-  });
-
-  describe('Step Type submenu', () => {
-    // Step Type management is handled by buildBlueprintSubmenu, not buildWorkflowExecutionSubmenu
-    it.skip('should show Step Type submenu on workflow step nodes', () => {
-      const items = buildWorkflowExecutionSubmenu({
-        node: nodes['step-1'],
-        nodes,
-        ancestorRegistry,
-        workflowExecutionStates,
-        actions: { startWorkflow: mockStartWorkflow, pauseWorkflow: mockPauseWorkflow, resumeWorkflow: mockResumeWorkflow },
-        getTerminalId: mockGetTerminalId,
-      });
-
-      const stepTypeItem = items.find(i => i.label === 'Step Type');
-      expect(stepTypeItem).toBeDefined();
-      expect(stepTypeItem!.submenu).toHaveLength(3);
-    });
-
-    // Step Type management is handled by buildBlueprintSubmenu, not buildWorkflowExecutionSubmenu
-    it.skip('should show Manual as checked when no stepType is set (default)', () => {
-      const items = buildWorkflowExecutionSubmenu({
-        node: nodes['step-1'],
-        nodes,
-        ancestorRegistry,
-        workflowExecutionStates,
-        actions: { startWorkflow: mockStartWorkflow, pauseWorkflow: mockPauseWorkflow, resumeWorkflow: mockResumeWorkflow },
-        getTerminalId: mockGetTerminalId,
-      });
-
-      const stepTypeItem = items.find(i => i.label === 'Step Type');
-      const manual = stepTypeItem!.submenu!.find(i => i.label === 'Manual');
-      expect(manual!.radioSelected).toBe(true);
-    });
-
-    // Step Type management is handled by buildBlueprintSubmenu, not buildWorkflowExecutionSubmenu
-    it.skip('should show Checkpoint as checked when stepType is checkpoint', () => {
-      nodes['step-1'].metadata.stepType = 'checkpoint';
-
-      const items = buildWorkflowExecutionSubmenu({
-        node: nodes['step-1'],
-        nodes,
-        ancestorRegistry,
-        workflowExecutionStates,
-        actions: { startWorkflow: mockStartWorkflow, pauseWorkflow: mockPauseWorkflow, resumeWorkflow: mockResumeWorkflow },
-        getTerminalId: mockGetTerminalId,
-      });
-
-      const stepTypeItem = items.find(i => i.label === 'Step Type');
-      const checkpoint = stepTypeItem!.submenu!.find(i => i.label === 'Checkpoint');
-      expect(checkpoint!.radioSelected).toBe(true);
-    });
-
-    // Step Type management is handled by buildBlueprintSubmenu, not buildWorkflowExecutionSubmenu
-    it.skip('should show Autonomous as checked when stepType is autonomous', () => {
-      nodes['step-1'].metadata.stepType = 'autonomous';
-
-      const items = buildWorkflowExecutionSubmenu({
-        node: nodes['step-1'],
-        nodes,
-        ancestorRegistry,
-        workflowExecutionStates,
-        actions: { startWorkflow: mockStartWorkflow, pauseWorkflow: mockPauseWorkflow, resumeWorkflow: mockResumeWorkflow },
-        getTerminalId: mockGetTerminalId,
-      });
-
-      const stepTypeItem = items.find(i => i.label === 'Step Type');
-      const autonomous = stepTypeItem!.submenu!.find(i => i.label === 'Autonomous');
-      expect(autonomous!.radioSelected).toBe(true);
-    });
-
-    // Step Type management is handled by buildBlueprintSubmenu, not buildWorkflowExecutionSubmenu
-    it.skip('should not show Step Type submenu on non-step nodes', () => {
-      const items = buildWorkflowExecutionSubmenu({
-        node: nodes['task-a'],
-        nodes,
-        ancestorRegistry,
-        workflowExecutionStates,
-        actions: { startWorkflow: mockStartWorkflow, pauseWorkflow: mockPauseWorkflow, resumeWorkflow: mockResumeWorkflow },
-        getTerminalId: mockGetTerminalId,
-      });
-
-      const stepTypeItem = items.find(i => i.label === 'Step Type');
-      expect(stepTypeItem).toBeUndefined();
     });
   });
 });

@@ -5,7 +5,7 @@ import { isEligibleForExecution } from '../workflowHelpers';
 describe('isEligibleForExecution', () => {
   let nodes: Record<string, TreeNode>;
   let ancestorRegistry: Record<string, string[]>;
-  let workflowExecutionStates: Record<string, { state: 'idle' | 'running' | 'paused'; terminalTabId: string }>;
+  let workflowExecutionStates: Record<string, { state: 'running' | 'awaiting-validation'; terminalTabId: string }>;
 
   beforeEach(() => {
     // Tree:
@@ -88,11 +88,11 @@ describe('isEligibleForExecution', () => {
       expect(result).toBe(true);
     });
 
-    it('should return true for a node in Paused state (eligible for resume)', () => {
-      workflowExecutionStates['task-a'] = { state: 'paused', terminalTabId: 'terminal-1' };
+    it('should return false for a node in awaiting-validation state', () => {
+      workflowExecutionStates['task-a'] = { state: 'awaiting-validation', terminalTabId: 'terminal-1' };
 
       const result = isEligibleForExecution('task-a', nodes, ancestorRegistry, workflowExecutionStates);
-      expect(result).toBe(true);
+      expect(result).toBe(false);
     });
   });
 

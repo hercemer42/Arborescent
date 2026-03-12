@@ -64,7 +64,7 @@ describe('workflow advancement', () => {
     nodes: Record<string, TreeNode>;
     rootNodeId: string;
     ancestorRegistry: Record<string, string[]>;
-    workflowExecutionStates: Record<string, { state: 'idle' | 'running' | 'paused'; terminalTabId: string }>;
+    workflowExecutionStates: Record<string, { state: 'running' | 'awaiting-validation'; terminalTabId: string }>;
     workflowSessionMap: Record<string, string>;
   };
 
@@ -273,7 +273,7 @@ describe('workflow advancement', () => {
       actions.advanceNode('task-a');
 
       await vi.waitFor(() => {
-        expect(state.workflowExecutionStates['task-a'].state).toBe('paused');
+        expect(state.workflowExecutionStates['task-a']).toBeUndefined();
       });
       expect(mockAddToast).toHaveBeenCalledWith(
         expect.stringContaining('Failed to send to terminal'),
@@ -304,13 +304,13 @@ describe('workflow advancement', () => {
       state.ancestorRegistry['task-a'] = ['root', 'workflow', 'step-2'];
     });
 
-    it('should pause workflow on checkpoint Stop event', () => {
+    it('should set awaiting-validation on checkpoint Stop event', () => {
       actions.handleHookEvent({
         session_id: 'session-abc',
         hook_event_name: 'Stop',
       });
 
-      expect(state.workflowExecutionStates['task-a'].state).toBe('paused');
+      expect(state.workflowExecutionStates['task-a'].state).toBe('awaiting-validation');
     });
 
     it('should show persistent toast with node name on checkpoint Stop event', () => {
@@ -349,7 +349,7 @@ describe('workflow advancement', () => {
       expect(mockExecuteInTerminal).not.toHaveBeenCalled();
     });
 
-    it('should pause workflow when advancing to a manual step', () => {
+    it('should clear execution state when advancing to a manual step', () => {
       state.nodes['step-2'].children = ['task-a'];
       state.nodes['step-1'].children = [];
       state.ancestorRegistry['task-a'] = ['root', 'workflow', 'step-2'];
@@ -357,7 +357,7 @@ describe('workflow advancement', () => {
 
       actions.advanceNode('task-a');
 
-      expect(state.workflowExecutionStates['task-a'].state).toBe('paused');
+      expect(state.workflowExecutionStates['task-a']).toBeUndefined();
     });
 
     it('should show waiting toast when advancing to a manual step', () => {
@@ -585,11 +585,12 @@ describe('workflow advancement', () => {
       });
 
       expect(state.nodes['step-2'].children).toContain('task-a');
-      expect(state.workflowExecutionStates['task-a'].state).toBe('paused');
+      // Second Stop is a no-op since node is awaiting-validation, not running
+      expect(state.workflowExecutionStates['task-a'].state).toBe('awaiting-validation');
     });
 
-    it('should not advance if workflow was paused between Stop events', () => {
-      actions.pauseWorkflow('task-a');
+    it('should not advance if workflow was stopped between Stop events', () => {
+      actions.stopWorkflow('task-a');
 
       actions.handleHookEvent({
         session_id: 'session-abc',

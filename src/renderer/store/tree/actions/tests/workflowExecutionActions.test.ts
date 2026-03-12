@@ -52,7 +52,7 @@ describe('createWorkflowExecutionActions', () => {
     nodes: Record<string, TreeNode>;
     rootNodeId: string;
     ancestorRegistry: Record<string, string[]>;
-    workflowExecutionStates: Record<string, { state: 'idle' | 'running' | 'paused'; terminalTabId: string }>;
+    workflowExecutionStates: Record<string, { state: 'running' | 'awaiting-validation'; terminalTabId: string }>;
     workflowSessionMap: Record<string, string>;
     contextDeclarations: { nodeId: string; content: string; icon: string; color?: string; mode: 'collaborate' | 'execute' }[];
   };
@@ -232,69 +232,64 @@ describe('createWorkflowExecutionActions', () => {
     });
   });
 
-  describe('pauseWorkflow', () => {
-    it('should set node execution state to paused', () => {
+  describe('stopWorkflow', () => {
+    it('should clear execution state entirely', () => {
       state.workflowExecutionStates['task-a'] = { state: 'running', terminalTabId: 'terminal-1' };
 
-      actions.pauseWorkflow('task-a');
+      actions.stopWorkflow('task-a');
 
-      expect(state.workflowExecutionStates['task-a'].state).toBe('paused');
-    });
-
-    it('should retain terminal assignment when paused', () => {
-      state.workflowExecutionStates['task-a'] = { state: 'running', terminalTabId: 'terminal-1' };
-
-      actions.pauseWorkflow('task-a');
-
-      expect(state.workflowExecutionStates['task-a'].terminalTabId).toBe('terminal-1');
-    });
-
-    it('should be a no-op if node is not running', () => {
-      actions.pauseWorkflow('task-a');
       expect(state.workflowExecutionStates['task-a']).toBeUndefined();
     });
 
-    it('should be a no-op if node is already paused', () => {
-      state.workflowExecutionStates['task-a'] = { state: 'paused', terminalTabId: 'terminal-1' };
+    it('should be a no-op if node is not running', () => {
+      actions.stopWorkflow('task-a');
+      expect(state.workflowExecutionStates['task-a']).toBeUndefined();
+    });
 
-      actions.pauseWorkflow('task-a');
+    it('should be a no-op if node is awaiting-validation', () => {
+      state.workflowExecutionStates['task-a'] = { state: 'awaiting-validation', terminalTabId: 'terminal-1' };
 
-      expect(state.workflowExecutionStates['task-a'].state).toBe('paused');
+      actions.stopWorkflow('task-a');
+
+      // stopWorkflow only works on running nodes
+      expect(state.workflowExecutionStates['task-a'].state).toBe('awaiting-validation');
+    });
+
+    it('should allow restarting after stop', () => {
+      state.workflowExecutionStates['task-a'] = { state: 'running', terminalTabId: 'terminal-1' };
+
+      actions.stopWorkflow('task-a');
+      expect(state.workflowExecutionStates['task-a']).toBeUndefined();
+
+      actions.startWorkflow('task-a', 'terminal-1');
+      expect(state.workflowExecutionStates['task-a'].state).toBe('running');
     });
   });
 
-  describe('resumeWorkflow', () => {
-    it('should set node execution state back to running with the provided terminal', () => {
-      state.workflowExecutionStates['task-a'] = { state: 'paused', terminalTabId: 'terminal-1' };
+  describe('continueWorkflow', () => {
+    it('should advance node to next step when continuing from awaiting-validation', () => {
+      state.workflowExecutionStates['task-a'] = { state: 'awaiting-validation', terminalTabId: 'terminal-1' };
 
-      actions.resumeWorkflow('task-a', 'terminal-1');
+      actions.continueWorkflow('task-a', 'terminal-1');
+
+      // task-a was in step-1 (autonomous), should advance to step-2
+      expect(state.nodes['step-2'].children).toContain('task-a');
+    });
+
+    it('should be a no-op if node is not awaiting-validation', () => {
+      state.workflowExecutionStates['task-a'] = { state: 'running', terminalTabId: 'terminal-1' };
+
+      actions.continueWorkflow('task-a', 'terminal-1');
 
       expect(state.workflowExecutionStates['task-a'].state).toBe('running');
-      expect(state.workflowExecutionStates['task-a'].terminalTabId).toBe('terminal-1');
-    });
-
-    it('should update terminal assignment when resuming on a different terminal', () => {
-      state.workflowExecutionStates['task-a'] = { state: 'paused', terminalTabId: 'terminal-1' };
-
-      actions.resumeWorkflow('task-a', 'terminal-2');
-
-      expect(state.workflowExecutionStates['task-a'].terminalTabId).toBe('terminal-2');
-    });
-
-    it('should re-send content to the terminal on resume', () => {
-      state.workflowExecutionStates['task-a'] = { state: 'paused', terminalTabId: 'terminal-1' };
-
-      actions.resumeWorkflow('task-a', 'terminal-1');
-
-      expect(mockExecuteInTerminal).toHaveBeenCalledWith('terminal-1', expect.any(String));
     });
 
     it('should show toast when no terminal is available', () => {
-      state.workflowExecutionStates['task-a'] = { state: 'paused', terminalTabId: 'terminal-1' };
+      state.workflowExecutionStates['task-a'] = { state: 'awaiting-validation', terminalTabId: 'terminal-1' };
 
-      actions.resumeWorkflow('task-a', null);
+      actions.continueWorkflow('task-a', null);
 
-      expect(state.workflowExecutionStates['task-a'].state).toBe('paused');
+      expect(state.workflowExecutionStates['task-a'].state).toBe('awaiting-validation');
       expect(mockAddToast).toHaveBeenCalledWith(
         expect.stringContaining('terminal'),
         'warning'
@@ -302,34 +297,69 @@ describe('createWorkflowExecutionActions', () => {
     });
 
     it('should reject if terminal is assigned to another running node', () => {
-      state.workflowExecutionStates['task-a'] = { state: 'paused', terminalTabId: 'terminal-1' };
+      state.workflowExecutionStates['task-a'] = { state: 'awaiting-validation', terminalTabId: 'terminal-1' };
       state.workflowExecutionStates['task-c'] = { state: 'running', terminalTabId: 'terminal-2' };
 
-      actions.resumeWorkflow('task-a', 'terminal-2');
+      actions.continueWorkflow('task-a', 'terminal-2');
 
-      expect(state.workflowExecutionStates['task-a'].state).toBe('paused');
+      expect(state.workflowExecutionStates['task-a'].state).toBe('awaiting-validation');
       expect(mockAddToast).toHaveBeenCalledWith(
         expect.stringContaining('already assigned'),
         'warning'
       );
     });
 
-    it('should be a no-op if node is not paused', () => {
-      state.workflowExecutionStates['task-a'] = { state: 'running', terminalTabId: 'terminal-1' };
-
-      actions.resumeWorkflow('task-a', 'terminal-1');
-
-      expect(state.workflowExecutionStates['task-a'].state).toBe('running');
+    it('should be a no-op if node has no execution state', () => {
+      actions.continueWorkflow('task-a', 'terminal-1');
+      expect(state.workflowExecutionStates['task-a']).toBeUndefined();
     });
 
-    it('should be a no-op if node has no execution state', () => {
-      actions.resumeWorkflow('task-a', 'terminal-1');
+    it('should complete workflow when continuing from the last step', () => {
+      // task-a at step-3 (final step), awaiting-validation
+      state.nodes['step-3'].children = ['task-a'];
+      state.nodes['step-1'].children = ['task-b'];
+      state.ancestorRegistry['task-a'] = ['root', 'workflow', 'step-3'];
+      state.workflowExecutionStates['task-a'] = { state: 'awaiting-validation', terminalTabId: 'terminal-1' };
+
+      actions.continueWorkflow('task-a', 'terminal-1');
+
       expect(state.workflowExecutionStates['task-a']).toBeUndefined();
+      expect(mockAddToast).toHaveBeenCalledWith(
+        expect.stringContaining('complete'),
+        'success'
+      );
+    });
+
+    it('should stop at manual step when continuing past checkpoint', () => {
+      // task-a at step-2 (checkpoint), next step is step-3 (manual)
+      state.nodes['step-2'].children = ['task-a'];
+      state.nodes['step-1'].children = ['task-b'];
+      state.ancestorRegistry['task-a'] = ['root', 'workflow', 'step-2'];
+      state.workflowExecutionStates['task-a'] = { state: 'awaiting-validation', terminalTabId: 'terminal-1' };
+
+      actions.continueWorkflow('task-a', 'terminal-1');
+
+      // Advances to step-3 (manual) → execution state cleared
+      expect(state.nodes['step-3'].children).toContain('task-a');
+      expect(state.workflowExecutionStates['task-a']).toBeUndefined();
+    });
+
+    it('should keep running when continuing to an autonomous step', () => {
+      // task-a at step-1 (autonomous), awaiting-validation, next step is step-2 (checkpoint)
+      state.workflowExecutionStates['task-a'] = { state: 'awaiting-validation', terminalTabId: 'terminal-1' };
+      // Change step-2 to autonomous so it keeps running
+      state.nodes['step-2'].metadata.stepType = 'autonomous';
+
+      actions.continueWorkflow('task-a', 'terminal-1');
+
+      expect(state.nodes['step-2'].children).toContain('task-a');
+      expect(state.workflowExecutionStates['task-a'].state).toBe('running');
+      expect(mockExecuteInTerminal).toHaveBeenCalled();
     });
   });
 
   describe('completeWorkflow', () => {
-    it('should set node execution state to idle and clear terminal assignment', () => {
+    it('should clear execution state entirely', () => {
       state.workflowExecutionStates['task-a'] = { state: 'running', terminalTabId: 'terminal-1' };
 
       actions.completeWorkflow('task-a');
@@ -445,14 +475,6 @@ describe('createWorkflowExecutionActions', () => {
 
   describe('advanceNode with nested workflows', () => {
     beforeEach(() => {
-      // Extend tree with nested workflow:
-      // workflow (isWorkflow)
-      // ├── step-1
-      // │   └── task-a
-      // ├── nested-wf (isWorkflow)
-      // │   ├── nested-step-1
-      // │   └── nested-step-2
-      // └── step-3
       state.nodes['workflow'].children = ['step-1', 'nested-wf', 'step-3'];
       state.nodes['nested-wf'] = {
         id: 'nested-wf',
@@ -476,7 +498,6 @@ describe('createWorkflowExecutionActions', () => {
       state.ancestorRegistry['nested-step-1'] = ['root', 'workflow', 'nested-wf'];
       state.ancestorRegistry['nested-step-2'] = ['root', 'workflow', 'nested-wf'];
 
-      // Remove step-2 to simplify
       delete state.nodes['step-2'];
       delete state.nodes['task-c'];
       delete state.ancestorRegistry['step-2'];
@@ -484,7 +505,6 @@ describe('createWorkflowExecutionActions', () => {
     });
 
     it('should advance into nested workflow first step', () => {
-      // task-a is in step-1 → next step should be nested-step-1 (depth-first)
       state.workflowExecutionStates['task-a'] = { state: 'running', terminalTabId: 'terminal-1' };
 
       actions.advanceNode('task-a');
@@ -493,7 +513,6 @@ describe('createWorkflowExecutionActions', () => {
     });
 
     it('should advance from last nested step back to parent workflow', () => {
-      // task-a is in nested-step-2 → next step should be step-3 (back to parent)
       state.nodes['nested-step-2'].children = ['task-a'];
       state.nodes['step-1'].children = ['task-b'];
       state.ancestorRegistry['task-a'] = ['root', 'workflow', 'nested-wf', 'nested-step-2'];
@@ -505,7 +524,6 @@ describe('createWorkflowExecutionActions', () => {
     });
 
     it('should traverse deeply nested workflows (3+ levels) in correct order', () => {
-      // Add a third level of nesting
       state.nodes['nested-step-1'].metadata.isWorkflow = true;
       state.nodes['nested-step-1'].children = ['deep-step'];
       state.nodes['deep-step'] = { id: 'deep-step', content: 'Deep Step', children: [], metadata: { isBlueprint: true } };
@@ -513,7 +531,6 @@ describe('createWorkflowExecutionActions', () => {
 
       state.workflowExecutionStates['task-a'] = { state: 'running', terminalTabId: 'terminal-1' };
 
-      // From step-1 → should enter nested-wf → nested-step-1 is a workflow → enter deep-step
       actions.advanceNode('task-a');
 
       expect(state.nodes['deep-step'].children).toContain('task-a');
@@ -546,14 +563,12 @@ describe('createWorkflowExecutionActions', () => {
 
   describe('handleHookEvent', () => {
     beforeEach(() => {
-      // Set up a running node with session mapping
       state.workflowExecutionStates['task-a'] = { state: 'running', terminalTabId: 'terminal-1' };
       state.workflowSessionMap['session-abc'] = 'terminal-1';
     });
 
     describe('Stop event', () => {
       it('should advance node when step type is autonomous', () => {
-        // Step-1 has stepType: 'autonomous'
         actions.handleHookEvent({
           session_id: 'session-abc',
           hook_event_name: 'Stop',
@@ -562,7 +577,7 @@ describe('createWorkflowExecutionActions', () => {
         expect(state.nodes['step-2'].children).toContain('task-a');
       });
 
-      it('should pause workflow and show popup when step type is checkpoint', () => {
+      it('should set awaiting-validation when step type is checkpoint', () => {
         state.nodes['step-2'].children = ['task-a'];
         state.nodes['step-1'].children = ['task-b'];
         state.ancestorRegistry['task-a'] = ['root', 'workflow', 'step-2'];
@@ -572,7 +587,7 @@ describe('createWorkflowExecutionActions', () => {
           hook_event_name: 'Stop',
         });
 
-        expect(state.workflowExecutionStates['task-a'].state).toBe('paused');
+        expect(state.workflowExecutionStates['task-a'].state).toBe('awaiting-validation');
         expect(mockAddToast).toHaveBeenCalledWith(
           expect.stringContaining('complete'),
           'info',
@@ -581,7 +596,6 @@ describe('createWorkflowExecutionActions', () => {
       });
 
       it('should not advance node when step type is manual', () => {
-        // Move task-a to step-3 (manual / default)
         state.nodes['step-3'].children = ['task-a'];
         state.nodes['step-1'].children = ['task-b'];
         state.ancestorRegistry['task-a'] = ['root', 'workflow', 'step-3'];
@@ -591,11 +605,11 @@ describe('createWorkflowExecutionActions', () => {
           hook_event_name: 'Stop',
         });
 
+        // Manual step: Stop hook is a no-op, node stays in place
         expect(state.nodes['step-3'].children).toContain('task-a');
       });
 
       it('should evaluate step type at arrival time, not at workflow start', () => {
-        // Change step-1 from autonomous to manual mid-run
         state.nodes['step-1'].metadata.stepType = 'manual';
 
         actions.handleHookEvent({
@@ -613,33 +627,30 @@ describe('createWorkflowExecutionActions', () => {
           hook_event_name: 'Stop',
         });
 
-        // No change, no crash
         expect(state.nodes['step-1'].children).toContain('task-a');
       });
 
       it('should ignore Stop event when no node is assigned to that terminal', () => {
         state.workflowSessionMap['session-orphan'] = 'terminal-3';
-        // terminal-3 has no running node
 
         actions.handleHookEvent({
           session_id: 'session-orphan',
           hook_event_name: 'Stop',
         });
 
-        // No change, no crash
         expect(state.nodes['step-1'].children).toContain('task-a');
       });
     });
 
     describe('Notification event', () => {
-      it('should pause the workflow for the affected node', () => {
+      it('should stop the workflow for the affected node', () => {
         actions.handleHookEvent({
           session_id: 'session-abc',
           hook_event_name: 'Notification',
           message: 'Claude needs attention',
         });
 
-        expect(state.workflowExecutionStates['task-a'].state).toBe('paused');
+        expect(state.workflowExecutionStates['task-a']).toBeUndefined();
       });
 
       it('should show a toast with the notification message', () => {
@@ -659,7 +670,6 @@ describe('createWorkflowExecutionActions', () => {
           message: 'test',
         });
 
-        // No crash, no state changes
         expect(Object.keys(state.workflowExecutionStates)).toHaveLength(1);
       });
     });
@@ -683,26 +693,23 @@ describe('createWorkflowExecutionActions', () => {
       state.workflowSessionMap['session-1'] = 'terminal-1';
       state.workflowSessionMap['session-2'] = 'terminal-2';
 
-      // Stop for task-a (autonomous step) → advances
       actions.handleHookEvent({ session_id: 'session-1', hook_event_name: 'Stop' });
 
-      // task-a moved, task-c unchanged
       expect(state.nodes['step-2'].children).toContain('task-a');
       expect(state.nodes['step-2'].children).toContain('task-c');
     });
 
-    it('should pause one node without affecting the other', () => {
+    it('should stop one node without affecting the other', () => {
       state.workflowExecutionStates['task-a'] = { state: 'running', terminalTabId: 'terminal-1' };
       state.workflowExecutionStates['task-c'] = { state: 'running', terminalTabId: 'terminal-2' };
 
-      actions.pauseWorkflow('task-a');
+      actions.stopWorkflow('task-a');
 
-      expect(state.workflowExecutionStates['task-a'].state).toBe('paused');
+      expect(state.workflowExecutionStates['task-a']).toBeUndefined();
       expect(state.workflowExecutionStates['task-c'].state).toBe('running');
     });
 
     it('should allow two nodes at the same step simultaneously', () => {
-      // Move task-b to step-2 alongside task-c
       state.nodes['step-2'].children = ['task-c', 'task-b'];
       state.nodes['step-1'].children = ['task-a'];
       state.ancestorRegistry['task-b'] = ['root', 'workflow', 'step-2'];
@@ -716,7 +723,7 @@ describe('createWorkflowExecutionActions', () => {
   });
 
   describe('initialization (app restart)', () => {
-    it('should set all running nodes to paused on initialization', () => {
+    it('should clear all running nodes on initialization', () => {
       state.workflowExecutionStates = {
         'task-a': { state: 'running', terminalTabId: 'terminal-1' },
         'task-c': { state: 'running', terminalTabId: 'terminal-2' },
@@ -724,18 +731,18 @@ describe('createWorkflowExecutionActions', () => {
 
       actions.initializeExecutionState();
 
-      expect(state.workflowExecutionStates['task-a'].state).toBe('paused');
-      expect(state.workflowExecutionStates['task-c'].state).toBe('paused');
+      expect(state.workflowExecutionStates['task-a']).toBeUndefined();
+      expect(state.workflowExecutionStates['task-c']).toBeUndefined();
     });
 
-    it('should not modify already-paused nodes on initialization', () => {
+    it('should preserve awaiting-validation nodes on initialization', () => {
       state.workflowExecutionStates = {
-        'task-a': { state: 'paused', terminalTabId: 'terminal-1' },
+        'task-a': { state: 'awaiting-validation', terminalTabId: 'terminal-1' },
       };
 
       actions.initializeExecutionState();
 
-      expect(state.workflowExecutionStates['task-a'].state).toBe('paused');
+      expect(state.workflowExecutionStates['task-a'].state).toBe('awaiting-validation');
     });
 
     it('should clear session map on initialization', () => {
@@ -746,7 +753,7 @@ describe('createWorkflowExecutionActions', () => {
       expect(state.workflowSessionMap).toEqual({});
     });
 
-    it('should show toast when nodes are paused on restart', () => {
+    it('should show toast when workflows are stopped on restart', () => {
       state.workflowExecutionStates = {
         'task-a': { state: 'running', terminalTabId: 'terminal-1' },
       };
@@ -754,7 +761,7 @@ describe('createWorkflowExecutionActions', () => {
       actions.initializeExecutionState();
 
       expect(mockAddToast).toHaveBeenCalledWith(
-        expect.stringContaining('paused'),
+        expect.stringContaining('stopped'),
         'warning'
       );
     });
@@ -788,9 +795,8 @@ describe('createWorkflowExecutionActions', () => {
       // Stop hook fires, node advances
       actions.handleHookEvent({ session_id: 'session-abc', hook_event_name: 'Stop' });
 
-      vi.advanceTimersByTime(5 * 60 * 1000); // Another 5 minutes (10 total, but only 5 since last advance)
+      vi.advanceTimersByTime(5 * 60 * 1000); // Another 5 minutes
 
-      // Should NOT have shown timeout yet (only 5 min since last advance)
       expect(mockAddToast).not.toHaveBeenCalledWith(
         expect.stringContaining('taking longer'),
         expect.anything(),
@@ -800,15 +806,14 @@ describe('createWorkflowExecutionActions', () => {
       vi.useRealTimers();
     });
 
-    it('should clear timeout when workflow is paused', () => {
+    it('should clear timeout when workflow is stopped', () => {
       vi.useFakeTimers();
 
       actions.startWorkflow('task-a', 'terminal-1');
-      actions.pauseWorkflow('task-a');
+      actions.stopWorkflow('task-a');
 
       vi.advanceTimersByTime(10 * 60 * 1000);
 
-      // Should NOT show timeout for a paused workflow
       expect(mockAddToast).not.toHaveBeenCalledWith(
         expect.stringContaining('taking longer'),
         expect.anything(),

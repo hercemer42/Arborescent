@@ -40,7 +40,7 @@ type TestState = {
   nodes: Record<string, TreeNode>;
   rootNodeId: string;
   ancestorRegistry: Record<string, string[]>;
-  workflowExecutionStates: Record<string, { state: 'idle' | 'running' | 'paused'; terminalTabId: string }>;
+  workflowExecutionStates: Record<string, { state: 'running' | 'awaiting-validation'; terminalTabId: string }>;
   workflowSessionMap: Record<string, string>;
 };
 
@@ -121,7 +121,8 @@ describe('Integration: Workflow Execution', () => {
       expect(state().nodes['s3'].children).toContain('task');
       expect(state().nodes['s2'].children).not.toContain('task');
       expect(state().ancestorRegistry['task']).toEqual(['root', 'wf', 's3']);
-      expect(state().workflowExecutionStates['task'].state).toBe('paused');
+      // Manual step: execution state cleared
+      expect(state().workflowExecutionStates['task']).toBeUndefined();
       expect(mockExecuteInTerminal).toHaveBeenCalledTimes(2);
     });
 
@@ -147,7 +148,7 @@ describe('Integration: Workflow Execution', () => {
   });
 
   describe('checkpoint step behavior', () => {
-    it('should run at checkpoint step then pause when AI finishes', () => {
+    it('should run at checkpoint step then set awaiting-validation when AI finishes', () => {
       const state = () => stateRef.current;
 
       state().nodes['s2'].metadata.stepType = 'checkpoint';
@@ -160,7 +161,7 @@ describe('Integration: Workflow Execution', () => {
       expect(state().workflowExecutionStates['task'].state).toBe('running');
 
       actions.handleHookEvent({ session_id: 'session-1', hook_event_name: 'Stop' });
-      expect(state().workflowExecutionStates['task'].state).toBe('paused');
+      expect(state().workflowExecutionStates['task'].state).toBe('awaiting-validation');
       expect(mockAddToast).toHaveBeenCalledWith(
         expect.stringContaining('complete'),
         'info',
@@ -233,8 +234,8 @@ describe('Integration: Workflow Execution', () => {
     });
   });
 
-  describe('disruption mid-workflow then resume', () => {
-    it('should pause on terminal close and resume on new terminal', () => {
+  describe('disruption mid-workflow then restart', () => {
+    it('should stop on terminal close and allow restart on new terminal', () => {
       const state = () => stateRef.current;
 
       actions.startWorkflow('task', 'term-1');
@@ -244,20 +245,15 @@ describe('Integration: Workflow Execution', () => {
       expect(state().nodes['s2'].children).toContain('task');
 
       actions.handleTerminalClosed('term-1');
-      expect(state().workflowExecutionStates['task'].state).toBe('paused');
+      expect(state().workflowExecutionStates['task']).toBeUndefined();
 
+      // Must use startWorkflow again (not continueWorkflow — that's only for awaiting-validation)
       mockExecuteInTerminal.mockClear();
-      actions.resumeWorkflow('task', 'term-2');
+      actions.startWorkflow('task', 'term-2');
 
       expect(state().workflowExecutionStates['task'].state).toBe('running');
       expect(state().workflowExecutionStates['task'].terminalTabId).toBe('term-2');
       expect(mockExecuteInTerminal).toHaveBeenCalledWith('term-2', expect.any(String));
-
-      actions.registerSession('session-2', 'term-2');
-      actions.handleHookEvent({ session_id: 'session-2', hook_event_name: 'Stop' });
-
-      expect(state().nodes['s3'].children).toContain('task');
-      expect(state().workflowExecutionStates['task'].state).toBe('paused');
     });
 
     it('should handle app restart mid-workflow', () => {
@@ -271,11 +267,13 @@ describe('Integration: Workflow Execution', () => {
 
       actions.initializeExecutionState();
 
-      expect(state().workflowExecutionStates['task'].state).toBe('paused');
+      // Running entries are cleared on restart
+      expect(state().workflowExecutionStates['task']).toBeUndefined();
       expect(state().workflowSessionMap).toEqual({});
       expect(state().nodes['s2'].children).toContain('task');
 
-      actions.resumeWorkflow('task', 'term-3');
+      // Restart with new terminal
+      actions.startWorkflow('task', 'term-3');
       actions.registerSession('session-3', 'term-3');
 
       expect(state().workflowExecutionStates['task'].state).toBe('running');
@@ -312,14 +310,14 @@ describe('Integration: Workflow Execution', () => {
       expect(state().ancestorRegistry['task']).toEqual(['root', 'wf', 's-new']);
     });
 
-    it('should pause and notify when current step is deleted', () => {
+    it('should stop and notify when current step is deleted', () => {
       const state = () => stateRef.current;
 
       actions.startWorkflow('task', 'term-1');
 
       actions.handleStepDeleted('s1');
 
-      expect(state().workflowExecutionStates['task'].state).toBe('paused');
+      expect(state().workflowExecutionStates['task']).toBeUndefined();
       expect(mockAddToast).toHaveBeenCalledWith(
         expect.stringContaining('Step removed'),
         'warning'
@@ -328,7 +326,7 @@ describe('Integration: Workflow Execution', () => {
   });
 
   describe('step type changed mid-run', () => {
-    it('should pause on arrival when next step changed to manual', () => {
+    it('should stop on arrival when next step changed to manual', () => {
       const state = () => stateRef.current;
 
       state().nodes['s2'].metadata.stepType = 'autonomous';
@@ -342,10 +340,11 @@ describe('Integration: Workflow Execution', () => {
       actions.handleHookEvent({ session_id: 'session-1', hook_event_name: 'Stop' });
 
       expect(state().nodes['s2'].children).toContain('task');
-      expect(state().workflowExecutionStates['task'].state).toBe('paused');
+      // Manual step: entry cleared
+      expect(state().workflowExecutionStates['task']).toBeUndefined();
     });
 
-    it('should run then pause on Stop when next step changed to checkpoint', () => {
+    it('should run then set awaiting-validation on Stop when next step changed to checkpoint', () => {
       const state = () => stateRef.current;
 
       state().nodes['s2'].metadata.stepType = 'autonomous';
@@ -360,12 +359,12 @@ describe('Integration: Workflow Execution', () => {
       expect(state().workflowExecutionStates['task'].state).toBe('running');
 
       actions.handleHookEvent({ session_id: 'session-1', hook_event_name: 'Stop' });
-      expect(state().workflowExecutionStates['task'].state).toBe('paused');
+      expect(state().workflowExecutionStates['task'].state).toBe('awaiting-validation');
     });
   });
 
   describe('notification hook', () => {
-    it('should pause and show message on Notification event', () => {
+    it('should stop and show message on Notification event', () => {
       const state = () => stateRef.current;
 
       actions.startWorkflow('task', 'term-1');
@@ -377,7 +376,7 @@ describe('Integration: Workflow Execution', () => {
         message: 'Something went wrong',
       });
 
-      expect(state().workflowExecutionStates['task'].state).toBe('paused');
+      expect(state().workflowExecutionStates['task']).toBeUndefined();
       expect(mockAddToast).toHaveBeenCalledWith(
         expect.stringContaining('Something went wrong'),
         'warning'
@@ -424,6 +423,102 @@ describe('Integration: Workflow Execution', () => {
 
       actions.handleHookEvent({ session_id: 'session-1', hook_event_name: 'Stop' });
       expect(state().nodes['s3'].children).toContain('task');
+    });
+  });
+
+  describe('continue from checkpoint', () => {
+    it('should advance node when continuing from awaiting-validation at checkpoint', () => {
+      const state = () => stateRef.current;
+
+      state().nodes['s1'].metadata.stepType = 'checkpoint';
+
+      actions.startWorkflow('task', 'term-1');
+      actions.registerSession('session-1', 'term-1');
+
+      // First Stop at checkpoint → awaiting-validation
+      actions.handleHookEvent({ session_id: 'session-1', hook_event_name: 'Stop' });
+      expect(state().workflowExecutionStates['task'].state).toBe('awaiting-validation');
+
+      // User clicks Continue → advances to s2 and continues running
+      actions.continueWorkflow('task', 'term-1');
+      expect(state().nodes['s2'].children).toContain('task');
+      expect(state().workflowExecutionStates['task'].state).toBe('running');
+    });
+
+    it('should traverse checkpoint → autonomous → manual with continue in between', () => {
+      const state = () => stateRef.current;
+
+      state().nodes['s1'].metadata.stepType = 'checkpoint';
+      state().nodes['s2'].metadata.stepType = 'autonomous';
+      // s3 is manual (default)
+
+      actions.startWorkflow('task', 'term-1');
+      actions.registerSession('session-1', 'term-1');
+
+      // Run at s1 (checkpoint), AI finishes → awaiting-validation
+      actions.handleHookEvent({ session_id: 'session-1', hook_event_name: 'Stop' });
+      expect(state().workflowExecutionStates['task'].state).toBe('awaiting-validation');
+      expect(state().nodes['s1'].children).toContain('task');
+
+      // Continue → advances to s2 (autonomous), keeps running
+      actions.continueWorkflow('task', 'term-1');
+      expect(state().nodes['s2'].children).toContain('task');
+      expect(state().workflowExecutionStates['task'].state).toBe('running');
+
+      // AI finishes at s2 (autonomous) → advances to s3 (manual) → stops
+      actions.handleHookEvent({ session_id: 'session-1', hook_event_name: 'Stop' });
+      expect(state().nodes['s3'].children).toContain('task');
+      expect(state().workflowExecutionStates['task']).toBeUndefined();
+    });
+
+    it('should complete workflow when continuing from last checkpoint step', () => {
+      const state = () => stateRef.current;
+
+      state().nodes['s3'].metadata.stepType = 'checkpoint';
+
+      // Move task to s3
+      state().nodes['s1'].children = [];
+      state().nodes['s3'].children = ['task'];
+      state().ancestorRegistry['task'] = ['root', 'wf', 's3'];
+
+      actions.startWorkflow('task', 'term-1');
+      actions.registerSession('session-1', 'term-1');
+
+      // AI finishes at s3 → awaiting-validation
+      actions.handleHookEvent({ session_id: 'session-1', hook_event_name: 'Stop' });
+      expect(state().workflowExecutionStates['task'].state).toBe('awaiting-validation');
+
+      // Continue → no next step → complete
+      actions.continueWorkflow('task', 'term-1');
+      expect(state().workflowExecutionStates['task']).toBeUndefined();
+      expect(mockAddToast).toHaveBeenCalledWith(
+        expect.stringContaining('complete'),
+        'success'
+      );
+    });
+  });
+
+  describe('stop and restart', () => {
+    it('should allow stopping a running workflow and restarting it', () => {
+      const state = () => stateRef.current;
+
+      actions.startWorkflow('task', 'term-1');
+      actions.registerSession('session-1', 'term-1');
+
+      // Advance once
+      actions.handleHookEvent({ session_id: 'session-1', hook_event_name: 'Stop' });
+      expect(state().nodes['s2'].children).toContain('task');
+
+      // Stop the workflow
+      actions.stopWorkflow('task');
+      expect(state().workflowExecutionStates['task']).toBeUndefined();
+
+      // Restart — starts at current position (s2), not from beginning
+      mockExecuteInTerminal.mockClear();
+      actions.startWorkflow('task', 'term-1');
+      expect(state().workflowExecutionStates['task'].state).toBe('running');
+      expect(state().nodes['s2'].children).toContain('task');
+      expect(mockExecuteInTerminal).toHaveBeenCalledWith('term-1', expect.any(String));
     });
   });
 });
