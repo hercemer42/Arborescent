@@ -46,6 +46,7 @@ vi.mock('@/store/preferences/preferencesStore', () => ({
   },
 }));
 
+
 describe('createWorkflowExecutionActions', () => {
   type TestState = {
     nodes: Record<string, TreeNode>;
@@ -561,8 +562,7 @@ describe('createWorkflowExecutionActions', () => {
         expect(state.nodes['step-2'].children).toContain('task-a');
       });
 
-      it('should pause workflow and show toast when step type is checkpoint', () => {
-        // Move task-a to step-2 (checkpoint)
+      it('should pause workflow and show popup when step type is checkpoint', () => {
         state.nodes['step-2'].children = ['task-a'];
         state.nodes['step-1'].children = ['task-b'];
         state.ancestorRegistry['task-a'] = ['root', 'workflow', 'step-2'];
@@ -575,7 +575,8 @@ describe('createWorkflowExecutionActions', () => {
         expect(state.workflowExecutionStates['task-a'].state).toBe('paused');
         expect(mockAddToast).toHaveBeenCalledWith(
           expect.stringContaining('complete'),
-          'info'
+          'info',
+          expect.objectContaining({ persistent: true, actions: expect.any(Array) })
         );
       });
 

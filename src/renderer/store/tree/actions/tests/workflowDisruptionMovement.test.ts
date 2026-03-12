@@ -42,6 +42,7 @@ vi.mock('@/store/preferences/preferencesStore', () => ({
   },
 }));
 
+
 describe('workflow disruption — movement wiring', () => {
   type TestState = {
     nodes: Record<string, TreeNode>;

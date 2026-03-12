@@ -39,6 +39,8 @@ vi.mock('@/store/preferences/preferencesStore', () => ({
   },
 }));
 
+
+
 describe('workflow execution edge cases', () => {
   type TestState = {
     nodes: Record<string, TreeNode>;

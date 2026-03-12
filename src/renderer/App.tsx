@@ -1,18 +1,24 @@
-import { useState, useRef, useCallback } from 'react';
-import { ToastContainer } from './components/ui/Toast';
-import { Workspace } from './components/Workspace';
-import { Panel } from './components/Panel';
-import { BottomStatusBar } from './components/BottomStatusBar/BottomStatusBar';
-import { SearchBar } from './components/SearchBar';
-import { AppMenuBar } from './components/MenuBar';
-import { CustomizeDialogContainer } from './components/ui/CustomizeDialog/CustomizeDialogContainer';
-import { KeyboardShortcutsDialog } from './components/KeyboardShortcuts';
-import { useToastStore } from './store/toast/toastStore';
-import { usePanelStore } from './store/panel/panelStore';
-import { useSearchStore } from './store/search/searchStore';
-import { useUIStore } from './store/ui/uiStore';
-import { useAppErrorHandling, useAppInitialization, useSpellcheckListener, useHotkeyContext, useHookEventListener } from './hooks';
-import './App.css';
+import { useState, useRef, useCallback } from "react";
+import { ToastContainer } from "./components/ui/Toast";
+import { Workspace } from "./components/Workspace";
+import { Panel } from "./components/Panel";
+import { BottomStatusBar } from "./components/BottomStatusBar/BottomStatusBar";
+import { SearchBar } from "./components/SearchBar";
+import { AppMenuBar } from "./components/MenuBar";
+import { CustomizeDialogContainer } from "./components/ui/CustomizeDialog/CustomizeDialogContainer";
+import { KeyboardShortcutsDialog } from "./components/KeyboardShortcuts";
+import { useToastStore } from "./store/toast/toastStore";
+import { usePanelStore } from "./store/panel/panelStore";
+import { useSearchStore } from "./store/search/searchStore";
+import { useUIStore } from "./store/ui/uiStore";
+import {
+  useAppErrorHandling,
+  useAppInitialization,
+  useSpellcheckListener,
+  useHotkeyContext,
+  useHookEventListener,
+} from "./hooks";
+import "./App.css";
 
 export function App() {
   const [isInitializing, setIsInitializing] = useState(true);
@@ -25,8 +31,12 @@ export function App() {
   const toasts = useToastStore((state) => state.toasts);
   const removeToast = useToastStore((state) => state.removeToast);
   const isSearchOpen = useSearchStore((state) => state.isOpen);
-  const isKeyboardShortcutsOpen = useUIStore((state) => state.isKeyboardShortcutsOpen);
-  const closeKeyboardShortcuts = useUIStore((state) => state.closeKeyboardShortcuts);
+  const isKeyboardShortcutsOpen = useUIStore(
+    (state) => state.isKeyboardShortcutsOpen,
+  );
+  const closeKeyboardShortcuts = useUIStore(
+    (state) => state.closeKeyboardShortcuts,
+  );
 
   // Memoize to prevent re-initialization on every render
   const handleInitComplete = useCallback(() => setIsInitializing(false), []);
@@ -44,7 +54,9 @@ export function App() {
       {!isInitializing && (
         <div
           className={`app-content ${
-            isPanelVisible && panelPosition === 'side' ? 'side-layout' : 'bottom-layout'
+            isPanelVisible && panelPosition === "side"
+              ? "side-layout"
+              : "bottom-layout"
           }`}
           ref={contentRef}
         >
@@ -64,4 +76,3 @@ export function App() {
     </div>
   );
 }
-

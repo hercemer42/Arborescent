@@ -35,6 +35,7 @@ vi.mock('@/store/preferences/preferencesStore', () => ({
   },
 }));
 
+
 type TestState = {
   nodes: Record<string, TreeNode>;
   rootNodeId: string;
@@ -161,8 +162,9 @@ describe('Integration: Workflow Execution', () => {
       actions.handleHookEvent({ session_id: 'session-1', hook_event_name: 'Stop' });
       expect(state().workflowExecutionStates['task'].state).toBe('paused');
       expect(mockAddToast).toHaveBeenCalledWith(
-        expect.stringContaining('Step complete'),
-        'info'
+        expect.stringContaining('complete'),
+        'info',
+        expect.objectContaining({ persistent: true, actions: expect.any(Array) })
       );
     });
   });

@@ -41,6 +41,8 @@ vi.mock('@/store/preferences/preferencesStore', () => ({
   },
 }));
 
+
+
 describe('workflow execution — preference integration', () => {
   type TestState = {
     nodes: Record<string, TreeNode>;

@@ -40,6 +40,7 @@ vi.mock('@/store/preferences/preferencesStore', () => ({
   },
 }));
 
+
 describe('workflow disruption — deletion wiring', () => {
   type TestState = {
     nodes: Record<string, TreeNode>;

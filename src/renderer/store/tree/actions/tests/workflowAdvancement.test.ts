@@ -58,6 +58,7 @@ vi.mock('@/store/preferences/preferencesStore', () => ({
   },
 }));
 
+
 describe('workflow advancement', () => {
   type TestState = {
     nodes: Record<string, TreeNode>;
@@ -312,7 +313,7 @@ describe('workflow advancement', () => {
       expect(state.workflowExecutionStates['task-a'].state).toBe('paused');
     });
 
-    it('should show toast with node name on checkpoint Stop event', () => {
+    it('should show persistent toast with node name on checkpoint Stop event', () => {
       actions.handleHookEvent({
         session_id: 'session-abc',
         hook_event_name: 'Stop',
@@ -320,7 +321,8 @@ describe('workflow advancement', () => {
 
       expect(mockAddToast).toHaveBeenCalledWith(
         expect.stringContaining('Task A'),
-        'info'
+        'info',
+        expect.objectContaining({ persistent: true, actions: expect.any(Array) })
       );
     });
 
