@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-03-12T19:30:09.381Z'
+updated: '2026-03-12T22:29:03.910Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -5571,6 +5571,7 @@ nodes:
       - e6860559-af1d-4a28-be70-9e27ba35335f
       - 1e2f062a-bbaa-4a02-b58b-a94ab15d8d74
       - 0058432d-a010-473b-a707-ace2b1dee169
+      - 13000727-ad7b-42cf-ad91-0c2098e52597
       - d83909a8-6ca6-4dca-8c64-7b4ee9aeb43b
     metadata:
       status: pending
@@ -11987,7 +11988,7 @@ nodes:
       blueprintIcon: ClipboardList
       blueprintColor: '#14b8a6'
       isBlueprint: true
-      expanded: false
+      expanded: true
       contextMode: collaborate
   132e5564-e290-4d6c-8cae-f65f125ef78f:
     id: 132e5564-e290-4d6c-8cae-f65f125ef78f
@@ -12020,7 +12021,8 @@ nodes:
   bdce23d6-718b-4fa3-9c0f-4cbb40d2cadc:
     id: bdce23d6-718b-4fa3-9c0f-4cbb40d2cadc
     content: Do not otherwise change the content
-    children: []
+    children:
+      - 626db77f-ebed-43ae-9c1d-f927a6e91791
     metadata:
       status: pending
       isBlueprint: true
@@ -14612,6 +14614,7 @@ nodes:
       resolvedAt: '2025-12-09T06:01:07.426Z'
       isBlueprint: true
       appliedContextId: 9b46397c-c452-421c-b408-46b040d99c9e
+      stepType: autonomous
   45bd7268-9183-4664-a675-88e6073621d1:
     id: 45bd7268-9183-4664-a675-88e6073621d1
     content: Add a 'Status' submenu in the context menu
@@ -23855,7 +23858,7 @@ nodes:
       - 144f87a7-9799-423c-ba47-40dff294fb8d
     metadata:
       status: pending
-      expanded: false
+      expanded: true
       deleted: false
       plugins: {}
       isContextDeclaration: true
@@ -24301,7 +24304,7 @@ nodes:
       - 05841793-e05f-435c-91b0-df00ce963edc
     metadata:
       status: pending
-      expanded: false
+      expanded: true
       deleted: false
       plugins: {}
       isContextDeclaration: true
@@ -24585,6 +24588,7 @@ nodes:
       blueprintIcon: ZoomIn
       blueprintColor: '#22c55e'
       appliedContextId: 75556cda-47e6-45d5-ad2d-12689057427e
+      stepType: autonomous
   7fea2910-cc32-43bf-8380-b49f1e5b2587:
     id: 7fea2910-cc32-43bf-8380-b49f1e5b2587
     content: Allow workflows to be nested
@@ -24865,6 +24869,7 @@ nodes:
       blueprintIcon: Gem
       blueprintColor: '#64748b'
       appliedContextId: 64ec6c6b-566e-4956-bff9-55ac881f4fdb
+      stepType: checkpoint
   e9f32f6c-40ee-4150-9a48-453b92207537:
     id: e9f32f6c-40ee-4150-9a48-453b92207537
     content: Add all of the below under this one one node
@@ -26636,6 +26641,7 @@ nodes:
       blueprintColor: '#f97316'
       appliedContextId: 1d30a613-a651-436c-bb2b-1fb3062af9fb
       expanded: true
+      stepType: autonomous
   bbe17f66-d747-4cf0-8602-721ce87663fe:
     id: bbe17f66-d747-4cf0-8602-721ce87663fe
     content: Make sure there are no empty tests
@@ -26780,6 +26786,7 @@ nodes:
       blueprintIcon: BugPlay
       blueprintColor: '#a855f7'
       expanded: true
+      stepType: autonomous
   8670805b-0f95-41ce-87b6-c7d5db7f620c:
     id: 8670805b-0f95-41ce-87b6-c7d5db7f620c
     content: If there is an implementation that does not have a corresponding acceptance criteria, confirm with the user
@@ -28348,6 +28355,7 @@ nodes:
       blueprintIcon: ListChecks
       blueprintColor: '#c47f09'
       expanded: true
+      stepType: autonomous
   5fcbaf63-52df-4f25-b452-6365602e8f8c:
     id: 5fcbaf63-52df-4f25-b452-6365602e8f8c
     content: Validate them against the test plan if one is provided
@@ -34445,7 +34453,6 @@ nodes:
     id: 13c5048b-15eb-4989-a6fc-25032e5c131f
     content: Problems
     children:
-      - 025a647c-7f61-4fba-9256-9e1988c60881
       - a53c7946-6b6f-4b67-ac43-b37c5a32dfc5
       - 329b96ee-dc93-4391-9e2a-f03ff95288e5
       - 564574d1-43b4-4bfa-9068-b7ef4621f9fd
@@ -35354,7 +35361,7 @@ nodes:
       blueprintIcon: BugPlay
       blueprintColor: '#a855f7'
       expanded: true
-      stepType: manual
+      stepType: autonomous
   7b3e923e-b465-4444-ae7d-7fe0e80e3235:
     id: 7b3e923e-b465-4444-ae7d-7fe0e80e3235
     content: Code review & refactor
@@ -35887,6 +35894,7 @@ nodes:
       status: pending
       isBlueprint: true
       appliedContextId: 1e2f062a-bbaa-4a02-b58b-a94ab15d8d74
+      stepType: checkpoint
   52fb1ab7-8c9e-47b3-9b18-a96a2fcef2c7:
     id: 52fb1ab7-8c9e-47b3-9b18-a96a2fcef2c7
     content: Problem statement
@@ -42926,18 +42934,12 @@ nodes:
       - 2cd3e1a6-3f5a-48ac-8059-e0b62daa1f98
     metadata:
       status: pending
-  025a647c-7f61-4fba-9256-9e1988c60881:
-    id: 025a647c-7f61-4fba-9256-9e1988c60881
-    content: Not seeing status icons on nodes in the workflow
-    children:
-      - b75e6436-b854-4ae7-8c43-9991f9276ccb
-    metadata:
-      status: pending
   a53c7946-6b6f-4b67-ac43-b37c5a32dfc5:
     id: a53c7946-6b6f-4b67-ac43-b37c5a32dfc5
-    content: The play icon to indicate a workflow node is confusing
+    content: "The play icon to indicate a workflow\_ is confusing"
     children:
       - 88646500-c444-42ef-9248-c5ff81c5ae70
+      - bc28c267-2d73-4e39-bc01-b50dd4fe60a5
       - 80aa1758-9090-4476-b100-240fb61f85de
     metadata:
       status: pending
@@ -42973,9 +42975,23 @@ nodes:
     children: []
     metadata:
       status: pending
-  b75e6436-b854-4ae7-8c43-9991f9276ccb:
-    id: b75e6436-b854-4ae7-8c43-9991f9276ccb
-    content: Didn't we spec this ? I thought we had speced out play, pause, in progress icons in an overlay for nodes in a step
+  bc28c267-2d73-4e39-bc01-b50dd4fe60a5:
+    id: bc28c267-2d73-4e39-bc01-b50dd4fe60a5
+    content: Also conflicts with a node that is in progress within a workflow
     children: []
     metadata:
       status: pending
+  13000727-ad7b-42cf-ad91-0c2098e52597:
+    id: 13000727-ad7b-42cf-ad91-0c2098e52597
+    content: What about this
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  626db77f-ebed-43ae-9c1d-f927a6e91791:
+    id: 626db77f-ebed-43ae-9c1d-f927a6e91791
+    content: ''
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true

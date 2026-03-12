@@ -1,5 +1,5 @@
 import { memo, createElement } from 'react';
-import { Asterisk, Link, Pause, Play } from 'lucide-react';
+import { Asterisk, Cog, Link, Pause, Play } from 'lucide-react';
 import { TreeNode } from '../../../shared/types';
 import { StatusCheckbox } from '../ui/StatusCheckbox';
 import { ContextMenu } from '../ui/ContextMenu';
@@ -79,7 +79,7 @@ function NodeContentComponent({
             {createElement(ContextIcon, { size: 19 })}
           </button>
           <span className="context-declaration-overlay">
-            <Asterisk size={13} />
+            <Asterisk size={18} strokeWidth={1} />
           </span>
         </span>
       );
@@ -114,7 +114,7 @@ function NodeContentComponent({
           </button>
           {isWorkflow && (
             <span className="workflow-indicator">
-              <Play size={10} fill="currentColor" />
+              <Cog size={19} strokeWidth={1} />
             </span>
           )}
           {stepNumber !== null && (
@@ -135,7 +135,7 @@ function NodeContentComponent({
                 stopWorkflow();
               }}
             >
-              <Play size={8} fill="currentColor" />
+              <Play size={16} fill="currentColor" />
             </button>
           )}
           {executionState === 'awaiting-validation' && (
@@ -144,7 +144,7 @@ function NodeContentComponent({
               title="Awaiting validation"
               aria-label="Workflow awaiting validation"
             >
-              <Pause size={8} fill="currentColor" />
+              <Pause size={16} fill="currentColor" />
             </span>
           )}
         </span>
@@ -168,7 +168,7 @@ function NodeContentComponent({
               stopWorkflow();
             }}
           >
-            <Play size={8} fill="currentColor" />
+            <Play size={16} fill="currentColor" />
           </button>
         )}
         {executionState === 'awaiting-validation' && (
@@ -177,7 +177,7 @@ function NodeContentComponent({
             title="Awaiting validation"
             aria-label="Workflow awaiting validation"
           >
-            <Pause size={8} fill="currentColor" />
+            <Pause size={16} fill="currentColor" />
           </span>
         )}
       </span>

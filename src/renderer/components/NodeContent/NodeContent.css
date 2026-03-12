@@ -13,7 +13,7 @@
   position: absolute;
   top: -1px;
   bottom: -1px;
-  left: 24px;
+  left: 16px;
   width: var(--indent-width, 0);
   background-image: repeating-linear-gradient(
     to right,
@@ -42,6 +42,7 @@
   background: none;
   border: none;
   padding: 0;
+  margin-left: 1px;
   cursor: pointer;
 }
 
@@ -93,12 +94,12 @@
 
 .context-declaration-overlay {
   position: absolute;
-  left: -12px;
+  left: -18px;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 14px;
-  height: 14px;
+  width: 20px;
+  height: 20px;
   color: var(--gray-600);
   pointer-events: none;
 }
@@ -172,45 +173,74 @@
 
 .workflow-indicator {
   position: absolute;
-  left: -10px;
+  left: -18px;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 10px;
-  height: 10px;
+  width: 20px;
+  height: 20px;
   color: var(--gray-600);
   pointer-events: none;
 }
 
 .workflow-step-number {
   position: absolute;
-  left: -10px;
+  left: -18px;
   display: flex;
   align-items: center;
   justify-content: center;
-  min-width: 12px;
-  height: 12px;
-  font-size: 9px;
-  font-weight: 700;
+  min-width: 20px;
+  height: 20px;
+  font-size: 12px;
+  font-weight: 400;
   color: var(--gray-600);
   line-height: 1;
+  padding-top: 1px;
   pointer-events: none;
+  isolation: isolate;
 }
 
-.workflow-step-number.step-type-manual {
-  border: 1px solid var(--gray-500);
-  border-radius: 1px;
+.workflow-step-number::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: -1;
 }
 
-.workflow-step-number.step-type-checkpoint {
-  background:
-    linear-gradient(225deg, transparent 4px, var(--gray-500) 4px, var(--gray-500) 5px, transparent 5px),
-    linear-gradient(135deg, transparent 4px, var(--gray-500) 4px, var(--gray-500) 5px, transparent 5px),
-    linear-gradient(to top, var(--gray-500) 1px, transparent 1px);
+.workflow-step-number.step-type-manual::before {
+  width: 14px;
+  height: 14px;
+  border: 1px solid var(--gray-400);
+  border-radius: 2px;
 }
 
-.workflow-step-number.step-type-autonomous {
-  border: 1px solid var(--gray-500);
+.workflow-step-number.step-type-checkpoint::before {
+  width: 17px;
+  height: 17px;
+  transform: translate(-50%, -50%);
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  background: var(--orange-500);
+}
+
+.workflow-step-number.step-type-checkpoint::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 15px;
+  height: 15px;
+  transform: translate(-50%, -50%);
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  background: var(--white);
+  z-index: -1;
+}
+
+.workflow-step-number.step-type-autonomous::before {
+  width: 14px;
+  height: 14px;
+  border: 1px solid var(--sky-500);
   border-radius: 50%;
 }
 
@@ -230,11 +260,11 @@
 }
 
 .blueprint-icon-wrapper .workflow-execution-overlay {
-  right: -12px;
+  right: -17px;
 }
 
 .checkbox-icon-wrapper .workflow-execution-overlay {
-  left: -12px;
+  left: -19px;
 }
 
 .workflow-execution-overlay {
@@ -242,9 +272,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
+  width: 20px;
+  height: 20px;
   pointer-events: auto;
 }
 
