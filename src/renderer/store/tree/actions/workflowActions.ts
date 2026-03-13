@@ -203,7 +203,12 @@ export const createWorkflowActions = (
 
     if (stepType === 'autonomous') {
       useToastStore.getState().addToast(
-        'This step will execute automatically. Ensure contexts are correctly configured.',
+        'This step will execute automatically and advance to the next step. Ensure contexts are correctly configured.',
+        'warning'
+      );
+    } else if (stepType === 'checkpoint') {
+      useToastStore.getState().addToast(
+        'This step will execute automatically but pause before advancing. Review the output before continuing.',
         'warning'
       );
     }

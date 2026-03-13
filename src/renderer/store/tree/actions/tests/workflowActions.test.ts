@@ -442,16 +442,22 @@ describe('createWorkflowActions', () => {
       actions.setStepType('step-1', 'autonomous');
 
       expect(mockAddToast).toHaveBeenCalledWith(
-        'This step will execute automatically. Ensure contexts are correctly configured.',
+        'This step will execute automatically and advance to the next step. Ensure contexts are correctly configured.',
         'warning'
       );
     });
 
-    it('should not show warning toast when setting to manual or checkpoint', () => {
-      actions.setStepType('step-1', 'manual');
-      expect(mockAddToast).not.toHaveBeenCalled();
-
+    it('should show warning toast when setting to checkpoint', () => {
       actions.setStepType('step-1', 'checkpoint');
+
+      expect(mockAddToast).toHaveBeenCalledWith(
+        'This step will execute automatically but pause before advancing. Review the output before continuing.',
+        'warning'
+      );
+    });
+
+    it('should not show warning toast when setting to manual', () => {
+      actions.setStepType('step-1', 'manual');
       expect(mockAddToast).not.toHaveBeenCalled();
     });
 
