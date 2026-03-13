@@ -4,6 +4,7 @@ import { useNodeContextMenu } from '../useNodeContextMenu';
 import { TreeStoreContext } from '../../../../store/tree/TreeStoreContext';
 import { createTreeStore, TreeStore } from '../../../../store/tree/treeStore';
 import type { TreeNode } from '@shared/types';
+import { ContextMenuItem } from '../../../ui/ContextMenu';
 import { useSpellcheckStore } from '../../../../store/spellcheck/spellcheckStore';
 
 // Helper to create mock event with DOM elements
@@ -438,6 +439,94 @@ describe('useNodeContextMenu', () => {
       expect(result.current.contextMenuItems.find(item => item.label === 'Edit')).toBeDefined();
     });
 
+  });
+
+  describe('step type selection rebuilds menu', () => {
+    const mockSetStepType = vi.fn();
+
+    const workflowNode: TreeNode = {
+      id: 'workflow',
+      content: 'Workflow',
+      children: ['step-node'],
+      metadata: { isBlueprint: true, isWorkflow: true },
+    };
+
+    const stepNode: TreeNode = {
+      id: 'step-node',
+      content: 'Step 1',
+      children: [],
+      metadata: { isBlueprint: true },
+    };
+
+    beforeEach(() => {
+      mockSetStepType.mockImplementation((nodeId: string, stepType: string) => {
+        const current = store.getState().nodes[nodeId];
+        store.setState({
+          nodes: {
+            ...store.getState().nodes,
+            [nodeId]: {
+              ...current,
+              metadata: { ...current.metadata, stepType },
+            },
+          },
+        });
+      });
+
+      store.setState({
+        nodes: {
+          'root': { id: 'root', content: 'Root', children: ['workflow'], metadata: { isBlueprint: true } },
+          'workflow': workflowNode,
+          'step-node': stepNode,
+        },
+        rootNodeId: 'root',
+        ancestorRegistry: {
+          'root': [],
+          'workflow': ['root'],
+          'step-node': ['root', 'workflow'],
+        },
+        actions: {
+          ...store.getState().actions,
+          deleteNode: mockDeleteNode,
+          copyNodes: mockCopyNodes,
+          cutNodes: mockCutNodes,
+          pasteNodes: mockPasteNodes,
+          toggleNodeSelection: mockToggleNodeSelection,
+          selectNode: mockSelectNode,
+          clearSelection: mockClearSelection,
+          setRememberedVisualX: mockSetRememberedVisualX,
+          setStepType: mockSetStepType,
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        } as any,
+      });
+    });
+
+    function findStepTypeSubmenu(items: ContextMenuItem[]) {
+      const blueprintMenu = items.find(item => item.label === 'Blueprint');
+      return blueprintMenu?.submenu?.find(item => item.label === 'Step Type');
+    }
+
+    it('should update radio selection after clicking a step type option', async () => {
+      const { result } = renderHook(() => useNodeContextMenu(stepNode), { wrapper });
+
+      await openContextMenu(result);
+
+      const stepTypeMenu = findStepTypeSubmenu(result.current.contextMenuItems);
+      expect(stepTypeMenu).toBeDefined();
+
+      const manualBefore = stepTypeMenu!.submenu!.find(item => item.label === 'Manual');
+      expect(manualBefore!.radioSelected).toBe(true);
+
+      const autonomousOption = stepTypeMenu!.submenu!.find(item => item.label === 'Autonomous');
+      await act(async () => {
+        autonomousOption!.onClick!();
+      });
+
+      const updatedStepTypeMenu = findStepTypeSubmenu(result.current.contextMenuItems);
+      const manualAfter = updatedStepTypeMenu!.submenu!.find(item => item.label === 'Manual');
+      const autonomousAfter = updatedStepTypeMenu!.submenu!.find(item => item.label === 'Autonomous');
+      expect(manualAfter!.radioSelected).toBe(false);
+      expect(autonomousAfter!.radioSelected).toBe(true);
+    });
   });
 
   describe('feedback tree menu', () => {
