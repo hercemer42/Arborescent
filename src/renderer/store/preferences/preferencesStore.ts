@@ -10,6 +10,7 @@ interface PreferencesState {
   isLoaded: boolean;
   hasSeenWorkflowDeclarationToast: boolean;
   hasReceivedHookEvent: boolean;
+  hasLaunchedWorkflow: boolean;
   stepTimeoutMinutes: number;
 
   setTheme: (theme: Theme) => void;
@@ -18,6 +19,7 @@ interface PreferencesState {
   loadPreferences: () => Promise<void>;
   markWorkflowDeclarationToastSeen: () => void;
   markHookEventReceived: () => void;
+  markWorkflowLaunched: () => void;
   setStepTimeoutMinutes: (minutes: number) => void;
 }
 
@@ -33,6 +35,7 @@ function buildPreferences(state: PreferencesState): UserPreferences {
     hotkeys: state.hotkeys,
     hasSeenWorkflowDeclarationToast: state.hasSeenWorkflowDeclarationToast,
     hasReceivedHookEvent: state.hasReceivedHookEvent,
+    hasLaunchedWorkflow: state.hasLaunchedWorkflow,
     stepTimeoutMinutes: state.stepTimeoutMinutes,
   };
 }
@@ -43,6 +46,7 @@ export const usePreferencesStore = create<PreferencesState>((set, get) => ({
   isLoaded: false,
   hasSeenWorkflowDeclarationToast: false,
   hasReceivedHookEvent: false,
+  hasLaunchedWorkflow: false,
   stepTimeoutMinutes: 10,
 
   setTheme: (theme: Theme) => {
@@ -82,11 +86,12 @@ export const usePreferencesStore = create<PreferencesState>((set, get) => ({
       const hotkeys = (preferences.hotkeys as HotkeyConfig) || (defaultHotkeys as HotkeyConfig);
       const hasSeenWorkflowDeclarationToast = preferences.hasSeenWorkflowDeclarationToast || false;
       const hasReceivedHookEvent = preferences.hasReceivedHookEvent || false;
+      const hasLaunchedWorkflow = preferences.hasLaunchedWorkflow || false;
       const stepTimeoutMinutes = preferences.stepTimeoutMinutes ?? 10;
 
       applyTheme(theme);
       setHotkeyConfig(hotkeys);
-      set({ theme, hotkeys, hasSeenWorkflowDeclarationToast, hasReceivedHookEvent, stepTimeoutMinutes, isLoaded: true });
+      set({ theme, hotkeys, hasSeenWorkflowDeclarationToast, hasReceivedHookEvent, hasLaunchedWorkflow, stepTimeoutMinutes, isLoaded: true });
     } else {
       applyTheme('light');
       set({ isLoaded: true });
@@ -100,6 +105,11 @@ export const usePreferencesStore = create<PreferencesState>((set, get) => ({
 
   markHookEventReceived: () => {
     set({ hasReceivedHookEvent: true });
+    storageService.savePreferences(buildPreferences(get()));
+  },
+
+  markWorkflowLaunched: () => {
+    set({ hasLaunchedWorkflow: true });
     storageService.savePreferences(buildPreferences(get()));
   },
 

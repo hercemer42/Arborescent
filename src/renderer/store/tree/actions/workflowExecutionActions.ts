@@ -138,6 +138,18 @@ export const createWorkflowExecutionActions = (
       return;
     }
 
+    const prefsState = usePreferencesStore.getState();
+    if (!prefsState.hasLaunchedWorkflow) {
+      prefsState.markWorkflowLaunched();
+      useToastStore
+        .getState()
+        .addToast(
+          "First workflow launch! Please verify that Claude Code hooks are configured for automatic step advancement. See docs/workflows.md for setup instructions.",
+          "info",
+          { persistent: true, actions: [{ label: "OK", onClick: () => {} }] },
+        );
+    }
+
     set({
       workflowExecutionStates: {
         ...workflowExecutionStates,

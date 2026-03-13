@@ -14,6 +14,7 @@ export interface UserPreferences {
   hotkeys?: any;
   hasSeenWorkflowDeclarationToast?: boolean;
   hasReceivedHookEvent?: boolean;
+  hasLaunchedWorkflow?: boolean;
   stepTimeoutMinutes?: number;
 }
 
