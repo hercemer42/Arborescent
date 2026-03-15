@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-03-13T13:33:43.619Z'
+updated: '2026-03-15T10:18:25.997Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -552,8 +552,6 @@ nodes:
     id: d5fe0eff-b1c6-4986-b6a3-70a0ea46f096
     content: Opportunities
     children:
-      - 7ca7c1ca-e879-4886-9349-0ed1b076d29a
-      - 1f631bc1-8444-40e1-a1d5-d3442b89c5ff
       - a39b2ce6-d2d5-4589-b53f-a84c103d9fbf
       - 3999cfea-b344-4f92-b3ca-ffb9f740afc7
       - d77cf522-0636-4a76-b9bf-7b33b4cc65cb
@@ -573,9 +571,10 @@ nodes:
       - 5288b678-63dc-4672-b1b3-8e2b540c04de
       - 565dde0a-864b-41f9-86ff-dbdf40ac4dd0
       - 188622ee-bacb-4220-92c3-9ff37694e691
+      - e91d842b-d982-4f8b-a3c5-7f0a42c95604
     metadata:
       status: pending
-      expanded: true
+      expanded: false
       isBlueprint: true
       blueprintIcon: Brain
       blueprintColor: '#0ea5e9'
@@ -5167,7 +5166,7 @@ nodes:
       - 7798380c-7259-4598-8c51-dff0249a2574
     metadata:
       status: pending
-      expanded: false
+      expanded: true
       deleted: false
       plugins: {}
       isContextDeclaration: true
@@ -14612,6 +14611,7 @@ nodes:
       resolvedAt: '2025-12-09T06:01:07.426Z'
       isBlueprint: true
       appliedContextId: 9b46397c-c452-421c-b408-46b040d99c9e
+      stepType: autonomous
   45bd7268-9183-4664-a675-88e6073621d1:
     id: 45bd7268-9183-4664-a675-88e6073621d1
     content: Add a 'Status' submenu in the context menu
@@ -24585,6 +24585,7 @@ nodes:
       blueprintIcon: ZoomIn
       blueprintColor: '#22c55e'
       appliedContextId: 75556cda-47e6-45d5-ad2d-12689057427e
+      stepType: autonomous
   7fea2910-cc32-43bf-8380-b49f1e5b2587:
     id: 7fea2910-cc32-43bf-8380-b49f1e5b2587
     content: Allow workflows to be nested
@@ -24858,13 +24859,15 @@ nodes:
   00714a63-f267-4ab1-a285-73ae4198eb42:
     id: 00714a63-f267-4ab1-a285-73ae4198eb42
     content: Technical refinement
-    children: []
+    children:
+      - 4adfa410-1e2e-4155-8e8e-2b2ed48b40a8
     metadata:
       status: pending
       isBlueprint: true
       blueprintIcon: Gem
       blueprintColor: '#64748b'
       appliedContextId: 64ec6c6b-566e-4956-bff9-55ac881f4fdb
+      stepType: autonomous
   e9f32f6c-40ee-4150-9a48-453b92207537:
     id: e9f32f6c-40ee-4150-9a48-453b92207537
     content: Add all of the below under this one one node
@@ -26636,6 +26639,7 @@ nodes:
       blueprintColor: '#f97316'
       appliedContextId: 1d30a613-a651-436c-bb2b-1fb3062af9fb
       expanded: true
+      stepType: autonomous
   bbe17f66-d747-4cf0-8602-721ce87663fe:
     id: bbe17f66-d747-4cf0-8602-721ce87663fe
     content: Make sure there are no empty tests
@@ -26780,6 +26784,7 @@ nodes:
       blueprintIcon: BugPlay
       blueprintColor: '#a855f7'
       expanded: true
+      stepType: autonomous
   8670805b-0f95-41ce-87b6-c7d5db7f620c:
     id: 8670805b-0f95-41ce-87b6-c7d5db7f620c
     content: If there is an implementation that does not have a corresponding acceptance criteria, confirm with the user
@@ -26828,18 +26833,22 @@ nodes:
     children: []
     metadata:
       status: pending
-      isBlueprint: true
+      expanded: true
+      deleted: false
+      plugins: {}
+      appliedContextId: e8824b29-eb18-4031-9e35-b321a864d418
       blueprintIcon: Eye
       blueprintColor: '#0ea5e9'
-      expanded: true
-      appliedContextId: e8824b29-eb18-4031-9e35-b321a864d418
+      isBlueprint: true
   87a11a28-4295-467f-ac54-746692494413:
     id: 87a11a28-4295-467f-ac54-746692494413
     content: Decomposition
-    children: []
+    children:
+      - 7bd23d94-dc41-4f46-b27c-7f54ea43b9f8
+      - 437c64c9-3da3-449a-9702-96755b5521b1
+      - 47796554-2b68-4d70-81fc-5afe4fb95e59
     metadata:
       status: completed
-      appliedContextId: e6860559-af1d-4a28-be70-9e27ba35335f
       resolvedAt: '2026-03-08T21:15:28.213Z'
       isBlueprint: true
       blueprintIcon: Blocks
@@ -28348,6 +28357,7 @@ nodes:
       blueprintIcon: ListChecks
       blueprintColor: '#c47f09'
       expanded: true
+      stepType: autonomous
   5fcbaf63-52df-4f25-b452-6365602e8f8c:
     id: 5fcbaf63-52df-4f25-b452-6365602e8f8c
     content: Validate them against the test plan if one is provided
@@ -34445,9 +34455,8 @@ nodes:
     id: 13c5048b-15eb-4989-a6fc-25032e5c131f
     content: Problems
     children:
-      - 564574d1-43b4-4bfa-9068-b7ef4621f9fd
+      - 28b63463-b046-4ed0-ab09-942c8b933875
       - 33c9ccfe-2b9e-441f-a857-bf766dc09892
-      - ac6ff401-493a-4a33-8182-a96e4cd939c3
       - 4446dd01-7caf-4953-8dd2-36153adb9cfa
       - 9692fa14-b407-4595-8af9-30f68e3b0d1a
       - 664f4e01-f14c-4f67-bc1a-fd08bd179bd1
@@ -34463,7 +34472,7 @@ nodes:
       isBlueprint: true
       blueprintIcon: FileWarning
       blueprintColor: '#f97316'
-      appliedContextId: 6690289a-e02f-48bc-9225-a1083b7b324f
+      appliedContextId: 0d19da53-f3a7-4ee4-b495-b59f127671fa
   664f4e01-f14c-4f67-bc1a-fd08bd179bd1:
     id: 664f4e01-f14c-4f67-bc1a-fd08bd179bd1
     content: Can't decompose one node into several in feedback panel
@@ -34662,6 +34671,7 @@ nodes:
       isBlueprint: true
       blueprintIcon: Workflow
       blueprintColor: '#14b8a6'
+      expanded: true
   321fe1d0-3ca3-45f5-bab8-56dd0f003e78:
     id: 321fe1d0-3ca3-45f5-bab8-56dd0f003e78
     content: Done
@@ -34875,7 +34885,7 @@ nodes:
     id: 1603b024-7215-4774-b159-72613a457991
     content: Propose solutions
     children:
-      - 4d0437db-af5c-4d9f-a928-cc25a1ada7f9
+      - e8d15ad8-90cd-463e-91f7-07202f7af135
       - 12cf80a2-d4b4-48b2-9de6-d856015ab922
       - de0aa7a3-de24-430e-b63d-d53da9c52b87
       - ca79acaf-5290-4a71-9a06-9b6b28bb9c52
@@ -34884,35 +34894,16 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  4d0437db-af5c-4d9f-a928-cc25a1ada7f9:
-    id: 4d0437db-af5c-4d9f-a928-cc25a1ada7f9
-    content: Group recommendations by concept
-    children:
-      - e8d15ad8-90cd-463e-91f7-07202f7af135
-      - 577c216f-73f5-4d9b-a2b8-43e0c3033b7d
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
   e8d15ad8-90cd-463e-91f7-07202f7af135:
     id: e8d15ad8-90cd-463e-91f7-07202f7af135
-    content: 'MVP: minimum set of changes that solve the core problem'
+    content: 'Group recommendations by MVP: minimum set of changes that solve a core problem'
     children: []
     metadata:
       status: pending
       expanded: true
       deleted: false
       plugins: {}
-  577c216f-73f5-4d9b-a2b8-43e0c3033b7d:
-    id: 577c216f-73f5-4d9b-a2b8-43e0c3033b7d
-    content: 'Future: enhancements that add polish or handle edge cases'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
+      isBlueprint: true
   12cf80a2-d4b4-48b2-9de6-d856015ab922:
     id: 12cf80a2-d4b4-48b2-9de6-d856015ab922
     content: For each concept, propose a concrete UI flow
@@ -35351,7 +35342,7 @@ nodes:
       blueprintIcon: BugPlay
       blueprintColor: '#a855f7'
       expanded: true
-      stepType: manual
+      stepType: autonomous
   7b3e923e-b465-4444-ae7d-7fe0e80e3235:
     id: 7b3e923e-b465-4444-ae7d-7fe0e80e3235
     content: Code review & refactor
@@ -35362,6 +35353,7 @@ nodes:
       blueprintIcon: Recycle
       blueprintColor: '#22c55e'
       appliedContextId: 64ea2af4-332b-44a6-8b88-78535cc9b79a
+      stepType: manual
   ca7b201c-6d28-4504-9b6a-09d70a18912c:
     id: ca7b201c-6d28-4504-9b6a-09d70a18912c
     content: Final code review
@@ -35407,6 +35399,7 @@ nodes:
       blueprintIcon: TriangleAlert
       blueprintColor: '#ef4444'
       appliedContextId: 6690289a-e02f-48bc-9225-a1083b7b324f
+      stepType: manual
   1091c1ce-f567-44d4-98e8-0a6c8cc10313:
     id: 1091c1ce-f567-44d4-98e8-0a6c8cc10313
     content: Generate a report for the user on what was fixed
@@ -35884,6 +35877,7 @@ nodes:
       status: pending
       isBlueprint: true
       appliedContextId: 1e2f062a-bbaa-4a02-b58b-a94ab15d8d74
+      stepType: autonomous
   52fb1ab7-8c9e-47b3-9b18-a96a2fcef2c7:
     id: 52fb1ab7-8c9e-47b3-9b18-a96a2fcef2c7
     content: Problem statement
@@ -42827,6 +42821,7 @@ nodes:
       - 7903f2d5-ff8d-4cdd-afc9-90951bd10007
     metadata:
       status: pending
+      expanded: false
   9b114ae3-8029-449b-aeb7-97991c4f508e:
     id: 9b114ae3-8029-449b-aeb7-97991c4f508e
     content: Would be nice to have everything linked so we can have multi-node workflows
@@ -42836,45 +42831,6 @@ nodes:
   7903f2d5-ff8d-4cdd-afc9-90951bd10007:
     id: 7903f2d5-ff8d-4cdd-afc9-90951bd10007
     content: Conceptually, in any case we'll need to have a way to maintain relations between produced content
-    children: []
-    metadata:
-      status: pending
-  564574d1-43b4-4bfa-9068-b7ef4621f9fd:
-    id: 564574d1-43b4-4bfa-9068-b7ef4621f9fd
-    content: Option for step type in context menu doesn't become selected when checked
-    children:
-      - dd7bbd6c-e7ee-43ad-91be-6f33dc309239
-    metadata:
-      status: pending
-  dd7bbd6c-e7ee-43ad-91be-6f33dc309239:
-    id: dd7bbd6c-e7ee-43ad-91be-6f33dc309239
-    content: It is selected if I close the menu then open again
-    children: []
-    metadata:
-      status: pending
-  ac6ff401-493a-4a33-8182-a96e4cd939c3:
-    id: ac6ff401-493a-4a33-8182-a96e4cd939c3
-    content: Triangle around checkpoint step is too wide and not high enough - maybe diamond or hex
-    children: []
-    metadata:
-      status: pending
-  7ca7c1ca-e879-4886-9349-0ed1b076d29a:
-    id: 7ca7c1ca-e879-4886-9349-0ed1b076d29a
-    content: Consider cycling through step types by clicking on them
-    children:
-      - 082c3889-0b5a-41c5-8b02-7ad1bb676b32
-      - e648d7a0-d9c1-49b1-a1e7-cd8a9e38603d
-    metadata:
-      status: pending
-  082c3889-0b5a-41c5-8b02-7ad1bb676b32:
-    id: 082c3889-0b5a-41c5-8b02-7ad1bb676b32
-    content: If we introduce inputs/outputs might not work so well
-    children: []
-    metadata:
-      status: pending
-  e648d7a0-d9c1-49b1-a1e7-cd8a9e38603d:
-    id: e648d7a0-d9c1-49b1-a1e7-cd8a9e38603d
-    content: Maybe a pop-up would be better when clicking on them
     children: []
     metadata:
       status: pending
@@ -42896,16 +42852,3572 @@ nodes:
     children: []
     metadata:
       status: pending
-  1f631bc1-8444-40e1-a1d5-d3442b89c5ff:
-    id: 1f631bc1-8444-40e1-a1d5-d3442b89c5ff
-    content: Add a 'continue workflow' for a node in a checkpoint that has finished.
+  28b63463-b046-4ed0-ab09-942c8b933875:
+    id: 28b63463-b046-4ed0-ab09-942c8b933875
+    content: There's no way for the AI to mutate the tree state directly without human validation
     children:
-      - 83e86012-24c4-464f-8cf9-e063157063e7
+      - a5b3cf33-ba69-4e1a-ab75-0839bc55bc43
+      - 4a91f96c-1dc3-4da1-a908-6dc1d5e1279f
+      - 4e3e60d5-00ce-4e97-bad0-c169904081e8
+      - 620a87c4-5ddf-427c-97d0-84c36c2890dd
+      - 22a60c2f-4829-46fd-b8ee-6670dac7f978
     metadata:
       status: pending
-  83e86012-24c4-464f-8cf9-e063157063e7:
-    id: 83e86012-24c4-464f-8cf9-e063157063e7
-    content: Sends it to the next step and runs it if it's an automated/checkpoint step
+      expanded: false
+      deleted: false
+      plugins: {}
+  a5b3cf33-ba69-4e1a-ab75-0839bc55bc43:
+    id: a5b3cf33-ba69-4e1a-ab75-0839bc55bc43
+    content: For example, if we want to turn a problem statement into user stories, we have to do it through the feedback panel
+    children:
+      - 7941ea16-d1ba-45e7-b119-56636dc7bee9
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7941ea16-d1ba-45e7-b119-56636dc7bee9:
+    id: 7941ea16-d1ba-45e7-b119-56636dc7bee9
+    content: And this is a state mutation of the original which we want to keep
     children: []
     metadata:
       status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4a91f96c-1dc3-4da1-a908-6dc1d5e1279f:
+    id: 4a91f96c-1dc3-4da1-a908-6dc1d5e1279f
+    content: Another example, if we want to add technical specifications/test cases etc to a user story
+    children:
+      - 955a2b22-6186-42db-bb13-46bb2bcbd0de
+      - 1c268b8d-9c03-47b4-a556-ebdb9a7ba407
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  955a2b22-6186-42db-bb13-46bb2bcbd0de:
+    id: 955a2b22-6186-42db-bb13-46bb2bcbd0de
+    content: There's no way to automate the step, the user must accept feedback to continue
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1c268b8d-9c03-47b4-a556-ebdb9a7ba407:
+    id: 1c268b8d-9c03-47b4-a556-ebdb9a7ba407
+    content: If we do accept feedback, there's no way to guarantee the original content was not mutated
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4e3e60d5-00ce-4e97-bad0-c169904081e8:
+    id: 4e3e60d5-00ce-4e97-bad0-c169904081e8
+    content: 'If we :'
+    children:
+      - 65e5e5b1-e47f-4ddf-89d9-d37b5802596e
+      - 21f76fd5-b886-4c5e-bcaa-5293675f21d0
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  65e5e5b1-e47f-4ddf-89d9-d37b5802596e:
+    id: 65e5e5b1-e47f-4ddf-89d9-d37b5802596e
+    content: 'A: Allow for creation of new nodes and leave the previous node untouched'
+    children:
+      - 5d7b5dee-8701-40b9-a17d-05e94593d3ea
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5d7b5dee-8701-40b9-a17d-05e94593d3ea:
+    id: 5d7b5dee-8701-40b9-a17d-05e94593d3ea
+    content: We'll need a way to maintain the relationship between those nodes for reference
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  21f76fd5-b886-4c5e-bcaa-5293675f21d0:
+    id: 21f76fd5-b886-4c5e-bcaa-5293675f21d0
+    content: 'B: Create the new nodes within the previous node and continue to use it as the working node'
+    children:
+      - ebfe4142-3282-414b-812f-bce3a3d4bd79
+      - c3d5a532-8243-4395-bf75-06f377c8fed6
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ebfe4142-3282-414b-812f-bce3a3d4bd79:
+    id: ebfe4142-3282-414b-812f-bce3a3d4bd79
+    content: We'll need a way to insure the original content isn't mutated
+    children:
+      - cb178b1a-c00c-423e-9e22-65b10ef69bd0
+      - 4264ff5b-abdd-4db8-a98f-1d8138bad349
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  cb178b1a-c00c-423e-9e22-65b10ef69bd0:
+    id: cb178b1a-c00c-423e-9e22-65b10ef69bd0
+    content: However sometimes we WILL want to mutate the content (automated product review for example)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4264ff5b-abdd-4db8-a98f-1d8138bad349:
+    id: 4264ff5b-abdd-4db8-a98f-1d8138bad349
+    content: Will need to be an optional user choice
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c3d5a532-8243-4395-bf75-06f377c8fed6:
+    id: c3d5a532-8243-4395-bf75-06f377c8fed6
+    content: We'll need a way to send segments of a node through a workflow
+    children:
+      - aa4147e2-eb15-4f87-af82-ae12515d3676
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  aa4147e2-eb15-4f87-af82-ae12515d3676:
+    id: aa4147e2-eb15-4f87-af82-ae12515d3676
+    content: And let them optionally be sent sequentially in an automated fashion until the whole problem statement has been coded, and the user can review
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  620a87c4-5ddf-427c-97d0-84c36c2890dd:
+    id: 620a87c4-5ddf-427c-97d0-84c36c2890dd
+    content: The tree itself is going to get very big if we keep the history of state mutations
+    children:
+      - 1110ff62-824f-4bca-bc4f-e4baee203187
+      - 91a84648-7d2d-4ace-9dfb-f261b76a6aa4
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1110ff62-824f-4bca-bc4f-e4baee203187:
+    id: 1110ff62-824f-4bca-bc4f-e4baee203187
+    content: It's already getting big with the contexts we added to write technical specifications, user stories, test plans etc
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  91a84648-7d2d-4ace-9dfb-f261b76a6aa4:
+    id: 91a84648-7d2d-4ace-9dfb-f261b76a6aa4
+    content: Need to identify if this is going to be an issue, and if so what to do with it
+    children:
+      - f336262d-78a3-46c3-9636-b8880e0fe710
+      - b5c55e91-42d5-47fc-ac21-af28ec25a765
+      - 1c2cdd92-fe00-404c-969d-760a6c0ac72c
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f336262d-78a3-46c3-9636-b8880e0fe710:
+    id: f336262d-78a3-46c3-9636-b8880e0fe710
+    content: May need to move to a file based system to differentiate between nodes
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b5c55e91-42d5-47fc-ac21-af28ec25a765:
+    id: b5c55e91-42d5-47fc-ac21-af28ec25a765
+    content: Or move to a database system
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1c2cdd92-fe00-404c-969d-760a6c0ac72c:
+    id: 1c2cdd92-fe00-404c-969d-760a6c0ac72c
+    content: Consider lazy loading on expansion of a collapsed node
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  22a60c2f-4829-46fd-b8ee-6670dac7f978:
+    id: 22a60c2f-4829-46fd-b8ee-6670dac7f978
+    content: Ideation
+    children:
+      - 96366e23-166a-4514-86d0-fd6e0d196c59
+      - 9767356e-78c8-471c-b443-56d6801b4e01
+      - 3d27188b-7ca7-4005-9435-a8d4fd539965
+      - 1045769f-4629-4e47-bd33-db2b6fe2381d
+      - adb205db-9fe1-4b1f-9f5f-ec2600bf8f8c
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  96366e23-166a-4514-86d0-fd6e0d196c59:
+    id: 96366e23-166a-4514-86d0-fd6e0d196c59
+    content: Understand the context
+    children:
+      - 6d02e1ee-2911-48ca-bc93-e0a89f537330
+      - 31dc61ff-8fb1-46c9-89ce-dbbd85c1d5e6
+      - 777c77f8-589f-4628-b570-3d6556ebd465
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6d02e1ee-2911-48ca-bc93-e0a89f537330:
+    id: 6d02e1ee-2911-48ca-bc93-e0a89f537330
+    content: Review the project philosophy and existing feature set
+    children:
+      - 6dc53de9-05bf-4bd3-9b9d-ef1a2219ed78
+      - 7d37439e-aeea-4036-b9cf-abf2372ef35b
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6dc53de9-05bf-4bd3-9b9d-ef1a2219ed78:
+    id: 6dc53de9-05bf-4bd3-9b9d-ef1a2219ed78
+    content: Arborescent is an outliner for project decomposition and AI workflows. It prioritizes focus, low cognitive load, predictable behavior, and emergent complexity. The tree structure supports non-linear thinking while minimizing visual noise. The goal is full creative and technical control over AI interactions through reusable contexts and shareable blueprints.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7d37439e-aeea-4036-b9cf-abf2372ef35b:
+    id: 7d37439e-aeea-4036-b9cf-abf2372ef35b
+    content: 'Current relevant features: tree-based decomposition, contexts (collaborate/execute modes), blueprints, workflows with step types (manual/checkpoint/autonomous), feedback panel for collaborate mode, hook system for AI tool integration.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  31dc61ff-8fb1-46c9-89ce-dbbd85c1d5e6:
+    id: 31dc61ff-8fb1-46c9-89ce-dbbd85c1d5e6
+    content: Identify the target user and their current pain points
+    children:
+      - 20671e7a-f503-49a4-8494-5b2182f11b36
+      - c62df869-4b07-4047-9ce7-217db34e1579
+      - 238a3ca2-b13e-4659-9819-cc5e47e57f74
+      - 61e89e2a-cd9a-4fe6-b268-615c243458f0
+      - 92996d3c-f0ba-4ad7-b436-42dccfd09d4c
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  20671e7a-f503-49a4-8494-5b2182f11b36:
+    id: 20671e7a-f503-49a4-8494-5b2182f11b36
+    content: The target user builds structured projects with AI assistance — developers, architects, team leads who want AI to handle decomposition and execution while they maintain creative control.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c62df869-4b07-4047-9ce7-217db34e1579:
+    id: c62df869-4b07-4047-9ce7-217db34e1579
+    content: 'Pain point 1: The feedback panel requires manual acceptance for every AI response, creating friction in multi-step decomposition workflows (problem statement → user stories → specs → tests → code).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  238a3ca2-b13e-4659-9819-cc5e47e57f74:
+    id: 238a3ca2-b13e-4659-9819-cc5e47e57f74
+    content: 'Pain point 2: Accepting feedback replaces the original subtree — no way to keep the source material alongside the AI output, losing the audit trail of how a problem statement evolved.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  61e89e2a-cd9a-4fe6-b268-615c243458f0:
+    id: 61e89e2a-cd9a-4fe6-b268-615c243458f0
+    content: 'Pain point 3: Tree bloat from accumulated contexts, specifications, and decomposition artifacts with no way to manage scale.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  92996d3c-f0ba-4ad7-b436-42dccfd09d4c:
+    id: 92996d3c-f0ba-4ad7-b436-42dccfd09d4c
+    content: 'Pain point 4: Workflow step configuration is getting complex — right-click context menus aren''t sufficient for managing output modes, step types, and other per-step settings.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  777c77f8-589f-4628-b570-3d6556ebd465:
+    id: 777c77f8-589f-4628-b570-3d6556ebd465
+    content: Note any technical or design constraints worth respecting
+    children:
+      - 45c8c79e-31d0-4669-b7c4-986c44727178
+      - 7bb82f6b-d392-44fa-a59a-26d9deca83a6
+      - 84642a77-e80f-40d9-bfb5-a2fa62855101
+      - bd5260dd-8bc2-4605-bc53-5706e842875b
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  45c8c79e-31d0-4669-b7c4-986c44727178:
+    id: 45c8c79e-31d0-4669-b7c4-986c44727178
+    content: The command pattern (AcceptFeedbackCommand) currently treats feedback as an atomic subtree replacement — the collaborating node's ID is preserved but all descendants get fresh UUIDs. Any new approach must remain undoable.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7bb82f6b-d392-44fa-a59a-26d9deca83a6:
+    id: 7bb82f6b-d392-44fa-a59a-26d9deca83a6
+    content: Contexts and blueprints are tightly coupled to tree position — creating new nodes must preserve applied context inheritance and blueprint membership.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  84642a77-e80f-40d9-bfb5-a2fa62855101:
+    id: 84642a77-e80f-40d9-bfb5-a2fa62855101
+    content: The current YAML-based .arbo file format stores the entire tree in a single file. This is simple but doesn't scale to very large trees.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bd5260dd-8bc2-4605-bc53-5706e842875b:
+    id: bd5260dd-8bc2-4605-bc53-5706e842875b
+    content: Workflow automation relies on hook events from external AI tools — the system is already designed for async, event-driven progression.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9767356e-78c8-471c-b443-56d6801b4e01:
+    id: 9767356e-78c8-471c-b443-56d6801b4e01
+    content: Analyze the problem or opportunity
+    children:
+      - a5ff3cdc-0b06-41dd-9610-25e628b4280f
+      - 0d9a4050-ca08-4fc6-a471-2643f3298061
+      - 912101b7-c925-4bfc-a77c-8aa301dd844d
+      - 967d1111-7d43-43a6-bb65-4fbf8bb3a5d8
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a5ff3cdc-0b06-41dd-9610-25e628b4280f:
+    id: a5ff3cdc-0b06-41dd-9610-25e628b4280f
+    content: Restate the problem in the user's language
+    children:
+      - cd8c855f-0da9-481d-9d0d-fd83f3274ef3
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cd8c855f-0da9-481d-9d0d-fd83f3274ef3:
+    id: cd8c855f-0da9-481d-9d0d-fd83f3274ef3
+    content: '"I want to take a problem statement, have AI break it into user stories, then have each story get specs and tests and code — without me clicking Accept at every step, and without losing my original problem statement in the process."'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0d9a4050-ca08-4fc6-a471-2643f3298061:
+    id: 0d9a4050-ca08-4fc6-a471-2643f3298061
+    content: Assess who is affected and how frequently
+    children:
+      - 3d3bcbf5-43db-4b3a-b092-d5b4b9b20bb8
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3d3bcbf5-43db-4b3a-b092-d5b4b9b20bb8:
+    id: 3d3bcbf5-43db-4b3a-b092-d5b4b9b20bb8
+    content: Every user who builds multi-step AI workflows hits this wall. It's the difference between Arborescent being a prompt manager and being a true workflow orchestrator. This is the core use case — it affects power users on every project.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  912101b7-c925-4bfc-a77c-8aa301dd844d:
+    id: 912101b7-c925-4bfc-a77c-8aa301dd844d
+    content: Identify what happens today without a solution
+    children:
+      - 9925a1a6-6857-48d6-b819-a6bc3838cd3e
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9925a1a6-6857-48d6-b819-a6bc3838cd3e:
+    id: 9925a1a6-6857-48d6-b819-a6bc3838cd3e
+    content: 'Today: User writes a problem statement → sends with collaborate context → waits → reads feedback → clicks Accept (original is gone) → applies next context → sends again → waits → clicks Accept → repeat. For a 5-step decomposition with 10 user stories, that''s 50+ manual interventions. Users either give up on deep decomposition or do it outside Arborescent.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  967d1111-7d43-43a6-bb65-4fbf8bb3a5d8:
+    id: 967d1111-7d43-43a6-bb65-4fbf8bb3a5d8
+    content: Flag if the problem is symptoms of a deeper issue
+    children:
+      - 9ce796e9-a07f-40cc-a23d-77681289dd38
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9ce796e9-a07f-40cc-a23d-77681289dd38:
+    id: 9ce796e9-a07f-40cc-a23d-77681289dd38
+    content: Yes. The deeper issue is that the feedback panel was designed for single-node collaboration, not for pipeline-style transformation. The system treats AI output as a replacement, not as an addition. The workflow system can move items through steps, but it can't create new tree structure from AI output and feed it forward. These are two halves of the same orchestration problem.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3d27188b-7ca7-4005-9435-a8d4fd539965:
+    id: 3d27188b-7ca7-4005-9435-a8d4fd539965
+    content: Evaluate feasibility and ROI
+    children:
+      - b95cb335-4410-47ff-a048-6c4a1d0b3715
+      - e0129d7f-e321-43cd-b9af-b5ff0f3e7f43
+      - 4f2247f9-85d7-4fec-96b8-08e6d46695e5
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b95cb335-4410-47ff-a048-6c4a1d0b3715:
+    id: b95cb335-4410-47ff-a048-6c4a1d0b3715
+    content: Estimate effort relative to user value
+    children:
+      - 66cdb30d-c05d-44fe-a43c-809dd823eff6
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  66cdb30d-c05d-44fe-a43c-809dd823eff6:
+    id: 66cdb30d-c05d-44fe-a43c-809dd823eff6
+    content: 'High value — this is the feature that turns Arborescent from "outliner with AI" into "AI workflow orchestrator," which is the stated objective. Effort is significant but modular: each piece (output modes, archiving, tree scale) can ship independently.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e0129d7f-e321-43cd-b9af-b5ff0f3e7f43:
+    id: e0129d7f-e321-43cd-b9af-b5ff0f3e7f43
+    content: Warn if the cost likely outweighs the benefit
+    children:
+      - e7333a19-3473-4b96-9f78-49ade22e9f4c
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e7333a19-3473-4b96-9f78-49ade22e9f4c:
+    id: e7333a19-3473-4b96-9f78-49ade22e9f4c
+    content: Cost does not outweigh benefit. However, building everything at once would be risky. The output mode choice (create output vs replace) is foundational and should be proven before automating pipelines on top of it.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4f2247f9-85d7-4fec-96b8-08e6d46695e5:
+    id: 4f2247f9-85d7-4fec-96b8-08e6d46695e5
+    content: Identify risks or dependencies that could block delivery
+    children:
+      - b76d36fa-c50f-414f-b35d-67bb119863aa
+      - 4a25a5ab-e4a2-42f4-aaaa-b54f8c8812b3
+      - f5f0a3f2-fe1d-4c22-af9c-ac267436ce44
+      - 5c58c3d9-ffe1-43c8-9e38-d18b623eef2f
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b76d36fa-c50f-414f-b35d-67bb119863aa:
+    id: b76d36fa-c50f-414f-b35d-67bb119863aa
+    content: 'Risk 1: AI output format consistency — mitigated. The existing hardcoded format instructions and error validation already handle this. The same system applies to "create output" mode.'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  4a25a5ab-e4a2-42f4-aaaa-b54f8c8812b3:
+    id: 4a25a5ab-e4a2-42f4-aaaa-b54f8c8812b3
+    content: 'Risk 2: Runaway automation — autonomous workflows that create nodes which trigger further workflows could cascade unpredictably. Need circuit breakers (depth limits, node count limits, explicit user gates).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f5f0a3f2-fe1d-4c22-af9c-ac267436ce44:
+    id: f5f0a3f2-fe1d-4c22-af9c-ac267436ce44
+    content: 'Risk 3: Tree scale — if decomposition generates hundreds of nodes per run, the single-file YAML format and in-memory tree will degrade. This is a prerequisite investigation, not a blocker.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5c58c3d9-ffe1-43c8-9e38-d18b623eef2f:
+    id: 5c58c3d9-ffe1-43c8-9e38-d18b623eef2f
+    content: 'Risk 4: Hyperlink stability — operations that regenerate node UUIDs could break hyperlink references. Code analysis identified three operations that reassign IDs:'
+    children:
+      - 1f2e8504-8d1a-4e00-9c54-c90787a65df9
+      - 33165520-5179-41ea-855e-1e9866dec026
+      - ed4769af-ef7d-4ae2-9739-caec89bdb244
+      - 0f583028-02eb-447c-b885-b0fe77604c2d
+      - f43732a6-cd66-4e3a-abb9-c18e221690a6
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1f2e8504-8d1a-4e00-9c54-c90787a65df9:
+    id: 1f2e8504-8d1a-4e00-9c54-c90787a65df9
+    content: 'AcceptFeedbackCommand: preserves the collaborating node''s ID but gives all descendants fresh UUIDs — any hyperlink pointing to a descendant of the feedback target will break'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  33165520-5179-41ea-855e-1e9866dec026:
+    id: 33165520-5179-41ea-855e-1e9866dec026
+    content: 'PasteNodesCommand: all pasted nodes get fresh UUIDs — hyperlinks to the original source nodes survive, but hyperlinks to pasted copies won''t match'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ed4769af-ef7d-4ae2-9739-caec89bdb244:
+    id: ed4769af-ef7d-4ae2-9739-caec89bdb244
+    content: 'cloneNodesWithNewIds (used by copy/paste): same pattern — cloned nodes get new UUIDs'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0f583028-02eb-447c-b885-b0fe77604c2d:
+    id: 0f583028-02eb-447c-b885-b0fe77604c2d
+    content: 'Safe operations (no ID change): move, drag/drop, delete, content edit, status change, undo/redo (restores original IDs), blueprint toggle'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f43732a6-cd66-4e3a-abb9-c18e221690a6:
+    id: f43732a6-cd66-4e3a-abb9-c18e221690a6
+    content: Preparatory user story for hyperlink stability — mitigated by using metadata-based UUID references instead of content hyperlinks (see solution below). Provenance links live in node metadata (originId / spawnedIds), not in editable content, so they travel with the node through all operations and are never affected by content changes or ID remapping of unrelated nodes.
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  1045769f-4629-4e47-bd33-db2b6fe2381d:
+    id: 1045769f-4629-4e47-bd33-db2b6fe2381d
+    content: Propose solutions
+    children:
+      - 9f2b2eb3-b724-44ec-8c11-0655fe06e6d3
+      - 8eed11ec-aecc-4bb4-b771-e55ac254ca14
+      - 629da52f-cb98-48f0-bffb-bda02eefe8b9
+      - ea059aec-73b8-4229-acc7-0a810f0cd0a0
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9f2b2eb3-b724-44ec-8c11-0655fe06e6d3:
+    id: 9f2b2eb3-b724-44ec-8c11-0655fe06e6d3
+    content: Group recommendations by concept
+    children:
+      - 88c02708-ee71-4306-8275-0354e874b361
+      - 04a5c85d-eca8-452b-ba0a-cdc47e99093a
+      - 8f47f7cb-764c-4f5f-bd57-9c689ad25b91
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  88c02708-ee71-4306-8275-0354e874b361:
+    id: 88c02708-ee71-4306-8275-0354e874b361
+    content: 'MVP: Input/output model with metadata-based provenance'
+    children:
+      - ab08aab3-f766-4975-bbc3-4d66fd8868dc
+      - 269d014f-e0b1-4090-9713-b2c3b966efdd
+      - 49b831f1-c649-49d0-a759-071bfc0b6ea3
+      - 6b9cc64a-d1cd-4d62-a50e-69f2ca0838a6
+      - 30afaf05-7e7b-4348-9100-e1983141a6e7
+      - e92a06d1-5367-4f6b-9361-54927528a0ff
+      - d0bbccf8-7c12-4211-9eb4-ead588022997
+      - 347a5516-16c9-4424-b147-140ec336c409
+      - 0a09a351-44ae-4212-8d4b-d9e0b0222da8
+      - f5007ed7-d403-477c-b3f8-338fae373f76
+      - c37c4f03-dba1-4fc7-94f9-caf5547a01d3
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ab08aab3-f766-4975-bbc3-4d66fd8868dc:
+    id: ab08aab3-f766-4975-bbc3-4d66fd8868dc
+    content: Think in terms of inputs and outputs rather than mutating existing nodes
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  269d014f-e0b1-4090-9713-b2c3b966efdd:
+    id: 269d014f-e0b1-4090-9713-b2c3b966efdd
+    content: The input node (e.g. problem statement) is never mutated — it stays exactly as the user wrote it
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  49b831f1-c649-49d0-a759-071bfc0b6ea3:
+    id: 49b831f1-c649-49d0-a759-071bfc0b6ea3
+    content: AI output creates new node(s) elsewhere in the tree (as siblings, in a designated output area, or wherever makes structural sense)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6b9cc64a-d1cd-4d62-a50e-69f2ca0838a6:
+    id: 6b9cc64a-d1cd-4d62-a50e-69f2ca0838a6
+    content: Provenance is tracked via metadata UUID references, not content hyperlinks — this avoids mutating the input node's content
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  30afaf05-7e7b-4348-9100-e1983141a6e7:
+    id: 30afaf05-7e7b-4348-9100-e1983141a6e7
+    content: Output nodes store an originId in metadata pointing to the input node. Input nodes store spawnedIds listing their output nodes. Both sides of the relationship are maintained.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e92a06d1-5367-4f6b-9361-54927528a0ff:
+    id: e92a06d1-5367-4f6b-9361-54927528a0ff
+    content: These metadata references are rendered as read-only clickable links below the node content (or in a dedicated section) — navigable but not editable, so the user can't accidentally break the chain
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d0bbccf8-7c12-4211-9eb4-ead588022997:
+    id: d0bbccf8-7c12-4211-9eb4-ead588022997
+    content: 'Distinct from content hyperlinks: content hyperlinks are user-authored and resolve into AI prompts. Provenance links are system-managed and serve navigation/traceability only — they don''t pollute prompts with provenance data'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  347a5516-16c9-4424-b147-140ec336c409:
+    id: 347a5516-16c9-4424-b147-140ec336c409
+    content: 'Provenance chain resolution and circular reference prevention: the existing hyperlink resolution in exportContextAsMarkdown() already solves this — it uses a visitedNodeIds Set passed through recursive calls to skip cycles and self-references. The same pattern applies to provenance chains (walk originId links, check visited set, skip if seen). Key difference: provenance is bidirectional (originId ↔ spawnedIds) while hyperlinks are unidirectional, so resolution must handle traversal in both directions. Graceful degradation also follows the existing pattern — provenance links to deleted nodes degrade cleanly (show unavailable or hide) rather than breaking.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0a09a351-44ae-4212-8d4b-d9e0b0222da8:
+    id: 0a09a351-44ae-4212-8d4b-d9e0b0222da8
+    content: 'Composable: one node''s output can be the next step''s input, and the provenance chain traces the full transformation history (problem → user stories → specs → code)'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f5007ed7-d403-477c-b3f8-338fae373f76:
+    id: f5007ed7-d403-477c-b3f8-338fae373f76
+    content: Output mode and destinations belong on workflow steps, not contexts — a context defines what the AI should do (instructions), while the step controls how to handle input/output in the tree (orchestration). The same context can be reused across different steps with different output modes and destinations.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c37c4f03-dba1-4fc7-94f9-caf5547a01d3:
+    id: c37c4f03-dba1-4fc7-94f9-caf5547a01d3
+    content: Mutation is not locked or prevented — it's a user choice per step. Configure the step to mutate (replace mode) or to leave a copy (create output mode)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  04a5c85d-eca8-452b-ba0a-cdc47e99093a:
+    id: 04a5c85d-eca8-452b-ba0a-cdc47e99093a
+    content: 'MVP: Workflow step configuration dialog'
+    children:
+      - dfcccdf9-b3a9-41c1-bdc3-108b1dc0951e
+      - 24c6656c-f0be-408a-a4d3-90199f889ac2
+      - a21bf2f1-0941-4520-abf1-b68aa0025dee
+      - e74643c1-f092-43eb-8d78-4341c3605f7c
+      - cc1b3a2e-d967-4edc-9cc8-0f0ca2d236be
+      - 41a94365-5d99-4adc-86b5-11c5fc1d8dfd
+      - 7313f35a-2042-4907-9b18-16d18bdfe2c3
+      - c6fa42ba-9f46-4a0a-a2e6-afc52c527cce
+      - 4df83e1a-794c-4bc0-bb5c-4633df72cec2
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  dfcccdf9-b3a9-41c1-bdc3-108b1dc0951e:
+    id: dfcccdf9-b3a9-41c1-bdc3-108b1dc0951e
+    content: Replace right-click context menu management with a popup dialog that opens when clicking on a workflow step
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  24c6656c-f0be-408a-a4d3-90199f889ac2:
+    id: 24c6656c-f0be-408a-a4d3-90199f889ac2
+    content: 'Dialog manages all per-step complexity in one place: step type (manual/checkpoint/autonomous), output mode (replace/create output), "archive input to" destination'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a21bf2f1-0941-4520-abf1-b68aa0025dee:
+    id: a21bf2f1-0941-4520-abf1-b68aa0025dee
+    content: Reduces cognitive load — users can see and configure everything about a step at a glance instead of navigating nested submenus
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e74643c1-f092-43eb-8d78-4341c3605f7c:
+    id: e74643c1-f092-43eb-8d78-4341c3605f7c
+    content: Right-click menus remain for quick actions, but the dialog becomes the primary configuration surface for workflow steps
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  cc1b3a2e-d967-4edc-9cc8-0f0ca2d236be:
+    id: cc1b3a2e-d967-4edc-9cc8-0f0ca2d236be
+    content: 'Output mode per step: "replace" (current behavior — feedback replaces the node''s subtree) or "create output" (input node untouched, new output node(s) created with metadata provenance references)'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  41a94365-5d99-4adc-86b5-11c5fc1d8dfd:
+    id: 41a94365-5d99-4adc-86b5-11c5fc1d8dfd
+    content: Default is "replace" to preserve current behavior
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7313f35a-2042-4907-9b18-16d18bdfe2c3:
+    id: 7313f35a-2042-4907-9b18-16d18bdfe2c3
+    content: '"Copy input to" per step: optionally pick a node where the input is moved to (at the top, as the first child) when the step completes. If unset, input stays in place. This is how the user keeps workflows tidy — e.g. move processed problem statements to a "Done" branch.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c6fa42ba-9f46-4a0a-a2e6-afc52c527cce:
+    id: c6fa42ba-9f46-4a0a-a2e6-afc52c527cce
+    content: Output goes where the workflow puts it — the next step. No separate output destination needed, that would bypass the workflow system.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4df83e1a-794c-4bc0-bb5c-4633df72cec2:
+    id: 4df83e1a-794c-4bc0-bb5c-4633df72cec2
+    content: Metadata provenance references preserve the chain regardless of where copies end up, so traceability is never broken
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8f47f7cb-764c-4f5f-bd57-9c689ad25b91:
+    id: 8f47f7cb-764c-4f5f-bd57-9c689ad25b91
+    content: 'MVP: Tree scale management'
+    children:
+      - 59755a97-cdf2-438c-b1ac-0c21fb506d6c
+      - 4470fba0-9906-455c-b788-a63722c2f75c
+      - 50b71856-22ff-4fa2-92b1-c5238c38ac69
+      - 71cc2bfc-091e-437e-860e-b89648d2f1dc
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  59755a97-cdf2-438c-b1ac-0c21fb506d6c:
+    id: 59755a97-cdf2-438c-b1ac-0c21fb506d6c
+    content: 'Investigate lazy loading: only load node content when expanded, store collapsed subtrees as references'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4470fba0-9906-455c-b788-a63722c2f75c:
+    id: 4470fba0-9906-455c-b788-a63722c2f75c
+    content: Consider splitting large trees into linked .arbo files per major branch
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  50b71856-22ff-4fa2-92b1-c5238c38ac69:
+    id: 50b71856-22ff-4fa2-92b1-c5238c38ac69
+    content: Consider collapsing completed subtrees into summary nodes with the full tree stored externally
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  71cc2bfc-091e-437e-860e-b89648d2f1dc:
+    id: 71cc2bfc-091e-437e-860e-b89648d2f1dc
+    content: More pressing now that input/output chains will grow the tree faster
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8eed11ec-aecc-4bb4-b771-e55ac254ca14:
+    id: 8eed11ec-aecc-4bb4-b771-e55ac254ca14
+    content: For each concept, propose a concrete UI flow
+    children:
+      - 1a2f6571-498b-45af-96b4-1e6c19c781fd
+      - 484b19dc-704c-4168-b588-dc46819c7e14
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1a2f6571-498b-45af-96b4-1e6c19c781fd:
+    id: 1a2f6571-498b-45af-96b4-1e6c19c781fd
+    content: Workflow step configuration dialog flow
+    children:
+      - ed25384b-5c89-45f4-a01e-8a6b299e44be
+      - c518df3b-6100-4d00-b9b7-d8041a5a2c74
+      - 46e037fc-1f88-4afd-ba27-3a07898a5294
+      - c7f15a35-0daf-4b47-846e-3ece62f75ab8
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ed25384b-5c89-45f4-a01e-8a6b299e44be:
+    id: ed25384b-5c89-45f4-a01e-8a6b299e44be
+    content: User clicks on a workflow step number or icon → a dialog opens showing all step settings
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c518df3b-6100-4d00-b9b7-d8041a5a2c74:
+    id: c518df3b-6100-4d00-b9b7-d8041a5a2c74
+    content: 'Dialog contains: step type selector (manual/checkpoint/autonomous), output mode (replace/create output), "archive input to" destination picker'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  46e037fc-1f88-4afd-ba27-3a07898a5294:
+    id: 46e037fc-1f88-4afd-ba27-3a07898a5294
+    content: Changes are applied immediately — no undo needed for configuration settings (output mode, "archive input to") since the user can simply change them back. Step type already has undo support via ChangeStepTypeCommand.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c7f15a35-0daf-4b47-846e-3ece62f75ab8:
+    id: c7f15a35-0daf-4b47-846e-3ece62f75ab8
+    content: This replaces the nested right-click submenus for step configuration, which are becoming unwieldy as options grow
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  484b19dc-704c-4168-b588-dc46819c7e14:
+    id: 484b19dc-704c-4168-b588-dc46819c7e14
+    content: Input/output workflow pipeline flow
+    children:
+      - f4b6ad97-4857-4990-9fa0-5811eff5a225
+      - 64c7e027-75ea-46c4-bc94-709f8c311313
+      - 4e5a756f-6982-43a1-bd7e-66112d33184c
+      - 8bf20c25-3684-4c00-84f3-f9038e6a5aca
+      - 6dc5ac46-58d7-46d5-9fd6-3dffdde56285
+      - 89e2bf88-4990-494c-8253-47e8d80b52e6
+      - ceff4ca2-abea-4861-aa2c-f8accbce3e00
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f4b6ad97-4857-4990-9fa0-5811eff5a225:
+    id: f4b6ad97-4857-4990-9fa0-5811eff5a225
+    content: User sets up a workflow where each step has an applied context (via the existing context system), and is configured with output mode and optionally "archive input to"
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  64c7e027-75ea-46c4-bc94-709f8c311313:
+    id: 64c7e027-75ea-46c4-bc94-709f8c311313
+    content: 'Step 1: applied context "decompose into user stories", output mode "create output", archive input to "Processed Statements" branch'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4e5a756f-6982-43a1-bd7e-66112d33184c:
+    id: 4e5a756f-6982-43a1-bd7e-66112d33184c
+    content: 'Step 2: applied context "write technical specs", output mode "create output"'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8bf20c25-3684-4c00-84f3-f9038e6a5aca:
+    id: 8bf20c25-3684-4c00-84f3-f9038e6a5aca
+    content: 'Contexts are applied through the existing system (right-click → Apply context, or gutter). The step dialog only manages step-specific settings: step type, output mode, and "archive input to".'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6dc5ac46-58d7-46d5-9fd6-3dffdde56285:
+    id: 6dc5ac46-58d7-46d5-9fd6-3dffdde56285
+    content: Output always goes to the next workflow step — the workflow system handles that. The "archive input to" option moves the input to the top of a chosen branch to keep the workflow tidy.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  89e2bf88-4990-494c-8253-47e8d80b52e6:
+    id: 89e2bf88-4990-494c-8253-47e8d80b52e6
+    content: 'At each stage the user can see the full provenance chain: output → provenance link → input → provenance link → original source'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ceff4ca2-abea-4861-aa2c-f8accbce3e00:
+    id: ceff4ca2-abea-4861-aa2c-f8accbce3e00
+    content: Provenance links are rendered as read-only clickable references below the node content — navigable but not editable
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  629da52f-cb98-48f0-bffb-bda02eefe8b9:
+    id: 629da52f-cb98-48f0-bffb-bda02eefe8b9
+    content: Present realistic alternatives or simpler workarounds
+    children:
+      - 52050634-8dd9-4534-a14a-6032a050d75a
+      - 047fdcd3-ed10-4fc5-9caf-680ed9f988a3
+      - 6a3f8f2e-a31a-4d91-b610-1dd5e4f13e2c
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  52050634-8dd9-4534-a14a-6032a050d75a:
+    id: 52050634-8dd9-4534-a14a-6032a050d75a
+    content: 'Alternative 1: Manual child creation — user manually creates child nodes from feedback content using copy/paste, then runs each through the workflow individually. Works today but defeats the purpose of automation.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  047fdcd3-ed10-4fc5-9caf-680ed9f988a3:
+    id: 047fdcd3-ed10-4fc5-9caf-680ed9f988a3
+    content: 'Alternative 2: Duplicate before sending — user duplicates the node before sending for feedback, keeping the original as a sibling. Low-tech but loses the parent-child relationship and clutters the tree.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6a3f8f2e-a31a-4d91-b610-1dd5e4f13e2c:
+    id: 6a3f8f2e-a31a-4d91-b610-1dd5e4f13e2c
+    content: 'Alternative 3: Use execute mode instead of collaborate — skip the feedback panel entirely and have the AI write directly to files. Works for code generation but not for tree decomposition.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ea059aec-73b8-4229-acc7-0a810f0cd0a0:
+    id: ea059aec-73b8-4229-acc7-0a810f0cd0a0
+    content: Rank options by effort-to-impact ratio
+    children:
+      - fb6515fc-5ecd-46e1-9eea-fd235eaf03dc
+      - fe5bd58a-0d7b-420c-9ccb-1607275dbc87
+      - 3ac683a2-a439-4ab5-a2d9-d5e01a83323d
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fb6515fc-5ecd-46e1-9eea-fd235eaf03dc:
+    id: fb6515fc-5ecd-46e1-9eea-fd235eaf03dc
+    content: 1. Workflow step configuration dialog — moderate effort, high impact on usability. Foundation for all per-step options (output mode, destinations, context). Ship first.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fe5bd58a-0d7b-420c-9ccb-1607275dbc87:
+    id: fe5bd58a-0d7b-420c-9ccb-1607275dbc87
+    content: 2. Input/output model with "create output" mode on steps — moderate effort, high impact. Foundational change that unblocks the pipeline concept. Output mode, "archive input to" destination, and metadata-based provenance (originId/spawnedIds) are all step-level concerns configured through the dialog. Ship second.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3ac683a2-a439-4ab5-a2d9-d5e01a83323d:
+    id: 3ac683a2-a439-4ab5-a2d9-d5e01a83323d
+    content: 3. Tree scale management — high effort, impact depends on actual usage patterns. More pressing now that input/output chains will grow the tree faster. Investigate in parallel.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  adb205db-9fe1-4b1f-9f5f-ec2600bf8f8c:
+    id: adb205db-9fe1-4b1f-9f5f-ec2600bf8f8c
+    content: Keep the discussion non-technical
+    children:
+      - 8220f6eb-1664-4f2f-a79e-516d2a7b3f6d
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8220f6eb-1664-4f2f-a79e-516d2a7b3f6d:
+    id: 8220f6eb-1664-4f2f-a79e-516d2a7b3f6d
+    content: All recommendations above are framed in terms of user outcomes and UI flows, not implementation details.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  20be2cc0-5009-49f4-a8f8-eb81677b2b2a:
+    id: 20be2cc0-5009-49f4-a8f8-eb81677b2b2a
+    content: And this is a state mutation of the original which we want to keep
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  e03dce04-444f-4724-b90b-308cf0db841f:
+    id: e03dce04-444f-4724-b90b-308cf0db841f
+    content: For example, if we want to turn a problem statement into user stories, we have to do it through the feedback panel
+    children:
+      - 20be2cc0-5009-49f4-a8f8-eb81677b2b2a
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  5aa108b3-8e85-4463-8b8c-586d2615881b:
+    id: 5aa108b3-8e85-4463-8b8c-586d2615881b
+    content: There's no way to automate the step, the user must accept feedback to continue
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  90964ac5-e3f6-4c56-b46d-ecd204f80794:
+    id: 90964ac5-e3f6-4c56-b46d-ecd204f80794
+    content: If we do accept feedback, there's no way to guarantee the original content was not mutated
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  8d79b58f-8d5a-42a4-bdc9-36a09a3ec9e4:
+    id: 8d79b58f-8d5a-42a4-bdc9-36a09a3ec9e4
+    content: Another example, if we want to add technical specifications/test cases etc to a user story
+    children:
+      - 5aa108b3-8e85-4463-8b8c-586d2615881b
+      - 90964ac5-e3f6-4c56-b46d-ecd204f80794
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  90bbb41b-468a-4c43-b80f-c89a0d196630:
+    id: 90bbb41b-468a-4c43-b80f-c89a0d196630
+    content: We'll need a way to maintain the relationship between those nodes for reference
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  64059ee3-7585-43de-81ae-dbbf68ed0d0d:
+    id: 64059ee3-7585-43de-81ae-dbbf68ed0d0d
+    content: 'A: Allow for creation of new nodes and leave the previous node untouched'
+    children:
+      - 90bbb41b-468a-4c43-b80f-c89a0d196630
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  979d076f-115a-4357-8901-9e9c50a0fe20:
+    id: 979d076f-115a-4357-8901-9e9c50a0fe20
+    content: However sometimes we WILL want to mutate the content (automated product review for example)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  2fc2ab1b-2959-4ebb-8113-5d34947fa491:
+    id: 2fc2ab1b-2959-4ebb-8113-5d34947fa491
+    content: Will need to be an optional user choice
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  ca1b1707-d695-4cc4-ac99-4d97ac67d5ac:
+    id: ca1b1707-d695-4cc4-ac99-4d97ac67d5ac
+    content: We'll need a way to insure the original content isn't mutated
+    children:
+      - 979d076f-115a-4357-8901-9e9c50a0fe20
+      - 2fc2ab1b-2959-4ebb-8113-5d34947fa491
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  cbc1dc3d-36ea-4938-a1d3-c1be359d8097:
+    id: cbc1dc3d-36ea-4938-a1d3-c1be359d8097
+    content: And let them optionally be sent sequentially in an automated fashion until the whole problem statement has been coded, and the user can review
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  64bbbeb4-ca92-4310-b2e4-8c0dc9f2378a:
+    id: 64bbbeb4-ca92-4310-b2e4-8c0dc9f2378a
+    content: We'll need a way to send segments of a node through a workflow
+    children:
+      - cbc1dc3d-36ea-4938-a1d3-c1be359d8097
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  6b299540-464e-4e77-a8f2-5a50e57f11f0:
+    id: 6b299540-464e-4e77-a8f2-5a50e57f11f0
+    content: 'B: Create the new nodes within the previous node and continue to use it as the working node'
+    children:
+      - ca1b1707-d695-4cc4-ac99-4d97ac67d5ac
+      - 64bbbeb4-ca92-4310-b2e4-8c0dc9f2378a
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  373d475b-7838-49b7-b8f5-7ca650a8322e:
+    id: 373d475b-7838-49b7-b8f5-7ca650a8322e
+    content: 'If we :'
+    children:
+      - 64059ee3-7585-43de-81ae-dbbf68ed0d0d
+      - 6b299540-464e-4e77-a8f2-5a50e57f11f0
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  45fb391c-791f-4aeb-9dae-d5ee09819a71:
+    id: 45fb391c-791f-4aeb-9dae-d5ee09819a71
+    content: It's already getting big with the contexts we added to write technical specifications, user stories, test plans etc
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  d2131175-ee00-402f-bf4f-9fa542a2d0ba:
+    id: d2131175-ee00-402f-bf4f-9fa542a2d0ba
+    content: May need to move to a file based system to differentiate between nodes
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  0084ae49-3a0c-4e1b-bb68-451562201759:
+    id: 0084ae49-3a0c-4e1b-bb68-451562201759
+    content: Or move to a database system
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  4bfb57af-ab92-456c-ade5-2a6af2860043:
+    id: 4bfb57af-ab92-456c-ade5-2a6af2860043
+    content: Consider lazy loading on expansion of a collapsed node
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  6c666122-4d61-43dc-85b9-b408c5b06ae6:
+    id: 6c666122-4d61-43dc-85b9-b408c5b06ae6
+    content: Need to identify if this is going to be an issue, and if so what to do with it
+    children:
+      - d2131175-ee00-402f-bf4f-9fa542a2d0ba
+      - 0084ae49-3a0c-4e1b-bb68-451562201759
+      - 4bfb57af-ab92-456c-ade5-2a6af2860043
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  4b23d787-d44f-4ced-b72e-621a8682580a:
+    id: 4b23d787-d44f-4ced-b72e-621a8682580a
+    content: The tree itself is going to get very big if we keep the history of state mutations
+    children:
+      - 45fb391c-791f-4aeb-9dae-d5ee09819a71
+      - 6c666122-4d61-43dc-85b9-b408c5b06ae6
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  c98f152a-667e-4a98-9c0f-f2cf85ee7875:
+    id: c98f152a-667e-4a98-9c0f-f2cf85ee7875
+    content: Arborescent is an outliner for project decomposition and AI workflows. It prioritizes focus, low cognitive load, predictable behavior, and emergent complexity. The tree structure supports non-linear thinking while minimizing visual noise. The goal is full creative and technical control over AI interactions through reusable contexts and shareable blueprints.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  834f8cb8-fe9d-40e7-8b07-cd05231bf425:
+    id: 834f8cb8-fe9d-40e7-8b07-cd05231bf425
+    content: 'Current relevant features: tree-based decomposition, contexts (collaborate/execute modes), blueprints, workflows with step types (manual/checkpoint/autonomous), feedback panel for collaborate mode, hook system for AI tool integration.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  cfe7db63-13ec-4716-adb9-1d0746bd24f6:
+    id: cfe7db63-13ec-4716-adb9-1d0746bd24f6
+    content: Review the project philosophy and existing feature set
+    children:
+      - c98f152a-667e-4a98-9c0f-f2cf85ee7875
+      - 834f8cb8-fe9d-40e7-8b07-cd05231bf425
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  40ac0971-a82b-4056-bce3-6c64cde2c8d0:
+    id: 40ac0971-a82b-4056-bce3-6c64cde2c8d0
+    content: The target user builds structured projects with AI assistance — developers, architects, team leads who want AI to handle decomposition and execution while they maintain creative control.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  b54cc66a-55d0-405d-a638-e43a70d19fbc:
+    id: b54cc66a-55d0-405d-a638-e43a70d19fbc
+    content: 'Pain point 1: The feedback panel requires manual acceptance for every AI response, creating friction in multi-step decomposition workflows (problem statement → user stories → specs → tests → code).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  e52ece9b-5928-4654-955f-b232c0409e68:
+    id: e52ece9b-5928-4654-955f-b232c0409e68
+    content: 'Pain point 2: Accepting feedback replaces the original subtree — no way to keep the source material alongside the AI output, losing the audit trail of how a problem statement evolved.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  c0e3eb26-d333-4859-ae52-56672df1a439:
+    id: c0e3eb26-d333-4859-ae52-56672df1a439
+    content: 'Pain point 3: Tree bloat from accumulated contexts, specifications, and decomposition artifacts with no way to manage scale.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  bc8c1b0f-af17-4a38-a5c5-3fc29d78990d:
+    id: bc8c1b0f-af17-4a38-a5c5-3fc29d78990d
+    content: 'Pain point 4: Workflow step configuration is getting complex — right-click context menus aren''t sufficient for managing output modes, step types, and other per-step settings.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  545f1dc2-65cb-4510-9101-b60beb43c465:
+    id: 545f1dc2-65cb-4510-9101-b60beb43c465
+    content: Identify the target user and their current pain points
+    children:
+      - 40ac0971-a82b-4056-bce3-6c64cde2c8d0
+      - b54cc66a-55d0-405d-a638-e43a70d19fbc
+      - e52ece9b-5928-4654-955f-b232c0409e68
+      - c0e3eb26-d333-4859-ae52-56672df1a439
+      - bc8c1b0f-af17-4a38-a5c5-3fc29d78990d
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  e02bcf04-3001-4f2b-9ab6-c24d17de5176:
+    id: e02bcf04-3001-4f2b-9ab6-c24d17de5176
+    content: The command pattern (AcceptFeedbackCommand) currently treats feedback as an atomic subtree replacement — the collaborating node's ID is preserved but all descendants get fresh UUIDs. Any new approach must remain undoable.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  3483691b-fb4a-4176-9898-bcbf452224cc:
+    id: 3483691b-fb4a-4176-9898-bcbf452224cc
+    content: Contexts and blueprints are tightly coupled to tree position — creating new nodes must preserve applied context inheritance and blueprint membership.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  33e4fc54-80ed-4857-9906-8306a05f1c56:
+    id: 33e4fc54-80ed-4857-9906-8306a05f1c56
+    content: The current YAML-based .arbo file format stores the entire tree in a single file. This is simple but doesn't scale to very large trees.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  f8a02f07-c2b3-4a9e-891c-2413cf7955e7:
+    id: f8a02f07-c2b3-4a9e-891c-2413cf7955e7
+    content: Workflow automation relies on hook events from external AI tools — the system is already designed for async, event-driven progression.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  042893e6-d09b-4146-8d7f-4d2aa50a131e:
+    id: 042893e6-d09b-4146-8d7f-4d2aa50a131e
+    content: Note any technical or design constraints worth respecting
+    children:
+      - e02bcf04-3001-4f2b-9ab6-c24d17de5176
+      - 3483691b-fb4a-4176-9898-bcbf452224cc
+      - 33e4fc54-80ed-4857-9906-8306a05f1c56
+      - f8a02f07-c2b3-4a9e-891c-2413cf7955e7
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  abe04181-8e34-40ec-9ea0-c935e3119c9e:
+    id: abe04181-8e34-40ec-9ea0-c935e3119c9e
+    content: Understand the context
+    children:
+      - cfe7db63-13ec-4716-adb9-1d0746bd24f6
+      - 545f1dc2-65cb-4510-9101-b60beb43c465
+      - 042893e6-d09b-4146-8d7f-4d2aa50a131e
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  550f0c05-677a-4544-a35d-e23bb53ab9b0:
+    id: 550f0c05-677a-4544-a35d-e23bb53ab9b0
+    content: '"I want to take a problem statement, have AI break it into user stories, then have each story get specs and tests and code — without me clicking Accept at every step, and without losing my original problem statement in the process."'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  bd4bee12-f9e2-45c0-84fa-b610df86cf89:
+    id: bd4bee12-f9e2-45c0-84fa-b610df86cf89
+    content: Restate the problem in the user's language
+    children:
+      - 550f0c05-677a-4544-a35d-e23bb53ab9b0
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  1b1634f8-abc0-485d-9e74-61ed39ff8f2e:
+    id: 1b1634f8-abc0-485d-9e74-61ed39ff8f2e
+    content: Every user who builds multi-step AI workflows hits this wall. It's the difference between Arborescent being a prompt manager and being a true workflow orchestrator. This is the core use case — it affects power users on every project.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  bb2e4650-7051-43d8-9d2e-389c664c6bde:
+    id: bb2e4650-7051-43d8-9d2e-389c664c6bde
+    content: Assess who is affected and how frequently
+    children:
+      - 1b1634f8-abc0-485d-9e74-61ed39ff8f2e
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  fc94ebe4-9c76-4b59-88a6-69e9d7902203:
+    id: fc94ebe4-9c76-4b59-88a6-69e9d7902203
+    content: 'Today: User writes a problem statement → sends with collaborate context → waits → reads feedback → clicks Accept (original is gone) → applies next context → sends again → waits → clicks Accept → repeat. For a 5-step decomposition with 10 user stories, that''s 50+ manual interventions. Users either give up on deep decomposition or do it outside Arborescent.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  3e289922-2f73-4797-9566-c0727f590909:
+    id: 3e289922-2f73-4797-9566-c0727f590909
+    content: Identify what happens today without a solution
+    children:
+      - fc94ebe4-9c76-4b59-88a6-69e9d7902203
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  77534829-9497-4510-8e28-b3b77c440c72:
+    id: 77534829-9497-4510-8e28-b3b77c440c72
+    content: Yes. The deeper issue is that the feedback panel was designed for single-node collaboration, not for pipeline-style transformation. The system treats AI output as a replacement, not as an addition. The workflow system can move items through steps, but it can't create new tree structure from AI output and feed it forward. These are two halves of the same orchestration problem.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  1cc091c2-e715-441f-a94e-4c0af44cd370:
+    id: 1cc091c2-e715-441f-a94e-4c0af44cd370
+    content: Flag if the problem is symptoms of a deeper issue
+    children:
+      - 77534829-9497-4510-8e28-b3b77c440c72
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  c67f27e5-55a7-486e-81b5-a65f818bdc12:
+    id: c67f27e5-55a7-486e-81b5-a65f818bdc12
+    content: Analyze the problem or opportunity
+    children:
+      - bd4bee12-f9e2-45c0-84fa-b610df86cf89
+      - bb2e4650-7051-43d8-9d2e-389c664c6bde
+      - 3e289922-2f73-4797-9566-c0727f590909
+      - 1cc091c2-e715-441f-a94e-4c0af44cd370
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  cca1fc3b-ed1d-4bca-befb-e783cb8b4930:
+    id: cca1fc3b-ed1d-4bca-befb-e783cb8b4930
+    content: 'High value — this is the feature that turns Arborescent from "outliner with AI" into "AI workflow orchestrator," which is the stated objective. Effort is significant but modular: each piece (output modes, archiving, tree scale) can ship independently.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  ca0c2df9-22bd-46b8-bfde-1cf85a74a6b4:
+    id: ca0c2df9-22bd-46b8-bfde-1cf85a74a6b4
+    content: Estimate effort relative to user value
+    children:
+      - cca1fc3b-ed1d-4bca-befb-e783cb8b4930
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  7b5102cf-5965-4e17-8e6d-63464b9943f6:
+    id: 7b5102cf-5965-4e17-8e6d-63464b9943f6
+    content: Cost does not outweigh benefit. However, building everything at once would be risky. The output mode choice (create output vs replace) is foundational and should be proven before automating pipelines on top of it.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  133cf927-f4ff-4709-be99-8fa3a3a45647:
+    id: 133cf927-f4ff-4709-be99-8fa3a3a45647
+    content: Warn if the cost likely outweighs the benefit
+    children:
+      - 7b5102cf-5965-4e17-8e6d-63464b9943f6
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  ec5499a4-e54a-444c-8b05-e9cdd359909a:
+    id: ec5499a4-e54a-444c-8b05-e9cdd359909a
+    content: 'Risk 1: AI output format consistency — mitigated. The existing hardcoded format instructions and error validation already handle this. The same system applies to "create output" mode.'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  ca7d750c-2684-4635-acdc-e3b5bca8e522:
+    id: ca7d750c-2684-4635-acdc-e3b5bca8e522
+    content: 'Risk 2: Runaway automation — autonomous workflows that create nodes which trigger further workflows could cascade unpredictably. Need circuit breakers (depth limits, node count limits, explicit user gates).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  2cb7dbbc-2d03-4ad1-8e7a-c68154dfb7d8:
+    id: 2cb7dbbc-2d03-4ad1-8e7a-c68154dfb7d8
+    content: 'Risk 3: Tree scale — if decomposition generates hundreds of nodes per run, the single-file YAML format and in-memory tree will degrade. This is a prerequisite investigation, not a blocker.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  984bf9a9-19f9-4eaa-ac17-a65da8d4cdfd:
+    id: 984bf9a9-19f9-4eaa-ac17-a65da8d4cdfd
+    content: 'Risk 4: Hyperlink stability — operations that regenerate node UUIDs could break hyperlink references. Code analysis identified three operations that reassign IDs:'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  2c76f111-bbf3-4dd8-b23d-03749111e1b0:
+    id: 2c76f111-bbf3-4dd8-b23d-03749111e1b0
+    content: Identify risks or dependencies that could block delivery
+    children:
+      - ec5499a4-e54a-444c-8b05-e9cdd359909a
+      - ca7d750c-2684-4635-acdc-e3b5bca8e522
+      - 2cb7dbbc-2d03-4ad1-8e7a-c68154dfb7d8
+      - 984bf9a9-19f9-4eaa-ac17-a65da8d4cdfd
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  e384f64e-7b65-4b00-bd0f-40d55f372fdf:
+    id: e384f64e-7b65-4b00-bd0f-40d55f372fdf
+    content: Evaluate feasibility and ROI
+    children:
+      - ca0c2df9-22bd-46b8-bfde-1cf85a74a6b4
+      - 133cf927-f4ff-4709-be99-8fa3a3a45647
+      - 2c76f111-bbf3-4dd8-b23d-03749111e1b0
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  c7360927-a5d1-4766-89ec-ccda10f8ff16:
+    id: c7360927-a5d1-4766-89ec-ccda10f8ff16
+    content: 'Multi-output advancement: output nodes are created in order and dropped into the next step. They sit there as regular nodes. A "recurse" option on a step handles sequential processing — when a node passes through a recurse step, the system walks back up the step chain through any unbroken sequence of automated steps, finds the first step in that chain, and checks if another node is waiting there. If so, it starts the next one. This decouples multi-output creation from multi-output processing. If the chain hits a checkpoint or manual step, recursion stops naturally.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  d685b995-70ec-4963-9923-b11b4a2aacc7:
+    id: d685b995-70ec-4963-9923-b11b4a2aacc7
+    content: 'Feedback panel with automated steps: there is no feedback panel for autonomous steps. The system watches the temporary file and updates the tree directly — user beware.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  9b695a13-d93a-44c3-a362-3e7d1c3ceb0b:
+    id: 9b695a13-d93a-44c3-a362-3e7d1c3ceb0b
+    content: 'Execute mode: execute mode cannot create or edit content in Arborescent, it only sends to external tools for coding. Not relevant to the input/output model.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  bcc604d9-cb93-4e51-b906-b7b388f8db41:
+    id: bcc604d9-cb93-4e51-b906-b7b388f8db41
+    content: 'Provenance display: provenance links are shown under a collapsible first child node, not inline below node content. Keeps the tree clean by default.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  3ab39c30-ad03-4cad-a583-d4c1f88ee173:
+    id: 3ab39c30-ad03-4cad-a583-d4c1f88ee173
+    content: 'Step dialog click target: step numbers are now almost as large as blueprint icons. Clicking the step number opens the configuration dialog.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  a25e49a5-9d19-4bed-a279-3f9b4eed5317:
+    id: a25e49a5-9d19-4bed-a279-3f9b4eed5317
+    content: 'Provenance circularity: the existing hyperlink recursion prevention system will be reused for provenance chains. Although chains are acyclic by definition, a user could theoretically feed an output back as input creating a loop, which would crash the app without protection.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  fb30f7c5-9a4b-4a90-aabe-1d6e19b37aca:
+    id: fb30f7c5-9a4b-4a90-aabe-1d6e19b37aca
+    content: Resolved design questions
+    children:
+      - c7360927-a5d1-4766-89ec-ccda10f8ff16
+      - d685b995-70ec-4963-9923-b11b4a2aacc7
+      - 9b695a13-d93a-44c3-a362-3e7d1c3ceb0b
+      - bcc604d9-cb93-4e51-b906-b7b388f8db41
+      - 3ab39c30-ad03-4cad-a583-d4c1f88ee173
+      - a25e49a5-9d19-4bed-a279-3f9b4eed5317
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  173a0548-e447-412e-88d7-f088a32c1175:
+    id: 173a0548-e447-412e-88d7-f088a32c1175
+    content: 'Multi-output queue visibility: nodes move through workflow steps physically, so the user can see where each output is in the workflow. No separate queue indicator needed.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  e6c5fa2e-2c03-4198-b60f-2ecf3943fd0c:
+    id: e6c5fa2e-2c03-4198-b60f-2ecf3943fd0c
+    content: 'Multi-output interruption: handled by existing workflow stop behavior — the node being processed stays in the step it''s in when the workflow is stopped. The user can continue from there.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  4f1f087a-d64d-47e0-bdc4-93fdbe4b7d32:
+    id: 4f1f087a-d64d-47e0-bdc4-93fdbe4b7d32
+    content: '"Archive input to" timing with multi-output: input is archived immediately after the step produces its output. It does not wait for all outputs to complete their journey through subsequent steps.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  3c051234-f3d6-49a5-8ef3-38d5ddb6d4e9:
+    id: 3c051234-f3d6-49a5-8ef3-38d5ddb6d4e9
+    content: 'Provenance child node protection: the provenance child is deletable. Deleting it breaks the chain. This is undoable. User beware.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  99ccf663-f580-4bc9-9011-3339b9746a9d:
+    id: 99ccf663-f580-4bc9-9011-3339b9746a9d
+    content: 'Provenance in blueprint export: no special treatment needed. Provenance lives on working nodes, not structure, so blueprints will rarely carry it. If a user exports a blueprint that happens to include provenance, it shouldn''t break anything — just an uncommon edge case that doesn''t warrant extra logic.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  be6cd133-4491-4604-af62-895d0d35c70d:
+    id: be6cd133-4491-4604-af62-895d0d35c70d
+    content: 'Autonomous "create output" risk: the step configuration dialog shows a warning when risky configurations are detected — e.g. an autonomous step with "create output" and no "archive input to" set warns of data loss risk (the input could be replaced or lost without the user reviewing). Similar to the existing autonomous step type warning.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  ed25313f-e95d-4bf8-859e-c7c26654d1f6:
+    id: ed25313f-e95d-4bf8-859e-c7c26654d1f6
+    content: Resolved edge cases
+    children:
+      - 173a0548-e447-412e-88d7-f088a32c1175
+      - e6c5fa2e-2c03-4198-b60f-2ecf3943fd0c
+      - 4f1f087a-d64d-47e0-bdc4-93fdbe4b7d32
+      - 3c051234-f3d6-49a5-8ef3-38d5ddb6d4e9
+      - 99ccf663-f580-4bc9-9011-3339b9746a9d
+      - be6cd133-4491-4604-af62-895d0d35c70d
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  a3007c80-1b7a-4ea8-93be-12a9d8f41d12:
+    id: a3007c80-1b7a-4ea8-93be-12a9d8f41d12
+    content: Currently, feedback always produces a single root node that replaces the collaborating node one-to-one. "Create output" needs to produce multiple sibling nodes (e.g. 5 user stories from 1 problem statement). This requires a new acceptance path that creates multiple top-level nodes in the tree rather than replacing a single node.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  1db2544a-0c29-4e56-97a5-87285265c487:
+    id: 1db2544a-0c29-4e56-97a5-87285265c487
+    content: This is a prerequisite for the input/output model and needs its own user story.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  8cb46a33-8282-41c9-ac8a-f6d250be65d2:
+    id: 8cb46a33-8282-41c9-ac8a-f6d250be65d2
+    content: 'Prerequisite: Multi-node feedback acceptance'
+    children:
+      - a3007c80-1b7a-4ea8-93be-12a9d8f41d12
+      - 1db2544a-0c29-4e56-97a5-87285265c487
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  367b8f30-a409-469c-a6a9-a525869e3c5f:
+    id: 367b8f30-a409-469c-a6a9-a525869e3c5f
+    content: When a workflow step is set to "create output" mode, new output node(s) are created instead of replacing the input
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  36e1e490-ed77-49d0-b958-29e18aaeecdd:
+    id: 36e1e490-ed77-49d0-b958-29e18aaeecdd
+    content: The input node is never mutated — it stays exactly as the user wrote it
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  8f586c3e-51b7-4236-be8d-31ede5b2e869:
+    id: 8f586c3e-51b7-4236-be8d-31ede5b2e869
+    content: When a step is set to "replace" mode (default), current behavior is preserved
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  9cfe8e6f-6e6b-41ab-9de3-28ca8c524173:
+    id: 9cfe8e6f-6e6b-41ab-9de3-28ca8c524173
+    content: Provenance is tracked via metadata UUID references — output nodes store an originId, input nodes store spawnedIds
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  f784a4ee-2216-4bfa-9b60-8d5e6f0bf129:
+    id: f784a4ee-2216-4bfa-9b60-8d5e6f0bf129
+    content: Provenance links are system-managed and do not appear in AI prompts — they are distinct from user-authored content hyperlinks
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  669cd23b-c309-4596-a8e5-feb2a98f37b2:
+    id: 669cd23b-c309-4596-a8e5-feb2a98f37b2
+    content: Provenance links to deleted nodes degrade gracefully (shown as unavailable)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  dcb6aca9-6dc6-4dd6-81b0-7f49802663b0:
+    id: dcb6aca9-6dc6-4dd6-81b0-7f49802663b0
+    content: Provenance links are protected from circular references using the existing hyperlink recursion prevention system
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  b80a4ecc-49d6-4e25-b028-967d4635f55e:
+    id: b80a4ecc-49d6-4e25-b028-967d4635f55e
+    content: When an output node is created, it inherits the applied context and blueprint membership of its position in the tree
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  fa51870b-b0e5-4d11-ab01-ae8a13b3b0f1:
+    id: fa51870b-b0e5-4d11-ab01-ae8a13b3b0f1
+    content: Provenance is displayed under a collapsible first child node — shows origin and spawned links as read-only clickable references
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  3c02b794-5c61-44de-be2a-ce753b9cffed:
+    id: 3c02b794-5c61-44de-be2a-ce753b9cffed
+    content: When "create output" produces multiple nodes, they are created in order and placed into the next step
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  b978e5ab-2520-4ca1-8ab8-00676f02b1a4:
+    id: b978e5ab-2520-4ca1-8ab8-00676f02b1a4
+    content: A "recurse" option can be set on a workflow step via the step configuration dialog
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  6f3d7f3e-6d0f-42c0-935c-eea45482e741:
+    id: 6f3d7f3e-6d0f-42c0-935c-eea45482e741
+    content: When a node passes through a recurse step, the system walks back up the chain through unbroken automated steps to the first step in that sequence, and starts the next waiting node if one exists
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  a74b8518-f0ae-4bdd-99ef-a703404d6314:
+    id: a74b8518-f0ae-4bdd-99ef-a703404d6314
+    content: Recursion stops naturally at checkpoint or manual steps — only automated step chains are walked
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  637f1483-9cb1-4943-b919-2bce40d17ccb:
+    id: 637f1483-9cb1-4943-b919-2bce40d17ccb
+    content: This decouples creation from processing — "create output" just drops nodes, "recurse" picks them up
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  a27004f3-a1db-42f0-a9f2-419d6ab49086:
+    id: a27004f3-a1db-42f0-a9f2-419d6ab49086
+    content: Execute mode is not affected — it sends to external tools only and does not create tree content
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  4fd08b56-cef5-4314-8cc5-24142fd8081a:
+    id: 4fd08b56-cef5-4314-8cc5-24142fd8081a
+    content: 'MVP: Input/output model with metadata-based provenance'
+    children:
+      - 367b8f30-a409-469c-a6a9-a525869e3c5f
+      - 36e1e490-ed77-49d0-b958-29e18aaeecdd
+      - 8f586c3e-51b7-4236-be8d-31ede5b2e869
+      - 9cfe8e6f-6e6b-41ab-9de3-28ca8c524173
+      - f784a4ee-2216-4bfa-9b60-8d5e6f0bf129
+      - 669cd23b-c309-4596-a8e5-feb2a98f37b2
+      - dcb6aca9-6dc6-4dd6-81b0-7f49802663b0
+      - b80a4ecc-49d6-4e25-b028-967d4635f55e
+      - fa51870b-b0e5-4d11-ab01-ae8a13b3b0f1
+      - 3c02b794-5c61-44de-be2a-ce753b9cffed
+      - b978e5ab-2520-4ca1-8ab8-00676f02b1a4
+      - 6f3d7f3e-6d0f-42c0-935c-eea45482e741
+      - a74b8518-f0ae-4bdd-99ef-a703404d6314
+      - 637f1483-9cb1-4943-b919-2bce40d17ccb
+      - a27004f3-a1db-42f0-a9f2-419d6ab49086
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  87f30376-7f52-43eb-825f-b55729ad05a9:
+    id: 87f30376-7f52-43eb-825f-b55729ad05a9
+    content: Clicking a workflow step number opens a popup dialog for configuring that step
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  3c39e30e-0f95-4445-a3ee-5b67ec47bf82:
+    id: 3c39e30e-0f95-4445-a3ee-5b67ec47bf82
+    content: 'Dialog contains: step type (manual/checkpoint/autonomous), output mode (replace existing/create new output), "archive input to" destination picker, recurse toggle'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  e229af53-1f15-4f7f-99a8-dfeefa493004:
+    id: e229af53-1f15-4f7f-99a8-dfeefa493004
+    content: Output mode and "archive input to" belong on the step, not on the context — a context defines what the AI does (instructions), the step defines how input/output is handled (orchestration)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  8caa8839-091f-422a-8b98-036ad6c3935c:
+    id: 8caa8839-091f-422a-8b98-036ad6c3935c
+    content: '"Archive input to": optionally pick a node where the input is moved to (at the top, as the first child) when the step completes. If unset, input stays in place.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  9158cc75-d981-4946-b094-24429ae7f958:
+    id: 9158cc75-d981-4946-b094-24429ae7f958
+    content: Output goes where the workflow puts it — the next step. No separate output destination.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  0a7c0736-8e6f-4951-9965-da1dededae66:
+    id: 0a7c0736-8e6f-4951-9965-da1dededae66
+    content: Changes are applied immediately — configuration settings can simply be changed back, no undo needed. Step type already has undo support.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  61117665-b2d2-478e-b713-208a117717d6:
+    id: 61117665-b2d2-478e-b713-208a117717d6
+    content: Dialog shows contextual warnings for risky configurations (e.g. autonomous step + replace output + no archive = data loss risk)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  84f72b9d-2206-4002-bd68-d23f52757f29:
+    id: 84f72b9d-2206-4002-bd68-d23f52757f29
+    content: 'MVP: Workflow step configuration dialog'
+    children:
+      - 87f30376-7f52-43eb-825f-b55729ad05a9
+      - 3c39e30e-0f95-4445-a3ee-5b67ec47bf82
+      - e229af53-1f15-4f7f-99a8-dfeefa493004
+      - 8caa8839-091f-422a-8b98-036ad6c3935c
+      - 9158cc75-d981-4946-b094-24429ae7f958
+      - 0a7c0736-8e6f-4951-9965-da1dededae66
+      - 61117665-b2d2-478e-b713-208a117717d6
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  1582b7d3-4d54-4769-ae49-c2f1dbc5b53d:
+    id: 1582b7d3-4d54-4769-ae49-c2f1dbc5b53d
+    content: Deferred until the input/output model is in use and actual scale impact is observable
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  6eeaf9ba-4351-4097-b1f5-a6782876436e:
+    id: 6eeaf9ba-4351-4097-b1f5-a6782876436e
+    content: 'If needed: investigate lazy loading, linked .arbo files per branch, or collapsible completed subtrees'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  bd60cb95-532b-46fd-85e0-ab55a684e2f3:
+    id: bd60cb95-532b-46fd-85e0-ab55a684e2f3
+    content: 'Future: Tree scale management'
+    children:
+      - 1582b7d3-4d54-4769-ae49-c2f1dbc5b53d
+      - 6eeaf9ba-4351-4097-b1f5-a6782876436e
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  9ff74815-c011-4a62-80c1-67987322fb73:
+    id: 9ff74815-c011-4a62-80c1-67987322fb73
+    content: Propose solutions
+    children:
+      - fb30f7c5-9a4b-4a90-aabe-1d6e19b37aca
+      - ed25313f-e95d-4bf8-859e-c7c26654d1f6
+      - 8cb46a33-8282-41c9-ac8a-f6d250be65d2
+      - 4fd08b56-cef5-4314-8cc5-24142fd8081a
+      - 84f72b9d-2206-4002-bd68-d23f52757f29
+      - bd60cb95-532b-46fd-85e0-ab55a684e2f3
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  9f6a38bc-eefa-46d3-9b5a-f713a64b2f59:
+    id: 9f6a38bc-eefa-46d3-9b5a-f713a64b2f59
+    content: User clicks on a workflow step number → a dialog opens showing all step settings
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  36f0d950-a885-45dc-a606-4c82663ffaa4:
+    id: 36f0d950-a885-45dc-a606-4c82663ffaa4
+    content: Dialog shows current step type, output mode, "archive input to" setting, and recurse toggle
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  8ab0506d-a153-44f3-b284-ff29b4db4a19:
+    id: 8ab0506d-a153-44f3-b284-ff29b4db4a19
+    content: User changes settings and they apply immediately
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  ff31f854-6b58-4dc4-a914-e5d9410e0e2c:
+    id: ff31f854-6b58-4dc4-a914-e5d9410e0e2c
+    content: Workflow step configuration dialog flow
+    children:
+      - 9f6a38bc-eefa-46d3-9b5a-f713a64b2f59
+      - 36f0d950-a885-45dc-a606-4c82663ffaa4
+      - 8ab0506d-a153-44f3-b284-ff29b4db4a19
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  85de44de-b67b-4c6a-be45-74e60a665446:
+    id: 85de44de-b67b-4c6a-be45-74e60a665446
+    content: User sets up a workflow where each step has an applied context (via existing context system) and configures output mode and "archive input to" via the step dialog
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  bfc58654-a062-4abf-8fe4-b005be756364:
+    id: bfc58654-a062-4abf-8fe4-b005be756364
+    content: 'Step 1: applied context "decompose into user stories", output mode "create output", archive input to "Processed Statements"'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  1aeed632-9cf9-4f72-9baa-a28617a1d707:
+    id: 1aeed632-9cf9-4f72-9baa-a28617a1d707
+    content: 'Step 2: applied context "write technical specs", output mode "create output"'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  f4fb9b54-5c1e-4ac5-86e8-be3ff7ce540b:
+    id: f4fb9b54-5c1e-4ac5-86e8-be3ff7ce540b
+    content: Contexts are applied through the existing system (right-click → Apply context, or gutter). The step dialog only manages step-specific settings.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  bde7ca90-40ae-49ed-a231-bff31149ef6c:
+    id: bde7ca90-40ae-49ed-a231-bff31149ef6c
+    content: Output always goes to the next workflow step — the workflow system handles that. The "archive input to" option moves the input to the top of a chosen branch.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  bea8606e-f8cb-4a0b-b2f9-498fe1e16c7e:
+    id: bea8606e-f8cb-4a0b-b2f9-498fe1e16c7e
+    content: At each stage the user can expand the provenance child node to see and navigate the full chain linking outputs back to their inputs
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  cb0f82c3-54d5-42f0-a5a2-ec570a3027b8:
+    id: cb0f82c3-54d5-42f0-a5a2-ec570a3027b8
+    content: Input/output workflow pipeline flow
+    children:
+      - 85de44de-b67b-4c6a-be45-74e60a665446
+      - bfc58654-a062-4abf-8fe4-b005be756364
+      - 1aeed632-9cf9-4f72-9baa-a28617a1d707
+      - f4fb9b54-5c1e-4ac5-86e8-be3ff7ce540b
+      - bde7ca90-40ae-49ed-a231-bff31149ef6c
+      - bea8606e-f8cb-4a0b-b2f9-498fe1e16c7e
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  f1d7e47a-6d3e-43a7-ae73-f3512706705e:
+    id: f1d7e47a-6d3e-43a7-ae73-f3512706705e
+    content: For each concept, propose a concrete UI flow
+    children:
+      - ff31f854-6b58-4dc4-a914-e5d9410e0e2c
+      - cb0f82c3-54d5-42f0-a5a2-ec570a3027b8
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  41bb794e-6823-43b8-accf-11d9a2df6474:
+    id: 41bb794e-6823-43b8-accf-11d9a2df6474
+    content: 'Alternative 1: Manual child creation — user manually creates child nodes from feedback content using copy/paste, then runs each through the workflow individually. Works today but defeats the purpose of automation.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  063cd2b7-0ad3-4f54-8812-14bf4adc62b6:
+    id: 063cd2b7-0ad3-4f54-8812-14bf4adc62b6
+    content: 'Alternative 2: Duplicate before sending — user duplicates the node before sending for feedback, keeping the original as a sibling. Low-tech but loses the parent-child relationship and clutters the tree.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  0790abfe-a221-406a-9cce-f8026876be21:
+    id: 0790abfe-a221-406a-9cce-f8026876be21
+    content: 'Alternative 3: Use execute mode instead of collaborate — skip the feedback panel entirely and have the AI write directly to files. Works for code generation but not for tree decomposition.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  433455a8-312e-42c2-a879-7d60ec0ac04a:
+    id: 433455a8-312e-42c2-a879-7d60ec0ac04a
+    content: Present realistic alternatives or simpler workarounds
+    children:
+      - 41bb794e-6823-43b8-accf-11d9a2df6474
+      - 063cd2b7-0ad3-4f54-8812-14bf4adc62b6
+      - 0790abfe-a221-406a-9cce-f8026876be21
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  64d0b62f-aa30-48cb-b77b-d6a816234771:
+    id: 64d0b62f-aa30-48cb-b77b-d6a816234771
+    content: 1. Input/output model with "create output" mode on steps — high impact, foundational. Multi-output sequencing adds complexity but the behavior is well-defined (sequential, first-takes-priority). Ship first.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  beeed3cb-db88-4242-b0ae-8f94fbe9f61e:
+    id: beeed3cb-db88-4242-b0ae-8f94fbe9f61e
+    content: 2. Workflow step configuration dialog — moderate effort, high impact on usability. Can ship alongside or incrementally. Could ship first with just step type to establish the pattern, then add output mode and "archive input to" as those features land.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  5971841a-225f-4808-9896-a97ac34343c8:
+    id: 5971841a-225f-4808-9896-a97ac34343c8
+    content: 3. Tree scale management — deferred. Investigate once the input/output model is in use and actual scale impact is measurable.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  2e388c19-b1e2-44dd-8719-122184a742ca:
+    id: 2e388c19-b1e2-44dd-8719-122184a742ca
+    content: Rank options by effort-to-impact ratio
+    children:
+      - 64d0b62f-aa30-48cb-b77b-d6a816234771
+      - beeed3cb-db88-4242-b0ae-8f94fbe9f61e
+      - 5971841a-225f-4808-9896-a97ac34343c8
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  2b7bcc86-e00c-493f-9d94-aebb213888dd:
+    id: 2b7bcc86-e00c-493f-9d94-aebb213888dd
+    content: All recommendations above are framed in terms of user outcomes and UI flows, not implementation details.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  cce0f940-66e2-447c-be30-fcaeef34c13d:
+    id: cce0f940-66e2-447c-be30-fcaeef34c13d
+    content: Keep the discussion non-technical
+    children:
+      - 2b7bcc86-e00c-493f-9d94-aebb213888dd
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  1133cdf7-1711-4552-98eb-41c02a863a24:
+    id: 1133cdf7-1711-4552-98eb-41c02a863a24
+    content: Ideation
+    children:
+      - abe04181-8e34-40ec-9ea0-c935e3119c9e
+      - c67f27e5-55a7-486e-81b5-a65f818bdc12
+      - e384f64e-7b65-4b00-bd0f-40d55f372fdf
+      - 9ff74815-c011-4a62-80c1-67987322fb73
+      - f1d7e47a-6d3e-43a7-ae73-f3512706705e
+      - 433455a8-312e-42c2-a879-7d60ec0ac04a
+      - 2e388c19-b1e2-44dd-8719-122184a742ca
+      - cce0f940-66e2-447c-be30-fcaeef34c13d
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  e91d842b-d982-4f8b-a3c5-7f0a42c95604:
+    id: e91d842b-d982-4f8b-a3c5-7f0a42c95604
+    content: AI workflow orchestration
+    children:
+      - e03dce04-444f-4724-b90b-308cf0db841f
+      - 8d79b58f-8d5a-42a4-bdc9-36a09a3ec9e4
+      - 373d475b-7838-49b7-b8f5-7ca650a8322e
+      - 4b23d787-d44f-4ced-b72e-621a8682580a
+      - 1133cdf7-1711-4552-98eb-41c02a863a24
+    metadata:
+      status: pending
+      expanded: false
+      deleted: false
+      plugins: {}
+      isBlueprint: false
+  4adfa410-1e2e-4155-8e8e-2b2ed48b40a8:
+    id: 4adfa410-1e2e-4155-8e8e-2b2ed48b40a8
+    content: 'US1: AI workflow orchestration - Workflow step configuration dialog'
+    children:
+      - c72a9197-d6b8-4d4d-acad-442e959b19e3
+      - 107ea1c7-4f5b-41e1-8f1b-2c5166ee6313
+      - ad8840a0-55ec-4451-9f7f-73eec40d8c15
+      - c7d0eab9-ed84-4df6-af66-1c37a01cebb7
+    metadata:
+      status: pending
+      expanded: false
+      deleted: false
+      plugins: {}
+  c72a9197-d6b8-4d4d-acad-442e959b19e3:
+    id: c72a9197-d6b8-4d4d-acad-442e959b19e3
+    content: Problem statement
+    children:
+      - 3b55d998-0baa-48e6-a910-86d96b4d29aa
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3b55d998-0baa-48e6-a910-86d96b4d29aa:
+    id: 3b55d998-0baa-48e6-a910-86d96b4d29aa
+    content: As a user building multi-step AI workflows, I need to configure per-step settings (step type, and upcoming features like archive destination and recurse) in a single place. Currently, step type is buried in a right-click submenu under Blueprint → Step Type, and as more per-step options are added, nested context menus become unwieldy and hard to discover.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  107ea1c7-4f5b-41e1-8f1b-2c5166ee6313:
+    id: 107ea1c7-4f5b-41e1-8f1b-2c5166ee6313
+    content: Use cases
+    children:
+      - f4ef3df7-1660-4212-8eae-9062a3b58826
+      - 37e3cc59-b1d3-4af6-a18b-699491d87b41
+      - cb93c665-bbfb-466b-a3b4-73638716fdca
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f4ef3df7-1660-4212-8eae-9062a3b58826:
+    id: f4ef3df7-1660-4212-8eae-9062a3b58826
+    content: 'Primary: User clicks a workflow step number to open a dialog showing all settings for that step, changes the step type, and closes the dialog.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  37e3cc59-b1d3-4af6-a18b-699491d87b41:
+    id: 37e3cc59-b1d3-4af6-a18b-699491d87b41
+    content: 'Secondary: User opens the dialog to review current configuration without making changes.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  cb93c665-bbfb-466b-a3b4-73638716fdca:
+    id: cb93c665-bbfb-466b-a3b4-73638716fdca
+    content: 'Secondary: User configures a newly added step immediately after creating it.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ad8840a0-55ec-4451-9f7f-73eec40d8c15:
+    id: ad8840a0-55ec-4451-9f7f-73eec40d8c15
+    content: Acceptance criteria
+    children:
+      - 818b5ce9-d6f4-4614-b760-050e4c9c2217
+      - c2bf8899-c3ac-42be-b313-7634f3bee63e
+      - 264d3665-d346-4864-8694-5c89bb510f18
+      - e1a63a54-2993-4f3f-9169-fc03840911e5
+      - ae6f9a12-c336-432a-8cdc-c988ffd109a7
+      - 8943a278-6114-421b-9eb6-7004abe15ae4
+      - b5b02145-7d19-443a-864c-f394295ddab2
+      - 65ca35a4-1033-46d8-83e7-620642b01cf9
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  818b5ce9-d6f4-4614-b760-050e4c9c2217:
+    id: 818b5ce9-d6f4-4614-b760-050e4c9c2217
+    content: Clicking a workflow step number opens a popup dialog positioned near the step
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c2bf8899-c3ac-42be-b313-7634f3bee63e:
+    id: c2bf8899-c3ac-42be-b313-7634f3bee63e
+    content: The dialog displays the current step type (manual/checkpoint/autonomous) and allows changing it
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  264d3665-d346-4864-8694-5c89bb510f18:
+    id: 264d3665-d346-4864-8694-5c89bb510f18
+    content: Changing the step type in the dialog has the same effect as the existing right-click submenu action (including undo support via ChangeStepTypeCommand)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e1a63a54-2993-4f3f-9169-fc03840911e5:
+    id: e1a63a54-2993-4f3f-9169-fc03840911e5
+    content: The dialog closes when clicking outside it or pressing Escape
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ae6f9a12-c336-432a-8cdc-c988ffd109a7:
+    id: ae6f9a12-c336-432a-8cdc-c988ffd109a7
+    content: The existing right-click submenu for step type continues to work alongside the dialog
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8943a278-6114-421b-9eb6-7004abe15ae4:
+    id: 8943a278-6114-421b-9eb6-7004abe15ae4
+    content: The dialog is extensible — it serves as the container for future per-step settings (archive destination, recurse) but only shows step type for now
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b5b02145-7d19-443a-864c-f394295ddab2:
+    id: b5b02145-7d19-443a-864c-f394295ddab2
+    content: The existing autonomous step type warning still appears when selecting autonomous
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  65ca35a4-1033-46d8-83e7-620642b01cf9:
+    id: 65ca35a4-1033-46d8-83e7-620642b01cf9
+    content: Step numbers remain visually consistent — the click target does not alter their appearance beyond a cursor change
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c7d0eab9-ed84-4df6-af66-1c37a01cebb7:
+    id: c7d0eab9-ed84-4df6-af66-1c37a01cebb7
+    content: Constraints and assumptions
+    children:
+      - af59f068-2fbc-4f19-b453-4e3886f49c12
+      - 23a10fed-38d7-41c1-82f0-41873c413b4b
+      - f12e3de7-597f-41c6-a153-9d3f16eebbde
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  af59f068-2fbc-4f19-b453-4e3886f49c12:
+    id: af59f068-2fbc-4f19-b453-4e3886f49c12
+    content: Step numbers are currently rendered at nearly the same size as blueprint icons, so click targets are adequate without resizing
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  23a10fed-38d7-41c1-82f0-41873c413b4b:
+    id: 23a10fed-38d7-41c1-82f0-41873c413b4b
+    content: The dialog is a new UI component — no existing dialog pattern in the app to reuse, so a reusable popup component may need to be created
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f12e3de7-597f-41c6-a153-9d3f16eebbde:
+    id: f12e3de7-597f-41c6-a153-9d3f16eebbde
+    content: Assumes the step type right-click submenu is kept as a secondary access path, not removed
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7bd23d94-dc41-4f46-b27c-7f54ea43b9f8:
+    id: 7bd23d94-dc41-4f46-b27c-7f54ea43b9f8
+    content: 'US2: AI workflow orchestration - Multi-node feedback acceptance'
+    children:
+      - 28cb04f8-1d2f-4aa4-b046-b6dd6fce34e9
+      - e2e4828a-851b-43ad-9549-987f446be24a
+      - 00b03958-2a77-4b67-bf21-125cd904d986
+      - f55113aa-5fd2-4d37-8bea-2730fe1f9158
+    metadata:
+      status: pending
+      expanded: false
+      deleted: false
+      plugins: {}
+  28cb04f8-1d2f-4aa4-b046-b6dd6fce34e9:
+    id: 28cb04f8-1d2f-4aa4-b046-b6dd6fce34e9
+    content: Problem statement
+    children:
+      - d56fd909-27ee-409e-a12b-a81a56e73cb3
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d56fd909-27ee-409e-a12b-a81a56e73cb3:
+    id: d56fd909-27ee-409e-a12b-a81a56e73cb3
+    content: As a user, I need the feedback system to be able to create multiple sibling nodes from a single AI response (e.g. 5 user stories from 1 problem statement). Currently, feedback always produces a single root node that replaces the collaborating node one-to-one. There is no path to create multiple sibling nodes from a single feedback interaction.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e2e4828a-851b-43ad-9549-987f446be24a:
+    id: e2e4828a-851b-43ad-9549-987f446be24a
+    content: Use cases
+    children:
+      - 54d3ebf0-05f5-4e61-ba95-dd73b0ce6677
+      - 097da405-962b-47e0-a152-a508faf5f20a
+      - 9cf44589-be96-4afa-a060-2340145edea5
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  54d3ebf0-05f5-4e61-ba95-dd73b0ce6677:
+    id: 54d3ebf0-05f5-4e61-ba95-dd73b0ce6677
+    content: 'Primary: AI returns a response containing 5 top-level items (e.g. user stories). The system creates 5 sibling nodes in the tree at the position of the original collaborating node.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  097da405-962b-47e0-a152-a508faf5f20a:
+    id: 097da405-962b-47e0-a152-a508faf5f20a
+    content: 'Secondary: AI returns a single top-level item. Behavior is identical to today — one node replaces the collaborating node (backward compatible).'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9cf44589-be96-4afa-a060-2340145edea5:
+    id: 9cf44589-be96-4afa-a060-2340145edea5
+    content: 'Secondary: For autonomous workflow steps, the system watches the temporary file and creates multiple nodes directly in the tree without the feedback panel.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  00b03958-2a77-4b67-bf21-125cd904d986:
+    id: 00b03958-2a77-4b67-bf21-125cd904d986
+    content: Acceptance criteria
+    children:
+      - e8e74fb6-b515-475d-bde6-4b0717abe3ae
+      - 103f39e5-d8ba-4551-ace4-8364c0e71102
+      - 221b5701-a106-4ab0-b9f0-beffea9233d3
+      - b05fd5c1-ad78-4bd4-930f-74f4a7a1b6f6
+      - 28b4cee7-c920-4720-b96d-60fb2552c4e0
+      - 341b8639-7d43-490c-a00c-3c8e57a4ea13
+      - b2cf804b-de65-44c4-87ba-30acdce2947e
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e8e74fb6-b515-475d-bde6-4b0717abe3ae:
+    id: e8e74fb6-b515-475d-bde6-4b0717abe3ae
+    content: When feedback contains multiple top-level nodes, accepting it creates multiple sibling nodes in the tree at the collaborating node's position
+    children:
+      - 5db4a8bc-2027-4b93-a5ad-dff7409e0940
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  103f39e5-d8ba-4551-ace4-8364c0e71102:
+    id: 103f39e5-d8ba-4551-ace4-8364c0e71102
+    content: When feedback contains a single top-level node, behavior is unchanged from current (one-to-one replacement)
+    children:
+      - cd30371e-5f83-4298-a9e7-e3e252a874f7
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  221b5701-a106-4ab0-b9f0-beffea9233d3:
+    id: 221b5701-a106-4ab0-b9f0-beffea9233d3
+    content: The existing format instructions and validation are extended to support multi-root responses
+    children:
+      - f8e87dc2-f0ed-46bb-a6b9-83cec9b8dcfc
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b05fd5c1-ad78-4bd4-930f-74f4a7a1b6f6:
+    id: b05fd5c1-ad78-4bd4-930f-74f4a7a1b6f6
+    content: Multi-node acceptance is undoable as a single undo operation
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  28b4cee7-c920-4720-b96d-60fb2552c4e0:
+    id: 28b4cee7-c920-4720-b96d-60fb2552c4e0
+    content: For autonomous workflow steps, the system watches the temporary file and writes multiple nodes directly to the tree without user interaction
+    children:
+      - 7cc9598c-5c24-4165-9881-091502abccc8
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  341b8639-7d43-490c-a00c-3c8e57a4ea13:
+    id: 341b8639-7d43-490c-a00c-3c8e57a4ea13
+    content: Nodes are created in the order they appear in the AI response
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b2cf804b-de65-44c4-87ba-30acdce2947e:
+    id: b2cf804b-de65-44c4-87ba-30acdce2947e
+    content: Created nodes inherit the applied context and blueprint membership of their position in the tree
+    children:
+      - cc4b3d0d-1c14-4acc-9169-41e57a8cb126
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f55113aa-5fd2-4d37-8bea-2730fe1f9158:
+    id: f55113aa-5fd2-4d37-8bea-2730fe1f9158
+    content: Constraints and assumptions
+    children:
+      - b9c03755-7804-4fbb-9298-b16611e4f92e
+      - bdef43ac-cb51-4f77-8e7e-df61a7514450
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b9c03755-7804-4fbb-9298-b16611e4f92e:
+    id: b9c03755-7804-4fbb-9298-b16611e4f92e
+    content: The existing markdown parsing (parseMarkdown) handles multiple root nodes — needs verification
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  bdef43ac-cb51-4f77-8e7e-df61a7514450:
+    id: bdef43ac-cb51-4f77-8e7e-df61a7514450
+    content: AcceptFeedbackCommand will need a new variant or mode since the current command assumes a single root replacement
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  437c64c9-3da3-449a-9702-96755b5521b1:
+    id: 437c64c9-3da3-449a-9702-96755b5521b1
+    content: 'US3: AI workflow orchestration - Archive with provenance tracking'
+    children:
+      - 2a502f82-e0f6-4774-a17c-d385ffcf2c40
+      - 0af1f172-8830-4ef3-8311-e7574ce79c73
+      - 03580c35-b8c4-4a53-a155-1c7a27209a11
+      - 770910b3-aa44-4227-b3e4-2453dc4e9700
+    metadata:
+      status: pending
+      expanded: false
+      deleted: false
+      plugins: {}
+  47796554-2b68-4d70-81fc-5afe4fb95e59:
+    id: 47796554-2b68-4d70-81fc-5afe4fb95e59
+    content: 'US4: AI workflow orchestration - Recurse option for sequential output processing'
+    children:
+      - b806e884-f6e2-484d-bd92-e3616afe3e0e
+      - 2ad2f8f6-a3bb-49c0-a528-8a23fc4b8f97
+      - e5b23092-6194-4255-826a-6c5b321ed89f
+      - 26b1f4fe-9770-4d4d-a1ab-092df1d376d9
+    metadata:
+      status: pending
+      expanded: false
+      deleted: false
+      plugins: {}
+  b806e884-f6e2-484d-bd92-e3616afe3e0e:
+    id: b806e884-f6e2-484d-bd92-e3616afe3e0e
+    content: Problem statement
+    children:
+      - 6e9fd632-fcd1-47ec-845a-487cca20e02c
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6e9fd632-fcd1-47ec-845a-487cca20e02c:
+    id: 6e9fd632-fcd1-47ec-845a-487cca20e02c
+    content: As a user with automated workflows that produce multiple output nodes (e.g. 5 user stories replacing a single problem statement), I need those outputs to be processed one at a time through the remaining workflow steps. Currently, when multiple nodes sit in a step, only one can be run through the workflow at a time and the user must manually start each one.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2ad2f8f6-a3bb-49c0-a528-8a23fc4b8f97:
+    id: 2ad2f8f6-a3bb-49c0-a528-8a23fc4b8f97
+    content: Use cases
+    children:
+      - 18515d09-f8a1-4555-a342-abb3c7adf6c0
+      - 4b8ae598-c8af-4743-b02b-cfaebcb6c818
+      - 1ba70294-1a69-41ce-b81d-89296e3c3105
+      - 66553d51-d883-465c-8c5e-ed87d563b08f
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  18515d09-f8a1-4555-a342-abb3c7adf6c0:
+    id: 18515d09-f8a1-4555-a342-abb3c7adf6c0
+    content: 'Primary: User enables "recurse" on a step in an automated chain. When a node completes that step, the system walks back up the chain to the first automated step, finds the next waiting node, and starts it. All 5 user stories are processed sequentially without manual intervention.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4b8ae598-c8af-4743-b02b-cfaebcb6c818:
+    id: 4b8ae598-c8af-4743-b02b-cfaebcb6c818
+    content: 'Secondary: The automated chain hits a checkpoint step. Recursion stops naturally — the user must manually continue at the checkpoint and manually start the workflow for remaining items.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1ba70294-1a69-41ce-b81d-89296e3c3105:
+    id: 1ba70294-1a69-41ce-b81d-89296e3c3105
+    content: 'Secondary: The user stops the workflow mid-sequence. The node being processed stays in its current step. The remaining unprocessed nodes stay where they are. The user can resume or restart later.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  66553d51-d883-465c-8c5e-ed87d563b08f:
+    id: 66553d51-d883-465c-8c5e-ed87d563b08f
+    content: 'Secondary: Only one node is in the first step. Recurse completes and finds nothing waiting — the workflow ends normally.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e5b23092-6194-4255-826a-6c5b321ed89f:
+    id: e5b23092-6194-4255-826a-6c5b321ed89f
+    content: Acceptance criteria
+    children:
+      - 6783bc15-a8a0-49ba-b99a-8aa664b5ae7b
+      - 09ae3f98-25a5-4a33-aebb-c7d29e9b7b6f
+      - 0f908725-bc5c-4e92-962a-2dc8ed7adeab
+      - 2b34137e-5c36-450e-80fa-016b13ff00d1
+      - ff2a7008-4232-474d-b402-8ea108714b7c
+      - 1c429a09-a739-4d9c-bf54-a5443e8f7961
+      - 6185fc02-6ba4-41a6-b026-0c0c93518840
+      - 72aac027-59bd-4f07-b17a-4097f04747ab
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6783bc15-a8a0-49ba-b99a-8aa664b5ae7b:
+    id: 6783bc15-a8a0-49ba-b99a-8aa664b5ae7b
+    content: The step configuration dialog includes a "recurse" toggle
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  09ae3f98-25a5-4a33-aebb-c7d29e9b7b6f:
+    id: 09ae3f98-25a5-4a33-aebb-c7d29e9b7b6f
+    content: When a node passes through a step with "recurse" enabled, the system walks back up the workflow step chain through unbroken autonomous steps to find the first step in that automated sequence
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0f908725-bc5c-4e92-962a-2dc8ed7adeab:
+    id: 0f908725-bc5c-4e92-962a-2dc8ed7adeab
+    content: If a waiting node exists in that first step, it is started through the workflow automatically
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2b34137e-5c36-450e-80fa-016b13ff00d1:
+    id: 2b34137e-5c36-450e-80fa-016b13ff00d1
+    content: Recursion only walks back through autonomous steps — it stops at any checkpoint, manual step, or the beginning of the workflow
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ff2a7008-4232-474d-b402-8ea108714b7c:
+    id: ff2a7008-4232-474d-b402-8ea108714b7c
+    content: Nodes are picked up in the order they appear in the step (first child first)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1c429a09-a739-4d9c-bf54-a5443e8f7961:
+    id: 1c429a09-a739-4d9c-bf54-a5443e8f7961
+    content: If no waiting nodes are found, nothing happens — the workflow ends for the current item as normal
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6185fc02-6ba4-41a6-b026-0c0c93518840:
+    id: 6185fc02-6ba4-41a6-b026-0c0c93518840
+    content: Stopping the workflow mid-recurse leaves all unprocessed nodes in their current steps — no nodes are lost
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  72aac027-59bd-4f07-b17a-4097f04747ab:
+    id: 72aac027-59bd-4f07-b17a-4097f04747ab
+    content: Recurse works independently of archiving — it processes whatever nodes are sitting in a step, regardless of how they got there
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  26b1f4fe-9770-4d4d-a1ab-092df1d376d9:
+    id: 26b1f4fe-9770-4d4d-a1ab-092df1d376d9
+    content: Constraints and assumptions
+    children:
+      - 436af5cb-25d9-4812-bc1b-1b4240e37560
+      - 7f5c4125-55b1-456e-9b02-15816aa99254
+      - 8a6c057a-e93a-4eac-acbd-bb9e6c59119f
+      - ae7b3158-ff5c-48d7-af63-3039d82ebaf3
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  436af5cb-25d9-4812-bc1b-1b4240e37560:
+    id: 436af5cb-25d9-4812-bc1b-1b4240e37560
+    content: Depends on US1 (step configuration dialog) for the recurse toggle UI
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7f5c4125-55b1-456e-9b02-15816aa99254:
+    id: 7f5c4125-55b1-456e-9b02-15816aa99254
+    content: Recurse is most useful when a prior step produces multiple outputs (via US2 multi-node acceptance) but is not dependent on it — it works with any nodes that happen to be in a step
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8a6c057a-e93a-4eac-acbd-bb9e6c59119f:
+    id: 8a6c057a-e93a-4eac-acbd-bb9e6c59119f
+    content: The existing workflow execution state tracking handles one running item per terminal — recurse initiates a new workflow run after the current one completes, it does not run items in parallel
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ae7b3158-ff5c-48d7-af63-3039d82ebaf3:
+    id: ae7b3158-ff5c-48d7-af63-3039d82ebaf3
+    content: Runaway recursion risk exists if a workflow creates output that feeds back into itself — the existing provenance circularity check (US3) and the natural stop at non-autonomous steps mitigate this, but a maximum recursion depth or node count limit should be considered as a safety net
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5db4a8bc-2027-4b93-a5ad-dff7409e0940:
+    id: 5db4a8bc-2027-4b93-a5ad-dff7409e0940
+    content: The replacement nodes keep the metadata of the original (isBlueprint, applied contexts etc), but each have their own UUID
+    children: []
+    metadata:
+      status: pending
+  cd30371e-5f83-4298-a9e7-e3e252a874f7:
+    id: cd30371e-5f83-4298-a9e7-e3e252a874f7
+    content: The replacement node keeps the metadata and UUID of the original, as it currently does
+    children: []
+    metadata:
+      status: pending
+  7cc9598c-5c24-4165-9881-091502abccc8:
+    id: 7cc9598c-5c24-4165-9881-091502abccc8
+    content: This is undoable
+    children: []
+    metadata:
+      status: pending
+  cc4b3d0d-1c14-4acc-9169-41e57a8cb126:
+    id: cc4b3d0d-1c14-4acc-9169-41e57a8cb126
+    content: Unless it is overridden by inherited metadata from the parent
+    children: []
+    metadata:
+      status: pending
+  f8e87dc2-f0ed-46bb-a6b9-83cec9b8dcfc:
+    id: f8e87dc2-f0ed-46bb-a6b9-83cec9b8dcfc
+    content: This is supported by a 'Decomposition' option in the step configuration
+    children:
+      - 4e809cd3-0778-4c00-8c4f-e41b18a4633d
+    metadata:
+      status: pending
+  4e809cd3-0778-4c00-8c4f-e41b18a4633d:
+    id: 4e809cd3-0778-4c00-8c4f-e41b18a4633d
+    content: This lets the user decide if the result of the collaboration should be one node or multiples.
+    children: []
+    metadata:
+      status: pending
+  2a502f82-e0f6-4774-a17c-d385ffcf2c40:
+    id: 2a502f82-e0f6-4774-a17c-d385ffcf2c40
+    content: Problem statement
+    children:
+      - 14701c58-5fa4-40ca-bd39-ac56973439a1
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  14701c58-5fa4-40ca-bd39-ac56973439a1:
+    id: 14701c58-5fa4-40ca-bd39-ac56973439a1
+    content: As a user running multi-step AI workflows, I want the option to keep a backup of my original input before it gets replaced by AI-generated output. Currently, accepting feedback always destroys the original content. I need to preserve it and trace which output came from which input. I also need processed inputs moved out of the workflow to keep steps tidy.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0af1f172-8830-4ef3-8311-e7574ce79c73:
+    id: 0af1f172-8830-4ef3-8311-e7574ce79c73
+    content: Use cases
+    children:
+      - b2b4de9f-9d5d-4949-b125-4dd748b9b3eb
+      - 4615b3c3-a022-48f0-852a-c5458c48c032
+      - e2cfb7c8-3e2e-453d-9ee2-39195068331a
+      - 5a028049-521d-416b-8d40-9117462f0f4f
+      - 3abefebb-2d48-4512-ad6c-8d7b83184429
+      - e0f78542-5b99-4419-ae78-a218d362855a
+      - 1378793c-f076-4364-bf6f-82950809caca
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b2b4de9f-9d5d-4949-b125-4dd748b9b3eb:
+    id: b2b4de9f-9d5d-4949-b125-4dd748b9b3eb
+    content: 'Primary: User configures a workflow step with "archive input to" set to a destination node, and configures the two relation link names in the step dialog. When the step processes an item, the original node is moved to the top of the destination before feedback creates replacement node(s) in its place. A collapsible child node (titled with the configured archive-side name) is added to the archived original containing hyperlink(s) to each replacement. A collapsible child node (titled with the configured replacement-side name) is added to each replacement containing a hyperlink back to the archived original.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4615b3c3-a022-48f0-852a-c5458c48c032:
+    id: 4615b3c3-a022-48f0-852a-c5458c48c032
+    content: 'Secondary: User expands the relation child on a replacement node to see its origin, clicks the hyperlink, and navigates to the archived original.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e2cfb7c8-3e2e-453d-9ee2-39195068331a:
+    id: e2cfb7c8-3e2e-453d-9ee2-39195068331a
+    content: 'Secondary: User expands the relation child on an archived input to see all replacements that were created from it.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5a028049-521d-416b-8d40-9117462f0f4f:
+    id: 5a028049-521d-416b-8d40-9117462f0f4f
+    content: 'Secondary: User leaves "archive input to" unset. No archive is made — feedback replaces the node as today (current behavior preserved).'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3abefebb-2d48-4512-ad6c-8d7b83184429:
+    id: 3abefebb-2d48-4512-ad6c-8d7b83184429
+    content: 'Secondary: The archive destination node has been deleted. A warning toast appears to tell the user, and the workflow is paused.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e0f78542-5b99-4419-ae78-a218d362855a:
+    id: e0f78542-5b99-4419-ae78-a218d362855a
+    content: 'Secondary: User deletes a relation container node or its hyperlink child. The link chain breaks but the operation is undoable.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1378793c-f076-4364-bf6f-82950809caca:
+    id: 1378793c-f076-4364-bf6f-82950809caca
+    content: 'Secondary: User enables "resolve linked content when sending" for a step. When a replacement node is sent to AI, the hyperlinked archived original''s content is included in the prompt, giving the AI the original context alongside the current content.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  03580c35-b8c4-4a53-a155-1c7a27209a11:
+    id: 03580c35-b8c4-4a53-a155-1c7a27209a11
+    content: Acceptance criteria
+    children:
+      - 295a7bb2-da08-432b-a493-1adc12d100dd
+      - 4c1cf025-2345-4348-bcea-c5e16ef1051e
+      - 8b44b75c-d003-4389-9f3b-074c6b994d14
+      - 9d6572b1-c38e-4612-9af0-a9e10fd721a3
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  295a7bb2-da08-432b-a493-1adc12d100dd:
+    id: 295a7bb2-da08-432b-a493-1adc12d100dd
+    content: Step configuration dialog settings
+    children:
+      - c9a81c2d-fd7b-4c58-8b51-991c67e81b39
+      - cb6847c4-f4af-438e-8014-eae35c44f08a
+      - be732f70-5390-4b9e-b6b5-7046701489e2
+      - 481e8915-0934-4a3c-b2b0-cdb4999b1229
+      - 54d97000-a24f-46b8-92ad-87eab5e18e64
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c9a81c2d-fd7b-4c58-8b51-991c67e81b39:
+    id: c9a81c2d-fd7b-4c58-8b51-991c67e81b39
+    content: The step configuration dialog includes an "archive input to" destination picker
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  cb6847c4-f4af-438e-8014-eae35c44f08a:
+    id: cb6847c4-f4af-438e-8014-eae35c44f08a
+    content: The destination picker allows selecting any node in the tree as the archive target
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  be732f70-5390-4b9e-b6b5-7046701489e2:
+    id: be732f70-5390-4b9e-b6b5-7046701489e2
+    content: 'The step configuration dialog includes two configurable relation link names: one for the container node added to the archived original (e.g. "User stories", "Specs", "Output"), and one for the container node added to each replacement (e.g. "Problem statement", "Original", "Source")'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  481e8915-0934-4a3c-b2b0-cdb4999b1229:
+    id: 481e8915-0934-4a3c-b2b0-cdb4999b1229
+    content: The step configuration dialog includes a "resolve linked content when sending" toggle, default off — controls whether the archive hyperlinks resolve their linked content into AI prompts
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  54d97000-a24f-46b8-92ad-87eab5e18e64:
+    id: 54d97000-a24f-46b8-92ad-87eab5e18e64
+    content: 'The step configuration dialog shows a low-impact warning text (not a popup) for risky configurations: autonomous step with no archive destination warns of data loss risk'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4c1cf025-2345-4348-bcea-c5e16ef1051e:
+    id: 4c1cf025-2345-4348-bcea-c5e16ef1051e
+    content: Archive operation
+    children:
+      - 1b58b38f-1bbf-4d7b-a651-faef9eab211d
+      - 024f4361-38dc-479e-953a-4bc3b71741dd
+      - 9afed8b7-35ec-414f-9340-016a5de7c124
+      - 61b41a43-0da5-4ae0-b3bb-74f4e8da4d9b
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1b58b38f-1bbf-4d7b-a651-faef9eab211d:
+    id: 1b58b38f-1bbf-4d7b-a651-faef9eab211d
+    content: 'When a step with "archive input to" processes an item: the original node is moved to the top (first child) of the archive destination, then feedback creates replacement node(s) in the original''s former position'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  024f4361-38dc-479e-953a-4bc3b71741dd:
+    id: 024f4361-38dc-479e-953a-4bc3b71741dd
+    content: The archived node is the original node moved to the archive location — it retains its UUID
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9afed8b7-35ec-414f-9340-016a5de7c124:
+    id: 9afed8b7-35ec-414f-9340-016a5de7c124
+    content: The replacement node(s) created in its place have new, unique UUIDs
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  61b41a43-0da5-4ae0-b3bb-74f4e8da4d9b:
+    id: 61b41a43-0da5-4ae0-b3bb-74f4e8da4d9b
+    content: If "archive input to" is unset, no archive is made — current behavior is preserved
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8b44b75c-d003-4389-9f3b-074c6b994d14:
+    id: 8b44b75c-d003-4389-9f3b-074c6b994d14
+    content: Relation links (using existing hyperlink system)
+    children:
+      - e969205c-b475-41a6-8ddb-530f60964723
+      - 40d2af52-0c2d-4016-bedb-5495e32a33a6
+      - d5598e0e-6e61-4332-aabd-6dee9d19dd6a
+      - 58159759-af99-4064-8cba-ea7d37e2d87b
+      - 4b02e68a-7e90-4fd3-8dbf-5d533a6d5039
+      - 9e0ddb9e-0e43-413e-8b54-132db7090a93
+      - 5130539c-8683-4eff-91c3-c9d4785cd720
+      - 9f5c1336-9f9f-49b3-bed6-1a927f491a68
+      - a37924a8-b79a-4d62-953a-b164e91bf0c1
+      - 8675be27-625a-40f1-84ef-43b72446c8e1
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e969205c-b475-41a6-8ddb-530f60964723:
+    id: e969205c-b475-41a6-8ddb-530f60964723
+    content: After archive-and-replace, a collapsible container node is added as the first child of the archived original, titled with the configured archive-side link name. Hyperlink(s) to each replacement node are children of this container.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  40d2af52-0c2d-4016-bedb-5495e32a33a6:
+    id: 40d2af52-0c2d-4016-bedb-5495e32a33a6
+    content: A collapsible container node is also added as the first child of each replacement node, titled with the configured replacement-side link name. A hyperlink back to the archived original is a child of this container.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d5598e0e-6e61-4332-aabd-6dee9d19dd6a:
+    id: d5598e0e-6e61-4332-aabd-6dee9d19dd6a
+    content: Both link names are user-configurable strings set per step in the step configuration dialog
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  58159759-af99-4064-8cba-ea7d37e2d87b:
+    id: 58159759-af99-4064-8cba-ea7d37e2d87b
+    content: The hyperlinks use the existing hyperlink system (linkedNodeId metadata) — no new metadata system needed
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4b02e68a-7e90-4fd3-8dbf-5d533a6d5039:
+    id: 4b02e68a-7e90-4fd3-8dbf-5d533a6d5039
+    content: When "resolve linked content when sending" is enabled, these hyperlinks resolve their linked content when the node is sent to AI (same as context hyperlinks). When disabled (default), they do not resolve — they are navigational only.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9e0ddb9e-0e43-413e-8b54-132db7090a93:
+    id: 9e0ddb9e-0e43-413e-8b54-132db7090a93
+    content: Clicking a hyperlink navigates to the linked node (expanding collapsed ancestors as needed, existing hyperlink behavior)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5130539c-8683-4eff-91c3-c9d4785cd720:
+    id: 5130539c-8683-4eff-91c3-c9d4785cd720
+    content: Hyperlinks to deleted nodes display as unavailable rather than causing errors (existing hyperlink behavior)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9f5c1336-9f9f-49b3-bed6-1a927f491a68:
+    id: 9f5c1336-9f9f-49b3-bed6-1a927f491a68
+    content: Circular reference prevention uses the existing hyperlink recursion prevention system
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a37924a8-b79a-4d62-953a-b164e91bf0c1:
+    id: a37924a8-b79a-4d62-953a-b164e91bf0c1
+    content: Container and hyperlink nodes are regular tree nodes — deletable by the user (breaks link, undoable)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8675be27-625a-40f1-84ef-43b72446c8e1:
+    id: 8675be27-625a-40f1-84ef-43b72446c8e1
+    content: Hyperlinks survive node moves, drag/drop, and undo/redo
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9d6572b1-c38e-4612-9af0-a9e10fd721a3:
+    id: 9d6572b1-c38e-4612-9af0-a9e10fd721a3
+    content: Edge cases
+    children:
+      - 391a83eb-22e5-476c-87e9-73b40ea64447
+      - 3fbdd89e-24f3-44a6-b046-d122ace92257
+      - 91920a26-2f3e-4ccf-bfda-979f6b1b6590
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  391a83eb-22e5-476c-87e9-73b40ea64447:
+    id: 391a83eb-22e5-476c-87e9-73b40ea64447
+    content: If the archive destination has been deleted, the workflow is paused and the user is alerted with a warning toast. The feedback is not accepted and the step will have to be run again.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3fbdd89e-24f3-44a6-b046-d122ace92257:
+    id: 3fbdd89e-24f3-44a6-b046-d122ace92257
+    content: No special handling for blueprint export — container and hyperlink nodes are exported as-is if present
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  91920a26-2f3e-4ccf-bfda-979f6b1b6590:
+    id: 91920a26-2f3e-4ccf-bfda-979f6b1b6590
+    content: The entire archive-and-replace operation (move original, create replacement(s), add container and hyperlink nodes on both sides) is undoable as a single undo operation
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  770910b3-aa44-4227-b3e4-2453dc4e9700:
+    id: 770910b3-aa44-4227-b3e4-2453dc4e9700
+    content: Constraints and assumptions
+    children:
+      - a5fb1040-940c-4a5f-8d14-0db3ffd95c97
+      - c8deb722-8811-460c-97dc-e0857e9dee39
+      - 1037e841-4d07-434f-a819-485be4fd7852
+      - 885080b8-9381-4e2d-afcd-4a4b1a6ba9f2
+      - c4c21e15-73a4-4e04-ad0e-74e295dc2849
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a5fb1040-940c-4a5f-8d14-0db3ffd95c97:
+    id: a5fb1040-940c-4a5f-8d14-0db3ffd95c97
+    content: Depends on US1 (step configuration dialog) for the "archive input to" destination picker, both link names, and resolve toggle UI
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c8deb722-8811-460c-97dc-e0857e9dee39:
+    id: c8deb722-8811-460c-97dc-e0857e9dee39
+    content: The destination picker needs a way to select a node — options include a tree selector component, searchable dropdown, or pasting a hyperlink (using the existing "copy as hyperlink" feature)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1037e841-4d07-434f-a819-485be4fd7852:
+    id: 1037e841-4d07-434f-a819-485be4fd7852
+    content: Archive is a move operation — the original is moved to the archive destination and retains its UUID. The replacement node(s) get new UUIDs.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  885080b8-9381-4e2d-afcd-4a4b1a6ba9f2:
+    id: 885080b8-9381-4e2d-afcd-4a4b1a6ba9f2
+    content: The archive links reuse the existing hyperlink system rather than introducing a parallel metadata system. The only new concept is the "resolve linked content when sending" flag, which controls whether these hyperlinks behave like context hyperlinks (resolving content) or purely navigational links.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c4c21e15-73a4-4e04-ad0e-74e295dc2849:
+    id: c4c21e15-73a4-4e04-ad0e-74e295dc2849
+    content: Execute mode is unaffected — it sends to external tools only and does not create tree content
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
