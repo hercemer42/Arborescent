@@ -5,6 +5,7 @@ import { useIconPickerBehavior } from './hooks/useIconPickerBehavior';
 import { useIconPickerColors } from './hooks/useIconPickerColors';
 import { IconSelection } from '../../../store/customizeDialog/customizeDialogStore';
 import { ContextMode } from '../../../store/tree/treeStore';
+import { Modal } from '../Modal';
 import './CustomizeDialog.css';
 
 // Type for Lucide icon components
@@ -105,7 +106,6 @@ export function CustomizeDialog({ selectedIcon, selectedColor, selectedMode, sho
   const [currentIcon, setCurrentIcon] = useState(selectedIcon || '');
 
   const {
-    dialogRef,
     searchInputRef,
     hoveredIcon,
     showAll,
@@ -147,13 +147,7 @@ export function CustomizeDialog({ selectedIcon, selectedColor, selectedMode, sho
   };
 
   return (
-    <div className="icon-picker-overlay">
-      <div ref={dialogRef} className="icon-picker-dialog">
-        <div className="icon-picker-header">
-          <h3>Customize</h3>
-          <button className="icon-picker-close" onClick={onClose}>×</button>
-        </div>
-
+    <Modal title="Customize" onClose={onClose}>
         <div className="icon-picker-search">
           <input
             ref={searchInputRef}
@@ -265,8 +259,7 @@ export function CustomizeDialog({ selectedIcon, selectedColor, selectedMode, sho
             </button>
           </div>
         </div>
-      </div>
-    </div>
+    </Modal>
   );
 }
 

@@ -12,7 +12,7 @@ To remove: right-click → **Blueprint** → **Remove from Workflow**. Both acti
 
 ## Step Types
 
-Each workflow step has a type that controls how it will be handled during workflow execution. Right-click a step → **Blueprint** → **Step Type** to change it.
+Each workflow step has a type that controls how it will be handled during workflow execution. Click a step number to open the step configuration dialog and change its type. You can also right-click a step → **Blueprint** → **Step Type**.
 
 - **Manual** (default) — The item waits at the step for you to act. Nothing is sent to the terminal. Indicated by a square border around the step number.
 - **Checkpoint** — Content is sent to the terminal. When the AI finishes, the workflow awaits your validation before continuing. Indicated by a triangle border.

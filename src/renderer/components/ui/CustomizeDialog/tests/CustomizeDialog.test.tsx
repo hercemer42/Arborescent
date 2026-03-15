@@ -177,7 +177,7 @@ describe('CustomizeDialog', () => {
       />
     );
 
-    const overlay = container.querySelector('.icon-picker-overlay');
+    const overlay = container.querySelector('.modal-overlay');
     fireEvent.mouseDown(overlay!);
 
     expect(mockOnClose).toHaveBeenCalled();
@@ -191,7 +191,7 @@ describe('CustomizeDialog', () => {
       />
     );
 
-    const dialog = container.querySelector('.icon-picker-dialog');
+    const dialog = container.querySelector('.modal-dialog');
     fireEvent.mouseDown(dialog!);
 
     expect(mockOnClose).not.toHaveBeenCalled();

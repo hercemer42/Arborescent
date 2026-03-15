@@ -31,12 +31,11 @@ describe('useIconPickerBehavior', () => {
     vi.clearAllMocks();
   });
 
-  it('should return refs', () => {
+  it('should return searchInputRef', () => {
     const { result } = renderHook(() =>
       useIconPickerBehavior(mockOnSelect, mockOnClose, mockAllIcons, mockCuratedIcons)
     );
 
-    expect(result.current.dialogRef).toBeDefined();
     expect(result.current.searchInputRef).toBeDefined();
   });
 
@@ -98,14 +97,12 @@ describe('useIconPickerBehavior', () => {
       useIconPickerBehavior(mockOnSelect, mockOnClose, mockAllIcons, mockCuratedIcons)
     );
 
-    // Start with curated icons (showAll = false)
     expect(result.current.showAll).toBe(false);
 
     act(() => {
       result.current.handleSearchChange('ban');
     });
 
-    // Should find 'banana' even though it's not in curated icons
     expect(result.current.displayedIcons).toEqual([{ Icon: MockIcon, name: 'banana' }]);
   });
 
@@ -169,63 +166,5 @@ describe('useIconPickerBehavior', () => {
       result.current.handleIconHover(null);
     });
     expect(result.current.hoveredIcon).toBeNull();
-  });
-
-  it('should call onClose on Escape key', () => {
-    renderHook(() =>
-      useIconPickerBehavior(mockOnSelect, mockOnClose, mockAllIcons, mockCuratedIcons)
-    );
-
-    act(() => {
-      document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
-    });
-
-    expect(mockOnClose).toHaveBeenCalled();
-  });
-
-  it('should call onClose on mousedown outside dialog', () => {
-    const { result } = renderHook(() =>
-      useIconPickerBehavior(mockOnSelect, mockOnClose, mockAllIcons, mockCuratedIcons)
-    );
-
-    Object.defineProperty(result.current.dialogRef, 'current', {
-      value: { contains: () => false },
-    });
-
-    act(() => {
-      document.dispatchEvent(new MouseEvent('mousedown', { bubbles: true }));
-    });
-
-    expect(mockOnClose).toHaveBeenCalled();
-  });
-
-  it('should not call onClose on mousedown inside dialog', () => {
-    const { result } = renderHook(() =>
-      useIconPickerBehavior(mockOnSelect, mockOnClose, mockAllIcons, mockCuratedIcons)
-    );
-
-    Object.defineProperty(result.current.dialogRef, 'current', {
-      value: { contains: () => true },
-    });
-
-    act(() => {
-      document.dispatchEvent(new MouseEvent('mousedown', { bubbles: true }));
-    });
-
-    expect(mockOnClose).not.toHaveBeenCalled();
-  });
-
-  it('should cleanup event listeners on unmount', () => {
-    const removeEventListenerSpy = vi.spyOn(document, 'removeEventListener');
-
-    const { unmount } = renderHook(() =>
-      useIconPickerBehavior(mockOnSelect, mockOnClose, mockAllIcons, mockCuratedIcons)
-    );
-    unmount();
-
-    expect(removeEventListenerSpy).toHaveBeenCalledWith('mousedown', expect.any(Function));
-    expect(removeEventListenerSpy).toHaveBeenCalledWith('keydown', expect.any(Function));
-
-    removeEventListenerSpy.mockRestore();
   });
 });

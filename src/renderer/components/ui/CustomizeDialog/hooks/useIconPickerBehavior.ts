@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState, useMemo, useCallback } from 'react';
-import { useDialogBehavior } from '../../../../hooks';
 import { LucideIcon } from '../CustomizeDialog';
 
 interface IconItem {
@@ -13,13 +12,10 @@ export function useIconPickerBehavior(
   allIcons: IconItem[],
   curatedIcons: IconItem[]
 ) {
-  const dialogRef = useRef<HTMLDivElement>(null);
   const searchInputRef = useRef<HTMLInputElement>(null);
   const [hoveredIcon, setHoveredIcon] = useState<string | null>(null);
   const [showAll, setShowAll] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
-
-  useDialogBehavior(dialogRef, onClose);
 
   // Filter icons based on search query and showAll state
   const displayedIcons = useMemo(() => {
@@ -64,7 +60,6 @@ export function useIconPickerBehavior(
   const isSearching = searchQuery.trim().length > 0;
 
   return {
-    dialogRef,
     searchInputRef,
     hoveredIcon,
     showAll,

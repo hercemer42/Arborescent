@@ -3,6 +3,7 @@ import { Tree } from '../Tree';
 import { TabBar } from '../TabBar';
 import { SummaryDateBar } from '../SummaryDateBar';
 import { TreeStoreContext } from '../../store/tree/TreeStoreContext';
+import { StepConfigDialogContainer } from '../ui/StepConfigDialog';
 import { useFilesStore } from '../../store/files/filesStore';
 import { storeManager } from '../../store/storeManager';
 import { useWorkspaceKeyboard } from './hooks/useWorkspaceKeyboard';
@@ -36,6 +37,7 @@ export const Workspace = memo(function Workspace() {
         <TabBar />
         <SummaryDateBar />
         <Tree zoomedNodeId={zoomInfo?.nodeId} />
+        <StepConfigDialogContainer />
       </TreeStoreContext.Provider>
     </main>
   );

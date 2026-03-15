@@ -1,0 +1,116 @@
+import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { render, screen, fireEvent } from '@testing-library/react';
+import { StepConfigDialog } from '../StepConfigDialog';
+import type { StepType } from '@/store/tree/commands/SetStepTypeCommand';
+
+describe('StepConfigDialog', () => {
+  const defaultProps = {
+    nodeId: 'node-1',
+    currentStepType: 'manual' as StepType,
+    onStepTypeChange: vi.fn(),
+    onClose: vi.fn(),
+  };
+
+  beforeEach(() => {
+    vi.clearAllMocks();
+  });
+
+  describe('rendering', () => {
+    it('should render three step type options', () => {
+      render(<StepConfigDialog {...defaultProps} />);
+
+      expect(screen.getByText('Manual')).toBeInTheDocument();
+      expect(screen.getByText('Checkpoint')).toBeInTheDocument();
+      expect(screen.getByText('Autonomous')).toBeInTheDocument();
+    });
+
+    it('should render within a modal with title', () => {
+      render(<StepConfigDialog {...defaultProps} />);
+
+      expect(screen.getByText('Step Configuration')).toBeInTheDocument();
+      expect(screen.getByRole('dialog')).toBeInTheDocument();
+    });
+
+    it('should show the current step type as selected', () => {
+      const { container } = render(
+        <StepConfigDialog {...defaultProps} currentStepType="checkpoint" />
+      );
+
+      const selectedRadio = container.querySelector('input[value="checkpoint"]') as HTMLInputElement;
+      expect(selectedRadio).toBeInTheDocument();
+      expect(selectedRadio.checked).toBe(true);
+    });
+
+    it('should default to manual when stepType is undefined', () => {
+      const { container } = render(
+        <StepConfigDialog {...defaultProps} currentStepType={undefined as unknown as StepType} />
+      );
+
+      const manualRadio = container.querySelector('input[value="manual"]') as HTMLInputElement;
+      expect(manualRadio).toBeInTheDocument();
+      expect(manualRadio.checked).toBe(true);
+    });
+  });
+
+  describe('step type selection', () => {
+    it('should call onStepTypeChange with the selected step type', () => {
+      render(<StepConfigDialog {...defaultProps} />);
+
+      fireEvent.click(screen.getByText('Autonomous'));
+
+      expect(defaultProps.onStepTypeChange).toHaveBeenCalledWith('node-1', 'autonomous');
+    });
+
+    it('should not call onStepTypeChange when clicking the already-selected type', () => {
+      render(<StepConfigDialog {...defaultProps} currentStepType="manual" />);
+
+      fireEvent.click(screen.getByText('Manual'));
+
+      expect(defaultProps.onStepTypeChange).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('dismissal', () => {
+    it('should call onClose when clicking outside the dialog', () => {
+      const { container } = render(<StepConfigDialog {...defaultProps} />);
+
+      const overlay = container.querySelector('.modal-overlay');
+      fireEvent.mouseDown(overlay!);
+
+      expect(defaultProps.onClose).toHaveBeenCalled();
+    });
+
+    it('should not call onClose when clicking inside the dialog', () => {
+      const { container } = render(<StepConfigDialog {...defaultProps} />);
+
+      const dialog = container.querySelector('.modal-dialog');
+      fireEvent.mouseDown(dialog!);
+
+      expect(defaultProps.onClose).not.toHaveBeenCalled();
+    });
+
+    it('should call onClose when Escape is pressed', () => {
+      render(<StepConfigDialog {...defaultProps} />);
+
+      fireEvent.keyDown(document, { key: 'Escape' });
+
+      expect(defaultProps.onClose).toHaveBeenCalled();
+    });
+
+    it('should call onClose when close button is clicked', () => {
+      render(<StepConfigDialog {...defaultProps} />);
+
+      fireEvent.click(screen.getByText('×'));
+
+      expect(defaultProps.onClose).toHaveBeenCalled();
+    });
+  });
+
+  describe('accessibility', () => {
+    it('should have radio group for step type options', () => {
+      render(<StepConfigDialog {...defaultProps} />);
+
+      expect(screen.getByRole('radiogroup')).toBeInTheDocument();
+    });
+  });
+});

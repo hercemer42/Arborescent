@@ -11,6 +11,7 @@ import { useBlueprintIcon } from './hooks/useBlueprintIcon';
 import { useHyperlinkNavigation } from './hooks/useHyperlinkNavigation';
 import { useSearchHighlight } from './hooks/useSearchHighlight';
 import { useWorkflowIndicator, getStepTypeLabel } from './hooks/useWorkflowIndicator';
+import { useStepConfigDialogStore } from '../../store/stepConfigDialog/stepConfigDialogStore';
 import { useWorkflowExecutionOverlay } from './hooks/useWorkflowExecutionOverlay';
 import './NodeContent.css';
 
@@ -121,6 +122,10 @@ function NodeContentComponent({
             <span
               className={`workflow-step-number step-type-${stepType}`}
               title={`Step ${stepNumber} (${getStepTypeLabel(stepType)})`}
+              onClick={(e) => {
+                e.stopPropagation();
+                useStepConfigDialogStore.getState().open(node.id);
+              }}
             >
               {stepNumber}
             </span>

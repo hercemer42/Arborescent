@@ -9,6 +9,7 @@ let terminalStore: { setState?: (state: unknown) => void } | null = null;
 let toastStore: { setState?: (state: unknown) => void } | null = null;
 let panelStore: { setState?: (state: unknown) => void } | null = null;
 let browserStore: { setState?: (state: unknown) => void } | null = null;
+let stepConfigDialogStore: { setState?: (state: unknown) => void } | null = null;
 
 // Lazy load stores once on first use
 function getStores() {
@@ -36,6 +37,12 @@ function getStores() {
       browserStore = require('../store/browser/browserStore').useBrowserStore;
     } catch { browserStore = undefined as unknown as null; }
   }
+  if (stepConfigDialogStore === null) {
+    try {
+      // eslint-disable-next-line @typescript-eslint/no-require-imports
+      stepConfigDialogStore = require('../store/stepConfigDialog/stepConfigDialogStore').useStepConfigDialogStore;
+    } catch { stepConfigDialogStore = undefined as unknown as null; }
+  }
 }
 
 function resetStores() {
@@ -44,6 +51,7 @@ function resetStores() {
   toastStore?.setState?.({ toasts: [] });
   panelStore?.setState?.({ isOpen: false, activeContent: null });
   browserStore?.setState?.({ tabs: [], activeTabId: null });
+  stepConfigDialogStore?.setState?.({ isOpen: false, nodeId: null });
 }
 
 beforeEach(() => {

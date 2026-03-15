@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-03-15T10:18:25.997Z'
+updated: '2026-03-15T18:08:38.900Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -5166,7 +5166,7 @@ nodes:
       - 7798380c-7259-4598-8c51-dff0249a2574
     metadata:
       status: pending
-      expanded: true
+      expanded: false
       deleted: false
       plugins: {}
       isContextDeclaration: true
@@ -11986,7 +11986,7 @@ nodes:
       blueprintIcon: ClipboardList
       blueprintColor: '#14b8a6'
       isBlueprint: true
-      expanded: false
+      expanded: true
       contextMode: collaborate
   132e5564-e290-4d6c-8cae-f65f125ef78f:
     id: 132e5564-e290-4d6c-8cae-f65f125ef78f
@@ -24859,8 +24859,7 @@ nodes:
   00714a63-f267-4ab1-a285-73ae4198eb42:
     id: 00714a63-f267-4ab1-a285-73ae4198eb42
     content: Technical refinement
-    children:
-      - 4adfa410-1e2e-4155-8e8e-2b2ed48b40a8
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -26813,7 +26812,8 @@ nodes:
   bdceb696-248d-4199-9182-db0689445c07:
     id: bdceb696-248d-4199-9182-db0689445c07
     content: Documentation
-    children: []
+    children:
+      - 4adfa410-1e2e-4155-8e8e-2b2ed48b40a8
     metadata:
       status: pending
       isBlueprint: true
@@ -34455,6 +34455,13 @@ nodes:
     id: 13c5048b-15eb-4989-a6fc-25032e5c131f
     content: Problems
     children:
+      - 37f171d1-4880-42c3-b14b-d9527319e3a5
+      - 4398180d-fba8-4294-a988-2be477ef3236
+      - 7de1d56c-5320-48f8-b77b-bc434940dfce
+      - fc947fbf-ce25-4014-a7c4-ce1adb0e93a7
+      - 4f2d0f06-8458-4129-a4c9-9d4c045ab357
+      - 380bac8e-2bb6-4e8f-b880-33cc131e9054
+      - 0484c483-6231-4efd-a1c2-e56210fb725b
       - 28b63463-b046-4ed0-ab09-942c8b933875
       - 33c9ccfe-2b9e-441f-a857-bf766dc09892
       - 4446dd01-7caf-4953-8dd2-36153adb9cfa
@@ -35877,7 +35884,7 @@ nodes:
       status: pending
       isBlueprint: true
       appliedContextId: 1e2f062a-bbaa-4a02-b58b-a94ab15d8d74
-      stepType: autonomous
+      stepType: checkpoint
   52fb1ab7-8c9e-47b3-9b18-a96a2fcef2c7:
     id: 52fb1ab7-8c9e-47b3-9b18-a96a2fcef2c7
     content: Problem statement
@@ -45347,199 +45354,16 @@ nodes:
     id: 4adfa410-1e2e-4155-8e8e-2b2ed48b40a8
     content: 'US1: AI workflow orchestration - Workflow step configuration dialog'
     children:
-      - c72a9197-d6b8-4d4d-acad-442e959b19e3
-      - 107ea1c7-4f5b-41e1-8f1b-2c5166ee6313
-      - ad8840a0-55ec-4451-9f7f-73eec40d8c15
-      - c7d0eab9-ed84-4df6-af66-1c37a01cebb7
+      - 162adab5-3ed3-45b1-a923-96306cf7c61c
+      - 9e3e23dc-38d7-49b5-8517-fdb8e410822c
+      - 220872c2-7770-4ff8-acee-2da73a11ca2b
+      - 61880431-5e57-4258-aac4-f7aa13b14ed9
+      - 246f87b7-78a1-4686-a79f-f197fbc124c0
+      - 0334ab26-c6f3-47d7-8ceb-77ab089c7964
+      - ac08205b-50cf-41dd-a758-0875206542af
     metadata:
       status: pending
       expanded: false
-      deleted: false
-      plugins: {}
-  c72a9197-d6b8-4d4d-acad-442e959b19e3:
-    id: c72a9197-d6b8-4d4d-acad-442e959b19e3
-    content: Problem statement
-    children:
-      - 3b55d998-0baa-48e6-a910-86d96b4d29aa
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  3b55d998-0baa-48e6-a910-86d96b4d29aa:
-    id: 3b55d998-0baa-48e6-a910-86d96b4d29aa
-    content: As a user building multi-step AI workflows, I need to configure per-step settings (step type, and upcoming features like archive destination and recurse) in a single place. Currently, step type is buried in a right-click submenu under Blueprint → Step Type, and as more per-step options are added, nested context menus become unwieldy and hard to discover.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  107ea1c7-4f5b-41e1-8f1b-2c5166ee6313:
-    id: 107ea1c7-4f5b-41e1-8f1b-2c5166ee6313
-    content: Use cases
-    children:
-      - f4ef3df7-1660-4212-8eae-9062a3b58826
-      - 37e3cc59-b1d3-4af6-a18b-699491d87b41
-      - cb93c665-bbfb-466b-a3b4-73638716fdca
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f4ef3df7-1660-4212-8eae-9062a3b58826:
-    id: f4ef3df7-1660-4212-8eae-9062a3b58826
-    content: 'Primary: User clicks a workflow step number to open a dialog showing all settings for that step, changes the step type, and closes the dialog.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  37e3cc59-b1d3-4af6-a18b-699491d87b41:
-    id: 37e3cc59-b1d3-4af6-a18b-699491d87b41
-    content: 'Secondary: User opens the dialog to review current configuration without making changes.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  cb93c665-bbfb-466b-a3b4-73638716fdca:
-    id: cb93c665-bbfb-466b-a3b4-73638716fdca
-    content: 'Secondary: User configures a newly added step immediately after creating it.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ad8840a0-55ec-4451-9f7f-73eec40d8c15:
-    id: ad8840a0-55ec-4451-9f7f-73eec40d8c15
-    content: Acceptance criteria
-    children:
-      - 818b5ce9-d6f4-4614-b760-050e4c9c2217
-      - c2bf8899-c3ac-42be-b313-7634f3bee63e
-      - 264d3665-d346-4864-8694-5c89bb510f18
-      - e1a63a54-2993-4f3f-9169-fc03840911e5
-      - ae6f9a12-c336-432a-8cdc-c988ffd109a7
-      - 8943a278-6114-421b-9eb6-7004abe15ae4
-      - b5b02145-7d19-443a-864c-f394295ddab2
-      - 65ca35a4-1033-46d8-83e7-620642b01cf9
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  818b5ce9-d6f4-4614-b760-050e4c9c2217:
-    id: 818b5ce9-d6f4-4614-b760-050e4c9c2217
-    content: Clicking a workflow step number opens a popup dialog positioned near the step
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  c2bf8899-c3ac-42be-b313-7634f3bee63e:
-    id: c2bf8899-c3ac-42be-b313-7634f3bee63e
-    content: The dialog displays the current step type (manual/checkpoint/autonomous) and allows changing it
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  264d3665-d346-4864-8694-5c89bb510f18:
-    id: 264d3665-d346-4864-8694-5c89bb510f18
-    content: Changing the step type in the dialog has the same effect as the existing right-click submenu action (including undo support via ChangeStepTypeCommand)
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e1a63a54-2993-4f3f-9169-fc03840911e5:
-    id: e1a63a54-2993-4f3f-9169-fc03840911e5
-    content: The dialog closes when clicking outside it or pressing Escape
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ae6f9a12-c336-432a-8cdc-c988ffd109a7:
-    id: ae6f9a12-c336-432a-8cdc-c988ffd109a7
-    content: The existing right-click submenu for step type continues to work alongside the dialog
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  8943a278-6114-421b-9eb6-7004abe15ae4:
-    id: 8943a278-6114-421b-9eb6-7004abe15ae4
-    content: The dialog is extensible — it serves as the container for future per-step settings (archive destination, recurse) but only shows step type for now
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  b5b02145-7d19-443a-864c-f394295ddab2:
-    id: b5b02145-7d19-443a-864c-f394295ddab2
-    content: The existing autonomous step type warning still appears when selecting autonomous
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  65ca35a4-1033-46d8-83e7-620642b01cf9:
-    id: 65ca35a4-1033-46d8-83e7-620642b01cf9
-    content: Step numbers remain visually consistent — the click target does not alter their appearance beyond a cursor change
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  c7d0eab9-ed84-4df6-af66-1c37a01cebb7:
-    id: c7d0eab9-ed84-4df6-af66-1c37a01cebb7
-    content: Constraints and assumptions
-    children:
-      - af59f068-2fbc-4f19-b453-4e3886f49c12
-      - 23a10fed-38d7-41c1-82f0-41873c413b4b
-      - f12e3de7-597f-41c6-a153-9d3f16eebbde
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  af59f068-2fbc-4f19-b453-4e3886f49c12:
-    id: af59f068-2fbc-4f19-b453-4e3886f49c12
-    content: Step numbers are currently rendered at nearly the same size as blueprint icons, so click targets are adequate without resizing
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  23a10fed-38d7-41c1-82f0-41873c413b4b:
-    id: 23a10fed-38d7-41c1-82f0-41873c413b4b
-    content: The dialog is a new UI component — no existing dialog pattern in the app to reuse, so a reusable popup component may need to be created
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f12e3de7-597f-41c6-a153-9d3f16eebbde:
-    id: f12e3de7-597f-41c6-a153-9d3f16eebbde
-    content: Assumes the step type right-click submenu is kept as a secondary access path, not removed
-    children: []
-    metadata:
-      status: pending
-      expanded: true
       deleted: false
       plugins: {}
   7bd23d94-dc41-4f46-b27c-7f54ea43b9f8:
@@ -46421,3 +46245,1503 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
+  4398180d-fba8-4294-a988-2be477ef3236:
+    id: 4398180d-fba8-4294-a988-2be477ef3236
+    content: Automated collaboration mode isn't sending to the feedback window or giving the instructions on editing the temporary file
+    children: []
+    metadata:
+      status: pending
+  7de1d56c-5320-48f8-b77b-bc434940dfce:
+    id: 7de1d56c-5320-48f8-b77b-bc434940dfce
+    content: Automated execution mode is sending the content to the terminal on the next step but not returning it
+    children:
+      - 6d31561b-9941-47ee-bf3c-e4d3578d6809
+      - 84b20d3e-d628-4e26-978a-9e6797d7be95
+    metadata:
+      status: pending
+  6d31561b-9941-47ee-bf3c-e4d3578d6809:
+    id: 6d31561b-9941-47ee-bf3c-e4d3578d6809
+    content: Potentially a timing issue with the current implementation
+    children: []
+    metadata:
+      status: pending
+  84b20d3e-d628-4e26-978a-9e6797d7be95:
+    id: 84b20d3e-d628-4e26-978a-9e6797d7be95
+    content: Is it possible that Claude is still updating its window when the stop hook fires ?
+    children: []
+    metadata:
+      status: pending
+  fc947fbf-ce25-4014-a7c4-ce1adb0e93a7:
+    id: fc947fbf-ce25-4014-a7c4-ce1adb0e93a7
+    content: Not sure about the utility of the warning 'step is taking longer than expected)
+    children:
+      - 5e465737-6408-46d3-8f92-e3bc61548dd2
+    metadata:
+      status: pending
+  5e465737-6408-46d3-8f92-e3bc61548dd2:
+    id: 5e465737-6408-46d3-8f92-e3bc61548dd2
+    content: Or maybe just increase the threshold to 15 minutes
+    children: []
+    metadata:
+      status: pending
+  162adab5-3ed3-45b1-a923-96306cf7c61c:
+    id: 162adab5-3ed3-45b1-a923-96306cf7c61c
+    content: Problem statement
+    children:
+      - 0e08022c-562f-4d2e-81cb-53f8488453f1
+    metadata:
+      status: completed
+      expanded: false
+      deleted: false
+      plugins: {}
+  0e08022c-562f-4d2e-81cb-53f8488453f1:
+    id: 0e08022c-562f-4d2e-81cb-53f8488453f1
+    content: As a user building multi-step AI workflows, I need to configure per-step settings (step type, and upcoming features like archive destination and recurse) in a single place. Currently, step type is buried in a right-click submenu under Blueprint → Step Type, and as more per-step options are added, nested context menus become unwieldy and hard to discover.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9e3e23dc-38d7-49b5-8517-fdb8e410822c:
+    id: 9e3e23dc-38d7-49b5-8517-fdb8e410822c
+    content: Use cases
+    children:
+      - 108003cb-f5cf-4c58-85a3-073d2f000f43
+      - 07b2237c-66ca-43ba-a298-e12e07f73272
+      - ba2add19-419a-4187-966d-22cffd49d33a
+    metadata:
+      status: completed
+      expanded: false
+      deleted: false
+      plugins: {}
+  108003cb-f5cf-4c58-85a3-073d2f000f43:
+    id: 108003cb-f5cf-4c58-85a3-073d2f000f43
+    content: 'Primary: User clicks a workflow step number to open a dialog showing all settings for that step, changes the step type, and closes the dialog.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  07b2237c-66ca-43ba-a298-e12e07f73272:
+    id: 07b2237c-66ca-43ba-a298-e12e07f73272
+    content: 'Secondary: User opens the dialog to review current configuration without making changes.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ba2add19-419a-4187-966d-22cffd49d33a:
+    id: ba2add19-419a-4187-966d-22cffd49d33a
+    content: 'Secondary: User configures a newly added step immediately after creating it.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  220872c2-7770-4ff8-acee-2da73a11ca2b:
+    id: 220872c2-7770-4ff8-acee-2da73a11ca2b
+    content: Acceptance criteria
+    children:
+      - 41ce7966-20bd-4fae-b598-1b1fd0956b9f
+      - 3a594dab-dddf-493e-9f75-1a41eb22a679
+      - 0858c82e-7d6c-4697-8612-67fdfe6de3d9
+      - 1ae03486-def0-4785-99a9-fd2304c6096f
+      - 8658c070-c7de-4474-a248-21604961a7b2
+      - 42d549ba-5572-49bc-90b5-e992ee792570
+      - dc069ada-da00-455e-ba5b-b3c868093615
+      - fe4677df-d326-4ce0-a6f5-3a21d9963e2c
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  41ce7966-20bd-4fae-b598-1b1fd0956b9f:
+    id: 41ce7966-20bd-4fae-b598-1b1fd0956b9f
+    content: Clicking a workflow step number opens a popup dialog positioned near the step
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3a594dab-dddf-493e-9f75-1a41eb22a679:
+    id: 3a594dab-dddf-493e-9f75-1a41eb22a679
+    content: The dialog displays the current step type (manual/checkpoint/autonomous) and allows changing it
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0858c82e-7d6c-4697-8612-67fdfe6de3d9:
+    id: 0858c82e-7d6c-4697-8612-67fdfe6de3d9
+    content: Changing the step type in the dialog has the same effect as the existing right-click submenu action (including undo support via ChangeStepTypeCommand)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1ae03486-def0-4785-99a9-fd2304c6096f:
+    id: 1ae03486-def0-4785-99a9-fd2304c6096f
+    content: The dialog closes when clicking outside it or pressing Escape
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8658c070-c7de-4474-a248-21604961a7b2:
+    id: 8658c070-c7de-4474-a248-21604961a7b2
+    content: The existing right-click submenu for step type continues to work alongside the dialog
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  42d549ba-5572-49bc-90b5-e992ee792570:
+    id: 42d549ba-5572-49bc-90b5-e992ee792570
+    content: The dialog is extensible — it serves as the container for future per-step settings (archive destination, recurse) but only shows step type for now
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  dc069ada-da00-455e-ba5b-b3c868093615:
+    id: dc069ada-da00-455e-ba5b-b3c868093615
+    content: The existing autonomous step type warning still appears when selecting autonomous
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fe4677df-d326-4ce0-a6f5-3a21d9963e2c:
+    id: fe4677df-d326-4ce0-a6f5-3a21d9963e2c
+    content: Step numbers remain visually consistent — the click target does not alter their appearance beyond a cursor change
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  61880431-5e57-4258-aac4-f7aa13b14ed9:
+    id: 61880431-5e57-4258-aac4-f7aa13b14ed9
+    content: Constraints and assumptions
+    children:
+      - 2d199fe3-14a4-4faa-833f-72508e2fed7c
+      - b03038e3-5c11-484d-9626-c3c2be6297b4
+      - df8591c2-5684-4bd1-b8a3-ce377543eb29
+    metadata:
+      status: completed
+      expanded: false
+      deleted: false
+      plugins: {}
+  2d199fe3-14a4-4faa-833f-72508e2fed7c:
+    id: 2d199fe3-14a4-4faa-833f-72508e2fed7c
+    content: Step numbers are currently rendered at nearly the same size as blueprint icons, so click targets are adequate without resizing
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b03038e3-5c11-484d-9626-c3c2be6297b4:
+    id: b03038e3-5c11-484d-9626-c3c2be6297b4
+    content: The dialog is a new UI component — no existing dialog pattern in the app to reuse, so a reusable popup component may need to be created
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  df8591c2-5684-4bd1-b8a3-ce377543eb29:
+    id: df8591c2-5684-4bd1-b8a3-ce377543eb29
+    content: Assumes the step type right-click submenu is kept as a secondary access path, not removed
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  246f87b7-78a1-4686-a79f-f197fbc124c0:
+    id: 246f87b7-78a1-4686-a79f-f197fbc124c0
+    content: Technical specifications
+    children:
+      - e3c82510-4a44-400d-96d9-c9869074e37b
+      - 8b47363f-8d7b-4deb-8bed-b4257444e1d3
+      - f4de1299-dc37-4fdd-a6bd-f8e4c6f3749d
+      - 658766a8-1b94-4de0-872d-d3535ce4502b
+      - 471f3cfe-b88e-4f4f-8570-bec2b9ce2491
+      - c7bd3d67-501e-4e86-b701-515ea4760583
+    metadata:
+      status: completed
+      expanded: false
+      deleted: false
+      plugins: {}
+  e3c82510-4a44-400d-96d9-c9869074e37b:
+    id: e3c82510-4a44-400d-96d9-c9869074e37b
+    content: Summary
+    children:
+      - db92dd37-2364-4244-856b-a830e95f3884
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  db92dd37-2364-4244-856b-a830e95f3884:
+    id: db92dd37-2364-4244-856b-a830e95f3884
+    content: 'Add a popup dialog that opens when clicking a workflow step number, initially showing only step type selection. The dialog uses an overlay+popover pattern similar to CustomizeDialog but positioned near the clicked step number. Step type changes reuse the existing SetStepTypeCommand for undo support and the existing toast warnings for autonomous/checkpoint. The step number span in NodeContent.tsx gains a click handler (removing pointer-events: none) and the dialog is managed via a lightweight Zustand store.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8b47363f-8d7b-4deb-8bed-b4257444e1d3:
+    id: 8b47363f-8d7b-4deb-8bed-b4257444e1d3
+    content: Inputs, outputs, and key interfaces
+    children:
+      - 3650e3b6-e77b-48f6-a763-bc8248b6fc45
+      - a9b82b1d-54ca-4b1e-b6e2-05f560275f4e
+      - d0dc9b7f-70e1-47e3-9d21-8b8777fea6cc
+      - b7d44636-f581-4e95-802e-62ee951a95b2
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3650e3b6-e77b-48f6-a763-bc8248b6fc45:
+    id: 3650e3b6-e77b-48f6-a763-bc8248b6fc45
+    content: 'Input: Click event on a workflow step number providing the node ID and the click position (for dialog placement)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a9b82b1d-54ca-4b1e-b6e2-05f560275f4e:
+    id: a9b82b1d-54ca-4b1e-b6e2-05f560275f4e
+    content: 'Output: Updated node.metadata.stepType via the existing SetStepTypeCommand'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d0dc9b7f-70e1-47e3-9d21-8b8777fea6cc:
+    id: d0dc9b7f-70e1-47e3-9d21-8b8777fea6cc
+    content: 'Key interface: A StepConfigDialogStore (Zustand) with: isOpen, nodeId, anchorPosition ({x, y}), open(nodeId, position), close()'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b7d44636-f581-4e95-802e-62ee951a95b2:
+    id: b7d44636-f581-4e95-802e-62ee951a95b2
+    content: 'Key interface: A StepConfigDialog component rendering step type radio buttons, positioned absolute near the anchor'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f4de1299-dc37-4fdd-a6bd-f8e4c6f3749d:
+    id: f4de1299-dc37-4fdd-a6bd-f8e4c6f3749d
+    content: Constraints and non-functional requirements
+    children:
+      - 8332b87a-22ea-49c0-a33c-bf37a78d5f84
+      - f68410bd-2437-4a17-9d16-60b5a3c223de
+      - 32e29e81-b173-4bc2-b72f-7d806efc393f
+      - 49979098-73d4-4f37-a4e6-ad276649910d
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8332b87a-22ea-49c0-a33c-bf37a78d5f84:
+    id: 8332b87a-22ea-49c0-a33c-bf37a78d5f84
+    content: The dialog must not block tree interaction outside it — clicking outside dismisses it (overlay pattern)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f68410bd-2437-4a17-9d16-60b5a3c223de:
+    id: f68410bd-2437-4a17-9d16-60b5a3c223de
+    content: Dialog positioning must stay within the viewport — if the step is near the edge, the dialog should adjust
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  32e29e81-b173-4bc2-b72f-7d806efc393f:
+    id: 32e29e81-b173-4bc2-b72f-7d806efc393f
+    content: No perceptible lag when opening — the dialog is lightweight (no data fetching)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  49979098-73d4-4f37-a4e6-ad276649910d:
+    id: 49979098-73d4-4f37-a4e6-ad276649910d
+    content: The dialog must work when the tree is scrolled — positioning is relative to the viewport, not the tree container
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  658766a8-1b94-4de0-872d-d3535ce4502b:
+    id: 658766a8-1b94-4de0-872d-d3535ce4502b
+    content: Technical steps
+    children:
+      - 1ef949c6-d586-44f1-9afb-fc5634e74a12
+      - 59c9814e-ff35-47f4-a718-36deacb38154
+      - 7fc039bb-252a-4a0d-abb9-355fb8261947
+      - d24c24a3-d754-4dd1-8bc9-ff427537d3dd
+      - 411259c1-2709-47af-9182-18a45f658424
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1ef949c6-d586-44f1-9afb-fc5634e74a12:
+    id: 1ef949c6-d586-44f1-9afb-fc5634e74a12
+    content: 'Step 1: Create StepConfigDialogStore (S)'
+    children:
+      - 691af1c4-10d1-458c-95f6-404823b032b7
+      - 704777e2-112d-4ede-a102-7afb5ccfa49a
+      - 5f337b60-d63c-4110-bdf9-b1d2d10ac4f1
+      - 19762e30-878a-4b83-b550-c23313ac2530
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  691af1c4-10d1-458c-95f6-404823b032b7:
+    id: 691af1c4-10d1-458c-95f6-404823b032b7
+    content: New Zustand store at src/renderer/store/stepConfigDialog/stepConfigDialogStore.ts
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  704777e2-112d-4ede-a102-7afb5ccfa49a:
+    id: 704777e2-112d-4ede-a102-7afb5ccfa49a
+    content: 'State: isOpen (boolean), nodeId (string | null), anchorPosition ({x: number, y: number} | null)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5f337b60-d63c-4110-bdf9-b1d2d10ac4f1:
+    id: 5f337b60-d63c-4110-bdf9-b1d2d10ac4f1
+    content: 'Actions: open(nodeId: string, position: {x: number, y: number}), close()'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  19762e30-878a-4b83-b550-c23313ac2530:
+    id: 19762e30-878a-4b83-b550-c23313ac2530
+    content: Follows the same pattern as customizeDialogStore
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  59c9814e-ff35-47f4-a718-36deacb38154:
+    id: 59c9814e-ff35-47f4-a718-36deacb38154
+    content: 'Step 2: Make step number clickable (S)'
+    children:
+      - b50e47e2-5f1f-4ff1-ad4a-5b5ff1a5f843
+      - 42c9516e-769c-4e27-8ba8-091ff3867ae3
+      - ff0242c7-5148-488b-a72e-abc64a970290
+      - 4ec47a79-0e36-4c68-aab6-b8759832190c
+      - 9f475ca7-475c-45ed-8855-5b442e4837c1
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b50e47e2-5f1f-4ff1-ad4a-5b5ff1a5f843:
+    id: b50e47e2-5f1f-4ff1-ad4a-5b5ff1a5f843
+    content: In NodeContent.tsx, add an onClick handler to the workflow-step-number span
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  42c9516e-769c-4e27-8ba8-091ff3867ae3:
+    id: 42c9516e-769c-4e27-8ba8-091ff3867ae3
+    content: The handler calls stepConfigDialogStore.open(node.id, {x, y}) using the click event's clientX/clientY
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ff0242c7-5148-488b-a72e-abc64a970290:
+    id: ff0242c7-5148-488b-a72e-abc64a970290
+    content: 'Remove pointer-events: none from .workflow-step-number in NodeContent.css'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4ec47a79-0e36-4c68-aab6-b8759832190c:
+    id: 4ec47a79-0e36-4c68-aab6-b8759832190c
+    content: 'Add cursor: pointer to .workflow-step-number'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9f475ca7-475c-45ed-8855-5b442e4837c1:
+    id: 9f475ca7-475c-45ed-8855-5b442e4837c1
+    content: Ensure the click does not propagate to the node's own click handler (stopPropagation)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7fc039bb-252a-4a0d-abb9-355fb8261947:
+    id: 7fc039bb-252a-4a0d-abb9-355fb8261947
+    content: 'Step 3: Create StepConfigDialog component (M)'
+    children:
+      - 1d56203a-56e2-410f-b9e5-5b7bec175dd3
+      - c7ed94b0-947b-43c7-af47-161d2f09bc0e
+      - 15e13bb3-f43a-4327-9d89-73e2a25fbc4a
+      - 7dc56fa5-d808-443c-9b17-b6c2e185c587
+      - ea28bd5c-0e62-440c-8f2b-fb44a6b5fb8f
+      - c429a22d-ecfa-46e6-95eb-3c2c35f1bfd5
+      - 1c7d8ddb-8ed4-4462-b784-d262d7c8b453
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1d56203a-56e2-410f-b9e5-5b7bec175dd3:
+    id: 1d56203a-56e2-410f-b9e5-5b7bec175dd3
+    content: New component at src/renderer/components/ui/StepConfigDialog/StepConfigDialog.tsx
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c7ed94b0-947b-43c7-af47-161d2f09bc0e:
+    id: c7ed94b0-947b-43c7-af47-161d2f09bc0e
+    content: Renders an overlay div (transparent, full-screen, click to dismiss) and a positioned dialog panel
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  15e13bb3-f43a-4327-9d89-73e2a25fbc4a:
+    id: 15e13bb3-f43a-4327-9d89-73e2a25fbc4a
+    content: Dialog panel contains radio buttons for step type (Manual / Checkpoint / Autonomous), showing the current selection from node.metadata.stepType
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7dc56fa5-d808-443c-9b17-b6c2e185c587:
+    id: 7dc56fa5-d808-443c-9b17-b6c2e185c587
+    content: Selecting a step type calls actions.setStepType(nodeId, stepType) — the existing action that dispatches SetStepTypeCommand and shows toast warnings
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ea28bd5c-0e62-440c-8f2b-fb44a6b5fb8f:
+    id: ea28bd5c-0e62-440c-8f2b-fb44a6b5fb8f
+    content: Dialog panel is positioned near anchorPosition, adjusted to stay within viewport bounds
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c429a22d-ecfa-46e6-95eb-3c2c35f1bfd5:
+    id: c429a22d-ecfa-46e6-95eb-3c2c35f1bfd5
+    content: Pressing Escape closes the dialog (keydown listener on the overlay)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1c7d8ddb-8ed4-4462-b784-d262d7c8b453:
+    id: 1c7d8ddb-8ed4-4462-b784-d262d7c8b453
+    content: Follows the overlay+stopPropagation pattern from HotkeyEditDialog
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d24c24a3-d754-4dd1-8bc9-ff427537d3dd:
+    id: d24c24a3-d754-4dd1-8bc9-ff427537d3dd
+    content: 'Step 4: Mount StepConfigDialog in the app (S)'
+    children:
+      - a1d3d618-171c-4285-b55d-2a3991955831
+      - b2fa36fc-8321-4f53-bd45-f1df710eb493
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a1d3d618-171c-4285-b55d-2a3991955831:
+    id: a1d3d618-171c-4285-b55d-2a3991955831
+    content: Add StepConfigDialog to the App component (or the tree panel wrapper) so it renders when isOpen is true
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b2fa36fc-8321-4f53-bd45-f1df710eb493:
+    id: b2fa36fc-8321-4f53-bd45-f1df710eb493
+    content: The dialog reads state from stepConfigDialogStore and node data from the tree store
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  411259c1-2709-47af-9182-18a45f658424:
+    id: 411259c1-2709-47af-9182-18a45f658424
+    content: 'Step 5: Verify existing right-click submenu still works (S)'
+    children:
+      - e7d1b38b-8ac4-4b33-8fc0-869c642dce45
+      - a230eeff-a8fe-4afb-9b64-b4415aad3dff
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e7d1b38b-8ac4-4b33-8fc0-869c642dce45:
+    id: e7d1b38b-8ac4-4b33-8fc0-869c642dce45
+    content: The right-click submenu path (useBlueprintSubmenu → actions.setStepType) is unchanged
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a230eeff-a8fe-4afb-9b64-b4415aad3dff:
+    id: a230eeff-a8fe-4afb-9b64-b4415aad3dff
+    content: Both paths call the same action, so undo/redo and warnings work identically
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  471f3cfe-b88e-4f4f-8570-bec2b9ce2491:
+    id: 471f3cfe-b88e-4f4f-8570-bec2b9ce2491
+    content: Risks and edge cases
+    children:
+      - c66d728c-458d-4705-90ba-4ae8043043bc
+      - ea91f08a-991a-4d05-b120-4520c3fcd949
+      - b240de71-565e-4e1d-8d9a-deccc5cd41b6
+      - 6637b9c4-5d6d-4060-beed-88507ca7f989
+      - 9a508bdb-1a05-4e46-a962-cc938e35c6f6
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c66d728c-458d-4705-90ba-4ae8043043bc:
+    id: c66d728c-458d-4705-90ba-4ae8043043bc
+    content: 'Step number click vs node selection: clicking the step number must not select the node or trigger editing — stopPropagation on the click handler prevents this'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ea91f08a-991a-4d05-b120-4520c3fcd949:
+    id: ea91f08a-991a-4d05-b120-4520c3fcd949
+    content: 'Dialog during workflow execution: the dialog can be opened while a workflow is running. Changing step type mid-run should not affect the currently running step — SetStepTypeCommand only changes metadata, and the running execution reads step type at advancement time'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b240de71-565e-4e1d-8d9a-deccc5cd41b6:
+    id: b240de71-565e-4e1d-8d9a-deccc5cd41b6
+    content: 'Multiple dialogs: only one dialog should be open at a time — opening a new one closes the previous (the store''s open() replaces the current state)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6637b9c4-5d6d-4060-beed-88507ca7f989:
+    id: 6637b9c4-5d6d-4060-beed-88507ca7f989
+    content: 'Zoomed tabs: step numbers render the same way in zoomed views, so the dialog works identically in zoomed and non-zoomed contexts'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9a508bdb-1a05-4e46-a962-cc938e35c6f6:
+    id: 9a508bdb-1a05-4e46-a962-cc938e35c6f6
+    content: 'Step number does not exist: the dialog can only be opened on nodes that have a step number (workflow step children). The click handler is only rendered when stepNumber !== null, so this is inherently safe.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c7bd3d67-501e-4e86-b701-515ea4760583:
+    id: c7bd3d67-501e-4e86-b701-515ea4760583
+    content: Implementation plan
+    children:
+      - ba7a6d06-ef73-422f-9251-194d7a9bbb00
+      - b073370e-c4ca-44e8-822c-74ed62c2004f
+      - e2c2cb0a-3acd-409c-acca-cfd7f49f017a
+      - 0216ac0a-0384-4633-a425-0399a8a6d949
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ba7a6d06-ef73-422f-9251-194d7a9bbb00:
+    id: ba7a6d06-ef73-422f-9251-194d7a9bbb00
+    content: Single PR containing all steps — this is a small, self-contained feature
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b073370e-c4ca-44e8-822c-74ed62c2004f:
+    id: b073370e-c4ca-44e8-822c-74ed62c2004f
+    content: 'Order: Store → click handler → dialog component → mount → manual test'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e2c2cb0a-3acd-409c-acca-cfd7f49f017a:
+    id: e2c2cb0a-3acd-409c-acca-cfd7f49f017a
+    content: Testing strategy
+    children:
+      - c6e72fec-3d9e-45a6-86e4-852e16508dc2
+      - a0d63fbc-69d0-40d8-93a7-f70c4fcef201
+      - ceda684d-d25a-4543-9afd-d67d52f2ada2
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c6e72fec-3d9e-45a6-86e4-852e16508dc2:
+    id: c6e72fec-3d9e-45a6-86e4-852e16508dc2
+    content: 'Unit: StepConfigDialogStore (open/close state transitions)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a0d63fbc-69d0-40d8-93a7-f70c4fcef201:
+    id: a0d63fbc-69d0-40d8-93a7-f70c4fcef201
+    content: 'Unit: StepConfigDialog component (renders correct step type, calls setStepType on selection, closes on overlay click and Escape)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ceda684d-d25a-4543-9afd-d67d52f2ada2:
+    id: ceda684d-d25a-4543-9afd-d67d52f2ada2
+    content: 'Manual: verify dialog positioning near viewport edges, verify undo/redo works after dialog change, verify right-click submenu still works, verify click does not select node'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0216ac0a-0384-4633-a425-0399a8a6d949:
+    id: 0216ac0a-0384-4633-a425-0399a8a6d949
+    content: 'Parallelisation: not applicable — this is a single-contributor feature of small scope'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0334ab26-c6f3-47d7-8ceb-77ab089c7964:
+    id: 0334ab26-c6f3-47d7-8ceb-77ab089c7964
+    content: Test plan
+    children:
+      - 185c35f8-48dd-4e23-8069-eae9c7d5f6e3
+      - 61f7556f-90c1-4f54-a03b-fa4d3c8b1b07
+      - 792a423b-c8f4-438e-b083-7524a646e90c
+      - 7e60b299-db9e-4580-a494-0a42574a3fb1
+      - e2b2f95b-66c6-4eab-a480-77f77908f6f9
+      - cd883c7d-1ae0-4f9b-baa9-2db4698d41c2
+      - 4c39281b-1cab-454e-b887-17d9fd69176b
+    metadata:
+      status: pending
+      expanded: false
+      deleted: false
+      plugins: {}
+  185c35f8-48dd-4e23-8069-eae9c7d5f6e3:
+    id: 185c35f8-48dd-4e23-8069-eae9c7d5f6e3
+    content: Scope and objectives
+    children:
+      - 438f921d-1d4e-4e7c-9db8-3e2428c34e4c
+      - e3346315-d5f6-4514-bc36-e3a5f8209dc8
+      - 3c91e074-e230-4d15-a795-ff9124375f01
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  438f921d-1d4e-4e7c-9db8-3e2428c34e4c:
+    id: 438f921d-1d4e-4e7c-9db8-3e2428c34e4c
+    content: Verify that the step configuration dialog opens, displays correct state, allows step type changes, and closes properly
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e3346315-d5f6-4514-bc36-e3a5f8209dc8:
+    id: e3346315-d5f6-4514-bc36-e3a5f8209dc8
+    content: Verify that step type changes via the dialog produce identical results to the existing right-click submenu path (same command, same warnings, same undo behavior)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3c91e074-e230-4d15-a795-ff9124375f01:
+    id: 3c91e074-e230-4d15-a795-ff9124375f01
+    content: Verify that the dialog does not interfere with existing tree interactions (node selection, editing, scrolling, workflow execution)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  61f7556f-90c1-4f54-a03b-fa4d3c8b1b07:
+    id: 61f7556f-90c1-4f54-a03b-fa4d3c8b1b07
+    content: Entry criteria
+    children:
+      - cf4238b7-e8fd-4633-908d-529d6c4a5c96
+      - 3f4c570c-10f5-4b2f-a2df-337d3e0ff12b
+      - 3ed16a00-81ec-48ea-b791-34d87a74e024
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cf4238b7-e8fd-4633-908d-529d6c4a5c96:
+    id: cf4238b7-e8fd-4633-908d-529d6c4a5c96
+    content: StepConfigDialogStore is implemented
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3f4c570c-10f5-4b2f-a2df-337d3e0ff12b:
+    id: 3f4c570c-10f5-4b2f-a2df-337d3e0ff12b
+    content: StepConfigDialog component is mounted in the app
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3ed16a00-81ec-48ea-b791-34d87a74e024:
+    id: 3ed16a00-81ec-48ea-b791-34d87a74e024
+    content: Step number click handler is wired up in NodeContent.tsx
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  792a423b-c8f4-438e-b083-7524a646e90c:
+    id: 792a423b-c8f4-438e-b083-7524a646e90c
+    content: Exit criteria
+    children:
+      - f520caf5-49ac-4f97-8b7f-de9018b5fc31
+      - 6cdcf903-a9e2-4b15-b199-7783cb06706c
+      - d4b1b1a8-8c72-41e3-8ede-a7918aea82ab
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f520caf5-49ac-4f97-8b7f-de9018b5fc31:
+    id: f520caf5-49ac-4f97-8b7f-de9018b5fc31
+    content: All unit tests pass
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6cdcf903-a9e2-4b15-b199-7783cb06706c:
+    id: 6cdcf903-a9e2-4b15-b199-7783cb06706c
+    content: All manual test scenarios below are verified
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d4b1b1a8-8c72-41e3-8ede-a7918aea82ab:
+    id: d4b1b1a8-8c72-41e3-8ede-a7918aea82ab
+    content: No regressions in existing step type change behavior (right-click submenu path)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7e60b299-db9e-4580-a494-0a42574a3fb1:
+    id: 7e60b299-db9e-4580-a494-0a42574a3fb1
+    content: Environments and prerequisites
+    children:
+      - 7140ec81-070d-4fc3-bcd3-7994fb5403f3
+      - a62a9b72-46b8-4f0d-b4e6-fdff354a89a9
+      - 13b72173-6a2b-4f40-9641-05a6f631d9c7
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7140ec81-070d-4fc3-bcd3-7994fb5403f3:
+    id: 7140ec81-070d-4fc3-bcd3-7994fb5403f3
+    content: A tree with at least one declared workflow containing multiple steps of different types (manual, checkpoint, autonomous)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a62a9b72-46b8-4f0d-b4e6-fdff354a89a9:
+    id: a62a9b72-46b8-4f0d-b4e6-fdff354a89a9
+    content: A workflow with nested workflows (workflow step that is itself a workflow) to test step numbers at different nesting levels
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  13b72173-6a2b-4f40-9641-05a6f631d9c7:
+    id: 13b72173-6a2b-4f40-9641-05a6f631d9c7
+    content: Both light and dark themes (dialog styling)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e2b2f95b-66c6-4eab-a480-77f77908f6f9:
+    id: e2b2f95b-66c6-4eab-a480-77f77908f6f9
+    content: Unit tests
+    children:
+      - 4e93beb4-4065-41ab-9ad8-beb91394c5a0
+      - bff63cb9-f0ae-4eed-8be5-e497b8e0ee91
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4e93beb4-4065-41ab-9ad8-beb91394c5a0:
+    id: 4e93beb4-4065-41ab-9ad8-beb91394c5a0
+    content: StepConfigDialogStore
+    children:
+      - fd411dd4-2803-4add-953f-da1eca47d706
+      - d776062c-60d7-4d9c-8590-fbda036d12b2
+      - d952c0ab-8214-4755-ba15-32ed3ad2ca76
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fd411dd4-2803-4add-953f-da1eca47d706:
+    id: fd411dd4-2803-4add-953f-da1eca47d706
+    content: open() sets isOpen to true, stores nodeId and anchorPosition
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d776062c-60d7-4d9c-8590-fbda036d12b2:
+    id: d776062c-60d7-4d9c-8590-fbda036d12b2
+    content: close() sets isOpen to false, clears nodeId and anchorPosition
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d952c0ab-8214-4755-ba15-32ed3ad2ca76:
+    id: d952c0ab-8214-4755-ba15-32ed3ad2ca76
+    content: Calling open() while already open replaces the current state (no stacking)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bff63cb9-f0ae-4eed-8be5-e497b8e0ee91:
+    id: bff63cb9-f0ae-4eed-8be5-e497b8e0ee91
+    content: StepConfigDialog component
+    children:
+      - 5ee28305-5398-4859-ac4d-8f9a628fdb02
+      - 0ebc3ef0-e8f3-47fe-ba89-46589b194512
+      - 12919c2e-c9ac-4432-9cdd-f0d1da29e3ee
+      - d0f7ecc5-6fda-4a4c-832e-234b16a4529f
+      - 160e1436-57a9-4d68-8099-508d35881b63
+      - d28013a1-88ba-4f7a-8cba-f66017aeeaed
+      - c927f9f7-944f-4596-bffe-0b303d0bd0f5
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5ee28305-5398-4859-ac4d-8f9a628fdb02:
+    id: 5ee28305-5398-4859-ac4d-8f9a628fdb02
+    content: Renders three radio options (Manual, Checkpoint, Autonomous) when open
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0ebc3ef0-e8f3-47fe-ba89-46589b194512:
+    id: 0ebc3ef0-e8f3-47fe-ba89-46589b194512
+    content: Shows the current step type as selected based on node.metadata.stepType
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  12919c2e-c9ac-4432-9cdd-f0d1da29e3ee:
+    id: 12919c2e-c9ac-4432-9cdd-f0d1da29e3ee
+    content: Defaults to Manual when stepType is undefined
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d0f7ecc5-6fda-4a4c-832e-234b16a4529f:
+    id: d0f7ecc5-6fda-4a4c-832e-234b16a4529f
+    content: Calls actions.setStepType with the correct nodeId and stepType when a radio option is clicked
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  160e1436-57a9-4d68-8099-508d35881b63:
+    id: 160e1436-57a9-4d68-8099-508d35881b63
+    content: Calls close() when overlay is clicked
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d28013a1-88ba-4f7a-8cba-f66017aeeaed:
+    id: d28013a1-88ba-4f7a-8cba-f66017aeeaed
+    content: Calls close() when Escape is pressed
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c927f9f7-944f-4596-bffe-0b303d0bd0f5:
+    id: c927f9f7-944f-4596-bffe-0b303d0bd0f5
+    content: Does not render when isOpen is false
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  cd883c7d-1ae0-4f9b-baa9-2db4698d41c2:
+    id: cd883c7d-1ae0-4f9b-baa9-2db4698d41c2
+    content: Manual tests
+    children:
+      - 09db3500-1aa8-41c4-b745-1ceb0220191f
+      - 05d53fe6-8ee4-491b-ba12-5e00fadd0767
+      - 97d36f7b-3071-48cd-a907-631e5699cee8
+      - 644b7326-db7a-4b17-91f7-90632cbc7158
+      - 85726373-0ccd-4649-8fee-5b2a4a93d3f2
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  09db3500-1aa8-41c4-b745-1ceb0220191f:
+    id: 09db3500-1aa8-41c4-b745-1ceb0220191f
+    content: Dialog opening and positioning
+    children:
+      - 626011e1-a93b-497b-a323-ddc5680ddb75
+      - 96aeab4e-7461-4da5-8dc2-1db9e31bee86
+      - a2e060c6-f8c5-4d79-b4b5-dcd1c0f750f1
+      - a4280b88-d889-4f58-8e2e-e712b90e7b5b
+      - ceb75fcb-c6ea-4685-9ee9-17c3db190e78
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  626011e1-a93b-497b-a323-ddc5680ddb75:
+    id: 626011e1-a93b-497b-a323-ddc5680ddb75
+    content: Click a step number — dialog opens near the clicked position
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  96aeab4e-7461-4da5-8dc2-1db9e31bee86:
+    id: 96aeab4e-7461-4da5-8dc2-1db9e31bee86
+    content: Click a step number near the right edge of the viewport — dialog adjusts to stay within bounds
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a2e060c6-f8c5-4d79-b4b5-dcd1c0f750f1:
+    id: a2e060c6-f8c5-4d79-b4b5-dcd1c0f750f1
+    content: Click a step number near the bottom edge of the viewport — dialog adjusts to stay within bounds
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a4280b88-d889-4f58-8e2e-e712b90e7b5b:
+    id: a4280b88-d889-4f58-8e2e-e712b90e7b5b
+    content: Click a step number in a zoomed tab — dialog opens and positions correctly
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ceb75fcb-c6ea-4685-9ee9-17c3db190e78:
+    id: ceb75fcb-c6ea-4685-9ee9-17c3db190e78
+    content: Click a step number while the tree is scrolled down — dialog appears at the correct viewport position
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  05d53fe6-8ee4-491b-ba12-5e00fadd0767:
+    id: 05d53fe6-8ee4-491b-ba12-5e00fadd0767
+    content: Step type selection
+    children:
+      - 519a9249-8153-4c8b-953a-5d02f1749bdf
+      - 1d6b80f2-2d14-479a-8da1-ba0062b3ddc5
+      - 75fc553a-825b-44d3-ac76-48dfa372d0ff
+      - c902fb2f-ce9c-4fdb-b7e8-b8168a4a0517
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  519a9249-8153-4c8b-953a-5d02f1749bdf:
+    id: 519a9249-8153-4c8b-953a-5d02f1749bdf
+    content: Change from manual to checkpoint — step number shape changes to hexagon, checkpoint toast warning appears
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1d6b80f2-2d14-479a-8da1-ba0062b3ddc5:
+    id: 1d6b80f2-2d14-479a-8da1-ba0062b3ddc5
+    content: Change from manual to autonomous — step number shape changes to circle, autonomous toast warning appears
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  75fc553a-825b-44d3-ac76-48dfa372d0ff:
+    id: 75fc553a-825b-44d3-ac76-48dfa372d0ff
+    content: Change from autonomous to manual — step number shape changes to square, no toast
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c902fb2f-ce9c-4fdb-b7e8-b8168a4a0517:
+    id: c902fb2f-ce9c-4fdb-b7e8-b8168a4a0517
+    content: Select the already-selected step type — no change, no toast, no undo entry
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  97d36f7b-3071-48cd-a907-631e5699cee8:
+    id: 97d36f7b-3071-48cd-a907-631e5699cee8
+    content: Undo and redo
+    children:
+      - c8dd19b5-fd63-4ec1-9b22-c10d096953be
+      - eaf2f161-35ce-48df-a4f0-87302f3b9a4a
+      - 5bae3984-a5c3-420c-b1e0-6fa1ded33ced
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c8dd19b5-fd63-4ec1-9b22-c10d096953be:
+    id: c8dd19b5-fd63-4ec1-9b22-c10d096953be
+    content: Change step type via dialog, then Ctrl+Z — step type reverts to previous value
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  eaf2f161-35ce-48df-a4f0-87302f3b9a4a:
+    id: eaf2f161-35ce-48df-a4f0-87302f3b9a4a
+    content: Change step type via dialog, Ctrl+Z, then Ctrl+Shift+Z — step type is restored
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5bae3984-a5c3-420c-b1e0-6fa1ded33ced:
+    id: 5bae3984-a5c3-420c-b1e0-6fa1ded33ced
+    content: Change step type via dialog, then change via right-click submenu, then Ctrl+Z — the submenu change reverts (both paths use the same command)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  644b7326-db7a-4b17-91f7-90632cbc7158:
+    id: 644b7326-db7a-4b17-91f7-90632cbc7158
+    content: Dialog dismissal
+    children:
+      - ead97c63-659c-420e-aa26-aaa071b75f8b
+      - c22eff16-6949-4584-8fc0-2639cc697cec
+      - a8901330-428a-425d-a618-7a3ae366c03e
+      - 26f959af-4c53-417e-92ad-435f0449131b
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ead97c63-659c-420e-aa26-aaa071b75f8b:
+    id: ead97c63-659c-420e-aa26-aaa071b75f8b
+    content: Click outside the dialog — dialog closes
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c22eff16-6949-4584-8fc0-2639cc697cec:
+    id: c22eff16-6949-4584-8fc0-2639cc697cec
+    content: Press Escape — dialog closes
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a8901330-428a-425d-a618-7a3ae366c03e:
+    id: a8901330-428a-425d-a618-7a3ae366c03e
+    content: Click a different step number while dialog is open — dialog closes and reopens for the new step
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  26f959af-4c53-417e-92ad-435f0449131b:
+    id: 26f959af-4c53-417e-92ad-435f0449131b
+    content: Open a right-click context menu while dialog is open — dialog closes
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  85726373-0ccd-4649-8fee-5b2a4a93d3f2:
+    id: 85726373-0ccd-4649-8fee-5b2a4a93d3f2
+    content: No interference with existing behavior
+    children:
+      - 2b354f1e-97da-47c1-aa4b-ade01871e7d0
+      - f1c6a2e2-8fea-4723-925a-7d18b1463782
+      - 57782ad9-e300-452b-8d47-49417bd45f97
+      - 4de00ed8-414b-4a67-9d60-a539a1beefd3
+      - c0454cbc-7f2a-4f43-b2a0-85767594297a
+      - 28a97c0e-e18a-4341-80c4-504acf96357c
+      - 47d59680-3680-4c91-bcb1-98089a4e5c93
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2b354f1e-97da-47c1-aa4b-ade01871e7d0:
+    id: 2b354f1e-97da-47c1-aa4b-ade01871e7d0
+    content: Clicking a step number does not select or activate the node for editing
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f1c6a2e2-8fea-4723-925a-7d18b1463782:
+    id: f1c6a2e2-8fea-4723-925a-7d18b1463782
+    content: Clicking a step number does not trigger the node's own click handler
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  57782ad9-e300-452b-8d47-49417bd45f97:
+    id: 57782ad9-e300-452b-8d47-49417bd45f97
+    content: Right-click on a step number still opens the context menu (not the dialog)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4de00ed8-414b-4a67-9d60-a539a1beefd3:
+    id: 4de00ed8-414b-4a67-9d60-a539a1beefd3
+    content: The right-click → Blueprint → Step Type submenu still works and produces identical results
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c0454cbc-7f2a-4f43-b2a0-85767594297a:
+    id: c0454cbc-7f2a-4f43-b2a0-85767594297a
+    content: Keyboard navigation (arrow keys) still works while the dialog is closed
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  28a97c0e-e18a-4341-80c4-504acf96357c:
+    id: 28a97c0e-e18a-4341-80c4-504acf96357c
+    content: Workflow execution (start, advance, stop) is unaffected by the dialog being open or closed
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  47d59680-3680-4c91-bcb1-98089a4e5c93:
+    id: 47d59680-3680-4c91-bcb1-98089a4e5c93
+    content: Changing step type via dialog while a workflow is running does not affect the currently executing step
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4c39281b-1cab-454e-b887-17d9fd69176b:
+    id: 4c39281b-1cab-454e-b887-17d9fd69176b
+    content: Risks
+    children:
+      - 9da6188c-2fbc-4cd9-9fd8-be6eaa06447a
+      - 38d2e7ab-677b-4813-9f21-74d9984aa404
+      - 2029ba69-537d-4535-aea2-b798dd5ded00
+      - 2b1abce7-3861-4445-9419-ae136ab02928
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9da6188c-2fbc-4cd9-9fd8-be6eaa06447a:
+    id: 9da6188c-2fbc-4cd9-9fd8-be6eaa06447a
+    content: 'Highest likelihood of defects: dialog positioning near viewport edges — requires manual testing across different tree scroll positions and window sizes'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  38d2e7ab-677b-4813-9f21-74d9984aa404:
+    id: 38d2e7ab-677b-4813-9f21-74d9984aa404
+    content: 'Highest impact if failed: click event propagation — if stopPropagation is missing or incorrect, clicking the step number could select the node, trigger editing, or interfere with the tree''s keyboard navigation state'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2029ba69-537d-4535-aea2-b798dd5ded00:
+    id: 2029ba69-537d-4535-aea2-b798dd5ded00
+    content: 'Ambiguity: the AC says "positioned near the step" — exact positioning logic (above/below/left/right of click point, offset, max distance) is not specified and will need to be decided during implementation'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2b1abce7-3861-4445-9419-ae136ab02928:
+    id: 2b1abce7-3861-4445-9419-ae136ab02928
+    content: 'Likely to change: the dialog will gain additional fields (archive destination, recurse, resolve toggle) in future user stories — the component structure must support adding fields without reworking the layout'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4f2d0f06-8458-4129-a4c9-9d4c045ab357:
+    id: 4f2d0f06-8458-4129-a4c9-9d4c045ab357
+    content: Accepting feedback expands a node that was previously collapsed, annoying
+    children:
+      - b97c6dd6-9af2-4cff-97e7-08e5dd13632a
+      - 49902aa9-c261-4217-abad-029e3359f9a1
+    metadata:
+      status: pending
+  b97c6dd6-9af2-4cff-97e7-08e5dd13632a:
+    id: b97c6dd6-9af2-4cff-97e7-08e5dd13632a
+    content: Don't do it
+    children: []
+    metadata:
+      status: pending
+  49902aa9-c261-4217-abad-029e3359f9a1:
+    id: 49902aa9-c261-4217-abad-029e3359f9a1
+    content: This is particularly important for workflows
+    children: []
+    metadata:
+      status: pending
+  380bac8e-2bb6-4e8f-b880-33cc131e9054:
+    id: 380bac8e-2bb6-4e8f-b880-33cc131e9054
+    content: Needs to be a way for the AI to halt the workflow process
+    children:
+      - fb49e91e-1fde-48ce-a709-c8bca6a31254
+      - 65b490f6-135e-4d2d-93d5-0fa280b31a04
+    metadata:
+      status: pending
+  fb49e91e-1fde-48ce-a709-c8bca6a31254:
+    id: fb49e91e-1fde-48ce-a709-c8bca6a31254
+    content: For example, if they've found issues with the spec, technical constraints etc and need to discuss with the user
+    children: []
+    metadata:
+      status: pending
+  65b490f6-135e-4d2d-93d5-0fa280b31a04:
+    id: 65b490f6-135e-4d2d-93d5-0fa280b31a04
+    content: Either see if we can use a hook, or give it instructions to call a specific end point if it needs user intervention
+    children:
+      - 7a30885b-f8d5-4871-803b-6a71aa0dd104
+    metadata:
+      status: pending
+  7a30885b-f8d5-4871-803b-6a71aa0dd104:
+    id: 7a30885b-f8d5-4871-803b-6a71aa0dd104
+    content: Then that pauses the workflow and triggers a persistent toast
+    children: []
+    metadata:
+      status: pending
+  ac08205b-50cf-41dd-a758-0875206542af:
+    id: ac08205b-50cf-41dd-a758-0875206542af
+    content: Refactor feedback
+    children:
+      - 1b96aab9-fbb3-4cdd-a93d-b4f00c7bfe29
+      - ffa87852-02c4-4c41-abd5-11e00a53ce1a
+      - 84e8d775-73eb-4ed7-b25f-3e4a516635a9
+    metadata:
+      status: pending
+  1b96aab9-fbb3-4cdd-a93d-b4f00c7bfe29:
+    id: 1b96aab9-fbb3-4cdd-a93d-b4f00c7bfe29
+    content: Will clicking outside of the popover close it ?
+    children: []
+    metadata:
+      status: pending
+  ffa87852-02c4-4c41-abd5-11e00a53ce1a:
+    id: ffa87852-02c4-4c41-abd5-11e00a53ce1a
+    content: There's no background transparency on the dialog
+    children: []
+    metadata:
+      status: pending
+  84e8d775-73eb-4ed7-b25f-3e4a516635a9:
+    id: 84e8d775-73eb-4ed7-b25f-3e4a516635a9
+    content: The dialog is small - should be more like the icon picker dialog, we'll put more stuff in there later
+    children:
+      - 7a2bd7fa-f64e-4d2a-b1f7-51ddd353ac88
+      - 9da5e5c2-ee3e-4eb7-b58b-392ab6e0082c
+    metadata:
+      status: pending
+  7a2bd7fa-f64e-4d2a-b1f7-51ddd353ac88:
+    id: 7a2bd7fa-f64e-4d2a-b1f7-51ddd353ac88
+    content: Oh - actually we ought to recycle the same code as the iconpicker dialog
+    children: []
+    metadata:
+      status: pending
+  9da5e5c2-ee3e-4eb7-b58b-392ab6e0082c:
+    id: 9da5e5c2-ee3e-4eb7-b58b-392ab6e0082c
+    content: So it's more of a modal than a popover
+    children: []
+    metadata:
+      status: pending
+  37f171d1-4880-42c3-b14b-d9527319e3a5:
+    id: 37f171d1-4880-42c3-b14b-d9527319e3a5
+    content: Toasts are unnecessary now that we've moved the context dialog to a popup
+    children:
+      - 5a7a171d-acc4-418f-b5f9-722e108d8f10
+    metadata:
+      status: pending
+  5a7a171d-acc4-418f-b5f9-722e108d8f10:
+    id: 5a7a171d-acc4-418f-b5f9-722e108d8f10
+    content: Tooltips on hover in the dialog would be better
+    children: []
+    metadata:
+      status: pending
+  0484c483-6231-4efd-a1c2-e56210fb725b:
+    id: 0484c483-6231-4efd-a1c2-e56210fb725b
+    content: Not much point in showing 'Start workflow' in manual steps.
+    children: []
+    metadata:
+      status: pending
