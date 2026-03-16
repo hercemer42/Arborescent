@@ -8,11 +8,11 @@ Right-click a blueprint branch → **Blueprint** → **Declare as Workflow**. Th
 
 The parent must be a blueprint. Contexts and their descendants cannot be workflows.
 
-To remove: right-click → **Blueprint** → **Remove from Workflow**. Both actions are undoable with `Ctrl+Z`.
+To remove: right-click → **Workflow** → **Remove from Workflow** (also available under **Blueprint**). Both actions are undoable with `Ctrl+Z`.
 
 ## Step Types
 
-Each workflow step has a type that controls how it will be handled during workflow execution. Click a step number to open the step configuration dialog and change its type. You can also right-click a step → **Blueprint** → **Step Type**.
+Each workflow step has a type that controls how it will be handled during workflow execution. Click a step number to open the step configuration dialog and change its type. You can also right-click a step → **Workflow** → **Configure Step**.
 
 - **Manual** (default) — The item waits at the step for you to act. Nothing is sent to the terminal. Indicated by a square border around the step number.
 - **Checkpoint** — Content is sent to the terminal. When the AI finishes, the workflow awaits your validation before continuing. Indicated by a triangle border.
@@ -34,13 +34,15 @@ Decomposition works with all step types. On autonomous steps, the multiple nodes
 
 ## Running a Workflow
 
-Place an item inside a workflow step, then right-click → **Start Workflow** (requires a terminal tab open). The item's content is sent to the terminal and the workflow begins executing.
+Place an item inside an autonomous workflow step, then right-click → **Start Workflow** (requires a terminal tab open). The item's content is sent to the terminal and the workflow begins executing through the autonomous chain.
+
+**Start Workflow** is only available on autonomous steps — for manual and checkpoint steps, use **Send** to send content to the terminal directly.
 
 What happens at each step depends on its type:
 
 - **Autonomous** — Content is sent to the terminal. When the AI finishes, the item automatically advances to the next step and sends again.
 - **Checkpoint** — Content is sent to the terminal. When the AI finishes, the item awaits your validation. Right-click → **Continue Workflow** to advance it to the next step and resume.
-- **Manual** — The item moves to the step but the workflow stops. Nothing is sent to the terminal. Use **Start Workflow** to run it again when ready.
+- **Manual** — The item waits at the step. Nothing is sent automatically. Use **Send** to send content, then **Next step** to advance manually.
 
 Each step's content is sent with its applied contexts. If no context is applied, a default execute context is used.
 

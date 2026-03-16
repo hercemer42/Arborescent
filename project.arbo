@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-03-16T10:09:50.859Z'
+updated: '2026-03-16T10:51:20.719Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -5592,7 +5592,7 @@ nodes:
       - 6690289a-e02f-48bc-9225-a1083b7b324f
     metadata:
       status: pending
-      expanded: false
+      expanded: true
       isBlueprint: true
       blueprintIcon: Boxes
       blueprintColor: '#a855f7'
@@ -24640,7 +24640,7 @@ nodes:
       - 3b53a0c2-5ad2-4d11-b60d-32044d9617b0
     metadata:
       status: pending
-      expanded: true
+      expanded: false
       deleted: false
       plugins: {}
       isContextDeclaration: true
@@ -34454,12 +34454,14 @@ nodes:
     id: 13c5048b-15eb-4989-a6fc-25032e5c131f
     content: Problems
     children:
+      - dad573ea-357c-4c2a-82fe-f4ab79a7d242
       - 4398180d-fba8-4294-a988-2be477ef3236
       - 7de1d56c-5320-48f8-b77b-bc434940dfce
       - fc947fbf-ce25-4014-a7c4-ce1adb0e93a7
       - 4f2d0f06-8458-4129-a4c9-9d4c045ab357
       - 380bac8e-2bb6-4e8f-b880-33cc131e9054
       - 0484c483-6231-4efd-a1c2-e56210fb725b
+      - e63b657f-d2da-489a-94d5-0825caf69083
       - 28b63463-b046-4ed0-ab09-942c8b933875
       - 33c9ccfe-2b9e-441f-a857-bf766dc09892
       - 4446dd01-7caf-4953-8dd2-36153adb9cfa
@@ -50682,8 +50684,7 @@ nodes:
   83a2bd12-9d74-4d87-8139-ae7adb95c9fa:
     id: 83a2bd12-9d74-4d87-8139-ae7adb95c9fa
     content: Feature implementation
-    children:
-      - b08a9e71-fc04-47c7-9e1a-3e65621a9009
+    children: []
     metadata:
       status: completed
       expanded: true
@@ -50710,7 +50711,8 @@ nodes:
   3ab86cdd-2d94-4d06-806c-2b239fef0ffd:
     id: 3ab86cdd-2d94-4d06-806c-2b239fef0ffd
     content: Documentation
-    children: []
+    children:
+      - b08a9e71-fc04-47c7-9e1a-3e65621a9009
     metadata:
       status: pending
       isBlueprint: true
@@ -50737,3 +50739,71 @@ nodes:
       status: pending
       isBlueprint: true
       blueprintIcon: TestTube2
+  dad573ea-357c-4c2a-82fe-f4ab79a7d242:
+    id: dad573ea-357c-4c2a-82fe-f4ab79a7d242
+    content: Some steps don't require resending the content when in the same execution window
+    children:
+      - 6f7a710e-edd0-4f98-a5b1-772d5b2a0a6f
+      - 71781b70-468e-45a9-9706-727f58d4444a
+      - ec90ba48-91cc-4e8b-9776-a213758ba4d8
+    metadata:
+      status: pending
+  6f7a710e-edd0-4f98-a5b1-772d5b2a0a6f:
+    id: 6f7a710e-edd0-4f98-a5b1-772d5b2a0a6f
+    content: It's redundant, confusing, and might prevent optional results
+    children: []
+    metadata:
+      status: pending
+  71781b70-468e-45a9-9706-727f58d4444a:
+    id: 71781b70-468e-45a9-9706-727f58d4444a
+    content: Ask Claude how much of an issue this is
+    children: []
+    metadata:
+      status: pending
+  ec90ba48-91cc-4e8b-9776-a213758ba4d8:
+    id: ec90ba48-91cc-4e8b-9776-a213758ba4d8
+    content: Could be worth having a 'Don't send content' option for a given step - AI refactor for instance
+    children:
+      - 91900b28-7bc9-42c8-8e0f-8bc18fdaec5a
+      - b4426436-f840-45da-9069-f832b0ffd8b1
+    metadata:
+      status: pending
+  91900b28-7bc9-42c8-8e0f-8bc18fdaec5a:
+    id: 91900b28-7bc9-42c8-8e0f-8bc18fdaec5a
+    content: In this case, only context would be sent
+    children: []
+    metadata:
+      status: pending
+  b4426436-f840-45da-9069-f832b0ffd8b1:
+    id: b4426436-f840-45da-9069-f832b0ffd8b1
+    content: And actually, this is an action then, not a context
+    children:
+      - 0487134a-7d72-4498-8199-db28ff72bac8
+      - 27a3443d-bf97-41b7-ad9f-f257effbe057
+    metadata:
+      status: pending
+  0487134a-7d72-4498-8199-db28ff72bac8:
+    id: 0487134a-7d72-4498-8199-db28ff72bac8
+    content: Formalize the action system ?
+    children: []
+    metadata:
+      status: pending
+  27a3443d-bf97-41b7-ad9f-f257effbe057:
+    id: 27a3443d-bf97-41b7-ad9f-f257effbe057
+    content: Make it part of the context system but have a special 'action' setting ?
+    children: []
+    metadata:
+      status: pending
+  e63b657f-d2da-489a-94d5-0825caf69083:
+    id: e63b657f-d2da-489a-94d5-0825caf69083
+    content: "Should replace context mode right click menu with config dialog pop up\_"
+    children:
+      - 64857076-f88b-416d-b42c-8fcf62e91f6a
+    metadata:
+      status: pending
+  64857076-f88b-416d-b42c-8fcf62e91f6a:
+    id: 64857076-f88b-416d-b42c-8fcf62e91f6a
+    content: Consider both blueprints and contexts here
+    children: []
+    metadata:
+      status: pending

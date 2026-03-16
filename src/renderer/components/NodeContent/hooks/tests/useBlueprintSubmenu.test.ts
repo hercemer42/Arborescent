@@ -20,7 +20,6 @@ describe('buildBlueprintSubmenu', () => {
     onSetContextMode: vi.fn(),
     onDeclareAsWorkflow: vi.fn(),
     onRemoveFromWorkflow: vi.fn(),
-    onConfigureStep: vi.fn(),
   };
 
   const buildParams = (overrides: Record<string, unknown> = {}) => {
@@ -116,7 +115,7 @@ describe('buildBlueprintSubmenu', () => {
     expect(result!.submenu!.some(item => item.label === 'Remove Context Declaration')).toBe(true);
   });
 
-  it('should show Declare as Workflow when eligible', () => {
+  it('should show Declare as Workflow for eligible blueprint nodes', () => {
     const result = buildBlueprintSubmenu(buildParams({
       node: createNode('target', { metadata: { isBlueprint: true } }),
     }));
@@ -124,9 +123,9 @@ describe('buildBlueprintSubmenu', () => {
     expect(result!.submenu!.some(item => item.label === 'Declare as Workflow')).toBe(true);
   });
 
-  it('should not show Declare as Workflow when already a workflow', () => {
+  it('should not show Declare as Workflow for context nodes', () => {
     const result = buildBlueprintSubmenu(buildParams({
-      node: createNode('target', { metadata: { isBlueprint: true, isWorkflow: true } }),
+      node: createNode('target', { metadata: { isBlueprint: true, isContextDeclaration: true } }),
     }));
 
     expect(result!.submenu!.some(item => item.label === 'Declare as Workflow')).toBe(false);
@@ -138,29 +137,6 @@ describe('buildBlueprintSubmenu', () => {
     }));
 
     expect(result!.submenu!.some(item => item.label === 'Remove from Workflow')).toBe(true);
-  });
-
-  it('should show Declare as Workflow when ancestor has workflow (nesting allowed)', () => {
-    const nodes: Record<string, TreeNode> = {
-      'root': createNode('root', { children: ['workflow'], metadata: { isBlueprint: true } }),
-      'workflow': createNode('workflow', { children: ['step'], metadata: { isBlueprint: true, isWorkflow: true } }),
-      'step': createNode('step', { children: ['target'], metadata: { isBlueprint: true } }),
-      'target': createNode('target', { metadata: { isBlueprint: true } }),
-    };
-
-    const result = buildBlueprintSubmenu({
-      node: nodes['target'],
-      getNodes: () => nodes,
-      getAncestorRegistry: () => ({
-        'root': [],
-        'workflow': ['root'],
-        'step': ['root', 'workflow'],
-        'target': ['root', 'workflow', 'step'],
-      }),
-      ...defaultHandlers,
-    });
-
-    expect(result!.submenu!.some(item => item.label === 'Declare as Workflow')).toBe(true);
   });
 
   it('should return null when nothing to display', () => {
@@ -191,116 +167,6 @@ describe('buildBlueprintSubmenu', () => {
     addItem?.onClick?.();
 
     expect(onAddToBlueprint).toHaveBeenCalled();
-  });
-
-  it('should call onDeclareAsWorkflow when Declare as Workflow is clicked', () => {
-    const onDeclareAsWorkflow = vi.fn();
-    const result = buildBlueprintSubmenu(buildParams({
-      node: createNode('target', { metadata: { isBlueprint: true } }),
-      handlers: { onDeclareAsWorkflow },
-    }));
-
-    const workflowItem = result!.submenu!.find(item => item.label === 'Declare as Workflow');
-    workflowItem?.onClick?.();
-
-    expect(onDeclareAsWorkflow).toHaveBeenCalled();
-  });
-
-  it('should not show Declare as Workflow for a context node', () => {
-    const result = buildBlueprintSubmenu(buildParams({
-      node: createNode('target', { metadata: { isBlueprint: true, isContextDeclaration: true } }),
-    }));
-
-    expect(result!.submenu!.some(item => item.label === 'Declare as Workflow')).toBe(false);
-  });
-
-  it('should not show Declare as Workflow for a descendant of a context', () => {
-    const nodes = {
-      'root': createNode('root', { children: ['ctx'], metadata: { isBlueprint: true } }),
-      'ctx': createNode('ctx', { children: ['child'], metadata: { isBlueprint: true, isContextDeclaration: true } }),
-      'child': createNode('child', { children: ['target'], metadata: { isBlueprint: true } }),
-      'target': createNode('target', { metadata: { isBlueprint: true } }),
-    };
-    const result = buildBlueprintSubmenu({
-      node: nodes['target'],
-      getNodes: () => nodes,
-      getAncestorRegistry: () => ({
-        'root': [],
-        'ctx': ['root'],
-        'child': ['root', 'ctx'],
-        'target': ['root', 'ctx', 'child'],
-      }),
-      ...defaultHandlers,
-    });
-
-    expect(result!.submenu!.some(item => item.label === 'Declare as Workflow')).toBe(false);
-  });
-
-  describe('step type submenu', () => {
-    const workflowNodes: Record<string, TreeNode> = {
-      'root': createNode('root', { children: ['workflow'], metadata: { isBlueprint: true } }),
-      'workflow': createNode('workflow', { children: ['step'], metadata: { isBlueprint: true, isWorkflow: true } }),
-      'step': createNode('step', { children: ['task'], metadata: { isBlueprint: true } }),
-      'task': createNode('task', { metadata: { isBlueprint: true } }),
-    };
-
-    const workflowAncestors: Record<string, string[]> = {
-      'root': [],
-      'workflow': ['root'],
-      'step': ['root', 'workflow'],
-      'task': ['root', 'workflow', 'step'],
-    };
-
-    it('should show Configure Step item on workflow step nodes', () => {
-      const result = buildBlueprintSubmenu({
-        node: workflowNodes['step'],
-        getNodes: () => workflowNodes,
-        getAncestorRegistry: () => workflowAncestors,
-        ...defaultHandlers,
-      });
-
-      const configureItem = result!.submenu!.find(item => item.label === 'Configure Step');
-      expect(configureItem).toBeDefined();
-    });
-
-    it('should not show Configure Step on non-step nodes', () => {
-      const result = buildBlueprintSubmenu({
-        node: workflowNodes['task'],
-        getNodes: () => workflowNodes,
-        getAncestorRegistry: () => workflowAncestors,
-        ...defaultHandlers,
-      });
-
-      const configureItem = result!.submenu!.find(item => item.label === 'Configure Step');
-      expect(configureItem).toBeUndefined();
-    });
-
-    it('should not show Configure Step on the workflow node itself', () => {
-      const result = buildBlueprintSubmenu({
-        node: workflowNodes['workflow'],
-        getNodes: () => workflowNodes,
-        getAncestorRegistry: () => workflowAncestors,
-        ...defaultHandlers,
-      });
-
-      const configureItem = result!.submenu!.find(item => item.label === 'Configure Step');
-      expect(configureItem).toBeUndefined();
-    });
-
-    it('should call onConfigureStep when clicking Configure Step', () => {
-      const onConfigureStep = vi.fn();
-      const result = buildBlueprintSubmenu({
-        node: workflowNodes['step'],
-        getNodes: () => workflowNodes,
-        getAncestorRegistry: () => workflowAncestors,
-        ...defaultHandlers,
-        onConfigureStep,
-      });
-
-      const configureItem = result!.submenu!.find(item => item.label === 'Configure Step');
-      configureItem?.onClick?.();
-      expect(onConfigureStep).toHaveBeenCalled();
-    });
   });
 
   describe('context mode submenu', () => {

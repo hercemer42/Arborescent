@@ -9,8 +9,7 @@ import { usePanelStore } from '../../../store/panel/panelStore';
 import { useFilesStore } from '../../../store/files/filesStore';
 import { buildBlueprintSubmenu } from './useBlueprintSubmenu';
 import { buildStatusSubmenu } from './useStatusSubmenu';
-import { buildWorkflowStepSubmenu } from './useWorkflowStepSubmenu';
-import { buildWorkflowExecutionSubmenu } from './useWorkflowExecutionSubmenu';
+import { buildWorkflowSubmenu, buildWorkflowExecutionItems, buildWorkflowNavigationItems } from './useWorkflowSubmenu';
 import { buildSetContextSubmenu } from './useSetContextSubmenu';
 import { logger } from '../../../services/logger';
 import { useStepConfigDialogStore } from '../../../store/stepConfigDialog/stepConfigDialogStore';
@@ -165,9 +164,6 @@ export function useNodeContextMenu(node: TreeNode) {
       onSetContextMode: handleSetContextMode,
       onDeclareAsWorkflow: () => actions.declareAsWorkflow(node.id),
       onRemoveFromWorkflow: () => actions.removeFromWorkflow(node.id),
-      onConfigureStep: () => {
-        useStepConfigDialogStore.getState().open(node.id);
-      },
     });
 
     const statusMenuItem = buildStatusSubmenu({
@@ -176,24 +172,31 @@ export function useNodeContextMenu(node: TreeNode) {
       onMarkAllAsIncomplete: () => actions.markAllAsIncomplete(node.id),
     });
 
-    const workflowItems = buildWorkflowStepSubmenu({
+    const getTerminalId = () => useTerminalStore.getState().openTerminal();
+    const workflowMenuItem = buildWorkflowSubmenu({
       node: freshNode,
       nodes,
       ancestorRegistry,
-      actions,
+      onRemoveFromWorkflow: () => actions.removeFromWorkflow(node.id),
+      onConfigureStep: () => useStepConfigDialogStore.getState().open(node.id),
     });
 
-    const workflowExecutionItems = buildWorkflowExecutionSubmenu({
+    const workflowNavigationItems = buildWorkflowNavigationItems({
+      node: freshNode,
+      nodes,
+      ancestorRegistry,
+      onMoveToNextStep: () => actions.moveToNextStep(node.id),
+      onMoveToPreviousStep: () => actions.moveToPreviousStep(node.id),
+    });
+
+    const workflowExecutionItems = buildWorkflowExecutionItems({
       node: freshNode,
       nodes,
       ancestorRegistry,
       workflowExecutionStates: state.workflowExecutionStates,
-      actions: {
-        startWorkflow: actions.startWorkflow,
-        stopWorkflow: actions.stopWorkflow,
-        continueWorkflow: actions.continueWorkflow,
-      },
-      getTerminalId: () => useTerminalStore.getState().openTerminal(),
+      onStartWorkflow: () => getTerminalId().then(tid => actions.startWorkflow(node.id, tid)),
+      onStopWorkflow: () => actions.stopWorkflow(node.id),
+      onContinueWorkflow: () => getTerminalId().then(tid => actions.continueWorkflow(node.id, tid)),
     });
 
     const isHyperlink = freshNode.metadata.isHyperlink === true;
@@ -202,7 +205,7 @@ export function useNodeContextMenu(node: TreeNode) {
 
     const baseMenuItems: ContextMenuItem[] = [
       ...workflowExecutionItems,
-      ...workflowItems,
+      ...workflowNavigationItems,
       ...(isExternalLink && externalUrl ? [{
         label: 'Open in external browser',
         onClick: () => {
@@ -225,6 +228,7 @@ export function useNodeContextMenu(node: TreeNode) {
         submenu: setContextSubmenuItems,
       }] : []),
       ...(!isHyperlink && !isExternalLink && blueprintMenuItem ? [blueprintMenuItem] : []),
+      ...(!isHyperlink && !isExternalLink && workflowMenuItem ? [workflowMenuItem] : []),
       {
         label: 'Edit',
         submenu: [

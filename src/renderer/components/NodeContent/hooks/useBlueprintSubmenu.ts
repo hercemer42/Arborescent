@@ -16,7 +16,6 @@ interface BuildBlueprintSubmenuParams {
   onSetContextMode?: (mode: ContextMode) => void;
   onDeclareAsWorkflow?: () => void;
   onRemoveFromWorkflow?: () => void;
-  onConfigureStep?: () => void;
 }
 
 function hasDescendantBlueprints(nodeId: string, nodes: Record<string, TreeNode>): boolean {
@@ -45,7 +44,6 @@ export function buildBlueprintSubmenu({
   onSetContextMode,
   onDeclareAsWorkflow,
   onRemoveFromWorkflow,
-  onConfigureStep,
 }: BuildBlueprintSubmenuParams): ContextMenuItem | null {
   const nodes = getNodes();
   const ancestorRegistry = getAncestorRegistry();
@@ -158,15 +156,6 @@ export function buildBlueprintSubmenu({
     submenuItems.push({
       label: 'Remove from Workflow',
       onClick: onRemoveFromWorkflow,
-    });
-  }
-
-  const isWorkflowStep = parent?.metadata.isWorkflow === true && !isWorkflow;
-  if (isWorkflowStep && onConfigureStep) {
-    if (submenuItems.length > 0) submenuItems.push(SEPARATOR);
-    submenuItems.push({
-      label: 'Configure Step',
-      onClick: onConfigureStep,
     });
   }
 
