@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-03-16T11:12:17.242Z'
+updated: '2026-03-16T11:15:32.495Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -8847,7 +8847,7 @@ nodes:
     id: 79b693ca-27ce-4410-8617-8092d7e81b07
     content: Issues
     children:
-      - 75d12f7c-1e30-4551-93bf-e279e28b87ce
+      - 4f2d0f06-8458-4129-a4c9-9d4c045ab357
       - 533210b8-5c42-48f7-ab9a-bea602ae7ed2
       - 26dc74b0-c926-4461-b81a-7b6cd95864f6
       - 46f6965a-8da4-4dab-9e25-7dd3d2773bd7
@@ -8863,7 +8863,7 @@ nodes:
       blueprintIcon: TriangleAlert
       blueprintColor: '#ef4444'
       appliedContextId: 6690289a-e02f-48bc-9225-a1083b7b324f
-      expanded: false
+      expanded: true
   aff16275-6d8e-49c9-b862-76875858d4af:
     id: aff16275-6d8e-49c9-b862-76875858d4af
     content: Avoid adding comments specific to the bug fix unless really needed
@@ -34454,11 +34454,10 @@ nodes:
     id: 13c5048b-15eb-4989-a6fc-25032e5c131f
     content: Problems
     children:
-      - fc947fbf-ce25-4014-a7c4-ce1adb0e93a7
-      - 4f2d0f06-8458-4129-a4c9-9d4c045ab357
       - 380bac8e-2bb6-4e8f-b880-33cc131e9054
       - 0484c483-6231-4efd-a1c2-e56210fb725b
       - e63b657f-d2da-489a-94d5-0825caf69083
+      - ef9761c6-b9bc-46d3-b424-525708552e33
       - dad573ea-357c-4c2a-82fe-f4ab79a7d242
       - 28b63463-b046-4ed0-ab09-942c8b933875
       - 33c9ccfe-2b9e-441f-a857-bf766dc09892
@@ -34755,12 +34754,6 @@ nodes:
   20fa6e9f-c96a-4898-8c5d-8250849d12ad:
     id: 20fa6e9f-c96a-4898-8c5d-8250849d12ad
     content: Is also a useful todo list and orchestrator.
-    children: []
-    metadata:
-      status: pending
-  75d12f7c-1e30-4551-93bf-e279e28b87ce:
-    id: 75d12f7c-1e30-4551-93bf-e279e28b87ce
-    content: Adding a carriage return at the end of the text does not work as it gets pasted in blocks
     children: []
     metadata:
       status: pending
@@ -46052,19 +46045,6 @@ nodes:
     children: []
     metadata:
       status: pending
-  fc947fbf-ce25-4014-a7c4-ce1adb0e93a7:
-    id: fc947fbf-ce25-4014-a7c4-ce1adb0e93a7
-    content: Not sure about the utility of the warning 'step is taking longer than expected')
-    children:
-      - 5e465737-6408-46d3-8f92-e3bc61548dd2
-    metadata:
-      status: pending
-  5e465737-6408-46d3-8f92-e3bc61548dd2:
-    id: 5e465737-6408-46d3-8f92-e3bc61548dd2
-    content: Or maybe just increase the threshold to 15 minutes
-    children: []
-    metadata:
-      status: pending
   162adab5-3ed3-45b1-a923-96306cf7c61c:
     id: 162adab5-3ed3-45b1-a923-96306cf7c61c
     content: Problem statement
@@ -50820,5 +50800,18 @@ nodes:
     children:
       - e1f37e04-1337-4961-abd8-2f0849181f20
       - c5464de8-5497-4ae4-b877-213a28a64f8d
+    metadata:
+      status: pending
+  ef9761c6-b9bc-46d3-b424-525708552e33:
+    id: ef9761c6-b9bc-46d3-b424-525708552e33
+    content: When dragging or pasting into a node it pastes as last child
+    children:
+      - 74a6ec33-ed73-47e0-a2b0-fc546dcdbfcc
+    metadata:
+      status: pending
+  74a6ec33-ed73-47e0-a2b0-fc546dcdbfcc:
+    id: 74a6ec33-ed73-47e0-a2b0-fc546dcdbfcc
+    content: Should paste as first child
+    children: []
     metadata:
       status: pending

@@ -114,6 +114,25 @@ describe('AcceptFeedbackCommand', () => {
       expect(resultNode.metadata.activeContextId).toBe('ctx-1');
     });
 
+    it('should preserve collapsed state from collaborating node', () => {
+      mockState.nodes['collab-node'].metadata.expanded = false;
+
+      const newNodes = {
+        'new-root': createNode('new-root', 'Replaced', ['new-child']),
+        'new-child': createNode('new-child', 'Child', []),
+      };
+
+      const command = new AcceptFeedbackCommand(
+        'collab-node', 'new-root', newNodes,
+        getState, setState, triggerAutosave
+      );
+      command.execute();
+
+      const setCall = setState.mock.calls[0][0];
+      const resultNode = setCall.nodes['collab-node'];
+      expect(resultNode.metadata.expanded).toBe(false);
+    });
+
     it('should generate fresh UUIDs for descendants', () => {
       const newNodes = {
         'new-root': createNode('new-root', 'Root', ['new-child']),

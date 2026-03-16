@@ -118,6 +118,7 @@ export class AcceptFeedbackCommand extends BaseCommand {
     const keys = [
       'appliedContextIds', 'activeContextId', 'appliedContextId',
       'isContextDeclaration', 'blueprintIcon', 'blueprintColor', 'isBlueprint',
+      'expanded',
     ];
     for (const key of keys) {
       if (collaboratingNode.metadata[key] !== undefined) {
