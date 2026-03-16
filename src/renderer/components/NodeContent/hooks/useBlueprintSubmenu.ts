@@ -3,7 +3,6 @@ import { ContextMenuItem } from '../../ui/ContextMenu';
 import { getIsContextChild } from '../../../utils/nodeHelpers';
 import { AncestorRegistry } from '../../../utils/ancestry';
 import { ContextMode } from '../../../store/tree/treeStore';
-import { StepType } from '../../../store/tree/commands/SetStepTypeCommand';
 
 interface BuildBlueprintSubmenuParams {
   node: TreeNode;
@@ -17,7 +16,7 @@ interface BuildBlueprintSubmenuParams {
   onSetContextMode?: (mode: ContextMode) => void;
   onDeclareAsWorkflow?: () => void;
   onRemoveFromWorkflow?: () => void;
-  onSetStepType?: (stepType: StepType) => void;
+  onConfigureStep?: () => void;
 }
 
 function hasDescendantBlueprints(nodeId: string, nodes: Record<string, TreeNode>): boolean {
@@ -46,7 +45,7 @@ export function buildBlueprintSubmenu({
   onSetContextMode,
   onDeclareAsWorkflow,
   onRemoveFromWorkflow,
-  onSetStepType,
+  onConfigureStep,
 }: BuildBlueprintSubmenuParams): ContextMenuItem | null {
   const nodes = getNodes();
   const ancestorRegistry = getAncestorRegistry();
@@ -163,34 +162,11 @@ export function buildBlueprintSubmenu({
   }
 
   const isWorkflowStep = parent?.metadata.isWorkflow === true && !isWorkflow;
-  if (isWorkflowStep && onSetStepType) {
-    const currentStepType = (node.metadata.stepType as StepType) || 'manual';
+  if (isWorkflowStep && onConfigureStep) {
     if (submenuItems.length > 0) submenuItems.push(SEPARATOR);
     submenuItems.push({
-      label: 'Step Type',
-      submenu: [
-        {
-          label: 'Manual',
-          radioSelected: currentStepType === 'manual',
-          keepOpenOnClick: true,
-          disabled: currentStepType === 'manual',
-          onClick: () => onSetStepType('manual'),
-        },
-        {
-          label: 'Checkpoint',
-          radioSelected: currentStepType === 'checkpoint',
-          keepOpenOnClick: true,
-          disabled: currentStepType === 'checkpoint',
-          onClick: () => onSetStepType('checkpoint'),
-        },
-        {
-          label: 'Autonomous',
-          radioSelected: currentStepType === 'autonomous',
-          keepOpenOnClick: true,
-          disabled: currentStepType === 'autonomous',
-          onClick: () => onSetStepType('autonomous'),
-        },
-      ],
+      label: 'Configure Step',
+      onClick: onConfigureStep,
     });
   }
 

@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-03-16T09:56:45.876Z'
+updated: '2026-03-16T10:09:50.859Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -533,6 +533,7 @@ nodes:
       - 7bc450dd-64ef-40d6-a60b-8c7d74634c1c
       - d87082fc-4e05-4080-b652-c69897022374
       - 592a7f85-c2bb-4133-877d-26f32ff8d4ff
+      - 503e53c0-5353-48d5-a1f2-5dc15e0ff045
     metadata:
       status: completed
       expanded: false
@@ -5591,7 +5592,7 @@ nodes:
       - 6690289a-e02f-48bc-9225-a1083b7b324f
     metadata:
       status: pending
-      expanded: true
+      expanded: false
       isBlueprint: true
       blueprintIcon: Boxes
       blueprintColor: '#a855f7'
@@ -34453,9 +34454,6 @@ nodes:
     id: 13c5048b-15eb-4989-a6fc-25032e5c131f
     content: Problems
     children:
-      - 37f171d1-4880-42c3-b14b-d9527319e3a5
-      - b7c090bf-6421-467a-9d97-067d3521d013
-      - b08a9e71-fc04-47c7-9e1a-3e65621a9009
       - 4398180d-fba8-4294-a988-2be477ef3236
       - 7de1d56c-5320-48f8-b77b-bc434940dfce
       - fc947fbf-ce25-4014-a7c4-ce1adb0e93a7
@@ -34672,6 +34670,7 @@ nodes:
     children:
       - 07992140-d707-4d04-8e88-9e33b4bde2ff
       - edc07ad6-bed3-4095-8d18-c3550ee43213
+      - 21a8e05c-ac87-455f-9cab-f075ba892918
       - 9491e99f-c707-4d6d-9ba0-1e49e87fee8b
     metadata:
       status: pending
@@ -34683,10 +34682,11 @@ nodes:
     id: 321fe1d0-3ca3-45f5-bab8-56dd0f003e78
     content: Done
     children:
-      - 503e53c0-5353-48d5-a1f2-5dc15e0ff045
+      - 44373205-7c18-43b5-ab7d-9603863a5a66
+      - 30872653-bd1b-4d1b-998e-58edb3242e83
     metadata:
       status: completed
-      expanded: true
+      expanded: false
       isBlueprint: true
       blueprintIcon: FolderCheck
       blueprintColor: '#22c55e'
@@ -34713,6 +34713,7 @@ nodes:
       isWorkflow: true
       blueprintIcon: Shapes
       blueprintColor: '#a855f7'
+      expanded: false
   e90fcc6c-4422-4103-a019-86ff5bb9efb3:
     id: e90fcc6c-4422-4103-a019-86ff5bb9efb3
     content: Objectives
@@ -35353,8 +35354,7 @@ nodes:
   7b3e923e-b465-4444-ae7d-7fe0e80e3235:
     id: 7b3e923e-b465-4444-ae7d-7fe0e80e3235
     content: Code review & refactor
-    children:
-      - 44373205-7c18-43b5-ab7d-9603863a5a66
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -35472,6 +35472,7 @@ nodes:
       isBlueprint: true
       isWorkflow: true
       blueprintIcon: Blocks
+      expanded: false
   13831628-6c66-4092-b035-a5b3ceefb9fb:
     id: 13831628-6c66-4092-b035-a5b3ceefb9fb
     content: Delivery backlog
@@ -35483,6 +35484,7 @@ nodes:
       isBlueprint: true
       blueprintIcon: ClipboardClock
       blueprintColor: '#a855f7'
+      expanded: false
   0b06bda5-252f-43f6-bb00-9043226b3dae:
     id: 0b06bda5-252f-43f6-bb00-9043226b3dae
     content: 'User Story 1: Define and display step types on workflow steps'
@@ -47508,19 +47510,6 @@ nodes:
     children: []
     metadata:
       status: pending
-  37f171d1-4880-42c3-b14b-d9527319e3a5:
-    id: 37f171d1-4880-42c3-b14b-d9527319e3a5
-    content: Toasts are unnecessary now that we've moved the context dialog to a popup
-    children:
-      - 5a7a171d-acc4-418f-b5f9-722e108d8f10
-    metadata:
-      status: pending
-  5a7a171d-acc4-418f-b5f9-722e108d8f10:
-    id: 5a7a171d-acc4-418f-b5f9-722e108d8f10
-    content: Tooltips on hover in the dialog would be better
-    children: []
-    metadata:
-      status: pending
   0484c483-6231-4efd-a1c2-e56210fb725b:
     id: 0484c483-6231-4efd-a1c2-e56210fb725b
     content: Not much point in showing 'Start workflow' in manual steps.
@@ -49522,19 +49511,6 @@ nodes:
       expanded: false
       deleted: false
       plugins: {}
-  b7c090bf-6421-467a-9d97-067d3521d013:
-    id: b7c090bf-6421-467a-9d97-067d3521d013
-    content: Workflow steps in context menu are redundant
-    children:
-      - 3d862e56-dbbd-4ff8-bafa-817c05105b0a
-    metadata:
-      status: pending
-  3d862e56-dbbd-4ff8-bafa-817c05105b0a:
-    id: 3d862e56-dbbd-4ff8-bafa-817c05105b0a
-    content: Replace with 'Configure workflow step' item which opens the config dialog
-    children: []
-    metadata:
-      status: pending
   b08a9e71-fc04-47c7-9e1a-3e65621a9009:
     id: b08a9e71-fc04-47c7-9e1a-3e65621a9009
     content: Workflow related context menu items hard to find
@@ -50675,3 +50651,89 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
+  49e64254-d249-442f-83ce-a19eea5a6df8:
+    id: 49e64254-d249-442f-83ce-a19eea5a6df8
+    content: Replace with 'Configure workflow step' item which opens the config dialog
+    children: []
+    metadata:
+      status: pending
+  30872653-bd1b-4d1b-998e-58edb3242e83:
+    id: 30872653-bd1b-4d1b-998e-58edb3242e83
+    content: Workflow steps in context menu are redundant
+    children:
+      - 49e64254-d249-442f-83ce-a19eea5a6df8
+    metadata:
+      status: pending
+  21a8e05c-ac87-455f-9cab-f075ba892918:
+    id: 21a8e05c-ac87-455f-9cab-f075ba892918
+    content: Minor feature development
+    children:
+      - 83a2bd12-9d74-4d87-8139-ae7adb95c9fa
+      - a5763a98-d3a6-420c-baf4-2868e2dc1404
+      - bb974125-814d-4964-b269-13572d556270
+      - d7f7e6ce-d819-48d2-8a0e-ff9cc9052d56
+      - 3ab86cdd-2d94-4d06-806c-2b239fef0ffd
+    metadata:
+      status: pending
+      isBlueprint: true
+      blueprintIcon: Blocks
+      blueprintColor: '#64748b'
+      isWorkflow: true
+  83a2bd12-9d74-4d87-8139-ae7adb95c9fa:
+    id: 83a2bd12-9d74-4d87-8139-ae7adb95c9fa
+    content: Feature implementation
+    children:
+      - b08a9e71-fc04-47c7-9e1a-3e65621a9009
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+      blueprintIcon: Wrench
+      blueprintColor: '#14b8a6'
+      resolvedAt: '2025-12-09T06:01:07.426Z'
+      isBlueprint: true
+      appliedContextId: 9b46397c-c452-421c-b408-46b040d99c9e
+      stepType: autonomous
+  a5763a98-d3a6-420c-baf4-2868e2dc1404:
+    id: a5763a98-d3a6-420c-baf4-2868e2dc1404
+    content: AI refactor
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+      blueprintIcon: Recycle
+      blueprintColor: '#f97316'
+      appliedContextId: 1d30a613-a651-436c-bb2b-1fb3062af9fb
+      expanded: true
+      stepType: autonomous
+  3ab86cdd-2d94-4d06-806c-2b239fef0ffd:
+    id: 3ab86cdd-2d94-4d06-806c-2b239fef0ffd
+    content: Documentation
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+      blueprintIcon: BookA
+      blueprintColor: '#1074a2'
+      appliedContextId: 0058432d-a010-473b-a707-ace2b1dee169
+      expanded: true
+  bb974125-814d-4964-b269-13572d556270:
+    id: bb974125-814d-4964-b269-13572d556270
+    content: Code review & refactor
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+      blueprintIcon: Recycle
+      blueprintColor: '#22c55e'
+      appliedContextId: 64ea2af4-332b-44a6-8b88-78535cc9b79a
+      stepType: manual
+  d7f7e6ce-d819-48d2-8a0e-ff9cc9052d56:
+    id: d7f7e6ce-d819-48d2-8a0e-ff9cc9052d56
+    content: Manual testing
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+      blueprintIcon: TestTube2

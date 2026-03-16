@@ -13,6 +13,7 @@ import { buildWorkflowStepSubmenu } from './useWorkflowStepSubmenu';
 import { buildWorkflowExecutionSubmenu } from './useWorkflowExecutionSubmenu';
 import { buildSetContextSubmenu } from './useSetContextSubmenu';
 import { logger } from '../../../services/logger';
+import { useStepConfigDialogStore } from '../../../store/stepConfigDialog/stepConfigDialogStore';
 import { buildSendSubmenu } from './useSendSubmenu';
 import { ContextMode } from '../../../store/tree/treeStore';
 import { getPositionFromPoint } from '../../../utils/position';
@@ -164,10 +165,8 @@ export function useNodeContextMenu(node: TreeNode) {
       onSetContextMode: handleSetContextMode,
       onDeclareAsWorkflow: () => actions.declareAsWorkflow(node.id),
       onRemoveFromWorkflow: () => actions.removeFromWorkflow(node.id),
-      onSetStepType: async (stepType) => {
-        actions.setStepType(node.id, stepType);
-        const newItems = await buildMenuItemsRef.current();
-        setMenuItems(newItems);
+      onConfigureStep: () => {
+        useStepConfigDialogStore.getState().open(node.id);
       },
     });
 
