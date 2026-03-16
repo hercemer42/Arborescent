@@ -480,6 +480,22 @@ describe('clipboardActions', () => {
       expect(mockExecuteCommand).toHaveBeenCalled();
     });
 
+    it('should paste nodes as first children, not last', async () => {
+      state.activeNodeId = 'node-1';
+      mockClipboardContent = '# Pasted Node';
+
+      await actions.pasteNodes();
+
+      const command = mockExecuteCommand.mock.calls[0][0];
+      command.getState = () => state;
+      command.setState = (partial: Partial<typeof state>) => Object.assign(state, partial);
+      command.execute();
+
+      const parentChildren = state.nodes['node-1'].children;
+      const pastedId = parentChildren[0];
+      expect(state.nodes[pastedId].content).toBe('Pasted Node');
+    });
+
     it('should paste nodes under root when no active node', async () => {
       state.activeNodeId = null;
       mockClipboardContent = '# Pasted Node';

@@ -69,7 +69,7 @@ export class PasteNodesCommand extends BaseCommand {
 
     const processedNodes = this.processNodesForPaste(this.remappedNodes, parentIsContextTree);
     const updatedNodes = { ...nodes, ...processedNodes };
-    const updatedChildren = [...parent.children, ...this.rootNodeIds];
+    const updatedChildren = [...this.rootNodeIds, ...parent.children];
 
     updatedNodes[this.targetParentId] = {
       ...parent,
