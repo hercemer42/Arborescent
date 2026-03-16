@@ -22,6 +22,16 @@ Hover a step number to see its type in the tooltip (e.g. "Step 3 (Checkpoint)").
 
 Step type changes are undoable with `Ctrl+Z`. Setting a step to Autonomous shows a warning reminding you to verify your contexts are configured correctly.
 
+## Decomposition
+
+By default, collaborating on a node replaces it with a single updated version. Enable **Decomposition** in the step configuration dialog to break a node into multiple sibling nodes instead — for example, turning a problem statement into separate user stories.
+
+With decomposition enabled, the AI is instructed to produce multiple top-level items. When you accept the feedback, the original node is replaced by the new items as siblings at the same position. Each sibling inherits the original node's blueprint and context metadata.
+
+Decomposition works best when the applied context is a decomposition task — for example, a context that instructs the AI to break down a problem statement into user stories. The context tells the AI _what_ to decompose into; the decomposition flag tells Arborescent to expect multiple items back.
+
+Decomposition works with all step types. On autonomous steps, the multiple nodes are created directly without the feedback panel. Undo (`Ctrl+Z`) restores the original node.
+
 ## Running a Workflow
 
 Place an item inside a workflow step, then right-click → **Start Workflow** (requires a terminal tab open). The item's content is sent to the terminal and the workflow begins executing.

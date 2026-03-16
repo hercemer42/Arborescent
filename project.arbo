@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-03-15T18:08:38.900Z'
+updated: '2026-03-16T09:18:41.611Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -533,6 +533,7 @@ nodes:
       - 7bc450dd-64ef-40d6-a60b-8c7d74634c1c
       - d87082fc-4e05-4080-b652-c69897022374
       - 592a7f85-c2bb-4133-877d-26f32ff8d4ff
+      - 4adfa410-1e2e-4155-8e8e-2b2ed48b40a8
     metadata:
       status: completed
       expanded: false
@@ -5576,7 +5577,7 @@ nodes:
       isBlueprint: true
       blueprintIcon: Layers2
       blueprintColor: '#0ea5e9'
-      expanded: true
+      expanded: false
   9a8f1538-7eb7-4e2d-9e0f-46e2c00675f4:
     id: 9a8f1538-7eb7-4e2d-9e0f-46e2c00675f4
     content: Technical
@@ -11986,7 +11987,7 @@ nodes:
       blueprintIcon: ClipboardList
       blueprintColor: '#14b8a6'
       isBlueprint: true
-      expanded: true
+      expanded: false
       contextMode: collaborate
   132e5564-e290-4d6c-8cae-f65f125ef78f:
     id: 132e5564-e290-4d6c-8cae-f65f125ef78f
@@ -24639,7 +24640,7 @@ nodes:
       - 3b53a0c2-5ad2-4d11-b60d-32044d9617b0
     metadata:
       status: pending
-      expanded: false
+      expanded: true
       deleted: false
       plugins: {}
       isContextDeclaration: true
@@ -26813,7 +26814,7 @@ nodes:
     id: bdceb696-248d-4199-9182-db0689445c07
     content: Documentation
     children:
-      - 4adfa410-1e2e-4155-8e8e-2b2ed48b40a8
+      - 911c7c76-b792-44e2-b404-5087a4ceaff4
     metadata:
       status: pending
       isBlueprint: true
@@ -26844,7 +26845,6 @@ nodes:
     id: 87a11a28-4295-467f-ac54-746692494413
     content: Decomposition
     children:
-      - 7bd23d94-dc41-4f46-b27c-7f54ea43b9f8
       - 437c64c9-3da3-449a-9702-96755b5521b1
       - 47796554-2b68-4d70-81fc-5afe4fb95e59
     metadata:
@@ -34475,7 +34475,7 @@ nodes:
       - c0b354e9-aaa0-409e-ab47-6f534d03a97f
     metadata:
       status: pending
-      expanded: true
+      expanded: false
       isBlueprint: true
       blueprintIcon: FileWarning
       blueprintColor: '#f97316'
@@ -35341,7 +35341,8 @@ nodes:
   0bee331d-616e-48cf-bc86-24c9a09d7a67:
     id: 0bee331d-616e-48cf-bc86-24c9a09d7a67
     content: Test pass & issue resolution
-    children: []
+    children:
+      - 7bd23d94-dc41-4f46-b27c-7f54ea43b9f8
     metadata:
       status: pending
       appliedContextId: 4c3f0d67-a500-484f-8ccb-5dbf959ea27f
@@ -39928,7 +39929,8 @@ nodes:
   d4480798-cca1-4734-b452-b7cddd5afa58:
     id: d4480798-cca1-4734-b452-b7cddd5afa58
     content: Give a summary of the general approach, architecture, and key concepts
-    children: []
+    children:
+      - f986d6cb-2760-4634-b2f6-154b48cff036
     metadata:
       status: pending
       isBlueprint: true
@@ -45370,184 +45372,15 @@ nodes:
     id: 7bd23d94-dc41-4f46-b27c-7f54ea43b9f8
     content: 'US2: AI workflow orchestration - Multi-node feedback acceptance'
     children:
-      - 28cb04f8-1d2f-4aa4-b046-b6dd6fce34e9
-      - e2e4828a-851b-43ad-9549-987f446be24a
-      - 00b03958-2a77-4b67-bf21-125cd904d986
-      - f55113aa-5fd2-4d37-8bea-2730fe1f9158
+      - c5f91b1c-d1fa-4722-a410-105a6f836640
+      - 18400d2d-ce5b-406d-bee6-4575a047318f
+      - 36628167-758e-47d0-90eb-f32ccbf83c29
+      - e74ead7b-7772-4f48-bc73-9634cac2dffe
+      - 981c4b53-2037-455a-889f-a96a48d03a51
+      - 09b15925-bee7-448b-83eb-f9ba3eebecbe
     metadata:
       status: pending
       expanded: false
-      deleted: false
-      plugins: {}
-  28cb04f8-1d2f-4aa4-b046-b6dd6fce34e9:
-    id: 28cb04f8-1d2f-4aa4-b046-b6dd6fce34e9
-    content: Problem statement
-    children:
-      - d56fd909-27ee-409e-a12b-a81a56e73cb3
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  d56fd909-27ee-409e-a12b-a81a56e73cb3:
-    id: d56fd909-27ee-409e-a12b-a81a56e73cb3
-    content: As a user, I need the feedback system to be able to create multiple sibling nodes from a single AI response (e.g. 5 user stories from 1 problem statement). Currently, feedback always produces a single root node that replaces the collaborating node one-to-one. There is no path to create multiple sibling nodes from a single feedback interaction.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e2e4828a-851b-43ad-9549-987f446be24a:
-    id: e2e4828a-851b-43ad-9549-987f446be24a
-    content: Use cases
-    children:
-      - 54d3ebf0-05f5-4e61-ba95-dd73b0ce6677
-      - 097da405-962b-47e0-a152-a508faf5f20a
-      - 9cf44589-be96-4afa-a060-2340145edea5
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  54d3ebf0-05f5-4e61-ba95-dd73b0ce6677:
-    id: 54d3ebf0-05f5-4e61-ba95-dd73b0ce6677
-    content: 'Primary: AI returns a response containing 5 top-level items (e.g. user stories). The system creates 5 sibling nodes in the tree at the position of the original collaborating node.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  097da405-962b-47e0-a152-a508faf5f20a:
-    id: 097da405-962b-47e0-a152-a508faf5f20a
-    content: 'Secondary: AI returns a single top-level item. Behavior is identical to today — one node replaces the collaborating node (backward compatible).'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  9cf44589-be96-4afa-a060-2340145edea5:
-    id: 9cf44589-be96-4afa-a060-2340145edea5
-    content: 'Secondary: For autonomous workflow steps, the system watches the temporary file and creates multiple nodes directly in the tree without the feedback panel.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  00b03958-2a77-4b67-bf21-125cd904d986:
-    id: 00b03958-2a77-4b67-bf21-125cd904d986
-    content: Acceptance criteria
-    children:
-      - e8e74fb6-b515-475d-bde6-4b0717abe3ae
-      - 103f39e5-d8ba-4551-ace4-8364c0e71102
-      - 221b5701-a106-4ab0-b9f0-beffea9233d3
-      - b05fd5c1-ad78-4bd4-930f-74f4a7a1b6f6
-      - 28b4cee7-c920-4720-b96d-60fb2552c4e0
-      - 341b8639-7d43-490c-a00c-3c8e57a4ea13
-      - b2cf804b-de65-44c4-87ba-30acdce2947e
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e8e74fb6-b515-475d-bde6-4b0717abe3ae:
-    id: e8e74fb6-b515-475d-bde6-4b0717abe3ae
-    content: When feedback contains multiple top-level nodes, accepting it creates multiple sibling nodes in the tree at the collaborating node's position
-    children:
-      - 5db4a8bc-2027-4b93-a5ad-dff7409e0940
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  103f39e5-d8ba-4551-ace4-8364c0e71102:
-    id: 103f39e5-d8ba-4551-ace4-8364c0e71102
-    content: When feedback contains a single top-level node, behavior is unchanged from current (one-to-one replacement)
-    children:
-      - cd30371e-5f83-4298-a9e7-e3e252a874f7
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  221b5701-a106-4ab0-b9f0-beffea9233d3:
-    id: 221b5701-a106-4ab0-b9f0-beffea9233d3
-    content: The existing format instructions and validation are extended to support multi-root responses
-    children:
-      - f8e87dc2-f0ed-46bb-a6b9-83cec9b8dcfc
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  b05fd5c1-ad78-4bd4-930f-74f4a7a1b6f6:
-    id: b05fd5c1-ad78-4bd4-930f-74f4a7a1b6f6
-    content: Multi-node acceptance is undoable as a single undo operation
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  28b4cee7-c920-4720-b96d-60fb2552c4e0:
-    id: 28b4cee7-c920-4720-b96d-60fb2552c4e0
-    content: For autonomous workflow steps, the system watches the temporary file and writes multiple nodes directly to the tree without user interaction
-    children:
-      - 7cc9598c-5c24-4165-9881-091502abccc8
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  341b8639-7d43-490c-a00c-3c8e57a4ea13:
-    id: 341b8639-7d43-490c-a00c-3c8e57a4ea13
-    content: Nodes are created in the order they appear in the AI response
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  b2cf804b-de65-44c4-87ba-30acdce2947e:
-    id: b2cf804b-de65-44c4-87ba-30acdce2947e
-    content: Created nodes inherit the applied context and blueprint membership of their position in the tree
-    children:
-      - cc4b3d0d-1c14-4acc-9169-41e57a8cb126
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f55113aa-5fd2-4d37-8bea-2730fe1f9158:
-    id: f55113aa-5fd2-4d37-8bea-2730fe1f9158
-    content: Constraints and assumptions
-    children:
-      - b9c03755-7804-4fbb-9298-b16611e4f92e
-      - bdef43ac-cb51-4f77-8e7e-df61a7514450
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  b9c03755-7804-4fbb-9298-b16611e4f92e:
-    id: b9c03755-7804-4fbb-9298-b16611e4f92e
-    content: The existing markdown parsing (parseMarkdown) handles multiple root nodes — needs verification
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  bdef43ac-cb51-4f77-8e7e-df61a7514450:
-    id: bdef43ac-cb51-4f77-8e7e-df61a7514450
-    content: AcceptFeedbackCommand will need a new variant or mode since the current command assumes a single root replacement
-    children: []
-    metadata:
-      status: pending
-      expanded: true
       deleted: false
       plugins: {}
   437c64c9-3da3-449a-9702-96755b5521b1:
@@ -45782,43 +45615,6 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  5db4a8bc-2027-4b93-a5ad-dff7409e0940:
-    id: 5db4a8bc-2027-4b93-a5ad-dff7409e0940
-    content: The replacement nodes keep the metadata of the original (isBlueprint, applied contexts etc), but each have their own UUID
-    children: []
-    metadata:
-      status: pending
-  cd30371e-5f83-4298-a9e7-e3e252a874f7:
-    id: cd30371e-5f83-4298-a9e7-e3e252a874f7
-    content: The replacement node keeps the metadata and UUID of the original, as it currently does
-    children: []
-    metadata:
-      status: pending
-  7cc9598c-5c24-4165-9881-091502abccc8:
-    id: 7cc9598c-5c24-4165-9881-091502abccc8
-    content: This is undoable
-    children: []
-    metadata:
-      status: pending
-  cc4b3d0d-1c14-4acc-9169-41e57a8cb126:
-    id: cc4b3d0d-1c14-4acc-9169-41e57a8cb126
-    content: Unless it is overridden by inherited metadata from the parent
-    children: []
-    metadata:
-      status: pending
-  f8e87dc2-f0ed-46bb-a6b9-83cec9b8dcfc:
-    id: f8e87dc2-f0ed-46bb-a6b9-83cec9b8dcfc
-    content: This is supported by a 'Decomposition' option in the step configuration
-    children:
-      - 4e809cd3-0778-4c00-8c4f-e41b18a4633d
-    metadata:
-      status: pending
-  4e809cd3-0778-4c00-8c4f-e41b18a4633d:
-    id: 4e809cd3-0778-4c00-8c4f-e41b18a4633d
-    content: This lets the user decide if the result of the collaboration should be one node or multiples.
-    children: []
-    metadata:
-      status: pending
   2a502f82-e0f6-4774-a17c-d385ffcf2c40:
     id: 2a502f82-e0f6-4774-a17c-d385ffcf2c40
     content: Problem statement
@@ -47745,3 +47541,3893 @@ nodes:
     children: []
     metadata:
       status: pending
+  f986d6cb-2760-4634-b2f6-154b48cff036:
+    id: f986d6cb-2760-4634-b2f6-154b48cff036
+    content: Use hierarchical bullet points
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  c5f91b1c-d1fa-4722-a410-105a6f836640:
+    id: c5f91b1c-d1fa-4722-a410-105a6f836640
+    content: Problem statement
+    children:
+      - 36d3149c-1acb-49bf-b81a-be0c4c1edb41
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  36d3149c-1acb-49bf-b81a-be0c4c1edb41:
+    id: 36d3149c-1acb-49bf-b81a-be0c4c1edb41
+    content: As a user, I need the feedback system to be able to create multiple sibling nodes from a single AI response (e.g. 5 user stories from 1 problem statement). Currently, feedback always produces a single root node that replaces the collaborating node one-to-one. There is no path to create multiple sibling nodes from a single feedback interaction.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  18400d2d-ce5b-406d-bee6-4575a047318f:
+    id: 18400d2d-ce5b-406d-bee6-4575a047318f
+    content: Use cases
+    children:
+      - 8e9d7fb5-b9b3-496a-a8e3-201ffa6f3573
+      - adb6bbb6-4b9a-4a84-b683-9d101a21adc1
+      - 6287327c-a6a7-482a-91b5-41f980b66d4f
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8e9d7fb5-b9b3-496a-a8e3-201ffa6f3573:
+    id: 8e9d7fb5-b9b3-496a-a8e3-201ffa6f3573
+    content: 'Primary: AI returns a response containing 5 top-level items (e.g. user stories). The system creates 5 sibling nodes in the tree at the position of the original collaborating node.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  adb6bbb6-4b9a-4a84-b683-9d101a21adc1:
+    id: adb6bbb6-4b9a-4a84-b683-9d101a21adc1
+    content: 'Secondary: AI returns a single top-level item. Behavior is identical to today — one node replaces the collaborating node (backward compatible).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6287327c-a6a7-482a-91b5-41f980b66d4f:
+    id: 6287327c-a6a7-482a-91b5-41f980b66d4f
+    content: 'Secondary: For autonomous workflow steps, the system watches the temporary file and creates multiple nodes directly in the tree without the feedback panel.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  36628167-758e-47d0-90eb-f32ccbf83c29:
+    id: 36628167-758e-47d0-90eb-f32ccbf83c29
+    content: Acceptance criteria
+    children:
+      - f873030d-72b9-4493-9a65-fb325cf1b2ce
+      - 9c6ab380-0bf0-4da8-930e-6423137b6bdb
+      - 4c327e74-d803-4d6f-9411-3b54d0de9903
+      - 0c33abfa-c6ef-4cdb-8f17-4d313bf56c1f
+      - bedf1ea3-e13b-4414-ace5-4b8cca54eb6a
+      - bd245b35-1022-4e8a-bbd3-6597fb4afb9c
+      - 9f4ccd66-5b9c-44fb-838e-44daaaf8e2f0
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f873030d-72b9-4493-9a65-fb325cf1b2ce:
+    id: f873030d-72b9-4493-9a65-fb325cf1b2ce
+    content: When feedback contains multiple top-level nodes, accepting it creates multiple sibling nodes in the tree at the collaborating node's position
+    children:
+      - cbf09e2b-ed76-4c31-b2e0-af96e16cd137
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cbf09e2b-ed76-4c31-b2e0-af96e16cd137:
+    id: cbf09e2b-ed76-4c31-b2e0-af96e16cd137
+    content: The replacement nodes keep the metadata of the original (isBlueprint, applied contexts etc), but each have their own UUID
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9c6ab380-0bf0-4da8-930e-6423137b6bdb:
+    id: 9c6ab380-0bf0-4da8-930e-6423137b6bdb
+    content: When feedback contains a single top-level node, behavior is unchanged from current (one-to-one replacement)
+    children:
+      - 9cebd6c0-cb1d-484d-8946-27f5b18bf01f
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9cebd6c0-cb1d-484d-8946-27f5b18bf01f:
+    id: 9cebd6c0-cb1d-484d-8946-27f5b18bf01f
+    content: The replacement node keeps the metadata and UUID of the original, as it currently does
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4c327e74-d803-4d6f-9411-3b54d0de9903:
+    id: 4c327e74-d803-4d6f-9411-3b54d0de9903
+    content: The existing format instructions and validation are extended to support multi-root responses
+    children:
+      - 044e4928-ecd5-41a3-8add-f6d697ada054
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  044e4928-ecd5-41a3-8add-f6d697ada054:
+    id: 044e4928-ecd5-41a3-8add-f6d697ada054
+    content: This is supported by a 'Decomposition' option in the step configuration
+    children:
+      - ddb7a047-f7cf-4f5c-972c-a09e0b214dab
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ddb7a047-f7cf-4f5c-972c-a09e0b214dab:
+    id: ddb7a047-f7cf-4f5c-972c-a09e0b214dab
+    content: This lets the user decide if the result of the collaboration should be one node or multiples.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0c33abfa-c6ef-4cdb-8f17-4d313bf56c1f:
+    id: 0c33abfa-c6ef-4cdb-8f17-4d313bf56c1f
+    content: Multi-node acceptance is undoable as a single undo operation
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bedf1ea3-e13b-4414-ace5-4b8cca54eb6a:
+    id: bedf1ea3-e13b-4414-ace5-4b8cca54eb6a
+    content: For autonomous workflow steps, the system watches the temporary file and writes multiple nodes directly to the tree without user interaction
+    children:
+      - 96f7df3f-7efa-4d04-911d-4bafd38a5faf
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  96f7df3f-7efa-4d04-911d-4bafd38a5faf:
+    id: 96f7df3f-7efa-4d04-911d-4bafd38a5faf
+    content: This is undoable
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bd245b35-1022-4e8a-bbd3-6597fb4afb9c:
+    id: bd245b35-1022-4e8a-bbd3-6597fb4afb9c
+    content: Nodes are created in the order they appear in the AI response
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9f4ccd66-5b9c-44fb-838e-44daaaf8e2f0:
+    id: 9f4ccd66-5b9c-44fb-838e-44daaaf8e2f0
+    content: Created nodes inherit the applied context and blueprint membership of their position in the tree
+    children:
+      - 4a64a48c-b5f6-462f-a812-2c9f84f3b7b4
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4a64a48c-b5f6-462f-a812-2c9f84f3b7b4:
+    id: 4a64a48c-b5f6-462f-a812-2c9f84f3b7b4
+    content: Unless it is overridden by inherited metadata from the parent
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e74ead7b-7772-4f48-bc73-9634cac2dffe:
+    id: e74ead7b-7772-4f48-bc73-9634cac2dffe
+    content: Constraints and assumptions
+    children:
+      - f446e24c-339c-444d-b215-84ae134d2d72
+      - 2553eda0-02f2-4400-80e9-a617d47bff56
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f446e24c-339c-444d-b215-84ae134d2d72:
+    id: f446e24c-339c-444d-b215-84ae134d2d72
+    content: The existing markdown parsing (parseMarkdown) handles multiple root nodes — needs verification
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2553eda0-02f2-4400-80e9-a617d47bff56:
+    id: 2553eda0-02f2-4400-80e9-a617d47bff56
+    content: AcceptFeedbackCommand will need a new variant or mode since the current command assumes a single root replacement
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  981c4b53-2037-455a-889f-a96a48d03a51:
+    id: 981c4b53-2037-455a-889f-a96a48d03a51
+    content: Technical specifications
+    children:
+      - b0cd0381-1bdc-4ca1-9350-5335c975007a
+      - 14c56c0c-2aea-4423-be0f-55f928d75544
+      - 8c09de8b-92f4-42db-a412-bd2786aa5b85
+      - b92b36ba-1b92-4e51-952b-669076efeaa2
+      - 3ebacddd-0daa-4ba5-b8be-93187ce62dc2
+      - 6677bd31-3cd8-4169-8a55-7461b085ed97
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b0cd0381-1bdc-4ca1-9350-5335c975007a:
+    id: b0cd0381-1bdc-4ca1-9350-5335c975007a
+    content: Summary
+    children:
+      - 646e4a40-96ef-4c1d-a46c-ebf38ca5a0b4
+      - 36239b80-02d8-4f09-8a77-e1c127abbc57
+      - 55fa65f3-3537-42f8-9691-a34b4acf1628
+      - dd892247-14fc-42ec-a6cf-40cc8f5a24cc
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  646e4a40-96ef-4c1d-a46c-ebf38ca5a0b4:
+    id: 646e4a40-96ef-4c1d-a46c-ebf38ca5a0b4
+    content: 'Goal: extend feedback acceptance to create multiple sibling nodes from a single AI response'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  36239b80-02d8-4f09-8a77-e1c127abbc57:
+    id: 36239b80-02d8-4f09-8a77-e1c127abbc57
+    content: Current pipeline enforces single-root at three levels
+    children:
+      - cd3edb2c-1450-47a4-9ecd-54a86862a6d1
+      - a9bff377-ea8b-47bd-b729-b082568d6fcd
+      - 8bb72d1a-7b01-48e1-92ca-4585d1021e57
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cd3edb2c-1450-47a4-9ecd-54a86862a6d1:
+    id: cd3edb2c-1450-47a4-9ecd-54a86862a6d1
+    content: 'AI format instructions: "Must have exactly one root node" (collaborateActions.ts)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a9bff377-ea8b-47bd-b729-b082568d6fcd:
+    id: a9bff377-ea8b-47bd-b729-b082568d6fcd
+    content: 'Validation: parseFeedbackContent rejects rootNodes.length !== 1 (feedbackService.ts)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8bb72d1a-7b01-48e1-92ca-4585d1021e57:
+    id: 8bb72d1a-7b01-48e1-92ca-4585d1021e57
+    content: 'Command: AcceptFeedbackCommand assumes a single newRootNodeId (AcceptFeedbackCommand.ts)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  55fa65f3-3537-42f8-9691-a34b4acf1628:
+    id: 55fa65f3-3537-42f8-9691-a34b4acf1628
+    content: 'Approach: conditional relaxation controlled by a "Decomposition" flag'
+    children:
+      - c0b9d7c6-e15a-4239-b06a-5cb451483443
+      - a8ad5127-19d4-4426-ac38-4fe49e258210
+      - 6364f3fa-4225-4ed3-bd98-c4ae4da8ca46
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c0b9d7c6-e15a-4239-b06a-5cb451483443:
+    id: c0b9d7c6-e15a-4239-b06a-5cb451483443
+    content: A toggle is added to the step configuration dialog
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a8ad5127-19d4-4426-ac38-4fe49e258210:
+    id: a8ad5127-19d4-4426-ac38-4fe49e258210
+    content: When enabled
+    children:
+      - d86d466d-e87e-4f6f-b695-c41d5238bb9a
+      - 4e43a8ea-b6dc-447d-ba78-7182280ab07f
+      - 24bc1606-11d0-48a0-be2e-bec87c995346
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d86d466d-e87e-4f6f-b695-c41d5238bb9a:
+    id: d86d466d-e87e-4f6f-b695-c41d5238bb9a
+    content: Format instructions tell the AI to produce multiple top-level headings
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4e43a8ea-b6dc-447d-ba78-7182280ab07f:
+    id: 4e43a8ea-b6dc-447d-ba78-7182280ab07f
+    content: Validation accepts multiple roots
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  24bc1606-11d0-48a0-be2e-bec87c995346:
+    id: 24bc1606-11d0-48a0-be2e-bec87c995346
+    content: AcceptFeedbackCommand creates siblings instead of replacing
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6364f3fa-4225-4ed3-bd98-c4ae4da8ca46:
+    id: 6364f3fa-4225-4ed3-bd98-c4ae4da8ca46
+    content: When disabled (default)
+    children:
+      - 3ebbba0e-89db-464b-ad17-591c14a102cb
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3ebbba0e-89db-464b-ad17-591c14a102cb:
+    id: 3ebbba0e-89db-464b-ad17-591c14a102cb
+    content: All behavior is unchanged — full backward compatibility
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  dd892247-14fc-42ec-a6cf-40cc8f5a24cc:
+    id: dd892247-14fc-42ec-a6cf-40cc8f5a24cc
+    content: Affected areas
+    children:
+      - 80225067-5b0c-436a-b368-c8f00d3f163b
+      - b9088875-4d0a-41da-bd58-9a53b86f0932
+      - 5d99befa-4ecc-4c46-9349-2e23f49b8bd1
+      - 30572de7-194c-4a46-a161-5f926359ab49
+      - 2acf978f-0961-4ec8-ab08-9c28c8c07305
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  80225067-5b0c-436a-b368-c8f00d3f163b:
+    id: 80225067-5b0c-436a-b368-c8f00d3f163b
+    content: collaborateActions.ts — format instruction selection, decomposition flag threading
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b9088875-4d0a-41da-bd58-9a53b86f0932:
+    id: b9088875-4d0a-41da-bd58-9a53b86f0932
+    content: feedbackService.ts — parseFeedbackContent validation, extractFeedbackContent unwrapping
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5d99befa-4ecc-4c46-9349-2e23f49b8bd1:
+    id: 5d99befa-4ecc-4c46-9349-2e23f49b8bd1
+    content: AcceptFeedbackCommand.ts — multi-root ID remapping, sibling creation, undo
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  30572de7-194c-4a46-a161-5f926359ab49:
+    id: 30572de7-194c-4a46-a161-5f926359ab49
+    content: StepConfigDialog — new decomposition toggle
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2acf978f-0961-4ec8-ab08-9c28c8c07305:
+    id: 2acf978f-0961-4ec8-ab08-9c28c8c07305
+    content: workflowActions.ts — new setDecomposition action
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  14c56c0c-2aea-4423-be0f-55f928d75544:
+    id: 14c56c0c-2aea-4423-be0f-55f928d75544
+    content: Inputs, outputs, and key interfaces
+    children:
+      - 115477fd-e073-47fa-9a27-bd25504699ed
+      - 5f664e01-ae6b-485f-ad47-6b49292d9db7
+      - 2a67dc44-c5ce-407e-a981-4ba6e13d864b
+      - ab1ee612-315d-4264-98e6-d342ff82b6f8
+      - 3842a5f3-deee-49b2-9468-5fb28672a5ea
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  115477fd-e073-47fa-9a27-bd25504699ed:
+    id: 115477fd-e073-47fa-9a27-bd25504699ed
+    content: 'Input: Parsed feedback content — either single root (ParsedFeedbackContent with one rootNodeId) or multiple roots (new multi-root variant with rootNodeIds array)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5f664e01-ae6b-485f-ad47-6b49292d9db7:
+    id: 5f664e01-ae6b-485f-ad47-6b49292d9db7
+    content: 'Input: Decomposition flag from the workflow step''s metadata (node.metadata.decomposition === true)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2a67dc44-c5ce-407e-a981-4ba6e13d864b:
+    id: 2a67dc44-c5ce-407e-a981-4ba6e13d864b
+    content: 'Output: One or more sibling nodes replacing the collaborating node, with metadata preserved and provenance set up for the archive feature (US3)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ab1ee612-315d-4264-98e6-d342ff82b6f8:
+    id: ab1ee612-315d-4264-98e6-d342ff82b6f8
+    content: 'Key interface change: ParsedFeedbackContent gains a rootNodeIds: string[] field (replaces rootNodeId for multi-root; single-root case has array of length 1)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3842a5f3-deee-49b2-9468-5fb28672a5ea:
+    id: 3842a5f3-deee-49b2-9468-5fb28672a5ea
+    content: 'Key interface change: AcceptFeedbackCommand gains a mode — single-root (current behavior, preserves UUID) vs multi-root (creates siblings with new UUIDs)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8c09de8b-92f4-42db-a412-bd2786aa5b85:
+    id: 8c09de8b-92f4-42db-a412-bd2786aa5b85
+    content: Constraints and non-functional requirements
+    children:
+      - d58a4c8b-f426-4082-8ac3-1c9ea752d58e
+      - 6e50851a-3e62-40c3-99bc-695adebc4c4b
+      - 886760fc-de19-49d1-851d-967a91c80e2f
+      - cacf4536-2161-46c5-a670-37fc0a8f26d5
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d58a4c8b-f426-4082-8ac3-1c9ea752d58e:
+    id: d58a4c8b-f426-4082-8ac3-1c9ea752d58e
+    content: Single-root acceptance must be fully backward compatible — no changes to behavior when decomposition is off
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6e50851a-3e62-40c3-99bc-695adebc4c4b:
+    id: 6e50851a-3e62-40c3-99bc-695adebc4c4b
+    content: Multi-node acceptance must be atomic — either all nodes are created or none (single undo operation)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  886760fc-de19-49d1-851d-967a91c80e2f:
+    id: 886760fc-de19-49d1-851d-967a91c80e2f
+    content: The feedback panel must render multi-root content correctly — the hidden root wrapper in feedbackTreeStore already handles this since it wraps all roots under a single hidden node
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cacf4536-2161-46c5-a670-37fc0a8f26d5:
+    id: cacf4536-2161-46c5-a670-37fc0a8f26d5
+    content: 'Performance: creating up to ~20 sibling nodes should be imperceptible. Beyond that is an unlikely edge case.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b92b36ba-1b92-4e51-952b-669076efeaa2:
+    id: b92b36ba-1b92-4e51-952b-669076efeaa2
+    content: Technical steps
+    children:
+      - b5b13edc-2406-4e94-abea-7a5b24b51e2d
+      - fc01cf5c-f47f-40f8-84de-b4f6edc75560
+      - 869b36eb-5bd7-45d3-b3d7-24f7c48b6fb3
+      - 4aafc8b8-2f12-4e3a-a8ef-5642172de674
+      - d1849ade-2353-4e3b-9ed6-0c25aed0ae15
+      - 8abe29a0-4bb2-4f19-8b2d-8caac816ad50
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b5b13edc-2406-4e94-abea-7a5b24b51e2d:
+    id: b5b13edc-2406-4e94-abea-7a5b24b51e2d
+    content: 'Step 1: Add decomposition toggle to step configuration dialog (S)'
+    children:
+      - 7a53e27d-1192-4279-8149-618c837422c3
+      - bf481689-6f84-42ed-b1ac-561b9d36cd4b
+      - fea98a77-9303-4654-a704-e17068852ee1
+      - 3f38901f-4d43-4144-a037-3183e1f1dc86
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7a53e27d-1192-4279-8149-618c837422c3:
+    id: 7a53e27d-1192-4279-8149-618c837422c3
+    content: Add a "Decomposition" checkbox to StepConfigDialog below the Step Type section
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bf481689-6f84-42ed-b1ac-561b9d36cd4b:
+    id: bf481689-6f84-42ed-b1ac-561b9d36cd4b
+    content: The toggle reads/writes node.metadata.decomposition (boolean, default false)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fea98a77-9303-4654-a704-e17068852ee1:
+    id: fea98a77-9303-4654-a704-e17068852ee1
+    content: Changing it does not need undo — it's a configuration setting like the other step dialog options
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3f38901f-4d43-4144-a037-3183e1f1dc86:
+    id: 3f38901f-4d43-4144-a037-3183e1f1dc86
+    content: Add a setDecomposition action to workflowActions (or a generic setStepMetadata action)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fc01cf5c-f47f-40f8-84de-b4f6edc75560:
+    id: fc01cf5c-f47f-40f8-84de-b4f6edc75560
+    content: 'Step 2: Extend format instructions for decomposition mode (S)'
+    children:
+      - 7ba2c375-b4e7-4473-a7e7-0b3f6d51219b
+      - b7acc5f6-833f-487e-8e37-68091f1cba41
+      - cfa91bda-7d4c-4fc0-a31e-f45939f6a8fe
+      - 5f9e628f-a497-4544-9c46-7fcbdb3fc8b7
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7ba2c375-b4e7-4473-a7e7-0b3f6d51219b:
+    id: 7ba2c375-b4e7-4473-a7e7-0b3f6d51219b
+    content: In collaborateActions.ts, check if the collaborating node is inside a step with decomposition enabled
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b7acc5f6-833f-487e-8e37-68091f1cba41:
+    id: b7acc5f6-833f-487e-8e37-68091f1cba41
+    content: 'If decomposition is on: use an alternate COLLABORATE_OUTPUT_FORMAT that says "Use one # heading per top-level item. Each top-level item becomes a separate node."'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cfa91bda-7d4c-4fc0-a31e-f45939f6a8fe:
+    id: cfa91bda-7d4c-4fc0-a31e-f45939f6a8fe
+    content: 'If decomposition is off: use the existing format ("Must have exactly one root node")'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5f9e628f-a497-4544-9c46-7fcbdb3fc8b7:
+    id: 5f9e628f-a497-4544-9c46-7fcbdb3fc8b7
+    content: The format string is selected before building the prompt, not at parse time
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  869b36eb-5bd7-45d3-b3d7-24f7c48b6fb3:
+    id: 869b36eb-5bd7-45d3-b3d7-24f7c48b6fb3
+    content: 'Step 3: Extend parseFeedbackContent to accept multiple roots (M)'
+    children:
+      - 160c6242-92d0-47ae-81d9-5b919caa71dc
+      - 6234a5fc-bf4f-4414-8046-9526cce1789d
+      - 741e24ca-a2fe-4a7d-906a-d627fa88972c
+      - 2e14436a-acf5-483f-a090-d5799c7b08db
+      - 2c8b5440-3a5b-427a-9b9c-5de496aae8b9
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  160c6242-92d0-47ae-81d9-5b919caa71dc:
+    id: 160c6242-92d0-47ae-81d9-5b919caa71dc
+    content: 'Change ParsedFeedbackContent interface: replace rootNodeId: string with rootNodeIds: string[]'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6234a5fc-bf4f-4414-8046-9526cce1789d:
+    id: 6234a5fc-bf4f-4414-8046-9526cce1789d
+    content: 'Update parseFeedbackContent: when decomposition mode is active, accept rootNodes.length >= 1 (not just === 1). When decomposition is off, keep the strict rootNodes.length === 1 validation.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  741e24ca-a2fe-4a7d-906a-d627fa88972c:
+    id: 741e24ca-a2fe-4a7d-906a-d627fa88972c
+    content: The decomposition flag needs to be passed into parseFeedbackContent (or into processIncomingFeedbackContent which calls it)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2e14436a-acf5-483f-a090-d5799c7b08db:
+    id: 2e14436a-acf5-483f-a090-d5799c7b08db
+    content: Update all consumers of ParsedFeedbackContent.rootNodeId to use rootNodeIds[0] or iterate
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2c8b5440-3a5b-427a-9b9c-5de496aae8b9:
+    id: 2c8b5440-3a5b-427a-9b9c-5de496aae8b9
+    content: Update extractFeedbackContent in feedbackService.ts — currently it unwraps a single child from the hidden root; needs to handle multiple children
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4aafc8b8-2f12-4e3a-a8ef-5642172de674:
+    id: 4aafc8b8-2f12-4e3a-a8ef-5642172de674
+    content: 'Step 4: Create multi-root AcceptFeedbackCommand (L)'
+    children:
+      - cff89983-b848-4879-8645-601f9fed68a2
+      - 3ee0912e-7cf9-43ea-9521-a5dca3d21047
+      - 14c8ca65-3050-4616-8ae0-f575018b41ea
+      - f6c48b48-b602-4f3b-b077-db56e23ffc74
+      - f68c0423-3e0c-428b-a8f3-d2aef6429dbf
+      - 0b92606a-e456-4818-9936-e511d8dd3469
+      - 5078fef5-18e8-4ef5-9b78-545633270ddb
+      - de39151e-3a56-42db-a973-f205b981a6e5
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cff89983-b848-4879-8645-601f9fed68a2:
+    id: cff89983-b848-4879-8645-601f9fed68a2
+    content: 'When rootNodeIds has length 1: use existing behavior (root maps to collaboratingNodeId, preserves UUID and metadata)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3ee0912e-7cf9-43ea-9521-a5dca3d21047:
+    id: 3ee0912e-7cf9-43ea-9521-a5dca3d21047
+    content: 'When rootNodeIds has length > 1: the collaborating node is removed, and each root becomes a new sibling node inserted at the collaborating node''s position in the parent''s children array'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  14c8ca65-3050-4616-8ae0-f575018b41ea:
+    id: 14c8ca65-3050-4616-8ae0-f575018b41ea
+    content: Each new sibling gets a fresh UUID (not the collaborating node's UUID — there's no single "replacement")
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f6c48b48-b602-4f3b-b077-db56e23ffc74:
+    id: f6c48b48-b602-4f3b-b077-db56e23ffc74
+    content: 'Each new sibling inherits metadata from the collaborating node: isBlueprint, blueprintIcon, blueprintColor, appliedContextIds, activeContextId'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f68c0423-3e0c-428b-a8f3-d2aef6429dbf:
+    id: f68c0423-3e0c-428b-a8f3-d2aef6429dbf
+    content: 'Undo: snapshot the collaborating node and its descendants, remove the created siblings, restore the collaborating node — single undo operation'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0b92606a-e456-4818-9936-e511d8dd3469:
+    id: 0b92606a-e456-4818-9936-e511d8dd3469
+    content: Ancestor registry must be rebuilt for all new siblings and their descendants
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5078fef5-18e8-4ef5-9b78-545633270ddb:
+    id: 5078fef5-18e8-4ef5-9b78-545633270ddb
+    content: feedbackFadingNodeIds should include all new sibling IDs for the visual flash
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  de39151e-3a56-42db-a973-f205b981a6e5:
+    id: de39151e-3a56-42db-a973-f205b981a6e5
+    content: activeNodeId should be set to the first new sibling
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d1849ade-2353-4e3b-9ed6-0c25aed0ae15:
+    id: d1849ade-2353-4e3b-9ed6-0c25aed0ae15
+    content: 'Step 5: Wire decomposition flag through the collaborate flow (M)'
+    children:
+      - 48733280-3897-45fb-ba0b-06a037a6afb0
+      - 2cbd11ee-aabd-456c-838b-c4d06f691801
+      - af180b9c-b93e-432d-a8d9-7f7ac19ea041
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  48733280-3897-45fb-ba0b-06a037a6afb0:
+    id: 48733280-3897-45fb-ba0b-06a037a6afb0
+    content: In collaborateInTerminal and collaborateOnWeb (collaborateActions.ts), check if the collaborating node is inside a decomposition-enabled step
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2cbd11ee-aabd-456c-838b-c4d06f691801:
+    id: 2cbd11ee-aabd-456c-838b-c4d06f691801
+    content: Pass the decomposition flag through to the format instruction selection (Step 2) and to processIncomingFeedbackContent (Step 3)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  af180b9c-b93e-432d-a8d9-7f7ac19ea041:
+    id: af180b9c-b93e-432d-a8d9-7f7ac19ea041
+    content: Store the decomposition flag in the collaboration state so finishAccept can access it when building the command
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8abe29a0-4bb2-4f19-8b2d-8caac816ad50:
+    id: 8abe29a0-4bb2-4f19-8b2d-8caac816ad50
+    content: 'Step 6: Update autonomous workflow path (S)'
+    children:
+      - f0bee6e4-6317-4ea2-b1de-85f1f46c4f5e
+      - 51bb757d-150a-4d8c-b483-e31ff3072270
+      - d4093742-b1f4-47e1-8e11-43e55aa1e5fa
+      - 70c6106f-ab17-43bd-916a-4bdc939f114f
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f0bee6e4-6317-4ea2-b1de-85f1f46c4f5e:
+    id: f0bee6e4-6317-4ea2-b1de-85f1f46c4f5e
+    content: The temp file watcher path calls processIncomingFeedbackContent — same code path as manual acceptance
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  51bb757d-150a-4d8c-b483-e31ff3072270:
+    id: 51bb757d-150a-4d8c-b483-e31ff3072270
+    content: Once processIncomingFeedbackContent supports multi-root (Step 3), autonomous acceptance inherits it
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d4093742-b1f4-47e1-8e11-43e55aa1e5fa:
+    id: d4093742-b1f4-47e1-8e11-43e55aa1e5fa
+    content: 'For autonomous steps: auto-accept triggers finishAccept which uses the multi-root command (Step 4)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  70c6106f-ab17-43bd-916a-4bdc939f114f:
+    id: 70c6106f-ab17-43bd-916a-4bdc939f114f
+    content: Verify the auto-accept path in workflowExecutionActions passes the decomposition flag correctly
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3ebacddd-0daa-4ba5-b8be-93187ce62dc2:
+    id: 3ebacddd-0daa-4ba5-b8be-93187ce62dc2
+    content: Risks and edge cases
+    children:
+      - 29e51dce-370c-486c-b785-4372e21ef62b
+      - 36fa67e2-d719-4057-aee4-e3414b705720
+      - 29bd6d90-6efe-4172-870d-55c16ff203d9
+      - 7dbea94c-b6fb-4b4d-b54d-1e3daabd677c
+      - b6a95fec-0c20-40bd-a120-d2d4c8ce95df
+      - ba169d82-a3f7-4871-b665-1b9e9091d39b
+      - d37c94d2-b2c3-413a-a395-a6ff59486327
+      - 1570631d-a727-4f01-9654-4964df0d0463
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  29e51dce-370c-486c-b785-4372e21ef62b:
+    id: 29e51dce-370c-486c-b785-4372e21ef62b
+    content: 'Backward compatibility: single-root mode must be identical to current behavior — the decomposition flag defaults to false, and when false, no code paths change. Risk is low if the flag check is the first branch in each modified function.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  36fa67e2-d719-4057-aee4-e3414b705720:
+    id: 36fa67e2-d719-4057-aee4-e3414b705720
+    content: 'Empty feedback: if the AI returns no parseable headings, behavior should be identical to today (silent failure, no feedback UI). This is already handled by parseFeedbackContent returning null.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  29bd6d90-6efe-4172-870d-55c16ff203d9:
+    id: 29bd6d90-6efe-4172-870d-55c16ff203d9
+    content: 'AI returns single root when decomposition is on: should still work — rootNodeIds has length 1, falls through to existing single-root behavior. No special case needed.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7dbea94c-b6fb-4b4d-b54d-1e3daabd677c:
+    id: 7dbea94c-b6fb-4b4d-b54d-1e3daabd677c
+    content: 'AI returns multiple roots when decomposition is off: rejected by validation (rootNodes.length !== 1). Feedback is silently discarded. User sees no feedback panel. This is the current behavior.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b6a95fec-0c20-40bd-a120-d2d4c8ce95df:
+    id: b6a95fec-0c20-40bd-a120-d2d4c8ce95df
+    content: 'Feedback panel rendering: the feedbackTreeStore wraps content in a hidden root node. Multiple top-level items appear as children of the hidden root, which is already how the Tree component renders them. No rendering changes needed.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ba169d82-a3f7-4871-b665-1b9e9091d39b:
+    id: ba169d82-a3f7-4871-b665-1b9e9091d39b
+    content: 'AcceptFeedbackCommand undo with multi-root: the snapshot must capture the parent''s children array (to restore collaborating node''s position) and all created sibling subtrees (to remove them). More complex than single-root undo but follows the same pattern.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d37c94d2-b2c3-413a-a395-a6ff59486327:
+    id: d37c94d2-b2c3-413a-a395-a6ff59486327
+    content: 'Blueprint mode: when blueprint mode is enabled, all new nodes get blueprint metadata. This already works for single-root in AcceptFeedbackCommand and needs to be applied per-sibling for multi-root.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1570631d-a727-4f01-9654-4964df0d0463:
+    id: 1570631d-a727-4f01-9654-4964df0d0463
+    content: 'The collaborating node is the root node of the file: multi-root acceptance would need to create multiple root nodes, which the tree doesn''t support (single root per file). This should be prevented — decomposition mode should be ignored if the collaborating node is the file''s root, or the validation should reject multi-root when collaborating on the root node.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6677bd31-3cd8-4169-8a55-7461b085ed97:
+    id: 6677bd31-3cd8-4169-8a55-7461b085ed97
+    content: Implementation plan
+    children:
+      - 74274252-c624-42f5-b430-0472112f4c86
+      - 84e4f5ad-53c1-49fb-b11f-49e5581f2d82
+      - c9de7024-c4fb-45db-93b8-7dc534226e9c
+      - 5730059a-1879-4db9-97c3-ea70f98906fd
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  74274252-c624-42f5-b430-0472112f4c86:
+    id: 74274252-c624-42f5-b430-0472112f4c86
+    content: Single PR — the feature is tightly coupled across the pipeline so splitting would create broken intermediate states
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  84e4f5ad-53c1-49fb-b11f-49e5581f2d82:
+    id: 84e4f5ad-53c1-49fb-b11f-49e5581f2d82
+    content: 'Order: Step dialog toggle (Step 1) → format instructions (Step 2) → parse changes (Step 3) → command (Step 4) → flow wiring (Step 5) → autonomous path (Step 6)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c9de7024-c4fb-45db-93b8-7dc534226e9c:
+    id: c9de7024-c4fb-45db-93b8-7dc534226e9c
+    content: Testing strategy
+    children:
+      - 0c77a65e-549f-47e9-bf61-2f74ff562109
+      - 82ff5365-13ca-4067-b06c-5fb8c7b41a9c
+      - 889ab301-f244-4f1f-99bb-fa90f3fcefa0
+      - 707fc589-8e12-40f4-9502-4be0e12b561b
+      - 8b342018-9a1a-4018-88ea-451b4d2ae89a
+      - 5a78fe4f-7563-4a77-8611-f5d05d24d849
+      - 4a467e9a-b343-4214-b3dd-5c8ecba9d936
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0c77a65e-549f-47e9-bf61-2f74ff562109:
+    id: 0c77a65e-549f-47e9-bf61-2f74ff562109
+    content: 'Unit: parseFeedbackContent with decomposition on/off, single/multiple roots'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  82ff5365-13ca-4067-b06c-5fb8c7b41a9c:
+    id: 82ff5365-13ca-4067-b06c-5fb8c7b41a9c
+    content: 'Unit: AcceptFeedbackCommand multi-root — creates correct siblings, preserves metadata, undo restores original'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  889ab301-f244-4f1f-99bb-fa90f3fcefa0:
+    id: 889ab301-f244-4f1f-99bb-fa90f3fcefa0
+    content: 'Unit: AcceptFeedbackCommand single-root — unchanged from current behavior'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  707fc589-8e12-40f4-9502-4be0e12b561b:
+    id: 707fc589-8e12-40f4-9502-4be0e12b561b
+    content: 'Unit: format instruction selection based on decomposition flag'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8b342018-9a1a-4018-88ea-451b4d2ae89a:
+    id: 8b342018-9a1a-4018-88ea-451b4d2ae89a
+    content: 'Unit: StepConfigDialog renders decomposition toggle, reads/writes metadata'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5a78fe4f-7563-4a77-8611-f5d05d24d849:
+    id: 5a78fe4f-7563-4a77-8611-f5d05d24d849
+    content: 'Manual: end-to-end decomposition flow — enable decomposition on a step, send content, verify multiple nodes created, verify undo, verify metadata inheritance'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4a467e9a-b343-4214-b3dd-5c8ecba9d936:
+    id: 4a467e9a-b343-4214-b3dd-5c8ecba9d936
+    content: 'Manual: verify existing single-root flow is unchanged when decomposition is off'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5730059a-1879-4db9-97c3-ea70f98906fd:
+    id: 5730059a-1879-4db9-97c3-ea70f98906fd
+    content: 'Parallelisation: Steps 1-2 (dialog + format instructions) can be done in parallel with Step 3 (parse changes). Step 4 (command) depends on Step 3. Steps 5-6 depend on all prior steps.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  09b15925-bee7-448b-83eb-f9ba3eebecbe:
+    id: 09b15925-bee7-448b-83eb-f9ba3eebecbe
+    content: Test plan
+    children:
+      - 0c14fb8c-3739-4b9c-b38f-e46a3bc25e93
+      - 690b1d7f-9e3d-4890-b499-303872efeaf2
+      - 25948045-bf4e-496d-9772-917434a84fd4
+      - 05e25920-0c43-4760-a22b-05d3d9d9ee9f
+      - ade0a560-8a15-4448-81d1-7741ce30b3a0
+      - 5f00aeee-21a0-459c-9a20-74ad175da42c
+      - 8fa3e664-e987-45b3-8216-ec42b8ce067b
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0c14fb8c-3739-4b9c-b38f-e46a3bc25e93:
+    id: 0c14fb8c-3739-4b9c-b38f-e46a3bc25e93
+    content: Scope and objectives
+    children:
+      - d90f021f-1917-4082-af0b-2e3d50fc73cb
+      - da92d60c-f805-4008-ada4-660e64c5ad9d
+      - 1ac0ac78-18f9-4274-9b97-711e0dc407ca
+      - 7aff465a-955d-49a1-a584-3e6773f70cc0
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d90f021f-1917-4082-af0b-2e3d50fc73cb:
+    id: d90f021f-1917-4082-af0b-2e3d50fc73cb
+    content: Verify that decomposition mode produces multiple sibling nodes from a single AI response
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  da92d60c-f805-4008-ada4-660e64c5ad9d:
+    id: da92d60c-f805-4008-ada4-660e64c5ad9d
+    content: Verify that single-root acceptance is fully backward compatible when decomposition is off
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1ac0ac78-18f9-4274-9b97-711e0dc407ca:
+    id: 1ac0ac78-18f9-4274-9b97-711e0dc407ca
+    content: Verify that multi-node acceptance is atomic (single undo restores original node)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7aff465a-955d-49a1-a584-3e6773f70cc0:
+    id: 7aff465a-955d-49a1-a584-3e6773f70cc0
+    content: Verify that the decomposition toggle in the step configuration dialog correctly controls the pipeline behavior
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  690b1d7f-9e3d-4890-b499-303872efeaf2:
+    id: 690b1d7f-9e3d-4890-b499-303872efeaf2
+    content: Entry criteria
+    children:
+      - 15989b90-3b8a-41bf-98f1-b9b2e61d7619
+      - 2816dac9-a8fb-44bc-8109-3920e4a7bc1d
+      - 02be20f2-39b2-4d3f-a905-33a149d74b9a
+      - c008fdc0-b33c-4828-b361-3ec488fa27a5
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  15989b90-3b8a-41bf-98f1-b9b2e61d7619:
+    id: 15989b90-3b8a-41bf-98f1-b9b2e61d7619
+    content: Decomposition toggle is implemented in the step configuration dialog
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2816dac9-a8fb-44bc-8109-3920e4a7bc1d:
+    id: 2816dac9-a8fb-44bc-8109-3920e4a7bc1d
+    content: parseFeedbackContent supports multiple roots when decomposition is active
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  02be20f2-39b2-4d3f-a905-33a149d74b9a:
+    id: 02be20f2-39b2-4d3f-a905-33a149d74b9a
+    content: AcceptFeedbackCommand supports multi-root mode
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c008fdc0-b33c-4828-b361-3ec488fa27a5:
+    id: c008fdc0-b33c-4828-b361-3ec488fa27a5
+    content: Decomposition flag is threaded through the collaborate flow
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  25948045-bf4e-496d-9772-917434a84fd4:
+    id: 25948045-bf4e-496d-9772-917434a84fd4
+    content: Exit criteria
+    children:
+      - 64f82706-a1c2-473d-a2fa-3c007ae2734a
+      - fa0e3cbe-d340-402d-87b2-6699289458b6
+      - 1c299e7e-2df6-4f45-bc8b-e5fff51bf4c0
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  64f82706-a1c2-473d-a2fa-3c007ae2734a:
+    id: 64f82706-a1c2-473d-a2fa-3c007ae2734a
+    content: All unit tests pass
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fa0e3cbe-d340-402d-87b2-6699289458b6:
+    id: fa0e3cbe-d340-402d-87b2-6699289458b6
+    content: All manual test scenarios are verified
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1c299e7e-2df6-4f45-bc8b-e5fff51bf4c0:
+    id: 1c299e7e-2df6-4f45-bc8b-e5fff51bf4c0
+    content: No regressions in existing single-root feedback acceptance
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  05e25920-0c43-4760-a22b-05d3d9d9ee9f:
+    id: 05e25920-0c43-4760-a22b-05d3d9d9ee9f
+    content: Environments and prerequisites
+    children:
+      - c727abd5-bc30-4c04-a4d1-38cdc4f74faf
+      - a2deed20-4e0e-480e-8be4-9faa4de5544c
+      - cce79c15-e377-4e66-ad7f-083b92aef7e2
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c727abd5-bc30-4c04-a4d1-38cdc4f74faf:
+    id: c727abd5-bc30-4c04-a4d1-38cdc4f74faf
+    content: A tree with a declared workflow containing at least one step with decomposition enabled and one without
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a2deed20-4e0e-480e-8be4-9faa4de5544c:
+    id: a2deed20-4e0e-480e-8be4-9faa4de5544c
+    content: A collaborate-mode context applied to the workflow steps
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cce79c15-e377-4e66-ad7f-083b92aef7e2:
+    id: cce79c15-e377-4e66-ad7f-083b92aef7e2
+    content: Terminal with hook integration configured for autonomous step testing
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ade0a560-8a15-4448-81d1-7741ce30b3a0:
+    id: ade0a560-8a15-4448-81d1-7741ce30b3a0
+    content: Unit tests
+    children:
+      - 2458f9e7-13f1-4410-9f85-f18ec943af8a
+      - 7cfd334d-384f-4b70-b1dd-a5d35c7e44f8
+      - 36f5b3de-1a27-4062-aeb7-3559cb383970
+      - 897519b6-19de-4e42-a352-0aef52959bf9
+      - 355e2328-4531-4156-8876-3e1031cf879c
+      - 335561a2-d942-4f3d-96cb-c52e79d02d16
+      - 51bef897-95dd-4417-bcbf-b86b9848b408
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2458f9e7-13f1-4410-9f85-f18ec943af8a:
+    id: 2458f9e7-13f1-4410-9f85-f18ec943af8a
+    content: parseFeedbackContent
+    children:
+      - 2712e48d-fa9d-42df-966d-92d0da623fd1
+      - 9edcf385-acf8-4f93-994b-3dca6bc6e8dd
+      - 67d4bd6b-fdf6-4b67-9e0f-be893b9a1430
+      - 2064b2fd-f6d0-4a69-9310-37cc84549809
+      - b5a4db9d-1120-4673-9fe6-ef4b00f63569
+      - a1d69eff-e018-45ca-9321-a262ecf9cc37
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2712e48d-fa9d-42df-966d-92d0da623fd1:
+    id: 2712e48d-fa9d-42df-966d-92d0da623fd1
+    content: 'With decomposition off: rejects content with multiple root nodes (returns null)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9edcf385-acf8-4f93-994b-3dca6bc6e8dd:
+    id: 9edcf385-acf8-4f93-994b-3dca6bc6e8dd
+    content: 'With decomposition off: accepts content with exactly one root node (current behavior)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  67d4bd6b-fdf6-4b67-9e0f-be893b9a1430:
+    id: 67d4bd6b-fdf6-4b67-9e0f-be893b9a1430
+    content: 'With decomposition on: accepts content with multiple root nodes'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2064b2fd-f6d0-4a69-9310-37cc84549809:
+    id: 2064b2fd-f6d0-4a69-9310-37cc84549809
+    content: 'With decomposition on: accepts content with a single root node (falls through to single-root)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b5a4db9d-1120-4673-9fe6-ef4b00f63569:
+    id: b5a4db9d-1120-4673-9fe6-ef4b00f63569
+    content: 'With decomposition on: rejects content with zero root nodes'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a1d69eff-e018-45ca-9321-a262ecf9cc37:
+    id: a1d69eff-e018-45ca-9321-a262ecf9cc37
+    content: Returns rootNodeIds array with correct IDs in document order
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7cfd334d-384f-4b70-b1dd-a5d35c7e44f8:
+    id: 7cfd334d-384f-4b70-b1dd-a5d35c7e44f8
+    content: AcceptFeedbackCommand — single-root mode
+    children:
+      - 4ca59519-eb72-488c-8ea7-84355fa7d762
+      - 3468b53b-4996-4df4-a38e-d51f33c00a03
+      - 59cb2a53-f440-4bfd-a976-318829123a2d
+      - 4fd3e09d-4567-4937-b823-9ce119740a53
+      - 668f8aa1-79e7-42c6-8f48-aebe0be987f5
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4ca59519-eb72-488c-8ea7-84355fa7d762:
+    id: 4ca59519-eb72-488c-8ea7-84355fa7d762
+    content: Replaces collaborating node content and children (existing behavior unchanged)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3468b53b-4996-4df4-a38e-d51f33c00a03:
+    id: 3468b53b-4996-4df4-a38e-d51f33c00a03
+    content: Preserves collaborating node UUID
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  59cb2a53-f440-4bfd-a976-318829123a2d:
+    id: 59cb2a53-f440-4bfd-a976-318829123a2d
+    content: Preserves metadata (isBlueprint, appliedContextIds, activeContextId, blueprintIcon, blueprintColor)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4fd3e09d-4567-4937-b823-9ce119740a53:
+    id: 4fd3e09d-4567-4937-b823-9ce119740a53
+    content: Undo restores original node and descendants
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  668f8aa1-79e7-42c6-8f48-aebe0be987f5:
+    id: 668f8aa1-79e7-42c6-8f48-aebe0be987f5
+    content: Redo reapplies the replacement
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  36f5b3de-1a27-4062-aeb7-3559cb383970:
+    id: 36f5b3de-1a27-4062-aeb7-3559cb383970
+    content: AcceptFeedbackCommand — multi-root mode
+    children:
+      - 395042c7-8d74-4db8-934e-ca5692f18b08
+      - 21593231-c6ba-4d69-b879-640a4c3e9020
+      - ec4561a1-8904-4d97-aac5-ae340bcdc3ef
+      - cf58127c-b861-479c-b295-57b382e6e99a
+      - d6581cec-d0e2-413b-9ae1-2adab76aaecd
+      - 3fa278df-a0a3-44de-b150-314c049d81a6
+      - f2c4352b-f17a-4164-9dab-4f3eb1a2460f
+      - 7b333632-5bb2-4321-9015-bbce49214de5
+      - be6e9995-c893-4ff4-b4b8-9a3f55b84e80
+      - e07dfd6a-aa9c-4cd0-b4a0-e2860ef2e4c1
+      - 80803cbe-0084-48d3-bb52-b14415593168
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  395042c7-8d74-4db8-934e-ca5692f18b08:
+    id: 395042c7-8d74-4db8-934e-ca5692f18b08
+    content: Creates multiple sibling nodes at the collaborating node's position in its parent's children array
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  21593231-c6ba-4d69-b879-640a4c3e9020:
+    id: 21593231-c6ba-4d69-b879-640a4c3e9020
+    content: Each sibling has a unique UUID (not the collaborating node's UUID)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ec4561a1-8904-4d97-aac5-ae340bcdc3ef:
+    id: ec4561a1-8904-4d97-aac5-ae340bcdc3ef
+    content: Each sibling inherits metadata from the collaborating node
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cf58127c-b861-479c-b295-57b382e6e99a:
+    id: cf58127c-b861-479c-b295-57b382e6e99a
+    content: Siblings appear in document order matching the AI response
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d6581cec-d0e2-413b-9ae1-2adab76aaecd:
+    id: d6581cec-d0e2-413b-9ae1-2adab76aaecd
+    content: Collaborating node is removed from the tree
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3fa278df-a0a3-44de-b150-314c049d81a6:
+    id: 3fa278df-a0a3-44de-b150-314c049d81a6
+    content: Ancestor registry is rebuilt for all new siblings and their descendants
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f2c4352b-f17a-4164-9dab-4f3eb1a2460f:
+    id: f2c4352b-f17a-4164-9dab-4f3eb1a2460f
+    content: feedbackFadingNodeIds includes all new sibling IDs
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7b333632-5bb2-4321-9015-bbce49214de5:
+    id: 7b333632-5bb2-4321-9015-bbce49214de5
+    content: activeNodeId is set to the first new sibling
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  be6e9995-c893-4ff4-b4b8-9a3f55b84e80:
+    id: be6e9995-c893-4ff4-b4b8-9a3f55b84e80
+    content: Undo removes all created siblings and restores the original collaborating node with its descendants
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e07dfd6a-aa9c-4cd0-b4a0-e2860ef2e4c1:
+    id: e07dfd6a-aa9c-4cd0-b4a0-e2860ef2e4c1
+    content: Redo reapplies the multi-node creation
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  80803cbe-0084-48d3-bb52-b14415593168:
+    id: 80803cbe-0084-48d3-bb52-b14415593168
+    content: Applies blueprint metadata to all siblings when blueprintModeEnabled is true
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  897519b6-19de-4e42-a352-0aef52959bf9:
+    id: 897519b6-19de-4e42-a352-0aef52959bf9
+    content: AcceptFeedbackCommand — root node guard
+    children:
+      - 4515ead2-b66b-4f77-bc91-f412643d3b6e
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4515ead2-b66b-4f77-bc91-f412643d3b6e:
+    id: 4515ead2-b66b-4f77-bc91-f412643d3b6e
+    content: When the collaborating node is the file root, multi-root mode is prevented (falls back to single-root or rejects)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  355e2328-4531-4156-8876-3e1031cf879c:
+    id: 355e2328-4531-4156-8876-3e1031cf879c
+    content: Format instruction selection
+    children:
+      - f4971458-b6c5-49f5-bccf-40bb8380b4a1
+      - b8be08d5-c261-46f5-923e-d9e7200b590b
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  f4971458-b6c5-49f5-bccf-40bb8380b4a1:
+    id: f4971458-b6c5-49f5-bccf-40bb8380b4a1
+    content: 'When decomposition is off: COLLABORATE_OUTPUT_FORMAT contains "exactly one root node"'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  b8be08d5-c261-46f5-923e-d9e7200b590b:
+    id: b8be08d5-c261-46f5-923e-d9e7200b590b
+    content: 'When decomposition is on: alternate format allows multiple top-level headings'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  335561a2-d942-4f3d-96cb-c52e79d02d16:
+    id: 335561a2-d942-4f3d-96cb-c52e79d02d16
+    content: extractFeedbackContent
+    children:
+      - 56dce796-7943-4f41-8291-29dbe67b2f7f
+      - f353b856-34ee-4e29-9af9-b48957bcf942
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  56dce796-7943-4f41-8291-29dbe67b2f7f:
+    id: 56dce796-7943-4f41-8291-29dbe67b2f7f
+    content: 'With single child under hidden root: returns single rootNodeId (current behavior)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f353b856-34ee-4e29-9af9-b48957bcf942:
+    id: f353b856-34ee-4e29-9af9-b48957bcf942
+    content: 'With multiple children under hidden root: returns all rootNodeIds in order'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  51bef897-95dd-4417-bcbf-b86b9848b408:
+    id: 51bef897-95dd-4417-bcbf-b86b9848b408
+    content: StepConfigDialog
+    children:
+      - 2a8823e2-4182-4424-8030-863b23666f82
+      - 90bdb528-2018-49c9-abbb-4a1c4c5513e6
+      - 8e7ac221-b280-44f2-ac94-108550259c02
+      - 0928d4ce-1470-435e-bffd-a85c404982f6
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2a8823e2-4182-4424-8030-863b23666f82:
+    id: 2a8823e2-4182-4424-8030-863b23666f82
+    content: Renders decomposition checkbox
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  90bdb528-2018-49c9-abbb-4a1c4c5513e6:
+    id: 90bdb528-2018-49c9-abbb-4a1c4c5513e6
+    content: Checkbox reflects current node.metadata.decomposition value
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8e7ac221-b280-44f2-ac94-108550259c02:
+    id: 8e7ac221-b280-44f2-ac94-108550259c02
+    content: Defaults to unchecked when metadata.decomposition is undefined
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0928d4ce-1470-435e-bffd-a85c404982f6:
+    id: 0928d4ce-1470-435e-bffd-a85c404982f6
+    content: Toggling calls the setDecomposition action with correct nodeId and value
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5f00aeee-21a0-459c-9a20-74ad175da42c:
+    id: 5f00aeee-21a0-459c-9a20-74ad175da42c
+    content: Manual tests
+    children:
+      - 5b0fe257-ed86-4611-9fb5-5a92c2b93bae
+      - fc17be15-8d4f-4062-84d8-631c22f70b29
+      - b638ba01-15e7-4838-aeab-4e1a364876d9
+      - 4d4a294b-6667-49c5-bf30-31a1bcc5fd17
+      - 81bd6251-0ed7-4869-b1f4-40c72b5bd9e0
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5b0fe257-ed86-4611-9fb5-5a92c2b93bae:
+    id: 5b0fe257-ed86-4611-9fb5-5a92c2b93bae
+    content: Decomposition enabled — happy path
+    children:
+      - 2ba4155c-c043-4bf6-b919-039a7879ba0d
+      - aad18647-09c7-49eb-9ba1-0938dcae0edf
+      - 55503a9d-3a13-4adb-a99a-61c4aaf50d1b
+      - 9666c35a-adbf-4a6b-a102-3738a6f255d3
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2ba4155c-c043-4bf6-b919-039a7879ba0d:
+    id: 2ba4155c-c043-4bf6-b919-039a7879ba0d
+    content: Enable decomposition on a workflow step, send content via collaborate, AI returns 5 top-level items — 5 sibling nodes are created at the collaborating node's position
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  aad18647-09c7-49eb-9ba1-0938dcae0edf:
+    id: aad18647-09c7-49eb-9ba1-0938dcae0edf
+    content: Each sibling has the correct blueprint icon, color, and applied context from the original node
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  55503a9d-3a13-4adb-a99a-61c4aaf50d1b:
+    id: 55503a9d-3a13-4adb-a99a-61c4aaf50d1b
+    content: Undo (Ctrl+Z) removes all 5 siblings and restores the original node
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9666c35a-adbf-4a6b-a102-3738a6f255d3:
+    id: 9666c35a-adbf-4a6b-a102-3738a6f255d3
+    content: Redo (Ctrl+Shift+Z) recreates the 5 siblings
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fc17be15-8d4f-4062-84d8-631c22f70b29:
+    id: fc17be15-8d4f-4062-84d8-631c22f70b29
+    content: Decomposition disabled — backward compatibility
+    children:
+      - f4ff46bc-a350-4d51-9bd8-7dd5e2336f36
+      - e7ec04a6-5356-4770-8e96-1d6d1a41056d
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f4ff46bc-a350-4d51-9bd8-7dd5e2336f36:
+    id: f4ff46bc-a350-4d51-9bd8-7dd5e2336f36
+    content: With decomposition off, send content via collaborate — behavior is identical to current (single node replacement)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e7ec04a6-5356-4770-8e96-1d6d1a41056d:
+    id: e7ec04a6-5356-4770-8e96-1d6d1a41056d
+    content: AI response with multiple roots is silently rejected when decomposition is off (no feedback panel appears)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b638ba01-15e7-4838-aeab-4e1a364876d9:
+    id: b638ba01-15e7-4838-aeab-4e1a364876d9
+    content: Decomposition with autonomous step
+    children:
+      - 55067821-6093-468a-876b-dd1cce0feced
+      - a3b58f75-1e41-4f22-b0b3-6cc646af9ab8
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  55067821-6093-468a-876b-dd1cce0feced:
+    id: 55067821-6093-468a-876b-dd1cce0feced
+    content: Enable decomposition on an autonomous step, start workflow — AI response is auto-accepted and multiple siblings are created without user interaction
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a3b58f75-1e41-4f22-b0b3-6cc646af9ab8:
+    id: a3b58f75-1e41-4f22-b0b3-6cc646af9ab8
+    content: The workflow continues with the first created sibling
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4d4a294b-6667-49c5-bf30-31a1bcc5fd17:
+    id: 4d4a294b-6667-49c5-bf30-31a1bcc5fd17
+    content: Edge cases
+    children:
+      - 4f57b6fe-0bc3-4c6c-ae57-cb829e7fe38d
+      - 491260f9-f46d-439e-8d45-681300f7484a
+      - af9ec3d1-6adc-4004-8c3a-12f2742c9336
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4f57b6fe-0bc3-4c6c-ae57-cb829e7fe38d:
+    id: 4f57b6fe-0bc3-4c6c-ae57-cb829e7fe38d
+    content: AI returns a single root when decomposition is on — single-root behavior applies, original UUID is preserved
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  491260f9-f46d-439e-8d45-681300f7484a:
+    id: 491260f9-f46d-439e-8d45-681300f7484a
+    content: Collaborating node is the file root — decomposition is prevented, single-root behavior applies
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  af9ec3d1-6adc-4004-8c3a-12f2742c9336:
+    id: af9ec3d1-6adc-4004-8c3a-12f2742c9336
+    content: AI returns empty response — no feedback panel, no tree changes
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  81bd6251-0ed7-4869-b1f4-40c72b5bd9e0:
+    id: 81bd6251-0ed7-4869-b1f4-40c72b5bd9e0
+    content: Visual feedback
+    children:
+      - 14ed1f32-9ade-45e3-9f13-97d909c30ed5
+      - 4f4b961b-3e1e-422a-a501-8c0a89f14b83
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  14ed1f32-9ade-45e3-9f13-97d909c30ed5:
+    id: 14ed1f32-9ade-45e3-9f13-97d909c30ed5
+    content: All created siblings show the orange fade animation
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4f4b961b-3e1e-422a-a501-8c0a89f14b83:
+    id: 4f4b961b-3e1e-422a-a501-8c0a89f14b83
+    content: The first sibling is selected after acceptance
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8fa3e664-e987-45b3-8216-ec42b8ce067b:
+    id: 8fa3e664-e987-45b3-8216-ec42b8ce067b
+    content: Risks
+    children:
+      - 470cf57e-c8c1-499a-bb40-ae8ff1d5be25
+      - a440bf9f-f187-4532-8a08-6dd8e620749e
+      - 33a64f30-d7e7-4554-b8d4-7bba42931a35
+      - e36c0445-a72c-4357-b79f-c8cb126dacc8
+      - 60e8647a-7637-48c1-94ef-57bbf3aac086
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  470cf57e-c8c1-499a-bb40-ae8ff1d5be25:
+    id: 470cf57e-c8c1-499a-bb40-ae8ff1d5be25
+    content: 'Highest likelihood of defects: AcceptFeedbackCommand multi-root undo — must correctly snapshot parent''s children array, remove all created subtrees, and restore the original node in the correct position. More moving parts than single-root undo.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a440bf9f-f187-4532-8a08-6dd8e620749e:
+    id: a440bf9f-f187-4532-8a08-6dd8e620749e
+    content: 'Highest impact if failed: backward compatibility — if the decomposition flag is not correctly checked, existing single-root acceptance could break for all users. Every modified function must branch on the flag before changing behavior.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  33a64f30-d7e7-4554-b8d4-7bba42931a35:
+    id: 33a64f30-d7e7-4554-b8d4-7bba42931a35
+    content: 'Dependency: the decomposition flag must be threaded through the collaborate flow (collaborateActions → processIncomingFeedbackContent → extractFeedbackContent → AcceptFeedbackCommand). A break in any link silently falls back to single-root mode, which is safe but confusing if the user expects multi-root.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e36c0445-a72c-4357-b79f-c8cb126dacc8:
+    id: e36c0445-a72c-4357-b79f-c8cb126dacc8
+    content: 'Ambiguity: the AC says "Created nodes inherit the applied context and blueprint membership of their position in the tree, unless overridden by inherited metadata from the parent." The override precedence needs clarification during implementation — does parent metadata win over position-based inheritance, or vice versa?'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  60e8647a-7637-48c1-94ef-57bbf3aac086:
+    id: 60e8647a-7637-48c1-94ef-57bbf3aac086
+    content: 'Likely to change: the decomposition toggle may gain additional options (e.g. max node count, heading depth control) as users discover edge cases with AI responses.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c9f33e5c-eb61-4f5e-b2d8-5b314ce04266:
+    id: c9f33e5c-eb61-4f5e-b2d8-5b314ce04266
+    content: As a user, I need the feedback system to be able to create multiple sibling nodes from a single AI response (e.g. 5 user stories from 1 problem statement). Currently, feedback always produces a single root node that replaces the collaborating node one-to-one. There is no path to create multiple sibling nodes from a single feedback interaction.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  20cfd038-85d4-4a02-bd66-d27d3543c7d9:
+    id: 20cfd038-85d4-4a02-bd66-d27d3543c7d9
+    content: Problem statement
+    children:
+      - c9f33e5c-eb61-4f5e-b2d8-5b314ce04266
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c0c966a1-9cc8-4f14-b552-0dda8608536f:
+    id: c0c966a1-9cc8-4f14-b552-0dda8608536f
+    content: 'Primary: AI returns a response containing 5 top-level items (e.g. user stories). The system creates 5 sibling nodes in the tree at the position of the original collaborating node.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c5d38fc0-9b21-434b-9fc2-2d9a2e27f65f:
+    id: c5d38fc0-9b21-434b-9fc2-2d9a2e27f65f
+    content: 'Secondary: AI returns a single top-level item. Behavior is identical to today — one node replaces the collaborating node (backward compatible).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  89462931-3ba9-4f7d-87fd-18b39fcbd2a5:
+    id: 89462931-3ba9-4f7d-87fd-18b39fcbd2a5
+    content: 'Secondary: For autonomous workflow steps, the system watches the temporary file and creates multiple nodes directly in the tree without the feedback panel.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b62c2ed6-ee4a-42fd-a5a3-6e6095047c81:
+    id: b62c2ed6-ee4a-42fd-a5a3-6e6095047c81
+    content: Use cases
+    children:
+      - c0c966a1-9cc8-4f14-b552-0dda8608536f
+      - c5d38fc0-9b21-434b-9fc2-2d9a2e27f65f
+      - 89462931-3ba9-4f7d-87fd-18b39fcbd2a5
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9e3b568f-af7b-4aa4-a19d-171fff7226b0:
+    id: 9e3b568f-af7b-4aa4-a19d-171fff7226b0
+    content: The replacement nodes keep the metadata of the original (isBlueprint, applied contexts etc), but each have their own UUID
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f5609310-7333-408a-9e3a-7de44e0546a6:
+    id: f5609310-7333-408a-9e3a-7de44e0546a6
+    content: When feedback contains multiple top-level nodes, accepting it creates multiple sibling nodes in the tree at the collaborating node's position
+    children:
+      - 9e3b568f-af7b-4aa4-a19d-171fff7226b0
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  adcc865d-5a6a-4b76-90a2-5e64fc1f91a6:
+    id: adcc865d-5a6a-4b76-90a2-5e64fc1f91a6
+    content: The replacement node keeps the metadata and UUID of the original, as it currently does
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f9fec0dd-1c61-44b3-81eb-ef24eef3bdf7:
+    id: f9fec0dd-1c61-44b3-81eb-ef24eef3bdf7
+    content: When feedback contains a single top-level node, behavior is unchanged from current (one-to-one replacement)
+    children:
+      - adcc865d-5a6a-4b76-90a2-5e64fc1f91a6
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  66dc26a5-35a9-418b-a923-f82bbdf119e5:
+    id: 66dc26a5-35a9-418b-a923-f82bbdf119e5
+    content: This lets the user decide if the result of the collaboration should be one node or multiples.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c1463fa7-276f-466a-b3fe-92cbdb0bacf4:
+    id: c1463fa7-276f-466a-b3fe-92cbdb0bacf4
+    content: This is supported by a 'Decomposition' option in the step configuration
+    children:
+      - 66dc26a5-35a9-418b-a923-f82bbdf119e5
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f00a19d2-e0f9-483b-b3b2-7e8910b49453:
+    id: f00a19d2-e0f9-483b-b3b2-7e8910b49453
+    content: The existing format instructions and validation are extended to support multi-root responses
+    children:
+      - c1463fa7-276f-466a-b3fe-92cbdb0bacf4
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  503c4b4d-ff02-4da0-a583-41e3ee61c65d:
+    id: 503c4b4d-ff02-4da0-a583-41e3ee61c65d
+    content: Multi-node acceptance is undoable as a single undo operation
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  96d607cf-e328-4801-8a59-89b536f48e9d:
+    id: 96d607cf-e328-4801-8a59-89b536f48e9d
+    content: This is undoable
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fe8e0299-4321-42ea-a8ca-deb456ed2dee:
+    id: fe8e0299-4321-42ea-a8ca-deb456ed2dee
+    content: For autonomous workflow steps, the system watches the temporary file and writes multiple nodes directly to the tree without user interaction
+    children:
+      - 96d607cf-e328-4801-8a59-89b536f48e9d
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1e1dcbe8-fd06-4d70-a468-4a6ba33ad3c0:
+    id: 1e1dcbe8-fd06-4d70-a468-4a6ba33ad3c0
+    content: Nodes are created in the order they appear in the AI response
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bf732a96-6511-4cdb-b75f-b034a4de789b:
+    id: bf732a96-6511-4cdb-b75f-b034a4de789b
+    content: Unless it is overridden by inherited metadata from the parent
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  761ae51e-b019-4806-aa51-d031d83f8d7c:
+    id: 761ae51e-b019-4806-aa51-d031d83f8d7c
+    content: Created nodes inherit the applied context and blueprint membership of their position in the tree
+    children:
+      - bf732a96-6511-4cdb-b75f-b034a4de789b
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  79c169c0-9a09-4628-9f51-06a2fca879c4:
+    id: 79c169c0-9a09-4628-9f51-06a2fca879c4
+    content: Acceptance criteria
+    children:
+      - f5609310-7333-408a-9e3a-7de44e0546a6
+      - f9fec0dd-1c61-44b3-81eb-ef24eef3bdf7
+      - f00a19d2-e0f9-483b-b3b2-7e8910b49453
+      - 503c4b4d-ff02-4da0-a583-41e3ee61c65d
+      - fe8e0299-4321-42ea-a8ca-deb456ed2dee
+      - 1e1dcbe8-fd06-4d70-a468-4a6ba33ad3c0
+      - 761ae51e-b019-4806-aa51-d031d83f8d7c
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  31598f12-f2f6-4b60-b12e-cd55774cb0bc:
+    id: 31598f12-f2f6-4b60-b12e-cd55774cb0bc
+    content: The existing markdown parsing (parseMarkdown) handles multiple root nodes — needs verification
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d091d1d6-d695-4901-b599-a9f6a178cb77:
+    id: d091d1d6-d695-4901-b599-a9f6a178cb77
+    content: AcceptFeedbackCommand will need a new variant or mode since the current command assumes a single root replacement
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  31cc83d5-f5ae-4be4-9a30-4d09eb0206b9:
+    id: 31cc83d5-f5ae-4be4-9a30-4d09eb0206b9
+    content: Constraints and assumptions
+    children:
+      - 31598f12-f2f6-4b60-b12e-cd55774cb0bc
+      - d091d1d6-d695-4901-b599-a9f6a178cb77
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  560c829c-c5bd-47c5-bbff-790a5b42186d:
+    id: 560c829c-c5bd-47c5-bbff-790a5b42186d
+    content: 'Goal: extend feedback acceptance to create multiple sibling nodes from a single AI response'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8e242ce5-f581-4ef5-962f-c5bd344ab757:
+    id: 8e242ce5-f581-4ef5-962f-c5bd344ab757
+    content: 'AI format instructions: "Must have exactly one root node" (collaborateActions.ts)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  529421cc-7dda-440c-a5db-292cb05aff43:
+    id: 529421cc-7dda-440c-a5db-292cb05aff43
+    content: 'Validation: parseFeedbackContent rejects rootNodes.length !== 1 (feedbackService.ts)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  970f028e-2d72-401e-8f72-725532aff94f:
+    id: 970f028e-2d72-401e-8f72-725532aff94f
+    content: 'Command: AcceptFeedbackCommand assumes a single newRootNodeId (AcceptFeedbackCommand.ts)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0ae814ea-7593-4ea6-be71-f2eff205e1d5:
+    id: 0ae814ea-7593-4ea6-be71-f2eff205e1d5
+    content: Current pipeline enforces single-root at three levels
+    children:
+      - 8e242ce5-f581-4ef5-962f-c5bd344ab757
+      - 529421cc-7dda-440c-a5db-292cb05aff43
+      - 970f028e-2d72-401e-8f72-725532aff94f
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7bb8256b-d60b-466e-9538-759a6d8612fe:
+    id: 7bb8256b-d60b-466e-9538-759a6d8612fe
+    content: A toggle is added to the step configuration dialog
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  05e0b2fc-f87f-465d-b480-bce901bd6fd4:
+    id: 05e0b2fc-f87f-465d-b480-bce901bd6fd4
+    content: Format instructions tell the AI to produce multiple top-level headings
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a42569b9-fe14-4ab9-bd33-f443bb8e9df4:
+    id: a42569b9-fe14-4ab9-bd33-f443bb8e9df4
+    content: Validation accepts multiple roots
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  83bb6f65-2ae6-415f-a58c-bc3a76cb40c6:
+    id: 83bb6f65-2ae6-415f-a58c-bc3a76cb40c6
+    content: AcceptFeedbackCommand creates siblings instead of replacing
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9c96026d-5985-4ce9-a7f5-6575f3df7fb3:
+    id: 9c96026d-5985-4ce9-a7f5-6575f3df7fb3
+    content: When enabled
+    children:
+      - 05e0b2fc-f87f-465d-b480-bce901bd6fd4
+      - a42569b9-fe14-4ab9-bd33-f443bb8e9df4
+      - 83bb6f65-2ae6-415f-a58c-bc3a76cb40c6
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e05ea56a-26bd-41e3-8e53-77688163e314:
+    id: e05ea56a-26bd-41e3-8e53-77688163e314
+    content: All behavior is unchanged — full backward compatibility
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1d587d33-e4e5-48c0-aa79-7293054a0092:
+    id: 1d587d33-e4e5-48c0-aa79-7293054a0092
+    content: When disabled (default)
+    children:
+      - e05ea56a-26bd-41e3-8e53-77688163e314
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  01256706-e090-4af7-8ae5-f8ffcfee438f:
+    id: 01256706-e090-4af7-8ae5-f8ffcfee438f
+    content: 'Approach: conditional relaxation controlled by a "Decomposition" flag'
+    children:
+      - 7bb8256b-d60b-466e-9538-759a6d8612fe
+      - 9c96026d-5985-4ce9-a7f5-6575f3df7fb3
+      - 1d587d33-e4e5-48c0-aa79-7293054a0092
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  99fff5b4-6069-4303-8f9e-6e383df9bd13:
+    id: 99fff5b4-6069-4303-8f9e-6e383df9bd13
+    content: collaborateActions.ts — format instruction selection, decomposition flag threading
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9791679c-3a90-4b08-b7f7-1da908b18ba4:
+    id: 9791679c-3a90-4b08-b7f7-1da908b18ba4
+    content: feedbackService.ts — parseFeedbackContent validation, extractFeedbackContent unwrapping
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1b234515-4bfd-463e-bba6-487f373cb7c4:
+    id: 1b234515-4bfd-463e-bba6-487f373cb7c4
+    content: AcceptFeedbackCommand.ts — multi-root ID remapping, sibling creation, undo
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d1f846ab-221f-435c-b4d7-206124068c41:
+    id: d1f846ab-221f-435c-b4d7-206124068c41
+    content: StepConfigDialog — new decomposition toggle
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  71d01502-8575-4908-b91a-a44a272fda1f:
+    id: 71d01502-8575-4908-b91a-a44a272fda1f
+    content: workflowActions.ts — new setDecomposition action
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7c219770-e158-49fd-b9b6-d95112199d1e:
+    id: 7c219770-e158-49fd-b9b6-d95112199d1e
+    content: Affected areas
+    children:
+      - 99fff5b4-6069-4303-8f9e-6e383df9bd13
+      - 9791679c-3a90-4b08-b7f7-1da908b18ba4
+      - 1b234515-4bfd-463e-bba6-487f373cb7c4
+      - d1f846ab-221f-435c-b4d7-206124068c41
+      - 71d01502-8575-4908-b91a-a44a272fda1f
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  33383f08-1f9c-4913-8394-a91eb34f80d5:
+    id: 33383f08-1f9c-4913-8394-a91eb34f80d5
+    content: Summary
+    children:
+      - 560c829c-c5bd-47c5-bbff-790a5b42186d
+      - 0ae814ea-7593-4ea6-be71-f2eff205e1d5
+      - 01256706-e090-4af7-8ae5-f8ffcfee438f
+      - 7c219770-e158-49fd-b9b6-d95112199d1e
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9012728c-2caa-4fc0-b520-9b2086f1306c:
+    id: 9012728c-2caa-4fc0-b520-9b2086f1306c
+    content: 'Input: Parsed feedback content — either single root (ParsedFeedbackContent with one rootNodeId) or multiple roots (new multi-root variant with rootNodeIds array)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c320fc16-408b-4ff7-8479-843a6a04c711:
+    id: c320fc16-408b-4ff7-8479-843a6a04c711
+    content: 'Input: Decomposition flag from the workflow step''s metadata (node.metadata.decomposition === true)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0366f596-7d02-4249-b596-7da22de1e59c:
+    id: 0366f596-7d02-4249-b596-7da22de1e59c
+    content: 'Output: One or more sibling nodes replacing the collaborating node, with metadata preserved and provenance set up for the archive feature (US3)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bc934445-c335-4a54-b627-f7ccd2ee6088:
+    id: bc934445-c335-4a54-b627-f7ccd2ee6088
+    content: 'Key interface change: ParsedFeedbackContent gains a rootNodeIds: string[] field (replaces rootNodeId for multi-root; single-root case has array of length 1)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  06bffb48-880b-4955-be05-e8d2ccfff557:
+    id: 06bffb48-880b-4955-be05-e8d2ccfff557
+    content: 'Key interface change: AcceptFeedbackCommand gains a mode — single-root (current behavior, preserves UUID) vs multi-root (creates siblings with new UUIDs)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3d3bd8ef-b084-4c98-b8c7-bb1a0398d462:
+    id: 3d3bd8ef-b084-4c98-b8c7-bb1a0398d462
+    content: Inputs, outputs, and key interfaces
+    children:
+      - 9012728c-2caa-4fc0-b520-9b2086f1306c
+      - c320fc16-408b-4ff7-8479-843a6a04c711
+      - 0366f596-7d02-4249-b596-7da22de1e59c
+      - bc934445-c335-4a54-b627-f7ccd2ee6088
+      - 06bffb48-880b-4955-be05-e8d2ccfff557
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  59b243be-f605-4451-83b0-5ceada6c3fff:
+    id: 59b243be-f605-4451-83b0-5ceada6c3fff
+    content: Single-root acceptance must be fully backward compatible — no changes to behavior when decomposition is off
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ef16239f-b945-464f-9510-adbd34b87e03:
+    id: ef16239f-b945-464f-9510-adbd34b87e03
+    content: Multi-node acceptance must be atomic — either all nodes are created or none (single undo operation)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8ee17efc-a556-45fc-af89-deffca61fe3b:
+    id: 8ee17efc-a556-45fc-af89-deffca61fe3b
+    content: The feedback panel must render multi-root content correctly — the hidden root wrapper in feedbackTreeStore already handles this since it wraps all roots under a single hidden node
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  046cade0-13c3-453e-acfd-f4c93f96fcb9:
+    id: 046cade0-13c3-453e-acfd-f4c93f96fcb9
+    content: 'Performance: creating up to ~20 sibling nodes should be imperceptible. Beyond that is an unlikely edge case.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7bd32977-7a70-493a-85f8-3a2866ae5627:
+    id: 7bd32977-7a70-493a-85f8-3a2866ae5627
+    content: Constraints and non-functional requirements
+    children:
+      - 59b243be-f605-4451-83b0-5ceada6c3fff
+      - ef16239f-b945-464f-9510-adbd34b87e03
+      - 8ee17efc-a556-45fc-af89-deffca61fe3b
+      - 046cade0-13c3-453e-acfd-f4c93f96fcb9
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0e3586a2-b21d-43b5-8506-f5ec55d432d5:
+    id: 0e3586a2-b21d-43b5-8506-f5ec55d432d5
+    content: Add a "Decomposition" checkbox to StepConfigDialog below the Step Type section
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5fa02f29-1f64-4dae-b7fd-c0ce7ab9ac41:
+    id: 5fa02f29-1f64-4dae-b7fd-c0ce7ab9ac41
+    content: The toggle reads/writes node.metadata.decomposition (boolean, default false)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6c234e83-ac7b-4ae7-960e-669646295d06:
+    id: 6c234e83-ac7b-4ae7-960e-669646295d06
+    content: Changing it does not need undo — it's a configuration setting like the other step dialog options
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6dcf4d77-8d8e-4e4b-b9d6-a2e0682830a1:
+    id: 6dcf4d77-8d8e-4e4b-b9d6-a2e0682830a1
+    content: Add a setDecomposition action to workflowActions (or a generic setStepMetadata action)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5ba28e79-2fe2-492f-bd66-3c72249ce744:
+    id: 5ba28e79-2fe2-492f-bd66-3c72249ce744
+    content: 'Step 1: Add decomposition toggle to step configuration dialog (S)'
+    children:
+      - 0e3586a2-b21d-43b5-8506-f5ec55d432d5
+      - 5fa02f29-1f64-4dae-b7fd-c0ce7ab9ac41
+      - 6c234e83-ac7b-4ae7-960e-669646295d06
+      - 6dcf4d77-8d8e-4e4b-b9d6-a2e0682830a1
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3f48cfe4-1c01-437b-b549-f638edb3e1d8:
+    id: 3f48cfe4-1c01-437b-b549-f638edb3e1d8
+    content: In collaborateActions.ts, check if the collaborating node is inside a step with decomposition enabled
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f3097d45-c757-472d-9351-fdb6dff6055e:
+    id: f3097d45-c757-472d-9351-fdb6dff6055e
+    content: 'If decomposition is on: use an alternate COLLABORATE_OUTPUT_FORMAT that says "Use one # heading per top-level item. Each top-level item becomes a separate node."'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a8fc4d91-3b18-42c6-aeb2-f9a4ef7bc3cb:
+    id: a8fc4d91-3b18-42c6-aeb2-f9a4ef7bc3cb
+    content: 'If decomposition is off: use the existing format ("Must have exactly one root node")'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d09826e9-c991-405f-8693-65bd345728c6:
+    id: d09826e9-c991-405f-8693-65bd345728c6
+    content: The format string is selected before building the prompt, not at parse time
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  61e60bba-55a7-473e-bad0-810c7128a0e5:
+    id: 61e60bba-55a7-473e-bad0-810c7128a0e5
+    content: 'Step 2: Extend format instructions for decomposition mode (S)'
+    children:
+      - 3f48cfe4-1c01-437b-b549-f638edb3e1d8
+      - f3097d45-c757-472d-9351-fdb6dff6055e
+      - a8fc4d91-3b18-42c6-aeb2-f9a4ef7bc3cb
+      - d09826e9-c991-405f-8693-65bd345728c6
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3ba4e1d8-2395-483c-8cac-5ccc5846eb22:
+    id: 3ba4e1d8-2395-483c-8cac-5ccc5846eb22
+    content: 'Change ParsedFeedbackContent interface: replace rootNodeId: string with rootNodeIds: string[]'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  94ab17c3-1647-42a8-b121-d8829dcde8ce:
+    id: 94ab17c3-1647-42a8-b121-d8829dcde8ce
+    content: 'Update parseFeedbackContent: when decomposition mode is active, accept rootNodes.length >= 1 (not just === 1). When decomposition is off, keep the strict rootNodes.length === 1 validation.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  85babcfb-e678-4619-9079-6a5633dcec9d:
+    id: 85babcfb-e678-4619-9079-6a5633dcec9d
+    content: The decomposition flag needs to be passed into parseFeedbackContent (or into processIncomingFeedbackContent which calls it)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  89bde8f0-711e-4249-a19e-59dda0cc2e9c:
+    id: 89bde8f0-711e-4249-a19e-59dda0cc2e9c
+    content: Update all consumers of ParsedFeedbackContent.rootNodeId to use rootNodeIds[0] or iterate
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  709f8413-d654-4997-b3c2-c1c59a557228:
+    id: 709f8413-d654-4997-b3c2-c1c59a557228
+    content: Update extractFeedbackContent in feedbackService.ts — currently it unwraps a single child from the hidden root; needs to handle multiple children
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  74b9b5a3-342c-4cb1-a14a-1e5b63a963c7:
+    id: 74b9b5a3-342c-4cb1-a14a-1e5b63a963c7
+    content: 'Step 3: Extend parseFeedbackContent to accept multiple roots (M)'
+    children:
+      - 3ba4e1d8-2395-483c-8cac-5ccc5846eb22
+      - 94ab17c3-1647-42a8-b121-d8829dcde8ce
+      - 85babcfb-e678-4619-9079-6a5633dcec9d
+      - 89bde8f0-711e-4249-a19e-59dda0cc2e9c
+      - 709f8413-d654-4997-b3c2-c1c59a557228
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  476304e1-5285-405c-acec-f229f2bd9bb4:
+    id: 476304e1-5285-405c-acec-f229f2bd9bb4
+    content: 'When rootNodeIds has length 1: use existing behavior (root maps to collaboratingNodeId, preserves UUID and metadata)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2b2ee2b9-2e16-497e-aeef-9cc74d2fd1ea:
+    id: 2b2ee2b9-2e16-497e-aeef-9cc74d2fd1ea
+    content: 'When rootNodeIds has length > 1: the collaborating node is removed, and each root becomes a new sibling node inserted at the collaborating node''s position in the parent''s children array'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ed42e97a-52a9-4b7f-ae98-def41b1b03d4:
+    id: ed42e97a-52a9-4b7f-ae98-def41b1b03d4
+    content: Each new sibling gets a fresh UUID (not the collaborating node's UUID — there's no single "replacement")
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  feaed0a0-49fa-47b5-9cb8-bb59ca3e6a2d:
+    id: feaed0a0-49fa-47b5-9cb8-bb59ca3e6a2d
+    content: 'Each new sibling inherits metadata from the collaborating node: isBlueprint, blueprintIcon, blueprintColor, appliedContextIds, activeContextId'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  92011ff7-09e7-40f3-8900-7495a35e55cc:
+    id: 92011ff7-09e7-40f3-8900-7495a35e55cc
+    content: 'Undo: snapshot the collaborating node and its descendants, remove the created siblings, restore the collaborating node — single undo operation'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c08ebf1e-7991-4064-a9c7-94742c72b483:
+    id: c08ebf1e-7991-4064-a9c7-94742c72b483
+    content: Ancestor registry must be rebuilt for all new siblings and their descendants
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4f7df9e5-70e7-44cd-b425-5e610cf5fbe1:
+    id: 4f7df9e5-70e7-44cd-b425-5e610cf5fbe1
+    content: feedbackFadingNodeIds should include all new sibling IDs for the visual flash
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f56d9e4f-5c2e-497b-af59-5cdf102c52df:
+    id: f56d9e4f-5c2e-497b-af59-5cdf102c52df
+    content: activeNodeId should be set to the first new sibling
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  16deb325-23ec-4999-aac3-21855b2886aa:
+    id: 16deb325-23ec-4999-aac3-21855b2886aa
+    content: 'Step 4: Create multi-root AcceptFeedbackCommand (L)'
+    children:
+      - 476304e1-5285-405c-acec-f229f2bd9bb4
+      - 2b2ee2b9-2e16-497e-aeef-9cc74d2fd1ea
+      - ed42e97a-52a9-4b7f-ae98-def41b1b03d4
+      - feaed0a0-49fa-47b5-9cb8-bb59ca3e6a2d
+      - 92011ff7-09e7-40f3-8900-7495a35e55cc
+      - c08ebf1e-7991-4064-a9c7-94742c72b483
+      - 4f7df9e5-70e7-44cd-b425-5e610cf5fbe1
+      - f56d9e4f-5c2e-497b-af59-5cdf102c52df
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4cd2da0f-7176-4811-9e7e-b5b87612f099:
+    id: 4cd2da0f-7176-4811-9e7e-b5b87612f099
+    content: In collaborateInTerminal and collaborateOnWeb (collaborateActions.ts), check if the collaborating node is inside a decomposition-enabled step
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8047a7a4-a445-4dfc-9ac5-fe08c513a7d0:
+    id: 8047a7a4-a445-4dfc-9ac5-fe08c513a7d0
+    content: Pass the decomposition flag through to the format instruction selection (Step 2) and to processIncomingFeedbackContent (Step 3)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9152e0c4-5a8b-40c3-93e0-95274de495da:
+    id: 9152e0c4-5a8b-40c3-93e0-95274de495da
+    content: Store the decomposition flag in the collaboration state so finishAccept can access it when building the command
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ddfd5d1f-9104-46a3-9c98-2cd43315953e:
+    id: ddfd5d1f-9104-46a3-9c98-2cd43315953e
+    content: 'Step 5: Wire decomposition flag through the collaborate flow (M)'
+    children:
+      - 4cd2da0f-7176-4811-9e7e-b5b87612f099
+      - 8047a7a4-a445-4dfc-9ac5-fe08c513a7d0
+      - 9152e0c4-5a8b-40c3-93e0-95274de495da
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ea520053-746f-42aa-acba-ba1b78e6e898:
+    id: ea520053-746f-42aa-acba-ba1b78e6e898
+    content: The temp file watcher path calls processIncomingFeedbackContent — same code path as manual acceptance
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c48e1326-d90d-4957-902f-fa367e8abd67:
+    id: c48e1326-d90d-4957-902f-fa367e8abd67
+    content: Once processIncomingFeedbackContent supports multi-root (Step 3), autonomous acceptance inherits it
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cd20661c-28ef-48b8-951b-c297089c3f77:
+    id: cd20661c-28ef-48b8-951b-c297089c3f77
+    content: 'For autonomous steps: auto-accept triggers finishAccept which uses the multi-root command (Step 4)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  30cae392-5c22-446b-935b-2633e2f851bb:
+    id: 30cae392-5c22-446b-935b-2633e2f851bb
+    content: Verify the auto-accept path in workflowExecutionActions passes the decomposition flag correctly
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f3711631-5bdd-4046-9805-f46b5cee0fd7:
+    id: f3711631-5bdd-4046-9805-f46b5cee0fd7
+    content: 'Step 6: Update autonomous workflow path (S)'
+    children:
+      - ea520053-746f-42aa-acba-ba1b78e6e898
+      - c48e1326-d90d-4957-902f-fa367e8abd67
+      - cd20661c-28ef-48b8-951b-c297089c3f77
+      - 30cae392-5c22-446b-935b-2633e2f851bb
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2cc2fed4-0faa-451d-8d5c-64bf7b553dc4:
+    id: 2cc2fed4-0faa-451d-8d5c-64bf7b553dc4
+    content: Technical steps
+    children:
+      - 5ba28e79-2fe2-492f-bd66-3c72249ce744
+      - 61e60bba-55a7-473e-bad0-810c7128a0e5
+      - 74b9b5a3-342c-4cb1-a14a-1e5b63a963c7
+      - 16deb325-23ec-4999-aac3-21855b2886aa
+      - ddfd5d1f-9104-46a3-9c98-2cd43315953e
+      - f3711631-5bdd-4046-9805-f46b5cee0fd7
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ae23ce6b-c01f-400d-bb1d-5e10cf4224b5:
+    id: ae23ce6b-c01f-400d-bb1d-5e10cf4224b5
+    content: 'Backward compatibility: single-root mode must be identical to current behavior — the decomposition flag defaults to false, and when false, no code paths change. Risk is low if the flag check is the first branch in each modified function.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fd82c0cd-ba6a-42c9-aa0c-e1ec4bdff988:
+    id: fd82c0cd-ba6a-42c9-aa0c-e1ec4bdff988
+    content: 'Empty feedback: if the AI returns no parseable headings, behavior should be identical to today (silent failure, no feedback UI). This is already handled by parseFeedbackContent returning null.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b6b4c25d-5385-4ede-b233-0b125ada6388:
+    id: b6b4c25d-5385-4ede-b233-0b125ada6388
+    content: 'AI returns single root when decomposition is on: should still work — rootNodeIds has length 1, falls through to existing single-root behavior. No special case needed.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  421e0767-e1f8-4f5f-b195-2d17389ddecc:
+    id: 421e0767-e1f8-4f5f-b195-2d17389ddecc
+    content: 'AI returns multiple roots when decomposition is off: rejected by validation (rootNodes.length !== 1). Feedback is silently discarded. User sees no feedback panel. This is the current behavior.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  95baec92-65d2-4a6f-b318-3e9d72492fb1:
+    id: 95baec92-65d2-4a6f-b318-3e9d72492fb1
+    content: 'Feedback panel rendering: the feedbackTreeStore wraps content in a hidden root node. Multiple top-level items appear as children of the hidden root, which is already how the Tree component renders them. No rendering changes needed.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3b1fff82-c71d-4837-9a5e-632a2f7d1044:
+    id: 3b1fff82-c71d-4837-9a5e-632a2f7d1044
+    content: 'AcceptFeedbackCommand undo with multi-root: the snapshot must capture the parent''s children array (to restore collaborating node''s position) and all created sibling subtrees (to remove them). More complex than single-root undo but follows the same pattern.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d30d19cd-9426-4033-bad0-572a82362311:
+    id: d30d19cd-9426-4033-bad0-572a82362311
+    content: 'Blueprint mode: when blueprint mode is enabled, all new nodes get blueprint metadata. This already works for single-root in AcceptFeedbackCommand and needs to be applied per-sibling for multi-root.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4c187957-b5bb-497b-a15f-1099f8fe95c8:
+    id: 4c187957-b5bb-497b-a15f-1099f8fe95c8
+    content: 'The collaborating node is the root node of the file: multi-root acceptance would need to create multiple root nodes, which the tree doesn''t support (single root per file). This should be prevented — decomposition mode should be ignored if the collaborating node is the file''s root, or the validation should reject multi-root when collaborating on the root node.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6bd5f94a-154e-4cec-a426-c17e2c664473:
+    id: 6bd5f94a-154e-4cec-a426-c17e2c664473
+    content: Risks and edge cases
+    children:
+      - ae23ce6b-c01f-400d-bb1d-5e10cf4224b5
+      - fd82c0cd-ba6a-42c9-aa0c-e1ec4bdff988
+      - b6b4c25d-5385-4ede-b233-0b125ada6388
+      - 421e0767-e1f8-4f5f-b195-2d17389ddecc
+      - 95baec92-65d2-4a6f-b318-3e9d72492fb1
+      - 3b1fff82-c71d-4837-9a5e-632a2f7d1044
+      - d30d19cd-9426-4033-bad0-572a82362311
+      - 4c187957-b5bb-497b-a15f-1099f8fe95c8
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9924fd02-a0ee-4120-a677-00cfa811e9f1:
+    id: 9924fd02-a0ee-4120-a677-00cfa811e9f1
+    content: Single PR — the feature is tightly coupled across the pipeline so splitting would create broken intermediate states
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7992d015-c680-49d8-b1b2-c478ba1f9f5c:
+    id: 7992d015-c680-49d8-b1b2-c478ba1f9f5c
+    content: 'Order: Step dialog toggle (Step 1) → format instructions (Step 2) → parse changes (Step 3) → command (Step 4) → flow wiring (Step 5) → autonomous path (Step 6)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  30219be2-ddbd-496e-af06-97a4fbbece11:
+    id: 30219be2-ddbd-496e-af06-97a4fbbece11
+    content: 'Unit: parseFeedbackContent with decomposition on/off, single/multiple roots'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  463c06af-c301-4d4d-9e59-dd1f991ae4e9:
+    id: 463c06af-c301-4d4d-9e59-dd1f991ae4e9
+    content: 'Unit: AcceptFeedbackCommand multi-root — creates correct siblings, preserves metadata, undo restores original'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2e0c5ef5-45e6-43a0-9efa-599e54f7ca4b:
+    id: 2e0c5ef5-45e6-43a0-9efa-599e54f7ca4b
+    content: 'Unit: AcceptFeedbackCommand single-root — unchanged from current behavior'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  56d00acd-acd6-43ea-ab91-2a0e8d3614d3:
+    id: 56d00acd-acd6-43ea-ab91-2a0e8d3614d3
+    content: 'Unit: format instruction selection based on decomposition flag'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  81e77895-a2fd-41cb-a3ea-5c7ef3b9c2be:
+    id: 81e77895-a2fd-41cb-a3ea-5c7ef3b9c2be
+    content: 'Unit: StepConfigDialog renders decomposition toggle, reads/writes metadata'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6c7d2abd-6192-4259-9062-df978e1a22e7:
+    id: 6c7d2abd-6192-4259-9062-df978e1a22e7
+    content: 'Manual: end-to-end decomposition flow — enable decomposition on a step, send content, verify multiple nodes created, verify undo, verify metadata inheritance'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  02cef387-1cf8-498f-9522-179d6fd932e3:
+    id: 02cef387-1cf8-498f-9522-179d6fd932e3
+    content: 'Manual: verify existing single-root flow is unchanged when decomposition is off'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  729a5a27-a782-4cb8-a4a6-c77aaa9748a8:
+    id: 729a5a27-a782-4cb8-a4a6-c77aaa9748a8
+    content: Testing strategy
+    children:
+      - 30219be2-ddbd-496e-af06-97a4fbbece11
+      - 463c06af-c301-4d4d-9e59-dd1f991ae4e9
+      - 2e0c5ef5-45e6-43a0-9efa-599e54f7ca4b
+      - 56d00acd-acd6-43ea-ab91-2a0e8d3614d3
+      - 81e77895-a2fd-41cb-a3ea-5c7ef3b9c2be
+      - 6c7d2abd-6192-4259-9062-df978e1a22e7
+      - 02cef387-1cf8-498f-9522-179d6fd932e3
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  db7039ed-9cf3-4bff-a26f-95403878c282:
+    id: db7039ed-9cf3-4bff-a26f-95403878c282
+    content: 'Parallelisation: Steps 1-2 (dialog + format instructions) can be done in parallel with Step 3 (parse changes). Step 4 (command) depends on Step 3. Steps 5-6 depend on all prior steps.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d0b5df8d-4e00-40ac-b9ad-d0c125601e6f:
+    id: d0b5df8d-4e00-40ac-b9ad-d0c125601e6f
+    content: Implementation plan
+    children:
+      - 9924fd02-a0ee-4120-a677-00cfa811e9f1
+      - 7992d015-c680-49d8-b1b2-c478ba1f9f5c
+      - 729a5a27-a782-4cb8-a4a6-c77aaa9748a8
+      - db7039ed-9cf3-4bff-a26f-95403878c282
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3b66f5b4-6b1b-4eef-b15d-075b6d6c7ccf:
+    id: 3b66f5b4-6b1b-4eef-b15d-075b6d6c7ccf
+    content: Technical specifications
+    children:
+      - 33383f08-1f9c-4913-8394-a91eb34f80d5
+      - 3d3bd8ef-b084-4c98-b8c7-bb1a0398d462
+      - 7bd32977-7a70-493a-85f8-3a2866ae5627
+      - 2cc2fed4-0faa-451d-8d5c-64bf7b553dc4
+      - 6bd5f94a-154e-4cec-a426-c17e2c664473
+      - d0b5df8d-4e00-40ac-b9ad-d0c125601e6f
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3e183a91-b915-4ac9-803e-d5567da510a2:
+    id: 3e183a91-b915-4ac9-803e-d5567da510a2
+    content: Verify that decomposition mode produces multiple sibling nodes from a single AI response
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f5400f09-5588-424b-8e7d-5e6c03f1f79e:
+    id: f5400f09-5588-424b-8e7d-5e6c03f1f79e
+    content: Verify that single-root acceptance is fully backward compatible when decomposition is off
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e786fbb8-df13-4778-b31d-d1fd5451f124:
+    id: e786fbb8-df13-4778-b31d-d1fd5451f124
+    content: Verify that multi-node acceptance is atomic (single undo restores original node)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3e8a8a5a-554a-4226-957d-a8e6b42d6bdf:
+    id: 3e8a8a5a-554a-4226-957d-a8e6b42d6bdf
+    content: Verify that the decomposition toggle in the step configuration dialog correctly controls the pipeline behavior
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4dacee84-2e8c-4011-8243-44acdaf874f8:
+    id: 4dacee84-2e8c-4011-8243-44acdaf874f8
+    content: Scope and objectives
+    children:
+      - 3e183a91-b915-4ac9-803e-d5567da510a2
+      - f5400f09-5588-424b-8e7d-5e6c03f1f79e
+      - e786fbb8-df13-4778-b31d-d1fd5451f124
+      - 3e8a8a5a-554a-4226-957d-a8e6b42d6bdf
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4ab46ccd-c6d0-4e33-a506-95badd05b7c1:
+    id: 4ab46ccd-c6d0-4e33-a506-95badd05b7c1
+    content: Decomposition toggle is implemented in the step configuration dialog
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  445248f6-c175-4055-9563-9c0049fadfe5:
+    id: 445248f6-c175-4055-9563-9c0049fadfe5
+    content: parseFeedbackContent supports multiple roots when decomposition is active
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fa94df89-c706-4ca3-ac30-0f8a131ff150:
+    id: fa94df89-c706-4ca3-ac30-0f8a131ff150
+    content: AcceptFeedbackCommand supports multi-root mode
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8106fe7b-8fc4-42e3-b9b4-532f7c5756ac:
+    id: 8106fe7b-8fc4-42e3-b9b4-532f7c5756ac
+    content: Decomposition flag is threaded through the collaborate flow
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3d7e4054-693e-42d9-8a5c-d01e33682b63:
+    id: 3d7e4054-693e-42d9-8a5c-d01e33682b63
+    content: Entry criteria
+    children:
+      - 4ab46ccd-c6d0-4e33-a506-95badd05b7c1
+      - 445248f6-c175-4055-9563-9c0049fadfe5
+      - fa94df89-c706-4ca3-ac30-0f8a131ff150
+      - 8106fe7b-8fc4-42e3-b9b4-532f7c5756ac
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9a4a161f-d111-4632-81d6-7808ff7e560f:
+    id: 9a4a161f-d111-4632-81d6-7808ff7e560f
+    content: All unit tests pass
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f7da21f9-9ebe-4a20-8d40-9d88f5376d74:
+    id: f7da21f9-9ebe-4a20-8d40-9d88f5376d74
+    content: All manual test scenarios are verified
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8f0b271f-6dc9-4e31-bf92-da9f49953720:
+    id: 8f0b271f-6dc9-4e31-bf92-da9f49953720
+    content: No regressions in existing single-root feedback acceptance
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  611d720f-4617-426f-b208-944efadd90c7:
+    id: 611d720f-4617-426f-b208-944efadd90c7
+    content: Exit criteria
+    children:
+      - 9a4a161f-d111-4632-81d6-7808ff7e560f
+      - f7da21f9-9ebe-4a20-8d40-9d88f5376d74
+      - 8f0b271f-6dc9-4e31-bf92-da9f49953720
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  479a2cbf-6ccf-4874-8bd9-45cd21e0625d:
+    id: 479a2cbf-6ccf-4874-8bd9-45cd21e0625d
+    content: A tree with a declared workflow containing at least one step with decomposition enabled and one without
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a34462a0-ab90-4408-85d6-0e5b23d6793b:
+    id: a34462a0-ab90-4408-85d6-0e5b23d6793b
+    content: A collaborate-mode context applied to the workflow steps
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7c7a8325-f426-491b-bdde-3808ecf4e47b:
+    id: 7c7a8325-f426-491b-bdde-3808ecf4e47b
+    content: Terminal with hook integration configured for autonomous step testing
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a143d2ae-9f29-4439-90dd-8183d9f3290f:
+    id: a143d2ae-9f29-4439-90dd-8183d9f3290f
+    content: Environments and prerequisites
+    children:
+      - 479a2cbf-6ccf-4874-8bd9-45cd21e0625d
+      - a34462a0-ab90-4408-85d6-0e5b23d6793b
+      - 7c7a8325-f426-491b-bdde-3808ecf4e47b
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  dd107e9a-b831-475d-84c1-2de97a1530a5:
+    id: dd107e9a-b831-475d-84c1-2de97a1530a5
+    content: 'With decomposition off: rejects content with multiple root nodes (returns null)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ee948073-c61f-4286-a29c-d31b9e6d7c58:
+    id: ee948073-c61f-4286-a29c-d31b9e6d7c58
+    content: 'With decomposition off: accepts content with exactly one root node (current behavior)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cecf17ae-41b7-4951-9a3f-a06c6c6e71f1:
+    id: cecf17ae-41b7-4951-9a3f-a06c6c6e71f1
+    content: 'With decomposition on: accepts content with multiple root nodes'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4aefba31-4adc-4005-a12e-e57f4a3a5535:
+    id: 4aefba31-4adc-4005-a12e-e57f4a3a5535
+    content: 'With decomposition on: accepts content with a single root node (falls through to single-root)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3404ad93-ead1-4332-a087-f789e93bff20:
+    id: 3404ad93-ead1-4332-a087-f789e93bff20
+    content: 'With decomposition on: rejects content with zero root nodes'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  72aec3e2-63a1-49eb-987a-3095e32262de:
+    id: 72aec3e2-63a1-49eb-987a-3095e32262de
+    content: Returns rootNodeIds array with correct IDs in document order
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5b191ecd-d04b-4dae-bf65-a8103437a840:
+    id: 5b191ecd-d04b-4dae-bf65-a8103437a840
+    content: parseFeedbackContent
+    children:
+      - dd107e9a-b831-475d-84c1-2de97a1530a5
+      - ee948073-c61f-4286-a29c-d31b9e6d7c58
+      - cecf17ae-41b7-4951-9a3f-a06c6c6e71f1
+      - 4aefba31-4adc-4005-a12e-e57f4a3a5535
+      - 3404ad93-ead1-4332-a087-f789e93bff20
+      - 72aec3e2-63a1-49eb-987a-3095e32262de
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3a941e03-3326-4a2c-8786-b8ab0ae38b45:
+    id: 3a941e03-3326-4a2c-8786-b8ab0ae38b45
+    content: Replaces collaborating node content and children (existing behavior unchanged)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  91481464-92a7-4d6b-8fa0-6d9cd2f57faa:
+    id: 91481464-92a7-4d6b-8fa0-6d9cd2f57faa
+    content: Preserves collaborating node UUID
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4a27b33b-7297-417e-87d3-a06de81801e2:
+    id: 4a27b33b-7297-417e-87d3-a06de81801e2
+    content: Preserves metadata (isBlueprint, appliedContextIds, activeContextId, blueprintIcon, blueprintColor)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8ea8d945-84fd-4e24-98fe-2c57146d1a15:
+    id: 8ea8d945-84fd-4e24-98fe-2c57146d1a15
+    content: Undo restores original node and descendants
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fce98ad3-3b20-4730-b8b5-e851a9932b7b:
+    id: fce98ad3-3b20-4730-b8b5-e851a9932b7b
+    content: Redo reapplies the replacement
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  90dc55f5-535b-4bad-9dad-57e2896d1431:
+    id: 90dc55f5-535b-4bad-9dad-57e2896d1431
+    content: AcceptFeedbackCommand — single-root mode
+    children:
+      - 3a941e03-3326-4a2c-8786-b8ab0ae38b45
+      - 91481464-92a7-4d6b-8fa0-6d9cd2f57faa
+      - 4a27b33b-7297-417e-87d3-a06de81801e2
+      - 8ea8d945-84fd-4e24-98fe-2c57146d1a15
+      - fce98ad3-3b20-4730-b8b5-e851a9932b7b
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ba120ab4-8862-490a-9c80-530ceda16344:
+    id: ba120ab4-8862-490a-9c80-530ceda16344
+    content: Creates multiple sibling nodes at the collaborating node's position in its parent's children array
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2de1c02f-4906-426e-9813-97a88145fe00:
+    id: 2de1c02f-4906-426e-9813-97a88145fe00
+    content: Each sibling has a unique UUID (not the collaborating node's UUID)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d0ff7384-f46a-4af5-beed-17f707db4a10:
+    id: d0ff7384-f46a-4af5-beed-17f707db4a10
+    content: Each sibling inherits metadata from the collaborating node
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bc08c236-9dcc-4616-9274-782e9f45f0c0:
+    id: bc08c236-9dcc-4616-9274-782e9f45f0c0
+    content: Siblings appear in document order matching the AI response
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  82ff8e9d-1217-49be-9f26-b91824acbae2:
+    id: 82ff8e9d-1217-49be-9f26-b91824acbae2
+    content: Collaborating node is removed from the tree
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8ae3732c-166a-4400-bb46-ea41ce7742ea:
+    id: 8ae3732c-166a-4400-bb46-ea41ce7742ea
+    content: Ancestor registry is rebuilt for all new siblings and their descendants
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  74844375-e3d1-4d22-a493-f7e4cd7e177b:
+    id: 74844375-e3d1-4d22-a493-f7e4cd7e177b
+    content: feedbackFadingNodeIds includes all new sibling IDs
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a870587b-2d01-4f92-8794-100091fb937b:
+    id: a870587b-2d01-4f92-8794-100091fb937b
+    content: activeNodeId is set to the first new sibling
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  94d8f457-421d-4f17-a1c5-7d4d796afb06:
+    id: 94d8f457-421d-4f17-a1c5-7d4d796afb06
+    content: Undo removes all created siblings and restores the original collaborating node with its descendants
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5494f618-7c0e-4ec8-bd06-d1c6cfa7be2a:
+    id: 5494f618-7c0e-4ec8-bd06-d1c6cfa7be2a
+    content: Redo reapplies the multi-node creation
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  6585f0c4-382d-4937-8506-05685068977e:
+    id: 6585f0c4-382d-4937-8506-05685068977e
+    content: Applies blueprint metadata to all siblings when blueprintModeEnabled is true
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fc1d4f6e-583f-40bf-9a68-d7be0f638e49:
+    id: fc1d4f6e-583f-40bf-9a68-d7be0f638e49
+    content: AcceptFeedbackCommand — multi-root mode
+    children:
+      - ba120ab4-8862-490a-9c80-530ceda16344
+      - 2de1c02f-4906-426e-9813-97a88145fe00
+      - d0ff7384-f46a-4af5-beed-17f707db4a10
+      - bc08c236-9dcc-4616-9274-782e9f45f0c0
+      - 82ff8e9d-1217-49be-9f26-b91824acbae2
+      - 8ae3732c-166a-4400-bb46-ea41ce7742ea
+      - 74844375-e3d1-4d22-a493-f7e4cd7e177b
+      - a870587b-2d01-4f92-8794-100091fb937b
+      - 94d8f457-421d-4f17-a1c5-7d4d796afb06
+      - 5494f618-7c0e-4ec8-bd06-d1c6cfa7be2a
+      - 6585f0c4-382d-4937-8506-05685068977e
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e160ecbf-b3d2-4c1f-95f0-2bdcf63acc49:
+    id: e160ecbf-b3d2-4c1f-95f0-2bdcf63acc49
+    content: When the collaborating node is the file root, multi-root mode is prevented (falls back to single-root or rejects)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  763f5543-f94f-43d5-9982-c8abcec0ca3c:
+    id: 763f5543-f94f-43d5-9982-c8abcec0ca3c
+    content: AcceptFeedbackCommand — root node guard
+    children:
+      - e160ecbf-b3d2-4c1f-95f0-2bdcf63acc49
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  048db398-0b95-48b9-a94f-c49ac4173987:
+    id: 048db398-0b95-48b9-a94f-c49ac4173987
+    content: 'When decomposition is off: COLLABORATE_OUTPUT_FORMAT contains "exactly one root node"'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  c2e3cd92-99e7-488a-ae81-583cb77278f5:
+    id: c2e3cd92-99e7-488a-ae81-583cb77278f5
+    content: 'When decomposition is on: alternate format allows multiple top-level headings'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  3af43e86-0e06-4f26-afb2-d8ce748665f2:
+    id: 3af43e86-0e06-4f26-afb2-d8ce748665f2
+    content: Format instruction selection
+    children:
+      - 048db398-0b95-48b9-a94f-c49ac4173987
+      - c2e3cd92-99e7-488a-ae81-583cb77278f5
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  00585f3b-2f89-4c7e-8c52-a9951372e198:
+    id: 00585f3b-2f89-4c7e-8c52-a9951372e198
+    content: 'With single child under hidden root: returns single rootNodeId (current behavior)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e04f1c90-3f88-426c-ad6f-f6a92e778003:
+    id: e04f1c90-3f88-426c-ad6f-f6a92e778003
+    content: 'With multiple children under hidden root: returns all rootNodeIds in order'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8e8b0593-be80-4120-85b2-86468da05dec:
+    id: 8e8b0593-be80-4120-85b2-86468da05dec
+    content: extractFeedbackContent
+    children:
+      - 00585f3b-2f89-4c7e-8c52-a9951372e198
+      - e04f1c90-3f88-426c-ad6f-f6a92e778003
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  87dafe04-b7d3-48a6-be83-a754e2cb3586:
+    id: 87dafe04-b7d3-48a6-be83-a754e2cb3586
+    content: Renders decomposition checkbox
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  849d6611-62fe-4a13-8370-fa8a9dcc6afe:
+    id: 849d6611-62fe-4a13-8370-fa8a9dcc6afe
+    content: Checkbox reflects current node.metadata.decomposition value
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  62401b93-87d6-4cef-be7b-bd9e2ba80c77:
+    id: 62401b93-87d6-4cef-be7b-bd9e2ba80c77
+    content: Defaults to unchecked when metadata.decomposition is undefined
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4ddbecca-b51b-4119-8c89-0e2dedd632f3:
+    id: 4ddbecca-b51b-4119-8c89-0e2dedd632f3
+    content: Toggling calls the setDecomposition action with correct nodeId and value
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  758aef44-4b70-4080-b14e-42833e599481:
+    id: 758aef44-4b70-4080-b14e-42833e599481
+    content: StepConfigDialog
+    children:
+      - 87dafe04-b7d3-48a6-be83-a754e2cb3586
+      - 849d6611-62fe-4a13-8370-fa8a9dcc6afe
+      - 62401b93-87d6-4cef-be7b-bd9e2ba80c77
+      - 4ddbecca-b51b-4119-8c89-0e2dedd632f3
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  36a0d3df-83ef-42e3-8646-369dbd93e738:
+    id: 36a0d3df-83ef-42e3-8646-369dbd93e738
+    content: Unit tests
+    children:
+      - 5b191ecd-d04b-4dae-bf65-a8103437a840
+      - 90dc55f5-535b-4bad-9dad-57e2896d1431
+      - fc1d4f6e-583f-40bf-9a68-d7be0f638e49
+      - 763f5543-f94f-43d5-9982-c8abcec0ca3c
+      - 3af43e86-0e06-4f26-afb2-d8ce748665f2
+      - 8e8b0593-be80-4120-85b2-86468da05dec
+      - 758aef44-4b70-4080-b14e-42833e599481
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  48b67afb-cdcf-47cc-b21d-89ccad5aee33:
+    id: 48b67afb-cdcf-47cc-b21d-89ccad5aee33
+    content: Enable decomposition on a workflow step, send content via collaborate, AI returns 5 top-level items — 5 sibling nodes are created at the collaborating node's position
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6e70b1cb-2047-41f4-95cb-608adfd2edb5:
+    id: 6e70b1cb-2047-41f4-95cb-608adfd2edb5
+    content: Each sibling has the correct blueprint icon, color, and applied context from the original node
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c33d8a57-3cf6-457e-8dc4-428d2228576e:
+    id: c33d8a57-3cf6-457e-8dc4-428d2228576e
+    content: Undo (Ctrl+Z) removes all 5 siblings and restores the original node
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  91bd4eba-aeae-4f08-a211-f9aa45156967:
+    id: 91bd4eba-aeae-4f08-a211-f9aa45156967
+    content: Redo (Ctrl+Shift+Z) recreates the 5 siblings
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  bb428b8a-daaf-435e-8e99-19abd628ba25:
+    id: bb428b8a-daaf-435e-8e99-19abd628ba25
+    content: Decomposition enabled — happy path
+    children:
+      - 48b67afb-cdcf-47cc-b21d-89ccad5aee33
+      - 6e70b1cb-2047-41f4-95cb-608adfd2edb5
+      - c33d8a57-3cf6-457e-8dc4-428d2228576e
+      - 91bd4eba-aeae-4f08-a211-f9aa45156967
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  59401d55-8f6e-4809-bfe0-82f538e4f34b:
+    id: 59401d55-8f6e-4809-bfe0-82f538e4f34b
+    content: With decomposition off, send content via collaborate — behavior is identical to current (single node replacement)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1686d63a-0602-4eb0-be0e-14aabe993889:
+    id: 1686d63a-0602-4eb0-be0e-14aabe993889
+    content: AI response with multiple roots is silently rejected when decomposition is off (no feedback panel appears)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  68035668-8a0d-4e70-9895-3d19e10c2b0d:
+    id: 68035668-8a0d-4e70-9895-3d19e10c2b0d
+    content: Decomposition disabled — backward compatibility
+    children:
+      - 59401d55-8f6e-4809-bfe0-82f538e4f34b
+      - 1686d63a-0602-4eb0-be0e-14aabe993889
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4ccf0abf-b6a8-4d98-8fcd-321ec8e2f336:
+    id: 4ccf0abf-b6a8-4d98-8fcd-321ec8e2f336
+    content: Enable decomposition on an autonomous step, start workflow — AI response is auto-accepted and multiple siblings are created without user interaction
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5a523633-cd96-4f39-a05d-1ace0bda4d79:
+    id: 5a523633-cd96-4f39-a05d-1ace0bda4d79
+    content: The workflow continues with the first created sibling
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  59c09645-e194-4a1b-8f2b-32c5e9bbebd6:
+    id: 59c09645-e194-4a1b-8f2b-32c5e9bbebd6
+    content: Decomposition with autonomous step
+    children:
+      - 4ccf0abf-b6a8-4d98-8fcd-321ec8e2f336
+      - 5a523633-cd96-4f39-a05d-1ace0bda4d79
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8e2c306f-20d1-4a35-8f4d-1a31fc8964fa:
+    id: 8e2c306f-20d1-4a35-8f4d-1a31fc8964fa
+    content: AI returns a single root when decomposition is on — single-root behavior applies, original UUID is preserved
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  07d59011-f49f-401d-925c-da02a6061296:
+    id: 07d59011-f49f-401d-925c-da02a6061296
+    content: Collaborating node is the file root — decomposition is prevented, single-root behavior applies
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8d648287-e1a5-4f08-b92e-c6989b55d9bb:
+    id: 8d648287-e1a5-4f08-b92e-c6989b55d9bb
+    content: AI returns empty response — no feedback panel, no tree changes
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c3555ad3-d9a0-4fd5-9eb9-80c2b632eb28:
+    id: c3555ad3-d9a0-4fd5-9eb9-80c2b632eb28
+    content: Edge cases
+    children:
+      - 8e2c306f-20d1-4a35-8f4d-1a31fc8964fa
+      - 07d59011-f49f-401d-925c-da02a6061296
+      - 8d648287-e1a5-4f08-b92e-c6989b55d9bb
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  bb6f72ea-3e04-4229-93f7-7f6870aeef94:
+    id: bb6f72ea-3e04-4229-93f7-7f6870aeef94
+    content: All created siblings show the orange fade animation
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  162c24fe-03e8-4ad8-a872-17827244f87b:
+    id: 162c24fe-03e8-4ad8-a872-17827244f87b
+    content: The first sibling is selected after acceptance
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  bcb51925-7bd9-4583-ba46-6e99def23134:
+    id: bcb51925-7bd9-4583-ba46-6e99def23134
+    content: Visual feedback
+    children:
+      - bb6f72ea-3e04-4229-93f7-7f6870aeef94
+      - 162c24fe-03e8-4ad8-a872-17827244f87b
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c220cd23-662e-4664-9612-2699234cacb4:
+    id: c220cd23-662e-4664-9612-2699234cacb4
+    content: Manual tests
+    children:
+      - bb428b8a-daaf-435e-8e99-19abd628ba25
+      - 68035668-8a0d-4e70-9895-3d19e10c2b0d
+      - 59c09645-e194-4a1b-8f2b-32c5e9bbebd6
+      - c3555ad3-d9a0-4fd5-9eb9-80c2b632eb28
+      - bcb51925-7bd9-4583-ba46-6e99def23134
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d4c54a1e-7851-4413-a513-5f27eaaa3751:
+    id: d4c54a1e-7851-4413-a513-5f27eaaa3751
+    content: 'Highest likelihood of defects: AcceptFeedbackCommand multi-root undo — must correctly snapshot parent''s children array, remove all created subtrees, and restore the original node in the correct position. More moving parts than single-root undo.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b039a361-fdd0-4067-a711-b49324e8f997:
+    id: b039a361-fdd0-4067-a711-b49324e8f997
+    content: 'Highest impact if failed: backward compatibility — if the decomposition flag is not correctly checked, existing single-root acceptance could break for all users. Every modified function must branch on the flag before changing behavior.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  db82f5e8-6465-4f56-92e0-84c53d7aefe9:
+    id: db82f5e8-6465-4f56-92e0-84c53d7aefe9
+    content: 'Dependency: the decomposition flag must be threaded through the collaborate flow (collaborateActions → processIncomingFeedbackContent → extractFeedbackContent → AcceptFeedbackCommand). A break in any link silently falls back to single-root mode, which is safe but confusing if the user expects multi-root.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2a37b438-28f1-4d39-9b15-90aee2a33649:
+    id: 2a37b438-28f1-4d39-9b15-90aee2a33649
+    content: 'Ambiguity: the AC says "Created nodes inherit the applied context and blueprint membership of their position in the tree, unless overridden by inherited metadata from the parent." The override precedence needs clarification during implementation — does parent metadata win over position-based inheritance, or vice versa?'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1ad7004e-2afe-4591-818b-62a3ded47a1e:
+    id: 1ad7004e-2afe-4591-818b-62a3ded47a1e
+    content: 'Likely to change: the decomposition toggle may gain additional options (e.g. max node count, heading depth control) as users discover edge cases with AI responses.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  430dc4e1-6a28-4c0a-8a61-979dee0a1107:
+    id: 430dc4e1-6a28-4c0a-8a61-979dee0a1107
+    content: Risks
+    children:
+      - d4c54a1e-7851-4413-a513-5f27eaaa3751
+      - b039a361-fdd0-4067-a711-b49324e8f997
+      - db82f5e8-6465-4f56-92e0-84c53d7aefe9
+      - 2a37b438-28f1-4d39-9b15-90aee2a33649
+      - 1ad7004e-2afe-4591-818b-62a3ded47a1e
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  944d39ba-6b53-4ccf-8b41-34e0221e7364:
+    id: 944d39ba-6b53-4ccf-8b41-34e0221e7364
+    content: Test plan
+    children:
+      - 4dacee84-2e8c-4011-8243-44acdaf874f8
+      - 3d7e4054-693e-42d9-8a5c-d01e33682b63
+      - 611d720f-4617-426f-b208-944efadd90c7
+      - a143d2ae-9f29-4439-90dd-8183d9f3290f
+      - 36a0d3df-83ef-42e3-8646-369dbd93e738
+      - c220cd23-662e-4664-9612-2699234cacb4
+      - 430dc4e1-6a28-4c0a-8a61-979dee0a1107
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  911c7c76-b792-44e2-b404-5087a4ceaff4:
+    id: 911c7c76-b792-44e2-b404-5087a4ceaff4
+    content: 'US2: AI workflow orchestration - Multi-node feedback acceptance'
+    children:
+      - 20cfd038-85d4-4a02-bd66-d27d3543c7d9
+      - b62c2ed6-ee4a-42fd-a5a3-6e6095047c81
+      - 79c169c0-9a09-4628-9f51-06a2fca879c4
+      - 31cc83d5-f5ae-4be4-9a30-4d09eb0206b9
+      - 3b66f5b4-6b1b-4eef-b15d-075b6d6c7ccf
+      - 944d39ba-6b53-4ccf-8b41-34e0221e7364
+    metadata:
+      status: pending
+      expanded: false
+      deleted: false
+      plugins: {}

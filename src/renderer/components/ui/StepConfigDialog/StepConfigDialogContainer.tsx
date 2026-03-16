@@ -11,6 +11,7 @@ export function StepConfigDialogContainer() {
 
   const node = useStore((state) => (nodeId ? state.nodes[nodeId] : null));
   const setStepType = useStore((state) => state.actions.setStepType);
+  const setDecomposition = useStore((state) => state.actions.setDecomposition);
 
   useModalHotkeyContext(isOpen);
 
@@ -19,12 +20,15 @@ export function StepConfigDialogContainer() {
   }
 
   const currentStepType = (node.metadata.stepType as StepType) || 'manual';
+  const decomposition = node.metadata.decomposition === true;
 
   return (
     <StepConfigDialog
       nodeId={nodeId}
       currentStepType={currentStepType}
+      decomposition={decomposition}
       onStepTypeChange={setStepType}
+      onDecompositionChange={setDecomposition}
       onClose={close}
     />
   );

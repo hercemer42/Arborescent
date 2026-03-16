@@ -141,6 +141,7 @@ describe('collaborateActions', () => {
       deletingNodeIds: new Set<string>(),
       deleteAnimationCallback: null,
       collaboratingNodeId: null,
+      decomposition: false,
       feedbackFadingNodeIds: new Set(),
       contextDeclarations: [],
       blueprintModeEnabled: false,
@@ -193,7 +194,7 @@ describe('collaborateActions', () => {
     it('should set collaboratingNodeId', () => {
       actions.startCollaboration('child1');
 
-      expect(mockSet).toHaveBeenCalledWith({ collaboratingNodeId: 'child1' });
+      expect(mockSet).toHaveBeenCalledWith(expect.objectContaining({ collaboratingNodeId: 'child1' }));
     });
 
     it('should not start collaboration if one is already in progress', () => {
@@ -537,7 +538,7 @@ describe('collaborateActions', () => {
       await actions.collaborate('child1');
 
       expect(mockClipboardWriteText).toHaveBeenCalledWith(expect.stringContaining('Child 1'));
-      expect(mockSet).toHaveBeenCalledWith({ collaboratingNodeId: 'child1' });
+      expect(mockSet).toHaveBeenCalledWith(expect.objectContaining({ collaboratingNodeId: 'child1' }));
       // Clipboard monitor is managed by useFeedbackClipboard, not collaborateActions
       expect(logger.info).toHaveBeenCalledWith('Started collaboration for node: child1', 'CollaborateActions');
     });
@@ -635,7 +636,7 @@ describe('collaborateActions', () => {
       const clipboardContent = mockClipboardWriteText.mock.calls[0][0];
       // Should use default instructions when referenced context doesn't exist
       expect(clipboardContent).toContain('You are reviewing a hierarchical task list');
-      expect(mockSet).toHaveBeenCalledWith({ collaboratingNodeId: 'child1' });
+      expect(mockSet).toHaveBeenCalledWith(expect.objectContaining({ collaboratingNodeId: 'child1' }));
     });
   });
 
@@ -661,7 +662,7 @@ describe('collaborateActions', () => {
         'terminal-1',
         expect.stringContaining('Child 1')
       );
-      expect(mockSet).toHaveBeenCalledWith({ collaboratingNodeId: 'child1' });
+      expect(mockSet).toHaveBeenCalledWith(expect.objectContaining({ collaboratingNodeId: 'child1' }));
       expect(window.electron.startFeedbackFileWatcher).toHaveBeenCalled();
       expect(logger.info).toHaveBeenCalledWith(
         expect.stringContaining('Started terminal collaboration for node: child1'),
@@ -787,7 +788,7 @@ describe('collaborateActions', () => {
       const terminalContent = vi.mocked(executeInTerminal).mock.calls[0][1];
       // Should use default instructions when referenced context doesn't exist
       expect(terminalContent).toContain('You are reviewing a hierarchical task list');
-      expect(mockSet).toHaveBeenCalledWith({ collaboratingNodeId: 'child1' });
+      expect(mockSet).toHaveBeenCalledWith(expect.objectContaining({ collaboratingNodeId: 'child1' }));
     });
   });
 
@@ -799,7 +800,7 @@ describe('collaborateActions', () => {
         actions.startCollaboration('child1');
 
         // Metadata is only saved when content is received via processIncomingFeedbackContent
-        expect(mockSet).toHaveBeenCalledWith({ collaboratingNodeId: 'child1' });
+        expect(mockSet).toHaveBeenCalledWith(expect.objectContaining({ collaboratingNodeId: 'child1' }));
       });
     });
 
@@ -873,7 +874,7 @@ describe('collaborateActions', () => {
 
         await actions.restoreCollaborationState();
 
-        expect(mockSet).toHaveBeenCalledWith({ collaboratingNodeId: 'child1' });
+        expect(mockSet).toHaveBeenCalledWith(expect.objectContaining({ collaboratingNodeId: 'child1' }));
         expect(mockLoadFromPath).toHaveBeenCalledWith('/tmp/feedback.arbo');
       });
 
@@ -915,6 +916,7 @@ describe('collaborateActions', () => {
             'feedback-child': { id: 'feedback-child', content: 'Child task', children: [], metadata: {} },
           },
           rootNodeId: 'feedback-root',
+          rootNodeIds: ['feedback-root'],
           nodeCount: 2,
         });
       });

@@ -8,10 +8,11 @@ import { logger } from '../logger';
 export interface ParsedFeedbackContent {
   nodes: Record<string, TreeNode>;
   rootNodeId: string;
+  rootNodeIds: string[];
   nodeCount: number;
 }
 
-export function parseFeedbackContent(content: string): ParsedFeedbackContent | null {
+export function parseFeedbackContent(content: string, decomposition: boolean = false): ParsedFeedbackContent | null {
   let rootNodes, allNodes;
   try {
     ({ rootNodes, allNodes } = parseMarkdown(content));
@@ -20,18 +21,22 @@ export function parseFeedbackContent(content: string): ParsedFeedbackContent | n
     return null;
   }
 
-  if (rootNodes.length !== 1) {
-    if (rootNodes.length === 0) {
-      logger.info('Content has no valid nodes', 'FeedbackService');
-    } else {
-      logger.info(`Content has ${rootNodes.length} root nodes, expected 1`, 'FeedbackService');
-    }
+  if (rootNodes.length === 0) {
+    logger.info('Content has no valid nodes', 'FeedbackService');
     return null;
   }
 
+  if (!decomposition && rootNodes.length !== 1) {
+    logger.info(`Content has ${rootNodes.length} root nodes, expected 1`, 'FeedbackService');
+    return null;
+  }
+
+  const rootNodeIds = rootNodes.map(node => node.id);
+
   return {
     nodes: allNodes,
-    rootNodeId: rootNodes[0].id,
+    rootNodeId: rootNodeIds[0],
+    rootNodeIds,
     nodeCount: Object.keys(allNodes).length,
   };
 }
@@ -43,7 +48,7 @@ export function initializeFeedbackStore(
 ): void {
   const { nodes: nodesWithHiddenRoot, rootNodeId: hiddenRootId } = wrapNodesWithHiddenRoot(
     parsedContent.nodes,
-    parsedContent.rootNodeId,
+    parsedContent.rootNodeIds,
     'feedback-root'
   );
   feedbackTreeStore.initialize(filePath, nodesWithHiddenRoot, hiddenRootId);
@@ -60,7 +65,7 @@ export function initializeFeedbackStore(
 
 export function extractFeedbackContent(
   filePath: string
-): { rootNodeId: string; nodes: Record<string, TreeNode> } | null {
+): { rootNodeId: string; rootNodeIds: string[]; nodes: Record<string, TreeNode> } | null {
   const feedbackStore = feedbackTreeStore.getStoreForFile(filePath);
   if (!feedbackStore) {
     logger.error('No feedback store available', new Error('Feedback store not initialized'), 'FeedbackService');
@@ -75,12 +80,11 @@ export function extractFeedbackContent(
     return null;
   }
 
-  const actualRootNodeId = hiddenRoot.children[0];
-
+  const rootNodeIds = hiddenRoot.children;
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { [feedbackRootNodeId]: _hiddenRoot, ...contentNodes } = feedbackNodes;
 
-  return { rootNodeId: actualRootNodeId, nodes: contentNodes };
+  return { rootNodeId: rootNodeIds[0], rootNodeIds, nodes: contentNodes };
 }
 
 export async function stopFeedbackMonitors(): Promise<void> {

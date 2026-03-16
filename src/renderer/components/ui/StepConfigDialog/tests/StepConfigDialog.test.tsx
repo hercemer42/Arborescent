@@ -7,7 +7,9 @@ describe('StepConfigDialog', () => {
   const defaultProps = {
     nodeId: 'node-1',
     currentStepType: 'manual' as StepType,
+    decomposition: false,
     onStepTypeChange: vi.fn(),
+    onDecompositionChange: vi.fn(),
     onClose: vi.fn(),
   };
 
@@ -103,6 +105,36 @@ describe('StepConfigDialog', () => {
       fireEvent.click(screen.getByText('×'));
 
       expect(defaultProps.onClose).toHaveBeenCalled();
+    });
+  });
+
+  describe('decomposition toggle', () => {
+    it('should render a decomposition checkbox', () => {
+      render(<StepConfigDialog {...defaultProps} />);
+
+      expect(screen.getByLabelText(/decomposition/i)).toBeInTheDocument();
+    });
+
+    it('should reflect current decomposition value as checked', () => {
+      render(<StepConfigDialog {...defaultProps} decomposition={true} />);
+
+      const checkbox = screen.getByLabelText(/decomposition/i) as HTMLInputElement;
+      expect(checkbox.checked).toBe(true);
+    });
+
+    it('should default to unchecked when decomposition is undefined', () => {
+      render(<StepConfigDialog {...defaultProps} />);
+
+      const checkbox = screen.getByLabelText(/decomposition/i) as HTMLInputElement;
+      expect(checkbox.checked).toBe(false);
+    });
+
+    it('should call onDecompositionChange when toggled', () => {
+      render(<StepConfigDialog {...defaultProps} />);
+
+      fireEvent.click(screen.getByLabelText(/decomposition/i));
+
+      expect(defaultProps.onDecompositionChange).toHaveBeenCalledWith('node-1', true);
     });
   });
 

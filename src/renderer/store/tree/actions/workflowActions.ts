@@ -22,6 +22,7 @@ export interface WorkflowActions {
   moveToNextStep: (nodeId: string) => void;
   moveToPreviousStep: (nodeId: string) => void;
   setStepType: (nodeId: string, stepType: StepType) => void;
+  setDecomposition: (nodeId: string, decomposition: boolean) => void;
 }
 
 type StoreState = {
@@ -216,11 +217,33 @@ export const createWorkflowActions = (
     logger.info(`Step type set to ${stepType} for node ${nodeId}`, 'Workflow');
   }
 
+  function setDecomposition(nodeId: string, decomposition: boolean): void {
+    const { nodes } = get();
+    const node = nodes[nodeId];
+    if (!node) return;
+
+    set({
+      nodes: {
+        ...nodes,
+        [nodeId]: {
+          ...node,
+          metadata: {
+            ...node.metadata,
+            decomposition,
+          },
+        },
+      },
+    });
+
+    triggerAutosave?.();
+  }
+
   return {
     declareAsWorkflow,
     removeFromWorkflow,
     moveToNextStep,
     moveToPreviousStep,
     setStepType,
+    setDecomposition,
   };
 };

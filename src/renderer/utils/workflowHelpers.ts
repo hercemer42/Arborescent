@@ -285,6 +285,16 @@ export function collectDescendantWorkflows(
   return result;
 }
 
+export function isDecompositionEnabled(
+  nodeId: string,
+  nodes: Record<string, TreeNode>,
+  ancestorRegistry: AncestorRegistry
+): boolean {
+  const position = getWorkflowStepPosition(nodeId, nodes, ancestorRegistry);
+  if (!position) return false;
+  return nodes[position.currentStepId]?.metadata.decomposition === true;
+}
+
 export type WorkflowExecutionEntry = { state: 'running' | 'awaiting-validation'; terminalTabId: string };
 
 export function isEligibleForExecution(

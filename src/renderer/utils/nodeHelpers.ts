@@ -428,14 +428,15 @@ export function createTreeNode(
 
 export function wrapNodesWithHiddenRoot(
   nodes: Record<string, TreeNode>,
-  contentRootId: string,
+  contentRootIds: string | string[],
   hiddenRootId: string = 'hidden-root'
 ): { nodes: Record<string, TreeNode>; rootNodeId: string } {
+  const children = Array.isArray(contentRootIds) ? contentRootIds : [contentRootIds];
   return {
     nodes: {
       ...nodes,
       [hiddenRootId]: createTreeNode(hiddenRootId, {
-        children: [contentRootId],
+        children,
       }),
     },
     rootNodeId: hiddenRootId,

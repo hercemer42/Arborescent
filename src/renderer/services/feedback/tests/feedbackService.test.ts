@@ -85,7 +85,73 @@ describe('feedbackService', () => {
       expect(result).toEqual({
         nodes: mockNodes,
         rootNodeId: 'node1',
+        rootNodeIds: ['node1'],
         nodeCount: 1,
+      });
+    });
+
+    describe('with decomposition enabled', () => {
+      it('should accept content with multiple root nodes', async () => {
+        const { parseMarkdown } = await import('../../../utils/markdown');
+        const mockNodes = {
+          'node1': { id: 'node1', content: 'Story 1', children: [], metadata: {} },
+          'node2': { id: 'node2', content: 'Story 2', children: [], metadata: {} },
+          'node3': { id: 'node3', content: 'Story 3', children: [], metadata: {} },
+        };
+        vi.mocked(parseMarkdown).mockReturnValue({
+          rootNodes: [
+            { id: 'node1', content: 'Story 1', children: [], metadata: {} },
+            { id: 'node2', content: 'Story 2', children: [], metadata: {} },
+            { id: 'node3', content: 'Story 3', children: [], metadata: {} },
+          ],
+          allNodes: mockNodes,
+        });
+
+        const result = parseFeedbackContent('# Story 1\n# Story 2\n# Story 3', true);
+        expect(result).not.toBeNull();
+        expect(result!.rootNodeIds).toEqual(['node1', 'node2', 'node3']);
+        expect(result!.nodeCount).toBe(3);
+      });
+
+      it('should accept content with a single root node', async () => {
+        const { parseMarkdown } = await import('../../../utils/markdown');
+        const mockNodes = {
+          'node1': { id: 'node1', content: 'Single', children: [], metadata: {} },
+        };
+        vi.mocked(parseMarkdown).mockReturnValue({
+          rootNodes: [{ id: 'node1', content: 'Single', children: [], metadata: {} }],
+          allNodes: mockNodes,
+        });
+
+        const result = parseFeedbackContent('# Single', true);
+        expect(result).not.toBeNull();
+        expect(result!.rootNodeIds).toEqual(['node1']);
+      });
+
+      it('should reject content with zero root nodes', async () => {
+        const { parseMarkdown } = await import('../../../utils/markdown');
+        vi.mocked(parseMarkdown).mockReturnValue({ rootNodes: [], allNodes: {} });
+
+        const result = parseFeedbackContent('no headings', true);
+        expect(result).toBeNull();
+      });
+
+      it('should return rootNodeIds in document order', async () => {
+        const { parseMarkdown } = await import('../../../utils/markdown');
+        vi.mocked(parseMarkdown).mockReturnValue({
+          rootNodes: [
+            { id: 'first', content: 'First', children: [], metadata: {} },
+            { id: 'second', content: 'Second', children: [], metadata: {} },
+          ],
+          allNodes: {
+            'first': { id: 'first', content: 'First', children: [], metadata: {} },
+            'second': { id: 'second', content: 'Second', children: [], metadata: {} },
+          },
+        });
+
+        const result = parseFeedbackContent('# First\n# Second', true);
+        expect(result!.rootNodeIds[0]).toBe('first');
+        expect(result!.rootNodeIds[1]).toBe('second');
       });
     });
   });
@@ -104,6 +170,7 @@ describe('feedbackService', () => {
       const parsedContent = {
         nodes: { 'node1': { id: 'node1', content: 'Test', children: [], metadata: {} } },
         rootNodeId: 'node1',
+        rootNodeIds: ['node1'],
         nodeCount: 1,
       };
 
@@ -111,7 +178,7 @@ describe('feedbackService', () => {
 
       expect(wrapNodesWithHiddenRoot).toHaveBeenCalledWith(
         parsedContent.nodes,
-        'node1',
+        ['node1'],
         'feedback-root'
       );
       expect(mockFeedbackTreeStore.initialize).toHaveBeenCalledWith(
@@ -182,11 +249,33 @@ describe('feedbackService', () => {
       const result = extractFeedbackContent('/test/file.arbo');
       expect(result).toEqual({
         rootNodeId: 'content-root',
+        rootNodeIds: ['content-root'],
         nodes: {
           'content-root': { id: 'content-root', children: ['child1'], content: 'Content', metadata: {} },
           'child1': { id: 'child1', children: [], content: 'Child', metadata: {} },
         },
       });
+    });
+
+    it('should extract multiple root nodes when hidden root has multiple children', () => {
+      mockFeedbackTreeStore.getStoreForFile.mockReturnValue({
+        getState: () => ({
+          nodes: {
+            'feedback-root': { id: 'feedback-root', children: ['story1', 'story2', 'story3'], content: '', metadata: {} },
+            'story1': { id: 'story1', children: [], content: 'Story 1', metadata: {} },
+            'story2': { id: 'story2', children: ['detail1'], content: 'Story 2', metadata: {} },
+            'detail1': { id: 'detail1', children: [], content: 'Detail', metadata: {} },
+            'story3': { id: 'story3', children: [], content: 'Story 3', metadata: {} },
+          },
+          rootNodeId: 'feedback-root',
+        }),
+      });
+
+      const result = extractFeedbackContent('/test/file.arbo');
+      expect(result).not.toBeNull();
+      expect(result!.rootNodeIds).toEqual(['story1', 'story2', 'story3']);
+      expect(result!.nodes).not.toHaveProperty('feedback-root');
+      expect(Object.keys(result!.nodes)).toHaveLength(4);
     });
   });
 });
