@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-03-16T11:05:11.759Z'
+updated: '2026-03-16T11:08:07.561Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -34454,7 +34454,6 @@ nodes:
     id: 13c5048b-15eb-4989-a6fc-25032e5c131f
     content: Problems
     children:
-      - 7de1d56c-5320-48f8-b77b-bc434940dfce
       - fc947fbf-ce25-4014-a7c4-ce1adb0e93a7
       - 4f2d0f06-8458-4129-a4c9-9d4c045ab357
       - 380bac8e-2bb6-4e8f-b880-33cc131e9054
@@ -34686,6 +34685,7 @@ nodes:
       - 44373205-7c18-43b5-ab7d-9603863a5a66
       - 30872653-bd1b-4d1b-998e-58edb3242e83
       - b08a9e71-fc04-47c7-9e1a-3e65621a9009
+      - 4398180d-fba8-4294-a988-2be477ef3236
     metadata:
       status: completed
       expanded: false
@@ -46031,17 +46031,9 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  4398180d-fba8-4294-a988-2be477ef3236:
-    id: 4398180d-fba8-4294-a988-2be477ef3236
-    content: Automated collaboration mode isn't sending to the feedback window or giving the instructions on editing the temporary file
-    children:
-      - e1f37e04-1337-4961-abd8-2f0849181f20
-      - c5464de8-5497-4ae4-b877-213a28a64f8d
-    metadata:
-      status: pending
   7de1d56c-5320-48f8-b77b-bc434940dfce:
     id: 7de1d56c-5320-48f8-b77b-bc434940dfce
-    content: Automated execution mode is sending the content to the terminal on the next step but not returning it
+    content: Automated execution mode is sending the content to the terminal on the next step but not always starting it (simulating enter)
     children:
       - 6d31561b-9941-47ee-bf3c-e4d3578d6809
       - 84b20d3e-d628-4e26-978a-9e6797d7be95
@@ -50686,7 +50678,8 @@ nodes:
   83a2bd12-9d74-4d87-8139-ae7adb95c9fa:
     id: 83a2bd12-9d74-4d87-8139-ae7adb95c9fa
     content: Feature implementation
-    children: []
+    children:
+      - 7de1d56c-5320-48f8-b77b-bc434940dfce
     metadata:
       status: completed
       expanded: true
@@ -50724,8 +50717,7 @@ nodes:
   bb974125-814d-4964-b269-13572d556270:
     id: bb974125-814d-4964-b269-13572d556270
     content: Code review & refactor
-    children:
-      - 4398180d-fba8-4294-a988-2be477ef3236
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -50810,15 +50802,23 @@ nodes:
     children: []
     metadata:
       status: pending
+  e1f37e04-1337-4961-abd8-2f0849181f20:
+    id: e1f37e04-1337-4961-abd8-2f0849181f20
+    content: Seems that default execute context is sent
+    children: []
+    metadata:
+      status: pending
   c5464de8-5497-4ae4-b877-213a28a64f8d:
     id: c5464de8-5497-4ae4-b877-213a28a64f8d
     content: Same goes when 'Decomposition' option is set - default execute context sent.
     children: []
     metadata:
       status: pending
-  e1f37e04-1337-4961-abd8-2f0849181f20:
-    id: e1f37e04-1337-4961-abd8-2f0849181f20
-    content: Seems that default execute context is sent
-    children: []
+  4398180d-fba8-4294-a988-2be477ef3236:
+    id: 4398180d-fba8-4294-a988-2be477ef3236
+    content: Automated collaboration mode isn't sending to the feedback window or giving the instructions on editing the temporary file
+    children:
+      - e1f37e04-1337-4961-abd8-2f0849181f20
+      - c5464de8-5497-4ae4-b877-213a28a64f8d
     metadata:
       status: pending

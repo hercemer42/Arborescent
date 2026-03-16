@@ -11,7 +11,12 @@ import {
   WorkflowExecutionEntry,
 } from "../../../utils/workflowHelpers";
 import { StepType } from "../commands/SetStepTypeCommand";
-import { buildContentWithContext, getAppliedContextIdWithInheritance, resolveContextMode, getContextDeclarations } from "../../../utils/nodeHelpers";
+import {
+  buildContentWithContext,
+  getAppliedContextIdWithInheritance,
+  resolveContextMode,
+  getContextDeclarations,
+} from "../../../utils/nodeHelpers";
 import { buildExecutePrompt } from "../../../utils/promptBuilder";
 import { executeInTerminal } from "../../../services/terminalExecution";
 import { DEFAULT_EXECUTE_CONTEXT } from "./executeActions";
@@ -316,7 +321,10 @@ export const createWorkflowExecutionActions = (
         .getState()
         .addToast(`Advanced "${nodeName}" to ${stepLabel}`, "info");
       startStepTimeout(nodeId);
-      sendContentToTerminal(nodeId, entry.terminalTabId);
+      setTimeout(
+        () => sendContentToTerminal(nodeId, entry.terminalTabId),
+        1000,
+      );
     }
   }
 
@@ -326,11 +334,15 @@ export const createWorkflowExecutionActions = (
       const node = nodes[nodeId];
       if (!node) return;
 
-      const contextId = getAppliedContextIdWithInheritance(nodeId, nodes, ancestorRegistry);
+      const contextId = getAppliedContextIdWithInheritance(
+        nodeId,
+        nodes,
+        ancestorRegistry,
+      );
       const contextDeclarations = getContextDeclarations(nodes);
       const mode = resolveContextMode(contextId, nodes, contextDeclarations);
 
-      if (mode === 'collaborate' && collaborateInTerminal) {
+      if (mode === "collaborate" && collaborateInTerminal) {
         collaborateInTerminal(nodeId, terminalId).catch((error) => {
           logger.error(
             "Failed to start collaboration in terminal",
@@ -469,7 +481,10 @@ export const createWorkflowExecutionActions = (
           set({
             workflowExecutionStates: {
               ...currentStates,
-              [runningNodeId]: { ...currentEntry, state: "awaiting-validation" },
+              [runningNodeId]: {
+                ...currentEntry,
+                state: "awaiting-validation",
+              },
             },
           });
         }
@@ -521,10 +536,7 @@ export const createWorkflowExecutionActions = (
     if (stoppedCount > 0) {
       useToastStore
         .getState()
-        .addToast(
-          `${stoppedCount} workflow(s) stopped on restart.`,
-          "warning",
-        );
+        .addToast(`${stoppedCount} workflow(s) stopped on restart.`, "warning");
     }
 
     logger.info(
