@@ -59,7 +59,7 @@ export const createWorkflowExecutionActions = (
   visualEffects?: VisualEffectsActions,
   collaborateInTerminal?: (nodeId: string, terminalId: string) => Promise<void>,
 ): WorkflowExecutionActions => {
-  const DEFAULT_STEP_TIMEOUT_MINUTES = 10;
+  const DEFAULT_STEP_TIMEOUT_MINUTES = 15;
   const stepTimeouts = new Map<string, ReturnType<typeof setTimeout>>();
 
   function startStepTimeout(nodeId: string): void {
