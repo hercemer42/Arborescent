@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-03-16T09:18:41.611Z'
+updated: '2026-03-16T09:56:45.876Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -533,7 +533,6 @@ nodes:
       - 7bc450dd-64ef-40d6-a60b-8c7d74634c1c
       - d87082fc-4e05-4080-b652-c69897022374
       - 592a7f85-c2bb-4133-877d-26f32ff8d4ff
-      - 4adfa410-1e2e-4155-8e8e-2b2ed48b40a8
     metadata:
       status: completed
       expanded: false
@@ -26813,8 +26812,7 @@ nodes:
   bdceb696-248d-4199-9182-db0689445c07:
     id: bdceb696-248d-4199-9182-db0689445c07
     content: Documentation
-    children:
-      - 911c7c76-b792-44e2-b404-5087a4ceaff4
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -34456,6 +34454,8 @@ nodes:
     content: Problems
     children:
       - 37f171d1-4880-42c3-b14b-d9527319e3a5
+      - b7c090bf-6421-467a-9d97-067d3521d013
+      - b08a9e71-fc04-47c7-9e1a-3e65621a9009
       - 4398180d-fba8-4294-a988-2be477ef3236
       - 7de1d56c-5320-48f8-b77b-bc434940dfce
       - fc947fbf-ce25-4014-a7c4-ce1adb0e93a7
@@ -34475,7 +34475,7 @@ nodes:
       - c0b354e9-aaa0-409e-ab47-6f534d03a97f
     metadata:
       status: pending
-      expanded: false
+      expanded: true
       isBlueprint: true
       blueprintIcon: FileWarning
       blueprintColor: '#f97316'
@@ -35341,8 +35341,7 @@ nodes:
   0bee331d-616e-48cf-bc86-24c9a09d7a67:
     id: 0bee331d-616e-48cf-bc86-24c9a09d7a67
     content: Test pass & issue resolution
-    children:
-      - 7bd23d94-dc41-4f46-b27c-7f54ea43b9f8
+    children: []
     metadata:
       status: pending
       appliedContextId: 4c3f0d67-a500-484f-8ccb-5dbf959ea27f
@@ -35354,7 +35353,8 @@ nodes:
   7b3e923e-b465-4444-ae7d-7fe0e80e3235:
     id: 7b3e923e-b465-4444-ae7d-7fe0e80e3235
     content: Code review & refactor
-    children: []
+    children:
+      - 44373205-7c18-43b5-ab7d-9603863a5a66
     metadata:
       status: pending
       isBlueprint: true
@@ -35475,7 +35475,8 @@ nodes:
   13831628-6c66-4092-b035-a5b3ceefb9fb:
     id: 13831628-6c66-4092-b035-a5b3ceefb9fb
     content: Delivery backlog
-    children: []
+    children:
+      - 3408afa8-9a6b-47ad-9258-6fdc688ecc5c
     metadata:
       status: completed
       resolvedAt: '2026-03-11T09:32:33.108Z'
@@ -45368,21 +45369,6 @@ nodes:
       expanded: false
       deleted: false
       plugins: {}
-  7bd23d94-dc41-4f46-b27c-7f54ea43b9f8:
-    id: 7bd23d94-dc41-4f46-b27c-7f54ea43b9f8
-    content: 'US2: AI workflow orchestration - Multi-node feedback acceptance'
-    children:
-      - c5f91b1c-d1fa-4722-a410-105a6f836640
-      - 18400d2d-ce5b-406d-bee6-4575a047318f
-      - 36628167-758e-47d0-90eb-f32ccbf83c29
-      - e74ead7b-7772-4f48-bc73-9634cac2dffe
-      - 981c4b53-2037-455a-889f-a96a48d03a51
-      - 09b15925-bee7-448b-83eb-f9ba3eebecbe
-    metadata:
-      status: pending
-      expanded: false
-      deleted: false
-      plugins: {}
   437c64c9-3da3-449a-9702-96755b5521b1:
     id: 437c64c9-3da3-449a-9702-96755b5521b1
     content: 'US3: AI workflow orchestration - Archive with provenance tracking'
@@ -47548,1940 +47534,6 @@ nodes:
     metadata:
       status: pending
       isBlueprint: true
-  c5f91b1c-d1fa-4722-a410-105a6f836640:
-    id: c5f91b1c-d1fa-4722-a410-105a6f836640
-    content: Problem statement
-    children:
-      - 36d3149c-1acb-49bf-b81a-be0c4c1edb41
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  36d3149c-1acb-49bf-b81a-be0c4c1edb41:
-    id: 36d3149c-1acb-49bf-b81a-be0c4c1edb41
-    content: As a user, I need the feedback system to be able to create multiple sibling nodes from a single AI response (e.g. 5 user stories from 1 problem statement). Currently, feedback always produces a single root node that replaces the collaborating node one-to-one. There is no path to create multiple sibling nodes from a single feedback interaction.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  18400d2d-ce5b-406d-bee6-4575a047318f:
-    id: 18400d2d-ce5b-406d-bee6-4575a047318f
-    content: Use cases
-    children:
-      - 8e9d7fb5-b9b3-496a-a8e3-201ffa6f3573
-      - adb6bbb6-4b9a-4a84-b683-9d101a21adc1
-      - 6287327c-a6a7-482a-91b5-41f980b66d4f
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  8e9d7fb5-b9b3-496a-a8e3-201ffa6f3573:
-    id: 8e9d7fb5-b9b3-496a-a8e3-201ffa6f3573
-    content: 'Primary: AI returns a response containing 5 top-level items (e.g. user stories). The system creates 5 sibling nodes in the tree at the position of the original collaborating node.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  adb6bbb6-4b9a-4a84-b683-9d101a21adc1:
-    id: adb6bbb6-4b9a-4a84-b683-9d101a21adc1
-    content: 'Secondary: AI returns a single top-level item. Behavior is identical to today — one node replaces the collaborating node (backward compatible).'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  6287327c-a6a7-482a-91b5-41f980b66d4f:
-    id: 6287327c-a6a7-482a-91b5-41f980b66d4f
-    content: 'Secondary: For autonomous workflow steps, the system watches the temporary file and creates multiple nodes directly in the tree without the feedback panel.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  36628167-758e-47d0-90eb-f32ccbf83c29:
-    id: 36628167-758e-47d0-90eb-f32ccbf83c29
-    content: Acceptance criteria
-    children:
-      - f873030d-72b9-4493-9a65-fb325cf1b2ce
-      - 9c6ab380-0bf0-4da8-930e-6423137b6bdb
-      - 4c327e74-d803-4d6f-9411-3b54d0de9903
-      - 0c33abfa-c6ef-4cdb-8f17-4d313bf56c1f
-      - bedf1ea3-e13b-4414-ace5-4b8cca54eb6a
-      - bd245b35-1022-4e8a-bbd3-6597fb4afb9c
-      - 9f4ccd66-5b9c-44fb-838e-44daaaf8e2f0
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f873030d-72b9-4493-9a65-fb325cf1b2ce:
-    id: f873030d-72b9-4493-9a65-fb325cf1b2ce
-    content: When feedback contains multiple top-level nodes, accepting it creates multiple sibling nodes in the tree at the collaborating node's position
-    children:
-      - cbf09e2b-ed76-4c31-b2e0-af96e16cd137
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  cbf09e2b-ed76-4c31-b2e0-af96e16cd137:
-    id: cbf09e2b-ed76-4c31-b2e0-af96e16cd137
-    content: The replacement nodes keep the metadata of the original (isBlueprint, applied contexts etc), but each have their own UUID
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  9c6ab380-0bf0-4da8-930e-6423137b6bdb:
-    id: 9c6ab380-0bf0-4da8-930e-6423137b6bdb
-    content: When feedback contains a single top-level node, behavior is unchanged from current (one-to-one replacement)
-    children:
-      - 9cebd6c0-cb1d-484d-8946-27f5b18bf01f
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  9cebd6c0-cb1d-484d-8946-27f5b18bf01f:
-    id: 9cebd6c0-cb1d-484d-8946-27f5b18bf01f
-    content: The replacement node keeps the metadata and UUID of the original, as it currently does
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  4c327e74-d803-4d6f-9411-3b54d0de9903:
-    id: 4c327e74-d803-4d6f-9411-3b54d0de9903
-    content: The existing format instructions and validation are extended to support multi-root responses
-    children:
-      - 044e4928-ecd5-41a3-8add-f6d697ada054
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  044e4928-ecd5-41a3-8add-f6d697ada054:
-    id: 044e4928-ecd5-41a3-8add-f6d697ada054
-    content: This is supported by a 'Decomposition' option in the step configuration
-    children:
-      - ddb7a047-f7cf-4f5c-972c-a09e0b214dab
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  ddb7a047-f7cf-4f5c-972c-a09e0b214dab:
-    id: ddb7a047-f7cf-4f5c-972c-a09e0b214dab
-    content: This lets the user decide if the result of the collaboration should be one node or multiples.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  0c33abfa-c6ef-4cdb-8f17-4d313bf56c1f:
-    id: 0c33abfa-c6ef-4cdb-8f17-4d313bf56c1f
-    content: Multi-node acceptance is undoable as a single undo operation
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  bedf1ea3-e13b-4414-ace5-4b8cca54eb6a:
-    id: bedf1ea3-e13b-4414-ace5-4b8cca54eb6a
-    content: For autonomous workflow steps, the system watches the temporary file and writes multiple nodes directly to the tree without user interaction
-    children:
-      - 96f7df3f-7efa-4d04-911d-4bafd38a5faf
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  96f7df3f-7efa-4d04-911d-4bafd38a5faf:
-    id: 96f7df3f-7efa-4d04-911d-4bafd38a5faf
-    content: This is undoable
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  bd245b35-1022-4e8a-bbd3-6597fb4afb9c:
-    id: bd245b35-1022-4e8a-bbd3-6597fb4afb9c
-    content: Nodes are created in the order they appear in the AI response
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  9f4ccd66-5b9c-44fb-838e-44daaaf8e2f0:
-    id: 9f4ccd66-5b9c-44fb-838e-44daaaf8e2f0
-    content: Created nodes inherit the applied context and blueprint membership of their position in the tree
-    children:
-      - 4a64a48c-b5f6-462f-a812-2c9f84f3b7b4
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  4a64a48c-b5f6-462f-a812-2c9f84f3b7b4:
-    id: 4a64a48c-b5f6-462f-a812-2c9f84f3b7b4
-    content: Unless it is overridden by inherited metadata from the parent
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  e74ead7b-7772-4f48-bc73-9634cac2dffe:
-    id: e74ead7b-7772-4f48-bc73-9634cac2dffe
-    content: Constraints and assumptions
-    children:
-      - f446e24c-339c-444d-b215-84ae134d2d72
-      - 2553eda0-02f2-4400-80e9-a617d47bff56
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  f446e24c-339c-444d-b215-84ae134d2d72:
-    id: f446e24c-339c-444d-b215-84ae134d2d72
-    content: The existing markdown parsing (parseMarkdown) handles multiple root nodes — needs verification
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  2553eda0-02f2-4400-80e9-a617d47bff56:
-    id: 2553eda0-02f2-4400-80e9-a617d47bff56
-    content: AcceptFeedbackCommand will need a new variant or mode since the current command assumes a single root replacement
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  981c4b53-2037-455a-889f-a96a48d03a51:
-    id: 981c4b53-2037-455a-889f-a96a48d03a51
-    content: Technical specifications
-    children:
-      - b0cd0381-1bdc-4ca1-9350-5335c975007a
-      - 14c56c0c-2aea-4423-be0f-55f928d75544
-      - 8c09de8b-92f4-42db-a412-bd2786aa5b85
-      - b92b36ba-1b92-4e51-952b-669076efeaa2
-      - 3ebacddd-0daa-4ba5-b8be-93187ce62dc2
-      - 6677bd31-3cd8-4169-8a55-7461b085ed97
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  b0cd0381-1bdc-4ca1-9350-5335c975007a:
-    id: b0cd0381-1bdc-4ca1-9350-5335c975007a
-    content: Summary
-    children:
-      - 646e4a40-96ef-4c1d-a46c-ebf38ca5a0b4
-      - 36239b80-02d8-4f09-8a77-e1c127abbc57
-      - 55fa65f3-3537-42f8-9691-a34b4acf1628
-      - dd892247-14fc-42ec-a6cf-40cc8f5a24cc
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  646e4a40-96ef-4c1d-a46c-ebf38ca5a0b4:
-    id: 646e4a40-96ef-4c1d-a46c-ebf38ca5a0b4
-    content: 'Goal: extend feedback acceptance to create multiple sibling nodes from a single AI response'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  36239b80-02d8-4f09-8a77-e1c127abbc57:
-    id: 36239b80-02d8-4f09-8a77-e1c127abbc57
-    content: Current pipeline enforces single-root at three levels
-    children:
-      - cd3edb2c-1450-47a4-9ecd-54a86862a6d1
-      - a9bff377-ea8b-47bd-b729-b082568d6fcd
-      - 8bb72d1a-7b01-48e1-92ca-4585d1021e57
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  cd3edb2c-1450-47a4-9ecd-54a86862a6d1:
-    id: cd3edb2c-1450-47a4-9ecd-54a86862a6d1
-    content: 'AI format instructions: "Must have exactly one root node" (collaborateActions.ts)'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  a9bff377-ea8b-47bd-b729-b082568d6fcd:
-    id: a9bff377-ea8b-47bd-b729-b082568d6fcd
-    content: 'Validation: parseFeedbackContent rejects rootNodes.length !== 1 (feedbackService.ts)'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  8bb72d1a-7b01-48e1-92ca-4585d1021e57:
-    id: 8bb72d1a-7b01-48e1-92ca-4585d1021e57
-    content: 'Command: AcceptFeedbackCommand assumes a single newRootNodeId (AcceptFeedbackCommand.ts)'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  55fa65f3-3537-42f8-9691-a34b4acf1628:
-    id: 55fa65f3-3537-42f8-9691-a34b4acf1628
-    content: 'Approach: conditional relaxation controlled by a "Decomposition" flag'
-    children:
-      - c0b9d7c6-e15a-4239-b06a-5cb451483443
-      - a8ad5127-19d4-4426-ac38-4fe49e258210
-      - 6364f3fa-4225-4ed3-bd98-c4ae4da8ca46
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  c0b9d7c6-e15a-4239-b06a-5cb451483443:
-    id: c0b9d7c6-e15a-4239-b06a-5cb451483443
-    content: A toggle is added to the step configuration dialog
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  a8ad5127-19d4-4426-ac38-4fe49e258210:
-    id: a8ad5127-19d4-4426-ac38-4fe49e258210
-    content: When enabled
-    children:
-      - d86d466d-e87e-4f6f-b695-c41d5238bb9a
-      - 4e43a8ea-b6dc-447d-ba78-7182280ab07f
-      - 24bc1606-11d0-48a0-be2e-bec87c995346
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  d86d466d-e87e-4f6f-b695-c41d5238bb9a:
-    id: d86d466d-e87e-4f6f-b695-c41d5238bb9a
-    content: Format instructions tell the AI to produce multiple top-level headings
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  4e43a8ea-b6dc-447d-ba78-7182280ab07f:
-    id: 4e43a8ea-b6dc-447d-ba78-7182280ab07f
-    content: Validation accepts multiple roots
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  24bc1606-11d0-48a0-be2e-bec87c995346:
-    id: 24bc1606-11d0-48a0-be2e-bec87c995346
-    content: AcceptFeedbackCommand creates siblings instead of replacing
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  6364f3fa-4225-4ed3-bd98-c4ae4da8ca46:
-    id: 6364f3fa-4225-4ed3-bd98-c4ae4da8ca46
-    content: When disabled (default)
-    children:
-      - 3ebbba0e-89db-464b-ad17-591c14a102cb
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  3ebbba0e-89db-464b-ad17-591c14a102cb:
-    id: 3ebbba0e-89db-464b-ad17-591c14a102cb
-    content: All behavior is unchanged — full backward compatibility
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  dd892247-14fc-42ec-a6cf-40cc8f5a24cc:
-    id: dd892247-14fc-42ec-a6cf-40cc8f5a24cc
-    content: Affected areas
-    children:
-      - 80225067-5b0c-436a-b368-c8f00d3f163b
-      - b9088875-4d0a-41da-bd58-9a53b86f0932
-      - 5d99befa-4ecc-4c46-9349-2e23f49b8bd1
-      - 30572de7-194c-4a46-a161-5f926359ab49
-      - 2acf978f-0961-4ec8-ab08-9c28c8c07305
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  80225067-5b0c-436a-b368-c8f00d3f163b:
-    id: 80225067-5b0c-436a-b368-c8f00d3f163b
-    content: collaborateActions.ts — format instruction selection, decomposition flag threading
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  b9088875-4d0a-41da-bd58-9a53b86f0932:
-    id: b9088875-4d0a-41da-bd58-9a53b86f0932
-    content: feedbackService.ts — parseFeedbackContent validation, extractFeedbackContent unwrapping
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  5d99befa-4ecc-4c46-9349-2e23f49b8bd1:
-    id: 5d99befa-4ecc-4c46-9349-2e23f49b8bd1
-    content: AcceptFeedbackCommand.ts — multi-root ID remapping, sibling creation, undo
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  30572de7-194c-4a46-a161-5f926359ab49:
-    id: 30572de7-194c-4a46-a161-5f926359ab49
-    content: StepConfigDialog — new decomposition toggle
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  2acf978f-0961-4ec8-ab08-9c28c8c07305:
-    id: 2acf978f-0961-4ec8-ab08-9c28c8c07305
-    content: workflowActions.ts — new setDecomposition action
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  14c56c0c-2aea-4423-be0f-55f928d75544:
-    id: 14c56c0c-2aea-4423-be0f-55f928d75544
-    content: Inputs, outputs, and key interfaces
-    children:
-      - 115477fd-e073-47fa-9a27-bd25504699ed
-      - 5f664e01-ae6b-485f-ad47-6b49292d9db7
-      - 2a67dc44-c5ce-407e-a981-4ba6e13d864b
-      - ab1ee612-315d-4264-98e6-d342ff82b6f8
-      - 3842a5f3-deee-49b2-9468-5fb28672a5ea
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  115477fd-e073-47fa-9a27-bd25504699ed:
-    id: 115477fd-e073-47fa-9a27-bd25504699ed
-    content: 'Input: Parsed feedback content — either single root (ParsedFeedbackContent with one rootNodeId) or multiple roots (new multi-root variant with rootNodeIds array)'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  5f664e01-ae6b-485f-ad47-6b49292d9db7:
-    id: 5f664e01-ae6b-485f-ad47-6b49292d9db7
-    content: 'Input: Decomposition flag from the workflow step''s metadata (node.metadata.decomposition === true)'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  2a67dc44-c5ce-407e-a981-4ba6e13d864b:
-    id: 2a67dc44-c5ce-407e-a981-4ba6e13d864b
-    content: 'Output: One or more sibling nodes replacing the collaborating node, with metadata preserved and provenance set up for the archive feature (US3)'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  ab1ee612-315d-4264-98e6-d342ff82b6f8:
-    id: ab1ee612-315d-4264-98e6-d342ff82b6f8
-    content: 'Key interface change: ParsedFeedbackContent gains a rootNodeIds: string[] field (replaces rootNodeId for multi-root; single-root case has array of length 1)'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  3842a5f3-deee-49b2-9468-5fb28672a5ea:
-    id: 3842a5f3-deee-49b2-9468-5fb28672a5ea
-    content: 'Key interface change: AcceptFeedbackCommand gains a mode — single-root (current behavior, preserves UUID) vs multi-root (creates siblings with new UUIDs)'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  8c09de8b-92f4-42db-a412-bd2786aa5b85:
-    id: 8c09de8b-92f4-42db-a412-bd2786aa5b85
-    content: Constraints and non-functional requirements
-    children:
-      - d58a4c8b-f426-4082-8ac3-1c9ea752d58e
-      - 6e50851a-3e62-40c3-99bc-695adebc4c4b
-      - 886760fc-de19-49d1-851d-967a91c80e2f
-      - cacf4536-2161-46c5-a670-37fc0a8f26d5
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  d58a4c8b-f426-4082-8ac3-1c9ea752d58e:
-    id: d58a4c8b-f426-4082-8ac3-1c9ea752d58e
-    content: Single-root acceptance must be fully backward compatible — no changes to behavior when decomposition is off
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  6e50851a-3e62-40c3-99bc-695adebc4c4b:
-    id: 6e50851a-3e62-40c3-99bc-695adebc4c4b
-    content: Multi-node acceptance must be atomic — either all nodes are created or none (single undo operation)
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  886760fc-de19-49d1-851d-967a91c80e2f:
-    id: 886760fc-de19-49d1-851d-967a91c80e2f
-    content: The feedback panel must render multi-root content correctly — the hidden root wrapper in feedbackTreeStore already handles this since it wraps all roots under a single hidden node
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  cacf4536-2161-46c5-a670-37fc0a8f26d5:
-    id: cacf4536-2161-46c5-a670-37fc0a8f26d5
-    content: 'Performance: creating up to ~20 sibling nodes should be imperceptible. Beyond that is an unlikely edge case.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  b92b36ba-1b92-4e51-952b-669076efeaa2:
-    id: b92b36ba-1b92-4e51-952b-669076efeaa2
-    content: Technical steps
-    children:
-      - b5b13edc-2406-4e94-abea-7a5b24b51e2d
-      - fc01cf5c-f47f-40f8-84de-b4f6edc75560
-      - 869b36eb-5bd7-45d3-b3d7-24f7c48b6fb3
-      - 4aafc8b8-2f12-4e3a-a8ef-5642172de674
-      - d1849ade-2353-4e3b-9ed6-0c25aed0ae15
-      - 8abe29a0-4bb2-4f19-8b2d-8caac816ad50
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  b5b13edc-2406-4e94-abea-7a5b24b51e2d:
-    id: b5b13edc-2406-4e94-abea-7a5b24b51e2d
-    content: 'Step 1: Add decomposition toggle to step configuration dialog (S)'
-    children:
-      - 7a53e27d-1192-4279-8149-618c837422c3
-      - bf481689-6f84-42ed-b1ac-561b9d36cd4b
-      - fea98a77-9303-4654-a704-e17068852ee1
-      - 3f38901f-4d43-4144-a037-3183e1f1dc86
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  7a53e27d-1192-4279-8149-618c837422c3:
-    id: 7a53e27d-1192-4279-8149-618c837422c3
-    content: Add a "Decomposition" checkbox to StepConfigDialog below the Step Type section
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  bf481689-6f84-42ed-b1ac-561b9d36cd4b:
-    id: bf481689-6f84-42ed-b1ac-561b9d36cd4b
-    content: The toggle reads/writes node.metadata.decomposition (boolean, default false)
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  fea98a77-9303-4654-a704-e17068852ee1:
-    id: fea98a77-9303-4654-a704-e17068852ee1
-    content: Changing it does not need undo — it's a configuration setting like the other step dialog options
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  3f38901f-4d43-4144-a037-3183e1f1dc86:
-    id: 3f38901f-4d43-4144-a037-3183e1f1dc86
-    content: Add a setDecomposition action to workflowActions (or a generic setStepMetadata action)
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  fc01cf5c-f47f-40f8-84de-b4f6edc75560:
-    id: fc01cf5c-f47f-40f8-84de-b4f6edc75560
-    content: 'Step 2: Extend format instructions for decomposition mode (S)'
-    children:
-      - 7ba2c375-b4e7-4473-a7e7-0b3f6d51219b
-      - b7acc5f6-833f-487e-8e37-68091f1cba41
-      - cfa91bda-7d4c-4fc0-a31e-f45939f6a8fe
-      - 5f9e628f-a497-4544-9c46-7fcbdb3fc8b7
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  7ba2c375-b4e7-4473-a7e7-0b3f6d51219b:
-    id: 7ba2c375-b4e7-4473-a7e7-0b3f6d51219b
-    content: In collaborateActions.ts, check if the collaborating node is inside a step with decomposition enabled
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  b7acc5f6-833f-487e-8e37-68091f1cba41:
-    id: b7acc5f6-833f-487e-8e37-68091f1cba41
-    content: 'If decomposition is on: use an alternate COLLABORATE_OUTPUT_FORMAT that says "Use one # heading per top-level item. Each top-level item becomes a separate node."'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  cfa91bda-7d4c-4fc0-a31e-f45939f6a8fe:
-    id: cfa91bda-7d4c-4fc0-a31e-f45939f6a8fe
-    content: 'If decomposition is off: use the existing format ("Must have exactly one root node")'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  5f9e628f-a497-4544-9c46-7fcbdb3fc8b7:
-    id: 5f9e628f-a497-4544-9c46-7fcbdb3fc8b7
-    content: The format string is selected before building the prompt, not at parse time
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  869b36eb-5bd7-45d3-b3d7-24f7c48b6fb3:
-    id: 869b36eb-5bd7-45d3-b3d7-24f7c48b6fb3
-    content: 'Step 3: Extend parseFeedbackContent to accept multiple roots (M)'
-    children:
-      - 160c6242-92d0-47ae-81d9-5b919caa71dc
-      - 6234a5fc-bf4f-4414-8046-9526cce1789d
-      - 741e24ca-a2fe-4a7d-906a-d627fa88972c
-      - 2e14436a-acf5-483f-a090-d5799c7b08db
-      - 2c8b5440-3a5b-427a-9b9c-5de496aae8b9
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  160c6242-92d0-47ae-81d9-5b919caa71dc:
-    id: 160c6242-92d0-47ae-81d9-5b919caa71dc
-    content: 'Change ParsedFeedbackContent interface: replace rootNodeId: string with rootNodeIds: string[]'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  6234a5fc-bf4f-4414-8046-9526cce1789d:
-    id: 6234a5fc-bf4f-4414-8046-9526cce1789d
-    content: 'Update parseFeedbackContent: when decomposition mode is active, accept rootNodes.length >= 1 (not just === 1). When decomposition is off, keep the strict rootNodes.length === 1 validation.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  741e24ca-a2fe-4a7d-906a-d627fa88972c:
-    id: 741e24ca-a2fe-4a7d-906a-d627fa88972c
-    content: The decomposition flag needs to be passed into parseFeedbackContent (or into processIncomingFeedbackContent which calls it)
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  2e14436a-acf5-483f-a090-d5799c7b08db:
-    id: 2e14436a-acf5-483f-a090-d5799c7b08db
-    content: Update all consumers of ParsedFeedbackContent.rootNodeId to use rootNodeIds[0] or iterate
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  2c8b5440-3a5b-427a-9b9c-5de496aae8b9:
-    id: 2c8b5440-3a5b-427a-9b9c-5de496aae8b9
-    content: Update extractFeedbackContent in feedbackService.ts — currently it unwraps a single child from the hidden root; needs to handle multiple children
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  4aafc8b8-2f12-4e3a-a8ef-5642172de674:
-    id: 4aafc8b8-2f12-4e3a-a8ef-5642172de674
-    content: 'Step 4: Create multi-root AcceptFeedbackCommand (L)'
-    children:
-      - cff89983-b848-4879-8645-601f9fed68a2
-      - 3ee0912e-7cf9-43ea-9521-a5dca3d21047
-      - 14c8ca65-3050-4616-8ae0-f575018b41ea
-      - f6c48b48-b602-4f3b-b077-db56e23ffc74
-      - f68c0423-3e0c-428b-a8f3-d2aef6429dbf
-      - 0b92606a-e456-4818-9936-e511d8dd3469
-      - 5078fef5-18e8-4ef5-9b78-545633270ddb
-      - de39151e-3a56-42db-a973-f205b981a6e5
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  cff89983-b848-4879-8645-601f9fed68a2:
-    id: cff89983-b848-4879-8645-601f9fed68a2
-    content: 'When rootNodeIds has length 1: use existing behavior (root maps to collaboratingNodeId, preserves UUID and metadata)'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  3ee0912e-7cf9-43ea-9521-a5dca3d21047:
-    id: 3ee0912e-7cf9-43ea-9521-a5dca3d21047
-    content: 'When rootNodeIds has length > 1: the collaborating node is removed, and each root becomes a new sibling node inserted at the collaborating node''s position in the parent''s children array'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  14c8ca65-3050-4616-8ae0-f575018b41ea:
-    id: 14c8ca65-3050-4616-8ae0-f575018b41ea
-    content: Each new sibling gets a fresh UUID (not the collaborating node's UUID — there's no single "replacement")
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  f6c48b48-b602-4f3b-b077-db56e23ffc74:
-    id: f6c48b48-b602-4f3b-b077-db56e23ffc74
-    content: 'Each new sibling inherits metadata from the collaborating node: isBlueprint, blueprintIcon, blueprintColor, appliedContextIds, activeContextId'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  f68c0423-3e0c-428b-a8f3-d2aef6429dbf:
-    id: f68c0423-3e0c-428b-a8f3-d2aef6429dbf
-    content: 'Undo: snapshot the collaborating node and its descendants, remove the created siblings, restore the collaborating node — single undo operation'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  0b92606a-e456-4818-9936-e511d8dd3469:
-    id: 0b92606a-e456-4818-9936-e511d8dd3469
-    content: Ancestor registry must be rebuilt for all new siblings and their descendants
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  5078fef5-18e8-4ef5-9b78-545633270ddb:
-    id: 5078fef5-18e8-4ef5-9b78-545633270ddb
-    content: feedbackFadingNodeIds should include all new sibling IDs for the visual flash
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  de39151e-3a56-42db-a973-f205b981a6e5:
-    id: de39151e-3a56-42db-a973-f205b981a6e5
-    content: activeNodeId should be set to the first new sibling
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  d1849ade-2353-4e3b-9ed6-0c25aed0ae15:
-    id: d1849ade-2353-4e3b-9ed6-0c25aed0ae15
-    content: 'Step 5: Wire decomposition flag through the collaborate flow (M)'
-    children:
-      - 48733280-3897-45fb-ba0b-06a037a6afb0
-      - 2cbd11ee-aabd-456c-838b-c4d06f691801
-      - af180b9c-b93e-432d-a8d9-7f7ac19ea041
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  48733280-3897-45fb-ba0b-06a037a6afb0:
-    id: 48733280-3897-45fb-ba0b-06a037a6afb0
-    content: In collaborateInTerminal and collaborateOnWeb (collaborateActions.ts), check if the collaborating node is inside a decomposition-enabled step
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  2cbd11ee-aabd-456c-838b-c4d06f691801:
-    id: 2cbd11ee-aabd-456c-838b-c4d06f691801
-    content: Pass the decomposition flag through to the format instruction selection (Step 2) and to processIncomingFeedbackContent (Step 3)
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  af180b9c-b93e-432d-a8d9-7f7ac19ea041:
-    id: af180b9c-b93e-432d-a8d9-7f7ac19ea041
-    content: Store the decomposition flag in the collaboration state so finishAccept can access it when building the command
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  8abe29a0-4bb2-4f19-8b2d-8caac816ad50:
-    id: 8abe29a0-4bb2-4f19-8b2d-8caac816ad50
-    content: 'Step 6: Update autonomous workflow path (S)'
-    children:
-      - f0bee6e4-6317-4ea2-b1de-85f1f46c4f5e
-      - 51bb757d-150a-4d8c-b483-e31ff3072270
-      - d4093742-b1f4-47e1-8e11-43e55aa1e5fa
-      - 70c6106f-ab17-43bd-916a-4bdc939f114f
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  f0bee6e4-6317-4ea2-b1de-85f1f46c4f5e:
-    id: f0bee6e4-6317-4ea2-b1de-85f1f46c4f5e
-    content: The temp file watcher path calls processIncomingFeedbackContent — same code path as manual acceptance
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  51bb757d-150a-4d8c-b483-e31ff3072270:
-    id: 51bb757d-150a-4d8c-b483-e31ff3072270
-    content: Once processIncomingFeedbackContent supports multi-root (Step 3), autonomous acceptance inherits it
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  d4093742-b1f4-47e1-8e11-43e55aa1e5fa:
-    id: d4093742-b1f4-47e1-8e11-43e55aa1e5fa
-    content: 'For autonomous steps: auto-accept triggers finishAccept which uses the multi-root command (Step 4)'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  70c6106f-ab17-43bd-916a-4bdc939f114f:
-    id: 70c6106f-ab17-43bd-916a-4bdc939f114f
-    content: Verify the auto-accept path in workflowExecutionActions passes the decomposition flag correctly
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  3ebacddd-0daa-4ba5-b8be-93187ce62dc2:
-    id: 3ebacddd-0daa-4ba5-b8be-93187ce62dc2
-    content: Risks and edge cases
-    children:
-      - 29e51dce-370c-486c-b785-4372e21ef62b
-      - 36fa67e2-d719-4057-aee4-e3414b705720
-      - 29bd6d90-6efe-4172-870d-55c16ff203d9
-      - 7dbea94c-b6fb-4b4d-b54d-1e3daabd677c
-      - b6a95fec-0c20-40bd-a120-d2d4c8ce95df
-      - ba169d82-a3f7-4871-b665-1b9e9091d39b
-      - d37c94d2-b2c3-413a-a395-a6ff59486327
-      - 1570631d-a727-4f01-9654-4964df0d0463
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  29e51dce-370c-486c-b785-4372e21ef62b:
-    id: 29e51dce-370c-486c-b785-4372e21ef62b
-    content: 'Backward compatibility: single-root mode must be identical to current behavior — the decomposition flag defaults to false, and when false, no code paths change. Risk is low if the flag check is the first branch in each modified function.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  36fa67e2-d719-4057-aee4-e3414b705720:
-    id: 36fa67e2-d719-4057-aee4-e3414b705720
-    content: 'Empty feedback: if the AI returns no parseable headings, behavior should be identical to today (silent failure, no feedback UI). This is already handled by parseFeedbackContent returning null.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  29bd6d90-6efe-4172-870d-55c16ff203d9:
-    id: 29bd6d90-6efe-4172-870d-55c16ff203d9
-    content: 'AI returns single root when decomposition is on: should still work — rootNodeIds has length 1, falls through to existing single-root behavior. No special case needed.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  7dbea94c-b6fb-4b4d-b54d-1e3daabd677c:
-    id: 7dbea94c-b6fb-4b4d-b54d-1e3daabd677c
-    content: 'AI returns multiple roots when decomposition is off: rejected by validation (rootNodes.length !== 1). Feedback is silently discarded. User sees no feedback panel. This is the current behavior.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  b6a95fec-0c20-40bd-a120-d2d4c8ce95df:
-    id: b6a95fec-0c20-40bd-a120-d2d4c8ce95df
-    content: 'Feedback panel rendering: the feedbackTreeStore wraps content in a hidden root node. Multiple top-level items appear as children of the hidden root, which is already how the Tree component renders them. No rendering changes needed.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  ba169d82-a3f7-4871-b665-1b9e9091d39b:
-    id: ba169d82-a3f7-4871-b665-1b9e9091d39b
-    content: 'AcceptFeedbackCommand undo with multi-root: the snapshot must capture the parent''s children array (to restore collaborating node''s position) and all created sibling subtrees (to remove them). More complex than single-root undo but follows the same pattern.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  d37c94d2-b2c3-413a-a395-a6ff59486327:
-    id: d37c94d2-b2c3-413a-a395-a6ff59486327
-    content: 'Blueprint mode: when blueprint mode is enabled, all new nodes get blueprint metadata. This already works for single-root in AcceptFeedbackCommand and needs to be applied per-sibling for multi-root.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  1570631d-a727-4f01-9654-4964df0d0463:
-    id: 1570631d-a727-4f01-9654-4964df0d0463
-    content: 'The collaborating node is the root node of the file: multi-root acceptance would need to create multiple root nodes, which the tree doesn''t support (single root per file). This should be prevented — decomposition mode should be ignored if the collaborating node is the file''s root, or the validation should reject multi-root when collaborating on the root node.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  6677bd31-3cd8-4169-8a55-7461b085ed97:
-    id: 6677bd31-3cd8-4169-8a55-7461b085ed97
-    content: Implementation plan
-    children:
-      - 74274252-c624-42f5-b430-0472112f4c86
-      - 84e4f5ad-53c1-49fb-b11f-49e5581f2d82
-      - c9de7024-c4fb-45db-93b8-7dc534226e9c
-      - 5730059a-1879-4db9-97c3-ea70f98906fd
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  74274252-c624-42f5-b430-0472112f4c86:
-    id: 74274252-c624-42f5-b430-0472112f4c86
-    content: Single PR — the feature is tightly coupled across the pipeline so splitting would create broken intermediate states
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  84e4f5ad-53c1-49fb-b11f-49e5581f2d82:
-    id: 84e4f5ad-53c1-49fb-b11f-49e5581f2d82
-    content: 'Order: Step dialog toggle (Step 1) → format instructions (Step 2) → parse changes (Step 3) → command (Step 4) → flow wiring (Step 5) → autonomous path (Step 6)'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  c9de7024-c4fb-45db-93b8-7dc534226e9c:
-    id: c9de7024-c4fb-45db-93b8-7dc534226e9c
-    content: Testing strategy
-    children:
-      - 0c77a65e-549f-47e9-bf61-2f74ff562109
-      - 82ff5365-13ca-4067-b06c-5fb8c7b41a9c
-      - 889ab301-f244-4f1f-99bb-fa90f3fcefa0
-      - 707fc589-8e12-40f4-9502-4be0e12b561b
-      - 8b342018-9a1a-4018-88ea-451b4d2ae89a
-      - 5a78fe4f-7563-4a77-8611-f5d05d24d849
-      - 4a467e9a-b343-4214-b3dd-5c8ecba9d936
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  0c77a65e-549f-47e9-bf61-2f74ff562109:
-    id: 0c77a65e-549f-47e9-bf61-2f74ff562109
-    content: 'Unit: parseFeedbackContent with decomposition on/off, single/multiple roots'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  82ff5365-13ca-4067-b06c-5fb8c7b41a9c:
-    id: 82ff5365-13ca-4067-b06c-5fb8c7b41a9c
-    content: 'Unit: AcceptFeedbackCommand multi-root — creates correct siblings, preserves metadata, undo restores original'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  889ab301-f244-4f1f-99bb-fa90f3fcefa0:
-    id: 889ab301-f244-4f1f-99bb-fa90f3fcefa0
-    content: 'Unit: AcceptFeedbackCommand single-root — unchanged from current behavior'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  707fc589-8e12-40f4-9502-4be0e12b561b:
-    id: 707fc589-8e12-40f4-9502-4be0e12b561b
-    content: 'Unit: format instruction selection based on decomposition flag'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  8b342018-9a1a-4018-88ea-451b4d2ae89a:
-    id: 8b342018-9a1a-4018-88ea-451b4d2ae89a
-    content: 'Unit: StepConfigDialog renders decomposition toggle, reads/writes metadata'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  5a78fe4f-7563-4a77-8611-f5d05d24d849:
-    id: 5a78fe4f-7563-4a77-8611-f5d05d24d849
-    content: 'Manual: end-to-end decomposition flow — enable decomposition on a step, send content, verify multiple nodes created, verify undo, verify metadata inheritance'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  4a467e9a-b343-4214-b3dd-5c8ecba9d936:
-    id: 4a467e9a-b343-4214-b3dd-5c8ecba9d936
-    content: 'Manual: verify existing single-root flow is unchanged when decomposition is off'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  5730059a-1879-4db9-97c3-ea70f98906fd:
-    id: 5730059a-1879-4db9-97c3-ea70f98906fd
-    content: 'Parallelisation: Steps 1-2 (dialog + format instructions) can be done in parallel with Step 3 (parse changes). Step 4 (command) depends on Step 3. Steps 5-6 depend on all prior steps.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  09b15925-bee7-448b-83eb-f9ba3eebecbe:
-    id: 09b15925-bee7-448b-83eb-f9ba3eebecbe
-    content: Test plan
-    children:
-      - 0c14fb8c-3739-4b9c-b38f-e46a3bc25e93
-      - 690b1d7f-9e3d-4890-b499-303872efeaf2
-      - 25948045-bf4e-496d-9772-917434a84fd4
-      - 05e25920-0c43-4760-a22b-05d3d9d9ee9f
-      - ade0a560-8a15-4448-81d1-7741ce30b3a0
-      - 5f00aeee-21a0-459c-9a20-74ad175da42c
-      - 8fa3e664-e987-45b3-8216-ec42b8ce067b
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  0c14fb8c-3739-4b9c-b38f-e46a3bc25e93:
-    id: 0c14fb8c-3739-4b9c-b38f-e46a3bc25e93
-    content: Scope and objectives
-    children:
-      - d90f021f-1917-4082-af0b-2e3d50fc73cb
-      - da92d60c-f805-4008-ada4-660e64c5ad9d
-      - 1ac0ac78-18f9-4274-9b97-711e0dc407ca
-      - 7aff465a-955d-49a1-a584-3e6773f70cc0
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  d90f021f-1917-4082-af0b-2e3d50fc73cb:
-    id: d90f021f-1917-4082-af0b-2e3d50fc73cb
-    content: Verify that decomposition mode produces multiple sibling nodes from a single AI response
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  da92d60c-f805-4008-ada4-660e64c5ad9d:
-    id: da92d60c-f805-4008-ada4-660e64c5ad9d
-    content: Verify that single-root acceptance is fully backward compatible when decomposition is off
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  1ac0ac78-18f9-4274-9b97-711e0dc407ca:
-    id: 1ac0ac78-18f9-4274-9b97-711e0dc407ca
-    content: Verify that multi-node acceptance is atomic (single undo restores original node)
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  7aff465a-955d-49a1-a584-3e6773f70cc0:
-    id: 7aff465a-955d-49a1-a584-3e6773f70cc0
-    content: Verify that the decomposition toggle in the step configuration dialog correctly controls the pipeline behavior
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  690b1d7f-9e3d-4890-b499-303872efeaf2:
-    id: 690b1d7f-9e3d-4890-b499-303872efeaf2
-    content: Entry criteria
-    children:
-      - 15989b90-3b8a-41bf-98f1-b9b2e61d7619
-      - 2816dac9-a8fb-44bc-8109-3920e4a7bc1d
-      - 02be20f2-39b2-4d3f-a905-33a149d74b9a
-      - c008fdc0-b33c-4828-b361-3ec488fa27a5
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  15989b90-3b8a-41bf-98f1-b9b2e61d7619:
-    id: 15989b90-3b8a-41bf-98f1-b9b2e61d7619
-    content: Decomposition toggle is implemented in the step configuration dialog
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  2816dac9-a8fb-44bc-8109-3920e4a7bc1d:
-    id: 2816dac9-a8fb-44bc-8109-3920e4a7bc1d
-    content: parseFeedbackContent supports multiple roots when decomposition is active
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  02be20f2-39b2-4d3f-a905-33a149d74b9a:
-    id: 02be20f2-39b2-4d3f-a905-33a149d74b9a
-    content: AcceptFeedbackCommand supports multi-root mode
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  c008fdc0-b33c-4828-b361-3ec488fa27a5:
-    id: c008fdc0-b33c-4828-b361-3ec488fa27a5
-    content: Decomposition flag is threaded through the collaborate flow
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  25948045-bf4e-496d-9772-917434a84fd4:
-    id: 25948045-bf4e-496d-9772-917434a84fd4
-    content: Exit criteria
-    children:
-      - 64f82706-a1c2-473d-a2fa-3c007ae2734a
-      - fa0e3cbe-d340-402d-87b2-6699289458b6
-      - 1c299e7e-2df6-4f45-bc8b-e5fff51bf4c0
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  64f82706-a1c2-473d-a2fa-3c007ae2734a:
-    id: 64f82706-a1c2-473d-a2fa-3c007ae2734a
-    content: All unit tests pass
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  fa0e3cbe-d340-402d-87b2-6699289458b6:
-    id: fa0e3cbe-d340-402d-87b2-6699289458b6
-    content: All manual test scenarios are verified
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  1c299e7e-2df6-4f45-bc8b-e5fff51bf4c0:
-    id: 1c299e7e-2df6-4f45-bc8b-e5fff51bf4c0
-    content: No regressions in existing single-root feedback acceptance
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  05e25920-0c43-4760-a22b-05d3d9d9ee9f:
-    id: 05e25920-0c43-4760-a22b-05d3d9d9ee9f
-    content: Environments and prerequisites
-    children:
-      - c727abd5-bc30-4c04-a4d1-38cdc4f74faf
-      - a2deed20-4e0e-480e-8be4-9faa4de5544c
-      - cce79c15-e377-4e66-ad7f-083b92aef7e2
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  c727abd5-bc30-4c04-a4d1-38cdc4f74faf:
-    id: c727abd5-bc30-4c04-a4d1-38cdc4f74faf
-    content: A tree with a declared workflow containing at least one step with decomposition enabled and one without
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  a2deed20-4e0e-480e-8be4-9faa4de5544c:
-    id: a2deed20-4e0e-480e-8be4-9faa4de5544c
-    content: A collaborate-mode context applied to the workflow steps
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  cce79c15-e377-4e66-ad7f-083b92aef7e2:
-    id: cce79c15-e377-4e66-ad7f-083b92aef7e2
-    content: Terminal with hook integration configured for autonomous step testing
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  ade0a560-8a15-4448-81d1-7741ce30b3a0:
-    id: ade0a560-8a15-4448-81d1-7741ce30b3a0
-    content: Unit tests
-    children:
-      - 2458f9e7-13f1-4410-9f85-f18ec943af8a
-      - 7cfd334d-384f-4b70-b1dd-a5d35c7e44f8
-      - 36f5b3de-1a27-4062-aeb7-3559cb383970
-      - 897519b6-19de-4e42-a352-0aef52959bf9
-      - 355e2328-4531-4156-8876-3e1031cf879c
-      - 335561a2-d942-4f3d-96cb-c52e79d02d16
-      - 51bef897-95dd-4417-bcbf-b86b9848b408
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  2458f9e7-13f1-4410-9f85-f18ec943af8a:
-    id: 2458f9e7-13f1-4410-9f85-f18ec943af8a
-    content: parseFeedbackContent
-    children:
-      - 2712e48d-fa9d-42df-966d-92d0da623fd1
-      - 9edcf385-acf8-4f93-994b-3dca6bc6e8dd
-      - 67d4bd6b-fdf6-4b67-9e0f-be893b9a1430
-      - 2064b2fd-f6d0-4a69-9310-37cc84549809
-      - b5a4db9d-1120-4673-9fe6-ef4b00f63569
-      - a1d69eff-e018-45ca-9321-a262ecf9cc37
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  2712e48d-fa9d-42df-966d-92d0da623fd1:
-    id: 2712e48d-fa9d-42df-966d-92d0da623fd1
-    content: 'With decomposition off: rejects content with multiple root nodes (returns null)'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  9edcf385-acf8-4f93-994b-3dca6bc6e8dd:
-    id: 9edcf385-acf8-4f93-994b-3dca6bc6e8dd
-    content: 'With decomposition off: accepts content with exactly one root node (current behavior)'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  67d4bd6b-fdf6-4b67-9e0f-be893b9a1430:
-    id: 67d4bd6b-fdf6-4b67-9e0f-be893b9a1430
-    content: 'With decomposition on: accepts content with multiple root nodes'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  2064b2fd-f6d0-4a69-9310-37cc84549809:
-    id: 2064b2fd-f6d0-4a69-9310-37cc84549809
-    content: 'With decomposition on: accepts content with a single root node (falls through to single-root)'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  b5a4db9d-1120-4673-9fe6-ef4b00f63569:
-    id: b5a4db9d-1120-4673-9fe6-ef4b00f63569
-    content: 'With decomposition on: rejects content with zero root nodes'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  a1d69eff-e018-45ca-9321-a262ecf9cc37:
-    id: a1d69eff-e018-45ca-9321-a262ecf9cc37
-    content: Returns rootNodeIds array with correct IDs in document order
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  7cfd334d-384f-4b70-b1dd-a5d35c7e44f8:
-    id: 7cfd334d-384f-4b70-b1dd-a5d35c7e44f8
-    content: AcceptFeedbackCommand — single-root mode
-    children:
-      - 4ca59519-eb72-488c-8ea7-84355fa7d762
-      - 3468b53b-4996-4df4-a38e-d51f33c00a03
-      - 59cb2a53-f440-4bfd-a976-318829123a2d
-      - 4fd3e09d-4567-4937-b823-9ce119740a53
-      - 668f8aa1-79e7-42c6-8f48-aebe0be987f5
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  4ca59519-eb72-488c-8ea7-84355fa7d762:
-    id: 4ca59519-eb72-488c-8ea7-84355fa7d762
-    content: Replaces collaborating node content and children (existing behavior unchanged)
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  3468b53b-4996-4df4-a38e-d51f33c00a03:
-    id: 3468b53b-4996-4df4-a38e-d51f33c00a03
-    content: Preserves collaborating node UUID
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  59cb2a53-f440-4bfd-a976-318829123a2d:
-    id: 59cb2a53-f440-4bfd-a976-318829123a2d
-    content: Preserves metadata (isBlueprint, appliedContextIds, activeContextId, blueprintIcon, blueprintColor)
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  4fd3e09d-4567-4937-b823-9ce119740a53:
-    id: 4fd3e09d-4567-4937-b823-9ce119740a53
-    content: Undo restores original node and descendants
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  668f8aa1-79e7-42c6-8f48-aebe0be987f5:
-    id: 668f8aa1-79e7-42c6-8f48-aebe0be987f5
-    content: Redo reapplies the replacement
-    children: []
-    metadata:
-      status: abandoned
-      expanded: true
-      deleted: false
-      plugins: {}
-  36f5b3de-1a27-4062-aeb7-3559cb383970:
-    id: 36f5b3de-1a27-4062-aeb7-3559cb383970
-    content: AcceptFeedbackCommand — multi-root mode
-    children:
-      - 395042c7-8d74-4db8-934e-ca5692f18b08
-      - 21593231-c6ba-4d69-b879-640a4c3e9020
-      - ec4561a1-8904-4d97-aac5-ae340bcdc3ef
-      - cf58127c-b861-479c-b295-57b382e6e99a
-      - d6581cec-d0e2-413b-9ae1-2adab76aaecd
-      - 3fa278df-a0a3-44de-b150-314c049d81a6
-      - f2c4352b-f17a-4164-9dab-4f3eb1a2460f
-      - 7b333632-5bb2-4321-9015-bbce49214de5
-      - be6e9995-c893-4ff4-b4b8-9a3f55b84e80
-      - e07dfd6a-aa9c-4cd0-b4a0-e2860ef2e4c1
-      - 80803cbe-0084-48d3-bb52-b14415593168
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  395042c7-8d74-4db8-934e-ca5692f18b08:
-    id: 395042c7-8d74-4db8-934e-ca5692f18b08
-    content: Creates multiple sibling nodes at the collaborating node's position in its parent's children array
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  21593231-c6ba-4d69-b879-640a4c3e9020:
-    id: 21593231-c6ba-4d69-b879-640a4c3e9020
-    content: Each sibling has a unique UUID (not the collaborating node's UUID)
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  ec4561a1-8904-4d97-aac5-ae340bcdc3ef:
-    id: ec4561a1-8904-4d97-aac5-ae340bcdc3ef
-    content: Each sibling inherits metadata from the collaborating node
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  cf58127c-b861-479c-b295-57b382e6e99a:
-    id: cf58127c-b861-479c-b295-57b382e6e99a
-    content: Siblings appear in document order matching the AI response
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  d6581cec-d0e2-413b-9ae1-2adab76aaecd:
-    id: d6581cec-d0e2-413b-9ae1-2adab76aaecd
-    content: Collaborating node is removed from the tree
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  3fa278df-a0a3-44de-b150-314c049d81a6:
-    id: 3fa278df-a0a3-44de-b150-314c049d81a6
-    content: Ancestor registry is rebuilt for all new siblings and their descendants
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  f2c4352b-f17a-4164-9dab-4f3eb1a2460f:
-    id: f2c4352b-f17a-4164-9dab-4f3eb1a2460f
-    content: feedbackFadingNodeIds includes all new sibling IDs
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  7b333632-5bb2-4321-9015-bbce49214de5:
-    id: 7b333632-5bb2-4321-9015-bbce49214de5
-    content: activeNodeId is set to the first new sibling
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  be6e9995-c893-4ff4-b4b8-9a3f55b84e80:
-    id: be6e9995-c893-4ff4-b4b8-9a3f55b84e80
-    content: Undo removes all created siblings and restores the original collaborating node with its descendants
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  e07dfd6a-aa9c-4cd0-b4a0-e2860ef2e4c1:
-    id: e07dfd6a-aa9c-4cd0-b4a0-e2860ef2e4c1
-    content: Redo reapplies the multi-node creation
-    children: []
-    metadata:
-      status: abandoned
-      expanded: true
-      deleted: false
-      plugins: {}
-  80803cbe-0084-48d3-bb52-b14415593168:
-    id: 80803cbe-0084-48d3-bb52-b14415593168
-    content: Applies blueprint metadata to all siblings when blueprintModeEnabled is true
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  897519b6-19de-4e42-a352-0aef52959bf9:
-    id: 897519b6-19de-4e42-a352-0aef52959bf9
-    content: AcceptFeedbackCommand — root node guard
-    children:
-      - 4515ead2-b66b-4f77-bc91-f412643d3b6e
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  4515ead2-b66b-4f77-bc91-f412643d3b6e:
-    id: 4515ead2-b66b-4f77-bc91-f412643d3b6e
-    content: When the collaborating node is the file root, multi-root mode is prevented (falls back to single-root or rejects)
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  355e2328-4531-4156-8876-3e1031cf879c:
-    id: 355e2328-4531-4156-8876-3e1031cf879c
-    content: Format instruction selection
-    children:
-      - f4971458-b6c5-49f5-bccf-40bb8380b4a1
-      - b8be08d5-c261-46f5-923e-d9e7200b590b
-    metadata:
-      status: abandoned
-      expanded: true
-      deleted: false
-      plugins: {}
-  f4971458-b6c5-49f5-bccf-40bb8380b4a1:
-    id: f4971458-b6c5-49f5-bccf-40bb8380b4a1
-    content: 'When decomposition is off: COLLABORATE_OUTPUT_FORMAT contains "exactly one root node"'
-    children: []
-    metadata:
-      status: abandoned
-      expanded: true
-      deleted: false
-      plugins: {}
-  b8be08d5-c261-46f5-923e-d9e7200b590b:
-    id: b8be08d5-c261-46f5-923e-d9e7200b590b
-    content: 'When decomposition is on: alternate format allows multiple top-level headings'
-    children: []
-    metadata:
-      status: abandoned
-      expanded: true
-      deleted: false
-      plugins: {}
-  335561a2-d942-4f3d-96cb-c52e79d02d16:
-    id: 335561a2-d942-4f3d-96cb-c52e79d02d16
-    content: extractFeedbackContent
-    children:
-      - 56dce796-7943-4f41-8291-29dbe67b2f7f
-      - f353b856-34ee-4e29-9af9-b48957bcf942
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  56dce796-7943-4f41-8291-29dbe67b2f7f:
-    id: 56dce796-7943-4f41-8291-29dbe67b2f7f
-    content: 'With single child under hidden root: returns single rootNodeId (current behavior)'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  f353b856-34ee-4e29-9af9-b48957bcf942:
-    id: f353b856-34ee-4e29-9af9-b48957bcf942
-    content: 'With multiple children under hidden root: returns all rootNodeIds in order'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  51bef897-95dd-4417-bcbf-b86b9848b408:
-    id: 51bef897-95dd-4417-bcbf-b86b9848b408
-    content: StepConfigDialog
-    children:
-      - 2a8823e2-4182-4424-8030-863b23666f82
-      - 90bdb528-2018-49c9-abbb-4a1c4c5513e6
-      - 8e7ac221-b280-44f2-ac94-108550259c02
-      - 0928d4ce-1470-435e-bffd-a85c404982f6
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  2a8823e2-4182-4424-8030-863b23666f82:
-    id: 2a8823e2-4182-4424-8030-863b23666f82
-    content: Renders decomposition checkbox
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  90bdb528-2018-49c9-abbb-4a1c4c5513e6:
-    id: 90bdb528-2018-49c9-abbb-4a1c4c5513e6
-    content: Checkbox reflects current node.metadata.decomposition value
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  8e7ac221-b280-44f2-ac94-108550259c02:
-    id: 8e7ac221-b280-44f2-ac94-108550259c02
-    content: Defaults to unchecked when metadata.decomposition is undefined
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  0928d4ce-1470-435e-bffd-a85c404982f6:
-    id: 0928d4ce-1470-435e-bffd-a85c404982f6
-    content: Toggling calls the setDecomposition action with correct nodeId and value
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  5f00aeee-21a0-459c-9a20-74ad175da42c:
-    id: 5f00aeee-21a0-459c-9a20-74ad175da42c
-    content: Manual tests
-    children:
-      - 5b0fe257-ed86-4611-9fb5-5a92c2b93bae
-      - fc17be15-8d4f-4062-84d8-631c22f70b29
-      - b638ba01-15e7-4838-aeab-4e1a364876d9
-      - 4d4a294b-6667-49c5-bf30-31a1bcc5fd17
-      - 81bd6251-0ed7-4869-b1f4-40c72b5bd9e0
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  5b0fe257-ed86-4611-9fb5-5a92c2b93bae:
-    id: 5b0fe257-ed86-4611-9fb5-5a92c2b93bae
-    content: Decomposition enabled — happy path
-    children:
-      - 2ba4155c-c043-4bf6-b919-039a7879ba0d
-      - aad18647-09c7-49eb-9ba1-0938dcae0edf
-      - 55503a9d-3a13-4adb-a99a-61c4aaf50d1b
-      - 9666c35a-adbf-4a6b-a102-3738a6f255d3
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  2ba4155c-c043-4bf6-b919-039a7879ba0d:
-    id: 2ba4155c-c043-4bf6-b919-039a7879ba0d
-    content: Enable decomposition on a workflow step, send content via collaborate, AI returns 5 top-level items — 5 sibling nodes are created at the collaborating node's position
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  aad18647-09c7-49eb-9ba1-0938dcae0edf:
-    id: aad18647-09c7-49eb-9ba1-0938dcae0edf
-    content: Each sibling has the correct blueprint icon, color, and applied context from the original node
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  55503a9d-3a13-4adb-a99a-61c4aaf50d1b:
-    id: 55503a9d-3a13-4adb-a99a-61c4aaf50d1b
-    content: Undo (Ctrl+Z) removes all 5 siblings and restores the original node
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  9666c35a-adbf-4a6b-a102-3738a6f255d3:
-    id: 9666c35a-adbf-4a6b-a102-3738a6f255d3
-    content: Redo (Ctrl+Shift+Z) recreates the 5 siblings
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  fc17be15-8d4f-4062-84d8-631c22f70b29:
-    id: fc17be15-8d4f-4062-84d8-631c22f70b29
-    content: Decomposition disabled — backward compatibility
-    children:
-      - f4ff46bc-a350-4d51-9bd8-7dd5e2336f36
-      - e7ec04a6-5356-4770-8e96-1d6d1a41056d
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f4ff46bc-a350-4d51-9bd8-7dd5e2336f36:
-    id: f4ff46bc-a350-4d51-9bd8-7dd5e2336f36
-    content: With decomposition off, send content via collaborate — behavior is identical to current (single node replacement)
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e7ec04a6-5356-4770-8e96-1d6d1a41056d:
-    id: e7ec04a6-5356-4770-8e96-1d6d1a41056d
-    content: AI response with multiple roots is silently rejected when decomposition is off (no feedback panel appears)
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  b638ba01-15e7-4838-aeab-4e1a364876d9:
-    id: b638ba01-15e7-4838-aeab-4e1a364876d9
-    content: Decomposition with autonomous step
-    children:
-      - 55067821-6093-468a-876b-dd1cce0feced
-      - a3b58f75-1e41-4f22-b0b3-6cc646af9ab8
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  55067821-6093-468a-876b-dd1cce0feced:
-    id: 55067821-6093-468a-876b-dd1cce0feced
-    content: Enable decomposition on an autonomous step, start workflow — AI response is auto-accepted and multiple siblings are created without user interaction
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  a3b58f75-1e41-4f22-b0b3-6cc646af9ab8:
-    id: a3b58f75-1e41-4f22-b0b3-6cc646af9ab8
-    content: The workflow continues with the first created sibling
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  4d4a294b-6667-49c5-bf30-31a1bcc5fd17:
-    id: 4d4a294b-6667-49c5-bf30-31a1bcc5fd17
-    content: Edge cases
-    children:
-      - 4f57b6fe-0bc3-4c6c-ae57-cb829e7fe38d
-      - 491260f9-f46d-439e-8d45-681300f7484a
-      - af9ec3d1-6adc-4004-8c3a-12f2742c9336
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  4f57b6fe-0bc3-4c6c-ae57-cb829e7fe38d:
-    id: 4f57b6fe-0bc3-4c6c-ae57-cb829e7fe38d
-    content: AI returns a single root when decomposition is on — single-root behavior applies, original UUID is preserved
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  491260f9-f46d-439e-8d45-681300f7484a:
-    id: 491260f9-f46d-439e-8d45-681300f7484a
-    content: Collaborating node is the file root — decomposition is prevented, single-root behavior applies
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  af9ec3d1-6adc-4004-8c3a-12f2742c9336:
-    id: af9ec3d1-6adc-4004-8c3a-12f2742c9336
-    content: AI returns empty response — no feedback panel, no tree changes
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  81bd6251-0ed7-4869-b1f4-40c72b5bd9e0:
-    id: 81bd6251-0ed7-4869-b1f4-40c72b5bd9e0
-    content: Visual feedback
-    children:
-      - 14ed1f32-9ade-45e3-9f13-97d909c30ed5
-      - 4f4b961b-3e1e-422a-a501-8c0a89f14b83
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  14ed1f32-9ade-45e3-9f13-97d909c30ed5:
-    id: 14ed1f32-9ade-45e3-9f13-97d909c30ed5
-    content: All created siblings show the orange fade animation
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  4f4b961b-3e1e-422a-a501-8c0a89f14b83:
-    id: 4f4b961b-3e1e-422a-a501-8c0a89f14b83
-    content: The first sibling is selected after acceptance
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  8fa3e664-e987-45b3-8216-ec42b8ce067b:
-    id: 8fa3e664-e987-45b3-8216-ec42b8ce067b
-    content: Risks
-    children:
-      - 470cf57e-c8c1-499a-bb40-ae8ff1d5be25
-      - a440bf9f-f187-4532-8a08-6dd8e620749e
-      - 33a64f30-d7e7-4554-b8d4-7bba42931a35
-      - e36c0445-a72c-4357-b79f-c8cb126dacc8
-      - 60e8647a-7637-48c1-94ef-57bbf3aac086
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  470cf57e-c8c1-499a-bb40-ae8ff1d5be25:
-    id: 470cf57e-c8c1-499a-bb40-ae8ff1d5be25
-    content: 'Highest likelihood of defects: AcceptFeedbackCommand multi-root undo — must correctly snapshot parent''s children array, remove all created subtrees, and restore the original node in the correct position. More moving parts than single-root undo.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  a440bf9f-f187-4532-8a08-6dd8e620749e:
-    id: a440bf9f-f187-4532-8a08-6dd8e620749e
-    content: 'Highest impact if failed: backward compatibility — if the decomposition flag is not correctly checked, existing single-root acceptance could break for all users. Every modified function must branch on the flag before changing behavior.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  33a64f30-d7e7-4554-b8d4-7bba42931a35:
-    id: 33a64f30-d7e7-4554-b8d4-7bba42931a35
-    content: 'Dependency: the decomposition flag must be threaded through the collaborate flow (collaborateActions → processIncomingFeedbackContent → extractFeedbackContent → AcceptFeedbackCommand). A break in any link silently falls back to single-root mode, which is safe but confusing if the user expects multi-root.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  e36c0445-a72c-4357-b79f-c8cb126dacc8:
-    id: e36c0445-a72c-4357-b79f-c8cb126dacc8
-    content: 'Ambiguity: the AC says "Created nodes inherit the applied context and blueprint membership of their position in the tree, unless overridden by inherited metadata from the parent." The override precedence needs clarification during implementation — does parent metadata win over position-based inheritance, or vice versa?'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  60e8647a-7637-48c1-94ef-57bbf3aac086:
-    id: 60e8647a-7637-48c1-94ef-57bbf3aac086
-    content: 'Likely to change: the decomposition toggle may gain additional options (e.g. max node count, heading depth control) as users discover edge cases with AI responses.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
   c9f33e5c-eb61-4f5e-b2d8-5b314ce04266:
     id: c9f33e5c-eb61-4f5e-b2d8-5b314ce04266
     content: As a user, I need the feedback system to be able to create multiple sibling nodes from a single AI response (e.g. 5 user stories from 1 problem statement). Currently, feedback always produces a single root node that replaces the collaborating node one-to-one. There is no path to create multiple sibling nodes from a single feedback interaction.
@@ -51429,5 +49481,1197 @@ nodes:
     metadata:
       status: pending
       expanded: false
+      deleted: false
+      plugins: {}
+  3408afa8-9a6b-47ad-9258-6fdc688ecc5c:
+    id: 3408afa8-9a6b-47ad-9258-6fdc688ecc5c
+    content: User stories
+    children:
+      - 481c87e7-14ce-4e02-9e1c-3483a5abac51
+    metadata:
+      status: pending
+      isBlueprint: true
+      blueprintIcon: BookOpenText
+      blueprintColor: '#0ea5e9'
+      expanded: false
+  481c87e7-14ce-4e02-9e1c-3483a5abac51:
+    id: 481c87e7-14ce-4e02-9e1c-3483a5abac51
+    content: Done
+    children:
+      - 911c7c76-b792-44e2-b404-5087a4ceaff4
+      - 4adfa410-1e2e-4155-8e8e-2b2ed48b40a8
+    metadata:
+      status: pending
+      isBlueprint: true
+      blueprintIcon: FolderCheck
+      blueprintColor: '#22c55e'
+      expanded: false
+  44373205-7c18-43b5-ab7d-9603863a5a66:
+    id: 44373205-7c18-43b5-ab7d-9603863a5a66
+    content: Replace step type toasts with inline descriptions in the step configuration dialog
+    children:
+      - 6e2a52e3-7e32-4089-94ba-d6acf6d31c1d
+      - cdb142a2-ed1d-4514-8805-d0cb5202357e
+      - 1b39c64e-dd38-4111-9483-d85873df64b0
+      - ef2b641f-dc0b-4b29-a95d-cf9c90e9b5b6
+      - 53288eaf-4ad0-42f7-9b21-2c81c2e2d019
+      - d5e8985b-0f3e-49eb-8a03-500b2f06abcc
+      - ad709d7f-9b38-494e-a125-7e1d15cbd020
+    metadata:
+      status: completed
+      expanded: false
+      deleted: false
+      plugins: {}
+  b7c090bf-6421-467a-9d97-067d3521d013:
+    id: b7c090bf-6421-467a-9d97-067d3521d013
+    content: Workflow steps in context menu are redundant
+    children:
+      - 3d862e56-dbbd-4ff8-bafa-817c05105b0a
+    metadata:
+      status: pending
+  3d862e56-dbbd-4ff8-bafa-817c05105b0a:
+    id: 3d862e56-dbbd-4ff8-bafa-817c05105b0a
+    content: Replace with 'Configure workflow step' item which opens the config dialog
+    children: []
+    metadata:
+      status: pending
+  b08a9e71-fc04-47c7-9e1a-3e65621a9009:
+    id: b08a9e71-fc04-47c7-9e1a-3e65621a9009
+    content: Workflow related context menu items hard to find
+    children:
+      - 4e50c4f7-fc85-41f8-8ace-cd337666ed51
+      - 81f1b7d5-c972-4656-befc-f12e6cbf7091
+    metadata:
+      status: pending
+  4e50c4f7-fc85-41f8-8ace-cd337666ed51:
+    id: 4e50c4f7-fc85-41f8-8ace-cd337666ed51
+    content: Currently they are under blueprint
+    children: []
+    metadata:
+      status: pending
+  81f1b7d5-c972-4656-befc-f12e6cbf7091:
+    id: 81f1b7d5-c972-4656-befc-f12e6cbf7091
+    content: Once a node is declared as a blueprint item, have a 'Workflow' option in the root of the right click menu, right under 'Blueprint
+    children:
+      - 40dbe5cb-f277-445d-a933-1f32ba9c6809
+    metadata:
+      status: pending
+  40dbe5cb-f277-445d-a933-1f32ba9c6809:
+    id: 40dbe5cb-f277-445d-a933-1f32ba9c6809
+    content: Move every workflow related menu item into it, apart from 'Remove from workflow' which is duplicated in both blueprint and workflow
+    children: []
+    metadata:
+      status: pending
+  6e2a52e3-7e32-4089-94ba-d6acf6d31c1d:
+    id: 6e2a52e3-7e32-4089-94ba-d6acf6d31c1d
+    content: Understand the context
+    children:
+      - a32452ef-e6d7-4607-bae2-a1641174b83a
+      - ec6189bf-3a75-42e7-91c0-3dea1e8018fc
+      - fa3fb475-2569-431b-9e12-1ca027f59279
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a32452ef-e6d7-4607-bae2-a1641174b83a:
+    id: a32452ef-e6d7-4607-bae2-a1641174b83a
+    content: Review the project philosophy and existing feature set
+    children:
+      - 66eb2782-765d-48e5-b886-1766da50ff3d
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  66eb2782-765d-48e5-b886-1766da50ff3d:
+    id: 66eb2782-765d-48e5-b886-1766da50ff3d
+    content: Arborescent prioritizes low cognitive load, minimal visual noise, and predictable behavior. Toast notifications are interruptive — they appear in a separate part of the screen and demand attention. Now that step type selection happens inside a focused dialog, the warning information should live where the user is looking.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ec6189bf-3a75-42e7-91c0-3dea1e8018fc:
+    id: ec6189bf-3a75-42e7-91c0-3dea1e8018fc
+    content: Identify the target user and their current pain points
+    children:
+      - e4786dcc-c716-4326-a62f-a01a4c85a522
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e4786dcc-c716-4326-a62f-a01a4c85a522:
+    id: e4786dcc-c716-4326-a62f-a01a4c85a522
+    content: The user is configuring workflow steps. When they select Autonomous or Checkpoint, a toast appears explaining the behavior. This is disruptive — the user has to context-switch from the dialog to the toast, read it, then return to the dialog. The information would be better presented inline where the selection happens.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fa3fb475-2569-431b-9e12-1ca027f59279:
+    id: fa3fb475-2569-431b-9e12-1ca027f59279
+    content: Note any technical or design constraints worth respecting
+    children:
+      - 0d6c916f-8fd6-4988-8f5c-01441f461e27
+      - f8401df2-8b91-4a87-995a-b2ee6d8296e3
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0d6c916f-8fd6-4988-8f5c-01441f461e27:
+    id: 0d6c916f-8fd6-4988-8f5c-01441f461e27
+    content: The step configuration dialog already exists with radio buttons for step type and a decomposition checkbox. Adding descriptions is a layout change within the existing component.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f8401df2-8b91-4a87-995a-b2ee6d8296e3:
+    id: f8401df2-8b91-4a87-995a-b2ee6d8296e3
+    content: The right-click submenu path still calls setStepType which triggers the toasts. If we remove toasts from the action, the right-click path also loses them — which is fine since users now have the dialog as the primary path.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cdb142a2-ed1d-4514-8805-d0cb5202357e:
+    id: cdb142a2-ed1d-4514-8805-d0cb5202357e
+    content: Analyze the problem or opportunity
+    children:
+      - 51ecdcfb-de0a-43b9-bbdc-0357a66b838a
+      - 6db99da2-b9ff-444c-b68d-cde0507a5037
+      - 49115f70-7dd6-4d49-b6b9-2a9f6c4f8925
+      - 7eaf1a6f-17ac-44c0-9adf-f7afb6febae2
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  51ecdcfb-de0a-43b9-bbdc-0357a66b838a:
+    id: 51ecdcfb-de0a-43b9-bbdc-0357a66b838a
+    content: Restate the problem in the user's language
+    children:
+      - 9dbf4232-2544-4c87-b5bb-73c1694993e1
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9dbf4232-2544-4c87-b5bb-73c1694993e1:
+    id: 9dbf4232-2544-4c87-b5bb-73c1694993e1
+    content: '"When I change a step type, a toast pops up telling me what the step type does. But I''m already looking at the dialog — just show me the description there."'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6db99da2-b9ff-444c-b68d-cde0507a5037:
+    id: 6db99da2-b9ff-444c-b68d-cde0507a5037
+    content: Assess who is affected and how frequently
+    children:
+      - 7603ec40-2341-401c-85f6-4c9a34c6af4f
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7603ec40-2341-401c-85f6-4c9a34c6af4f:
+    id: 7603ec40-2341-401c-85f6-4c9a34c6af4f
+    content: Every user who configures step types. It's a low-frequency action (once per step setup) but the toast is noticeable every time.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  49115f70-7dd6-4d49-b6b9-2a9f6c4f8925:
+    id: 49115f70-7dd6-4d49-b6b9-2a9f6c4f8925
+    content: Identify what happens today without a solution
+    children:
+      - eecc342d-b40a-400d-83c5-76eee25b72f5
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  eecc342d-b40a-400d-83c5-76eee25b72f5:
+    id: eecc342d-b40a-400d-83c5-76eee25b72f5
+    content: User selects Autonomous → toast appears saying "This step will execute automatically and advance to the next step. Ensure contexts are correctly configured." User selects Checkpoint → toast says "This step will execute automatically but pause before advancing." Manual shows no toast. The information is correct but the delivery is interruptive.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7eaf1a6f-17ac-44c0-9adf-f7afb6febae2:
+    id: 7eaf1a6f-17ac-44c0-9adf-f7afb6febae2
+    content: Flag if the problem is symptoms of a deeper issue
+    children:
+      - 0eea8513-74f8-4f92-ac20-e114b7a917ac
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0eea8513-74f8-4f92-ac20-e114b7a917ac:
+    id: 0eea8513-74f8-4f92-ac20-e114b7a917ac
+    content: No deeper issue. The toasts were the only way to surface this information before the dialog existed. Now there's a better place for it.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1b39c64e-dd38-4111-9483-d85873df64b0:
+    id: 1b39c64e-dd38-4111-9483-d85873df64b0
+    content: Evaluate feasibility and ROI
+    children:
+      - 88d6354d-6aab-4777-920f-06a5059df28e
+      - 99c41fe5-e957-4480-afe2-0cacddad8151
+      - 9b75af21-20ff-4835-abb3-0c878d1857f4
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  88d6354d-6aab-4777-920f-06a5059df28e:
+    id: 88d6354d-6aab-4777-920f-06a5059df28e
+    content: Estimate effort relative to user value
+    children:
+      - 6ad1a45f-4c86-489a-8aa7-c39d4c269a16
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6ad1a45f-4c86-489a-8aa7-c39d4c269a16:
+    id: 6ad1a45f-4c86-489a-8aa7-c39d4c269a16
+    content: Small effort — add description text below the step type selection in the dialog, remove the toast calls from setStepType. High polish value relative to cost.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  99c41fe5-e957-4480-afe2-0cacddad8151:
+    id: 99c41fe5-e957-4480-afe2-0cacddad8151
+    content: Warn if the cost likely outweighs the benefit
+    children:
+      - 97bd42ad-a3a6-453c-a38a-ec6a4f120f88
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  97bd42ad-a3a6-453c-a38a-ec6a4f120f88:
+    id: 97bd42ad-a3a6-453c-a38a-ec6a4f120f88
+    content: No — this is a straightforward improvement.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9b75af21-20ff-4835-abb3-0c878d1857f4:
+    id: 9b75af21-20ff-4835-abb3-0c878d1857f4
+    content: Identify risks or dependencies that could block delivery
+    children:
+      - 5963ec34-bca2-4927-a980-2e13e77d5585
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5963ec34-bca2-4927-a980-2e13e77d5585:
+    id: 5963ec34-bca2-4927-a980-2e13e77d5585
+    content: None. The dialog already renders, the descriptions are already written (in the toast messages). Just moving text from one place to another.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ef2b641f-dc0b-4b29-a95d-cf9c90e9b5b6:
+    id: ef2b641f-dc0b-4b29-a95d-cf9c90e9b5b6
+    content: Acceptance criteria
+    children:
+      - f0b7e52a-353e-4b01-9091-6abd8be3ba72
+      - 781cac25-352f-4a16-962e-da03736b6e8f
+      - 7aeac139-ce68-41b2-bad6-2c51047872e8
+      - 940a3cc9-93ed-437b-b0c7-2603b0cd395c
+      - db3c9d99-220c-470a-9f60-bfa37b3a3241
+      - 286d8559-b05a-42c1-a2a4-3852802a54b5
+      - 4badbafe-4ecd-47da-b93d-3ad26cb9b0ae
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f0b7e52a-353e-4b01-9091-6abd8be3ba72:
+    id: f0b7e52a-353e-4b01-9091-6abd8be3ba72
+    content: The step configuration dialog shows a description below the step type radio group explaining the currently selected type's behavior
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  781cac25-352f-4a16-962e-da03736b6e8f:
+    id: 781cac25-352f-4a16-962e-da03736b6e8f
+    content: Descriptions
+    children:
+      - 9ad7aa90-3931-440c-afb2-1fb13c95baed
+      - daef325a-a7e6-4915-8b76-43ecd4a03bcd
+      - 88f07551-92ea-4a31-8414-03e7b72ed062
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9ad7aa90-3931-440c-afb2-1fb13c95baed:
+    id: 9ad7aa90-3931-440c-afb2-1fb13c95baed
+    content: 'Manual: "Nothing is sent to the terminal. You act manually."'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  daef325a-a7e6-4915-8b76-43ecd4a03bcd:
+    id: daef325a-a7e6-4915-8b76-43ecd4a03bcd
+    content: 'Checkpoint: "Content is sent automatically. Pauses for your review before advancing."'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  88f07551-92ea-4a31-8414-03e7b72ed062:
+    id: 88f07551-92ea-4a31-8414-03e7b72ed062
+    content: 'Autonomous: "Content is sent and advances automatically. Ensure contexts are configured correctly."'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7aeac139-ce68-41b2-bad6-2c51047872e8:
+    id: 7aeac139-ce68-41b2-bad6-2c51047872e8
+    content: The description updates immediately when the user selects a different step type
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  940a3cc9-93ed-437b-b0c7-2603b0cd395c:
+    id: 940a3cc9-93ed-437b-b0c7-2603b0cd395c
+    content: The description text is visually muted (smaller, lighter color) to avoid competing with the radio labels
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  db3c9d99-220c-470a-9f60-bfa37b3a3241:
+    id: db3c9d99-220c-470a-9f60-bfa37b3a3241
+    content: The toast notifications for Autonomous and Checkpoint step type selection are removed
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  286d8559-b05a-42c1-a2a4-3852802a54b5:
+    id: 286d8559-b05a-42c1-a2a4-3852802a54b5
+    content: The right-click → Blueprint → Step Type submenu no longer triggers toasts either (acceptable since the dialog is the primary configuration surface)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4badbafe-4ecd-47da-b93d-3ad26cb9b0ae:
+    id: 4badbafe-4ecd-47da-b93d-3ad26cb9b0ae
+    content: 'Also add a description for the decomposition checkbox: "AI response creates multiple sibling nodes instead of replacing the original."'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  53288eaf-4ad0-42f7-9b21-2c81c2e2d019:
+    id: 53288eaf-4ad0-42f7-9b21-2c81c2e2d019
+    content: Technical specifications
+    children:
+      - b0f5cba4-73aa-4674-af9b-194d6e9d271e
+      - fdd7250e-026f-4c7c-8f0a-d67c4cc75ef3
+      - ce3b5ac8-ae05-4db8-9725-dfb79d4fe515
+      - 084b1b01-668f-4c84-b755-70699e272cb9
+      - f7e61e44-aef0-4673-88eb-f8a7bffba1fa
+      - 22dc6536-11a1-42f1-8181-8dbf3f2a6a34
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b0f5cba4-73aa-4674-af9b-194d6e9d271e:
+    id: b0f5cba4-73aa-4674-af9b-194d6e9d271e
+    content: Summary
+    children:
+      - 273c3ca9-73a0-416f-a46d-2d5cbadfff81
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  273c3ca9-73a0-416f-a46d-2d5cbadfff81:
+    id: 273c3ca9-73a0-416f-a46d-2d5cbadfff81
+    content: Move step type explanations from toast notifications into the step configuration dialog as inline descriptions
+    children:
+      - 39540806-cb97-48c2-902e-2f57a4e64847
+      - 9984e8e8-cb02-4805-a100-a96455e739d6
+      - ea4bdcd6-816f-44b5-b328-14f89672ff84
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  39540806-cb97-48c2-902e-2f57a4e64847:
+    id: 39540806-cb97-48c2-902e-2f57a4e64847
+    content: Add a description text area below the step type radio group that shows the selected type's behavior
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9984e8e8-cb02-4805-a100-a96455e739d6:
+    id: 9984e8e8-cb02-4805-a100-a96455e739d6
+    content: Add a description below the decomposition checkbox
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ea4bdcd6-816f-44b5-b328-14f89672ff84:
+    id: ea4bdcd6-816f-44b5-b328-14f89672ff84
+    content: Remove toast calls from setStepType in workflowActions.ts
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fdd7250e-026f-4c7c-8f0a-d67c4cc75ef3:
+    id: fdd7250e-026f-4c7c-8f0a-d67c4cc75ef3
+    content: Inputs, outputs, and key interfaces
+    children:
+      - 01543317-469f-4401-ab60-d15b4c1d785c
+      - 6c7ee445-9720-47d4-80ae-ac6e91f76197
+      - e56130df-e96d-4a08-aa29-1c784c20368f
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  01543317-469f-4401-ab60-d15b4c1d785c:
+    id: 01543317-469f-4401-ab60-d15b4c1d785c
+    content: 'Input: the currently selected step type (effectiveStepType) drives which description is displayed'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6c7ee445-9720-47d4-80ae-ac6e91f76197:
+    id: 6c7ee445-9720-47d4-80ae-ac6e91f76197
+    content: 'Output: static description text rendered in the dialog — no state changes, no side effects'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e56130df-e96d-4a08-aa29-1c784c20368f:
+    id: e56130df-e96d-4a08-aa29-1c784c20368f
+    content: 'Key interface change: StepConfigDialog component gains a description element; no prop changes needed since it already receives currentStepType'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ce3b5ac8-ae05-4db8-9725-dfb79d4fe515:
+    id: ce3b5ac8-ae05-4db8-9725-dfb79d4fe515
+    content: Constraints and non-functional requirements
+    children:
+      - 49be467c-0b5d-48dd-8855-ec03f745ddd6
+      - f19faaa3-0072-4839-a5d7-c03a992b06ca
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  49be467c-0b5d-48dd-8855-ec03f745ddd6:
+    id: 49be467c-0b5d-48dd-8855-ec03f745ddd6
+    content: Description text must be readable but not compete visually with the radio labels — use smaller font, muted color
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f19faaa3-0072-4839-a5d7-c03a992b06ca:
+    id: f19faaa3-0072-4839-a5d7-c03a992b06ca
+    content: Dialog height increases slightly — should not cause overflow or scrollbar issues at the current 280px width
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  084b1b01-668f-4c84-b755-70699e272cb9:
+    id: 084b1b01-668f-4c84-b755-70699e272cb9
+    content: Technical steps
+    children:
+      - 8417101b-b3ba-4e7d-8589-988de7cc112f
+      - 19d2bf00-273f-47f8-b616-9749791ced20
+      - a4acad67-c5cb-4ef2-90d4-e1fcba6300a7
+      - c25e0c6a-5f85-41da-8009-ce382b3a55d5
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8417101b-b3ba-4e7d-8589-988de7cc112f:
+    id: 8417101b-b3ba-4e7d-8589-988de7cc112f
+    content: 'Step 1: Add step type descriptions to StepConfigDialog (S)'
+    children:
+      - b3262c6d-c8b7-4c3a-a561-f22c9b0a5738
+      - 7f43c750-1a9d-4566-b7a9-fa8828105734
+      - b27ad7c5-261c-4487-8bce-5d83a2246fa7
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b3262c6d-c8b7-4c3a-a561-f22c9b0a5738:
+    id: b3262c6d-c8b7-4c3a-a561-f22c9b0a5738
+    content: Add a STEP_TYPE_DESCRIPTIONS map alongside the existing STEP_TYPE_OPTIONS
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7f43c750-1a9d-4566-b7a9-fa8828105734:
+    id: 7f43c750-1a9d-4566-b7a9-fa8828105734
+    content: Render the description for the currently selected step type below the radio group
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b27ad7c5-261c-4487-8bce-5d83a2246fa7:
+    id: b27ad7c5-261c-4487-8bce-5d83a2246fa7
+    content: Style with a new CSS class — smaller font, muted color, matching the existing step-config-section-label pattern
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  19d2bf00-273f-47f8-b616-9749791ced20:
+    id: 19d2bf00-273f-47f8-b616-9749791ced20
+    content: 'Step 2: Add decomposition description (S)'
+    children:
+      - 633f8840-5bdb-4de1-a269-a2d6e9b7c741
+      - 92156a94-7662-4617-bdcf-8302a5fb2c69
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  633f8840-5bdb-4de1-a269-a2d6e9b7c741:
+    id: 633f8840-5bdb-4de1-a269-a2d6e9b7c741
+    content: 'Add muted helper text below the decomposition checkbox: "AI response creates multiple sibling nodes instead of replacing the original."'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  92156a94-7662-4617-bdcf-8302a5fb2c69:
+    id: 92156a94-7662-4617-bdcf-8302a5fb2c69
+    content: Same styling as the step type description
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a4acad67-c5cb-4ef2-90d4-e1fcba6300a7:
+    id: a4acad67-c5cb-4ef2-90d4-e1fcba6300a7
+    content: 'Step 3: Remove toast calls from setStepType (S)'
+    children:
+      - d1d58102-b7da-405a-afec-154a76576121
+      - cf84e15d-fdd6-457e-ae5b-bf0bbc5689f7
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d1d58102-b7da-405a-afec-154a76576121:
+    id: d1d58102-b7da-405a-afec-154a76576121
+    content: In workflowActions.ts, remove the if/else block that calls useToastStore.getState().addToast for autonomous and checkpoint
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cf84e15d-fdd6-457e-ae5b-bf0bbc5689f7:
+    id: cf84e15d-fdd6-457e-ae5b-bf0bbc5689f7
+    content: The useToastStore import may become unused — remove if so
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  c25e0c6a-5f85-41da-8009-ce382b3a55d5:
+    id: c25e0c6a-5f85-41da-8009-ce382b3a55d5
+    content: 'Step 4: Update tests (S)'
+    children:
+      - c3c29d46-7df5-450c-8247-443951b3e8b2
+      - 85a67d03-90ee-41c2-a83e-bc35349ea392
+      - 4eed2648-94c4-44d8-ae4f-6f0135fa5e0a
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c3c29d46-7df5-450c-8247-443951b3e8b2:
+    id: c3c29d46-7df5-450c-8247-443951b3e8b2
+    content: Update StepConfigDialog tests to verify description text renders for each step type
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  85a67d03-90ee-41c2-a83e-bc35349ea392:
+    id: 85a67d03-90ee-41c2-a83e-bc35349ea392
+    content: Update workflowActions tests to verify setStepType no longer calls addToast
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4eed2648-94c4-44d8-ae4f-6f0135fa5e0a:
+    id: 4eed2648-94c4-44d8-ae4f-6f0135fa5e0a
+    content: Remove or update any existing tests that assert toast behavior on step type change
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f7e61e44-aef0-4673-88eb-f8a7bffba1fa:
+    id: f7e61e44-aef0-4673-88eb-f8a7bffba1fa
+    content: Risks and edge cases
+    children:
+      - c2049c09-daa6-46cb-8ca8-1026e4dc934f
+      - 6d08af33-5063-40fd-8a20-2b85e3b1abff
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c2049c09-daa6-46cb-8ca8-1026e4dc934f:
+    id: c2049c09-daa6-46cb-8ca8-1026e4dc934f
+    content: The right-click submenu path loses its toast warnings — acceptable since the dialog is the primary path, and users who use the submenu are likely already familiar with step type behavior
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6d08af33-5063-40fd-8a20-2b85e3b1abff:
+    id: 6d08af33-5063-40fd-8a20-2b85e3b1abff
+    content: If the useToastStore import is removed from workflowActions.ts, verify no other function in that file uses it
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  22dc6536-11a1-42f1-8181-8dbf3f2a6a34:
+    id: 22dc6536-11a1-42f1-8181-8dbf3f2a6a34
+    content: Implementation plan
+    children:
+      - b2c2a0b3-009b-4ff0-a4d0-b3448c095a33
+      - 23257c81-3cee-442b-91b0-67d4b23ded2e
+      - 98e7498f-e237-424c-ae16-52a0a2216704
+      - 85c796f3-8d43-4c15-8bcb-56887d2a67a8
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b2c2a0b3-009b-4ff0-a4d0-b3448c095a33:
+    id: b2c2a0b3-009b-4ff0-a4d0-b3448c095a33
+    content: Single PR — all changes are small and tightly coupled
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  23257c81-3cee-442b-91b0-67d4b23ded2e:
+    id: 23257c81-3cee-442b-91b0-67d4b23ded2e
+    content: 'Order: descriptions in dialog (Steps 1-2) → remove toasts (Step 3) → update tests (Step 4)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  98e7498f-e237-424c-ae16-52a0a2216704:
+    id: 98e7498f-e237-424c-ae16-52a0a2216704
+    content: Testing strategy
+    children:
+      - 742a974f-15f8-40e2-9369-3fdc22722c9a
+      - 7c991d18-fca5-463b-895c-a8b33bc769a5
+      - cfa8660a-49d2-47ea-b19f-92ba09de0700
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  742a974f-15f8-40e2-9369-3fdc22722c9a:
+    id: 742a974f-15f8-40e2-9369-3fdc22722c9a
+    content: 'Unit: StepConfigDialog renders correct description for each step type'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7c991d18-fca5-463b-895c-a8b33bc769a5:
+    id: 7c991d18-fca5-463b-895c-a8b33bc769a5
+    content: 'Unit: workflowActions.setStepType does not call addToast'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cfa8660a-49d2-47ea-b19f-92ba09de0700:
+    id: cfa8660a-49d2-47ea-b19f-92ba09de0700
+    content: 'Manual: verify dialog descriptions update on selection, verify no toasts appear on step type change via dialog or right-click'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  85c796f3-8d43-4c15-8bcb-56887d2a67a8:
+    id: 85c796f3-8d43-4c15-8bcb-56887d2a67a8
+    content: 'Parallelisation: not applicable — single-contributor, small scope'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d5e8985b-0f3e-49eb-8a03-500b2f06abcc:
+    id: d5e8985b-0f3e-49eb-8a03-500b2f06abcc
+    content: Test plan
+    children:
+      - 906beec2-dced-43d9-8573-3aa2116ba1b6
+      - 1aed480c-83a1-4a70-b6a3-182d751fcdd6
+      - df30ded6-0c93-493f-82c8-6b99e19f7b20
+      - 445bc07a-b822-425d-9538-35e308f6cc1c
+      - cb0f799e-60aa-47c3-a424-867ccf218c8e
+      - abcff215-e1c4-497f-a03a-85c1a4f53546
+      - 136b5729-7adc-4016-8aff-e1f92613b4b3
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  906beec2-dced-43d9-8573-3aa2116ba1b6:
+    id: 906beec2-dced-43d9-8573-3aa2116ba1b6
+    content: Scope and objectives
+    children:
+      - 9e6b9247-251c-4f78-8df4-f96859ec59d7
+      - 8402911d-4f8e-4faf-94aa-af21cc71c36c
+      - e625a571-e619-49cb-b540-a83247415873
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9e6b9247-251c-4f78-8df4-f96859ec59d7:
+    id: 9e6b9247-251c-4f78-8df4-f96859ec59d7
+    content: Verify that the step configuration dialog displays correct inline descriptions for each step type and for decomposition
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8402911d-4f8e-4faf-94aa-af21cc71c36c:
+    id: 8402911d-4f8e-4faf-94aa-af21cc71c36c
+    content: Verify that toast notifications are no longer triggered on step type change
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e625a571-e619-49cb-b540-a83247415873:
+    id: e625a571-e619-49cb-b540-a83247415873
+    content: Verify no regressions in step type change behavior (undo, metadata persistence, right-click submenu)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1aed480c-83a1-4a70-b6a3-182d751fcdd6:
+    id: 1aed480c-83a1-4a70-b6a3-182d751fcdd6
+    content: Entry criteria
+    children:
+      - 00e38849-c1be-4058-9ccc-1b50974693ca
+      - 255409be-acaf-48e9-a176-3b46e95d259c
+      - 98a19953-dfa2-4d00-a6e7-20892e7e51c8
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  00e38849-c1be-4058-9ccc-1b50974693ca:
+    id: 00e38849-c1be-4058-9ccc-1b50974693ca
+    content: Step type descriptions are rendered in StepConfigDialog
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  255409be-acaf-48e9-a176-3b46e95d259c:
+    id: 255409be-acaf-48e9-a176-3b46e95d259c
+    content: Decomposition description is rendered in StepConfigDialog
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  98a19953-dfa2-4d00-a6e7-20892e7e51c8:
+    id: 98a19953-dfa2-4d00-a6e7-20892e7e51c8
+    content: Toast calls are removed from setStepType
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  df30ded6-0c93-493f-82c8-6b99e19f7b20:
+    id: df30ded6-0c93-493f-82c8-6b99e19f7b20
+    content: Exit criteria
+    children:
+      - cc4b17f3-657c-4657-8739-e8fafcb86a96
+      - cf227ad2-3d3d-4425-be6a-c295247e128f
+      - bf424f9c-a429-4268-93a9-f935914021b1
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  cc4b17f3-657c-4657-8739-e8fafcb86a96:
+    id: cc4b17f3-657c-4657-8739-e8fafcb86a96
+    content: All unit tests pass
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cf227ad2-3d3d-4425-be6a-c295247e128f:
+    id: cf227ad2-3d3d-4425-be6a-c295247e128f
+    content: All manual test scenarios verified
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  bf424f9c-a429-4268-93a9-f935914021b1:
+    id: bf424f9c-a429-4268-93a9-f935914021b1
+    content: No toasts appear on step type change via any path
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  445bc07a-b822-425d-9538-35e308f6cc1c:
+    id: 445bc07a-b822-425d-9538-35e308f6cc1c
+    content: Environments and prerequisites
+    children:
+      - bac2b415-bcf4-4266-885e-53364123c47d
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bac2b415-bcf4-4266-885e-53364123c47d:
+    id: bac2b415-bcf4-4266-885e-53364123c47d
+    content: A tree with a declared workflow containing steps of each type (manual, checkpoint, autonomous)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cb0f799e-60aa-47c3-a424-867ccf218c8e:
+    id: cb0f799e-60aa-47c3-a424-867ccf218c8e
+    content: Unit tests
+    children:
+      - ebc3b8ce-c3ff-4d6d-a8f4-823111496548
+      - 57fffabe-567e-4eb7-bdda-120399ffb5c6
+      - ba77c943-a202-4e11-9e8e-40cdc83b83cd
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ebc3b8ce-c3ff-4d6d-a8f4-823111496548:
+    id: ebc3b8ce-c3ff-4d6d-a8f4-823111496548
+    content: StepConfigDialog descriptions
+    children:
+      - edb12edb-6a63-4f78-a759-7e6e9168e945
+      - a73843de-8d5c-4867-96b4-1d53bed39761
+      - 8bb7e080-32c7-4286-b278-3678b73b85a3
+      - 96c895a3-7b3c-437f-93b7-6866eb23ae49
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  edb12edb-6a63-4f78-a759-7e6e9168e945:
+    id: edb12edb-6a63-4f78-a759-7e6e9168e945
+    content: Shows "Nothing is sent to the terminal. You act manually." when manual is selected
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a73843de-8d5c-4867-96b4-1d53bed39761:
+    id: a73843de-8d5c-4867-96b4-1d53bed39761
+    content: Shows "Content is sent automatically. Pauses for your review before advancing." when checkpoint is selected
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8bb7e080-32c7-4286-b278-3678b73b85a3:
+    id: 8bb7e080-32c7-4286-b278-3678b73b85a3
+    content: Shows "Content is sent and advances automatically. Ensure contexts are configured correctly." when autonomous is selected
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  96c895a3-7b3c-437f-93b7-6866eb23ae49:
+    id: 96c895a3-7b3c-437f-93b7-6866eb23ae49
+    content: Description updates when step type selection changes
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  57fffabe-567e-4eb7-bdda-120399ffb5c6:
+    id: 57fffabe-567e-4eb7-bdda-120399ffb5c6
+    content: Decomposition description
+    children:
+      - b1cc301c-a024-4f87-9e22-2ca8ee40f9d1
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b1cc301c-a024-4f87-9e22-2ca8ee40f9d1:
+    id: b1cc301c-a024-4f87-9e22-2ca8ee40f9d1
+    content: Shows "AI response creates multiple sibling nodes instead of replacing the original." below the decomposition checkbox
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ba77c943-a202-4e11-9e8e-40cdc83b83cd:
+    id: ba77c943-a202-4e11-9e8e-40cdc83b83cd
+    content: Toast removal
+    children:
+      - caa8dcf7-abb1-4886-8a24-0344d3e45576
+      - ca29abcf-9b3d-4444-8cfe-82e9caeb82d9
+      - 55940c17-77a0-4393-9b27-d799f8c8d018
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  caa8dcf7-abb1-4886-8a24-0344d3e45576:
+    id: caa8dcf7-abb1-4886-8a24-0344d3e45576
+    content: setStepType to autonomous does not call addToast
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ca29abcf-9b3d-4444-8cfe-82e9caeb82d9:
+    id: ca29abcf-9b3d-4444-8cfe-82e9caeb82d9
+    content: setStepType to checkpoint does not call addToast
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  55940c17-77a0-4393-9b27-d799f8c8d018:
+    id: 55940c17-77a0-4393-9b27-d799f8c8d018
+    content: setStepType to manual does not call addToast (was already the case — verify no regression)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  abcff215-e1c4-497f-a03a-85c1a4f53546:
+    id: abcff215-e1c4-497f-a03a-85c1a4f53546
+    content: Manual tests
+    children:
+      - db4512f1-36e9-41b3-9635-6a214d1e7b01
+      - 2a63e30a-983d-4df2-8598-cc0127762a98
+      - 3bec7626-a074-4e80-a7f1-a5a75730f7be
+      - cd03abc2-2c09-4b2a-9cdb-158142c2e89b
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  db4512f1-36e9-41b3-9635-6a214d1e7b01:
+    id: db4512f1-36e9-41b3-9635-6a214d1e7b01
+    content: Open step config dialog, select each step type — correct description appears below the radio group
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2a63e30a-983d-4df2-8598-cc0127762a98:
+    id: 2a63e30a-983d-4df2-8598-cc0127762a98
+    content: Change step type via right-click → Blueprint → Step Type — no toast appears
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3bec7626-a074-4e80-a7f1-a5a75730f7be:
+    id: 3bec7626-a074-4e80-a7f1-a5a75730f7be
+    content: Change step type via dialog — no toast appears
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  cd03abc2-2c09-4b2a-9cdb-158142c2e89b:
+    id: cd03abc2-2c09-4b2a-9cdb-158142c2e89b
+    content: Undo a step type change — step type reverts, description updates to match
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  136b5729-7adc-4016-8aff-e1f92613b4b3:
+    id: 136b5729-7adc-4016-8aff-e1f92613b4b3
+    content: Risks
+    children:
+      - 0a562b9e-5f1b-4013-b32e-6fa93b9fb704
+      - ad335657-bee2-4c6a-935e-23dbf8e0d55f
+      - a10f8253-b245-4910-9747-4673e94b9211
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0a562b9e-5f1b-4013-b32e-6fa93b9fb704:
+    id: 0a562b9e-5f1b-4013-b32e-6fa93b9fb704
+    content: 'Highest likelihood of defects: forgetting to remove or update existing tests that assert toast behavior on step type change — would cause false test failures'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ad335657-bee2-4c6a-935e-23dbf8e0d55f:
+    id: ad335657-bee2-4c6a-935e-23dbf8e0d55f
+    content: 'Highest impact if failed: if the useToastStore import is removed but another function in workflowActions.ts still uses it, the build breaks'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a10f8253-b245-4910-9747-4673e94b9211:
+    id: a10f8253-b245-4910-9747-4673e94b9211
+    content: 'Ambiguity: none — the acceptance criteria are specific about descriptions and toast removal'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ad709d7f-9b38-494e-a125-7e1d15cbd020:
+    id: ad709d7f-9b38-494e-a125-7e1d15cbd020
+    content: Keep the discussion non-technical
+    children:
+      - 4016df82-5911-4f67-b4e0-527058df1b08
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4016df82-5911-4f67-b4e0-527058df1b08:
+    id: 4016df82-5911-4f67-b4e0-527058df1b08
+    content: All recommendations framed in terms of user outcomes, not implementation details.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
       deleted: false
       plugins: {}

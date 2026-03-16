@@ -54,6 +54,40 @@ describe('StepConfigDialog', () => {
     });
   });
 
+  describe('step type descriptions', () => {
+    it('should show manual description when manual is selected', () => {
+      render(<StepConfigDialog {...defaultProps} currentStepType="manual" />);
+
+      expect(screen.getByText('Nothing is sent to the terminal. You act manually.')).toBeInTheDocument();
+    });
+
+    it('should show checkpoint description when checkpoint is selected', () => {
+      render(<StepConfigDialog {...defaultProps} currentStepType="checkpoint" />);
+
+      expect(screen.getByText('Content is sent automatically. Pauses for your review before advancing.')).toBeInTheDocument();
+    });
+
+    it('should show autonomous description when autonomous is selected', () => {
+      render(<StepConfigDialog {...defaultProps} currentStepType="autonomous" />);
+
+      expect(screen.getByText('Content is sent and advances automatically. Ensure contexts are configured correctly.')).toBeInTheDocument();
+    });
+
+    it('should show manual description when stepType is undefined', () => {
+      render(<StepConfigDialog {...defaultProps} currentStepType={undefined as unknown as StepType} />);
+
+      expect(screen.getByText('Nothing is sent to the terminal. You act manually.')).toBeInTheDocument();
+    });
+  });
+
+  describe('decomposition description', () => {
+    it('should show decomposition helper text', () => {
+      render(<StepConfigDialog {...defaultProps} />);
+
+      expect(screen.getByText('AI response creates multiple sibling nodes instead of replacing the original.')).toBeInTheDocument();
+    });
+  });
+
   describe('step type selection', () => {
     it('should call onStepTypeChange with the selected step type', () => {
       render(<StepConfigDialog {...defaultProps} />);

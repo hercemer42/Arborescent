@@ -202,18 +202,6 @@ export const createWorkflowActions = (
       command.execute();
     }
 
-    if (stepType === 'autonomous') {
-      useToastStore.getState().addToast(
-        'This step will execute automatically and advance to the next step. Ensure contexts are correctly configured.',
-        'warning'
-      );
-    } else if (stepType === 'checkpoint') {
-      useToastStore.getState().addToast(
-        'This step will execute automatically but pause before advancing. Review the output before continuing.',
-        'warning'
-      );
-    }
-
     logger.info(`Step type set to ${stepType} for node ${nodeId}`, 'Workflow');
   }
 
