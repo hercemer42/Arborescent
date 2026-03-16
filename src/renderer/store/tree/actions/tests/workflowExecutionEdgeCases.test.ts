@@ -25,6 +25,13 @@ vi.mock('../../../services/terminalExecution', () => ({
   executeInTerminal: vi.fn().mockResolvedValue(undefined),
 }));
 
+vi.mock('../../../utils/nodeHelpers', () => ({
+  buildContentWithContext: () => ({ contextPrefix: 'mock context', nodeContent: 'mock content' }),
+  getAppliedContextIdWithInheritance: () => undefined,
+  resolveContextMode: () => 'execute',
+  getContextDeclarations: () => [],
+}));
+
 const { mockHasReceivedHookEvent } = vi.hoisted(() => ({
   mockHasReceivedHookEvent: { value: true },
 }));

@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-03-16T10:51:20.719Z'
+updated: '2026-03-16T11:05:11.759Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -34454,14 +34454,13 @@ nodes:
     id: 13c5048b-15eb-4989-a6fc-25032e5c131f
     content: Problems
     children:
-      - dad573ea-357c-4c2a-82fe-f4ab79a7d242
-      - 4398180d-fba8-4294-a988-2be477ef3236
       - 7de1d56c-5320-48f8-b77b-bc434940dfce
       - fc947fbf-ce25-4014-a7c4-ce1adb0e93a7
       - 4f2d0f06-8458-4129-a4c9-9d4c045ab357
       - 380bac8e-2bb6-4e8f-b880-33cc131e9054
       - 0484c483-6231-4efd-a1c2-e56210fb725b
       - e63b657f-d2da-489a-94d5-0825caf69083
+      - dad573ea-357c-4c2a-82fe-f4ab79a7d242
       - 28b63463-b046-4ed0-ab09-942c8b933875
       - 33c9ccfe-2b9e-441f-a857-bf766dc09892
       - 4446dd01-7caf-4953-8dd2-36153adb9cfa
@@ -34686,6 +34685,7 @@ nodes:
     children:
       - 44373205-7c18-43b5-ab7d-9603863a5a66
       - 30872653-bd1b-4d1b-998e-58edb3242e83
+      - b08a9e71-fc04-47c7-9e1a-3e65621a9009
     metadata:
       status: completed
       expanded: false
@@ -46034,7 +46034,9 @@ nodes:
   4398180d-fba8-4294-a988-2be477ef3236:
     id: 4398180d-fba8-4294-a988-2be477ef3236
     content: Automated collaboration mode isn't sending to the feedback window or giving the instructions on editing the temporary file
-    children: []
+    children:
+      - e1f37e04-1337-4961-abd8-2f0849181f20
+      - c5464de8-5497-4ae4-b877-213a28a64f8d
     metadata:
       status: pending
   7de1d56c-5320-48f8-b77b-bc434940dfce:
@@ -50711,8 +50713,7 @@ nodes:
   3ab86cdd-2d94-4d06-806c-2b239fef0ffd:
     id: 3ab86cdd-2d94-4d06-806c-2b239fef0ffd
     content: Documentation
-    children:
-      - b08a9e71-fc04-47c7-9e1a-3e65621a9009
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -50723,7 +50724,8 @@ nodes:
   bb974125-814d-4964-b269-13572d556270:
     id: bb974125-814d-4964-b269-13572d556270
     content: Code review & refactor
-    children: []
+    children:
+      - 4398180d-fba8-4294-a988-2be477ef3236
     metadata:
       status: pending
       isBlueprint: true
@@ -50748,6 +50750,7 @@ nodes:
       - ec90ba48-91cc-4e8b-9776-a213758ba4d8
     metadata:
       status: pending
+      expanded: false
   6f7a710e-edd0-4f98-a5b1-772d5b2a0a6f:
     id: 6f7a710e-edd0-4f98-a5b1-772d5b2a0a6f
     content: It's redundant, confusing, and might prevent optional results
@@ -50804,6 +50807,18 @@ nodes:
   64857076-f88b-416d-b42c-8fcf62e91f6a:
     id: 64857076-f88b-416d-b42c-8fcf62e91f6a
     content: Consider both blueprints and contexts here
+    children: []
+    metadata:
+      status: pending
+  c5464de8-5497-4ae4-b877-213a28a64f8d:
+    id: c5464de8-5497-4ae4-b877-213a28a64f8d
+    content: Same goes when 'Decomposition' option is set - default execute context sent.
+    children: []
+    metadata:
+      status: pending
+  e1f37e04-1337-4961-abd8-2f0849181f20:
+    id: e1f37e04-1337-4961-abd8-2f0849181f20
+    content: Seems that default execute context is sent
     children: []
     metadata:
       status: pending

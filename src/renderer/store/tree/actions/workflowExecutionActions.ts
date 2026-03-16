@@ -11,7 +11,7 @@ import {
   WorkflowExecutionEntry,
 } from "../../../utils/workflowHelpers";
 import { StepType } from "../commands/SetStepTypeCommand";
-import { buildContentWithContext } from "../../../utils/nodeHelpers";
+import { buildContentWithContext, getAppliedContextIdWithInheritance, resolveContextMode, getContextDeclarations } from "../../../utils/nodeHelpers";
 import { buildExecutePrompt } from "../../../utils/promptBuilder";
 import { executeInTerminal } from "../../../services/terminalExecution";
 import { DEFAULT_EXECUTE_CONTEXT } from "./executeActions";
@@ -52,6 +52,7 @@ export const createWorkflowExecutionActions = (
   set: (partial: Partial<StoreState>) => void,
   triggerAutosave?: () => void,
   visualEffects?: VisualEffectsActions,
+  collaborateInTerminal?: (nodeId: string, terminalId: string) => Promise<void>,
 ): WorkflowExecutionActions => {
   const DEFAULT_STEP_TIMEOUT_MINUTES = 10;
   const stepTimeouts = new Map<string, ReturnType<typeof setTimeout>>();
@@ -324,6 +325,25 @@ export const createWorkflowExecutionActions = (
       const { nodes, ancestorRegistry } = get();
       const node = nodes[nodeId];
       if (!node) return;
+
+      const contextId = getAppliedContextIdWithInheritance(nodeId, nodes, ancestorRegistry);
+      const contextDeclarations = getContextDeclarations(nodes);
+      const mode = resolveContextMode(contextId, nodes, contextDeclarations);
+
+      if (mode === 'collaborate' && collaborateInTerminal) {
+        collaborateInTerminal(nodeId, terminalId).catch((error) => {
+          logger.error(
+            "Failed to start collaboration in terminal",
+            error as Error,
+            "WorkflowExecution",
+          );
+          stopWorkflow(nodeId);
+          useToastStore
+            .getState()
+            .addToast("Failed to send to terminal — workflow stopped", "error");
+        });
+        return;
+      }
 
       const { contextPrefix, nodeContent } = buildContentWithContext(
         nodeId,

@@ -139,7 +139,7 @@ export function createTreeStore(treeType: TreeType = 'workspace') {
         ...executeActions,
         ...createSummaryActions(get, set, persistenceActions.autoSave),
         ...createWorkflowActions(get, set, persistenceActions.autoSave, historyActions.executeCommand, visualEffectsActions),
-        ...createWorkflowExecutionActions(get, set, persistenceActions.autoSave, visualEffectsActions),
+        ...createWorkflowExecutionActions(get, set, persistenceActions.autoSave, visualEffectsActions, collaborateActions.collaborateInTerminal),
       },
     };
   });

@@ -30,6 +30,9 @@ vi.mock('@/services/terminalExecution', () => ({
 
 vi.mock('@/utils/nodeHelpers', () => ({
   buildContentWithContext: () => ({ contextPrefix: 'mock context', nodeContent: 'mock content' }),
+  getAppliedContextIdWithInheritance: () => undefined,
+  resolveContextMode: () => 'execute',
+  getContextDeclarations: () => [],
 }));
 
 vi.mock('@/utils/promptBuilder', () => ({
