@@ -24,6 +24,12 @@ import { usePreferencesStore } from "../../preferences/preferencesStore";
 
 export type { WorkflowExecutionEntry };
 
+const NEEDS_REVIEW_INSTRUCTION = `
+IMPORTANT: If you encounter issues that require user input (ambiguities, spec problems, technical constraints, or anything that could compromise the quality of your output), run this command:
+curl -s -X POST http://127.0.0.1:\${ARBORESCENT_HOOK_PORT}/hook -H 'Authorization: Bearer '\${ARBORESCENT_AUTH_TOKEN} -H 'Content-Type: application/json' -d '{"session_id": "'\${CLAUDE_SESSION_ID}'", "hook_event_name": "NeedsReview", "terminal_id": "'\${ARBORESCENT_TERMINAL_ID}'"}'
+Then continue working and summarize your questions at the end of your output. The workflow will pause for review after you finish.
+Only use this if there are genuine issues — do not use it for minor concerns.`;
+
 export interface WorkflowExecutionActions {
   startWorkflow: (nodeId: string, terminalId: string | null) => void;
   stopWorkflow: (nodeId: string) => void;
@@ -51,6 +57,22 @@ type StoreState = {
   workflowExecutionStates: Record<string, WorkflowExecutionEntry>;
   workflowSessionMap: Record<string, string>;
 };
+
+function appendNeedsReviewInstruction(
+  context: string,
+  nodeId: string,
+  nodes: Record<string, TreeNode>,
+  ancestorRegistry: AncestorRegistry,
+): string {
+  const position = getWorkflowStepPosition(nodeId, nodes, ancestorRegistry);
+  if (!position) return context;
+
+  const stepNode = nodes[position.currentStepId];
+  const stepType = (stepNode?.metadata.stepType as StepType) || "manual";
+  if (stepType !== "autonomous") return context;
+
+  return context + "\n" + NEEDS_REVIEW_INSTRUCTION;
+}
 
 export const createWorkflowExecutionActions = (
   get: () => StoreState,
@@ -364,10 +386,14 @@ export const createWorkflowExecutionActions = (
         true,
       );
 
-      const terminalContent = buildExecutePrompt(
+      const effectiveContext = appendNeedsReviewInstruction(
         contextPrefix || DEFAULT_EXECUTE_CONTEXT,
-        nodeContent,
+        nodeId,
+        nodes,
+        ancestorRegistry,
       );
+
+      const terminalContent = buildExecutePrompt(effectiveContext, nodeContent);
 
       executeInTerminal(terminalId, terminalContent).catch((error) => {
         logger.error(
@@ -447,6 +473,20 @@ export const createWorkflowExecutionActions = (
       "WorkflowExecution",
     );
 
+    if (event.hook_event_name === "NeedsReview") {
+      const { workflowExecutionStates: currentStates } = get();
+      const currentEntry = currentStates[runningNodeId];
+      if (currentEntry?.state === "running") {
+        set({
+          workflowExecutionStates: {
+            ...currentStates,
+            [runningNodeId]: { ...currentEntry, needsReview: true },
+          },
+        });
+      }
+      return;
+    }
+
     if (event.hook_event_name === "Stop") {
       const { nodes, ancestorRegistry } = get();
       const position = getWorkflowStepPosition(
@@ -471,7 +511,33 @@ export const createWorkflowExecutionActions = (
       );
 
       if (stepType === "autonomous") {
-        advanceNode(runningNodeId);
+        const { workflowExecutionStates: execStates } = get();
+        const execEntry = execStates[runningNodeId];
+        if (execEntry?.needsReview) {
+          clearStepTimeout(runningNodeId);
+          set({
+            workflowExecutionStates: {
+              ...execStates,
+              [runningNodeId]: {
+                ...execEntry,
+                state: "awaiting-validation",
+                needsReview: false,
+              },
+            },
+          });
+          useToastStore
+            .getState()
+            .addToast(
+              "AI flagged questions for review — check the terminal output",
+              "warning",
+              {
+                persistent: true,
+                actions: [{ label: "OK", onClick: () => {} }],
+              },
+            );
+        } else {
+          advanceNode(runningNodeId);
+        }
       } else if (stepType === "checkpoint") {
         // Set to awaiting-validation — user must explicitly continue
         const { workflowExecutionStates: currentStates } = get();

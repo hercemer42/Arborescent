@@ -55,7 +55,7 @@ describe('createWorkflowExecutionActions', () => {
     nodes: Record<string, TreeNode>;
     rootNodeId: string;
     ancestorRegistry: Record<string, string[]>;
-    workflowExecutionStates: Record<string, { state: 'running' | 'awaiting-validation'; terminalTabId: string }>;
+    workflowExecutionStates: Record<string, { state: 'running' | 'awaiting-validation'; terminalTabId: string; needsReview?: boolean }>;
     workflowSessionMap: Record<string, string>;
     contextDeclarations: { nodeId: string; content: string; icon: string; color?: string; mode: 'collaborate' | 'execute' }[];
   };
@@ -824,6 +824,115 @@ describe('createWorkflowExecutionActions', () => {
       );
 
       vi.useRealTimers();
+    });
+  });
+
+  describe('NeedsReview hook event', () => {
+    beforeEach(() => {
+      state.workflowExecutionStates['task-a'] = { state: 'running', terminalTabId: 'terminal-1' };
+      state.workflowSessionMap = { 'session-1': 'terminal-1' };
+    });
+
+    it('should set needsReview flag on the execution state when received for a running node', () => {
+      actions.handleHookEvent({ session_id: 'session-1', hook_event_name: 'NeedsReview' });
+
+      expect(state.workflowExecutionStates['task-a'].needsReview).toBe(true);
+    });
+
+    it('should be idempotent — calling twice results in one flag', () => {
+      actions.handleHookEvent({ session_id: 'session-1', hook_event_name: 'NeedsReview' });
+      actions.handleHookEvent({ session_id: 'session-1', hook_event_name: 'NeedsReview' });
+
+      expect(state.workflowExecutionStates['task-a'].needsReview).toBe(true);
+    });
+
+    it('should ignore the event when no running node is found on the terminal', () => {
+      state.workflowExecutionStates = {};
+
+      actions.handleHookEvent({ session_id: 'session-1', hook_event_name: 'NeedsReview' });
+
+      expect(state.workflowExecutionStates).toEqual({});
+    });
+
+    it('should ignore the event when the node is in awaiting-validation state', () => {
+      state.workflowExecutionStates['task-a'] = { state: 'awaiting-validation', terminalTabId: 'terminal-1' };
+
+      actions.handleHookEvent({ session_id: 'session-1', hook_event_name: 'NeedsReview' });
+
+      expect(state.workflowExecutionStates['task-a'].needsReview).toBeUndefined();
+    });
+
+    it('should ignore the event when the session_id has no mapped terminal', () => {
+      actions.handleHookEvent({ session_id: 'unknown-session', hook_event_name: 'NeedsReview' });
+
+      expect(state.workflowExecutionStates['task-a'].needsReview).toBeUndefined();
+    });
+  });
+
+  describe('Stop handler with NeedsReview flag', () => {
+    beforeEach(() => {
+      state.workflowSessionMap = { 'session-1': 'terminal-1' };
+    });
+
+    it('should treat autonomous step as checkpoint when needsReview flag is set', () => {
+      state.workflowExecutionStates['task-a'] = { state: 'running', terminalTabId: 'terminal-1', needsReview: true };
+
+      actions.handleHookEvent({ session_id: 'session-1', hook_event_name: 'Stop' });
+
+      expect(state.workflowExecutionStates['task-a'].state).toBe('awaiting-validation');
+    });
+
+    it('should show persistent toast when autonomous step pauses due to NeedsReview', () => {
+      state.workflowExecutionStates['task-a'] = { state: 'running', terminalTabId: 'terminal-1', needsReview: true };
+
+      actions.handleHookEvent({ session_id: 'session-1', hook_event_name: 'Stop' });
+
+      expect(mockAddToast).toHaveBeenCalledWith(
+        expect.stringContaining('review'),
+        expect.anything(),
+        expect.objectContaining({ persistent: true })
+      );
+    });
+
+    it('should advance normally when needsReview flag is not set on autonomous step', () => {
+      vi.useFakeTimers();
+      state.workflowExecutionStates['task-a'] = { state: 'running', terminalTabId: 'terminal-1' };
+
+      actions.handleHookEvent({ session_id: 'session-1', hook_event_name: 'Stop' });
+
+      // Autonomous step should advance (task-a moves to step-2)
+      vi.advanceTimersByTime(1500);
+      expect(state.workflowExecutionStates['task-a']?.state).not.toBe('awaiting-validation');
+      vi.useRealTimers();
+    });
+
+    it('should not change checkpoint behavior when needsReview flag is set', () => {
+      state.workflowExecutionStates['task-c'] = { state: 'running', terminalTabId: 'terminal-1', needsReview: true };
+
+      actions.handleHookEvent({ session_id: 'session-1', hook_event_name: 'Stop' });
+
+      expect(state.workflowExecutionStates['task-c'].state).toBe('awaiting-validation');
+    });
+  });
+
+  describe('NeedsReview flag clearing', () => {
+    it('should clear needsReview flag when continuing workflow', () => {
+      state.workflowExecutionStates['task-a'] = { state: 'awaiting-validation', terminalTabId: 'terminal-1', needsReview: true };
+
+      actions.continueWorkflow('task-a', 'terminal-1');
+
+      const entry = state.workflowExecutionStates['task-a'];
+      if (entry) {
+        expect(entry.needsReview).toBeFalsy();
+      }
+    });
+
+    it('should implicitly clear needsReview flag when stopping workflow', () => {
+      state.workflowExecutionStates['task-a'] = { state: 'running', terminalTabId: 'terminal-1', needsReview: true };
+
+      actions.stopWorkflow('task-a');
+
+      expect(state.workflowExecutionStates['task-a']).toBeUndefined();
     });
   });
 });

@@ -295,7 +295,7 @@ export function isDecompositionEnabled(
   return nodes[position.currentStepId]?.metadata.decomposition === true;
 }
 
-export type WorkflowExecutionEntry = { state: 'running' | 'awaiting-validation'; terminalTabId: string };
+export type WorkflowExecutionEntry = { state: 'running' | 'awaiting-validation'; terminalTabId: string; needsReview?: boolean };
 
 export function isEligibleForExecution(
   nodeId: string,
