@@ -10,6 +10,7 @@ describe('StepConfigDialog', () => {
     decomposition: false,
     onStepTypeChange: vi.fn(),
     onDecompositionChange: vi.fn(),
+    onArchiveSettingsChange: vi.fn(),
     onClose: vi.fn(),
   };
 
@@ -169,6 +170,55 @@ describe('StepConfigDialog', () => {
       fireEvent.click(screen.getByLabelText(/decomposition/i));
 
       expect(defaultProps.onDecompositionChange).toHaveBeenCalledWith('node-1', true);
+    });
+  });
+
+  describe('archive settings', () => {
+    it('should render archive destination input', () => {
+      render(<StepConfigDialog {...defaultProps} />);
+
+      expect(screen.getByLabelText(/archive destination/i)).toBeInTheDocument();
+    });
+
+    it('should show link name inputs when archive destination is set', () => {
+      render(<StepConfigDialog {...defaultProps} archiveSettings={{ archiveDestinationId: 'dest-1' }} />);
+
+      expect(screen.getByLabelText(/archive-side link name/i)).toBeInTheDocument();
+      expect(screen.getByLabelText(/replacement-side link name/i)).toBeInTheDocument();
+    });
+
+    it('should hide link name inputs when archive destination is empty', () => {
+      render(<StepConfigDialog {...defaultProps} />);
+
+      expect(screen.queryByLabelText(/archive-side link name/i)).not.toBeInTheDocument();
+    });
+
+    it('should render resolve linked content toggle when archive is set', () => {
+      render(<StepConfigDialog {...defaultProps} archiveSettings={{ archiveDestinationId: 'dest-1' }} />);
+
+      const toggle = screen.getByLabelText(/resolve linked content/i) as HTMLInputElement;
+      expect(toggle).toBeInTheDocument();
+      expect(toggle.checked).toBe(false);
+    });
+
+    it('should show warning for autonomous step without archive destination', () => {
+      render(<StepConfigDialog {...defaultProps} currentStepType="autonomous" />);
+
+      expect(screen.getByText(/original content will be lost/i)).toBeInTheDocument();
+    });
+
+    it('should not show warning when archive destination is set', () => {
+      render(<StepConfigDialog {...defaultProps} currentStepType="autonomous" archiveSettings={{ archiveDestinationId: 'dest-1' }} />);
+
+      expect(screen.queryByText(/original content will be lost/i)).not.toBeInTheDocument();
+    });
+
+    it('should call onArchiveSettingsChange when destination is changed', () => {
+      render(<StepConfigDialog {...defaultProps} />);
+
+      fireEvent.change(screen.getByLabelText(/archive destination/i), { target: { value: 'new-dest' } });
+
+      expect(defaultProps.onArchiveSettingsChange).toHaveBeenCalledWith('node-1', expect.objectContaining({ archiveDestinationId: 'new-dest' }));
     });
   });
 

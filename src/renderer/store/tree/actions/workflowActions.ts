@@ -23,6 +23,7 @@ export interface WorkflowActions {
   moveToPreviousStep: (nodeId: string) => void;
   setStepType: (nodeId: string, stepType: StepType) => void;
   setDecomposition: (nodeId: string, decomposition: boolean) => void;
+  setArchiveSettings: (nodeId: string, settings: { archiveDestinationId?: string; archiveSideLinkName?: string; replacementSideLinkName?: string; resolveLinkedContent?: boolean }) => void;
 }
 
 type StoreState = {
@@ -226,6 +227,30 @@ export const createWorkflowActions = (
     triggerAutosave?.();
   }
 
+  function setArchiveSettings(nodeId: string, settings: { archiveDestinationId?: string; archiveSideLinkName?: string; replacementSideLinkName?: string; resolveLinkedContent?: boolean }): void {
+    const { nodes } = get();
+    const node = nodes[nodeId];
+    if (!node) return;
+
+    set({
+      nodes: {
+        ...nodes,
+        [nodeId]: {
+          ...node,
+          metadata: {
+            ...node.metadata,
+            archiveDestinationId: settings.archiveDestinationId,
+            archiveSideLinkName: settings.archiveSideLinkName,
+            replacementSideLinkName: settings.replacementSideLinkName,
+            resolveLinkedContent: settings.resolveLinkedContent,
+          },
+        },
+      },
+    });
+
+    triggerAutosave?.();
+  }
+
   return {
     declareAsWorkflow,
     removeFromWorkflow,
@@ -233,5 +258,6 @@ export const createWorkflowActions = (
     moveToPreviousStep,
     setStepType,
     setDecomposition,
+    setArchiveSettings,
   };
 };

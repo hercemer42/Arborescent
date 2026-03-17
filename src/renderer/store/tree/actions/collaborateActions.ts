@@ -7,7 +7,7 @@ import { logger } from '../../../services/logger';
 import { useToastStore } from '../../toast/toastStore';
 import { usePanelStore } from '../../panel/panelStore';
 import { VisualEffectsActions } from './visualEffectsActions';
-import { AcceptFeedbackCommand } from '../commands/AcceptFeedbackCommand';
+import { AcceptFeedbackCommand, ArchiveConfig } from '../commands/AcceptFeedbackCommand';
 import { DEFAULT_BLUEPRINT_ICON } from './blueprintActions';
 import {
   parseFeedbackContent,
@@ -19,7 +19,7 @@ import {
 } from '../../../services/feedback/feedbackService';
 import { feedbackTreeStore } from '../../feedback/feedbackTreeStore';
 import { AncestorRegistry } from '../../../utils/ancestry';
-import { isDecompositionEnabled } from '../../../utils/workflowHelpers';
+import { isDecompositionEnabled, getWorkflowStepPosition } from '../../../utils/workflowHelpers';
 
 export type ContentSource = 'clipboard' | 'file' | 'restore';
 
@@ -108,6 +108,27 @@ export interface CollaborateActions {
   processIncomingFeedbackContent: (content: string, source: ContentSource, skipSave?: boolean) => Promise<ProcessFeedbackContentResult>;
   finishCancel: () => Promise<void>;
   finishAccept: () => Promise<void>;
+}
+
+function getArchiveConfigForNode(
+  nodeId: string,
+  nodes: Record<string, TreeNode>,
+  ancestorRegistry: Record<string, string[]>
+): ArchiveConfig | undefined {
+  const position = getWorkflowStepPosition(nodeId, nodes, ancestorRegistry);
+  if (!position) return undefined;
+
+  const stepNode = nodes[position.currentStepId];
+  if (!stepNode) return undefined;
+
+  const destId = stepNode.metadata.archiveDestinationId as string | undefined;
+  if (!destId) return undefined;
+
+  return {
+    archiveDestinationId: destId,
+    archiveSideLinkName: (stepNode.metadata.archiveSideLinkName as string) || 'Output',
+    replacementSideLinkName: (stepNode.metadata.replacementSideLinkName as string) || 'Source',
+  };
 }
 
 function getEffectiveBlueprintIcon(
@@ -461,13 +482,26 @@ export function createCollaborateActions(
           return;
         }
 
-        const { decomposition } = get();
+        const { decomposition, nodes: currentNodes, ancestorRegistry: currentRegistry } = get();
         const rootNodeIdOrIds = decomposition && feedbackContent.rootNodeIds.length > 1
           ? feedbackContent.rootNodeIds
           : feedbackContent.rootNodeId;
 
+        const archiveConfig = getArchiveConfigForNode(collaboratingNodeId, currentNodes, currentRegistry);
+
+        if (archiveConfig && !currentNodes[archiveConfig.archiveDestinationId]) {
+          useToastStore.getState().addToast(
+            'Archive destination no longer exists — workflow paused. Reconfigure the archive destination and try again.',
+            'warning',
+            { persistent: true, actions: [{ label: 'OK', onClick: () => {} }] }
+          );
+          set({ collaboratingNodeId: null });
+          await cleanupFeedback(currentFilePath, currentNodes[collaboratingNodeId]?.metadata.feedbackTempFile as string | undefined);
+          return;
+        }
+
         stateWithActions.actions.executeCommand(
-          new AcceptFeedbackCommand(collaboratingNodeId, rootNodeIdOrIds, feedbackContent.nodes, get, set, autoSave)
+          new AcceptFeedbackCommand(collaboratingNodeId, rootNodeIdOrIds, feedbackContent.nodes, get, set, autoSave, archiveConfig)
         );
 
         const tempFilePath = nodes[collaboratingNodeId]?.metadata.feedbackTempFile as string | undefined;

@@ -5,6 +5,12 @@ import { getAllDescendants, captureNodePosition } from '../../../utils/nodeHelpe
 import { DEFAULT_BLUEPRINT_ICON } from '../actions/blueprintActions';
 import { v4 as uuidv4 } from 'uuid';
 
+export interface ArchiveConfig {
+  archiveDestinationId: string;
+  archiveSideLinkName: string;
+  replacementSideLinkName: string;
+}
+
 interface CollaborationSnapshot {
   collaboratingNodeId: string;
   collaboratingNode: TreeNode;
@@ -13,11 +19,13 @@ interface CollaborationSnapshot {
   descendants: Map<string, TreeNode>;
   wasRootNode: boolean;
   parentChildren: string[];
+  archiveDestinationChildren?: string[];
 }
 
 export class AcceptFeedbackCommand extends BaseCommand {
   private snapshot: CollaborationSnapshot | null = null;
   private createdNodeIds: string[] = [];
+  private relationLinkNodeIds: string[] = [];
   private cachedIdMap: Record<string, string> | null = null;
   private isMultiRoot: boolean;
   private newRootNodeIds: string[];
@@ -40,7 +48,8 @@ export class AcceptFeedbackCommand extends BaseCommand {
       feedbackFadingNodeIds?: Set<string>;
       activeNodeId?: string | null;
     }) => void,
-    private triggerAutosave?: () => void
+    private triggerAutosave?: () => void,
+    private archiveConfig?: ArchiveConfig
   ) {
     super();
     this.newRootNodeIds = Array.isArray(newRootNodeIdOrIds) ? newRootNodeIdOrIds : [newRootNodeIdOrIds];
@@ -61,6 +70,8 @@ export class AcceptFeedbackCommand extends BaseCommand {
 
     const parent = state.nodes[parentId];
 
+    const archiveDest = this.archiveConfig ? state.nodes[this.archiveConfig.archiveDestinationId] : null;
+
     return {
       collaboratingNodeId: this.collaboratingNodeId,
       collaboratingNode: { ...collaboratingNode },
@@ -69,6 +80,7 @@ export class AcceptFeedbackCommand extends BaseCommand {
       descendants,
       wasRootNode: state.rootNodeId === this.collaboratingNodeId,
       parentChildren: parent ? [...parent.children] : [],
+      archiveDestinationChildren: archiveDest ? [...archiveDest.children] : undefined,
     };
   }
 
@@ -296,6 +308,147 @@ export class AcceptFeedbackCommand extends BaseCommand {
     });
   }
 
+  private moveNodeToArchive(
+    updatedNodes: Record<string, TreeNode>,
+    updatedRegistry: AncestorRegistry,
+    archiveDestinationId: string
+  ): AncestorRegistry {
+    updatedNodes[this.collaboratingNodeId] = { ...this.snapshot!.collaboratingNode };
+    this.snapshot!.descendants.forEach((node, nodeId) => {
+      updatedNodes[nodeId] = { ...node };
+    });
+
+    updatedNodes[archiveDestinationId] = {
+      ...updatedNodes[archiveDestinationId],
+      children: [this.collaboratingNodeId, ...updatedNodes[archiveDestinationId].children],
+    };
+
+    return addNodesToRegistry(
+      updatedRegistry,
+      [this.collaboratingNodeId, ...Array.from(this.snapshot!.descendants.keys())],
+      archiveDestinationId,
+      updatedNodes
+    );
+  }
+
+  private createArchiveSideLinks(
+    updatedNodes: Record<string, TreeNode>,
+    topLevelReplacementIds: string[],
+    linkName: string
+  ): void {
+    const containerId = uuidv4();
+    const containerNode: TreeNode = {
+      id: containerId,
+      content: linkName,
+      children: [],
+      metadata: { expanded: false },
+    };
+
+    for (const replacementId of topLevelReplacementIds) {
+      const hyperlinkId = uuidv4();
+      const replacementNode = updatedNodes[replacementId];
+      updatedNodes[hyperlinkId] = {
+        id: hyperlinkId,
+        content: replacementNode?.content || '',
+        children: [],
+        metadata: { isHyperlink: true, linkedNodeId: replacementId },
+      };
+      containerNode.children.push(hyperlinkId);
+      this.relationLinkNodeIds.push(hyperlinkId);
+    }
+
+    updatedNodes[containerId] = containerNode;
+    this.relationLinkNodeIds.push(containerId);
+
+    const archivedNode = updatedNodes[this.collaboratingNodeId];
+    updatedNodes[this.collaboratingNodeId] = {
+      ...archivedNode,
+      children: [containerId, ...archivedNode.children],
+    };
+  }
+
+  private createReplacementSideLinks(
+    updatedNodes: Record<string, TreeNode>,
+    topLevelReplacementIds: string[],
+    linkName: string
+  ): void {
+    const archivedContent = updatedNodes[this.collaboratingNodeId]?.content || '';
+
+    for (const replacementId of topLevelReplacementIds) {
+      const containerId = uuidv4();
+      const hyperlinkId = uuidv4();
+
+      updatedNodes[containerId] = {
+        id: containerId,
+        content: linkName,
+        children: [hyperlinkId],
+        metadata: { expanded: false },
+      };
+
+      updatedNodes[hyperlinkId] = {
+        id: hyperlinkId,
+        content: archivedContent,
+        children: [],
+        metadata: { isHyperlink: true, linkedNodeId: this.collaboratingNodeId },
+      };
+
+      this.relationLinkNodeIds.push(containerId, hyperlinkId);
+
+      const replacement = updatedNodes[replacementId];
+      if (replacement) {
+        updatedNodes[replacementId] = {
+          ...replacement,
+          children: [containerId, ...replacement.children],
+        };
+      }
+    }
+  }
+
+  private updateRegistryForRelationLinks(
+    updatedNodes: Record<string, TreeNode>,
+    updatedRegistry: AncestorRegistry
+  ): AncestorRegistry {
+    let registry = updatedRegistry;
+    for (const nodeId of this.relationLinkNodeIds) {
+      if (!updatedNodes[nodeId]) continue;
+      const parentId = Object.keys(updatedNodes).find(id =>
+        updatedNodes[id].children.includes(nodeId)
+      );
+      if (parentId) {
+        registry = addNodesToRegistry(registry, [nodeId], parentId, updatedNodes);
+      }
+    }
+    return registry;
+  }
+
+  private executeArchive(): void {
+    if (!this.archiveConfig || !this.snapshot) return;
+
+    const state = this.getState();
+    const { archiveDestinationId, archiveSideLinkName, replacementSideLinkName } = this.archiveConfig;
+
+    if (!state.nodes[archiveDestinationId]) return;
+
+    const updatedNodes = { ...state.nodes };
+    let updatedRegistry = { ...state.ancestorRegistry };
+
+    updatedRegistry = this.moveNodeToArchive(updatedNodes, updatedRegistry, archiveDestinationId);
+
+    const topLevelReplacementIds = this.createdNodeIds.filter(id => {
+      const parentNode = updatedNodes[this.snapshot!.parentId];
+      return parentNode?.children.includes(id);
+    });
+
+    this.createArchiveSideLinks(updatedNodes, topLevelReplacementIds, archiveSideLinkName);
+    this.createReplacementSideLinks(updatedNodes, topLevelReplacementIds, replacementSideLinkName);
+    updatedRegistry = this.updateRegistryForRelationLinks(updatedNodes, updatedRegistry);
+
+    this.setState({
+      nodes: updatedNodes,
+      ancestorRegistry: updatedRegistry,
+    });
+  }
+
   execute(): void {
     const state = this.getState();
     const collaboratingNode = state.nodes[this.collaboratingNodeId];
@@ -304,11 +457,16 @@ export class AcceptFeedbackCommand extends BaseCommand {
     if (!this.snapshot) {
       this.snapshot = this.captureSnapshot(collaboratingNode, state);
     }
+    this.relationLinkNodeIds = [];
 
-    if (this.isMultiRoot) {
+    if (this.isMultiRoot || this.archiveConfig) {
       this.executeMultiRoot(state, collaboratingNode);
     } else {
       this.executeSingleRoot(state, collaboratingNode);
+    }
+
+    if (this.archiveConfig) {
+      this.executeArchive();
     }
 
     this.triggerAutosave?.();
@@ -324,18 +482,31 @@ export class AcceptFeedbackCommand extends BaseCommand {
     for (const id of this.createdNodeIds) {
       delete restoredNodesMap[id];
     }
+    for (const id of this.relationLinkNodeIds) {
+      delete restoredNodesMap[id];
+    }
 
     restoredNodesMap[this.snapshot.collaboratingNodeId] = { ...this.snapshot.collaboratingNode };
     this.snapshot.descendants.forEach((node, nodeId) => {
       restoredNodesMap[nodeId] = { ...node };
     });
 
-    if (this.isMultiRoot && !this.snapshot.wasRootNode) {
+    if ((this.isMultiRoot || this.archiveConfig) && !this.snapshot.wasRootNode) {
       const parentNode = restoredNodesMap[this.snapshot.parentId];
       if (parentNode) {
         restoredNodesMap[this.snapshot.parentId] = {
           ...parentNode,
           children: [...this.snapshot.parentChildren],
+        };
+      }
+    }
+
+    if (this.archiveConfig && this.snapshot.archiveDestinationChildren) {
+      const archiveDest = restoredNodesMap[this.archiveConfig.archiveDestinationId];
+      if (archiveDest) {
+        restoredNodesMap[this.archiveConfig.archiveDestinationId] = {
+          ...archiveDest,
+          children: [...this.snapshot.archiveDestinationChildren],
         };
       }
     }
@@ -346,6 +517,9 @@ export class AcceptFeedbackCommand extends BaseCommand {
     } else {
       const registry = { ...state.ancestorRegistry };
       for (const id of this.createdNodeIds) {
+        delete registry[id];
+      }
+      for (const id of this.relationLinkNodeIds) {
         delete registry[id];
       }
       const originalDescendantIds = Array.from(this.snapshot.descendants.keys());

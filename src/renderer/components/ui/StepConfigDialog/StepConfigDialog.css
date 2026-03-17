@@ -3,7 +3,7 @@
 }
 
 .step-config-section-label {
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 600;
   color: var(--gray-500);
   text-transform: uppercase;
@@ -17,7 +17,7 @@
   gap: 8px;
   padding: 6px 4px;
   cursor: pointer;
-  font-size: 13px;
+  font-size: 14px;
   color: var(--text-primary);
   border-radius: 4px;
 }
@@ -43,7 +43,7 @@
   gap: 8px;
   padding: 6px 4px;
   cursor: pointer;
-  font-size: 13px;
+  font-size: 14px;
   color: var(--text-primary);
   border-radius: 4px;
 }
@@ -58,8 +58,44 @@
 }
 
 .step-config-description {
-  font-size: 11px;
+  font-size: 13px;
   color: var(--gray-400);
   padding: 4px 4px 0;
+  line-height: 1.4;
+}
+
+.step-config-input-label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 6px 4px;
+  font-size: 13px;
+  color: var(--gray-500);
+}
+
+.step-config-text-input {
+  width: 100%;
+  padding: 6px 8px;
+  border: 1px solid var(--gray-200);
+  border-radius: 4px;
+  font-size: 14px;
+  color: var(--text-primary);
+  background: var(--bg-primary);
+  box-sizing: border-box;
+}
+
+.step-config-text-input:focus {
+  outline: none;
+  border-color: var(--sky-500);
+}
+
+.step-config-text-input::placeholder {
+  color: var(--gray-400);
+}
+
+.step-config-warning {
+  font-size: 13px;
+  color: var(--orange-500);
+  padding: 6px 4px;
   line-height: 1.4;
 }

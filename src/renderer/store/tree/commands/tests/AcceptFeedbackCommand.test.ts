@@ -442,4 +442,170 @@ describe('AcceptFeedbackCommand', () => {
       }
     });
   });
+
+  describe('archive path', () => {
+    const archiveConfig = {
+      archiveDestinationId: 'archive-dest',
+      archiveSideLinkName: 'User stories',
+      replacementSideLinkName: 'Problem statement',
+    };
+
+    beforeEach(() => {
+      mockState.nodes['archive-dest'] = createNode('archive-dest', 'Archive', ['existing-archived']);
+      mockState.nodes['existing-archived'] = createNode('existing-archived', 'Old item', []);
+      mockState.ancestorRegistry['archive-dest'] = ['root'];
+      mockState.ancestorRegistry['existing-archived'] = ['root', 'archive-dest'];
+      mockState.nodes['root'].children = ['parent', 'archive-dest'];
+    });
+
+    it('should move the original node to the top of the archive destination', () => {
+      const newNodes = {
+        'new-root': createNode('new-root', 'Replaced', []),
+      };
+
+      const command = new AcceptFeedbackCommand(
+        'collab-node', 'new-root', newNodes,
+        getState, setState, triggerAutosave, archiveConfig
+      );
+      command.execute();
+
+      expect(mockState.nodes['archive-dest'].children[0]).toBe('collab-node');
+    });
+
+    it('should retain the original node UUID after archive move', () => {
+      const newNodes = {
+        'new-root': createNode('new-root', 'Replaced', []),
+      };
+
+      const command = new AcceptFeedbackCommand(
+        'collab-node', 'new-root', newNodes,
+        getState, setState, triggerAutosave, archiveConfig
+      );
+      command.execute();
+
+      expect(mockState.nodes['collab-node']).toBeDefined();
+      expect(mockState.nodes['collab-node'].content).toBe('Original content');
+    });
+
+    it('should create relation container on archived original with hyperlink to replacement', () => {
+      const newNodes = {
+        'new-root': createNode('new-root', 'Replaced', []),
+      };
+
+      const command = new AcceptFeedbackCommand(
+        'collab-node', 'new-root', newNodes,
+        getState, setState, triggerAutosave, archiveConfig
+      );
+      command.execute();
+
+      const archivedNode = mockState.nodes['collab-node'];
+      const containerId = archivedNode.children[0];
+      const container = mockState.nodes[containerId];
+      expect(container).toBeDefined();
+      expect(container.content).toBe('User stories');
+      expect(container.children.length).toBeGreaterThan(0);
+
+      const hyperlinkId = container.children[0];
+      const hyperlink = mockState.nodes[hyperlinkId];
+      expect(hyperlink.metadata.isHyperlink).toBe(true);
+      expect(hyperlink.metadata.linkedNodeId).toBeDefined();
+    });
+
+    it('should create relation container on each replacement with hyperlink to archived original', () => {
+      const newNodes = {
+        'new-root': createNode('new-root', 'Replaced', []),
+      };
+
+      const command = new AcceptFeedbackCommand(
+        'collab-node', 'new-root', newNodes,
+        getState, setState, triggerAutosave, archiveConfig
+      );
+      command.execute();
+
+      const parentChildren = mockState.nodes['parent'].children;
+      const replacementId = parentChildren.find((id: string) => id !== 'sibling');
+      const replacement = mockState.nodes[replacementId!];
+      const containerId = replacement.children[0];
+      const container = mockState.nodes[containerId];
+      expect(container).toBeDefined();
+      expect(container.content).toBe('Problem statement');
+
+      const hyperlinkId = container.children[0];
+      const hyperlink = mockState.nodes[hyperlinkId];
+      expect(hyperlink.metadata.isHyperlink).toBe(true);
+      expect(hyperlink.metadata.linkedNodeId).toBe('collab-node');
+    });
+
+    it('should work with multi-root decomposition', () => {
+      const newNodes = {
+        'story1': createNode('story1', 'Story 1', []),
+        'story2': createNode('story2', 'Story 2', []),
+      };
+
+      const command = new AcceptFeedbackCommand(
+        'collab-node', ['story1', 'story2'], newNodes,
+        getState, setState, triggerAutosave, archiveConfig
+      );
+      command.execute();
+
+      const archivedNode = mockState.nodes['collab-node'];
+      const containerId = archivedNode.children[0];
+      const container = mockState.nodes[containerId];
+      expect(container.children.length).toBe(2);
+    });
+
+    it('should undo and restore original position, remove relation links', () => {
+      const newNodes = {
+        'new-root': createNode('new-root', 'Replaced', []),
+      };
+
+      const command = new AcceptFeedbackCommand(
+        'collab-node', 'new-root', newNodes,
+        getState, setState, triggerAutosave, archiveConfig
+      );
+      command.execute();
+      command.undo();
+
+      expect(mockState.nodes['collab-node'].content).toBe('Original content');
+      expect(mockState.nodes['parent'].children).toContain('collab-node');
+      expect(mockState.nodes['archive-dest'].children[0]).toBe('existing-archived');
+    });
+
+    it('should abort when archive destination does not exist', () => {
+      delete mockState.nodes['archive-dest'];
+      delete mockState.ancestorRegistry['archive-dest'];
+
+      const newNodes = {
+        'new-root': createNode('new-root', 'Replaced', []),
+      };
+
+      const command = new AcceptFeedbackCommand(
+        'collab-node', 'new-root', newNodes,
+        getState, setState, triggerAutosave, archiveConfig
+      );
+      command.execute();
+
+      expect(mockState.nodes['collab-node']).toBeUndefined();
+    });
+
+    it('should not create relation links when archive is not configured', () => {
+      const newNodes = {
+        'new-root': createNode('new-root', 'Replaced', []),
+      };
+
+      const command = new AcceptFeedbackCommand(
+        'collab-node', 'new-root', newNodes,
+        getState, setState, triggerAutosave
+      );
+      command.execute();
+
+      const setCall = setState.mock.calls[0][0];
+      const resultNode = setCall.nodes['collab-node'];
+      if (resultNode.children.length > 0) {
+        const firstChild = setCall.nodes[resultNode.children[0]];
+        expect(firstChild?.metadata?.isHyperlink).not.toBe(true);
+      }
+    });
+  });
+
 });

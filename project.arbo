@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-03-17T06:19:40.679Z'
+updated: '2026-03-17T12:34:36.179Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -534,6 +534,7 @@ nodes:
       - d87082fc-4e05-4080-b652-c69897022374
       - 592a7f85-c2bb-4133-877d-26f32ff8d4ff
       - 503e53c0-5353-48d5-a1f2-5dc15e0ff045
+      - 3a5b506d-0dc1-4042-a411-bd7f5a120f38
     metadata:
       status: completed
       expanded: false
@@ -5214,7 +5215,7 @@ nodes:
       - 9a8f1538-7eb7-4e2d-9e0f-46e2c00675f4
     metadata:
       status: pending
-      expanded: true
+      expanded: false
       isBlueprint: true
       blueprintIcon: BrainCog
       blueprintColor: '#14b8a6'
@@ -5578,7 +5579,7 @@ nodes:
       isBlueprint: true
       blueprintIcon: Layers2
       blueprintColor: '#0ea5e9'
-      expanded: true
+      expanded: false
   9a8f1538-7eb7-4e2d-9e0f-46e2c00675f4:
     id: 9a8f1538-7eb7-4e2d-9e0f-46e2c00675f4
     content: Technical
@@ -5593,7 +5594,7 @@ nodes:
       - 6690289a-e02f-48bc-9225-a1083b7b324f
     metadata:
       status: pending
-      expanded: true
+      expanded: false
       isBlueprint: true
       blueprintIcon: Boxes
       blueprintColor: '#a855f7'
@@ -11981,6 +11982,7 @@ nodes:
       - e664db94-5213-4779-bafe-c84eea9ef248
       - f45d9d22-63b8-47a6-8769-c13f6a7be578
       - bdce23d6-718b-4fa3-9c0f-4cbb40d2cadc
+      - 63c29a21-2680-4e39-8106-56ef723c83c9
     metadata:
       status: pending
       isContextDeclaration: true
@@ -26611,7 +26613,7 @@ nodes:
       blueprintIcon: Recycle
       blueprintColor: '#f97316'
       isBlueprint: true
-      expanded: true
+      expanded: false
       contextMode: execute
   9f82ccb2-5099-4ad0-b8f2-3bba6e3554da:
     id: 9f82ccb2-5099-4ad0-b8f2-3bba6e3554da
@@ -26815,7 +26817,8 @@ nodes:
   bdceb696-248d-4199-9182-db0689445c07:
     id: bdceb696-248d-4199-9182-db0689445c07
     content: Documentation
-    children: []
+    children:
+      - 437c64c9-3da3-449a-9702-96755b5521b1
     metadata:
       status: pending
       isBlueprint: true
@@ -26846,7 +26849,6 @@ nodes:
     id: 87a11a28-4295-467f-ac54-746692494413
     content: Decomposition
     children:
-      - 437c64c9-3da3-449a-9702-96755b5521b1
       - 47796554-2b68-4d70-81fc-5afe4fb95e59
     metadata:
       status: completed
@@ -34456,8 +34458,8 @@ nodes:
     id: 13c5048b-15eb-4989-a6fc-25032e5c131f
     content: Problems
     children:
-      - 380bac8e-2bb6-4e8f-b880-33cc131e9054
-      - dad573ea-357c-4c2a-82fe-f4ab79a7d242
+      - ca651178-69bc-4933-aa6f-b19e106fbd34
+      - 413a84b6-97e7-4963-81ca-6667f2136d9a
       - 28b63463-b046-4ed0-ab09-942c8b933875
       - 33c9ccfe-2b9e-441f-a857-bf766dc09892
       - 4446dd01-7caf-4953-8dd2-36153adb9cfa
@@ -35387,8 +35389,7 @@ nodes:
   0c1c74ed-ccdb-4278-a2f2-09b739effcfc:
     id: 0c1c74ed-ccdb-4278-a2f2-09b739effcfc
     content: Manual testing
-    children:
-      - 3a5b506d-0dc1-4042-a411-bd7f5a120f38
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -35396,7 +35397,8 @@ nodes:
   3d68c9ce-3b9b-4f79-ad99-4b6fd68e0e74:
     id: 3d68c9ce-3b9b-4f79-ad99-4b6fd68e0e74
     content: Issue resolution
-    children: []
+    children:
+      - 6a479043-9f75-4062-be4b-87601a635527
     metadata:
       status: pending
       isBlueprint: true
@@ -45371,12 +45373,14 @@ nodes:
     id: 437c64c9-3da3-449a-9702-96755b5521b1
     content: 'US3: AI workflow orchestration - Archive with provenance tracking'
     children:
-      - 2a502f82-e0f6-4774-a17c-d385ffcf2c40
-      - 0af1f172-8830-4ef3-8311-e7574ce79c73
-      - 03580c35-b8c4-4a53-a155-1c7a27209a11
-      - 770910b3-aa44-4227-b3e4-2453dc4e9700
+      - 614f1e7a-0243-4b10-b0f0-69a282a1cf07
+      - f3bdfabc-6e15-408b-94ff-8a9ca5cc40da
+      - 169be8b4-5a13-4bac-becc-6cad62f8fa9f
+      - 87cc38bf-3869-4427-9ab3-db81d91c4060
+      - 2bab4e8c-7666-49f5-aee7-2cf3e2a05353
+      - a91fd425-8be4-4f2b-9865-f87ea27097e1
     metadata:
-      status: pending
+      status: completed
       expanded: false
       deleted: false
       plugins: {}
@@ -45593,432 +45597,6 @@ nodes:
   ae7b3158-ff5c-48d7-af63-3039d82ebaf3:
     id: ae7b3158-ff5c-48d7-af63-3039d82ebaf3
     content: Runaway recursion risk exists if a workflow creates output that feeds back into itself — the existing provenance circularity check (US3) and the natural stop at non-autonomous steps mitigate this, but a maximum recursion depth or node count limit should be considered as a safety net
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  2a502f82-e0f6-4774-a17c-d385ffcf2c40:
-    id: 2a502f82-e0f6-4774-a17c-d385ffcf2c40
-    content: Problem statement
-    children:
-      - 14701c58-5fa4-40ca-bd39-ac56973439a1
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  14701c58-5fa4-40ca-bd39-ac56973439a1:
-    id: 14701c58-5fa4-40ca-bd39-ac56973439a1
-    content: As a user running multi-step AI workflows, I want the option to keep a backup of my original input before it gets replaced by AI-generated output. Currently, accepting feedback always destroys the original content. I need to preserve it and trace which output came from which input. I also need processed inputs moved out of the workflow to keep steps tidy.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  0af1f172-8830-4ef3-8311-e7574ce79c73:
-    id: 0af1f172-8830-4ef3-8311-e7574ce79c73
-    content: Use cases
-    children:
-      - b2b4de9f-9d5d-4949-b125-4dd748b9b3eb
-      - 4615b3c3-a022-48f0-852a-c5458c48c032
-      - e2cfb7c8-3e2e-453d-9ee2-39195068331a
-      - 5a028049-521d-416b-8d40-9117462f0f4f
-      - 3abefebb-2d48-4512-ad6c-8d7b83184429
-      - e0f78542-5b99-4419-ae78-a218d362855a
-      - 1378793c-f076-4364-bf6f-82950809caca
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  b2b4de9f-9d5d-4949-b125-4dd748b9b3eb:
-    id: b2b4de9f-9d5d-4949-b125-4dd748b9b3eb
-    content: 'Primary: User configures a workflow step with "archive input to" set to a destination node, and configures the two relation link names in the step dialog. When the step processes an item, the original node is moved to the top of the destination before feedback creates replacement node(s) in its place. A collapsible child node (titled with the configured archive-side name) is added to the archived original containing hyperlink(s) to each replacement. A collapsible child node (titled with the configured replacement-side name) is added to each replacement containing a hyperlink back to the archived original.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  4615b3c3-a022-48f0-852a-c5458c48c032:
-    id: 4615b3c3-a022-48f0-852a-c5458c48c032
-    content: 'Secondary: User expands the relation child on a replacement node to see its origin, clicks the hyperlink, and navigates to the archived original.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e2cfb7c8-3e2e-453d-9ee2-39195068331a:
-    id: e2cfb7c8-3e2e-453d-9ee2-39195068331a
-    content: 'Secondary: User expands the relation child on an archived input to see all replacements that were created from it.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  5a028049-521d-416b-8d40-9117462f0f4f:
-    id: 5a028049-521d-416b-8d40-9117462f0f4f
-    content: 'Secondary: User leaves "archive input to" unset. No archive is made — feedback replaces the node as today (current behavior preserved).'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  3abefebb-2d48-4512-ad6c-8d7b83184429:
-    id: 3abefebb-2d48-4512-ad6c-8d7b83184429
-    content: 'Secondary: The archive destination node has been deleted. A warning toast appears to tell the user, and the workflow is paused.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e0f78542-5b99-4419-ae78-a218d362855a:
-    id: e0f78542-5b99-4419-ae78-a218d362855a
-    content: 'Secondary: User deletes a relation container node or its hyperlink child. The link chain breaks but the operation is undoable.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  1378793c-f076-4364-bf6f-82950809caca:
-    id: 1378793c-f076-4364-bf6f-82950809caca
-    content: 'Secondary: User enables "resolve linked content when sending" for a step. When a replacement node is sent to AI, the hyperlinked archived original''s content is included in the prompt, giving the AI the original context alongside the current content.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  03580c35-b8c4-4a53-a155-1c7a27209a11:
-    id: 03580c35-b8c4-4a53-a155-1c7a27209a11
-    content: Acceptance criteria
-    children:
-      - 295a7bb2-da08-432b-a493-1adc12d100dd
-      - 4c1cf025-2345-4348-bcea-c5e16ef1051e
-      - 8b44b75c-d003-4389-9f3b-074c6b994d14
-      - 9d6572b1-c38e-4612-9af0-a9e10fd721a3
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  295a7bb2-da08-432b-a493-1adc12d100dd:
-    id: 295a7bb2-da08-432b-a493-1adc12d100dd
-    content: Step configuration dialog settings
-    children:
-      - c9a81c2d-fd7b-4c58-8b51-991c67e81b39
-      - cb6847c4-f4af-438e-8014-eae35c44f08a
-      - be732f70-5390-4b9e-b6b5-7046701489e2
-      - 481e8915-0934-4a3c-b2b0-cdb4999b1229
-      - 54d97000-a24f-46b8-92ad-87eab5e18e64
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  c9a81c2d-fd7b-4c58-8b51-991c67e81b39:
-    id: c9a81c2d-fd7b-4c58-8b51-991c67e81b39
-    content: The step configuration dialog includes an "archive input to" destination picker
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  cb6847c4-f4af-438e-8014-eae35c44f08a:
-    id: cb6847c4-f4af-438e-8014-eae35c44f08a
-    content: The destination picker allows selecting any node in the tree as the archive target
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  be732f70-5390-4b9e-b6b5-7046701489e2:
-    id: be732f70-5390-4b9e-b6b5-7046701489e2
-    content: 'The step configuration dialog includes two configurable relation link names: one for the container node added to the archived original (e.g. "User stories", "Specs", "Output"), and one for the container node added to each replacement (e.g. "Problem statement", "Original", "Source")'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  481e8915-0934-4a3c-b2b0-cdb4999b1229:
-    id: 481e8915-0934-4a3c-b2b0-cdb4999b1229
-    content: The step configuration dialog includes a "resolve linked content when sending" toggle, default off — controls whether the archive hyperlinks resolve their linked content into AI prompts
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  54d97000-a24f-46b8-92ad-87eab5e18e64:
-    id: 54d97000-a24f-46b8-92ad-87eab5e18e64
-    content: 'The step configuration dialog shows a low-impact warning text (not a popup) for risky configurations: autonomous step with no archive destination warns of data loss risk'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  4c1cf025-2345-4348-bcea-c5e16ef1051e:
-    id: 4c1cf025-2345-4348-bcea-c5e16ef1051e
-    content: Archive operation
-    children:
-      - 1b58b38f-1bbf-4d7b-a651-faef9eab211d
-      - 024f4361-38dc-479e-953a-4bc3b71741dd
-      - 9afed8b7-35ec-414f-9340-016a5de7c124
-      - 61b41a43-0da5-4ae0-b3bb-74f4e8da4d9b
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  1b58b38f-1bbf-4d7b-a651-faef9eab211d:
-    id: 1b58b38f-1bbf-4d7b-a651-faef9eab211d
-    content: 'When a step with "archive input to" processes an item: the original node is moved to the top (first child) of the archive destination, then feedback creates replacement node(s) in the original''s former position'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  024f4361-38dc-479e-953a-4bc3b71741dd:
-    id: 024f4361-38dc-479e-953a-4bc3b71741dd
-    content: The archived node is the original node moved to the archive location — it retains its UUID
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  9afed8b7-35ec-414f-9340-016a5de7c124:
-    id: 9afed8b7-35ec-414f-9340-016a5de7c124
-    content: The replacement node(s) created in its place have new, unique UUIDs
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  61b41a43-0da5-4ae0-b3bb-74f4e8da4d9b:
-    id: 61b41a43-0da5-4ae0-b3bb-74f4e8da4d9b
-    content: If "archive input to" is unset, no archive is made — current behavior is preserved
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  8b44b75c-d003-4389-9f3b-074c6b994d14:
-    id: 8b44b75c-d003-4389-9f3b-074c6b994d14
-    content: Relation links (using existing hyperlink system)
-    children:
-      - e969205c-b475-41a6-8ddb-530f60964723
-      - 40d2af52-0c2d-4016-bedb-5495e32a33a6
-      - d5598e0e-6e61-4332-aabd-6dee9d19dd6a
-      - 58159759-af99-4064-8cba-ea7d37e2d87b
-      - 4b02e68a-7e90-4fd3-8dbf-5d533a6d5039
-      - 9e0ddb9e-0e43-413e-8b54-132db7090a93
-      - 5130539c-8683-4eff-91c3-c9d4785cd720
-      - 9f5c1336-9f9f-49b3-bed6-1a927f491a68
-      - a37924a8-b79a-4d62-953a-b164e91bf0c1
-      - 8675be27-625a-40f1-84ef-43b72446c8e1
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e969205c-b475-41a6-8ddb-530f60964723:
-    id: e969205c-b475-41a6-8ddb-530f60964723
-    content: After archive-and-replace, a collapsible container node is added as the first child of the archived original, titled with the configured archive-side link name. Hyperlink(s) to each replacement node are children of this container.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  40d2af52-0c2d-4016-bedb-5495e32a33a6:
-    id: 40d2af52-0c2d-4016-bedb-5495e32a33a6
-    content: A collapsible container node is also added as the first child of each replacement node, titled with the configured replacement-side link name. A hyperlink back to the archived original is a child of this container.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  d5598e0e-6e61-4332-aabd-6dee9d19dd6a:
-    id: d5598e0e-6e61-4332-aabd-6dee9d19dd6a
-    content: Both link names are user-configurable strings set per step in the step configuration dialog
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  58159759-af99-4064-8cba-ea7d37e2d87b:
-    id: 58159759-af99-4064-8cba-ea7d37e2d87b
-    content: The hyperlinks use the existing hyperlink system (linkedNodeId metadata) — no new metadata system needed
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  4b02e68a-7e90-4fd3-8dbf-5d533a6d5039:
-    id: 4b02e68a-7e90-4fd3-8dbf-5d533a6d5039
-    content: When "resolve linked content when sending" is enabled, these hyperlinks resolve their linked content when the node is sent to AI (same as context hyperlinks). When disabled (default), they do not resolve — they are navigational only.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  9e0ddb9e-0e43-413e-8b54-132db7090a93:
-    id: 9e0ddb9e-0e43-413e-8b54-132db7090a93
-    content: Clicking a hyperlink navigates to the linked node (expanding collapsed ancestors as needed, existing hyperlink behavior)
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  5130539c-8683-4eff-91c3-c9d4785cd720:
-    id: 5130539c-8683-4eff-91c3-c9d4785cd720
-    content: Hyperlinks to deleted nodes display as unavailable rather than causing errors (existing hyperlink behavior)
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  9f5c1336-9f9f-49b3-bed6-1a927f491a68:
-    id: 9f5c1336-9f9f-49b3-bed6-1a927f491a68
-    content: Circular reference prevention uses the existing hyperlink recursion prevention system
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  a37924a8-b79a-4d62-953a-b164e91bf0c1:
-    id: a37924a8-b79a-4d62-953a-b164e91bf0c1
-    content: Container and hyperlink nodes are regular tree nodes — deletable by the user (breaks link, undoable)
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  8675be27-625a-40f1-84ef-43b72446c8e1:
-    id: 8675be27-625a-40f1-84ef-43b72446c8e1
-    content: Hyperlinks survive node moves, drag/drop, and undo/redo
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  9d6572b1-c38e-4612-9af0-a9e10fd721a3:
-    id: 9d6572b1-c38e-4612-9af0-a9e10fd721a3
-    content: Edge cases
-    children:
-      - 391a83eb-22e5-476c-87e9-73b40ea64447
-      - 3fbdd89e-24f3-44a6-b046-d122ace92257
-      - 91920a26-2f3e-4ccf-bfda-979f6b1b6590
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  391a83eb-22e5-476c-87e9-73b40ea64447:
-    id: 391a83eb-22e5-476c-87e9-73b40ea64447
-    content: If the archive destination has been deleted, the workflow is paused and the user is alerted with a warning toast. The feedback is not accepted and the step will have to be run again.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  3fbdd89e-24f3-44a6-b046-d122ace92257:
-    id: 3fbdd89e-24f3-44a6-b046-d122ace92257
-    content: No special handling for blueprint export — container and hyperlink nodes are exported as-is if present
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  91920a26-2f3e-4ccf-bfda-979f6b1b6590:
-    id: 91920a26-2f3e-4ccf-bfda-979f6b1b6590
-    content: The entire archive-and-replace operation (move original, create replacement(s), add container and hyperlink nodes on both sides) is undoable as a single undo operation
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  770910b3-aa44-4227-b3e4-2453dc4e9700:
-    id: 770910b3-aa44-4227-b3e4-2453dc4e9700
-    content: Constraints and assumptions
-    children:
-      - a5fb1040-940c-4a5f-8d14-0db3ffd95c97
-      - c8deb722-8811-460c-97dc-e0857e9dee39
-      - 1037e841-4d07-434f-a819-485be4fd7852
-      - 885080b8-9381-4e2d-afcd-4a4b1a6ba9f2
-      - c4c21e15-73a4-4e04-ad0e-74e295dc2849
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  a5fb1040-940c-4a5f-8d14-0db3ffd95c97:
-    id: a5fb1040-940c-4a5f-8d14-0db3ffd95c97
-    content: Depends on US1 (step configuration dialog) for the "archive input to" destination picker, both link names, and resolve toggle UI
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  c8deb722-8811-460c-97dc-e0857e9dee39:
-    id: c8deb722-8811-460c-97dc-e0857e9dee39
-    content: The destination picker needs a way to select a node — options include a tree selector component, searchable dropdown, or pasting a hyperlink (using the existing "copy as hyperlink" feature)
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  1037e841-4d07-434f-a819-485be4fd7852:
-    id: 1037e841-4d07-434f-a819-485be4fd7852
-    content: Archive is a move operation — the original is moved to the archive destination and retains its UUID. The replacement node(s) get new UUIDs.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  885080b8-9381-4e2d-afcd-4a4b1a6ba9f2:
-    id: 885080b8-9381-4e2d-afcd-4a4b1a6ba9f2
-    content: The archive links reuse the existing hyperlink system rather than introducing a parallel metadata system. The only new concept is the "resolve linked content when sending" flag, which controls whether these hyperlinks behave like context hyperlinks (resolving content) or purely navigational links.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  c4c21e15-73a4-4e04-ad0e-74e295dc2849:
-    id: c4c21e15-73a4-4e04-ad0e-74e295dc2849
-    content: Execute mode is unaffected — it sends to external tools only and does not create tree content
     children: []
     metadata:
       status: pending
@@ -47399,33 +46977,6 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  380bac8e-2bb6-4e8f-b880-33cc131e9054:
-    id: 380bac8e-2bb6-4e8f-b880-33cc131e9054
-    content: Needs to be a way for the AI to halt the workflow process
-    children:
-      - fb49e91e-1fde-48ce-a709-c8bca6a31254
-      - 65b490f6-135e-4d2d-93d5-0fa280b31a04
-    metadata:
-      status: pending
-  fb49e91e-1fde-48ce-a709-c8bca6a31254:
-    id: fb49e91e-1fde-48ce-a709-c8bca6a31254
-    content: For example, if they've found issues with the spec, technical constraints etc and need to discuss with the user
-    children: []
-    metadata:
-      status: pending
-  65b490f6-135e-4d2d-93d5-0fa280b31a04:
-    id: 65b490f6-135e-4d2d-93d5-0fa280b31a04
-    content: Either see if we can use a hook, or give it instructions to call a specific end point if it needs user intervention
-    children:
-      - 7a30885b-f8d5-4871-803b-6a71aa0dd104
-    metadata:
-      status: pending
-  7a30885b-f8d5-4871-803b-6a71aa0dd104:
-    id: 7a30885b-f8d5-4871-803b-6a71aa0dd104
-    content: Then that pauses the workflow and triggers a persistent toast
-    children: []
-    metadata:
-      status: pending
   ac08205b-50cf-41dd-a758-0875206542af:
     id: ac08205b-50cf-41dd-a758-0875206542af
     content: Refactor feedback
@@ -50688,62 +50239,6 @@ nodes:
       status: pending
       isBlueprint: true
       blueprintIcon: TestTube2
-  dad573ea-357c-4c2a-82fe-f4ab79a7d242:
-    id: dad573ea-357c-4c2a-82fe-f4ab79a7d242
-    content: Some steps don't require resending the content when in the same execution window
-    children:
-      - 6f7a710e-edd0-4f98-a5b1-772d5b2a0a6f
-      - 71781b70-468e-45a9-9706-727f58d4444a
-      - ec90ba48-91cc-4e8b-9776-a213758ba4d8
-    metadata:
-      status: pending
-      expanded: false
-  6f7a710e-edd0-4f98-a5b1-772d5b2a0a6f:
-    id: 6f7a710e-edd0-4f98-a5b1-772d5b2a0a6f
-    content: It's redundant, confusing, and might prevent optional results
-    children: []
-    metadata:
-      status: pending
-  71781b70-468e-45a9-9706-727f58d4444a:
-    id: 71781b70-468e-45a9-9706-727f58d4444a
-    content: Ask Claude how much of an issue this is
-    children: []
-    metadata:
-      status: pending
-  ec90ba48-91cc-4e8b-9776-a213758ba4d8:
-    id: ec90ba48-91cc-4e8b-9776-a213758ba4d8
-    content: Could be worth having a 'Don't send content' option for a given step - AI refactor for instance
-    children:
-      - 91900b28-7bc9-42c8-8e0f-8bc18fdaec5a
-      - b4426436-f840-45da-9069-f832b0ffd8b1
-    metadata:
-      status: pending
-  91900b28-7bc9-42c8-8e0f-8bc18fdaec5a:
-    id: 91900b28-7bc9-42c8-8e0f-8bc18fdaec5a
-    content: In this case, only context would be sent
-    children: []
-    metadata:
-      status: pending
-  b4426436-f840-45da-9069-f832b0ffd8b1:
-    id: b4426436-f840-45da-9069-f832b0ffd8b1
-    content: And actually, this is an action then, not a context
-    children:
-      - 0487134a-7d72-4498-8199-db28ff72bac8
-      - 27a3443d-bf97-41b7-ad9f-f257effbe057
-    metadata:
-      status: pending
-  0487134a-7d72-4498-8199-db28ff72bac8:
-    id: 0487134a-7d72-4498-8199-db28ff72bac8
-    content: Formalize the action system ?
-    children: []
-    metadata:
-      status: pending
-  27a3443d-bf97-41b7-ad9f-f257effbe057:
-    id: 27a3443d-bf97-41b7-ad9f-f257effbe057
-    content: Make it part of the context system but have a special 'action' setting ?
-    children: []
-    metadata:
-      status: pending
   e1f37e04-1337-4961-abd8-2f0849181f20:
     id: e1f37e04-1337-4961-abd8-2f0849181f20
     content: Seems that default execute context is sent
@@ -52495,3 +51990,2287 @@ nodes:
     metadata:
       status: pending
       isBlueprint: true
+  ca651178-69bc-4933-aa6f-b19e106fbd34:
+    id: ca651178-69bc-4933-aa6f-b19e106fbd34
+    content: No auto-accept in collaboration mode for automated steps
+    children: []
+    metadata:
+      status: pending
+  413a84b6-97e7-4963-81ca-6667f2136d9a:
+    id: 413a84b6-97e7-4963-81ca-6667f2136d9a
+    content: Sometimes steps are not fully implemented
+    children:
+      - 294a8650-f553-4e8c-9bb0-a6e860cd34cc
+      - c92cfacd-6654-4ec8-b3bb-462f5ce50a33
+      - 7d3b730d-63f2-42a2-8d51-3ac155650cb5
+    metadata:
+      status: pending
+  294a8650-f553-4e8c-9bb0-a6e860cd34cc:
+    id: 294a8650-f553-4e8c-9bb0-a6e860cd34cc
+    content: For example, if during a coding session the AI discovers there are too many steps
+    children:
+      - 3e30c2d6-d84b-4bc8-b790-bdebd4d034f6
+    metadata:
+      status: pending
+  3e30c2d6-d84b-4bc8-b790-bdebd4d034f6:
+    id: 3e30c2d6-d84b-4bc8-b790-bdebd4d034f6
+    content: It will do some, and then make a summary of what is not done
+    children: []
+    metadata:
+      status: pending
+  c92cfacd-6654-4ec8-b3bb-462f5ce50a33:
+    id: c92cfacd-6654-4ec8-b3bb-462f5ce50a33
+    content: This happens when the user story is too large
+    children: []
+    metadata:
+      status: pending
+  7d3b730d-63f2-42a2-8d51-3ac155650cb5:
+    id: 7d3b730d-63f2-42a2-8d51-3ac155650cb5
+    content: Would be good to have a way for the AI to have knowledge of the workflow tree
+    children:
+      - 7710be30-1f3b-4cd9-a697-dea1f6b5a237
+    metadata:
+      status: pending
+  7710be30-1f3b-4cd9-a697-dea1f6b5a237:
+    id: 7710be30-1f3b-4cd9-a697-dea1f6b5a237
+    content: And be able to roll back, split, then implement in parts
+    children: []
+    metadata:
+      status: pending
+  63c29a21-2680-4e39-8106-56ef723c83c9:
+    id: 63c29a21-2680-4e39-8106-56ef723c83c9
+    content: Give a summary of what is undone at the end and why
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  614f1e7a-0243-4b10-b0f0-69a282a1cf07:
+    id: 614f1e7a-0243-4b10-b0f0-69a282a1cf07
+    content: Problem statement
+    children:
+      - d2f1c260-e171-433a-9927-5bc92a532807
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d2f1c260-e171-433a-9927-5bc92a532807:
+    id: d2f1c260-e171-433a-9927-5bc92a532807
+    content: As a user running multi-step AI workflows, I want the option to keep a backup of my original input before it gets replaced by AI-generated output. Currently, accepting feedback always destroys the original content. I need to preserve it and trace which output came from which input. I also need processed inputs moved out of the workflow to keep steps tidy.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f3bdfabc-6e15-408b-94ff-8a9ca5cc40da:
+    id: f3bdfabc-6e15-408b-94ff-8a9ca5cc40da
+    content: Use cases
+    children:
+      - 6a86e578-f09f-423a-9db4-cc175748e629
+      - 93f194b4-f755-4597-9798-baffe2e458a6
+      - 12549477-5460-4e69-b16c-8c1d8742e279
+      - 93ed3be2-d16f-4c20-8bc1-7b8b4217a36a
+      - 9694c100-cf2a-41f9-b91b-d7bfa0d6e6c5
+      - 03140d2c-b22b-494f-9ac2-6929e8c77bc2
+      - 7b3dbd6b-38de-4f02-8f10-a7a684caec44
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6a86e578-f09f-423a-9db4-cc175748e629:
+    id: 6a86e578-f09f-423a-9db4-cc175748e629
+    content: 'Primary: User configures a workflow step with "archive input to" set to a destination node, and configures the two relation link names in the step dialog. When the step processes an item, the original node is moved to the top of the destination before feedback creates replacement node(s) in its place. A collapsible child node (titled with the configured archive-side name) is added to the archived original containing hyperlink(s) to each replacement. A collapsible child node (titled with the configured replacement-side name) is added to each replacement containing a hyperlink back to the archived original.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  93f194b4-f755-4597-9798-baffe2e458a6:
+    id: 93f194b4-f755-4597-9798-baffe2e458a6
+    content: 'Secondary: User expands the relation child on a replacement node to see its origin, clicks the hyperlink, and navigates to the archived original.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  12549477-5460-4e69-b16c-8c1d8742e279:
+    id: 12549477-5460-4e69-b16c-8c1d8742e279
+    content: 'Secondary: User expands the relation child on an archived input to see all replacements that were created from it.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  93ed3be2-d16f-4c20-8bc1-7b8b4217a36a:
+    id: 93ed3be2-d16f-4c20-8bc1-7b8b4217a36a
+    content: 'Secondary: User leaves "archive input to" unset. No archive is made — feedback replaces the node as today (current behavior preserved).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9694c100-cf2a-41f9-b91b-d7bfa0d6e6c5:
+    id: 9694c100-cf2a-41f9-b91b-d7bfa0d6e6c5
+    content: 'Secondary: The archive destination node has been deleted. A warning toast appears to tell the user, and the workflow is paused.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  03140d2c-b22b-494f-9ac2-6929e8c77bc2:
+    id: 03140d2c-b22b-494f-9ac2-6929e8c77bc2
+    content: 'Secondary: User deletes a relation container node or its hyperlink child. The link chain breaks but the operation is undoable.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7b3dbd6b-38de-4f02-8f10-a7a684caec44:
+    id: 7b3dbd6b-38de-4f02-8f10-a7a684caec44
+    content: 'Secondary: User enables "resolve linked content when sending" for a step. When a replacement node is sent to AI, the hyperlinked archived original''s content is included in the prompt, giving the AI the original context alongside the current content.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  169be8b4-5a13-4bac-becc-6cad62f8fa9f:
+    id: 169be8b4-5a13-4bac-becc-6cad62f8fa9f
+    content: Acceptance criteria
+    children:
+      - 00aeaf58-71b9-4194-9ca0-e4462acd6601
+      - 823465e5-3672-4257-b6ad-32aee83ec07e
+      - 8d95d979-26fd-44d6-8ed1-b449fa2a7b42
+      - 8a62e244-a96b-4b89-a15f-41279df685d4
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  00aeaf58-71b9-4194-9ca0-e4462acd6601:
+    id: 00aeaf58-71b9-4194-9ca0-e4462acd6601
+    content: Step configuration dialog settings
+    children:
+      - 484e0292-1ea6-4afc-8882-2297aa26cb12
+      - f6ca6432-a7b4-4bfc-9a2d-8803824b5d38
+      - b2e9add0-5596-4ca3-8a2f-b8717e9faf3e
+      - 69a6cd40-540e-4350-9203-393e8b2dc092
+      - f0afed18-5dac-414b-bce5-c0fd2488f72d
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  484e0292-1ea6-4afc-8882-2297aa26cb12:
+    id: 484e0292-1ea6-4afc-8882-2297aa26cb12
+    content: The step configuration dialog includes an "archive input to" destination picker
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f6ca6432-a7b4-4bfc-9a2d-8803824b5d38:
+    id: f6ca6432-a7b4-4bfc-9a2d-8803824b5d38
+    content: The destination picker allows selecting any node in the tree as the archive target
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b2e9add0-5596-4ca3-8a2f-b8717e9faf3e:
+    id: b2e9add0-5596-4ca3-8a2f-b8717e9faf3e
+    content: 'The step configuration dialog includes two configurable relation link names: one for the container node added to the archived original (e.g. "User stories", "Specs", "Output"), and one for the container node added to each replacement (e.g. "Problem statement", "Original", "Source")'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  69a6cd40-540e-4350-9203-393e8b2dc092:
+    id: 69a6cd40-540e-4350-9203-393e8b2dc092
+    content: The step configuration dialog includes a "resolve linked content when sending" toggle, default off — controls whether the archive hyperlinks resolve their linked content into AI prompts
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f0afed18-5dac-414b-bce5-c0fd2488f72d:
+    id: f0afed18-5dac-414b-bce5-c0fd2488f72d
+    content: 'The step configuration dialog shows a low-impact warning text (not a popup) for risky configurations: autonomous step with no archive destination warns of data loss risk'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  823465e5-3672-4257-b6ad-32aee83ec07e:
+    id: 823465e5-3672-4257-b6ad-32aee83ec07e
+    content: Archive operation
+    children:
+      - c07ba25a-404f-4ca3-bd39-b5597834f8ed
+      - 3ad7d194-8d15-4db7-a2ec-cf1960460352
+      - e168dc65-b2b0-4ff3-b25e-3d7e68cbb068
+      - c90fa7e0-4f37-48bd-9c5e-82ee075d81b5
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c07ba25a-404f-4ca3-bd39-b5597834f8ed:
+    id: c07ba25a-404f-4ca3-bd39-b5597834f8ed
+    content: 'When a step with "archive input to" processes an item: the original node is moved to the top (first child) of the archive destination, then feedback creates replacement node(s) in the original''s former position'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3ad7d194-8d15-4db7-a2ec-cf1960460352:
+    id: 3ad7d194-8d15-4db7-a2ec-cf1960460352
+    content: The archived node is the original node moved to the archive location — it retains its UUID
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e168dc65-b2b0-4ff3-b25e-3d7e68cbb068:
+    id: e168dc65-b2b0-4ff3-b25e-3d7e68cbb068
+    content: The replacement node(s) created in its place have new, unique UUIDs
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c90fa7e0-4f37-48bd-9c5e-82ee075d81b5:
+    id: c90fa7e0-4f37-48bd-9c5e-82ee075d81b5
+    content: If "archive input to" is unset, no archive is made — current behavior is preserved
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8d95d979-26fd-44d6-8ed1-b449fa2a7b42:
+    id: 8d95d979-26fd-44d6-8ed1-b449fa2a7b42
+    content: Relation links (using existing hyperlink system)
+    children:
+      - 22423b14-4e95-4783-991d-17db7aa65286
+      - 0265a327-125f-4e37-bee7-d44f03dec9ff
+      - 9ef185ae-c3c0-4ebb-9fcd-a1838e78a068
+      - 507b6969-b79a-4246-a762-ce44dd35e9a3
+      - e3396c11-a445-4a68-80be-59f01f740aa4
+      - 07856ca4-250d-484a-888b-0cddc422ffed
+      - 8aa13f44-93b4-4b56-a8cf-9e19e40c6564
+      - 05527182-78a9-4f5f-bf57-e74ad5e968f5
+      - 69c7d9d3-fd55-46fd-a2f4-63ac7b76bcd2
+      - 34e423fa-1c3d-47b7-aa7f-a5e2be16641d
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  22423b14-4e95-4783-991d-17db7aa65286:
+    id: 22423b14-4e95-4783-991d-17db7aa65286
+    content: After archive-and-replace, a collapsible container node is added as the first child of the archived original, titled with the configured archive-side link name. Hyperlink(s) to each replacement node are children of this container.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0265a327-125f-4e37-bee7-d44f03dec9ff:
+    id: 0265a327-125f-4e37-bee7-d44f03dec9ff
+    content: A collapsible container node is also added as the first child of each replacement node, titled with the configured replacement-side link name. A hyperlink back to the archived original is a child of this container.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9ef185ae-c3c0-4ebb-9fcd-a1838e78a068:
+    id: 9ef185ae-c3c0-4ebb-9fcd-a1838e78a068
+    content: Both link names are user-configurable strings set per step in the step configuration dialog
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  507b6969-b79a-4246-a762-ce44dd35e9a3:
+    id: 507b6969-b79a-4246-a762-ce44dd35e9a3
+    content: The hyperlinks use the existing hyperlink system (linkedNodeId metadata) — no new metadata system needed
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e3396c11-a445-4a68-80be-59f01f740aa4:
+    id: e3396c11-a445-4a68-80be-59f01f740aa4
+    content: When "resolve linked content when sending" is enabled, these hyperlinks resolve their linked content when the node is sent to AI (same as context hyperlinks). When disabled (default), they do not resolve — they are navigational only.
+    children:
+      - 838fadfc-69a2-474d-ba3a-c88d05e7cf31
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  838fadfc-69a2-474d-ba3a-c88d05e7cf31:
+    id: 838fadfc-69a2-474d-ba3a-c88d05e7cf31
+    content: Resolve only works on the execute path currently — collaborate path does not pass resolveHyperlinks flag
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  07856ca4-250d-484a-888b-0cddc422ffed:
+    id: 07856ca4-250d-484a-888b-0cddc422ffed
+    content: Clicking a hyperlink navigates to the linked node (expanding collapsed ancestors as needed, existing hyperlink behavior)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8aa13f44-93b4-4b56-a8cf-9e19e40c6564:
+    id: 8aa13f44-93b4-4b56-a8cf-9e19e40c6564
+    content: Hyperlinks to deleted nodes display as unavailable rather than causing errors (existing hyperlink behavior)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  05527182-78a9-4f5f-bf57-e74ad5e968f5:
+    id: 05527182-78a9-4f5f-bf57-e74ad5e968f5
+    content: Circular reference prevention uses the existing hyperlink recursion prevention system
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  69c7d9d3-fd55-46fd-a2f4-63ac7b76bcd2:
+    id: 69c7d9d3-fd55-46fd-a2f4-63ac7b76bcd2
+    content: Container and hyperlink nodes are regular tree nodes — deletable by the user (breaks link, undoable)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  34e423fa-1c3d-47b7-aa7f-a5e2be16641d:
+    id: 34e423fa-1c3d-47b7-aa7f-a5e2be16641d
+    content: Hyperlinks survive node moves, drag/drop, and undo/redo
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8a62e244-a96b-4b89-a15f-41279df685d4:
+    id: 8a62e244-a96b-4b89-a15f-41279df685d4
+    content: Edge cases
+    children:
+      - 680bb52b-af06-4816-a12d-d9263941e2ea
+      - ca263253-b3ce-4d0c-b579-f03f177e289e
+      - 4d29d4e5-447c-4def-97e5-95d1bca03b67
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  680bb52b-af06-4816-a12d-d9263941e2ea:
+    id: 680bb52b-af06-4816-a12d-d9263941e2ea
+    content: If the archive destination has been deleted, the workflow is paused and the user is alerted with a warning toast. The feedback is not accepted and the step will have to be run again.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ca263253-b3ce-4d0c-b579-f03f177e289e:
+    id: ca263253-b3ce-4d0c-b579-f03f177e289e
+    content: No special handling for blueprint export — container and hyperlink nodes are exported as-is if present
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4d29d4e5-447c-4def-97e5-95d1bca03b67:
+    id: 4d29d4e5-447c-4def-97e5-95d1bca03b67
+    content: The entire archive-and-replace operation (move original, create replacement(s), add container and hyperlink nodes on both sides) is undoable as a single undo operation
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  87cc38bf-3869-4427-9ab3-db81d91c4060:
+    id: 87cc38bf-3869-4427-9ab3-db81d91c4060
+    content: Constraints and assumptions
+    children:
+      - d3611f13-d2cf-48dc-808b-8b5d113d73fb
+      - b2cfc7f2-2308-432d-882c-9f28c7dc3abe
+      - 1153e696-6417-40d8-a181-701cf5eaae1e
+      - 6a97254d-6c13-42ce-9561-5f8f23eeaa14
+      - 79130a35-0fec-4e4b-b267-cbd9cc7cd255
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d3611f13-d2cf-48dc-808b-8b5d113d73fb:
+    id: d3611f13-d2cf-48dc-808b-8b5d113d73fb
+    content: Depends on US1 (step configuration dialog) for the "archive input to" destination picker, both link names, and resolve toggle UI
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b2cfc7f2-2308-432d-882c-9f28c7dc3abe:
+    id: b2cfc7f2-2308-432d-882c-9f28c7dc3abe
+    content: The destination picker needs a way to select a node — options include a tree selector component, searchable dropdown, or pasting a hyperlink (using the existing "copy as hyperlink" feature)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1153e696-6417-40d8-a181-701cf5eaae1e:
+    id: 1153e696-6417-40d8-a181-701cf5eaae1e
+    content: Archive is a move operation — the original is moved to the archive destination and retains its UUID. The replacement node(s) get new UUIDs.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6a97254d-6c13-42ce-9561-5f8f23eeaa14:
+    id: 6a97254d-6c13-42ce-9561-5f8f23eeaa14
+    content: The archive links reuse the existing hyperlink system rather than introducing a parallel metadata system. The only new concept is the "resolve linked content when sending" flag, which controls whether these hyperlinks behave like context hyperlinks (resolving content) or purely navigational links.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  79130a35-0fec-4e4b-b267-cbd9cc7cd255:
+    id: 79130a35-0fec-4e4b-b267-cbd9cc7cd255
+    content: Execute mode is unaffected — it sends to external tools only and does not create tree content
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2bab4e8c-7666-49f5-aee7-2cf3e2a05353:
+    id: 2bab4e8c-7666-49f5-aee7-2cf3e2a05353
+    content: Technical specifications
+    children:
+      - 773ac37e-67d4-457b-b543-f549a2b282bd
+      - 875ec19e-6132-4cda-a833-965897dacc8a
+      - 94c6c752-a5bc-4c4c-967d-356464514805
+      - 5ac1b927-0f61-4b17-80f6-c4d772856af0
+      - 4846acd3-a486-40a3-8eac-003f7fb036d5
+      - 5f678f20-f662-4705-a33a-05ba963a3e93
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  773ac37e-67d4-457b-b543-f549a2b282bd:
+    id: 773ac37e-67d4-457b-b543-f549a2b282bd
+    content: Summary
+    children:
+      - 9bff1e21-3df6-44bb-aef0-4f9eb77f235d
+      - e573e06f-69c5-4bd8-ad31-7ec34432cd56
+      - ebee1268-9c91-4f16-831e-f85f58c0efc5
+      - 6e86cc83-3bdc-40e4-8f5c-dbaf532c3505
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9bff1e21-3df6-44bb-aef0-4f9eb77f235d:
+    id: 9bff1e21-3df6-44bb-aef0-4f9eb77f235d
+    content: Extend AcceptFeedbackCommand to optionally archive the original node before replacing it
+    children:
+      - e3316bd9-582a-4ab0-bed9-470c9e27329a
+      - fd755be2-578f-4eee-9bbd-a70484145e76
+      - a7619291-8120-4532-ac36-3cbd47c703a4
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e3316bd9-582a-4ab0-bed9-470c9e27329a:
+    id: e3316bd9-582a-4ab0-bed9-470c9e27329a
+    content: When archive is configured on the workflow step, the command moves the original node to the archive destination before creating replacements
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fd755be2-578f-4eee-9bbd-a70484145e76:
+    id: fd755be2-578f-4eee-9bbd-a70484145e76
+    content: Relation links (hyperlink container nodes) are created on both the archived original and each replacement
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a7619291-8120-4532-ac36-3cbd47c703a4:
+    id: a7619291-8120-4532-ac36-3cbd47c703a4
+    content: The entire operation is atomic — single undo restores everything
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e573e06f-69c5-4bd8-ad31-7ec34432cd56:
+    id: e573e06f-69c5-4bd8-ad31-7ec34432cd56
+    content: Extend the step configuration dialog with archive settings
+    children:
+      - 239c1f83-9c96-4828-b9d9-b9033490efe7
+      - 2703607d-a2cb-4594-b6fa-a0263ec3543d
+      - 27b01c0d-71f1-401e-a176-1648dcce3f96
+      - 4060544e-0822-4979-a7f3-2a39327a6f31
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  239c1f83-9c96-4828-b9d9-b9033490efe7:
+    id: 239c1f83-9c96-4828-b9d9-b9033490efe7
+    content: '"Archive input to" destination picker'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2703607d-a2cb-4594-b6fa-a0263ec3543d:
+    id: 2703607d-a2cb-4594-b6fa-a0263ec3543d
+    content: Two configurable relation link names (archive-side and replacement-side)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  27b01c0d-71f1-401e-a176-1648dcce3f96:
+    id: 27b01c0d-71f1-401e-a176-1648dcce3f96
+    content: '"Resolve linked content when sending" toggle'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4060544e-0822-4979-a7f3-2a39327a6f31:
+    id: 4060544e-0822-4979-a7f3-2a39327a6f31
+    content: Warning text for risky configurations
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ebee1268-9c91-4f16-831e-f85f58c0efc5:
+    id: ebee1268-9c91-4f16-831e-f85f58c0efc5
+    content: Wire archive settings through the collaborate/execute flow
+    children:
+      - 81ffd874-29ab-4513-996f-d5d4fbfd21a7
+      - cec2e483-f86a-47db-b0fe-7c76be9f97eb
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  81ffd874-29ab-4513-996f-d5d4fbfd21a7:
+    id: 81ffd874-29ab-4513-996f-d5d4fbfd21a7
+    content: Read archive metadata from the workflow step when feedback is accepted
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cec2e483-f86a-47db-b0fe-7c76be9f97eb:
+    id: cec2e483-f86a-47db-b0fe-7c76be9f97eb
+    content: Pass archive configuration into AcceptFeedbackCommand
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6e86cc83-3bdc-40e4-8f5c-dbaf532c3505:
+    id: 6e86cc83-3bdc-40e4-8f5c-dbaf532c3505
+    content: Affected areas
+    children:
+      - 8aba9cfc-157c-458e-8925-197c4c67b959
+      - a19b62f2-5589-4c0f-98b7-1fdd88742409
+      - e01e500a-e40c-4647-80a3-d1879be288c4
+      - c8eadbca-8b3c-4b93-99b9-d52255400515
+      - 02855b15-9214-45e3-b9c9-a7cc32871001
+      - 02a91065-a13f-49cb-a09d-40bd19c2197b
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8aba9cfc-157c-458e-8925-197c4c67b959:
+    id: 8aba9cfc-157c-458e-8925-197c4c67b959
+    content: StepConfigDialog — new archive settings UI (destination picker, link names, resolve toggle)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a19b62f2-5589-4c0f-98b7-1fdd88742409:
+    id: a19b62f2-5589-4c0f-98b7-1fdd88742409
+    content: StepConfigDialogContainer — read/write archive metadata from node.metadata
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e01e500a-e40c-4647-80a3-d1879be288c4:
+    id: e01e500a-e40c-4647-80a3-d1879be288c4
+    content: workflowActions.ts — new actions to set archive destination, link names, and resolve flag on step metadata
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c8eadbca-8b3c-4b93-99b9-d52255400515:
+    id: c8eadbca-8b3c-4b93-99b9-d52255400515
+    content: AcceptFeedbackCommand — archive-before-replace logic, relation link creation, expanded undo
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  02855b15-9214-45e3-b9c9-a7cc32871001:
+    id: 02855b15-9214-45e3-b9c9-a7cc32871001
+    content: collaborateActions.ts / finishAccept — pass archive config into the command
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  02a91065-a13f-49cb-a09d-40bd19c2197b:
+    id: 02a91065-a13f-49cb-a09d-40bd19c2197b
+    content: markdown.ts (exportContextAsMarkdown) — may need adjustment if "resolve linked content" requires different behavior from standard hyperlink resolution
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  875ec19e-6132-4cda-a833-965897dacc8a:
+    id: 875ec19e-6132-4cda-a833-965897dacc8a
+    content: Inputs, outputs, and key interfaces
+    children:
+      - 2da87719-c9c5-48fe-8087-385707dd6933
+      - 5b003d16-417d-4739-94f5-225dcab38a52
+      - e9b05084-f167-4435-a64f-aead478761eb
+      - 1bda92c1-4280-4123-ace1-ea2c0471b0ce
+      - 24644649-85af-4921-a178-f9736da5c3e0
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2da87719-c9c5-48fe-8087-385707dd6933:
+    id: 2da87719-c9c5-48fe-8087-385707dd6933
+    content: 'Input: Archive configuration from the workflow step''s metadata'
+    children:
+      - 70c601fd-1745-4f9b-9fdf-bc6ce5333c45
+      - 8cd0f722-e516-45e5-8603-9b844e8aded7
+      - 820a8167-bc78-4d10-8a88-b8cb6ea0c949
+      - 474bff7a-761c-44cd-873b-7e82f7acbc93
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  70c601fd-1745-4f9b-9fdf-bc6ce5333c45:
+    id: 70c601fd-1745-4f9b-9fdf-bc6ce5333c45
+    content: 'archiveDestinationId: string | undefined — node ID to move the original to'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8cd0f722-e516-45e5-8603-9b844e8aded7:
+    id: 8cd0f722-e516-45e5-8603-9b844e8aded7
+    content: 'archiveSideLinkName: string | undefined — title for the container node on the archived original'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  820a8167-bc78-4d10-8a88-b8cb6ea0c949:
+    id: 820a8167-bc78-4d10-8a88-b8cb6ea0c949
+    content: 'replacementSideLinkName: string | undefined — title for the container node on each replacement'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  474bff7a-761c-44cd-873b-7e82f7acbc93:
+    id: 474bff7a-761c-44cd-873b-7e82f7acbc93
+    content: 'resolveLinkedContent: boolean — whether archive hyperlinks resolve when sending content'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5b003d16-417d-4739-94f5-225dcab38a52:
+    id: 5b003d16-417d-4739-94f5-225dcab38a52
+    content: 'Input: The existing AcceptFeedbackCommand inputs (collaborating node, new nodes, state getters/setters)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e9b05084-f167-4435-a64f-aead478761eb:
+    id: e9b05084-f167-4435-a64f-aead478761eb
+    content: 'Output: Archived original at the top of the destination node''s children, with relation container + hyperlinks. Replacement nodes in the original''s former position, with relation container + hyperlink back to archived.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1bda92c1-4280-4123-ace1-ea2c0471b0ce:
+    id: 1bda92c1-4280-4123-ace1-ea2c0471b0ce
+    content: 'Key interface change: AcceptFeedbackCommand constructor gains optional archive configuration object'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  24644649-85af-4921-a178-f9736da5c3e0:
+    id: 24644649-85af-4921-a178-f9736da5c3e0
+    content: 'Key interface change: StepConfigDialog gains archive destination picker, link name inputs, and resolve toggle'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  94c6c752-a5bc-4c4c-967d-356464514805:
+    id: 94c6c752-a5bc-4c4c-967d-356464514805
+    content: Constraints and non-functional requirements
+    children:
+      - c0d7225b-5ec2-4c80-96c7-79546740e23e
+      - 6dad0305-246f-45cf-ae49-49f5221d0fb8
+      - be767aba-b91c-4432-a093-707e5bf9bd44
+      - bf4172a9-ef15-4c09-b5a2-38d11a5c0641
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c0d7225b-5ec2-4c80-96c7-79546740e23e:
+    id: c0d7225b-5ec2-4c80-96c7-79546740e23e
+    content: The archive operation must be atomic — single undo restores the original node to its position, removes replacements, removes all relation link nodes
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6dad0305-246f-45cf-ae49-49f5221d0fb8:
+    id: 6dad0305-246f-45cf-ae49-49f5221d0fb8
+    content: Archive hyperlinks use existing isHyperlink/linkedNodeId metadata — no new metadata type
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  be767aba-b91c-4432-a093-707e5bf9bd44:
+    id: be767aba-b91c-4432-a093-707e5bf9bd44
+    content: The "resolve linked content" flag is stored on the step node metadata, not on individual hyperlink nodes — it applies to all archive hyperlinks created by that step
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bf4172a9-ef15-4c09-b5a2-38d11a5c0641:
+    id: bf4172a9-ef15-4c09-b5a2-38d11a5c0641
+    content: The destination picker must handle the case where the destination node has been deleted between configuration and execution
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5ac1b927-0f61-4b17-80f6-c4d772856af0:
+    id: 5ac1b927-0f61-4b17-80f6-c4d772856af0
+    content: Technical steps
+    children:
+      - 4b90ee38-0c23-4672-85e7-10c3494c199d
+      - edb287a8-3dd4-468e-946d-1ad2c36b7147
+      - 6d914263-2b06-4d4c-af59-e22b95a629bf
+      - ad2e0cdf-24d0-483b-b681-6b0f4a960009
+      - 90e28b10-6064-4474-ae25-56559575df05
+      - fedfb445-b23b-49e1-aff3-8f9276fd55f1
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4b90ee38-0c23-4672-85e7-10c3494c199d:
+    id: 4b90ee38-0c23-4672-85e7-10c3494c199d
+    content: 'Step 1: Add archive settings to step configuration dialog (M)'
+    children:
+      - 5cc4b1aa-0cef-43ea-9583-cc06b7ce5e3d
+      - 09f547cc-8075-4c60-a8fe-a39021389b08
+      - acfaf354-74ca-49a2-a332-abaf944f3add
+      - 7177b592-8fba-4eee-bb80-c387f236bcec
+      - 88d6635c-fac3-4053-8c99-bf529fec8ac2
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5cc4b1aa-0cef-43ea-9583-cc06b7ce5e3d:
+    id: 5cc4b1aa-0cef-43ea-9583-cc06b7ce5e3d
+    content: Add "archive input to" destination picker to StepConfigDialog
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  09f547cc-8075-4c60-a8fe-a39021389b08:
+    id: 09f547cc-8075-4c60-a8fe-a39021389b08
+    content: Add two text inputs for relation link names (archive-side and replacement-side)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  acfaf354-74ca-49a2-a332-abaf944f3add:
+    id: acfaf354-74ca-49a2-a332-abaf944f3add
+    content: Add "resolve linked content when sending" toggle
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7177b592-8fba-4eee-bb80-c387f236bcec:
+    id: 7177b592-8fba-4eee-bb80-c387f236bcec
+    content: Add warning text for autonomous steps without archive destination
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  88d6635c-fac3-4053-8c99-bf529fec8ac2:
+    id: 88d6635c-fac3-4053-8c99-bf529fec8ac2
+    content: The destination picker is the most complex UI element — simplest approach is a text input where user pastes a node hyperlink (using existing "copy as hyperlink")
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  edb287a8-3dd4-468e-946d-1ad2c36b7147:
+    id: edb287a8-3dd4-468e-946d-1ad2c36b7147
+    content: 'Step 2: Add archive metadata actions to workflowActions (S)'
+    children:
+      - cf20a1ef-75f5-48da-b7e2-a87791c3d76b
+      - 6d0192d0-f612-4337-b694-7a76c84c5059
+      - 828f122b-3507-44b9-b262-860ab93a336f
+      - ffefe351-8743-442c-bb61-30807cc66f5d
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cf20a1ef-75f5-48da-b7e2-a87791c3d76b:
+    id: cf20a1ef-75f5-48da-b7e2-a87791c3d76b
+    content: 'setArchiveDestination(nodeId: string, destinationId: string | undefined)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6d0192d0-f612-4337-b694-7a76c84c5059:
+    id: 6d0192d0-f612-4337-b694-7a76c84c5059
+    content: 'setArchiveLinkNames(nodeId: string, archiveSide: string, replacementSide: string)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  828f122b-3507-44b9-b262-860ab93a336f:
+    id: 828f122b-3507-44b9-b262-860ab93a336f
+    content: 'setResolveLinkedContent(nodeId: string, resolve: boolean)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ffefe351-8743-442c-bb61-30807cc66f5d:
+    id: ffefe351-8743-442c-bb61-30807cc66f5d
+    content: These write to node.metadata like setDecomposition — no undo needed for config
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6d914263-2b06-4d4c-af59-e22b95a629bf:
+    id: 6d914263-2b06-4d4c-af59-e22b95a629bf
+    content: 'Step 3: Extend AcceptFeedbackCommand with archive logic (L)'
+    children:
+      - c5e12d76-7d80-4f1e-ad7f-c21561919e89
+      - 832f90bb-0bb0-41ce-84eb-2315e43a39b6
+      - 9132c1ae-15ec-461f-9324-9e0536bb8102
+      - 229296ce-6b61-422a-992b-ab712a9e1d0a
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c5e12d76-7d80-4f1e-ad7f-c21561919e89:
+    id: c5e12d76-7d80-4f1e-ad7f-c21561919e89
+    content: Accept optional archive config in constructor
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  832f90bb-0bb0-41ce-84eb-2315e43a39b6:
+    id: 832f90bb-0bb0-41ce-84eb-2315e43a39b6
+    content: 'Before executing the replacement, if archive is configured:'
+    children:
+      - f3c893b5-8cfb-4b67-9842-075d6ef22d13
+      - c81abe7d-a932-4c35-8493-7e01698bec19
+      - 4784c166-ae73-4136-a750-80a37784cadd
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f3c893b5-8cfb-4b67-9842-075d6ef22d13:
+    id: f3c893b5-8cfb-4b67-9842-075d6ef22d13
+    content: Validate the archive destination exists — if not, abort and return (caller handles the toast/pause)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c81abe7d-a932-4c35-8493-7e01698bec19:
+    id: c81abe7d-a932-4c35-8493-7e01698bec19
+    content: Move the collaborating node to the top (first child) of the archive destination
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4784c166-ae73-4136-a750-80a37784cadd:
+    id: 4784c166-ae73-4136-a750-80a37784cadd
+    content: Update ancestor registry for the moved node
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9132c1ae-15ec-461f-9324-9e0536bb8102:
+    id: 9132c1ae-15ec-461f-9324-9e0536bb8102
+    content: 'After creating replacement nodes, create relation link nodes:'
+    children:
+      - 41bfa1ec-9786-471a-92ee-f8e17bc52cc5
+      - d76c46bb-385e-434d-bf11-efb06ea3d3ba
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  41bfa1ec-9786-471a-92ee-f8e17bc52cc5:
+    id: 41bfa1ec-9786-471a-92ee-f8e17bc52cc5
+    content: 'On the archived original: create a container node (titled with archive-side link name) as first child, with hyperlink children pointing to each replacement'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d76c46bb-385e-434d-bf11-efb06ea3d3ba:
+    id: d76c46bb-385e-434d-bf11-efb06ea3d3ba
+    content: 'On each replacement: create a container node (titled with replacement-side link name) as first child, with a hyperlink child pointing to the archived original'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  229296ce-6b61-422a-992b-ab712a9e1d0a:
+    id: 229296ce-6b61-422a-992b-ab712a9e1d0a
+    content: 'Expand the undo snapshot to include: the archive destination''s original children order, all created relation link nodes, the original node''s position'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ad2e0cdf-24d0-483b-b681-6b0f4a960009:
+    id: ad2e0cdf-24d0-483b-b681-6b0f4a960009
+    content: 'Step 4: Wire archive config through finishAccept (M)'
+    children:
+      - a5214aec-5e14-4cea-9882-a0320ffad8e4
+      - 3ac72f58-eb78-4351-b576-997c67a47967
+      - 8932e985-3a84-47b1-987c-51f558a602b0
+      - 97b77bd3-3315-4aff-962e-1561fe07abb9
+      - 86381021-7c1f-4c86-ad9d-8e55e585f03e
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a5214aec-5e14-4cea-9882-a0320ffad8e4:
+    id: a5214aec-5e14-4cea-9882-a0320ffad8e4
+    content: In collaborateActions.ts finishAccept, read archive metadata from the workflow step
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3ac72f58-eb78-4351-b576-997c67a47967:
+    id: 3ac72f58-eb78-4351-b576-997c67a47967
+    content: Find the workflow step the collaborating node is in (using getWorkflowStepPosition)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8932e985-3a84-47b1-987c-51f558a602b0:
+    id: 8932e985-3a84-47b1-987c-51f558a602b0
+    content: Read archiveDestinationId, archiveSideLinkName, replacementSideLinkName from step metadata
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  97b77bd3-3315-4aff-962e-1561fe07abb9:
+    id: 97b77bd3-3315-4aff-962e-1561fe07abb9
+    content: Pass as optional config to AcceptFeedbackCommand
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  86381021-7c1f-4c86-ad9d-8e55e585f03e:
+    id: 86381021-7c1f-4c86-ad9d-8e55e585f03e
+    content: 'If archive destination is configured but node doesn''t exist: show warning toast, pause workflow, don''t accept feedback'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  90e28b10-6064-4474-ae25-56559575df05:
+    id: 90e28b10-6064-4474-ae25-56559575df05
+    content: 'Step 5: Handle "resolve linked content when sending" (S)'
+    children:
+      - bf73dcdb-426c-43af-9588-a18459bc2674
+      - fa4d421b-3713-46e5-9c3e-a8d4ea8750e4
+      - 2c5f7689-a097-4b1d-ba3b-fc9088cc8300
+      - b51a129a-764b-4334-ad75-db782d011b0f
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bf73dcdb-426c-43af-9588-a18459bc2674:
+    id: bf73dcdb-426c-43af-9588-a18459bc2674
+    content: The existing exportContextAsMarkdown already resolves hyperlinks — when a node with isHyperlink is encountered during context export, it follows the linkedNodeId and exports the target's content
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fa4d421b-3713-46e5-9c3e-a8d4ea8750e4:
+    id: fa4d421b-3713-46e5-9c3e-a8d4ea8750e4
+    content: For archive hyperlinks, this behavior is controlled by the step's resolveLinkedContent flag
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2c5f7689-a097-4b1d-ba3b-fc9088cc8300:
+    id: 2c5f7689-a097-4b1d-ba3b-fc9088cc8300
+    content: This may require no code change if hyperlinks within the replacement node's subtree are always resolved during context export — verify by testing
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b51a129a-764b-4334-ad75-db782d011b0f:
+    id: b51a129a-764b-4334-ad75-db782d011b0f
+    content: 'If not, may need a metadata flag on the hyperlink nodes (e.g., resolveOnSend: true) that exportContextAsMarkdown checks'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  fedfb445-b23b-49e1-aff3-8f9276fd55f1:
+    id: fedfb445-b23b-49e1-aff3-8f9276fd55f1
+    content: 'Step 6: Update tests (M)'
+    children:
+      - 16ce2980-002d-4171-b8b6-2e1bf4a28ed4
+      - 4acdca6f-3701-481b-9cab-f0756e381bee
+      - d53c9005-087e-4148-ad44-f44a68624cae
+      - 80ff9a1a-3a72-4983-afcb-d1444dcef265
+      - 5ded024b-119c-4979-9ba1-b01e6812a494
+      - d5ce28ab-5c0f-491e-a117-eb51a5173eb2
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  16ce2980-002d-4171-b8b6-2e1bf4a28ed4:
+    id: 16ce2980-002d-4171-b8b6-2e1bf4a28ed4
+    content: 'Unit: AcceptFeedbackCommand with archive — moves original, creates replacements, creates relation links'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4acdca6f-3701-481b-9cab-f0756e381bee:
+    id: 4acdca6f-3701-481b-9cab-f0756e381bee
+    content: 'Unit: AcceptFeedbackCommand with archive — undo restores original position, removes relation links'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d53c9005-087e-4148-ad44-f44a68624cae:
+    id: d53c9005-087e-4148-ad44-f44a68624cae
+    content: 'Unit: AcceptFeedbackCommand without archive — unchanged behavior'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  80ff9a1a-3a72-4983-afcb-d1444dcef265:
+    id: 80ff9a1a-3a72-4983-afcb-d1444dcef265
+    content: 'Unit: AcceptFeedbackCommand with archive — destination deleted returns error/aborts'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5ded024b-119c-4979-9ba1-b01e6812a494:
+    id: 5ded024b-119c-4979-9ba1-b01e6812a494
+    content: 'Unit: StepConfigDialog renders archive settings'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d5ce28ab-5c0f-491e-a117-eb51a5173eb2:
+    id: d5ce28ab-5c0f-491e-a117-eb51a5173eb2
+    content: 'Unit: finishAccept reads and passes archive config'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  4846acd3-a486-40a3-8eac-003f7fb036d5:
+    id: 4846acd3-a486-40a3-8eac-003f7fb036d5
+    content: Risks and edge cases
+    children:
+      - 9ec63e5f-3c83-413b-ab51-138298c5c33c
+      - da4b29e9-1178-448f-ae8a-627e7cfa8833
+      - 83b88404-810b-4eb2-a3b3-6c47f7b30d6d
+      - 68e4f3b0-08ad-4530-8d09-803eeb02d3bf
+      - 55041df7-1f4e-4a70-a755-4ca6953faae2
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9ec63e5f-3c83-413b-ab51-138298c5c33c:
+    id: 9ec63e5f-3c83-413b-ab51-138298c5c33c
+    content: The destination picker UX is the biggest design risk — pasting a hyperlink is functional but not discoverable. A tree browser/dropdown would be better UX but significantly more effort.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  da4b29e9-1178-448f-ae8a-627e7cfa8833:
+    id: da4b29e9-1178-448f-ae8a-627e7cfa8833
+    content: 'The archive operation adds complexity to AcceptFeedbackCommand which is already the most complex command. The undo path must correctly restore: original node position, archive destination children order, all created relation nodes, and the replacement nodes.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  83b88404-810b-4eb2-a3b3-6c47f7b30d6d:
+    id: 83b88404-810b-4eb2-a3b3-6c47f7b30d6d
+    content: If the user runs the same item through the same workflow step multiple times (e.g., after undo), the archive destination accumulates duplicate copies. This is by design but could be confusing.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  68e4f3b0-08ad-4530-8d09-803eeb02d3bf:
+    id: 68e4f3b0-08ad-4530-8d09-803eeb02d3bf
+    content: '"Resolve linked content when sending" interacts with the existing hyperlink resolution in exportContextAsMarkdown. If the replacement node is inside a context declaration, its hyperlinks already resolve. The flag may need to force resolution even outside context declarations — this needs investigation.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  55041df7-1f4e-4a70-a755-4ca6953faae2:
+    id: 55041df7-1f4e-4a70-a755-4ca6953faae2
+    content: Blueprint export includes relation link nodes as-is, which may create broken hyperlinks in the exported blueprint (the linked nodes won't exist in the new file). This is an edge case noted as acceptable.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5f678f20-f662-4705-a33a-05ba963a3e93:
+    id: 5f678f20-f662-4705-a33a-05ba963a3e93
+    content: Implementation plan
+    children:
+      - f680a1dd-dad8-4b24-8035-480ad1f47693
+      - 6fca3c7f-99cb-44e7-b87e-d41190cc9d95
+      - eb3e5457-169a-40f5-b8a9-a8b1d5280c91
+      - 15ff8f55-1ace-419b-b64e-8795bac7e916
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f680a1dd-dad8-4b24-8035-480ad1f47693:
+    id: f680a1dd-dad8-4b24-8035-480ad1f47693
+    content: Single PR — the archive logic is tightly coupled with the command and dialog
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6fca3c7f-99cb-44e7-b87e-d41190cc9d95:
+    id: 6fca3c7f-99cb-44e7-b87e-d41190cc9d95
+    content: 'Order: Dialog settings (Step 1) → Metadata actions (Step 2) → Command logic (Step 3) → Flow wiring (Step 4) → Resolve flag (Step 5) → Tests (Step 6)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  eb3e5457-169a-40f5-b8a9-a8b1d5280c91:
+    id: eb3e5457-169a-40f5-b8a9-a8b1d5280c91
+    content: Testing strategy
+    children:
+      - adf44f26-08b8-41b5-a584-25bd8ce46f32
+      - 18edaf12-5098-435b-84ec-f6a1b18ac467
+      - ca8678c5-a482-479c-914e-4f2b00ac6617
+      - 831ad4c9-6f69-4658-b73e-95e5a110788d
+      - a2886c77-671b-41ea-92a9-bff7af407e60
+      - 26c0c168-46ef-4b60-b4ee-555db5b07d24
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  adf44f26-08b8-41b5-a584-25bd8ce46f32:
+    id: adf44f26-08b8-41b5-a584-25bd8ce46f32
+    content: 'Unit: AcceptFeedbackCommand archive/non-archive paths'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  18edaf12-5098-435b-84ec-f6a1b18ac467:
+    id: 18edaf12-5098-435b-84ec-f6a1b18ac467
+    content: 'Unit: Undo/redo with archive'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ca8678c5-a482-479c-914e-4f2b00ac6617:
+    id: ca8678c5-a482-479c-914e-4f2b00ac6617
+    content: 'Unit: StepConfigDialog archive settings'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  831ad4c9-6f69-4658-b73e-95e5a110788d:
+    id: 831ad4c9-6f69-4658-b73e-95e5a110788d
+    content: 'Unit: finishAccept archive config reading'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  a2886c77-671b-41ea-92a9-bff7af407e60:
+    id: a2886c77-671b-41ea-92a9-bff7af407e60
+    content: 'Manual: end-to-end archive flow with workflow — archive, navigate hyperlinks, undo, redo'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  26c0c168-46ef-4b60-b4ee-555db5b07d24:
+    id: 26c0c168-46ef-4b60-b4ee-555db5b07d24
+    content: 'Manual: verify "resolve linked content" includes archived original''s content in AI prompt'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  15ff8f55-1ace-419b-b64e-8795bac7e916:
+    id: 15ff8f55-1ace-419b-b64e-8795bac7e916
+    content: 'Parallelisation: Step 1 (dialog) can be done in parallel with Step 3 (command logic) since they''re independent until Step 4 wires them together'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a91fd425-8be4-4f2b-9865-f87ea27097e1:
+    id: a91fd425-8be4-4f2b-9865-f87ea27097e1
+    content: Test plan
+    children:
+      - 383e21ef-c7dd-463b-b7e7-6627cbbb1e7a
+      - 2204012e-ebb1-403d-a2ae-67376b83a010
+      - aad73716-2c3a-4abe-a761-b363bfec46fe
+      - d9e140d4-4ae3-4275-a134-97e62cf2e319
+      - 8c66db01-e1bb-4401-962c-cb3f3d91f8d9
+      - e6d4139f-7dea-4688-a196-eb9e28aa3f8d
+      - c9c53f5d-c85b-456b-966a-6aaafa6c41a9
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  383e21ef-c7dd-463b-b7e7-6627cbbb1e7a:
+    id: 383e21ef-c7dd-463b-b7e7-6627cbbb1e7a
+    content: Scope and objectives
+    children:
+      - b6d876ee-7238-4354-89cc-8d22b09059a8
+      - aee866fc-fe07-415b-a95e-c736a9c151b6
+      - c58fc0ba-e301-4019-b7b1-6b93756741ab
+      - 5c6c6208-6a66-450f-a724-cc43a69c9d1d
+      - b73869be-e49f-4263-bb37-071e86d1de16
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b6d876ee-7238-4354-89cc-8d22b09059a8:
+    id: b6d876ee-7238-4354-89cc-8d22b09059a8
+    content: Verify that archive moves the original node to the configured destination and creates relation links between archived and replacement nodes
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  aee866fc-fe07-415b-a95e-c736a9c151b6:
+    id: aee866fc-fe07-415b-a95e-c736a9c151b6
+    content: Verify that the entire archive-and-replace operation is undoable as a single operation
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c58fc0ba-e301-4019-b7b1-6b93756741ab:
+    id: c58fc0ba-e301-4019-b7b1-6b93756741ab
+    content: Verify that existing non-archive feedback acceptance is unchanged
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5c6c6208-6a66-450f-a724-cc43a69c9d1d:
+    id: 5c6c6208-6a66-450f-a724-cc43a69c9d1d
+    content: Verify that the step configuration dialog correctly manages archive settings
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b73869be-e49f-4263-bb37-071e86d1de16:
+    id: b73869be-e49f-4263-bb37-071e86d1de16
+    content: Verify that "resolve linked content when sending" controls whether hyperlink content is included in AI prompts
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2204012e-ebb1-403d-a2ae-67376b83a010:
+    id: 2204012e-ebb1-403d-a2ae-67376b83a010
+    content: Entry criteria
+    children:
+      - bb274689-d0b0-478c-ae1c-e2a37ab56451
+      - 9ce180e7-7352-4fd3-bd13-0442982b83c3
+      - dc282114-1df7-4b22-8794-418f976d0756
+      - e72252e4-2a6f-4f56-849c-29f7c64f677c
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bb274689-d0b0-478c-ae1c-e2a37ab56451:
+    id: bb274689-d0b0-478c-ae1c-e2a37ab56451
+    content: Step configuration dialog displays archive settings (destination, link names, resolve toggle)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9ce180e7-7352-4fd3-bd13-0442982b83c3:
+    id: 9ce180e7-7352-4fd3-bd13-0442982b83c3
+    content: AcceptFeedbackCommand supports archive configuration
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  dc282114-1df7-4b22-8794-418f976d0756:
+    id: dc282114-1df7-4b22-8794-418f976d0756
+    content: finishAccept reads and passes archive config from workflow step metadata
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e72252e4-2a6f-4f56-849c-29f7c64f677c:
+    id: e72252e4-2a6f-4f56-849c-29f7c64f677c
+    content: Relation link nodes use the existing hyperlink system
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  aad73716-2c3a-4abe-a761-b363bfec46fe:
+    id: aad73716-2c3a-4abe-a761-b363bfec46fe
+    content: Exit criteria
+    children:
+      - 33d2bec6-5afd-463d-a38c-aa0b7970a132
+      - ea40e71c-f8f5-4b93-84dc-d820a47eeb99
+      - 726118ec-f2a4-4f21-8544-973e992ee783
+      - 059ee197-754e-4e06-8d41-296c53ae2a46
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  33d2bec6-5afd-463d-a38c-aa0b7970a132:
+    id: 33d2bec6-5afd-463d-a38c-aa0b7970a132
+    content: All unit tests pass
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ea40e71c-f8f5-4b93-84dc-d820a47eeb99:
+    id: ea40e71c-f8f5-4b93-84dc-d820a47eeb99
+    content: All manual test scenarios verified
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  726118ec-f2a4-4f21-8544-973e992ee783:
+    id: 726118ec-f2a4-4f21-8544-973e992ee783
+    content: No regressions in existing feedback acceptance (non-archive path)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  059ee197-754e-4e06-8d41-296c53ae2a46:
+    id: 059ee197-754e-4e06-8d41-296c53ae2a46
+    content: No regressions in existing hyperlink behavior
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d9e140d4-4ae3-4275-a134-97e62cf2e319:
+    id: d9e140d4-4ae3-4275-a134-97e62cf2e319
+    content: Environments and prerequisites
+    children:
+      - d883d03b-559f-42e5-9bb5-2f7c01f5e2e3
+      - 7322b028-63ad-47cf-8c18-667908185039
+      - 5a71fb14-920f-4508-839f-dff72ed812b8
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d883d03b-559f-42e5-9bb5-2f7c01f5e2e3:
+    id: d883d03b-559f-42e5-9bb5-2f7c01f5e2e3
+    content: A tree with a declared workflow containing at least one step with archive configured and one without
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7322b028-63ad-47cf-8c18-667908185039:
+    id: 7322b028-63ad-47cf-8c18-667908185039
+    content: A destination node for the archive (separate from the workflow)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5a71fb14-920f-4508-839f-dff72ed812b8:
+    id: 5a71fb14-920f-4508-839f-dff72ed812b8
+    content: A collaborate-mode context applied to workflow steps
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8c66db01-e1bb-4401-962c-cb3f3d91f8d9:
+    id: 8c66db01-e1bb-4401-962c-cb3f3d91f8d9
+    content: Unit tests
+    children:
+      - 81d8d67a-0c93-476c-805b-7433f9d1982e
+      - aa8975fa-753b-4aaa-844c-6a502d08b664
+      - 1792305d-c342-4e2e-aea9-6322d430a6ac
+      - 36be15a1-a8f7-47aa-85cc-e2bbf44d6d5d
+      - 2d4e10bf-8d06-4c20-ad61-4e684ee67e56
+      - bfc75876-eb36-4ce2-9043-4a7e16c073dc
+      - 6a0b88f7-ed33-460c-9d12-bc8e7ee92d35
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  81d8d67a-0c93-476c-805b-7433f9d1982e:
+    id: 81d8d67a-0c93-476c-805b-7433f9d1982e
+    content: AcceptFeedbackCommand — archive path
+    children:
+      - 3b1c7f12-7a28-4038-8da7-d37ff51c879d
+      - fdfefaa3-46f3-470c-96c5-548fc1f45c7d
+      - 544d64d0-8f22-4d5f-89a9-c2b23ed2f44b
+      - 9d0ffc65-f51b-4fd0-9fe4-010710485931
+      - 2eb835d9-b726-4b8b-a9f3-bf8fa26278a3
+      - fd5a18bd-51e7-42aa-86fd-9053d4ec12f9
+      - 87d81671-350b-479e-bd7b-5642970d7096
+      - 1c250cfc-4c45-476e-9293-73e265f034e7
+      - 49553697-48f7-4823-9dc9-25fc4d517dd5
+      - b399c074-761a-442a-9949-dfdbaa276729
+      - 20e683fb-6f67-458d-9ba0-66642ea5092e
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3b1c7f12-7a28-4038-8da7-d37ff51c879d:
+    id: 3b1c7f12-7a28-4038-8da7-d37ff51c879d
+    content: Moves the original node to the top of the archive destination's children
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fdfefaa3-46f3-470c-96c5-548fc1f45c7d:
+    id: fdfefaa3-46f3-470c-96c5-548fc1f45c7d
+    content: Original node retains its UUID after move
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  544d64d0-8f22-4d5f-89a9-c2b23ed2f44b:
+    id: 544d64d0-8f22-4d5f-89a9-c2b23ed2f44b
+    content: Replacement node(s) have new UUIDs
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9d0ffc65-f51b-4fd0-9fe4-010710485931:
+    id: 9d0ffc65-f51b-4fd0-9fe4-010710485931
+    content: Replacement node(s) appear at the collaborating node's former position in the parent's children array
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2eb835d9-b726-4b8b-a9f3-bf8fa26278a3:
+    id: 2eb835d9-b726-4b8b-a9f3-bf8fa26278a3
+    content: Creates a container node as first child of the archived original, titled with the configured archive-side link name
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fd5a18bd-51e7-42aa-86fd-9053d4ec12f9:
+    id: fd5a18bd-51e7-42aa-86fd-9053d4ec12f9
+    content: Container node on archived original has hyperlink children pointing to each replacement node
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  87d81671-350b-479e-bd7b-5642970d7096:
+    id: 87d81671-350b-479e-bd7b-5642970d7096
+    content: Creates a container node as first child of each replacement, titled with the configured replacement-side link name
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1c250cfc-4c45-476e-9293-73e265f034e7:
+    id: 1c250cfc-4c45-476e-9293-73e265f034e7
+    content: Container node on each replacement has a hyperlink child pointing to the archived original
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  49553697-48f7-4823-9dc9-25fc4d517dd5:
+    id: 49553697-48f7-4823-9dc9-25fc4d517dd5
+    content: 'Hyperlink nodes have isHyperlink: true and linkedNodeId set to the target node''s ID'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b399c074-761a-442a-9949-dfdbaa276729:
+    id: b399c074-761a-442a-9949-dfdbaa276729
+    content: Ancestor registry is updated for the moved node, all new nodes, and all relation link nodes
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  20e683fb-6f67-458d-9ba0-66642ea5092e:
+    id: 20e683fb-6f67-458d-9ba0-66642ea5092e
+    content: Metadata is preserved on both archived and replacement nodes (isBlueprint, appliedContextIds, etc.)
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  aa8975fa-753b-4aaa-844c-6a502d08b664:
+    id: aa8975fa-753b-4aaa-844c-6a502d08b664
+    content: AcceptFeedbackCommand — archive undo
+    children:
+      - 664e51b3-2dea-4c93-9700-65d12141ab5e
+      - 6e34cbd6-caaa-4285-8058-ffda2d49ea2f
+      - 9722b1a9-53bb-4e75-90b4-bf3558c61037
+      - 6cc22dbf-fb75-4903-b25f-aa575c132996
+      - 1454ffab-d70f-46bd-9bc0-eca00b668432
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  664e51b3-2dea-4c93-9700-65d12141ab5e:
+    id: 664e51b3-2dea-4c93-9700-65d12141ab5e
+    content: Undo moves the original node back to its former position in the parent's children array
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6e34cbd6-caaa-4285-8058-ffda2d49ea2f:
+    id: 6e34cbd6-caaa-4285-8058-ffda2d49ea2f
+    content: Undo removes all replacement nodes
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9722b1a9-53bb-4e75-90b4-bf3558c61037:
+    id: 9722b1a9-53bb-4e75-90b4-bf3558c61037
+    content: Undo removes all relation link container and hyperlink nodes (from both archived and replacements)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6cc22dbf-fb75-4903-b25f-aa575c132996:
+    id: 6cc22dbf-fb75-4903-b25f-aa575c132996
+    content: Undo restores the archive destination's original children order
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1454ffab-d70f-46bd-9bc0-eca00b668432:
+    id: 1454ffab-d70f-46bd-9bc0-eca00b668432
+    content: Ancestor registry is restored to pre-archive state
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  1792305d-c342-4e2e-aea9-6322d430a6ac:
+    id: 1792305d-c342-4e2e-aea9-6322d430a6ac
+    content: AcceptFeedbackCommand — archive with multi-root decomposition
+    children:
+      - 8681dcef-c84d-4c28-8160-899abb6aedb3
+      - 57a42a63-88d1-4c57-b972-83571f2b3a6e
+      - 008b16ef-2da0-4104-8886-458dd5bf792e
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8681dcef-c84d-4c28-8160-899abb6aedb3:
+    id: 8681dcef-c84d-4c28-8160-899abb6aedb3
+    content: Archive works correctly when feedback produces multiple replacement nodes
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  57a42a63-88d1-4c57-b972-83571f2b3a6e:
+    id: 57a42a63-88d1-4c57-b972-83571f2b3a6e
+    content: The archived original's container has hyperlink children for each replacement
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  008b16ef-2da0-4104-8886-458dd5bf792e:
+    id: 008b16ef-2da0-4104-8886-458dd5bf792e
+    content: Each replacement has its own container with a hyperlink back to the archived original
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  36be15a1-a8f7-47aa-85cc-e2bbf44d6d5d:
+    id: 36be15a1-a8f7-47aa-85cc-e2bbf44d6d5d
+    content: AcceptFeedbackCommand — no archive configured
+    children:
+      - 1ec7e946-7621-4b48-99cc-fb38fb9a71c7
+      - 95280654-4071-457e-bc95-ac8649fc267e
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1ec7e946-7621-4b48-99cc-fb38fb9a71c7:
+    id: 1ec7e946-7621-4b48-99cc-fb38fb9a71c7
+    content: Behavior is identical to current implementation when archive config is not provided
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  95280654-4071-457e-bc95-ac8649fc267e:
+    id: 95280654-4071-457e-bc95-ac8649fc267e
+    content: No relation link nodes are created
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2d4e10bf-8d06-4c20-ad61-4e684ee67e56:
+    id: 2d4e10bf-8d06-4c20-ad61-4e684ee67e56
+    content: AcceptFeedbackCommand — archive destination deleted
+    children:
+      - 6af50f26-0925-4216-ad99-c2c788ea92a1
+      - a2da59a8-e30d-4652-af33-7c50ec37f027
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6af50f26-0925-4216-ad99-c2c788ea92a1:
+    id: 6af50f26-0925-4216-ad99-c2c788ea92a1
+    content: Returns an error/abort signal when the archive destination node doesn't exist
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a2da59a8-e30d-4652-af33-7c50ec37f027:
+    id: a2da59a8-e30d-4652-af33-7c50ec37f027
+    content: Does not modify any tree state (no partial archive)
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  bfc75876-eb36-4ce2-9043-4a7e16c073dc:
+    id: bfc75876-eb36-4ce2-9043-4a7e16c073dc
+    content: StepConfigDialog — archive settings
+    children:
+      - 0c77ef0d-e02a-4995-8652-590b2ffce9c8
+      - 654a2047-b2b9-455d-a177-6521fbfa6f97
+      - f9eb5939-68a5-486b-871b-1e8b96c15fb9
+      - 61e34618-73fa-490a-8f00-dd1db084fb16
+      - 95df3ef9-07dd-4930-a802-9f69a5803310
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0c77ef0d-e02a-4995-8652-590b2ffce9c8:
+    id: 0c77ef0d-e02a-4995-8652-590b2ffce9c8
+    content: Renders archive destination picker
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  654a2047-b2b9-455d-a177-6521fbfa6f97:
+    id: 654a2047-b2b9-455d-a177-6521fbfa6f97
+    content: Renders archive-side and replacement-side link name inputs
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f9eb5939-68a5-486b-871b-1e8b96c15fb9:
+    id: f9eb5939-68a5-486b-871b-1e8b96c15fb9
+    content: Renders "resolve linked content when sending" toggle (default off)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  61e34618-73fa-490a-8f00-dd1db084fb16:
+    id: 61e34618-73fa-490a-8f00-dd1db084fb16
+    content: Shows warning text for autonomous step without archive destination
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  95df3ef9-07dd-4930-a802-9f69a5803310:
+    id: 95df3ef9-07dd-4930-a802-9f69a5803310
+    content: Archive settings are disabled/hidden when the feature fields are empty (progressive disclosure)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6a0b88f7-ed33-460c-9d12-bc8e7ee92d35:
+    id: 6a0b88f7-ed33-460c-9d12-bc8e7ee92d35
+    content: finishAccept — archive config wiring
+    children:
+      - e22e127b-6bd4-40c4-832f-300dfc4a5b12
+      - 70346c8b-d32a-4a37-a8b8-5a53fda37e40
+      - d7f2d60e-505d-4b6c-b4ee-58429ae0808d
+      - 795408d2-87dd-4a04-b0ac-364732dbe092
+      - 11f31645-024b-4299-b904-adc04c0de67a
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  e22e127b-6bd4-40c4-832f-300dfc4a5b12:
+    id: e22e127b-6bd4-40c4-832f-300dfc4a5b12
+    content: Reads archiveDestinationId from the workflow step's metadata
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  70346c8b-d32a-4a37-a8b8-5a53fda37e40:
+    id: 70346c8b-d32a-4a37-a8b8-5a53fda37e40
+    content: Reads archiveSideLinkName and replacementSideLinkName from step metadata
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  d7f2d60e-505d-4b6c-b4ee-58429ae0808d:
+    id: d7f2d60e-505d-4b6c-b4ee-58429ae0808d
+    content: Passes archive config to AcceptFeedbackCommand
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  795408d2-87dd-4a04-b0ac-364732dbe092:
+    id: 795408d2-87dd-4a04-b0ac-364732dbe092
+    content: Shows warning toast and pauses workflow if archive destination doesn't exist
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  11f31645-024b-4299-b904-adc04c0de67a:
+    id: 11f31645-024b-4299-b904-adc04c0de67a
+    content: Passes undefined/null config when archive is not configured (no-op)
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  e6d4139f-7dea-4688-a196-eb9e28aa3f8d:
+    id: e6d4139f-7dea-4688-a196-eb9e28aa3f8d
+    content: Manual tests
+    children:
+      - f741d126-1ff0-4d95-a4be-84ddca5c2343
+      - 7538c9c0-e7af-46d6-b56a-fce2b031a7c6
+      - f0573ef2-d95b-4c6d-a825-5c574bc4d42a
+      - 47def073-8d3d-4399-8853-a5be5b53da5c
+      - 9ee8e79b-6d6b-4721-86ba-814522b2e187
+      - 47c0552f-88b2-41ae-ac3a-20d70c395d18
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f741d126-1ff0-4d95-a4be-84ddca5c2343:
+    id: f741d126-1ff0-4d95-a4be-84ddca5c2343
+    content: Archive happy path
+    children:
+      - 38ca03b2-a318-4aca-ab4a-dcc17ba95c3b
+      - 5cc8644b-c9e7-4e0b-b6e3-618c815505ce
+      - e4643721-9ef5-4fb6-856f-229faed94ddf
+      - f57092c8-8944-4e26-a316-cdd3ada243d6
+      - 7152e07f-41bf-4ea0-b5f4-3064be5486ac
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  38ca03b2-a318-4aca-ab4a-dcc17ba95c3b:
+    id: 38ca03b2-a318-4aca-ab4a-dcc17ba95c3b
+    content: Configure archive destination on a workflow step, run an item through, verify original moved to archive with relation links, replacements created at original's position with relation links back
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5cc8644b-c9e7-4e0b-b6e3-618c815505ce:
+    id: 5cc8644b-c9e7-4e0b-b6e3-618c815505ce
+    content: Click hyperlink on replacement → navigates to archived original
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e4643721-9ef5-4fb6-856f-229faed94ddf:
+    id: e4643721-9ef5-4fb6-856f-229faed94ddf
+    content: Click hyperlink on archived original → navigates to replacement
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f57092c8-8944-4e26-a316-cdd3ada243d6:
+    id: f57092c8-8944-4e26-a316-cdd3ada243d6
+    content: Undo → everything restored, no orphan relation links
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7152e07f-41bf-4ea0-b5f4-3064be5486ac:
+    id: 7152e07f-41bf-4ea0-b5f4-3064be5486ac
+    content: Redo → archive and links recreated
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7538c9c0-e7af-46d6-b56a-fce2b031a7c6:
+    id: 7538c9c0-e7af-46d6-b56a-fce2b031a7c6
+    content: Archive with decomposition
+    children:
+      - d29144b9-1979-40e4-9ffe-0a5424f5448e
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d29144b9-1979-40e4-9ffe-0a5424f5448e:
+    id: d29144b9-1979-40e4-9ffe-0a5424f5448e
+    content: Enable both decomposition and archive on a step, send content, verify multiple replacements each with links back to one archived original
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f0573ef2-d95b-4c6d-a825-5c574bc4d42a:
+    id: f0573ef2-d95b-4c6d-a825-5c574bc4d42a
+    content: No archive configured
+    children:
+      - 1490a545-384f-43ce-b8a1-15231ff4ace3
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1490a545-384f-43ce-b8a1-15231ff4ace3:
+    id: 1490a545-384f-43ce-b8a1-15231ff4ace3
+    content: Feedback acceptance works identically to current behavior — no relation links created
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  47def073-8d3d-4399-8853-a5be5b53da5c:
+    id: 47def073-8d3d-4399-8853-a5be5b53da5c
+    content: Archive destination deleted
+    children:
+      - c10d32b7-2f4f-44ad-9c1d-8f317647f6bd
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c10d32b7-2f4f-44ad-9c1d-8f317647f6bd:
+    id: c10d32b7-2f4f-44ad-9c1d-8f317647f6bd
+    content: Delete the archive destination node, then run a workflow step with archive configured — warning toast, workflow pauses, feedback not accepted
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9ee8e79b-6d6b-4721-86ba-814522b2e187:
+    id: 9ee8e79b-6d6b-4721-86ba-814522b2e187
+    content: Relation link deletion
+    children:
+      - 0098692a-9ece-4fdb-80f2-a4d307af597c
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0098692a-9ece-4fdb-80f2-a4d307af597c:
+    id: 0098692a-9ece-4fdb-80f2-a4d307af597c
+    content: Delete a relation container node from a replacement — link chain broken, undoable
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  47c0552f-88b2-41ae-ac3a-20d70c395d18:
+    id: 47c0552f-88b2-41ae-ac3a-20d70c395d18
+    content: Resolve linked content
+    children:
+      - 4ccbbe32-25a3-45e4-8f02-2c97ac968db5
+      - 345d181c-e02c-44c4-8d7e-d0b2d5f8adfe
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4ccbbe32-25a3-45e4-8f02-2c97ac968db5:
+    id: 4ccbbe32-25a3-45e4-8f02-2c97ac968db5
+    content: Enable "resolve linked content" on a step, send a replacement node to AI — verify the AI prompt includes the archived original's content
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  345d181c-e02c-44c4-8d7e-d0b2d5f8adfe:
+    id: 345d181c-e02c-44c4-8d7e-d0b2d5f8adfe
+    content: Disable "resolve linked content" — verify the AI prompt does NOT include the archived original's content
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c9c53f5d-c85b-456b-966a-6aaafa6c41a9:
+    id: c9c53f5d-c85b-456b-966a-6aaafa6c41a9
+    content: Risks
+    children:
+      - b473bb5e-18fd-4f3e-bea5-08876d2a9d13
+      - 8871b76b-d21c-470c-a102-0283594d38b5
+      - e7a1999c-4fa2-4e5a-b0c3-d1c65393e957
+      - 4f7515a7-3e9c-4828-a3ae-888cefa3a462
+      - 59b37451-d441-4b50-8369-6691273b0770
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b473bb5e-18fd-4f3e-bea5-08876d2a9d13:
+    id: b473bb5e-18fd-4f3e-bea5-08876d2a9d13
+    content: 'Highest likelihood of defects: AcceptFeedbackCommand archive undo — must correctly restore multiple state changes (node move, children arrays, relation link nodes, ancestor registry). The most complex undo path in the codebase.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8871b76b-d21c-470c-a102-0283594d38b5:
+    id: 8871b76b-d21c-470c-a102-0283594d38b5
+    content: 'Highest impact if failed: partial archive — if the command creates some relation links but fails partway, the tree is left in an inconsistent state. The command must be atomic (all or nothing).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e7a1999c-4fa2-4e5a-b0c3-d1c65393e957:
+    id: e7a1999c-4fa2-4e5a-b0c3-d1c65393e957
+    content: 'Dependency: the destination picker UX affects how easily users can configure archive. A paste-hyperlink approach works but is less discoverable than a visual picker.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4f7515a7-3e9c-4828-a3ae-888cefa3a462:
+    id: 4f7515a7-3e9c-4828-a3ae-888cefa3a462
+    content: 'Ambiguity: "resolve linked content when sending" — the interaction with existing hyperlink resolution in exportContextAsMarkdown needs investigation. Standard hyperlinks only resolve inside context declarations; archive hyperlinks may need to resolve in regular content too.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  59b37451-d441-4b50-8369-6691273b0770:
+    id: 59b37451-d441-4b50-8369-6691273b0770
+    content: 'Likely to change: the relation link name defaults and the destination picker UX may evolve based on user feedback after the MVP ships.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6a479043-9f75-4062-be4b-87601a635527:
+    id: 6a479043-9f75-4062-be4b-87601a635527
+    content: Font is too small in configuration dialog, increase it.
+    children: []
+    metadata:
+      status: pending
