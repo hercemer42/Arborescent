@@ -10,6 +10,7 @@ describe('StepConfigDialog', () => {
     decomposition: false,
     onStepTypeChange: vi.fn(),
     onDecompositionChange: vi.fn(),
+    onRecurseChange: vi.fn(),
     onArchiveSettingsChange: vi.fn(),
     onClose: vi.fn(),
   };
@@ -170,6 +171,36 @@ describe('StepConfigDialog', () => {
       fireEvent.click(screen.getByLabelText(/decomposition/i));
 
       expect(defaultProps.onDecompositionChange).toHaveBeenCalledWith('node-1', true);
+    });
+  });
+
+  describe('recurse toggle', () => {
+    it('should render a recurse checkbox', () => {
+      render(<StepConfigDialog {...defaultProps} />);
+
+      expect(screen.getByLabelText(/recurse/i)).toBeInTheDocument();
+    });
+
+    it('should reflect current recurse value as checked', () => {
+      render(<StepConfigDialog {...defaultProps} recurse={true} />);
+
+      const checkbox = screen.getByLabelText(/recurse/i) as HTMLInputElement;
+      expect(checkbox.checked).toBe(true);
+    });
+
+    it('should default to unchecked when recurse is undefined', () => {
+      render(<StepConfigDialog {...defaultProps} />);
+
+      const checkbox = screen.getByLabelText(/recurse/i) as HTMLInputElement;
+      expect(checkbox.checked).toBe(false);
+    });
+
+    it('should call onRecurseChange when toggled', () => {
+      render(<StepConfigDialog {...defaultProps} />);
+
+      fireEvent.click(screen.getByLabelText(/recurse/i));
+
+      expect(defaultProps.onRecurseChange).toHaveBeenCalledWith('node-1', true);
     });
   });
 

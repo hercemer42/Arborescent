@@ -25,9 +25,11 @@ interface StepConfigDialogProps {
   nodeId: string;
   currentStepType: StepType;
   decomposition?: boolean;
+  recurse?: boolean;
   archiveSettings?: ArchiveSettings;
   onStepTypeChange: (nodeId: string, stepType: StepType) => void;
   onDecompositionChange: (nodeId: string, decomposition: boolean) => void;
+  onRecurseChange: (nodeId: string, recurse: boolean) => void;
   onArchiveSettingsChange: (nodeId: string, settings: ArchiveSettings) => void;
   onClose: () => void;
 }
@@ -36,9 +38,11 @@ export function StepConfigDialog({
   nodeId,
   currentStepType,
   decomposition = false,
+  recurse = false,
   archiveSettings = {},
   onStepTypeChange,
   onDecompositionChange,
+  onRecurseChange,
   onArchiveSettingsChange,
   onClose,
 }: StepConfigDialogProps) {
@@ -84,6 +88,16 @@ export function StepConfigDialog({
           Decomposition
         </label>
         <div className="step-config-description">AI response creates multiple sibling nodes instead of replacing the original.</div>
+        <label className="step-config-checkbox-label">
+          <input
+            type="checkbox"
+            checked={recurse}
+            onChange={(e) => onRecurseChange(nodeId, e.target.checked)}
+            aria-label="Recurse"
+          />
+          Recurse
+        </label>
+        <div className="step-config-description">After completing this step, automatically start the next waiting item from the beginning of the automated chain.</div>
         <div className="step-config-section-label step-config-section-separator">Archive</div>
         <label className="step-config-input-label">
           Archive input to

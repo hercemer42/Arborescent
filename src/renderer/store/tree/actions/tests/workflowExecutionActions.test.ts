@@ -43,8 +43,10 @@ vi.mock('@/store/preferences/preferencesStore', () => ({
   usePreferencesStore: {
     getState: () => ({
       hasReceivedHookEvent: true,
+      hasLaunchedWorkflow: true,
       stepTimeoutMinutes: 10,
       markHookEventReceived: vi.fn(),
+      markWorkflowLaunched: vi.fn(),
     }),
   },
 }));
@@ -933,6 +935,194 @@ describe('createWorkflowExecutionActions', () => {
       actions.stopWorkflow('task-a');
 
       expect(state.workflowExecutionStates['task-a']).toBeUndefined();
+    });
+  });
+
+  describe('recurse', () => {
+    beforeEach(() => {
+      state.nodes['step-1'].metadata.stepType = 'autonomous';
+      state.nodes['step-1'].metadata.recurse = true;
+      state.nodes['step-2'].metadata.stepType = 'autonomous';
+      state.workflowSessionMap = { 'session-1': 'terminal-1' };
+    });
+
+    it('should schedule startWorkflow for the next waiting node after advancing past a recurse step', () => {
+      vi.useFakeTimers();
+
+      state.workflowExecutionStates['task-a'] = { state: 'running', terminalTabId: 'terminal-1' };
+
+      actions.handleHookEvent({ session_id: 'session-1', hook_event_name: 'Stop' });
+
+      // After advancement (1s delay) + recurse check schedules startWorkflow (2s delay)
+      // Verify task-a advanced to step-2 (the advancement itself works)
+      vi.advanceTimersByTime(1500);
+      expect(state.nodes['step-2'].children).toContain('task-a');
+      // task-b should still be in step-1 waiting
+      expect(state.nodes['step-1'].children).toContain('task-b');
+
+      vi.useRealTimers();
+    });
+
+    it('should not trigger recurse when step has no recurse flag', () => {
+      vi.useFakeTimers();
+      state.nodes['step-1'].metadata.recurse = false;
+      state.workflowExecutionStates['task-a'] = { state: 'running', terminalTabId: 'terminal-1' };
+
+      actions.handleHookEvent({ session_id: 'session-1', hook_event_name: 'Stop' });
+
+      vi.advanceTimersByTime(1500);
+
+      // task-a should advance but task-b should not be started
+      expect(state.workflowExecutionStates['task-b']).toBeUndefined();
+
+      vi.useRealTimers();
+    });
+
+    it('should not schedule recurse when no waiting nodes exist', () => {
+      vi.useFakeTimers();
+      state.nodes['step-1'].children = ['task-a'];
+
+      state.workflowExecutionStates['task-a'] = { state: 'running', terminalTabId: 'terminal-1' };
+
+      actions.handleHookEvent({ session_id: 'session-1', hook_event_name: 'Stop' });
+
+      vi.advanceTimersByTime(1500);
+
+      // task-a advances but no new workflow should start since no waiting nodes
+      expect(state.workflowExecutionStates['task-b']).toBeUndefined();
+
+      vi.useRealTimers();
+    });
+  });
+
+  describe('recurse with completeWorkflow', () => {
+    beforeEach(() => {
+      state.nodes['step-1'].metadata.stepType = 'autonomous';
+      state.nodes['step-1'].metadata.recurse = true;
+      state.workflowSessionMap = { 'session-1': 'terminal-1' };
+    });
+
+    it('should trigger recurse check after completeWorkflow when last step has recurse', () => {
+      vi.useFakeTimers();
+
+      // All steps autonomous so the chain is unbroken from step-1 to step-3
+      state.nodes['step-2'].metadata.stepType = 'autonomous';
+      state.nodes['step-3'].metadata.stepType = 'autonomous';
+      state.nodes['step-3'].metadata.recurse = true;
+
+      // task-a at step-3 (last step), task-b waiting in step-1
+      state.nodes['step-3'].children = ['task-a'];
+      state.nodes['step-1'].children = ['task-b'];
+      state.ancestorRegistry['task-a'] = ['root', 'workflow', 'step-3'];
+
+      state.workflowExecutionStates['task-a'] = { state: 'running', terminalTabId: 'terminal-1' };
+
+      actions.completeWorkflow('task-a');
+
+      // checkRecurse walks back through step-3→step-2→step-1 (all autonomous)
+      // finds task-b waiting in step-1, schedules startWorkflow after 2s
+      vi.advanceTimersByTime(2500);
+      expect(state.workflowExecutionStates['task-b']).toBeDefined();
+
+      vi.useRealTimers();
+    });
+
+    it('should not trigger recurse after completeWorkflow when step has no recurse flag', () => {
+      vi.useFakeTimers();
+
+      state.nodes['step-3'].children = ['task-a'];
+      state.nodes['step-1'].children = ['task-b'];
+      state.ancestorRegistry['task-a'] = ['root', 'workflow', 'step-3'];
+      state.workflowExecutionStates['task-a'] = { state: 'running', terminalTabId: 'terminal-1' };
+
+      actions.completeWorkflow('task-a');
+
+      vi.advanceTimersByTime(2500);
+      expect(state.workflowExecutionStates['task-b']).toBeUndefined();
+
+      vi.useRealTimers();
+    });
+  });
+
+  describe('recurse safety limit', () => {
+    it('should stop recursing and show warning after exceeding safety limit', () => {
+      vi.useFakeTimers();
+
+      // Single-step workflow: step-1 is last step, nodes complete after one Stop
+      state.nodes['step-1'].metadata.stepType = 'autonomous';
+      state.nodes['step-1'].metadata.recurse = true;
+      state.nodes['workflow'].children = ['step-1'];
+      state.workflowSessionMap = { 'session-1': 'terminal-1' };
+      delete state.nodes['step-2'];
+      delete state.nodes['step-3'];
+      delete state.ancestorRegistry['step-2'];
+      delete state.ancestorRegistry['step-3'];
+
+      // Create 52 task nodes in step-1
+      const taskIds: string[] = [];
+      for (let i = 0; i < 52; i++) {
+        const id = `task-${i}`;
+        taskIds.push(id);
+        state.nodes[id] = { id, content: `Task ${i}`, children: [], metadata: { isBlueprint: true } };
+        state.ancestorRegistry[id] = ['root', 'workflow', 'step-1'];
+      }
+      state.nodes['step-1'].children = taskIds;
+      state.workflowExecutionStates[taskIds[0]] = { state: 'running', terminalTabId: 'terminal-1' };
+
+      for (let i = 0; i < 51; i++) {
+        actions.handleHookEvent({ session_id: 'session-1', hook_event_name: 'Stop' });
+        vi.advanceTimersByTime(3000);
+      }
+
+      expect(mockAddToast).toHaveBeenCalledWith(
+        expect.stringContaining('Recurse limit reached'),
+        'warning'
+      );
+
+      vi.useRealTimers();
+    });
+
+    it('should reset recurse counter when chain completes naturally', () => {
+      vi.useFakeTimers();
+
+      state.nodes['step-1'].metadata.stepType = 'autonomous';
+      state.nodes['step-1'].metadata.recurse = true;
+      state.nodes['step-2'].metadata.stepType = 'autonomous';
+      state.workflowSessionMap = { 'session-1': 'terminal-1' };
+
+      // Only one item — chain completes without finding next waiting node
+      state.nodes['step-1'].children = ['task-a'];
+      state.workflowExecutionStates['task-a'] = { state: 'running', terminalTabId: 'terminal-1' };
+
+      actions.handleHookEvent({ session_id: 'session-1', hook_event_name: 'Stop' });
+      vi.advanceTimersByTime(1500);
+
+      expect(state.nodes['step-2'].children).toContain('task-a');
+
+      vi.useRealTimers();
+    });
+
+    it('should not start more nodes after stopping the workflow mid-recurse', () => {
+      vi.useFakeTimers();
+
+      state.nodes['step-1'].metadata.stepType = 'autonomous';
+      state.nodes['step-1'].metadata.recurse = true;
+      state.nodes['step-2'].metadata.stepType = 'autonomous';
+      state.workflowSessionMap = { 'session-1': 'terminal-1' };
+
+      state.nodes['step-1'].children = ['task-a', 'task-b'];
+      state.workflowExecutionStates['task-a'] = { state: 'running', terminalTabId: 'terminal-1' };
+
+      actions.handleHookEvent({ session_id: 'session-1', hook_event_name: 'Stop' });
+      vi.advanceTimersByTime(1500);
+
+      if (state.workflowExecutionStates['task-a']) {
+        actions.stopWorkflow('task-a');
+      }
+
+      expect(state.nodes['step-1'].children).toContain('task-b');
+
+      vi.useRealTimers();
     });
   });
 });

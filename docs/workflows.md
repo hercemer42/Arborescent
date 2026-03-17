@@ -46,6 +46,22 @@ If the archive destination has been deleted when a step tries to archive, the wo
 
 The entire archive-and-replace operation is undoable with `Ctrl+Z`.
 
+## Recurse
+
+When a step produces multiple items — for example, decomposition turns one problem statement into five user stories — you typically want each of those items to continue through the remaining steps. Enable **Recurse** in the step configuration dialog to process them sequentially without manual intervention.
+
+When a node advances past or completes a recurse-enabled step, the system looks back through the autonomous step chain to find the first autonomous step, then picks up the next waiting item there and starts it on the same terminal. Items are processed in order (first child first). This repeats until no waiting items remain.
+
+Recurse only walks back through contiguous autonomous steps. If the chain hits a checkpoint or manual step, recursion stops there — you continue manually at that point.
+
+Stopping the workflow mid-recurse leaves all unprocessed items in their current steps. Nothing is lost. You can start them individually later or re-enable recurse and start again.
+
+A safety limit of 50 sequential recurse iterations per terminal prevents runaway loops. If reached, recursion stops and a warning appears.
+
+### Decomposition + Recurse
+
+These two options combine naturally. Enable decomposition on an earlier step to break one item into many, then enable recurse on a later step to process them all sequentially. For example: step 1 decomposes a problem into user stories, step 2 processes each user story through an implementation workflow — all automatically.
+
 ## Running a Workflow
 
 Place an item inside an autonomous workflow step, then right-click → **Start Workflow** (requires a terminal tab open). The item's content is sent to the terminal and the workflow begins executing through the autonomous chain.
@@ -64,7 +80,7 @@ A green flash and toast notification confirm each advancement. If the item reach
 
 Automated advancement bypasses the undo stack — you cannot undo an automated move with `Ctrl+Z`.
 
-If the terminal fails to accept content, the workflow stops automatically and shows an error. A timeout (10 minutes by default) warns you if a step has no activity, with options to dismiss or stop the workflow.
+If the terminal fails to accept content, the workflow stops automatically and shows an error. A timeout (15 minutes by default) warns you if a step has no activity, with options to dismiss or stop the workflow.
 
 For automated advancement to work, you need to configure your AI tool to send hook events back to Arborescent. See [Hook Setup](#hook-setup) below.
 

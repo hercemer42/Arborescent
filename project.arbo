@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-03-17T12:34:36.179Z'
+updated: '2026-03-17T13:46:17.289Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -577,7 +577,7 @@ nodes:
       - e91d842b-d982-4f8b-a3c5-7f0a42c95604
     metadata:
       status: pending
-      expanded: false
+      expanded: true
       isBlueprint: true
       blueprintIcon: Brain
       blueprintColor: '#0ea5e9'
@@ -26818,7 +26818,7 @@ nodes:
     id: bdceb696-248d-4199-9182-db0689445c07
     content: Documentation
     children:
-      - 437c64c9-3da3-449a-9702-96755b5521b1
+      - 47796554-2b68-4d70-81fc-5afe4fb95e59
     metadata:
       status: pending
       isBlueprint: true
@@ -26848,8 +26848,7 @@ nodes:
   87a11a28-4295-467f-ac54-746692494413:
     id: 87a11a28-4295-467f-ac54-746692494413
     content: Decomposition
-    children:
-      - 47796554-2b68-4d70-81fc-5afe4fb95e59
+    children: []
     metadata:
       status: completed
       resolvedAt: '2026-03-08T21:15:28.213Z'
@@ -34458,6 +34457,7 @@ nodes:
     id: 13c5048b-15eb-4989-a6fc-25032e5c131f
     content: Problems
     children:
+      - c4c83046-4976-4687-becc-dcaa8eafbd25
       - ca651178-69bc-4933-aa6f-b19e106fbd34
       - 413a84b6-97e7-4963-81ca-6667f2136d9a
       - 28b63463-b046-4ed0-ab09-942c8b933875
@@ -35397,8 +35397,7 @@ nodes:
   3d68c9ce-3b9b-4f79-ad99-4b6fd68e0e74:
     id: 3d68c9ce-3b9b-4f79-ad99-4b6fd68e0e74
     content: Issue resolution
-    children:
-      - 6a479043-9f75-4062-be4b-87601a635527
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -35482,7 +35481,7 @@ nodes:
       isBlueprint: true
       blueprintIcon: ClipboardClock
       blueprintColor: '#a855f7'
-      expanded: false
+      expanded: true
   0b06bda5-252f-43f6-bb00-9043226b3dae:
     id: 0b06bda5-252f-43f6-bb00-9043226b3dae
     content: 'User Story 1: Define and display step types on workflow steps'
@@ -45388,219 +45387,15 @@ nodes:
     id: 47796554-2b68-4d70-81fc-5afe4fb95e59
     content: 'US4: AI workflow orchestration - Recurse option for sequential output processing'
     children:
-      - b806e884-f6e2-484d-bd92-e3616afe3e0e
-      - 2ad2f8f6-a3bb-49c0-a528-8a23fc4b8f97
-      - e5b23092-6194-4255-826a-6c5b321ed89f
-      - 26b1f4fe-9770-4d4d-a1ab-092df1d376d9
+      - 90c76e58-235e-460f-a8fb-efda9109dd0d
+      - 45a5f2a4-acbb-4910-9290-d991e167904f
+      - 0e7fcda7-04ed-42d9-893b-32d9524a5264
+      - 2ebc3134-fa2c-424e-a0c7-9b850a904aaf
+      - 21abc260-ddd7-41d0-96ec-52d24601fe02
+      - 39539d7e-a809-49d1-90ee-587e2af08e51
     metadata:
-      status: pending
+      status: completed
       expanded: false
-      deleted: false
-      plugins: {}
-  b806e884-f6e2-484d-bd92-e3616afe3e0e:
-    id: b806e884-f6e2-484d-bd92-e3616afe3e0e
-    content: Problem statement
-    children:
-      - 6e9fd632-fcd1-47ec-845a-487cca20e02c
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  6e9fd632-fcd1-47ec-845a-487cca20e02c:
-    id: 6e9fd632-fcd1-47ec-845a-487cca20e02c
-    content: As a user with automated workflows that produce multiple output nodes (e.g. 5 user stories replacing a single problem statement), I need those outputs to be processed one at a time through the remaining workflow steps. Currently, when multiple nodes sit in a step, only one can be run through the workflow at a time and the user must manually start each one.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  2ad2f8f6-a3bb-49c0-a528-8a23fc4b8f97:
-    id: 2ad2f8f6-a3bb-49c0-a528-8a23fc4b8f97
-    content: Use cases
-    children:
-      - 18515d09-f8a1-4555-a342-abb3c7adf6c0
-      - 4b8ae598-c8af-4743-b02b-cfaebcb6c818
-      - 1ba70294-1a69-41ce-b81d-89296e3c3105
-      - 66553d51-d883-465c-8c5e-ed87d563b08f
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  18515d09-f8a1-4555-a342-abb3c7adf6c0:
-    id: 18515d09-f8a1-4555-a342-abb3c7adf6c0
-    content: 'Primary: User enables "recurse" on a step in an automated chain. When a node completes that step, the system walks back up the chain to the first automated step, finds the next waiting node, and starts it. All 5 user stories are processed sequentially without manual intervention.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  4b8ae598-c8af-4743-b02b-cfaebcb6c818:
-    id: 4b8ae598-c8af-4743-b02b-cfaebcb6c818
-    content: 'Secondary: The automated chain hits a checkpoint step. Recursion stops naturally — the user must manually continue at the checkpoint and manually start the workflow for remaining items.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  1ba70294-1a69-41ce-b81d-89296e3c3105:
-    id: 1ba70294-1a69-41ce-b81d-89296e3c3105
-    content: 'Secondary: The user stops the workflow mid-sequence. The node being processed stays in its current step. The remaining unprocessed nodes stay where they are. The user can resume or restart later.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  66553d51-d883-465c-8c5e-ed87d563b08f:
-    id: 66553d51-d883-465c-8c5e-ed87d563b08f
-    content: 'Secondary: Only one node is in the first step. Recurse completes and finds nothing waiting — the workflow ends normally.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e5b23092-6194-4255-826a-6c5b321ed89f:
-    id: e5b23092-6194-4255-826a-6c5b321ed89f
-    content: Acceptance criteria
-    children:
-      - 6783bc15-a8a0-49ba-b99a-8aa664b5ae7b
-      - 09ae3f98-25a5-4a33-aebb-c7d29e9b7b6f
-      - 0f908725-bc5c-4e92-962a-2dc8ed7adeab
-      - 2b34137e-5c36-450e-80fa-016b13ff00d1
-      - ff2a7008-4232-474d-b402-8ea108714b7c
-      - 1c429a09-a739-4d9c-bf54-a5443e8f7961
-      - 6185fc02-6ba4-41a6-b026-0c0c93518840
-      - 72aac027-59bd-4f07-b17a-4097f04747ab
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  6783bc15-a8a0-49ba-b99a-8aa664b5ae7b:
-    id: 6783bc15-a8a0-49ba-b99a-8aa664b5ae7b
-    content: The step configuration dialog includes a "recurse" toggle
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  09ae3f98-25a5-4a33-aebb-c7d29e9b7b6f:
-    id: 09ae3f98-25a5-4a33-aebb-c7d29e9b7b6f
-    content: When a node passes through a step with "recurse" enabled, the system walks back up the workflow step chain through unbroken autonomous steps to find the first step in that automated sequence
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  0f908725-bc5c-4e92-962a-2dc8ed7adeab:
-    id: 0f908725-bc5c-4e92-962a-2dc8ed7adeab
-    content: If a waiting node exists in that first step, it is started through the workflow automatically
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  2b34137e-5c36-450e-80fa-016b13ff00d1:
-    id: 2b34137e-5c36-450e-80fa-016b13ff00d1
-    content: Recursion only walks back through autonomous steps — it stops at any checkpoint, manual step, or the beginning of the workflow
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ff2a7008-4232-474d-b402-8ea108714b7c:
-    id: ff2a7008-4232-474d-b402-8ea108714b7c
-    content: Nodes are picked up in the order they appear in the step (first child first)
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  1c429a09-a739-4d9c-bf54-a5443e8f7961:
-    id: 1c429a09-a739-4d9c-bf54-a5443e8f7961
-    content: If no waiting nodes are found, nothing happens — the workflow ends for the current item as normal
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  6185fc02-6ba4-41a6-b026-0c0c93518840:
-    id: 6185fc02-6ba4-41a6-b026-0c0c93518840
-    content: Stopping the workflow mid-recurse leaves all unprocessed nodes in their current steps — no nodes are lost
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  72aac027-59bd-4f07-b17a-4097f04747ab:
-    id: 72aac027-59bd-4f07-b17a-4097f04747ab
-    content: Recurse works independently of archiving — it processes whatever nodes are sitting in a step, regardless of how they got there
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  26b1f4fe-9770-4d4d-a1ab-092df1d376d9:
-    id: 26b1f4fe-9770-4d4d-a1ab-092df1d376d9
-    content: Constraints and assumptions
-    children:
-      - 436af5cb-25d9-4812-bc1b-1b4240e37560
-      - 7f5c4125-55b1-456e-9b02-15816aa99254
-      - 8a6c057a-e93a-4eac-acbd-bb9e6c59119f
-      - ae7b3158-ff5c-48d7-af63-3039d82ebaf3
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  436af5cb-25d9-4812-bc1b-1b4240e37560:
-    id: 436af5cb-25d9-4812-bc1b-1b4240e37560
-    content: Depends on US1 (step configuration dialog) for the recurse toggle UI
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  7f5c4125-55b1-456e-9b02-15816aa99254:
-    id: 7f5c4125-55b1-456e-9b02-15816aa99254
-    content: Recurse is most useful when a prior step produces multiple outputs (via US2 multi-node acceptance) but is not dependent on it — it works with any nodes that happen to be in a step
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  8a6c057a-e93a-4eac-acbd-bb9e6c59119f:
-    id: 8a6c057a-e93a-4eac-acbd-bb9e6c59119f
-    content: The existing workflow execution state tracking handles one running item per terminal — recurse initiates a new workflow run after the current one completes, it does not run items in parallel
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ae7b3158-ff5c-48d7-af63-3039d82ebaf3:
-    id: ae7b3158-ff5c-48d7-af63-3039d82ebaf3
-    content: Runaway recursion risk exists if a workflow creates output that feeds back into itself — the existing provenance circularity check (US3) and the natural stop at non-autonomous steps mitigate this, but a maximum recursion depth or node count limit should be considered as a safety net
-    children: []
-    metadata:
-      status: pending
-      expanded: true
       deleted: false
       plugins: {}
   7de1d56c-5320-48f8-b77b-bc434940dfce:
@@ -48989,8 +48784,9 @@ nodes:
     id: 481c87e7-14ce-4e02-9e1c-3483a5abac51
     content: Done
     children:
-      - 911c7c76-b792-44e2-b404-5087a4ceaff4
       - 4adfa410-1e2e-4155-8e8e-2b2ed48b40a8
+      - 911c7c76-b792-44e2-b404-5087a4ceaff4
+      - 437c64c9-3da3-449a-9702-96755b5521b1
     metadata:
       status: pending
       isBlueprint: true
@@ -54268,9 +54064,1677 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  6a479043-9f75-4062-be4b-87601a635527:
-    id: 6a479043-9f75-4062-be4b-87601a635527
-    content: Font is too small in configuration dialog, increase it.
+  c4c83046-4976-4687-becc-dcaa8eafbd25:
+    id: c4c83046-4976-4687-becc-dcaa8eafbd25
+    content: If the terminal window is open, and the feedback panel pops up, then after closing it the terminal window is not open
+    children:
+      - b337afa9-5b58-48be-b3d4-72920c4b80f6
+      - a4d8fd5c-f607-4c80-96a8-d9227b23ad01
+    metadata:
+      status: pending
+  b337afa9-5b58-48be-b3d4-72920c4b80f6:
+    id: b337afa9-5b58-48be-b3d4-72920c4b80f6
+    content: Annoying and breaks the flow
     children: []
     metadata:
       status: pending
+  a4d8fd5c-f607-4c80-96a8-d9227b23ad01:
+    id: a4d8fd5c-f607-4c80-96a8-d9227b23ad01
+    content: Refocus the terminal panel after closing the feedback panel if it was open before the feedback panel
+    children: []
+    metadata:
+      status: pending
+  90c76e58-235e-460f-a8fb-efda9109dd0d:
+    id: 90c76e58-235e-460f-a8fb-efda9109dd0d
+    content: Problem statement
+    children:
+      - 9fa1492f-d715-4150-8dbe-a56bf5b0801e
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9fa1492f-d715-4150-8dbe-a56bf5b0801e:
+    id: 9fa1492f-d715-4150-8dbe-a56bf5b0801e
+    content: As a user with automated workflows that produce multiple output nodes (e.g. 5 user stories replacing a single problem statement), I need those outputs to be processed one at a time through the remaining workflow steps. Currently, when multiple nodes sit in a step, only one can be run through the workflow at a time and the user must manually start each one.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  45a5f2a4-acbb-4910-9290-d991e167904f:
+    id: 45a5f2a4-acbb-4910-9290-d991e167904f
+    content: Use cases
+    children:
+      - 5efa22d0-2116-4d8a-b9c9-8efe15ba8c89
+      - 3b241c4e-b6c6-43a3-a1c3-cffa2f5955c2
+      - 886f1d73-df5e-484c-a144-a13852d63635
+      - ee1f9baa-af99-4378-924d-ac6f5c4fba36
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5efa22d0-2116-4d8a-b9c9-8efe15ba8c89:
+    id: 5efa22d0-2116-4d8a-b9c9-8efe15ba8c89
+    content: 'Primary: User enables "recurse" on a step in an automated chain. When a node completes that step, the system walks back up the chain to the first automated step, finds the next waiting node, and starts it. All 5 user stories are processed sequentially without manual intervention.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3b241c4e-b6c6-43a3-a1c3-cffa2f5955c2:
+    id: 3b241c4e-b6c6-43a3-a1c3-cffa2f5955c2
+    content: 'Secondary: The automated chain hits a checkpoint step. Recursion stops naturally — the user must manually continue at the checkpoint and manually start the workflow for remaining items.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  886f1d73-df5e-484c-a144-a13852d63635:
+    id: 886f1d73-df5e-484c-a144-a13852d63635
+    content: 'Secondary: The user stops the workflow mid-sequence. The node being processed stays in its current step. The remaining unprocessed nodes stay where they are. The user can resume or restart later.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ee1f9baa-af99-4378-924d-ac6f5c4fba36:
+    id: ee1f9baa-af99-4378-924d-ac6f5c4fba36
+    content: 'Secondary: Only one node is in the first step. Recurse completes and finds nothing waiting — the workflow ends normally.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0e7fcda7-04ed-42d9-893b-32d9524a5264:
+    id: 0e7fcda7-04ed-42d9-893b-32d9524a5264
+    content: Acceptance criteria
+    children:
+      - fb355b52-bc7e-45a4-8a53-8fbd7ecddc6b
+      - 19a32f2f-7638-4072-b2d6-69e1e0269caa
+      - 408c8387-833f-41e3-ac58-33282336ae44
+      - 755368cb-1b88-47ae-81c2-4d5d4dc5da32
+      - 26bfcf01-13f0-4616-808b-00b83afd2369
+      - f861bf7b-ceff-4a3b-8e12-82b994fd3e4b
+      - ff2b4b3a-f61a-4efa-b163-3fbdb06f53ac
+      - 71d20aa1-2461-468c-b08e-31d1e41d751d
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fb355b52-bc7e-45a4-8a53-8fbd7ecddc6b:
+    id: fb355b52-bc7e-45a4-8a53-8fbd7ecddc6b
+    content: The step configuration dialog includes a "recurse" toggle
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  19a32f2f-7638-4072-b2d6-69e1e0269caa:
+    id: 19a32f2f-7638-4072-b2d6-69e1e0269caa
+    content: When a node passes through a step with "recurse" enabled, the system walks back up the workflow step chain through unbroken autonomous steps to find the first step in that automated sequence
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  408c8387-833f-41e3-ac58-33282336ae44:
+    id: 408c8387-833f-41e3-ac58-33282336ae44
+    content: If a waiting node exists in that first step, it is started through the workflow automatically
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  755368cb-1b88-47ae-81c2-4d5d4dc5da32:
+    id: 755368cb-1b88-47ae-81c2-4d5d4dc5da32
+    content: Recursion only walks back through autonomous steps — it stops at any checkpoint, manual step, or the beginning of the workflow
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  26bfcf01-13f0-4616-808b-00b83afd2369:
+    id: 26bfcf01-13f0-4616-808b-00b83afd2369
+    content: Nodes are picked up in the order they appear in the step (first child first)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f861bf7b-ceff-4a3b-8e12-82b994fd3e4b:
+    id: f861bf7b-ceff-4a3b-8e12-82b994fd3e4b
+    content: If no waiting nodes are found, nothing happens — the workflow ends for the current item as normal
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ff2b4b3a-f61a-4efa-b163-3fbdb06f53ac:
+    id: ff2b4b3a-f61a-4efa-b163-3fbdb06f53ac
+    content: Stopping the workflow mid-recurse leaves all unprocessed nodes in their current steps — no nodes are lost
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  71d20aa1-2461-468c-b08e-31d1e41d751d:
+    id: 71d20aa1-2461-468c-b08e-31d1e41d751d
+    content: Recurse works independently of archiving — it processes whatever nodes are sitting in a step, regardless of how they got there
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2ebc3134-fa2c-424e-a0c7-9b850a904aaf:
+    id: 2ebc3134-fa2c-424e-a0c7-9b850a904aaf
+    content: Constraints and assumptions
+    children:
+      - f2db4532-0a8f-4b64-8130-75741fc30087
+      - 8309fdd2-67c2-41c1-9367-25063229901c
+      - 75824f4b-c213-4e1a-bac5-b7a804aee581
+      - 4fa2edc1-6636-4c26-b90d-e1b6fde4d94b
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f2db4532-0a8f-4b64-8130-75741fc30087:
+    id: f2db4532-0a8f-4b64-8130-75741fc30087
+    content: Depends on US1 (step configuration dialog) for the recurse toggle UI
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8309fdd2-67c2-41c1-9367-25063229901c:
+    id: 8309fdd2-67c2-41c1-9367-25063229901c
+    content: Recurse is most useful when a prior step produces multiple outputs (via US2 multi-node acceptance) but is not dependent on it — it works with any nodes that happen to be in a step
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  75824f4b-c213-4e1a-bac5-b7a804aee581:
+    id: 75824f4b-c213-4e1a-bac5-b7a804aee581
+    content: The existing workflow execution state tracking handles one running item per terminal — recurse initiates a new workflow run after the current one completes, it does not run items in parallel
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4fa2edc1-6636-4c26-b90d-e1b6fde4d94b:
+    id: 4fa2edc1-6636-4c26-b90d-e1b6fde4d94b
+    content: Runaway recursion risk exists if a workflow creates output that feeds back into itself — the existing provenance circularity check (US3) and the natural stop at non-autonomous steps mitigate this, but a maximum recursion depth or node count limit should be considered as a safety net
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  21abc260-ddd7-41d0-96ec-52d24601fe02:
+    id: 21abc260-ddd7-41d0-96ec-52d24601fe02
+    content: Technical specifications
+    children:
+      - 0a101dd9-08fc-450f-8e07-05df7ca9a816
+      - b65fcc4f-da90-4218-a99c-13c105dd332b
+      - 7b838634-4e2b-4a14-a0b8-ba37940ba915
+      - 74394162-0b6d-41e0-a5a4-a67fe7150a1b
+      - b8c05695-ea0f-43e3-af48-39300f9eeaa0
+      - 504009cc-de98-43ed-bd9e-6dd729c27272
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0a101dd9-08fc-450f-8e07-05df7ca9a816:
+    id: 0a101dd9-08fc-450f-8e07-05df7ca9a816
+    content: Summary
+    children:
+      - bc96f016-ada5-4ab2-8244-b6277021549b
+      - da770218-cb6c-4402-8b5f-120b0e41cb3c
+      - ff4d4782-fdb9-4485-9f7e-c73f559b8c12
+      - 20b2619e-6e9b-40ef-8f85-51d31575d569
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bc96f016-ada5-4ab2-8244-b6277021549b:
+    id: bc96f016-ada5-4ab2-8244-b6277021549b
+    content: Add a "recurse" toggle to the step configuration dialog
+    children:
+      - 40aec13d-e6a4-4847-a7f3-5bb3eea13701
+      - d63eb5ce-dfdb-4142-ba81-a48057d79fd9
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  40aec13d-e6a4-4847-a7f3-5bb3eea13701:
+    id: 40aec13d-e6a4-4847-a7f3-5bb3eea13701
+    content: Stored as node.metadata.recurse (boolean) on the workflow step
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d63eb5ce-dfdb-4142-ba81-a48057d79fd9:
+    id: d63eb5ce-dfdb-4142-ba81-a48057d79fd9
+    content: Read during workflow completion to decide whether to pick up the next waiting node
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  da770218-cb6c-4402-8b5f-120b0e41cb3c:
+    id: da770218-cb6c-4402-8b5f-120b0e41cb3c
+    content: After a node completes or advances past a recurse-enabled step, check for waiting nodes
+    children:
+      - 30bd3efa-5f38-4237-a399-b0dba00a74eb
+      - e00c7c2f-34ed-49c0-941e-a30472a2a107
+      - 25c3c0da-5aa4-455f-a95b-e86edec9b230
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  30bd3efa-5f38-4237-a399-b0dba00a74eb:
+    id: 30bd3efa-5f38-4237-a399-b0dba00a74eb
+    content: Walk back through the step chain from the recurse step, through unbroken autonomous steps, to find the first autonomous step in the chain
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e00c7c2f-34ed-49c0-941e-a30472a2a107:
+    id: e00c7c2f-34ed-49c0-941e-a30472a2a107
+    content: Check that first step for child nodes not currently running
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  25c3c0da-5aa4-455f-a95b-e86edec9b230:
+    id: 25c3c0da-5aa4-455f-a95b-e86edec9b230
+    content: If found, start the workflow for the first waiting child on the same terminal
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ff4d4782-fdb9-4485-9f7e-c73f559b8c12:
+    id: ff4d4782-fdb9-4485-9f7e-c73f559b8c12
+    content: The recurse check triggers at two points
+    children:
+      - efcd5569-3a80-4e44-af27-6074e06a54aa
+      - d623e1d7-35cd-4f05-9ac1-7dac382a2acb
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  efcd5569-3a80-4e44-af27-6074e06a54aa:
+    id: efcd5569-3a80-4e44-af27-6074e06a54aa
+    content: When advanceNode moves a node past the recurse-enabled step (the step is now behind the node)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d623e1d7-35cd-4f05-9ac1-7dac382a2acb:
+    id: d623e1d7-35cd-4f05-9ac1-7dac382a2acb
+    content: When completeWorkflow finishes execution for the current node
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  20b2619e-6e9b-40ef-8f85-51d31575d569:
+    id: 20b2619e-6e9b-40ef-8f85-51d31575d569
+    content: Affected areas
+    children:
+      - 6169dc7a-3e42-4193-9aaa-046a8c3b0df6
+      - f0b7f71e-f3f1-4610-9e84-9d6a83668671
+      - 0516f5e5-8f12-4618-9de3-81e6f46aba86
+      - aef7e76c-c69d-4f57-ab92-8c3b7e226026
+      - 6e4c306e-28c8-4690-aab5-71bad5c0e216
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6169dc7a-3e42-4193-9aaa-046a8c3b0df6:
+    id: 6169dc7a-3e42-4193-9aaa-046a8c3b0df6
+    content: StepConfigDialog — add recurse toggle
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f0b7f71e-f3f1-4610-9e84-9d6a83668671:
+    id: f0b7f71e-f3f1-4610-9e84-9d6a83668671
+    content: StepConfigDialogContainer — read/write node.metadata.recurse
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0516f5e5-8f12-4618-9de3-81e6f46aba86:
+    id: 0516f5e5-8f12-4618-9de3-81e6f46aba86
+    content: workflowActions.ts — add setRecurse action
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  aef7e76c-c69d-4f57-ab92-8c3b7e226026:
+    id: aef7e76c-c69d-4f57-ab92-8c3b7e226026
+    content: workflowExecutionActions.ts — add recurse logic after advanceNode and completeWorkflow
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6e4c306e-28c8-4690-aab5-71bad5c0e216:
+    id: 6e4c306e-28c8-4690-aab5-71bad5c0e216
+    content: workflowHelpers.ts — add helper to find the first autonomous step in a chain and the next waiting node
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b65fcc4f-da90-4218-a99c-13c105dd332b:
+    id: b65fcc4f-da90-4218-a99c-13c105dd332b
+    content: Inputs, outputs, and key interfaces
+    children:
+      - a807c9c4-444b-4112-b425-84c602e005f5
+      - 27701d5d-e507-4bb7-9dd9-97a7f5689bdb
+      - 4aa23c60-d79a-4429-86d3-7cdd3c0df215
+      - 7d755a1b-7f32-4ab3-ab26-ce52e962af07
+      - 0f189afd-28e4-49ad-afdf-919259a85b8e
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a807c9c4-444b-4112-b425-84c602e005f5:
+    id: a807c9c4-444b-4112-b425-84c602e005f5
+    content: 'Input: node.metadata.recurse (boolean) on the step the current node just passed through'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  27701d5d-e507-4bb7-9dd9-97a7f5689bdb:
+    id: 27701d5d-e507-4bb7-9dd9-97a7f5689bdb
+    content: 'Input: the terminal ID from the completed node''s execution state'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4aa23c60-d79a-4429-86d3-7cdd3c0df215:
+    id: 4aa23c60-d79a-4429-86d3-7cdd3c0df215
+    content: 'Output: startWorkflow called on the next waiting node with the same terminal ID'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7d755a1b-7f32-4ab3-ab26-ce52e962af07:
+    id: 7d755a1b-7f32-4ab3-ab26-ce52e962af07
+    content: 'Key helper: findFirstAutonomousStepInChain(stepId, nodes, ancestorRegistry) — walks backwards through autonomous steps to find the chain start'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0f189afd-28e4-49ad-afdf-919259a85b8e:
+    id: 0f189afd-28e4-49ad-afdf-919259a85b8e
+    content: 'Key helper: findNextWaitingNode(stepId, nodes, executionStates) — finds the first child of a step that is not currently running'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7b838634-4e2b-4a14-a0b8-ba37940ba915:
+    id: 7b838634-4e2b-4a14-a0b8-ba37940ba915
+    content: Constraints and non-functional requirements
+    children:
+      - 6fe784ad-0d67-4738-8b20-bddd5329066b
+      - 6d264423-2285-4fcc-8cd4-da6248c98ba1
+      - 57766cc9-37dd-4b1f-ad6a-61cc427ea83c
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6fe784ad-0d67-4738-8b20-bddd5329066b:
+    id: 6fe784ad-0d67-4738-8b20-bddd5329066b
+    content: Recurse must not run nodes in parallel — it waits for the current node to complete before starting the next
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6d264423-2285-4fcc-8cd4-da6248c98ba1:
+    id: 6d264423-2285-4fcc-8cd4-da6248c98ba1
+    content: The terminal must be available (not assigned to another running node) before starting the next node
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  57766cc9-37dd-4b1f-ad6a-61cc427ea83c:
+    id: 57766cc9-37dd-4b1f-ad6a-61cc427ea83c
+    content: A safety limit should prevent infinite recursion — e.g. maximum 50 sequential recurse iterations per terminal session
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  74394162-0b6d-41e0-a5a4-a67fe7150a1b:
+    id: 74394162-0b6d-41e0-a5a4-a67fe7150a1b
+    content: Technical steps
+    children:
+      - 306ded9f-bf01-4776-aafa-b7a54fa800ad
+      - 59e9c662-4de5-4189-9505-74770411f923
+      - 83a1b2e8-9464-4047-b88e-7a479e58e52a
+      - 0d70e8fb-3a94-46cb-bbb0-7e7f99d65eae
+      - d2ba4239-8e24-4c08-bac8-bb0a5cdcc6fc
+      - b8be11d0-8d07-434d-a3cc-ef81bbd6383c
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  306ded9f-bf01-4776-aafa-b7a54fa800ad:
+    id: 306ded9f-bf01-4776-aafa-b7a54fa800ad
+    content: 'Step 1: Add recurse toggle to step configuration dialog (S)'
+    children:
+      - d6f2037c-ac12-4996-ac64-3a8046ffa481
+      - 78548aa7-5752-43d1-aa32-0530a5dfd342
+      - c8d0b201-a7d3-4abe-8d7a-39f099c27555
+      - 572c609c-e636-4a8a-8efd-992721f505b2
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d6f2037c-ac12-4996-ac64-3a8046ffa481:
+    id: d6f2037c-ac12-4996-ac64-3a8046ffa481
+    content: Add a "Recurse" checkbox to StepConfigDialog in the Options section
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  78548aa7-5752-43d1-aa32-0530a5dfd342:
+    id: 78548aa7-5752-43d1-aa32-0530a5dfd342
+    content: Read/write node.metadata.recurse
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c8d0b201-a7d3-4abe-8d7a-39f099c27555:
+    id: c8d0b201-a7d3-4abe-8d7a-39f099c27555
+    content: 'Add description: "After completing this step, automatically start the next waiting item from the beginning of the automated chain."'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  572c609c-e636-4a8a-8efd-992721f505b2:
+    id: 572c609c-e636-4a8a-8efd-992721f505b2
+    content: Add setRecurse action to workflowActions.ts
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  59e9c662-4de5-4189-9505-74770411f923:
+    id: 59e9c662-4de5-4189-9505-74770411f923
+    content: 'Step 2: Add helper functions (S)'
+    children:
+      - 6fedc820-3698-4568-9c2f-96a5b59cbeb6
+      - 552f2026-ed85-41b3-8cad-1e63ef51d2d5
+      - 53bff54a-e5f5-42a1-a285-892dcfda6117
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6fedc820-3698-4568-9c2f-96a5b59cbeb6:
+    id: 6fedc820-3698-4568-9c2f-96a5b59cbeb6
+    content: 'findFirstAutonomousStepInChain(stepId, nodes, ancestorRegistry): walks back from stepId through the workflow''s children, collecting a contiguous sequence of autonomous steps, returns the first one'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  552f2026-ed85-41b3-8cad-1e63ef51d2d5:
+    id: 552f2026-ed85-41b3-8cad-1e63ef51d2d5
+    content: 'findNextWaitingNode(stepId, nodes, executionStates): returns the first child of the step that is not in executionStates (not running or awaiting-validation)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  53bff54a-e5f5-42a1-a285-892dcfda6117:
+    id: 53bff54a-e5f5-42a1-a285-892dcfda6117
+    content: These are pure functions in workflowHelpers.ts
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  83a1b2e8-9464-4047-b88e-7a479e58e52a:
+    id: 83a1b2e8-9464-4047-b88e-7a479e58e52a
+    content: 'Step 3: Add recurse logic to advanceNode (M)'
+    children:
+      - 1520d507-392a-4b18-8ea5-9994db1e6f4b
+      - 8b701364-4842-4a6e-8cce-9e52a3d80f48
+      - 0d0af8b0-f3ab-48be-a899-c8d0de3e122f
+      - c0a386d8-a22b-4240-9350-7f36aa032ae4
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1520d507-392a-4b18-8ea5-9994db1e6f4b:
+    id: 1520d507-392a-4b18-8ea5-9994db1e6f4b
+    content: After advanceNode moves a node to the next step, check if the step it just left has metadata.recurse === true
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8b701364-4842-4a6e-8cce-9e52a3d80f48:
+    id: 8b701364-4842-4a6e-8cce-9e52a3d80f48
+    content: 'If yes, call the recurse check: find the first autonomous step in the chain, then find the next waiting node there'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0d0af8b0-f3ab-48be-a899-c8d0de3e122f:
+    id: 0d0af8b0-f3ab-48be-a899-c8d0de3e122f
+    content: If a waiting node is found, schedule startWorkflow for it on the same terminal after a delay (same 1s delay as the current advancement pattern)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c0a386d8-a22b-4240-9350-7f36aa032ae4:
+    id: c0a386d8-a22b-4240-9350-7f36aa032ae4
+    content: The recurse check runs after the current node has fully advanced — it does not interrupt the advancement
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0d70e8fb-3a94-46cb-bbb0-7e7f99d65eae:
+    id: 0d70e8fb-3a94-46cb-bbb0-7e7f99d65eae
+    content: 'Step 4: Add recurse logic to completeWorkflow (S)'
+    children:
+      - a3b160f0-6cbe-4595-affc-3e23bb63266f
+      - 2c65c276-1b34-47e0-8a3e-50fba27f6d85
+      - d2ea6d67-4cff-4924-8da0-0b88b712ff0e
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a3b160f0-6cbe-4595-affc-3e23bb63266f:
+    id: a3b160f0-6cbe-4595-affc-3e23bb63266f
+    content: When a node completes the workflow (reaches the last step), check if any step in the chain it passed through had recurse enabled
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2c65c276-1b34-47e0-8a3e-50fba27f6d85:
+    id: 2c65c276-1b34-47e0-8a3e-50fba27f6d85
+    content: 'The simplest approach: check the last step the node was in before completion. If that step has recurse, trigger the recurse check.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d2ea6d67-4cff-4924-8da0-0b88b712ff0e:
+    id: d2ea6d67-4cff-4924-8da0-0b88b712ff0e
+    content: Same logic as Step 3 — find first autonomous step, find waiting node, start it
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d2ba4239-8e24-4c08-bac8-bb0a5cdcc6fc:
+    id: d2ba4239-8e24-4c08-bac8-bb0a5cdcc6fc
+    content: 'Step 5: Add safety limit (S)'
+    children:
+      - 8241a4e5-04fa-48b8-8d46-0219c7ba2c73
+      - da4c3f56-23ae-4bb0-8605-fc9d23a5b1ac
+      - b499ca67-2f30-4797-90c1-21b64cc4b13e
+      - ab98bfcf-22f2-4474-992d-00299b95fb79
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8241a4e5-04fa-48b8-8d46-0219c7ba2c73:
+    id: 8241a4e5-04fa-48b8-8d46-0219c7ba2c73
+    content: Track a recurse counter per terminal session
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  da4c3f56-23ae-4bb0-8605-fc9d23a5b1ac:
+    id: da4c3f56-23ae-4bb0-8605-fc9d23a5b1ac
+    content: Increment on each recurse-triggered startWorkflow
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b499ca67-2f30-4797-90c1-21b64cc4b13e:
+    id: b499ca67-2f30-4797-90c1-21b64cc4b13e
+    content: Reset when the user manually starts a workflow
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  ab98bfcf-22f2-4474-992d-00299b95fb79:
+    id: ab98bfcf-22f2-4474-992d-00299b95fb79
+    content: If counter exceeds 50, stop recursing and show a warning toast
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b8be11d0-8d07-434d-a3cc-ef81bbd6383c:
+    id: b8be11d0-8d07-434d-a3cc-ef81bbd6383c
+    content: 'Step 6: Update tests (M)'
+    children:
+      - a077f44f-9cbf-447d-adda-368f2adc1e31
+      - d75e199e-0cd7-4ee4-ba99-fe8e5cca3245
+      - 791147ce-ed11-469e-b1f5-bf01269d4ca4
+      - f2c92f54-01bb-46c4-a0f5-363e3b5c4220
+      - de7639b4-3960-4c40-aa0d-a53ddd853be2
+      - e65d3169-336d-439f-8d69-d7514970c761
+      - e5fe63e3-0b34-4c78-8f00-53657e20c4b6
+      - c189ff66-e397-4425-9b37-124251a4108c
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a077f44f-9cbf-447d-adda-368f2adc1e31:
+    id: a077f44f-9cbf-447d-adda-368f2adc1e31
+    content: 'Unit: recurse toggle in StepConfigDialog'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d75e199e-0cd7-4ee4-ba99-fe8e5cca3245:
+    id: d75e199e-0cd7-4ee4-ba99-fe8e5cca3245
+    content: 'Unit: findFirstAutonomousStepInChain returns correct step'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  791147ce-ed11-469e-b1f5-bf01269d4ca4:
+    id: 791147ce-ed11-469e-b1f5-bf01269d4ca4
+    content: 'Unit: findNextWaitingNode returns first non-running child'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f2c92f54-01bb-46c4-a0f5-363e3b5c4220:
+    id: f2c92f54-01bb-46c4-a0f5-363e3b5c4220
+    content: 'Unit: advanceNode triggers recurse check when step has recurse flag'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  de7639b4-3960-4c40-aa0d-a53ddd853be2:
+    id: de7639b4-3960-4c40-aa0d-a53ddd853be2
+    content: 'Unit: completeWorkflow triggers recurse check'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e65d3169-336d-439f-8d69-d7514970c761:
+    id: e65d3169-336d-439f-8d69-d7514970c761
+    content: 'Unit: recurse stops at non-autonomous steps'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e5fe63e3-0b34-4c78-8f00-53657e20c4b6:
+    id: e5fe63e3-0b34-4c78-8f00-53657e20c4b6
+    content: 'Unit: recurse does nothing when no waiting nodes exist'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c189ff66-e397-4425-9b37-124251a4108c:
+    id: c189ff66-e397-4425-9b37-124251a4108c
+    content: 'Unit: safety limit prevents infinite recursion'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b8c05695-ea0f-43e3-af48-39300f9eeaa0:
+    id: b8c05695-ea0f-43e3-af48-39300f9eeaa0
+    content: Risks and edge cases
+    children:
+      - 2ab20fb0-c893-442f-989d-e9b70a046c83
+      - cf3190d3-e5bf-4799-bd49-be5d3fde4213
+      - 9c8e7299-a137-46c1-84e9-0463b2461d7a
+      - 141f3ff2-336b-4223-936b-0a6d20ffa2a6
+      - f52998f3-511b-4258-b829-c34116e1ac20
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2ab20fb0-c893-442f-989d-e9b70a046c83:
+    id: 2ab20fb0-c893-442f-989d-e9b70a046c83
+    content: 'Timing: the recurse check must run after the current node has fully advanced and the terminal is available. The 1s delay before sendContentToTerminal helps, but the recurse-triggered startWorkflow also needs a delay to avoid racing with the previous node''s cleanup.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cf3190d3-e5bf-4799-bd49-be5d3fde4213:
+    id: cf3190d3-e5bf-4799-bd49-be5d3fde4213
+    content: 'Terminal availability: if the terminal is somehow still assigned to the previous node when recurse tries to start the next, the startWorkflow guard will reject it. This is safe but means the recurse silently fails. A retry or better timing would be needed.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9c8e7299-a137-46c1-84e9-0463b2461d7a:
+    id: 9c8e7299-a137-46c1-84e9-0463b2461d7a
+    content: 'Step with both recurse and decomposition: if a step has decomposition enabled and also recurse, the decomposition creates multiple nodes at that step, and then recurse would process them one at a time through the remaining chain. This is the intended use case and should work naturally.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  141f3ff2-336b-4223-936b-0a6d20ffa2a6:
+    id: 141f3ff2-336b-4223-936b-0a6d20ffa2a6
+    content: 'NeedsReview interaction: if a node triggers NeedsReview at a recurse step, the step pauses for review. When the user continues, the node advances. The recurse check should trigger after the continuation-triggered advancement, not after the original NeedsReview pause.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f52998f3-511b-4258-b829-c34116e1ac20:
+    id: f52998f3-511b-4258-b829-c34116e1ac20
+    content: 'Workflow with only one step: recurse on a single-step workflow would complete the node and then try to find the next waiting node in the same step. This works if multiple items were placed there.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  504009cc-de98-43ed-bd9e-6dd729c27272:
+    id: 504009cc-de98-43ed-bd9e-6dd729c27272
+    content: Implementation plan
+    children:
+      - f748e8c7-2957-4d20-82d2-9de5354b13e7
+      - a8473b75-5b87-459d-b320-6705577d5c74
+      - 54af2789-9d1e-4b2d-bbdc-1eafc8299886
+      - 4551ae82-df48-41f8-9dee-499ebee7e014
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f748e8c7-2957-4d20-82d2-9de5354b13e7:
+    id: f748e8c7-2957-4d20-82d2-9de5354b13e7
+    content: Single PR
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a8473b75-5b87-459d-b320-6705577d5c74:
+    id: a8473b75-5b87-459d-b320-6705577d5c74
+    content: 'Order: Dialog toggle (Step 1) → Helper functions (Step 2) → advanceNode logic (Step 3) → completeWorkflow logic (Step 4) → Safety limit (Step 5) → Tests (Step 6)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  54af2789-9d1e-4b2d-bbdc-1eafc8299886:
+    id: 54af2789-9d1e-4b2d-bbdc-1eafc8299886
+    content: Testing strategy
+    children:
+      - d598729b-fcc6-4b57-9975-069588833fd9
+      - ecd80a4d-b64c-48e4-8f9e-6d3be044a618
+      - 6847ad7b-cf44-4219-be3d-ffdeebda9eea
+      - 4086d50d-cd29-4a67-b5a7-eee99d9f237f
+      - d1b3329a-58d2-46a8-89f7-12c72308c171
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d598729b-fcc6-4b57-9975-069588833fd9:
+    id: d598729b-fcc6-4b57-9975-069588833fd9
+    content: 'Unit: helper functions (pure, easy to test)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ecd80a4d-b64c-48e4-8f9e-6d3be044a618:
+    id: ecd80a4d-b64c-48e4-8f9e-6d3be044a618
+    content: 'Unit: recurse trigger conditions in advanceNode and completeWorkflow'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6847ad7b-cf44-4219-be3d-ffdeebda9eea:
+    id: 6847ad7b-cf44-4219-be3d-ffdeebda9eea
+    content: 'Unit: safety limit'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4086d50d-cd29-4a67-b5a7-eee99d9f237f:
+    id: 4086d50d-cd29-4a67-b5a7-eee99d9f237f
+    content: 'Manual: end-to-end with decomposition + recurse — create 5 items, verify all process sequentially'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d1b3329a-58d2-46a8-89f7-12c72308c171:
+    id: d1b3329a-58d2-46a8-89f7-12c72308c171
+    content: 'Manual: verify recurse stops at checkpoint/manual steps'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4551ae82-df48-41f8-9dee-499ebee7e014:
+    id: 4551ae82-df48-41f8-9dee-499ebee7e014
+    content: 'Parallelisation: Steps 1-2 can be done in parallel with Steps 3-4'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  39539d7e-a809-49d1-90ee-587e2af08e51:
+    id: 39539d7e-a809-49d1-90ee-587e2af08e51
+    content: Test plan
+    children:
+      - 70d3da37-654a-4f0d-ae13-b76da3f4de10
+      - bbef78c9-ea55-4e98-b328-efef1efbefed
+      - 4ea4003f-2957-4c01-a7f1-37257bef1266
+      - 744d7671-5550-4a00-a7b4-3254f80ee9ec
+      - 590619b7-a91e-4822-aef2-a897e540bdca
+      - 9697c9e6-bb90-4619-906c-169315d98500
+      - e627b175-f677-464c-9eff-48a46d051552
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  70d3da37-654a-4f0d-ae13-b76da3f4de10:
+    id: 70d3da37-654a-4f0d-ae13-b76da3f4de10
+    content: Scope and objectives
+    children:
+      - 79a21c5a-ccad-42fc-809b-08f679515b7f
+      - 2cdccd60-2dbb-4aa1-aab0-cff67f3ead22
+      - d96bd99d-7d78-42a4-ae71-6e5b1630e1ad
+      - ba4f62ae-3ca1-4934-add1-0240f503730d
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  79a21c5a-ccad-42fc-809b-08f679515b7f:
+    id: 79a21c5a-ccad-42fc-809b-08f679515b7f
+    content: Verify that the recurse toggle enables sequential processing of multiple nodes through an automated chain
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2cdccd60-2dbb-4aa1-aab0-cff67f3ead22:
+    id: 2cdccd60-2dbb-4aa1-aab0-cff67f3ead22
+    content: Verify that recursion walks back through autonomous steps only and stops at non-autonomous boundaries
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d96bd99d-7d78-42a4-ae71-6e5b1630e1ad:
+    id: d96bd99d-7d78-42a4-ae71-6e5b1630e1ad
+    content: Verify that the safety limit prevents infinite recursion
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ba4f62ae-3ca1-4934-add1-0240f503730d:
+    id: ba4f62ae-3ca1-4934-add1-0240f503730d
+    content: Verify that existing workflow behavior is unchanged when recurse is not enabled
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bbef78c9-ea55-4e98-b328-efef1efbefed:
+    id: bbef78c9-ea55-4e98-b328-efef1efbefed
+    content: Entry criteria
+    children:
+      - c0554403-99f1-4d7d-8b20-ba6f56da5cb3
+      - 40ed11bd-a197-42b8-84a2-6a372dcb4205
+      - 488b431d-60f5-40ba-a09f-2b103796ac14
+      - 6cc5046b-2c0c-43d3-981d-9fe94881db48
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c0554403-99f1-4d7d-8b20-ba6f56da5cb3:
+    id: c0554403-99f1-4d7d-8b20-ba6f56da5cb3
+    content: Recurse toggle is implemented in the step configuration dialog
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  40ed11bd-a197-42b8-84a2-6a372dcb4205:
+    id: 40ed11bd-a197-42b8-84a2-6a372dcb4205
+    content: Helper functions (findFirstAutonomousStepInChain, findNextWaitingNode) are implemented
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  488b431d-60f5-40ba-a09f-2b103796ac14:
+    id: 488b431d-60f5-40ba-a09f-2b103796ac14
+    content: advanceNode and completeWorkflow trigger recurse checks
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6cc5046b-2c0c-43d3-981d-9fe94881db48:
+    id: 6cc5046b-2c0c-43d3-981d-9fe94881db48
+    content: Safety limit is in place
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4ea4003f-2957-4c01-a7f1-37257bef1266:
+    id: 4ea4003f-2957-4c01-a7f1-37257bef1266
+    content: Exit criteria
+    children:
+      - 77606aa3-446c-43d1-89e2-4991a0ed3c17
+      - ccdf16bb-a155-49ab-8a9e-8a1dd0d15498
+      - 7bc4eb67-5178-4e78-a9e8-f644376205e2
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  77606aa3-446c-43d1-89e2-4991a0ed3c17:
+    id: 77606aa3-446c-43d1-89e2-4991a0ed3c17
+    content: All unit tests pass
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ccdf16bb-a155-49ab-8a9e-8a1dd0d15498:
+    id: ccdf16bb-a155-49ab-8a9e-8a1dd0d15498
+    content: All manual test scenarios verified
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7bc4eb67-5178-4e78-a9e8-f644376205e2:
+    id: 7bc4eb67-5178-4e78-a9e8-f644376205e2
+    content: No regressions in existing workflow execution (advancement, completion, stop)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  744d7671-5550-4a00-a7b4-3254f80ee9ec:
+    id: 744d7671-5550-4a00-a7b4-3254f80ee9ec
+    content: Environments and prerequisites
+    children:
+      - d465f6b8-ed39-409f-b1c5-0288cfd1a9b6
+      - 0f6920c4-a459-4409-b48d-1b81e53fdd01
+      - 0d95a2ae-20f9-46b7-a71a-12ddc6aa871a
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d465f6b8-ed39-409f-b1c5-0288cfd1a9b6:
+    id: d465f6b8-ed39-409f-b1c5-0288cfd1a9b6
+    content: A tree with a declared workflow containing at least 2 autonomous steps (to form a chain)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0f6920c4-a459-4409-b48d-1b81e53fdd01:
+    id: 0f6920c4-a459-4409-b48d-1b81e53fdd01
+    content: Multiple items placed in the first step (to test sequential processing)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0d95a2ae-20f9-46b7-a71a-12ddc6aa871a:
+    id: 0d95a2ae-20f9-46b7-a71a-12ddc6aa871a
+    content: Terminal with hook integration configured
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  590619b7-a91e-4822-aef2-a897e540bdca:
+    id: 590619b7-a91e-4822-aef2-a897e540bdca
+    content: Unit tests
+    children:
+      - 68965403-6002-423d-bd04-54b5d4279b9c
+      - e883cc14-588e-4874-9d06-48a7db86e766
+      - f43e0a9d-06f6-4027-9ef5-608962a7ab39
+      - cc42a7c8-4834-49f0-a13e-b2ac8aa14553
+      - 17b08810-2d8c-453d-81b2-12c3cf66b186
+      - 72173dfb-7986-498f-96dd-c1dc560689ea
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  68965403-6002-423d-bd04-54b5d4279b9c:
+    id: 68965403-6002-423d-bd04-54b5d4279b9c
+    content: findFirstAutonomousStepInChain
+    children:
+      - 5a1fb176-c625-4116-94a2-6b3381da9b89
+      - 5c7ce325-ed7b-4370-953b-6fa8db3c105d
+      - f1f8c071-3372-4220-910a-4654e7731beb
+      - bb365c05-ce3b-4dc8-818c-f7bf9a22d442
+      - b615bc14-1545-43d3-942a-8f3424bd0267
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5a1fb176-c625-4116-94a2-6b3381da9b89:
+    id: 5a1fb176-c625-4116-94a2-6b3381da9b89
+    content: Returns the first step when all steps in the chain are autonomous
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5c7ce325-ed7b-4370-953b-6fa8db3c105d:
+    id: 5c7ce325-ed7b-4370-953b-6fa8db3c105d
+    content: Stops at a checkpoint step and returns the step after it
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f1f8c071-3372-4220-910a-4654e7731beb:
+    id: f1f8c071-3372-4220-910a-4654e7731beb
+    content: Stops at a manual step and returns the step after it
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bb365c05-ce3b-4dc8-818c-f7bf9a22d442:
+    id: bb365c05-ce3b-4dc8-818c-f7bf9a22d442
+    content: Returns the step itself when it is the first step in the workflow
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b615bc14-1545-43d3-942a-8f3424bd0267:
+    id: b615bc14-1545-43d3-942a-8f3424bd0267
+    content: Handles nested workflows (walks back within the correct workflow scope)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e883cc14-588e-4874-9d06-48a7db86e766:
+    id: e883cc14-588e-4874-9d06-48a7db86e766
+    content: findNextWaitingNode
+    children:
+      - 8842fbd3-1d24-4047-956a-8e0b8cee02d4
+      - e536c5a8-8048-47c2-a559-db4a2d8ce6c2
+      - 6dfdf77b-d2a1-46f8-aed4-a410280c0e34
+      - 3bd403d1-43a3-4ea9-be0c-903b0ddc95d1
+      - 8145b617-c458-47c5-84b2-66ee6a90f4a1
+      - 3d80d658-2cb2-4235-8065-9aa7290a3951
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8842fbd3-1d24-4047-956a-8e0b8cee02d4:
+    id: 8842fbd3-1d24-4047-956a-8e0b8cee02d4
+    content: Returns the first child of the step that is not in executionStates
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e536c5a8-8048-47c2-a559-db4a2d8ce6c2:
+    id: e536c5a8-8048-47c2-a559-db4a2d8ce6c2
+    content: Skips children that are currently running
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6dfdf77b-d2a1-46f8-aed4-a410280c0e34:
+    id: 6dfdf77b-d2a1-46f8-aed4-a410280c0e34
+    content: Skips children that are awaiting-validation
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3bd403d1-43a3-4ea9-be0c-903b0ddc95d1:
+    id: 3bd403d1-43a3-4ea9-be0c-903b0ddc95d1
+    content: Returns null when all children are running or awaiting-validation
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8145b617-c458-47c5-84b2-66ee6a90f4a1:
+    id: 8145b617-c458-47c5-84b2-66ee6a90f4a1
+    content: Returns null when the step has no children
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3d80d658-2cb2-4235-8065-9aa7290a3951:
+    id: 3d80d658-2cb2-4235-8065-9aa7290a3951
+    content: Returns children in order (first child first)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f43e0a9d-06f6-4027-9ef5-608962a7ab39:
+    id: f43e0a9d-06f6-4027-9ef5-608962a7ab39
+    content: advanceNode with recurse
+    children:
+      - 413d86d7-bab4-4f75-9db9-a07abc1f94a7
+      - 704d6794-fafd-4d98-b21e-0f8f4837c677
+      - 3c8be8c9-f432-4eb7-b00c-8a5f697a9fc1
+      - fc6c7738-9fab-475e-96f2-28c99abd26f4
+      - 78747eaa-af29-4f04-8bc5-627e358b1e92
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  413d86d7-bab4-4f75-9db9-a07abc1f94a7:
+    id: 413d86d7-bab4-4f75-9db9-a07abc1f94a7
+    content: Triggers recurse check when the step just left has metadata.recurse === true
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  704d6794-fafd-4d98-b21e-0f8f4837c677:
+    id: 704d6794-fafd-4d98-b21e-0f8f4837c677
+    content: Does not trigger recurse check when the step has no recurse flag
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3c8be8c9-f432-4eb7-b00c-8a5f697a9fc1:
+    id: 3c8be8c9-f432-4eb7-b00c-8a5f697a9fc1
+    content: Schedules startWorkflow for the next waiting node on the same terminal
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fc6c7738-9fab-475e-96f2-28c99abd26f4:
+    id: fc6c7738-9fab-475e-96f2-28c99abd26f4
+    content: Does not schedule startWorkflow when no waiting nodes exist
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  78747eaa-af29-4f04-8bc5-627e358b1e92:
+    id: 78747eaa-af29-4f04-8bc5-627e358b1e92
+    content: Does not interrupt the current node's advancement
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cc42a7c8-4834-49f0-a13e-b2ac8aa14553:
+    id: cc42a7c8-4834-49f0-a13e-b2ac8aa14553
+    content: completeWorkflow with recurse
+    children:
+      - b9f946d1-8b32-49d7-b76b-c9c41df2a4b7
+      - 914500bf-7221-4e32-b92b-e303b6ff0ba1
+      - b08ba0fe-ea58-471f-9044-ab4907161776
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b9f946d1-8b32-49d7-b76b-c9c41df2a4b7:
+    id: b9f946d1-8b32-49d7-b76b-c9c41df2a4b7
+    content: Triggers recurse check when the last step has metadata.recurse === true
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  914500bf-7221-4e32-b92b-e303b6ff0ba1:
+    id: 914500bf-7221-4e32-b92b-e303b6ff0ba1
+    content: Does not trigger recurse check when the last step has no recurse flag
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b08ba0fe-ea58-471f-9044-ab4907161776:
+    id: b08ba0fe-ea58-471f-9044-ab4907161776
+    content: Schedules startWorkflow for the next waiting node on the same terminal
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  17b08810-2d8c-453d-81b2-12c3cf66b186:
+    id: 17b08810-2d8c-453d-81b2-12c3cf66b186
+    content: Safety limit
+    children:
+      - deba35f7-1b5f-4fe1-b7b0-e4f14cba2e80
+      - 0ed45f4b-a7e4-4a2e-b64d-e5af785f65d1
+      - 29b52f03-0e10-4db5-857b-dfd90283e317
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  deba35f7-1b5f-4fe1-b7b0-e4f14cba2e80:
+    id: deba35f7-1b5f-4fe1-b7b0-e4f14cba2e80
+    content: Increments counter on each recurse-triggered startWorkflow
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0ed45f4b-a7e4-4a2e-b64d-e5af785f65d1:
+    id: 0ed45f4b-a7e4-4a2e-b64d-e5af785f65d1
+    content: Stops recursing and shows warning toast when counter exceeds 50
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  29b52f03-0e10-4db5-857b-dfd90283e317:
+    id: 29b52f03-0e10-4db5-857b-dfd90283e317
+    content: Resets counter when user manually starts a workflow
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  72173dfb-7986-498f-96dd-c1dc560689ea:
+    id: 72173dfb-7986-498f-96dd-c1dc560689ea
+    content: Recurse toggle in StepConfigDialog
+    children:
+      - 8f664951-1be9-48d5-bf42-1cf66dd7190c
+      - 32251f2c-41eb-4027-a497-462bdcfdd622
+      - 95128b03-4ab8-4de7-9054-ee592220f247
+      - 7e77f2aa-24a3-414c-a59c-f11931cdf192
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8f664951-1be9-48d5-bf42-1cf66dd7190c:
+    id: 8f664951-1be9-48d5-bf42-1cf66dd7190c
+    content: Renders recurse checkbox
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  32251f2c-41eb-4027-a497-462bdcfdd622:
+    id: 32251f2c-41eb-4027-a497-462bdcfdd622
+    content: Checkbox reflects current node.metadata.recurse value
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  95128b03-4ab8-4de7-9054-ee592220f247:
+    id: 95128b03-4ab8-4de7-9054-ee592220f247
+    content: Defaults to unchecked when metadata.recurse is undefined
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7e77f2aa-24a3-414c-a59c-f11931cdf192:
+    id: 7e77f2aa-24a3-414c-a59c-f11931cdf192
+    content: Toggling calls the setRecurse action
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9697c9e6-bb90-4619-906c-169315d98500:
+    id: 9697c9e6-bb90-4619-906c-169315d98500
+    content: Manual tests
+    children:
+      - 1db8b3ca-f954-43a5-81e9-06646a7c6051
+      - 3638c569-1597-487c-87ed-213fdc99ea53
+      - 21776ef2-71a1-4044-8b61-5b9f91dda80d
+      - 85efaaac-2d16-4467-8707-72ad33da1ec5
+      - 9c63ff41-b5ac-45e5-9189-244c19f6cb91
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1db8b3ca-f954-43a5-81e9-06646a7c6051:
+    id: 1db8b3ca-f954-43a5-81e9-06646a7c6051
+    content: Sequential processing happy path
+    children:
+      - 54d93f6f-d185-4c97-b073-a44a99ee8eb6
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  54d93f6f-d185-4c97-b073-a44a99ee8eb6:
+    id: 54d93f6f-d185-4c97-b073-a44a99ee8eb6
+    content: Place 5 items in the first autonomous step, enable recurse on the last step, start the workflow on the first item — all 5 are processed sequentially
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3638c569-1597-487c-87ed-213fdc99ea53:
+    id: 3638c569-1597-487c-87ed-213fdc99ea53
+    content: Recursion stops at checkpoint
+    children:
+      - d9de1c46-35a7-4614-a93d-3a24cee2ac5d
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d9de1c46-35a7-4614-a93d-3a24cee2ac5d:
+    id: d9de1c46-35a7-4614-a93d-3a24cee2ac5d
+    content: Set up autonomous → autonomous → checkpoint. Enable recurse on the last autonomous step. Start with 3 items — first processes through both autonomous steps and stops at checkpoint. After user continues, second item starts at the first autonomous step.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  21776ef2-71a1-4044-8b61-5b9f91dda80d:
+    id: 21776ef2-71a1-4044-8b61-5b9f91dda80d
+    content: Stop mid-recurse
+    children:
+      - a95a87a4-dd26-45be-910b-a92b5795a7a4
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a95a87a4-dd26-45be-910b-a92b5795a7a4:
+    id: a95a87a4-dd26-45be-910b-a92b5795a7a4
+    content: Start a recurse chain with 5 items, stop the workflow after 2 complete — remaining 3 stay in their current steps, no data loss
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  85efaaac-2d16-4467-8707-72ad33da1ec5:
+    id: 85efaaac-2d16-4467-8707-72ad33da1ec5
+    content: No waiting nodes
+    children:
+      - e41f3903-120f-424c-8a56-9a943715f42e
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e41f3903-120f-424c-8a56-9a943715f42e:
+    id: e41f3903-120f-424c-8a56-9a943715f42e
+    content: Start with 1 item, enable recurse — item completes normally, no error
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9c63ff41-b5ac-45e5-9189-244c19f6cb91:
+    id: 9c63ff41-b5ac-45e5-9189-244c19f6cb91
+    content: Decomposition + recurse
+    children:
+      - 9046f34d-7db1-4cd1-acdc-d66045071954
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9046f34d-7db1-4cd1-acdc-d66045071954:
+    id: 9046f34d-7db1-4cd1-acdc-d66045071954
+    content: Enable decomposition on step 1 and recurse on step 2. Process a single item — decomposition creates 5 items at step 1, recurse picks them up one at a time through step 2
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e627b175-f677-464c-9eff-48a46d051552:
+    id: e627b175-f677-464c-9eff-48a46d051552
+    content: Risks
+    children:
+      - 74ab6c85-2b27-4f11-8f80-a4590d9424e0
+      - 6da67bde-aad6-4f36-83d3-f6cdce9f9d7d
+      - 18e4dce9-c7eb-41d5-a0cd-11c68bfa29c0
+      - 47f00c92-80a1-42ce-9aab-3141b73e2952
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  74ab6c85-2b27-4f11-8f80-a4590d9424e0:
+    id: 74ab6c85-2b27-4f11-8f80-a4590d9424e0
+    content: 'Highest likelihood of defects: timing between current node completion and next node startup. If the terminal is still assigned to the previous node, the startWorkflow guard rejects the next one. The delay must be sufficient for cleanup.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6da67bde-aad6-4f36-83d3-f6cdce9f9d7d:
+    id: 6da67bde-aad6-4f36-83d3-f6cdce9f9d7d
+    content: 'Highest impact if failed: infinite recursion without the safety limit. A workflow that creates output feeding back into itself would loop forever, consuming terminal resources and creating unlimited nodes.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  18e4dce9-c7eb-41d5-a0cd-11c68bfa29c0:
+    id: 18e4dce9-c7eb-41d5-a0cd-11c68bfa29c0
+    content: 'Dependency: recurse relies on the terminal being available after the previous node completes. The completeWorkflow function clears the execution state, which frees the terminal — but there may be a race condition if the recurse check runs before setState propagates.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  47f00c92-80a1-42ce-9aab-3141b73e2952:
+    id: 47f00c92-80a1-42ce-9aab-3141b73e2952
+    content: 'Ambiguity: the spec says "walks back through autonomous steps" — this means walking backwards through the workflow''s children array from the current step, checking stepType metadata. The boundary condition (what counts as "first" when the workflow starts with the autonomous chain) needs to be precise.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}

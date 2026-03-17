@@ -295,6 +295,50 @@ export function isDecompositionEnabled(
   return nodes[position.currentStepId]?.metadata.decomposition === true;
 }
 
+export function findFirstAutonomousStepInChain(
+  stepId: string,
+  nodes: Record<string, TreeNode>,
+  ancestorRegistry: AncestorRegistry
+): string | null {
+  const ancestors = ancestorRegistry[stepId] || [];
+  const workflowId = ancestors[ancestors.length - 1];
+  if (!workflowId) return null;
+
+  const workflow = nodes[workflowId];
+  if (!workflow || workflow.metadata.isWorkflow !== true) return null;
+
+  const stepIndex = workflow.children.indexOf(stepId);
+  if (stepIndex < 0) return null;
+
+  let firstAutonomous = stepId;
+  for (let i = stepIndex - 1; i >= 0; i--) {
+    const siblingId = workflow.children[i];
+    const sibling = nodes[siblingId];
+    if (!sibling || (sibling.metadata.stepType as string) !== 'autonomous') break;
+    firstAutonomous = siblingId;
+  }
+
+  const step = nodes[firstAutonomous];
+  if (!step || (step.metadata.stepType as string) !== 'autonomous') return null;
+
+  return firstAutonomous;
+}
+
+export function findNextWaitingNode(
+  stepId: string,
+  nodes: Record<string, TreeNode>,
+  executionStates: Record<string, { state: string }>
+): string | null {
+  const step = nodes[stepId];
+  if (!step) return null;
+
+  for (const childId of step.children) {
+    if (!executionStates[childId]) return childId;
+  }
+
+  return null;
+}
+
 export type WorkflowExecutionEntry = { state: 'running' | 'awaiting-validation'; terminalTabId: string; needsReview?: boolean };
 
 export function isEligibleForExecution(

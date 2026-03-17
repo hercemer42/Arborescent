@@ -8,6 +8,8 @@ import {
   findNextStepTarget,
   getWorkflowStepPosition,
   getWorkflowStepNumber,
+  findFirstAutonomousStepInChain,
+  findNextWaitingNode,
   WorkflowExecutionEntry,
 } from "../../../utils/workflowHelpers";
 import { StepType } from "../commands/SetStepTypeCommand";
@@ -82,7 +84,9 @@ export const createWorkflowExecutionActions = (
   collaborateInTerminal?: (nodeId: string, terminalId: string) => Promise<void>,
 ): WorkflowExecutionActions => {
   const DEFAULT_STEP_TIMEOUT_MINUTES = 15;
+  const MAX_RECURSE_ITERATIONS = 50;
   const stepTimeouts = new Map<string, ReturnType<typeof setTimeout>>();
+  const recurseCounters = new Map<string, number>();
 
   function startStepTimeout(nodeId: string): void {
     clearStepTimeout(nodeId);
@@ -252,9 +256,40 @@ export const createWorkflowExecutionActions = (
     advanceNode(nodeId);
   }
 
+  function checkRecurse(stepId: string, terminalId: string): void {
+    const { nodes, ancestorRegistry, workflowExecutionStates } = get();
+    const stepNode = nodes[stepId];
+    if (!stepNode || stepNode.metadata.recurse !== true) return;
+
+    const firstStepId = findFirstAutonomousStepInChain(stepId, nodes, ancestorRegistry);
+    if (!firstStepId) return;
+
+    const nextNodeId = findNextWaitingNode(firstStepId, nodes, workflowExecutionStates);
+    if (!nextNodeId) {
+      recurseCounters.delete(terminalId);
+      return;
+    }
+
+    const counter = recurseCounters.get(terminalId) || 0;
+    if (counter >= MAX_RECURSE_ITERATIONS) {
+      useToastStore
+        .getState()
+        .addToast("Recurse limit reached — stopping automatic processing", "warning");
+      recurseCounters.delete(terminalId);
+      return;
+    }
+
+    recurseCounters.set(terminalId, counter + 1);
+    setTimeout(() => startWorkflow(nextNodeId, terminalId), 2000);
+  }
+
   function completeWorkflow(nodeId: string): void {
     clearStepTimeout(nodeId);
-    const { workflowExecutionStates, nodes } = get();
+    const { workflowExecutionStates, nodes, ancestorRegistry } = get();
+    const entry = workflowExecutionStates[nodeId];
+    const terminalId = entry?.terminalTabId;
+    const position = getWorkflowStepPosition(nodeId, nodes, ancestorRegistry);
+
     const updatedStates = { ...workflowExecutionStates };
     delete updatedStates[nodeId];
 
@@ -271,6 +306,10 @@ export const createWorkflowExecutionActions = (
       "WorkflowExecution",
     );
     triggerAutosave?.();
+
+    if (position && terminalId) {
+      checkRecurse(position.currentStepId, terminalId);
+    }
   }
 
   function advanceNode(nodeId: string): void {
@@ -347,6 +386,10 @@ export const createWorkflowExecutionActions = (
         () => sendContentToTerminal(nodeId, entry.terminalTabId),
         1000,
       );
+    }
+
+    if (currentParentId) {
+      checkRecurse(currentParentId, entry.terminalTabId);
     }
   }
 
