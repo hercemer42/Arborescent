@@ -14,6 +14,7 @@ import { buildSetContextSubmenu } from './useSetContextSubmenu';
 import { logger } from '../../../services/logger';
 import { useStepConfigDialogStore } from '../../../store/stepConfigDialog/stepConfigDialogStore';
 import { buildSendSubmenu } from './useSendSubmenu';
+import { getWorkflowStepPosition } from '../../../utils/workflowHelpers';
 import { ContextMode } from '../../../store/tree/treeStore';
 import { getPositionFromPoint } from '../../../utils/position';
 import { useCustomizeDialogStore } from '../../../store/customizeDialog/customizeDialogStore';
@@ -181,12 +182,23 @@ export function useNodeContextMenu(node: TreeNode) {
       onConfigureStep: () => useStepConfigDialogStore.getState().open(node.id),
     });
 
+    const autoStartAfterMove = (nodeId: string) => {
+      const freshState = store.getState();
+      const position = getWorkflowStepPosition(nodeId, freshState.nodes, freshState.ancestorRegistry);
+      if (!position) return;
+      const stepNode = freshState.nodes[position.currentStepId];
+      const stepType = stepNode?.metadata.stepType as string | undefined;
+      if (stepType === 'autonomous' || stepType === 'checkpoint') {
+        getTerminalId().then(tid => actions.startWorkflow(nodeId, tid));
+      }
+    };
+
     const workflowNavigationItems = buildWorkflowNavigationItems({
       node: freshNode,
       nodes,
       ancestorRegistry,
-      onMoveToNextStep: () => actions.moveToNextStep(node.id),
-      onMoveToPreviousStep: () => actions.moveToPreviousStep(node.id),
+      onMoveToNextStep: () => { actions.moveToNextStep(node.id); autoStartAfterMove(node.id); },
+      onMoveToPreviousStep: () => { actions.moveToPreviousStep(node.id); autoStartAfterMove(node.id); },
     });
 
     const workflowExecutionItems = buildWorkflowExecutionItems({

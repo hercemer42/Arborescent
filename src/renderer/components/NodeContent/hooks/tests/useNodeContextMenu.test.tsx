@@ -1,10 +1,11 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
-import { renderHook, act } from '@testing-library/react';
+import { renderHook, act, waitFor } from '@testing-library/react';
 import { useNodeContextMenu } from '../useNodeContextMenu';
 import { TreeStoreContext } from '../../../../store/tree/TreeStoreContext';
 import { createTreeStore, TreeStore } from '../../../../store/tree/treeStore';
 import type { TreeNode } from '@shared/types';
 import { useSpellcheckStore } from '../../../../store/spellcheck/spellcheckStore';
+import { useTerminalStore } from '../../../../store/terminal/terminalStore';
 
 // Helper to create mock event with DOM elements
 function createMockContextMenuEvent(x: number, y: number) {
@@ -485,6 +486,178 @@ describe('useNodeContextMenu', () => {
       expect(workflowMenu).toBeDefined();
       const configureItem = workflowMenu!.submenu!.find(item => item.label === 'Configure Step');
       expect(configureItem).toBeDefined();
+    });
+  });
+
+  describe('auto-start after manual step navigation', () => {
+    const taskNode: TreeNode = {
+      id: 'task-node',
+      content: 'Task',
+      children: [],
+      metadata: { isBlueprint: true },
+    };
+
+    let mockStartWorkflow: ReturnType<typeof vi.fn>;
+    let mockMoveToNextStep: ReturnType<typeof vi.fn>;
+    let mockMoveToPreviousStep: ReturnType<typeof vi.fn>;
+
+    beforeEach(() => {
+      mockStartWorkflow = vi.fn();
+      mockMoveToNextStep = vi.fn();
+      mockMoveToPreviousStep = vi.fn();
+
+      const originalState = useTerminalStore.getState();
+      useTerminalStore.setState({
+        ...originalState,
+        openTerminal: vi.fn().mockResolvedValue('terminal-1'),
+      });
+
+      store.setState({
+        nodes: {
+          'root': { id: 'root', content: 'Root', children: ['workflow'], metadata: { isBlueprint: true } },
+          'workflow': { id: 'workflow', content: 'Workflow', children: ['step-1', 'step-2'], metadata: { isBlueprint: true, isWorkflow: true } },
+          'step-1': { id: 'step-1', content: 'Step 1', children: ['task-node'], metadata: { isBlueprint: true, stepType: 'manual' } },
+          'step-2': { id: 'step-2', content: 'Step 2', children: [], metadata: { isBlueprint: true, stepType: 'autonomous' } },
+          'task-node': taskNode,
+        },
+        rootNodeId: 'root',
+        ancestorRegistry: {
+          'root': [],
+          'workflow': ['root'],
+          'step-1': ['root', 'workflow'],
+          'step-2': ['root', 'workflow'],
+          'task-node': ['root', 'workflow', 'step-1'],
+        },
+        workflowExecutionStates: {},
+        actions: {
+          ...store.getState().actions,
+          startWorkflow: mockStartWorkflow,
+          moveToNextStep: mockMoveToNextStep,
+          moveToPreviousStep: mockMoveToPreviousStep,
+          deleteNode: mockDeleteNode,
+          copyNodes: mockCopyNodes,
+          cutNodes: mockCutNodes,
+          pasteNodes: mockPasteNodes,
+          toggleNodeSelection: mockToggleNodeSelection,
+          selectNode: mockSelectNode,
+          clearSelection: mockClearSelection,
+          setRememberedVisualX: mockSetRememberedVisualX,
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        } as any,
+      });
+    });
+
+    it('should show Next step for task inside a workflow step', async () => {
+      const { result } = renderHook(() => useNodeContextMenu(taskNode), { wrapper });
+
+      await openContextMenu(result);
+
+      const nextStepItem = result.current.contextMenuItems.find(item => item.label === 'Next step');
+      expect(nextStepItem).toBeDefined();
+    });
+
+    it('should auto-start workflow after moving to an autonomous step', async () => {
+      mockMoveToNextStep.mockImplementation(() => {
+        store.setState({
+          nodes: {
+            ...store.getState().nodes,
+            'step-1': { ...store.getState().nodes['step-1'], children: [] },
+            'step-2': { ...store.getState().nodes['step-2'], children: ['task-node'] },
+          },
+          ancestorRegistry: {
+            ...store.getState().ancestorRegistry,
+            'task-node': ['root', 'workflow', 'step-2'],
+          },
+        });
+      });
+
+      const { result } = renderHook(() => useNodeContextMenu(taskNode), { wrapper });
+
+      await openContextMenu(result);
+
+      const nextStepItem = result.current.contextMenuItems.find(item => item.label === 'Next step');
+      act(() => {
+        nextStepItem!.onClick!();
+      });
+
+      expect(mockMoveToNextStep).toHaveBeenCalledWith('task-node');
+      await waitFor(() => {
+        expect(mockStartWorkflow).toHaveBeenCalled();
+      });
+    });
+
+    it('should not auto-start workflow after moving to a manual step', async () => {
+      store.setState({
+        nodes: {
+          ...store.getState().nodes,
+          'step-2': { ...store.getState().nodes['step-2'], metadata: { isBlueprint: true } },
+        },
+      });
+
+      mockMoveToNextStep.mockImplementation(() => {
+        store.setState({
+          nodes: {
+            ...store.getState().nodes,
+            'step-1': { ...store.getState().nodes['step-1'], children: [] },
+            'step-2': { ...store.getState().nodes['step-2'], children: ['task-node'] },
+          },
+          ancestorRegistry: {
+            ...store.getState().ancestorRegistry,
+            'task-node': ['root', 'workflow', 'step-2'],
+          },
+        });
+      });
+
+      const { result } = renderHook(() => useNodeContextMenu(taskNode), { wrapper });
+
+      await openContextMenu(result);
+
+      const nextStepItem = result.current.contextMenuItems.find(item => item.label === 'Next step');
+      act(() => {
+        nextStepItem!.onClick!();
+      });
+
+      expect(mockMoveToNextStep).toHaveBeenCalledWith('task-node');
+      // Allow any pending promises to settle
+      await new Promise(resolve => setTimeout(resolve, 10));
+      expect(mockStartWorkflow).not.toHaveBeenCalled();
+    });
+
+    it('should auto-start workflow after moving to a checkpoint step', async () => {
+      store.setState({
+        nodes: {
+          ...store.getState().nodes,
+          'step-2': { ...store.getState().nodes['step-2'], metadata: { isBlueprint: true, stepType: 'checkpoint' } },
+        },
+      });
+
+      mockMoveToNextStep.mockImplementation(() => {
+        store.setState({
+          nodes: {
+            ...store.getState().nodes,
+            'step-1': { ...store.getState().nodes['step-1'], children: [] },
+            'step-2': { ...store.getState().nodes['step-2'], children: ['task-node'] },
+          },
+          ancestorRegistry: {
+            ...store.getState().ancestorRegistry,
+            'task-node': ['root', 'workflow', 'step-2'],
+          },
+        });
+      });
+
+      const { result } = renderHook(() => useNodeContextMenu(taskNode), { wrapper });
+
+      await openContextMenu(result);
+
+      const nextStepItem = result.current.contextMenuItems.find(item => item.label === 'Next step');
+      act(() => {
+        nextStepItem!.onClick!();
+      });
+
+      expect(mockMoveToNextStep).toHaveBeenCalledWith('task-node');
+      await waitFor(() => {
+        expect(mockStartWorkflow).toHaveBeenCalled();
+      });
     });
   });
 

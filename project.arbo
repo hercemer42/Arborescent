@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-03-22T08:03:20.050Z'
+updated: '2026-03-22T08:13:56.895Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -578,7 +578,7 @@ nodes:
       - e91d842b-d982-4f8b-a3c5-7f0a42c95604
     metadata:
       status: pending
-      expanded: true
+      expanded: false
       isBlueprint: true
       blueprintIcon: Brain
       blueprintColor: '#0ea5e9'
@@ -26818,8 +26818,7 @@ nodes:
   bdceb696-248d-4199-9182-db0689445c07:
     id: bdceb696-248d-4199-9182-db0689445c07
     content: Documentation
-    children:
-      - ca651178-69bc-4933-aa6f-b19e106fbd34
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -26827,6 +26826,7 @@ nodes:
       blueprintColor: '#1074a2'
       appliedContextId: 0058432d-a010-473b-a707-ace2b1dee169
       expanded: true
+      stepType: autonomous
   9f4cb1c1-95ba-4523-9b59-86d02c56a0ed:
     id: 9f4cb1c1-95ba-4523-9b59-86d02c56a0ed
     content: Can use keyboard to move blueprint/context/workflow nodes into forbidden nodes
@@ -34473,7 +34473,7 @@ nodes:
       - c0b354e9-aaa0-409e-ab47-6f534d03a97f
     metadata:
       status: pending
-      expanded: true
+      expanded: false
       isBlueprint: true
       blueprintIcon: FileWarning
       blueprintColor: '#f97316'
@@ -34687,6 +34687,7 @@ nodes:
       - b08a9e71-fc04-47c7-9e1a-3e65621a9009
       - 4398180d-fba8-4294-a988-2be477ef3236
       - 7de1d56c-5320-48f8-b77b-bc434940dfce
+      - ca651178-69bc-4933-aa6f-b19e106fbd34
     metadata:
       status: completed
       expanded: false
@@ -35318,8 +35319,6 @@ nodes:
     id: 9491e99f-c707-4d6d-9ba0-1e49e87fee8b
     content: Release
     children:
-      - bdceb696-248d-4199-9182-db0689445c07
-      - 48a31d1e-02e3-4e06-8772-51dd862d5e35
       - 7fdc0862-09b2-4850-996f-81c17623f65c
       - 26d204d2-540c-4f9c-9de1-ac16b1c51065
       - fa5e5ed7-b33e-4ada-8a7d-2a72eb2888d8
@@ -35368,15 +35367,6 @@ nodes:
       isBlueprint: true
       blueprintIcon: SearchCode
       blueprintColor: '#0ea5e9'
-  48a31d1e-02e3-4e06-8772-51dd862d5e35:
-    id: 48a31d1e-02e3-4e06-8772-51dd862d5e35
-    content: Human documentation review
-    children: []
-    metadata:
-      status: pending
-      isBlueprint: true
-      blueprintIcon: BookCheck
-      blueprintColor: '#c47f09'
   7fdc0862-09b2-4850-996f-81c17623f65c:
     id: 7fdc0862-09b2-4850-996f-81c17623f65c
     content: Commit & push
@@ -35463,6 +35453,7 @@ nodes:
       - 0bee331d-616e-48cf-bc86-24c9a09d7a67
       - 0c1c74ed-ccdb-4278-a2f2-09b739effcfc
       - 3d68c9ce-3b9b-4f79-ad99-4b6fd68e0e74
+      - bdceb696-248d-4199-9182-db0689445c07
       - ca7b201c-6d28-4504-9b6a-09d70a18912c
     metadata:
       status: pending
@@ -49972,13 +49963,14 @@ nodes:
       - bb974125-814d-4964-b269-13572d556270
       - d7f7e6ce-d819-48d2-8a0e-ff9cc9052d56
       - 3ab86cdd-2d94-4d06-806c-2b239fef0ffd
+      - 6f0c090b-8fbb-4de0-ac33-60c1d63b729b
     metadata:
       status: pending
       isBlueprint: true
       blueprintIcon: Blocks
       blueprintColor: '#64748b'
       isWorkflow: true
-      expanded: false
+      expanded: true
   83a2bd12-9d74-4d87-8139-ae7adb95c9fa:
     id: 83a2bd12-9d74-4d87-8139-ae7adb95c9fa
     content: Feature implementation
@@ -50017,6 +50009,7 @@ nodes:
       blueprintColor: '#1074a2'
       appliedContextId: 0058432d-a010-473b-a707-ace2b1dee169
       expanded: true
+      stepType: autonomous
   bb974125-814d-4964-b269-13572d556270:
     id: bb974125-814d-4964-b269-13572d556270
     content: Code review & refactor
@@ -57972,3 +57965,12 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
+  6f0c090b-8fbb-4de0-ac33-60c1d63b729b:
+    id: 6f0c090b-8fbb-4de0-ac33-60c1d63b729b
+    content: Final code review
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+      blueprintIcon: SearchCode
+      blueprintColor: '#0ea5e9'
