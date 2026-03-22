@@ -10,8 +10,12 @@ import {
   getWorkflowStepNumber,
   findFirstAutonomousStepInChain,
   findNextWaitingNode,
+  getArchiveConfigForNode,
+  isDecompositionEnabled,
   WorkflowExecutionEntry,
 } from "../../../utils/workflowHelpers";
+import { parseFeedbackContent } from "../../../services/feedback/feedbackService";
+import { AcceptFeedbackCommand } from "../commands/AcceptFeedbackCommand";
 import { StepType } from "../commands/SetStepTypeCommand";
 import {
   buildContentWithContext,
@@ -50,6 +54,8 @@ export interface WorkflowExecutionActions {
   handleStepDeleted: (stepId: string) => void;
   handleAllStepsRemoved: (workflowId: string) => void;
   handleNodeMovedManually: (nodeId: string) => void;
+  handleAutonomousFeedback: (nodeId: string, content: string) => void;
+  findNodeIdByFeedbackFilePath: (filePath: string) => string | null;
 }
 
 type StoreState = {
@@ -81,12 +87,14 @@ export const createWorkflowExecutionActions = (
   set: (partial: Partial<StoreState>) => void,
   triggerAutosave?: () => void,
   visualEffects?: VisualEffectsActions,
-  collaborateInTerminal?: (nodeId: string, terminalId: string) => Promise<void>,
+  autonomousCollaborateInTerminal?: (nodeId: string, terminalId: string) => Promise<string>,
+  executeCommand?: (command: { execute: () => void; undo: () => void; description?: string }) => void,
 ): WorkflowExecutionActions => {
   const DEFAULT_STEP_TIMEOUT_MINUTES = 15;
   const MAX_RECURSE_ITERATIONS = 50;
   const stepTimeouts = new Map<string, ReturnType<typeof setTimeout>>();
   const recurseCounters = new Map<string, number>();
+  const autonomousCollaborations = new Map<string, { filePath: string; terminalId: string }>();
 
   function startStepTimeout(nodeId: string): void {
     clearStepTimeout(nodeId);
@@ -204,6 +212,7 @@ export const createWorkflowExecutionActions = (
     if (!entry || entry.state !== "running") return;
 
     clearStepTimeout(nodeId);
+    cleanupAutonomousCollaboration(nodeId);
     const updatedStates = { ...workflowExecutionStates };
     delete updatedStates[nodeId];
     set({ workflowExecutionStates: updatedStates });
@@ -407,8 +416,11 @@ export const createWorkflowExecutionActions = (
       const contextDeclarations = getContextDeclarations(nodes);
       const mode = resolveContextMode(contextId, nodes, contextDeclarations);
 
-      if (mode === "collaborate" && collaborateInTerminal) {
-        collaborateInTerminal(nodeId, terminalId).catch((error) => {
+      if (mode === "collaborate" && autonomousCollaborateInTerminal) {
+        setCollaboratingFlag(nodeId);
+        autonomousCollaborateInTerminal(nodeId, terminalId).then((feedbackFilePath) => {
+          registerAutonomousCollaboration(nodeId, terminalId, feedbackFilePath);
+        }).catch((error) => {
           logger.error(
             "Failed to start collaboration in terminal",
             error as Error,
@@ -578,6 +590,20 @@ export const createWorkflowExecutionActions = (
                 actions: [{ label: "OK", onClick: () => {} }],
               },
             );
+        } else if (execEntry?.collaborating) {
+          set({
+            workflowExecutionStates: {
+              ...execStates,
+              [runningNodeId]: {
+                ...execEntry,
+                stopReceived: true,
+              },
+            },
+          });
+          logger.info(
+            `Stop deferred for collaborating node ${runningNodeId} — waiting for feedback`,
+            "WorkflowExecution",
+          );
         } else {
           advanceNode(runningNodeId);
         }
@@ -630,11 +656,15 @@ export const createWorkflowExecutionActions = (
 
     for (const [nodeId, entry] of Object.entries(workflowExecutionStates)) {
       if (entry.state === "running") {
-        // Clear running entries on restart — terminal sessions are gone
         stoppedCount++;
       } else {
         updatedStates[nodeId] = entry;
       }
+    }
+
+    // Clean up all autonomous collaborations on restart
+    for (const nodeId of autonomousCollaborations.keys()) {
+      cleanupAutonomousCollaboration(nodeId);
     }
 
     set({
@@ -662,6 +692,7 @@ export const createWorkflowExecutionActions = (
     for (const [nodeId, entry] of Object.entries(updatedStates)) {
       if (entry.terminalTabId === terminalId && entry.state === "running") {
         delete updatedStates[nodeId];
+        cleanupAutonomousCollaboration(nodeId);
         const node = nodes[nodeId];
         const nodeName = node?.content || nodeId;
         useToastStore
@@ -680,6 +711,7 @@ export const createWorkflowExecutionActions = (
     const { workflowExecutionStates } = get();
     if (!workflowExecutionStates[nodeId]) return;
 
+    cleanupAutonomousCollaboration(nodeId);
     const updatedStates = { ...workflowExecutionStates };
     delete updatedStates[nodeId];
     set({ workflowExecutionStates: updatedStates });
@@ -749,6 +781,7 @@ export const createWorkflowExecutionActions = (
     if (!entry) return;
 
     clearStepTimeout(nodeId);
+    cleanupAutonomousCollaboration(nodeId);
     const updatedStates = { ...workflowExecutionStates };
     delete updatedStates[nodeId];
     set({ workflowExecutionStates: updatedStates });
@@ -757,6 +790,108 @@ export const createWorkflowExecutionActions = (
       `Cleared execution state for manually moved node ${nodeId}`,
       "WorkflowExecution",
     );
+  }
+
+  function setCollaboratingFlag(nodeId: string): void {
+    const { workflowExecutionStates } = get();
+    const entry = workflowExecutionStates[nodeId];
+    if (!entry) return;
+
+    set({
+      workflowExecutionStates: {
+        ...workflowExecutionStates,
+        [nodeId]: { ...entry, collaborating: true },
+      },
+    });
+  }
+
+  function registerAutonomousCollaboration(nodeId: string, terminalId: string, feedbackFilePath: string): void {
+    autonomousCollaborations.set(nodeId, { filePath: feedbackFilePath, terminalId });
+  }
+
+  function cleanupAutonomousCollaboration(nodeId: string): void {
+    const collab = autonomousCollaborations.get(nodeId);
+    if (collab) {
+      window.electron.stopFeedbackFileWatcher(collab.filePath);
+      autonomousCollaborations.delete(nodeId);
+    }
+  }
+
+  function findNodeIdByFeedbackFilePath(filePath: string): string | null {
+    for (const [nodeId, collab] of autonomousCollaborations) {
+      if (filePath.endsWith(collab.filePath)) return nodeId;
+    }
+    return null;
+  }
+
+  function advanceOrClearCollaborating(nodeId: string): void {
+    const currentEntry = get().workflowExecutionStates[nodeId];
+    if (currentEntry?.stopReceived) {
+      advanceNode(nodeId);
+    } else if (currentEntry) {
+      const { workflowExecutionStates: states } = get();
+      set({
+        workflowExecutionStates: {
+          ...states,
+          [nodeId]: { ...states[nodeId], collaborating: false },
+        },
+      });
+    }
+  }
+
+  function handleAutonomousFeedback(nodeId: string, content: string): void {
+    const { workflowExecutionStates, nodes, ancestorRegistry } = get();
+    const entry = workflowExecutionStates[nodeId];
+    if (!entry || !nodes[nodeId]) {
+      cleanupAutonomousCollaboration(nodeId);
+      return;
+    }
+
+    const decomposition = isDecompositionEnabled(nodeId, nodes, ancestorRegistry);
+    const parsed = parseFeedbackContent(content, decomposition);
+
+    if (!parsed) {
+      logger.error(
+        `Failed to parse autonomous feedback for node ${nodeId}`,
+        new Error("Feedback parse failure"),
+        "WorkflowExecution",
+      );
+      stopWorkflow(nodeId);
+      cleanupAutonomousCollaboration(nodeId);
+      useToastStore
+        .getState()
+        .addToast("Feedback could not be parsed — workflow stopped", "error");
+      return;
+    }
+
+    const archiveConfig = getArchiveConfigForNode(nodeId, nodes, ancestorRegistry);
+    const rootNodeIdOrIds = decomposition && parsed.rootNodeIds.length > 1
+      ? parsed.rootNodeIds
+      : parsed.rootNodeId;
+
+    if (executeCommand) {
+      const getStateForCommand = () => ({
+        ...get(),
+        blueprintModeEnabled: false,
+      });
+      executeCommand(
+        new AcceptFeedbackCommand(
+          nodeId,
+          rootNodeIdOrIds,
+          parsed.nodes,
+          getStateForCommand,
+          set,
+          triggerAutosave,
+          archiveConfig,
+        ),
+      );
+    }
+
+    cleanupAutonomousCollaboration(nodeId);
+    useToastStore.getState().addToast("Feedback auto-accepted", "info");
+    logger.info(`Auto-accepted feedback for node ${nodeId} (${parsed.nodeCount} nodes)`, "WorkflowExecution");
+
+    advanceOrClearCollaborating(nodeId);
   }
 
   return {
@@ -773,5 +908,7 @@ export const createWorkflowExecutionActions = (
     handleStepDeleted,
     handleAllStepsRemoved,
     handleNodeMovedManually,
+    handleAutonomousFeedback,
+    findNodeIdByFeedbackFilePath,
   };
 };

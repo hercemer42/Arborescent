@@ -30,12 +30,21 @@ export function useFeedbackClipboard(collaboratingNodeId: string | null) {
   }, [handleFeedbackContent]);
 
   useEffect(() => {
-    const cleanup = window.electron.onFeedbackFileContentDetected((content: string) => {
+    const cleanup = window.electron.onFeedbackFileContentDetected((filePath: string, content: string) => {
+      if (!activeFilePath) return;
+
+      const store = storeManager.getStoreForFile(activeFilePath);
+      const nodeId = store.getState().actions.findNodeIdByFeedbackFilePath?.(filePath);
+      if (nodeId) {
+        store.getState().actions.handleAutonomousFeedback?.(nodeId, content);
+        return;
+      }
+
       handleFeedbackContent(content, 'file');
     });
 
     return cleanup;
-  }, [handleFeedbackContent]);
+  }, [handleFeedbackContent, activeFilePath]);
 
   useEffect(() => {
     if (!collaboratingNodeId && activeFilePath) {

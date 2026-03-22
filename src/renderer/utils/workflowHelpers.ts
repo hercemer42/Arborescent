@@ -339,7 +339,28 @@ export function findNextWaitingNode(
   return null;
 }
 
-export type WorkflowExecutionEntry = { state: 'running' | 'awaiting-validation'; terminalTabId: string; needsReview?: boolean };
+export function getArchiveConfigForNode(
+  nodeId: string,
+  nodes: Record<string, TreeNode>,
+  ancestorRegistry: AncestorRegistry
+): { archiveDestinationId: string; archiveSideLinkName: string; replacementSideLinkName: string } | undefined {
+  const position = getWorkflowStepPosition(nodeId, nodes, ancestorRegistry);
+  if (!position) return undefined;
+
+  const stepNode = nodes[position.currentStepId];
+  if (!stepNode) return undefined;
+
+  const destId = stepNode.metadata.archiveDestinationId as string | undefined;
+  if (!destId) return undefined;
+
+  return {
+    archiveDestinationId: destId,
+    archiveSideLinkName: (stepNode.metadata.archiveSideLinkName as string) || 'Output',
+    replacementSideLinkName: (stepNode.metadata.replacementSideLinkName as string) || 'Source',
+  };
+}
+
+export type WorkflowExecutionEntry = { state: 'running' | 'awaiting-validation'; terminalTabId: string; needsReview?: boolean; collaborating?: boolean; stopReceived?: boolean };
 
 export function isEligibleForExecution(
   nodeId: string,

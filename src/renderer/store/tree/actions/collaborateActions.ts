@@ -7,7 +7,7 @@ import { logger } from '../../../services/logger';
 import { useToastStore } from '../../toast/toastStore';
 import { usePanelStore } from '../../panel/panelStore';
 import { VisualEffectsActions } from './visualEffectsActions';
-import { AcceptFeedbackCommand, ArchiveConfig } from '../commands/AcceptFeedbackCommand';
+import { AcceptFeedbackCommand } from '../commands/AcceptFeedbackCommand';
 import { DEFAULT_BLUEPRINT_ICON } from './blueprintActions';
 import {
   parseFeedbackContent,
@@ -19,7 +19,7 @@ import {
 } from '../../../services/feedback/feedbackService';
 import { feedbackTreeStore } from '../../feedback/feedbackTreeStore';
 import { AncestorRegistry } from '../../../utils/ancestry';
-import { isDecompositionEnabled, getWorkflowStepPosition } from '../../../utils/workflowHelpers';
+import { isDecompositionEnabled, getArchiveConfigForNode } from '../../../utils/workflowHelpers';
 
 export type ContentSource = 'clipboard' | 'file' | 'restore';
 
@@ -104,31 +104,11 @@ export interface CollaborateActions {
   acceptFeedback: (newRootNodeId: string, newNodesMap: Record<string, TreeNode>) => void;
   collaborate: (nodeId: string) => Promise<void>;
   collaborateInTerminal: (nodeId: string, terminalId: string) => Promise<void>;
+  autonomousCollaborateInTerminal: (nodeId: string, terminalId: string) => Promise<string>;
   restoreCollaborationState: () => Promise<void>;
   processIncomingFeedbackContent: (content: string, source: ContentSource, skipSave?: boolean) => Promise<ProcessFeedbackContentResult>;
   finishCancel: () => Promise<void>;
   finishAccept: () => Promise<void>;
-}
-
-function getArchiveConfigForNode(
-  nodeId: string,
-  nodes: Record<string, TreeNode>,
-  ancestorRegistry: Record<string, string[]>
-): ArchiveConfig | undefined {
-  const position = getWorkflowStepPosition(nodeId, nodes, ancestorRegistry);
-  if (!position) return undefined;
-
-  const stepNode = nodes[position.currentStepId];
-  if (!stepNode) return undefined;
-
-  const destId = stepNode.metadata.archiveDestinationId as string | undefined;
-  if (!destId) return undefined;
-
-  return {
-    archiveDestinationId: destId,
-    archiveSideLinkName: (stepNode.metadata.archiveSideLinkName as string) || 'Output',
-    replacementSideLinkName: (stepNode.metadata.replacementSideLinkName as string) || 'Source',
-  };
 }
 
 function getEffectiveBlueprintIcon(
@@ -328,6 +308,38 @@ export function createCollaborateActions(
         logger.error('Failed to collaborate in terminal', error as Error, 'CollaborateActions');
         throw error;
       }
+    },
+
+    autonomousCollaborateInTerminal: async (nodeId: string, terminalId: string): Promise<string> => {
+      const state = get();
+
+      if (!terminalId) {
+        throw new Error('No terminal selected');
+      }
+
+      const node = state.nodes[nodeId];
+      if (!node) {
+        throw new Error(`Node ${nodeId} not found`);
+      }
+
+      const feedbackFileName = `feedback-response-${nodeId}.md`;
+      const feedbackResponseFile = await window.electron.createTempFile(feedbackFileName, '');
+
+      const { contextPrefix, nodeContent } = buildContentWithContext(
+        nodeId,
+        state.nodes,
+        state.ancestorRegistry
+      );
+
+      const decomposition = isDecompositionEnabled(nodeId, state.nodes, state.ancestorRegistry);
+      const effectiveContext = contextPrefix || DEFAULT_REVIEW_CONTEXT;
+      const terminalInstruction = buildTerminalCollaboratePrompt(effectiveContext, nodeContent, feedbackResponseFile, decomposition);
+
+      await executeInTerminal(terminalId, terminalInstruction);
+      await window.electron.startFeedbackFileWatcher(feedbackResponseFile);
+
+      logger.info(`Started autonomous collaboration for node: ${nodeId}, watching: ${feedbackResponseFile}`, 'CollaborateActions');
+      return feedbackResponseFile;
     },
 
     restoreCollaborationState: async () => {

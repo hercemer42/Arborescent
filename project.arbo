@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-03-17T13:46:17.289Z'
+updated: '2026-03-22T08:03:20.050Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -554,6 +554,7 @@ nodes:
     id: d5fe0eff-b1c6-4986-b6a3-70a0ea46f096
     content: Opportunities
     children:
+      - ddcda920-9bd0-4646-92af-d2a651fe1a2d
       - a39b2ce6-d2d5-4589-b53f-a84c103d9fbf
       - 3999cfea-b344-4f92-b3ca-ffb9f740afc7
       - d77cf522-0636-4a76-b9bf-7b33b4cc65cb
@@ -5215,7 +5216,7 @@ nodes:
       - 9a8f1538-7eb7-4e2d-9e0f-46e2c00675f4
     metadata:
       status: pending
-      expanded: false
+      expanded: true
       isBlueprint: true
       blueprintIcon: BrainCog
       blueprintColor: '#14b8a6'
@@ -5579,7 +5580,7 @@ nodes:
       isBlueprint: true
       blueprintIcon: Layers2
       blueprintColor: '#0ea5e9'
-      expanded: false
+      expanded: true
   9a8f1538-7eb7-4e2d-9e0f-46e2c00675f4:
     id: 9a8f1538-7eb7-4e2d-9e0f-46e2c00675f4
     content: Technical
@@ -8864,7 +8865,7 @@ nodes:
       blueprintIcon: TriangleAlert
       blueprintColor: '#ef4444'
       appliedContextId: 6690289a-e02f-48bc-9225-a1083b7b324f
-      expanded: true
+      expanded: false
   aff16275-6d8e-49c9-b862-76875858d4af:
     id: aff16275-6d8e-49c9-b862-76875858d4af
     content: Avoid adding comments specific to the bug fix unless really needed
@@ -26818,7 +26819,7 @@ nodes:
     id: bdceb696-248d-4199-9182-db0689445c07
     content: Documentation
     children:
-      - 47796554-2b68-4d70-81fc-5afe4fb95e59
+      - ca651178-69bc-4933-aa6f-b19e106fbd34
     metadata:
       status: pending
       isBlueprint: true
@@ -34458,7 +34459,6 @@ nodes:
     content: Problems
     children:
       - c4c83046-4976-4687-becc-dcaa8eafbd25
-      - ca651178-69bc-4933-aa6f-b19e106fbd34
       - 413a84b6-97e7-4963-81ca-6667f2136d9a
       - 28b63463-b046-4ed0-ab09-942c8b933875
       - 33c9ccfe-2b9e-441f-a857-bf766dc09892
@@ -48779,7 +48779,7 @@ nodes:
       isBlueprint: true
       blueprintIcon: BookOpenText
       blueprintColor: '#0ea5e9'
-      expanded: false
+      expanded: true
   481c87e7-14ce-4e02-9e1c-3483a5abac51:
     id: 481c87e7-14ce-4e02-9e1c-3483a5abac51
     content: Done
@@ -48787,6 +48787,7 @@ nodes:
       - 4adfa410-1e2e-4155-8e8e-2b2ed48b40a8
       - 911c7c76-b792-44e2-b404-5087a4ceaff4
       - 437c64c9-3da3-449a-9702-96755b5521b1
+      - 47796554-2b68-4d70-81fc-5afe4fb95e59
     metadata:
       status: pending
       isBlueprint: true
@@ -51789,9 +51790,19 @@ nodes:
   ca651178-69bc-4933-aa6f-b19e106fbd34:
     id: ca651178-69bc-4933-aa6f-b19e106fbd34
     content: No auto-accept in collaboration mode for automated steps
-    children: []
+    children:
+      - e27ceff0-92dc-4f4a-b5df-5a6388ff6431
+      - 1d57738d-bd30-4a28-9d50-13f4a0c333d0
+      - ebc547ed-3f8c-4f94-ac48-d4a2d8d8b26a
+      - fa9de82d-f1cd-437c-b2ad-60dc949c5341
+      - 8f7c2ae9-ce73-46b4-a09e-246773e73300
+      - 6ea06150-f901-4ae3-bab0-8fadc1c3434f
+      - c73f0c4e-8365-4d6d-aa62-c75f92b66a82
     metadata:
       status: pending
+      expanded: false
+      deleted: false
+      plugins: {}
   413a84b6-97e7-4963-81ca-6667f2136d9a:
     id: 413a84b6-97e7-4963-81ca-6667f2136d9a
     content: Sometimes steps are not fully implemented
@@ -55735,6 +55746,2229 @@ nodes:
     children: []
     metadata:
       status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ddcda920-9bd0-4646-92af-d2a651fe1a2d:
+    id: ddcda920-9bd0-4646-92af-d2a651fe1a2d
+    content: Notification system to let me know when a workflow has finished or requires intervention
+    children:
+      - 144b6b08-5b57-4e90-a8e9-e6dfe9e0f7a2
+      - 4411482b-c0e3-4d8f-acc6-5dd499645c7f
+    metadata:
+      status: pending
+  144b6b08-5b57-4e90-a8e9-e6dfe9e0f7a2:
+    id: 144b6b08-5b57-4e90-a8e9-e6dfe9e0f7a2
+    content: Would like to be away from my computer
+    children: []
+    metadata:
+      status: pending
+  4411482b-c0e3-4d8f-acc6-5dd499645c7f:
+    id: 4411482b-c0e3-4d8f-acc6-5dd499645c7f
+    content: Ideally receive a telephone notification
+    children: []
+    metadata:
+      status: pending
+  e27ceff0-92dc-4f4a-b5df-5a6388ff6431:
+    id: e27ceff0-92dc-4f4a-b5df-5a6388ff6431
+    content: Problem statement
+    children:
+      - 3c08691d-c3b7-4d95-91f4-d94e07b8396c
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3c08691d-c3b7-4d95-91f4-d94e07b8396c:
+    id: 3c08691d-c3b7-4d95-91f4-d94e07b8396c
+    content: As a user running an autonomous workflow step with a collaborate-mode context, the AI finishes and writes feedback, but nothing happens automatically — I must manually accept the feedback before the workflow can continue
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1d57738d-bd30-4a28-9d50-13f4a0c333d0:
+    id: 1d57738d-bd30-4a28-9d50-13f4a0c333d0
+    content: Use cases
+    children:
+      - 710a31de-fde2-4191-b76b-e60d7e2d4852
+      - 9f73d8be-8271-48a6-bcee-367ef2ff3c26
+      - 8cd65c58-a0e5-485f-ab29-bed374000ca0
+      - 3bbf1f2b-b999-4e0d-a9e2-b332a75f6f31
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  710a31de-fde2-4191-b76b-e60d7e2d4852:
+    id: 710a31de-fde2-4191-b76b-e60d7e2d4852
+    content: 'Primary: User runs decomposition on an autonomous step with a collaborate context. The AI produces multiple items. The feedback should be accepted and the node replaced automatically, allowing the workflow to advance without intervention.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9f73d8be-8271-48a6-bcee-367ef2ff3c26:
+    id: 9f73d8be-8271-48a6-bcee-367ef2ff3c26
+    content: 'Secondary: Recurse picks up the next node after a decomposition step. That node enters an autonomous collaborate step. It should also auto-accept and advance, enabling a fully hands-free decompose → process pipeline.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8cd65c58-a0e5-485f-ab29-bed374000ca0:
+    id: 8cd65c58-a0e5-485f-ab29-bed374000ca0
+    content: 'Secondary: Multiple autonomous collaborate steps run in parallel across different terminals. Each auto-accepts independently without blocking the others.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3bbf1f2b-b999-4e0d-a9e2-b332a75f6f31:
+    id: 3bbf1f2b-b999-4e0d-a9e2-b332a75f6f31
+    content: 'Secondary: An autonomous collaborate step produces malformed output that can''t be parsed. The workflow should pause with a clear error rather than silently advancing with original content.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ebc547ed-3f8c-4f94-ac48-d4a2d8d8b26a:
+    id: ebc547ed-3f8c-4f94-ac48-d4a2d8d8b26a
+    content: Acceptance criteria
+    children:
+      - 6c043e8f-93ef-4049-b2fe-bfc49b62062f
+      - 307aa440-b441-4a1a-8caa-a51788b5e5ac
+      - 992b3dfc-92d1-4932-ba02-c77b21360a7d
+      - 45bb9691-acb7-4b77-808c-f14804f323e4
+      - 07b5f26a-ffc8-4bf4-9fde-c5185706f8ec
+      - 1ab195ee-ee36-481e-9169-5e37f28134ec
+      - f8217ba1-eacf-4a2d-896e-d1c22f4fb3a8
+      - 3c590936-c7e5-44c7-84b7-068a01feaa03
+      - ca95e619-5727-49d3-a950-aa09843a9004
+      - 47e6fe23-80a1-4d0a-881d-6574a232ff6a
+      - f2a4d146-22f0-4be2-8916-700a47dd20a7
+      - 6160ce2a-8819-4d9b-8d45-7822f5c2b29b
+      - 54f7ca51-5766-47e5-82ea-971c03febbd5
+      - e81150b4-7482-4bc4-bd57-640413fcdad3
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6c043e8f-93ef-4049-b2fe-bfc49b62062f:
+    id: 6c043e8f-93ef-4049-b2fe-bfc49b62062f
+    content: When feedback arrives for a node running in an autonomous workflow step, it is accepted automatically without showing the feedback panel
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  307aa440-b441-4a1a-8caa-a51788b5e5ac:
+    id: 307aa440-b441-4a1a-8caa-a51788b5e5ac
+    content: No collaboration highlight flash on the node for autonomous auto-accept
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  992b3dfc-92d1-4932-ba02-c77b21360a7d:
+    id: 992b3dfc-92d1-4932-ba02-c77b21360a7d
+    content: The node content is replaced with the feedback content before the node advances to the next step
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  45bb9691-acb7-4b77-808c-f14804f323e4:
+    id: 45bb9691-acb7-4b77-808c-f14804f323e4
+    content: The Stop hook must not advance an autonomous collaborate node until feedback has been accepted — today it advances immediately with the original content, which is a bug regardless of auto-accept
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  07b5f26a-ffc8-4bf4-9fde-c5185706f8ec:
+    id: 07b5f26a-ffc8-4bf4-9fde-c5185706f8ec
+    content: 'Both timing orderings are handled: Stop hook arrives before feedback file is ready, and feedback file is ready before Stop hook arrives'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1ab195ee-ee36-481e-9169-5e37f28134ec:
+    id: 1ab195ee-ee36-481e-9169-5e37f28134ec
+    content: Multiple autonomous collaborations can run concurrently across different terminals — each tracks its own feedback file independently
+    children:
+      - 5052f2d2-7a67-432e-b0ca-54846b6c75c2
+      - a7f73f2b-4e2c-40de-a50b-a54791d0b96f
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5052f2d2-7a67-432e-b0ca-54846b6c75c2:
+    id: 5052f2d2-7a67-432e-b0ca-54846b6c75c2
+    content: The feedback file watcher is currently a singleton that can only watch one file at a time — this must be extended to support multiple concurrent watchers for autonomous collaborations
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a7f73f2b-4e2c-40de-a50b-a54791d0b96f:
+    id: a7f73f2b-4e2c-40de-a50b-a54791d0b96f
+    content: Each autonomous collaboration needs its own file path mapped back to its node ID, since processIncomingFeedbackContent currently assumes all content belongs to a single collaboratingNodeId
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f8217ba1-eacf-4a2d-896e-d1c22f4fb3a8:
+    id: f8217ba1-eacf-4a2d-896e-d1c22f4fb3a8
+    content: Only one manual or checkpoint collaboration can be active at a time (feedback panel is a singleton)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3c590936-c7e5-44c7-84b7-068a01feaa03:
+    id: 3c590936-c7e5-44c7-84b7-068a01feaa03
+    content: If feedback parsing fails (malformed content, empty response), the workflow pauses with a toast notification rather than advancing with original content or silently failing
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ca95e619-5727-49d3-a950-aa09843a9004:
+    id: ca95e619-5727-49d3-a950-aa09843a9004
+    content: Checkpoint steps with collaborate contexts are unaffected — feedback still shows in the panel for user review, then the user clicks Accept and Continue Workflow as before
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  47e6fe23-80a1-4d0a-881d-6574a232ff6a:
+    id: 47e6fe23-80a1-4d0a-881d-6574a232ff6a
+    content: Manual steps with collaborate contexts are unaffected
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f2a4d146-22f0-4be2-8916-700a47dd20a7:
+    id: f2a4d146-22f0-4be2-8916-700a47dd20a7
+    content: The undo stack is preserved — auto-accepted feedback uses the same AcceptFeedbackCommand as manual acceptance
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6160ce2a-8819-4d9b-8d45-7822f5c2b29b:
+    id: 6160ce2a-8819-4d9b-8d45-7822f5c2b29b
+    content: Stopping the workflow while waiting for collaborate feedback cancels the collaboration and leaves the node in its current step with original content
+    children:
+      - 85e8ce2b-e43f-4ddc-9437-95558bb98695
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  85e8ce2b-e43f-4ddc-9437-95558bb98695:
+    id: 85e8ce2b-e43f-4ddc-9437-95558bb98695
+    content: Must clean up the feedback file and stop the corresponding file watcher for that node
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  54f7ca51-5766-47e5-82ea-971c03febbd5:
+    id: 54f7ca51-5766-47e5-82ea-971c03febbd5
+    content: Terminal closure while waiting for collaborate feedback stops the workflow as it does today
+    children:
+      - 06522d48-a98c-4124-92b2-b6f9a694773c
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  06522d48-a98c-4124-92b2-b6f9a694773c:
+    id: 06522d48-a98c-4124-92b2-b6f9a694773c
+    content: Must clean up any autonomous collaboration state associated with that terminal
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e81150b4-7482-4bc4-bd57-640413fcdad3:
+    id: e81150b4-7482-4bc4-bd57-640413fcdad3
+    content: A toast confirms when feedback is auto-accepted so the user knows something happened
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fa9de82d-f1cd-437c-b2ad-60dc949c5341:
+    id: fa9de82d-f1cd-437c-b2ad-60dc949c5341
+    content: Constraints and assumptions
+    children:
+      - 82ee77a4-c2ba-41df-89d4-7692c94e6118
+      - 947e4ed0-a525-4483-a7df-5e04df2d0e04
+      - 1519a0ad-fa25-42ab-88a3-b79cc1f62987
+      - a1f70b5d-5a75-4c94-8af5-2b02d22c7302
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  82ee77a4-c2ba-41df-89d4-7692c94e6118:
+    id: 82ee77a4-c2ba-41df-89d4-7692c94e6118
+    content: The file watcher (not the hook system) remains the content delivery mechanism — the hook system signals session completion, the file watcher delivers the actual AI response
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  947e4ed0-a525-4483-a7df-5e04df2d0e04:
+    id: 947e4ed0-a525-4483-a7df-5e04df2d0e04
+    content: The existing collaborate prompt format and feedback parsing are unchanged — auto-accept uses the same content pipeline as manual acceptance
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1519a0ad-fa25-42ab-88a3-b79cc1f62987:
+    id: 1519a0ad-fa25-42ab-88a3-b79cc1f62987
+    content: Autonomous collaborations are tracked independently of the single collaboratingNodeId used for manual/checkpoint panel-based collaboration
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a1f70b5d-5a75-4c94-8af5-2b02d22c7302:
+    id: a1f70b5d-5a75-4c94-8af5-2b02d22c7302
+    content: The feedback file is already unique per node (feedback-response-{nodeId}.md) — the naming convention supports concurrent autonomous collaborations without collision
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8f7c2ae9-ce73-46b4-a09e-246773e73300:
+    id: 8f7c2ae9-ce73-46b4-a09e-246773e73300
+    content: Observations
+    children:
+      - 163dedf0-6e7d-484d-a88d-a50a2ddf2921
+      - 438ff371-9aa3-40eb-99b2-f101fe3e88ae
+      - 259a113a-a4e0-4c46-839c-6f06c36d0f9e
+      - d2f4ad82-f086-4365-9e0d-5843d9e8c113
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  163dedf0-6e7d-484d-a88d-a50a2ddf2921:
+    id: 163dedf0-6e7d-484d-a88d-a50a2ddf2921
+    content: The Stop hook advancing an autonomous collaborate node before feedback acceptance is a bug that exists today, independent of auto-accept — this fix is bundled because auto-accept cannot work without it
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  438ff371-9aa3-40eb-99b2-f101fe3e88ae:
+    id: 438ff371-9aa3-40eb-99b2-f101fe3e88ae
+    content: The single collaboratingNodeId constraint only applies to manual/checkpoint collaborations (panel is a singleton). Autonomous collaborations need a separate tracking mechanism keyed by node or terminal, since they don't use the panel.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  259a113a-a4e0-4c46-839c-6f06c36d0f9e:
+    id: 259a113a-a4e0-4c46-839c-6f06c36d0f9e
+    content: The singleton FeedbackFileWatcher and the assumption that all feedback content belongs to one collaboratingNodeId are the two main architectural barriers to concurrent autonomous collaborations. Both need to be addressed.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d2f4ad82-f086-4365-9e0d-5843d9e8c113:
+    id: d2f4ad82-f086-4365-9e0d-5843d9e8c113
+    content: processIncomingFeedbackContent currently has no validation that incoming content was intended for the active node — for concurrent autonomous collaborations, the file watcher callback must include the node ID so content is routed to the correct collaboration
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6ea06150-f901-4ae3-bab0-8fadc1c3434f:
+    id: 6ea06150-f901-4ae3-bab0-8fadc1c3434f
+    content: Technical specifications
+    children:
+      - 60acdbd5-22a7-4730-b1f8-f514aed28ab3
+      - fc315c34-822f-44d5-8863-b008a991dfe8
+      - ebd81244-20df-4122-b208-7d1e742833f4
+      - cbb31664-5825-4455-a0ed-05d8e995c23e
+      - 5ba76c17-7f6d-43fe-8249-e63a92f755d4
+      - 08b5622e-f531-4c71-a74d-9e9ab0db68f2
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  60acdbd5-22a7-4730-b1f8-f514aed28ab3:
+    id: 60acdbd5-22a7-4730-b1f8-f514aed28ab3
+    content: Summary
+    children:
+      - a70e0f99-c168-47a1-83e1-1f12df84b628
+      - a6968141-6a7d-4b7e-bf4e-58a4286b62ac
+      - 8ed0d322-52d9-4ec4-9457-3c2aa70b52c2
+      - 781ace29-ad27-4dd7-98f4-d6c526d6ab3c
+      - bc41bb4b-5b1f-40ff-bbdb-26549f50218f
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a70e0f99-c168-47a1-83e1-1f12df84b628:
+    id: a70e0f99-c168-47a1-83e1-1f12df84b628
+    content: 'Two coordinated signals govern an autonomous collaborate step: the Stop hook (AI session finished) and the file watcher (AI response content ready). Both must arrive before the node advances.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a6968141-6a7d-4b7e-bf4e-58a4286b62ac:
+    id: a6968141-6a7d-4b7e-bf4e-58a4286b62ac
+    content: A new flag on WorkflowExecutionEntry tracks collaborate mode. The Stop hook checks this flag and defers advancement. The file watcher triggers auto-accept when content arrives. Whichever arrives second triggers advancement.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8ed0d322-52d9-4ec4-9457-3c2aa70b52c2:
+    id: 8ed0d322-52d9-4ec4-9457-3c2aa70b52c2
+    content: The singleton FeedbackFileWatcher becomes a multi-file watcher keyed by file path, supporting concurrent autonomous collaborations
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  781ace29-ad27-4dd7-98f4-d6c526d6ab3c:
+    id: 781ace29-ad27-4dd7-98f4-d6c526d6ab3c
+    content: A new autonomousCollaborations map in workflowExecutionActions tracks pending autonomous collaborations (nodeId → file path), separate from the panel-based collaboratingNodeId
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  bc41bb4b-5b1f-40ff-bbdb-26549f50218f:
+    id: bc41bb4b-5b1f-40ff-bbdb-26549f50218f
+    content: The existing processIncomingFeedbackContent, parseFeedbackContent, and AcceptFeedbackCommand are reused without modification — auto-accept calls finishAccept programmatically or replicates its core logic with the correct node ID
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fc315c34-822f-44d5-8863-b008a991dfe8:
+    id: fc315c34-822f-44d5-8863-b008a991dfe8
+    content: Inputs, outputs, and key interfaces
+    children:
+      - 515b60da-7cdc-4c68-9fa9-b9d808154217
+      - a1f70693-d142-47dd-b3de-11a5751cbee8
+      - a9a8a8ed-8c0c-4e6c-a9f2-67690430a92d
+      - 86e7a107-3742-4a36-bbf6-9673903007b5
+      - c7d6b79b-4622-428e-a488-0c6093c563dc
+      - c587a264-e2b4-4465-868f-033aab002fc4
+      - 4cfe9e41-90e6-4015-bf6e-4b80fd48e306
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  515b60da-7cdc-4c68-9fa9-b9d808154217:
+    id: 515b60da-7cdc-4c68-9fa9-b9d808154217
+    content: 'Input: feedback file content detected by the file watcher for a specific node ID'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a1f70693-d142-47dd-b3de-11a5751cbee8:
+    id: a1f70693-d142-47dd-b3de-11a5751cbee8
+    content: 'Input: Stop hook event for a node that has the collaborate flag set'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a9a8a8ed-8c0c-4e6c-a9f2-67690430a92d:
+    id: a9a8a8ed-8c0c-4e6c-a9f2-67690430a92d
+    content: 'Output: AcceptFeedbackCommand executed, node content replaced, workflow advancement triggered'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  86e7a107-3742-4a36-bbf6-9673903007b5:
+    id: 86e7a107-3742-4a36-bbf6-9673903007b5
+    content: 'Key state addition: WorkflowExecutionEntry gains collaborating?: boolean flag'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c7d6b79b-4622-428e-a488-0c6093c563dc:
+    id: c7d6b79b-4622-428e-a488-0c6093c563dc
+    content: 'Key state addition: autonomousCollaborations map (Record<string, { filePath: string; terminalId: string }>) in the workflowExecutionActions closure'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c587a264-e2b4-4465-868f-033aab002fc4:
+    id: c587a264-e2b4-4465-868f-033aab002fc4
+    content: 'Key change: FeedbackFileWatcher supports multiple concurrent file watches, each with its own callback'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4cfe9e41-90e6-4015-bf6e-4b80fd48e306:
+    id: 4cfe9e41-90e6-4015-bf6e-4b80fd48e306
+    content: 'Key change: IPC channel for feedback file detection includes the file path so the renderer can route content to the correct node'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ebd81244-20df-4122-b208-7d1e742833f4:
+    id: ebd81244-20df-4122-b208-7d1e742833f4
+    content: Constraints and non-functional requirements
+    children:
+      - 726f5f58-0a3c-4b14-8846-b3242304bd57
+      - 28b4c283-b38e-4377-9680-8ea55eb4e843
+      - 01359cd2-e90e-4923-a7ba-8deb176debbe
+      - 1701f4f0-37d8-4909-ae97-39cb5fd0b06e
+      - 6eddced3-ed4e-4b36-b2ad-256aaf2172ef
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  726f5f58-0a3c-4b14-8846-b3242304bd57:
+    id: 726f5f58-0a3c-4b14-8846-b3242304bd57
+    content: Auto-accept must use AcceptFeedbackCommand to preserve undo/redo
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  28b4c283-b38e-4377-9680-8ea55eb4e843:
+    id: 28b4c283-b38e-4377-9680-8ea55eb4e843
+    content: No UI flash or panel display for autonomous auto-accept
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  01359cd2-e90e-4923-a7ba-8deb176debbe:
+    id: 01359cd2-e90e-4923-a7ba-8deb176debbe
+    content: Parse failures must pause the workflow, not silently skip
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1701f4f0-37d8-4909-ae97-39cb5fd0b06e:
+    id: 1701f4f0-37d8-4909-ae97-39cb5fd0b06e
+    content: File watcher cleanup must happen on workflow stop, terminal close, and node deletion
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6eddced3-ed4e-4b36-b2ad-256aaf2172ef:
+    id: 6eddced3-ed4e-4b36-b2ad-256aaf2172ef
+    content: The existing manual collaboration flow (collaboratingNodeId, feedback panel, clipboard monitor) must remain unchanged
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  cbb31664-5825-4455-a0ed-05d8e995c23e:
+    id: cbb31664-5825-4455-a0ed-05d8e995c23e
+    content: Technical steps
+    children:
+      - 24b71e11-2b5f-46c0-95a0-8ef40fcdd291
+      - efd7081f-73eb-44b8-94c5-bba34698bb55
+      - 18fdb413-410f-4233-9bfa-916265a01a90
+      - 8ac56629-6705-4680-9917-a43be3025485
+      - 3c1b859e-2a69-4231-83be-5124bc670bcf
+      - 26467b2b-51bc-403c-b5c1-c4c5792a930d
+      - 59c84cec-0c15-4a1b-8488-4e0fa69deaa5
+      - 7308cdec-f7ab-43bb-9ef9-bda1669d43f0
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  24b71e11-2b5f-46c0-95a0-8ef40fcdd291:
+    id: 24b71e11-2b5f-46c0-95a0-8ef40fcdd291
+    content: 'Step 1: Extend FeedbackFileWatcher to support multiple files (M)'
+    children:
+      - 2b0b6018-8dba-47de-9b79-ec3c435d8e7f
+      - dd105820-3730-4ada-ab16-2aee978372b3
+      - fb5a67b6-1ef2-4b8f-b3f4-8e843497bfef
+      - 48bee7e4-f8e5-49e8-a8a4-3d60be98646e
+      - 50786b88-a38a-4501-913f-7ee2b2c78b50
+      - 78e66cc6-5c50-4504-9238-3162791abd25
+      - 14c03696-aeee-4f2d-8b4a-d0176836128b
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2b0b6018-8dba-47de-9b79-ec3c435d8e7f:
+    id: 2b0b6018-8dba-47de-9b79-ec3c435d8e7f
+    content: Replace single watchedFilePath/lastContent/lastMtime/onChange with a Map keyed by file path
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  dd105820-3730-4ada-ab16-2aee978372b3:
+    id: dd105820-3730-4ada-ab16-2aee978372b3
+    content: start(filePath, onChange) adds a new watch entry without stopping existing ones
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fb5a67b6-1ef2-4b8f-b3f4-8e843497bfef:
+    id: fb5a67b6-1ef2-4b8f-b3f4-8e843497bfef
+    content: stop(filePath) stops a specific watch; stopAll() stops all
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  48bee7e4-f8e5-49e8-a8a4-3d60be98646e:
+    id: 48bee7e4-f8e5-49e8-a8a4-3d60be98646e
+    content: The IPC callback includes the file path in the event payload so the renderer knows which file changed
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  50786b88-a38a-4501-913f-7ee2b2c78b50:
+    id: 50786b88-a38a-4501-913f-7ee2b2c78b50
+    content: 'Update feedbackFileHandlers.ts IPC: start-feedback-file-watcher and stop-feedback-file-watcher take filePath, new stop-all-feedback-file-watchers for cleanup'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  78e66cc6-5c50-4504-9238-3162791abd25:
+    id: 78e66cc6-5c50-4504-9238-3162791abd25
+    content: 'Update preload/index.ts: onFeedbackFileContentDetected callback receives (filePath, content) instead of just (content)'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  14c03696-aeee-4f2d-8b4a-d0176836128b:
+    id: 14c03696-aeee-4f2d-8b4a-d0176836128b
+    content: 'Update useFeedbackClipboard.ts: onFeedbackFileContentDetected handler passes filePath through (for manual collaboration, ignore filePath and use collaboratingNodeId as today)'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  efd7081f-73eb-44b8-94c5-bba34698bb55:
+    id: efd7081f-73eb-44b8-94c5-bba34698bb55
+    content: 'Step 2: Add collaborate flag to WorkflowExecutionEntry and Stop hook handling (M)'
+    children:
+      - 7ede38b1-6d94-4294-b638-b9ed3d04232d
+      - ec75a00d-806f-49f6-8c2a-62a132c75c49
+      - 6c2b918e-95ea-4f06-93d1-0cc6bf000235
+      - c6b9e281-4e9d-4118-a37c-34adfef9899a
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7ede38b1-6d94-4294-b638-b9ed3d04232d:
+    id: 7ede38b1-6d94-4294-b638-b9ed3d04232d
+    content: 'Add collaborating?: boolean to WorkflowExecutionEntry type'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ec75a00d-806f-49f6-8c2a-62a132c75c49:
+    id: ec75a00d-806f-49f6-8c2a-62a132c75c49
+    content: 'In sendContentToTerminal, when routing to collaborate mode: set the collaborating flag on the execution entry before calling collaborateInTerminal'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6c2b918e-95ea-4f06-93d1-0cc6bf000235:
+    id: 6c2b918e-95ea-4f06-93d1-0cc6bf000235
+    content: 'In handleHookEvent Stop handler for autonomous steps: if entry.collaborating is true, set a stopReceived flag instead of calling advanceNode. The file watcher callback will trigger advancement.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c6b9e281-4e9d-4118-a37c-34adfef9899a:
+    id: c6b9e281-4e9d-4118-a37c-34adfef9899a
+    content: 'Add stopReceived?: boolean to WorkflowExecutionEntry for tracking Stop arrival before feedback'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  18fdb413-410f-4233-9bfa-916265a01a90:
+    id: 18fdb413-410f-4233-9bfa-916265a01a90
+    content: 'Step 3: Add autonomous collaboration tracking in workflowExecutionActions (M)'
+    children:
+      - 8d5feccc-88d8-4cb1-904f-ba6f659777fe
+      - 5730e1d6-4814-4e00-bc2c-621cda461558
+      - 8df93586-0154-4808-83df-f47a57ebe471
+      - a0f3c05a-f819-4b72-8b9b-5f9000cf095e
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8d5feccc-88d8-4cb1-904f-ba6f659777fe:
+    id: 8d5feccc-88d8-4cb1-904f-ba6f659777fe
+    content: 'Add autonomousCollaborations map in the closure: Record<string, { filePath: string; terminalId: string }>'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5730e1d6-4814-4e00-bc2c-621cda461558:
+    id: 5730e1d6-4814-4e00-bc2c-621cda461558
+    content: 'When sendContentToTerminal routes to collaborate mode for an autonomous node: register the collaboration in the map with the node''s feedback file path and terminal ID'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8df93586-0154-4808-83df-f47a57ebe471:
+    id: 8df93586-0154-4808-83df-f47a57ebe471
+    content: Provide a function to look up nodeId by filePath for routing incoming feedback
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a0f3c05a-f819-4b72-8b9b-5f9000cf095e:
+    id: a0f3c05a-f819-4b72-8b9b-5f9000cf095e
+    content: 'Clean up the map entry when: workflow stops, terminal closes, node is deleted, or auto-accept completes'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8ac56629-6705-4680-9917-a43be3025485:
+    id: 8ac56629-6705-4680-9917-a43be3025485
+    content: 'Step 4: Create auto-accept flow for autonomous collaborate feedback (L)'
+    children:
+      - aa8660b8-8fab-49d1-b042-3559ba68a587
+      - feceb54d-5c0b-4d2b-b274-4b6b5c7aee12
+      - 6843ce34-d3ad-4d37-b2ec-2f553dcd49a7
+      - a43a4038-2d51-4f7c-807c-77ff3ac2cd98
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  aa8660b8-8fab-49d1-b042-3559ba68a587:
+    id: aa8660b8-8fab-49d1-b042-3559ba68a587
+    content: Add a new function handleAutonomousFeedback(nodeId, content) in workflowExecutionActions or collaborateActions
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  feceb54d-5c0b-4d2b-b274-4b6b5c7aee12:
+    id: feceb54d-5c0b-4d2b-b274-4b6b5c7aee12
+    content: 'This function: parses content via parseFeedbackContent, gets decomposition flag from step metadata, gets archive config, executes AcceptFeedbackCommand, cleans up feedback file and watcher'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6843ce34-d3ad-4d37-b2ec-2f553dcd49a7:
+    id: 6843ce34-d3ad-4d37-b2ec-2f553dcd49a7
+    content: 'After successful accept: if stopReceived is true on the execution entry, call advanceNode. If not, clear the collaborating flag — advanceNode will run when Stop arrives.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a43a4038-2d51-4f7c-807c-77ff3ac2cd98:
+    id: a43a4038-2d51-4f7c-807c-77ff3ac2cd98
+    content: 'On parse failure: stop the workflow for that node, show error toast, clean up watcher'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3c1b859e-2a69-4231-83be-5124bc670bcf:
+    id: 3c1b859e-2a69-4231-83be-5124bc670bcf
+    content: 'Step 5: Wire file watcher detection to auto-accept (M)'
+    children:
+      - db725ef0-d3dd-4061-8693-2e64db7942e1
+      - 623e1a41-fd5a-45e0-a2ce-2b9f221bb89a
+      - 9eeaf003-8b50-43b0-a949-1fe693554e59
+      - 6ca3a8d6-ce02-44ff-af95-f983e12fef99
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  db725ef0-d3dd-4061-8693-2e64db7942e1:
+    id: db725ef0-d3dd-4061-8693-2e64db7942e1
+    content: 'In the renderer, when feedback-file-content-detected fires with a filePath: check if that filePath maps to an autonomous collaboration (look up in autonomousCollaborations or store state)'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  623e1a41-fd5a-45e0-a2ce-2b9f221bb89a:
+    id: 623e1a41-fd5a-45e0-a2ce-2b9f221bb89a
+    content: 'If yes: route to handleAutonomousFeedback with the mapped nodeId and content. Do not show feedback panel.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9eeaf003-8b50-43b0-a949-1fe693554e59:
+    id: 9eeaf003-8b50-43b0-a949-1fe693554e59
+    content: 'If no: route to existing processIncomingFeedbackContent for manual panel-based flow (current behavior)'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6ca3a8d6-ce02-44ff-af95-f983e12fef99:
+    id: 6ca3a8d6-ce02-44ff-af95-f983e12fef99
+    content: This routing can happen in useFeedbackClipboard.ts or a new listener in workflowExecutionActions
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  26467b2b-51bc-403c-b5c1-c4c5792a930d:
+    id: 26467b2b-51bc-403c-b5c1-c4c5792a930d
+    content: 'Step 6: Integrate with collaborateInTerminal for autonomous path (S)'
+    children:
+      - 348fd983-0010-4928-9ee8-0fea7a960e88
+      - 5fcc8a33-4ae7-47fc-aebc-391b63c7e9b2
+      - c209171a-9a91-4f88-b85d-c5cc5c72d452
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  348fd983-0010-4928-9ee8-0fea7a960e88:
+    id: 348fd983-0010-4928-9ee8-0fea7a960e88
+    content: 'When collaborateInTerminal is called from sendContentToTerminal (autonomous workflow): skip setting collaboratingNodeId (that''s for the panel), skip clipboard monitor. Only start the file watcher and register in autonomousCollaborations map.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5fcc8a33-4ae7-47fc-aebc-391b63c7e9b2:
+    id: 5fcc8a33-4ae7-47fc-aebc-391b63c7e9b2
+    content: 'When collaborateInTerminal is called from user-initiated collaborate (panel flow): keep current behavior — set collaboratingNodeId, start clipboard monitor, start file watcher'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c209171a-9a91-4f88-b85d-c5cc5c72d452:
+    id: c209171a-9a91-4f88-b85d-c5cc5c72d452
+    content: This may require a parameter to distinguish the two call sites, or a separate function for the autonomous path
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  59c84cec-0c15-4a1b-8488-4e0fa69deaa5:
+    id: 59c84cec-0c15-4a1b-8488-4e0fa69deaa5
+    content: 'Step 7: Cleanup on workflow disruption (S)'
+    children:
+      - 01b7f763-2e2f-4812-8f06-42fc9de378cd
+      - 5662d074-b30b-4b7f-b32b-e67829b9f3c2
+      - b422946f-3a88-43d2-959f-7e03afd2f5d1
+      - 70db8b63-03d9-4b27-97d6-e2b8f0364d0b
+      - d00d27d6-33f5-4ae3-b33d-2f1b3294b67d
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  01b7f763-2e2f-4812-8f06-42fc9de378cd:
+    id: 01b7f763-2e2f-4812-8f06-42fc9de378cd
+    content: 'stopWorkflow: if node has an autonomous collaboration, stop its file watcher and remove from map'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5662d074-b30b-4b7f-b32b-e67829b9f3c2:
+    id: 5662d074-b30b-4b7f-b32b-e67829b9f3c2
+    content: 'handleTerminalClosed: clean up any autonomous collaborations on that terminal'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b422946f-3a88-43d2-959f-7e03afd2f5d1:
+    id: b422946f-3a88-43d2-959f-7e03afd2f5d1
+    content: 'handleNodeDeleted: clean up any autonomous collaboration for that node'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  70db8b63-03d9-4b27-97d6-e2b8f0364d0b:
+    id: 70db8b63-03d9-4b27-97d6-e2b8f0364d0b
+    content: 'handleNodeMovedManually: clean up any autonomous collaboration for that node'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d00d27d6-33f5-4ae3-b33d-2f1b3294b67d:
+    id: d00d27d6-33f5-4ae3-b33d-2f1b3294b67d
+    content: 'initializeExecutionState (app restart): stop all file watchers, clear autonomous collaborations map'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7308cdec-f7ab-43bb-9ef9-bda1669d43f0:
+    id: 7308cdec-f7ab-43bb-9ef9-bda1669d43f0
+    content: 'Step 8: Update tests (L)'
+    children:
+      - 23096c2e-0356-49fc-922b-f6d9b555393a
+      - 8c93b7aa-b813-4c9b-869f-0afacf8d98e1
+      - 888a36e6-19e3-40d1-bfe6-3e853986ead5
+      - 24b5c012-b0c7-4ae9-8648-4e8dc2c744bf
+      - 4a83c2d1-48ed-463e-9e51-4b1d8d7670cd
+      - 85908878-b044-42df-8b08-6209c4cf626f
+      - a3b60e84-78e5-4af9-91be-e7fb944d0cb7
+      - 5faaa078-0f43-4492-b022-3c4e409ede3a
+      - 946a3e55-b9d3-4926-8097-1da50bc4bdf9
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  23096c2e-0356-49fc-922b-f6d9b555393a:
+    id: 23096c2e-0356-49fc-922b-f6d9b555393a
+    content: 'Unit: file watcher supports multiple concurrent watches'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8c93b7aa-b813-4c9b-869f-0afacf8d98e1:
+    id: 8c93b7aa-b813-4c9b-869f-0afacf8d98e1
+    content: 'Unit: Stop hook defers advancement when collaborating flag is set'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  888a36e6-19e3-40d1-bfe6-3e853986ead5:
+    id: 888a36e6-19e3-40d1-bfe6-3e853986ead5
+    content: 'Unit: feedback content triggers auto-accept for autonomous collaborate nodes'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  24b5c012-b0c7-4ae9-8648-4e8dc2c744bf:
+    id: 24b5c012-b0c7-4ae9-8648-4e8dc2c744bf
+    content: 'Unit: advanceNode runs after both Stop and feedback arrive (both orderings)'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4a83c2d1-48ed-463e-9e51-4b1d8d7670cd:
+    id: 4a83c2d1-48ed-463e-9e51-4b1d8d7670cd
+    content: 'Unit: parse failure pauses workflow with toast'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  85908878-b044-42df-8b08-6209c4cf626f:
+    id: 85908878-b044-42df-8b08-6209c4cf626f
+    content: 'Unit: concurrent autonomous collaborations on different terminals'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a3b60e84-78e5-4af9-91be-e7fb944d0cb7:
+    id: a3b60e84-78e5-4af9-91be-e7fb944d0cb7
+    content: 'Unit: manual/checkpoint collaboration unchanged'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5faaa078-0f43-4492-b022-3c4e409ede3a:
+    id: 5faaa078-0f43-4492-b022-3c4e409ede3a
+    content: 'Unit: cleanup on stop, terminal close, node delete, app restart'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  946a3e55-b9d3-4926-8097-1da50bc4bdf9:
+    id: 946a3e55-b9d3-4926-8097-1da50bc4bdf9
+    content: 'Unit: AcceptFeedbackCommand receives correct parameters from auto-accept'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5ba76c17-7f6d-43fe-8249-e63a92f755d4:
+    id: 5ba76c17-7f6d-43fe-8249-e63a92f755d4
+    content: Risks and edge cases
+    children:
+      - 63d90249-b128-49af-a432-bc9265e3cb7f
+      - f4570e39-5fa6-45c5-a4d3-0a98c14c77a9
+      - 9b7e2f40-ccda-4c65-96ca-8594d82c05b0
+      - 681fb58b-14ee-4c11-beb0-2796efeb323f
+      - 27d9e4fc-0aac-4fa7-9955-9bc6e69275bd
+      - 8df11659-aa31-4586-b153-25e52c610db1
+      - 693b0e43-9c76-40c8-9408-41ad22f59052
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  63d90249-b128-49af-a432-bc9265e3cb7f:
+    id: 63d90249-b128-49af-a432-bc9265e3cb7f
+    content: 'Timing race: Stop hook and file watcher are asynchronous. The two-flag approach (collaborating + stopReceived) handles both orderings, but both flags must be checked atomically via get() to avoid stale reads.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f4570e39-5fa6-45c5-a4d3-0a98c14c77a9:
+    id: f4570e39-5fa6-45c5-a4d3-0a98c14c77a9
+    content: 'File watcher detects partial write: the AI may write the file incrementally. The existing 50-char minimum and mtime check help, but a partial markdown structure could still parse as valid. The existing behavior has this risk for manual collaboration too — auto-accept doesn''t make it worse.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9b7e2f40-ccda-4c65-96ca-8594d82c05b0:
+    id: 9b7e2f40-ccda-4c65-96ca-8594d82c05b0
+    content: 'Node deleted while collaborating: if the user deletes a node that has a pending autonomous collaboration, the file watcher could fire after deletion. The auto-accept handler must check the node still exists before executing AcceptFeedbackCommand.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  681fb58b-14ee-4c11-beb0-2796efeb323f:
+    id: 681fb58b-14ee-4c11-beb0-2796efeb323f
+    content: collaborateInTerminal currently sets collaboratingNodeId unconditionally — calling it for autonomous path while a manual collaboration is active would overwrite the panel's state. The autonomous path must not touch collaboratingNodeId.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  27d9e4fc-0aac-4fa7-9955-9bc6e69275bd:
+    id: 27d9e4fc-0aac-4fa7-9955-9bc6e69275bd
+    content: 'Redo consistency: AcceptFeedbackCommand uses cachedIdMap for consistent UUIDs on redo. Auto-accept must create the command the same way finishAccept does to preserve this.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8df11659-aa31-4586-b153-25e52c610db1:
+    id: 8df11659-aa31-4586-b153-25e52c610db1
+    content: feedbackTreeStore is used as intermediate storage in the manual flow (processIncomingFeedbackContent → store → extractFeedbackContent). The autonomous path can bypass this since there's no panel to render — parse directly and execute the command.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  693b0e43-9c76-40c8-9408-41ad22f59052:
+    id: 693b0e43-9c76-40c8-9408-41ad22f59052
+    content: 'Step timeout: the step timeout (15 minutes) is currently per-node. For collaborate mode, the timeout should still apply — if neither Stop hook nor feedback arrives within the timeout, the workflow should warn the user.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  08b5622e-f531-4c71-a74d-9e9ab0db68f2:
+    id: 08b5622e-f531-4c71-a74d-9e9ab0db68f2
+    content: Implementation plan
+    children:
+      - 863301e4-177a-4f3a-8fe7-fea92c71c0ef
+      - c80405a2-8ef6-43e5-be7b-71e92634c648
+      - 302d0a24-3c68-4cd2-81a9-0a166fd1a302
+      - ce10b756-dfc6-4e41-a204-1713909befad
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  863301e4-177a-4f3a-8fe7-fea92c71c0ef:
+    id: 863301e4-177a-4f3a-8fe7-fea92c71c0ef
+    content: Single PR with incremental commits
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c80405a2-8ef6-43e5-be7b-71e92634c648:
+    id: c80405a2-8ef6-43e5-be7b-71e92634c648
+    content: 'Order: File watcher multi-support (Step 1) → Execution state flags (Step 2) → Collaboration tracking (Step 3) → Auto-accept logic (Step 4) → Wiring (Step 5) → collaborateInTerminal split (Step 6) → Cleanup (Step 7) → Tests (Step 8)'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  302d0a24-3c68-4cd2-81a9-0a166fd1a302:
+    id: 302d0a24-3c68-4cd2-81a9-0a166fd1a302
+    content: Testing strategy
+    children:
+      - 0c266325-473b-40ef-941d-81c59dbc0d0c
+      - da9ebd7f-038a-434d-90f2-22cd69009f1b
+      - c976480b-320c-4a82-b670-cee4467e143c
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0c266325-473b-40ef-941d-81c59dbc0d0c:
+    id: 0c266325-473b-40ef-941d-81c59dbc0d0c
+    content: 'Unit: file watcher, execution state flags, auto-accept logic, cleanup handlers'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  da9ebd7f-038a-434d-90f2-22cd69009f1b:
+    id: da9ebd7f-038a-434d-90f2-22cd69009f1b
+    content: 'Integration: full flow from startWorkflow through collaborate, feedback detection, auto-accept, and advancement'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c976480b-320c-4a82-b670-cee4467e143c:
+    id: c976480b-320c-4a82-b670-cee4467e143c
+    content: 'Manual: decomposition + recurse end-to-end with collaborate context across multiple terminals'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ce10b756-dfc6-4e41-a204-1713909befad:
+    id: ce10b756-dfc6-4e41-a204-1713909befad
+    content: Steps 1-2 can be developed in parallel since they touch different systems (main process vs renderer state)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c73f0c4e-8365-4d6d-aa62-c75f92b66a82:
+    id: c73f0c4e-8365-4d6d-aa62-c75f92b66a82
+    content: Test plan
+    children:
+      - dce63db7-97bb-4266-aea8-3b21b9a9f896
+      - 359851a5-4878-4889-b8ca-de1afb69b04a
+      - 42bd5cfc-6d23-4a2b-b466-c40295e3dffd
+      - c3a508ca-ad09-4d5a-94bf-e01b3b639ab8
+      - 47418e50-f0a0-4cd4-920e-2b8d60c7c0e4
+      - 37db38a6-107c-4370-be27-a05147df3399
+      - bc1f831d-ab3b-4efe-b49f-133f7e480b3c
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  dce63db7-97bb-4266-aea8-3b21b9a9f896:
+    id: dce63db7-97bb-4266-aea8-3b21b9a9f896
+    content: Scope and objectives
+    children:
+      - 6354731e-6713-41ee-aeb6-4a28befbe903
+      - 8b6ed902-0dac-4de5-b035-39bdf3093039
+      - ade30231-ae99-4f3d-ba15-8dc912bfe22c
+      - 046410d9-d439-4ce2-95f8-ab14aa3ea85c
+      - 742a6a0c-5aae-4f4f-8344-226ba466f8ba
+      - d79d409e-1ed7-420e-aebb-93892e239ae2
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6354731e-6713-41ee-aeb6-4a28befbe903:
+    id: 6354731e-6713-41ee-aeb6-4a28befbe903
+    content: Verify that autonomous collaborate steps auto-accept feedback and advance without user interaction
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8b6ed902-0dac-4de5-b035-39bdf3093039:
+    id: 8b6ed902-0dac-4de5-b035-39bdf3093039
+    content: Verify that the Stop hook and file watcher timing race is handled in both orderings
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ade30231-ae99-4f3d-ba15-8dc912bfe22c:
+    id: ade30231-ae99-4f3d-ba15-8dc912bfe22c
+    content: Verify that multiple concurrent autonomous collaborations work independently
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  046410d9-d439-4ce2-95f8-ab14aa3ea85c:
+    id: 046410d9-d439-4ce2-95f8-ab14aa3ea85c
+    content: Verify that manual and checkpoint collaborate flows are unaffected
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  742a6a0c-5aae-4f4f-8344-226ba466f8ba:
+    id: 742a6a0c-5aae-4f4f-8344-226ba466f8ba
+    content: Verify that all cleanup paths (stop, terminal close, delete, restart) release resources correctly
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d79d409e-1ed7-420e-aebb-93892e239ae2:
+    id: d79d409e-1ed7-420e-aebb-93892e239ae2
+    content: Verify that parse failures pause the workflow rather than advancing with stale content
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  359851a5-4878-4889-b8ca-de1afb69b04a:
+    id: 359851a5-4878-4889-b8ca-de1afb69b04a
+    content: Entry criteria
+    children:
+      - fdfd20d2-621d-49c9-8e3a-6817208f3ac6
+      - c71e52d3-8d23-4b94-99ca-f8506b1e983d
+      - 7f622d62-a44d-4a99-a572-ac7acfc2ca1a
+      - 29b0a969-fd82-40bb-8d52-718c642a52f1
+      - 8c2693f3-ce54-4a48-8e57-377d37bdb782
+      - 6d15596f-c741-4fd8-8cc3-b7e049e6020f
+      - c756acc2-18ec-4e23-bb21-ba8862f468d6
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fdfd20d2-621d-49c9-8e3a-6817208f3ac6:
+    id: fdfd20d2-621d-49c9-8e3a-6817208f3ac6
+    content: FeedbackFileWatcher supports multiple concurrent file watches
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c71e52d3-8d23-4b94-99ca-f8506b1e983d:
+    id: c71e52d3-8d23-4b94-99ca-f8506b1e983d
+    content: WorkflowExecutionEntry has collaborating and stopReceived flags
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7f622d62-a44d-4a99-a572-ac7acfc2ca1a:
+    id: 7f622d62-a44d-4a99-a572-ac7acfc2ca1a
+    content: autonomousCollaborations tracking map is in place
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  29b0a969-fd82-40bb-8d52-718c642a52f1:
+    id: 29b0a969-fd82-40bb-8d52-718c642a52f1
+    content: handleAutonomousFeedback function is implemented
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8c2693f3-ce54-4a48-8e57-377d37bdb782:
+    id: 8c2693f3-ce54-4a48-8e57-377d37bdb782
+    content: File watcher detection is routed to auto-accept for autonomous nodes
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6d15596f-c741-4fd8-8cc3-b7e049e6020f:
+    id: 6d15596f-c741-4fd8-8cc3-b7e049e6020f
+    content: collaborateInTerminal distinguishes autonomous from manual call sites
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c756acc2-18ec-4e23-bb21-ba8862f468d6:
+    id: c756acc2-18ec-4e23-bb21-ba8862f468d6
+    content: All disruption handlers clean up autonomous collaboration state
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  42bd5cfc-6d23-4a2b-b466-c40295e3dffd:
+    id: 42bd5cfc-6d23-4a2b-b466-c40295e3dffd
+    content: Exit criteria
+    children:
+      - c46a1915-909f-42f7-bc98-04ff4bcf68b0
+      - eca1e951-818d-41a6-851f-76c142d0feb4
+      - 065b05b1-438b-44d1-956e-d389ffc71698
+      - 695c31c7-7d7f-4642-9e81-624dc8238c68
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c46a1915-909f-42f7-bc98-04ff4bcf68b0:
+    id: c46a1915-909f-42f7-bc98-04ff4bcf68b0
+    content: All unit tests pass
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  eca1e951-818d-41a6-851f-76c142d0feb4:
+    id: eca1e951-818d-41a6-851f-76c142d0feb4
+    content: All manual test scenarios verified
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  065b05b1-438b-44d1-956e-d389ffc71698:
+    id: 065b05b1-438b-44d1-956e-d389ffc71698
+    content: No regressions in existing manual/checkpoint collaboration
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  695c31c7-7d7f-4642-9e81-624dc8238c68:
+    id: 695c31c7-7d7f-4642-9e81-624dc8238c68
+    content: No regressions in existing workflow execution (advancement, completion, stop)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c3a508ca-ad09-4d5a-94bf-e01b3b639ab8:
+    id: c3a508ca-ad09-4d5a-94bf-e01b3b639ab8
+    content: Environments and prerequisites
+    children:
+      - 6375e23e-41e5-42a4-9abe-b84b24649abf
+      - 43622cc2-fecf-4185-a565-a15dfa0d7600
+      - afc017f0-6de1-4f44-bce1-8bfc977a7ecb
+      - 6824b5d5-7915-4d80-8d5a-748406a079b7
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6375e23e-41e5-42a4-9abe-b84b24649abf:
+    id: 6375e23e-41e5-42a4-9abe-b84b24649abf
+    content: A workflow with at least one autonomous step using a collaborate-mode context
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  43622cc2-fecf-4185-a565-a15dfa0d7600:
+    id: 43622cc2-fecf-4185-a565-a15dfa0d7600
+    content: A workflow with decomposition + recurse + collaborate to test the full pipeline
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  afc017f0-6de1-4f44-bce1-8bfc977a7ecb:
+    id: afc017f0-6de1-4f44-bce1-8bfc977a7ecb
+    content: Multiple terminal tabs open for parallel collaboration testing
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6824b5d5-7915-4d80-8d5a-748406a079b7:
+    id: 6824b5d5-7915-4d80-8d5a-748406a079b7
+    content: A collaborate context that produces parseable output and one that produces malformed output
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  47418e50-f0a0-4cd4-920e-2b8d60c7c0e4:
+    id: 47418e50-f0a0-4cd4-920e-2b8d60c7c0e4
+    content: Unit tests
+    children:
+      - fd7adb9a-cd83-4f59-b25a-360e5dc26bb6
+      - 62240e41-50bc-484d-9610-6b2a332379de
+      - 37571895-91f3-4342-989b-b1be197bf17a
+      - a374c8ef-7dc9-47ac-a061-8dfe70abd6a9
+      - 3b1cf049-621c-4d38-9192-899d4169211d
+      - 0463543d-1ad0-45dc-badf-e565d0da092f
+      - 42adc692-4e3c-4b4e-ab6f-7e4ec8b351ce
+      - 24e0567f-714f-44de-8a31-1e873de95a43
+      - 875ce3a8-a121-4c03-9ebf-f11485444b2a
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fd7adb9a-cd83-4f59-b25a-360e5dc26bb6:
+    id: fd7adb9a-cd83-4f59-b25a-360e5dc26bb6
+    content: FeedbackFileWatcher multi-file support
+    children:
+      - 9a3bb367-bc92-448b-975a-5dbd8482054f
+      - 7f24d54d-f61f-4216-93b0-6d64a71d4033
+      - 5423fc2d-8b07-48a8-9067-0a56fd51e9c1
+      - 31e09e37-00ae-4c15-b407-ad7febae8102
+      - 39464dfb-d21a-4d7c-b3f7-3a09f1e7a967
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9a3bb367-bc92-448b-975a-5dbd8482054f:
+    id: 9a3bb367-bc92-448b-975a-5dbd8482054f
+    content: Can watch multiple files concurrently with independent callbacks
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7f24d54d-f61f-4216-93b0-6d64a71d4033:
+    id: 7f24d54d-f61f-4216-93b0-6d64a71d4033
+    content: Stopping one watch does not affect others
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5423fc2d-8b07-48a8-9067-0a56fd51e9c1:
+    id: 5423fc2d-8b07-48a8-9067-0a56fd51e9c1
+    content: stopAll stops all active watches
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  31e09e37-00ae-4c15-b407-ad7febae8102:
+    id: 31e09e37-00ae-4c15-b407-ad7febae8102
+    content: IPC event includes file path in payload
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  39464dfb-d21a-4d7c-b3f7-3a09f1e7a967:
+    id: 39464dfb-d21a-4d7c-b3f7-3a09f1e7a967
+    content: Starting a watch on an already-watched file replaces the previous callback
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  62240e41-50bc-484d-9610-6b2a332379de:
+    id: 62240e41-50bc-484d-9610-6b2a332379de
+    content: Stop hook deferral for collaborate mode
+    children:
+      - 5a672b49-db11-48ca-a483-24bb9098e823
+      - 5d07e63d-bb24-4d72-8ed4-d568929e4994
+      - 14fc5821-02b6-4cd6-befa-67d4a22eba8b
+      - ab3ce350-a393-48a4-8585-f1103182f7fa
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5a672b49-db11-48ca-a483-24bb9098e823:
+    id: 5a672b49-db11-48ca-a483-24bb9098e823
+    content: Stop hook sets stopReceived instead of advancing when collaborating flag is true
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5d07e63d-bb24-4d72-8ed4-d568929e4994:
+    id: 5d07e63d-bb24-4d72-8ed4-d568929e4994
+    content: Stop hook advances normally when collaborating flag is not set (existing behavior)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  14fc5821-02b6-4cd6-befa-67d4a22eba8b:
+    id: 14fc5821-02b6-4cd6-befa-67d4a22eba8b
+    content: 'Stop hook with needsReview + collaborating: needsReview takes precedence (sets awaiting-validation, does not advance)'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ab3ce350-a393-48a4-8585-f1103182f7fa:
+    id: ab3ce350-a393-48a4-8585-f1103182f7fa
+    content: 'Checkpoint step with collaborate context: sets awaiting-validation as normal (no change)'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  37571895-91f3-4342-989b-b1be197bf17a:
+    id: 37571895-91f3-4342-989b-b1be197bf17a
+    content: Auto-accept flow
+    children:
+      - 425f1719-6964-4a9d-b9c2-30c18595cc98
+      - 1ce9e690-e8ee-49d5-a092-93a52b9936fe
+      - 1c42d02d-7e46-4de2-afbb-36e91f219545
+      - 23534c12-fb32-4560-bdb5-79f1b1169eeb
+      - 26a7272c-0131-48f4-a544-77fa1d91b442
+      - c58f1ba3-6df6-4855-8868-35c50d8a2b51
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  425f1719-6964-4a9d-b9c2-30c18595cc98:
+    id: 425f1719-6964-4a9d-b9c2-30c18595cc98
+    content: Feedback content triggers AcceptFeedbackCommand for autonomous collaborate node
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1ce9e690-e8ee-49d5-a092-93a52b9936fe:
+    id: 1ce9e690-e8ee-49d5-a092-93a52b9936fe
+    content: Node content is replaced with parsed feedback before advancement
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1c42d02d-7e46-4de2-afbb-36e91f219545:
+    id: 1c42d02d-7e46-4de2-afbb-36e91f219545
+    content: Decomposition flag is read from step metadata and passed to parseFeedbackContent
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  23534c12-fb32-4560-bdb5-79f1b1169eeb:
+    id: 23534c12-fb32-4560-bdb5-79f1b1169eeb
+    content: Archive config is read from step metadata and passed to AcceptFeedbackCommand
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  26a7272c-0131-48f4-a544-77fa1d91b442:
+    id: 26a7272c-0131-48f4-a544-77fa1d91b442
+    content: No feedback panel shown, no collaboratingNodeId set, no clipboard monitor started
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c58f1ba3-6df6-4855-8868-35c50d8a2b51:
+    id: c58f1ba3-6df6-4855-8868-35c50d8a2b51
+    content: Toast notification shown on successful auto-accept
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a374c8ef-7dc9-47ac-a061-8dfe70abd6a9:
+    id: a374c8ef-7dc9-47ac-a061-8dfe70abd6a9
+    content: 'Timing: both orderings'
+    children:
+      - 0caf6ef8-70d7-4159-853a-1bd93610f3f4
+      - a2cf736f-9939-4df7-b5c9-5a99e943e28f
+      - 64a6eca1-ebd8-481b-98ad-f88c25ffcfe2
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0caf6ef8-70d7-4159-853a-1bd93610f3f4:
+    id: 0caf6ef8-70d7-4159-853a-1bd93610f3f4
+    content: 'Stop arrives first, then feedback: stopReceived set, feedback triggers accept + advanceNode'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a2cf736f-9939-4df7-b5c9-5a99e943e28f:
+    id: a2cf736f-9939-4df7-b5c9-5a99e943e28f
+    content: 'Feedback arrives first, then Stop: collaborating cleared after accept, Stop triggers advanceNode normally'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  64a6eca1-ebd8-481b-98ad-f88c25ffcfe2:
+    id: 64a6eca1-ebd8-481b-98ad-f88c25ffcfe2
+    content: 'Both arrive for a node that was already stopped by user: neither triggers advancement'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3b1cf049-621c-4d38-9192-899d4169211d:
+    id: 3b1cf049-621c-4d38-9192-899d4169211d
+    content: Parse failure handling
+    children:
+      - 9eba23d6-3f13-4505-932d-6cb76e30f766
+      - 526706ab-e0e3-4991-9a61-e3a7effa696f
+      - 8a81c533-5e34-4bf7-b549-07e6c1247900
+      - b3a6e844-1e6b-4289-8fc4-ba2bd4398009
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9eba23d6-3f13-4505-932d-6cb76e30f766:
+    id: 9eba23d6-3f13-4505-932d-6cb76e30f766
+    content: Malformed content pauses workflow with error toast
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  526706ab-e0e3-4991-9a61-e3a7effa696f:
+    id: 526706ab-e0e3-4991-9a61-e3a7effa696f
+    content: Empty feedback file content does not trigger auto-accept (existing 50-char minimum in file watcher)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8a81c533-5e34-4bf7-b549-07e6c1247900:
+    id: 8a81c533-5e34-4bf7-b549-07e6c1247900
+    content: Workflow execution state is cleared on parse failure
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b3a6e844-1e6b-4289-8fc4-ba2bd4398009:
+    id: b3a6e844-1e6b-4289-8fc4-ba2bd4398009
+    content: File watcher for that node is stopped on parse failure
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0463543d-1ad0-45dc-badf-e565d0da092f:
+    id: 0463543d-1ad0-45dc-badf-e565d0da092f
+    content: Concurrent autonomous collaborations
+    children:
+      - d8e87b55-e1cf-4037-8eb2-306c69d1e671
+      - 2956894f-a5b9-4f0e-84b8-7c6c0ec0d5b7
+      - db18ae6a-0baa-4395-b58f-ed45e303b033
+      - 021624e9-7e0f-4469-9d10-dfcf44425f60
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d8e87b55-e1cf-4037-8eb2-306c69d1e671:
+    id: d8e87b55-e1cf-4037-8eb2-306c69d1e671
+    content: Two autonomous collaborate nodes on different terminals auto-accept independently
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2956894f-a5b9-4f0e-84b8-7c6c0ec0d5b7:
+    id: 2956894f-a5b9-4f0e-84b8-7c6c0ec0d5b7
+    content: Completing one does not affect the other's file watcher or state
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  db18ae6a-0baa-4395-b58f-ed45e303b033:
+    id: db18ae6a-0baa-4395-b58f-ed45e303b033
+    content: autonomousCollaborations map correctly tracks both
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  021624e9-7e0f-4469-9d10-dfcf44425f60:
+    id: 021624e9-7e0f-4469-9d10-dfcf44425f60
+    content: File path routing maps to correct node ID for each
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  42adc692-4e3c-4b4e-ab6f-7e4ec8b351ce:
+    id: 42adc692-4e3c-4b4e-ab6f-7e4ec8b351ce
+    content: Manual and checkpoint collaboration unchanged
+    children:
+      - 0c2a4f44-660f-4ddf-99e5-66500eb713e0
+      - 8a132ed0-485a-4c05-8c67-a58a17eb7490
+      - 96957735-4b31-4d79-bd96-868275217a39
+      - 2844fd82-ae54-4271-8534-4a6c2a24b5ea
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0c2a4f44-660f-4ddf-99e5-66500eb713e0:
+    id: 0c2a4f44-660f-4ddf-99e5-66500eb713e0
+    content: Manual collaboration still shows feedback panel and waits for user accept
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8a132ed0-485a-4c05-8c67-a58a17eb7490:
+    id: 8a132ed0-485a-4c05-8c67-a58a17eb7490
+    content: Checkpoint collaboration still shows feedback panel and waits for user accept then continue
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  96957735-4b31-4d79-bd96-868275217a39:
+    id: 96957735-4b31-4d79-bd96-868275217a39
+    content: Starting a manual collaboration while autonomous collaborations are running does not interfere
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2844fd82-ae54-4271-8534-4a6c2a24b5ea:
+    id: 2844fd82-ae54-4271-8534-4a6c2a24b5ea
+    content: collaboratingNodeId is only set for manual/checkpoint, not autonomous
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  24e0567f-714f-44de-8a31-1e873de95a43:
+    id: 24e0567f-714f-44de-8a31-1e873de95a43
+    content: Cleanup on disruption
+    children:
+      - 0c857087-73c9-4d8c-bb0f-bd39982c31ff
+      - 50f772b0-3619-4458-88f3-7d4e80c9369e
+      - 6747a32e-0095-44f2-83ce-2f076f06ae49
+      - 268aa43e-ee38-4e76-b170-550c1b0946a6
+      - eb38b70f-d2a0-4141-beae-0f90f82110f9
+      - dbe0c49c-0fe3-4838-9344-5cbaeca41d52
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0c857087-73c9-4d8c-bb0f-bd39982c31ff:
+    id: 0c857087-73c9-4d8c-bb0f-bd39982c31ff
+    content: stopWorkflow cleans up autonomous collaboration state and file watcher
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  50f772b0-3619-4458-88f3-7d4e80c9369e:
+    id: 50f772b0-3619-4458-88f3-7d4e80c9369e
+    content: handleTerminalClosed cleans up all autonomous collaborations on that terminal
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6747a32e-0095-44f2-83ce-2f076f06ae49:
+    id: 6747a32e-0095-44f2-83ce-2f076f06ae49
+    content: handleNodeDeleted cleans up autonomous collaboration for that node
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  268aa43e-ee38-4e76-b170-550c1b0946a6:
+    id: 268aa43e-ee38-4e76-b170-550c1b0946a6
+    content: handleNodeMovedManually cleans up autonomous collaboration for that node
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  eb38b70f-d2a0-4141-beae-0f90f82110f9:
+    id: eb38b70f-d2a0-4141-beae-0f90f82110f9
+    content: initializeExecutionState (restart) stops all file watchers and clears map
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  dbe0c49c-0fe3-4838-9344-5cbaeca41d52:
+    id: dbe0c49c-0fe3-4838-9344-5cbaeca41d52
+    content: File watcher callback for a deleted/stopped node is a no-op (node existence check)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  875ce3a8-a121-4c03-9ebf-f11485444b2a:
+    id: 875ce3a8-a121-4c03-9ebf-f11485444b2a
+    content: Undo/redo
+    children:
+      - 998b96ba-9db9-4ac4-bf08-8628117ab5b4
+      - 4e558fb6-e972-4c1f-bea2-96301ded5520
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  998b96ba-9db9-4ac4-bf08-8628117ab5b4:
+    id: 998b96ba-9db9-4ac4-bf08-8628117ab5b4
+    content: Auto-accepted feedback can be undone with Ctrl+Z (restores original node)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4e558fb6-e972-4c1f-bea2-96301ded5520:
+    id: 4e558fb6-e972-4c1f-bea2-96301ded5520
+    content: Redo after undo produces consistent node IDs (cachedIdMap preserved)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  37db38a6-107c-4370-be27-a05147df3399:
+    id: 37db38a6-107c-4370-be27-a05147df3399
+    content: Manual tests
+    children:
+      - aa0dd3ec-0c2e-41a4-92f1-6a82df044e0f
+      - d17b4294-c0b7-4e1a-bbc3-405761b02965
+      - 480781bc-33ac-41d4-9d14-3e2b8359898d
+      - 3f0d1f34-89be-41f1-8e8f-f170edd8bb05
+      - fdd6ca2d-c6e9-4f9e-a831-5f109b0aef3e
+      - 4265e91d-000e-463a-aea5-e6e6e06a97ce
+      - 6e350802-5715-4de2-9059-b44f2db33618
+      - c049d4dd-2262-4153-b684-7ab908642bec
+      - cd9c566c-5e44-4172-8ad9-36136f516dac
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  aa0dd3ec-0c2e-41a4-92f1-6a82df044e0f:
+    id: aa0dd3ec-0c2e-41a4-92f1-6a82df044e0f
+    content: Basic auto-accept
+    children:
+      - 5ed8cb8c-a629-4926-83b5-b824abfd4c6e
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5ed8cb8c-a629-4926-83b5-b824abfd4c6e:
+    id: 5ed8cb8c-a629-4926-83b5-b824abfd4c6e
+    content: Place an item in an autonomous step with a collaborate context, start workflow — feedback is auto-accepted and node advances without opening the feedback panel
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d17b4294-c0b7-4e1a-bbc3-405761b02965:
+    id: d17b4294-c0b7-4e1a-bbc3-405761b02965
+    content: Decomposition + recurse pipeline
+    children:
+      - 6576a8af-5e22-4e34-b237-9fac760bbcd3
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6576a8af-5e22-4e34-b237-9fac760bbcd3:
+    id: 6576a8af-5e22-4e34-b237-9fac760bbcd3
+    content: 'Step 1: autonomous, decomposition, collaborate context. Step 2: autonomous. Enable recurse on step 1. Place one item, start workflow — item decomposes into multiple siblings, each processes through step 2 sequentially without intervention'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  480781bc-33ac-41d4-9d14-3e2b8359898d:
+    id: 480781bc-33ac-41d4-9d14-3e2b8359898d
+    content: Stop before feedback timing
+    children:
+      - d152f243-cc70-40f3-bdd6-e26f8ef1166d
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d152f243-cc70-40f3-bdd6-e26f8ef1166d:
+    id: d152f243-cc70-40f3-bdd6-e26f8ef1166d
+    content: Start an autonomous collaborate workflow — verify the node waits for feedback even after the Stop hook fires (observable via the step timeout not triggering prematurely)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3f0d1f34-89be-41f1-8e8f-f170edd8bb05:
+    id: 3f0d1f34-89be-41f1-8e8f-f170edd8bb05
+    content: Parse failure
+    children:
+      - 39a049dc-562d-4069-9209-f4d16962ca90
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  39a049dc-562d-4069-9209-f4d16962ca90:
+    id: 39a049dc-562d-4069-9209-f4d16962ca90
+    content: Configure a collaborate context that produces unparseable output — verify workflow pauses with error toast, node stays in current step with original content
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fdd6ca2d-c6e9-4f9e-a831-5f109b0aef3e:
+    id: fdd6ca2d-c6e9-4f9e-a831-5f109b0aef3e
+    content: Parallel autonomous collaborations
+    children:
+      - 71094002-2b6b-4fc3-9b6e-84222ec1720d
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  71094002-2b6b-4fc3-9b6e-84222ec1720d:
+    id: 71094002-2b6b-4fc3-9b6e-84222ec1720d
+    content: Start autonomous collaborate workflows on two different terminals simultaneously — both auto-accept independently
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4265e91d-000e-463a-aea5-e6e6e06a97ce:
+    id: 4265e91d-000e-463a-aea5-e6e6e06a97ce
+    content: Manual collaboration during autonomous
+    children:
+      - 7037c425-6a6a-47cf-9c37-e89274f217f1
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7037c425-6a6a-47cf-9c37-e89274f217f1:
+    id: 7037c425-6a6a-47cf-9c37-e89274f217f1
+    content: 'While an autonomous collaboration is running, start a manual collaborate on a different node — verify both work: panel shows for manual, auto-accept runs for autonomous'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6e350802-5715-4de2-9059-b44f2db33618:
+    id: 6e350802-5715-4de2-9059-b44f2db33618
+    content: Stop mid-collaborate
+    children:
+      - 1f1d1656-cc7d-4c03-8001-2f39f48f456a
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1f1d1656-cc7d-4c03-8001-2f39f48f456a:
+    id: 1f1d1656-cc7d-4c03-8001-2f39f48f456a
+    content: Start an autonomous collaborate workflow, stop it before feedback arrives — verify the file watcher is cleaned up and no stale accept occurs later
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c049d4dd-2262-4153-b684-7ab908642bec:
+    id: c049d4dd-2262-4153-b684-7ab908642bec
+    content: Terminal close mid-collaborate
+    children:
+      - 57d40e25-5b50-4c70-b1c6-cfc08a5c5006
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  57d40e25-5b50-4c70-b1c6-cfc08a5c5006:
+    id: 57d40e25-5b50-4c70-b1c6-cfc08a5c5006
+    content: Start an autonomous collaborate workflow, close the terminal tab — verify workflow stops and collaboration state is cleaned up
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  cd9c566c-5e44-4172-8ad9-36136f516dac:
+    id: cd9c566c-5e44-4172-8ad9-36136f516dac
+    content: Undo auto-accepted feedback
+    children:
+      - e103a4c0-91e5-472f-a703-71eae3a632f2
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e103a4c0-91e5-472f-a703-71eae3a632f2:
+    id: e103a4c0-91e5-472f-a703-71eae3a632f2
+    content: After auto-accept advances a node, press Ctrl+Z — verify the node is restored to its original content at its original step position
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  bc1f831d-ab3b-4efe-b49f-133f7e480b3c:
+    id: bc1f831d-ab3b-4efe-b49f-133f7e480b3c
+    content: Risks
+    children:
+      - 9ff71cbd-bc79-43dc-9753-d725e8e88356
+      - 8b93200e-b212-4a75-80ac-19efb7f888f1
+      - dbb668d8-f193-41ad-8648-3953617d6dca
+      - ad82c4f2-a8bd-4755-bf5a-8813e092b2f4
+      - 7ac6f7d5-e358-4363-a21d-48c9c4cc3d57
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9ff71cbd-bc79-43dc-9753-d725e8e88356:
+    id: 9ff71cbd-bc79-43dc-9753-d725e8e88356
+    content: 'Highest likelihood of defects: the timing race between Stop hook and file watcher. Both orderings must work, and the state flags must be checked against fresh store state (not stale closures). This is the most subtle part of the implementation.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8b93200e-b212-4a75-80ac-19efb7f888f1:
+    id: 8b93200e-b212-4a75-80ac-19efb7f888f1
+    content: 'Highest impact if failed: auto-accepting corrupted or partial content. If the file watcher fires on an incomplete write and the content happens to parse, the node gets replaced with truncated output. This risk exists today for manual collaboration but is higher stakes with auto-accept since there''s no user review gate.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  dbb668d8-f193-41ad-8648-3953617d6dca:
+    id: dbb668d8-f193-41ad-8648-3953617d6dca
+    content: 'Dependency: the file watcher multi-support (Step 1) is a prerequisite for concurrent collaborations. If it introduces instability in the existing manual collaboration path, it affects all collaboration, not just auto-accept.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ad82c4f2-a8bd-4755-bf5a-8813e092b2f4:
+    id: ad82c4f2-a8bd-4755-bf5a-8813e092b2f4
+    content: 'Ambiguity: the interaction between NeedsReview and collaborate mode. If an autonomous collaborate step receives NeedsReview before feedback arrives, the current spec says needsReview takes precedence. But after the user continues from NeedsReview, does the collaborate feedback still get auto-accepted? The most likely scenario is NeedsReview doesn''t apply to collaborate mode (the AI writes to a file, not to the terminal), but the handler should be explicit about this.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7ac6f7d5-e358-4363-a21d-48c9c4cc3d57:
+    id: 7ac6f7d5-e358-4363-a21d-48c9c4cc3d57
+    content: The collaborateInTerminal function is shared between manual and autonomous paths. Splitting behavior (or creating a separate function) risks subtle divergence over time. The split point should be as narrow as possible — ideally just "set collaboratingNodeId or not" and "start clipboard monitor or not."
+    children: []
+    metadata:
+      status: pending
       expanded: true
       deleted: false
       plugins: {}

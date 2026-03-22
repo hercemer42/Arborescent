@@ -39,10 +39,10 @@ contextBridge.exposeInMainWorld('electron', {
     return () => ipcRenderer.removeListener('clipboard-content-detected', listener);
   },
   startFeedbackFileWatcher: (filePath: string) => ipcRenderer.invoke('start-feedback-file-watcher', filePath),
-  stopFeedbackFileWatcher: () => ipcRenderer.invoke('stop-feedback-file-watcher'),
+  stopFeedbackFileWatcher: (filePath?: string) => ipcRenderer.invoke('stop-feedback-file-watcher', filePath),
   getFeedbackFilePath: () => ipcRenderer.invoke('get-feedback-file-path'),
-  onFeedbackFileContentDetected: (callback: (content: string) => void) => {
-    const listener = (_event: Electron.IpcRendererEvent, content: string) => callback(content);
+  onFeedbackFileContentDetected: (callback: (filePath: string, content: string) => void) => {
+    const listener = (_event: Electron.IpcRendererEvent, filePath: string, content: string) => callback(filePath, content);
     ipcRenderer.on('feedback-file-content-detected', listener);
     return () => ipcRenderer.removeListener('feedback-file-content-detected', listener);
   },

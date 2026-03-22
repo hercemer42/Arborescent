@@ -14,6 +14,8 @@ vi.mock('../../../../store/storeManager', () => ({
         },
         actions: {
           processIncomingFeedbackContent: mockProcessIncomingFeedbackContent,
+          findNodeIdByFeedbackFilePath: () => null,
+          handleAutonomousFeedback: vi.fn(),
         },
       }),
     })),
@@ -74,7 +76,7 @@ describe('useFeedbackClipboard', () => {
   let mockOnFeedbackFileContentDetected: ReturnType<typeof vi.fn>;
   let mockCleanup: ReturnType<typeof vi.fn>;
   let clipboardCallback: (content: string) => void;
-  let fileCallback: (content: string) => void;
+  let fileCallback: (filePath: string, content: string) => void;
 
   beforeEach(() => {
     mockProcessIncomingFeedbackContent.mockClear();
@@ -141,7 +143,7 @@ describe('useFeedbackClipboard', () => {
     const { result } = renderHook(() => useFeedbackClipboard('node-1'));
 
     act(() => {
-      fileCallback('- Valid node');
+      fileCallback('/tmp/feedback-response-node-1.md', '- Valid node');
     });
 
     await waitFor(() => {

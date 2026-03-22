@@ -7,12 +7,12 @@ export function registerFeedbackFileHandlers(getMainWindow: () => BrowserWindow 
     if (!mainWindow) return;
 
     feedbackFileWatcher.start(filePath, (content) => {
-      mainWindow.webContents.send('feedback-file-content-detected', content);
+      mainWindow.webContents.send('feedback-file-content-detected', filePath, content);
     });
   });
 
-  ipcMain.handle('stop-feedback-file-watcher', async () => {
-    feedbackFileWatcher.stop();
+  ipcMain.handle('stop-feedback-file-watcher', async (_event, filePath?: string) => {
+    feedbackFileWatcher.stop(filePath);
   });
 
   ipcMain.handle('get-feedback-file-path', async () => {

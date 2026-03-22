@@ -70,8 +70,8 @@ Place an item inside an autonomous workflow step, then right-click → **Start W
 
 What happens at each step depends on its type:
 
-- **Autonomous** — Content is sent to the terminal. When the AI finishes, the item automatically advances to the next step and sends again.
-- **Checkpoint** — Content is sent to the terminal. When the AI finishes, the item awaits your validation. Right-click → **Continue Workflow** to advance it to the next step and resume.
+- **Autonomous** — Content is sent to the terminal. When the AI finishes, the item automatically advances to the next step and sends again. If the step uses a collaborate-mode context, the AI's feedback is accepted automatically — the node is replaced and the workflow continues without opening the feedback panel. If the feedback can't be parsed, the workflow pauses with an error.
+- **Checkpoint** — Content is sent to the terminal. When the AI finishes, the item awaits your validation. If the step uses a collaborate-mode context, feedback appears in the panel for review. Right-click → **Continue Workflow** to advance it to the next step and resume.
 - **Manual** — The item waits at the step. Nothing is sent automatically. Use **Send** to send content, then **Next step** to advance manually.
 
 Each step's content is sent with its applied contexts. If no context is applied, a default execute context is used.
