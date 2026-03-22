@@ -26,11 +26,28 @@ describe('Terminal environment variable injection', () => {
     kill: vi.fn(),
   };
 
+  const savedEnv: Record<string, string | undefined> = {};
+
   beforeEach(() => {
     vi.clearAllMocks();
     mockSpawn.mockReturnValue(mockPtyProcess);
-    // Clean up any terminals from prior tests
     TerminalManager.destroyAll();
+
+    // Isolate from host environment
+    for (const key of ['ARBORESCENT_HOOK_PORT', 'ARBORESCENT_AUTH_TOKEN', 'ARBORESCENT_TERMINAL_ID']) {
+      savedEnv[key] = process.env[key];
+      delete process.env[key];
+    }
+  });
+
+  afterEach(() => {
+    for (const [key, value] of Object.entries(savedEnv)) {
+      if (value === undefined) {
+        delete process.env[key];
+      } else {
+        process.env[key] = value;
+      }
+    }
   });
 
   it('should merge extraEnv vars into spawned process environment', () => {

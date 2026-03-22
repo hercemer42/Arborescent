@@ -40,8 +40,10 @@ vi.mock('@/store/preferences/preferencesStore', () => ({
   usePreferencesStore: {
     getState: () => ({
       hasReceivedHookEvent: mockHasReceivedHookEvent.value,
+      hasLaunchedWorkflow: true,
       stepTimeoutMinutes: 10,
       markHookEventReceived: vi.fn(),
+      markWorkflowLaunched: vi.fn(),
     }),
   },
 }));

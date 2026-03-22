@@ -29,8 +29,10 @@ vi.mock('@/store/preferences/preferencesStore', () => ({
   usePreferencesStore: {
     getState: () => ({
       hasReceivedHookEvent: mockHasReceivedHookEvent.value,
+      hasLaunchedWorkflow: true,
       stepTimeoutMinutes: 10,
       markHookEventReceived: vi.fn(),
+      markWorkflowLaunched: vi.fn(),
     }),
   },
 }));
@@ -99,6 +101,7 @@ describe('Integration: Workflow Execution', () => {
 
   describe('full workflow traversal (autonomous → autonomous → manual)', () => {
     it('should advance through autonomous steps and stop at manual', () => {
+      vi.useFakeTimers();
       const state = () => stateRef.current;
 
       actions.startWorkflow('task', 'term-1');
@@ -109,6 +112,7 @@ describe('Integration: Workflow Execution', () => {
       expect(mockExecuteInTerminal).toHaveBeenCalledTimes(1);
 
       actions.handleHookEvent({ session_id: 'session-1', hook_event_name: 'Stop' });
+      vi.advanceTimersByTime(1500);
 
       expect(state().nodes['s2'].children).toContain('task');
       expect(state().nodes['s1'].children).not.toContain('task');
@@ -121,9 +125,9 @@ describe('Integration: Workflow Execution', () => {
       expect(state().nodes['s3'].children).toContain('task');
       expect(state().nodes['s2'].children).not.toContain('task');
       expect(state().ancestorRegistry['task']).toEqual(['root', 'wf', 's3']);
-      // Manual step: execution state cleared
       expect(state().workflowExecutionStates['task']).toBeUndefined();
       expect(mockExecuteInTerminal).toHaveBeenCalledTimes(2);
+      vi.useRealTimers();
     });
 
     it('should complete workflow after all autonomous steps finish', () => {

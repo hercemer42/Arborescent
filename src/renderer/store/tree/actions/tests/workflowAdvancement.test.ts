@@ -52,8 +52,10 @@ vi.mock('@/store/preferences/preferencesStore', () => ({
   usePreferencesStore: {
     getState: () => ({
       hasReceivedHookEvent: true,
+      hasLaunchedWorkflow: true,
       stepTimeoutMinutes: 10,
       markHookEventReceived: vi.fn(),
+      markWorkflowLaunched: vi.fn(),
     }),
   },
 }));
@@ -236,49 +238,59 @@ describe('workflow advancement', () => {
 
   describe('terminal send on advancement', () => {
     it('should send node content to the assigned terminal after moving to next step', () => {
+      vi.useFakeTimers();
       state.workflowExecutionStates['task-a'] = { state: 'running', terminalTabId: 'terminal-1' };
 
       actions.advanceNode('task-a');
+      vi.advanceTimersByTime(1500);
 
       expect(state.nodes['step-2'].children).toContain('task-a');
       expect(mockExecuteInTerminal).toHaveBeenCalledWith(
         'terminal-1',
         expect.any(String)
       );
+      vi.useRealTimers();
     });
 
     it('should send content AFTER the node has been moved (not before)', () => {
+      vi.useFakeTimers();
       state.workflowExecutionStates['task-a'] = { state: 'running', terminalTabId: 'terminal-1' };
 
       actions.advanceNode('task-a');
+      vi.advanceTimersByTime(1500);
 
       expect(state.ancestorRegistry['task-a']).toEqual(['root', 'workflow', 'step-2']);
       expect(mockExecuteInTerminal).toHaveBeenCalled();
+      vi.useRealTimers();
     });
 
     it('should build structured prompt from node content and send to terminal', () => {
+      vi.useFakeTimers();
       state.workflowExecutionStates['task-a'] = { state: 'running', terminalTabId: 'terminal-1' };
 
       actions.advanceNode('task-a');
+      vi.advanceTimersByTime(1500);
 
       expect(mockBuildContentWithContext).toHaveBeenCalled();
       const sentContent = mockExecuteInTerminal.mock.calls[0][1] as string;
       expect(sentContent).toContain('mock content');
+      vi.useRealTimers();
     });
 
     it('should pause workflow and show error toast when terminal write fails', async () => {
+      vi.useFakeTimers();
       mockExecuteInTerminal.mockRejectedValue(new Error('Terminal write failed'));
       state.workflowExecutionStates['task-a'] = { state: 'running', terminalTabId: 'terminal-1' };
 
       actions.advanceNode('task-a');
+      await vi.advanceTimersByTimeAsync(1500);
 
-      await vi.waitFor(() => {
-        expect(state.workflowExecutionStates['task-a']).toBeUndefined();
-      });
+      expect(state.workflowExecutionStates['task-a']).toBeUndefined();
       expect(mockAddToast).toHaveBeenCalledWith(
         expect.stringContaining('Failed to send to terminal'),
         'error'
       );
+      vi.useRealTimers();
     });
 
     it('should not send to terminal on completion (final step)', () => {
@@ -375,12 +387,15 @@ describe('workflow advancement', () => {
     });
 
     it('should send content to terminal when advancing to a checkpoint step', () => {
+      vi.useFakeTimers();
       state.workflowExecutionStates['task-a'] = { state: 'running', terminalTabId: 'terminal-1' };
 
       actions.advanceNode('task-a');
+      vi.advanceTimersByTime(1500);
 
       expect(state.nodes['step-2'].children).toContain('task-a');
       expect(mockExecuteInTerminal).toHaveBeenCalledWith('terminal-1', expect.any(String));
+      vi.useRealTimers();
     });
   });
 

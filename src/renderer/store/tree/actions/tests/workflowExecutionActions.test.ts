@@ -350,16 +350,20 @@ describe('createWorkflowExecutionActions', () => {
     });
 
     it('should keep running when continuing to an autonomous step', () => {
-      // task-a at step-1 (autonomous), awaiting-validation, next step is step-2 (checkpoint)
+      vi.useFakeTimers();
+
       state.workflowExecutionStates['task-a'] = { state: 'awaiting-validation', terminalTabId: 'terminal-1' };
-      // Change step-2 to autonomous so it keeps running
       state.nodes['step-2'].metadata.stepType = 'autonomous';
 
       actions.continueWorkflow('task-a', 'terminal-1');
 
       expect(state.nodes['step-2'].children).toContain('task-a');
       expect(state.workflowExecutionStates['task-a'].state).toBe('running');
+
+      vi.advanceTimersByTime(1500);
       expect(mockExecuteInTerminal).toHaveBeenCalled();
+
+      vi.useRealTimers();
     });
   });
 

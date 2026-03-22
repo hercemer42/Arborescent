@@ -24,10 +24,18 @@ describe('terminalExecution', () => {
   });
 
   describe('executeInTerminal', () => {
-    it('should write content with carriage return to terminal', async () => {
-      await executeInTerminal('terminal-1', 'echo hello');
+    it('should write content wrapped in bracketed paste then send Enter', async () => {
+      vi.useFakeTimers();
 
-      expect(mockTerminalWrite).toHaveBeenCalledWith('terminal-1', 'echo hello\r');
+      const promise = executeInTerminal('terminal-1', 'echo hello');
+      await vi.advanceTimersByTimeAsync(250);
+      await promise;
+
+      expect(mockTerminalWrite).toHaveBeenCalledTimes(2);
+      expect(mockTerminalWrite).toHaveBeenNthCalledWith(1, 'terminal-1', '\x1b[200~echo hello\x1b[201~');
+      expect(mockTerminalWrite).toHaveBeenNthCalledWith(2, 'terminal-1', '\r');
+
+      vi.useRealTimers();
     });
 
     it('should not execute if content is empty', async () => {

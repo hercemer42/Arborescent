@@ -35,8 +35,10 @@ vi.mock('@/store/preferences/preferencesStore', () => ({
   usePreferencesStore: {
     getState: () => ({
       hasReceivedHookEvent: mockHasReceivedHookEvent.value,
+      hasLaunchedWorkflow: true,
       stepTimeoutMinutes: mockStepTimeoutMinutes.value,
       markHookEventReceived: mockMarkHookEventReceived,
+      markWorkflowLaunched: vi.fn(),
     }),
   },
 }));
@@ -300,13 +302,13 @@ describe('workflow execution — preference integration', () => {
       expect(() => actions.stopWorkflow('task-a')).not.toThrow();
     });
 
-    it('should use default 10 minutes when stepTimeoutMinutes is undefined', () => {
+    it('should use default 15 minutes when stepTimeoutMinutes is undefined', () => {
       vi.useFakeTimers();
       mockStepTimeoutMinutes.value = undefined as unknown as number;
 
       actions.startWorkflow('task-a', 'terminal-1');
 
-      vi.advanceTimersByTime(10 * 60 * 1000);
+      vi.advanceTimersByTime(15 * 60 * 1000);
 
       expect(mockAddToast).toHaveBeenCalledWith(
         expect.stringContaining('taking longer'),
