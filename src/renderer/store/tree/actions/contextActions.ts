@@ -13,7 +13,6 @@ export interface ContextActions {
   removeContextDeclaration: (nodeId: string) => void;
   applyContext: (nodeId: string, contextNodeId: string) => void;
   removeAppliedContext: (nodeId: string, contextNodeId?: string) => void;
-  setActiveContext: (nodeId: string, contextNodeId: string | null) => void;
   setAppliedContext: (nodeId: string, contextNodeId: string | null) => void;
   refreshContextDeclarations: () => void;
 }
@@ -184,10 +183,6 @@ export const createContextActions = (
     triggerAutosave?.();
   }
 
-  function setActiveContext(nodeId: string, contextNodeId: string | null): void {
-    setAppliedContext(nodeId, contextNodeId);
-  }
-
   function setAppliedContext(nodeId: string, contextNodeId: string | null): void {
     const { nodes } = get();
     const node = nodes[nodeId];
@@ -218,7 +213,6 @@ export const createContextActions = (
     removeContextDeclaration,
     applyContext,
     removeAppliedContext,
-    setActiveContext,
     setAppliedContext,
     refreshContextDeclarations,
   };

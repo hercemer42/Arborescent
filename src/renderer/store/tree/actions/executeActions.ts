@@ -50,7 +50,7 @@ export function createExecuteActions(get: () => TreeState): ExecuteActions {
 
         useToastStore
           .getState()
-          .addToast("Content copied to clipboard - Paste to execute", "info");
+          .addToast("Copied to clipboard — paste into the browser to execute", "info");
 
         usePanelStore.getState().showBrowser();
         logger.info(

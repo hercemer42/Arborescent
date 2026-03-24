@@ -385,47 +385,4 @@ describe('contextActions', () => {
     });
   });
 
-  describe('setActiveContext', () => {
-    beforeEach(() => {
-      state.nodes['node-1'].metadata.isContextDeclaration = true;
-      state.nodes['node-3'].metadata.isContextDeclaration = true;
-      state.nodes['node-2'].metadata.appliedContextIds = ['node-1', 'node-3'];
-      state.nodes['node-2'].metadata.activeContextId = 'node-1';
-    });
-
-    it('should set appliedContextId on the node', () => {
-      actions.setActiveContext('node-2', 'node-3');
-      expect(state.nodes['node-2'].metadata.appliedContextId).toBe('node-3');
-    });
-
-    it('should trigger autosave', () => {
-      actions.setActiveContext('node-2', 'node-3');
-      expect(mockTriggerAutosave).toHaveBeenCalled();
-    });
-
-    it('should do nothing if node does not exist', () => {
-      actions.setActiveContext('non-existent', 'node-1');
-      expect(mockTriggerAutosave).not.toHaveBeenCalled();
-    });
-
-    it('should allow setting appliedContextId on context declarations', () => {
-      state.nodes['node-2'].metadata.isContextDeclaration = true;
-      actions.setActiveContext('node-2', 'node-3');
-      expect(state.nodes['node-2'].metadata.appliedContextId).toBe('node-3');
-      expect(mockTriggerAutosave).toHaveBeenCalled();
-    });
-
-    it('should not set appliedContextId for non-existent context', () => {
-      actions.setActiveContext('node-2', 'non-existent-context');
-      // Should not change since context doesn't exist
-      expect(state.nodes['node-2'].metadata.appliedContextId).toBeUndefined();
-      expect(mockTriggerAutosave).not.toHaveBeenCalled();
-    });
-
-    it('should accept BASIC_EXECUTE_CONTEXT_ID as a synthetic context', () => {
-      actions.setActiveContext('node-2', '__basic_execute__');
-      expect(state.nodes['node-2'].metadata.appliedContextId).toBe('__basic_execute__');
-      expect(mockTriggerAutosave).toHaveBeenCalled();
-    });
-  });
 });

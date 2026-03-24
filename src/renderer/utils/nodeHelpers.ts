@@ -499,6 +499,18 @@ export function resolveContextMode(
   return 'collaborate';
 }
 
+export function resolveSendContextName(
+  contextId: string | undefined,
+  nodes: Record<string, TreeNode>,
+): string | undefined {
+  if (!contextId) return undefined;
+  if (contextId === BASIC_EXECUTE_CONTEXT_ID) return 'Basic execution';
+  const contextNode = nodes[contextId];
+  if (!contextNode) return undefined;
+  const content = contextNode.content;
+  return content.length > 40 ? content.slice(0, 40) + '...' : content;
+}
+
 export function getContextDeclarationId(
   nodeId: string,
   nodes: Record<string, TreeNode>,

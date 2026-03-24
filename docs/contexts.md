@@ -25,16 +25,18 @@ When you send a branch, the applied context's instructions are included alongsid
 
 ## Applying a Context
 
-Two places to apply a context:
+Right-click → **Apply context** to open the context picker. Contexts are grouped into **Collaborate** and **Execute** sections. Two built-in defaults are available at the top of each section:
 
-- Right-click → **Send** → pick from the context list
-- Right-click → **Apply context** → select from list
+- **Basic review (default)** — a simple collaborate context
+- **Basic execution** — a simple execute context
 
-The applied context:
+Select a context to apply it. The applied context:
 
 - Becomes the default for that branch and all its descendants
 - Shows the context's icon in the gutter (left margin) at full opacity
 - Persists until you apply a different one
+
+Click an active context again to deselect it (returns to the default). When a context is inherited from an ancestor, the built-in defaults are hidden and the inherited context is shown with an "(inherited)" label.
 
 Hover the gutter icon to see which context is applied and its mode.
 

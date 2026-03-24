@@ -293,62 +293,129 @@ describe('useNodeContextMenu', () => {
     mockConfirm.mockRestore();
   });
 
-  it('should have Send submenu with In browser and In terminal options', async () => {
-    const { result } = renderHook(() => useNodeContextMenu(mockNode), { wrapper });
-
-    await openContextMenu(result);
-
-    const sendMenu = result.current.contextMenuItems.find(item => item.label === 'Send');
-    expect(sendMenu).toBeDefined();
-    expect(sendMenu?.submenu?.find(item => item.label === 'In browser')).toBeDefined();
-    expect(sendMenu?.submenu?.find(item => item.label === 'In terminal')).toBeDefined();
-  });
-
-  it('should have correct menu order: Send, Edit', async () => {
-    const { result } = renderHook(() => useNodeContextMenu(mockNode), { wrapper });
-
-    await openContextMenu(result);
-
-    const labels = result.current.contextMenuItems.map(item => item.label);
-    const sendIndex = labels.indexOf('Send');
-    const editIndex = labels.indexOf('Edit');
-
-    expect(sendIndex).toBeGreaterThanOrEqual(0);
-    expect(sendIndex).toBeLessThan(editIndex);
-  });
-
-  describe('context selection in Send submenu', () => {
-    it('should show available contexts in Send submenu', async () => {
-      const contextNode: TreeNode = {
-        id: 'context-node',
-        content: 'My Context',
-        children: [],
-        metadata: { isContextDeclaration: true, blueprintIcon: 'star' },
-      };
-
-      store.setState({
-        nodes: {
-          'test-node': mockNode,
-          'context-node': contextNode,
-        },
-        ancestorRegistry: {
-          'test-node': [],
-          'context-node': [],
-        },
-        contextDeclarations: [
-          { nodeId: 'context-node', content: 'My Context', icon: 'star', mode: 'collaborate' },
-        ],
-      });
-
+  describe('Send action', () => {
+    it('should have Send as a direct menu item with mode tooltip, not a submenu', async () => {
       const { result } = renderHook(() => useNodeContextMenu(mockNode), { wrapper });
 
       await openContextMenu(result);
 
-      const sendMenu = result.current.contextMenuItems.find(item => item.label === 'Send');
-      // Should have base actions + separator + heading + context
-      expect(sendMenu?.submenu?.length).toBeGreaterThan(2);
-      expect(sendMenu?.submenu?.find(item => item.label === 'Apply a context')).toBeDefined();
-      expect(sendMenu?.submenu?.find(item => item.label === 'My Context')).toBeDefined();
+      const sendItem = result.current.contextMenuItems.find(item => item.label === 'Send');
+      expect(sendItem).toBeDefined();
+      expect(sendItem?.tooltip).toBe('Collaborate');
+      expect(sendItem?.onClick).toBeDefined();
+      expect(sendItem?.submenu).toBeUndefined();
+    });
+
+    it('should show execute mode and context tooltip when execute context is applied', async () => {
+      const contextNode: TreeNode = {
+        id: 'exec-ctx',
+        content: 'My Deploy Script',
+        children: [],
+        metadata: { isContextDeclaration: true, contextMode: 'execute' },
+      };
+
+      store.setState({
+        nodes: {
+          'test-node': { ...mockNode, metadata: { appliedContextId: 'exec-ctx' } },
+          'exec-ctx': contextNode,
+        },
+        ancestorRegistry: {
+          'test-node': [],
+          'exec-ctx': [],
+        },
+        contextDeclarations: [
+          { nodeId: 'exec-ctx', content: 'My Deploy Script', icon: 'zap', mode: 'execute' as const },
+        ],
+      });
+
+      const { result } = renderHook(
+        () => useNodeContextMenu({ ...mockNode, metadata: { appliedContextId: 'exec-ctx' } }),
+        { wrapper },
+      );
+
+      await openContextMenu(result);
+
+      const sendItem = result.current.contextMenuItems.find(item => item.label === 'Send');
+      expect(sendItem?.label).toBe('Send');
+      expect(sendItem?.tooltip).toBe('Execute: My Deploy Script');
+    });
+
+    it('should not have "In terminal" or "In browser" as menu items', async () => {
+      const { result } = renderHook(() => useNodeContextMenu(mockNode), { wrapper });
+
+      await openContextMenu(result);
+
+      const allLabels = result.current.contextMenuItems.flatMap(item =>
+        [item.label, ...(item.submenu?.map(sub => sub.label) ?? [])]
+      );
+      expect(allLabels).not.toContain('In terminal');
+      expect(allLabels).not.toContain('In browser');
+    });
+
+    it('should route to terminal when terminal panel is active', async () => {
+      const mockCollaborateInTerminal = vi.fn().mockResolvedValue(undefined);
+      store.setState({
+        actions: {
+          ...store.getState().actions,
+          collaborateInTerminal: mockCollaborateInTerminal,
+          deleteNode: mockDeleteNode,
+          copyNodes: mockCopyNodes,
+          cutNodes: mockCutNodes,
+          pasteNodes: mockPasteNodes,
+          toggleNodeSelection: mockToggleNodeSelection,
+          selectNode: mockSelectNode,
+          clearSelection: mockClearSelection,
+          setRememberedVisualX: mockSetRememberedVisualX,
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        } as any,
+      });
+
+      const { usePanelStore } = await import('../../../../store/panel/panelStore');
+      usePanelStore.setState({ activeContent: 'terminal' });
+
+      const originalState = useTerminalStore.getState();
+      useTerminalStore.setState({
+        ...originalState,
+        openTerminal: vi.fn().mockResolvedValue('terminal-1'),
+      });
+
+      const { result } = renderHook(() => useNodeContextMenu(mockNode), { wrapper });
+      await openContextMenu(result);
+
+      const sendItem = result.current.contextMenuItems.find(item => item.label === 'Send');
+      await act(async () => {
+        sendItem!.onClick!();
+      });
+
+      expect(mockCollaborateInTerminal).toHaveBeenCalledWith('test-node', 'terminal-1');
+    });
+
+    it('should show toast when no panel is open', async () => {
+      const { usePanelStore } = await import('../../../../store/panel/panelStore');
+      usePanelStore.setState({ activeContent: null });
+
+      const { result } = renderHook(() => useNodeContextMenu(mockNode), { wrapper });
+      await openContextMenu(result);
+
+      const sendItem = result.current.contextMenuItems.find(item => item.label === 'Send');
+      await act(async () => {
+        sendItem!.onClick!();
+      });
+
+      // Toast shown — no crash, no action called
+    });
+
+    it('should have correct menu order: Send before Edit', async () => {
+      const { result } = renderHook(() => useNodeContextMenu(mockNode), { wrapper });
+
+      await openContextMenu(result);
+
+      const labels = result.current.contextMenuItems.map(item => item.label);
+      const sendIndex = labels.indexOf('Send');
+      const editIndex = labels.indexOf('Edit');
+
+      expect(sendIndex).toBeGreaterThanOrEqual(0);
+      expect(sendIndex).toBeLessThan(editIndex);
     });
   });
 

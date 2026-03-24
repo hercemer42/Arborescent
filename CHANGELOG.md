@@ -14,6 +14,8 @@
 - **Workflow context menu**: Workflow-related actions (Declare/Remove, Configure Step, Next/Previous step) are now in a dedicated "Workflow" submenu in the right-click menu. Start/Stop/Continue Workflow remain at the top level for quick access.
 - **Simplified workflow state model**: Workflow execution uses a two-state model (running / awaiting-validation) instead of three states. Context menu shows Start, Stop, and Continue Workflow actions
 - **Unified context modes**: Collaborate and Execute modes are now defined on context declarations instead of at send time, simplifying the send menu and making mode a property of the context itself
+- **Simplified Send action**: Send is now a single menu item that routes to the active panel (terminal or browser). Hover to see the current mode and applied context name. Replaces the previous submenu with In terminal/In browser options
+- **Apply context submenu grouping**: The Apply context submenu now groups contexts into Collaborate and Execute sections with built-in defaults (Basic review, Basic execution). Built-in defaults are hidden when a context is inherited. Submenu scrolls when content exceeds viewport height
 - **Context indicator refactor**: Context declaration and applied context indicators consolidated with clearer visual hierarchy and tooltips
 - **Desktop notifications and sounds**: OS desktop notifications and audio alerts for workflow completion, errors, NeedsReview, and timeouts. Configurable via File → Preferences toggles for desktop notifications and notification sounds (both on by default). Notifications are suppressed when the app is focused.
 

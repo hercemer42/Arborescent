@@ -13,8 +13,9 @@ import { buildWorkflowSubmenu, buildWorkflowExecutionItems, buildWorkflowNavigat
 import { buildSetContextSubmenu } from './useSetContextSubmenu';
 import { logger } from '../../../services/logger';
 import { useStepConfigDialogStore } from '../../../store/stepConfigDialog/stepConfigDialogStore';
-import { buildSendSubmenu } from './useSendSubmenu';
 import { getWorkflowStepPosition } from '../../../utils/workflowHelpers';
+import { useToastStore } from '../../../store/toast/toastStore';
+import { getAppliedContextIdWithInheritance, resolveContextMode, resolveSendContextName } from '../../../utils/nodeHelpers';
 import { ContextMode } from '../../../store/tree/treeStore';
 import { getPositionFromPoint } from '../../../utils/position';
 import { useCustomizeDialogStore } from '../../../store/customizeDialog/customizeDialogStore';
@@ -103,12 +104,6 @@ export function useNodeContextMenu(node: TreeNode) {
       openZoomTab(activeFile.path, node.id, node.content);
     };
 
-    const handleSetActiveContext = async (nodeId: string, contextId: string | null) => {
-      actions.setActiveContext(nodeId, contextId);
-      const newItems = await buildMenuItemsRef.current();
-      setMenuItems(newItems);
-    };
-
     const handleSetAppliedContext = async (contextId: string | null) => {
       actions.setAppliedContext(node.id, contextId);
       const newItems = await buildMenuItemsRef.current();
@@ -126,16 +121,29 @@ export function useNodeContextMenu(node: TreeNode) {
       }, existingColor || null, { showModeToggle: true, selectedMode: existingMode });
     };
 
-    const sendSubmenu = buildSendSubmenu({
-      node: freshNode,
-      nodes,
-      ancestorRegistry,
-      contextDeclarations,
-      collaboratingNodeId,
-      onSendInTerminal: handleSendInTerminal,
-      onSendInBrowser: handleSendInBrowser,
-      onSetActiveContext: handleSetActiveContext,
-    });
+    const appliedContextId = getAppliedContextIdWithInheritance(node.id, nodes, ancestorRegistry);
+    const sendMode: ContextMode = resolveContextMode(appliedContextId, nodes, contextDeclarations);
+
+    const handleSend = async () => {
+      const activeContent = usePanelStore.getState().activeContent;
+
+      if (activeContent === 'terminal') {
+        await handleSendInTerminal(sendMode);
+      } else if (activeContent === 'browser') {
+        await handleSendInBrowser(sendMode);
+      } else if (activeContent === 'feedback') {
+        const hasTerminal = useTerminalStore.getState().terminals.length > 0;
+        if (hasTerminal) {
+          await handleSendInTerminal(sendMode);
+        } else {
+          useToastStore.getState().addToast('Open a terminal or browser first', 'warning');
+        }
+      } else {
+        useToastStore.getState().addToast('Open a terminal or browser first', 'warning');
+      }
+    };
+
+    const sendContextName = resolveSendContextName(appliedContextId, nodes);
 
     const setContextSubmenuItems = buildSetContextSubmenu({
       node: freshNode,
@@ -228,7 +236,10 @@ export function useNodeContextMenu(node: TreeNode) {
       }] : []),
       ...(!isHyperlink && !isExternalLink ? [{
         label: 'Send',
-        submenu: sendSubmenu,
+        tooltip: sendContextName
+          ? `${sendMode === 'execute' ? 'Execute' : 'Collaborate'}: ${sendContextName}`
+          : sendMode === 'execute' ? 'Execute' : 'Collaborate',
+        onClick: handleSend,
       }] : []),
       ...(isNodeBeingCollaborated ? [{
         label: 'Cancel collaboration',

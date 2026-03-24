@@ -12,7 +12,7 @@ Each branch has a status: unchecked, completed, or abandoned. Press `Ctrl+K` to 
 
 Before sending your prompt to an AI, you can apply a [context](contexts.md). Contexts are reusable instructions that tell the AI how to respond — they can be project conventions, coding style, review criteria, whatever you don't want to repeat.
 
-Right-click any branch → **Send** → apply a context from the list. The context applies to that branch and all its descendants.
+Right-click any branch → **Apply context** to choose from the grouped context picker. The context applies to that branch and all its descendants.
 
 ## Log In to Your AI
 
@@ -20,19 +20,20 @@ Before sending prompts, open the Terminal panel (`` Ctrl+` ``) or Browser panel 
 
 ## Send Your Prompt
 
-Right-click any branch → **Send** → **In terminal** or **In browser**.
+Right-click any branch → **Send**. The content is sent to whichever panel is currently active (terminal or browser). Hover the Send menu item to see the current mode and applied context name.
 
-What happens depends on the context's mode:
+What happens depends on the applied context's mode:
 
 **Execute** sends content for immediate action. Use this when you want the AI to do something — generate code, answer a question, run a task.
 
-- **In terminal**: Content goes directly to your terminal AI.
-- **In browser**: Content is copied to clipboard. Paste it into your browser-based AI.
+- **Terminal**: Content goes directly to your terminal AI.
+- **Browser**: Content is copied to clipboard. Paste it into the browser.
 
 **Collaborate** initiates a feedback loop. Use this when you want to refine your thinking with AI assistance.
 
 - Content is sent with instructions for the AI to review and suggest changes.
-- The AI response appears in the Feedback panel.
+- **Terminal**: The AI response appears in the Feedback panel.
+- **Browser**: Content is copied to clipboard. Paste it into the browser, then copy the AI's response back.
 - Edit the response if needed, then Accept or Cancel.
 
 Two built-in contexts are available when no user-defined context is applied:

@@ -16,6 +16,7 @@ import {
   getContextDeclarations,
   shouldInheritBlueprint,
   resolveContextMode,
+  resolveSendContextName,
   getAppliedContextIdWithInheritance,
   getInheritedContextId,
   BASIC_EXECUTE_CONTEXT_ID,
@@ -1202,5 +1203,38 @@ describe('BASIC_EXECUTE_CONTEXT_ID handling', () => {
     const ancestorRegistry = { 'node-1': [] };
 
     expect(getContextsForCollaboration('node-1', nodes, ancestorRegistry)).toEqual([]);
+  });
+});
+
+describe('resolveSendContextName', () => {
+  const createNode = (id: string, metadata = {}): TreeNode => ({
+    id,
+    content: `Node ${id}`,
+    children: [],
+    metadata,
+  });
+
+  it('should return undefined when no context is applied', () => {
+    expect(resolveSendContextName(undefined, {})).toBeUndefined();
+  });
+
+  it('should return "Basic execution" for BASIC_EXECUTE_CONTEXT_ID', () => {
+    expect(resolveSendContextName(BASIC_EXECUTE_CONTEXT_ID, {})).toBe('Basic execution');
+  });
+
+  it('should return context node content', () => {
+    const nodes = { 'ctx-1': { ...createNode('ctx-1'), content: 'My Review Context' } };
+    expect(resolveSendContextName('ctx-1', nodes)).toBe('My Review Context');
+  });
+
+  it('should truncate long context names', () => {
+    const longContent = 'A'.repeat(50);
+    const nodes = { 'ctx-1': { ...createNode('ctx-1'), content: longContent } };
+    const result = resolveSendContextName('ctx-1', nodes);
+    expect(result).toBe('A'.repeat(40) + '...');
+  });
+
+  it('should return undefined for non-existent context node', () => {
+    expect(resolveSendContextName('missing', {})).toBeUndefined();
   });
 });

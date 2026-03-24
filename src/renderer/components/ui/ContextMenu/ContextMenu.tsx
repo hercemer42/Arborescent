@@ -16,6 +16,7 @@ export interface ContextMenuItem {
   keepOpenOnClick?: boolean;
   separator?: boolean;
   shortcut?: string;
+  tooltip?: string;
 }
 
 interface ContextMenuProps {
@@ -63,7 +64,7 @@ export function ContextMenu({ x, y, items, onClose }: ContextMenuProps) {
               className={`context-menu-item ${item.danger ? 'danger' : ''} ${item.submenu ? 'has-submenu' : ''} ${item.radioSelected !== undefined ? 'has-radio' : ''}`}
               onClick={() => handleItemClick(item, index)}
               disabled={item.disabled}
-              title={item.disabled && item.disabledTooltip ? item.disabledTooltip : undefined}
+              title={item.disabled && item.disabledTooltip ? item.disabledTooltip : item.tooltip || undefined}
             >
               {item.radioSelected !== undefined && (
                 <span className="context-menu-item-radio">

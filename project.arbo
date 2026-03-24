@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-03-24T07:39:04.323Z'
+updated: '2026-03-24T12:32:06.099Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -8852,6 +8852,8 @@ nodes:
     id: 79b693ca-27ce-4410-8617-8092d7e81b07
     content: Issues
     children:
+      - d48c9675-9ec8-4032-9df0-a5037764b9cf
+      - 2ee4a837-3635-4b0f-b794-896909f197e0
       - 533210b8-5c42-48f7-ab9a-bea602ae7ed2
       - 26dc74b0-c926-4461-b81a-7b6cd95864f6
       - 46f6965a-8da4-4dab-9e25-7dd3d2773bd7
@@ -8866,8 +8868,7 @@ nodes:
       isBlueprint: true
       blueprintIcon: TriangleAlert
       blueprintColor: '#ef4444'
-      appliedContextId: 6690289a-e02f-48bc-9225-a1083b7b324f
-      expanded: false
+      expanded: true
   aff16275-6d8e-49c9-b862-76875858d4af:
     id: aff16275-6d8e-49c9-b862-76875858d4af
     content: Avoid adding comments specific to the bug fix unless really needed
@@ -26647,6 +26648,7 @@ nodes:
       appliedContextId: 1d30a613-a651-436c-bb2b-1fb3062af9fb
       expanded: true
       stepType: autonomous
+      recurse: true
   bbe17f66-d747-4cf0-8602-721ce87663fe:
     id: bbe17f66-d747-4cf0-8602-721ce87663fe
     content: Make sure there are no empty tests
@@ -26820,7 +26822,9 @@ nodes:
   bdceb696-248d-4199-9182-db0689445c07:
     id: bdceb696-248d-4199-9182-db0689445c07
     content: Documentation
-    children: []
+    children:
+      - ee0d3f9f-fb13-4e7a-a64a-c92da62e6c1a
+      - 54df937b-7f2b-49fd-84c0-aa5d821b5240
     metadata:
       status: pending
       isBlueprint: true
@@ -26848,6 +26852,8 @@ nodes:
       blueprintIcon: Eye
       blueprintColor: '#0ea5e9'
       isBlueprint: true
+      stepType: checkpoint
+      decomposition: false
   87a11a28-4295-467f-ac54-746692494413:
     id: 87a11a28-4295-467f-ac54-746692494413
     content: Decomposition
@@ -26859,6 +26865,8 @@ nodes:
       blueprintIcon: Blocks
       blueprintColor: '#14b8a6'
       appliedContextId: e6860559-af1d-4a28-be70-9e27ba35335f
+      stepType: checkpoint
+      decomposition: true
   26dc74b0-c926-4461-b81a-7b6cd95864f6:
     id: 26dc74b0-c926-4461-b81a-7b6cd95864f6
     content: Declaring a node as a blueprint, context or workflow should clear its metadata (checked, resolvedAt etc)
@@ -34461,7 +34469,7 @@ nodes:
     id: 13c5048b-15eb-4989-a6fc-25032e5c131f
     content: Problems
     children:
-      - 9844f83a-7f29-41bd-a7f0-324466497ddf
+      - 323eaf83-d1a0-4c90-9d5b-85bf36eca6be
       - 3a953d30-cb26-4e2b-96b0-9f092bc5ce93
       - c4c83046-4976-4687-becc-dcaa8eafbd25
       - 413a84b6-97e7-4963-81ca-6667f2136d9a
@@ -34693,6 +34701,7 @@ nodes:
       - 4398180d-fba8-4294-a988-2be477ef3236
       - 7de1d56c-5320-48f8-b77b-bc434940dfce
       - ca651178-69bc-4933-aa6f-b19e106fbd34
+      - 071563c9-a7cb-415d-9da6-7b539668cba3
     metadata:
       status: completed
       expanded: false
@@ -34722,7 +34731,7 @@ nodes:
       isWorkflow: true
       blueprintIcon: Shapes
       blueprintColor: '#a855f7'
-      expanded: false
+      expanded: true
   e90fcc6c-4422-4103-a019-86ff5bb9efb3:
     id: e90fcc6c-4422-4103-a019-86ff5bb9efb3
     content: Objectives
@@ -35366,8 +35375,7 @@ nodes:
   ca7b201c-6d28-4504-9b6a-09d70a18912c:
     id: ca7b201c-6d28-4504-9b6a-09d70a18912c
     content: Final code review
-    children:
-      - 071563c9-a7cb-415d-9da6-7b539668cba3
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -35882,7 +35890,7 @@ nodes:
       status: pending
       isBlueprint: true
       appliedContextId: 1e2f062a-bbaa-4a02-b58b-a94ab15d8d74
-      stepType: checkpoint
+      stepType: autonomous
   52fb1ab7-8c9e-47b3-9b18-a96a2fcef2c7:
     id: 52fb1ab7-8c9e-47b3-9b18-a96a2fcef2c7
     content: Problem statement
@@ -57977,20 +57985,6 @@ nodes:
       expanded: false
       deleted: false
       plugins: {}
-  9844f83a-7f29-41bd-a7f0-324466497ddf:
-    id: 9844f83a-7f29-41bd-a7f0-324466497ddf
-    content: Send to terminal/browser gets truncated when there are a lot of contexts
-    children:
-      - 46572f8d-d458-455c-ad29-733082fd3820
-    metadata:
-      status: pending
-      expanded: false
-  46572f8d-d458-455c-ad29-733082fd3820:
-    id: 46572f8d-d458-455c-ad29-733082fd3820
-    content: Depends on where on the screen the node you right click on is
-    children: []
-    metadata:
-      status: pending
   ac6cbd52-845c-47bd-93fc-0af67c21256a:
     id: ac6cbd52-845c-47bd-93fc-0af67c21256a
     content: Problem statement
@@ -61211,3 +61205,2462 @@ nodes:
     children: []
     metadata:
       status: pending
+  323eaf83-d1a0-4c90-9d5b-85bf36eca6be:
+    id: 323eaf83-d1a0-4c90-9d5b-85bf36eca6be
+    content: Avoid focusing on a node when it moves through the workflow
+    children: []
+    metadata:
+      status: pending
+  54df937b-7f2b-49fd-84c0-aa5d821b5240:
+    id: 54df937b-7f2b-49fd-84c0-aa5d821b5240
+    content: 'US1: Replace Send submenu with single Send action routed by active panel'
+    children:
+      - 4fe9b084-1447-4806-94a0-0ade347a0b0d
+      - 034ae1ae-9944-4252-a032-8f858af9c9d1
+      - edcb4927-ad3d-4456-8b15-2f7455839878
+      - 33f208d1-ef04-46be-93bf-55464c6ce119
+      - 88b37ca1-592e-464b-94c0-ac17bb34e3a9
+      - 5475ba64-36c4-4dfc-97c4-1d47ff413894
+    metadata:
+      status: completed
+      expanded: false
+      deleted: false
+      plugins: {}
+  ee0d3f9f-fb13-4e7a-a64a-c92da62e6c1a:
+    id: ee0d3f9f-fb13-4e7a-a64a-c92da62e6c1a
+    content: 'US2: Update "Apply context" submenu with collaborate/execute grouping'
+    children:
+      - eba23b5d-8b40-4cb5-9a96-56b9b5e138a2
+      - 5c540056-02d8-4d42-aa70-c70939fc7f38
+      - 654d7ef6-d0a5-4aeb-a7c9-1bddeaa76bcf
+      - 5d298064-ed6f-4256-8b7e-497d0401e459
+      - e076708e-45c7-46b9-9cca-863445b6e4d0
+      - 18d2d3c9-5ab1-43d4-8adc-35e7c79cf1ec
+    metadata:
+      status: completed
+      expanded: false
+      deleted: false
+      plugins: {}
+  2ee4a837-3635-4b0f-b794-896909f197e0:
+    id: 2ee4a837-3635-4b0f-b794-896909f197e0
+    content: Right after a node is decomposed, if I want to drag one of the user stories elsewhere, all of its children are dragged as siblings of the root node
+    children:
+      - 7b6c16f7-af69-4bcb-956c-cf2567d82407
+      - ad686b17-fca3-4c82-b63c-e109d26cd8d8
+    metadata:
+      status: pending
+      expanded: false
+      deleted: false
+      plugins: {}
+  7b6c16f7-af69-4bcb-956c-cf2567d82407:
+    id: 7b6c16f7-af69-4bcb-956c-cf2567d82407
+    content: Analysis
+    children:
+      - 64537226-7655-4629-9e50-8582cefcc325
+      - a8904cf2-5978-41c8-a185-f5e4597d436a
+      - 42a0543a-8d7b-43ca-80f1-2c3565d36498
+      - f75fce5b-6908-4064-9b4a-8c6f0b4f0762
+      - 4e929b76-56ec-4ea8-82a5-b5a3ea405b62
+      - b9e8516e-2052-4f83-bddc-5a5de8e97b51
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  64537226-7655-4629-9e50-8582cefcc325:
+    id: 64537226-7655-4629-9e50-8582cefcc325
+    content: Observed once after decomposition. Restarting the app fixed it — the same node dragged correctly after restart.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a8904cf2-5978-41c8-a185-f5e4597d436a:
+    id: a8904cf2-5978-41c8-a185-f5e4597d436a
+    content: 'Code analysis found no definitive bug. The decomposition flow (AcceptFeedbackCommand.executeMultiRoot) correctly: remaps node IDs, preserves children arrays, rebuilds the ancestor registry with proper parent-child chains, and sets state in a single setState call.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  42a0543a-8d7b-43ca-80f1-2c3565d36498:
+    id: 42a0543a-8d7b-43ca-80f1-2c3565d36498
+    content: The drag system (getNodesToMove) filters multiSelectedNodeIds using the ancestor registry to return only root-level selections. If the registry is correct, children are excluded from the move list and stay attached to their parent via the children array.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f75fce5b-6908-4064-9b4a-8c6f0b4f0762:
+    id: f75fce5b-6908-4064-9b4a-8c6f0b4f0762
+    content: The DragOverlay renders getNodesToMove results — if children appeared as siblings visually during drag, getNodesToMove must have returned them as separate roots, which means the ancestor registry didn't show the parent as their ancestor at that moment.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4e929b76-56ec-4ea8-82a5-b5a3ea405b62:
+    id: 4e929b76-56ec-4ea8-82a5-b5a3ea405b62
+    content: 'Most likely cause: a transient state inconsistency in the ancestor registry immediately after decomposition. The persisted nodes map (which loads on restart) was correct, confirming the children arrays were properly set.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b9e8516e-2052-4f83-bddc-5a5de8e97b51:
+    id: b9e8516e-2052-4f83-bddc-5a5de8e97b51
+    content: Cannot reproduce. If it recurs, the next step is to add temporary logging in getNodesToMove and the ancestor registry at drag time to capture the exact state.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ad686b17-fca3-4c82-b63c-e109d26cd8d8:
+    id: ad686b17-fca3-4c82-b63c-e109d26cd8d8
+    content: 'Status: monitoring — needs reproduction to investigate further'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d48c9675-9ec8-4032-9df0-a5037764b9cf:
+    id: d48c9675-9ec8-4032-9df0-a5037764b9cf
+    content: Not getting system notifications when focused on another application
+    children: []
+    metadata:
+      status: pending
+  4fe9b084-1447-4806-94a0-0ade347a0b0d:
+    id: 4fe9b084-1447-4806-94a0-0ade347a0b0d
+    content: Problem statement
+    children:
+      - 97a80340-aae4-44b4-a310-77bb0f1dfadf
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  97a80340-aae4-44b4-a310-77bb0f1dfadf:
+    id: 97a80340-aae4-44b4-a310-77bb0f1dfadf
+    content: As a user, when I right-click a node and open the Send submenu, I have to choose between "In terminal" and "In browser" every time — even though I've already opened the panel I want to use. With many contexts defined, the submenu overflows the viewport and the send actions become unreachable. The terminal/browser choice adds an unnecessary click to every send operation.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  034ae1ae-9944-4252-a032-8f858af9c9d1:
+    id: 034ae1ae-9944-4252-a032-8f858af9c9d1
+    content: Use cases
+    children:
+      - 6986fa0b-98bd-43ec-baf5-f8460da870c5
+      - 37fc307e-893a-42f4-94a3-524864f3d316
+      - 093b05b4-f6a4-4f90-9718-d8cb24008591
+      - f02db488-3255-47cc-8550-08e0aed55779
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6986fa0b-98bd-43ec-baf5-f8460da870c5:
+    id: 6986fa0b-98bd-43ec-baf5-f8460da870c5
+    content: 'Primary: User right-clicks a node → clicks "Send". Content is sent to whichever panel is currently active (terminal or browser). One click instead of two.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  37fc307e-893a-42f4-94a3-524864f3d316:
+    id: 37fc307e-893a-42f4-94a3-524864f3d316
+    content: 'Secondary: No panel is open when user clicks Send. A toast says "Open a terminal or browser first."'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  093b05b4-f6a4-4f90-9718-d8cb24008591:
+    id: 093b05b4-f6a4-4f90-9718-d8cb24008591
+    content: 'Secondary: The feedback panel is active when user clicks Send. Send falls back to the terminal if one has been opened, otherwise shows the toast.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f02db488-3255-47cc-8550-08e0aed55779:
+    id: f02db488-3255-47cc-8550-08e0aed55779
+    content: 'Secondary: User uses Ctrl+E (send to terminal) or Ctrl+Shift+E (send to browser) to explicitly target a specific panel regardless of which is active.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  edcb4927-ad3d-4456-8b15-2f7455839878:
+    id: edcb4927-ad3d-4456-8b15-2f7455839878
+    content: Acceptance criteria
+    children:
+      - 8272d331-ec11-455a-8e47-8e1efd31c91c
+      - e264ba7e-e6a2-4eaa-99a2-921c131e9c1e
+      - 86a02494-b988-4ff6-a410-2def56a8fd93
+      - 76b5017c-ca84-48e1-a9d3-9f1bf62d14f6
+      - 5d94fc92-490a-4298-98a5-b8043ae14055
+      - 48f121ed-b54f-49b9-9df1-8eb709068fd5
+      - a5cd1fa1-9d34-4588-a15c-9b3b7065e68a
+      - 38f87324-481a-4e65-9543-f2f570d820ac
+      - 235f0b2a-41dd-4182-92ad-f56210032ba0
+      - 774db165-3953-4cc1-86d6-b020977017c2
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8272d331-ec11-455a-8e47-8e1efd31c91c:
+    id: 8272d331-ec11-455a-8e47-8e1efd31c91c
+    content: '"Send" is a single top-level action in the right-click context menu, not a submenu'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e264ba7e-e6a2-4eaa-99a2-921c131e9c1e:
+    id: e264ba7e-e6a2-4eaa-99a2-921c131e9c1e
+    content: Clicking Send sends content to whichever panel is currently active (terminal or browser)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  86a02494-b988-4ff6-a410-2def56a8fd93:
+    id: 86a02494-b988-4ff6-a410-2def56a8fd93
+    content: If the terminal panel is active, Send uses the active terminal — returns the existing terminal if one is open, creates one if not
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  76b5017c-ca84-48e1-a9d3-9f1bf62d14f6:
+    id: 76b5017c-ca84-48e1-a9d3-9f1bf62d14f6
+    content: If the browser panel is active, Send copies content to clipboard and shows the browser panel
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5d94fc92-490a-4298-98a5-b8043ae14055:
+    id: 5d94fc92-490a-4298-98a5-b8043ae14055
+    content: 'If no panel is open, Send shows a toast: "Open a terminal or browser first"'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  48f121ed-b54f-49b9-9df1-8eb709068fd5:
+    id: 48f121ed-b54f-49b9-9df1-8eb709068fd5
+    content: If the feedback panel is active, Send falls back to terminal if one exists, otherwise shows the toast
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a5cd1fa1-9d34-4588-a15c-9b3b7065e68a:
+    id: a5cd1fa1-9d34-4588-a15c-9b3b7065e68a
+    content: The applied context determines collaborate vs execute mode, same as today
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  38f87324-481a-4e65-9543-f2f570d820ac:
+    id: 38f87324-481a-4e65-9543-f2f570d820ac
+    content: Ctrl+E (send to terminal) and Ctrl+Shift+E (send to browser) keyboard shortcuts still work as explicit panel overrides
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  235f0b2a-41dd-4182-92ad-f56210032ba0:
+    id: 235f0b2a-41dd-4182-92ad-f56210032ba0
+    content: The context picker that was inside the Send submenu is removed — context selection is handled by the separate "Apply context" submenu
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  774db165-3953-4cc1-86d6-b020977017c2:
+    id: 774db165-3953-4cc1-86d6-b020977017c2
+    content: Automated workflow steps are not affected — startWorkflow, advanceNode, and sendContentToTerminal call executeInTerminal and collaborateInTerminal directly, not through the Send menu. This change is UI-only.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  33f208d1-ef04-46be-93bf-55464c6ce119:
+    id: 33f208d1-ef04-46be-93bf-55464c6ce119
+    content: Constraints and assumptions
+    children:
+      - e38f550e-1230-4b2e-bd97-8f6aa3dc904d
+      - 3ecb2119-6b49-4f60-b434-e901ac520d28
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e38f550e-1230-4b2e-bd97-8f6aa3dc904d:
+    id: e38f550e-1230-4b2e-bd97-8f6aa3dc904d
+    content: The active panel is determined by the panel store's activeContent (terminal, browser, feedback, or null)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3ecb2119-6b49-4f60-b434-e901ac520d28:
+    id: 3ecb2119-6b49-4f60-b434-e901ac520d28
+    content: The workflow execution path sends content to terminals directly and does not use the context menu Send action
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  88b37ca1-592e-464b-94c0-ac17bb34e3a9:
+    id: 88b37ca1-592e-464b-94c0-ac17bb34e3a9
+    content: Technical specifications
+    children:
+      - 58958455-7860-40b5-ac56-12e80a955b57
+      - f726130b-2245-48e4-a617-38e653399d6b
+      - f92649c3-78e9-4566-8bc2-6f4e7f01e1cf
+      - ea4d35ed-6391-4130-8b4d-83cc00a6c0f8
+      - fd73d99a-d81d-460d-807e-30146f7418c8
+      - 89e54145-5476-4db3-bf77-f1196c404694
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  58958455-7860-40b5-ac56-12e80a955b57:
+    id: 58958455-7860-40b5-ac56-12e80a955b57
+    content: Summary
+    children:
+      - c2126489-ef20-46c7-bd30-9fb2fda564d9
+      - 2808fdc1-8ed8-42ca-be75-e8aa8b23f87b
+      - eba6eb73-d0fb-4bae-8068-7726ebcd5666
+      - 8cf7108e-af4e-4831-8834-5ff3462d8836
+      - e244f230-8f39-45ca-a588-80d43ed367ea
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c2126489-ef20-46c7-bd30-9fb2fda564d9:
+    id: c2126489-ef20-46c7-bd30-9fb2fda564d9
+    content: Replace the Send submenu (built by useSendSubmenu.tsx) with a single "Send" menu item in the context menu
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2808fdc1-8ed8-42ca-be75-e8aa8b23f87b:
+    id: 2808fdc1-8ed8-42ca-be75-e8aa8b23f87b
+    content: 'The new Send action reads the active panel from usePanelStore.getState().activeContent and routes to the appropriate handler: terminal → handleSendInTerminal, browser → handleSendInBrowser, feedback → fallback to terminal, null → toast'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  eba6eb73-d0fb-4bae-8068-7726ebcd5666:
+    id: eba6eb73-d0fb-4bae-8068-7726ebcd5666
+    content: The existing handleSendInTerminal and handleSendInBrowser callbacks in useNodeContextMenu.ts are reused — they already resolve context mode and call the correct execute/collaborate action
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8cf7108e-af4e-4831-8834-5ff3462d8836:
+    id: 8cf7108e-af4e-4831-8834-5ff3462d8836
+    content: The context picker items and the useSendSubmenu.tsx hook are removed — "Apply context" submenu (useSetContextSubmenu.ts) takes over context selection (updated separately in US2)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e244f230-8f39-45ca-a588-80d43ed367ea:
+    id: e244f230-8f39-45ca-a588-80d43ed367ea
+    content: Ctrl+E and Ctrl+Shift+E in uiService.ts remain unchanged — they bypass the panel routing and call terminal/browser actions directly
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f726130b-2245-48e4-a617-38e653399d6b:
+    id: f726130b-2245-48e4-a617-38e653399d6b
+    content: Inputs, outputs, and key interfaces
+    children:
+      - be3ceb69-da82-44e2-b34e-03e6cbc74f15
+      - 4b57ea63-3580-4a43-846a-cc7bbe606a5d
+      - b8882e9a-26c6-40b4-bde5-d0718d0f18d7
+      - 5e462c75-2f0e-446f-b236-d50c52cca228
+      - 0d3158e3-f82a-410a-8502-eab3a7731d3c
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  be3ceb69-da82-44e2-b34e-03e6cbc74f15:
+    id: be3ceb69-da82-44e2-b34e-03e6cbc74f15
+    content: 'Input: user clicks "Send" in context menu for a specific node'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4b57ea63-3580-4a43-846a-cc7bbe606a5d:
+    id: 4b57ea63-3580-4a43-846a-cc7bbe606a5d
+    content: 'Routing: usePanelStore.getState().activeContent determines target — ''terminal'' | ''browser'' | ''feedback'' | null'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b8882e9a-26c6-40b4-bde5-d0718d0f18d7:
+    id: b8882e9a-26c6-40b4-bde5-d0718d0f18d7
+    content: 'Output for terminal: calls handleSendInTerminal which resolves context mode and calls executeInTerminalWithContext or collaborateInTerminal'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5e462c75-2f0e-446f-b236-d50c52cca228:
+    id: 5e462c75-2f0e-446f-b236-d50c52cca228
+    content: 'Output for browser: calls handleSendInBrowser which resolves context mode and calls executeInBrowser or collaborate'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0d3158e3-f82a-410a-8502-eab3a7731d3c:
+    id: 0d3158e3-f82a-410a-8502-eab3a7731d3c
+    content: 'Output for feedback/null: toast notification'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f92649c3-78e9-4566-8bc2-6f4e7f01e1cf:
+    id: f92649c3-78e9-4566-8bc2-6f4e7f01e1cf
+    content: Constraints and non-functional requirements
+    children:
+      - 6b49756d-d035-4454-91ca-d65a2f85b9b3
+      - 1ec18e1d-bad2-4fb9-9f11-b4d7b930356e
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6b49756d-d035-4454-91ca-d65a2f85b9b3:
+    id: 6b49756d-d035-4454-91ca-d65a2f85b9b3
+    content: Send must remain a synchronous menu click — no additional dialogs or prompts
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1ec18e1d-bad2-4fb9-9f11-b4d7b930356e:
+    id: 1ec18e1d-bad2-4fb9-9f11-b4d7b930356e
+    content: The feedback fallback should check if any terminal exists (useTerminalStore.getState().terminals.length > 0), not just if the terminal panel was previously shown
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ea4d35ed-6391-4130-8b4d-83cc00a6c0f8:
+    id: ea4d35ed-6391-4130-8b4d-83cc00a6c0f8
+    content: Technical steps
+    children:
+      - 7a602a07-9a76-42a7-af85-ae95fef86cc4
+      - 236fa99b-662b-4f52-837d-4f6173f2b0a4
+      - 8c7953a5-f1e0-4156-b2e4-5e8ef19599b3
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7a602a07-9a76-42a7-af85-ae95fef86cc4:
+    id: 7a602a07-9a76-42a7-af85-ae95fef86cc4
+    content: 'Step 1: Replace Send submenu with single action in useNodeContextMenu.ts (M)'
+    children:
+      - 9bdccf34-5527-4a14-a1f6-275b2f808496
+      - 515b1ad8-43ce-4951-b670-20a95776ae8d
+      - 918f3d70-9ddb-4bf9-8122-f795c506d975
+      - 18208442-075b-4dfb-966b-26e00e0ea00d
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9bdccf34-5527-4a14-a1f6-275b2f808496:
+    id: 9bdccf34-5527-4a14-a1f6-275b2f808496
+    content: Create a new handleSend() callback that reads activeContent from panelStore, routes to handleSendInTerminal or handleSendInBrowser, or shows toast
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  515b1ad8-43ce-4951-b670-20a95776ae8d:
+    id: 515b1ad8-43ce-4951-b670-20a95776ae8d
+    content: 'Replace the buildSendSubmenu call in the menu items array with a single { label: ''Send'', onClick: handleSend } item'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  918f3d70-9ddb-4bf9-8122-f795c506d975:
+    id: 918f3d70-9ddb-4bf9-8122-f795c506d975
+    content: Keep handleSendInTerminal and handleSendInBrowser as internal helpers called by handleSend — they stay in the same file
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  18208442-075b-4dfb-966b-26e00e0ea00d:
+    id: 18208442-075b-4dfb-966b-26e00e0ea00d
+    content: Remove the buildSendSubmenu import and call
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  236fa99b-662b-4f52-837d-4f6173f2b0a4:
+    id: 236fa99b-662b-4f52-837d-4f6173f2b0a4
+    content: 'Step 2: Remove useSendSubmenu.tsx (S)'
+    children:
+      - 1d3b65e4-a04b-4795-a6ed-ee19ced8b6b9
+      - 87a8efb5-7e71-425f-acf3-4bbde80ee228
+      - 8cd19fec-8201-4abf-bcec-2092083e1dec
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1d3b65e4-a04b-4795-a6ed-ee19ced8b6b9:
+    id: 1d3b65e4-a04b-4795-a6ed-ee19ced8b6b9
+    content: Delete src/renderer/components/NodeContent/hooks/useSendSubmenu.tsx
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  87a8efb5-7e71-425f-acf3-4bbde80ee228:
+    id: 87a8efb5-7e71-425f-acf3-4bbde80ee228
+    content: Remove any imports of buildSendSubmenu or SendSubmenuParams from other files
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8cd19fec-8201-4abf-bcec-2092083e1dec:
+    id: 8cd19fec-8201-4abf-bcec-2092083e1dec
+    content: Verify no other consumers of useSendSubmenu exist
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8c7953a5-f1e0-4156-b2e4-5e8ef19599b3:
+    id: 8c7953a5-f1e0-4156-b2e4-5e8ef19599b3
+    content: 'Step 3: Update tests (M)'
+    children:
+      - 3f1dbf32-05aa-4d2b-afa7-15c65c81af64
+      - 38d8069a-ed93-4752-9908-19840c16a385
+      - 4221242b-9fc2-461b-b3d2-8d88a14bb891
+      - 1e8c360e-7bb1-4e27-81c6-f37f973b1807
+      - 91b377b1-8ad5-41d7-b987-afa923528e13
+      - 69a7c6a3-b72f-4371-808f-2e7b6446cc05
+      - e42e7566-6748-4ff7-83fd-03844b8dd414
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3f1dbf32-05aa-4d2b-afa7-15c65c81af64:
+    id: 3f1dbf32-05aa-4d2b-afa7-15c65c81af64
+    content: 'Update useNodeContextMenu.test.tsx: the "Send" item should be a direct action, not a submenu'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  38d8069a-ed93-4752-9908-19840c16a385:
+    id: 38d8069a-ed93-4752-9908-19840c16a385
+    content: Remove tests that reference "In terminal" or "In browser" as sub-items of Send
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4221242b-9fc2-461b-b3d2-8d88a14bb891:
+    id: 4221242b-9fc2-461b-b3d2-8d88a14bb891
+    content: 'Add test: Send routes to terminal when terminal panel is active'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1e8c360e-7bb1-4e27-81c6-f37f973b1807:
+    id: 1e8c360e-7bb1-4e27-81c6-f37f973b1807
+    content: 'Add test: Send routes to browser when browser panel is active'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  91b377b1-8ad5-41d7-b987-afa923528e13:
+    id: 91b377b1-8ad5-41d7-b987-afa923528e13
+    content: 'Add test: Send shows toast when no panel is open'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  69a7c6a3-b72f-4371-808f-2e7b6446cc05:
+    id: 69a7c6a3-b72f-4371-808f-2e7b6446cc05
+    content: 'Add test: Send falls back to terminal when feedback panel is active and terminal exists'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  e42e7566-6748-4ff7-83fd-03844b8dd414:
+    id: e42e7566-6748-4ff7-83fd-03844b8dd414
+    content: Verify Ctrl+E and Ctrl+Shift+E keyboard shortcut tests still pass (no change expected)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fd73d99a-d81d-460d-807e-30146f7418c8:
+    id: fd73d99a-d81d-460d-807e-30146f7418c8
+    content: Risks and edge cases
+    children:
+      - 2aabaa35-ba36-46e0-a62d-422e90f6ea9b
+      - 70f0808a-eb8b-4fee-a66a-0ffe9dad75be
+      - b646f4d2-6b63-420a-a88a-61e30ec863dd
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2aabaa35-ba36-46e0-a62d-422e90f6ea9b:
+    id: 2aabaa35-ba36-46e0-a62d-422e90f6ea9b
+    content: The feedback panel fallback check (terminal exists?) reads from useTerminalStore at click time. If the user closed all terminals while the feedback panel is active, the fallback correctly shows the toast.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  70f0808a-eb8b-4fee-a66a-0ffe9dad75be:
+    id: 70f0808a-eb8b-4fee-a66a-0ffe9dad75be
+    content: The context mode resolution (collaborate vs execute) depends on the applied context. If no context is applied, the built-in default is used (collaborate mode with "Basic review"). This is unchanged — Send just routes the click, mode resolution happens in the existing handlers.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b646f4d2-6b63-420a-a88a-61e30ec863dd:
+    id: b646f4d2-6b63-420a-a88a-61e30ec863dd
+    content: Removing useSendSubmenu.tsx also removes the context picker grouping logic. This logic is needed by US2 for the "Apply context" submenu update. If US1 and US2 are implemented in order, the logic should be migrated before deletion. Alternatively, just delete it — US2 can rewrite the grouping in useSetContextSubmenu.ts independently since the pattern is simple.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  89e54145-5476-4db3-bf77-f1196c404694:
+    id: 89e54145-5476-4db3-bf77-f1196c404694
+    content: Implementation plan
+    children:
+      - 5576aa39-b79b-47ab-8a87-6b23b754ab0f
+      - b3f826c7-c49a-40ef-8029-05f11406a3e8
+      - f1d69d5c-6bba-496b-ae40-0bfa1d660fd8
+      - 4b414475-7a61-411f-a569-35e1f5075b1a
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5576aa39-b79b-47ab-8a87-6b23b754ab0f:
+    id: 5576aa39-b79b-47ab-8a87-6b23b754ab0f
+    content: Single PR, can include US2 if small enough
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b3f826c7-c49a-40ef-8029-05f11406a3e8:
+    id: b3f826c7-c49a-40ef-8029-05f11406a3e8
+    content: 'Order: Replace submenu with action (Step 1) → Delete useSendSubmenu (Step 2) → Tests (Step 3)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f1d69d5c-6bba-496b-ae40-0bfa1d660fd8:
+    id: f1d69d5c-6bba-496b-ae40-0bfa1d660fd8
+    content: Testing strategy
+    children:
+      - e095a4ba-41f1-4795-be72-b7db62c70d09
+      - 81c06511-b54c-427b-a088-55ad24c29fcb
+      - d429dc9b-1a07-4e42-a096-eaaf11b35463
+      - 2208908e-931d-4f0d-bd93-f88df5cc3ee8
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e095a4ba-41f1-4795-be72-b7db62c70d09:
+    id: e095a4ba-41f1-4795-be72-b7db62c70d09
+    content: 'Unit: panel routing in handleSend (mock panelStore.activeContent for each case)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  81c06511-b54c-427b-a088-55ad24c29fcb:
+    id: 81c06511-b54c-427b-a088-55ad24c29fcb
+    content: 'Unit: context menu structure (Send is a direct item, not submenu)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d429dc9b-1a07-4e42-a096-eaaf11b35463:
+    id: d429dc9b-1a07-4e42-a096-eaaf11b35463
+    content: 'Manual: right-click Send with terminal active, browser active, feedback active, no panel'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2208908e-931d-4f0d-bd93-f88df5cc3ee8:
+    id: 2208908e-931d-4f0d-bd93-f88df5cc3ee8
+    content: 'Manual: Ctrl+E and Ctrl+Shift+E still work as before'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4b414475-7a61-411f-a569-35e1f5075b1a:
+    id: 4b414475-7a61-411f-a569-35e1f5075b1a
+    content: Steps are sequential — Step 2 depends on Step 1
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5475ba64-36c4-4dfc-97c4-1d47ff413894:
+    id: 5475ba64-36c4-4dfc-97c4-1d47ff413894
+    content: Test plan
+    children:
+      - 72ff59ee-8a1a-4ba4-b6a3-9a7c93699d8c
+      - 33508060-fe17-48e0-8a72-82902c65dfdf
+      - d694dbf9-6fc1-4502-92b5-1f2af9cb457f
+      - a688def4-e316-417d-8b56-5b5c2f507944
+      - f5a17738-1a30-496a-9994-230cb77f9b9c
+      - 9e9b3c06-de56-4525-bcd6-041e941eec2e
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  72ff59ee-8a1a-4ba4-b6a3-9a7c93699d8c:
+    id: 72ff59ee-8a1a-4ba4-b6a3-9a7c93699d8c
+    content: Scope and objectives
+    children:
+      - a4be86ee-fabe-4eea-8b7d-63ad835ce392
+      - 2d9fe51a-5ecf-4d03-b5d2-318ce72fa197
+      - 41c7db7c-23cb-4e8d-9040-ded1a07fba99
+      - 5f4fd158-d69c-4777-8f0e-f6d34db7a801
+      - d00ab672-9aca-417e-be63-a8e881c19625
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a4be86ee-fabe-4eea-8b7d-63ad835ce392:
+    id: a4be86ee-fabe-4eea-8b7d-63ad835ce392
+    content: Verify that the Send menu item routes correctly to terminal or browser based on the active panel
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2d9fe51a-5ecf-4d03-b5d2-318ce72fa197:
+    id: 2d9fe51a-5ecf-4d03-b5d2-318ce72fa197
+    content: Verify that edge cases (no panel, feedback panel) produce correct fallback behavior
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  41c7db7c-23cb-4e8d-9040-ded1a07fba99:
+    id: 41c7db7c-23cb-4e8d-9040-ded1a07fba99
+    content: Verify that the context menu structure is correct (Send is a direct action, not a submenu)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5f4fd158-d69c-4777-8f0e-f6d34db7a801:
+    id: 5f4fd158-d69c-4777-8f0e-f6d34db7a801
+    content: Verify that keyboard shortcuts Ctrl+E and Ctrl+Shift+E are unaffected
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d00ab672-9aca-417e-be63-a8e881c19625:
+    id: d00ab672-9aca-417e-be63-a8e881c19625
+    content: Verify that existing workflow execution is unaffected
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  33508060-fe17-48e0-8a72-82902c65dfdf:
+    id: 33508060-fe17-48e0-8a72-82902c65dfdf
+    content: Entry criteria
+    children:
+      - 4ebdf074-af0e-41ae-90fd-68732e0a287e
+      - 8ffd09dc-6f59-485c-b6a9-bfe8e3b50c09
+      - 500f60c8-b989-44d8-88cb-149342a21481
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4ebdf074-af0e-41ae-90fd-68732e0a287e:
+    id: 4ebdf074-af0e-41ae-90fd-68732e0a287e
+    content: handleSend callback implemented in useNodeContextMenu.ts with panel routing logic
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8ffd09dc-6f59-485c-b6a9-bfe8e3b50c09:
+    id: 8ffd09dc-6f59-485c-b6a9-bfe8e3b50c09
+    content: Send submenu replaced with single menu item
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  500f60c8-b989-44d8-88cb-149342a21481:
+    id: 500f60c8-b989-44d8-88cb-149342a21481
+    content: useSendSubmenu.tsx deleted
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d694dbf9-6fc1-4502-92b5-1f2af9cb457f:
+    id: d694dbf9-6fc1-4502-92b5-1f2af9cb457f
+    content: Exit criteria
+    children:
+      - 0f454fe3-723f-43f5-9d4f-c91fcad394ba
+      - 150c8c9a-e68d-4a98-8e7c-0308c9eecd46
+      - b2f92002-c558-43b5-b678-71ffaca52d83
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0f454fe3-723f-43f5-9d4f-c91fcad394ba:
+    id: 0f454fe3-723f-43f5-9d4f-c91fcad394ba
+    content: All unit tests pass
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  150c8c9a-e68d-4a98-8e7c-0308c9eecd46:
+    id: 150c8c9a-e68d-4a98-8e7c-0308c9eecd46
+    content: All manual test scenarios verified
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b2f92002-c558-43b5-b678-71ffaca52d83:
+    id: b2f92002-c558-43b5-b678-71ffaca52d83
+    content: No regressions in keyboard shortcuts or workflow execution
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a688def4-e316-417d-8b56-5b5c2f507944:
+    id: a688def4-e316-417d-8b56-5b5c2f507944
+    content: Unit tests
+    children:
+      - 3154c685-2499-4e76-aa2a-b6f6680a7d8a
+      - ed5199d1-4aa9-45e0-a432-71b3f9f27b28
+      - 59263d6b-d612-437e-bca6-8a0a2951ebd0
+      - ca53d205-039d-475d-a77d-1c8f4bbf3a27
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3154c685-2499-4e76-aa2a-b6f6680a7d8a:
+    id: 3154c685-2499-4e76-aa2a-b6f6680a7d8a
+    content: Panel routing
+    children:
+      - 5784578e-47fa-4329-9b05-b8307fc7338b
+      - a395f911-eb3e-4cad-9a98-8bdee1295e74
+      - 60e018f2-04f4-499b-9939-dc3514920577
+      - 75ec36c8-dc08-4bf0-a23e-591ffcc39361
+      - b26a0e1f-37a1-4729-8767-53212c214943
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5784578e-47fa-4329-9b05-b8307fc7338b:
+    id: 5784578e-47fa-4329-9b05-b8307fc7338b
+    content: Send calls handleSendInTerminal when panelStore.activeContent is 'terminal'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a395f911-eb3e-4cad-9a98-8bdee1295e74:
+    id: a395f911-eb3e-4cad-9a98-8bdee1295e74
+    content: Send calls handleSendInBrowser when panelStore.activeContent is 'browser'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  60e018f2-04f4-499b-9939-dc3514920577:
+    id: 60e018f2-04f4-499b-9939-dc3514920577
+    content: Send shows toast when panelStore.activeContent is null
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  75ec36c8-dc08-4bf0-a23e-591ffcc39361:
+    id: 75ec36c8-dc08-4bf0-a23e-591ffcc39361
+    content: Send falls back to terminal when panelStore.activeContent is 'feedback' and a terminal exists
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  b26a0e1f-37a1-4729-8767-53212c214943:
+    id: b26a0e1f-37a1-4729-8767-53212c214943
+    content: Send shows toast when panelStore.activeContent is 'feedback' and no terminal exists
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  ed5199d1-4aa9-45e0-a432-71b3f9f27b28:
+    id: ed5199d1-4aa9-45e0-a432-71b3f9f27b28
+    content: Context menu structure
+    children:
+      - 806a0d29-15ac-445c-9cae-e0a1d72897a0
+      - 7fd2327f-c4f6-4c13-a7f4-dc1909794c98
+      - dcea89fe-c9ff-4ca4-807e-721e4f81d923
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  806a0d29-15ac-445c-9cae-e0a1d72897a0:
+    id: 806a0d29-15ac-445c-9cae-e0a1d72897a0
+    content: '"Send" appears as a direct menu item (no submenu property)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7fd2327f-c4f6-4c13-a7f4-dc1909794c98:
+    id: 7fd2327f-c4f6-4c13-a7f4-dc1909794c98
+    content: '"In terminal" and "In browser" no longer appear as sub-items'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  dcea89fe-c9ff-4ca4-807e-721e4f81d923:
+    id: dcea89fe-c9ff-4ca4-807e-721e4f81d923
+    content: '"Send" item has an onClick handler'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  59263d6b-d612-437e-bca6-8a0a2951ebd0:
+    id: 59263d6b-d612-437e-bca6-8a0a2951ebd0
+    content: Context mode resolution
+    children:
+      - fef206c5-360d-4d8a-80a6-8511386529e5
+      - 3a592fbc-c63f-4e45-aefd-c7d6edacf540
+      - 5725ec3e-e919-4040-a05c-ef90c66d3cd8
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fef206c5-360d-4d8a-80a6-8511386529e5:
+    id: fef206c5-360d-4d8a-80a6-8511386529e5
+    content: Send with an execute-mode context applied calls the execute action path
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3a592fbc-c63f-4e45-aefd-c7d6edacf540:
+    id: 3a592fbc-c63f-4e45-aefd-c7d6edacf540
+    content: Send with a collaborate-mode context applied calls the collaborate action path
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5725ec3e-e919-4040-a05c-ef90c66d3cd8:
+    id: 5725ec3e-e919-4040-a05c-ef90c66d3cd8
+    content: Send with no context applied uses the default mode (collaborate)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ca53d205-039d-475d-a77d-1c8f4bbf3a27:
+    id: ca53d205-039d-475d-a77d-1c8f4bbf3a27
+    content: Keyboard shortcuts unchanged
+    children:
+      - 27eefbad-9753-485c-a398-2f3ad93150ed
+      - 8a2cd83e-7ca1-4b36-afe9-29b05c5e4570
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  27eefbad-9753-485c-a398-2f3ad93150ed:
+    id: 27eefbad-9753-485c-a398-2f3ad93150ed
+    content: Ctrl+E still sends to terminal regardless of active panel
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8a2cd83e-7ca1-4b36-afe9-29b05c5e4570:
+    id: 8a2cd83e-7ca1-4b36-afe9-29b05c5e4570
+    content: Ctrl+Shift+E still sends to browser regardless of active panel
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f5a17738-1a30-496a-9994-230cb77f9b9c:
+    id: f5a17738-1a30-496a-9994-230cb77f9b9c
+    content: Manual tests
+    children:
+      - fdfbf9b0-01a3-46f2-a550-e6d51ff86071
+      - a0b99fb7-ed20-4d3f-a170-5587efaeb3e3
+      - b171cf66-4eea-45a3-91b3-613081506041
+      - ccd7d641-eb2e-4df6-9148-ce913a24603e
+      - 03ba0c3b-2570-47e9-96f7-17a6ef4f1edf
+      - 9676f1bc-9132-48f4-8135-8d58f7a91b7b
+      - f622a661-29ee-43ae-903b-053ed8831161
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fdfbf9b0-01a3-46f2-a550-e6d51ff86071:
+    id: fdfbf9b0-01a3-46f2-a550-e6d51ff86071
+    content: Open terminal panel, right-click a node, click Send — content sent to terminal
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a0b99fb7-ed20-4d3f-a170-5587efaeb3e3:
+    id: a0b99fb7-ed20-4d3f-a170-5587efaeb3e3
+    content: Open browser panel, right-click a node, click Send — content copied to clipboard, browser shown
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b171cf66-4eea-45a3-91b3-613081506041:
+    id: b171cf66-4eea-45a3-91b3-613081506041
+    content: Close all panels, right-click a node, click Send — toast appears
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ccd7d641-eb2e-4df6-9148-ce913a24603e:
+    id: ccd7d641-eb2e-4df6-9148-ce913a24603e
+    content: Open feedback panel (start collaboration), right-click a node in main tree, click Send — falls back to terminal
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  03ba0c3b-2570-47e9-96f7-17a6ef4f1edf:
+    id: 03ba0c3b-2570-47e9-96f7-17a6ef4f1edf
+    content: With terminal active, press Ctrl+E — sends to terminal (same as before)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9676f1bc-9132-48f4-8135-8d58f7a91b7b:
+    id: 9676f1bc-9132-48f4-8135-8d58f7a91b7b
+    content: With browser active, press Ctrl+Shift+E — sends to browser (same as before)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f622a661-29ee-43ae-903b-053ed8831161:
+    id: f622a661-29ee-43ae-903b-053ed8831161
+    content: Start an autonomous workflow — verify it advances through steps without being affected by the Send menu change
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9e9b3c06-de56-4525-bcd6-041e941eec2e:
+    id: 9e9b3c06-de56-4525-bcd6-041e941eec2e
+    content: Risks
+    children:
+      - f296da95-8def-46f3-be02-3f159e2f58e5
+      - 56435984-5f9a-4e12-993d-da94634dc2e4
+      - 76299bba-49ad-40b8-b62b-324ccd5ae67a
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f296da95-8def-46f3-be02-3f159e2f58e5:
+    id: f296da95-8def-46f3-be02-3f159e2f58e5
+    content: 'Highest likelihood of defects: the feedback panel fallback logic. This is new behavior — the old Send submenu had no concept of "active panel." The fallback needs to correctly check terminal existence via the terminal store, not panel visibility.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  56435984-5f9a-4e12-993d-da94634dc2e4:
+    id: 56435984-5f9a-4e12-993d-da94634dc2e4
+    content: 'Highest impact if failed: Send does nothing or sends to the wrong target. The user''s muscle memory is "right-click → Send" and they expect it to work. If the panel detection fails silently, content goes nowhere or to the wrong place.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  76299bba-49ad-40b8-b62b-324ccd5ae67a:
+    id: 76299bba-49ad-40b8-b62b-324ccd5ae67a
+    content: The existing "Send" submenu tests in useNodeContextMenu.test.tsx check for "In terminal" and "In browser" sub-items. These tests must be replaced, not just updated — the menu structure is fundamentally different.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  eba23b5d-8b40-4cb5-9a96-56b9b5e138a2:
+    id: eba23b5d-8b40-4cb5-9a96-56b9b5e138a2
+    content: Problem statement
+    children:
+      - fe707d80-483f-4c47-8456-c42628c4dd64
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fe707d80-483f-4c47-8456-c42628c4dd64:
+    id: fe707d80-483f-4c47-8456-c42628c4dd64
+    content: As a user, the "Apply context" submenu in the right-click menu shows a flat list of all my contexts without indicating their mode. Now that the Send submenu is being simplified and its context picker removed, the "Apply context" submenu needs to show contexts grouped by collaborate and execute mode so I can see which mode each context uses and access the built-in defaults ("Basic review" and "Basic execution").
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5c540056-02d8-4d42-aa70-c70939fc7f38:
+    id: 5c540056-02d8-4d42-aa70-c70939fc7f38
+    content: Use cases
+    children:
+      - 2ea28f1d-7204-4993-ae24-c27a9e38a02b
+      - 3664ce49-1903-4f9a-9a00-a5ebe2e411dc
+      - e71e0e07-af00-485b-bf95-d118351e4fca
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2ea28f1d-7204-4993-ae24-c27a9e38a02b:
+    id: 2ea28f1d-7204-4993-ae24-c27a9e38a02b
+    content: 'Primary: User right-clicks a node → opens "Apply context" submenu → sees contexts organized under "Collaborate" and "Execute" sections, with "Basic review (default)" and "Basic execution" as first items in each section. Selects a context — it becomes the applied context for the node.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3664ce49-1903-4f9a-9a00-a5ebe2e411dc:
+    id: 3664ce49-1903-4f9a-9a00-a5ebe2e411dc
+    content: 'Secondary: User has no custom contexts defined. The submenu shows only the two built-in defaults under their respective sections.'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  e71e0e07-af00-485b-bf95-d118351e4fca:
+    id: e71e0e07-af00-485b-bf95-d118351e4fca
+    content: 'Secondary: User has many contexts defined. The submenu is scrollable if it exceeds the viewport height.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  654d7ef6-d0a5-4aeb-a7c9-1bddeaa76bcf:
+    id: 654d7ef6-d0a5-4aeb-a7c9-1bddeaa76bcf
+    content: Acceptance criteria
+    children:
+      - 824bad15-ccc6-4ed5-9f67-56afb03b1aed
+      - 9bb5d414-77df-443e-8b13-3cba06e781f0
+      - 42e75a02-a504-480a-976c-255014288468
+      - a67fa9c1-1956-41f7-9714-c8172683efa8
+      - 5243d4cd-7ae2-405f-9d57-7cdc4df99df8
+      - 75ba5d93-62b5-44a1-b2d7-174f1731bc4a
+      - ab3c0c19-7d0a-46fb-9bd2-46149dcf68e7
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  824bad15-ccc6-4ed5-9f67-56afb03b1aed:
+    id: 824bad15-ccc6-4ed5-9f67-56afb03b1aed
+    content: The "Apply context" submenu groups contexts into "Collaborate" and "Execute" sections
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9bb5d414-77df-443e-8b13-3cba06e781f0:
+    id: 9bb5d414-77df-443e-8b13-3cba06e781f0
+    content: The "Collaborate" section shows "Basic review (default)" as the first item, followed by all user-defined collaborate-mode contexts
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  42e75a02-a504-480a-976c-255014288468:
+    id: 42e75a02-a504-480a-976c-255014288468
+    content: The "Execute" section shows "Basic execution" as the first item, followed by all user-defined execute-mode contexts
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a67fa9c1-1956-41f7-9714-c8172683efa8:
+    id: a67fa9c1-1956-41f7-9714-c8172683efa8
+    content: Each context item shows its icon, name (truncated if long), and "(inherited)" label if inherited from an ancestor
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5243d4cd-7ae2-405f-9d57-7cdc4df99df8:
+    id: 5243d4cd-7ae2-405f-9d57-7cdc4df99df8
+    content: The currently applied context is indicated with a radio-style selection marker
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  75ba5d93-62b5-44a1-b2d7-174f1731bc4a:
+    id: 75ba5d93-62b5-44a1-b2d7-174f1731bc4a
+    content: Selecting a context applies it to the node, same as today
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ab3c0c19-7d0a-46fb-9bd2-46149dcf68e7:
+    id: ab3c0c19-7d0a-46fb-9bd2-46149dcf68e7
+    content: The submenu is scrollable if it exceeds the viewport height
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5d298064-ed6f-4256-8b7e-497d0401e459:
+    id: 5d298064-ed6f-4256-8b7e-497d0401e459
+    content: Constraints and assumptions
+    children:
+      - 4a8ab978-e408-43c4-b2ab-bba938c74bd6
+      - 1c2009c3-819b-483f-a1b7-c02e42ae77ae
+      - dc24e25b-acfa-4a3e-a219-a3a9fcde75b3
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4a8ab978-e408-43c4-b2ab-bba938c74bd6:
+    id: 4a8ab978-e408-43c4-b2ab-bba938c74bd6
+    content: The context mode (collaborate/execute) is a property of each context declaration and is already available in the context declarations array
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1c2009c3-819b-483f-a1b7-c02e42ae77ae:
+    id: 1c2009c3-819b-483f-a1b7-c02e42ae77ae
+    content: The grouping logic currently exists in the Send submenu's context picker — it should be migrated rather than rewritten
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  dc24e25b-acfa-4a3e-a219-a3a9fcde75b3:
+    id: dc24e25b-acfa-4a3e-a219-a3a9fcde75b3
+    content: The existing "Apply context" submenu currently shows a flat list — this replaces it entirely with the grouped layout
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e076708e-45c7-46b9-9cca-863445b6e4d0:
+    id: e076708e-45c7-46b9-9cca-863445b6e4d0
+    content: Technical specifications
+    children:
+      - ffe089af-0da3-4750-91c6-e4a081104d0c
+      - d61b2291-8bae-420a-9102-f8de1ae2bba3
+      - 29316c27-e8aa-4965-8797-0c7099a7e430
+      - 8d0a3bfc-7f8f-4ec5-af43-04db7134a0b5
+      - abf3b63e-f8a4-49c1-8144-ba7099b49b7f
+      - d5969a16-4d0b-49f7-92ba-b743ff5e9031
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ffe089af-0da3-4750-91c6-e4a081104d0c:
+    id: ffe089af-0da3-4750-91c6-e4a081104d0c
+    content: Summary
+    children:
+      - 176c05a8-47ff-40c4-9d04-6256d54105f1
+      - 0b4f7a0f-95fb-49d8-bbbc-73e6d5a1d128
+      - a75413a5-714c-4b31-9a35-c24e97ca1764
+      - 33d7f00f-f6d9-42a2-8981-e0b3bf65b753
+      - cdb263db-b8e5-4df7-99db-9578b50c8612
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  176c05a8-47ff-40c4-9d04-6256d54105f1:
+    id: 176c05a8-47ff-40c4-9d04-6256d54105f1
+    content: Rewrite buildSetContextSubmenu in useSetContextSubmenu.ts to group contexts by mode (collaborate/execute) with section headers and built-in defaults
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0b4f7a0f-95fb-49d8-bbbc-73e6d5a1d128:
+    id: 0b4f7a0f-95fb-49d8-bbbc-73e6d5a1d128
+    content: 'The grouping pattern follows the deleted Send submenu''s context picker: filter contexts by mode, show "Collaborate" header with "Basic review (default)" first, then "Execute" header with "Basic execution" first'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a75413a5-714c-4b31-9a35-c24e97ca1764:
+    id: a75413a5-714c-4b31-9a35-c24e97ca1764
+    content: Built-in defaults ("Basic review", "Basic execution") only show when no context is inherited — same logic as the deleted Send submenu
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  33d7f00f-f6d9-42a2-8981-e0b3bf65b753:
+    id: 33d7f00f-f6d9-42a2-8981-e0b3bf65b753
+    content: The existing radio selection, inherited detection, and toggle-off-on-reclick behavior from the current buildSetContextSubmenu are preserved
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cdb263db-b8e5-4df7-99db-9578b50c8612:
+    id: cdb263db-b8e5-4df7-99db-9578b50c8612
+    content: 'Add overflow-y: auto to the submenu CSS to enable scrolling when content exceeds viewport height (currently overflow: visible)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d61b2291-8bae-420a-9102-f8de1ae2bba3:
+    id: d61b2291-8bae-420a-9102-f8de1ae2bba3
+    content: Inputs, outputs, and key interfaces
+    children:
+      - f888791c-e710-423e-928b-159b76c61a48
+      - 40836629-b5fd-4d6e-b926-839c6abee0a8
+      - 1e57be60-787b-4895-9e9a-0f3914d8b6c1
+      - 35f0f5e8-e46b-4846-a9d4-ada82fb1db3b
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f888791c-e710-423e-928b-159b76c61a48:
+    id: f888791c-e710-423e-928b-159b76c61a48
+    content: 'Input: node, nodes, ancestorRegistry, contextDeclarations, onSetAppliedContext callback — same interface as today'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  40836629-b5fd-4d6e-b926-839c6abee0a8:
+    id: 40836629-b5fd-4d6e-b926-839c6abee0a8
+    content: 'Output: ContextMenuItem[] with section headers (disabled labels), built-in defaults, and grouped context items'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1e57be60-787b-4895-9e9a-0f3914d8b6c1:
+    id: 1e57be60-787b-4895-9e9a-0f3914d8b6c1
+    content: 'Context mode: each ContextDeclarationInfo has a mode field (''collaborate'' | ''execute'') used for filtering'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  35f0f5e8-e46b-4846-a9d4-ada82fb1db3b:
+    id: 35f0f5e8-e46b-4846-a9d4-ada82fb1db3b
+    content: 'Built-in defaults: "Basic review (default)" selects null (no explicit context = default collaborate), "Basic execution" selects a special BASIC_EXECUTE_CONTEXT_ID constant'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  29316c27-e8aa-4965-8797-0c7099a7e430:
+    id: 29316c27-e8aa-4965-8797-0c7099a7e430
+    content: Constraints and non-functional requirements
+    children:
+      - d222bf24-52c4-4e0d-ad72-67da6ae0e0a8
+      - d7df1c69-7d15-4063-9868-08eb8749061a
+      - 313ebd0d-70d2-4e4a-916c-93cd449d85e3
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d222bf24-52c4-4e0d-ad72-67da6ae0e0a8:
+    id: d222bf24-52c4-4e0d-ad72-67da6ae0e0a8
+    content: The submenu must handle the case where no custom contexts exist — shows only built-in defaults
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  d7df1c69-7d15-4063-9868-08eb8749061a:
+    id: d7df1c69-7d15-4063-9868-08eb8749061a
+    content: The submenu must handle inherited contexts — shows "(inherited)" label and disabled radio when inherited with no explicit override
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  313ebd0d-70d2-4e4a-916c-93cd449d85e3:
+    id: 313ebd0d-70d2-4e4a-916c-93cd449d85e3
+    content: Scrolling must not break submenu flip behavior (the flip-horizontal/flip-vertical CSS classes on the submenu container)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8d0a3bfc-7f8f-4ec5-af43-04db7134a0b5:
+    id: 8d0a3bfc-7f8f-4ec5-af43-04db7134a0b5
+    content: Technical steps
+    children:
+      - 5caa430c-8431-4b75-a0a3-553d39b370fe
+      - a956a225-cdb9-4844-a5bb-89232e8d62c6
+      - 83993139-22c8-41b4-a16f-ecf6d9691106
+      - e0cb87f3-ad30-43fd-b2e3-71e372db1d7f
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5caa430c-8431-4b75-a0a3-553d39b370fe:
+    id: 5caa430c-8431-4b75-a0a3-553d39b370fe
+    content: 'Step 1: Add scrolling CSS to submenus (S)'
+    children:
+      - 65555a4b-cd9b-430e-9579-0d45b327f260
+      - 06b08543-c703-4953-b5e7-11d14e334545
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  65555a4b-cd9b-430e-9579-0d45b327f260:
+    id: 65555a4b-cd9b-430e-9579-0d45b327f260
+    content: 'Change overflow: visible to overflow-y: auto on the .context-menu-submenu class in ContextMenu.css'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  06b08543-c703-4953-b5e7-11d14e334545:
+    id: 06b08543-c703-4953-b5e7-11d14e334545
+    content: Verify submenu flipping still works with scrollable content
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a956a225-cdb9-4844-a5bb-89232e8d62c6:
+    id: a956a225-cdb9-4844-a5bb-89232e8d62c6
+    content: 'Step 2: Rewrite buildSetContextSubmenu with grouped layout (M)'
+    children:
+      - 97085bd9-0ecd-4286-9568-a79a5a924abe
+      - 81d11213-0c4d-4b99-83d9-4280d06ca21a
+      - 76197d66-52da-4e2e-afaf-490673ae84ba
+      - 435c83e0-84d1-4f31-b90c-f75bc5bd2e5e
+      - d9de6d3e-f036-427f-9786-5e6af2b86d4a
+      - 25615290-5bce-4a77-a248-c733a1b326dd
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  97085bd9-0ecd-4286-9568-a79a5a924abe:
+    id: 97085bd9-0ecd-4286-9568-a79a5a924abe
+    content: Filter contextDeclarations into collaborate and execute arrays by mode
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  81d11213-0c4d-4b99-83d9-4280d06ca21a:
+    id: 81d11213-0c4d-4b99-83d9-4280d06ca21a
+    content: Determine if inherited context exists (getAppliedContextIdWithInheritance for the node)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  76197d66-52da-4e2e-afaf-490673ae84ba:
+    id: 76197d66-52da-4e2e-afaf-490673ae84ba
+    content: 'Build "Collaborate" section: disabled header label, "Basic review (default)" if no inherited context, then collaborate-mode contexts with existing radio/inherited logic'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  435c83e0-84d1-4f31-b90c-f75bc5bd2e5e:
+    id: 435c83e0-84d1-4f31-b90c-f75bc5bd2e5e
+    content: 'Build "Execute" section: disabled header label, "Basic execution" if no inherited context, then execute-mode contexts'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d9de6d3e-f036-427f-9786-5e6af2b86d4a:
+    id: d9de6d3e-f036-427f-9786-5e6af2b86d4a
+    content: Preserve the existing onSetAppliedContext callback behavior — selecting a context sets it, selecting the active one removes it, inherited contexts are disabled
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  25615290-5bce-4a77-a248-c733a1b326dd:
+    id: 25615290-5bce-4a77-a248-c733a1b326dd
+    content: Keep the "Close" footer item
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  83993139-22c8-41b4-a16f-ecf6d9691106:
+    id: 83993139-22c8-41b4-a16f-ecf6d9691106
+    content: 'Step 3: Import BASIC_EXECUTE_CONTEXT_ID constant (S)'
+    children:
+      - 1f2e2486-c814-45c3-936b-da6b5df4f505
+      - 8cab5da5-82c7-4149-aace-05279f0d09b4
+      - 78696857-9f01-4f7d-9ee9-a06b50e2ddd5
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1f2e2486-c814-45c3-936b-da6b5df4f505:
+    id: 1f2e2486-c814-45c3-936b-da6b5df4f505
+    content: The deleted useSendSubmenu.tsx defined this constant — create it in useSetContextSubmenu.ts or a shared location
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8cab5da5-82c7-4149-aace-05279f0d09b4:
+    id: 8cab5da5-82c7-4149-aace-05279f0d09b4
+    content: '"Basic review (default)" sets context to null (the default mode)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  78696857-9f01-4f7d-9ee9-a06b50e2ddd5:
+    id: 78696857-9f01-4f7d-9ee9-a06b50e2ddd5
+    content: '"Basic execution" sets context to BASIC_EXECUTE_CONTEXT_ID'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e0cb87f3-ad30-43fd-b2e3-71e372db1d7f:
+    id: e0cb87f3-ad30-43fd-b2e3-71e372db1d7f
+    content: 'Step 4: Update tests (M)'
+    children:
+      - 9ac5ef35-ae55-4716-adac-eab31f6f47b8
+      - c6544d1a-d5a9-49b2-8b7d-6ae945a31915
+      - 71610b2a-cdf2-4494-841a-4fb52446a737
+      - e07cd7a8-5593-41b5-be5c-34026dfabb85
+      - 8a3709e3-4e68-4e3a-a54b-f98477484673
+      - 311fc454-3864-40fc-82d2-f5c29aa313f0
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9ac5ef35-ae55-4716-adac-eab31f6f47b8:
+    id: 9ac5ef35-ae55-4716-adac-eab31f6f47b8
+    content: 'Test: submenu shows "Collaborate" and "Execute" section headers'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c6544d1a-d5a9-49b2-8b7d-6ae945a31915:
+    id: c6544d1a-d5a9-49b2-8b7d-6ae945a31915
+    content: 'Test: "Basic review (default)" appears under Collaborate when no inherited context'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  71610b2a-cdf2-4494-841a-4fb52446a737:
+    id: 71610b2a-cdf2-4494-841a-4fb52446a737
+    content: 'Test: "Basic execution" appears under Execute when no inherited context'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e07cd7a8-5593-41b5-be5c-34026dfabb85:
+    id: e07cd7a8-5593-41b5-be5c-34026dfabb85
+    content: 'Test: built-in defaults hidden when context is inherited'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8a3709e3-4e68-4e3a-a54b-f98477484673:
+    id: 8a3709e3-4e68-4e3a-a54b-f98477484673
+    content: 'Test: custom contexts appear under correct section by mode'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  311fc454-3864-40fc-82d2-f5c29aa313f0:
+    id: 311fc454-3864-40fc-82d2-f5c29aa313f0
+    content: 'Test: radio selection works for built-in defaults and custom contexts'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  abf3b63e-f8a4-49c1-8144-ba7099b49b7f:
+    id: abf3b63e-f8a4-49c1-8144-ba7099b49b7f
+    content: Risks and edge cases
+    children:
+      - 61e1ff7e-1399-46fe-bf36-367fd3f4eda6
+      - 4cec5e3d-2b6d-4959-ba09-73b3dac8a172
+      - 87a3a8c7-c9ea-43fd-807f-cb7f1b9aea57
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  61e1ff7e-1399-46fe-bf36-367fd3f4eda6:
+    id: 61e1ff7e-1399-46fe-bf36-367fd3f4eda6
+    content: The BASIC_EXECUTE_CONTEXT_ID was defined in useSendSubmenu.tsx which is now deleted. The constant needs to be recreated. It was used to distinguish "Basic execution" from "no context" (which defaults to "Basic review").
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4cec5e3d-2b6d-4959-ba09-73b3dac8a172:
+    id: 4cec5e3d-2b6d-4959-ba09-73b3dac8a172
+    content: 'The submenu scrolling CSS change affects ALL submenus globally, not just "Apply context." Verify that shorter submenus (Edit, Blueprint, etc.) are not affected — overflow-y: auto only shows a scrollbar when content exceeds max-height, so short menus should be unaffected.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  87a3a8c7-c9ea-43fd-807f-cb7f1b9aea57:
+    id: 87a3a8c7-c9ea-43fd-807f-cb7f1b9aea57
+    content: 'The flip-vertical CSS class changes top:0 to bottom:0. With overflow-y: auto, the submenu needs to be correctly sized before flipping. Test that flipping works when the submenu is scrollable.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d5969a16-4d0b-49f7-92ba-b743ff5e9031:
+    id: d5969a16-4d0b-49f7-92ba-b743ff5e9031
+    content: Implementation plan
+    children:
+      - 3f7786d4-2fad-47d1-9ac1-fcded11adc21
+      - 6f25b578-af59-44ec-a6d5-9c9e10c394d2
+      - 5f3847fa-5e68-420a-8349-8be83553b60c
+      - c460ce3e-307f-44dc-837d-8da4068855e0
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3f7786d4-2fad-47d1-9ac1-fcded11adc21:
+    id: 3f7786d4-2fad-47d1-9ac1-fcded11adc21
+    content: Single PR (can be combined with US1 if already in progress)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6f25b578-af59-44ec-a6d5-9c9e10c394d2:
+    id: 6f25b578-af59-44ec-a6d5-9c9e10c394d2
+    content: 'Order: CSS scroll fix (Step 1) → Grouped layout rewrite (Step 2) → Constant (Step 3) → Tests (Step 4)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5f3847fa-5e68-420a-8349-8be83553b60c:
+    id: 5f3847fa-5e68-420a-8349-8be83553b60c
+    content: Testing strategy
+    children:
+      - 86f80384-9a5b-4d7f-935b-c2d25280fa04
+      - d036b738-34b6-4430-af58-b629686e8e22
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  86f80384-9a5b-4d7f-935b-c2d25280fa04:
+    id: 86f80384-9a5b-4d7f-935b-c2d25280fa04
+    content: 'Unit: context grouping, section headers, built-in defaults, radio selection'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d036b738-34b6-4430-af58-b629686e8e22:
+    id: d036b738-34b6-4430-af58-b629686e8e22
+    content: 'Manual: many contexts (scrolling), no contexts (only defaults), inherited contexts (disabled/hidden defaults)'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c460ce3e-307f-44dc-837d-8da4068855e0:
+    id: c460ce3e-307f-44dc-837d-8da4068855e0
+    content: Steps 1 and 2-3 can be developed in parallel
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  18d2d3c9-5ab1-43d4-8adc-35e7c79cf1ec:
+    id: 18d2d3c9-5ab1-43d4-8adc-35e7c79cf1ec
+    content: Test plan
+    children:
+      - 1bcc09a7-b59a-488c-87a3-3b67857921b7
+      - 80c8fac3-3dbe-484a-9146-d7bb645c480a
+      - e51b2482-f61f-4409-9570-4771ed300f22
+      - 36787b00-7cdf-429a-a0f6-595225b1fac9
+      - 43d3d9a4-ba44-4659-8457-a973dff0ee74
+      - 35fb39f3-8dd9-4a52-b0c0-d59ba18f8df9
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1bcc09a7-b59a-488c-87a3-3b67857921b7:
+    id: 1bcc09a7-b59a-488c-87a3-3b67857921b7
+    content: Scope and objectives
+    children:
+      - 126741ad-3b74-4855-8e8f-d4fae6f0672f
+      - a53711c1-397f-42bf-83b4-11e4024ee0db
+      - af89f928-d91c-4b29-a037-067ccc908dcb
+      - 65ff2990-3182-4ab8-90cc-efd2f04a99d4
+      - 54dc0735-251b-4b8e-9cba-28df61a2c94d
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  126741ad-3b74-4855-8e8f-d4fae6f0672f:
+    id: 126741ad-3b74-4855-8e8f-d4fae6f0672f
+    content: Verify that the "Apply context" submenu correctly groups contexts by collaborate and execute mode
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a53711c1-397f-42bf-83b4-11e4024ee0db:
+    id: a53711c1-397f-42bf-83b4-11e4024ee0db
+    content: Verify that built-in defaults ("Basic review", "Basic execution") appear and function correctly
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  af89f928-d91c-4b29-a037-067ccc908dcb:
+    id: af89f928-d91c-4b29-a037-067ccc908dcb
+    content: Verify that inherited context behavior is preserved (disabled radio, "(inherited)" label, hidden defaults)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  65ff2990-3182-4ab8-90cc-efd2f04a99d4:
+    id: 65ff2990-3182-4ab8-90cc-efd2f04a99d4
+    content: Verify that radio selection and toggle-off behavior work for all item types
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  54dc0735-251b-4b8e-9cba-28df61a2c94d:
+    id: 54dc0735-251b-4b8e-9cba-28df61a2c94d
+    content: Verify that the submenu scrolls when many contexts are defined
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  80c8fac3-3dbe-484a-9146-d7bb645c480a:
+    id: 80c8fac3-3dbe-484a-9146-d7bb645c480a
+    content: Entry criteria
+    children:
+      - aaf1fe39-d998-4f74-a585-914e40383069
+      - 49ba5e7f-e00b-42de-bc07-397c58560233
+      - acc1e5d1-5e95-45f7-9a07-92a5f769243c
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  aaf1fe39-d998-4f74-a585-914e40383069:
+    id: aaf1fe39-d998-4f74-a585-914e40383069
+    content: buildSetContextSubmenu rewritten with grouped layout
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  49ba5e7f-e00b-42de-bc07-397c58560233:
+    id: 49ba5e7f-e00b-42de-bc07-397c58560233
+    content: 'CSS updated with overflow-y: auto'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  acc1e5d1-5e95-45f7-9a07-92a5f769243c:
+    id: acc1e5d1-5e95-45f7-9a07-92a5f769243c
+    content: BASIC_EXECUTE_CONTEXT_ID constant defined
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e51b2482-f61f-4409-9570-4771ed300f22:
+    id: e51b2482-f61f-4409-9570-4771ed300f22
+    content: Exit criteria
+    children:
+      - bbecb258-9065-4d3f-9c13-a24f1ec5276a
+      - 7b049314-95ec-43da-ad5c-39b6281a216c
+      - a8db5cc6-0926-4eed-a05f-f41cea9bef98
+      - 05a825b2-f182-47cb-b6eb-e16d3d1e3181
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  bbecb258-9065-4d3f-9c13-a24f1ec5276a:
+    id: bbecb258-9065-4d3f-9c13-a24f1ec5276a
+    content: All unit tests pass
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7b049314-95ec-43da-ad5c-39b6281a216c:
+    id: 7b049314-95ec-43da-ad5c-39b6281a216c
+    content: All manual test scenarios verified
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a8db5cc6-0926-4eed-a05f-f41cea9bef98:
+    id: a8db5cc6-0926-4eed-a05f-f41cea9bef98
+    content: No regressions in context application behavior
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  05a825b2-f182-47cb-b6eb-e16d3d1e3181:
+    id: 05a825b2-f182-47cb-b6eb-e16d3d1e3181
+    content: No visual regressions in other submenus (Edit, Blueprint, etc.)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  36787b00-7cdf-429a-a0f6-595225b1fac9:
+    id: 36787b00-7cdf-429a-a0f6-595225b1fac9
+    content: Unit tests
+    children:
+      - 787784ed-727b-4d5b-a333-545da2e6f378
+      - e7a2fae1-2196-4087-a3c7-42d6936410ca
+      - bb15b112-a3d2-490f-a6bc-332376594df1
+      - d3b516ec-a648-4744-bfb5-38e6118561e8
+      - ffb05970-e6ff-4c6b-9180-8c3ed86886a7
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  787784ed-727b-4d5b-a333-545da2e6f378:
+    id: 787784ed-727b-4d5b-a333-545da2e6f378
+    content: Section structure
+    children:
+      - 6b54a3da-d3c1-40d6-afec-48811cd5a886
+      - e914c713-0da9-4d5d-90e9-8657f4d71c0b
+      - d93aff2d-52ed-454e-9f4a-8429ab54fd03
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6b54a3da-d3c1-40d6-afec-48811cd5a886:
+    id: 6b54a3da-d3c1-40d6-afec-48811cd5a886
+    content: Submenu contains a disabled "Collaborate" header item
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e914c713-0da9-4d5d-90e9-8657f4d71c0b:
+    id: e914c713-0da9-4d5d-90e9-8657f4d71c0b
+    content: Submenu contains a disabled "Execute" header item
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d93aff2d-52ed-454e-9f4a-8429ab54fd03:
+    id: d93aff2d-52ed-454e-9f4a-8429ab54fd03
+    content: '"Collaborate" section appears before "Execute" section'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e7a2fae1-2196-4087-a3c7-42d6936410ca:
+    id: e7a2fae1-2196-4087-a3c7-42d6936410ca
+    content: Built-in defaults
+    children:
+      - 0f497ed6-4180-429a-be47-4417a61a5818
+      - d140ef3c-9665-42a2-8bd2-47ffea5a68c2
+      - abf16d9d-bed8-4220-b40b-08f9cb23da8f
+      - 06eb9217-bd1b-4a9b-ae31-8897808d3ee0
+      - 6de00d8d-d932-4d43-9826-5894e1b0acaa
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0f497ed6-4180-429a-be47-4417a61a5818:
+    id: 0f497ed6-4180-429a-be47-4417a61a5818
+    content: '"Basic review (default)" appears under Collaborate when no inherited context'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d140ef3c-9665-42a2-8bd2-47ffea5a68c2:
+    id: d140ef3c-9665-42a2-8bd2-47ffea5a68c2
+    content: '"Basic execution" appears under Execute when no inherited context'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  abf16d9d-bed8-4220-b40b-08f9cb23da8f:
+    id: abf16d9d-bed8-4220-b40b-08f9cb23da8f
+    content: '"Basic review (default)" has radio selected when no explicit context is set'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  06eb9217-bd1b-4a9b-ae31-8897808d3ee0:
+    id: 06eb9217-bd1b-4a9b-ae31-8897808d3ee0
+    content: '"Basic execution" is not radio selected by default'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6de00d8d-d932-4d43-9826-5894e1b0acaa:
+    id: 6de00d8d-d932-4d43-9826-5894e1b0acaa
+    content: Built-in defaults are hidden when a context is inherited
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bb15b112-a3d2-490f-a6bc-332376594df1:
+    id: bb15b112-a3d2-490f-a6bc-332376594df1
+    content: Custom context grouping
+    children:
+      - ed9871cb-d735-432e-acf8-bc6ff2656b00
+      - b8d381e5-d3a5-4479-9397-277edaa0b6f2
+      - 61dc6b27-d237-429a-881a-584a6fb77db9
+      - 6f7bd6b9-e4b0-4a03-a3f6-d1545ef72f2e
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ed9871cb-d735-432e-acf8-bc6ff2656b00:
+    id: ed9871cb-d735-432e-acf8-bc6ff2656b00
+    content: Collaborate-mode contexts appear under the "Collaborate" section
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b8d381e5-d3a5-4479-9397-277edaa0b6f2:
+    id: b8d381e5-d3a5-4479-9397-277edaa0b6f2
+    content: Execute-mode contexts appear under the "Execute" section
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  61dc6b27-d237-429a-881a-584a6fb77db9:
+    id: 61dc6b27-d237-429a-881a-584a6fb77db9
+    content: Contexts show their icon and name
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  6f7bd6b9-e4b0-4a03-a3f6-d1545ef72f2e:
+    id: 6f7bd6b9-e4b0-4a03-a3f6-d1545ef72f2e
+    content: Context names are truncated with "(inherited)" label when inherited
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d3b516ec-a648-4744-bfb5-38e6118561e8:
+    id: d3b516ec-a648-4744-bfb5-38e6118561e8
+    content: Selection behavior
+    children:
+      - d77c7eb8-1f57-42f1-be13-89aa4e86f8da
+      - cd33a0fb-3904-4f9d-be29-ada125131cad
+      - 61559407-20a0-4dd4-811a-5233d59f825c
+      - 9154a1be-8f03-4361-8a41-05d3df3d2a8a
+      - 51062537-7274-48f0-b5c6-2db6347f442b
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d77c7eb8-1f57-42f1-be13-89aa4e86f8da:
+    id: d77c7eb8-1f57-42f1-be13-89aa4e86f8da
+    content: Selecting a custom context calls onSetAppliedContext with the context's nodeId
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cd33a0fb-3904-4f9d-be29-ada125131cad:
+    id: cd33a0fb-3904-4f9d-be29-ada125131cad
+    content: Selecting the currently active context calls onSetAppliedContext with null (toggle off)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  61559407-20a0-4dd4-811a-5233d59f825c:
+    id: 61559407-20a0-4dd4-811a-5233d59f825c
+    content: Inherited contexts with no explicit override are disabled
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9154a1be-8f03-4361-8a41-05d3df3d2a8a:
+    id: 9154a1be-8f03-4361-8a41-05d3df3d2a8a
+    content: Selecting "Basic review (default)" calls onSetAppliedContext with null
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  51062537-7274-48f0-b5c6-2db6347f442b:
+    id: 51062537-7274-48f0-b5c6-2db6347f442b
+    content: Selecting "Basic execution" calls onSetAppliedContext with BASIC_EXECUTE_CONTEXT_ID
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ffb05970-e6ff-4c6b-9180-8c3ed86886a7:
+    id: ffb05970-e6ff-4c6b-9180-8c3ed86886a7
+    content: Empty states
+    children:
+      - 4fd77b43-9955-40bb-b7e7-26062b9504d3
+      - 65b7b855-f7c4-4fd3-acfe-8872529e3bf0
+      - 30eccbb0-58e9-478d-a856-f94d6b371e5c
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4fd77b43-9955-40bb-b7e7-26062b9504d3:
+    id: 4fd77b43-9955-40bb-b7e7-26062b9504d3
+    content: Submenu with no custom contexts shows only built-in defaults
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  65b7b855-f7c4-4fd3-acfe-8872529e3bf0:
+    id: 65b7b855-f7c4-4fd3-acfe-8872529e3bf0
+    content: Submenu with only collaborate contexts shows empty Execute section with just "Basic execution"
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  30eccbb0-58e9-478d-a856-f94d6b371e5c:
+    id: 30eccbb0-58e9-478d-a856-f94d6b371e5c
+    content: Submenu with only execute contexts shows empty Collaborate section with just "Basic review"
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  43d3d9a4-ba44-4659-8457-a973dff0ee74:
+    id: 43d3d9a4-ba44-4659-8457-a973dff0ee74
+    content: Manual tests
+    children:
+      - 76060f2c-9f47-4d24-9f20-45ace59083e2
+      - e553d19b-aa75-478c-9461-190aa75067d4
+      - 268a4088-5523-4c33-b18e-28d55315685c
+      - fdec1207-411f-4a2d-927e-628279e83d68
+      - 1ff66f87-cf19-4edd-98bc-14bc60a60e6f
+      - 3dc9f279-5c6f-400c-bb2d-1e2ed68fcb81
+      - db9f3841-0d26-4a67-b783-4f29fc1b41ae
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  76060f2c-9f47-4d24-9f20-45ace59083e2:
+    id: 76060f2c-9f47-4d24-9f20-45ace59083e2
+    content: Right-click a node with no context applied — verify both sections visible with defaults
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e553d19b-aa75-478c-9461-190aa75067d4:
+    id: e553d19b-aa75-478c-9461-190aa75067d4
+    content: Apply a collaborate-mode context — verify it shows as selected under Collaborate section
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  268a4088-5523-4c33-b18e-28d55315685c:
+    id: 268a4088-5523-4c33-b18e-28d55315685c
+    content: Apply an execute-mode context — verify it shows as selected under Execute section
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fdec1207-411f-4a2d-927e-628279e83d68:
+    id: fdec1207-411f-4a2d-927e-628279e83d68
+    content: Click the active context again — verify it deselects (returns to default)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1ff66f87-cf19-4edd-98bc-14bc60a60e6f:
+    id: 1ff66f87-cf19-4edd-98bc-14bc60a60e6f
+    content: Check a node with inherited context — verify "(inherited)" label and disabled state, defaults hidden
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3dc9f279-5c6f-400c-bb2d-1e2ed68fcb81:
+    id: 3dc9f279-5c6f-400c-bb2d-1e2ed68fcb81
+    content: Define 15+ contexts — verify the submenu scrolls within the viewport
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  db9f3841-0d26-4a67-b783-4f29fc1b41ae:
+    id: db9f3841-0d26-4a67-b783-4f29fc1b41ae
+    content: Open other submenus (Edit, Blueprint, Workflow) — verify they render normally without scrollbars
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  35fb39f3-8dd9-4a52-b0c0-d59ba18f8df9:
+    id: 35fb39f3-8dd9-4a52-b0c0-d59ba18f8df9
+    content: Risks
+    children:
+      - a04aabb2-4d9c-4ea4-960e-081b87114040
+      - bbd8d32f-bc9d-459d-bcb5-c0c9292d5785
+      - 8d5fe45d-4712-4617-b2a7-78d99c5d441c
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a04aabb2-4d9c-4ea4-960e-081b87114040:
+    id: a04aabb2-4d9c-4ea4-960e-081b87114040
+    content: 'Highest likelihood of defects: the built-in defaults logic. The conditional display (hidden when inherited) and the special handling of "Basic execution" via BASIC_EXECUTE_CONTEXT_ID are the most complex parts.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bbd8d32f-bc9d-459d-bcb5-c0c9292d5785:
+    id: bbd8d32f-bc9d-459d-bcb5-c0c9292d5785
+    content: 'Highest impact if failed: applying the wrong context or mode. If "Basic execution" incorrectly sets the context to null instead of BASIC_EXECUTE_CONTEXT_ID, the node would use collaborate mode when the user expects execute mode.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8d5fe45d-4712-4617-b2a7-78d99c5d441c:
+    id: 8d5fe45d-4712-4617-b2a7-78d99c5d441c
+    content: The CSS scrolling change is global. If it causes visual issues in other submenus (unexpected scrollbars, clipped content), it needs to be scoped specifically to submenus with the context picker.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
