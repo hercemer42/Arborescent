@@ -22,15 +22,21 @@ describe('notificationHandlers', () => {
     show: ReturnType<typeof vi.fn>;
     focus: ReturnType<typeof vi.fn>;
     isFocused: ReturnType<typeof vi.fn>;
+    on: ReturnType<typeof vi.fn>;
   };
   let getMainWindow: () => typeof mockMainWindow | null;
+  let eventListeners: Record<string, () => void>;
 
   beforeEach(() => {
     vi.clearAllMocks();
+    eventListeners = {};
     mockMainWindow = {
       show: vi.fn(),
       focus: vi.fn(),
       isFocused: vi.fn().mockReturnValue(false),
+      on: vi.fn().mockImplementation((event: string, callback: () => void) => {
+        eventListeners[event] = callback;
+      }),
     };
     getMainWindow = () => mockMainWindow;
   });
@@ -86,27 +92,58 @@ describe('notificationHandlers', () => {
       expect(mockMainWindow.focus).toHaveBeenCalled();
     });
 
-    it('should not crash when mainWindow is null', () => {
+    it('should not crash when mainWindow is null on notification click', () => {
+      const mockOn = vi.fn();
+      vi.mocked(Notification).mockImplementation(() => ({
+        show: vi.fn(),
+        on: mockOn,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      }) as any);
+
       getMainWindow = () => null;
       const handler = getHandler('show-notification');
+      handler({}, 'Title', 'Body');
 
-      expect(() => handler({}, 'Title', 'Body')).not.toThrow();
+      const clickCallback = mockOn.mock.calls.find(
+        (c: unknown[]) => c[0] === 'click'
+      );
+      expect(() => clickCallback![1]()).not.toThrow();
     });
   });
 
   describe('is-window-focused', () => {
-    it('should return true when window is focused', async () => {
+    it('should return false by default when window starts unfocused', async () => {
+      mockMainWindow.isFocused.mockReturnValue(false);
+      const handler = getHandler('is-window-focused');
+
+      expect(await handler({})).toBe(false);
+    });
+
+    it('should return true when window starts focused', async () => {
       mockMainWindow.isFocused.mockReturnValue(true);
       const handler = getHandler('is-window-focused');
 
       expect(await handler({})).toBe(true);
     });
 
-    it('should return false when window is not focused', async () => {
+    it('should track focus state via blur event', async () => {
+      mockMainWindow.isFocused.mockReturnValue(true);
+      const handler = getHandler('is-window-focused');
+
+      expect(await handler({})).toBe(true);
+
+      eventListeners['blur']();
+      expect(await handler({})).toBe(false);
+    });
+
+    it('should track focus state via focus event', async () => {
       mockMainWindow.isFocused.mockReturnValue(false);
       const handler = getHandler('is-window-focused');
 
       expect(await handler({})).toBe(false);
+
+      eventListeners['focus']();
+      expect(await handler({})).toBe(true);
     });
 
     it('should return false when mainWindow is null', async () => {
@@ -114,6 +151,13 @@ describe('notificationHandlers', () => {
       const handler = getHandler('is-window-focused');
 
       expect(await handler({})).toBe(false);
+    });
+
+    it('should register focus and blur listeners on the window', () => {
+      registerNotificationHandlers(getMainWindow as ReturnType<typeof vi.fn>);
+
+      expect(mockMainWindow.on).toHaveBeenCalledWith('focus', expect.any(Function));
+      expect(mockMainWindow.on).toHaveBeenCalledWith('blur', expect.any(Function));
     });
   });
 });

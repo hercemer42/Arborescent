@@ -57,7 +57,7 @@ describe('ipcService', () => {
   beforeEach(() => {
     vi.clearAllMocks();
     handlers = new Map();
-    mockWindow = {} as BrowserWindow;
+    mockWindow = { on: vi.fn(), isFocused: vi.fn().mockReturnValue(false) } as unknown as BrowserWindow;
 
     // Reset memfs
     vol.reset();
@@ -370,6 +370,8 @@ describe('ipcService', () => {
       };
       const mockWindowWithWebContents = {
         webContents: mockWebContents,
+        on: vi.fn(),
+        isFocused: vi.fn().mockReturnValue(false),
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } as any;
 
