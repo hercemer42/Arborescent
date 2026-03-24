@@ -205,6 +205,8 @@ export function useNodeContextMenu(node: TreeNode) {
       node: freshNode,
       nodes,
       ancestorRegistry,
+      collaboratingNodeId,
+      workflowExecutionStates: state.workflowExecutionStates,
       onMoveToNextStep: () => { actions.moveToNextStep(node.id); autoStartAfterMove(node.id); },
       onMoveToPreviousStep: () => { actions.moveToPreviousStep(node.id); autoStartAfterMove(node.id); },
     });

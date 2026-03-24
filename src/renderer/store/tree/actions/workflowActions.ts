@@ -156,7 +156,6 @@ export const createWorkflowActions = (
     }
 
     visualEffects?.flashNode(nodeId);
-    visualEffects?.scrollToNode(nodeId);
   }
 
   function moveToPreviousStep(nodeId: string): void {
@@ -182,7 +181,6 @@ export const createWorkflowActions = (
     }
 
     visualEffects?.flashNode(nodeId);
-    visualEffects?.scrollToNode(nodeId);
   }
 
   function setStepType(nodeId: string, stepType: StepType): void {

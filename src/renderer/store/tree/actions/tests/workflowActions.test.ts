@@ -365,11 +365,11 @@ describe('createWorkflowActions', () => {
       expect(state.nodes['step-1'].children).not.toContain('item-a');
     });
 
-    it('should call flashNode and scrollToNode', () => {
+    it('should call flashNode but not scrollToNode', () => {
       actions.moveToNextStep('item-a');
 
       expect(mockVisualEffects.flashNode).toHaveBeenCalledWith('item-a');
-      expect(mockVisualEffects.scrollToNode).toHaveBeenCalledWith('item-a');
+      expect(mockVisualEffects.scrollToNode).not.toHaveBeenCalled();
     });
 
     it('should be a no-op when at last step', () => {

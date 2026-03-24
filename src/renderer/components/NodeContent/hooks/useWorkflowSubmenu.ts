@@ -103,6 +103,8 @@ interface BuildWorkflowNavigationItemsParams {
   node: TreeNode;
   nodes: Record<string, TreeNode>;
   ancestorRegistry: AncestorRegistry;
+  collaboratingNodeId?: string | null;
+  workflowExecutionStates?: Record<string, WorkflowExecutionEntry>;
   onMoveToNextStep: () => void;
   onMoveToPreviousStep: () => void;
 }
@@ -111,10 +113,14 @@ export function buildWorkflowNavigationItems({
   node,
   nodes,
   ancestorRegistry,
+  collaboratingNodeId,
+  workflowExecutionStates,
   onMoveToNextStep,
   onMoveToPreviousStep,
 }: BuildWorkflowNavigationItemsParams): ContextMenuItem[] {
   if (!isChildOfWorkflowStep(node.id, nodes, ancestorRegistry)) return [];
+  if (collaboratingNodeId === node.id) return [];
+  if (workflowExecutionStates?.[node.id]) return [];
 
   const items: ContextMenuItem[] = [];
 

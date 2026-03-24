@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-03-24T12:32:06.099Z'
+updated: '2026-03-24T12:46:49.424Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -536,6 +536,8 @@ nodes:
       - 503e53c0-5353-48d5-a1f2-5dc15e0ff045
       - 3a5b506d-0dc1-4042-a411-bd7f5a120f38
       - 5ea42e0d-9f79-43c6-94ed-1ac453da2790
+      - ee0d3f9f-fb13-4e7a-a64a-c92da62e6c1a
+      - 54df937b-7f2b-49fd-84c0-aa5d821b5240
     metadata:
       status: completed
       expanded: false
@@ -555,6 +557,7 @@ nodes:
     id: d5fe0eff-b1c6-4986-b6a3-70a0ea46f096
     content: Opportunities
     children:
+      - 83ae5dd9-1678-4c57-8e9c-74a7e6aeb6cf
       - 47d5dea1-a047-4d62-b2c0-8a29d7dc7517
       - 3f420f16-9696-4ea3-9bae-80723ae56de0
       - a39b2ce6-d2d5-4589-b53f-a84c103d9fbf
@@ -580,7 +583,7 @@ nodes:
       - e91d842b-d982-4f8b-a3c5-7f0a42c95604
     metadata:
       status: pending
-      expanded: false
+      expanded: true
       isBlueprint: true
       blueprintIcon: Brain
       blueprintColor: '#0ea5e9'
@@ -8852,6 +8855,7 @@ nodes:
     id: 79b693ca-27ce-4410-8617-8092d7e81b07
     content: Issues
     children:
+      - 1313ac0e-6295-4e0f-9e2e-5eb373402329
       - d48c9675-9ec8-4032-9df0-a5037764b9cf
       - 2ee4a837-3635-4b0f-b794-896909f197e0
       - 533210b8-5c42-48f7-ab9a-bea602ae7ed2
@@ -8868,6 +8872,7 @@ nodes:
       isBlueprint: true
       blueprintIcon: TriangleAlert
       blueprintColor: '#ef4444'
+      appliedContextId: 6690289a-e02f-48bc-9225-a1083b7b324f
       expanded: true
   aff16275-6d8e-49c9-b862-76875858d4af:
     id: aff16275-6d8e-49c9-b862-76875858d4af
@@ -26822,9 +26827,7 @@ nodes:
   bdceb696-248d-4199-9182-db0689445c07:
     id: bdceb696-248d-4199-9182-db0689445c07
     content: Documentation
-    children:
-      - ee0d3f9f-fb13-4e7a-a64a-c92da62e6c1a
-      - 54df937b-7f2b-49fd-84c0-aa5d821b5240
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -34469,6 +34472,7 @@ nodes:
     id: 13c5048b-15eb-4989-a6fc-25032e5c131f
     content: Problems
     children:
+      - ea39b52d-fc42-4118-bc10-7ce57ef8d32c
       - 323eaf83-d1a0-4c90-9d5b-85bf36eca6be
       - 3a953d30-cb26-4e2b-96b0-9f092bc5ce93
       - c4c83046-4976-4687-becc-dcaa8eafbd25
@@ -34702,6 +34706,7 @@ nodes:
       - 7de1d56c-5320-48f8-b77b-bc434940dfce
       - ca651178-69bc-4933-aa6f-b19e106fbd34
       - 071563c9-a7cb-415d-9da6-7b539668cba3
+      - 3a84a223-538b-417b-a265-8e128c1edfc0
     metadata:
       status: completed
       expanded: false
@@ -35463,11 +35468,11 @@ nodes:
       - 6d973cbb-3c7c-4ac4-925d-ffd5d659332c
       - fbf20e91-d852-4406-9815-952fa7727f33
       - 333cb3e7-a25e-4d18-9dfa-82cf75328fff
+      - bdceb696-248d-4199-9182-db0689445c07
       - 7b3e923e-b465-4444-ae7d-7fe0e80e3235
-      - 0bee331d-616e-48cf-bc86-24c9a09d7a67
       - 0c1c74ed-ccdb-4278-a2f2-09b739effcfc
       - 3d68c9ce-3b9b-4f79-ad99-4b6fd68e0e74
-      - bdceb696-248d-4199-9182-db0689445c07
+      - 0bee331d-616e-48cf-bc86-24c9a09d7a67
       - ca7b201c-6d28-4504-9b6a-09d70a18912c
     metadata:
       status: pending
@@ -49974,17 +49979,16 @@ nodes:
     children:
       - 83a2bd12-9d74-4d87-8139-ae7adb95c9fa
       - a5763a98-d3a6-420c-baf4-2868e2dc1404
+      - 3ab86cdd-2d94-4d06-806c-2b239fef0ffd
       - bb974125-814d-4964-b269-13572d556270
       - d7f7e6ce-d819-48d2-8a0e-ff9cc9052d56
-      - 3ab86cdd-2d94-4d06-806c-2b239fef0ffd
-      - 6f0c090b-8fbb-4de0-ac33-60c1d63b729b
     metadata:
       status: pending
       isBlueprint: true
       blueprintIcon: Blocks
       blueprintColor: '#64748b'
       isWorkflow: true
-      expanded: false
+      expanded: true
   83a2bd12-9d74-4d87-8139-ae7adb95c9fa:
     id: 83a2bd12-9d74-4d87-8139-ae7adb95c9fa
     content: Feature implementation
@@ -57961,15 +57965,6 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  6f0c090b-8fbb-4de0-ac33-60c1d63b729b:
-    id: 6f0c090b-8fbb-4de0-ac33-60c1d63b729b
-    content: Final code review
-    children: []
-    metadata:
-      status: pending
-      isBlueprint: true
-      blueprintIcon: SearchCode
-      blueprintColor: '#0ea5e9'
   5ea42e0d-9f79-43c6-94ed-1ac453da2790:
     id: 5ea42e0d-9f79-43c6-94ed-1ac453da2790
     content: 'US1: OS desktop notifications and sound alerts for workflow events'
@@ -63664,3 +63659,215 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
+  3a84a223-538b-417b-a265-8e128c1edfc0:
+    id: 3a84a223-538b-417b-a265-8e128c1edfc0
+    content: Remove scroll-to-node on manual workflow step navigation
+    children:
+      - ae43b656-4935-48e9-a3ff-2f4c4ea9f85b
+      - c037e7b0-36b8-469b-975a-b7c86d5f3c6f
+      - 44b89aed-371f-4f90-821d-acec7fbe792c
+      - 9998959d-15eb-4676-83aa-ee19d19b8bde
+    metadata:
+      status: pending
+      expanded: false
+      deleted: false
+      plugins: {}
+  83ae5dd9-1678-4c57-8e9c-74a7e6aeb6cf:
+    id: 83ae5dd9-1678-4c57-8e9c-74a7e6aeb6cf
+    content: Let AI analyze task and decide which workflow is best suited to execute it
+    children:
+      - 66cca658-1da3-4401-a710-e446b97a0731
+      - 8bc061d9-4ae2-4930-8a62-4b169b18e627
+    metadata:
+      status: pending
+      expanded: false
+  66cca658-1da3-4401-a710-e446b97a0731:
+    id: 66cca658-1da3-4401-a710-e446b97a0731
+    content: 'For example, if we have several workflows : Feature, Minor Feature, Tweak, Bug'
+    children: []
+    metadata:
+      status: pending
+  8bc061d9-4ae2-4930-8a62-4b169b18e627:
+    id: 8bc061d9-4ae2-4930-8a62-4b169b18e627
+    content: We can have a 'routing' workflow step that sends it to the appropriate workflow
+    children: []
+    metadata:
+      status: pending
+  ae43b656-4935-48e9-a3ff-2f4c4ea9f85b:
+    id: ae43b656-4935-48e9-a3ff-2f4c4ea9f85b
+    content: Problem statement
+    children:
+      - f2552a0a-ac8b-4a17-9ad4-3927fdaa785f
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f2552a0a-ac8b-4a17-9ad4-3927fdaa785f:
+    id: f2552a0a-ac8b-4a17-9ad4-3927fdaa785f
+    content: When a user manually advances an item to the next or previous workflow step via the context menu, the tree view scrolls to follow the item to its new location. This pulls the user away from whatever they were looking at — editing another node, reviewing a different branch — and forces them to scroll back. The disruption compounds when advancing multiple items. Automated advancement already avoids this by flashing the node and showing a toast without scrolling.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c037e7b0-36b8-469b-975a-b7c86d5f3c6f:
+    id: c037e7b0-36b8-469b-975a-b7c86d5f3c6f
+    content: Use cases
+    children:
+      - d266ff7d-8486-428c-af76-7508113c747b
+      - 77dc1ded-632c-46cc-b791-ca94f535c1fa
+      - 8a8e9b6e-5beb-4628-8ac9-f1bd8d04e6a0
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d266ff7d-8486-428c-af76-7508113c747b:
+    id: d266ff7d-8486-428c-af76-7508113c747b
+    content: 'Primary: User right-clicks an item inside a workflow step → Next step. The item moves. The view stays where it was. A toast confirms the move.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  77dc1ded-632c-46cc-b791-ca94f535c1fa:
+    id: 77dc1ded-632c-46cc-b791-ca94f535c1fa
+    content: 'Secondary: User advances multiple items in succession. The view remains stable throughout — no cascading scroll jumps.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8a8e9b6e-5beb-4628-8ac9-f1bd8d04e6a0:
+    id: 8a8e9b6e-5beb-4628-8ac9-f1bd8d04e6a0
+    content: 'Secondary: User advances an item to a step inside a collapsed branch. Ancestors expand so the item is reachable later, but the view does not scroll to it.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  44b89aed-371f-4f90-821d-acec7fbe792c:
+    id: 44b89aed-371f-4f90-821d-acec7fbe792c
+    content: Acceptance criteria
+    children:
+      - 2e00b4bc-f850-493d-98f9-5f0f393831c5
+      - 4b6289ef-6973-4900-ab2d-f081457770fd
+      - ba3a3382-7329-4096-8e75-1b792c8f4045
+      - dd2575d6-747a-415e-ac6a-bbcc781902a9
+      - 95c77a3d-5ff5-4919-bcbb-d54e4db7742a
+      - ab8f743a-c9c7-43d6-9acf-88f10dcfcd63
+      - dbac286e-98f9-48c3-afb1-14fb8ddbc280
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2e00b4bc-f850-493d-98f9-5f0f393831c5:
+    id: 2e00b4bc-f850-493d-98f9-5f0f393831c5
+    content: Manual Next step and Previous step do not scroll the view to the moved item
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4b6289ef-6973-4900-ab2d-f081457770fd:
+    id: 4b6289ef-6973-4900-ab2d-f081457770fd
+    content: The item flashes at its new position if it is visible on screen
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ba3a3382-7329-4096-8e75-1b792c8f4045:
+    id: ba3a3382-7329-4096-8e75-1b792c8f4045
+    content: A toast notification confirms the move (existing behavior, unchanged)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  dd2575d6-747a-415e-ac6a-bbcc781902a9:
+    id: dd2575d6-747a-415e-ac6a-bbcc781902a9
+    content: If the item was selected before the move, it remains selected
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  95c77a3d-5ff5-4919-bcbb-d54e4db7742a:
+    id: 95c77a3d-5ff5-4919-bcbb-d54e4db7742a
+    content: Ancestors of the destination step are still expanded so the item is reachable
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ab8f743a-c9c7-43d6-9acf-88f10dcfcd63:
+    id: ab8f743a-c9c7-43d6-9acf-88f10dcfcd63
+    content: Behavior matches automated workflow advancement (flash + toast, no scroll)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  dbac286e-98f9-48c3-afb1-14fb8ddbc280:
+    id: dbac286e-98f9-48c3-afb1-14fb8ddbc280
+    content: Undo returns the item to its previous step without scrolling
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9998959d-15eb-4676-83aa-ee19d19b8bde:
+    id: 9998959d-15eb-4676-83aa-ee19d19b8bde
+    content: Constraints and assumptions
+    children:
+      - dbc65ab1-ca5d-476b-abe5-b210cab8ee0f
+      - d5ff69a0-634a-449c-99c5-646602160c3e
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  dbc65ab1-ca5d-476b-abe5-b210cab8ee0f:
+    id: dbc65ab1-ca5d-476b-abe5-b210cab8ee0f
+    content: Automated advancement already works this way — this change brings manual navigation in line with it
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d5ff69a0-634a-449c-99c5-646602160c3e:
+    id: d5ff69a0-634a-449c-99c5-646602160c3e
+    content: The flash animation will not be visible when the item moves off-screen. The toast is the only confirmation in that case. This matches the existing automated behavior.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1313ac0e-6295-4e0f-9e2e-5eb373402329:
+    id: 1313ac0e-6295-4e0f-9e2e-5eb373402329
+    content: '''Next/previous step'' still available while awaiting on collaborate acceptance'
+    children: []
+    metadata:
+      status: pending
+  ea39b52d-fc42-4118-bc10-7ce57ef8d32c:
+    id: ea39b52d-fc42-4118-bc10-7ce57ef8d32c
+    content: Checkpoint nodes that are the last in the workflow have a 'pause' button but we can't continue
+    children: []
+    metadata:
+      status: pending

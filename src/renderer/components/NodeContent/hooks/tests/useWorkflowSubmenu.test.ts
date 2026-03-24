@@ -272,4 +272,43 @@ describe('buildWorkflowNavigationItems', () => {
 
     expect(result.some(item => item.label === 'Previous step')).toBe(false);
   });
+
+  it('should return empty when node is being collaborated on', () => {
+    const result = buildWorkflowNavigationItems({
+      node: workflowNodes['task'],
+      nodes: workflowNodes,
+      ancestorRegistry: ancestors,
+      collaboratingNodeId: 'task',
+      ...defaultCallbacks,
+    });
+
+    expect(result).toEqual([]);
+  });
+
+  it('should return empty when node has active workflow execution', () => {
+    const result = buildWorkflowNavigationItems({
+      node: workflowNodes['task'],
+      nodes: workflowNodes,
+      ancestorRegistry: ancestors,
+      workflowExecutionStates: {
+        'task': { state: 'running', terminalTabId: 't1' } as any,
+      },
+      ...defaultCallbacks,
+    });
+
+    expect(result).toEqual([]);
+  });
+
+  it('should show navigation when node has no active collaboration or execution', () => {
+    const result = buildWorkflowNavigationItems({
+      node: workflowNodes['task'],
+      nodes: workflowNodes,
+      ancestorRegistry: ancestors,
+      collaboratingNodeId: null,
+      workflowExecutionStates: {},
+      ...defaultCallbacks,
+    });
+
+    expect(result.some(item => item.label === 'Next step')).toBe(true);
+  });
 });
