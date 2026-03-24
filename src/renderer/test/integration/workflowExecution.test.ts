@@ -37,6 +37,10 @@ vi.mock('@/store/preferences/preferencesStore', () => ({
   },
 }));
 
+vi.mock('../../services/workflowNotification', () => ({
+  notifyWorkflowEvent: vi.fn(),
+}));
+
 
 type TestState = {
   nodes: Record<string, TreeNode>;

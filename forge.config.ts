@@ -10,10 +10,11 @@ import { join } from 'node:path';
 
 const config: ForgeConfig = {
   packagerConfig: {
-    asar: false, // Disable asar to allow native modules to load properly
-    prune: false, // Don't prune node_modules - we have external dependencies like node-pty
-    executableName: 'arborescent', // Keep executable lowercase for Linux compatibility
-    icon: './assets/icon', // Electron will add appropriate extension per platform
+    asar: false,
+    prune: false,
+    executableName: 'arborescent',
+    icon: './assets/icon',
+    appBundleId: 'com.arborescent.app',
   },
   rebuildConfig: {},
   hooks: {

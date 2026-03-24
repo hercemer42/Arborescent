@@ -27,6 +27,7 @@ import { buildExecutePrompt } from "../../../utils/promptBuilder";
 import { executeInTerminal } from "../../../services/terminalExecution";
 import { DEFAULT_EXECUTE_CONTEXT } from "./executeActions";
 import { usePreferencesStore } from "../../preferences/preferencesStore";
+import { notifyWorkflowEvent } from "../../../services/workflowNotification";
 
 export type { WorkflowExecutionEntry };
 
@@ -119,6 +120,7 @@ export const createWorkflowExecutionActions = (
               { label: "Stop", onClick: () => stopWorkflow(nodeId) },
             ],
           });
+          notifyWorkflowEvent("alert", "Step timeout", message);
         },
         timeoutMinutes * 60 * 1000,
       ),
@@ -284,6 +286,7 @@ export const createWorkflowExecutionActions = (
       useToastStore
         .getState()
         .addToast("Recurse limit reached — stopping automatic processing", "warning");
+      notifyWorkflowEvent("alert", "Recurse limit reached", "Stopping automatic processing");
       recurseCounters.delete(terminalId);
       return;
     }
@@ -309,6 +312,7 @@ export const createWorkflowExecutionActions = (
     useToastStore
       .getState()
       .addToast(`Workflow complete for "${nodeName}"`, "success");
+    notifyWorkflowEvent("success", "Workflow complete", nodeName);
 
     logger.info(
       `Completed workflow execution for node ${nodeId}`,
@@ -430,6 +434,7 @@ export const createWorkflowExecutionActions = (
           useToastStore
             .getState()
             .addToast("Failed to send to terminal — workflow stopped", "error");
+          notifyWorkflowEvent("alert", "Workflow error", "Failed to send to terminal");
         });
         return;
       }
@@ -460,6 +465,7 @@ export const createWorkflowExecutionActions = (
         useToastStore
           .getState()
           .addToast("Failed to send to terminal — workflow stopped", "error");
+        notifyWorkflowEvent("alert", "Workflow error", "Failed to send to terminal");
       });
     } catch (error) {
       logger.error(
@@ -471,6 +477,7 @@ export const createWorkflowExecutionActions = (
       useToastStore
         .getState()
         .addToast("Failed to send to terminal — workflow stopped", "error");
+      notifyWorkflowEvent("alert", "Workflow error", "Failed to send to terminal");
     }
   }
 
@@ -590,6 +597,7 @@ export const createWorkflowExecutionActions = (
                 actions: [{ label: "OK", onClick: () => {} }],
               },
             );
+          notifyWorkflowEvent("alert", "Review requested", "AI flagged questions for review");
         } else if (execEntry?.collaborating) {
           set({
             workflowExecutionStates: {
@@ -646,6 +654,7 @@ export const createWorkflowExecutionActions = (
       stopWorkflow(runningNodeId);
       const message = event.message || "Workflow notification received";
       useToastStore.getState().addToast(message, "warning");
+      notifyWorkflowEvent("alert", "Workflow notification", message);
     }
   }
 
@@ -861,6 +870,7 @@ export const createWorkflowExecutionActions = (
       useToastStore
         .getState()
         .addToast("Feedback could not be parsed — workflow stopped", "error");
+      notifyWorkflowEvent("alert", "Feedback parse error", "Feedback could not be parsed");
       return;
     }
 

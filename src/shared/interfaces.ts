@@ -16,6 +16,8 @@ export interface UserPreferences {
   hasReceivedHookEvent?: boolean;
   hasLaunchedWorkflow?: boolean;
   stepTimeoutMinutes?: number;
+  desktopNotifications?: boolean;
+  notificationSounds?: boolean;
 }
 
 export interface BrowserTab {

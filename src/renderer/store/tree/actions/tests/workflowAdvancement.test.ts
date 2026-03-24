@@ -60,6 +60,13 @@ vi.mock('@/store/preferences/preferencesStore', () => ({
   },
 }));
 
+const { mockNotifyWorkflowEvent: mockNotify } = vi.hoisted(() => ({
+  mockNotifyWorkflowEvent: vi.fn(),
+}));
+vi.mock('@/services/workflowNotification', () => ({
+  notifyWorkflowEvent: mockNotify,
+}));
+
 
 describe('workflow advancement', () => {
   type TestState = {
@@ -290,6 +297,7 @@ describe('workflow advancement', () => {
         expect.stringContaining('Failed to send to terminal'),
         'error'
       );
+      expect(mockNotify).toHaveBeenCalledWith('alert', 'Workflow error', expect.any(String));
       vi.useRealTimers();
     });
 

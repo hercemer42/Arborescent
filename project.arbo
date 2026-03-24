@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-03-22T08:13:56.895Z'
+updated: '2026-03-24T06:13:05.277Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -554,7 +554,8 @@ nodes:
     id: d5fe0eff-b1c6-4986-b6a3-70a0ea46f096
     content: Opportunities
     children:
-      - ddcda920-9bd0-4646-92af-d2a651fe1a2d
+      - 47d5dea1-a047-4d62-b2c0-8a29d7dc7517
+      - 3f420f16-9696-4ea3-9bae-80723ae56de0
       - a39b2ce6-d2d5-4589-b53f-a84c103d9fbf
       - 3999cfea-b344-4f92-b3ca-ffb9f740afc7
       - d77cf522-0636-4a76-b9bf-7b33b4cc65cb
@@ -578,7 +579,7 @@ nodes:
       - e91d842b-d982-4f8b-a3c5-7f0a42c95604
     metadata:
       status: pending
-      expanded: false
+      expanded: true
       isBlueprint: true
       blueprintIcon: Brain
       blueprintColor: '#0ea5e9'
@@ -26856,6 +26857,7 @@ nodes:
       isBlueprint: true
       blueprintIcon: Blocks
       blueprintColor: '#14b8a6'
+      appliedContextId: e6860559-af1d-4a28-be70-9e27ba35335f
   26dc74b0-c926-4461-b81a-7b6cd95864f6:
     id: 26dc74b0-c926-4461-b81a-7b6cd95864f6
     content: Declaring a node as a blueprint, context or workflow should clear its metadata (checked, resolvedAt etc)
@@ -34458,6 +34460,7 @@ nodes:
     id: 13c5048b-15eb-4989-a6fc-25032e5c131f
     content: Problems
     children:
+      - 9844f83a-7f29-41bd-a7f0-324466497ddf
       - c4c83046-4976-4687-becc-dcaa8eafbd25
       - 413a84b6-97e7-4963-81ca-6667f2136d9a
       - 28b63463-b046-4ed0-ab09-942c8b933875
@@ -34473,7 +34476,7 @@ nodes:
       - c0b354e9-aaa0-409e-ab47-6f534d03a97f
     metadata:
       status: pending
-      expanded: false
+      expanded: true
       isBlueprint: true
       blueprintIcon: FileWarning
       blueprintColor: '#f97316'
@@ -35350,7 +35353,8 @@ nodes:
   7b3e923e-b465-4444-ae7d-7fe0e80e3235:
     id: 7b3e923e-b465-4444-ae7d-7fe0e80e3235
     content: Code review & refactor
-    children: []
+    children:
+      - 5ea42e0d-9f79-43c6-94ed-1ac453da2790
     metadata:
       status: pending
       isBlueprint: true
@@ -49970,7 +49974,7 @@ nodes:
       blueprintIcon: Blocks
       blueprintColor: '#64748b'
       isWorkflow: true
-      expanded: true
+      expanded: false
   83a2bd12-9d74-4d87-8139-ae7adb95c9fa:
     id: 83a2bd12-9d74-4d87-8139-ae7adb95c9fa
     content: Feature implementation
@@ -55742,26 +55746,6 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  ddcda920-9bd0-4646-92af-d2a651fe1a2d:
-    id: ddcda920-9bd0-4646-92af-d2a651fe1a2d
-    content: Notification system to let me know when a workflow has finished or requires intervention
-    children:
-      - 144b6b08-5b57-4e90-a8e9-e6dfe9e0f7a2
-      - 4411482b-c0e3-4d8f-acc6-5dd499645c7f
-    metadata:
-      status: pending
-  144b6b08-5b57-4e90-a8e9-e6dfe9e0f7a2:
-    id: 144b6b08-5b57-4e90-a8e9-e6dfe9e0f7a2
-    content: Would like to be away from my computer
-    children: []
-    metadata:
-      status: pending
-  4411482b-c0e3-4d8f-acc6-5dd499645c7f:
-    id: 4411482b-c0e3-4d8f-acc6-5dd499645c7f
-    content: Ideally receive a telephone notification
-    children: []
-    metadata:
-      status: pending
   e27ceff0-92dc-4f4a-b5df-5a6388ff6431:
     id: e27ceff0-92dc-4f4a-b5df-5a6388ff6431
     content: Problem statement
@@ -57974,3 +57958,1785 @@ nodes:
       isBlueprint: true
       blueprintIcon: SearchCode
       blueprintColor: '#0ea5e9'
+  5ea42e0d-9f79-43c6-94ed-1ac453da2790:
+    id: 5ea42e0d-9f79-43c6-94ed-1ac453da2790
+    content: 'US1: OS desktop notifications and sound alerts for workflow events'
+    children:
+      - ac6cbd52-845c-47bd-93fc-0af67c21256a
+      - 8cea5135-4c05-4969-9e2f-6a06ab386383
+      - c67c3863-1960-493d-84fb-02c72d94f5f0
+      - 81e89471-09fb-4620-b0bc-b19b04bb7e79
+      - aa10c43c-bda9-4bcd-9313-5cdf136389f4
+      - d56ccdd4-cb07-4a54-9595-1f69a7d51de7
+    metadata:
+      status: completed
+      expanded: false
+      deleted: false
+      plugins: {}
+  9844f83a-7f29-41bd-a7f0-324466497ddf:
+    id: 9844f83a-7f29-41bd-a7f0-324466497ddf
+    content: Send to terminal/browser gets truncated when there are a lot of contexts
+    children:
+      - 46572f8d-d458-455c-ad29-733082fd3820
+    metadata:
+      status: pending
+  46572f8d-d458-455c-ad29-733082fd3820:
+    id: 46572f8d-d458-455c-ad29-733082fd3820
+    content: Depends on where on the screen the node you right click on is
+    children: []
+    metadata:
+      status: pending
+  ac6cbd52-845c-47bd-93fc-0af67c21256a:
+    id: ac6cbd52-845c-47bd-93fc-0af67c21256a
+    content: Problem statement
+    children:
+      - 49714403-ebd6-41a6-879c-bb54b41d234d
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  49714403-ebd6-41a6-879c-bb54b41d234d:
+    id: 49714403-ebd6-41a6-879c-bb54b41d234d
+    content: As a user running autonomous workflows, I start a long-running pipeline and switch to other tasks. The app shows toasts when workflows complete or need attention, but these are invisible when the app is minimized or I'm looking elsewhere. I have no way to know something happened without periodically checking back.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8cea5135-4c05-4969-9e2f-6a06ab386383:
+    id: 8cea5135-4c05-4969-9e2f-6a06ab386383
+    content: Use cases
+    children:
+      - 6c272369-4a62-4c2f-9b97-a71a373f1a66
+      - 0631a4a0-c8bf-46f4-8b2f-654c4cd867ce
+      - 32e2a5dd-2fa4-4d71-a2ef-021e0b733cb8
+      - c4e784ce-ee35-4dda-aa32-a8220ad77697
+      - 7653b39a-5d4d-42ff-84e1-2bf7369d415d
+      - 7e60aa86-76cf-4c3a-bf03-1a6cce0b92f3
+      - eca44722-6ece-4ba7-aeb2-87af8b21a698
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6c272369-4a62-4c2f-9b97-a71a373f1a66:
+    id: 6c272369-4a62-4c2f-9b97-a71a373f1a66
+    content: 'Primary: A workflow item completes successfully while the app is minimized. An OS desktop notification appears with the item name and result. A success chime plays. I click the notification and the app comes to the foreground.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0631a4a0-c8bf-46f4-8b2f-654c4cd867ce:
+    id: 0631a4a0-c8bf-46f4-8b2f-654c4cd867ce
+    content: 'Secondary: A workflow encounters an error (terminal failure, parse failure, recurse limit). An OS notification appears with the error context. A distinct alert sound plays.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  32e2a5dd-2fa4-4d71-a2ef-021e0b733cb8:
+    id: 32e2a5dd-2fa4-4d71-a2ef-021e0b733cb8
+    content: 'Secondary: A workflow pauses for NeedsReview or a step timeout fires. An OS notification and alert sound let me know intervention is needed.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c4e784ce-ee35-4dda-aa32-a8220ad77697:
+    id: c4e784ce-ee35-4dda-aa32-a8220ad77697
+    content: 'Secondary: The AI tool sends a Notification hook event. The same OS notification and sound triggers fire alongside the existing toast and workflow stop.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7653b39a-5d4d-42ff-84e1-2bf7369d415d:
+    id: 7653b39a-5d4d-42ff-84e1-2bf7369d415d
+    content: 'Secondary: I''m actively using the app and a workflow completes. No OS notification or sound — the in-app toast is sufficient.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7e60aa86-76cf-4c3a-bf03-1a6cce0b92f3:
+    id: 7e60aa86-76cf-4c3a-bf03-1a6cce0b92f3
+    content: 'Secondary: I disable sounds in preferences because I''m in a shared office. Notifications still appear silently.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  eca44722-6ece-4ba7-aeb2-87af8b21a698:
+    id: eca44722-6ece-4ba7-aeb2-87af8b21a698
+    content: 'Secondary: I disable both notifications and sounds. Workflows still show in-app toasts but nothing reaches me outside the app — same as today.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c67c3863-1960-493d-84fb-02c72d94f5f0:
+    id: c67c3863-1960-493d-84fb-02c72d94f5f0
+    content: Acceptance criteria
+    children:
+      - 8faa92eb-a4ac-448b-95b2-4f9ec58b9286
+      - 89a77823-e075-4658-8dbb-4cb5046a2150
+      - bb4aee7c-2bb1-41af-9d42-a4d51f2f5584
+      - 8804d974-e570-41fb-ad74-5f4db5c9ac09
+      - ab390674-db7f-4229-8a9a-0c0630a90125
+      - 6e9ee12a-01fe-4321-8c04-5b0880b7b08d
+      - 46a1cec6-a37e-4f6e-9afa-8dbb9cd49f48
+      - 71357ef8-9b1b-44ea-a033-034263c55446
+      - 9195ca3d-da60-4a8e-ac3e-49c03184af22
+      - 468e2099-fbef-474d-9484-f00471bbbd55
+      - d41515be-58aa-413a-969d-b04b9a79e81d
+      - 135e6ff2-45b5-4c72-a42e-72be1c759321
+      - fd189512-c8e0-43a9-8a34-09458ea15919
+      - f8c38213-c786-417c-b144-a68ea9638cd9
+      - ffb44e63-0bc3-409a-9c71-7a4cb4861d91
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8faa92eb-a4ac-448b-95b2-4f9ec58b9286:
+    id: 8faa92eb-a4ac-448b-95b2-4f9ec58b9286
+    content: An OS desktop notification is shown when a workflow item completes successfully, including the node name
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  89a77823-e075-4658-8dbb-4cb5046a2150:
+    id: 89a77823-e075-4658-8dbb-4cb5046a2150
+    content: An OS desktop notification is shown when a workflow encounters an error (terminal failure, parse failure)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bb4aee7c-2bb1-41af-9d42-a4d51f2f5584:
+    id: bb4aee7c-2bb1-41af-9d42-a4d51f2f5584
+    content: An OS desktop notification is shown when a workflow pauses for NeedsReview
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8804d974-e570-41fb-ad74-5f4db5c9ac09:
+    id: 8804d974-e570-41fb-ad74-5f4db5c9ac09
+    content: An OS desktop notification is shown when a step timeout fires
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ab390674-db7f-4229-8a9a-0c0630a90125:
+    id: ab390674-db7f-4229-8a9a-0c0630a90125
+    content: An OS desktop notification is shown when the recurse limit is reached
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6e9ee12a-01fe-4321-8c04-5b0880b7b08d:
+    id: 6e9ee12a-01fe-4321-8c04-5b0880b7b08d
+    content: An OS desktop notification is shown when the AI tool sends a Notification hook event
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  46a1cec6-a37e-4f6e-9afa-8dbb9cd49f48:
+    id: 46a1cec6-a37e-4f6e-9afa-8dbb9cd49f48
+    content: Clicking an OS notification brings the Arborescent window to the foreground
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  71357ef8-9b1b-44ea-a033-034263c55446:
+    id: 71357ef8-9b1b-44ea-a033-034263c55446
+    content: OS notifications and sounds are suppressed when the app window is focused
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9195ca3d-da60-4a8e-ac3e-49c03184af22:
+    id: 9195ca3d-da60-4a8e-ac3e-49c03184af22
+    content: 'A "Desktop notifications" toggle in File → Preferences enables/disables OS notifications (default: on)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  468e2099-fbef-474d-9484-f00471bbbd55:
+    id: 468e2099-fbef-474d-9484-f00471bbbd55
+    content: 'A "Notification sounds" toggle in File → Preferences enables/disables sounds (default: on)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d41515be-58aa-413a-969d-b04b9a79e81d:
+    id: d41515be-58aa-413a-969d-b04b9a79e81d
+    content: Both preferences persist across app restarts
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  135e6ff2-45b5-4c72-a42e-72be1c759321:
+    id: 135e6ff2-45b5-4c72-a42e-72be1c759321
+    content: A distinct success sound plays on workflow completion
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fd189512-c8e0-43a9-8a34-09458ea15919:
+    id: fd189512-c8e0-43a9-8a34-09458ea15919
+    content: A distinct alert sound plays on workflow error, NeedsReview, timeout, recurse limit, or Notification hook event
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f8c38213-c786-417c-b144-a68ea9638cd9:
+    id: f8c38213-c786-417c-b144-a68ea9638cd9
+    content: Sound files are bundled with the app
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ffb44e63-0bc3-409a-9c71-7a4cb4861d91:
+    id: ffb44e63-0bc3-409a-9c71-7a4cb4861d91
+    content: Notification dispatch is non-blocking — workflow execution does not wait for notification or sound
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  81e89471-09fb-4620-b0bc-b19b04bb7e79:
+    id: 81e89471-09fb-4620-b0bc-b19b04bb7e79
+    content: Constraints and assumptions
+    children:
+      - 520cff9f-ceba-43d4-8b16-51b1a5eef9fb
+      - 0c84f50d-101a-44f8-b286-833bba9d7006
+      - f3253eb6-ff16-43ad-9f6e-5d8fb6b07473
+      - 6c31a046-627e-48ad-9708-d5d6f9489f2f
+      - 3fcd5d7c-f4e2-427d-bab8-b72acc0e3197
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  520cff9f-ceba-43d4-8b16-51b1a5eef9fb:
+    id: 520cff9f-ceba-43d4-8b16-51b1a5eef9fb
+    content: OS notifications use the platform's native notification system — no custom notification windows
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0c84f50d-101a-44f8-b286-833bba9d7006:
+    id: 0c84f50d-101a-44f8-b286-833bba9d7006
+    content: OS notifications may be suppressed by the system's Do Not Disturb settings — the app cannot control this
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f3253eb6-ff16-43ad-9f6e-5d8fb6b07473:
+    id: f3253eb6-ff16-43ad-9f6e-5d8fb6b07473
+    content: Notifications are per-item — each workflow item completing triggers its own notification. There is no "pipeline complete" event.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6c31a046-627e-48ad-9708-d5d6f9489f2f:
+    id: 6c31a046-627e-48ad-9708-d5d6f9489f2f
+    content: All notification types (OS and sound) trigger from the same workflow events — no per-event configuration
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3fcd5d7c-f4e2-427d-bab8-b72acc0e3197:
+    id: 3fcd5d7c-f4e2-427d-bab8-b72acc0e3197
+    content: Electron's Notification API requires a valid AppUserModelId on Windows — must be verified in the build config
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  aa10c43c-bda9-4bcd-9313-5cdf136389f4:
+    id: aa10c43c-bda9-4bcd-9313-5cdf136389f4
+    content: Technical specifications
+    children:
+      - 5cc11b36-857f-4755-a8e4-0a127f51f8a3
+      - b838eb8c-7320-48d2-83af-b0c0e87bc47a
+      - 9aca143f-00a1-4071-b443-74d1ea247604
+      - eed773e2-21f8-4b3b-b11c-cbdedd47dc03
+      - 5746e68a-a23a-4488-8ca0-4d30e8e84bfd
+      - 8ae91cb2-69c1-401c-a624-ab6fd84bf6d5
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5cc11b36-857f-4755-a8e4-0a127f51f8a3:
+    id: 5cc11b36-857f-4755-a8e4-0a127f51f8a3
+    content: Summary
+    children:
+      - 18f5af2f-c6f9-4c86-9042-03ade390529a
+      - c95b4cd2-18c0-40f1-aba4-f7590b968798
+      - bdebbb18-3ff0-486a-8faf-e09f300bb465
+      - a2ec9771-68c2-4254-8fa5-9b83aaa6786c
+      - 9688dd77-c4b9-4ddc-a1e8-3917c8769ef3
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  18f5af2f-c6f9-4c86-9042-03ade390529a:
+    id: 18f5af2f-c6f9-4c86-9042-03ade390529a
+    content: A central notification dispatcher function is called from workflow execution at each trigger point. It checks window focus state and user preferences, then fires OS notification and/or sound as appropriate.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c95b4cd2-18c0-40f1-aba4-f7590b968798:
+    id: c95b4cd2-18c0-40f1-aba4-f7590b968798
+    content: OS notifications use Electron's Notification API from the main process. The renderer requests a notification via IPC; the main process creates it and handles the click callback to bring the window to the foreground.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bdebbb18-3ff0-486a-8faf-e09f300bb465:
+    id: bdebbb18-3ff0-486a-8faf-e09f300bb465
+    content: 'Sounds use the HTML5 Audio element in the renderer, playing short bundled audio files. Two tones: success and alert.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a2ec9771-68c2-4254-8fa5-9b83aaa6786c:
+    id: a2ec9771-68c2-4254-8fa5-9b83aaa6786c
+    content: Window focus state is tracked via BrowserWindow focus/blur events in the main process, exposed to the renderer via IPC.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9688dd77-c4b9-4ddc-a1e8-3917c8769ef3:
+    id: 9688dd77-c4b9-4ddc-a1e8-3917c8769ef3
+    content: Two new boolean preferences (desktopNotifications, notificationSounds) are added to UserPreferences in shared/interfaces.ts and preferencesStore, with toggles in the File menu Preferences submenu.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b838eb8c-7320-48d2-83af-b0c0e87bc47a:
+    id: b838eb8c-7320-48d2-83af-b0c0e87bc47a
+    content: Inputs, outputs, and key interfaces
+    children:
+      - e8881096-2b26-4edb-89e0-2942cac710ca
+      - 7130eab5-34e7-405b-8668-978a04823971
+      - ff299b04-b536-4a49-bf33-43e76611cfb3
+      - 42f8e717-67c9-4da8-96ee-723a982719e7
+      - 7d4de660-8e8c-46d7-95f6-fecb811bbc39
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e8881096-2b26-4edb-89e0-2942cac710ca:
+    id: e8881096-2b26-4edb-89e0-2942cac710ca
+    content: 'Input: event type (success | alert), title string, body string — provided at each trigger point in workflowExecutionActions'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7130eab5-34e7-405b-8668-978a04823971:
+    id: 7130eab5-34e7-405b-8668-978a04823971
+    content: 'Output: OS notification via Electron Notification API (main process), audio playback (renderer)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ff299b04-b536-4a49-bf33-43e76611cfb3:
+    id: ff299b04-b536-4a49-bf33-43e76611cfb3
+    content: 'New IPC channel: show-notification (renderer → main) — sends { title, body }, main creates Notification, on click calls mainWindow.show() + mainWindow.focus()'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  42f8e717-67c9-4da8-96ee-723a982719e7:
+    id: 42f8e717-67c9-4da8-96ee-723a982719e7
+    content: 'New IPC channel: is-window-focused (renderer → main) — returns boolean from mainWindow.isFocused()'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7d4de660-8e8c-46d7-95f6-fecb811bbc39:
+    id: 7d4de660-8e8c-46d7-95f6-fecb811bbc39
+    content: 'New preferences: desktopNotifications (boolean, default true), notificationSounds (boolean, default true)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9aca143f-00a1-4071-b443-74d1ea247604:
+    id: 9aca143f-00a1-4071-b443-74d1ea247604
+    content: Constraints and non-functional requirements
+    children:
+      - 0b0e9f02-41ed-4239-a6a5-bb548c323aae
+      - b9fc7df1-b241-4eb5-88bb-0293b9b3a25d
+      - 2f5258a9-ba48-40b9-bb4e-d4e4bfff27b9
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0b0e9f02-41ed-4239-a6a5-bb548c323aae:
+    id: 0b0e9f02-41ed-4239-a6a5-bb548c323aae
+    content: Notification dispatch must be fire-and-forget — no awaiting, no blocking workflow execution
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b9fc7df1-b241-4eb5-88bb-0293b9b3a25d:
+    id: b9fc7df1-b241-4eb5-88bb-0293b9b3a25d
+    content: Sound playback must handle missing or unplayable audio files gracefully (log warning, continue)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2f5258a9-ba48-40b9-bb4e-d4e4bfff27b9:
+    id: 2f5258a9-ba48-40b9-bb4e-d4e4bfff27b9
+    content: No appId/appUserModelId is currently set in forge.config.ts — must be added to packagerConfig for Windows notification support
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  eed773e2-21f8-4b3b-b11c-cbdedd47dc03:
+    id: eed773e2-21f8-4b3b-b11c-cbdedd47dc03
+    content: Technical steps
+    children:
+      - dc9b8d4a-350f-4db6-8892-688460d83a86
+      - 0ea23b61-9859-464d-8238-d42488ea28b5
+      - 2e63bb14-b4cc-480f-aa46-333e69c50a65
+      - 354be6cf-0bcc-4848-9623-a38f97ab7fc5
+      - a161160b-3d8b-46c5-9d98-57e24a7299a4
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  dc9b8d4a-350f-4db6-8892-688460d83a86:
+    id: dc9b8d4a-350f-4db6-8892-688460d83a86
+    content: 'Step 1: Add notification IPC handlers and window focus tracking (S)'
+    children:
+      - 04f81a7b-1b10-44a4-aae7-fdc617c19e0d
+      - b631d7b9-a7ef-421b-9de0-71f1f3a6787d
+      - ec879807-dacf-461b-af15-6a96e86b7edd
+      - ead32b51-9a1c-4e12-8b43-438a81087bba
+      - efc02a88-de96-4072-8907-bc5565868267
+      - f5abac2c-5c13-4497-b2e1-473224d3eaa5
+      - 38649c90-fbdc-4474-a2ba-4d44a56652c2
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  04f81a7b-1b10-44a4-aae7-fdc617c19e0d:
+    id: 04f81a7b-1b10-44a4-aae7-fdc617c19e0d
+    content: Create src/main/handlers/notificationHandlers.ts with registerNotificationHandlers(getMainWindow)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b631d7b9-a7ef-421b-9de0-71f1f3a6787d:
+    id: b631d7b9-a7ef-421b-9de0-71f1f3a6787d
+    content: 'Add show-notification handler: creates Electron Notification with title and body, on click calls mainWindow.show() and mainWindow.focus()'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ec879807-dacf-461b-af15-6a96e86b7edd:
+    id: ec879807-dacf-461b-af15-6a96e86b7edd
+    content: 'Add is-window-focused handler: returns mainWindow?.isFocused() ?? false'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ead32b51-9a1c-4e12-8b43-438a81087bba:
+    id: ead32b51-9a1c-4e12-8b43-438a81087bba
+    content: Register in src/main/handlers/index.ts via registerIpcHandlers
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  efc02a88-de96-4072-8907-bc5565868267:
+    id: efc02a88-de96-4072-8907-bc5565868267
+    content: Add showNotification(title, body) and isWindowFocused() to preload/index.ts
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f5abac2c-5c13-4497-b2e1-473224d3eaa5:
+    id: f5abac2c-5c13-4497-b2e1-473224d3eaa5
+    content: Add type declarations to global.d.ts
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  38649c90-fbdc-4474-a2ba-4d44a56652c2:
+    id: 38649c90-fbdc-4474-a2ba-4d44a56652c2
+    content: Add appId to forge.config.ts packagerConfig for Windows notification support
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0ea23b61-9859-464d-8238-d42488ea28b5:
+    id: 0ea23b61-9859-464d-8238-d42488ea28b5
+    content: 'Step 2: Add notification preferences (S)'
+    children:
+      - ead2fc3c-ab5c-4714-abf4-743dd63305df
+      - 122fc6a1-d76c-47d1-b4da-925773a06cda
+      - c052a42c-663a-44b7-ad5a-ade011b87a13
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ead2fc3c-ab5c-4714-abf4-743dd63305df:
+    id: ead2fc3c-ab5c-4714-abf4-743dd63305df
+    content: 'Add desktopNotifications?: boolean and notificationSounds?: boolean to UserPreferences in shared/interfaces.ts'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  122fc6a1-d76c-47d1-b4da-925773a06cda:
+    id: 122fc6a1-d76c-47d1-b4da-925773a06cda
+    content: Add to preferencesStore with defaults (both true), setter actions, and persistence
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c052a42c-663a-44b7-ad5a-ade011b87a13:
+    id: c052a42c-663a-44b7-ad5a-ade011b87a13
+    content: 'Add two MenuItem toggles in FileMenu.tsx Preferences submenu: "Desktop notifications" and "Notification sounds", each with checked binding and onClick toggle'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2e63bb14-b4cc-480f-aa46-333e69c50a65:
+    id: 2e63bb14-b4cc-480f-aa46-333e69c50a65
+    content: 'Step 3: Create notification dispatcher service (M)'
+    children:
+      - 18d39da9-570f-4937-93fa-79d2a48bb54a
+      - e217b5bf-003f-4023-a12c-c7f795a78672
+      - 15d60524-2320-4c1c-9ddb-06e4a64f0099
+      - fd9c129c-a7af-475e-a83e-1e4df1232bf4
+      - d8f83ab0-d2c9-4e00-8698-a1dc67c37a89
+      - 6731ffcb-546a-469d-ab67-8a28d8b2d05e
+      - 6c42009d-f4da-4208-bbe5-d60819a88dec
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  18d39da9-570f-4937-93fa-79d2a48bb54a:
+    id: 18d39da9-570f-4937-93fa-79d2a48bb54a
+    content: Create src/renderer/services/workflowNotification.ts
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e217b5bf-003f-4023-a12c-c7f795a78672:
+    id: e217b5bf-003f-4023-a12c-c7f795a78672
+    content: 'Export notifyWorkflowEvent(type: ''success'' | ''alert'', title: string, body: string): void'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  15d60524-2320-4c1c-9ddb-06e4a64f0099:
+    id: 15d60524-2320-4c1c-9ddb-06e4a64f0099
+    content: Check focus via isWindowFocused IPC — if focused, return (suppress)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fd9c129c-a7af-475e-a83e-1e4df1232bf4:
+    id: fd9c129c-a7af-475e-a83e-1e4df1232bf4
+    content: Check desktopNotifications preference — if enabled, call showNotification IPC
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d8f83ab0-d2c9-4e00-8698-a1dc67c37a89:
+    id: d8f83ab0-d2c9-4e00-8698-a1dc67c37a89
+    content: Check notificationSounds preference — if enabled, play the appropriate sound file
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6731ffcb-546a-469d-ab67-8a28d8b2d05e:
+    id: 6731ffcb-546a-469d-ab67-8a28d8b2d05e
+    content: Sound playback via new Audio('path/to/file.wav').play() with .catch() for error handling
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6c42009d-f4da-4208-bbe5-d60819a88dec:
+    id: 6c42009d-f4da-4208-bbe5-d60819a88dec
+    content: Bundle two short audio files in src/renderer/sounds/ (success.wav, alert.wav)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  354be6cf-0bcc-4848-9623-a38f97ab7fc5:
+    id: 354be6cf-0bcc-4848-9623-a38f97ab7fc5
+    content: 'Step 4: Wire dispatcher into workflow execution trigger points (M)'
+    children:
+      - 35c6b94c-cdf1-4f72-934f-43ee78e89f4e
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  35c6b94c-cdf1-4f72-934f-43ee78e89f4e:
+    id: 35c6b94c-cdf1-4f72-934f-43ee78e89f4e
+    content: 'Add calls to notifyWorkflowEvent at each trigger point in workflowExecutionActions.ts:'
+    children:
+      - b14c37e2-c0df-45b3-ab1f-4ce49588d865
+      - 568db2ff-b1c4-4352-9df2-9fd37005c4ac
+      - bbbf8bb1-b927-4b1a-96b8-6ef3b61ba5b3
+      - 2410935f-b2e8-4c65-ae4e-ca0bfdea92f2
+      - aeeed7cb-6438-4669-a19c-7c83051d94c2
+      - 3fde8b50-24d4-4900-ba89-c9a4bd6a7cc1
+      - 85e9e751-91ac-4975-8466-c2c366e85ca2
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b14c37e2-c0df-45b3-ab1f-4ce49588d865:
+    id: b14c37e2-c0df-45b3-ab1f-4ce49588d865
+    content: 'completeWorkflow: success notification with "Workflow complete" title and node name'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  568db2ff-b1c4-4352-9df2-9fd37005c4ac:
+    id: 568db2ff-b1c4-4352-9df2-9fd37005c4ac
+    content: 'sendContentToTerminal error handlers (3 catch blocks): alert with "Workflow error" title'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bbbf8bb1-b927-4b1a-96b8-6ef3b61ba5b3:
+    id: bbbf8bb1-b927-4b1a-96b8-6ef3b61ba5b3
+    content: 'handleAutonomousFeedback parse failure: alert with "Feedback parse error" title'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2410935f-b2e8-4c65-ae4e-ca0bfdea92f2:
+    id: 2410935f-b2e8-4c65-ae4e-ca0bfdea92f2
+    content: 'handleHookEvent NeedsReview + Stop handler: alert with "Review requested" title'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  aeeed7cb-6438-4669-a19c-7c83051d94c2:
+    id: aeeed7cb-6438-4669-a19c-7c83051d94c2
+    content: 'startStepTimeout callback: alert with "Step timeout" title'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3fde8b50-24d4-4900-ba89-c9a4bd6a7cc1:
+    id: 3fde8b50-24d4-4900-ba89-c9a4bd6a7cc1
+    content: 'checkRecurse limit: alert with "Recurse limit reached" title'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  85e9e751-91ac-4975-8466-c2c366e85ca2:
+    id: 85e9e751-91ac-4975-8466-c2c366e85ca2
+    content: 'handleHookEvent Notification event: alert with "Workflow notification" title and custom message'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a161160b-3d8b-46c5-9d98-57e24a7299a4:
+    id: a161160b-3d8b-46c5-9d98-57e24a7299a4
+    content: 'Step 5: Update tests (M)'
+    children:
+      - b2280361-2d2d-4819-9b25-70a6d49a8aa5
+      - 13dd59f3-676a-4769-9b11-1e11c0bbdb11
+      - 64eb4f40-390b-4f1b-a437-2a8647f8ece5
+      - 95eeb080-ae9c-47ce-a83f-e50ab818e857
+      - 49d575bd-5cb0-4873-8ca1-9f088702dda8
+      - 081927fc-4b5d-49c3-b480-48482849bf99
+      - 3718d259-3e7c-41eb-9a40-b59619bedb64
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b2280361-2d2d-4819-9b25-70a6d49a8aa5:
+    id: b2280361-2d2d-4819-9b25-70a6d49a8aa5
+    content: 'Unit: dispatcher suppresses when window is focused'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  13dd59f3-676a-4769-9b11-1e11c0bbdb11:
+    id: 13dd59f3-676a-4769-9b11-1e11c0bbdb11
+    content: 'Unit: dispatcher suppresses when preference is disabled'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  64eb4f40-390b-4f1b-a437-2a8647f8ece5:
+    id: 64eb4f40-390b-4f1b-a437-2a8647f8ece5
+    content: 'Unit: dispatcher calls showNotification IPC when unfocused and enabled'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  95eeb080-ae9c-47ce-a83f-e50ab818e857:
+    id: 95eeb080-ae9c-47ce-a83f-e50ab818e857
+    content: 'Unit: dispatcher plays correct sound for success vs alert'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  49d575bd-5cb0-4873-8ca1-9f088702dda8:
+    id: 49d575bd-5cb0-4873-8ca1-9f088702dda8
+    content: 'Unit: dispatcher handles sound playback failure gracefully'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  081927fc-4b5d-49c3-b480-48482849bf99:
+    id: 081927fc-4b5d-49c3-b480-48482849bf99
+    content: 'Unit: preferences store has new defaults and persists correctly'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3718d259-3e7c-41eb-9a40-b59619bedb64:
+    id: 3718d259-3e7c-41eb-9a40-b59619bedb64
+    content: 'Unit: notification handler in main process creates Notification with correct params'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5746e68a-a23a-4488-8ca0-4d30e8e84bfd:
+    id: 5746e68a-a23a-4488-8ca0-4d30e8e84bfd
+    content: Risks and edge cases
+    children:
+      - 3c870c73-d1e8-4c45-b846-43cf406ffc57
+      - c00d4fa8-6f3f-4c81-9815-fc55a523b58c
+      - d29d1546-b776-445c-b6c0-d2cba2ec4e77
+      - dc5fae11-a0d3-41b1-926f-12cee9e542fb
+      - 8732ff0c-320e-43b6-bbd6-a0a70299760d
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3c870c73-d1e8-4c45-b846-43cf406ffc57:
+    id: 3c870c73-d1e8-4c45-b846-43cf406ffc57
+    content: Linux notification support varies by desktop environment — Electron delegates to libnotify which may be absent on minimal setups. Fails silently — acceptable.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c00d4fa8-6f3f-4c81-9815-fc55a523b58c:
+    id: c00d4fa8-6f3f-4c81-9815-fc55a523b58c
+    content: Rapid successive notifications during recurse could flood the OS notification center. Acceptable for MVP — users can disable via preference toggle.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d29d1546-b776-445c-b6c0-d2cba2ec4e77:
+    id: d29d1546-b776-445c-b6c0-d2cba2ec4e77
+    content: Small race window between isWindowFocused check and notification display if user focuses app in between. Worst case is one redundant notification — acceptable.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  dc5fae11-a0d3-41b1-926f-12cee9e542fb:
+    id: dc5fae11-a0d3-41b1-926f-12cee9e542fb
+    content: Electron Audio playback may fail if system audio is unavailable or muted. The .catch() handler prevents crashes.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8732ff0c-320e-43b6-bbd6-a0a70299760d:
+    id: 8732ff0c-320e-43b6-bbd6-a0a70299760d
+    content: No appId is currently configured in forge.config.ts — without it, Windows may not display notifications. Must be added in Step 1.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8ae91cb2-69c1-401c-a624-ab6fd84bf6d5:
+    id: 8ae91cb2-69c1-401c-a624-ab6fd84bf6d5
+    content: Implementation plan
+    children:
+      - 19f1eb4b-455f-4758-81da-fb6cee6c170a
+      - d955c496-8131-4307-b31b-5218442f00a6
+      - 41199691-034b-4b66-8dbb-107de8e3b11e
+      - b58d06ef-6fa4-4048-8c18-474f3b94096d
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  19f1eb4b-455f-4758-81da-fb6cee6c170a:
+    id: 19f1eb4b-455f-4758-81da-fb6cee6c170a
+    content: Single PR
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d955c496-8131-4307-b31b-5218442f00a6:
+    id: d955c496-8131-4307-b31b-5218442f00a6
+    content: 'Order: IPC handlers + forge config (Step 1) → Preferences (Step 2) → Dispatcher service + sounds (Step 3) → Wiring (Step 4) → Tests (Step 5)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  41199691-034b-4b66-8dbb-107de8e3b11e:
+    id: 41199691-034b-4b66-8dbb-107de8e3b11e
+    content: Testing strategy
+    children:
+      - 2d37d339-1ee4-43db-ae6d-4412b4c53d46
+      - 039dc0e6-c736-4d5c-8188-c28cfc32086a
+      - 5e04e599-9a89-4796-9a83-0bb8e742b525
+      - 4214552e-e788-4864-9139-f6a9aa6d9087
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2d37d339-1ee4-43db-ae6d-4412b4c53d46:
+    id: 2d37d339-1ee4-43db-ae6d-4412b4c53d46
+    content: 'Unit: dispatcher logic (focus suppression, preference gating, IPC calls, sound selection)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  039dc0e6-c736-4d5c-8188-c28cfc32086a:
+    id: 039dc0e6-c736-4d5c-8188-c28cfc32086a
+    content: 'Unit: preferences defaults and persistence'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5e04e599-9a89-4796-9a83-0bb8e742b525:
+    id: 5e04e599-9a89-4796-9a83-0bb8e742b525
+    content: 'Unit: main process notification handler'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4214552e-e788-4864-9139-f6a9aa6d9087:
+    id: 4214552e-e788-4864-9139-f6a9aa6d9087
+    content: 'Manual: verify OS notification appearance on each platform, click-to-foreground, sound playback, focus suppression, preference toggles'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b58d06ef-6fa4-4048-8c18-474f3b94096d:
+    id: b58d06ef-6fa4-4048-8c18-474f3b94096d
+    content: Steps 1 and 2 can be developed in parallel (IPC vs preferences — independent systems)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d56ccdd4-cb07-4a54-9595-1f69a7d51de7:
+    id: d56ccdd4-cb07-4a54-9595-1f69a7d51de7
+    content: Test plan
+    children:
+      - fd819af4-71b2-4158-88d2-09daebfe2d4d
+      - a254aad9-0594-441d-8915-3e7dec63950b
+      - e8b19535-3d36-4e5f-a198-82cd8d0eee13
+      - bb6bcb13-6991-41db-b874-278018ce889f
+      - e09c53eb-acc7-4cea-ba2e-a5d664e56251
+      - edd6e1f7-0ae7-43b6-accb-a972a15b2007
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fd819af4-71b2-4158-88d2-09daebfe2d4d:
+    id: fd819af4-71b2-4158-88d2-09daebfe2d4d
+    content: Scope and objectives
+    children:
+      - b3323850-decb-495b-81c0-e7140c247036
+      - e809c87e-d794-4356-af40-2318032f8d99
+      - 4059c958-7a14-479a-9f06-f977b6214da4
+      - f90835d1-f490-4e84-8d30-eca14ec4e9f9
+      - 7f3a053c-2faf-4387-9ba1-d34b3f790af1
+      - 948ac860-348d-4a75-941e-dfe910f59899
+      - 337834c5-182f-4b50-8fc0-5fcdc1580784
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b3323850-decb-495b-81c0-e7140c247036:
+    id: b3323850-decb-495b-81c0-e7140c247036
+    content: Verify that all 7 workflow event types trigger OS notifications when the app is unfocused
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e809c87e-d794-4356-af40-2318032f8d99:
+    id: e809c87e-d794-4356-af40-2318032f8d99
+    content: Verify that notifications and sounds are suppressed when the app is focused
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4059c958-7a14-479a-9f06-f977b6214da4:
+    id: 4059c958-7a14-479a-9f06-f977b6214da4
+    content: Verify that preference toggles control notification and sound behavior independently
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f90835d1-f490-4e84-8d30-eca14ec4e9f9:
+    id: f90835d1-f490-4e84-8d30-eca14ec4e9f9
+    content: Verify that preferences persist across app restarts
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7f3a053c-2faf-4387-9ba1-d34b3f790af1:
+    id: 7f3a053c-2faf-4387-9ba1-d34b3f790af1
+    content: Verify that clicking an OS notification brings the app to the foreground
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  948ac860-348d-4a75-941e-dfe910f59899:
+    id: 948ac860-348d-4a75-941e-dfe910f59899
+    content: Verify that sound playback works and uses the correct tone for each event type
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  337834c5-182f-4b50-8fc0-5fcdc1580784:
+    id: 337834c5-182f-4b50-8fc0-5fcdc1580784
+    content: Verify that failures in notification or sound do not disrupt workflow execution
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a254aad9-0594-441d-8915-3e7dec63950b:
+    id: a254aad9-0594-441d-8915-3e7dec63950b
+    content: Entry criteria
+    children:
+      - 5ff72b81-65c6-4728-ae9f-4b88abecfb16
+      - 14ccf633-c63c-4d8e-864a-6a28d368e579
+      - 63dd9bf3-efbb-4035-aa8f-406163c3f598
+      - fde870b6-3a55-4abe-9ff3-27a35cfc732c
+      - 577c5376-4a17-4c81-84af-9b42d9b732d3
+      - 50692504-e5aa-48ae-a7ce-897c3d3eeb2c
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5ff72b81-65c6-4728-ae9f-4b88abecfb16:
+    id: 5ff72b81-65c6-4728-ae9f-4b88abecfb16
+    content: Notification IPC handlers implemented and registered
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  14ccf633-c63c-4d8e-864a-6a28d368e579:
+    id: 14ccf633-c63c-4d8e-864a-6a28d368e579
+    content: Preferences added to store with UI toggles
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  63dd9bf3-efbb-4035-aa8f-406163c3f598:
+    id: 63dd9bf3-efbb-4035-aa8f-406163c3f598
+    content: Dispatcher service created with focus and preference checks
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fde870b6-3a55-4abe-9ff3-27a35cfc732c:
+    id: fde870b6-3a55-4abe-9ff3-27a35cfc732c
+    content: All workflow trigger points wired to dispatcher
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  577c5376-4a17-4c81-84af-9b42d9b732d3:
+    id: 577c5376-4a17-4c81-84af-9b42d9b732d3
+    content: Sound files bundled
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  50692504-e5aa-48ae-a7ce-897c3d3eeb2c:
+    id: 50692504-e5aa-48ae-a7ce-897c3d3eeb2c
+    content: appId configured in forge.config.ts
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e8b19535-3d36-4e5f-a198-82cd8d0eee13:
+    id: e8b19535-3d36-4e5f-a198-82cd8d0eee13
+    content: Exit criteria
+    children:
+      - fdd07498-0014-4226-a867-0297aa40eb3f
+      - 7e572180-e802-4cac-b669-0f00eeb238bb
+      - 9bd7f0ab-e9a5-41fb-bd74-c18648a64132
+      - 61bf2c5d-1145-4cc7-a6dc-97cdc6cae055
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fdd07498-0014-4226-a867-0297aa40eb3f:
+    id: fdd07498-0014-4226-a867-0297aa40eb3f
+    content: All unit tests pass
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7e572180-e802-4cac-b669-0f00eeb238bb:
+    id: 7e572180-e802-4cac-b669-0f00eeb238bb
+    content: Manual test scenarios verified on at least one platform (Linux primary dev environment)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9bd7f0ab-e9a5-41fb-bd74-c18648a64132:
+    id: 9bd7f0ab-e9a5-41fb-bd74-c18648a64132
+    content: No regressions in existing workflow execution behavior
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  61bf2c5d-1145-4cc7-a6dc-97cdc6cae055:
+    id: 61bf2c5d-1145-4cc7-a6dc-97cdc6cae055
+    content: No regressions in existing toast notification behavior
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bb6bcb13-6991-41db-b874-278018ce889f:
+    id: bb6bcb13-6991-41db-b874-278018ce889f
+    content: Unit tests
+    children:
+      - 48c1949f-e52b-4d9e-ad1a-eba550f85cc1
+      - 4eeaf1e4-2715-44b4-8bff-366f3936d6a7
+      - c3d865f9-b6ec-44dc-8cc3-6e9f22dc0317
+      - 1be995ab-b70d-416f-a722-bed9ccb62794
+      - 8ffb593c-fb4c-4687-8825-2eec2dc314ff
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  48c1949f-e52b-4d9e-ad1a-eba550f85cc1:
+    id: 48c1949f-e52b-4d9e-ad1a-eba550f85cc1
+    content: Notification dispatcher
+    children:
+      - cbb2f66d-a0e8-49a6-b52a-1da2ad50abf6
+      - d1d674ec-7075-47d9-8ad3-b49da0769055
+      - 965ee62d-77eb-4e18-88b6-f139cc9f54ce
+      - cdd0840b-7a6a-4571-97fc-1defa14b2fbd
+      - b0d00a78-990b-49d4-972c-1d957fb59694
+      - c8636e04-4254-4a60-a688-e742b833a269
+      - 535e5385-4ee5-4979-9fc1-1181762053d1
+      - 88431f0d-9e22-46be-be10-5a7b43cd62e3
+      - 4f23c645-df38-4b96-bc2f-4f5fce915d62
+      - b869c8a4-9d8b-421a-8858-b2018211e56b
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cbb2f66d-a0e8-49a6-b52a-1da2ad50abf6:
+    id: cbb2f66d-a0e8-49a6-b52a-1da2ad50abf6
+    content: Returns early without calling IPC when window is focused
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d1d674ec-7075-47d9-8ad3-b49da0769055:
+    id: d1d674ec-7075-47d9-8ad3-b49da0769055
+    content: Returns early without calling IPC when desktopNotifications preference is false
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  965ee62d-77eb-4e18-88b6-f139cc9f54ce:
+    id: 965ee62d-77eb-4e18-88b6-f139cc9f54ce
+    content: Calls showNotification IPC with correct title and body when unfocused and enabled
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cdd0840b-7a6a-4571-97fc-1defa14b2fbd:
+    id: cdd0840b-7a6a-4571-97fc-1defa14b2fbd
+    content: Does not call showNotification when desktopNotifications is false, even if unfocused
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b0d00a78-990b-49d4-972c-1d957fb59694:
+    id: b0d00a78-990b-49d4-972c-1d957fb59694
+    content: Plays success sound for 'success' type events
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c8636e04-4254-4a60-a688-e742b833a269:
+    id: c8636e04-4254-4a60-a688-e742b833a269
+    content: Plays alert sound for 'alert' type events
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  535e5385-4ee5-4979-9fc1-1181762053d1:
+    id: 535e5385-4ee5-4979-9fc1-1181762053d1
+    content: Does not play sound when notificationSounds preference is false
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  88431f0d-9e22-46be-be10-5a7b43cd62e3:
+    id: 88431f0d-9e22-46be-be10-5a7b43cd62e3
+    content: Does not play sound when window is focused
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4f23c645-df38-4b96-bc2f-4f5fce915d62:
+    id: 4f23c645-df38-4b96-bc2f-4f5fce915d62
+    content: Handles Audio play() rejection gracefully without throwing
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b869c8a4-9d8b-421a-8858-b2018211e56b:
+    id: b869c8a4-9d8b-421a-8858-b2018211e56b
+    content: Notification and sound are independent — disabling one does not affect the other
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4eeaf1e4-2715-44b4-8bff-366f3936d6a7:
+    id: 4eeaf1e4-2715-44b4-8bff-366f3936d6a7
+    content: Preferences store
+    children:
+      - 1a811628-c566-4067-85ff-c1b59b92df17
+      - 91df30a8-b072-46cb-a4a1-faaf6c6e9a27
+      - 0922eef0-b972-498d-ad0c-014118e27294
+      - bf3a0ea5-30d8-4aa5-8bc1-b9182bedf3dc
+      - abe0a328-01e3-4fe4-a626-426e31d0e98b
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1a811628-c566-4067-85ff-c1b59b92df17:
+    id: 1a811628-c566-4067-85ff-c1b59b92df17
+    content: desktopNotifications defaults to true
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  91df30a8-b072-46cb-a4a1-faaf6c6e9a27:
+    id: 91df30a8-b072-46cb-a4a1-faaf6c6e9a27
+    content: notificationSounds defaults to true
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0922eef0-b972-498d-ad0c-014118e27294:
+    id: 0922eef0-b972-498d-ad0c-014118e27294
+    content: Toggling desktopNotifications persists to storage
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bf3a0ea5-30d8-4aa5-8bc1-b9182bedf3dc:
+    id: bf3a0ea5-30d8-4aa5-8bc1-b9182bedf3dc
+    content: Toggling notificationSounds persists to storage
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  abe0a328-01e3-4fe4-a626-426e31d0e98b:
+    id: abe0a328-01e3-4fe4-a626-426e31d0e98b
+    content: Preferences load correctly from saved state on app start
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c3d865f9-b6ec-44dc-8cc3-6e9f22dc0317:
+    id: c3d865f9-b6ec-44dc-8cc3-6e9f22dc0317
+    content: Main process notification handler
+    children:
+      - 88ae95ec-077a-49bc-b69b-4a8207bb749f
+      - 35dee6c0-bcc1-4cc8-8a79-70c02776ff2c
+      - 00aa4057-b979-42a0-aead-1d74570af1fb
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  88ae95ec-077a-49bc-b69b-4a8207bb749f:
+    id: 88ae95ec-077a-49bc-b69b-4a8207bb749f
+    content: Creates Electron Notification with provided title and body
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  35dee6c0-bcc1-4cc8-8a79-70c02776ff2c:
+    id: 35dee6c0-bcc1-4cc8-8a79-70c02776ff2c
+    content: Calls mainWindow.show() and mainWindow.focus() when notification is clicked
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  00aa4057-b979-42a0-aead-1d74570af1fb:
+    id: 00aa4057-b979-42a0-aead-1d74570af1fb
+    content: Handles missing mainWindow gracefully (no crash)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1be995ab-b70d-416f-a722-bed9ccb62794:
+    id: 1be995ab-b70d-416f-a722-bed9ccb62794
+    content: is-window-focused handler
+    children:
+      - ea8485e2-7f99-458d-b0ce-eef991d3da3c
+      - d1e8e4c7-da8a-479c-bca9-d486dec60f8e
+      - 3c1c7a46-5bc3-480d-8fc4-1a174551cf78
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ea8485e2-7f99-458d-b0ce-eef991d3da3c:
+    id: ea8485e2-7f99-458d-b0ce-eef991d3da3c
+    content: Returns true when mainWindow.isFocused() is true
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d1e8e4c7-da8a-479c-bca9-d486dec60f8e:
+    id: d1e8e4c7-da8a-479c-bca9-d486dec60f8e
+    content: Returns false when mainWindow.isFocused() is false
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3c1c7a46-5bc3-480d-8fc4-1a174551cf78:
+    id: 3c1c7a46-5bc3-480d-8fc4-1a174551cf78
+    content: Returns false when mainWindow is null
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8ffb593c-fb4c-4687-8825-2eec2dc314ff:
+    id: 8ffb593c-fb4c-4687-8825-2eec2dc314ff
+    content: Workflow trigger point wiring
+    children:
+      - e608fc76-c443-429b-82e5-4a6bbf0ebd2d
+      - 673200e0-a07f-41cb-ab92-672558e04383
+      - 591cfebf-484a-48ad-a72c-8519ed52759c
+      - 879bc0ff-865c-408f-812d-5db6b27fadf5
+      - e4eab7d3-9d7e-4d55-9489-4aa0959de574
+      - 3823e0aa-c7f8-4e11-a61c-4e0ddd49a6c6
+      - 6dc71e13-003f-40ee-a985-a2039a5a14e3
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e608fc76-c443-429b-82e5-4a6bbf0ebd2d:
+    id: e608fc76-c443-429b-82e5-4a6bbf0ebd2d
+    content: completeWorkflow calls notifyWorkflowEvent with success type
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  673200e0-a07f-41cb-ab92-672558e04383:
+    id: 673200e0-a07f-41cb-ab92-672558e04383
+    content: sendContentToTerminal error handlers call notifyWorkflowEvent with alert type
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  591cfebf-484a-48ad-a72c-8519ed52759c:
+    id: 591cfebf-484a-48ad-a72c-8519ed52759c
+    content: handleAutonomousFeedback parse failure calls notifyWorkflowEvent with alert type
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  879bc0ff-865c-408f-812d-5db6b27fadf5:
+    id: 879bc0ff-865c-408f-812d-5db6b27fadf5
+    content: NeedsReview + Stop handler calls notifyWorkflowEvent with alert type
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e4eab7d3-9d7e-4d55-9489-4aa0959de574:
+    id: e4eab7d3-9d7e-4d55-9489-4aa0959de574
+    content: Step timeout callback calls notifyWorkflowEvent with alert type
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3823e0aa-c7f8-4e11-a61c-4e0ddd49a6c6:
+    id: 3823e0aa-c7f8-4e11-a61c-4e0ddd49a6c6
+    content: Recurse limit calls notifyWorkflowEvent with alert type
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6dc71e13-003f-40ee-a985-a2039a5a14e3:
+    id: 6dc71e13-003f-40ee-a985-a2039a5a14e3
+    content: Notification hook event calls notifyWorkflowEvent with alert type
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e09c53eb-acc7-4cea-ba2e-a5d664e56251:
+    id: e09c53eb-acc7-4cea-ba2e-a5d664e56251
+    content: Manual tests
+    children:
+      - ac98306b-e205-4af8-ac66-c7cdf611af2c
+      - 86888534-73f2-405f-b332-4b2a3ae30056
+      - dd0220de-ad07-4956-8912-ac2c55b41b72
+      - dc536541-d4ca-4979-8e54-5a391cc96175
+      - 5566d11d-e9c1-4f96-9caa-cb26fd187d71
+      - 05ca6f03-88e7-4b4f-8603-41904c80a252
+      - 8e8cc606-de5e-4e96-9ab2-67dcb85fea8d
+      - 84e30e33-8c14-4537-afe4-fa176ef6e483
+      - 15e42509-6489-4fb9-a74e-df45b8958912
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ac98306b-e205-4af8-ac66-c7cdf611af2c:
+    id: ac98306b-e205-4af8-ac66-c7cdf611af2c
+    content: Start a workflow, minimize the app, let it complete — verify OS notification appears with node name and success sound plays
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  86888534-73f2-405f-b332-4b2a3ae30056:
+    id: 86888534-73f2-405f-b332-4b2a3ae30056
+    content: Start a workflow with a context that causes a parse failure — verify OS notification with error and alert sound
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  dd0220de-ad07-4956-8912-ac2c55b41b72:
+    id: dd0220de-ad07-4956-8912-ac2c55b41b72
+    content: Start a workflow, keep the app focused, let it complete — verify NO OS notification or sound, only in-app toast
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  dc536541-d4ca-4979-8e54-5a391cc96175:
+    id: dc536541-d4ca-4979-8e54-5a391cc96175
+    content: Disable "Desktop notifications" in preferences, minimize app, let workflow complete — verify sound plays but no OS notification
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5566d11d-e9c1-4f96-9caa-cb26fd187d71:
+    id: 5566d11d-e9c1-4f96-9caa-cb26fd187d71
+    content: Disable "Notification sounds" in preferences, minimize app, let workflow complete — verify OS notification appears but no sound
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  05ca6f03-88e7-4b4f-8603-41904c80a252:
+    id: 05ca6f03-88e7-4b4f-8603-41904c80a252
+    content: Disable both, minimize app, let workflow complete — verify neither OS notification nor sound
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8e8cc606-de5e-4e96-9ab2-67dcb85fea8d:
+    id: 8e8cc606-de5e-4e96-9ab2-67dcb85fea8d
+    content: Click an OS notification — verify app comes to the foreground
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  84e30e33-8c14-4537-afe4-fa176ef6e483:
+    id: 84e30e33-8c14-4537-afe4-fa176ef6e483
+    content: Close and reopen the app — verify notification and sound preferences are preserved
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  15e42509-6489-4fb9-a74e-df45b8958912:
+    id: 15e42509-6489-4fb9-a74e-df45b8958912
+    content: Trigger multiple completions rapidly via recurse — verify notifications appear (may stack in notification center)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  edd6e1f7-0ae7-43b6-accb-a972a15b2007:
+    id: edd6e1f7-0ae7-43b6-accb-a972a15b2007
+    content: Risks
+    children:
+      - 366fdd79-c977-4153-9da4-f5dd3c9af691
+      - aa7ed03c-63eb-48ab-a28e-9b0d86c0794e
+      - 366380a0-b676-4535-b6cd-bba3cd20801f
+      - aa3dfd3c-bb21-4073-8f7d-388159e7c5de
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  366fdd79-c977-4153-9da4-f5dd3c9af691:
+    id: 366fdd79-c977-4153-9da4-f5dd3c9af691
+    content: 'Highest likelihood of defects: platform-specific notification behavior. Electron''s Notification API delegates to different native systems on each OS and the behavior (grouping, dismissal, sound) is not uniform. Linux support depends on libnotify being installed.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  aa7ed03c-63eb-48ab-a28e-9b0d86c0794e:
+    id: aa7ed03c-63eb-48ab-a28e-9b0d86c0794e
+    content: 'Highest impact if failed: notification dispatch blocking workflow execution. The dispatcher must be strictly fire-and-forget — any await or thrown error in the notification path could stall or crash workflow advancement.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  366380a0-b676-4535-b6cd-bba3cd20801f:
+    id: 366380a0-b676-4535-b6cd-bba3cd20801f
+    content: 'Dependency: Windows requires appId in forge.config.ts. If not configured correctly, notifications will silently fail on Windows only — this would not be caught by Linux-based development/testing.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  aa3dfd3c-bb21-4073-8f7d-388159e7c5de:
+    id: aa3dfd3c-bb21-4073-8f7d-388159e7c5de
+    content: 'Audio file availability: bundled wav files must be accessible at runtime. Vite''s asset handling and Electron''s packaging may place files at unexpected paths. The sound playback path must be verified after packaging, not just in dev mode.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3f420f16-9696-4ea3-9bae-80723ae56de0:
+    id: 3f420f16-9696-4ea3-9bae-80723ae56de0
+    content: Auto create work branches for multiple tasks
+    children: []
+    metadata:
+      status: pending
+  47d5dea1-a047-4d62-b2c0-8a29d7dc7517:
+    id: 47d5dea1-a047-4d62-b2c0-8a29d7dc7517
+    content: AI powered archiving
+    children:
+      - fafbc62f-8ed5-4ab1-9822-29a95c82d6a7
+      - c7ccfd53-4486-4c88-8837-30cc0f833ad8
+    metadata:
+      status: pending
+  fafbc62f-8ed5-4ab1-9822-29a95c82d6a7:
+    id: fafbc62f-8ed5-4ab1-9822-29a95c82d6a7
+    content: Once a node goes to archive, have a collaboration context
+    children:
+      - bfb23cab-c7ec-489b-8883-9b1631d408a7
+    metadata:
+      status: pending
+  bfb23cab-c7ec-489b-8883-9b1631d408a7:
+    id: bfb23cab-c7ec-489b-8883-9b1631d408a7
+    content: The collaboration context gives the AI the archiving criteria
+    children:
+      - dab5f611-fa1e-428a-ba5f-06ff9a5d1a0b
+    metadata:
+      status: pending
+  dab5f611-fa1e-428a-ba5f-06ff9a5d1a0b:
+    id: dab5f611-fa1e-428a-ba5f-06ff9a5d1a0b
+    content: The AI analysis the archive branch, archives in the appropriate location
+    children: []
+    metadata:
+      status: pending
+  c7ccfd53-4486-4c88-8837-30cc0f833ad8:
+    id: c7ccfd53-4486-4c88-8837-30cc0f833ad8
+    content: Archive branch is structured so that the project history can be used for context
+    children: []
+    metadata:
+      status: pending

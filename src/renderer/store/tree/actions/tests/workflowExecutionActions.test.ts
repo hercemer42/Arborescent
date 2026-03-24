@@ -51,6 +51,13 @@ vi.mock('@/store/preferences/preferencesStore', () => ({
   },
 }));
 
+const { mockNotifyWorkflowEvent } = vi.hoisted(() => ({
+  mockNotifyWorkflowEvent: vi.fn(),
+}));
+vi.mock('@/services/workflowNotification', () => ({
+  notifyWorkflowEvent: mockNotifyWorkflowEvent,
+}));
+
 
 describe('createWorkflowExecutionActions', () => {
   type TestState = {
@@ -1127,6 +1134,78 @@ describe('createWorkflowExecutionActions', () => {
       expect(state.nodes['step-1'].children).toContain('task-b');
 
       vi.useRealTimers();
+    });
+  });
+
+  describe('notification wiring', () => {
+    beforeEach(() => {
+      state.workflowSessionMap = { 'session-1': 'terminal-1' };
+      mockNotifyWorkflowEvent.mockClear();
+    });
+
+    it('should notify success when workflow completes', () => {
+      state.workflowExecutionStates['task-a'] = { state: 'running', terminalTabId: 'terminal-1' };
+
+      actions.completeWorkflow('task-a');
+
+      expect(mockNotifyWorkflowEvent).toHaveBeenCalledWith('success', 'Workflow complete', 'Task A');
+    });
+
+    it('should notify alert on NeedsReview', () => {
+      state.workflowExecutionStates['task-a'] = { state: 'running', terminalTabId: 'terminal-1', needsReview: true };
+
+      actions.handleHookEvent({ session_id: 'session-1', hook_event_name: 'Stop' });
+
+      expect(mockNotifyWorkflowEvent).toHaveBeenCalledWith('alert', 'Review requested', expect.any(String));
+    });
+
+    it('should notify alert on step timeout', () => {
+      vi.useFakeTimers();
+
+      actions.startWorkflow('task-a', 'terminal-1');
+      vi.advanceTimersByTime(10 * 60 * 1000);
+
+      expect(mockNotifyWorkflowEvent).toHaveBeenCalledWith('alert', 'Step timeout', expect.any(String));
+
+      vi.useRealTimers();
+    });
+
+    it('should notify alert on recurse limit', () => {
+      vi.useFakeTimers();
+
+      state.nodes['step-1'].metadata.recurse = true;
+      state.nodes['workflow'].children = ['step-1'];
+      delete state.nodes['step-2'];
+      delete state.nodes['step-3'];
+      delete state.ancestorRegistry['step-2'];
+      delete state.ancestorRegistry['step-3'];
+
+      const taskIds: string[] = [];
+      for (let i = 0; i < 52; i++) {
+        const id = `task-${i}`;
+        taskIds.push(id);
+        state.nodes[id] = { id, content: `Task ${i}`, children: [], metadata: { isBlueprint: true } };
+        state.ancestorRegistry[id] = ['root', 'workflow', 'step-1'];
+      }
+      state.nodes['step-1'].children = taskIds;
+      state.workflowExecutionStates[taskIds[0]] = { state: 'running', terminalTabId: 'terminal-1' };
+
+      for (let i = 0; i < 51; i++) {
+        actions.handleHookEvent({ session_id: 'session-1', hook_event_name: 'Stop' });
+        vi.advanceTimersByTime(3000);
+      }
+
+      expect(mockNotifyWorkflowEvent).toHaveBeenCalledWith('alert', 'Recurse limit reached', expect.any(String));
+
+      vi.useRealTimers();
+    });
+
+    it('should notify alert on Notification hook event', () => {
+      state.workflowExecutionStates['task-a'] = { state: 'running', terminalTabId: 'terminal-1' };
+
+      actions.handleHookEvent({ session_id: 'session-1', hook_event_name: 'Notification', message: 'Check output' });
+
+      expect(mockNotifyWorkflowEvent).toHaveBeenCalledWith('alert', 'Workflow notification', 'Check output');
     });
   });
 });

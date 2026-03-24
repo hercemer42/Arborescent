@@ -7,6 +7,7 @@ import { registerClipboardHandlers } from './clipboardHandlers';
 import { registerFeedbackFileHandlers } from './feedbackFileHandlers';
 import { registerShellHandlers } from './shellHandlers';
 import { registerPreferencesHandlers } from './preferencesHandlers';
+import { registerNotificationHandlers } from './notificationHandlers';
 
 export async function registerIpcHandlers(getMainWindow: () => BrowserWindow | null) {
   registerFileHandlers();
@@ -17,4 +18,5 @@ export async function registerIpcHandlers(getMainWindow: () => BrowserWindow | n
   registerFeedbackFileHandlers(getMainWindow);
   registerShellHandlers();
   registerPreferencesHandlers();
+  registerNotificationHandlers(getMainWindow);
 }

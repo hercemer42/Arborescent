@@ -43,6 +43,10 @@ vi.mock('@/store/preferences/preferencesStore', () => ({
   },
 }));
 
+vi.mock('@/services/workflowNotification', () => ({
+  notifyWorkflowEvent: vi.fn(),
+}));
+
 
 
 describe('workflow execution — preference integration', () => {

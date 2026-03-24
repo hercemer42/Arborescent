@@ -24,6 +24,10 @@ export function FileMenu() {
   } = useFileMenuActions();
   const theme = usePreferencesStore((state) => state.theme);
   const setTheme = usePreferencesStore((state) => state.setTheme);
+  const desktopNotifications = usePreferencesStore((state) => state.desktopNotifications);
+  const setDesktopNotifications = usePreferencesStore((state) => state.setDesktopNotifications);
+  const notificationSounds = usePreferencesStore((state) => state.notificationSounds);
+  const setNotificationSounds = usePreferencesStore((state) => state.setNotificationSounds);
   const openKeyboardShortcuts = useUIStore((state) => state.openKeyboardShortcuts);
 
   return (
@@ -84,6 +88,17 @@ export function FileMenu() {
         <MenuItem
           label="Keyboard Shortcuts..."
           onClick={openKeyboardShortcuts}
+        />
+        <MenuSeparator />
+        <MenuItem
+          label="Desktop notifications"
+          checked={desktopNotifications}
+          onClick={() => setDesktopNotifications(!desktopNotifications)}
+        />
+        <MenuItem
+          label="Notification sounds"
+          checked={notificationSounds}
+          onClick={() => setNotificationSounds(!notificationSounds)}
         />
       </MenuSubmenu>
       <MenuSeparator />

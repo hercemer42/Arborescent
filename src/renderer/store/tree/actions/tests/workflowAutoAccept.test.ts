@@ -76,6 +76,13 @@ vi.mock('../commands/AcceptFeedbackCommand', () => ({
   })),
 }));
 
+const { mockNotifyWorkflowEvent } = vi.hoisted(() => ({
+  mockNotifyWorkflowEvent: vi.fn(),
+}));
+vi.mock('@/services/workflowNotification', () => ({
+  notifyWorkflowEvent: mockNotifyWorkflowEvent,
+}));
+
 
 describe('workflow auto-accept for autonomous collaborate steps', () => {
   type TestState = {
@@ -358,6 +365,12 @@ describe('workflow auto-accept for autonomous collaborate steps', () => {
         expect.stringContaining('could not be parsed'),
         'error'
       );
+    });
+
+    it('should notify alert on parse failure', () => {
+      actions.handleAutonomousFeedback('task-a', 'not valid markdown');
+
+      expect(mockNotifyWorkflowEvent).toHaveBeenCalledWith('alert', 'Feedback parse error', expect.any(String));
     });
 
     it('should not advance the node on parse failure', () => {
