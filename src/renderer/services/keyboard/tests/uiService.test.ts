@@ -112,8 +112,30 @@ describe('uiService (reload hotkey)', () => {
     }));
 
     expect(mockReload).not.toHaveBeenCalled();
-    
+
     isFocusInTerminalOrBrowserMock = false;
+    cleanup();
+  });
+});
+
+describe('uiService (feedback panel)', () => {
+  beforeEach(() => {
+    const hotkeyStore = useHotkeyContextStore.getState();
+    hotkeyStore.setInitialized(true);
+    hotkeyStore.setContext('tree');
+    resetHotkeyConfig();
+  });
+
+  it('should execute UI shortcuts when focus is in workspace', () => {
+    const cleanup = initializeUIService(window);
+
+    window.dispatchEvent(new KeyboardEvent('keydown', {
+      key: 'e',
+      ctrlKey: true,
+      shiftKey: true,
+    }));
+
+    expect(mockCollaborate).toHaveBeenCalled();
     cleanup();
   });
 });

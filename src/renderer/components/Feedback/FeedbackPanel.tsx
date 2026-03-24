@@ -1,8 +1,8 @@
-import { useRef } from 'react';
+import { useEffect } from 'react';
 import { useFeedbackClipboard } from './hooks/useFeedbackClipboard';
 import { useFeedbackActions } from './hooks/useFeedbackActions';
 import { useFeedbackState } from './hooks/useFeedbackState';
-import { useFeedbackKeyboard } from './hooks/useFeedbackKeyboard';
+import { setActiveFeedbackStore } from '../../services/keyboard/shared';
 import { TreeStoreContext } from '../../store/tree/TreeStoreContext';
 import { Tree } from '../Tree';
 import { FeedbackTabBar } from './FeedbackTabBar';
@@ -12,13 +12,15 @@ export function FeedbackPanel() {
   const { collaboratingNodeId, feedbackStore, feedbackVersion } = useFeedbackState();
   const hasFeedbackContent = useFeedbackClipboard(collaboratingNodeId);
   const { handleCancel, handleAccept } = useFeedbackActions();
-  const panelRef = useRef<HTMLDivElement>(null);
 
-  useFeedbackKeyboard(panelRef, feedbackStore);
+  useEffect(() => {
+    setActiveFeedbackStore(feedbackStore ?? null);
+    return () => setActiveFeedbackStore(null);
+  }, [feedbackStore]);
 
   if (!collaboratingNodeId) {
     return (
-      <div className="feedback-panel" ref={panelRef}>
+      <div className="feedback-panel">
         <div className="feedback-empty">
           No active collaboration
         </div>
@@ -27,7 +29,7 @@ export function FeedbackPanel() {
   }
 
   return (
-    <div className="feedback-panel" ref={panelRef}>
+    <div className="feedback-panel">
       <FeedbackTabBar
         hasFeedbackContent={hasFeedbackContent}
         onAccept={() => handleAccept()}

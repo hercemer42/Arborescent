@@ -15,6 +15,12 @@
 - **Simplified workflow state model**: Workflow execution uses a two-state model (running / awaiting-validation) instead of three states. Context menu shows Start, Stop, and Continue Workflow actions
 - **Unified context modes**: Collaborate and Execute modes are now defined on context declarations instead of at send time, simplifying the send menu and making mode a property of the context itself
 - **Context indicator refactor**: Context declaration and applied context indicators consolidated with clearer visual hierarchy and tooltips
+- **Desktop notifications and sounds**: OS desktop notifications and audio alerts for workflow completion, errors, NeedsReview, and timeouts. Configurable via File → Preferences toggles for desktop notifications and notification sounds (both on by default). Notifications are suppressed when the app is focused.
+
+### Bug fixes
+
+- **Keyboard shortcuts now work reliably on first launch** — previously, shortcuts could fail intermittently on startup, requiring a reload (Ctrl+R) to fix
+- **Tree-editing shortcuts no longer fire in terminal/browser panels** — cut, copy, paste, delete, select all, Escape, and view mode toggles are now properly gated when focus is in the terminal or browser
 
 ## 0.1.0 - Initial Release
 

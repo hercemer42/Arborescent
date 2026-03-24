@@ -1,8 +1,9 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { initializeKeyboardNavigation, resetRememberedPosition } from '../keyboard';
-import { registerTreeContainer, unregisterTreeContainer } from '../../treeContainerRegistry';
 import { createTreeStore, TreeStore } from '../../../store/tree/treeStore';
 import { useHotkeyContextStore } from '../../../store/hotkey/hotkeyContextStore';
+import { useFilesStore } from '../../../store/files/filesStore';
+import { storeManager } from '../../../store/storeManager';
 
 // Mock Range.getBoundingClientRect which jsdom doesn't implement
 Range.prototype.getBoundingClientRect = function () {
@@ -15,7 +16,6 @@ describe('navigationService', () => {
   let container: HTMLDivElement;
 
   beforeEach(() => {
-    // Set up hotkey context for tests using Zustand store
     const hotkeyStore = useHotkeyContextStore.getState();
     hotkeyStore.setInitialized(true);
     hotkeyStore.setContext('tree');
@@ -33,11 +33,13 @@ describe('navigationService', () => {
       ancestorRegistry: {},
     });
 
-    // Create a container and register it with the store
     container = document.createElement('div');
     container.id = 'test-container';
     document.body.appendChild(container);
-    registerTreeContainer(container, store);
+
+    // Make the store findable via the new getActiveStore lookup
+    useFilesStore.setState({ activeFilePath: '/test/file.arbo' });
+    vi.spyOn(storeManager, 'getStoreForFile').mockReturnValue(store);
   });
 
   afterEach(() => {
@@ -45,8 +47,8 @@ describe('navigationService', () => {
       cleanup();
       cleanup = undefined;
     }
-    unregisterTreeContainer(container);
     document.body.removeChild(container);
+    vi.restoreAllMocks();
   });
 
   describe('initializeKeyboardNavigation', () => {
@@ -71,34 +73,8 @@ describe('navigationService', () => {
     });
   });
 
-  describe('registerTreeContainer', () => {
-    it('should register a container with its store', () => {
-      const newStore = createTreeStore();
-      const newContainer = document.createElement('div');
-      document.body.appendChild(newContainer);
-
-      // Should not throw
-      expect(() => registerTreeContainer(newContainer, newStore)).not.toThrow();
-
-      unregisterTreeContainer(newContainer);
-      document.body.removeChild(newContainer);
-    });
-
-    it('should allow unregistering a container', () => {
-      const newStore = createTreeStore();
-      const newContainer = document.createElement('div');
-      document.body.appendChild(newContainer);
-
-      registerTreeContainer(newContainer, newStore);
-      expect(() => unregisterTreeContainer(newContainer)).not.toThrow();
-
-      document.body.removeChild(newContainer);
-    });
-  });
-
   describe('resetRememberedPosition', () => {
     it('should reset rememberedVisualX to null', () => {
-      // Put focus inside the container so the store can be found
       container.innerHTML = `
         <div data-node-id="node-1">
           <div contenteditable="true">Node 1</div>
@@ -115,10 +91,8 @@ describe('navigationService', () => {
     });
 
     it('should handle when no element is focused', () => {
-      // No element is focused, so no store can be found
       (document.activeElement as HTMLElement)?.blur?.();
 
-      // Should not throw
       expect(() => resetRememberedPosition()).not.toThrow();
     });
   });
@@ -129,7 +103,9 @@ describe('navigationService', () => {
     });
 
     it('should not handle events when no active store', () => {
-      // Create an element outside any registered container
+      vi.spyOn(storeManager, 'getStoreForFile').mockReturnValue(undefined as unknown as TreeStore);
+      useFilesStore.setState({ activeFilePath: null });
+
       const orphanElement = document.createElement('div');
       orphanElement.innerHTML = '<div contenteditable="true">Orphan</div>';
       document.body.appendChild(orphanElement);
@@ -138,14 +114,12 @@ describe('navigationService', () => {
       const event = new KeyboardEvent('keydown', { key: 'ArrowUp' });
       window.dispatchEvent(event);
 
-      // Should not throw
       expect(true).toBe(true);
 
       document.body.removeChild(orphanElement);
     });
 
     it('should reset rememberedVisualX on Home key', () => {
-      // Create mock element inside container
       container.innerHTML = `
         <div data-node-id="node-1">
           <div contenteditable="true">Node 1</div>
@@ -195,7 +169,6 @@ describe('navigationService', () => {
       });
       window.dispatchEvent(event);
 
-      // rememberedVisualX should NOT be reset because we didn't handle the event
       expect(store.getState().rememberedVisualX).toBe(100);
     });
 
@@ -216,7 +189,6 @@ describe('navigationService', () => {
       });
       window.dispatchEvent(event);
 
-      // rememberedVisualX should NOT be reset because we didn't handle the event
       expect(store.getState().rememberedVisualX).toBe(100);
     });
 
@@ -233,7 +205,6 @@ describe('navigationService', () => {
       const event = new KeyboardEvent('keydown', { key: 'PageUp', bubbles: true });
       window.dispatchEvent(event);
 
-      // Wait for setTimeout(0) to execute
       await new Promise(resolve => setTimeout(resolve, 10));
 
       expect(store.getState().rememberedVisualX).toBeNull();
@@ -252,7 +223,6 @@ describe('navigationService', () => {
       const event = new KeyboardEvent('keydown', { key: 'PageDown', bubbles: true });
       window.dispatchEvent(event);
 
-      // Wait for setTimeout(0) to execute
       await new Promise(resolve => setTimeout(resolve, 10));
 
       expect(store.getState().rememberedVisualX).toBeNull();
@@ -323,7 +293,6 @@ describe('navigationService', () => {
       });
       window.dispatchEvent(event);
 
-      // Should reset rememberedVisualX but not prevent default
       expect(store.getState().rememberedVisualX).toBeNull();
     });
 
@@ -344,7 +313,6 @@ describe('navigationService', () => {
       });
       window.dispatchEvent(event);
 
-      // Should reset rememberedVisualX but not handle navigation
       expect(store.getState().rememberedVisualX).toBeNull();
     });
   });
@@ -353,7 +321,6 @@ describe('navigationService', () => {
     beforeEach(() => {
       cleanup = initializeKeyboardNavigation();
 
-      // Set up a tree with regular and link nodes
       store.setState({
         nodes: {
           'root': { id: 'root', content: 'Root', children: ['node-1', 'link-node', 'node-2'], metadata: { isRoot: true } },
@@ -372,7 +339,6 @@ describe('navigationService', () => {
         },
       });
 
-      // Create DOM structure
       container.innerHTML = `
         <div data-node-id="root">
           <div contenteditable="true">Root</div>
@@ -430,7 +396,6 @@ describe('navigationService', () => {
     });
 
     it('should navigate immediately for hyperlink nodes', () => {
-      // Change the link node to be an internal hyperlink instead
       store.setState({
         nodes: {
           ...store.getState().nodes,
@@ -461,7 +426,6 @@ describe('navigationService', () => {
       const event = new KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true });
       window.dispatchEvent(event);
 
-      // Link nodes have no cursor, so rememberedVisualX is set to 0 (start of node)
       expect(store.getState().rememberedVisualX).toBe(0);
     });
   });

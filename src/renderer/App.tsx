@@ -1,4 +1,4 @@
-import { useState, useRef, useCallback } from "react";
+import { useState, useRef, useCallback, useEffect } from "react";
 import { ToastContainer } from "./components/ui/Toast";
 import { Workspace } from "./components/Workspace";
 import { Panel } from "./components/Panel";
@@ -11,6 +11,7 @@ import { useToastStore } from "./store/toast/toastStore";
 import { usePanelStore } from "./store/panel/panelStore";
 import { useSearchStore } from "./store/search/searchStore";
 import { useUIStore } from "./store/ui/uiStore";
+import { initializeKeyboardServices } from "./services/keyboard/keyboard";
 import {
   useAppErrorHandling,
   useAppInitialization,
@@ -38,13 +39,17 @@ export function App() {
     (state) => state.closeKeyboardShortcuts,
   );
 
-  // Memoize to prevent re-initialization on every render
   const handleInitComplete = useCallback(() => setIsInitializing(false), []);
   useAppInitialization(handleInitComplete);
   useAppErrorHandling();
   useHookEventListener();
   useSpellcheckListener();
   useHotkeyContext(isInitializing);
+
+  useEffect(() => {
+    if (isInitializing) return;
+    return initializeKeyboardServices(window);
+  }, [isInitializing]);
 
   return (
     <div className="app">

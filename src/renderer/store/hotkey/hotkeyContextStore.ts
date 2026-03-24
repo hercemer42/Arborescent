@@ -1,5 +1,6 @@
 import { create } from 'zustand';
-import { HotkeyContext } from '../../services/keyboard/types';
+
+export type HotkeyContext = 'tree' | 'terminal' | 'browser' | 'modal' | 'global';
 
 function getContextFromFocus(): HotkeyContext {
   const activeElement = document.activeElement;

@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-03-24T06:13:05.277Z'
+updated: '2026-03-24T07:39:04.323Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -535,6 +535,7 @@ nodes:
       - 592a7f85-c2bb-4133-877d-26f32ff8d4ff
       - 503e53c0-5353-48d5-a1f2-5dc15e0ff045
       - 3a5b506d-0dc1-4042-a411-bd7f5a120f38
+      - 5ea42e0d-9f79-43c6-94ed-1ac453da2790
     metadata:
       status: completed
       expanded: false
@@ -579,7 +580,7 @@ nodes:
       - e91d842b-d982-4f8b-a3c5-7f0a42c95604
     metadata:
       status: pending
-      expanded: true
+      expanded: false
       isBlueprint: true
       blueprintIcon: Brain
       blueprintColor: '#0ea5e9'
@@ -34461,6 +34462,7 @@ nodes:
     content: Problems
     children:
       - 9844f83a-7f29-41bd-a7f0-324466497ddf
+      - 3a953d30-cb26-4e2b-96b0-9f092bc5ce93
       - c4c83046-4976-4687-becc-dcaa8eafbd25
       - 413a84b6-97e7-4963-81ca-6667f2136d9a
       - 28b63463-b046-4ed0-ab09-942c8b933875
@@ -34720,7 +34722,7 @@ nodes:
       isWorkflow: true
       blueprintIcon: Shapes
       blueprintColor: '#a855f7'
-      expanded: true
+      expanded: false
   e90fcc6c-4422-4103-a019-86ff5bb9efb3:
     id: e90fcc6c-4422-4103-a019-86ff5bb9efb3
     content: Objectives
@@ -35353,8 +35355,7 @@ nodes:
   7b3e923e-b465-4444-ae7d-7fe0e80e3235:
     id: 7b3e923e-b465-4444-ae7d-7fe0e80e3235
     content: Code review & refactor
-    children:
-      - 5ea42e0d-9f79-43c6-94ed-1ac453da2790
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -35365,7 +35366,8 @@ nodes:
   ca7b201c-6d28-4504-9b6a-09d70a18912c:
     id: ca7b201c-6d28-4504-9b6a-09d70a18912c
     content: Final code review
-    children: []
+    children:
+      - 071563c9-a7cb-415d-9da6-7b539668cba3
     metadata:
       status: pending
       isBlueprint: true
@@ -51809,6 +51811,7 @@ nodes:
       - 7d3b730d-63f2-42a2-8d51-3ac155650cb5
     metadata:
       status: pending
+      expanded: false
   294a8650-f553-4e8c-9bb0-a6e860cd34cc:
     id: 294a8650-f553-4e8c-9bb0-a6e860cd34cc
     content: For example, if during a coding session the AI discovers there are too many steps
@@ -54080,6 +54083,7 @@ nodes:
       - a4d8fd5c-f607-4c80-96a8-d9227b23ad01
     metadata:
       status: pending
+      expanded: false
   b337afa9-5b58-48be-b3d4-72920c4b80f6:
     id: b337afa9-5b58-48be-b3d4-72920c4b80f6
     content: Annoying and breaks the flow
@@ -57980,6 +57984,7 @@ nodes:
       - 46572f8d-d458-455c-ad29-733082fd3820
     metadata:
       status: pending
+      expanded: false
   46572f8d-d458-455c-ad29-733082fd3820:
     id: 46572f8d-d458-455c-ad29-733082fd3820
     content: Depends on where on the screen the node you right click on is
@@ -59714,6 +59719,7 @@ nodes:
       - c7ccfd53-4486-4c88-8837-30cc0f833ad8
     metadata:
       status: pending
+      expanded: false
   fafbc62f-8ed5-4ab1-9822-29a95c82d6a7:
     id: fafbc62f-8ed5-4ab1-9822-29a95c82d6a7
     content: Once a node goes to archive, have a collaboration context
@@ -59737,6 +59743,1471 @@ nodes:
   c7ccfd53-4486-4c88-8837-30cc0f833ad8:
     id: c7ccfd53-4486-4c88-8837-30cc0f833ad8
     content: Archive branch is structured so that the project history can be used for context
+    children: []
+    metadata:
+      status: pending
+  071563c9-a7cb-415d-9da6-7b539668cba3:
+    id: 071563c9-a7cb-415d-9da6-7b539668cba3
+    content: Refactor keyboard listeners
+    children:
+      - 7efbfd95-39a8-40ab-8e74-8ba61ceb999d
+      - 77070583-125f-4d51-9b56-1b900c1c6a05
+      - f9c25e60-cc2d-4e4d-8d4c-b9a91bcca87d
+    metadata:
+      status: completed
+      expanded: false
+      deleted: false
+      plugins: {}
+  7efbfd95-39a8-40ab-8e74-8ba61ceb999d:
+    id: 7efbfd95-39a8-40ab-8e74-8ba61ceb999d
+    content: 'US1: Register keyboard listeners on window and remove DOM element ref dependency'
+    children:
+      - c7fbd549-738a-4e47-a6da-596a3fb32fc9
+      - d288aea9-9ee4-4d8e-b04e-f6b48bc2c3f5
+      - 8705cf75-b22e-44f8-97ca-fb4296e04695
+      - e9f30def-b9ef-4767-9bd8-10a5ba63fa85
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c7fbd549-738a-4e47-a6da-596a3fb32fc9:
+    id: c7fbd549-738a-4e47-a6da-596a3fb32fc9
+    content: Problem statement
+    children:
+      - 6f997326-ecde-441a-a771-3dc13e8d60a9
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6f997326-ecde-441a-a771-3dc13e8d60a9:
+    id: 6f997326-ecde-441a-a771-3dc13e8d60a9
+    content: As a user, keyboard shortcuts intermittently fail on app startup, requiring a reload (Ctrl+R) to fix. This happens because keyboard listeners are registered on a DOM element ref that may not exist when the registration effect first runs, and React doesn't re-trigger the effect when the ref's .current changes. The current architecture registers listeners on container DOM elements and maintains a registry to map elements to stores, but every handler ignores the registration target and finds the active store via document.activeElement. The element-scoped registration adds complexity (refs, registry, HMR workaround) without providing any functional benefit.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d288aea9-9ee4-4d8e-b04e-f6b48bc2c3f5:
+    id: d288aea9-9ee4-4d8e-b04e-f6b48bc2c3f5
+    content: Use cases
+    children:
+      - 7e2c33cd-3197-4634-81a1-262cf3fe0577
+      - 1e121bcc-fa69-4c5a-9f0c-bebc4af70029
+      - c1cf012b-ae29-49c5-a6c1-f237918a7f27
+      - 63a66e0f-bd02-4411-8b42-bdde196a79bc
+      - e51c7f34-e0e3-4070-90af-66b6eac0f456
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7e2c33cd-3197-4634-81a1-262cf3fe0577:
+    id: 7e2c33cd-3197-4634-81a1-262cf3fe0577
+    content: 'Primary: User launches the app for the first time. Keyboard shortcuts work immediately without needing to reload.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1e121bcc-fa69-4c5a-9f0c-bebc4af70029:
+    id: 1e121bcc-fa69-4c5a-9f0c-bebc4af70029
+    content: 'Secondary: User opens multiple files in tabs and switches between them. Keyboard shortcuts always operate on the correct tree — the one that has focus.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c1cf012b-ae29-49c5-a6c1-f237918a7f27:
+    id: c1cf012b-ae29-49c5-a6c1-f237918a7f27
+    content: 'Secondary: User opens the feedback panel and uses keyboard navigation within the feedback tree. Navigation and editing shortcuts work in the feedback tree. UI shortcuts (cut/copy/paste/undo/redo at app level) only fire when focus is in the main workspace tree, not the feedback tree.'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  63a66e0f-bd02-4411-8b42-bdde196a79bc:
+    id: 63a66e0f-bd02-4411-8b42-bdde196a79bc
+    content: 'Secondary: User opens a zoom view. Keyboard shortcuts work on the zoomed tree, which shares the same store as the source file.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e51c7f34-e0e3-4070-90af-66b6eac0f456:
+    id: e51c7f34-e0e3-4070-90af-66b6eac0f456
+    content: 'Secondary: User changes keyboard shortcut preferences. The changes take effect immediately without requiring a restart or re-registration of listeners.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8705cf75-b22e-44f8-97ca-fb4296e04695:
+    id: 8705cf75-b22e-44f8-97ca-fb4296e04695
+    content: Acceptance criteria
+    children:
+      - d1839f61-7dc4-44ac-86c8-18b481e3a44e
+      - e5af0ff5-79d2-45ef-a420-ea61fdcfb4e2
+      - 174f8420-cb5c-4919-94ae-a97142b5fe0b
+      - 17344465-6c70-4abd-8334-4e6c22bfc9c2
+      - 56719c7c-8018-4895-ae5d-02c042298c15
+      - ac478534-ccae-45b9-8a29-62056559072b
+      - aed81bd1-5d1a-4b3d-a838-5a4a62130c05
+      - dcaf803a-ca4f-49eb-bfc5-d08eb3a735c7
+      - f0e022a5-115e-4c0f-ab75-1b4f6cdacf03
+      - 9a500543-cd15-4480-8b8f-5bbb1705b82b
+      - 0f2b29b5-05e6-4218-a0b4-7321c7d8d1d0
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d1839f61-7dc4-44ac-86c8-18b481e3a44e:
+    id: d1839f61-7dc4-44ac-86c8-18b481e3a44e
+    content: Keyboard shortcuts work reliably on first app launch without requiring a reload
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e5af0ff5-79d2-45ef-a420-ea61fdcfb4e2:
+    id: e5af0ff5-79d2-45ef-a420-ea61fdcfb4e2
+    content: All existing keyboard shortcuts continue to function identically — no behavior change
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  174f8420-cb5c-4919-94ae-a97142b5fe0b:
+    id: 174f8420-cb5c-4919-94ae-a97142b5fe0b
+    content: Keyboard shortcuts work in the main tree, feedback panel tree, and zoom views
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  17344465-6c70-4abd-8334-4e6c22bfc9c2:
+    id: 17344465-6c70-4abd-8334-4e6c22bfc9c2
+    content: The correct store is used when multiple files are open — the store for the focused tree
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  56719c7c-8018-4895-ae5d-02c042298c15:
+    id: 56719c7c-8018-4895-ae5d-02c042298c15
+    content: Keyboard shortcuts respect the hotkey context (tree, terminal, browser, modal) as they do today
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ac478534-ccae-45b9-8a29-62056559072b:
+    id: ac478534-ccae-45b9-8a29-62056559072b
+    content: Keyboard shortcuts are suppressed until preferences have loaded, as they are today
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  aed81bd1-5d1a-4b3d-a838-5a4a62130c05:
+    id: aed81bd1-5d1a-4b3d-a838-5a4a62130c05
+    content: Navigation and editing shortcuts work in the feedback panel tree using the feedback store
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  dcaf803a-ca4f-49eb-bfc5-d08eb3a735c7:
+    id: dcaf803a-ca4f-49eb-bfc5-d08eb3a735c7
+    content: UI shortcuts (cut/copy/paste/undo/redo) only fire for the main workspace tree, not the feedback tree
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  f0e022a5-115e-4c0f-ab75-1b4f6cdacf03:
+    id: f0e022a5-115e-4c0f-ab75-1b4f6cdacf03
+    content: The HMR workaround for keyboard listeners is no longer needed
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9a500543-cd15-4480-8b8f-5bbb1705b82b:
+    id: 9a500543-cd15-4480-8b8f-5bbb1705b82b
+    content: The DOM container registry, useTreeContainer, useWorkspaceKeyboard, useFeedbackKeyboard hooks are removed
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0f2b29b5-05e6-4218-a0b4-7321c7d8d1d0:
+    id: 0f2b29b5-05e6-4218-a0b4-7321c7d8d1d0
+    content: The keyboard listeners are registered once on window after initialization, not on per-component DOM refs
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e9f30def-b9ef-4767-9bd8-10a5ba63fa85:
+    id: e9f30def-b9ef-4767-9bd8-10a5ba63fa85
+    content: Constraints and assumptions
+    children:
+      - 65e13bcb-e195-4610-aa8a-e487f5007c88
+      - ea0b2983-cd9d-4617-9d15-0d1b25a6a268
+      - 839bb798-d449-4b13-be18-752d74dd949f
+      - 9eae5445-5756-4561-b806-e7f65149d809
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  65e13bcb-e195-4610-aa8a-e487f5007c88:
+    id: 65e13bcb-e195-4610-aa8a-e487f5007c88
+    content: The feedback panel has its own TreeStore — keyboard handlers must still route to the correct store based on which panel has focus
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ea0b2983-cd9d-4617-9d15-0d1b25a6a268:
+    id: ea0b2983-cd9d-4617-9d15-0d1b25a6a268
+    content: The hotkey context system (tree/terminal/browser/modal) continues to gate which shortcuts are active
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  839bb798-d449-4b13-be18-752d74dd949f:
+    id: 839bb798-d449-4b13-be18-752d74dd949f
+    content: Preferences loading must complete before keyboard handlers activate — the isInitialized guard must remain in each handler
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9eae5445-5756-4561-b806-e7f65149d809:
+    id: 9eae5445-5756-4561-b806-e7f65149d809
+    content: Keyboard shortcut changes in preferences are read via matchesHotkey() from a global config variable on every keypress — this mechanism is unaffected by the refactor
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  77070583-125f-4d51-9b56-1b900c1c6a05:
+    id: 77070583-125f-4d51-9b56-1b900c1c6a05
+    content: Technical specifications
+    children:
+      - 02b5553e-463f-4702-b4d2-0b656cbaf957
+      - dfa4681a-ae71-4375-b473-377d0ec6e9ed
+      - 735686f6-b99d-4b35-bb2f-dd4d54f7de52
+      - d8d125f5-f277-4b72-b1ef-0132a4c8fd55
+      - c4192480-2113-4b6d-aab9-77bd5c3db107
+      - cc163aa2-1fcf-434b-9401-b263d521529c
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  02b5553e-463f-4702-b4d2-0b656cbaf957:
+    id: 02b5553e-463f-4702-b4d2-0b656cbaf957
+    content: Summary
+    children:
+      - 39422a66-5c0e-44d9-bd8b-b4dfb1f7a818
+      - 396eeaf1-a195-4e1c-8cae-651a55cb3fe5
+      - c6562e34-e42f-4324-a779-06f47cca3e37
+      - d6dff8bd-55dc-4e89-a5d1-d3048cbcfdd3
+      - 10816b43-e249-4ae4-8f5a-ca31ad058053
+      - a69a3748-1c17-4086-becd-dbf5b284f1c1
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  39422a66-5c0e-44d9-bd8b-b4dfb1f7a818:
+    id: 39422a66-5c0e-44d9-bd8b-b4dfb1f7a818
+    content: Move all keyboard listener registration from per-component DOM element refs to a single registration on window, triggered once after initialization completes
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  396eeaf1-a195-4e1c-8cae-651a55cb3fe5:
+    id: 396eeaf1-a195-4e1c-8cae-651a55cb3fe5
+    content: 'Replace the DOM container registry (treeContainerRegistry) with a simpler store lookup: check if the focused element is inside the feedback panel DOM → use the feedback store; otherwise → use the active file''s store from storeManager'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c6562e34-e42f-4324-a779-06f47cca3e37:
+    id: c6562e34-e42f-4324-a779-06f47cca3e37
+    content: The feedback store reference is tracked via a module-level variable set by FeedbackPanel on mount/unmount, replacing the container-to-store Map
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d6dff8bd-55dc-4e89-a5d1-d3048cbcfdd3:
+    id: d6dff8bd-55dc-4e89-a5d1-d3048cbcfdd3
+    content: App.tsx gets a single useEffect that calls initializeNavigationService(window), initializeEditingService(window), and initializeUIService(window) after isInitializing becomes false
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  10816b43-e249-4ae4-8f5a-ca31ad058053:
+    id: 10816b43-e249-4ae4-8f5a-ca31ad058053
+    content: All existing handler guards (isInitialized, isHotkeyActiveInContext) remain unchanged
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a69a3748-1c17-4086-becd-dbf5b284f1c1:
+    id: a69a3748-1c17-4086-becd-dbf5b284f1c1
+    content: UI service handlers additionally check that focus is NOT in the feedback panel before executing — preserving the existing behavior where feedback panel opts out of UI shortcuts
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  dfa4681a-ae71-4375-b473-377d0ec6e9ed:
+    id: dfa4681a-ae71-4375-b473-377d0ec6e9ed
+    content: Inputs, outputs, and key interfaces
+    children:
+      - df3b6309-fee8-4d23-8e28-1f8962cf7968
+      - f44b08ae-5550-4d50-a487-b8246a07a21c
+      - 39dd83b6-c04f-4b05-bca7-b79d8607e894
+      - 93172769-2037-4db7-a784-c896c86e3943
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  df3b6309-fee8-4d23-8e28-1f8962cf7968:
+    id: df3b6309-fee8-4d23-8e28-1f8962cf7968
+    content: 'Input: KeyboardEvent from window keydown listener (capture phase)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f44b08ae-5550-4d50-a487-b8246a07a21c:
+    id: f44b08ae-5550-4d50-a487-b8246a07a21c
+    content: 'Store lookup: getActiveStore() returns the correct TreeStore for the focused element — feedback store if focus is in .feedback-panel, otherwise active file''s store from storeManager'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  39dd83b6-c04f-4b05-bca7-b79d8607e894:
+    id: 39dd83b6-c04f-4b05-bca7-b79d8607e894
+    content: 'Feedback store tracking: setActiveFeedbackStore(store | null) called from FeedbackPanel on mount/unmount'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  93172769-2037-4db7-a784-c896c86e3943:
+    id: 93172769-2037-4db7-a784-c896c86e3943
+    content: 'UI service guard: isFocusInFeedbackPanel() checks if document.activeElement is inside a .feedback-panel element'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  735686f6-b99d-4b35-bb2f-dd4d54f7de52:
+    id: 735686f6-b99d-4b35-bb2f-dd4d54f7de52
+    content: Constraints and non-functional requirements
+    children:
+      - fbd675a6-fabe-4f44-851b-65a05cc5c2a9
+      - d41afeb1-7844-484e-a247-15e13645a6c7
+      - cbf96c3b-3042-4988-9ae8-e4ef54993d17
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fbd675a6-fabe-4f44-851b-65a05cc5c2a9:
+    id: fbd675a6-fabe-4f44-851b-65a05cc5c2a9
+    content: Listener registration must be synchronous and happen exactly once — no re-registration on component mount/unmount cycles
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d41afeb1-7844-484e-a247-15e13645a6c7:
+    id: d41afeb1-7844-484e-a247-15e13645a6c7
+    content: 'The store lookup must handle edge cases: no file open (return null), focus outside any tree (return last known store or null), feedback panel without a store (return null)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cbf96c3b-3042-4988-9ae8-e4ef54993d17:
+    id: cbf96c3b-3042-4988-9ae8-e4ef54993d17
+    content: No performance regression — the store lookup runs on every keypress and must remain O(1) or close to it. The DOM ancestry check for feedback panel can use closest() which is fast.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d8d125f5-f277-4b72-b1ef-0132a4c8fd55:
+    id: d8d125f5-f277-4b72-b1ef-0132a4c8fd55
+    content: Technical steps
+    children:
+      - 4245c377-e28e-4c0d-af14-9fd3d98c83a3
+      - ab1bc3c2-fade-452e-88e5-182850736ad6
+      - 13038a27-1ca7-4f2a-8708-7c9be8e2f9d9
+      - 348cccdf-f9c9-447c-b9f9-558fc9c57381
+      - b8ff7de0-b4a4-4e0c-8dc0-f3031a271b7f
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4245c377-e28e-4c0d-af14-9fd3d98c83a3:
+    id: 4245c377-e28e-4c0d-af14-9fd3d98c83a3
+    content: 'Step 1: Replace treeContainerRegistry with simple store lookup (M)'
+    children:
+      - 18d60a6a-80ee-4bb0-99f8-ad5c94a701b7
+      - 34531098-5142-416e-aef6-5b9a7bf183c9
+      - 8d0e0a0c-d3ee-4ebc-a470-1acb4bc8f5bf
+      - c041872a-0def-45be-a3af-a10a46b55f9c
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  18d60a6a-80ee-4bb0-99f8-ad5c94a701b7:
+    id: 18d60a6a-80ee-4bb0-99f8-ad5c94a701b7
+    content: 'Create a new getActiveStore() in shared.ts that: checks if focused element is inside .feedback-panel → returns feedback store; otherwise → returns storeManager.getStoreForFile(filesStore.activeFilePath)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  34531098-5142-416e-aef6-5b9a7bf183c9:
+    id: 34531098-5142-416e-aef6-5b9a7bf183c9
+    content: Add setActiveFeedbackStore(store | null) to shared.ts as a module-level setter for the feedback store reference
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8d0e0a0c-d3ee-4ebc-a470-1acb4bc8f5bf:
+    id: 8d0e0a0c-d3ee-4ebc-a470-1acb4bc8f5bf
+    content: Remove treeContainerRegistry.ts entirely (registerTreeContainer, unregisterTreeContainer, getStoreForElement, getStoreForFocusedElement, setLastActiveStore, storeRegistry, lastActiveStore)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c041872a-0def-45be-a3af-a10a46b55f9c:
+    id: c041872a-0def-45be-a3af-a10a46b55f9c
+    content: Update FeedbackPanel.tsx to call setActiveFeedbackStore on mount/unmount instead of using useFeedbackKeyboard
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ab1bc3c2-fade-452e-88e5-182850736ad6:
+    id: ab1bc3c2-fade-452e-88e5-182850736ad6
+    content: 'Step 2: Move listener registration to App.tsx (M)'
+    children:
+      - a8a8a864-1683-4d48-9308-3f80b12087d0
+      - 302b3414-08d5-4edf-b324-cbdec1a39151
+      - 0945609f-602f-49a1-94c3-325b0fd3fbf6
+      - a1052167-c602-46a5-8882-631679d6ef47
+      - 8a8c51c1-05c7-4dbf-a1fa-6f4022890440
+      - b285ad14-47b6-4449-b215-3d1b85eedfbe
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a8a8a864-1683-4d48-9308-3f80b12087d0:
+    id: a8a8a864-1683-4d48-9308-3f80b12087d0
+    content: Remove useKeyboardServices hook entirely (including HMR workaround)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  302b3414-08d5-4edf-b324-cbdec1a39151:
+    id: 302b3414-08d5-4edf-b324-cbdec1a39151
+    content: Remove useWorkspaceKeyboard hook
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0945609f-602f-49a1-94c3-325b0fd3fbf6:
+    id: 0945609f-602f-49a1-94c3-325b0fd3fbf6
+    content: Remove useFeedbackKeyboard hook
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a1052167-c602-46a5-8882-631679d6ef47:
+    id: a1052167-c602-46a5-8882-631679d6ef47
+    content: Remove useTreeContainer hook
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8a8c51c1-05c7-4dbf-a1fa-6f4022890440:
+    id: 8a8c51c1-05c7-4dbf-a1fa-6f4022890440
+    content: 'Add a useEffect in App.tsx that runs when isInitializing becomes false: calls initializeNavigationService(window), initializeEditingService(window), initializeUIService(window), returns combined cleanup'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b285ad14-47b6-4449-b215-3d1b85eedfbe:
+    id: b285ad14-47b6-4449-b215-3d1b85eedfbe
+    content: Update initializeNavigationService and initializeEditingService to accept Window instead of HTMLElement (they already register on the target — just change the type)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  13038a27-1ca7-4f2a-8708-7c9be8e2f9d9:
+    id: 13038a27-1ca7-4f2a-8708-7c9be8e2f9d9
+    content: 'Step 3: Add feedback panel guard to UI service (S)'
+    children:
+      - 62a249a4-8b98-49d8-b7c6-f8d7b4b426d3
+      - 79a80ad3-991f-4c24-800d-d9e8ae3399a5
+      - 872e209e-cf99-4328-b86f-d7ff06a3d66a
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  62a249a4-8b98-49d8-b7c6-f8d7b4b426d3:
+    id: 62a249a4-8b98-49d8-b7c6-f8d7b4b426d3
+    content: Add isFocusInFeedbackPanel() helper to shared.ts — uses document.activeElement?.closest('.feedback-panel')
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  79a80ad3-991f-4c24-800d-d9e8ae3399a5:
+    id: 79a80ad3-991f-4c24-800d-d9e8ae3399a5
+    content: UI service handleUIShortcuts checks isFocusInFeedbackPanel() and returns early if true — this replaces the old behavior where UI service was only registered on the workspace container, not the feedback panel
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  872e209e-cf99-4328-b86f-d7ff06a3d66a:
+    id: 872e209e-cf99-4328-b86f-d7ff06a3d66a
+    content: Navigation and editing services do NOT check this — they work in both workspace and feedback panel
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  348cccdf-f9c9-447c-b9f9-558fc9c57381:
+    id: 348cccdf-f9c9-447c-b9f9-558fc9c57381
+    content: 'Step 4: Clean up Workspace.tsx and exports (S)'
+    children:
+      - b1e4257e-2a27-45c1-9c99-90e361437358
+      - f9838611-ea4b-43c1-8a70-b36a1c364021
+      - 8fc2dc70-ab99-49ad-bef9-14a0211a71c0
+      - 43626448-660a-4045-a3ce-ef3deb817f36
+      - 9e805e88-a269-4b38-9ef8-23c94eacc271
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b1e4257e-2a27-45c1-9c99-90e361437358:
+    id: b1e4257e-2a27-45c1-9c99-90e361437358
+    content: Remove workspaceRef from Workspace.tsx (no longer needed for keyboard)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f9838611-ea4b-43c1-8a70-b36a1c364021:
+    id: f9838611-ea4b-43c1-8a70-b36a1c364021
+    content: Remove useWorkspaceKeyboard call from Workspace.tsx
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8fc2dc70-ab99-49ad-bef9-14a0211a71c0:
+    id: 8fc2dc70-ab99-49ad-bef9-14a0211a71c0
+    content: Update hooks/index.ts barrel exports to remove deleted hooks
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  43626448-660a-4045-a3ce-ef3deb817f36:
+    id: 43626448-660a-4045-a3ce-ef3deb817f36
+    content: Remove keyboard/types.ts KeyboardServicesOptions interface if no longer needed
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9e805e88-a269-4b38-9ef8-23c94eacc271:
+    id: 9e805e88-a269-4b38-9ef8-23c94eacc271
+    content: Remove setLastActiveStore export (dead code even before refactor)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b8ff7de0-b4a4-4e0c-8dc0-f3031a271b7f:
+    id: b8ff7de0-b4a4-4e0c-8dc0-f3031a271b7f
+    content: 'Step 5: Update tests (M)'
+    children:
+      - db478377-dc4e-4f6a-829d-3c9f546cda9c
+      - b66d3186-858d-441a-8bb6-4b5aa37a0460
+      - ae8db8f8-e491-48cf-b44f-b5af57984676
+      - 91c90848-47a2-4828-aab0-915f57a64a97
+      - 07407bdd-197a-4208-9b7c-1c2428e6e5a1
+      - 102768ff-3157-450f-81ed-7e75c2a6678d
+      - 6d96b606-2e0f-488b-9aad-c4dc224bf9aa
+      - 43f771b5-2e3e-4aae-b80a-77db1df492ee
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  db478377-dc4e-4f6a-829d-3c9f546cda9c:
+    id: db478377-dc4e-4f6a-829d-3c9f546cda9c
+    content: Remove any tests for treeContainerRegistry
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b66d3186-858d-441a-8bb6-4b5aa37a0460:
+    id: b66d3186-858d-441a-8bb6-4b5aa37a0460
+    content: Remove any tests for useTreeContainer, useWorkspaceKeyboard, useFeedbackKeyboard
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ae8db8f8-e491-48cf-b44f-b5af57984676:
+    id: ae8db8f8-e491-48cf-b44f-b5af57984676
+    content: 'Add test: getActiveStore returns feedback store when focus is in feedback panel'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  91c90848-47a2-4828-aab0-915f57a64a97:
+    id: 91c90848-47a2-4828-aab0-915f57a64a97
+    content: 'Add test: getActiveStore returns active file store when focus is in workspace'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  07407bdd-197a-4208-9b7c-1c2428e6e5a1:
+    id: 07407bdd-197a-4208-9b7c-1c2428e6e5a1
+    content: 'Add test: getActiveStore returns null when no file is open'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  102768ff-3157-450f-81ed-7e75c2a6678d:
+    id: 102768ff-3157-450f-81ed-7e75c2a6678d
+    content: 'Add test: UI service handlers return early when focus is in feedback panel'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  6d96b606-2e0f-488b-9aad-c4dc224bf9aa:
+    id: 6d96b606-2e0f-488b-9aad-c4dc224bf9aa
+    content: Update existing keyboard service tests to use window as target instead of container element
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  43f771b5-2e3e-4aae-b80a-77db1df492ee:
+    id: 43f771b5-2e3e-4aae-b80a-77db1df492ee
+    content: 'Manual: verify shortcuts work on first launch, in main tree, feedback panel, zoom view, and across tab switches'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c4192480-2113-4b6d-aab9-77bd5c3db107:
+    id: c4192480-2113-4b6d-aab9-77bd5c3db107
+    content: Risks and edge cases
+    children:
+      - 96aabdaa-8d3e-4df0-b85e-cf0d84fdeb2c
+      - 786fd57a-f8ce-4a86-a79b-905166b3168b
+      - 730868bf-51c1-4300-b70b-660a60c95fca
+      - 44d22cfd-d39b-4e3c-ab89-7c3b78570bdf
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  96aabdaa-8d3e-4df0-b85e-cf0d84fdeb2c:
+    id: 96aabdaa-8d3e-4df0-b85e-cf0d84fdeb2c
+    content: Focus may be on an element that is neither in the workspace nor the feedback panel (e.g., menu bar, search bar, terminal). All handlers already check isHotkeyActiveInContext which gates on the current context (tree/terminal/browser/modal). This remains the primary guard.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  786fd57a-f8ce-4a86-a79b-905166b3168b:
+    id: 786fd57a-f8ce-4a86-a79b-905166b3168b
+    content: The feedback panel can mount and unmount while a collaboration is active. setActiveFeedbackStore(null) on unmount ensures stale store references are cleared.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  730868bf-51c1-4300-b70b-660a60c95fca:
+    id: 730868bf-51c1-4300-b70b-660a60c95fca
+    content: 'HMR during development: removing the HMR workaround means listeners registered on window persist across hot reloads. If the keyboard module itself changes, listeners from the old module remain. This is acceptable — a full page reload (Ctrl+R) clears them, and the old workaround was already imperfect.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  44d22cfd-d39b-4e3c-ab89-7c3b78570bdf:
+    id: 44d22cfd-d39b-4e3c-ab89-7c3b78570bdf
+    content: The initializeNavigationService and initializeEditingService currently take HTMLElement. Changing to EventTarget (which both HTMLElement and Window satisfy) is a minimal type change.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cc163aa2-1fcf-434b-9401-b263d521529c:
+    id: cc163aa2-1fcf-434b-9401-b263d521529c
+    content: Implementation plan
+    children:
+      - 0dc3a797-8e78-412a-b09e-d649b0a657e7
+      - a3270b60-8de8-4f87-bb9e-297a492906f9
+      - c831d0ab-cee6-4cd5-9f3f-da67aa77637b
+      - a04de945-448b-41bb-9dd6-dfed112a5e1f
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0dc3a797-8e78-412a-b09e-d649b0a657e7:
+    id: 0dc3a797-8e78-412a-b09e-d649b0a657e7
+    content: Single PR
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a3270b60-8de8-4f87-bb9e-297a492906f9:
+    id: a3270b60-8de8-4f87-bb9e-297a492906f9
+    content: 'Order: Store lookup replacement (Step 1) → Listener migration (Step 2) → Feedback guard (Step 3) → Cleanup (Step 4) → Tests (Step 5)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c831d0ab-cee6-4cd5-9f3f-da67aa77637b:
+    id: c831d0ab-cee6-4cd5-9f3f-da67aa77637b
+    content: Testing strategy
+    children:
+      - 45806b74-152c-48d8-83f4-a5fc340217f3
+      - 3ae099ce-1b81-41c0-bdd5-f6479b645920
+      - 3ca2f886-529d-4aa8-9a91-9f76322cd9fe
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  45806b74-152c-48d8-83f4-a5fc340217f3:
+    id: 45806b74-152c-48d8-83f4-a5fc340217f3
+    content: 'Unit: store lookup logic (feedback vs workspace vs no file)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3ae099ce-1b81-41c0-bdd5-f6479b645920:
+    id: 3ae099ce-1b81-41c0-bdd5-f6479b645920
+    content: 'Unit: UI service feedback panel guard'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  3ca2f886-529d-4aa8-9a91-9f76322cd9fe:
+    id: 3ca2f886-529d-4aa8-9a91-9f76322cd9fe
+    content: 'Manual: first-launch shortcuts, feedback panel navigation, zoom view, multi-tab switching, terminal/browser context switching'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a04de945-448b-41bb-9dd6-dfed112a5e1f:
+    id: a04de945-448b-41bb-9dd6-dfed112a5e1f
+    content: All steps are sequential — each depends on the previous
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f9c25e60-cc2d-4e4d-8d4c-b9a91bcca87d:
+    id: f9c25e60-cc2d-4e4d-8d4c-b9a91bcca87d
+    content: Test plan
+    children:
+      - d43bdd64-6b59-4cda-bff8-b6606e00c8f8
+      - f54824b8-b76f-4b4c-8ad8-df6e6be8c947
+      - e204f77b-9349-4765-af91-88f7a8036d3f
+      - d92aefd8-ee4e-4867-93aa-13995317313b
+      - dee29ec2-0c7c-4a82-8d54-c91b6731b971
+      - d56fad58-145b-4eb0-984a-a31cdb2978c2
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d43bdd64-6b59-4cda-bff8-b6606e00c8f8:
+    id: d43bdd64-6b59-4cda-bff8-b6606e00c8f8
+    content: Scope and objectives
+    children:
+      - 45c5fe8c-0fb0-4ada-b891-51d8094036a6
+      - cbc0a9dc-4101-4436-83d4-cdbb9422e65d
+      - d9a98395-87eb-4bab-bd3b-aa803de87cf7
+      - 280923ff-0d4c-4b35-a04d-74b5ba2f78ea
+      - c378f52c-16eb-4da1-aae2-15abd1af5e96
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  45c5fe8c-0fb0-4ada-b891-51d8094036a6:
+    id: 45c5fe8c-0fb0-4ada-b891-51d8094036a6
+    content: Verify that the keyboard refactor eliminates the intermittent startup failure
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cbc0a9dc-4101-4436-83d4-cdbb9422e65d:
+    id: cbc0a9dc-4101-4436-83d4-cdbb9422e65d
+    content: Verify that all existing keyboard shortcuts function identically after the refactor
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d9a98395-87eb-4bab-bd3b-aa803de87cf7:
+    id: d9a98395-87eb-4bab-bd3b-aa803de87cf7
+    content: Verify that the correct store is resolved for each keyboard context (workspace, feedback panel, zoom, multiple tabs)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  280923ff-0d4c-4b35-a04d-74b5ba2f78ea:
+    id: 280923ff-0d4c-4b35-a04d-74b5ba2f78ea
+    content: Verify that UI shortcuts are excluded from the feedback panel
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  c378f52c-16eb-4da1-aae2-15abd1af5e96:
+    id: c378f52c-16eb-4da1-aae2-15abd1af5e96
+    content: Verify that the initialization guard and hotkey context gating still work
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f54824b8-b76f-4b4c-8ad8-df6e6be8c947:
+    id: f54824b8-b76f-4b4c-8ad8-df6e6be8c947
+    content: Entry criteria
+    children:
+      - 96d18234-10a9-4f6a-a136-06cbc334db08
+      - 72ad4adf-e712-4bbd-908f-ba42e662deab
+      - a80383a5-15bc-41f6-a9d0-123bce083d2d
+      - 7d0e932e-e3e6-4d46-80af-307b4081c707
+      - dfabe31b-cd31-49e4-95ec-b7a76ccbaace
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  96d18234-10a9-4f6a-a136-06cbc334db08:
+    id: 96d18234-10a9-4f6a-a136-06cbc334db08
+    content: treeContainerRegistry replaced with new store lookup in shared.ts
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  72ad4adf-e712-4bbd-908f-ba42e662deab:
+    id: 72ad4adf-e712-4bbd-908f-ba42e662deab
+    content: All listeners registered on window from App.tsx useEffect
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a80383a5-15bc-41f6-a9d0-123bce083d2d:
+    id: a80383a5-15bc-41f6-a9d0-123bce083d2d
+    content: FeedbackPanel sets/clears the feedback store reference on mount/unmount
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7d0e932e-e3e6-4d46-80af-307b4081c707:
+    id: 7d0e932e-e3e6-4d46-80af-307b4081c707
+    content: isFocusInFeedbackPanel guard added to UI service
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  dfabe31b-cd31-49e4-95ec-b7a76ccbaace:
+    id: dfabe31b-cd31-49e4-95ec-b7a76ccbaace
+    content: Old hooks (useTreeContainer, useWorkspaceKeyboard, useFeedbackKeyboard, useKeyboardServices) removed
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e204f77b-9349-4765-af91-88f7a8036d3f:
+    id: e204f77b-9349-4765-af91-88f7a8036d3f
+    content: Exit criteria
+    children:
+      - 0b5b5101-682f-4eb8-bb10-de312ef8f938
+      - b2193b1c-7301-4a1f-9198-3bbf4eeade0a
+      - a5d1befe-7fe0-4c67-a73e-9929b47dcc71
+      - 2c12b983-c3ac-4e22-bc3c-42debf84fdde
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0b5b5101-682f-4eb8-bb10-de312ef8f938:
+    id: 0b5b5101-682f-4eb8-bb10-de312ef8f938
+    content: All unit tests pass
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b2193b1c-7301-4a1f-9198-3bbf4eeade0a:
+    id: b2193b1c-7301-4a1f-9198-3bbf4eeade0a
+    content: All manual test scenarios verified
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a5d1befe-7fe0-4c67-a73e-9929b47dcc71:
+    id: a5d1befe-7fe0-4c67-a73e-9929b47dcc71
+    content: No regressions in any keyboard shortcut behavior
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2c12b983-c3ac-4e22-bc3c-42debf84fdde:
+    id: 2c12b983-c3ac-4e22-bc3c-42debf84fdde
+    content: The startup reliability issue is resolved — shortcuts work on first launch consistently
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d92aefd8-ee4e-4867-93aa-13995317313b:
+    id: d92aefd8-ee4e-4867-93aa-13995317313b
+    content: Unit tests
+    children:
+      - ad5c6202-e3c7-42fd-8cf4-9ef8f24c585e
+      - 7fda5f58-fc3a-40ec-aa43-8dcd9827ef45
+      - 5ec842cd-ea16-4801-be6f-843f6d4006ed
+      - 15c8449c-0d29-4757-925f-3614013549f6
+      - bbc7efb2-c227-4679-88e4-b6ecb0cb1c40
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ad5c6202-e3c7-42fd-8cf4-9ef8f24c585e:
+    id: ad5c6202-e3c7-42fd-8cf4-9ef8f24c585e
+    content: Store lookup (getActiveStore)
+    children:
+      - df9241d5-4ac7-473f-9fc5-a4b67f8835c2
+      - 007a71e0-ca99-4470-814f-4f811e7c6153
+      - f1e7a98e-0508-47de-bc45-3cd1c95e7692
+      - 35bec140-854d-4a81-bc9b-2ae444fe3caf
+      - 64c9a3af-4b84-4f9f-a02e-6e82a8c0546d
+      - f618674f-1dcb-4d25-a74c-14b2a4090689
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  df9241d5-4ac7-473f-9fc5-a4b67f8835c2:
+    id: df9241d5-4ac7-473f-9fc5-a4b67f8835c2
+    content: Returns feedback store when focused element is inside .feedback-panel and feedback store is set
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  007a71e0-ca99-4470-814f-4f811e7c6153:
+    id: 007a71e0-ca99-4470-814f-4f811e7c6153
+    content: Returns active file store when focused element is in the workspace
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f1e7a98e-0508-47de-bc45-3cd1c95e7692:
+    id: f1e7a98e-0508-47de-bc45-3cd1c95e7692
+    content: Returns active file store when focused element is outside both workspace and feedback panel (fallback)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  35bec140-854d-4a81-bc9b-2ae444fe3caf:
+    id: 35bec140-854d-4a81-bc9b-2ae444fe3caf
+    content: Returns null when no file is open and focus is not in feedback panel
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  64c9a3af-4b84-4f9f-a02e-6e82a8c0546d:
+    id: 64c9a3af-4b84-4f9f-a02e-6e82a8c0546d
+    content: Returns null when feedback store is not set and focus is inside .feedback-panel
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f618674f-1dcb-4d25-a74c-14b2a4090689:
+    id: f618674f-1dcb-4d25-a74c-14b2a4090689
+    content: Returns correct store when switching between tabs (active file changes)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7fda5f58-fc3a-40ec-aa43-8dcd9827ef45:
+    id: 7fda5f58-fc3a-40ec-aa43-8dcd9827ef45
+    content: Feedback store tracking
+    children:
+      - 7b8d209d-b1c9-4d55-89c6-8a223711b4b5
+      - 8ccb1d7d-adb8-4bd6-b7e9-7c6b1bffef5d
+      - 7c2ad690-d85a-48fb-a9b6-1ba85cc26be6
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7b8d209d-b1c9-4d55-89c6-8a223711b4b5:
+    id: 7b8d209d-b1c9-4d55-89c6-8a223711b4b5
+    content: setActiveFeedbackStore sets the store reference
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8ccb1d7d-adb8-4bd6-b7e9-7c6b1bffef5d:
+    id: 8ccb1d7d-adb8-4bd6-b7e9-7c6b1bffef5d
+    content: setActiveFeedbackStore(null) clears the store reference
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7c2ad690-d85a-48fb-a9b6-1ba85cc26be6:
+    id: 7c2ad690-d85a-48fb-a9b6-1ba85cc26be6
+    content: getActiveStore reflects the most recent setActiveFeedbackStore call
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5ec842cd-ea16-4801-be6f-843f6d4006ed:
+    id: 5ec842cd-ea16-4801-be6f-843f6d4006ed
+    content: isFocusInFeedbackPanel guard
+    children:
+      - 78c9c712-d15d-42f2-9e3f-8f036883a1db
+      - f194ac8b-cd51-4cfd-a46f-762f8dd93c2f
+      - 0a619cd1-3c5d-45c9-b3bf-3d2fd3fa1997
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  78c9c712-d15d-42f2-9e3f-8f036883a1db:
+    id: 78c9c712-d15d-42f2-9e3f-8f036883a1db
+    content: Returns true when document.activeElement is inside .feedback-panel
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f194ac8b-cd51-4cfd-a46f-762f8dd93c2f:
+    id: f194ac8b-cd51-4cfd-a46f-762f8dd93c2f
+    content: Returns false when document.activeElement is outside .feedback-panel
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0a619cd1-3c5d-45c9-b3bf-3d2fd3fa1997:
+    id: 0a619cd1-3c5d-45c9-b3bf-3d2fd3fa1997
+    content: Returns false when document.activeElement is null
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  15c8449c-0d29-4757-925f-3614013549f6:
+    id: 15c8449c-0d29-4757-925f-3614013549f6
+    content: UI service feedback exclusion
+    children:
+      - 3560be8c-ab17-45bc-a474-04b438b64e63
+      - 70f8bb59-0bf8-4143-a017-9c31a166ed9f
+      - d9121d2f-2cff-4636-aecc-0c18c3f6ce77
+      - f44b9bf3-ec0f-4d98-9e46-b2c52ec47c1a
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  3560be8c-ab17-45bc-a474-04b438b64e63:
+    id: 3560be8c-ab17-45bc-a474-04b438b64e63
+    content: UI shortcuts (cut, copy, paste, undo, redo) do not execute when focus is in feedback panel
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  70f8bb59-0bf8-4143-a017-9c31a166ed9f:
+    id: 70f8bb59-0bf8-4143-a017-9c31a166ed9f
+    content: UI shortcuts execute normally when focus is in workspace
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d9121d2f-2cff-4636-aecc-0c18c3f6ce77:
+    id: d9121d2f-2cff-4636-aecc-0c18c3f6ce77
+    content: Navigation shortcuts (arrow keys, Home, End) still work in feedback panel
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f44b9bf3-ec0f-4d98-9e46-b2c52ec47c1a:
+    id: f44b9bf3-ec0f-4d98-9e46-b2c52ec47c1a
+    content: Editing shortcuts (Enter, Tab, Delete) still work in feedback panel
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bbc7efb2-c227-4679-88e4-b6ecb0cb1c40:
+    id: bbc7efb2-c227-4679-88e4-b6ecb0cb1c40
+    content: Listener registration
+    children:
+      - 92ce6f63-dec5-4059-8fa0-3e3ea4551a9b
+      - 487703c1-8259-4cb0-aaef-309d1ec5d456
+      - b8d1f146-bd89-4d13-9468-a39ab7651d9b
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  92ce6f63-dec5-4059-8fa0-3e3ea4551a9b:
+    id: 92ce6f63-dec5-4059-8fa0-3e3ea4551a9b
+    content: All three services register on window after initialization
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  487703c1-8259-4cb0-aaef-309d1ec5d456:
+    id: 487703c1-8259-4cb0-aaef-309d1ec5d456
+    content: Handlers return early when isInitialized is false
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b8d1f146-bd89-4d13-9468-a39ab7651d9b:
+    id: b8d1f146-bd89-4d13-9468-a39ab7651d9b
+    content: Handlers return early when hotkey context is not 'tree'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  dee29ec2-0c7c-4a82-8d54-c91b6731b971:
+    id: dee29ec2-0c7c-4a82-8d54-c91b6731b971
+    content: Manual tests
+    children:
+      - d2007e1b-0bbd-4835-91b2-e27f2adf92d3
+      - 9986328a-8b87-4f83-96b2-5a8321230c68
+      - f8e6a93d-c584-4b94-89e2-f2f2182a2616
+      - 361717c9-766f-4aff-ba6f-2ba2b3086dd9
+      - 94c989ff-c53e-466a-bcd8-69321d15ceab
+      - df91baec-dd23-4afe-8578-afbf2986158f
+      - e8719f02-87c6-4598-ae72-a9d490da9254
+      - 23804f61-5b2b-4176-bd5b-25b66cca9490
+      - a7a68d53-386e-49ef-8bff-2be5eb9618f0
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d2007e1b-0bbd-4835-91b2-e27f2adf92d3:
+    id: d2007e1b-0bbd-4835-91b2-e27f2adf92d3
+    content: Launch the app fresh (not a reload) — verify all shortcuts work immediately
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9986328a-8b87-4f83-96b2-5a8321230c68:
+    id: 9986328a-8b87-4f83-96b2-5a8321230c68
+    content: Open a file, type in a node, use arrow keys to navigate, use Ctrl+S to save — all work
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f8e6a93d-c584-4b94-89e2-f2f2182a2616:
+    id: f8e6a93d-c584-4b94-89e2-f2f2182a2616
+    content: Open a second file tab, switch between tabs, verify shortcuts operate on the focused tab's tree
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  361717c9-766f-4aff-ba6f-2ba2b3086dd9:
+    id: 361717c9-766f-4aff-ba6f-2ba2b3086dd9
+    content: Start a collaboration, verify feedback panel shows, use arrow keys in feedback tree — navigation works
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  94c989ff-c53e-466a-bcd8-69321d15ceab:
+    id: 94c989ff-c53e-466a-bcd8-69321d15ceab
+    content: In feedback panel, try Ctrl+C, Ctrl+V, Ctrl+Z — these should NOT fire (UI shortcuts excluded from feedback)
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  df91baec-dd23-4afe-8578-afbf2986158f:
+    id: df91baec-dd23-4afe-8578-afbf2986158f
+    content: Open a zoom view, verify shortcuts work in the zoomed tree
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e8719f02-87c6-4598-ae72-a9d490da9254:
+    id: e8719f02-87c6-4598-ae72-a9d490da9254
+    content: Switch focus to terminal (Ctrl+`), verify tree shortcuts don't fire — context gating works
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  23804f61-5b2b-4176-bd5b-25b66cca9490:
+    id: 23804f61-5b2b-4176-bd5b-25b66cca9490
+    content: Open keyboard shortcuts dialog (modal), verify tree shortcuts don't fire — modal context works
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a7a68d53-386e-49ef-8bff-2be5eb9618f0:
+    id: a7a68d53-386e-49ef-8bff-2be5eb9618f0
+    content: Change a keyboard shortcut in preferences, verify the change takes effect immediately on next keypress
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d56fad58-145b-4eb0-984a-a31cdb2978c2:
+    id: d56fad58-145b-4eb0-984a-a31cdb2978c2
+    content: Risks
+    children:
+      - f9b22b14-c787-4404-9f2d-febd6f830064
+      - 821c1676-7e79-45b8-8005-0e13a1aa75ad
+      - 627eca9f-ee97-40f7-bf1d-4dc8e01d3d01
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f9b22b14-c787-4404-9f2d-febd6f830064:
+    id: f9b22b14-c787-4404-9f2d-febd6f830064
+    content: 'Highest likelihood of defects: the store lookup change. If getActiveStore returns the wrong store or null in a case where the old registry returned the correct one, shortcuts will silently fail or operate on the wrong tree. The old system had a lastActiveStore fallback that the new system replaces with the active file''s store — verify these behave equivalently.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  821c1676-7e79-45b8-8005-0e13a1aa75ad:
+    id: 821c1676-7e79-45b8-8005-0e13a1aa75ad
+    content: 'Highest impact if failed: all keyboard shortcuts broken. This is a structural change to the keyboard system — if the listener registration doesn''t fire, nothing works. The manual first-launch test is the critical validation.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  627eca9f-ee97-40f7-bf1d-4dc8e01d3d01:
+    id: 627eca9f-ee97-40f7-bf1d-4dc8e01d3d01
+    content: The feedback panel guard relies on DOM class name (.feedback-panel). If the class name changes or the feedback panel DOM structure changes, UI shortcuts could leak into the feedback panel. This is fragile but no more so than the previous element-scoped approach.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3a953d30-cb26-4e2b-96b0-9f092bc5ce93:
+    id: 3a953d30-cb26-4e2b-96b0-9f092bc5ce93
+    content: Steps icon boundary touches number when in double digits
     children: []
     metadata:
       status: pending

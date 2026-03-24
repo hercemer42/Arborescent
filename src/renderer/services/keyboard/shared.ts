@@ -1,5 +1,27 @@
 import type { TreeStore } from '../../store/tree/treeStore';
-import { getStoreForFocusedElement } from '../treeContainerRegistry';
+import { useFilesStore } from '../../store/files/filesStore';
+import { storeManager } from '../../store/storeManager';
+
+let activeFeedbackStore: TreeStore | null = null;
+
+export function setActiveFeedbackStore(store: TreeStore | null): void {
+  activeFeedbackStore = store;
+}
+
+function isFocusInFeedbackPanel(): boolean {
+  return !!document.activeElement?.closest('.feedback-panel');
+}
+
+export function getActiveStore(): TreeStore | null {
+  if (isFocusInFeedbackPanel()) {
+    return activeFeedbackStore;
+  }
+
+  const activeFilePath = useFilesStore.getState().activeFilePath;
+  if (!activeFilePath) return null;
+
+  return storeManager.getStoreForFile(activeFilePath);
+}
 
 export function getActiveNodeElementForStore(store: TreeStore): HTMLElement | null {
   const activeNodeId = store.getState().activeNodeId;
@@ -10,10 +32,6 @@ export function getActiveNodeElementForStore(store: TreeStore): HTMLElement | nu
   ) as HTMLElement | null;
 
   return element;
-}
-
-export function getActiveStore(): TreeStore | null {
-  return getStoreForFocusedElement();
 }
 
 export function getActiveNodeElement(): HTMLElement | null {

@@ -156,6 +156,7 @@ async function handleUIShortcuts(event: KeyboardEvent): Promise<void> {
   }
 
   if (matchesHotkey(event, 'view', 'toggleBlueprintMode')) {
+    if (isFocusInTerminalOrBrowser()) return;
     event.preventDefault();
     const store = getActiveStore();
     store?.getState().actions.toggleBlueprintMode();
@@ -163,6 +164,7 @@ async function handleUIShortcuts(event: KeyboardEvent): Promise<void> {
   }
 
   if (matchesHotkey(event, 'view', 'toggleSummaryMode')) {
+    if (isFocusInTerminalOrBrowser()) return;
     event.preventDefault();
     event.stopPropagation();
     const store = getActiveStore();
@@ -178,6 +180,7 @@ async function handleUIShortcuts(event: KeyboardEvent): Promise<void> {
   }
 
   if (matchesHotkey(event, 'actions', 'deleteNode')) {
+    if (isFocusInTerminalOrBrowser()) return;
     const store = getActiveStore();
     if (!store) return;
 
@@ -191,9 +194,8 @@ async function handleUIShortcuts(event: KeyboardEvent): Promise<void> {
   }
 
   if (matchesHotkey(event, 'actions', 'cut')) {
-    if (hasTextSelection()) {
-      return;
-    }
+    if (isFocusInTerminalOrBrowser()) return;
+    if (hasTextSelection()) return;
 
     event.preventDefault();
     const store = getActiveStore();
@@ -202,9 +204,8 @@ async function handleUIShortcuts(event: KeyboardEvent): Promise<void> {
   }
 
   if (matchesHotkey(event, 'actions', 'copy')) {
-    if (hasTextSelection()) {
-      return;
-    }
+    if (isFocusInTerminalOrBrowser()) return;
+    if (hasTextSelection()) return;
 
     event.preventDefault();
     const store = getActiveStore();
@@ -213,9 +214,8 @@ async function handleUIShortcuts(event: KeyboardEvent): Promise<void> {
   }
 
   if (matchesHotkey(event, 'actions', 'paste')) {
-    if (isInputOrTextareaFocused()) {
-      return;
-    }
+    if (isFocusInTerminalOrBrowser()) return;
+    if (isInputOrTextareaFocused()) return;
     event.preventDefault();
     const store = getActiveStore();
     if (store) {
@@ -237,9 +237,8 @@ async function handleUIShortcuts(event: KeyboardEvent): Promise<void> {
   }
 
   if (matchesHotkey(event, 'actions', 'selectAll')) {
-    if (isContentEditableFocused()) {
-      return;
-    }
+    if (isFocusInTerminalOrBrowser()) return;
+    if (isContentEditableFocused()) return;
     event.preventDefault();
     const store = getActiveStore();
     store?.getState().actions.selectAllNodes();
@@ -247,6 +246,7 @@ async function handleUIShortcuts(event: KeyboardEvent): Promise<void> {
   }
 
   if (matchesHotkey(event, 'editing', 'cancelEdit')) {
+    if (isFocusInTerminalOrBrowser()) return;
     const store = getActiveStore();
     if (!store) return;
 
