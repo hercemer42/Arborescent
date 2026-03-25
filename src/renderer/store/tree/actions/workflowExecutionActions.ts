@@ -616,39 +616,48 @@ export const createWorkflowExecutionActions = (
           advanceNode(runningNodeId);
         }
       } else if (stepType === "checkpoint") {
-        // Set to awaiting-validation — user must explicitly continue
-        const { workflowExecutionStates: currentStates } = get();
-        const currentEntry = currentStates[runningNodeId];
-        if (currentEntry) {
-          clearStepTimeout(runningNodeId);
-          set({
-            workflowExecutionStates: {
-              ...currentStates,
-              [runningNodeId]: {
-                ...currentEntry,
-                state: "awaiting-validation",
-              },
-            },
-          });
-        }
+        clearStepTimeout(runningNodeId);
         const { nodes: currentNodes, ancestorRegistry: currentRegistry } =
           get();
-        const runningNode = currentNodes[runningNodeId];
-        const runningNodeName = runningNode?.content || runningNodeId;
-        const stepNumber = getWorkflowStepNumber(
-          position.currentStepId,
+        const hasNextStep = !!findNextStepTarget(
+          runningNodeId,
           currentNodes,
           currentRegistry,
         );
-        const stepLabel =
-          stepNumber !== null ? `Step ${stepNumber}` : "Current step";
-        useToastStore
-          .getState()
-          .addToast(
-            `${stepLabel} complete for "${runningNodeName}". Review the output before continuing.`,
-            "info",
-            { persistent: true, actions: [{ label: "OK", onClick: () => {} }] },
+
+        if (!hasNextStep) {
+          completeWorkflow(runningNodeId);
+        } else {
+          const { workflowExecutionStates: currentStates } = get();
+          const currentEntry = currentStates[runningNodeId];
+          if (currentEntry) {
+            set({
+              workflowExecutionStates: {
+                ...currentStates,
+                [runningNodeId]: {
+                  ...currentEntry,
+                  state: "awaiting-validation",
+                },
+              },
+            });
+          }
+          const runningNode = currentNodes[runningNodeId];
+          const runningNodeName = runningNode?.content || runningNodeId;
+          const stepNumber = getWorkflowStepNumber(
+            position.currentStepId,
+            currentNodes,
+            currentRegistry,
           );
+          const stepLabel =
+            stepNumber !== null ? `Step ${stepNumber}` : "Current step";
+          useToastStore
+            .getState()
+            .addToast(
+              `${stepLabel} complete for "${runningNodeName}". Review the output before continuing.`,
+              "info",
+              { persistent: true, actions: [{ label: "OK", onClick: () => {} }] },
+            );
+        }
       }
     } else if (event.hook_event_name === "Notification") {
       stopWorkflow(runningNodeId);

@@ -356,6 +356,66 @@ describe('workflow advancement', () => {
     });
   });
 
+  describe('checkpoint at last step auto-completes', () => {
+    beforeEach(() => {
+      // Move task-a to step-3, make step-3 a checkpoint (last step)
+      state.nodes['step-3'] = {
+        ...state.nodes['step-3'],
+        children: ['task-a'],
+        metadata: { isBlueprint: true, stepType: 'checkpoint' },
+      };
+      state.nodes['step-1'].children = [];
+      state.ancestorRegistry['task-a'] = ['root', 'workflow', 'step-3'];
+      state.workflowExecutionStates['task-a'] = { state: 'running', terminalTabId: 'terminal-1' };
+      state.workflowSessionMap['session-last'] = 'terminal-1';
+    });
+
+    it('should complete workflow instead of entering awaiting-validation when checkpoint is last step', () => {
+      actions.handleHookEvent({
+        session_id: 'session-last',
+        hook_event_name: 'Stop',
+      });
+
+      expect(state.workflowExecutionStates['task-a']).toBeUndefined();
+    });
+
+    it('should show workflow completion toast when last checkpoint finishes', () => {
+      actions.handleHookEvent({
+        session_id: 'session-last',
+        hook_event_name: 'Stop',
+      });
+
+      expect(mockAddToast).toHaveBeenCalledWith(
+        expect.stringContaining('complete'),
+        'success'
+      );
+    });
+
+    it('should fire desktop notification when last checkpoint finishes', () => {
+      actions.handleHookEvent({
+        session_id: 'session-last',
+        hook_event_name: 'Stop',
+      });
+
+      expect(mockNotify).toHaveBeenCalledWith('success', 'Workflow complete', expect.any(String));
+    });
+
+    it('should still enter awaiting-validation when checkpoint is NOT the last step', () => {
+      // task-a is at step-2 (checkpoint, but step-3 exists after it)
+      state.nodes['step-3'].children = [];
+      state.nodes['step-3'].metadata = { isBlueprint: true };
+      state.nodes['step-2'].children = ['task-a'];
+      state.ancestorRegistry['task-a'] = ['root', 'workflow', 'step-2'];
+
+      actions.handleHookEvent({
+        session_id: 'session-last',
+        hook_event_name: 'Stop',
+      });
+
+      expect(state.workflowExecutionStates['task-a'].state).toBe('awaiting-validation');
+    });
+  });
+
   describe('manual step behavior', () => {
     it('should not send content to terminal when advancing to a manual step', () => {
       state.nodes['step-2'].children = ['task-a'];

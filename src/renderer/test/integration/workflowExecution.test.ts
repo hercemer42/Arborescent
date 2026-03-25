@@ -479,7 +479,7 @@ describe('Integration: Workflow Execution', () => {
       expect(state().workflowExecutionStates['task']).toBeUndefined();
     });
 
-    it('should complete workflow when continuing from last checkpoint step', () => {
+    it('should auto-complete workflow when last checkpoint step finishes', () => {
       const state = () => stateRef.current;
 
       state().nodes['s3'].metadata.stepType = 'checkpoint';
@@ -492,12 +492,8 @@ describe('Integration: Workflow Execution', () => {
       actions.startWorkflow('task', 'term-1');
       actions.registerSession('session-1', 'term-1');
 
-      // AI finishes at s3 → awaiting-validation
+      // AI finishes at s3 (last step) → auto-completes
       actions.handleHookEvent({ session_id: 'session-1', hook_event_name: 'Stop' });
-      expect(state().workflowExecutionStates['task'].state).toBe('awaiting-validation');
-
-      // Continue → no next step → complete
-      actions.continueWorkflow('task', 'term-1');
       expect(state().workflowExecutionStates['task']).toBeUndefined();
       expect(mockAddToast).toHaveBeenCalledWith(
         expect.stringContaining('complete'),

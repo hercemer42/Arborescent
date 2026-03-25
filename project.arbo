@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-03-24T12:52:39.933Z'
+updated: '2026-03-25T07:12:24.441Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -557,11 +557,12 @@ nodes:
     id: d5fe0eff-b1c6-4986-b6a3-70a0ea46f096
     content: Opportunities
     children:
+      - 3999cfea-b344-4f92-b3ca-ffb9f740afc7
+      - 27b498ae-d712-4c06-a93b-0bb45ca1bf14
       - 83ae5dd9-1678-4c57-8e9c-74a7e6aeb6cf
       - 47d5dea1-a047-4d62-b2c0-8a29d7dc7517
       - 3f420f16-9696-4ea3-9bae-80723ae56de0
       - a39b2ce6-d2d5-4589-b53f-a84c103d9fbf
-      - 3999cfea-b344-4f92-b3ca-ffb9f740afc7
       - d77cf522-0636-4a76-b9bf-7b33b4cc65cb
       - 234c29b2-67f3-424a-87ed-1fb53104aba2
       - 1a3c4115-c538-4399-98e1-c6c2f1afb08d
@@ -18137,13 +18138,14 @@ nodes:
       - 4a24bd5f-7858-4d3e-8e10-6e09d39a2b0a
       - 6b112872-41f7-4a7a-bc7d-7a2fa3dd05f6
       - ea5b5fea-402a-4ec9-aa4f-8a4647c20d0c
+      - 3dbb581e-7c76-47e9-9517-710048da9b4f
     metadata:
       status: pending
       isBlueprint: true
       blueprintIcon: BookA
       blueprintColor: '#0c6f9d'
       isContextDeclaration: true
-      expanded: false
+      expanded: true
       contextMode: execute
   bfe8794a-2209-4c09-ba88-c4c951928b76:
     id: bfe8794a-2209-4c09-ba88-c4c951928b76
@@ -30736,7 +30738,8 @@ nodes:
   ea5b5fea-402a-4ec9-aa4f-8a4647c20d0c:
     id: ea5b5fea-402a-4ec9-aa4f-8a4647c20d0c
     content: Add a line to the changelog if the feature is consequential
-    children: []
+    children:
+      - 633c98c8-1174-4cd0-9f03-885a580798b2
     metadata:
       status: pending
       isBlueprint: true
@@ -34472,8 +34475,6 @@ nodes:
     id: 13c5048b-15eb-4989-a6fc-25032e5c131f
     content: Problems
     children:
-      - ea39b52d-fc42-4118-bc10-7ce57ef8d32c
-      - 323eaf83-d1a0-4c90-9d5b-85bf36eca6be
       - 3a953d30-cb26-4e2b-96b0-9f092bc5ce93
       - c4c83046-4976-4687-becc-dcaa8eafbd25
       - 413a84b6-97e7-4963-81ca-6667f2136d9a
@@ -34685,7 +34686,6 @@ nodes:
     id: 49996e08-2973-475c-8aaa-6aedeb0a4929
     content: Workflows
     children:
-      - 07992140-d707-4d04-8e88-9e33b4bde2ff
       - edc07ad6-bed3-4095-8d18-c3550ee43213
       - 21a8e05c-ac87-455f-9cab-f075ba892918
       - 9491e99f-c707-4d6d-9ba0-1e49e87fee8b
@@ -34722,20 +34722,6 @@ nodes:
       isBlueprint: true
       blueprintIcon: Archive
       blueprintColor: '#c47f09'
-      expanded: true
-  07992140-d707-4d04-8e88-9e33b4bde2ff:
-    id: 07992140-d707-4d04-8e88-9e33b4bde2ff
-    content: Product shaping
-    children:
-      - f0c283a4-0167-45e8-b5e3-d780dd67e0cc
-      - 4c43c117-e89a-460c-9900-7ea15b8cc0e0
-      - 87a11a28-4295-467f-ac54-746692494413
-    metadata:
-      status: pending
-      isBlueprint: true
-      isWorkflow: true
-      blueprintIcon: Shapes
-      blueprintColor: '#a855f7'
       expanded: true
   e90fcc6c-4422-4103-a019-86ff5bb9efb3:
     id: e90fcc6c-4422-4103-a019-86ff5bb9efb3
@@ -35038,6 +35024,7 @@ nodes:
       blueprintIcon: BrainCircuit
       blueprintColor: '#f97316'
       appliedContextId: 0d19da53-f3a7-4ee4-b495-b59f127671fa
+      stepType: checkpoint
   12221dfc-628a-4f1c-9280-7d4ac8e0dff7:
     id: 12221dfc-628a-4f1c-9280-7d4ac8e0dff7
     content: You are reviewing a hierarchical functional definition for a new feature
@@ -35461,6 +35448,9 @@ nodes:
     id: edc07ad6-bed3-4095-8d18-c3550ee43213
     content: Feature development
     children:
+      - f0c283a4-0167-45e8-b5e3-d780dd67e0cc
+      - 87a11a28-4295-467f-ac54-746692494413
+      - 4c43c117-e89a-460c-9900-7ea15b8cc0e0
       - 00714a63-f267-4ab1-a285-73ae4198eb42
       - b38966d3-b238-4d64-9eed-74d4ab983c28
       - 9a392715-9ea2-4269-b35c-812b8998e3ec
@@ -49977,6 +49967,8 @@ nodes:
     id: 21a8e05c-ac87-455f-9cab-f075ba892918
     content: Minor feature development
     children:
+      - c7caafb7-c052-4288-967e-74b8d4a78ef6
+      - 4196fda4-f103-4916-9fba-97c5ea39cafc
       - 83a2bd12-9d74-4d87-8139-ae7adb95c9fa
       - a5763a98-d3a6-420c-baf4-2868e2dc1404
       - 3ab86cdd-2d94-4d06-806c-2b239fef0ffd
@@ -50031,7 +50023,8 @@ nodes:
   bb974125-814d-4964-b269-13572d556270:
     id: bb974125-814d-4964-b269-13572d556270
     content: Code review & refactor
-    children: []
+    children:
+      - ea39b52d-fc42-4118-bc10-7ce57ef8d32c
     metadata:
       status: pending
       isBlueprint: true
@@ -61200,12 +61193,6 @@ nodes:
     children: []
     metadata:
       status: pending
-  323eaf83-d1a0-4c90-9d5b-85bf36eca6be:
-    id: 323eaf83-d1a0-4c90-9d5b-85bf36eca6be
-    content: Avoid focusing on a node when it moves through the workflow
-    children: []
-    metadata:
-      status: pending
   54df937b-7f2b-49fd-84c0-aa5d821b5240:
     id: 54df937b-7f2b-49fd-84c0-aa5d821b5240
     content: 'US1: Replace Send submenu with single Send action routed by active panel'
@@ -61325,12 +61312,6 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  d48c9675-9ec8-4032-9df0-a5037764b9cf:
-    id: d48c9675-9ec8-4032-9df0-a5037764b9cf
-    content: Not getting system notifications when focused on another application
-    children: []
-    metadata:
-      status: pending
   4fe9b084-1447-4806-94a0-0ade347a0b0d:
     id: 4fe9b084-1447-4806-94a0-0ade347a0b0d
     content: Problem statement
@@ -63867,7 +63848,210 @@ nodes:
       status: pending
   ea39b52d-fc42-4118-bc10-7ce57ef8d32c:
     id: ea39b52d-fc42-4118-bc10-7ce57ef8d32c
-    content: Checkpoint nodes that are the last in the workflow have a 'pause' button but we can't continue
+    content: Auto-complete workflow when last checkpoint step finishes
+    children:
+      - 106597b9-78ea-4290-8e52-a337a0fcb696
+      - 3f951fa7-37fc-46ed-bc7f-5e071f45b41e
+      - 96da3c89-8f64-4ee3-aea6-0f9268cc68f0
+    metadata:
+      status: pending
+      expanded: false
+      deleted: false
+      plugins: {}
+  d48c9675-9ec8-4032-9df0-a5037764b9cf:
+    id: d48c9675-9ec8-4032-9df0-a5037764b9cf
+    content: Not getting system notifications when focused on another application
     children: []
     metadata:
       status: pending
+  27b498ae-d712-4c06-a93b-0bb45ca1bf14:
+    id: 27b498ae-d712-4c06-a93b-0bb45ca1bf14
+    content: Have a table blueprint
+    children:
+      - 1dd42ac3-2d57-451b-b4a5-53c8a3cf1eef
+      - 8552e18c-813c-4238-9bed-224fe11dbb9b
+      - 37c35def-e5a2-4eea-85b1-523621a98905
+    metadata:
+      status: pending
+      expanded: false
+  8552e18c-813c-4238-9bed-224fe11dbb9b:
+    id: 8552e18c-813c-4238-9bed-224fe11dbb9b
+    content: Define custom properties for each child
+    children:
+      - b056d5f0-6592-42af-8069-05cb5ce46e0a
+    metadata:
+      status: pending
+  b056d5f0-6592-42af-8069-05cb5ce46e0a:
+    id: b056d5f0-6592-42af-8069-05cb5ce46e0a
+    content: Can make a relation to another table
+    children: []
+    metadata:
+      status: pending
+  37c35def-e5a2-4eea-85b1-523621a98905:
+    id: 37c35def-e5a2-4eea-85b1-523621a98905
+    content: Have a 'table' view that opens in another tab
+    children: []
+    metadata:
+      status: pending
+  1dd42ac3-2d57-451b-b4a5-53c8a3cf1eef:
+    id: 1dd42ac3-2d57-451b-b4a5-53c8a3cf1eef
+    content: Right click, blueprint, create table
+    children: []
+    metadata:
+      status: pending
+  c7caafb7-c052-4288-967e-74b8d4a78ef6:
+    id: c7caafb7-c052-4288-967e-74b8d4a78ef6
+    content: Solution design
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      appliedContextId: e8824b29-eb18-4031-9e35-b321a864d418
+      blueprintIcon: Eye
+      blueprintColor: '#0ea5e9'
+      isBlueprint: true
+      stepType: checkpoint
+      decomposition: false
+  106597b9-78ea-4290-8e52-a337a0fcb696:
+    id: 106597b9-78ea-4290-8e52-a337a0fcb696
+    content: Problem
+    children:
+      - ee2dda22-d2ec-45b3-8577-e082c39687ac
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ee2dda22-d2ec-45b3-8577-e082c39687ac:
+    id: ee2dda22-d2ec-45b3-8577-e082c39687ac
+    content: When a checkpoint step is the last step in a workflow and the AI finishes, the node enters "awaiting-validation" state with no next step to continue to. The user must right-click and select "Continue Workflow" which just completes the workflow. This is unnecessary friction — if there's nowhere to go, just complete.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3f951fa7-37fc-46ed-bc7f-5e071f45b41e:
+    id: 3f951fa7-37fc-46ed-bc7f-5e071f45b41e
+    content: Acceptance criteria
+    children:
+      - c8e98af4-683b-457e-86b6-0806301d99a0
+      - 5e20d4db-6c91-481a-8111-5308f6c68c52
+      - 95acb7b4-07c7-42c0-87ad-476c0de3b437
+      - 0c77b566-9489-480d-9093-7a369ffa85eb
+      - 01efbb6d-a174-4e8f-bbb2-3d2318cccd36
+      - be2ba0ea-4601-4413-8d18-b1e4123444a7
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c8e98af4-683b-457e-86b6-0806301d99a0:
+    id: c8e98af4-683b-457e-86b6-0806301d99a0
+    content: When the AI finishes at a checkpoint that is the last step in the workflow, the workflow auto-completes instead of entering awaiting-validation
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5e20d4db-6c91-481a-8111-5308f6c68c52:
+    id: 5e20d4db-6c91-481a-8111-5308f6c68c52
+    content: The node does not show a running or paused state after completion — execution state is cleared
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  95acb7b4-07c7-42c0-87ad-476c0de3b437:
+    id: 95acb7b4-07c7-42c0-87ad-476c0de3b437
+    content: The workflow completion toast and desktop notification fire as normal
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0c77b566-9489-480d-9093-7a369ffa85eb:
+    id: 0c77b566-9489-480d-9093-7a369ffa85eb
+    content: No "Continue Workflow" or "Stop Workflow" menu option appears for the completed node
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  01efbb6d-a174-4e8f-bbb2-3d2318cccd36:
+    id: 01efbb6d-a174-4e8f-bbb2-3d2318cccd36
+    content: Checkpoint steps that are NOT the last step still enter awaiting-validation as before
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  be2ba0ea-4601-4413-8d18-b1e4123444a7:
+    id: be2ba0ea-4601-4413-8d18-b1e4123444a7
+    content: If the checkpoint uses a collaborate-mode context, the feedback panel remains open for review independently — the workflow completes regardless, since feedback review is not part of the automation
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  96da3c89-8f64-4ee3-aea6-0f9268cc68f0:
+    id: 96da3c89-8f64-4ee3-aea6-0f9268cc68f0
+    content: Observations
+    children:
+      - 4fb68cc3-2220-4b92-ae60-2ef1e8ab26bf
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4fb68cc3-2220-4b92-ae60-2ef1e8ab26bf:
+    id: 4fb68cc3-2220-4b92-ae60-2ef1e8ab26bf
+    content: This only applies to the hook Stop handler for checkpoint steps — check whether a next step exists before deciding to pause or complete
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4196fda4-f103-4916-9fba-97c5ea39cafc:
+    id: 4196fda4-f103-4916-9fba-97c5ea39cafc
+    content: Automated tests implementation (TDD)
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+      appliedContextId: 22a32663-eb92-44e0-a844-d6219409f63b
+      blueprintIcon: ListChecks
+      blueprintColor: '#c47f09'
+      expanded: true
+      stepType: autonomous
+  3dbb581e-7c76-47e9-9517-710048da9b4f:
+    id: 3dbb581e-7c76-47e9-9517-710048da9b4f
+    content: Don't add an entry if it's not useful to the user or bloats the documentation
+    children:
+      - 8b5153fb-ec2f-4efc-b993-65bcc058167b
+    metadata:
+      status: pending
+      isBlueprint: true
+  8b5153fb-ec2f-4efc-b993-65bcc058167b:
+    id: 8b5153fb-ec2f-4efc-b993-65bcc058167b
+    content: If it's implicit or discoverable and non-blocking, no need to mention it
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  633c98c8-1174-4cd0-9f03-885a580798b2:
+    id: 633c98c8-1174-4cd0-9f03-885a580798b2
+    content: Don't add a line to the changelog for a bug fix to a feature that was implemented after the last release
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
