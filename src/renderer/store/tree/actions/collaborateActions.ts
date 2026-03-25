@@ -468,6 +468,7 @@ export function createCollaborateActions(
         }
 
         await cleanupFeedback(currentFilePath, tempFilePath);
+        usePanelStore.getState().closeFeedback();
         window.dispatchEvent(new Event('collaboration-canceled'));
         logger.info('Collaboration cancelled', 'CollaborateActions');
       } catch (error) {
@@ -518,7 +519,7 @@ export function createCollaborateActions(
 
         const tempFilePath = nodes[collaboratingNodeId]?.metadata.feedbackTempFile as string | undefined;
         await cleanupFeedback(currentFilePath, tempFilePath);
-        usePanelStore.getState().hidePanel();
+        usePanelStore.getState().closeFeedback();
 
         window.dispatchEvent(new Event('collaboration-accepted'));
         logger.info('Feedback accepted and node replaced', 'CollaborateActions');

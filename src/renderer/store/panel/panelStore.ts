@@ -17,6 +17,7 @@ interface PanelState {
   panelHeight: number;
   panelWidth: number;
   activeContent: PanelContentType;
+  previousContent: PanelContentType;
 
   setPanelPosition: (position: PanelPosition) => void;
   togglePanelPosition: () => void;
@@ -26,6 +27,7 @@ interface PanelState {
   showTerminal: () => void;
   showBrowser: () => void;
   showFeedback: () => void;
+  closeFeedback: () => void;
   hidePanel: () => void;
   restoreSession: () => Promise<void>;
 }
@@ -52,6 +54,7 @@ export const usePanelStore = create<PanelState>((set) => ({
   panelHeight: 300,
   panelWidth: typeof window !== 'undefined' ? window.innerWidth * 0.5 : 600,
   activeContent: null,
+  previousContent: null,
 
   setPanelPosition: (position: PanelPosition) =>
     set((state) => {
@@ -106,7 +109,21 @@ export const usePanelStore = create<PanelState>((set) => ({
 
   showFeedback: () =>
     set((state) => {
-      const newState = { activeContent: 'feedback' as PanelContentType };
+      const newState = {
+        activeContent: 'feedback' as PanelContentType,
+        previousContent: state.activeContent !== 'feedback' ? state.activeContent : state.previousContent,
+      };
+      savePanelSession({ ...state, ...newState });
+      return newState;
+    }),
+
+  closeFeedback: () =>
+    set((state) => {
+      if (state.activeContent !== 'feedback') return {};
+      const newState = {
+        activeContent: state.previousContent,
+        previousContent: null as PanelContentType,
+      };
       savePanelSession({ ...state, ...newState });
       return newState;
     }),
