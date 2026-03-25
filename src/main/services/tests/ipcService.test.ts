@@ -5,23 +5,31 @@ import { registerIpcHandlers } from '../../handlers';
 import { logger } from '../logger';
 
 // Mock electron
-vi.mock('electron', () => ({
-  ipcMain: {
-    handle: vi.fn(),
-  },
-  dialog: {
-    showOpenDialog: vi.fn(),
-    showSaveDialog: vi.fn(),
-    showMessageBox: vi.fn(),
-  },
-  BrowserWindow: vi.fn(),
-  app: {
-    getPath: vi.fn(() => '/mock/user/data'),
-  },
-  clipboard: {
-    readText: vi.fn(() => ''),
-  },
-}));
+vi.mock('electron', () => {
+  const NotificationMock = vi.fn().mockImplementation(() => ({
+    show: vi.fn(),
+    on: vi.fn(),
+  }));
+  (NotificationMock as unknown as Record<string, unknown>).isSupported = vi.fn().mockReturnValue(true);
+  return {
+    ipcMain: {
+      handle: vi.fn(),
+    },
+    dialog: {
+      showOpenDialog: vi.fn(),
+      showSaveDialog: vi.fn(),
+      showMessageBox: vi.fn(),
+    },
+    BrowserWindow: vi.fn(),
+    Notification: NotificationMock,
+    app: {
+      getPath: vi.fn(() => '/mock/user/data'),
+    },
+    clipboard: {
+      readText: vi.fn(() => ''),
+    },
+  };
+});
 
 // Mock node:fs using memfs
 vi.mock('node:fs', async () => {

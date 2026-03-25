@@ -4,14 +4,20 @@ const { mockHandle } = vi.hoisted(() => ({
   mockHandle: vi.fn(),
 }));
 
-vi.mock('electron', () => ({
-  ipcMain: {
-    handle: mockHandle,
-  },
-  Notification: vi.fn().mockImplementation(() => ({
+vi.mock('electron', () => {
+  const NotificationMock = vi.fn().mockImplementation(() => ({
     show: vi.fn(),
     on: vi.fn(),
-  })),
+  }));
+  (NotificationMock as unknown as Record<string, unknown>).isSupported = vi.fn().mockReturnValue(true);
+  return {
+    ipcMain: { handle: mockHandle },
+    Notification: NotificationMock,
+  };
+});
+
+vi.mock('../../services/logger', () => ({
+  logger: { info: vi.fn(), warn: vi.fn(), error: vi.fn() },
 }));
 
 import { registerNotificationHandlers } from '../notificationHandlers';

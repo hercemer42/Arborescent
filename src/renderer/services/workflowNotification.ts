@@ -6,9 +6,11 @@ export type NotificationEventType = 'success' | 'alert';
 export async function notifyWorkflowEvent(type: NotificationEventType, title: string, body: string): Promise<void> {
   try {
     const focused = await window.electron.isWindowFocused();
+    logger.info(`Notification requested: "${title}" — focused=${focused}`, 'WorkflowNotification');
     if (focused) return;
 
     const { desktopNotifications, notificationSounds } = usePreferencesStore.getState();
+    logger.info(`Preferences: desktopNotifications=${desktopNotifications}, notificationSounds=${notificationSounds}`, 'WorkflowNotification');
 
     if (desktopNotifications) {
       window.electron.showNotification(title, body).catch((error) => {
