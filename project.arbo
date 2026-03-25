@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-03-25T07:12:24.441Z'
+updated: '2026-03-25T07:34:30.619Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -557,6 +557,7 @@ nodes:
     id: d5fe0eff-b1c6-4986-b6a3-70a0ea46f096
     content: Opportunities
     children:
+      - 8c43f7e5-31af-4bae-821a-431599ed979c
       - 3999cfea-b344-4f92-b3ca-ffb9f740afc7
       - 27b498ae-d712-4c06-a93b-0bb45ca1bf14
       - 83ae5dd9-1678-4c57-8e9c-74a7e6aeb6cf
@@ -5222,7 +5223,7 @@ nodes:
       - 9a8f1538-7eb7-4e2d-9e0f-46e2c00675f4
     metadata:
       status: pending
-      expanded: true
+      expanded: false
       isBlueprint: true
       blueprintIcon: BrainCog
       blueprintColor: '#14b8a6'
@@ -15469,6 +15470,8 @@ nodes:
       - 1c5caa24-018b-4f1d-85c8-3232d93deb1c
       - dfef7d4f-c35c-43c4-b1ac-f84c8c916785
       - 1313ac0e-6295-4e0f-9e2e-5eb373402329
+      - ea39b52d-fc42-4118-bc10-7ce57ef8d32c
+      - c4c83046-4976-4687-becc-dcaa8eafbd25
     metadata:
       status: pending
       isBlueprint: true
@@ -30743,6 +30746,7 @@ nodes:
     metadata:
       status: pending
       isBlueprint: true
+      expanded: false
   503e53c0-5353-48d5-a1f2-5dc15e0ff045:
     id: 503e53c0-5353-48d5-a1f2-5dc15e0ff045
     content: Workflow automation
@@ -34476,7 +34480,6 @@ nodes:
     content: Problems
     children:
       - 3a953d30-cb26-4e2b-96b0-9f092bc5ce93
-      - c4c83046-4976-4687-becc-dcaa8eafbd25
       - 413a84b6-97e7-4963-81ca-6667f2136d9a
       - 28b63463-b046-4ed0-ab09-942c8b933875
       - 33c9ccfe-2b9e-441f-a857-bf766dc09892
@@ -50023,8 +50026,7 @@ nodes:
   bb974125-814d-4964-b269-13572d556270:
     id: bb974125-814d-4964-b269-13572d556270
     content: Code review & refactor
-    children:
-      - ea39b52d-fc42-4118-bc10-7ce57ef8d32c
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -54082,25 +54084,16 @@ nodes:
       plugins: {}
   c4c83046-4976-4687-becc-dcaa8eafbd25:
     id: c4c83046-4976-4687-becc-dcaa8eafbd25
-    content: If the terminal window is open, and the feedback panel pops up, then after closing it the terminal window is not open
+    content: Restore previous panel after closing the feedback panel
     children:
-      - b337afa9-5b58-48be-b3d4-72920c4b80f6
-      - a4d8fd5c-f607-4c80-96a8-d9227b23ad01
+      - bc94874b-be12-4d72-841c-d33c364d69f9
+      - 94a95491-c0e0-4d4d-a378-04eeaea90ac6
+      - 399fd5a4-8872-4781-bd9e-97ef4f8a8c00
     metadata:
       status: pending
       expanded: false
-  b337afa9-5b58-48be-b3d4-72920c4b80f6:
-    id: b337afa9-5b58-48be-b3d4-72920c4b80f6
-    content: Annoying and breaks the flow
-    children: []
-    metadata:
-      status: pending
-  a4d8fd5c-f607-4c80-96a8-d9227b23ad01:
-    id: a4d8fd5c-f607-4c80-96a8-d9227b23ad01
-    content: Refocus the terminal panel after closing the feedback panel if it was open before the feedback panel
-    children: []
-    metadata:
-      status: pending
+      deleted: false
+      plugins: {}
   90c76e58-235e-460f-a8fb-efda9109dd0d:
     id: 90c76e58-235e-460f-a8fb-efda9109dd0d
     content: Problem statement
@@ -64055,3 +64048,106 @@ nodes:
     metadata:
       status: pending
       isBlueprint: true
+  8c43f7e5-31af-4bae-821a-431599ed979c:
+    id: 8c43f7e5-31af-4bae-821a-431599ed979c
+    content: Right click, send to workflow
+    children: []
+    metadata:
+      status: pending
+  bc94874b-be12-4d72-841c-d33c364d69f9:
+    id: bc94874b-be12-4d72-841c-d33c364d69f9
+    content: Problem
+    children:
+      - 8cb03e42-6c27-4817-acfa-efdac8ee5aba
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8cb03e42-6c27-4817-acfa-efdac8ee5aba:
+    id: 8cb03e42-6c27-4817-acfa-efdac8ee5aba
+    content: When the terminal (or browser) panel is open and a collaboration starts, the feedback panel replaces it. After accepting or cancelling feedback, the panel is hidden entirely instead of returning to the terminal/browser that was open before. The user has to manually reopen the terminal, which breaks flow — especially during workflows where they're actively monitoring terminal output.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  94a95491-c0e0-4d4d-a378-04eeaea90ac6:
+    id: 94a95491-c0e0-4d4d-a378-04eeaea90ac6
+    content: Acceptance criteria
+    children:
+      - cbe981e2-881f-4ffa-940f-4bf6002a021f
+      - 6fc42740-6afe-431e-9cde-ef34701e680d
+      - 4953348d-6a1b-4692-ae3f-ce623e175b33
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  cbe981e2-881f-4ffa-940f-4bf6002a021f:
+    id: cbe981e2-881f-4ffa-940f-4bf6002a021f
+    content: After accepting or cancelling feedback, the panel returns to whatever was showing before the feedback panel opened (terminal or browser)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6fc42740-6afe-431e-9cde-ef34701e680d:
+    id: 6fc42740-6afe-431e-9cde-ef34701e680d
+    content: If no panel was open before the feedback panel, the panel closes as it does today
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4953348d-6a1b-4692-ae3f-ce623e175b33:
+    id: 4953348d-6a1b-4692-ae3f-ce623e175b33
+    content: If the terminal/browser that was previously open has since been closed (e.g. last terminal tab closed), the panel closes rather than showing an empty terminal panel
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  399fd5a4-8872-4781-bd9e-97ef4f8a8c00:
+    id: 399fd5a4-8872-4781-bd9e-97ef4f8a8c00
+    content: Observations
+    children:
+      - d5d053d8-0927-4b59-9029-47c2a9a22086
+      - 2bc1140b-2485-4f63-9711-36b018f73c89
+      - 2e369533-1c2d-457e-a599-2a36f967dd27
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d5d053d8-0927-4b59-9029-47c2a9a22086:
+    id: d5d053d8-0927-4b59-9029-47c2a9a22086
+    content: The panel store currently has no concept of "previous content." The fix needs to track what was active before showFeedback was called, then restore it on feedback close.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2bc1140b-2485-4f63-9711-36b018f73c89:
+    id: 2bc1140b-2485-4f63-9711-36b018f73c89
+    content: This applies to both finishAccept (collaborateActions line 521) and the cancel path — anywhere hidePanel is called after feedback ends.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2e369533-1c2d-457e-a599-2a36f967dd27:
+    id: 2e369533-1c2d-457e-a599-2a36f967dd27
+    content: Browser-based collaboration also calls showBrowser (line 257), so the previous-content tracking should handle that path too — though the browser panel was likely already open in that case.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
