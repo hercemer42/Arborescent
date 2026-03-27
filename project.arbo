@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-03-25T07:34:30.619Z'
+updated: '2026-03-27T05:47:19.484Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -558,7 +558,6 @@ nodes:
     content: Opportunities
     children:
       - 8c43f7e5-31af-4bae-821a-431599ed979c
-      - 3999cfea-b344-4f92-b3ca-ffb9f740afc7
       - 27b498ae-d712-4c06-a93b-0bb45ca1bf14
       - 83ae5dd9-1678-4c57-8e9c-74a7e6aeb6cf
       - 47d5dea1-a047-4d62-b2c0-8a29d7dc7517
@@ -5223,7 +5222,7 @@ nodes:
       - 9a8f1538-7eb7-4e2d-9e0f-46e2c00675f4
     metadata:
       status: pending
-      expanded: false
+      expanded: true
       isBlueprint: true
       blueprintIcon: BrainCog
       blueprintColor: '#14b8a6'
@@ -8857,6 +8856,7 @@ nodes:
     id: 79b693ca-27ce-4410-8617-8092d7e81b07
     content: Issues
     children:
+      - 15974593-af5a-4c3e-b454-539a4f99d9c7
       - d48c9675-9ec8-4032-9df0-a5037764b9cf
       - 2ee4a837-3635-4b0f-b794-896909f197e0
       - 533210b8-5c42-48f7-ab9a-bea602ae7ed2
@@ -23874,7 +23874,7 @@ nodes:
       - 144f87a7-9799-423c-ba47-40dff294fb8d
     metadata:
       status: pending
-      expanded: false
+      expanded: true
       deleted: false
       plugins: {}
       isContextDeclaration: true
@@ -26841,6 +26841,7 @@ nodes:
       appliedContextId: 0058432d-a010-473b-a707-ace2b1dee169
       expanded: true
       stepType: autonomous
+      recurse: true
   9f4cb1c1-95ba-4523-9b59-86d02c56a0ed:
     id: 9f4cb1c1-95ba-4523-9b59-86d02c56a0ed
     content: Can use keyboard to move blueprint/context/workflow nodes into forbidden nodes
@@ -34479,6 +34480,7 @@ nodes:
     id: 13c5048b-15eb-4989-a6fc-25032e5c131f
     content: Problems
     children:
+      - eaa4fec4-a897-46c1-9498-02fdfb5e442c
       - 3a953d30-cb26-4e2b-96b0-9f092bc5ce93
       - 413a84b6-97e7-4963-81ca-6667f2136d9a
       - 28b63463-b046-4ed0-ab09-942c8b933875
@@ -35042,13 +35044,14 @@ nodes:
     id: 2e64b4cc-8a16-4eb6-a54d-80a2b7a1cff5
     content: Please break it down into a list of user stories
     children:
+      - 769ac66d-14fa-4132-b5c0-e947bb6c2852
       - 08ab36c3-6a24-4558-a41c-55b50896f266
       - e972b8cb-f66f-4792-84ae-67c202a36371
       - b3707296-2cac-4efd-a2e4-d137b110aad5
       - 5bfa9020-5db3-46c4-8be0-abefb83162f0
     metadata:
       status: pending
-      expanded: false
+      expanded: true
       deleted: false
       plugins: {}
       isBlueprint: true
@@ -35359,7 +35362,9 @@ nodes:
   7b3e923e-b465-4444-ae7d-7fe0e80e3235:
     id: 7b3e923e-b465-4444-ae7d-7fe0e80e3235
     content: Code review & refactor
-    children: []
+    children:
+      - 3999cfea-b344-4f92-b3ca-ffb9f740afc7
+      - 03f0a426-d21a-4ef9-9e80-c752dd18b4af
     metadata:
       status: pending
       isBlueprint: true
@@ -35452,8 +35457,8 @@ nodes:
     content: Feature development
     children:
       - f0c283a4-0167-45e8-b5e3-d780dd67e0cc
-      - 87a11a28-4295-467f-ac54-746692494413
       - 4c43c117-e89a-460c-9900-7ea15b8cc0e0
+      - 87a11a28-4295-467f-ac54-746692494413
       - 00714a63-f267-4ab1-a285-73ae4198eb42
       - b38966d3-b238-4d64-9eed-74d4ab983c28
       - 9a392715-9ea2-4269-b35c-812b8998e3ec
@@ -38149,56 +38154,6 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  3999cfea-b344-4f92-b3ca-ffb9f740afc7:
-    id: 3999cfea-b344-4f92-b3ca-ffb9f740afc7
-    content: There's a blur between execute and collaborate
-    children:
-      - 9b1484a5-b39f-4ece-be42-8ee29288c289
-      - 43db60c9-9262-44bd-bdf3-184eeb4a88fe
-      - 796b752c-1e78-4eb7-8ca5-0856c26e2ad2
-      - fec95767-3f85-4b19-8701-45264a0da512
-    metadata:
-      status: pending
-      expanded: false
-  9b1484a5-b39f-4ece-be42-8ee29288c289:
-    id: 9b1484a5-b39f-4ece-be42-8ee29288c289
-    content: And I think we can reduce to the same process
-    children: []
-    metadata:
-      status: pending
-  43db60c9-9262-44bd-bdf3-184eeb4a88fe:
-    id: 43db60c9-9262-44bd-bdf3-184eeb4a88fe
-    content: If execute, we still send the temporary file instructions but just ask to update the steps that were checked off
-    children: []
-    metadata:
-      status: pending
-  796b752c-1e78-4eb7-8ca5-0856c26e2ad2:
-    id: 796b752c-1e78-4eb7-8ca5-0856c26e2ad2
-    content: If collaborate, as normal
-    children: []
-    metadata:
-      status: pending
-  fec95767-3f85-4b19-8701-45264a0da512:
-    id: fec95767-3f85-4b19-8701-45264a0da512
-    content: Think about how this impacts the feedback panel
-    children:
-      - 520525f0-0345-42ee-8122-8e921d6f7d77
-      - de31759d-9ced-404e-97af-69b29c5bd375
-    metadata:
-      status: pending
-      expanded: false
-  520525f0-0345-42ee-8122-8e921d6f7d77:
-    id: 520525f0-0345-42ee-8122-8e921d6f7d77
-    content: Do we still need it ?
-    children: []
-    metadata:
-      status: pending
-  de31759d-9ced-404e-97af-69b29c5bd375:
-    id: de31759d-9ced-404e-97af-69b29c5bd375
-    content: Maybe we need it unless it's automated, in which case we can use inputs/outputs instead ?
-    children: []
-    metadata:
-      status: pending
   9692fa14-b407-4595-8af9-30f68e3b0d1a:
     id: 9692fa14-b407-4595-8af9-30f68e3b0d1a
     content: When there are a lot of contexts, the top of the context menu gets truncated
@@ -64145,6 +64100,2423 @@ nodes:
   2e369533-1c2d-457e-a599-2a36f967dd27:
     id: 2e369533-1c2d-457e-a599-2a36f967dd27
     content: Browser-based collaboration also calls showBrowser (line 257), so the previous-content tracking should handle that path too — though the browser panel was likely already open in that case.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3999cfea-b344-4f92-b3ca-ffb9f740afc7:
+    id: 3999cfea-b344-4f92-b3ca-ffb9f740afc7
+    content: Route terminal execute through the collaborate pipeline
+    children:
+      - e5ee1933-7c84-4f7d-b3ad-e2b054259c09
+      - 61189b6f-728e-4baa-a1f6-97428828204c
+      - 929ca439-ca19-4012-903e-285b848b82d5
+      - b19434aa-cdff-4d19-ae56-5bbdedbd22f6
+      - 15c4614f-0529-4b2b-abf3-72dfb76f6527
+      - 1b9317e0-eac5-461b-be73-e04d8cb8fb7b
+      - a9ae0f63-add3-48c3-96c4-dd28a72a5712
+    metadata:
+      status: completed
+      expanded: false
+      deleted: false
+      plugins: {}
+  769ac66d-14fa-4132-b5c0-e947bb6c2852:
+    id: 769ac66d-14fa-4132-b5c0-e947bb6c2852
+    content: "Only break it down if you need to.\_ If it comfortably fits in one, then output just one."
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  eaa4fec4-a897-46c1-9498-02fdfb5e442c:
+    id: eaa4fec4-a897-46c1-9498-02fdfb5e442c
+    content: I don't get the 'collaborate' highlight or feedback panel showing for checkpoint steps
+    children: []
+    metadata:
+      status: pending
+  e5ee1933-7c84-4f7d-b3ad-e2b054259c09:
+    id: e5ee1933-7c84-4f7d-b3ad-e2b054259c09
+    content: Problem statement
+    children:
+      - 0c71c6c7-050b-4741-a2b2-ae953195774d
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0c71c6c7-050b-4741-a2b2-ae953195774d:
+    id: 0c71c6c7-050b-4741-a2b2-ae953195774d
+    content: When a user sends content in execute mode to a terminal, the content is fired and forgotten — the AI does work but nothing comes back to the tree. The user must manually update node statuses afterward. The collaborate pipeline already has round-trip infrastructure (temp file, file watcher, feedback panel, accept/undo). Execute mode needs the same pipeline with a different prompt — one that instructs the AI to update statuses rather than rewrite content.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  61189b6f-728e-4baa-a1f6-97428828204c:
+    id: 61189b6f-728e-4baa-a1f6-97428828204c
+    content: Use cases
+    children:
+      - efdd39a7-28cf-49c4-b453-8c542b64a345
+      - 2023cd80-21af-4c2b-9cc2-5e3b5808ef8f
+      - 7946ce70-f96f-4807-851c-55e01fc89059
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  efdd39a7-28cf-49c4-b453-8c542b64a345:
+    id: efdd39a7-28cf-49c4-b453-8c542b64a345
+    content: 'Primary: User right-clicks a node with an execute-mode context → Send to terminal. Content is sent with temp file instructions. AI executes the task, writes the updated tree (with statuses checked off) to the temp file. Feedback panel opens for review. User accepts or cancels.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2023cd80-21af-4c2b-9cc2-5e3b5808ef8f:
+    id: 2023cd80-21af-4c2b-9cc2-5e3b5808ef8f
+    content: 'Secondary: Workflow execute step sends to terminal. Autonomous step: statuses auto-applied, workflow advances. Checkpoint step: feedback panel opens for validation before advancing.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7946ce70-f96f-4807-851c-55e01fc89059:
+    id: 7946ce70-f96f-4807-851c-55e01fc89059
+    content: 'Secondary: Manual send outside a workflow always opens the feedback panel for review.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  929ca439-ca19-4012-903e-285b848b82d5:
+    id: 929ca439-ca19-4012-903e-285b848b82d5
+    content: Acceptance criteria
+    children:
+      - b6a79b37-6a18-43a2-9ac5-0476f226037a
+      - 1d7bad44-c877-4086-a167-29efc056a111
+      - 955fe110-d238-452d-b04f-09ff7da1cae2
+      - 49863614-6991-4338-892b-197011a87eed
+      - 4b39fda0-c6ff-465d-b1d2-6cecdbdb908b
+      - 0633fcbd-f6d7-4bc0-8d73-4a479b9e3315
+      - dca7dd0f-e5b7-497f-99c4-525eca05fdcc
+      - 2c72ed85-e415-4fa7-a49b-1ba67509851c
+      - 680f8d43-c623-4402-a9f3-c2d0fcb1b62e
+      - cbb70842-8c2c-44a8-bbf2-8028fb905842
+      - 85a75801-c242-4b00-9744-c0ec666e45ae
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b6a79b37-6a18-43a2-9ac5-0476f226037a:
+    id: b6a79b37-6a18-43a2-9ac5-0476f226037a
+    content: Terminal execute mode sends content with temp file and file watcher — same mechanism as collaborate mode
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1d7bad44-c877-4086-a167-29efc056a111:
+    id: 1d7bad44-c877-4086-a167-29efc056a111
+    content: A terminal execute prompt template exists that includes temp file write instructions (same heredoc pattern as collaborate)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  955fe110-d238-452d-b04f-09ff7da1cae2:
+    id: 955fe110-d238-452d-b04f-09ff7da1cae2
+    content: The execute prompt instructs the AI to update statuses (check off, mark failed/undone) and optionally add items, but not delete existing items or rewrite their content
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  49863614-6991-4338-892b-197011a87eed:
+    id: 49863614-6991-4338-892b-197011a87eed
+    content: The output format is the same hierarchical markdown as collaborate — parseable by the existing feedback content processor
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4b39fda0-c6ff-465d-b1d2-6cecdbdb908b:
+    id: 4b39fda0-c6ff-465d-b1d2-6cecdbdb908b
+    content: File watcher picks up the AI's response and the feedback panel displays it — same tree view as collaborate
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0633fcbd-f6d7-4bc0-8d73-4a479b9e3315:
+    id: 0633fcbd-f6d7-4bc0-8d73-4a479b9e3315
+    content: Accept replaces the node using the existing accept command — same as collaborate, fully undoable
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  dca7dd0f-e5b7-497f-99c4-525eca05fdcc:
+    id: dca7dd0f-e5b7-497f-99c4-525eca05fdcc
+    content: For manual sends (not in a workflow), the feedback panel always opens for user review
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2c72ed85-e415-4fa7-a49b-1ba67509851c:
+    id: 2c72ed85-e415-4fa7-a49b-1ba67509851c
+    content: 'For workflow steps: checkpoint/manual shows feedback panel, autonomous auto-applies — same step type logic as collaborate'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  680f8d43-c623-4402-a9f3-c2d0fcb1b62e:
+    id: 680f8d43-c623-4402-a9f3-c2d0fcb1b62e
+    content: Browser execute mode is unchanged — still clipboard-based with no temp file
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cbb70842-8c2c-44a8-bbf2-8028fb905842:
+    id: cbb70842-8c2c-44a8-bbf2-8028fb905842
+    content: Existing collaborate mode behavior is completely unchanged
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  85a75801-c242-4b00-9744-c0ec666e45ae:
+    id: 85a75801-c242-4b00-9744-c0ec666e45ae
+    content: The existing browser execute prompt is unchanged
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b19434aa-cdff-4d19-ae56-5bbdedbd22f6:
+    id: b19434aa-cdff-4d19-ae56-5bbdedbd22f6
+    content: Constraints and assumptions
+    children:
+      - 7f69689b-2d9e-4ac2-9ba0-8346f49b6344
+      - d0094d12-701d-4793-8e11-8e54a60c086d
+      - 6a673406-e4e2-4afe-96a8-eef3b1b38c8e
+      - 240065c5-9b88-4c6d-89f9-86c28682c161
+      - e47d89bf-349a-4ed0-b3cd-1a4b668529e6
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7f69689b-2d9e-4ac2-9ba0-8346f49b6344:
+    id: 7f69689b-2d9e-4ac2-9ba0-8346f49b6344
+    content: The collaborate pipeline (temp file creation, file watcher, feedback panel, accept command, auto-accept for autonomous) already exists and is reused — not duplicated
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d0094d12-701d-4793-8e11-8e54a60c086d:
+    id: d0094d12-701d-4793-8e11-8e54a60c086d
+    content: The "no delete, no rewrite" constraint is enforced via prompt instructions only — no code-level enforcement. If the AI disobeys, the user rejects (checkpoint) or undoes (autonomous).
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6a673406-e4e2-4afe-96a8-eef3b1b38c8e:
+    id: 6a673406-e4e2-4afe-96a8-eef3b1b38c8e
+    content: The context menu send path currently calls `executeInTerminalWithContext` for execute mode (fire-and-forget) and `collaborateInTerminal` for collaborate mode. Execute needs to call the collaborate pipeline with an execute-specific prompt.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  240065c5-9b88-4c6d-89f9-86c28682c161:
+    id: 240065c5-9b88-4c6d-89f9-86c28682c161
+    content: The workflow `sendContentToTerminal` function currently has separate paths for collaborate and execute. The execute path needs to use the collaborate pipeline instead of fire-and-forget.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e47d89bf-349a-4ed0-b3cd-1a4b668529e6:
+    id: e47d89bf-349a-4ed0-b3cd-1a4b668529e6
+    content: Decomposition likely doesn't apply to execute mode — the prompt should not include decomposition instructions.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  15c4614f-0529-4b2b-abf3-72dfb76f6527:
+    id: 15c4614f-0529-4b2b-abf3-72dfb76f6527
+    content: Technical specifications
+    children:
+      - 6801dad7-5108-4b2b-8fde-c5fce7dc59c0
+      - 7af412e5-88a1-4b3e-8f48-4adddd17d4f7
+      - 2b5ca471-8ba4-463c-9049-0ae560ce06fe
+      - 72652567-a459-42cc-8ddf-14351b3e6293
+      - 4c2f3e12-48ec-416f-9e2f-c57201887e02
+      - f28d9a78-bd15-462c-861b-f9c6e496f1f8
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6801dad7-5108-4b2b-8fde-c5fce7dc59c0:
+    id: 6801dad7-5108-4b2b-8fde-c5fce7dc59c0
+    content: Summary
+    children:
+      - 370813fa-c895-4d9e-9f0e-b038ae12d63d
+      - 4dffb83c-89f5-4a5c-a59a-7d5b5e48b9c6
+      - 7ff4f6ae-9bab-493a-9e8b-e5191c249bdf
+      - 139fca9c-b6c8-4a6e-9ce2-38edb2bb0f32
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  370813fa-c895-4d9e-9f0e-b038ae12d63d:
+    id: 370813fa-c895-4d9e-9f0e-b038ae12d63d
+    content: 'Create a `buildTerminalExecutePrompt(context, content, outputFilePath)` function that mirrors `buildTerminalCollaboratePrompt` but with execute-specific instructions: update statuses, don''t delete items, don''t rewrite content'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4dffb83c-89f5-4a5c-a59a-7d5b5e48b9c6:
+    id: 4dffb83c-89f5-4a5c-a59a-7d5b5e48b9c6
+    content: In `useNodeContextMenu.ts`, change the execute path in `handleSendInTerminal` to call `collaborateInTerminal` instead of `executeInTerminalWithContext` — passing the execute prompt via a new mode-aware parameter or by making the collaborate pipeline mode-aware
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7ff4f6ae-9bab-493a-9e8b-e5191c249bdf:
+    id: 7ff4f6ae-9bab-493a-9e8b-e5191c249bdf
+    content: In `workflowExecutionActions.ts`, change `sendContentToTerminal` so the execute path uses `autonomousCollaborateInTerminal` instead of fire-and-forget `executeInTerminal` — mirroring what the collaborate path already does
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  139fca9c-b6c8-4a6e-9ce2-38edb2bb0f32:
+    id: 139fca9c-b6c8-4a6e-9ce2-38edb2bb0f32
+    content: The collaborate pipeline functions (`collaborateInTerminal`, `autonomousCollaborateInTerminal`) need to accept a mode parameter so they can select the correct prompt builder (collaborate vs execute)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7af412e5-88a1-4b3e-8f48-4adddd17d4f7:
+    id: 7af412e5-88a1-4b3e-8f48-4adddd17d4f7
+    content: Inputs, outputs, and key interfaces
+    children:
+      - 8c978a87-7dfe-4e19-937f-7f27c64fcd50
+      - df868168-2769-48b0-bc5d-2dd18d1ed25c
+      - 64ac1139-3570-49fd-9aa0-edd8eb902882
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8c978a87-7dfe-4e19-937f-7f27c64fcd50:
+    id: 8c978a87-7dfe-4e19-937f-7f27c64fcd50
+    content: 'Input: same as today — nodeId, terminalId, resolved context mode (''execute'' | ''collaborate'')'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  df868168-2769-48b0-bc5d-2dd18d1ed25c:
+    id: df868168-2769-48b0-bc5d-2dd18d1ed25c
+    content: 'Output: same as collaborate — temp file path written by AI, parsed by feedback content processor, displayed in feedback panel or auto-accepted'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  64ac1139-3570-49fd-9aa0-edd8eb902882:
+    id: 64ac1139-3570-49fd-9aa0-edd8eb902882
+    content: 'Key interface change: `collaborateInTerminal(nodeId, terminalId)` and `autonomousCollaborateInTerminal(nodeId, terminalId)` gain an optional `mode` parameter that selects the prompt template. Default remains ''collaborate'' for backward compatibility.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2b5ca471-8ba4-463c-9049-0ae560ce06fe:
+    id: 2b5ca471-8ba4-463c-9049-0ae560ce06fe
+    content: Constraints and non-functional requirements
+    children:
+      - 3ed496ef-8a4c-4265-9b4a-7feb6f2de103
+      - 7411ce9b-0388-4d66-94b8-42d9fe3d4e43
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3ed496ef-8a4c-4265-9b4a-7feb6f2de103:
+    id: 3ed496ef-8a4c-4265-9b4a-7feb6f2de103
+    content: No new IPC channels, no new file formats, no new UI components
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7411ce9b-0388-4d66-94b8-42d9fe3d4e43:
+    id: 7411ce9b-0388-4d66-94b8-42d9fe3d4e43
+    content: The existing feedback content processor must parse execute output without modification — the output format is identical markdown
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  72652567-a459-42cc-8ddf-14351b3e6293:
+    id: 72652567-a459-42cc-8ddf-14351b3e6293
+    content: Technical steps
+    children:
+      - cc4e7ff7-0f80-44b5-8f79-1e470e1309e5
+      - e33d3f66-6151-4683-94ae-1e73b3bd2a2f
+      - 447f6e94-46ff-462d-abf7-400be3c36f45
+      - c9e72b2c-6aa7-4b9f-9ece-c20430c3a7a6
+      - 20010132-d60a-4411-b611-4daf879c3e48
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cc4e7ff7-0f80-44b5-8f79-1e470e1309e5:
+    id: cc4e7ff7-0f80-44b5-8f79-1e470e1309e5
+    content: 'Step 1: Create `buildTerminalExecutePrompt` function (S)'
+    children:
+      - ef9b4017-550b-47a8-ba84-16c171b29b1d
+      - ca442d4a-ffb9-4251-906e-c34b529a6b72
+      - fb611c80-26ed-498d-b0e8-0657a3ee6b2c
+      - 37ea2614-d0ad-44f7-8b9f-6d28a858a97e
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ef9b4017-550b-47a8-ba84-16c171b29b1d:
+    id: ef9b4017-550b-47a8-ba84-16c171b29b1d
+    content: 'Mirrors `buildTerminalCollaboratePrompt` structure: takes context, content, outputFilePath'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ca442d4a-ffb9-4251-906e-c34b529a6b72:
+    id: ca442d4a-ffb9-4251-906e-c34b529a6b72
+    content: Uses the same heredoc file-write pattern and output format (`SINGLE_ROOT_OUTPUT_FORMAT`)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fb611c80-26ed-498d-b0e8-0657a3ee6b2c:
+    id: fb611c80-26ed-498d-b0e8-0657a3ee6b2c
+    content: 'Execute-specific instructions: "Treat everything in CONTENT as the prompt to execute. Update item statuses to reflect completed/failed/undone work. Do not delete existing items. Do not rewrite item content. You may add new items."'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  37ea2614-d0ad-44f7-8b9f-6d28a858a97e:
+    id: 37ea2614-d0ad-44f7-8b9f-6d28a858a97e
+    content: Does NOT include decomposition — always single-root format
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e33d3f66-6151-4683-94ae-1e73b3bd2a2f:
+    id: e33d3f66-6151-4683-94ae-1e73b3bd2a2f
+    content: 'Step 2: Make collaborate pipeline mode-aware (M)'
+    children:
+      - 0288c2e8-b977-46d8-bec2-67f1c81ef6ba
+      - 32beeae6-7b4f-4d86-bb00-5a7d19188257
+      - 77c54116-4cd9-4761-8ca6-ae490f28d7dc
+      - 81f3ec34-ca40-444f-bcaa-9b7247a72e84
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0288c2e8-b977-46d8-bec2-67f1c81ef6ba:
+    id: 0288c2e8-b977-46d8-bec2-67f1c81ef6ba
+    content: 'Add optional `mode: ContextMode` parameter to `collaborateInTerminal` and `autonomousCollaborateInTerminal` (default: ''collaborate'')'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  32beeae6-7b4f-4d86-bb00-5a7d19188257:
+    id: 32beeae6-7b4f-4d86-bb00-5a7d19188257
+    content: When mode is 'execute', call `buildTerminalExecutePrompt` instead of `buildTerminalCollaboratePrompt`
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  77c54116-4cd9-4761-8ca6-ae490f28d7dc:
+    id: 77c54116-4cd9-4761-8ca6-ae490f28d7dc
+    content: When mode is 'execute', skip decomposition check (always false)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  81f3ec34-ca40-444f-bcaa-9b7247a72e84:
+    id: 81f3ec34-ca40-444f-bcaa-9b7247a72e84
+    content: All other behavior (temp file, file watcher, state management, auto-accept) remains identical
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  447f6e94-46ff-462d-abf7-400be3c36f45:
+    id: 447f6e94-46ff-462d-abf7-400be3c36f45
+    content: 'Step 3: Reroute context menu execute path (S)'
+    children:
+      - 4ea06747-3e9c-4815-b9b9-7cbb7656ef49
+      - 5ae4dae8-030d-47dd-9296-f850f66d07d3
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4ea06747-3e9c-4815-b9b9-7cbb7656ef49:
+    id: 4ea06747-3e9c-4815-b9b9-7cbb7656ef49
+    content: In `handleSendInTerminal`, change the execute branch to call `collaborateInTerminal(node.id, terminalId, 'execute')` instead of `executeInTerminalWithContext(node.id)`
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5ae4dae8-030d-47dd-9296-f850f66d07d3:
+    id: 5ae4dae8-030d-47dd-9296-f850f66d07d3
+    content: The execute branch now needs to open a terminal and show the terminal panel, same as the collaborate branch
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c9e72b2c-6aa7-4b9f-9ece-c20430c3a7a6:
+    id: c9e72b2c-6aa7-4b9f-9ece-c20430c3a7a6
+    content: 'Step 4: Reroute workflow execute path (S)'
+    children:
+      - 555e879c-bb7d-421e-a765-a02bbde955a6
+      - 562f3780-a56f-4cbc-a4ab-44eab70c216f
+      - ec0d8937-9cdf-4480-8b7d-978595314e3d
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  555e879c-bb7d-421e-a765-a02bbde955a6:
+    id: 555e879c-bb7d-421e-a765-a02bbde955a6
+    content: In `sendContentToTerminal`, change the execute branch to call `autonomousCollaborateInTerminal(nodeId, terminalId, 'execute')` with the same `.then()/.catch()` pattern as the collaborate branch
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  562f3780-a56f-4cbc-a4ab-44eab70c216f:
+    id: 562f3780-a56f-4cbc-a4ab-44eab70c216f
+    content: Remove the fire-and-forget `buildExecutePrompt` + `executeInTerminal` path
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ec0d8937-9cdf-4480-8b7d-978595314e3d:
+    id: ec0d8937-9cdf-4480-8b7d-978595314e3d
+    content: The `appendNeedsReviewInstruction` can be preserved if needed — it appends to the context prefix before prompt building
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  20010132-d60a-4411-b611-4daf879c3e48:
+    id: 20010132-d60a-4411-b611-4daf879c3e48
+    content: 'Step 5: Clean up dead code (S)'
+    children:
+      - 9b418e2d-6286-4a9c-90a7-34610b1436e1
+      - 794c2b6b-0ef4-4fdc-bea9-281c3c801b09
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  9b418e2d-6286-4a9c-90a7-34610b1436e1:
+    id: 9b418e2d-6286-4a9c-90a7-34610b1436e1
+    content: '`executeInTerminalWithContext` in executeActions.ts becomes unused for terminal — evaluate whether to remove or keep for other uses'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  794c2b6b-0ef4-4fdc-bea9-281c3c801b09:
+    id: 794c2b6b-0ef4-4fdc-bea9-281c3c801b09
+    content: The terminal-specific `buildExecutePrompt` call chain in `sendContentToTerminal` is replaced — remove
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4c2f3e12-48ec-416f-9e2f-c57201887e02:
+    id: 4c2f3e12-48ec-416f-9e2f-c57201887e02
+    content: Risks and edge cases
+    children:
+      - cc018501-0bd7-4c59-bade-f383e1e8355f
+      - 7a89dd2c-8801-4df8-808f-91edb9b3c746
+      - 7a4bcbfe-3524-457f-94c2-4991a50a8339
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cc018501-0bd7-4c59-bade-f383e1e8355f:
+    id: cc018501-0bd7-4c59-bade-f383e1e8355f
+    content: If the AI doesn't follow temp file instructions in execute mode (same risk as collaborate), the workflow stalls. This is an existing known limitation, not new.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7a89dd2c-8801-4df8-808f-91edb9b3c746:
+    id: 7a89dd2c-8801-4df8-808f-91edb9b3c746
+    content: '`executeInTerminalWithContext` opens its own terminal. The rerouted path needs to handle terminal opening the same way. `collaborateInTerminal` expects a terminalId to be provided — the context menu handler already opens one, so this is compatible.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7a4bcbfe-3524-457f-94c2-4991a50a8339:
+    id: 7a4bcbfe-3524-457f-94c2-4991a50a8339
+    content: The `appendNeedsReviewInstruction` in the workflow execute path adds NeedsReview hook instructions. This needs to be preserved in the new path — pass it as part of the context prefix.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f28d9a78-bd15-462c-861b-f9c6e496f1f8:
+    id: f28d9a78-bd15-462c-861b-f9c6e496f1f8
+    content: Implementation plan
+    children:
+      - 5a80b04b-52f4-4b99-a51c-cfa7433ea910
+      - dd524467-3e79-497a-b73f-4fc22893e015
+      - 654a4331-1e8a-4096-8e71-08c1a73d8d32
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5a80b04b-52f4-4b99-a51c-cfa7433ea910:
+    id: 5a80b04b-52f4-4b99-a51c-cfa7433ea910
+    content: 'Single PR: prompt template → pipeline change → routing changes → cleanup'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  dd524467-3e79-497a-b73f-4fc22893e015:
+    id: dd524467-3e79-497a-b73f-4fc22893e015
+    content: Testing strategy
+    children:
+      - d24c36ae-9ae9-411d-a817-dc83d187e608
+      - 425fa43b-9fe4-408f-844d-325aa4f31daf
+      - 58100f6b-8ccd-4559-87ac-4b57b9f33887
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d24c36ae-9ae9-411d-a817-dc83d187e608:
+    id: d24c36ae-9ae9-411d-a817-dc83d187e608
+    content: 'Unit: new prompt builder function, mode parameter on collaborate functions'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  425fa43b-9fe4-408f-844d-325aa4f31daf:
+    id: 425fa43b-9fe4-408f-844d-325aa4f31daf
+    content: 'Integration: manual send with execute context opens feedback panel, workflow execute step auto-accepts'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  58100f6b-8ccd-4559-87ac-4b57b9f33887:
+    id: 58100f6b-8ccd-4559-87ac-4b57b9f33887
+    content: 'Manual: end-to-end with a real terminal AI — send execute, verify temp file written, feedback panel shows result'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  654a4331-1e8a-4096-8e71-08c1a73d8d32:
+    id: 654a4331-1e8a-4096-8e71-08c1a73d8d32
+    content: Steps 1 and 2 can be developed together. Steps 3 and 4 depend on step 2.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1b9317e0-eac5-461b-be73-e04d8cb8fb7b:
+    id: 1b9317e0-eac5-461b-be73-e04d8cb8fb7b
+    content: Test plan
+    children:
+      - 8ef3c0e0-b8dd-4711-845c-a48ad313ad79
+      - 2952bca8-3e5a-42cb-8d27-ee342f285c5c
+      - 5f388881-2194-44b0-a382-2f7a66156582
+      - a8785b62-e5d8-4923-ba67-84b904ddc55a
+      - 77362918-6971-443c-be63-6a6d87e6d05c
+      - 4aa0eb06-1af7-42ef-b171-4b7da567d6f6
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8ef3c0e0-b8dd-4711-845c-a48ad313ad79:
+    id: 8ef3c0e0-b8dd-4711-845c-a48ad313ad79
+    content: Scope and objectives
+    children:
+      - 5f8803ad-56c0-403e-aa07-62d2beb8a8f8
+      - 79866899-1521-45c7-8215-9751daf18498
+      - 4341e716-b216-4472-898d-2767dcfa2fe1
+      - 390fbcad-662e-4cd1-80f2-2d08e420580c
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5f8803ad-56c0-403e-aa07-62d2beb8a8f8:
+    id: 5f8803ad-56c0-403e-aa07-62d2beb8a8f8
+    content: Verify that terminal execute mode routes through the collaborate pipeline (temp file, file watcher, feedback panel)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  79866899-1521-45c7-8215-9751daf18498:
+    id: 79866899-1521-45c7-8215-9751daf18498
+    content: Verify that the execute prompt template produces correct file-write instructions
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4341e716-b216-4472-898d-2767dcfa2fe1:
+    id: 4341e716-b216-4472-898d-2767dcfa2fe1
+    content: Verify that existing collaborate mode behavior is unchanged
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  390fbcad-662e-4cd1-80f2-2d08e420580c:
+    id: 390fbcad-662e-4cd1-80f2-2d08e420580c
+    content: Verify that workflow execute steps use the new pipeline with correct step-type behavior
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2952bca8-3e5a-42cb-8d27-ee342f285c5c:
+    id: 2952bca8-3e5a-42cb-8d27-ee342f285c5c
+    content: Entry criteria
+    children:
+      - 7d18a69a-7400-4db5-a52a-6f738edf0594
+      - 68884c74-de20-4ade-8981-7d4f57e48e1a
+      - e93a1879-f2d6-468b-adab-1a346ee2beae
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7d18a69a-7400-4db5-a52a-6f738edf0594:
+    id: 7d18a69a-7400-4db5-a52a-6f738edf0594
+    content: '`buildTerminalExecutePrompt` function implemented'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  68884c74-de20-4ade-8981-7d4f57e48e1a:
+    id: 68884c74-de20-4ade-8981-7d4f57e48e1a
+    content: '`collaborateInTerminal` and `autonomousCollaborateInTerminal` accept a mode parameter'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e93a1879-f2d6-468b-adab-1a346ee2beae:
+    id: e93a1879-f2d6-468b-adab-1a346ee2beae
+    content: Context menu and workflow routing updated
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5f388881-2194-44b0-a382-2f7a66156582:
+    id: 5f388881-2194-44b0-a382-2f7a66156582
+    content: Exit criteria
+    children:
+      - 6abc58d6-034d-47dc-acbb-aa5f92ffefc2
+      - 1608e6e0-8d33-4bc2-9b4f-469237f94fa5
+      - c67aead3-8a84-4693-bddd-e357e942c84e
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6abc58d6-034d-47dc-acbb-aa5f92ffefc2:
+    id: 6abc58d6-034d-47dc-acbb-aa5f92ffefc2
+    content: All unit tests pass
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1608e6e0-8d33-4bc2-9b4f-469237f94fa5:
+    id: 1608e6e0-8d33-4bc2-9b4f-469237f94fa5
+    content: All manual test scenarios verified
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c67aead3-8a84-4693-bddd-e357e942c84e:
+    id: c67aead3-8a84-4693-bddd-e357e942c84e
+    content: No regressions in collaborate mode behavior
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a8785b62-e5d8-4923-ba67-84b904ddc55a:
+    id: a8785b62-e5d8-4923-ba67-84b904ddc55a
+    content: Unit tests
+    children:
+      - 441a4185-dea0-4614-b8f8-bcf291d61d48
+      - 54e7346c-2618-47f0-acd0-aa352417eb32
+      - 3335a57b-42cd-4781-9e01-2d28479bb850
+      - bd7fdd23-ede2-46fe-b69f-6f0b27b6cf59
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  441a4185-dea0-4614-b8f8-bcf291d61d48:
+    id: 441a4185-dea0-4614-b8f8-bcf291d61d48
+    content: Prompt builder
+    children:
+      - 8e682f3c-c435-4b73-9035-8bbf3a590a2b
+      - 3028ef56-4d09-4cc1-a49a-fbfd417dd971
+      - 342f31c0-5944-468d-8bd5-9a4d3fb91821
+      - 48cb0cf2-e049-4805-aac2-e9208077ab14
+      - 8d22e802-cc51-4206-a450-19863e567706
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8e682f3c-c435-4b73-9035-8bbf3a590a2b:
+    id: 8e682f3c-c435-4b73-9035-8bbf3a590a2b
+    content: '`buildTerminalExecutePrompt` produces output containing the file path and heredoc write command'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3028ef56-4d09-4cc1-a49a-fbfd417dd971:
+    id: 3028ef56-4d09-4cc1-a49a-fbfd417dd971
+    content: '`buildTerminalExecutePrompt` includes execute-specific instructions (update statuses, don''t delete, don''t rewrite)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  342f31c0-5944-468d-8bd5-9a4d3fb91821:
+    id: 342f31c0-5944-468d-8bd5-9a4d3fb91821
+    content: '`buildTerminalExecutePrompt` includes the SINGLE_ROOT_OUTPUT_FORMAT'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  48cb0cf2-e049-4805-aac2-e9208077ab14:
+    id: 48cb0cf2-e049-4805-aac2-e9208077ab14
+    content: '`buildTerminalExecutePrompt` does NOT include decomposition instructions regardless of node settings'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8d22e802-cc51-4206-a450-19863e567706:
+    id: 8d22e802-cc51-4206-a450-19863e567706
+    content: '`buildTerminalExecutePrompt` wraps context and content in the standard INSTRUCTIONS/CONTENT markers'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  54e7346c-2618-47f0-acd0-aa352417eb32:
+    id: 54e7346c-2618-47f0-acd0-aa352417eb32
+    content: Collaborate pipeline mode parameter
+    children:
+      - af21698a-09a3-4803-bceb-945816b9916b
+      - d83f2694-b012-491a-974e-e09be394b1e7
+      - fd33090d-4282-44ea-ae74-ca08a2d3075f
+      - 505723d8-ea57-434c-a04f-2268bb824554
+      - 4f876c87-4311-4661-b328-67ab9265a614
+      - 930a60cd-d94f-4f2c-bdff-31c01bb4f068
+      - 0de110d1-bc00-4581-b9d5-c0460230e1bc
+      - 7b796408-2755-444d-b78e-9b472bb32bf3
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  af21698a-09a3-4803-bceb-945816b9916b:
+    id: af21698a-09a3-4803-bceb-945816b9916b
+    content: '`collaborateInTerminal` with mode=''execute'' creates temp file and starts file watcher (same as collaborate)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d83f2694-b012-491a-974e-e09be394b1e7:
+    id: d83f2694-b012-491a-974e-e09be394b1e7
+    content: '`collaborateInTerminal` with mode=''execute'' sets collaboratingNodeId (same as collaborate)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fd33090d-4282-44ea-ae74-ca08a2d3075f:
+    id: fd33090d-4282-44ea-ae74-ca08a2d3075f
+    content: '`collaborateInTerminal` with mode=''execute'' calls `buildTerminalExecutePrompt` instead of `buildTerminalCollaboratePrompt`'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  505723d8-ea57-434c-a04f-2268bb824554:
+    id: 505723d8-ea57-434c-a04f-2268bb824554
+    content: '`collaborateInTerminal` with mode=''execute'' does not check decomposition'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4f876c87-4311-4661-b328-67ab9265a614:
+    id: 4f876c87-4311-4661-b328-67ab9265a614
+    content: '`collaborateInTerminal` with no mode parameter defaults to collaborate behavior (backward compatible)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  930a60cd-d94f-4f2c-bdff-31c01bb4f068:
+    id: 930a60cd-d94f-4f2c-bdff-31c01bb4f068
+    content: '`autonomousCollaborateInTerminal` with mode=''execute'' returns feedback file path (same as collaborate)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0de110d1-bc00-4581-b9d5-c0460230e1bc:
+    id: 0de110d1-bc00-4581-b9d5-c0460230e1bc
+    content: '`autonomousCollaborateInTerminal` with mode=''execute'' calls `buildTerminalExecutePrompt`'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7b796408-2755-444d-b78e-9b472bb32bf3:
+    id: 7b796408-2755-444d-b78e-9b472bb32bf3
+    content: '`autonomousCollaborateInTerminal` with no mode parameter defaults to collaborate behavior'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3335a57b-42cd-4781-9e01-2d28479bb850:
+    id: 3335a57b-42cd-4781-9e01-2d28479bb850
+    content: Context menu routing
+    children:
+      - 19f60830-376e-4dbc-bde8-11d445c7f762
+      - 83c122cc-9308-4807-babb-6666e2b6aad8
+      - e4a307ba-95ec-432e-b7bf-c93a063b1dc2
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  19f60830-376e-4dbc-bde8-11d445c7f762:
+    id: 19f60830-376e-4dbc-bde8-11d445c7f762
+    content: '`handleSendInTerminal` with execute mode calls `collaborateInTerminal` with mode=''execute'''
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  83c122cc-9308-4807-babb-6666e2b6aad8:
+    id: 83c122cc-9308-4807-babb-6666e2b6aad8
+    content: '`handleSendInTerminal` with execute mode does NOT call `executeInTerminalWithContext`'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e4a307ba-95ec-432e-b7bf-c93a063b1dc2:
+    id: e4a307ba-95ec-432e-b7bf-c93a063b1dc2
+    content: '`handleSendInTerminal` with collaborate mode still calls `collaborateInTerminal` without mode (unchanged)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bd7fdd23-ede2-46fe-b69f-6f0b27b6cf59:
+    id: bd7fdd23-ede2-46fe-b69f-6f0b27b6cf59
+    content: Workflow routing
+    children:
+      - d98210f4-7bd6-411e-b077-67c2a125d758
+      - 30283ed8-b9c8-491b-b617-d657975fb4bd
+      - 281c2aa2-9ddf-43eb-adf4-6060c5518512
+      - 20aa5581-32b8-4131-b928-89ce8bfd9bbd
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d98210f4-7bd6-411e-b077-67c2a125d758:
+    id: d98210f4-7bd6-411e-b077-67c2a125d758
+    content: '`sendContentToTerminal` with execute mode calls `autonomousCollaborateInTerminal` with mode=''execute'''
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  30283ed8-b9c8-491b-b617-d657975fb4bd:
+    id: 30283ed8-b9c8-491b-b617-d657975fb4bd
+    content: '`sendContentToTerminal` with execute mode does NOT call fire-and-forget `executeInTerminal`'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  281c2aa2-9ddf-43eb-adf4-6060c5518512:
+    id: 281c2aa2-9ddf-43eb-adf4-6060c5518512
+    content: '`sendContentToTerminal` with collaborate mode still calls `autonomousCollaborateInTerminal` without mode (unchanged)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  20aa5581-32b8-4131-b928-89ce8bfd9bbd:
+    id: 20aa5581-32b8-4131-b928-89ce8bfd9bbd
+    content: '`sendContentToTerminal` with execute mode preserves NeedsReview instruction in the context prefix'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  77362918-6971-443c-be63-6a6d87e6d05c:
+    id: 77362918-6971-443c-be63-6a6d87e6d05c
+    content: Manual tests
+    children:
+      - e5bf066b-363e-4494-bdaf-dc0710d23df0
+      - ef41e690-76a9-4d0e-8fc3-bbe3c3b89950
+      - 459f8cdc-2a2b-4754-8d3a-ad59b2b4550d
+      - 5a677eb3-014f-4e9b-bee5-a13b7b1b3388
+      - e4d3ed5a-3923-429b-8655-28b3183341a5
+      - a4bc65cc-3339-4735-b606-9e758f723880
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e5bf066b-363e-4494-bdaf-dc0710d23df0:
+    id: e5bf066b-363e-4494-bdaf-dc0710d23df0
+    content: Right-click a node with execute context → Send to terminal. Verify feedback panel opens after AI writes response.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ef41e690-76a9-4d0e-8fc3-bbe3c3b89950:
+    id: ef41e690-76a9-4d0e-8fc3-bbe3c3b89950
+    content: Accept the execute feedback. Verify node statuses updated, content unchanged, operation undoable.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  459f8cdc-2a2b-4754-8d3a-ad59b2b4550d:
+    id: 459f8cdc-2a2b-4754-8d3a-ad59b2b4550d
+    content: Cancel the execute feedback. Verify no changes applied.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5a677eb3-014f-4e9b-bee5-a13b7b1b3388:
+    id: 5a677eb3-014f-4e9b-bee5-a13b7b1b3388
+    content: Run a workflow with an autonomous execute step. Verify statuses auto-applied and workflow advances.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e4d3ed5a-3923-429b-8655-28b3183341a5:
+    id: e4d3ed5a-3923-429b-8655-28b3183341a5
+    content: Run a workflow with a checkpoint execute step. Verify feedback panel opens for validation.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a4bc65cc-3339-4735-b606-9e758f723880:
+    id: a4bc65cc-3339-4735-b606-9e758f723880
+    content: Send collaborate mode to terminal. Verify behavior unchanged from before.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4aa0eb06-1af7-42ef-b171-4b7da567d6f6:
+    id: 4aa0eb06-1af7-42ef-b171-4b7da567d6f6
+    content: Risks
+    children:
+      - 0beac993-27ea-49d2-add9-ba062317a079
+      - 7b4a32d8-31ed-4885-9074-d5cf50c68efb
+      - 60c10662-7308-4e9d-bc2d-37eaa1f85e8d
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0beac993-27ea-49d2-add9-ba062317a079:
+    id: 0beac993-27ea-49d2-add9-ba062317a079
+    content: 'Highest likelihood of defects: the routing changes in context menu and workflow execution. Two separate code paths need to converge — if one is missed, execute mode silently falls back to fire-and-forget with no error.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7b4a32d8-31ed-4885-9074-d5cf50c68efb:
+    id: 7b4a32d8-31ed-4885-9074-d5cf50c68efb
+    content: 'Highest impact if failed: workflow execute steps that previously advanced on hook Stop may now stall if the AI doesn''t write to the temp file. This changes the failure mode from "works but no feedback" to "stalls waiting for feedback."'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  60c10662-7308-4e9d-bc2d-37eaa1f85e8d:
+    id: 60c10662-7308-4e9d-bc2d-37eaa1f85e8d
+    content: The `appendNeedsReviewInstruction` integration needs verification — if it's lost in the rerouting, autonomous steps won't pause on NeedsReview events.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a9ae0f63-add3-48c3-96c4-dd28a72a5712:
+    id: a9ae0f63-add3-48c3-96c4-dd28a72a5712
+    content: Summary of undone items
+    children:
+      - 8448e75f-6862-4f7b-b8f9-3d39204c0bca
+      - 3d9df1f1-a311-4330-a4ec-fa6c0621fecb
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8448e75f-6862-4f7b-b8f9-3d39204c0bca:
+    id: 8448e75f-6862-4f7b-b8f9-3d39204c0bca
+    content: Manual testing not yet performed — requires a running app with a real terminal AI
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3d9df1f1-a311-4330-a4ec-fa6c0621fecb:
+    id: 3d9df1f1-a311-4330-a4ec-fa6c0621fecb
+    content: '`executeInTerminalWithContext` not removed from executeActions.ts — kept because it''s still used by the browser execute path'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  03f0a426-d21a-4ef9-9e80-c752dd18b4af:
+    id: 03f0a426-d21a-4ef9-9e80-c752dd18b4af
+    content: Route browser execute through the collaborate pipeline
+    children:
+      - c17509e0-f9ab-492a-8707-00bb2d076174
+      - 1f005394-aac7-4f45-8838-24e2e0a094df
+      - f10aea90-43e1-4a4f-b9aa-ab1debcddd4a
+      - 6fc4ac83-c616-4f06-8332-74044490b19f
+      - 1950d638-b8c8-4ee9-b8c4-19e6ceb301bd
+      - 414fc7d8-deb1-44ad-8d98-db04d93e2539
+      - f932c80e-54b9-4c91-a1ed-5d08672f52c9
+    metadata:
+      status: completed
+      expanded: false
+      deleted: false
+      plugins: {}
+  15974593-af5a-4c3e-b454-539a4f99d9c7:
+    id: 15974593-af5a-4c3e-b454-539a4f99d9c7
+    content: Being in another arbo tab prevents feedback from applying and workflows from advancing
+    children: []
+    metadata:
+      status: pending
+  c17509e0-f9ab-492a-8707-00bb2d076174:
+    id: c17509e0-f9ab-492a-8707-00bb2d076174
+    content: Problem statement
+    children:
+      - 40b139f3-86d7-4205-9094-f88cb6b715c2
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  40b139f3-86d7-4205-9094-f88cb6b715c2:
+    id: 40b139f3-86d7-4205-9094-f88cb6b715c2
+    content: When a user sends content in execute mode to the browser, the content is copied to the clipboard as a fire-and-forget prompt — the AI does work but nothing comes back to the tree. The user must manually update node statuses afterward. The browser collaborate pipeline already has a round-trip mechanism (clipboard copy with structured prompt, clipboard monitor watches for the AI's response, feedback panel displays result, accept/undo). Execute mode needs the same pipeline with an execute-specific prompt — one that instructs the AI to update statuses rather than rewrite content.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1f005394-aac7-4f45-8838-24e2e0a094df:
+    id: 1f005394-aac7-4f45-8838-24e2e0a094df
+    content: Use cases
+    children:
+      - 2c4ad01f-2797-4f2e-862c-bb452161567e
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2c4ad01f-2797-4f2e-862c-bb452161567e:
+    id: 2c4ad01f-2797-4f2e-862c-bb452161567e
+    content: 'Primary: User right-clicks a node with an execute-mode context → Send to browser. Content is copied to clipboard with execute-specific instructions. User pastes into browser AI, copies the AI''s response. Clipboard monitor detects the response, feedback panel opens for review. User accepts or cancels.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f10aea90-43e1-4a4f-b9aa-ab1debcddd4a:
+    id: f10aea90-43e1-4a4f-b9aa-ab1debcddd4a
+    content: Acceptance criteria
+    children:
+      - 75cbcf3e-9eb6-4e59-97cd-695d024db0a7
+      - 5424538b-36ea-4f3c-8cda-4692e8bb06f0
+      - d6c3b6ac-6c70-411a-b175-b8c7e371d05d
+      - 3f533f57-94ae-42ee-afb4-08dd7f199090
+      - 8972633d-633f-4e72-ad5e-4815c3cf9d44
+      - 15c851e3-e24a-45cf-bb8d-dba6c9152944
+      - b68fcf19-2861-4fe7-9ac1-a3d10c9dc396
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  75cbcf3e-9eb6-4e59-97cd-695d024db0a7:
+    id: 75cbcf3e-9eb6-4e59-97cd-695d024db0a7
+    content: Browser execute mode copies content to clipboard with execute-specific instructions and starts the clipboard monitor — same mechanism as browser collaborate mode
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5424538b-36ea-4f3c-8cda-4692e8bb06f0:
+    id: 5424538b-36ea-4f3c-8cda-4692e8bb06f0
+    content: The browser execute prompt instructs the AI to update statuses (check off, mark failed/undone) and optionally add items, but not delete existing items or rewrite their content
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d6c3b6ac-6c70-411a-b175-b8c7e371d05d:
+    id: d6c3b6ac-6c70-411a-b175-b8c7e371d05d
+    content: The output format instruction asks for a markdown code block — same as browser collaborate, parseable by the existing feedback content processor
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3f533f57-94ae-42ee-afb4-08dd7f199090:
+    id: 3f533f57-94ae-42ee-afb4-08dd7f199090
+    content: Clipboard monitor detects the AI's response and the feedback panel displays it — same tree view as collaborate
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8972633d-633f-4e72-ad5e-4815c3cf9d44:
+    id: 8972633d-633f-4e72-ad5e-4815c3cf9d44
+    content: Accept replaces the node using the existing accept command — same as collaborate, fully undoable
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  15c851e3-e24a-45cf-bb8d-dba6c9152944:
+    id: 15c851e3-e24a-45cf-bb8d-dba6c9152944
+    content: Existing browser collaborate mode behavior is completely unchanged
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b68fcf19-2861-4fe7-9ac1-a3d10c9dc396:
+    id: b68fcf19-2861-4fe7-9ac1-a3d10c9dc396
+    content: Terminal execute and collaborate modes are unchanged (already implemented)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6fc4ac83-c616-4f06-8332-74044490b19f:
+    id: 6fc4ac83-c616-4f06-8332-74044490b19f
+    content: Constraints and assumptions
+    children:
+      - 23f64841-4e75-4f1c-944d-81019178140b
+      - 61706ce9-ba9d-4a7b-9fe0-0bdb5f40faf6
+      - c165c513-6e62-43da-bca1-c309e31eeb2f
+      - acdfb794-5c14-42d7-8740-6cb5e21b9b22
+      - 57306d99-6e16-4bda-be1b-976543954092
+      - 3323396a-8514-4513-816e-06ce69a57a73
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  23f64841-4e75-4f1c-944d-81019178140b:
+    id: 23f64841-4e75-4f1c-944d-81019178140b
+    content: The browser collaborate pipeline (clipboard copy, clipboard monitor, feedback panel, accept command) already exists and is reused — not duplicated
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  61706ce9-ba9d-4a7b-9fe0-0bdb5f40faf6:
+    id: 61706ce9-ba9d-4a7b-9fe0-0bdb5f40faf6
+    content: The `collaborate` function in collaborateActions already handles the clipboard copy, collaboratingNodeId state, and browser panel display. It needs to accept a mode parameter to select the execute prompt.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c165c513-6e62-43da-bca1-c309e31eeb2f:
+    id: c165c513-6e62-43da-bca1-c309e31eeb2f
+    content: The context menu browser send path currently calls `executeInBrowser` for execute mode (fire-and-forget) and `collaborate` for collaborate mode. Execute needs to call the collaborate pipeline with an execute-specific prompt.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  acdfb794-5c14-42d7-8740-6cb5e21b9b22:
+    id: acdfb794-5c14-42d7-8740-6cb5e21b9b22
+    content: '`buildWebCollaboratePrompt` produces the clipboard content for collaborate mode. A parallel `buildWebExecutePrompt` is needed for execute mode, using the same output format instruction (markdown code block) but with execute-specific context instructions.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  57306d99-6e16-4bda-be1b-976543954092:
+    id: 57306d99-6e16-4bda-be1b-976543954092
+    content: Decomposition does not apply to execute mode.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3323396a-8514-4513-816e-06ce69a57a73:
+    id: 3323396a-8514-4513-816e-06ce69a57a73
+    content: After this change, `executeInBrowser` and `executeInTerminalWithContext` in executeActions.ts become dead code. However, they are also consumed by `uiService.ts` (keyboard shortcuts) and wired through `treeStore.ts`. The cleanup step must update all consumers.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1950d638-b8c8-4ee9-b8c4-19e6ceb301bd:
+    id: 1950d638-b8c8-4ee9-b8c4-19e6ceb301bd
+    content: Technical specifications
+    children:
+      - 1627be9a-f433-4890-8181-290b3e2b3b1d
+      - c8f7d38f-ad0a-4633-b9cf-92e7dd23360d
+      - e6fdbd91-1ebe-4b97-b784-48d25cbf8798
+      - b490dbe4-69d5-4c72-950a-491c198277c5
+      - ab0c5fef-9a1b-4e9e-ae0a-24c84e017066
+      - 149e8c5f-55ee-49ac-9563-ca54a1cdd7b3
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1627be9a-f433-4890-8181-290b3e2b3b1d:
+    id: 1627be9a-f433-4890-8181-290b3e2b3b1d
+    content: Summary
+    children:
+      - 34c7f7f4-c56d-498d-9fb2-cca272c7dd39
+      - 8130e28a-1871-45ed-8a53-c836deb95889
+      - e1b69a0e-f711-43cf-a7d7-2254c71fb5ef
+      - 277c5f35-8937-4a49-af14-36c35a55a163
+      - a9ee1bac-06bc-4103-9f69-d5ff6d4f672d
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  34c7f7f4-c56d-498d-9fb2-cca272c7dd39:
+    id: 34c7f7f4-c56d-498d-9fb2-cca272c7dd39
+    content: Create `buildWebExecutePrompt(context, content)` — mirrors `buildWebCollaboratePrompt` but uses execute-specific instructions via the existing `buildExecuteInstructions` function
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8130e28a-1871-45ed-8a53-c836deb95889:
+    id: 8130e28a-1871-45ed-8a53-c836deb95889
+    content: Add optional `mode` parameter to `collaborate` function in collaborateActions — when 'execute', use `buildWebExecutePrompt` instead of `buildWebCollaboratePrompt`, skip decomposition
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e1b69a0e-f711-43cf-a7d7-2254c71fb5ef:
+    id: e1b69a0e-f711-43cf-a7d7-2254c71fb5ef
+    content: In `useNodeContextMenu.ts`, change `handleSendInBrowser` execute branch to call `collaborate(node.id, 'execute')` instead of `executeInBrowser(node.id)`
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  277c5f35-8937-4a49-af14-36c35a55a163:
+    id: 277c5f35-8937-4a49-af14-36c35a55a163
+    content: In `uiService.ts`, update keyboard shortcut handlers to route through the collaborate pipeline with mode parameter instead of calling executeInBrowser/executeInTerminalWithContext
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a9ee1bac-06bc-4103-9f69-d5ff6d4f672d:
+    id: a9ee1bac-06bc-4103-9f69-d5ff6d4f672d
+    content: Remove `executeActions.ts` entirely — move `DEFAULT_EXECUTE_CONTEXT` to collaborateActions where it is already imported
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c8f7d38f-ad0a-4633-b9cf-92e7dd23360d:
+    id: c8f7d38f-ad0a-4633-b9cf-92e7dd23360d
+    content: Inputs, outputs, and key interfaces
+    children:
+      - c9c97e84-90ae-440a-9012-8079e05e7b75
+      - 8ddcc94c-5c10-4632-b86c-14b877d706e4
+      - eefb5cbb-c5c0-46e3-a527-bbf067f18a70
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c9c97e84-90ae-440a-9012-8079e05e7b75:
+    id: c9c97e84-90ae-440a-9012-8079e05e7b75
+    content: 'Input: nodeId and mode (''execute'' | ''collaborate'')'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8ddcc94c-5c10-4632-b86c-14b877d706e4:
+    id: 8ddcc94c-5c10-4632-b86c-14b877d706e4
+    content: 'Output: same as collaborate — clipboard content copied, clipboard monitor started, feedback panel displays result on paste-back'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  eefb5cbb-c5c0-46e3-a527-bbf067f18a70:
+    id: eefb5cbb-c5c0-46e3-a527-bbf067f18a70
+    content: 'Key interface change: `collaborate(nodeId)` gains an optional `mode` parameter. Default remains ''collaborate'' for backward compatibility.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e6fdbd91-1ebe-4b97-b784-48d25cbf8798:
+    id: e6fdbd91-1ebe-4b97-b784-48d25cbf8798
+    content: Constraints and non-functional requirements
+    children:
+      - 372a604e-235c-4fe5-ac2e-d790fecd7273
+      - cb3acb5d-8034-45c6-95e9-3d9b5202e9be
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  372a604e-235c-4fe5-ac2e-d790fecd7273:
+    id: 372a604e-235c-4fe5-ac2e-d790fecd7273
+    content: No new IPC channels, no new file formats, no new UI components
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cb3acb5d-8034-45c6-95e9-3d9b5202e9be:
+    id: cb3acb5d-8034-45c6-95e9-3d9b5202e9be
+    content: The existing feedback content processor must parse execute output without modification — the output format is identical markdown
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b490dbe4-69d5-4c72-950a-491c198277c5:
+    id: b490dbe4-69d5-4c72-950a-491c198277c5
+    content: Technical steps
+    children:
+      - 2f432838-766b-4645-aeec-58bc3e12ee6c
+      - bd5187bd-e818-4b62-942d-bc404c8b594a
+      - 89f03c17-250d-4519-98ae-4818d9897985
+      - 16dde8e0-94bb-46f7-8e01-45bfd20ab98e
+      - ee4a69f0-625b-4708-9c2e-deb6f3f076dd
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2f432838-766b-4645-aeec-58bc3e12ee6c:
+    id: 2f432838-766b-4645-aeec-58bc3e12ee6c
+    content: 'Step 1: Create `buildWebExecutePrompt` function (S)'
+    children:
+      - 1ffb29d6-23cf-4e38-80f1-3f2ac810d9ec
+      - 937761cb-7c00-48d1-a571-ba72aa76b10c
+      - bc0eebbb-99c4-4e60-9531-31ccc7eb74cd
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1ffb29d6-23cf-4e38-80f1-3f2ac810d9ec:
+    id: 1ffb29d6-23cf-4e38-80f1-3f2ac810d9ec
+    content: 'Mirrors `buildWebCollaboratePrompt` structure: takes context, content'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  937761cb-7c00-48d1-a571-ba72aa76b10c:
+    id: 937761cb-7c00-48d1-a571-ba72aa76b10c
+    content: 'Reuses the existing `buildExecuteInstructions` function with a clipboard output target: "Output the complete updated list in a markdown code block."'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bc0eebbb-99c4-4e60-9531-31ccc7eb74cd:
+    id: bc0eebbb-99c4-4e60-9531-31ccc7eb74cd
+    content: Does NOT include decomposition — always single-root format
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bd5187bd-e818-4b62-942d-bc404c8b594a:
+    id: bd5187bd-e818-4b62-942d-bc404c8b594a
+    content: 'Step 2: Make `collaborate` function mode-aware (S)'
+    children:
+      - 61627b8a-4a44-48c4-abc9-73adc054e08a
+      - a67743f1-ad71-4873-a335-8821850ad7b1
+      - 42cedf0f-6565-4d02-bec6-70cf2de9ff9c
+      - 2cd6e24a-7e9a-439b-be02-3db4cd5456e7
+      - 9ef63852-9716-45ab-97eb-80098003cf7b
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  61627b8a-4a44-48c4-abc9-73adc054e08a:
+    id: 61627b8a-4a44-48c4-abc9-73adc054e08a
+    content: 'Add optional `mode: ''collaborate'' | ''execute''` parameter to `collaborate` (default: ''collaborate'')'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a67743f1-ad71-4873-a335-8821850ad7b1:
+    id: a67743f1-ad71-4873-a335-8821850ad7b1
+    content: When mode is 'execute', call `buildWebExecutePrompt` instead of `buildWebCollaboratePrompt`
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  42cedf0f-6565-4d02-bec6-70cf2de9ff9c:
+    id: 42cedf0f-6565-4d02-bec6-70cf2de9ff9c
+    content: When mode is 'execute', skip decomposition check (always false)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2cd6e24a-7e9a-439b-be02-3db4cd5456e7:
+    id: 2cd6e24a-7e9a-439b-be02-3db4cd5456e7
+    content: All other behavior (clipboard copy, collaboratingNodeId, browser panel, clipboard monitor) remains identical
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9ef63852-9716-45ab-97eb-80098003cf7b:
+    id: 9ef63852-9716-45ab-97eb-80098003cf7b
+    content: 'Update toast message: execute mode should say "Copied to clipboard — paste into the browser, then copy the response." (same as collaborate, since user now needs to copy the response back)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  89f03c17-250d-4519-98ae-4818d9897985:
+    id: 89f03c17-250d-4519-98ae-4818d9897985
+    content: 'Step 3: Reroute context menu browser execute path (S)'
+    children:
+      - 523d0507-fd03-41a3-a4ab-b8a81450a0c4
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  523d0507-fd03-41a3-a4ab-b8a81450a0c4:
+    id: 523d0507-fd03-41a3-a4ab-b8a81450a0c4
+    content: 'In `handleSendInBrowser`, replace the execute/collaborate branch with a single call: `collaborate(node.id, mode)`'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  16dde8e0-94bb-46f7-8e01-45bfd20ab98e:
+    id: 16dde8e0-94bb-46f7-8e01-45bfd20ab98e
+    content: 'Step 4: Reroute keyboard shortcut execute paths (S)'
+    children:
+      - 8057c816-cf8f-4f64-92aa-98b4ed28fbc9
+      - b60cfa08-98d7-4dc1-b791-9f458bf7769f
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8057c816-cf8f-4f64-92aa-98b4ed28fbc9:
+    id: 8057c816-cf8f-4f64-92aa-98b4ed28fbc9
+    content: In `uiService.ts`, update the `executeInBrowser` handler to call `collaborate(nodeId, 'execute')` instead
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b60cfa08-98d7-4dc1-b791-9f458bf7769f:
+    id: b60cfa08-98d7-4dc1-b791-9f458bf7769f
+    content: In `uiService.ts`, update the `executeInTerminalWithContext` handler to call `collaborateInTerminal(nodeId, terminalId, 'execute')` instead
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ee4a69f0-625b-4708-9c2e-deb6f3f076dd:
+    id: ee4a69f0-625b-4708-9c2e-deb6f3f076dd
+    content: 'Step 5: Remove executeActions.ts and clean up (S)'
+    children:
+      - 934a3a22-fc58-4620-9be4-f8e4b3ff2245
+      - 6c533c4f-0c6a-4a8f-8808-0270519c1080
+      - 74f42ebd-8612-46ff-947e-b1d62ca70fb5
+      - f2300f18-9010-4c7c-b658-a340c492ee99
+      - 598cea06-a946-4806-98ab-f0c7e76ed286
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  934a3a22-fc58-4620-9be4-f8e4b3ff2245:
+    id: 934a3a22-fc58-4620-9be4-f8e4b3ff2245
+    content: Move `DEFAULT_EXECUTE_CONTEXT` constant to collaborateActions.ts (it is already imported there)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6c533c4f-0c6a-4a8f-8808-0270519c1080:
+    id: 6c533c4f-0c6a-4a8f-8808-0270519c1080
+    content: Delete `executeActions.ts`
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  74f42ebd-8612-46ff-947e-b1d62ca70fb5:
+    id: 74f42ebd-8612-46ff-947e-b1d62ca70fb5
+    content: Remove `ExecuteActions` interface and `createExecuteActions` from `treeStore.ts`
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f2300f18-9010-4c7c-b658-a340c492ee99:
+    id: f2300f18-9010-4c7c-b658-a340c492ee99
+    content: Remove `executeInBrowser` and `executeInTerminalWithContext` from the store actions type
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  598cea06-a946-4806-98ab-f0c7e76ed286:
+    id: 598cea06-a946-4806-98ab-f0c7e76ed286
+    content: Clean up any remaining imports referencing executeActions
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ab0c5fef-9a1b-4e9e-ae0a-24c84e017066:
+    id: ab0c5fef-9a1b-4e9e-ae0a-24c84e017066
+    content: Risks and edge cases
+    children:
+      - a747e67e-c93d-4f2a-8889-23a13c8dd119
+      - 1dd8c4f6-eb64-46ed-a0b9-0ea3b33a379b
+      - d55f1d08-436c-475a-8392-112d387f3488
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a747e67e-c93d-4f2a-8889-23a13c8dd119:
+    id: a747e67e-c93d-4f2a-8889-23a13c8dd119
+    content: '`uiService.ts` keyboard shortcuts call `executeInBrowser` and `executeInTerminalWithContext` directly — these must be rerouted before the file is deleted. Missing this would break keyboard shortcuts.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1dd8c4f6-eb64-46ed-a0b9-0ea3b33a379b:
+    id: 1dd8c4f6-eb64-46ed-a0b9-0ea3b33a379b
+    content: The toast message changes for browser execute — previously "paste into the browser to execute", now "paste into the browser, then copy the response." This is a minor UX change the user should expect.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d55f1d08-436c-475a-8392-112d387f3488:
+    id: d55f1d08-436c-475a-8392-112d387f3488
+    content: '`DEFAULT_EXECUTE_CONTEXT` must be moved before deleting the file. It is imported by collaborateActions and used in three places there.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  149e8c5f-55ee-49ac-9563-ca54a1cdd7b3:
+    id: 149e8c5f-55ee-49ac-9563-ca54a1cdd7b3
+    content: Implementation plan
+    children:
+      - b8a447c7-ecbc-4c31-8ee2-5ac43cad3bc4
+      - 33af8d40-6702-4be8-86e8-9c34b34be70e
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b8a447c7-ecbc-4c31-8ee2-5ac43cad3bc4:
+    id: b8a447c7-ecbc-4c31-8ee2-5ac43cad3bc4
+    content: 'Single changeset: prompt function → mode parameter → routing (menu + keyboard) → delete executeActions'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  33af8d40-6702-4be8-86e8-9c34b34be70e:
+    id: 33af8d40-6702-4be8-86e8-9c34b34be70e
+    content: Testing strategy
+    children:
+      - 2b81a712-b05d-4e5e-ac03-8ed252eb58ac
+      - cfcae12c-c90b-4841-8e10-29b090b6ef11
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2b81a712-b05d-4e5e-ac03-8ed252eb58ac:
+    id: 2b81a712-b05d-4e5e-ac03-8ed252eb58ac
+    content: 'Unit: `buildWebExecutePrompt` output, mode parameter on `collaborate`, context menu routing, keyboard shortcut routing'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cfcae12c-c90b-4841-8e10-29b090b6ef11:
+    id: cfcae12c-c90b-4841-8e10-29b090b6ef11
+    content: 'Manual: send execute to browser, paste into AI, copy response back, verify feedback panel shows result'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  414fc7d8-deb1-44ad-8d98-db04d93e2539:
+    id: 414fc7d8-deb1-44ad-8d98-db04d93e2539
+    content: Test plan
+    children:
+      - cc2a5b90-680c-4542-9d33-58e38f225d92
+      - 627a5342-47a5-4883-bcdd-d4eb079f09f6
+      - 9938f6bb-e0fe-46d2-9f64-f03058ff7fa1
+      - 60b43b77-d85a-47ee-9099-bcf624c80fb1
+      - 14be13c9-fd60-472b-a3c6-4a790ddae273
+      - b5f64773-4ab8-419b-bf28-c7930dd0b756
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cc2a5b90-680c-4542-9d33-58e38f225d92:
+    id: cc2a5b90-680c-4542-9d33-58e38f225d92
+    content: Scope and objectives
+    children:
+      - b66233cc-162c-4ac2-b6b0-bb800d46aca8
+      - 451238fa-d84b-42b8-84ec-a181334b28f5
+      - 87644192-1f17-48b1-8897-7086c7b9dc55
+      - b5f23aa7-d8ce-4898-8c48-8388896d9dea
+      - ab9e08da-e3e1-4bb4-9c29-6e4ccc7bb7d6
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b66233cc-162c-4ac2-b6b0-bb800d46aca8:
+    id: b66233cc-162c-4ac2-b6b0-bb800d46aca8
+    content: Verify that browser execute mode routes through the collaborate pipeline (clipboard copy, clipboard monitor, feedback panel)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  451238fa-d84b-42b8-84ec-a181334b28f5:
+    id: 451238fa-d84b-42b8-84ec-a181334b28f5
+    content: Verify that the web execute prompt produces correct execute-specific instructions with markdown code block output format
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  87644192-1f17-48b1-8897-7086c7b9dc55:
+    id: 87644192-1f17-48b1-8897-7086c7b9dc55
+    content: Verify that existing browser collaborate mode behavior is unchanged
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b5f23aa7-d8ce-4898-8c48-8388896d9dea:
+    id: b5f23aa7-d8ce-4898-8c48-8388896d9dea
+    content: Verify that keyboard shortcuts route through the collaborate pipeline for both execute and collaborate modes
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ab9e08da-e3e1-4bb4-9c29-6e4ccc7bb7d6:
+    id: ab9e08da-e3e1-4bb4-9c29-6e4ccc7bb7d6
+    content: Verify that executeActions.ts is fully removed with no broken references
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  627a5342-47a5-4883-bcdd-d4eb079f09f6:
+    id: 627a5342-47a5-4883-bcdd-d4eb079f09f6
+    content: Entry criteria
+    children:
+      - e550219e-daf7-4608-816d-aba3ceecd16c
+      - 6b0497e3-7cdb-46c8-a95b-a2575aff9102
+      - 85d024f6-0ece-42a5-96ef-03b3c53f9a6a
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e550219e-daf7-4608-816d-aba3ceecd16c:
+    id: e550219e-daf7-4608-816d-aba3ceecd16c
+    content: '`buildWebExecutePrompt` function implemented'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6b0497e3-7cdb-46c8-a95b-a2575aff9102:
+    id: 6b0497e3-7cdb-46c8-a95b-a2575aff9102
+    content: '`collaborate` function accepts a mode parameter'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  85d024f6-0ece-42a5-96ef-03b3c53f9a6a:
+    id: 85d024f6-0ece-42a5-96ef-03b3c53f9a6a
+    content: Context menu and keyboard shortcut routing updated
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9938f6bb-e0fe-46d2-9f64-f03058ff7fa1:
+    id: 9938f6bb-e0fe-46d2-9f64-f03058ff7fa1
+    content: Exit criteria
+    children:
+      - 7031e7da-8c04-43d0-b640-ca59b35a138c
+      - ee15a481-0b17-49ca-ac09-fbc484300414
+      - a6bc386b-c8da-47e1-8aa4-552e05d97e4b
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7031e7da-8c04-43d0-b640-ca59b35a138c:
+    id: 7031e7da-8c04-43d0-b640-ca59b35a138c
+    content: All unit tests pass
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ee15a481-0b17-49ca-ac09-fbc484300414:
+    id: ee15a481-0b17-49ca-ac09-fbc484300414
+    content: All manual test scenarios verified
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a6bc386b-c8da-47e1-8aa4-552e05d97e4b:
+    id: a6bc386b-c8da-47e1-8aa4-552e05d97e4b
+    content: No regressions in collaborate or terminal execute mode behavior
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  60b43b77-d85a-47ee-9099-bcf624c80fb1:
+    id: 60b43b77-d85a-47ee-9099-bcf624c80fb1
+    content: Unit tests
+    children:
+      - ceeb0613-a0c5-4aeb-bb4d-e30359ea68ab
+      - 64f704db-5428-4c3c-8790-bcdcbf5f779a
+      - 14f1fee8-4589-4b91-8163-9cd1d4ecf34e
+      - 1897bffe-89df-478c-b941-05de433a446b
+      - f3ed31fe-8652-44a7-b647-793a820cd952
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ceeb0613-a0c5-4aeb-bb4d-e30359ea68ab:
+    id: ceeb0613-a0c5-4aeb-bb4d-e30359ea68ab
+    content: Prompt builder
+    children:
+      - 77f5b41c-dc71-4ec9-8228-2f0bd02e99b0
+      - 01e524ec-706d-46ac-9cbf-c84a97c16b13
+      - 0f4786dd-b86a-4e65-bd89-71c7d5be407e
+      - ab9d4ef4-9fb6-425b-b9cc-7e2ae060497e
+      - 5b8ac784-9f38-4a36-9a50-5780eeef9763
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  77f5b41c-dc71-4ec9-8228-2f0bd02e99b0:
+    id: 77f5b41c-dc71-4ec9-8228-2f0bd02e99b0
+    content: '`buildWebExecutePrompt` includes execute-specific instructions (update statuses, don''t delete, don''t rewrite)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  01e524ec-706d-46ac-9cbf-c84a97c16b13:
+    id: 01e524ec-706d-46ac-9cbf-c84a97c16b13
+    content: '`buildWebExecutePrompt` includes the SINGLE_ROOT_OUTPUT_FORMAT'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0f4786dd-b86a-4e65-bd89-71c7d5be407e:
+    id: 0f4786dd-b86a-4e65-bd89-71c7d5be407e
+    content: '`buildWebExecutePrompt` includes "markdown code block" output instruction'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ab9d4ef4-9fb6-425b-b9cc-7e2ae060497e:
+    id: ab9d4ef4-9fb6-425b-b9cc-7e2ae060497e
+    content: '`buildWebExecutePrompt` does NOT include decomposition instructions'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5b8ac784-9f38-4a36-9a50-5780eeef9763:
+    id: 5b8ac784-9f38-4a36-9a50-5780eeef9763
+    content: '`buildWebExecutePrompt` wraps context and content in the standard INSTRUCTIONS/CONTENT markers'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  64f704db-5428-4c3c-8790-bcdcbf5f779a:
+    id: 64f704db-5428-4c3c-8790-bcdcbf5f779a
+    content: Collaborate function mode parameter
+    children:
+      - db4a6c06-dc07-4483-a5db-8766befa90e0
+      - 3ddd0844-1eb0-47e7-85a4-a17dcbd14e81
+      - 020217a2-2fb9-4de8-bed7-2e05d8618bf4
+      - 2b8f0dd1-449e-485e-a203-34c3f3bfe22e
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  db4a6c06-dc07-4483-a5db-8766befa90e0:
+    id: db4a6c06-dc07-4483-a5db-8766befa90e0
+    content: '`collaborate` with mode=''execute'' copies execute-specific prompt to clipboard'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3ddd0844-1eb0-47e7-85a4-a17dcbd14e81:
+    id: 3ddd0844-1eb0-47e7-85a4-a17dcbd14e81
+    content: '`collaborate` with mode=''execute'' sets collaboratingNodeId (same as collaborate)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  020217a2-2fb9-4de8-bed7-2e05d8618bf4:
+    id: 020217a2-2fb9-4de8-bed7-2e05d8618bf4
+    content: '`collaborate` with mode=''execute'' does not check decomposition'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2b8f0dd1-449e-485e-a203-34c3f3bfe22e:
+    id: 2b8f0dd1-449e-485e-a203-34c3f3bfe22e
+    content: '`collaborate` with no mode parameter defaults to collaborate behavior (backward compatible)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  14f1fee8-4589-4b91-8163-9cd1d4ecf34e:
+    id: 14f1fee8-4589-4b91-8163-9cd1d4ecf34e
+    content: Context menu routing
+    children:
+      - cbe29ec5-eb08-4039-9165-59b76f06fed2
+      - 52414667-185d-4ddf-92a3-8312785432fb
+      - be015f90-48ae-4260-9516-b0c238066191
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cbe29ec5-eb08-4039-9165-59b76f06fed2:
+    id: cbe29ec5-eb08-4039-9165-59b76f06fed2
+    content: '`handleSendInBrowser` with execute mode calls `collaborate` with mode=''execute'''
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  52414667-185d-4ddf-92a3-8312785432fb:
+    id: 52414667-185d-4ddf-92a3-8312785432fb
+    content: '`handleSendInBrowser` with execute mode does NOT call `executeInBrowser`'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  be015f90-48ae-4260-9516-b0c238066191:
+    id: be015f90-48ae-4260-9516-b0c238066191
+    content: '`handleSendInBrowser` with collaborate mode still calls `collaborate` without mode (unchanged)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1897bffe-89df-478c-b941-05de433a446b:
+    id: 1897bffe-89df-478c-b941-05de433a446b
+    content: Keyboard shortcut routing
+    children:
+      - 9b9f89e8-2f4e-4de9-81cc-94873adfcd8a
+      - a1624b8e-8cd8-4869-a36a-c876430c62bd
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9b9f89e8-2f4e-4de9-81cc-94873adfcd8a:
+    id: 9b9f89e8-2f4e-4de9-81cc-94873adfcd8a
+    content: Browser execute keyboard shortcut calls `collaborate` with mode='execute' instead of `executeInBrowser`
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a1624b8e-8cd8-4869-a36a-c876430c62bd:
+    id: a1624b8e-8cd8-4869-a36a-c876430c62bd
+    content: Terminal execute keyboard shortcut calls `collaborateInTerminal` with mode='execute' instead of `executeInTerminalWithContext`
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f3ed31fe-8652-44a7-b647-793a820cd952:
+    id: f3ed31fe-8652-44a7-b647-793a820cd952
+    content: Dead code removal
+    children:
+      - a6e1d1ca-7b19-44c5-9b14-0e83f7d96921
+      - 156a1e65-9bbe-41c7-a500-1555ac4a25b3
+      - 4e20c924-ce84-47c5-b52a-5011cbde2cd9
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a6e1d1ca-7b19-44c5-9b14-0e83f7d96921:
+    id: a6e1d1ca-7b19-44c5-9b14-0e83f7d96921
+    content: '`executeActions.ts` no longer exists'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  156a1e65-9bbe-41c7-a500-1555ac4a25b3:
+    id: 156a1e65-9bbe-41c7-a500-1555ac4a25b3
+    content: No imports reference `executeActions` anywhere in the codebase
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4e20c924-ce84-47c5-b52a-5011cbde2cd9:
+    id: 4e20c924-ce84-47c5-b52a-5011cbde2cd9
+    content: '`treeStore.ts` no longer creates or exports execute actions'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  14be13c9-fd60-472b-a3c6-4a790ddae273:
+    id: 14be13c9-fd60-472b-a3c6-4a790ddae273
+    content: Manual tests
+    children:
+      - 7a87fd17-bcc0-44b3-903d-079e2bfe2a7f
+      - e8dc7af3-d25b-48c3-b581-960e199ec42a
+      - 37179f46-3bff-4293-8882-68b277f454ae
+      - 0dedfe48-2aec-400b-a161-e5a8b7977125
+      - 0f7742c1-1c87-4369-a377-8c584397fb48
+      - 0ebb7a54-7c4e-4eb5-81a1-539ce39d88d4
+      - ea37e8f6-1452-4f7c-b49b-da106dbca202
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7a87fd17-bcc0-44b3-903d-079e2bfe2a7f:
+    id: 7a87fd17-bcc0-44b3-903d-079e2bfe2a7f
+    content: Right-click a node with execute context → Send to browser. Verify content copied to clipboard with execute-specific instructions.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e8dc7af3-d25b-48c3-b581-960e199ec42a:
+    id: e8dc7af3-d25b-48c3-b581-960e199ec42a
+    content: Paste into browser AI, copy AI's response. Verify feedback panel opens with updated statuses.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  37179f46-3bff-4293-8882-68b277f454ae:
+    id: 37179f46-3bff-4293-8882-68b277f454ae
+    content: Accept the execute feedback. Verify node statuses updated, content unchanged, operation undoable.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0dedfe48-2aec-400b-a161-e5a8b7977125:
+    id: 0dedfe48-2aec-400b-a161-e5a8b7977125
+    content: Cancel the execute feedback. Verify no changes applied.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0f7742c1-1c87-4369-a377-8c584397fb48:
+    id: 0f7742c1-1c87-4369-a377-8c584397fb48
+    content: Send collaborate mode to browser. Verify behavior unchanged from before.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0ebb7a54-7c4e-4eb5-81a1-539ce39d88d4:
+    id: 0ebb7a54-7c4e-4eb5-81a1-539ce39d88d4
+    content: Use Ctrl+Shift+E keyboard shortcut with execute context. Verify same behavior as context menu send.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ea37e8f6-1452-4f7c-b49b-da106dbca202:
+    id: ea37e8f6-1452-4f7c-b49b-da106dbca202
+    content: Use Ctrl+E keyboard shortcut with execute context. Verify terminal execute still works (already implemented).
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b5f64773-4ab8-419b-bf28-c7930dd0b756:
+    id: b5f64773-4ab8-419b-bf28-c7930dd0b756
+    content: Risks
+    children:
+      - 1ab9dc76-a7d7-4771-8140-935559431868
+      - 61a1a561-f65f-401c-85fa-4951f668c110
+      - 92ddef90-6a86-49cc-90b5-a3112473788d
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1ab9dc76-a7d7-4771-8140-935559431868:
+    id: 1ab9dc76-a7d7-4771-8140-935559431868
+    content: 'Highest likelihood of defects: the keyboard shortcut routing in uiService.ts. This is a separate code path from the context menu and easy to miss.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  61a1a561-f65f-401c-85fa-4951f668c110:
+    id: 61a1a561-f65f-401c-85fa-4951f668c110
+    content: 'Highest impact if failed: deleting executeActions.ts while uiService.ts still references it would cause a build failure — caught at compile time, not a runtime risk.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  92ddef90-6a86-49cc-90b5-a3112473788d:
+    id: 92ddef90-6a86-49cc-90b5-a3112473788d
+    content: The toast message change ("paste into the browser to execute" → "paste into the browser, then copy the response") is a minor UX shift that users will notice.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f932c80e-54b9-4c91-a1ed-5d08672f52c9:
+    id: f932c80e-54b9-4c91-a1ed-5d08672f52c9
+    content: Summary of undone items
+    children:
+      - 15440b46-bbb3-43d2-aca1-0a5a87b88a60
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  15440b46-bbb3-43d2-aca1-0a5a87b88a60:
+    id: 15440b46-bbb3-43d2-aca1-0a5a87b88a60
+    content: Manual testing not yet performed — requires a running app with a browser AI
     children: []
     metadata:
       status: pending

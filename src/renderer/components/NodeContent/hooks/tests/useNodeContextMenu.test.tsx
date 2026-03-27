@@ -387,7 +387,7 @@ describe('useNodeContextMenu', () => {
         sendItem!.onClick!();
       });
 
-      expect(mockCollaborateInTerminal).toHaveBeenCalledWith('test-node', 'terminal-1');
+      expect(mockCollaborateInTerminal).toHaveBeenCalledWith('test-node', 'terminal-1', 'collaborate');
     });
 
     it('should show toast when no panel is open', async () => {

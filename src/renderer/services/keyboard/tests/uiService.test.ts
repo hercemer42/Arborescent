@@ -75,7 +75,7 @@ describe('uiService (sendInBrowser hotkey)', () => {
       shiftKey: true,
     }));
 
-    expect(mockCollaborate).toHaveBeenCalledWith('node-1');
+    expect(mockCollaborate).toHaveBeenCalledWith('node-1', 'collaborate');
     cleanup();
   });
 });

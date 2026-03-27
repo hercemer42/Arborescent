@@ -41,6 +41,13 @@ vi.mock('../../services/workflowNotification', () => ({
   notifyWorkflowEvent: vi.fn(),
 }));
 
+vi.mock('@/utils/nodeHelpers', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('@/utils/nodeHelpers')>();
+  return {
+    ...actual,
+    resolveContextMode: () => 'execute',
+  };
+});
 
 type TestState = {
   nodes: Record<string, TreeNode>;
@@ -78,6 +85,7 @@ function createActions(stateRef: { current: TestState }) {
   const get = () => stateRef.current;
   const set = (partial: Partial<TestState>) => { stateRef.current = { ...stateRef.current, ...partial }; };
   const mockAutosave = vi.fn();
+  const mockAutonomousCollaborate = vi.fn().mockResolvedValue('/tmp/feedback.md');
   const mockVisualEffects = {
     flashNode: vi.fn(),
     scrollToNode: vi.fn(),
@@ -85,8 +93,9 @@ function createActions(stateRef: { current: TestState }) {
     clearDeleteAnimation: vi.fn(),
   };
   return {
-    actions: createWorkflowExecutionActions(get, set, mockAutosave, mockVisualEffects),
+    actions: createWorkflowExecutionActions(get, set, mockAutosave, mockVisualEffects, mockAutonomousCollaborate),
     mockAutosave,
+    mockAutonomousCollaborate,
     mockVisualEffects,
   };
 }
@@ -94,6 +103,7 @@ function createActions(stateRef: { current: TestState }) {
 describe('Integration: Workflow Execution', () => {
   let stateRef: { current: TestState };
   let actions: WorkflowExecutionActions;
+  let mockAutonomousCollaborate: ReturnType<typeof vi.fn>;
 
   beforeEach(() => {
     vi.clearAllMocks();
@@ -101,6 +111,7 @@ describe('Integration: Workflow Execution', () => {
     stateRef = { current: buildThreeStepWorkflow() };
     const created = createActions(stateRef);
     actions = created.actions;
+    mockAutonomousCollaborate = created.mockAutonomousCollaborate;
   });
 
   describe('full workflow traversal (autonomous → autonomous → manual)', () => {
@@ -113,7 +124,7 @@ describe('Integration: Workflow Execution', () => {
 
       expect(state().workflowExecutionStates['task'].state).toBe('running');
       expect(state().nodes['s1'].children).toContain('task');
-      expect(mockExecuteInTerminal).toHaveBeenCalledTimes(1);
+      expect(mockAutonomousCollaborate).toHaveBeenCalledTimes(1);
 
       actions.handleHookEvent({ session_id: 'session-1', hook_event_name: 'Stop' });
       vi.advanceTimersByTime(1500);
@@ -122,7 +133,7 @@ describe('Integration: Workflow Execution', () => {
       expect(state().nodes['s1'].children).not.toContain('task');
       expect(state().ancestorRegistry['task']).toEqual(['root', 'wf', 's2']);
       expect(state().workflowExecutionStates['task'].state).toBe('running');
-      expect(mockExecuteInTerminal).toHaveBeenCalledTimes(2);
+      expect(mockAutonomousCollaborate).toHaveBeenCalledTimes(2);
 
       actions.handleHookEvent({ session_id: 'session-1', hook_event_name: 'Stop' });
 
@@ -130,7 +141,7 @@ describe('Integration: Workflow Execution', () => {
       expect(state().nodes['s2'].children).not.toContain('task');
       expect(state().ancestorRegistry['task']).toEqual(['root', 'wf', 's3']);
       expect(state().workflowExecutionStates['task']).toBeUndefined();
-      expect(mockExecuteInTerminal).toHaveBeenCalledTimes(2);
+      expect(mockAutonomousCollaborate).toHaveBeenCalledTimes(2);
       vi.useRealTimers();
     });
 
@@ -256,12 +267,12 @@ describe('Integration: Workflow Execution', () => {
       expect(state().workflowExecutionStates['task']).toBeUndefined();
 
       // Must use startWorkflow again (not continueWorkflow — that's only for awaiting-validation)
-      mockExecuteInTerminal.mockClear();
+      mockAutonomousCollaborate.mockClear();
       actions.startWorkflow('task', 'term-2');
 
       expect(state().workflowExecutionStates['task'].state).toBe('running');
       expect(state().workflowExecutionStates['task'].terminalTabId).toBe('term-2');
-      expect(mockExecuteInTerminal).toHaveBeenCalledWith('term-2', expect.any(String));
+      expect(mockAutonomousCollaborate).toHaveBeenCalledWith('task', 'term-2', expect.any(String));
     });
 
     it('should handle app restart mid-workflow', () => {
@@ -518,11 +529,11 @@ describe('Integration: Workflow Execution', () => {
       expect(state().workflowExecutionStates['task']).toBeUndefined();
 
       // Restart — starts at current position (s2), not from beginning
-      mockExecuteInTerminal.mockClear();
+      mockAutonomousCollaborate.mockClear();
       actions.startWorkflow('task', 'term-1');
       expect(state().workflowExecutionStates['task'].state).toBe('running');
       expect(state().nodes['s2'].children).toContain('task');
-      expect(mockExecuteInTerminal).toHaveBeenCalledWith('term-1', expect.any(String));
+      expect(mockAutonomousCollaborate).toHaveBeenCalledWith('task', 'term-1', expect.any(String));
     });
   });
 });

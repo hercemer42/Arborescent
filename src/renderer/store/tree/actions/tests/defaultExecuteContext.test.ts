@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { DEFAULT_EXECUTE_CONTEXT } from '../executeActions';
+import { DEFAULT_EXECUTE_CONTEXT } from '../sendActions';
 
 // DEFAULT_REVIEW_CONTEXT is not exported, so we test DEFAULT_EXECUTE_CONTEXT independently
 // and verify it doesn't contain review-oriented instructions

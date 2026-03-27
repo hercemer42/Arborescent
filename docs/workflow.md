@@ -22,19 +22,12 @@ Before sending prompts, open the Terminal panel (`` Ctrl+` ``) or Browser panel 
 
 Right-click any branch → **Send**. The content is sent to whichever panel is currently active (terminal or browser). Hover the Send menu item to see the current mode and applied context name.
 
-What happens depends on the applied context's mode:
+The applied context's mode determines what the AI does with your content:
 
-**Execute** sends content for immediate action. Use this when you want the AI to do something — generate code, answer a question, run a task.
+- **Execute** — The AI acts on your content: updates item statuses (checked off, failed, undone) and can add new items, but does not rewrite what you wrote.
+- **Collaborate** — The AI reviews and rewrites your content: suggests improvements, reorganizes, and refines.
 
-- **Terminal**: Content goes directly to your terminal AI.
-- **Browser**: Content is copied to clipboard. Paste it into the browser.
-
-**Collaborate** initiates a feedback loop. Use this when you want to refine your thinking with AI assistance.
-
-- Content is sent with instructions for the AI to review and suggest changes.
-- **Terminal**: The AI response appears in the Feedback panel.
-- **Browser**: Content is copied to clipboard. Paste it into the browser, then copy the AI's response back.
-- Edit the response if needed, then Accept or Cancel.
+Both modes use the same feedback pipeline. The AI's response appears in the Feedback panel for you to review, then Accept or Cancel. Accept is undoable with `Ctrl+Z`.
 
 Two built-in contexts are available when no user-defined context is applied:
 

@@ -10,9 +10,8 @@ import { createNodeDeletionActions, NodeDeletionActions } from './actions/nodeDe
 import { createVisualEffectsActions, VisualEffectsActions, FlashIntensity } from './actions/visualEffectsActions';
 import { createSelectionActions, SelectionActions } from './actions/selectionActions';
 import { createHistoryActions, HistoryActions } from './actions/historyActions';
-import { createCollaborateActions, CollaborateActions } from './actions/collaborateActions';
+import { createSendActions, SendActions } from './actions/sendActions';
 import { createClipboardActions, ClipboardActions } from './actions/clipboardActions';
-import { createExecuteActions, ExecuteActions } from './actions/executeActions';
 import { createSummaryActions, SummaryActions } from './actions/summaryActions';
 import { createWorkflowActions, WorkflowActions } from './actions/workflowActions';
 import { createWorkflowExecutionActions, WorkflowExecutionActions, WorkflowExecutionEntry } from './actions/workflowExecutionActions';
@@ -61,7 +60,7 @@ export interface TreeState {
   workflowExecutionStates: Record<string, WorkflowExecutionEntry>;
   workflowSessionMap: Record<string, string>;
 
-  actions: NodeActions & ContextActions & BlueprintActions & NavigationActions & PersistenceActions & NodeMovementActions & NodeDeletionActions & VisualEffectsActions & SelectionActions & HistoryActions & CollaborateActions & ClipboardActions & ExecuteActions & SummaryActions & WorkflowActions & WorkflowExecutionActions;
+  actions: NodeActions & ContextActions & BlueprintActions & NavigationActions & PersistenceActions & NodeMovementActions & NodeDeletionActions & VisualEffectsActions & SelectionActions & HistoryActions & SendActions & ClipboardActions & SummaryActions & WorkflowActions & WorkflowExecutionActions;
 }
 
 const storageService = new StorageService();
@@ -76,8 +75,7 @@ export function createTreeStore(treeType: TreeType = 'workspace') {
     const historyActions = createHistoryActions(historyManager);
 
     const nodeDeletionActions = createNodeDeletionActions(get, set, persistenceActions.autoSave);
-    const collaborateActions = createCollaborateActions(get, set, visualEffectsActions, persistenceActions.autoSave);
-    const executeActions = createExecuteActions(get);
+    const sendActions = createSendActions(get, set, visualEffectsActions, persistenceActions.autoSave);
 
     const contextActions = createContextActions(get, set, persistenceActions.autoSave, historyActions.executeCommand);
 
@@ -134,12 +132,11 @@ export function createTreeStore(treeType: TreeType = 'workspace') {
         ...visualEffectsActions,
         ...selectionActions,
         ...historyActions,
-        ...collaborateActions,
+        ...sendActions,
         ...clipboardActions,
-        ...executeActions,
         ...createSummaryActions(get, set, persistenceActions.autoSave),
         ...createWorkflowActions(get, set, persistenceActions.autoSave, historyActions.executeCommand, visualEffectsActions),
-        ...createWorkflowExecutionActions(get, set, persistenceActions.autoSave, visualEffectsActions, collaborateActions.autonomousCollaborateInTerminal, historyActions.executeCommand),
+        ...createWorkflowExecutionActions(get, set, persistenceActions.autoSave, visualEffectsActions, sendActions.autonomousCollaborateInTerminal, historyActions.executeCommand),
       },
     };
   });

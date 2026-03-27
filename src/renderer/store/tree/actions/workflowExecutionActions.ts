@@ -18,24 +18,14 @@ import { parseFeedbackContent } from "../../../services/feedback/feedbackService
 import { AcceptFeedbackCommand } from "../commands/AcceptFeedbackCommand";
 import { StepType } from "../commands/SetStepTypeCommand";
 import {
-  buildContentWithContext,
   getAppliedContextIdWithInheritance,
   resolveContextMode,
   getContextDeclarations,
 } from "../../../utils/nodeHelpers";
-import { buildExecutePrompt } from "../../../utils/promptBuilder";
-import { executeInTerminal } from "../../../services/terminalExecution";
-import { DEFAULT_EXECUTE_CONTEXT } from "./executeActions";
 import { usePreferencesStore } from "../../preferences/preferencesStore";
 import { notifyWorkflowEvent } from "../../../services/workflowNotification";
 
 export type { WorkflowExecutionEntry };
-
-const NEEDS_REVIEW_INSTRUCTION = `
-IMPORTANT: If you encounter issues that require user input (ambiguities, spec problems, technical constraints, or anything that could compromise the quality of your output), run this command:
-curl -s -X POST http://127.0.0.1:\${ARBORESCENT_HOOK_PORT}/hook -H 'Authorization: Bearer '\${ARBORESCENT_AUTH_TOKEN} -H 'Content-Type: application/json' -d '{"session_id": "'\${CLAUDE_SESSION_ID}'", "hook_event_name": "NeedsReview", "terminal_id": "'\${ARBORESCENT_TERMINAL_ID}'"}'
-Then continue working and summarize your questions at the end of your output. The workflow will pause for review after you finish.
-Only use this if there are genuine issues — do not use it for minor concerns.`;
 
 export interface WorkflowExecutionActions {
   startWorkflow: (nodeId: string, terminalId: string | null) => void;
@@ -67,28 +57,13 @@ type StoreState = {
   workflowSessionMap: Record<string, string>;
 };
 
-function appendNeedsReviewInstruction(
-  context: string,
-  nodeId: string,
-  nodes: Record<string, TreeNode>,
-  ancestorRegistry: AncestorRegistry,
-): string {
-  const position = getWorkflowStepPosition(nodeId, nodes, ancestorRegistry);
-  if (!position) return context;
-
-  const stepNode = nodes[position.currentStepId];
-  const stepType = (stepNode?.metadata.stepType as StepType) || "manual";
-  if (stepType !== "autonomous") return context;
-
-  return context + "\n" + NEEDS_REVIEW_INSTRUCTION;
-}
 
 export const createWorkflowExecutionActions = (
   get: () => StoreState,
   set: (partial: Partial<StoreState>) => void,
   triggerAutosave?: () => void,
   visualEffects?: VisualEffectsActions,
-  autonomousCollaborateInTerminal?: (nodeId: string, terminalId: string) => Promise<string>,
+  autonomousCollaborateInTerminal?: (nodeId: string, terminalId: string, mode?: 'collaborate' | 'execute') => Promise<string>,
   executeCommand?: (command: { execute: () => void; undo: () => void; description?: string }) => void,
 ): WorkflowExecutionActions => {
   const DEFAULT_STEP_TIMEOUT_MINUTES = 15;
@@ -420,44 +395,17 @@ export const createWorkflowExecutionActions = (
       const contextDeclarations = getContextDeclarations(nodes);
       const mode = resolveContextMode(contextId, nodes, contextDeclarations);
 
-      if (mode === "collaborate" && autonomousCollaborateInTerminal) {
+      if (!autonomousCollaborateInTerminal) return;
+
+      if (mode === "collaborate") {
         setCollaboratingFlag(nodeId);
-        autonomousCollaborateInTerminal(nodeId, terminalId).then((feedbackFilePath) => {
-          registerAutonomousCollaboration(nodeId, terminalId, feedbackFilePath);
-        }).catch((error) => {
-          logger.error(
-            "Failed to start collaboration in terminal",
-            error as Error,
-            "WorkflowExecution",
-          );
-          stopWorkflow(nodeId);
-          useToastStore
-            .getState()
-            .addToast("Failed to send to terminal — workflow stopped", "error");
-          notifyWorkflowEvent("alert", "Workflow error", "Failed to send to terminal");
-        });
-        return;
       }
 
-      const { contextPrefix, nodeContent } = buildContentWithContext(
-        nodeId,
-        nodes,
-        ancestorRegistry,
-        true,
-      );
-
-      const effectiveContext = appendNeedsReviewInstruction(
-        contextPrefix || DEFAULT_EXECUTE_CONTEXT,
-        nodeId,
-        nodes,
-        ancestorRegistry,
-      );
-
-      const terminalContent = buildExecutePrompt(effectiveContext, nodeContent);
-
-      executeInTerminal(terminalId, terminalContent).catch((error) => {
+      autonomousCollaborateInTerminal(nodeId, terminalId, mode).then((feedbackFilePath) => {
+        registerAutonomousCollaboration(nodeId, terminalId, feedbackFilePath);
+      }).catch((error) => {
         logger.error(
-          "Failed to send content to terminal after advancement",
+          "Failed to send to terminal",
           error as Error,
           "WorkflowExecution",
         );

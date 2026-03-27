@@ -2,7 +2,7 @@ import { useEffect, useCallback, useSyncExternalStore } from 'react';
 import { useFilesStore } from '../../../store/files/filesStore';
 import { feedbackTreeStore } from '../../../store/feedback/feedbackTreeStore';
 import { storeManager } from '../../../store/storeManager';
-import type { ContentSource } from '../../../store/tree/actions/collaborateActions';
+import type { ContentSource } from '../../../store/tree/actions/sendActions';
 
 export function useFeedbackClipboard(collaboratingNodeId: string | null) {
   const activeFilePath = useFilesStore((state) => state.activeFilePath);

@@ -18,6 +18,7 @@
 - **Apply context submenu grouping**: The Apply context submenu now groups contexts into Collaborate and Execute sections with built-in defaults (Basic review, Basic execution). Built-in defaults are hidden when a context is inherited. Submenu scrolls when content exceeds viewport height
 - **Context indicator refactor**: Context declaration and applied context indicators consolidated with clearer visual hierarchy and tooltips
 - **Desktop notifications and sounds**: OS desktop notifications and audio alerts for workflow completion, errors, NeedsReview, and timeouts. Configurable via File → Preferences toggles for desktop notifications and notification sounds (both on by default). Notifications are suppressed when the app is focused.
+- **Execute mode feedback loop**: Terminal execute mode now uses the same round-trip pipeline as collaborate — the AI writes status updates to a temporary file, and the result appears in the Feedback panel for review (or auto-applies on autonomous workflow steps). Accept is undoable. The AI updates item statuses without rewriting your content.
 
 ### Bug fixes
 

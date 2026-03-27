@@ -73,6 +73,7 @@ describe('createWorkflowExecutionActions', () => {
   let setState: (partial: Partial<TestState>) => void;
   let actions: ReturnType<typeof createWorkflowExecutionActions>;
   let mockTriggerAutosave: ReturnType<typeof vi.fn>;
+  let mockAutonomousCollaborate: ReturnType<typeof vi.fn>;
   let mockVisualEffects: {
     flashNode: ReturnType<typeof vi.fn>;
     scrollToNode: ReturnType<typeof vi.fn>;
@@ -164,6 +165,7 @@ describe('createWorkflowExecutionActions', () => {
 
     vi.clearAllMocks();
     mockTriggerAutosave = vi.fn();
+    mockAutonomousCollaborate = vi.fn().mockResolvedValue('/tmp/feedback.md');
     mockVisualEffects = {
       flashNode: vi.fn(),
       scrollToNode: vi.fn(),
@@ -175,7 +177,8 @@ describe('createWorkflowExecutionActions', () => {
       () => state,
       setState,
       mockTriggerAutosave,
-      mockVisualEffects
+      mockVisualEffects,
+      mockAutonomousCollaborate,
     );
   });
 
@@ -235,7 +238,7 @@ describe('createWorkflowExecutionActions', () => {
 
     it('should send content to the terminal on start', () => {
       actions.startWorkflow('task-a', 'terminal-1');
-      expect(mockExecuteInTerminal).toHaveBeenCalledWith('terminal-1', expect.any(String));
+      expect(mockAutonomousCollaborate).toHaveBeenCalledWith('task-a', 'terminal-1', expect.any(String));
     });
 
     it('should trigger autosave after starting', () => {
@@ -368,7 +371,7 @@ describe('createWorkflowExecutionActions', () => {
       expect(state.workflowExecutionStates['task-a'].state).toBe('running');
 
       vi.advanceTimersByTime(1500);
-      expect(mockExecuteInTerminal).toHaveBeenCalled();
+      expect(mockAutonomousCollaborate).toHaveBeenCalled();
 
       vi.useRealTimers();
     });

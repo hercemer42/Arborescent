@@ -288,19 +288,15 @@ async function handleUIShortcuts(event: KeyboardEvent): Promise<void> {
 
     const mode: ContextMode = resolveContextMode(contextId, state.nodes, state.contextDeclarations);
 
-    if (mode === 'execute') {
-      state.actions.executeInTerminalWithContext(activeNodeId);
-    } else {
-      const { useTerminalStore } = await import('../../store/terminal/terminalStore');
-      const terminalId = await useTerminalStore.getState().openTerminal();
-      if (!terminalId) {
-        useToastStore.getState().addToast('No terminal available', 'error');
-        return;
-      }
-      const { usePanelStore } = await import('../../store/panel/panelStore');
-      usePanelStore.getState().showTerminal();
-      await state.actions.collaborateInTerminal(activeNodeId, terminalId);
+    const { useTerminalStore } = await import('../../store/terminal/terminalStore');
+    const terminalId = await useTerminalStore.getState().openTerminal();
+    if (!terminalId) {
+      useToastStore.getState().addToast('No terminal available', 'error');
+      return;
     }
+    const { usePanelStore } = await import('../../store/panel/panelStore');
+    usePanelStore.getState().showTerminal();
+    await state.actions.collaborateInTerminal(activeNodeId, terminalId, mode);
     return;
   }
 
@@ -322,11 +318,7 @@ async function handleUIShortcuts(event: KeyboardEvent): Promise<void> {
 
     const mode: ContextMode = resolveContextMode(contextId, state.nodes, state.contextDeclarations);
 
-    if (mode === 'execute') {
-      state.actions.executeInBrowser(activeNodeId);
-    } else {
-      state.actions.collaborate(activeNodeId);
-    }
+    state.actions.collaborate(activeNodeId, mode);
     return;
   }
 }

@@ -44,9 +44,6 @@ const mockBuildExecutePrompt = vi.hoisted(() =>
 vi.mock('@/utils/promptBuilder', () => ({
   buildExecutePrompt: mockBuildExecutePrompt,
 }));
-vi.mock('../executeActions', () => ({
-  DEFAULT_EXECUTE_CONTEXT: 'default execute context',
-}));
 
 vi.mock('@/store/preferences/preferencesStore', () => ({
   usePreferencesStore: {
@@ -81,6 +78,7 @@ describe('workflow advancement', () => {
   let setState: (partial: Partial<TestState>) => void;
   let actions: ReturnType<typeof createWorkflowExecutionActions>;
   let mockTriggerAutosave: ReturnType<typeof vi.fn>;
+  let mockAutonomousCollaborate: ReturnType<typeof vi.fn>;
   let mockVisualEffects: {
     flashNode: ReturnType<typeof vi.fn>;
     scrollToNode: ReturnType<typeof vi.fn>;
@@ -165,6 +163,7 @@ describe('workflow advancement', () => {
     mockBuildContentWithContext.mockReturnValue({ contextPrefix: '', nodeContent: 'mock content' });
     mockBuildExecutePrompt.mockImplementation((_context: string, content: string) => `execute: ${content}`);
     mockTriggerAutosave = vi.fn();
+    mockAutonomousCollaborate = vi.fn().mockResolvedValue('/tmp/feedback.md');
     mockVisualEffects = {
       flashNode: vi.fn(),
       scrollToNode: vi.fn(),
@@ -176,7 +175,8 @@ describe('workflow advancement', () => {
       () => state,
       setState,
       mockTriggerAutosave,
-      mockVisualEffects
+      mockVisualEffects,
+      mockAutonomousCollaborate,
     );
   });
 
@@ -252,7 +252,8 @@ describe('workflow advancement', () => {
       vi.advanceTimersByTime(1500);
 
       expect(state.nodes['step-2'].children).toContain('task-a');
-      expect(mockExecuteInTerminal).toHaveBeenCalledWith(
+      expect(mockAutonomousCollaborate).toHaveBeenCalledWith(
+        'task-a',
         'terminal-1',
         expect.any(String)
       );
@@ -267,26 +268,25 @@ describe('workflow advancement', () => {
       vi.advanceTimersByTime(1500);
 
       expect(state.ancestorRegistry['task-a']).toEqual(['root', 'workflow', 'step-2']);
-      expect(mockExecuteInTerminal).toHaveBeenCalled();
+      expect(mockAutonomousCollaborate).toHaveBeenCalled();
       vi.useRealTimers();
     });
 
-    it('should build structured prompt from node content and send to terminal', () => {
+    it('should route through collaborate pipeline instead of fire-and-forget', () => {
       vi.useFakeTimers();
       state.workflowExecutionStates['task-a'] = { state: 'running', terminalTabId: 'terminal-1' };
 
       actions.advanceNode('task-a');
       vi.advanceTimersByTime(1500);
 
-      expect(mockBuildContentWithContext).toHaveBeenCalled();
-      const sentContent = mockExecuteInTerminal.mock.calls[0][1] as string;
-      expect(sentContent).toContain('mock content');
+      expect(mockAutonomousCollaborate).toHaveBeenCalled();
+      expect(mockExecuteInTerminal).not.toHaveBeenCalled();
       vi.useRealTimers();
     });
 
     it('should pause workflow and show error toast when terminal write fails', async () => {
       vi.useFakeTimers();
-      mockExecuteInTerminal.mockRejectedValue(new Error('Terminal write failed'));
+      mockAutonomousCollaborate.mockRejectedValue(new Error('Terminal write failed'));
       state.workflowExecutionStates['task-a'] = { state: 'running', terminalTabId: 'terminal-1' };
 
       actions.advanceNode('task-a');
@@ -310,7 +310,7 @@ describe('workflow advancement', () => {
       actions.advanceNode('task-a');
 
       expect(state.workflowExecutionStates['task-a']).toBeUndefined();
-      expect(mockExecuteInTerminal).not.toHaveBeenCalled();
+      expect(mockAutonomousCollaborate).not.toHaveBeenCalled();
     });
   });
 
@@ -462,7 +462,7 @@ describe('workflow advancement', () => {
       vi.advanceTimersByTime(1500);
 
       expect(state.nodes['step-2'].children).toContain('task-a');
-      expect(mockExecuteInTerminal).toHaveBeenCalledWith('terminal-1', expect.any(String));
+      expect(mockAutonomousCollaborate).toHaveBeenCalledWith('task-a', 'terminal-1', expect.any(String));
       vi.useRealTimers();
     });
   });

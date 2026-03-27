@@ -50,40 +50,24 @@ export function useNodeContextMenu(node: TreeNode) {
     const isNodeBeingCollaborated = collaboratingNodeId === node.id;
 
     const handleSendInTerminal = async (mode: ContextMode) => {
-      if (mode === 'execute') {
-        try {
-          await actions.executeInTerminalWithContext(node.id);
-        } catch (error) {
-          logger.error('Failed to execute in terminal', error as Error, 'Context Menu');
-        }
-      } else {
-        const terminalId = await useTerminalStore.getState().openTerminal();
-        if (!terminalId) {
-          logger.error('Failed to create terminal', new Error('No terminal available'), 'Context Menu');
-          return;
-        }
-        try {
-          showTerminal();
-          await actions.collaborateInTerminal(node.id, terminalId);
-        } catch (error) {
-          logger.error('Failed to collaborate in terminal', error as Error, 'Context Menu');
-        }
+      const terminalId = await useTerminalStore.getState().openTerminal();
+      if (!terminalId) {
+        logger.error('Failed to create terminal', new Error('No terminal available'), 'Context Menu');
+        return;
+      }
+      try {
+        showTerminal();
+        await actions.collaborateInTerminal(node.id, terminalId, mode);
+      } catch (error) {
+        logger.error('Failed to send to terminal', error as Error, 'Context Menu');
       }
     };
 
     const handleSendInBrowser = async (mode: ContextMode) => {
-      if (mode === 'execute') {
-        try {
-          await actions.executeInBrowser(node.id);
-        } catch (error) {
-          logger.error('Failed to execute in browser', error as Error, 'Context Menu');
-        }
-      } else {
-        try {
-          await actions.collaborate(node.id);
-        } catch (error) {
-          logger.error('Failed to start collaboration', error as Error, 'Context Menu');
-        }
+      try {
+        await actions.collaborate(node.id, mode);
+      } catch (error) {
+        logger.error('Failed to send to browser', error as Error, 'Context Menu');
       }
     };
 

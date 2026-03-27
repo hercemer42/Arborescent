@@ -21,6 +21,13 @@ import { feedbackTreeStore } from '../../feedback/feedbackTreeStore';
 import { AncestorRegistry } from '../../../utils/ancestry';
 import { isDecompositionEnabled, getArchiveConfigForNode } from '../../../utils/workflowHelpers';
 
+export const DEFAULT_EXECUTE_CONTEXT = `You are executing a task. Please:
+- Follow the instructions in the content exactly as written
+- Produce the requested output directly without additional commentary
+- If the task is ambiguous, summarize them and ask for clarification before executing
+
+`;
+
 export type ContentSource = 'clipboard' | 'file' | 'restore';
 
 const DEFAULT_REVIEW_CONTEXT = `You are reviewing a hierarchical task list. Please:
@@ -76,9 +83,15 @@ function buildWebCollaboratePrompt(reviewContext: string, content: string, decom
   return `${instructions}\n\n${wrapContent(content)}`;
 }
 
-function buildTerminalCollaboratePrompt(reviewContext: string, content: string, outputFilePath: string, decomposition: boolean = false): string {
+function buildWebExecutePrompt(executeContext: string, content: string): string {
+  const outputTarget = 'Output the complete updated list in a markdown code block.';
+  const instructions = wrapInstructions(buildExecuteInstructions(executeContext, outputTarget));
+  return `${instructions}\n\n${wrapContent(content)}`;
+}
+
+function buildFileOutputTarget(outputFilePath: string): string {
   const outputDir = outputFilePath.substring(0, outputFilePath.lastIndexOf('/'));
-  const outputTarget = `IMPORTANT: Write your reviewed/updated list to this file: ${outputFilePath}
+  return `IMPORTANT: Write your reviewed/updated list to this file: ${outputFilePath}
 Do NOT make any changes to the code.
 Only write to the file once - fully consider your response beforehand.
 
@@ -88,8 +101,37 @@ mkdir -p ${outputDir} && cat <<'EOF' > ${outputFilePath}
 EOF
 
 Output the complete updated list.`;
+}
 
+function buildTerminalCollaboratePrompt(reviewContext: string, content: string, outputFilePath: string, decomposition: boolean = false): string {
+  const outputTarget = buildFileOutputTarget(outputFilePath);
   const instructions = wrapInstructions(buildCollaborateInstructions(reviewContext, outputTarget, decomposition));
+  return `${instructions}\n\n${wrapContent(content)}`;
+}
+
+const NEEDS_REVIEW_INSTRUCTION = `
+IMPORTANT: If you encounter issues that require user input (ambiguities, spec problems, technical constraints, or anything that could compromise the quality of your output), run this command:
+curl -s -X POST http://127.0.0.1:\${ARBORESCENT_HOOK_PORT}/hook -H 'Authorization: Bearer '\${ARBORESCENT_AUTH_TOKEN} -H 'Content-Type: application/json' -d '{"session_id": "'\${CLAUDE_SESSION_ID}'", "hook_event_name": "NeedsReview", "terminal_id": "'\${ARBORESCENT_TERMINAL_ID}'"}'
+Then continue working and summarize your questions at the end of your output. The workflow will pause for review after you finish.
+Only use this if there are genuine issues — do not use it for minor concerns.`;
+
+function buildExecuteInstructions(executeContext: string, outputTarget: string): string {
+  return `${BASE_INSTRUCTION_RULES}
+- Treat everything in CONTENT as the prompt to execute.
+- Output your result directly (no commentary about these instructions).
+
+CONTEXT:
+${executeContext.trimEnd()}
+
+${SINGLE_ROOT_OUTPUT_FORMAT}
+
+${outputTarget}
+${NEEDS_REVIEW_INSTRUCTION}`;
+}
+
+function buildTerminalExecutePrompt(executeContext: string, content: string, outputFilePath: string): string {
+  const outputTarget = buildFileOutputTarget(outputFilePath);
+  const instructions = wrapInstructions(buildExecuteInstructions(executeContext, outputTarget));
   return `${instructions}\n\n${wrapContent(content)}`;
 }
 
@@ -98,13 +140,13 @@ export interface ProcessFeedbackContentResult {
   nodeCount?: number;
 }
 
-export interface CollaborateActions {
+export interface SendActions {
   startCollaboration: (nodeId: string) => void;
   cancelCollaboration: () => void;
   acceptFeedback: (newRootNodeId: string, newNodesMap: Record<string, TreeNode>) => void;
-  collaborate: (nodeId: string) => Promise<void>;
-  collaborateInTerminal: (nodeId: string, terminalId: string) => Promise<void>;
-  autonomousCollaborateInTerminal: (nodeId: string, terminalId: string) => Promise<string>;
+  collaborate: (nodeId: string, mode?: 'collaborate' | 'execute') => Promise<void>;
+  collaborateInTerminal: (nodeId: string, terminalId: string, mode?: 'collaborate' | 'execute') => Promise<void>;
+  autonomousCollaborateInTerminal: (nodeId: string, terminalId: string, mode?: 'collaborate' | 'execute') => Promise<string>;
   restoreCollaborationState: () => Promise<void>;
   processIncomingFeedbackContent: (content: string, source: ContentSource, skipSave?: boolean) => Promise<ProcessFeedbackContentResult>;
   finishCancel: () => Promise<void>;
@@ -163,12 +205,12 @@ function applyBlueprintMetadataToFeedback(
   };
 }
 
-export function createCollaborateActions(
+export function createSendActions(
   get: () => TreeState,
   set: (partial: Partial<TreeState> | ((state: TreeState) => Partial<TreeState>)) => void,
   _visualEffects: VisualEffectsActions,
   autoSave: () => void
-): CollaborateActions {
+): SendActions {
   function setFeedbackTempFile(nodeId: string, tempFilePath: string | undefined): void {
     const nodes = get().nodes;
     const node = nodes[nodeId];
@@ -212,7 +254,7 @@ export function createCollaborateActions(
       if (!collaboratingNodeId || !state.nodes[collaboratingNodeId]) return;
 
       if (!state.actions?.executeCommand) {
-        logger.error('executeCommand not available', new Error('Cannot accept feedback without command system'), 'CollaborateActions');
+        logger.error('executeCommand not available', new Error('Cannot accept feedback without command system'), 'SendActions');
         return;
       }
 
@@ -221,18 +263,18 @@ export function createCollaborateActions(
       );
     },
 
-    collaborate: async (nodeId: string) => {
+    collaborate: async (nodeId: string, mode?: 'collaborate' | 'execute') => {
       const state = get();
 
       if (state.collaboratingNodeId) {
         showCollaborationInProgressError();
-        logger.error('Collaboration already in progress', new Error('Cannot start new collaboration'), 'CollaborateActions');
+        logger.error('Collaboration already in progress', new Error('Cannot start new collaboration'), 'SendActions');
         return;
       }
 
       const node = state.nodes[nodeId];
       if (!node) {
-        logger.error('Node not found', new Error(`Node ${nodeId} not found`), 'CollaborateActions');
+        logger.error('Node not found', new Error(`Node ${nodeId} not found`), 'SendActions');
         return;
       }
 
@@ -243,9 +285,14 @@ export function createCollaborateActions(
           state.ancestorRegistry
         );
 
-        const decomposition = isDecompositionEnabled(nodeId, state.nodes, state.ancestorRegistry);
-        const effectiveContext = contextPrefix || DEFAULT_REVIEW_CONTEXT;
-        const clipboardContent = buildWebCollaboratePrompt(effectiveContext, nodeContent, decomposition);
+        const isExecuteMode = mode === 'execute';
+        const clipboardContent = isExecuteMode
+          ? buildWebExecutePrompt(contextPrefix || DEFAULT_EXECUTE_CONTEXT, nodeContent)
+          : buildWebCollaboratePrompt(
+              contextPrefix || DEFAULT_REVIEW_CONTEXT,
+              nodeContent,
+              isDecompositionEnabled(nodeId, state.nodes, state.ancestorRegistry),
+            );
         await navigator.clipboard.writeText(clipboardContent);
 
         useToastStore.getState().addToast(
@@ -253,35 +300,35 @@ export function createCollaborateActions(
           'info'
         );
 
-        set({ collaboratingNodeId: nodeId, decomposition });
+        set({ collaboratingNodeId: nodeId, decomposition: isExecuteMode ? false : isDecompositionEnabled(nodeId, state.nodes, state.ancestorRegistry) });
         usePanelStore.getState().showBrowser();
         // Clipboard monitor is managed by useFeedbackClipboard based on collaboratingNodeId state
 
-        logger.info(`Started collaboration for node: ${nodeId}`, 'CollaborateActions');
+        logger.info(`Started collaboration for node: ${nodeId}`, 'SendActions');
       } catch (error) {
-        logger.error('Failed to start collaboration', error as Error, 'CollaborateActions');
+        logger.error('Failed to start collaboration', error as Error, 'SendActions');
         throw error;
       }
     },
 
-    collaborateInTerminal: async (nodeId: string, terminalId: string) => {
+    collaborateInTerminal: async (nodeId: string, terminalId: string, mode?: 'collaborate' | 'execute') => {
       const state = get();
 
       if (state.collaboratingNodeId) {
         showCollaborationInProgressError();
-        logger.error('Collaboration already in progress', new Error('Cannot start new collaboration'), 'CollaborateActions');
+        logger.error('Collaboration already in progress', new Error('Cannot start new collaboration'), 'SendActions');
         return;
       }
 
       if (!terminalId) {
         const error = new Error('No terminal selected');
-        logger.error('Cannot collaborate in terminal', error, 'CollaborateActions');
+        logger.error('Cannot collaborate in terminal', error, 'SendActions');
         throw error;
       }
 
       const node = state.nodes[nodeId];
       if (!node) {
-        logger.error('Node not found', new Error(`Node ${nodeId} not found`), 'CollaborateActions');
+        logger.error('Node not found', new Error(`Node ${nodeId} not found`), 'SendActions');
         return;
       }
 
@@ -295,22 +342,28 @@ export function createCollaborateActions(
           state.ancestorRegistry
         );
 
-        const decomposition = isDecompositionEnabled(nodeId, state.nodes, state.ancestorRegistry);
-        const effectiveContext = contextPrefix || DEFAULT_REVIEW_CONTEXT;
-        const terminalInstruction = buildTerminalCollaboratePrompt(effectiveContext, nodeContent, feedbackResponseFile, decomposition);
+        const isExecuteMode = mode === 'execute';
+        const terminalInstruction = isExecuteMode
+          ? buildTerminalExecutePrompt(contextPrefix || DEFAULT_EXECUTE_CONTEXT, nodeContent, feedbackResponseFile)
+          : buildTerminalCollaboratePrompt(
+              contextPrefix || DEFAULT_REVIEW_CONTEXT,
+              nodeContent,
+              feedbackResponseFile,
+              isDecompositionEnabled(nodeId, state.nodes, state.ancestorRegistry),
+            );
 
         await executeInTerminal(terminalId, terminalInstruction);
-        set({ collaboratingNodeId: nodeId, decomposition });
+        set({ collaboratingNodeId: nodeId, decomposition: isExecuteMode ? false : isDecompositionEnabled(nodeId, state.nodes, state.ancestorRegistry) });
         await window.electron.startFeedbackFileWatcher(feedbackResponseFile);
 
-        logger.info(`Started terminal collaboration for node: ${nodeId}, watching: ${feedbackResponseFile}`, 'CollaborateActions');
+        logger.info(`Started terminal collaboration for node: ${nodeId}, watching: ${feedbackResponseFile}`, 'SendActions');
       } catch (error) {
-        logger.error('Failed to collaborate in terminal', error as Error, 'CollaborateActions');
+        logger.error('Failed to collaborate in terminal', error as Error, 'SendActions');
         throw error;
       }
     },
 
-    autonomousCollaborateInTerminal: async (nodeId: string, terminalId: string): Promise<string> => {
+    autonomousCollaborateInTerminal: async (nodeId: string, terminalId: string, mode?: 'collaborate' | 'execute'): Promise<string> => {
       const state = get();
 
       if (!terminalId) {
@@ -331,14 +384,20 @@ export function createCollaborateActions(
         state.ancestorRegistry
       );
 
-      const decomposition = isDecompositionEnabled(nodeId, state.nodes, state.ancestorRegistry);
-      const effectiveContext = contextPrefix || DEFAULT_REVIEW_CONTEXT;
-      const terminalInstruction = buildTerminalCollaboratePrompt(effectiveContext, nodeContent, feedbackResponseFile, decomposition);
+      const isExecuteMode = mode === 'execute';
+      const terminalInstruction = isExecuteMode
+        ? buildTerminalExecutePrompt(contextPrefix || DEFAULT_EXECUTE_CONTEXT, nodeContent, feedbackResponseFile)
+        : buildTerminalCollaboratePrompt(
+            contextPrefix || DEFAULT_REVIEW_CONTEXT,
+            nodeContent,
+            feedbackResponseFile,
+            isDecompositionEnabled(nodeId, state.nodes, state.ancestorRegistry),
+          );
 
       await executeInTerminal(terminalId, terminalInstruction);
       await window.electron.startFeedbackFileWatcher(feedbackResponseFile);
 
-      logger.info(`Started autonomous collaboration for node: ${nodeId}, watching: ${feedbackResponseFile}`, 'CollaborateActions');
+      logger.info(`Started autonomous collaboration for node: ${nodeId}, watching: ${feedbackResponseFile}`, 'SendActions');
       return feedbackResponseFile;
     },
 
@@ -346,13 +405,13 @@ export function createCollaborateActions(
       const { nodes, currentFilePath } = get();
 
       if (!currentFilePath) {
-        logger.info('No current file path, skipping collaboration restore', 'CollaborateActions');
+        logger.info('No current file path, skipping collaboration restore', 'SendActions');
         return;
       }
 
       const collaboratingNode = findCollaboratingNode(nodes);
       if (!collaboratingNode) {
-        logger.info('No collaboration state to restore', 'CollaborateActions');
+        logger.info('No collaboration state to restore', 'SendActions');
         return;
       }
 
@@ -363,7 +422,7 @@ export function createCollaborateActions(
       const tempFileContent = await window.electron.readTempFile(tempFilePath);
       if (!tempFileContent) {
         // Temp file was cleaned up or never existed - clear stale metadata
-        logger.info(`Clearing stale feedback metadata (temp file not found): ${tempFilePath}`, 'CollaborateActions');
+        logger.info(`Clearing stale feedback metadata (temp file not found): ${tempFilePath}`, 'SendActions');
         setFeedbackTempFile(nodeId, undefined);
         autoSave();
         return;
@@ -383,11 +442,11 @@ export function createCollaborateActions(
         usePanelStore.getState().showFeedback();
         // Clipboard monitor is managed by useFeedbackClipboard based on collaboratingNodeId state
 
-        logger.info(`Restored collaboration state for node: ${nodeId}`, 'CollaborateActions');
+        logger.info(`Restored collaboration state for node: ${nodeId}`, 'SendActions');
         useToastStore.getState().addToast('Collaboration restored - Continue your previous session', 'info');
       } catch (error) {
         // File exists but couldn't be loaded (corrupted?)
-        logger.error('Failed to restore collaboration state', error as Error, 'CollaborateActions');
+        logger.error('Failed to restore collaboration state', error as Error, 'SendActions');
         setFeedbackTempFile(nodeId, undefined);
         autoSave();
       }
@@ -401,11 +460,11 @@ export function createCollaborateActions(
       const { collaboratingNodeId, currentFilePath, blueprintModeEnabled, nodes, ancestorRegistry } = get();
 
       if (!collaboratingNodeId || !currentFilePath) {
-        logger.warn(`Received ${source} content but no active collaboration or file`, 'CollaborateActions');
+        logger.warn(`Received ${source} content but no active collaboration or file`, 'SendActions');
         return { success: false };
       }
 
-      logger.info(`Processing ${source} content`, 'CollaborateActions');
+      logger.info(`Processing ${source} content`, 'SendActions');
 
       const { decomposition } = get();
       let parsedContent = parseFeedbackContent(content, decomposition);
@@ -442,7 +501,7 @@ export function createCollaborateActions(
           setFeedbackTempFile(collaboratingNodeId, tempFilePath);
           autoSave();
         } catch (error) {
-          logger.error('Failed to save feedback content to temp file', error as Error, 'CollaborateActions');
+          logger.error('Failed to save feedback content to temp file', error as Error, 'SendActions');
         }
       }
 
@@ -453,7 +512,7 @@ export function createCollaborateActions(
       try {
         const { collaboratingNodeId, currentFilePath, nodes } = get();
         if (!collaboratingNodeId || !currentFilePath) {
-          logger.warn('No collaboration in progress to cancel', 'CollaborateActions');
+          logger.warn('No collaboration in progress to cancel', 'SendActions');
           return;
         }
 
@@ -470,9 +529,9 @@ export function createCollaborateActions(
         await cleanupFeedback(currentFilePath, tempFilePath);
         usePanelStore.getState().closeFeedback();
         window.dispatchEvent(new Event('collaboration-canceled'));
-        logger.info('Collaboration cancelled', 'CollaborateActions');
+        logger.info('Collaboration cancelled', 'SendActions');
       } catch (error) {
-        logger.error('Failed to cancel collaboration', error as Error, 'CollaborateActions');
+        logger.error('Failed to cancel collaboration', error as Error, 'SendActions');
       }
     },
 
@@ -480,18 +539,18 @@ export function createCollaborateActions(
       try {
         const { collaboratingNodeId, currentFilePath, nodes } = get();
         if (!collaboratingNodeId || !currentFilePath) {
-          logger.error('No collaboration in progress to accept', new Error('No active collaboration'), 'CollaborateActions');
+          logger.error('No collaboration in progress to accept', new Error('No active collaboration'), 'SendActions');
           return;
         }
 
         const feedbackContent = extractFeedbackContent(currentFilePath);
         if (!feedbackContent) return;
 
-        logger.info(`Accepting feedback with ${Object.keys(feedbackContent.nodes).length} nodes`, 'CollaborateActions');
+        logger.info(`Accepting feedback with ${Object.keys(feedbackContent.nodes).length} nodes`, 'SendActions');
 
         const stateWithActions = get() as TreeState & { actions?: { executeCommand?: (cmd: unknown) => void } };
         if (!stateWithActions.actions?.executeCommand) {
-          logger.error('executeCommand not available', new Error('Cannot accept feedback without command system'), 'CollaborateActions');
+          logger.error('executeCommand not available', new Error('Cannot accept feedback without command system'), 'SendActions');
           return;
         }
 
@@ -522,9 +581,9 @@ export function createCollaborateActions(
         usePanelStore.getState().closeFeedback();
 
         window.dispatchEvent(new Event('collaboration-accepted'));
-        logger.info('Feedback accepted and node replaced', 'CollaborateActions');
+        logger.info('Feedback accepted and node replaced', 'SendActions');
       } catch (error) {
-        logger.error('Failed to accept feedback', error as Error, 'CollaborateActions');
+        logger.error('Failed to accept feedback', error as Error, 'SendActions');
       }
     },
   };
