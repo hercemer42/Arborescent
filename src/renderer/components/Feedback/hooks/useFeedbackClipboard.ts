@@ -13,13 +13,15 @@ export function useFeedbackClipboard(collaboratingNodeId: string | null) {
   );
 
   const handleFeedbackContent = useCallback(async (content: string, source: ContentSource, skipSave: boolean = false) => {
-    if (!collaboratingNodeId || !activeFilePath) {
-      return;
-    }
+    if (!collaboratingNodeId) return;
 
-    const store = storeManager.getStoreForFile(activeFilePath);
-    await store.getState().actions.processIncomingFeedbackContent(content, source, skipSave);
-  }, [collaboratingNodeId, activeFilePath]);
+    const collaboratingStore = storeManager.getAllStores().find(
+      s => s.getState().collaboratingNodeId === collaboratingNodeId
+    );
+    if (!collaboratingStore) return;
+
+    await collaboratingStore.getState().actions.processIncomingFeedbackContent(content, source, skipSave);
+  }, [collaboratingNodeId]);
 
   useEffect(() => {
     const cleanup = window.electron.onClipboardContentDetected((content: string) => {
@@ -31,20 +33,19 @@ export function useFeedbackClipboard(collaboratingNodeId: string | null) {
 
   useEffect(() => {
     const cleanup = window.electron.onFeedbackFileContentDetected((filePath: string, content: string) => {
-      if (!activeFilePath) return;
-
-      const store = storeManager.getStoreForFile(activeFilePath);
-      const nodeId = store.getState().actions.findNodeIdByFeedbackFilePath?.(filePath);
-      if (nodeId) {
-        store.getState().actions.handleAutonomousFeedback?.(nodeId, content);
-        return;
+      for (const store of storeManager.getAllStores()) {
+        const nodeId = store.getState().actions.findNodeIdByFeedbackFilePath?.(filePath);
+        if (nodeId) {
+          store.getState().actions.handleAutonomousFeedback?.(nodeId, content);
+          return;
+        }
       }
 
       handleFeedbackContent(content, 'file');
     });
 
     return cleanup;
-  }, [handleFeedbackContent, activeFilePath]);
+  }, [handleFeedbackContent]);
 
   useEffect(() => {
     if (!collaboratingNodeId && activeFilePath) {

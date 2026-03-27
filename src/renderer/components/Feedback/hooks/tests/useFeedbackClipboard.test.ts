@@ -4,21 +4,27 @@ import { useFeedbackClipboard } from '../useFeedbackClipboard';
 
 const mockProcessIncomingFeedbackContent = vi.fn();
 
+const mockCollaboratingNodeId = { value: null as string | null };
+
+const mockStore = {
+  getState: () => ({
+    collaboratingNodeId: mockCollaboratingNodeId.value,
+    nodes: {
+      'node-1': { id: 'node-1', content: '', children: [], metadata: {} },
+      'node-2': { id: 'node-2', content: '', children: [], metadata: {} },
+    },
+    actions: {
+      processIncomingFeedbackContent: mockProcessIncomingFeedbackContent,
+      findNodeIdByFeedbackFilePath: () => null,
+      handleAutonomousFeedback: vi.fn(),
+    },
+  }),
+};
+
 vi.mock('../../../../store/storeManager', () => ({
   storeManager: {
-    getStoreForFile: vi.fn(() => ({
-      getState: () => ({
-        nodes: {
-          'node-1': { id: 'node-1', content: '', children: [], metadata: {} },
-          'node-2': { id: 'node-2', content: '', children: [], metadata: {} },
-        },
-        actions: {
-          processIncomingFeedbackContent: mockProcessIncomingFeedbackContent,
-          findNodeIdByFeedbackFilePath: () => null,
-          handleAutonomousFeedback: vi.fn(),
-        },
-      }),
-    })),
+    getStoreForFile: vi.fn(() => mockStore),
+    getAllStores: vi.fn(() => [mockStore]),
   },
 }));
 
@@ -82,6 +88,7 @@ describe('useFeedbackClipboard', () => {
     mockProcessIncomingFeedbackContent.mockClear();
     mockFeedbackTreeClearFile.mockClear();
     mockFeedbackTreeStore._setHasContent(false);
+    mockCollaboratingNodeId.value = 'node-1';
     mockCleanup = vi.fn();
     mockOnClipboardContentDetected = vi.fn((callback) => {
       clipboardCallback = callback;
@@ -243,5 +250,58 @@ describe('useFeedbackClipboard', () => {
     await new Promise((resolve) => setTimeout(resolve, 10));
 
     expect(mockProcessIncomingFeedbackContent).not.toHaveBeenCalled();
+  });
+
+  it('should process feedback even when active tab differs from collaborating store', async () => {
+    const { useFilesStore } = await import('../../../../store/files/filesStore');
+    vi.mocked(useFilesStore).mockImplementation((selector) =>
+      selector({ activeFilePath: '/other/file.arbo' } as ReturnType<typeof useFilesStore.getState>)
+    );
+
+    const { result } = renderHook(() => useFeedbackClipboard('node-1'));
+
+    act(() => {
+      clipboardCallback('- Valid node');
+    });
+
+    await waitFor(() => {
+      expect(result.current).toBe(true);
+    }, { container: document.body });
+
+    expect(mockProcessIncomingFeedbackContent).toHaveBeenCalledWith(
+      '- Valid node',
+      'clipboard',
+      false
+    );
+  });
+
+  it('should route autonomous file feedback to correct store regardless of active tab', async () => {
+    const mockHandleAutonomousFeedback = vi.fn();
+    const mockFindNode = vi.fn().mockReturnValue('node-1');
+
+    const { storeManager } = await import('../../../../store/storeManager');
+    vi.mocked(storeManager.getAllStores).mockReturnValue([{
+      getState: () => ({
+        collaboratingNodeId: 'node-1',
+        actions: {
+          findNodeIdByFeedbackFilePath: mockFindNode,
+          handleAutonomousFeedback: mockHandleAutonomousFeedback,
+        },
+      }),
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } as any]);
+
+    const { useFilesStore } = await import('../../../../store/files/filesStore');
+    vi.mocked(useFilesStore).mockImplementation((selector) =>
+      selector({ activeFilePath: '/other/file.arbo' } as ReturnType<typeof useFilesStore.getState>)
+    );
+
+    renderHook(() => useFeedbackClipboard('node-1'));
+
+    act(() => {
+      fileCallback('/tmp/feedback-response-node-1.md', '# Updated');
+    });
+
+    expect(mockHandleAutonomousFeedback).toHaveBeenCalledWith('node-1', '# Updated');
   });
 });
