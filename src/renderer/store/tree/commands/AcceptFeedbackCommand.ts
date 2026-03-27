@@ -211,8 +211,8 @@ export class AcceptFeedbackCommand extends BaseCommand {
       for (const descendantId of this.snapshot!.descendants.keys()) {
         delete registry[descendantId];
       }
-      const newDescendantIds = getAllDescendants(this.collaboratingNodeId, mergedNodesMap);
-      newAncestorRegistry = addNodesToRegistry(registry, newDescendantIds, this.collaboratingNodeId, mergedNodesMap);
+      const directChildIds = mergedNodesMap[this.collaboratingNodeId]?.children || [];
+      newAncestorRegistry = addNodesToRegistry(registry, directChildIds, this.collaboratingNodeId, mergedNodesMap);
     }
 
     this.setState({
@@ -294,8 +294,7 @@ export class AcceptFeedbackCommand extends BaseCommand {
     }
     let newAncestorRegistry = registry;
     for (const rootId of mappedRootIds) {
-      const descendants = getAllDescendants(rootId, mergedNodesMap);
-      newAncestorRegistry = addNodesToRegistry(newAncestorRegistry, [rootId, ...descendants], this.snapshot!.parentId, mergedNodesMap);
+      newAncestorRegistry = addNodesToRegistry(newAncestorRegistry, [rootId], this.snapshot!.parentId, mergedNodesMap);
     }
 
     this.setState({
@@ -522,8 +521,8 @@ export class AcceptFeedbackCommand extends BaseCommand {
       for (const id of this.relationLinkNodeIds) {
         delete registry[id];
       }
-      const originalDescendantIds = Array.from(this.snapshot.descendants.keys());
-      newAncestorRegistry = addNodesToRegistry(registry, originalDescendantIds, this.collaboratingNodeId, restoredNodesMap);
+      const directChildIds = restoredNodesMap[this.collaboratingNodeId]?.children || [];
+      newAncestorRegistry = addNodesToRegistry(registry, directChildIds, this.collaboratingNodeId, restoredNodesMap);
     }
 
     this.setState({
