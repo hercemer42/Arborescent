@@ -45,6 +45,7 @@ export class AcceptFeedbackCommand extends BaseCommand {
       rootNodeId?: string;
       ancestorRegistry?: Record<string, string[]>;
       collaboratingNodeId?: string | null;
+      collaborationSource?: 'browser' | 'terminal' | null;
       feedbackFadingNodeIds?: Set<string>;
       activeNodeId?: string | null;
     }) => void,
@@ -220,6 +221,7 @@ export class AcceptFeedbackCommand extends BaseCommand {
       ancestorRegistry: newAncestorRegistry,
       rootNodeId: state.rootNodeId,
       collaboratingNodeId: null,
+      collaborationSource: null,
       feedbackFadingNodeIds: new Set(this.createdNodeIds),
       activeNodeId: this.collaboratingNodeId,
     });
@@ -302,6 +304,7 @@ export class AcceptFeedbackCommand extends BaseCommand {
       ancestorRegistry: newAncestorRegistry,
       rootNodeId: state.rootNodeId,
       collaboratingNodeId: null,
+      collaborationSource: null,
       feedbackFadingNodeIds: new Set(this.createdNodeIds),
       activeNodeId: mappedRootIds[0],
     });
@@ -521,8 +524,7 @@ export class AcceptFeedbackCommand extends BaseCommand {
       for (const id of this.relationLinkNodeIds) {
         delete registry[id];
       }
-      const directChildIds = restoredNodesMap[this.collaboratingNodeId]?.children || [];
-      newAncestorRegistry = addNodesToRegistry(registry, directChildIds, this.collaboratingNodeId, restoredNodesMap);
+      newAncestorRegistry = addNodesToRegistry(registry, [this.collaboratingNodeId], this.snapshot.parentId, restoredNodesMap);
     }
 
     this.setState({
@@ -530,6 +532,7 @@ export class AcceptFeedbackCommand extends BaseCommand {
       ancestorRegistry: newAncestorRegistry,
       rootNodeId: state.rootNodeId,
       collaboratingNodeId: null,
+      collaborationSource: null,
       feedbackFadingNodeIds: new Set(),
       activeNodeId: this.snapshot.collaboratingNodeId,
     });

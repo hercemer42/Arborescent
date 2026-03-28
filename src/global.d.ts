@@ -8,12 +8,15 @@ declare global {
       showOpenDialog: () => Promise<string | null>;
       showSaveDialog: (defaultPath?: string) => Promise<string | null>;
       showUnsavedChangesDialog: (fileName: string) => Promise<number>;
+      showRunningWorkflowDialog: (fileName: string) => Promise<boolean>;
       saveSession: (sessionData: string) => Promise<void>;
       getSession: () => Promise<string | null>;
       saveBrowserSession: (sessionData: string) => Promise<void>;
       getBrowserSession: () => Promise<string | null>;
       savePanelSession: (sessionData: string) => Promise<void>;
       getPanelSession: () => Promise<string | null>;
+      saveTerminalSession: (sessionData: string) => Promise<void>;
+      getTerminalSession: () => Promise<string | null>;
       getTempDir: () => Promise<string>;
       createTempFile: (fileName: string, content: string) => Promise<string>;
       readTempFile: (filePath: string) => Promise<string | null>;

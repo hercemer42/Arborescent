@@ -2,6 +2,8 @@ import { memo } from 'react';
 import { ClipboardCheck } from 'lucide-react';
 import './Tab.css';
 
+export type TabIndicatorType = 'actionRequired' | 'feedbackPending' | 'workflowRunning' | null;
+
 interface TabProps {
   displayName: string;
   fullName?: string;
@@ -11,9 +13,16 @@ interface TabProps {
   isZoomTab?: boolean;
   isLastInGroup?: boolean;
   hasZoomToRight?: boolean;
+  indicator?: TabIndicatorType;
   onClick: () => void;
   onClose: () => void;
 }
+
+const INDICATOR_TITLES: Record<string, string> = {
+  actionRequired: 'Action required',
+  feedbackPending: 'Feedback pending',
+  workflowRunning: 'Workflow running',
+};
 
 export const Tab = memo(function Tab({
   displayName,
@@ -24,6 +33,7 @@ export const Tab = memo(function Tab({
   isZoomTab,
   isLastInGroup,
   hasZoomToRight,
+  indicator,
   onClick,
   onClose,
 }: TabProps) {
@@ -42,6 +52,8 @@ export const Tab = memo(function Tab({
     hasZoomToRight && 'has-zoom-right',
   ].filter(Boolean).join(' ');
 
+  const showIndicator = !isActive && indicator;
+
   return (
     <div
       className={classNames}
@@ -51,6 +63,13 @@ export const Tab = memo(function Tab({
       {isZoomTab && <span className="tab-zoom-icon">🔍</span>}
       {isSummaryMode && <ClipboardCheck size={12} className="tab-summary-icon" />}
       <span className="tab-name">{displayName}</span>
+      {showIndicator && (
+        <span
+          className={`tab-indicator tab-indicator-${indicator}`}
+          title={INDICATOR_TITLES[indicator]}
+          aria-label={INDICATOR_TITLES[indicator]}
+        />
+      )}
       <button
         className="tab-close"
         onClick={handleClose}

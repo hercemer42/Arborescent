@@ -18,6 +18,8 @@ describe('panelStore feedback restore', () => {
     usePanelStore.setState({
       activeContent: null,
       previousContent: null,
+      currentFilePath: '/test/file.arbo',
+      fileStates: {},
       panelPosition: 'side',
       panelHeight: 300,
       panelWidth: 600,

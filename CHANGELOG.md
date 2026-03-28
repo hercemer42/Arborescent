@@ -19,6 +19,8 @@
 - **Context indicator refactor**: Context declaration and applied context indicators consolidated with clearer visual hierarchy and tooltips
 - **Desktop notifications and sounds**: OS desktop notifications and audio alerts for workflow completion, errors, NeedsReview, and timeouts. Configurable via File → Preferences toggles for desktop notifications and notification sounds (both on by default). Notifications are suppressed when the app is focused.
 - **Execute mode feedback loop**: Terminal execute mode now uses the same round-trip pipeline as collaborate — the AI writes status updates to a temporary file, and the result appears in the Feedback panel for review (or auto-applies on autonomous workflow steps). Accept is undoable. The AI updates item statuses without rewriting your content.
+- **Per-file panels**: Each open file now has its own panel state. Opening a terminal in one file and switching to another shows no panel — each file remembers which panel was open independently. Panel position and size remain global. Zoom tabs share their parent file's panel.
+- **Per-file session persistence**: Panel visibility, browser tabs, and terminals are now saved per file and restored on restart. Terminals reopen in their original working directory (history is lost). Browser tabs remain scoped to the correct file.
 
 ### Bug fixes
 

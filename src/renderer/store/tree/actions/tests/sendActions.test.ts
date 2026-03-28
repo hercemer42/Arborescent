@@ -141,6 +141,7 @@ describe('sendActions', () => {
       deletingNodeIds: new Set<string>(),
       deleteAnimationCallback: null,
       collaboratingNodeId: null,
+      collaborationSource: null,
       decomposition: false,
       feedbackFadingNodeIds: new Set(),
       contextDeclarations: [],
@@ -212,7 +213,7 @@ describe('sendActions', () => {
 
       actions.cancelCollaboration();
 
-      expect(mockSet).toHaveBeenCalledWith({ collaboratingNodeId: null });
+      expect(mockSet).toHaveBeenCalledWith({ collaboratingNodeId: null, collaborationSource: null });
     });
   });
 
@@ -955,7 +956,7 @@ describe('sendActions', () => {
 
         await actions.finishCancel();
 
-        expect(mockSet).toHaveBeenCalledWith({ collaboratingNodeId: null });
+        expect(mockSet).toHaveBeenCalledWith({ collaboratingNodeId: null, collaborationSource: null });
       });
     });
 

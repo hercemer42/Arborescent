@@ -7,6 +7,7 @@ import type { File } from '../../filesStore';
 vi.mock('../../../storeManager', () => ({
   storeManager: {
     getStoreForFile: vi.fn(),
+    hasStore: vi.fn(() => true),
     closeFile: vi.fn(),
     moveStore: vi.fn(),
   },
@@ -87,6 +88,7 @@ describe('fileActions', () => {
       showOpenDialog: vi.fn(),
       showSaveDialog: vi.fn(),
       showUnsavedChangesDialog: vi.fn(),
+      showRunningWorkflowDialog: vi.fn(() => Promise.resolve(true)),
       saveSession: vi.fn(),
       getSession: vi.fn(),
       createTempFile: vi.fn(),
@@ -95,6 +97,8 @@ describe('fileActions', () => {
       isTempFile: vi.fn(() => Promise.resolve(false)),
       saveBrowserSession: vi.fn(),
       getBrowserSession: vi.fn(() => Promise.resolve(null)),
+      saveTerminalSession: vi.fn(),
+      getTerminalSession: vi.fn(() => Promise.resolve(null)),
       savePanelSession: vi.fn(),
       getPanelSession: vi.fn(() => Promise.resolve(null)),
       savePreferences: vi.fn(),
@@ -106,12 +110,14 @@ describe('fileActions', () => {
     (storeManager.getStoreForFile as ReturnType<typeof vi.fn>).mockReturnValue({
       getState: () => ({
         fileMeta: null,
+        workflowExecutionStates: {},
         actions: {
           saveToPath: vi.fn(() => Promise.resolve()),
           loadFromPath: vi.fn(() => Promise.resolve({ created: '', author: '' })),
           initialize: vi.fn(),
           selectNode: vi.fn(),
           setFilePath: vi.fn(),
+          stopWorkflow: vi.fn(),
         },
       }),
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -291,6 +297,7 @@ describe('fileActions', () => {
       vi.mocked(storeManager.getStoreForFile).mockReturnValue({
         getState: () => ({
           fileMeta: null,
+          workflowExecutionStates: {},
           actions: {
             saveToPath: vi.fn(() => Promise.reject(error)),
           },
@@ -307,6 +314,77 @@ describe('fileActions', () => {
         true
       );
       expect(state.closeFile).not.toHaveBeenCalled();
+    });
+
+    it('should show workflow dialog when file has running workflows', async () => {
+      vi.mocked(mockStorage.isTempFile).mockResolvedValue(false);
+      vi.mocked(mockStorage.showRunningWorkflowDialog).mockResolvedValue(true);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      vi.mocked(storeManager.getStoreForFile).mockReturnValue({
+        getState: () => ({
+          fileMeta: null,
+          workflowExecutionStates: { 'node-1': { state: 'running', terminalTabId: 'term-1' } },
+          actions: {
+            saveToPath: vi.fn(() => Promise.resolve()),
+            stopWorkflow: vi.fn(),
+          },
+        }),
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      } as any);
+
+      await actions.closeFile('/test/file.arbo');
+
+      expect(mockStorage.showRunningWorkflowDialog).toHaveBeenCalled();
+      expect(state.closeFile).toHaveBeenCalledWith('/test/file.arbo');
+    });
+
+    it('should not close file when workflow dialog is cancelled', async () => {
+      vi.mocked(mockStorage.showRunningWorkflowDialog).mockResolvedValue(false);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      vi.mocked(storeManager.getStoreForFile).mockReturnValue({
+        getState: () => ({
+          fileMeta: null,
+          workflowExecutionStates: { 'node-1': { state: 'running', terminalTabId: 'term-1' } },
+          actions: { stopWorkflow: vi.fn() },
+        }),
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      } as any);
+
+      await actions.closeFile('/test/file.arbo');
+
+      expect(state.closeFile).not.toHaveBeenCalled();
+      expect(storeManager.closeFile).not.toHaveBeenCalled();
+    });
+
+    it('should stop workflows before closing when dialog is confirmed', async () => {
+      vi.mocked(mockStorage.isTempFile).mockResolvedValue(false);
+      vi.mocked(mockStorage.showRunningWorkflowDialog).mockResolvedValue(true);
+      const mockStopWorkflow = vi.fn();
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      vi.mocked(storeManager.getStoreForFile).mockReturnValue({
+        getState: () => ({
+          fileMeta: null,
+          workflowExecutionStates: { 'node-1': { state: 'running', terminalTabId: 'term-1' } },
+          actions: {
+            saveToPath: vi.fn(() => Promise.resolve()),
+            stopWorkflow: mockStopWorkflow,
+          },
+        }),
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      } as any);
+
+      await actions.closeFile('/test/file.arbo');
+
+      expect(mockStopWorkflow).toHaveBeenCalledWith('node-1');
+    });
+
+    it('should not show workflow dialog when no workflows are running', async () => {
+      vi.mocked(mockStorage.isTempFile).mockResolvedValue(false);
+
+      await actions.closeFile('/test/file.arbo');
+
+      expect(mockStorage.showRunningWorkflowDialog).not.toHaveBeenCalled();
+      expect(state.closeFile).toHaveBeenCalledWith('/test/file.arbo');
     });
   });
 

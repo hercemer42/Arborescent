@@ -29,6 +29,16 @@ export interface BrowserTab {
 export interface BrowserSession {
   tabs: BrowserTab[];
   activeTabId: string | null;
+  fileStates?: Record<string, { tabs: BrowserTab[]; activeTabId: string | null }>;
+}
+
+export interface TerminalSessionEntry {
+  title: string;
+  cwd: string;
+}
+
+export interface TerminalSession {
+  fileStates: Record<string, { terminals: TerminalSessionEntry[]; activeTerminalIndex: number | null }>;
 }
 
 export interface PanelSession {
@@ -36,6 +46,7 @@ export interface PanelSession {
   panelHeight: number;
   panelWidth: number;
   activeContent: 'terminal' | 'browser' | 'feedback' | null;
+  fileStates?: Record<string, { activeContent: 'terminal' | 'browser' | 'feedback' | null; previousContent: 'terminal' | 'browser' | 'feedback' | null }>;
 }
 
 export interface StorageService {
@@ -44,6 +55,7 @@ export interface StorageService {
   showOpenDialog(): Promise<string | null>;
   showSaveDialog(defaultPath?: string): Promise<string | null>;
   showUnsavedChangesDialog(fileName: string): Promise<number>;
+  showRunningWorkflowDialog(fileName: string): Promise<boolean>;
   saveSession(session: SessionState): Promise<void>;
   getSession(): Promise<SessionState | null>;
   createTempFile(data: ArboFile): Promise<string>;
@@ -52,6 +64,8 @@ export interface StorageService {
   isTempFile(filePath: string): Promise<boolean>;
   saveBrowserSession(session: BrowserSession): Promise<void>;
   getBrowserSession(): Promise<BrowserSession | null>;
+  saveTerminalSession(session: TerminalSession): Promise<void>;
+  getTerminalSession(): Promise<TerminalSession | null>;
   savePanelSession(session: PanelSession): Promise<void>;
   getPanelSession(): Promise<PanelSession | null>;
   savePreferences(preferences: UserPreferences): Promise<void>;

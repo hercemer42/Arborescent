@@ -10,9 +10,11 @@ import { createTreeStore } from '../../../store/tree/treeStore';
 vi.mock('../../../store/storeManager', () => ({
   storeManager: {
     closeFile: vi.fn(),
+    hasStore: vi.fn(() => false),
     getStoreForFile: vi.fn(() => ({
       getState: () => ({
         collaboratingNodeId: null,
+        workflowExecutionStates: {},
       }),
       subscribe: vi.fn(() => () => {}),
     })),

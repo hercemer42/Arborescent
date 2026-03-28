@@ -389,6 +389,28 @@ describe('AcceptFeedbackCommand', () => {
       expect(undoCall.nodes['parent'].children).toEqual(['collab-node', 'sibling']);
     });
 
+    it('should restore ancestor registry for the collaborating node after undo', () => {
+      const newNodes = {
+        'story1': createNode('story1', 'Story 1', []),
+        'story2': createNode('story2', 'Story 2', []),
+      };
+
+      const command = new AcceptFeedbackCommand(
+        'collab-node',
+        ['story1', 'story2'],
+        newNodes,
+        getState, setState, triggerAutosave
+      );
+      command.execute();
+      command.undo();
+
+      const undoCall = setState.mock.calls[1][0];
+      // The collaborating node's own registry entry must be restored
+      // so that subsequent operations (e.g. drag) can find its parent
+      expect(undoCall.ancestorRegistry['collab-node']).toEqual(['root', 'parent']);
+      expect(undoCall.ancestorRegistry['child1']).toEqual(['root', 'parent', 'collab-node']);
+    });
+
     it('should apply blueprint metadata to all siblings when blueprintModeEnabled', () => {
       mockState.blueprintModeEnabled = true;
 

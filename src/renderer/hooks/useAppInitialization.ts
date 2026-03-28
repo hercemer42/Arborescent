@@ -12,12 +12,14 @@ export function useAppInitialization(onComplete: () => void) {
     const initializeSession = useFilesStore.getState().actions.initializeSession;
     const restoreBrowserSession = useBrowserStore.getState().actions.restoreSession;
     const restorePanelSession = usePanelStore.getState().restoreSession;
+    const restoreTerminalSession = useTerminalStore.getState().restoreTerminalSession;
     const loadPreferences = usePreferencesStore.getState().loadPreferences;
 
     Promise.all([
       initializeSession(),
       restoreBrowserSession(),
       restorePanelSession(),
+      restoreTerminalSession(),
       loadPreferences(),
     ])
       .then(async () => {
@@ -25,10 +27,18 @@ export function useAppInitialization(onComplete: () => void) {
           store.getState().actions.initializeExecutionState();
         }
 
+        const initialFilePath = useFilesStore.getState().activeFilePath;
+        usePanelStore.getState().setActiveFile(initialFilePath);
+        useTerminalStore.getState().setActiveFile(initialFilePath);
+        useBrowserStore.getState().actions.setActiveFile(initialFilePath);
+
         const activeContent = usePanelStore.getState().activeContent;
         const terminalStore = useTerminalStore.getState();
-        if (terminalStore.terminals.length === 0 && activeContent === 'terminal') {
-          await terminalStore.createNewTerminal('Terminal');
+        if (activeContent === 'terminal') {
+          await terminalStore.materializeRestoredTerminals();
+          if (useTerminalStore.getState().terminals.length === 0) {
+            await terminalStore.createNewTerminal('Terminal');
+          }
         }
       })
       .catch((error) => {
@@ -36,4 +46,21 @@ export function useAppInitialization(onComplete: () => void) {
       })
       .finally(() => onComplete());
   }, [onComplete]);
+
+  useEffect(() => {
+    let previousFilePath = useFilesStore.getState().activeFilePath;
+    return useFilesStore.subscribe((state) => {
+      if (state.activeFilePath !== previousFilePath) {
+        previousFilePath = state.activeFilePath;
+        usePanelStore.getState().setActiveFile(state.activeFilePath);
+        useTerminalStore.getState().setActiveFile(state.activeFilePath);
+        useBrowserStore.getState().actions.setActiveFile(state.activeFilePath);
+
+        const activeContent = usePanelStore.getState().activeContent;
+        if (activeContent === 'terminal') {
+          useTerminalStore.getState().materializeRestoredTerminals();
+        }
+      }
+    });
+  }, []);
 }

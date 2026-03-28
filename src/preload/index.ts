@@ -10,6 +10,8 @@ contextBridge.exposeInMainWorld('electron', {
   showSaveDialog: (defaultPath?: string) => ipcRenderer.invoke('show-save-dialog', defaultPath),
   showUnsavedChangesDialog: (fileName: string) =>
     ipcRenderer.invoke('show-unsaved-changes-dialog', fileName),
+  showRunningWorkflowDialog: (fileName: string) =>
+    ipcRenderer.invoke('show-running-workflow-dialog', fileName),
   saveSession: (sessionData: string) =>
     ipcRenderer.invoke('save-session', sessionData),
   getSession: () => ipcRenderer.invoke('get-session'),
@@ -19,6 +21,9 @@ contextBridge.exposeInMainWorld('electron', {
   savePanelSession: (sessionData: string) =>
     ipcRenderer.invoke('save-panel-session', sessionData),
   getPanelSession: () => ipcRenderer.invoke('get-panel-session'),
+  saveTerminalSession: (sessionData: string) =>
+    ipcRenderer.invoke('save-terminal-session', sessionData),
+  getTerminalSession: () => ipcRenderer.invoke('get-terminal-session'),
   getTempDir: () => ipcRenderer.invoke('get-temp-dir'),
   createTempFile: (fileName: string, content: string) =>
     ipcRenderer.invoke('create-temp-file', fileName, content),

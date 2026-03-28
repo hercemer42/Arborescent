@@ -1,9 +1,12 @@
 import { create } from 'zustand';
 import { TreeNode } from '../../../shared/types';
+import { TerminalSession, TerminalSessionEntry } from '../../../shared/interfaces';
 import { exportNodeAsMarkdown } from '../../utils/markdown';
 import { executeInTerminal as executeInTerminalUtil } from '../../services/terminalExecution';
 import { createTerminal as createTerminalService } from '../../services/terminalService';
+import { StorageService } from '../../services/storageService';
 import { logger } from '../../services/logger';
+import { resolveToSourceFilePath } from '../../utils/zoomPath';
 
 export interface TerminalInfo {
   id: string;
@@ -14,11 +17,19 @@ export interface TerminalInfo {
   pinnedToBottom: boolean;
 }
 
+interface FileTerminalState {
+  terminals: TerminalInfo[];
+  activeTerminalId: string | null;
+  pendingRestore?: TerminalSessionEntry[];
+}
+
 interface TerminalState {
   terminals: TerminalInfo[];
   activeTerminalId: string | null;
+  currentFilePath: string | null;
+  fileStates: Record<string, FileTerminalState>;
 
-  // Actions
+  setActiveFile: (filePath: string | null) => void;
   addTerminal: (terminal: TerminalInfo) => void;
   removeTerminal: (id: string) => void;
   setActiveTerminal: (id: string | null) => void;
@@ -29,49 +40,137 @@ interface TerminalState {
   executeNodeInTerminal: (node: TreeNode, nodes: Record<string, TreeNode>) => Promise<void>;
   createNewTerminal: (title?: string) => Promise<void>;
   closeTerminal: (id: string) => Promise<void>;
+  closeFileTerminals: (filePath: string) => Promise<void>;
+  restoreTerminalSession: () => Promise<void>;
+  materializeRestoredTerminals: () => Promise<void>;
+}
+
+function getFileState(fileStates: Record<string, FileTerminalState>, filePath: string | null): FileTerminalState {
+  if (!filePath) return { terminals: [], activeTerminalId: null };
+  return fileStates[filePath] || { terminals: [], activeTerminalId: null };
+}
+
+function updateFileState(
+  fileStates: Record<string, FileTerminalState>,
+  filePath: string | null,
+  update: Partial<FileTerminalState>,
+): Record<string, FileTerminalState> {
+  if (!filePath) return fileStates;
+  const current = fileStates[filePath] || { terminals: [], activeTerminalId: null };
+  return { ...fileStates, [filePath]: { ...current, ...update } };
+}
+
+const storage = new StorageService();
+
+const MAX_RESTORED_TERMINALS_PER_FILE = 5;
+
+function buildTerminalSession(fileStates: Record<string, FileTerminalState>): TerminalSession {
+  const sessionFileStates: TerminalSession['fileStates'] = {};
+  for (const [filePath, state] of Object.entries(fileStates)) {
+    if (state.terminals.length === 0 && !state.pendingRestore?.length) continue;
+    const terminals: TerminalSessionEntry[] = state.terminals.map(t => ({
+      title: t.title,
+      cwd: t.cwd,
+    }));
+    const activeIndex = state.activeTerminalId
+      ? state.terminals.findIndex(t => t.id === state.activeTerminalId)
+      : -1;
+    sessionFileStates[filePath] = {
+      terminals,
+      activeTerminalIndex: activeIndex >= 0 ? activeIndex : null,
+    };
+  }
+  return { fileStates: sessionFileStates };
+}
+
+async function saveTerminalSession(fileStates: Record<string, FileTerminalState>): Promise<void> {
+  try {
+    await storage.saveTerminalSession(buildTerminalSession(fileStates));
+  } catch (error) {
+    logger.error('Failed to save terminal session', error as Error, 'TerminalStore');
+  }
 }
 
 export const useTerminalStore = create<TerminalState>((set, get) => ({
   terminals: [],
   activeTerminalId: null,
+  currentFilePath: null,
+  fileStates: {},
 
-  addTerminal: (terminal: TerminalInfo) => {
-    set((state) => ({
-      terminals: [...state.terminals, terminal],
-      activeTerminalId: terminal.id,
-    }));
+  setActiveFile: (filePath: string | null) => {
+    const resolved = resolveToSourceFilePath(filePath);
+    const { fileStates } = get();
+    const fileState = getFileState(fileStates, resolved);
+    set({
+      currentFilePath: resolved,
+      terminals: fileState.terminals,
+      activeTerminalId: fileState.activeTerminalId,
+    });
   },
 
-  removeTerminal: (id: string) =>
-    set((state) => {
-      const newTerminals = state.terminals.filter((t) => t.id !== id);
-      const newActiveId =
-        state.activeTerminalId === id
-          ? newTerminals[0]?.id || null
-          : state.activeTerminalId;
+  addTerminal: (terminal: TerminalInfo) => {
+    const { currentFilePath, fileStates } = get();
+    if (!currentFilePath) return;
+    const current = getFileState(fileStates, currentFilePath);
+    const newTerminals = [...current.terminals, terminal];
+    const newFileStates = updateFileState(fileStates, currentFilePath, {
+      terminals: newTerminals,
+      activeTerminalId: terminal.id,
+    });
+    set({
+      terminals: newTerminals,
+      activeTerminalId: terminal.id,
+      fileStates: newFileStates,
+    });
+    saveTerminalSession(newFileStates);
+  },
 
-      return {
-        terminals: newTerminals,
-        activeTerminalId: newActiveId,
-      };
-    }),
+  removeTerminal: (id: string) => {
+    const { currentFilePath, fileStates } = get();
+    if (!currentFilePath) return;
+    const current = getFileState(fileStates, currentFilePath);
+    const newTerminals = current.terminals.filter((t) => t.id !== id);
+    const newActiveId = current.activeTerminalId === id
+      ? newTerminals[0]?.id || null
+      : current.activeTerminalId;
+    const newFileStates = updateFileState(fileStates, currentFilePath, {
+      terminals: newTerminals,
+      activeTerminalId: newActiveId,
+    });
+    set({
+      terminals: newTerminals,
+      activeTerminalId: newActiveId,
+      fileStates: newFileStates,
+    });
+    saveTerminalSession(newFileStates);
+  },
 
-  setActiveTerminal: (id: string | null) =>
-    set({ activeTerminalId: id }),
+  setActiveTerminal: (id: string | null) => {
+    const { currentFilePath, fileStates } = get();
+    if (!currentFilePath) return;
+    const newFileStates = updateFileState(fileStates, currentFilePath, { activeTerminalId: id });
+    set({ activeTerminalId: id, fileStates: newFileStates });
+  },
 
-  updateTerminal: (id: string, updates: Partial<TerminalInfo>) =>
-    set((state) => ({
-      terminals: state.terminals.map((t) =>
-        t.id === id ? { ...t, ...updates } : t
-      ),
-    })),
+  updateTerminal: (id: string, updates: Partial<TerminalInfo>) => {
+    const { currentFilePath, fileStates } = get();
+    if (!currentFilePath) return;
+    const current = getFileState(fileStates, currentFilePath);
+    const newTerminals = current.terminals.map((t) => t.id === id ? { ...t, ...updates } : t);
+    const newFileStates = updateFileState(fileStates, currentFilePath, { terminals: newTerminals });
+    set({ terminals: newTerminals, fileStates: newFileStates });
+  },
 
-  togglePinnedToBottom: (id: string) =>
-    set((state) => ({
-      terminals: state.terminals.map((t) =>
-        t.id === id ? { ...t, pinnedToBottom: !t.pinnedToBottom } : t
-      ),
-    })),
+  togglePinnedToBottom: (id: string) => {
+    const { currentFilePath, fileStates } = get();
+    if (!currentFilePath) return;
+    const current = getFileState(fileStates, currentFilePath);
+    const newTerminals = current.terminals.map((t) =>
+      t.id === id ? { ...t, pinnedToBottom: !t.pinnedToBottom } : t
+    );
+    const newFileStates = updateFileState(fileStates, currentFilePath, { terminals: newTerminals });
+    set({ terminals: newTerminals, fileStates: newFileStates });
+  },
 
   openTerminal: async () => {
     const { activeTerminalId } = get();
@@ -131,5 +230,73 @@ export const useTerminalStore = create<TerminalState>((set, get) => ({
     } catch (error) {
       logger.error('Failed to close terminal', error as Error, 'TerminalStore');
     }
+  },
+
+  restoreTerminalSession: async () => {
+    const session = await storage.getTerminalSession();
+    if (!session) {
+      logger.info('No terminal session found', 'TerminalStore');
+      return;
+    }
+
+    const fileStates: Record<string, FileTerminalState> = {};
+    for (const [filePath, state] of Object.entries(session.fileStates)) {
+      const capped = state.terminals.slice(0, MAX_RESTORED_TERMINALS_PER_FILE);
+      fileStates[filePath] = {
+        terminals: [],
+        activeTerminalId: null,
+        pendingRestore: capped,
+      };
+    }
+
+    set({ fileStates });
+    logger.info(`Restored terminal session (${Object.keys(fileStates).length} file(s))`, 'TerminalStore');
+  },
+
+  materializeRestoredTerminals: async () => {
+    const { currentFilePath, fileStates } = get();
+    if (!currentFilePath) return;
+
+    const fileState = fileStates[currentFilePath];
+    if (!fileState?.pendingRestore?.length) return;
+
+    const pending = fileState.pendingRestore;
+    const clearedFileStates = updateFileState(fileStates, currentFilePath, {
+      pendingRestore: undefined,
+    });
+    set({ fileStates: clearedFileStates });
+
+    for (const entry of pending) {
+      try {
+        const terminalInfo = await createTerminalService(entry.title, undefined, undefined, entry.cwd);
+        get().addTerminal(terminalInfo);
+      } catch (error) {
+        logger.error('Failed to restore terminal', error as Error, 'TerminalStore');
+      }
+    }
+  },
+
+  closeFileTerminals: async (filePath: string) => {
+    const { fileStates } = get();
+    const fileState = getFileState(fileStates, filePath);
+    if (fileState.terminals.length === 0) return;
+
+    for (const terminal of fileState.terminals) {
+      try {
+        await window.electron.terminalDestroy(terminal.id);
+        logger.info(`Closed terminal: ${terminal.id}`, 'TerminalStore');
+      } catch (error) {
+        logger.error('Failed to close terminal', error as Error, 'TerminalStore');
+      }
+    }
+
+    const updated = { ...fileStates };
+    delete updated[filePath];
+    const { currentFilePath } = get();
+    const currentState = currentFilePath === filePath
+      ? { terminals: [], activeTerminalId: null }
+      : {};
+    set({ fileStates: updated, ...currentState });
+    saveTerminalSession(updated);
   },
 }));

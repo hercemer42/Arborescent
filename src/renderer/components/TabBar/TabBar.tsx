@@ -1,10 +1,19 @@
 import { memo } from 'react';
-import { Tab } from '../Tab';
+import { Tab, TabIndicatorType } from '../Tab';
 import { PanelActions } from '../PanelActions';
 import { useFilesStore } from '../../store/files/filesStore';
 import { useStore } from '../../store/tree/useStore';
+import { useTabIndicatorStore, getIndicatorForFile } from '../../store/tabIndicators/tabIndicatorStore';
 import { getTabProps } from './hooks/useTabProps';
 import './TabBar.css';
+
+function resolveIndicator(filePath: string, indicators: Record<string, { feedbackPending: boolean; workflowRunning: boolean; actionRequired: boolean }>): TabIndicatorType {
+  const state = getIndicatorForFile(indicators, filePath);
+  if (state.actionRequired) return 'actionRequired';
+  if (state.feedbackPending) return 'feedbackPending';
+  if (state.workflowRunning) return 'workflowRunning';
+  return null;
+}
 
 export const TabBar = memo(function TabBar() {
   const files = useFilesStore((state) => state.files);
@@ -13,6 +22,7 @@ export const TabBar = memo(function TabBar() {
   const closeFile = useFilesStore((state) => state.actions.closeFile);
   const blueprintModeEnabled = useStore((state) => state.blueprintModeEnabled);
   const summaryModeEnabled = useStore((state) => state.summaryModeEnabled);
+  const indicators = useTabIndicatorStore((state) => state.indicators);
 
   if (files.length === 0) {
     return null;
@@ -35,6 +45,7 @@ export const TabBar = memo(function TabBar() {
               isZoomTab={isZoomTab}
               isLastInGroup={isLastInGroup}
               hasZoomToRight={hasZoomToRight}
+              indicator={resolveIndicator(file.path, indicators)}
               onClick={() => setActiveFile(file.path)}
               onClose={() => closeFile(file.path)}
             />

@@ -53,7 +53,6 @@ export const createFileActions = (get: StoreGetter, storage: StorageService): Fi
     await storage.deleteTempFile(oldPath);
     const displayName = getDisplayName(newPath, false);
 
-    // Move the store from old path to new path in storeManager
     storeManager.moveStore(oldPath, newPath);
 
     markAsSaved(oldPath, newPath, displayName);
@@ -107,20 +106,14 @@ export const createFileActions = (get: StoreGetter, storage: StorageService): Fi
     };
   }
 
-  async function restoreSessionFiles(): Promise<boolean> {
-    const session = await storage.getSession();
-    if (!session || session.openFiles.length === 0) {
-      return false;
-    }
-
-    let restoredAny = false;
-
-    // First pass: restore regular files (not zoom tabs)
-    // Zoom tabs need their source file loaded first
+  function categorizeSessionFiles(openFiles: string[]): {
+    regularFiles: string[];
+    zoomTabs: Array<{ path: string; sourceFilePath: string; nodeId: string }>;
+  } {
     const regularFiles: string[] = [];
     const zoomTabs: Array<{ path: string; sourceFilePath: string; nodeId: string }> = [];
 
-    for (const filePath of session.openFiles) {
+    for (const filePath of openFiles) {
       const zoomInfo = parseZoomPath(filePath);
       if (zoomInfo) {
         zoomTabs.push({ path: filePath, ...zoomInfo });
@@ -129,8 +122,12 @@ export const createFileActions = (get: StoreGetter, storage: StorageService): Fi
       }
     }
 
-    // Restore regular files first
-    for (const filePath of regularFiles) {
+    return { regularFiles, zoomTabs };
+  }
+
+  async function restoreRegularFiles(filePaths: string[]): Promise<boolean> {
+    let restoredAny = false;
+    for (const filePath of filePaths) {
       try {
         await open(filePath, 'SessionRestore', false);
         restoredAny = true;
@@ -143,11 +140,13 @@ export const createFileActions = (get: StoreGetter, storage: StorageService): Fi
         );
       }
     }
+    return restoredAny;
+  }
 
-    // Then restore zoom tabs (only if their source file was restored)
+  async function restoreZoomTabs(zoomTabs: Array<{ path: string; sourceFilePath: string; nodeId: string }>): Promise<boolean> {
+    let restoredAny = false;
     for (const zoom of zoomTabs) {
       try {
-        // Check if source file was restored
         const { files } = get();
         const sourceFileRestored = files.some(f => f.path === zoom.sourceFilePath);
         if (!sourceFileRestored) {
@@ -160,7 +159,6 @@ export const createFileActions = (get: StoreGetter, storage: StorageService): Fi
           continue;
         }
 
-        // Check if zoomed node still exists
         const store = storeManager.getStoreForFile(zoom.sourceFilePath);
         const node = store.getState().nodes[zoom.nodeId];
         if (!node) {
@@ -185,10 +183,23 @@ export const createFileActions = (get: StoreGetter, storage: StorageService): Fi
         );
       }
     }
+    return restoredAny;
+  }
+
+  async function restoreSessionFiles(): Promise<boolean> {
+    const session = await storage.getSession();
+    if (!session || session.openFiles.length === 0) {
+      return false;
+    }
+
+    // Zoom tabs depend on their source file being loaded first
+    const { regularFiles, zoomTabs } = categorizeSessionFiles(session.openFiles);
+    const restoredRegular = await restoreRegularFiles(regularFiles);
+    const restoredZoom = await restoreZoomTabs(zoomTabs);
+    const restoredAny = restoredRegular || restoredZoom;
 
     if (restoredAny && session.activeFilePath) {
       const { setActiveFile, files } = get();
-      // Only set active if it was restored
       const activeWasRestored = files.some(f => f.path === session.activeFilePath);
       if (activeWasRestored) {
         setActiveFile(session.activeFilePath);
@@ -235,8 +246,30 @@ export const createFileActions = (get: StoreGetter, storage: StorageService): Fi
     return restoredAny;
   }
 
+  function hasRunningWorkflows(filePath: string): boolean {
+    if (!storeManager.hasStore(filePath)) return false;
+    const store = storeManager.getStoreForFile(filePath);
+    const { workflowExecutionStates } = store.getState();
+    return Object.values(workflowExecutionStates).some(entry => entry.state === 'running');
+  }
+
   async function closeFile(filePath: string): Promise<void> {
     const { closeFile: closeFileAction } = get();
+
+    if (hasRunningWorkflows(filePath)) {
+      const displayName = getDisplayName(filePath, false);
+      const confirmed = await storage.showRunningWorkflowDialog(displayName);
+      if (!confirmed) return;
+
+      const store = storeManager.getStoreForFile(filePath);
+      const { workflowExecutionStates, actions } = store.getState();
+      for (const nodeId of Object.keys(workflowExecutionStates)) {
+        if (workflowExecutionStates[nodeId].state === 'running') {
+          actions.stopWorkflow(nodeId);
+        }
+      }
+    }
+
     const isTemporary = await storage.isTempFile(filePath);
 
     if (isTemporary) {

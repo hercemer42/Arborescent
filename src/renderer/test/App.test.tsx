@@ -52,10 +52,11 @@ const {
   const browserStoreState = {
     tabs: [],
     activeTabId: null,
-    actions: { restoreSession: mockRestoreBrowserSession },
+    actions: { restoreSession: mockRestoreBrowserSession, setActiveFile: vi.fn() },
   };
   const panelStoreState = {
     restoreSession: mockRestorePanelSession,
+    setActiveFile: vi.fn(),
   };
 
   return {
@@ -71,7 +72,7 @@ const {
 vi.mock('../store/files/filesStore', () => {
   const useFilesStoreMock = Object.assign(
     vi.fn((selector: (s: typeof filesStoreState) => unknown) => selector(filesStoreState)),
-    { getState: () => filesStoreState }
+    { getState: () => filesStoreState, subscribe: vi.fn(() => vi.fn()) }
   );
   return { useFilesStore: useFilesStoreMock };
 });

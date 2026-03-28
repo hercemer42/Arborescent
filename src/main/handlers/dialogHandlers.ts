@@ -74,4 +74,23 @@ export function registerDialogHandlers(getMainWindow: () => BrowserWindow | null
 
     return result.response;
   });
+
+  ipcMain.handle('show-running-workflow-dialog', async (_, fileName: string) => {
+    const mainWindow = getMainWindow();
+    const options = {
+      type: 'warning' as const,
+      buttons: ['Close Anyway', 'Cancel'],
+      defaultId: 1,
+      cancelId: 1,
+      title: 'Running Workflow',
+      message: `"${fileName}" has a running workflow.`,
+      detail: 'Closing this file will stop the workflow and kill any running terminal processes.',
+    };
+
+    const result = mainWindow
+      ? await dialog.showMessageBox(mainWindow, options)
+      : await dialog.showMessageBox(options);
+
+    return result.response === 0;
+  });
 }

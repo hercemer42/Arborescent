@@ -26,6 +26,14 @@ export function registerSessionHandlers(): void {
     return await loadJsonFile('panel-session.json', 'Panel session');
   });
 
+  ipcMain.handle('save-terminal-session', async (_, sessionData: string) => {
+    await saveJsonFile('terminal-session.json', sessionData, 'Terminal session');
+  });
+
+  ipcMain.handle('get-terminal-session', async () => {
+    return await loadJsonFile('terminal-session.json', 'Terminal session');
+  });
+
   ipcMain.handle('save-temp-files-metadata', async (_, metadataJson: string) => {
     await saveJsonFile('temp-files-metadata.json', metadataJson, 'Temp files metadata');
   });

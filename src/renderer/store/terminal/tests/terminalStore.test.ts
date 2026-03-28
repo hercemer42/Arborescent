@@ -25,10 +25,11 @@ vi.mock('../../../services/terminalService', () => ({
 describe('terminalStore', () => {
   beforeEach(() => {
     vi.clearAllMocks();
-    // Reset terminal store state
     useTerminalStore.setState({
       terminals: [],
       activeTerminalId: null,
+      currentFilePath: '/test/file.arbo',
+      fileStates: {},
     });
   });
 
@@ -136,10 +137,7 @@ describe('terminalStore', () => {
 
   describe('togglePinnedToBottom', () => {
     it('should toggle pinnedToBottom state for a terminal', () => {
-      useTerminalStore.setState({
-        terminals: [{ id: 'terminal-1', title: 'Terminal', cwd: '/', shellCommand: '/bin/bash', shellArgs: [], pinnedToBottom: true }],
-        activeTerminalId: 'terminal-1',
-      });
+      useTerminalStore.getState().addTerminal({ id: 'terminal-1', title: 'Terminal', cwd: '/', shellCommand: '/bin/bash', shellArgs: [], pinnedToBottom: true });
 
       useTerminalStore.getState().togglePinnedToBottom('terminal-1');
 
@@ -151,13 +149,8 @@ describe('terminalStore', () => {
     });
 
     it('should not affect other terminals', () => {
-      useTerminalStore.setState({
-        terminals: [
-          { id: 'terminal-1', title: 'Terminal 1', cwd: '/', shellCommand: '/bin/bash', shellArgs: [], pinnedToBottom: true },
-          { id: 'terminal-2', title: 'Terminal 2', cwd: '/', shellCommand: '/bin/bash', shellArgs: [], pinnedToBottom: true },
-        ],
-        activeTerminalId: 'terminal-1',
-      });
+      useTerminalStore.getState().addTerminal({ id: 'terminal-1', title: 'Terminal 1', cwd: '/', shellCommand: '/bin/bash', shellArgs: [], pinnedToBottom: true });
+      useTerminalStore.getState().addTerminal({ id: 'terminal-2', title: 'Terminal 2', cwd: '/', shellCommand: '/bin/bash', shellArgs: [], pinnedToBottom: true });
 
       useTerminalStore.getState().togglePinnedToBottom('terminal-1');
 

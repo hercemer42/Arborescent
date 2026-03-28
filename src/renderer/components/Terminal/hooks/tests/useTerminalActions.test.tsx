@@ -37,10 +37,11 @@ describe('useTerminalActions', () => {
 
   beforeEach(() => {
     vi.clearAllMocks();
-    // Reset terminal store state
     useTerminalStore.setState({
       terminals: [],
       activeTerminalId: null,
+      currentFilePath: '/test/file.arbo',
+      fileStates: {},
     });
   });
 

@@ -70,6 +70,10 @@ Three panels support your workflow:
 - **Browser** (`Ctrl+B`): Built-in browser for web-based AI tools
 - **Feedback** (`Ctrl+Shift+F`): Shows AI responses during Collaborate sessions
 
+Each open file has its own panel state — open a terminal in one file, switch to another, and each remembers its own panel, browser tabs, and terminals independently. Zoom tabs share their parent file's panels.
+
+Panel state persists across restarts. When you reopen Arborescent, each file's panel visibility, browser tabs, and terminals are restored. Terminal history is lost (processes can't survive a restart), but terminals reopen in the same working directory.
+
 Drag the panel edge to resize. Toggle between side and bottom position with the arrow button.
 
 ### Terminal scroll lock

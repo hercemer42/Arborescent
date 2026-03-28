@@ -17,6 +17,7 @@ import { createWorkflowActions, WorkflowActions } from './actions/workflowAction
 import { createWorkflowExecutionActions, WorkflowExecutionActions, WorkflowExecutionEntry } from './actions/workflowExecutionActions';
 import { HistoryManager } from './commands/HistoryManager';
 import { StorageService } from '../../services/storageService';
+import { storeManager } from '../storeManager';
 
 export type { WorkflowExecutionEntry };
 
@@ -48,6 +49,7 @@ export interface TreeState {
   deletingNodeIds: Set<string>;
   deleteAnimationCallback: (() => void) | null;
   collaboratingNodeId: string | null;
+  collaborationSource: 'browser' | 'terminal' | null;
   decomposition: boolean;
   feedbackFadingNodeIds: Set<string>;
   contextDeclarations: ContextDeclarationInfo[];
@@ -75,7 +77,7 @@ export function createTreeStore(treeType: TreeType = 'workspace') {
     const historyActions = createHistoryActions(historyManager);
 
     const nodeDeletionActions = createNodeDeletionActions(get, set, persistenceActions.autoSave);
-    const sendActions = createSendActions(get, set, visualEffectsActions, persistenceActions.autoSave);
+    const sendActions = createSendActions(get, set, visualEffectsActions, persistenceActions.autoSave, () => storeManager.getAllStores());
 
     const contextActions = createContextActions(get, set, persistenceActions.autoSave, historyActions.executeCommand);
 
@@ -109,6 +111,7 @@ export function createTreeStore(treeType: TreeType = 'workspace') {
       deletingNodeIds: new Set(),
       deleteAnimationCallback: null,
       collaboratingNodeId: null,
+      collaborationSource: null,
       decomposition: false,
       feedbackFadingNodeIds: new Set(),
       contextDeclarations: [],

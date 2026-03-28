@@ -1,17 +1,11 @@
 import { StorageService, BrowserSession, BrowserTab } from '../../../../shared/interfaces';
 import { logger } from '../../../services/logger';
 import { DEFAULT_BROWSER_URL } from '../browserStore';
-
-interface BrowserState {
-  tabs: BrowserTab[];
-  activeTabId: string | null;
-  panelPosition: 'side' | 'bottom';
-  isBrowserVisible: boolean;
-  panelHeight: number;
-  panelWidth: number;
-}
+import type { FileBrowserState, BrowserState } from '../browserStore';
+import { resolveToSourceFilePath } from '../../../utils/zoomPath';
 
 export interface BrowserActions {
+  setActiveFile: (filePath: string | null) => void;
   addTab: (url: string) => void;
   closeTab: (id: string) => void;
   setActiveTab: (id: string) => void;
@@ -23,17 +17,34 @@ export interface BrowserActions {
   hideBrowser: () => void;
   setPanelHeight: (height: number) => void;
   setPanelWidth: (width: number) => void;
+  closeFileBrowserTabs: (filePath: string) => void;
   restoreSession: () => Promise<void>;
 }
 
 type StoreGetter = () => BrowserState;
 type StoreSetter = (partial: Partial<BrowserState> | ((state: BrowserState) => Partial<BrowserState>)) => void;
 
+function getFileState(fileStates: Record<string, FileBrowserState>, filePath: string | null): FileBrowserState {
+  if (!filePath) return { tabs: [], activeTabId: null };
+  return fileStates[filePath] || { tabs: [], activeTabId: null };
+}
+
+function updateFileState(
+  fileStates: Record<string, FileBrowserState>,
+  filePath: string | null,
+  update: Partial<FileBrowserState>,
+): Record<string, FileBrowserState> {
+  if (!filePath) return fileStates;
+  const current = fileStates[filePath] || { tabs: [], activeTabId: null };
+  return { ...fileStates, [filePath]: { ...current, ...update } };
+}
+
 export function createBrowserActions(get: StoreGetter, set: StoreSetter, storage: StorageService): BrowserActions {
   async function saveBrowserSession(state: BrowserState): Promise<void> {
     const session: BrowserSession = {
       tabs: state.tabs,
       activeTabId: state.activeTabId,
+      fileStates: state.fileStates,
     };
 
     try {
@@ -42,66 +53,117 @@ export function createBrowserActions(get: StoreGetter, set: StoreSetter, storage
       logger.error('Failed to save browser session', error as Error, 'BrowserActions');
     }
   }
-  function addTab(url: string): void {
-    const id = `browser-${Date.now()}`;
-    const newTab: BrowserTab = {
-      id,
-      title: 'Loading...',
-      url,
-    };
 
+  function setActiveFile(filePath: string | null): void {
+    const resolved = resolveToSourceFilePath(filePath);
+    const { fileStates, pendingLegacyTabs } = get();
+
+    if (pendingLegacyTabs && resolved) {
+      const migratedFileStates = updateFileState(fileStates, resolved, {
+        tabs: pendingLegacyTabs.tabs,
+        activeTabId: pendingLegacyTabs.activeTabId,
+      });
+      set({
+        currentFilePath: resolved,
+        tabs: pendingLegacyTabs.tabs,
+        activeTabId: pendingLegacyTabs.activeTabId,
+        fileStates: migratedFileStates,
+        pendingLegacyTabs: undefined,
+      });
+      return;
+    }
+
+    const fileState = getFileState(fileStates, resolved);
+    set({
+      currentFilePath: resolved,
+      tabs: fileState.tabs,
+      activeTabId: fileState.activeTabId,
+    });
+  }
+
+  function addTab(url: string): void {
+    const { currentFilePath, fileStates } = get();
+    if (!currentFilePath) return;
+
+    const id = `browser-${Date.now()}`;
+    const newTab: BrowserTab = { id, title: 'Loading...', url };
+    const current = getFileState(fileStates, currentFilePath);
+    const newTabs = [...current.tabs, newTab];
+    const newFileStates = updateFileState(fileStates, currentFilePath, {
+      tabs: newTabs,
+      activeTabId: id,
+    });
+
+    const newState = {
+      tabs: newTabs,
+      activeTabId: id,
+      isBrowserVisible: true,
+      fileStates: newFileStates,
+    };
     set((state: BrowserState) => {
-      const newState = {
-        tabs: [...state.tabs, newTab],
-        activeTabId: id,
-        isBrowserVisible: true,
-      };
       saveBrowserSession({ ...state, ...newState });
       return newState;
     });
   }
 
   function closeTab(id: string): void {
+    const { currentFilePath, fileStates } = get();
+    if (!currentFilePath) return;
+
+    const current = getFileState(fileStates, currentFilePath);
+    const newTabs = current.tabs.filter((tab) => tab.id !== id);
+    const newActiveTabId = current.activeTabId === id
+      ? (newTabs.length > 0 ? newTabs[newTabs.length - 1].id : null)
+      : current.activeTabId;
+    const newFileStates = updateFileState(fileStates, currentFilePath, {
+      tabs: newTabs,
+      activeTabId: newActiveTabId,
+    });
+
+    const newState = { tabs: newTabs, activeTabId: newActiveTabId, fileStates: newFileStates };
     set((state: BrowserState) => {
-      const newTabs = state.tabs.filter((tab) => tab.id !== id);
-      let newActiveTabId = state.activeTabId;
-
-      if (state.activeTabId === id) {
-        newActiveTabId = newTabs.length > 0 ? newTabs[newTabs.length - 1].id : null;
-      }
-
-      const newState = {
-        tabs: newTabs,
-        activeTabId: newActiveTabId,
-      };
       saveBrowserSession({ ...state, ...newState });
       return newState;
     });
   }
 
   function setActiveTab(id: string): void {
+    const { currentFilePath, fileStates } = get();
+    if (!currentFilePath) return;
+
+    const newFileStates = updateFileState(fileStates, currentFilePath, { activeTabId: id });
     set((state: BrowserState) => {
-      const newState = { activeTabId: id };
+      const newState = { activeTabId: id, fileStates: newFileStates };
       saveBrowserSession({ ...state, ...newState });
       return newState;
     });
   }
 
   function updateTabTitle(id: string, title: string): void {
+    const { currentFilePath, fileStates } = get();
+    if (!currentFilePath) return;
+
+    const current = getFileState(fileStates, currentFilePath);
+    const newTabs = current.tabs.map((tab) => (tab.id === id ? { ...tab, title } : tab));
+    const newFileStates = updateFileState(fileStates, currentFilePath, { tabs: newTabs });
+
     set((state: BrowserState) => {
-      const newState = {
-        tabs: state.tabs.map((tab) => (tab.id === id ? { ...tab, title } : tab)),
-      };
+      const newState = { tabs: newTabs, fileStates: newFileStates };
       saveBrowserSession({ ...state, ...newState });
       return newState;
     });
   }
 
   function updateTabUrl(id: string, url: string): void {
+    const { currentFilePath, fileStates } = get();
+    if (!currentFilePath) return;
+
+    const current = getFileState(fileStates, currentFilePath);
+    const newTabs = current.tabs.map((tab) => (tab.id === id ? { ...tab, url } : tab));
+    const newFileStates = updateFileState(fileStates, currentFilePath, { tabs: newTabs });
+
     set((state: BrowserState) => {
-      const newState = {
-        tabs: state.tabs.map((tab) => (tab.id === id ? { ...tab, url } : tab)),
-      };
+      const newState = { tabs: newTabs, fileStates: newFileStates };
       saveBrowserSession({ ...state, ...newState });
       return newState;
     });
@@ -158,18 +220,34 @@ export function createBrowserActions(get: StoreGetter, set: StoreSetter, storage
     });
   }
 
+  function closeFileBrowserTabs(filePath: string): void {
+    const { fileStates } = get();
+    const updated = { ...fileStates };
+    delete updated[filePath];
+    const { currentFilePath } = get();
+    const currentState = currentFilePath === filePath
+      ? { tabs: [] as BrowserTab[], activeTabId: null as string | null }
+      : {};
+    set({ fileStates: updated, ...currentState });
+    saveBrowserSession({ ...get(), fileStates: updated });
+  }
+
   async function restoreSession(): Promise<void> {
     const session = await storage.getBrowserSession();
 
     if (session) {
+      const fileStates = session.fileStates || {};
+      const hasMigratedTabs = Object.keys(fileStates).length === 0 && session.tabs.length > 0;
+
       set({
-        tabs: session.tabs,
-        activeTabId: session.activeTabId,
+        tabs: hasMigratedTabs ? session.tabs : [],
+        activeTabId: hasMigratedTabs ? session.activeTabId : null,
+        fileStates,
+        pendingLegacyTabs: hasMigratedTabs ? { tabs: session.tabs, activeTabId: session.activeTabId } : undefined,
       });
 
-      logger.info(`Restored ${session.tabs.length} browser tab(s)`, 'BrowserActions');
+      logger.info(`Restored browser session (${Object.keys(fileStates).length} file(s))`, 'BrowserActions');
     } else {
-      // No session file exists - create default session with one tab
       const defaultTab: BrowserTab = {
         id: `browser-${Date.now()}`,
         title: 'Ecosia',
@@ -188,6 +266,7 @@ export function createBrowserActions(get: StoreGetter, set: StoreSetter, storage
   }
 
   return {
+    setActiveFile,
     addTab,
     closeTab,
     setActiveTab,
@@ -199,6 +278,7 @@ export function createBrowserActions(get: StoreGetter, set: StoreSetter, storage
     hideBrowser,
     setPanelHeight,
     setPanelWidth,
+    closeFileBrowserTabs,
     restoreSession,
   };
 }

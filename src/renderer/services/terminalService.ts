@@ -1,11 +1,16 @@
 import { TerminalInfo } from '../store/terminal/terminalStore';
 import { logger } from './logger';
 
-export async function createTerminal(title = 'Terminal'): Promise<TerminalInfo> {
+export async function createTerminal(
+  title = 'Terminal',
+  shellCommand?: string,
+  shellArgs?: string[],
+  cwd?: string
+): Promise<TerminalInfo> {
   const id = `terminal-${Date.now()}`;
 
   try {
-    const terminalInfo = await window.electron.terminalCreate(id, title);
+    const terminalInfo = await window.electron.terminalCreate(id, title, shellCommand, shellArgs, cwd);
     return {
       ...terminalInfo,
       pinnedToBottom: true,

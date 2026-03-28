@@ -1,6 +1,6 @@
 import * as yaml from 'js-yaml';
 import { ArboFile } from '../../shared/types';
-import { StorageService as IStorageService, SessionState, BrowserSession, PanelSession, UserPreferences } from '../../shared/interfaces';
+import { StorageService as IStorageService, SessionState, BrowserSession, TerminalSession, PanelSession, UserPreferences } from '../../shared/interfaces';
 import { getNextUntitledNumber } from '../../shared/utils/fileNaming';
 
 export class StorageService implements IStorageService {
@@ -81,6 +81,25 @@ export class StorageService implements IStorageService {
 
   async showUnsavedChangesDialog(fileName: string): Promise<number> {
     return window.electron.showUnsavedChangesDialog(fileName);
+  }
+
+  async showRunningWorkflowDialog(fileName: string): Promise<boolean> {
+    return window.electron.showRunningWorkflowDialog(fileName);
+  }
+
+  async saveTerminalSession(session: TerminalSession): Promise<void> {
+    const sessionData = JSON.stringify(session, null, 2);
+    await window.electron.saveTerminalSession(sessionData);
+  }
+
+  async getTerminalSession(): Promise<TerminalSession | null> {
+    const sessionData = await window.electron.getTerminalSession();
+    if (!sessionData) return null;
+    try {
+      return JSON.parse(sessionData) as TerminalSession;
+    } catch {
+      return null;
+    }
   }
 
   async saveBrowserSession(session: BrowserSession): Promise<void> {

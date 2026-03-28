@@ -209,7 +209,8 @@ export function createSendActions(
   get: () => TreeState,
   set: (partial: Partial<TreeState> | ((state: TreeState) => Partial<TreeState>)) => void,
   _visualEffects: VisualEffectsActions,
-  autoSave: () => void
+  autoSave: () => void,
+  getAllStores?: () => { getState: () => { collaboratingNodeId: string | null; collaborationSource: string | null; currentFilePath: string | null } }[],
 ): SendActions {
   function setFeedbackTempFile(nodeId: string, tempFilePath: string | undefined): void {
     const nodes = get().nodes;
@@ -244,7 +245,7 @@ export function createSendActions(
     },
 
     cancelCollaboration: () => {
-      set({ collaboratingNodeId: null });
+      set({ collaboratingNodeId: null, collaborationSource: null });
     },
 
     acceptFeedback: (newRootNodeId: string, newNodesMap: Record<string, TreeNode>) => {
@@ -265,6 +266,19 @@ export function createSendActions(
 
     collaborate: async (nodeId: string, mode?: 'collaborate' | 'execute') => {
       const state = get();
+
+      const blockingStore = getAllStores?.().find(
+        s => s.getState().collaboratingNodeId !== null && s.getState().collaborationSource === 'browser'
+      );
+      if (blockingStore) {
+        const blockingFilePath = blockingStore.getState().currentFilePath || '';
+        const fileName = blockingFilePath.split('/').pop() || blockingFilePath;
+        useToastStore.getState().addToast(
+          `Browser collaboration already in progress in ${fileName}`,
+          'error'
+        );
+        return;
+      }
 
       if (state.collaboratingNodeId) {
         showCollaborationInProgressError();
@@ -300,9 +314,8 @@ export function createSendActions(
           'info'
         );
 
-        set({ collaboratingNodeId: nodeId, decomposition: isExecuteMode ? false : isDecompositionEnabled(nodeId, state.nodes, state.ancestorRegistry) });
+        set({ collaboratingNodeId: nodeId, collaborationSource: 'browser', decomposition: isExecuteMode ? false : isDecompositionEnabled(nodeId, state.nodes, state.ancestorRegistry) });
         usePanelStore.getState().showBrowser();
-        // Clipboard monitor is managed by useFeedbackClipboard based on collaboratingNodeId state
 
         logger.info(`Started collaboration for node: ${nodeId}`, 'SendActions');
       } catch (error) {
@@ -353,7 +366,7 @@ export function createSendActions(
             );
 
         await executeInTerminal(terminalId, terminalInstruction);
-        set({ collaboratingNodeId: nodeId, decomposition: isExecuteMode ? false : isDecompositionEnabled(nodeId, state.nodes, state.ancestorRegistry) });
+        set({ collaboratingNodeId: nodeId, collaborationSource: 'terminal', decomposition: isExecuteMode ? false : isDecompositionEnabled(nodeId, state.nodes, state.ancestorRegistry) });
         await window.electron.startFeedbackFileWatcher(feedbackResponseFile);
 
         logger.info(`Started terminal collaboration for node: ${nodeId}, watching: ${feedbackResponseFile}`, 'SendActions');
@@ -520,10 +533,10 @@ export function createSendActions(
 
         if (tempFilePath) {
           setFeedbackTempFile(collaboratingNodeId, undefined);
-          set({ collaboratingNodeId: null });
+          set({ collaboratingNodeId: null, collaborationSource: null });
           autoSave();
         } else {
-          set({ collaboratingNodeId: null });
+          set({ collaboratingNodeId: null, collaborationSource: null });
         }
 
         await cleanupFeedback(currentFilePath, tempFilePath);
@@ -567,7 +580,7 @@ export function createSendActions(
             'warning',
             { persistent: true, actions: [{ label: 'OK', onClick: () => {} }] }
           );
-          set({ collaboratingNodeId: null });
+          set({ collaboratingNodeId: null, collaborationSource: null });
           await cleanupFeedback(currentFilePath, currentNodes[collaboratingNodeId]?.metadata.feedbackTempFile as string | undefined);
           return;
         }
