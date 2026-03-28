@@ -140,6 +140,14 @@ export function useTerminal({ id, pinnedToBottom = true, onResize }: UseTerminal
     // Also listen to window resize
     window.addEventListener('resize', handleResize);
 
+    // Force PTY to redraw by briefly changing dimensions then restoring,
+    // so the shell reprints its prompt after this component remounts
+    fitAddon.fit();
+    const { cols, rows } = xterm;
+    window.electron.terminalResize(id, cols - 1, rows).then(() => {
+      window.electron.terminalResize(id, cols, rows);
+    });
+
     // Cleanup
     return () => {
       if (resizeRafId !== null) {

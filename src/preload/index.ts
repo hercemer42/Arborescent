@@ -61,13 +61,15 @@ contextBridge.exposeInMainWorld('electron', {
     ipcRenderer.invoke('terminal:destroy', id),
   onTerminalData: (id: string, callback: (data: string) => void) => {
     const channel = `terminal:data:${id}`;
-    ipcRenderer.on(channel, (_event, data) => callback(data));
-    return () => ipcRenderer.removeAllListeners(channel);
+    const listener = (_event: Electron.IpcRendererEvent, data: string) => callback(data);
+    ipcRenderer.on(channel, listener);
+    return () => ipcRenderer.removeListener(channel, listener);
   },
   onTerminalExit: (id: string, callback: (exitInfo: { exitCode: number; signal?: number }) => void) => {
     const channel = `terminal:exit:${id}`;
-    ipcRenderer.on(channel, (_event, exitInfo) => callback(exitInfo));
-    return () => ipcRenderer.removeAllListeners(channel);
+    const listener = (_event: Electron.IpcRendererEvent, exitInfo: { exitCode: number; signal?: number }) => callback(exitInfo);
+    ipcRenderer.on(channel, listener);
+    return () => ipcRenderer.removeListener(channel, listener);
   },
   setMenuNewHandler: (callback: () => void) => {
     ipcRenderer.removeAllListeners('menu-new');
