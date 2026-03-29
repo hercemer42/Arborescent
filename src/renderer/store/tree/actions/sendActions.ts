@@ -44,16 +44,19 @@ const SINGLE_ROOT_OUTPUT_FORMAT = `OUTPUT FORMAT:
 - Example: "## [ ] Task name" or "### [x] Completed task"`;
 
 const DECOMPOSITION_OUTPUT_FORMAT = `OUTPUT FORMAT:
-- Output MULTIPLE top-level items, each starting with a single # heading.
-- Do NOT wrap them under a parent node. Do NOT include the original node as a root heading. Start directly with the breakdown items.
-- Each # heading becomes a separate node in the tree. There must be more than one # heading.
+- Output one or more top-level items, each starting with a single # heading.
+- Do NOT wrap them under a parent node.
+- Each # heading becomes a separate node in the tree.
 - Use ## for children of a top-level item, ### for grandchildren, etc.
 - Use [ ] for pending items, [x] for completed, [-] for failed
 - WRONG (do not do this):
 # [ ] Original topic
 ## [ ] First item
 ## [ ] Second item
-- CORRECT (do this):
+- CORRECT (single item is fine when the content doesn't warrant splitting):
+# [ ] Refined item
+## [ ] Sub-item
+- CORRECT (multiple items when splitting is warranted):
 # [ ] First item
 ## [ ] Sub-item of first
 # [ ] Second item

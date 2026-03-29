@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-03-28T17:53:48.768Z'
+updated: '2026-03-29T08:10:44.047Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -8862,7 +8862,6 @@ nodes:
     id: 79b693ca-27ce-4410-8617-8092d7e81b07
     content: Issues
     children:
-      - e80fd67d-f46c-4b61-8693-66d1f26681ea
       - eaa4fec4-a897-46c1-9498-02fdfb5e442c
       - 15974593-af5a-4c3e-b454-539a4f99d9c7
       - d48c9675-9ec8-4032-9df0-a5037764b9cf
@@ -15466,6 +15465,7 @@ nodes:
     id: 5cc686fc-7651-4d83-9ccf-78a29d1dff13
     content: Done
     children:
+      - e80fd67d-f46c-4b61-8693-66d1f26681ea
       - 35cc9914-8235-4a8e-9895-567fc38ed5c0
       - 03238058-24ff-4f1d-956f-4a4d52bdbe85
       - bd901a31-fc48-4f06-ba8b-dd6d7eb892ab
@@ -26657,8 +26657,7 @@ nodes:
   333cb3e7-a25e-4d18-9dfa-82cf75328fff:
     id: 333cb3e7-a25e-4d18-9dfa-82cf75328fff
     content: AI refactor
-    children:
-      - 24067c26-b76f-4ddc-9034-54c18febefa5
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -26860,7 +26859,8 @@ nodes:
   4c43c117-e89a-460c-9900-7ea15b8cc0e0:
     id: 4c43c117-e89a-460c-9900-7ea15b8cc0e0
     content: Solution design
-    children: []
+    children:
+      - fe9b1ead-3abb-49f5-9898-7879669ad17f
     metadata:
       status: pending
       expanded: true
@@ -35361,14 +35361,7 @@ nodes:
   7b3e923e-b465-4444-ae7d-7fe0e80e3235:
     id: 7b3e923e-b465-4444-ae7d-7fe0e80e3235
     content: Code review & refactor
-    children:
-      - 39020393-d6fc-4bfa-b3c6-a307f0373e60
-      - 4eb98c41-a845-4ca1-8c5f-be0da439f161
-      - 27baba38-c9bc-4859-bf01-84bfd96dfaf3
-      - 0cd3f389-4003-4bdf-a037-20d32d716d6a
-      - da043ce9-318f-4d88-9008-2b626ed220d0
-      - 98dc8f37-9560-497a-8181-11195524d6e0
-      - dfbf6096-2c08-4a99-878d-617217c49789
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -48746,6 +48739,13 @@ nodes:
     id: 481c87e7-14ce-4e02-9e1c-3483a5abac51
     content: Done
     children:
+      - dfbf6096-2c08-4a99-878d-617217c49789
+      - 98dc8f37-9560-497a-8181-11195524d6e0
+      - da043ce9-318f-4d88-9008-2b626ed220d0
+      - 0cd3f389-4003-4bdf-a037-20d32d716d6a
+      - 27baba38-c9bc-4859-bf01-84bfd96dfaf3
+      - 4eb98c41-a845-4ca1-8c5f-be0da439f161
+      - 39020393-d6fc-4bfa-b3c6-a307f0373e60
       - 4adfa410-1e2e-4155-8e8e-2b2ed48b40a8
       - 911c7c76-b792-44e2-b404-5087a4ceaff4
       - 437c64c9-3da3-449a-9702-96755b5521b1
@@ -73229,10 +73229,20 @@ nodes:
       plugins: {}
   e80fd67d-f46c-4b61-8693-66d1f26681ea:
     id: e80fd67d-f46c-4b61-8693-66d1f26681ea
-    content: Decomposition instructions too severe, it's decomposing when it doesn't need to.
-    children: []
+    content: Decomposition instructions too aggressive — AI decomposes when it shouldn't
+    children:
+      - 4e838e70-7701-49d5-a575-04eab7a2d72d
+      - b7c8c3d0-4b4d-46fe-b7dd-5a62b4d9f275
+      - f6450332-1058-4bc5-abc3-38e0704940c2
+      - 11c52b6e-7081-4683-8689-6738d34e56e8
+      - b937d21b-2626-4f8a-8832-3edf4582b7e7
+      - 6745aafd-1202-4516-b2d2-3ea1eb533e52
+      - e9e696a6-c9aa-4ea8-8374-b78ea9484aec
     metadata:
-      status: pending
+      status: completed
+      expanded: false
+      deleted: false
+      plugins: {}
   dfbf6096-2c08-4a99-878d-617217c49789:
     id: dfbf6096-2c08-4a99-878d-617217c49789
     content: Per-file session persistence across app restart
@@ -74773,12 +74783,6 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  24067c26-b76f-4ddc-9034-54c18febefa5:
-    id: 24067c26-b76f-4ddc-9034-54c18febefa5
-    content: refactor since last commit
-    children: []
-    metadata:
-      status: pending
   cab835d8-dde8-45ee-81a2-7e788a1f82dd:
     id: cab835d8-dde8-45ee-81a2-7e788a1f82dd
     content: Tabs in side panel can be a mix of browser, terminal, and feedback
@@ -74787,6 +74791,7 @@ nodes:
       - 3301b9ca-8c70-477a-a3c1-41d15642bb8b
     metadata:
       status: pending
+      expanded: false
   4f4b72e7-b0ae-43ce-bd54-23c1e180f3e1:
     id: 4f4b72e7-b0ae-43ce-bd54-23c1e180f3e1
     content: Easier to swop between them
@@ -74799,3 +74804,1215 @@ nodes:
     children: []
     metadata:
       status: pending
+  fe9b1ead-3abb-49f5-9898-7879669ad17f:
+    id: fe9b1ead-3abb-49f5-9898-7879669ad17f
+    content: Move decomposition from workflow step to context
+    children:
+      - 305b8171-e39a-49af-ae30-f40d97779cc9
+      - e7e438b5-a723-4648-bb16-839e41abb74e
+      - da08236c-3727-4c80-8a21-c008f97c0444
+      - 846b64b5-b70a-4f92-bd6c-2b2aab87d6f2
+      - 07d5b296-f0e6-4b6d-8b05-c5bf77143a15
+      - 66bd6c94-e7cb-4073-bb3f-2928c08c82d6
+      - 8ba4d35b-7f23-4c20-94b6-0d1d74ec0691
+    metadata:
+      status: pending
+      expanded: false
+      deleted: false
+      plugins: {}
+  305b8171-e39a-49af-ae30-f40d97779cc9:
+    id: 305b8171-e39a-49af-ae30-f40d97779cc9
+    content: Context
+    children:
+      - 48e0b701-8af0-4d2c-839b-03a89c23b35d
+      - 6257787c-d5e6-45aa-ab9c-08ab2e2443a9
+      - 04874c3f-e5e8-45b1-bd7b-6e7a7817e0c4
+      - 31f70e6e-12a4-4018-8ead-74dabffc8bcc
+      - 850ab696-b628-4636-b84d-fdebb4f9993b
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  48e0b701-8af0-4d2c-839b-03a89c23b35d:
+    id: 48e0b701-8af0-4d2c-839b-03a89c23b35d
+    content: Decomposition is currently configured on each workflow step via the step config dialog
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6257787c-d5e6-45aa-ab9c-08ab2e2443a9:
+    id: 6257787c-d5e6-45aa-ab9c-08ab2e2443a9
+    content: Contexts are configured on context declarations and applied to nodes via inheritance
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  04874c3f-e5e8-45b1-bd7b-6e7a7817e0c4:
+    id: 04874c3f-e5e8-45b1-bd7b-6e7a7817e0c4
+    content: When a step has decomposition enabled, the AI is told to produce multiple top-level items
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  31f70e6e-12a4-4018-8ead-74dabffc8bcc:
+    id: 31f70e6e-12a4-4018-8ead-74dabffc8bcc
+    content: The context tells the AI what to decompose into (e.g. "break into user stories")
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  850ab696-b628-4636-b84d-fdebb4f9993b:
+    id: 850ab696-b628-4636-b84d-fdebb4f9993b
+    content: 'These two concepts are tightly coupled: the decomposition flag only makes sense when paired with a context that instructs the AI to produce multiple items'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e7e438b5-a723-4648-bb16-839e41abb74e:
+    id: e7e438b5-a723-4648-bb16-839e41abb74e
+    content: The problem
+    children:
+      - b7ca6674-acc5-478d-8675-b0332caec777
+      - ccbf0318-725e-4b79-ac54-9fecf83b18f0
+      - 7260315f-06c2-47f6-9f9e-bd99591613d4
+      - 2e0c6754-c93f-4281-9df1-5b97e035e009
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b7ca6674-acc5-478d-8675-b0332caec777:
+    id: b7ca6674-acc5-478d-8675-b0332caec777
+    content: If a user wants to apply a specific context to a child node within a decomposition step's subtree, the decomposition flag still comes from the step — not from the context
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ccbf0318-725e-4b79-ac54-9fecf83b18f0:
+    id: ccbf0318-725e-4b79-ac54-9fecf83b18f0
+    content: This means decomposition is fixed for all items passing through that step, regardless of what context they carry
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7260315f-06c2-47f6-9f9e-bd99591613d4:
+    id: 7260315f-06c2-47f6-9f9e-bd99591613d4
+    content: A user who wants step 2 to decompose some items (with a "break into stories" context) and refine others (with a "review and improve" context) cannot do this — decomposition is all-or-nothing per step
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2e0c6754-c93f-4281-9df1-5b97e035e009:
+    id: 2e0c6754-c93f-4281-9df1-5b97e035e009
+    content: The concept of "how many outputs to expect" is logically part of the instruction set, not part of the pipeline stage
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  da08236c-3727-4c80-8a21-c008f97c0444:
+    id: da08236c-3727-4c80-8a21-c008f97c0444
+    content: Who is affected
+    children:
+      - bc5f3106-71a5-4bb8-bdcf-2cd389a14c15
+      - a9876210-cc8c-4187-996d-e789cea430e3
+      - 91146ec7-c94d-4501-9ba2-797b01c8fcc2
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  bc5f3106-71a5-4bb8-bdcf-2cd389a14c15:
+    id: bc5f3106-71a5-4bb8-bdcf-2cd389a14c15
+    content: Users building multi-purpose workflows where the same step processes items with different contexts
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a9876210-cc8c-4187-996d-e789cea430e3:
+    id: a9876210-cc8c-4187-996d-e789cea430e3
+    content: Users who want to reuse a decomposition context across different workflows without reconfiguring each step
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  91146ec7-c94d-4501-9ba2-797b01c8fcc2:
+    id: 91146ec7-c94d-4501-9ba2-797b01c8fcc2
+    content: This is an advanced use case — most simple linear workflows won't hit this, but it blocks more sophisticated pipeline designs
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  846b64b5-b70a-4f92-bd6c-2b2aab87d6f2:
+    id: 846b64b5-b70a-4f92-bd6c-2b2aab87d6f2
+    content: What happens today without a solution
+    children:
+      - dedec26f-17cb-4c62-ad1b-2bfa6c591bea
+      - 92496c02-ab46-4a82-a682-3be5482b2eb5
+      - 4d1d909c-22bf-44e6-afa1-296c21bfd497
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  dedec26f-17cb-4c62-ad1b-2bfa6c591bea:
+    id: dedec26f-17cb-4c62-ad1b-2bfa6c591bea
+    content: Users work around it by creating separate workflow branches for decomposition vs non-decomposition items
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  92496c02-ab46-4a82-a682-3be5482b2eb5:
+    id: 92496c02-ab46-4a82-a682-3be5482b2eb5
+    content: Or they live with decomposition always on for a step, even when some items shouldn't be decomposed
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4d1d909c-22bf-44e6-afa1-296c21bfd497:
+    id: 4d1d909c-22bf-44e6-afa1-296c21bfd497
+    content: Context declarations feel incomplete because they define what the AI should do but not how the output should be structured
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  07d5b296-f0e6-4b6d-8b05-c5bf77143a15:
+    id: 07d5b296-f0e6-4b6d-8b05-c5bf77143a15
+    content: Feasibility and ROI
+    children:
+      - 60bdc8bd-0a9e-4c97-b111-aba446a4b271
+      - acba1758-7003-4dc8-9071-c9ba479e9778
+      - 528aa187-9463-4b80-8c5d-030ce19a1cc2
+      - 51c97baf-774d-4870-930f-17745b5e7ce2
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  60bdc8bd-0a9e-4c97-b111-aba446a4b271:
+    id: 60bdc8bd-0a9e-4c97-b111-aba446a4b271
+    content: Moderate effort — requires moving the decomposition flag from step metadata to context metadata, updating the step config dialog, updating context declaration UI, and updating the resolution logic
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  acba1758-7003-4dc8-9071-c9ba479e9778:
+    id: acba1758-7003-4dc8-9071-c9ba479e9778
+    content: High alignment — decomposition is conceptually part of the instruction set ("break this down into X") not the pipeline ("this step always decomposes")
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  528aa187-9463-4b80-8c5d-030ce19a1cc2:
+    id: 528aa187-9463-4b80-8c5d-030ce19a1cc2
+    content: Low risk — decomposition is already a boolean flag; moving where it lives doesn't change the parsing or feedback acceptance logic
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  51c97baf-774d-4870-930f-17745b5e7ce2:
+    id: 51c97baf-774d-4870-930f-17745b5e7ce2
+    content: 'Migration: existing workflows with decomposition on steps would need a migration path or backward compatibility'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  66bd6c94-e7cb-4073-bb3f-2928c08c82d6:
+    id: 66bd6c94-e7cb-4073-bb3f-2928c08c82d6
+    content: Proposed solution
+    children:
+      - b4cccc71-a995-4c5e-bd01-bbeec035f9ad
+      - 63d3271f-e873-4720-8ddd-f966da76e924
+      - f1c74dbb-ffb5-4f64-bd06-25d5ce691f40
+      - f4f01191-a06e-4b33-b704-c85035ba0db5
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b4cccc71-a995-4c5e-bd01-bbeec035f9ad:
+    id: b4cccc71-a995-4c5e-bd01-bbeec035f9ad
+    content: 'MVP: Add a "decomposition" toggle to context declarations'
+    children:
+      - e8c11a98-afdf-4e80-a3ff-4d19243e85a8
+      - 9d3a66d7-9498-4162-9cba-ba0431d89de3
+      - 3a19e8bb-b435-44ee-828e-5a5650311d06
+      - 078258fa-237e-4483-9753-a26a2d58f415
+      - 7b5b96a8-2ea3-4908-96d8-b37adda60086
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e8c11a98-afdf-4e80-a3ff-4d19243e85a8:
+    id: e8c11a98-afdf-4e80-a3ff-4d19243e85a8
+    content: When declaring a context, you can mark it as a decomposition context
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9d3a66d7-9498-4162-9cba-ba0431d89de3:
+    id: 9d3a66d7-9498-4162-9cba-ba0431d89de3
+    content: When a node is sent (manually or via workflow), the system checks if the resolved context has decomposition enabled — instead of checking the workflow step
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3a19e8bb-b435-44ee-828e-5a5650311d06:
+    id: 3a19e8bb-b435-44ee-828e-5a5650311d06
+    content: The step config dialog loses its decomposition checkbox
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  078258fa-237e-4483-9753-a26a2d58f415:
+    id: 078258fa-237e-4483-9753-a26a2d58f415
+    content: Built-in default contexts remain non-decomposition
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7b5b96a8-2ea3-4908-96d8-b37adda60086:
+    id: 7b5b96a8-2ea3-4908-96d8-b37adda60086
+    content: 'User flow: create a context "Break into user stories" with collaborate mode and decomposition enabled → apply it to a branch → send or run through a workflow → the system expects multiple items back'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  63d3271f-e873-4720-8ddd-f966da76e924:
+    id: 63d3271f-e873-4720-8ddd-f966da76e924
+    content: What changes for the user
+    children:
+      - 2f059b5a-3f47-44f1-a353-a0ce5db28fa9
+      - c61b4c26-e388-4eba-8aad-46c9e3bf9948
+      - 2c5a7a17-dfc2-404c-a31b-11fec6b27509
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2f059b5a-3f47-44f1-a353-a0ce5db28fa9:
+    id: 2f059b5a-3f47-44f1-a353-a0ce5db28fa9
+    content: Decomposition moves from "configure the pipeline" to "configure the instruction" — it becomes a property of what you're asking the AI to do
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c61b4c26-e388-4eba-8aad-46c9e3bf9948:
+    id: c61b4c26-e388-4eba-8aad-46c9e3bf9948
+    content: A single workflow step can now decompose or not depending on which context the item carries
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2c5a7a17-dfc2-404c-a31b-11fec6b27509:
+    id: 2c5a7a17-dfc2-404c-a31b-11fec6b27509
+    content: Reusing a decomposition context across workflows works without any step-level configuration
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f1c74dbb-ffb5-4f64-bd06-25d5ce691f40:
+    id: f1c74dbb-ffb5-4f64-bd06-25d5ce691f40
+    content: 'Alternative: Keep decomposition on both step and context (union)'
+    children:
+      - 72d38491-eb02-4f0e-879c-d87c11772b8d
+      - 04cffb06-bb88-4cc8-90b5-a237f68e697b
+      - 41a248ce-16a9-43f9-9294-1e0da571fdbe
+      - 7f2f9f2c-664f-456a-bedb-f00a667379f8
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  72d38491-eb02-4f0e-879c-d87c11772b8d:
+    id: 72d38491-eb02-4f0e-879c-d87c11772b8d
+    content: Allow decomposition to be enabled on either the step or the context — if either says yes, decompose
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  04cffb06-bb88-4cc8-90b5-a237f68e697b:
+    id: 04cffb06-bb88-4cc8-90b5-a237f68e697b
+    content: 'Pro: fully backward compatible, no migration needed'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  41a248ce-16a9-43f9-9294-1e0da571fdbe:
+    id: 41a248ce-16a9-43f9-9294-1e0da571fdbe
+    content: 'Con: two places to configure the same thing creates confusion — "why did this decompose? was it the step or the context?"'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7f2f9f2c-664f-456a-bedb-f00a667379f8:
+    id: 7f2f9f2c-664f-456a-bedb-f00a667379f8
+    content: Not recommended — adds complexity for marginal benefit
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f4f01191-a06e-4b33-b704-c85035ba0db5:
+    id: f4f01191-a06e-4b33-b704-c85035ba0db5
+    content: 'Alternative: Do nothing'
+    children:
+      - cd1520c6-c420-471e-a45f-cc76a90c980d
+      - 55a1c7ce-11ea-4e5c-ae14-4fb600b343eb
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  cd1520c6-c420-471e-a45f-cc76a90c980d:
+    id: cd1520c6-c420-471e-a45f-cc76a90c980d
+    content: Users continue using separate workflow branches for different decomposition needs
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  55a1c7ce-11ea-4e5c-ae14-4fb600b343eb:
+    id: 55a1c7ce-11ea-4e5c-ae14-4fb600b343eb
+    content: Acceptable for now but becomes increasingly painful as workflows get more sophisticated
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8ba4d35b-7f23-4c20-94b6-0d1d74ec0691:
+    id: 8ba4d35b-7f23-4c20-94b6-0d1d74ec0691
+    content: Recommendation
+    children:
+      - 539256c7-a0f2-4e00-ae70-5c0a55e279f4
+      - 82c1e33c-7f9f-4fd3-9093-a0b259da0954
+      - 4a7b7359-3de4-47d3-bd2b-e5bd63470bfe
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  539256c7-a0f2-4e00-ae70-5c0a55e279f4:
+    id: 539256c7-a0f2-4e00-ae70-5c0a55e279f4
+    content: Move decomposition to context declarations (the MVP)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  82c1e33c-7f9f-4fd3-9093-a0b259da0954:
+    id: 82c1e33c-7f9f-4fd3-9093-a0b259da0954
+    content: Effort is moderate, alignment with the design philosophy is strong — complexity should be emergent and discoverable, and tying decomposition to the context makes both concepts more self-contained
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4a7b7359-3de4-47d3-bd2b-e5bd63470bfe:
+    id: 4a7b7359-3de4-47d3-bd2b-e5bd63470bfe
+    content: 'Migration: for existing files with decomposition on steps, show a one-time toast suggesting the user move the flag to the context, or auto-migrate by creating a derived context'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4e838e70-7701-49d5-a575-04eab7a2d72d:
+    id: 4e838e70-7701-49d5-a575-04eab7a2d72d
+    content: Problem
+    children:
+      - 54509063-2c56-4430-961f-5f099998ce90
+      - 34cace94-a532-49f1-b4b7-8195236b038c
+      - 78fed4a7-5f66-4d85-825d-dcf0b80b8273
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  54509063-2c56-4430-961f-5f099998ce90:
+    id: 54509063-2c56-4430-961f-5f099998ce90
+    content: 'When decomposition is enabled, the AI receives instructions that require multiple top-level items ("There must be more than one # heading")'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  34cace94-a532-49f1-b4b7-8195236b038c:
+    id: 34cace94-a532-49f1-b4b7-8195236b038c
+    content: The AI invents artificial splits to satisfy the format requirement, even when the content is a single coherent unit
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  78fed4a7-5f66-4d85-825d-dcf0b80b8273:
+    id: 78fed4a7-5f66-4d85-825d-dcf0b80b8273
+    content: The instructions conflate "allow multiple outputs" with "require multiple outputs"
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b7c8c3d0-4b4d-46fe-b7dd-5a62b4d9f275:
+    id: b7c8c3d0-4b4d-46fe-b7dd-5a62b4d9f275
+    content: Acceptance criteria
+    children:
+      - 5e401e1e-e237-43b8-8eb5-c0b35c0c22a5
+      - 3c9cf8f2-2f40-4152-b418-485ca0602dfe
+      - 091d6eb6-3736-4027-b795-835115147b5a
+      - 86bc7fd7-af6a-4282-9344-97c38664de3a
+      - 66bb6792-4bcf-4dbd-af23-26384d69ce89
+      - 05cd7bcc-f8f1-42f4-a43f-8976c708b29f
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5e401e1e-e237-43b8-8eb5-c0b35c0c22a5:
+    id: 5e401e1e-e237-43b8-8eb5-c0b35c0c22a5
+    content: Decomposition-enabled steps accept both single and multiple top-level items from the AI
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3c9cf8f2-2f40-4152-b418-485ca0602dfe:
+    id: 3c9cf8f2-2f40-4152-b418-485ca0602dfe
+    content: The AI is instructed that it may produce one or more items — not that it must produce more than one
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  091d6eb6-3736-4027-b795-835115147b5a:
+    id: 091d6eb6-3736-4027-b795-835115147b5a
+    content: When only one item is warranted, the AI returns one item and Arborescent accepts it without error
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  86bc7fd7-af6a-4282-9344-97c38664de3a:
+    id: 86bc7fd7-af6a-4282-9344-97c38664de3a
+    content: When multiple items are warranted, behavior is unchanged from today
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  66bb6792-4bcf-4dbd-af23-26384d69ce89:
+    id: 66bb6792-4bcf-4dbd-af23-26384d69ce89
+    content: The CORRECT/WRONG examples in the output format include a single-item example as valid
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  05cd7bcc-f8f1-42f4-a43f-8976c708b29f:
+    id: 05cd7bcc-f8f1-42f4-a43f-8976c708b29f
+    content: Existing workflows with decomposition enabled continue to work without changes
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f6450332-1058-4bc5-abc3-38e0704940c2:
+    id: f6450332-1058-4bc5-abc3-38e0704940c2
+    content: Edge cases
+    children:
+      - 3d3293d5-ff17-4278-9f73-4e503bbf05c1
+      - 8a391956-e56f-411e-85a6-310acb46e34d
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3d3293d5-ff17-4278-9f73-4e503bbf05c1:
+    id: 3d3293d5-ff17-4278-9f73-4e503bbf05c1
+    content: 'Single item returned with decomposition enabled: should be accepted and replace the original node (not create siblings) — same as non-decomposition behavior'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8a391956-e56f-411e-85a6-310acb46e34d:
+    id: 8a391956-e56f-411e-85a6-310acb46e34d
+    content: The parser already accepts rootNodes.length >= 1 with decomposition enabled, so no parser changes needed — verify this
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  11c52b6e-7081-4683-8689-6738d34e56e8:
+    id: 11c52b6e-7081-4683-8689-6738d34e56e8
+    content: What this does NOT change
+    children:
+      - 98ce6d3d-84ba-4b5a-bc7b-26503d873cab
+      - e800e6d3-e446-43b3-9881-1931a6e21598
+      - 4214e79c-1f43-4673-8da5-76c7a6bd9c4e
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  98ce6d3d-84ba-4b5a-bc7b-26503d873cab:
+    id: 98ce6d3d-84ba-4b5a-bc7b-26503d873cab
+    content: The decomposition toggle location (step config dialog) stays the same
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e800e6d3-e446-43b3-9881-1931a6e21598:
+    id: e800e6d3-e446-43b3-9881-1931a6e21598
+    content: The feedback panel and accept/reject flow stays the same
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4214e79c-1f43-4673-8da5-76c7a6bd9c4e:
+    id: 4214e79c-1f43-4673-8da5-76c7a6bd9c4e
+    content: Non-decomposition steps still require exactly one root node
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b937d21b-2626-4f8a-8832-3edf4582b7e7:
+    id: b937d21b-2626-4f8a-8832-3edf4582b7e7
+    content: Technical specifications
+    children:
+      - b8bac199-1ba5-4e98-ac09-e886916d05d6
+      - 14ea2077-6410-4af9-902b-24a87e4fe227
+      - 850b665e-2a24-4315-998d-68f1c4bf176c
+      - fdd5483e-4a5a-436f-a53e-ff0ae22f7a8b
+      - b631417f-888d-46ce-8aca-66f7cf4fada6
+      - dfd8a780-b693-44ea-97e4-83de30524b39
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b8bac199-1ba5-4e98-ac09-e886916d05d6:
+    id: b8bac199-1ba5-4e98-ac09-e886916d05d6
+    content: General approach
+    children:
+      - d6cf25f0-8f42-4f78-bafd-181ce8360eaa
+      - c6eb7e1d-7603-4e85-8141-9152a91818f3
+      - b587c3cc-f667-49a9-93ee-901e6492d618
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d6cf25f0-8f42-4f78-bafd-181ce8360eaa:
+    id: d6cf25f0-8f42-4f78-bafd-181ce8360eaa
+    content: Change only the DECOMPOSITION_OUTPUT_FORMAT constant in sendActions.ts — soften the language from mandatory multiple to permissive one-or-more
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c6eb7e1d-7603-4e85-8141-9152a91818f3:
+    id: c6eb7e1d-7603-4e85-8141-9152a91818f3
+    content: No parser changes — feedbackService.ts line 29 only rejects multiple roots when decomposition is OFF; with decomposition ON, any count >= 1 passes
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b587c3cc-f667-49a9-93ee-901e6492d618:
+    id: b587c3cc-f667-49a9-93ee-901e6492d618
+    content: No AcceptFeedbackCommand changes — sendActions.ts line 571 already routes single-root decomposition results to the single-root path (preserves original node UUID) and multi-root results to the multi-root path (creates siblings)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  14ea2077-6410-4af9-902b-24a87e4fe227:
+    id: 14ea2077-6410-4af9-902b-24a87e4fe227
+    content: Affected file
+    children:
+      - 462a1eb2-9c01-4a2b-8261-c07af719182e
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  462a1eb2-9c01-4a2b-8261-c07af719182e:
+    id: 462a1eb2-9c01-4a2b-8261-c07af719182e
+    content: src/renderer/store/tree/actions/sendActions.ts — DECOMPOSITION_OUTPUT_FORMAT constant (lines 46-61)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  850b665e-2a24-4315-998d-68f1c4bf176c:
+    id: 850b665e-2a24-4315-998d-68f1c4bf176c
+    content: The change
+    children:
+      - 55581481-e9cf-4328-9108-261ecf1a0098
+      - baa7d5aa-d548-4a81-9521-49b12bdcfff9
+      - 82a6c32e-80b9-4af0-95d5-085af2e4a84b
+      - bba53fa5-64bc-435d-85f5-609781909924
+      - 24760293-5b76-41c8-9523-bc9cd1bde72b
+      - 0891d4a8-34af-402c-989f-75e92caa83da
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  55581481-e9cf-4328-9108-261ecf1a0098:
+    id: 55581481-e9cf-4328-9108-261ecf1a0098
+    content: 'Line 47: "Output MULTIPLE top-level items" → "Output one or more top-level items"'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  baa7d5aa-d548-4a81-9521-49b12bdcfff9:
+    id: baa7d5aa-d548-4a81-9521-49b12bdcfff9
+    content: 'Line 48: Remove "Do NOT include the original node as a root heading. Start directly with the breakdown items." — this over-constrains single-item results'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  82a6c32e-80b9-4af0-95d5-085af2e4a84b:
+    id: 82a6c32e-80b9-4af0-95d5-085af2e4a84b
+    content: 'Line 49: "There must be more than one # heading" → remove entirely'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bba53fa5-64bc-435d-85f5-609781909924:
+    id: bba53fa5-64bc-435d-85f5-609781909924
+    content: 'Keep: "Do NOT wrap them under a parent node" — still valid guidance for multi-item results'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  24760293-5b76-41c8-9523-bc9cd1bde72b:
+    id: 24760293-5b76-41c8-9523-bc9cd1bde72b
+    content: 'Keep: "Each # heading becomes a separate node in the tree" — still valid'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0891d4a8-34af-402c-989f-75e92caa83da:
+    id: 0891d4a8-34af-402c-989f-75e92caa83da
+    content: 'Add to CORRECT examples: a single-item example showing one # heading is acceptable'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fdd5483e-4a5a-436f-a53e-ff0ae22f7a8b:
+    id: fdd5483e-4a5a-436f-a53e-ff0ae22f7a8b
+    content: Constraints
+    children:
+      - decfa618-bdbb-40c3-98ec-9ba69cf4a620
+      - c00474d1-cabe-4773-9dda-a1ac2c267897
+      - 5cf41efd-aa6a-4cec-bb2f-4b8509f615ae
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  decfa618-bdbb-40c3-98ec-9ba69cf4a620:
+    id: decfa618-bdbb-40c3-98ec-9ba69cf4a620
+    content: The WRONG example (wrapping under a parent) is still valid guidance — keep it
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c00474d1-cabe-4773-9dda-a1ac2c267897:
+    id: c00474d1-cabe-4773-9dda-a1ac2c267897
+    content: Non-decomposition output format (SINGLE_ROOT_OUTPUT_FORMAT) is unchanged
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5cf41efd-aa6a-4cec-bb2f-4b8509f615ae:
+    id: 5cf41efd-aa6a-4cec-bb2f-4b8509f615ae
+    content: No IPC, interface, or store changes
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b631417f-888d-46ce-8aca-66f7cf4fada6:
+    id: b631417f-888d-46ce-8aca-66f7cf4fada6
+    content: Risks and edge cases
+    children:
+      - f8560c00-2551-4b40-918d-9426a08b90e4
+      - 65b01a8e-1180-4738-95d6-29110e9b20c3
+      - 440db85d-d547-4c9a-981f-9a50ad120529
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f8560c00-2551-4b40-918d-9426a08b90e4:
+    id: f8560c00-2551-4b40-918d-9426a08b90e4
+    content: 'Risk: AI may now default to single-item output even when splitting is warranted — mitigated by the context instructions telling it what to decompose into; the format just stops forcing it'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  65b01a8e-1180-4738-95d6-29110e9b20c3:
+    id: 65b01a8e-1180-4738-95d6-29110e9b20c3
+    content: 'Edge case: single root returned with decomposition — already handled correctly at sendActions.ts:571 and AcceptFeedbackCommand.executeSingleRoot'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  440db85d-d547-4c9a-981f-9a50ad120529:
+    id: 440db85d-d547-4c9a-981f-9a50ad120529
+    content: 'Edge case: zero roots — already rejected by parser at feedbackService.ts:24-27 regardless of decomposition flag'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  dfd8a780-b693-44ea-97e4-83de30524b39:
+    id: dfd8a780-b693-44ea-97e4-83de30524b39
+    content: Implementation plan
+    children:
+      - eb96672d-935b-4f75-8f9d-92c8a622b991
+      - 931d459d-a1c1-4edc-bd48-6c107ac3b3e2
+      - bc2f9df0-338a-4b34-b51e-739b7e0b4bc2
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  eb96672d-935b-4f75-8f9d-92c8a622b991:
+    id: eb96672d-935b-4f75-8f9d-92c8a622b991
+    content: Single changeset — update the constant string (S effort)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  931d459d-a1c1-4edc-bd48-6c107ac3b3e2:
+    id: 931d459d-a1c1-4edc-bd48-6c107ac3b3e2
+    content: 'Testing: verify existing decomposition tests still pass; add a manual test with content that should not decompose to confirm the AI respects the softer instruction'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bc2f9df0-338a-4b34-b51e-739b7e0b4bc2:
+    id: bc2f9df0-338a-4b34-b51e-739b7e0b4bc2
+    content: No parallelisation needed — one file, one constant
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6745aafd-1202-4516-b2d2-3ea1eb533e52:
+    id: 6745aafd-1202-4516-b2d2-3ea1eb533e52
+    content: Test plan
+    children:
+      - 4a88355b-aaeb-4cce-bb69-dabf19f576ad
+      - e898d65b-384a-4e67-9ca0-b792395932c6
+      - d0d8eb3c-9d8e-413e-8d65-e81f0e4e33cd
+      - 3755f90b-282b-4396-b83c-9fd70fa58e2b
+      - bfb6ee9e-c807-4c37-9215-4a489de25681
+      - 5402144e-bf6c-4687-8997-5c9d47d385ff
+      - 08db3c71-8125-4a18-ad8f-fc0a909bf53d
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4a88355b-aaeb-4cce-bb69-dabf19f576ad:
+    id: 4a88355b-aaeb-4cce-bb69-dabf19f576ad
+    content: Scope and objectives
+    children:
+      - b454ec53-ca3b-40a7-be50-bd23db506abd
+      - 27db57e9-4ba0-4861-9574-2d725bfcba9e
+      - f4441e77-c043-4568-9ce6-33037060a4bd
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b454ec53-ca3b-40a7-be50-bd23db506abd:
+    id: b454ec53-ca3b-40a7-be50-bd23db506abd
+    content: Verify the updated DECOMPOSITION_OUTPUT_FORMAT prompt text matches the acceptance criteria
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  27db57e9-4ba0-4861-9574-2d725bfcba9e:
+    id: 27db57e9-4ba0-4861-9574-2d725bfcba9e
+    content: Verify parser and AcceptFeedbackCommand behavior is unchanged for all root-count scenarios
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f4441e77-c043-4568-9ce6-33037060a4bd:
+    id: f4441e77-c043-4568-9ce6-33037060a4bd
+    content: No new automated tests for prompt wording — the AI's response to softer instructions is validated manually
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e898d65b-384a-4e67-9ca0-b792395932c6:
+    id: e898d65b-384a-4e67-9ca0-b792395932c6
+    content: Entry criteria
+    children:
+      - 64f92a31-5a7e-4eca-8d5f-7f4bc781a7d4
+      - 2a00ed11-35cf-4163-8691-4def540a5014
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  64f92a31-5a7e-4eca-8d5f-7f4bc781a7d4:
+    id: 64f92a31-5a7e-4eca-8d5f-7f4bc781a7d4
+    content: DECOMPOSITION_OUTPUT_FORMAT constant has been updated
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2a00ed11-35cf-4163-8691-4def540a5014:
+    id: 2a00ed11-35cf-4163-8691-4def540a5014
+    content: All existing tests still pass
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d0d8eb3c-9d8e-413e-8d65-e81f0e4e33cd:
+    id: d0d8eb3c-9d8e-413e-8d65-e81f0e4e33cd
+    content: Exit criteria
+    children:
+      - c8f7c053-173b-4387-8ea7-61f07bb20cb7
+      - d053efb7-00cc-4f44-8c80-f434993bb748
+      - 93c5a519-8d7e-459b-a86f-0f893c5e570a
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c8f7c053-173b-4387-8ea7-61f07bb20cb7:
+    id: c8f7c053-173b-4387-8ea7-61f07bb20cb7
+    content: Existing decomposition unit tests pass without modification
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d053efb7-00cc-4f44-8c80-f434993bb748:
+    id: d053efb7-00cc-4f44-8c80-f434993bb748
+    content: 'Manual test: an AI returns a single item for content that should not be split, and Arborescent accepts it'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  93c5a519-8d7e-459b-a86f-0f893c5e570a:
+    id: 93c5a519-8d7e-459b-a86f-0f893c5e570a
+    content: 'Manual test: an AI returns multiple items for content that should be split, and Arborescent accepts them as siblings'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3755f90b-282b-4396-b83c-9fd70fa58e2b:
+    id: 3755f90b-282b-4396-b83c-9fd70fa58e2b
+    content: Environments and prerequisites
+    children:
+      - a3d541aa-3531-43e3-acfd-7296b023c366
+      - ca8a3560-29a1-4e5d-aed2-d0761fd6fccc
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a3d541aa-3531-43e3-acfd-7296b023c366:
+    id: a3d541aa-3531-43e3-acfd-7296b023c366
+    content: 'Unit tests: Vitest — run existing sendActions, feedbackService, and AcceptFeedbackCommand test suites'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ca8a3560-29a1-4e5d-aed2-d0761fd6fccc:
+    id: ca8a3560-29a1-4e5d-aed2-d0761fd6fccc
+    content: 'Manual tests: development Electron build with a terminal AI tool and decomposition-enabled workflow step'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bfb6ee9e-c807-4c37-9215-4a489de25681:
+    id: bfb6ee9e-c807-4c37-9215-4a489de25681
+    content: Verification tests (existing — confirm no regressions)
+    children:
+      - f070bfc6-fed8-4d19-9f1b-3d246f0bd484
+      - b958d709-1434-47a9-af3e-eb746becae55
+      - 66385a9c-615b-4a13-8e2c-64ea28c44b03
+      - c443cb87-b41c-4e4b-9f5f-49b6538cc73e
+      - c3103c89-1249-42c0-903c-b5b5ac91f310
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f070bfc6-fed8-4d19-9f1b-3d246f0bd484:
+    id: f070bfc6-fed8-4d19-9f1b-3d246f0bd484
+    content: feedbackService.parseFeedbackContent with decomposition=true and 1 root node returns valid result
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b958d709-1434-47a9-af3e-eb746becae55:
+    id: b958d709-1434-47a9-af3e-eb746becae55
+    content: feedbackService.parseFeedbackContent with decomposition=true and 3 root nodes returns valid result
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  66385a9c-615b-4a13-8e2c-64ea28c44b03:
+    id: 66385a9c-615b-4a13-8e2c-64ea28c44b03
+    content: feedbackService.parseFeedbackContent with decomposition=false and 3 root nodes returns null
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c443cb87-b41c-4e4b-9f5f-49b6538cc73e:
+    id: c443cb87-b41c-4e4b-9f5f-49b6538cc73e
+    content: AcceptFeedbackCommand single-root path preserves collaborating node UUID
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c3103c89-1249-42c0-903c-b5b5ac91f310:
+    id: c3103c89-1249-42c0-903c-b5b5ac91f310
+    content: AcceptFeedbackCommand multi-root path creates sibling nodes and removes collaborating node
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5402144e-bf6c-4687-8997-5c9d47d385ff:
+    id: 5402144e-bf6c-4687-8997-5c9d47d385ff
+    content: Manual test scenarios
+    children:
+      - 1cc3d73c-f0da-4c9d-a9d3-cc291396428e
+      - a7b581fb-46d8-47af-adca-8c73fd2a9861
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1cc3d73c-f0da-4c9d-a9d3-cc291396428e:
+    id: 1cc3d73c-f0da-4c9d-a9d3-cc291396428e
+    content: Send a single atomic item through a decomposition-enabled step — the AI should return 1 item, Arborescent accepts it, original node is replaced in-place
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a7b581fb-46d8-47af-adca-8c73fd2a9861:
+    id: a7b581fb-46d8-47af-adca-8c73fd2a9861
+    content: Send a compound item through a decomposition-enabled step — the AI should return multiple items, Arborescent accepts them as siblings
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  08db3c71-8125-4a18-ad8f-fc0a909bf53d:
+    id: 08db3c71-8125-4a18-ad8f-fc0a909bf53d
+    content: Risks
+    children:
+      - ae98f5cb-dac0-4446-a128-fdc8c65895db
+      - 449612a4-2e0f-4e03-8974-193944b0a10b
+      - 428bc96e-8ecd-4116-9514-ec552250fe34
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ae98f5cb-dac0-4446-a128-fdc8c65895db:
+    id: ae98f5cb-dac0-4446-a128-fdc8c65895db
+    content: 'Highest defect likelihood: the prompt change itself — if the softer wording is too weak, the AI may stop decomposing even when it should; the context instructions are the primary driver of decomposition intent, so this risk is low'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  449612a4-2e0f-4e03-8974-193944b0a10b:
+    id: 449612a4-2e0f-4e03-8974-193944b0a10b
+    content: 'Highest impact if broken: parser or command regression — mitigated by running existing test suites which cover these paths thoroughly'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  428bc96e-8ecd-4116-9514-ec552250fe34:
+    id: 428bc96e-8ecd-4116-9514-ec552250fe34
+    content: 'External dependency: AI tool behavior — the output depends on how the AI interprets the instructions; no way to unit-test this, hence the manual test scenarios'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e9e696a6-c9aa-4ea8-8374-b78ea9484aec:
+    id: e9e696a6-c9aa-4ea8-8374-b78ea9484aec
+    content: Summary of what remains undone
+    children:
+      - 280ac8aa-9970-484f-8dcd-61f2c03df6cb
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  280ac8aa-9970-484f-8dcd-61f2c03df6cb:
+    id: 280ac8aa-9970-484f-8dcd-61f2c03df6cb
+    content: 'Manual testing: both manual test scenarios require running the Electron app with a terminal AI tool and a decomposition-enabled workflow step. These cannot be automated.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}

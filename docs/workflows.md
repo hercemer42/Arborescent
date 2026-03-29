@@ -26,9 +26,9 @@ Step type changes are undoable with `Ctrl+Z`. Setting a step to Autonomous shows
 
 By default, collaborating on a node replaces it with a single updated version. Enable **Decomposition** in the step configuration dialog to break a node into multiple sibling nodes instead — for example, turning a problem statement into separate user stories.
 
-With decomposition enabled, the AI is instructed to produce multiple top-level items. When you accept the feedback, the original node is replaced by the new items as siblings at the same position. Each sibling inherits the original node's blueprint and context metadata.
+With decomposition enabled, the AI may produce one or more top-level items. If it returns multiple items, the original node is replaced by the new items as siblings at the same position. If it returns a single item, the original node is replaced in-place. Each result inherits the original node's blueprint and context metadata.
 
-Decomposition works best when the applied context is a decomposition task — for example, a context that instructs the AI to break down a problem statement into user stories. The context tells the AI _what_ to decompose into; the decomposition flag tells Arborescent to expect multiple items back.
+Decomposition works best when the applied context is a decomposition task — for example, a context that instructs the AI to break down a problem statement into user stories. The context tells the AI _what_ to decompose into; the decomposition flag tells Arborescent to accept multiple items back.
 
 Decomposition works with all step types. On autonomous steps, the multiple nodes are created directly without the feedback panel. Undo (`Ctrl+Z`) restores the original node.
 
