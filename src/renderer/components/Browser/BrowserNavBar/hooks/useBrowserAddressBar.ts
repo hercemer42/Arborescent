@@ -25,11 +25,13 @@ export function useBrowserAddressBar({ activeTabId, tabs, getActiveWebview }: Us
     const webview = getActiveWebview();
     if (webview && addressBarValue) {
       const url = normalizeUrl(addressBarValue);
-      // Electron types don't reflect that loadURL returns a Promise
       (webview.loadURL(url) as unknown as Promise<void>).catch((error) => {
         logger.error('Failed to load URL', error as Error, 'Browser', false);
       });
       setIsEditingAddress(false);
+      if (document.activeElement instanceof HTMLElement) {
+        document.activeElement.blur();
+      }
     }
   }, [addressBarValue, getActiveWebview]);
 

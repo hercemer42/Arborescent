@@ -61,7 +61,10 @@ export function BrowserPanel() {
           onReload={handleReload}
           onAddressBarChange={setAddressBarValue}
           onAddressBarSubmit={handleAddressBarSubmit}
-          onAddressBarFocus={() => setIsEditingAddress(true)}
+          onAddressBarFocus={() => {
+            setAddressBarValue(addressBarValue);
+            setIsEditingAddress(true);
+          }}
           onAddressBarBlur={() => setIsEditingAddress(false)}
         />
       )}

@@ -57,6 +57,7 @@ export function BrowserNavBar({
           onChange={(e) => onAddressBarChange(e.target.value)}
           onKeyDown={(e) => {
             if (e.key === 'Enter') {
+              e.preventDefault();
               onAddressBarSubmit();
             }
           }}
