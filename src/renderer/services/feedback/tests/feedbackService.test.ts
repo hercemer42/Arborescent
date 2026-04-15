@@ -154,6 +154,74 @@ describe('feedbackService', () => {
         expect(result!.rootNodeIds[1]).toBe('second');
       });
     });
+
+    describe('execute mode output compatibility', () => {
+      it('parses single-root markdown with items marked [x]', async () => {
+        const { parseMarkdown } = await import('../../../utils/markdown');
+        const mockNodes = {
+          'node1': { id: 'node1', content: '[x] Completed task', children: ['node2'], metadata: {} },
+          'node2': { id: 'node2', content: '[ ] Pending task', children: [], metadata: {} },
+        };
+        vi.mocked(parseMarkdown).mockReturnValue({
+          rootNodes: [mockNodes['node1']],
+          allNodes: mockNodes,
+        });
+
+        const result = parseFeedbackContent('# [x] Completed task\n## [ ] Pending task');
+        expect(result).not.toBeNull();
+        expect(result!.nodeCount).toBe(2);
+      });
+
+      it('parses single-root markdown with items marked [-]', async () => {
+        const { parseMarkdown } = await import('../../../utils/markdown');
+        const mockNodes = {
+          'node1': { id: 'node1', content: '[-] Failed task', children: [], metadata: {} },
+        };
+        vi.mocked(parseMarkdown).mockReturnValue({
+          rootNodes: [mockNodes['node1']],
+          allNodes: mockNodes,
+        });
+
+        const result = parseFeedbackContent('# [-] Failed task');
+        expect(result).not.toBeNull();
+      });
+
+      it('parses single-root markdown with mixed [ ], [x], and [-] markers', async () => {
+        const { parseMarkdown } = await import('../../../utils/markdown');
+        const mockNodes = {
+          'node1': { id: 'node1', content: '[ ] Root task', children: ['node2', 'node3', 'node4'], metadata: {} },
+          'node2': { id: 'node2', content: '[x] Done', children: [], metadata: {} },
+          'node3': { id: 'node3', content: '[-] Failed', children: [], metadata: {} },
+          'node4': { id: 'node4', content: '[ ] Pending', children: [], metadata: {} },
+        };
+        vi.mocked(parseMarkdown).mockReturnValue({
+          rootNodes: [mockNodes['node1']],
+          allNodes: mockNodes,
+        });
+
+        const result = parseFeedbackContent('# [ ] Root task\n## [x] Done\n## [-] Failed\n## [ ] Pending');
+        expect(result).not.toBeNull();
+        expect(result!.nodeCount).toBe(4);
+      });
+
+      it('parses execute mode output with trailing issues child node', async () => {
+        const { parseMarkdown } = await import('../../../utils/markdown');
+        const mockNodes = {
+          'node1': { id: 'node1', content: '[ ] My task', children: ['node2', 'node3'], metadata: {} },
+          'node2': { id: 'node2', content: '[x] Step one', children: [], metadata: {} },
+          'node3': { id: 'node3', content: '[ ] Issues', children: ['node4'], metadata: {} },
+          'node4': { id: 'node4', content: 'Could not find file', children: [], metadata: {} },
+        };
+        vi.mocked(parseMarkdown).mockReturnValue({
+          rootNodes: [mockNodes['node1']],
+          allNodes: mockNodes,
+        });
+
+        const result = parseFeedbackContent('# [ ] My task\n## [x] Step one\n## [ ] Issues\n### Could not find file');
+        expect(result).not.toBeNull();
+        expect(result!.nodeCount).toBe(4);
+      });
+    });
   });
 
   describe('initializeFeedbackStore', () => {

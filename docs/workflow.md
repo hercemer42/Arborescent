@@ -24,7 +24,7 @@ Right-click any branch → **Send**. The content is sent to whichever panel is c
 
 The applied context's mode determines what the AI does with your content:
 
-- **Execute** — The AI acts on your content: updates item statuses (checked off, failed, undone) and can add new items, but does not rewrite what you wrote.
+- **Execute** — The AI performs your tasks — making code changes, running commands — and marks each item as completed [x] or failed [-]. The list structure is preserved; only status markers change. If something went wrong, a brief note is appended at the end.
 - **Collaborate** — The AI reviews and rewrites your content: suggests improvements, reorganizes, and refines.
 
 Both modes use the same feedback pipeline. The AI's response appears in the Feedback panel for you to review, then Accept or Cancel. Accept is undoable with `Ctrl+Z`.

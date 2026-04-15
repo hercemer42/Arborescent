@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-03-29T08:10:44.047Z'
+updated: '2026-04-15T12:10:53.359Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -590,7 +590,7 @@ nodes:
       - e91d842b-d982-4f8b-a3c5-7f0a42c95604
     metadata:
       status: pending
-      expanded: true
+      expanded: false
       isBlueprint: true
       blueprintIcon: Brain
       blueprintColor: '#0ea5e9'
@@ -5592,7 +5592,7 @@ nodes:
       isBlueprint: true
       blueprintIcon: Layers2
       blueprintColor: '#0ea5e9'
-      expanded: false
+      expanded: true
   9a8f1538-7eb7-4e2d-9e0f-46e2c00675f4:
     id: 9a8f1538-7eb7-4e2d-9e0f-46e2c00675f4
     content: Technical
@@ -8862,6 +8862,7 @@ nodes:
     id: 79b693ca-27ce-4410-8617-8092d7e81b07
     content: Issues
     children:
+      - 43378d90-93fd-4256-b0bd-b467144dd1dd
       - eaa4fec4-a897-46c1-9498-02fdfb5e442c
       - 15974593-af5a-4c3e-b454-539a4f99d9c7
       - d48c9675-9ec8-4032-9df0-a5037764b9cf
@@ -8881,7 +8882,7 @@ nodes:
       blueprintIcon: TriangleAlert
       blueprintColor: '#ef4444'
       appliedContextId: 6690289a-e02f-48bc-9225-a1083b7b324f
-      expanded: true
+      expanded: false
   aff16275-6d8e-49c9-b862-76875858d4af:
     id: aff16275-6d8e-49c9-b862-76875858d4af
     content: Avoid adding comments specific to the bug fix unless really needed
@@ -16908,7 +16909,7 @@ nodes:
       - 5752a9e6-7729-4d54-bd24-66f26a48e87b
     metadata:
       status: pending
-      expanded: false
+      expanded: true
       isBlueprint: true
       blueprintIcon: LayoutList
       blueprintColor: '#14b8a6'
@@ -24605,7 +24606,8 @@ nodes:
   b38966d3-b238-4d64-9eed-74d4ab983c28:
     id: b38966d3-b238-4d64-9eed-74d4ab983c28
     content: Test plan creation
-    children: []
+    children:
+      - 1829953e-52a1-44d7-8055-1719d7d81416
     metadata:
       status: pending
       isBlueprint: true
@@ -26635,7 +26637,7 @@ nodes:
       blueprintIcon: Recycle
       blueprintColor: '#f97316'
       isBlueprint: true
-      expanded: true
+      expanded: false
       contextMode: execute
   9f82ccb2-5099-4ad0-b8f2-3bba6e3554da:
     id: 9f82ccb2-5099-4ad0-b8f2-3bba6e3554da
@@ -34490,6 +34492,7 @@ nodes:
     id: 13c5048b-15eb-4989-a6fc-25032e5c131f
     content: Problems
     children:
+      - 8a3d9d42-d2aa-4e03-96d8-7a84d4243131
       - 356e205f-2ec6-4271-b7cb-1657c6229a2d
       - 3a953d30-cb26-4e2b-96b0-9f092bc5ce93
       - 413a84b6-97e7-4963-81ca-6667f2136d9a
@@ -35361,7 +35364,8 @@ nodes:
   7b3e923e-b465-4444-ae7d-7fe0e80e3235:
     id: 7b3e923e-b465-4444-ae7d-7fe0e80e3235
     content: Code review & refactor
-    children: []
+    children:
+      - 155a21e7-7c7f-4da1-89ea-00743df091f0
     metadata:
       status: pending
       isBlueprint: true
@@ -63976,7 +63980,8 @@ nodes:
   4196fda4-f103-4916-9fba-97c5ea39cafc:
     id: 4196fda4-f103-4916-9fba-97c5ea39cafc
     content: Automated tests implementation (TDD)
-    children: []
+    children:
+      - bee76549-e25f-4862-8829-b1dcba732824
     metadata:
       status: pending
       isBlueprint: true
@@ -64129,7 +64134,8 @@ nodes:
   769ac66d-14fa-4132-b5c0-e947bb6c2852:
     id: 769ac66d-14fa-4132-b5c0-e947bb6c2852
     content: "Only break it down if you need to.\_ If it comfortably fits in one, then output just one."
-    children: []
+    children:
+      - a98ee247-9c20-4803-a2e7-939b388e50a8
     metadata:
       status: pending
       isBlueprint: true
@@ -76013,6 +76019,1100 @@ nodes:
     children: []
     metadata:
       status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  43378d90-93fd-4256-b0bd-b467144dd1dd:
+    id: 43378d90-93fd-4256-b0bd-b467144dd1dd
+    content: Terminals don't redraw when switching between them
+    children:
+      - 44a12683-78d8-4f0f-a296-a2e9c9b8a385
+      - ec374b91-02ab-42d8-bd33-51661f2b0c24
+    metadata:
+      status: pending
+  44a12683-78d8-4f0f-a296-a2e9c9b8a385:
+    id: 44a12683-78d8-4f0f-a296-a2e9c9b8a385
+    content: As a result, the terminal switched to appears blank
+    children: []
+    metadata:
+      status: pending
+  ec374b91-02ab-42d8-bd33-51661f2b0c24:
+    id: ec374b91-02ab-42d8-bd33-51661f2b0c24
+    content: I need to focus the terminal I want, switch to another arbo project, then switch back
+    children:
+      - 4cdd7540-5505-4913-9799-ee4f6260dec6
+      - a04c6cf6-3020-4b0e-893f-04bbc05936c5
+    metadata:
+      status: pending
+  4cdd7540-5505-4913-9799-ee4f6260dec6:
+    id: 4cdd7540-5505-4913-9799-ee4f6260dec6
+    content: And even then it doesn't draw 100% of the time
+    children: []
+    metadata:
+      status: pending
+  a04c6cf6-3020-4b0e-893f-04bbc05936c5:
+    id: a04c6cf6-3020-4b0e-893f-04bbc05936c5
+    content: By draw I mean render
+    children: []
+    metadata:
+      status: pending
+  bee76549-e25f-4862-8829-b1dcba732824:
+    id: bee76549-e25f-4862-8829-b1dcba732824
+    content: Switching between terminal tabs produces a blank terminal
+    children:
+      - aaa85898-5143-452e-aeb9-f991f36685f2
+      - 81a1e375-a7fd-4f9d-87f5-54bdd4ab01a1
+      - e9f93026-c1b6-4177-996a-a5fddaec9b32
+      - 22bd69d9-3d42-4822-9d84-f2267309164d
+      - 59eef7e2-9953-400d-ae01-7a82b66c0f63
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  aaa85898-5143-452e-aeb9-f991f36685f2:
+    id: aaa85898-5143-452e-aeb9-f991f36685f2
+    content: Affects tab switching within the same file — file switching is not a prerequisite
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  81a1e375-a7fd-4f9d-87f5-54bdd4ab01a1:
+    id: 81a1e375-a7fd-4f9d-87f5-54bdd4ab01a1
+    content: 'Intermittent: not every switch triggers it; likely related to content volume written or time elapsed since last switch, cause unconfirmed'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e9f93026-c1b6-4177-996a-a5fddaec9b32:
+    id: e9f93026-c1b6-4177-996a-a5fddaec9b32
+    content: The blank-after-file-switch fix (commit b3dcccc) did not fully address this case
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  22bd69d9-3d42-4822-9d84-f2267309164d:
+    id: 22bd69d9-3d42-4822-9d84-f2267309164d
+    content: Acceptance criteria
+    children:
+      - 02364219-0ce8-447b-9ab8-6693227c62cf
+      - a03ff1f2-8ef3-41b8-9af8-52727c52d234
+      - 6de5dfaf-140e-4ab5-bcea-948c756b6b30
+      - 38fdfde7-0d21-4955-a51a-a688d8d65292
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  02364219-0ce8-447b-9ab8-6693227c62cf:
+    id: 02364219-0ce8-447b-9ab8-6693227c62cf
+    content: Switching between terminal tabs always renders the active terminal immediately and without user intervention
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a03ff1f2-8ef3-41b8-9af8-52727c52d234:
+    id: a03ff1f2-8ef3-41b8-9af8-52727c52d234
+    content: Content already written to a terminal before switching away is fully visible when switching back
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6de5dfaf-140e-4ab5-bcea-948c756b6b30:
+    id: 6de5dfaf-140e-4ab5-bcea-948c756b6b30
+    content: The fix is unconditionally reliable — a fix that works "most of the time" is not acceptable given the existing workaround is already unreliable
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  38fdfde7-0d21-4955-a51a-a688d8d65292:
+    id: 38fdfde7-0d21-4955-a51a-a688d8d65292
+    content: Switching files and then switching back leaves no terminal blank
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  59eef7e2-9953-400d-ae01-7a82b66c0f63:
+    id: 59eef7e2-9953-400d-ae01-7a82b66c0f63
+    content: Edge cases to verify
+    children:
+      - 88916c83-91f9-48ab-b9ca-56cbc1bbd1e2
+      - 1496798e-6c1e-4836-bc89-491f2a7795b6
+      - 86bee758-1237-435a-9676-357d960bf559
+      - 47c613fc-2fd5-49ef-8e30-e430d5b2e126
+      - 91e1b196-6b84-4a07-80a2-2d8255a39655
+      - d50e63e2-e2c8-4da2-9361-6605507cc6e0
+      - 08b3a517-5bd9-4847-a90d-eda028f4f5b5
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  88916c83-91f9-48ab-b9ca-56cbc1bbd1e2:
+    id: 88916c83-91f9-48ab-b9ca-56cbc1bbd1e2
+    content: Terminal with no output yet (just a shell prompt)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1496798e-6c1e-4836-bc89-491f2a7795b6:
+    id: 1496798e-6c1e-4836-bc89-491f2a7795b6
+    content: Terminal with a large volume of output
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  86bee758-1237-435a-9676-357d960bf559:
+    id: 86bee758-1237-435a-9676-357d960bf559
+    content: Terminal mid-output (process still writing when tab is switched away)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  47c613fc-2fd5-49ef-8e30-e430d5b2e126:
+    id: 47c613fc-2fd5-49ef-8e30-e430d5b2e126
+    content: Terminal that has been idle for an extended period
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  91e1b196-6b84-4a07-80a2-2d8255a39655:
+    id: 91e1b196-6b84-4a07-80a2-2d8255a39655
+    content: Switching through all open terminal tabs in rapid sequence
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d50e63e2-e2c8-4da2-9361-6605507cc6e0:
+    id: d50e63e2-e2c8-4da2-9361-6605507cc6e0
+    content: Terminal panel in side position vs bottom position
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  08b3a517-5bd9-4847-a90d-eda028f4f5b5:
+    id: 08b3a517-5bd9-4847-a90d-eda028f4f5b5
+    content: Terminal panel visible alongside an open feedback panel
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8a3d9d42-d2aa-4e03-96d8-7a84d4243131:
+    id: 8a3d9d42-d2aa-4e03-96d8-7a84d4243131
+    content: File watcher is stopping for a session in progress when switching between projects
+    children: []
+    metadata:
+      status: pending
+  a98ee247-9c20-4803-a2e7-939b388e50a8:
+    id: a98ee247-9c20-4803-a2e7-939b388e50a8
+    content: "I insist on this - if it's going to take more time for you and the user to have several user stories when one is needed, don't do it !\_ There has to be a tangible benefit."
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  155a21e7-7c7f-4da1-89ea-00743df091f0:
+    id: 155a21e7-7c7f-4da1-89ea-00743df091f0
+    content: Documentation
+    children:
+      - 67314947-01b8-44c9-a1f8-1103597977fc
+      - a71ee55d-33b1-42fb-be55-946c3bb2f812
+      - 20afd502-b5e9-4530-867c-4b30764d08f2
+      - bc3d4e9f-0a77-465d-812f-5582e8912753
+      - c8948167-f71a-4e97-b13d-5438b3800370
+      - 44dd615e-fcf5-4468-9044-30485b34a1c6
+    metadata:
+      status: pending
+      expanded: false
+      deleted: false
+      plugins: {}
+  d712f7a5-f6fe-4a45-a64a-756b9de6ed0b:
+    id: d712f7a5-f6fe-4a45-a64a-756b9de6ed0b
+    content: A developer using execute mode expects the AI to implement the listed tasks directly in the codebase — writing files, making changes, running commands
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f74e1555-dabf-4b90-9529-6fc0194aa12d:
+    id: f74e1555-dabf-4b90-9529-6fc0194aa12d
+    content: Currently the execute mode prompt explicitly tells the AI not to make code changes, causing it to write output into the Arborescent tree instead — the same behaviour as collaborate mode
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  865957e9-9ff4-4260-a0fe-cf1f899f168d:
+    id: 865957e9-9ff4-4260-a0fe-cf1f899f168d
+    content: The developer has no indication from the UI that this is happening, so the failure is silent and confusing
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e46a1532-3494-4806-a2dc-849dd2c9d674:
+    id: e46a1532-3494-4806-a2dc-849dd2c9d674
+    content: Problem statement
+    children:
+      - d712f7a5-f6fe-4a45-a64a-756b9de6ed0b
+      - f74e1555-dabf-4b90-9529-6fc0194aa12d
+      - 865957e9-9ff4-4260-a0fe-cf1f899f168d
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3782f13c-77fb-4daf-8f24-84070612d984:
+    id: 3782f13c-77fb-4daf-8f24-84070612d984
+    content: Developer sends a list of coding tasks in execute mode and expects actual file changes in the codebase, with the list returned showing which items completed and which failed
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6a470c73-3549-4222-acd2-091454fd8675:
+    id: 6a470c73-3549-4222-acd2-091454fd8675
+    content: Developer re-sends a partially completed list — AI attempts only the remaining unchecked items
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  77fe83e3-69c9-4f0e-98ba-d3a3afdef0de:
+    id: 77fe83e3-69c9-4f0e-98ba-d3a3afdef0de
+    content: Developer applies a custom context in collaborate mode with strong instructions — the safeguard against code changes must still hold
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c8a6a75a-c4d1-4a84-a2af-792860d6d4ba:
+    id: c8a6a75a-c4d1-4a84-a2af-792860d6d4ba
+    content: Use cases
+    children:
+      - 3782f13c-77fb-4daf-8f24-84070612d984
+      - 6a470c73-3549-4222-acd2-091454fd8675
+      - 77fe83e3-69c9-4f0e-98ba-d3a3afdef0de
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a9c06097-5a14-4210-85db-dd946d31c853:
+    id: a9c06097-5a14-4210-85db-dd946d31c853
+    content: Execute mode prompt does not contain any instruction prohibiting code changes
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  84b0bd0a-447e-4424-9ff8-56dee356bfcc:
+    id: 84b0bd0a-447e-4424-9ff8-56dee356bfcc
+    content: Execute mode prompt explicitly states that making file changes, writing code, and running commands is the expected behaviour
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d10bc482-96c3-48f4-8c6f-8bf15d102969:
+    id: d10bc482-96c3-48f4-8c6f-8bf15d102969
+    content: Execute mode feedback file is structurally identical to the input — same headings, same titles, same order — with only [ ] changed to [x] or [-]
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  acf0d291-39e3-4fc7-b053-fda289efb32c:
+    id: acf0d291-39e3-4fc7-b053-fda289efb32c
+    content: AI skips items already marked [x] in the input and does not re-execute them
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c207e653-a791-4b1f-9ed6-59ee7c71b01a:
+    id: c207e653-a791-4b1f-9ed6-59ee7c71b01a
+    content: If issues were encountered, the AI appends a single new node as the last child of the root — no other additions or edits to the list
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  713bb2b1-05c0-4170-b827-945d809ed34d:
+    id: 713bb2b1-05c0-4170-b827-945d809ed34d
+    content: Actual code changes are present in the codebase after the step completes
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e3014cc9-b602-4297-a1cb-cf7ad06d0db8:
+    id: e3014cc9-b602-4297-a1cb-cf7ad06d0db8
+    content: Collaborate mode retains a prominent "Do NOT make any changes to the code" instruction that cannot be overridden or buried by custom context content
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3acc392e-b780-4cb7-865c-22a38927354e:
+    id: 3acc392e-b780-4cb7-865c-22a38927354e
+    content: No code file changes occur as a result of a collaborate mode step, regardless of the custom context applied
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  880bbc97-e4f2-4ed5-96ea-3ab60377530d:
+    id: 880bbc97-e4f2-4ed5-96ea-3ab60377530d
+    content: Acceptance criteria
+    children:
+      - a9c06097-5a14-4210-85db-dd946d31c853
+      - 84b0bd0a-447e-4424-9ff8-56dee356bfcc
+      - d10bc482-96c3-48f4-8c6f-8bf15d102969
+      - acf0d291-39e3-4fc7-b053-fda289efb32c
+      - c207e653-a791-4b1f-9ed6-59ee7c71b01a
+      - 713bb2b1-05c0-4170-b827-945d809ed34d
+      - e3014cc9-b602-4297-a1cb-cf7ad06d0db8
+      - 3acc392e-b780-4cb7-865c-22a38927354e
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  83f0e261-c772-43a2-b493-9c90ad42c7b0:
+    id: 83f0e261-c772-43a2-b493-9c90ad42c7b0
+    content: The "Do NOT make any changes to the code" instruction currently lives in a shared prompt builder used by both modes — the fix must split these so collaborate mode retains the instruction and execute mode does not
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9f8e2e3c-a37b-474b-b66a-200075a25776:
+    id: 9f8e2e3c-a37b-474b-b66a-200075a25776
+    content: The issues node appended in execute mode must be a parseable tree node at a consistent position so Arborescent can handle it correctly on accept
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b612b790-705d-43cf-8877-bc652074420d:
+    id: b612b790-705d-43cf-8877-bc652074420d
+    content: Constraints and assumptions
+    children:
+      - 83f0e261-c772-43a2-b493-9c90ad42c7b0
+      - 9f8e2e3c-a37b-474b-b66a-200075a25776
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b38c3b33-055c-4c2e-bc44-23d170ad5f2f:
+    id: b38c3b33-055c-4c2e-bc44-23d170ad5f2f
+    content: The bug is in buildFileOutputTarget() in sendActions.ts — it is shared by both terminal collaborate and terminal execute paths and injects "Do NOT make any changes to the code" into execute mode prompts
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  cb3c2085-6a8c-4b1b-bdc4-74dbeac48fde:
+    id: cb3c2085-6a8c-4b1b-bdc4-74dbeac48fde
+    content: The web execute path (buildWebExecutePrompt) is unaffected — it does not call buildFileOutputTarget()
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0dfa4d55-466b-4128-a5d6-de1d28d253a0:
+    id: 0dfa4d55-466b-4128-a5d6-de1d28d253a0
+    content: 'Fix: split buildFileOutputTarget() into two mode-specific functions; update the execute path to use the new one; update buildExecuteInstructions() to add explicit code-change permission'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  aaf07f3f-58b8-419c-ace7-a8910c1074c5:
+    id: aaf07f3f-58b8-419c-ace7-a8910c1074c5
+    content: The "Do NOT make any changes to the code" instruction in the collaborate path is already positioned after custom context, which is correct — no structural change needed there
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5faf6f25-55af-4880-9a30-b57d678c1b8b:
+    id: 5faf6f25-55af-4880-9a30-b57d678c1b8b
+    content: General approach
+    children:
+      - b38c3b33-055c-4c2e-bc44-23d170ad5f2f
+      - cb3c2085-6a8c-4b1b-bdc4-74dbeac48fde
+      - 0dfa4d55-466b-4128-a5d6-de1d28d253a0
+      - aaf07f3f-58b8-419c-ace7-a8910c1074c5
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9773e833-c784-4aec-bfa5-12388f354e25:
+    id: 9773e833-c784-4aec-bfa5-12388f354e25
+    content: 'Input to both paths: context string, node content string, temp file path'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  57710be6-ec1a-4cfd-a2ae-ae33727795e4:
+    id: 57710be6-ec1a-4cfd-a2ae-ae33727795e4
+    content: 'Execute mode feedback file contract: same markdown tree as input, only [ ]/[x]/[-] markers changed, optional issues node appended as last child of root'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1e194a73-09ce-4463-8c50-9d58a8800224:
+    id: 1e194a73-09ce-4463-8c50-9d58a8800224
+    content: 'Collaborate mode feedback file contract: freely rewritten markdown tree, no codebase changes'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  29c954e9-7eb3-4b35-b5e0-8d8f34b916e8:
+    id: 29c954e9-7eb3-4b35-b5e0-8d8f34b916e8
+    content: parseFeedbackContent() is the downstream consumer of the feedback file — the execute mode output must remain compatible with it
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  99dedb41-a07d-4f73-a00f-a5400ef5c861:
+    id: 99dedb41-a07d-4f73-a00f-a5400ef5c861
+    content: Inputs, outputs, and key interfaces
+    children:
+      - 9773e833-c784-4aec-bfa5-12388f354e25
+      - 57710be6-ec1a-4cfd-a2ae-ae33727795e4
+      - 1e194a73-09ce-4463-8c50-9d58a8800224
+      - 29c954e9-7eb3-4b35-b5e0-8d8f34b916e8
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  617a9b32-c949-48ba-922a-a35fe526da66:
+    id: 617a9b32-c949-48ba-922a-a35fe526da66
+    content: 'S — Create buildExecuteFileOutputTarget(outputFilePath): omits "Do NOT make any changes to the code"; instructs AI to return the same list structure with only status markers changed; instructs AI to skip [x] items; instructs AI to append issues as last child of root if needed'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e8076de5-615d-4725-9d27-519df8da890c:
+    id: e8076de5-615d-4725-9d27-519df8da890c
+    content: S — Update buildTerminalExecutePrompt() to call buildExecuteFileOutputTarget() instead of buildFileOutputTarget()
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f819e4f1-1696-4b7d-a750-71058fc80373:
+    id: f819e4f1-1696-4b7d-a750-71058fc80373
+    content: S — Update buildExecuteInstructions() to add an explicit instruction that making file changes, writing code, and running commands is expected and required
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  03cdc4a9-91f0-4fc9-aeb1-6123f06d0e60:
+    id: 03cdc4a9-91f0-4fc9-aeb1-6123f06d0e60
+    content: S — Update DEFAULT_EXECUTE_CONTEXT to reinforce that code execution is the expected output (the current wording is generic and ambiguous)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f260b578-153f-4337-b440-9a116d159b87:
+    id: f260b578-153f-4337-b440-9a116d159b87
+    content: 'M — Add unit tests to sendActions.test.ts: execute terminal prompt does not contain the code prohibition string; execute terminal prompt contains explicit code-change permission; collaborate terminal prompt still contains the prohibition; both prompts write to the correct output file path'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5a5b3498-4ae8-4de5-8383-3bed91ea32a7:
+    id: 5a5b3498-4ae8-4de5-8383-3bed91ea32a7
+    content: Technical steps
+    children:
+      - 617a9b32-c949-48ba-922a-a35fe526da66
+      - e8076de5-615d-4725-9d27-519df8da890c
+      - f819e4f1-1696-4b7d-a750-71058fc80373
+      - 03cdc4a9-91f0-4fc9-aeb1-6123f06d0e60
+      - f260b578-153f-4337-b440-9a116d159b87
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3b42af5e-7633-416c-a826-fe1d29599733:
+    id: 3b42af5e-7633-416c-a826-fe1d29599733
+    content: AI compliance is probabilistic — even with correct instructions the AI may still reorganise the list; this is a prompt engineering improvement, not a guarantee
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b3f8daae-95a1-40ed-be2d-cdcacd21531f:
+    id: b3f8daae-95a1-40ed-be2d-cdcacd21531f
+    content: The issues node appended by the AI is a new node not present in the original input — verify parseFeedbackContent() handles a trailing child node that was not in the source tree without error
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  af661bee-4768-435b-a2f8-d935a91a38e7:
+    id: af661bee-4768-435b-a2f8-d935a91a38e7
+    content: If a custom context in execute mode contains "do not modify files" or similar language, it will conflict with the new system instruction — this is user error but worth noting in documentation
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4e2c4137-65c7-47dd-a694-9bb0d0ddb7ee:
+    id: 4e2c4137-65c7-47dd-a694-9bb0d0ddb7ee
+    content: 'ROI is high: this is a small, well-scoped change in one file that fixes a fundamental silent failure in execute mode'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e1744c74-e607-425b-80f1-16a6ccf812b5:
+    id: e1744c74-e607-425b-80f1-16a6ccf812b5
+    content: Risks and edge cases
+    children:
+      - 3b42af5e-7633-416c-a826-fe1d29599733
+      - b3f8daae-95a1-40ed-be2d-cdcacd21531f
+      - af661bee-4768-435b-a2f8-d935a91a38e7
+      - 4e2c4137-65c7-47dd-a694-9bb0d0ddb7ee
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  026f4402-be5a-46de-96e8-a02c3e25ba45:
+    id: 026f4402-be5a-46de-96e8-a02c3e25ba45
+    content: 'Single changeset: all changes in sendActions.ts and sendActions.test.ts'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  483f0856-f6a7-4b09-a6a5-1d578716a28b:
+    id: 483f0856-f6a7-4b09-a6a5-1d578716a28b
+    content: 'Testing: unit tests for prompt string content; manual end-to-end test with a real execute mode task in the terminal to verify code changes appear in the codebase'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  defc22c2-2dbc-4de6-9d10-58c44c47b451:
+    id: defc22c2-2dbc-4de6-9d10-58c44c47b451
+    content: No parallelisation needed — single contributor, low interdependency
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3371aaa3-047c-4675-87d8-6a479cab092d:
+    id: 3371aaa3-047c-4675-87d8-6a479cab092d
+    content: Implementation plan
+    children:
+      - 026f4402-be5a-46de-96e8-a02c3e25ba45
+      - 483f0856-f6a7-4b09-a6a5-1d578716a28b
+      - defc22c2-2dbc-4de6-9d10-58c44c47b451
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8b8c8685-c39f-47fd-ae10-615f89938ccc:
+    id: 8b8c8685-c39f-47fd-ae10-615f89938ccc
+    content: Technical specifications
+    children:
+      - 5faf6f25-55af-4880-9a30-b57d678c1b8b
+      - 99dedb41-a07d-4f73-a00f-a5400ef5c861
+      - 5a5b3498-4ae8-4de5-8383-3bed91ea32a7
+      - e1744c74-e607-425b-80f1-16a6ccf812b5
+      - 3371aaa3-047c-4675-87d8-6a479cab092d
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e9a9014c-e5ed-4da0-9864-ee7a216ac170:
+    id: e9a9014c-e5ed-4da0-9864-ee7a216ac170
+    content: Verify the execute mode terminal prompt no longer contains the code prohibition and explicitly permits code changes
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c63ff673-aa2e-4f02-95c5-4e273ecd6373:
+    id: c63ff673-aa2e-4f02-95c5-4e273ecd6373
+    content: Verify the collaborate mode terminal prompt retains the prohibition regardless of custom context content
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  cb9854d2-6628-4f46-8efb-123e00483b93:
+    id: cb9854d2-6628-4f46-8efb-123e00483b93
+    content: Verify parseFeedbackContent() correctly handles execute mode output — structurally identical input with only status markers changed and an optional trailing issues node
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  989650b9-9ca5-4ae4-8fc8-33dc01844241:
+    id: 989650b9-9ca5-4ae4-8fc8-33dc01844241
+    content: Verify the web execute path is unaffected by the changes
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7f84bf23-89dd-4896-913f-ff002a88e808:
+    id: 7f84bf23-89dd-4896-913f-ff002a88e808
+    content: Scope and objectives
+    children:
+      - e9a9014c-e5ed-4da0-9864-ee7a216ac170
+      - c63ff673-aa2e-4f02-95c5-4e273ecd6373
+      - cb9854d2-6628-4f46-8efb-123e00483b93
+      - 989650b9-9ca5-4ae4-8fc8-33dc01844241
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  62a11e01-ccd1-40c4-906e-3de8d418d389:
+    id: 62a11e01-ccd1-40c4-906e-3de8d418d389
+    content: 'Entry: buildExecuteFileOutputTarget() created, buildTerminalExecutePrompt() and buildExecuteInstructions() updated, unit tests written'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  89b81637-b1d7-424d-be7b-5d8b2d503c62:
+    id: 89b81637-b1d7-424d-be7b-5d8b2d503c62
+    content: 'Exit: all unit tests pass; manual end-to-end confirms code changes appear in the codebase after an execute step; feedback file accepted back into the tree without error'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7e2c1564-cd25-4323-a218-b25a9bc56ad9:
+    id: 7e2c1564-cd25-4323-a218-b25a9bc56ad9
+    content: Entry and exit criteria
+    children:
+      - 62a11e01-ccd1-40c4-906e-3de8d418d389
+      - 89b81637-b1d7-424d-be7b-5d8b2d503c62
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7f2afaa2-c79d-4aa2-a6b1-dee5338e284e:
+    id: 7f2afaa2-c79d-4aa2-a6b1-dee5338e284e
+    content: Vitest test runner for unit tests
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f16c0d94-f286-4504-8a05-88f68d6b9fce:
+    id: f16c0d94-f286-4504-8a05-88f68d6b9fce
+    content: Arborescent dev environment with a terminal tab open and Claude Code configured for end-to-end tests
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2a2b1054-f8b9-4e74-815e-58cd1d19418b:
+    id: 2a2b1054-f8b9-4e74-815e-58cd1d19418b
+    content: A test .arbo file containing a small coding task list (e.g. create a single file) suitable for end-to-end verification
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e46c911f-56ac-4d93-8203-c6075a6e769f:
+    id: e46c911f-56ac-4d93-8203-c6075a6e769f
+    content: Environments and prerequisites
+    children:
+      - 7f2afaa2-c79d-4aa2-a6b1-dee5338e284e
+      - f16c0d94-f286-4504-8a05-88f68d6b9fce
+      - 2a2b1054-f8b9-4e74-815e-58cd1d19418b
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b47dfac2-6f2e-4197-b64e-d82c4b8d2c44:
+    id: b47dfac2-6f2e-4197-b64e-d82c4b8d2c44
+    content: 'Highest defect likelihood: prompt string assembly — easy to accidentally leave the prohibition in the execute path or omit it from the collaborate path; unit tests directly asserting string content are the primary mitigation'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c56bbd50-cde5-4d13-ad35-d0d8d1377634:
+    id: c56bbd50-cde5-4d13-ad35-d0d8d1377634
+    content: 'Greatest impact: parseFeedbackContent() failing to parse execute mode output — would silently break feedback accept for all execute steps; must be tested with a structurally identical input and a trailing issues node'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9c8092d8-4c29-4664-9fc2-d216d412d1ab:
+    id: 9c8092d8-4c29-4664-9fc2-d216d412d1ab
+    content: 'External dependency: AI compliance is non-deterministic — manual end-to-end tests may pass inconsistently even with correct prompts; accept that some variance is expected and focus automated testing on prompt content rather than AI output'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7a6e2bcb-0413-4b58-9f36-dcfb0e3a3585:
+    id: 7a6e2bcb-0413-4b58-9f36-dcfb0e3a3585
+    content: 'Ambiguous requirement: the exact format of the issues node is unspecified (heading level, content structure) — this must be defined and locked down before testing parseFeedbackContent() compatibility, otherwise the parser test will be written against an assumption that may not match AI output'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  90e20b93-a01c-4bed-ba50-7b60d5ff9961:
+    id: 90e20b93-a01c-4bed-ba50-7b60d5ff9961
+    content: Risks
+    children:
+      - b47dfac2-6f2e-4197-b64e-d82c4b8d2c44
+      - c56bbd50-cde5-4d13-ad35-d0d8d1377634
+      - 9c8092d8-4c29-4664-9fc2-d216d412d1ab
+      - 7a6e2bcb-0413-4b58-9f36-dcfb0e3a3585
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  bda5af31-21d3-49f0-8fc4-d379ce91947a:
+    id: bda5af31-21d3-49f0-8fc4-d379ce91947a
+    content: Test plan
+    children:
+      - 7f84bf23-89dd-4896-913f-ff002a88e808
+      - 7e2c1564-cd25-4323-a218-b25a9bc56ad9
+      - e46c911f-56ac-4d93-8203-c6075a6e769f
+      - 90e20b93-a01c-4bed-ba50-7b60d5ff9961
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1829953e-52a1-44d7-8055-1719d7d81416:
+    id: 1829953e-52a1-44d7-8055-1719d7d81416
+    content: Execute mode and collaborate mode must have distinct prompt contracts
+    children:
+      - e46a1532-3494-4806-a2dc-849dd2c9d674
+      - c8a6a75a-c4d1-4a84-a2af-792860d6d4ba
+      - 880bbc97-e4f2-4ed5-96ea-3ab60377530d
+      - b612b790-705d-43cf-8877-bc652074420d
+      - 8b8c8685-c39f-47fd-ae10-615f89938ccc
+      - bda5af31-21d3-49f0-8fc4-d379ce91947a
+    metadata:
+      status: pending
+      expanded: false
+      deleted: false
+      plugins: {}
+  67314947-01b8-44c9-a1f8-1103597977fc:
+    id: 67314947-01b8-44c9-a1f8-1103597977fc
+    content: Review existing documentation
+    children:
+      - 01db4588-65ce-4b95-8407-2a4ec64d34e2
+      - 5bd8d2c4-e7b4-41cb-bf23-71eadbc90620
+      - 994bc03c-9da8-4ec7-80b4-c7a819f08de5
+      - a873f770-4f0b-4e68-acb4-88ce3a828498
+      - 2c68d546-bedf-4788-8639-2993670ebf35
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  01db4588-65ce-4b95-8407-2a4ec64d34e2:
+    id: 01db4588-65ce-4b95-8407-2a4ec64d34e2
+    content: workflow.md — send mode descriptions reviewed
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5bd8d2c4-e7b4-41cb-bf23-71eadbc90620:
+    id: 5bd8d2c4-e7b4-41cb-bf23-71eadbc90620
+    content: contexts.md — execute/collaborate mode descriptions reviewed
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  994bc03c-9da8-4ec7-80b4-c7a819f08de5:
+    id: 994bc03c-9da8-4ec7-80b4-c7a819f08de5
+    content: workflows.md — execute mode description accurate ("item statuses are updated")
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a873f770-4f0b-4e68-acb4-88ce3a828498:
+    id: a873f770-4f0b-4e68-acb4-88ce3a828498
+    content: blueprints.md — no changes needed
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2c68d546-bedf-4788-8639-2993670ebf35:
+    id: 2c68d546-bedf-4788-8639-2993670ebf35
+    content: CHANGELOG.md — "Execute mode feedback loop" entry already covers this feature; this is a bug fix to an unreleased feature, no new entry needed
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a71ee55d-33b1-42fb-be55-946c3bb2f812:
+    id: a71ee55d-33b1-42fb-be55-946c3bb2f812
+    content: 'Update workflow.md: fix execute mode description'
+    children:
+      - b79b9e5f-dc32-4386-842c-ccc2b097c7ca
+      - 5b89352e-10bf-4152-a8ad-fae0e2dc64ca
+      - ef37f397-ec5b-4a5e-8966-bc88fbcb4fc0
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b79b9e5f-dc32-4386-842c-ccc2b097c7ca:
+    id: b79b9e5f-dc32-4386-842c-ccc2b097c7ca
+    content: Current text says "updates item statuses (checked off, failed, undone) and can add new items, but does not rewrite what you wrote"
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5b89352e-10bf-4152-a8ad-fae0e2dc64ca:
+    id: 5b89352e-10bf-4152-a8ad-fae0e2dc64ca
+    content: 'Issues with current text:'
+    children:
+      - 933cefbe-a8cd-4fb1-99d4-148ef834574d
+      - e5667ff1-3e09-4d66-b275-d3571025f79a
+      - 23003e27-2006-4ff2-94af-e9370cd9c3c2
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  933cefbe-a8cd-4fb1-99d4-148ef834574d:
+    id: 933cefbe-a8cd-4fb1-99d4-148ef834574d
+    content: '"undone" implies the AI reverts completed items — it doesn''t; AI only marks items [x] or [-], never removes [x]'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e5667ff1-3e09-4d66-b275-d3571025f79a:
+    id: e5667ff1-3e09-4d66-b275-d3571025f79a
+    content: '"can add new items" is misleading — AI only appends a single issues note when something fails, not new task items'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  23003e27-2006-4ff2-94af-e9370cd9c3c2:
+    id: 23003e27-2006-4ff2-94af-e9370cd9c3c2
+    content: Description omits that the AI actually performs the task (code changes, commands) — users may not understand the distinction between modes
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ef37f397-ec5b-4a5e-8966-bc88fbcb4fc0:
+    id: ef37f397-ec5b-4a5e-8966-bc88fbcb4fc0
+    content: 'Proposed replacement:'
+    children:
+      - 1b06617f-522f-4100-9cbf-3cd81977e1cc
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1b06617f-522f-4100-9cbf-3cd81977e1cc:
+    id: 1b06617f-522f-4100-9cbf-3cd81977e1cc
+    content: '"Execute — The AI performs your tasks — making code changes, running commands — and marks each item as completed [x] or failed [-]. The list structure is preserved; only status markers change. If something went wrong, a brief note is appended at the end."'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  20afd502-b5e9-4530-867c-4b30764d08f2:
+    id: 20afd502-b5e9-4530-867c-4b30764d08f2
+    content: 'Update contexts.md: clarify execute mode description'
+    children:
+      - f820ccaf-2a85-437f-88b5-f70200ecaeaf
+      - f67120f4-0940-4129-8f9c-9e10e56650f9
+      - fe80e064-2b78-41b8-937e-a81db089d529
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f820ccaf-2a85-437f-88b5-f70200ecaeaf:
+    id: f820ccaf-2a85-437f-88b5-f70200ecaeaf
+    content: 'Current text: "Execute — Sends content for immediate action. The AI produces output directly."'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f67120f4-0940-4129-8f9c-9e10e56650f9:
+    id: f67120f4-0940-4129-8f9c-9e10e56650f9
+    content: '"The AI produces output directly" is vague and could mean anything — clarify that the AI performs actions and updates status markers'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fe80e064-2b78-41b8-937e-a81db089d529:
+    id: fe80e064-2b78-41b8-937e-a81db089d529
+    content: 'Proposed replacement:'
+    children:
+      - 2984993d-95a9-4285-9750-c0557a9cab79
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2984993d-95a9-4285-9750-c0557a9cab79:
+    id: 2984993d-95a9-4285-9750-c0557a9cab79
+    content: '"Execute — The AI performs your tasks directly — making code changes, running commands — and marks items as completed or failed."'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  bc3d4e9f-0a77-465d-812f-5582e8912753:
+    id: bc3d4e9f-0a77-465d-812f-5582e8912753
+    content: No new file needed — changes are tight edits to existing content, not standalone concepts
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c8948167-f71a-4e97-b13d-5438b3800370:
+    id: c8948167-f71a-4e97-b13d-5438b3800370
+    content: No changelog entry — bug fix to a feature introduced in the current unreleased cycle
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  44dd615e-fcf5-4468-9044-30485b34a1c6:
+    id: 44dd615e-fcf5-4468-9044-30485b34a1c6
+    content: Nothing to warn user about — no ambiguity, no inconsistency requiring clarification beyond the above
+    children: []
+    metadata:
+      status: completed
       expanded: true
       deleted: false
       plugins: {}

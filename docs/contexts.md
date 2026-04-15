@@ -7,7 +7,7 @@ Contexts are reusable instructions for AI that you can apply anywhere in the tre
 Write a branch containing the reusable instructions, then right-click → **Blueprint** → **Declare as Context**. Choose an icon and a mode:
 
 - **Collaborate** — Sends content for AI review. The response appears in the Feedback panel for you to accept or reject.
-- **Execute** — Sends content for immediate action. The AI produces output directly.
+- **Execute** — The AI performs your tasks directly — making code changes, running commands — and marks items as completed or failed.
 
 The branch must be a child of a blueprint branch, or be at the root level.
 

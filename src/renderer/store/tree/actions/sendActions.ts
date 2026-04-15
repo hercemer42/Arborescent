@@ -21,10 +21,11 @@ import { feedbackTreeStore } from '../../feedback/feedbackTreeStore';
 import { AncestorRegistry } from '../../../utils/ancestry';
 import { isDecompositionEnabled, getArchiveConfigForNode } from '../../../utils/workflowHelpers';
 
-export const DEFAULT_EXECUTE_CONTEXT = `You are executing a task. Please:
-- Follow the instructions in the content exactly as written
-- Produce the requested output directly without additional commentary
-- If the task is ambiguous, summarize them and ask for clarification before executing
+export const DEFAULT_EXECUTE_CONTEXT = `You are executing a coding task. Please:
+- Implement the listed tasks by making changes directly in the codebase
+- Mark each completed item [x] and each failed item [-] in the returned list
+- Skip items already marked [x]
+- If the task is ambiguous or has blocking issues, summarize the issues in your terminal output and record them as a child node in the returned list
 
 `;
 
@@ -92,13 +93,11 @@ function buildWebExecutePrompt(executeContext: string, content: string): string 
   return `${instructions}\n\n${wrapContent(content)}`;
 }
 
-function buildFileOutputTarget(outputFilePath: string): string {
-  const outputDir = outputFilePath.substring(0, outputFilePath.lastIndexOf('/'));
-  return `IMPORTANT: Write your reviewed/updated list to this file: ${outputFilePath}
-Do NOT make any changes to the code.
-Only write to the file once - fully consider your response beforehand.
+const WRITE_ONCE_INSTRUCTION = 'Only write to the file once - fully consider your response beforehand.';
 
-Use this command to write the file safely:
+function buildFileWriteCommand(outputFilePath: string): string {
+  const outputDir = outputFilePath.substring(0, outputFilePath.lastIndexOf('/'));
+  return `Use this command to write the file safely:
 mkdir -p ${outputDir} && cat <<'EOF' > ${outputFilePath}
 [Your content here]
 EOF
@@ -106,8 +105,27 @@ EOF
 Output the complete updated list.`;
 }
 
+function buildCollaborateFileOutputTarget(outputFilePath: string): string {
+  return `IMPORTANT: Write your reviewed/updated list to this file: ${outputFilePath}
+Do NOT make any changes to the code.
+${WRITE_ONCE_INSTRUCTION}
+
+${buildFileWriteCommand(outputFilePath)}`;
+}
+
+function buildExecuteFileOutputTarget(outputFilePath: string): string {
+  return `IMPORTANT: Make the requested code changes in the codebase. Then write the same list back to this file with completed items marked [x] and failed items [-]:
+${outputFilePath}
+- Do NOT rewrite, reorganize, retitle, or add items to the list — only change status markers
+- Skip items already marked [x]
+- If issues were encountered, append a single new child node at the end of the list describing them
+${WRITE_ONCE_INSTRUCTION}
+
+${buildFileWriteCommand(outputFilePath)}`;
+}
+
 function buildTerminalCollaboratePrompt(reviewContext: string, content: string, outputFilePath: string, decomposition: boolean = false): string {
-  const outputTarget = buildFileOutputTarget(outputFilePath);
+  const outputTarget = buildCollaborateFileOutputTarget(outputFilePath);
   const instructions = wrapInstructions(buildCollaborateInstructions(reviewContext, outputTarget, decomposition));
   return `${instructions}\n\n${wrapContent(content)}`;
 }
@@ -118,23 +136,23 @@ curl -s -X POST http://127.0.0.1:\${ARBORESCENT_HOOK_PORT}/hook -H 'Authorizatio
 Then continue working and summarize your questions at the end of your output. The workflow will pause for review after you finish.
 Only use this if there are genuine issues — do not use it for minor concerns.`;
 
-function buildExecuteInstructions(executeContext: string, outputTarget: string): string {
+function buildExecuteInstructions(executeContext: string, outputTarget: string, includeNeedsReview: boolean = false): string {
+  const needsReview = includeNeedsReview ? `\n${NEEDS_REVIEW_INSTRUCTION}` : '';
   return `${BASE_INSTRUCTION_RULES}
 - Treat everything in CONTENT as the prompt to execute.
-- Output your result directly (no commentary about these instructions).
+- Making file changes, writing code, and running commands is expected and required.
 
 CONTEXT:
 ${executeContext.trimEnd()}
 
 ${SINGLE_ROOT_OUTPUT_FORMAT}
 
-${outputTarget}
-${NEEDS_REVIEW_INSTRUCTION}`;
+${outputTarget}${needsReview}`;
 }
 
-function buildTerminalExecutePrompt(executeContext: string, content: string, outputFilePath: string): string {
-  const outputTarget = buildFileOutputTarget(outputFilePath);
-  const instructions = wrapInstructions(buildExecuteInstructions(executeContext, outputTarget));
+function buildTerminalExecutePrompt(executeContext: string, content: string, outputFilePath: string, includeNeedsReview: boolean = false): string {
+  const outputTarget = buildExecuteFileOutputTarget(outputFilePath);
+  const instructions = wrapInstructions(buildExecuteInstructions(executeContext, outputTarget, includeNeedsReview));
   return `${instructions}\n\n${wrapContent(content)}`;
 }
 
@@ -402,7 +420,7 @@ export function createSendActions(
 
       const isExecuteMode = mode === 'execute';
       const terminalInstruction = isExecuteMode
-        ? buildTerminalExecutePrompt(contextPrefix || DEFAULT_EXECUTE_CONTEXT, nodeContent, feedbackResponseFile)
+        ? buildTerminalExecutePrompt(contextPrefix || DEFAULT_EXECUTE_CONTEXT, nodeContent, feedbackResponseFile, true)
         : buildTerminalCollaboratePrompt(
             contextPrefix || DEFAULT_REVIEW_CONTEXT,
             nodeContent,
