@@ -56,6 +56,7 @@ describe('persistenceActions', () => {
       showSaveDialog: vi.fn(),
       showUnsavedChangesDialog: vi.fn(() => Promise.resolve(2)),
       showRunningWorkflowDialog: vi.fn(() => Promise.resolve(false)),
+      showActiveSessionDialog: vi.fn(() => Promise.resolve(true)),
       saveSession: vi.fn(),
       getSession: vi.fn(),
       createTempFile: vi.fn(),

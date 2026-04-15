@@ -12,6 +12,8 @@ contextBridge.exposeInMainWorld('electron', {
     ipcRenderer.invoke('show-unsaved-changes-dialog', fileName),
   showRunningWorkflowDialog: (fileName: string) =>
     ipcRenderer.invoke('show-running-workflow-dialog', fileName),
+  showActiveSessionDialog: (fileName: string) =>
+    ipcRenderer.invoke('show-active-session-dialog', fileName),
   saveSession: (sessionData: string) =>
     ipcRenderer.invoke('save-session', sessionData),
   getSession: () => ipcRenderer.invoke('get-session'),

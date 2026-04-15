@@ -79,6 +79,7 @@ global.window.electron = {
   showSaveDialog: vi.fn(),
   showUnsavedChangesDialog: vi.fn(),
   showRunningWorkflowDialog: vi.fn(),
+  showActiveSessionDialog: vi.fn(),
   saveSession: vi.fn(),
   getSession: vi.fn(),
   saveBrowserSession: vi.fn(),

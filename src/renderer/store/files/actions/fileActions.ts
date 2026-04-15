@@ -1,6 +1,7 @@
 import { StorageService } from '../../../../shared/interfaces';
 import { storeManager } from '../../storeManager';
 import { logger } from '../../../services/logger';
+import { cleanupFeedback } from '../../../services/feedback/feedbackService';
 import { createArboFile, extractBlueprintNodes } from '../../../utils/document';
 import { createBlankDocument } from '../../../utils/defaultTemplate';
 import { File } from '../filesStore';
@@ -253,8 +254,29 @@ export const createFileActions = (get: StoreGetter, storage: StorageService): Fi
     return Object.values(workflowExecutionStates).some(entry => entry.state === 'running');
   }
 
+  function hasActiveCollaborationSession(filePath: string): boolean {
+    if (!storeManager.hasStore(filePath)) return false;
+    const store = storeManager.getStoreForFile(filePath);
+    return store.getState().collaboratingNodeId !== null;
+  }
+
+  async function terminateActiveSession(filePath: string): Promise<boolean> {
+    if (!hasActiveCollaborationSession(filePath)) return true;
+    const confirmed = await storage.showActiveSessionDialog(getDisplayName(filePath, false));
+    if (!confirmed) return false;
+    const store = storeManager.getStoreForFile(filePath);
+    const { collaboratingNodeId, nodes } = store.getState();
+    const tempFilePath = collaboratingNodeId
+      ? nodes[collaboratingNodeId]?.metadata.feedbackTempFile as string | undefined
+      : undefined;
+    await cleanupFeedback(filePath, tempFilePath);
+    return true;
+  }
+
   async function closeFile(filePath: string): Promise<void> {
     const { closeFile: closeFileAction } = get();
+
+    if (!await terminateActiveSession(filePath)) return;
 
     if (hasRunningWorkflows(filePath)) {
       const displayName = getDisplayName(filePath, false);

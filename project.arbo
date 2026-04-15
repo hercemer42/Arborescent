@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-04-15T13:33:01.155Z'
+updated: '2026-04-15T14:27:52.758Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -34492,7 +34492,6 @@ nodes:
     content: Problems
     children:
       - 23d3e853-f5b0-42aa-b5c9-acd01da1f0f6
-      - 8a3d9d42-d2aa-4e03-96d8-7a84d4243131
       - 356e205f-2ec6-4271-b7cb-1657c6229a2d
       - 3a953d30-cb26-4e2b-96b0-9f092bc5ce93
       - 413a84b6-97e7-4963-81ca-6667f2136d9a
@@ -49990,7 +49989,8 @@ nodes:
   bb974125-814d-4964-b269-13572d556270:
     id: bb974125-814d-4964-b269-13572d556270
     content: Code review & refactor
-    children: []
+    children:
+      - 8a3d9d42-d2aa-4e03-96d8-7a84d4243131
     metadata:
       status: pending
       isBlueprint: true
@@ -76058,10 +76058,15 @@ nodes:
       status: pending
   8a3d9d42-d2aa-4e03-96d8-7a84d4243131:
     id: 8a3d9d42-d2aa-4e03-96d8-7a84d4243131
-    content: File watcher is stopping for a session in progress when switching between projects
-    children: []
+    content: File watcher stops for a session in progress when switching between projects
+    children:
+      - 73c28479-9492-44ea-9e52-10f256d125b4
+      - 65ee3bef-f078-49e0-a08d-682ee20cc95a
     metadata:
-      status: pending
+      status: completed
+      expanded: false
+      deleted: false
+      plugins: {}
   a98ee247-9c20-4803-a2e7-939b388e50a8:
     id: a98ee247-9c20-4803-a2e7-939b388e50a8
     content: "I insist on this - if it's going to take more time for you and the user to have several user stories when one is needed, don't do it !\_ There has to be a tangible benefit."
@@ -76916,6 +76921,144 @@ nodes:
   0b74aef7-a89c-44f5-b71b-393189053dfc:
     id: 0b74aef7-a89c-44f5-b71b-393189053dfc
     content: Terminal panel visible alongside an open feedback panel
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  73c28479-9492-44ea-9e52-10f256d125b4:
+    id: 73c28479-9492-44ea-9e52-10f256d125b4
+    content: Acceptance criteria
+    children:
+      - 3d20e62a-f6c6-42a6-a71e-fa90d4970f4f
+      - 93225992-26e6-4dba-ab87-b4451a9ab237
+      - 2cef54c9-979b-41da-b262-94cc523082b9
+      - 961090e3-21d8-4a2c-bd21-948db4ca0637
+      - 8e6187ec-2ff9-4706-82e9-14e489952cce
+      - 8354ee94-ace0-42c9-9343-03c062b51a52
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3d20e62a-f6c6-42a6-a71e-fa90d4970f4f:
+    id: 3d20e62a-f6c6-42a6-a71e-fa90d4970f4f
+    content: Switching to a different file does not interrupt an active collaborate or execute session in the previous file
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  93225992-26e6-4dba-ab87-b4451a9ab237:
+    id: 93225992-26e6-4dba-ab87-b4451a9ab237
+    content: Sessions complete normally regardless of which file is currently open
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2cef54c9-979b-41da-b262-94cc523082b9:
+    id: 2cef54c9-979b-41da-b262-94cc523082b9
+    content: Feedback received while the user is viewing a different file is preserved and applied to the correct file on return
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  961090e3-21d8-4a2c-bd21-948db4ca0637:
+    id: 961090e3-21d8-4a2c-bd21-948db4ca0637
+    content: The user receives a notification when a session completes in a non-active file
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8e6187ec-2ff9-4706-82e9-14e489952cce:
+    id: 8e6187ec-2ff9-4706-82e9-14e489952cce
+    content: No session is silently interrupted — if a session must stop, a toast explains why
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8354ee94-ace0-42c9-9343-03c062b51a52:
+    id: 8354ee94-ace0-42c9-9343-03c062b51a52
+    content: Explicit stop actions (Stop Workflow, closing a terminal) still terminate sessions as before
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  65ee3bef-f078-49e0-a08d-682ee20cc95a:
+    id: 65ee3bef-f078-49e0-a08d-682ee20cc95a
+    content: Edge cases
+    children:
+      - 96abe066-0414-4677-9ad4-e2b8b1dba474
+      - d00801cd-1a12-4c47-b8e1-58044b07799e
+      - 49410e80-9bf6-4ae6-b4a6-3fc6c7a2c0c5
+      - 2790d73f-bb7f-4764-9a19-fe3d5ec9912e
+      - 5f10d3f6-87aa-47ac-8191-9442d8723dc5
+      - 051dc21b-61df-4ba1-92e8-509074915af8
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  96abe066-0414-4677-9ad4-e2b8b1dba474:
+    id: 96abe066-0414-4677-9ad4-e2b8b1dba474
+    content: Multiple files with simultaneous active sessions all complete independently
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d00801cd-1a12-4c47-b8e1-58044b07799e:
+    id: d00801cd-1a12-4c47-b8e1-58044b07799e
+    content: A checkpoint step awaiting validation in a non-active file remains pending until the user returns to that file
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  49410e80-9bf6-4ae6-b4a6-3fc6c7a2c0c5:
+    id: 49410e80-9bf6-4ae6-b4a6-3fc6c7a2c0c5
+    content: Closing a file that has an active session in progress warns the user before proceeding
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2790d73f-bb7f-4764-9a19-fe3d5ec9912e:
+    id: 2790d73f-bb7f-4764-9a19-fe3d5ec9912e
+    content: Feedback arriving for a non-active file does not appear in the currently viewed file's feedback panel
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5f10d3f6-87aa-47ac-8191-9442d8723dc5:
+    id: 5f10d3f6-87aa-47ac-8191-9442d8723dc5
+    content: Returning to a file where a session completed shows the feedback panel in the expected state
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  051dc21b-61df-4ba1-92e8-509074915af8:
+    id: 051dc21b-61df-4ba1-92e8-509074915af8
+    content: Zoom tabs share their parent file's session state and are unaffected by switching other files
     children: []
     metadata:
       status: completed

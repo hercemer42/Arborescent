@@ -9,6 +9,7 @@ declare global {
       showSaveDialog: (defaultPath?: string) => Promise<string | null>;
       showUnsavedChangesDialog: (fileName: string) => Promise<number>;
       showRunningWorkflowDialog: (fileName: string) => Promise<boolean>;
+      showActiveSessionDialog: (fileName: string) => Promise<boolean>;
       saveSession: (sessionData: string) => Promise<void>;
       getSession: () => Promise<string | null>;
       saveBrowserSession: (sessionData: string) => Promise<void>;

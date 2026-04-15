@@ -99,6 +99,10 @@ class StoreManager {
     return Array.from(this.stores.values());
   }
 
+  getAllStoreEntries(): Array<{ filePath: string; store: TreeStore }> {
+    return Array.from(this.stores.entries()).map(([filePath, store]) => ({ filePath, store }));
+  }
+
   clearAll(): void {
     this.stores.clear();
   }

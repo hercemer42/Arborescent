@@ -2,7 +2,12 @@ import { useEffect, useCallback, useSyncExternalStore } from 'react';
 import { useFilesStore } from '../../../store/files/filesStore';
 import { feedbackTreeStore } from '../../../store/feedback/feedbackTreeStore';
 import { storeManager } from '../../../store/storeManager';
+import { useToastStore } from '../../../store/toast/toastStore';
 import type { ContentSource } from '../../../store/tree/actions/sendActions';
+
+function findActiveCollaboratingStore() {
+  return storeManager.getAllStores().find(s => s.getState().collaboratingNodeId !== null);
+}
 
 export function useFeedbackClipboard(collaboratingNodeId: string | null) {
   const activeFilePath = useFilesStore((state) => state.activeFilePath);
@@ -13,15 +18,11 @@ export function useFeedbackClipboard(collaboratingNodeId: string | null) {
   );
 
   const handleFeedbackContent = useCallback(async (content: string, source: ContentSource, skipSave: boolean = false) => {
-    if (!collaboratingNodeId) return;
-
-    const collaboratingStore = storeManager.getAllStores().find(
-      s => s.getState().collaboratingNodeId === collaboratingNodeId
-    );
+    const collaboratingStore = findActiveCollaboratingStore();
     if (!collaboratingStore) return;
 
     await collaboratingStore.getState().actions.processIncomingFeedbackContent(content, source, skipSave);
-  }, [collaboratingNodeId]);
+  }, []);
 
   useEffect(() => {
     const cleanup = window.electron.onClipboardContentDetected((content: string) => {
@@ -33,10 +34,13 @@ export function useFeedbackClipboard(collaboratingNodeId: string | null) {
 
   useEffect(() => {
     const cleanup = window.electron.onFeedbackFileContentDetected((filePath: string, content: string) => {
-      for (const store of storeManager.getAllStores()) {
+      for (const { filePath: storePath, store } of storeManager.getAllStoreEntries()) {
         const nodeId = store.getState().actions.findNodeIdByFeedbackFilePath?.(filePath);
         if (nodeId) {
           store.getState().actions.handleAutonomousFeedback?.(nodeId, content);
+          if (activeFilePath && storePath !== activeFilePath) {
+            useToastStore.getState().addToast('A session completed in another file', 'info');
+          }
           return;
         }
       }
@@ -45,23 +49,21 @@ export function useFeedbackClipboard(collaboratingNodeId: string | null) {
     });
 
     return cleanup;
-  }, [handleFeedbackContent]);
-
-  useEffect(() => {
-    if (!collaboratingNodeId && activeFilePath) {
-      feedbackTreeStore.clearFile(activeFilePath);
-    }
-  }, [collaboratingNodeId, activeFilePath]);
+  }, [handleFeedbackContent, activeFilePath]);
 
   useEffect(() => {
     if (collaboratingNodeId && !hasFeedbackContent) {
       window.electron.startClipboardMonitor();
-    } else {
-      window.electron.stopClipboardMonitor();
     }
 
     return () => {
-      window.electron.stopClipboardMonitor();
+      // Switching files should not interrupt a session in another file.
+      const anySessionActive = storeManager.getAllStores().some(
+        s => s.getState().collaboratingNodeId !== null
+      );
+      if (!anySessionActive) {
+        window.electron.stopClipboardMonitor();
+      }
     };
   }, [collaboratingNodeId, hasFeedbackContent]);
 

@@ -56,6 +56,7 @@ export interface StorageService {
   showSaveDialog(defaultPath?: string): Promise<string | null>;
   showUnsavedChangesDialog(fileName: string): Promise<number>;
   showRunningWorkflowDialog(fileName: string): Promise<boolean>;
+  showActiveSessionDialog(fileName: string): Promise<boolean>;
   saveSession(session: SessionState): Promise<void>;
   getSession(): Promise<SessionState | null>;
   createTempFile(data: ArboFile): Promise<string>;

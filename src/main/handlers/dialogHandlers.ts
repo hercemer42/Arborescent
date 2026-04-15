@@ -93,4 +93,23 @@ export function registerDialogHandlers(getMainWindow: () => BrowserWindow | null
 
     return result.response === 0;
   });
+
+  ipcMain.handle('show-active-session-dialog', async (_, fileName: string) => {
+    const mainWindow = getMainWindow();
+    const options = {
+      type: 'warning' as const,
+      buttons: ['Close Anyway', 'Cancel'],
+      defaultId: 1,
+      cancelId: 1,
+      title: 'Active Session',
+      message: `"${fileName}" has an active AI session.`,
+      detail: 'Closing this file will interrupt the session and discard any pending feedback.',
+    };
+
+    const result = mainWindow
+      ? await dialog.showMessageBox(mainWindow, options)
+      : await dialog.showMessageBox(options);
+
+    return result.response === 0;
+  });
 }

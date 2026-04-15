@@ -48,7 +48,12 @@ vi.mock('../../../../utils/defaultTemplate', () => ({
   })),
 }));
 
+vi.mock('../../../../services/feedback/feedbackService', () => ({
+  cleanupFeedback: vi.fn().mockResolvedValue(undefined),
+}));
+
 import { storeManager } from '../../../storeManager';
+import { cleanupFeedback } from '../../../../services/feedback/feedbackService';
 import { logger } from '../../../../services/logger';
 import { createArboFile, extractBlueprintNodes } from '../../../../utils/document';
 import { createBlankDocument } from '../../../../utils/defaultTemplate';
@@ -89,6 +94,7 @@ describe('fileActions', () => {
       showSaveDialog: vi.fn(),
       showUnsavedChangesDialog: vi.fn(),
       showRunningWorkflowDialog: vi.fn(() => Promise.resolve(true)),
+      showActiveSessionDialog: vi.fn(() => Promise.resolve(true)),
       saveSession: vi.fn(),
       getSession: vi.fn(),
       createTempFile: vi.fn(),
@@ -110,6 +116,8 @@ describe('fileActions', () => {
     (storeManager.getStoreForFile as ReturnType<typeof vi.fn>).mockReturnValue({
       getState: () => ({
         fileMeta: null,
+        collaboratingNodeId: null,
+        nodes: {},
         workflowExecutionStates: {},
         actions: {
           saveToPath: vi.fn(() => Promise.resolve()),
@@ -385,6 +393,79 @@ describe('fileActions', () => {
 
       expect(mockStorage.showRunningWorkflowDialog).not.toHaveBeenCalled();
       expect(state.closeFile).toHaveBeenCalledWith('/test/file.arbo');
+    });
+
+    it('should show active session dialog when file has an active collaboration', async () => {
+      vi.mocked(mockStorage.isTempFile).mockResolvedValue(false);
+      vi.mocked(mockStorage.showActiveSessionDialog).mockResolvedValue(true);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      vi.mocked(storeManager.getStoreForFile).mockReturnValue({
+        getState: () => ({
+          fileMeta: null,
+          collaboratingNodeId: 'node-1',
+          nodes: { 'node-1': { id: 'node-1', content: '', children: [], metadata: {} } },
+          workflowExecutionStates: {},
+          actions: { saveToPath: vi.fn(() => Promise.resolve()) },
+        }),
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      } as any);
+
+      await actions.closeFile('/test/file.arbo');
+
+      expect(mockStorage.showActiveSessionDialog).toHaveBeenCalled();
+      expect(state.closeFile).toHaveBeenCalledWith('/test/file.arbo');
+    });
+
+    it('should not close file when active session dialog is cancelled', async () => {
+      vi.mocked(mockStorage.showActiveSessionDialog).mockResolvedValue(false);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      vi.mocked(storeManager.getStoreForFile).mockReturnValue({
+        getState: () => ({
+          fileMeta: null,
+          collaboratingNodeId: 'node-1',
+          nodes: { 'node-1': { id: 'node-1', content: '', children: [], metadata: {} } },
+          workflowExecutionStates: {},
+          actions: {},
+        }),
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      } as any);
+
+      await actions.closeFile('/test/file.arbo');
+
+      expect(state.closeFile).not.toHaveBeenCalled();
+      expect(storeManager.closeFile).not.toHaveBeenCalled();
+    });
+
+    it('should call cleanupFeedback when closing a file with an active session', async () => {
+      vi.mocked(mockStorage.isTempFile).mockResolvedValue(false);
+      vi.mocked(mockStorage.showActiveSessionDialog).mockResolvedValue(true);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      vi.mocked(storeManager.getStoreForFile).mockReturnValue({
+        getState: () => ({
+          fileMeta: null,
+          collaboratingNodeId: 'node-1',
+          nodes: {
+            'node-1': {
+              id: 'node-1', content: '', children: [], metadata: { feedbackTempFile: '/tmp/feedback.arbo' },
+            },
+          },
+          workflowExecutionStates: {},
+          actions: { saveToPath: vi.fn(() => Promise.resolve()) },
+        }),
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      } as any);
+
+      await actions.closeFile('/test/file.arbo');
+
+      expect(vi.mocked(cleanupFeedback)).toHaveBeenCalledWith('/test/file.arbo', '/tmp/feedback.arbo');
+    });
+
+    it('should not show active session dialog when no session is active', async () => {
+      vi.mocked(mockStorage.isTempFile).mockResolvedValue(false);
+
+      await actions.closeFile('/test/file.arbo');
+
+      expect(mockStorage.showActiveSessionDialog).not.toHaveBeenCalled();
     });
   });
 

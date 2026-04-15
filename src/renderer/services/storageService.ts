@@ -87,6 +87,10 @@ export class StorageService implements IStorageService {
     return window.electron.showRunningWorkflowDialog(fileName);
   }
 
+  async showActiveSessionDialog(fileName: string): Promise<boolean> {
+    return window.electron.showActiveSessionDialog(fileName);
+  }
+
   async saveTerminalSession(session: TerminalSession): Promise<void> {
     const sessionData = JSON.stringify(session, null, 2);
     await window.electron.saveTerminalSession(sessionData);

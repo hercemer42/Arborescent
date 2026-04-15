@@ -25,6 +25,7 @@ vi.mock('../../../../store/storeManager', () => ({
   storeManager: {
     getStoreForFile: vi.fn(() => mockStore),
     getAllStores: vi.fn(() => [mockStore]),
+    getAllStoreEntries: vi.fn(() => [{ filePath: '/test/file.arbo', store: mockStore }]),
   },
 }));
 
@@ -76,6 +77,11 @@ vi.mock('../../../../store/files/filesStore', () => ({
   }),
 }));
 
+const mockAddToast = vi.fn();
+vi.mock('../../../../store/toast/toastStore', () => ({
+  useToastStore: { getState: () => ({ addToast: mockAddToast }) },
+}));
+
 
 describe('useFeedbackClipboard', () => {
   let mockOnClipboardContentDetected: ReturnType<typeof vi.fn>;
@@ -87,6 +93,7 @@ describe('useFeedbackClipboard', () => {
   beforeEach(() => {
     mockProcessIncomingFeedbackContent.mockClear();
     mockFeedbackTreeClearFile.mockClear();
+    mockAddToast.mockClear();
     mockFeedbackTreeStore._setHasContent(false);
     mockCollaboratingNodeId.value = 'node-1';
     mockCleanup = vi.fn();
@@ -180,13 +187,13 @@ describe('useFeedbackClipboard', () => {
     expect(result.current).toBe(false);
   });
 
-  it('should clear feedback store when collaboratingNodeId becomes null', async () => {
+  it('does not clear the feedback store when collaboratingNodeId becomes null', async () => {
+    // Feedback store cleanup is handled by finishCancel/finishAccept via cleanupFeedback, not this hook
     const { result, rerender } = renderHook(
       ({ collaboratingNodeId }: { collaboratingNodeId: string | null }) => useFeedbackClipboard(collaboratingNodeId),
       { initialProps: { collaboratingNodeId: 'node-1' as string | null } }
     );
 
-    // Set some feedback content first
     act(() => {
       clipboardCallback('- Valid node');
     });
@@ -195,16 +202,11 @@ describe('useFeedbackClipboard', () => {
       expect(result.current).toBe(true);
     }, { container: document.body });
 
-    // Clear collaboration by setting collaboratingNodeId to null
     act(() => {
       rerender({ collaboratingNodeId: null });
     });
 
-    await waitFor(() => {
-      expect(result.current).toBe(false);
-    }, { container: document.body });
-
-    expect(mockFeedbackTreeClearFile).toHaveBeenCalledWith('/test/file.arbo');
+    expect(mockFeedbackTreeClearFile).not.toHaveBeenCalled();
   });
 
   it('should not clear hasFeedbackContent when collaboratingNodeId changes to another node', async () => {
@@ -239,15 +241,13 @@ describe('useFeedbackClipboard', () => {
     expect(mockCleanup).toHaveBeenCalled();
   });
 
-  it('should not call action when no collaboratingNodeId', async () => {
+  it('should not call action when no session is active in any store', async () => {
+    mockCollaboratingNodeId.value = null; // No active session in any open file
     renderHook(() => useFeedbackClipboard(null));
 
-    act(() => {
+    await act(async () => {
       clipboardCallback('- Valid node');
     });
-
-    // Give time for any async operations
-    await new Promise((resolve) => setTimeout(resolve, 10));
 
     expect(mockProcessIncomingFeedbackContent).not.toHaveBeenCalled();
   });
@@ -279,8 +279,7 @@ describe('useFeedbackClipboard', () => {
     const mockHandleAutonomousFeedback = vi.fn();
     const mockFindNode = vi.fn().mockReturnValue('node-1');
 
-    const { storeManager } = await import('../../../../store/storeManager');
-    vi.mocked(storeManager.getAllStores).mockReturnValue([{
+    const alternateStore = {
       getState: () => ({
         collaboratingNodeId: 'node-1',
         actions: {
@@ -288,8 +287,13 @@ describe('useFeedbackClipboard', () => {
           handleAutonomousFeedback: mockHandleAutonomousFeedback,
         },
       }),
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } as any]);
+    };
+
+    const { storeManager } = await import('../../../../store/storeManager');
+    vi.mocked(storeManager.getAllStores).mockReturnValue([alternateStore as any]); // eslint-disable-line @typescript-eslint/no-explicit-any
+    vi.mocked(storeManager.getAllStoreEntries).mockReturnValue([
+      { filePath: '/test/file.arbo', store: alternateStore as any }, // eslint-disable-line @typescript-eslint/no-explicit-any
+    ]);
 
     const { useFilesStore } = await import('../../../../store/files/filesStore');
     vi.mocked(useFilesStore).mockImplementation((selector) =>
