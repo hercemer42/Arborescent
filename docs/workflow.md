@@ -76,6 +76,10 @@ Panel state persists across restarts. When you reopen Arborescent, each file's p
 
 Drag the panel edge to resize. Toggle between side and bottom position with the arrow button.
 
+### Terminal tabs
+
+Open a new terminal with `+` in the terminal tab bar. Switch between terminals by clicking their tabs — running processes and content are preserved when switching. Close a terminal with `×` on its tab.
+
 ### Terminal scroll lock
 
 Some terminal AI tools (like Claude Code) redraw the screen while processing, which can scroll you away from the output. Click the anchor icon in the terminal tab bar to fix the view to the bottom of the terminal. Click it again to turn it off.

@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-04-15T12:10:53.359Z'
+updated: '2026-04-15T13:33:01.155Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -24606,8 +24606,7 @@ nodes:
   b38966d3-b238-4d64-9eed-74d4ab983c28:
     id: b38966d3-b238-4d64-9eed-74d4ab983c28
     content: Test plan creation
-    children:
-      - 1829953e-52a1-44d7-8055-1719d7d81416
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -34492,6 +34491,7 @@ nodes:
     id: 13c5048b-15eb-4989-a6fc-25032e5c131f
     content: Problems
     children:
+      - 23d3e853-f5b0-42aa-b5c9-acd01da1f0f6
       - 8a3d9d42-d2aa-4e03-96d8-7a84d4243131
       - 356e205f-2ec6-4271-b7cb-1657c6229a2d
       - 3a953d30-cb26-4e2b-96b0-9f092bc5ce93
@@ -34725,6 +34725,7 @@ nodes:
       - ca651178-69bc-4933-aa6f-b19e106fbd34
       - 071563c9-a7cb-415d-9da6-7b539668cba3
       - 3a84a223-538b-417b-a265-8e128c1edfc0
+      - 1829953e-52a1-44d7-8055-1719d7d81416
     metadata:
       status: completed
       expanded: false
@@ -35364,8 +35365,7 @@ nodes:
   7b3e923e-b465-4444-ae7d-7fe0e80e3235:
     id: 7b3e923e-b465-4444-ae7d-7fe0e80e3235
     content: Code review & refactor
-    children:
-      - 155a21e7-7c7f-4da1-89ea-00743df091f0
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -49977,7 +49977,8 @@ nodes:
   3ab86cdd-2d94-4d06-806c-2b239fef0ffd:
     id: 3ab86cdd-2d94-4d06-806c-2b239fef0ffd
     content: Documentation
-    children: []
+    children:
+      - bee76549-e25f-4862-8829-b1dcba732824
     metadata:
       status: pending
       isBlueprint: true
@@ -63980,8 +63981,7 @@ nodes:
   4196fda4-f103-4916-9fba-97c5ea39cafc:
     id: 4196fda4-f103-4916-9fba-97c5ea39cafc
     content: Automated tests implementation (TDD)
-    children:
-      - bee76549-e25f-4862-8829-b1dcba732824
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -76056,175 +76056,6 @@ nodes:
     children: []
     metadata:
       status: pending
-  bee76549-e25f-4862-8829-b1dcba732824:
-    id: bee76549-e25f-4862-8829-b1dcba732824
-    content: Switching between terminal tabs produces a blank terminal
-    children:
-      - aaa85898-5143-452e-aeb9-f991f36685f2
-      - 81a1e375-a7fd-4f9d-87f5-54bdd4ab01a1
-      - e9f93026-c1b6-4177-996a-a5fddaec9b32
-      - 22bd69d9-3d42-4822-9d84-f2267309164d
-      - 59eef7e2-9953-400d-ae01-7a82b66c0f63
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  aaa85898-5143-452e-aeb9-f991f36685f2:
-    id: aaa85898-5143-452e-aeb9-f991f36685f2
-    content: Affects tab switching within the same file — file switching is not a prerequisite
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  81a1e375-a7fd-4f9d-87f5-54bdd4ab01a1:
-    id: 81a1e375-a7fd-4f9d-87f5-54bdd4ab01a1
-    content: 'Intermittent: not every switch triggers it; likely related to content volume written or time elapsed since last switch, cause unconfirmed'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e9f93026-c1b6-4177-996a-a5fddaec9b32:
-    id: e9f93026-c1b6-4177-996a-a5fddaec9b32
-    content: The blank-after-file-switch fix (commit b3dcccc) did not fully address this case
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  22bd69d9-3d42-4822-9d84-f2267309164d:
-    id: 22bd69d9-3d42-4822-9d84-f2267309164d
-    content: Acceptance criteria
-    children:
-      - 02364219-0ce8-447b-9ab8-6693227c62cf
-      - a03ff1f2-8ef3-41b8-9af8-52727c52d234
-      - 6de5dfaf-140e-4ab5-bcea-948c756b6b30
-      - 38fdfde7-0d21-4955-a51a-a688d8d65292
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  02364219-0ce8-447b-9ab8-6693227c62cf:
-    id: 02364219-0ce8-447b-9ab8-6693227c62cf
-    content: Switching between terminal tabs always renders the active terminal immediately and without user intervention
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  a03ff1f2-8ef3-41b8-9af8-52727c52d234:
-    id: a03ff1f2-8ef3-41b8-9af8-52727c52d234
-    content: Content already written to a terminal before switching away is fully visible when switching back
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  6de5dfaf-140e-4ab5-bcea-948c756b6b30:
-    id: 6de5dfaf-140e-4ab5-bcea-948c756b6b30
-    content: The fix is unconditionally reliable — a fix that works "most of the time" is not acceptable given the existing workaround is already unreliable
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  38fdfde7-0d21-4955-a51a-a688d8d65292:
-    id: 38fdfde7-0d21-4955-a51a-a688d8d65292
-    content: Switching files and then switching back leaves no terminal blank
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  59eef7e2-9953-400d-ae01-7a82b66c0f63:
-    id: 59eef7e2-9953-400d-ae01-7a82b66c0f63
-    content: Edge cases to verify
-    children:
-      - 88916c83-91f9-48ab-b9ca-56cbc1bbd1e2
-      - 1496798e-6c1e-4836-bc89-491f2a7795b6
-      - 86bee758-1237-435a-9676-357d960bf559
-      - 47c613fc-2fd5-49ef-8e30-e430d5b2e126
-      - 91e1b196-6b84-4a07-80a2-2d8255a39655
-      - d50e63e2-e2c8-4da2-9361-6605507cc6e0
-      - 08b3a517-5bd9-4847-a90d-eda028f4f5b5
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  88916c83-91f9-48ab-b9ca-56cbc1bbd1e2:
-    id: 88916c83-91f9-48ab-b9ca-56cbc1bbd1e2
-    content: Terminal with no output yet (just a shell prompt)
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  1496798e-6c1e-4836-bc89-491f2a7795b6:
-    id: 1496798e-6c1e-4836-bc89-491f2a7795b6
-    content: Terminal with a large volume of output
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  86bee758-1237-435a-9676-357d960bf559:
-    id: 86bee758-1237-435a-9676-357d960bf559
-    content: Terminal mid-output (process still writing when tab is switched away)
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  47c613fc-2fd5-49ef-8e30-e430d5b2e126:
-    id: 47c613fc-2fd5-49ef-8e30-e430d5b2e126
-    content: Terminal that has been idle for an extended period
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  91e1b196-6b84-4a07-80a2-2d8255a39655:
-    id: 91e1b196-6b84-4a07-80a2-2d8255a39655
-    content: Switching through all open terminal tabs in rapid sequence
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  d50e63e2-e2c8-4da2-9361-6605507cc6e0:
-    id: d50e63e2-e2c8-4da2-9361-6605507cc6e0
-    content: Terminal panel in side position vs bottom position
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  08b3a517-5bd9-4847-a90d-eda028f4f5b5:
-    id: 08b3a517-5bd9-4847-a90d-eda028f4f5b5
-    content: Terminal panel visible alongside an open feedback panel
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
   8a3d9d42-d2aa-4e03-96d8-7a84d4243131:
     id: 8a3d9d42-d2aa-4e03-96d8-7a84d4243131
     content: File watcher is stopping for a session in progress when switching between projects
@@ -76238,21 +76069,6 @@ nodes:
     metadata:
       status: pending
       isBlueprint: true
-  155a21e7-7c7f-4da1-89ea-00743df091f0:
-    id: 155a21e7-7c7f-4da1-89ea-00743df091f0
-    content: Documentation
-    children:
-      - 67314947-01b8-44c9-a1f8-1103597977fc
-      - a71ee55d-33b1-42fb-be55-946c3bb2f812
-      - 20afd502-b5e9-4530-867c-4b30764d08f2
-      - bc3d4e9f-0a77-465d-812f-5582e8912753
-      - c8948167-f71a-4e97-b13d-5438b3800370
-      - 44dd615e-fcf5-4468-9044-30485b34a1c6
-    metadata:
-      status: pending
-      expanded: false
-      deleted: false
-      plugins: {}
   d712f7a5-f6fe-4a45-a64a-756b9de6ed0b:
     id: d712f7a5-f6fe-4a45-a64a-756b9de6ed0b
     content: A developer using execute mode expects the AI to implement the listed tasks directly in the codebase — writing files, making changes, running commands
@@ -76902,214 +76718,204 @@ nodes:
       expanded: false
       deleted: false
       plugins: {}
-  67314947-01b8-44c9-a1f8-1103597977fc:
-    id: 67314947-01b8-44c9-a1f8-1103597977fc
-    content: Review existing documentation
+  23d3e853-f5b0-42aa-b5c9-acd01da1f0f6:
+    id: 23d3e853-f5b0-42aa-b5c9-acd01da1f0f6
+    content: Default contexts prevent actions from working
     children:
-      - 01db4588-65ce-4b95-8407-2a4ec64d34e2
-      - 5bd8d2c4-e7b4-41cb-bf23-71eadbc90620
-      - 994bc03c-9da8-4ec7-80b4-c7a819f08de5
-      - a873f770-4f0b-4e68-acb4-88ce3a828498
-      - 2c68d546-bedf-4788-8639-2993670ebf35
+      - 26e95288-225c-49fc-bb1b-8bc87a0568fe
+      - e0c04fcf-7a12-4d15-a59b-bd530e6f56fb
+      - f0c19ac5-5107-4b14-93bc-097c90676a42
     metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  01db4588-65ce-4b95-8407-2a4ec64d34e2:
-    id: 01db4588-65ce-4b95-8407-2a4ec64d34e2
-    content: workflow.md — send mode descriptions reviewed
+      status: pending
+      expanded: false
+  26e95288-225c-49fc-bb1b-8bc87a0568fe:
+    id: 26e95288-225c-49fc-bb1b-8bc87a0568fe
+    content: Don't automatically apply default contexts, just have them in the contexts list so they can be applied at any time
     children: []
     metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  5bd8d2c4-e7b4-41cb-bf23-71eadbc90620:
-    id: 5bd8d2c4-e7b4-41cb-bf23-71eadbc90620
-    content: contexts.md — execute/collaborate mode descriptions reviewed
+      status: pending
+  e0c04fcf-7a12-4d15-a59b-bd530e6f56fb:
+    id: e0c04fcf-7a12-4d15-a59b-bd530e6f56fb
+    content: That way when an action is sent it only sends the action text
     children: []
     metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  994bc03c-9da8-4ec7-80b4-c7a819f08de5:
-    id: 994bc03c-9da8-4ec7-80b4-c7a819f08de5
-    content: workflows.md — execute mode description accurate ("item statuses are updated")
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  a873f770-4f0b-4e68-acb4-88ce3a828498:
-    id: a873f770-4f0b-4e68-acb4-88ce3a828498
-    content: blueprints.md — no changes needed
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  2c68d546-bedf-4788-8639-2993670ebf35:
-    id: 2c68d546-bedf-4788-8639-2993670ebf35
-    content: CHANGELOG.md — "Execute mode feedback loop" entry already covers this feature; this is a bug fix to an unreleased feature, no new entry needed
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  a71ee55d-33b1-42fb-be55-946c3bb2f812:
-    id: a71ee55d-33b1-42fb-be55-946c3bb2f812
-    content: 'Update workflow.md: fix execute mode description'
+      status: pending
+  f0c19ac5-5107-4b14-93bc-097c90676a42:
+    id: f0c19ac5-5107-4b14-93bc-097c90676a42
+    content: Consider if actions should be applicable like contexts
     children:
-      - b79b9e5f-dc32-4386-842c-ccc2b097c7ca
-      - 5b89352e-10bf-4152-a8ad-fae0e2dc64ca
-      - ef37f397-ec5b-4a5e-8966-bc88fbcb4fc0
+      - 352af091-e4b7-485a-8137-6b2903ea8ee4
     metadata:
       status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  b79b9e5f-dc32-4386-842c-ccc2b097c7ca:
-    id: b79b9e5f-dc32-4386-842c-ccc2b097c7ca
-    content: Current text says "updates item statuses (checked off, failed, undone) and can add new items, but does not rewrite what you wrote"
+  352af091-e4b7-485a-8137-6b2903ea8ee4:
+    id: 352af091-e4b7-485a-8137-6b2903ea8ee4
+    content: Maybe action is a context type (like collaborate/execute)
     children: []
     metadata:
       status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  5b89352e-10bf-4152-a8ad-fae0e2dc64ca:
-    id: 5b89352e-10bf-4152-a8ad-fae0e2dc64ca
-    content: 'Issues with current text:'
+  bee76549-e25f-4862-8829-b1dcba732824:
+    id: bee76549-e25f-4862-8829-b1dcba732824
+    content: Switching between terminal tabs produces a blank terminal
     children:
-      - 933cefbe-a8cd-4fb1-99d4-148ef834574d
-      - e5667ff1-3e09-4d66-b275-d3571025f79a
-      - 23003e27-2006-4ff2-94af-e9370cd9c3c2
+      - 4cabada5-d199-4c6b-990d-23e08ccd1562
+      - 1bc3aa6a-303e-4996-8f3a-3f033ef38e4b
+      - db1a1ad8-e000-4d76-9c86-b9639e486e8e
+      - 891ae32e-2ec0-4745-adee-404be25209c7
+      - e4da41c1-b562-439c-8287-1d84e50a5059
     metadata:
-      status: pending
-      expanded: true
+      status: completed
+      expanded: false
       deleted: false
       plugins: {}
-  933cefbe-a8cd-4fb1-99d4-148ef834574d:
-    id: 933cefbe-a8cd-4fb1-99d4-148ef834574d
-    content: '"undone" implies the AI reverts completed items — it doesn''t; AI only marks items [x] or [-], never removes [x]'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e5667ff1-3e09-4d66-b275-d3571025f79a:
-    id: e5667ff1-3e09-4d66-b275-d3571025f79a
-    content: '"can add new items" is misleading — AI only appends a single issues note when something fails, not new task items'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  23003e27-2006-4ff2-94af-e9370cd9c3c2:
-    id: 23003e27-2006-4ff2-94af-e9370cd9c3c2
-    content: Description omits that the AI actually performs the task (code changes, commands) — users may not understand the distinction between modes
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ef37f397-ec5b-4a5e-8966-bc88fbcb4fc0:
-    id: ef37f397-ec5b-4a5e-8966-bc88fbcb4fc0
-    content: 'Proposed replacement:'
-    children:
-      - 1b06617f-522f-4100-9cbf-3cd81977e1cc
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  1b06617f-522f-4100-9cbf-3cd81977e1cc:
-    id: 1b06617f-522f-4100-9cbf-3cd81977e1cc
-    content: '"Execute — The AI performs your tasks — making code changes, running commands — and marks each item as completed [x] or failed [-]. The list structure is preserved; only status markers change. If something went wrong, a brief note is appended at the end."'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  20afd502-b5e9-4530-867c-4b30764d08f2:
-    id: 20afd502-b5e9-4530-867c-4b30764d08f2
-    content: 'Update contexts.md: clarify execute mode description'
-    children:
-      - f820ccaf-2a85-437f-88b5-f70200ecaeaf
-      - f67120f4-0940-4129-8f9c-9e10e56650f9
-      - fe80e064-2b78-41b8-937e-a81db089d529
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f820ccaf-2a85-437f-88b5-f70200ecaeaf:
-    id: f820ccaf-2a85-437f-88b5-f70200ecaeaf
-    content: 'Current text: "Execute — Sends content for immediate action. The AI produces output directly."'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f67120f4-0940-4129-8f9c-9e10e56650f9:
-    id: f67120f4-0940-4129-8f9c-9e10e56650f9
-    content: '"The AI produces output directly" is vague and could mean anything — clarify that the AI performs actions and updates status markers'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  fe80e064-2b78-41b8-937e-a81db089d529:
-    id: fe80e064-2b78-41b8-937e-a81db089d529
-    content: 'Proposed replacement:'
-    children:
-      - 2984993d-95a9-4285-9750-c0557a9cab79
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  2984993d-95a9-4285-9750-c0557a9cab79:
-    id: 2984993d-95a9-4285-9750-c0557a9cab79
-    content: '"Execute — The AI performs your tasks directly — making code changes, running commands — and marks items as completed or failed."'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  bc3d4e9f-0a77-465d-812f-5582e8912753:
-    id: bc3d4e9f-0a77-465d-812f-5582e8912753
-    content: No new file needed — changes are tight edits to existing content, not standalone concepts
+  4cabada5-d199-4c6b-990d-23e08ccd1562:
+    id: 4cabada5-d199-4c6b-990d-23e08ccd1562
+    content: Affects tab switching within the same file — file switching is not a prerequisite
     children: []
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  c8948167-f71a-4e97-b13d-5438b3800370:
-    id: c8948167-f71a-4e97-b13d-5438b3800370
-    content: No changelog entry — bug fix to a feature introduced in the current unreleased cycle
+  1bc3aa6a-303e-4996-8f3a-3f033ef38e4b:
+    id: 1bc3aa6a-303e-4996-8f3a-3f033ef38e4b
+    content: 'Intermittent: not every switch triggers it; likely related to content volume written or time elapsed since last switch, cause unconfirmed'
     children: []
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  44dd615e-fcf5-4468-9044-30485b34a1c6:
-    id: 44dd615e-fcf5-4468-9044-30485b34a1c6
-    content: Nothing to warn user about — no ambiguity, no inconsistency requiring clarification beyond the above
+  db1a1ad8-e000-4d76-9c86-b9639e486e8e:
+    id: db1a1ad8-e000-4d76-9c86-b9639e486e8e
+    content: The blank-after-file-switch fix (commit b3dcccc) did not fully address this case
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  891ae32e-2ec0-4745-adee-404be25209c7:
+    id: 891ae32e-2ec0-4745-adee-404be25209c7
+    content: Acceptance criteria
+    children:
+      - aa346102-ff8c-4f06-bb61-d473a75e5b0f
+      - 951f685b-c8be-4b80-90e3-bb9c339a5c91
+      - 023d06b0-4a26-48b1-bf91-e562cfbed83f
+      - 4ad51a0b-8a48-48fa-99c3-5e711e96f480
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  aa346102-ff8c-4f06-bb61-d473a75e5b0f:
+    id: aa346102-ff8c-4f06-bb61-d473a75e5b0f
+    content: Switching between terminal tabs always renders the active terminal immediately and without user intervention
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  951f685b-c8be-4b80-90e3-bb9c339a5c91:
+    id: 951f685b-c8be-4b80-90e3-bb9c339a5c91
+    content: Content already written to a terminal before switching away is fully visible when switching back
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  023d06b0-4a26-48b1-bf91-e562cfbed83f:
+    id: 023d06b0-4a26-48b1-bf91-e562cfbed83f
+    content: The fix is unconditionally reliable — a fix that works "most of the time" is not acceptable given the existing workaround is already unreliable
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4ad51a0b-8a48-48fa-99c3-5e711e96f480:
+    id: 4ad51a0b-8a48-48fa-99c3-5e711e96f480
+    content: Switching files and then switching back leaves no terminal blank
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e4da41c1-b562-439c-8287-1d84e50a5059:
+    id: e4da41c1-b562-439c-8287-1d84e50a5059
+    content: Edge cases to verify
+    children:
+      - e3dde881-f1b9-4755-85c6-9244fe29cc41
+      - 15acd7dd-9180-43de-b67b-77d366cd6ea2
+      - d4f9e180-6524-456a-b861-ac833b0b7602
+      - 70205408-9732-4172-af9b-730cb879c41f
+      - 9d66b53e-a36f-4d7e-89c9-e4753472c273
+      - 82c33c6d-358d-423f-993f-7656c8380280
+      - 0b74aef7-a89c-44f5-b71b-393189053dfc
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e3dde881-f1b9-4755-85c6-9244fe29cc41:
+    id: e3dde881-f1b9-4755-85c6-9244fe29cc41
+    content: Terminal with no output yet (just a shell prompt)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  15acd7dd-9180-43de-b67b-77d366cd6ea2:
+    id: 15acd7dd-9180-43de-b67b-77d366cd6ea2
+    content: Terminal with a large volume of output
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d4f9e180-6524-456a-b861-ac833b0b7602:
+    id: d4f9e180-6524-456a-b861-ac833b0b7602
+    content: Terminal mid-output (process still writing when tab is switched away)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  70205408-9732-4172-af9b-730cb879c41f:
+    id: 70205408-9732-4172-af9b-730cb879c41f
+    content: Terminal that has been idle for an extended period
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9d66b53e-a36f-4d7e-89c9-e4753472c273:
+    id: 9d66b53e-a36f-4d7e-89c9-e4753472c273
+    content: Switching through all open terminal tabs in rapid sequence
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  82c33c6d-358d-423f-993f-7656c8380280:
+    id: 82c33c6d-358d-423f-993f-7656c8380280
+    content: Terminal panel in side position vs bottom position
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0b74aef7-a89c-44f5-b71b-393189053dfc:
+    id: 0b74aef7-a89c-44f5-b71b-393189053dfc
+    content: Terminal panel visible alongside an open feedback panel
     children: []
     metadata:
       status: completed

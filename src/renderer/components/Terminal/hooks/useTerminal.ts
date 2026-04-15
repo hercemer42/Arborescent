@@ -16,6 +16,7 @@ export function useTerminal({ id, pinnedToBottom = true, onResize }: UseTerminal
   const xtermRef = useRef<XTerm | null>(null);
   const fitAddonRef = useRef<FitAddon | null>(null);
   const pinnedToBottomRef = useRef(pinnedToBottom);
+  const wasHiddenRef = useRef(false);
   const [isInitialized, setIsInitialized] = useState(false);
   const theme = usePreferencesStore((state) => state.theme);
 
@@ -121,11 +122,20 @@ export function useTerminal({ id, pinnedToBottom = true, onResize }: UseTerminal
         // Skip if container has no dimensions (still hidden)
         const rect = terminalRef.current?.getBoundingClientRect();
         if (!rect || rect.width === 0 || rect.height === 0) {
+          wasHiddenRef.current = true;
           return;
         }
         fitAddon.fit();
         const { cols, rows } = xterm;
-        window.electron.terminalResize(id, cols, rows);
+        if (wasHiddenRef.current) {
+          wasHiddenRef.current = false;
+          // Container just became visible after being hidden — force PTY redraw
+          window.electron.terminalResize(id, cols - 1, rows).then(() => {
+            window.electron.terminalResize(id, cols, rows);
+          });
+        } else {
+          window.electron.terminalResize(id, cols, rows);
+        }
         onResize?.(cols, rows);
       });
     };
