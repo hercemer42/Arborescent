@@ -4,10 +4,17 @@ import { feedbackTreeStore } from '../../../store/feedback/feedbackTreeStore';
 import { storeManager } from '../../../store/storeManager';
 import { useToastStore } from '../../../store/toast/toastStore';
 import { logger } from '../../../services/logger';
+import { resolveToSourceFilePath } from '../../../utils/zoomPath';
 import type { ContentSource } from '../../../store/tree/actions/sendActions';
 
-function findActiveCollaboratingStore() {
-  return storeManager.getAllStores().find(s => s.getState().collaboratingNodeId !== null);
+function findActiveCollaboratingEntry() {
+  return storeManager
+    .getAllStoreEntries()
+    .find((entry) => entry.store.getState().collaboratingNodeId !== null);
+}
+
+function displayNameFor(filePath: string): string {
+  return filePath.split('/').pop() ?? filePath;
 }
 
 export function useFeedbackClipboard(collaboratingNodeId: string | null) {
@@ -18,20 +25,30 @@ export function useFeedbackClipboard(collaboratingNodeId: string | null) {
     () => activeFilePath ? feedbackTreeStore.hasFeedback(activeFilePath) : false,
   );
 
-  const handleFeedbackContent = useCallback(async (content: string, source: ContentSource, skipSave: boolean = false) => {
-    const collaboratingStore = findActiveCollaboratingStore();
-    if (!collaboratingStore) return;
+  const handleIncomingFeedback = useCallback(async (content: string, source: ContentSource, skipSave: boolean = false) => {
+    const entry = findActiveCollaboratingEntry();
+    if (!entry) return;
 
-    await collaboratingStore.getState().actions.processIncomingFeedbackContent(content, source, skipSave);
-  }, []);
+    const ownerFilePath = entry.filePath;
+    const isOwnerActive = ownerFilePath === resolveToSourceFilePath(activeFilePath);
+
+    await entry.store.getState().actions.processIncomingFeedbackContent(content, source, skipSave, !isOwnerActive);
+
+    if (!isOwnerActive) {
+      useToastStore.getState().addToast(
+        `Feedback ready in ${displayNameFor(ownerFilePath)}`,
+        'info',
+      );
+    }
+  }, [activeFilePath]);
 
   useEffect(() => {
     const cleanup = window.electron.onClipboardContentDetected((content: string) => {
-      handleFeedbackContent(content, 'clipboard');
+      handleIncomingFeedback(content, 'clipboard');
     });
 
     return cleanup;
-  }, [handleFeedbackContent]);
+  }, [handleIncomingFeedback]);
 
   useEffect(() => {
     const cleanup = window.electron.onFeedbackFileContentDetected((filePath: string, content: string) => {
@@ -49,8 +66,11 @@ export function useFeedbackClipboard(collaboratingNodeId: string | null) {
             'FeedbackFileEvent',
           );
           store.getState().actions.handleAutonomousFeedback?.(nodeId, content);
-          if (activeFilePath && storePath !== activeFilePath) {
-            useToastStore.getState().addToast('A session completed in another file', 'info');
+          if (storePath !== resolveToSourceFilePath(activeFilePath)) {
+            useToastStore.getState().addToast(
+              `A session completed in ${displayNameFor(storePath)}`,
+              'info',
+            );
           }
           return;
         }
@@ -60,11 +80,11 @@ export function useFeedbackClipboard(collaboratingNodeId: string | null) {
         `No autonomous collaboration matched for file ${filePath} — falling through to manual panel flow`,
         'FeedbackFileEvent',
       );
-      handleFeedbackContent(content, 'file');
+      handleIncomingFeedback(content, 'file');
     });
 
     return cleanup;
-  }, [handleFeedbackContent, activeFilePath]);
+  }, [handleIncomingFeedback, activeFilePath]);
 
   useEffect(() => {
     if (collaboratingNodeId && !hasFeedbackContent) {

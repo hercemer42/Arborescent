@@ -171,7 +171,7 @@ export interface SendActions {
   collaborateInTerminal: (nodeId: string, terminalId: string, mode?: 'collaborate' | 'execute') => Promise<void>;
   autonomousCollaborateInTerminal: (nodeId: string, terminalId: string, mode?: 'collaborate' | 'execute') => Promise<string>;
   restoreCollaborationState: () => Promise<void>;
-  processIncomingFeedbackContent: (content: string, source: ContentSource, skipSave?: boolean) => Promise<ProcessFeedbackContentResult>;
+  processIncomingFeedbackContent: (content: string, source: ContentSource, skipSave?: boolean, skipPanelShow?: boolean) => Promise<ProcessFeedbackContentResult>;
   finishCancel: () => Promise<void>;
   finishAccept: () => Promise<void>;
 }
@@ -491,7 +491,8 @@ export function createSendActions(
     processIncomingFeedbackContent: async (
       content: string,
       source: ContentSource,
-      skipSave: boolean = false
+      skipSave: boolean = false,
+      skipPanelShow: boolean = false
     ): Promise<ProcessFeedbackContentResult> => {
       const { collaboratingNodeId, currentFilePath, blueprintModeEnabled, nodes, ancestorRegistry } = get();
 
@@ -519,7 +520,9 @@ export function createSendActions(
 
       // Initialize feedback store (pass blueprintModeEnabled so new nodes also get blueprint metadata)
       initializeFeedbackStore(currentFilePath, parsedContent, blueprintModeEnabled);
-      usePanelStore.getState().showFeedback();
+      if (!skipPanelShow) {
+        usePanelStore.getState().showFeedback();
+      }
 
       // Stop clipboard monitor - we have content now
       await window.electron.stopClipboardMonitor();
