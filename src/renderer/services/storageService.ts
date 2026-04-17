@@ -2,6 +2,8 @@ import * as yaml from 'js-yaml';
 import { ArboFile } from '../../shared/types';
 import { StorageService as IStorageService, SessionState, BrowserSession, TerminalSession, PanelSession, UserPreferences } from '../../shared/interfaces';
 import { getNextUntitledNumber } from '../../shared/utils/fileNaming';
+import { reconcileDuplicateChildren } from '../utils/treeInvariants';
+import { logger } from './logger';
 
 export class StorageService implements IStorageService {
   async loadDocument(filePath: string): Promise<ArboFile> {
@@ -10,6 +12,15 @@ export class StorageService implements IStorageService {
 
     if (data.format !== 'Arborescent') {
       throw new Error('Invalid file format');
+    }
+
+    const { nodes, removed } = reconcileDuplicateChildren(data.nodes);
+    if (removed.length > 0) {
+      logger.warn(
+        `Reconciled ${removed.length} duplicate child reference(s) while loading ${filePath}: ${JSON.stringify(removed)}`,
+        'StorageService',
+      );
+      return { ...data, nodes };
     }
 
     return data;

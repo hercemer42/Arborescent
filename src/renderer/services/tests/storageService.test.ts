@@ -52,6 +52,32 @@ describe('StorageService', () => {
 
       await expect(storage.loadDocument('/path/to/file.arbo')).rejects.toThrow();
     });
+
+    it('should reconcile duplicate child references on load and keep the first', async () => {
+      const duplicateFile: ArboFile = {
+        ...mockArboFile,
+        nodes: {
+          root: { id: 'root', content: 'Root', children: ['a', 'b'], metadata: {} },
+          a: { id: 'a', content: 'A', children: ['dup'], metadata: {} },
+          b: { id: 'b', content: 'B', children: ['dup'], metadata: {} },
+          dup: { id: 'dup', content: 'Dup', children: [], metadata: {} },
+        },
+      };
+      vi.mocked(window.electron.readFile).mockResolvedValue(yaml.dump(duplicateFile));
+
+      const result = await storage.loadDocument('/path/to/dup.arbo');
+
+      expect(result.nodes.a.children).toEqual(['dup']);
+      expect(result.nodes.b.children).toEqual([]);
+    });
+
+    it('should return the original document untouched when there are no duplicates', async () => {
+      vi.mocked(window.electron.readFile).mockResolvedValue(yaml.dump(mockArboFile));
+
+      const result = await storage.loadDocument('/path/to/clean.arbo');
+
+      expect(result.nodes).toEqual(mockArboFile.nodes);
+    });
   });
 
   describe('saveDocument', () => {

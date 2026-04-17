@@ -24,6 +24,7 @@ import {
 } from "../../../utils/nodeHelpers";
 import { usePreferencesStore } from "../../preferences/preferencesStore";
 import { notifyWorkflowEvent } from "../../../services/workflowNotification";
+import { findAllParentsOf, removeNodeFromAllParents } from "../../../utils/treeInvariants";
 
 export type { WorkflowExecutionEntry };
 
@@ -312,19 +313,12 @@ export const createWorkflowExecutionActions = (
       return;
     }
 
-    const currentAncestors = ancestorRegistry[nodeId];
-    const currentParentId = currentAncestors[currentAncestors.length - 1];
+    const actualParentIds = findAllParentsOf(nodes, nodeId);
+    let updatedNodes = removeNodeFromAllParents(nodes, nodeId);
 
-    let updatedNodes = { ...nodes };
-    if (currentParentId && updatedNodes[currentParentId]) {
+    if (!updatedNodes[nextStepId].children.includes(nodeId)) {
       updatedNodes = {
         ...updatedNodes,
-        [currentParentId]: {
-          ...updatedNodes[currentParentId],
-          children: updatedNodes[currentParentId].children.filter(
-            (id) => id !== nodeId,
-          ),
-        },
         [nextStepId]: {
           ...updatedNodes[nextStepId],
           children: [...updatedNodes[nextStepId].children, nodeId],
@@ -376,8 +370,9 @@ export const createWorkflowExecutionActions = (
       );
     }
 
-    if (currentParentId) {
-      checkRecurse(currentParentId, entry.terminalTabId);
+    const previousParentId = actualParentIds[0];
+    if (previousParentId) {
+      checkRecurse(previousParentId, entry.terminalTabId);
     }
   }
 

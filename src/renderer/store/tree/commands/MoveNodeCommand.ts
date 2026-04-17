@@ -2,6 +2,7 @@ import { BaseCommand } from './Command';
 import { TreeNode } from '../../../../shared/types';
 import { moveNodeInRegistry, AncestorRegistry } from '../../../utils/ancestry';
 import { shouldInheritBlueprint, getAllDescendants, updateNodeMetadata } from '../../../utils/nodeHelpers';
+import { findAllParentsOf, removeNodeFromAllParents } from '../../../utils/treeInvariants';
 
 export class MoveNodeCommand extends BaseCommand {
   private oldParentId: string | null = null;
@@ -34,31 +35,32 @@ export class MoveNodeCommand extends BaseCommand {
     const node = nodes[this.nodeId];
     if (!node) return;
 
-    const ancestors = ancestorRegistry[this.nodeId] || [];
-    this.oldParentId = ancestors[ancestors.length - 1] || rootNodeId;
-    const oldParent = nodes[this.oldParentId];
-    if (!oldParent) return;
+    const actualParentIds = findAllParentsOf(nodes, this.nodeId);
+    const registryAncestors = ancestorRegistry[this.nodeId] || [];
+    const registryParent = registryAncestors[registryAncestors.length - 1];
+    this.oldParentId = actualParentIds[0] ?? registryParent ?? rootNodeId;
 
-    this.oldPosition = oldParent.children.indexOf(this.nodeId);
+    const sourceParent = nodes[this.oldParentId];
+    if (!sourceParent) return;
+
+    this.oldPosition = sourceParent.children.indexOf(this.nodeId);
+    if (this.oldPosition === -1 && actualParentIds.length === 0) return;
+
     this.previousBlueprintStates.clear();
 
-    let updatedNodes = { ...nodes };
-
-    updatedNodes[this.oldParentId] = {
-      ...oldParent,
-      children: oldParent.children.filter(id => id !== this.nodeId),
-    };
+    let updatedNodes = removeNodeFromAllParents(nodes, this.nodeId);
 
     const newParent = updatedNodes[this.newParentId];
     if (!newParent) return;
 
-    const newChildren = [...newParent.children];
-    newChildren.splice(this.newPosition, 0, this.nodeId);
-
-    updatedNodes[this.newParentId] = {
-      ...newParent,
-      children: newChildren,
-    };
+    if (!newParent.children.includes(this.nodeId)) {
+      const newChildren = [...newParent.children];
+      newChildren.splice(this.newPosition, 0, this.nodeId);
+      updatedNodes[this.newParentId] = {
+        ...newParent,
+        children: newChildren,
+      };
+    }
 
     if (shouldInheritBlueprint(this.newParentId, nodes, ancestorRegistry)) {
       updatedNodes = this.inheritBlueprintStatus(updatedNodes, this.nodeId, nodes);
@@ -142,26 +144,19 @@ export class MoveNodeCommand extends BaseCommand {
 
     const { nodes, ancestorRegistry } = this.getState();
 
-    let updatedNodes = { ...nodes };
-
-    const currentParent = updatedNodes[this.newParentId];
-    if (!currentParent) return;
-
-    updatedNodes[this.newParentId] = {
-      ...currentParent,
-      children: currentParent.children.filter(id => id !== this.nodeId),
-    };
+    let updatedNodes = removeNodeFromAllParents(nodes, this.nodeId);
 
     const oldParent = updatedNodes[this.oldParentId];
     if (!oldParent) return;
 
-    const oldChildren = [...oldParent.children];
-    oldChildren.splice(this.oldPosition, 0, this.nodeId);
-
-    updatedNodes[this.oldParentId] = {
-      ...oldParent,
-      children: oldChildren,
-    };
+    if (!oldParent.children.includes(this.nodeId)) {
+      const oldChildren = [...oldParent.children];
+      oldChildren.splice(this.oldPosition, 0, this.nodeId);
+      updatedNodes[this.oldParentId] = {
+        ...oldParent,
+        children: oldChildren,
+      };
+    }
 
     for (const [nodeId, previousState] of this.previousBlueprintStates) {
       updatedNodes = updateNodeMetadata(updatedNodes, nodeId, { isBlueprint: previousState });
