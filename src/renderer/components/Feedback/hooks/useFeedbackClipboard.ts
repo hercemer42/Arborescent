@@ -3,6 +3,7 @@ import { useFilesStore } from '../../../store/files/filesStore';
 import { feedbackTreeStore } from '../../../store/feedback/feedbackTreeStore';
 import { storeManager } from '../../../store/storeManager';
 import { useToastStore } from '../../../store/toast/toastStore';
+import { logger } from '../../../services/logger';
 import type { ContentSource } from '../../../store/tree/actions/sendActions';
 
 function findActiveCollaboratingStore() {
@@ -34,9 +35,19 @@ export function useFeedbackClipboard(collaboratingNodeId: string | null) {
 
   useEffect(() => {
     const cleanup = window.electron.onFeedbackFileContentDetected((filePath: string, content: string) => {
-      for (const { filePath: storePath, store } of storeManager.getAllStoreEntries()) {
+      const storeEntries = storeManager.getAllStoreEntries();
+      logger.debug(
+        `Feedback file event received: path=${filePath} stores=${storeEntries.length}`,
+        'FeedbackFileEvent',
+      );
+
+      for (const { filePath: storePath, store } of storeEntries) {
         const nodeId = store.getState().actions.findNodeIdByFeedbackFilePath?.(filePath);
         if (nodeId) {
+          logger.debug(
+            `Autonomous match: node=${nodeId} store=${storePath}`,
+            'FeedbackFileEvent',
+          );
           store.getState().actions.handleAutonomousFeedback?.(nodeId, content);
           if (activeFilePath && storePath !== activeFilePath) {
             useToastStore.getState().addToast('A session completed in another file', 'info');
@@ -45,6 +56,10 @@ export function useFeedbackClipboard(collaboratingNodeId: string | null) {
         }
       }
 
+      logger.warn(
+        `No autonomous collaboration matched for file ${filePath} — falling through to manual panel flow`,
+        'FeedbackFileEvent',
+      );
       handleFeedbackContent(content, 'file');
     });
 

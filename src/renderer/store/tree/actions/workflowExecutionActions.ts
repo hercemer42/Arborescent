@@ -784,8 +784,24 @@ export const createWorkflowExecutionActions = (
   }
 
   function findNodeIdByFeedbackFilePath(filePath: string): string | null {
-    for (const [nodeId, collab] of autonomousCollaborations) {
-      if (filePath.endsWith(collab.filePath)) return nodeId;
+    const incomingBasename = filePath.split(/[\\/]/).pop() ?? filePath;
+    const registered = Array.from(autonomousCollaborations.entries()).map(
+      ([nodeId, collab]) => ({
+        nodeId,
+        filePath: collab.filePath,
+        basename: collab.filePath.split(/[\\/]/).pop() ?? collab.filePath,
+      }),
+    );
+
+    logger.debug(
+      `findNodeIdByFeedbackFilePath incoming=${filePath} registered=${JSON.stringify(registered)}`,
+      "WorkflowExecution",
+    );
+
+    for (const entry of registered) {
+      if (filePath === entry.filePath) return entry.nodeId;
+      if (entry.basename === incomingBasename) return entry.nodeId;
+      if (filePath.endsWith(entry.filePath)) return entry.nodeId;
     }
     return null;
   }

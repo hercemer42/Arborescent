@@ -5,7 +5,9 @@ import { createWorkflowExecutionActions } from '../workflowExecutionActions';
 
 vi.mock('../../../services/logger', () => ({
   logger: {
+    debug: vi.fn(),
     info: vi.fn(),
+    warn: vi.fn(),
     error: vi.fn(),
   },
 }));
@@ -560,6 +562,48 @@ describe('workflow auto-accept for autonomous collaborate steps', () => {
 
       // Node should not have moved
       expect(state.nodes['step-1'].children).toContain('task-a');
+    });
+  });
+
+  describe('findNodeIdByFeedbackFilePath', () => {
+    const registeredPath = '/Users/test/Library/Application Support/Arborescent/temp-files/feedback-response-task-a.md';
+
+    beforeEach(async () => {
+      mockAutonomousCollaborate.mockImplementation(() => Promise.resolve(registeredPath));
+      actions.startWorkflow('task-a', 'terminal-1');
+      await Promise.resolve();
+      await Promise.resolve();
+    });
+
+    it('should match when incoming path is identical to registered path', () => {
+      expect(actions.findNodeIdByFeedbackFilePath(registeredPath)).toBe('task-a');
+    });
+
+    it('should match when incoming path has the same basename (filename encodes nodeId)', () => {
+      const differentPrefix = '/private' + registeredPath;
+      expect(actions.findNodeIdByFeedbackFilePath(differentPrefix)).toBe('task-a');
+    });
+
+    it('should match on basename when paths diverge (Library vs /private/var symlink realpath)', () => {
+      const realpathStyle = '/private/tmp/feedback-response-task-a.md';
+      expect(actions.findNodeIdByFeedbackFilePath(realpathStyle)).toBe('task-a');
+    });
+
+    it('should return null when no autonomous collaboration is registered', async () => {
+      actions.stopWorkflow('task-a');
+      await Promise.resolve();
+      expect(actions.findNodeIdByFeedbackFilePath(registeredPath)).toBeNull();
+    });
+
+    it('should return null when filename does not match any registered collaboration', () => {
+      expect(
+        actions.findNodeIdByFeedbackFilePath('/tmp/feedback-response-other-node.md'),
+      ).toBeNull();
+    });
+
+    it('should still support endsWith path matching for backward compatibility', () => {
+      const suffixed = 'some/nested/prefix' + registeredPath;
+      expect(actions.findNodeIdByFeedbackFilePath(suffixed)).toBe('task-a');
     });
   });
 });
