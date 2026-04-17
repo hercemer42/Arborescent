@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 import { ToastItem, ToastType } from '../../components/ui/Toast';
+import { preserveFocusAcross } from '../../services/focusPreservation';
 
 interface ToastOptions {
   actions?: Array<{ label: string; onClick: () => void }>;
@@ -16,10 +17,12 @@ export const useToastStore = create<ToastState>((set) => ({
   toasts: [],
 
   addToast: (message: string, type: ToastType, options?: ToastOptions) => {
-    const id = `${Date.now()}-${Math.random()}`;
-    set((state) => ({
-      toasts: [...state.toasts, { id, message, type, ...options }],
-    }));
+    preserveFocusAcross(() => {
+      const id = `${Date.now()}-${Math.random()}`;
+      set((state) => ({
+        toasts: [...state.toasts, { id, message, type, ...options }],
+      }));
+    });
   },
 
   removeToast: (id: string) => {
