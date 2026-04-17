@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-04-17T06:04:40.417Z'
+updated: '2026-04-17T06:52:45.681Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -8863,7 +8863,6 @@ nodes:
     id: 79b693ca-27ce-4410-8617-8092d7e81b07
     content: Issues
     children:
-      - 577237e9-bfe3-4006-aa0a-6b02b0c61d7c
       - 43378d90-93fd-4256-b0bd-b467144dd1dd
       - eaa4fec4-a897-46c1-9498-02fdfb5e442c
       - 15974593-af5a-4c3e-b454-539a4f99d9c7
@@ -34493,6 +34492,7 @@ nodes:
     id: 13c5048b-15eb-4989-a6fc-25032e5c131f
     content: Problems
     children:
+      - 97f0bf21-0dd7-4a34-b2dd-a96a1efbf795
       - 23d3e853-f5b0-42aa-b5c9-acd01da1f0f6
       - 356e205f-2ec6-4271-b7cb-1657c6229a2d
       - 3a953d30-cb26-4e2b-96b0-9f092bc5ce93
@@ -49993,6 +49993,7 @@ nodes:
     content: Code review & refactor
     children:
       - 8a3d9d42-d2aa-4e03-96d8-7a84d4243131
+      - 2500e561-44bc-4436-991f-d9f65776b485
     metadata:
       status: pending
       isBlueprint: true
@@ -63985,12 +63986,14 @@ nodes:
     content: Automated tests implementation (TDD)
     children: []
     metadata:
-      status: pending
-      isBlueprint: true
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
       appliedContextId: 22a32663-eb92-44e0-a844-d6219409f63b
       blueprintIcon: ListChecks
       blueprintColor: '#c47f09'
-      expanded: true
+      isBlueprint: true
       stepType: autonomous
   3dbb581e-7c76-47e9-9517-710048da9b4f:
     id: 3dbb581e-7c76-47e9-9517-710048da9b4f
@@ -77067,26 +77070,6 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  577237e9-bfe3-4006-aa0a-6b02b0c61d7c:
-    id: 577237e9-bfe3-4006-aa0a-6b02b0c61d7c
-    content: Toast messages make the current panel lose focus
-    children:
-      - 36b554bf-6722-460a-8ac2-2ae6262d9cd6
-      - c22291f5-ac61-4b85-8832-be9bef82ba5b
-    metadata:
-      status: pending
-  36b554bf-6722-460a-8ac2-2ae6262d9cd6:
-    id: 36b554bf-6722-460a-8ac2-2ae6262d9cd6
-    content: For instance if we're in terminal and there is a toast message, the focus goes back to the node tree
-    children: []
-    metadata:
-      status: pending
-  c22291f5-ac61-4b85-8832-be9bef82ba5b:
-    id: c22291f5-ac61-4b85-8832-be9bef82ba5b
-    content: Result is if we were typing in terminal, the typing happens in the node tree - potentially destructive
-    children: []
-    metadata:
-      status: pending
   e9c634a2-2193-4a10-b0fc-9d6a5806fce3:
     id: e9c634a2-2193-4a10-b0fc-9d6a5806fce3
     content: Only run tests for changed or new files
@@ -77094,3 +77077,50 @@ nodes:
     metadata:
       status: pending
       isBlueprint: true
+  2500e561-44bc-4436-991f-d9f65776b485:
+    id: 2500e561-44bc-4436-991f-d9f65776b485
+    content: Toast messages make the current panel lose focus
+    children:
+      - 68b06ee0-4d7a-454b-a903-da5bb7d5c8bd
+      - 844b4497-f5e2-47be-badd-e9de10633463
+      - cc469098-926d-410e-aff9-7f0e607ea1c8
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+      isContextDeclaration: false
+      isBlueprint: false
+  97f0bf21-0dd7-4a34-b2dd-a96a1efbf795:
+    id: 97f0bf21-0dd7-4a34-b2dd-a96a1efbf795
+    content: Existing issues with linting & tests
+    children: []
+    metadata:
+      status: pending
+  68b06ee0-4d7a-454b-a903-da5bb7d5c8bd:
+    id: 68b06ee0-4d7a-454b-a903-da5bb7d5c8bd
+    content: For instance if we're in terminal and there is a toast message, the focus goes back to the node tree
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  844b4497-f5e2-47be-badd-e9de10633463:
+    id: 844b4497-f5e2-47be-badd-e9de10633463
+    content: Result is if we were typing in terminal, the typing happens in the node tree - potentially destructive
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cc469098-926d-410e-aff9-7f0e607ea1c8:
+    id: cc469098-926d-410e-aff9-7f0e607ea1c8
+    content: Make it so they don't steal focus
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
