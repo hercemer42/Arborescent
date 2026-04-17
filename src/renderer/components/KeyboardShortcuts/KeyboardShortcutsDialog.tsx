@@ -29,7 +29,7 @@ export function KeyboardShortcutsDialog({ isOpen, onClose }: KeyboardShortcutsDi
 
   if (!isOpen) return null;
 
-  const categories = Object.keys(hotkeys) as Array<keyof typeof hotkeys>;
+  const categories = Object.keys(hotkeys) as Array<keyof typeof hotkeys & string>;
 
   return (
     <div className="keyboard-shortcuts-overlay" onClick={onClose}>

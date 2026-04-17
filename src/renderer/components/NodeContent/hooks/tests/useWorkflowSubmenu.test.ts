@@ -291,7 +291,7 @@ describe('buildWorkflowNavigationItems', () => {
       nodes: workflowNodes,
       ancestorRegistry: ancestors,
       workflowExecutionStates: {
-        'task': { state: 'running', terminalTabId: 't1' } as any,
+        'task': { state: 'running', terminalTabId: 't1' },
       },
       ...defaultCallbacks,
     });

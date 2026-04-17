@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-04-17T12:58:45.477Z'
+updated: '2026-04-17T13:21:18.383Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -5229,7 +5229,7 @@ nodes:
       - 9a8f1538-7eb7-4e2d-9e0f-46e2c00675f4
     metadata:
       status: pending
-      expanded: false
+      expanded: true
       isBlueprint: true
       blueprintIcon: BrainCog
       blueprintColor: '#14b8a6'
@@ -5611,7 +5611,7 @@ nodes:
       - 6690289a-e02f-48bc-9225-a1083b7b324f
     metadata:
       status: pending
-      expanded: false
+      expanded: true
       isBlueprint: true
       blueprintIcon: Boxes
       blueprintColor: '#a855f7'
@@ -8886,7 +8886,7 @@ nodes:
       blueprintIcon: TriangleAlert
       blueprintColor: '#ef4444'
       appliedContextId: 6690289a-e02f-48bc-9225-a1083b7b324f
-      expanded: true
+      expanded: false
   aff16275-6d8e-49c9-b862-76875858d4af:
     id: aff16275-6d8e-49c9-b862-76875858d4af
     content: Avoid adding comments specific to the bug fix unless really needed
@@ -34495,7 +34495,6 @@ nodes:
     id: 13c5048b-15eb-4989-a6fc-25032e5c131f
     content: Problems
     children:
-      - 33bf504f-e101-4572-8043-c4923c985e0a
       - 97f0bf21-0dd7-4a34-b2dd-a96a1efbf795
       - 23d3e853-f5b0-42aa-b5c9-acd01da1f0f6
       - 356e205f-2ec6-4271-b7cb-1657c6229a2d
@@ -34721,6 +34720,8 @@ nodes:
     id: 321fe1d0-3ca3-45f5-bab8-56dd0f003e78
     content: Done
     children:
+      - df3f817f-36fc-4b13-b94b-fb8f213cb7c3
+      - 00b32bb4-f094-42e5-bba5-7bb5791d6e46
       - 8a3d9d42-d2aa-4e03-96d8-7a84d4243131
       - 43378d90-93fd-4256-b0bd-b467144dd1dd
       - 2500e561-44bc-4436-991f-d9f65776b485
@@ -77206,18 +77207,10 @@ nodes:
       expanded: false
       deleted: false
       plugins: {}
-  33bf504f-e101-4572-8043-c4923c985e0a:
-    id: 33bf504f-e101-4572-8043-c4923c985e0a
-    content: Writing to temp file while in one project(file) pops up an empty feedback panel if in another project (file) at the time it was written
-    children:
-      - b2fee728-fcc9-408a-8851-f2d93049a4a3
-    metadata:
-      status: pending
   55baed06-9f86-4c94-b373-16df124bb7a8:
     id: 55baed06-9f86-4c94-b373-16df124bb7a8
     content: Merge to master
-    children:
-      - df3f817f-36fc-4b13-b94b-fb8f213cb7c3
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -77227,9 +77220,11 @@ nodes:
     id: f4300f5a-e503-4606-b6bc-f67f6d4a0ed4
     content: Merge to master
     children:
+      - 45fa4d06-629f-4a25-a02b-18593b46ade6
       - 28d641ce-1314-4c8b-b003-2688efb36075
       - 5c79a251-defe-4ef2-a9ce-30e2d89a8f35
       - b861c616-e8ec-4cda-9244-bbc9f2e404e4
+      - e173d220-eec9-457a-8113-f80f11eb3e4f
     metadata:
       status: pending
       isContextDeclaration: true
@@ -77262,8 +77257,7 @@ nodes:
   9f31f800-69fe-443c-8e08-ead9ee894b6f:
     id: 9f31f800-69fe-443c-8e08-ead9ee894b6f
     content: Install
-    children:
-      - 00b32bb4-f094-42e5-bba5-7bb5791d6e46
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -77273,10 +77267,12 @@ nodes:
     id: b050f7d8-a00a-4ff8-b137-2fd5ce499a2f
     content: Install locally
     children:
+      - 3b09f397-7478-4012-9a5c-b50a8d7b99d5
       - 12cae438-35bf-4f28-95de-e3f2aa0bc16d
       - 242ba1f7-a20e-46b3-ab7b-2f58c40d6771
       - 9cd3e9af-1493-47f0-a421-7c0192d2c09c
       - cfbfb65d-4dc5-400a-afb2-374980217060
+      - 362de9a8-1db1-42ee-a389-544c680ac63f
     metadata:
       status: pending
       isContextDeclaration: true
@@ -77686,30 +77682,24 @@ nodes:
     children: []
     metadata:
       status: pending
-  b2fee728-fcc9-408a-8851-f2d93049a4a3:
-    id: b2fee728-fcc9-408a-8851-f2d93049a4a3
-    content: Should just pop a toast message and then when I switch back to the file in question, the feedback panel is open
-    children: []
-    metadata:
-      status: pending
   df3f817f-36fc-4b13-b94b-fb8f213cb7c3:
     id: df3f817f-36fc-4b13-b94b-fb8f213cb7c3
     content: Writing to temp file while in one project(file) pops up an empty feedback panel if in another project (file) at the time it was written
     children:
-      - 564b6998-7e7d-45e8-aca1-9e16e6435d6b
-      - 0aa58e55-51ab-4a18-92bc-dbd783c08d88
-      - 0db63a10-8b39-4364-b796-4be5f960a4cf
-      - 523a2880-66fe-4976-80aa-7ad9c3782d1c
-      - eef11c14-3d40-45c9-b66a-31b0475a3505
-      - 8af52ab9-3791-4946-9df0-ba2351ca987e
-      - 2b73c8e1-8515-4a38-a966-2760d90461c2
+      - 4c5a8fdc-5bce-49b9-8aaf-b08130a2fdd7
+      - 89419183-5f65-4440-9b7a-8436ee2187e1
+      - 878acd03-44d1-4271-a7bc-921dcd6a1e02
+      - 6a49cef3-d574-4de4-8f5a-6b9e421b6c0e
+      - d707b01a-bc76-4879-bb54-a9e9c3f2da9a
+      - fbe2a5db-ea42-4eb4-9613-3446ef9a0a04
+      - b1904f83-fa85-404e-b2e3-e8ea9fed4977
     metadata:
       status: completed
       expanded: false
       deleted: false
       plugins: {}
-  564b6998-7e7d-45e8-aca1-9e16e6435d6b:
-    id: 564b6998-7e7d-45e8-aca1-9e16e6435d6b
+  4c5a8fdc-5bce-49b9-8aaf-b08130a2fdd7:
+    id: 4c5a8fdc-5bce-49b9-8aaf-b08130a2fdd7
     content: Should just pop a toast message and then when I switch back to the file in question, the feedback panel is open
     children: []
     metadata:
@@ -77717,24 +77707,24 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  0aa58e55-51ab-4a18-92bc-dbd783c08d88:
-    id: 0aa58e55-51ab-4a18-92bc-dbd783c08d88
+  89419183-5f65-4440-9b7a-8436ee2187e1:
+    id: 89419183-5f65-4440-9b7a-8436ee2187e1
     content: Acceptance criteria
     children:
-      - 065f031a-299c-4df9-b082-a20fbc37fb3e
-      - e12add90-d953-4377-bb7f-87588d8538ef
-      - ebb1d097-d52e-4512-bcd1-7274cbea264c
-      - 3be891d5-fe48-4e85-898a-15e617edd3d8
-      - 1fb17268-5b37-402e-b144-977e54e347b0
-      - 664a29bf-7891-4703-9e9e-378efa1a8cc9
-      - be7968f2-df99-43fc-bc15-664cb806d69f
+      - fd782ea7-bb17-49c8-a94f-effc006b2224
+      - ac5b5146-817b-45c4-aa22-f12eb285007c
+      - 541c519d-8f2a-4411-b614-3c63bbe18e94
+      - 0ba50123-0d0d-493b-a053-0b1b042a49f6
+      - b0de36d4-15ec-4974-8e11-ed4a58915ece
+      - 096b8ff8-9fff-4999-8d81-98d3c3b1b77a
+      - 4fafb6f5-cc78-4ad2-b10b-45efa7c8cd6c
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  065f031a-299c-4df9-b082-a20fbc37fb3e:
-    id: 065f031a-299c-4df9-b082-a20fbc37fb3e
+  fd782ea7-bb17-49c8-a94f-effc006b2224:
+    id: fd782ea7-bb17-49c8-a94f-effc006b2224
     content: If feedback arrives for file X while the active file is X, the panel opens normally (unchanged)
     children: []
     metadata:
@@ -77742,8 +77732,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  e12add90-d953-4377-bb7f-87588d8538ef:
-    id: e12add90-d953-4377-bb7f-87588d8538ef
+  ac5b5146-817b-45c4-aa22-f12eb285007c:
+    id: ac5b5146-817b-45c4-aa22-f12eb285007c
     content: If feedback arrives for file X while the active file is not X, only a toast is shown — the feedback panel does not open in the current file
     children: []
     metadata:
@@ -77751,8 +77741,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  ebb1d097-d52e-4512-bcd1-7274cbea264c:
-    id: ebb1d097-d52e-4512-bcd1-7274cbea264c
+  541c519d-8f2a-4411-b614-3c63bbe18e94:
+    id: 541c519d-8f2a-4411-b614-3c63bbe18e94
     content: A zoom tab of file X counts as being in file X — panel opens normally, no toast
     children: []
     metadata:
@@ -77760,8 +77750,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  3be891d5-fe48-4e85-898a-15e617edd3d8:
-    id: 3be891d5-fe48-4e85-898a-15e617edd3d8
+  0ba50123-0d0d-493b-a053-0b1b042a49f6:
+    id: 0ba50123-0d0d-493b-a053-0b1b042a49f6
     content: The toast identifies which file the feedback belongs to (by display name)
     children: []
     metadata:
@@ -77769,8 +77759,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  1fb17268-5b37-402e-b144-977e54e347b0:
-    id: 1fb17268-5b37-402e-b144-977e54e347b0
+  b0de36d4-15ec-4974-8e11-ed4a58915ece:
+    id: b0de36d4-15ec-4974-8e11-ed4a58915ece
     content: Switching to file X after receiving such a toast opens the feedback panel with the pending content
     children: []
     metadata:
@@ -77778,8 +77768,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  664a29bf-7891-4703-9e9e-378efa1a8cc9:
-    id: 664a29bf-7891-4703-9e9e-378efa1a8cc9
+  096b8ff8-9fff-4999-8d81-98d3c3b1b77a:
+    id: 096b8ff8-9fff-4999-8d81-98d3c3b1b77a
     content: Pending feedback persists across a restart (existing behavior — verify still holds with this change)
     children: []
     metadata:
@@ -77787,8 +77777,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  be7968f2-df99-43fc-bc15-664cb806d69f:
-    id: be7968f2-df99-43fc-bc15-664cb806d69f
+  4fafb6f5-cc78-4ad2-b10b-45efa7c8cd6c:
+    id: 4fafb6f5-cc78-4ad2-b10b-45efa7c8cd6c
     content: If feedback for file X arrives while X is not in any open tab, the toast still fires and the panel opens when X is opened
     children: []
     metadata:
@@ -77796,19 +77786,19 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  0db63a10-8b39-4364-b796-4be5f960a4cf:
-    id: 0db63a10-8b39-4364-b796-4be5f960a4cf
+  878acd03-44d1-4271-a7bc-921dcd6a1e02:
+    id: 878acd03-44d1-4271-a7bc-921dcd6a1e02
     content: UX considerations
     children:
-      - a6a4e9fb-94b3-4f1c-b0da-8f8acf7fda9b
-      - c7073d3a-0142-4a94-9f06-585ea2068eb0
+      - 594d621e-ca30-4e65-b250-ec0afa12a16b
+      - e19b136f-67db-4720-8d67-ad0f7e1bf86a
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  a6a4e9fb-94b3-4f1c-b0da-8f8acf7fda9b:
-    id: a6a4e9fb-94b3-4f1c-b0da-8f8acf7fda9b
+  594d621e-ca30-4e65-b250-ec0afa12a16b:
+    id: 594d621e-ca30-4e65-b250-ec0afa12a16b
     content: The toast is dismissible without losing the pending feedback
     children: []
     metadata:
@@ -77816,8 +77806,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  c7073d3a-0142-4a94-9f06-585ea2068eb0:
-    id: c7073d3a-0142-4a94-9f06-585ea2068eb0
+  e19b136f-67db-4720-8d67-ad0f7e1bf86a:
+    id: e19b136f-67db-4720-8d67-ad0f7e1bf86a
     content: An empty feedback panel never appears in a file that did not originate the feedback, under any race condition
     children: []
     metadata:
@@ -77825,22 +77815,22 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  523a2880-66fe-4976-80aa-7ad9c3782d1c:
-    id: 523a2880-66fe-4976-80aa-7ad9c3782d1c
+  6a49cef3-d574-4de4-8f5a-6b9e421b6c0e:
+    id: 6a49cef3-d574-4de4-8f5a-6b9e421b6c0e
     content: Edge cases
     children:
-      - 4b7dff48-9ff4-47d3-93f3-b0fe9c01d9a3
-      - bee6221a-77e8-4cd5-80ce-db627e6ac85d
-      - 57991fef-59bf-4486-9591-416f87d48562
-      - 8bcd91a3-0e02-42f6-b618-2650288247d4
-      - 1ad0fc39-324a-4735-8dfb-02b93c6754ec
+      - f4c58a9b-b85b-4ef4-b13f-e6251bd89bb1
+      - d31fc8d0-c0c3-4b1e-ac17-7c977a9e288a
+      - 5f155506-5f61-4fa7-be95-47f5997b9916
+      - 123df1e8-b862-4988-9ccc-bbd4fc41d604
+      - ce2b0c93-0e53-4ea0-85ba-9ccb14212f02
     metadata:
       status: pending
       expanded: true
       deleted: false
       plugins: {}
-  4b7dff48-9ff4-47d3-93f3-b0fe9c01d9a3:
-    id: 4b7dff48-9ff4-47d3-93f3-b0fe9c01d9a3
+  f4c58a9b-b85b-4ef4-b13f-e6251bd89bb1:
+    id: f4c58a9b-b85b-4ef4-b13f-e6251bd89bb1
     content: Two feedbacks arrive for different files in quick succession → two distinct toasts, each naming its file
     children: []
     metadata:
@@ -77848,8 +77838,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  bee6221a-77e8-4cd5-80ce-db627e6ac85d:
-    id: bee6221a-77e8-4cd5-80ce-db627e6ac85d
+  d31fc8d0-c0c3-4b1e-ac17-7c977a9e288a:
+    id: d31fc8d0-c0c3-4b1e-ac17-7c977a9e288a
     content: Two feedbacks arrive for the same file before the user switches → second one replaces/augments the first, toast not duplicated
     children: []
     metadata:
@@ -77857,8 +77847,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  57991fef-59bf-4486-9591-416f87d48562:
-    id: 57991fef-59bf-4486-9591-416f87d48562
+  5f155506-5f61-4fa7-be95-47f5997b9916:
+    id: 5f155506-5f61-4fa7-be95-47f5997b9916
     content: User is actively collaborating in file X when feedback for X arrives → existing in-panel behavior applies, no toast
     children: []
     metadata:
@@ -77866,8 +77856,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  8bcd91a3-0e02-42f6-b618-2650288247d4:
-    id: 8bcd91a3-0e02-42f6-b618-2650288247d4
+  123df1e8-b862-4988-9ccc-bbd4fc41d604:
+    id: 123df1e8-b862-4988-9ccc-bbd4fc41d604
     content: File X is closed before the user acts on the toast → toast becomes stale; dismiss silently or offer to reopen X
     children: []
     metadata:
@@ -77875,8 +77865,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  1ad0fc39-324a-4735-8dfb-02b93c6754ec:
-    id: 1ad0fc39-324a-4735-8dfb-02b93c6754ec
+  ce2b0c93-0e53-4ea0-85ba-9ccb14212f02:
+    id: ce2b0c93-0e53-4ea0-85ba-9ccb14212f02
     content: Feedback arrives while a dialog/modal is open in the current file → toast still appears (non-blocking); panel opens when the user reaches X
     children: []
     metadata:
@@ -77884,21 +77874,21 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  eef11c14-3d40-45c9-b66a-31b0475a3505:
-    id: eef11c14-3d40-45c9-b66a-31b0475a3505
+  d707b01a-bc76-4879-bb54-a9e9c3f2da9a:
+    id: d707b01a-bc76-4879-bb54-a9e9c3f2da9a
     content: Out of scope
     children:
-      - 5554a2cb-5041-4b8c-8906-82563827433d
-      - 3ca962f4-0d3a-4e3e-9e5a-5e53443516b6
-      - 4a302e6a-cd10-4d6c-a32c-86f48424cc4f
-      - 2d3b56c8-01e7-4152-b030-fdc26a727d02
+      - 7e814b98-e932-4fac-bfcf-0cc8d23308df
+      - 11128b3e-f23a-4723-82f8-0de320c61315
+      - 6676c77d-ee00-460d-96ee-67952da17abe
+      - 93312a90-05de-495d-ac2c-bc5b98e2dab6
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  5554a2cb-5041-4b8c-8906-82563827433d:
-    id: 5554a2cb-5041-4b8c-8906-82563827433d
+  7e814b98-e932-4fac-bfcf-0cc8d23308df:
+    id: 7e814b98-e932-4fac-bfcf-0cc8d23308df
     content: Clickable toast that switches to the owning file — deferred to a separate user story
     children: []
     metadata:
@@ -77906,8 +77896,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  3ca962f4-0d3a-4e3e-9e5a-5e53443516b6:
-    id: 3ca962f4-0d3a-4e3e-9e5a-5e53443516b6
+  11128b3e-f23a-4723-82f8-0de320c61315:
+    id: 11128b3e-f23a-4723-82f8-0de320c61315
     content: Notification center / history
     children: []
     metadata:
@@ -77915,8 +77905,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  4a302e6a-cd10-4d6c-a32c-86f48424cc4f:
-    id: 4a302e6a-cd10-4d6c-a32c-86f48424cc4f
+  6676c77d-ee00-460d-96ee-67952da17abe:
+    id: 6676c77d-ee00-460d-96ee-67952da17abe
     content: Cross-device sync of pending feedback
     children: []
     metadata:
@@ -77924,8 +77914,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  2d3b56c8-01e7-4152-b030-fdc26a727d02:
-    id: 2d3b56c8-01e7-4152-b030-fdc26a727d02
+  93312a90-05de-495d-ac2c-bc5b98e2dab6:
+    id: 93312a90-05de-495d-ac2c-bc5b98e2dab6
     content: Rich toast with progress bar or multi-action — a plain toast naming the file is the right scope
     children: []
     metadata:
@@ -77933,21 +77923,21 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  8af52ab9-3791-4946-9df0-ba2351ca987e:
-    id: 8af52ab9-3791-4946-9df0-ba2351ca987e
+  fbe2a5db-ea42-4eb4-9613-3446ef9a0a04:
+    id: fbe2a5db-ea42-4eb4-9613-3446ef9a0a04
     content: Review findings
     children:
-      - b5e9d3b8-c4b7-4746-82cd-a46d87276211
-      - a8564c07-cde8-44dd-b28e-6b5553578603
-      - 43a1327a-c7fa-4c92-8431-a6e6c78ce1d8
-      - ae77241c-3509-43e3-9989-d4d615868e77
+      - d1103ad5-e34e-48d8-8d4f-0d058eaccf3b
+      - 2a5542aa-6cd9-4c2b-8a91-221025c8c73a
+      - 0ce2a144-4b00-4ae5-ab92-83f5cd6a363f
+      - 14907779-133f-417a-aa73-86cfee98c7f7
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  b5e9d3b8-c4b7-4746-82cd-a46d87276211:
-    id: b5e9d3b8-c4b7-4746-82cd-a46d87276211
+  d1103ad5-e34e-48d8-8d4f-0d058eaccf3b:
+    id: d1103ad5-e34e-48d8-8d4f-0d058eaccf3b
     content: The autonomous-collaboration path already has an equivalent toast ("A session completed in another file") in useFeedbackClipboard.ts; this story extends the same pattern to the manual collaborate path
     children: []
     metadata:
@@ -77955,8 +77945,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  a8564c07-cde8-44dd-b28e-6b5553578603:
-    id: a8564c07-cde8-44dd-b28e-6b5553578603
+  2a5542aa-6cd9-4c2b-8a91-221025c8c73a:
+    id: 2a5542aa-6cd9-4c2b-8a91-221025c8c73a
     content: 'Small implementation scope: gate the call to handleFeedbackContent on activeFilePath matching the feedback''s owning file, and show a toast otherwise'
     children: []
     metadata:
@@ -77964,8 +77954,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  43a1327a-c7fa-4c92-8431-a6e6c78ce1d8:
-    id: 43a1327a-c7fa-4c92-8431-a6e6c78ce1d8
+  0ce2a144-4b00-4ae5-ab92-83f5cd6a363f:
+    id: 0ce2a144-4b00-4ae5-ab92-83f5cd6a363f
     content: Reuses feedbackTreeStore (keyed per file), so panel content is already properly scoped; just avoid opening the UI in the wrong file
     children: []
     metadata:
@@ -77973,8 +77963,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  ae77241c-3509-43e3-9989-d4d615868e77:
-    id: ae77241c-3509-43e3-9989-d4d615868e77
+  14907779-133f-417a-aa73-86cfee98c7f7:
+    id: 14907779-133f-417a-aa73-86cfee98c7f7
     content: 'ROI: high value, low complexity'
     children: []
     metadata:
@@ -77982,18 +77972,18 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  2b73c8e1-8515-4a38-a966-2760d90461c2:
-    id: 2b73c8e1-8515-4a38-a966-2760d90461c2
+  b1904f83-fa85-404e-b2e3-e8ea9fed4977:
+    id: b1904f83-fa85-404e-b2e3-e8ea9fed4977
     content: Notes
     children:
-      - afc5b9ce-acd7-4d4e-97bd-e332413176ba
+      - 4aaa6de8-99f3-4a43-8263-a85caa1f5e61
     metadata:
       status: pending
       expanded: true
       deleted: false
       plugins: {}
-  afc5b9ce-acd7-4d4e-97bd-e332413176ba:
-    id: afc5b9ce-acd7-4d4e-97bd-e332413176ba
+  4aaa6de8-99f3-4a43-8263-a85caa1f5e61:
+    id: 4aaa6de8-99f3-4a43-8263-a85caa1f5e61
     content: The "panel opens when user switches to owning file" and "panel opens when owning file is opened" criteria were not verified — the existing per-file panel persistence should already handle this via fileStates, but I did not write an integration test exercising the full switch-back flow. Manual QA recommended.
     children: []
     metadata:
@@ -78001,3 +77991,31 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
+  45fa4d06-629f-4a25-a02b-18593b46ade6:
+    id: 45fa4d06-629f-4a25-a02b-18593b46ade6
+    content: Switch to low effort
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  e173d220-eec9-457a-8113-f80f11eb3e4f:
+    id: e173d220-eec9-457a-8113-f80f11eb3e4f
+    content: Switch back to previous effort
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  3b09f397-7478-4012-9a5c-b50a8d7b99d5:
+    id: 3b09f397-7478-4012-9a5c-b50a8d7b99d5
+    content: Switch to low effort
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  362de9a8-1db1-42ee-a389-544c680ac63f:
+    id: 362de9a8-1db1-42ee-a389-544c680ac63f
+    content: Switch back to previous effort
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
