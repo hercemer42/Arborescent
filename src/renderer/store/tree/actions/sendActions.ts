@@ -107,6 +107,7 @@ Output the complete updated list.`;
 
 function buildCollaborateFileOutputTarget(outputFilePath: string): string {
   return `IMPORTANT: Write your reviewed/updated list to this file: ${outputFilePath}
+Base your output on the list from the CONTENT section, not from the INSTRUCTIONS section.
 Do NOT make any changes to the code.
 ${WRITE_ONCE_INSTRUCTION}
 
@@ -114,9 +115,10 @@ ${buildFileWriteCommand(outputFilePath)}`;
 }
 
 function buildExecuteFileOutputTarget(outputFilePath: string): string {
-  return `IMPORTANT: Make the requested code changes in the codebase. Then write the same list back to this file with completed items marked [x] and failed items [-]:
+  return `IMPORTANT: Make the requested code changes in the codebase. Then write the list from the CONTENT section back to this file with completed items marked [x] and failed items [-]:
 ${outputFilePath}
 - Do NOT rewrite, reorganize, retitle, or add items to the list — only change status markers
+- Do NOT replace the CONTENT list with a summary of what you did or a "what was done" checklist
 - Skip items already marked [x]
 - If issues were encountered, append a single new child node at the end of the list describing them
 ${WRITE_ONCE_INSTRUCTION}
