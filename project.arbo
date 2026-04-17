@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-04-17T07:10:58.443Z'
+updated: '2026-04-17T08:31:55.486Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -5600,6 +5600,8 @@ nodes:
       - 64ec6c6b-566e-4956-bff9-55ac881f4fdb
       - 75556cda-47e6-45d5-ad2d-12689057427e
       - 0dcbad15-d754-424b-a488-599c475e38f4
+      - f4300f5a-e503-4606-b6bc-f67f6d4a0ed4
+      - b050f7d8-a00a-4ff8-b137-2fd5ce499a2f
       - 22a32663-eb92-44e0-a844-d6219409f63b
       - 9b46397c-c452-421c-b408-46b040d99c9e
       - 4c3f0d67-a500-484f-8ccb-5dbf959ea27f
@@ -8864,7 +8866,6 @@ nodes:
     id: 79b693ca-27ce-4410-8617-8092d7e81b07
     content: Issues
     children:
-      - 43378d90-93fd-4256-b0bd-b467144dd1dd
       - eaa4fec4-a897-46c1-9498-02fdfb5e442c
       - 15974593-af5a-4c3e-b454-539a4f99d9c7
       - d48c9675-9ec8-4032-9df0-a5037764b9cf
@@ -34493,7 +34494,8 @@ nodes:
     id: 13c5048b-15eb-4989-a6fc-25032e5c131f
     content: Problems
     children:
-      - 9836b130-c7d1-45db-8d6d-2343e8d17cea
+      - 33bf504f-e101-4572-8043-c4923c985e0a
+      - 00b32bb4-f094-42e5-bba5-7bb5791d6e46
       - 97f0bf21-0dd7-4a34-b2dd-a96a1efbf795
       - 23d3e853-f5b0-42aa-b5c9-acd01da1f0f6
       - 356e205f-2ec6-4271-b7cb-1657c6229a2d
@@ -34516,7 +34518,6 @@ nodes:
       isBlueprint: true
       blueprintIcon: FileWarning
       blueprintColor: '#f97316'
-      appliedContextId: 0d19da53-f3a7-4ee4-b495-b59f127671fa
   664f4e01-f14c-4f67-bc1a-fd08bd179bd1:
     id: 664f4e01-f14c-4f67-bc1a-fd08bd179bd1
     content: Can't decompose one node into several in feedback panel
@@ -34720,6 +34721,9 @@ nodes:
     id: 321fe1d0-3ca3-45f5-bab8-56dd0f003e78
     content: Done
     children:
+      - 8a3d9d42-d2aa-4e03-96d8-7a84d4243131
+      - 43378d90-93fd-4256-b0bd-b467144dd1dd
+      - 2500e561-44bc-4436-991f-d9f65776b485
       - 44373205-7c18-43b5-ab7d-9603863a5a66
       - 30872653-bd1b-4d1b-998e-58edb3242e83
       - b08a9e71-fc04-47c7-9e1a-3e65621a9009
@@ -34729,6 +34733,7 @@ nodes:
       - 071563c9-a7cb-415d-9da6-7b539668cba3
       - 3a84a223-538b-417b-a265-8e128c1edfc0
       - 1829953e-52a1-44d7-8055-1719d7d81416
+      - bee76549-e25f-4862-8829-b1dcba732824
     metadata:
       status: completed
       expanded: false
@@ -49938,12 +49943,15 @@ nodes:
     content: Minor feature development
     children:
       - c7caafb7-c052-4288-967e-74b8d4a78ef6
+      - 029c45eb-87f5-45cf-b881-95bf9ce34539
       - 4196fda4-f103-4916-9fba-97c5ea39cafc
       - 83a2bd12-9d74-4d87-8139-ae7adb95c9fa
       - a5763a98-d3a6-420c-baf4-2868e2dc1404
       - 3ab86cdd-2d94-4d06-806c-2b239fef0ffd
       - bb974125-814d-4964-b269-13572d556270
       - d7f7e6ce-d819-48d2-8a0e-ff9cc9052d56
+      - 55baed06-9f86-4c94-b373-16df124bb7a8
+      - 9f31f800-69fe-443c-8e08-ead9ee894b6f
     metadata:
       status: pending
       isBlueprint: true
@@ -49981,8 +49989,7 @@ nodes:
   3ab86cdd-2d94-4d06-806c-2b239fef0ffd:
     id: 3ab86cdd-2d94-4d06-806c-2b239fef0ffd
     content: Documentation
-    children:
-      - bee76549-e25f-4862-8829-b1dcba732824
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -49994,9 +50001,7 @@ nodes:
   bb974125-814d-4964-b269-13572d556270:
     id: bb974125-814d-4964-b269-13572d556270
     content: Code review & refactor
-    children:
-      - 8a3d9d42-d2aa-4e03-96d8-7a84d4243131
-      - 2500e561-44bc-4436-991f-d9f65776b485
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -50004,6 +50009,7 @@ nodes:
       blueprintColor: '#22c55e'
       appliedContextId: 64ea2af4-332b-44a6-8b88-78535cc9b79a
       stepType: manual
+      expanded: true
   d7f7e6ce-d819-48d2-8a0e-ff9cc9052d56:
     id: d7f7e6ce-d819-48d2-8a0e-ff9cc9052d56
     content: Manual testing
@@ -76030,40 +76036,6 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  43378d90-93fd-4256-b0bd-b467144dd1dd:
-    id: 43378d90-93fd-4256-b0bd-b467144dd1dd
-    content: Terminals don't redraw when switching between them
-    children:
-      - 44a12683-78d8-4f0f-a296-a2e9c9b8a385
-      - ec374b91-02ab-42d8-bd33-51661f2b0c24
-    metadata:
-      status: pending
-  44a12683-78d8-4f0f-a296-a2e9c9b8a385:
-    id: 44a12683-78d8-4f0f-a296-a2e9c9b8a385
-    content: As a result, the terminal switched to appears blank
-    children: []
-    metadata:
-      status: pending
-  ec374b91-02ab-42d8-bd33-51661f2b0c24:
-    id: ec374b91-02ab-42d8-bd33-51661f2b0c24
-    content: I need to focus the terminal I want, switch to another arbo project, then switch back
-    children:
-      - 4cdd7540-5505-4913-9799-ee4f6260dec6
-      - a04c6cf6-3020-4b0e-893f-04bbc05936c5
-    metadata:
-      status: pending
-  4cdd7540-5505-4913-9799-ee4f6260dec6:
-    id: 4cdd7540-5505-4913-9799-ee4f6260dec6
-    content: And even then it doesn't draw 100% of the time
-    children: []
-    metadata:
-      status: pending
-  a04c6cf6-3020-4b0e-893f-04bbc05936c5:
-    id: a04c6cf6-3020-4b0e-893f-04bbc05936c5
-    content: By draw I mean render
-    children: []
-    metadata:
-      status: pending
   8a3d9d42-d2aa-4e03-96d8-7a84d4243131:
     id: 8a3d9d42-d2aa-4e03-96d8-7a84d4243131
     content: File watcher stops for a session in progress when switching between projects
@@ -77089,7 +77061,7 @@ nodes:
       - cc469098-926d-410e-aff9-7f0e607ea1c8
     metadata:
       status: completed
-      expanded: true
+      expanded: false
       deleted: false
       plugins: {}
       isContextDeclaration: false
@@ -77127,26 +77099,6 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  9836b130-c7d1-45db-8d6d-2343e8d17cea:
-    id: 9836b130-c7d1-45db-8d6d-2343e8d17cea
-    content: If we are focused in xterm, then move to another window in the OS, then move back to Arborescent, xterm is no longer focused.
-    children:
-      - e5200f3d-767f-436a-9db7-f325e0196e3c
-      - f9a3da60-a36b-4861-8fb7-596c21e13fc5
-    metadata:
-      status: pending
-  e5200f3d-767f-436a-9db7-f325e0196e3c:
-    id: e5200f3d-767f-436a-9db7-f325e0196e3c
-    content: I assume the same is true for the feedback panel
-    children: []
-    metadata:
-      status: pending
-  f9a3da60-a36b-4861-8fb7-596c21e13fc5:
-    id: f9a3da60-a36b-4861-8fb7-596c21e13fc5
-    content: When we switch to and from Arborescent we should focus on the previously focused panel or tree
-    children: []
-    metadata:
-      status: pending
   8de775f0-54d7-4c91-9488-b48f77a3a9ea:
     id: 8de775f0-54d7-4c91-9488-b48f77a3a9ea
     content: Worktree creation
@@ -77155,6 +77107,7 @@ nodes:
       status: pending
       isBlueprint: true
       stepType: autonomous
+      appliedContextId: 0dcbad15-d754-424b-a488-599c475e38f4
   0dcbad15-d754-424b-a488-599c475e38f4:
     id: 0dcbad15-d754-424b-a488-599c475e38f4
     content: Worktree creation
@@ -77166,7 +77119,8 @@ nodes:
       blueprintIcon: FolderTree
       blueprintColor: '#f97316'
       isContextDeclaration: true
-      contextMode: collaborate
+      contextMode: execute
+      expanded: false
   e4c31fda-141a-4962-9ada-d427a78854d4:
     id: e4c31fda-141a-4962-9ada-d427a78854d4
     content: Make a new worktree for this feature
@@ -77174,3 +77128,515 @@ nodes:
     metadata:
       status: pending
       isBlueprint: true
+  029c45eb-87f5-45cf-b881-95bf9ce34539:
+    id: 029c45eb-87f5-45cf-b881-95bf9ce34539
+    content: Worktree creation
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+      stepType: autonomous
+      appliedContextId: 0dcbad15-d754-424b-a488-599c475e38f4
+  43378d90-93fd-4256-b0bd-b467144dd1dd:
+    id: 43378d90-93fd-4256-b0bd-b467144dd1dd
+    content: Terminals don't redraw when switching between them
+    children:
+      - 8265b8a2-0752-4cd5-897d-4cb587aaa983
+      - c982db17-cb52-407a-9988-e9c08e3cfc6c
+    metadata:
+      status: completed
+      expanded: false
+      deleted: false
+      plugins: {}
+  8265b8a2-0752-4cd5-897d-4cb587aaa983:
+    id: 8265b8a2-0752-4cd5-897d-4cb587aaa983
+    content: As a result, the terminal switched to appears blank
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c982db17-cb52-407a-9988-e9c08e3cfc6c:
+    id: c982db17-cb52-407a-9988-e9c08e3cfc6c
+    content: I need to focus the terminal I want, switch to another arbo project, then switch back
+    children:
+      - 013f5e6a-6c20-43be-999c-f719887f4e6c
+      - 6f2b5406-1496-4019-a178-db5215748b4f
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  013f5e6a-6c20-43be-999c-f719887f4e6c:
+    id: 013f5e6a-6c20-43be-999c-f719887f4e6c
+    content: And even then it doesn't draw 100% of the time
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6f2b5406-1496-4019-a178-db5215748b4f:
+    id: 6f2b5406-1496-4019-a178-db5215748b4f
+    content: By draw I mean render
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3f7347de-d670-4d39-9bed-25002370429b:
+    id: 3f7347de-d670-4d39-9bed-25002370429b
+    content: We're overwriting nodes sent for execution with a list of what was done during a workflow step
+    children:
+      - 9a031731-a186-48b3-8364-d3eb31c45f2f
+      - 10303132-e608-4d62-8201-4b391ac60e23
+      - 26b9fce0-15bf-4656-9c99-1d898634eeb0
+      - 37d4cacc-69f3-4c70-a628-94a827d57220
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  00b32bb4-f094-42e5-bba5-7bb5791d6e46:
+    id: 00b32bb4-f094-42e5-bba5-7bb5791d6e46
+    content: Duplication of node during workflow
+    children:
+      - b33ea0e6-db3d-43f1-9575-252efe817bbe
+      - c07e0743-2d2c-4ba6-956c-ba8e0b1cb0e0
+      - 0bebbea2-3790-4a8c-9550-f8ba84b64674
+      - eba114ed-d05f-4603-aabe-1fa51ca0c440
+      - 8b2dcd0f-9856-4be8-9740-56e243951da8
+      - 972a3efc-7b1b-4e83-9a54-a51b19609810
+    metadata:
+      status: pending
+      expanded: false
+      deleted: false
+      plugins: {}
+  33bf504f-e101-4572-8043-c4923c985e0a:
+    id: 33bf504f-e101-4572-8043-c4923c985e0a
+    content: Writing to temp file while in one project(file) pops up an empty feedback panel if in another project (file) at the time it was written ?
+    children: []
+    metadata:
+      status: pending
+  b33ea0e6-db3d-43f1-9575-252efe817bbe:
+    id: b33ea0e6-db3d-43f1-9575-252efe817bbe
+    content: Observed behavior
+    children:
+      - 72f94985-defa-4f87-90b2-d671c5671c12
+      - 86fc2db8-2d36-448b-8435-80ac9b7d64e5
+      - bff00c66-a8b1-41b3-8c79-75b183595a6d
+      - 2a452464-7276-40b9-8ff5-18adf6acf294
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  72f94985-defa-4f87-90b2-d671c5671c12:
+    id: 72f94985-defa-4f87-90b2-d671c5671c12
+    content: During a workflow step, the node in progress gets duplicated
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  86fc2db8-2d36-448b-8435-80ac9b7d64e5:
+    id: 86fc2db8-2d36-448b-8435-80ac9b7d64e5
+    content: The duplicate shares the same UUID as the original (invariant violation — a node should appear in exactly one parent's children array)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  bff00c66-a8b1-41b3-8c79-75b183595a6d:
+    id: bff00c66-a8b1-41b3-8c79-75b183595a6d
+    content: Can happen more than once in a single session
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2a452464-7276-40b9-8ff5-18adf6acf294:
+    id: 2a452464-7276-40b9-8ff5-18adf6acf294
+    content: 'Reproduced at least twice this session:'
+    children:
+      - f57d72ae-cc23-4a65-b951-5e6ca4f36cd0
+      - c810f4c8-8870-4863-aaa5-419ef7725538
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f57d72ae-cc23-4a65-b951-5e6ca4f36cd0:
+    id: f57d72ae-cc23-4a65-b951-5e6ca4f36cd0
+    content: Once apparently triggered by an undo
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c810f4c8-8870-4863-aaa5-419ef7725538:
+    id: c810f4c8-8870-4863-aaa5-419ef7725538
+    content: Once when sending the node to the next step — node stayed in the current step AND an extra copy was added
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c07e0743-2d2c-4ba6-956c-ba8e0b1cb0e0:
+    id: c07e0743-2d2c-4ba6-956c-ba8e0b1cb0e0
+    content: Suspected causes
+    children:
+      - 7b974986-7928-4dce-b506-32601359ea61
+      - 4f98f4d3-72ce-474a-a800-b7f545d853dd
+      - 8cb9f4c9-6b44-462b-9946-5d3990080b3e
+      - 30929219-3838-40ef-b123-1ce908485a28
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7b974986-7928-4dce-b506-32601359ea61:
+    id: 7b974986-7928-4dce-b506-32601359ea61
+    content: '`advanceNode` in workflowExecutionActions.ts may add the node to the next step''s children without removing it from the current step''s children (or the removal throws mid-transaction)'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4f98f4d3-72ce-474a-a800-b7f545d853dd:
+    id: 4f98f4d3-72ce-474a-a800-b7f545d853dd
+    content: Undo inverse of `AcceptFeedbackCommand` / move/advance commands may re-append the node without checking for existing membership
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8cb9f4c9-6b44-462b-9946-5d3990080b3e:
+    id: 8cb9f4c9-6b44-462b-9946-5d3990080b3e
+    content: '`ancestorRegistry` and parent `children` arrays may drift apart — one updated, the other not'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  30929219-3838-40ef-b123-1ce908485a28:
+    id: 30929219-3838-40ef-b123-1ce908485a28
+    content: A race between autosave and the tree mutation could re-hydrate stale children arrays
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0bebbea2-3790-4a8c-9550-f8ba84b64674:
+    id: 0bebbea2-3790-4a8c-9550-f8ba84b64674
+    content: Investigation steps
+    children:
+      - 7fc890cd-8e37-4311-81ab-af97ee5e80ea
+      - 74de7080-2c22-421d-b055-4b377226b13c
+      - fbd32dd3-113a-4a35-a581-3031d2c1645a
+      - f6d694f7-505a-485c-89ce-1a253f62c227
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7fc890cd-8e37-4311-81ab-af97ee5e80ea:
+    id: 7fc890cd-8e37-4311-81ab-af97ee5e80ea
+    content: Add an invariant check that logs (in dev) whenever a node's ID appears more than once across all parents' children arrays
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  74de7080-2c22-421d-b055-4b377226b13c:
+    id: 74de7080-2c22-421d-b055-4b377226b13c
+    content: Instrument advanceNode, moveNode, AcceptFeedbackCommand (both execute and undo paths) with a pre/post invariant assertion
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fbd32dd3-113a-4a35-a581-3031d2c1645a:
+    id: fbd32dd3-113a-4a35-a581-3031d2c1645a
+    content: 'Reproduce with: run a workflow step → undo during the advance → redo'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f6d694f7-505a-485c-89ce-1a253f62c227:
+    id: f6d694f7-505a-485c-89ce-1a253f62c227
+    content: 'Reproduce with: run a workflow step → click "send to next step" while a toast or other async side effect is pending'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  eba114ed-d05f-4603-aabe-1fa51ca0c440:
+    id: eba114ed-d05f-4603-aabe-1fa51ca0c440
+    content: Acceptance criteria
+    children:
+      - 72308e01-f4d1-4de7-8a1e-d9aa88e0664b
+      - ca88e105-e376-4438-b92f-cc7b3ed39835
+      - 7eae73e7-b9d6-4794-a5cc-9c9187eabde5
+      - e66412fd-6eaa-4aa9-854e-7a0c01849d54
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  72308e01-f4d1-4de7-8a1e-d9aa88e0664b:
+    id: 72308e01-f4d1-4de7-8a1e-d9aa88e0664b
+    content: A node ID appears in at most one parent's children array at any point during or after a workflow advance, undo, redo, or send-to-next-step
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ca88e105-e376-4438-b92f-cc7b3ed39835:
+    id: ca88e105-e376-4438-b92f-cc7b3ed39835
+    content: The invariant holds after any sequence of undo/redo operations
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7eae73e7-b9d6-4794-a5cc-9c9187eabde5:
+    id: 7eae73e7-b9d6-4794-a5cc-9c9187eabde5
+    content: '`.arbo` files never serialize with duplicate child references'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e66412fd-6eaa-4aa9-854e-7a0c01849d54:
+    id: e66412fd-6eaa-4aa9-854e-7a0c01849d54
+    content: On load, if a duplicate is detected, it is reconciled (keep first reference, log a warning) rather than propagating silently
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8b2dcd0f-9856-4be8-9740-56e243951da8:
+    id: 8b2dcd0f-9856-4be8-9740-56e243951da8
+    content: Edge cases to cover in tests
+    children:
+      - e4a26fd5-e235-4fc5-abaa-8462e7f450ce
+      - 254819fb-c003-47e1-9836-e2eb044db93c
+      - 58023b75-5022-427a-b311-993acf3f0c25
+      - 90c1282c-cd1e-4eac-8d6c-79353f5937b3
+      - 7f8b8e19-2588-48af-961d-f2f78b202745
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e4a26fd5-e235-4fc5-abaa-8462e7f450ce:
+    id: e4a26fd5-e235-4fc5-abaa-8462e7f450ce
+    content: Rapid click on "send to next step" (double-fire)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  254819fb-c003-47e1-9836-e2eb044db93c:
+    id: 254819fb-c003-47e1-9836-e2eb044db93c
+    content: Undo during an in-flight autonomous step advance
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  58023b75-5022-427a-b311-993acf3f0c25:
+    id: 58023b75-5022-427a-b311-993acf3f0c25
+    content: Redo after undoing a step advance
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  90c1282c-cd1e-4eac-8d6c-79353f5937b3:
+    id: 90c1282c-cd1e-4eac-8d6c-79353f5937b3
+    content: Send-to-next-step when the target step is the same as the current step (shouldn't duplicate)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7f8b8e19-2588-48af-961d-f2f78b202745:
+    id: 7f8b8e19-2588-48af-961d-f2f78b202745
+    content: Send-to-next-step when no next step exists (workflow complete)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  972a3efc-7b1b-4e83-9a54-a51b19609810:
+    id: 972a3efc-7b1b-4e83-9a54-a51b19609810
+    content: Data to capture next time it happens in the wild
+    children:
+      - a3fc5e74-dd1b-4889-a555-42b2ded8b4d3
+      - 795650ab-8b9e-4492-b65e-b03ff0d2e22f
+      - ad1324f8-6880-43fb-acb5-b33e9873b457
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a3fc5e74-dd1b-4889-a555-42b2ded8b4d3:
+    id: a3fc5e74-dd1b-4889-a555-42b2ded8b4d3
+    content: Save the `.arbo` file immediately after the duplication is observed (before any further edits)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  795650ab-8b9e-4492-b65e-b03ff0d2e22f:
+    id: 795650ab-8b9e-4492-b65e-b03ff0d2e22f
+    content: Note the exact sequence of actions (undo/redo clicks, send clicks, workflow step transitions)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ad1324f8-6880-43fb-acb5-b33e9873b457:
+    id: ad1324f8-6880-43fb-acb5-b33e9873b457
+    content: Note which workflow step the node was in before and after
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9a031731-a186-48b3-8364-d3eb31c45f2f:
+    id: 9a031731-a186-48b3-8364-d3eb31c45f2f
+    content: For example in the automated workflow step Feature Implementation, after completion you write what was done in the temporary file, overwriting the original content
+    children:
+      - d03bb290-5fa0-4dd8-be8c-41f1f1835a6b
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d03bb290-5fa0-4dd8-be8c-41f1f1835a6b:
+    id: d03bb290-5fa0-4dd8-be8c-41f1f1835a6b
+    content: Normally we had updated the instruction context to not do this
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  10303132-e608-4d62-8201-4b391ac60e23:
+    id: 10303132-e608-4d62-8201-4b391ac60e23
+    content: Happens in other workflow steps too, for instance AI refactor
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  26b9fce0-15bf-4656-9c99-1d898634eeb0:
+    id: 26b9fce0-15bf-4656-9c99-1d898634eeb0
+    content: The workflow steps are in the project.arbo
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  37d4cacc-69f3-4c70-a628-94a827d57220:
+    id: 37d4cacc-69f3-4c70-a628-94a827d57220
+    content: It happened during this session, can't remember at precisely what step
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  55baed06-9f86-4c94-b373-16df124bb7a8:
+    id: 55baed06-9f86-4c94-b373-16df124bb7a8
+    content: Merge to master
+    children:
+      - 3f7347de-d670-4d39-9bed-25002370429b
+    metadata:
+      status: pending
+      isBlueprint: true
+      stepType: checkpoint
+      appliedContextId: f4300f5a-e503-4606-b6bc-f67f6d4a0ed4
+  f4300f5a-e503-4606-b6bc-f67f6d4a0ed4:
+    id: f4300f5a-e503-4606-b6bc-f67f6d4a0ed4
+    content: Merge to master
+    children:
+      - 28d641ce-1314-4c8b-b003-2688efb36075
+      - 5c79a251-defe-4ef2-a9ce-30e2d89a8f35
+      - b861c616-e8ec-4cda-9244-bbc9f2e404e4
+    metadata:
+      status: pending
+      isContextDeclaration: true
+      blueprintIcon: GitMerge
+      blueprintColor: '#ef4444'
+      isBlueprint: true
+      contextMode: collaborate
+      expanded: false
+  28d641ce-1314-4c8b-b003-2688efb36075:
+    id: 28d641ce-1314-4c8b-b003-2688efb36075
+    content: Merge worktree to master
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  5c79a251-defe-4ef2-a9ce-30e2d89a8f35:
+    id: 5c79a251-defe-4ef2-a9ce-30e2d89a8f35
+    content: Squash commits
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  b861c616-e8ec-4cda-9244-bbc9f2e404e4:
+    id: b861c616-e8ec-4cda-9244-bbc9f2e404e4
+    content: Delete worktree
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  9f31f800-69fe-443c-8e08-ead9ee894b6f:
+    id: 9f31f800-69fe-443c-8e08-ead9ee894b6f
+    content: Install
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+      stepType: autonomous
+  b050f7d8-a00a-4ff8-b137-2fd5ce499a2f:
+    id: b050f7d8-a00a-4ff8-b137-2fd5ce499a2f
+    content: Install locally
+    children: []
+    metadata:
+      status: pending
