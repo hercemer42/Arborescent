@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-04-17T10:26:01.594Z'
+updated: '2026-04-17T12:58:45.477Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -559,6 +559,7 @@ nodes:
     id: d5fe0eff-b1c6-4986-b6a3-70a0ea46f096
     content: Opportunities
     children:
+      - ed567fef-28e4-4b51-bc51-aef02d20f973
       - cab835d8-dde8-45ee-81a2-7e788a1f82dd
       - abf015d3-e13b-447f-b4bc-714b5542b86b
       - 25bb85f2-b25e-4736-afa5-bfd44d213894
@@ -77194,12 +77195,12 @@ nodes:
     id: 00b32bb4-f094-42e5-bba5-7bb5791d6e46
     content: Duplication of node during workflow
     children:
-      - 8202f65e-da24-4651-adce-6a86bad6e440
-      - 3167e895-8096-42c6-b0ba-436ffdc2a730
-      - 75f6cd06-b3b0-4fcd-8cb3-080e4fc347a8
-      - ccaa9978-5673-4924-a40a-dfaea107181a
-      - 6935cf3a-3dde-41ab-a987-542533ec0a1e
-      - 1b9fc949-0107-4f28-9ba9-b4e6e608b325
+      - 4691f78d-ebd3-4cdf-96f0-6aa74973eae6
+      - 083244b4-b985-4054-83fd-31ecdf61ae64
+      - 6b7a64e6-3ced-43f0-86d0-8b43efc4eb2e
+      - d95240a1-8e86-4cc6-8a4b-a473f0140a01
+      - 96560a13-e6c4-41e8-9fd3-788cc82f0e48
+      - c6a59096-3e27-44a0-90fe-ecd6537f4448
     metadata:
       status: completed
       expanded: false
@@ -77207,15 +77208,16 @@ nodes:
       plugins: {}
   33bf504f-e101-4572-8043-c4923c985e0a:
     id: 33bf504f-e101-4572-8043-c4923c985e0a
-    content: Writing to temp file while in one project(file) pops up an empty feedback panel if in another project (file) at the time it was written ?
-    children: []
+    content: Writing to temp file while in one project(file) pops up an empty feedback panel if in another project (file) at the time it was written
+    children:
+      - b2fee728-fcc9-408a-8851-f2d93049a4a3
     metadata:
       status: pending
   55baed06-9f86-4c94-b373-16df124bb7a8:
     id: 55baed06-9f86-4c94-b373-16df124bb7a8
     content: Merge to master
     children:
-      - 00b32bb4-f094-42e5-bba5-7bb5791d6e46
+      - df3f817f-36fc-4b13-b94b-fb8f213cb7c3
     metadata:
       status: pending
       isBlueprint: true
@@ -77260,7 +77262,8 @@ nodes:
   9f31f800-69fe-443c-8e08-ead9ee894b6f:
     id: 9f31f800-69fe-443c-8e08-ead9ee894b6f
     content: Install
-    children: []
+    children:
+      - 00b32bb4-f094-42e5-bba5-7bb5791d6e46
     metadata:
       status: pending
       isBlueprint: true
@@ -77356,21 +77359,21 @@ nodes:
     metadata:
       status: pending
       isBlueprint: true
-  8202f65e-da24-4651-adce-6a86bad6e440:
-    id: 8202f65e-da24-4651-adce-6a86bad6e440
+  4691f78d-ebd3-4cdf-96f0-6aa74973eae6:
+    id: 4691f78d-ebd3-4cdf-96f0-6aa74973eae6
     content: Observed behavior
     children:
-      - 3043ef5e-0ae0-4816-9001-730c0af6c346
-      - 56f5a812-dd3d-4644-b142-4b3730c65cae
-      - 002c219e-902c-406f-8d8b-c2cfbb3f1765
-      - 9487bc8a-44d3-4ab9-ba70-7476da667a61
+      - f57825d3-fe1e-49e6-861a-ff3eacc634dc
+      - 19fc0e31-2118-4a77-8b68-f0a127f59b93
+      - 6ab9565f-2acb-41d8-80e9-e02885c1897b
+      - 5906afe7-d179-4e17-96b3-ef899d573526
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  3043ef5e-0ae0-4816-9001-730c0af6c346:
-    id: 3043ef5e-0ae0-4816-9001-730c0af6c346
+  f57825d3-fe1e-49e6-861a-ff3eacc634dc:
+    id: f57825d3-fe1e-49e6-861a-ff3eacc634dc
     content: During a workflow step, the node in progress gets duplicated
     children: []
     metadata:
@@ -77378,8 +77381,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  56f5a812-dd3d-4644-b142-4b3730c65cae:
-    id: 56f5a812-dd3d-4644-b142-4b3730c65cae
+  19fc0e31-2118-4a77-8b68-f0a127f59b93:
+    id: 19fc0e31-2118-4a77-8b68-f0a127f59b93
     content: The duplicate shares the same UUID as the original (invariant violation — a node should appear in exactly one parent's children array)
     children: []
     metadata:
@@ -77387,8 +77390,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  002c219e-902c-406f-8d8b-c2cfbb3f1765:
-    id: 002c219e-902c-406f-8d8b-c2cfbb3f1765
+  6ab9565f-2acb-41d8-80e9-e02885c1897b:
+    id: 6ab9565f-2acb-41d8-80e9-e02885c1897b
     content: Can happen more than once in a single session
     children: []
     metadata:
@@ -77396,19 +77399,19 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  9487bc8a-44d3-4ab9-ba70-7476da667a61:
-    id: 9487bc8a-44d3-4ab9-ba70-7476da667a61
+  5906afe7-d179-4e17-96b3-ef899d573526:
+    id: 5906afe7-d179-4e17-96b3-ef899d573526
     content: 'Reproduced at least twice this session:'
     children:
-      - 34c1c626-81ca-4c06-ad10-5df3459a738f
-      - b5ed9c6c-a5fe-4795-9bcf-53174c676092
+      - 6bfdbf0c-af7e-4502-9099-5a1df2888d6d
+      - 069b28e6-7e1e-4547-903d-ea515be09f42
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  34c1c626-81ca-4c06-ad10-5df3459a738f:
-    id: 34c1c626-81ca-4c06-ad10-5df3459a738f
+  6bfdbf0c-af7e-4502-9099-5a1df2888d6d:
+    id: 6bfdbf0c-af7e-4502-9099-5a1df2888d6d
     content: Once apparently triggered by an undo
     children: []
     metadata:
@@ -77416,8 +77419,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  b5ed9c6c-a5fe-4795-9bcf-53174c676092:
-    id: b5ed9c6c-a5fe-4795-9bcf-53174c676092
+  069b28e6-7e1e-4547-903d-ea515be09f42:
+    id: 069b28e6-7e1e-4547-903d-ea515be09f42
     content: Once when sending the node to the next step — node stayed in the current step AND an extra copy was added
     children: []
     metadata:
@@ -77425,21 +77428,21 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  3167e895-8096-42c6-b0ba-436ffdc2a730:
-    id: 3167e895-8096-42c6-b0ba-436ffdc2a730
+  083244b4-b985-4054-83fd-31ecdf61ae64:
+    id: 083244b4-b985-4054-83fd-31ecdf61ae64
     content: Suspected causes
     children:
-      - b87dc8ad-23ba-44c7-ab4f-9a469ec51d42
-      - 2f2356f2-579e-4f02-844e-b4e0991b13d6
-      - 1c80da71-26ae-432e-ad1e-ec3437c1805b
-      - a8dcc217-50ee-4f4b-a926-9cf25538a3b7
+      - 5cbd33fe-bb87-40cb-9508-70c27736a976
+      - a3d24664-34bf-4ad0-99d5-8ca336f0af41
+      - 3ae7497e-58d2-4153-98e6-08ff2e94bc1e
+      - 4101252a-d88f-4712-a67b-b81ad9dac5a0
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  b87dc8ad-23ba-44c7-ab4f-9a469ec51d42:
-    id: b87dc8ad-23ba-44c7-ab4f-9a469ec51d42
+  5cbd33fe-bb87-40cb-9508-70c27736a976:
+    id: 5cbd33fe-bb87-40cb-9508-70c27736a976
     content: '`advanceNode` in workflowExecutionActions.ts may add the node to the next step''s children without removing it from the current step''s children (or the removal throws mid-transaction)'
     children: []
     metadata:
@@ -77447,8 +77450,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  2f2356f2-579e-4f02-844e-b4e0991b13d6:
-    id: 2f2356f2-579e-4f02-844e-b4e0991b13d6
+  a3d24664-34bf-4ad0-99d5-8ca336f0af41:
+    id: a3d24664-34bf-4ad0-99d5-8ca336f0af41
     content: Undo inverse of `AcceptFeedbackCommand` / move/advance commands may re-append the node without checking for existing membership
     children: []
     metadata:
@@ -77456,8 +77459,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  1c80da71-26ae-432e-ad1e-ec3437c1805b:
-    id: 1c80da71-26ae-432e-ad1e-ec3437c1805b
+  3ae7497e-58d2-4153-98e6-08ff2e94bc1e:
+    id: 3ae7497e-58d2-4153-98e6-08ff2e94bc1e
     content: '`ancestorRegistry` and parent `children` arrays may drift apart — one updated, the other not'
     children: []
     metadata:
@@ -77465,8 +77468,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  a8dcc217-50ee-4f4b-a926-9cf25538a3b7:
-    id: a8dcc217-50ee-4f4b-a926-9cf25538a3b7
+  4101252a-d88f-4712-a67b-b81ad9dac5a0:
+    id: 4101252a-d88f-4712-a67b-b81ad9dac5a0
     content: A race between autosave and the tree mutation could re-hydrate stale children arrays
     children: []
     metadata:
@@ -77474,21 +77477,21 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  75f6cd06-b3b0-4fcd-8cb3-080e4fc347a8:
-    id: 75f6cd06-b3b0-4fcd-8cb3-080e4fc347a8
+  6b7a64e6-3ced-43f0-86d0-8b43efc4eb2e:
+    id: 6b7a64e6-3ced-43f0-86d0-8b43efc4eb2e
     content: Investigation steps
     children:
-      - 2143838c-d40b-474c-924d-057193bd1739
-      - b663fd31-92cf-4cfe-91d5-77364a8c2cc2
-      - c1e7ec11-133b-487f-a25f-df6c6d8c3b41
-      - 624981be-a838-4eb7-a772-c7a468bb21d1
+      - 5e1232d4-874c-4d96-b62c-65a0449e24be
+      - 533d42a9-60cf-4a38-bcec-2373dae6ab8d
+      - b2e45135-c253-4a6c-b80c-8cca0ab3f63d
+      - 4ae61bbb-b77e-4819-880a-1a6b9104ce2f
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  2143838c-d40b-474c-924d-057193bd1739:
-    id: 2143838c-d40b-474c-924d-057193bd1739
+  5e1232d4-874c-4d96-b62c-65a0449e24be:
+    id: 5e1232d4-874c-4d96-b62c-65a0449e24be
     content: Add an invariant check that logs (in dev) whenever a node's ID appears more than once across all parents' children arrays
     children: []
     metadata:
@@ -77496,8 +77499,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  b663fd31-92cf-4cfe-91d5-77364a8c2cc2:
-    id: b663fd31-92cf-4cfe-91d5-77364a8c2cc2
+  533d42a9-60cf-4a38-bcec-2373dae6ab8d:
+    id: 533d42a9-60cf-4a38-bcec-2373dae6ab8d
     content: Instrument advanceNode, moveNode, AcceptFeedbackCommand (both execute and undo paths) with a pre/post invariant assertion
     children: []
     metadata:
@@ -77505,8 +77508,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  c1e7ec11-133b-487f-a25f-df6c6d8c3b41:
-    id: c1e7ec11-133b-487f-a25f-df6c6d8c3b41
+  b2e45135-c253-4a6c-b80c-8cca0ab3f63d:
+    id: b2e45135-c253-4a6c-b80c-8cca0ab3f63d
     content: 'Reproduce with: run a workflow step → undo during the advance → redo'
     children: []
     metadata:
@@ -77514,8 +77517,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  624981be-a838-4eb7-a772-c7a468bb21d1:
-    id: 624981be-a838-4eb7-a772-c7a468bb21d1
+  4ae61bbb-b77e-4819-880a-1a6b9104ce2f:
+    id: 4ae61bbb-b77e-4819-880a-1a6b9104ce2f
     content: 'Reproduce with: run a workflow step → click "send to next step" while a toast or other async side effect is pending'
     children: []
     metadata:
@@ -77523,21 +77526,21 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  ccaa9978-5673-4924-a40a-dfaea107181a:
-    id: ccaa9978-5673-4924-a40a-dfaea107181a
+  d95240a1-8e86-4cc6-8a4b-a473f0140a01:
+    id: d95240a1-8e86-4cc6-8a4b-a473f0140a01
     content: Acceptance criteria
     children:
-      - 44bd167c-bac9-4ccd-bd40-c16fe07e380e
-      - 7f63c0ae-f988-47f9-af4f-48baddf39117
-      - 8306dd9e-9220-43b0-9e20-74a691433798
-      - df633172-8300-43f2-919b-d7b238db2b99
+      - a1a80ad8-8b7d-476c-ac64-511bb4c93d9f
+      - 49fc4a12-b6db-41d3-94fa-aa5fe532f53c
+      - d149ead9-48e4-404b-be84-ae062a7c8de1
+      - d4787088-e7df-4173-a8db-3ca00ed3fc09
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  44bd167c-bac9-4ccd-bd40-c16fe07e380e:
-    id: 44bd167c-bac9-4ccd-bd40-c16fe07e380e
+  a1a80ad8-8b7d-476c-ac64-511bb4c93d9f:
+    id: a1a80ad8-8b7d-476c-ac64-511bb4c93d9f
     content: A node ID appears in at most one parent's children array at any point during or after a workflow advance, undo, redo, or send-to-next-step
     children: []
     metadata:
@@ -77545,8 +77548,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  7f63c0ae-f988-47f9-af4f-48baddf39117:
-    id: 7f63c0ae-f988-47f9-af4f-48baddf39117
+  49fc4a12-b6db-41d3-94fa-aa5fe532f53c:
+    id: 49fc4a12-b6db-41d3-94fa-aa5fe532f53c
     content: The invariant holds after any sequence of undo/redo operations
     children: []
     metadata:
@@ -77554,8 +77557,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  8306dd9e-9220-43b0-9e20-74a691433798:
-    id: 8306dd9e-9220-43b0-9e20-74a691433798
+  d149ead9-48e4-404b-be84-ae062a7c8de1:
+    id: d149ead9-48e4-404b-be84-ae062a7c8de1
     content: '`.arbo` files never serialize with duplicate child references'
     children: []
     metadata:
@@ -77563,8 +77566,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  df633172-8300-43f2-919b-d7b238db2b99:
-    id: df633172-8300-43f2-919b-d7b238db2b99
+  d4787088-e7df-4173-a8db-3ca00ed3fc09:
+    id: d4787088-e7df-4173-a8db-3ca00ed3fc09
     content: On load, if a duplicate is detected, it is reconciled (keep first reference, log a warning) rather than propagating silently
     children: []
     metadata:
@@ -77572,22 +77575,22 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  6935cf3a-3dde-41ab-a987-542533ec0a1e:
-    id: 6935cf3a-3dde-41ab-a987-542533ec0a1e
+  96560a13-e6c4-41e8-9fd3-788cc82f0e48:
+    id: 96560a13-e6c4-41e8-9fd3-788cc82f0e48
     content: Edge cases to cover in tests
     children:
-      - 12b4ace6-5318-485d-b577-42f5bdc8e55d
-      - b1ea63a4-90e5-44a3-941e-cdefd2507776
-      - b5e94527-809e-484d-a030-c2a5594622f8
-      - 6bddecec-0741-46cb-ad52-2d6de4a6178e
-      - 6f4a6b8e-8b45-4c00-b4d4-f78aa6b213dc
+      - 134a4b35-46b5-4a19-b6b2-8c7e7d71bf50
+      - f8ca66f7-5e0e-4e3f-8939-70d793526a13
+      - bd470986-b27d-4621-8d62-e43cc01e506c
+      - d0859b78-48d2-43c9-92be-a428283c5dee
+      - 4a448369-8ea8-4b7b-9714-99f7b44ba71f
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  12b4ace6-5318-485d-b577-42f5bdc8e55d:
-    id: 12b4ace6-5318-485d-b577-42f5bdc8e55d
+  134a4b35-46b5-4a19-b6b2-8c7e7d71bf50:
+    id: 134a4b35-46b5-4a19-b6b2-8c7e7d71bf50
     content: Rapid click on "send to next step" (double-fire)
     children: []
     metadata:
@@ -77595,8 +77598,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  b1ea63a4-90e5-44a3-941e-cdefd2507776:
-    id: b1ea63a4-90e5-44a3-941e-cdefd2507776
+  f8ca66f7-5e0e-4e3f-8939-70d793526a13:
+    id: f8ca66f7-5e0e-4e3f-8939-70d793526a13
     content: Undo during an in-flight autonomous step advance
     children: []
     metadata:
@@ -77604,8 +77607,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  b5e94527-809e-484d-a030-c2a5594622f8:
-    id: b5e94527-809e-484d-a030-c2a5594622f8
+  bd470986-b27d-4621-8d62-e43cc01e506c:
+    id: bd470986-b27d-4621-8d62-e43cc01e506c
     content: Redo after undoing a step advance
     children: []
     metadata:
@@ -77613,8 +77616,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  6bddecec-0741-46cb-ad52-2d6de4a6178e:
-    id: 6bddecec-0741-46cb-ad52-2d6de4a6178e
+  d0859b78-48d2-43c9-92be-a428283c5dee:
+    id: d0859b78-48d2-43c9-92be-a428283c5dee
     content: Send-to-next-step when the target step is the same as the current step (shouldn't duplicate)
     children: []
     metadata:
@@ -77622,8 +77625,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  6f4a6b8e-8b45-4c00-b4d4-f78aa6b213dc:
-    id: 6f4a6b8e-8b45-4c00-b4d4-f78aa6b213dc
+  4a448369-8ea8-4b7b-9714-99f7b44ba71f:
+    id: 4a448369-8ea8-4b7b-9714-99f7b44ba71f
     content: Send-to-next-step when no next step exists (workflow complete)
     children: []
     metadata:
@@ -77631,20 +77634,20 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  1b9fc949-0107-4f28-9ba9-b4e6e608b325:
-    id: 1b9fc949-0107-4f28-9ba9-b4e6e608b325
+  c6a59096-3e27-44a0-90fe-ecd6537f4448:
+    id: c6a59096-3e27-44a0-90fe-ecd6537f4448
     content: Data to capture next time it happens in the wild
     children:
-      - 977bcdfa-e400-45e4-97c8-0644922c6780
-      - 60f3b692-71aa-4c42-86a5-1f6f2e357825
-      - e328743e-40dd-4975-8bfa-e364f9e517c1
+      - 8e96385d-65e1-445e-98e4-38be34fcd597
+      - a97bd649-d43b-4c84-b62a-686c95b23922
+      - 62c91ef5-2c64-4f9e-9497-4d1f6dd77a85
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  977bcdfa-e400-45e4-97c8-0644922c6780:
-    id: 977bcdfa-e400-45e4-97c8-0644922c6780
+  8e96385d-65e1-445e-98e4-38be34fcd597:
+    id: 8e96385d-65e1-445e-98e4-38be34fcd597
     content: Save the `.arbo` file immediately after the duplication is observed (before any further edits)
     children: []
     metadata:
@@ -77652,8 +77655,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  60f3b692-71aa-4c42-86a5-1f6f2e357825:
-    id: 60f3b692-71aa-4c42-86a5-1f6f2e357825
+  a97bd649-d43b-4c84-b62a-686c95b23922:
+    id: a97bd649-d43b-4c84-b62a-686c95b23922
     content: Note the exact sequence of actions (undo/redo clicks, send clicks, workflow step transitions)
     children: []
     metadata:
@@ -77661,12 +77664,340 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  e328743e-40dd-4975-8bfa-e364f9e517c1:
-    id: e328743e-40dd-4975-8bfa-e364f9e517c1
+  62c91ef5-2c64-4f9e-9497-4d1f6dd77a85:
+    id: 62c91ef5-2c64-4f9e-9497-4d1f6dd77a85
     content: Note which workflow step the node was in before and after
     children: []
     metadata:
       status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ed567fef-28e4-4b51-bc51-aef02d20f973:
+    id: ed567fef-28e4-4b51-bc51-aef02d20f973
+    content: Set effort on contexts or workflow steps
+    children:
+      - a84b3395-d4b5-43a4-af70-11e990a71023
+    metadata:
+      status: pending
+  a84b3395-d4b5-43a4-af70-11e990a71023:
+    id: a84b3395-d4b5-43a4-af70-11e990a71023
+    content: Could also allow the AI to suggest effort after analysing a user story
+    children: []
+    metadata:
+      status: pending
+  b2fee728-fcc9-408a-8851-f2d93049a4a3:
+    id: b2fee728-fcc9-408a-8851-f2d93049a4a3
+    content: Should just pop a toast message and then when I switch back to the file in question, the feedback panel is open
+    children: []
+    metadata:
+      status: pending
+  df3f817f-36fc-4b13-b94b-fb8f213cb7c3:
+    id: df3f817f-36fc-4b13-b94b-fb8f213cb7c3
+    content: Writing to temp file while in one project(file) pops up an empty feedback panel if in another project (file) at the time it was written
+    children:
+      - 564b6998-7e7d-45e8-aca1-9e16e6435d6b
+      - 0aa58e55-51ab-4a18-92bc-dbd783c08d88
+      - 0db63a10-8b39-4364-b796-4be5f960a4cf
+      - 523a2880-66fe-4976-80aa-7ad9c3782d1c
+      - eef11c14-3d40-45c9-b66a-31b0475a3505
+      - 8af52ab9-3791-4946-9df0-ba2351ca987e
+      - 2b73c8e1-8515-4a38-a966-2760d90461c2
+    metadata:
+      status: completed
+      expanded: false
+      deleted: false
+      plugins: {}
+  564b6998-7e7d-45e8-aca1-9e16e6435d6b:
+    id: 564b6998-7e7d-45e8-aca1-9e16e6435d6b
+    content: Should just pop a toast message and then when I switch back to the file in question, the feedback panel is open
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0aa58e55-51ab-4a18-92bc-dbd783c08d88:
+    id: 0aa58e55-51ab-4a18-92bc-dbd783c08d88
+    content: Acceptance criteria
+    children:
+      - 065f031a-299c-4df9-b082-a20fbc37fb3e
+      - e12add90-d953-4377-bb7f-87588d8538ef
+      - ebb1d097-d52e-4512-bcd1-7274cbea264c
+      - 3be891d5-fe48-4e85-898a-15e617edd3d8
+      - 1fb17268-5b37-402e-b144-977e54e347b0
+      - 664a29bf-7891-4703-9e9e-378efa1a8cc9
+      - be7968f2-df99-43fc-bc15-664cb806d69f
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  065f031a-299c-4df9-b082-a20fbc37fb3e:
+    id: 065f031a-299c-4df9-b082-a20fbc37fb3e
+    content: If feedback arrives for file X while the active file is X, the panel opens normally (unchanged)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e12add90-d953-4377-bb7f-87588d8538ef:
+    id: e12add90-d953-4377-bb7f-87588d8538ef
+    content: If feedback arrives for file X while the active file is not X, only a toast is shown — the feedback panel does not open in the current file
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ebb1d097-d52e-4512-bcd1-7274cbea264c:
+    id: ebb1d097-d52e-4512-bcd1-7274cbea264c
+    content: A zoom tab of file X counts as being in file X — panel opens normally, no toast
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3be891d5-fe48-4e85-898a-15e617edd3d8:
+    id: 3be891d5-fe48-4e85-898a-15e617edd3d8
+    content: The toast identifies which file the feedback belongs to (by display name)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1fb17268-5b37-402e-b144-977e54e347b0:
+    id: 1fb17268-5b37-402e-b144-977e54e347b0
+    content: Switching to file X after receiving such a toast opens the feedback panel with the pending content
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  664a29bf-7891-4703-9e9e-378efa1a8cc9:
+    id: 664a29bf-7891-4703-9e9e-378efa1a8cc9
+    content: Pending feedback persists across a restart (existing behavior — verify still holds with this change)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  be7968f2-df99-43fc-bc15-664cb806d69f:
+    id: be7968f2-df99-43fc-bc15-664cb806d69f
+    content: If feedback for file X arrives while X is not in any open tab, the toast still fires and the panel opens when X is opened
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0db63a10-8b39-4364-b796-4be5f960a4cf:
+    id: 0db63a10-8b39-4364-b796-4be5f960a4cf
+    content: UX considerations
+    children:
+      - a6a4e9fb-94b3-4f1c-b0da-8f8acf7fda9b
+      - c7073d3a-0142-4a94-9f06-585ea2068eb0
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a6a4e9fb-94b3-4f1c-b0da-8f8acf7fda9b:
+    id: a6a4e9fb-94b3-4f1c-b0da-8f8acf7fda9b
+    content: The toast is dismissible without losing the pending feedback
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c7073d3a-0142-4a94-9f06-585ea2068eb0:
+    id: c7073d3a-0142-4a94-9f06-585ea2068eb0
+    content: An empty feedback panel never appears in a file that did not originate the feedback, under any race condition
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  523a2880-66fe-4976-80aa-7ad9c3782d1c:
+    id: 523a2880-66fe-4976-80aa-7ad9c3782d1c
+    content: Edge cases
+    children:
+      - 4b7dff48-9ff4-47d3-93f3-b0fe9c01d9a3
+      - bee6221a-77e8-4cd5-80ce-db627e6ac85d
+      - 57991fef-59bf-4486-9591-416f87d48562
+      - 8bcd91a3-0e02-42f6-b618-2650288247d4
+      - 1ad0fc39-324a-4735-8dfb-02b93c6754ec
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4b7dff48-9ff4-47d3-93f3-b0fe9c01d9a3:
+    id: 4b7dff48-9ff4-47d3-93f3-b0fe9c01d9a3
+    content: Two feedbacks arrive for different files in quick succession → two distinct toasts, each naming its file
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bee6221a-77e8-4cd5-80ce-db627e6ac85d:
+    id: bee6221a-77e8-4cd5-80ce-db627e6ac85d
+    content: Two feedbacks arrive for the same file before the user switches → second one replaces/augments the first, toast not duplicated
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  57991fef-59bf-4486-9591-416f87d48562:
+    id: 57991fef-59bf-4486-9591-416f87d48562
+    content: User is actively collaborating in file X when feedback for X arrives → existing in-panel behavior applies, no toast
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8bcd91a3-0e02-42f6-b618-2650288247d4:
+    id: 8bcd91a3-0e02-42f6-b618-2650288247d4
+    content: File X is closed before the user acts on the toast → toast becomes stale; dismiss silently or offer to reopen X
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1ad0fc39-324a-4735-8dfb-02b93c6754ec:
+    id: 1ad0fc39-324a-4735-8dfb-02b93c6754ec
+    content: Feedback arrives while a dialog/modal is open in the current file → toast still appears (non-blocking); panel opens when the user reaches X
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  eef11c14-3d40-45c9-b66a-31b0475a3505:
+    id: eef11c14-3d40-45c9-b66a-31b0475a3505
+    content: Out of scope
+    children:
+      - 5554a2cb-5041-4b8c-8906-82563827433d
+      - 3ca962f4-0d3a-4e3e-9e5a-5e53443516b6
+      - 4a302e6a-cd10-4d6c-a32c-86f48424cc4f
+      - 2d3b56c8-01e7-4152-b030-fdc26a727d02
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5554a2cb-5041-4b8c-8906-82563827433d:
+    id: 5554a2cb-5041-4b8c-8906-82563827433d
+    content: Clickable toast that switches to the owning file — deferred to a separate user story
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3ca962f4-0d3a-4e3e-9e5a-5e53443516b6:
+    id: 3ca962f4-0d3a-4e3e-9e5a-5e53443516b6
+    content: Notification center / history
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4a302e6a-cd10-4d6c-a32c-86f48424cc4f:
+    id: 4a302e6a-cd10-4d6c-a32c-86f48424cc4f
+    content: Cross-device sync of pending feedback
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2d3b56c8-01e7-4152-b030-fdc26a727d02:
+    id: 2d3b56c8-01e7-4152-b030-fdc26a727d02
+    content: Rich toast with progress bar or multi-action — a plain toast naming the file is the right scope
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8af52ab9-3791-4946-9df0-ba2351ca987e:
+    id: 8af52ab9-3791-4946-9df0-ba2351ca987e
+    content: Review findings
+    children:
+      - b5e9d3b8-c4b7-4746-82cd-a46d87276211
+      - a8564c07-cde8-44dd-b28e-6b5553578603
+      - 43a1327a-c7fa-4c92-8431-a6e6c78ce1d8
+      - ae77241c-3509-43e3-9989-d4d615868e77
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b5e9d3b8-c4b7-4746-82cd-a46d87276211:
+    id: b5e9d3b8-c4b7-4746-82cd-a46d87276211
+    content: The autonomous-collaboration path already has an equivalent toast ("A session completed in another file") in useFeedbackClipboard.ts; this story extends the same pattern to the manual collaborate path
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a8564c07-cde8-44dd-b28e-6b5553578603:
+    id: a8564c07-cde8-44dd-b28e-6b5553578603
+    content: 'Small implementation scope: gate the call to handleFeedbackContent on activeFilePath matching the feedback''s owning file, and show a toast otherwise'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  43a1327a-c7fa-4c92-8431-a6e6c78ce1d8:
+    id: 43a1327a-c7fa-4c92-8431-a6e6c78ce1d8
+    content: Reuses feedbackTreeStore (keyed per file), so panel content is already properly scoped; just avoid opening the UI in the wrong file
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ae77241c-3509-43e3-9989-d4d615868e77:
+    id: ae77241c-3509-43e3-9989-d4d615868e77
+    content: 'ROI: high value, low complexity'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2b73c8e1-8515-4a38-a966-2760d90461c2:
+    id: 2b73c8e1-8515-4a38-a966-2760d90461c2
+    content: Notes
+    children:
+      - afc5b9ce-acd7-4d4e-97bd-e332413176ba
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  afc5b9ce-acd7-4d4e-97bd-e332413176ba:
+    id: afc5b9ce-acd7-4d4e-97bd-e332413176ba
+    content: The "panel opens when user switches to owning file" and "panel opens when owning file is opened" criteria were not verified — the existing per-file panel persistence should already handle this via fileStates, but I did not write an integration test exercising the full switch-back flow. Manual QA recommended.
+    children: []
+    metadata:
+      status: pending
       expanded: true
       deleted: false
       plugins: {}
