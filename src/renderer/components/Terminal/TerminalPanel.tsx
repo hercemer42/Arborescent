@@ -7,13 +7,16 @@ import './TerminalPanel.css';
 import { useTerminalPanel } from './hooks/useTerminalPanel';
 
 export function TerminalPanel() {
-  const { terminals, activeTerminalId, setActiveTerminal, togglePinnedToBottom } = useTerminalStore();
+  const { terminals, activeTerminalId, setActiveTerminal, togglePinnedToBottom, fileStates } = useTerminalStore();
   const panelPosition = usePanelStore((state) => state.panelPosition);
   const togglePanelPosition = usePanelStore((state) => state.togglePanelPosition);
   const { handleNewTerminal, handleCloseTerminal } = useTerminalPanel();
 
   const activeTerminal = terminals.find((t) => t.id === activeTerminalId);
   const isPinned = activeTerminal?.pinnedToBottom ?? true;
+
+  // Keep every file's xterm mounted so buffers survive file switches — unmounting would dispose them.
+  const allTerminals = Object.values(fileStates ?? {}).flatMap((state) => state.terminals);
 
   return (
     <div className="terminal-panel">
@@ -53,7 +56,7 @@ export function TerminalPanel() {
       </div>
 
       <div className="terminal-content">
-        {terminals.map((term) => (
+        {allTerminals.map((term) => (
           <div
             key={term.id}
             className="terminal-wrapper"

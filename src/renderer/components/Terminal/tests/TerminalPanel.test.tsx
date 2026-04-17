@@ -58,6 +58,7 @@ describe('TerminalPanel', () => {
       terminals: [],
       activeTerminalId: null,
       setActiveTerminal: vi.fn(),
+      fileStates: {},
     });
 
     render(<TerminalPanel />);
@@ -76,6 +77,7 @@ describe('TerminalPanel', () => {
       terminals: mockTerminals,
       activeTerminalId: 'term-1',
       setActiveTerminal: vi.fn(),
+      fileStates: { '/current.arbo': { terminals: mockTerminals, activeTerminalId: 'term-1' } },
     });
 
     render(<TerminalPanel />);
@@ -94,6 +96,7 @@ describe('TerminalPanel', () => {
       terminals: mockTerminals,
       activeTerminalId: 'term-1',
       setActiveTerminal: vi.fn(),
+      fileStates: { '/current.arbo': { terminals: mockTerminals, activeTerminalId: 'term-1' } },
     });
 
     const { container } = render(<TerminalPanel />);
@@ -114,6 +117,7 @@ describe('TerminalPanel', () => {
       terminals: mockTerminals,
       activeTerminalId: 'term-1',
       setActiveTerminal: mockSetActiveTerminal,
+      fileStates: { '/current.arbo': { terminals: mockTerminals, activeTerminalId: 'term-1' } },
     });
 
     render(<TerminalPanel />);
@@ -133,6 +137,7 @@ describe('TerminalPanel', () => {
       terminals: mockTerminals,
       activeTerminalId: 'term-1',
       setActiveTerminal: vi.fn(),
+      fileStates: { '/current.arbo': { terminals: mockTerminals, activeTerminalId: 'term-1' } },
     });
 
     render(<TerminalPanel />);
@@ -144,10 +149,12 @@ describe('TerminalPanel', () => {
   });
 
   it('should show correct toggle button icon for bottom panel', () => {
+    const mockTerminals = [{ id: 'term-1', title: 'Terminal 1', cwd: '/home', shellCommand: 'bash', shellArgs: [] }];
     (useTerminalStore as unknown as ReturnType<typeof vi.fn>).mockReturnValue({
-      terminals: [{ id: 'term-1', title: 'Terminal 1', cwd: '/home', shellCommand: 'bash', shellArgs: [] }],
+      terminals: mockTerminals,
       activeTerminalId: 'term-1',
       setActiveTerminal: vi.fn(),
+      fileStates: { '/current.arbo': { terminals: mockTerminals, activeTerminalId: 'term-1' } },
     });
 
     // Default mock already has panelPosition: 'bottom'
@@ -158,10 +165,12 @@ describe('TerminalPanel', () => {
   });
 
   it('should show correct toggle button icon for side panel', () => {
+    const mockTerminals = [{ id: 'term-1', title: 'Terminal 1', cwd: '/home', shellCommand: 'bash', shellArgs: [] }];
     (useTerminalStore as unknown as ReturnType<typeof vi.fn>).mockReturnValue({
-      terminals: [{ id: 'term-1', title: 'Terminal 1', cwd: '/home', shellCommand: 'bash', shellArgs: [] }],
+      terminals: mockTerminals,
       activeTerminalId: 'term-1',
       setActiveTerminal: vi.fn(),
+      fileStates: { '/current.arbo': { terminals: mockTerminals, activeTerminalId: 'term-1' } },
     });
 
     // Override panel position to side

@@ -64,7 +64,8 @@ describe('TerminalPanel — tab switching visibility', () => {
 
   function setupStore(
     terminals: ReturnType<typeof makeTerminals>,
-    activeId: string | null
+    activeId: string | null,
+    extraFileStates: Record<string, { terminals: ReturnType<typeof makeTerminals>; activeTerminalId: string | null }> = {}
   ) {
     mockSetActiveTerminal = vi.fn();
     mockTogglePinnedToBottom = vi.fn();
@@ -73,6 +74,10 @@ describe('TerminalPanel — tab switching visibility', () => {
       activeTerminalId: activeId,
       setActiveTerminal: mockSetActiveTerminal,
       togglePinnedToBottom: mockTogglePinnedToBottom,
+      fileStates: {
+        '/current.arbo': { terminals, activeTerminalId: activeId },
+        ...extraFileStates,
+      },
     });
   }
 
@@ -187,6 +192,7 @@ describe('TerminalPanel — tab switching visibility', () => {
         activeTerminalId: 't1',
         setActiveTerminal: mockSetActiveTerminal,
         togglePinnedToBottom: mockTogglePinnedToBottom,
+        fileStates: { '/current.arbo': { terminals, activeTerminalId: 't1' } },
       });
       const { container, rerender } = render(<TerminalPanel />);
 
@@ -195,6 +201,7 @@ describe('TerminalPanel — tab switching visibility', () => {
         activeTerminalId: 't2',
         setActiveTerminal: mockSetActiveTerminal,
         togglePinnedToBottom: mockTogglePinnedToBottom,
+        fileStates: { '/current.arbo': { terminals, activeTerminalId: 't2' } },
       });
       rerender(<TerminalPanel />);
 
@@ -210,6 +217,7 @@ describe('TerminalPanel — tab switching visibility', () => {
         activeTerminalId: 't1',
         setActiveTerminal: mockSetActiveTerminal,
         togglePinnedToBottom: mockTogglePinnedToBottom,
+        fileStates: { '/current.arbo': { terminals, activeTerminalId: 't1' } },
       });
       const { container, rerender } = render(<TerminalPanel />);
 
@@ -218,6 +226,7 @@ describe('TerminalPanel — tab switching visibility', () => {
         activeTerminalId: 't2',
         setActiveTerminal: mockSetActiveTerminal,
         togglePinnedToBottom: mockTogglePinnedToBottom,
+        fileStates: { '/current.arbo': { terminals, activeTerminalId: 't2' } },
       });
       rerender(<TerminalPanel />);
 
@@ -233,6 +242,7 @@ describe('TerminalPanel — tab switching visibility', () => {
           activeTerminalId: activeId,
           setActiveTerminal: mockSetActiveTerminal,
           togglePinnedToBottom: mockTogglePinnedToBottom,
+          fileStates: { '/current.arbo': { terminals, activeTerminalId: activeId } },
         });
         const { container, unmount } = render(<TerminalPanel />);
         const visible = container.querySelectorAll('[style*="display: block"]');
@@ -249,6 +259,7 @@ describe('TerminalPanel — tab switching visibility', () => {
         activeTerminalId: 't2',
         setActiveTerminal: mockSetActiveTerminal,
         togglePinnedToBottom: mockTogglePinnedToBottom,
+        fileStates: { '/current.arbo': { terminals, activeTerminalId: 't2' } },
       });
       const { container } = render(<TerminalPanel />);
       const wrappers = container.querySelectorAll('.terminal-wrapper');
@@ -266,12 +277,50 @@ describe('TerminalPanel — tab switching visibility', () => {
           activeTerminalId: activeId,
           setActiveTerminal: mockSetActiveTerminal,
           togglePinnedToBottom: mockTogglePinnedToBottom,
+          fileStates: { '/current.arbo': { terminals, activeTerminalId: activeId } },
         });
         const { container, unmount } = render(<TerminalPanel />);
         const visible = container.querySelectorAll('[style*="display: block"]');
         expect(visible).toHaveLength(1);
         unmount();
       }
+    });
+  });
+
+  describe('cross-file rendering preserves xterm instances across file switches', () => {
+    it('renders terminals from every open file, not just the current file', () => {
+      const currentTerminals = makeTerminals('cur-1');
+      const otherTerminals = makeTerminals('other-1', 'other-2');
+      setupStore(currentTerminals, 'cur-1', {
+        '/other.arbo': { terminals: otherTerminals, activeTerminalId: 'other-1' },
+      });
+      render(<TerminalPanel />);
+      expect(screen.getByTestId('terminal-cur-1')).toBeInTheDocument();
+      expect(screen.getByTestId('terminal-other-1')).toBeInTheDocument();
+      expect(screen.getByTestId('terminal-other-2')).toBeInTheDocument();
+    });
+
+    it('shows only the current file\'s active terminal, hiding other files\' terminals', () => {
+      const currentTerminals = makeTerminals('cur-1');
+      const otherTerminals = makeTerminals('other-1');
+      setupStore(currentTerminals, 'cur-1', {
+        '/other.arbo': { terminals: otherTerminals, activeTerminalId: 'other-1' },
+      });
+      const { container } = render(<TerminalPanel />);
+      const visible = container.querySelectorAll('[style*="display: block"]');
+      expect(visible).toHaveLength(1);
+      const hidden = container.querySelectorAll('[style*="display: none"]');
+      expect(hidden).toHaveLength(1);
+    });
+
+    it('tab bar shows only the current file\'s terminals, not other files\'', () => {
+      const currentTerminals = makeTerminals('cur-1');
+      const otherTerminals = makeTerminals('other-1', 'other-2');
+      setupStore(currentTerminals, 'cur-1', {
+        '/other.arbo': { terminals: otherTerminals, activeTerminalId: 'other-1' },
+      });
+      render(<TerminalPanel />);
+      expect(screen.queryAllByText(/^Tab: /)).toHaveLength(1);
     });
   });
 

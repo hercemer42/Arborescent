@@ -97,10 +97,20 @@ export function useTerminal({ id, pinnedToBottom = true, onResize }: UseTerminal
     });
 
     // Listen for PTY output
+    let firstDataReceived = false;
     const removeDataListener = window.electron.onTerminalData(id, (data) => {
       xterm.write(data);
       if (pinnedToBottomRef.current) {
         xterm.scrollToBottom();
+      }
+      if (!firstDataReceived) {
+        firstDataReceived = true;
+        // xterm's first render after open() can miss the initial write — otherwise the terminal stays blank on launch.
+        requestAnimationFrame(() => {
+          if (xtermRef.current && xtermRef.current.rows > 0) {
+            xtermRef.current.refresh(0, xtermRef.current.rows - 1);
+          }
+        });
       }
     });
 
@@ -127,15 +137,12 @@ export function useTerminal({ id, pinnedToBottom = true, onResize }: UseTerminal
         }
         fitAddon.fit();
         const { cols, rows } = xterm;
-        if (wasHiddenRef.current) {
+        if (wasHiddenRef.current && rows > 0) {
           wasHiddenRef.current = false;
-          // Container just became visible after being hidden — force PTY redraw
-          window.electron.terminalResize(id, cols - 1, rows).then(() => {
-            window.electron.terminalResize(id, cols, rows);
-          });
-        } else {
-          window.electron.terminalResize(id, cols, rows);
+          // display:none leaves xterm's renderer stale — repaint the buffer rather than relying on the inner process reacting to SIGWINCH.
+          xterm.refresh(0, rows - 1);
         }
+        window.electron.terminalResize(id, cols, rows);
         onResize?.(cols, rows);
       });
     };
@@ -150,8 +157,7 @@ export function useTerminal({ id, pinnedToBottom = true, onResize }: UseTerminal
     // Also listen to window resize
     window.addEventListener('resize', handleResize);
 
-    // Force PTY to redraw by briefly changing dimensions then restoring,
-    // so the shell reprints its prompt after this component remounts
+    // Initial prompt may land before onTerminalData attaches — SIGWINCH forces the shell to reprint.
     fitAddon.fit();
     const { cols, rows } = xterm;
     window.electron.terminalResize(id, cols - 1, rows).then(() => {

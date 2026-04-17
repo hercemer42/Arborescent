@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-04-15T14:27:52.758Z'
+updated: '2026-04-17T06:04:40.417Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -8826,9 +8826,10 @@ nodes:
       expanded: true
   ce9cfecb-f289-494b-8ff2-482e4b29d193:
     id: ce9cfecb-f289-494b-8ff2-482e4b29d193
-    content: All the automated tests are updated and passing
+    content: All the automated tests related to the changes are updated and passing
     children:
       - bbe17f66-d747-4cf0-8602-721ce87663fe
+      - e9c634a2-2193-4a10-b0fc-9d6a5806fce3
     metadata:
       status: pending
       expanded: true
@@ -8838,7 +8839,7 @@ nodes:
       isContextDeclaration: false
   d297e25a-add5-474b-af7a-1c130eab9930:
     id: d297e25a-add5-474b-af7a-1c130eab9930
-    content: There are no linting errors
+    content: There are no linting errors in the changed or new files only
     children: []
     metadata:
       status: pending
@@ -8849,7 +8850,7 @@ nodes:
       isContextDeclaration: false
   1dafbd35-70a1-4920-ba69-c61e7d5dbc8a:
     id: 1dafbd35-70a1-4920-ba69-c61e7d5dbc8a
-    content: There are no typescript errors
+    content: There are no typescript errors in the changed or new files only
     children: []
     metadata:
       status: pending
@@ -8862,6 +8863,7 @@ nodes:
     id: 79b693ca-27ce-4410-8617-8092d7e81b07
     content: Issues
     children:
+      - 577237e9-bfe3-4006-aa0a-6b02b0c61d7c
       - 43378d90-93fd-4256-b0bd-b467144dd1dd
       - eaa4fec4-a897-46c1-9498-02fdfb5e442c
       - 15974593-af5a-4c3e-b454-539a4f99d9c7
@@ -8882,7 +8884,7 @@ nodes:
       blueprintIcon: TriangleAlert
       blueprintColor: '#ef4444'
       appliedContextId: 6690289a-e02f-48bc-9225-a1083b7b324f
-      expanded: false
+      expanded: true
   aff16275-6d8e-49c9-b862-76875858d4af:
     id: aff16275-6d8e-49c9-b862-76875858d4af
     content: Avoid adding comments specific to the bug fix unless really needed
@@ -77065,3 +77067,30 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
+  577237e9-bfe3-4006-aa0a-6b02b0c61d7c:
+    id: 577237e9-bfe3-4006-aa0a-6b02b0c61d7c
+    content: Toast messages make the current panel lose focus
+    children:
+      - 36b554bf-6722-460a-8ac2-2ae6262d9cd6
+      - c22291f5-ac61-4b85-8832-be9bef82ba5b
+    metadata:
+      status: pending
+  36b554bf-6722-460a-8ac2-2ae6262d9cd6:
+    id: 36b554bf-6722-460a-8ac2-2ae6262d9cd6
+    content: For instance if we're in terminal and there is a toast message, the focus goes back to the node tree
+    children: []
+    metadata:
+      status: pending
+  c22291f5-ac61-4b85-8832-be9bef82ba5b:
+    id: c22291f5-ac61-4b85-8832-be9bef82ba5b
+    content: Result is if we were typing in terminal, the typing happens in the node tree - potentially destructive
+    children: []
+    metadata:
+      status: pending
+  e9c634a2-2193-4a10-b0fc-9d6a5806fce3:
+    id: e9c634a2-2193-4a10-b0fc-9d6a5806fce3
+    content: Only run tests for changed or new files
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
