@@ -61,6 +61,8 @@ contextBridge.exposeInMainWorld('electron', {
     ipcRenderer.invoke('terminal:resize', id, cols, rows),
   terminalDestroy: (id: string) =>
     ipcRenderer.invoke('terminal:destroy', id),
+  terminalGetCwd: (id: string) =>
+    ipcRenderer.invoke('terminal:get-cwd', id),
   onTerminalData: (id: string, callback: (data: string) => void) => {
     const channel = `terminal:data:${id}`;
     const listener = (_event: Electron.IpcRendererEvent, data: string) => callback(data);

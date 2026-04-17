@@ -88,6 +88,18 @@ export function registerTerminalHandlers(
   );
 
   ipcMain.handle(
+    'terminal:get-cwd',
+    async (_event: IpcMainInvokeEvent, id: string): Promise<string | null> => {
+      try {
+        return await TerminalManager.getCwd(id);
+      } catch (error) {
+        logger.error(`Failed to get cwd for terminal ${id}`, error as Error, 'Terminal IPC');
+        return null;
+      }
+    }
+  );
+
+  ipcMain.handle(
     'terminal:destroy',
     async (_event: IpcMainInvokeEvent, id: string): Promise<void> => {
       try {

@@ -116,6 +116,7 @@ global.window.electron = {
   terminalWrite: vi.fn(),
   terminalResize: vi.fn(),
   terminalDestroy: vi.fn(),
+  terminalGetCwd: vi.fn().mockResolvedValue(null),
   onTerminalData: vi.fn().mockReturnValue(vi.fn()),
   onTerminalExit: vi.fn().mockReturnValue(vi.fn()),
   onContextMenuParams: vi.fn().mockReturnValue(vi.fn()),

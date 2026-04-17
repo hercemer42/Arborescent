@@ -64,16 +64,29 @@ const storage = new StorageService();
 
 const MAX_RESTORED_TERMINALS_PER_FILE = 5;
 
-function buildTerminalSession(fileStates: Record<string, FileTerminalState>): TerminalSession {
+async function refreshLiveCwd(terminal: TerminalInfo): Promise<string> {
+  try {
+    const liveCwd = await window.electron.terminalGetCwd(terminal.id);
+    return liveCwd ?? terminal.cwd;
+  } catch {
+    return terminal.cwd;
+  }
+}
+
+async function buildTerminalSession(
+  fileStates: Record<string, FileTerminalState>,
+): Promise<TerminalSession> {
   const sessionFileStates: TerminalSession['fileStates'] = {};
   for (const [filePath, state] of Object.entries(fileStates)) {
     if (state.terminals.length === 0 && !state.pendingRestore?.length) continue;
-    const terminals: TerminalSessionEntry[] = state.terminals.map(t => ({
-      title: t.title,
-      cwd: t.cwd,
-    }));
+    const terminals: TerminalSessionEntry[] = await Promise.all(
+      state.terminals.map(async (t) => ({
+        title: t.title,
+        cwd: await refreshLiveCwd(t),
+      })),
+    );
     const activeIndex = state.activeTerminalId
-      ? state.terminals.findIndex(t => t.id === state.activeTerminalId)
+      ? state.terminals.findIndex((t) => t.id === state.activeTerminalId)
       : -1;
     sessionFileStates[filePath] = {
       terminals,
@@ -85,7 +98,8 @@ function buildTerminalSession(fileStates: Record<string, FileTerminalState>): Te
 
 async function saveTerminalSession(fileStates: Record<string, FileTerminalState>): Promise<void> {
   try {
-    await storage.saveTerminalSession(buildTerminalSession(fileStates));
+    const session = await buildTerminalSession(fileStates);
+    await storage.saveTerminalSession(session);
   } catch (error) {
     logger.error('Failed to save terminal session', error as Error, 'TerminalStore');
   }

@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-04-17T06:52:45.681Z'
+updated: '2026-04-17T07:10:58.443Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -590,7 +590,7 @@ nodes:
       - e91d842b-d982-4f8b-a3c5-7f0a42c95604
     metadata:
       status: pending
-      expanded: false
+      expanded: true
       isBlueprint: true
       blueprintIcon: Brain
       blueprintColor: '#0ea5e9'
@@ -5599,6 +5599,7 @@ nodes:
     children:
       - 64ec6c6b-566e-4956-bff9-55ac881f4fdb
       - 75556cda-47e6-45d5-ad2d-12689057427e
+      - 0dcbad15-d754-424b-a488-599c475e38f4
       - 22a32663-eb92-44e0-a844-d6219409f63b
       - 9b46397c-c452-421c-b408-46b040d99c9e
       - 4c3f0d67-a500-484f-8ccb-5dbf959ea27f
@@ -34492,6 +34493,7 @@ nodes:
     id: 13c5048b-15eb-4989-a6fc-25032e5c131f
     content: Problems
     children:
+      - 9836b130-c7d1-45db-8d6d-2343e8d17cea
       - 97f0bf21-0dd7-4a34-b2dd-a96a1efbf795
       - 23d3e853-f5b0-42aa-b5c9-acd01da1f0f6
       - 356e205f-2ec6-4271-b7cb-1657c6229a2d
@@ -35463,6 +35465,7 @@ nodes:
       - 87a11a28-4295-467f-ac54-746692494413
       - 00714a63-f267-4ab1-a285-73ae4198eb42
       - b38966d3-b238-4d64-9eed-74d4ab983c28
+      - 8de775f0-54d7-4c91-9488-b48f77a3a9ea
       - 9a392715-9ea2-4269-b35c-812b8998e3ec
       - c25cf481-a0d1-495d-9cea-498f1135eb8c
       - 6d973cbb-3c7c-4ac4-925d-ffd5d659332c
@@ -77124,3 +77127,50 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
+  9836b130-c7d1-45db-8d6d-2343e8d17cea:
+    id: 9836b130-c7d1-45db-8d6d-2343e8d17cea
+    content: If we are focused in xterm, then move to another window in the OS, then move back to Arborescent, xterm is no longer focused.
+    children:
+      - e5200f3d-767f-436a-9db7-f325e0196e3c
+      - f9a3da60-a36b-4861-8fb7-596c21e13fc5
+    metadata:
+      status: pending
+  e5200f3d-767f-436a-9db7-f325e0196e3c:
+    id: e5200f3d-767f-436a-9db7-f325e0196e3c
+    content: I assume the same is true for the feedback panel
+    children: []
+    metadata:
+      status: pending
+  f9a3da60-a36b-4861-8fb7-596c21e13fc5:
+    id: f9a3da60-a36b-4861-8fb7-596c21e13fc5
+    content: When we switch to and from Arborescent we should focus on the previously focused panel or tree
+    children: []
+    metadata:
+      status: pending
+  8de775f0-54d7-4c91-9488-b48f77a3a9ea:
+    id: 8de775f0-54d7-4c91-9488-b48f77a3a9ea
+    content: Worktree creation
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+      stepType: autonomous
+  0dcbad15-d754-424b-a488-599c475e38f4:
+    id: 0dcbad15-d754-424b-a488-599c475e38f4
+    content: Worktree creation
+    children:
+      - e4c31fda-141a-4962-9ada-d427a78854d4
+    metadata:
+      status: pending
+      isBlueprint: true
+      blueprintIcon: FolderTree
+      blueprintColor: '#f97316'
+      isContextDeclaration: true
+      contextMode: collaborate
+  e4c31fda-141a-4962-9ada-d427a78854d4:
+    id: e4c31fda-141a-4962-9ada-d427a78854d4
+    content: Make a new worktree for this feature
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true

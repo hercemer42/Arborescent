@@ -2,6 +2,7 @@ import * as pty from 'node-pty';
 import * as os from 'os';
 import { execSync } from 'child_process';
 import { logger } from './logger';
+import { processCwdReader, ProcessCwdReader } from './processCwd';
 
 export interface Terminal {
   id: string;
@@ -41,6 +42,11 @@ const { shell: defaultShell, args: defaultShellArgs } = isWindows
 
 class TerminalManagerClass {
   private terminals: Map<string, Terminal> = new Map();
+  private cwdReader: ProcessCwdReader = processCwdReader;
+
+  setCwdReader(reader: ProcessCwdReader): void {
+    this.cwdReader = reader;
+  }
 
   create(
     id: string,
@@ -115,6 +121,19 @@ class TerminalManagerClass {
 
   get(id: string): Terminal | undefined {
     return this.terminals.get(id);
+  }
+
+  async getCwd(id: string): Promise<string | null> {
+    const terminal = this.terminals.get(id);
+    if (!terminal) return null;
+    const pid = terminal.ptyProcess.pid;
+    if (typeof pid !== 'number') return terminal.cwd;
+    const liveCwd = await this.cwdReader.read(pid);
+    if (liveCwd) {
+      terminal.cwd = liveCwd;
+      return liveCwd;
+    }
+    return terminal.cwd;
   }
 
   destroyAll(): void {

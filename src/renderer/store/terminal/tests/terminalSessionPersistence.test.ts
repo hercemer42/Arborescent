@@ -58,7 +58,7 @@ describe('terminal session per-file persistence', () => {
   });
 
   describe('saveTerminalSession saves per-file metadata', () => {
-    it('should save fileStates with title and cwd for each terminal per file', () => {
+    it('should save fileStates with title and cwd for each terminal per file', async () => {
       useTerminalStore.getState().setActiveFile('/project-a.arbo');
       useTerminalStore.getState().addTerminal({
         id: 'term-1', title: 'Terminal', cwd: '/home/user',
@@ -75,6 +75,7 @@ describe('terminal session per-file persistence', () => {
         shellCommand: '/bin/bash', shellArgs: [], pinnedToBottom: true,
       });
 
+      await vi.waitFor(() => expect(mockSaveTerminalSession).toHaveBeenCalled());
       const lastCall = mockSaveTerminalSession.mock.calls[mockSaveTerminalSession.mock.calls.length - 1][0];
       expect(lastCall.fileStates['/project-a.arbo'].terminals).toHaveLength(2);
       expect(lastCall.fileStates['/project-a.arbo'].terminals[0]).toEqual(
@@ -86,7 +87,7 @@ describe('terminal session per-file persistence', () => {
       expect(lastCall.fileStates['/project-b.arbo'].terminals).toHaveLength(1);
     });
 
-    it('should save activeTerminalIndex based on which terminal is active', () => {
+    it('should save activeTerminalIndex based on which terminal is active', async () => {
       useTerminalStore.getState().setActiveFile('/a.arbo');
       useTerminalStore.getState().addTerminal({
         id: 'term-1', title: 'First', cwd: '/',
@@ -96,19 +97,20 @@ describe('terminal session per-file persistence', () => {
         id: 'term-2', title: 'Second', cwd: '/',
         shellCommand: '/bin/bash', shellArgs: [], pinnedToBottom: true,
       });
-      // addTerminal sets the new terminal as active, so term-2 should be active (index 1)
 
+      await vi.waitFor(() => expect(mockSaveTerminalSession).toHaveBeenCalled());
       const lastCall = mockSaveTerminalSession.mock.calls[mockSaveTerminalSession.mock.calls.length - 1][0];
       expect(lastCall.fileStates['/a.arbo'].activeTerminalIndex).toBe(1);
     });
 
-    it('should not include ephemeral fields like id, shellCommand, shellArgs, pinnedToBottom', () => {
+    it('should not include ephemeral fields like id, shellCommand, shellArgs, pinnedToBottom', async () => {
       useTerminalStore.getState().setActiveFile('/a.arbo');
       useTerminalStore.getState().addTerminal({
         id: 'term-1', title: 'Terminal', cwd: '/home',
         shellCommand: '/bin/zsh', shellArgs: ['-i'], pinnedToBottom: true,
       });
 
+      await vi.waitFor(() => expect(mockSaveTerminalSession).toHaveBeenCalled());
       const lastCall = mockSaveTerminalSession.mock.calls[mockSaveTerminalSession.mock.calls.length - 1][0];
       const savedTerminal = lastCall.fileStates['/a.arbo'].terminals[0];
       expect(savedTerminal).not.toHaveProperty('id');
@@ -283,14 +285,14 @@ describe('terminal session per-file persistence', () => {
   });
 
   describe('terminal mutations trigger saveTerminalSession', () => {
-    it('should save session when a terminal is added', () => {
+    it('should save session when a terminal is added', async () => {
       useTerminalStore.getState().setActiveFile('/a.arbo');
       useTerminalStore.getState().addTerminal({
         id: 'term-1', title: 'Terminal', cwd: '/',
         shellCommand: '/bin/bash', shellArgs: [], pinnedToBottom: true,
       });
 
-      expect(mockSaveTerminalSession).toHaveBeenCalled();
+      await vi.waitFor(() => expect(mockSaveTerminalSession).toHaveBeenCalled());
     });
 
     it('should save session when a terminal is closed', async () => {
@@ -319,17 +321,18 @@ describe('terminal session per-file persistence', () => {
       expect(mockSaveTerminalSession).toHaveBeenCalled();
     });
 
-    it('should save session when a terminal is removed', () => {
+    it('should save session when a terminal is removed', async () => {
       useTerminalStore.getState().setActiveFile('/a.arbo');
       useTerminalStore.getState().addTerminal({
         id: 'term-1', title: 'Terminal', cwd: '/',
         shellCommand: '/bin/bash', shellArgs: [], pinnedToBottom: true,
       });
+      await vi.waitFor(() => expect(mockSaveTerminalSession).toHaveBeenCalled());
       mockSaveTerminalSession.mockClear();
 
       useTerminalStore.getState().removeTerminal('term-1');
 
-      expect(mockSaveTerminalSession).toHaveBeenCalled();
+      await vi.waitFor(() => expect(mockSaveTerminalSession).toHaveBeenCalled());
     });
   });
 
