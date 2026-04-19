@@ -1,9 +1,25 @@
 import * as yaml from 'js-yaml';
 import { ArboFile } from '../../shared/types';
 import { StorageService as IStorageService, SessionState, BrowserSession, TerminalSession, PanelSession, UserPreferences } from '../../shared/interfaces';
+import {
+  SessionStateSchema,
+  BrowserSessionSchema,
+  TerminalSessionSchema,
+  PanelSessionSchema,
+  UserPreferencesSchema,
+  TempFilesMetadataSchema,
+  parseOrNull,
+} from '../../shared/schemas';
 import { getNextUntitledNumber } from '../../shared/utils/fileNaming';
 import { reconcileDuplicateChildren } from '../utils/treeInvariants';
 import { logger } from './logger';
+
+function logParseFailure(context: string) {
+  return (error: unknown) => {
+    const message = error instanceof Error ? error.message : String(error);
+    logger.warn(`Discarding malformed ${context}: ${message}`, 'StorageService');
+  };
+}
 
 export class StorageService implements IStorageService {
   async loadDocument(filePath: string): Promise<ArboFile> {
@@ -46,12 +62,7 @@ export class StorageService implements IStorageService {
 
   async getSession(): Promise<SessionState | null> {
     const sessionData = await window.electron.getSession();
-    if (!sessionData) return null;
-    try {
-      return JSON.parse(sessionData) as SessionState;
-    } catch {
-      return null;
-    }
+    return parseOrNull(SessionStateSchema, sessionData, logParseFailure('session'));
   }
 
   async createTempFile(data: ArboFile): Promise<string> {
@@ -77,12 +88,7 @@ export class StorageService implements IStorageService {
 
   async getTempFiles(): Promise<string[]> {
     const metadata = await window.electron.getTempFilesMetadata();
-    if (!metadata) return [];
-    try {
-      return JSON.parse(metadata) as string[];
-    } catch {
-      return [];
-    }
+    return parseOrNull(TempFilesMetadataSchema, metadata, logParseFailure('temp files metadata')) ?? [];
   }
 
   async isTempFile(filePath: string): Promise<boolean> {
@@ -109,12 +115,7 @@ export class StorageService implements IStorageService {
 
   async getTerminalSession(): Promise<TerminalSession | null> {
     const sessionData = await window.electron.getTerminalSession();
-    if (!sessionData) return null;
-    try {
-      return JSON.parse(sessionData) as TerminalSession;
-    } catch {
-      return null;
-    }
+    return parseOrNull(TerminalSessionSchema, sessionData, logParseFailure('terminal session'));
   }
 
   async saveBrowserSession(session: BrowserSession): Promise<void> {
@@ -124,12 +125,7 @@ export class StorageService implements IStorageService {
 
   async getBrowserSession(): Promise<BrowserSession | null> {
     const sessionData = await window.electron.getBrowserSession();
-    if (!sessionData) return null;
-    try {
-      return JSON.parse(sessionData) as BrowserSession;
-    } catch {
-      return null;
-    }
+    return parseOrNull(BrowserSessionSchema, sessionData, logParseFailure('browser session'));
   }
 
   async savePanelSession(session: PanelSession): Promise<void> {
@@ -139,12 +135,7 @@ export class StorageService implements IStorageService {
 
   async getPanelSession(): Promise<PanelSession | null> {
     const sessionData = await window.electron.getPanelSession();
-    if (!sessionData) return null;
-    try {
-      return JSON.parse(sessionData) as PanelSession;
-    } catch {
-      return null;
-    }
+    return parseOrNull(PanelSessionSchema, sessionData, logParseFailure('panel session'));
   }
 
   async savePreferences(preferences: UserPreferences): Promise<void> {
@@ -154,11 +145,6 @@ export class StorageService implements IStorageService {
 
   async getPreferences(): Promise<UserPreferences | null> {
     const preferencesData = await window.electron.getPreferences();
-    if (!preferencesData) return null;
-    try {
-      return JSON.parse(preferencesData) as UserPreferences;
-    } catch {
-      return null;
-    }
+    return parseOrNull(UserPreferencesSchema, preferencesData, logParseFailure('user preferences'));
   }
 }
