@@ -1,4 +1,4 @@
-import { app, BrowserWindow, ipcMain } from 'electron';
+import { app, BrowserWindow } from 'electron';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import started from 'electron-squirrel-startup';
@@ -26,14 +26,6 @@ let hookServer: HookServer | null = null;
 
 const DEFAULT_HOOK_PORT = 17832;
 const hookAuthToken = crypto.randomUUID();
-
-ipcMain.handle('replace-misspelling', (_event, suggestion: string) => {
-  mainWindow?.webContents.replaceMisspelling(suggestion);
-});
-
-ipcMain.handle('app-quit', () => {
-  app.quit();
-});
 
 const createWindow = async () => {
   await registerIpcHandlers(() => mainWindow);
