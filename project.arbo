@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-04-19T22:24:31.801Z'
+updated: '2026-04-19T22:34:41.407Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -33403,9 +33403,6 @@ nodes:
       - 413a84b6-97e7-4963-81ca-6667f2136d9a
       - 28b63463-b046-4ed0-ab09-942c8b933875
       - 4446dd01-7caf-4953-8dd2-36153adb9cfa
-      - 9692fa14-b407-4595-8af9-30f68e3b0d1a
-      - 664f4e01-f14c-4f67-bc1a-fd08bd179bd1
-      - 005c8b90-d200-4c09-b066-3a01c83f917d
       - 81e4a4b6-287a-48c4-a5c5-78ff927403d3
       - e094e099-58f1-48a7-9bdb-323942f529d4
       - b82ab806-5034-47b1-8fbc-7b388030b107
@@ -33417,36 +33414,6 @@ nodes:
       isBlueprint: true
       blueprintIcon: FileWarning
       blueprintColor: '#f97316'
-  664f4e01-f14c-4f67-bc1a-fd08bd179bd1:
-    id: 664f4e01-f14c-4f67-bc1a-fd08bd179bd1
-    content: Can't decompose one node into several in feedback panel
-    children:
-      - 64f6f0d4-108c-4438-aaea-71765dd69d8d
-    metadata:
-      status: pending
-      expanded: false
-  64f6f0d4-108c-4438-aaea-71765dd69d8d:
-    id: 64f6f0d4-108c-4438-aaea-71765dd69d8d
-    content: Needed for decomposition of user stories
-    children: []
-    metadata:
-      status: pending
-  005c8b90-d200-4c09-b066-3a01c83f917d:
-    id: 005c8b90-d200-4c09-b066-3a01c83f917d
-    content: No way to create a new node during collaboration
-    children:
-      - d44c969e-222f-4e0a-8241-a694bbced60e
-      - 4deb09ef-41e9-49b7-b442-5a5c7d28a9df
-      - b5a42c99-f6b3-4724-9973-1bbe56c93ddd
-    metadata:
-      status: pending
-      expanded: false
-  d44c969e-222f-4e0a-8241-a694bbced60e:
-    id: d44c969e-222f-4e0a-8241-a694bbced60e
-    content: For instance, we might want to transform a problem statement into user stories but keep both
-    children: []
-    metadata:
-      status: pending
   81e4a4b6-287a-48c4-a5c5-78ff927403d3:
     id: 81e4a4b6-287a-48c4-a5c5-78ff927403d3
     content: No way to auto accept feedback for automated collaboration tasks
@@ -33456,7 +33423,7 @@ nodes:
       - a394fabf-95f4-459e-a3bb-4a0c216bc001
     metadata:
       status: pending
-      expanded: false
+      expanded: true
   11665bc6-d5cd-4576-92ea-e47940c2cdbf:
     id: 11665bc6-d5cd-4576-92ea-e47940c2cdbf
     content: Currently requires user confirmation
@@ -33474,12 +33441,6 @@ nodes:
     content: Find a non destructive way to do it
     children:
       - 6e4863de-57a4-44a7-81b1-902cb7ac6581
-    metadata:
-      status: pending
-  4deb09ef-41e9-49b7-b442-5a5c7d28a9df:
-    id: 4deb09ef-41e9-49b7-b442-5a5c7d28a9df
-    content: Make a system of inputs/outputs
-    children: []
     metadata:
       status: pending
   84f82fb1-a98d-4b2d-8ea0-3005c3d1f252:
@@ -33597,12 +33558,6 @@ nodes:
       status: pending
       isHyperlink: true
       linkedNodeId: 005c8b90-d200-4c09-b066-3a01c83f917d
-  b5a42c99-f6b3-4724-9973-1bbe56c93ddd:
-    id: b5a42c99-f6b3-4724-9973-1bbe56c93ddd
-    content: Add a hyperlink to each from each
-    children: []
-    metadata:
-      status: pending
   49996e08-2973-475c-8aaa-6aedeb0a4929:
     id: 49996e08-2973-475c-8aaa-6aedeb0a4929
     content: Workflows
@@ -36459,20 +36414,6 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  9692fa14-b407-4595-8af9-30f68e3b0d1a:
-    id: 9692fa14-b407-4595-8af9-30f68e3b0d1a
-    content: When there are a lot of contexts, the top of the context menu gets truncated
-    children:
-      - 87bd6b9f-7d94-43be-bb9f-9c17a07567b3
-    metadata:
-      status: pending
-      expanded: false
-  87bd6b9f-7d94-43be-bb9f-9c17a07567b3:
-    id: 87bd6b9f-7d94-43be-bb9f-9c17a07567b3
-    content: Depends on the vertical positioning of the node you are opening the context menu on
-    children: []
-    metadata:
-      status: pending
   486ffdcb-7e45-4cd5-90e5-d4504572d327:
     id: 486ffdcb-7e45-4cd5-90e5-d4504572d327
     content: Problem statement
@@ -41083,6 +41024,7 @@ nodes:
     children:
       - 9b114ae3-8029-449b-aeb7-97991c4f508e
       - 7903f2d5-ff8d-4cdd-afc9-90951bd10007
+      - 05787b3f-79c7-45aa-87df-9bc5435b523d
     metadata:
       status: pending
       expanded: false
@@ -79007,46 +78949,24 @@ nodes:
     metadata:
       status: pending
       expanded: false
-  cd8216ef-0c80-4352-8ba8-57ab8b44a3e9:
-    id: cd8216ef-0c80-4352-8ba8-57ab8b44a3e9
-    content: We might have fixed this
-    children: []
-    metadata:
-      status: pending
-  d33bef9f-5ff9-41e4-9fec-0c5e52fa4ba2:
-    id: d33bef9f-5ff9-41e4-9fec-0c5e52fa4ba2
-    content: Previously, when looking at the YAML, some files carried IDs made from titles instead of UUIDs
-    children: []
-    metadata:
-      status: pending
-  4c90f21e-4b74-4ae1-af0b-2d6a835def41:
-    id: 4c90f21e-4b74-4ae1-af0b-2d6a835def41
-    content: Check the project blueprints folder and the project.arbo
-    children: []
-    metadata:
-      status: pending
-  628e8e02-b781-4528-9454-bffead460dbc:
-    id: 628e8e02-b781-4528-9454-bffead460dbc
-    content: Check if it's still an issue.
-    children: []
-    metadata:
-      status: pending
   5f0b7f1f-6456-491f-8c35-cc9476e973ca:
     id: 5f0b7f1f-6456-491f-8c35-cc9476e973ca
     content: Issue with IDs being made from titles where they should be UUIDs
     children:
-      - cd8216ef-0c80-4352-8ba8-57ab8b44a3e9
-      - d33bef9f-5ff9-41e4-9fec-0c5e52fa4ba2
-      - 4c90f21e-4b74-4ae1-af0b-2d6a835def41
-      - 628e8e02-b781-4528-9454-bffead460dbc
+      - a47d8475-71bc-49e7-a971-bd631b19362e
+      - 18310b6f-7b27-4180-a8ae-ad5d6fcb6a3e
+      - d4e2e1db-f5f8-4d70-98e3-1f2087fcbdef
+      - a39e28c3-5f69-4e7e-a806-37ef8dd982cd
+      - cb691bd6-c554-4cbd-9284-6ccb6a68ece5
     metadata:
-      status: pending
+      status: completed
       expanded: false
+      deleted: false
+      plugins: {}
   60350086-d041-4cac-877c-6bbff90b0da3:
     id: 60350086-d041-4cac-877c-6bbff90b0da3
     content: Technical refinement
     children:
-      - 5f0b7f1f-6456-491f-8c35-cc9476e973ca
       - f639c9d8-6e35-4478-8798-91d8b991ebec
       - 35417e17-964c-43cb-a4f9-6d94474b7319
       - 52a4dc8c-4330-41a8-ad1e-b4d5edc2f4db
@@ -79125,6 +79045,7 @@ nodes:
     children:
       - cde45b6e-32c7-47ca-82cd-f467c0434617
       - e30b1f16-d2c4-46a3-8c9f-15fc02d73bdf
+      - 5f0b7f1f-6456-491f-8c35-cc9476e973ca
     metadata:
       status: pending
       isBlueprint: true
@@ -79479,10 +79400,10 @@ nodes:
     id: e30b1f16-d2c4-46a3-8c9f-15fc02d73bdf
     content: Apply context sub menu is truncating sometimes
     children:
-      - eb24e1d4-bf28-4825-b4d7-78f529dcbf69
-      - ce5bf4bc-194f-42fa-a6f3-758ca2a61c6b
-      - c5f24c32-fd6d-4a76-97e7-88c96ea55cf0
-      - 8cc53375-46ac-4733-9aba-4cf2dcafb922
+      - 0ca1eb57-09a6-4926-81a9-882aec9e0319
+      - 0d4e12af-e783-4d5e-86f9-b97fb799789e
+      - 540e7fe7-0d70-4333-a38c-38902ecd7069
+      - f2a0083e-e329-4d2f-b5cf-55f4a53120ab
     metadata:
       status: completed
       expanded: false
@@ -79634,19 +79555,19 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  eb24e1d4-bf28-4825-b4d7-78f529dcbf69:
-    id: eb24e1d4-bf28-4825-b4d7-78f529dcbf69
+  0ca1eb57-09a6-4926-81a9-882aec9e0319:
+    id: 0ca1eb57-09a6-4926-81a9-882aec9e0319
     content: Happens when there are a lot of available contexts
     children:
-      - c9b09b05-27b3-4906-8575-6bebabed712a
-      - 8fdc8b43-9aa0-434b-9d05-c66c1bf8f605
+      - d2d3a434-80c4-46a1-9fdb-1d66b535329e
+      - 8bcbec79-e563-4da5-b239-08a6bf96b12d
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  c9b09b05-27b3-4906-8575-6bebabed712a:
-    id: c9b09b05-27b3-4906-8575-6bebabed712a
+  d2d3a434-80c4-46a1-9fdb-1d66b535329e:
+    id: d2d3a434-80c4-46a1-9fdb-1d66b535329e
     content: They go out of screen (off the top)
     children: []
     metadata:
@@ -79654,8 +79575,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  8fdc8b43-9aa0-434b-9d05-c66c1bf8f605:
-    id: 8fdc8b43-9aa0-434b-9d05-c66c1bf8f605
+  8bcbec79-e563-4da5-b239-08a6bf96b12d:
+    id: 8bcbec79-e563-4da5-b239-08a6bf96b12d
     content: Variable depending on where on the screen the node you right click on is
     children: []
     metadata:
@@ -79663,8 +79584,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  ce5bf4bc-194f-42fa-a6f3-758ca2a61c6b:
-    id: ce5bf4bc-194f-42fa-a6f3-758ca2a61c6b
+  0d4e12af-e783-4d5e-86f9-b97fb799789e:
+    id: 0d4e12af-e783-4d5e-86f9-b97fb799789e
     content: Let's display the execute and collaborate contexts side by side each in their own box rather than one on top of the other, that'll save some space
     children: []
     metadata:
@@ -79672,8 +79593,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  c5f24c32-fd6d-4a76-97e7-88c96ea55cf0:
-    id: c5f24c32-fd6d-4a76-97e7-88c96ea55cf0
+  540e7fe7-0d70-4333-a38c-38902ecd7069:
+    id: 540e7fe7-0d70-4333-a38c-38902ecd7069
     content: And we need to calculate window position and cut off and sub menu height better to correctly place the sub menu dynamically
     children: []
     metadata:
@@ -79681,34 +79602,34 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  8cc53375-46ac-4733-9aba-4cf2dcafb922:
-    id: 8cc53375-46ac-4733-9aba-4cf2dcafb922
+  f2a0083e-e329-4d2f-b5cf-55f4a53120ab:
+    id: f2a0083e-e329-4d2f-b5cf-55f4a53120ab
     content: Technical refinement
     children:
-      - e78ce5b1-6974-4259-8698-383ffc737925
-      - e9789169-5250-4c2f-a67b-f243a55b80ab
+      - 1c69eb4a-731b-4660-ab0c-35441d16cb60
+      - ce9a4869-ef66-407a-b288-b50a0b6a46a7
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  e78ce5b1-6974-4259-8698-383ffc737925:
-    id: e78ce5b1-6974-4259-8698-383ffc737925
+  1c69eb4a-731b-4660-ab0c-35441d16cb60:
+    id: 1c69eb4a-731b-4660-ab0c-35441d16cb60
     content: Complications
     children:
-      - bef682ba-f0ea-4077-923a-7e872093d5bb
-      - b0f4f2cf-4887-4615-9105-ca3762db2d2c
-      - ba5892e9-2cd0-4b9e-ae9f-9d70cefc3b83
-      - 5b732d04-a525-4c2b-940a-e380f64ffacc
-      - 897356ea-f4a9-4f7a-8500-4ad7fe0e3b1b
-      - 76b4a577-0541-4a26-888d-e27306dc224b
+      - fb7761cc-18b5-4715-9929-dd431d317d84
+      - 1c400867-cd64-4417-8eb6-00304b402b37
+      - c91afdf6-7e7c-4bad-bc2c-3b312c5246a7
+      - 831ce142-7688-4e01-82f2-09f80463b5d5
+      - 1c5499f3-c259-4563-b850-5a4cdee5d8a4
+      - 83c97406-34b2-4f07-92ab-bb36777c6c14
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  bef682ba-f0ea-4077-923a-7e872093d5bb:
-    id: bef682ba-f0ea-4077-923a-7e872093d5bb
+  fb7761cc-18b5-4715-9929-dd431d317d84:
+    id: fb7761cc-18b5-4715-9929-dd431d317d84
     content: 'ContextMenu primitive has no column support today. ContextMenuItem is a flat shape (label, icon, onClick, separator, disabled). A side-by-side two-column layout requires either a new item variant (e.g. `{ columns: [ContextMenuItem[], ContextMenuItem[]] }`) or a dedicated renderer — either way it touches a UI primitive shared across the app, not just the context submenu. Ripple risk.'
     children: []
     metadata:
@@ -79716,8 +79637,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  b0f4f2cf-4887-4615-9105-ca3762db2d2c:
-    id: b0f4f2cf-4887-4615-9105-ca3762db2d2c
+  1c400867-cd64-4417-8eb6-00304b402b37:
+    id: 1c400867-cd64-4417-8eb6-00304b402b37
     content: Columns only delay truncation, they do not eliminate it. If a user has many contexts on both sides, the tallest column still sets the menu height. The dynamic positioning fix is load-bearing regardless of whether columns ship.
     children: []
     metadata:
@@ -79725,8 +79646,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  ba5892e9-2cd0-4b9e-ae9f-9d70cefc3b83:
-    id: ba5892e9-2cd0-4b9e-ae9f-9d70cefc3b83
+  c91afdf6-7e7c-4bad-bc2c-3b312c5246a7:
+    id: c91afdf6-7e7c-4bad-bc2c-3b312c5246a7
     content: Submenu positioning is not like a top-level popup. The submenu opens relative to its parent menu's trigger item, so flipping direction (up instead of down, or left instead of right) has to track the parent's edge and the target item's position within the parent. More complex than placing a standalone menu at cursor coords.
     children: []
     metadata:
@@ -79734,8 +79655,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  5b732d04-a525-4c2b-940a-e380f64ffacc:
-    id: 5b732d04-a525-4c2b-940a-e380f64ffacc
+  831ce142-7688-4e01-82f2-09f80463b5d5:
+    id: 831ce142-7688-4e01-82f2-09f80463b5d5
     content: Column layout breaks linear keyboard nav. Current up/down arrow handling walks a flat list; with two columns, arrow semantics become 2D (left/right to switch column) and radio-group selection semantics for "which is the active context" need re-thinking. Non-trivial input work attached to the columns idea.
     children: []
     metadata:
@@ -79743,8 +79664,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  897356ea-f4a9-4f7a-8500-4ad7fe0e3b1b:
-    id: 897356ea-f4a9-4f7a-8500-4ad7fe0e3b1b
+  1c5499f3-c259-4563-b850-5a4cdee5d8a4:
+    id: 1c5499f3-c259-4563-b850-5a4cdee5d8a4
     content: 'Measure-then-place dance is fragile. Dynamic positioning typically renders the menu invisibly, measures, then repositions — which can cause a one-frame flicker or layout shift. Options: useLayoutEffect reposition pass, or rely on max-height + overflow-y: auto as a defensive fallback so the worst case scrolls instead of clips.'
     children: []
     metadata:
@@ -79752,8 +79673,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  76b4a577-0541-4a26-888d-e27306dc224b:
-    id: 76b4a577-0541-4a26-888d-e27306dc224b
+  83c97406-34b2-4f07-92ab-bb36777c6c14:
+    id: 83c97406-34b2-4f07-92ab-bb36777c6c14
     content: 'Out of scope: search/filter for contexts, pagination, collapsible sections, replacing the ContextMenu component with a third-party library (radix, react-menu). Any of those is a separate feature discussion.'
     children: []
     metadata:
@@ -79761,20 +79682,20 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  e9789169-5250-4c2f-a67b-f243a55b80ab:
-    id: e9789169-5250-4c2f-a67b-f243a55b80ab
+  ce9a4869-ef66-407a-b288-b50a0b6a46a7:
+    id: ce9a4869-ef66-407a-b288-b50a0b6a46a7
     content: Approach
     children:
-      - 787b8524-cb7e-488e-9107-03802128e7fd
-      - 012a2430-3a6e-4765-a9db-ce02239047fa
-      - 7455f1d2-fedc-4c3e-a23a-1668e30cb435
+      - 87b07e91-5bd7-4520-b290-dbf912434a68
+      - 754d41a5-305f-4cda-b525-a3bc894060d6
+      - fea576d5-0175-4430-be19-f0710fa27458
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  787b8524-cb7e-488e-9107-03802128e7fd:
-    id: 787b8524-cb7e-488e-9107-03802128e7fd
+  87b07e91-5bd7-4520-b290-dbf912434a68:
+    id: 87b07e91-5bd7-4520-b290-dbf912434a68
     content: 'Ship the positioning fix first and independently. Detect when the submenu would clip the viewport (top or bottom) and reposition — flip upward if the natural-down direction clips, and add a max-height + overflow-y: auto fallback so extreme cases scroll instead of disappear. Change lives in the ContextMenu/submenu positioning logic, not in useSetContextSubmenu.'
     children: []
     metadata:
@@ -79782,8 +79703,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  012a2430-3a6e-4765-a9db-ce02239047fa:
-    id: 012a2430-3a6e-4765-a9db-ce02239047fa
+  754d41a5-305f-4cda-b525-a3bc894060d6:
+    id: 754d41a5-305f-4cda-b525-a3bc894060d6
     content: Validate whether columns are still needed after the positioning fix lands. If scrolling + flipping covers the real-world cases the user hits, the columns refactor has poor ROI and should be deferred. If the user still experiences truncation / awkward tall menus, revisit with columns as a second, optional layer.
     children: []
     metadata:
@@ -79791,12 +79712,205 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  7455f1d2-fedc-4c3e-a23a-1668e30cb435:
-    id: 7455f1d2-fedc-4c3e-a23a-1668e30cb435
+  fea576d5-0175-4430-be19-f0710fa27458:
+    id: fea576d5-0175-4430-be19-f0710fa27458
     content: 'Non-obvious: the positioning fix is the one that actually removes the acute bug; the columns idea is an ergonomic improvement that depends on the positioning fix being correct. If we ship columns without the positioning fix, tall 2-column menus still clip. Ordering matters: positioning → evaluate → maybe columns.'
     children: []
     metadata:
       status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  05787b3f-79c7-45aa-87df-9bc5435b523d:
+    id: 05787b3f-79c7-45aa-87df-9bc5435b523d
+    content: Think there's a naming issue here
+    children:
+      - 2cb887a8-d15d-4db1-8e83-1b97491771ce
+      - e8915afb-4af1-462a-8fc0-b86035e641cf
+      - 85a61f7f-7692-4b0f-8952-f9dc53359d63
+      - f6a7f615-c0be-4865-9130-0216b2df6c8a
+      - e8ee1c1d-1680-4a9f-937a-a0e48a6ae029
+    metadata:
+      status: pending
+  2cb887a8-d15d-4db1-8e83-1b97491771ce:
+    id: 2cb887a8-d15d-4db1-8e83-1b97491771ce
+    content: If everything lives in a node and we break down within a node
+    children: []
+    metadata:
+      status: pending
+  e8915afb-4af1-462a-8fc0-b86035e641cf:
+    id: e8915afb-4af1-462a-8fc0-b86035e641cf
+    content: Then user stories sit within a node, and there's nothing to jump back and forth too.
+    children: []
+    metadata:
+      status: pending
+  85a61f7f-7692-4b0f-8952-f9dc53359d63:
+    id: 85a61f7f-7692-4b0f-8952-f9dc53359d63
+    content: We no longer need to distinguish between a problem/opportunity and a user story, they are elements of each other
+    children: []
+    metadata:
+      status: pending
+  f6a7f615-c0be-4865-9130-0216b2df6c8a:
+    id: f6a7f615-c0be-4865-9130-0216b2df6c8a
+    content: And for Arborescent this is suitable - we tend to spec on the fly
+    children: []
+    metadata:
+      status: pending
+  e8ee1c1d-1680-4a9f-937a-a0e48a6ae029:
+    id: e8ee1c1d-1680-4a9f-937a-a0e48a6ae029
+    content: For Forest Admin, we won't have this workflow anyway
+    children:
+      - af41ebef-02aa-4b7f-9392-d0389a562218
+    metadata:
+      status: pending
+  af41ebef-02aa-4b7f-9392-d0389a562218:
+    id: af41ebef-02aa-4b7f-9392-d0389a562218
+    content: For now it's just a dev tool, spec lives in Linear, we don't need to work on it here
+    children: []
+    metadata:
+      status: pending
+  a47d8475-71bc-49e7-a971-bd631b19362e:
+    id: a47d8475-71bc-49e7-a971-bd631b19362e
+    content: We might have fixed this
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  18310b6f-7b27-4180-a8ae-ad5d6fcb6a3e:
+    id: 18310b6f-7b27-4180-a8ae-ad5d6fcb6a3e
+    content: Previously, when looking at the YAML, some files carried IDs made from titles instead of UUIDs
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d4e2e1db-f5f8-4d70-98e3-1f2087fcbdef:
+    id: d4e2e1db-f5f8-4d70-98e3-1f2087fcbdef
+    content: Check the project blueprints folder and the project.arbo
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a39e28c3-5f69-4e7e-a806-37ef8dd982cd:
+    id: a39e28c3-5f69-4e7e-a806-37ef8dd982cd
+    content: Check if it's still an issue.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cb691bd6-c554-4cbd-9284-6ccb6a68ece5:
+    id: cb691bd6-c554-4cbd-9284-6ccb6a68ece5
+    content: Technical refinement
+    children:
+      - 2448e073-6b88-4f9a-ad77-a99d68e264e0
+      - 1c33ec45-2d5b-4332-99d6-67de32d198ae
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2448e073-6b88-4f9a-ad77-a99d68e264e0:
+    id: 2448e073-6b88-4f9a-ad77-a99d68e264e0
+    content: Complications
+    children:
+      - 01ab61cf-1e93-4e88-977c-3e01ea99e873
+      - d30bad25-579a-426e-b771-57866f9a4eda
+      - 81f7451b-7963-4bed-beb3-f4eba5a71a97
+      - 1b10a26a-270b-4122-a1dc-c4c70c8f1514
+      - c146fedf-f989-45e2-955c-a38ce6644a85
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  01ab61cf-1e93-4e88-977c-3e01ea99e873:
+    id: 01ab61cf-1e93-4e88-977c-3e01ea99e873
+    content: 'Initial investigation suggests the issue is already resolved: `project.arbo` and all four `blueprints/*.arbo` files contain only UUID-style node keys except for the intentional `root` sentinel. All known ID-generation code paths use `uuidv4()` — parseMarkdown, cloneNodesWithNewIds, AcceptFeedbackCommand, PasteNodesCommand, and acceptFeedbackArchive all go through `uuid/v4`. If this is correct, the refinement collapses to "verify and close."'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d30bad25-579a-426e-b771-57866f9a4eda:
+    id: d30bad25-579a-426e-b771-57866f9a4eda
+    content: 'ROI warning: if nothing is currently broken, adding migration logic or defensive runtime checks is speculative. Avoid building a rewrite-on-load mechanism unless real data still exhibits the bug. Over-engineering risk is high here — the user has the "we might have fixed this" uncertainty, not a reproducible failing case.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  81f7451b-7963-4bed-beb3-f4eba5a71a97:
+    id: 81f7451b-7963-4bed-beb3-f4eba5a71a97
+    content: 'Files outside this checkout might still show the bug: older saved `.arbo` files, files shared by other users, or files from pre-fix versions of Arborescent. If such a file is loaded into the current app, it should load without errors (ids are just strings), but cross-references in `children` arrays rely on exact-match ids, so legacy title-based ids would continue to work in-place — there''s no silent breakage, just aesthetic oddity in YAML.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1b10a26a-270b-4122-a1dc-c4c70c8f1514:
+    id: 1b10a26a-270b-4122-a1dc-c4c70c8f1514
+    content: The `root` sentinel is intentional and must be left alone. Any "normalize all non-UUID ids" pass has to explicitly exempt `root` (and any other reserved sentinels introduced later).
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c146fedf-f989-45e2-955c-a38ce6644a85:
+    id: c146fedf-f989-45e2-955c-a38ce6644a85
+    content: 'Out of scope: changing the `.arbo` file format, introducing a schema version bump, retroactively rewriting user files on first load without their consent, and building a UI for "migrate legacy file" warnings.'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  1c33ec45-2d5b-4332-99d6-67de32d198ae:
+    id: 1c33ec45-2d5b-4332-99d6-67de32d198ae
+    content: Approach
+    children:
+      - 05ebacdc-6226-4e4c-b895-9e71f924ac3d
+      - 81948fe2-afb5-49c7-89ea-ce0892714617
+      - 9474411c-0a53-451f-a9bf-529a22b75969
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  05ebacdc-6226-4e4c-b895-9e71f924ac3d:
+    id: 05ebacdc-6226-4e4c-b895-9e71f924ac3d
+    content: Verify exhaustively first — audit every node-creation site in the codebase (parseMarkdown, cloneNodesWithNewIds, AcceptFeedbackCommand, PasteNodesCommand, acceptFeedbackArchive, any blueprint instantiation path, any import path) to confirm each uses `uuidv4()`. Scan all tracked `.arbo` fixtures/seeds too. If every path is clean, the "fix" is just marking this verified and closing.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  81948fe2-afb5-49c7-89ea-ce0892714617:
+    id: 81948fe2-afb5-49c7-89ea-ce0892714617
+    content: 'Non-obvious: the issue is likely already fixed. The user''s opening line ("we might have fixed this") plus the spot-check showing zero title-based ids in current files is strong evidence. Resist the urge to add migration logic proactively. If a specific legacy file with title-based ids surfaces, handle it as a one-off silent normalization on load at that point — not preemptively.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9474411c-0a53-451f-a9bf-529a22b75969:
+    id: 9474411c-0a53-451f-a9bf-529a22b75969
+    content: If a remaining generation path is found during the audit, fix it at the source (make it use `uuidv4()`). Do not add a post-hoc sanitizer in the load path unless production data actually requires it.
+    children: []
+    metadata:
+      status: abandoned
       expanded: true
       deleted: false
       plugins: {}
