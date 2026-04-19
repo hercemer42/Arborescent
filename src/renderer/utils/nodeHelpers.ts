@@ -1,5 +1,5 @@
 import { TreeNode, NodeStatus } from '../../shared/types';
-import { AncestorRegistry } from '../utils/ancestry';
+import { AncestorRegistry, findClosestAncestor } from '../utils/ancestry';
 import { v4 as uuidv4 } from 'uuid';
 import { exportNodeAsMarkdown, exportContextAsMarkdown } from './markdown';
 
@@ -45,31 +45,6 @@ export function computeSummaryVisibleNodeIds(
   return visibleIds;
 }
 
-function getAncestorsClosestFirst(
-  nodeId: string,
-  ancestorRegistry: AncestorRegistry
-): string[] {
-  const ancestors = ancestorRegistry[nodeId] || [];
-  return ancestors.slice().reverse();
-}
-
-function findClosestAncestor<T>(
-  nodeId: string,
-  nodes: Record<string, TreeNode>,
-  ancestorRegistry: AncestorRegistry,
-  predicate: (ancestor: TreeNode) => T | undefined
-): T | undefined {
-  for (const ancestorId of getAncestorsClosestFirst(nodeId, ancestorRegistry)) {
-    const ancestor = nodes[ancestorId];
-    if (!ancestor) continue;
-    const result = predicate(ancestor);
-    if (result !== undefined) {
-      return result;
-    }
-  }
-  return undefined;
-}
-
 export const BASIC_EXECUTE_CONTEXT_ID = '__basic_execute__';
 
 function isSyntheticContextId(id: string): boolean {
@@ -97,15 +72,13 @@ export function getInheritedContextId(
   nodes: Record<string, TreeNode>,
   ancestorRegistry: AncestorRegistry
 ): string | undefined {
-  for (const ancestorId of getAncestorsClosestFirst(nodeId, ancestorRegistry)) {
-    const ancestor = nodes[ancestorId];
-    if (!ancestor) continue;
+  return findClosestAncestor(nodeId, nodes, ancestorRegistry, (ancestor) => {
     const ancestorAppliedId = ancestor.metadata.appliedContextId as string | undefined;
     if (ancestorAppliedId && (nodes[ancestorAppliedId] || isSyntheticContextId(ancestorAppliedId))) {
       return ancestorAppliedId;
     }
-  }
-  return undefined;
+    return undefined;
+  });
 }
 
 export function resolveHyperlinkedContexts(

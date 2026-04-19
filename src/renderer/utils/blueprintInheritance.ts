@@ -1,5 +1,5 @@
 import { TreeNode } from '../../shared/types';
-import { AncestorRegistry } from './ancestry';
+import { AncestorRegistry, findClosestAncestor } from './ancestry';
 import { DEFAULT_BLUEPRINT_ICON } from '../store/tree/actions/blueprintActions';
 
 export interface BlueprintVisuals {
@@ -7,28 +7,22 @@ export interface BlueprintVisuals {
   color?: string;
 }
 
+function extractVisuals(node: TreeNode): BlueprintVisuals | undefined {
+  if (!node.metadata.blueprintIcon) return undefined;
+  return {
+    icon: node.metadata.blueprintIcon as string,
+    color: node.metadata.blueprintColor as string | undefined,
+  };
+}
+
 export function getEffectiveBlueprintIcon(
   node: TreeNode,
   nodes: Record<string, TreeNode>,
   ancestorRegistry: AncestorRegistry
 ): BlueprintVisuals {
-  if (node.metadata.blueprintIcon) {
-    return {
-      icon: node.metadata.blueprintIcon as string,
-      color: node.metadata.blueprintColor as string | undefined,
-    };
-  }
+  const own = extractVisuals(node);
+  if (own) return own;
 
-  const ancestors = ancestorRegistry[node.id] || [];
-  for (let i = ancestors.length - 1; i >= 0; i--) {
-    const ancestor = nodes[ancestors[i]];
-    if (ancestor?.metadata.blueprintIcon) {
-      return {
-        icon: ancestor.metadata.blueprintIcon as string,
-        color: ancestor.metadata.blueprintColor as string | undefined,
-      };
-    }
-  }
-
-  return { icon: DEFAULT_BLUEPRINT_ICON };
+  const inherited = findClosestAncestor(node.id, nodes, ancestorRegistry, extractVisuals);
+  return inherited ?? { icon: DEFAULT_BLUEPRINT_ICON };
 }
