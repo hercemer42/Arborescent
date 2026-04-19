@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-04-19T21:16:27.824Z'
+updated: '2026-04-19T21:41:02.721Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -33402,7 +33402,6 @@ nodes:
     children:
       - 413a84b6-97e7-4963-81ca-6667f2136d9a
       - 28b63463-b046-4ed0-ab09-942c8b933875
-      - 33c9ccfe-2b9e-441f-a857-bf766dc09892
       - 4446dd01-7caf-4953-8dd2-36153adb9cfa
       - 9692fa14-b407-4595-8af9-30f68e3b0d1a
       - 664f4e01-f14c-4f67-bc1a-fd08bd179bd1
@@ -41096,12 +41095,6 @@ nodes:
   7903f2d5-ff8d-4cdd-afc9-90951bd10007:
     id: 7903f2d5-ff8d-4cdd-afc9-90951bd10007
     content: Conceptually, in any case we'll need to have a way to maintain relations between produced content
-    children: []
-    metadata:
-      status: pending
-  33c9ccfe-2b9e-441f-a857-bf766dc09892:
-    id: 33c9ccfe-2b9e-441f-a857-bf766dc09892
-    content: Right click menu is getting unwieldy and needs tidying up
     children: []
     metadata:
       status: pending
@@ -50067,7 +50060,7 @@ nodes:
       - 7d3b730d-63f2-42a2-8d51-3ac155650cb5
     metadata:
       status: pending
-      expanded: true
+      expanded: false
   294a8650-f553-4e8c-9bb0-a6e860cd34cc:
     id: 294a8650-f553-4e8c-9bb0-a6e860cd34cc
     content: For example, if during a coding session the AI discovers there are too many steps
@@ -79075,8 +79068,8 @@ nodes:
     id: 60350086-d041-4cac-877c-6bbff90b0da3
     content: Technical refinement
     children:
-      - 9af26df0-7c9d-49d3-902c-93be07e6ccfe
       - cde45b6e-32c7-47ca-82cd-f467c0434617
+      - e30b1f16-d2c4-46a3-8c9f-15fc02d73bdf
       - 5f0b7f1f-6456-491f-8c35-cc9476e973ca
       - f639c9d8-6e35-4478-8798-91d8b991ebec
       - 35417e17-964c-43cb-a4f9-6d94474b7319
@@ -79161,6 +79154,7 @@ nodes:
       - bc037b12-15ff-4b00-9deb-d42277370dd8
       - b68c0cb4-b1b4-4069-b2a1-1a58f5d560e4
       - cedef9de-11ca-4d92-98f7-b0ce888048aa
+      - 9af26df0-7c9d-49d3-902c-93be07e6ccfe
     metadata:
       status: pending
       isBlueprint: true
@@ -79465,30 +79459,22 @@ nodes:
     id: 9af26df0-7c9d-49d3-902c-93be07e6ccfe
     content: Basic review can't be applied
     children:
-      - d94bc51a-af87-44be-bf9e-6d37a313d803
-      - b508ec35-f907-46d2-b977-af91c814e420
+      - 4fa16b8b-3939-4435-8390-bc763eb818ad
+      - 8e1ea4d6-692a-452f-9a21-8a797d25cb86
+      - 01ef275d-3661-4ac4-b404-3e061bf6e13f
+      - eb85454f-b147-4b2f-84b9-a1a664bcb406
     metadata:
-      status: pending
+      status: completed
       expanded: false
-  d94bc51a-af87-44be-bf9e-6d37a313d803:
-    id: d94bc51a-af87-44be-bf9e-6d37a313d803
-    content: If I try to apply the 'Basic review' context, I get an error
-    children: []
-    metadata:
-      status: pending
-  b508ec35-f907-46d2-b977-af91c814e420:
-    id: b508ec35-f907-46d2-b977-af91c814e420
-    content: "And actually I can't even see 'Basic review' and 'Basic execute'\_"
-    children: []
-    metadata:
-      status: pending
+      deleted: false
+      plugins: {}
   cedef9de-11ca-4d92-98f7-b0ce888048aa:
     id: cedef9de-11ca-4d92-98f7-b0ce888048aa
     content: Review steps are being skipped for some reason
     children:
-      - 6b08cd19-3ef7-4bd4-bbf4-34e7e543f311
-      - 2cc6598b-337a-4479-b3f2-63fc9a7a6166
-      - 4eb57488-4a40-47e3-b425-cfce0123b98d
+      - 8ab0c843-ed43-4094-b924-4da743cad8ae
+      - cf5aa89b-3955-4636-81ff-b823774ff95b
+      - 378a453d-e099-4206-b590-d3b21ab76666
     metadata:
       status: completed
       expanded: false
@@ -79853,8 +79839,8 @@ nodes:
       status: pending
       isHyperlink: true
       linkedNodeId: 413a84b6-97e7-4963-81ca-6667f2136d9a
-  6b08cd19-3ef7-4bd4-bbf4-34e7e543f311:
-    id: 6b08cd19-3ef7-4bd4-bbf4-34e7e543f311
+  8ab0c843-ed43-4094-b924-4da743cad8ae:
+    id: 8ab0c843-ed43-4094-b924-4da743cad8ae
     content: Think it's because the stop event is being sent before Claude is actually finished writing to the terminal
     children: []
     metadata:
@@ -79862,35 +79848,35 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  2cc6598b-337a-4479-b3f2-63fc9a7a6166:
-    id: 2cc6598b-337a-4479-b3f2-63fc9a7a6166
+  cf5aa89b-3955-4636-81ff-b823774ff95b:
+    id: cf5aa89b-3955-4636-81ff-b823774ff95b
     content: 'Revised approach: use Claude Code''s UserPromptSubmit hook as an ACK signal, with retry on timeout'
     children:
-      - 99ac020a-337c-4587-98d2-70dbb6ca78b4
-      - 5e9c74c4-eb7c-4dfe-abc7-160f3d825c53
-      - 1766c4fc-3eb6-4e63-9c7d-3ee771f75bd5
-      - 0e5e976f-ab10-438d-ae86-6f9aed926226
-      - acbb4ac3-4659-468d-ad70-db33199a1809
-      - 09c131e4-1bad-4151-93bf-eef15581146b
-      - 347e7e04-9a4e-4592-b8d2-f2b78443c8df
+      - 33720a09-15c3-4377-a0ab-2fc61ff1593a
+      - d98f9b37-422c-4098-a3af-6b8544a55533
+      - fe2ab5b7-2efa-4c56-b451-42cccafb9e6c
+      - a14b386f-086e-465d-9f8f-7ad3205d0b3e
+      - ff77b55f-668e-49a7-9ef0-383fa58a4adc
+      - 8637386e-b93e-40cd-beee-ee7c41e14022
+      - e0d25497-5455-45a8-be5a-85e4f26d2273
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  99ac020a-337c-4587-98d2-70dbb6ca78b4:
-    id: 99ac020a-337c-4587-98d2-70dbb6ca78b4
+  33720a09-15c3-4377-a0ab-2fc61ff1593a:
+    id: 33720a09-15c3-4377-a0ab-2fc61ff1593a
     content: Why the original marker plan is abandoned
     children:
-      - a9188ed9-7a92-4d6c-9eaa-9d49a6df3167
-      - 4f79ca84-ffb9-4aec-887a-bb81615b8d7f
+      - 45088261-3865-49e0-a4c5-c85d7c429200
+      - c3c13ec7-00c1-4c87-ac01-641b0e5438f3
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  a9188ed9-7a92-4d6c-9eaa-9d49a6df3167:
-    id: a9188ed9-7a92-4d6c-9eaa-9d49a6df3167
+  45088261-3865-49e0-a4c5-c85d7c429200:
+    id: 45088261-3865-49e0-a4c5-c85d7c429200
     content: The > prompt is persistent during task execution — users can queue input while Claude is running, so > does not distinguish "ready" from "busy"
     children: []
     metadata:
@@ -79898,8 +79884,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  4f79ca84-ffb9-4aec-887a-bb81615b8d7f:
-    id: 4f79ca84-ffb9-4aec-887a-bb81615b8d7f
+  c3c13ec7-00c1-4c87-ac01-641b0e5438f3:
+    id: c3c13ec7-00c1-4c87-ac01-641b0e5438f3
     content: The red status text ("discombobulating", "reticulating splines", etc.) rotates across Claude Code versions — string-matching breaks on every upgrade, and there is no stable ANSI sequence to rely on
     children: []
     metadata:
@@ -79907,26 +79893,26 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  5e9c74c4-eb7c-4dfe-abc7-160f3d825c53:
-    id: 5e9c74c4-eb7c-4dfe-abc7-160f3d825c53
+  d98f9b37-422c-4098-a3af-6b8544a55533:
+    id: d98f9b37-422c-4098-a3af-6b8544a55533
     content: Acceptance criteria
     children:
-      - 295b7e0b-303f-45cb-aedc-80cf20f2bc9e
-      - 799f7ac5-4b11-4231-8563-954a77142631
-      - c98203f0-0b1e-460a-bced-c56c07f3c090
-      - 87d625ee-552d-448f-8153-b3d4ca62e5fa
-      - 393a5983-e1fe-4247-97dc-e9efc9392f25
-      - dfe8721b-d24c-4d1e-bcb5-f54fcf54f41e
-      - 0927e406-aa51-4bdb-a787-10a0e7172069
-      - 903bd975-e46b-4202-adf3-8f706288dfb6
-      - 1df2fe0e-f29b-4f3f-8dfc-f2d9f5fab246
+      - 1bcef2d0-4d3a-4269-aefc-b5e5e2f22600
+      - 8ab14fff-fd27-42e8-98cb-5b67ff6edcf6
+      - d3007e38-a3c8-4c03-b013-a6f25299125e
+      - 20aa5aaf-a65f-4563-8595-38728ca44c57
+      - 630c99af-c69a-4bf8-a5a9-33ee374a5466
+      - e602fd2f-1286-403e-b6f9-eaa853be0566
+      - 97c95b89-b162-43c3-9065-bc9f644bd142
+      - 377109b4-46d6-4849-ad2a-5b751b5bdaff
+      - 80659b83-50b6-4caa-aeec-08721e0667e5
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  295b7e0b-303f-45cb-aedc-80cf20f2bc9e:
-    id: 295b7e0b-303f-45cb-aedc-80cf20f2bc9e
+  1bcef2d0-4d3a-4269-aefc-b5e5e2f22600:
+    id: 1bcef2d0-4d3a-4269-aefc-b5e5e2f22600
     content: When a workflow step is scheduled, the system sends the prompt via executeInTerminal and starts a timer waiting for a UserPromptSubmit hook event carrying the matching session_id
     children: []
     metadata:
@@ -79934,8 +79920,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  799f7ac5-4b11-4231-8563-954a77142631:
-    id: 799f7ac5-4b11-4231-8563-954a77142631
+  8ab14fff-fd27-42e8-98cb-5b67ff6edcf6:
+    id: 8ab14fff-fd27-42e8-98cb-5b67ff6edcf6
     content: If the ACK arrives within the timeout, the workflow continues with no added friction or visible delay
     children: []
     metadata:
@@ -79943,8 +79929,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  c98203f0-0b1e-460a-bced-c56c07f3c090:
-    id: c98203f0-0b1e-460a-bced-c56c07f3c090
+  d3007e38-a3c8-4c03-b013-a6f25299125e:
+    id: d3007e38-a3c8-4c03-b013-a6f25299125e
     content: If the ACK does not arrive within the timeout, the system resends the prompt and restarts the timer
     children: []
     metadata:
@@ -79952,8 +79938,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  87d625ee-552d-448f-8153-b3d4ca62e5fa:
-    id: 87d625ee-552d-448f-8153-b3d4ca62e5fa
+  20aa5aaf-a65f-4563-8595-38728ca44c57:
+    id: 20aa5aaf-a65f-4563-8595-38728ca44c57
     content: After the retry cap is reached, the workflow is stopped via stopWorkflow(nodeId) and the autonomous collaboration is cleaned up so no stale watchers or state remain
     children: []
     metadata:
@@ -79961,8 +79947,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  393a5983-e1fe-4247-97dc-e9efc9392f25:
-    id: 393a5983-e1fe-4247-97dc-e9efc9392f25
+  630c99af-c69a-4bf8-a5a9-33ee374a5466:
+    id: 630c99af-c69a-4bf8-a5a9-33ee374a5466
     content: On retry-cap stop, a user-visible error toast names the step that could not be delivered and notifyWorkflowEvent('alert', ...) fires so the failure surfaces
     children: []
     metadata:
@@ -79970,8 +79956,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  dfe8721b-d24c-4d1e-bcb5-f54fcf54f41e:
-    id: dfe8721b-d24c-4d1e-bcb5-f54fcf54f41e
+  e602fd2f-1286-403e-b6f9-eaa853be0566:
+    id: e602fd2f-1286-403e-b6f9-eaa853be0566
     content: ACK matching is keyed on session_id → terminal → node, so concurrent workflows on different terminals remain isolated
     children: []
     metadata:
@@ -79979,8 +79965,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  0927e406-aa51-4bdb-a787-10a0e7172069:
-    id: 0927e406-aa51-4bdb-a787-10a0e7172069
+  97c95b89-b162-43c3-9065-bc9f644bd142:
+    id: 97c95b89-b162-43c3-9065-bc9f644bd142
     content: First-send success case adds no perceivable latency beyond the existing 1s scheduling delay
     children: []
     metadata:
@@ -79988,8 +79974,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  903bd975-e46b-4202-adf3-8f706288dfb6:
-    id: 903bd975-e46b-4202-adf3-8f706288dfb6
+  377109b4-46d6-4849-ad2a-5b751b5bdaff:
+    id: 377109b4-46d6-4849-ad2a-5b751b5bdaff
     content: No dependency on Claude Code TUI render details — implementation is marker-free and survives Claude Code UI changes
     children: []
     metadata:
@@ -79997,8 +79983,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  1df2fe0e-f29b-4f3f-8dfc-f2d9f5fab246:
-    id: 1df2fe0e-f29b-4f3f-8dfc-f2d9f5fab246
+  80659b83-50b6-4caa-aeec-08721e0667e5:
+    id: 80659b83-50b6-4caa-aeec-08721e0667e5
     content: Update the documentation for the user to set up the hook
     children: []
     metadata:
@@ -80006,20 +79992,20 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  1766c4fc-3eb6-4e63-9c7d-3ee771f75bd5:
-    id: 1766c4fc-3eb6-4e63-9c7d-3ee771f75bd5
+  fe2ab5b7-2efa-4c56-b451-42cccafb9e6c:
+    id: fe2ab5b7-2efa-4c56-b451-42cccafb9e6c
     content: Open questions to verify before implementation
     children:
-      - 00327616-0177-44bc-a17d-37ee6e236d8d
-      - 37a5ae91-f252-47a7-b391-245fe177cd48
-      - 46132d55-f8ed-40da-b4fe-4b278b9a064a
+      - 1a20e5d0-09b5-4ac3-989c-01f4814c2ee4
+      - 9025b75b-1606-4e09-829a-c0d5abdef069
+      - defe848b-df90-4aa5-9ba2-f41feba4166a
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  00327616-0177-44bc-a17d-37ee6e236d8d:
-    id: 00327616-0177-44bc-a17d-37ee6e236d8d
+  1a20e5d0-09b5-4ac3-989c-01f4814c2ee4:
+    id: 1a20e5d0-09b5-4ac3-989c-01f4814c2ee4
     content: 'Confirm UserPromptSubmit fires for pty-injected prompts and not only user-typed ones. One-shot manual test: send a prompt via the existing autonomous flow and watch the hook log in the app. If it does not fire, this whole design is void.'
     children: []
     metadata:
@@ -80027,8 +80013,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  37a5ae91-f252-47a7-b391-245fe177cd48:
-    id: 37a5ae91-f252-47a7-b391-245fe177cd48
+  9025b75b-1606-4e09-829a-c0d5abdef069:
+    id: 9025b75b-1606-4e09-829a-c0d5abdef069
     content: 'Timeout value: 5s is a reasonable starting point — tune after observing real runs. Too short means false retries while Claude is still rendering; too long means sluggish recovery.'
     children: []
     metadata:
@@ -80036,8 +80022,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  46132d55-f8ed-40da-b4fe-4b278b9a064a:
-    id: 46132d55-f8ed-40da-b4fe-4b278b9a064a
+  defe848b-df90-4aa5-9ba2-f41feba4166a:
+    id: defe848b-df90-4aa5-9ba2-f41feba4166a
     content: 'Retry cap: 3 attempts (initial + 2 retries). Balances resilience against runaway loops when Claude Code is genuinely broken.'
     children: []
     metadata:
@@ -80045,20 +80031,20 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  0e5e976f-ab10-438d-ae86-6f9aed926226:
-    id: 0e5e976f-ab10-438d-ae86-6f9aed926226
+  a14b386f-086e-465d-9f8f-7ad3205d0b3e:
+    id: a14b386f-086e-465d-9f8f-7ad3205d0b3e
     content: Risks
     children:
-      - c0f661ab-16a8-4472-87ad-b22824952c65
-      - 98458098-a3d2-41c5-af70-582cf583d7d5
-      - 0cd9e1d6-97fd-4f8c-9d51-cd52068ddaca
+      - f5fa24d6-23ea-49e1-b222-e101100be45f
+      - 02854a88-c4a8-455b-afbb-30883ac53334
+      - e6381051-48bb-409b-a922-8f4f080a6776
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  c0f661ab-16a8-4472-87ad-b22824952c65:
-    id: c0f661ab-16a8-4472-87ad-b22824952c65
+  f5fa24d6-23ea-49e1-b222-e101100be45f:
+    id: f5fa24d6-23ea-49e1-b222-e101100be45f
     content: 'False positive from user-typed prompts: if the user manually types into the same terminal between our send and the expected ACK, UserPromptSubmit fires for their prompt and we would wrongly conclude ours landed. Mitigation: match ACKs to our send by comparing prompt text (or a hashed signature of it), not just session_id'
     children: []
     metadata:
@@ -80066,8 +80052,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  98458098-a3d2-41c5-af70-582cf583d7d5:
-    id: 98458098-a3d2-41c5-af70-582cf583d7d5
+  02854a88-c4a8-455b-afbb-30883ac53334:
+    id: 02854a88-c4a8-455b-afbb-30883ac53334
     content: 'User-visible echo on retry: the resent prompt text appears in the terminal twice. Acceptable — silently failing is worse, and the toast explains what is happening'
     children: []
     metadata:
@@ -80075,8 +80061,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  0cd9e1d6-97fd-4f8c-9d51-cd52068ddaca:
-    id: 0cd9e1d6-97fd-4f8c-9d51-cd52068ddaca
+  e6381051-48bb-409b-a922-8f4f080a6776:
+    id: e6381051-48bb-409b-a922-8f4f080a6776
     content: 'Claude Code crash between send and ACK: retries will not help. Stopping after the retry cap is the correct behavior — already covered by the acceptance criteria'
     children: []
     metadata:
@@ -80084,20 +80070,20 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  acbb4ac3-4659-468d-ad70-db33199a1809:
-    id: acbb4ac3-4659-468d-ad70-db33199a1809
+  ff77b55f-668e-49a7-9ef0-383fa58a4adc:
+    id: ff77b55f-668e-49a7-9ef0-383fa58a4adc
     content: Out of scope
     children:
-      - 9995df9a-19ad-40a1-bd4e-a8d73efd1ab3
-      - 46116064-b94f-4fa0-bd2f-8ccb954eaf00
-      - 58b67595-c138-404b-9b8a-afe6e416ed4e
+      - c4d0da69-cea6-48b8-9feb-fadb83363ed8
+      - 3676f445-7ab3-47b9-a7cd-5806b09ce07d
+      - b8b7e4c7-0b1b-4264-bd36-689f23a9e466
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  9995df9a-19ad-40a1-bd4e-a8d73efd1ab3:
-    id: 9995df9a-19ad-40a1-bd4e-a8d73efd1ab3
+  c4d0da69-cea6-48b8-9feb-fadb83363ed8:
+    id: c4d0da69-cea6-48b8-9feb-fadb83363ed8
     content: Detecting when the user is actively typing in the terminal and holding the send until they stop — would require xterm.js input hooks, separate concern
     children: []
     metadata:
@@ -80105,8 +80091,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  46116064-b94f-4fa0-bd2f-8ccb954eaf00:
-    id: 46116064-b94f-4fa0-bd2f-8ccb954eaf00
+  3676f445-7ab3-47b9-a7cd-5806b09ce07d:
+    id: 3676f445-7ab3-47b9-a7cd-5806b09ce07d
     content: Queuing multiple workflow steps per terminal — existing "one running node per terminal" guard stays in place
     children: []
     metadata:
@@ -80114,8 +80100,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  58b67595-c138-404b-9b8a-afe6e416ed4e:
-    id: 58b67595-c138-404b-9b8a-afe6e416ed4e
+  b8b7e4c7-0b1b-4264-bd36-689f23a9e466:
+    id: b8b7e4c7-0b1b-4264-bd36-689f23a9e466
     content: A richer "ready for input" signal from Claude Code itself (e.g. a dedicated PromptReady hook) — would be cleaner but requires upstream cooperation
     children: []
     metadata:
@@ -80123,18 +80109,18 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  09c131e4-1bad-4151-93bf-eef15581146b:
-    id: 09c131e4-1bad-4151-93bf-eef15581146b
+  8637386e-b93e-40cd-beee-ee7c41e14022:
+    id: 8637386e-b93e-40cd-beee-ee7c41e14022
     content: Chunking decision
     children:
-      - b6168201-04b3-4c13-b7be-7a87a7813ede
+      - 5025b808-07af-4140-8e86-c409fc9dcc6b
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  b6168201-04b3-4c13-b7be-7a87a7813ede:
-    id: b6168201-04b3-4c13-b7be-7a87a7813ede
+  5025b808-07af-4140-8e86-c409fc9dcc6b:
+    id: 5025b808-07af-4140-8e86-c409fc9dcc6b
     content: One chunk. ACK detection and retry are a single cohesive behavior — splitting them leaves half-functional plumbing behind a flag with no user value until both halves ship. The change is small enough that PM/design review benefits from seeing the whole loop at once.
     children: []
     metadata:
@@ -80142,18 +80128,18 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  347e7e04-9a4e-4592-b8d2-f2b78443c8df:
-    id: 347e7e04-9a4e-4592-b8d2-f2b78443c8df
+  e0d25497-5455-45a8-be5a-85e4f26d2273:
+    id: e0d25497-5455-45a8-be5a-85e4f26d2273
     content: ROI / complexity note
     children:
-      - 2e814862-965e-4bb1-aff0-9bdf33d786eb
+      - 333949b7-a995-4cd2-9c7d-c337bf42b5f5
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  2e814862-965e-4bb1-aff0-9bdf33d786eb:
-    id: 2e814862-965e-4bb1-aff0-9bdf33d786eb
+  333949b7-a995-4cd2-9c7d-c337bf42b5f5:
+    id: 333949b7-a995-4cd2-9c7d-c337bf42b5f5
     content: 'Change is contained: a per-send ACK map and timer in workflowExecutionActions, a small extension to the existing handleHookEvent branch for UserPromptSubmit, and a resend call. No new IPC channels, no new stores, no new services. The existing useHookEventListener → registerSession → workflowSessionMap infrastructure is reused as-is.'
     children: []
     metadata:
@@ -80161,33 +80147,33 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  4eb57488-4a40-47e3-b425-cfce0123b98d:
-    id: 4eb57488-4a40-47e3-b425-cfce0123b98d
+  378a453d-e099-4206-b590-d3b21ab76666:
+    id: 378a453d-e099-4206-b590-d3b21ab76666
     content: Technical refinement
     children:
-      - 327c810f-7389-4d22-8305-90e02c7c4a99
-      - c1283425-2cb8-439d-905c-3359a46962b0
+      - 3340aba7-d91b-4f63-932c-4ccf4480dee9
+      - 5d8b845c-e50a-4412-9602-2c97fa864705
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  327c810f-7389-4d22-8305-90e02c7c4a99:
-    id: 327c810f-7389-4d22-8305-90e02c7c4a99
+  3340aba7-d91b-4f63-932c-4ccf4480dee9:
+    id: 3340aba7-d91b-4f63-932c-4ccf4480dee9
     content: Complications
     children:
-      - 21bfa549-0bcb-4966-a09a-18982a906d02
-      - 82eb6d77-44a4-4b49-af15-7c90b2b14119
-      - e07d09c0-36b0-4581-b255-46240ced196b
-      - 2f2c02a6-3f15-433b-a325-f584bc782925
-      - 1146b6e5-aadb-4e29-98bd-33071398ec15
+      - f56f05b9-3851-4de6-8675-b73a42a778db
+      - 471ebf7c-fdfe-4401-a5db-7bf3fedc32fb
+      - 91c4d6f2-060d-4451-89fc-b53edd80a129
+      - b0e63c5e-950f-4829-94ec-81c96e3b9d0a
+      - 068403d5-1f16-4e3b-b4ec-47d9c88562dc
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  21bfa549-0bcb-4966-a09a-18982a906d02:
-    id: 21bfa549-0bcb-4966-a09a-18982a906d02
+  f56f05b9-3851-4de6-8675-b73a42a778db:
+    id: f56f05b9-3851-4de6-8675-b73a42a778db
     content: 'Pending ACK timer lifecycle: it must be cleared on every existing workflow-stop path (stopWorkflow, handleTerminalClosed, handleNodeDeleted, handleNodeMovedManually, initializeExecutionState on app restart) — not only on ACK-cap. A leaked timer could resend into a terminal whose node no longer exists.'
     children: []
     metadata:
@@ -80195,8 +80181,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  82eb6d77-44a4-4b49-af15-7c90b2b14119:
-    id: 82eb6d77-44a4-4b49-af15-7c90b2b14119
+  471ebf7c-fdfe-4401-a5db-7bf3fedc32fb:
+    id: 471ebf7c-fdfe-4401-a5db-7bf3fedc32fb
     content: 'Prompt-text fidelity for signature matching: Claude Code may normalize whitespace, trim trailing newlines, or otherwise mutate the submitted text before UserPromptSubmit fires. A naive strict string match can false-negative. Prefer a prefix/hash comparison with tolerance for trailing whitespace, or a short "any ACK within N ms of send counts" window as fallback.'
     children: []
     metadata:
@@ -80204,8 +80190,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  e07d09c0-36b0-4581-b255-46240ced196b:
-    id: e07d09c0-36b0-4581-b255-46240ced196b
+  91c4d6f2-060d-4451-89fc-b53edd80a129:
+    id: 91c4d6f2-060d-4451-89fc-b53edd80a129
     content: 'Multi-store routing: hooks currently fan out via `for (const store of stores)` in useHookEventListener, so every open tree store''s handleHookEvent receives the event. Only the store owning the running node should consume the ACK and clear its timer; others must be no-ops. Risk of double-counting or cross-store interference if not explicit.'
     children: []
     metadata:
@@ -80213,8 +80199,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  2f2c02a6-3f15-433b-a325-f584bc782925:
-    id: 2f2c02a6-3f15-433b-a325-f584bc782925
+  b0e63c5e-950f-4829-94ec-81c96e3b9d0a:
+    id: b0e63c5e-950f-4829-94ec-81c96e3b9d0a
     content: '/btw commands unverified: we skipped testing whether `/btw` fires UserPromptSubmit. If it does, a user''s /btw during a workflow step would be an ACK candidate; signature matching mitigates but only if /btw text differs from our injected prompt. Worth a sentence in docs until empirically confirmed.'
     children: []
     metadata:
@@ -80222,8 +80208,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  1146b6e5-aadb-4e29-98bd-33071398ec15:
-    id: 1146b6e5-aadb-4e29-98bd-33071398ec15
+  068403d5-1f16-4e3b-b4ec-47d9c88562dc:
+    id: 068403d5-1f16-4e3b-b4ec-47d9c88562dc
     content: 'Silent-disable risk: the feature requires a curl block in ~/.claude/settings.json for UserPromptSubmit. Users who upgrade Arborescent without updating settings get no ACKs → constant retries → workflow stops at the retry cap on every step. Documentation must be explicit, and a startup warning when UserPromptSubmit has never been observed for a session could prevent this silent failure mode.'
     children: []
     metadata:
@@ -80231,20 +80217,20 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  c1283425-2cb8-439d-905c-3359a46962b0:
-    id: c1283425-2cb8-439d-905c-3359a46962b0
+  5d8b845c-e50a-4412-9602-2c97fa864705:
+    id: 5d8b845c-e50a-4412-9602-2c97fa864705
     content: Approach
     children:
-      - 6d38e0fa-c5da-404a-93f1-004141e449aa
-      - 88da83cb-aec1-4412-9894-672701efa652
-      - ad741fd9-5b84-4b69-b8b7-97b2fa5fcf81
+      - 7e6e7cda-2a39-4202-b48f-fd4eab37a3bd
+      - 8d7f7550-611e-43b1-8871-c13ae885cc21
+      - 9fc38f90-8210-4926-9bcd-3878d32bdb9d
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  6d38e0fa-c5da-404a-93f1-004141e449aa:
-    id: 6d38e0fa-c5da-404a-93f1-004141e449aa
+  7e6e7cda-2a39-4202-b48f-fd4eab37a3bd:
+    id: 7e6e7cda-2a39-4202-b48f-fd4eab37a3bd
     content: 'Where the change lands: workflowExecutionActions.ts gains a per-send ACK registry (Map<nodeId, {promptText, attempts, timerId}>) plus two small helpers (registerPendingAck, clearPendingAck). sendContentToTerminal registers the ACK after successful executeInTerminal and starts the timer. handleHookEvent grows a UserPromptSubmit branch that looks up the entry, validates signature, and clears the timer on match.'
     children: []
     metadata:
@@ -80252,8 +80238,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  88da83cb-aec1-4412-9894-672701efa652:
-    id: 88da83cb-aec1-4412-9894-672701efa652
+  8d7f7550-611e-43b1-8871-c13ae885cc21:
+    id: 8d7f7550-611e-43b1-8871-c13ae885cc21
     content: 'Non-obvious: timer cleanup must piggyback on every existing disruption path — do not introduce a parallel cleanup hook. The cleanest seam is inside stopWorkflow itself, since all other cleanup paths (terminal closed, node deleted, moved) already funnel through it.'
     children: []
     metadata:
@@ -80261,9 +80247,197 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  ad741fd9-5b84-4b69-b8b7-97b2fa5fcf81:
-    id: ad741fd9-5b84-4b69-b8b7-97b2fa5fcf81
+  9fc38f90-8210-4926-9bcd-3878d32bdb9d:
+    id: 9fc38f90-8210-4926-9bcd-3878d32bdb9d
     content: 'Non-obvious: this is a config-dependent feature. The user''s ~/.claude/settings.json must POST UserPromptSubmit events to Arborescent''s hook endpoint. Without that, the ACK never arrives and every step hits the retry cap. Docs + a one-time startup nudge (similar to the existing "first workflow launch" toast) prevent silent breakage.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e30b1f16-d2c4-46a3-8c9f-15fc02d73bdf:
+    id: e30b1f16-d2c4-46a3-8c9f-15fc02d73bdf
+    content: Apply context sub menu is truncating sometimes
+    children:
+      - 9ba156b3-7bef-4327-aab7-5220abf97b71
+      - 852c9c12-9729-419a-8baf-7c3cb2a2b8e0
+      - e9401af4-6bc7-4826-9090-aee2c882aa0a
+    metadata:
+      status: pending
+      expanded: false
+  9ba156b3-7bef-4327-aab7-5220abf97b71:
+    id: 9ba156b3-7bef-4327-aab7-5220abf97b71
+    content: Happens when there are a lot of available contexts
+    children:
+      - 96f9a57f-29f4-40d0-8ef8-51ece934c070
+      - da2f2e28-b65d-42e5-8575-8bb4e342fc7d
+    metadata:
+      status: pending
+  96f9a57f-29f4-40d0-8ef8-51ece934c070:
+    id: 96f9a57f-29f4-40d0-8ef8-51ece934c070
+    content: They go out of screen (off the top)
+    children: []
+    metadata:
+      status: pending
+  da2f2e28-b65d-42e5-8575-8bb4e342fc7d:
+    id: da2f2e28-b65d-42e5-8575-8bb4e342fc7d
+    content: Variable depending on where on the screen the node you right click on is
+    children: []
+    metadata:
+      status: pending
+  852c9c12-9729-419a-8baf-7c3cb2a2b8e0:
+    id: 852c9c12-9729-419a-8baf-7c3cb2a2b8e0
+    content: Let's display the execute and collaborate contexts side by side each in their own box rather than one on top of the other, that'll save some space
+    children: []
+    metadata:
+      status: pending
+  e9401af4-6bc7-4826-9090-aee2c882aa0a:
+    id: e9401af4-6bc7-4826-9090-aee2c882aa0a
+    content: And we need to calculate window position and cut off and sub menu height better to correctly place the sub menu dynamically
+    children: []
+    metadata:
+      status: pending
+  4fa16b8b-3939-4435-8390-bc763eb818ad:
+    id: 4fa16b8b-3939-4435-8390-bc763eb818ad
+    content: If I try to apply the 'Basic review' context, I get an error
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8e1ea4d6-692a-452f-9a21-8a797d25cb86:
+    id: 8e1ea4d6-692a-452f-9a21-8a797d25cb86
+    content: And actually I can't even see 'Basic review' and 'Basic execute'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  01ef275d-3661-4ac4-b404-3e061bf6e13f:
+    id: 01ef275d-3661-4ac4-b404-3e061bf6e13f
+    content: And if I select 'Basic execute' it is greyed out
+    children:
+      - 0ec2c3e9-3d4b-46d0-a931-fe352f238499
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0ec2c3e9-3d4b-46d0-a931-fe352f238499:
+    id: 0ec2c3e9-3d4b-46d0-a931-fe352f238499
+    content: We don't need that mechanism anymore, remove it
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  eb85454f-b147-4b2f-84b9-a1a664bcb406:
+    id: eb85454f-b147-4b2f-84b9-a1a664bcb406
+    content: Technical refinement
+    children:
+      - 27a11f55-2e36-4a63-a053-ec120f9ba847
+      - 183d8470-e38f-492f-bb5f-df8a185474a0
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  27a11f55-2e36-4a63-a053-ec120f9ba847:
+    id: 27a11f55-2e36-4a63-a053-ec120f9ba847
+    content: Complications
+    children:
+      - 9e92520e-5763-4215-a5a2-0f0030a73135
+      - 4d9c2a64-b727-455e-bce6-5c880e9319e6
+      - d098b60c-a3be-4c65-9f3d-81997472febd
+      - 6c04fbb8-eff2-41ad-8d4c-b92a325a2335
+      - 87879b40-e405-46af-929f-eaac9c98c23a
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9e92520e-5763-4215-a5a2-0f0030a73135:
+    id: 9e92520e-5763-4215-a5a2-0f0030a73135
+    content: 'Legacy .arbo files: existing trees may contain nodes with `metadata.appliedContextId` pointing at BASIC_REVIEW_CONTEXT_ID or BASIC_EXECUTE_CONTEXT_ID sentinels. After removal, those IDs no longer resolve to anything. Decide: silently fall back to "no context applied" on load, or one-shot migration that clears the metadata. Silent fallback is simpler and forward-compatible — pick that.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4d9c2a64-b727-455e-bce6-5c880e9319e6:
+    id: 4d9c2a64-b727-455e-bce6-5c880e9319e6
+    content: 'Inheritance surface: getAppliedContextIdWithInheritance walks ancestors looking for an applied ID. If a child inherits a BASIC_* sentinel from an ancestor in a legacy file, the silent-fallback rule must apply there too, not only at the direct-applied level.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d098b60c-a3be-4c65-9f3d-81997472febd:
+    id: d098b60c-a3be-4c65-9f3d-81997472febd
+    content: 'Send-path defaults change: today, applying BASIC_EXECUTE_CONTEXT_ID triggers the DEFAULT_EXECUTE_CONTEXT template ("You are executing a coding task..."). After removal, a node with that sentinel falls back to "raw node content sent bare" (same as the no-context path). Observable for anyone who used basics — flag in the commit message, but acceptable per the user''s explicit "don''t need it".'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6c04fbb8-eff2-41ad-8d4c-b92a325a2335:
+    id: 6c04fbb8-eff2-41ad-8d4c-b92a325a2335
+    content: 'Test fallout: sendPromptDisambiguation.test.ts uses BASIC_REVIEW_CONTEXT_ID and BASIC_EXECUTE_CONTEXT_ID as fixtures for the collaborate-mode and execute-mode prompt rules. After removal, these tests either (a) migrate to a user-declared context with the equivalent mode, or (b) get deleted if the rules they guard collapse into a single code path. Check during implementation.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  87879b40-e405-46af-929f-eaac9c98c23a:
+    id: 87879b40-e405-46af-929f-eaac9c98c23a
+    content: 'Out of scope: introducing a replacement "default review / default execute" preference, building any migration UI or prompt, and reworking how user-declared contexts resolve their mode.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  183d8470-e38f-492f-bb5f-df8a185474a0:
+    id: 183d8470-e38f-492f-bb5f-df8a185474a0
+    content: Approach
+    children:
+      - c2de797f-cd05-4fd2-a1e2-19eceedaef80
+      - 386a8870-b217-4142-84f1-93db987327f2
+      - 921cac28-85ea-4033-b879-2efb459cc477
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c2de797f-cd05-4fd2-a1e2-19eceedaef80:
+    id: c2de797f-cd05-4fd2-a1e2-19eceedaef80
+    content: Delete the sentinel IDs (BASIC_REVIEW_CONTEXT_ID, BASIC_EXECUTE_CONTEXT_ID) and the two inline templates (DEFAULT_REVIEW_CONTEXT, DEFAULT_EXECUTE_CONTEXT) from nodeHelpers + sendActions. Collapse the three-way branch in buildSendPayload (no-context / basic-sentinel / real-context) into a two-way branch (no-context / real-context).
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  386a8870-b217-4142-84f1-93db987327f2:
+    id: 386a8870-b217-4142-84f1-93db987327f2
+    content: 'Non-obvious: the "unknown appliedContextId" case becomes the silent-fallback path. getAppliedContextIdWithInheritance must return null (or skip) when the stored ID does not resolve to a real node, so legacy files stop trying to use dead sentinels. This also future-proofs against any deleted user contexts that leave dangling references.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  921cac28-85ea-4033-b879-2efb459cc477:
+    id: 921cac28-85ea-4033-b879-2efb459cc477
+    content: 'Non-obvious: the context-picker UI surface (wherever "Basic review" / "Basic execute" were menu items) needs the entries pruned. The user already reports them as missing or greyed — that suggests partial removal is in flight. Audit the picker and clear the last references in one pass so the bug ("can''t apply Basic review") disappears as a side-effect of the cleanup, not as a separate fix.'
     children: []
     metadata:
       status: completed

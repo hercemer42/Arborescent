@@ -2,7 +2,6 @@ import { describe, it, expect, vi, beforeEach, type Mock } from 'vitest';
 import { createSendActions } from '../sendActions';
 import { TreeState } from '../../treeStore';
 import { TreeNode } from '../../../../../shared/types';
-import { BASIC_REVIEW_CONTEXT_ID, BASIC_EXECUTE_CONTEXT_ID } from '../../../../utils/nodeHelpers';
 
 // These tests guard the write-back instructions in the generated terminal
 // prompts. The AI must be steered to output ONLY the updated CONTENT list,
@@ -56,19 +55,31 @@ describe('send prompt — write-back disambiguation', () => {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } as any;
 
-    const root: TreeNode = { id: 'root', content: 'Root', children: ['task'], metadata: { plugins: {} } };
+    const root: TreeNode = { id: 'root', content: 'Root', children: ['task', 'collab-ctx', 'exec-ctx'], metadata: { plugins: {} } };
     const task: TreeNode = {
       id: 'task',
       content: 'Write unit tests for X',
       children: [],
       metadata: { plugins: {} },
     };
+    const collabCtx: TreeNode = {
+      id: 'collab-ctx',
+      content: 'Review context',
+      children: [],
+      metadata: { isContextDeclaration: true, contextMode: 'collaborate' },
+    };
+    const execCtx: TreeNode = {
+      id: 'exec-ctx',
+      content: 'Execute context',
+      children: [],
+      metadata: { isContextDeclaration: true, contextMode: 'execute' },
+    };
 
     mockState = {
-      nodes: { root, task },
+      nodes: { root, task, 'collab-ctx': collabCtx, 'exec-ctx': execCtx },
       rootNodeId: 'root',
       treeType: 'workspace',
-      ancestorRegistry: { root: [], task: ['root'] },
+      ancestorRegistry: { root: [], task: ['root'], 'collab-ctx': ['root'], 'exec-ctx': ['root'] },
       activeNodeId: null,
       multiSelectedNodeIds: new Set(),
       lastSelectedNodeId: null,
@@ -123,7 +134,7 @@ describe('send prompt — write-back disambiguation', () => {
   describe('collaborate-mode terminal prompt', () => {
     it('tells the AI to base its output on CONTENT, not on INSTRUCTIONS', async () => {
       const { executeInTerminal } = await import('../../../../services/terminalExecution');
-      mockState.nodes.task.metadata.appliedContextId = BASIC_REVIEW_CONTEXT_ID;
+      mockState.nodes.task.metadata.appliedContextId = 'collab-ctx';
 
       await actions.collaborateInTerminal('task', 'terminal-1');
 
@@ -135,7 +146,7 @@ describe('send prompt — write-back disambiguation', () => {
   describe('execute-mode terminal prompt', () => {
     it('tells the AI to preserve the CONTENT list and only change status markers', async () => {
       const { executeInTerminal } = await import('../../../../services/terminalExecution');
-      mockState.nodes.task.metadata.appliedContextId = BASIC_EXECUTE_CONTEXT_ID;
+      mockState.nodes.task.metadata.appliedContextId = 'exec-ctx';
 
       await actions.collaborateInTerminal('task', 'terminal-1', 'execute');
 
@@ -145,7 +156,7 @@ describe('send prompt — write-back disambiguation', () => {
 
     it('tells the AI NOT to replace CONTENT with a "what was done" summary', async () => {
       const { executeInTerminal } = await import('../../../../services/terminalExecution');
-      mockState.nodes.task.metadata.appliedContextId = BASIC_EXECUTE_CONTEXT_ID;
+      mockState.nodes.task.metadata.appliedContextId = 'exec-ctx';
 
       await actions.collaborateInTerminal('task', 'terminal-1', 'execute');
 
@@ -155,7 +166,7 @@ describe('send prompt — write-back disambiguation', () => {
 
     it('explicitly forbids writing the CONTEXT or INSTRUCTIONS sections to the file', async () => {
       const { executeInTerminal } = await import('../../../../services/terminalExecution');
-      mockState.nodes.task.metadata.appliedContextId = BASIC_EXECUTE_CONTEXT_ID;
+      mockState.nodes.task.metadata.appliedContextId = 'exec-ctx';
 
       await actions.collaborateInTerminal('task', 'terminal-1', 'execute');
 
@@ -165,7 +176,7 @@ describe('send prompt — write-back disambiguation', () => {
 
     it('tells the AI the file root MUST be the CONTENT root (not a re-emitted CONTEXT root)', async () => {
       const { executeInTerminal } = await import('../../../../services/terminalExecution');
-      mockState.nodes.task.metadata.appliedContextId = BASIC_EXECUTE_CONTEXT_ID;
+      mockState.nodes.task.metadata.appliedContextId = 'exec-ctx';
 
       await actions.collaborateInTerminal('task', 'terminal-1', 'execute');
 
@@ -177,7 +188,7 @@ describe('send prompt — write-back disambiguation', () => {
   describe('collaborate-mode write-back also forbids CONTEXT echo', () => {
     it('explicitly forbids writing the CONTEXT or INSTRUCTIONS sections to the file', async () => {
       const { executeInTerminal } = await import('../../../../services/terminalExecution');
-      mockState.nodes.task.metadata.appliedContextId = BASIC_REVIEW_CONTEXT_ID;
+      mockState.nodes.task.metadata.appliedContextId = 'collab-ctx';
 
       await actions.collaborateInTerminal('task', 'terminal-1');
 

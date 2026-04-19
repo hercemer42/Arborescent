@@ -2,7 +2,6 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { renderHook } from '@testing-library/react';
 import { useAppliedContext } from '../useAppliedContexts';
 import { TreeNode } from '../../../../../shared/types';
-import { BASIC_EXECUTE_CONTEXT_ID } from '../../../../utils/nodeHelpers';
 
 // Mock the useStore hook
 vi.mock('../../../../store/tree/useStore', () => ({
@@ -97,22 +96,6 @@ describe('useAppliedContext — mode field', () => {
     expect(result.current).toBeUndefined();
   });
 
-  it('should return Basic execution for BASIC_EXECUTE_CONTEXT_ID', () => {
-    const node = createNode('node-1', { appliedContextId: BASIC_EXECUTE_CONTEXT_ID });
-
-    mockedUseStore.mockImplementation((selector) => {
-      const state = { nodes: { 'node-1': node } };
-      return selector(state as never);
-    });
-
-    const { result } = renderHook(() => useAppliedContext(node));
-    expect(result.current).toEqual({
-      icon: 'Zap',
-      color: undefined,
-      name: 'Basic execution',
-      mode: 'execute',
-    });
-  });
 
   it('should include both color and mode when context has all fields', () => {
     const contextNode = createNode('ctx-1', {

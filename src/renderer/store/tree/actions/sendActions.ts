@@ -3,8 +3,6 @@ import { TreeNode } from '../../../../shared/types';
 import {
   buildContentWithContext,
   getAppliedContextIdWithInheritance,
-  BASIC_EXECUTE_CONTEXT_ID,
-  BASIC_REVIEW_CONTEXT_ID,
 } from '../../../utils/nodeHelpers';
 import { BASE_INSTRUCTION_RULES, wrapInstructions, wrapContent } from '../../../utils/promptBuilder';
 import { executeInTerminal } from '../../../services/terminalExecution';
@@ -25,22 +23,7 @@ import {
 import { feedbackTreeStore } from '../../feedback/feedbackTreeStore';
 import { isDecompositionEnabled, getArchiveConfigForNode } from '../../../utils/workflowHelpers';
 
-export const DEFAULT_EXECUTE_CONTEXT = `You are executing a coding task. Please:
-- Implement the listed tasks by making changes directly in the codebase
-- Mark each completed item [x] and each failed item [-] in the returned list
-- Skip items already marked [x]
-- If the task is ambiguous or has blocking issues, summarize the issues in your terminal output and record them as a child node in the returned list
-
-`;
-
 export type ContentSource = 'clipboard' | 'file' | 'restore';
-
-const DEFAULT_REVIEW_CONTEXT = `You are reviewing a hierarchical task list. Please:
-- Analyze the content and suggest improvements, additions or reorganization
-- Add any missing items that would make the list more complete
-- Fix any issues or inconsistencies that you find
-
-`;
 
 const SINGLE_ROOT_OUTPUT_FORMAT = `OUTPUT FORMAT:
 - Must have exactly one root node (single # heading)
@@ -177,25 +160,6 @@ interface SendPayloadArgs {
   feedbackResponseFile?: string;
 }
 
-/**
- * Build the exact string that gets shipped to the clipboard (web) or
- * terminal (terminal / autonomous-terminal). The branching rules:
- *
- *   appliedContextId === undefined (no context applied)
- *     → send the raw node markdown, no instruction envelope at all.
- *       Matches the "just the node, nothing else" intent: basic review
- *       and basic execution are now opt-in, not default.
- *
- *   appliedContextId === BASIC_REVIEW_CONTEXT_ID
- *     → wrap with the built-in DEFAULT_REVIEW_CONTEXT template.
- *
- *   appliedContextId === BASIC_EXECUTE_CONTEXT_ID
- *     → wrap with the built-in DEFAULT_EXECUTE_CONTEXT template.
- *
- *   appliedContextId is a real context node id
- *     → wrap using that node's exported markdown (contextPrefix from
- *       buildContentWithContext).
- */
 function buildSendPayload(args: SendPayloadArgs): string {
   const { nodeId, state, mode, target, decomposition, feedbackResponseFile } = args;
   const appliedContextId = getAppliedContextIdWithInheritance(nodeId, state.nodes, state.ancestorRegistry);
@@ -205,30 +169,21 @@ function buildSendPayload(args: SendPayloadArgs): string {
     return nodeContent;
   }
 
-  let instructionContext: string;
-  if (appliedContextId === BASIC_EXECUTE_CONTEXT_ID) {
-    instructionContext = DEFAULT_EXECUTE_CONTEXT;
-  } else if (appliedContextId === BASIC_REVIEW_CONTEXT_ID) {
-    instructionContext = DEFAULT_REVIEW_CONTEXT;
-  } else {
-    instructionContext = contextPrefix;
-  }
-
   const isExecute = mode === 'execute';
 
   switch (target) {
     case 'web':
       return isExecute
-        ? buildWebExecutePrompt(instructionContext, nodeContent)
-        : buildWebCollaboratePrompt(instructionContext, nodeContent, decomposition);
+        ? buildWebExecutePrompt(contextPrefix, nodeContent)
+        : buildWebCollaboratePrompt(contextPrefix, nodeContent, decomposition);
     case 'terminal':
       return isExecute
-        ? buildTerminalExecutePrompt(instructionContext, nodeContent, feedbackResponseFile!)
-        : buildTerminalCollaboratePrompt(instructionContext, nodeContent, feedbackResponseFile!, decomposition);
+        ? buildTerminalExecutePrompt(contextPrefix, nodeContent, feedbackResponseFile!)
+        : buildTerminalCollaboratePrompt(contextPrefix, nodeContent, feedbackResponseFile!, decomposition);
     case 'autonomous-terminal':
       return isExecute
-        ? buildTerminalExecutePrompt(instructionContext, nodeContent, feedbackResponseFile!, true)
-        : buildTerminalCollaboratePrompt(instructionContext, nodeContent, feedbackResponseFile!, decomposition);
+        ? buildTerminalExecutePrompt(contextPrefix, nodeContent, feedbackResponseFile!, true)
+        : buildTerminalCollaboratePrompt(contextPrefix, nodeContent, feedbackResponseFile!, decomposition);
   }
 }
 

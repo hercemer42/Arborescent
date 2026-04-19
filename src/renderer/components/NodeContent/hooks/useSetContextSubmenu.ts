@@ -4,11 +4,7 @@ import { ContextMenuItem } from '../../ui/ContextMenu';
 import { AncestorRegistry } from '../../../utils/ancestry';
 import { ContextDeclarationInfo } from '../../../store/tree/treeStore';
 import { getIconByName } from '../../ui/CustomizeDialog/CustomizeDialog';
-import {
-  getInheritedContextId,
-  BASIC_EXECUTE_CONTEXT_ID,
-  BASIC_REVIEW_CONTEXT_ID,
-} from '../../../utils/nodeHelpers';
+import { getInheritedContextId } from '../../../utils/nodeHelpers';
 
 interface BuildSetContextSubmenuParams {
   node: TreeNode;
@@ -45,66 +41,21 @@ export function buildSetContextSubmenu({
 
   const collaborateContexts = availableContexts.filter(c => c.mode === 'collaborate');
   const executeContexts = availableContexts.filter(c => c.mode === 'execute');
-  const showBuiltIns = !inheritedContextId;
 
   const items: ContextMenuItem[] = [];
 
   items.push({ label: 'Collaborate', disabled: true });
-  if (showBuiltIns) {
-    items.push(...buildBasicReviewItem(explicitContextId, onSetAppliedContext));
-  }
   items.push(...buildContextItems(collaborateContexts, explicitContextId, inheritedContextId, onSetAppliedContext));
 
   items.push(SEPARATOR);
 
   items.push({ label: 'Execute', disabled: true });
-  if (showBuiltIns) {
-    items.push(...buildBasicExecutionItem(explicitContextId, onSetAppliedContext));
-  }
   items.push(...buildContextItems(executeContexts, explicitContextId, inheritedContextId, onSetAppliedContext));
 
   items.push(SEPARATOR);
   items.push({ label: 'Close', onClick: () => {} });
 
   return items;
-}
-
-function buildBasicReviewItem(
-  explicitContextId: string | undefined,
-  onSetAppliedContext: (contextId: string | null) => void,
-): ContextMenuItem[] {
-  const ReviewIcon = getIconByName('Eye');
-  const isSelected = explicitContextId === BASIC_REVIEW_CONTEXT_ID;
-  return [{
-    label: 'Basic review',
-    icon: ReviewIcon ? createElement(ReviewIcon, { size: 14 }) : undefined,
-    radioSelected: isSelected,
-    keepOpenOnClick: true,
-    disabled: isSelected,
-    onClick: () => {
-      if (isSelected) return;
-      onSetAppliedContext(BASIC_REVIEW_CONTEXT_ID);
-    },
-  }];
-}
-
-function buildBasicExecutionItem(
-  explicitContextId: string | undefined,
-  onSetAppliedContext: (contextId: string | null) => void,
-): ContextMenuItem[] {
-  const ExecIcon = getIconByName('Zap');
-  const isSelected = explicitContextId === BASIC_EXECUTE_CONTEXT_ID;
-  return [{
-    label: 'Basic execution',
-    icon: ExecIcon ? createElement(ExecIcon, { size: 14 }) : undefined,
-    radioSelected: isSelected,
-    keepOpenOnClick: true,
-    disabled: isSelected,
-    onClick: () => {
-      if (isSelected) return;
-      onSetAppliedContext(BASIC_EXECUTE_CONTEXT_ID);
-    },
-  }];
 }
 
 function buildContextItems(

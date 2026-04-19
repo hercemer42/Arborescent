@@ -1,6 +1,5 @@
 import { describe, it, expect, vi } from 'vitest';
 import { buildSetContextSubmenu } from '../useSetContextSubmenu';
-import { BASIC_EXECUTE_CONTEXT_ID, BASIC_REVIEW_CONTEXT_ID } from '../../../../utils/nodeHelpers';
 import type { TreeNode } from '../../../../../shared/types';
 import type { ContextDeclarationInfo } from '../../../../store/tree/treeStore';
 
@@ -88,69 +87,6 @@ describe('buildSetContextSubmenu', () => {
     });
   });
 
-  describe('built-in defaults', () => {
-    it('should show "Basic review (default)" under Collaborate when no inherited context', () => {
-      const result = buildSetContextSubmenu(defaultParams());
-
-      const basicReview = result!.find(item => item.label === 'Basic review');
-      expect(basicReview).toBeDefined();
-    });
-
-    it('should show "Basic execution" under Execute when no inherited context', () => {
-      const result = buildSetContextSubmenu(defaultParams());
-
-      const basicExec = result!.find(item => item.label === 'Basic execution');
-      expect(basicExec).toBeDefined();
-    });
-
-    it('should have "Basic review" radio selected when BASIC_REVIEW_CONTEXT_ID is explicitly applied', () => {
-      const result = buildSetContextSubmenu(defaultParams({
-        node: createNode('target-node', { appliedContextId: BASIC_REVIEW_CONTEXT_ID }),
-      }));
-
-      const basicReview = result!.find(item => item.label === 'Basic review');
-      expect(basicReview?.radioSelected).toBe(true);
-    });
-
-    it('should NOT have "Basic review" radio selected when no explicit context is set', () => {
-      const result = buildSetContextSubmenu(defaultParams());
-
-      const basicReview = result!.find(item => item.label === 'Basic review');
-      expect(basicReview?.radioSelected).toBeFalsy();
-    });
-
-    it('should not have "Basic execution" radio selected by default', () => {
-      const result = buildSetContextSubmenu(defaultParams());
-
-      const basicExec = result!.find(item => item.label === 'Basic execution');
-      expect(basicExec?.radioSelected).toBeFalsy();
-    });
-
-    it('should hide built-in defaults when a context is inherited', () => {
-      const result = buildSetContextSubmenu(defaultParams({
-        nodes: {
-          'target-node': createNode('target-node'),
-          'parent-node': createNode('parent-node', { appliedContextId: 'collab-ctx' }),
-          'collab-ctx': createNode('collab-ctx', { isContextDeclaration: true }),
-          'exec-ctx': createNode('exec-ctx', { isContextDeclaration: true }),
-        },
-        ancestorRegistry: {
-          'target-node': ['root', 'parent-node'],
-          'parent-node': ['root'],
-          'collab-ctx': ['root'],
-          'exec-ctx': ['root'],
-          'root': [],
-        },
-      }));
-
-      expect(result).not.toBeNull();
-      const basicReview = result!.find(item => item.label === 'Basic review');
-      const basicExec = result!.find(item => item.label === 'Basic execution');
-      expect(basicReview).toBeUndefined();
-      expect(basicExec).toBeUndefined();
-    });
-  });
-
   describe('custom context grouping', () => {
     it('should show collaborate-mode contexts under Collaborate section', () => {
       const result = buildSetContextSubmenu(defaultParams());
@@ -224,31 +160,6 @@ describe('buildSetContextSubmenu', () => {
       expect(onSetAppliedContext).toHaveBeenCalledWith(null);
     });
 
-    it('should call onSetAppliedContext with BASIC_REVIEW_CONTEXT_ID when selecting "Basic review"', () => {
-      const onSetAppliedContext = vi.fn();
-      const result = buildSetContextSubmenu(defaultParams({
-        node: createNode('target-node', { appliedContextId: 'exec-ctx' }),
-        onSetAppliedContext,
-      }));
-
-      const basicReview = result!.find(item => item.label === 'Basic review');
-      basicReview?.onClick?.();
-
-      expect(onSetAppliedContext).toHaveBeenCalledWith(BASIC_REVIEW_CONTEXT_ID);
-    });
-
-    it('should call onSetAppliedContext with BASIC_EXECUTE_CONTEXT_ID when selecting "Basic execution"', () => {
-      const onSetAppliedContext = vi.fn();
-      const result = buildSetContextSubmenu(defaultParams({
-        node: createNode('target-node', { appliedContextId: 'collab-ctx' }),
-        onSetAppliedContext,
-      }));
-
-      const basicExec = result!.find(item => item.label === 'Basic execution');
-      basicExec?.onClick?.();
-
-      expect(onSetAppliedContext).toHaveBeenCalledWith(BASIC_EXECUTE_CONTEXT_ID);
-    });
   });
 
   describe('empty states', () => {
@@ -267,7 +178,7 @@ describe('buildSetContextSubmenu', () => {
       expect(result).toBeNull();
     });
 
-    it('should show empty Execute section with just "Basic execution" when only collaborate contexts exist', () => {
+    it('leaves the Execute section empty when only collaborate contexts exist', () => {
       const result = buildSetContextSubmenu(defaultParams({
         contextDeclarations: [
           { nodeId: 'collab-ctx', content: 'My Review', icon: 'star', mode: 'collaborate' as const },
@@ -279,10 +190,10 @@ describe('buildSetContextSubmenu', () => {
       const execHeaderIdx = labels.indexOf('Execute');
       const closeIdx = labels.indexOf('Close');
       const itemsBetween = labels.slice(execHeaderIdx + 1, closeIdx).filter(l => l !== '-' && l !== undefined);
-      expect(itemsBetween).toEqual(['Basic execution']);
+      expect(itemsBetween).toEqual([]);
     });
 
-    it('should show empty Collaborate section with just "Basic review" when only execute contexts exist', () => {
+    it('leaves the Collaborate section empty when only execute contexts exist', () => {
       const result = buildSetContextSubmenu(defaultParams({
         contextDeclarations: [
           { nodeId: 'exec-ctx', content: 'My Script', icon: 'zap', mode: 'execute' as const },
@@ -294,7 +205,7 @@ describe('buildSetContextSubmenu', () => {
       const collabHeaderIdx = labels.indexOf('Collaborate');
       const execHeaderIdx = labels.indexOf('Execute');
       const itemsBetween = labels.slice(collabHeaderIdx + 1, execHeaderIdx).filter(l => l !== '-' && l !== undefined);
-      expect(itemsBetween).toEqual(['Basic review']);
+      expect(itemsBetween).toEqual([]);
     });
   });
 

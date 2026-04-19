@@ -17,9 +17,6 @@ import {
   shouldInheritBlueprint,
   resolveContextMode,
   resolveSendContextName,
-  getAppliedContextIdWithInheritance,
-  getInheritedContextId,
-  BASIC_EXECUTE_CONTEXT_ID,
 } from '../nodeHelpers';
 import { TreeNode } from '@shared/types';
 
@@ -1152,10 +1149,6 @@ describe('resolveContextMode', () => {
     expect(resolveContextMode(undefined, {}, [])).toBe('collaborate');
   });
 
-  it('should return execute for BASIC_EXECUTE_CONTEXT_ID', () => {
-    expect(resolveContextMode(BASIC_EXECUTE_CONTEXT_ID, {}, [])).toBe('execute');
-  });
-
   it('should return mode from context declaration', () => {
     const declarations = [{ nodeId: 'ctx-1', mode: 'execute' as const }];
     expect(resolveContextMode('ctx-1', {}, declarations)).toBe('execute');
@@ -1172,40 +1165,6 @@ describe('resolveContextMode', () => {
   });
 });
 
-describe('BASIC_EXECUTE_CONTEXT_ID handling', () => {
-  const createNode = (id: string, metadata = {}): TreeNode => ({
-    id,
-    content: 'Test',
-    children: [],
-    metadata,
-  });
-
-  it('should return BASIC_EXECUTE_CONTEXT_ID from getAppliedContextIdWithInheritance', () => {
-    const node = createNode('node-1', { appliedContextId: BASIC_EXECUTE_CONTEXT_ID });
-    const nodes = { 'node-1': node };
-    const ancestorRegistry = { 'node-1': [] };
-
-    expect(getAppliedContextIdWithInheritance('node-1', nodes, ancestorRegistry)).toBe(BASIC_EXECUTE_CONTEXT_ID);
-  });
-
-  it('should inherit BASIC_EXECUTE_CONTEXT_ID from parent', () => {
-    const parent = createNode('parent', { appliedContextId: BASIC_EXECUTE_CONTEXT_ID });
-    const child = createNode('child');
-    const nodes = { 'parent': parent, 'child': child };
-    const ancestorRegistry = { 'child': ['parent'], 'parent': [] };
-
-    expect(getInheritedContextId('child', nodes, ancestorRegistry)).toBe(BASIC_EXECUTE_CONTEXT_ID);
-  });
-
-  it('should return empty contexts for collaboration when BASIC_EXECUTE_CONTEXT_ID is applied', () => {
-    const node = createNode('node-1', { appliedContextId: BASIC_EXECUTE_CONTEXT_ID });
-    const nodes = { 'node-1': node };
-    const ancestorRegistry = { 'node-1': [] };
-
-    expect(getContextsForCollaboration('node-1', nodes, ancestorRegistry)).toEqual([]);
-  });
-});
-
 describe('resolveSendContextName', () => {
   const createNode = (id: string, metadata = {}): TreeNode => ({
     id,
@@ -1216,10 +1175,6 @@ describe('resolveSendContextName', () => {
 
   it('should return undefined when no context is applied', () => {
     expect(resolveSendContextName(undefined, {})).toBeUndefined();
-  });
-
-  it('should return "Basic execution" for BASIC_EXECUTE_CONTEXT_ID', () => {
-    expect(resolveSendContextName(BASIC_EXECUTE_CONTEXT_ID, {})).toBe('Basic execution');
   });
 
   it('should return context node content', () => {

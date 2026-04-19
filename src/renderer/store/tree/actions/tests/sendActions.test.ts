@@ -3,10 +3,6 @@ import { createSendActions } from '../sendActions';
 import { TreeState } from '../../treeStore';
 import { TreeNode } from '../../../../../shared/types';
 import { logger } from '../../../../services/logger';
-import {
-  BASIC_REVIEW_CONTEXT_ID,
-  BASIC_EXECUTE_CONTEXT_ID,
-} from '../../../../utils/nodeHelpers';
 
 vi.mock('../../../../services/logger', () => ({
   logger: {
@@ -91,19 +87,29 @@ describe('sendActions', () => {
     const rootNode: TreeNode = {
       id: 'root',
       content: 'Root',
-      children: ['child1', 'child2'],
+      children: ['child1', 'child2', 'collab-ctx', 'exec-ctx'],
       metadata: { plugins: {} },
     };
 
-    // Default to BASIC_REVIEW_CONTEXT_ID so wrapping tests have an explicit
-    // context applied. Tests that need execute wrapping override this to
-    // BASIC_EXECUTE_CONTEXT_ID; tests that need the new raw-send behavior
-    // (no-context = just the node markdown) override to undefined.
+    const collabCtx: TreeNode = {
+      id: 'collab-ctx',
+      content: 'Review context',
+      children: [],
+      metadata: { isContextDeclaration: true, contextMode: 'collaborate' },
+    };
+
+    const execCtx: TreeNode = {
+      id: 'exec-ctx',
+      content: 'Execute context',
+      children: [],
+      metadata: { isContextDeclaration: true, contextMode: 'execute' },
+    };
+
     const child1: TreeNode = {
       id: 'child1',
       content: 'Child 1',
       children: ['grandchild1'],
-      metadata: { plugins: {}, appliedContextId: BASIC_REVIEW_CONTEXT_ID },
+      metadata: { plugins: {}, appliedContextId: 'collab-ctx' },
     };
 
     const grandchild1: TreeNode = {
@@ -127,6 +133,8 @@ describe('sendActions', () => {
         child1: child1,
         grandchild1: grandchild1,
         child2: child2,
+        'collab-ctx': collabCtx,
+        'exec-ctx': execCtx,
       },
       rootNodeId: 'root',
       treeType: 'workspace',
@@ -135,6 +143,8 @@ describe('sendActions', () => {
         child1: ['root'],
         grandchild1: ['root', 'child1'],
         child2: ['root'],
+        'collab-ctx': ['root'],
+        'exec-ctx': ['root'],
       },
       activeNodeId: null,
       multiSelectedNodeIds: new Set(),
@@ -626,16 +636,6 @@ describe('sendActions', () => {
       expect(contextPos).toBeLessThan(outputFormatPos);
     });
 
-    it('should use default review instructions when node has no applied context', async () => {
-      await actions.collaborate('child1');
-
-      const clipboardContent = mockClipboardWriteText.mock.calls[0][0];
-      // Should include default review instructions when no custom context
-      expect(clipboardContent).toContain('You are reviewing a hierarchical task list');
-      expect(clipboardContent).toContain('Analyze the content and suggest improvements');
-      expect(clipboardContent).not.toContain('You are a helpful assistant');
-    });
-
     it('should send raw node content when referenced context does not resolve', async () => {
       mockState.nodes.child1.metadata.appliedContextId = 'non-existent-context';
 
@@ -781,19 +781,6 @@ describe('sendActions', () => {
       expect(contextPos).toBeLessThan(outputFormatPos);
     });
 
-    it('should use default review instructions when node has no applied context', async () => {
-      const { executeInTerminal } = await import('../../../../services/terminalExecution');
-      vi.mocked(executeInTerminal).mockResolvedValue(undefined);
-
-      await actions.collaborateInTerminal('child1', 'terminal-1');
-
-      const terminalContent = vi.mocked(executeInTerminal).mock.calls[0][1];
-      // Should include default review instructions when no custom context
-      expect(terminalContent).toContain('You are reviewing a hierarchical task list');
-      expect(terminalContent).toContain('Analyze the content and suggest improvements');
-      expect(terminalContent).not.toContain('You are a helpful assistant');
-    });
-
     it('should send raw node content when referenced context does not resolve', async () => {
       const { executeInTerminal } = await import('../../../../services/terminalExecution');
       vi.mocked(executeInTerminal).mockResolvedValue(undefined);
@@ -875,7 +862,7 @@ describe('sendActions', () => {
 
   describe('collaborateInTerminal with execute mode', () => {
     beforeEach(() => {
-      mockState.nodes.child1.metadata.appliedContextId = BASIC_EXECUTE_CONTEXT_ID;
+      mockState.nodes.child1.metadata.appliedContextId = 'exec-ctx';
     });
     it('should create temp file and start file watcher same as collaborate', async () => {
       await actions.collaborateInTerminal('child1', 'terminal-1', 'execute');
@@ -989,7 +976,7 @@ describe('sendActions', () => {
 
   describe('autonomousCollaborateInTerminal with execute mode', () => {
     beforeEach(() => {
-      mockState.nodes.child1.metadata.appliedContextId = BASIC_EXECUTE_CONTEXT_ID;
+      mockState.nodes.child1.metadata.appliedContextId = 'exec-ctx';
     });
     it('should return feedback file path same as collaborate', async () => {
       const feedbackFile = await actions.autonomousCollaborateInTerminal('child1', 'terminal-1', 'execute');
@@ -1038,7 +1025,7 @@ describe('sendActions', () => {
 
   describe('collaborate (browser) with execute mode', () => {
     beforeEach(() => {
-      mockState.nodes.child1.metadata.appliedContextId = BASIC_EXECUTE_CONTEXT_ID;
+      mockState.nodes.child1.metadata.appliedContextId = 'exec-ctx';
     });
     it('should copy execute-specific prompt to clipboard', async () => {
       await actions.collaborate('child1', 'execute');

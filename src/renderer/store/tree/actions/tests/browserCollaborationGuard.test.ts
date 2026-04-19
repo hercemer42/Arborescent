@@ -2,7 +2,6 @@ import { describe, it, expect, vi, beforeEach, type Mock } from 'vitest';
 import { createSendActions } from '../sendActions';
 import { TreeState } from '../../treeStore';
 import { TreeNode } from '../../../../../shared/types';
-import { BASIC_REVIEW_CONTEXT_ID } from '../../../../utils/nodeHelpers';
 
 vi.mock('../../../../services/logger', () => ({
   logger: { info: vi.fn(), warn: vi.fn(), error: vi.fn() },
@@ -77,12 +76,13 @@ describe('browser collaboration guard across files', () => {
 
     mockState = {
       nodes: {
-        root: { id: 'root', content: 'Root', children: ['child1'], metadata: {} },
-        child1: { id: 'child1', content: 'Child 1', children: [], metadata: { appliedContextId: BASIC_REVIEW_CONTEXT_ID } },
+        root: { id: 'root', content: 'Root', children: ['child1', 'ctx'], metadata: {} },
+        child1: { id: 'child1', content: 'Child 1', children: [], metadata: { appliedContextId: 'ctx' } },
+        ctx: { id: 'ctx', content: 'Review', children: [], metadata: { isContextDeclaration: true, contextMode: 'collaborate' } },
       },
       rootNodeId: 'root',
       treeType: 'workspace',
-      ancestorRegistry: { root: [], child1: ['root'] },
+      ancestorRegistry: { root: [], child1: ['root'], ctx: ['root'] },
       activeNodeId: null,
       multiSelectedNodeIds: new Set(),
       lastSelectedNodeId: null,
