@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { useStore } from '../../../store/tree/useStore';
 import { TreeNode } from '../../../../shared/types';
-import { BASIC_EXECUTE_CONTEXT_ID } from '../../../utils/nodeHelpers';
+import { BASIC_EXECUTE_CONTEXT_ID, BASIC_REVIEW_CONTEXT_ID } from '../../../utils/nodeHelpers';
 
 export interface AppliedContext {
   icon: string | undefined;
@@ -19,6 +19,10 @@ export function useAppliedContext(node: TreeNode | undefined): AppliedContext | 
 
     if (appliedContextId === BASIC_EXECUTE_CONTEXT_ID) {
       return 'Zap::execute:Basic execution';
+    }
+
+    if (appliedContextId === BASIC_REVIEW_CONTEXT_ID) {
+      return 'Eye::collaborate:Basic review';
     }
 
     const contextNode = state.nodes[appliedContextId];

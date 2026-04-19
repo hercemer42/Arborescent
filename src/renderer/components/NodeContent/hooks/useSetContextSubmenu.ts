@@ -4,7 +4,11 @@ import { ContextMenuItem } from '../../ui/ContextMenu';
 import { AncestorRegistry } from '../../../utils/ancestry';
 import { ContextDeclarationInfo } from '../../../store/tree/treeStore';
 import { getIconByName } from '../../ui/CustomizeDialog/CustomizeDialog';
-import { getInheritedContextId, BASIC_EXECUTE_CONTEXT_ID } from '../../../utils/nodeHelpers';
+import {
+  getInheritedContextId,
+  BASIC_EXECUTE_CONTEXT_ID,
+  BASIC_REVIEW_CONTEXT_ID,
+} from '../../../utils/nodeHelpers';
 
 interface BuildSetContextSubmenuParams {
   node: TreeNode;
@@ -70,15 +74,16 @@ function buildBasicReviewItem(
   onSetAppliedContext: (contextId: string | null) => void,
 ): ContextMenuItem[] {
   const ReviewIcon = getIconByName('Eye');
+  const isSelected = explicitContextId === BASIC_REVIEW_CONTEXT_ID;
   return [{
-    label: 'Basic review (default)',
+    label: 'Basic review',
     icon: ReviewIcon ? createElement(ReviewIcon, { size: 14 }) : undefined,
-    radioSelected: !explicitContextId,
+    radioSelected: isSelected,
     keepOpenOnClick: true,
-    disabled: !explicitContextId,
+    disabled: isSelected,
     onClick: () => {
-      if (!explicitContextId) return;
-      onSetAppliedContext(null);
+      if (isSelected) return;
+      onSetAppliedContext(BASIC_REVIEW_CONTEXT_ID);
     },
   }];
 }

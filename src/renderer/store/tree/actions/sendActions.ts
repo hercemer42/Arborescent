@@ -1,6 +1,11 @@
 import { TreeState } from '../treeStore';
 import { TreeNode } from '../../../../shared/types';
-import { buildContentWithContext } from '../../../utils/nodeHelpers';
+import {
+  buildContentWithContext,
+  getAppliedContextIdWithInheritance,
+  BASIC_EXECUTE_CONTEXT_ID,
+  BASIC_REVIEW_CONTEXT_ID,
+} from '../../../utils/nodeHelpers';
 import { BASE_INSTRUCTION_RULES, wrapInstructions, wrapContent } from '../../../utils/promptBuilder';
 import { executeInTerminal } from '../../../services/terminalExecution';
 import { logger } from '../../../services/logger';
@@ -157,6 +162,73 @@ function buildTerminalExecutePrompt(executeContext: string, content: string, out
   return `${instructions}\n\n${wrapContent(content)}`;
 }
 
+type SendTarget = 'web' | 'terminal' | 'autonomous-terminal';
+
+interface SendPayloadArgs {
+  nodeId: string;
+  state: Pick<TreeState, 'nodes' | 'ancestorRegistry'>;
+  mode: 'collaborate' | 'execute';
+  target: SendTarget;
+  decomposition: boolean;
+  /** Required for terminal targets; ignored for 'web'. */
+  feedbackResponseFile?: string;
+}
+
+/**
+ * Build the exact string that gets shipped to the clipboard (web) or
+ * terminal (terminal / autonomous-terminal). The branching rules:
+ *
+ *   appliedContextId === undefined (no context applied)
+ *     → send the raw node markdown, no instruction envelope at all.
+ *       Matches the "just the node, nothing else" intent: basic review
+ *       and basic execution are now opt-in, not default.
+ *
+ *   appliedContextId === BASIC_REVIEW_CONTEXT_ID
+ *     → wrap with the built-in DEFAULT_REVIEW_CONTEXT template.
+ *
+ *   appliedContextId === BASIC_EXECUTE_CONTEXT_ID
+ *     → wrap with the built-in DEFAULT_EXECUTE_CONTEXT template.
+ *
+ *   appliedContextId is a real context node id
+ *     → wrap using that node's exported markdown (contextPrefix from
+ *       buildContentWithContext).
+ */
+function buildSendPayload(args: SendPayloadArgs): string {
+  const { nodeId, state, mode, target, decomposition, feedbackResponseFile } = args;
+  const appliedContextId = getAppliedContextIdWithInheritance(nodeId, state.nodes, state.ancestorRegistry);
+  const { contextPrefix, nodeContent } = buildContentWithContext(nodeId, state.nodes, state.ancestorRegistry);
+
+  if (!appliedContextId) {
+    return nodeContent;
+  }
+
+  let instructionContext: string;
+  if (appliedContextId === BASIC_EXECUTE_CONTEXT_ID) {
+    instructionContext = DEFAULT_EXECUTE_CONTEXT;
+  } else if (appliedContextId === BASIC_REVIEW_CONTEXT_ID) {
+    instructionContext = DEFAULT_REVIEW_CONTEXT;
+  } else {
+    instructionContext = contextPrefix;
+  }
+
+  const isExecute = mode === 'execute';
+
+  switch (target) {
+    case 'web':
+      return isExecute
+        ? buildWebExecutePrompt(instructionContext, nodeContent)
+        : buildWebCollaboratePrompt(instructionContext, nodeContent, decomposition);
+    case 'terminal':
+      return isExecute
+        ? buildTerminalExecutePrompt(instructionContext, nodeContent, feedbackResponseFile!)
+        : buildTerminalCollaboratePrompt(instructionContext, nodeContent, feedbackResponseFile!, decomposition);
+    case 'autonomous-terminal':
+      return isExecute
+        ? buildTerminalExecutePrompt(instructionContext, nodeContent, feedbackResponseFile!, true)
+        : buildTerminalCollaboratePrompt(instructionContext, nodeContent, feedbackResponseFile!, decomposition);
+  }
+}
+
 export interface ProcessFeedbackContentResult {
   success: boolean;
   nodeCount?: number;
@@ -289,20 +361,15 @@ export function createSendActions(
       }
 
       try {
-        const { contextPrefix, nodeContent } = buildContentWithContext(
-          nodeId,
-          state.nodes,
-          state.ancestorRegistry
-        );
-
         const isExecuteMode = mode === 'execute';
-        const clipboardContent = isExecuteMode
-          ? buildWebExecutePrompt(contextPrefix || DEFAULT_EXECUTE_CONTEXT, nodeContent)
-          : buildWebCollaboratePrompt(
-              contextPrefix || DEFAULT_REVIEW_CONTEXT,
-              nodeContent,
-              isDecompositionEnabled(nodeId, state.nodes, state.ancestorRegistry),
-            );
+        const decomposition = isDecompositionEnabled(nodeId, state.nodes, state.ancestorRegistry);
+        const clipboardContent = buildSendPayload({
+          nodeId,
+          state,
+          mode: mode ?? 'collaborate',
+          target: 'web',
+          decomposition,
+        });
         await navigator.clipboard.writeText(clipboardContent);
 
         useToastStore.getState().addToast(
@@ -345,24 +412,19 @@ export function createSendActions(
         const feedbackFileName = `feedback-response-${nodeId}.md`;
         const feedbackResponseFile = await window.electron.createTempFile(feedbackFileName, '');
 
-        const { contextPrefix, nodeContent } = buildContentWithContext(
-          nodeId,
-          state.nodes,
-          state.ancestorRegistry
-        );
-
         const isExecuteMode = mode === 'execute';
-        const terminalInstruction = isExecuteMode
-          ? buildTerminalExecutePrompt(contextPrefix || DEFAULT_EXECUTE_CONTEXT, nodeContent, feedbackResponseFile)
-          : buildTerminalCollaboratePrompt(
-              contextPrefix || DEFAULT_REVIEW_CONTEXT,
-              nodeContent,
-              feedbackResponseFile,
-              isDecompositionEnabled(nodeId, state.nodes, state.ancestorRegistry),
-            );
+        const decomposition = isDecompositionEnabled(nodeId, state.nodes, state.ancestorRegistry);
+        const terminalInstruction = buildSendPayload({
+          nodeId,
+          state,
+          mode: mode ?? 'collaborate',
+          target: 'terminal',
+          decomposition,
+          feedbackResponseFile,
+        });
 
         await executeInTerminal(terminalId, terminalInstruction);
-        set({ collaboratingNodeId: nodeId, collaborationSource: 'terminal', decomposition: isExecuteMode ? false : isDecompositionEnabled(nodeId, state.nodes, state.ancestorRegistry) });
+        set({ collaboratingNodeId: nodeId, collaborationSource: 'terminal', decomposition: isExecuteMode ? false : decomposition });
         await window.electron.startFeedbackFileWatcher(feedbackResponseFile);
 
         logger.info(`Started terminal collaboration for node: ${nodeId}, watching: ${feedbackResponseFile}`, 'SendActions');
@@ -387,21 +449,15 @@ export function createSendActions(
       const feedbackFileName = `feedback-response-${nodeId}.md`;
       const feedbackResponseFile = await window.electron.createTempFile(feedbackFileName, '');
 
-      const { contextPrefix, nodeContent } = buildContentWithContext(
+      const decomposition = isDecompositionEnabled(nodeId, state.nodes, state.ancestorRegistry);
+      const terminalInstruction = buildSendPayload({
         nodeId,
-        state.nodes,
-        state.ancestorRegistry
-      );
-
-      const isExecuteMode = mode === 'execute';
-      const terminalInstruction = isExecuteMode
-        ? buildTerminalExecutePrompt(contextPrefix || DEFAULT_EXECUTE_CONTEXT, nodeContent, feedbackResponseFile, true)
-        : buildTerminalCollaboratePrompt(
-            contextPrefix || DEFAULT_REVIEW_CONTEXT,
-            nodeContent,
-            feedbackResponseFile,
-            isDecompositionEnabled(nodeId, state.nodes, state.ancestorRegistry),
-          );
+        state,
+        mode: mode ?? 'collaborate',
+        target: 'autonomous-terminal',
+        decomposition,
+        feedbackResponseFile,
+      });
 
       await executeInTerminal(terminalId, terminalInstruction);
       await window.electron.startFeedbackFileWatcher(feedbackResponseFile);

@@ -2,6 +2,7 @@ import { describe, it, expect, vi, beforeEach, type Mock } from 'vitest';
 import { createSendActions } from '../sendActions';
 import { TreeState } from '../../treeStore';
 import { TreeNode } from '../../../../../shared/types';
+import { BASIC_EXECUTE_CONTEXT_ID } from '../../../../utils/nodeHelpers';
 
 vi.mock('../../../../services/logger', () => ({
   logger: { info: vi.fn(), warn: vi.fn(), error: vi.fn() },
@@ -144,6 +145,15 @@ describe('Workflow steps preserve the original node content', () => {
     };
 
     actions = createSendActions(mockGet, mockSet, mockVisualEffects, vi.fn());
+
+    // These tests assert the wrapped prompt shape for workflow execution.
+    // With the "no context = raw send" behavior, wrapping only kicks in
+    // when a context is applied. Apply BASIC_EXECUTE_CONTEXT_ID (or BASIC_
+    // REVIEW_CONTEXT_ID for collaborate-mode tests) to the nodes under
+    // test so the expected wrapping is produced.
+    mockState.nodes.feature.metadata.appliedContextId = BASIC_EXECUTE_CONTEXT_ID;
+    mockState.nodes.refactor.metadata.appliedContextId = BASIC_EXECUTE_CONTEXT_ID;
+    mockState.nodes.empty.metadata.appliedContextId = BASIC_EXECUTE_CONTEXT_ID;
   });
 
   describe('execute-mode workflow prompt explicitly targets CONTENT (not INSTRUCTIONS)', () => {

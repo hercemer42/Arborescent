@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-04-19T10:46:00.924Z'
+updated: '2026-04-19T16:47:13.775Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -540,6 +540,7 @@ nodes:
       - 54df937b-7f2b-49fd-84c0-aa5d821b5240
       - 3999cfea-b344-4f92-b3ca-ffb9f740afc7
       - 03f0a426-d21a-4ef9-9e80-c752dd18b4af
+      - 43ea2417-0b22-4d60-9997-e47414aa2143
     metadata:
       status: completed
       expanded: false
@@ -560,6 +561,7 @@ nodes:
     content: Opportunities
     children:
       - 45f1a5a0-dae3-4080-97ed-b8e324b79a64
+      - bfdf4f7e-06c7-4d79-a42f-c0ecf536e0c4
       - cab835d8-dde8-45ee-81a2-7e788a1f82dd
       - 25bb85f2-b25e-4736-afa5-bfd44d213894
       - 8c43f7e5-31af-4bae-821a-431599ed979c
@@ -8756,13 +8758,9 @@ nodes:
       - 895464c3-b2d6-4148-ac6d-6fcd9426e079
       - 1827816a-d5ec-41ee-8718-3f488e459560
       - 8534dc5e-da2c-415a-b6a9-e4e413f04355
-      - eaa4fec4-a897-46c1-9498-02fdfb5e442c
-      - 15974593-af5a-4c3e-b454-539a4f99d9c7
       - d48c9675-9ec8-4032-9df0-a5037764b9cf
-      - 2ee4a837-3635-4b0f-b794-896909f197e0
       - 533210b8-5c42-48f7-ab9a-bea602ae7ed2
       - 26dc74b0-c926-4461-b81a-7b6cd95864f6
-      - 46f6965a-8da4-4dab-9e25-7dd3d2773bd7
       - bbf5afa8-47fc-46c5-9ddf-62502640b74e
       - f1368f57-d8b2-46ce-99f0-79069355a299
       - d3b7f4eb-145c-4e13-b1de-75a1502c7cb4
@@ -8797,7 +8795,7 @@ nodes:
       - e43903b2-2184-4cbd-84ec-9cd24ea536e2
     metadata:
       status: pending
-      expanded: false
+      expanded: true
       isBlueprint: true
       blueprintIcon: Star
       blueprintColor: '#64748b'
@@ -26099,8 +26097,7 @@ nodes:
   4c43c117-e89a-460c-9900-7ea15b8cc0e0:
     id: 4c43c117-e89a-460c-9900-7ea15b8cc0e0
     content: Solution design
-    children:
-      - fe9b1ead-3abb-49f5-9898-7879669ad17f
+    children: []
     metadata:
       status: pending
       expanded: true
@@ -26112,20 +26109,6 @@ nodes:
       isBlueprint: true
       stepType: checkpoint
       decomposition: false
-  87a11a28-4295-467f-ac54-746692494413:
-    id: 87a11a28-4295-467f-ac54-746692494413
-    content: Decomposition
-    children:
-      - 8c1a3d51-2385-4fba-8b87-6c2171e51669
-    metadata:
-      status: completed
-      resolvedAt: '2026-03-08T21:15:28.213Z'
-      isBlueprint: true
-      blueprintIcon: Blocks
-      blueprintColor: '#14b8a6'
-      appliedContextId: e6860559-af1d-4a28-be70-9e27ba35335f
-      stepType: checkpoint
-      decomposition: true
   26dc74b0-c926-4461-b81a-7b6cd95864f6:
     id: 26dc74b0-c926-4461-b81a-7b6cd95864f6
     content: Declaring a node as a blueprint, context or workflow should clear its metadata (checked, resolvedAt etc)
@@ -27641,9 +27624,11 @@ nodes:
   bbf5afa8-47fc-46c5-9ddf-62502640b74e:
     id: bbf5afa8-47fc-46c5-9ddf-62502640b74e
     content: Applied contexts list does not refresh when changes are made to contexts
-    children: []
+    children:
+      - 45f6427d-1ffc-404e-bc66-b40ec5208428
     metadata:
       status: pending
+      expanded: false
   17864c32-1811-422e-b4f9-a4fe2d653b3e:
     id: 17864c32-1811-422e-b4f9-a4fe2d653b3e
     content: If something is inconsistent, fix it, don't make an exception
@@ -29978,8 +29963,9 @@ nodes:
       status: pending
   46f6965a-8da4-4dab-9e25-7dd3d2773bd7:
     id: 46f6965a-8da4-4dab-9e25-7dd3d2773bd7
-    content: Attempting to delete a multiple selection causes a hang for around 10 seconds then fails silently
-    children: []
+    content: Also, attempting to delete a multiple selection causes a hang for around 10 seconds then fails silently
+    children:
+      - 635ec2e6-ae83-4c8a-a517-d9ec99690656
     metadata:
       status: pending
   503e53c0-5353-48d5-a1f2-5dc15e0ff045:
@@ -33716,8 +33702,6 @@ nodes:
     children:
       - d730e290-99fd-4722-b24e-af33ef5dad48
       - a46447bd-24df-4dbf-aa01-09099cd4e53b
-      - 23d3e853-f5b0-42aa-b5c9-acd01da1f0f6
-      - 356e205f-2ec6-4271-b7cb-1657c6229a2d
       - 3a953d30-cb26-4e2b-96b0-9f092bc5ce93
       - 413a84b6-97e7-4963-81ca-6667f2136d9a
       - 28b63463-b046-4ed0-ab09-942c8b933875
@@ -34062,8 +34046,7 @@ nodes:
   7b3e923e-b465-4444-ae7d-7fe0e80e3235:
     id: 7b3e923e-b465-4444-ae7d-7fe0e80e3235
     content: Code review & refactor
-    children:
-      - 43ea2417-0b22-4d60-9997-e47414aa2143
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -34157,7 +34140,6 @@ nodes:
     children:
       - f0c283a4-0167-45e8-b5e3-d780dd67e0cc
       - 4c43c117-e89a-460c-9900-7ea15b8cc0e0
-      - 87a11a28-4295-467f-ac54-746692494413
       - 00714a63-f267-4ab1-a285-73ae4198eb42
       - 8de775f0-54d7-4c91-9488-b48f77a3a9ea
       - 9a392715-9ea2-4269-b35c-812b8998e3ec
@@ -50387,7 +50369,7 @@ nodes:
       - 7d3b730d-63f2-42a2-8d51-3ac155650cb5
     metadata:
       status: pending
-      expanded: false
+      expanded: true
   294a8650-f553-4e8c-9bb0-a6e860cd34cc:
     id: 294a8650-f553-4e8c-9bb0-a6e860cd34cc
     content: For example, if during a coding session the AI discovers there are too many steps
@@ -50412,6 +50394,7 @@ nodes:
     content: Would be good to have a way for the AI to have knowledge of the workflow tree
     children:
       - 7710be30-1f3b-4cd9-a697-dea1f6b5a237
+      - 5aafe65f-cc2f-45b2-90db-505510c65b9a
     metadata:
       status: pending
   7710be30-1f3b-4cd9-a697-dea1f6b5a237:
@@ -59778,95 +59761,6 @@ nodes:
       expanded: false
       deleted: false
       plugins: {}
-  2ee4a837-3635-4b0f-b794-896909f197e0:
-    id: 2ee4a837-3635-4b0f-b794-896909f197e0
-    content: Right after a node is decomposed, if I want to drag one of the user stories elsewhere, all of its children are dragged as siblings of the root node
-    children:
-      - 7b6c16f7-af69-4bcb-956c-cf2567d82407
-      - ad686b17-fca3-4c82-b63c-e109d26cd8d8
-    metadata:
-      status: pending
-      expanded: false
-      deleted: false
-      plugins: {}
-  7b6c16f7-af69-4bcb-956c-cf2567d82407:
-    id: 7b6c16f7-af69-4bcb-956c-cf2567d82407
-    content: Analysis
-    children:
-      - 64537226-7655-4629-9e50-8582cefcc325
-      - a8904cf2-5978-41c8-a185-f5e4597d436a
-      - 42a0543a-8d7b-43ca-80f1-2c3565d36498
-      - f75fce5b-6908-4064-9b4a-8c6f0b4f0762
-      - 4e929b76-56ec-4ea8-82a5-b5a3ea405b62
-      - b9e8516e-2052-4f83-bddc-5a5de8e97b51
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  64537226-7655-4629-9e50-8582cefcc325:
-    id: 64537226-7655-4629-9e50-8582cefcc325
-    content: Observed once after decomposition. Restarting the app fixed it — the same node dragged correctly after restart.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  a8904cf2-5978-41c8-a185-f5e4597d436a:
-    id: a8904cf2-5978-41c8-a185-f5e4597d436a
-    content: 'Code analysis found no definitive bug. The decomposition flow (AcceptFeedbackCommand.executeMultiRoot) correctly: remaps node IDs, preserves children arrays, rebuilds the ancestor registry with proper parent-child chains, and sets state in a single setState call.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  42a0543a-8d7b-43ca-80f1-2c3565d36498:
-    id: 42a0543a-8d7b-43ca-80f1-2c3565d36498
-    content: The drag system (getNodesToMove) filters multiSelectedNodeIds using the ancestor registry to return only root-level selections. If the registry is correct, children are excluded from the move list and stay attached to their parent via the children array.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f75fce5b-6908-4064-9b4a-8c6f0b4f0762:
-    id: f75fce5b-6908-4064-9b4a-8c6f0b4f0762
-    content: The DragOverlay renders getNodesToMove results — if children appeared as siblings visually during drag, getNodesToMove must have returned them as separate roots, which means the ancestor registry didn't show the parent as their ancestor at that moment.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  4e929b76-56ec-4ea8-82a5-b5a3ea405b62:
-    id: 4e929b76-56ec-4ea8-82a5-b5a3ea405b62
-    content: 'Most likely cause: a transient state inconsistency in the ancestor registry immediately after decomposition. The persisted nodes map (which loads on restart) was correct, confirming the children arrays were properly set.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  b9e8516e-2052-4f83-bddc-5a5de8e97b51:
-    id: b9e8516e-2052-4f83-bddc-5a5de8e97b51
-    content: Cannot reproduce. If it recurs, the next step is to add temporary logging in getNodesToMove and the ancestor registry at drag time to capture the exact state.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ad686b17-fca3-4c82-b63c-e109d26cd8d8:
-    id: ad686b17-fca3-4c82-b63c-e109d26cd8d8
-    content: 'Status: monitoring — needs reproduction to investigate further'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
   4fe9b084-1447-4806-94a0-0ade347a0b0d:
     id: 4fe9b084-1447-4806-94a0-0ade347a0b0d
     content: Problem statement
@@ -62709,12 +62603,6 @@ nodes:
       expanded: false
       deleted: false
       plugins: {}
-  eaa4fec4-a897-46c1-9498-02fdfb5e442c:
-    id: eaa4fec4-a897-46c1-9498-02fdfb5e442c
-    content: I don't get the 'collaborate' highlight or feedback panel showing for checkpoint steps
-    children: []
-    metadata:
-      status: pending
   e5ee1933-7c84-4f7d-b3ad-e2b054259c09:
     id: e5ee1933-7c84-4f7d-b3ad-e2b054259c09
     content: Problem statement
@@ -63944,12 +63832,6 @@ nodes:
       expanded: false
       deleted: false
       plugins: {}
-  15974593-af5a-4c3e-b454-539a4f99d9c7:
-    id: 15974593-af5a-4c3e-b454-539a4f99d9c7
-    content: Being in another arbo tab prevents feedback from applying and workflows from advancing
-    children: []
-    metadata:
-      status: pending
   c17509e0-f9ab-492a-8707-00bb2d076174:
     id: c17509e0-f9ab-492a-8707-00bb2d076174
     content: Problem statement
@@ -65335,20 +65217,6 @@ nodes:
       deleted: false
       plugins: {}
       isBlueprint: false
-  356e205f-2ec6-4271-b7cb-1657c6229a2d:
-    id: 356e205f-2ec6-4271-b7cb-1657c6229a2d
-    content: Associating decomposition with a workflow step instead of a context breaks if we want to attach another context besides the default one to a child node
-    children:
-      - e8d45e17-dff8-4be3-b5fb-5f74bf8f69be
-    metadata:
-      status: pending
-      expanded: false
-  e8d45e17-dff8-4be3-b5fb-5f74bf8f69be:
-    id: e8d45e17-dff8-4be3-b5fb-5f74bf8f69be
-    content: Consider moving the concept of decomposition to a context instead of a workflow step
-    children: []
-    metadata:
-      status: pending
   3d7af460-8479-4a9d-88f9-e4deceab4866:
     id: 3d7af460-8479-4a9d-88f9-e4deceab4866
     content: Problem statement
@@ -73366,485 +73234,6 @@ nodes:
     children: []
     metadata:
       status: pending
-  fe9b1ead-3abb-49f5-9898-7879669ad17f:
-    id: fe9b1ead-3abb-49f5-9898-7879669ad17f
-    content: Move decomposition from workflow step to context
-    children:
-      - 305b8171-e39a-49af-ae30-f40d97779cc9
-      - e7e438b5-a723-4648-bb16-839e41abb74e
-      - da08236c-3727-4c80-8a21-c008f97c0444
-      - 846b64b5-b70a-4f92-bd6c-2b2aab87d6f2
-      - 07d5b296-f0e6-4b6d-8b05-c5bf77143a15
-      - 66bd6c94-e7cb-4073-bb3f-2928c08c82d6
-      - 8ba4d35b-7f23-4c20-94b6-0d1d74ec0691
-    metadata:
-      status: pending
-      expanded: false
-      deleted: false
-      plugins: {}
-  305b8171-e39a-49af-ae30-f40d97779cc9:
-    id: 305b8171-e39a-49af-ae30-f40d97779cc9
-    content: Context
-    children:
-      - 48e0b701-8af0-4d2c-839b-03a89c23b35d
-      - 6257787c-d5e6-45aa-ab9c-08ab2e2443a9
-      - 04874c3f-e5e8-45b1-bd7b-6e7a7817e0c4
-      - 31f70e6e-12a4-4018-8ead-74dabffc8bcc
-      - 850ab696-b628-4636-b84d-fdebb4f9993b
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  48e0b701-8af0-4d2c-839b-03a89c23b35d:
-    id: 48e0b701-8af0-4d2c-839b-03a89c23b35d
-    content: Decomposition is currently configured on each workflow step via the step config dialog
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  6257787c-d5e6-45aa-ab9c-08ab2e2443a9:
-    id: 6257787c-d5e6-45aa-ab9c-08ab2e2443a9
-    content: Contexts are configured on context declarations and applied to nodes via inheritance
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  04874c3f-e5e8-45b1-bd7b-6e7a7817e0c4:
-    id: 04874c3f-e5e8-45b1-bd7b-6e7a7817e0c4
-    content: When a step has decomposition enabled, the AI is told to produce multiple top-level items
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  31f70e6e-12a4-4018-8ead-74dabffc8bcc:
-    id: 31f70e6e-12a4-4018-8ead-74dabffc8bcc
-    content: The context tells the AI what to decompose into (e.g. "break into user stories")
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  850ab696-b628-4636-b84d-fdebb4f9993b:
-    id: 850ab696-b628-4636-b84d-fdebb4f9993b
-    content: 'These two concepts are tightly coupled: the decomposition flag only makes sense when paired with a context that instructs the AI to produce multiple items'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e7e438b5-a723-4648-bb16-839e41abb74e:
-    id: e7e438b5-a723-4648-bb16-839e41abb74e
-    content: The problem
-    children:
-      - b7ca6674-acc5-478d-8675-b0332caec777
-      - ccbf0318-725e-4b79-ac54-9fecf83b18f0
-      - 7260315f-06c2-47f6-9f9e-bd99591613d4
-      - 2e0c6754-c93f-4281-9df1-5b97e035e009
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  b7ca6674-acc5-478d-8675-b0332caec777:
-    id: b7ca6674-acc5-478d-8675-b0332caec777
-    content: If a user wants to apply a specific context to a child node within a decomposition step's subtree, the decomposition flag still comes from the step — not from the context
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ccbf0318-725e-4b79-ac54-9fecf83b18f0:
-    id: ccbf0318-725e-4b79-ac54-9fecf83b18f0
-    content: This means decomposition is fixed for all items passing through that step, regardless of what context they carry
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  7260315f-06c2-47f6-9f9e-bd99591613d4:
-    id: 7260315f-06c2-47f6-9f9e-bd99591613d4
-    content: A user who wants step 2 to decompose some items (with a "break into stories" context) and refine others (with a "review and improve" context) cannot do this — decomposition is all-or-nothing per step
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  2e0c6754-c93f-4281-9df1-5b97e035e009:
-    id: 2e0c6754-c93f-4281-9df1-5b97e035e009
-    content: The concept of "how many outputs to expect" is logically part of the instruction set, not part of the pipeline stage
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  da08236c-3727-4c80-8a21-c008f97c0444:
-    id: da08236c-3727-4c80-8a21-c008f97c0444
-    content: Who is affected
-    children:
-      - bc5f3106-71a5-4bb8-bdcf-2cd389a14c15
-      - a9876210-cc8c-4187-996d-e789cea430e3
-      - 91146ec7-c94d-4501-9ba2-797b01c8fcc2
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  bc5f3106-71a5-4bb8-bdcf-2cd389a14c15:
-    id: bc5f3106-71a5-4bb8-bdcf-2cd389a14c15
-    content: Users building multi-purpose workflows where the same step processes items with different contexts
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  a9876210-cc8c-4187-996d-e789cea430e3:
-    id: a9876210-cc8c-4187-996d-e789cea430e3
-    content: Users who want to reuse a decomposition context across different workflows without reconfiguring each step
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  91146ec7-c94d-4501-9ba2-797b01c8fcc2:
-    id: 91146ec7-c94d-4501-9ba2-797b01c8fcc2
-    content: This is an advanced use case — most simple linear workflows won't hit this, but it blocks more sophisticated pipeline designs
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  846b64b5-b70a-4f92-bd6c-2b2aab87d6f2:
-    id: 846b64b5-b70a-4f92-bd6c-2b2aab87d6f2
-    content: What happens today without a solution
-    children:
-      - dedec26f-17cb-4c62-ad1b-2bfa6c591bea
-      - 92496c02-ab46-4a82-a682-3be5482b2eb5
-      - 4d1d909c-22bf-44e6-afa1-296c21bfd497
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  dedec26f-17cb-4c62-ad1b-2bfa6c591bea:
-    id: dedec26f-17cb-4c62-ad1b-2bfa6c591bea
-    content: Users work around it by creating separate workflow branches for decomposition vs non-decomposition items
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  92496c02-ab46-4a82-a682-3be5482b2eb5:
-    id: 92496c02-ab46-4a82-a682-3be5482b2eb5
-    content: Or they live with decomposition always on for a step, even when some items shouldn't be decomposed
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  4d1d909c-22bf-44e6-afa1-296c21bfd497:
-    id: 4d1d909c-22bf-44e6-afa1-296c21bfd497
-    content: Context declarations feel incomplete because they define what the AI should do but not how the output should be structured
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  07d5b296-f0e6-4b6d-8b05-c5bf77143a15:
-    id: 07d5b296-f0e6-4b6d-8b05-c5bf77143a15
-    content: Feasibility and ROI
-    children:
-      - 60bdc8bd-0a9e-4c97-b111-aba446a4b271
-      - acba1758-7003-4dc8-9071-c9ba479e9778
-      - 528aa187-9463-4b80-8c5d-030ce19a1cc2
-      - 51c97baf-774d-4870-930f-17745b5e7ce2
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  60bdc8bd-0a9e-4c97-b111-aba446a4b271:
-    id: 60bdc8bd-0a9e-4c97-b111-aba446a4b271
-    content: Moderate effort — requires moving the decomposition flag from step metadata to context metadata, updating the step config dialog, updating context declaration UI, and updating the resolution logic
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  acba1758-7003-4dc8-9071-c9ba479e9778:
-    id: acba1758-7003-4dc8-9071-c9ba479e9778
-    content: High alignment — decomposition is conceptually part of the instruction set ("break this down into X") not the pipeline ("this step always decomposes")
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  528aa187-9463-4b80-8c5d-030ce19a1cc2:
-    id: 528aa187-9463-4b80-8c5d-030ce19a1cc2
-    content: Low risk — decomposition is already a boolean flag; moving where it lives doesn't change the parsing or feedback acceptance logic
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  51c97baf-774d-4870-930f-17745b5e7ce2:
-    id: 51c97baf-774d-4870-930f-17745b5e7ce2
-    content: 'Migration: existing workflows with decomposition on steps would need a migration path or backward compatibility'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  66bd6c94-e7cb-4073-bb3f-2928c08c82d6:
-    id: 66bd6c94-e7cb-4073-bb3f-2928c08c82d6
-    content: Proposed solution
-    children:
-      - b4cccc71-a995-4c5e-bd01-bbeec035f9ad
-      - 63d3271f-e873-4720-8ddd-f966da76e924
-      - f1c74dbb-ffb5-4f64-bd06-25d5ce691f40
-      - f4f01191-a06e-4b33-b704-c85035ba0db5
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  b4cccc71-a995-4c5e-bd01-bbeec035f9ad:
-    id: b4cccc71-a995-4c5e-bd01-bbeec035f9ad
-    content: 'MVP: Add a "decomposition" toggle to context declarations'
-    children:
-      - e8c11a98-afdf-4e80-a3ff-4d19243e85a8
-      - 9d3a66d7-9498-4162-9cba-ba0431d89de3
-      - 3a19e8bb-b435-44ee-828e-5a5650311d06
-      - 078258fa-237e-4483-9753-a26a2d58f415
-      - 7b5b96a8-2ea3-4908-96d8-b37adda60086
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e8c11a98-afdf-4e80-a3ff-4d19243e85a8:
-    id: e8c11a98-afdf-4e80-a3ff-4d19243e85a8
-    content: When declaring a context, you can mark it as a decomposition context
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  9d3a66d7-9498-4162-9cba-ba0431d89de3:
-    id: 9d3a66d7-9498-4162-9cba-ba0431d89de3
-    content: When a node is sent (manually or via workflow), the system checks if the resolved context has decomposition enabled — instead of checking the workflow step
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  3a19e8bb-b435-44ee-828e-5a5650311d06:
-    id: 3a19e8bb-b435-44ee-828e-5a5650311d06
-    content: The step config dialog loses its decomposition checkbox
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  078258fa-237e-4483-9753-a26a2d58f415:
-    id: 078258fa-237e-4483-9753-a26a2d58f415
-    content: Built-in default contexts remain non-decomposition
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  7b5b96a8-2ea3-4908-96d8-b37adda60086:
-    id: 7b5b96a8-2ea3-4908-96d8-b37adda60086
-    content: 'User flow: create a context "Break into user stories" with collaborate mode and decomposition enabled → apply it to a branch → send or run through a workflow → the system expects multiple items back'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  63d3271f-e873-4720-8ddd-f966da76e924:
-    id: 63d3271f-e873-4720-8ddd-f966da76e924
-    content: What changes for the user
-    children:
-      - 2f059b5a-3f47-44f1-a353-a0ce5db28fa9
-      - c61b4c26-e388-4eba-8aad-46c9e3bf9948
-      - 2c5a7a17-dfc2-404c-a31b-11fec6b27509
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  2f059b5a-3f47-44f1-a353-a0ce5db28fa9:
-    id: 2f059b5a-3f47-44f1-a353-a0ce5db28fa9
-    content: Decomposition moves from "configure the pipeline" to "configure the instruction" — it becomes a property of what you're asking the AI to do
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  c61b4c26-e388-4eba-8aad-46c9e3bf9948:
-    id: c61b4c26-e388-4eba-8aad-46c9e3bf9948
-    content: A single workflow step can now decompose or not depending on which context the item carries
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  2c5a7a17-dfc2-404c-a31b-11fec6b27509:
-    id: 2c5a7a17-dfc2-404c-a31b-11fec6b27509
-    content: Reusing a decomposition context across workflows works without any step-level configuration
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f1c74dbb-ffb5-4f64-bd06-25d5ce691f40:
-    id: f1c74dbb-ffb5-4f64-bd06-25d5ce691f40
-    content: 'Alternative: Keep decomposition on both step and context (union)'
-    children:
-      - 72d38491-eb02-4f0e-879c-d87c11772b8d
-      - 04cffb06-bb88-4cc8-90b5-a237f68e697b
-      - 41a248ce-16a9-43f9-9294-1e0da571fdbe
-      - 7f2f9f2c-664f-456a-bedb-f00a667379f8
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  72d38491-eb02-4f0e-879c-d87c11772b8d:
-    id: 72d38491-eb02-4f0e-879c-d87c11772b8d
-    content: Allow decomposition to be enabled on either the step or the context — if either says yes, decompose
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  04cffb06-bb88-4cc8-90b5-a237f68e697b:
-    id: 04cffb06-bb88-4cc8-90b5-a237f68e697b
-    content: 'Pro: fully backward compatible, no migration needed'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  41a248ce-16a9-43f9-9294-1e0da571fdbe:
-    id: 41a248ce-16a9-43f9-9294-1e0da571fdbe
-    content: 'Con: two places to configure the same thing creates confusion — "why did this decompose? was it the step or the context?"'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  7f2f9f2c-664f-456a-bedb-f00a667379f8:
-    id: 7f2f9f2c-664f-456a-bedb-f00a667379f8
-    content: Not recommended — adds complexity for marginal benefit
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f4f01191-a06e-4b33-b704-c85035ba0db5:
-    id: f4f01191-a06e-4b33-b704-c85035ba0db5
-    content: 'Alternative: Do nothing'
-    children:
-      - cd1520c6-c420-471e-a45f-cc76a90c980d
-      - 55a1c7ce-11ea-4e5c-ae14-4fb600b343eb
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  cd1520c6-c420-471e-a45f-cc76a90c980d:
-    id: cd1520c6-c420-471e-a45f-cc76a90c980d
-    content: Users continue using separate workflow branches for different decomposition needs
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  55a1c7ce-11ea-4e5c-ae14-4fb600b343eb:
-    id: 55a1c7ce-11ea-4e5c-ae14-4fb600b343eb
-    content: Acceptable for now but becomes increasingly painful as workflows get more sophisticated
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  8ba4d35b-7f23-4c20-94b6-0d1d74ec0691:
-    id: 8ba4d35b-7f23-4c20-94b6-0d1d74ec0691
-    content: Recommendation
-    children:
-      - 539256c7-a0f2-4e00-ae70-5c0a55e279f4
-      - 82c1e33c-7f9f-4fd3-9093-a0b259da0954
-      - 4a7b7359-3de4-47d3-bd2b-e5bd63470bfe
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  539256c7-a0f2-4e00-ae70-5c0a55e279f4:
-    id: 539256c7-a0f2-4e00-ae70-5c0a55e279f4
-    content: Move decomposition to context declarations (the MVP)
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  82c1e33c-7f9f-4fd3-9093-a0b259da0954:
-    id: 82c1e33c-7f9f-4fd3-9093-a0b259da0954
-    content: Effort is moderate, alignment with the design philosophy is strong — complexity should be emergent and discoverable, and tying decomposition to the context makes both concepts more self-contained
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  4a7b7359-3de4-47d3-bd2b-e5bd63470bfe:
-    id: 4a7b7359-3de4-47d3-bd2b-e5bd63470bfe
-    content: 'Migration: for existing files with decomposition on steps, show a one-time toast suggesting the user move the flag to the context, or auto-migrate by creating a derived context'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
   4e838e70-7701-49d5-a575-04eab7a2d72d:
     id: 4e838e70-7701-49d5-a575-04eab7a2d72d
     content: Problem
@@ -75238,41 +74627,6 @@ nodes:
       expanded: false
       deleted: false
       plugins: {}
-  23d3e853-f5b0-42aa-b5c9-acd01da1f0f6:
-    id: 23d3e853-f5b0-42aa-b5c9-acd01da1f0f6
-    content: Default contexts prevent actions from working
-    children:
-      - 26e95288-225c-49fc-bb1b-8bc87a0568fe
-      - e0c04fcf-7a12-4d15-a59b-bd530e6f56fb
-      - f0c19ac5-5107-4b14-93bc-097c90676a42
-    metadata:
-      status: pending
-      expanded: false
-  26e95288-225c-49fc-bb1b-8bc87a0568fe:
-    id: 26e95288-225c-49fc-bb1b-8bc87a0568fe
-    content: Don't automatically apply default contexts, just have them in the contexts list so they can be applied at any time
-    children: []
-    metadata:
-      status: pending
-  e0c04fcf-7a12-4d15-a59b-bd530e6f56fb:
-    id: e0c04fcf-7a12-4d15-a59b-bd530e6f56fb
-    content: That way when an action is sent it only sends the action text
-    children: []
-    metadata:
-      status: pending
-  f0c19ac5-5107-4b14-93bc-097c90676a42:
-    id: f0c19ac5-5107-4b14-93bc-097c90676a42
-    content: Consider if actions should be applicable like contexts
-    children:
-      - 352af091-e4b7-485a-8137-6b2903ea8ee4
-    metadata:
-      status: pending
-  352af091-e4b7-485a-8137-6b2903ea8ee4:
-    id: 352af091-e4b7-485a-8137-6b2903ea8ee4
-    content: Maybe action is a context type (like collaborate/execute)
-    children: []
-    metadata:
-      status: pending
   bee76549-e25f-4862-8829-b1dcba732824:
     id: bee76549-e25f-4862-8829-b1dcba732824
     content: Switching between terminal tabs produces a blank terminal
@@ -75756,11 +75110,9 @@ nodes:
     id: f4300f5a-e503-4606-b6bc-f67f6d4a0ed4
     content: Merge to master
     children:
-      - 45fa4d06-629f-4a25-a02b-18593b46ade6
       - 28d641ce-1314-4c8b-b003-2688efb36075
       - 5c79a251-defe-4ef2-a9ce-30e2d89a8f35
       - b861c616-e8ec-4cda-9244-bbc9f2e404e4
-      - e173d220-eec9-457a-8113-f80f11eb3e4f
     metadata:
       status: pending
       isContextDeclaration: true
@@ -75803,12 +75155,10 @@ nodes:
     id: b050f7d8-a00a-4ff8-b137-2fd5ce499a2f
     content: Install locally
     children:
-      - 3b09f397-7478-4012-9a5c-b50a8d7b99d5
       - 12cae438-35bf-4f28-95de-e3f2aa0bc16d
       - 242ba1f7-a20e-46b3-ab7b-2f58c40d6771
       - 9cd3e9af-1493-47f0-a421-7c0192d2c09c
       - cfbfb65d-4dc5-400a-afb2-374980217060
-      - 362de9a8-1db1-42ee-a389-544c680ac63f
     metadata:
       status: pending
       isContextDeclaration: true
@@ -76514,34 +75864,6 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  45fa4d06-629f-4a25-a02b-18593b46ade6:
-    id: 45fa4d06-629f-4a25-a02b-18593b46ade6
-    content: Switch to low effort
-    children: []
-    metadata:
-      status: pending
-      isBlueprint: true
-  e173d220-eec9-457a-8113-f80f11eb3e4f:
-    id: e173d220-eec9-457a-8113-f80f11eb3e4f
-    content: Switch back to previous effort
-    children: []
-    metadata:
-      status: pending
-      isBlueprint: true
-  3b09f397-7478-4012-9a5c-b50a8d7b99d5:
-    id: 3b09f397-7478-4012-9a5c-b50a8d7b99d5
-    content: Switch to low effort
-    children: []
-    metadata:
-      status: pending
-      isBlueprint: true
-  362de9a8-1db1-42ee-a389-544c680ac63f:
-    id: 362de9a8-1db1-42ee-a389-544c680ac63f
-    content: Switch back to previous effort
-    children: []
-    metadata:
-      status: pending
-      isBlueprint: true
   a46447bd-24df-4dbf-aa01-09099cd4e53b:
     id: a46447bd-24df-4dbf-aa01-09099cd4e53b
     content: 2 collaborations in progress in 2 files, a finished collaboration in an unfocused file overwrites the unfinished one in the focused file
@@ -77449,7 +76771,7 @@ nodes:
       plugins: {}
   43ea2417-0b22-4d60-9997-e47414aa2143:
     id: 43ea2417-0b22-4d60-9997-e47414aa2143
-    content: 'Explicit-onlycontexts: remove auto-apply of default contexts'
+    content: 'Explicit-only contexts: remove auto-apply of default contexts'
     children:
       - 8dc0339d-a6a5-4854-8922-4761e26d2381
       - 748993b5-f9e8-4eff-93c8-2bc7f33523a3
@@ -78974,6 +78296,7 @@ nodes:
       - 1f241773-b2b0-4e8f-a2aa-9dea887383e7
     metadata:
       status: pending
+      expanded: false
   70392cfb-1227-408d-8c73-0a1d786c18d5:
     id: 70392cfb-1227-408d-8c73-0a1d786c18d5
     content: Automated feedback tends to apply the actual context back to the node which overwrites it
@@ -79002,9 +78325,11 @@ nodes:
   1827816a-d5ec-41ee-8718-3f488e459560:
     id: 1827816a-d5ec-41ee-8718-3f488e459560
     content: Can't cut and paste multiple items
-    children: []
+    children:
+      - 46f6965a-8da4-4dab-9e25-7dd3d2773bd7
     metadata:
       status: pending
+      expanded: false
   8534dc5e-da2c-415a-b6a9-e4e413f04355:
     id: 8534dc5e-da2c-415a-b6a9-e4e413f04355
     content: Shift + select doesn't seem to work
@@ -79028,6 +78353,7 @@ nodes:
       blueprintColor: '#64748b'
       isBlueprint: true
       contextMode: collaborate
+      feedbackTempFile: /Users/brianfox/Library/Application Support/Arborescent/temp-files/feedback-64ec6c6b-566e-4956-bff9-55ac881f4fdb.arbo
   54a6b08d-8fa0-4a50-a962-8bf87cc4d734:
     id: 54a6b08d-8fa0-4a50-a962-8bf87cc4d734
     content: Flag complications
@@ -79556,382 +78882,6 @@ nodes:
       deleted: false
       plugins: {}
       isBlueprint: true
-  e6860559-af1d-4a28-be70-9e27ba35335f:
-    id: e6860559-af1d-4a28-be70-9e27ba35335f
-    content: Decomposition
-    children:
-      - 12221dfc-628a-4f1c-9280-7d4ac8e0dff7
-      - 2e64b4cc-8a16-4eb6-a54d-80a2b7a1cff5
-      - c87d1961-3f2a-409a-9eb9-0e0b5514d184
-      - 21aa87af-3028-4f86-80a6-0180cbb0adc7
-      - 29c6e2d4-d200-4e04-8552-4913d4de3911
-      - 144f87a7-9799-423c-ba47-40dff294fb8d
-    metadata:
-      status: pending
-      expanded: false
-      deleted: false
-      plugins: {}
-      isContextDeclaration: true
-      blueprintIcon: Blocks
-      blueprintColor: '#22c55e'
-      isBlueprint: true
-      contextMode: collaborate
-  12221dfc-628a-4f1c-9280-7d4ac8e0dff7:
-    id: 12221dfc-628a-4f1c-9280-7d4ac8e0dff7
-    content: You are reviewing a hierarchical functional definition for a new feature
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-      isBlueprint: true
-  2e64b4cc-8a16-4eb6-a54d-80a2b7a1cff5:
-    id: 2e64b4cc-8a16-4eb6-a54d-80a2b7a1cff5
-    content: Please break it down into a list of user stories
-    children:
-      - 769ac66d-14fa-4132-b5c0-e947bb6c2852
-      - 08ab36c3-6a24-4558-a41c-55b50896f266
-      - e972b8cb-f66f-4792-84ae-67c202a36371
-      - b3707296-2cac-4efd-a2e4-d137b110aad5
-      - 5bfa9020-5db3-46c4-8be0-abefb83162f0
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-      isBlueprint: true
-  769ac66d-14fa-4132-b5c0-e947bb6c2852:
-    id: 769ac66d-14fa-4132-b5c0-e947bb6c2852
-    content: "Only break it down if you need to.\_ If it comfortably fits in one, then output just one."
-    children:
-      - a98ee247-9c20-4803-a2e7-939b388e50a8
-    metadata:
-      status: pending
-      isBlueprint: true
-  a98ee247-9c20-4803-a2e7-939b388e50a8:
-    id: a98ee247-9c20-4803-a2e7-939b388e50a8
-    content: "I insist on this - if it's going to take more time for you and the user to have several user stories when one is needed, don't do it !\_ There has to be a tangible benefit."
-    children: []
-    metadata:
-      status: pending
-      isBlueprint: true
-  08ab36c3-6a24-4558-a41c-55b50896f266:
-    id: 08ab36c3-6a24-4558-a41c-55b50896f266
-    content: Each one should be a discrete functional component with no content shared between them
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-      isBlueprint: true
-  e972b8cb-f66f-4792-84ae-67c202a36371:
-    id: e972b8cb-f66f-4792-84ae-67c202a36371
-    content: Each one should be easy to code and reason about, and fit comfortably in the context window
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-      isBlueprint: true
-  b3707296-2cac-4efd-a2e4-d137b110aad5:
-    id: b3707296-2cac-4efd-a2e4-d137b110aad5
-    content: The user stories should be broken down by testable components
-    children:
-      - 7498a3e0-08d9-4459-ba73-b90177c39955
-      - 6044bacf-792c-4d65-8b6f-462ed4a0134c
-      - 525f114e-828a-496d-a616-a52eca60a83d
-      - 6d759906-6e13-46df-9ae2-1a624b116142
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-      isBlueprint: true
-  7498a3e0-08d9-4459-ba73-b90177c39955:
-    id: 7498a3e0-08d9-4459-ba73-b90177c39955
-    content: They should not be too small as to be time consuming to implement
-    children: []
-    metadata:
-      status: pending
-      isBlueprint: true
-  6044bacf-792c-4d65-8b6f-462ed4a0134c:
-    id: 6044bacf-792c-4d65-8b6f-462ed4a0134c
-    content: They should not be to big as to be difficult to implement or reason about
-    children: []
-    metadata:
-      status: pending
-      isBlueprint: true
-  525f114e-828a-496d-a616-a52eca60a83d:
-    id: 525f114e-828a-496d-a616-a52eca60a83d
-    content: They should comfortably fit in the context window
-    children: []
-    metadata:
-      status: pending
-      isBlueprint: true
-  6d759906-6e13-46df-9ae2-1a624b116142:
-    id: 6d759906-6e13-46df-9ae2-1a624b116142
-    content: They do not need to represent an MVP but must be testable
-    children: []
-    metadata:
-      status: pending
-      isBlueprint: true
-  5bfa9020-5db3-46c4-8be0-abefb83162f0:
-    id: 5bfa9020-5db3-46c4-8be0-abefb83162f0
-    content: Don't be too granular in the decomposition. If a user story only has a couple of acceptance criteria, then include it with another
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-      isBlueprint: true
-  c87d1961-3f2a-409a-9eb9-0e0b5514d184:
-    id: c87d1961-3f2a-409a-9eb9-0e0b5514d184
-    content: Use the following structure for each user story
-    children:
-      - dfe2a0e7-7ea5-4455-a27b-68ec01c65398
-      - ad14be1d-4bd0-4572-a415-a9f8e3b4ac44
-      - dcb668b7-da1b-49b1-aaa1-fb63f16e870f
-      - 7a927bcf-d118-4023-9c47-1c71d4e0229f
-    metadata:
-      status: pending
-      expanded: false
-      deleted: false
-      plugins: {}
-      isBlueprint: true
-  dfe2a0e7-7ea5-4455-a27b-68ec01c65398:
-    id: dfe2a0e7-7ea5-4455-a27b-68ec01c65398
-    content: Problem statement
-    children:
-      - 954a0f2a-d174-411c-98d3-659316255c23
-      - 90a47f71-b48e-41ba-ae5d-d2be87dffd76
-      - 52472e3c-ed1f-43d1-8dda-97e718960bf3
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-      isBlueprint: true
-  954a0f2a-d174-411c-98d3-659316255c23:
-    id: 954a0f2a-d174-411c-98d3-659316255c23
-    content: Identify the user pain point or need the feature addresses
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-      isBlueprint: true
-  90a47f71-b48e-41ba-ae5d-d2be87dffd76:
-    id: 90a47f71-b48e-41ba-ae5d-d2be87dffd76
-    content: State who the user is (role/persona)
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-      isBlueprint: true
-  52472e3c-ed1f-43d1-8dda-97e718960bf3:
-    id: 52472e3c-ed1f-43d1-8dda-97e718960bf3
-    content: Describe the current experience and why it is insufficient
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-      isBlueprint: true
-  ad14be1d-4bd0-4572-a415-a9f8e3b4ac44:
-    id: ad14be1d-4bd0-4572-a415-a9f8e3b4ac44
-    content: Use cases
-    children:
-      - 95aa20fe-2a1a-4130-b8b2-7f69d7e622a8
-      - f7a6eea6-feec-4759-a6c0-9d660de43ec0
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-      isBlueprint: true
-  95aa20fe-2a1a-4130-b8b2-7f69d7e622a8:
-    id: 95aa20fe-2a1a-4130-b8b2-7f69d7e622a8
-    content: Define the primary use case (happy path)
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-      isBlueprint: true
-  f7a6eea6-feec-4759-a6c0-9d660de43ec0:
-    id: f7a6eea6-feec-4759-a6c0-9d660de43ec0
-    content: Identify secondary and alternative use cases
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-      isBlueprint: true
-  dcb668b7-da1b-49b1-aaa1-fb63f16e870f:
-    id: dcb668b7-da1b-49b1-aaa1-fb63f16e870f
-    content: Acceptance criteria
-    children:
-      - 0a3125b5-14de-4a28-b66e-54795ecbdf45
-      - 12516114-7004-4357-a3e5-afdba2573dd3
-      - d102fcca-db8a-4d3a-974c-88142f74894b
-      - bed7648c-f140-423f-acdc-3bf7f3ec0040
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-      isBlueprint: true
-  0a3125b5-14de-4a28-b66e-54795ecbdf45:
-    id: 0a3125b5-14de-4a28-b66e-54795ecbdf45
-    content: Write each criterion as a testable statement
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-      isBlueprint: true
-  12516114-7004-4357-a3e5-afdba2573dd3:
-    id: 12516114-7004-4357-a3e5-afdba2573dd3
-    content: Cover functional requirements
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-      isBlueprint: true
-  d102fcca-db8a-4d3a-974c-88142f74894b:
-    id: d102fcca-db8a-4d3a-974c-88142f74894b
-    content: Cover edge cases and error handling
-    children:
-      - d582dcff-e2cc-4533-aea2-b18816ec54db
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-      isBlueprint: true
-  d582dcff-e2cc-4533-aea2-b18816ec54db:
-    id: d582dcff-e2cc-4533-aea2-b18816ec54db
-    content: Only include reasonable edge cases
-    children:
-      - 003ff9ca-c961-4e16-9d81-933b5c37ec30
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-      isBlueprint: true
-  003ff9ca-c961-4e16-9d81-933b5c37ec30:
-    id: 003ff9ca-c961-4e16-9d81-933b5c37ec30
-    content: Don't include minor ones unless there is technical complexity
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-      isBlueprint: true
-  bed7648c-f140-423f-acdc-3bf7f3ec0040:
-    id: bed7648c-f140-423f-acdc-3bf7f3ec0040
-    content: Cover non-functional requirements (performance, accessibility, etc.)
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-      isBlueprint: true
-  7a927bcf-d118-4023-9c47-1c71d4e0229f:
-    id: 7a927bcf-d118-4023-9c47-1c71d4e0229f
-    content: Constraints and assumptions
-    children:
-      - f58f6914-be94-40bc-b334-4ea3652e1b91
-      - fe1c346b-c1f6-43d6-961a-6d13a6feaa14
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-      isBlueprint: true
-  f58f6914-be94-40bc-b334-4ea3652e1b91:
-    id: f58f6914-be94-40bc-b334-4ea3652e1b91
-    content: Note any technical constraints or dependencies
-    children:
-      - 8867bbeb-950e-43e2-98cd-48ba5012ca2d
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-      isBlueprint: true
-  8867bbeb-950e-43e2-98cd-48ba5012ca2d:
-    id: 8867bbeb-950e-43e2-98cd-48ba5012ca2d
-    content: Do highlight if there is a technical constraint that makes the feature difficult to implement
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-      isBlueprint: true
-  fe1c346b-c1f6-43d6-961a-6d13a6feaa14:
-    id: fe1c346b-c1f6-43d6-961a-6d13a6feaa14
-    content: Document assumptions made about user behavior or system state
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-      isBlueprint: true
-  21aa87af-3028-4f86-80a6-0180cbb0adc7:
-    id: 21aa87af-3028-4f86-80a6-0180cbb0adc7
-    content: They should not reference content in other user stories
-    children:
-      - 165525bb-c0c1-44e7-9eb5-80c870f0c9af
-    metadata:
-      status: pending
-      isBlueprint: true
-      expanded: false
-  165525bb-c0c1-44e7-9eb5-80c870f0c9af:
-    id: 165525bb-c0c1-44e7-9eb5-80c870f0c9af
-    content: Each user story should contain everything needed to implement it
-    children: []
-    metadata:
-      status: pending
-      isBlueprint: true
-  29c6e2d4-d200-4e04-8552-4913d4de3911:
-    id: 29c6e2d4-d200-4e04-8552-4913d4de3911
-    content: Don't be technical in the descriptions unless required for functional context
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-      isBlueprint: true
-  144f87a7-9799-423c-ba47-40dff294fb8d:
-    id: 144f87a7-9799-423c-ba47-40dff294fb8d
-    content: Remove any duplication across sections and preserve all unique information
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-      isBlueprint: true
   1e2f062a-bbaa-4a02-b58b-a94ab15d8d74:
     id: 1e2f062a-bbaa-4a02-b58b-a94ab15d8d74
     content: Verification
@@ -80129,7 +79079,6 @@ nodes:
     children:
       - 0d19da53-f3a7-4ee4-b495-b59f127671fa
       - e8824b29-eb18-4031-9e35-b321a864d418
-      - e6860559-af1d-4a28-be70-9e27ba35335f
       - 1e2f062a-bbaa-4a02-b58b-a94ab15d8d74
       - 0058432d-a010-473b-a707-ace2b1dee169
       - d83909a8-6ca6-4dca-8c64-7b4ee9aeb43b
@@ -80139,3 +79088,98 @@ nodes:
       blueprintIcon: Layers2
       blueprintColor: '#0ea5e9'
       expanded: true
+  bfdf4f7e-06c7-4d79-a42f-c0ecf536e0c4:
+    id: bfdf4f7e-06c7-4d79-a42f-c0ecf536e0c4
+    content: Associate effort with a context
+    children:
+      - 1fb08d66-e49f-4bbe-ba21-acd2e04a5d73
+      - cc864513-b72b-4d9a-bfab-eabaa8d675ca
+      - 8a00eeae-3f10-43bf-8c0a-b046ff2d565a
+      - 1830402b-5cbf-4bb5-bfd9-b728bef1d020
+    metadata:
+      status: pending
+      expanded: false
+  1fb08d66-e49f-4bbe-ba21-acd2e04a5d73:
+    id: 1fb08d66-e49f-4bbe-ba21-acd2e04a5d73
+    content: Would be cool if we can send a command for claude to switch to different effort levels depending on the task
+    children: []
+    metadata:
+      status: pending
+  cc864513-b72b-4d9a-bfab-eabaa8d675ca:
+    id: cc864513-b72b-4d9a-bfab-eabaa8d675ca
+    content: For example, committing & pushing don't need xhigh
+    children: []
+    metadata:
+      status: pending
+  8a00eeae-3f10-43bf-8c0a-b046ff2d565a:
+    id: 8a00eeae-3f10-43bf-8c0a-b046ff2d565a
+    content: Not sure it's worth the effort though because it'll also depend on the user story
+    children: []
+    metadata:
+      status: pending
+  1830402b-5cbf-4bb5-bfd9-b728bef1d020:
+    id: 1830402b-5cbf-4bb5-bfd9-b728bef1d020
+    content: Or we can get it to gauge the effort required depending on the job complexity and get it to ping an API that gets Arborescent to send an effort switch to the terminal
+    children: []
+    metadata:
+      status: pending
+  635ec2e6-ae83-4c8a-a517-d9ec99690656:
+    id: 635ec2e6-ae83-4c8a-a517-d9ec99690656
+    content: Maybe related but fix both anyway
+    children: []
+    metadata:
+      status: pending
+  45f6427d-1ffc-404e-bc66-b40ec5208428:
+    id: 45f6427d-1ffc-404e-bc66-b40ec5208428
+    content: Well it does, but takes a while
+    children: []
+    metadata:
+      status: pending
+  5aafe65f-cc2f-45b2-90db-505510c65b9a:
+    id: 5aafe65f-cc2f-45b2-90db-505510c65b9a
+    content: 'Should just be an instruction :'
+    children:
+      - d7dd2d1c-767c-4bf8-afb6-d919e3910745
+      - e33dd4d8-5c57-43d7-87f7-8a2469234f4d
+    metadata:
+      status: pending
+  d7dd2d1c-767c-4bf8-afb6-d919e3910745:
+    id: d7dd2d1c-767c-4bf8-afb6-d919e3910745
+    content: 'In the user supplied context : Split the work into logic steps under ''Implementation order'' node'
+    children: []
+    metadata:
+      status: pending
+  e33dd4d8-5c57-43d7-87f7-8a2469234f4d:
+    id: e33dd4d8-5c57-43d7-87f7-8a2469234f4d
+    content: 'Recurse option : if there are unfinished items send it back to the start of the first automated chain'
+    children:
+      - 9ed91c84-d913-4c1e-a7ef-18e32080a78a
+      - 54efef9a-491e-408b-8918-4300cbab79a4
+    metadata:
+      status: pending
+  9ed91c84-d913-4c1e-a7ef-18e32080a78a:
+    id: 9ed91c84-d913-4c1e-a7ef-18e32080a78a
+    content: But what if there are checkpoints too ?
+    children: []
+    metadata:
+      status: pending
+  54efef9a-491e-408b-8918-4300cbab79a4:
+    id: 54efef9a-491e-408b-8918-4300cbab79a4
+    content: Ideally we can have a target node for the recurse option
+    children:
+      - 899eb41e-2040-4740-8bc2-6f5005ff16e5
+    metadata:
+      status: pending
+  899eb41e-2040-4740-8bc2-6f5005ff16e5:
+    id: 899eb41e-2040-4740-8bc2-6f5005ff16e5
+    content: Instead of a checkbox 'recurse' we can have a 'Recurse to :'
+    children:
+      - ebd1b1b1-a2cb-4962-ac09-86d3f2325945
+    metadata:
+      status: pending
+  ebd1b1b1-a2cb-4962-ac09-86d3f2325945:
+    id: ebd1b1b1-a2cb-4962-ac09-86d3f2325945
+    content: Matches by UUID, displays starting node name
+    children: []
+    metadata:
+      status: pending
