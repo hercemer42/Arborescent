@@ -1,5 +1,5 @@
 import { TreeNode } from '../../../../shared/types';
-import { updateNodeMetadata, BASIC_EXECUTE_CONTEXT_ID } from '../../../utils/nodeHelpers';
+import { updateNodeMetadata, BASIC_EXECUTE_CONTEXT_ID, getParentIdOrNull } from '../../../utils/nodeHelpers';
 import { logger } from '../../../services/logger';
 import { useToastStore } from '../../toast/toastStore';
 import { ContextDeclarationInfo, ContextMode } from '../treeStore';
@@ -55,8 +55,7 @@ export const createContextActions = (
     const node = nodes[nodeId];
     if (!node) return;
 
-    const ancestors = ancestorRegistry[nodeId] || [];
-    const parentId = ancestors[ancestors.length - 1];
+    const parentId = getParentIdOrNull(nodeId, ancestorRegistry);
     const parent = parentId ? nodes[parentId] : null;
     if (!parent || parent.metadata.isBlueprint !== true) {
       useToastStore.getState().addToast('Can only declare context on branches with a blueprint parent', 'error');

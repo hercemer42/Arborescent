@@ -1,6 +1,7 @@
 import { BaseCommand } from './Command';
 import { TreeNode } from '../../../../shared/types';
 import { removeNodeFromRegistry, addNodesToRegistry } from '../../../utils/ancestry';
+import { getParentId } from '../../../utils/nodeHelpers';
 import { useFilesStore } from '../../files/filesStore';
 
 interface DeletedNodeSnapshot {
@@ -43,8 +44,7 @@ export class DeleteNodeCommand extends BaseCommand {
     const node = nodes[this.nodeId];
     if (!node) return;
 
-    const ancestors = ancestorRegistry[this.nodeId] || [];
-    const parentId = ancestors[ancestors.length - 1] || rootNodeId;
+    const parentId = getParentId(this.nodeId, ancestorRegistry, rootNodeId);
     const parent = nodes[parentId];
     if (!parent) return;
 

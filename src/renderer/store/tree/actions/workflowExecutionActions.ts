@@ -21,6 +21,7 @@ import {
   getAppliedContextIdWithInheritance,
   resolveContextMode,
   getContextDeclarations,
+  getParentIdOrNull,
 } from "../../../utils/nodeHelpers";
 import { usePreferencesStore } from "../../preferences/preferencesStore";
 import { notifyWorkflowEvent } from "../../../services/workflowNotification";
@@ -690,13 +691,10 @@ export const createWorkflowExecutionActions = (
 
     for (const [nodeId, entry] of Object.entries(updatedStates)) {
       if (entry.state === "running") {
-        const ancestors = ancestorRegistry[nodeId];
-        if (ancestors) {
-          const parentId = ancestors[ancestors.length - 1];
-          if (parentId === stepId) {
-            delete updatedStates[nodeId];
-            changed = true;
-          }
+        const parentId = getParentIdOrNull(nodeId, ancestorRegistry);
+        if (parentId === stepId) {
+          delete updatedStates[nodeId];
+          changed = true;
         }
       }
     }

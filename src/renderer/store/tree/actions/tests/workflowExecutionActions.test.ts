@@ -28,12 +28,16 @@ vi.mock('@/services/terminalExecution', () => ({
   executeInTerminal: mockExecuteInTerminal,
 }));
 
-vi.mock('@/utils/nodeHelpers', () => ({
-  buildContentWithContext: () => ({ contextPrefix: 'mock context', nodeContent: 'mock content' }),
-  getAppliedContextIdWithInheritance: () => undefined,
-  resolveContextMode: () => 'execute',
-  getContextDeclarations: () => [],
-}));
+vi.mock('@/utils/nodeHelpers', async () => {
+  const actual = await vi.importActual<typeof import('@/utils/nodeHelpers')>('@/utils/nodeHelpers');
+  return {
+    ...actual,
+    buildContentWithContext: () => ({ contextPrefix: 'mock context', nodeContent: 'mock content' }),
+    getAppliedContextIdWithInheritance: () => undefined,
+    resolveContextMode: () => 'execute',
+    getContextDeclarations: () => [],
+  };
+});
 
 vi.mock('@/utils/promptBuilder', () => ({
   buildExecutePrompt: () => 'mock prompt',

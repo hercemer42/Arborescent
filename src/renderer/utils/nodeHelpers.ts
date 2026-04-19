@@ -197,8 +197,7 @@ export function findPreviousNode(
   rootNodeId: string,
   ancestorRegistry: Record<string, string[]>
 ): string | null {
-  const ancestors = ancestorRegistry[nodeId] || [];
-  const parentId = ancestors[ancestors.length - 1] || rootNodeId;
+  const parentId = getParentId(nodeId, ancestorRegistry, rootNodeId);
   const parent = nodes[parentId];
   if (!parent) return null;
 
@@ -238,8 +237,7 @@ export function findNextNode(
   let currentId = nodeId;
 
   while (currentId !== rootNodeId) {
-    const ancestors = ancestorRegistry[currentId] || [];
-    const parentId = ancestors[ancestors.length - 1] || rootNodeId;
+    const parentId = getParentId(currentId, ancestorRegistry, rootNodeId);
     const parent = nodes[parentId];
     if (!parent) return null;
 
@@ -288,8 +286,7 @@ export function captureNodePosition(
   state: { nodes: Record<string, TreeNode>; ancestorRegistry: Record<string, string[]>; rootNodeId: string }
 ): { parentId: string; originalPosition: number } {
   const { nodes, ancestorRegistry, rootNodeId } = state;
-  const ancestors = ancestorRegistry[nodeId] || [];
-  const parentId = ancestors[ancestors.length - 1] || rootNodeId;
+  const parentId = getParentId(nodeId, ancestorRegistry, rootNodeId);
   const parent = nodes[parentId];
   const originalPosition = parent ? parent.children.indexOf(nodeId) : -1;
   return { parentId, originalPosition };
@@ -330,6 +327,19 @@ export function getParentId(
 ): string {
   const ancestors = ancestorRegistry[nodeId] || [];
   return ancestors[ancestors.length - 1] || rootNodeId;
+}
+
+/**
+ * Parent-id lookup with no root fallback. Returns null when the node is
+ * root-level (no ancestors). Use this when the caller needs to detect
+ * "this IS the root" instead of treating root as self-parented.
+ */
+export function getParentIdOrNull(
+  nodeId: string,
+  ancestorRegistry: AncestorRegistry
+): string | null {
+  const ancestors = ancestorRegistry[nodeId] || [];
+  return ancestors.length > 0 ? ancestors[ancestors.length - 1] : null;
 }
 
 export function getVisibleNodesInOrder(

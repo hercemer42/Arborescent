@@ -1,7 +1,7 @@
 import { BaseCommand } from './Command';
 import { TreeNode } from '../../../../shared/types';
 import { addNodeToRegistry, removeNodeFromRegistry, AncestorRegistry } from '../../../utils/ancestry';
-import { createTreeNode, shouldInheritBlueprint } from '../../../utils/nodeHelpers';
+import { createTreeNode, shouldInheritBlueprint, getParentId } from '../../../utils/nodeHelpers';
 
 type State = {
   nodes: Record<string, TreeNode>;
@@ -37,8 +37,7 @@ export class SplitNodeCommand extends BaseCommand {
     if (this.createAsChild) {
       return this.sourceNodeId;
     }
-    const ancestors = ancestorRegistry[this.sourceNodeId] || [];
-    return ancestors[ancestors.length - 1] || rootNodeId;
+    return getParentId(this.sourceNodeId, ancestorRegistry, rootNodeId);
   }
 
   private getInsertPosition(nodes: Record<string, TreeNode>, targetParentId: string): number {
