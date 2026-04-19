@@ -269,7 +269,7 @@ describe('buildSetContextSubmenu', () => {
       const labels = result!.map(item => item.label);
       const execHeaderIdx = labels.indexOf('Execute');
       const closeIdx = labels.indexOf('Close');
-      const itemsBetween = labels.slice(execHeaderIdx + 1, closeIdx).filter(l => l !== '-');
+      const itemsBetween = labels.slice(execHeaderIdx + 1, closeIdx).filter(l => l !== '-' && l !== undefined);
       expect(itemsBetween).toEqual(['Basic execution']);
     });
 
@@ -284,7 +284,7 @@ describe('buildSetContextSubmenu', () => {
       const labels = result!.map(item => item.label);
       const collabHeaderIdx = labels.indexOf('Collaborate');
       const execHeaderIdx = labels.indexOf('Execute');
-      const itemsBetween = labels.slice(collabHeaderIdx + 1, execHeaderIdx).filter(l => l !== '-');
+      const itemsBetween = labels.slice(collabHeaderIdx + 1, execHeaderIdx).filter(l => l !== '-' && l !== undefined);
       expect(itemsBetween).toEqual(['Basic review (default)']);
     });
   });
