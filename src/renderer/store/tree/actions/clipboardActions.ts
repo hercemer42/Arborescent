@@ -1,12 +1,20 @@
 import { TreeNode } from '../../../../shared/types';
-import { exportNodeAsMarkdown, exportMultipleNodesAsMarkdown, parseMarkdown } from '../../../utils/markdown';
+import { parseMarkdown } from '../../../utils/markdown';
 import {
   cloneNodesWithNewIds,
-  sortNodeIdsByTreeOrder,
   findPreviousNode,
   getNodeAndDescendantIds,
-  getParentId,
 } from '../../../utils/nodeHelpers';
+import {
+  getSelection,
+  selectionContainsRoot,
+  exportSelectionAsMarkdown,
+  getNodeIdsFromSelection,
+  flashNodes,
+  containsBlueprintNodes,
+  isTargetBlueprint,
+  isInvalidMoveTarget,
+} from './clipboardHelpers';
 import { DeleteMultipleNodesCommand } from '../commands/DeleteMultipleNodesCommand';
 import { PasteNodesCommand } from '../commands/PasteNodesCommand';
 import { MoveNodeCommand } from '../commands/MoveNodeCommand';
@@ -53,81 +61,6 @@ type StoreActions = {
 
 type StoreSetter = (partial: Partial<StoreState>) => void;
 
-function selectionContainsRoot(nodeIds: string[], nodes: Record<string, TreeNode>): boolean {
-  return nodeIds.some((id) => nodes[id]?.metadata.isRoot === true);
-}
-
-function getRootLevelSelections(
-  nodeIds: string[],
-  ancestorRegistry: Record<string, string[]>
-): string[] {
-  const selectionSet = new Set(nodeIds);
-  return nodeIds.filter((nodeId) => {
-    const ancestors = ancestorRegistry[nodeId] || [];
-    return !ancestors.some((ancestorId) => selectionSet.has(ancestorId));
-  });
-}
-
-type SelectionResult =
-  | { type: 'multi'; nodeIds: string[] }
-  | { type: 'single'; nodeId: string }
-  | { type: 'none' };
-
-function getSelection(state: StoreState): SelectionResult {
-  const { activeNodeId, nodes, multiSelectedNodeIds, ancestorRegistry, rootNodeId } = state;
-
-  if (multiSelectedNodeIds.size > 0) {
-    const rootLevelIds = getRootLevelSelections(
-      Array.from(multiSelectedNodeIds),
-      ancestorRegistry
-    );
-    const sortedIds = sortNodeIdsByTreeOrder(rootLevelIds, rootNodeId, nodes, ancestorRegistry);
-    return { type: 'multi', nodeIds: sortedIds };
-  }
-
-  if (activeNodeId && nodes[activeNodeId]) {
-    return { type: 'single', nodeId: activeNodeId };
-  }
-
-  return { type: 'none' };
-}
-
-function exportSelectionAsMarkdown(
-  selection: SelectionResult,
-  nodes: Record<string, TreeNode>
-): string | null {
-  if (selection.type === 'multi') {
-    return exportMultipleNodesAsMarkdown(selection.nodeIds, nodes);
-  }
-  if (selection.type === 'single') {
-    const node = nodes[selection.nodeId];
-    return node ? exportNodeAsMarkdown(node, nodes) : null;
-  }
-  return null;
-}
-
-function flashNodes(
-  nodeIds: string | string[],
-  visualEffects: VisualEffectsActions
-): void {
-  visualEffects.flashNode(nodeIds, 'light');
-}
-
-function getNodeIdsFromSelection(selection: SelectionResult): string[] {
-  if (selection.type === 'multi') return selection.nodeIds;
-  if (selection.type === 'single') return [selection.nodeId];
-  return [];
-}
-
-function containsBlueprintNodes(nodesMap: Record<string, TreeNode>): boolean {
-  return Object.values(nodesMap).some((node) => node.metadata.isBlueprint === true);
-}
-
-function isTargetBlueprint(targetParentId: string, nodes: Record<string, TreeNode>): boolean {
-  const targetParent = nodes[targetParentId];
-  return targetParent?.metadata.isBlueprint === true;
-}
-
 type PasteResult = 'pasted' | 'no-content' | 'blocked' | 'cancelled';
 
 interface PasteContext {
@@ -139,29 +72,6 @@ interface PasteContext {
   triggerAutosave?: () => void;
   visualEffects: VisualEffectsActions;
   clearCutState: () => void;
-}
-
-function isInvalidMoveTarget(
-  nodeIds: string[],
-  targetParentId: string,
-  rootNodeId: string,
-  ancestorRegistry: Record<string, string[]>
-): boolean {
-  if (nodeIds.includes(targetParentId)) {
-    return true;
-  }
-  const targetAncestors = ancestorRegistry[targetParentId] || [];
-  if (nodeIds.some((id) => targetAncestors.includes(id))) {
-    return true;
-  }
-  const firstNodeParent = getParentId(nodeIds[0], ancestorRegistry, rootNodeId);
-  const allSameParent = nodeIds.every(
-    (id) => getParentId(id, ancestorRegistry, rootNodeId) === firstNodeParent
-  );
-  if (allSameParent && firstNodeParent === targetParentId) {
-    return true;
-  }
-  return false;
 }
 
 function handleCutPaste(
