@@ -297,10 +297,10 @@ export function getNextSiblingId(
   rootNodeId: string,
   ancestorRegistry: Record<string, string[]>
 ): string | null {
-  const parentResult = getParentNode(nodeId, { ancestorRegistry, rootNodeId, nodes });
-  if (!parentResult) return null;
+  const parentId = getParentId(nodeId, ancestorRegistry, rootNodeId);
+  const parent = nodes[parentId];
+  if (!parent) return null;
 
-  const { parent } = parentResult;
   const siblingIndex = parent.children.indexOf(nodeId);
 
   if (siblingIndex >= 0 && siblingIndex < parent.children.length - 1) {
@@ -308,20 +308,6 @@ export function getNextSiblingId(
   }
 
   return null;
-}
-
-export function getParentNode(
-  nodeId: string,
-  state: { ancestorRegistry: Record<string, string[]>; rootNodeId: string; nodes: Record<string, TreeNode> }
-): { parentId: string; parent: TreeNode } | null {
-  const { ancestorRegistry, rootNodeId, nodes } = state;
-  const ancestors = ancestorRegistry[nodeId] || [];
-  const parentId = ancestors[ancestors.length - 1] || rootNodeId;
-  const parent = nodes[parentId];
-
-  if (!parent) return null;
-
-  return { parentId, parent };
 }
 
 export function captureNodePosition(

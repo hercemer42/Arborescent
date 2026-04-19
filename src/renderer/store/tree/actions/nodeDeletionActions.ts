@@ -1,7 +1,7 @@
 import { TreeNode } from '../../../../shared/types';
 import {
   isLastRootLevelNode,
-  getParentNode,
+  getParentId,
   findPreviousNode,
   getNodeAndDescendantIds,
 } from '../../../utils/nodeHelpers';
@@ -73,10 +73,9 @@ export const createNodeDeletionActions = (
 
     if (node.children.length > 0 && !confirmed) return false;
 
-    const parentInfo = getParentNode(nodeId, state);
-    if (!parentInfo) return true;
-
-    const { parentId, parent } = parentInfo;
+    const parentId = getParentId(nodeId, state.ancestorRegistry, state.rootNodeId);
+    const parent = nodes[parentId];
+    if (!parent) return true;
 
     if (isLastRootLevelNode(parentId, rootNodeId, parent)) {
       clearNodeContent(nodeId, state, set, triggerAutosave);
