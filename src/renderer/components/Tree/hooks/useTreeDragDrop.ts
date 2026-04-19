@@ -80,11 +80,18 @@ export function useTreeDragDrop() {
       ? actions.getNodesToMove()
       : [draggedNodeId];
 
-    // Execute validated drops
-    nodesToMove.forEach((nodeId) => {
-      if (isValidDrop(nodeId, targetNodeId, dropZone, nodesToMove, ancestorRegistry)) {
-        actions.dropNode(nodeId, targetNodeId, dropZone);
-      }
+    const validNodes = nodesToMove.filter((nodeId) =>
+      isValidDrop(nodeId, targetNodeId, dropZone, nodesToMove, ancestorRegistry)
+    );
+
+    // 'after' and 'child' insert at a fixed offset relative to the target,
+    // so iterating in source order would reverse the result. Reverse the
+    // iteration so each subsequent insert lands behind the previous one,
+    // preserving source order in the final tree.
+    const insertOrder = dropZone === 'before' ? validNodes : [...validNodes].reverse();
+
+    insertOrder.forEach((nodeId) => {
+      actions.dropNode(nodeId, targetNodeId, dropZone);
     });
 
     // Clear selection after drop
