@@ -2,7 +2,7 @@ import { BaseCommand } from './Command';
 import { TreeNode } from '../../../../shared/types';
 import { addNodesToRegistry, buildAncestorRegistry, AncestorRegistry } from '../../../utils/ancestry';
 import { getAllDescendants, captureNodePosition } from '../../../utils/nodeHelpers';
-import { DEFAULT_BLUEPRINT_ICON } from '../actions/blueprintActions';
+import { getEffectiveBlueprintIcon } from '../../../utils/blueprintInheritance';
 import { v4 as uuidv4 } from 'uuid';
 
 export interface ArchiveConfig {
@@ -83,31 +83,6 @@ export class AcceptFeedbackCommand extends BaseCommand {
       parentChildren: parent ? [...parent.children] : [],
       archiveDestinationChildren: archiveDest ? [...archiveDest.children] : undefined,
     };
-  }
-
-  private getEffectiveBlueprintIcon(
-    node: TreeNode,
-    state: ReturnType<typeof this.getState>
-  ): { icon: string; color?: string } {
-    if (node.metadata.blueprintIcon) {
-      return {
-        icon: node.metadata.blueprintIcon as string,
-        color: node.metadata.blueprintColor as string | undefined,
-      };
-    }
-
-    const ancestors = state.ancestorRegistry[node.id] || [];
-    for (let i = ancestors.length - 1; i >= 0; i--) {
-      const ancestor = state.nodes[ancestors[i]];
-      if (ancestor?.metadata.blueprintIcon) {
-        return {
-          icon: ancestor.metadata.blueprintIcon as string,
-          color: ancestor.metadata.blueprintColor as string | undefined,
-        };
-      }
-    }
-
-    return { icon: DEFAULT_BLUEPRINT_ICON };
   }
 
   private getIdMap(preserveRootId: boolean): Record<string, string> {
@@ -192,7 +167,7 @@ export class AcceptFeedbackCommand extends BaseCommand {
     }
 
     if (state.blueprintModeEnabled || collaboratingNode.metadata.isBlueprint) {
-      const effectiveIcon = this.getEffectiveBlueprintIcon(collaboratingNode, state);
+      const effectiveIcon = getEffectiveBlueprintIcon(collaboratingNode, state.nodes, state.ancestorRegistry);
       updatedNewNodesMap = this.applyBlueprintMetadata(updatedNewNodesMap, [this.collaboratingNodeId], effectiveIcon);
     }
 
@@ -254,7 +229,7 @@ export class AcceptFeedbackCommand extends BaseCommand {
     }
 
     if (state.blueprintModeEnabled || collaboratingNode.metadata.isBlueprint) {
-      const effectiveIcon = this.getEffectiveBlueprintIcon(collaboratingNode, state);
+      const effectiveIcon = getEffectiveBlueprintIcon(collaboratingNode, state.nodes, state.ancestorRegistry);
       const mappedRootIds = this.newRootNodeIds.map(id => idMap[id]);
       updatedNewNodesMap = this.applyBlueprintMetadata(updatedNewNodesMap, mappedRootIds, effectiveIcon);
     }
