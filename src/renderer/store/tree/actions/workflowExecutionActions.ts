@@ -50,7 +50,9 @@ export interface WorkflowExecutionActions {
   handleAllStepsRemoved: (workflowId: string) => void;
   handleNodeMovedManually: (nodeId: string) => void;
   handleAutonomousFeedback: (nodeId: string, content: string) => void;
-  findNodeIdByFeedbackFilePath: (filePath: string) => string | null;
+  findCollaborationByFeedbackFilePath: (filePath: string) => { nodeId: string; kind: 'manual' | 'autonomous' } | null;
+  registerManualCollaboration: (nodeId: string, filePath: string) => void;
+  unregisterCollaboration: (nodeId: string) => void;
 }
 
 type StoreState = {
@@ -73,7 +75,7 @@ export const createWorkflowExecutionActions = (
   const DEFAULT_STEP_TIMEOUT_MINUTES = 15;
   const MAX_RECURSE_ITERATIONS = 50;
   const recurseCounters = new Map<string, number>();
-  const autonomousCollaborations = new Map<string, { filePath: string; terminalId: string }>();
+  const feedbackCollaborations = new Map<string, { filePath: string; terminalId?: string; kind: 'manual' | 'autonomous' }>();
 
   // Step-timeout lifecycle lives in its own module so the toast-action
   // callback (which loops back into stopWorkflow) has an explicit seam.
@@ -459,7 +461,7 @@ export const createWorkflowExecutionActions = (
     }
 
     // Clean up all autonomous collaborations on restart
-    for (const nodeId of autonomousCollaborations.keys()) {
+    for (const nodeId of Array.from(feedbackCollaborations.keys())) {
       cleanupAutonomousCollaboration(nodeId);
     }
 
@@ -502,36 +504,33 @@ export const createWorkflowExecutionActions = (
   }
 
   function registerAutonomousCollaboration(nodeId: string, terminalId: string, feedbackFilePath: string): void {
-    autonomousCollaborations.set(nodeId, { filePath: feedbackFilePath, terminalId });
+    feedbackCollaborations.set(nodeId, { filePath: feedbackFilePath, terminalId, kind: 'autonomous' });
+  }
+
+  function registerManualCollaboration(nodeId: string, feedbackFilePath: string): void {
+    feedbackCollaborations.set(nodeId, { filePath: feedbackFilePath, kind: 'manual' });
+  }
+
+  function unregisterCollaboration(nodeId: string): void {
+    feedbackCollaborations.delete(nodeId);
   }
 
   function cleanupAutonomousCollaboration(nodeId: string): void {
-    const collab = autonomousCollaborations.get(nodeId);
-    if (collab) {
+    const collab = feedbackCollaborations.get(nodeId);
+    if (collab && collab.kind === 'autonomous') {
       void window.electron.stopFeedbackFileWatcher(collab.filePath);
-      autonomousCollaborations.delete(nodeId);
+      feedbackCollaborations.delete(nodeId);
     }
   }
 
-  function findNodeIdByFeedbackFilePath(filePath: string): string | null {
+  function findCollaborationByFeedbackFilePath(filePath: string): { nodeId: string; kind: 'manual' | 'autonomous' } | null {
     const incomingBasename = filePath.split(/[\\/]/).pop() ?? filePath;
-    const registered = Array.from(autonomousCollaborations.entries()).map(
-      ([nodeId, collab]) => ({
-        nodeId,
-        filePath: collab.filePath,
-        basename: collab.filePath.split(/[\\/]/).pop() ?? collab.filePath,
-      }),
-    );
 
-    logger.debug(
-      `findNodeIdByFeedbackFilePath incoming=${filePath} registered=${JSON.stringify(registered)}`,
-      "WorkflowExecution",
-    );
-
-    for (const entry of registered) {
-      if (filePath === entry.filePath) return entry.nodeId;
-      if (entry.basename === incomingBasename) return entry.nodeId;
-      if (filePath.endsWith(entry.filePath)) return entry.nodeId;
+    for (const [nodeId, collab] of feedbackCollaborations.entries()) {
+      const basename = collab.filePath.split(/[\\/]/).pop() ?? collab.filePath;
+      if (filePath === collab.filePath || basename === incomingBasename || filePath.endsWith(collab.filePath)) {
+        return { nodeId, kind: collab.kind };
+      }
     }
     return null;
   }
@@ -618,6 +617,8 @@ export const createWorkflowExecutionActions = (
     initializeExecutionState,
     ...disruptionReactions,
     handleAutonomousFeedback,
-    findNodeIdByFeedbackFilePath,
+    findCollaborationByFeedbackFilePath,
+    registerManualCollaboration,
+    unregisterCollaboration,
   };
 };

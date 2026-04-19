@@ -447,6 +447,9 @@ export function createSendActions(
         set({ collaboratingNodeId: nodeId, collaborationSource: 'terminal', decomposition: isExecuteMode ? false : decomposition });
         await window.electron.startFeedbackFileWatcher(feedbackResponseFile);
 
+        const stateWithRegistry = get() as TreeState & { actions?: { registerManualCollaboration?: (nodeId: string, filePath: string) => void } };
+        stateWithRegistry.actions?.registerManualCollaboration?.(nodeId, feedbackResponseFile);
+
         logger.info(`Started terminal collaboration for node: ${nodeId}, watching: ${feedbackResponseFile}`, 'SendActions');
       } catch (error) {
         logger.error('Failed to collaborate in terminal', error as Error, 'SendActions');
@@ -623,6 +626,9 @@ export function createSendActions(
           set({ collaboratingNodeId: null, collaborationSource: null });
         }
 
+        const stateWithRegistry = get() as TreeState & { actions?: { unregisterCollaboration?: (nodeId: string) => void } };
+        stateWithRegistry.actions?.unregisterCollaboration?.(collaboratingNodeId);
+
         await cleanupFeedback(currentFilePath, tempFilePath);
         usePanelStore.getState().closeFeedback();
         window.dispatchEvent(new Event('collaboration-canceled'));
@@ -672,6 +678,9 @@ export function createSendActions(
         stateWithActions.actions.executeCommand(
           new AcceptFeedbackCommand(collaboratingNodeId, rootNodeIdOrIds, feedbackContent.nodes, get, set, autoSave, archiveConfig)
         );
+
+        const stateWithRegistry = get() as TreeState & { actions?: { unregisterCollaboration?: (nodeId: string) => void } };
+        stateWithRegistry.actions?.unregisterCollaboration?.(collaboratingNodeId);
 
         const tempFilePath = nodes[collaboratingNodeId]?.metadata.feedbackTempFile as string | undefined;
         await cleanupFeedback(currentFilePath, tempFilePath);

@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-04-19T17:08:15.358Z'
+updated: '2026-04-19T18:01:27.676Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -593,7 +593,7 @@ nodes:
       - e91d842b-d982-4f8b-a3c5-7f0a42c95604
     metadata:
       status: pending
-      expanded: true
+      expanded: false
       isBlueprint: true
       blueprintIcon: Brain
       blueprintColor: '#0ea5e9'
@@ -20433,42 +20433,6 @@ nodes:
       expanded: false
       deleted: false
       plugins: {}
-  533210b8-5c42-48f7-ab9a-bea602ae7ed2:
-    id: 533210b8-5c42-48f7-ab9a-bea602ae7ed2
-    content: Navigation doesn't work well in zoom mode
-    children:
-      - c7c934e4-a2d8-413f-9267-d9e477e1bf53
-      - cbc2fc3a-7964-4137-81ff-4d4c74e9239c
-      - 51f0f1f4-4e09-4364-9f52-3a607f6a2ab8
-      - 0c31178a-af75-4ab6-ad93-ce756eb32aa2
-      - 2833bfb5-5c0e-4358-95e6-b3762f8fecde
-    metadata:
-      status: pending
-      expanded: false
-  c7c934e4-a2d8-413f-9267-d9e477e1bf53:
-    id: c7c934e4-a2d8-413f-9267-d9e477e1bf53
-    content: Return sometimes adds line in content editable
-    children: []
-    metadata:
-      status: pending
-  cbc2fc3a-7964-4137-81ff-4d4c74e9239c:
-    id: cbc2fc3a-7964-4137-81ff-4d4c74e9239c
-    content: Navigation arrows sometimes just navigate to start and end of content editable
-    children: []
-    metadata:
-      status: pending
-  51f0f1f4-4e09-4364-9f52-3a607f6a2ab8:
-    id: 51f0f1f4-4e09-4364-9f52-3a607f6a2ab8
-    content: See if this reproduces in normal mode (maybe, it's inconsistent)
-    children: []
-    metadata:
-      status: pending
-  0c31178a-af75-4ab6-ad93-ce756eb32aa2:
-    id: 0c31178a-af75-4ab6-ad93-ce756eb32aa2
-    content: See if it's related to the fix we added to give keyboard shortcuts context
-    children: []
-    metadata:
-      status: pending
   35cc9914-8235-4a8e-9895-567fc38ed5c0:
     id: 35cc9914-8235-4a8e-9895-567fc38ed5c0
     content: GitHub CI workflow
@@ -26080,7 +26044,7 @@ nodes:
       blueprintColor: '#1074a2'
       appliedContextId: 0058432d-a010-473b-a707-ace2b1dee169
       expanded: true
-      stepType: manual
+      stepType: autonomous
       recurse: true
   9f4cb1c1-95ba-4523-9b59-86d02c56a0ed:
     id: 9f4cb1c1-95ba-4523-9b59-86d02c56a0ed
@@ -26091,17 +26055,7 @@ nodes:
   4c43c117-e89a-460c-9900-7ea15b8cc0e0:
     id: 4c43c117-e89a-460c-9900-7ea15b8cc0e0
     content: Solution design
-    children:
-      - 6170ca02-7dc1-408c-b5c4-431eb36b479d
-      - 26dc74b0-c926-4461-b81a-7b6cd95864f6
-      - bbf5afa8-47fc-46c5-9ddf-62502640b74e
-      - 895464c3-b2d6-4148-ac6d-6fcd9426e079
-      - 8534dc5e-da2c-415a-b6a9-e4e413f04355
-      - 1827816a-d5ec-41ee-8718-3f488e459560
-      - d48c9675-9ec8-4032-9df0-a5037764b9cf
-      - 533210b8-5c42-48f7-ab9a-bea602ae7ed2
-      - f1368f57-d8b2-46ce-99f0-79069355a299
-      - d3b7f4eb-145c-4e13-b1de-75a1502c7cb4
+    children: []
     metadata:
       status: pending
       expanded: true
@@ -26113,20 +26067,6 @@ nodes:
       isBlueprint: true
       stepType: autonomous
       decomposition: false
-  26dc74b0-c926-4461-b81a-7b6cd95864f6:
-    id: 26dc74b0-c926-4461-b81a-7b6cd95864f6
-    content: Declaring a node as a blueprint, context or workflow should clear its metadata (checked, resolvedAt etc)
-    children:
-      - f2c53414-e3a2-4561-8d96-4690342da2c8
-    metadata:
-      status: pending
-      expanded: false
-  f2c53414-e3a2-4561-8d96-4690342da2c8:
-    id: f2c53414-e3a2-4561-8d96-4690342da2c8
-    content: Also clean up templates
-    children: []
-    metadata:
-      status: pending
   911bbdec-12fa-45ba-b84d-2ba945888928:
     id: 911bbdec-12fa-45ba-b84d-2ba945888928
     content: Refactor context indicators
@@ -27625,16 +27565,6 @@ nodes:
     metadata:
       status: pending
       isBlueprint: true
-  bbf5afa8-47fc-46c5-9ddf-62502640b74e:
-    id: bbf5afa8-47fc-46c5-9ddf-62502640b74e
-    content: Applied contexts list does not refresh when changes are made to contexts
-    children:
-      - c6c78f70-91e1-454d-9fc5-dd2da76ed02a
-      - 62e6fa78-0350-4239-8c0b-e5aabed21889
-      - 56eaeea1-c5b9-4e60-b1b1-e558274d8294
-    metadata:
-      status: pending
-      expanded: false
   17864c32-1811-422e-b4f9-a4fe2d653b3e:
     id: 17864c32-1811-422e-b4f9-a4fe2d653b3e
     content: If something is inconsistent, fix it, don't make an exception
@@ -29961,21 +29891,6 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  f1368f57-d8b2-46ce-99f0-79069355a299:
-    id: f1368f57-d8b2-46ce-99f0-79069355a299
-    content: When accepting reviewed content, sometimes it breaks placement of a new node - when attempting to place a new node within the tree, it places it instead as the first child node of the root node sent for review
-    children:
-      - e499380c-5d4d-4a1f-bbda-3999e5c3a143
-    metadata:
-      status: pending
-      expanded: false
-  46f6965a-8da4-4dab-9e25-7dd3d2773bd7:
-    id: 46f6965a-8da4-4dab-9e25-7dd3d2773bd7
-    content: Also, attempting to delete a multiple selection causes a hang for around 10 seconds then fails silently
-    children:
-      - 635ec2e6-ae83-4c8a-a517-d9ec99690656
-    metadata:
-      status: pending
   503e53c0-5353-48d5-a1f2-5dc15e0ff045:
     id: 503e53c0-5353-48d5-a1f2-5dc15e0ff045
     content: Workflow automation
@@ -33685,17 +33600,6 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  d3b7f4eb-145c-4e13-b1de-75a1502c7cb4:
-    id: d3b7f4eb-145c-4e13-b1de-75a1502c7cb4
-    content: Issue with IDs being made from titles where they should be UUIDs
-    children:
-      - 92ce172c-ba96-4798-8ed3-6e6323c1ad50
-      - d90482eb-d8c3-4680-8441-009aa5d8a5fc
-      - 23ef817d-7cce-4355-84b9-fc1ccca7e2c5
-      - 18ae8ceb-817b-4ab7-acdf-58066e4c992b
-    metadata:
-      status: pending
-      expanded: false
   72316ccb-5177-43fa-80d1-fcada400a3ec:
     id: 72316ccb-5177-43fa-80d1-fcada400a3ec
     content: Product backlog
@@ -33728,7 +33632,7 @@ nodes:
       - c0b354e9-aaa0-409e-ab47-6f534d03a97f
     metadata:
       status: pending
-      expanded: true
+      expanded: false
       isBlueprint: true
       blueprintIcon: FileWarning
       blueprintColor: '#f97316'
@@ -33922,6 +33826,7 @@ nodes:
     id: 49996e08-2973-475c-8aaa-6aedeb0a4929
     content: Workflows
     children:
+      - b639805f-a2d3-4f38-9faa-ffc4a91b8f80
       - edc07ad6-bed3-4095-8d18-c3550ee43213
       - 21a8e05c-ac87-455f-9cab-f075ba892918
       - 9491e99f-c707-4d6d-9ba0-1e49e87fee8b
@@ -34157,7 +34062,6 @@ nodes:
       - 6d973cbb-3c7c-4ac4-925d-ffd5d659332c
       - fbf20e91-d852-4406-9815-952fa7727f33
       - 333cb3e7-a25e-4d18-9dfa-82cf75328fff
-      - 4f171d1d-1d2b-40fb-8f1a-815f666a70d6
       - bdceb696-248d-4199-9182-db0689445c07
       - 7b3e923e-b465-4444-ae7d-7fe0e80e3235
       - 0c1c74ed-ccdb-4278-a2f2-09b739effcfc
@@ -62320,16 +62224,6 @@ nodes:
       expanded: false
       deleted: false
       plugins: {}
-  d48c9675-9ec8-4032-9df0-a5037764b9cf:
-    id: d48c9675-9ec8-4032-9df0-a5037764b9cf
-    content: Not getting system notifications when focused on another application
-    children:
-      - 67f086bf-2ce4-4d1d-b484-cc7bce1d0e0d
-      - 48df277e-cc85-460c-a13d-13d852af7d53
-      - 22ea6816-2ddd-4ae0-a649-f4dbb45adbf2
-    metadata:
-      status: pending
-      expanded: false
   27b498ae-d712-4c06-a93b-0bb45ca1bf14:
     id: 27b498ae-d712-4c06-a93b-0bb45ca1bf14
     content: Have a table blueprint
@@ -75872,12 +75766,6 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  a46447bd-24df-4dbf-aa01-09099cd4e53b:
-    id: a46447bd-24df-4dbf-aa01-09099cd4e53b
-    content: 2 collaborations in progress in 2 files, a finished collaboration in an unfocused file overwrites the unfinished one in the focused file
-    children: []
-    metadata:
-      status: pending
   45f1a5a0-dae3-4080-97ed-b8e324b79a64:
     id: 45f1a5a0-dae3-4080-97ed-b8e324b79a64
     content: Arborescent feature discussion
@@ -78296,57 +78184,6 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  d730e290-99fd-4722-b24e-af33ef5dad48:
-    id: d730e290-99fd-4722-b24e-af33ef5dad48
-    content: There's an issue with having automated feedback happen while a manual feedback is in progress
-    children:
-      - 70392cfb-1227-408d-8c73-0a1d786c18d5
-      - 1f241773-b2b0-4e8f-a2aa-9dea887383e7
-    metadata:
-      status: pending
-      expanded: false
-  70392cfb-1227-408d-8c73-0a1d786c18d5:
-    id: 70392cfb-1227-408d-8c73-0a1d786c18d5
-    content: Automated feedback tends to apply the actual context back to the node which overwrites it
-    children: []
-    metadata:
-      status: pending
-  1f241773-b2b0-4e8f-a2aa-9dea887383e7:
-    id: 1f241773-b2b0-4e8f-a2aa-9dea887383e7
-    content: Well, at least I think that's what happens, may be unrelated to the fact that a manual feedback is in progress
-    children:
-      - fa6cb35e-986d-4b92-a001-d086010ebbca
-    metadata:
-      status: pending
-  fa6cb35e-986d-4b92-a001-d086010ebbca:
-    id: fa6cb35e-986d-4b92-a001-d086010ebbca
-    content: Double check the clarity of the instructions
-    children: []
-    metadata:
-      status: pending
-  895464c3-b2d6-4148-ac6d-6fcd9426e079:
-    id: 895464c3-b2d6-4148-ac6d-6fcd9426e079
-    content: Drag and drop of multiple items reverses the order
-    children: []
-    metadata:
-      status: pending
-  1827816a-d5ec-41ee-8718-3f488e459560:
-    id: 1827816a-d5ec-41ee-8718-3f488e459560
-    content: Can't cut and paste multiple items
-    children:
-      - 46f6965a-8da4-4dab-9e25-7dd3d2773bd7
-    metadata:
-      status: pending
-      expanded: false
-  8534dc5e-da2c-415a-b6a9-e4e413f04355:
-    id: 8534dc5e-da2c-415a-b6a9-e4e413f04355
-    content: Shift + select doesn't seem to work
-    children:
-      - 4518de6c-4eac-4f5f-9c5b-74f99a875337
-      - 74e25c7a-b2f6-4a77-88fe-12a37e53d352
-    metadata:
-      status: pending
-      expanded: false
   64ec6c6b-566e-4956-bff9-55ac881f4fdb:
     id: 64ec6c6b-566e-4956-bff9-55ac881f4fdb
     content: Technical refinement
@@ -79134,12 +78971,6 @@ nodes:
     children: []
     metadata:
       status: pending
-  635ec2e6-ae83-4c8a-a517-d9ec99690656:
-    id: 635ec2e6-ae83-4c8a-a517-d9ec99690656
-    content: Maybe related but fix both anyway
-    children: []
-    metadata:
-      status: pending
   5aafe65f-cc2f-45b2-90db-505510c65b9a:
     id: 5aafe65f-cc2f-45b2-90db-505510c65b9a
     content: 'Should just be an instruction :'
@@ -79264,123 +79095,6 @@ nodes:
     children: []
     metadata:
       status: pending
-  2833bfb5-5c0e-4358-95e6-b3762f8fecde:
-    id: 2833bfb5-5c0e-4358-95e6-b3762f8fecde
-    content: Not sure if this is still an issue after recent refactors
-    children:
-      - e4206607-4285-438f-8328-7c94973a7f8c
-    metadata:
-      status: pending
-  e4206607-4285-438f-8328-7c94973a7f8c:
-    id: e4206607-4285-438f-8328-7c94973a7f8c
-    content: If you can't find anything related in the code, just skip ahead to the next item.
-    children: []
-    metadata:
-      status: pending
-  23ef817d-7cce-4355-84b9-fc1ccca7e2c5:
-    id: 23ef817d-7cce-4355-84b9-fc1ccca7e2c5
-    content: Check the project blueprints folder and the project.arbo
-    children: []
-    metadata:
-      status: pending
-  92ce172c-ba96-4798-8ed3-6e6323c1ad50:
-    id: 92ce172c-ba96-4798-8ed3-6e6323c1ad50
-    content: We might have fixed this
-    children: []
-    metadata:
-      status: pending
-  d90482eb-d8c3-4680-8441-009aa5d8a5fc:
-    id: d90482eb-d8c3-4680-8441-009aa5d8a5fc
-    content: Previously, when looking at the YAML, some files carried IDs made from titles instead of UUIDs
-    children: []
-    metadata:
-      status: pending
-  18ae8ceb-817b-4ab7-acdf-58066e4c992b:
-    id: 18ae8ceb-817b-4ab7-acdf-58066e4c992b
-    content: Check if it's still an issue.
-    children: []
-    metadata:
-      status: pending
-  6170ca02-7dc1-408c-b5c4-431eb36b479d:
-    id: 6170ca02-7dc1-408c-b5c4-431eb36b479d
-    content: Some issues still with collaborations
-    children:
-      - d730e290-99fd-4722-b24e-af33ef5dad48
-      - a46447bd-24df-4dbf-aa01-09099cd4e53b
-    metadata:
-      status: pending
-      expanded: false
-  e499380c-5d4d-4a1f-bbda-3999e5c3a143:
-    id: e499380c-5d4d-4a1f-bbda-3999e5c3a143
-    content: May be fixed after recent refactors
-    children: []
-    metadata:
-      status: pending
-  67f086bf-2ce4-4d1d-b484-cc7bce1d0e0d:
-    id: 67f086bf-2ce4-4d1d-b484-cc7bce1d0e0d
-    content: I don't see system notifications popping up on my mac at all
-    children: []
-    metadata:
-      status: pending
-  48df277e-cc85-460c-a13d-13d852af7d53:
-    id: 48df277e-cc85-460c-a13d-13d852af7d53
-    content: Same on linux
-    children: []
-    metadata:
-      status: pending
-  22ea6816-2ddd-4ae0-a649-f4dbb45adbf2:
-    id: 22ea6816-2ddd-4ae0-a649-f4dbb45adbf2
-    content: Earlier we implemented system notifications for when Arborescent is not focused
-    children:
-      - 54929f1e-c189-4cd9-a8d8-017f18c94c51
-    metadata:
-      status: pending
-  54929f1e-c189-4cd9-a8d8-017f18c94c51:
-    id: 54929f1e-c189-4cd9-a8d8-017f18c94c51
-    content: At least when a task is done, or requiring user intervention
-    children: []
-    metadata:
-      status: pending
-  c6c78f70-91e1-454d-9fc5-dd2da76ed02a:
-    id: c6c78f70-91e1-454d-9fc5-dd2da76ed02a
-    content: For example, if I add a context, and then right click on a node to add that context, I can't find it
-    children: []
-    metadata:
-      status: pending
-  62e6fa78-0350-4239-8c0b-e5aabed21889:
-    id: 62e6fa78-0350-4239-8c0b-e5aabed21889
-    content: It appears eventually, but takes a while
-    children: []
-    metadata:
-      status: pending
-  56eaeea1-c5b9-4e60-b1b1-e558274d8294:
-    id: 56eaeea1-c5b9-4e60-b1b1-e558274d8294
-    content: Should refresh immediately
-    children: []
-    metadata:
-      status: pending
-  4518de6c-4eac-4f5f-9c5b-74f99a875337:
-    id: 4518de6c-4eac-4f5f-9c5b-74f99a875337
-    content: Doesn't do anything
-    children: []
-    metadata:
-      status: pending
-  74e25c7a-b2f6-4a77-88fe-12a37e53d352:
-    id: 74e25c7a-b2f6-4a77-88fe-12a37e53d352
-    content: Should do the classic shift + select thing
-    children: []
-    metadata:
-      status: pending
-  4f171d1d-1d2b-40fb-8f1a-815f666a70d6:
-    id: 4f171d1d-1d2b-40fb-8f1a-815f666a70d6
-    content: Commit & push
-    children: []
-    metadata:
-      status: pending
-      isBlueprint: true
-      stepType: autonomous
-      appliedContextId: b1446999-f999-47b9-bbe6-bce7c5c3ea59
-      recurse: true
   b1446999-f999-47b9-bbe6-bce7c5c3ea59:
     id: b1446999-f999-47b9-bbe6-bce7c5c3ea59
     content: Commit & push
@@ -79409,3 +79123,1950 @@ nodes:
     metadata:
       status: pending
       isBlueprint: true
+  b639805f-a2d3-4f38-9faa-ffc4a91b8f80:
+    id: b639805f-a2d3-4f38-9faa-ffc4a91b8f80
+    content: Issue resolution
+    children:
+      - 60350086-d041-4cac-877c-6bbff90b0da3
+      - 7dce0e71-fe3b-454b-b8fa-f1845cc4665d
+      - 5061d800-bc96-4a60-8d67-c2dd83a89c10
+      - d0686f00-5b6d-4673-a61b-c0f6fb4dfc38
+      - 5cea6616-9d8e-43e7-a89b-e16875c0f654
+      - 54d69c51-7092-4146-91e6-b2f7491af9ac
+      - 8690e6af-1943-48c7-a9cb-08a49ec658aa
+    metadata:
+      status: pending
+      isBlueprint: true
+      isWorkflow: true
+      expanded: true
+  2f2bfcd0-a56f-40d8-8226-bfea60b61ae3:
+    id: 2f2bfcd0-a56f-40d8-8226-bfea60b61ae3
+    content: AI refactor
+    children:
+      - 186e101a-ffcf-4ab4-9df1-cbecedb7737d
+      - 980cbb68-89ce-4ef3-a8b1-7b1a8c319f10
+      - e09be3e2-a09e-4700-9fd3-f42de8653f18
+      - af9d7ef0-b5c9-4fff-b72c-7b736f308f0a
+      - 456901c2-1245-4902-a835-e217041da515
+      - 458d4229-8514-4d27-aead-817e1a7db44e
+      - 7fe1b3e0-344b-4672-8cfd-7e90479202f2
+    metadata:
+      status: completed
+      expanded: false
+      deleted: false
+      plugins: {}
+  efa787ba-b2d8-45ba-9779-5fc0f9249e2a:
+    id: efa787ba-b2d8-45ba-9779-5fc0f9249e2a
+    content: Also clean up templates
+    children: []
+    metadata:
+      status: pending
+  6231e04b-89a3-414a-a86a-601b7e6bc5ad:
+    id: 6231e04b-89a3-414a-a86a-601b7e6bc5ad
+    content: Declaring a node as a blueprint, context or workflow should clear its metadata (checked, resolvedAt etc)
+    children:
+      - efa787ba-b2d8-45ba-9779-5fc0f9249e2a
+    metadata:
+      status: pending
+      expanded: false
+  e4a35080-c58f-43ef-84a2-9212a2ef1745:
+    id: e4a35080-c58f-43ef-84a2-9212a2ef1745
+    content: For example, if I add a context, and then right click on a node to add that context, I can't find it
+    children: []
+    metadata:
+      status: pending
+  203a8f52-7452-46b5-8c62-874c1b1d9e27:
+    id: 203a8f52-7452-46b5-8c62-874c1b1d9e27
+    content: It appears eventually, but takes a while
+    children: []
+    metadata:
+      status: pending
+  aeb95312-d758-4383-a677-bfad6a03ca89:
+    id: aeb95312-d758-4383-a677-bfad6a03ca89
+    content: Should refresh immediately
+    children: []
+    metadata:
+      status: pending
+  4449ad15-2889-4fa8-bfab-d35b5d5b6791:
+    id: 4449ad15-2889-4fa8-bfab-d35b5d5b6791
+    content: Applied contexts list does not refresh when changes are made to contexts
+    children:
+      - e4a35080-c58f-43ef-84a2-9212a2ef1745
+      - 203a8f52-7452-46b5-8c62-874c1b1d9e27
+      - aeb95312-d758-4383-a677-bfad6a03ca89
+    metadata:
+      status: pending
+      expanded: false
+  6184663e-9908-4394-aab1-a685e1f73c07:
+    id: 6184663e-9908-4394-aab1-a685e1f73c07
+    content: Drag and drop of multiple items reverses the order
+    children: []
+    metadata:
+      status: pending
+  04fea5a8-f7d6-4a0b-a4c0-3f1e37ff64fe:
+    id: 04fea5a8-f7d6-4a0b-a4c0-3f1e37ff64fe
+    content: I don't see system notifications popping up on my mac at all
+    children: []
+    metadata:
+      status: pending
+  6b3ae76f-8886-4bb3-8daf-6bb30719eecc:
+    id: 6b3ae76f-8886-4bb3-8daf-6bb30719eecc
+    content: Same on linux
+    children: []
+    metadata:
+      status: pending
+  7704ecf9-2e8b-41ae-b1c3-c221d853a1a6:
+    id: 7704ecf9-2e8b-41ae-b1c3-c221d853a1a6
+    content: At least when a task is done, or requiring user intervention
+    children: []
+    metadata:
+      status: pending
+  dcef5203-9cd3-4378-97f8-0778d65978a6:
+    id: dcef5203-9cd3-4378-97f8-0778d65978a6
+    content: Earlier we implemented system notifications for when Arborescent is not focused
+    children:
+      - 7704ecf9-2e8b-41ae-b1c3-c221d853a1a6
+    metadata:
+      status: pending
+  f639c9d8-6e35-4478-8798-91d8b991ebec:
+    id: f639c9d8-6e35-4478-8798-91d8b991ebec
+    content: Not getting system notifications when focused on another application
+    children:
+      - 04fea5a8-f7d6-4a0b-a4c0-3f1e37ff64fe
+      - 6b3ae76f-8886-4bb3-8daf-6bb30719eecc
+      - dcef5203-9cd3-4378-97f8-0778d65978a6
+    metadata:
+      status: pending
+      expanded: false
+  341a33dc-4c13-44f6-93d3-f8d43544f6d3:
+    id: 341a33dc-4c13-44f6-93d3-f8d43544f6d3
+    content: Return sometimes adds line in content editable
+    children: []
+    metadata:
+      status: pending
+  043c1251-fadf-4c12-b66b-3dded1a5edbe:
+    id: 043c1251-fadf-4c12-b66b-3dded1a5edbe
+    content: Navigation arrows sometimes just navigate to start and end of content editable
+    children: []
+    metadata:
+      status: pending
+  84f5157f-152e-47f2-9a99-8c3dac36a047:
+    id: 84f5157f-152e-47f2-9a99-8c3dac36a047
+    content: See if this reproduces in normal mode (maybe, it's inconsistent)
+    children: []
+    metadata:
+      status: pending
+  9f3f0260-2a7e-4678-9fa2-978eb9c7ad9a:
+    id: 9f3f0260-2a7e-4678-9fa2-978eb9c7ad9a
+    content: See if it's related to the fix we added to give keyboard shortcuts context
+    children: []
+    metadata:
+      status: pending
+  fdb4f9b3-5f41-4b6a-9c13-ddc09b58bef6:
+    id: fdb4f9b3-5f41-4b6a-9c13-ddc09b58bef6
+    content: If you can't find anything related in the code, just skip ahead to the next item.
+    children: []
+    metadata:
+      status: pending
+  5d76a23f-e2ca-474b-a8c2-c373915421bd:
+    id: 5d76a23f-e2ca-474b-a8c2-c373915421bd
+    content: Not sure if this is still an issue after recent refactors
+    children:
+      - fdb4f9b3-5f41-4b6a-9c13-ddc09b58bef6
+    metadata:
+      status: pending
+  52a4dc8c-4330-41a8-ad1e-b4d5edc2f4db:
+    id: 52a4dc8c-4330-41a8-ad1e-b4d5edc2f4db
+    content: Navigation doesn't work well in zoom mode
+    children:
+      - 341a33dc-4c13-44f6-93d3-f8d43544f6d3
+      - 043c1251-fadf-4c12-b66b-3dded1a5edbe
+      - 84f5157f-152e-47f2-9a99-8c3dac36a047
+      - 9f3f0260-2a7e-4678-9fa2-978eb9c7ad9a
+      - 5d76a23f-e2ca-474b-a8c2-c373915421bd
+    metadata:
+      status: pending
+      expanded: false
+  5030c851-9181-48e3-984a-9cd1bef9858a:
+    id: 5030c851-9181-48e3-984a-9cd1bef9858a
+    content: May be fixed after recent refactors
+    children: []
+    metadata:
+      status: pending
+  35417e17-964c-43cb-a4f9-6d94474b7319:
+    id: 35417e17-964c-43cb-a4f9-6d94474b7319
+    content: When accepting reviewed content, sometimes it breaks placement of a new node - when attempting to place a new node within the tree, it places it instead as the first child node of the root node sent for review
+    children:
+      - 5030c851-9181-48e3-984a-9cd1bef9858a
+    metadata:
+      status: pending
+      expanded: false
+  cd8216ef-0c80-4352-8ba8-57ab8b44a3e9:
+    id: cd8216ef-0c80-4352-8ba8-57ab8b44a3e9
+    content: We might have fixed this
+    children: []
+    metadata:
+      status: pending
+  d33bef9f-5ff9-41e4-9fec-0c5e52fa4ba2:
+    id: d33bef9f-5ff9-41e4-9fec-0c5e52fa4ba2
+    content: Previously, when looking at the YAML, some files carried IDs made from titles instead of UUIDs
+    children: []
+    metadata:
+      status: pending
+  4c90f21e-4b74-4ae1-af0b-2d6a835def41:
+    id: 4c90f21e-4b74-4ae1-af0b-2d6a835def41
+    content: Check the project blueprints folder and the project.arbo
+    children: []
+    metadata:
+      status: pending
+  628e8e02-b781-4528-9454-bffead460dbc:
+    id: 628e8e02-b781-4528-9454-bffead460dbc
+    content: Check if it's still an issue.
+    children: []
+    metadata:
+      status: pending
+  5f0b7f1f-6456-491f-8c35-cc9476e973ca:
+    id: 5f0b7f1f-6456-491f-8c35-cc9476e973ca
+    content: Issue with IDs being made from titles where they should be UUIDs
+    children:
+      - cd8216ef-0c80-4352-8ba8-57ab8b44a3e9
+      - d33bef9f-5ff9-41e4-9fec-0c5e52fa4ba2
+      - 4c90f21e-4b74-4ae1-af0b-2d6a835def41
+      - 628e8e02-b781-4528-9454-bffead460dbc
+    metadata:
+      status: pending
+      expanded: false
+  60350086-d041-4cac-877c-6bbff90b0da3:
+    id: 60350086-d041-4cac-877c-6bbff90b0da3
+    content: Technical refinement
+    children:
+      - 6231e04b-89a3-414a-a86a-601b7e6bc5ad
+      - 4449ad15-2889-4fa8-bfab-d35b5d5b6791
+      - 6184663e-9908-4394-aab1-a685e1f73c07
+      - 5f0b7f1f-6456-491f-8c35-cc9476e973ca
+      - f639c9d8-6e35-4478-8798-91d8b991ebec
+      - 35417e17-964c-43cb-a4f9-6d94474b7319
+      - 52a4dc8c-4330-41a8-ad1e-b4d5edc2f4db
+    metadata:
+      status: pending
+      isBlueprint: true
+      blueprintIcon: Gem
+      blueprintColor: '#64748b'
+      appliedContextId: 64ec6c6b-566e-4956-bff9-55ac881f4fdb
+      stepType: autonomous
+      expanded: true
+  7dce0e71-fe3b-454b-b8fa-f1845cc4665d:
+    id: 7dce0e71-fe3b-454b-b8fa-f1845cc4665d
+    content: Automated tests implementation (TDD)
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+      appliedContextId: 22a32663-eb92-44e0-a844-d6219409f63b
+      blueprintIcon: ListChecks
+      blueprintColor: '#c47f09'
+      expanded: true
+      stepType: autonomous
+  5061d800-bc96-4a60-8d67-c2dd83a89c10:
+    id: 5061d800-bc96-4a60-8d67-c2dd83a89c10
+    content: Implementation
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+      blueprintIcon: Wrench
+      blueprintColor: '#14b8a6'
+      resolvedAt: '2025-12-09T06:01:07.426Z'
+      isBlueprint: true
+      appliedContextId: 9b46397c-c452-421c-b408-46b040d99c9e
+      stepType: autonomous
+  d0686f00-5b6d-4673-a61b-c0f6fb4dfc38:
+    id: d0686f00-5b6d-4673-a61b-c0f6fb4dfc38
+    content: Verification
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+      appliedContextId: 1e2f062a-bbaa-4a02-b58b-a94ab15d8d74
+      stepType: autonomous
+  5cea6616-9d8e-43e7-a89b-e16875c0f654:
+    id: 5cea6616-9d8e-43e7-a89b-e16875c0f654
+    content: Test pass & resolution
+    children: []
+    metadata:
+      status: pending
+      appliedContextId: 4c3f0d67-a500-484f-8ccb-5dbf959ea27f
+      isBlueprint: true
+      blueprintIcon: BugPlay
+      blueprintColor: '#a855f7'
+      expanded: true
+      stepType: autonomous
+  54d69c51-7092-4146-91e6-b2f7491af9ac:
+    id: 54d69c51-7092-4146-91e6-b2f7491af9ac
+    content: AI refactor
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+      blueprintIcon: Recycle
+      blueprintColor: '#f97316'
+      appliedContextId: 1d30a613-a651-436c-bb2b-1fb3062af9fb
+      expanded: true
+      stepType: autonomous
+      recurse: true
+  8690e6af-1943-48c7-a9cb-08a49ec658aa:
+    id: 8690e6af-1943-48c7-a9cb-08a49ec658aa
+    content: Commit & push
+    children:
+      - 2f2bfcd0-a56f-40d8-8226-bfea60b61ae3
+    metadata:
+      status: pending
+      isBlueprint: true
+      stepType: autonomous
+      appliedContextId: b1446999-f999-47b9-bbe6-bce7c5c3ea59
+      recurse: true
+  186e101a-ffcf-4ab4-9df1-cbecedb7737d:
+    id: 186e101a-ffcf-4ab4-9df1-cbecedb7737d
+    content: Review since last commit
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  980cbb68-89ce-4ef3-a8b1-7b1a8c319f10:
+    id: 980cbb68-89ce-4ef3-a8b1-7b1a8c319f10
+    content: 'Refactor any code not consistent with the project conventions :'
+    children:
+      - e5a43ee4-c1e4-4c42-b262-3dd09a13af27
+      - 91be2201-7afb-465c-ba2d-b854ae1efde6
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e5a43ee4-c1e4-4c42-b262-3dd09a13af27:
+    id: e5a43ee4-c1e4-4c42-b262-3dd09a13af27
+    content: Conventions
+    children:
+      - 98b55791-877f-4209-8f15-abd2a4798b3e
+      - e586f2ff-d2a9-47b2-b0aa-a1f6787c7946
+      - 21b15e79-16b1-497a-9dae-7c89ef134f3f
+      - 29531fba-c48a-4535-b3b3-98611aaa4485
+      - e64c20ed-5a29-4136-a089-bd182be6dfa4
+      - 21cc21f7-6e50-4753-9ad9-7b82f369ed8e
+      - 9046a12b-c638-4f1c-922f-e8a0ce221480
+      - d4d6eac7-c264-4fbc-9748-8410740c9404
+      - 1ad8da05-9f99-4f39-8405-19c7a0fb10f8
+      - 18b4e8a8-3a22-4ae1-8c07-9b72dbbb3ab5
+      - ea037cb8-5928-48f6-a9c2-6238c23bb619
+      - a294ed5d-1553-4d74-ab55-619b25a41184
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  98b55791-877f-4209-8f15-abd2a4798b3e:
+    id: 98b55791-877f-4209-8f15-abd2a4798b3e
+    content: Persistence
+    children:
+      - 35a9a9ee-16bd-47ab-8d9a-771720c957e5
+      - 91894069-cacb-4656-bfff-93310c841f07
+      - 36c7fbdb-35c5-418a-964e-8565f1067c33
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  35a9a9ee-16bd-47ab-8d9a-771720c957e5:
+    id: 35a9a9ee-16bd-47ab-8d9a-771720c957e5
+    content: Session data as JSON files in userData directory
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  91894069-cacb-4656-bfff-93310c841f07:
+    id: 91894069-cacb-4656-bfff-93310c841f07
+    content: Separate files for different session types (main, preferences, etc.)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  36c7fbdb-35c5-418a-964e-8565f1067c33:
+    id: 36c7fbdb-35c5-418a-964e-8565f1067c33
+    content: Separate userData paths for dev/prod to avoid conflicts
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e586f2ff-d2a9-47b2-b0aa-a1f6787c7946:
+    id: e586f2ff-d2a9-47b2-b0aa-a1f6787c7946
+    content: Testing
+    children:
+      - d44e4707-2681-4272-9256-fc9021b95051
+      - 6f6f893c-31b6-42df-b677-b46d53a00d9c
+      - 1cd182a8-5064-4968-acf6-308efec0b493
+      - 81eaa16e-8774-43ff-9fd4-42a967e5214c
+      - 07ff773a-b7ce-48ed-8451-839557b163f4
+      - ced919dd-a190-4d0c-a268-245b15d23c40
+      - ff53bb5d-54fd-47ec-803f-1741c5a5cc76
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d44e4707-2681-4272-9256-fc9021b95051:
+    id: d44e4707-2681-4272-9256-fc9021b95051
+    content: Tests in tests/ subdirectories within modules
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6f6f893c-31b6-42df-b677-b46d53a00d9c:
+    id: 6f6f893c-31b6-42df-b677-b46d53a00d9c
+    content: Unit tests for actions, hooks, utilities
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1cd182a8-5064-4968-acf6-308efec0b493:
+    id: 1cd182a8-5064-4968-acf6-308efec0b493
+    content: Integration tests for critical workflows only
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  81eaa16e-8774-43ff-9fd4-42a967e5214c:
+    id: 81eaa16e-8774-43ff-9fd4-42a967e5214c
+    content: Mock services via dependency injection
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  07ff773a-b7ce-48ed-8451-839557b163f4:
+    id: 07ff773a-b7ce-48ed-8451-839557b163f4
+    content: Avoid mockReturnValueOnce - use mockImplementation with conditionals instead
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ced919dd-a190-4d0c-a268-245b15d23c40:
+    id: ced919dd-a190-4d0c-a268-245b15d23c40
+    content: Test isolation - clear all shared state in beforeEach, not just some of it
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ff53bb5d-54fd-47ec-803f-1741c5a5cc76:
+    id: ff53bb5d-54fd-47ec-803f-1741c5a5cc76
+    content: Mock at the right level - mock the imported module, not underlying APIs
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  21b15e79-16b1-497a-9dae-7c89ef134f3f:
+    id: 21b15e79-16b1-497a-9dae-7c89ef134f3f
+    content: Performance
+    children:
+      - 8b4210c5-1d03-4342-9a88-74a1bc934b99
+      - b71c1ca7-af5e-42ce-9c97-f1c5cb5751d9
+      - 37607931-8105-4c7e-b781-6c3d5f096c5a
+      - 0ab7b3ae-52a3-48f5-8d54-cc4fe91be8be
+      - a43e2948-7458-4dfd-ba8b-c9dc2fba0fe9
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8b4210c5-1d03-4342-9a88-74a1bc934b99:
+    id: 8b4210c5-1d03-4342-9a88-74a1bc934b99
+    content: React.memo() for components that receive stable props
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b71c1ca7-af5e-42ce-9c97-f1c5cb5751d9:
+    id: b71c1ca7-af5e-42ce-9c97-f1c5cb5751d9
+    content: useCallback for event handlers passed as props
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  37607931-8105-4c7e-b781-6c3d5f096c5a:
+    id: 37607931-8105-4c7e-b781-6c3d5f096c5a
+    content: Selective Zustand subscriptions (subscribe only to what component needs)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0ab7b3ae-52a3-48f5-8d54-cc4fe91be8be:
+    id: 0ab7b3ae-52a3-48f5-8d54-cc4fe91be8be
+    content: Use a store cache where possible, update only when necessary
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a43e2948-7458-4dfd-ba8b-c9dc2fba0fe9:
+    id: a43e2948-7458-4dfd-ba8b-c9dc2fba0fe9
+    content: Avoid subscribing to an entire state object when not needed
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  29531fba-c48a-4535-b3b3-98611aaa4485:
+    id: 29531fba-c48a-4535-b3b3-98611aaa4485
+    content: Code Style
+    children:
+      - 8bff1b7c-b307-4bf6-b2b7-23bb33b4a7c5
+      - 7ad32597-a0f6-4416-8b75-0d2276abff97
+      - 115aaff8-5402-4b44-a0fb-046eab255dd5
+      - 48b913d0-1c44-47ed-986d-7e694c28b47d
+      - ef2924d0-db1c-4099-9b62-2fc2a70f7ba4
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8bff1b7c-b307-4bf6-b2b7-23bb33b4a7c5:
+    id: 8bff1b7c-b307-4bf6-b2b7-23bb33b4a7c5
+    content: If code needs a comment explaining what it does, refactor to a named function
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7ad32597-a0f6-4416-8b75-0d2276abff97:
+    id: 7ad32597-a0f6-4416-8b75-0d2276abff97
+    content: Plain CSS with custom properties, no preprocessors
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  115aaff8-5402-4b44-a0fb-046eab255dd5:
+    id: 115aaff8-5402-4b44-a0fb-046eab255dd5
+    content: Component styles in co-located .css files
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  48b913d0-1c44-47ed-986d-7e694c28b47d:
+    id: 48b913d0-1c44-47ed-986d-7e694c28b47d
+    content: Theme variables in globals.css
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ef2924d0-db1c-4099-9b62-2fc2a70f7ba4:
+    id: ef2924d0-db1c-4099-9b62-2fc2a70f7ba4
+    content: No inline styles
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e64c20ed-5a29-4136-a089-bd182be6dfa4:
+    id: e64c20ed-5a29-4136-a089-bd182be6dfa4
+    content: Comments
+    children:
+      - c1559754-0c3e-419f-98d4-abd5140b5a09
+      - 3fa7ddfd-143c-49e1-ad56-96205dcaf845
+      - 55f646a6-556d-4ffc-812d-9afeea0c9c39
+      - 86d62482-65d0-46e7-950e-deb98ca89d8a
+      - 46a55da9-969e-48f7-902d-34f9c8fba8d0
+      - ec45a9fb-ca58-41d4-9788-9f871ee06b7c
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c1559754-0c3e-419f-98d4-abd5140b5a09:
+    id: c1559754-0c3e-419f-98d4-abd5140b5a09
+    content: Comments for "why" not "what"
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3fa7ddfd-143c-49e1-ad56-96205dcaf845:
+    id: 3fa7ddfd-143c-49e1-ad56-96205dcaf845
+    content: Avoid comments that reference specific user stories, requests, or iteration history
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  55f646a6-556d-4ffc-812d-9afeea0c9c39:
+    id: 55f646a6-556d-4ffc-812d-9afeea0c9c39
+    content: Only add comments when necessary to explain non-obvious logic
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  86d62482-65d0-46e7-950e-deb98ca89d8a:
+    id: 86d62482-65d0-46e7-950e-deb98ca89d8a
+    content: Prefer refactoring with descriptive naming over adding comments
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  46a55da9-969e-48f7-902d-34f9c8fba8d0:
+    id: 46a55da9-969e-48f7-902d-34f9c8fba8d0
+    content: Code should be self readable, use declarative naming instead of comments
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ec45a9fb-ca58-41d4-9788-9f871ee06b7c:
+    id: ec45a9fb-ca58-41d4-9788-9f871ee06b7c
+    content: Don't use JS doc conventions
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  21cc21f7-6e50-4753-9ad9-7b82f369ed8e:
+    id: 21cc21f7-6e50-4753-9ad9-7b82f369ed8e
+    content: Naming
+    children:
+      - d7bc7d80-af30-42e2-9d25-e104c2d4d379
+      - cef8312c-446f-43b2-bdf9-1618f2110950
+      - 14fd9534-1cba-4051-8f36-a3a238e76841
+      - 932f19e9-f0b0-47cf-a45b-739891a6c8e5
+      - 1c01e920-5125-49d8-a52f-fd6bb4c19209
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d7bc7d80-af30-42e2-9d25-e104c2d4d379:
+    id: d7bc7d80-af30-42e2-9d25-e104c2d4d379
+    content: PascalCase for components and classes
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cef8312c-446f-43b2-bdf9-1618f2110950:
+    id: cef8312c-446f-43b2-bdf9-1618f2110950
+    content: camelCase for functions, hooks, and utilities
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  14fd9534-1cba-4051-8f36-a3a238e76841:
+    id: 14fd9534-1cba-4051-8f36-a3a238e76841
+    content: Hooks start with "use"
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  932f19e9-f0b0-47cf-a45b-739891a6c8e5:
+    id: 932f19e9-f0b0-47cf-a45b-739891a6c8e5
+    content: Don't repeat directory name in filename (services/Storage.ts not services/StorageService.ts)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1c01e920-5125-49d8-a52f-fd6bb4c19209:
+    id: 1c01e920-5125-49d8-a52f-fd6bb4c19209
+    content: File names match exported symbols
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9046a12b-c638-4f1c-922f-e8a0ce221480:
+    id: 9046a12b-c638-4f1c-922f-e8a0ce221480
+    content: Error Handling
+    children:
+      - f48f835b-7d19-404f-843a-46bf027e6d63
+      - 7c3e7c3a-7ae0-4c5a-9bee-6a0eb7321946
+      - 820e85ae-4e1f-48bf-8897-cf374f406b60
+      - ab28efd3-f31b-492e-a2e2-4558473f7d0f
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f48f835b-7d19-404f-843a-46bf027e6d63:
+    id: f48f835b-7d19-404f-843a-46bf027e6d63
+    content: Logger with level-based filtering and context tagging
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7c3e7c3a-7ae0-4c5a-9bee-6a0eb7321946:
+    id: 7c3e7c3a-7ae0-4c5a-9bee-6a0eb7321946
+    content: Main process errors propagate to renderer via IPC for user display
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  820e85ae-4e1f-48bf-8897-cf374f406b60:
+    id: 820e85ae-4e1f-48bf-8897-cf374f406b60
+    content: Toast notifications for user-facing errors
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ab28efd3-f31b-492e-a2e2-4558473f7d0f:
+    id: ab28efd3-f31b-492e-a2e2-4558473f7d0f
+    content: Graceful fallbacks for missing files or parse errors
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d4d6eac7-c264-4fbc-9748-8410740c9404:
+    id: d4d6eac7-c264-4fbc-9748-8410740c9404
+    content: IPC Communication
+    children:
+      - e50f1d75-d87d-472b-9ddd-a1198be33444
+      - 1cbf91c9-0cc2-42a1-b445-70bafb3c6c62
+      - 68993fea-ffa9-41db-89b2-592dea64c878
+      - 439fd134-cef7-40b0-a931-e91c76f92072
+      - 1b454a9a-5516-419e-b12d-ab88e75ff24d
+      - 6ab71762-d971-418d-9238-2baa68a5c1e9
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e50f1d75-d87d-472b-9ddd-a1198be33444:
+    id: e50f1d75-d87d-472b-9ddd-a1198be33444
+    content: All IPC exposed through contextBridge.exposeInMainWorld()
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1cbf91c9-0cc2-42a1-b445-70bafb3c6c62:
+    id: 1cbf91c9-0cc2-42a1-b445-70bafb3c6c62
+    content: Handler modules organized by feature (fileHandlers, sessionHandlers, etc.)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  68993fea-ffa9-41db-89b2-592dea64c878:
+    id: 68993fea-ffa9-41db-89b2-592dea64c878
+    content: Single registerIpcHandlers() function imports and registers all handlers
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  439fd134-cef7-40b0-a931-e91c76f92072:
+    id: 439fd134-cef7-40b0-a931-e91c76f92072
+    content: 'Channel naming: hierarchical with colons (terminal:create, file:save)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1b454a9a-5516-419e-b12d-ab88e75ff24d:
+    id: 1b454a9a-5516-419e-b12d-ab88e75ff24d
+    content: ipcRenderer.invoke() for request-response, .on() for events
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6ab71762-d971-418d-9238-2baa68a5c1e9:
+    id: 6ab71762-d971-418d-9238-2baa68a5c1e9
+    content: Subscription methods return cleanup functions for unsubscribing
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1ad8da05-9f99-4f39-8405-19c7a0fb10f8:
+    id: 1ad8da05-9f99-4f39-8405-19c7a0fb10f8
+    content: State Management
+    children:
+      - c778cc4f-433e-4ab5-a8f8-5df6b9ccf128
+      - b06f9125-7842-4d91-941f-3dca52b79edf
+      - dd88a418-4b1c-484d-86c3-01deaf1d1785
+      - 4afc6e7f-eff3-46a4-8eee-e607bf7f0c3f
+      - f1266c2c-bf98-429c-a5cc-8c0ed2deeb9c
+      - 0ee68fff-18e7-4659-9408-69849fce8a28
+      - c8a7413d-07af-4059-ac67-441b01e7b083
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c778cc4f-433e-4ab5-a8f8-5df6b9ccf128:
+    id: c778cc4f-433e-4ab5-a8f8-5df6b9ccf128
+    content: Zustand stores in store/ directory
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b06f9125-7842-4d91-941f-3dca52b79edf:
+    id: b06f9125-7842-4d91-941f-3dca52b79edf
+    content: Actions organized by domain in separate files (nodeActions, navigationActions, etc.)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  dd88a418-4b1c-484d-86c3-01deaf1d1785:
+    id: dd88a418-4b1c-484d-86c3-01deaf1d1785
+    content: Action factories use named functions, not inline arrows (better stack traces)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4afc6e7f-eff3-46a4-8eee-e607bf7f0c3f:
+    id: 4afc6e7f-eff3-46a4-8eee-e607bf7f0c3f
+    content: Factory pattern when multiple store instances needed
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f1266c2c-bf98-429c-a5cc-8c0ed2deeb9c:
+    id: f1266c2c-bf98-429c-a5cc-8c0ed2deeb9c
+    content: Context provider to give components access to correct store instance
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0ee68fff-18e7-4659-9408-69849fce8a28:
+    id: 0ee68fff-18e7-4659-9408-69849fce8a28
+    content: Use getState() in event handlers for one-time reads (no subscription overhead)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c8a7413d-07af-4059-ac67-441b01e7b083:
+    id: c8a7413d-07af-4059-ac67-441b01e7b083
+    content: Avoid persisting cross component state in services, prefer Zustand
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  18b4e8a8-3a22-4ae1-8c07-9b72dbbb3ab5:
+    id: 18b4e8a8-3a22-4ae1-8c07-9b72dbbb3ab5
+    content: Organization
+    children:
+      - 067e8038-e42d-425c-b422-2d1058b12e51
+      - e0a199ca-be0d-4aed-8496-91c6757a3313
+      - b2638dec-c341-471b-a063-f7a5793ec494
+      - 52be27c3-be5c-40f2-8701-4f51fb2ecc7a
+      - 38a68f40-36d7-46bb-a452-8eaf75ebc66d
+      - 0e35e894-951f-46fb-bb33-eff844ee431a
+      - bceab686-891d-4acb-bbd0-bea2583c817d
+      - 076bfddb-5116-40e8-8c9d-bd11ffb79bd8
+      - 348760ea-1688-4a1e-80c5-0725f6a6ccb2
+      - 531cb837-72e3-4f04-b222-c9a62eb64f86
+      - 90a7c268-8a75-4723-b8ea-312afd88ffef
+      - 9818a084-427b-4487-a5c9-9086ce9f1397
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  067e8038-e42d-425c-b422-2d1058b12e51:
+    id: 067e8038-e42d-425c-b422-2d1058b12e51
+    content: Co-locate single-use code with its consumer
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e0a199ca-be0d-4aed-8496-91c6757a3313:
+    id: e0a199ca-be0d-4aed-8496-91c6757a3313
+    content: Centralize shared code in store/, services/, or utils/
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b2638dec-c341-471b-a063-f7a5793ec494:
+    id: b2638dec-c341-471b-a063-f7a5793ec494
+    content: When unsure, start co-located and move when second consumer appears
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  52be27c3-be5c-40f2-8701-4f51fb2ecc7a:
+    id: 52be27c3-be5c-40f2-8701-4f51fb2ecc7a
+    content: Components in own directories with co-located hooks/styles
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  38a68f40-36d7-46bb-a452-8eaf75ebc66d:
+    id: 38a68f40-36d7-46bb-a452-8eaf75ebc66d
+    content: Clean separation between components and hooks
+    children:
+      - 0e86dcf5-6bc7-4280-b31f-65a247ac3468
+      - 89a4423d-f1df-4937-b7cf-aed607a0c52f
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0e86dcf5-6bc7-4280-b31f-65a247ac3468:
+    id: 0e86dcf5-6bc7-4280-b31f-65a247ac3468
+    content: Components hold templates only
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  89a4423d-f1df-4937-b7cf-aed607a0c52f:
+    id: 89a4423d-f1df-4937-b7cf-aed607a0c52f
+    content: Hooks hold logic only
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0e35e894-951f-46fb-bb33-eff844ee431a:
+    id: 0e35e894-951f-46fb-bb33-eff844ee431a
+    content: If a file is over 500 lines
+    children:
+      - d25e329a-8519-4c79-80e6-8be89620d5a6
+      - 807eca59-6744-4ab3-a25e-5ffbc32a6163
+      - f40235e1-9d6d-4bb2-87f5-066dcaa82e51
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d25e329a-8519-4c79-80e6-8be89620d5a6:
+    id: d25e329a-8519-4c79-80e6-8be89620d5a6
+    content: If it has multiple responsibilities, split it into 2 or more
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  807eca59-6744-4ab3-a25e-5ffbc32a6163:
+    id: 807eca59-6744-4ab3-a25e-5ffbc32a6163
+    content: Unless it has shared state and such would add unnecessary complexity
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f40235e1-9d6d-4bb2-87f5-066dcaa82e51:
+    id: f40235e1-9d6d-4bb2-87f5-066dcaa82e51
+    content: Not applicable to test files
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  bceab686-891d-4acb-bbd0-bea2583c817d:
+    id: bceab686-891d-4acb-bbd0-bea2583c817d
+    content: If a function or method is over 50 lines
+    children:
+      - d63fcc61-cb8a-42b0-ab66-c7861ca3791d
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d63fcc61-cb8a-42b0-ab66-c7861ca3791d:
+    id: d63fcc61-cb8a-42b0-ab66-c7861ca3791d
+    content: If it has multiple responsibilities, split it into 2 or more
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  076bfddb-5116-40e8-8c9d-bd11ffb79bd8:
+    id: 076bfddb-5116-40e8-8c9d-bd11ffb79bd8
+    content: Barrel exports (index.ts) for clean imports
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  348760ea-1688-4a1e-80c5-0725f6a6ccb2:
+    id: 348760ea-1688-4a1e-80c5-0725f6a6ccb2
+    content: Split complex hooks into focused single-responsibility hooks
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  531cb837-72e3-4f04-b222-c9a62eb64f86:
+    id: 531cb837-72e3-4f04-b222-c9a62eb64f86
+    content: Main hook composes specialized hooks and returns combined interface
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  90a7c268-8a75-4723-b8ea-312afd88ffef:
+    id: 90a7c268-8a75-4723-b8ea-312afd88ffef
+    content: Services for side effects and external interactions (DOM, IPC, I/O, API, event listeners)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9818a084-427b-4487-a5c9-9086ce9f1397:
+    id: 9818a084-427b-4487-a5c9-9086ce9f1397
+    content: Utils are pure functions with no side effects
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ea037cb8-5928-48f6-a9c2-6238c23bb619:
+    id: ea037cb8-5928-48f6-a9c2-6238c23bb619
+    content: Directory Structure
+    children:
+      - 178d4041-ca14-4592-aae4-3ac9ef23825e
+      - 96e7299d-3f41-4bd3-ba30-3300a7dfd248
+      - 837afa72-496d-46a5-8766-3b942fcd01c0
+      - 8cda4f00-b265-4f98-a5fd-ab321ce0d556
+      - b7fc8e7f-8690-489a-a610-2c0c140ddb08
+      - 00033830-fb60-4776-abd9-51f0dbc83cad
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  178d4041-ca14-4592-aae4-3ac9ef23825e:
+    id: 178d4041-ca14-4592-aae4-3ac9ef23825e
+    content: Separate main process, renderer, shared, and platform-specific code
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  96e7299d-3f41-4bd3-ba30-3300a7dfd248:
+    id: 96e7299d-3f41-4bd3-ba30-3300a7dfd248
+    content: Platform implementations behind interfaces for swappability
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  837afa72-496d-46a5-8766-3b942fcd01c0:
+    id: 837afa72-496d-46a5-8766-3b942fcd01c0
+    content: Shared types and interfaces used by both processes live in shared/
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8cda4f00-b265-4f98-a5fd-ab321ce0d556:
+    id: 8cda4f00-b265-4f98-a5fd-ab321ce0d556
+    content: IPC handlers organized in services/handlers/ subdirectory
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b7fc8e7f-8690-489a-a610-2c0c140ddb08:
+    id: b7fc8e7f-8690-489a-a610-2c0c140ddb08
+    content: Single preload file exposing platform APIs via contextBridge
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  00033830-fb60-4776-abd9-51f0dbc83cad:
+    id: 00033830-fb60-4776-abd9-51f0dbc83cad
+    content: 'Layout:'
+    children:
+      - 800231c4-5382-4862-83bf-30ba1fbdbc5e
+      - a50738a3-1c73-4f05-8a0d-570660f1d4ea
+      - 1dccd77c-ac03-42a6-8c40-8bc3888f0a24
+      - 4614b109-ed3a-438d-a775-f1b7b17b80f7
+      - d6f49170-4e8d-4499-81a7-e0790f5ae01b
+      - 42191d2e-5704-4cc7-b892-146089de8185
+      - 2e08feeb-10c8-479e-9866-588e0922f171
+      - ea944cd3-3fd3-4978-a44e-24a3fe99bb45
+      - d3d6d423-68d1-4e4a-b59f-630dbc12f00c
+      - 0fc1108e-7c13-4554-aca3-4055d66f9cbd
+      - 1dd121d6-7912-4fdc-8352-348417a459d8
+      - 2384d91e-9958-4bdf-990b-a3d48237fd7a
+      - 7d7a93d3-8745-4de7-b68a-24acb72f4c18
+      - fed4f222-04f9-463f-a1c4-9b4f251d9748
+      - 8a909711-f95a-411f-b1eb-d9d6b870a39b
+      - a602634f-6d59-4ce7-a624-6198a5894627
+      - e574c421-b58f-44a1-af5d-f93a7825ee6d
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  800231c4-5382-4862-83bf-30ba1fbdbc5e:
+    id: 800231c4-5382-4862-83bf-30ba1fbdbc5e
+    content: src/main/ - Electron main process
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a50738a3-1c73-4f05-8a0d-570660f1d4ea:
+    id: a50738a3-1c73-4f05-8a0d-570660f1d4ea
+    content: services/handlers/ - IPC handlers by feature
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1dccd77c-ac03-42a6-8c40-8bc3888f0a24:
+    id: 1dccd77c-ac03-42a6-8c40-8bc3888f0a24
+    content: services/utils/ - Main process utilities
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4614b109-ed3a-438d-a775-f1b7b17b80f7:
+    id: 4614b109-ed3a-438d-a775-f1b7b17b80f7
+    content: src/preload/ - Context bridge definitions
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d6f49170-4e8d-4499-81a7-e0790f5ae01b:
+    id: d6f49170-4e8d-4499-81a7-e0790f5ae01b
+    content: src/platforms/electron/services/ - Platform implementations
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  42191d2e-5704-4cc7-b892-146089de8185:
+    id: 42191d2e-5704-4cc7-b892-146089de8185
+    content: src/renderer/ - React application
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2e08feeb-10c8-479e-9866-588e0922f171:
+    id: 2e08feeb-10c8-479e-9866-588e0922f171
+    content: components/ - UI components with co-located hooks/
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ea944cd3-3fd3-4978-a44e-24a3fe99bb45:
+    id: ea944cd3-3fd3-4978-a44e-24a3fe99bb45
+    content: components/ui/ - Reusable UI primitives
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d3d6d423-68d1-4e4a-b59f-630dbc12f00c:
+    id: d3d6d423-68d1-4e4a-b59f-630dbc12f00c
+    content: store/ - Zustand stores with actions/ subdirectories
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0fc1108e-7c13-4554-aca3-4055d66f9cbd:
+    id: 0fc1108e-7c13-4554-aca3-4055d66f9cbd
+    content: services/ - Side-effect services (keyboard/, feedback/, etc.)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1dd121d6-7912-4fdc-8352-348417a459d8:
+    id: 1dd121d6-7912-4fdc-8352-348417a459d8
+    content: hooks/ - Shared hooks used by multiple components
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2384d91e-9958-4bdf-990b-a3d48237fd7a:
+    id: 2384d91e-9958-4bdf-990b-a3d48237fd7a
+    content: utils/ - Pure utility functions
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7d7a93d3-8745-4de7-b68a-24acb72f4c18:
+    id: 7d7a93d3-8745-4de7-b68a-24acb72f4c18
+    content: data/ - Static data and configuration
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fed4f222-04f9-463f-a1c4-9b4f251d9748:
+    id: fed4f222-04f9-463f-a1c4-9b4f251d9748
+    content: src/shared/ - Cross-process code
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8a909711-f95a-411f-b1eb-d9d6b870a39b:
+    id: 8a909711-f95a-411f-b1eb-d9d6b870a39b
+    content: types/ - Shared type definitions
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a602634f-6d59-4ce7-a624-6198a5894627:
+    id: a602634f-6d59-4ce7-a624-6198a5894627
+    content: utils/ - Platform-agnostic utilities
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e574c421-b58f-44a1-af5d-f93a7825ee6d:
+    id: e574c421-b58f-44a1-af5d-f93a7825ee6d
+    content: services/ - Shared service base classes
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a294ed5d-1553-4d74-ab55-619b25a41184:
+    id: a294ed5d-1553-4d74-ab55-619b25a41184
+    content: Documentation
+    children:
+      - d9e2a742-0cd8-45a2-9319-0652abf9f895
+      - bae2504d-59f4-464d-9307-12bd75bbb849
+      - fffa1525-7c82-44b8-b565-4b44fc308bd7
+      - 68b6d4a5-61bc-4838-8551-cd10038114ec
+      - 37d4e92d-8019-4bca-b81c-d2882187330a
+      - 712e13d6-3e43-4dbb-b564-d606cd60d7bb
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d9e2a742-0cd8-45a2-9319-0652abf9f895:
+    id: d9e2a742-0cd8-45a2-9319-0652abf9f895
+    content: Structure
+    children:
+      - 2c97dce0-5940-4693-a97b-40f20298d5c4
+      - 9b5e297b-264a-49c0-b562-c585360d00fa
+      - 12bc0d3b-fc26-40f7-b088-3135b35f2398
+      - cd96b03d-1a8c-4429-ab60-ce183de37f73
+      - ff7a4f9f-bfdc-4f14-b2a8-74f5766b393d
+      - 57e78ab0-3291-41e5-adf8-4f1b2f6c524c
+      - 364e281b-2ed5-48fd-aa8b-9085f29aaefb
+      - 5326d43f-852e-4f6a-9e48-6a37dc883ec6
+      - 10be954e-e048-4dbd-8cce-edddf78f855a
+      - eee78147-400e-4ee2-ac0b-bcb159f066c9
+      - 51a48eff-cf78-4112-933d-86e3fd737521
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2c97dce0-5940-4693-a97b-40f20298d5c4:
+    id: 2c97dce0-5940-4693-a97b-40f20298d5c4
+    content: Create in docs/
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9b5e297b-264a-49c0-b562-c585360d00fa:
+    id: 9b5e297b-264a-49c0-b562-c585360d00fa
+    content: Create quick start, overview and index in README.md
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  12bc0d3b-fc26-40f7-b088-3135b35f2398:
+    id: 12bc0d3b-fc26-40f7-b088-3135b35f2398
+    content: Separate file for core workflow in workflow.md
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  cd96b03d-1a8c-4429-ab60-ce183de37f73:
+    id: cd96b03d-1a8c-4429-ab60-ce183de37f73
+    content: When to split vs expand
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ff7a4f9f-bfdc-4f14-b2a8-74f5766b393d:
+    id: ff7a4f9f-bfdc-4f14-b2a8-74f5766b393d
+    content: New file when concept stands alone (blueprints, contexts)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  57e78ab0-3291-41e5-adf8-4f1b2f6c524c:
+    id: 57e78ab0-3291-41e5-adf8-4f1b2f6c524c
+    content: Expand existing when concepts are tightly coupled
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  364e281b-2ed5-48fd-aa8b-9085f29aaefb:
+    id: 364e281b-2ed5-48fd-aa8b-9085f29aaefb
+    content: 'Rule of thumb: if you''d link to it from multiple places, it''s a file'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5326d43f-852e-4f6a-9e48-6a37dc883ec6:
+    id: 5326d43f-852e-4f6a-9e48-6a37dc883ec6
+    content: Separate file for commands or shortcuts - lookup style with reference table
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  10be954e-e048-4dbd-8cce-edddf78f855a:
+    id: 10be954e-e048-4dbd-8cce-edddf78f855a
+    content: Keep pages short
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  eee78147-400e-4ee2-ac0b-bcb159f066c9:
+    id: eee78147-400e-4ee2-ac0b-bcb159f066c9
+    content: Aim for "one scroll" per topic
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  51a48eff-cf78-4112-933d-86e3fd737521:
+    id: 51a48eff-cf78-4112-933d-86e3fd737521
+    content: If longer, split into subtopics or reconsider scope
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  bae2504d-59f4-464d-9307-12bd75bbb849:
+    id: bae2504d-59f4-464d-9307-12bd75bbb849
+    content: 'Consider the core project philosophy here :'
+    children:
+      - b3eb6222-83fd-4488-92ee-2b65dd7d5502
+      - e953d818-e7e2-4441-a2d9-84776457de4c
+      - b24a5af7-267b-453f-bf02-837be2288912
+      - b40145e7-cd18-4ee6-8b27-fcfd29186349
+      - 5c45b262-1aeb-49b9-b780-8788e3aec44c
+      - daa74022-0314-4923-b99d-c0f3686cef0a
+      - 4aab6e3b-c6db-4dae-99c1-3c3dd6b3b94e
+      - 43b503e2-69c5-40e8-a114-236358c593ab
+      - bdaee4b0-4e9b-4241-825b-af246bd833e8
+      - c94e0f6b-99ce-42dd-8fc5-029aab8e5134
+      - f5a60d4b-3aad-446a-843d-1f7b91eebbe8
+      - 48f1e595-a607-4afa-b660-de30fdcd8ea6
+      - bfa4ba99-3c96-4abb-9e76-2528b88c2e51
+      - 0ebe030e-10b3-493c-8073-b634405b0658
+      - 9d7d6431-39db-442c-bc3b-51a20f259338
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b3eb6222-83fd-4488-92ee-2b65dd7d5502:
+    id: b3eb6222-83fd-4488-92ee-2b65dd7d5502
+    content: Philosophy
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e953d818-e7e2-4441-a2d9-84776457de4c:
+    id: e953d818-e7e2-4441-a2d9-84776457de4c
+    content: What is Arborescent ?
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b24a5af7-267b-453f-bf02-837be2288912:
+    id: b24a5af7-267b-453f-bf02-837be2288912
+    content: Read the README.md in this project's root folder
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b40145e7-cd18-4ee6-8b27-fcfd29186349:
+    id: b40145e7-cd18-4ee6-8b27-fcfd29186349
+    content: Design philosophy
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5c45b262-1aeb-49b9-b780-8788e3aec44c:
+    id: 5c45b262-1aeb-49b9-b780-8788e3aec44c
+    content: Designed for focus and low cognitive load
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  daa74022-0314-4923-b99d-c0f3686cef0a:
+    id: daa74022-0314-4923-b99d-c0f3686cef0a
+    content: Tree structure supports non-linear thinking
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4aab6e3b-c6db-4dae-99c1-3c3dd6b3b94e:
+    id: 4aab6e3b-c6db-4dae-99c1-3c3dd6b3b94e
+    content: UI minimizes visual noise
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  43b503e2-69c5-40e8-a114-236358c593ab:
+    id: 43b503e2-69c5-40e8-a114-236358c593ab
+    content: Predictable, stable behavior
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  bdaee4b0-4e9b-4241-825b-af246bd833e8:
+    id: bdaee4b0-4e9b-4241-825b-af246bd833e8
+    content: Complexity is emergent, discoverable, configurable
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c94e0f6b-99ce-42dd-8fc5-029aab8e5134:
+    id: c94e0f6b-99ce-42dd-8fc5-029aab8e5134
+    content: Objectives
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f5a60d4b-3aad-446a-843d-1f7b91eebbe8:
+    id: f5a60d4b-3aad-446a-843d-1f7b91eebbe8
+    content: Create a full featured outliner with AI workflows for automated task decomposition and execution with human validation steps.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  48f1e595-a607-4afa-b660-de30fdcd8ea6:
+    id: 48f1e595-a607-4afa-b660-de30fdcd8ea6
+    content: Allow the natural emergence of ontological trees in the form of blueprints that guide the AI output so that it aligns as closely as possible with the user's intent.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  bfa4ba99-3c96-4abb-9e76-2528b88c2e51:
+    id: bfa4ba99-3c96-4abb-9e76-2528b88c2e51
+    content: Harness network effects with AI and human contributors through the form of shared blueprints to provide compounding improvement to move the output ever closer towards deterministic.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0ebe030e-10b3-493c-8073-b634405b0658:
+    id: 0ebe030e-10b3-493c-8073-b634405b0658
+    content: Eventually integrate with external systems through MCP to become a workflow orchestrator.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9d7d6431-39db-442c-bc3b-51a20f259338:
+    id: 9d7d6431-39db-442c-bc3b-51a20f259338
+    content: Is also a useful todo list and orchestrator.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fffa1525-7c82-44b8-b565-4b44fc308bd7:
+    id: fffa1525-7c82-44b8-b565-4b44fc308bd7
+    content: Structure docs by workflow, not by feature
+    children:
+      - 7d327dae-ea87-4861-a85f-65e05720bf5b
+      - 39848211-d8a7-43b4-ad29-b2a96983970f
+      - ab65ee1c-92b7-41dd-9c17-95197880cae6
+      - dc613eba-e320-45c9-b89d-1b4762dc02a2
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7d327dae-ea87-4861-a85f-65e05720bf5b:
+    id: 7d327dae-ea87-4861-a85f-65e05720bf5b
+    content: Lead with "how to accomplish X" rather than "what X does"
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  39848211-d8a7-43b4-ad29-b2a96983970f:
+    id: 39848211-d8a7-43b4-ad29-b2a96983970f
+    content: Introduce features in the context of tasks, not as standalone descriptions
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ab65ee1c-92b7-41dd-9c17-95197880cae6:
+    id: ab65ee1c-92b7-41dd-9c17-95197880cae6
+    content: Avoid tables, except for pure reference like keyboard shortcuts
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  dc613eba-e320-45c9-b89d-1b4762dc02a2:
+    id: dc613eba-e320-45c9-b89d-1b4762dc02a2
+    content: Keep it reasonably brief - all necessary information there, no fluff
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  68b6d4a5-61bc-4838-8551-cd10038114ec:
+    id: 68b6d4a5-61bc-4838-8551-cd10038114ec
+    content: Progressive disclosure
+    children:
+      - 2df1bbe6-a8fc-46f6-ad8e-fc17d99a9c8c
+      - c045f084-12ed-48e4-b730-ea1ea8a220aa
+      - d4cd3683-fc49-478f-b413-28d2356c1bcd
+      - b4506c95-4749-4af8-abae-5713ff24d8aa
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2df1bbe6-a8fc-46f6-ad8e-fc17d99a9c8c:
+    id: 2df1bbe6-a8fc-46f6-ad8e-fc17d99a9c8c
+    content: Start with quick start (2 minutes to first result)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c045f084-12ed-48e4-b730-ea1ea8a220aa:
+    id: c045f084-12ed-48e4-b730-ea1ea8a220aa
+    content: Core workflow next (the main loop users will repeat)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d4cd3683-fc49-478f-b413-28d2356c1bcd:
+    id: d4cd3683-fc49-478f-b413-28d2356c1bcd
+    content: Advanced topics later
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b4506c95-4749-4af8-abae-5713ff24d8aa:
+    id: b4506c95-4749-4af8-abae-5713ff24d8aa
+    content: Reference material last (keyboard shortcuts etc)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  37d4e92d-8019-4bca-b81c-d2882187330a:
+    id: 37d4e92d-8019-4bca-b81c-d2882187330a
+    content: Tone and voice
+    children:
+      - af4ace6c-0e41-4ace-b5cc-febda03a4742
+      - 3ab7dafc-4a14-4d22-82aa-75d2f639a104
+      - 12f38d12-0d69-4830-96f9-1d994eb97098
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  af4ace6c-0e41-4ace-b5cc-febda03a4742:
+    id: af4ace6c-0e41-4ace-b5cc-febda03a4742
+    content: Keep it direct, minimize the marketing fluff, assumes intelligent user
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3ab7dafc-4a14-4d22-82aa-75d2f639a104:
+    id: 3ab7dafc-4a14-4d22-82aa-75d2f639a104
+    content: Second person ("you") for instructions, active voice
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  12f38d12-0d69-4830-96f9-1d994eb97098:
+    id: 12f38d12-0d69-4830-96f9-1d994eb97098
+    content: Avoid hedging ("you might want to", "consider") - be direct
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  712e13d6-3e43-4dbb-b564-d606cd60d7bb:
+    id: 712e13d6-3e43-4dbb-b564-d606cd60d7bb
+    content: Do not reference removed functionality
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  91be2201-7afb-465c-ba2d-b854ae1efde6:
+    id: 91be2201-7afb-465c-ba2d-b854ae1efde6
+    content: If something is inconsistent, fix it, don't make an exception
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e09be3e2-a09e-4700-9fd3-f42de8653f18:
+    id: e09be3e2-a09e-4700-9fd3-f42de8653f18
+    content: Insure that the tests were updated for all edited files
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  af9d7ef0-b5c9-4fff-b72c-7b736f308f0a:
+    id: af9d7ef0-b5c9-4fff-b72c-7b736f308f0a
+    content: Made sure any abandoned attempts are deleted
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  456901c2-1245-4902-a835-e217041da515:
+    id: 456901c2-1245-4902-a835-e217041da515
+    content: Review all code implemented since last commit
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  458d4229-8514-4d27-aead-817e1a7db44e:
+    id: 458d4229-8514-4d27-aead-817e1a7db44e
+    content: Run the standard checks
+    children:
+      - 029ffd82-5145-475e-b6b6-e36b4ee95aa0
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  029ffd82-5145-475e-b6b6-e36b4ee95aa0:
+    id: 029ffd82-5145-475e-b6b6-e36b4ee95aa0
+    content: Standard checks
+    children:
+      - f4161bff-4f96-4707-b281-4ccc595ba591
+      - f139093f-322e-4e7a-912f-31c8dd20dcb2
+      - 1987151b-e651-4cae-a775-6a3909bf19fe
+      - c791d66c-9c43-4c97-a231-0857af146632
+      - c2c40d6e-f18f-4a8f-ad6c-03d950858ac4
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f4161bff-4f96-4707-b281-4ccc595ba591:
+    id: f4161bff-4f96-4707-b281-4ccc595ba591
+    content: All the automated tests related to the changes are updated and passing
+    children:
+      - d5048ba0-d2f0-4713-9f43-18f4f131b92e
+      - 424755f9-5cd0-4e18-9eef-7eeed88d1b9b
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d5048ba0-d2f0-4713-9f43-18f4f131b92e:
+    id: d5048ba0-d2f0-4713-9f43-18f4f131b92e
+    content: Make sure there are no empty tests
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  424755f9-5cd0-4e18-9eef-7eeed88d1b9b:
+    id: 424755f9-5cd0-4e18-9eef-7eeed88d1b9b
+    content: Only run tests for changed or new files
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f139093f-322e-4e7a-912f-31c8dd20dcb2:
+    id: f139093f-322e-4e7a-912f-31c8dd20dcb2
+    content: If you have changed the behavior but not the tests and they are still passing
+    children:
+      - 9adc1abd-3947-408c-b9dc-9e1efeab45fe
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9adc1abd-3947-408c-b9dc-9e1efeab45fe:
+    id: 9adc1abd-3947-408c-b9dc-9e1efeab45fe
+    content: Check if you need to add tests
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1987151b-e651-4cae-a775-6a3909bf19fe:
+    id: 1987151b-e651-4cae-a775-6a3909bf19fe
+    content: There are no linting errors in the changed or new files only
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c791d66c-9c43-4c97-a231-0857af146632:
+    id: c791d66c-9c43-4c97-a231-0857af146632
+    content: There are no typescript errors in the changed or new files only
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c2c40d6e-f18f-4a8f-ad6c-03d950858ac4:
+    id: c2c40d6e-f18f-4a8f-ad6c-03d950858ac4
+    content: Don't commit, I'll do that
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7fe1b3e0-344b-4672-8cfd-7e90479202f2:
+    id: 7fe1b3e0-344b-4672-8cfd-7e90479202f2
+    content: Refactor changes in this pass
+    children:
+      - e9df847e-c8e8-4a50-a13c-693f3fef8f5f
+      - 73a96da1-75d4-4664-bb1d-67dbc5c79c98
+      - 6727313f-2d94-4c85-a185-ee9711ee6d26
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e9df847e-c8e8-4a50-a13c-693f3fef8f5f:
+    id: e9df847e-c8e8-4a50-a13c-693f3fef8f5f
+    content: useFeedbackClipboard.ts — extracted the inline 38-line async file-event handler from `useEffect` into a named `routeFeedbackFile` useCallback, mirroring the existing `handleClipboardFeedback` pattern. Renamed the existing `handleIncomingFeedback` to `handleClipboardFeedback` since it is now the clipboard-only path (file events go through the new strict registry route). Both useEffects are now one-line dispatches; function names communicate the data source so no comments are needed.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  73a96da1-75d4-4664-bb1d-67dbc5c79c98:
+    id: 73a96da1-75d4-4664-bb1d-67dbc5c79c98
+    content: 'Cross-action plumbing in sendActions.ts kept as-is — `(get() as TreeState & { actions?: { ... } }).actions?.X?.(...)` repeats three times for register/unregister calls into the workflow-execution registry. Considered extracting a typed helper, but the pattern matches how `executeCommand` is reached in the same file (existing convention), the verbosity is from TS strictness rather than logic, and a helper would add a layer for marginal gain. Left.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6727313f-2d94-4c85-a185-ee9711ee6d26:
+    id: 6727313f-2d94-4c85-a185-ee9711ee6d26
+    content: sendActions.ts (684 lines) and workflowExecutionActions.ts (~620 lines) remain over the 500-line guideline — pre-existing, the refactor would touch unrelated code; flagged for a later targeted PR.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}

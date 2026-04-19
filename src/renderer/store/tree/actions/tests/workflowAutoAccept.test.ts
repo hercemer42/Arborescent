@@ -565,7 +565,7 @@ describe('workflow auto-accept for autonomous collaborate steps', () => {
     });
   });
 
-  describe('findNodeIdByFeedbackFilePath', () => {
+  describe('findCollaborationByFeedbackFilePath', () => {
     const registeredPath = '/Users/test/Library/Application Support/Arborescent/temp-files/feedback-response-task-a.md';
 
     beforeEach(async () => {
@@ -576,34 +576,34 @@ describe('workflow auto-accept for autonomous collaborate steps', () => {
     });
 
     it('should match when incoming path is identical to registered path', () => {
-      expect(actions.findNodeIdByFeedbackFilePath(registeredPath)).toBe('task-a');
+      expect(actions.findCollaborationByFeedbackFilePath(registeredPath)).toEqual({ nodeId: 'task-a', kind: 'autonomous' });
     });
 
     it('should match when incoming path has the same basename (filename encodes nodeId)', () => {
       const differentPrefix = '/private' + registeredPath;
-      expect(actions.findNodeIdByFeedbackFilePath(differentPrefix)).toBe('task-a');
+      expect(actions.findCollaborationByFeedbackFilePath(differentPrefix)).toEqual({ nodeId: 'task-a', kind: 'autonomous' });
     });
 
     it('should match on basename when paths diverge (Library vs /private/var symlink realpath)', () => {
       const realpathStyle = '/private/tmp/feedback-response-task-a.md';
-      expect(actions.findNodeIdByFeedbackFilePath(realpathStyle)).toBe('task-a');
+      expect(actions.findCollaborationByFeedbackFilePath(realpathStyle)).toEqual({ nodeId: 'task-a', kind: 'autonomous' });
     });
 
     it('should return null when no autonomous collaboration is registered', async () => {
       actions.stopWorkflow('task-a');
       await Promise.resolve();
-      expect(actions.findNodeIdByFeedbackFilePath(registeredPath)).toBeNull();
+      expect(actions.findCollaborationByFeedbackFilePath(registeredPath)).toBeNull();
     });
 
     it('should return null when filename does not match any registered collaboration', () => {
       expect(
-        actions.findNodeIdByFeedbackFilePath('/tmp/feedback-response-other-node.md'),
+        actions.findCollaborationByFeedbackFilePath('/tmp/feedback-response-other-node.md'),
       ).toBeNull();
     });
 
     it('should still support endsWith path matching for backward compatibility', () => {
       const suffixed = 'some/nested/prefix' + registeredPath;
-      expect(actions.findNodeIdByFeedbackFilePath(suffixed)).toBe('task-a');
+      expect(actions.findCollaborationByFeedbackFilePath(suffixed)).toEqual({ nodeId: 'task-a', kind: 'autonomous' });
     });
   });
 });

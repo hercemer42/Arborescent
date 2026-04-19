@@ -15,7 +15,8 @@ const mockStore = {
     },
     actions: {
       processIncomingFeedbackContent: mockProcessIncomingFeedbackContent,
-      findNodeIdByFeedbackFilePath: () => null,
+      findCollaborationByFeedbackFilePath: () =>
+        mockCollaboratingNodeId.value ? { nodeId: mockCollaboratingNodeId.value, kind: 'manual' as const } : null,
       handleAutonomousFeedback: vi.fn(),
     },
   }),
@@ -280,13 +281,13 @@ describe('useFeedbackClipboard', () => {
 
   it('should route autonomous file feedback to correct store regardless of active tab', async () => {
     const mockHandleAutonomousFeedback = vi.fn();
-    const mockFindNode = vi.fn().mockReturnValue('node-1');
+    const mockFindCollaboration = vi.fn().mockReturnValue({ nodeId: 'node-1', kind: 'autonomous' });
 
     const alternateStore = {
       getState: () => ({
         collaboratingNodeId: 'node-1',
         actions: {
-          findNodeIdByFeedbackFilePath: mockFindNode,
+          findCollaborationByFeedbackFilePath: mockFindCollaboration,
           handleAutonomousFeedback: mockHandleAutonomousFeedback,
         },
       }),

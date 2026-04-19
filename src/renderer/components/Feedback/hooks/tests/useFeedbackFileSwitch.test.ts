@@ -8,7 +8,7 @@ const {
   mockFeedbackTreeClearFile,
   mockProcessIncomingFeedbackForA,
   mockHandleAutonomousFeedbackForA,
-  mockFindNodeForA,
+  mockFindCollaborationForA,
   mockGetAllStores,
   mockGetAllStoreEntries,
   fileAStore,
@@ -43,14 +43,14 @@ const {
 
   const mockProcessIncomingFeedbackForA = vi.fn();
   const mockHandleAutonomousFeedbackForA = vi.fn();
-  const mockFindNodeForA = vi.fn().mockReturnValue(null);
+  const mockFindCollaborationForA = vi.fn().mockReturnValue({ nodeId: 'node-a-1', kind: 'manual' });
 
   const fileAStore = {
     getState: () => ({
       collaboratingNodeId: 'node-a-1',
       actions: {
         processIncomingFeedbackContent: mockProcessIncomingFeedbackForA,
-        findNodeIdByFeedbackFilePath: mockFindNodeForA,
+        findCollaborationByFeedbackFilePath: mockFindCollaborationForA,
         handleAutonomousFeedback: mockHandleAutonomousFeedbackForA,
       },
     }),
@@ -61,7 +61,7 @@ const {
       collaboratingNodeId: null,
       actions: {
         processIncomingFeedbackContent: vi.fn(),
-        findNodeIdByFeedbackFilePath: vi.fn().mockReturnValue(null),
+        findCollaborationByFeedbackFilePath: vi.fn().mockReturnValue(null),
         handleAutonomousFeedback: vi.fn(),
       },
     }),
@@ -78,7 +78,7 @@ const {
     mockFeedbackTreeClearFile: clearFile,
     mockProcessIncomingFeedbackForA,
     mockHandleAutonomousFeedbackForA,
-    mockFindNodeForA,
+    mockFindCollaborationForA,
     mockGetAllStores,
     mockGetAllStoreEntries,
     fileAStore,
@@ -146,7 +146,7 @@ describe('useFeedbackClipboard — file switch integrity', () => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     global.window = { electron: mock.electron } as any;
     mockProcessIncomingFeedbackForA.mockResolvedValue({ success: true, nodeCount: 1 });
-    mockFindNodeForA.mockReturnValue(null);
+    mockFindCollaborationForA.mockReturnValue(null);
     mockGetAllStores.mockImplementation(() => [fileAStore, fileBStore]);
     mockGetAllStoreEntries.mockImplementation(() => [
       { filePath: '/file-a.arbo', store: fileAStore },
@@ -211,7 +211,7 @@ describe('useFeedbackClipboard — file switch integrity', () => {
     });
 
     it('routes file-watcher feedback to the correct store after switching files', async () => {
-      mockFindNodeForA.mockReturnValue('node-a-1');
+      mockFindCollaborationForA.mockReturnValue({ nodeId: 'node-a-1', kind: 'autonomous' });
 
       const { rerender } = renderHook(
         ({ id }: { id: string | null }) => useFeedbackClipboard(id),
@@ -267,7 +267,7 @@ describe('useFeedbackClipboard — file switch integrity', () => {
 
   describe('toast notification when session completes in a non-active file', () => {
     it('shows a toast when file-watcher feedback arrives for a file the user is not viewing', async () => {
-      mockFindNodeForA.mockReturnValue('node-a-1');
+      mockFindCollaborationForA.mockReturnValue({ nodeId: 'node-a-1', kind: 'autonomous' });
 
       // User is on File B while File A has an active session
       mockActiveFilePath = '/file-b.arbo';
@@ -283,7 +283,7 @@ describe('useFeedbackClipboard — file switch integrity', () => {
     });
 
     it('does not show a toast when feedback arrives for the file the user is currently viewing', async () => {
-      mockFindNodeForA.mockReturnValue('node-a-1');
+      mockFindCollaborationForA.mockReturnValue({ nodeId: 'node-a-1', kind: 'autonomous' });
 
       // User is on File A — the session file
       mockActiveFilePath = '/file-a.arbo';

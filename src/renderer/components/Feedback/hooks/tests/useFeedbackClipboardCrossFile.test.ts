@@ -24,7 +24,7 @@ function makeCollaboratingStore(filePath: string): FakeStoreEntry {
         currentFilePath: filePath,
         actions: {
           processIncomingFeedbackContent: mockProcessIncomingFeedbackContent,
-          findNodeIdByFeedbackFilePath: () => null,
+          findCollaborationByFeedbackFilePath: () => ({ nodeId: 'collaborating-node', kind: 'manual' as const }),
           handleAutonomousFeedback: vi.fn(),
         },
       }),
@@ -193,7 +193,7 @@ describe('useFeedbackClipboard — cross-file feedback', () => {
             currentFilePath: '/files/active.arbo',
             actions: {
               processIncomingFeedbackContent: vi.fn(),
-              findNodeIdByFeedbackFilePath: () => null,
+              findCollaborationByFeedbackFilePath: () => null,
               handleAutonomousFeedback: vi.fn(),
             },
           }),
@@ -230,7 +230,7 @@ describe('useFeedbackClipboard — cross-file feedback', () => {
               currentFilePath: '/files/active.arbo',
               actions: {
                 processIncomingFeedbackContent: mockProcessIncomingFeedbackContent,
-                findNodeIdByFeedbackFilePath: () => null,
+                findCollaborationByFeedbackFilePath: () => null,
                 handleAutonomousFeedback: vi.fn(),
               },
             }),
