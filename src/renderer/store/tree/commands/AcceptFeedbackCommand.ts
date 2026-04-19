@@ -2,30 +2,24 @@ import { BaseCommand } from './Command';
 import { TreeNode } from '../../../../shared/types';
 import { addNodesToRegistry, buildAncestorRegistry, AncestorRegistry } from '../../../utils/ancestry';
 import { getAllDescendants, captureNodePosition } from '../../../utils/nodeHelpers';
-import { getEffectiveBlueprintIcon } from '../../../utils/blueprintInheritance';
 import {
   moveNodeToArchive,
   createArchiveSideLinks,
   createReplacementSideLinks,
   updateRegistryForRelationLinks,
 } from './acceptFeedbackArchive';
+import {
+  type CollaborationSnapshot,
+  collectPreservedMetadata,
+  executeSingleRootStrategy,
+  executeMultiRootStrategy,
+} from './acceptFeedbackStrategies';
 import { v4 as uuidv4 } from 'uuid';
 
 export interface ArchiveConfig {
   archiveDestinationId: string;
   archiveSideLinkName: string;
   replacementSideLinkName: string;
-}
-
-interface CollaborationSnapshot {
-  collaboratingNodeId: string;
-  collaboratingNode: TreeNode;
-  parentId: string;
-  position: number;
-  descendants: Map<string, TreeNode>;
-  wasRootNode: boolean;
-  parentChildren: string[];
-  archiveDestinationChildren?: string[];
 }
 
 export class AcceptFeedbackCommand extends BaseCommand {
@@ -107,190 +101,6 @@ export class AcceptFeedbackCommand extends BaseCommand {
     return idMap;
   }
 
-  private getPreservedMetadata(collaboratingNode: TreeNode): Record<string, unknown> {
-    const preserved: Record<string, unknown> = {};
-    const keys = [
-      'appliedContextIds', 'activeContextId', 'appliedContextId',
-      'isContextDeclaration', 'blueprintIcon', 'blueprintColor', 'isBlueprint',
-      'expanded',
-    ];
-    for (const key of keys) {
-      if (collaboratingNode.metadata[key] !== undefined) {
-        preserved[key] = collaboratingNode.metadata[key];
-      }
-    }
-    return preserved;
-  }
-
-  private applyBlueprintMetadata(
-    nodesMap: Record<string, TreeNode>,
-    rootNodeIds: string[],
-    blueprintIcon: { icon: string; color?: string }
-  ): Record<string, TreeNode> {
-    const rootIdSet = new Set(rootNodeIds);
-    const result: Record<string, TreeNode> = {};
-
-    for (const [id, node] of Object.entries(nodesMap)) {
-      const isRoot = rootIdSet.has(id);
-      result[id] = {
-        ...node,
-        metadata: {
-          ...node.metadata,
-          isBlueprint: true,
-          ...(isRoot && { blueprintIcon: blueprintIcon.icon }),
-          ...(isRoot && blueprintIcon.color && { blueprintColor: blueprintIcon.color }),
-        },
-      };
-    }
-
-    return result;
-  }
-
-  private executeSingleRoot(state: ReturnType<typeof this.getState>, collaboratingNode: TreeNode): void {
-    const preservedMetadata = this.getPreservedMetadata(collaboratingNode);
-    const newRootNodeId = this.newRootNodeIds[0];
-    const idMap = this.getIdMap(true);
-
-    let updatedNewNodesMap: Record<string, TreeNode> = {};
-    for (const [id, node] of Object.entries(this.newNodesMap)) {
-      const newId = idMap[id];
-      const remappedChildren = node.children.map((childId) => idMap[childId] || childId);
-
-      if (id === newRootNodeId) {
-        updatedNewNodesMap[newId] = {
-          ...node,
-          id: newId,
-          children: remappedChildren,
-          metadata: { ...node.metadata, ...preservedMetadata },
-        };
-      } else {
-        updatedNewNodesMap[newId] = {
-          ...node,
-          id: newId,
-          children: remappedChildren,
-        };
-      }
-    }
-
-    if (state.blueprintModeEnabled || collaboratingNode.metadata.isBlueprint) {
-      const effectiveIcon = getEffectiveBlueprintIcon(collaboratingNode, state.nodes, state.ancestorRegistry);
-      updatedNewNodesMap = this.applyBlueprintMetadata(updatedNewNodesMap, [this.collaboratingNodeId], effectiveIcon);
-    }
-
-    const mergedNodesMap = { ...state.nodes };
-    for (const id of this.snapshot!.descendants.keys()) {
-      delete mergedNodesMap[id];
-    }
-    Object.assign(mergedNodesMap, updatedNewNodesMap);
-
-    this.createdNodeIds = [this.collaboratingNodeId, ...getAllDescendants(this.collaboratingNodeId, updatedNewNodesMap)];
-
-    let newAncestorRegistry: AncestorRegistry;
-    if (this.snapshot!.wasRootNode) {
-      newAncestorRegistry = buildAncestorRegistry(this.collaboratingNodeId, mergedNodesMap);
-    } else {
-      const registry = { ...state.ancestorRegistry };
-      for (const descendantId of this.snapshot!.descendants.keys()) {
-        delete registry[descendantId];
-      }
-      const directChildIds = mergedNodesMap[this.collaboratingNodeId]?.children || [];
-      newAncestorRegistry = addNodesToRegistry(registry, directChildIds, this.collaboratingNodeId, mergedNodesMap);
-    }
-
-    this.setState({
-      nodes: mergedNodesMap,
-      ancestorRegistry: newAncestorRegistry,
-      rootNodeId: state.rootNodeId,
-      collaboratingNodeId: null,
-      collaborationSource: null,
-      feedbackFadingNodeIds: new Set(this.createdNodeIds),
-      activeNodeId: this.collaboratingNodeId,
-    });
-  }
-
-  private executeMultiRoot(state: ReturnType<typeof this.getState>, collaboratingNode: TreeNode): void {
-    if (this.snapshot!.wasRootNode) {
-      this.executeSingleRoot(state, collaboratingNode);
-      return;
-    }
-
-    const preservedMetadata = this.getPreservedMetadata(collaboratingNode);
-    const idMap = this.getIdMap(false);
-
-    let updatedNewNodesMap: Record<string, TreeNode> = {};
-    const newRootIdSet = new Set(this.newRootNodeIds);
-
-    for (const [id, node] of Object.entries(this.newNodesMap)) {
-      const newId = idMap[id];
-      const remappedChildren = node.children.map((childId) => idMap[childId] || childId);
-      const isRoot = newRootIdSet.has(id);
-
-      updatedNewNodesMap[newId] = {
-        ...node,
-        id: newId,
-        children: remappedChildren,
-        ...(isRoot && { metadata: { ...node.metadata, ...preservedMetadata } }),
-        ...(!isRoot && { metadata: { ...node.metadata } }),
-      };
-    }
-
-    if (state.blueprintModeEnabled || collaboratingNode.metadata.isBlueprint) {
-      const effectiveIcon = getEffectiveBlueprintIcon(collaboratingNode, state.nodes, state.ancestorRegistry);
-      const mappedRootIds = this.newRootNodeIds.map(id => idMap[id]);
-      updatedNewNodesMap = this.applyBlueprintMetadata(updatedNewNodesMap, mappedRootIds, effectiveIcon);
-    }
-
-    const mergedNodesMap = { ...state.nodes };
-
-    delete mergedNodesMap[this.collaboratingNodeId];
-    for (const id of this.snapshot!.descendants.keys()) {
-      delete mergedNodesMap[id];
-    }
-
-    Object.assign(mergedNodesMap, updatedNewNodesMap);
-
-    const mappedRootIds = this.newRootNodeIds.map(id => idMap[id]);
-    const parentNode = mergedNodesMap[this.snapshot!.parentId];
-    if (parentNode) {
-      const newChildren = [...parentNode.children];
-      const collabIndex = newChildren.indexOf(this.collaboratingNodeId);
-      if (collabIndex >= 0) {
-        newChildren.splice(collabIndex, 1, ...mappedRootIds);
-      } else {
-        newChildren.push(...mappedRootIds);
-      }
-      mergedNodesMap[this.snapshot!.parentId] = {
-        ...parentNode,
-        children: newChildren,
-      };
-    }
-
-    this.createdNodeIds = [];
-    for (const rootId of mappedRootIds) {
-      this.createdNodeIds.push(rootId, ...getAllDescendants(rootId, updatedNewNodesMap));
-    }
-
-    const registry = { ...state.ancestorRegistry };
-    delete registry[this.collaboratingNodeId];
-    for (const descendantId of this.snapshot!.descendants.keys()) {
-      delete registry[descendantId];
-    }
-    let newAncestorRegistry = registry;
-    for (const rootId of mappedRootIds) {
-      newAncestorRegistry = addNodesToRegistry(newAncestorRegistry, [rootId], this.snapshot!.parentId, mergedNodesMap);
-    }
-
-    this.setState({
-      nodes: mergedNodesMap,
-      ancestorRegistry: newAncestorRegistry,
-      rootNodeId: state.rootNodeId,
-      collaboratingNodeId: null,
-      collaborationSource: null,
-      feedbackFadingNodeIds: new Set(this.createdNodeIds),
-      activeNodeId: mappedRootIds[0],
-    });
-  }
-
   private executeArchive(): void {
     if (!this.archiveConfig || !this.snapshot) return;
 
@@ -352,11 +162,41 @@ export class AcceptFeedbackCommand extends BaseCommand {
     }
     this.relationLinkNodeIds = [];
 
-    if (this.isMultiRoot || this.archiveConfig) {
-      this.executeMultiRoot(state, collaboratingNode);
-    } else {
-      this.executeSingleRoot(state, collaboratingNode);
-    }
+    // Multi-root with a non-root collaborator uses the splice-into-parent
+    // strategy. Everything else (single-root, or multi-root at tree root)
+    // uses in-place replacement (single-root strategy keeps the id).
+    const useMultiRootStrategy =
+      (this.isMultiRoot || !!this.archiveConfig) && !this.snapshot.wasRootNode;
+
+    const idMap = this.getIdMap(/* preserveRootId */ !useMultiRootStrategy);
+    const preservedMetadata = collectPreservedMetadata(collaboratingNode);
+
+    const strategy = useMultiRootStrategy
+      ? executeMultiRootStrategy
+      : executeSingleRootStrategy;
+
+    const output = strategy({
+      state,
+      collaboratingNode,
+      collaboratingNodeId: this.collaboratingNodeId,
+      newRootNodeIds: this.newRootNodeIds,
+      newNodesMap: this.newNodesMap,
+      idMap,
+      preservedMetadata,
+      snapshot: this.snapshot,
+    });
+
+    this.createdNodeIds = output.createdNodeIds;
+
+    this.setState({
+      nodes: output.nodes,
+      ancestorRegistry: output.ancestorRegistry,
+      rootNodeId: state.rootNodeId,
+      collaboratingNodeId: null,
+      collaborationSource: null,
+      feedbackFadingNodeIds: new Set(this.createdNodeIds),
+      activeNodeId: output.activeNodeId,
+    });
 
     if (this.archiveConfig) {
       this.executeArchive();
