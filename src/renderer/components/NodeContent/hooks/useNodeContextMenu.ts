@@ -11,6 +11,7 @@ import { buildBlueprintSubmenu } from './useBlueprintSubmenu';
 import { buildStatusSubmenu } from './useStatusSubmenu';
 import { buildWorkflowSubmenu, buildWorkflowExecutionItems, buildWorkflowNavigationItems } from './useWorkflowSubmenu';
 import { buildSetContextSubmenu } from './useSetContextSubmenu';
+import { buildEditSubmenu, prependSpellItems } from './menuBuilders/editSubmenu';
 import { logger } from '../../../services/logger';
 import { useStepConfigDialogStore } from '../../../store/stepConfigDialog/stepConfigDialogStore';
 import { getWorkflowStepPosition } from '../../../utils/workflowHelpers';
@@ -21,8 +22,6 @@ import { getPositionFromPoint } from '../../../utils/position';
 import { useCustomizeDialogStore } from '../../../store/customizeDialog/customizeDialogStore';
 import { useSpellcheck } from './useSpellcheck';
 import { waitForSpellcheckUpdate, useSpellcheckStore } from '../../../store/spellcheck/spellcheckStore';
-import { getKeyForAction } from '../../../utils/hotkeyConfig';
-import { formatHotkeyForDisplay } from '../../../utils/hotkeyUtils';
 
 export function useNodeContextMenu(node: TreeNode) {
   const treeType = useStore((state) => state.treeType);
@@ -238,40 +237,14 @@ export function useNodeContextMenu(node: TreeNode) {
       }] : []),
       ...(!isHyperlink && !isExternalLink && blueprintMenuItem ? [blueprintMenuItem] : []),
       ...(!isHyperlink && !isExternalLink && workflowMenuItem ? [workflowMenuItem] : []),
-      {
-        label: 'Edit',
-        submenu: [
-          {
-            label: 'Select',
-            onClick: () => actions.toggleNodeSelection(node.id),
-          },
-          {
-            label: 'Copy',
-            onClick: () => actions.copyNodes(),
-            shortcut: formatHotkeyForDisplay(getKeyForAction('actions', 'copy') || ''),
-          },
-          ...(!isHyperlink ? [{
-            label: 'Copy as Hyperlink',
-            onClick: () => actions.copyAsHyperlink(),
-          }] : []),
-          {
-            label: 'Cut',
-            onClick: () => actions.cutNodes(),
-            shortcut: formatHotkeyForDisplay(getKeyForAction('actions', 'cut') || ''),
-          },
-          ...(!isHyperlink ? [{
-            label: 'Paste',
-            onClick: () => actions.pasteNodes(),
-            shortcut: formatHotkeyForDisplay(getKeyForAction('actions', 'paste') || ''),
-          }] : []),
-          {
-            label: 'Delete',
-            onClick: handleDelete,
-            danger: true,
-            shortcut: formatHotkeyForDisplay(getKeyForAction('actions', 'deleteNode') || ''),
-          },
-        ],
-      },
+      buildEditSubmenu({
+        onSelect: () => actions.toggleNodeSelection(node.id),
+        onCopy: () => actions.copyNodes(),
+        onCopyAsHyperlink: isHyperlink ? undefined : () => actions.copyAsHyperlink(),
+        onCut: () => actions.cutNodes(),
+        onPaste: isHyperlink ? undefined : () => actions.pasteNodes(),
+        onDelete: handleDelete,
+      }),
       ...(!isExternalLink && statusMenuItem ? [statusMenuItem] : []),
       ...(!isZoomTab && !isHyperlink && !isExternalLink ? [{
         label: 'Zoom',
@@ -280,15 +253,7 @@ export function useNodeContextMenu(node: TreeNode) {
       }] : []),
     ];
 
-    if (spellItems && spellItems.length > 0) {
-      return [
-        ...spellItems,
-        { separator: true, label: '', onClick: () => {} },
-        ...baseMenuItems,
-      ];
-    }
-
-    return baseMenuItems;
+    return prependSpellItems(baseMenuItems, spellItems);
   }, [node, store, showTerminal, handleCancel, openCustomizeDialog, activeFile, isZoomTab, openZoomTab, buildSpellMenuItems]);
   useEffect(() => {
     buildMenuItemsRef.current = buildMenuItems;
@@ -310,46 +275,15 @@ export function useNodeContextMenu(node: TreeNode) {
       }
     };
 
-    const editSubmenu: ContextMenuItem = {
-      label: 'Edit',
-      submenu: [
-        {
-          label: 'Select',
-          onClick: () => actions.toggleNodeSelection(node.id),
-        },
-        {
-          label: 'Copy',
-          onClick: () => actions.copyNodes(),
-          shortcut: formatHotkeyForDisplay(getKeyForAction('actions', 'copy') || ''),
-        },
-        {
-          label: 'Cut',
-          onClick: () => actions.cutNodes(),
-          shortcut: formatHotkeyForDisplay(getKeyForAction('actions', 'cut') || ''),
-        },
-        {
-          label: 'Paste',
-          onClick: () => actions.pasteNodes(),
-          shortcut: formatHotkeyForDisplay(getKeyForAction('actions', 'paste') || ''),
-        },
-        {
-          label: 'Delete',
-          onClick: handleDelete,
-          danger: true,
-          shortcut: formatHotkeyForDisplay(getKeyForAction('actions', 'deleteNode') || ''),
-        },
-      ],
-    };
+    const editSubmenu = buildEditSubmenu({
+      onSelect: () => actions.toggleNodeSelection(node.id),
+      onCopy: () => actions.copyNodes(),
+      onCut: () => actions.cutNodes(),
+      onPaste: () => actions.pasteNodes(),
+      onDelete: handleDelete,
+    });
 
-    if (spellItems && spellItems.length > 0) {
-      return [
-        ...spellItems,
-        { separator: true, label: '', onClick: () => {} },
-        editSubmenu,
-      ];
-    }
-
-    return [editSubmenu];
+    return prependSpellItems([editSubmenu], spellItems);
   }, [node, store, buildSpellMenuItems]);
 
   const handleContextMenu = useCallback(async (e: React.MouseEvent) => {
