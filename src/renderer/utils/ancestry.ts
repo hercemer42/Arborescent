@@ -1,4 +1,5 @@
 import { TreeNode } from '../../shared/types';
+import { logger } from '../services/logger';
 
 export type AncestorRegistry = Record<string, string[]>;
 
@@ -123,13 +124,13 @@ function validateAncestorRegistry(
 
   for (const key of freshKeys) {
     if (!registryKeys.has(key)) {
-      console.error(`[AncestorRegistry] Missing node in registry: ${key}`);
+      logger.warn(`Missing node in registry: ${key}`, 'AncestorRegistry');
     }
   }
 
   for (const key of registryKeys) {
     if (!freshKeys.has(key)) {
-      console.error(`[AncestorRegistry] Stale node in registry: ${key}`);
+      logger.warn(`Stale node in registry: ${key}`, 'AncestorRegistry');
     }
   }
 
@@ -139,10 +140,9 @@ function validateAncestorRegistry(
 
     if (ancestors.length !== currentAncestors.length ||
         !ancestors.every((a, i) => a === currentAncestors[i])) {
-      console.error(
-        `[AncestorRegistry] Ancestor mismatch for ${nodeId}:`,
-        `expected [${ancestors.join(', ')}]`,
-        `got [${currentAncestors.join(', ')}]`
+      logger.warn(
+        `Ancestor mismatch for ${nodeId}: expected [${ancestors.join(', ')}] got [${currentAncestors.join(', ')}]`,
+        'AncestorRegistry'
       );
     }
   }
