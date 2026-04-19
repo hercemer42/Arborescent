@@ -1,66 +1,8 @@
+import type { ElectronAPI } from './shared/types/electronApi';
+
 declare global {
   interface Window {
-    electron: {
-      platform: NodeJS.Platform;
-      openExternal: (url: string) => Promise<void>;
-      readFile: (path: string) => Promise<string>;
-      writeFile: (path: string, content: string) => Promise<void>;
-      showOpenDialog: () => Promise<string | null>;
-      showSaveDialog: (defaultPath?: string) => Promise<string | null>;
-      showUnsavedChangesDialog: (fileName: string) => Promise<number>;
-      showRunningWorkflowDialog: (fileName: string) => Promise<boolean>;
-      showActiveSessionDialog: (fileName: string) => Promise<boolean>;
-      saveSession: (sessionData: string) => Promise<void>;
-      getSession: () => Promise<string | null>;
-      saveBrowserSession: (sessionData: string) => Promise<void>;
-      getBrowserSession: () => Promise<string | null>;
-      savePanelSession: (sessionData: string) => Promise<void>;
-      getPanelSession: () => Promise<string | null>;
-      saveTerminalSession: (sessionData: string) => Promise<void>;
-      getTerminalSession: () => Promise<string | null>;
-      getTempDir: () => Promise<string>;
-      createTempFile: (fileName: string, content: string) => Promise<string>;
-      readTempFile: (filePath: string) => Promise<string | null>;
-      deleteTempFile: (filePath: string) => Promise<void>;
-      listTempFiles: () => Promise<string[]>;
-      saveTempFilesMetadata: (metadata: string) => Promise<void>;
-      getTempFilesMetadata: () => Promise<string | null>;
-      isTempFile: (filePath: string) => Promise<boolean>;
-      startClipboardMonitor: () => Promise<void>;
-      stopClipboardMonitor: () => Promise<void>;
-      onClipboardContentDetected: (callback: (content: string) => void) => () => void;
-      startFeedbackFileWatcher: (filePath: string) => Promise<void>;
-      stopFeedbackFileWatcher: (filePath?: string) => Promise<void>;
-      getFeedbackFilePath: () => Promise<string | null>;
-      onFeedbackFileContentDetected: (callback: (filePath: string, content: string) => void) => () => void;
-      setMenuNewHandler: (callback: () => void) => void;
-      setMenuOpenHandler: (callback: () => void) => void;
-      setMenuSaveHandler: (callback: () => void) => void;
-      setMenuSaveAsHandler: (callback: () => void) => void;
-      setMainErrorHandler: (callback: (message: string) => void) => void;
-      savePreferences: (preferencesData: string) => Promise<void>;
-      getPreferences: () => Promise<string | null>;
-      terminalCreate: (id: string, title: string, shellCommand?: string, shellArgs?: string[], cwd?: string) => Promise<{
-        id: string;
-        title: string;
-        cwd: string;
-        shellCommand: string;
-        shellArgs: string[];
-      }>;
-      terminalWrite: (id: string, data: string) => Promise<void>;
-      terminalResize: (id: string, cols: number, rows: number) => Promise<void>;
-      terminalDestroy: (id: string) => Promise<void>;
-      terminalGetCwd: (id: string) => Promise<string | null>;
-      onTerminalData: (id: string, callback: (data: string) => void) => () => void;
-      onTerminalExit: (id: string, callback: (exitInfo: { exitCode: number; signal?: number }) => void) => () => void;
-      onContextMenuParams: (callback: (data: { x: number; y: number; misspelledWord: string | null; suggestions: string[] }) => void) => () => void;
-      replaceMisspelling: (suggestion: string) => Promise<void>;
-      appQuit: () => Promise<void>;
-      onCloseBrowserTab: (callback: () => void) => () => void;
-      showNotification: (title: string, body: string) => Promise<void>;
-      isWindowFocused: () => Promise<boolean>;
-      onHookEvent: (callback: (event: { session_id: string; hook_event_name: string; terminal_id?: string; message?: string }) => void) => () => void;
-    };
+    electron: ElectronAPI;
   }
 }
 

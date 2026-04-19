@@ -1,6 +1,7 @@
 import { contextBridge, ipcRenderer } from 'electron';
+import type { ElectronAPI } from '../shared/types/electronApi';
 
-contextBridge.exposeInMainWorld('electron', {
+const api: ElectronAPI = {
   platform: process.platform,
   openExternal: (url: string) => ipcRenderer.invoke('open-external', url),
   readFile: (path: string) => ipcRenderer.invoke('read-file', path),
@@ -40,7 +41,7 @@ contextBridge.exposeInMainWorld('electron', {
   isTempFile: (filePath: string) => ipcRenderer.invoke('is-temp-file', filePath),
   startClipboardMonitor: () => ipcRenderer.invoke('start-clipboard-monitor'),
   stopClipboardMonitor: () => ipcRenderer.invoke('stop-clipboard-monitor'),
-  onClipboardContentDetected: (callback: (content: string) => void) => {
+  onClipboardContentDetected: (callback) => {
     const listener = (_event: Electron.IpcRendererEvent, content: string) => callback(content);
     ipcRenderer.on('clipboard-content-detected', listener);
     return () => ipcRenderer.removeListener('clipboard-content-detected', listener);
@@ -48,73 +49,75 @@ contextBridge.exposeInMainWorld('electron', {
   startFeedbackFileWatcher: (filePath: string) => ipcRenderer.invoke('start-feedback-file-watcher', filePath),
   stopFeedbackFileWatcher: (filePath?: string) => ipcRenderer.invoke('stop-feedback-file-watcher', filePath),
   getFeedbackFilePath: () => ipcRenderer.invoke('get-feedback-file-path'),
-  onFeedbackFileContentDetected: (callback: (filePath: string, content: string) => void) => {
+  onFeedbackFileContentDetected: (callback) => {
     const listener = (_event: Electron.IpcRendererEvent, filePath: string, content: string) => callback(filePath, content);
     ipcRenderer.on('feedback-file-content-detected', listener);
     return () => ipcRenderer.removeListener('feedback-file-content-detected', listener);
   },
-  terminalCreate: (id: string, title: string, shellCommand?: string, shellArgs?: string[], cwd?: string) =>
+  terminalCreate: (id, title, shellCommand, shellArgs, cwd) =>
     ipcRenderer.invoke('terminal:create', id, title, shellCommand, shellArgs, cwd),
-  terminalWrite: (id: string, data: string) =>
+  terminalWrite: (id, data) =>
     ipcRenderer.invoke('terminal:write', id, data),
-  terminalResize: (id: string, cols: number, rows: number) =>
+  terminalResize: (id, cols, rows) =>
     ipcRenderer.invoke('terminal:resize', id, cols, rows),
-  terminalDestroy: (id: string) =>
+  terminalDestroy: (id) =>
     ipcRenderer.invoke('terminal:destroy', id),
-  terminalGetCwd: (id: string) =>
+  terminalGetCwd: (id) =>
     ipcRenderer.invoke('terminal:get-cwd', id),
-  onTerminalData: (id: string, callback: (data: string) => void) => {
+  onTerminalData: (id, callback) => {
     const channel = `terminal:data:${id}`;
     const listener = (_event: Electron.IpcRendererEvent, data: string) => callback(data);
     ipcRenderer.on(channel, listener);
     return () => ipcRenderer.removeListener(channel, listener);
   },
-  onTerminalExit: (id: string, callback: (exitInfo: { exitCode: number; signal?: number }) => void) => {
+  onTerminalExit: (id, callback) => {
     const channel = `terminal:exit:${id}`;
     const listener = (_event: Electron.IpcRendererEvent, exitInfo: { exitCode: number; signal?: number }) => callback(exitInfo);
     ipcRenderer.on(channel, listener);
     return () => ipcRenderer.removeListener(channel, listener);
   },
-  setMenuNewHandler: (callback: () => void) => {
+  setMenuNewHandler: (callback) => {
     ipcRenderer.removeAllListeners('menu-new');
     ipcRenderer.on('menu-new', callback);
   },
-  setMenuOpenHandler: (callback: () => void) => {
+  setMenuOpenHandler: (callback) => {
     ipcRenderer.removeAllListeners('menu-open');
     ipcRenderer.on('menu-open', callback);
   },
-  setMenuSaveHandler: (callback: () => void) => {
+  setMenuSaveHandler: (callback) => {
     ipcRenderer.removeAllListeners('menu-save');
     ipcRenderer.on('menu-save', callback);
   },
-  setMenuSaveAsHandler: (callback: () => void) => {
+  setMenuSaveAsHandler: (callback) => {
     ipcRenderer.removeAllListeners('menu-save-as');
     ipcRenderer.on('menu-save-as', callback);
   },
-  setMainErrorHandler: (callback: (message: string) => void) => {
+  setMainErrorHandler: (callback) => {
     ipcRenderer.removeAllListeners('main-error');
-    ipcRenderer.on('main-error', (_event, message) => callback(message));
+    ipcRenderer.on('main-error', (_event, message: string) => callback(message));
   },
   savePreferences: (preferencesData: string) =>
     ipcRenderer.invoke('save-preferences', preferencesData),
   getPreferences: () => ipcRenderer.invoke('get-preferences'),
-  onContextMenuParams: (callback: (data: { x: number; y: number; misspelledWord: string | null; suggestions: string[] }) => void) => {
+  onContextMenuParams: (callback) => {
     const listener = (_event: Electron.IpcRendererEvent, data: { x: number; y: number; misspelledWord: string | null; suggestions: string[] }) => callback(data);
     ipcRenderer.on('context-menu-params', listener);
     return () => ipcRenderer.removeListener('context-menu-params', listener);
   },
   replaceMisspelling: (suggestion: string) => ipcRenderer.invoke('replace-misspelling', suggestion),
   appQuit: () => ipcRenderer.invoke('app-quit'),
-  onCloseBrowserTab: (callback: () => void) => {
+  onCloseBrowserTab: (callback) => {
     const listener = () => callback();
     ipcRenderer.on('close-browser-tab', listener);
     return () => ipcRenderer.removeListener('close-browser-tab', listener);
   },
   showNotification: (title: string, body: string) => ipcRenderer.invoke('show-notification', title, body),
   isWindowFocused: () => ipcRenderer.invoke('is-window-focused'),
-  onHookEvent: (callback: (event: { session_id: string; hook_event_name: string; terminal_id?: string; message?: string }) => void) => {
+  onHookEvent: (callback) => {
     const listener = (_event: Electron.IpcRendererEvent, data: { session_id: string; hook_event_name: string; terminal_id?: string; message?: string }) => callback(data);
     ipcRenderer.on('hook-event', listener);
     return () => ipcRenderer.removeListener('hook-event', listener);
   },
-});
+};
+
+contextBridge.exposeInMainWorld('electron', api);
