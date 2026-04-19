@@ -74,7 +74,7 @@ export function prependSpellItems(
   if (!spellItems || spellItems.length === 0) return baseItems;
   return [
     ...spellItems,
-    { separator: true, label: '', onClick: () => {} },
+    { separator: true },
     ...baseItems,
   ];
 }

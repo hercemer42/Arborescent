@@ -30,7 +30,7 @@ function hasDescendantBlueprints(nodeId: string, nodes: Record<string, TreeNode>
   return false;
 }
 
-const SEPARATOR: ContextMenuItem = { label: '-', onClick: () => {} };
+const SEPARATOR: ContextMenuItem = { separator: true };
 
 export function buildBlueprintSubmenu({
   node,
