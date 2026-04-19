@@ -74,8 +74,49 @@ export const createWorkflowExecutionActions = (
 ): WorkflowExecutionActions => {
   const DEFAULT_STEP_TIMEOUT_MINUTES = 15;
   const MAX_RECURSE_ITERATIONS = 50;
+  const ACK_TIMEOUT_MS = 5000;
+  const ACK_RETRY_CAP = 3;
   const recurseCounters = new Map<string, number>();
   const feedbackCollaborations = new Map<string, { filePath: string; terminalId?: string; kind: 'manual' | 'autonomous' }>();
+  const pendingAcks = new Map<string, { terminalId: string; attempts: number; timer: ReturnType<typeof setTimeout> }>();
+
+  function clearPendingAck(nodeId: string): void {
+    const entry = pendingAcks.get(nodeId);
+    if (!entry) return;
+    clearTimeout(entry.timer);
+    pendingAcks.delete(nodeId);
+  }
+
+  function registerPendingAck(nodeId: string, terminalId: string): void {
+    const existing = pendingAcks.get(nodeId);
+    if (existing) clearTimeout(existing.timer);
+    const attempts = existing ? existing.attempts + 1 : 1;
+
+    const timer = setTimeout(() => {
+      if (attempts >= ACK_RETRY_CAP) {
+        failAckRetryCap(nodeId);
+      } else {
+        sendContentToTerminal(nodeId, terminalId);
+      }
+    }, ACK_TIMEOUT_MS);
+
+    pendingAcks.set(nodeId, { terminalId, attempts, timer });
+  }
+
+  function failAckRetryCap(nodeId: string): void {
+    const { nodes } = get();
+    const node = nodes[nodeId];
+    const nodeName = node?.content || nodeId;
+
+    clearPendingAck(nodeId);
+    stopWorkflow(nodeId);
+
+    useToastStore.getState().addToast(
+      `Workflow step "${nodeName}" could not be delivered after ${ACK_RETRY_CAP} attempts. Check that UserPromptSubmit is configured in ~/.claude/settings.json.`,
+      'error',
+    );
+    void notifyWorkflowEvent('alert', 'Workflow delivery failed', `"${nodeName}" could not be delivered`);
+  }
 
   // Step-timeout lifecycle lives in its own module so the toast-action
   // callback (which loops back into stopWorkflow) has an explicit seam.
@@ -178,6 +219,7 @@ export const createWorkflowExecutionActions = (
 
     stepTimeouts.clear(nodeId);
     cleanupAutonomousCollaboration(nodeId);
+    clearPendingAck(nodeId);
     const updatedStates = { ...workflowExecutionStates };
     delete updatedStates[nodeId];
     set({ workflowExecutionStates: updatedStates });
@@ -385,6 +427,7 @@ export const createWorkflowExecutionActions = (
       autonomousCollaborateInTerminal(nodeId, terminalId, mode).then((feedbackFilePath) => {
         if (feedbackFilePath) {
           registerAutonomousCollaboration(nodeId, terminalId, feedbackFilePath);
+          registerPendingAck(nodeId, terminalId);
         }
       }).catch((error) => {
         logger.error(
@@ -442,6 +485,7 @@ export const createWorkflowExecutionActions = (
     set,
     findRunningNodeOnTerminal,
     clearStepTimeout: stepTimeouts.clear,
+    clearPendingAck,
     advanceNode,
     completeWorkflow,
     stopWorkflow,
@@ -463,6 +507,10 @@ export const createWorkflowExecutionActions = (
     // Clean up all autonomous collaborations on restart
     for (const nodeId of Array.from(feedbackCollaborations.keys())) {
       cleanupAutonomousCollaboration(nodeId);
+    }
+
+    for (const nodeId of Array.from(pendingAcks.keys())) {
+      clearPendingAck(nodeId);
     }
 
     set({
@@ -487,6 +535,7 @@ export const createWorkflowExecutionActions = (
     set,
     cleanupAutonomousCollaboration: (nodeId) => cleanupAutonomousCollaboration(nodeId),
     clearStepTimeout: stepTimeouts.clear,
+    clearPendingAck,
     triggerAutosave,
   });
 

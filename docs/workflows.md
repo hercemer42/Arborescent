@@ -143,20 +143,24 @@ When you open a terminal tab, Arborescent injects three environment variables:
 
 ### Claude Code
 
-Add a hook to your Claude Code configuration (`~/.claude/hooks.json`) that POSTs to Arborescent when a session starts and stops:
+Add three hooks to your Claude Code configuration (`~/.claude/settings.json`) that POST to Arborescent when a session starts, when a prompt is received, and when a session stops:
 
 ```json
 {
   "hooks": {
-    "PostToolUse": [
-      {
-        "matcher": "stop",
-        "command": "curl -s -X POST http://127.0.0.1:${ARBORESCENT_HOOK_PORT}/hook -H 'Authorization: Bearer '${ARBORESCENT_AUTH_TOKEN} -H 'Content-Type: application/json' -d '{\"session_id\": \"'${CLAUDE_SESSION_ID}'\", \"hook_event_name\": \"Stop\", \"terminal_id\": \"'${ARBORESCENT_TERMINAL_ID}'\"}'"
-      }
-    ],
     "SessionStart": [
       {
         "command": "curl -s -X POST http://127.0.0.1:${ARBORESCENT_HOOK_PORT}/hook -H 'Authorization: Bearer '${ARBORESCENT_AUTH_TOKEN} -H 'Content-Type: application/json' -d '{\"session_id\": \"'${CLAUDE_SESSION_ID}'\", \"hook_event_name\": \"SessionStart\", \"terminal_id\": \"'${ARBORESCENT_TERMINAL_ID}'\"}'"
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "command": "curl -s -X POST http://127.0.0.1:${ARBORESCENT_HOOK_PORT}/hook -H 'Authorization: Bearer '${ARBORESCENT_AUTH_TOKEN} -H 'Content-Type: application/json' -d '{\"session_id\": \"'${CLAUDE_SESSION_ID}'\", \"hook_event_name\": \"UserPromptSubmit\", \"terminal_id\": \"'${ARBORESCENT_TERMINAL_ID}'\"}'"
+      }
+    ],
+    "Stop": [
+      {
+        "command": "curl -s -X POST http://127.0.0.1:${ARBORESCENT_HOOK_PORT}/hook -H 'Authorization: Bearer '${ARBORESCENT_AUTH_TOKEN} -H 'Content-Type: application/json' -d '{\"session_id\": \"'${CLAUDE_SESSION_ID}'\", \"hook_event_name\": \"Stop\", \"terminal_id\": \"'${ARBORESCENT_TERMINAL_ID}'\"}'"
       }
     ]
   }
@@ -165,7 +169,13 @@ Add a hook to your Claude Code configuration (`~/.claude/hooks.json`) that POSTs
 
 The hook server binds to `127.0.0.1` only — it is not accessible from the network. The auth token is regenerated each time Arborescent starts.
 
-If the hook is not configured, workflows will start but never advance automatically. A setup guide appears the first time you run a workflow if no hook events have been received. Once hooks are working, the guide won't appear again.
+Each hook plays a distinct role:
+
+- **SessionStart** — maps the Claude session to its terminal so subsequent events can be routed correctly.
+- **UserPromptSubmit** — acknowledges that an injected workflow prompt reached Claude. Without it, Arborescent cannot tell whether a prompt was delivered and will retry up to three times before stopping the step with a delivery-failed error.
+- **Stop** — signals that Claude finished processing, so the workflow can advance to the next step.
+
+If any of these are missing, workflows may start but will not behave correctly. A setup guide appears the first time you run a workflow if no hook events have been received. Once hooks are working, the guide won't appear again.
 
 ## Dragging Workflows
 

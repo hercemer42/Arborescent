@@ -26,6 +26,8 @@ export interface DisruptionReactionDeps {
   cleanupAutonomousCollaboration: (nodeId: string) => void;
   /** Clear any pending step-timeout timer. */
   clearStepTimeout: (nodeId: string) => void;
+  /** Clear any pending prompt-delivery ACK timer/retry for this node. */
+  clearPendingAck: (nodeId: string) => void;
   triggerAutosave?: () => void;
 }
 
@@ -41,7 +43,7 @@ export interface DisruptionReactionDeps {
  * state machine.
  */
 export function createDisruptionReactions(deps: DisruptionReactionDeps): WorkflowDisruptionReactions {
-  const { get, set, cleanupAutonomousCollaboration, clearStepTimeout, triggerAutosave } = deps;
+  const { get, set, cleanupAutonomousCollaboration, clearStepTimeout, clearPendingAck, triggerAutosave } = deps;
 
   function handleTerminalClosed(terminalId: string): void {
     const { workflowExecutionStates, nodes } = get();
@@ -52,6 +54,7 @@ export function createDisruptionReactions(deps: DisruptionReactionDeps): Workflo
       if (entry.terminalTabId === terminalId && entry.state === 'running') {
         delete updatedStates[nodeId];
         cleanupAutonomousCollaboration(nodeId);
+        clearPendingAck(nodeId);
         const node = nodes[nodeId];
         const nodeName = node?.content || nodeId;
         useToastStore
@@ -71,6 +74,7 @@ export function createDisruptionReactions(deps: DisruptionReactionDeps): Workflo
     if (!workflowExecutionStates[nodeId]) return;
 
     cleanupAutonomousCollaboration(nodeId);
+    clearPendingAck(nodeId);
     const updatedStates = { ...workflowExecutionStates };
     delete updatedStates[nodeId];
     set({ workflowExecutionStates: updatedStates });
@@ -135,6 +139,7 @@ export function createDisruptionReactions(deps: DisruptionReactionDeps): Workflo
 
     clearStepTimeout(nodeId);
     cleanupAutonomousCollaboration(nodeId);
+    clearPendingAck(nodeId);
     const updatedStates = { ...workflowExecutionStates };
     delete updatedStates[nodeId];
     set({ workflowExecutionStates: updatedStates });
