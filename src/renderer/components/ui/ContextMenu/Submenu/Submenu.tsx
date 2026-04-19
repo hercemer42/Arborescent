@@ -18,7 +18,7 @@ export function Submenu({ items, onClose, emptyMessage = 'No items available' }:
     openSubmenu,
     handleItemClick,
   } = useSubmenuBehavior(onClose);
-  const { flipHorizontal, flipVertical, submenuRight } = useSubmenuPosition(submenuRef);
+  const { flipHorizontal, flipVertical, submenuRight, maxHeight } = useSubmenuPosition(submenuRef);
 
   const childWouldFlip = submenuRight > 0 && (submenuRight + SUBMENU_WIDTH > window.innerWidth);
   const arrow = childWouldFlip ? '‹' : '›';
@@ -29,16 +29,18 @@ export function Submenu({ items, onClose, emptyMessage = 'No items available' }:
     flipVertical && 'flip-vertical',
   ].filter(Boolean).join(' ');
 
+  const style = maxHeight !== undefined ? { maxHeight: `${maxHeight}px` } : undefined;
+
   if (items.length === 0) {
     return (
-      <div ref={submenuRef} className={classNames}>
+      <div ref={submenuRef} className={classNames} style={style}>
         <div className="context-menu-item disabled">{emptyMessage}</div>
       </div>
     );
   }
 
   return (
-    <div ref={submenuRef} className={classNames}>
+    <div ref={submenuRef} className={classNames} style={style}>
       {items.map((item, index) => {
         // Handle separator items (either explicit flag or legacy '-' label)
         if (item.separator || item.label === '-') {
