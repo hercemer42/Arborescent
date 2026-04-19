@@ -361,6 +361,7 @@ export function createSendActions(
       }
 
       try {
+        const appliedContextId = getAppliedContextIdWithInheritance(nodeId, state.nodes, state.ancestorRegistry);
         const isExecuteMode = mode === 'execute';
         const decomposition = isDecompositionEnabled(nodeId, state.nodes, state.ancestorRegistry);
         const clipboardContent = buildSendPayload({
@@ -372,12 +373,22 @@ export function createSendActions(
         });
         await navigator.clipboard.writeText(clipboardContent);
 
+        if (!appliedContextId) {
+          useToastStore.getState().addToast(
+            'Copied node content to clipboard — paste into the browser.',
+            'info'
+          );
+          usePanelStore.getState().showBrowser();
+          logger.info(`Copied bare node content to clipboard for node: ${nodeId}`, 'SendActions');
+          return;
+        }
+
         useToastStore.getState().addToast(
           'Copied to clipboard — paste into the browser, then copy the response.',
           'info'
         );
 
-        set({ collaboratingNodeId: nodeId, collaborationSource: 'browser', decomposition: isExecuteMode ? false : isDecompositionEnabled(nodeId, state.nodes, state.ancestorRegistry) });
+        set({ collaboratingNodeId: nodeId, collaborationSource: 'browser', decomposition: isExecuteMode ? false : decomposition });
         usePanelStore.getState().showBrowser();
 
         logger.info(`Started collaboration for node: ${nodeId}`, 'SendActions');
@@ -409,6 +420,15 @@ export function createSendActions(
       }
 
       try {
+        const appliedContextId = getAppliedContextIdWithInheritance(nodeId, state.nodes, state.ancestorRegistry);
+
+        if (!appliedContextId) {
+          const { nodeContent } = buildContentWithContext(nodeId, state.nodes, state.ancestorRegistry);
+          await executeInTerminal(terminalId, nodeContent);
+          logger.info(`Sent bare node content to terminal for node: ${nodeId}`, 'SendActions');
+          return;
+        }
+
         const feedbackFileName = `feedback-response-${nodeId}.md`;
         const feedbackResponseFile = await window.electron.createTempFile(feedbackFileName, '');
 
@@ -444,6 +464,15 @@ export function createSendActions(
       const node = state.nodes[nodeId];
       if (!node) {
         throw new Error(`Node ${nodeId} not found`);
+      }
+
+      const appliedContextId = getAppliedContextIdWithInheritance(nodeId, state.nodes, state.ancestorRegistry);
+
+      if (!appliedContextId) {
+        const { nodeContent } = buildContentWithContext(nodeId, state.nodes, state.ancestorRegistry);
+        await executeInTerminal(terminalId, nodeContent);
+        logger.info(`Sent bare node content to terminal autonomously for node: ${nodeId}`, 'SendActions');
+        return '';
       }
 
       const feedbackFileName = `feedback-response-${nodeId}.md`;

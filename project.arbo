@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-04-19T16:47:13.775Z'
+updated: '2026-04-19T17:08:15.358Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -562,6 +562,7 @@ nodes:
     children:
       - 45f1a5a0-dae3-4080-97ed-b8e324b79a64
       - bfdf4f7e-06c7-4d79-a42f-c0ecf536e0c4
+      - b5719b11-8f82-43a5-ac98-69f18535d11f
       - cab835d8-dde8-45ee-81a2-7e788a1f82dd
       - 25bb85f2-b25e-4736-afa5-bfd44d213894
       - 8c43f7e5-31af-4bae-821a-431599ed979c
@@ -5504,6 +5505,7 @@ nodes:
       - 64ec6c6b-566e-4956-bff9-55ac881f4fdb
       - 0dcbad15-d754-424b-a488-599c475e38f4
       - f4300f5a-e503-4606-b6bc-f67f6d4a0ed4
+      - b1446999-f999-47b9-bbe6-bce7c5c3ea59
       - b050f7d8-a00a-4ff8-b137-2fd5ce499a2f
       - 22a32663-eb92-44e0-a844-d6219409f63b
       - 9b46397c-c452-421c-b408-46b040d99c9e
@@ -8755,15 +8757,6 @@ nodes:
     id: 79b693ca-27ce-4410-8617-8092d7e81b07
     content: Issues
     children:
-      - 895464c3-b2d6-4148-ac6d-6fcd9426e079
-      - 1827816a-d5ec-41ee-8718-3f488e459560
-      - 8534dc5e-da2c-415a-b6a9-e4e413f04355
-      - d48c9675-9ec8-4032-9df0-a5037764b9cf
-      - 533210b8-5c42-48f7-ab9a-bea602ae7ed2
-      - 26dc74b0-c926-4461-b81a-7b6cd95864f6
-      - bbf5afa8-47fc-46c5-9ddf-62502640b74e
-      - f1368f57-d8b2-46ce-99f0-79069355a299
-      - d3b7f4eb-145c-4e13-b1de-75a1502c7cb4
       - 5cc686fc-7651-4d83-9ccf-78a29d1dff13
       - e9d700c8-784f-4b3f-9099-7be9ab864158
     metadata:
@@ -20448,6 +20441,7 @@ nodes:
       - cbc2fc3a-7964-4137-81ff-4d4c74e9239c
       - 51f0f1f4-4e09-4364-9f52-3a607f6a2ab8
       - 0c31178a-af75-4ab6-ad93-ce756eb32aa2
+      - 2833bfb5-5c0e-4358-95e6-b3762f8fecde
     metadata:
       status: pending
       expanded: false
@@ -26086,7 +26080,7 @@ nodes:
       blueprintColor: '#1074a2'
       appliedContextId: 0058432d-a010-473b-a707-ace2b1dee169
       expanded: true
-      stepType: autonomous
+      stepType: manual
       recurse: true
   9f4cb1c1-95ba-4523-9b59-86d02c56a0ed:
     id: 9f4cb1c1-95ba-4523-9b59-86d02c56a0ed
@@ -26097,7 +26091,17 @@ nodes:
   4c43c117-e89a-460c-9900-7ea15b8cc0e0:
     id: 4c43c117-e89a-460c-9900-7ea15b8cc0e0
     content: Solution design
-    children: []
+    children:
+      - 6170ca02-7dc1-408c-b5c4-431eb36b479d
+      - 26dc74b0-c926-4461-b81a-7b6cd95864f6
+      - bbf5afa8-47fc-46c5-9ddf-62502640b74e
+      - 895464c3-b2d6-4148-ac6d-6fcd9426e079
+      - 8534dc5e-da2c-415a-b6a9-e4e413f04355
+      - 1827816a-d5ec-41ee-8718-3f488e459560
+      - d48c9675-9ec8-4032-9df0-a5037764b9cf
+      - 533210b8-5c42-48f7-ab9a-bea602ae7ed2
+      - f1368f57-d8b2-46ce-99f0-79069355a299
+      - d3b7f4eb-145c-4e13-b1de-75a1502c7cb4
     metadata:
       status: pending
       expanded: true
@@ -26107,7 +26111,7 @@ nodes:
       blueprintIcon: Eye
       blueprintColor: '#0ea5e9'
       isBlueprint: true
-      stepType: checkpoint
+      stepType: autonomous
       decomposition: false
   26dc74b0-c926-4461-b81a-7b6cd95864f6:
     id: 26dc74b0-c926-4461-b81a-7b6cd95864f6
@@ -27625,7 +27629,9 @@ nodes:
     id: bbf5afa8-47fc-46c5-9ddf-62502640b74e
     content: Applied contexts list does not refresh when changes are made to contexts
     children:
-      - 45f6427d-1ffc-404e-bc66-b40ec5208428
+      - c6c78f70-91e1-454d-9fc5-dd2da76ed02a
+      - 62e6fa78-0350-4239-8c0b-e5aabed21889
+      - 56eaeea1-c5b9-4e60-b1b1-e558274d8294
     metadata:
       status: pending
       expanded: false
@@ -29958,9 +29964,11 @@ nodes:
   f1368f57-d8b2-46ce-99f0-79069355a299:
     id: f1368f57-d8b2-46ce-99f0-79069355a299
     content: When accepting reviewed content, sometimes it breaks placement of a new node - when attempting to place a new node within the tree, it places it instead as the first child node of the root node sent for review
-    children: []
+    children:
+      - e499380c-5d4d-4a1f-bbda-3999e5c3a143
     metadata:
       status: pending
+      expanded: false
   46f6965a-8da4-4dab-9e25-7dd3d2773bd7:
     id: 46f6965a-8da4-4dab-9e25-7dd3d2773bd7
     content: Also, attempting to delete a multiple selection causes a hang for around 10 seconds then fails silently
@@ -33680,9 +33688,14 @@ nodes:
   d3b7f4eb-145c-4e13-b1de-75a1502c7cb4:
     id: d3b7f4eb-145c-4e13-b1de-75a1502c7cb4
     content: Issue with IDs being made from titles where they should be UUIDs
-    children: []
+    children:
+      - 92ce172c-ba96-4798-8ed3-6e6323c1ad50
+      - d90482eb-d8c3-4680-8441-009aa5d8a5fc
+      - 23ef817d-7cce-4355-84b9-fc1ccca7e2c5
+      - 18ae8ceb-817b-4ab7-acdf-58066e4c992b
     metadata:
       status: pending
+      expanded: false
   72316ccb-5177-43fa-80d1-fcada400a3ec:
     id: 72316ccb-5177-43fa-80d1-fcada400a3ec
     content: Product backlog
@@ -33700,8 +33713,6 @@ nodes:
     id: 13c5048b-15eb-4989-a6fc-25032e5c131f
     content: Problems
     children:
-      - d730e290-99fd-4722-b24e-af33ef5dad48
-      - a46447bd-24df-4dbf-aa01-09099cd4e53b
       - 3a953d30-cb26-4e2b-96b0-9f092bc5ce93
       - 413a84b6-97e7-4963-81ca-6667f2136d9a
       - 28b63463-b046-4ed0-ab09-942c8b933875
@@ -34141,12 +34152,12 @@ nodes:
       - f0c283a4-0167-45e8-b5e3-d780dd67e0cc
       - 4c43c117-e89a-460c-9900-7ea15b8cc0e0
       - 00714a63-f267-4ab1-a285-73ae4198eb42
-      - 8de775f0-54d7-4c91-9488-b48f77a3a9ea
       - 9a392715-9ea2-4269-b35c-812b8998e3ec
       - c25cf481-a0d1-495d-9cea-498f1135eb8c
       - 6d973cbb-3c7c-4ac4-925d-ffd5d659332c
       - fbf20e91-d852-4406-9815-952fa7727f33
       - 333cb3e7-a25e-4d18-9dfa-82cf75328fff
+      - 4f171d1d-1d2b-40fb-8f1a-815f666a70d6
       - bdceb696-248d-4199-9182-db0689445c07
       - 7b3e923e-b465-4444-ae7d-7fe0e80e3235
       - 0c1c74ed-ccdb-4278-a2f2-09b739effcfc
@@ -41424,6 +41435,7 @@ nodes:
     id: 28b63463-b046-4ed0-ab09-942c8b933875
     content: There's no way for the AI to mutate the tree state directly without human validation
     children:
+      - 0f7cd5d8-a7d3-4cf7-a5af-837c264b3738
       - a5b3cf33-ba69-4e1a-ab75-0839bc55bc43
       - 4a91f96c-1dc3-4da1-a908-6dc1d5e1279f
       - 4e3e60d5-00ce-4e97-bad0-c169904081e8
@@ -50369,7 +50381,7 @@ nodes:
       - 7d3b730d-63f2-42a2-8d51-3ac155650cb5
     metadata:
       status: pending
-      expanded: true
+      expanded: false
   294a8650-f553-4e8c-9bb0-a6e860cd34cc:
     id: 294a8650-f553-4e8c-9bb0-a6e860cd34cc
     content: For example, if during a coding session the AI discovers there are too many steps
@@ -50397,6 +50409,7 @@ nodes:
       - 5aafe65f-cc2f-45b2-90db-505510c65b9a
     metadata:
       status: pending
+      expanded: false
   7710be30-1f3b-4cd9-a697-dea1f6b5a237:
     id: 7710be30-1f3b-4cd9-a697-dea1f6b5a237
     content: And be able to roll back, split, then implement in parts
@@ -62310,9 +62323,13 @@ nodes:
   d48c9675-9ec8-4032-9df0-a5037764b9cf:
     id: d48c9675-9ec8-4032-9df0-a5037764b9cf
     content: Not getting system notifications when focused on another application
-    children: []
+    children:
+      - 67f086bf-2ce4-4d1d-b484-cc7bce1d0e0d
+      - 48df277e-cc85-460c-a13d-13d852af7d53
+      - 22ea6816-2ddd-4ae0-a649-f4dbb45adbf2
     metadata:
       status: pending
+      expanded: false
   27b498ae-d712-4c06-a93b-0bb45ca1bf14:
     id: 27b498ae-d712-4c06-a93b-0bb45ca1bf14
     content: Have a table blueprint
@@ -74982,15 +74999,6 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  8de775f0-54d7-4c91-9488-b48f77a3a9ea:
-    id: 8de775f0-54d7-4c91-9488-b48f77a3a9ea
-    content: Worktree creation
-    children: []
-    metadata:
-      status: pending
-      isBlueprint: true
-      stepType: autonomous
-      appliedContextId: 0dcbad15-d754-424b-a488-599c475e38f4
   0dcbad15-d754-424b-a488-599c475e38f4:
     id: 0dcbad15-d754-424b-a488-599c475e38f4
     content: Worktree creation
@@ -78333,9 +78341,12 @@ nodes:
   8534dc5e-da2c-415a-b6a9-e4e413f04355:
     id: 8534dc5e-da2c-415a-b6a9-e4e413f04355
     content: Shift + select doesn't seem to work
-    children: []
+    children:
+      - 4518de6c-4eac-4f5f-9c5b-74f99a875337
+      - 74e25c7a-b2f6-4a77-88fe-12a37e53d352
     metadata:
       status: pending
+      expanded: false
   64ec6c6b-566e-4956-bff9-55ac881f4fdb:
     id: 64ec6c6b-566e-4956-bff9-55ac881f4fdb
     content: Technical refinement
@@ -78353,7 +78364,6 @@ nodes:
       blueprintColor: '#64748b'
       isBlueprint: true
       contextMode: collaborate
-      feedbackTempFile: /Users/brianfox/Library/Application Support/Arborescent/temp-files/feedback-64ec6c6b-566e-4956-bff9-55ac881f4fdb.arbo
   54a6b08d-8fa0-4a50-a962-8bf87cc4d734:
     id: 54a6b08d-8fa0-4a50-a962-8bf87cc4d734
     content: Flag complications
@@ -79038,6 +79048,7 @@ nodes:
     metadata:
       status: pending
       isBlueprint: true
+      expanded: false
   8b5153fb-ec2f-4efc-b993-65bcc058167b:
     id: 8b5153fb-ec2f-4efc-b993-65bcc058167b
     content: If it's implicit or discoverable and non-blocking, no need to mention it
@@ -79129,12 +79140,6 @@ nodes:
     children: []
     metadata:
       status: pending
-  45f6427d-1ffc-404e-bc66-b40ec5208428:
-    id: 45f6427d-1ffc-404e-bc66-b40ec5208428
-    content: Well it does, but takes a while
-    children: []
-    metadata:
-      status: pending
   5aafe65f-cc2f-45b2-90db-505510c65b9a:
     id: 5aafe65f-cc2f-45b2-90db-505510c65b9a
     content: 'Should just be an instruction :'
@@ -79183,3 +79188,224 @@ nodes:
     children: []
     metadata:
       status: pending
+  0f7cd5d8-a7d3-4cf7-a5af-837c264b3738:
+    id: 0f7cd5d8-a7d3-4cf7-a5af-837c264b3738
+    content: Think heavily about this, it clashes with the decision to remove decomposition
+    children:
+      - 51d1c15f-d647-4bed-84d3-3972325758e2
+      - cbdbe248-24b4-4067-8b72-7935095ec77c
+      - 197afb5b-1ea1-4186-94be-2b08267aff43
+    metadata:
+      status: pending
+  51d1c15f-d647-4bed-84d3-3972325758e2:
+    id: 51d1c15f-d647-4bed-84d3-3972325758e2
+    content: Feeling is that this should happen within a node by addition, not by copying
+    children: []
+    metadata:
+      status: pending
+  cbdbe248-24b4-4067-8b72-7935095ec77c:
+    id: cbdbe248-24b4-4067-8b72-7935095ec77c
+    content: But we can have a mechanism to create a new node from an existing, or carry a reference to one
+    children: []
+    metadata:
+      status: pending
+  197afb5b-1ea1-4186-94be-2b08267aff43:
+    id: 197afb5b-1ea1-4186-94be-2b08267aff43
+    content: For instance, if we want a 'database' feature
+    children:
+      - 84f4f9b8-7501-4c08-9f4c-652b28c67ab6
+    metadata:
+      status: pending
+  84f4f9b8-7501-4c08-9f4c-652b28c67ab6:
+    id: 84f4f9b8-7501-4c08-9f4c-652b28c67ab6
+    content: Or perhaps the concept of 'database' is just a metadata and not a node in itself
+    children:
+      - e34505ef-c976-4514-9eff-03201842e9bd
+    metadata:
+      status: pending
+  e34505ef-c976-4514-9eff-03201842e9bd:
+    id: e34505ef-c976-4514-9eff-03201842e9bd
+    content: As in a node can belong to a database but can move through other nodes, and a database view can recall it ?
+    children:
+      - c2827201-48c4-42e7-a0c1-e4bdac4c3a72
+    metadata:
+      status: pending
+  c2827201-48c4-42e7-a0c1-e4bdac4c3a72:
+    id: c2827201-48c4-42e7-a0c1-e4bdac4c3a72
+    content: Does it breaks the semantic point of a Arborescent ?
+    children:
+      - 6084cc57-5df7-43f2-a0ea-d66904b65d46
+      - fb4ff173-c453-40e4-80d0-5c9bdd0a213f
+    metadata:
+      status: pending
+  6084cc57-5df7-43f2-a0ea-d66904b65d46:
+    id: 6084cc57-5df7-43f2-a0ea-d66904b65d46
+    content: Not really, because we can potentially just use the database node to keep the reference
+    children: []
+    metadata:
+      status: pending
+  fb4ff173-c453-40e4-80d0-5c9bdd0a213f:
+    id: fb4ff173-c453-40e4-80d0-5c9bdd0a213f
+    content: While the actual content lives elsewhere....
+    children: []
+    metadata:
+      status: pending
+  b5719b11-8f82-43a5-ac98-69f18535d11f:
+    id: b5719b11-8f82-43a5-ac98-69f18535d11f
+    content: Associate agent with a context
+    children:
+      - c36282d0-1813-4fb6-9152-7daa599ea56a
+    metadata:
+      status: pending
+      expanded: false
+  c36282d0-1813-4fb6-9152-7daa599ea56a:
+    id: c36282d0-1813-4fb6-9152-7daa599ea56a
+    content: Now that Claude has built in agents, we could switch to an agent for a given context
+    children: []
+    metadata:
+      status: pending
+  2833bfb5-5c0e-4358-95e6-b3762f8fecde:
+    id: 2833bfb5-5c0e-4358-95e6-b3762f8fecde
+    content: Not sure if this is still an issue after recent refactors
+    children:
+      - e4206607-4285-438f-8328-7c94973a7f8c
+    metadata:
+      status: pending
+  e4206607-4285-438f-8328-7c94973a7f8c:
+    id: e4206607-4285-438f-8328-7c94973a7f8c
+    content: If you can't find anything related in the code, just skip ahead to the next item.
+    children: []
+    metadata:
+      status: pending
+  23ef817d-7cce-4355-84b9-fc1ccca7e2c5:
+    id: 23ef817d-7cce-4355-84b9-fc1ccca7e2c5
+    content: Check the project blueprints folder and the project.arbo
+    children: []
+    metadata:
+      status: pending
+  92ce172c-ba96-4798-8ed3-6e6323c1ad50:
+    id: 92ce172c-ba96-4798-8ed3-6e6323c1ad50
+    content: We might have fixed this
+    children: []
+    metadata:
+      status: pending
+  d90482eb-d8c3-4680-8441-009aa5d8a5fc:
+    id: d90482eb-d8c3-4680-8441-009aa5d8a5fc
+    content: Previously, when looking at the YAML, some files carried IDs made from titles instead of UUIDs
+    children: []
+    metadata:
+      status: pending
+  18ae8ceb-817b-4ab7-acdf-58066e4c992b:
+    id: 18ae8ceb-817b-4ab7-acdf-58066e4c992b
+    content: Check if it's still an issue.
+    children: []
+    metadata:
+      status: pending
+  6170ca02-7dc1-408c-b5c4-431eb36b479d:
+    id: 6170ca02-7dc1-408c-b5c4-431eb36b479d
+    content: Some issues still with collaborations
+    children:
+      - d730e290-99fd-4722-b24e-af33ef5dad48
+      - a46447bd-24df-4dbf-aa01-09099cd4e53b
+    metadata:
+      status: pending
+      expanded: false
+  e499380c-5d4d-4a1f-bbda-3999e5c3a143:
+    id: e499380c-5d4d-4a1f-bbda-3999e5c3a143
+    content: May be fixed after recent refactors
+    children: []
+    metadata:
+      status: pending
+  67f086bf-2ce4-4d1d-b484-cc7bce1d0e0d:
+    id: 67f086bf-2ce4-4d1d-b484-cc7bce1d0e0d
+    content: I don't see system notifications popping up on my mac at all
+    children: []
+    metadata:
+      status: pending
+  48df277e-cc85-460c-a13d-13d852af7d53:
+    id: 48df277e-cc85-460c-a13d-13d852af7d53
+    content: Same on linux
+    children: []
+    metadata:
+      status: pending
+  22ea6816-2ddd-4ae0-a649-f4dbb45adbf2:
+    id: 22ea6816-2ddd-4ae0-a649-f4dbb45adbf2
+    content: Earlier we implemented system notifications for when Arborescent is not focused
+    children:
+      - 54929f1e-c189-4cd9-a8d8-017f18c94c51
+    metadata:
+      status: pending
+  54929f1e-c189-4cd9-a8d8-017f18c94c51:
+    id: 54929f1e-c189-4cd9-a8d8-017f18c94c51
+    content: At least when a task is done, or requiring user intervention
+    children: []
+    metadata:
+      status: pending
+  c6c78f70-91e1-454d-9fc5-dd2da76ed02a:
+    id: c6c78f70-91e1-454d-9fc5-dd2da76ed02a
+    content: For example, if I add a context, and then right click on a node to add that context, I can't find it
+    children: []
+    metadata:
+      status: pending
+  62e6fa78-0350-4239-8c0b-e5aabed21889:
+    id: 62e6fa78-0350-4239-8c0b-e5aabed21889
+    content: It appears eventually, but takes a while
+    children: []
+    metadata:
+      status: pending
+  56eaeea1-c5b9-4e60-b1b1-e558274d8294:
+    id: 56eaeea1-c5b9-4e60-b1b1-e558274d8294
+    content: Should refresh immediately
+    children: []
+    metadata:
+      status: pending
+  4518de6c-4eac-4f5f-9c5b-74f99a875337:
+    id: 4518de6c-4eac-4f5f-9c5b-74f99a875337
+    content: Doesn't do anything
+    children: []
+    metadata:
+      status: pending
+  74e25c7a-b2f6-4a77-88fe-12a37e53d352:
+    id: 74e25c7a-b2f6-4a77-88fe-12a37e53d352
+    content: Should do the classic shift + select thing
+    children: []
+    metadata:
+      status: pending
+  4f171d1d-1d2b-40fb-8f1a-815f666a70d6:
+    id: 4f171d1d-1d2b-40fb-8f1a-815f666a70d6
+    content: Commit & push
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+      stepType: autonomous
+      appliedContextId: b1446999-f999-47b9-bbe6-bce7c5c3ea59
+      recurse: true
+  b1446999-f999-47b9-bbe6-bce7c5c3ea59:
+    id: b1446999-f999-47b9-bbe6-bce7c5c3ea59
+    content: Commit & push
+    children:
+      - e7dd04dd-606b-4ea9-863f-42826edbbc97
+      - cb8bcf00-bcb2-42d2-963d-eeb4e6589cef
+    metadata:
+      status: pending
+      isContextDeclaration: true
+      blueprintIcon: GitCommit
+      blueprintColor: '#a855f7'
+      isBlueprint: true
+      contextMode: execute
+      expanded: false
+  e7dd04dd-606b-4ea9-863f-42826edbbc97:
+    id: e7dd04dd-606b-4ea9-863f-42826edbbc97
+    content: Commit the change
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  cb8bcf00-bcb2-42d2-963d-eeb4e6589cef:
+    id: cb8bcf00-bcb2-42d2-963d-eeb4e6589cef
+    content: Push to remote
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true

@@ -637,9 +637,6 @@ describe('sendActions', () => {
     });
 
     it('should send raw node content when referenced context does not resolve', async () => {
-      // A dangling appliedContextId (pointing at a non-existent node) falls
-      // through to "no context applied" — the new behavior sends just the
-      // node markdown, no instruction envelope at all.
       mockState.nodes.child1.metadata.appliedContextId = 'non-existent-context';
 
       await actions.collaborate('child1');
@@ -648,7 +645,16 @@ describe('sendActions', () => {
       expect(clipboardContent).not.toContain('You are reviewing a hierarchical task list');
       expect(clipboardContent).not.toContain('===BEGIN INSTRUCTIONS===');
       expect(clipboardContent).toContain('Child 1');
-      expect(mockSet).toHaveBeenCalledWith(expect.objectContaining({ collaboratingNodeId: 'child1' }));
+    });
+
+    it('does not set collaboratingNodeId when sending bare (no applied context)', async () => {
+      mockState.nodes.child1.metadata.appliedContextId = undefined;
+
+      await actions.collaborate('child1');
+
+      expect(mockSet).not.toHaveBeenCalledWith(
+        expect.objectContaining({ collaboratingNodeId: 'child1' }),
+      );
     });
   });
 
@@ -792,7 +798,6 @@ describe('sendActions', () => {
       const { executeInTerminal } = await import('../../../../services/terminalExecution');
       vi.mocked(executeInTerminal).mockResolvedValue(undefined);
 
-      // A dangling appliedContextId falls through to "no context applied".
       mockState.nodes.child1.metadata.appliedContextId = 'non-existent-context';
 
       await actions.collaborateInTerminal('child1', 'terminal-1');
@@ -801,7 +806,18 @@ describe('sendActions', () => {
       expect(terminalContent).not.toContain('You are reviewing a hierarchical task list');
       expect(terminalContent).not.toContain('===BEGIN INSTRUCTIONS===');
       expect(terminalContent).toContain('Child 1');
-      expect(mockSet).toHaveBeenCalledWith(expect.objectContaining({ collaboratingNodeId: 'child1' }));
+    });
+
+    it('does not set collaboratingNodeId or start feedback watcher when sending bare', async () => {
+      mockState.nodes.child1.metadata.appliedContextId = undefined;
+
+      await actions.collaborateInTerminal('child1', 'terminal-1');
+
+      expect(mockSet).not.toHaveBeenCalledWith(
+        expect.objectContaining({ collaboratingNodeId: 'child1' }),
+      );
+      expect(window.electron.startFeedbackFileWatcher).not.toHaveBeenCalled();
+      expect(window.electron.createTempFile).not.toHaveBeenCalled();
     });
 
     it('collaborate mode terminal prompt contains code prohibition with default context', async () => {
@@ -1007,6 +1023,16 @@ describe('sendActions', () => {
       const terminalContent = vi.mocked(executeInTerminal).mock.calls[0][1];
       expect(terminalContent).toContain('NeedsReview');
       expect(terminalContent).toContain('ARBORESCENT_HOOK_PORT');
+    });
+
+    it('returns empty string and skips feedback watcher when sending bare', async () => {
+      mockState.nodes.child1.metadata.appliedContextId = undefined;
+
+      const feedbackFile = await actions.autonomousCollaborateInTerminal('child1', 'terminal-1');
+
+      expect(feedbackFile).toBe('');
+      expect(window.electron.startFeedbackFileWatcher).not.toHaveBeenCalled();
+      expect(window.electron.createTempFile).not.toHaveBeenCalled();
     });
   });
 

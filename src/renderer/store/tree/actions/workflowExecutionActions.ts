@@ -376,12 +376,14 @@ export const createWorkflowExecutionActions = (
 
       if (!autonomousCollaborateInTerminal) return;
 
-      if (mode === "collaborate") {
+      if (contextId && mode === "collaborate") {
         setCollaboratingFlag(nodeId);
       }
 
       autonomousCollaborateInTerminal(nodeId, terminalId, mode).then((feedbackFilePath) => {
-        registerAutonomousCollaboration(nodeId, terminalId, feedbackFilePath);
+        if (feedbackFilePath) {
+          registerAutonomousCollaboration(nodeId, terminalId, feedbackFilePath);
+        }
       }).catch((error) => {
         logger.error(
           "Failed to send to terminal",

@@ -2,6 +2,7 @@ import { describe, it, expect, vi, beforeEach, type Mock } from 'vitest';
 import { createSendActions } from '../sendActions';
 import { TreeState } from '../../treeStore';
 import { TreeNode } from '../../../../../shared/types';
+import { BASIC_REVIEW_CONTEXT_ID } from '../../../../utils/nodeHelpers';
 
 vi.mock('../../../../services/logger', () => ({
   logger: { info: vi.fn(), warn: vi.fn(), error: vi.fn() },
@@ -77,7 +78,7 @@ describe('browser collaboration guard across files', () => {
     mockState = {
       nodes: {
         root: { id: 'root', content: 'Root', children: ['child1'], metadata: {} },
-        child1: { id: 'child1', content: 'Child 1', children: [], metadata: {} },
+        child1: { id: 'child1', content: 'Child 1', children: [], metadata: { appliedContextId: BASIC_REVIEW_CONTEXT_ID } },
       },
       rootNodeId: 'root',
       treeType: 'workspace',
