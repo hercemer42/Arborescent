@@ -3,8 +3,14 @@ import { describe, it, expect, beforeEach, vi } from 'vitest';
 const { mockExecFile } = vi.hoisted(() => ({ mockExecFile: vi.fn() }));
 const { mockReadlink } = vi.hoisted(() => ({ mockReadlink: vi.fn() }));
 
-vi.mock('child_process', () => ({ execFile: mockExecFile }));
-vi.mock('fs/promises', () => ({ readlink: mockReadlink }));
+vi.mock('child_process', () => ({
+  execFile: mockExecFile,
+  default: { execFile: mockExecFile },
+}));
+vi.mock('fs/promises', () => ({
+  readlink: mockReadlink,
+  default: { readlink: mockReadlink },
+}));
 vi.mock('../logger', () => ({
   logger: { info: vi.fn(), warn: vi.fn(), error: vi.fn() },
 }));
