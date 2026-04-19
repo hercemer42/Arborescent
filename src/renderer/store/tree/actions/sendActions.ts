@@ -112,6 +112,7 @@ Output the complete updated list.`;
 function buildCollaborateFileOutputTarget(outputFilePath: string): string {
   return `IMPORTANT: Write your reviewed/updated list to this file: ${outputFilePath}
 Base your output on the list from the CONTENT section, not from the INSTRUCTIONS section.
+Do NOT write any part of the CONTEXT or INSTRUCTIONS sections to the file — only the updated CONTENT list.
 Do NOT make any changes to the code.
 ${WRITE_ONCE_INSTRUCTION}
 
@@ -123,6 +124,8 @@ function buildExecuteFileOutputTarget(outputFilePath: string): string {
 ${outputFilePath}
 - Do NOT rewrite, reorganize, retitle, or add items to the list — only change status markers
 - Do NOT replace the CONTENT list with a summary of what you did or a "what was done" checklist
+- Do NOT write any part of the CONTEXT or INSTRUCTIONS sections to the file — only the updated CONTENT list
+- The file's root heading MUST be the CONTENT section's root, byte-for-byte, with only status markers added — never a re-emitted CONTEXT root
 - Skip items already marked [x]
 - If issues were encountered, append a single new child node at the end of the list describing them
 ${WRITE_ONCE_INSTRUCTION}

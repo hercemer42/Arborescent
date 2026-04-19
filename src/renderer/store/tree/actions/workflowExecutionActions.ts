@@ -576,6 +576,37 @@ export const createWorkflowExecutionActions = (
       return;
     }
 
+    // Guard against the AI writing the CONTEXT tree instead of the CONTENT
+    // list back to the temp file. Without this check, AcceptFeedbackCommand
+    // would silently swap the workflow node with the context how-to. We only
+    // enforce it for non-decomposition steps since decomposition legitimately
+    // produces roots whose content differs from the single input.
+    if (!decomposition) {
+      const parsedRoot = parsed.nodes[parsed.rootNodeId];
+      const originalContent = nodes[nodeId].content;
+      if (parsedRoot && parsedRoot.content !== originalContent) {
+        logger.error(
+          `Content-root mismatch on auto-accept for node ${nodeId}: parsed "${parsedRoot.content}" vs original "${originalContent}"`,
+          new Error("Feedback root mismatch"),
+          "WorkflowExecution",
+        );
+        stopWorkflow(nodeId);
+        cleanupAutonomousCollaboration(nodeId);
+        useToastStore
+          .getState()
+          .addToast(
+            "Auto-accept rejected — feedback root does not match the node. Workflow stopped.",
+            "error",
+          );
+        void notifyWorkflowEvent(
+          "alert",
+          "Feedback root mismatch",
+          "AI returned a different root than the node — accept was rejected",
+        );
+        return;
+      }
+    }
+
     const archiveConfig = getArchiveConfigForNode(nodeId, nodes, ancestorRegistry);
     const rootNodeIdOrIds = decomposition && parsed.rootNodeIds.length > 1
       ? parsed.rootNodeIds

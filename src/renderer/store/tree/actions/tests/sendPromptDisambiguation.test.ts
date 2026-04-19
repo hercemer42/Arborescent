@@ -152,5 +152,37 @@ describe('send prompt — write-back disambiguation', () => {
       const prompt = vi.mocked(executeInTerminal).mock.calls.at(-1)?.[1] as string;
       expect(prompt).toMatch(/Do NOT replace the CONTENT list with a summary/);
     });
+
+    it('explicitly forbids writing the CONTEXT or INSTRUCTIONS sections to the file', async () => {
+      const { executeInTerminal } = await import('../../../../services/terminalExecution');
+      mockState.nodes.task.metadata.appliedContextId = BASIC_EXECUTE_CONTEXT_ID;
+
+      await actions.collaborateInTerminal('task', 'terminal-1', 'execute');
+
+      const prompt = vi.mocked(executeInTerminal).mock.calls.at(-1)?.[1] as string;
+      expect(prompt).toMatch(/Do NOT write any part of the CONTEXT or INSTRUCTIONS sections/i);
+    });
+
+    it('tells the AI the file root MUST be the CONTENT root (not a re-emitted CONTEXT root)', async () => {
+      const { executeInTerminal } = await import('../../../../services/terminalExecution');
+      mockState.nodes.task.metadata.appliedContextId = BASIC_EXECUTE_CONTEXT_ID;
+
+      await actions.collaborateInTerminal('task', 'terminal-1', 'execute');
+
+      const prompt = vi.mocked(executeInTerminal).mock.calls.at(-1)?.[1] as string;
+      expect(prompt).toMatch(/file's root heading MUST be the CONTENT section's root/i);
+    });
+  });
+
+  describe('collaborate-mode write-back also forbids CONTEXT echo', () => {
+    it('explicitly forbids writing the CONTEXT or INSTRUCTIONS sections to the file', async () => {
+      const { executeInTerminal } = await import('../../../../services/terminalExecution');
+      mockState.nodes.task.metadata.appliedContextId = BASIC_REVIEW_CONTEXT_ID;
+
+      await actions.collaborateInTerminal('task', 'terminal-1');
+
+      const prompt = vi.mocked(executeInTerminal).mock.calls.at(-1)?.[1] as string;
+      expect(prompt).toMatch(/Do NOT write any part of the CONTEXT or INSTRUCTIONS sections/i);
+    });
   });
 });

@@ -175,8 +175,9 @@ describe('workflow auto-accept for autonomous collaborate steps', () => {
 
     mockParseFeedbackContent.mockImplementation((content: string) => {
       if (!content || !content.startsWith('#')) return null;
+      const stripped = content.replace(/^#+\s*(\[.\]\s*)?/, '').split('\n')[0];
       return {
-        nodes: { 'new-root': { id: 'new-root', content, children: [], metadata: {} } },
+        nodes: { 'new-root': { id: 'new-root', content: stripped, children: [], metadata: {} } },
         rootNodeId: 'new-root',
         rootNodeIds: ['new-root'],
         nodeCount: 1,
@@ -269,7 +270,7 @@ describe('workflow auto-accept for autonomous collaborate steps', () => {
       expect(state.nodes['step-1'].children).toContain('task-a');
 
       // Feedback arrives second — should trigger accept + advance
-      actions.handleAutonomousFeedback('task-a', '# Updated content');
+      actions.handleAutonomousFeedback('task-a', '# Task A');
 
       expect(state.nodes['step-2'].children).toContain('task-a');
     });
@@ -278,7 +279,7 @@ describe('workflow auto-accept for autonomous collaborate steps', () => {
       vi.useFakeTimers();
 
       // Feedback arrives first — accept but don't advance (no Stop yet)
-      actions.handleAutonomousFeedback('task-a', '# Updated content');
+      actions.handleAutonomousFeedback('task-a', '# Task A');
       expect(state.workflowExecutionStates['task-a']?.collaborating).toBeFalsy();
 
       // Stop arrives second — should trigger normal advance
@@ -294,7 +295,7 @@ describe('workflow auto-accept for autonomous collaborate steps', () => {
       actions.stopWorkflow('task-a');
 
       // Feedback arrives after stop — should be no-op
-      actions.handleAutonomousFeedback('task-a', '# Updated content');
+      actions.handleAutonomousFeedback('task-a', '# Task A');
 
       expect(state.workflowExecutionStates['task-a']).toBeUndefined();
       expect(state.nodes['step-1'].children).toContain('task-a');
@@ -313,7 +314,7 @@ describe('workflow auto-accept for autonomous collaborate steps', () => {
     });
 
     it('should execute AcceptFeedbackCommand via executeCommand', () => {
-      actions.handleAutonomousFeedback('task-a', '# Updated content');
+      actions.handleAutonomousFeedback('task-a', '# Task A');
 
       expect(mockExecuteCommand).toHaveBeenCalled();
     });
@@ -321,19 +322,19 @@ describe('workflow auto-accept for autonomous collaborate steps', () => {
     it('should pass decomposition flag from step metadata to parser', () => {
       state.nodes['step-1'].metadata.decomposition = true;
 
-      actions.handleAutonomousFeedback('task-a', '# Updated content');
+      actions.handleAutonomousFeedback('task-a', '# Task A');
 
-      expect(mockParseFeedbackContent).toHaveBeenCalledWith('# Updated content', true);
+      expect(mockParseFeedbackContent).toHaveBeenCalledWith('# Task A', true);
     });
 
     it('should pass false for decomposition when step has no decomposition flag', () => {
-      actions.handleAutonomousFeedback('task-a', '# Updated content');
+      actions.handleAutonomousFeedback('task-a', '# Task A');
 
-      expect(mockParseFeedbackContent).toHaveBeenCalledWith('# Updated content', false);
+      expect(mockParseFeedbackContent).toHaveBeenCalledWith('# Task A', false);
     });
 
     it('should show toast notification on successful auto-accept', () => {
-      actions.handleAutonomousFeedback('task-a', '# Updated content');
+      actions.handleAutonomousFeedback('task-a', '# Task A');
 
       expect(mockAddToast).toHaveBeenCalledWith(
         expect.stringContaining('auto-accept'),
@@ -342,7 +343,7 @@ describe('workflow auto-accept for autonomous collaborate steps', () => {
     });
 
     it('should advance the node after auto-accept when stopReceived is true', () => {
-      actions.handleAutonomousFeedback('task-a', '# Updated content');
+      actions.handleAutonomousFeedback('task-a', '# Task A');
 
       expect(state.nodes['step-2'].children).toContain('task-a');
     });
@@ -427,7 +428,7 @@ describe('workflow auto-accept for autonomous collaborate steps', () => {
     });
 
     it('should auto-accept one node without affecting the other', () => {
-      actions.handleAutonomousFeedback('task-a', '# Updated A');
+      actions.handleAutonomousFeedback('task-a', '# Task A');
 
       expect(state.nodes['step-2'].children).toContain('task-a');
       expect(state.workflowExecutionStates['task-b']).toBeDefined();
@@ -435,8 +436,8 @@ describe('workflow auto-accept for autonomous collaborate steps', () => {
     });
 
     it('should auto-accept both nodes independently', () => {
-      actions.handleAutonomousFeedback('task-a', '# Updated A');
-      actions.handleAutonomousFeedback('task-b', '# Updated B');
+      actions.handleAutonomousFeedback('task-a', '# Task A');
+      actions.handleAutonomousFeedback('task-b', '# Task B');
 
       expect(state.nodes['step-2'].children).toContain('task-a');
       expect(state.nodes['step-2'].children).toContain('task-b');
@@ -604,6 +605,134 @@ describe('workflow auto-accept for autonomous collaborate steps', () => {
     it('should still support endsWith path matching for backward compatibility', () => {
       const suffixed = 'some/nested/prefix' + registeredPath;
       expect(actions.findCollaborationByFeedbackFilePath(suffixed)).toEqual({ nodeId: 'task-a', kind: 'autonomous' });
+    });
+  });
+
+  // The bug: when an autonomous step's CONTEXT is itself a structured how-to
+  // tree (e.g. "Commit & push / Commit the change / Push to remote") and the
+  // CONTENT is a one-line task, the AI sometimes writes the CONTEXT tree to
+  // the temp file instead of the CONTENT root. AcceptFeedbackCommand then
+  // replaces the workflow item with the CONTEXT tree. These tests pin the
+  // sanity check that has to reject the swap when the parsed root content
+  // doesn't match the original node content.
+  describe('content-root sanity check on auto-accept', () => {
+    beforeEach(() => {
+      state.workflowSessionMap = { 'session-1': 'terminal-1' };
+      state.workflowExecutionStates['task-a'] = {
+        state: 'running',
+        terminalTabId: 'terminal-1',
+        collaborating: true,
+        stopReceived: true,
+      };
+    });
+
+    it('rejects accept when parsed root content differs from the original node content', () => {
+      mockParseFeedbackContent.mockImplementation(() => ({
+        nodes: { 'ctx-root': { id: 'ctx-root', content: 'Commit & push', children: [], metadata: {} } },
+        rootNodeId: 'ctx-root',
+        rootNodeIds: ['ctx-root'],
+        nodeCount: 1,
+      }));
+
+      actions.handleAutonomousFeedback('task-a', '# Commit & push\n## Commit the change\n## Push to remote');
+
+      expect(mockExecuteCommand).not.toHaveBeenCalled();
+      expect(mockAcceptFeedbackExecute).not.toHaveBeenCalled();
+    });
+
+    it('stops the workflow with an error toast when the content-root mismatches', () => {
+      mockParseFeedbackContent.mockImplementation(() => ({
+        nodes: { 'ctx-root': { id: 'ctx-root', content: 'Commit & push', children: [], metadata: {} } },
+        rootNodeId: 'ctx-root',
+        rootNodeIds: ['ctx-root'],
+        nodeCount: 1,
+      }));
+
+      actions.handleAutonomousFeedback('task-a', '# Commit & push');
+
+      expect(state.workflowExecutionStates['task-a']).toBeUndefined();
+      expect(mockAddToast).toHaveBeenCalledWith(expect.any(String), 'error');
+    });
+
+    it('notifies an alert when the content-root mismatches (so the user sees something happened)', () => {
+      mockParseFeedbackContent.mockImplementation(() => ({
+        nodes: { 'ctx-root': { id: 'ctx-root', content: 'Commit & push', children: [], metadata: {} } },
+        rootNodeId: 'ctx-root',
+        rootNodeIds: ['ctx-root'],
+        nodeCount: 1,
+      }));
+
+      actions.handleAutonomousFeedback('task-a', '# Commit & push');
+
+      expect(mockNotifyWorkflowEvent).toHaveBeenCalledWith('alert', expect.any(String), expect.any(String));
+    });
+
+    it('does not advance the node when the content-root mismatches', () => {
+      mockParseFeedbackContent.mockImplementation(() => ({
+        nodes: { 'ctx-root': { id: 'ctx-root', content: 'Commit & push', children: [], metadata: {} } },
+        rootNodeId: 'ctx-root',
+        rootNodeIds: ['ctx-root'],
+        nodeCount: 1,
+      }));
+
+      actions.handleAutonomousFeedback('task-a', '# Commit & push');
+
+      expect(state.nodes['step-1'].children).toContain('task-a');
+      expect(state.nodes['step-2'].children).not.toContain('task-a');
+    });
+
+    it('accepts when the parsed root content exactly matches the original (no status decoration)', () => {
+      mockParseFeedbackContent.mockImplementation(() => ({
+        nodes: { 'new-root': { id: 'new-root', content: 'Task A', children: [], metadata: {} } },
+        rootNodeId: 'new-root',
+        rootNodeIds: ['new-root'],
+        nodeCount: 1,
+      }));
+
+      actions.handleAutonomousFeedback('task-a', '# Task A');
+
+      expect(mockExecuteCommand).toHaveBeenCalled();
+    });
+
+    it('accepts when the parsed root content matches the original with status added (parsed content already strips [x])', () => {
+      // parseMarkdown strips [x] / [-] / [ ] from the heading before producing the node content,
+      // so by the time the parsed root reaches the sanity check, the content equals the original.
+      mockParseFeedbackContent.mockImplementation(() => ({
+        nodes: {
+          'new-root': {
+            id: 'new-root',
+            content: 'Task A',
+            children: [],
+            metadata: { status: 'completed' },
+          },
+        },
+        rootNodeId: 'new-root',
+        rootNodeIds: ['new-root'],
+        nodeCount: 1,
+      }));
+
+      actions.handleAutonomousFeedback('task-a', '# [x] Task A');
+
+      expect(mockExecuteCommand).toHaveBeenCalled();
+    });
+
+    it('skips the sanity check entirely when the step has decomposition enabled (multiple roots are valid)', () => {
+      state.nodes['step-1'].metadata.decomposition = true;
+      mockParseFeedbackContent.mockImplementation(() => ({
+        nodes: {
+          'r1': { id: 'r1', content: 'Story 1', children: [], metadata: {} },
+          'r2': { id: 'r2', content: 'Story 2', children: [], metadata: {} },
+        },
+        rootNodeId: 'r1',
+        rootNodeIds: ['r1', 'r2'],
+        nodeCount: 2,
+      }));
+
+      actions.handleAutonomousFeedback('task-a', '# Story 1\n# Story 2');
+
+      // Decomposition mode legitimately produces roots whose content differs from the input,
+      // so the strict mismatch rejection must NOT fire.
+      expect(mockExecuteCommand).toHaveBeenCalled();
     });
   });
 });
