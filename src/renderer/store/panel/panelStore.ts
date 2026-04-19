@@ -99,7 +99,7 @@ export const usePanelStore = create<PanelState>((set, get) => ({
   setPanelPosition: (position: PanelPosition) =>
     set((state) => {
       const newState = { panelPosition: position };
-      savePanelSession({ ...state, ...newState });
+      void savePanelSession({ ...state, ...newState });
       return newState;
     }),
 
@@ -108,21 +108,21 @@ export const usePanelStore = create<PanelState>((set, get) => ({
       const newState = {
         panelPosition: (state.panelPosition === 'side' ? 'bottom' : 'side') as PanelPosition,
       };
-      savePanelSession({ ...state, ...newState });
+      void savePanelSession({ ...state, ...newState });
       return newState;
     }),
 
   setPanelHeight: (height: number) =>
     set((state) => {
       const newState = { panelHeight: height };
-      savePanelSession({ ...state, ...newState });
+      void savePanelSession({ ...state, ...newState });
       return newState;
     }),
 
   setPanelWidth: (width: number) =>
     set((state) => {
       const newState = { panelWidth: width };
-      savePanelSession({ ...state, ...newState });
+      void savePanelSession({ ...state, ...newState });
       return newState;
     }),
 
@@ -130,7 +130,7 @@ export const usePanelStore = create<PanelState>((set, get) => ({
     set((state) => {
       const newFileStates = updateFileState(state.fileStates, state.currentFilePath, { activeContent: content });
       const newState = { activeContent: content, fileStates: newFileStates };
-      savePanelSession({ ...state, ...newState });
+      void savePanelSession({ ...state, ...newState });
       return newState;
     }),
 
@@ -139,7 +139,7 @@ export const usePanelStore = create<PanelState>((set, get) => ({
       if (!state.currentFilePath) return {};
       const newFileStates = updateFileState(state.fileStates, state.currentFilePath, { activeContent: 'terminal' });
       const newState = { activeContent: 'terminal' as PanelContentType, fileStates: newFileStates };
-      savePanelSession({ ...state, ...newState });
+      void savePanelSession({ ...state, ...newState });
       return newState;
     }),
 
@@ -148,7 +148,7 @@ export const usePanelStore = create<PanelState>((set, get) => ({
       if (!state.currentFilePath) return {};
       const newFileStates = updateFileState(state.fileStates, state.currentFilePath, { activeContent: 'browser' });
       const newState = { activeContent: 'browser' as PanelContentType, fileStates: newFileStates };
-      savePanelSession({ ...state, ...newState });
+      void savePanelSession({ ...state, ...newState });
       return newState;
     }),
 
@@ -168,7 +168,7 @@ export const usePanelStore = create<PanelState>((set, get) => ({
         previousContent: newPreviousContent,
         fileStates: newFileStates,
       };
-      savePanelSession({ ...state, ...newState });
+      void savePanelSession({ ...state, ...newState });
       return newState;
     }),
 
@@ -186,7 +186,7 @@ export const usePanelStore = create<PanelState>((set, get) => ({
         previousContent: null as PanelContentType,
         fileStates: newFileStates,
       };
-      savePanelSession({ ...state, ...newState });
+      void savePanelSession({ ...state, ...newState });
       return newState;
     }),
 
@@ -195,7 +195,7 @@ export const usePanelStore = create<PanelState>((set, get) => ({
       if (!state.currentFilePath) return {};
       const newFileStates = updateFileState(state.fileStates, state.currentFilePath, { activeContent: null });
       const newState = { activeContent: null as PanelContentType, fileStates: newFileStates };
-      savePanelSession({ ...state, ...newState });
+      void savePanelSession({ ...state, ...newState });
       return newState;
     }),
 

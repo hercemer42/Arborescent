@@ -92,7 +92,7 @@ export const createWorkflowExecutionActions = (
           { label: "Stop", onClick: () => stopWorkflow(nodeId) },
         ],
       });
-      notifyWorkflowEvent("alert", "Step timeout", message);
+      void notifyWorkflowEvent("alert", "Step timeout", message);
     },
   });
 
@@ -246,7 +246,7 @@ export const createWorkflowExecutionActions = (
       useToastStore
         .getState()
         .addToast("Recurse limit reached — stopping automatic processing", "warning");
-      notifyWorkflowEvent("alert", "Recurse limit reached", "Stopping automatic processing");
+      void notifyWorkflowEvent("alert", "Recurse limit reached", "Stopping automatic processing");
       recurseCounters.delete(terminalId);
       return;
     }
@@ -272,7 +272,7 @@ export const createWorkflowExecutionActions = (
     useToastStore
       .getState()
       .addToast(`Workflow complete for "${nodeName}"`, "success");
-    notifyWorkflowEvent("success", "Workflow complete", nodeName);
+    void notifyWorkflowEvent("success", "Workflow complete", nodeName);
 
     logger.info(
       `Completed workflow execution for node ${nodeId}`,
@@ -392,7 +392,7 @@ export const createWorkflowExecutionActions = (
         useToastStore
           .getState()
           .addToast("Failed to send to terminal — workflow stopped", "error");
-        notifyWorkflowEvent("alert", "Workflow error", "Failed to send to terminal");
+        void notifyWorkflowEvent("alert", "Workflow error", "Failed to send to terminal");
       });
     } catch (error) {
       logger.error(
@@ -404,7 +404,7 @@ export const createWorkflowExecutionActions = (
       useToastStore
         .getState()
         .addToast("Failed to send to terminal — workflow stopped", "error");
-      notifyWorkflowEvent("alert", "Workflow error", "Failed to send to terminal");
+      void notifyWorkflowEvent("alert", "Workflow error", "Failed to send to terminal");
     }
   }
 
@@ -506,7 +506,7 @@ export const createWorkflowExecutionActions = (
   function cleanupAutonomousCollaboration(nodeId: string): void {
     const collab = autonomousCollaborations.get(nodeId);
     if (collab) {
-      window.electron.stopFeedbackFileWatcher(collab.filePath);
+      void window.electron.stopFeedbackFileWatcher(collab.filePath);
       autonomousCollaborations.delete(nodeId);
     }
   }
@@ -571,7 +571,7 @@ export const createWorkflowExecutionActions = (
       useToastStore
         .getState()
         .addToast("Feedback could not be parsed — workflow stopped", "error");
-      notifyWorkflowEvent("alert", "Feedback parse error", "Feedback could not be parsed");
+      void notifyWorkflowEvent("alert", "Feedback parse error", "Feedback could not be parsed");
       return;
     }
 

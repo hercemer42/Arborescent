@@ -136,7 +136,7 @@ export const useTerminalStore = create<TerminalState>((set, get) => ({
       activeTerminalId: terminal.id,
       fileStates: newFileStates,
     });
-    saveTerminalSession(newFileStates);
+    void saveTerminalSession(newFileStates);
   },
 
   removeTerminal: (id: string) => {
@@ -156,7 +156,7 @@ export const useTerminalStore = create<TerminalState>((set, get) => ({
       activeTerminalId: newActiveId,
       fileStates: newFileStates,
     });
-    saveTerminalSession(newFileStates);
+    void saveTerminalSession(newFileStates);
   },
 
   setActiveTerminal: (id: string | null) => {
@@ -311,6 +311,6 @@ export const useTerminalStore = create<TerminalState>((set, get) => ({
       ? { terminals: [], activeTerminalId: null }
       : {};
     set({ fileStates: updated, ...currentState });
-    saveTerminalSession(updated);
+    void saveTerminalSession(updated);
   },
 }));

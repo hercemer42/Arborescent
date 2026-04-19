@@ -101,7 +101,7 @@ export function createBrowserActions(get: StoreGetter, set: StoreSetter, storage
       fileStates: newFileStates,
     };
     set((state: BrowserState) => {
-      saveBrowserSession({ ...state, ...newState });
+      void saveBrowserSession({ ...state, ...newState });
       return newState;
     });
   }
@@ -122,7 +122,7 @@ export function createBrowserActions(get: StoreGetter, set: StoreSetter, storage
 
     const newState = { tabs: newTabs, activeTabId: newActiveTabId, fileStates: newFileStates };
     set((state: BrowserState) => {
-      saveBrowserSession({ ...state, ...newState });
+      void saveBrowserSession({ ...state, ...newState });
       return newState;
     });
   }
@@ -134,7 +134,7 @@ export function createBrowserActions(get: StoreGetter, set: StoreSetter, storage
     const newFileStates = updateFileState(fileStates, currentFilePath, { activeTabId: id });
     set((state: BrowserState) => {
       const newState = { activeTabId: id, fileStates: newFileStates };
-      saveBrowserSession({ ...state, ...newState });
+      void saveBrowserSession({ ...state, ...newState });
       return newState;
     });
   }
@@ -149,7 +149,7 @@ export function createBrowserActions(get: StoreGetter, set: StoreSetter, storage
 
     set((state: BrowserState) => {
       const newState = { tabs: newTabs, fileStates: newFileStates };
-      saveBrowserSession({ ...state, ...newState });
+      void saveBrowserSession({ ...state, ...newState });
       return newState;
     });
   }
@@ -164,7 +164,7 @@ export function createBrowserActions(get: StoreGetter, set: StoreSetter, storage
 
     set((state: BrowserState) => {
       const newState = { tabs: newTabs, fileStates: newFileStates };
-      saveBrowserSession({ ...state, ...newState });
+      void saveBrowserSession({ ...state, ...newState });
       return newState;
     });
   }
@@ -174,7 +174,7 @@ export function createBrowserActions(get: StoreGetter, set: StoreSetter, storage
       const newState = {
         panelPosition: (state.panelPosition === 'side' ? 'bottom' : 'side') as 'side' | 'bottom',
       };
-      saveBrowserSession({ ...state, ...newState });
+      void saveBrowserSession({ ...state, ...newState });
       return newState;
     });
   }
@@ -183,7 +183,7 @@ export function createBrowserActions(get: StoreGetter, set: StoreSetter, storage
     set((state: BrowserState) => {
       const newVisibility = !state.isBrowserVisible;
       const newState = { isBrowserVisible: newVisibility };
-      saveBrowserSession({ ...state, ...newState });
+      void saveBrowserSession({ ...state, ...newState });
       return newState;
     });
   }
@@ -191,7 +191,7 @@ export function createBrowserActions(get: StoreGetter, set: StoreSetter, storage
   function showBrowser(): void {
     set((state: BrowserState) => {
       const newState = { isBrowserVisible: true };
-      saveBrowserSession({ ...state, ...newState });
+      void saveBrowserSession({ ...state, ...newState });
       return newState;
     });
   }
@@ -199,7 +199,7 @@ export function createBrowserActions(get: StoreGetter, set: StoreSetter, storage
   function hideBrowser(): void {
     set((state: BrowserState) => {
       const newState = { isBrowserVisible: false };
-      saveBrowserSession({ ...state, ...newState });
+      void saveBrowserSession({ ...state, ...newState });
       return newState;
     });
   }
@@ -207,7 +207,7 @@ export function createBrowserActions(get: StoreGetter, set: StoreSetter, storage
   function setPanelHeight(height: number): void {
     set((state: BrowserState) => {
       const newState = { panelHeight: height };
-      saveBrowserSession({ ...state, ...newState });
+      void saveBrowserSession({ ...state, ...newState });
       return newState;
     });
   }
@@ -215,7 +215,7 @@ export function createBrowserActions(get: StoreGetter, set: StoreSetter, storage
   function setPanelWidth(width: number): void {
     set((state: BrowserState) => {
       const newState = { panelWidth: width };
-      saveBrowserSession({ ...state, ...newState });
+      void saveBrowserSession({ ...state, ...newState });
       return newState;
     });
   }
@@ -229,7 +229,7 @@ export function createBrowserActions(get: StoreGetter, set: StoreSetter, storage
       ? { tabs: [] as BrowserTab[], activeTabId: null as string | null }
       : {};
     set({ fileStates: updated, ...currentState });
-    saveBrowserSession({ ...get(), fileStates: updated });
+    void saveBrowserSession({ ...get(), fileStates: updated });
   }
 
   async function restoreSession(): Promise<void> {
@@ -259,7 +259,7 @@ export function createBrowserActions(get: StoreGetter, set: StoreSetter, storage
       };
 
       set(defaultState);
-      saveBrowserSession(get());
+      void saveBrowserSession(get());
 
       logger.info('Created default browser session', 'BrowserActions');
     }

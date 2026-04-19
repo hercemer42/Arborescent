@@ -58,7 +58,7 @@ export function useAppInitialization(onComplete: () => void) {
 
         const activeContent = usePanelStore.getState().activeContent;
         if (activeContent === 'terminal') {
-          useTerminalStore.getState().materializeRestoredTerminals();
+          void useTerminalStore.getState().materializeRestoredTerminals();
         }
       }
     });

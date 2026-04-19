@@ -34,7 +34,7 @@ async function handleUIShortcuts(event: KeyboardEvent): Promise<void> {
 
   if (matchesHotkey(event, 'file', 'save')) {
     event.preventDefault();
-    useFilesStore.getState().actions.saveActiveFile();
+    void useFilesStore.getState().actions.saveActiveFile();
     return;
   }
 
@@ -42,20 +42,20 @@ async function handleUIShortcuts(event: KeyboardEvent): Promise<void> {
     event.preventDefault();
     const activeFilePath = useFilesStore.getState().activeFilePath;
     if (activeFilePath) {
-      useFilesStore.getState().actions.saveFileAs(activeFilePath);
+      void useFilesStore.getState().actions.saveFileAs(activeFilePath);
     }
     return;
   }
 
   if (matchesHotkey(event, 'file', 'open')) {
     event.preventDefault();
-    useFilesStore.getState().actions.openFileWithDialog();
+    void useFilesStore.getState().actions.openFileWithDialog();
     return;
   }
 
   if (matchesHotkey(event, 'file', 'new')) {
     event.preventDefault();
-    useFilesStore.getState().actions.createNewFile();
+    void useFilesStore.getState().actions.createNewFile();
     return;
   }
 
@@ -199,7 +199,7 @@ async function handleUIShortcuts(event: KeyboardEvent): Promise<void> {
 
     event.preventDefault();
     const store = getActiveStore();
-    store?.getState().actions.cutNodes();
+    void store?.getState().actions.cutNodes();
     return;
   }
 
@@ -209,7 +209,7 @@ async function handleUIShortcuts(event: KeyboardEvent): Promise<void> {
 
     event.preventDefault();
     const store = getActiveStore();
-    store?.getState().actions.copyNodes();
+    void store?.getState().actions.copyNodes();
     return;
   }
 
@@ -318,13 +318,13 @@ async function handleUIShortcuts(event: KeyboardEvent): Promise<void> {
 
     const mode: ContextMode = resolveContextMode(contextId, state.nodes, state.contextDeclarations);
 
-    state.actions.collaborate(activeNodeId, mode);
+    void state.actions.collaborate(activeNodeId, mode);
     return;
   }
 }
 
 function handleKeyDown(event: KeyboardEvent): void {
-  handleUIShortcuts(event);
+  void handleUIShortcuts(event);
 }
 
 export function initializeUIService(target: HTMLElement | Window = window): () => void {

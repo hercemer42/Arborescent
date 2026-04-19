@@ -22,7 +22,7 @@ export function useTerminalKeyboard(xtermRef: React.RefObject<XTerm | null>, isR
         const selection = xterm.getSelection();
         if (selection) {
           e.preventDefault();
-          navigator.clipboard.writeText(selection);
+          void navigator.clipboard.writeText(selection);
           return false;
         }
       }
@@ -30,7 +30,7 @@ export function useTerminalKeyboard(xtermRef: React.RefObject<XTerm | null>, isR
       // Paste: Ctrl+Shift+V (or Cmd+Shift+V on Mac)
       if (ctrlOrCmd && e.shiftKey && e.key.toLowerCase() === 'v') {
         e.preventDefault();
-        navigator.clipboard.readText().then((text) => {
+        void navigator.clipboard.readText().then((text) => {
           xterm.paste(text);
         });
         return false;

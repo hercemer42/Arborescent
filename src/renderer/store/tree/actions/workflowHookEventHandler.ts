@@ -139,7 +139,7 @@ export function createHookEventHandler(deps: HookEventHandlerDeps) {
                 actions: [{ label: 'OK', onClick: () => {} }],
               },
             );
-          notifyWorkflowEvent('alert', 'Review requested', 'AI flagged questions for review');
+          void notifyWorkflowEvent('alert', 'Review requested', 'AI flagged questions for review');
         } else if (execEntry?.collaborating) {
           set({
             workflowExecutionStates: {
@@ -199,7 +199,7 @@ export function createHookEventHandler(deps: HookEventHandlerDeps) {
       stopWorkflow(runningNodeId);
       const message = event.message || 'Workflow notification received';
       useToastStore.getState().addToast(message, 'warning');
-      notifyWorkflowEvent('alert', 'Workflow notification', message);
+      void notifyWorkflowEvent('alert', 'Workflow notification', message);
     }
   };
 }

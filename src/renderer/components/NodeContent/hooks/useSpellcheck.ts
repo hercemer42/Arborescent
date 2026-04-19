@@ -49,7 +49,7 @@ function buildSuggestionItems(
     label: suggestion,
     onClick: () => {
       // Use Electron's replaceMisspelling API for proper spellcheck state handling
-      window.electron.replaceMisspelling(suggestion);
+      void window.electron.replaceMisspelling(suggestion);
     },
   }));
 }

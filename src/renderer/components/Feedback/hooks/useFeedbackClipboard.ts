@@ -44,7 +44,7 @@ export function useFeedbackClipboard(collaboratingNodeId: string | null) {
 
   useEffect(() => {
     const cleanup = window.electron.onClipboardContentDetected((content: string) => {
-      handleIncomingFeedback(content, 'clipboard');
+      void handleIncomingFeedback(content, 'clipboard');
     });
 
     return cleanup;
@@ -80,7 +80,7 @@ export function useFeedbackClipboard(collaboratingNodeId: string | null) {
         `No autonomous collaboration matched for file ${filePath} — falling through to manual panel flow`,
         'FeedbackFileEvent',
       );
-      handleIncomingFeedback(content, 'file');
+      void handleIncomingFeedback(content, 'file');
     });
 
     return cleanup;
@@ -88,7 +88,7 @@ export function useFeedbackClipboard(collaboratingNodeId: string | null) {
 
   useEffect(() => {
     if (collaboratingNodeId && !hasFeedbackContent) {
-      window.electron.startClipboardMonitor();
+      void window.electron.startClipboardMonitor();
     }
 
     return () => {
@@ -97,7 +97,7 @@ export function useFeedbackClipboard(collaboratingNodeId: string | null) {
         s => s.getState().collaboratingNodeId !== null
       );
       if (!anySessionActive) {
-        window.electron.stopClipboardMonitor();
+        void window.electron.stopClipboardMonitor();
       }
     };
   }, [collaboratingNodeId, hasFeedbackContent]);

@@ -56,9 +56,9 @@ const createWindow = async () => {
   createApplicationMenu();
 
   if (MAIN_WINDOW_VITE_DEV_SERVER_URL) {
-    mainWindow.loadURL(MAIN_WINDOW_VITE_DEV_SERVER_URL);
+    void mainWindow.loadURL(MAIN_WINDOW_VITE_DEV_SERVER_URL);
   } else {
-    mainWindow.loadFile(
+    void mainWindow.loadFile(
       path.join(__dirname, `../renderer/${MAIN_WINDOW_VITE_NAME}/index.html`),
     );
   }
@@ -130,8 +130,8 @@ app.on('web-contents-created', (_event, contents) => {
 });
 
 app.on('before-quit', () => {
-  cleanupTerminals();
-  hookServer?.stop();
+  void cleanupTerminals();
+  void hookServer?.stop();
 });
 
 // macOS convention: keep app running until explicit Cmd+Q
@@ -143,6 +143,6 @@ app.on('window-all-closed', () => {
 
 app.on('activate', () => {
   if (BrowserWindow.getAllWindows().length === 0) {
-    createWindow();
+    void createWindow();
   }
 });

@@ -24,7 +24,7 @@ export class FeedbackFileWatcher {
         if (!entry) return;
         if (curr.mtimeMs !== prev.mtimeMs && curr.mtimeMs !== entry.lastMtime) {
           entry.lastMtime = curr.mtimeMs;
-          this.readAndNotify(filePath);
+          void this.readAndNotify(filePath);
         }
       });
 

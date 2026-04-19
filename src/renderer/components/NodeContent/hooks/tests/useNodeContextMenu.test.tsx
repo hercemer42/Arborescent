@@ -79,7 +79,7 @@ describe('useNodeContextMenu', () => {
     vi.useFakeTimers();
     const mockEvent = createMockContextMenuEvent(100, 200);
     await act(async () => {
-      result.current.handleContextMenu(mockEvent);
+      void result.current.handleContextMenu(mockEvent);
       await vi.advanceTimersByTimeAsync(550);
     });
     vi.useRealTimers();
@@ -201,7 +201,7 @@ describe('useNodeContextMenu', () => {
     const mockEvent = createMockContextMenuEvent(100, 200);
 
     await act(async () => {
-      result.current.handleContextMenu(mockEvent);
+      void result.current.handleContextMenu(mockEvent);
       // Advance timers to allow waitForSpellcheckUpdate to timeout
       await vi.advanceTimersByTimeAsync(550);
     });
@@ -217,7 +217,7 @@ describe('useNodeContextMenu', () => {
     const mockEvent = createMockContextMenuEvent(100, 200);
 
     await act(async () => {
-      result.current.handleContextMenu(mockEvent);
+      void result.current.handleContextMenu(mockEvent);
     });
 
     expect(mockClearSelection).toHaveBeenCalled();
@@ -232,7 +232,7 @@ describe('useNodeContextMenu', () => {
     const mockEvent = createMockContextMenuEvent(100, 200);
 
     await act(async () => {
-      result.current.handleContextMenu(mockEvent);
+      void result.current.handleContextMenu(mockEvent);
       await vi.advanceTimersByTimeAsync(550);
     });
 
@@ -448,7 +448,7 @@ describe('useNodeContextMenu', () => {
     async function openContextMenuWithTimers(result: { current: ReturnType<typeof useNodeContextMenu> }) {
       const mockEvent = createMockContextMenuEvent(100, 200);
       await act(async () => {
-        result.current.handleContextMenu(mockEvent);
+        void result.current.handleContextMenu(mockEvent);
         await vi.advanceTimersByTimeAsync(550);
       });
     }

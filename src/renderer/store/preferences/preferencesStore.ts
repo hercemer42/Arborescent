@@ -60,7 +60,7 @@ export const usePreferencesStore = create<PreferencesState>((set, get) => ({
   setTheme: (theme: Theme) => {
     applyTheme(theme);
     set({ theme });
-    storageService.savePreferences(buildPreferences(get()));
+    void storageService.savePreferences(buildPreferences(get()));
   },
 
   setHotkey: (category: string, action: string, key: string) => {
@@ -75,7 +75,7 @@ export const usePreferencesStore = create<PreferencesState>((set, get) => ({
 
     setHotkeyConfig(newHotkeys);
     set({ hotkeys: newHotkeys });
-    storageService.savePreferences(buildPreferences(get()));
+    void storageService.savePreferences(buildPreferences(get()));
   },
 
   resetHotkeys: () => {
@@ -83,7 +83,7 @@ export const usePreferencesStore = create<PreferencesState>((set, get) => ({
 
     resetHotkeyConfig();
     set({ hotkeys: newHotkeys });
-    storageService.savePreferences(buildPreferences(get()));
+    void storageService.savePreferences(buildPreferences(get()));
   },
 
   loadPreferences: async () => {
@@ -110,31 +110,31 @@ export const usePreferencesStore = create<PreferencesState>((set, get) => ({
 
   markWorkflowDeclarationToastSeen: () => {
     set({ hasSeenWorkflowDeclarationToast: true });
-    storageService.savePreferences(buildPreferences(get()));
+    void storageService.savePreferences(buildPreferences(get()));
   },
 
   markHookEventReceived: () => {
     set({ hasReceivedHookEvent: true });
-    storageService.savePreferences(buildPreferences(get()));
+    void storageService.savePreferences(buildPreferences(get()));
   },
 
   markWorkflowLaunched: () => {
     set({ hasLaunchedWorkflow: true });
-    storageService.savePreferences(buildPreferences(get()));
+    void storageService.savePreferences(buildPreferences(get()));
   },
 
   setStepTimeoutMinutes: (minutes: number) => {
     set({ stepTimeoutMinutes: minutes });
-    storageService.savePreferences(buildPreferences(get()));
+    void storageService.savePreferences(buildPreferences(get()));
   },
 
   setDesktopNotifications: (enabled: boolean) => {
     set({ desktopNotifications: enabled });
-    storageService.savePreferences(buildPreferences(get()));
+    void storageService.savePreferences(buildPreferences(get()));
   },
 
   setNotificationSounds: (enabled: boolean) => {
     set({ notificationSounds: enabled });
-    storageService.savePreferences(buildPreferences(get()));
+    void storageService.savePreferences(buildPreferences(get()));
   },
 }));

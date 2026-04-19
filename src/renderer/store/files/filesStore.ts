@@ -54,7 +54,7 @@ export const useFilesStore = create<FilesState>((set, get) => ({
     if (files.some(f => f.path === path)) {
       set({ activeFilePath: path });
       const newState = get();
-      persistSession(newState.files, newState.activeFilePath);
+      void persistSession(newState.files, newState.activeFilePath);
       return;
     }
 
@@ -63,7 +63,7 @@ export const useFilesStore = create<FilesState>((set, get) => ({
       activeFilePath: path,
     });
     const newState = get();
-    persistSession(newState.files, newState.activeFilePath);
+    void persistSession(newState.files, newState.activeFilePath);
   },
 
   closeFile: (path: string) => {
@@ -86,13 +86,13 @@ export const useFilesStore = create<FilesState>((set, get) => ({
       activeFilePath: newActiveFilePath,
     });
     const newState = get();
-    persistSession(newState.files, newState.activeFilePath);
+    void persistSession(newState.files, newState.activeFilePath);
   },
 
   setActiveFile: (path: string) => {
     set({ activeFilePath: path });
     const newState = get();
-    persistSession(newState.files, newState.activeFilePath);
+    void persistSession(newState.files, newState.activeFilePath);
   },
 
   closeActiveFile: () => {
@@ -115,7 +115,7 @@ export const useFilesStore = create<FilesState>((set, get) => ({
       activeFilePath: activeFilePath === oldPath ? newPath : activeFilePath,
     });
     const newState = get();
-    persistSession(newState.files, newState.activeFilePath);
+    void persistSession(newState.files, newState.activeFilePath);
   },
 
   openZoomTab: (sourceFilePath: string, nodeId: string, nodeContent: string) => {
@@ -128,7 +128,7 @@ export const useFilesStore = create<FilesState>((set, get) => ({
     if (existingZoom) {
       set({ activeFilePath: existingZoom.path });
       const newState = get();
-      persistSession(newState.files, newState.activeFilePath);
+      void persistSession(newState.files, newState.activeFilePath);
       return;
     }
 
@@ -165,7 +165,7 @@ export const useFilesStore = create<FilesState>((set, get) => ({
       activeFilePath: zoomPath,
     });
     const newState = get();
-    persistSession(newState.files, newState.activeFilePath);
+    void persistSession(newState.files, newState.activeFilePath);
   },
 
   closeZoomTabsForNode: (nodeId: string) => {
@@ -192,7 +192,7 @@ export const useFilesStore = create<FilesState>((set, get) => ({
       activeFilePath: newActiveFilePath,
     });
     const newState = get();
-    persistSession(newState.files, newState.activeFilePath);
+    void persistSession(newState.files, newState.activeFilePath);
   },
 
   getActiveFile: () => {

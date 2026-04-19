@@ -180,7 +180,7 @@ export function useNodeContextMenu(node: TreeNode) {
       const stepNode = freshState.nodes[position.currentStepId];
       const stepType = stepNode?.metadata.stepType as string | undefined;
       if (stepType === 'autonomous' || stepType === 'checkpoint') {
-        getTerminalId().then(tid => actions.startWorkflow(nodeId, tid));
+        void getTerminalId().then(tid => actions.startWorkflow(nodeId, tid));
       }
     };
 
