@@ -21,11 +21,13 @@ import {
   getAppliedContextIdWithInheritance,
   resolveContextMode,
   getContextDeclarations,
-  getParentIdOrNull,
 } from "../../../utils/nodeHelpers";
 import { usePreferencesStore } from "../../preferences/preferencesStore";
 import { notifyWorkflowEvent } from "../../../services/workflowNotification";
 import { findAllParentsOf, removeNodeFromAllParents } from "../../../utils/treeInvariants";
+import { createStepTimeoutManager, isNodeRunning } from "./workflowStepTimeouts";
+import { createDisruptionReactions } from "./workflowDisruptionReactions";
+import { createHookEventHandler } from "./workflowHookEventHandler";
 
 export type { WorkflowExecutionEntry };
 
@@ -70,47 +72,29 @@ export const createWorkflowExecutionActions = (
 ): WorkflowExecutionActions => {
   const DEFAULT_STEP_TIMEOUT_MINUTES = 15;
   const MAX_RECURSE_ITERATIONS = 50;
-  const stepTimeouts = new Map<string, ReturnType<typeof setTimeout>>();
   const recurseCounters = new Map<string, number>();
   const autonomousCollaborations = new Map<string, { filePath: string; terminalId: string }>();
 
-  function startStepTimeout(nodeId: string): void {
-    clearStepTimeout(nodeId);
-    const timeoutMinutes =
-      usePreferencesStore.getState().stepTimeoutMinutes ??
-      DEFAULT_STEP_TIMEOUT_MINUTES;
-    if (timeoutMinutes <= 0) return;
-    stepTimeouts.set(
-      nodeId,
-      setTimeout(
-        () => {
-          const { workflowExecutionStates } = get();
-          const entry = workflowExecutionStates[nodeId];
-          if (entry?.state !== "running") return;
-          const hasHooks = usePreferencesStore.getState().hasReceivedHookEvent;
-          const message = hasHooks
-            ? "Step is taking longer than expected. Verify your AI tool is running."
-            : "Step is taking longer than expected. Ensure Claude Code hooks are configured for automatic advancement. See docs/workflows.md for setup.";
-          useToastStore.getState().addToast(message, "warning", {
-            actions: [
-              { label: "Dismiss", onClick: () => {} },
-              { label: "Stop", onClick: () => stopWorkflow(nodeId) },
-            ],
-          });
-          notifyWorkflowEvent("alert", "Step timeout", message);
-        },
-        timeoutMinutes * 60 * 1000,
-      ),
-    );
-  }
-
-  function clearStepTimeout(nodeId: string): void {
-    const existing = stepTimeouts.get(nodeId);
-    if (existing) {
-      clearTimeout(existing);
-      stepTimeouts.delete(nodeId);
-    }
-  }
+  // Step-timeout lifecycle lives in its own module so the toast-action
+  // callback (which loops back into stopWorkflow) has an explicit seam.
+  const stepTimeouts = createStepTimeoutManager({
+    getTimeoutMinutes: () =>
+      usePreferencesStore.getState().stepTimeoutMinutes ?? DEFAULT_STEP_TIMEOUT_MINUTES,
+    isStillRunning: (nodeId) => isNodeRunning(get().workflowExecutionStates, nodeId),
+    onTimeout: (nodeId) => {
+      const hasHooks = usePreferencesStore.getState().hasReceivedHookEvent;
+      const message = hasHooks
+        ? "Step is taking longer than expected. Verify your AI tool is running."
+        : "Step is taking longer than expected. Ensure Claude Code hooks are configured for automatic advancement. See docs/workflows.md for setup.";
+      useToastStore.getState().addToast(message, "warning", {
+        actions: [
+          { label: "Dismiss", onClick: () => {} },
+          { label: "Stop", onClick: () => stopWorkflow(nodeId) },
+        ],
+      });
+      notifyWorkflowEvent("alert", "Step timeout", message);
+    },
+  });
 
   function findRunningNodeOnTerminal(terminalId: string): string | null {
     const { workflowExecutionStates } = get();
@@ -176,7 +160,7 @@ export const createWorkflowExecutionActions = (
       },
     });
 
-    startStepTimeout(nodeId);
+    stepTimeouts.start(nodeId);
     sendContentToTerminal(nodeId, terminalId);
     logger.info(
       `Started workflow execution for node ${nodeId} on terminal ${terminalId}`,
@@ -190,7 +174,7 @@ export const createWorkflowExecutionActions = (
     const entry = workflowExecutionStates[nodeId];
     if (!entry || entry.state !== "running") return;
 
-    clearStepTimeout(nodeId);
+    stepTimeouts.clear(nodeId);
     cleanupAutonomousCollaboration(nodeId);
     const updatedStates = { ...workflowExecutionStates };
     delete updatedStates[nodeId];
@@ -228,7 +212,6 @@ export const createWorkflowExecutionActions = (
       return;
     }
 
-    // Set to running on the terminal, then advance to next step
     set({
       workflowExecutionStates: {
         ...workflowExecutionStates,
@@ -273,7 +256,7 @@ export const createWorkflowExecutionActions = (
   }
 
   function completeWorkflow(nodeId: string): void {
-    clearStepTimeout(nodeId);
+    stepTimeouts.clear(nodeId);
     const { workflowExecutionStates, nodes, ancestorRegistry } = get();
     const entry = workflowExecutionStates[nodeId];
     const terminalId = entry?.terminalTabId;
@@ -364,7 +347,7 @@ export const createWorkflowExecutionActions = (
       useToastStore
         .getState()
         .addToast(`Advanced "${nodeName}" to ${stepLabel}`, "info");
-      startStepTimeout(nodeId);
+      stepTimeouts.start(nodeId);
       setTimeout(
         () => sendContentToTerminal(nodeId, entry.terminalTabId),
         1000,
@@ -450,166 +433,15 @@ export const createWorkflowExecutionActions = (
     );
   }
 
-  function handleHookEvent(event: {
-    session_id: string;
-    hook_event_name: string;
-    message?: string;
-  }): void {
-    const { workflowSessionMap } = get();
-    const terminalId = workflowSessionMap[event.session_id];
-    if (!terminalId) {
-      logger.info(
-        `Hook event ${event.hook_event_name} ignored: no terminal mapped for session ${event.session_id}`,
-        "WorkflowExecution",
-      );
-      return;
-    }
-
-    const runningNodeId = findRunningNodeOnTerminal(terminalId);
-    if (!runningNodeId) {
-      logger.info(
-        `Hook event ${event.hook_event_name} ignored: no running node on terminal ${terminalId}`,
-        "WorkflowExecution",
-      );
-      return;
-    }
-
-    logger.info(
-      `Hook event ${event.hook_event_name} for node ${runningNodeId} on terminal ${terminalId}`,
-      "WorkflowExecution",
-    );
-
-    if (event.hook_event_name === "NeedsReview") {
-      const { workflowExecutionStates: currentStates } = get();
-      const currentEntry = currentStates[runningNodeId];
-      if (currentEntry?.state === "running") {
-        set({
-          workflowExecutionStates: {
-            ...currentStates,
-            [runningNodeId]: { ...currentEntry, needsReview: true },
-          },
-        });
-      }
-      return;
-    }
-
-    if (event.hook_event_name === "Stop") {
-      const { nodes, ancestorRegistry } = get();
-      const position = getWorkflowStepPosition(
-        runningNodeId,
-        nodes,
-        ancestorRegistry,
-      );
-      if (!position) {
-        logger.info(
-          `Hook Stop ignored: node ${runningNodeId} has no workflow step position`,
-          "WorkflowExecution",
-        );
-        return;
-      }
-
-      const stepNode = nodes[position.currentStepId];
-      const stepType: StepType =
-        (stepNode?.metadata.stepType as StepType) || "manual";
-      logger.info(
-        `Hook Stop at step ${position.currentStepId} (type=${stepType}) for node ${runningNodeId}`,
-        "WorkflowExecution",
-      );
-
-      if (stepType === "autonomous") {
-        const { workflowExecutionStates: execStates } = get();
-        const execEntry = execStates[runningNodeId];
-        if (execEntry?.needsReview) {
-          clearStepTimeout(runningNodeId);
-          set({
-            workflowExecutionStates: {
-              ...execStates,
-              [runningNodeId]: {
-                ...execEntry,
-                state: "awaiting-validation",
-                needsReview: false,
-              },
-            },
-          });
-          useToastStore
-            .getState()
-            .addToast(
-              "AI flagged questions for review — check the terminal output",
-              "warning",
-              {
-                persistent: true,
-                actions: [{ label: "OK", onClick: () => {} }],
-              },
-            );
-          notifyWorkflowEvent("alert", "Review requested", "AI flagged questions for review");
-        } else if (execEntry?.collaborating) {
-          set({
-            workflowExecutionStates: {
-              ...execStates,
-              [runningNodeId]: {
-                ...execEntry,
-                stopReceived: true,
-              },
-            },
-          });
-          logger.info(
-            `Stop deferred for collaborating node ${runningNodeId} — waiting for feedback`,
-            "WorkflowExecution",
-          );
-        } else {
-          advanceNode(runningNodeId);
-        }
-      } else if (stepType === "checkpoint") {
-        clearStepTimeout(runningNodeId);
-        const { nodes: currentNodes, ancestorRegistry: currentRegistry } =
-          get();
-        const hasNextStep = !!findNextStepTarget(
-          runningNodeId,
-          currentNodes,
-          currentRegistry,
-        );
-
-        if (!hasNextStep) {
-          completeWorkflow(runningNodeId);
-        } else {
-          const { workflowExecutionStates: currentStates } = get();
-          const currentEntry = currentStates[runningNodeId];
-          if (currentEntry) {
-            set({
-              workflowExecutionStates: {
-                ...currentStates,
-                [runningNodeId]: {
-                  ...currentEntry,
-                  state: "awaiting-validation",
-                },
-              },
-            });
-          }
-          const runningNode = currentNodes[runningNodeId];
-          const runningNodeName = runningNode?.content || runningNodeId;
-          const stepNumber = getWorkflowStepNumber(
-            position.currentStepId,
-            currentNodes,
-            currentRegistry,
-          );
-          const stepLabel =
-            stepNumber !== null ? `Step ${stepNumber}` : "Current step";
-          useToastStore
-            .getState()
-            .addToast(
-              `${stepLabel} complete for "${runningNodeName}". Review the output before continuing.`,
-              "info",
-              { persistent: true, actions: [{ label: "OK", onClick: () => {} }] },
-            );
-        }
-      }
-    } else if (event.hook_event_name === "Notification") {
-      stopWorkflow(runningNodeId);
-      const message = event.message || "Workflow notification received";
-      useToastStore.getState().addToast(message, "warning");
-      notifyWorkflowEvent("alert", "Workflow notification", message);
-    }
-  }
+  const handleHookEvent = createHookEventHandler({
+    get,
+    set,
+    findRunningNodeOnTerminal,
+    clearStepTimeout: stepTimeouts.clear,
+    advanceNode,
+    completeWorkflow,
+    stopWorkflow,
+  });
 
   function initializeExecutionState(): void {
     const { workflowExecutionStates } = get();
@@ -646,110 +478,13 @@ export const createWorkflowExecutionActions = (
     );
   }
 
-  function handleTerminalClosed(terminalId: string): void {
-    const { workflowExecutionStates, nodes } = get();
-    const updatedStates = { ...workflowExecutionStates };
-    let changed = false;
-
-    for (const [nodeId, entry] of Object.entries(updatedStates)) {
-      if (entry.terminalTabId === terminalId && entry.state === "running") {
-        delete updatedStates[nodeId];
-        cleanupAutonomousCollaboration(nodeId);
-        const node = nodes[nodeId];
-        const nodeName = node?.content || nodeId;
-        useToastStore
-          .getState()
-          .addToast(`"${nodeName}" stopped — terminal closed`, "warning");
-        changed = true;
-      }
-    }
-
-    if (changed) {
-      set({ workflowExecutionStates: updatedStates });
-    }
-  }
-
-  function handleNodeDeleted(nodeId: string): void {
-    const { workflowExecutionStates } = get();
-    if (!workflowExecutionStates[nodeId]) return;
-
-    cleanupAutonomousCollaboration(nodeId);
-    const updatedStates = { ...workflowExecutionStates };
-    delete updatedStates[nodeId];
-    set({ workflowExecutionStates: updatedStates });
-
-    logger.info(
-      `Cleared execution state for deleted node ${nodeId}`,
-      "WorkflowExecution",
-    );
-  }
-
-  function handleStepDeleted(stepId: string): void {
-    const { workflowExecutionStates, ancestorRegistry } = get();
-    const updatedStates = { ...workflowExecutionStates };
-    let changed = false;
-
-    for (const [nodeId, entry] of Object.entries(updatedStates)) {
-      if (entry.state === "running") {
-        const parentId = getParentIdOrNull(nodeId, ancestorRegistry);
-        if (parentId === stepId) {
-          delete updatedStates[nodeId];
-          changed = true;
-        }
-      }
-    }
-
-    if (changed) {
-      set({ workflowExecutionStates: updatedStates });
-      useToastStore
-        .getState()
-        .addToast("Step removed — affected workflows stopped", "warning");
-    }
-  }
-
-  function handleAllStepsRemoved(workflowId: string): void {
-    const { workflowExecutionStates, ancestorRegistry } = get();
-    const updatedStates = { ...workflowExecutionStates };
-    const completedNodes: string[] = [];
-
-    for (const nodeId of Object.keys(updatedStates)) {
-      const ancestors = ancestorRegistry[nodeId];
-      if (ancestors && ancestors.includes(workflowId)) {
-        delete updatedStates[nodeId];
-        completedNodes.push(nodeId);
-      }
-    }
-
-    if (completedNodes.length > 0) {
-      set({ workflowExecutionStates: updatedStates });
-      const { nodes } = get();
-      for (const nodeId of completedNodes) {
-        const node = nodes[nodeId];
-        const nodeName = node?.content || nodeId;
-        useToastStore
-          .getState()
-          .addToast(`Workflow complete for "${nodeName}"`, "success");
-      }
-      triggerAutosave?.();
-    }
-  }
-
-  function handleNodeMovedManually(nodeId: string): void {
-    const { workflowExecutionStates } = get();
-    const entry = workflowExecutionStates[nodeId];
-    if (!entry) return;
-
-    clearStepTimeout(nodeId);
-    cleanupAutonomousCollaboration(nodeId);
-    const updatedStates = { ...workflowExecutionStates };
-    delete updatedStates[nodeId];
-    set({ workflowExecutionStates: updatedStates });
-
-    logger.info(
-      `Cleared execution state for manually moved node ${nodeId}`,
-      "WorkflowExecution",
-    );
-  }
+  const disruptionReactions = createDisruptionReactions({
+    get,
+    set,
+    cleanupAutonomousCollaboration: (nodeId) => cleanupAutonomousCollaboration(nodeId),
+    clearStepTimeout: stepTimeouts.clear,
+    triggerAutosave,
+  });
 
   function setCollaboratingFlag(nodeId: string): void {
     const { workflowExecutionStates } = get();
@@ -879,11 +614,7 @@ export const createWorkflowExecutionActions = (
     registerSession,
     handleHookEvent,
     initializeExecutionState,
-    handleTerminalClosed,
-    handleNodeDeleted,
-    handleStepDeleted,
-    handleAllStepsRemoved,
-    handleNodeMovedManually,
+    ...disruptionReactions,
     handleAutonomousFeedback,
     findNodeIdByFeedbackFilePath,
   };
