@@ -61,6 +61,7 @@ type StoreState = {
   ancestorRegistry: AncestorRegistry;
   workflowExecutionStates: Record<string, WorkflowExecutionEntry>;
   workflowSessionMap: Record<string, string>;
+  activeNodeId?: string | null;
 };
 
 
@@ -661,6 +662,12 @@ export const createWorkflowExecutionActions = (
       ? parsed.rootNodeIds
       : parsed.rootNodeId;
 
+    // AcceptFeedbackCommand sets activeNodeId to the accepted root, which
+    // via useNodeCursor calls .focus() and triggers a browser scrollIntoView.
+    // Capture the user's prior focus so it can be restored after the command
+    // when the user was not already watching this specific running node.
+    const priorActiveNodeId = get().activeNodeId ?? null;
+
     if (executeCommand) {
       const getStateForCommand = () => ({
         ...get(),
@@ -677,6 +684,10 @@ export const createWorkflowExecutionActions = (
           archiveConfig,
         ),
       );
+
+      if (priorActiveNodeId !== nodeId) {
+        set({ activeNodeId: priorActiveNodeId });
+      }
     }
 
     cleanupAutonomousCollaboration(nodeId);
