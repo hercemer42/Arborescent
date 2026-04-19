@@ -1,6 +1,7 @@
 import { TreeNode } from '../../../../shared/types';
 import { ContextMenuItem } from '../../ui/ContextMenu';
 import { AncestorRegistry } from '../../../utils/ancestry';
+import { getParentIdOrNull } from '../../../utils/nodeHelpers';
 import {
   isChildOfWorkflowStep,
   findNextStepTarget,
@@ -25,8 +26,7 @@ export function buildWorkflowSubmenu({
   onRemoveFromWorkflow,
   onConfigureStep,
 }: BuildWorkflowSubmenuParams): ContextMenuItem | null {
-  const ancestors = ancestorRegistry[node.id] || [];
-  const parentId = ancestors[ancestors.length - 1];
+  const parentId = getParentIdOrNull(node.id, ancestorRegistry);
   const parent = parentId ? nodes[parentId] : null;
   const isWorkflow = node.metadata.isWorkflow === true;
   const isWorkflowStep = parent?.metadata.isWorkflow === true && !isWorkflow;

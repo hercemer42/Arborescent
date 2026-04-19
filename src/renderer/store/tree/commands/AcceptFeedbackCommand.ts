@@ -2,7 +2,13 @@ import { BaseCommand } from './Command';
 import { TreeNode } from '../../../../shared/types';
 import { addNodesToRegistry, buildAncestorRegistry, AncestorRegistry } from '../../../utils/ancestry';
 import { getAllDescendants, captureNodePosition } from '../../../utils/nodeHelpers';
-import { DEFAULT_BLUEPRINT_ICON } from '../actions/blueprintActions';
+import { getEffectiveBlueprintIcon } from '../../../utils/blueprintInheritance';
+import {
+  moveNodeToArchive,
+  createArchiveSideLinks,
+  createReplacementSideLinks,
+  updateRegistryForRelationLinks,
+} from './acceptFeedbackArchive';
 import { v4 as uuidv4 } from 'uuid';
 
 export interface ArchiveConfig {
@@ -83,31 +89,6 @@ export class AcceptFeedbackCommand extends BaseCommand {
       parentChildren: parent ? [...parent.children] : [],
       archiveDestinationChildren: archiveDest ? [...archiveDest.children] : undefined,
     };
-  }
-
-  private getEffectiveBlueprintIcon(
-    node: TreeNode,
-    state: ReturnType<typeof this.getState>
-  ): { icon: string; color?: string } {
-    if (node.metadata.blueprintIcon) {
-      return {
-        icon: node.metadata.blueprintIcon as string,
-        color: node.metadata.blueprintColor as string | undefined,
-      };
-    }
-
-    const ancestors = state.ancestorRegistry[node.id] || [];
-    for (let i = ancestors.length - 1; i >= 0; i--) {
-      const ancestor = state.nodes[ancestors[i]];
-      if (ancestor?.metadata.blueprintIcon) {
-        return {
-          icon: ancestor.metadata.blueprintIcon as string,
-          color: ancestor.metadata.blueprintColor as string | undefined,
-        };
-      }
-    }
-
-    return { icon: DEFAULT_BLUEPRINT_ICON };
   }
 
   private getIdMap(preserveRootId: boolean): Record<string, string> {
@@ -192,7 +173,7 @@ export class AcceptFeedbackCommand extends BaseCommand {
     }
 
     if (state.blueprintModeEnabled || collaboratingNode.metadata.isBlueprint) {
-      const effectiveIcon = this.getEffectiveBlueprintIcon(collaboratingNode, state);
+      const effectiveIcon = getEffectiveBlueprintIcon(collaboratingNode, state.nodes, state.ancestorRegistry);
       updatedNewNodesMap = this.applyBlueprintMetadata(updatedNewNodesMap, [this.collaboratingNodeId], effectiveIcon);
     }
 
@@ -254,7 +235,7 @@ export class AcceptFeedbackCommand extends BaseCommand {
     }
 
     if (state.blueprintModeEnabled || collaboratingNode.metadata.isBlueprint) {
-      const effectiveIcon = this.getEffectiveBlueprintIcon(collaboratingNode, state);
+      const effectiveIcon = getEffectiveBlueprintIcon(collaboratingNode, state.nodes, state.ancestorRegistry);
       const mappedRootIds = this.newRootNodeIds.map(id => idMap[id]);
       updatedNewNodesMap = this.applyBlueprintMetadata(updatedNewNodesMap, mappedRootIds, effectiveIcon);
     }
@@ -310,119 +291,6 @@ export class AcceptFeedbackCommand extends BaseCommand {
     });
   }
 
-  private moveNodeToArchive(
-    updatedNodes: Record<string, TreeNode>,
-    updatedRegistry: AncestorRegistry,
-    archiveDestinationId: string
-  ): AncestorRegistry {
-    updatedNodes[this.collaboratingNodeId] = { ...this.snapshot!.collaboratingNode };
-    this.snapshot!.descendants.forEach((node, nodeId) => {
-      updatedNodes[nodeId] = { ...node };
-    });
-
-    updatedNodes[archiveDestinationId] = {
-      ...updatedNodes[archiveDestinationId],
-      children: [this.collaboratingNodeId, ...updatedNodes[archiveDestinationId].children],
-    };
-
-    return addNodesToRegistry(
-      updatedRegistry,
-      [this.collaboratingNodeId, ...Array.from(this.snapshot!.descendants.keys())],
-      archiveDestinationId,
-      updatedNodes
-    );
-  }
-
-  private createArchiveSideLinks(
-    updatedNodes: Record<string, TreeNode>,
-    topLevelReplacementIds: string[],
-    linkName: string
-  ): void {
-    const containerId = uuidv4();
-    const containerNode: TreeNode = {
-      id: containerId,
-      content: linkName,
-      children: [],
-      metadata: { expanded: false },
-    };
-
-    for (const replacementId of topLevelReplacementIds) {
-      const hyperlinkId = uuidv4();
-      const replacementNode = updatedNodes[replacementId];
-      updatedNodes[hyperlinkId] = {
-        id: hyperlinkId,
-        content: replacementNode?.content || '',
-        children: [],
-        metadata: { isHyperlink: true, linkedNodeId: replacementId },
-      };
-      containerNode.children.push(hyperlinkId);
-      this.relationLinkNodeIds.push(hyperlinkId);
-    }
-
-    updatedNodes[containerId] = containerNode;
-    this.relationLinkNodeIds.push(containerId);
-
-    const archivedNode = updatedNodes[this.collaboratingNodeId];
-    updatedNodes[this.collaboratingNodeId] = {
-      ...archivedNode,
-      children: [containerId, ...archivedNode.children],
-    };
-  }
-
-  private createReplacementSideLinks(
-    updatedNodes: Record<string, TreeNode>,
-    topLevelReplacementIds: string[],
-    linkName: string
-  ): void {
-    const archivedContent = updatedNodes[this.collaboratingNodeId]?.content || '';
-
-    for (const replacementId of topLevelReplacementIds) {
-      const containerId = uuidv4();
-      const hyperlinkId = uuidv4();
-
-      updatedNodes[containerId] = {
-        id: containerId,
-        content: linkName,
-        children: [hyperlinkId],
-        metadata: { expanded: false },
-      };
-
-      updatedNodes[hyperlinkId] = {
-        id: hyperlinkId,
-        content: archivedContent,
-        children: [],
-        metadata: { isHyperlink: true, linkedNodeId: this.collaboratingNodeId },
-      };
-
-      this.relationLinkNodeIds.push(containerId, hyperlinkId);
-
-      const replacement = updatedNodes[replacementId];
-      if (replacement) {
-        updatedNodes[replacementId] = {
-          ...replacement,
-          children: [containerId, ...replacement.children],
-        };
-      }
-    }
-  }
-
-  private updateRegistryForRelationLinks(
-    updatedNodes: Record<string, TreeNode>,
-    updatedRegistry: AncestorRegistry
-  ): AncestorRegistry {
-    let registry = updatedRegistry;
-    for (const nodeId of this.relationLinkNodeIds) {
-      if (!updatedNodes[nodeId]) continue;
-      const parentId = Object.keys(updatedNodes).find(id =>
-        updatedNodes[id].children.includes(nodeId)
-      );
-      if (parentId) {
-        registry = addNodesToRegistry(registry, [nodeId], parentId, updatedNodes);
-      }
-    }
-    return registry;
-  }
-
   private executeArchive(): void {
     if (!this.archiveConfig || !this.snapshot) return;
 
@@ -434,16 +302,39 @@ export class AcceptFeedbackCommand extends BaseCommand {
     const updatedNodes = { ...state.nodes };
     let updatedRegistry = { ...state.ancestorRegistry };
 
-    updatedRegistry = this.moveNodeToArchive(updatedNodes, updatedRegistry, archiveDestinationId);
+    updatedRegistry = moveNodeToArchive(
+      updatedNodes,
+      updatedRegistry,
+      archiveDestinationId,
+      this.collaboratingNodeId,
+      this.snapshot.collaboratingNode,
+      this.snapshot.descendants
+    );
 
     const topLevelReplacementIds = this.createdNodeIds.filter(id => {
       const parentNode = updatedNodes[this.snapshot!.parentId];
       return parentNode?.children.includes(id);
     });
 
-    this.createArchiveSideLinks(updatedNodes, topLevelReplacementIds, archiveSideLinkName);
-    this.createReplacementSideLinks(updatedNodes, topLevelReplacementIds, replacementSideLinkName);
-    updatedRegistry = this.updateRegistryForRelationLinks(updatedNodes, updatedRegistry);
+    const archiveCreated = createArchiveSideLinks(
+      updatedNodes,
+      topLevelReplacementIds,
+      archiveSideLinkName,
+      this.collaboratingNodeId
+    );
+    const replacementCreated = createReplacementSideLinks(
+      updatedNodes,
+      topLevelReplacementIds,
+      replacementSideLinkName,
+      this.collaboratingNodeId
+    );
+    this.relationLinkNodeIds.push(...archiveCreated, ...replacementCreated);
+
+    updatedRegistry = updateRegistryForRelationLinks(
+      updatedNodes,
+      updatedRegistry,
+      this.relationLinkNodeIds
+    );
 
     this.setState({
       nodes: updatedNodes,

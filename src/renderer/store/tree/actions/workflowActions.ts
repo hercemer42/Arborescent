@@ -1,5 +1,5 @@
 import { TreeNode } from '../../../../shared/types';
-import { updateNodeMetadata } from '../../../utils/nodeHelpers';
+import { updateNodeMetadata, getParentIdOrNull } from '../../../utils/nodeHelpers';
 import { logger } from '../../../services/logger';
 import { useToastStore } from '../../toast/toastStore';
 import { usePreferencesStore } from '../../preferences/preferencesStore';
@@ -47,8 +47,7 @@ export const createWorkflowActions = (
     const node = nodes[nodeId];
     if (!node) return;
 
-    const ancestors = ancestorRegistry[nodeId] || [];
-    const parentId = ancestors[ancestors.length - 1];
+    const parentId = getParentIdOrNull(nodeId, ancestorRegistry);
     if (parentId) {
       const parent = nodes[parentId];
       if (!parent || parent.metadata.isBlueprint !== true) return;

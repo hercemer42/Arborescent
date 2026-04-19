@@ -1,5 +1,6 @@
 import { TreeNode } from '../../shared/types';
 import { AncestorRegistry } from '../utils/ancestry';
+import { getParentIdOrNull } from './nodeHelpers';
 
 export function isWorkflowNode(nodeId: string, nodes: Record<string, TreeNode>): boolean {
   const node = nodes[nodeId];
@@ -14,8 +15,7 @@ export function getWorkflowStepNumber(
   const node = nodes[nodeId];
   if (node?.metadata.isWorkflow === true) return null;
 
-  const ancestors = ancestorRegistry[nodeId] || [];
-  const parentId = ancestors[ancestors.length - 1];
+  const parentId = getParentIdOrNull(nodeId, ancestorRegistry);
   if (!parentId) return null;
 
   const parent = nodes[parentId];
@@ -83,15 +83,13 @@ export function getWorkflowStepPosition(
   nodes: Record<string, TreeNode>,
   ancestorRegistry: AncestorRegistry
 ): { workflowNodeId: string; currentStepId: string; currentStepIndex: number; totalSteps: number } | null {
-  const ancestors = ancestorRegistry[nodeId] || [];
-  const parentId = ancestors[ancestors.length - 1];
+  const parentId = getParentIdOrNull(nodeId, ancestorRegistry);
   if (!parentId) return null;
 
   const parent = nodes[parentId];
   if (parent?.metadata.isWorkflow === true) return null;
 
-  const parentAncestors = ancestorRegistry[parentId] || [];
-  const grandparentId = parentAncestors[parentAncestors.length - 1];
+  const grandparentId = getParentIdOrNull(parentId, ancestorRegistry);
   if (!grandparentId) return null;
 
   const grandparent = nodes[grandparentId];
@@ -165,8 +163,7 @@ function findNextStepFrom(
     return siblingId;
   }
 
-  const ancestors = ancestorRegistry[workflowId] || [];
-  const parentId = ancestors[ancestors.length - 1];
+  const parentId = getParentIdOrNull(workflowId, ancestorRegistry);
   if (!parentId) return null;
 
   const parent = nodes[parentId];
@@ -232,8 +229,7 @@ function findPreviousStepFrom(
     return siblingId;
   }
 
-  const ancestors = ancestorRegistry[workflowId] || [];
-  const parentId = ancestors[ancestors.length - 1];
+  const parentId = getParentIdOrNull(workflowId, ancestorRegistry);
   if (!parentId) return null;
 
   const parent = nodes[parentId];
@@ -300,8 +296,7 @@ export function findFirstAutonomousStepInChain(
   nodes: Record<string, TreeNode>,
   ancestorRegistry: AncestorRegistry
 ): string | null {
-  const ancestors = ancestorRegistry[stepId] || [];
-  const workflowId = ancestors[ancestors.length - 1];
+  const workflowId = getParentIdOrNull(stepId, ancestorRegistry);
   if (!workflowId) return null;
 
   const workflow = nodes[workflowId];

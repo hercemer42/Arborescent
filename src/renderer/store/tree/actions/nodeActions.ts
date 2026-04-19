@@ -1,5 +1,5 @@
 import { TreeNode, NodeStatus } from '../../../../shared/types';
-import { updateNodeMetadata } from '../../../utils/nodeHelpers';
+import { updateNodeMetadata, getParentId } from '../../../utils/nodeHelpers';
 import { AncestorRegistry } from '../../../utils/ancestry';
 import { v4 as uuidv4 } from 'uuid';
 import { ContentEditCommand } from '../commands/ContentEditCommand';
@@ -185,8 +185,7 @@ export const createNodeActions = (
       parentId = currentNodeId;
       position = 0;
     } else {
-      const ancestors = ancestorRegistry[currentNodeId] || [];
-      parentId = ancestors[ancestors.length - 1] || rootNodeId;
+      parentId = getParentId(currentNodeId, ancestorRegistry, rootNodeId);
       const parent = nodes[parentId];
       if (!parent) return;
       position = parent.children.indexOf(currentNodeId) + 1;
@@ -223,8 +222,7 @@ export const createNodeActions = (
 
     const newNodeId = generateId();
 
-    const ancestors = ancestorRegistry[currentNodeId] || [];
-    const parentId = ancestors[ancestors.length - 1] || rootNodeId;
+    const parentId = getParentId(currentNodeId, ancestorRegistry, rootNodeId);
     const parent = nodes[parentId];
     if (!parent) return;
     const position = parent.children.indexOf(currentNodeId);

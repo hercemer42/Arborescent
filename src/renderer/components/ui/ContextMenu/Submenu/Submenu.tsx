@@ -40,9 +40,9 @@ export function Submenu({ items, onClose, emptyMessage = 'No items available' }:
   return (
     <div ref={submenuRef} className={classNames}>
       {items.map((item, index) => {
-        // Handle separator items
-        if (item.label === '-') {
-          return <div key={index} className="context-menu-separator" />;
+        // Handle separator items (either explicit flag or legacy '-' label)
+        if (item.separator || item.label === '-') {
+          return <div key={index} className="context-menu-separator" role="separator" aria-orientation="horizontal" />;
         }
 
         return (

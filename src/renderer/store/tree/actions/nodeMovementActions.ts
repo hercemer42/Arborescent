@@ -1,5 +1,6 @@
 import { TreeNode } from '../../../../shared/types';
 import { AncestorRegistry } from '../../../utils/ancestry';
+import { getParentId } from '../../../utils/nodeHelpers';
 import { VisualEffectsActions } from './visualEffectsActions';
 import { NavigationActions } from './navigationActions';
 import { MoveNodeCommand } from '../commands/MoveNodeCommand';
@@ -164,7 +165,7 @@ function moveNodeVertically(
   if (!node) return;
 
   const ancestors = ancestorRegistry[nodeId] || [];
-  const parentId = ancestors[ancestors.length - 1] || rootNodeId;
+  const parentId = getParentId(nodeId, ancestorRegistry, rootNodeId);
   const parent = nodes[parentId];
   if (!parent) return;
 
@@ -242,8 +243,7 @@ export const createNodeMovementActions = (
       throw new Error('Command system not initialized - cannot move node with undo/redo support');
     }
 
-    const ancestors = state.ancestorRegistry[nodeId] || [];
-    const currentParentId = ancestors[ancestors.length - 1] || state.rootNodeId;
+    const currentParentId = getParentId(nodeId, state.ancestorRegistry, state.rootNodeId);
 
     const command = new MoveNodeCommand(
       nodeId,
@@ -274,8 +274,7 @@ export const createNodeMovementActions = (
     const node = nodes[nodeId];
     if (!node) return;
 
-    const ancestors = ancestorRegistry[nodeId] || [];
-    const currentParentId = ancestors[ancestors.length - 1] || rootNodeId;
+    const currentParentId = getParentId(nodeId, ancestorRegistry, rootNodeId);
     const currentParent = nodes[currentParentId];
     if (!currentParent) return;
 

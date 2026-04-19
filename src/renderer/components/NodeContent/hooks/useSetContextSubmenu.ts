@@ -14,7 +14,7 @@ interface BuildSetContextSubmenuParams {
   onSetAppliedContext: (contextId: string | null) => void;
 }
 
-const SEPARATOR: ContextMenuItem = { label: '-', onClick: () => {} };
+const SEPARATOR: ContextMenuItem = { separator: true };
 
 export function buildSetContextSubmenu({
   node,

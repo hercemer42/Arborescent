@@ -1,4 +1,5 @@
 import { TreeNode } from '../../shared/types';
+import { logger } from '../services/logger';
 
 export type AncestorRegistry = Record<string, string[]>;
 
@@ -123,13 +124,13 @@ function validateAncestorRegistry(
 
   for (const key of freshKeys) {
     if (!registryKeys.has(key)) {
-      console.error(`[AncestorRegistry] Missing node in registry: ${key}`);
+      logger.warn(`Missing node in registry: ${key}`, 'AncestorRegistry');
     }
   }
 
   for (const key of registryKeys) {
     if (!freshKeys.has(key)) {
-      console.error(`[AncestorRegistry] Stale node in registry: ${key}`);
+      logger.warn(`Stale node in registry: ${key}`, 'AncestorRegistry');
     }
   }
 
@@ -139,10 +140,9 @@ function validateAncestorRegistry(
 
     if (ancestors.length !== currentAncestors.length ||
         !ancestors.every((a, i) => a === currentAncestors[i])) {
-      console.error(
-        `[AncestorRegistry] Ancestor mismatch for ${nodeId}:`,
-        `expected [${ancestors.join(', ')}]`,
-        `got [${currentAncestors.join(', ')}]`
+      logger.warn(
+        `Ancestor mismatch for ${nodeId}: expected [${ancestors.join(', ')}] got [${currentAncestors.join(', ')}]`,
+        'AncestorRegistry'
       );
     }
   }
@@ -166,4 +166,35 @@ export function isDescendant(
 ): boolean {
   if (!targetId) return false;
   return ancestorRegistry[targetId]?.includes(parentId) ?? false;
+}
+
+export function getAncestorsClosestFirst(
+  nodeId: string,
+  ancestorRegistry: AncestorRegistry
+): string[] {
+  const ancestors = ancestorRegistry[nodeId] || [];
+  return ancestors.slice().reverse();
+}
+
+/**
+ * Walk ancestors closest-first. For each ancestor, call `predicate`; the
+ * first non-undefined result wins. Returns undefined if no ancestor matches.
+ *
+ * Centralized so callers don't re-inline the reverse-index loop.
+ */
+export function findClosestAncestor<T>(
+  nodeId: string,
+  nodes: Record<string, TreeNode>,
+  ancestorRegistry: AncestorRegistry,
+  predicate: (ancestor: TreeNode) => T | undefined
+): T | undefined {
+  for (const ancestorId of getAncestorsClosestFirst(nodeId, ancestorRegistry)) {
+    const ancestor = nodes[ancestorId];
+    if (!ancestor) continue;
+    const result = predicate(ancestor);
+    if (result !== undefined) {
+      return result;
+    }
+  }
+  return undefined;
 }

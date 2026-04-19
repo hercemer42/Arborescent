@@ -1,9 +1,11 @@
 import { ipcMain } from 'electron';
 import { promises as fs } from 'node:fs';
 import { logger } from '../services/logger';
+import { assertNonEmptyPath } from './pathValidation';
 
 export function registerFileHandlers(): void {
   ipcMain.handle('read-file', async (_, filePath: string) => {
+    assertNonEmptyPath(filePath, 'read-file');
     try {
       const content = await fs.readFile(filePath, 'utf-8');
       logger.info(`File read: ${filePath}`, 'IPC');
@@ -16,6 +18,7 @@ export function registerFileHandlers(): void {
   });
 
   ipcMain.handle('write-file', async (_, filePath: string, content: string) => {
+    assertNonEmptyPath(filePath, 'write-file');
     try {
       await fs.writeFile(filePath, content, 'utf-8');
       logger.info(`File written: ${filePath}`, 'IPC');

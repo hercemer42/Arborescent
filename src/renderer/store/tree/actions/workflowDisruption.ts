@@ -1,4 +1,5 @@
 import type { TreeNode } from '@shared/types';
+import { getParentId } from '../../../utils/nodeHelpers';
 
 type TreeState = {
   nodes: Record<string, TreeNode>;
@@ -20,8 +21,7 @@ export function captureStepDeletions(
 ): StepDeletion[] {
   const deletions: StepDeletion[] = [];
   for (const id of nodeIds) {
-    const ancestors = state.ancestorRegistry[id] || [];
-    const parentId = ancestors[ancestors.length - 1] || state.rootNodeId;
+    const parentId = getParentId(id, state.ancestorRegistry, state.rootNodeId);
     const parent = state.nodes[parentId];
     if (parent?.metadata.isWorkflow === true) {
       deletions.push({ stepId: id, workflowId: parentId });

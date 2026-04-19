@@ -15,6 +15,9 @@
     "plugin:import/typescript"
   ],
   "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
   "settings": {
     "react": {
       "version": "detect"
@@ -31,6 +34,9 @@
   },
   "rules": {
     "react/react-in-jsx-scope": "off",
-    "react/no-unknown-property": ["error", { "ignore": ["partition"] }]
+    "react/no-unknown-property": ["error", { "ignore": ["partition"] }],
+    "@typescript-eslint/no-floating-promises": "warn",
+    "@typescript-eslint/no-misused-promises": ["error", { "checksVoidReturn": false }],
+    "import/no-cycle": ["warn", { "maxDepth": 10 }]
   }
 }

@@ -53,8 +53,8 @@ export function ContextMenu({ x, y, items, onClose }: ContextMenuProps) {
       }}
     >
       {items.map((item, index) => (
-        item.separator ? (
-          <div key={index} className="context-menu-separator" />
+        item.separator || item.label === '-' ? (
+          <div key={index} className="context-menu-separator" role="separator" aria-orientation="horizontal" />
         ) : (
           <div
             key={index}

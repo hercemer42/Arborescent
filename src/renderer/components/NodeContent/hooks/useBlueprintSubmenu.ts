@@ -1,6 +1,6 @@
 import { TreeNode } from '../../../../shared/types';
 import { ContextMenuItem } from '../../ui/ContextMenu';
-import { getIsContextChild } from '../../../utils/nodeHelpers';
+import { getIsContextChild, getParentIdOrNull } from '../../../utils/nodeHelpers';
 import { AncestorRegistry } from '../../../utils/ancestry';
 import { ContextMode } from '../../../store/tree/treeStore';
 
@@ -30,7 +30,7 @@ function hasDescendantBlueprints(nodeId: string, nodes: Record<string, TreeNode>
   return false;
 }
 
-const SEPARATOR: ContextMenuItem = { label: '-', onClick: () => {} };
+const SEPARATOR: ContextMenuItem = { separator: true };
 
 export function buildBlueprintSubmenu({
   node,
@@ -54,7 +54,7 @@ export function buildBlueprintSubmenu({
 
   // Check if parent is a blueprint (required for declaring as context)
   const ancestors = ancestorRegistry[node.id] || [];
-  const parentId = ancestors[ancestors.length - 1];
+  const parentId = getParentIdOrNull(node.id, ancestorRegistry);
   const parent = parentId ? nodes[parentId] : null;
   const canDeclareAsContext = parent?.metadata.isBlueprint === true && !isContextDeclaration;
 

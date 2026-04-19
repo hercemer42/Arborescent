@@ -10,6 +10,12 @@ import { join } from 'node:path';
 
 const config: ForgeConfig = {
   packagerConfig: {
+    // asar is disabled because node-pty is a native module that must be
+    // loadable from the filesystem at runtime; OnlyLoadAppFromAsar (Fuse
+    // below) is correspondingly false. The postPackage hook copies
+    // node-pty into the packaged app because prune strips it otherwise
+    // (Forge prunes devDependencies and their transitive production
+    // deps when prune is true — we keep it false and copy explicitly).
     asar: false,
     prune: false,
     executableName: 'arborescent',

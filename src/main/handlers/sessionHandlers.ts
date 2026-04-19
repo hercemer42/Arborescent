@@ -1,44 +1,30 @@
 import { ipcMain } from 'electron';
 import { saveJsonFile, loadJsonFile } from '../services/persistenceService';
 
+interface SessionSpec {
+  channelSuffix: string;
+  file: string;
+  label: string;
+}
+
+// Each spec wires two IPC channels: `save-<channelSuffix>` and
+// `get-<channelSuffix>`. Keep the suffix aligned with existing
+// preload/global.d.ts channel names — it's a wire contract.
+const SESSIONS: SessionSpec[] = [
+  { channelSuffix: 'session', file: 'session.json', label: 'Session' },
+  { channelSuffix: 'browser-session', file: 'browser-session.json', label: 'Browser session' },
+  { channelSuffix: 'panel-session', file: 'panel-session.json', label: 'Panel session' },
+  { channelSuffix: 'terminal-session', file: 'terminal-session.json', label: 'Terminal session' },
+  { channelSuffix: 'temp-files-metadata', file: 'temp-files-metadata.json', label: 'Temp files metadata' },
+];
+
 export function registerSessionHandlers(): void {
-  ipcMain.handle('save-session', async (_, sessionData: string) => {
-    await saveJsonFile('session.json', sessionData, 'Session');
-  });
-
-  ipcMain.handle('get-session', async () => {
-    return await loadJsonFile('session.json', 'Session');
-  });
-
-  ipcMain.handle('save-browser-session', async (_, sessionData: string) => {
-    await saveJsonFile('browser-session.json', sessionData, 'Browser session');
-  });
-
-  ipcMain.handle('get-browser-session', async () => {
-    return await loadJsonFile('browser-session.json', 'Browser session');
-  });
-
-  ipcMain.handle('save-panel-session', async (_, sessionData: string) => {
-    await saveJsonFile('panel-session.json', sessionData, 'Panel session');
-  });
-
-  ipcMain.handle('get-panel-session', async () => {
-    return await loadJsonFile('panel-session.json', 'Panel session');
-  });
-
-  ipcMain.handle('save-terminal-session', async (_, sessionData: string) => {
-    await saveJsonFile('terminal-session.json', sessionData, 'Terminal session');
-  });
-
-  ipcMain.handle('get-terminal-session', async () => {
-    return await loadJsonFile('terminal-session.json', 'Terminal session');
-  });
-
-  ipcMain.handle('save-temp-files-metadata', async (_, metadataJson: string) => {
-    await saveJsonFile('temp-files-metadata.json', metadataJson, 'Temp files metadata');
-  });
-
-  ipcMain.handle('get-temp-files-metadata', async () => {
-    return await loadJsonFile('temp-files-metadata.json', 'Temp files metadata');
-  });
+  for (const { channelSuffix, file, label } of SESSIONS) {
+    ipcMain.handle(`save-${channelSuffix}`, async (_, data: string) => {
+      await saveJsonFile(file, data, label);
+    });
+    ipcMain.handle(`get-${channelSuffix}`, async () => {
+      return await loadJsonFile(file, label);
+    });
+  }
 }

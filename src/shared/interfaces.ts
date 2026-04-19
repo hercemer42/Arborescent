@@ -7,11 +7,11 @@ export interface SessionState {
 
 export type Theme = 'light' | 'dark';
 
+export type HotkeyMap = Record<string, Record<string, string>>;
+
 export interface UserPreferences {
   theme: Theme;
-  // Hotkeys stored as generic JSON object to avoid coupling to HotkeyConfig type
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  hotkeys?: any;
+  hotkeys?: HotkeyMap;
   hasSeenWorkflowDeclarationToast?: boolean;
   hasReceivedHookEvent?: boolean;
   hasLaunchedWorkflow?: boolean;

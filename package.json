@@ -13,8 +13,8 @@
     "lint": "eslint --ext .ts,.tsx .",
     "type-check": "tsc --noEmit",
     "test": "vitest",
-    "test:unit": "vitest --testPathPattern=unit",
-    "test:integration": "vitest --testPathPattern=integration",
+    "test:unit": "vitest run --exclude 'src/renderer/test/integration/**'",
+    "test:integration": "vitest run src/renderer/test/integration",
     "test:ui": "vitest --ui",
     "test:run": "vitest run",
     "test:coverage": "vitest run --coverage"
