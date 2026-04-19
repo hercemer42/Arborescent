@@ -44,10 +44,7 @@ export const createContextActions = (
   executeCommand?: (command: Command) => void
 ): ContextActions => {
   function refreshContextDeclarations(): void {
-    const { nodes } = get();
-    setTimeout(() => {
-      set({ contextDeclarations: buildContextDeclarations(nodes) });
-    }, 0);
+    set({ contextDeclarations: buildContextDeclarations(get().nodes) });
   }
 
   function declareAsContext(nodeId: string, icon?: string, color?: string, mode?: ContextMode): void {

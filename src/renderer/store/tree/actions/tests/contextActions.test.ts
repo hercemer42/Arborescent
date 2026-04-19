@@ -385,4 +385,65 @@ describe('contextActions', () => {
     });
   });
 
+  describe('contextDeclarations refresh is synchronous', () => {
+    it('declareAsContext synchronously adds the new context to state.contextDeclarations', () => {
+      expect(state.contextDeclarations).toEqual([]);
+
+      actions.declareAsContext('node-1', 'star');
+
+      const ids = state.contextDeclarations.map(c => c.nodeId);
+      expect(ids).toContain('node-1');
+    });
+
+    it('the synchronously-added context exposes content, icon, and mode', () => {
+      actions.declareAsContext('node-2', 'zap', undefined, 'execute');
+
+      const entry = state.contextDeclarations.find(c => c.nodeId === 'node-2');
+      expect(entry).toBeDefined();
+      expect(entry?.content).toBe('Task 2');
+      expect(entry?.icon).toBe('zap');
+      expect(entry?.mode).toBe('execute');
+    });
+
+    it('removeContextDeclaration synchronously removes the entry from state.contextDeclarations', () => {
+      actions.declareAsContext('node-1', 'star');
+      expect(state.contextDeclarations.map(c => c.nodeId)).toContain('node-1');
+
+      actions.removeContextDeclaration('node-1');
+
+      expect(state.contextDeclarations.map(c => c.nodeId)).not.toContain('node-1');
+    });
+
+    it('two back-to-back declarations both appear in state.contextDeclarations without any wait', () => {
+      actions.declareAsContext('node-1', 'star');
+      actions.declareAsContext('node-2', 'flag');
+
+      const ids = state.contextDeclarations.map(c => c.nodeId);
+      expect(ids).toContain('node-1');
+      expect(ids).toContain('node-2');
+    });
+
+    it('refreshes from the post-update nodes snapshot, not the pre-update one', () => {
+      actions.declareAsContext('node-1', 'star');
+      const ids = state.contextDeclarations.map(c => c.nodeId);
+
+      // The snapshot used to build contextDeclarations must include the just-declared node
+      // (regression guard for the latent stale-snapshot bug where get() ran before the deferred set)
+      expect(ids).toEqual(['node-1']);
+    });
+
+    it('declaring the same node twice is idempotent in state.contextDeclarations', () => {
+      actions.declareAsContext('node-1', 'star');
+      actions.declareAsContext('node-1', 'star');
+
+      const matches = state.contextDeclarations.filter(c => c.nodeId === 'node-1');
+      expect(matches).toHaveLength(1);
+    });
+
+    it('removing a node that was never declared leaves contextDeclarations unchanged', () => {
+      const before = [...state.contextDeclarations];
+      actions.removeContextDeclaration('node-2');
+      expect(state.contextDeclarations).toEqual(before);
+    });
+  });
 });
