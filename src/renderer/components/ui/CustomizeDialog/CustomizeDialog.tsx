@@ -6,6 +6,9 @@ import { useIconPickerColors } from './hooks/useIconPickerColors';
 import { IconSelection } from '../../../store/customizeDialog/customizeDialogStore';
 import { ContextMode } from '../../../store/tree/treeStore';
 import { Modal } from '../Modal';
+import { IconGrid } from './IconGrid';
+import { ColorPicker } from './ColorPicker';
+import { ModeToggle } from './ModeToggle';
 import './CustomizeDialog.css';
 
 // Type for Lucide icon components
@@ -148,94 +151,34 @@ export function CustomizeDialog({ selectedIcon, selectedColor, selectedMode, sho
 
   return (
     <Modal title="Customize" onClose={onClose}>
-        <div className="icon-picker-search">
-          <input
-            ref={searchInputRef}
-            type="text"
-            placeholder="Search icons..."
-            value={searchQuery}
-            onChange={(e) => handleSearchChange(e.target.value)}
-            className="icon-picker-search-input"
+        <IconGrid
+          searchInputRef={searchInputRef}
+          searchQuery={searchQuery}
+          onSearchChange={handleSearchChange}
+          displayedIcons={displayedIcons}
+          currentIcon={currentIcon}
+          onIconSelect={handleIconSelect}
+          onIconHover={handleIconHover}
+          hoveredIcon={hoveredIcon}
+          isSearching={isSearching}
+          showAll={showAll}
+          onShowMore={handleShowMore}
+          onShowLess={handleShowLess}
+        />
+
+        <ColorPicker
+          currentColor={currentColor}
+          customColor={customColor}
+          isCustomColor={isCustomColor}
+          onColorSelect={handleColorSelect}
+          onCustomColorChange={handleCustomColorChange}
+        />
+
+        {showModeToggle && onModeChange && (
+          <ModeToggle
+            selectedMode={selectedMode}
+            onModeChange={onModeChange}
           />
-        </div>
-
-        <div className="icon-picker-grid">
-          {displayedIcons.map(({ Icon, name }) => (
-            <button
-              key={name}
-              className={`icon-picker-item ${currentIcon === name ? 'selected' : ''}`}
-              onClick={() => handleIconSelect(name)}
-              onMouseEnter={() => handleIconHover(name)}
-              onMouseLeave={() => handleIconHover(null)}
-              title={name}
-            >
-              <Icon size={16} />
-            </button>
-          ))}
-          {displayedIcons.length === 0 && (
-            <div className="icon-picker-no-results">No icons found</div>
-          )}
-        </div>
-
-        <div className="icon-picker-icon-footer">
-          <div className="icon-picker-preview">
-            {hoveredIcon || '\u00A0'}
-          </div>
-          {!isSearching && (
-            <button
-              className="icon-picker-toggle"
-              onClick={showAll ? handleShowLess : handleShowMore}
-            >
-              {showAll ? 'Show less' : 'More icons'}
-            </button>
-          )}
-        </div>
-
-        <div className="icon-picker-color-section">
-          <div className="icon-picker-color-label">Color</div>
-          <div className="icon-picker-color-grid">
-            {PRESET_COLORS.map(({ name, value }) => (
-              <button
-                key={value}
-                className={`icon-picker-color-item ${currentColor === value ? 'selected' : ''}`}
-                style={{ backgroundColor: value }}
-                onClick={() => handleColorSelect(value)}
-                title={name}
-              />
-            ))}
-            <div className={`icon-picker-custom-color ${isCustomColor ? 'selected' : ''}`}>
-              <input
-                type="color"
-                value={customColor || currentColor || '#64748b'}
-                onChange={handleCustomColorChange}
-                className="icon-picker-color-input"
-                title="Custom color"
-              />
-              {isCustomColor && (
-                <span className="icon-picker-custom-indicator" />
-              )}
-            </div>
-          </div>
-        </div>
-
-        {showModeToggle && (
-          <div className="icon-picker-mode-section">
-            <div className="icon-picker-mode-label">Context mode</div>
-            <div className="icon-picker-mode-toggle">
-              <button
-                className={`icon-picker-mode-option ${selectedMode === 'collaborate' ? 'selected' : ''}`}
-                onClick={() => onModeChange?.('collaborate')}
-              >
-                Collaborate
-              </button>
-              <button
-                className={`icon-picker-mode-option ${selectedMode === 'execute' ? 'selected' : ''}`}
-                onClick={() => onModeChange?.('execute')}
-              >
-                Execute
-              </button>
-            </div>
-          </div>
         )}
 
         <div className="icon-picker-footer">
