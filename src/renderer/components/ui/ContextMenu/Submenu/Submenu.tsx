@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import { useSubmenuBehavior } from './useSubmenuBehavior';
 import { useSubmenuPosition } from './useSubmenuPosition';
-import { ContextMenuItem } from '../ContextMenu';
+import { ContextMenuItem } from '../types';
 
 // Typical submenu width for predicting overflow
 const SUBMENU_WIDTH = 200;

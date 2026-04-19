@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react';
-import { ContextMenuItem } from '../ContextMenu';
+import { ContextMenuItem } from '../types';
 
 export function useSubmenuBehavior(onClose: () => void) {
   const [openSubmenu, setOpenSubmenu] = useState<number | null>(null);

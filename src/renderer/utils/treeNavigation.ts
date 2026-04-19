@@ -1,6 +1,6 @@
 import { TreeNode } from '../../shared/types';
 import { AncestorRegistry } from './ancestry';
-import { getParentId } from './nodeHelpers';
+import { getParentId } from './parentLookup';
 
 /**
  * Visible-tree navigation primitives. These operate on the expanded/

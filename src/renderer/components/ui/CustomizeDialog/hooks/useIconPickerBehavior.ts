@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, useMemo, useCallback } from 'react';
-import { LucideIcon } from '../CustomizeDialog';
+import type { LucideIcon } from '../types';
 
 interface IconItem {
   Icon: LucideIcon;

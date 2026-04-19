@@ -1,5 +1,5 @@
 import type { RefObject } from 'react';
-import type { LucideIcon } from './CustomizeDialog';
+import type { LucideIcon } from './types';
 
 interface IconGridProps {
   searchInputRef: RefObject<HTMLInputElement | null>;

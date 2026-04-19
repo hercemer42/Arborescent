@@ -1,5 +1,5 @@
 import { useState, useCallback, useMemo } from 'react';
-import { PRESET_COLORS } from '../CustomizeDialog';
+import { PRESET_COLORS } from '../types';
 
 export function useIconPickerColors(initialColor?: string | null) {
   const [currentColor, setCurrentColor] = useState(initialColor || '');

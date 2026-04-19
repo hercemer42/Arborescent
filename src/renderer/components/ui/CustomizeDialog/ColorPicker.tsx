@@ -1,5 +1,5 @@
 import type { ChangeEvent } from 'react';
-import { PRESET_COLORS } from './CustomizeDialog';
+import { PRESET_COLORS } from './types';
 
 interface ColorPickerProps {
   currentColor: string | null;

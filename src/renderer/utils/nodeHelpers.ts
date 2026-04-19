@@ -191,62 +191,8 @@ export function getNodeAndDescendantIds(
   return result;
 }
 
-export function getParentId(
-  nodeId: string,
-  ancestorRegistry: AncestorRegistry,
-  rootNodeId: string
-): string {
-  const ancestors = ancestorRegistry[nodeId] || [];
-  return ancestors[ancestors.length - 1] || rootNodeId;
-}
-
-/**
- * Parent-id lookup with no root fallback. Returns null when the node is
- * root-level (no ancestors). Use this when the caller needs to detect
- * "this IS the root" instead of treating root as self-parented.
- */
-export function getParentIdOrNull(
-  nodeId: string,
-  ancestorRegistry: AncestorRegistry
-): string | null {
-  const ancestors = ancestorRegistry[nodeId] || [];
-  return ancestors.length > 0 ? ancestors[ancestors.length - 1] : null;
-}
-
-export interface CreateTreeNodeOptions {
-  content?: string;
-  children?: string[];
-  metadata?: Record<string, unknown>;
-}
-
-export function createTreeNode(
-  id: string,
-  options: CreateTreeNodeOptions = {}
-): TreeNode {
-  return {
-    id,
-    content: options.content ?? '',
-    children: options.children ?? [],
-    metadata: options.metadata ?? {},
-  };
-}
-
-export function wrapNodesWithHiddenRoot(
-  nodes: Record<string, TreeNode>,
-  contentRootIds: string | string[],
-  hiddenRootId: string = 'hidden-root'
-): { nodes: Record<string, TreeNode>; rootNodeId: string } {
-  const children = Array.isArray(contentRootIds) ? contentRootIds : [contentRootIds];
-  return {
-    nodes: {
-      ...nodes,
-      [hiddenRootId]: createTreeNode(hiddenRootId, {
-        children,
-      }),
-    },
-    rootNodeId: hiddenRootId,
-  };
-}
+export { getParentId, getParentIdOrNull } from './parentLookup';
+export { createTreeNode, wrapNodesWithHiddenRoot, type CreateTreeNodeOptions } from './nodeConstruction';
 
 export type DropZone = 'before' | 'after' | 'child';
 

@@ -2,22 +2,10 @@ import { createPortal } from 'react-dom';
 import { useContextMenuBehavior } from './hooks/useContextMenuBehavior';
 import { useMenuPosition } from './hooks/useMenuPosition';
 import { Submenu } from './Submenu';
+import type { ContextMenuItem } from './types';
 import './ContextMenu.css';
 
-export interface ContextMenuItem {
-  label?: string;
-  onClick?: () => void;
-  danger?: boolean;
-  disabled?: boolean;
-  disabledTooltip?: string;
-  submenu?: ContextMenuItem[];
-  icon?: React.ReactNode;
-  radioSelected?: boolean;
-  keepOpenOnClick?: boolean;
-  separator?: boolean;
-  shortcut?: string;
-  tooltip?: string;
-}
+export type { ContextMenuItem } from './types';
 
 interface ContextMenuProps {
   x: number;

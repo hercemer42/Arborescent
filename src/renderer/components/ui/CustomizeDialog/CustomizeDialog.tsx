@@ -1,6 +1,6 @@
-import { createElement, ComponentType, useState } from 'react';
+import { createElement, useState } from 'react';
 import * as LucideIcons from 'lucide-react';
-import { LucideProps, TriangleAlert } from 'lucide-react';
+import { TriangleAlert } from 'lucide-react';
 import { useIconPickerBehavior } from './hooks/useIconPickerBehavior';
 import { useIconPickerColors } from './hooks/useIconPickerColors';
 import { IconSelection } from '../../../store/customizeDialog/customizeDialogStore';
@@ -9,23 +9,12 @@ import { Modal } from '../Modal';
 import { IconGrid } from './IconGrid';
 import { ColorPicker } from './ColorPicker';
 import { ModeToggle } from './ModeToggle';
+import type { LucideIcon } from './types';
 import './CustomizeDialog.css';
 
-// Type for Lucide icon components
-export type LucideIcon = ComponentType<LucideProps>;
-
-// Modern, professional preset colors
-// Amber and Sky values match globals.css variables for consistency
-export const PRESET_COLORS = [
-  { name: 'Slate', value: '#64748b' },
-  { name: 'Red', value: '#ef4444' },
-  { name: 'Orange', value: '#f97316' },
-  { name: 'Amber', value: '#c47f09' },  // matches --amber-500
-  { name: 'Green', value: '#22c55e' },
-  { name: 'Teal', value: '#14b8a6' },
-  { name: 'Sky', value: '#0ea5e9' },    // matches --sky-500
-  { name: 'Purple', value: '#a855f7' },
-];
+// Re-export the shared type/constant so existing call sites keep working.
+export type { LucideIcon } from './types';
+export { PRESET_COLORS } from './types';
 
 // Curated list of common/useful icons for context marking
 // Using Lucide icon names (PascalCase component names)

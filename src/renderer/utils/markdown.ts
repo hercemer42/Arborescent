@@ -1,6 +1,6 @@
 import { TreeNode, NodeStatus, STATUS_SYMBOLS } from '../../shared/types';
 import { v4 as uuidv4 } from 'uuid';
-import { createTreeNode } from './nodeHelpers';
+import { createTreeNode } from './nodeConstruction';
 
 export type NodesMap = Record<string, TreeNode>;
 
