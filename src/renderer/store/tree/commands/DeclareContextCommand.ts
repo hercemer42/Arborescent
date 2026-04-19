@@ -1,6 +1,7 @@
 import { BaseCommand } from './Command';
 import { TreeNode } from '../../../../shared/types';
 import { updateNodeMetadata, getAllDescendants } from '../../../utils/nodeHelpers';
+import { declareNodeMetadata } from '../../../utils/clearTaskMetadata';
 import { ContextMode } from '../treeStore';
 
 export class DeclareContextCommand extends BaseCommand {
@@ -32,7 +33,7 @@ export class DeclareContextCommand extends BaseCommand {
     this.captureState(this.nodeId, nodes);
     this.affectedNodeIds.push(this.nodeId);
 
-    let updatedNodes = updateNodeMetadata(nodes, this.nodeId, {
+    let updatedNodes = declareNodeMetadata(nodes, this.nodeId, {
       isContextDeclaration: true,
       blueprintIcon: this.icon,
       blueprintColor: this.color,

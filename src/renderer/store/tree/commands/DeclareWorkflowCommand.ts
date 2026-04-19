@@ -1,6 +1,7 @@
 import { BaseCommand } from './Command';
 import { TreeNode } from '../../../../shared/types';
 import { updateNodeMetadata } from '../../../utils/nodeHelpers';
+import { declareNodeMetadata } from '../../../utils/clearTaskMetadata';
 
 export class DeclareWorkflowCommand extends BaseCommand {
   private previousMetadata: Map<string, Record<string, unknown>> = new Map();
@@ -23,7 +24,7 @@ export class DeclareWorkflowCommand extends BaseCommand {
     this.previousMetadata.clear();
     this.previousMetadata.set(this.nodeId, { ...node.metadata });
 
-    let updatedNodes = updateNodeMetadata(nodes, this.nodeId, {
+    let updatedNodes = declareNodeMetadata(nodes, this.nodeId, {
       isBlueprint: true,
       isWorkflow: true,
     });

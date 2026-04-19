@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-04-19T18:01:27.676Z'
+updated: '2026-04-19T18:43:42.118Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -24060,24 +24060,19 @@ nodes:
     content: Implement automated tests (TDD)
     children:
       - 81638916-1b50-4341-97e8-b3d7bcd0a8a6
+      - 4d629e92-25c3-4dc7-896f-877b1a0492f9
       - b66cf5bf-e174-440e-a1af-2530b2194eef
-      - 5fcbaf63-52df-4f25-b452-6365602e8f8c
       - fb137760-5aea-4f55-a911-184983142305
       - c359eeb9-7ed6-4f0d-9ee7-de770022df60
-      - ca0db1c9-32b3-4399-ac6e-a402ffea2dff
-      - 440f5d53-9494-4213-b28e-e7b80b3640f2
-      - 6bcd849d-f754-4730-bd05-cec2feafa8c4
-      - ed265496-df9c-4bce-9a5d-9d680b98bfbf
-      - 87650943-9a07-4a9a-8af8-b09b8d4eef4c
-      - 64cac01b-cede-4674-ac02-74ee2682aa7b
-      - 4d629e92-25c3-4dc7-896f-877b1a0492f9
+      - 36a36f3a-fbae-49e8-a143-15916ac9a794
+      - 36985345-04bf-4bcd-b3f7-8262a8c04fa1
     metadata:
       status: pending
       isContextDeclaration: true
       blueprintIcon: ListChecks
       blueprintColor: '#c47f09'
       isBlueprint: true
-      expanded: false
+      expanded: true
       contextMode: execute
   81638916-1b50-4341-97e8-b3d7bcd0a8a6:
     id: 81638916-1b50-4341-97e8-b3d7bcd0a8a6
@@ -27558,13 +27553,6 @@ nodes:
       blueprintColor: '#c47f09'
       expanded: true
       stepType: autonomous
-  5fcbaf63-52df-4f25-b452-6365602e8f8c:
-    id: 5fcbaf63-52df-4f25-b452-6365602e8f8c
-    content: Validate them against the test plan if one is provided
-    children: []
-    metadata:
-      status: pending
-      isBlueprint: true
   17864c32-1811-422e-b4f9-a4fe2d653b3e:
     id: 17864c32-1811-422e-b4f9-a4fe2d653b3e
     content: If something is inconsistent, fix it, don't make an exception
@@ -79141,34 +79129,15 @@ nodes:
       expanded: true
   2f2bfcd0-a56f-40d8-8226-bfea60b61ae3:
     id: 2f2bfcd0-a56f-40d8-8226-bfea60b61ae3
-    content: AI refactor
+    content: Commit & push
     children:
-      - 186e101a-ffcf-4ab4-9df1-cbecedb7737d
-      - 980cbb68-89ce-4ef3-a8b1-7b1a8c319f10
-      - e09be3e2-a09e-4700-9fd3-f42de8653f18
-      - af9d7ef0-b5c9-4fff-b72c-7b736f308f0a
-      - 456901c2-1245-4902-a835-e217041da515
-      - 458d4229-8514-4d27-aead-817e1a7db44e
-      - 7fe1b3e0-344b-4672-8cfd-7e90479202f2
+      - 4b4af923-af36-4a64-a55c-4c2b84e2dd17
+      - a6137c52-9301-4cf7-a105-0b3a4dc366d7
     metadata:
       status: completed
       expanded: false
       deleted: false
       plugins: {}
-  efa787ba-b2d8-45ba-9779-5fc0f9249e2a:
-    id: efa787ba-b2d8-45ba-9779-5fc0f9249e2a
-    content: Also clean up templates
-    children: []
-    metadata:
-      status: pending
-  6231e04b-89a3-414a-a86a-601b7e6bc5ad:
-    id: 6231e04b-89a3-414a-a86a-601b7e6bc5ad
-    content: Declaring a node as a blueprint, context or workflow should clear its metadata (checked, resolvedAt etc)
-    children:
-      - efa787ba-b2d8-45ba-9779-5fc0f9249e2a
-    metadata:
-      status: pending
-      expanded: false
   e4a35080-c58f-43ef-84a2-9212a2ef1745:
     id: e4a35080-c58f-43ef-84a2-9212a2ef1745
     content: For example, if I add a context, and then right click on a node to add that context, I can't find it
@@ -79340,9 +79309,9 @@ nodes:
     id: 60350086-d041-4cac-877c-6bbff90b0da3
     content: Technical refinement
     children:
-      - 6231e04b-89a3-414a-a86a-601b7e6bc5ad
       - 4449ad15-2889-4fa8-bfab-d35b5d5b6791
       - 6184663e-9908-4394-aab1-a685e1f73c07
+      - bc037b12-15ff-4b00-9deb-d42277370dd8
       - 5f0b7f1f-6456-491f-8c35-cc9476e973ca
       - f639c9d8-6e35-4478-8798-91d8b991ebec
       - 35417e17-964c-43cb-a4f9-6d94474b7319
@@ -79421,14 +79390,98 @@ nodes:
     content: Commit & push
     children:
       - 2f2bfcd0-a56f-40d8-8226-bfea60b61ae3
+      - 6231e04b-89a3-414a-a86a-601b7e6bc5ad
     metadata:
       status: pending
       isBlueprint: true
       stepType: autonomous
       appliedContextId: b1446999-f999-47b9-bbe6-bce7c5c3ea59
       recurse: true
-  186e101a-ffcf-4ab4-9df1-cbecedb7737d:
-    id: 186e101a-ffcf-4ab4-9df1-cbecedb7737d
+  4b4af923-af36-4a64-a55c-4c2b84e2dd17:
+    id: 4b4af923-af36-4a64-a55c-4c2b84e2dd17
+    content: Commit the change
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a6137c52-9301-4cf7-a105-0b3a4dc366d7:
+    id: a6137c52-9301-4cf7-a105-0b3a4dc366d7
+    content: Push to remote
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  36985345-04bf-4bcd-b3f7-8262a8c04fa1:
+    id: 36985345-04bf-4bcd-b3f7-8262a8c04fa1
+    content: When checking if the tests run, don't run them all, only those for changed or new files
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  36a36f3a-fbae-49e8-a143-15916ac9a794:
+    id: 36a36f3a-fbae-49e8-a143-15916ac9a794
+    content: Check for
+    children:
+      - ca0db1c9-32b3-4399-ac6e-a402ffea2dff
+      - 440f5d53-9494-4213-b28e-e7b80b3640f2
+      - 6bcd849d-f754-4730-bd05-cec2feafa8c4
+      - ed265496-df9c-4bce-9a5d-9d680b98bfbf
+      - 87650943-9a07-4a9a-8af8-b09b8d4eef4c
+      - 64cac01b-cede-4674-ac02-74ee2682aa7b
+    metadata:
+      status: pending
+      isBlueprint: true
+      expanded: false
+  6231e04b-89a3-414a-a86a-601b7e6bc5ad:
+    id: 6231e04b-89a3-414a-a86a-601b7e6bc5ad
+    content: AI refactor
+    children:
+      - 6557c3d1-6ad7-476b-b57b-7fa598d372a8
+      - 6475592f-6a16-459d-9505-72d329a7912c
+      - 981b3ca6-1986-4062-9773-d9063b471982
+      - 54bdfcb0-f66f-44d6-baae-5fbcd069cbdf
+      - 996c65c1-6d2f-44f9-9752-adf9d7313c0f
+      - 4f256596-22b3-4433-95b7-4a692634bf72
+      - b22f4429-9ee3-4522-b711-fc066fd47595
+    metadata:
+      status: completed
+      expanded: false
+      deleted: false
+      plugins: {}
+  bc037b12-15ff-4b00-9deb-d42277370dd8:
+    id: bc037b12-15ff-4b00-9deb-d42277370dd8
+    content: Still having issues where a node content is being overwritten by the context instructions
+    children:
+      - 20621428-cea8-47e5-92da-9ef8135f35f3
+      - d39bcf6c-c90f-4131-a3e2-dbd654e6f8ed
+      - bd6e3fa8-8df0-4223-9161-f4abb90ddbdf
+    metadata:
+      status: pending
+      expanded: false
+  20621428-cea8-47e5-92da-9ef8135f35f3:
+    id: 20621428-cea8-47e5-92da-9ef8135f35f3
+    content: Happens during an automated step
+    children: []
+    metadata:
+      status: pending
+  d39bcf6c-c90f-4131-a3e2-dbd654e6f8ed:
+    id: d39bcf6c-c90f-4131-a3e2-dbd654e6f8ed
+    content: The temporary file for automated collaboration is being written back to with the instructions which overwrites the content
+    children: []
+    metadata:
+      status: pending
+  bd6e3fa8-8df0-4223-9161-f4abb90ddbdf:
+    id: bd6e3fa8-8df0-4223-9161-f4abb90ddbdf
+    content: If you can't see it obviously, don't do anything - I'll wait until there's a concrete example
+    children: []
+    metadata:
+      status: pending
+  6557c3d1-6ad7-476b-b57b-7fa598d372a8:
+    id: 6557c3d1-6ad7-476b-b57b-7fa598d372a8
     content: Review since last commit
     children: []
     metadata:
@@ -79436,52 +79489,52 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  980cbb68-89ce-4ef3-a8b1-7b1a8c319f10:
-    id: 980cbb68-89ce-4ef3-a8b1-7b1a8c319f10
+  6475592f-6a16-459d-9505-72d329a7912c:
+    id: 6475592f-6a16-459d-9505-72d329a7912c
     content: 'Refactor any code not consistent with the project conventions :'
     children:
-      - e5a43ee4-c1e4-4c42-b262-3dd09a13af27
-      - 91be2201-7afb-465c-ba2d-b854ae1efde6
+      - 79d727eb-e7ee-418c-818a-491132272d89
+      - 3979d8e5-b7aa-44c1-94e9-665186d42649
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  e5a43ee4-c1e4-4c42-b262-3dd09a13af27:
-    id: e5a43ee4-c1e4-4c42-b262-3dd09a13af27
+  79d727eb-e7ee-418c-818a-491132272d89:
+    id: 79d727eb-e7ee-418c-818a-491132272d89
     content: Conventions
     children:
-      - 98b55791-877f-4209-8f15-abd2a4798b3e
-      - e586f2ff-d2a9-47b2-b0aa-a1f6787c7946
-      - 21b15e79-16b1-497a-9dae-7c89ef134f3f
-      - 29531fba-c48a-4535-b3b3-98611aaa4485
-      - e64c20ed-5a29-4136-a089-bd182be6dfa4
-      - 21cc21f7-6e50-4753-9ad9-7b82f369ed8e
-      - 9046a12b-c638-4f1c-922f-e8a0ce221480
-      - d4d6eac7-c264-4fbc-9748-8410740c9404
-      - 1ad8da05-9f99-4f39-8405-19c7a0fb10f8
-      - 18b4e8a8-3a22-4ae1-8c07-9b72dbbb3ab5
-      - ea037cb8-5928-48f6-a9c2-6238c23bb619
-      - a294ed5d-1553-4d74-ab55-619b25a41184
+      - f7f4757d-f311-4523-a647-f6fdf641dcf1
+      - e3694a99-523a-4016-9963-a1e38ba948b6
+      - fa9ee86f-2572-455b-ac63-b518dca6ca2a
+      - 2b04fd1f-bd19-46f4-848b-3b60a71471e3
+      - 503ab1c4-93a2-42db-9a73-da609baba827
+      - d6ad1ac6-37ad-459d-9e65-9d23509cd660
+      - b069bc94-f202-451c-8649-4b7c4826b967
+      - 30e75e90-6e46-4789-9b10-bbc46d083f8e
+      - 2950432c-1543-4c5c-9a38-9b131b9b7441
+      - e1690365-a69d-49c9-be5e-e93b96e2dfe0
+      - 0b70c35b-60d5-44d4-828b-c163bf37441d
+      - 4d31522a-80bb-476e-b4fe-21133f8e781a
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  98b55791-877f-4209-8f15-abd2a4798b3e:
-    id: 98b55791-877f-4209-8f15-abd2a4798b3e
+  f7f4757d-f311-4523-a647-f6fdf641dcf1:
+    id: f7f4757d-f311-4523-a647-f6fdf641dcf1
     content: Persistence
     children:
-      - 35a9a9ee-16bd-47ab-8d9a-771720c957e5
-      - 91894069-cacb-4656-bfff-93310c841f07
-      - 36c7fbdb-35c5-418a-964e-8565f1067c33
+      - c48e4f8a-e033-4716-b244-e210edb9c056
+      - 1d4ac127-370b-42c3-83e4-68a311b272a9
+      - 1856f435-7cc5-41da-8582-3ab5d778f902
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  35a9a9ee-16bd-47ab-8d9a-771720c957e5:
-    id: 35a9a9ee-16bd-47ab-8d9a-771720c957e5
+  c48e4f8a-e033-4716-b244-e210edb9c056:
+    id: c48e4f8a-e033-4716-b244-e210edb9c056
     content: Session data as JSON files in userData directory
     children: []
     metadata:
@@ -79489,8 +79542,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  91894069-cacb-4656-bfff-93310c841f07:
-    id: 91894069-cacb-4656-bfff-93310c841f07
+  1d4ac127-370b-42c3-83e4-68a311b272a9:
+    id: 1d4ac127-370b-42c3-83e4-68a311b272a9
     content: Separate files for different session types (main, preferences, etc.)
     children: []
     metadata:
@@ -79498,8 +79551,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  36c7fbdb-35c5-418a-964e-8565f1067c33:
-    id: 36c7fbdb-35c5-418a-964e-8565f1067c33
+  1856f435-7cc5-41da-8582-3ab5d778f902:
+    id: 1856f435-7cc5-41da-8582-3ab5d778f902
     content: Separate userData paths for dev/prod to avoid conflicts
     children: []
     metadata:
@@ -79507,24 +79560,24 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  e586f2ff-d2a9-47b2-b0aa-a1f6787c7946:
-    id: e586f2ff-d2a9-47b2-b0aa-a1f6787c7946
+  e3694a99-523a-4016-9963-a1e38ba948b6:
+    id: e3694a99-523a-4016-9963-a1e38ba948b6
     content: Testing
     children:
-      - d44e4707-2681-4272-9256-fc9021b95051
-      - 6f6f893c-31b6-42df-b677-b46d53a00d9c
-      - 1cd182a8-5064-4968-acf6-308efec0b493
-      - 81eaa16e-8774-43ff-9fd4-42a967e5214c
-      - 07ff773a-b7ce-48ed-8451-839557b163f4
-      - ced919dd-a190-4d0c-a268-245b15d23c40
-      - ff53bb5d-54fd-47ec-803f-1741c5a5cc76
+      - 4019670d-223e-4f1a-b0b5-df4112d8c8db
+      - 60bae3d8-0bd8-471e-957c-b8c377e8a810
+      - 5f9ff1fa-254a-4381-a3a4-678f07097e7f
+      - 26928e2a-b7b2-49f7-aff0-d580f07326d3
+      - 001950e7-5c36-469d-8ed0-fcfd2ded1440
+      - 7acbd2ed-a142-4d2c-ae1e-ca5d25a77e22
+      - 82725027-4bf4-46b1-bbe6-e855dcac637c
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  d44e4707-2681-4272-9256-fc9021b95051:
-    id: d44e4707-2681-4272-9256-fc9021b95051
+  4019670d-223e-4f1a-b0b5-df4112d8c8db:
+    id: 4019670d-223e-4f1a-b0b5-df4112d8c8db
     content: Tests in tests/ subdirectories within modules
     children: []
     metadata:
@@ -79532,8 +79585,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  6f6f893c-31b6-42df-b677-b46d53a00d9c:
-    id: 6f6f893c-31b6-42df-b677-b46d53a00d9c
+  60bae3d8-0bd8-471e-957c-b8c377e8a810:
+    id: 60bae3d8-0bd8-471e-957c-b8c377e8a810
     content: Unit tests for actions, hooks, utilities
     children: []
     metadata:
@@ -79541,8 +79594,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  1cd182a8-5064-4968-acf6-308efec0b493:
-    id: 1cd182a8-5064-4968-acf6-308efec0b493
+  5f9ff1fa-254a-4381-a3a4-678f07097e7f:
+    id: 5f9ff1fa-254a-4381-a3a4-678f07097e7f
     content: Integration tests for critical workflows only
     children: []
     metadata:
@@ -79550,8 +79603,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  81eaa16e-8774-43ff-9fd4-42a967e5214c:
-    id: 81eaa16e-8774-43ff-9fd4-42a967e5214c
+  26928e2a-b7b2-49f7-aff0-d580f07326d3:
+    id: 26928e2a-b7b2-49f7-aff0-d580f07326d3
     content: Mock services via dependency injection
     children: []
     metadata:
@@ -79559,8 +79612,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  07ff773a-b7ce-48ed-8451-839557b163f4:
-    id: 07ff773a-b7ce-48ed-8451-839557b163f4
+  001950e7-5c36-469d-8ed0-fcfd2ded1440:
+    id: 001950e7-5c36-469d-8ed0-fcfd2ded1440
     content: Avoid mockReturnValueOnce - use mockImplementation with conditionals instead
     children: []
     metadata:
@@ -79568,8 +79621,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  ced919dd-a190-4d0c-a268-245b15d23c40:
-    id: ced919dd-a190-4d0c-a268-245b15d23c40
+  7acbd2ed-a142-4d2c-ae1e-ca5d25a77e22:
+    id: 7acbd2ed-a142-4d2c-ae1e-ca5d25a77e22
     content: Test isolation - clear all shared state in beforeEach, not just some of it
     children: []
     metadata:
@@ -79577,8 +79630,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  ff53bb5d-54fd-47ec-803f-1741c5a5cc76:
-    id: ff53bb5d-54fd-47ec-803f-1741c5a5cc76
+  82725027-4bf4-46b1-bbe6-e855dcac637c:
+    id: 82725027-4bf4-46b1-bbe6-e855dcac637c
     content: Mock at the right level - mock the imported module, not underlying APIs
     children: []
     metadata:
@@ -79586,22 +79639,22 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  21b15e79-16b1-497a-9dae-7c89ef134f3f:
-    id: 21b15e79-16b1-497a-9dae-7c89ef134f3f
+  fa9ee86f-2572-455b-ac63-b518dca6ca2a:
+    id: fa9ee86f-2572-455b-ac63-b518dca6ca2a
     content: Performance
     children:
-      - 8b4210c5-1d03-4342-9a88-74a1bc934b99
-      - b71c1ca7-af5e-42ce-9c97-f1c5cb5751d9
-      - 37607931-8105-4c7e-b781-6c3d5f096c5a
-      - 0ab7b3ae-52a3-48f5-8d54-cc4fe91be8be
-      - a43e2948-7458-4dfd-ba8b-c9dc2fba0fe9
+      - 746568c5-cbb4-4ac6-8cdd-9e1d6841dc0f
+      - 26c79f99-0841-4ecc-890c-bfd71a518a5f
+      - 9dfdd69b-a055-44c7-a0ed-535eae57148c
+      - 5b56f63c-c1bc-4521-8b11-afd5f3f9768f
+      - 18d2b21c-46aa-44bf-897b-e7ca34eecab5
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  8b4210c5-1d03-4342-9a88-74a1bc934b99:
-    id: 8b4210c5-1d03-4342-9a88-74a1bc934b99
+  746568c5-cbb4-4ac6-8cdd-9e1d6841dc0f:
+    id: 746568c5-cbb4-4ac6-8cdd-9e1d6841dc0f
     content: React.memo() for components that receive stable props
     children: []
     metadata:
@@ -79609,8 +79662,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  b71c1ca7-af5e-42ce-9c97-f1c5cb5751d9:
-    id: b71c1ca7-af5e-42ce-9c97-f1c5cb5751d9
+  26c79f99-0841-4ecc-890c-bfd71a518a5f:
+    id: 26c79f99-0841-4ecc-890c-bfd71a518a5f
     content: useCallback for event handlers passed as props
     children: []
     metadata:
@@ -79618,8 +79671,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  37607931-8105-4c7e-b781-6c3d5f096c5a:
-    id: 37607931-8105-4c7e-b781-6c3d5f096c5a
+  9dfdd69b-a055-44c7-a0ed-535eae57148c:
+    id: 9dfdd69b-a055-44c7-a0ed-535eae57148c
     content: Selective Zustand subscriptions (subscribe only to what component needs)
     children: []
     metadata:
@@ -79627,8 +79680,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  0ab7b3ae-52a3-48f5-8d54-cc4fe91be8be:
-    id: 0ab7b3ae-52a3-48f5-8d54-cc4fe91be8be
+  5b56f63c-c1bc-4521-8b11-afd5f3f9768f:
+    id: 5b56f63c-c1bc-4521-8b11-afd5f3f9768f
     content: Use a store cache where possible, update only when necessary
     children: []
     metadata:
@@ -79636,8 +79689,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  a43e2948-7458-4dfd-ba8b-c9dc2fba0fe9:
-    id: a43e2948-7458-4dfd-ba8b-c9dc2fba0fe9
+  18d2b21c-46aa-44bf-897b-e7ca34eecab5:
+    id: 18d2b21c-46aa-44bf-897b-e7ca34eecab5
     content: Avoid subscribing to an entire state object when not needed
     children: []
     metadata:
@@ -79645,22 +79698,22 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  29531fba-c48a-4535-b3b3-98611aaa4485:
-    id: 29531fba-c48a-4535-b3b3-98611aaa4485
+  2b04fd1f-bd19-46f4-848b-3b60a71471e3:
+    id: 2b04fd1f-bd19-46f4-848b-3b60a71471e3
     content: Code Style
     children:
-      - 8bff1b7c-b307-4bf6-b2b7-23bb33b4a7c5
-      - 7ad32597-a0f6-4416-8b75-0d2276abff97
-      - 115aaff8-5402-4b44-a0fb-046eab255dd5
-      - 48b913d0-1c44-47ed-986d-7e694c28b47d
-      - ef2924d0-db1c-4099-9b62-2fc2a70f7ba4
+      - 83b74ab6-0154-454b-ae65-f5e120ec08be
+      - de84c698-836c-4baf-bbc3-7e3cade215f0
+      - 885e4d9a-284a-4114-862c-be1086ea6228
+      - 9d0d9b8d-b560-4efe-b070-140e38e9a4bd
+      - b82054da-8663-4846-9225-b343c9cc362d
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  8bff1b7c-b307-4bf6-b2b7-23bb33b4a7c5:
-    id: 8bff1b7c-b307-4bf6-b2b7-23bb33b4a7c5
+  83b74ab6-0154-454b-ae65-f5e120ec08be:
+    id: 83b74ab6-0154-454b-ae65-f5e120ec08be
     content: If code needs a comment explaining what it does, refactor to a named function
     children: []
     metadata:
@@ -79668,8 +79721,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  7ad32597-a0f6-4416-8b75-0d2276abff97:
-    id: 7ad32597-a0f6-4416-8b75-0d2276abff97
+  de84c698-836c-4baf-bbc3-7e3cade215f0:
+    id: de84c698-836c-4baf-bbc3-7e3cade215f0
     content: Plain CSS with custom properties, no preprocessors
     children: []
     metadata:
@@ -79677,8 +79730,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  115aaff8-5402-4b44-a0fb-046eab255dd5:
-    id: 115aaff8-5402-4b44-a0fb-046eab255dd5
+  885e4d9a-284a-4114-862c-be1086ea6228:
+    id: 885e4d9a-284a-4114-862c-be1086ea6228
     content: Component styles in co-located .css files
     children: []
     metadata:
@@ -79686,8 +79739,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  48b913d0-1c44-47ed-986d-7e694c28b47d:
-    id: 48b913d0-1c44-47ed-986d-7e694c28b47d
+  9d0d9b8d-b560-4efe-b070-140e38e9a4bd:
+    id: 9d0d9b8d-b560-4efe-b070-140e38e9a4bd
     content: Theme variables in globals.css
     children: []
     metadata:
@@ -79695,8 +79748,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  ef2924d0-db1c-4099-9b62-2fc2a70f7ba4:
-    id: ef2924d0-db1c-4099-9b62-2fc2a70f7ba4
+  b82054da-8663-4846-9225-b343c9cc362d:
+    id: b82054da-8663-4846-9225-b343c9cc362d
     content: No inline styles
     children: []
     metadata:
@@ -79704,23 +79757,23 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  e64c20ed-5a29-4136-a089-bd182be6dfa4:
-    id: e64c20ed-5a29-4136-a089-bd182be6dfa4
+  503ab1c4-93a2-42db-9a73-da609baba827:
+    id: 503ab1c4-93a2-42db-9a73-da609baba827
     content: Comments
     children:
-      - c1559754-0c3e-419f-98d4-abd5140b5a09
-      - 3fa7ddfd-143c-49e1-ad56-96205dcaf845
-      - 55f646a6-556d-4ffc-812d-9afeea0c9c39
-      - 86d62482-65d0-46e7-950e-deb98ca89d8a
-      - 46a55da9-969e-48f7-902d-34f9c8fba8d0
-      - ec45a9fb-ca58-41d4-9788-9f871ee06b7c
+      - af294b4c-9172-4361-b657-01d5f91f60e3
+      - c85ebfe1-f7de-416e-b919-4a6465ba0a41
+      - 1974592e-e2b7-4131-a07a-12277b346af6
+      - 409ec6c8-3076-4bd2-a2fd-5f5e3424b0df
+      - e75cbb0e-b0ec-4850-bb37-dcb24f822c9f
+      - cb816f4a-18af-492c-8312-ce5a1acc317f
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  c1559754-0c3e-419f-98d4-abd5140b5a09:
-    id: c1559754-0c3e-419f-98d4-abd5140b5a09
+  af294b4c-9172-4361-b657-01d5f91f60e3:
+    id: af294b4c-9172-4361-b657-01d5f91f60e3
     content: Comments for "why" not "what"
     children: []
     metadata:
@@ -79728,8 +79781,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  3fa7ddfd-143c-49e1-ad56-96205dcaf845:
-    id: 3fa7ddfd-143c-49e1-ad56-96205dcaf845
+  c85ebfe1-f7de-416e-b919-4a6465ba0a41:
+    id: c85ebfe1-f7de-416e-b919-4a6465ba0a41
     content: Avoid comments that reference specific user stories, requests, or iteration history
     children: []
     metadata:
@@ -79737,8 +79790,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  55f646a6-556d-4ffc-812d-9afeea0c9c39:
-    id: 55f646a6-556d-4ffc-812d-9afeea0c9c39
+  1974592e-e2b7-4131-a07a-12277b346af6:
+    id: 1974592e-e2b7-4131-a07a-12277b346af6
     content: Only add comments when necessary to explain non-obvious logic
     children: []
     metadata:
@@ -79746,8 +79799,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  86d62482-65d0-46e7-950e-deb98ca89d8a:
-    id: 86d62482-65d0-46e7-950e-deb98ca89d8a
+  409ec6c8-3076-4bd2-a2fd-5f5e3424b0df:
+    id: 409ec6c8-3076-4bd2-a2fd-5f5e3424b0df
     content: Prefer refactoring with descriptive naming over adding comments
     children: []
     metadata:
@@ -79755,8 +79808,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  46a55da9-969e-48f7-902d-34f9c8fba8d0:
-    id: 46a55da9-969e-48f7-902d-34f9c8fba8d0
+  e75cbb0e-b0ec-4850-bb37-dcb24f822c9f:
+    id: e75cbb0e-b0ec-4850-bb37-dcb24f822c9f
     content: Code should be self readable, use declarative naming instead of comments
     children: []
     metadata:
@@ -79764,8 +79817,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  ec45a9fb-ca58-41d4-9788-9f871ee06b7c:
-    id: ec45a9fb-ca58-41d4-9788-9f871ee06b7c
+  cb816f4a-18af-492c-8312-ce5a1acc317f:
+    id: cb816f4a-18af-492c-8312-ce5a1acc317f
     content: Don't use JS doc conventions
     children: []
     metadata:
@@ -79773,22 +79826,22 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  21cc21f7-6e50-4753-9ad9-7b82f369ed8e:
-    id: 21cc21f7-6e50-4753-9ad9-7b82f369ed8e
+  d6ad1ac6-37ad-459d-9e65-9d23509cd660:
+    id: d6ad1ac6-37ad-459d-9e65-9d23509cd660
     content: Naming
     children:
-      - d7bc7d80-af30-42e2-9d25-e104c2d4d379
-      - cef8312c-446f-43b2-bdf9-1618f2110950
-      - 14fd9534-1cba-4051-8f36-a3a238e76841
-      - 932f19e9-f0b0-47cf-a45b-739891a6c8e5
-      - 1c01e920-5125-49d8-a52f-fd6bb4c19209
+      - 966eb204-90fd-4e46-b591-76bc1bdc5e60
+      - e3235a55-c7ca-4447-87b2-14d2cb8d9c62
+      - 56977e98-6cb6-4d09-93c5-a571df8c5260
+      - 08428d7a-4dba-4145-b691-017b0ed65354
+      - 5d9124b9-b36f-4e3a-95c0-756560ae2b27
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  d7bc7d80-af30-42e2-9d25-e104c2d4d379:
-    id: d7bc7d80-af30-42e2-9d25-e104c2d4d379
+  966eb204-90fd-4e46-b591-76bc1bdc5e60:
+    id: 966eb204-90fd-4e46-b591-76bc1bdc5e60
     content: PascalCase for components and classes
     children: []
     metadata:
@@ -79796,8 +79849,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  cef8312c-446f-43b2-bdf9-1618f2110950:
-    id: cef8312c-446f-43b2-bdf9-1618f2110950
+  e3235a55-c7ca-4447-87b2-14d2cb8d9c62:
+    id: e3235a55-c7ca-4447-87b2-14d2cb8d9c62
     content: camelCase for functions, hooks, and utilities
     children: []
     metadata:
@@ -79805,8 +79858,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  14fd9534-1cba-4051-8f36-a3a238e76841:
-    id: 14fd9534-1cba-4051-8f36-a3a238e76841
+  56977e98-6cb6-4d09-93c5-a571df8c5260:
+    id: 56977e98-6cb6-4d09-93c5-a571df8c5260
     content: Hooks start with "use"
     children: []
     metadata:
@@ -79814,8 +79867,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  932f19e9-f0b0-47cf-a45b-739891a6c8e5:
-    id: 932f19e9-f0b0-47cf-a45b-739891a6c8e5
+  08428d7a-4dba-4145-b691-017b0ed65354:
+    id: 08428d7a-4dba-4145-b691-017b0ed65354
     content: Don't repeat directory name in filename (services/Storage.ts not services/StorageService.ts)
     children: []
     metadata:
@@ -79823,8 +79876,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  1c01e920-5125-49d8-a52f-fd6bb4c19209:
-    id: 1c01e920-5125-49d8-a52f-fd6bb4c19209
+  5d9124b9-b36f-4e3a-95c0-756560ae2b27:
+    id: 5d9124b9-b36f-4e3a-95c0-756560ae2b27
     content: File names match exported symbols
     children: []
     metadata:
@@ -79832,21 +79885,21 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  9046a12b-c638-4f1c-922f-e8a0ce221480:
-    id: 9046a12b-c638-4f1c-922f-e8a0ce221480
+  b069bc94-f202-451c-8649-4b7c4826b967:
+    id: b069bc94-f202-451c-8649-4b7c4826b967
     content: Error Handling
     children:
-      - f48f835b-7d19-404f-843a-46bf027e6d63
-      - 7c3e7c3a-7ae0-4c5a-9bee-6a0eb7321946
-      - 820e85ae-4e1f-48bf-8897-cf374f406b60
-      - ab28efd3-f31b-492e-a2e2-4558473f7d0f
+      - 1945abfe-bbbf-40f0-8a47-c5831e48c2af
+      - 4d092eb0-e06a-464c-be6c-ecbb8576c169
+      - d70dff8c-acfa-4486-bfbc-c998e154430e
+      - 1a0f0ae7-9f3e-4c86-ab9f-b0af2f80e547
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  f48f835b-7d19-404f-843a-46bf027e6d63:
-    id: f48f835b-7d19-404f-843a-46bf027e6d63
+  1945abfe-bbbf-40f0-8a47-c5831e48c2af:
+    id: 1945abfe-bbbf-40f0-8a47-c5831e48c2af
     content: Logger with level-based filtering and context tagging
     children: []
     metadata:
@@ -79854,8 +79907,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  7c3e7c3a-7ae0-4c5a-9bee-6a0eb7321946:
-    id: 7c3e7c3a-7ae0-4c5a-9bee-6a0eb7321946
+  4d092eb0-e06a-464c-be6c-ecbb8576c169:
+    id: 4d092eb0-e06a-464c-be6c-ecbb8576c169
     content: Main process errors propagate to renderer via IPC for user display
     children: []
     metadata:
@@ -79863,8 +79916,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  820e85ae-4e1f-48bf-8897-cf374f406b60:
-    id: 820e85ae-4e1f-48bf-8897-cf374f406b60
+  d70dff8c-acfa-4486-bfbc-c998e154430e:
+    id: d70dff8c-acfa-4486-bfbc-c998e154430e
     content: Toast notifications for user-facing errors
     children: []
     metadata:
@@ -79872,8 +79925,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  ab28efd3-f31b-492e-a2e2-4558473f7d0f:
-    id: ab28efd3-f31b-492e-a2e2-4558473f7d0f
+  1a0f0ae7-9f3e-4c86-ab9f-b0af2f80e547:
+    id: 1a0f0ae7-9f3e-4c86-ab9f-b0af2f80e547
     content: Graceful fallbacks for missing files or parse errors
     children: []
     metadata:
@@ -79881,23 +79934,23 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  d4d6eac7-c264-4fbc-9748-8410740c9404:
-    id: d4d6eac7-c264-4fbc-9748-8410740c9404
+  30e75e90-6e46-4789-9b10-bbc46d083f8e:
+    id: 30e75e90-6e46-4789-9b10-bbc46d083f8e
     content: IPC Communication
     children:
-      - e50f1d75-d87d-472b-9ddd-a1198be33444
-      - 1cbf91c9-0cc2-42a1-b445-70bafb3c6c62
-      - 68993fea-ffa9-41db-89b2-592dea64c878
-      - 439fd134-cef7-40b0-a931-e91c76f92072
-      - 1b454a9a-5516-419e-b12d-ab88e75ff24d
-      - 6ab71762-d971-418d-9238-2baa68a5c1e9
+      - dbfe01d1-47f4-4a96-be9f-d17b99b47f4d
+      - 98cdf236-eb88-408d-b3d9-86fc076b5708
+      - 92408b92-72e7-40eb-9165-cd3e59f38eba
+      - d87c0f5e-a677-4354-ad8a-31d9a6589930
+      - cd878a13-ff49-4ce7-bfdd-864e5c0980aa
+      - a86ed06d-b374-4b97-bbd5-7b46dd5f6f35
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  e50f1d75-d87d-472b-9ddd-a1198be33444:
-    id: e50f1d75-d87d-472b-9ddd-a1198be33444
+  dbfe01d1-47f4-4a96-be9f-d17b99b47f4d:
+    id: dbfe01d1-47f4-4a96-be9f-d17b99b47f4d
     content: All IPC exposed through contextBridge.exposeInMainWorld()
     children: []
     metadata:
@@ -79905,8 +79958,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  1cbf91c9-0cc2-42a1-b445-70bafb3c6c62:
-    id: 1cbf91c9-0cc2-42a1-b445-70bafb3c6c62
+  98cdf236-eb88-408d-b3d9-86fc076b5708:
+    id: 98cdf236-eb88-408d-b3d9-86fc076b5708
     content: Handler modules organized by feature (fileHandlers, sessionHandlers, etc.)
     children: []
     metadata:
@@ -79914,8 +79967,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  68993fea-ffa9-41db-89b2-592dea64c878:
-    id: 68993fea-ffa9-41db-89b2-592dea64c878
+  92408b92-72e7-40eb-9165-cd3e59f38eba:
+    id: 92408b92-72e7-40eb-9165-cd3e59f38eba
     content: Single registerIpcHandlers() function imports and registers all handlers
     children: []
     metadata:
@@ -79923,8 +79976,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  439fd134-cef7-40b0-a931-e91c76f92072:
-    id: 439fd134-cef7-40b0-a931-e91c76f92072
+  d87c0f5e-a677-4354-ad8a-31d9a6589930:
+    id: d87c0f5e-a677-4354-ad8a-31d9a6589930
     content: 'Channel naming: hierarchical with colons (terminal:create, file:save)'
     children: []
     metadata:
@@ -79932,8 +79985,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  1b454a9a-5516-419e-b12d-ab88e75ff24d:
-    id: 1b454a9a-5516-419e-b12d-ab88e75ff24d
+  cd878a13-ff49-4ce7-bfdd-864e5c0980aa:
+    id: cd878a13-ff49-4ce7-bfdd-864e5c0980aa
     content: ipcRenderer.invoke() for request-response, .on() for events
     children: []
     metadata:
@@ -79941,8 +79994,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  6ab71762-d971-418d-9238-2baa68a5c1e9:
-    id: 6ab71762-d971-418d-9238-2baa68a5c1e9
+  a86ed06d-b374-4b97-bbd5-7b46dd5f6f35:
+    id: a86ed06d-b374-4b97-bbd5-7b46dd5f6f35
     content: Subscription methods return cleanup functions for unsubscribing
     children: []
     metadata:
@@ -79950,24 +80003,24 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  1ad8da05-9f99-4f39-8405-19c7a0fb10f8:
-    id: 1ad8da05-9f99-4f39-8405-19c7a0fb10f8
+  2950432c-1543-4c5c-9a38-9b131b9b7441:
+    id: 2950432c-1543-4c5c-9a38-9b131b9b7441
     content: State Management
     children:
-      - c778cc4f-433e-4ab5-a8f8-5df6b9ccf128
-      - b06f9125-7842-4d91-941f-3dca52b79edf
-      - dd88a418-4b1c-484d-86c3-01deaf1d1785
-      - 4afc6e7f-eff3-46a4-8eee-e607bf7f0c3f
-      - f1266c2c-bf98-429c-a5cc-8c0ed2deeb9c
-      - 0ee68fff-18e7-4659-9408-69849fce8a28
-      - c8a7413d-07af-4059-ac67-441b01e7b083
+      - ee997bfd-5fbc-4705-a737-0cabc9e1767f
+      - 73a49179-a876-4459-b02d-e1a2c6c26510
+      - a8f631f8-42fd-4744-88cb-01e4f198b3d4
+      - e3da92bb-3ac1-4e7c-bb2b-df8537a2666b
+      - ba7b2a57-e160-493c-83de-a290cb67e7ea
+      - a4f63f55-48fb-49cc-a997-28c30c76a9ec
+      - e772acd5-1b3d-461d-b91e-ed44898cbd18
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  c778cc4f-433e-4ab5-a8f8-5df6b9ccf128:
-    id: c778cc4f-433e-4ab5-a8f8-5df6b9ccf128
+  ee997bfd-5fbc-4705-a737-0cabc9e1767f:
+    id: ee997bfd-5fbc-4705-a737-0cabc9e1767f
     content: Zustand stores in store/ directory
     children: []
     metadata:
@@ -79975,8 +80028,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  b06f9125-7842-4d91-941f-3dca52b79edf:
-    id: b06f9125-7842-4d91-941f-3dca52b79edf
+  73a49179-a876-4459-b02d-e1a2c6c26510:
+    id: 73a49179-a876-4459-b02d-e1a2c6c26510
     content: Actions organized by domain in separate files (nodeActions, navigationActions, etc.)
     children: []
     metadata:
@@ -79984,8 +80037,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  dd88a418-4b1c-484d-86c3-01deaf1d1785:
-    id: dd88a418-4b1c-484d-86c3-01deaf1d1785
+  a8f631f8-42fd-4744-88cb-01e4f198b3d4:
+    id: a8f631f8-42fd-4744-88cb-01e4f198b3d4
     content: Action factories use named functions, not inline arrows (better stack traces)
     children: []
     metadata:
@@ -79993,8 +80046,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  4afc6e7f-eff3-46a4-8eee-e607bf7f0c3f:
-    id: 4afc6e7f-eff3-46a4-8eee-e607bf7f0c3f
+  e3da92bb-3ac1-4e7c-bb2b-df8537a2666b:
+    id: e3da92bb-3ac1-4e7c-bb2b-df8537a2666b
     content: Factory pattern when multiple store instances needed
     children: []
     metadata:
@@ -80002,8 +80055,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  f1266c2c-bf98-429c-a5cc-8c0ed2deeb9c:
-    id: f1266c2c-bf98-429c-a5cc-8c0ed2deeb9c
+  ba7b2a57-e160-493c-83de-a290cb67e7ea:
+    id: ba7b2a57-e160-493c-83de-a290cb67e7ea
     content: Context provider to give components access to correct store instance
     children: []
     metadata:
@@ -80011,8 +80064,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  0ee68fff-18e7-4659-9408-69849fce8a28:
-    id: 0ee68fff-18e7-4659-9408-69849fce8a28
+  a4f63f55-48fb-49cc-a997-28c30c76a9ec:
+    id: a4f63f55-48fb-49cc-a997-28c30c76a9ec
     content: Use getState() in event handlers for one-time reads (no subscription overhead)
     children: []
     metadata:
@@ -80020,8 +80073,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  c8a7413d-07af-4059-ac67-441b01e7b083:
-    id: c8a7413d-07af-4059-ac67-441b01e7b083
+  e772acd5-1b3d-461d-b91e-ed44898cbd18:
+    id: e772acd5-1b3d-461d-b91e-ed44898cbd18
     content: Avoid persisting cross component state in services, prefer Zustand
     children: []
     metadata:
@@ -80029,29 +80082,29 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  18b4e8a8-3a22-4ae1-8c07-9b72dbbb3ab5:
-    id: 18b4e8a8-3a22-4ae1-8c07-9b72dbbb3ab5
+  e1690365-a69d-49c9-be5e-e93b96e2dfe0:
+    id: e1690365-a69d-49c9-be5e-e93b96e2dfe0
     content: Organization
     children:
-      - 067e8038-e42d-425c-b422-2d1058b12e51
-      - e0a199ca-be0d-4aed-8496-91c6757a3313
-      - b2638dec-c341-471b-a063-f7a5793ec494
-      - 52be27c3-be5c-40f2-8701-4f51fb2ecc7a
-      - 38a68f40-36d7-46bb-a452-8eaf75ebc66d
-      - 0e35e894-951f-46fb-bb33-eff844ee431a
-      - bceab686-891d-4acb-bbd0-bea2583c817d
-      - 076bfddb-5116-40e8-8c9d-bd11ffb79bd8
-      - 348760ea-1688-4a1e-80c5-0725f6a6ccb2
-      - 531cb837-72e3-4f04-b222-c9a62eb64f86
-      - 90a7c268-8a75-4723-b8ea-312afd88ffef
-      - 9818a084-427b-4487-a5c9-9086ce9f1397
+      - 7b73198d-5120-4b34-91ff-ffb749aec3c1
+      - c83d4abd-6f16-40da-82ed-4c763723b8a6
+      - bfc89056-3b1c-45a5-a3e8-12a2b18579a2
+      - 0d793f57-512f-4c69-a52e-b484368ecd4a
+      - e81a8a77-c294-4af8-8f9c-3d0747463cdc
+      - 6ab30488-0501-4fff-9801-4194f20d7cd0
+      - 11b24cd6-a5f2-430a-9c38-895cd8c5ce24
+      - ff280238-2f6f-4778-911f-743750ecfd93
+      - 7a8f49b4-58bc-4d07-b65d-7b4fb6280254
+      - 498cd4cb-c190-43e2-9d7d-6fc699fc49ea
+      - f3179314-bdab-43de-adbd-3f2d80516877
+      - 6fff03f4-4e8c-4e9a-bb8a-68b7a827eb0c
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  067e8038-e42d-425c-b422-2d1058b12e51:
-    id: 067e8038-e42d-425c-b422-2d1058b12e51
+  7b73198d-5120-4b34-91ff-ffb749aec3c1:
+    id: 7b73198d-5120-4b34-91ff-ffb749aec3c1
     content: Co-locate single-use code with its consumer
     children: []
     metadata:
@@ -80059,8 +80112,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  e0a199ca-be0d-4aed-8496-91c6757a3313:
-    id: e0a199ca-be0d-4aed-8496-91c6757a3313
+  c83d4abd-6f16-40da-82ed-4c763723b8a6:
+    id: c83d4abd-6f16-40da-82ed-4c763723b8a6
     content: Centralize shared code in store/, services/, or utils/
     children: []
     metadata:
@@ -80068,8 +80121,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  b2638dec-c341-471b-a063-f7a5793ec494:
-    id: b2638dec-c341-471b-a063-f7a5793ec494
+  bfc89056-3b1c-45a5-a3e8-12a2b18579a2:
+    id: bfc89056-3b1c-45a5-a3e8-12a2b18579a2
     content: When unsure, start co-located and move when second consumer appears
     children: []
     metadata:
@@ -80077,8 +80130,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  52be27c3-be5c-40f2-8701-4f51fb2ecc7a:
-    id: 52be27c3-be5c-40f2-8701-4f51fb2ecc7a
+  0d793f57-512f-4c69-a52e-b484368ecd4a:
+    id: 0d793f57-512f-4c69-a52e-b484368ecd4a
     content: Components in own directories with co-located hooks/styles
     children: []
     metadata:
@@ -80086,19 +80139,19 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  38a68f40-36d7-46bb-a452-8eaf75ebc66d:
-    id: 38a68f40-36d7-46bb-a452-8eaf75ebc66d
+  e81a8a77-c294-4af8-8f9c-3d0747463cdc:
+    id: e81a8a77-c294-4af8-8f9c-3d0747463cdc
     content: Clean separation between components and hooks
     children:
-      - 0e86dcf5-6bc7-4280-b31f-65a247ac3468
-      - 89a4423d-f1df-4937-b7cf-aed607a0c52f
+      - 88ee7c08-b9de-461b-a344-28c67a0a196c
+      - c3d32793-bd03-44b5-9084-42b4b1adfe28
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  0e86dcf5-6bc7-4280-b31f-65a247ac3468:
-    id: 0e86dcf5-6bc7-4280-b31f-65a247ac3468
+  88ee7c08-b9de-461b-a344-28c67a0a196c:
+    id: 88ee7c08-b9de-461b-a344-28c67a0a196c
     content: Components hold templates only
     children: []
     metadata:
@@ -80106,8 +80159,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  89a4423d-f1df-4937-b7cf-aed607a0c52f:
-    id: 89a4423d-f1df-4937-b7cf-aed607a0c52f
+  c3d32793-bd03-44b5-9084-42b4b1adfe28:
+    id: c3d32793-bd03-44b5-9084-42b4b1adfe28
     content: Hooks hold logic only
     children: []
     metadata:
@@ -80115,20 +80168,20 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  0e35e894-951f-46fb-bb33-eff844ee431a:
-    id: 0e35e894-951f-46fb-bb33-eff844ee431a
+  6ab30488-0501-4fff-9801-4194f20d7cd0:
+    id: 6ab30488-0501-4fff-9801-4194f20d7cd0
     content: If a file is over 500 lines
     children:
-      - d25e329a-8519-4c79-80e6-8be89620d5a6
-      - 807eca59-6744-4ab3-a25e-5ffbc32a6163
-      - f40235e1-9d6d-4bb2-87f5-066dcaa82e51
+      - 26348ee6-e8db-4e81-aa80-cc3b15f529c0
+      - 57a6c2d0-bafc-4706-af77-f5f55f39030a
+      - 0b8e168b-cefa-4e9a-b482-552b98466a08
     metadata:
       status: pending
       expanded: true
       deleted: false
       plugins: {}
-  d25e329a-8519-4c79-80e6-8be89620d5a6:
-    id: d25e329a-8519-4c79-80e6-8be89620d5a6
+  26348ee6-e8db-4e81-aa80-cc3b15f529c0:
+    id: 26348ee6-e8db-4e81-aa80-cc3b15f529c0
     content: If it has multiple responsibilities, split it into 2 or more
     children: []
     metadata:
@@ -80136,8 +80189,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  807eca59-6744-4ab3-a25e-5ffbc32a6163:
-    id: 807eca59-6744-4ab3-a25e-5ffbc32a6163
+  57a6c2d0-bafc-4706-af77-f5f55f39030a:
+    id: 57a6c2d0-bafc-4706-af77-f5f55f39030a
     content: Unless it has shared state and such would add unnecessary complexity
     children: []
     metadata:
@@ -80145,8 +80198,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  f40235e1-9d6d-4bb2-87f5-066dcaa82e51:
-    id: f40235e1-9d6d-4bb2-87f5-066dcaa82e51
+  0b8e168b-cefa-4e9a-b482-552b98466a08:
+    id: 0b8e168b-cefa-4e9a-b482-552b98466a08
     content: Not applicable to test files
     children: []
     metadata:
@@ -80154,18 +80207,18 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  bceab686-891d-4acb-bbd0-bea2583c817d:
-    id: bceab686-891d-4acb-bbd0-bea2583c817d
+  11b24cd6-a5f2-430a-9c38-895cd8c5ce24:
+    id: 11b24cd6-a5f2-430a-9c38-895cd8c5ce24
     content: If a function or method is over 50 lines
     children:
-      - d63fcc61-cb8a-42b0-ab66-c7861ca3791d
+      - 01d60b41-029d-4ff5-bf09-bc5dea20686c
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  d63fcc61-cb8a-42b0-ab66-c7861ca3791d:
-    id: d63fcc61-cb8a-42b0-ab66-c7861ca3791d
+  01d60b41-029d-4ff5-bf09-bc5dea20686c:
+    id: 01d60b41-029d-4ff5-bf09-bc5dea20686c
     content: If it has multiple responsibilities, split it into 2 or more
     children: []
     metadata:
@@ -80173,8 +80226,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  076bfddb-5116-40e8-8c9d-bd11ffb79bd8:
-    id: 076bfddb-5116-40e8-8c9d-bd11ffb79bd8
+  ff280238-2f6f-4778-911f-743750ecfd93:
+    id: ff280238-2f6f-4778-911f-743750ecfd93
     content: Barrel exports (index.ts) for clean imports
     children: []
     metadata:
@@ -80182,8 +80235,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  348760ea-1688-4a1e-80c5-0725f6a6ccb2:
-    id: 348760ea-1688-4a1e-80c5-0725f6a6ccb2
+  7a8f49b4-58bc-4d07-b65d-7b4fb6280254:
+    id: 7a8f49b4-58bc-4d07-b65d-7b4fb6280254
     content: Split complex hooks into focused single-responsibility hooks
     children: []
     metadata:
@@ -80191,8 +80244,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  531cb837-72e3-4f04-b222-c9a62eb64f86:
-    id: 531cb837-72e3-4f04-b222-c9a62eb64f86
+  498cd4cb-c190-43e2-9d7d-6fc699fc49ea:
+    id: 498cd4cb-c190-43e2-9d7d-6fc699fc49ea
     content: Main hook composes specialized hooks and returns combined interface
     children: []
     metadata:
@@ -80200,8 +80253,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  90a7c268-8a75-4723-b8ea-312afd88ffef:
-    id: 90a7c268-8a75-4723-b8ea-312afd88ffef
+  f3179314-bdab-43de-adbd-3f2d80516877:
+    id: f3179314-bdab-43de-adbd-3f2d80516877
     content: Services for side effects and external interactions (DOM, IPC, I/O, API, event listeners)
     children: []
     metadata:
@@ -80209,8 +80262,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  9818a084-427b-4487-a5c9-9086ce9f1397:
-    id: 9818a084-427b-4487-a5c9-9086ce9f1397
+  6fff03f4-4e8c-4e9a-bb8a-68b7a827eb0c:
+    id: 6fff03f4-4e8c-4e9a-bb8a-68b7a827eb0c
     content: Utils are pure functions with no side effects
     children: []
     metadata:
@@ -80218,23 +80271,23 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  ea037cb8-5928-48f6-a9c2-6238c23bb619:
-    id: ea037cb8-5928-48f6-a9c2-6238c23bb619
+  0b70c35b-60d5-44d4-828b-c163bf37441d:
+    id: 0b70c35b-60d5-44d4-828b-c163bf37441d
     content: Directory Structure
     children:
-      - 178d4041-ca14-4592-aae4-3ac9ef23825e
-      - 96e7299d-3f41-4bd3-ba30-3300a7dfd248
-      - 837afa72-496d-46a5-8766-3b942fcd01c0
-      - 8cda4f00-b265-4f98-a5fd-ab321ce0d556
-      - b7fc8e7f-8690-489a-a610-2c0c140ddb08
-      - 00033830-fb60-4776-abd9-51f0dbc83cad
+      - a273b455-2ddd-4f80-99ab-7a667ffaf651
+      - 9df9247b-9473-451d-9dee-44c49aeedf2c
+      - ecb8a31b-f869-4326-aa43-60da3587d349
+      - d3df6180-f30a-44c7-a04f-07ceba307805
+      - 24e3e225-6168-48f9-9404-9a52e7fde704
+      - 498b6582-a114-4415-bff5-73c17d4b4695
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  178d4041-ca14-4592-aae4-3ac9ef23825e:
-    id: 178d4041-ca14-4592-aae4-3ac9ef23825e
+  a273b455-2ddd-4f80-99ab-7a667ffaf651:
+    id: a273b455-2ddd-4f80-99ab-7a667ffaf651
     content: Separate main process, renderer, shared, and platform-specific code
     children: []
     metadata:
@@ -80242,8 +80295,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  96e7299d-3f41-4bd3-ba30-3300a7dfd248:
-    id: 96e7299d-3f41-4bd3-ba30-3300a7dfd248
+  9df9247b-9473-451d-9dee-44c49aeedf2c:
+    id: 9df9247b-9473-451d-9dee-44c49aeedf2c
     content: Platform implementations behind interfaces for swappability
     children: []
     metadata:
@@ -80251,8 +80304,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  837afa72-496d-46a5-8766-3b942fcd01c0:
-    id: 837afa72-496d-46a5-8766-3b942fcd01c0
+  ecb8a31b-f869-4326-aa43-60da3587d349:
+    id: ecb8a31b-f869-4326-aa43-60da3587d349
     content: Shared types and interfaces used by both processes live in shared/
     children: []
     metadata:
@@ -80260,8 +80313,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  8cda4f00-b265-4f98-a5fd-ab321ce0d556:
-    id: 8cda4f00-b265-4f98-a5fd-ab321ce0d556
+  d3df6180-f30a-44c7-a04f-07ceba307805:
+    id: d3df6180-f30a-44c7-a04f-07ceba307805
     content: IPC handlers organized in services/handlers/ subdirectory
     children: []
     metadata:
@@ -80269,8 +80322,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  b7fc8e7f-8690-489a-a610-2c0c140ddb08:
-    id: b7fc8e7f-8690-489a-a610-2c0c140ddb08
+  24e3e225-6168-48f9-9404-9a52e7fde704:
+    id: 24e3e225-6168-48f9-9404-9a52e7fde704
     content: Single preload file exposing platform APIs via contextBridge
     children: []
     metadata:
@@ -80278,34 +80331,34 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  00033830-fb60-4776-abd9-51f0dbc83cad:
-    id: 00033830-fb60-4776-abd9-51f0dbc83cad
+  498b6582-a114-4415-bff5-73c17d4b4695:
+    id: 498b6582-a114-4415-bff5-73c17d4b4695
     content: 'Layout:'
     children:
-      - 800231c4-5382-4862-83bf-30ba1fbdbc5e
-      - a50738a3-1c73-4f05-8a0d-570660f1d4ea
-      - 1dccd77c-ac03-42a6-8c40-8bc3888f0a24
-      - 4614b109-ed3a-438d-a775-f1b7b17b80f7
-      - d6f49170-4e8d-4499-81a7-e0790f5ae01b
-      - 42191d2e-5704-4cc7-b892-146089de8185
-      - 2e08feeb-10c8-479e-9866-588e0922f171
-      - ea944cd3-3fd3-4978-a44e-24a3fe99bb45
-      - d3d6d423-68d1-4e4a-b59f-630dbc12f00c
-      - 0fc1108e-7c13-4554-aca3-4055d66f9cbd
-      - 1dd121d6-7912-4fdc-8352-348417a459d8
-      - 2384d91e-9958-4bdf-990b-a3d48237fd7a
-      - 7d7a93d3-8745-4de7-b68a-24acb72f4c18
-      - fed4f222-04f9-463f-a1c4-9b4f251d9748
-      - 8a909711-f95a-411f-b1eb-d9d6b870a39b
-      - a602634f-6d59-4ce7-a624-6198a5894627
-      - e574c421-b58f-44a1-af5d-f93a7825ee6d
+      - d40ee3c3-5492-405e-b249-b5a2718b5e02
+      - b7c838db-80d1-494c-b130-a4b56f644130
+      - b9b781e1-c480-487b-be13-2504f1089603
+      - 2062b743-0be9-466a-85fd-83b276c1b3d1
+      - 51d93954-b29c-4d23-907c-5482e467f9e4
+      - 47c72949-e3c6-47de-85d9-a151350439c2
+      - 3faa4da6-ad73-4d93-8b2d-28b513c180b6
+      - 8f48383e-1f91-4753-acb0-561c521a6a25
+      - 39489a6c-7b1a-4d18-a0b1-0f3f21736c02
+      - 38ab61ca-2410-4725-8c80-587593d6b408
+      - 522a82ef-c5e8-4865-9709-a797ea5b91dd
+      - e8a7b2dd-0392-45ce-8c07-a3a2bb6e613b
+      - 407a5822-8405-43b4-86a5-34a010e8f4e6
+      - 12f5d2f2-b769-47c2-b5c2-6940738b799f
+      - 88b2959b-3010-4063-831a-7077b2591b6d
+      - 9fb6201f-b43a-459c-afad-4b632620e9ab
+      - 370033d9-766b-4665-926e-a6962ffae06a
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  800231c4-5382-4862-83bf-30ba1fbdbc5e:
-    id: 800231c4-5382-4862-83bf-30ba1fbdbc5e
+  d40ee3c3-5492-405e-b249-b5a2718b5e02:
+    id: d40ee3c3-5492-405e-b249-b5a2718b5e02
     content: src/main/ - Electron main process
     children: []
     metadata:
@@ -80313,8 +80366,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  a50738a3-1c73-4f05-8a0d-570660f1d4ea:
-    id: a50738a3-1c73-4f05-8a0d-570660f1d4ea
+  b7c838db-80d1-494c-b130-a4b56f644130:
+    id: b7c838db-80d1-494c-b130-a4b56f644130
     content: services/handlers/ - IPC handlers by feature
     children: []
     metadata:
@@ -80322,8 +80375,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  1dccd77c-ac03-42a6-8c40-8bc3888f0a24:
-    id: 1dccd77c-ac03-42a6-8c40-8bc3888f0a24
+  b9b781e1-c480-487b-be13-2504f1089603:
+    id: b9b781e1-c480-487b-be13-2504f1089603
     content: services/utils/ - Main process utilities
     children: []
     metadata:
@@ -80331,8 +80384,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  4614b109-ed3a-438d-a775-f1b7b17b80f7:
-    id: 4614b109-ed3a-438d-a775-f1b7b17b80f7
+  2062b743-0be9-466a-85fd-83b276c1b3d1:
+    id: 2062b743-0be9-466a-85fd-83b276c1b3d1
     content: src/preload/ - Context bridge definitions
     children: []
     metadata:
@@ -80340,8 +80393,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  d6f49170-4e8d-4499-81a7-e0790f5ae01b:
-    id: d6f49170-4e8d-4499-81a7-e0790f5ae01b
+  51d93954-b29c-4d23-907c-5482e467f9e4:
+    id: 51d93954-b29c-4d23-907c-5482e467f9e4
     content: src/platforms/electron/services/ - Platform implementations
     children: []
     metadata:
@@ -80349,8 +80402,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  42191d2e-5704-4cc7-b892-146089de8185:
-    id: 42191d2e-5704-4cc7-b892-146089de8185
+  47c72949-e3c6-47de-85d9-a151350439c2:
+    id: 47c72949-e3c6-47de-85d9-a151350439c2
     content: src/renderer/ - React application
     children: []
     metadata:
@@ -80358,8 +80411,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  2e08feeb-10c8-479e-9866-588e0922f171:
-    id: 2e08feeb-10c8-479e-9866-588e0922f171
+  3faa4da6-ad73-4d93-8b2d-28b513c180b6:
+    id: 3faa4da6-ad73-4d93-8b2d-28b513c180b6
     content: components/ - UI components with co-located hooks/
     children: []
     metadata:
@@ -80367,8 +80420,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  ea944cd3-3fd3-4978-a44e-24a3fe99bb45:
-    id: ea944cd3-3fd3-4978-a44e-24a3fe99bb45
+  8f48383e-1f91-4753-acb0-561c521a6a25:
+    id: 8f48383e-1f91-4753-acb0-561c521a6a25
     content: components/ui/ - Reusable UI primitives
     children: []
     metadata:
@@ -80376,8 +80429,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  d3d6d423-68d1-4e4a-b59f-630dbc12f00c:
-    id: d3d6d423-68d1-4e4a-b59f-630dbc12f00c
+  39489a6c-7b1a-4d18-a0b1-0f3f21736c02:
+    id: 39489a6c-7b1a-4d18-a0b1-0f3f21736c02
     content: store/ - Zustand stores with actions/ subdirectories
     children: []
     metadata:
@@ -80385,8 +80438,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  0fc1108e-7c13-4554-aca3-4055d66f9cbd:
-    id: 0fc1108e-7c13-4554-aca3-4055d66f9cbd
+  38ab61ca-2410-4725-8c80-587593d6b408:
+    id: 38ab61ca-2410-4725-8c80-587593d6b408
     content: services/ - Side-effect services (keyboard/, feedback/, etc.)
     children: []
     metadata:
@@ -80394,8 +80447,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  1dd121d6-7912-4fdc-8352-348417a459d8:
-    id: 1dd121d6-7912-4fdc-8352-348417a459d8
+  522a82ef-c5e8-4865-9709-a797ea5b91dd:
+    id: 522a82ef-c5e8-4865-9709-a797ea5b91dd
     content: hooks/ - Shared hooks used by multiple components
     children: []
     metadata:
@@ -80403,8 +80456,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  2384d91e-9958-4bdf-990b-a3d48237fd7a:
-    id: 2384d91e-9958-4bdf-990b-a3d48237fd7a
+  e8a7b2dd-0392-45ce-8c07-a3a2bb6e613b:
+    id: e8a7b2dd-0392-45ce-8c07-a3a2bb6e613b
     content: utils/ - Pure utility functions
     children: []
     metadata:
@@ -80412,8 +80465,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  7d7a93d3-8745-4de7-b68a-24acb72f4c18:
-    id: 7d7a93d3-8745-4de7-b68a-24acb72f4c18
+  407a5822-8405-43b4-86a5-34a010e8f4e6:
+    id: 407a5822-8405-43b4-86a5-34a010e8f4e6
     content: data/ - Static data and configuration
     children: []
     metadata:
@@ -80421,8 +80474,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  fed4f222-04f9-463f-a1c4-9b4f251d9748:
-    id: fed4f222-04f9-463f-a1c4-9b4f251d9748
+  12f5d2f2-b769-47c2-b5c2-6940738b799f:
+    id: 12f5d2f2-b769-47c2-b5c2-6940738b799f
     content: src/shared/ - Cross-process code
     children: []
     metadata:
@@ -80430,8 +80483,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  8a909711-f95a-411f-b1eb-d9d6b870a39b:
-    id: 8a909711-f95a-411f-b1eb-d9d6b870a39b
+  88b2959b-3010-4063-831a-7077b2591b6d:
+    id: 88b2959b-3010-4063-831a-7077b2591b6d
     content: types/ - Shared type definitions
     children: []
     metadata:
@@ -80439,8 +80492,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  a602634f-6d59-4ce7-a624-6198a5894627:
-    id: a602634f-6d59-4ce7-a624-6198a5894627
+  9fb6201f-b43a-459c-afad-4b632620e9ab:
+    id: 9fb6201f-b43a-459c-afad-4b632620e9ab
     content: utils/ - Platform-agnostic utilities
     children: []
     metadata:
@@ -80448,8 +80501,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  e574c421-b58f-44a1-af5d-f93a7825ee6d:
-    id: e574c421-b58f-44a1-af5d-f93a7825ee6d
+  370033d9-766b-4665-926e-a6962ffae06a:
+    id: 370033d9-766b-4665-926e-a6962ffae06a
     content: services/ - Shared service base classes
     children: []
     metadata:
@@ -80457,447 +80510,447 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  a294ed5d-1553-4d74-ab55-619b25a41184:
-    id: a294ed5d-1553-4d74-ab55-619b25a41184
+  4d31522a-80bb-476e-b4fe-21133f8e781a:
+    id: 4d31522a-80bb-476e-b4fe-21133f8e781a
     content: Documentation
     children:
-      - d9e2a742-0cd8-45a2-9319-0652abf9f895
-      - bae2504d-59f4-464d-9307-12bd75bbb849
-      - fffa1525-7c82-44b8-b565-4b44fc308bd7
-      - 68b6d4a5-61bc-4838-8551-cd10038114ec
-      - 37d4e92d-8019-4bca-b81c-d2882187330a
-      - 712e13d6-3e43-4dbb-b564-d606cd60d7bb
+      - bcbc9895-6605-4641-b6b2-32e7313a803f
+      - 1ede143b-36ff-4bab-a47b-0b1196aabde3
+      - 4634fe7b-0538-4830-a0af-d0539cd7eff8
+      - f7a8a1e2-597c-402e-88ac-ab50cf6fb7ae
+      - c1065999-3572-478a-a016-4bce78b34a76
+      - a8c1efa7-af0b-45ef-8065-dde22c592e47
     metadata:
-      status: pending
+      status: abandoned
       expanded: true
       deleted: false
       plugins: {}
-  d9e2a742-0cd8-45a2-9319-0652abf9f895:
-    id: d9e2a742-0cd8-45a2-9319-0652abf9f895
+  bcbc9895-6605-4641-b6b2-32e7313a803f:
+    id: bcbc9895-6605-4641-b6b2-32e7313a803f
     content: Structure
     children:
-      - 2c97dce0-5940-4693-a97b-40f20298d5c4
-      - 9b5e297b-264a-49c0-b562-c585360d00fa
-      - 12bc0d3b-fc26-40f7-b088-3135b35f2398
-      - cd96b03d-1a8c-4429-ab60-ce183de37f73
-      - ff7a4f9f-bfdc-4f14-b2a8-74f5766b393d
-      - 57e78ab0-3291-41e5-adf8-4f1b2f6c524c
-      - 364e281b-2ed5-48fd-aa8b-9085f29aaefb
-      - 5326d43f-852e-4f6a-9e48-6a37dc883ec6
-      - 10be954e-e048-4dbd-8cce-edddf78f855a
-      - eee78147-400e-4ee2-ac0b-bcb159f066c9
-      - 51a48eff-cf78-4112-933d-86e3fd737521
+      - c1cecf48-5da9-426b-b69e-a261324e97dd
+      - c8bfa070-1689-4ab8-9bc0-a41a9c6fab2c
+      - c82fe721-c5dc-4a97-a165-bb6cd45a250a
+      - 5c17e3ba-c79d-47c4-b3af-8de048511fb6
+      - 4460197e-f40a-46f5-9008-62b226cd4700
+      - f952a909-f040-449d-b06e-b9faf887e8e1
+      - ed1f9539-2c8d-4ca9-b965-d658b4494438
+      - 9c5c0070-1538-47a1-a2ba-c450236f5607
+      - 76ad018c-b8af-4199-aa61-962b05201e3c
+      - 24b2ae62-2e10-4634-b58c-4d47a26bf6dc
+      - 3a5fd0ee-c0f1-4740-a1d2-499a89acaea4
     metadata:
-      status: pending
+      status: abandoned
       expanded: true
       deleted: false
       plugins: {}
-  2c97dce0-5940-4693-a97b-40f20298d5c4:
-    id: 2c97dce0-5940-4693-a97b-40f20298d5c4
+  c1cecf48-5da9-426b-b69e-a261324e97dd:
+    id: c1cecf48-5da9-426b-b69e-a261324e97dd
     content: Create in docs/
     children: []
     metadata:
-      status: pending
+      status: abandoned
       expanded: true
       deleted: false
       plugins: {}
-  9b5e297b-264a-49c0-b562-c585360d00fa:
-    id: 9b5e297b-264a-49c0-b562-c585360d00fa
+  c8bfa070-1689-4ab8-9bc0-a41a9c6fab2c:
+    id: c8bfa070-1689-4ab8-9bc0-a41a9c6fab2c
     content: Create quick start, overview and index in README.md
     children: []
     metadata:
-      status: pending
+      status: abandoned
       expanded: true
       deleted: false
       plugins: {}
-  12bc0d3b-fc26-40f7-b088-3135b35f2398:
-    id: 12bc0d3b-fc26-40f7-b088-3135b35f2398
+  c82fe721-c5dc-4a97-a165-bb6cd45a250a:
+    id: c82fe721-c5dc-4a97-a165-bb6cd45a250a
     content: Separate file for core workflow in workflow.md
     children: []
     metadata:
-      status: pending
+      status: abandoned
       expanded: true
       deleted: false
       plugins: {}
-  cd96b03d-1a8c-4429-ab60-ce183de37f73:
-    id: cd96b03d-1a8c-4429-ab60-ce183de37f73
+  5c17e3ba-c79d-47c4-b3af-8de048511fb6:
+    id: 5c17e3ba-c79d-47c4-b3af-8de048511fb6
     content: When to split vs expand
     children: []
     metadata:
-      status: pending
+      status: abandoned
       expanded: true
       deleted: false
       plugins: {}
-  ff7a4f9f-bfdc-4f14-b2a8-74f5766b393d:
-    id: ff7a4f9f-bfdc-4f14-b2a8-74f5766b393d
+  4460197e-f40a-46f5-9008-62b226cd4700:
+    id: 4460197e-f40a-46f5-9008-62b226cd4700
     content: New file when concept stands alone (blueprints, contexts)
     children: []
     metadata:
-      status: pending
+      status: abandoned
       expanded: true
       deleted: false
       plugins: {}
-  57e78ab0-3291-41e5-adf8-4f1b2f6c524c:
-    id: 57e78ab0-3291-41e5-adf8-4f1b2f6c524c
+  f952a909-f040-449d-b06e-b9faf887e8e1:
+    id: f952a909-f040-449d-b06e-b9faf887e8e1
     content: Expand existing when concepts are tightly coupled
     children: []
     metadata:
-      status: pending
+      status: abandoned
       expanded: true
       deleted: false
       plugins: {}
-  364e281b-2ed5-48fd-aa8b-9085f29aaefb:
-    id: 364e281b-2ed5-48fd-aa8b-9085f29aaefb
+  ed1f9539-2c8d-4ca9-b965-d658b4494438:
+    id: ed1f9539-2c8d-4ca9-b965-d658b4494438
     content: 'Rule of thumb: if you''d link to it from multiple places, it''s a file'
     children: []
     metadata:
-      status: pending
+      status: abandoned
       expanded: true
       deleted: false
       plugins: {}
-  5326d43f-852e-4f6a-9e48-6a37dc883ec6:
-    id: 5326d43f-852e-4f6a-9e48-6a37dc883ec6
+  9c5c0070-1538-47a1-a2ba-c450236f5607:
+    id: 9c5c0070-1538-47a1-a2ba-c450236f5607
     content: Separate file for commands or shortcuts - lookup style with reference table
     children: []
     metadata:
-      status: pending
+      status: abandoned
       expanded: true
       deleted: false
       plugins: {}
-  10be954e-e048-4dbd-8cce-edddf78f855a:
-    id: 10be954e-e048-4dbd-8cce-edddf78f855a
+  76ad018c-b8af-4199-aa61-962b05201e3c:
+    id: 76ad018c-b8af-4199-aa61-962b05201e3c
     content: Keep pages short
     children: []
     metadata:
-      status: pending
+      status: abandoned
       expanded: true
       deleted: false
       plugins: {}
-  eee78147-400e-4ee2-ac0b-bcb159f066c9:
-    id: eee78147-400e-4ee2-ac0b-bcb159f066c9
+  24b2ae62-2e10-4634-b58c-4d47a26bf6dc:
+    id: 24b2ae62-2e10-4634-b58c-4d47a26bf6dc
     content: Aim for "one scroll" per topic
     children: []
     metadata:
-      status: pending
+      status: abandoned
       expanded: true
       deleted: false
       plugins: {}
-  51a48eff-cf78-4112-933d-86e3fd737521:
-    id: 51a48eff-cf78-4112-933d-86e3fd737521
+  3a5fd0ee-c0f1-4740-a1d2-499a89acaea4:
+    id: 3a5fd0ee-c0f1-4740-a1d2-499a89acaea4
     content: If longer, split into subtopics or reconsider scope
     children: []
     metadata:
-      status: pending
+      status: abandoned
       expanded: true
       deleted: false
       plugins: {}
-  bae2504d-59f4-464d-9307-12bd75bbb849:
-    id: bae2504d-59f4-464d-9307-12bd75bbb849
+  1ede143b-36ff-4bab-a47b-0b1196aabde3:
+    id: 1ede143b-36ff-4bab-a47b-0b1196aabde3
     content: 'Consider the core project philosophy here :'
     children:
-      - b3eb6222-83fd-4488-92ee-2b65dd7d5502
-      - e953d818-e7e2-4441-a2d9-84776457de4c
-      - b24a5af7-267b-453f-bf02-837be2288912
-      - b40145e7-cd18-4ee6-8b27-fcfd29186349
-      - 5c45b262-1aeb-49b9-b780-8788e3aec44c
-      - daa74022-0314-4923-b99d-c0f3686cef0a
-      - 4aab6e3b-c6db-4dae-99c1-3c3dd6b3b94e
-      - 43b503e2-69c5-40e8-a114-236358c593ab
-      - bdaee4b0-4e9b-4241-825b-af246bd833e8
-      - c94e0f6b-99ce-42dd-8fc5-029aab8e5134
-      - f5a60d4b-3aad-446a-843d-1f7b91eebbe8
-      - 48f1e595-a607-4afa-b660-de30fdcd8ea6
-      - bfa4ba99-3c96-4abb-9e76-2528b88c2e51
-      - 0ebe030e-10b3-493c-8073-b634405b0658
-      - 9d7d6431-39db-442c-bc3b-51a20f259338
+      - da6beeb5-703d-46c0-9562-00d9b574b23a
+      - bc353a28-57ab-4a44-9012-15548820213e
+      - e8740a58-8087-42cc-8556-492fc14aa7fc
+      - ad0b8759-bd66-4798-8f99-fabf9856b328
+      - 2d3382cd-caee-4b34-be9f-e857f82d91b2
+      - dbdba6bf-6c88-47a9-a42e-70a2fc35177e
+      - 4fc46716-a6a9-403e-883c-7d84c5456fae
+      - 2b8d7a12-43b3-4efb-a28f-c6dc5c6c91a4
+      - 0786b643-b5db-40e2-a4db-c5008cfbbbad
+      - fc4596ee-f9b8-411d-86ea-4e8071c00a9e
+      - 426926de-1114-4985-b6bd-62a5954db2ee
+      - d3bea203-6463-4c40-8edb-173303e499ca
+      - afc08a7b-11aa-4588-a3d0-2fbcea39714a
+      - d5a9796a-b537-4b52-8d0a-f2e842103f68
+      - 69580d08-a615-45ba-9d10-3804268089f4
     metadata:
-      status: pending
+      status: abandoned
       expanded: true
       deleted: false
       plugins: {}
-  b3eb6222-83fd-4488-92ee-2b65dd7d5502:
-    id: b3eb6222-83fd-4488-92ee-2b65dd7d5502
+  da6beeb5-703d-46c0-9562-00d9b574b23a:
+    id: da6beeb5-703d-46c0-9562-00d9b574b23a
     content: Philosophy
     children: []
     metadata:
-      status: pending
+      status: abandoned
       expanded: true
       deleted: false
       plugins: {}
-  e953d818-e7e2-4441-a2d9-84776457de4c:
-    id: e953d818-e7e2-4441-a2d9-84776457de4c
+  bc353a28-57ab-4a44-9012-15548820213e:
+    id: bc353a28-57ab-4a44-9012-15548820213e
     content: What is Arborescent ?
     children: []
     metadata:
-      status: pending
+      status: abandoned
       expanded: true
       deleted: false
       plugins: {}
-  b24a5af7-267b-453f-bf02-837be2288912:
-    id: b24a5af7-267b-453f-bf02-837be2288912
+  e8740a58-8087-42cc-8556-492fc14aa7fc:
+    id: e8740a58-8087-42cc-8556-492fc14aa7fc
     content: Read the README.md in this project's root folder
     children: []
     metadata:
-      status: pending
+      status: abandoned
       expanded: true
       deleted: false
       plugins: {}
-  b40145e7-cd18-4ee6-8b27-fcfd29186349:
-    id: b40145e7-cd18-4ee6-8b27-fcfd29186349
+  ad0b8759-bd66-4798-8f99-fabf9856b328:
+    id: ad0b8759-bd66-4798-8f99-fabf9856b328
     content: Design philosophy
     children: []
     metadata:
-      status: pending
+      status: abandoned
       expanded: true
       deleted: false
       plugins: {}
-  5c45b262-1aeb-49b9-b780-8788e3aec44c:
-    id: 5c45b262-1aeb-49b9-b780-8788e3aec44c
+  2d3382cd-caee-4b34-be9f-e857f82d91b2:
+    id: 2d3382cd-caee-4b34-be9f-e857f82d91b2
     content: Designed for focus and low cognitive load
     children: []
     metadata:
-      status: pending
+      status: abandoned
       expanded: true
       deleted: false
       plugins: {}
-  daa74022-0314-4923-b99d-c0f3686cef0a:
-    id: daa74022-0314-4923-b99d-c0f3686cef0a
+  dbdba6bf-6c88-47a9-a42e-70a2fc35177e:
+    id: dbdba6bf-6c88-47a9-a42e-70a2fc35177e
     content: Tree structure supports non-linear thinking
     children: []
     metadata:
-      status: pending
+      status: abandoned
       expanded: true
       deleted: false
       plugins: {}
-  4aab6e3b-c6db-4dae-99c1-3c3dd6b3b94e:
-    id: 4aab6e3b-c6db-4dae-99c1-3c3dd6b3b94e
+  4fc46716-a6a9-403e-883c-7d84c5456fae:
+    id: 4fc46716-a6a9-403e-883c-7d84c5456fae
     content: UI minimizes visual noise
     children: []
     metadata:
-      status: pending
+      status: abandoned
       expanded: true
       deleted: false
       plugins: {}
-  43b503e2-69c5-40e8-a114-236358c593ab:
-    id: 43b503e2-69c5-40e8-a114-236358c593ab
+  2b8d7a12-43b3-4efb-a28f-c6dc5c6c91a4:
+    id: 2b8d7a12-43b3-4efb-a28f-c6dc5c6c91a4
     content: Predictable, stable behavior
     children: []
     metadata:
-      status: pending
+      status: abandoned
       expanded: true
       deleted: false
       plugins: {}
-  bdaee4b0-4e9b-4241-825b-af246bd833e8:
-    id: bdaee4b0-4e9b-4241-825b-af246bd833e8
+  0786b643-b5db-40e2-a4db-c5008cfbbbad:
+    id: 0786b643-b5db-40e2-a4db-c5008cfbbbad
     content: Complexity is emergent, discoverable, configurable
     children: []
     metadata:
-      status: pending
+      status: abandoned
       expanded: true
       deleted: false
       plugins: {}
-  c94e0f6b-99ce-42dd-8fc5-029aab8e5134:
-    id: c94e0f6b-99ce-42dd-8fc5-029aab8e5134
+  fc4596ee-f9b8-411d-86ea-4e8071c00a9e:
+    id: fc4596ee-f9b8-411d-86ea-4e8071c00a9e
     content: Objectives
     children: []
     metadata:
-      status: pending
+      status: abandoned
       expanded: true
       deleted: false
       plugins: {}
-  f5a60d4b-3aad-446a-843d-1f7b91eebbe8:
-    id: f5a60d4b-3aad-446a-843d-1f7b91eebbe8
+  426926de-1114-4985-b6bd-62a5954db2ee:
+    id: 426926de-1114-4985-b6bd-62a5954db2ee
     content: Create a full featured outliner with AI workflows for automated task decomposition and execution with human validation steps.
     children: []
     metadata:
-      status: pending
+      status: abandoned
       expanded: true
       deleted: false
       plugins: {}
-  48f1e595-a607-4afa-b660-de30fdcd8ea6:
-    id: 48f1e595-a607-4afa-b660-de30fdcd8ea6
+  d3bea203-6463-4c40-8edb-173303e499ca:
+    id: d3bea203-6463-4c40-8edb-173303e499ca
     content: Allow the natural emergence of ontological trees in the form of blueprints that guide the AI output so that it aligns as closely as possible with the user's intent.
     children: []
     metadata:
-      status: pending
+      status: abandoned
       expanded: true
       deleted: false
       plugins: {}
-  bfa4ba99-3c96-4abb-9e76-2528b88c2e51:
-    id: bfa4ba99-3c96-4abb-9e76-2528b88c2e51
+  afc08a7b-11aa-4588-a3d0-2fbcea39714a:
+    id: afc08a7b-11aa-4588-a3d0-2fbcea39714a
     content: Harness network effects with AI and human contributors through the form of shared blueprints to provide compounding improvement to move the output ever closer towards deterministic.
     children: []
     metadata:
-      status: pending
+      status: abandoned
       expanded: true
       deleted: false
       plugins: {}
-  0ebe030e-10b3-493c-8073-b634405b0658:
-    id: 0ebe030e-10b3-493c-8073-b634405b0658
+  d5a9796a-b537-4b52-8d0a-f2e842103f68:
+    id: d5a9796a-b537-4b52-8d0a-f2e842103f68
     content: Eventually integrate with external systems through MCP to become a workflow orchestrator.
     children: []
     metadata:
-      status: pending
+      status: abandoned
       expanded: true
       deleted: false
       plugins: {}
-  9d7d6431-39db-442c-bc3b-51a20f259338:
-    id: 9d7d6431-39db-442c-bc3b-51a20f259338
+  69580d08-a615-45ba-9d10-3804268089f4:
+    id: 69580d08-a615-45ba-9d10-3804268089f4
     content: Is also a useful todo list and orchestrator.
     children: []
     metadata:
-      status: pending
+      status: abandoned
       expanded: true
       deleted: false
       plugins: {}
-  fffa1525-7c82-44b8-b565-4b44fc308bd7:
-    id: fffa1525-7c82-44b8-b565-4b44fc308bd7
+  4634fe7b-0538-4830-a0af-d0539cd7eff8:
+    id: 4634fe7b-0538-4830-a0af-d0539cd7eff8
     content: Structure docs by workflow, not by feature
     children:
-      - 7d327dae-ea87-4861-a85f-65e05720bf5b
-      - 39848211-d8a7-43b4-ad29-b2a96983970f
-      - ab65ee1c-92b7-41dd-9c17-95197880cae6
-      - dc613eba-e320-45c9-b89d-1b4762dc02a2
+      - 80d44475-f358-46e2-b64b-826018dd388e
+      - 9a68ca49-fd34-4fdd-b3c3-bff66fd126d1
+      - 7bf001c4-358b-4482-8049-037922790de5
+      - 5470786e-bbbd-4a25-8723-bae8c5ffdf5a
     metadata:
-      status: pending
+      status: abandoned
       expanded: true
       deleted: false
       plugins: {}
-  7d327dae-ea87-4861-a85f-65e05720bf5b:
-    id: 7d327dae-ea87-4861-a85f-65e05720bf5b
+  80d44475-f358-46e2-b64b-826018dd388e:
+    id: 80d44475-f358-46e2-b64b-826018dd388e
     content: Lead with "how to accomplish X" rather than "what X does"
     children: []
     metadata:
-      status: pending
+      status: abandoned
       expanded: true
       deleted: false
       plugins: {}
-  39848211-d8a7-43b4-ad29-b2a96983970f:
-    id: 39848211-d8a7-43b4-ad29-b2a96983970f
+  9a68ca49-fd34-4fdd-b3c3-bff66fd126d1:
+    id: 9a68ca49-fd34-4fdd-b3c3-bff66fd126d1
     content: Introduce features in the context of tasks, not as standalone descriptions
     children: []
     metadata:
-      status: pending
+      status: abandoned
       expanded: true
       deleted: false
       plugins: {}
-  ab65ee1c-92b7-41dd-9c17-95197880cae6:
-    id: ab65ee1c-92b7-41dd-9c17-95197880cae6
+  7bf001c4-358b-4482-8049-037922790de5:
+    id: 7bf001c4-358b-4482-8049-037922790de5
     content: Avoid tables, except for pure reference like keyboard shortcuts
     children: []
     metadata:
-      status: pending
+      status: abandoned
       expanded: true
       deleted: false
       plugins: {}
-  dc613eba-e320-45c9-b89d-1b4762dc02a2:
-    id: dc613eba-e320-45c9-b89d-1b4762dc02a2
+  5470786e-bbbd-4a25-8723-bae8c5ffdf5a:
+    id: 5470786e-bbbd-4a25-8723-bae8c5ffdf5a
     content: Keep it reasonably brief - all necessary information there, no fluff
     children: []
     metadata:
-      status: pending
+      status: abandoned
       expanded: true
       deleted: false
       plugins: {}
-  68b6d4a5-61bc-4838-8551-cd10038114ec:
-    id: 68b6d4a5-61bc-4838-8551-cd10038114ec
+  f7a8a1e2-597c-402e-88ac-ab50cf6fb7ae:
+    id: f7a8a1e2-597c-402e-88ac-ab50cf6fb7ae
     content: Progressive disclosure
     children:
-      - 2df1bbe6-a8fc-46f6-ad8e-fc17d99a9c8c
-      - c045f084-12ed-48e4-b730-ea1ea8a220aa
-      - d4cd3683-fc49-478f-b413-28d2356c1bcd
-      - b4506c95-4749-4af8-abae-5713ff24d8aa
+      - 282de32f-8688-4943-87ea-102b8395c785
+      - 14d2447d-1c9a-4e48-987e-45b9778486b7
+      - 0c721209-5d47-4a48-9aae-2130001340a2
+      - d82ff7e7-5a9b-43c8-9b58-1368f7496a4f
     metadata:
-      status: pending
+      status: abandoned
       expanded: true
       deleted: false
       plugins: {}
-  2df1bbe6-a8fc-46f6-ad8e-fc17d99a9c8c:
-    id: 2df1bbe6-a8fc-46f6-ad8e-fc17d99a9c8c
+  282de32f-8688-4943-87ea-102b8395c785:
+    id: 282de32f-8688-4943-87ea-102b8395c785
     content: Start with quick start (2 minutes to first result)
     children: []
     metadata:
-      status: pending
+      status: abandoned
       expanded: true
       deleted: false
       plugins: {}
-  c045f084-12ed-48e4-b730-ea1ea8a220aa:
-    id: c045f084-12ed-48e4-b730-ea1ea8a220aa
+  14d2447d-1c9a-4e48-987e-45b9778486b7:
+    id: 14d2447d-1c9a-4e48-987e-45b9778486b7
     content: Core workflow next (the main loop users will repeat)
     children: []
     metadata:
-      status: pending
+      status: abandoned
       expanded: true
       deleted: false
       plugins: {}
-  d4cd3683-fc49-478f-b413-28d2356c1bcd:
-    id: d4cd3683-fc49-478f-b413-28d2356c1bcd
+  0c721209-5d47-4a48-9aae-2130001340a2:
+    id: 0c721209-5d47-4a48-9aae-2130001340a2
     content: Advanced topics later
     children: []
     metadata:
-      status: pending
+      status: abandoned
       expanded: true
       deleted: false
       plugins: {}
-  b4506c95-4749-4af8-abae-5713ff24d8aa:
-    id: b4506c95-4749-4af8-abae-5713ff24d8aa
+  d82ff7e7-5a9b-43c8-9b58-1368f7496a4f:
+    id: d82ff7e7-5a9b-43c8-9b58-1368f7496a4f
     content: Reference material last (keyboard shortcuts etc)
     children: []
     metadata:
-      status: pending
+      status: abandoned
       expanded: true
       deleted: false
       plugins: {}
-  37d4e92d-8019-4bca-b81c-d2882187330a:
-    id: 37d4e92d-8019-4bca-b81c-d2882187330a
+  c1065999-3572-478a-a016-4bce78b34a76:
+    id: c1065999-3572-478a-a016-4bce78b34a76
     content: Tone and voice
     children:
-      - af4ace6c-0e41-4ace-b5cc-febda03a4742
-      - 3ab7dafc-4a14-4d22-82aa-75d2f639a104
-      - 12f38d12-0d69-4830-96f9-1d994eb97098
+      - de71b915-9a46-45ec-96fb-f5b4cc30e639
+      - a227280b-0620-4764-91d4-2dc256763475
+      - 3d04a9df-49e8-4928-b578-5b9ad6ee823b
     metadata:
-      status: pending
+      status: abandoned
       expanded: true
       deleted: false
       plugins: {}
-  af4ace6c-0e41-4ace-b5cc-febda03a4742:
-    id: af4ace6c-0e41-4ace-b5cc-febda03a4742
+  de71b915-9a46-45ec-96fb-f5b4cc30e639:
+    id: de71b915-9a46-45ec-96fb-f5b4cc30e639
     content: Keep it direct, minimize the marketing fluff, assumes intelligent user
     children: []
     metadata:
-      status: pending
+      status: abandoned
       expanded: true
       deleted: false
       plugins: {}
-  3ab7dafc-4a14-4d22-82aa-75d2f639a104:
-    id: 3ab7dafc-4a14-4d22-82aa-75d2f639a104
+  a227280b-0620-4764-91d4-2dc256763475:
+    id: a227280b-0620-4764-91d4-2dc256763475
     content: Second person ("you") for instructions, active voice
     children: []
     metadata:
-      status: pending
+      status: abandoned
       expanded: true
       deleted: false
       plugins: {}
-  12f38d12-0d69-4830-96f9-1d994eb97098:
-    id: 12f38d12-0d69-4830-96f9-1d994eb97098
+  3d04a9df-49e8-4928-b578-5b9ad6ee823b:
+    id: 3d04a9df-49e8-4928-b578-5b9ad6ee823b
     content: Avoid hedging ("you might want to", "consider") - be direct
     children: []
     metadata:
-      status: pending
+      status: abandoned
       expanded: true
       deleted: false
       plugins: {}
-  712e13d6-3e43-4dbb-b564-d606cd60d7bb:
-    id: 712e13d6-3e43-4dbb-b564-d606cd60d7bb
+  a8c1efa7-af0b-45ef-8065-dde22c592e47:
+    id: a8c1efa7-af0b-45ef-8065-dde22c592e47
     content: Do not reference removed functionality
     children: []
     metadata:
-      status: pending
+      status: abandoned
       expanded: true
       deleted: false
       plugins: {}
-  91be2201-7afb-465c-ba2d-b854ae1efde6:
-    id: 91be2201-7afb-465c-ba2d-b854ae1efde6
+  3979d8e5-b7aa-44c1-94e9-665186d42649:
+    id: 3979d8e5-b7aa-44c1-94e9-665186d42649
     content: If something is inconsistent, fix it, don't make an exception
     children: []
     metadata:
@@ -80905,8 +80958,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  e09be3e2-a09e-4700-9fd3-f42de8653f18:
-    id: e09be3e2-a09e-4700-9fd3-f42de8653f18
+  981b3ca6-1986-4062-9773-d9063b471982:
+    id: 981b3ca6-1986-4062-9773-d9063b471982
     content: Insure that the tests were updated for all edited files
     children: []
     metadata:
@@ -80914,8 +80967,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  af9d7ef0-b5c9-4fff-b72c-7b736f308f0a:
-    id: af9d7ef0-b5c9-4fff-b72c-7b736f308f0a
+  54bdfcb0-f66f-44d6-baae-5fbcd069cbdf:
+    id: 54bdfcb0-f66f-44d6-baae-5fbcd069cbdf
     content: Made sure any abandoned attempts are deleted
     children: []
     metadata:
@@ -80923,8 +80976,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  456901c2-1245-4902-a835-e217041da515:
-    id: 456901c2-1245-4902-a835-e217041da515
+  996c65c1-6d2f-44f9-9752-adf9d7313c0f:
+    id: 996c65c1-6d2f-44f9-9752-adf9d7313c0f
     content: Review all code implemented since last commit
     children: []
     metadata:
@@ -80932,43 +80985,43 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  458d4229-8514-4d27-aead-817e1a7db44e:
-    id: 458d4229-8514-4d27-aead-817e1a7db44e
+  4f256596-22b3-4433-95b7-4a692634bf72:
+    id: 4f256596-22b3-4433-95b7-4a692634bf72
     content: Run the standard checks
     children:
-      - 029ffd82-5145-475e-b6b6-e36b4ee95aa0
+      - 17d65287-6f43-4fcf-8ec3-bc92c05b88ae
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  029ffd82-5145-475e-b6b6-e36b4ee95aa0:
-    id: 029ffd82-5145-475e-b6b6-e36b4ee95aa0
+  17d65287-6f43-4fcf-8ec3-bc92c05b88ae:
+    id: 17d65287-6f43-4fcf-8ec3-bc92c05b88ae
     content: Standard checks
     children:
-      - f4161bff-4f96-4707-b281-4ccc595ba591
-      - f139093f-322e-4e7a-912f-31c8dd20dcb2
-      - 1987151b-e651-4cae-a775-6a3909bf19fe
-      - c791d66c-9c43-4c97-a231-0857af146632
-      - c2c40d6e-f18f-4a8f-ad6c-03d950858ac4
+      - 34be7dab-aeb6-4cd6-9300-5485c3e78321
+      - fc3ef015-fab9-49ba-871d-458029617ca2
+      - 1776a7d7-8f7d-4486-96ec-559e64c1b157
+      - eed13e3e-9731-4755-bf9c-ab10af68ec05
+      - 178fa12c-69b1-4cee-b4db-5d75b61a0130
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  f4161bff-4f96-4707-b281-4ccc595ba591:
-    id: f4161bff-4f96-4707-b281-4ccc595ba591
+  34be7dab-aeb6-4cd6-9300-5485c3e78321:
+    id: 34be7dab-aeb6-4cd6-9300-5485c3e78321
     content: All the automated tests related to the changes are updated and passing
     children:
-      - d5048ba0-d2f0-4713-9f43-18f4f131b92e
-      - 424755f9-5cd0-4e18-9eef-7eeed88d1b9b
+      - 4e55fd65-100c-448a-a3b7-b59f7d9f179b
+      - c3f6818a-21f4-4062-be49-d4694fd44218
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  d5048ba0-d2f0-4713-9f43-18f4f131b92e:
-    id: d5048ba0-d2f0-4713-9f43-18f4f131b92e
+  4e55fd65-100c-448a-a3b7-b59f7d9f179b:
+    id: 4e55fd65-100c-448a-a3b7-b59f7d9f179b
     content: Make sure there are no empty tests
     children: []
     metadata:
@@ -80976,8 +81029,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  424755f9-5cd0-4e18-9eef-7eeed88d1b9b:
-    id: 424755f9-5cd0-4e18-9eef-7eeed88d1b9b
+  c3f6818a-21f4-4062-be49-d4694fd44218:
+    id: c3f6818a-21f4-4062-be49-d4694fd44218
     content: Only run tests for changed or new files
     children: []
     metadata:
@@ -80985,18 +81038,18 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  f139093f-322e-4e7a-912f-31c8dd20dcb2:
-    id: f139093f-322e-4e7a-912f-31c8dd20dcb2
+  fc3ef015-fab9-49ba-871d-458029617ca2:
+    id: fc3ef015-fab9-49ba-871d-458029617ca2
     content: If you have changed the behavior but not the tests and they are still passing
     children:
-      - 9adc1abd-3947-408c-b9dc-9e1efeab45fe
+      - 52b43433-1d92-4367-bacc-88bb2926cb6e
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  9adc1abd-3947-408c-b9dc-9e1efeab45fe:
-    id: 9adc1abd-3947-408c-b9dc-9e1efeab45fe
+  52b43433-1d92-4367-bacc-88bb2926cb6e:
+    id: 52b43433-1d92-4367-bacc-88bb2926cb6e
     content: Check if you need to add tests
     children: []
     metadata:
@@ -81004,8 +81057,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  1987151b-e651-4cae-a775-6a3909bf19fe:
-    id: 1987151b-e651-4cae-a775-6a3909bf19fe
+  1776a7d7-8f7d-4486-96ec-559e64c1b157:
+    id: 1776a7d7-8f7d-4486-96ec-559e64c1b157
     content: There are no linting errors in the changed or new files only
     children: []
     metadata:
@@ -81013,8 +81066,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  c791d66c-9c43-4c97-a231-0857af146632:
-    id: c791d66c-9c43-4c97-a231-0857af146632
+  eed13e3e-9731-4755-bf9c-ab10af68ec05:
+    id: eed13e3e-9731-4755-bf9c-ab10af68ec05
     content: There are no typescript errors in the changed or new files only
     children: []
     metadata:
@@ -81022,8 +81075,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  c2c40d6e-f18f-4a8f-ad6c-03d950858ac4:
-    id: c2c40d6e-f18f-4a8f-ad6c-03d950858ac4
+  178fa12c-69b1-4cee-b4db-5d75b61a0130:
+    id: 178fa12c-69b1-4cee-b4db-5d75b61a0130
     content: Don't commit, I'll do that
     children: []
     metadata:
@@ -81031,39 +81084,29 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  7fe1b3e0-344b-4672-8cfd-7e90479202f2:
-    id: 7fe1b3e0-344b-4672-8cfd-7e90479202f2
+  b22f4429-9ee3-4522-b711-fc066fd47595:
+    id: b22f4429-9ee3-4522-b711-fc066fd47595
     content: Refactor changes in this pass
     children:
-      - e9df847e-c8e8-4a50-a13c-693f3fef8f5f
-      - 73a96da1-75d4-4664-bb1d-67dbc5c79c98
-      - 6727313f-2d94-4c85-a185-ee9711ee6d26
+      - fd2cf8c7-48f5-439a-9434-85454f68e021
+      - af74cbe7-8f13-4e4a-80bb-2b769553b1a6
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  e9df847e-c8e8-4a50-a13c-693f3fef8f5f:
-    id: e9df847e-c8e8-4a50-a13c-693f3fef8f5f
-    content: useFeedbackClipboard.ts — extracted the inline 38-line async file-event handler from `useEffect` into a named `routeFeedbackFile` useCallback, mirroring the existing `handleClipboardFeedback` pattern. Renamed the existing `handleIncomingFeedback` to `handleClipboardFeedback` since it is now the clipboard-only path (file events go through the new strict registry route). Both useEffects are now one-line dispatches; function names communicate the data source so no comments are needed.
+  fd2cf8c7-48f5-439a-9434-85454f68e021:
+    id: fd2cf8c7-48f5-439a-9434-85454f68e021
+    content: 'Extracted `declareNodeMetadata(nodes, nodeId, additions)` helper into `src/renderer/utils/clearTaskMetadata.ts` — combines the previously-duplicated 4-line "clone target node, replace metadata with cleared+additions" sequence that appeared identically in all three Command classes (BlueprintCommand, DeclareContextCommand, DeclareWorkflowCommand). Each call site now reads as one declarative statement matching the operation it represents (e.g. `declareNodeMetadata(nodes, id, { isContextDeclaration: true, ... })`), satisfying "If code needs a comment explaining what it does, refactor to a named function" — no comment was needed before, but the inline four-liner was the kind of pattern that grows comments. Five new unit tests for the helper cover happy path, sibling isolation, missing node id, input immutability, and the override-structural-fields case.'
     children: []
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  73a96da1-75d4-4664-bb1d-67dbc5c79c98:
-    id: 73a96da1-75d4-4664-bb1d-67dbc5c79c98
-    content: 'Cross-action plumbing in sendActions.ts kept as-is — `(get() as TreeState & { actions?: { ... } }).actions?.X?.(...)` repeats three times for register/unregister calls into the workflow-execution registry. Considered extracting a typed helper, but the pattern matches how `executeCommand` is reached in the same file (existing convention), the verbosity is from TS strictness rather than logic, and a helper would add a layer for marginal gain. Left.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  6727313f-2d94-4c85-a185-ee9711ee6d26:
-    id: 6727313f-2d94-4c85-a185-ee9711ee6d26
-    content: sendActions.ts (684 lines) and workflowExecutionActions.ts (~620 lines) remain over the 500-line guideline — pre-existing, the refactor would touch unrelated code; flagged for a later targeted PR.
+  af74cbe7-8f13-4e4a-80bb-2b769553b1a6:
+    id: af74cbe7-8f13-4e4a-80bb-2b769553b1a6
+    content: sendActions.ts (~684 lines) and workflowExecutionActions.ts (~620 lines) over 500-line limit — pre-existing, untouched by this work; deferred as before.
     children: []
     metadata:
       status: pending

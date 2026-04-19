@@ -1,19 +1,11 @@
 import { BaseCommand } from './Command';
-import { TreeNode } from '../../../../shared/types';
+import { TreeNode, NodeMetadata } from '../../../../shared/types';
 import { updateNodeMetadata } from '../../../utils/nodeHelpers';
+import { declareNodeMetadata } from '../../../utils/clearTaskMetadata';
 import { AncestorRegistry } from '../../../utils/ancestry';
 
-interface BlueprintState {
-  isBlueprint: boolean | undefined;
-  blueprintIcon: string | undefined;
-  blueprintColor: string | undefined;
-  isContextDeclaration: boolean | undefined;
-  appliedContextId: string | undefined;
-  isWorkflow: boolean | undefined;
-}
-
 export class BlueprintCommand extends BaseCommand {
-  private previousStates: Map<string, BlueprintState> = new Map();
+  private previousStates: Map<string, NodeMetadata> = new Map();
   private affectedNodeIds: string[] = [];
   private removedContextDeclarationIds: string[] = [];
 
@@ -59,7 +51,7 @@ export class BlueprintCommand extends BaseCommand {
     let updatedNodes = nodes;
 
     this.captureState(this.nodeId, nodes);
-    updatedNodes = updateNodeMetadata(updatedNodes, this.nodeId, {
+    updatedNodes = declareNodeMetadata(updatedNodes, this.nodeId, {
       isBlueprint: true,
     });
     this.affectedNodeIds.push(this.nodeId);
@@ -175,14 +167,7 @@ export class BlueprintCommand extends BaseCommand {
   private captureState(nodeId: string, nodes: Record<string, TreeNode>): void {
     const node = nodes[nodeId];
     if (node && !this.previousStates.has(nodeId)) {
-      this.previousStates.set(nodeId, {
-        isBlueprint: node.metadata.isBlueprint as boolean | undefined,
-        blueprintIcon: node.metadata.blueprintIcon as string | undefined,
-        blueprintColor: node.metadata.blueprintColor as string | undefined,
-        isContextDeclaration: node.metadata.isContextDeclaration as boolean | undefined,
-        appliedContextId: node.metadata.appliedContextId as string | undefined,
-        isWorkflow: node.metadata.isWorkflow as boolean | undefined,
-      });
+      this.previousStates.set(nodeId, { ...node.metadata });
     }
   }
 
@@ -238,15 +223,12 @@ export class BlueprintCommand extends BaseCommand {
 
     for (const nodeId of this.affectedNodeIds) {
       const previousState = this.previousStates.get(nodeId);
-      if (previousState) {
-        updatedNodes = updateNodeMetadata(updatedNodes, nodeId, {
-          isBlueprint: previousState.isBlueprint,
-          blueprintIcon: previousState.blueprintIcon,
-          blueprintColor: previousState.blueprintColor,
-          isContextDeclaration: previousState.isContextDeclaration,
-          appliedContextId: previousState.appliedContextId,
-          isWorkflow: previousState.isWorkflow,
-        });
+      const node = updatedNodes[nodeId];
+      if (previousState && node) {
+        updatedNodes = {
+          ...updatedNodes,
+          [nodeId]: { ...node, metadata: { ...previousState } },
+        };
       }
     }
 
