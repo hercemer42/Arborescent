@@ -7,6 +7,7 @@ export type HookEventPayload = {
   hook_event_name: string;
   terminal_id?: string;
   message?: string;
+  source?: string;
 };
 
 type HookEventCallback = (payload: HookEventPayload) => void;
@@ -165,6 +166,10 @@ export class HookServer {
 
     if (typeof obj.message === 'string') {
       payload.message = obj.message;
+    }
+
+    if (typeof obj.source === 'string') {
+      payload.source = obj.source;
     }
 
     return payload;

@@ -44,6 +44,7 @@ export interface NodeMetadata {
   decomposition?: boolean;
   recurse?: boolean;
   nextStepContext?: boolean;
+  clearSession?: boolean;
 
   // Archive / step settings
   archiveDestinationId?: string;

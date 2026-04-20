@@ -15,6 +15,7 @@ export interface HookEventPayload {
   hook_event_name: string;
   terminal_id?: string;
   message?: string;
+  source?: string;
 }
 
 export interface ContextMenuParams {

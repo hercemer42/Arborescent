@@ -14,6 +14,7 @@ export function StepConfigDialogContainer() {
   const setStepType = useStore((state) => state.actions.setStepType);
   const setDecomposition = useStore((state) => state.actions.setDecomposition);
   const setRecurse = useStore((state) => state.actions.setRecurse);
+  const setClearSession = useStore((state) => state.actions.setClearSession);
   const setArchiveSettings = useStore((state) => state.actions.setArchiveSettings);
 
   useModalHotkeyContext(isOpen);
@@ -25,6 +26,7 @@ export function StepConfigDialogContainer() {
   const currentStepType = (node.metadata.stepType as StepType) || 'manual';
   const decomposition = node.metadata.decomposition === true;
   const recurse = node.metadata.recurse === true;
+  const clearSession = node.metadata.clearSession === true;
   const archiveSettings: ArchiveSettings = {
     archiveDestinationId: node.metadata.archiveDestinationId as string | undefined,
     archiveSideLinkName: node.metadata.archiveSideLinkName as string | undefined,
@@ -38,10 +40,12 @@ export function StepConfigDialogContainer() {
       currentStepType={currentStepType}
       decomposition={decomposition}
       recurse={recurse}
+      clearSession={clearSession}
       archiveSettings={archiveSettings}
       onStepTypeChange={setStepType}
       onDecompositionChange={setDecomposition}
       onRecurseChange={setRecurse}
+      onClearSessionChange={setClearSession}
       onArchiveSettingsChange={setArchiveSettings}
       onClose={close}
     />

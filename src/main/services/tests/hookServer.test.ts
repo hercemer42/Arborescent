@@ -309,6 +309,24 @@ describe('HookServer', () => {
         })
       );
     });
+
+    it('should forward optional source in callback payload so the renderer can distinguish SessionStart source:"clear" from other sources', async () => {
+      await postHook(port, {
+        session_id: 'sess-new',
+        hook_event_name: 'SessionStart',
+        terminal_id: 'terminal-1',
+        source: 'clear',
+      }, AUTH_TOKEN);
+
+      expect(mockCallback).toHaveBeenCalledWith(
+        expect.objectContaining({
+          session_id: 'sess-new',
+          hook_event_name: 'SessionStart',
+          terminal_id: 'terminal-1',
+          source: 'clear',
+        })
+      );
+    });
   });
 
   describe('server lifecycle', () => {

@@ -71,7 +71,7 @@ describe('useHookEventListener', () => {
         });
       });
 
-      expect(mockRegisterSession).toHaveBeenCalledWith('sess-abc', 'terminal-42');
+      expect(mockRegisterSession).toHaveBeenCalledWith('sess-abc', 'terminal-42', undefined);
       expect(mockHandleHookEvent).not.toHaveBeenCalled();
     });
 
@@ -193,8 +193,8 @@ describe('useHookEventListener', () => {
       });
 
       expect(mockRegisterSession).toHaveBeenCalledTimes(2);
-      expect(mockRegisterSession).toHaveBeenCalledWith('sess-old', 'terminal-1');
-      expect(mockRegisterSession).toHaveBeenCalledWith('sess-new', 'terminal-1');
+      expect(mockRegisterSession).toHaveBeenCalledWith('sess-old', 'terminal-1', undefined);
+      expect(mockRegisterSession).toHaveBeenCalledWith('sess-new', 'terminal-1', undefined);
     });
   });
 });

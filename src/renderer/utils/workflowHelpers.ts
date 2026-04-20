@@ -355,7 +355,7 @@ export function getArchiveConfigForNode(
   };
 }
 
-export type WorkflowExecutionEntry = { state: 'running' | 'awaiting-validation'; terminalTabId: string; needsReview?: boolean; collaborating?: boolean; stopReceived?: boolean };
+export type WorkflowExecutionEntry = { state: 'running' | 'awaiting-validation'; terminalTabId: string; needsReview?: boolean; collaborating?: boolean; stopReceived?: boolean; clearing?: boolean };
 
 export function isEligibleForExecution(
   nodeId: string,

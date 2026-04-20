@@ -28,6 +28,8 @@ export interface DisruptionReactionDeps {
   clearStepTimeout: (nodeId: string) => void;
   /** Clear any pending prompt-delivery ACK timer/retry for this node. */
   clearPendingAck: (nodeId: string) => void;
+  /** Clear any pending /clear-confirmation timer/retry for this node. */
+  clearPendingClear: (nodeId: string) => void;
   triggerAutosave?: () => void;
 }
 
@@ -43,7 +45,7 @@ export interface DisruptionReactionDeps {
  * state machine.
  */
 export function createDisruptionReactions(deps: DisruptionReactionDeps): WorkflowDisruptionReactions {
-  const { get, set, cleanupAutonomousCollaboration, clearStepTimeout, clearPendingAck, triggerAutosave } = deps;
+  const { get, set, cleanupAutonomousCollaboration, clearStepTimeout, clearPendingAck, clearPendingClear, triggerAutosave } = deps;
 
   function handleTerminalClosed(terminalId: string): void {
     const { workflowExecutionStates, nodes } = get();
@@ -55,6 +57,7 @@ export function createDisruptionReactions(deps: DisruptionReactionDeps): Workflo
         delete updatedStates[nodeId];
         cleanupAutonomousCollaboration(nodeId);
         clearPendingAck(nodeId);
+        clearPendingClear(nodeId);
         const node = nodes[nodeId];
         const nodeName = node?.content || nodeId;
         useToastStore
@@ -75,6 +78,7 @@ export function createDisruptionReactions(deps: DisruptionReactionDeps): Workflo
 
     cleanupAutonomousCollaboration(nodeId);
     clearPendingAck(nodeId);
+    clearPendingClear(nodeId);
     const updatedStates = { ...workflowExecutionStates };
     delete updatedStates[nodeId];
     set({ workflowExecutionStates: updatedStates });
@@ -140,6 +144,7 @@ export function createDisruptionReactions(deps: DisruptionReactionDeps): Workflo
     clearStepTimeout(nodeId);
     cleanupAutonomousCollaboration(nodeId);
     clearPendingAck(nodeId);
+    clearPendingClear(nodeId);
     const updatedStates = { ...workflowExecutionStates };
     delete updatedStates[nodeId];
     set({ workflowExecutionStates: updatedStates });

@@ -11,7 +11,7 @@ export function useHookEventListener(): void {
 
       if (event.hook_event_name === 'SessionStart' && event.terminal_id) {
         for (const store of stores) {
-          store.getState().actions.registerSession(event.session_id, event.terminal_id);
+          store.getState().actions.registerSession(event.session_id, event.terminal_id, event.source);
         }
       } else {
         for (const store of stores) {

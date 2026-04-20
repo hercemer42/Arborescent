@@ -17,10 +17,12 @@ interface StepConfigDialogProps {
   currentStepType: StepType;
   decomposition?: boolean;
   recurse?: boolean;
+  clearSession?: boolean;
   archiveSettings?: ArchiveSettings;
   onStepTypeChange: (nodeId: string, stepType: StepType) => void;
   onDecompositionChange: (nodeId: string, decomposition: boolean) => void;
   onRecurseChange: (nodeId: string, recurse: boolean) => void;
+  onClearSessionChange: (nodeId: string, clearSession: boolean) => void;
   onArchiveSettingsChange: (nodeId: string, settings: ArchiveSettings) => void;
   onClose: () => void;
 }
@@ -30,10 +32,12 @@ export function StepConfigDialog({
   currentStepType,
   decomposition = false,
   recurse = false,
+  clearSession = false,
   archiveSettings = {},
   onStepTypeChange,
   onDecompositionChange,
   onRecurseChange,
+  onClearSessionChange,
   onArchiveSettingsChange,
   onClose,
 }: StepConfigDialogProps) {
@@ -49,8 +53,10 @@ export function StepConfigDialog({
         <StepOptionsSection
           decomposition={decomposition}
           recurse={recurse}
+          clearSession={clearSession}
           onDecompositionChange={(v) => onDecompositionChange(nodeId, v)}
           onRecurseChange={(v) => onRecurseChange(nodeId, v)}
+          onClearSessionChange={(v) => onClearSessionChange(nodeId, v)}
         />
         <ArchiveSection
           stepType={effectiveStepType}

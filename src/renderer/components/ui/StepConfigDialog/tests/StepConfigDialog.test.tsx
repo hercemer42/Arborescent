@@ -11,6 +11,7 @@ describe('StepConfigDialog', () => {
     onStepTypeChange: vi.fn(),
     onDecompositionChange: vi.fn(),
     onRecurseChange: vi.fn(),
+    onClearSessionChange: vi.fn(),
     onArchiveSettingsChange: vi.fn(),
     onClose: vi.fn(),
   };

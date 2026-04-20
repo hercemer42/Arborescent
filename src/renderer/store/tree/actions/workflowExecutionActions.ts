@@ -28,6 +28,7 @@ import { findAllParentsOf, removeNodeFromAllParents } from "../../../utils/treeI
 import { createStepTimeoutManager, isNodeRunning } from "./workflowStepTimeouts";
 import { createDisruptionReactions } from "./workflowDisruptionReactions";
 import { createHookEventHandler } from "./workflowHookEventHandler";
+import { createClearSessionManager } from "./workflowClearSession";
 
 export type { WorkflowExecutionEntry };
 
@@ -37,7 +38,7 @@ export interface WorkflowExecutionActions {
   continueWorkflow: (nodeId: string, terminalId: string | null) => void;
   completeWorkflow: (nodeId: string) => void;
   advanceNode: (nodeId: string) => void;
-  registerSession: (sessionId: string, terminalId: string) => void;
+  registerSession: (sessionId: string, terminalId: string, source?: string) => void;
   handleHookEvent: (event: {
     session_id: string;
     hook_event_name: string;
@@ -118,6 +119,13 @@ export const createWorkflowExecutionActions = (
     );
     void notifyWorkflowEvent('alert', 'Workflow delivery failed', `"${nodeName}" could not be delivered`);
   }
+
+  const clearSessionManager = createClearSessionManager({
+    get,
+    set,
+    sendPrompt: (id, tid) => sendContentToTerminal(id, tid),
+    stopWorkflow: (id) => stopWorkflow(id),
+  });
 
   // Step-timeout lifecycle lives in its own module so the toast-action
   // callback (which loops back into stopWorkflow) has an explicit seam.
@@ -205,7 +213,7 @@ export const createWorkflowExecutionActions = (
     });
 
     stepTimeouts.start(nodeId);
-    sendContentToTerminal(nodeId, terminalId);
+    clearSessionManager.maybeClearThenSend(nodeId, terminalId);
     logger.info(
       `Started workflow execution for node ${nodeId} on terminal ${terminalId}`,
       "WorkflowExecution",
@@ -221,6 +229,7 @@ export const createWorkflowExecutionActions = (
     stepTimeouts.clear(nodeId);
     cleanupAutonomousCollaboration(nodeId);
     clearPendingAck(nodeId);
+    clearSessionManager.clearPending(nodeId);
     const updatedStates = { ...workflowExecutionStates };
     delete updatedStates[nodeId];
     set({ workflowExecutionStates: updatedStates });
@@ -394,7 +403,7 @@ export const createWorkflowExecutionActions = (
         .addToast(`Advanced "${nodeName}" to ${stepLabel}`, "info");
       stepTimeouts.start(nodeId);
       setTimeout(
-        () => sendContentToTerminal(nodeId, entry.terminalTabId),
+        () => clearSessionManager.maybeClearThenSend(nodeId, entry.terminalTabId),
         1000,
       );
     }
@@ -456,7 +465,7 @@ export const createWorkflowExecutionActions = (
     }
   }
 
-  function registerSession(sessionId: string, terminalId: string): void {
+  function registerSession(sessionId: string, terminalId: string, source?: string): void {
     const { workflowSessionMap } = get();
 
     const updatedMap = { ...workflowSessionMap };
@@ -476,9 +485,16 @@ export const createWorkflowExecutionActions = (
     }
 
     logger.info(
-      `Registered session ${sessionId} for terminal ${terminalId}`,
+      `Registered session ${sessionId} for terminal ${terminalId}${source ? ` (source=${source})` : ''}`,
       "WorkflowExecution",
     );
+
+    if (source === 'clear') {
+      const runningNodeId = findRunningNodeOnTerminal(terminalId);
+      if (runningNodeId) {
+        clearSessionManager.onClearConfirmed(runningNodeId);
+      }
+    }
   }
 
   const handleHookEvent = createHookEventHandler({
@@ -514,6 +530,8 @@ export const createWorkflowExecutionActions = (
       clearPendingAck(nodeId);
     }
 
+    clearSessionManager.clearAllPending();
+
     set({
       workflowExecutionStates: updatedStates,
       workflowSessionMap: {},
@@ -537,6 +555,7 @@ export const createWorkflowExecutionActions = (
     cleanupAutonomousCollaboration: (nodeId) => cleanupAutonomousCollaboration(nodeId),
     clearStepTimeout: stepTimeouts.clear,
     clearPendingAck,
+    clearPendingClear: clearSessionManager.clearPending,
     triggerAutosave,
   });
 

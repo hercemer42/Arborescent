@@ -24,6 +24,7 @@ export interface WorkflowActions {
   setStepType: (nodeId: string, stepType: StepType) => void;
   setDecomposition: (nodeId: string, decomposition: boolean) => void;
   setRecurse: (nodeId: string, recurse: boolean) => void;
+  setClearSession: (nodeId: string, clearSession: boolean) => void;
   setArchiveSettings: (nodeId: string, settings: { archiveDestinationId?: string; archiveSideLinkName?: string; replacementSideLinkName?: string; resolveLinkedContent?: boolean }) => void;
 }
 
@@ -246,6 +247,27 @@ export const createWorkflowActions = (
     triggerAutosave?.();
   }
 
+  function setClearSession(nodeId: string, clearSession: boolean): void {
+    const { nodes } = get();
+    const node = nodes[nodeId];
+    if (!node) return;
+
+    set({
+      nodes: {
+        ...nodes,
+        [nodeId]: {
+          ...node,
+          metadata: {
+            ...node.metadata,
+            clearSession,
+          },
+        },
+      },
+    });
+
+    triggerAutosave?.();
+  }
+
   function setArchiveSettings(nodeId: string, settings: { archiveDestinationId?: string; archiveSideLinkName?: string; replacementSideLinkName?: string; resolveLinkedContent?: boolean }): void {
     const { nodes } = get();
     const node = nodes[nodeId];
@@ -278,6 +300,7 @@ export const createWorkflowActions = (
     setStepType,
     setDecomposition,
     setRecurse,
+    setClearSession,
     setArchiveSettings,
   };
 };

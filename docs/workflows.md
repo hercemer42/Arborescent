@@ -46,6 +46,16 @@ If the archive destination has been deleted when a step tries to archive, the wo
 
 The entire archive-and-replace operation is undoable with `Ctrl+Z`.
 
+## Clear AI session
+
+Enable **Clear AI session** in the step configuration dialog when you want the step to run against a fresh AI session — no context from prior turns. Useful for reducing accumulated context on long chains, isolating a step, or enforcing a predictable starting state.
+
+Any unsent input you have typed in the target terminal is wiped when the reset fires. Don't enable it on terminals you are using for manual work.
+
+Applies to Claude Code terminals only. Carries through blueprint export and import.
+
+Requires the SessionStart hook — see [Hook Setup](#hook-setup).
+
 ## Recurse
 
 When a step produces multiple items — for example, decomposition turns one problem statement into five user stories — you typically want each of those items to continue through the remaining steps. Enable **Recurse** in the step configuration dialog to process them sequentially without manual intervention.
@@ -150,7 +160,7 @@ Add three hooks to your Claude Code configuration (`~/.claude/settings.json`) th
   "hooks": {
     "SessionStart": [
       {
-        "command": "curl -s -X POST http://127.0.0.1:${ARBORESCENT_HOOK_PORT}/hook -H 'Authorization: Bearer '${ARBORESCENT_AUTH_TOKEN} -H 'Content-Type: application/json' -d '{\"session_id\": \"'${CLAUDE_SESSION_ID}'\", \"hook_event_name\": \"SessionStart\", \"terminal_id\": \"'${ARBORESCENT_TERMINAL_ID}'\"}'"
+        "command": "INPUT=$(cat); SOURCE=$(echo \"$INPUT\" | jq -r '.source // empty'); curl -s -X POST http://127.0.0.1:${ARBORESCENT_HOOK_PORT}/hook -H 'Authorization: Bearer '${ARBORESCENT_AUTH_TOKEN} -H 'Content-Type: application/json' -d \"{\\\"session_id\\\": \\\"${CLAUDE_SESSION_ID}\\\", \\\"hook_event_name\\\": \\\"SessionStart\\\", \\\"terminal_id\\\": \\\"${ARBORESCENT_TERMINAL_ID}\\\", \\\"source\\\": \\\"${SOURCE}\\\"}\""
       }
     ],
     "UserPromptSubmit": [
@@ -171,7 +181,7 @@ The hook server binds to `127.0.0.1` only — it is not accessible from the netw
 
 Each hook plays a distinct role:
 
-- **SessionStart** — maps the Claude session to its terminal so subsequent events can be routed correctly.
+- **SessionStart** — maps the Claude session to its terminal so subsequent events can be routed correctly, and enables the Clear AI session step option. Requires `jq` to be installed.
 - **UserPromptSubmit** — acknowledges that an injected workflow prompt reached Claude. Without it, Arborescent cannot tell whether a prompt was delivered and will retry up to three times before stopping the step with a delivery-failed error.
 - **Stop** — signals that Claude finished processing, so the workflow can advance to the next step.
 
