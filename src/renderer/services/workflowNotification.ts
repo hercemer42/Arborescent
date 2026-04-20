@@ -13,9 +13,12 @@ export async function notifyWorkflowEvent(type: NotificationEventType, title: st
     logger.info(`Preferences: desktopNotifications=${desktopNotifications}, notificationSounds=${notificationSounds}`, 'WorkflowNotification');
 
     if (desktopNotifications) {
+      logger.info(`Dispatching showNotification IPC: "${title}"`, 'WorkflowNotification');
       window.electron.showNotification(title, body).catch((error) => {
         logger.warn(`Failed to show notification: ${(error as Error).message}`, 'WorkflowNotification');
       });
+    } else {
+      logger.info(`Skipping notification: desktopNotifications preference is off`, 'WorkflowNotification');
     }
 
     if (notificationSounds) {

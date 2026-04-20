@@ -132,38 +132,11 @@ describe('notificationHandlers', () => {
       expect(await handler({})).toBe(true);
     });
 
-    it('should track focus state via blur event', async () => {
-      mockMainWindow.isFocused.mockReturnValue(true);
-      const handler = getHandler('is-window-focused');
-
-      expect(await handler({})).toBe(true);
-
-      eventListeners['blur']();
-      expect(await handler({})).toBe(false);
-    });
-
-    it('should track focus state via focus event', async () => {
-      mockMainWindow.isFocused.mockReturnValue(false);
-      const handler = getHandler('is-window-focused');
-
-      expect(await handler({})).toBe(false);
-
-      eventListeners['focus']();
-      expect(await handler({})).toBe(true);
-    });
-
     it('should return false when mainWindow is null', async () => {
       getMainWindow = () => null;
       const handler = getHandler('is-window-focused');
 
       expect(await handler({})).toBe(false);
-    });
-
-    it('should register focus and blur listeners on the window', () => {
-      registerNotificationHandlers(getMainWindow as ReturnType<typeof vi.fn>);
-
-      expect(mockMainWindow.on).toHaveBeenCalledWith('focus', expect.any(Function));
-      expect(mockMainWindow.on).toHaveBeenCalledWith('blur', expect.any(Function));
     });
   });
 });

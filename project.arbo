@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-04-19T22:34:41.407Z'
+updated: '2026-04-20T05:58:18.446Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -33403,9 +33403,6 @@ nodes:
       - 413a84b6-97e7-4963-81ca-6667f2136d9a
       - 28b63463-b046-4ed0-ab09-942c8b933875
       - 4446dd01-7caf-4953-8dd2-36153adb9cfa
-      - 81e4a4b6-287a-48c4-a5c5-78ff927403d3
-      - e094e099-58f1-48a7-9bdb-323942f529d4
-      - b82ab806-5034-47b1-8fbc-7b388030b107
       - 321fe1d0-3ca3-45f5-bab8-56dd0f003e78
       - c0b354e9-aaa0-409e-ab47-6f534d03a97f
     metadata:
@@ -33414,35 +33411,6 @@ nodes:
       isBlueprint: true
       blueprintIcon: FileWarning
       blueprintColor: '#f97316'
-  81e4a4b6-287a-48c4-a5c5-78ff927403d3:
-    id: 81e4a4b6-287a-48c4-a5c5-78ff927403d3
-    content: No way to auto accept feedback for automated collaboration tasks
-    children:
-      - 11665bc6-d5cd-4576-92ea-e47940c2cdbf
-      - d23fe7dd-26c1-460e-8414-28b60d3e9fa3
-      - a394fabf-95f4-459e-a3bb-4a0c216bc001
-    metadata:
-      status: pending
-      expanded: true
-  11665bc6-d5cd-4576-92ea-e47940c2cdbf:
-    id: 11665bc6-d5cd-4576-92ea-e47940c2cdbf
-    content: Currently requires user confirmation
-    children: []
-    metadata:
-      status: pending
-  d23fe7dd-26c1-460e-8414-28b60d3e9fa3:
-    id: d23fe7dd-26c1-460e-8414-28b60d3e9fa3
-    content: Blocks the automation
-    children: []
-    metadata:
-      status: pending
-  a394fabf-95f4-459e-a3bb-4a0c216bc001:
-    id: a394fabf-95f4-459e-a3bb-4a0c216bc001
-    content: Find a non destructive way to do it
-    children:
-      - 6e4863de-57a4-44a7-81b1-902cb7ac6581
-    metadata:
-      status: pending
   84f82fb1-a98d-4b2d-8ea0-3005c3d1f252:
     id: 84f82fb1-a98d-4b2d-8ea0-3005c3d1f252
     content: Autocheck completion for automated tasks
@@ -33501,34 +33469,6 @@ nodes:
     children: []
     metadata:
       status: pending
-  e094e099-58f1-48a7-9bdb-323942f529d4:
-    id: e094e099-58f1-48a7-9bdb-323942f529d4
-    content: No way to differentiate between AI stopping a task because it has completed, failed, or partially completed
-    children:
-      - cfcf5d2e-8706-4697-80e4-7dc21f96c63d
-      - 0ab65df7-4bb8-4be7-a873-3ba7a287e745
-    metadata:
-      status: pending
-      expanded: false
-  cfcf5d2e-8706-4697-80e4-7dc21f96c63d:
-    id: cfcf5d2e-8706-4697-80e4-7dc21f96c63d
-    content: In this case, it will continue down through the workflow with only partial completion
-    children: []
-    metadata:
-      status: pending
-  0ab65df7-4bb8-4be7-a873-3ba7a287e745:
-    id: 0ab65df7-4bb8-4be7-a873-3ba7a287e745
-    content: Not sure we can avoid, perhaps the trick is to have a completion checkpoint
-    children:
-      - 82d4b954-bf52-47ca-a81b-ba4d1f3a85ff
-    metadata:
-      status: pending
-  82d4b954-bf52-47ca-a81b-ba4d1f3a85ff:
-    id: 82d4b954-bf52-47ca-a81b-ba4d1f3a85ff
-    content: And if incomplete, send it back to the start of the workflow and automatically start it ?
-    children: []
-    metadata:
-      status: pending
   0e3376ce-30de-46f3-9b33-78139f19ca59:
     id: 0e3376ce-30de-46f3-9b33-78139f19ca59
     content: Update - it's just a step I think, an automated collaboration that checks off the cases
@@ -33543,21 +33483,6 @@ nodes:
     children: []
     metadata:
       status: pending
-  6e4863de-57a4-44a7-81b1-902cb7ac6581:
-    id: 6e4863de-57a4-44a7-81b1-902cb7ac6581
-    content: "Relates to\_"
-    children:
-      - 4e1f3783-8779-4636-8131-b50ded24b176
-    metadata:
-      status: pending
-  4e1f3783-8779-4636-8131-b50ded24b176:
-    id: 4e1f3783-8779-4636-8131-b50ded24b176
-    content: No way to create a new node during collaboration
-    children: []
-    metadata:
-      status: pending
-      isHyperlink: true
-      linkedNodeId: 005c8b90-d200-4c09-b066-3a01c83f917d
   49996e08-2973-475c-8aaa-6aedeb0a4929:
     id: 49996e08-2973-475c-8aaa-6aedeb0a4929
     content: Workflows
@@ -33574,7 +33499,7 @@ nodes:
       expanded: true
   321fe1d0-3ca3-45f5-bab8-56dd0f003e78:
     id: 321fe1d0-3ca3-45f5-bab8-56dd0f003e78
-    content: Donehere
+    content: Done
     children:
       - df3f817f-36fc-4b13-b94b-fb8f213cb7c3
       - 00b32bb4-f094-42e5-bba5-7bb5791d6e46
@@ -43598,6 +43523,7 @@ nodes:
       - 84b20d3e-d628-4e26-978a-9e6797d7be95
     metadata:
       status: pending
+      expanded: false
   6d31561b-9941-47ee-bf3c-e4d3578d6809:
     id: 6d31561b-9941-47ee-bf3c-e4d3578d6809
     content: Potentially a timing issue with the current implementation
@@ -47010,6 +46936,7 @@ nodes:
       - 81f1b7d5-c972-4656-befc-f12e6cbf7091
     metadata:
       status: pending
+      expanded: false
   4e50c4f7-fc85-41f8-8ace-cd337666ed51:
     id: 4e50c4f7-fc85-41f8-8ace-cd337666ed51
     content: Currently they are under blueprint
@@ -48155,6 +48082,7 @@ nodes:
       - 49e64254-d249-442f-83ce-a19eea5a6df8
     metadata:
       status: pending
+      expanded: false
   21a8e05c-ac87-455f-9cab-f075ba892918:
     id: 21a8e05c-ac87-455f-9cab-f075ba892918
     content: Minor feature development
@@ -48246,6 +48174,7 @@ nodes:
       - c5464de8-5497-4ae4-b877-213a28a64f8d
     metadata:
       status: pending
+      expanded: false
   3a5b506d-0dc1-4042-a411-bd7f5a120f38:
     id: 3a5b506d-0dc1-4042-a411-bd7f5a120f38
     content: AI-initiated workflow review request
@@ -78851,41 +78780,19 @@ nodes:
       isBlueprint: true
       isWorkflow: true
       expanded: true
-  04fea5a8-f7d6-4a0b-a4c0-3f1e37ff64fe:
-    id: 04fea5a8-f7d6-4a0b-a4c0-3f1e37ff64fe
-    content: I don't see system notifications popping up on my mac at all
-    children: []
-    metadata:
-      status: pending
-  6b3ae76f-8886-4bb3-8daf-6bb30719eecc:
-    id: 6b3ae76f-8886-4bb3-8daf-6bb30719eecc
-    content: Same on linux
-    children: []
-    metadata:
-      status: pending
-  7704ecf9-2e8b-41ae-b1c3-c221d853a1a6:
-    id: 7704ecf9-2e8b-41ae-b1c3-c221d853a1a6
-    content: At least when a task is done, or requiring user intervention
-    children: []
-    metadata:
-      status: pending
-  dcef5203-9cd3-4378-97f8-0778d65978a6:
-    id: dcef5203-9cd3-4378-97f8-0778d65978a6
-    content: Earlier we implemented system notifications for when Arborescent is not focused
-    children:
-      - 7704ecf9-2e8b-41ae-b1c3-c221d853a1a6
-    metadata:
-      status: pending
   f639c9d8-6e35-4478-8798-91d8b991ebec:
     id: f639c9d8-6e35-4478-8798-91d8b991ebec
     content: Not getting system notifications when focused on another application
     children:
-      - 04fea5a8-f7d6-4a0b-a4c0-3f1e37ff64fe
-      - 6b3ae76f-8886-4bb3-8daf-6bb30719eecc
-      - dcef5203-9cd3-4378-97f8-0778d65978a6
+      - 7e9d99c7-db5c-4734-9170-09f88f5727ba
+      - 48fa65d1-c724-4b49-acc8-c77fcac41e39
+      - a8bb45dd-ef27-477b-b758-e57325e7b5cf
+      - 1105d879-d178-43cb-9d32-05ae70631cc4
     metadata:
       status: pending
       expanded: false
+      deleted: false
+      plugins: {}
   341a33dc-4c13-44f6-93d3-f8d43544f6d3:
     id: 341a33dc-4c13-44f6-93d3-f8d43544f6d3
     content: Return sometimes adds line in content editable
@@ -78953,11 +78860,11 @@ nodes:
     id: 5f0b7f1f-6456-491f-8c35-cc9476e973ca
     content: Issue with IDs being made from titles where they should be UUIDs
     children:
-      - a47d8475-71bc-49e7-a971-bd631b19362e
-      - 18310b6f-7b27-4180-a8ae-ad5d6fcb6a3e
-      - d4e2e1db-f5f8-4d70-98e3-1f2087fcbdef
-      - a39e28c3-5f69-4e7e-a806-37ef8dd982cd
-      - cb691bd6-c554-4cbd-9284-6ccb6a68ece5
+      - 5ea5927c-27e2-4838-8461-fb51b54bc4ba
+      - 23a8bbe2-34e9-4fa0-952e-5ae11711c74c
+      - d4f4a4de-a889-4899-a8ac-1362be0874de
+      - c939e6eb-a541-4412-a7f7-a924de1f723d
+      - efa5d0bf-3d3f-4c33-8555-1d01f443751d
     metadata:
       status: completed
       expanded: false
@@ -78967,9 +78874,9 @@ nodes:
     id: 60350086-d041-4cac-877c-6bbff90b0da3
     content: Technical refinement
     children:
-      - f639c9d8-6e35-4478-8798-91d8b991ebec
       - 35417e17-964c-43cb-a4f9-6d94474b7319
       - 52a4dc8c-4330-41a8-ad1e-b4d5edc2f4db
+      - b82ab806-5034-47b1-8fbc-7b388030b107
     metadata:
       status: pending
       isBlueprint: true
@@ -79046,6 +78953,7 @@ nodes:
       - cde45b6e-32c7-47ca-82cd-f467c0434617
       - e30b1f16-d2c4-46a3-8c9f-15fc02d73bdf
       - 5f0b7f1f-6456-491f-8c35-cc9476e973ca
+      - f639c9d8-6e35-4478-8798-91d8b991ebec
     metadata:
       status: pending
       isBlueprint: true
@@ -79769,8 +79677,8 @@ nodes:
     children: []
     metadata:
       status: pending
-  a47d8475-71bc-49e7-a971-bd631b19362e:
-    id: a47d8475-71bc-49e7-a971-bd631b19362e
+  5ea5927c-27e2-4838-8461-fb51b54bc4ba:
+    id: 5ea5927c-27e2-4838-8461-fb51b54bc4ba
     content: We might have fixed this
     children: []
     metadata:
@@ -79778,8 +79686,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  18310b6f-7b27-4180-a8ae-ad5d6fcb6a3e:
-    id: 18310b6f-7b27-4180-a8ae-ad5d6fcb6a3e
+  23a8bbe2-34e9-4fa0-952e-5ae11711c74c:
+    id: 23a8bbe2-34e9-4fa0-952e-5ae11711c74c
     content: Previously, when looking at the YAML, some files carried IDs made from titles instead of UUIDs
     children: []
     metadata:
@@ -79787,8 +79695,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  d4e2e1db-f5f8-4d70-98e3-1f2087fcbdef:
-    id: d4e2e1db-f5f8-4d70-98e3-1f2087fcbdef
+  d4f4a4de-a889-4899-a8ac-1362be0874de:
+    id: d4f4a4de-a889-4899-a8ac-1362be0874de
     content: Check the project blueprints folder and the project.arbo
     children: []
     metadata:
@@ -79796,8 +79704,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  a39e28c3-5f69-4e7e-a806-37ef8dd982cd:
-    id: a39e28c3-5f69-4e7e-a806-37ef8dd982cd
+  c939e6eb-a541-4412-a7f7-a924de1f723d:
+    id: c939e6eb-a541-4412-a7f7-a924de1f723d
     content: Check if it's still an issue.
     children: []
     metadata:
@@ -79805,33 +79713,33 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  cb691bd6-c554-4cbd-9284-6ccb6a68ece5:
-    id: cb691bd6-c554-4cbd-9284-6ccb6a68ece5
+  efa5d0bf-3d3f-4c33-8555-1d01f443751d:
+    id: efa5d0bf-3d3f-4c33-8555-1d01f443751d
     content: Technical refinement
     children:
-      - 2448e073-6b88-4f9a-ad77-a99d68e264e0
-      - 1c33ec45-2d5b-4332-99d6-67de32d198ae
+      - 50f9ef52-7834-4e8f-a26d-c679c378ec1a
+      - 527ac511-0c5a-4d4e-805f-ed1c830da5ab
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  2448e073-6b88-4f9a-ad77-a99d68e264e0:
-    id: 2448e073-6b88-4f9a-ad77-a99d68e264e0
+  50f9ef52-7834-4e8f-a26d-c679c378ec1a:
+    id: 50f9ef52-7834-4e8f-a26d-c679c378ec1a
     content: Complications
     children:
-      - 01ab61cf-1e93-4e88-977c-3e01ea99e873
-      - d30bad25-579a-426e-b771-57866f9a4eda
-      - 81f7451b-7963-4bed-beb3-f4eba5a71a97
-      - 1b10a26a-270b-4122-a1dc-c4c70c8f1514
-      - c146fedf-f989-45e2-955c-a38ce6644a85
+      - 7095c598-b8ae-4f99-954f-181cfa9df3af
+      - a536cc8e-1dab-444c-9da3-4c56f2a5dc60
+      - ddd85fe5-e4c6-40c2-b51f-68d639aeafd1
+      - 65c6c882-2090-4e57-9ce1-31d0fe13632f
+      - b563357f-1c10-46c2-894e-bd2f302d603b
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  01ab61cf-1e93-4e88-977c-3e01ea99e873:
-    id: 01ab61cf-1e93-4e88-977c-3e01ea99e873
+  7095c598-b8ae-4f99-954f-181cfa9df3af:
+    id: 7095c598-b8ae-4f99-954f-181cfa9df3af
     content: 'Initial investigation suggests the issue is already resolved: `project.arbo` and all four `blueprints/*.arbo` files contain only UUID-style node keys except for the intentional `root` sentinel. All known ID-generation code paths use `uuidv4()` — parseMarkdown, cloneNodesWithNewIds, AcceptFeedbackCommand, PasteNodesCommand, and acceptFeedbackArchive all go through `uuid/v4`. If this is correct, the refinement collapses to "verify and close."'
     children: []
     metadata:
@@ -79839,8 +79747,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  d30bad25-579a-426e-b771-57866f9a4eda:
-    id: d30bad25-579a-426e-b771-57866f9a4eda
+  a536cc8e-1dab-444c-9da3-4c56f2a5dc60:
+    id: a536cc8e-1dab-444c-9da3-4c56f2a5dc60
     content: 'ROI warning: if nothing is currently broken, adding migration logic or defensive runtime checks is speculative. Avoid building a rewrite-on-load mechanism unless real data still exhibits the bug. Over-engineering risk is high here — the user has the "we might have fixed this" uncertainty, not a reproducible failing case.'
     children: []
     metadata:
@@ -79848,8 +79756,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  81f7451b-7963-4bed-beb3-f4eba5a71a97:
-    id: 81f7451b-7963-4bed-beb3-f4eba5a71a97
+  ddd85fe5-e4c6-40c2-b51f-68d639aeafd1:
+    id: ddd85fe5-e4c6-40c2-b51f-68d639aeafd1
     content: 'Files outside this checkout might still show the bug: older saved `.arbo` files, files shared by other users, or files from pre-fix versions of Arborescent. If such a file is loaded into the current app, it should load without errors (ids are just strings), but cross-references in `children` arrays rely on exact-match ids, so legacy title-based ids would continue to work in-place — there''s no silent breakage, just aesthetic oddity in YAML.'
     children: []
     metadata:
@@ -79857,8 +79765,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  1b10a26a-270b-4122-a1dc-c4c70c8f1514:
-    id: 1b10a26a-270b-4122-a1dc-c4c70c8f1514
+  65c6c882-2090-4e57-9ce1-31d0fe13632f:
+    id: 65c6c882-2090-4e57-9ce1-31d0fe13632f
     content: The `root` sentinel is intentional and must be left alone. Any "normalize all non-UUID ids" pass has to explicitly exempt `root` (and any other reserved sentinels introduced later).
     children: []
     metadata:
@@ -79866,8 +79774,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  c146fedf-f989-45e2-955c-a38ce6644a85:
-    id: c146fedf-f989-45e2-955c-a38ce6644a85
+  b563357f-1c10-46c2-894e-bd2f302d603b:
+    id: b563357f-1c10-46c2-894e-bd2f302d603b
     content: 'Out of scope: changing the `.arbo` file format, introducing a schema version bump, retroactively rewriting user files on first load without their consent, and building a UI for "migrate legacy file" warnings.'
     children: []
     metadata:
@@ -79875,20 +79783,20 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  1c33ec45-2d5b-4332-99d6-67de32d198ae:
-    id: 1c33ec45-2d5b-4332-99d6-67de32d198ae
+  527ac511-0c5a-4d4e-805f-ed1c830da5ab:
+    id: 527ac511-0c5a-4d4e-805f-ed1c830da5ab
     content: Approach
     children:
-      - 05ebacdc-6226-4e4c-b895-9e71f924ac3d
-      - 81948fe2-afb5-49c7-89ea-ce0892714617
-      - 9474411c-0a53-451f-a9bf-529a22b75969
+      - 3d39493e-c37d-4fbb-8518-f3dd2a9893ba
+      - 29be7dcd-559b-41a6-9fd9-99c60591f3f0
+      - 61c28b54-1d62-4100-b1a6-bc0fbc99e802
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  05ebacdc-6226-4e4c-b895-9e71f924ac3d:
-    id: 05ebacdc-6226-4e4c-b895-9e71f924ac3d
+  3d39493e-c37d-4fbb-8518-f3dd2a9893ba:
+    id: 3d39493e-c37d-4fbb-8518-f3dd2a9893ba
     content: Verify exhaustively first — audit every node-creation site in the codebase (parseMarkdown, cloneNodesWithNewIds, AcceptFeedbackCommand, PasteNodesCommand, acceptFeedbackArchive, any blueprint instantiation path, any import path) to confirm each uses `uuidv4()`. Scan all tracked `.arbo` fixtures/seeds too. If every path is clean, the "fix" is just marking this verified and closing.
     children: []
     metadata:
@@ -79896,8 +79804,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  81948fe2-afb5-49c7-89ea-ce0892714617:
-    id: 81948fe2-afb5-49c7-89ea-ce0892714617
+  29be7dcd-559b-41a6-9fd9-99c60591f3f0:
+    id: 29be7dcd-559b-41a6-9fd9-99c60591f3f0
     content: 'Non-obvious: the issue is likely already fixed. The user''s opening line ("we might have fixed this") plus the spot-check showing zero title-based ids in current files is strong evidence. Resist the urge to add migration logic proactively. If a specific legacy file with title-based ids surfaces, handle it as a one-off silent normalization on load at that point — not preemptively.'
     children: []
     metadata:
@@ -79905,12 +79813,178 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  9474411c-0a53-451f-a9bf-529a22b75969:
-    id: 9474411c-0a53-451f-a9bf-529a22b75969
+  61c28b54-1d62-4100-b1a6-bc0fbc99e802:
+    id: 61c28b54-1d62-4100-b1a6-bc0fbc99e802
     content: If a remaining generation path is found during the audit, fix it at the source (make it use `uuidv4()`). Do not add a post-hoc sanitizer in the load path unless production data actually requires it.
     children: []
     metadata:
       status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  7e9d99c7-db5c-4734-9170-09f88f5727ba:
+    id: 7e9d99c7-db5c-4734-9170-09f88f5727ba
+    content: I don't see system notifications popping up on my mac at all
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  48fa65d1-c724-4b49-acc8-c77fcac41e39:
+    id: 48fa65d1-c724-4b49-acc8-c77fcac41e39
+    content: Same on linux
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a8bb45dd-ef27-477b-b758-e57325e7b5cf:
+    id: a8bb45dd-ef27-477b-b758-e57325e7b5cf
+    content: Earlier we implemented system notifications for when Arborescent is not focused
+    children:
+      - 0d913a8e-ef6d-4ddb-a56d-00dc8f403958
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0d913a8e-ef6d-4ddb-a56d-00dc8f403958:
+    id: 0d913a8e-ef6d-4ddb-a56d-00dc8f403958
+    content: At least when a task is done, or requiring user intervention
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1105d879-d178-43cb-9d32-05ae70631cc4:
+    id: 1105d879-d178-43cb-9d32-05ae70631cc4
+    content: Technical refinement
+    children:
+      - 01afd481-a04d-49f8-95cf-0fade8bc86e4
+      - 99eaa241-5538-49ea-adc3-26f5a2f9dfed
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  01afd481-a04d-49f8-95cf-0fade8bc86e4:
+    id: 01afd481-a04d-49f8-95cf-0fade8bc86e4
+    content: Complications
+    children:
+      - b27977cd-4a00-4088-97a5-54fe57763475
+      - df090314-5b79-499a-abda-7782d122ca4d
+      - 0241b8f9-a1d7-4fad-a860-caa8a094d313
+      - d219c40b-4d3e-45d4-9a90-d99434e44cfb
+      - 52f77e76-b06f-40be-841c-8c317d2097a6
+      - 31df8c3a-edf8-46a3-a246-f0a52eb26a9c
+      - 936656c7-f29e-44ae-bac7-cdcf6006a626
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b27977cd-4a00-4088-97a5-54fe57763475:
+    id: b27977cd-4a00-4088-97a5-54fe57763475
+    content: 'Root cause is unclear — the code path exists and looks correct: `notifyWorkflowEvent` → `isWindowFocused` IPC → skip if focused, else `showNotification` IPC → main creates `Notification({title, body})` and calls `.show()`. Bundle id is `com.arborescent.app`, preferences default `desktopNotifications: true`. The bug is more likely operational (focus tracking, OS permission, delivery channel) than missing code.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  df090314-5b79-499a-abda-7782d122ca4d:
+    id: df090314-5b79-499a-abda-7782d122ca4d
+    content: Focus tracking is cached, not queried. `notificationHandlers.ts` maintains a `windowFocused` module-level variable updated by `focus`/`blur` events. If those events fail to fire for any reason (initial launch state, certain window-management operations, dev-tools interactions, Mac Spaces/desktop switching) the cache desynchronises. The renderer then sees `focused=true` while the user sees the app unfocused, and the notification short-circuits at line 10 of workflowNotification.ts. Prime suspect for "no notifications ever" if the cache starts out wrong and never gets corrected.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0241b8f9-a1d7-4fad-a860-caa8a094d313:
+    id: 0241b8f9-a1d7-4fad-a860-caa8a094d313
+    content: 'macOS Notification Center quirks: notifications require the app''s bundle id to be registered with Notification Center. On dev builds launched via `npm start`, Electron uses a generic bundle, so the app won''t appear in System Settings → Notifications → Arborescent. On packaged builds the bundle is right, but if the user ever denied the initial permission prompt (or it was auto-dismissed during a build-install dance), System Settings will silently suppress notifications with no visible error in the app.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d219c40b-4d3e-45d4-9a90-d99434e44cfb:
+    id: d219c40b-4d3e-45d4-9a90-d99434e44cfb
+    content: Linux depends on a notification daemon (libnotify + dunst/mako/gnome-shell). `Notification.isSupported()` returns true if libnotify is present but that does not mean a daemon is actually running or listening. Silent failures are common. "Same on Linux" may share root cause with macOS (focus tracking) or may be platform-specific (no daemon) — have to treat as potentially two bugs until instrumented.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  52f77e76-b06f-40be-841c-8c317d2097a6:
+    id: 52f77e76-b06f-40be-841c-8c317d2097a6
+    content: Do Not Disturb / Focus modes on macOS silently suppress notifications — not a code bug but an easy false negative while debugging. Worth explicitly checking before spending time on code changes.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  31df8c3a-edf8-46a3-a246-f0a52eb26a9c:
+    id: 31df8c3a-edf8-46a3-a246-f0a52eb26a9c
+    content: Observability is thin. The log line at notificationHandlers.ts line 25 ("Showing notification") prints when `.show()` is called, but the surrounding evidence (did IPC arrive? did Notification.isSupported() return true?) is only partially logged. Hard to tell from current logs where on the pipeline the failure happens.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  936656c7-f29e-44ae-bac7-cdcf6006a626:
+    id: 936656c7-f29e-44ae-bac7-cdcf6006a626
+    content: 'Out of scope: building a custom notification UI inside the app, replacing the Electron `Notification` API with a third-party library, adding cross-platform notification-daemon probing, building a preferences UI for notification categories.'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  99eaa241-5538-49ea-adc3-26f5a2f9dfed:
+    id: 99eaa241-5538-49ea-adc3-26f5a2f9dfed
+    content: Approach
+    children:
+      - 573ed1d4-981d-4a5e-beaa-d9db485572b4
+      - 4626070a-40ba-41fd-9e84-2bbe4f016424
+      - ea07ce2c-66f1-4f0a-8987-2b453582a9d5
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  573ed1d4-981d-4a5e-beaa-d9db485572b4:
+    id: 573ed1d4-981d-4a5e-beaa-d9db485572b4
+    content: Switch focus detection from cached-via-events to an on-demand query. Replace the module-level `windowFocused` variable with `getMainWindow()?.isFocused() ?? false` inside the `is-window-focused` handler. This removes the whole class of bugs where the cache desyncs from the window's real state. Zero risk — it's a simpler, more direct read. Land this first and the "no notifications ever" symptom may disappear.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4626070a-40ba-41fd-9e84-2bbe4f016424:
+    id: 4626070a-40ba-41fd-9e84-2bbe4f016424
+    content: 'Non-obvious: the real fix might be a one-line behavioral change, but the observability problem stays. Add explicit logging at each step of the renderer path: "focus check returned X", "preference state was Y", "called showNotification IPC", and in main "Notification.isSupported=Z, created notification, called .show()". If notifications still fail after the focus fix, the logs will point at which stage silently drops the event.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ea07ce2c-66f1-4f0a-8987-2b453582a9d5:
+    id: ea07ce2c-66f1-4f0a-8987-2b453582a9d5
+    content: 'Non-obvious: macOS and Linux may have distinct root causes. Treat them as two investigations sharing one instrumentation pass. The focus-tracking fix helps both if it is the bug; the logging pass narrows the next step if not. Avoid shipping a "Linux-specific" path until there is evidence the platform itself is broken, not our code.'
+    children: []
+    metadata:
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
