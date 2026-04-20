@@ -220,6 +220,91 @@ describe('navigationActions', () => {
     });
   });
 
+  describe('zoom-boundary navigation', () => {
+    beforeEach(() => {
+      state.nodes['zoom-root'] = {
+        id: 'zoom-root',
+        content: 'Zoomed Root',
+        children: ['zoom-child-1', 'zoom-child-2'],
+        metadata: {},
+      };
+      state.nodes['zoom-child-1'] = {
+        id: 'zoom-child-1',
+        content: 'Zoom Child 1',
+        children: [],
+        metadata: {},
+      };
+      state.nodes['zoom-child-2'] = {
+        id: 'zoom-child-2',
+        content: 'Zoom Child 2',
+        children: [],
+        metadata: {},
+      };
+      state.nodes['outside-sibling'] = {
+        id: 'outside-sibling',
+        content: 'Outside',
+        children: [],
+        metadata: {},
+      };
+      state.nodes['root'].children = ['zoom-root', 'outside-sibling'];
+      state.ancestorRegistry = {
+        'root': [],
+        'zoom-root': ['root'],
+        'zoom-child-1': ['root', 'zoom-root'],
+        'zoom-child-2': ['root', 'zoom-root'],
+        'outside-sibling': ['root'],
+      };
+    });
+
+    it('should stop moveUp at first child of boundary instead of crossing to the zoomed node', () => {
+      state.activeNodeId = 'zoom-child-1';
+      actions.moveUp(undefined, undefined, 'zoom-root');
+      expect(state.activeNodeId).toBe('zoom-child-1');
+    });
+
+    it('should navigate moveUp within the boundary subtree normally', () => {
+      state.activeNodeId = 'zoom-child-2';
+      actions.moveUp(undefined, undefined, 'zoom-root');
+      expect(state.activeNodeId).toBe('zoom-child-1');
+    });
+
+    it('should stop moveDown at last descendant of boundary instead of crossing to outside sibling', () => {
+      state.activeNodeId = 'zoom-child-2';
+      actions.moveDown(undefined, undefined, 'zoom-root');
+      expect(state.activeNodeId).toBe('zoom-child-2');
+    });
+
+    it('should navigate moveDown within the boundary subtree normally', () => {
+      state.activeNodeId = 'zoom-child-1';
+      actions.moveDown(undefined, undefined, 'zoom-root');
+      expect(state.activeNodeId).toBe('zoom-child-2');
+    });
+
+    it('should stop moveBack at first child of boundary', () => {
+      state.activeNodeId = 'zoom-child-1';
+      actions.moveBack('zoom-root');
+      expect(state.activeNodeId).toBe('zoom-child-1');
+    });
+
+    it('should stop moveForward at last descendant of boundary', () => {
+      state.activeNodeId = 'zoom-child-2';
+      actions.moveForward('zoom-root');
+      expect(state.activeNodeId).toBe('zoom-child-2');
+    });
+
+    it('should keep existing moveUp behavior when no boundary is passed', () => {
+      state.activeNodeId = 'zoom-child-1';
+      actions.moveUp();
+      expect(state.activeNodeId).toBe('zoom-root');
+    });
+
+    it('should use boundary children as entry point for moveDown when activeNodeId is null', () => {
+      state.activeNodeId = null;
+      actions.moveDown(undefined, undefined, 'zoom-root');
+      expect(state.activeNodeId).toBe('zoom-child-1');
+    });
+  });
+
   describe('navigation with collapsed nodes', () => {
     beforeEach(() => {
       state.nodes['child-1'].metadata.expanded = false;

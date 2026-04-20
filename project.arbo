@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-04-20T09:00:29.171Z'
+updated: '2026-04-20T10:19:57.372Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -78769,63 +78769,31 @@ nodes:
       deleted: false
       plugins: {}
       resolvedAt: '2026-04-20T06:10:40.473Z'
-  341a33dc-4c13-44f6-93d3-f8d43544f6d3:
-    id: 341a33dc-4c13-44f6-93d3-f8d43544f6d3
-    content: Return sometimes adds line in content editable
-    children: []
-    metadata:
-      status: pending
-  043c1251-fadf-4c12-b66b-3dded1a5edbe:
-    id: 043c1251-fadf-4c12-b66b-3dded1a5edbe
-    content: Navigation arrows sometimes just navigate to start and end of content editable
-    children: []
-    metadata:
-      status: pending
-  84f5157f-152e-47f2-9a99-8c3dac36a047:
-    id: 84f5157f-152e-47f2-9a99-8c3dac36a047
-    content: See if this reproduces in normal mode (maybe, it's inconsistent)
-    children: []
-    metadata:
-      status: pending
-  9f3f0260-2a7e-4678-9fa2-978eb9c7ad9a:
-    id: 9f3f0260-2a7e-4678-9fa2-978eb9c7ad9a
-    content: See if it's related to the fix we added to give keyboard shortcuts context
-    children: []
-    metadata:
-      status: pending
-  fdb4f9b3-5f41-4b6a-9c13-ddc09b58bef6:
-    id: fdb4f9b3-5f41-4b6a-9c13-ddc09b58bef6
-    content: If you can't find anything related in the code, just skip ahead to the next item.
-    children: []
-    metadata:
-      status: pending
-  5d76a23f-e2ca-474b-a8c2-c373915421bd:
-    id: 5d76a23f-e2ca-474b-a8c2-c373915421bd
-    content: Not sure if this is still an issue after recent refactors
-    children:
-      - fdb4f9b3-5f41-4b6a-9c13-ddc09b58bef6
-    metadata:
-      status: pending
   52a4dc8c-4330-41a8-ad1e-b4d5edc2f4db:
     id: 52a4dc8c-4330-41a8-ad1e-b4d5edc2f4db
     content: Navigation doesn't work well in zoom mode
     children:
-      - 341a33dc-4c13-44f6-93d3-f8d43544f6d3
-      - 043c1251-fadf-4c12-b66b-3dded1a5edbe
-      - 84f5157f-152e-47f2-9a99-8c3dac36a047
-      - 9f3f0260-2a7e-4678-9fa2-978eb9c7ad9a
-      - 5d76a23f-e2ca-474b-a8c2-c373915421bd
+      - d5eb87bd-4ceb-4ec5-9d09-2977c2c6c4c9
+      - 3257473d-5666-4649-8488-e67481df20c0
+      - 50930def-0945-4b54-8054-3af4ef461886
+      - 23681049-73cc-4eff-b06b-10654fdc2e44
+      - 1aee22d7-4a8a-4009-a9eb-b7790a0141fd
+      - 01112289-048d-4b9d-84bf-20ecc9faa1c7
+      - dcf975e2-5e8e-4148-afb7-660664cd898c
+      - 6334b0e3-573a-4ffd-9ea7-858ea946e2d4
     metadata:
-      status: pending
+      status: completed
       expanded: false
+      deleted: false
+      plugins: {}
   35417e17-964c-43cb-a4f9-6d94474b7319:
     id: 35417e17-964c-43cb-a4f9-6d94474b7319
     content: When accepting reviewed content, sometimes it breaks placement of a new node - when attempting to place a new node within the tree, it places it instead as the first child node of the root node sent for review
     children:
-      - c9480ca7-0634-4a47-bd9e-d985a03d372d
-      - bd24669b-2bc1-4049-9514-a9d8048ff71e
-      - 9e284567-2b78-4692-816c-5a9f186c59f9
-      - dca43f1b-875d-4b01-8c89-2b6734fbaff0
+      - 9e66bad6-ade8-4061-bc2c-a634b4e4d63e
+      - dd4e0cbc-1f55-407c-8c88-a53e976f2879
+      - 6a1f6895-1754-4e4e-82df-a16aff4cd702
+      - 35d5b27b-956f-4d00-8bd8-57c527a11528
     metadata:
       status: completed
       expanded: false
@@ -78849,7 +78817,6 @@ nodes:
     id: 60350086-d041-4cac-877c-6bbff90b0da3
     content: Technical refinement
     children:
-      - 52a4dc8c-4330-41a8-ad1e-b4d5edc2f4db
       - b82ab806-5034-47b1-8fbc-7b388030b107
     metadata:
       status: pending
@@ -78930,6 +78897,7 @@ nodes:
       - 5f0b7f1f-6456-491f-8c35-cc9476e973ca
       - f639c9d8-6e35-4478-8798-91d8b991ebec
       - 35417e17-964c-43cb-a4f9-6d94474b7319
+      - 52a4dc8c-4330-41a8-ad1e-b4d5edc2f4db
     metadata:
       status: pending
       isBlueprint: true
@@ -81723,8 +81691,8 @@ nodes:
       deleted: false
       plugins: {}
       isBlueprint: true
-  c9480ca7-0634-4a47-bd9e-d985a03d372d:
-    id: c9480ca7-0634-4a47-bd9e-d985a03d372d
+  9e66bad6-ade8-4061-bc2c-a634b4e4d63e:
+    id: 9e66bad6-ade8-4061-bc2c-a634b4e4d63e
     content: May be fixed after recent refactors
     children: []
     metadata:
@@ -81732,33 +81700,33 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  bd24669b-2bc1-4049-9514-a9d8048ff71e:
-    id: bd24669b-2bc1-4049-9514-a9d8048ff71e
+  dd4e0cbc-1f55-407c-8c88-a53e976f2879:
+    id: dd4e0cbc-1f55-407c-8c88-a53e976f2879
     content: Technical refinement
     children:
-      - c19a06f3-e899-4fbd-9192-515fa4d947d2
-      - 711e8efe-33b9-448c-8cf6-d659eeabaa4a
+      - 31ee8062-de7b-472f-8703-42cef0ffae4f
+      - a34a99bc-c3d8-4c66-87b1-b26b37766caf
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  c19a06f3-e899-4fbd-9192-515fa4d947d2:
-    id: c19a06f3-e899-4fbd-9192-515fa4d947d2
+  31ee8062-de7b-472f-8703-42cef0ffae4f:
+    id: 31ee8062-de7b-472f-8703-42cef0ffae4f
     content: Flag complications
     children:
-      - a6b11695-8459-4469-8143-c15021a0d6ae
-      - 10003431-5305-448b-89fc-a8f56910ffab
-      - 49b98206-8b95-4559-a1ce-8942af70dc18
-      - 36a61b02-c417-4ae8-b2aa-d47839886420
-      - aad41149-437a-4f13-ad8b-8be26fde33ca
+      - 0f10dc03-58b4-4d3d-9eb3-c510687c3401
+      - bbc4f99e-23c8-41f1-bf13-1d5f32ff28a2
+      - 9cdba937-f8f9-43cf-89ae-bacb954f44b0
+      - a2c12361-f582-4545-99b2-22c3a9a41d4f
+      - 8d183e99-50cc-4342-aaa7-e6017c9e84e9
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  a6b11695-8459-4469-8143-c15021a0d6ae:
-    id: a6b11695-8459-4469-8143-c15021a0d6ae
+  0f10dc03-58b4-4d3d-9eb3-c510687c3401:
+    id: 0f10dc03-58b4-4d3d-9eb3-c510687c3401
     content: Reproduction is the gating risk — need a captured feedback-response-*.md that reliably triggers the misplacement before any fix; intermittent "sometimes" bugs without a seed file will burn time
     children: []
     metadata:
@@ -81766,8 +81734,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  10003431-5305-448b-89fc-a8f56910ffab:
-    id: 10003431-5305-448b-89fc-a8f56910ffab
+  bbc4f99e-23c8-41f1-bf13-1d5f32ff28a2:
+    id: bbc4f99e-23c8-41f1-bf13-1d5f32ff28a2
     content: Root cause could live in either parseMarkdown (heading depth mis-nesting a new node up to root level) or AcceptFeedbackCommand strategy selection (single-root vs multi-root path picking) — scope of the fix is unknown until reproduced
     children: []
     metadata:
@@ -81775,8 +81743,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  49b98206-8b95-4559-a1ce-8942af70dc18:
-    id: 49b98206-8b95-4559-a1ce-8942af70dc18
+  9cdba937-f8f9-43cf-89ae-bacb954f44b0:
+    id: 9cdba937-f8f9-43cf-89ae-bacb954f44b0
     content: LLM-emitted markdown with inconsistent heading levels is an upstream factor; anything the assistant returns at `##` when the parent is at `##` will legitimately parse as a sibling under root — fixing the parser could mask real AI output issues
     children: []
     metadata:
@@ -81784,8 +81752,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  36a61b02-c417-4ae8-b2aa-d47839886420:
-    id: 36a61b02-c417-4ae8-b2aa-d47839886420
+  a2c12361-f582-4545-99b2-22c3a9a41d4f:
+    id: a2c12361-f582-4545-99b2-22c3a9a41d4f
     content: 'Out of scope: prompt-side changes to how the AI is instructed to preserve hierarchy; archive/replacement side-link flow (separate concern)'
     children: []
     metadata:
@@ -81793,8 +81761,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  aad41149-437a-4f13-ad8b-8be26fde33ca:
-    id: aad41149-437a-4f13-ad8b-8be26fde33ca
+  8d183e99-50cc-4342-aaa7-e6017c9e84e9:
+    id: 8d183e99-50cc-4342-aaa7-e6017c9e84e9
     content: 'ROI note: "may be fixed after recent refactors" — verify on current master first; if already fixed, close this with a regression test instead of investigating'
     children: []
     metadata:
@@ -81802,20 +81770,20 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  711e8efe-33b9-448c-8cf6-d659eeabaa4a:
-    id: 711e8efe-33b9-448c-8cf6-d659eeabaa4a
+  a34a99bc-c3d8-4c66-87b1-b26b37766caf:
+    id: a34a99bc-c3d8-4c66-87b1-b26b37766caf
     content: Summarise the approach in 2-3 bullets
     children:
-      - 01c7792c-5ee4-470f-89ad-f95e663f67f3
-      - fbef74ea-e395-4ec3-82df-c5511500719b
-      - 768176f6-7b37-48d3-9365-16f473498cfb
+      - 78cf0d92-eac1-4dc7-9475-4d2397127c80
+      - ea115404-c964-459f-9f99-84e69be14823
+      - 372675ce-33b9-45e5-8436-af9c58fad158
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  01c7792c-5ee4-470f-89ad-f95e663f67f3:
-    id: 01c7792c-5ee4-470f-89ad-f95e663f67f3
+  78cf0d92-eac1-4dc7-9475-4d2397127c80:
+    id: 78cf0d92-eac1-4dc7-9475-4d2397127c80
     content: Start by reproducing against current code — save a failing feedback-response fixture and write a test against executeSingleRootStrategy/executeMultiRootStrategy to confirm the bug still exists
     children: []
     metadata:
@@ -81823,8 +81791,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  fbef74ea-e395-4ec3-82df-c5511500719b:
-    id: fbef74ea-e395-4ec3-82df-c5511500719b
+  ea115404-c964-459f-9f99-84e69be14823:
+    id: ea115404-c964-459f-9f99-84e69be14823
     content: If reproducible, trace the node through parseMarkdown → feedbackTreeStore → extractFeedbackContent → accept strategy; the placement is driven purely by markdown heading depth, so the defect is almost certainly in parsing or id/children remapping
     children: []
     metadata:
@@ -81832,8 +81800,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  768176f6-7b37-48d3-9365-16f473498cfb:
-    id: 768176f6-7b37-48d3-9365-16f473498cfb
+  372675ce-33b9-45e5-8436-af9c58fad158:
+    id: 372675ce-33b9-45e5-8436-af9c58fad158
     content: 'Non-obvious: new nodes always get fresh UUIDs (no id carryover from the original tree), so "placement" depends entirely on the parsed parent-child structure — there is no separate placement signal to preserve'
     children: []
     metadata:
@@ -81841,25 +81809,25 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  9e284567-2b78-4692-816c-5a9f186c59f9:
-    id: 9e284567-2b78-4692-816c-5a9f186c59f9
+  6a1f6895-1754-4e4e-82df-a16aff4cd702:
+    id: 6a1f6895-1754-4e4e-82df-a16aff4cd702
     content: Implement automated tests (TDD)
     children:
-      - 7b5b57a0-d780-4296-abd3-62920305289a
-      - 10816c1b-bbe5-4d82-8de8-f28ebcb960a2
-      - f1e987b0-2398-4dc3-b570-125fe160eb71
-      - e5c49f67-deb3-45a7-8a11-c324b5192ed5
-      - 83b8afe1-aee3-4362-ab9e-a162ee74d319
-      - 68e67b1e-e1ee-4a41-a15d-471a6cfc5ffb
-      - 06b88762-1ed5-484f-9ebf-0240f01623d7
-      - 2d87c4b2-542d-47ec-af9d-b40ae1a580b3
+      - 4e2f4cfb-6df0-4d80-b527-2547fbb0d9ed
+      - 51b97659-ae1b-4f0b-a799-072ca6c09d0f
+      - a1520ce1-c93a-4436-a3d5-fb41e0902054
+      - 260ebf98-5c64-4610-bc3b-39d6a888c20b
+      - 4434d80b-8042-4f3a-b28a-79e0e796822b
+      - 7dd9e07a-aeac-4b42-b244-e887e25d9027
+      - cd815e47-a1cb-4b46-995d-15638a03df4d
+      - 70826f26-940e-463d-ad38-0323200d186d
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  7b5b57a0-d780-4296-abd3-62920305289a:
-    id: 7b5b57a0-d780-4296-abd3-62920305289a
+  4e2f4cfb-6df0-4d80-b527-2547fbb0d9ed:
+    id: 4e2f4cfb-6df0-4d80-b527-2547fbb0d9ed
     content: 'New dedicated file: src/renderer/store/tree/commands/tests/newNodePlacementOnAccept.test.ts — narrow regression harness; reuse the local createNode/createState pattern already in AcceptFeedbackCommand.test.ts (no fixtures/ dir exists yet, do not invent one)'
     children: []
     metadata:
@@ -81867,21 +81835,21 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  10816c1b-bbe5-4d82-8de8-f28ebcb960a2:
-    id: 10816c1b-bbe5-4d82-8de8-f28ebcb960a2
+  51b97659-ae1b-4f0b-a799-072ca6c09d0f:
+    id: 51b97659-ae1b-4f0b-a799-072ca6c09d0f
     content: AcceptFeedbackCommand — single-root deep placement
     children:
-      - f0907b55-699e-471e-b472-8fadd0476c00
-      - 30127a3d-b41d-4444-80c8-d02c26afff7a
-      - 6f3e5cb0-516d-4441-9d32-b879e324c649
-      - 087f5f45-b82d-4441-9797-655fec52ed24
+      - 239b1c0b-773e-447c-ae8a-623a1414f944
+      - 9788b484-1843-4f46-b96c-902596bb54a8
+      - 3cf15926-eb96-4f99-b028-1c1e134034cc
+      - 8de24922-b784-44a8-a1e2-db95e4c39ecd
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  f0907b55-699e-471e-b472-8fadd0476c00:
-    id: f0907b55-699e-471e-b472-8fadd0476c00
+  239b1c0b-773e-447c-ae8a-623a1414f944:
+    id: 239b1c0b-773e-447c-ae8a-623a1414f944
     content: 'it: preserves a new grandchild under the correct existing-but-remapped parent when the feedback adds one level below an untouched branch (happy path, body can be written now)'
     children: []
     metadata:
@@ -81889,8 +81857,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  30127a3d-b41d-4444-80c8-d02c26afff7a:
-    id: 30127a3d-b41d-4444-80c8-d02c26afff7a
+  9788b484-1843-4f46-b96c-902596bb54a8:
+    id: 9788b484-1843-4f46-b96c-902596bb54a8
     content: 'it: places a new node under the original replacement root (not the tree root) when feedback keeps the collaborator''s root and adds one new child'
     children: []
     metadata:
@@ -81898,8 +81866,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  6f3e5cb0-516d-4441-9d32-b879e324c649:
-    id: 6f3e5cb0-516d-4441-9d32-b879e324c649
+  3cf15926-eb96-4f99-b028-1c1e134034cc:
+    id: 3cf15926-eb96-4f99-b028-1c1e134034cc
     content: 'it: places a new node at depth N under the correct intermediate parent when feedback nests it several levels deep (title only — exact post-fix placement uncertain until repro captured)'
     children: []
     metadata:
@@ -81907,8 +81875,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  087f5f45-b82d-4441-9797-655fec52ed24:
-    id: 087f5f45-b82d-4441-9797-655fec52ed24
+  8de24922-b784-44a8-a1e2-db95e4c39ecd:
+    id: 8de24922-b784-44a8-a1e2-db95e4c39ecd
     content: 'it: does NOT promote a new node to the root''s children when its parent chain is intact in the feedback markdown (title only — this is the direct bug assertion; leave body empty until reproduction fixture is in place)'
     children: []
     metadata:
@@ -81916,19 +81884,19 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  f1e987b0-2398-4dc3-b570-125fe160eb71:
-    id: f1e987b0-2398-4dc3-b570-125fe160eb71
+  a1520ce1-c93a-4436-a3d5-fb41e0902054:
+    id: a1520ce1-c93a-4436-a3d5-fb41e0902054
     content: AcceptFeedbackCommand — multi-root deep placement
     children:
-      - d432b313-aa36-4864-b36b-c2576703588b
-      - 7453af99-57ee-48b0-b8c5-721a60c09c1c
+      - 21fc2365-4c52-4675-b4d8-34c5359b25fa
+      - 0daeb39c-86bb-4174-82c6-05c98ed92ca5
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  d432b313-aa36-4864-b36b-c2576703588b:
-    id: d432b313-aa36-4864-b36b-c2576703588b
+  21fc2365-4c52-4675-b4d8-34c5359b25fa:
+    id: 21fc2365-4c52-4675-b4d8-34c5359b25fa
     content: 'it: new nodes nested under one of several sibling roots land under that sibling, not spliced at the collaborator''s parent (title only)'
     children: []
     metadata:
@@ -81936,8 +81904,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  7453af99-57ee-48b0-b8c5-721a60c09c1c:
-    id: 7453af99-57ee-48b0-b8c5-721a60c09c1c
+  0daeb39c-86bb-4174-82c6-05c98ed92ca5:
+    id: 0daeb39c-86bb-4174-82c6-05c98ed92ca5
     content: 'it: splice order into parent.children is preserved when one of the multi-roots contains a freshly-added subtree'
     children: []
     metadata:
@@ -81945,20 +81913,20 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  e5c49f67-deb3-45a7-8a11-c324b5192ed5:
-    id: e5c49f67-deb3-45a7-8a11-c324b5192ed5
+  260ebf98-5c64-4610-bc3b-39d6a888c20b:
+    id: 260ebf98-5c64-4610-bc3b-39d6a888c20b
     content: parseMarkdown — heading-depth invariants relevant to the bug
     children:
-      - 6b285c5a-c825-4af9-adda-292bec6c25b8
-      - 4f73088b-9427-4de5-b603-42d9713e2a93
-      - 95d05fa4-7a7a-4d79-a622-13501b5d5457
+      - 20cbea2e-3ddf-4f0d-a1d0-ffa2062b0a84
+      - f8942ada-9c18-497c-8a55-ca372d6c3717
+      - 7f6cd577-a159-48e7-8dd9-bfa0135e8ab8
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  6b285c5a-c825-4af9-adda-292bec6c25b8:
-    id: 6b285c5a-c825-4af9-adda-292bec6c25b8
+  20cbea2e-3ddf-4f0d-a1d0-ffa2062b0a84:
+    id: 20cbea2e-3ddf-4f0d-a1d0-ffa2062b0a84
     content: 'it: a new heading two levels below its predecessor (e.g. `#` → `###`) produces an orphan/flattened structure — document current behaviour with a title-only test so the fix can decide whether to clamp or error'
     children: []
     metadata:
@@ -81966,8 +81934,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  4f73088b-9427-4de5-b603-42d9713e2a93:
-    id: 4f73088b-9427-4de5-b603-42d9713e2a93
+  f8942ada-9c18-497c-8a55-ca372d6c3717:
+    id: f8942ada-9c18-497c-8a55-ca372d6c3717
     content: 'it: consecutive same-level headings after a deeper one correctly re-attach to the nearest ancestor at the right level (happy path)'
     children: []
     metadata:
@@ -81975,8 +81943,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  95d05fa4-7a7a-4d79-a622-13501b5d5457:
-    id: 95d05fa4-7a7a-4d79-a622-13501b5d5457
+  7f6cd577-a159-48e7-8dd9-bfa0135e8ab8:
+    id: 7f6cd577-a159-48e7-8dd9-bfa0135e8ab8
     content: 'it: empty or whitespace-only content between headings does not shift new nodes to root'
     children: []
     metadata:
@@ -81984,21 +81952,21 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  83b8afe1-aee3-4362-ab9e-a162ee74d319:
-    id: 83b8afe1-aee3-4362-ab9e-a162ee74d319
+  4434d80b-8042-4f3a-b28a-79e0e796822b:
+    id: 4434d80b-8042-4f3a-b28a-79e0e796822b
     content: Edge cases
     children:
-      - 34bc8172-7eca-40d8-95c7-c5413a9ced9b
-      - 825b722b-b53a-4c08-ba56-530f4a768515
-      - f94efdca-f5e0-4ee5-a7ac-5b9cf65282a6
-      - 47a0c3cf-d232-4696-8508-5cc95ba6b7c8
+      - 2cc14315-d906-4006-82cd-909ba1174712
+      - 4c8597b1-26af-4e03-982b-85dc6635c6eb
+      - f6d67a3f-260e-44f0-84fd-50a1c3522092
+      - d6ac8c93-5e39-49f7-9c72-8e3009b5d40e
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  34bc8172-7eca-40d8-95c7-c5413a9ced9b:
-    id: 34bc8172-7eca-40d8-95c7-c5413a9ced9b
+  2cc14315-d906-4006-82cd-909ba1174712:
+    id: 2cc14315-d906-4006-82cd-909ba1174712
     content: 'it: null/undefined feedback content returns null and no setState is called (already covered in sendActions.test — confirm, skip if redundant)'
     children: []
     metadata:
@@ -82006,8 +81974,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  825b722b-b53a-4c08-ba56-530f4a768515:
-    id: 825b722b-b53a-4c08-ba56-530f4a768515
+  4c8597b1-26af-4e03-982b-85dc6635c6eb:
+    id: 4c8597b1-26af-4e03-982b-85dc6635c6eb
     content: 'it: feedback markdown containing ONLY a new node (no existing tree content echoed back) — current vs desired behaviour (title only)'
     children: []
     metadata:
@@ -82015,8 +81983,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  f94efdca-f5e0-4ee5-a7ac-5b9cf65282a6:
-    id: f94efdca-f5e0-4ee5-a7ac-5b9cf65282a6
+  f6d67a3f-260e-44f0-84fd-50a1c3522092:
+    id: f6d67a3f-260e-44f0-84fd-50a1c3522092
     content: 'it: concurrent accept calls on the same file don''t interleave placements (title only; likely out of scope but record)'
     children: []
     metadata:
@@ -82024,8 +81992,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  47a0c3cf-d232-4696-8508-5cc95ba6b7c8:
-    id: 47a0c3cf-d232-4696-8508-5cc95ba6b7c8
+  d6ac8c93-5e39-49f7-9c72-8e3009b5d40e:
+    id: d6ac8c93-5e39-49f7-9c72-8e3009b5d40e
     content: 'it: boundary — single-root feedback with zero new nodes is a no-op for placement (regression guard)'
     children: []
     metadata:
@@ -82033,19 +82001,19 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  68e67b1e-e1ee-4a41-a15d-471a6cfc5ffb:
-    id: 68e67b1e-e1ee-4a41-a15d-471a6cfc5ffb
+  7dd9e07a-aeac-4b42-b244-e887e25d9027:
+    id: 7dd9e07a-aeac-4b42-b244-e887e25d9027
     content: Reproduction fixture
     children:
-      - ed0ccdb6-fcc3-4084-960c-5b7be8166467
-      - bce82354-3b7a-4d50-b9f9-2b40b63ae1c8
+      - 04b8cfc7-4705-48b6-91cf-d87bd66cefad
+      - be658bb5-babd-4c91-84e3-f291a04e875c
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  ed0ccdb6-fcc3-4084-960c-5b7be8166467:
-    id: ed0ccdb6-fcc3-4084-960c-5b7be8166467
+  04b8cfc7-4705-48b6-91cf-d87bd66cefad:
+    id: 04b8cfc7-4705-48b6-91cf-d87bd66cefad
     content: Capture one real feedback-response-*.md that exhibits the bug and drop it under a tests/ co-located directory; import the raw string into the regression test rather than hand-building markdown
     children: []
     metadata:
@@ -82053,8 +82021,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  bce82354-3b7a-4d50-b9f9-2b40b63ae1c8:
-    id: bce82354-3b7a-4d50-b9f9-2b40b63ae1c8
+  be658bb5-babd-4c91-84e3-f291a04e875c:
+    id: be658bb5-babd-4c91-84e3-f291a04e875c
     content: Re-run the failing test after any parseMarkdown or AcceptFeedbackCommand change; flip title-only tests to full assertions once desired post-fix behaviour is decided
     children: []
     metadata:
@@ -82062,8 +82030,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  06b88762-1ed5-484f-9ebf-0240f01623d7:
-    id: 06b88762-1ed5-484f-9ebf-0240f01623d7
+  cd815e47-a1cb-4b46-995d-15638a03df4d:
+    id: cd815e47-a1cb-4b46-995d-15638a03df4d
     content: Run only the changed test files (npm run test:run -- path/to/newNodePlacementOnAccept.test.ts) per project convention — do not run the full suite for this slice
     children: []
     metadata:
@@ -82071,8 +82039,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  2d87c4b2-542d-47ec-af9d-b40ae1a580b3:
-    id: 2d87c4b2-542d-47ec-af9d-b40ae1a580b3
+  70826f26-940e-463d-ad38-0323200d186d:
+    id: 70826f26-940e-463d-ad38-0323200d186d
     content: 'Accessibility / UX note: no direct a11y surface for this bug (tree structure correctness is the user-facing concern); skip a11y tests'
     children: []
     metadata:
@@ -82080,9 +82048,511 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  dca43f1b-875d-4b01-8c89-2b6734fbaff0:
-    id: dca43f1b-875d-4b01-8c89-2b6734fbaff0
+  35d5b27b-956f-4d00-8bd8-57c527a11528:
+    id: 35d5b27b-956f-4d00-8bd8-57c527a11528
     content: Outcome — all 15 regression tests pass against current master; the reported bug appears already fixed by the FU-2 refactor (0f10148, "extract AcceptFeedback strategies as pure functions"). No feature code was changed — only the new test file was added. Type-check and ESLint pass for the new file. The bug assertion and the deeply-nested end-to-end test (parseMarkdown → AcceptFeedbackCommand) both pass, confirming that new nodes placed deep in the feedback markdown end up at the correct depth and are NOT promoted to the collaborator root's first child. Three `it.todo`-style title-only tests remain as placeholders for scenarios that require a real user-captured fixture to reproduce; skipped the null-input test as it is already covered in sendActions.test.ts.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d5eb87bd-4ceb-4ec5-9d09-2977c2c6c4c9:
+    id: d5eb87bd-4ceb-4ec5-9d09-2977c2c6c4c9
+    content: Return sometimes adds line in content editable
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3257473d-5666-4649-8488-e67481df20c0:
+    id: 3257473d-5666-4649-8488-e67481df20c0
+    content: Navigation arrows sometimes just navigate to start and end of content editable
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  50930def-0945-4b54-8054-3af4ef461886:
+    id: 50930def-0945-4b54-8054-3af4ef461886
+    content: See if this reproduces in normal mode (maybe, it's inconsistent)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  23681049-73cc-4eff-b06b-10654fdc2e44:
+    id: 23681049-73cc-4eff-b06b-10654fdc2e44
+    content: See if it's related to the fix we added to give keyboard shortcuts context
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1aee22d7-4a8a-4009-a9eb-b7790a0141fd:
+    id: 1aee22d7-4a8a-4009-a9eb-b7790a0141fd
+    content: Not sure if this is still an issue after recent refactors
+    children:
+      - 83bc80ec-9155-4c09-8039-a4a52d14e058
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  83bc80ec-9155-4c09-8039-a4a52d14e058:
+    id: 83bc80ec-9155-4c09-8039-a4a52d14e058
+    content: If you can't find anything related in the code, just skip ahead to the next item.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  01112289-048d-4b9d-84bf-20ecc9faa1c7:
+    id: 01112289-048d-4b9d-84bf-20ecc9faa1c7
+    content: Technical refinement
+    children:
+      - f9d26479-9d56-4509-8343-6852941d9230
+      - 99df14e9-83b4-42ee-ad7e-f61703e643ed
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f9d26479-9d56-4509-8343-6852941d9230:
+    id: f9d26479-9d56-4509-8343-6852941d9230
+    content: Flag complications
+    children:
+      - 794a2943-eb43-4beb-a3c3-f489674a52e0
+      - 59fe9d18-b3f3-4d0a-bba5-f8f1c44666d3
+      - bc9c27a1-558a-44a2-ace1-af4d1fe3597e
+      - 572fbff6-af38-488a-908d-119ab2707c28
+      - 6bc3e0a9-7e4c-4ecc-a83c-98e4e5774984
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  794a2943-eb43-4beb-a3c3-f489674a52e0:
+    id: 794a2943-eb43-4beb-a3c3-f489674a52e0
+    content: Intermittent repro — pin it down with a failing test before touching code, otherwise any "fix" is unfalsifiable
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  59fe9d18-b3f3-4d0a-bba5-f8f1c44666d3:
+    id: 59fe9d18-b3f3-4d0a-bba5-f8f1c44666d3
+    content: Zoom tabs use a virtual `zoom://<path>#<nodeId>` file path; `storeManager.getStoreForFile` already resolves zoom paths back to the source store via `parseZoomPath`, so the store-lookup hypothesis is weaker than it first looked — root cause is more likely in which element receives focus in zoom mode or which handler runs first
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bc9c27a1-558a-44a2-ace1-af4d1fe3597e:
+    id: bc9c27a1-558a-44a2-ace1-af4d1fe3597e
+    content: Hotkey context is derived from live DOM focus (not stored panel state), so the "keyboard shortcuts context" fix is an unlikely culprit unless zoom changes where focus lands
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  572fbff6-af38-488a-908d-119ab2707c28:
+    id: 572fbff6-af38-488a-908d-119ab2707c28
+    content: 'Out of scope: a broader rewrite of the focus/context model — only touch zoom-specific resolution unless the root cause is shared with normal mode'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6bc3e0a9-7e4c-4ecc-a83c-98e4e5774984:
+    id: 6bc3e0a9-7e4c-4ecc-a83c-98e4e5774984
+    content: 'ROI risk: if the bug no longer reproduces after recent refactors, further investigation is wasted; timebox the repro step'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  99df14e9-83b4-42ee-ad7e-f61703e643ed:
+    id: 99df14e9-83b4-42ee-ad7e-f61703e643ed
+    content: Summarise the approach
+    children:
+      - f6007a72-99b9-4afe-b303-6dcfcb9bea7b
+      - a75ef81f-d11b-48b3-94c5-1f4ea8ec2dca
+      - d7db7957-b40d-489b-b3f1-3d7f0d01543e
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f6007a72-99b9-4afe-b303-6dcfcb9bea7b:
+    id: f6007a72-99b9-4afe-b303-6dcfcb9bea7b
+    content: Changes will land in `services/keyboard` (handler guards / preventDefault) and possibly the zoom bootstrap in `components/Tree` / `Workspace` — not in the shortcut-context store
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a75ef81f-d11b-48b3-94c5-1f4ea8ec2dca:
+    id: a75ef81f-d11b-48b3-94c5-1f4ea8ec2dca
+    content: Likely root cause is that in zoom mode Enter/Arrow handlers fall through and the browser's contenteditable defaults take over (newline on Enter, caret-to-end/start on arrows)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d7db7957-b40d-489b-b3f1-3d7f0d01543e:
+    id: d7db7957-b40d-489b-b3f1-3d7f0d01543e
+    content: 'Non-obvious: feedback panel already has a dedicated active-store override in `shared.ts`; zoom may need analogous focus-scope handling if the generic path doesn''t cover it'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  dcf975e2-5e8e-4148-afb7-660664cd898c:
+    id: dcf975e2-5e8e-4148-afb7-660664cd898c
+    content: Automated tests (TDD — title-only; bodies deferred until post-fix behavior is confirmed)
+    children:
+      - 56d1e519-99da-4aa7-a824-329a875b56da
+      - 452fa0f0-e5df-49a5-a08b-82ed734b7295
+      - 57818aad-3f5b-4e0f-9569-ede7e45604d4
+      - f32aa893-1a02-44c4-954e-520f9f5ada5f
+      - ff949889-88ac-48f0-b204-0bfa2afdce46
+      - 38c4fad3-24b4-4611-8e7b-bd92df0785c6
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  56d1e519-99da-4aa7-a824-329a875b56da:
+    id: 56d1e519-99da-4aa7-a824-329a875b56da
+    content: Pre-flight
+    children:
+      - 90d5c871-663d-4978-b90a-8126e2145a16
+      - a917f012-4415-4433-add3-ff5d37191ace
+      - 7995a55c-99db-481f-960f-71285c597ecc
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  90d5c871-663d-4978-b90a-8126e2145a16:
+    id: 90d5c871-663d-4978-b90a-8126e2145a16
+    content: Check `tests/fixtures/` and `src/renderer/services/keyboard/tests/` for existing harness helpers before rebuilding setup
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a917f012-4415-4433-add3-ff5d37191ace:
+    id: a917f012-4415-4433-add3-ff5d37191ace
+    content: Reuse the `navigationService.test.ts` scaffolding pattern (mocked `storeManager.getStoreForFile`, `useHotkeyContextStore` init) rather than recreating inline
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7995a55c-99db-481f-960f-71285c597ecc:
+    id: 7995a55c-99db-481f-960f-71285c597ecc
+    content: Run only the new/changed test files, not the whole suite
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  452fa0f0-e5df-49a5-a08b-82ed734b7295:
+    id: 452fa0f0-e5df-49a5-a08b-82ed734b7295
+    content: Zoom-mode navigation — `services/keyboard/tests/zoomNavigation.test.ts`
+    children:
+      - 5fe31a52-5b97-4f3e-a33b-9e8c15524c01
+      - 38185897-e7ba-475b-8ca2-e66885c22176
+      - bc52b21a-c085-441d-9df5-cbb47e997d93
+      - 3d33fe20-a6f8-4325-98ec-c2d2658c9e28
+      - 16bbf34c-4b3f-4c54-aa65-5f15b60fd27c
+      - 8e4da170-e73c-476c-a39e-c255f41f147d
+      - bc791a63-cad5-4c79-b34e-89a507b4963f
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5fe31a52-5b97-4f3e-a33b-9e8c15524c01:
+    id: 5fe31a52-5b97-4f3e-a33b-9e8c15524c01
+    content: Enter on zoomed root's contenteditable creates a sibling/child node and does not insert a newline into the contenteditable
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  38185897-e7ba-475b-8ca2-e66885c22176:
+    id: 38185897-e7ba-475b-8ca2-e66885c22176
+    content: ArrowUp at caret position 0 inside zoomed root navigates to the previous node instead of only moving the caret
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bc52b21a-c085-441d-9df5-cbb47e997d93:
+    id: bc52b21a-c085-441d-9df5-cbb47e997d93
+    content: ArrowDown at end of zoomed root's content navigates to the next node instead of only moving the caret
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3d33fe20-a6f8-4325-98ec-c2d2658c9e28:
+    id: 3d33fe20-a6f8-4325-98ec-c2d2658c9e28
+    content: ArrowLeft at caret position 0 navigates to the previous node (not just start-of-content)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  16bbf34c-4b3f-4c54-aa65-5f15b60fd27c:
+    id: 16bbf34c-4b3f-4c54-aa65-5f15b60fd27c
+    content: ArrowRight at end of content navigates to the next node (not just end-of-content)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8e4da170-e73c-476c-a39e-c255f41f147d:
+    id: 8e4da170-e73c-476c-a39e-c255f41f147d
+    content: '`activeFilePath` set to a `zoom://<source>#<nodeId>` path resolves to the same store as the underlying source path'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bc791a63-cad5-4c79-b34e-89a507b4963f:
+    id: bc791a63-cad5-4c79-b34e-89a507b4963f
+    content: Hotkey context remains `tree` when focus is inside a zoomed-node contenteditable
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  57818aad-3f5b-4e0f-9569-ede7e45604d4:
+    id: 57818aad-3f5b-4e0f-9569-ede7e45604d4
+    content: Regression parity — normal mode
+    children:
+      - cb693105-d737-4df7-944b-fb49db4b778e
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cb693105-d737-4df7-944b-fb49db4b778e:
+    id: cb693105-d737-4df7-944b-fb49db4b778e
+    content: Same Enter/Arrow scenarios hold in normal (non-zoom) mode so fixes don't diverge between modes
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f32aa893-1a02-44c4-954e-520f9f5ada5f:
+    id: f32aa893-1a02-44c4-954e-520f9f5ada5f
+    content: Edge cases
+    children:
+      - 94914f89-543d-4161-8994-3970c8df1d52
+      - ccc88761-64b4-430c-b419-90d8d375f902
+      - 8f8f9a9f-4eb0-4c06-ac46-d7fc1f99cd78
+      - 9437343b-d368-4db3-9660-802a868cb3e5
+      - 960da30f-bd33-41fd-a0b6-236aaa58a20a
+      - f1b1acc5-0483-4a34-9635-9b3b758d9f27
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  94914f89-543d-4161-8994-3970c8df1d52:
+    id: 94914f89-543d-4161-8994-3970c8df1d52
+    content: Zoomed node is a leaf (no children) — Enter behavior defined and tested
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  ccc88761-64b4-430c-b419-90d8d375f902:
+    id: ccc88761-64b4-430c-b419-90d8d375f902
+    content: Zoomed node is the only visible node — ArrowUp/ArrowDown is a no-op rather than falling through to contenteditable
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  8f8f9a9f-4eb0-4c06-ac46-d7fc1f99cd78:
+    id: 8f8f9a9f-4eb0-4c06-ac46-d7fc1f99cd78
+    content: Shift+Arrow preserves text-selection semantics inside zoomed contenteditable (not intercepted)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9437343b-d368-4db3-9660-802a868cb3e5:
+    id: 9437343b-d368-4db3-9660-802a868cb3e5
+    content: Ctrl/Cmd+Arrow modifiers are not intercepted inside zoomed contenteditable
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  960da30f-bd33-41fd-a0b6-236aaa58a20a:
+    id: 960da30f-bd33-41fd-a0b6-236aaa58a20a
+    content: Switching into and out of zoom mode doesn't leave stale listeners that double-handle keys
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  f1b1acc5-0483-4a34-9635-9b3b758d9f27:
+    id: f1b1acc5-0483-4a34-9635-9b3b758d9f27
+    content: Rapid repeated Enter presses produce N siblings, not N newlines
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  ff949889-88ac-48f0-b204-0bfa2afdce46:
+    id: ff949889-88ac-48f0-b204-0bfa2afdce46
+    content: Failure/empty states
+    children:
+      - 2bb2dd56-0b48-4b80-af5e-4a48958fcfb8
+      - befdf0a4-262b-4089-a069-e9382cac5c01
+      - 9c62f2f1-f1a4-4e7c-ab74-3348f682bb92
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2bb2dd56-0b48-4b80-af5e-4a48958fcfb8:
+    id: 2bb2dd56-0b48-4b80-af5e-4a48958fcfb8
+    content: '`activeFilePath` null while a zoom view is mounted — handlers no-op cleanly (no exception)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  befdf0a4-262b-4089-a069-e9382cac5c01:
+    id: befdf0a4-262b-4089-a069-e9382cac5c01
+    content: Malformed `zoom://` path (no `#nodeId`) — `parseZoomPath` returns null and handlers degrade gracefully
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9c62f2f1-f1a4-4e7c-ab74-3348f682bb92:
+    id: 9c62f2f1-f1a4-4e7c-ab74-3348f682bb92
+    content: Zoomed nodeId no longer exists in the source store — navigation handlers don't crash
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  38c4fad3-24b4-4611-8e7b-bd92df0785c6:
+    id: 38c4fad3-24b4-4611-8e7b-bd92df0785c6
+    content: Accessibility / UX
+    children:
+      - d4da0656-4ccc-46c8-8845-32bf2ea57cff
+      - 5d8dd278-82d9-476c-877c-70d540e90e20
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  d4da0656-4ccc-46c8-8845-32bf2ea57cff:
+    id: d4da0656-4ccc-46c8-8845-32bf2ea57cff
+    content: Focus remains on the zoomed node's contenteditable after a navigation-vs-edit key is routed correctly
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  5d8dd278-82d9-476c-877c-70d540e90e20:
+    id: 5d8dd278-82d9-476c-877c-70d540e90e20
+    content: Screen-reader-relevant attributes (aria, contenteditable state) are unchanged by the fix
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  6334b0e3-573a-4ffd-9ea7-858ea946e2d4:
+    id: 6334b0e3-573a-4ffd-9ea7-858ea946e2d4
+    content: Implementation notes and deliberate scope limits
+    children:
+      - 6503e52e-98f1-4206-97bc-e0dfcb1d39cb
+      - 508cc73d-a0f6-428d-8564-01807856801a
+      - fec952f3-663d-4fd2-a1e4-2f43942b4b88
+      - 30dce026-0553-4c4d-b703-fe88f2694088
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6503e52e-98f1-4206-97bc-e0dfcb1d39cb:
+    id: 6503e52e-98f1-4206-97bc-e0dfcb1d39cb
+    content: 'Root cause identified: `findPreviousNode`/`findNextNode` used the global `rootNodeId` as their traversal boundary, so in zoom mode navigation could land `activeNodeId` on the zoomed node or one of its outside siblings — nodes with no contenteditable in the zoom DOM. After that, `getActiveNodeElement()` returns null and both the navigation service and the editing service bail out at `if (!element) return;`, leaving the browser''s contenteditable defaults to handle Enter (newline) and Arrow keys (caret-to-start/end).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  508cc73d-a0f6-428d-8564-01807856801a:
+    id: 508cc73d-a0f6-428d-8564-01807856801a
+    content: 'Fix landed in 3 files: (1) `navigationActions.ts` — `moveUp`/`moveDown`/`moveBack`/`moveForward` now accept an optional `boundaryNodeId` that overrides `rootNodeId` when calling the find helpers; (2) `shared.ts` — new `getEffectiveRootNodeId()` helper that reads `activeFilePath` and returns the zoomed node''s id for `zoom://…#id` paths, else null; (3) `navigationService.ts` — computes the effective root per key event and passes it to the navigation actions.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fec952f3-663d-4fd2-a1e4-2f43942b4b88:
+    id: fec952f3-663d-4fd2-a1e4-2f43942b4b88
+    content: 'Tests added: 8 unit tests in `navigationActions.test.ts` covering the new boundary behavior and backwards-compatibility when no boundary is passed; 4 unit tests in `shared.test.ts` for `getEffectiveRootNodeId`; 3 integration tests in `navigationService.test.ts` that dispatch real keyboard events against a zoom-mode DOM/path. All related test files pass (`navigationActions.test.ts`, `shared.test.ts`, `navigationService.test.ts`). Typecheck and lint pass on changed files.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  30dce026-0553-4c4d-b703-fe88f2694088:
+    id: 30dce026-0553-4c4d-b703-fe88f2694088
+    content: 'Deliberately out of scope (marked [-] above): direct Enter-key editing-service tests, leaf/only-node edge cases, stale-listener checks, rapid-Enter timing tests, missing-node crash tests, and a11y tests. Rationale: the Enter and caret-default symptoms are side-effects of the desynced `activeNodeId`; bounding navigation at the zoom root prevents `activeNodeId` from ever leaving the rendered subtree, which keeps `getActiveNodeElement()` non-null and so the existing Enter/editing handlers keep running as designed. Adding separate tests for each symptom would duplicate coverage of the same root cause without exercising new code paths. The a11y bullets are properties of unchanged DOM — nothing in this change alters aria attributes or focus routing.'
     children: []
     metadata:
       status: completed

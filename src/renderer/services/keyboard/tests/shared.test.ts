@@ -23,6 +23,7 @@ vi.mock('../../../store/storeManager', () => ({
 import {
   getActiveStore,
   setActiveFeedbackStore,
+  getEffectiveRootNodeId,
 } from '../shared';
 
 describe('keyboard shared utilities', () => {
@@ -114,6 +115,28 @@ describe('keyboard shared utilities', () => {
 
       mockActiveFilePath.value = '/file-b.arbo';
       expect(getActiveStore()).toBe(storeB);
+    });
+  });
+
+  describe('getEffectiveRootNodeId', () => {
+    it('should return null for a non-zoom active file path', () => {
+      mockActiveFilePath.value = '/test/file.arbo';
+      expect(getEffectiveRootNodeId()).toBeNull();
+    });
+
+    it('should return the zoomed node id when active file path is a zoom:// path', () => {
+      mockActiveFilePath.value = 'zoom:///test/file.arbo#node-123';
+      expect(getEffectiveRootNodeId()).toBe('node-123');
+    });
+
+    it('should return null when active file path is null', () => {
+      mockActiveFilePath.value = null;
+      expect(getEffectiveRootNodeId()).toBeNull();
+    });
+
+    it('should return null for a malformed zoom path without a #nodeId', () => {
+      mockActiveFilePath.value = 'zoom:///test/file.arbo';
+      expect(getEffectiveRootNodeId()).toBeNull();
     });
   });
 

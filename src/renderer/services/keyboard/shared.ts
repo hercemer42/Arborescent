@@ -1,6 +1,7 @@
 import type { TreeStore } from '../../store/tree/treeStore';
 import { useFilesStore } from '../../store/files/filesStore';
 import { storeManager } from '../../store/storeManager';
+import { parseZoomPath } from '../../utils/zoomPath';
 
 let activeFeedbackStore: TreeStore | null = null;
 
@@ -47,6 +48,13 @@ export function scrollToActiveNode(): void {
   if (activeNodeId) {
     store.getState().actions.scrollToNode(activeNodeId);
   }
+}
+
+export function getEffectiveRootNodeId(): string | null {
+  const activeFilePath = useFilesStore.getState().activeFilePath;
+  if (!activeFilePath) return null;
+  const zoomInfo = parseZoomPath(activeFilePath);
+  return zoomInfo?.nodeId ?? null;
 }
 
 export function resetRememberedPosition(): void {

@@ -1,4 +1,4 @@
-import { getActiveStore, getActiveNodeElement, scrollToActiveNode } from './shared';
+import { getActiveStore, getActiveNodeElement, scrollToActiveNode, getEffectiveRootNodeId } from './shared';
 import {
   isAtFirstLine,
   isAtLastLine,
@@ -23,13 +23,14 @@ function navigateCrossNode(
 
   lastNavigationTime = Date.now();
   const store = activeStore.getState();
+  const boundaryNodeId = getEffectiveRootNodeId() ?? undefined;
 
   const cursorPosition = direction === 'down' && element ? getCursorPosition(element) : undefined;
 
   if (direction === 'up') {
-    store.actions.moveUp(cursorPosition, targetX);
+    store.actions.moveUp(cursorPosition, targetX, boundaryNodeId);
   } else {
-    store.actions.moveDown(cursorPosition, targetX);
+    store.actions.moveDown(cursorPosition, targetX, boundaryNodeId);
   }
 
   scrollToActiveNode();
@@ -156,10 +157,11 @@ function handleHorizontalNavigation(direction: 'left' | 'right', event: Keyboard
     event.preventDefault();
     store.actions.setRememberedVisualX(null);
 
+    const boundaryNodeId = getEffectiveRootNodeId() ?? undefined;
     if (direction === 'left') {
-      store.actions.moveBack();
+      store.actions.moveBack(boundaryNodeId);
     } else {
-      store.actions.moveForward();
+      store.actions.moveForward(boundaryNodeId);
     }
 
     scrollToActiveNode();
@@ -228,11 +230,12 @@ function handleLinkNodeNavigation(direction: 'up' | 'down' | 'left' | 'right', e
 
   const store = activeStore.getState();
   store.actions.setRememberedVisualX(null);
+  const boundaryNodeId = getEffectiveRootNodeId() ?? undefined;
 
   if (direction === 'up' || direction === 'left') {
-    store.actions.moveUp(undefined, 0);
+    store.actions.moveUp(undefined, 0, boundaryNodeId);
   } else {
-    store.actions.moveDown(0, 0);
+    store.actions.moveDown(0, 0, boundaryNodeId);
   }
 
   scrollToActiveNode();

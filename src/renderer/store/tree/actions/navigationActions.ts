@@ -3,10 +3,10 @@ import { findPreviousNode, findNextNode } from '../../../utils/nodeHelpers';
 import { ToggleExpandCommand } from '../commands/ToggleExpandCommand';
 
 export interface NavigationActions {
-  moveUp: (cursorPosition?: number, rememberedVisualX?: number | null) => void;
-  moveDown: (cursorPosition?: number, rememberedVisualX?: number | null) => void;
-  moveBack: () => void;
-  moveForward: () => void;
+  moveUp: (cursorPosition?: number, rememberedVisualX?: number | null, boundaryNodeId?: string) => void;
+  moveDown: (cursorPosition?: number, rememberedVisualX?: number | null, boundaryNodeId?: string) => void;
+  moveBack: (boundaryNodeId?: string) => void;
+  moveForward: (boundaryNodeId?: string) => void;
   toggleNode: (nodeId: string) => void;
 }
 
@@ -41,11 +41,12 @@ export const createNavigationActions = (
   get: () => StoreState,
   set: StoreSetter
 ): NavigationActions => {
-  function moveUp(cursorPosition?: number, rememberedVisualX?: number | null): void {
+  function moveUp(cursorPosition?: number, rememberedVisualX?: number | null, boundaryNodeId?: string): void {
     const { activeNodeId, nodes, rootNodeId, ancestorRegistry } = get();
     if (!activeNodeId) return;
 
-    const nextNodeId = findPreviousNode(activeNodeId, nodes, rootNodeId, ancestorRegistry);
+    const effectiveRoot = boundaryNodeId ?? rootNodeId;
+    const nextNodeId = findPreviousNode(activeNodeId, nodes, effectiveRoot, ancestorRegistry);
     if (nextNodeId) {
       const nextNode = nodes[nextNodeId];
       const position = cursorPosition !== undefined ? cursorPosition : nextNode?.content.length ?? 0;
@@ -53,10 +54,12 @@ export const createNavigationActions = (
     }
   }
 
-  function moveDown(cursorPosition?: number, rememberedVisualX?: number | null): void {
+  function moveDown(cursorPosition?: number, rememberedVisualX?: number | null, boundaryNodeId?: string): void {
     const { activeNodeId, nodes, rootNodeId, ancestorRegistry } = get();
+    const effectiveRoot = boundaryNodeId ?? rootNodeId;
+
     if (!activeNodeId) {
-      const root = nodes[rootNodeId];
+      const root = nodes[effectiveRoot];
       if (root?.children.length > 0) {
         set({
           activeNodeId: root.children[0],
@@ -67,18 +70,19 @@ export const createNavigationActions = (
       return;
     }
 
-    const nextNodeId = findNextNode(activeNodeId, nodes, rootNodeId, ancestorRegistry);
+    const nextNodeId = findNextNode(activeNodeId, nodes, effectiveRoot, ancestorRegistry);
     if (nextNodeId) {
       const position = cursorPosition !== undefined ? cursorPosition : 0;
       set(selectNode(nextNodeId, position, rememberedVisualX));
     }
   }
 
-  function moveBack(): void {
+  function moveBack(boundaryNodeId?: string): void {
     const { activeNodeId, nodes, rootNodeId, ancestorRegistry } = get();
     if (!activeNodeId) return;
 
-    const nextNodeId = findPreviousNode(activeNodeId, nodes, rootNodeId, ancestorRegistry);
+    const effectiveRoot = boundaryNodeId ?? rootNodeId;
+    const nextNodeId = findPreviousNode(activeNodeId, nodes, effectiveRoot, ancestorRegistry);
     if (nextNodeId) {
       const nextNode = nodes[nextNodeId];
       set({
@@ -89,11 +93,12 @@ export const createNavigationActions = (
     }
   }
 
-  function moveForward(): void {
+  function moveForward(boundaryNodeId?: string): void {
     const { activeNodeId, nodes, rootNodeId, ancestorRegistry } = get();
     if (!activeNodeId) return;
 
-    const nextNodeId = findNextNode(activeNodeId, nodes, rootNodeId, ancestorRegistry);
+    const effectiveRoot = boundaryNodeId ?? rootNodeId;
+    const nextNodeId = findNextNode(activeNodeId, nodes, effectiveRoot, ancestorRegistry);
     if (nextNodeId) {
       set({
         activeNodeId: nextNodeId,

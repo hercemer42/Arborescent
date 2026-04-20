@@ -317,6 +317,76 @@ describe('navigationService', () => {
     });
   });
 
+  describe('zoom-bounded navigation', () => {
+    beforeEach(() => {
+      cleanup = initializeKeyboardNavigation();
+
+      store.setState({
+        nodes: {
+          'root': { id: 'root', content: 'Root', children: ['zoom-root', 'outside-sibling'], metadata: { isRoot: true } },
+          'zoom-root': { id: 'zoom-root', content: 'Zoomed', children: ['zoom-child-1', 'zoom-child-2'], metadata: {} },
+          'zoom-child-1': { id: 'zoom-child-1', content: 'Zoom Child 1', children: [], metadata: {} },
+          'zoom-child-2': { id: 'zoom-child-2', content: 'Zoom Child 2', children: [], metadata: {} },
+          'outside-sibling': { id: 'outside-sibling', content: 'Outside', children: [], metadata: {} },
+        },
+        rootNodeId: 'root',
+        activeNodeId: 'zoom-child-1',
+        cursorPosition: 0,
+        rememberedVisualX: null,
+        ancestorRegistry: {
+          'zoom-root': ['root'],
+          'zoom-child-1': ['root', 'zoom-root'],
+          'zoom-child-2': ['root', 'zoom-root'],
+          'outside-sibling': ['root'],
+        },
+      });
+
+      useFilesStore.setState({ activeFilePath: 'zoom:///test/file.arbo#zoom-root' });
+
+      container.innerHTML = `
+        <div data-node-id="zoom-child-1">
+          <div contenteditable="true">Zoom Child 1</div>
+        </div>
+        <div data-node-id="zoom-child-2">
+          <div contenteditable="true">Zoom Child 2</div>
+        </div>
+      `;
+    });
+
+    it('should not cross the zoom boundary when ArrowUp is pressed on the first child in zoom view', () => {
+      const editable = container.querySelector('[data-node-id="zoom-child-1"] [contenteditable]') as HTMLElement;
+      editable.focus();
+
+      const event = new KeyboardEvent('keydown', { key: 'ArrowUp', bubbles: true });
+      window.dispatchEvent(event);
+
+      expect(store.getState().activeNodeId).toBe('zoom-child-1');
+    });
+
+    it('should not cross to outside sibling when ArrowDown is pressed on the last node in zoom view', async () => {
+      await new Promise(resolve => setTimeout(resolve, 60));
+      store.setState({ activeNodeId: 'zoom-child-2' });
+      const editable = container.querySelector('[data-node-id="zoom-child-2"] [contenteditable]') as HTMLElement;
+      editable.focus();
+
+      const event = new KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true });
+      window.dispatchEvent(event);
+
+      expect(store.getState().activeNodeId).toBe('zoom-child-2');
+    });
+
+    it('should navigate between visible children within the zoom subtree on ArrowDown', async () => {
+      await new Promise(resolve => setTimeout(resolve, 60));
+      const editable = container.querySelector('[data-node-id="zoom-child-1"] [contenteditable]') as HTMLElement;
+      editable.focus();
+
+      const event = new KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true });
+      window.dispatchEvent(event);
+
+      expect(store.getState().activeNodeId).toBe('zoom-child-2');
+    });
+  });
+
   describe('link node navigation', () => {
     beforeEach(() => {
       cleanup = initializeKeyboardNavigation();
