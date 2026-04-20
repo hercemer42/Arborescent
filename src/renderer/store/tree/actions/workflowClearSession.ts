@@ -28,6 +28,7 @@ export interface ClearSessionManagerDeps {
 
 const CLEAR_TIMEOUT_MS = 5000;
 const CLEAR_RETRY_CAP = 3;
+const POST_CLEAR_SEND_DELAY_MS = 300;
 
 /**
  * Per-node /clear-before-send manager. Owns the pendingClears map,
@@ -146,7 +147,9 @@ export function createClearSessionManager(deps: ClearSessionManagerDeps): ClearS
       },
     });
 
-    sendPrompt(nodeId, pending.terminalId);
+    // Small cushion so Claude's input handler has finished re-initialising
+    // before the bracketed-paste prompt arrives.
+    setTimeout(() => sendPrompt(nodeId, pending.terminalId), POST_CLEAR_SEND_DELAY_MS);
   }
 
   return {

@@ -169,6 +169,7 @@ describe('SessionStart source:"clear" handling via registerSession', () => {
       expect(mockAutonomousCollaborate).not.toHaveBeenCalled();
 
       actions.registerSession('session-new', 'terminal-1', 'clear');
+      vi.advanceTimersByTime(500);
       await vi.runAllTicks();
       await Promise.resolve();
 

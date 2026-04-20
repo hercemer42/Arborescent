@@ -174,9 +174,20 @@ describe('Clear AI session — runtime clearing phase', () => {
       await flushMicrotasks();
 
       actions.registerSession('session-new', 'terminal-1', 'clear');
+      vi.advanceTimersByTime(500);
       await flushMicrotasks();
 
       expect(mockAutonomousCollaborate).toHaveBeenCalledWith('task-a', 'terminal-1', 'execute');
+    });
+
+    it('does not send the prompt synchronously with the clear confirmation — there is a small cushion delay first', async () => {
+      actions.startWorkflow('task-a', 'terminal-1');
+      await flushMicrotasks();
+
+      actions.registerSession('session-new', 'terminal-1', 'clear');
+      await flushMicrotasks();
+
+      expect(mockAutonomousCollaborate).not.toHaveBeenCalled();
     });
 
     it('marks the execution entry with a clearing indicator while awaiting confirmation');
