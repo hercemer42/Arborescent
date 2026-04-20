@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-04-20T08:27:22.455Z'
+updated: '2026-04-20T09:00:29.171Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -541,6 +541,7 @@ nodes:
       - 3999cfea-b344-4f92-b3ca-ffb9f740afc7
       - 03f0a426-d21a-4ef9-9e80-c752dd18b4af
       - 43ea2417-0b22-4d60-9997-e47414aa2143
+      - 71035e9e-d48e-4e8d-bd06-c9eeb7933ac9
     metadata:
       status: completed
       expanded: false
@@ -17864,7 +17865,7 @@ nodes:
       - 5191dd94-f159-4fbf-9e17-6d95318a7e4a
     metadata:
       status: pending
-      expanded: true
+      expanded: false
       deleted: false
       plugins: {}
       isBlueprint: true
@@ -33605,8 +33606,7 @@ nodes:
   7b3e923e-b465-4444-ae7d-7fe0e80e3235:
     id: 7b3e923e-b465-4444-ae7d-7fe0e80e3235
     content: Code review & refactor
-    children:
-      - 71035e9e-d48e-4e8d-bd06-c9eeb7933ac9
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -78818,20 +78818,19 @@ nodes:
     metadata:
       status: pending
       expanded: false
-  5030c851-9181-48e3-984a-9cd1bef9858a:
-    id: 5030c851-9181-48e3-984a-9cd1bef9858a
-    content: May be fixed after recent refactors
-    children: []
-    metadata:
-      status: pending
   35417e17-964c-43cb-a4f9-6d94474b7319:
     id: 35417e17-964c-43cb-a4f9-6d94474b7319
     content: When accepting reviewed content, sometimes it breaks placement of a new node - when attempting to place a new node within the tree, it places it instead as the first child node of the root node sent for review
     children:
-      - 5030c851-9181-48e3-984a-9cd1bef9858a
+      - c9480ca7-0634-4a47-bd9e-d985a03d372d
+      - bd24669b-2bc1-4049-9514-a9d8048ff71e
+      - 9e284567-2b78-4692-816c-5a9f186c59f9
+      - dca43f1b-875d-4b01-8c89-2b6734fbaff0
     metadata:
-      status: pending
+      status: completed
       expanded: false
+      deleted: false
+      plugins: {}
   5f0b7f1f-6456-491f-8c35-cc9476e973ca:
     id: 5f0b7f1f-6456-491f-8c35-cc9476e973ca
     content: Issue with IDs being made from titles where they should be UUIDs
@@ -78850,7 +78849,6 @@ nodes:
     id: 60350086-d041-4cac-877c-6bbff90b0da3
     content: Technical refinement
     children:
-      - 35417e17-964c-43cb-a4f9-6d94474b7319
       - 52a4dc8c-4330-41a8-ad1e-b4d5edc2f4db
       - b82ab806-5034-47b1-8fbc-7b388030b107
     metadata:
@@ -78861,6 +78859,7 @@ nodes:
       appliedContextId: 64ec6c6b-566e-4956-bff9-55ac881f4fdb
       stepType: autonomous
       expanded: true
+      clearSession: true
   7dce0e71-fe3b-454b-b8fa-f1845cc4665d:
     id: 7dce0e71-fe3b-454b-b8fa-f1845cc4665d
     content: Automated tests implementation (TDD)
@@ -78930,6 +78929,7 @@ nodes:
       - e30b1f16-d2c4-46a3-8c9f-15fc02d73bdf
       - 5f0b7f1f-6456-491f-8c35-cc9476e973ca
       - f639c9d8-6e35-4478-8798-91d8b991ebec
+      - 35417e17-964c-43cb-a4f9-6d94474b7319
     metadata:
       status: pending
       isBlueprint: true
@@ -81723,3 +81723,369 @@ nodes:
       deleted: false
       plugins: {}
       isBlueprint: true
+  c9480ca7-0634-4a47-bd9e-d985a03d372d:
+    id: c9480ca7-0634-4a47-bd9e-d985a03d372d
+    content: May be fixed after recent refactors
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bd24669b-2bc1-4049-9514-a9d8048ff71e:
+    id: bd24669b-2bc1-4049-9514-a9d8048ff71e
+    content: Technical refinement
+    children:
+      - c19a06f3-e899-4fbd-9192-515fa4d947d2
+      - 711e8efe-33b9-448c-8cf6-d659eeabaa4a
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c19a06f3-e899-4fbd-9192-515fa4d947d2:
+    id: c19a06f3-e899-4fbd-9192-515fa4d947d2
+    content: Flag complications
+    children:
+      - a6b11695-8459-4469-8143-c15021a0d6ae
+      - 10003431-5305-448b-89fc-a8f56910ffab
+      - 49b98206-8b95-4559-a1ce-8942af70dc18
+      - 36a61b02-c417-4ae8-b2aa-d47839886420
+      - aad41149-437a-4f13-ad8b-8be26fde33ca
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a6b11695-8459-4469-8143-c15021a0d6ae:
+    id: a6b11695-8459-4469-8143-c15021a0d6ae
+    content: Reproduction is the gating risk — need a captured feedback-response-*.md that reliably triggers the misplacement before any fix; intermittent "sometimes" bugs without a seed file will burn time
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  10003431-5305-448b-89fc-a8f56910ffab:
+    id: 10003431-5305-448b-89fc-a8f56910ffab
+    content: Root cause could live in either parseMarkdown (heading depth mis-nesting a new node up to root level) or AcceptFeedbackCommand strategy selection (single-root vs multi-root path picking) — scope of the fix is unknown until reproduced
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  49b98206-8b95-4559-a1ce-8942af70dc18:
+    id: 49b98206-8b95-4559-a1ce-8942af70dc18
+    content: LLM-emitted markdown with inconsistent heading levels is an upstream factor; anything the assistant returns at `##` when the parent is at `##` will legitimately parse as a sibling under root — fixing the parser could mask real AI output issues
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  36a61b02-c417-4ae8-b2aa-d47839886420:
+    id: 36a61b02-c417-4ae8-b2aa-d47839886420
+    content: 'Out of scope: prompt-side changes to how the AI is instructed to preserve hierarchy; archive/replacement side-link flow (separate concern)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  aad41149-437a-4f13-ad8b-8be26fde33ca:
+    id: aad41149-437a-4f13-ad8b-8be26fde33ca
+    content: 'ROI note: "may be fixed after recent refactors" — verify on current master first; if already fixed, close this with a regression test instead of investigating'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  711e8efe-33b9-448c-8cf6-d659eeabaa4a:
+    id: 711e8efe-33b9-448c-8cf6-d659eeabaa4a
+    content: Summarise the approach in 2-3 bullets
+    children:
+      - 01c7792c-5ee4-470f-89ad-f95e663f67f3
+      - fbef74ea-e395-4ec3-82df-c5511500719b
+      - 768176f6-7b37-48d3-9365-16f473498cfb
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  01c7792c-5ee4-470f-89ad-f95e663f67f3:
+    id: 01c7792c-5ee4-470f-89ad-f95e663f67f3
+    content: Start by reproducing against current code — save a failing feedback-response fixture and write a test against executeSingleRootStrategy/executeMultiRootStrategy to confirm the bug still exists
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fbef74ea-e395-4ec3-82df-c5511500719b:
+    id: fbef74ea-e395-4ec3-82df-c5511500719b
+    content: If reproducible, trace the node through parseMarkdown → feedbackTreeStore → extractFeedbackContent → accept strategy; the placement is driven purely by markdown heading depth, so the defect is almost certainly in parsing or id/children remapping
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  768176f6-7b37-48d3-9365-16f473498cfb:
+    id: 768176f6-7b37-48d3-9365-16f473498cfb
+    content: 'Non-obvious: new nodes always get fresh UUIDs (no id carryover from the original tree), so "placement" depends entirely on the parsed parent-child structure — there is no separate placement signal to preserve'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9e284567-2b78-4692-816c-5a9f186c59f9:
+    id: 9e284567-2b78-4692-816c-5a9f186c59f9
+    content: Implement automated tests (TDD)
+    children:
+      - 7b5b57a0-d780-4296-abd3-62920305289a
+      - 10816c1b-bbe5-4d82-8de8-f28ebcb960a2
+      - f1e987b0-2398-4dc3-b570-125fe160eb71
+      - e5c49f67-deb3-45a7-8a11-c324b5192ed5
+      - 83b8afe1-aee3-4362-ab9e-a162ee74d319
+      - 68e67b1e-e1ee-4a41-a15d-471a6cfc5ffb
+      - 06b88762-1ed5-484f-9ebf-0240f01623d7
+      - 2d87c4b2-542d-47ec-af9d-b40ae1a580b3
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7b5b57a0-d780-4296-abd3-62920305289a:
+    id: 7b5b57a0-d780-4296-abd3-62920305289a
+    content: 'New dedicated file: src/renderer/store/tree/commands/tests/newNodePlacementOnAccept.test.ts — narrow regression harness; reuse the local createNode/createState pattern already in AcceptFeedbackCommand.test.ts (no fixtures/ dir exists yet, do not invent one)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  10816c1b-bbe5-4d82-8de8-f28ebcb960a2:
+    id: 10816c1b-bbe5-4d82-8de8-f28ebcb960a2
+    content: AcceptFeedbackCommand — single-root deep placement
+    children:
+      - f0907b55-699e-471e-b472-8fadd0476c00
+      - 30127a3d-b41d-4444-80c8-d02c26afff7a
+      - 6f3e5cb0-516d-4441-9d32-b879e324c649
+      - 087f5f45-b82d-4441-9797-655fec52ed24
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f0907b55-699e-471e-b472-8fadd0476c00:
+    id: f0907b55-699e-471e-b472-8fadd0476c00
+    content: 'it: preserves a new grandchild under the correct existing-but-remapped parent when the feedback adds one level below an untouched branch (happy path, body can be written now)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  30127a3d-b41d-4444-80c8-d02c26afff7a:
+    id: 30127a3d-b41d-4444-80c8-d02c26afff7a
+    content: 'it: places a new node under the original replacement root (not the tree root) when feedback keeps the collaborator''s root and adds one new child'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6f3e5cb0-516d-4441-9d32-b879e324c649:
+    id: 6f3e5cb0-516d-4441-9d32-b879e324c649
+    content: 'it: places a new node at depth N under the correct intermediate parent when feedback nests it several levels deep (title only — exact post-fix placement uncertain until repro captured)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  087f5f45-b82d-4441-9797-655fec52ed24:
+    id: 087f5f45-b82d-4441-9797-655fec52ed24
+    content: 'it: does NOT promote a new node to the root''s children when its parent chain is intact in the feedback markdown (title only — this is the direct bug assertion; leave body empty until reproduction fixture is in place)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f1e987b0-2398-4dc3-b570-125fe160eb71:
+    id: f1e987b0-2398-4dc3-b570-125fe160eb71
+    content: AcceptFeedbackCommand — multi-root deep placement
+    children:
+      - d432b313-aa36-4864-b36b-c2576703588b
+      - 7453af99-57ee-48b0-b8c5-721a60c09c1c
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d432b313-aa36-4864-b36b-c2576703588b:
+    id: d432b313-aa36-4864-b36b-c2576703588b
+    content: 'it: new nodes nested under one of several sibling roots land under that sibling, not spliced at the collaborator''s parent (title only)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7453af99-57ee-48b0-b8c5-721a60c09c1c:
+    id: 7453af99-57ee-48b0-b8c5-721a60c09c1c
+    content: 'it: splice order into parent.children is preserved when one of the multi-roots contains a freshly-added subtree'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e5c49f67-deb3-45a7-8a11-c324b5192ed5:
+    id: e5c49f67-deb3-45a7-8a11-c324b5192ed5
+    content: parseMarkdown — heading-depth invariants relevant to the bug
+    children:
+      - 6b285c5a-c825-4af9-adda-292bec6c25b8
+      - 4f73088b-9427-4de5-b603-42d9713e2a93
+      - 95d05fa4-7a7a-4d79-a622-13501b5d5457
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6b285c5a-c825-4af9-adda-292bec6c25b8:
+    id: 6b285c5a-c825-4af9-adda-292bec6c25b8
+    content: 'it: a new heading two levels below its predecessor (e.g. `#` → `###`) produces an orphan/flattened structure — document current behaviour with a title-only test so the fix can decide whether to clamp or error'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4f73088b-9427-4de5-b603-42d9713e2a93:
+    id: 4f73088b-9427-4de5-b603-42d9713e2a93
+    content: 'it: consecutive same-level headings after a deeper one correctly re-attach to the nearest ancestor at the right level (happy path)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  95d05fa4-7a7a-4d79-a622-13501b5d5457:
+    id: 95d05fa4-7a7a-4d79-a622-13501b5d5457
+    content: 'it: empty or whitespace-only content between headings does not shift new nodes to root'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  83b8afe1-aee3-4362-ab9e-a162ee74d319:
+    id: 83b8afe1-aee3-4362-ab9e-a162ee74d319
+    content: Edge cases
+    children:
+      - 34bc8172-7eca-40d8-95c7-c5413a9ced9b
+      - 825b722b-b53a-4c08-ba56-530f4a768515
+      - f94efdca-f5e0-4ee5-a7ac-5b9cf65282a6
+      - 47a0c3cf-d232-4696-8508-5cc95ba6b7c8
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  34bc8172-7eca-40d8-95c7-c5413a9ced9b:
+    id: 34bc8172-7eca-40d8-95c7-c5413a9ced9b
+    content: 'it: null/undefined feedback content returns null and no setState is called (already covered in sendActions.test — confirm, skip if redundant)'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  825b722b-b53a-4c08-ba56-530f4a768515:
+    id: 825b722b-b53a-4c08-ba56-530f4a768515
+    content: 'it: feedback markdown containing ONLY a new node (no existing tree content echoed back) — current vs desired behaviour (title only)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f94efdca-f5e0-4ee5-a7ac-5b9cf65282a6:
+    id: f94efdca-f5e0-4ee5-a7ac-5b9cf65282a6
+    content: 'it: concurrent accept calls on the same file don''t interleave placements (title only; likely out of scope but record)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  47a0c3cf-d232-4696-8508-5cc95ba6b7c8:
+    id: 47a0c3cf-d232-4696-8508-5cc95ba6b7c8
+    content: 'it: boundary — single-root feedback with zero new nodes is a no-op for placement (regression guard)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  68e67b1e-e1ee-4a41-a15d-471a6cfc5ffb:
+    id: 68e67b1e-e1ee-4a41-a15d-471a6cfc5ffb
+    content: Reproduction fixture
+    children:
+      - ed0ccdb6-fcc3-4084-960c-5b7be8166467
+      - bce82354-3b7a-4d50-b9f9-2b40b63ae1c8
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ed0ccdb6-fcc3-4084-960c-5b7be8166467:
+    id: ed0ccdb6-fcc3-4084-960c-5b7be8166467
+    content: Capture one real feedback-response-*.md that exhibits the bug and drop it under a tests/ co-located directory; import the raw string into the regression test rather than hand-building markdown
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  bce82354-3b7a-4d50-b9f9-2b40b63ae1c8:
+    id: bce82354-3b7a-4d50-b9f9-2b40b63ae1c8
+    content: Re-run the failing test after any parseMarkdown or AcceptFeedbackCommand change; flip title-only tests to full assertions once desired post-fix behaviour is decided
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  06b88762-1ed5-484f-9ebf-0240f01623d7:
+    id: 06b88762-1ed5-484f-9ebf-0240f01623d7
+    content: Run only the changed test files (npm run test:run -- path/to/newNodePlacementOnAccept.test.ts) per project convention — do not run the full suite for this slice
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2d87c4b2-542d-47ec-af9d-b40ae1a580b3:
+    id: 2d87c4b2-542d-47ec-af9d-b40ae1a580b3
+    content: 'Accessibility / UX note: no direct a11y surface for this bug (tree structure correctness is the user-facing concern); skip a11y tests'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  dca43f1b-875d-4b01-8c89-2b6734fbaff0:
+    id: dca43f1b-875d-4b01-8c89-2b6734fbaff0
+    content: Outcome — all 15 regression tests pass against current master; the reported bug appears already fixed by the FU-2 refactor (0f10148, "extract AcceptFeedback strategies as pure functions"). No feature code was changed — only the new test file was added. Type-check and ESLint pass for the new file. The bug assertion and the deeply-nested end-to-end test (parseMarkdown → AcceptFeedbackCommand) both pass, confirming that new nodes placed deep in the feedback markdown end up at the correct depth and are NOT promoted to the collaborator root's first child. Three `it.todo`-style title-only tests remain as placeholders for scenarios that require a real user-captured fixture to reproduce; skipped the null-input test as it is already covered in sendActions.test.ts.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
