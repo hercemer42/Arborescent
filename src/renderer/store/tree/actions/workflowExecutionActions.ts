@@ -81,15 +81,36 @@ export const createWorkflowExecutionActions = (
   const recurseCounters = new Map<string, number>();
   const feedbackCollaborations = new Map<string, { filePath: string; terminalId?: string; kind: 'manual' | 'autonomous' }>();
   const pendingAcks = new Map<string, { terminalId: string; attempts: number; timer: ReturnType<typeof setTimeout> }>();
+  // ACKs that arrived before their pending entry was registered (the
+  // autonomousCollaborate promise had not yet resolved). Prevents the
+  // late-registered timer from firing a spurious retry.
+  const preconsumedAcks = new Set<string>();
 
   function clearPendingAck(nodeId: string): void {
     const entry = pendingAcks.get(nodeId);
-    if (!entry) return;
-    clearTimeout(entry.timer);
-    pendingAcks.delete(nodeId);
+    if (entry) {
+      clearTimeout(entry.timer);
+      pendingAcks.delete(nodeId);
+    }
+    preconsumedAcks.delete(nodeId);
+  }
+
+  function consumePendingAck(nodeId: string): void {
+    const entry = pendingAcks.get(nodeId);
+    if (entry) {
+      clearTimeout(entry.timer);
+      pendingAcks.delete(nodeId);
+      return;
+    }
+    preconsumedAcks.add(nodeId);
   }
 
   function registerPendingAck(nodeId: string, terminalId: string): void {
+    if (preconsumedAcks.has(nodeId)) {
+      preconsumedAcks.delete(nodeId);
+      return;
+    }
+
     const existing = pendingAcks.get(nodeId);
     if (existing) clearTimeout(existing.timer);
     const attempts = existing ? existing.attempts + 1 : 1;
@@ -502,7 +523,7 @@ export const createWorkflowExecutionActions = (
     set,
     findRunningNodeOnTerminal,
     clearStepTimeout: stepTimeouts.clear,
-    clearPendingAck,
+    consumePendingAck,
     advanceNode,
     completeWorkflow,
     stopWorkflow,
@@ -529,6 +550,7 @@ export const createWorkflowExecutionActions = (
     for (const nodeId of Array.from(pendingAcks.keys())) {
       clearPendingAck(nodeId);
     }
+    preconsumedAcks.clear();
 
     clearSessionManager.clearAllPending();
 

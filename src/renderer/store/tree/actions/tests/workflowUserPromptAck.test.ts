@@ -374,4 +374,32 @@ describe('UserPromptSubmit ACK handling with retry', () => {
 
     it('does not explode when UserPromptSubmit arrives with an empty message field');
   });
+
+  describe('Race: ACK arrives before registerPendingAck', () => {
+    it('does not retry when UserPromptSubmit arrives before the autonomousCollaborate promise resolves', async () => {
+      let resolveCollaborate!: (value: string) => void;
+      mockAutonomousCollaborate.mockImplementationOnce(() =>
+        new Promise<string>((resolve) => {
+          resolveCollaborate = resolve;
+        }),
+      );
+
+      actions.startWorkflow('task-a', 'terminal-1');
+      await Promise.resolve();
+
+      actions.handleHookEvent({ session_id: 'session-1', hook_event_name: 'UserPromptSubmit' });
+
+      resolveCollaborate('/tmp/feedback-response-task-a.md');
+      await vi.runAllTicks();
+      await Promise.resolve();
+      await Promise.resolve();
+
+      const sendsAfterPrime = mockAutonomousCollaborate.mock.calls.length;
+
+      vi.advanceTimersByTime(30000);
+      await vi.runAllTicks();
+
+      expect(mockAutonomousCollaborate.mock.calls.length).toBe(sendsAfterPrime);
+    });
+  });
 });

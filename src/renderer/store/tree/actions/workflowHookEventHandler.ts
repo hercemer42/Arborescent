@@ -29,7 +29,7 @@ export interface HookEventHandlerDeps {
   set: (partial: { workflowExecutionStates?: Record<string, WorkflowExecutionEntry> }) => void;
   findRunningNodeOnTerminal: (terminalId: string) => string | null;
   clearStepTimeout: (nodeId: string) => void;
-  clearPendingAck: (nodeId: string) => void;
+  consumePendingAck: (nodeId: string) => void;
   advanceNode: (nodeId: string) => void;
   completeWorkflow: (nodeId: string) => void;
   stopWorkflow: (nodeId: string) => void;
@@ -53,7 +53,7 @@ export function createHookEventHandler(deps: HookEventHandlerDeps) {
     set,
     findRunningNodeOnTerminal,
     clearStepTimeout,
-    clearPendingAck,
+    consumePendingAck,
     advanceNode,
     completeWorkflow,
     stopWorkflow,
@@ -85,7 +85,7 @@ export function createHookEventHandler(deps: HookEventHandlerDeps) {
     );
 
     if (event.hook_event_name === 'UserPromptSubmit') {
-      clearPendingAck(runningNodeId);
+      consumePendingAck(runningNodeId);
       return;
     }
 

@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-04-28T09:48:38.233Z'
+updated: '2026-04-28T10:10:42.315Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -5151,7 +5151,7 @@ nodes:
       - 9a8f1538-7eb7-4e2d-9e0f-46e2c00675f4
     metadata:
       status: pending
-      expanded: true
+      expanded: false
       isBlueprint: true
       blueprintIcon: BrainCog
       blueprintColor: '#14b8a6'
@@ -8791,7 +8791,7 @@ nodes:
       - e43903b2-2184-4cbd-84ec-9cd24ea536e2
     metadata:
       status: pending
-      expanded: true
+      expanded: false
       isBlueprint: true
       blueprintIcon: Star
       blueprintColor: '#64748b'
@@ -16637,7 +16637,7 @@ nodes:
       - 5752a9e6-7729-4d54-bd24-66f26a48e87b
     metadata:
       status: pending
-      expanded: true
+      expanded: false
       isBlueprint: true
       blueprintIcon: LayoutList
       blueprintColor: '#14b8a6'
@@ -78819,7 +78819,6 @@ nodes:
     id: 60350086-d041-4cac-877c-6bbff90b0da3
     content: Technical refinement
     children:
-      - f09416e7-d916-468e-887c-727c1e9ff362
       - b82ab806-5034-47b1-8fbc-7b388030b107
     metadata:
       status: pending
@@ -78901,6 +78900,7 @@ nodes:
       - f639c9d8-6e35-4478-8798-91d8b991ebec
       - 35417e17-964c-43cb-a4f9-6d94474b7319
       - 52a4dc8c-4330-41a8-ad1e-b4d5edc2f4db
+      - f09416e7-d916-468e-887c-727c1e9ff362
     metadata:
       status: pending
       isBlueprint: true
@@ -82599,7 +82599,580 @@ nodes:
       isBlueprint: true
   f09416e7-d916-468e-887c-727c1e9ff362:
     id: f09416e7-d916-468e-887c-727c1e9ff362
-    content: ''
+    content: Often the prompt is being sent 3 times even when the first prompt has been successfully sent
+    children:
+      - 560a9cf8-be20-43a1-b1fb-b26a88f739c8
+      - 8f58c86a-6c2b-4985-a02b-fe84a349058b
+      - 4d14e64e-2b86-4c66-b299-e9c2aaabd5cd
+      - ba8dff61-318c-413a-967d-358ae8fb5461
+      - 7ef8e61e-e809-419b-aac6-95b6c21a7703
+      - c69d0670-1164-4edc-a3d8-926763bc56ee
+      - a9f0f03c-1d93-4281-be69-efff7cacaf2e
+      - 6fe08750-1293-4964-84f2-ccd6138cd03b
+    metadata:
+      status: completed
+      expanded: false
+      deleted: false
+      plugins: {}
+  560a9cf8-be20-43a1-b1fb-b26a88f739c8:
+    id: 560a9cf8-be20-43a1-b1fb-b26a88f739c8
+    content: Just happened in the claude session in progress in forestadmin-server
     children: []
     metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8f58c86a-6c2b-4985-a02b-fe84a349058b:
+    id: 8f58c86a-6c2b-4985-a02b-fe84a349058b
+    content: The first one was processing & claude was thinking, then the second and third ones were sent
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4d14e64e-2b86-4c66-b299-e9c2aaabd5cd:
+    id: 4d14e64e-2b86-4c66-b299-e9c2aaabd5cd
+    content: Resulting error cancelled the workflow
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ba8dff61-318c-413a-967d-358ae8fb5461:
+    id: ba8dff61-318c-413a-967d-358ae8fb5461
+    content: The result was that the feedback wasn't written to the temporary file
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7ef8e61e-e809-419b-aac6-95b6c21a7703:
+    id: 7ef8e61e-e809-419b-aac6-95b6c21a7703
+    content: Technical refinement
+    children:
+      - 994b88a9-dbbc-4450-bfbb-58af15ef971c
+      - 9abf28cb-7db4-4ee7-8286-e89c90820963
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  994b88a9-dbbc-4450-bfbb-58af15ef971c:
+    id: 994b88a9-dbbc-4450-bfbb-58af15ef971c
+    content: Flag complications
+    children:
+      - a658ba47-2205-43d8-a025-a535af9692ab
+      - 14d1f53e-bc3c-4efe-bca1-daf2b5c915aa
+      - b2895f27-70f2-4402-ac06-f73a28fbfc45
+      - 39c78657-b59b-4771-81c7-513fa9d34fc2
+      - 57d10be2-2563-477c-a8a8-4d6bffe7731d
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a658ba47-2205-43d8-a025-a535af9692ab:
+    id: a658ba47-2205-43d8-a025-a535af9692ab
+    content: Need to confirm whether duplicates originate from the renderer (repeated dispatch) or the terminal/IPC layer (retry on perceived failure) before choosing a fix location
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  14d1f53e-bc3c-4efe-bca1-daf2b5c915aa:
+    id: 14d1f53e-bc3c-4efe-bca1-daf2b5c915aa
+    content: 'Risk: a naive in-flight guard could swallow legitimate resends (e.g. user-initiated retry after a real failure) — must distinguish automated retries from user intent'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b2895f27-70f2-4402-ac06-f73a28fbfc45:
+    id: b2895f27-70f2-4402-ac06-f73a28fbfc45
+    content: 'Edge case: if the first send appears to succeed but the response file never lands, retry logic may be intentional — need to verify whether duplicates happen only on success or also on genuine failure'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  39c78657-b59b-4771-81c7-513fa9d34fc2:
+    id: 39c78657-b59b-4771-81c7-513fa9d34fc2
+    content: 'Out of scope: hardening the terminal''s underlying response-file watcher reliability'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  57d10be2-2563-477c-a8a8-4d6bffe7731d:
+    id: 57d10be2-2563-477c-a8a8-4d6bffe7731d
+    content: 'ROI concern: if duplicates are rare and only triggered by a specific timing window, an aggressive dedupe may add complexity for a narrow fix'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9abf28cb-7db4-4ee7-8286-e89c90820963:
+    id: 9abf28cb-7db4-4ee7-8286-e89c90820963
+    content: Summarise the approach in 2-3 bullets
+    children:
+      - 742dc149-cea5-493e-a966-b062b3ecf1f1
+      - 2f8a7112-706b-42ba-83b7-5f1799e4d2be
+      - 51831359-e128-4496-8661-7baecd447d0e
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  742dc149-cea5-493e-a966-b062b3ecf1f1:
+    id: 742dc149-cea5-493e-a966-b062b3ecf1f1
+    content: Add an in-flight guard at the send-to-AI dispatch path keyed by session, short-circuiting subsequent sends until the first completes or times out
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2f8a7112-706b-42ba-83b7-5f1799e4d2be:
+    id: 2f8a7112-706b-42ba-83b7-5f1799e4d2be
+    content: Instrument the send pipeline to log each dispatch with its trigger source so we can confirm where the extra sends originate before/after the fix
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  51831359-e128-4496-8661-7baecd447d0e:
+    id: 51831359-e128-4496-8661-7baecd447d0e
+    content: 'Non-obvious: the symptom (no feedback file written) is downstream — the cancellation comes from the AI session erroring on overlapping prompts, not from the file-write path itself'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c69d0670-1164-4edc-a3d8-926763bc56ee:
+    id: c69d0670-1164-4edc-a3d8-926763bc56ee
+    content: Tests to write (TDD — titles only, post-fix behaviour uncertain)
+    children:
+      - 04c10efa-31ac-43bb-8936-6d8637e8fee0
+      - 7e02cc2b-54fe-4e9f-a8d9-f1fd9a359288
+      - 4a7aee15-f9ce-4619-b196-250cdb3ca64f
+      - 1d97bd18-4c37-41ca-85db-ed187625fbf8
+      - 6d3e7da3-bb14-493f-ac86-297fafe48d23
+      - 13d88be1-384a-4a95-971e-6f51fa716bc1
+    metadata:
       status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  04c10efa-31ac-43bb-8936-6d8637e8fee0:
+    id: 04c10efa-31ac-43bb-8936-6d8637e8fee0
+    content: Concurrent/repeated send behaviour
+    children:
+      - e66332e6-f9e1-4bce-b7d2-6eb1eef66d48
+      - 44154f38-cb88-42b0-bdb0-3cb7890758a4
+      - 51ecc064-c3a6-4831-bbef-e7db6fb2e64e
+      - 4d375e41-213d-4681-8387-9d76b87a1942
+      - bfa7b985-f325-4c25-8ca6-2bb830adae0d
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e66332e6-f9e1-4bce-b7d2-6eb1eef66d48:
+    id: e66332e6-f9e1-4bce-b7d2-6eb1eef66d48
+    content: does not re-dispatch a prompt to the same session while a previous send is still in-flight
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  44154f38-cb88-42b0-bdb0-3cb7890758a4:
+    id: 44154f38-cb88-42b0-bdb0-3cb7890758a4
+    content: collapses rapid successive send triggers within a debounce window into a single dispatch
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  51ecc064-c3a6-4831-bbef-e7db6fb2e64e:
+    id: 51ecc064-c3a6-4831-bbef-e7db6fb2e64e
+    content: allows a fresh send once the in-flight prompt has completed
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4d375e41-213d-4681-8387-9d76b87a1942:
+    id: 4d375e41-213d-4681-8387-9d76b87a1942
+    content: allows concurrent sends to different terminal sessions independently (no cross-session blocking)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bfa7b985-f325-4c25-8ca6-2bb830adae0d:
+    id: bfa7b985-f325-4c25-8ca6-2bb830adae0d
+    content: does not duplicate the send when the underlying trigger fires multiple times from a single user action
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7e02cc2b-54fe-4e9f-a8d9-f1fd9a359288:
+    id: 7e02cc2b-54fe-4e9f-a8d9-f1fd9a359288
+    content: Error and failure states
+    children:
+      - c5066936-1e91-4583-b922-324d9b7858db
+      - 4c7cb8c4-6b2e-492b-943b-cbfd888df775
+      - cb3b2fea-df3e-419a-a540-1bad5394e601
+      - c96c472b-194d-4a31-8076-8d9cb3594513
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c5066936-1e91-4583-b922-324d9b7858db:
+    id: c5066936-1e91-4583-b922-324d9b7858db
+    content: clears in-flight state when the first send completes successfully so retries are not blocked forever
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4c7cb8c4-6b2e-492b-943b-cbfd888df775:
+    id: 4c7cb8c4-6b2e-492b-943b-cbfd888df775
+    content: clears in-flight state when the first send errors out, allowing user-initiated retry
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  cb3b2fea-df3e-419a-a540-1bad5394e601:
+    id: cb3b2fea-df3e-419a-a540-1bad5394e601
+    content: clears in-flight state on timeout when the response file never lands
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  c96c472b-194d-4a31-8076-8d9cb3594513:
+    id: c96c472b-194d-4a31-8076-8d9cb3594513
+    content: surfaces an error (not a silent swallow) when a duplicate dispatch is suppressed during an active send
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  4a7aee15-f9ce-4619-b196-250cdb3ca64f:
+    id: 4a7aee15-f9ce-4619-b196-250cdb3ca64f
+    content: Empty / null / boundary inputs
+    children:
+      - 635f5653-dac4-41ec-a4fc-7cc5c6678078
+      - 8f418cab-80d2-4098-9141-46682da78785
+      - 36f427b0-4f52-4c67-881f-c5f20966b249
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  635f5653-dac4-41ec-a4fc-7cc5c6678078:
+    id: 635f5653-dac4-41ec-a4fc-7cc5c6678078
+    content: does not initiate a send when prompt content is empty or whitespace-only
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  8f418cab-80d2-4098-9141-46682da78785:
+    id: 8f418cab-80d2-4098-9141-46682da78785
+    content: does not initiate a send when the target session is null or no longer active
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  36f427b0-4f52-4c67-881f-c5f20966b249:
+    id: 36f427b0-4f52-4c67-881f-c5f20966b249
+    content: handles a prompt at the maximum supported size without triggering a fallback retry
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  1d97bd18-4c37-41ca-85db-ed187625fbf8:
+    id: 1d97bd18-4c37-41ca-85db-ed187625fbf8
+    content: Feedback-file workflow integration
+    children:
+      - b6a7bf62-e327-4041-91b1-7ef7da86ea2a
+      - f5bb44c0-bc29-4f40-a0e8-919525deb53b
+      - 04dce1d6-58f7-4b2a-9d0a-3833871a4e75
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  b6a7bf62-e327-4041-91b1-7ef7da86ea2a:
+    id: b6a7bf62-e327-4041-91b1-7ef7da86ea2a
+    content: writes the feedback file exactly once when a single user action triggers the send pipeline
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  f5bb44c0-bc29-4f40-a0e8-919525deb53b:
+    id: f5bb44c0-bc29-4f40-a0e8-919525deb53b
+    content: does not lose the feedback file write when the AI session reports an overlapping-prompt error
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  04dce1d6-58f7-4b2a-9d0a-3833871a4e75:
+    id: 04dce1d6-58f7-4b2a-9d0a-3833871a4e75
+    content: cleans up any stale temp feedback file from a cancelled prior attempt before the next send
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  6d3e7da3-bb14-493f-ac86-297fafe48d23:
+    id: 6d3e7da3-bb14-493f-ac86-297fafe48d23
+    content: Accessibility / UX
+    children:
+      - a7355076-27e5-420d-8eb8-5e3bcd5d259c
+      - 565720d1-1149-460b-9c52-57c94c5af031
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  a7355076-27e5-420d-8eb8-5e3bcd5d259c:
+    id: a7355076-27e5-420d-8eb8-5e3bcd5d259c
+    content: disables (or visually indicates) the send affordance while a prompt is in-flight so users do not click again
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  565720d1-1149-460b-9c52-57c94c5af031:
+    id: 565720d1-1149-460b-9c52-57c94c5af031
+    content: announces send-in-progress and send-complete states to assistive tech
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  13d88be1-384a-4a95-971e-6f51fa716bc1:
+    id: 13d88be1-384a-4a95-971e-6f51fa716bc1
+    content: Test setup notes
+    children:
+      - 5f498fed-4f4f-4cfb-8a54-ab8dddfd799d
+      - 9a9a22fe-c834-43fd-8860-9e356b9f9252
+      - 710a6bb2-e9a3-473b-b184-40c2dfd3c180
+      - d0614942-78b7-47c9-8267-b7228f825b0a
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5f498fed-4f4f-4cfb-8a54-ab8dddfd799d:
+    id: 5f498fed-4f4f-4cfb-8a54-ab8dddfd799d
+    content: Reuse existing helpers from tests/fixtures/ (e.g. makeStore) rather than rebuilding harness inline
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9a9a22fe-c834-43fd-8860-9e356b9f9252:
+    id: 9a9a22fe-c834-43fd-8860-9e356b9f9252
+    content: Mock the send/dispatch module at the import boundary, not the underlying IPC or fs APIs
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  710a6bb2-e9a3-473b-b184-40c2dfd3c180:
+    id: 710a6bb2-e9a3-473b-b184-40c2dfd3c180
+    content: Clear all shared in-flight state in beforeEach to keep tests isolated
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d0614942-78b7-47c9-8267-b7228f825b0a:
+    id: d0614942-78b7-47c9-8267-b7228f825b0a
+    content: Prefer mockImplementation with conditionals over mockReturnValueOnce for sequencing
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a9f0f03c-1d93-4281-be69-efff7cacaf2e:
+    id: a9f0f03c-1d93-4281-be69-efff7cacaf2e
+    content: Implementation summary
+    children:
+      - 86efacab-9e76-4b7b-b8fc-cb2ce91fe895
+      - 775c9c02-15ea-4a2d-b705-d9e0693b4b18
+      - 95edd220-188e-4d16-aed8-3235e0c59372
+      - 1c78869f-1473-458e-831d-e8743165b9ba
+      - 4179e4c7-a632-4372-87db-6be80b69759a
+      - 01474a13-c20f-47f5-bab6-e8153f9a815a
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  86efacab-9e76-4b7b-b8fc-cb2ce91fe895:
+    id: 86efacab-9e76-4b7b-b8fc-cb2ce91fe895
+    content: 'Root cause: registerPendingAck arms the ACK timer AFTER the autonomousCollaborate promise resolves; if Claude''s UserPromptSubmit hook fires during that window the ACK is dropped and the 5s timer fires twice (cap of 3 sends) — exactly the observed pattern'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  775c9c02-15ea-4a2d-b705-d9e0693b4b18:
+    id: 775c9c02-15ea-4a2d-b705-d9e0693b4b18
+    content: 'Fix landed in src/renderer/store/tree/actions/workflowExecutionActions.ts: introduced a preconsumedAcks set, split clearPendingAck (cancellation, also drops preconsumes) from a new consumePendingAck (race-tolerant, records preconsume when no entry exists), and made registerPendingAck consume a preconsume marker instead of arming a timer when one is present'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  95edd220-188e-4d16-aed8-3235e0c59372:
+    id: 95edd220-188e-4d16-aed8-3235e0c59372
+    content: Wired src/renderer/store/tree/actions/workflowHookEventHandler.ts to call consumePendingAck on UserPromptSubmit; disruption reactions still use clearPendingAck (cleanup semantics)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1c78869f-1473-458e-831d-e8743165b9ba:
+    id: 1c78869f-1473-458e-831d-e8743165b9ba
+    content: 'Failing-then-passing test added in src/renderer/store/tree/actions/tests/workflowUserPromptAck.test.ts under ''Race: ACK arrives before registerPendingAck'' — exercises the exact race by holding the autonomousCollaborate promise pending until after the hook event fires'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4179e4c7-a632-4372-87db-6be80b69759a:
+    id: 4179e4c7-a632-4372-87db-6be80b69759a
+    content: 'Verification: 182/182 tests passing across the workflow action suite (UserPromptAck, ClearAiSession×3, workflowAdvancement, workflowContentPreservation, sendActions); ESLint clean on changed files (one pre-existing import/no-cycle warning unchanged); tsc --noEmit clean'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  01474a13-c20f-47f5-bab6-e8153f9a815a:
+    id: 01474a13-c20f-47f5-bab6-e8153f9a815a
+    content: 'Out of scope (left pending): debounce of rapid retriggers, accessibility affordances on the send UI, empty/null prompt boundary handling, and the broader feedback-file integration assertions — these aren''t required to fix the triple-send and would expand the diff well beyond the reported issue'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6fe08750-1293-4964-84f2-ccd6138cd03b:
+    id: 6fe08750-1293-4964-84f2-ccd6138cd03b
+    content: Verification — what is undone and why
+    children:
+      - fd290a26-f3a8-4e9e-8fbb-9f94a662dabf
+      - 5eb28a4e-5b11-4cba-be2d-7176da168400
+      - df503e0d-600f-4128-a409-df95cbb6c2c6
+      - 47795ed4-7222-4afd-9cff-2507c7481426
+      - 971403a8-e14e-47cc-8bbb-a3113b85dfc1
+      - a7a4c035-1884-468f-9c70-9f92fec7d1b8
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  fd290a26-f3a8-4e9e-8fbb-9f94a662dabf:
+    id: fd290a26-f3a8-4e9e-8fbb-9f94a662dabf
+    content: 'Debounce of rapid successive send triggers — abandoned: the actual triple-send was a hook-vs-registration race, not user retriggering, so a debounce would add complexity without addressing the reported pattern'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  5eb28a4e-5b11-4cba-be2d-7176da168400:
+    id: 5eb28a4e-5b11-4cba-be2d-7176da168400
+    content: 'Error/timeout-path in-flight cleanup beyond the success path — abandoned: existing disruption reactions (stop / terminal closed / node deleted / moved / app restart) already drop the ACK; explicit per-error-cause tests would not change behaviour for this fix'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  df503e0d-600f-4128-a409-df95cbb6c2c6:
+    id: df503e0d-600f-4128-a409-df95cbb6c2c6
+    content: 'Surfacing a user-visible error when a duplicate dispatch is suppressed — abandoned: the suppression happens at most once per send (consumes one preconsumed marker) and is the desired silent path; a toast would be noise'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  47795ed4-7222-4afd-9cff-2507c7481426:
+    id: 47795ed4-7222-4afd-9cff-2507c7481426
+    content: 'Empty / null / boundary input tests — abandoned: send-path callers already gate on node existence and content; no new boundary code was introduced by this fix'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  971403a8-e14e-47cc-8bbb-a3113b85dfc1:
+    id: 971403a8-e14e-47cc-8bbb-a3113b85dfc1
+    content: 'Feedback-file integration assertions — abandoned: the triple-send was the cause of the missing feedback file; preventing the duplicates restores the write by construction, and broader file-lifecycle tests are out of scope here'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  a7a4c035-1884-468f-9c70-9f92fec7d1b8:
+    id: a7a4c035-1884-468f-9c70-9f92fec7d1b8
+    content: 'Accessibility / UX affordances on the send button — abandoned: no UI was changed; the fix is entirely in the renderer workflow engine'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
