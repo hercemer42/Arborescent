@@ -37,6 +37,7 @@ interface PanelState {
   showTerminal: () => void;
   showBrowser: () => void;
   showFeedback: () => void;
+  showFeedbackForFile: (filePath: string | null) => void;
   closeFeedback: () => void;
   hidePanel: () => void;
   removeFileState: (filePath: string) => void;
@@ -152,22 +153,28 @@ export const usePanelStore = create<PanelState>((set, get) => ({
       return newState;
     }),
 
-  showFeedback: () =>
+  showFeedback: () => get().showFeedbackForFile(get().currentFilePath),
+
+  showFeedbackForFile: (filePath: string | null) =>
     set((state) => {
-      if (!state.currentFilePath) return {};
-      const currentFileState = getFileState(state.fileStates, state.currentFilePath);
-      const newPreviousContent = currentFileState.activeContent !== 'feedback'
-        ? currentFileState.activeContent
-        : currentFileState.previousContent;
-      const newFileStates = updateFileState(state.fileStates, state.currentFilePath, {
+      const resolved = resolveToSourceFilePath(filePath);
+      if (!resolved) return {};
+      const targetFileState = getFileState(state.fileStates, resolved);
+      const newPreviousContent = targetFileState.activeContent !== 'feedback'
+        ? targetFileState.activeContent
+        : targetFileState.previousContent;
+      const newFileStates = updateFileState(state.fileStates, resolved, {
         activeContent: 'feedback',
         previousContent: newPreviousContent,
       });
-      const newState = {
-        activeContent: 'feedback' as PanelContentType,
-        previousContent: newPreviousContent,
-        fileStates: newFileStates,
-      };
+      const isCurrentFile = resolved === state.currentFilePath;
+      const newState = isCurrentFile
+        ? {
+            activeContent: 'feedback' as PanelContentType,
+            previousContent: newPreviousContent,
+            fileStates: newFileStates,
+          }
+        : { fileStates: newFileStates };
       void savePanelSession({ ...state, ...newState });
       return newState;
     }),

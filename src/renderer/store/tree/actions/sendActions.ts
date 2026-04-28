@@ -226,7 +226,7 @@ export interface SendActions {
   collaborateInTerminal: (nodeId: string, terminalId: string, mode?: 'collaborate' | 'execute') => Promise<void>;
   autonomousCollaborateInTerminal: (nodeId: string, terminalId: string, mode?: 'collaborate' | 'execute') => Promise<string>;
   restoreCollaborationState: () => Promise<void>;
-  processIncomingFeedbackContent: (content: string, source: ContentSource, skipSave?: boolean, skipPanelShow?: boolean) => Promise<ProcessFeedbackContentResult>;
+  processIncomingFeedbackContent: (content: string, source: ContentSource, skipSave?: boolean) => Promise<ProcessFeedbackContentResult>;
   finishCancel: () => Promise<void>;
   finishAccept: () => Promise<void>;
 }
@@ -520,7 +520,7 @@ export function createSendActions(
         feedbackTreeStore.setFilePath(currentFilePath, tempFilePath);
 
         set({ collaboratingNodeId: nodeId });
-        usePanelStore.getState().showFeedback();
+        usePanelStore.getState().showFeedbackForFile(currentFilePath);
         // Clipboard monitor is managed by useFeedbackClipboard based on collaboratingNodeId state
 
         logger.info(`Restored collaboration state for node: ${nodeId}`, 'SendActions');
@@ -536,8 +536,7 @@ export function createSendActions(
     processIncomingFeedbackContent: async (
       content: string,
       source: ContentSource,
-      skipSave: boolean = false,
-      skipPanelShow: boolean = false
+      skipSave: boolean = false
     ): Promise<ProcessFeedbackContentResult> => {
       const { collaboratingNodeId, currentFilePath, blueprintModeEnabled, nodes, ancestorRegistry } = get();
 
@@ -565,9 +564,7 @@ export function createSendActions(
 
       // Initialize feedback store (pass blueprintModeEnabled so new nodes also get blueprint metadata)
       initializeFeedbackStore(currentFilePath, parsedContent, blueprintModeEnabled);
-      if (!skipPanelShow) {
-        usePanelStore.getState().showFeedback();
-      }
+      usePanelStore.getState().showFeedbackForFile(currentFilePath);
 
       // Stop clipboard monitor - we have content now
       await window.electron.stopClipboardMonitor();

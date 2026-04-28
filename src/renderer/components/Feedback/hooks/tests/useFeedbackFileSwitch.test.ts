@@ -204,8 +204,7 @@ describe('useFeedbackClipboard — file switch integrity', () => {
         expect(mockProcessIncomingFeedbackForA).toHaveBeenCalledWith(
           '- Response for File A session',
           'clipboard',
-          false,
-          true
+          false
         );
       }, { container: document.body });
     });

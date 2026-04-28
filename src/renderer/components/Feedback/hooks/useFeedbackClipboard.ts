@@ -32,7 +32,7 @@ export function useFeedbackClipboard(collaboratingNodeId: string | null) {
     const ownerFilePath = entry.filePath;
     const isOwnerActive = ownerFilePath === resolveToSourceFilePath(activeFilePath);
 
-    await entry.store.getState().actions.processIncomingFeedbackContent(content, source, skipSave, !isOwnerActive);
+    await entry.store.getState().actions.processIncomingFeedbackContent(content, source, skipSave);
 
     if (!isOwnerActive) {
       useToastStore.getState().addToast(
@@ -63,7 +63,7 @@ export function useFeedbackClipboard(collaboratingNodeId: string | null) {
       if (match.kind === 'autonomous') {
         store.getState().actions.handleAutonomousFeedback?.(match.nodeId, content);
       } else {
-        await store.getState().actions.processIncomingFeedbackContent(content, 'file', false, !isOwnerActive);
+        await store.getState().actions.processIncomingFeedbackContent(content, 'file', false);
       }
 
       if (!isOwnerActive) {

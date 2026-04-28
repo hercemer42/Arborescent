@@ -44,7 +44,7 @@ vi.mock('../../../toast/toastStore', () => ({
 }));
 
 vi.mock('../../../panel/panelStore', () => ({
-  usePanelStore: { getState: () => ({ showBrowser: vi.fn(), showFeedback: vi.fn(), closeFeedback: vi.fn() }) },
+  usePanelStore: { getState: () => ({ showBrowser: vi.fn(), showFeedback: vi.fn(), showFeedbackForFile: vi.fn(), closeFeedback: vi.fn() }) },
 }));
 
 describe('browser collaboration guard across files', () => {

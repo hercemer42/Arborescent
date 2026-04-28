@@ -150,7 +150,6 @@ describe('useFeedbackClipboard', () => {
     expect(mockProcessIncomingFeedbackContent).toHaveBeenCalledWith(
       '- Valid node',
       'clipboard',
-      false,
       false
     );
   });
@@ -169,7 +168,6 @@ describe('useFeedbackClipboard', () => {
     expect(mockProcessIncomingFeedbackContent).toHaveBeenCalledWith(
       '- Valid node',
       'file',
-      false,
       false
     );
   });
@@ -255,7 +253,7 @@ describe('useFeedbackClipboard', () => {
     expect(mockProcessIncomingFeedbackContent).not.toHaveBeenCalled();
   });
 
-  it('should process feedback even when active tab differs from collaborating store (panel show suppressed)', async () => {
+  it('should process feedback even when active tab differs from collaborating store', async () => {
     const { useFilesStore } = await import('../../../../store/files/filesStore');
     vi.mocked(useFilesStore).mockImplementation((selector) =>
       selector({ activeFilePath: '/other/file.arbo' } as ReturnType<typeof useFilesStore.getState>)
@@ -274,8 +272,7 @@ describe('useFeedbackClipboard', () => {
     expect(mockProcessIncomingFeedbackContent).toHaveBeenCalledWith(
       '- Valid node',
       'clipboard',
-      false,
-      true
+      false
     );
   });
 

@@ -99,4 +99,51 @@ describe('panelStore feedback restore', () => {
       expect(usePanelStore.getState().previousContent).toBeNull();
     });
   });
+
+  describe('showFeedbackForFile', () => {
+    it('opens the feedback panel like showFeedback when target equals the active file', () => {
+      usePanelStore.getState().showFeedbackForFile('/test/file.arbo');
+
+      expect(usePanelStore.getState().activeContent).toBe('feedback');
+      expect(usePanelStore.getState().fileStates['/test/file.arbo'].activeContent).toBe('feedback');
+    });
+
+    it('records feedback in fileStates for a non-active file without changing the visible panel', () => {
+      usePanelStore.getState().showBrowser();
+      usePanelStore.getState().showFeedbackForFile('/other/file.arbo');
+
+      expect(usePanelStore.getState().activeContent).toBe('browser');
+      expect(usePanelStore.getState().fileStates['/other/file.arbo'].activeContent).toBe('feedback');
+    });
+
+    it('preserves the prior content for the target file as previousContent', () => {
+      usePanelStore.setState({
+        fileStates: {
+          '/other/file.arbo': { activeContent: 'browser', previousContent: null },
+        },
+      });
+
+      usePanelStore.getState().showFeedbackForFile('/other/file.arbo');
+
+      expect(usePanelStore.getState().fileStates['/other/file.arbo']).toEqual({
+        activeContent: 'feedback',
+        previousContent: 'browser',
+      });
+    });
+
+    it('after recording feedback for a file, switching back to it surfaces the panel', () => {
+      usePanelStore.getState().showFeedbackForFile('/other/file.arbo');
+      // simulate the user switching tabs to that file
+      usePanelStore.getState().setActiveFile('/other/file.arbo');
+
+      expect(usePanelStore.getState().activeContent).toBe('feedback');
+    });
+
+    it('is a no-op for a null file path', () => {
+      usePanelStore.getState().showBrowser();
+      usePanelStore.getState().showFeedbackForFile(null);
+
+      expect(usePanelStore.getState().activeContent).toBe('browser');
+    });
+  });
 });

@@ -283,7 +283,7 @@ describe('useFeedbackClipboard — strict file-path routing', () => {
       act(() => fileCallback('/tmp/feedback-response-node-manual-a.md', '# a result'));
 
       await waitFor(() => expect(manualA.processIncomingFeedbackContent).toHaveBeenCalled());
-      expect(manualA.processIncomingFeedbackContent).toHaveBeenCalledWith('# a result', 'file', false, expect.any(Boolean));
+      expect(manualA.processIncomingFeedbackContent).toHaveBeenCalledWith('# a result', 'file', false);
       expect(manualB.handleAutonomousFeedback).not.toHaveBeenCalled();
       expect(manualB.processIncomingFeedbackContent).not.toHaveBeenCalled();
     });
