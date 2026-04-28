@@ -1,6 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { renderHook } from '@testing-library/react';
 import { useAppliedContext } from '../useAppliedContexts';
+import { BASIC_EXECUTE_CONTEXT_ID, BASIC_REVIEW_CONTEXT_ID } from '../../../../utils/nodeHelpers';
 import { TreeNode } from '../../../../../shared/types';
 
 // Mock the useStore hook
@@ -94,6 +95,40 @@ describe('useAppliedContext — mode field', () => {
 
     const { result } = renderHook(() => useAppliedContext(node));
     expect(result.current).toBeUndefined();
+  });
+
+  it('should return Basic execution metadata for BASIC_EXECUTE_CONTEXT_ID', () => {
+    const node = createNode('node-1', { appliedContextId: BASIC_EXECUTE_CONTEXT_ID });
+
+    mockedUseStore.mockImplementation((selector) => {
+      const state = { nodes: { 'node-1': node } };
+      return selector(state as never);
+    });
+
+    const { result } = renderHook(() => useAppliedContext(node));
+    expect(result.current).toEqual({
+      icon: 'Zap',
+      color: undefined,
+      name: 'Basic execution',
+      mode: 'execute',
+    });
+  });
+
+  it('should return Basic review metadata for BASIC_REVIEW_CONTEXT_ID', () => {
+    const node = createNode('node-1', { appliedContextId: BASIC_REVIEW_CONTEXT_ID });
+
+    mockedUseStore.mockImplementation((selector) => {
+      const state = { nodes: { 'node-1': node } };
+      return selector(state as never);
+    });
+
+    const { result } = renderHook(() => useAppliedContext(node));
+    expect(result.current).toEqual({
+      icon: 'Eye',
+      color: undefined,
+      name: 'Basic review',
+      mode: 'collaborate',
+    });
   });
 
 

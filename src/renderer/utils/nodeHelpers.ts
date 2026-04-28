@@ -17,6 +17,13 @@ export {
 export { computeSummaryVisibleNodeIds } from './summaryFilters';
 export { cloneNodesWithNewIds } from './nodeCloning';
 
+export const BASIC_EXECUTE_CONTEXT_ID = '__basic_execute__';
+export const BASIC_REVIEW_CONTEXT_ID = '__basic_review__';
+
+function isSyntheticContextId(id: string): boolean {
+  return id === BASIC_EXECUTE_CONTEXT_ID || id === BASIC_REVIEW_CONTEXT_ID;
+}
+
 export function getAppliedContextIdWithInheritance(
   nodeId: string,
   nodes: Record<string, TreeNode>,
@@ -26,7 +33,7 @@ export function getAppliedContextIdWithInheritance(
   if (!node) return undefined;
 
   const appliedId = node.metadata.appliedContextId as string | undefined;
-  if (appliedId && nodes[appliedId]) {
+  if (appliedId && (nodes[appliedId] || isSyntheticContextId(appliedId))) {
     return appliedId;
   }
 
@@ -40,7 +47,7 @@ export function getInheritedContextId(
 ): string | undefined {
   return findClosestAncestor(nodeId, nodes, ancestorRegistry, (ancestor) => {
     const ancestorAppliedId = ancestor.metadata.appliedContextId as string | undefined;
-    if (ancestorAppliedId && nodes[ancestorAppliedId]) {
+    if (ancestorAppliedId && (nodes[ancestorAppliedId] || isSyntheticContextId(ancestorAppliedId))) {
       return ancestorAppliedId;
     }
     return undefined;
@@ -84,7 +91,7 @@ export function getContextsForCollaboration(
   if (!node) return [];
 
   const activeContextId = getAppliedContextIdWithInheritance(nodeId, nodes, ancestorRegistry);
-  if (!activeContextId) {
+  if (!activeContextId || isSyntheticContextId(activeContextId)) {
     return [];
   }
 
@@ -234,6 +241,8 @@ export function resolveContextMode(
   contextDeclarations: { nodeId: string; mode: 'collaborate' | 'execute' }[],
 ): 'collaborate' | 'execute' {
   if (!contextId) return 'collaborate';
+  if (contextId === BASIC_EXECUTE_CONTEXT_ID) return 'execute';
+  if (contextId === BASIC_REVIEW_CONTEXT_ID) return 'collaborate';
   const declaration = contextDeclarations.find(d => d.nodeId === contextId);
   if (declaration) return declaration.mode;
   const contextNode = nodes[contextId];
@@ -248,6 +257,8 @@ export function resolveSendContextName(
   nodes: Record<string, TreeNode>,
 ): string | undefined {
   if (!contextId) return undefined;
+  if (contextId === BASIC_EXECUTE_CONTEXT_ID) return 'Basic execution';
+  if (contextId === BASIC_REVIEW_CONTEXT_ID) return 'Basic review';
   const contextNode = nodes[contextId];
   if (!contextNode) return undefined;
   const content = contextNode.content;

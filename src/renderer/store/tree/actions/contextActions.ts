@@ -1,5 +1,10 @@
 import { TreeNode } from '../../../../shared/types';
-import { updateNodeMetadata, getParentIdOrNull } from '../../../utils/nodeHelpers';
+import {
+  updateNodeMetadata,
+  getParentIdOrNull,
+  BASIC_EXECUTE_CONTEXT_ID,
+  BASIC_REVIEW_CONTEXT_ID,
+} from '../../../utils/nodeHelpers';
 import { logger } from '../../../services/logger';
 import { useToastStore } from '../../toast/toastStore';
 import { ContextDeclarationInfo, ContextMode } from '../treeStore';
@@ -184,7 +189,9 @@ export const createContextActions = (
     const node = nodes[nodeId];
     if (!node) return;
 
-    if (contextNodeId !== null && !nodes[contextNodeId]) {
+    const isSyntheticBuiltIn =
+      contextNodeId === BASIC_EXECUTE_CONTEXT_ID || contextNodeId === BASIC_REVIEW_CONTEXT_ID;
+    if (contextNodeId !== null && !isSyntheticBuiltIn && !nodes[contextNodeId]) {
       useToastStore.getState().addToast('Context does not exist', 'error');
       return;
     }

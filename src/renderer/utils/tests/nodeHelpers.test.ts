@@ -17,6 +17,10 @@ import {
   shouldInheritBlueprint,
   resolveContextMode,
   resolveSendContextName,
+  getAppliedContextIdWithInheritance,
+  getInheritedContextId,
+  BASIC_EXECUTE_CONTEXT_ID,
+  BASIC_REVIEW_CONTEXT_ID,
 } from '../nodeHelpers';
 import { TreeNode } from '@shared/types';
 
@@ -1149,6 +1153,14 @@ describe('resolveContextMode', () => {
     expect(resolveContextMode(undefined, {}, [])).toBe('collaborate');
   });
 
+  it('should return execute for BASIC_EXECUTE_CONTEXT_ID', () => {
+    expect(resolveContextMode(BASIC_EXECUTE_CONTEXT_ID, {}, [])).toBe('execute');
+  });
+
+  it('should return collaborate for BASIC_REVIEW_CONTEXT_ID', () => {
+    expect(resolveContextMode(BASIC_REVIEW_CONTEXT_ID, {}, [])).toBe('collaborate');
+  });
+
   it('should return mode from context declaration', () => {
     const declarations = [{ nodeId: 'ctx-1', mode: 'execute' as const }];
     expect(resolveContextMode('ctx-1', {}, declarations)).toBe('execute');
@@ -1177,6 +1189,14 @@ describe('resolveSendContextName', () => {
     expect(resolveSendContextName(undefined, {})).toBeUndefined();
   });
 
+  it('should return "Basic execution" for BASIC_EXECUTE_CONTEXT_ID', () => {
+    expect(resolveSendContextName(BASIC_EXECUTE_CONTEXT_ID, {})).toBe('Basic execution');
+  });
+
+  it('should return "Basic review" for BASIC_REVIEW_CONTEXT_ID', () => {
+    expect(resolveSendContextName(BASIC_REVIEW_CONTEXT_ID, {})).toBe('Basic review');
+  });
+
   it('should return context node content', () => {
     const nodes = { 'ctx-1': { ...createNode('ctx-1'), content: 'My Review Context' } };
     expect(resolveSendContextName('ctx-1', nodes)).toBe('My Review Context');
@@ -1191,5 +1211,47 @@ describe('resolveSendContextName', () => {
 
   it('should return undefined for non-existent context node', () => {
     expect(resolveSendContextName('missing', {})).toBeUndefined();
+  });
+});
+
+describe('synthetic context id handling', () => {
+  const createNode = (id: string, metadata = {}): TreeNode => ({
+    id,
+    content: 'Test',
+    children: [],
+    metadata,
+  });
+
+  it('returns BASIC_EXECUTE_CONTEXT_ID from getAppliedContextIdWithInheritance when applied directly', () => {
+    const node = createNode('node-1', { appliedContextId: BASIC_EXECUTE_CONTEXT_ID });
+    const nodes = { 'node-1': node };
+    const ancestorRegistry = { 'node-1': [] };
+
+    expect(getAppliedContextIdWithInheritance('node-1', nodes, ancestorRegistry)).toBe(BASIC_EXECUTE_CONTEXT_ID);
+  });
+
+  it('returns BASIC_REVIEW_CONTEXT_ID from getAppliedContextIdWithInheritance when applied directly', () => {
+    const node = createNode('node-1', { appliedContextId: BASIC_REVIEW_CONTEXT_ID });
+    const nodes = { 'node-1': node };
+    const ancestorRegistry = { 'node-1': [] };
+
+    expect(getAppliedContextIdWithInheritance('node-1', nodes, ancestorRegistry)).toBe(BASIC_REVIEW_CONTEXT_ID);
+  });
+
+  it('inherits BASIC_EXECUTE_CONTEXT_ID from ancestor', () => {
+    const parent = createNode('parent', { appliedContextId: BASIC_EXECUTE_CONTEXT_ID });
+    const child = createNode('child');
+    const nodes = { parent, child };
+    const ancestorRegistry = { child: ['parent'], parent: [] };
+
+    expect(getInheritedContextId('child', nodes, ancestorRegistry)).toBe(BASIC_EXECUTE_CONTEXT_ID);
+  });
+
+  it('returns empty contexts for collaboration when a synthetic id is applied (no real declaration to attach)', () => {
+    const node = createNode('node-1', { appliedContextId: BASIC_EXECUTE_CONTEXT_ID });
+    const nodes = { 'node-1': node };
+    const ancestorRegistry = { 'node-1': [] };
+
+    expect(getContextsForCollaboration('node-1', nodes, ancestorRegistry)).toEqual([]);
   });
 });

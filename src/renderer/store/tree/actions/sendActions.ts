@@ -3,6 +3,8 @@ import { TreeNode } from '../../../../shared/types';
 import {
   buildContentWithContext,
   getAppliedContextIdWithInheritance,
+  BASIC_EXECUTE_CONTEXT_ID,
+  BASIC_REVIEW_CONTEXT_ID,
 } from '../../../utils/nodeHelpers';
 import { BASE_INSTRUCTION_RULES, wrapInstructions, wrapContent } from '../../../utils/promptBuilder';
 import { executeInTerminal } from '../../../services/terminalExecution';
@@ -22,6 +24,21 @@ import {
 } from '../../../services/feedback/feedbackService';
 import { feedbackTreeStore } from '../../feedback/feedbackTreeStore';
 import { isDecompositionEnabled, getArchiveConfigForNode } from '../../../utils/workflowHelpers';
+
+export const DEFAULT_EXECUTE_CONTEXT = `You are executing a coding task. Please:
+- Implement the listed tasks by making changes directly in the codebase
+- Mark each completed item [x] and each failed item [-] in the returned list
+- Skip items already marked [x]
+- If the task is ambiguous or has blocking issues, summarize the issues in your terminal output and record them as a child node in the returned list
+
+`;
+
+const DEFAULT_REVIEW_CONTEXT = `You are reviewing a hierarchical task list. Please:
+- Analyze the content and suggest improvements, additions or reorganization
+- Add any missing items that would make the list more complete
+- Fix any issues or inconsistencies that you find
+
+`;
 
 export type ContentSource = 'clipboard' | 'file' | 'restore';
 
@@ -169,21 +186,30 @@ function buildSendPayload(args: SendPayloadArgs): string {
     return nodeContent;
   }
 
+  let instructionContext: string;
+  if (appliedContextId === BASIC_EXECUTE_CONTEXT_ID) {
+    instructionContext = DEFAULT_EXECUTE_CONTEXT;
+  } else if (appliedContextId === BASIC_REVIEW_CONTEXT_ID) {
+    instructionContext = DEFAULT_REVIEW_CONTEXT;
+  } else {
+    instructionContext = contextPrefix;
+  }
+
   const isExecute = mode === 'execute';
 
   switch (target) {
     case 'web':
       return isExecute
-        ? buildWebExecutePrompt(contextPrefix, nodeContent)
-        : buildWebCollaboratePrompt(contextPrefix, nodeContent, decomposition);
+        ? buildWebExecutePrompt(instructionContext, nodeContent)
+        : buildWebCollaboratePrompt(instructionContext, nodeContent, decomposition);
     case 'terminal':
       return isExecute
-        ? buildTerminalExecutePrompt(contextPrefix, nodeContent, feedbackResponseFile!)
-        : buildTerminalCollaboratePrompt(contextPrefix, nodeContent, feedbackResponseFile!, decomposition);
+        ? buildTerminalExecutePrompt(instructionContext, nodeContent, feedbackResponseFile!)
+        : buildTerminalCollaboratePrompt(instructionContext, nodeContent, feedbackResponseFile!, decomposition);
     case 'autonomous-terminal':
       return isExecute
-        ? buildTerminalExecutePrompt(contextPrefix, nodeContent, feedbackResponseFile!, true)
-        : buildTerminalCollaboratePrompt(contextPrefix, nodeContent, feedbackResponseFile!, decomposition);
+        ? buildTerminalExecutePrompt(instructionContext, nodeContent, feedbackResponseFile!, true)
+        : buildTerminalCollaboratePrompt(instructionContext, nodeContent, feedbackResponseFile!, decomposition);
   }
 }
 
