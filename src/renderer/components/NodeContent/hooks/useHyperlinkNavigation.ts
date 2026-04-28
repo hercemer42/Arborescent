@@ -67,6 +67,7 @@ export function useHyperlinkNavigation(node: TreeNode) {
     // Select the target node and scroll to it
     actions.selectNode(linkedNodeId, 0);
     store.setState({ scrollToNodeId: linkedNodeId });
+    actions.flashNode(linkedNodeId, 'light');
   }, [node.metadata.linkedNodeId, store, activeFile, setActiveFile, isExternalLink, externalUrl, addBrowserTab, showBrowser]);
 
   return { navigateToLinkedNode, isExternalLink, openInExternalBrowser };
