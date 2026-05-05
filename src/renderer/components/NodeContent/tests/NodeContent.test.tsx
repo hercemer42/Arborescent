@@ -227,6 +227,99 @@ describe('NodeContent', () => {
     });
   });
 
+  describe('inline URL rendering', () => {
+    const urlNode: TreeNode = {
+      id: 'url-node',
+      content: 'go https://example.com here',
+      children: [],
+      metadata: { status: 'pending' },
+    };
+
+    beforeEach(() => {
+      store.setState({
+        nodes: { 'url-node': urlNode },
+        ancestorRegistry: { 'url-node': [] },
+        activeNodeId: null,
+      });
+    });
+
+    it('renders an inline-url anchor when the node is not selected', () => {
+      const { container } = renderWithProvider(<NodeContent node={urlNode} depth={0} />);
+      const anchor = container.querySelector('a.inline-url');
+      expect(anchor).toBeInTheDocument();
+      expect(anchor?.getAttribute('href')).toBe('https://example.com');
+    });
+
+    it('falls back to plain contentEditable when the node is selected', () => {
+      store.setState({ activeNodeId: 'url-node' });
+      const { container } = renderWithProvider(<NodeContent node={urlNode} depth={0} />);
+      expect(container.querySelector('a.inline-url')).not.toBeInTheDocument();
+      const editable = container.querySelector('[contenteditable="true"]');
+      expect(editable).toBeInTheDocument();
+    });
+
+    it('renders file:// content as plain text without an anchor', () => {
+      const fileNode: TreeNode = {
+        id: 'file-node',
+        content: 'see file:///etc/passwd here',
+        children: [],
+        metadata: { status: 'pending' },
+      };
+      store.setState({
+        nodes: { 'file-node': fileNode },
+        ancestorRegistry: { 'file-node': [] },
+      });
+      const { container } = renderWithProvider(<NodeContent node={fileNode} depth={0} />);
+      expect(container.querySelector('a.inline-url')).not.toBeInTheDocument();
+    });
+
+    it('invokes openExternal when an anchor is clicked', () => {
+      const openExternal = vi.fn().mockResolvedValue(undefined);
+      (window as unknown as { electron: { openExternal: typeof openExternal } }).electron = {
+        openExternal,
+      };
+
+      const { container } = renderWithProvider(<NodeContent node={urlNode} depth={0} />);
+      const anchor = container.querySelector('a.inline-url');
+      expect(anchor).toBeInTheDocument();
+
+      fireEvent.click(anchor!);
+
+      expect(openExternal).toHaveBeenCalledWith('https://example.com');
+    });
+
+    it('renders one anchor per URL when multiple URLs are present', () => {
+      const multi: TreeNode = {
+        id: 'multi-url',
+        content: 'a https://a.com and https://b.com b',
+        children: [],
+        metadata: { status: 'pending' },
+      };
+      store.setState({
+        nodes: { 'multi-url': multi },
+        ancestorRegistry: { 'multi-url': [] },
+      });
+      const { container } = renderWithProvider(<NodeContent node={multi} depth={0} />);
+      expect(container.querySelectorAll('a.inline-url')).toHaveLength(2);
+    });
+
+    it('renders nodes without URLs through the contentEditable path', () => {
+      const plainNode: TreeNode = {
+        id: 'plain',
+        content: 'no urls here',
+        children: [],
+        metadata: { status: 'pending' },
+      };
+      store.setState({
+        nodes: { plain: plainNode },
+        ancestorRegistry: { plain: [] },
+      });
+      const { container } = renderWithProvider(<NodeContent node={plainNode} depth={0} />);
+      expect(container.querySelector('a.inline-url')).not.toBeInTheDocument();
+      expect(container.querySelector('[contenteditable="true"]')).toBeInTheDocument();
+    });
+  });
+
   describe('regular nodes', () => {
     it('should not render Asterisk overlay for regular nodes', () => {
       const { container } = renderWithProvider(

@@ -5,9 +5,9 @@ import { ipcMain, shell } from 'electron';
 // weird-but-valid URL variants (mixed case, whitespace, data/javascript
 // schemes tucked inside http-like wrappers), so use URL parsing plus an
 // explicit protocol allow-list.
-const ALLOWED_PROTOCOLS = new Set(['http:', 'https:']);
+const ALLOWED_PROTOCOLS = new Set(['http:', 'https:', 'vscode:', 'mailto:']);
 
-function isSafeExternalUrl(raw: string): boolean {
+export function isSafeExternalUrl(raw: string): boolean {
   if (typeof raw !== 'string' || raw.length === 0 || raw.length > 2048) {
     return false;
   }

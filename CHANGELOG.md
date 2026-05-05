@@ -4,6 +4,7 @@
 
 ### Features
 
+- **Inline URLs in branches**: http(s), vscode://, and mailto: links inside any branch are now clickable while the branch isn't selected — they open in your default app. Pasting a URL no longer turns the branch into a link-only node, so URLs survive sends to AI and markdown export. Internal node-to-node hyperlinks (Copy as Hyperlink) are unchanged.
 - **Workflow execution**: Declare blueprint branches as workflows with numbered steps, assign step types (Manual, Checkpoint, Autonomous) to control automation level, and run items through workflows with automatic advancement via AI tool hook integration. Supports nested workflows, parallel execution across terminal tabs, and configurable step timeouts
 - **Workflow disruption handling**: Running workflows stop gracefully when their terminal is closed, the item is moved or deleted, or the app restarts. Checkpoint items awaiting validation are preserved across restarts. Toast notifications explain what happened
 - **Step configuration dialog**: Click a workflow step number to open a configuration dialog for that step, with step type selection, decomposition, recurse, and archive settings

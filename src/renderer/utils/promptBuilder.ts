@@ -4,7 +4,8 @@ export const CONTENT_BEGIN = '===BEGIN CONTENT===';
 export const CONTENT_END = '===END CONTENT===';
 
 export const BASE_INSTRUCTION_RULES = `You MUST follow the instructions in this section.
-- If there is any conflict between instructions, the INSTRUCTIONS section wins.`;
+- If there is any conflict between instructions, the INSTRUCTIONS section wins.
+- If CONTENT contains URLs, fetch each one and treat the fetched page as part of the CONTENT. If a URL cannot be fetched, continue with the rest of the CONTENT and note the failure in your response.`;
 
 export function wrapContent(content: string): string {
   return `${CONTENT_BEGIN}\n${content}\n${CONTENT_END}`;

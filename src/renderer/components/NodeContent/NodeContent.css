@@ -245,6 +245,21 @@
   border-radius: 50%;
 }
 
+.node-text a.inline-url {
+  color: var(--blue-500);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.node-text a.inline-url:hover {
+  color: var(--blue-700, #1d4ed8);
+}
+
+.node-text a.inline-url:focus-visible {
+  outline: 2px solid var(--blue-500);
+  outline-offset: 2px;
+}
+
 .node-text mark.search-highlight {
   background: #06c;
   color: #fff;

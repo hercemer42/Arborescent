@@ -10,6 +10,7 @@ import { useHyperlinkNavigation } from './hooks/useHyperlinkNavigation';
 import { useSearchHighlight } from './hooks/useSearchHighlight';
 import { useWorkflowIndicator } from './hooks/useWorkflowIndicator';
 import { useWorkflowExecutionOverlay } from './hooks/useWorkflowExecutionOverlay';
+import { useInlineUrl } from './hooks/useInlineUrl';
 import { StatusArea } from './StatusArea';
 import './NodeContent.css';
 
@@ -46,6 +47,12 @@ function NodeContentComponent({
   const isLink = isHyperlink || isExternalLink;
 
   const { highlightedContent } = useSearchHighlight(node.id, node.content, isSelected);
+
+  const { inlineUrlHtml, handleInlineUrlClick } = useInlineUrl(node, {
+    isLink,
+    isSelected,
+    hasHighlightedContent: Boolean(highlightedContent),
+  });
 
   return (
     <>
@@ -86,6 +93,12 @@ function NodeContentComponent({
             className={`node-text ${isLink ? 'hyperlink-text' : ''}`}
             onClick={isLink ? navigateToLinkedNode : undefined}
             dangerouslySetInnerHTML={{ __html: highlightedContent }}
+          />
+        ) : inlineUrlHtml ? (
+          <div
+            className="node-text node-text-inline-url"
+            onClick={handleInlineUrlClick}
+            dangerouslySetInnerHTML={{ __html: inlineUrlHtml }}
           />
         ) : (
           <div

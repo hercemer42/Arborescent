@@ -363,17 +363,13 @@ function handleExternalUrlPaste(url: string, ctx: PasteContext): PasteResult {
     },
     (partial) => set(partial),
     triggerAutosave,
-    {
-      isExternalLink: true,
-      externalUrl: trimmedUrl,
-      ...(isTargetParentBlueprint && { isBlueprint: true }),
-    },
+    isTargetParentBlueprint ? { isBlueprint: true } : {},
   );
 
   actions.executeCommand(command);
   visualEffects.flashNode(newNodeId, 'light');
 
-  logger.info('Pasted external URL as link node', 'ClipboardActions');
+  logger.info('Pasted external URL as inline-text node', 'ClipboardActions');
   return 'pasted';
 }
 

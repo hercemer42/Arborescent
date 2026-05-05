@@ -1697,7 +1697,7 @@ describe('clipboardActions', () => {
     });
 
     describe('external URL detection', () => {
-      it('should create external link node when pasting http URL', async () => {
+      it('should create a plain-text node (not a hyperlink) when pasting http URL', async () => {
         state.activeNodeId = 'node-1';
         mockClipboardContent = 'https://example.com/page';
 
@@ -1705,14 +1705,15 @@ describe('clipboardActions', () => {
 
         expect(result).toBe('pasted');
         const newNode = Object.values(state.nodes).find(
-          (n) => n.metadata.isExternalLink === true
+          (n) => n.content === 'https://example.com/page' && n.id !== 'node-1',
         );
         expect(newNode).toBeDefined();
-        expect(newNode?.content).toBe('https://example.com/page');
-        expect(newNode?.metadata.externalUrl).toBe('https://example.com/page');
+        expect(newNode?.metadata.isExternalLink).not.toBe(true);
+        expect(newNode?.metadata.externalUrl).toBeUndefined();
+        expect(newNode?.metadata.isHyperlink).not.toBe(true);
       });
 
-      it('should create external link node when pasting http URL with whitespace', async () => {
+      it('should trim whitespace and store URL verbatim as plain-text content', async () => {
         state.activeNodeId = 'node-1';
         mockClipboardContent = '  http://example.com  \n';
 
@@ -1720,13 +1721,13 @@ describe('clipboardActions', () => {
 
         expect(result).toBe('pasted');
         const newNode = Object.values(state.nodes).find(
-          (n) => n.metadata.isExternalLink === true
+          (n) => n.content === 'http://example.com' && n.id !== 'node-1',
         );
         expect(newNode).toBeDefined();
-        expect(newNode?.content).toBe('http://example.com');
+        expect(newNode?.metadata.isExternalLink).not.toBe(true);
       });
 
-      it('should not treat non-URL text as external link', async () => {
+      it('should not produce a hyperlink node for non-URL text', async () => {
         state.activeNodeId = 'node-1';
         mockClipboardContent = '# Regular markdown';
 
@@ -1739,7 +1740,7 @@ describe('clipboardActions', () => {
         expect(externalLinkNode).toBeUndefined();
       });
 
-      it('should add external link as child of active node', async () => {
+      it('should add the pasted URL node as child of active node', async () => {
         state.activeNodeId = 'node-1';
         const originalChildCount = state.nodes['node-1'].children.length;
         mockClipboardContent = 'https://github.com';
