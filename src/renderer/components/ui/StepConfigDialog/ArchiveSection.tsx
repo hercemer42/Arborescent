@@ -1,19 +1,23 @@
 import type { StepType } from '../../../store/tree/commands/SetStepTypeCommand';
 import type { ArchiveSettings } from './StepConfigDialog';
+import { useArchiveHyperlinkPaste } from './hooks/useArchiveHyperlinkPaste';
 
 interface ArchiveSectionProps {
   stepType: StepType;
   archiveSettings: ArchiveSettings;
   onChange: (settings: ArchiveSettings) => void;
+  currentFilePath?: string | null;
 }
 
-export function ArchiveSection({ stepType, archiveSettings, onChange }: ArchiveSectionProps) {
+export function ArchiveSection({ stepType, archiveSettings, onChange, currentFilePath = null }: ArchiveSectionProps) {
   const {
     archiveDestinationId = '',
     archiveSideLinkName = '',
     replacementSideLinkName = '',
     resolveLinkedContent = false,
   } = archiveSettings;
+
+  const handleHyperlinkPaste = useArchiveHyperlinkPaste(archiveSettings, currentFilePath, onChange);
 
   return (
     <>
@@ -26,6 +30,7 @@ export function ArchiveSection({ stepType, archiveSettings, onChange }: ArchiveS
           placeholder="Paste node hyperlink"
           value={archiveDestinationId}
           onChange={(e) => onChange({ ...archiveSettings, archiveDestinationId: e.target.value || undefined })}
+          onPaste={handleHyperlinkPaste}
           aria-label="Archive destination"
         />
       </label>

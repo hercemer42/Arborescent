@@ -19,6 +19,7 @@ interface StepConfigDialogProps {
   recurse?: boolean;
   clearSession?: boolean;
   archiveSettings?: ArchiveSettings;
+  currentFilePath?: string | null;
   onStepTypeChange: (nodeId: string, stepType: StepType) => void;
   onDecompositionChange: (nodeId: string, decomposition: boolean) => void;
   onRecurseChange: (nodeId: string, recurse: boolean) => void;
@@ -34,6 +35,7 @@ export function StepConfigDialog({
   recurse = false,
   clearSession = false,
   archiveSettings = {},
+  currentFilePath = null,
   onStepTypeChange,
   onDecompositionChange,
   onRecurseChange,
@@ -61,6 +63,7 @@ export function StepConfigDialog({
         <ArchiveSection
           stepType={effectiveStepType}
           archiveSettings={archiveSettings}
+          currentFilePath={currentFilePath}
           onChange={(settings) => onArchiveSettingsChange(nodeId, settings)}
         />
       </div>

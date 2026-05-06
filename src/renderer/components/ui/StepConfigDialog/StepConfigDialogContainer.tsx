@@ -11,6 +11,7 @@ export function StepConfigDialogContainer() {
   const close = useStepConfigDialogStore((state) => state.close);
 
   const node = useStore((state) => (nodeId ? state.nodes[nodeId] : null));
+  const currentFilePath = useStore((state) => state.currentFilePath);
   const setStepType = useStore((state) => state.actions.setStepType);
   const setDecomposition = useStore((state) => state.actions.setDecomposition);
   const setRecurse = useStore((state) => state.actions.setRecurse);
@@ -42,6 +43,7 @@ export function StepConfigDialogContainer() {
       recurse={recurse}
       clearSession={clearSession}
       archiveSettings={archiveSettings}
+      currentFilePath={currentFilePath}
       onStepTypeChange={setStepType}
       onDecompositionChange={setDecomposition}
       onRecurseChange={setRecurse}
