@@ -78,6 +78,29 @@ describe('StorageService', () => {
 
       expect(result.nodes).toEqual(mockArboFile.nodes);
     });
+
+    it('should migrate legacy isExternalLink nodes on load', async () => {
+      const legacyFile: ArboFile = {
+        ...mockArboFile,
+        nodes: {
+          root: { id: 'root', content: 'Root', children: ['link'], metadata: {} },
+          link: {
+            id: 'link',
+            content: 'https://example.com',
+            children: [],
+            metadata: { isExternalLink: true, externalUrl: 'https://example.com', status: 'pending' },
+          },
+        },
+      };
+      vi.mocked(window.electron.readFile).mockResolvedValue(yaml.dump(legacyFile));
+
+      const result = await storage.loadDocument('/path/to/legacy.arbo');
+
+      expect(result.nodes.link.content).toBe('https://example.com');
+      expect(result.nodes.link.metadata.isExternalLink).toBeUndefined();
+      expect(result.nodes.link.metadata.externalUrl).toBeUndefined();
+      expect(result.nodes.link.metadata.status).toBe('pending');
+    });
   });
 
   describe('saveDocument', () => {

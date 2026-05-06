@@ -12,6 +12,7 @@ import {
 } from '../../shared/schemas';
 import { getNextUntitledNumber } from '../../shared/utils/fileNaming';
 import { reconcileDuplicateChildren } from '../utils/treeInvariants';
+import { migrateExternalLinkNodes } from '../utils/migrateExternalLinkNodes';
 import { logger } from './logger';
 
 function logParseFailure(context: string) {
@@ -31,12 +32,17 @@ export class StorageService implements IStorageService {
     }
 
     const { nodes, removed } = reconcileDuplicateChildren(data.nodes);
+    const migratedNodes = migrateExternalLinkNodes(nodes);
+
     if (removed.length > 0) {
       logger.warn(
         `Reconciled ${removed.length} duplicate child reference(s) while loading ${filePath}: ${JSON.stringify(removed)}`,
         'StorageService',
       );
-      return { ...data, nodes };
+    }
+
+    if (migratedNodes !== nodes || removed.length > 0) {
+      return { ...data, nodes: migratedNodes };
     }
 
     return data;
