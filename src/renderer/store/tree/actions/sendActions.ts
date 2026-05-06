@@ -139,14 +139,23 @@ function buildTerminalCollaboratePrompt(reviewContext: string, content: string, 
   return `${instructions}\n\n${wrapContent(content)}`;
 }
 
-const NEEDS_REVIEW_INSTRUCTION = `
+function findSessionIdForTerminal(workflowSessionMap: Record<string, string>, terminalId: string): string {
+  for (const [sessionId, mappedTerminalId] of Object.entries(workflowSessionMap)) {
+    if (mappedTerminalId === terminalId) return sessionId;
+  }
+  return '';
+}
+
+function buildNeedsReviewInstruction(sessionId: string): string {
+  return `
 IMPORTANT: If you encounter issues that require user input (ambiguities, spec problems, technical constraints, or anything that could compromise the quality of your output), run this command:
-curl -s -X POST http://127.0.0.1:\${ARBORESCENT_HOOK_PORT}/hook -H 'Authorization: Bearer '\${ARBORESCENT_AUTH_TOKEN} -H 'Content-Type: application/json' -d '{"session_id": "'\${CLAUDE_SESSION_ID}'", "hook_event_name": "NeedsReview", "terminal_id": "'\${ARBORESCENT_TERMINAL_ID}'"}'
+curl -s -X POST http://127.0.0.1:\${ARBORESCENT_HOOK_PORT}/hook -H 'Authorization: Bearer '\${ARBORESCENT_AUTH_TOKEN} -H 'Content-Type: application/json' -d '{"session_id": "${sessionId}", "hook_event_name": "NeedsReview", "terminal_id": "'\${ARBORESCENT_TERMINAL_ID}'"}'
 Then continue working and summarize your questions at the end of your output. The workflow will pause for review after you finish.
 Only use this if there are genuine issues — do not use it for minor concerns.`;
+}
 
-function buildExecuteInstructions(executeContext: string, outputTarget: string, includeNeedsReview: boolean = false): string {
-  const needsReview = includeNeedsReview ? `\n${NEEDS_REVIEW_INSTRUCTION}` : '';
+function buildExecuteInstructions(executeContext: string, outputTarget: string, includeNeedsReview: boolean = false, sessionId: string = ''): string {
+  const needsReview = includeNeedsReview ? `\n${buildNeedsReviewInstruction(sessionId)}` : '';
   return `${BASE_INSTRUCTION_RULES}
 - Treat everything in CONTENT as the prompt to execute.
 - Making file changes, writing code, and running commands is expected and required.
@@ -159,9 +168,9 @@ ${SINGLE_ROOT_OUTPUT_FORMAT}
 ${outputTarget}${needsReview}`;
 }
 
-function buildTerminalExecutePrompt(executeContext: string, content: string, outputFilePath: string, includeNeedsReview: boolean = false): string {
+function buildTerminalExecutePrompt(executeContext: string, content: string, outputFilePath: string, includeNeedsReview: boolean = false, sessionId: string = ''): string {
   const outputTarget = buildExecuteFileOutputTarget(outputFilePath);
-  const instructions = wrapInstructions(buildExecuteInstructions(executeContext, outputTarget, includeNeedsReview));
+  const instructions = wrapInstructions(buildExecuteInstructions(executeContext, outputTarget, includeNeedsReview, sessionId));
   return `${instructions}\n\n${wrapContent(content)}`;
 }
 
@@ -175,10 +184,11 @@ interface SendPayloadArgs {
   decomposition: boolean;
   /** Required for terminal targets; ignored for 'web'. */
   feedbackResponseFile?: string;
+  sessionId?: string;
 }
 
 function buildSendPayload(args: SendPayloadArgs): string {
-  const { nodeId, state, mode, target, decomposition, feedbackResponseFile } = args;
+  const { nodeId, state, mode, target, decomposition, feedbackResponseFile, sessionId = '' } = args;
   const appliedContextId = getAppliedContextIdWithInheritance(nodeId, state.nodes, state.ancestorRegistry);
   const { contextPrefix, nodeContent } = buildContentWithContext(nodeId, state.nodes, state.ancestorRegistry);
 
@@ -208,7 +218,7 @@ function buildSendPayload(args: SendPayloadArgs): string {
         : buildTerminalCollaboratePrompt(instructionContext, nodeContent, feedbackResponseFile!, decomposition);
     case 'autonomous-terminal':
       return isExecute
-        ? buildTerminalExecutePrompt(instructionContext, nodeContent, feedbackResponseFile!, true)
+        ? buildTerminalExecutePrompt(instructionContext, nodeContent, feedbackResponseFile!, true, sessionId)
         : buildTerminalCollaboratePrompt(instructionContext, nodeContent, feedbackResponseFile!, decomposition);
   }
 }
@@ -466,6 +476,7 @@ export function createSendActions(
       const feedbackResponseFile = await window.electron.createTempFile(feedbackFileName, '');
 
       const decomposition = isDecompositionEnabled(nodeId, state.nodes, state.ancestorRegistry);
+      const sessionId = findSessionIdForTerminal(state.workflowSessionMap, terminalId);
       const terminalInstruction = buildSendPayload({
         nodeId,
         state,
@@ -473,6 +484,7 @@ export function createSendActions(
         target: 'autonomous-terminal',
         decomposition,
         feedbackResponseFile,
+        sessionId,
       });
 
       await executeInTerminal(terminalId, terminalInstruction);

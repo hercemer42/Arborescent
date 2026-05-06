@@ -1012,6 +1012,54 @@ describe('sendActions', () => {
       expect(terminalContent).toContain('ARBORESCENT_HOOK_PORT');
     });
 
+    it('substitutes the registered session id into the NeedsReview curl body when one is mapped to the terminal', async () => {
+      const { executeInTerminal } = await import('../../../../services/terminalExecution');
+      mockState.workflowSessionMap = { '1bf0bdd9-6ac0-4035-a9c7-7b33f04795a1': 'terminal-1' };
+
+      await actions.autonomousCollaborateInTerminal('child1', 'terminal-1', 'execute');
+
+      const terminalContent = vi.mocked(executeInTerminal).mock.calls[0][1];
+      expect(terminalContent).not.toContain('${CLAUDE_SESSION_ID}');
+      expect(terminalContent).toContain('"session_id": "1bf0bdd9-6ac0-4035-a9c7-7b33f04795a1"');
+    });
+
+    it('emits an empty session_id (not the placeholder) when no session is registered for the terminal', async () => {
+      const { executeInTerminal } = await import('../../../../services/terminalExecution');
+      mockState.workflowSessionMap = {};
+
+      await actions.autonomousCollaborateInTerminal('child1', 'terminal-1', 'execute');
+
+      const terminalContent = vi.mocked(executeInTerminal).mock.calls[0][1];
+      expect(terminalContent).not.toContain('${CLAUDE_SESSION_ID}');
+      expect(terminalContent).toContain('"session_id": ""');
+    });
+
+    it('preserves other ARBORESCENT_* env-var placeholders so bash resolves them at terminal runtime', async () => {
+      const { executeInTerminal } = await import('../../../../services/terminalExecution');
+      mockState.workflowSessionMap = { 'session-uuid': 'terminal-1' };
+
+      await actions.autonomousCollaborateInTerminal('child1', 'terminal-1', 'execute');
+
+      const terminalContent = vi.mocked(executeInTerminal).mock.calls[0][1];
+      expect(terminalContent).toContain('${ARBORESCENT_HOOK_PORT}');
+      expect(terminalContent).toContain('${ARBORESCENT_AUTH_TOKEN}');
+      expect(terminalContent).toContain('${ARBORESCENT_TERMINAL_ID}');
+    });
+
+    it('routes each terminal to its own registered session when multiple terminals are mapped', async () => {
+      const { executeInTerminal } = await import('../../../../services/terminalExecution');
+      mockState.workflowSessionMap = {
+        'session-for-t1': 'terminal-1',
+        'session-for-t2': 'terminal-2',
+      };
+
+      await actions.autonomousCollaborateInTerminal('child1', 'terminal-2', 'execute');
+
+      const terminalContent = vi.mocked(executeInTerminal).mock.calls[0][1];
+      expect(terminalContent).toContain('"session_id": "session-for-t2"');
+      expect(terminalContent).not.toContain('"session_id": "session-for-t1"');
+    });
+
     it('returns empty string and skips feedback watcher when sending bare', async () => {
       mockState.nodes.child1.metadata.appliedContextId = undefined;
 
