@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-05-05T19:45:56.530Z'
+updated: '2026-05-06T15:08:02.093Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -14425,10 +14425,11 @@ nodes:
   c25cf481-a0d1-495d-9cea-498f1135eb8c:
     id: c25cf481-a0d1-495d-9cea-498f1135eb8c
     content: Feature implementation
-    children: []
+    children:
+      - e0737e30-5f3c-48fb-9cb2-0da21728465c
     metadata:
       status: completed
-      expanded: true
+      expanded: false
       deleted: false
       plugins: {}
       blueprintIcon: Wrench
@@ -25798,7 +25799,7 @@ nodes:
     id: bdceb696-248d-4199-9182-db0689445c07
     content: Documentation
     children:
-      - e0737e30-5f3c-48fb-9cb2-0da21728465c
+      - fa6810f8-84ab-4ff7-9812-f89af7076a0a
     metadata:
       status: pending
       isBlueprint: true
@@ -74404,7 +74405,7 @@ nodes:
       blueprintColor: '#ef4444'
       isBlueprint: true
       contextMode: execute
-      expanded: true
+      expanded: false
   28d641ce-1314-4c8b-b003-2688efb36075:
     id: 28d641ce-1314-4c8b-b003-2688efb36075
     content: Merge worktree to master
@@ -83041,7 +83042,7 @@ nodes:
       - 21acfe9c-e569-4705-8400-d71faaa5a93c
     metadata:
       status: pending
-      expanded: false
+      expanded: true
       deleted: false
       plugins: {}
   6c7600cf-43ef-419f-833b-d804c8c47ed4:
@@ -83454,6 +83455,7 @@ nodes:
       stepType: checkpoint
       decomposition: false
       feedbackTempFile: /Users/brianfox/Library/Application Support/Arborescent/temp-files/feedback-4c43c117-e89a-460c-9900-7ea15b8cc0e0.arbo
+      resolveLinkedContent: false
   46d1219e-dad1-42c7-83d1-c5029fc6e016:
     id: 46d1219e-dad1-42c7-83d1-c5029fc6e016
     content: Make URLs and URI schemes clickable inline within node text
@@ -84929,6 +84931,7 @@ nodes:
     content: Merge to master
     children:
       - 46d1219e-dad1-42c7-83d1-c5029fc6e016
+      - cfccef49-4144-47d2-a1f4-a2737733fa22
     metadata:
       status: pending
       isBlueprint: true
@@ -84977,7 +84980,7 @@ nodes:
       - c6b13dfb-4de6-49d1-ac87-dc6fe4eb5df5
     metadata:
       status: completed
-      expanded: true
+      expanded: false
       deleted: false
       plugins: {}
   d99c5715-e608-4588-a442-90ef5dd60081:
@@ -85034,7 +85037,7 @@ nodes:
       - a182e488-b7e1-47b2-abd1-afc3676ad7da
     metadata:
       status: completed
-      expanded: true
+      expanded: false
       deleted: false
       plugins: {}
   375421ba-057d-4933-a30b-d001678aec5a:
@@ -85073,7 +85076,7 @@ nodes:
       - 694dbf57-e1d9-4136-9b62-ccb9c382cc8b
     metadata:
       status: completed
-      expanded: true
+      expanded: false
       deleted: false
       plugins: {}
   b4e2254f-9826-46d7-88f3-8416b0e62793:
@@ -85110,7 +85113,7 @@ nodes:
       - 5171eec5-f877-453b-a868-6aaa4f948668
     metadata:
       status: pending
-      expanded: true
+      expanded: false
       deleted: false
       plugins: {}
   5171eec5-f877-453b-a868-6aaa4f948668:
@@ -85136,7 +85139,7 @@ nodes:
       - 98172235-3355-448f-a1a5-bc61aa5a44d5
     metadata:
       status: pending
-      expanded: true
+      expanded: false
       deleted: false
       plugins: {}
   5ec1e184-758d-464c-85ce-29dc9b47881c:
@@ -85383,7 +85386,7 @@ nodes:
       - 75ac61ce-e028-40d3-a334-02b8c222729a
     metadata:
       status: pending
-      expanded: true
+      expanded: false
       deleted: false
       plugins: {}
   18053dc9-d3fe-478e-a54b-2f4ad1dda817:
@@ -85430,7 +85433,7 @@ nodes:
       - 99a0f2fa-2b3b-4806-896c-bc5ed9a9308e
     metadata:
       status: pending
-      expanded: true
+      expanded: false
       deleted: false
       plugins: {}
   727a4358-adf2-4553-9d3f-66b47aa495c5:
@@ -85523,7 +85526,7 @@ nodes:
       - 5e818636-9a16-4b43-bb4b-c07e35f1335a
     metadata:
       status: pending
-      expanded: true
+      expanded: false
       deleted: false
       plugins: {}
   df2c7e71-d273-4b1f-947d-d071c9b33a8f:
@@ -85588,7 +85591,7 @@ nodes:
       - b16effbd-28fb-47fe-ab7f-a5e7326e08e8
     metadata:
       status: pending
-      expanded: true
+      expanded: false
       deleted: false
       plugins: {}
   fccd4542-e3de-4e37-9209-6144ef49908e:
@@ -85765,7 +85768,7 @@ nodes:
       - 99eeeb59-eba6-4a6c-b6f9-d1253a39abe9
     metadata:
       status: pending
-      expanded: true
+      expanded: false
       deleted: false
       plugins: {}
   cc7ac9e7-353d-4f35-bba4-bf417e2e1188:
@@ -86444,7 +86447,8 @@ nodes:
   d538a25a-e4ea-4462-997b-ada0f6e95439:
     id: d538a25a-e4ea-4462-997b-ada0f6e95439
     content: 'Scope: actual surface is ~40 files (10 core + ~30 tests/hooks/store actions); the spec touchpoints listed only the headline files. Confirm the bigger refactor lands in this single PR'
-    children: []
+    children:
+      - 5eab21b7-97e7-41c4-aa13-2921da113692
     metadata:
       status: pending
       expanded: true
@@ -86453,7 +86457,8 @@ nodes:
   7dec49c9-6524-4f8f-acd5-874b8c68b819:
     id: 7dec49c9-6524-4f8f-acd5-874b8c68b819
     content: 'Naming for the new built-in (both-on): no name in spec — propose `BASIC_REVIEW_AND_EXECUTE_CONTEXT_ID` displayed as "Basic review + execute". Override?'
-    children: []
+    children:
+      - 4da408ac-cec3-49ee-a25b-33151a50e41f
     metadata:
       status: pending
       expanded: true
@@ -86527,3 +86532,1183 @@ nodes:
     metadata:
       status: pending
       isBlueprint: true
+  5eab21b7-97e7-41c4-aa13-2921da113692:
+    id: 5eab21b7-97e7-41c4-aa13-2921da113692
+    content: Yes that's fine
+    children: []
+    metadata:
+      status: pending
+  4da408ac-cec3-49ee-a25b-33151a50e41f:
+    id: 4da408ac-cec3-49ee-a25b-33151a50e41f
+    content: "Why do we need this ? I thought\_"
+    children: []
+    metadata:
+      status: pending
+  fa6810f8-84ab-4ff7-9812-f89af7076a0a:
+    id: fa6810f8-84ab-4ff7-9812-f89af7076a0a
+    content: Fix issue with prompt endpoint not working
+    children:
+      - 22c77c57-0bfe-4e92-a4c8-32a924c4f27d
+      - 80e30ecc-1130-41d2-8e2f-f3e1ff45ab35
+      - e2ed2dbc-e316-4d43-8dfe-26f965893dec
+      - 4f834f2d-4409-47a5-b101-abcbce353062
+      - 2c953d10-cb84-42fb-b654-21bb14387538
+      - d8ca2be3-8345-4391-bd14-97dfaeba9102
+      - 4d1b9fa8-3f08-4a21-b4ff-8a57152002e9
+      - a4602778-956b-4fba-96a4-6169cd08bbaf
+    metadata:
+      status: pending
+      expanded: false
+      deleted: false
+      plugins: {}
+  cfccef49-4144-47d2-a1f4-a2737733fa22:
+    id: cfccef49-4144-47d2-a1f4-a2737733fa22
+    content: Archive feature isn't working
+    children:
+      - 8d86cdba-252f-44c3-9055-7a1fea0f06c9
+      - 902cbcf6-0f3b-4485-8e5b-c0f89c329ee9
+    metadata:
+      status: completed
+      expanded: false
+      deleted: false
+      plugins: {}
+  22c77c57-0bfe-4e92-a4c8-32a924c4f27d:
+    id: 22c77c57-0bfe-4e92-a4c8-32a924c4f27d
+    content: Frame the problem
+    children:
+      - 8a280a8e-f009-4195-815d-4a6d79fac87e
+      - 2ed00d0b-26b4-43f0-ad2e-513a2208ef65
+      - 0548eacb-2586-4ab9-aa04-b7b61562c692
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8a280a8e-f009-4195-815d-4a6d79fac87e:
+    id: 8a280a8e-f009-4195-815d-4a6d79fac87e
+    content: 'Workflow prompt templates instruct the AI to POST to `http://127.0.0.1:${ARBORESCENT_HOOK_PORT}/hook` with `session_id: ${CLAUDE_SESSION_ID}` to pause the workflow for review'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2ed00d0b-26b4-43f0-ad2e-513a2208ef65:
+    id: 2ed00d0b-26b4-43f0-ad2e-513a2208ef65
+    content: 'The pause never engages: subsequent workflow phases fire even after the AI calls the endpoint'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0548eacb-2586-4ab9-aa04-b7b61562c692:
+    id: 0548eacb-2586-4ab9-aa04-b7b61562c692
+    content: Symptom observed across three back-to-back rounds (Run-test-pass, AI-refactor, Documentation) — every NeedsReview signal advanced anyway
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  80e30ecc-1130-41d2-8e2f-f3e1ff45ab35:
+    id: 80e30ecc-1130-41d2-8e2f-f3e1ff45ab35
+    content: Root cause
+    children:
+      - d2eb3236-c73a-41f9-bd9d-aa265b8897f7
+      - 3ad19a59-2a8b-4540-af86-b6ad50325c1d
+      - a8e458cb-223e-460c-9ac8-9be4381d85a8
+      - 2d631a3a-4476-4991-a206-b4639190bb7c
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d2eb3236-c73a-41f9-bd9d-aa265b8897f7:
+    id: d2eb3236-c73a-41f9-bd9d-aa265b8897f7
+    content: '`CLAUDE_SESSION_ID` is not an env var Claude Code exports to the bash tool — verified by `env | grep -i claude` showing only `CLAUDECODE`, `CLAUDE_CODE_ENTRYPOINT`, `CLAUDE_CODE_EXECPATH`'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3ad19a59-2a8b-4540-af86-b6ad50325c1d:
+    id: 3ad19a59-2a8b-4540-af86-b6ad50325c1d
+    content: 'As a result every `curl` from the prompt template fires with literal `session_id: ""`'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a8e458cb-223e-460c-9ac8-9be4381d85a8:
+    id: a8e458cb-223e-460c-9ac8-9be4381d85a8
+    content: The hook server returns `200 OK` with empty body regardless, so the call looks successful from inside bash but the server cannot match an empty id to any active session and so does not pause the workflow
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2d631a3a-4476-4991-a206-b4639190bb7c:
+    id: 2d631a3a-4476-4991-a206-b4639190bb7c
+    content: Other env-driven values in the same template (`ARBORESCENT_HOOK_PORT`, `ARBORESCENT_AUTH_TOKEN`, `ARBORESCENT_TERMINAL_ID`) are populated correctly — only the session id reference is broken
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e2ed2dbc-e316-4d43-8dfe-26f965893dec:
+    id: e2ed2dbc-e316-4d43-8dfe-26f965893dec
+    content: Fix
+    children:
+      - ec1da592-2eb2-4165-84b2-34046cde5b47
+      - 26133043-dbb5-4364-8cce-48bb4248caa5
+      - 6ad48977-b80f-4d79-a6d8-107e2e62ced1
+      - bacf86e4-f513-4230-9980-90cf3fe43f93
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ec1da592-2eb2-4165-84b2-34046cde5b47:
+    id: ec1da592-2eb2-4165-84b2-34046cde5b47
+    content: Inject the literal session id into the prompt template at prompt-construction time, the same way Arborescent already injects `${ARBORESCENT_TERMINAL_ID}`
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  26133043-dbb5-4364-8cce-48bb4248caa5:
+    id: 26133043-dbb5-4364-8cce-48bb4248caa5
+    content: The session id is already known to Arborescent — its `SessionStart` hook captures it and forwards it to the hook server, so the value is available when the workflow prompt is being assembled
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6ad48977-b80f-4d79-a6d8-107e2e62ced1:
+    id: 6ad48977-b80f-4d79-a6d8-107e2e62ced1
+    content: 'After the fix, the workflow prompt the AI receives contains a literal UUID in the curl body (`"session_id": "1bf0bdd9-…"`) rather than an unsubstituted `${CLAUDE_SESSION_ID}`'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bacf86e4-f513-4230-9980-90cf3fe43f93:
+    id: bacf86e4-f513-4230-9980-90cf3fe43f93
+    content: Stop relying on `CLAUDE_SESSION_ID` being present in the bash environment — it never has been, and the existing in-tree hooks already side-step it via `jq -r '.session_id'` from stdin
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4f834f2d-4409-47a5-b101-abcbce353062:
+    id: 4f834f2d-4409-47a5-b101-abcbce353062
+    content: Acceptance criteria
+    children:
+      - ddf7c62e-2fe0-4d3f-be61-2d34e379d8e0
+      - 2ce57a39-e64a-4229-bdb3-7bcf755c5136
+      - 75780d57-6942-46a0-b872-98f600a99153
+      - 693530d2-ec99-42ee-a2c3-c7d1bb4d577a
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ddf7c62e-2fe0-4d3f-be61-2d34e379d8e0:
+    id: ddf7c62e-2fe0-4d3f-be61-2d34e379d8e0
+    content: '- [x] An AI invoking the NeedsReview hook from inside a workflow prompt actually pauses the workflow — the next workflow phase does not auto-fire'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2ce57a39-e64a-4229-bdb3-7bcf755c5136:
+    id: 2ce57a39-e64a-4229-bdb3-7bcf755c5136
+    content: '- [x] The fix works for every workflow phase that uses the same template (Implement-a-feature, Run-test-pass, AI-refactor, Documentation, etc.) without per-phase changes'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  75780d57-6942-46a0-b872-98f600a99153:
+    id: 75780d57-6942-46a0-b872-98f600a99153
+    content: '- [x] No regression in the existing hooks (`SessionStart`, `UserPromptSubmit`, etc.) that already source session_id from stdin'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  693530d2-ec99-42ee-a2c3-c7d1bb4d577a:
+    id: 693530d2-ec99-42ee-a2c3-c7d1bb4d577a
+    content: '- [x] Other env-derived values in the prompt template (`ARBORESCENT_HOOK_PORT`, `ARBORESCENT_AUTH_TOKEN`, `ARBORESCENT_TERMINAL_ID`) continue to work as today'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2c953d10-cb84-42fb-b654-21bb14387538:
+    id: 2c953d10-cb84-42fb-b654-21bb14387538
+    content: Out of scope
+    children:
+      - 5a002697-2889-4208-91f7-fb7420851c8e
+      - 28b4c343-7d4f-4578-a117-a496d989fa23
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5a002697-2889-4208-91f7-fb7420851c8e:
+    id: 5a002697-2889-4208-91f7-fb7420851c8e
+    content: Reworking the broader hook contract (event names, payload shape) — the bug is purely in how the session id is passed
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  28b4c343-7d4f-4578-a117-a496d989fa23:
+    id: 28b4c343-7d4f-4578-a117-a496d989fa23
+    content: Migrating existing `~/.claude/settings.json` hook scripts — they already work
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d8ca2be3-8345-4391-bd14-97dfaeba9102:
+    id: d8ca2be3-8345-4391-bd14-97dfaeba9102
+    content: Verification after fix
+    children:
+      - 9ffeb85e-c9b9-425a-b084-d2621499e40e
+      - edc4b0ba-f846-41e9-9c46-606525c0ebcd
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9ffeb85e-c9b9-425a-b084-d2621499e40e:
+    id: 9ffeb85e-c9b9-425a-b084-d2621499e40e
+    content: Re-run any prompt that issues NeedsReview and confirm the next workflow phase does NOT auto-arrive — the user must explicitly resume
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  edc4b0ba-f846-41e9-9c46-606525c0ebcd:
+    id: edc4b0ba-f846-41e9-9c46-606525c0ebcd
+    content: Confirm the server logs (or UI) show a non-empty session_id on the incoming request
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4d1b9fa8-3f08-4a21-b4ff-8a57152002e9:
+    id: 4d1b9fa8-3f08-4a21-b4ff-8a57152002e9
+    content: Worktree
+    children:
+      - ac4ec491-e049-464a-b048-588074fe746a
+      - ae0d7bdc-f520-4419-a745-870433dcc8df
+      - 30cc0547-c1c6-4fd8-a477-7b00aa7ee9a7
+      - 552e24e1-302e-40cc-a3a1-d6ecc11bf29a
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ac4ec491-e049-464a-b048-588074fe746a:
+    id: ac4ec491-e049-464a-b048-588074fe746a
+    content: 'Path: /Users/brianfox/dev/Arborescent-fix-session-id'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ae0d7bdc-f520-4419-a745-870433dcc8df:
+    id: ae0d7bdc-f520-4419-a745-870433dcc8df
+    content: 'Branch: fix/inject-session-id-into-prompt (forked from master @ 7c9425c — unrelated to the context-flags work, so forked from main per the rule)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  30cc0547-c1c6-4fd8-a477-7b00aa7ee9a7:
+    id: 30cc0547-c1c6-4fd8-a477-7b00aa7ee9a7
+    content: node_modules installed fresh (not symlinked)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  552e24e1-302e-40cc-a3a1-d6ecc11bf29a:
+    id: 552e24e1-302e-40cc-a3a1-d6ecc11bf29a
+    content: 'Open in VSCode: vscode://file/Users/brianfox/dev/Arborescent-fix-session-id'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a4602778-956b-4fba-96a4-6169cd08bbaf:
+    id: a4602778-956b-4fba-96a4-6169cd08bbaf
+    content: Implement automated tests (TDD)
+    children:
+      - 6330b6c1-d428-47dd-a677-12606451c5eb
+      - 2f50da1b-e05a-4cbc-9479-3d230ca954ff
+      - 9e7b0e96-8f2f-4102-ac12-9c9b82587eda
+      - e865702f-e454-4366-9591-8627afc40f00
+      - 38b2c57b-5f11-4fa7-89b2-de565ae64efd
+      - 025e63ae-0d4a-4621-9c1f-c03d2544a2fc
+      - 3767b86d-7285-48a5-b45b-112c2cb6a684
+      - 7b1d5fc7-7b66-4c18-9ba1-99e19e8fa593
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6330b6c1-d428-47dd-a677-12606451c5eb:
+    id: 6330b6c1-d428-47dd-a677-12606451c5eb
+    content: Bug location confirmed
+    children:
+      - afc9ef05-0252-4c59-ab44-269dfccd8281
+      - 682af701-29a1-43f8-8331-bbd0f2efd16d
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  afc9ef05-0252-4c59-ab44-269dfccd8281:
+    id: afc9ef05-0252-4c59-ab44-269dfccd8281
+    content: '`NEEDS_REVIEW_INSTRUCTION` constant in `src/renderer/store/tree/actions/sendActions.ts:142-146` is the only place referencing `${CLAUDE_SESSION_ID}` in the prompt; existing tests in `src/renderer/store/tree/actions/tests/sendActions.test.ts` already assert presence/absence of `ARBORESCENT_HOOK_PORT` so the same file is the natural home for the new tests'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  682af701-29a1-43f8-8331-bbd0f2efd16d:
+    id: 682af701-29a1-43f8-8331-bbd0f2efd16d
+    content: Other `ARBORESCENT_*` env vars are injected into the terminal subprocess (`src/main/handlers/terminalHandlers.ts`, covered by `src/main/services/tests/terminalEnvInjection.test.ts`); `CLAUDE_SESSION_ID` cannot be added to that env because it is generated by Claude Code AFTER the terminal is spawned — the SessionStart hook is what surfaces it back to Arborescent, which is why the substitution must happen at prompt-construction time, not at terminal-spawn time
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2f50da1b-e05a-4cbc-9479-3d230ca954ff:
+    id: 2f50da1b-e05a-4cbc-9479-3d230ca954ff
+    content: Conventions to honour before writing
+    children:
+      - cd7913b5-4ee7-4e6a-a42a-42b6b4cf418b
+      - 43bba95d-887a-4900-9c16-969f024ad82e
+      - 479d6c95-3181-4456-9e83-48ab7d9ca0cc
+      - a09b25e3-39b0-446b-a223-ee413492b2b1
+      - 0ac21404-0db6-4a0e-926c-6190a04bc776
+      - 3a89abfd-9021-4b1a-b292-bdba896ce392
+      - 5ae930e8-e5d7-4c9d-8fac-568bb8b5bb84
+      - 2a094add-4e6c-44e2-b436-08dae9fd1fd3
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cd7913b5-4ee7-4e6a-a42a-42b6b4cf418b:
+    id: cd7913b5-4ee7-4e6a-a42a-42b6b4cf418b
+    content: Tests in `tests/` subdirectories alongside the module under test
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  43bba95d-887a-4900-9c16-969f024ad82e:
+    id: 43bba95d-887a-4900-9c16-969f024ad82e
+    content: Reuse existing fixtures in `tests/fixtures/` rather than rebuilding harness inline
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  479d6c95-3181-4456-9e83-48ab7d9ca0cc:
+    id: 479d6c95-3181-4456-9e83-48ab7d9ca0cc
+    content: Mock at module level via DI; mock the imported module, not underlying APIs
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a09b25e3-39b0-446b-a223-ee413492b2b1:
+    id: a09b25e3-39b0-446b-a223-ee413492b2b1
+    content: Use `mockImplementation` with conditionals; avoid `mockReturnValueOnce`
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0ac21404-0db6-4a0e-926c-6190a04bc776:
+    id: 0ac21404-0db6-4a0e-926c-6190a04bc776
+    content: '`beforeEach` clears all shared state, not partially'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3a89abfd-9021-4b1a-b292-bdba896ce392:
+    id: 3a89abfd-9021-4b1a-b292-bdba896ce392
+    content: Title-only tests are acceptable when post-fix behavior is uncertain (e.g. exact fallback for missing session id)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5ae930e8-e5d7-4c9d-8fac-568bb8b5bb84:
+    id: 5ae930e8-e5d7-4c9d-8fac-568bb8b5bb84
+    content: Use `as unknown as X` for awkward library types rather than round-tripping
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2a094add-4e6c-44e2-b436-08dae9fd1fd3:
+    id: 2a094add-4e6c-44e2-b436-08dae9fd1fd3
+    content: When verifying the suite, run only changed/new files (`sendActions.test.ts` and any new file), not the full suite
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9e7b0e96-8f2f-4102-ac12-9c9b82587eda:
+    id: 9e7b0e96-8f2f-4102-ac12-9c9b82587eda
+    content: 'Unit: `sendActions.test.ts` — prompt construction'
+    children:
+      - b83aa6bd-2538-4419-ab0a-8a6fd1c5077b
+      - 2b1b2549-07e6-4b4b-9da7-0703780568cb
+      - 998013a7-8d75-4aa6-bc98-2bdcd1c81d2b
+      - 03a37f4d-a2c4-4d08-9001-c9c2dcfd6e7f
+      - e7645c0f-9c72-4dc0-9f21-84e94f436789
+      - 3ceaa438-dd12-4531-9e5a-af846bffaec6
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b83aa6bd-2538-4419-ab0a-8a6fd1c5077b:
+    id: b83aa6bd-2538-4419-ab0a-8a6fd1c5077b
+    content: '- [x] When `NEEDS_REVIEW_INSTRUCTION` is included and a session id is supplied, the constructed prompt contains the literal UUID and does NOT contain the substring `${CLAUDE_SESSION_ID}`'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2b1b2549-07e6-4b4b-9da7-0703780568cb:
+    id: 2b1b2549-07e6-4b4b-9da7-0703780568cb
+    content: '- [x] The literal session id ends up inside the curl `-d` JSON body, in the `session_id` field, not somewhere else in the instruction text'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  998013a7-8d75-4aa6-bc98-2bdcd1c81d2b:
+    id: 998013a7-8d75-4aa6-bc98-2bdcd1c81d2b
+    content: '- [x] Other env-var placeholders (`${ARBORESCENT_HOOK_PORT}`, `${ARBORESCENT_AUTH_TOKEN}`, `${ARBORESCENT_TERMINAL_ID}`) remain as `${...}` in the prompt — they continue to be resolved at terminal runtime, not at prompt construction'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  03a37f4d-a2c4-4d08-9001-c9c2dcfd6e7f:
+    id: 03a37f4d-a2c4-4d08-9001-c9c2dcfd6e7f
+    content: '- [-] When `NEEDS_REVIEW_INSTRUCTION` is NOT included (`includeNeedsReview=false`), the prompt has no session id reference at all (no literal value, no placeholder)'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  e7645c0f-9c72-4dc0-9f21-84e94f436789:
+    id: e7645c0f-9c72-4dc0-9f21-84e94f436789
+    content: '- [-] If the same prompt instance contains the placeholder more than once, every occurrence is replaced (boundary)'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  3ceaa438-dd12-4531-9e5a-af846bffaec6:
+    id: 3ceaa438-dd12-4531-9e5a-af846bffaec6
+    content: '- [x] Title-only: behavior when the session id is unavailable at prompt construction (empty / undefined) — fallback is undecided pre-fix; fill in once the policy is locked (e.g. omit NeedsReview instruction entirely, or emit empty session_id and log)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e865702f-e454-4366-9591-8627afc40f00:
+    id: e865702f-e454-4366-9591-8627afc40f00
+    content: 'Unit: hook-server session-id capture (new test file, alongside the SessionStart handler)'
+    children:
+      - 3f08a3c7-962b-4fe5-a989-7bacfa2a0750
+      - 138f7b86-1dd9-406a-b5cc-6c9c335852f3
+      - 63405a8f-849a-4b47-9910-cda694984f44
+      - b7e51b3a-d5a3-4ea8-956b-84dc68adb902
+      - 3a89e842-0e0d-40ed-b15f-7d85870c4611
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3f08a3c7-962b-4fe5-a989-7bacfa2a0750:
+    id: 3f08a3c7-962b-4fe5-a989-7bacfa2a0750
+    content: '- [x] When a SessionStart event arrives at the hook server with a non-empty session_id, the server stores it keyed by terminal id'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  138f7b86-1dd9-406a-b5cc-6c9c335852f3:
+    id: 138f7b86-1dd9-406a-b5cc-6c9c335852f3
+    content: '- [x] When a subsequent workflow prompt is built for that terminal, the stored session id is the value substituted into `${CLAUDE_SESSION_ID}`'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  63405a8f-849a-4b47-9910-cda694984f44:
+    id: 63405a8f-849a-4b47-9910-cda694984f44
+    content: '- [x] When SessionStart fires twice for the same terminal (session restart), the later id wins'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b7e51b3a-d5a3-4ea8-956b-84dc68adb902:
+    id: b7e51b3a-d5a3-4ea8-956b-84dc68adb902
+    content: '- [x] When two terminals are running concurrently, each one''s prompts use that terminal''s own session id — no cross-contamination'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3a89e842-0e0d-40ed-b15f-7d85870c4611:
+    id: 3a89e842-0e0d-40ed-b15f-7d85870c4611
+    content: '- [-] Title-only: cleanup behavior when a SessionEnd fires — does the stored session id get cleared, retained for replay, or rolled to the next session? Define post-fix'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  38b2c57b-5f11-4fa7-89b2-de565ae64efd:
+    id: 38b2c57b-5f11-4fa7-89b2-de565ae64efd
+    content: 'Integration: full pause flow'
+    children:
+      - 71a6d272-b874-48de-b2b5-3db259a5f071
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  71a6d272-b874-48de-b2b5-3db259a5f071:
+    id: 71a6d272-b874-48de-b2b5-3db259a5f071
+    content: '- [-] Title-only: end-to-end — terminal spawns, SessionStart hook captures id, workflow prompt is constructed with literal id, AI calls NeedsReview, hook server matches the id and pauses the workflow, next phase does NOT auto-fire. Body left empty until the integration harness shape is decided (likely uses the existing terminal-spawn fixtures plus a fake hook server)'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  025e63ae-0d4a-4621-9c1f-c03d2544a2fc:
+    id: 025e63ae-0d4a-4621-9c1f-c03d2544a2fc
+    content: Edge cases and risk coverage (per checklist)
+    children:
+      - 1417dd6d-90ce-40fc-9a7b-cc1012cde846
+      - a4316b87-d372-4be8-a611-0da022c0c531
+      - 14ccc9bb-b36c-4121-9222-fdcc18d3fe6a
+      - d6a3778d-202e-464c-8a47-4a0faa79e38d
+      - 2337ed4e-b985-48e8-8d5f-db73c2737570
+      - ac920c8f-9f25-4a44-8708-c29d29920a5d
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1417dd6d-90ce-40fc-9a7b-cc1012cde846:
+    id: 1417dd6d-90ce-40fc-9a7b-cc1012cde846
+    content: '- [x] Empty / null / undefined: session id is undefined at prompt-construction time — covered by the title-only test above, behavior must be deterministic (no crash)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a4316b87-d372-4be8-a611-0da022c0c531:
+    id: a4316b87-d372-4be8-a611-0da022c0c531
+    content: '- [-] Boundary: a prompt that does NOT include NeedsReview must not surface a session id in any form (covered above)'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  14ccc9bb-b36c-4121-9222-fdcc18d3fe6a:
+    id: 14ccc9bb-b36c-4121-9222-fdcc18d3fe6a
+    content: '- [-] Error path: if substitution somehow fails (e.g. internal API throws), the prompt must not be sent with an unresolved `${CLAUDE_SESSION_ID}` — fail loudly rather than silently emit a broken curl'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  d6a3778d-202e-464c-8a47-4a0faa79e38d:
+    id: d6a3778d-202e-464c-8a47-4a0faa79e38d
+    content: '- [x] Concurrent: two prompts being constructed simultaneously for different terminals — each sees the correct session id (covered above)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2337ed4e-b985-48e8-8d5f-db73c2737570:
+    id: 2337ed4e-b985-48e8-8d5f-db73c2737570
+    content: '- [-] Repeated: same workflow phase re-fired within the same session — substitution is idempotent, every instance gets the same correct id'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  ac920c8f-9f25-4a44-8708-c29d29920a5d:
+    id: ac920c8f-9f25-4a44-8708-c29d29920a5d
+    content: '- [x] Happy-path coverage already enumerated in the unit and integration sections above'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3767b86d-7285-48a5-b45b-112c2cb6a684:
+    id: 3767b86d-7285-48a5-b45b-112c2cb6a684
+    content: Regression coverage
+    children:
+      - 52f67248-5c7e-4237-8d34-850bf8d1057e
+      - 988a08f9-e51f-4e04-8420-d5575d506f9f
+      - 4db7d0d1-e59f-4219-979d-7bde8db8fb8e
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  52f67248-5c7e-4237-8d34-850bf8d1057e:
+    id: 52f67248-5c7e-4237-8d34-850bf8d1057e
+    content: '- [x] Existing `terminalEnvInjection.test.ts` continues to pass — `ARBORESCENT_*` vars still injected into the terminal env, no new env var added'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  988a08f9-e51f-4e04-8420-d5575d506f9f:
+    id: 988a08f9-e51f-4e04-8420-d5575d506f9f
+    content: '- [x] Existing `sendActions.test.ts` assertions on `ARBORESCENT_HOOK_PORT` presence/absence still hold (the placeholder for that var is still emitted; only `${CLAUDE_SESSION_ID}` changes from placeholder to literal)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4db7d0d1-e59f-4219-979d-7bde8db8fb8e:
+    id: 4db7d0d1-e59f-4219-979d-7bde8db8fb8e
+    content: '- [x] Existing `~/.claude/settings.json` hook scripts that read session_id from stdin via `jq -r ''.session_id''` are not touched and not asserted against — they live outside the codebase'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7b1d5fc7-7b66-4c18-9ba1-99e19e8fa593:
+    id: 7b1d5fc7-7b66-4c18-9ba1-99e19e8fa593
+    content: 'Run scope when iterating: only run `sendActions.test.ts` and any new hook-server test file, not the full suite'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8d86cdba-252f-44c3-9055-7a1fea0f06c9:
+    id: 8d86cdba-252f-44c3-9055-7a1fea0f06c9
+    content: worktree
+    children:
+      - 9b114a39-af01-4981-a55e-ce9307f66bb9
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9b114a39-af01-4981-a55e-ce9307f66bb9:
+    id: 9b114a39-af01-4981-a55e-ce9307f66bb9
+    content: vscode://file/Users/brianfox/dev/Arborescent-archive-paste-hyperlink
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  902cbcf6-0f3b-4485-8e5b-c0f89c329ee9:
+    id: 902cbcf6-0f3b-4485-8e5b-c0f89c329ee9
+    content: Can't paste node hyperlink into archive box
+    children:
+      - a89f910d-12d9-41c0-b5e5-99aecbb8f18a
+      - 36ddd910-c197-465c-a66a-413b18e68ef6
+      - 4559e708-08ce-442c-9009-f58ddc206389
+      - eb8647f4-e6da-4794-b65d-6ba5a9bc442e
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a89f910d-12d9-41c0-b5e5-99aecbb8f18a:
+    id: a89f910d-12d9-41c0-b5e5-99aecbb8f18a
+    content: Technical refinement
+    children:
+      - ffefdf0c-04e7-4be1-8215-56506694c102
+      - fa37c235-a2e0-4b46-a6c6-089770f3d7e1
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ffefdf0c-04e7-4be1-8215-56506694c102:
+    id: ffefdf0c-04e7-4be1-8215-56506694c102
+    content: Flag complications
+    children:
+      - 00f73485-a3f8-42fd-88be-d5d2d8be254e
+      - 4cb1324b-524d-47cc-a541-ae5a353d63ad
+      - eb54c4b5-6861-4f33-a32b-6bf84da75c3b
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  00f73485-a3f8-42fd-88be-d5d2d8be254e:
+    id: 00f73485-a3f8-42fd-88be-d5d2d8be254e
+    content: '"Copy as hyperlink" stores the node ID in an in-memory store, not the system clipboard, so a plain <input> field cannot receive it via the browser''s default paste'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4cb1324b-524d-47cc-a541-ae5a353d63ad:
+    id: 4cb1324b-524d-47cc-a541-ae5a353d63ad
+    content: 'Out of scope: redesigning the hyperlink clipboard model itself'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  eb54c4b5-6861-4f33-a32b-6bf84da75c3b:
+    id: eb54c4b5-6861-4f33-a32b-6bf84da75c3b
+    content: ROI is fine — small surface, but pick a UX that won't surprise users (paste vs. drop vs. picker)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fa37c235-a2e0-4b46-a6c6-089770f3d7e1:
+    id: fa37c235-a2e0-4b46-a6c6-089770f3d7e1
+    content: Approach
+    children:
+      - 7f6cd430-2981-4097-b8c5-23509f50b4a9
+      - 121307b6-09ac-4197-9dc9-8e357e88ce89
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7f6cd430-2981-4097-b8c5-23509f50b4a9:
+    id: 7f6cd430-2981-4097-b8c5-23509f50b4a9
+    content: Fix lives in ArchiveSection.tsx — intercept paste/focus on the input and read from useHyperlinkClipboardStore (with the same currentClipboardText guard pasteAsHyperlink uses) to inject the cached node ID
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  121307b6-09ac-4197-9dc9-8e357e88ce89:
+    id: 121307b6-09ac-4197-9dc9-8e357e88ce89
+    content: 'Non-obvious: the existing hyperlink paste path is a document-level Cmd+V handler that creates a tree node, so it won''t fire inside a text input — the input needs its own handler'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  36ddd910-c197-465c-a66a-413b18e68ef6:
+    id: 36ddd910-c197-465c-a66a-413b18e68ef6
+    content: Test plan
+    children:
+      - 93c853c9-c416-4b25-8ad9-b92b168222c0
+      - 4cca1d22-d7e0-49f0-836a-2480696d687e
+      - d57fe7e2-9ebb-4ddc-a5f8-b8f3bf7df361
+      - 0bfcf8a6-5e52-4b77-b97a-92cf1718615f
+      - 8ae91562-0c10-4537-81e2-4692683879a8
+      - 07bb69de-17fe-4b13-94b2-0a504c20fb2e
+      - e8040bf2-f87d-4f8f-b169-a04ba2a62f26
+      - 8fb98e9d-6258-48c1-8990-050b5fa1faa4
+      - 30fa6a05-6b03-4b04-9d3e-478f723898da
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  93c853c9-c416-4b25-8ad9-b92b168222c0:
+    id: 93c853c9-c416-4b25-8ad9-b92b168222c0
+    content: 'Location: new file src/renderer/components/ui/StepConfigDialog/tests/ArchiveSection.test.tsx — mirror StepConfigDialog.test.tsx style (vitest, @testing-library/react, vi.clearAllMocks in beforeEach)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4cca1d22-d7e0-49f0-836a-2480696d687e:
+    id: 4cca1d22-d7e0-49f0-836a-2480696d687e
+    content: Mock useHyperlinkClipboardStore at module level (vi.mock the imported store module, not the underlying clipboard API)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d57fe7e2-9ebb-4ddc-a5f8-b8f3bf7df361:
+    id: d57fe7e2-9ebb-4ddc-a5f8-b8f3bf7df361
+    content: No tests/fixtures/ helper exists for this surface — keep setup inline but cap it via a small renderArchiveSection helper at top of file
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0bfcf8a6-5e52-4b77-b97a-92cf1718615f:
+    id: 0bfcf8a6-5e52-4b77-b97a-92cf1718615f
+    content: Happy path
+    children:
+      - 1bf7eb77-34b9-40ba-b513-38df1db5b67d
+      - 56dd84d3-038e-4f76-8a75-6e2260d10b6c
+      - 4329baa8-3e26-4ed4-a70d-0ebdd7ea889f
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1bf7eb77-34b9-40ba-b513-38df1db5b67d:
+    id: 1bf7eb77-34b9-40ba-b513-38df1db5b67d
+    content: injects cached nodeId into the destination input when hyperlink cache is valid and clipboard guard matches
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  56dd84d3-038e-4f76-8a75-6e2260d10b6c:
+    id: 56dd84d3-038e-4f76-8a75-6e2260d10b6c
+    content: calls onChange with archiveDestinationId set to the cached nodeId
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4329baa8-3e26-4ed4-a70d-0ebdd7ea889f:
+    id: 4329baa8-3e26-4ed4-a70d-0ebdd7ea889f
+    content: clears the hyperlink cache after a successful injection (mirrors pasteAsHyperlink)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8ae91562-0c10-4537-81e2-4692683879a8:
+    id: 8ae91562-0c10-4537-81e2-4692683879a8
+    content: Guard conditions — must fall through to default paste behaviour
+    children:
+      - a81c5c25-28d8-445b-9505-0083ff6e144a
+      - a6ef13e8-cee5-4acb-a4c5-926089e3a2ef
+      - 7af3dd15-cce2-4d9e-9cde-7fb5619d8de4
+      - 746feefa-f079-417f-8218-8cf8a39fc4bf
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a81c5c25-28d8-445b-9505-0083ff6e144a:
+    id: a81c5c25-28d8-445b-9505-0083ff6e144a
+    content: system clipboard text differs from clipboardTextAtCopy
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a6ef13e8-cee5-4acb-a4c5-926089e3a2ef:
+    id: a6ef13e8-cee5-4acb-a4c5-926089e3a2ef
+    content: sourceFilePath differs from currentFilePath
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7af3dd15-cce2-4d9e-9cde-7fb5619d8de4:
+    id: 7af3dd15-cce2-4d9e-9cde-7fb5619d8de4
+    content: no hyperlink cache present
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  746feefa-f079-417f-8218-8cf8a39fc4bf:
+    id: 746feefa-f079-417f-8218-8cf8a39fc4bf
+    content: paste targets the archive-side or replacement-side name inputs (no interception there)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  07bb69de-17fe-4b13-94b2-0a504c20fb2e:
+    id: 07bb69de-17fe-4b13-94b2-0a504c20fb2e
+    content: Edge cases / repeated interactions
+    children:
+      - 14d41b6d-f3d7-4ab4-854b-ea9d22316038
+      - 959965a1-5206-44c7-8ea5-5266e615284a
+      - 418cdd0f-1419-4f22-b42e-58870a1b6528
+      - f25ac29f-ccb4-410c-8fde-e911dad98193
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  14d41b6d-f3d7-4ab4-854b-ea9d22316038:
+    id: 14d41b6d-f3d7-4ab4-854b-ea9d22316038
+    content: second paste after cache was cleared by the first falls through
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  959965a1-5206-44c7-8ea5-5266e615284a:
+    id: 959965a1-5206-44c7-8ea5-5266e615284a
+    content: paste when input already has a value — title only (replace vs. keep is post-fix behaviour TBD)
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  418cdd0f-1419-4f22-b42e-58870a1b6528:
+    id: 418cdd0f-1419-4f22-b42e-58870a1b6528
+    content: noop when currentFilePath is undefined / empty
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f25ac29f-ccb4-410c-8fde-e911dad98193:
+    id: f25ac29f-ccb4-410c-8fde-e911dad98193
+    content: noop when archiveSettings.archiveDestinationId is already set (decide overwrite policy — title only)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e8040bf2-f87d-4f8f-b169-a04ba2a62f26:
+    id: e8040bf2-f87d-4f8f-b169-a04ba2a62f26
+    content: Accessibility / UX
+    children:
+      - 35d7a2ad-8960-4042-a0b0-df17016b364d
+      - 3e3bd344-d874-4eb0-a367-ae68fb744799
+      - 0cb4c2a6-7a2f-4c87-811a-cb06b0132935
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  35d7a2ad-8960-4042-a0b0-df17016b364d:
+    id: 35d7a2ad-8960-4042-a0b0-df17016b364d
+    content: aria-label "Archive destination" preserved after fix
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3e3bd344-d874-4eb0-a367-ae68fb744799:
+    id: 3e3bd344-d874-4eb0-a367-ae68fb744799
+    content: placeholder still communicates the hyperlink paste affordance
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0cb4c2a6-7a2f-4c87-811a-cb06b0132935:
+    id: 0cb4c2a6-7a2f-4c87-811a-cb06b0132935
+    content: 'title-only: any toast or visual cue on successful injection (match existing flashNodes/toast convention)'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  8fb98e9d-6258-48c1-8990-050b5fa1faa4:
+    id: 8fb98e9d-6258-48c1-8990-050b5fa1faa4
+    content: Conventions
+    children:
+      - 1bb10386-0a8c-4528-a59c-b7cc17629c80
+      - 77e7435a-92bb-4bfc-abb8-e902c049802f
+      - 0dbc2bd2-eab1-4a16-9be4-39d9d8521ca9
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1bb10386-0a8c-4528-a59c-b7cc17629c80:
+    id: 1bb10386-0a8c-4528-a59c-b7cc17629c80
+    content: No mockReturnValueOnce — use mockImplementation with conditionals if behaviour varies per call
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  77e7435a-92bb-4bfc-abb8-e902c049802f:
+    id: 77e7435a-92bb-4bfc-abb8-e902c049802f
+    content: Clear hyperlink store state in beforeEach, not just mocks
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0dbc2bd2-eab1-4a16-9be4-39d9d8521ca9:
+    id: 0dbc2bd2-eab1-4a16-9be4-39d9d8521ca9
+    content: Use `as unknown as ClipboardEvent` for synthetic paste event types if TS lint complains
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  30fa6a05-6b03-4b04-9d3e-478f723898da:
+    id: 30fa6a05-6b03-4b04-9d3e-478f723898da
+    content: When verifying, run only ArchiveSection.test.tsx (and StepConfigDialog.test.tsx if shared types touched) — not the full suite
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4559e708-08ce-442c-9009-f58ddc206389:
+    id: 4559e708-08ce-442c-9009-f58ddc206389
+    content: Implementation notes
+    children:
+      - 8ef8ed94-16a3-49bb-82e3-dda737a91cc9
+      - fffc047e-15a0-48e2-b336-9676067fcf4f
+      - 01ea1c9f-e0ec-4e22-a541-b0c7496292f6
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8ef8ed94-16a3-49bb-82e3-dda737a91cc9:
+    id: 8ef8ed94-16a3-49bb-82e3-dda737a91cc9
+    content: Plumbed currentFilePath as a prop (StepConfigDialogContainer → StepConfigDialog → ArchiveSection) instead of accessing the tree store directly inside ArchiveSection — keeps the component decoupled and avoids forcing existing StepConfigDialog tests to wrap renders in a TreeStoreProvider
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fffc047e-15a0-48e2-b336-9676067fcf4f:
+    id: fffc047e-15a0-48e2-b336-9676067fcf4f
+    content: Test plan said to vi.mock the hyperlink store; used the real store with setState/getState/clearCache instead — still tests the contract at module level and avoids drift from the real shape
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  01ea1c9f-e0ec-4e22-a541-b0c7496292f6:
+    id: 01ea1c9f-e0ec-4e22-a541-b0c7496292f6
+    content: Decided against a toast on successful injection — the input updates visibly via onChange, matches the silent-paste convention of the other inputs in the dialog
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  eb8647f4-e6da-4794-b65d-6ba5a9bc442e:
+    id: eb8647f4-e6da-4794-b65d-6ba5a9bc442e
+    content: Refactor pass
+    children:
+      - cec756e0-38b8-4deb-a1d9-159d237e3fb1
+      - a8238542-a709-4bbd-9bab-8a2589bfcaa9
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cec756e0-38b8-4deb-a1d9-159d237e3fb1:
+    id: cec756e0-38b8-4deb-a1d9-159d237e3fb1
+    content: Extracted paste logic into hooks/useArchiveHyperlinkPaste.ts (useCallback) so ArchiveSection holds the template only, per the components-vs-hooks convention
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a8238542-a709-4bbd-9bab-8a2589bfcaa9:
+    id: a8238542-a709-4bbd-9bab-8a2589bfcaa9
+    content: Filled in the previously empty title-only test "overwrites archiveDestinationId when one is already set" with real assertions now that the post-fix behaviour is known (overwrite)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
