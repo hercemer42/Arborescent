@@ -1417,4 +1417,90 @@ describe('sendActions', () => {
       });
     });
   });
+
+  describe('inline-checks clause (autonomous terminal only)', () => {
+    const inlineRunRegex = /inline|foreground|main process|in[- ]process/i;
+    const noBackgroundRegex = /background|do not.*&|don't.*&|poll|watch/i;
+
+    beforeEach(() => {
+      mockState.nodes.child1.metadata.appliedContextId = 'exec-ctx';
+    });
+
+    it('autonomous terminal execute prompt includes a "run inline / do not background" directive', async () => {
+      const { executeInTerminal } = await import('../../../../services/terminalExecution');
+
+      await actions.autonomousCollaborateInTerminal('child1', 'terminal-1', { collaborate: false, execute: true });
+
+      const terminalContent = vi.mocked(executeInTerminal).mock.calls[0][1];
+      expect(terminalContent).toMatch(inlineRunRegex);
+      expect(terminalContent).toMatch(noBackgroundRegex);
+    });
+
+    it('autonomous terminal both (collaborate + execute) prompt includes the inline-checks clause', async () => {
+      const { executeInTerminal } = await import('../../../../services/terminalExecution');
+
+      await actions.autonomousCollaborateInTerminal('child1', 'terminal-1', { collaborate: true, execute: true });
+
+      const terminalContent = vi.mocked(executeInTerminal).mock.calls[0][1];
+      expect(terminalContent).toMatch(inlineRunRegex);
+      expect(terminalContent).toMatch(noBackgroundRegex);
+    });
+
+    it('manual (non-autonomous) terminal execute does NOT inject the inline-checks clause', async () => {
+      const { executeInTerminal } = await import('../../../../services/terminalExecution');
+
+      await actions.collaborateInTerminal('child1', 'terminal-1', { collaborate: false, execute: true });
+
+      const terminalContent = vi.mocked(executeInTerminal).mock.calls[0][1];
+      expect(terminalContent).not.toMatch(inlineRunRegex);
+      expect(terminalContent).not.toMatch(noBackgroundRegex);
+    });
+
+    it('manual (non-autonomous) terminal collaborate does NOT inject the inline-checks clause', async () => {
+      const { executeInTerminal } = await import('../../../../services/terminalExecution');
+
+      await actions.collaborateInTerminal('child1', 'terminal-1', { collaborate: true, execute: false });
+
+      const terminalContent = vi.mocked(executeInTerminal).mock.calls[0][1];
+      expect(terminalContent).not.toMatch(inlineRunRegex);
+      expect(terminalContent).not.toMatch(noBackgroundRegex);
+    });
+
+    it('browser/web execute prompt does NOT include the inline-checks clause (terminal-only fix)', async () => {
+      await actions.collaborate('child1', { collaborate: false, execute: true });
+
+      const webPrompt = mockClipboardWriteText.mock.calls[0][0];
+      expect(webPrompt).not.toMatch(inlineRunRegex);
+      expect(webPrompt).not.toMatch(noBackgroundRegex);
+    });
+
+    it('browser/web collaborate prompt does NOT include the inline-checks clause', async () => {
+      await actions.collaborate('child1', { collaborate: true, execute: false });
+
+      const webPrompt = mockClipboardWriteText.mock.calls[0][0];
+      expect(webPrompt).not.toMatch(inlineRunRegex);
+      expect(webPrompt).not.toMatch(noBackgroundRegex);
+    });
+
+    it('clause still appears for autonomous terminal sends when a custom (non-default) context is applied', async () => {
+      const { executeInTerminal } = await import('../../../../services/terminalExecution');
+      mockState.nodes['custom-ctx'] = {
+        id: 'custom-ctx',
+        content: 'A user-defined context that bears no instruction text relevant to backgrounding.',
+        children: [],
+        metadata: { isContextDeclaration: true, execute: true },
+      };
+      mockState.nodes.root.children.push('custom-ctx');
+      mockState.ancestorRegistry['custom-ctx'] = ['root'];
+      mockState.nodes.child1.metadata.appliedContextId = 'custom-ctx';
+
+      await actions.autonomousCollaborateInTerminal('child1', 'terminal-1', { collaborate: false, execute: true });
+
+      const terminalContent = vi.mocked(executeInTerminal).mock.calls[0][1];
+      expect(terminalContent).toMatch(inlineRunRegex);
+      expect(terminalContent).toMatch(noBackgroundRegex);
+    });
+
+    it('clause is not added when applied context resolves to the bare-content path (no instruction wrapper)');
+  });
 });
