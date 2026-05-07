@@ -4,11 +4,10 @@ import { TriangleAlert } from 'lucide-react';
 import { useIconPickerBehavior } from './hooks/useIconPickerBehavior';
 import { useIconPickerColors } from './hooks/useIconPickerColors';
 import { IconSelection } from '../../../store/customizeDialog/customizeDialogStore';
-import { ContextMode } from '../../../store/tree/treeStore';
 import { Modal } from '../Modal';
 import { IconGrid } from './IconGrid';
 import { ColorPicker } from './ColorPicker';
-import { ModeToggle } from './ModeToggle';
+import { ContextFlagsCheckboxes } from './ContextFlagsCheckboxes';
 import type { LucideIcon } from './types';
 import './CustomizeDialog.css';
 
@@ -87,14 +86,26 @@ export const DEFAULT_CONTEXT_ICON = 'Lightbulb';
 interface CustomizeDialogProps {
   selectedIcon?: string;
   selectedColor?: string | null;
-  selectedMode?: ContextMode | null;
-  showModeToggle?: boolean;
-  onModeChange?: (mode: ContextMode) => void;
+  selectedCollaborate?: boolean | null;
+  selectedExecute?: boolean | null;
+  showFlagsPicker?: boolean;
+  onCollaborateChange?: (value: boolean) => void;
+  onExecuteChange?: (value: boolean) => void;
   onSelect: (selection: IconSelection) => void;
   onClose: () => void;
 }
 
-export function CustomizeDialog({ selectedIcon, selectedColor, selectedMode, showModeToggle, onModeChange, onSelect, onClose }: CustomizeDialogProps) {
+export function CustomizeDialog({
+  selectedIcon,
+  selectedColor,
+  selectedCollaborate,
+  selectedExecute,
+  showFlagsPicker,
+  onCollaborateChange,
+  onExecuteChange,
+  onSelect,
+  onClose,
+}: CustomizeDialogProps) {
   const [currentIcon, setCurrentIcon] = useState(selectedIcon || '');
 
   const {
@@ -132,7 +143,10 @@ export function CustomizeDialog({ selectedIcon, selectedColor, selectedMode, sho
       onSelect({
         icon: currentIcon,
         color: currentColor || undefined,
-        mode: showModeToggle ? (selectedMode || 'collaborate') : undefined,
+        ...(showFlagsPicker && {
+          collaborate: selectedCollaborate === true,
+          execute: selectedExecute === true,
+        }),
       });
       onClose();
     }
@@ -163,10 +177,12 @@ export function CustomizeDialog({ selectedIcon, selectedColor, selectedMode, sho
           onCustomColorChange={handleCustomColorChange}
         />
 
-        {showModeToggle && onModeChange && (
-          <ModeToggle
-            selectedMode={selectedMode}
-            onModeChange={onModeChange}
+        {showFlagsPicker && onCollaborateChange && onExecuteChange && (
+          <ContextFlagsCheckboxes
+            collaborate={selectedCollaborate === true}
+            execute={selectedExecute === true}
+            onCollaborateChange={onCollaborateChange}
+            onExecuteChange={onExecuteChange}
           />
         )}
 

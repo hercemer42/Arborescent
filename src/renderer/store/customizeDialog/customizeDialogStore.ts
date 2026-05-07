@@ -1,36 +1,43 @@
 import { create } from 'zustand';
-import { ContextMode } from '../tree/treeStore';
 
 export interface IconSelection {
   icon: string;
   color?: string;
-  mode?: ContextMode;
+  collaborate?: boolean;
+  execute?: boolean;
 }
 
 interface CustomizeDialogState {
   isOpen: boolean;
   selectedIcon: string | null;
   selectedColor: string | null;
-  selectedMode: ContextMode | null;
-  showModeToggle: boolean;
+  selectedCollaborate: boolean | null;
+  selectedExecute: boolean | null;
+  showFlagsPicker: boolean;
   onSelect: ((selection: IconSelection) => void) | null;
 
   open: (
     selectedIcon: string | null,
     onSelect: (selection: IconSelection) => void,
     selectedColor?: string | null,
-    options?: { showModeToggle?: boolean; selectedMode?: ContextMode | null }
+    options?: {
+      showFlagsPicker?: boolean;
+      selectedCollaborate?: boolean | null;
+      selectedExecute?: boolean | null;
+    }
   ) => void;
   close: () => void;
-  setMode: (mode: ContextMode) => void;
+  setCollaborate: (value: boolean) => void;
+  setExecute: (value: boolean) => void;
 }
 
 export const useCustomizeDialogStore = create<CustomizeDialogState>((set) => ({
   isOpen: false,
   selectedIcon: null,
   selectedColor: null,
-  selectedMode: null,
-  showModeToggle: false,
+  selectedCollaborate: null,
+  selectedExecute: null,
+  showFlagsPicker: false,
   onSelect: null,
 
   open: (selectedIcon, onSelect, selectedColor = null, options) => {
@@ -39,8 +46,9 @@ export const useCustomizeDialogStore = create<CustomizeDialogState>((set) => ({
       selectedIcon,
       selectedColor,
       onSelect,
-      showModeToggle: options?.showModeToggle ?? false,
-      selectedMode: options?.selectedMode ?? 'collaborate',
+      showFlagsPicker: options?.showFlagsPicker ?? false,
+      selectedCollaborate: options?.selectedCollaborate ?? null,
+      selectedExecute: options?.selectedExecute ?? null,
     });
   },
 
@@ -49,13 +57,18 @@ export const useCustomizeDialogStore = create<CustomizeDialogState>((set) => ({
       isOpen: false,
       selectedIcon: null,
       selectedColor: null,
-      selectedMode: null,
-      showModeToggle: false,
+      selectedCollaborate: null,
+      selectedExecute: null,
+      showFlagsPicker: false,
       onSelect: null,
     });
   },
 
-  setMode: (mode) => {
-    set({ selectedMode: mode });
+  setCollaborate: (value) => {
+    set({ selectedCollaborate: value });
+  },
+
+  setExecute: (value) => {
+    set({ selectedExecute: value });
   },
 }));

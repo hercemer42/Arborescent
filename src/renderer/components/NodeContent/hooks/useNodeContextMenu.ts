@@ -98,10 +98,23 @@ export function useNodeContextMenu(node: TreeNode) {
     const handleDeclareAsContext = () => {
       const existingIcon = freshNode.metadata.blueprintIcon as string | undefined;
       const existingColor = freshNode.metadata.blueprintColor as string | undefined;
-      const existingMode = freshNode.metadata.execute === true ? 'execute' : 'collaborate';
-      openCustomizeDialog(existingIcon || null, (selection) => {
-        actions.declareAsContext(node.id, selection.icon, selection.color, selection.mode);
-      }, existingColor || null, { showModeToggle: true, selectedMode: existingMode });
+      const existingCollaborate = freshNode.metadata.collaborate === true;
+      const existingExecute = freshNode.metadata.execute === true;
+      openCustomizeDialog(
+        existingIcon || null,
+        (selection) => {
+          actions.declareAsContextWithFlags(node.id, selection.icon, selection.color, {
+            collaborate: selection.collaborate === true,
+            execute: selection.execute === true,
+          });
+        },
+        existingColor || null,
+        {
+          showFlagsPicker: true,
+          selectedCollaborate: existingCollaborate,
+          selectedExecute: existingExecute,
+        },
+      );
     };
 
     const appliedContextId = getAppliedContextIdWithInheritance(node.id, nodes, ancestorRegistry);

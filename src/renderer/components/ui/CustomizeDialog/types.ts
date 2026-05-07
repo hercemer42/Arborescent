@@ -1,12 +1,6 @@
 import type { ComponentType } from 'react';
 import type { LucideProps } from 'lucide-react';
 
-/**
- * Type-only leaf module for the CustomizeDialog cluster. Extracted so
- * IconGrid / ColorPicker / ModeToggle / hooks can import LucideIcon and
- * PRESET_COLORS without forming a cycle back through the main
- * CustomizeDialog component.
- */
 export type LucideIcon = ComponentType<LucideProps>;
 
 // Amber and Sky values match globals.css variables for consistency.

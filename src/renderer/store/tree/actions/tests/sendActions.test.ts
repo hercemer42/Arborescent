@@ -689,6 +689,7 @@ describe('sendActions', () => {
 
       expect(out).toContain('===BEGIN INSTRUCTIONS===');
       expect(out).toContain('Output ONLY the updated list');
+      expect(out).toContain('Do not make code or file changes unless the CONTENT explicitly asks for them.');
       expect(out).toContain('Child 1');
       expect(mockSet).toHaveBeenCalledWith(
         expect.objectContaining({ collaboratingNodeId: 'child1' }),
@@ -702,6 +703,7 @@ describe('sendActions', () => {
 
       expect(out).toContain('===BEGIN INSTRUCTIONS===');
       expect(out).toContain('Making file changes, writing code, and running commands is expected and required');
+      expect(out).not.toContain('Do not make code or file changes unless the CONTENT explicitly asks for them.');
       expect(out).toContain('Child 1');
       expect(mockSet).not.toHaveBeenCalledWith(
         expect.objectContaining({ collaboratingNodeId: 'child1' }),
@@ -714,6 +716,7 @@ describe('sendActions', () => {
       const out = mockClipboardWriteText.mock.calls[0][0];
 
       expect(out).toContain('Making file changes, writing code, and running commands is expected and required');
+      expect(out).not.toContain('Do not make code or file changes unless the CONTENT explicitly asks for them.');
       expect(out).toContain('Child 1');
       expect(mockSet).toHaveBeenCalledWith(
         expect.objectContaining({ collaboratingNodeId: 'child1' }),
@@ -889,17 +892,17 @@ describe('sendActions', () => {
       expect(window.electron.createTempFile).not.toHaveBeenCalled();
     });
 
-    it('collaborate-only terminal prompt does NOT contain code-protection rule (disjoint-blocks invariant)', async () => {
+    it('collaborate-only terminal prompt asks the AI to skip code changes by default', async () => {
       const { executeInTerminal } = await import('../../../../services/terminalExecution');
       vi.mocked(executeInTerminal).mockResolvedValue(undefined);
 
       await actions.collaborateInTerminal('child1', 'terminal-1');
 
       const terminalContent = vi.mocked(executeInTerminal).mock.calls[0][1];
-      expect(terminalContent).not.toContain('Do NOT make any changes to the code');
+      expect(terminalContent).toContain('Do not make code or file changes unless the CONTENT explicitly asks for them.');
     });
 
-    it('collaborate-only terminal prompt does NOT contain code-protection rule even with custom context', async () => {
+    it('collaborate-only terminal prompt keeps the no-code-changes rule even with a custom context', async () => {
       const { executeInTerminal } = await import('../../../../services/terminalExecution');
       vi.mocked(executeInTerminal).mockResolvedValue(undefined);
 
@@ -916,7 +919,7 @@ describe('sendActions', () => {
       await actions.collaborateInTerminal('child1', 'terminal-1');
 
       const terminalContent = vi.mocked(executeInTerminal).mock.calls[0][1];
-      expect(terminalContent).not.toContain('Do NOT make any changes to the code');
+      expect(terminalContent).toContain('Do not make code or file changes unless the CONTENT explicitly asks for them.');
     });
 
     it('collaborate-only terminal prompt asks for list-back-to-file output (Collaborate scaffolding present)', async () => {
