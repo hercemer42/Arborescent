@@ -80,6 +80,7 @@ export interface ElectronAPI {
   // Clipboard monitor
   startClipboardMonitor: () => Promise<void>;
   stopClipboardMonitor: () => Promise<void>;
+  recordClipboardSelfWrite: (content: string) => Promise<void>;
   onClipboardContentDetected: (callback: (content: string) => void) => Unsubscribe;
 
   // Feedback file watcher

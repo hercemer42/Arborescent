@@ -372,6 +372,46 @@ describe('ipcService', () => {
       expect(stopSpy).toHaveBeenCalled();
     });
 
+    it('should register clipboard-monitor-record-self-write handler', async () => {
+      await registerIpcHandlers(() => mockWindow);
+
+      expect(ipcMain.handle).toHaveBeenCalledWith(
+        'clipboard-monitor-record-self-write',
+        expect.any(Function)
+      );
+    });
+
+    it('should route self-write IPC to clipboardMonitor.recordSelfWrite with the content', async () => {
+      const clipboardMonitorModule = await import('../../services/clipboardMonitor');
+      const monitor = clipboardMonitorModule.clipboardMonitor as typeof clipboardMonitorModule.clipboardMonitor & {
+        recordSelfWrite: (content: string) => void;
+      };
+      const recordSpy = vi.spyOn(monitor, 'recordSelfWrite').mockImplementation(() => {});
+
+      await registerIpcHandlers(() => mockWindow);
+      const handler = handlers.get('clipboard-monitor-record-self-write')!;
+
+      await handler({} as unknown as Electron.IpcMainInvokeEvent, 'copied node markdown body');
+
+      expect(recordSpy).toHaveBeenCalledWith('copied node markdown body');
+    });
+
+    it('self-write handler is a no-op even when no main window is available', async () => {
+      const clipboardMonitorModule = await import('../../services/clipboardMonitor');
+      const monitor = clipboardMonitorModule.clipboardMonitor as typeof clipboardMonitorModule.clipboardMonitor & {
+        recordSelfWrite: (content: string) => void;
+      };
+      const recordSpy = vi.spyOn(monitor, 'recordSelfWrite').mockImplementation(() => {});
+
+      await registerIpcHandlers(() => null);
+      const handler = handlers.get('clipboard-monitor-record-self-write')!;
+
+      await expect(
+        handler({} as unknown as Electron.IpcMainInvokeEvent, 'whatever')
+      ).resolves.not.toThrow();
+      expect(recordSpy).toHaveBeenCalledWith('whatever');
+    });
+
     it('should send clipboard content to renderer when detected', async () => {
       const mockWebContents = {
         send: vi.fn(),

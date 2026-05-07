@@ -14,4 +14,8 @@ export function registerClipboardHandlers(getMainWindow: () => BrowserWindow | n
   ipcMain.handle('stop-clipboard-monitor', async () => {
     clipboardMonitor.stop();
   });
+
+  ipcMain.handle('clipboard-monitor-record-self-write', async (_event, content: string) => {
+    clipboardMonitor.recordSelfWrite(content);
+  });
 }

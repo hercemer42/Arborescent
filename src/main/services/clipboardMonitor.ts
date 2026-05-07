@@ -15,7 +15,9 @@ export class ClipboardMonitor {
 
     this.onChange = onChange;
     this.isMonitoring = true;
-    this.lastClipboardContent = clipboard.readText();
+    if (this.lastClipboardContent === '') {
+      this.lastClipboardContent = clipboard.readText();
+    }
 
     this.intervalId = setInterval(() => {
       const current = clipboard.readText();
@@ -45,6 +47,10 @@ export class ClipboardMonitor {
 
   isRunning(): boolean {
     return this.isMonitoring;
+  }
+
+  recordSelfWrite(content: string): void {
+    this.lastClipboardContent = content;
   }
 }
 

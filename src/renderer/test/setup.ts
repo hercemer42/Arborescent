@@ -98,6 +98,7 @@ global.window.electron = {
   isTempFile: vi.fn(),
   startClipboardMonitor: vi.fn(),
   stopClipboardMonitor: vi.fn(),
+  recordClipboardSelfWrite: vi.fn().mockResolvedValue(undefined),
   onClipboardContentDetected: vi.fn().mockReturnValue(vi.fn()),
   startFeedbackFileWatcher: vi.fn(),
   stopFeedbackFileWatcher: vi.fn(),

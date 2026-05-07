@@ -41,6 +41,8 @@ const api: ElectronAPI = {
   isTempFile: (filePath: string) => ipcRenderer.invoke('is-temp-file', filePath),
   startClipboardMonitor: () => ipcRenderer.invoke('start-clipboard-monitor'),
   stopClipboardMonitor: () => ipcRenderer.invoke('stop-clipboard-monitor'),
+  recordClipboardSelfWrite: (content: string) =>
+    ipcRenderer.invoke('clipboard-monitor-record-self-write', content),
   onClipboardContentDetected: (callback) => {
     const listener = (_event: Electron.IpcRendererEvent, content: string) => callback(content);
     ipcRenderer.on('clipboard-content-detected', listener);
