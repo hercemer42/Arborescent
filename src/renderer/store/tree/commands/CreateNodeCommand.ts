@@ -34,8 +34,9 @@ export class CreateNodeCommand extends BaseCommand {
     if (!parent) return;
 
     const metadata: Record<string, unknown> = { status: 'pending', ...this.initialMetadata };
+    const isHyperlinkNode = metadata.isHyperlink === true;
 
-    if (shouldInheritBlueprint(this.parentId, nodes, ancestorRegistry)) {
+    if (!isHyperlinkNode && shouldInheritBlueprint(this.parentId, nodes, ancestorRegistry)) {
       metadata.isBlueprint = true;
     }
 

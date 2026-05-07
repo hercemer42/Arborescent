@@ -329,7 +329,6 @@ export const createClipboardActions = (
 
     const newNodeId = uuidv4();
     const position = targetParent.children.length;
-    const isTargetParentBlueprint = targetParent.metadata.isBlueprint === true;
 
     const command = new CreateNodeCommand(
       newNodeId,
@@ -349,7 +348,6 @@ export const createClipboardActions = (
       {
         isHyperlink: true,
         linkedNodeId: hyperlinkCache.nodeId,
-        ...(isTargetParentBlueprint && { isBlueprint: true }),
       }
     );
 

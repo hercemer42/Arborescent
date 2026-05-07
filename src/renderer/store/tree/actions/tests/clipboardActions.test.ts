@@ -1602,6 +1602,88 @@ describe('clipboardActions', () => {
         expect(result).toBe('no-content');
         expect(mockExecuteCommand).not.toHaveBeenCalled();
       });
+
+      describe('blueprint inheritance', () => {
+        function findNewHyperlink() {
+          return Object.values(state.nodes).find(
+            (n) => n.metadata.isHyperlink === true && n.id !== 'hyperlink-node',
+          );
+        }
+
+        beforeEach(() => {
+          currentMockHyperlinkCache = {
+            nodeId: 'node-2',
+            content: 'Task 2',
+            sourceFilePath: '/test/file.arbo',
+            timestamp: Date.now(),
+            clipboardTextAtCopy: matchingClipboardText,
+          };
+        });
+
+        it('should NOT mark the new hyperlink as a blueprint when parent is a blueprint', () => {
+          state.nodes['blueprint-parent'] = {
+            id: 'blueprint-parent',
+            content: 'Blueprint parent',
+            children: [],
+            metadata: { isBlueprint: true },
+          };
+          state.ancestorRegistry['blueprint-parent'] = ['root'];
+          state.activeNodeId = 'blueprint-parent';
+
+          const result = actions.pasteAsHyperlink(matchingClipboardText);
+
+          expect(result).toBe('pasted');
+          const newNode = findNewHyperlink();
+          expect(newNode).toBeDefined();
+          expect(newNode?.metadata.isBlueprint).not.toBe(true);
+        });
+
+        it('should NOT mark the new hyperlink as a blueprint when parent is a workflow step (blueprint with isWorkflow)', () => {
+          state.nodes['workflow-step'] = {
+            id: 'workflow-step',
+            content: 'Step 1',
+            children: [],
+            metadata: { isBlueprint: true, isWorkflow: true },
+          };
+          state.ancestorRegistry['workflow-step'] = ['root'];
+          state.activeNodeId = 'workflow-step';
+
+          const result = actions.pasteAsHyperlink(matchingClipboardText);
+
+          expect(result).toBe('pasted');
+          const newNode = findNewHyperlink();
+          expect(newNode).toBeDefined();
+          expect(newNode?.metadata.isBlueprint).not.toBe(true);
+        });
+
+        it('should NOT mark the new hyperlink as a blueprint when parent is a non-blueprint node (baseline)', () => {
+          state.activeNodeId = 'node-1';
+
+          const result = actions.pasteAsHyperlink(matchingClipboardText);
+
+          expect(result).toBe('pasted');
+          const newNode = findNewHyperlink();
+          expect(newNode).toBeDefined();
+          expect(newNode?.metadata.isBlueprint).not.toBe(true);
+        });
+
+        it('should still set isHyperlink and linkedNodeId on the new node when parent is a blueprint', () => {
+          state.nodes['blueprint-parent'] = {
+            id: 'blueprint-parent',
+            content: 'Blueprint parent',
+            children: [],
+            metadata: { isBlueprint: true },
+          };
+          state.ancestorRegistry['blueprint-parent'] = ['root'];
+          state.activeNodeId = 'blueprint-parent';
+
+          actions.pasteAsHyperlink(matchingClipboardText);
+
+          const newNode = findNewHyperlink();
+          expect(newNode?.metadata.isHyperlink).toBe(true);
+          expect(newNode?.metadata.linkedNodeId).toBe('node-2');
+        });
+      });
     });
 
     describe('hasHyperlinkCache', () => {
@@ -1748,6 +1830,71 @@ describe('clipboardActions', () => {
         await actions.pasteNodes();
 
         expect(state.nodes['node-1'].children.length).toBe(originalChildCount + 1);
+      });
+
+      describe('blueprint inheritance', () => {
+        function findPastedUrlNode(url: string) {
+          return Object.values(state.nodes).find(
+            (n) => n.content === url && n.id !== state.rootNodeId,
+          );
+        }
+
+        it('should NOT mark the pasted URL node as a blueprint when parent is a blueprint', async () => {
+          state.nodes['blueprint-parent'] = {
+            id: 'blueprint-parent',
+            content: 'Blueprint parent',
+            children: [],
+            metadata: { isBlueprint: true },
+          };
+          state.ancestorRegistry['blueprint-parent'] = ['root'];
+          state.activeNodeId = 'blueprint-parent';
+          mockClipboardContent = 'https://example.com/page';
+
+          const result = await actions.pasteNodes();
+
+          expect(result).toBe('pasted');
+          const newNode = findPastedUrlNode('https://example.com/page');
+          expect(newNode).toBeDefined();
+          expect(newNode?.metadata.isBlueprint).not.toBe(true);
+        });
+
+        it('should NOT mark the pasted URL node as a blueprint when parent is a workflow step', async () => {
+          state.nodes['workflow-node'] = {
+            id: 'workflow-node',
+            content: 'Workflow',
+            children: ['workflow-step'],
+            metadata: { isBlueprint: true, isWorkflow: true },
+          };
+          state.nodes['workflow-step'] = {
+            id: 'workflow-step',
+            content: 'Step 1',
+            children: [],
+            metadata: { isBlueprint: true },
+          };
+          state.ancestorRegistry['workflow-node'] = ['root'];
+          state.ancestorRegistry['workflow-step'] = ['root', 'workflow-node'];
+          state.activeNodeId = 'workflow-step';
+          mockClipboardContent = 'https://example.com/page';
+
+          const result = await actions.pasteNodes();
+
+          expect(result).toBe('pasted');
+          const newNode = findPastedUrlNode('https://example.com/page');
+          expect(newNode).toBeDefined();
+          expect(newNode?.metadata.isBlueprint).not.toBe(true);
+        });
+
+        it('should NOT mark the pasted URL node as a blueprint when parent is non-blueprint (baseline)', async () => {
+          state.activeNodeId = 'node-1';
+          mockClipboardContent = 'https://example.com/page';
+
+          const result = await actions.pasteNodes();
+
+          expect(result).toBe('pasted');
+          const newNode = findPastedUrlNode('https://example.com/page');
+          expect(newNode).toBeDefined();
+          expect(newNode?.metadata.isBlueprint).not.toBe(true);
+        });
       });
     });
   });

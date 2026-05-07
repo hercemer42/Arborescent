@@ -346,7 +346,6 @@ function handleExternalUrlPaste(url: string, ctx: PasteContext): PasteResult {
   const newNodeId = uuidv4();
   const targetParent = state.nodes[targetParentId];
   const position = targetParent ? targetParent.children.length : 0;
-  const isTargetParentBlueprint = targetParent?.metadata.isBlueprint === true;
 
   const command = new CreateNodeCommand(
     newNodeId,
@@ -363,7 +362,7 @@ function handleExternalUrlPaste(url: string, ctx: PasteContext): PasteResult {
     },
     (partial) => set(partial),
     triggerAutosave,
-    isTargetParentBlueprint ? { isBlueprint: true } : {},
+    {},
   );
 
   actions.executeCommand(command);
