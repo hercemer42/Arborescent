@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-05-07T12:38:16.544Z'
+updated: '2026-05-07T12:47:04.708Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -25798,8 +25798,7 @@ nodes:
   bdceb696-248d-4199-9182-db0689445c07:
     id: bdceb696-248d-4199-9182-db0689445c07
     content: Documentation
-    children:
-      - 45ae566b-630f-485b-a990-6d950d4f8bc3
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -74396,7 +74395,7 @@ nodes:
       blueprintColor: '#ef4444'
       isBlueprint: true
       contextMode: execute
-      expanded: false
+      expanded: true
   5c79a251-defe-4ef2-a9ce-30e2d89a8f35:
     id: 5c79a251-defe-4ef2-a9ce-30e2d89a8f35
     content: Squash commits if there are more than one
@@ -83467,7 +83466,8 @@ nodes:
   2d2c0539-d8cf-4708-bcd7-df70bd7d7cf4:
     id: 2d2c0539-d8cf-4708-bcd7-df70bd7d7cf4
     content: Worktree creation
-    children: []
+    children:
+      - 9f55ead4-f0e3-4969-8e10-8e61f33f89ec
     metadata:
       status: pending
       isBlueprint: true
@@ -84866,6 +84866,7 @@ nodes:
     content: Merge to master
     children:
       - 9773cf52-2f90-46a0-b8e0-d38673eb58ec
+      - 45ae566b-630f-485b-a990-6d950d4f8bc3
     metadata:
       status: pending
       isBlueprint: true
@@ -86127,6 +86128,7 @@ nodes:
     metadata:
       status: pending
       isBlueprint: true
+      expanded: false
   65081cc7-b677-4683-85a9-e18df2a1b320:
     id: 65081cc7-b677-4683-85a9-e18df2a1b320
     content: Then merge the worktree to master
@@ -90389,3 +90391,16 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
+  9f55ead4-f0e3-4969-8e10-8e61f33f89ec:
+    id: 9f55ead4-f0e3-4969-8e10-8e61f33f89ec
+    content: 'Bug : Pause workflow hook not always working'
+    children:
+      - 1f8f7b11-b46c-460d-b57c-b8bd7b44c163
+    metadata:
+      status: pending
+  1f8f7b11-b46c-460d-b57c-b8bd7b44c163:
+    id: 1f8f7b11-b46c-460d-b57c-b8bd7b44c163
+    content: "Sometimes does, sometimes doesn't\_"
+    children: []
+    metadata:
+      status: pending
