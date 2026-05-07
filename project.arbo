@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-05-07T12:47:04.708Z'
+updated: '2026-05-07T12:58:08.335Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -33462,6 +33462,8 @@ nodes:
     id: 321fe1d0-3ca3-45f5-bab8-56dd0f003e78
     content: Done
     children:
+      - 9773cf52-2f90-46a0-b8e0-d38673eb58ec
+      - 45ae566b-630f-485b-a990-6d950d4f8bc3
       - df3f817f-36fc-4b13-b94b-fb8f213cb7c3
       - 00b32bb4-f094-42e5-bba5-7bb5791d6e46
       - 8a3d9d42-d2aa-4e03-96d8-7a84d4243131
@@ -33607,8 +33609,8 @@ nodes:
       - 6d973cbb-3c7c-4ac4-925d-ffd5d659332c
       - fbf20e91-d852-4406-9815-952fa7727f33
       - 333cb3e7-a25e-4d18-9dfa-82cf75328fff
-      - bdceb696-248d-4199-9182-db0689445c07
       - ddd90208-5752-46cf-b72a-5fcbe040b2e0
+      - bdceb696-248d-4199-9182-db0689445c07
     metadata:
       status: pending
       isBlueprint: true
@@ -83473,82 +83475,22 @@ nodes:
       isBlueprint: true
       stepType: autonomous
       appliedContextId: 03a24994-0c6d-4b4a-b9ee-fa96d2de8d03
-  2b9a984f-833a-4ab1-9e97-76ed4f50736c:
-    id: 2b9a984f-833a-4ab1-9e97-76ed4f50736c
-    content: If it is not related then fork main branch instead
-    children: []
-    metadata:
-      status: pending
-      isBlueprint: true
-  8abbef10-7302-431a-a4c8-894501eaf832:
-    id: 8abbef10-7302-431a-a4c8-894501eaf832
-    content: If this work is a follow up to the current active branch then fork the current branch
-    children:
-      - 2b9a984f-833a-4ab1-9e97-76ed4f50736c
-    metadata:
-      status: pending
-      isBlueprint: true
-  91b4df44-4c32-46b7-81f9-3a50ffdc9a62:
-    id: 91b4df44-4c32-46b7-81f9-3a50ffdc9a62
-    content: Do not symlink node modules
-    children: []
-    metadata:
-      status: pending
-      isBlueprint: true
-  c42c95d9-54ea-4074-8ab3-afbe7b7b4293:
-    id: c42c95d9-54ea-4074-8ab3-afbe7b7b4293
-    content: Make a new worktree for this feature
-    children:
-      - 8abbef10-7302-431a-a4c8-894501eaf832
-      - 91b4df44-4c32-46b7-81f9-3a50ffdc9a62
-    metadata:
-      status: pending
-      isBlueprint: true
-  9edd4e1d-e4e2-4034-a136-bc7f969730bf:
-    id: 9edd4e1d-e4e2-4034-a136-bc7f969730bf
-    content: Under it add a URI link to open vscode on the workree
-    children: []
-    metadata:
-      status: pending
-      isBlueprint: true
-  8df37c7a-da9c-406c-bf8a-771faaa2f29b:
-    id: 8df37c7a-da9c-406c-bf8a-771faaa2f29b
-    content: Create the worktree node as the second child instead
-    children: []
-    metadata:
-      status: pending
-      isBlueprint: true
-  28a649bd-b6a8-46bb-bece-854caead6619:
-    id: 28a649bd-b6a8-46bb-bece-854caead6619
-    content: If the first child of the parent already contains a link, to linear for example
-    children:
-      - 8df37c7a-da9c-406c-bf8a-771faaa2f29b
-    metadata:
-      status: pending
-      isBlueprint: true
-  2127a662-b3a2-471f-9ac8-fc105deb5930:
-    id: 2127a662-b3a2-471f-9ac8-fc105deb5930
-    content: Add a node 'worktree' as the first child of the parent
-    children:
-      - 9edd4e1d-e4e2-4034-a136-bc7f969730bf
-      - 28a649bd-b6a8-46bb-bece-854caead6619
-    metadata:
-      status: pending
-      isBlueprint: true
-      expanded: true
   03a24994-0c6d-4b4a-b9ee-fa96d2de8d03:
     id: 03a24994-0c6d-4b4a-b9ee-fa96d2de8d03
     content: Worktree creation
     children:
-      - c42c95d9-54ea-4074-8ab3-afbe7b7b4293
-      - 2127a662-b3a2-471f-9ac8-fc105deb5930
+      - 6ed7cdaf-51de-4029-967e-0e8e0018f138
+      - 169d492f-85be-4deb-b444-430415ea173b
     metadata:
-      isBlueprint: true
+      status: pending
+      expanded: false
+      deleted: false
+      plugins: {}
+      appliedContextId: __basic_review__
+      isContextDeclaration: true
       blueprintIcon: FolderTree
       blueprintColor: '#f97316'
-      isContextDeclaration: true
-      contextMode: collaborate
-      expanded: false
+      isBlueprint: true
   2f4a316f-d42b-4bc3-a2ef-aca3a2ea2b50:
     id: 2f4a316f-d42b-4bc3-a2ef-aca3a2ea2b50
     content: 📄 Product spec
@@ -84864,9 +84806,7 @@ nodes:
   ddd90208-5752-46cf-b72a-5fcbe040b2e0:
     id: ddd90208-5752-46cf-b72a-5fcbe040b2e0
     content: Merge to master
-    children:
-      - 9773cf52-2f90-46a0-b8e0-d38673eb58ec
-      - 45ae566b-630f-485b-a990-6d950d4f8bc3
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -87012,15 +86952,16 @@ nodes:
     id: 45ae566b-630f-485b-a990-6d950d4f8bc3
     content: PR2 - Independent collaborate and execute flags on context — picker UX rework
     children:
-      - 9f9cb95a-f4f7-4142-9324-77e46f666b7b
-      - c9b68535-90ec-48f1-b549-ea90e6d195cf
-      - aa1d1ce0-9ae3-421d-9718-ed2eaf9e7e1c
-      - 79d8479c-0297-4644-821d-23d9d11a0a9c
-      - 3fb1a1b1-ac0b-442c-a80b-c29ffa0a7f45
-      - 8f4272db-4124-4b22-ae06-890b97b40d61
-      - c8b6c28e-a69f-4c7d-a002-5ff8dc6d64c1
-      - dcaf266b-b002-4e0c-a766-c7fe0a8148bd
-      - 56649805-cd0b-4cb2-9d1e-ba5840ce7325
+      - 506438f5-dc34-4a20-ae15-3ce76d48615d
+      - 77c315d9-780c-466a-ad75-3f256a37cf90
+      - 178b6373-d326-459a-80dd-295857b350b8
+      - 73544569-32a8-455b-bffe-f07b8afc31a3
+      - 3e86505a-32d9-4cd6-b48c-d20edcdd8aab
+      - de61b6ff-7d96-439a-8ac9-35cc8abce46b
+      - 80c5aace-8f58-4f6e-8fea-e03b8dd90652
+      - f3c6bb00-eaaf-4930-b34b-a025428a7706
+      - d0ffbb5f-3928-4aae-a88e-03e5f1184d23
+      - e6d5a51d-a004-4f92-be89-41d5e5dcd390
     metadata:
       status: completed
       expanded: false
@@ -88830,1567 +88771,6 @@ nodes:
     children: []
     metadata:
       status: pending
-  9f9cb95a-f4f7-4142-9324-77e46f666b7b:
-    id: 9f9cb95a-f4f7-4142-9324-77e46f666b7b
-    content: worktree
-    children:
-      - 86e89a9e-289b-4666-8c6c-18bd8b5cd621
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  86e89a9e-289b-4666-8c6c-18bd8b5cd621:
-    id: 86e89a9e-289b-4666-8c6c-18bd8b5cd621
-    content: '[Open in VSCode](vscode://file/Users/brianfox/dev/Arborescent-context-picker)'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  c9b68535-90ec-48f1-b549-ea90e6d195cf:
-    id: c9b68535-90ec-48f1-b549-ea90e6d195cf
-    content: Scope of this PR
-    children:
-      - 35b7c3d7-706e-45c2-a990-3d319fc22d02
-      - 54dd9a08-88b3-44f4-8955-9928f06810f5
-      - 7764b3e5-d39f-44b4-b676-d3669410b036
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  35b7c3d7-706e-45c2-a990-3d319fc22d02:
-    id: 35b7c3d7-706e-45c2-a990-3d319fc22d02
-    content: In scope
-    children:
-      - 8598e34e-971b-4ab5-85bf-0671d60d744b
-      - cbd89748-4eaa-4a87-a1e5-c39da97b7f54
-      - 70630e43-3adf-47cf-a3c2-ec215b848ff6
-      - 06fbcafb-68be-4f7c-b2eb-b425b8325aba
-      - 4eccc2c3-5b63-4f61-a044-db3b3d6489b7
-      - 8b2519d3-7f4d-47f0-9a7e-7ef86fae0301
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  8598e34e-971b-4ab5-85bf-0671d60d744b:
-    id: 8598e34e-971b-4ab5-85bf-0671d60d744b
-    content: Replace `ModeToggle` 2-option radio with two inline checkboxes inside `CustomizeDialog`
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  cbd89748-4eaa-4a87-a1e5-c39da97b7f54:
-    id: cbd89748-4eaa-4a87-a1e5-c39da97b7f54
-    content: '`customizeDialogStore`: replace `selectedMode: ContextMode | null` with `selectedCollaborate: boolean | null` and `selectedExecute: boolean | null`'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  70630e43-3adf-47cf-a3c2-ec215b848ff6:
-    id: 70630e43-3adf-47cf-a3c2-ec215b848ff6
-    content: 'Framing copy: "Default: Action — AI responds however the context directs" plus an "Also ask for:" header'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  06fbcafb-68be-4f7c-b2eb-b425b8325aba:
-    id: 06fbcafb-68be-4f7c-b2eb-b425b8325aba
-    content: Each checkbox label describes its output shape (reviewable tree update / code or file changes), not a mode name
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  4eccc2c3-5b63-4f61-a044-db3b3d6489b7:
-    id: 4eccc2c3-5b63-4f61-a044-db3b3d6489b7
-    content: Saving with both checkboxes off persists Action without snapping to a default
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  8b2519d3-7f4d-47f0-9a7e-7ef86fae0301:
-    id: 8b2519d3-7f4d-47f0-9a7e-7ef86fae0301
-    content: Picker UI tests (assert framing copy, checkbox independence, keyboard accessibility, Action persistence)
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  54dd9a08-88b3-44f4-8955-9928f06810f5:
-    id: 54dd9a08-88b3-44f4-8955-9928f06810f5
-    content: Out of scope (already shipped in PR1)
-    children:
-      - a142d599-ede3-4e51-8746-67dc3dcf94dd
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  a142d599-ede3-4e51-8746-67dc3dcf94dd:
-    id: a142d599-ede3-4e51-8746-67dc3dcf94dd
-    content: Data model, migration, prompt composition, feedback panel auto-open trigger, right-click apply-context menu, built-in defaults, consumer re-keying
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  7764b3e5-d39f-44b4-b676-d3669410b036:
-    id: 7764b3e5-d39f-44b4-b676-d3669410b036
-    content: Dependencies
-    children:
-      - e62ef399-144a-4914-94c8-13c4f12fc958
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  e62ef399-144a-4914-94c8-13c4f12fc958:
-    id: e62ef399-144a-4914-94c8-13c4f12fc958
-    content: Depends on PR1 having shipped (or being available on a parent branch). PR1 establishes the four-state data model, the right-click menu listing four named states, and the prompt composition; this PR only changes the picker UI
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  aa1d1ce0-9ae3-421d-9718-ed2eaf9e7e1c:
-    id: aa1d1ce0-9ae3-421d-9718-ed2eaf9e7e1c
-    content: User story
-    children:
-      - 3b33dfa2-cf2b-44ec-9729-78acb89175e4
-      - 02481411-4cd2-402b-93db-647ae4b59032
-      - 0d25548c-29a6-4e7d-9d1b-6d7fc3d286b7
-      - 0c6f019e-753d-4076-9f22-39c90d2fbed0
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  3b33dfa2-cf2b-44ec-9729-78acb89175e4:
-    id: 3b33dfa2-cf2b-44ec-9729-78acb89175e4
-    content: 📄 Product spec
-    children:
-      - 0e356c20-5817-48f0-bf80-9514a2fcd648
-      - 11e1d898-3a89-42ad-8b20-9fe6a20d72dc
-      - 73ca598f-6d22-4ed8-9fbd-871e62246064
-      - 770b68b9-31a2-489c-886b-ac170edfde79
-      - b27120fb-7b0f-48ae-9dd6-13d1ff171a6e
-      - bbb6e69f-72f4-484f-a314-83d39bf5213a
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  0e356c20-5817-48f0-bf80-9514a2fcd648:
-    id: 0e356c20-5817-48f0-bf80-9514a2fcd648
-    content: 'Context: contexts today expose a single `metadata.contextMode` (''collaborate'' | ''execute'', default ''collaborate'') that conflates two output-shape requests — asking the AI for a reviewable tree update, and asking the AI for code/file changes. The binary cannot express their combination (implement AND check off cases), nor their absence (send the context as a standalone instruction with no scaffolding and no node content)'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  11e1d898-3a89-42ad-8b20-9fe6a20d72dc:
-    id: 11e1d898-3a89-42ad-8b20-9fe6a20d72dc
-    content: 'User: any user driving the AI from a node — running terminal executes, refining the outline, implementing-and-checking-off, or sending an instruction-only prompt with attached context'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  73ca598f-6d22-4ed8-9fbd-871e62246064:
-    id: 73ca598f-6d22-4ed8-9fbd-871e62246064
-    content: 'Current experience: the feedback panel auto-opens unconditionally; there is no way to ask the AI for both output shapes in one run, nor to send a free-form instruction without one of the two shapes being implied'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  770b68b9-31a2-489c-886b-ac170edfde79:
-    id: 770b68b9-31a2-489c-886b-ac170edfde79
-    content: 'Goal: each context independently declares whether the AI is asked for a reviewable tree update (`collaborate`) and/or for code/file changes (`execute`); the four (collaborate, execute) tuples surface as four named states (Collaborate / Execute / Collaborate & Execute / Action)'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  b27120fb-7b0f-48ae-9dd6-13d1ff171a6e:
-    id: b27120fb-7b0f-48ae-9dd6-13d1ff171a6e
-    content: Business rules
-    children:
-      - 542a4511-e30f-4db4-8052-5b1dd64fed4e
-      - 0f6a4e6a-770f-49b5-b473-d2e3db5db1f0
-      - 91c7e757-fcd4-40c7-8e35-f7db22cc239f
-      - 514682ee-8d33-4c9b-8b4e-479a91aee071
-      - cdba5855-3156-484b-8a47-72bebbe40ef1
-      - 1ce8921c-a6aa-45b2-a629-11a6cd386e66
-      - 2ec7b5ec-5e15-4771-bbc2-2acffd6b8a5b
-      - 16133701-f567-4be8-9eb5-86ba996d68d6
-      - 05b97bd9-c4d6-4fe0-a293-6f012a4e0571
-      - 0835908f-632a-4fc8-9645-7bd918128da0
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  542a4511-e30f-4db4-8052-5b1dd64fed4e:
-    id: 542a4511-e30f-4db4-8052-5b1dd64fed4e
-    content: 1. A context exposes two independent booleans, `collaborate` and `execute`, each defaulting to off (the Action state)
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  0f6a4e6a-770f-49b5-b473-d2e3db5db1f0:
-    id: 0f6a4e6a-770f-49b5-b473-d2e3db5db1f0
-    content: 2. When `collaborate` is on, the prompt includes a scaffolding block asking the AI for a reviewable tree update; the feedback panel auto-opens on AI response
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  91c7e757-fcd4-40c7-8e35-f7db22cc239f:
-    id: 91c7e757-fcd4-40c7-8e35-f7db22cc239f
-    content: 3. When `execute` is on, the prompt includes a scaffolding block asking the AI for code/file changes; this is an output-shape request, not a capability gate — Action mode can also do work if the context body directs it
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  514682ee-8d33-4c9b-8b4e-479a91aee071:
-    id: 514682ee-8d33-4c9b-8b4e-479a91aee071
-    content: 4. When both are on, the two scaffolding blocks compose into a single prompt; the panel auto-opens because `collaborate` is on
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  cdba5855-3156-484b-8a47-72bebbe40ef1:
-    id: cdba5855-3156-484b-8a47-72bebbe40ef1
-    content: 5. When both are off (Action), the prompt is the context body only — no scaffolding blocks, and the node content is omitted
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  1ce8921c-a6aa-45b2-a629-11a6cd386e66:
-    id: 1ce8921c-a6aa-45b2-a629-11a6cd386e66
-    content: 6. Scaffolding blocks are strictly disjoint by construction — the Execute block contains only code-change rules; the Collaborate block contains only list/temp-file rules — so the two compose without contradiction
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  2ec7b5ec-5e15-4771-bbc2-2acffd6b8a5b:
-    id: 2ec7b5ec-5e15-4771-bbc2-2acffd6b8a5b
-    content: 7. The picker shows two inline checkboxes in `CustomizeDialog` (replacing `ModeToggle`); copy frames Action as the default and Collaborate / Execute as additive output-shape requests
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  16133701-f567-4be8-9eb5-86ba996d68d6:
-    id: 16133701-f567-4be8-9eb5-86ba996d68d6
-    content: 8. The right-click apply-context menu lists the four named states (Collaborate / Execute / Collaborate & Execute / Action), each mapped to a (collaborate, execute) tuple
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  05b97bd9-c4d6-4fe0-a293-6f012a4e0571:
-    id: 05b97bd9-c4d6-4fe0-a293-6f012a4e0571
-    content: 9. Legacy `metadata.contextMode` is migrated on load — `'collaborate'` (or absent) → `(true, false)`; `'execute'` → `(false, true)`. The legacy field is dropped on next save; older app versions reading newer files fall back to defaults
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  0835908f-632a-4fc8-9645-7bd918128da0:
-    id: 0835908f-632a-4fc8-9645-7bd918128da0
-    content: 10. Only two built-in contexts ship — Basic review = `(true, false)`, Basic execute = `(false, true)`. Both-on and Action are user-composed via the picker
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  bbb6e69f-72f4-484f-a314-83d39bf5213a:
-    id: bbb6e69f-72f4-484f-a314-83d39bf5213a
-    content: Acceptance criteria
-    children:
-      - ceaa3b78-7d64-4af6-828a-d04b275e7dce
-      - ac4e9f5f-0eb0-4991-bd5b-6fd5e5da4a45
-      - 9762b3f7-e94b-4028-85fb-eea02cbce1aa
-      - 3513b239-8bba-4cdc-9357-88d68c815acf
-      - f5bc1281-e335-403a-aa76-a3af38a06a56
-      - 6a4944b7-24d9-4c28-9b91-9952711050a0
-      - a66b7923-620e-4c39-9a16-abf4bec19bc5
-      - 0cdf0a24-697d-40bb-9786-fb9fb984c338
-      - 3e67bee1-e59d-4a8e-8f21-70e621729c99
-      - 02414268-8883-455e-a980-045213a6dc02
-      - 4f28b45a-9d65-4af9-9de3-0d8daed048b2
-      - 70902db1-1acd-49d1-bad5-146e6978b91e
-      - 458fa9c0-c2ea-4661-833e-bc85fea4e23c
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  ceaa3b78-7d64-4af6-828a-d04b275e7dce:
-    id: ceaa3b78-7d64-4af6-828a-d04b275e7dce
-    content: '- [x] Action prompt contains the context body only — no scaffolding, no node content'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  ac4e9f5f-0eb0-4991-bd5b-6fd5e5da4a45:
-    id: ac4e9f5f-0eb0-4991-bd5b-6fd5e5da4a45
-    content: '- [x] Collaborate-only prompt contains the tree-update block and the node content; panel auto-opens'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  9762b3f7-e94b-4028-85fb-eea02cbce1aa:
-    id: 9762b3f7-e94b-4028-85fb-eea02cbce1aa
-    content: '- [x] Execute-only prompt contains the code-change block and the node content; panel does not auto-open'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  3513b239-8bba-4cdc-9357-88d68c815acf:
-    id: 3513b239-8bba-4cdc-9357-88d68c815acf
-    content: '- [x] Both-on prompt contains both blocks composed and the node content; panel auto-opens; AI follows both blocks rather than picking one'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  f5bc1281-e335-403a-aa76-a3af38a06a56:
-    id: f5bc1281-e335-403a-aa76-a3af38a06a56
-    content: '- [x] Picker renders "Default: Action — AI responds however the context directs" plus an "Also ask for:" header with two checkboxes whose labels describe the output shape each adds'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  6a4944b7-24d9-4c28-9b91-9952711050a0:
-    id: 6a4944b7-24d9-4c28-9b91-9952711050a0
-    content: '- [x] Right-click apply-context menu lists the four named states; selecting any one applies the corresponding tuple to the active node'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  a66b7923-620e-4c39-9a16-abf4bec19bc5:
-    id: a66b7923-620e-4c39-9a16-abf4bec19bc5
-    content: '- [x] All four named states are reachable from the picker (two checkboxes), the right-click apply menu (four named items), and any keyboard shortcut wired to apply context'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  0cdf0a24-697d-40bb-9786-fb9fb984c338:
-    id: 0cdf0a24-697d-40bb-9786-fb9fb984c338
-    content: '- [x] Behaviour is consistent across runs from the node, keyboard shortcut, and right-click menu for the same flag pair'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  3e67bee1-e59d-4a8e-8f21-70e621729c99:
-    id: 3e67bee1-e59d-4a8e-8f21-70e621729c99
-    content: '- [x] Built-in contexts ship the two single-flag presets only; both-on and Action are user-composed'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  02414268-8883-455e-a980-045213a6dc02:
-    id: 02414268-8883-455e-a980-045213a6dc02
-    content: '- [x] Existing `.arbo` files load with no behavioural change; re-save writes only the new flags (legacy `contextMode` field dropped)'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  4f28b45a-9d65-4af9-9de3-0d8daed048b2:
-    id: 4f28b45a-9d65-4af9-9de3-0d8daed048b2
-    content: '- [x] No flicker: the panel never briefly opens then closes for non-collaborate runs'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  70902db1-1acd-49d1-bad5-146e6978b91e:
-    id: 70902db1-1acd-49d1-bad5-146e6978b91e
-    content: '- [x] Disjoint-blocks invariant holds at merge time: Execute block carries no list/temp-file rules; Collaborate block carries no source-file rules'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  458fa9c0-c2ea-4661-833e-bc85fea4e23c:
-    id: 458fa9c0-c2ea-4661-833e-bc85fea4e23c
-    content: '- [x] Each picker checkbox has an associated label and is reachable / activatable by keyboard'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  02481411-4cd2-402b-93db-647ae4b59032:
-    id: 02481411-4cd2-402b-93db-647ae4b59032
-    content: 🔧 Implementation proposal
-    children:
-      - d8fe984e-e646-4395-bcd5-e050132ca004
-      - 6ca0efd9-4b43-415e-8eb0-30bfeb6cb3da
-      - 7b872709-1051-44e8-af61-24afd2d9e5cb
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  d8fe984e-e646-4395-bcd5-e050132ca004:
-    id: d8fe984e-e646-4395-bcd5-e050132ca004
-    content: 'Approach: replace `metadata.contextMode` with two booleans (`collaborate`, `execute`). The prompt builder appends each flag''s scaffolding block when on; Action mode short-circuits both blocks AND drops the node content. The feedback panel auto-open trigger keys off `collaborate` only. `resolveContextMode` and the `mode` field on `getContextDeclarations` become `resolveContextFlags` returning `{collaborate, execute}`. The four tuples surface as user-facing names (Collaborate / Execute / Collaborate & Execute / Action) on display surfaces; the underlying model stays two booleans'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  6ca0efd9-4b43-415e-8eb0-30bfeb6cb3da:
-    id: 6ca0efd9-4b43-415e-8eb0-30bfeb6cb3da
-    content: 'Touchpoints: node metadata schema and `.arbo` load/save (one-way migration sits here), `nodeHelpers.ts`, `promptBuilder.ts` (compose disjoint blocks; Action short-circuit), feedback panel auto-open trigger, `CustomizeDialog` / `ModeToggle` (two inline checkboxes + "Default: Action / Also ask for ..." copy), `customizeDialogStore` (`selectedCollaborate` / `selectedExecute`), right-click apply-context menu (four named items), built-in context definitions (two presets ship), gutter / context indicators (render Action cleanly), `useWorkflowSubmenu`, `useTerminalActions`, `terminalExecution`, and every test using `contextMode` literals — full grep pre-merge, ~40 files in one PR'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  7b872709-1051-44e8-af61-24afd2d9e5cb:
-    id: 7b872709-1051-44e8-af61-24afd2d9e5cb
-    content: 'Constraints to call out: migration must run before any consumer reads context metadata; the disjoint-blocks invariant is the single safety property that makes both-on composition conflict-free, enforced by a one-time pre-merge grep across the two scaffolding authoring sites (Execute block must contain zero list/temp-file rules, Collaborate block must contain zero source-file rules); Action-mode short-circuit must skip both scaffolding blocks AND drop the node content — neither suppression is the prompt builder''s default behaviour; flags inherit down the tree like other context properties; older app versions reading newer files degrade to defaults (accepted forward-compat cost, no shadowed `contextMode` field on save)'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  0d25548c-29a6-4e7d-9d1b-6d7fc3d286b7:
-    id: 0d25548c-29a6-4e7d-9d1b-6d7fc3d286b7
-    content: Technical refinement
-    children:
-      - 3de0a9c2-3bdb-46f1-9f59-12ee566f1d6f
-      - 96fcc642-76aa-4455-9125-7aaa7e07cb3b
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  3de0a9c2-3bdb-46f1-9f59-12ee566f1d6f:
-    id: 3de0a9c2-3bdb-46f1-9f59-12ee566f1d6f
-    content: Flag complications
-    children:
-      - a472a22c-af0e-40d6-80d2-ee1bf0c37cdf
-      - e1f7a3b5-8461-4405-b2c0-3abb69f806fa
-      - a23da3ab-f123-48a4-a0a0-a17c94d954f9
-      - d1376d2b-557b-4741-8060-970b6084f369
-      - 6b099526-e8a5-4488-97a1-2ddfe778cbce
-      - 7efb0942-1ebf-494e-9d35-ee231abdefa6
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  a472a22c-af0e-40d6-80d2-ee1bf0c37cdf:
-    id: a472a22c-af0e-40d6-80d2-ee1bf0c37cdf
-    content: Both-on is a prompt combination the AI has never received; if the two scaffolding blocks don't read coherently when concatenated, the AI will pick one and ignore the other — block copy needs a once-over before ship
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  e1f7a3b5-8461-4405-b2c0-3abb69f806fa:
-    id: e1f7a3b5-8461-4405-b2c0-3abb69f806fa
-    content: Disjoint-blocks invariant has no automated lint — it's a one-time pre-merge grep. Any later edit that adds a cross-cutting rule to either block silently re-opens the conflict class; worth a line in the PR review checklist
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  a23da3ab-f123-48a4-a0a0-a17c94d954f9:
-    id: a23da3ab-f123-48a4-a0a0-a17c94d954f9
-    content: Action mode is two suppressions in one (skip scaffolding AND drop node content); if either regresses, Action collapses into "scaffolding-off but node-content-on", which is a different user contract — assert both suppressions explicitly
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  d1376d2b-557b-4741-8060-970b6084f369:
-    id: d1376d2b-557b-4741-8060-970b6084f369
-    content: 'Migration ordering: any reader that touches context metadata before the load-path translator runs (lazy hydration, async store init) will see legacy `contextMode` and miss the new flags; verify the load path is the single entry point'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  6b099526-e8a5-4488-97a1-2ddfe778cbce:
-    id: 6b099526-e8a5-4488-97a1-2ddfe778cbce
-    content: 'Out of scope: forward-compat for older app versions reading newer `.arbo` files (they degrade to defaults — no shadowed field), redesigning the feedback panel itself, changing AI output parsing, layered presets above the booleans'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  7efb0942-1ebf-494e-9d35-ee231abdefa6:
-    id: 7efb0942-1ebf-494e-9d35-ee231abdefa6
-    content: 'ROI sanity: the cost is ~40 files of mechanical re-keying plus the prompt-composition refactor; if either scaffolding block needs significant rewriting to compose coherently, scope creeps — flag early in the PR rather than after merge'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  96fcc642-76aa-4455-9125-7aaa7e07cb3b:
-    id: 96fcc642-76aa-4455-9125-7aaa7e07cb3b
-    content: Approach summary
-    children:
-      - e8cd9dfa-1bc4-4891-9d9a-78fd4a8c0934
-      - 8420e554-3866-49f5-bf73-080e693ed383
-      - d81a2ce7-8622-4809-b418-2997619d1bcc
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  e8cd9dfa-1bc4-4891-9d9a-78fd4a8c0934:
-    id: e8cd9dfa-1bc4-4891-9d9a-78fd4a8c0934
-    content: Two booleans (`collaborate`, `execute`) replace `metadata.contextMode`; the prompt builder composes disjoint scaffolding blocks per flag, and Action mode (neither flag) short-circuits both blocks AND drops the node content
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  8420e554-3866-49f5-bf73-080e693ed383:
-    id: 8420e554-3866-49f5-bf73-080e693ed383
-    content: Migration is one-way on `.arbo` load; the legacy field is dropped on next save with no shadowed back-compat field
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  d81a2ce7-8622-4809-b418-2997619d1bcc:
-    id: d81a2ce7-8622-4809-b418-2997619d1bcc
-    content: 'Non-obvious: Action mode''s node-content suppression is new behaviour with no analogue today, and both-on is a prompt combination the AI has never seen — block copy must compose into a coherent pair'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  0c6f019e-753d-4076-9f22-39c90d2fbed0:
-    id: 0c6f019e-753d-4076-9f22-39c90d2fbed0
-    content: Tests
-    children:
-      - 837ef378-f4ad-4391-b6a1-203fe25db4e9
-      - 8a507e3b-38c0-4e40-93a9-af942760c408
-      - 6a8b4a0d-cc8f-4dea-8efa-06c03af54b3d
-      - f172e261-2928-426d-9fa4-a8a981cfe5ca
-      - fff7156b-6ef2-4212-b01e-57f769e00d88
-      - 90b35a65-918a-4e93-8b76-6d0f43f792e0
-      - e5d533e7-77df-4cac-9c59-a58ee588a17a
-      - f030f240-f408-416f-93e4-73214595cf0a
-      - 5c84fe69-674d-455a-830e-575fdaa5941a
-      - b38400e8-00eb-4b57-8768-e532afa4df4c
-      - a7fc3b34-4083-4f1b-a0d0-db259c48e649
-      - a89186c3-4ca6-40ba-b8c9-d5b21ff16c09
-      - 01158d2b-12d7-4370-8cce-fa8e7859a081
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  837ef378-f4ad-4391-b6a1-203fe25db4e9:
-    id: 837ef378-f4ad-4391-b6a1-203fe25db4e9
-    content: 'Unit: `.arbo` load/save migration (next to the load path)'
-    children:
-      - 6f3e2302-721d-4b35-b610-ce2776dfe175
-      - f1c06ccc-b5dd-4566-b2fc-6ded6998afbe
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  6f3e2302-721d-4b35-b610-ce2776dfe175:
-    id: 6f3e2302-721d-4b35-b610-ce2776dfe175
-    content: '- [x] Legacy `''collaborate''` / `''execute''` / absent / unknown each translate to the correct tuple; legacy field stripped on save; idempotent on already-migrated input'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  f1c06ccc-b5dd-4566-b2fc-6ded6998afbe:
-    id: f1c06ccc-b5dd-4566-b2fc-6ded6998afbe
-    content: '- [x] Migration runs before any consumer reads metadata (single-entry-point assertion)'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  8a507e3b-38c0-4e40-93a9-af942760c408:
-    id: 8a507e3b-38c0-4e40-93a9-af942760c408
-    content: 'Unit: `nodeHelpers.resolveContextFlags` (`src/renderer/utils/tests/nodeHelpers.test.ts`)'
-    children:
-      - 8f85be6f-4050-4580-aeba-a15456579d33
-      - 47449727-1779-42e1-b226-bbcc5e73a7b8
-      - 01f3afd9-149a-492a-82ff-41ddfea3bb1a
-      - 509ac786-5c0e-469d-bbe8-1f370562fdd4
-      - e79fe030-c80d-4894-a663-4175db1ac1d2
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  8f85be6f-4050-4580-aeba-a15456579d33:
-    id: 8f85be6f-4050-4580-aeba-a15456579d33
-    content: '- [x] Defaults when `contextId` undefined, when metadata absent, when neither field is set on the node'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  47449727-1779-42e1-b226-bbcc5e73a7b8:
-    id: 47449727-1779-42e1-b226-bbcc5e73a7b8
-    content: '- [x] `BASIC_EXECUTE_CONTEXT_ID` → `(false, true)`; `BASIC_REVIEW_CONTEXT_ID` → `(true, false)`'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  01f3afd9-149a-492a-82ff-41ddfea3bb1a:
-    id: 01f3afd9-149a-492a-82ff-41ddfea3bb1a
-    content: '- [x] Declarations and node metadata are read in the right precedence order'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  509ac786-5c0e-469d-bbe8-1f370562fdd4:
-    id: 509ac786-5c0e-469d-bbe8-1f370562fdd4
-    content: '- [x] Explicit `(false, false)` (Action) persists — does not snap to a default'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  e79fe030-c80d-4894-a663-4175db1ac1d2:
-    id: e79fe030-c80d-4894-a663-4175db1ac1d2
-    content: '- [x] `getContextDeclarations` returns `{collaborate, execute}` per entry instead of `mode`'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  6a8b4a0d-cc8f-4dea-8efa-06c03af54b3d:
-    id: 6a8b4a0d-cc8f-4dea-8efa-06c03af54b3d
-    content: 'Unit: `promptBuilder` (`src/renderer/utils/tests/promptBuilder.test.ts`)'
-    children:
-      - 7655a935-9e99-42cf-8418-f3f5a297fecb
-      - ac5125de-934f-4f30-a9d7-9bf73e78eeb9
-      - 0bf81901-d309-4f47-9e47-be828e6e653c
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  7655a935-9e99-42cf-8418-f3f5a297fecb:
-    id: 7655a935-9e99-42cf-8418-f3f5a297fecb
-    content: '- [x] Each of the four tuples produces the right prompt shape (presence/absence of each scaffolding block; presence/absence of node content)'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  ac5125de-934f-4f30-a9d7-9bf73e78eeb9:
-    id: ac5125de-934f-4f30-a9d7-9bf73e78eeb9
-    content: '- [x] Disjoint-blocks invariant: Execute block snapshot contains zero list/temp-file phrases; Collaborate block snapshot contains zero source-file phrases (substring negatives)'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  0bf81901-d309-4f47-9e47-be828e6e653c:
-    id: 0bf81901-d309-4f47-9e47-be828e6e653c
-    content: '- [x] Title-only: "composed both-on prompt reads coherently" — body deferred until block copy is locked'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  f172e261-2928-426d-9fa4-a8a981cfe5ca:
-    id: f172e261-2928-426d-9fa4-a8a981cfe5ca
-    content: 'Unit: feedback panel auto-open trigger (alongside the trigger module)'
-    children:
-      - 6ba9e631-0f5c-461e-a36d-60a96d9be2e9
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  6ba9e631-0f5c-461e-a36d-60a96d9be2e9:
-    id: 6ba9e631-0f5c-461e-a36d-60a96d9be2e9
-    content: '- [x] Auto-opens iff `collaborate=true`; never opens-then-closes when `collaborate=false`'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  fff7156b-6ef2-4212-b01e-57f769e00d88:
-    id: fff7156b-6ef2-4212-b01e-57f769e00d88
-    content: 'Unit: `CustomizeDialog` / picker UI (replacing `ModeToggle`)'
-    children:
-      - 3dbf5ecd-5273-4928-bbe2-08d82a8f15f1
-      - 7c89ff33-176b-492f-8b57-c0e780187916
-      - a6c72a4d-553c-47de-aa57-042137fbce79
-      - f25a97d7-460d-4fc5-af5d-1b485aa03fb2
-      - 275831e4-3700-4812-8847-1bb43ec7fbd1
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  3dbf5ecd-5273-4928-bbe2-08d82a8f15f1:
-    id: 3dbf5ecd-5273-4928-bbe2-08d82a8f15f1
-    content: '- [x] Two checkboxes render and reflect the current flag state; toggle independently of each other'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  7c89ff33-176b-492f-8b57-c0e780187916:
-    id: 7c89ff33-176b-492f-8b57-c0e780187916
-    content: '- [x] Saving with both off persists Action without snapping to a default'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  a6c72a4d-553c-47de-aa57-042137fbce79:
-    id: a6c72a4d-553c-47de-aa57-042137fbce79
-    content: '- [x] Framing copy "Default: Action — AI responds however the context directs" and "Also ask for:" header are visible'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  f25a97d7-460d-4fc5-af5d-1b485aa03fb2:
-    id: f25a97d7-460d-4fc5-af5d-1b485aa03fb2
-    content: '- [x] Checkbox labels describe the output shape added (reviewable tree update / code or file changes), not mode names — assert visible text'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  275831e4-3700-4812-8847-1bb43ec7fbd1:
-    id: 275831e4-3700-4812-8847-1bb43ec7fbd1
-    content: '- [x] Each checkbox has an associated label and is keyboard-reachable / activatable'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  90b35a65-918a-4e93-8b76-6d0f43f792e0:
-    id: 90b35a65-918a-4e93-8b76-6d0f43f792e0
-    content: 'Unit: right-click apply-context menu'
-    children:
-      - 1608d285-8a8c-425b-a37c-4778e80000d2
-      - 1af60392-e40c-409a-b14f-3a22a9a6e4bc
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  1608d285-8a8c-425b-a37c-4778e80000d2:
-    id: 1608d285-8a8c-425b-a37c-4778e80000d2
-    content: '- [x] Menu lists exactly the four named states; selecting each applies the corresponding tuple to the active node'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  1af60392-e40c-409a-b14f-3a22a9a6e4bc:
-    id: 1af60392-e40c-409a-b14f-3a22a9a6e4bc
-    content: '- [x] Active item indicated based on the active node''s flags'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  e5d533e7-77df-4cac-9c59-a58ee588a17a:
-    id: e5d533e7-77df-4cac-9c59-a58ee588a17a
-    content: 'Unit: `customizeDialogStore`'
-    children:
-      - 2152db5a-c3e9-4b72-a6ce-ae7bcb153b00
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  2152db5a-c3e9-4b72-a6ce-ae7bcb153b00:
-    id: 2152db5a-c3e9-4b72-a6ce-ae7bcb153b00
-    content: '- [x] Two independently-nullable fields (`selectedCollaborate`, `selectedExecute`); both null/false persists as Action'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  f030f240-f408-416f-93e4-73214595cf0a:
-    id: f030f240-f408-416f-93e4-73214595cf0a
-    content: 'Unit: built-in context definitions'
-    children:
-      - d24ed374-34cd-46a8-b657-6dfadd1cd3e6
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  d24ed374-34cd-46a8-b657-6dfadd1cd3e6:
-    id: d24ed374-34cd-46a8-b657-6dfadd1cd3e6
-    content: '- [x] Two presets resolve to the right tuples; no third built-in is registered'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  5c84fe69-674d-455a-830e-575fdaa5941a:
-    id: 5c84fe69-674d-455a-830e-575fdaa5941a
-    content: 'Unit: gutter / context indicators'
-    children:
-      - 60904636-6286-4a78-ad3b-6a4df9b40c49
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  60904636-6286-4a78-ad3b-6a4df9b40c49:
-    id: 60904636-6286-4a78-ad3b-6a4df9b40c49
-    content: '- [x] All four flag combinations render distinctly, including Action (no empty / "no selection" rendering)'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  b38400e8-00eb-4b57-8768-e532afa4df4c:
-    id: b38400e8-00eb-4b57-8768-e532afa4df4c
-    content: 'Integration: `src/renderer/test/integration/workflowExecution.test.ts`'
-    children:
-      - 2849fc02-e26c-42e7-9b2c-e986e8a64c99
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  2849fc02-e26c-42e7-9b2c-e986e8a64c99:
-    id: 2849fc02-e26c-42e7-9b2c-e986e8a64c99
-    content: '- [x] All four states sent end-to-end from each entry surface (run from node, keyboard shortcut, right-click menu) produce identical outgoing prompts and identical panel-open behaviour for the same flag pair'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  a7fc3b34-4083-4f1b-a0d0-db259c48e649:
-    id: a7fc3b34-4083-4f1b-a0d0-db259c48e649
-    content: Existing tests touching `contextMode` literals (must compile + pass after refactor)
-    children:
-      - 72722a05-04b6-4aae-91a4-2388b2e8d2ca
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  72722a05-04b6-4aae-91a4-2388b2e8d2ca:
-    id: 72722a05-04b6-4aae-91a4-2388b2e8d2ca
-    content: '- [x] `clearTaskMetadata.test.ts`, `useAppliedContextsMode.test.ts`, `GutterContextIndicatorMode.test.tsx`, `useAppliedContexts.test.ts`, and every other test referencing `contextMode` is re-keyed onto flags before merge'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  a89186c3-4ca6-40ba-b8c9-d5b21ff16c09:
-    id: a89186c3-4ca6-40ba-b8c9-d5b21ff16c09
-    content: Edge cases and risk
-    children:
-      - a01194f1-13ae-4e7e-956d-5edb8c41156d
-      - 56cd0efb-e9c3-42c6-9f72-1a0a0b37aea3
-      - 48fbd8ff-ea15-4f6d-8c58-8ca54bc92ee9
-      - 99db1022-a2ea-4812-8f3d-a55d1326567e
-      - 4e2f07f2-ac91-4351-b598-d9bd835727a2
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  a01194f1-13ae-4e7e-956d-5edb8c41156d:
-    id: a01194f1-13ae-4e7e-956d-5edb8c41156d
-    content: '- [x] Empty / null / undefined: undefined `contextId`, null `metadata`, missing node — return defaults without throwing'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  56cd0efb-e9c3-42c6-9f72-1a0a0b37aea3:
-    id: 56cd0efb-e9c3-42c6-9f72-1a0a0b37aea3
-    content: '- [x] Boundary: only one flag field set in `.arbo` — absent flag treated as off, no implicit default'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  48fbd8ff-ea15-4f6d-8c58-8ca54bc92ee9:
-    id: 48fbd8ff-ea15-4f6d-8c58-8ca54bc92ee9
-    content: '- [x] Error path: non-boolean flag values in `.arbo` — coerce or fall back to defaults with a warning, do not crash'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  99db1022-a2ea-4812-8f3d-a55d1326567e:
-    id: 99db1022-a2ea-4812-8f3d-a55d1326567e
-    content: '- [x] Concurrent: two runs in flight under different contexts — each respects its own flags; no panel cross-contamination'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  4e2f07f2-ac91-4351-b598-d9bd835727a2:
-    id: 4e2f07f2-ac91-4351-b598-d9bd835727a2
-    content: '- [x] Repeated: rapid checkbox toggling does not desync UI state from store'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  01158d2b-12d7-4370-8cce-fa8e7859a081:
-    id: 01158d2b-12d7-4370-8cce-fa8e7859a081
-    content: Conventions
-    children:
-      - 9d2e7751-05c3-4422-bb3f-20a42cc83150
-      - d87db672-b86b-4f42-a2fb-63ea5f758d1a
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  9d2e7751-05c3-4422-bb3f-20a42cc83150:
-    id: 9d2e7751-05c3-4422-bb3f-20a42cc83150
-    content: '- [x] Tests live in `tests/` subdirs alongside the module under test; reuse `tests/fixtures/` helpers; mock at module level via DI; `mockImplementation` with conditionals (no `mockReturnValueOnce`); full `beforeEach` reset; title-only tests acceptable when post-fix behaviour is uncertain'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  d87db672-b86b-4f42-a2fb-63ea5f758d1a:
-    id: d87db672-b86b-4f42-a2fb-63ea5f758d1a
-    content: '- [x] When iterating, run only changed/new test files'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  79d8479c-0297-4644-821d-23d9d11a0a9c:
-    id: 79d8479c-0297-4644-821d-23d9d11a0a9c
-    content: This is a subtask of the overall user story.  Please implement only this subtask.  The others will be implemented in a separate PR.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  3fb1a1b1-ac0b-442c-a80b-c29ffa0a7f45:
-    id: 3fb1a1b1-ac0b-442c-a80b-c29ffa0a7f45
-    content: Tests (PR2 scope)
-    children:
-      - 6a3619cd-5c9b-4894-be1f-e6829531d67d
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  6a3619cd-5c9b-4894-be1f-e6829531d67d:
-    id: 6a3619cd-5c9b-4894-be1f-e6829531d67d
-    content: In scope for PR2 — picker UI rework only; PR1 already shipped data, prompt, panel, right-click menu, and consumer re-keying with full test coverage
-    children:
-      - b6c8ebc6-31b4-47c9-958c-45c0fae1b2a3
-      - 127d6597-788e-4d69-9b84-5ec3f928b87f
-      - 4183198f-e38a-44bb-89a4-e7b8f7fa9ca4
-      - efc03b89-4c79-45f9-b7cc-2e8683046f4c
-      - eef48ad9-1b1a-4ba1-be6b-245af22964ec
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  b6c8ebc6-31b4-47c9-958c-45c0fae1b2a3:
-    id: b6c8ebc6-31b4-47c9-958c-45c0fae1b2a3
-    content: 'Unit: `CustomizeDialog` two-checkbox picker (`src/renderer/components/ui/CustomizeDialog/tests/CustomizeDialog.test.tsx`, extending the existing file)'
-    children:
-      - 8621b0d3-31db-49c1-ad80-6135cfa80374
-      - 486a2e2c-e6f3-4a6a-bc89-612d6a54c16d
-      - 5089fd86-2baf-4044-a0e7-f40d0ff7f7c7
-      - 1e582cfe-01a1-4b76-97ff-e6062a9499c2
-      - 285bb087-a3b1-458b-a10d-7630eaacdcb5
-      - 9ec416f2-fed3-4651-b528-6dce5d018b98
-      - 3b0db9be-d964-4231-b5f0-33933feddc06
-      - b416fc94-aba9-4855-94cd-4836fb3ccd5d
-      - 2c6428ae-400c-44eb-ac1e-09390b8eade1
-      - 04184eee-862f-41c2-93e4-85997b1b96ec
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  8621b0d3-31db-49c1-ad80-6135cfa80374:
-    id: 8621b0d3-31db-49c1-ad80-6135cfa80374
-    content: '- [x] Renders two distinct checkboxes (no radio remaining); each reflects the current flag state'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  486a2e2c-e6f3-4a6a-bc89-612d6a54c16d:
-    id: 486a2e2c-e6f3-4a6a-bc89-612d6a54c16d
-    content: '- [x] Toggling Collaborate leaves Execute unchanged, and vice versa (independent toggles)'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  5089fd86-2baf-4044-a0e7-f40d0ff7f7c7:
-    id: 5089fd86-2baf-4044-a0e7-f40d0ff7f7c7
-    content: '- [x] Saving with both off persists Action `(false, false)` — store receives `{ selectedCollaborate: false, selectedExecute: false }`, does not snap back to a default'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  1e582cfe-01a1-4b76-97ff-e6062a9499c2:
-    id: 1e582cfe-01a1-4b76-97ff-e6062a9499c2
-    content: '- [x] Saving each of the other three combinations persists the corresponding tuple'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  285bb087-a3b1-458b-a10d-7630eaacdcb5:
-    id: 285bb087-a3b1-458b-a10d-7630eaacdcb5
-    content: '- [x] Framing copy assertion: "Default: Action — AI responds however the context directs" is visible'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  9ec416f2-fed3-4651-b528-6dce5d018b98:
-    id: 9ec416f2-fed3-4651-b528-6dce5d018b98
-    content: '- [x] Section header "Also ask for:" is visible above the two checkboxes'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  3b0db9be-d964-4231-b5f0-33933feddc06:
-    id: 3b0db9be-d964-4231-b5f0-33933feddc06
-    content: '- [x] Each checkbox label describes the **output shape** added — "reviewable tree update (opens panel)" for Collaborate; "code or file changes in the repo" for Execute. Assert visible text, not internal labels'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  b416fc94-aba9-4855-94cd-4836fb3ccd5d:
-    id: b416fc94-aba9-4855-94cd-4836fb3ccd5d
-    content: '- [x] Accessibility: each checkbox has an `<label>` with `htmlFor` matching the input `id`; pressing Space on a focused checkbox toggles it; Tab order goes Collaborate → Execute (and through to Save/Cancel)'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  2c6428ae-400c-44eb-ac1e-09390b8eade1:
-    id: 2c6428ae-400c-44eb-ac1e-09390b8eade1
-    content: '- [x] When the dialog opens with an existing context that has Both-on flags, both checkboxes are pre-checked'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  04184eee-862f-41c2-93e4-85997b1b96ec:
-    id: 04184eee-862f-41c2-93e4-85997b1b96ec
-    content: '- [x] When the dialog opens with an Action context (`(false, false)`), both checkboxes are pre-unchecked and the Default/Also-ask-for framing reads as the active state'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  127d6597-788e-4d69-9b84-5ec3f928b87f:
-    id: 127d6597-788e-4d69-9b84-5ec3f928b87f
-    content: 'Unit: `customizeDialogStore` (new file: `src/renderer/store/customizeDialog/tests/customizeDialogStore.test.ts`)'
-    children:
-      - 1fcf60b1-4706-4977-880b-1f80127e7a35
-      - 37e9413a-9ba8-48be-8a50-9c79a9e5afc0
-      - 4bebb707-688b-4753-9466-d9784a5c5db0
-      - 1887cb7e-06b3-4c70-8145-0ffab2c9b9e8
-      - 7424ab65-3033-46e1-b213-0b3fc915905d
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  1fcf60b1-4706-4977-880b-1f80127e7a35:
-    id: 1fcf60b1-4706-4977-880b-1f80127e7a35
-    content: '- [x] `selectedCollaborate` and `selectedExecute` are independently nullable: setting one does not coerce the other'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  37e9413a-9ba8-48be-8a50-9c79a9e5afc0:
-    id: 37e9413a-9ba8-48be-8a50-9c79a9e5afc0
-    content: '- [x] `open(...)` populates both fields from the supplied context flags'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  4bebb707-688b-4753-9466-d9784a5c5db0:
-    id: 4bebb707-688b-4753-9466-d9784a5c5db0
-    content: '- [x] `close()` resets both fields to their initial null'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  1887cb7e-06b3-4c70-8145-0ffab2c9b9e8:
-    id: 1887cb7e-06b3-4c70-8145-0ffab2c9b9e8
-    content: '- [x] Both null/false persists as Action through a save round-trip — the consumer''s `onSave` receives `(false, false)`, not coerced to a default'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  7424ab65-3033-46e1-b213-0b3fc915905d:
-    id: 7424ab65-3033-46e1-b213-0b3fc915905d
-    content: '- [x] Toggling each setter individually leaves the other untouched'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  4183198f-e38a-44bb-89a4-e7b8f7fa9ca4:
-    id: 4183198f-e38a-44bb-89a4-e7b8f7fa9ca4
-    content: Edge cases and risk (PR2-specific)
-    children:
-      - ead8dbaa-b17e-4854-b347-59b55a872ff6
-      - 5e9b6342-e183-45ad-83ca-1f4466d15639
-      - 27cdb287-8c59-4767-b906-eb053d1244c8
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  ead8dbaa-b17e-4854-b347-59b55a872ff6:
-    id: ead8dbaa-b17e-4854-b347-59b55a872ff6
-    content: '- [x] Repeated: rapid checkbox toggling does not desync UI state from store — each click cycles atomically; final store state matches final visible checkbox state'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  5e9b6342-e183-45ad-83ca-1f4466d15639:
-    id: 5e9b6342-e183-45ad-83ca-1f4466d15639
-    content: '- [x] Concurrent: two open dialogs (if reachable in any UI flow) maintain independent selections — out of scope unless the dialog model permits it; default to single-instance assertion'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  27cdb287-8c59-4767-b906-eb053d1244c8:
-    id: 27cdb287-8c59-4767-b906-eb053d1244c8
-    content: '- [x] Pre-existing context with legacy migration tuple `(true, true)` Both-on: dialog opens with both checkboxes pre-checked, no flicker'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  efc03b89-4c79-45f9-b7cc-2e8683046f4c:
-    id: efc03b89-4c79-45f9-b7cc-2e8683046f4c
-    content: Out of scope for PR2 (covered by PR1)
-    children:
-      - 3c11cb73-836d-4477-ab01-e684b18df419
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  3c11cb73-836d-4477-ab01-e684b18df419:
-    id: 3c11cb73-836d-4477-ab01-e684b18df419
-    content: '- [x] Schema migration, `resolveContextFlags`, prompt composition, panel trigger, right-click menu, built-in defaults, consumer re-keying, end-to-end integration'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  eef48ad9-1b1a-4ba1-be6b-245af22964ec:
-    id: eef48ad9-1b1a-4ba1-be6b-245af22964ec
-    content: Conventions
-    children:
-      - ed860dea-6e0e-400a-9fca-086f377a8a97
-      - c3b220a9-385c-44fb-a9f4-d73b39449c1d
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  ed860dea-6e0e-400a-9fca-086f377a8a97:
-    id: ed860dea-6e0e-400a-9fca-086f377a8a97
-    content: '- [x] Tests in `tests/` subdir alongside the module under test (`CustomizeDialog/tests/`, `customizeDialog/tests/`); reuse `tests/fixtures/` helpers; mock the store at module level via DI; `mockImplementation` with conditionals; full `beforeEach` reset; title-only tests acceptable for any UI behaviour where the final visual treatment is still in flux'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  c3b220a9-385c-44fb-a9f4-d73b39449c1d:
-    id: c3b220a9-385c-44fb-a9f4-d73b39449c1d
-    content: '- [x] When iterating, run only the picker UI test files (`CustomizeDialog.test.tsx` + `customizeDialogStore.test.ts`); the PR1 suite stays green by construction since this PR only touches the picker'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  8f4272db-4124-4b22-ae06-890b97b40d61:
-    id: 8f4272db-4124-4b22-ae06-890b97b40d61
-    content: Implementation notes — issues encountered during PR2
-    children:
-      - 74e7904e-fbc1-40fa-a203-9f5e08ab1fe6
-      - 4d1705e8-d339-4dfb-a87f-2ebf29318071
-      - 2747869b-7af3-4be1-a9b4-22ff5108603d
-      - 59828789-f43c-4760-a1f7-251528cee468
-      - 09b5fa5f-9ccd-4882-a217-49fa5c5cca00
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  74e7904e-fbc1-40fa-a203-9f5e08ab1fe6:
-    id: 74e7904e-fbc1-40fa-a203-9f5e08ab1fe6
-    content: 'PR2 worktree initially didn''t have PR1''s data layer because PR1 isn''t committed yet — git worktree forks from the last committed commit, not the working tree. To unblock PR2 work I rsynced PR1''s full source tree (`src/`) from `Arborescent-context-flags` into `Arborescent-context-picker`, then layered PR2''s picker changes on top. **When you commit PR1 and then layer PR2 on top, the rsynced PR1 portion will collide cleanly with the real PR1 commit — `git diff PR1-branch HEAD` on PR2''s worktree should yield only PR2-specific changes.** Practically: after PR1 lands, you can either (a) reset PR2''s branch to PR1''s HEAD and re-apply only the PR2-specific files, or (b) cherry-pick PR2''s deltas via the file list below.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  4d1705e8-d339-4dfb-a87f-2ebf29318071:
-    id: 4d1705e8-d339-4dfb-a87f-2ebf29318071
-    content: 'Files actually authored by PR2 (the surface the user should review): `src/renderer/store/customizeDialog/customizeDialogStore.ts` (replaced selectedMode with selectedCollaborate/selectedExecute), `src/renderer/components/ui/CustomizeDialog/ContextFlagsCheckboxes.tsx` (new), `src/renderer/components/ui/CustomizeDialog/ModeToggle.tsx` (deleted), `src/renderer/components/ui/CustomizeDialog/CustomizeDialog.tsx` (props + handleConfirm + render block), `src/renderer/components/ui/CustomizeDialog/CustomizeDialog.css` (mode-toggle CSS replaced with flag-checkbox CSS), `src/renderer/components/ui/CustomizeDialog/CustomizeDialogContainer.tsx` (wiring), `src/renderer/components/NodeContent/hooks/useNodeContextMenu.ts` (handleDeclareAsContext now passes flags), `src/renderer/components/NodeContent/hooks/useContextIconClick.ts` (same), plus the two test files (`CustomizeDialog.test.tsx` extended; `customizeDialog/tests/customizeDialogStore.test.ts` new). Everything else in the diff comes from PR1''s rsync.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  2747869b-7af3-4be1-a9b4-22ff5108603d:
-    id: 2747869b-7af3-4be1-a9b4-22ff5108603d
-    content: 'Convention check: ContextFlagsCheckboxes.tsx is a pure template (no logic), <50 lines; CSS is co-located in CustomizeDialog.css; all CSS classes follow the existing `icon-picker-*` naming; no inline styles; no comments referencing iteration/PR history; no JSDoc; descriptive names throughout (`onCollaborateChange`, `setCollaborate`, etc.). Conforms to the project conventions.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  59828789-f43c-4760-a1f7-251528cee468:
-    id: 59828789-f43c-4760-a1f7-251528cee468
-    content: All 3035 tests pass; type-check clean; lint clean on changed `.ts`/`.tsx` files (0 errors).
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  09b5fa5f-9ccd-4882-a217-49fa5c5cca00:
-    id: 09b5fa5f-9ccd-4882-a217-49fa5c5cca00
-    content: 'Branching note: PR2 was created via `git worktree add /Users/brianfox/dev/Arborescent-context-picker -b feat/context-picker-checkboxes feat/context-collaborate-execute-flags`, but since PR1''s branch had no commits at fork time the working baseline ended up on master. The rsync workaround keeps PR2 developable in isolation. Once you''ve committed PR1, reset/rebase `feat/context-picker-checkboxes` onto the committed PR1 to get a clean diff before review.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  c8b6c28e-a69f-4c7d-a002-5ff8dc6d64c1:
-    id: c8b6c28e-a69f-4c7d-a002-5ff8dc6d64c1
-    content: Run-test-pass round added the missing Tab-order test
-    children:
-      - 86f6e289-37c8-4edd-b41b-84f5f6348808
-      - 9fa6f720-1131-4ab2-a92c-67f205a5f830
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  86f6e289-37c8-4edd-b41b-84f5f6348808:
-    id: 86f6e289-37c8-4edd-b41b-84f5f6348808
-    content: Audit found that the AC item under Accessibility for `CustomizeDialog` covered three sub-claims — label/htmlFor association, Space-toggle, and Tab order Collaborate → Execute — but only the first two had explicit tests. Added a "Tab order goes Collaborate → Execute" test using `userEvent.tab()` from a focused Collaborate checkbox; asserts `document.activeElement` lands on Execute. The `(and through to Save/Cancel)` portion stays out of scope for jsdom (focusable-element traversal beyond the picker depends on global modal layout)
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  9fa6f720-1131-4ab2-a92c-67f205a5f830:
-    id: 9fa6f720-1131-4ab2-a92c-67f205a5f830
-    content: Total tests now 3035 (was 3034); type-check clean; the AC item is now backed by a direct keyboard-traversal assertion rather than relying on the implicit DOM order
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  dcaf266b-b002-4e0c-a766-c7fe0a8148bd:
-    id: dcaf266b-b002-4e0c-a766-c7fe0a8148bd
-    content: AI refactor round
-    children:
-      - 221c7146-3bad-48f9-8c92-58a8d4620550
-      - 140f37d8-6b5a-4fbb-9749-0ecea5031006
-      - da0f2b6e-9514-47b0-82bc-7b75417dc83b
-      - 95cd4e4d-ab46-48c7-bdf9-7567721b6510
-      - 08b64170-1273-45b5-8a38-bbc6193313a8
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  221c7146-3bad-48f9-8c92-58a8d4620550:
-    id: 221c7146-3bad-48f9-8c92-58a8d4620550
-    content: 'Convention audit: PR2-authored sources stay under the size threshold — `CustomizeDialog.tsx` 229 lines, `ContextFlagsCheckboxes.tsx` 46 lines, `customizeDialogStore.ts` 74 lines. `ContextFlagsCheckboxes` remains a pure template with no logic; CSS classes follow the `icon-picker-*` naming; no inline styles; no JSDoc; no PR/iteration-history comments'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  140f37d8-6b5a-4fbb-9749-0ecea5031006:
-    id: 140f37d8-6b5a-4fbb-9749-0ecea5031006
-    content: 'Dead-reference cleanup: `types.ts` carried a JSDoc block referencing `ModeToggle` (deleted in this PR). Removed the stale block; kept the inline `// Amber and Sky values match globals.css variables` comment (the only "why" comment in the file)'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  da0f2b6e-9514-47b0-82bc-7b75417dc83b:
-    id: da0f2b6e-9514-47b0-82bc-7b75417dc83b
-    content: 'Test-naming cleanup: renamed `describe(''CustomizeDialog flag picker (PR2)'')` → `describe(''CustomizeDialog flag picker'')` so the suite title doesn''t decay once the PR ships'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  95cd4e4d-ab46-48c7-bdf9-7567721b6510:
-    id: 95cd4e4d-ab46-48c7-bdf9-7567721b6510
-    content: 'Empty-test sweep: `CustomizeDialog.test.tsx`, `customizeDialogStore.test.ts`, and `migrateContextModeFlags.test.ts` checked — every `it(...)` block has a body with at least one assertion; no skipped/pending/empty tests'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  08b64170-1273-45b5-8a38-bbc6193313a8:
-    id: 08b64170-1273-45b5-8a38-bbc6193313a8
-    content: Standard checks on changed files only — `tsc --noEmit` clean; `eslint` on the eight PR2-authored files reports 0 issues; full `vitest run` reports 3035 passed / 0 failed / 1 pending (pre-existing) across 1140 suites
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  56649805-cd0b-4cb2-9d1e-ba5840ce7325:
-    id: 56649805-cd0b-4cb2-9d1e-ba5840ce7325
-    content: Documentation round
-    children:
-      - c8be7eac-91e0-46fb-952e-f5d41f5e6f2e
-      - a6b613e7-91e8-4876-bf0c-baa84e3d066d
-      - 36321431-9a0a-4a21-8cfd-59242c8c17ce
-      - be9cebba-0e5b-4cdd-b6ae-a62323036c66
-      - af51bc92-16a4-4593-a401-4b50b1f64d33
-      - a8fc6261-6d05-4a18-a689-947c440a53f4
-      - 22032726-cc72-4e63-8c14-2a5fbfcda305
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  c8be7eac-91e0-46fb-952e-f5d41f5e6f2e:
-    id: c8be7eac-91e0-46fb-952e-f5d41f5e6f2e
-    content: '`docs/contexts.md` — Replaced the binary "mode (collaborate or execute)" framing with the four output-shape combinations (Collaborate / Execute / Collaborate & Execute / Action). Walked through what the customize dialog now shows (icon, color, two inline checkboxes), described what each combination produces in the prompt, and noted that the right-click "Context mode" submenu lets you switch states later. Updated the gutter-tooltip phrasing from "mode" to "output shape" in the Visual Summary section.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  a6b613e7-91e8-4876-bf0c-baa84e3d066d:
-    id: a6b613e7-91e8-4876-bf0c-baa84e3d066d
-    content: '`docs/workflow.md` — Rewrote the four bullets under "Send Your Prompt" so they describe the four output-shape combinations instead of the old binary modes; kept the Basic review / Basic execution paragraph since they remain the two single-flag presets. Hover phrasing on the Send menu now reads "output shape" rather than "mode".'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  36321431-9a0a-4a21-8cfd-59242c8c17ce:
-    id: 36321431-9a0a-4a21-8cfd-59242c8c17ce
-    content: '`docs/workflows.md` — Updated the Autonomous step description from "In collaborate mode, the node content is replaced. In execute mode, item statuses are updated" to flag-based phrasing that handles the both-on case.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  be9cebba-0e5b-4cdd-b6ae-a62323036c66:
-    id: be9cebba-0e5b-4cdd-b6ae-a62323036c66
-    content: '`docs/blueprints.md` — Replaced the brief "icon and a mode (collaborate or execute)" line in the Context Declarations section with the four-shape phrasing.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  af51bc92-16a4-4593-a401-4b50b1f64d33:
-    id: af51bc92-16a4-4593-a401-4b50b1f64d33
-    content: '`CHANGELOG.md` — Replaced the "Unified context modes" Unreleased entry with one describing the four-state model (Collaborate, Execute, both, and Action), the inline-checkboxes picker, and the four-named-state context-mode submenu. Treated this as evolving the existing unreleased line rather than adding a redundant entry, per "complement existing documentation" / "remove redundant references".'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  a8fc6261-6d05-4a18-a689-947c440a53f4:
-    id: a8fc6261-6d05-4a18-a689-947c440a53f4
-    content: 'Did not touch: `docs/shortcuts.md` (no shortcut changes), top-level `README.md` (one-liner about "Execute and Collaborate workflows" is high-level marketing, still accurate enough), `docs/README.md` (index unchanged).'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  22032726-cc72-4e63-8c14-2a5fbfcda305:
-    id: 22032726-cc72-4e63-8c14-2a5fbfcda305
-    content: 'Inconsistency flagged: the **Apply context** right-click submenu (`useSetContextSubmenu`) groups available contexts as `c.collaborate && !c.execute` (Collaborate) and `c.execute` (Execute). Action contexts (both flags off) match neither filter and are silently dropped from that submenu — so a user can declare an Action context but cannot then apply it to another branch from this menu. The Acceptance Criteria item "All four named states are reachable from the picker, the right-click apply menu, and any keyboard shortcut wired to apply context" is therefore not fully satisfied for already-declared Action contexts. The contexts.md update notes that the Apply submenu is grouped Collaborate / Execute (with both-on contexts surfacing under Execute) but does not promise Action contexts appear there. Worth a small follow-up either to surface Action contexts under a third group or to drop the Apply menu''s mode-grouping in favour of a flat list.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
   9f55ead4-f0e3-4969-8e10-8e61f33f89ec:
     id: 9f55ead4-f0e3-4969-8e10-8e61f33f89ec
     content: 'Bug : Pause workflow hook not always working'
@@ -90404,3 +88784,1740 @@ nodes:
     children: []
     metadata:
       status: pending
+  506438f5-dc34-4a20-ae15-3ce76d48615d:
+    id: 506438f5-dc34-4a20-ae15-3ce76d48615d
+    content: worktree
+    children:
+      - bebde25e-5132-4203-81b3-fea45f3c8cb3
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bebde25e-5132-4203-81b3-fea45f3c8cb3:
+    id: bebde25e-5132-4203-81b3-fea45f3c8cb3
+    content: '[Open in VSCode](vscode://file/Users/brianfox/dev/Arborescent-context-picker)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  77c315d9-780c-466a-ad75-3f256a37cf90:
+    id: 77c315d9-780c-466a-ad75-3f256a37cf90
+    content: Scope of this PR
+    children:
+      - 9241e94f-5ab9-458b-810e-303c925f6ecf
+      - 35011467-ebd9-4be5-a288-00f5e5a29177
+      - 952c58cd-2397-4932-974f-ac0c7e3a8720
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9241e94f-5ab9-458b-810e-303c925f6ecf:
+    id: 9241e94f-5ab9-458b-810e-303c925f6ecf
+    content: In scope
+    children:
+      - 7d7faf56-716b-4c54-9292-ec419462568a
+      - 408028f2-d076-420f-8535-18a3a7dcefb6
+      - a942f8fe-ec9e-4a88-bcef-8a5d06992b5e
+      - c5b193ed-d440-45e6-aa83-9607b9fb929b
+      - 0bcf314e-62dd-4302-8f9e-82e76e6b85a2
+      - 5bfdda59-011f-4ce7-99f4-3ee28ff2d942
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7d7faf56-716b-4c54-9292-ec419462568a:
+    id: 7d7faf56-716b-4c54-9292-ec419462568a
+    content: Replace `ModeToggle` 2-option radio with two inline checkboxes inside `CustomizeDialog`
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  408028f2-d076-420f-8535-18a3a7dcefb6:
+    id: 408028f2-d076-420f-8535-18a3a7dcefb6
+    content: '`customizeDialogStore`: replace `selectedMode: ContextMode | null` with `selectedCollaborate: boolean | null` and `selectedExecute: boolean | null`'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a942f8fe-ec9e-4a88-bcef-8a5d06992b5e:
+    id: a942f8fe-ec9e-4a88-bcef-8a5d06992b5e
+    content: 'Framing copy: "Default: Action — AI responds however the context directs" plus an "Also ask for:" header'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c5b193ed-d440-45e6-aa83-9607b9fb929b:
+    id: c5b193ed-d440-45e6-aa83-9607b9fb929b
+    content: Each checkbox label describes its output shape (reviewable tree update / code or file changes), not a mode name
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0bcf314e-62dd-4302-8f9e-82e76e6b85a2:
+    id: 0bcf314e-62dd-4302-8f9e-82e76e6b85a2
+    content: Saving with both checkboxes off persists Action without snapping to a default
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5bfdda59-011f-4ce7-99f4-3ee28ff2d942:
+    id: 5bfdda59-011f-4ce7-99f4-3ee28ff2d942
+    content: Picker UI tests (assert framing copy, checkbox independence, keyboard accessibility, Action persistence)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  35011467-ebd9-4be5-a288-00f5e5a29177:
+    id: 35011467-ebd9-4be5-a288-00f5e5a29177
+    content: Out of scope (already shipped in PR1)
+    children:
+      - eb83279a-2239-43d3-8992-6aad43db98f5
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  eb83279a-2239-43d3-8992-6aad43db98f5:
+    id: eb83279a-2239-43d3-8992-6aad43db98f5
+    content: Data model, migration, prompt composition, feedback panel auto-open trigger, right-click apply-context menu, built-in defaults, consumer re-keying
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  952c58cd-2397-4932-974f-ac0c7e3a8720:
+    id: 952c58cd-2397-4932-974f-ac0c7e3a8720
+    content: Dependencies
+    children:
+      - f6f72fdc-ed89-4821-97e8-b29022391bb5
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f6f72fdc-ed89-4821-97e8-b29022391bb5:
+    id: f6f72fdc-ed89-4821-97e8-b29022391bb5
+    content: Depends on PR1 having shipped (or being available on a parent branch). PR1 establishes the four-state data model, the right-click menu listing four named states, and the prompt composition; this PR only changes the picker UI
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  178b6373-d326-459a-80dd-295857b350b8:
+    id: 178b6373-d326-459a-80dd-295857b350b8
+    content: User story
+    children:
+      - c8b9b455-33f0-4cee-9841-4c2bb7b98841
+      - 2906dbbf-6e1a-4ef4-891f-7179c34c38b7
+      - 5281de19-1f7f-49e6-9cac-5daa22bd9eda
+      - 9347c2c0-1174-4886-9c87-ebf85a2e7e82
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c8b9b455-33f0-4cee-9841-4c2bb7b98841:
+    id: c8b9b455-33f0-4cee-9841-4c2bb7b98841
+    content: 📄 Product spec
+    children:
+      - 3fe6c020-afef-4aa8-bad4-b243f91776ee
+      - 8594c8cc-b2e0-4451-8ad2-91d44eac4533
+      - 12253d51-f989-4620-8521-af5fa2db13a1
+      - 29342590-9dfc-4bd8-8586-fde204f283cf
+      - 3009a02b-56c6-4419-9760-f086e07f64d4
+      - 7abf20c1-d8c9-457f-b3c5-c0130c4ce1e8
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3fe6c020-afef-4aa8-bad4-b243f91776ee:
+    id: 3fe6c020-afef-4aa8-bad4-b243f91776ee
+    content: 'Context: contexts today expose a single `metadata.contextMode` (''collaborate'' | ''execute'', default ''collaborate'') that conflates two output-shape requests — asking the AI for a reviewable tree update, and asking the AI for code/file changes. The binary cannot express their combination (implement AND check off cases), nor their absence (send the context as a standalone instruction with no scaffolding and no node content)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8594c8cc-b2e0-4451-8ad2-91d44eac4533:
+    id: 8594c8cc-b2e0-4451-8ad2-91d44eac4533
+    content: 'User: any user driving the AI from a node — running terminal executes, refining the outline, implementing-and-checking-off, or sending an instruction-only prompt with attached context'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  12253d51-f989-4620-8521-af5fa2db13a1:
+    id: 12253d51-f989-4620-8521-af5fa2db13a1
+    content: 'Current experience: the feedback panel auto-opens unconditionally; there is no way to ask the AI for both output shapes in one run, nor to send a free-form instruction without one of the two shapes being implied'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  29342590-9dfc-4bd8-8586-fde204f283cf:
+    id: 29342590-9dfc-4bd8-8586-fde204f283cf
+    content: 'Goal: each context independently declares whether the AI is asked for a reviewable tree update (`collaborate`) and/or for code/file changes (`execute`); the four (collaborate, execute) tuples surface as four named states (Collaborate / Execute / Collaborate & Execute / Action)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3009a02b-56c6-4419-9760-f086e07f64d4:
+    id: 3009a02b-56c6-4419-9760-f086e07f64d4
+    content: Business rules
+    children:
+      - 08e37af2-18e7-4601-8a3e-addb8ea0a708
+      - db481a43-81d5-44b3-850c-616b449ef3ff
+      - d2f02897-bc9d-44ac-9809-d05ccee8220f
+      - eef0d2f8-3d4f-4f79-9b98-2ab62c55e91b
+      - 7223e3c5-cc4a-451a-afd4-f4fb47fc1f14
+      - 98412d9b-97cb-4329-8187-a1a493642ce8
+      - 74a3fc8a-3e34-4e21-bd7b-4aa02de7c136
+      - 597e757b-17eb-4761-a91e-c6343ee1c23c
+      - 8dba79c1-14dd-4b78-b4a1-84e773639779
+      - 9fbc4938-22ec-4fa5-bbac-95e8d531daf8
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  08e37af2-18e7-4601-8a3e-addb8ea0a708:
+    id: 08e37af2-18e7-4601-8a3e-addb8ea0a708
+    content: 1. A context exposes two independent booleans, `collaborate` and `execute`, each defaulting to off (the Action state)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  db481a43-81d5-44b3-850c-616b449ef3ff:
+    id: db481a43-81d5-44b3-850c-616b449ef3ff
+    content: 2. When `collaborate` is on, the prompt includes a scaffolding block asking the AI for a reviewable tree update; the feedback panel auto-opens on AI response
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d2f02897-bc9d-44ac-9809-d05ccee8220f:
+    id: d2f02897-bc9d-44ac-9809-d05ccee8220f
+    content: 3. When `execute` is on, the prompt includes a scaffolding block asking the AI for code/file changes; this is an output-shape request, not a capability gate — Action mode can also do work if the context body directs it
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  eef0d2f8-3d4f-4f79-9b98-2ab62c55e91b:
+    id: eef0d2f8-3d4f-4f79-9b98-2ab62c55e91b
+    content: 4. When both are on, the two scaffolding blocks compose into a single prompt; the panel auto-opens because `collaborate` is on
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7223e3c5-cc4a-451a-afd4-f4fb47fc1f14:
+    id: 7223e3c5-cc4a-451a-afd4-f4fb47fc1f14
+    content: 5. When both are off (Action), the prompt is the context body only — no scaffolding blocks, and the node content is omitted
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  98412d9b-97cb-4329-8187-a1a493642ce8:
+    id: 98412d9b-97cb-4329-8187-a1a493642ce8
+    content: 6. Scaffolding blocks are strictly disjoint by construction — the Execute block contains only code-change rules; the Collaborate block contains only list/temp-file rules — so the two compose without contradiction
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  74a3fc8a-3e34-4e21-bd7b-4aa02de7c136:
+    id: 74a3fc8a-3e34-4e21-bd7b-4aa02de7c136
+    content: 7. The picker shows two inline checkboxes in `CustomizeDialog` (replacing `ModeToggle`); copy frames Action as the default and Collaborate / Execute as additive output-shape requests
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  597e757b-17eb-4761-a91e-c6343ee1c23c:
+    id: 597e757b-17eb-4761-a91e-c6343ee1c23c
+    content: 8. The right-click apply-context menu lists the four named states (Collaborate / Execute / Collaborate & Execute / Action), each mapped to a (collaborate, execute) tuple
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8dba79c1-14dd-4b78-b4a1-84e773639779:
+    id: 8dba79c1-14dd-4b78-b4a1-84e773639779
+    content: 9. Legacy `metadata.contextMode` is migrated on load — `'collaborate'` (or absent) → `(true, false)`; `'execute'` → `(false, true)`. The legacy field is dropped on next save; older app versions reading newer files fall back to defaults
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9fbc4938-22ec-4fa5-bbac-95e8d531daf8:
+    id: 9fbc4938-22ec-4fa5-bbac-95e8d531daf8
+    content: 10. Only two built-in contexts ship — Basic review = `(true, false)`, Basic execute = `(false, true)`. Both-on and Action are user-composed via the picker
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7abf20c1-d8c9-457f-b3c5-c0130c4ce1e8:
+    id: 7abf20c1-d8c9-457f-b3c5-c0130c4ce1e8
+    content: Acceptance criteria
+    children:
+      - 63e106e3-20e0-4303-8a9b-282197712903
+      - bf72dc4e-a51c-4677-ba78-10410ebcb440
+      - 0114452e-8758-45fc-89f4-aea9512df5c3
+      - f767f0ef-facd-4a15-86d3-eeb3e9cf4079
+      - 09235485-c76a-4879-b9e6-7f398dfc7fe1
+      - 599b1cd3-1fbe-4df1-aa4a-0251f2ad8b6e
+      - 0df168df-acc1-4a1b-985f-01308f0fa82e
+      - 2ec6bda1-5f1b-4457-8b62-23fee682c586
+      - c2faf54d-8a55-465f-ae4a-b08cb3382d04
+      - b054d7a5-9bcc-4c73-8c08-239da6c079c9
+      - 256b261c-6a60-4011-ad6a-7f61c04dd84a
+      - 5291b461-cfa2-4dae-9fac-b9785e481c8d
+      - 73e2acab-a97f-47e7-b3d5-e64fd49bce5d
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  63e106e3-20e0-4303-8a9b-282197712903:
+    id: 63e106e3-20e0-4303-8a9b-282197712903
+    content: '- [x] Action prompt contains the context body only — no scaffolding, no node content'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bf72dc4e-a51c-4677-ba78-10410ebcb440:
+    id: bf72dc4e-a51c-4677-ba78-10410ebcb440
+    content: '- [x] Collaborate-only prompt contains the tree-update block and the node content; panel auto-opens'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0114452e-8758-45fc-89f4-aea9512df5c3:
+    id: 0114452e-8758-45fc-89f4-aea9512df5c3
+    content: '- [x] Execute-only prompt contains the code-change block and the node content; panel does not auto-open'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f767f0ef-facd-4a15-86d3-eeb3e9cf4079:
+    id: f767f0ef-facd-4a15-86d3-eeb3e9cf4079
+    content: '- [x] Both-on prompt contains both blocks composed and the node content; panel auto-opens; AI follows both blocks rather than picking one'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  09235485-c76a-4879-b9e6-7f398dfc7fe1:
+    id: 09235485-c76a-4879-b9e6-7f398dfc7fe1
+    content: '- [x] Picker renders "Default: Action — AI responds however the context directs" plus an "Also ask for:" header with two checkboxes whose labels describe the output shape each adds'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  599b1cd3-1fbe-4df1-aa4a-0251f2ad8b6e:
+    id: 599b1cd3-1fbe-4df1-aa4a-0251f2ad8b6e
+    content: '- [x] Right-click apply-context menu lists the four named states; selecting any one applies the corresponding tuple to the active node'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0df168df-acc1-4a1b-985f-01308f0fa82e:
+    id: 0df168df-acc1-4a1b-985f-01308f0fa82e
+    content: '- [x] All four named states are reachable from the picker (two checkboxes), the right-click apply menu (four named items), and any keyboard shortcut wired to apply context'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2ec6bda1-5f1b-4457-8b62-23fee682c586:
+    id: 2ec6bda1-5f1b-4457-8b62-23fee682c586
+    content: '- [x] Behaviour is consistent across runs from the node, keyboard shortcut, and right-click menu for the same flag pair'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c2faf54d-8a55-465f-ae4a-b08cb3382d04:
+    id: c2faf54d-8a55-465f-ae4a-b08cb3382d04
+    content: '- [x] Built-in contexts ship the two single-flag presets only; both-on and Action are user-composed'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b054d7a5-9bcc-4c73-8c08-239da6c079c9:
+    id: b054d7a5-9bcc-4c73-8c08-239da6c079c9
+    content: '- [x] Existing `.arbo` files load with no behavioural change; re-save writes only the new flags (legacy `contextMode` field dropped)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  256b261c-6a60-4011-ad6a-7f61c04dd84a:
+    id: 256b261c-6a60-4011-ad6a-7f61c04dd84a
+    content: '- [x] No flicker: the panel never briefly opens then closes for non-collaborate runs'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5291b461-cfa2-4dae-9fac-b9785e481c8d:
+    id: 5291b461-cfa2-4dae-9fac-b9785e481c8d
+    content: '- [x] Disjoint-blocks invariant holds at merge time: Execute block carries no list/temp-file rules; Collaborate block carries no source-file rules'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  73e2acab-a97f-47e7-b3d5-e64fd49bce5d:
+    id: 73e2acab-a97f-47e7-b3d5-e64fd49bce5d
+    content: '- [x] Each picker checkbox has an associated label and is reachable / activatable by keyboard'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2906dbbf-6e1a-4ef4-891f-7179c34c38b7:
+    id: 2906dbbf-6e1a-4ef4-891f-7179c34c38b7
+    content: 🔧 Implementation proposal
+    children:
+      - 1b740960-7540-43b5-bc7b-d9bc4a0930f6
+      - b6875422-c1b5-45e4-897f-1ab1c1af10c9
+      - e2cb9713-654a-4120-9791-7b17ce271451
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1b740960-7540-43b5-bc7b-d9bc4a0930f6:
+    id: 1b740960-7540-43b5-bc7b-d9bc4a0930f6
+    content: 'Approach: replace `metadata.contextMode` with two booleans (`collaborate`, `execute`). The prompt builder appends each flag''s scaffolding block when on; Action mode short-circuits both blocks AND drops the node content. The feedback panel auto-open trigger keys off `collaborate` only. `resolveContextMode` and the `mode` field on `getContextDeclarations` become `resolveContextFlags` returning `{collaborate, execute}`. The four tuples surface as user-facing names (Collaborate / Execute / Collaborate & Execute / Action) on display surfaces; the underlying model stays two booleans'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b6875422-c1b5-45e4-897f-1ab1c1af10c9:
+    id: b6875422-c1b5-45e4-897f-1ab1c1af10c9
+    content: 'Touchpoints: node metadata schema and `.arbo` load/save (one-way migration sits here), `nodeHelpers.ts`, `promptBuilder.ts` (compose disjoint blocks; Action short-circuit), feedback panel auto-open trigger, `CustomizeDialog` / `ModeToggle` (two inline checkboxes + "Default: Action / Also ask for ..." copy), `customizeDialogStore` (`selectedCollaborate` / `selectedExecute`), right-click apply-context menu (four named items), built-in context definitions (two presets ship), gutter / context indicators (render Action cleanly), `useWorkflowSubmenu`, `useTerminalActions`, `terminalExecution`, and every test using `contextMode` literals — full grep pre-merge, ~40 files in one PR'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e2cb9713-654a-4120-9791-7b17ce271451:
+    id: e2cb9713-654a-4120-9791-7b17ce271451
+    content: 'Constraints to call out: migration must run before any consumer reads context metadata; the disjoint-blocks invariant is the single safety property that makes both-on composition conflict-free, enforced by a one-time pre-merge grep across the two scaffolding authoring sites (Execute block must contain zero list/temp-file rules, Collaborate block must contain zero source-file rules); Action-mode short-circuit must skip both scaffolding blocks AND drop the node content — neither suppression is the prompt builder''s default behaviour; flags inherit down the tree like other context properties; older app versions reading newer files degrade to defaults (accepted forward-compat cost, no shadowed `contextMode` field on save)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5281de19-1f7f-49e6-9cac-5daa22bd9eda:
+    id: 5281de19-1f7f-49e6-9cac-5daa22bd9eda
+    content: Technical refinement
+    children:
+      - 32ba714b-2c73-447f-873e-0d71b4717b31
+      - f294eeed-52d3-4af7-ae9c-cf71dd8648be
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  32ba714b-2c73-447f-873e-0d71b4717b31:
+    id: 32ba714b-2c73-447f-873e-0d71b4717b31
+    content: Flag complications
+    children:
+      - 733dca91-fb7b-4940-b3fd-1dfca0361ba8
+      - ac360ea2-7b99-4fce-8b2e-d74c40b4b5fb
+      - 71266194-8f69-4166-b0f3-818d8e923e27
+      - 7bd0fcea-80f8-4893-a878-e4b43da833d9
+      - cd158615-0996-4c84-bf41-b05070e54d52
+      - ed75b831-1b6a-45c0-9a8d-9d58b41f2a55
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  733dca91-fb7b-4940-b3fd-1dfca0361ba8:
+    id: 733dca91-fb7b-4940-b3fd-1dfca0361ba8
+    content: Both-on is a prompt combination the AI has never received; if the two scaffolding blocks don't read coherently when concatenated, the AI will pick one and ignore the other — block copy needs a once-over before ship
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ac360ea2-7b99-4fce-8b2e-d74c40b4b5fb:
+    id: ac360ea2-7b99-4fce-8b2e-d74c40b4b5fb
+    content: Disjoint-blocks invariant has no automated lint — it's a one-time pre-merge grep. Any later edit that adds a cross-cutting rule to either block silently re-opens the conflict class; worth a line in the PR review checklist
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  71266194-8f69-4166-b0f3-818d8e923e27:
+    id: 71266194-8f69-4166-b0f3-818d8e923e27
+    content: Action mode is two suppressions in one (skip scaffolding AND drop node content); if either regresses, Action collapses into "scaffolding-off but node-content-on", which is a different user contract — assert both suppressions explicitly
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7bd0fcea-80f8-4893-a878-e4b43da833d9:
+    id: 7bd0fcea-80f8-4893-a878-e4b43da833d9
+    content: 'Migration ordering: any reader that touches context metadata before the load-path translator runs (lazy hydration, async store init) will see legacy `contextMode` and miss the new flags; verify the load path is the single entry point'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cd158615-0996-4c84-bf41-b05070e54d52:
+    id: cd158615-0996-4c84-bf41-b05070e54d52
+    content: 'Out of scope: forward-compat for older app versions reading newer `.arbo` files (they degrade to defaults — no shadowed field), redesigning the feedback panel itself, changing AI output parsing, layered presets above the booleans'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ed75b831-1b6a-45c0-9a8d-9d58b41f2a55:
+    id: ed75b831-1b6a-45c0-9a8d-9d58b41f2a55
+    content: 'ROI sanity: the cost is ~40 files of mechanical re-keying plus the prompt-composition refactor; if either scaffolding block needs significant rewriting to compose coherently, scope creeps — flag early in the PR rather than after merge'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f294eeed-52d3-4af7-ae9c-cf71dd8648be:
+    id: f294eeed-52d3-4af7-ae9c-cf71dd8648be
+    content: Approach summary
+    children:
+      - d3cccf0d-ae8d-4358-91c8-0b2fb32e4e80
+      - 1812360f-fb79-4047-8e4f-7752f1e8dc73
+      - 7dbe3f16-6a84-4b10-bff8-307e850541c0
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d3cccf0d-ae8d-4358-91c8-0b2fb32e4e80:
+    id: d3cccf0d-ae8d-4358-91c8-0b2fb32e4e80
+    content: Two booleans (`collaborate`, `execute`) replace `metadata.contextMode`; the prompt builder composes disjoint scaffolding blocks per flag, and Action mode (neither flag) short-circuits both blocks AND drops the node content
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1812360f-fb79-4047-8e4f-7752f1e8dc73:
+    id: 1812360f-fb79-4047-8e4f-7752f1e8dc73
+    content: Migration is one-way on `.arbo` load; the legacy field is dropped on next save with no shadowed back-compat field
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7dbe3f16-6a84-4b10-bff8-307e850541c0:
+    id: 7dbe3f16-6a84-4b10-bff8-307e850541c0
+    content: 'Non-obvious: Action mode''s node-content suppression is new behaviour with no analogue today, and both-on is a prompt combination the AI has never seen — block copy must compose into a coherent pair'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9347c2c0-1174-4886-9c87-ebf85a2e7e82:
+    id: 9347c2c0-1174-4886-9c87-ebf85a2e7e82
+    content: Tests
+    children:
+      - 4327473b-14aa-4340-9c6b-8d2770a5093d
+      - 0291dc57-611c-4ab3-b50c-48cb283d8636
+      - 091a0412-c606-499b-ba28-bfcde1055323
+      - 3934e1f8-4e9b-4e44-8276-41f371195ae9
+      - 99f58137-7a84-4862-9b0b-d3114feb1bb9
+      - 14e6543c-4b58-4a4e-b6e1-bbc0252f5d69
+      - 3e31ea62-5354-4399-bc0d-7e766d6614ff
+      - 60fa6f39-befe-4772-adb4-e2514d5fe3c3
+      - 617c623b-9a3a-403b-bec7-521573425c20
+      - 413cbb46-df67-45cb-b8fc-19b67c7fa95b
+      - 95dbea37-94ab-41ff-9661-a1104776951b
+      - 33f493dd-6c81-40b0-8b56-9472778a5235
+      - 11980cc0-ef87-4cc0-b8df-a35b09a364a7
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4327473b-14aa-4340-9c6b-8d2770a5093d:
+    id: 4327473b-14aa-4340-9c6b-8d2770a5093d
+    content: 'Unit: `.arbo` load/save migration (next to the load path)'
+    children:
+      - bd174654-edcb-441f-b89a-90f72eb4e578
+      - 798cbecc-be3e-4b3e-907b-c3ab923acf93
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bd174654-edcb-441f-b89a-90f72eb4e578:
+    id: bd174654-edcb-441f-b89a-90f72eb4e578
+    content: '- [x] Legacy `''collaborate''` / `''execute''` / absent / unknown each translate to the correct tuple; legacy field stripped on save; idempotent on already-migrated input'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  798cbecc-be3e-4b3e-907b-c3ab923acf93:
+    id: 798cbecc-be3e-4b3e-907b-c3ab923acf93
+    content: '- [x] Migration runs before any consumer reads metadata (single-entry-point assertion)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0291dc57-611c-4ab3-b50c-48cb283d8636:
+    id: 0291dc57-611c-4ab3-b50c-48cb283d8636
+    content: 'Unit: `nodeHelpers.resolveContextFlags` (`src/renderer/utils/tests/nodeHelpers.test.ts`)'
+    children:
+      - 44a45f34-5a95-43b1-88a1-07a8eea859af
+      - 277993a2-1ebb-4ca6-8ce2-c412a81bbaa4
+      - 82a31b23-e336-47bb-843f-5e36c4e2e878
+      - c330cf03-50f7-48bd-ab70-cc6ade018a62
+      - aa604e0f-85dc-4d00-bf96-99c72a4ab442
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  44a45f34-5a95-43b1-88a1-07a8eea859af:
+    id: 44a45f34-5a95-43b1-88a1-07a8eea859af
+    content: '- [x] Defaults when `contextId` undefined, when metadata absent, when neither field is set on the node'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  277993a2-1ebb-4ca6-8ce2-c412a81bbaa4:
+    id: 277993a2-1ebb-4ca6-8ce2-c412a81bbaa4
+    content: '- [x] `BASIC_EXECUTE_CONTEXT_ID` → `(false, true)`; `BASIC_REVIEW_CONTEXT_ID` → `(true, false)`'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  82a31b23-e336-47bb-843f-5e36c4e2e878:
+    id: 82a31b23-e336-47bb-843f-5e36c4e2e878
+    content: '- [x] Declarations and node metadata are read in the right precedence order'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c330cf03-50f7-48bd-ab70-cc6ade018a62:
+    id: c330cf03-50f7-48bd-ab70-cc6ade018a62
+    content: '- [x] Explicit `(false, false)` (Action) persists — does not snap to a default'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  aa604e0f-85dc-4d00-bf96-99c72a4ab442:
+    id: aa604e0f-85dc-4d00-bf96-99c72a4ab442
+    content: '- [x] `getContextDeclarations` returns `{collaborate, execute}` per entry instead of `mode`'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  091a0412-c606-499b-ba28-bfcde1055323:
+    id: 091a0412-c606-499b-ba28-bfcde1055323
+    content: 'Unit: `promptBuilder` (`src/renderer/utils/tests/promptBuilder.test.ts`)'
+    children:
+      - ab3243b2-268e-4bef-82ae-1d8d42a92300
+      - 460332c8-9519-4d10-8cdf-407955ad6f80
+      - db677d71-d4af-4afc-8243-1ddd82a4b64f
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ab3243b2-268e-4bef-82ae-1d8d42a92300:
+    id: ab3243b2-268e-4bef-82ae-1d8d42a92300
+    content: '- [x] Each of the four tuples produces the right prompt shape (presence/absence of each scaffolding block; presence/absence of node content)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  460332c8-9519-4d10-8cdf-407955ad6f80:
+    id: 460332c8-9519-4d10-8cdf-407955ad6f80
+    content: '- [x] Disjoint-blocks invariant: Execute block snapshot contains zero list/temp-file phrases; Collaborate block snapshot contains zero source-file phrases (substring negatives)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  db677d71-d4af-4afc-8243-1ddd82a4b64f:
+    id: db677d71-d4af-4afc-8243-1ddd82a4b64f
+    content: '- [x] Title-only: "composed both-on prompt reads coherently" — body deferred until block copy is locked'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3934e1f8-4e9b-4e44-8276-41f371195ae9:
+    id: 3934e1f8-4e9b-4e44-8276-41f371195ae9
+    content: 'Unit: feedback panel auto-open trigger (alongside the trigger module)'
+    children:
+      - cf03c130-df4c-4ee1-9a3c-614a0b3dba1a
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cf03c130-df4c-4ee1-9a3c-614a0b3dba1a:
+    id: cf03c130-df4c-4ee1-9a3c-614a0b3dba1a
+    content: '- [x] Auto-opens iff `collaborate=true`; never opens-then-closes when `collaborate=false`'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  99f58137-7a84-4862-9b0b-d3114feb1bb9:
+    id: 99f58137-7a84-4862-9b0b-d3114feb1bb9
+    content: 'Unit: `CustomizeDialog` / picker UI (replacing `ModeToggle`)'
+    children:
+      - c55e392a-c050-4034-a65c-37c882974c46
+      - b6483713-de34-4a3b-ae1b-f9c7acd64b8b
+      - f4cf72a7-c410-48c1-a1bb-553515e4af65
+      - 16fa2dce-1023-4e36-b3ed-a221f341af0b
+      - 42a35e40-c8a6-4563-a523-037a784210de
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c55e392a-c050-4034-a65c-37c882974c46:
+    id: c55e392a-c050-4034-a65c-37c882974c46
+    content: '- [x] Two checkboxes render and reflect the current flag state; toggle independently of each other'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b6483713-de34-4a3b-ae1b-f9c7acd64b8b:
+    id: b6483713-de34-4a3b-ae1b-f9c7acd64b8b
+    content: '- [x] Saving with both off persists Action without snapping to a default'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f4cf72a7-c410-48c1-a1bb-553515e4af65:
+    id: f4cf72a7-c410-48c1-a1bb-553515e4af65
+    content: '- [x] Framing copy "Default: Action — AI responds however the context directs" and "Also ask for:" header are visible'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  16fa2dce-1023-4e36-b3ed-a221f341af0b:
+    id: 16fa2dce-1023-4e36-b3ed-a221f341af0b
+    content: '- [x] Checkbox labels describe the output shape added (reviewable tree update / code or file changes), not mode names — assert visible text'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  42a35e40-c8a6-4563-a523-037a784210de:
+    id: 42a35e40-c8a6-4563-a523-037a784210de
+    content: '- [x] Each checkbox has an associated label and is keyboard-reachable / activatable'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  14e6543c-4b58-4a4e-b6e1-bbc0252f5d69:
+    id: 14e6543c-4b58-4a4e-b6e1-bbc0252f5d69
+    content: 'Unit: right-click apply-context menu'
+    children:
+      - 1cdaeda1-6c2e-4ac2-a140-23a11fa54b1b
+      - f1736cc5-a1f6-4072-b3b2-b230c8a36d16
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1cdaeda1-6c2e-4ac2-a140-23a11fa54b1b:
+    id: 1cdaeda1-6c2e-4ac2-a140-23a11fa54b1b
+    content: '- [x] Menu lists exactly the four named states; selecting each applies the corresponding tuple to the active node'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f1736cc5-a1f6-4072-b3b2-b230c8a36d16:
+    id: f1736cc5-a1f6-4072-b3b2-b230c8a36d16
+    content: '- [x] Active item indicated based on the active node''s flags'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3e31ea62-5354-4399-bc0d-7e766d6614ff:
+    id: 3e31ea62-5354-4399-bc0d-7e766d6614ff
+    content: 'Unit: `customizeDialogStore`'
+    children:
+      - 8b2b9917-adbf-4bd9-a752-441b3806fbe5
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8b2b9917-adbf-4bd9-a752-441b3806fbe5:
+    id: 8b2b9917-adbf-4bd9-a752-441b3806fbe5
+    content: '- [x] Two independently-nullable fields (`selectedCollaborate`, `selectedExecute`); both null/false persists as Action'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  60fa6f39-befe-4772-adb4-e2514d5fe3c3:
+    id: 60fa6f39-befe-4772-adb4-e2514d5fe3c3
+    content: 'Unit: built-in context definitions'
+    children:
+      - 0d4c2ac8-bf4d-497a-954e-1d9fea6afe1e
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0d4c2ac8-bf4d-497a-954e-1d9fea6afe1e:
+    id: 0d4c2ac8-bf4d-497a-954e-1d9fea6afe1e
+    content: '- [x] Two presets resolve to the right tuples; no third built-in is registered'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  617c623b-9a3a-403b-bec7-521573425c20:
+    id: 617c623b-9a3a-403b-bec7-521573425c20
+    content: 'Unit: gutter / context indicators'
+    children:
+      - a52571ac-dbaa-4084-a43e-711593dc97e7
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a52571ac-dbaa-4084-a43e-711593dc97e7:
+    id: a52571ac-dbaa-4084-a43e-711593dc97e7
+    content: '- [x] All four flag combinations render distinctly, including Action (no empty / "no selection" rendering)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  413cbb46-df67-45cb-b8fc-19b67c7fa95b:
+    id: 413cbb46-df67-45cb-b8fc-19b67c7fa95b
+    content: 'Integration: `src/renderer/test/integration/workflowExecution.test.ts`'
+    children:
+      - 3121adac-fc69-48ed-a054-cd7e9b3a076f
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3121adac-fc69-48ed-a054-cd7e9b3a076f:
+    id: 3121adac-fc69-48ed-a054-cd7e9b3a076f
+    content: '- [x] All four states sent end-to-end from each entry surface (run from node, keyboard shortcut, right-click menu) produce identical outgoing prompts and identical panel-open behaviour for the same flag pair'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  95dbea37-94ab-41ff-9661-a1104776951b:
+    id: 95dbea37-94ab-41ff-9661-a1104776951b
+    content: Existing tests touching `contextMode` literals (must compile + pass after refactor)
+    children:
+      - 2cd4faf8-b466-4317-913b-00a287562bdd
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2cd4faf8-b466-4317-913b-00a287562bdd:
+    id: 2cd4faf8-b466-4317-913b-00a287562bdd
+    content: '- [x] `clearTaskMetadata.test.ts`, `useAppliedContextsMode.test.ts`, `GutterContextIndicatorMode.test.tsx`, `useAppliedContexts.test.ts`, and every other test referencing `contextMode` is re-keyed onto flags before merge'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  33f493dd-6c81-40b0-8b56-9472778a5235:
+    id: 33f493dd-6c81-40b0-8b56-9472778a5235
+    content: Edge cases and risk
+    children:
+      - e6cc7459-db30-408f-97bc-980437a07d27
+      - f3b13a71-1349-49df-abbe-945e9a90dd23
+      - bdefd6be-f092-4257-9897-279ba8235bf0
+      - 57c7c0d4-f725-4df3-a024-17304d6c254f
+      - f3ab8544-3499-47e2-9e27-711c0becb7ba
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e6cc7459-db30-408f-97bc-980437a07d27:
+    id: e6cc7459-db30-408f-97bc-980437a07d27
+    content: '- [x] Empty / null / undefined: undefined `contextId`, null `metadata`, missing node — return defaults without throwing'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f3b13a71-1349-49df-abbe-945e9a90dd23:
+    id: f3b13a71-1349-49df-abbe-945e9a90dd23
+    content: '- [x] Boundary: only one flag field set in `.arbo` — absent flag treated as off, no implicit default'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bdefd6be-f092-4257-9897-279ba8235bf0:
+    id: bdefd6be-f092-4257-9897-279ba8235bf0
+    content: '- [x] Error path: non-boolean flag values in `.arbo` — coerce or fall back to defaults with a warning, do not crash'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  57c7c0d4-f725-4df3-a024-17304d6c254f:
+    id: 57c7c0d4-f725-4df3-a024-17304d6c254f
+    content: '- [x] Concurrent: two runs in flight under different contexts — each respects its own flags; no panel cross-contamination'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f3ab8544-3499-47e2-9e27-711c0becb7ba:
+    id: f3ab8544-3499-47e2-9e27-711c0becb7ba
+    content: '- [x] Repeated: rapid checkbox toggling does not desync UI state from store'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  11980cc0-ef87-4cc0-b8df-a35b09a364a7:
+    id: 11980cc0-ef87-4cc0-b8df-a35b09a364a7
+    content: Conventions
+    children:
+      - ff3324de-ac8c-48fa-aea9-bac4a024a056
+      - a37c1fb9-8c2c-4da5-8308-546883c1b375
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ff3324de-ac8c-48fa-aea9-bac4a024a056:
+    id: ff3324de-ac8c-48fa-aea9-bac4a024a056
+    content: '- [x] Tests live in `tests/` subdirs alongside the module under test; reuse `tests/fixtures/` helpers; mock at module level via DI; `mockImplementation` with conditionals (no `mockReturnValueOnce`); full `beforeEach` reset; title-only tests acceptable when post-fix behaviour is uncertain'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a37c1fb9-8c2c-4da5-8308-546883c1b375:
+    id: a37c1fb9-8c2c-4da5-8308-546883c1b375
+    content: '- [x] When iterating, run only changed/new test files'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  73544569-32a8-455b-bffe-f07b8afc31a3:
+    id: 73544569-32a8-455b-bffe-f07b8afc31a3
+    content: This is a subtask of the overall user story.  Please implement only this subtask.  The others will be implemented in a separate PR.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3e86505a-32d9-4cd6-b48c-d20edcdd8aab:
+    id: 3e86505a-32d9-4cd6-b48c-d20edcdd8aab
+    content: Tests (PR2 scope)
+    children:
+      - b035c865-4326-4e09-8880-380dbae9dc15
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b035c865-4326-4e09-8880-380dbae9dc15:
+    id: b035c865-4326-4e09-8880-380dbae9dc15
+    content: In scope for PR2 — picker UI rework only; PR1 already shipped data, prompt, panel, right-click menu, and consumer re-keying with full test coverage
+    children:
+      - d5ec8069-a4e9-4fdb-a0d1-73cd4d6c00ee
+      - af21e0e9-4994-43cd-99b0-fe5d2edfb74f
+      - 4f857117-4742-495e-9506-e9c973b49673
+      - 8b16c99e-8efa-4822-8835-a9cf820bac4f
+      - 6eac612c-f09a-4897-8a91-bc7022171682
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d5ec8069-a4e9-4fdb-a0d1-73cd4d6c00ee:
+    id: d5ec8069-a4e9-4fdb-a0d1-73cd4d6c00ee
+    content: 'Unit: `CustomizeDialog` two-checkbox picker (`src/renderer/components/ui/CustomizeDialog/tests/CustomizeDialog.test.tsx`, extending the existing file)'
+    children:
+      - 5c7ab59b-44d7-463c-9d41-94f585d8c03b
+      - 57b4eb2c-7fe3-44ac-a454-a459379c5ad1
+      - 5eb3ad6e-759a-4c1d-93d2-7d71f22c001e
+      - a11f9c41-3f01-4947-ba2b-5b928bed1ad8
+      - f2b330af-e108-4115-bd71-0bf639f67231
+      - 01613fb5-8e98-4ca9-b78f-7711b0d93e66
+      - fd3154c8-6ef1-43c7-b92a-3fca17742dca
+      - 04f42a5c-fad0-4b95-abe6-7d96becca1bf
+      - 41899b21-5b7b-4776-bbef-4106723a4f03
+      - 1d32fe17-8cf4-491d-ab75-4f02ce8eb490
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5c7ab59b-44d7-463c-9d41-94f585d8c03b:
+    id: 5c7ab59b-44d7-463c-9d41-94f585d8c03b
+    content: '- [x] Renders two distinct checkboxes (no radio remaining); each reflects the current flag state'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  57b4eb2c-7fe3-44ac-a454-a459379c5ad1:
+    id: 57b4eb2c-7fe3-44ac-a454-a459379c5ad1
+    content: '- [x] Toggling Collaborate leaves Execute unchanged, and vice versa (independent toggles)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5eb3ad6e-759a-4c1d-93d2-7d71f22c001e:
+    id: 5eb3ad6e-759a-4c1d-93d2-7d71f22c001e
+    content: '- [x] Saving with both off persists Action `(false, false)` — store receives `{ selectedCollaborate: false, selectedExecute: false }`, does not snap back to a default'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a11f9c41-3f01-4947-ba2b-5b928bed1ad8:
+    id: a11f9c41-3f01-4947-ba2b-5b928bed1ad8
+    content: '- [x] Saving each of the other three combinations persists the corresponding tuple'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f2b330af-e108-4115-bd71-0bf639f67231:
+    id: f2b330af-e108-4115-bd71-0bf639f67231
+    content: '- [x] Framing copy assertion: "Default: Action — AI responds however the context directs" is visible'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  01613fb5-8e98-4ca9-b78f-7711b0d93e66:
+    id: 01613fb5-8e98-4ca9-b78f-7711b0d93e66
+    content: '- [x] Section header "Also ask for:" is visible above the two checkboxes'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fd3154c8-6ef1-43c7-b92a-3fca17742dca:
+    id: fd3154c8-6ef1-43c7-b92a-3fca17742dca
+    content: '- [x] Each checkbox label describes the **output shape** added — "reviewable tree update (opens panel)" for Collaborate; "code or file changes in the repo" for Execute. Assert visible text, not internal labels'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  04f42a5c-fad0-4b95-abe6-7d96becca1bf:
+    id: 04f42a5c-fad0-4b95-abe6-7d96becca1bf
+    content: '- [x] Accessibility: each checkbox has an `<label>` with `htmlFor` matching the input `id`; pressing Space on a focused checkbox toggles it; Tab order goes Collaborate → Execute (and through to Save/Cancel)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  41899b21-5b7b-4776-bbef-4106723a4f03:
+    id: 41899b21-5b7b-4776-bbef-4106723a4f03
+    content: '- [x] When the dialog opens with an existing context that has Both-on flags, both checkboxes are pre-checked'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1d32fe17-8cf4-491d-ab75-4f02ce8eb490:
+    id: 1d32fe17-8cf4-491d-ab75-4f02ce8eb490
+    content: '- [x] When the dialog opens with an Action context (`(false, false)`), both checkboxes are pre-unchecked and the Default/Also-ask-for framing reads as the active state'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  af21e0e9-4994-43cd-99b0-fe5d2edfb74f:
+    id: af21e0e9-4994-43cd-99b0-fe5d2edfb74f
+    content: 'Unit: `customizeDialogStore` (new file: `src/renderer/store/customizeDialog/tests/customizeDialogStore.test.ts`)'
+    children:
+      - 24200058-17b3-479e-ade7-50524638dcdd
+      - ec61a401-357c-4659-8c53-833e57c70ff8
+      - 902bf1ee-0c67-47ad-ac9c-dee786002723
+      - 50ac0da1-b707-48a6-99b8-dd7b60df2c98
+      - a8f62db4-355d-4cd7-8795-b05504d769e0
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  24200058-17b3-479e-ade7-50524638dcdd:
+    id: 24200058-17b3-479e-ade7-50524638dcdd
+    content: '- [x] `selectedCollaborate` and `selectedExecute` are independently nullable: setting one does not coerce the other'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ec61a401-357c-4659-8c53-833e57c70ff8:
+    id: ec61a401-357c-4659-8c53-833e57c70ff8
+    content: '- [x] `open(...)` populates both fields from the supplied context flags'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  902bf1ee-0c67-47ad-ac9c-dee786002723:
+    id: 902bf1ee-0c67-47ad-ac9c-dee786002723
+    content: '- [x] `close()` resets both fields to their initial null'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  50ac0da1-b707-48a6-99b8-dd7b60df2c98:
+    id: 50ac0da1-b707-48a6-99b8-dd7b60df2c98
+    content: '- [x] Both null/false persists as Action through a save round-trip — the consumer''s `onSave` receives `(false, false)`, not coerced to a default'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a8f62db4-355d-4cd7-8795-b05504d769e0:
+    id: a8f62db4-355d-4cd7-8795-b05504d769e0
+    content: '- [x] Toggling each setter individually leaves the other untouched'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4f857117-4742-495e-9506-e9c973b49673:
+    id: 4f857117-4742-495e-9506-e9c973b49673
+    content: Edge cases and risk (PR2-specific)
+    children:
+      - 13e9a49b-e2ae-496a-97bc-2c8402a2a397
+      - 5af7b054-8d65-41a7-84a1-83d68a8777df
+      - fa18cd86-ab05-4462-b257-cac7e0a4a4e3
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  13e9a49b-e2ae-496a-97bc-2c8402a2a397:
+    id: 13e9a49b-e2ae-496a-97bc-2c8402a2a397
+    content: '- [x] Repeated: rapid checkbox toggling does not desync UI state from store — each click cycles atomically; final store state matches final visible checkbox state'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5af7b054-8d65-41a7-84a1-83d68a8777df:
+    id: 5af7b054-8d65-41a7-84a1-83d68a8777df
+    content: '- [x] Concurrent: two open dialogs (if reachable in any UI flow) maintain independent selections — out of scope unless the dialog model permits it; default to single-instance assertion'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fa18cd86-ab05-4462-b257-cac7e0a4a4e3:
+    id: fa18cd86-ab05-4462-b257-cac7e0a4a4e3
+    content: '- [x] Pre-existing context with legacy migration tuple `(true, true)` Both-on: dialog opens with both checkboxes pre-checked, no flicker'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8b16c99e-8efa-4822-8835-a9cf820bac4f:
+    id: 8b16c99e-8efa-4822-8835-a9cf820bac4f
+    content: Out of scope for PR2 (covered by PR1)
+    children:
+      - 63c63587-24a3-4f1d-a121-ba88606ac9c6
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  63c63587-24a3-4f1d-a121-ba88606ac9c6:
+    id: 63c63587-24a3-4f1d-a121-ba88606ac9c6
+    content: '- [x] Schema migration, `resolveContextFlags`, prompt composition, panel trigger, right-click menu, built-in defaults, consumer re-keying, end-to-end integration'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6eac612c-f09a-4897-8a91-bc7022171682:
+    id: 6eac612c-f09a-4897-8a91-bc7022171682
+    content: Conventions
+    children:
+      - 1ccd97d7-7f0b-40e2-b935-95a1ed9e87c9
+      - 66771eda-09d4-4e78-bdba-0cb443133661
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1ccd97d7-7f0b-40e2-b935-95a1ed9e87c9:
+    id: 1ccd97d7-7f0b-40e2-b935-95a1ed9e87c9
+    content: '- [x] Tests in `tests/` subdir alongside the module under test (`CustomizeDialog/tests/`, `customizeDialog/tests/`); reuse `tests/fixtures/` helpers; mock the store at module level via DI; `mockImplementation` with conditionals; full `beforeEach` reset; title-only tests acceptable for any UI behaviour where the final visual treatment is still in flux'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  66771eda-09d4-4e78-bdba-0cb443133661:
+    id: 66771eda-09d4-4e78-bdba-0cb443133661
+    content: '- [x] When iterating, run only the picker UI test files (`CustomizeDialog.test.tsx` + `customizeDialogStore.test.ts`); the PR1 suite stays green by construction since this PR only touches the picker'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  de61b6ff-7d96-439a-8ac9-35cc8abce46b:
+    id: de61b6ff-7d96-439a-8ac9-35cc8abce46b
+    content: Implementation notes — issues encountered during PR2
+    children:
+      - 33ee8487-ac64-4850-8904-13690596e957
+      - 9b127673-430b-44ac-85f1-55e66d31e863
+      - 10874b84-294f-430a-bd0e-e76d8993c406
+      - ba126453-0cef-4f6d-94bf-ef147a519554
+      - 7ea4ec45-5551-494c-aa2d-b16799960312
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  33ee8487-ac64-4850-8904-13690596e957:
+    id: 33ee8487-ac64-4850-8904-13690596e957
+    content: 'PR2 worktree initially didn''t have PR1''s data layer because PR1 isn''t committed yet — git worktree forks from the last committed commit, not the working tree. To unblock PR2 work I rsynced PR1''s full source tree (`src/`) from `Arborescent-context-flags` into `Arborescent-context-picker`, then layered PR2''s picker changes on top. **When you commit PR1 and then layer PR2 on top, the rsynced PR1 portion will collide cleanly with the real PR1 commit — `git diff PR1-branch HEAD` on PR2''s worktree should yield only PR2-specific changes.** Practically: after PR1 lands, you can either (a) reset PR2''s branch to PR1''s HEAD and re-apply only the PR2-specific files, or (b) cherry-pick PR2''s deltas via the file list below.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9b127673-430b-44ac-85f1-55e66d31e863:
+    id: 9b127673-430b-44ac-85f1-55e66d31e863
+    content: 'Files actually authored by PR2 (the surface the user should review): `src/renderer/store/customizeDialog/customizeDialogStore.ts` (replaced selectedMode with selectedCollaborate/selectedExecute), `src/renderer/components/ui/CustomizeDialog/ContextFlagsCheckboxes.tsx` (new), `src/renderer/components/ui/CustomizeDialog/ModeToggle.tsx` (deleted), `src/renderer/components/ui/CustomizeDialog/CustomizeDialog.tsx` (props + handleConfirm + render block), `src/renderer/components/ui/CustomizeDialog/CustomizeDialog.css` (mode-toggle CSS replaced with flag-checkbox CSS), `src/renderer/components/ui/CustomizeDialog/CustomizeDialogContainer.tsx` (wiring), `src/renderer/components/NodeContent/hooks/useNodeContextMenu.ts` (handleDeclareAsContext now passes flags), `src/renderer/components/NodeContent/hooks/useContextIconClick.ts` (same), plus the two test files (`CustomizeDialog.test.tsx` extended; `customizeDialog/tests/customizeDialogStore.test.ts` new). Everything else in the diff comes from PR1''s rsync.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  10874b84-294f-430a-bd0e-e76d8993c406:
+    id: 10874b84-294f-430a-bd0e-e76d8993c406
+    content: 'Convention check: ContextFlagsCheckboxes.tsx is a pure template (no logic), <50 lines; CSS is co-located in CustomizeDialog.css; all CSS classes follow the existing `icon-picker-*` naming; no inline styles; no comments referencing iteration/PR history; no JSDoc; descriptive names throughout (`onCollaborateChange`, `setCollaborate`, etc.). Conforms to the project conventions.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ba126453-0cef-4f6d-94bf-ef147a519554:
+    id: ba126453-0cef-4f6d-94bf-ef147a519554
+    content: All 3035 tests pass; type-check clean; lint clean on changed `.ts`/`.tsx` files (0 errors).
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7ea4ec45-5551-494c-aa2d-b16799960312:
+    id: 7ea4ec45-5551-494c-aa2d-b16799960312
+    content: 'Branching note: PR2 was created via `git worktree add /Users/brianfox/dev/Arborescent-context-picker -b feat/context-picker-checkboxes feat/context-collaborate-execute-flags`, but since PR1''s branch had no commits at fork time the working baseline ended up on master. The rsync workaround keeps PR2 developable in isolation. Once you''ve committed PR1, reset/rebase `feat/context-picker-checkboxes` onto the committed PR1 to get a clean diff before review.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  80c5aace-8f58-4f6e-8fea-e03b8dd90652:
+    id: 80c5aace-8f58-4f6e-8fea-e03b8dd90652
+    content: Run-test-pass round added the missing Tab-order test
+    children:
+      - 55a26f67-cd44-485f-96d0-6b77f0c1c40e
+      - baf65924-c5ef-45d9-91e2-5b76835e3638
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  55a26f67-cd44-485f-96d0-6b77f0c1c40e:
+    id: 55a26f67-cd44-485f-96d0-6b77f0c1c40e
+    content: Audit found that the AC item under Accessibility for `CustomizeDialog` covered three sub-claims — label/htmlFor association, Space-toggle, and Tab order Collaborate → Execute — but only the first two had explicit tests. Added a "Tab order goes Collaborate → Execute" test using `userEvent.tab()` from a focused Collaborate checkbox; asserts `document.activeElement` lands on Execute. The `(and through to Save/Cancel)` portion stays out of scope for jsdom (focusable-element traversal beyond the picker depends on global modal layout)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  baf65924-c5ef-45d9-91e2-5b76835e3638:
+    id: baf65924-c5ef-45d9-91e2-5b76835e3638
+    content: Total tests now 3035 (was 3034); type-check clean; the AC item is now backed by a direct keyboard-traversal assertion rather than relying on the implicit DOM order
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f3c6bb00-eaaf-4930-b34b-a025428a7706:
+    id: f3c6bb00-eaaf-4930-b34b-a025428a7706
+    content: AI refactor round
+    children:
+      - 824a2cfc-ee44-4c53-ac3a-7139f86b0e0b
+      - b1fa884a-9c5d-4a3e-b085-65ca0b989298
+      - e3a45a2e-fb03-48ad-a654-6cdbb9b7cf4f
+      - fc0843b7-a45d-475f-a6cc-e932654b33b5
+      - 27b7c52c-bfd2-426b-8717-009b0d441fb8
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  824a2cfc-ee44-4c53-ac3a-7139f86b0e0b:
+    id: 824a2cfc-ee44-4c53-ac3a-7139f86b0e0b
+    content: 'Convention audit: PR2-authored sources stay under the size threshold — `CustomizeDialog.tsx` 229 lines, `ContextFlagsCheckboxes.tsx` 46 lines, `customizeDialogStore.ts` 74 lines. `ContextFlagsCheckboxes` remains a pure template with no logic; CSS classes follow the `icon-picker-*` naming; no inline styles; no JSDoc; no PR/iteration-history comments'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b1fa884a-9c5d-4a3e-b085-65ca0b989298:
+    id: b1fa884a-9c5d-4a3e-b085-65ca0b989298
+    content: 'Dead-reference cleanup: `types.ts` carried a JSDoc block referencing `ModeToggle` (deleted in this PR). Removed the stale block; kept the inline `// Amber and Sky values match globals.css variables` comment (the only "why" comment in the file)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e3a45a2e-fb03-48ad-a654-6cdbb9b7cf4f:
+    id: e3a45a2e-fb03-48ad-a654-6cdbb9b7cf4f
+    content: 'Test-naming cleanup: renamed `describe(''CustomizeDialog flag picker (PR2)'')` → `describe(''CustomizeDialog flag picker'')` so the suite title doesn''t decay once the PR ships'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fc0843b7-a45d-475f-a6cc-e932654b33b5:
+    id: fc0843b7-a45d-475f-a6cc-e932654b33b5
+    content: 'Empty-test sweep: `CustomizeDialog.test.tsx`, `customizeDialogStore.test.ts`, and `migrateContextModeFlags.test.ts` checked — every `it(...)` block has a body with at least one assertion; no skipped/pending/empty tests'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  27b7c52c-bfd2-426b-8717-009b0d441fb8:
+    id: 27b7c52c-bfd2-426b-8717-009b0d441fb8
+    content: Standard checks on changed files only — `tsc --noEmit` clean; `eslint` on the eight PR2-authored files reports 0 issues; full `vitest run` reports 3035 passed / 0 failed / 1 pending (pre-existing) across 1140 suites
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d0ffbb5f-3928-4aae-a88e-03e5f1184d23:
+    id: d0ffbb5f-3928-4aae-a88e-03e5f1184d23
+    content: Documentation round
+    children:
+      - a372cbb6-205d-45e0-924b-44f8cb2a7ee1
+      - 4f2a6849-07b8-4706-a98c-2c12855b19f2
+      - fff9a021-9317-44b2-9e97-a9c7bf8cc1cd
+      - b0ce94b9-0a8e-43cd-a7bb-90366163b9a1
+      - fda43269-1a96-4723-b178-026dd91803db
+      - 45875f19-17ea-4629-abed-89bfffdb28eb
+      - f3f1d1ac-bcb5-4049-bbd2-3bcce13ec62c
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a372cbb6-205d-45e0-924b-44f8cb2a7ee1:
+    id: a372cbb6-205d-45e0-924b-44f8cb2a7ee1
+    content: '`docs/contexts.md` — Replaced the binary "mode (collaborate or execute)" framing with the four output-shape combinations (Collaborate / Execute / Collaborate & Execute / Action). Walked through what the customize dialog now shows (icon, color, two inline checkboxes), described what each combination produces in the prompt, and noted that the right-click "Context mode" submenu lets you switch states later. Updated the gutter-tooltip phrasing from "mode" to "output shape" in the Visual Summary section.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4f2a6849-07b8-4706-a98c-2c12855b19f2:
+    id: 4f2a6849-07b8-4706-a98c-2c12855b19f2
+    content: '`docs/workflow.md` — Rewrote the four bullets under "Send Your Prompt" so they describe the four output-shape combinations instead of the old binary modes; kept the Basic review / Basic execution paragraph since they remain the two single-flag presets. Hover phrasing on the Send menu now reads "output shape" rather than "mode".'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fff9a021-9317-44b2-9e97-a9c7bf8cc1cd:
+    id: fff9a021-9317-44b2-9e97-a9c7bf8cc1cd
+    content: '`docs/workflows.md` — Updated the Autonomous step description from "In collaborate mode, the node content is replaced. In execute mode, item statuses are updated" to flag-based phrasing that handles the both-on case.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b0ce94b9-0a8e-43cd-a7bb-90366163b9a1:
+    id: b0ce94b9-0a8e-43cd-a7bb-90366163b9a1
+    content: '`docs/blueprints.md` — Replaced the brief "icon and a mode (collaborate or execute)" line in the Context Declarations section with the four-shape phrasing.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fda43269-1a96-4723-b178-026dd91803db:
+    id: fda43269-1a96-4723-b178-026dd91803db
+    content: '`CHANGELOG.md` — Replaced the "Unified context modes" Unreleased entry with one describing the four-state model (Collaborate, Execute, both, and Action), the inline-checkboxes picker, and the four-named-state context-mode submenu. Treated this as evolving the existing unreleased line rather than adding a redundant entry, per "complement existing documentation" / "remove redundant references".'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  45875f19-17ea-4629-abed-89bfffdb28eb:
+    id: 45875f19-17ea-4629-abed-89bfffdb28eb
+    content: 'Did not touch: `docs/shortcuts.md` (no shortcut changes), top-level `README.md` (one-liner about "Execute and Collaborate workflows" is high-level marketing, still accurate enough), `docs/README.md` (index unchanged).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f3f1d1ac-bcb5-4049-bbd2-3bcce13ec62c:
+    id: f3f1d1ac-bcb5-4049-bbd2-3bcce13ec62c
+    content: 'Inconsistency flagged: the **Apply context** right-click submenu (`useSetContextSubmenu`) groups available contexts as `c.collaborate && !c.execute` (Collaborate) and `c.execute` (Execute). Action contexts (both flags off) match neither filter and are silently dropped from that submenu — so a user can declare an Action context but cannot then apply it to another branch from this menu. The Acceptance Criteria item "All four named states are reachable from the picker, the right-click apply menu, and any keyboard shortcut wired to apply context" is therefore not fully satisfied for already-declared Action contexts. The contexts.md update notes that the Apply submenu is grouped Collaborate / Execute (with both-on contexts surfacing under Execute) but does not promise Action contexts appear there. Worth a small follow-up either to surface Action contexts under a third group or to drop the Apply menu''s mode-grouping in favour of a flat list.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e6d5a51d-a004-4f92-be89-41d5e5dcd390:
+    id: e6d5a51d-a004-4f92-be89-41d5e5dcd390
+    content: Merge to master
+    children:
+      - ed180655-cc8e-4c4f-9f2b-0d66eb4f70b9
+      - 97ab5d6d-a09b-4706-ab40-951f7e74b542
+      - d2cd29c1-f864-40a8-9c63-2e3ffdbb71c6
+      - 5fd10c2f-171c-4212-a5b9-c31f8421c4a9
+      - fd3b7761-38f8-4d0c-912c-fb6c9562b498
+      - 307a8296-c175-41a9-a672-87fa8676b119
+      - eb5f166e-3fc5-44ab-a298-29615315f0a3
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ed180655-cc8e-4c4f-9f2b-0d66eb4f70b9:
+    id: ed180655-cc8e-4c4f-9f2b-0d66eb4f70b9
+    content: 'In master: committed pending project.arbo as `42bde54 chore: update project.arbo with workflow run state`'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  97ab5d6d-a09b-4706-ab40-951f7e74b542:
+    id: 97ab5d6d-a09b-4706-ab40-951f7e74b542
+    content: 'In worktree: reset PR2''s branch ref to master to discard the rsynced PR1 content (now identical to master) and surface only PR2-specific deltas in the working tree. Discovered + fixed a stale `project.arbo` snapshot in the worktree (rsync had captured an older version) by checking out master''s copy. Doc rewrites I''d done in earlier rounds turned out to regress PR1''s already-correct framing (Basic execution = Collaborate & Execute, "state" terminology) — reverted `docs/contexts.md`, `docs/workflow.md`, `docs/workflows.md`, `docs/blueprints.md`, and `CHANGELOG.md` to master so PR2''s diff is purely the picker UX surface plus the folded-in `sendActions.ts` "no code changes" rule'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d2cd29c1-f864-40a8-9c63-2e3ffdbb71c6:
+    id: d2cd29c1-f864-40a8-9c63-2e3ffdbb71c6
+    content: 'Committed PR2 as `feat: replace context-mode radio with two inline checkboxes` — single commit, 11 files, +304/-107. Files: `useContextIconClick.ts`, `useNodeContextMenu.ts`, `CustomizeDialog.tsx/.css`, `CustomizeDialogContainer.tsx`, `ContextFlagsCheckboxes.tsx` (new), `ModeToggle.tsx` (deleted), `types.ts`, `customizeDialogStore.ts`, `customizeDialogStore.test.ts` (new), `CustomizeDialog.test.tsx`, `sendActions.ts` (+1 line), `sendActions.test.ts`'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5fd10c2f-171c-4212-a5b9-c31f8421c4a9:
+    id: 5fd10c2f-171c-4212-a5b9-c31f8421c4a9
+    content: 'No rebase needed — the reset already placed PR2 on top of master. Standard checks rerun on changed files: tsc clean, eslint 0 errors (1 pre-existing dependency-cycle warning unrelated), 120 changed-file tests pass'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fd3b7761-38f8-4d0c-912c-fb6c9562b498:
+    id: fd3b7761-38f8-4d0c-912c-fb6c9562b498
+    content: Fast-forward merged `feat/context-picker-checkboxes` into master (now at `3fc6099`)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  307a8296-c175-41a9-a672-87fa8676b119:
+    id: 307a8296-c175-41a9-a672-87fa8676b119
+    content: Removed worktree at `/Users/brianfox/dev/Arborescent-context-picker`; deleted local branch `feat/context-picker-checkboxes`
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  eb5f166e-3fc5-44ab-a298-29615315f0a3:
+    id: eb5f166e-3fc5-44ab-a298-29615315f0a3
+    content: Pushed `master` to `origin` — `2e60d04..3fc6099` shipped; local now in sync with `origin/master`
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6ed7cdaf-51de-4029-967e-0e8e0018f138:
+    id: 6ed7cdaf-51de-4029-967e-0e8e0018f138
+    content: Make a new worktree for this feature
+    children:
+      - 942edd8a-1840-4859-9c66-e428d2dfa61e
+      - 48209e8f-f520-4336-b113-55b7974d623f
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  942edd8a-1840-4859-9c66-e428d2dfa61e:
+    id: 942edd8a-1840-4859-9c66-e428d2dfa61e
+    content: If this work is a follow up to the current active branch then fork the current branch
+    children:
+      - dceafd99-27da-466c-89ef-1c151565eb8f
+      - 30278503-66f1-4618-9fcd-661764f89c27
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  dceafd99-27da-466c-89ef-1c151565eb8f:
+    id: dceafd99-27da-466c-89ef-1c151565eb8f
+    content: Make sure the parent branch has at least one commit before forking; otherwise the worktree silently forks from main and the parent's uncommitted work has to be rsynced in
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  30278503-66f1-4618-9fcd-661764f89c27:
+    id: 30278503-66f1-4618-9fcd-661764f89c27
+    content: If it is not related then fork main branch instead
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  48209e8f-f520-4336-b113-55b7974d623f:
+    id: 48209e8f-f520-4336-b113-55b7974d623f
+    content: Do not symlink node modules
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  169d492f-85be-4deb-b444-430415ea173b:
+    id: 169d492f-85be-4deb-b444-430415ea173b
+    content: Add a node 'worktree' as the first child of the parent
+    children:
+      - 95da1b57-d74f-4f66-ade1-46d12de544ab
+      - 4dbd2bfd-aeae-4c19-8935-f1ab916097a9
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  95da1b57-d74f-4f66-ade1-46d12de544ab:
+    id: 95da1b57-d74f-4f66-ade1-46d12de544ab
+    content: Under it add a URI link to open vscode on the workree
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  4dbd2bfd-aeae-4c19-8935-f1ab916097a9:
+    id: 4dbd2bfd-aeae-4c19-8935-f1ab916097a9
+    content: If the first child of the parent already contains a link, to linear for example
+    children:
+      - ac1b1b26-7d7a-43c2-9f26-9a820ccb2bff
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  ac1b1b26-7d7a-43c2-9f26-9a820ccb2bff:
+    id: ac1b1b26-7d7a-43c2-9f26-9a820ccb2bff
+    content: Create the worktree node as the second child instead
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
