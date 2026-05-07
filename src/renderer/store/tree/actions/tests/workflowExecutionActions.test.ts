@@ -6,6 +6,7 @@ import { createWorkflowExecutionActions } from '../workflowExecutionActions';
 vi.mock('../../../services/logger', () => ({
   logger: {
     info: vi.fn(),
+    warn: vi.fn(),
     error: vi.fn(),
   },
 }));
@@ -886,6 +887,76 @@ describe('createWorkflowExecutionActions', () => {
       actions.handleHookEvent({ session_id: 'unknown-session', hook_event_name: 'NeedsReview' });
 
       expect(state.workflowExecutionStates['task-a'].needsReview).toBeUndefined();
+    });
+  });
+
+  describe('NeedsReview immediate user-visible signal (fix)', () => {
+    beforeEach(() => {
+      state.workflowSessionMap = { 'session-1': 'terminal-1' };
+    });
+
+    it('should show a toast immediately when NeedsReview arrives on an autonomous step', () => {
+      state.workflowExecutionStates['task-a'] = { state: 'running', terminalTabId: 'terminal-1' };
+
+      actions.handleHookEvent({ session_id: 'session-1', hook_event_name: 'NeedsReview' });
+
+      expect(mockAddToast).toHaveBeenCalledWith(
+        expect.stringContaining('review'),
+        expect.anything(),
+        expect.anything(),
+      );
+    });
+
+    it('should show a toast immediately when NeedsReview arrives on a checkpoint step', () => {
+      state.workflowExecutionStates['task-c'] = { state: 'running', terminalTabId: 'terminal-1' };
+
+      actions.handleHookEvent({ session_id: 'session-1', hook_event_name: 'NeedsReview' });
+
+      expect(mockAddToast).toHaveBeenCalledWith(
+        expect.stringContaining('review'),
+        expect.anything(),
+        expect.anything(),
+      );
+    });
+
+    it('should show a toast immediately when NeedsReview arrives on a manual step', () => {
+      state.nodes['task-d'] = { id: 'task-d', content: 'Task D', children: [], metadata: { isBlueprint: true } };
+      state.nodes['step-3'].children = ['task-d'];
+      state.ancestorRegistry['task-d'] = ['root', 'workflow', 'step-3'];
+      state.workflowExecutionStates['task-d'] = { state: 'running', terminalTabId: 'terminal-1' };
+
+      actions.handleHookEvent({ session_id: 'session-1', hook_event_name: 'NeedsReview' });
+
+      expect(mockAddToast).toHaveBeenCalledWith(
+        expect.stringContaining('review'),
+        expect.anything(),
+        expect.anything(),
+      );
+    });
+
+    it('should fire notifyWorkflowEvent immediately on NeedsReview regardless of step type', () => {
+      state.workflowExecutionStates['task-c'] = { state: 'running', terminalTabId: 'terminal-1' };
+
+      actions.handleHookEvent({ session_id: 'session-1', hook_event_name: 'NeedsReview' });
+
+      expect(mockNotifyWorkflowEvent).toHaveBeenCalledWith(
+        'alert',
+        expect.any(String),
+        expect.any(String),
+      );
+    });
+
+    it('should not double-notify when Stop follows NeedsReview on an autonomous step', () => {
+      state.workflowExecutionStates['task-a'] = { state: 'running', terminalTabId: 'terminal-1' };
+
+      actions.handleHookEvent({ session_id: 'session-1', hook_event_name: 'NeedsReview' });
+      const toastsAfterReview = mockAddToast.mock.calls.length;
+      const notifsAfterReview = mockNotifyWorkflowEvent.mock.calls.length;
+
+      actions.handleHookEvent({ session_id: 'session-1', hook_event_name: 'Stop' });
+
+      expect(mockAddToast.mock.calls.length).toBe(toastsAfterReview);
+      expect(mockNotifyWorkflowEvent.mock.calls.length).toBe(notifsAfterReview);
     });
   });
 

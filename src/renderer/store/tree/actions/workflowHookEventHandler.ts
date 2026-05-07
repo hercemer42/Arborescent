@@ -63,8 +63,8 @@ export function createHookEventHandler(deps: HookEventHandlerDeps) {
     const { workflowSessionMap } = get();
     const terminalId = workflowSessionMap[event.session_id];
     if (!terminalId) {
-      logger.info(
-        `Hook event ${event.hook_event_name} ignored: no terminal mapped for session ${event.session_id}`,
+      logger.warn(
+        `Hook event ${event.hook_event_name} dropped: no terminal mapped for session ${event.session_id}`,
         'WorkflowExecution',
       );
       return;
@@ -72,8 +72,8 @@ export function createHookEventHandler(deps: HookEventHandlerDeps) {
 
     const runningNodeId = findRunningNodeOnTerminal(terminalId);
     if (!runningNodeId) {
-      logger.info(
-        `Hook event ${event.hook_event_name} ignored: no running node on terminal ${terminalId}`,
+      logger.warn(
+        `Hook event ${event.hook_event_name} dropped: no running node on terminal ${terminalId}`,
         'WorkflowExecution',
       );
       return;
@@ -96,10 +96,21 @@ export function createHookEventHandler(deps: HookEventHandlerDeps) {
         set({
           workflowExecutionStates: {
             ...currentStates,
-            [runningNodeId]: { ...currentEntry, needsReview: true },
+            [runningNodeId]: { ...currentEntry, needsReview: true, needsReviewNotified: true },
           },
         });
       }
+      useToastStore
+        .getState()
+        .addToast(
+          'AI flagged questions for review — check the terminal output',
+          'warning',
+          {
+            persistent: true,
+            actions: [{ label: 'OK', onClick: () => {} }],
+          },
+        );
+      void notifyWorkflowEvent('alert', 'Review requested', 'AI flagged questions for review');
       return;
     }
 
@@ -125,6 +136,7 @@ export function createHookEventHandler(deps: HookEventHandlerDeps) {
         const { workflowExecutionStates: execStates } = get();
         const execEntry = execStates[runningNodeId];
         if (execEntry?.needsReview) {
+          const alreadyNotified = execEntry.needsReviewNotified === true;
           clearStepTimeout(runningNodeId);
           set({
             workflowExecutionStates: {
@@ -133,20 +145,23 @@ export function createHookEventHandler(deps: HookEventHandlerDeps) {
                 ...execEntry,
                 state: 'awaiting-validation',
                 needsReview: false,
+                needsReviewNotified: false,
               },
             },
           });
-          useToastStore
-            .getState()
-            .addToast(
-              'AI flagged questions for review — check the terminal output',
-              'warning',
-              {
-                persistent: true,
-                actions: [{ label: 'OK', onClick: () => {} }],
-              },
-            );
-          void notifyWorkflowEvent('alert', 'Review requested', 'AI flagged questions for review');
+          if (!alreadyNotified) {
+            useToastStore
+              .getState()
+              .addToast(
+                'AI flagged questions for review — check the terminal output',
+                'warning',
+                {
+                  persistent: true,
+                  actions: [{ label: 'OK', onClick: () => {} }],
+                },
+              );
+            void notifyWorkflowEvent('alert', 'Review requested', 'AI flagged questions for review');
+          }
         } else if (execEntry?.collaborating) {
           set({
             workflowExecutionStates: {
