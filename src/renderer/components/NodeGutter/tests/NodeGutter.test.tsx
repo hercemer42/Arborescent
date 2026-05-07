@@ -101,7 +101,7 @@ describe('NodeGutter', () => {
           hasChildren={false}
           expanded={true}
           onToggle={mockOnToggle}
-          appliedContext={{ icon: 'star', color: undefined, name: 'My Context', mode: 'collaborate' }}
+          appliedContext={{ icon: 'star', color: undefined, name: 'My Context', collaborate: true, execute: false }}
         />
       );
 
@@ -130,7 +130,7 @@ describe('NodeGutter', () => {
           hasChildren={true}
           expanded={true}
           onToggle={mockOnToggle}
-          appliedContext={{ icon: 'star', color: undefined, name: 'My Context', mode: 'collaborate' }}
+          appliedContext={{ icon: 'star', color: undefined, name: 'My Context', collaborate: true, execute: false }}
         />
       );
 
@@ -145,7 +145,7 @@ describe('NodeGutter', () => {
           hasChildren={false}
           expanded={true}
           onToggle={mockOnToggle}
-          appliedContext={{ icon: 'star', color: undefined, name: 'My Context', mode: 'collaborate' }}
+          appliedContext={{ icon: 'star', color: undefined, name: 'My Context', collaborate: true, execute: false }}
         />
       );
 
@@ -164,7 +164,7 @@ describe('NodeGutter', () => {
           hasChildren={false}
           expanded={true}
           onToggle={mockOnToggle}
-          appliedContext={{ icon: 'star', color: undefined, name: 'My Context', mode: 'collaborate' }}
+          appliedContext={{ icon: 'star', color: undefined, name: 'My Context', collaborate: true, execute: false }}
         />
       );
 
@@ -194,7 +194,7 @@ describe('NodeGutter', () => {
           hasChildren={false}
           expanded={true}
           onToggle={mockOnToggle}
-          appliedContext={{ icon: 'star', color: undefined, name: 'My Context', mode: 'collaborate' }}
+          appliedContext={{ icon: 'star', color: undefined, name: 'My Context', collaborate: true, execute: false }}
         />
       );
 
@@ -208,7 +208,7 @@ describe('NodeGutter', () => {
           hasChildren={false}
           expanded={true}
           onToggle={mockOnToggle}
-          appliedContext={{ icon: 'star', color: undefined, name: 'My Context', mode: 'collaborate' }}
+          appliedContext={{ icon: 'star', color: undefined, name: 'My Context', collaborate: true, execute: false }}
         />
       );
 

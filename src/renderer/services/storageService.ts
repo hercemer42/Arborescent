@@ -13,6 +13,7 @@ import {
 import { getNextUntitledNumber } from '../../shared/utils/fileNaming';
 import { reconcileDuplicateChildren } from '../utils/treeInvariants';
 import { migrateExternalLinkNodes } from '../utils/migrateExternalLinkNodes';
+import { migrateContextModeFlags } from '../utils/migrateContextModeFlags';
 import { logger } from './logger';
 
 function logParseFailure(context: string) {
@@ -32,7 +33,8 @@ export class StorageService implements IStorageService {
     }
 
     const { nodes, removed } = reconcileDuplicateChildren(data.nodes);
-    const migratedNodes = migrateExternalLinkNodes(nodes);
+    const externalLinkMigrated = migrateExternalLinkNodes(nodes);
+    const migratedNodes = migrateContextModeFlags(externalLinkMigrated);
 
     if (removed.length > 0) {
       logger.warn(

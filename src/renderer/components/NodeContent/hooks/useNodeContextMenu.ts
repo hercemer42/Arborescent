@@ -16,8 +16,8 @@ import { logger } from '../../../services/logger';
 import { useStepConfigDialogStore } from '../../../store/stepConfigDialog/stepConfigDialogStore';
 import { getWorkflowStepPosition } from '../../../utils/workflowHelpers';
 import { useToastStore } from '../../../store/toast/toastStore';
-import { getAppliedContextIdWithInheritance, resolveContextMode, resolveSendContextName } from '../../../utils/nodeHelpers';
-import { ContextMode } from '../../../store/tree/treeStore';
+import { getAppliedContextIdWithInheritance, resolveContextFlags, resolveSendContextName, ContextFlags } from '../../../utils/nodeHelpers';
+import { flagsLabel } from '../../TreeNode/hooks/useAppliedContexts';
 import { getPositionFromPoint } from '../../../utils/position';
 import { useCustomizeDialogStore } from '../../../store/customizeDialog/customizeDialogStore';
 import { useSpellcheck } from './useSpellcheck';
@@ -48,7 +48,7 @@ export function useNodeContextMenu(node: TreeNode) {
 
     const isNodeBeingCollaborated = collaboratingNodeId === node.id;
 
-    const handleSendInTerminal = async (mode: ContextMode) => {
+    const handleSendInTerminal = async (flags: ContextFlags) => {
       const terminalId = await useTerminalStore.getState().openTerminal();
       if (!terminalId) {
         logger.error('Failed to create terminal', new Error('No terminal available'), 'Context Menu');
@@ -56,15 +56,15 @@ export function useNodeContextMenu(node: TreeNode) {
       }
       try {
         showTerminal();
-        await actions.collaborateInTerminal(node.id, terminalId, mode);
+        await actions.collaborateInTerminal(node.id, terminalId, flags);
       } catch (error) {
         logger.error('Failed to send to terminal', error as Error, 'Context Menu');
       }
     };
 
-    const handleSendInBrowser = async (mode: ContextMode) => {
+    const handleSendInBrowser = async (flags: ContextFlags) => {
       try {
-        await actions.collaborate(node.id, mode);
+        await actions.collaborate(node.id, flags);
       } catch (error) {
         logger.error('Failed to send to browser', error as Error, 'Context Menu');
       }
@@ -98,26 +98,26 @@ export function useNodeContextMenu(node: TreeNode) {
     const handleDeclareAsContext = () => {
       const existingIcon = freshNode.metadata.blueprintIcon as string | undefined;
       const existingColor = freshNode.metadata.blueprintColor as string | undefined;
-      const existingMode = (freshNode.metadata.contextMode as 'collaborate' | 'execute') || 'collaborate';
+      const existingMode = freshNode.metadata.execute === true ? 'execute' : 'collaborate';
       openCustomizeDialog(existingIcon || null, (selection) => {
         actions.declareAsContext(node.id, selection.icon, selection.color, selection.mode);
       }, existingColor || null, { showModeToggle: true, selectedMode: existingMode });
     };
 
     const appliedContextId = getAppliedContextIdWithInheritance(node.id, nodes, ancestorRegistry);
-    const sendMode: ContextMode = resolveContextMode(appliedContextId, nodes, contextDeclarations);
+    const sendFlags: ContextFlags = resolveContextFlags(appliedContextId, nodes, contextDeclarations);
 
     const handleSend = async () => {
       const activeContent = usePanelStore.getState().activeContent;
 
       if (activeContent === 'terminal') {
-        await handleSendInTerminal(sendMode);
+        await handleSendInTerminal(sendFlags);
       } else if (activeContent === 'browser') {
-        await handleSendInBrowser(sendMode);
+        await handleSendInBrowser(sendFlags);
       } else if (activeContent === 'feedback') {
         const hasTerminal = useTerminalStore.getState().terminals.length > 0;
         if (hasTerminal) {
-          await handleSendInTerminal(sendMode);
+          await handleSendInTerminal(sendFlags);
         } else {
           useToastStore.getState().addToast('Open a terminal or browser first', 'warning');
         }
@@ -136,10 +136,10 @@ export function useNodeContextMenu(node: TreeNode) {
       onSetAppliedContext: handleSetAppliedContext,
     });
 
-    const handleSetContextMode = async (mode: ContextMode) => {
+    const handleSetContextFlags = async (flags: ContextFlags) => {
       const icon = freshNode.metadata.blueprintIcon as string | undefined;
       const color = freshNode.metadata.blueprintColor as string | undefined;
-      actions.declareAsContext(node.id, icon, color, mode);
+      actions.declareAsContextWithFlags(node.id, icon, color, flags);
       const newItems = await buildMenuItemsRef.current();
       setMenuItems(newItems);
     };
@@ -153,7 +153,7 @@ export function useNodeContextMenu(node: TreeNode) {
       onRemoveFromBlueprint: () => actions.removeFromBlueprint(node.id, true),
       onDeclareAsContext: handleDeclareAsContext,
       onRemoveContextDeclaration: () => actions.removeContextDeclaration(node.id),
-      onSetContextMode: handleSetContextMode,
+      onSetContextFlags: handleSetContextFlags,
       onDeclareAsWorkflow: () => actions.declareAsWorkflow(node.id),
       onRemoveFromWorkflow: () => actions.removeFromWorkflow(node.id),
     });
@@ -222,8 +222,8 @@ export function useNodeContextMenu(node: TreeNode) {
       ...(!isHyperlink && !isExternalLink ? [{
         label: 'Send',
         tooltip: sendContextName
-          ? `${sendMode === 'execute' ? 'Execute' : 'Collaborate'}: ${sendContextName}`
-          : sendMode === 'execute' ? 'Execute' : 'Collaborate',
+          ? `${flagsLabel(sendFlags.collaborate, sendFlags.execute)}: ${sendContextName}`
+          : flagsLabel(sendFlags.collaborate, sendFlags.execute),
         onClick: handleSend,
       }] : []),
       ...(isNodeBeingCollaborated ? [{

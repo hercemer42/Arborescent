@@ -28,7 +28,8 @@ export interface ContextDeclarationInfo {
   content: string;
   icon: string;
   color?: string;
-  mode: ContextMode;
+  collaborate: boolean;
+  execute: boolean;
 }
 
 export interface TreeState {

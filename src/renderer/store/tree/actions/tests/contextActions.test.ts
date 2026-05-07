@@ -6,7 +6,7 @@ import { getIsContextChild, getContextDeclarationId } from '../../../../utils/no
 describe('contextActions', () => {
   type TestState = {
     nodes: Record<string, TreeNode>;
-    contextDeclarations: { nodeId: string; content: string; icon: string; mode: 'collaborate' | 'execute' }[];
+    contextDeclarations: { nodeId: string; content: string; icon: string; collaborate: boolean; execute: boolean }[];
     ancestorRegistry: Record<string, string[]>;
   };
   let state: TestState;
@@ -402,7 +402,7 @@ describe('contextActions', () => {
       expect(entry).toBeDefined();
       expect(entry?.content).toBe('Task 2');
       expect(entry?.icon).toBe('zap');
-      expect(entry?.mode).toBe('execute');
+      expect(entry?.execute).toBe(true);
     });
 
     it('removeContextDeclaration synchronously removes the entry from state.contextDeclarations', () => {

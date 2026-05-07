@@ -26,7 +26,8 @@ describe('RemoveContextCommand', () => {
           isContextDeclaration: true,
           blueprintIcon: 'star',
           blueprintColor: '#ef4444',
-          contextMode: 'execute',
+          collaborate: true,
+          execute: true,
         },
       },
       'child-1': {
@@ -73,7 +74,7 @@ describe('RemoveContextCommand', () => {
     expect(nodes['ctx-node'].metadata.isContextDeclaration).toBe(false);
     expect(nodes['ctx-node'].metadata.blueprintIcon).toBeUndefined();
     expect(nodes['ctx-node'].metadata.blueprintColor).toBeUndefined();
-    expect(nodes['ctx-node'].metadata.contextMode).toBeUndefined();
+    expect(nodes['ctx-node'].metadata.collaborate).toBeUndefined();
   });
 
   it('should remove isBlueprint from node and descendants when no ancestor context', () => {
@@ -127,10 +128,10 @@ describe('RemoveContextCommand', () => {
   it('should restore contextMode on undo', () => {
     const cmd = createCommand();
     cmd.execute();
-    expect(nodes['ctx-node'].metadata.contextMode).toBeUndefined();
+    expect(nodes['ctx-node'].metadata.collaborate).toBeUndefined();
 
     cmd.undo();
-    expect(nodes['ctx-node'].metadata.contextMode).toBe('execute');
+    expect(nodes['ctx-node'].metadata.execute).toBe(true);
   });
 
   it('should re-apply removal on redo', () => {
@@ -140,7 +141,7 @@ describe('RemoveContextCommand', () => {
     cmd.redo();
 
     expect(nodes['ctx-node'].metadata.isContextDeclaration).toBe(false);
-    expect(nodes['ctx-node'].metadata.contextMode).toBeUndefined();
+    expect(nodes['ctx-node'].metadata.collaborate).toBeUndefined();
     expect(nodes['user-node'].metadata.appliedContextId).toBeUndefined();
   });
 

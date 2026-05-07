@@ -4,9 +4,8 @@ import { useToastStore } from '../../store/toast/toastStore';
 import { matchesHotkey } from '../../utils/hotkeyConfig';
 import { hasTextSelection, isContentEditableFocused, isFocusInPanel, isFocusInTerminalOrBrowser, isInputOrTextareaFocused } from '../../utils/selectionUtils';
 import { getActiveStore } from './shared';
-import { getAppliedContextIdWithInheritance, resolveContextMode } from '../../utils/nodeHelpers';
+import { getAppliedContextIdWithInheritance, resolveContextFlags, ContextFlags } from '../../utils/nodeHelpers';
 import { useHotkeyContextStore } from '../../store/hotkey/hotkeyContextStore';
-import { ContextMode } from '../../store/tree/treeStore';
 
 async function handleUIShortcuts(event: KeyboardEvent): Promise<void> {
   const { isInitialized, isHotkeyActiveInContext } = useHotkeyContextStore.getState();
@@ -286,7 +285,7 @@ async function handleUIShortcuts(event: KeyboardEvent): Promise<void> {
       state.ancestorRegistry
     );
 
-    const mode: ContextMode = resolveContextMode(contextId, state.nodes, state.contextDeclarations);
+    const flags: ContextFlags = resolveContextFlags(contextId, state.nodes, state.contextDeclarations);
 
     const { useTerminalStore } = await import('../../store/terminal/terminalStore');
     const terminalId = await useTerminalStore.getState().openTerminal();
@@ -296,7 +295,7 @@ async function handleUIShortcuts(event: KeyboardEvent): Promise<void> {
     }
     const { usePanelStore } = await import('../../store/panel/panelStore');
     usePanelStore.getState().showTerminal();
-    await state.actions.collaborateInTerminal(activeNodeId, terminalId, mode);
+    await state.actions.collaborateInTerminal(activeNodeId, terminalId, flags);
     return;
   }
 
@@ -316,9 +315,9 @@ async function handleUIShortcuts(event: KeyboardEvent): Promise<void> {
       state.ancestorRegistry
     );
 
-    const mode: ContextMode = resolveContextMode(contextId, state.nodes, state.contextDeclarations);
+    const flags: ContextFlags = resolveContextFlags(contextId, state.nodes, state.contextDeclarations);
 
-    void state.actions.collaborate(activeNodeId, mode);
+    void state.actions.collaborate(activeNodeId, flags);
     return;
   }
 }

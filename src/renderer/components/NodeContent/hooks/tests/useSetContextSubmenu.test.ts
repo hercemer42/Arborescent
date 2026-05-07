@@ -30,8 +30,8 @@ describe('buildSetContextSubmenu', () => {
       'root': [],
     } as Record<string, string[]>,
     contextDeclarations: [
-      { nodeId: 'collab-ctx', content: 'My Review', icon: 'star', mode: 'collaborate' as const },
-      { nodeId: 'exec-ctx', content: 'My Script', icon: 'zap', mode: 'execute' as const },
+      { nodeId: 'collab-ctx', content: 'My Review', icon: 'star', collaborate: true, execute: false as const },
+      { nodeId: 'exec-ctx', content: 'My Script', icon: 'zap', collaborate: true, execute: true as const },
     ] as ContextDeclarationInfo[],
     onSetAppliedContext: vi.fn(),
     ...overrides,
@@ -261,7 +261,7 @@ describe('buildSetContextSubmenu', () => {
     it('shows only built-ins when all user contexts are ancestors', () => {
       const result = buildSetContextSubmenu(defaultParams({
         contextDeclarations: [
-          { nodeId: 'collab-ctx', content: 'Hidden', icon: 'star', mode: 'collaborate' as const },
+          { nodeId: 'collab-ctx', content: 'Hidden', icon: 'star', collaborate: true, execute: false as const },
         ] as ContextDeclarationInfo[],
         ancestorRegistry: {
           'target-node': ['root', 'collab-ctx'],
@@ -280,7 +280,7 @@ describe('buildSetContextSubmenu', () => {
     it('Execute section contains only "Basic execution" when no user execute contexts exist', () => {
       const result = buildSetContextSubmenu(defaultParams({
         contextDeclarations: [
-          { nodeId: 'collab-ctx', content: 'My Review', icon: 'star', mode: 'collaborate' as const },
+          { nodeId: 'collab-ctx', content: 'My Review', icon: 'star', collaborate: true, execute: false as const },
         ] as ContextDeclarationInfo[],
       }));
 
@@ -295,7 +295,7 @@ describe('buildSetContextSubmenu', () => {
     it('Collaborate section contains only "Basic review" when no user collaborate contexts exist', () => {
       const result = buildSetContextSubmenu(defaultParams({
         contextDeclarations: [
-          { nodeId: 'exec-ctx', content: 'My Script', icon: 'zap', mode: 'execute' as const },
+          { nodeId: 'exec-ctx', content: 'My Script', icon: 'zap', collaborate: true, execute: true as const },
         ] as ContextDeclarationInfo[],
       }));
 
@@ -312,7 +312,7 @@ describe('buildSetContextSubmenu', () => {
     const longName = 'A'.repeat(50);
     const result = buildSetContextSubmenu(defaultParams({
       contextDeclarations: [
-        { nodeId: 'collab-ctx', content: longName, icon: 'star', mode: 'collaborate' as const },
+        { nodeId: 'collab-ctx', content: longName, icon: 'star', collaborate: true, execute: false as const },
       ] as ContextDeclarationInfo[],
     }));
 

@@ -11,11 +11,11 @@ export function useContextIconClick(nodeId: string, node: TreeNode | undefined) 
     e.stopPropagation();
     const currentIcon = (node?.metadata.blueprintIcon as string) || 'lightbulb';
     const currentColor = node?.metadata.blueprintColor as string | undefined;
-    const currentMode = (node?.metadata.contextMode as 'collaborate' | 'execute') || 'collaborate';
+    const currentMode = node?.metadata.execute === true ? 'execute' : 'collaborate';
     openCustomizeDialog(currentIcon, (selection) => {
       declareAsContext(nodeId, selection.icon, selection.color, selection.mode);
     }, currentColor, { showModeToggle: true, selectedMode: currentMode });
-  }, [nodeId, node?.metadata.blueprintIcon, node?.metadata.blueprintColor, node?.metadata.contextMode, openCustomizeDialog, declareAsContext]);
+  }, [nodeId, node?.metadata.blueprintIcon, node?.metadata.blueprintColor, node?.metadata.execute, openCustomizeDialog, declareAsContext]);
 
   return handleContextIconClick;
 }

@@ -30,7 +30,7 @@ vi.mock('../shared', () => ({
 
 vi.mock('../../../utils/nodeHelpers', () => ({
   getAppliedContextIdWithInheritance: () => null,
-  resolveContextMode: () => 'collaborate',
+  resolveContextFlags: () => ({ collaborate: true, execute: false }),
 }));
 
 vi.mock('../../../store/toast/toastStore', () => ({
@@ -75,7 +75,7 @@ describe('uiService (sendInBrowser hotkey)', () => {
       shiftKey: true,
     }));
 
-    expect(mockCollaborate).toHaveBeenCalledWith('node-1', 'collaborate');
+    expect(mockCollaborate).toHaveBeenCalledWith('node-1', { collaborate: true, execute: false });
     cleanup();
   });
 });

@@ -6,7 +6,7 @@ import type { TreeNode } from '@shared/types';
 describe('contextActions — contextMode', () => {
   type TestState = {
     nodes: Record<string, TreeNode>;
-    contextDeclarations: { nodeId: string; content: string; icon: string; color?: string; mode: 'collaborate' | 'execute' }[];
+    contextDeclarations: { nodeId: string; content: string; icon: string; color?: string; collaborate: boolean; execute: boolean }[];
     ancestorRegistry: Record<string, string[]>;
   };
   let state: TestState;
@@ -77,34 +77,34 @@ describe('contextActions — contextMode', () => {
   describe('declareAsContext with mode', () => {
     it('should default contextMode to collaborate when no mode is provided', () => {
       actions.declareAsContext('node-1', 'star');
-      expect(state.nodes['node-1'].metadata.contextMode).toBe('collaborate');
+      expect(state.nodes['node-1'].metadata.collaborate).toBe(true);
     });
 
     it('should store contextMode as execute when provided', () => {
       // Once declareAsContext accepts a mode parameter
       actions.declareAsContext('node-1', 'wrench', undefined, 'execute');
-      expect(state.nodes['node-1'].metadata.contextMode).toBe('execute');
+      expect(state.nodes['node-1'].metadata.execute).toBe(true);
     });
 
     it('should store contextMode as collaborate when explicitly provided', () => {
       actions.declareAsContext('node-1', 'eye', undefined, 'collaborate');
-      expect(state.nodes['node-1'].metadata.contextMode).toBe('collaborate');
+      expect(state.nodes['node-1'].metadata.collaborate).toBe(true);
     });
 
     it('should preserve contextMode when re-declaring an existing context with a new icon', () => {
       actions.declareAsContext('node-1', 'wrench', undefined, 'execute');
-      expect(state.nodes['node-1'].metadata.contextMode).toBe('execute');
+      expect(state.nodes['node-1'].metadata.execute).toBe(true);
 
       actions.declareAsContext('node-1', 'star', undefined, 'execute');
-      expect(state.nodes['node-1'].metadata.contextMode).toBe('execute');
+      expect(state.nodes['node-1'].metadata.execute).toBe(true);
     });
 
     it('should allow changing contextMode on an existing context declaration', () => {
       actions.declareAsContext('node-1', 'star', undefined, 'collaborate');
-      expect(state.nodes['node-1'].metadata.contextMode).toBe('collaborate');
+      expect(state.nodes['node-1'].metadata.collaborate).toBe(true);
 
       actions.declareAsContext('node-1', 'star', undefined, 'execute');
-      expect(state.nodes['node-1'].metadata.contextMode).toBe('execute');
+      expect(state.nodes['node-1'].metadata.execute).toBe(true);
     });
 
     it('should trigger autosave when mode is set', () => {
@@ -114,7 +114,7 @@ describe('contextActions — contextMode', () => {
 
     it('should not set contextMode on descendant nodes', () => {
       actions.declareAsContext('node-1', 'star', undefined, 'execute');
-      expect(state.nodes['node-3'].metadata.contextMode).toBeUndefined();
+      expect(state.nodes['node-3'].metadata.execute).toBeUndefined();
     });
   });
 
@@ -133,7 +133,7 @@ describe('contextActions — contextMode', () => {
       await vi.advanceTimersByTimeAsync(0);
 
       const declaration = state.contextDeclarations.find(d => d.nodeId === 'node-1');
-      expect(declaration?.mode).toBe('collaborate');
+      expect(declaration?.execute ? 'execute' : 'collaborate').toBe('collaborate');
     });
 
     it('should include mode in ContextDeclarationInfo for execute context', async () => {
@@ -141,7 +141,8 @@ describe('contextActions — contextMode', () => {
         isContextDeclaration: true,
         blueprintIcon: 'wrench',
         isBlueprint: true,
-        contextMode: 'execute',
+        collaborate: true,
+        execute: true,
       };
 
       actions.refreshContextDeclarations();
@@ -149,7 +150,7 @@ describe('contextActions — contextMode', () => {
       await vi.advanceTimersByTimeAsync(0);
 
       const declaration = state.contextDeclarations.find(d => d.nodeId === 'node-2');
-      expect(declaration?.mode).toBe('execute');
+      expect(declaration?.execute).toBe(true);
     });
 
     it('should default mode to collaborate when contextMode metadata is missing', async () => {
@@ -165,7 +166,7 @@ describe('contextActions — contextMode', () => {
       await vi.advanceTimersByTimeAsync(0);
 
       const declaration = state.contextDeclarations.find(d => d.nodeId === 'node-1');
-      expect(declaration?.mode).toBe('collaborate');
+      expect(declaration?.execute ? 'execute' : 'collaborate').toBe('collaborate');
     });
   });
 
@@ -180,7 +181,7 @@ describe('contextActions — contextMode', () => {
 
       actions.removeContextDeclaration('node-1');
 
-      expect(state.nodes['node-1'].metadata.contextMode).toBeUndefined();
+      expect(state.nodes['node-1'].metadata.execute).toBeUndefined();
     });
   });
 });
@@ -188,7 +189,7 @@ describe('contextActions — contextMode', () => {
 describe('contextActions — undo/redo via command system', () => {
   type TestState = {
     nodes: Record<string, TreeNode>;
-    contextDeclarations: { nodeId: string; content: string; icon: string; color?: string; mode: 'collaborate' | 'execute' }[];
+    contextDeclarations: { nodeId: string; content: string; icon: string; color?: string; collaborate: boolean; execute: boolean }[];
     ancestorRegistry: Record<string, string[]>;
   };
   let state: TestState;
@@ -253,7 +254,7 @@ describe('contextActions — undo/redo via command system', () => {
     const originalMeta = { ...state.nodes['node-1'].metadata };
 
     actions.declareAsContext('node-1', 'star', '#ef4444', 'execute');
-    expect(state.nodes['node-1'].metadata.contextMode).toBe('execute');
+    expect(state.nodes['node-1'].metadata.execute).toBe(true);
     expect(state.nodes['node-1'].metadata.isContextDeclaration).toBe(true);
     expect(state.nodes['child-1'].metadata.isBlueprint).toBe(true);
 
@@ -267,19 +268,19 @@ describe('contextActions — undo/redo via command system', () => {
     historyManager.undo();
     historyManager.redo();
 
-    expect(state.nodes['node-1'].metadata.contextMode).toBe('execute');
+    expect(state.nodes['node-1'].metadata.execute).toBe(true);
     expect(state.nodes['node-1'].metadata.isContextDeclaration).toBe(true);
   });
 
   it('should undo mode change from collaborate to execute', () => {
     actions.declareAsContext('node-1', 'eye', undefined, 'collaborate');
-    expect(state.nodes['node-1'].metadata.contextMode).toBe('collaborate');
+    expect(state.nodes['node-1'].metadata.collaborate).toBe(true);
 
     actions.declareAsContext('node-1', 'wrench', undefined, 'execute');
-    expect(state.nodes['node-1'].metadata.contextMode).toBe('execute');
+    expect(state.nodes['node-1'].metadata.execute).toBe(true);
 
     historyManager.undo();
-    expect(state.nodes['node-1'].metadata.contextMode).toBe('collaborate');
+    expect(state.nodes['node-1'].metadata.collaborate).toBe(true);
   });
 
   it('should undo removeContextDeclaration and restore declaration', () => {
@@ -287,11 +288,11 @@ describe('contextActions — undo/redo via command system', () => {
 
     actions.removeContextDeclaration('node-1');
     expect(state.nodes['node-1'].metadata.isContextDeclaration).toBe(false);
-    expect(state.nodes['node-1'].metadata.contextMode).toBeUndefined();
+    expect(state.nodes['node-1'].metadata.execute).toBeUndefined();
 
     historyManager.undo();
     expect(state.nodes['node-1'].metadata.isContextDeclaration).toBe(true);
-    expect(state.nodes['node-1'].metadata.contextMode).toBe('execute');
+    expect(state.nodes['node-1'].metadata.execute).toBe(true);
     expect(state.nodes['node-1'].metadata.blueprintIcon).toBe('star');
   });
 

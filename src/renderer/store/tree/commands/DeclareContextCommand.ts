@@ -1,8 +1,7 @@
 import { BaseCommand } from './Command';
 import { TreeNode } from '../../../../shared/types';
-import { updateNodeMetadata, getAllDescendants } from '../../../utils/nodeHelpers';
+import { updateNodeMetadata, getAllDescendants, ContextFlags } from '../../../utils/nodeHelpers';
 import { declareNodeMetadata } from '../../../utils/clearTaskMetadata';
-import { ContextMode } from '../treeStore';
 
 export class DeclareContextCommand extends BaseCommand {
   private previousMetadata: Map<string, Record<string, unknown>> = new Map();
@@ -12,14 +11,14 @@ export class DeclareContextCommand extends BaseCommand {
     private nodeId: string,
     private icon: string,
     private color: string | undefined,
-    private mode: ContextMode,
+    private flags: ContextFlags,
     private getNodes: () => Record<string, TreeNode>,
     private setNodes: (nodes: Record<string, TreeNode>) => void,
     private triggerAutosave?: () => void,
     private refreshContextDeclarations?: () => void
   ) {
     super();
-    this.description = `Declare ${nodeId} as context (${mode})`;
+    this.description = `Declare ${nodeId} as context (collaborate=${flags.collaborate}, execute=${flags.execute})`;
   }
 
   execute(): void {
@@ -38,7 +37,8 @@ export class DeclareContextCommand extends BaseCommand {
       blueprintIcon: this.icon,
       blueprintColor: this.color,
       isBlueprint: true,
-      contextMode: this.mode,
+      collaborate: this.flags.collaborate,
+      execute: this.flags.execute,
     });
 
     const descendantIds = getAllDescendants(this.nodeId, nodes);

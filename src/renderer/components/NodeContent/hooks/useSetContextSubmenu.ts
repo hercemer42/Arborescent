@@ -41,8 +41,8 @@ export function buildSetContextSubmenu({
     return null;
   }
 
-  const collaborateContexts = availableContexts.filter(c => c.mode === 'collaborate');
-  const executeContexts = availableContexts.filter(c => c.mode === 'execute');
+  const collaborateContexts = availableContexts.filter(c => c.collaborate && !c.execute);
+  const executeContexts = availableContexts.filter(c => c.execute);
 
   const items: ContextMenuItem[] = [];
 

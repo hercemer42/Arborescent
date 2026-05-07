@@ -88,7 +88,7 @@ describe('Workflow steps preserve the original node content', () => {
     };
     const execCtx: TreeNode = {
       id: 'exec-ctx', content: 'Execute context', children: [],
-      metadata: { isContextDeclaration: true, contextMode: 'execute' },
+      metadata: { isContextDeclaration: true, collaborate: true, execute: true },
     };
 
     mockState = {
@@ -157,7 +157,7 @@ describe('Workflow steps preserve the original node content', () => {
   describe('execute-mode workflow prompt explicitly targets CONTENT (not INSTRUCTIONS)', () => {
     it('instructs the AI to write back the list that appears in the CONTENT section', async () => {
       const { executeInTerminal } = await import('../../../../services/terminalExecution');
-      await actions.collaborateInTerminal('feature', 'term-1', 'execute');
+      await actions.collaborateInTerminal('feature', 'term-1', { collaborate: true, execute: true });
       const prompt = getTerminalPrompt(executeInTerminal);
 
       const writeBackInstructions = prompt
@@ -168,7 +168,7 @@ describe('Workflow steps preserve the original node content', () => {
 
     it('forbids replacing CONTENT with a summary of work that was done', async () => {
       const { executeInTerminal } = await import('../../../../services/terminalExecution');
-      await actions.collaborateInTerminal('feature', 'term-1', 'execute');
+      await actions.collaborateInTerminal('feature', 'term-1', { collaborate: true, execute: true });
       const prompt = getTerminalPrompt(executeInTerminal);
 
       expect(prompt).toMatch(/summary|what you did|what was done|done list/i);
@@ -176,7 +176,7 @@ describe('Workflow steps preserve the original node content', () => {
 
     it('forbids writing a "what was done" checklist in place of the original list', async () => {
       const { executeInTerminal } = await import('../../../../services/terminalExecution');
-      await actions.collaborateInTerminal('feature', 'term-1', 'execute');
+      await actions.collaborateInTerminal('feature', 'term-1', { collaborate: true, execute: true });
       const prompt = getTerminalPrompt(executeInTerminal);
 
       expect(prompt).toMatch(/do not (replace|overwrite|substitute).*(with|for) (a|the) (summary|checklist|list of|what was done)/i);
@@ -184,7 +184,7 @@ describe('Workflow steps preserve the original node content', () => {
 
     it('explicitly states that only status markers should change, not the list items themselves', async () => {
       const { executeInTerminal } = await import('../../../../services/terminalExecution');
-      await actions.collaborateInTerminal('feature', 'term-1', 'execute');
+      await actions.collaborateInTerminal('feature', 'term-1', { collaborate: true, execute: true });
       const prompt = getTerminalPrompt(executeInTerminal);
 
       expect(prompt).toContain('only change status markers');
@@ -192,7 +192,7 @@ describe('Workflow steps preserve the original node content', () => {
 
     it('explicitly forbids rewriting, reorganizing, or retitling the list', async () => {
       const { executeInTerminal } = await import('../../../../services/terminalExecution');
-      await actions.collaborateInTerminal('feature', 'term-1', 'execute');
+      await actions.collaborateInTerminal('feature', 'term-1', { collaborate: true, execute: true });
       const prompt = getTerminalPrompt(executeInTerminal);
 
       expect(prompt).toContain('Do NOT rewrite, reorganize, retitle');
@@ -200,7 +200,7 @@ describe('Workflow steps preserve the original node content', () => {
 
     it('instructs the AI to skip items already marked [x]', async () => {
       const { executeInTerminal } = await import('../../../../services/terminalExecution');
-      await actions.collaborateInTerminal('feature', 'term-1', 'execute');
+      await actions.collaborateInTerminal('feature', 'term-1', { collaborate: true, execute: true });
       const prompt = getTerminalPrompt(executeInTerminal);
 
       expect(prompt).toContain('Skip items already marked [x]');
@@ -208,7 +208,7 @@ describe('Workflow steps preserve the original node content', () => {
 
     it('allows appending a single child node for issues encountered', async () => {
       const { executeInTerminal } = await import('../../../../services/terminalExecution');
-      await actions.collaborateInTerminal('feature', 'term-1', 'execute');
+      await actions.collaborateInTerminal('feature', 'term-1', { collaborate: true, execute: true });
       const prompt = getTerminalPrompt(executeInTerminal);
 
       expect(prompt).toContain('append a single new child node at the end');
@@ -218,7 +218,7 @@ describe('Workflow steps preserve the original node content', () => {
   describe('collaborate-mode workflow prompt preserves CONTENT structure', () => {
     it('instructs the AI that the CONTENT list is the source material for its output', async () => {
       const { executeInTerminal } = await import('../../../../services/terminalExecution');
-      await actions.collaborateInTerminal('feature', 'term-1', 'collaborate');
+      await actions.collaborateInTerminal('feature', 'term-1', { collaborate: true, execute: false });
       const prompt = getTerminalPrompt(executeInTerminal);
 
       const writeBackBlock = prompt
@@ -231,7 +231,7 @@ describe('Workflow steps preserve the original node content', () => {
   describe('disambiguation between CONTENT and CONTEXT sections', () => {
     it('wraps the original node content in the CONTENT section', async () => {
       const { executeInTerminal } = await import('../../../../services/terminalExecution');
-      await actions.collaborateInTerminal('feature', 'term-1', 'execute');
+      await actions.collaborateInTerminal('feature', 'term-1', { collaborate: true, execute: true });
       const prompt = getTerminalPrompt(executeInTerminal);
 
       expect(prompt).toContain('===BEGIN CONTENT===');
@@ -241,7 +241,7 @@ describe('Workflow steps preserve the original node content', () => {
 
     it('places instructions in their own section so they cannot be confused with CONTENT', async () => {
       const { executeInTerminal } = await import('../../../../services/terminalExecution');
-      await actions.collaborateInTerminal('feature', 'term-1', 'execute');
+      await actions.collaborateInTerminal('feature', 'term-1', { collaborate: true, execute: true });
       const prompt = getTerminalPrompt(executeInTerminal);
 
       expect(prompt).toContain('===BEGIN INSTRUCTIONS===');
@@ -250,7 +250,7 @@ describe('Workflow steps preserve the original node content', () => {
 
     it('write-back instruction references the CONTENT marker, not the INSTRUCTIONS marker', async () => {
       const { executeInTerminal } = await import('../../../../services/terminalExecution');
-      await actions.collaborateInTerminal('feature', 'term-1', 'execute');
+      await actions.collaborateInTerminal('feature', 'term-1', { collaborate: true, execute: true });
       const prompt = getTerminalPrompt(executeInTerminal);
 
       const instructionsSection = prompt
@@ -266,7 +266,7 @@ describe('Workflow steps preserve the original node content', () => {
   describe('happy path — node content reaches the AI intact', () => {
     it('includes the feature node title as the root of the CONTENT list', async () => {
       const { executeInTerminal } = await import('../../../../services/terminalExecution');
-      await actions.collaborateInTerminal('feature', 'term-1', 'execute');
+      await actions.collaborateInTerminal('feature', 'term-1', { collaborate: true, execute: true });
       const prompt = getTerminalPrompt(executeInTerminal);
 
       expect(prompt).toContain('# [ ] Toast messages make the current panel lose focus');
@@ -274,7 +274,7 @@ describe('Workflow steps preserve the original node content', () => {
 
     it('includes all child nodes in the CONTENT list', async () => {
       const { executeInTerminal } = await import('../../../../services/terminalExecution');
-      await actions.collaborateInTerminal('feature', 'term-1', 'execute');
+      await actions.collaborateInTerminal('feature', 'term-1', { collaborate: true, execute: true });
       const prompt = getTerminalPrompt(executeInTerminal);
 
       expect(prompt).toContain('For instance if in terminal and toast appears, focus moves to tree');
@@ -283,7 +283,7 @@ describe('Workflow steps preserve the original node content', () => {
 
     it('also works for AI-refactor-style nodes with their own subtree', async () => {
       const { executeInTerminal } = await import('../../../../services/terminalExecution');
-      await actions.collaborateInTerminal('refactor', 'term-1', 'execute');
+      await actions.collaborateInTerminal('refactor', 'term-1', { collaborate: true, execute: true });
       const prompt = getTerminalPrompt(executeInTerminal);
 
       expect(prompt).toContain('Refactor toast store to comply with conventions');
@@ -296,7 +296,7 @@ describe('Workflow steps preserve the original node content', () => {
   describe('edge cases — empty, null, boundary', () => {
     it('handles a node with no children without erroring', async () => {
       const { executeInTerminal } = await import('../../../../services/terminalExecution');
-      await actions.collaborateInTerminal('empty', 'term-1', 'execute');
+      await actions.collaborateInTerminal('empty', 'term-1', { collaborate: true, execute: true });
       const prompt = getTerminalPrompt(executeInTerminal);
 
       expect(prompt).toContain('# [ ] Empty node');

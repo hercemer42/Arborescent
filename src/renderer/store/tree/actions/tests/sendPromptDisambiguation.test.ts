@@ -66,13 +66,13 @@ describe('send prompt — write-back disambiguation', () => {
       id: 'collab-ctx',
       content: 'Review context',
       children: [],
-      metadata: { isContextDeclaration: true, contextMode: 'collaborate' },
+      metadata: { isContextDeclaration: true, collaborate: true, execute: false },
     };
     const execCtx: TreeNode = {
       id: 'exec-ctx',
       content: 'Execute context',
       children: [],
-      metadata: { isContextDeclaration: true, contextMode: 'execute' },
+      metadata: { isContextDeclaration: true, collaborate: true, execute: true },
     };
 
     mockState = {
@@ -148,7 +148,7 @@ describe('send prompt — write-back disambiguation', () => {
       const { executeInTerminal } = await import('../../../../services/terminalExecution');
       mockState.nodes.task.metadata.appliedContextId = 'exec-ctx';
 
-      await actions.collaborateInTerminal('task', 'terminal-1', 'execute');
+      await actions.collaborateInTerminal('task', 'terminal-1', { collaborate: true, execute: true });
 
       const prompt = vi.mocked(executeInTerminal).mock.calls.at(-1)?.[1] as string;
       expect(prompt).toMatch(/only change status markers/);
@@ -158,7 +158,7 @@ describe('send prompt — write-back disambiguation', () => {
       const { executeInTerminal } = await import('../../../../services/terminalExecution');
       mockState.nodes.task.metadata.appliedContextId = 'exec-ctx';
 
-      await actions.collaborateInTerminal('task', 'terminal-1', 'execute');
+      await actions.collaborateInTerminal('task', 'terminal-1', { collaborate: true, execute: true });
 
       const prompt = vi.mocked(executeInTerminal).mock.calls.at(-1)?.[1] as string;
       expect(prompt).toMatch(/Do NOT replace the CONTENT list with a summary/);
@@ -168,7 +168,7 @@ describe('send prompt — write-back disambiguation', () => {
       const { executeInTerminal } = await import('../../../../services/terminalExecution');
       mockState.nodes.task.metadata.appliedContextId = 'exec-ctx';
 
-      await actions.collaborateInTerminal('task', 'terminal-1', 'execute');
+      await actions.collaborateInTerminal('task', 'terminal-1', { collaborate: true, execute: true });
 
       const prompt = vi.mocked(executeInTerminal).mock.calls.at(-1)?.[1] as string;
       expect(prompt).toMatch(/Do NOT write any part of the CONTEXT or INSTRUCTIONS sections/i);
@@ -178,7 +178,7 @@ describe('send prompt — write-back disambiguation', () => {
       const { executeInTerminal } = await import('../../../../services/terminalExecution');
       mockState.nodes.task.metadata.appliedContextId = 'exec-ctx';
 
-      await actions.collaborateInTerminal('task', 'terminal-1', 'execute');
+      await actions.collaborateInTerminal('task', 'terminal-1', { collaborate: true, execute: true });
 
       const prompt = vi.mocked(executeInTerminal).mock.calls.at(-1)?.[1] as string;
       expect(prompt).toMatch(/file's root heading MUST be the CONTENT section's root/i);

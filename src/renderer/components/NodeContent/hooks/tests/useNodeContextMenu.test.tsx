@@ -311,7 +311,7 @@ describe('useNodeContextMenu', () => {
         id: 'exec-ctx',
         content: 'My Deploy Script',
         children: [],
-        metadata: { isContextDeclaration: true, contextMode: 'execute' },
+        metadata: { isContextDeclaration: true, collaborate: true, execute: true },
       };
 
       store.setState({
@@ -324,7 +324,7 @@ describe('useNodeContextMenu', () => {
           'exec-ctx': [],
         },
         contextDeclarations: [
-          { nodeId: 'exec-ctx', content: 'My Deploy Script', icon: 'zap', mode: 'execute' as const },
+          { nodeId: 'exec-ctx', content: 'My Deploy Script', icon: 'zap', collaborate: true, execute: true },
         ],
       });
 
@@ -337,7 +337,7 @@ describe('useNodeContextMenu', () => {
 
       const sendItem = result.current.contextMenuItems.find(item => item.label === 'Send');
       expect(sendItem?.label).toBe('Send');
-      expect(sendItem?.tooltip).toBe('Execute: My Deploy Script');
+      expect(sendItem?.tooltip).toBe('Collaborate & Execute: My Deploy Script');
     });
 
     it('should not have "In terminal" or "In browser" as menu items', async () => {
@@ -387,7 +387,7 @@ describe('useNodeContextMenu', () => {
         sendItem!.onClick!();
       });
 
-      expect(mockCollaborateInTerminal).toHaveBeenCalledWith('test-node', 'terminal-1', 'collaborate');
+      expect(mockCollaborateInTerminal).toHaveBeenCalledWith('test-node', 'terminal-1', { collaborate: true, execute: false });
     });
 
     it('should show toast when no panel is open', async () => {

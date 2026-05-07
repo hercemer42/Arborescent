@@ -25,7 +25,7 @@ describe('GutterContextIndicator', () => {
   });
 
   describe('with applied context', () => {
-    const appliedContext: AppliedContext = { icon: 'star', color: undefined, name: 'My Context', mode: 'collaborate' };
+    const appliedContext: AppliedContext = { icon: 'star', color: undefined, name: 'My Context', collaborate: true, execute: false };
 
     it('should render applied context icon', () => {
       const { container } = render(
@@ -46,7 +46,7 @@ describe('GutterContextIndicator', () => {
     });
 
     it('should apply color via CSS custom property when appliedContext has color', () => {
-      const coloredContext: AppliedContext = { icon: 'star', color: '#ff0000', name: 'Red Context', mode: 'collaborate' };
+      const coloredContext: AppliedContext = { icon: 'star', color: '#ff0000', name: 'Red Context', collaborate: true, execute: false };
       const { container } = render(
         <GutterContextIndicator appliedContext={coloredContext} />
       );
@@ -63,7 +63,7 @@ describe('GutterContextIndicator', () => {
     });
 
     it('should render nothing when appliedContext has no icon', () => {
-      const noIconContext: AppliedContext = { icon: undefined, color: undefined, name: 'No Icon', mode: 'collaborate' };
+      const noIconContext: AppliedContext = { icon: undefined, color: undefined, name: 'No Icon', collaborate: true, execute: false };
       const { container } = render(
         <GutterContextIndicator appliedContext={noIconContext} />
       );
@@ -79,7 +79,7 @@ describe('GutterContextIndicator', () => {
   });
 
   describe('context declaration with applied context (combo case)', () => {
-    const appliedContext: AppliedContext = { icon: 'flag', color: '#00ff00', name: 'Applied From Ancestor', mode: 'collaborate' };
+    const appliedContext: AppliedContext = { icon: 'flag', color: '#00ff00', name: 'Applied From Ancestor', collaborate: true, execute: false };
 
     it('should render applied context icon at full opacity', () => {
       const { container } = render(
@@ -100,7 +100,7 @@ describe('GutterContextIndicator', () => {
   });
 
   describe('declaration-specific classes removed', () => {
-    const appliedContext: AppliedContext = { icon: 'star', color: undefined, name: 'My Context', mode: 'collaborate' };
+    const appliedContext: AppliedContext = { icon: 'star', color: undefined, name: 'My Context', collaborate: true, execute: false };
 
     it('should not render .context-declaration class', () => {
       const { container } = render(
@@ -125,7 +125,7 @@ describe('GutterContextIndicator', () => {
   });
 
   describe('tooltip', () => {
-    const appliedContext: AppliedContext = { icon: 'star', color: '#00ff00', name: 'Design Guidelines', mode: 'collaborate' };
+    const appliedContext: AppliedContext = { icon: 'star', color: '#00ff00', name: 'Design Guidelines', collaborate: true, execute: false };
 
     it('should show tooltip on hover over applied context icon', () => {
       const { container } = render(

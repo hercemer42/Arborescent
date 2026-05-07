@@ -80,11 +80,11 @@ Place an item inside an autonomous workflow step, then right-click → **Start W
 
 What happens at each step depends on its type:
 
-- **Autonomous** — Content is sent to the terminal. When the AI finishes, the result is applied automatically and the item advances to the next step. In collaborate mode, the node content is replaced. In execute mode, item statuses are updated. If the feedback can't be parsed, or if the AI flags questions during the run, the workflow pauses — resume it manually.
+- **Autonomous** — Content is sent to the terminal. When the AI finishes, the result is applied automatically and the item advances to the next step. With a Collaborate state the node content is replaced; with Collaborate & Execute the item statuses are updated; with Execute or Action no feedback is expected and the step advances on AI completion. If the feedback can't be parsed, or if the AI flags questions during the run, the workflow pauses — resume it manually.
 - **Checkpoint** — Content is sent to the terminal. When the AI finishes, the feedback panel opens for you to review the result before continuing. Right-click → **Continue Workflow** to advance to the next step and resume. If the checkpoint is the last step, the workflow completes automatically.
 - **Manual** — The item waits at the step. Nothing is sent automatically. Use **Send** to send content, then **Next step** to advance manually.
 
-Each step's content is sent with its applied contexts. If no context is applied, a default execute context is used.
+Each step's content is sent with its applied context. If no context is applied, the branch's raw content is sent without scaffolding — apply **Basic execution** (Collaborate & Execute) to get the AI to make changes and update item statuses.
 
 A green flash and toast notification confirm each advancement. If the item reaches the final step and completes, the workflow ends and a completion toast appears.
 

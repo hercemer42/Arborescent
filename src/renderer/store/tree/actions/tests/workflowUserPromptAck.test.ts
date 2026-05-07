@@ -39,7 +39,7 @@ vi.mock('@/utils/nodeHelpers', async (importOriginal) => {
     ...actual,
     buildContentWithContext: () => ({ contextPrefix: 'mock context', nodeContent: 'mock prompt text' }),
     getAppliedContextIdWithInheritance: () => 'context-1',
-    resolveContextMode: (...args: unknown[]) => mockResolveContextMode(...args),
+    resolveContextMode: (...args: unknown[]) => mockResolveContextMode(...args), resolveContextFlags: (...args: unknown[]) => { const m = mockResolveContextMode(...args); return m === 'execute' ? { collaborate: false, execute: true } : { collaborate: true, execute: false }; },
     getContextDeclarations: () => [],
   };
 });

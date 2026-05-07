@@ -255,7 +255,7 @@ describe('workflow advancement', () => {
       expect(mockAutonomousCollaborate).toHaveBeenCalledWith(
         'task-a',
         'terminal-1',
-        expect.any(String)
+        expect.objectContaining({ collaborate: expect.any(Boolean), execute: expect.any(Boolean) })
       );
       vi.useRealTimers();
     });
@@ -462,7 +462,7 @@ describe('workflow advancement', () => {
       vi.advanceTimersByTime(1500);
 
       expect(state.nodes['step-2'].children).toContain('task-a');
-      expect(mockAutonomousCollaborate).toHaveBeenCalledWith('task-a', 'terminal-1', expect.any(String));
+      expect(mockAutonomousCollaborate).toHaveBeenCalledWith('task-a', 'terminal-1', expect.objectContaining({ collaborate: expect.any(Boolean), execute: expect.any(Boolean) }));
       vi.useRealTimers();
     });
   });

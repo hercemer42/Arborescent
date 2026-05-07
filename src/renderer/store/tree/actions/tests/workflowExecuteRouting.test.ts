@@ -22,16 +22,21 @@ vi.mock('@/services/terminalExecution', () => ({
   executeInTerminal: mockExecuteInTerminal,
 }));
 
-const { mockResolveContextMode } = vi.hoisted(() => ({
-  mockResolveContextMode: vi.fn().mockReturnValue('execute'),
+const { mockResolveContextFlags } = vi.hoisted(() => ({
+  mockResolveContextFlags: vi.fn().mockReturnValue({ collaborate: true, execute: true }),
 }));
+const flagsForMode = (mode: 'collaborate' | 'execute') =>
+  mode === 'execute' ? { collaborate: true, execute: true } : { collaborate: true, execute: false };
+const mockResolveContextMode = {
+  mockReturnValue: (mode: 'collaborate' | 'execute') => mockResolveContextFlags.mockReturnValue(flagsForMode(mode)),
+};
 vi.mock('@/utils/nodeHelpers', async (importOriginal) => {
   const actual = await importOriginal<typeof import('@/utils/nodeHelpers')>();
   return {
     ...actual,
     buildContentWithContext: vi.fn().mockReturnValue({ contextPrefix: 'mock context', nodeContent: 'mock content' }),
-    getAppliedContextIdWithInheritance: vi.fn().mockReturnValue(undefined),
-    resolveContextMode: mockResolveContextMode,
+    getAppliedContextIdWithInheritance: vi.fn().mockReturnValue('ctx-1'),
+    resolveContextFlags: mockResolveContextFlags,
     getContextDeclarations: vi.fn().mockReturnValue([]),
   };
 });
@@ -112,7 +117,7 @@ describe('workflow execute routing through collaborate pipeline', () => {
 
     actions.startWorkflow('task', 'terminal-1');
 
-    expect(mockAutonomousCollaborate).toHaveBeenCalledWith('task', 'terminal-1', 'execute');
+    expect(mockAutonomousCollaborate).toHaveBeenCalledWith('task', 'terminal-1', { collaborate: true, execute: true });
   });
 
   it('should call autonomousCollaborateInTerminal with collaborate mode for collaborate steps', () => {
@@ -121,7 +126,7 @@ describe('workflow execute routing through collaborate pipeline', () => {
 
     actions.startWorkflow('task', 'terminal-1');
 
-    expect(mockAutonomousCollaborate).toHaveBeenCalledWith('task', 'terminal-1', 'collaborate');
+    expect(mockAutonomousCollaborate).toHaveBeenCalledWith('task', 'terminal-1', { collaborate: true, execute: false });
   });
 
   it('should not call fire-and-forget executeInTerminal for execute mode', () => {

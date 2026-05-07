@@ -19,7 +19,7 @@ import { AcceptFeedbackCommand } from "../commands/AcceptFeedbackCommand";
 import { StepType } from "../commands/SetStepTypeCommand";
 import {
   getAppliedContextIdWithInheritance,
-  resolveContextMode,
+  resolveContextFlags,
   getContextDeclarations,
 } from "../../../utils/nodeHelpers";
 import { usePreferencesStore } from "../../preferences/preferencesStore";
@@ -71,7 +71,7 @@ export const createWorkflowExecutionActions = (
   set: (partial: Partial<StoreState>) => void,
   triggerAutosave?: () => void,
   visualEffects?: VisualEffectsActions,
-  autonomousCollaborateInTerminal?: (nodeId: string, terminalId: string, mode?: 'collaborate' | 'execute') => Promise<string>,
+  autonomousCollaborateInTerminal?: (nodeId: string, terminalId: string, flags?: import('../../../utils/nodeHelpers').ContextFlags) => Promise<string>,
   executeCommand?: (command: { execute: () => void; undo: () => void; description?: string }) => void,
 ): WorkflowExecutionActions => {
   const DEFAULT_STEP_TIMEOUT_MINUTES = 15;
@@ -447,15 +447,15 @@ export const createWorkflowExecutionActions = (
         ancestorRegistry,
       );
       const contextDeclarations = getContextDeclarations(nodes);
-      const mode = resolveContextMode(contextId, nodes, contextDeclarations);
+      const flags = resolveContextFlags(contextId, nodes, contextDeclarations);
 
       if (!autonomousCollaborateInTerminal) return;
 
-      if (contextId && mode === "collaborate") {
+      if (contextId && flags.collaborate) {
         setCollaboratingFlag(nodeId);
       }
 
-      autonomousCollaborateInTerminal(nodeId, terminalId, mode).then((feedbackFilePath) => {
+      autonomousCollaborateInTerminal(nodeId, terminalId, flags).then((feedbackFilePath) => {
         if (feedbackFilePath) {
           registerAutonomousCollaboration(nodeId, terminalId, feedbackFilePath);
           registerPendingAck(nodeId, terminalId);

@@ -5,6 +5,9 @@ import {
   getAppliedContextIdWithInheritance,
   BASIC_EXECUTE_CONTEXT_ID,
   BASIC_REVIEW_CONTEXT_ID,
+  resolveContextFlags,
+  getContextDeclarations,
+  ContextFlags,
 } from '../../../utils/nodeHelpers';
 import { BASE_INSTRUCTION_RULES, wrapInstructions, wrapContent } from '../../../utils/promptBuilder';
 import { executeInTerminal } from '../../../services/terminalExecution';
@@ -113,13 +116,16 @@ function buildCollaborateFileOutputTarget(outputFilePath: string): string {
   return `IMPORTANT: Write your reviewed/updated list to this file: ${outputFilePath}
 Base your output on the list from the CONTENT section, not from the INSTRUCTIONS section.
 Do NOT write any part of the CONTEXT or INSTRUCTIONS sections to the file — only the updated CONTENT list.
-Do NOT make any changes to the code.
 ${WRITE_ONCE_INSTRUCTION}
 
 ${buildFileWriteCommand(outputFilePath)}`;
 }
 
-function buildExecuteFileOutputTarget(outputFilePath: string): string {
+function buildExecuteOnlyOutputTarget(): string {
+  return `IMPORTANT: Make the requested code changes in the codebase. Report what you did in your terminal output.`;
+}
+
+function buildBothOutputTarget(outputFilePath: string): string {
   return `IMPORTANT: Make the requested code changes in the codebase. Then write the list from the CONTENT section back to this file with completed items marked [x] and failed items [-]:
 ${outputFilePath}
 - Do NOT rewrite, reorganize, retitle, or add items to the list — only change status markers
@@ -168,9 +174,21 @@ ${SINGLE_ROOT_OUTPUT_FORMAT}
 ${outputTarget}${needsReview}`;
 }
 
-function buildTerminalExecutePrompt(executeContext: string, content: string, outputFilePath: string, includeNeedsReview: boolean = false, sessionId: string = ''): string {
-  const outputTarget = buildExecuteFileOutputTarget(outputFilePath);
+function buildTerminalBothPrompt(executeContext: string, content: string, outputFilePath: string, includeNeedsReview: boolean = false, sessionId: string = ''): string {
+  const outputTarget = buildBothOutputTarget(outputFilePath);
   const instructions = wrapInstructions(buildExecuteInstructions(executeContext, outputTarget, includeNeedsReview, sessionId));
+  return `${instructions}\n\n${wrapContent(content)}`;
+}
+
+function buildTerminalExecuteOnlyPrompt(executeContext: string, content: string, includeNeedsReview: boolean = false, sessionId: string = ''): string {
+  const outputTarget = buildExecuteOnlyOutputTarget();
+  const instructions = wrapInstructions(buildExecuteInstructions(executeContext, outputTarget, includeNeedsReview, sessionId));
+  return `${instructions}\n\n${wrapContent(content)}`;
+}
+
+function buildWebExecuteOnlyPrompt(executeContext: string, content: string): string {
+  const outputTarget = 'Report your changes directly (no commentary about these instructions).';
+  const instructions = wrapInstructions(buildExecuteInstructions(executeContext, outputTarget));
   return `${instructions}\n\n${wrapContent(content)}`;
 }
 
@@ -179,16 +197,16 @@ type SendTarget = 'web' | 'terminal' | 'autonomous-terminal';
 interface SendPayloadArgs {
   nodeId: string;
   state: Pick<TreeState, 'nodes' | 'ancestorRegistry'>;
-  mode: 'collaborate' | 'execute';
+  flags: ContextFlags;
   target: SendTarget;
   decomposition: boolean;
-  /** Required for terminal targets; ignored for 'web'. */
+  /** Required for terminal targets when collaborate is on; ignored otherwise. */
   feedbackResponseFile?: string;
   sessionId?: string;
 }
 
 function buildSendPayload(args: SendPayloadArgs): string {
-  const { nodeId, state, mode, target, decomposition, feedbackResponseFile, sessionId = '' } = args;
+  const { nodeId, state, flags, target, decomposition, feedbackResponseFile, sessionId = '' } = args;
   const appliedContextId = getAppliedContextIdWithInheritance(nodeId, state.nodes, state.ancestorRegistry);
   const { contextPrefix, nodeContent } = buildContentWithContext(nodeId, state.nodes, state.ancestorRegistry);
 
@@ -205,22 +223,38 @@ function buildSendPayload(args: SendPayloadArgs): string {
     instructionContext = contextPrefix;
   }
 
-  const isExecute = mode === 'execute';
+  if (!flags.collaborate && !flags.execute) {
+    return instructionContext.trimEnd();
+  }
+
+  const bothOn = flags.collaborate && flags.execute;
+  const executeOnly = flags.execute && !flags.collaborate;
+  const isAutonomous = target === 'autonomous-terminal';
+  const includeNeedsReview = isAutonomous && flags.execute;
 
   switch (target) {
     case 'web':
-      return isExecute
-        ? buildWebExecutePrompt(instructionContext, nodeContent)
-        : buildWebCollaboratePrompt(instructionContext, nodeContent, decomposition);
+      if (bothOn) return buildWebExecutePrompt(instructionContext, nodeContent);
+      if (executeOnly) return buildWebExecuteOnlyPrompt(instructionContext, nodeContent);
+      return buildWebCollaboratePrompt(instructionContext, nodeContent, decomposition);
     case 'terminal':
-      return isExecute
-        ? buildTerminalExecutePrompt(instructionContext, nodeContent, feedbackResponseFile!)
-        : buildTerminalCollaboratePrompt(instructionContext, nodeContent, feedbackResponseFile!, decomposition);
     case 'autonomous-terminal':
-      return isExecute
-        ? buildTerminalExecutePrompt(instructionContext, nodeContent, feedbackResponseFile!, true, sessionId)
-        : buildTerminalCollaboratePrompt(instructionContext, nodeContent, feedbackResponseFile!, decomposition);
+      if (bothOn) return buildTerminalBothPrompt(instructionContext, nodeContent, feedbackResponseFile!, includeNeedsReview, sessionId);
+      if (executeOnly) return buildTerminalExecuteOnlyPrompt(instructionContext, nodeContent, includeNeedsReview, sessionId);
+      return buildTerminalCollaboratePrompt(instructionContext, nodeContent, feedbackResponseFile!, decomposition);
   }
+}
+
+function defaultFlags(): ContextFlags {
+  return { collaborate: true, execute: false };
+}
+
+function flagsForContext(
+  contextId: string | undefined,
+  state: Pick<TreeState, 'nodes'>,
+): ContextFlags {
+  if (!contextId) return defaultFlags();
+  return resolveContextFlags(contextId, state.nodes, getContextDeclarations(state.nodes));
 }
 
 export interface ProcessFeedbackContentResult {
@@ -232,9 +266,9 @@ export interface SendActions {
   startCollaboration: (nodeId: string) => void;
   cancelCollaboration: () => void;
   acceptFeedback: (newRootNodeId: string, newNodesMap: Record<string, TreeNode>) => void;
-  collaborate: (nodeId: string, mode?: 'collaborate' | 'execute') => Promise<void>;
-  collaborateInTerminal: (nodeId: string, terminalId: string, mode?: 'collaborate' | 'execute') => Promise<void>;
-  autonomousCollaborateInTerminal: (nodeId: string, terminalId: string, mode?: 'collaborate' | 'execute') => Promise<string>;
+  collaborate: (nodeId: string, flags?: ContextFlags) => Promise<void>;
+  collaborateInTerminal: (nodeId: string, terminalId: string, flags?: ContextFlags) => Promise<void>;
+  autonomousCollaborateInTerminal: (nodeId: string, terminalId: string, flags?: ContextFlags) => Promise<string>;
   restoreCollaborationState: () => Promise<void>;
   processIncomingFeedbackContent: (content: string, source: ContentSource, skipSave?: boolean) => Promise<ProcessFeedbackContentResult>;
   finishCancel: () => Promise<void>;
@@ -326,7 +360,7 @@ export function createSendActions(
       );
     },
 
-    collaborate: async (nodeId: string, mode?: 'collaborate' | 'execute') => {
+    collaborate: async (nodeId: string, flags?: ContextFlags) => {
       const state = get();
 
       const blockingStore = getAllStores?.().find(
@@ -356,14 +390,15 @@ export function createSendActions(
 
       try {
         const appliedContextId = getAppliedContextIdWithInheritance(nodeId, state.nodes, state.ancestorRegistry);
-        const isExecuteMode = mode === 'execute';
+        const resolvedFlags = flags ?? flagsForContext(appliedContextId, state);
         const decomposition = isDecompositionEnabled(nodeId, state.nodes, state.ancestorRegistry);
+        const effectiveDecomposition = resolvedFlags.collaborate ? decomposition : false;
         const clipboardContent = buildSendPayload({
           nodeId,
           state,
-          mode: mode ?? 'collaborate',
+          flags: resolvedFlags,
           target: 'web',
-          decomposition,
+          decomposition: effectiveDecomposition,
         });
         await navigator.clipboard.writeText(clipboardContent);
 
@@ -382,7 +417,9 @@ export function createSendActions(
           'info'
         );
 
-        set({ collaboratingNodeId: nodeId, collaborationSource: 'browser', decomposition: isExecuteMode ? false : decomposition });
+        if (resolvedFlags.collaborate) {
+          set({ collaboratingNodeId: nodeId, collaborationSource: 'browser', decomposition: effectiveDecomposition });
+        }
         usePanelStore.getState().showBrowser();
 
         logger.info(`Started collaboration for node: ${nodeId}`, 'SendActions');
@@ -392,7 +429,7 @@ export function createSendActions(
       }
     },
 
-    collaborateInTerminal: async (nodeId: string, terminalId: string, mode?: 'collaborate' | 'execute') => {
+    collaborateInTerminal: async (nodeId: string, terminalId: string, flags?: ContextFlags) => {
       const state = get();
 
       if (state.collaboratingNodeId) {
@@ -423,35 +460,45 @@ export function createSendActions(
           return;
         }
 
-        const feedbackFileName = `feedback-response-${nodeId}.md`;
-        const feedbackResponseFile = await window.electron.createTempFile(feedbackFileName, '');
-
-        const isExecuteMode = mode === 'execute';
+        const resolvedFlags = flags ?? flagsForContext(appliedContextId, state);
         const decomposition = isDecompositionEnabled(nodeId, state.nodes, state.ancestorRegistry);
+        const effectiveDecomposition = resolvedFlags.collaborate ? decomposition : false;
+
+        let feedbackResponseFile: string | undefined;
+        if (resolvedFlags.collaborate) {
+          const feedbackFileName = `feedback-response-${nodeId}.md`;
+          feedbackResponseFile = await window.electron.createTempFile(feedbackFileName, '');
+        }
+
         const terminalInstruction = buildSendPayload({
           nodeId,
           state,
-          mode: mode ?? 'collaborate',
+          flags: resolvedFlags,
           target: 'terminal',
-          decomposition,
+          decomposition: effectiveDecomposition,
           feedbackResponseFile,
         });
 
         await executeInTerminal(terminalId, terminalInstruction);
-        set({ collaboratingNodeId: nodeId, collaborationSource: 'terminal', decomposition: isExecuteMode ? false : decomposition });
-        await window.electron.startFeedbackFileWatcher(feedbackResponseFile);
 
-        const stateWithRegistry = get() as TreeState & { actions?: { registerManualCollaboration?: (nodeId: string, filePath: string) => void } };
-        stateWithRegistry.actions?.registerManualCollaboration?.(nodeId, feedbackResponseFile);
+        if (resolvedFlags.collaborate && feedbackResponseFile) {
+          set({ collaboratingNodeId: nodeId, collaborationSource: 'terminal', decomposition: effectiveDecomposition });
+          await window.electron.startFeedbackFileWatcher(feedbackResponseFile);
 
-        logger.info(`Started terminal collaboration for node: ${nodeId}, watching: ${feedbackResponseFile}`, 'SendActions');
+          const stateWithRegistry = get() as TreeState & { actions?: { registerManualCollaboration?: (nodeId: string, filePath: string) => void } };
+          stateWithRegistry.actions?.registerManualCollaboration?.(nodeId, feedbackResponseFile);
+
+          logger.info(`Started terminal collaboration for node: ${nodeId}, watching: ${feedbackResponseFile}`, 'SendActions');
+        } else {
+          logger.info(`Sent execute-only prompt to terminal for node: ${nodeId}`, 'SendActions');
+        }
       } catch (error) {
         logger.error('Failed to collaborate in terminal', error as Error, 'SendActions');
         throw error;
       }
     },
 
-    autonomousCollaborateInTerminal: async (nodeId: string, terminalId: string, mode?: 'collaborate' | 'execute'): Promise<string> => {
+    autonomousCollaborateInTerminal: async (nodeId: string, terminalId: string, flags?: ContextFlags): Promise<string> => {
       const state = get();
 
       if (!terminalId) {
@@ -472,26 +519,37 @@ export function createSendActions(
         return '';
       }
 
-      const feedbackFileName = `feedback-response-${nodeId}.md`;
-      const feedbackResponseFile = await window.electron.createTempFile(feedbackFileName, '');
-
+      const resolvedFlags = flags ?? flagsForContext(appliedContextId, state);
       const decomposition = isDecompositionEnabled(nodeId, state.nodes, state.ancestorRegistry);
+      const effectiveDecomposition = resolvedFlags.collaborate ? decomposition : false;
       const sessionId = findSessionIdForTerminal(state.workflowSessionMap, terminalId);
+
+      let feedbackResponseFile: string | undefined;
+      if (resolvedFlags.collaborate) {
+        const feedbackFileName = `feedback-response-${nodeId}.md`;
+        feedbackResponseFile = await window.electron.createTempFile(feedbackFileName, '');
+      }
+
       const terminalInstruction = buildSendPayload({
         nodeId,
         state,
-        mode: mode ?? 'collaborate',
+        flags: resolvedFlags,
         target: 'autonomous-terminal',
-        decomposition,
+        decomposition: effectiveDecomposition,
         feedbackResponseFile,
         sessionId,
       });
 
       await executeInTerminal(terminalId, terminalInstruction);
-      await window.electron.startFeedbackFileWatcher(feedbackResponseFile);
 
-      logger.info(`Started autonomous collaboration for node: ${nodeId}, watching: ${feedbackResponseFile}`, 'SendActions');
-      return feedbackResponseFile;
+      if (resolvedFlags.collaborate && feedbackResponseFile) {
+        await window.electron.startFeedbackFileWatcher(feedbackResponseFile);
+        logger.info(`Started autonomous collaboration for node: ${nodeId}, watching: ${feedbackResponseFile}`, 'SendActions');
+        return feedbackResponseFile;
+      }
+
+      logger.info(`Sent autonomous execute-only prompt for node: ${nodeId}`, 'SendActions');
+      return '';
     },
 
     restoreCollaborationState: async () => {

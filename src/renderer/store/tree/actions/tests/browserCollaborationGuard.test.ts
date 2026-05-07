@@ -78,7 +78,7 @@ describe('browser collaboration guard across files', () => {
       nodes: {
         root: { id: 'root', content: 'Root', children: ['child1', 'ctx'], metadata: {} },
         child1: { id: 'child1', content: 'Child 1', children: [], metadata: { appliedContextId: 'ctx' } },
-        ctx: { id: 'ctx', content: 'Review', children: [], metadata: { isContextDeclaration: true, contextMode: 'collaborate' } },
+        ctx: { id: 'ctx', content: 'Review', children: [], metadata: { isContextDeclaration: true, collaborate: true, execute: false } },
       },
       rootNodeId: 'root',
       treeType: 'workspace',

@@ -12,8 +12,8 @@ export interface TransientMetadata {
 
 /**
  * Built-in metadata keys used across the renderer. Keep this in sync with
- * renderer-side type literals like StepType and ContextMode (the strings
- * below are their source of truth — renderer re-imports these types).
+ * renderer-side type literals like StepType (the strings below are their
+ * source of truth — renderer re-imports these types).
  *
  * The `[key: string]: unknown` index signature stays so plugin-added keys
  * and future extensions compile without touching this file.
@@ -31,7 +31,8 @@ export interface NodeMetadata {
   blueprintIcon?: string;
   blueprintColor?: string;
   isContextDeclaration?: boolean;
-  contextMode?: 'collaborate' | 'execute';
+  collaborate?: boolean;
+  execute?: boolean;
 
   // Context application
   appliedContextId?: string;

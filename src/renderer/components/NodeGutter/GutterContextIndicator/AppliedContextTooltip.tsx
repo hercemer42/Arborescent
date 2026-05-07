@@ -1,7 +1,7 @@
 import { createPortal } from 'react-dom';
 import { createElement } from 'react';
 import { getIconByName } from '../../ui/CustomizeDialog/CustomizeDialog';
-import { AppliedContext } from '../../TreeNode/hooks/useAppliedContexts';
+import { AppliedContext, flagsLabel } from '../../TreeNode/hooks/useAppliedContexts';
 
 interface AppliedContextTooltipProps {
   appliedContext: AppliedContext;
@@ -27,7 +27,7 @@ export function AppliedContextTooltip({
           {appliedContext.icon && createElement(getIconByName(appliedContext.icon)!, { size: 12, className: 'tooltip-icon' })}
         </span>
         <span className="tooltip-name">{appliedContext.name || 'Context'}</span>
-        <span className="tooltip-mode">({appliedContext.mode})</span>
+        <span className="tooltip-mode">({flagsLabel(appliedContext.collaborate, appliedContext.execute)})</span>
       </div>
     </div>,
     document.body

@@ -95,14 +95,14 @@ describe('sendActions', () => {
       id: 'collab-ctx',
       content: 'Review context',
       children: [],
-      metadata: { isContextDeclaration: true, contextMode: 'collaborate' },
+      metadata: { isContextDeclaration: true, collaborate: true, execute: false },
     };
 
     const execCtx: TreeNode = {
       id: 'exec-ctx',
       content: 'Execute context',
       children: [],
-      metadata: { isContextDeclaration: true, contextMode: 'execute' },
+      metadata: { isContextDeclaration: true },
     };
 
     const child1: TreeNode = {
@@ -658,6 +658,88 @@ describe('sendActions', () => {
     });
   });
 
+  describe('four-state prompt composition (PR1 disjoint-blocks invariant)', () => {
+    function setupContext(collaborate: boolean, execute: boolean) {
+      const contextNode: TreeNode = {
+        id: 'four-state-ctx',
+        content: 'Four-state context body',
+        children: [],
+        metadata: { isContextDeclaration: true, blueprintIcon: 'star', collaborate, execute },
+      };
+      mockState.nodes['four-state-ctx'] = contextNode;
+      mockState.ancestorRegistry['four-state-ctx'] = ['root'];
+      mockState.nodes.child1.metadata.appliedContextId = 'four-state-ctx';
+    }
+
+    it('Action (neither flag): prompt is the context body only — no INSTRUCTIONS, no node content', async () => {
+      setupContext(false, false);
+      await actions.collaborate('child1');
+      const out = mockClipboardWriteText.mock.calls[0][0];
+
+      expect(out).toContain('Four-state context body');
+      expect(out).not.toContain('===BEGIN INSTRUCTIONS===');
+      expect(out).not.toContain('===BEGIN CONTENT===');
+      expect(out).not.toContain('Child 1');
+    });
+
+    it('Collaborate-only: tree-update scaffolding present, node content present, panel auto-opens', async () => {
+      setupContext(true, false);
+      await actions.collaborate('child1');
+      const out = mockClipboardWriteText.mock.calls[0][0];
+
+      expect(out).toContain('===BEGIN INSTRUCTIONS===');
+      expect(out).toContain('Output ONLY the updated list');
+      expect(out).toContain('Child 1');
+      expect(mockSet).toHaveBeenCalledWith(
+        expect.objectContaining({ collaboratingNodeId: 'child1' }),
+      );
+    });
+
+    it('Execute-only: code-change scaffolding present, node content present, no panel auto-open', async () => {
+      setupContext(false, true);
+      await actions.collaborate('child1');
+      const out = mockClipboardWriteText.mock.calls[0][0];
+
+      expect(out).toContain('===BEGIN INSTRUCTIONS===');
+      expect(out).toContain('Making file changes, writing code, and running commands is expected and required');
+      expect(out).toContain('Child 1');
+      expect(mockSet).not.toHaveBeenCalledWith(
+        expect.objectContaining({ collaboratingNodeId: 'child1' }),
+      );
+    });
+
+    it('Both-on: composed prompt has BOTH scaffolding directions plus node content', async () => {
+      setupContext(true, true);
+      await actions.collaborate('child1');
+      const out = mockClipboardWriteText.mock.calls[0][0];
+
+      expect(out).toContain('Making file changes, writing code, and running commands is expected and required');
+      expect(out).toContain('Child 1');
+      expect(mockSet).toHaveBeenCalledWith(
+        expect.objectContaining({ collaboratingNodeId: 'child1' }),
+      );
+    });
+
+    it('disjoint-blocks invariant: Execute-only scaffolding contains zero list/temp-file phrases', async () => {
+      setupContext(false, true);
+      await actions.collaborate('child1');
+      const out = mockClipboardWriteText.mock.calls[0][0];
+
+      expect(out).not.toContain('Write your reviewed/updated list to this file');
+      expect(out).not.toContain('with completed items marked [x]');
+      expect(out).not.toContain('only change status markers');
+    });
+
+    it('disjoint-blocks invariant: Collaborate-only scaffolding contains zero source-file phrases', async () => {
+      setupContext(true, false);
+      await actions.collaborate('child1');
+      const out = mockClipboardWriteText.mock.calls[0][0];
+
+      expect(out).not.toContain('Make the requested code changes');
+      expect(out).not.toContain('Making file changes, writing code, and running commands');
+    });
+  });
+
   describe('collaborateInTerminal', () => {
     it('should write to terminal, execute, and start file watcher', async () => {
       const { executeInTerminal } = await import('../../../../services/terminalExecution');
@@ -807,17 +889,17 @@ describe('sendActions', () => {
       expect(window.electron.createTempFile).not.toHaveBeenCalled();
     });
 
-    it('collaborate mode terminal prompt contains code prohibition with default context', async () => {
+    it('collaborate-only terminal prompt does NOT contain code-protection rule (disjoint-blocks invariant)', async () => {
       const { executeInTerminal } = await import('../../../../services/terminalExecution');
       vi.mocked(executeInTerminal).mockResolvedValue(undefined);
 
       await actions.collaborateInTerminal('child1', 'terminal-1');
 
       const terminalContent = vi.mocked(executeInTerminal).mock.calls[0][1];
-      expect(terminalContent).toContain('Do NOT make any changes to the code');
+      expect(terminalContent).not.toContain('Do NOT make any changes to the code');
     });
 
-    it('collaborate mode terminal prompt retains code prohibition when custom context is applied', async () => {
+    it('collaborate-only terminal prompt does NOT contain code-protection rule even with custom context', async () => {
       const { executeInTerminal } = await import('../../../../services/terminalExecution');
       vi.mocked(executeInTerminal).mockResolvedValue(undefined);
 
@@ -834,10 +916,10 @@ describe('sendActions', () => {
       await actions.collaborateInTerminal('child1', 'terminal-1');
 
       const terminalContent = vi.mocked(executeInTerminal).mock.calls[0][1];
-      expect(terminalContent).toContain('Do NOT make any changes to the code');
+      expect(terminalContent).not.toContain('Do NOT make any changes to the code');
     });
 
-    it('collaborate mode code prohibition appears after custom context in assembled prompt', async () => {
+    it('collaborate-only terminal prompt asks for list-back-to-file output (Collaborate scaffolding present)', async () => {
       const { executeInTerminal } = await import('../../../../services/terminalExecution');
       vi.mocked(executeInTerminal).mockResolvedValue(undefined);
 
@@ -854,9 +936,7 @@ describe('sendActions', () => {
       await actions.collaborateInTerminal('child1', 'terminal-1');
 
       const terminalContent = vi.mocked(executeInTerminal).mock.calls[0][1];
-      const prohibitionPos = terminalContent.indexOf('Do NOT make any changes to the code');
-      const customContextPos = terminalContent.indexOf('Write any code you need');
-      expect(prohibitionPos).toBeGreaterThan(customContextPos);
+      expect(terminalContent).toContain('Write your reviewed/updated list to this file');
     });
   });
 
@@ -865,14 +945,14 @@ describe('sendActions', () => {
       mockState.nodes.child1.metadata.appliedContextId = 'exec-ctx';
     });
     it('should create temp file and start file watcher same as collaborate', async () => {
-      await actions.collaborateInTerminal('child1', 'terminal-1', 'execute');
+      await actions.collaborateInTerminal('child1', 'terminal-1', { collaborate: true, execute: true });
 
       expect(window.electron.createTempFile).toHaveBeenCalled();
       expect(window.electron.startFeedbackFileWatcher).toHaveBeenCalled();
     });
 
     it('should set collaboratingNodeId same as collaborate', async () => {
-      await actions.collaborateInTerminal('child1', 'terminal-1', 'execute');
+      await actions.collaborateInTerminal('child1', 'terminal-1', { collaborate: true, execute: true });
 
       expect(mockSet).toHaveBeenCalledWith(expect.objectContaining({ collaboratingNodeId: 'child1' }));
     });
@@ -880,7 +960,7 @@ describe('sendActions', () => {
     it('should use execute-specific prompt instead of collaborate prompt', async () => {
       const { executeInTerminal } = await import('../../../../services/terminalExecution');
 
-      await actions.collaborateInTerminal('child1', 'terminal-1', 'execute');
+      await actions.collaborateInTerminal('child1', 'terminal-1', { collaborate: true, execute: true });
 
       const terminalContent = vi.mocked(executeInTerminal).mock.calls[0][1];
       expect(terminalContent).toContain('Treat everything in CONTENT as the prompt to execute');
@@ -890,7 +970,7 @@ describe('sendActions', () => {
     it('should include file write instructions in execute prompt', async () => {
       const { executeInTerminal } = await import('../../../../services/terminalExecution');
 
-      await actions.collaborateInTerminal('child1', 'terminal-1', 'execute');
+      await actions.collaborateInTerminal('child1', 'terminal-1', { collaborate: true, execute: true });
 
       const terminalContent = vi.mocked(executeInTerminal).mock.calls[0][1];
       expect(terminalContent).toContain('Make the requested code changes in the codebase');
@@ -901,7 +981,7 @@ describe('sendActions', () => {
     it('should not include NeedsReview instruction in standalone execute prompt', async () => {
       const { executeInTerminal } = await import('../../../../services/terminalExecution');
 
-      await actions.collaborateInTerminal('child1', 'terminal-1', 'execute');
+      await actions.collaborateInTerminal('child1', 'terminal-1', { collaborate: true, execute: true });
 
       const terminalContent = vi.mocked(executeInTerminal).mock.calls[0][1];
       expect(terminalContent).not.toContain('NeedsReview');
@@ -913,7 +993,7 @@ describe('sendActions', () => {
 
       mockState.nodes.child1.metadata.decomposition = true;
 
-      await actions.collaborateInTerminal('child1', 'terminal-1', 'execute');
+      await actions.collaborateInTerminal('child1', 'terminal-1', { collaborate: true, execute: true });
 
       const terminalContent = vi.mocked(executeInTerminal).mock.calls[0][1];
       expect(terminalContent).not.toContain('MULTIPLE top-level items');
@@ -931,7 +1011,7 @@ describe('sendActions', () => {
     it('execute mode terminal prompt does not contain code prohibition', async () => {
       const { executeInTerminal } = await import('../../../../services/terminalExecution');
 
-      await actions.collaborateInTerminal('child1', 'terminal-1', 'execute');
+      await actions.collaborateInTerminal('child1', 'terminal-1', { collaborate: true, execute: true });
 
       const terminalContent = vi.mocked(executeInTerminal).mock.calls[0][1];
       expect(terminalContent).not.toContain('Do NOT make any changes to the code');
@@ -940,7 +1020,7 @@ describe('sendActions', () => {
     it('execute mode terminal prompt explicitly permits code changes', async () => {
       const { executeInTerminal } = await import('../../../../services/terminalExecution');
 
-      await actions.collaborateInTerminal('child1', 'terminal-1', 'execute');
+      await actions.collaborateInTerminal('child1', 'terminal-1', { collaborate: true, execute: true });
 
       const terminalContent = vi.mocked(executeInTerminal).mock.calls[0][1];
       expect(terminalContent).toContain('Making file changes, writing code, and running commands is expected and required');
@@ -949,7 +1029,7 @@ describe('sendActions', () => {
     it('execute mode terminal prompt instructs AI to preserve list structure with only status markers changed', async () => {
       const { executeInTerminal } = await import('../../../../services/terminalExecution');
 
-      await actions.collaborateInTerminal('child1', 'terminal-1', 'execute');
+      await actions.collaborateInTerminal('child1', 'terminal-1', { collaborate: true, execute: true });
 
       const terminalContent = vi.mocked(executeInTerminal).mock.calls[0][1];
       expect(terminalContent).toContain('only change status markers');
@@ -958,7 +1038,7 @@ describe('sendActions', () => {
     it('execute mode terminal prompt instructs AI to skip items already marked [x]', async () => {
       const { executeInTerminal } = await import('../../../../services/terminalExecution');
 
-      await actions.collaborateInTerminal('child1', 'terminal-1', 'execute');
+      await actions.collaborateInTerminal('child1', 'terminal-1', { collaborate: true, execute: true });
 
       const terminalContent = vi.mocked(executeInTerminal).mock.calls[0][1];
       expect(terminalContent).toContain('Skip items already marked [x]');
@@ -967,7 +1047,7 @@ describe('sendActions', () => {
     it('execute mode terminal prompt instructs AI to append issues as last child node', async () => {
       const { executeInTerminal } = await import('../../../../services/terminalExecution');
 
-      await actions.collaborateInTerminal('child1', 'terminal-1', 'execute');
+      await actions.collaborateInTerminal('child1', 'terminal-1', { collaborate: true, execute: true });
 
       const terminalContent = vi.mocked(executeInTerminal).mock.calls[0][1];
       expect(terminalContent).toContain('append a single new child node at the end');
@@ -979,7 +1059,7 @@ describe('sendActions', () => {
       mockState.nodes.child1.metadata.appliedContextId = 'exec-ctx';
     });
     it('should return feedback file path same as collaborate', async () => {
-      const feedbackFile = await actions.autonomousCollaborateInTerminal('child1', 'terminal-1', 'execute');
+      const feedbackFile = await actions.autonomousCollaborateInTerminal('child1', 'terminal-1', { collaborate: true, execute: true });
 
       expect(feedbackFile).toBe('/tmp/arborescent/feedback-response.md');
     });
@@ -987,7 +1067,7 @@ describe('sendActions', () => {
     it('should use execute-specific prompt', async () => {
       const { executeInTerminal } = await import('../../../../services/terminalExecution');
 
-      await actions.autonomousCollaborateInTerminal('child1', 'terminal-1', 'execute');
+      await actions.autonomousCollaborateInTerminal('child1', 'terminal-1', { collaborate: true, execute: true });
 
       const terminalContent = vi.mocked(executeInTerminal).mock.calls[0][1];
       expect(terminalContent).toContain('Treat everything in CONTENT as the prompt to execute');
@@ -1005,7 +1085,7 @@ describe('sendActions', () => {
     it('should include NeedsReview instruction in autonomous execute prompt', async () => {
       const { executeInTerminal } = await import('../../../../services/terminalExecution');
 
-      await actions.autonomousCollaborateInTerminal('child1', 'terminal-1', 'execute');
+      await actions.autonomousCollaborateInTerminal('child1', 'terminal-1', { collaborate: true, execute: true });
 
       const terminalContent = vi.mocked(executeInTerminal).mock.calls[0][1];
       expect(terminalContent).toContain('NeedsReview');
@@ -1016,7 +1096,7 @@ describe('sendActions', () => {
       const { executeInTerminal } = await import('../../../../services/terminalExecution');
       mockState.workflowSessionMap = { '1bf0bdd9-6ac0-4035-a9c7-7b33f04795a1': 'terminal-1' };
 
-      await actions.autonomousCollaborateInTerminal('child1', 'terminal-1', 'execute');
+      await actions.autonomousCollaborateInTerminal('child1', 'terminal-1', { collaborate: true, execute: true });
 
       const terminalContent = vi.mocked(executeInTerminal).mock.calls[0][1];
       expect(terminalContent).not.toContain('${CLAUDE_SESSION_ID}');
@@ -1027,7 +1107,7 @@ describe('sendActions', () => {
       const { executeInTerminal } = await import('../../../../services/terminalExecution');
       mockState.workflowSessionMap = {};
 
-      await actions.autonomousCollaborateInTerminal('child1', 'terminal-1', 'execute');
+      await actions.autonomousCollaborateInTerminal('child1', 'terminal-1', { collaborate: true, execute: true });
 
       const terminalContent = vi.mocked(executeInTerminal).mock.calls[0][1];
       expect(terminalContent).not.toContain('${CLAUDE_SESSION_ID}');
@@ -1038,7 +1118,7 @@ describe('sendActions', () => {
       const { executeInTerminal } = await import('../../../../services/terminalExecution');
       mockState.workflowSessionMap = { 'session-uuid': 'terminal-1' };
 
-      await actions.autonomousCollaborateInTerminal('child1', 'terminal-1', 'execute');
+      await actions.autonomousCollaborateInTerminal('child1', 'terminal-1', { collaborate: true, execute: true });
 
       const terminalContent = vi.mocked(executeInTerminal).mock.calls[0][1];
       expect(terminalContent).toContain('${ARBORESCENT_HOOK_PORT}');
@@ -1053,7 +1133,7 @@ describe('sendActions', () => {
         'session-for-t2': 'terminal-2',
       };
 
-      await actions.autonomousCollaborateInTerminal('child1', 'terminal-2', 'execute');
+      await actions.autonomousCollaborateInTerminal('child1', 'terminal-2', { collaborate: true, execute: true });
 
       const terminalContent = vi.mocked(executeInTerminal).mock.calls[0][1];
       expect(terminalContent).toContain('"session_id": "session-for-t2"');
@@ -1076,7 +1156,7 @@ describe('sendActions', () => {
       mockState.nodes.child1.metadata.appliedContextId = 'exec-ctx';
     });
     it('should copy execute-specific prompt to clipboard', async () => {
-      await actions.collaborate('child1', 'execute');
+      await actions.collaborate('child1', { collaborate: true, execute: true });
 
       const clipboardContent = mockClipboardWriteText.mock.calls[0][0];
       expect(clipboardContent).toContain('Treat everything in CONTENT as the prompt to execute');
@@ -1084,7 +1164,7 @@ describe('sendActions', () => {
     });
 
     it('should set collaboratingNodeId same as collaborate', async () => {
-      await actions.collaborate('child1', 'execute');
+      await actions.collaborate('child1', { collaborate: true, execute: true });
 
       expect(mockSet).toHaveBeenCalledWith(expect.objectContaining({ collaboratingNodeId: 'child1' }));
     });
@@ -1092,14 +1172,14 @@ describe('sendActions', () => {
     it('should not include decomposition instructions even if decomposition is enabled on the node', async () => {
       mockState.nodes.child1.metadata.decomposition = true;
 
-      await actions.collaborate('child1', 'execute');
+      await actions.collaborate('child1', { collaborate: true, execute: true });
 
       const clipboardContent = mockClipboardWriteText.mock.calls[0][0];
       expect(clipboardContent).not.toContain('MULTIPLE top-level items');
     });
 
     it('should include markdown code block output instruction', async () => {
-      await actions.collaborate('child1', 'execute');
+      await actions.collaborate('child1', { collaborate: true, execute: true });
 
       const clipboardContent = mockClipboardWriteText.mock.calls[0][0];
       expect(clipboardContent).toContain('markdown code block');
@@ -1113,7 +1193,7 @@ describe('sendActions', () => {
     });
 
     it('web execute mode clipboard content does not contain code prohibition', async () => {
-      await actions.collaborate('child1', 'execute');
+      await actions.collaborate('child1', { collaborate: true, execute: true });
 
       const clipboardContent = mockClipboardWriteText.mock.calls[0][0];
       expect(clipboardContent).not.toContain('Do NOT make any changes to the code');

@@ -20,21 +20,23 @@ Before sending prompts, open the Terminal panel (`` Ctrl+` ``) or Browser panel 
 
 ## Send Your Prompt
 
-Right-click any branch → **Send**. The content is sent to whichever panel is currently active (terminal or browser). Hover the Send menu item to see the current mode and applied context name.
+Right-click any branch → **Send**. The content is sent to whichever panel is currently active (terminal or browser). Hover the Send menu item to see the current state and applied context name.
 
-The applied context's mode determines what the AI does with your content:
+The applied context's state determines what the AI is asked for. The four states are described in detail in [Contexts](contexts.md):
 
-- **Execute** — The AI performs your tasks — making code changes, running commands — and marks each item as completed [x] or failed [-]. The list structure is preserved; only status markers change. If something went wrong, a brief note is appended at the end.
-- **Collaborate** — The AI reviews and rewrites your content: suggests improvements, reorganizes, and refines.
+- **Collaborate** — Reviews and rewrites your content. Response goes to the Feedback panel.
+- **Execute** — Makes code/file changes; reports back via the terminal.
+- **Collaborate & Execute** — Both. AI makes the changes AND writes back the list with status markers. The default for the built-in **Basic execution** context.
+- **Action** — The context body is the prompt; node content is omitted.
 
-Both modes use the same feedback pipeline. The AI's response appears in the Feedback panel for you to review, then Accept or Cancel. Accept is undoable with `Ctrl+Z`.
+Collaborate and Collaborate & Execute use the same feedback pipeline — the AI's response appears in the Feedback panel for you to review, then Accept or Cancel (undoable with `Ctrl+Z`). Execute and Action don't open the panel.
 
 Two built-in contexts are available when no user-defined context is applied:
 
-- **Basic review** (collaborate) — Reviews your content and suggests improvements. This is the default.
-- **Basic execution** (execute) — Executes the task described in your content directly.
+- **Basic review** — Collaborate. Reviews your content and suggests improvements. This is the default.
+- **Basic execution** — Collaborate & Execute. Performs the task and writes back status markers.
 
-Keyboard shortcuts: `Ctrl+E` (send in terminal), `Ctrl+Shift+E` (send in browser). The applied context's mode determines whether it executes or collaborates.
+Keyboard shortcuts: `Ctrl+E` (send in terminal), `Ctrl+Shift+E` (send in browser).
 
 ### How it works
 

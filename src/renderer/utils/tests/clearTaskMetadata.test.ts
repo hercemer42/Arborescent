@@ -99,15 +99,17 @@ describe('clearTaskMetadata', () => {
       expect(result.blueprintColor).toBe('orange');
     });
 
-    it('preserves isContextDeclaration and contextMode', () => {
+    it('preserves isContextDeclaration and context flags', () => {
       const result = clearTaskMetadata({
         isContextDeclaration: true,
-        contextMode: 'execute',
+        collaborate: true,
+        execute: true,
         status: 'completed',
       });
 
       expect(result.isContextDeclaration).toBe(true);
-      expect(result.contextMode).toBe('execute');
+      expect(result.collaborate).toBe(true);
+      expect(result.execute).toBe(true);
     });
 
     it('preserves isWorkflow and stepType', () => {

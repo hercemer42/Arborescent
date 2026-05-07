@@ -47,8 +47,11 @@ describe('DeclareContextCommand', () => {
     color: string | undefined = undefined,
     mode: 'collaborate' | 'execute' = 'collaborate'
   ) {
+    const flags = mode === 'execute'
+      ? { collaborate: true, execute: true }
+      : { collaborate: true, execute: false };
     return new DeclareContextCommand(
-      nodeId, icon, color, mode,
+      nodeId, icon, color, flags,
       () => nodes, setNodes,
       triggerAutosave, refreshContextDeclarations
     );
@@ -61,7 +64,7 @@ describe('DeclareContextCommand', () => {
     expect(nodes['candidate'].metadata.isContextDeclaration).toBe(true);
     expect(nodes['candidate'].metadata.blueprintIcon).toBe('eye');
     expect(nodes['candidate'].metadata.blueprintColor).toBe('#0ea5e9');
-    expect(nodes['candidate'].metadata.contextMode).toBe('collaborate');
+    expect(nodes['candidate'].metadata.collaborate).toBe(true);
     expect(nodes['candidate'].metadata.isBlueprint).toBe(true);
   });
 
@@ -69,7 +72,7 @@ describe('DeclareContextCommand', () => {
     const cmd = createCommand('candidate', 'wrench', undefined, 'execute');
     cmd.execute();
 
-    expect(nodes['candidate'].metadata.contextMode).toBe('execute');
+    expect(nodes['candidate'].metadata.execute).toBe(true);
   });
 
   it('should mark descendants as blueprints', () => {
@@ -104,7 +107,7 @@ describe('DeclareContextCommand', () => {
     const cmd = createCommand('candidate', 'eye', '#ef4444', 'execute');
     cmd.execute();
 
-    expect(nodes['candidate'].metadata.contextMode).toBe('execute');
+    expect(nodes['candidate'].metadata.execute).toBe(true);
     expect(nodes['child-1'].metadata.isBlueprint).toBe(true);
 
     cmd.undo();
@@ -118,15 +121,17 @@ describe('DeclareContextCommand', () => {
       ...nodes['candidate'].metadata,
       isContextDeclaration: true,
       blueprintIcon: 'eye',
-      contextMode: 'collaborate',
+      collaborate: true,
+      execute: false,
     };
 
     const cmd = createCommand('candidate', 'wrench', undefined, 'execute');
     cmd.execute();
-    expect(nodes['candidate'].metadata.contextMode).toBe('execute');
+    expect(nodes['candidate'].metadata.execute).toBe(true);
 
     cmd.undo();
-    expect(nodes['candidate'].metadata.contextMode).toBe('collaborate');
+    expect(nodes['candidate'].metadata.collaborate).toBe(true);
+    expect(nodes['candidate'].metadata.execute).toBe(false);
   });
 
   it('should re-apply on redo', () => {
@@ -136,7 +141,7 @@ describe('DeclareContextCommand', () => {
     cmd.redo();
 
     expect(nodes['candidate'].metadata.isContextDeclaration).toBe(true);
-    expect(nodes['candidate'].metadata.contextMode).toBe('execute');
+    expect(nodes['candidate'].metadata.execute).toBe(true);
     expect(nodes['child-1'].metadata.isBlueprint).toBe(true);
   });
 

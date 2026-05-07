@@ -41,14 +41,16 @@ export class RemoveContextCommand extends BaseCommand {
         isContextDeclaration: false,
         blueprintIcon: undefined,
         blueprintColor: undefined,
-        contextMode: undefined,
+        collaborate: undefined,
+        execute: undefined,
       });
     } else {
       updatedNodes = updateNodeMetadata(nodes, this.nodeId, {
         isContextDeclaration: false,
         blueprintIcon: undefined,
         blueprintColor: undefined,
-        contextMode: undefined,
+        collaborate: undefined,
+        execute: undefined,
         isBlueprint: false,
       });
 

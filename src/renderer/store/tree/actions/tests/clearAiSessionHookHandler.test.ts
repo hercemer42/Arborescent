@@ -173,7 +173,7 @@ describe('SessionStart source:"clear" handling via registerSession', () => {
       await vi.runAllTicks();
       await Promise.resolve();
 
-      expect(mockAutonomousCollaborate).toHaveBeenCalledWith('task-a', 'terminal-1', 'execute');
+      expect(mockAutonomousCollaborate).toHaveBeenCalledWith('task-a', 'terminal-1', { collaborate: true, execute: false });
     });
   });
 

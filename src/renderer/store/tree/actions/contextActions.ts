@@ -4,6 +4,7 @@ import {
   getParentIdOrNull,
   BASIC_EXECUTE_CONTEXT_ID,
   BASIC_REVIEW_CONTEXT_ID,
+  ContextFlags,
 } from '../../../utils/nodeHelpers';
 import { logger } from '../../../services/logger';
 import { useToastStore } from '../../toast/toastStore';
@@ -15,11 +16,17 @@ import { RemoveContextCommand } from '../commands/RemoveContextCommand';
 
 export interface ContextActions {
   declareAsContext: (nodeId: string, icon?: string, color?: string, mode?: ContextMode) => void;
+  declareAsContextWithFlags: (nodeId: string, icon?: string, color?: string, flags?: ContextFlags) => void;
   removeContextDeclaration: (nodeId: string) => void;
   applyContext: (nodeId: string, contextNodeId: string) => void;
   removeAppliedContext: (nodeId: string, contextNodeId?: string) => void;
   setAppliedContext: (nodeId: string, contextNodeId: string | null) => void;
   refreshContextDeclarations: () => void;
+}
+
+function modeToFlags(mode: ContextMode | undefined): ContextFlags {
+  if (mode === 'execute') return { collaborate: true, execute: true };
+  return { collaborate: true, execute: false };
 }
 
 function buildContextDeclarations(nodes: Record<string, TreeNode>): ContextDeclarationInfo[] {
@@ -30,7 +37,8 @@ function buildContextDeclarations(nodes: Record<string, TreeNode>): ContextDecla
       content: node.content || 'Untitled context',
       icon: (node.metadata.blueprintIcon as string) || 'lightbulb',
       color: node.metadata.blueprintColor as string | undefined,
-      mode: (node.metadata.contextMode as ContextMode) || 'collaborate',
+      collaborate: node.metadata.collaborate === true,
+      execute: node.metadata.execute === true,
     }))
     .sort((a, b) => a.content.localeCompare(b.content));
 }
@@ -52,7 +60,7 @@ export const createContextActions = (
     set({ contextDeclarations: buildContextDeclarations(get().nodes) });
   }
 
-  function declareAsContext(nodeId: string, icon?: string, color?: string, mode?: ContextMode): void {
+  function declareAsContextWithFlags(nodeId: string, icon?: string, color?: string, flags?: ContextFlags): void {
     const { nodes, ancestorRegistry } = get();
     const node = nodes[nodeId];
     if (!node) return;
@@ -66,13 +74,13 @@ export const createContextActions = (
 
     const blueprintIcon = icon || 'lightbulb';
     const blueprintColor = color || undefined;
-    const contextMode = mode || 'collaborate';
+    const resolvedFlags = flags ?? { collaborate: true, execute: false };
 
     const command = new DeclareContextCommand(
       nodeId,
       blueprintIcon,
       blueprintColor,
-      contextMode,
+      resolvedFlags,
       () => get().nodes,
       (updatedNodes) => set({ nodes: updatedNodes }),
       triggerAutosave,
@@ -86,6 +94,10 @@ export const createContextActions = (
     }
 
     logger.info(`Node ${nodeId} declared as context with icon ${blueprintIcon}`, 'Context');
+  }
+
+  function declareAsContext(nodeId: string, icon?: string, color?: string, mode?: ContextMode): void {
+    declareAsContextWithFlags(nodeId, icon, color, modeToFlags(mode));
   }
 
   function removeContextDeclaration(nodeId: string): void {
@@ -213,6 +225,7 @@ export const createContextActions = (
 
   return {
     declareAsContext,
+    declareAsContextWithFlags,
     removeContextDeclaration,
     applyContext,
     removeAppliedContext,

@@ -65,21 +65,24 @@ describe('contextMode migration', () => {
         }),
       });
 
-      expect(nodes['ctx-1'].metadata.contextMode).toBe('collaborate');
+      expect(nodes['ctx-1'].metadata.collaborate).toBe(true);
+      expect(nodes['ctx-1'].metadata.execute).toBe(false);
     });
 
-    it('should not overwrite existing contextMode on declarations', async () => {
+    it('should not overwrite existing flags on declarations (Both-on preserved from legacy execute)', async () => {
       const nodes = await loadWithNodes({
         'root': createNode('root', { isBlueprint: true, isRoot: true }),
         'ctx-1': createNode('ctx-1', {
           isContextDeclaration: true,
           blueprintIcon: 'wrench',
           isBlueprint: true,
-          contextMode: 'execute',
+          collaborate: true,
+          execute: true,
         }),
       });
 
-      expect(nodes['ctx-1'].metadata.contextMode).toBe('execute');
+      expect(nodes['ctx-1'].metadata.collaborate).toBe(true);
+      expect(nodes['ctx-1'].metadata.execute).toBe(true);
     });
 
     it('should migrate multiple context declarations independently', async () => {
@@ -94,12 +97,15 @@ describe('contextMode migration', () => {
           isContextDeclaration: true,
           blueprintIcon: 'wrench',
           isBlueprint: true,
-          contextMode: 'execute',
+          collaborate: true,
+          execute: true,
         }),
       });
 
-      expect(nodes['ctx-review'].metadata.contextMode).toBe('collaborate');
-      expect(nodes['ctx-exec'].metadata.contextMode).toBe('execute');
+      expect(nodes['ctx-review'].metadata.collaborate).toBe(true);
+      expect(nodes['ctx-review'].metadata.execute).toBe(false);
+      expect(nodes['ctx-exec'].metadata.collaborate).toBe(true);
+      expect(nodes['ctx-exec'].metadata.execute).toBe(true);
     });
   });
 

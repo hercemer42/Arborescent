@@ -220,36 +220,72 @@ export function isValidDrop(
   return true;
 }
 
+export interface ContextFlags {
+  collaborate: boolean;
+  execute: boolean;
+}
+
+export interface ContextDeclaration {
+  nodeId: string;
+  content: string;
+  icon: string;
+  color?: string;
+  collaborate: boolean;
+  execute: boolean;
+}
+
+const DEFAULT_FLAGS: ContextFlags = { collaborate: true, execute: false };
+const BASIC_EXECUTE_FLAGS: ContextFlags = { collaborate: true, execute: true };
+const BASIC_REVIEW_FLAGS: ContextFlags = { collaborate: true, execute: false };
+
+function readFlagsFromNode(node: TreeNode): ContextFlags {
+  const collaborate = node.metadata.collaborate;
+  const execute = node.metadata.execute;
+  if (typeof collaborate !== 'boolean' && typeof execute !== 'boolean') {
+    return DEFAULT_FLAGS;
+  }
+  return {
+    collaborate: typeof collaborate === 'boolean' ? collaborate : false,
+    execute: typeof execute === 'boolean' ? execute : false,
+  };
+}
+
 export function getContextDeclarations(
   nodes: Record<string, TreeNode>
-): { nodeId: string; content: string; icon: string; color?: string; mode: 'collaborate' | 'execute' }[] {
+): ContextDeclaration[] {
   return Object.values(nodes)
     .filter(node => node.metadata.isContextDeclaration === true)
-    .map(node => ({
-      nodeId: node.id,
-      content: node.content || 'Untitled context',
-      icon: (node.metadata.blueprintIcon as string) || 'lightbulb',
-      color: node.metadata.blueprintColor as string | undefined,
-      mode: (node.metadata.contextMode as 'collaborate' | 'execute') || 'collaborate',
-    }))
+    .map(node => {
+      const flags = readFlagsFromNode(node);
+      return {
+        nodeId: node.id,
+        content: node.content || 'Untitled context',
+        icon: (node.metadata.blueprintIcon as string) || 'lightbulb',
+        color: node.metadata.blueprintColor as string | undefined,
+        collaborate: flags.collaborate,
+        execute: flags.execute,
+      };
+    })
     .sort((a, b) => a.content.localeCompare(b.content));
 }
 
-export function resolveContextMode(
+export function resolveContextFlags(
   contextId: string | undefined,
   nodes: Record<string, TreeNode>,
-  contextDeclarations: { nodeId: string; mode: 'collaborate' | 'execute' }[],
-): 'collaborate' | 'execute' {
-  if (!contextId) return 'collaborate';
-  if (contextId === BASIC_EXECUTE_CONTEXT_ID) return 'execute';
-  if (contextId === BASIC_REVIEW_CONTEXT_ID) return 'collaborate';
+  contextDeclarations: ContextDeclaration[],
+): ContextFlags {
+  if (!contextId) return DEFAULT_FLAGS;
+  if (contextId === BASIC_EXECUTE_CONTEXT_ID) return BASIC_EXECUTE_FLAGS;
+  if (contextId === BASIC_REVIEW_CONTEXT_ID) return BASIC_REVIEW_FLAGS;
   const declaration = contextDeclarations.find(d => d.nodeId === contextId);
-  if (declaration) return declaration.mode;
+  if (declaration) {
+    return { collaborate: declaration.collaborate, execute: declaration.execute };
+  }
   const contextNode = nodes[contextId];
   if (contextNode) {
-    return (contextNode.metadata.contextMode as 'collaborate' | 'execute') || 'collaborate';
+    return readFlagsFromNode(contextNode);
   }
-  return 'collaborate';
+  return DEFAULT_FLAGS;
 }
 
 export function resolveSendContextName(

@@ -15,7 +15,7 @@ import {
   computeSummaryVisibleNodeIds,
   getContextDeclarations,
   shouldInheritBlueprint,
-  resolveContextMode,
+  resolveContextFlags,
   resolveSendContextName,
   getAppliedContextIdWithInheritance,
   getInheritedContextId,
@@ -1040,7 +1040,8 @@ describe('getContextDeclarations', () => {
       content: 'Context A',
       icon: 'star',
       color: undefined,
-      mode: 'collaborate',
+      collaborate: true,
+      execute: false,
     });
   });
 
@@ -1141,7 +1142,7 @@ describe('shouldInheritBlueprint', () => {
   });
 });
 
-describe('resolveContextMode', () => {
+describe('resolveContextFlags', () => {
   const createNode = (id: string, metadata = {}): TreeNode => ({
     id,
     content: 'Test',
@@ -1149,31 +1150,44 @@ describe('resolveContextMode', () => {
     metadata,
   });
 
-  it('should return collaborate when contextId is undefined', () => {
-    expect(resolveContextMode(undefined, {}, [])).toBe('collaborate');
+  const declaration = (nodeId: string, collaborate: boolean, execute: boolean) => ({
+    nodeId,
+    content: 'C',
+    icon: 'lightbulb',
+    collaborate,
+    execute,
   });
 
-  it('should return execute for BASIC_EXECUTE_CONTEXT_ID', () => {
-    expect(resolveContextMode(BASIC_EXECUTE_CONTEXT_ID, {}, [])).toBe('execute');
+  it('returns default (collaborate, no execute) when contextId is undefined', () => {
+    expect(resolveContextFlags(undefined, {}, [])).toEqual({ collaborate: true, execute: false });
   });
 
-  it('should return collaborate for BASIC_REVIEW_CONTEXT_ID', () => {
-    expect(resolveContextMode(BASIC_REVIEW_CONTEXT_ID, {}, [])).toBe('collaborate');
+  it('returns (true, true) for BASIC_EXECUTE_CONTEXT_ID — preserves legacy Execute behaviour', () => {
+    expect(resolveContextFlags(BASIC_EXECUTE_CONTEXT_ID, {}, [])).toEqual({ collaborate: true, execute: true });
   });
 
-  it('should return mode from context declaration', () => {
-    const declarations = [{ nodeId: 'ctx-1', mode: 'execute' as const }];
-    expect(resolveContextMode('ctx-1', {}, declarations)).toBe('execute');
+  it('returns (true, false) for BASIC_REVIEW_CONTEXT_ID', () => {
+    expect(resolveContextFlags(BASIC_REVIEW_CONTEXT_ID, {}, [])).toEqual({ collaborate: true, execute: false });
   });
 
-  it('should fall back to node metadata when no declaration found', () => {
-    const nodes = { 'ctx-1': createNode('ctx-1', { contextMode: 'execute' }) };
-    expect(resolveContextMode('ctx-1', nodes, [])).toBe('execute');
+  it('returns flags from context declaration', () => {
+    const declarations = [declaration('ctx-1', false, true)];
+    expect(resolveContextFlags('ctx-1', {}, declarations)).toEqual({ collaborate: false, execute: true });
   });
 
-  it('should default to collaborate when node has no contextMode', () => {
+  it('falls back to node metadata when no declaration found', () => {
+    const nodes = { 'ctx-1': createNode('ctx-1', { collaborate: true, execute: true }) };
+    expect(resolveContextFlags('ctx-1', nodes, [])).toEqual({ collaborate: true, execute: true });
+  });
+
+  it('explicit (false, false) Action persists, does not snap to default', () => {
+    const nodes = { 'ctx-1': createNode('ctx-1', { collaborate: false, execute: false }) };
+    expect(resolveContextFlags('ctx-1', nodes, [])).toEqual({ collaborate: false, execute: false });
+  });
+
+  it('defaults when node has no flag fields and no legacy mode', () => {
     const nodes = { 'ctx-1': createNode('ctx-1') };
-    expect(resolveContextMode('ctx-1', nodes, [])).toBe('collaborate');
+    expect(resolveContextFlags('ctx-1', nodes, [])).toEqual({ collaborate: true, execute: false });
   });
 });
 

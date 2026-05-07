@@ -56,7 +56,7 @@ describe('useAppliedContext', () => {
     });
 
     const { result } = renderHook(() => useAppliedContext(node));
-    expect(result.current).toEqual({ icon: 'star', color: undefined, name: 'My Context', mode: 'collaborate' });
+    expect(result.current).toEqual({ icon: 'star', color: undefined, name: 'My Context', collaborate: true, execute: false });
   });
 
   it('should include color when context has blueprintColor', () => {
@@ -71,7 +71,7 @@ describe('useAppliedContext', () => {
     });
 
     const { result } = renderHook(() => useAppliedContext(node));
-    expect(result.current).toEqual({ icon: 'star', color: '#ff0000', name: 'My Context', mode: 'collaborate' });
+    expect(result.current).toEqual({ icon: 'star', color: '#ff0000', name: 'My Context', collaborate: true, execute: false });
   });
 
   it('should return undefined when context node does not exist', () => {

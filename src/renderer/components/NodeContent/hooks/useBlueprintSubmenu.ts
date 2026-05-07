@@ -1,8 +1,7 @@
 import { TreeNode } from '../../../../shared/types';
 import { ContextMenuItem } from '../../ui/ContextMenu';
-import { getIsContextChild, getParentIdOrNull } from '../../../utils/nodeHelpers';
+import { getIsContextChild, getParentIdOrNull, ContextFlags } from '../../../utils/nodeHelpers';
 import { AncestorRegistry } from '../../../utils/ancestry';
-import { ContextMode } from '../../../store/tree/treeStore';
 
 interface BuildBlueprintSubmenuParams {
   node: TreeNode;
@@ -13,7 +12,7 @@ interface BuildBlueprintSubmenuParams {
   onRemoveFromBlueprint: () => void;
   onDeclareAsContext: () => void;
   onRemoveContextDeclaration: () => void;
-  onSetContextMode?: (mode: ContextMode) => void;
+  onSetContextFlags?: (flags: ContextFlags) => void;
   onDeclareAsWorkflow?: () => void;
   onRemoveFromWorkflow?: () => void;
 }
@@ -41,7 +40,7 @@ export function buildBlueprintSubmenu({
   onRemoveFromBlueprint,
   onDeclareAsContext,
   onRemoveContextDeclaration,
-  onSetContextMode,
+  onSetContextFlags,
   onDeclareAsWorkflow,
   onRemoveFromWorkflow,
 }: BuildBlueprintSubmenuParams): ContextMenuItem | null {
@@ -107,24 +106,41 @@ export function buildBlueprintSubmenu({
   if (isContextDeclaration) {
     if (submenuItems.length > 0) submenuItems.push(SEPARATOR);
 
-    if (onSetContextMode) {
-      const currentMode = (node.metadata.contextMode as ContextMode) || 'collaborate';
+    if (onSetContextFlags) {
+      const currentCollaborate = node.metadata.collaborate === true;
+      const currentExecute = node.metadata.execute === true;
+      const matches = (collaborate: boolean, execute: boolean) =>
+        currentCollaborate === collaborate && currentExecute === execute;
       submenuItems.push({
         label: 'Context mode',
         submenu: [
           {
             label: 'Collaborate',
-            radioSelected: currentMode === 'collaborate',
+            radioSelected: matches(true, false),
             keepOpenOnClick: true,
-            disabled: currentMode === 'collaborate',
-            onClick: () => onSetContextMode('collaborate'),
+            disabled: matches(true, false),
+            onClick: () => onSetContextFlags({ collaborate: true, execute: false }),
           },
           {
             label: 'Execute',
-            radioSelected: currentMode === 'execute',
+            radioSelected: matches(false, true),
             keepOpenOnClick: true,
-            disabled: currentMode === 'execute',
-            onClick: () => onSetContextMode('execute'),
+            disabled: matches(false, true),
+            onClick: () => onSetContextFlags({ collaborate: false, execute: true }),
+          },
+          {
+            label: 'Collaborate & Execute',
+            radioSelected: matches(true, true),
+            keepOpenOnClick: true,
+            disabled: matches(true, true),
+            onClick: () => onSetContextFlags({ collaborate: true, execute: true }),
+          },
+          {
+            label: 'Action',
+            radioSelected: matches(false, false),
+            keepOpenOnClick: true,
+            disabled: matches(false, false),
+            onClick: () => onSetContextFlags({ collaborate: false, execute: false }),
           },
         ],
       });

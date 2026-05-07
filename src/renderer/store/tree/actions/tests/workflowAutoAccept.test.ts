@@ -30,8 +30,8 @@ vi.mock('@/services/terminalExecution', () => ({
   executeInTerminal: mockExecuteInTerminal,
 }));
 
-const { mockResolveContextMode } = vi.hoisted(() => ({
-  mockResolveContextMode: vi.fn().mockReturnValue('execute'),
+const { mockResolveContextFlags } = vi.hoisted(() => ({
+  mockResolveContextFlags: vi.fn().mockReturnValue({ collaborate: false, execute: true }),
 }));
 vi.mock('@/utils/nodeHelpers', async (importOriginal) => {
   const actual = await importOriginal<Record<string, unknown>>();
@@ -39,10 +39,16 @@ vi.mock('@/utils/nodeHelpers', async (importOriginal) => {
     ...actual,
     buildContentWithContext: () => ({ contextPrefix: 'mock context', nodeContent: 'mock content' }),
     getAppliedContextIdWithInheritance: () => 'context-1',
-    resolveContextMode: (...args: unknown[]) => mockResolveContextMode(...args),
+    resolveContextFlags: (...args: unknown[]) => mockResolveContextFlags(...args),
     getContextDeclarations: () => [],
   };
 });
+
+const flagsForMode = (mode: 'collaborate' | 'execute') =>
+  mode === 'execute' ? { collaborate: false, execute: true } : { collaborate: true, execute: false };
+const mockResolveContextMode = {
+  mockReturnValue: (mode: 'collaborate' | 'execute') => mockResolveContextFlags.mockReturnValue(flagsForMode(mode)),
+};
 
 vi.mock('@/utils/promptBuilder', () => ({
   buildExecutePrompt: () => 'mock prompt',
@@ -501,12 +507,12 @@ describe('workflow auto-accept for autonomous collaborate steps', () => {
       expect(state.workflowExecutionStates['task-a'].collaborating).toBeUndefined();
     });
 
-    it('should call collaborateInTerminal when mode is collaborate', () => {
+    it('should call collaborateInTerminal with collaborate flags', () => {
       mockResolveContextMode.mockReturnValue('collaborate');
 
       actions.startWorkflow('task-a', 'terminal-1');
 
-      expect(mockAutonomousCollaborate).toHaveBeenCalledWith('task-a', 'terminal-1', 'collaborate');
+      expect(mockAutonomousCollaborate).toHaveBeenCalledWith('task-a', 'terminal-1', { collaborate: true, execute: false });
     });
   });
 

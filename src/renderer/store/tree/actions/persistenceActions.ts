@@ -89,8 +89,13 @@ export const createPersistenceActions = (
       let needsUpdate = false;
       const updatedMetadata = { ...node.metadata };
 
-      if (node.metadata.isContextDeclaration === true && !node.metadata.contextMode) {
-        updatedMetadata.contextMode = 'collaborate';
+      if (
+        node.metadata.isContextDeclaration === true &&
+        node.metadata.collaborate === undefined &&
+        node.metadata.execute === undefined
+      ) {
+        updatedMetadata.collaborate = true;
+        updatedMetadata.execute = false;
         needsUpdate = true;
       }
 

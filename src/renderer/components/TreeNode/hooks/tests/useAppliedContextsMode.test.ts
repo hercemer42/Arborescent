@@ -28,7 +28,8 @@ describe('useAppliedContext — mode field', () => {
     const contextNode = createNode('ctx-1', {
       blueprintIcon: 'wrench',
       isContextDeclaration: true,
-      contextMode: 'execute',
+      collaborate: true,
+      execute: true,
     });
     contextNode.content = 'Build Feature';
     const node = createNode('node-1', { appliedContextId: 'ctx-1' });
@@ -44,7 +45,7 @@ describe('useAppliedContext — mode field', () => {
       icon: 'wrench',
       color: undefined,
       name: 'Build Feature',
-      mode: 'execute',
+      collaborate: true, execute: true,
     });
   });
 
@@ -52,7 +53,8 @@ describe('useAppliedContext — mode field', () => {
     const contextNode = createNode('ctx-1', {
       blueprintIcon: 'eye',
       isContextDeclaration: true,
-      contextMode: 'collaborate',
+      collaborate: true,
+      execute: false,
     });
     contextNode.content = 'Review';
     const node = createNode('node-1', { appliedContextId: 'ctx-1' });
@@ -64,7 +66,8 @@ describe('useAppliedContext — mode field', () => {
     });
 
     const { result } = renderHook(() => useAppliedContext(node));
-    expect(result.current?.mode).toBe('collaborate');
+    expect(result.current?.collaborate).toBe(true);
+    expect(result.current?.execute).toBe(false);
   });
 
   it('should default to collaborate mode when context declaration has no contextMode', () => {
@@ -83,7 +86,8 @@ describe('useAppliedContext — mode field', () => {
     });
 
     const { result } = renderHook(() => useAppliedContext(node));
-    expect(result.current?.mode).toBe('collaborate');
+    expect(result.current?.collaborate).toBe(true);
+    expect(result.current?.execute).toBe(false);
   });
 
   it('should return undefined when no applied context exists (mode not applicable)', () => {
@@ -110,7 +114,7 @@ describe('useAppliedContext — mode field', () => {
       icon: 'Zap',
       color: undefined,
       name: 'Basic execution',
-      mode: 'execute',
+      collaborate: true, execute: true,
     });
   });
 
@@ -127,7 +131,7 @@ describe('useAppliedContext — mode field', () => {
       icon: 'Eye',
       color: undefined,
       name: 'Basic review',
-      mode: 'collaborate',
+      collaborate: true, execute: false,
     });
   });
 
@@ -137,7 +141,8 @@ describe('useAppliedContext — mode field', () => {
       blueprintIcon: 'bug',
       blueprintColor: '#ef4444',
       isContextDeclaration: true,
-      contextMode: 'execute',
+      collaborate: true,
+      execute: true,
     });
     contextNode.content = 'Bug Fix';
     const node = createNode('node-1', { appliedContextId: 'ctx-1' });
@@ -153,7 +158,7 @@ describe('useAppliedContext — mode field', () => {
       icon: 'bug',
       color: '#ef4444',
       name: 'Bug Fix',
-      mode: 'execute',
+      collaborate: true, execute: true,
     });
   });
 });
