@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-05-07T18:13:35.708Z'
+updated: '2026-05-07T20:09:52.726Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -23854,7 +23854,6 @@ nodes:
     id: 00714a63-f267-4ab1-a285-73ae4198eb42
     content: Technical refinement
     children:
-      - b66f4108-240b-463d-8d00-30e6ec9239f9
       - e29b62d3-542b-4f07-9a9f-ef3882f50e19
       - 888e2888-bbad-4ff9-9307-0c8be747678d
     metadata:
@@ -25806,9 +25805,9 @@ nodes:
     children:
       - e6aff7fa-7787-43c4-a81e-8c4d4ed14a51
       - 611a8d9e-c919-4f2b-97de-695d60787576
-      - ca7ad1fb-77fd-4fbd-aff2-8995ad06dbbf
       - 9f55ead4-f0e3-4969-8e10-8e61f33f89ec
       - 6dfe8786-d370-4c64-a64a-73146ac8e11b
+      - 2000dd5f-b23d-4c6f-87ad-3dc666c45b91
     metadata:
       status: pending
       isBlueprint: true
@@ -79672,7 +79671,7 @@ nodes:
       plugins: {}
   ca7ad1fb-77fd-4fbd-aff2-8995ad06dbbf:
     id: ca7ad1fb-77fd-4fbd-aff2-8995ad06dbbf
-    content: 'Bug : Sending a node with no attached context triggers ''collaboration in progress'''
+    content: '(check if finished) Bug : Sending a node with no attached context triggers ''collaboration in progress'''
     children:
       - 056f6480-cac2-432b-9b77-18b8ad27e92f
       - 4fa6c625-ec0a-435a-9bd8-443184073e15
@@ -83371,7 +83370,8 @@ nodes:
   4c43c117-e89a-460c-9900-7ea15b8cc0e0:
     id: 4c43c117-e89a-460c-9900-7ea15b8cc0e0
     content: User story creation
-    children: []
+    children:
+      - ca7ad1fb-77fd-4fbd-aff2-8995ad06dbbf
     metadata:
       status: pending
       expanded: true
@@ -84777,7 +84777,7 @@ nodes:
     id: ddd90208-5752-46cf-b72a-5fcbe040b2e0
     content: Merge to master
     children:
-      - 2000dd5f-b23d-4c6f-87ad-3dc666c45b91
+      - b66f4108-240b-463d-8d00-30e6ec9239f9
     metadata:
       status: pending
       isBlueprint: true
@@ -86457,10 +86457,10 @@ nodes:
     id: 2000dd5f-b23d-4c6f-87ad-3dc666c45b91
     content: 'Bug : If we have a collaboration in progress, and copy/cut another node, then it gets detected by the clipboard, fills the feedback panel, and cancels the collaboration'
     children:
-      - 0f9e4d73-8938-4a3f-93ff-64985b33957b
-      - 42f94745-6cc3-4324-ab3d-e9e6052b3604
-      - eda4b28b-5d51-4dc9-b710-a3fd2553b589
-      - 13d05305-82ef-44be-ad49-b20856853b68
+      - afd6f056-9bbe-478f-b92e-a5c0ff61852c
+      - e6d359d4-8401-4c39-aaf3-896b1add0de6
+      - 72e720c4-0510-4b6a-b40f-11b97b7c65eb
+      - 81775b5e-0817-4909-abcd-4bdc0ed0eb2a
     metadata:
       status: completed
       expanded: false
@@ -90469,30 +90469,17 @@ nodes:
     id: b66f4108-240b-463d-8d00-30e6ec9239f9
     content: 'Bug : Pasting a hyperlink into a blueprint node also makes that node a blueprint'
     children:
-      - b821a99d-63bd-4bb4-a097-36c5fb4101ee
-      - e807f503-d07d-4794-a0c6-5d17031aed21
+      - ba4ff4ce-6f9d-4655-8e7c-53a7be6a7831
+      - d33ee848-0941-4850-aeb5-342d9d19889d
+      - 90b85f00-564b-4788-b2be-5ae79bc8438e
+      - 4ad3b351-b05a-4559-86ea-9cdeb9316f11
+      - 3fff1111-a7f3-42f4-afe8-b3274cbca037
+      - efb16a5e-ed26-4a27-81f3-8803f07cb50b
     metadata:
-      status: pending
+      status: completed
       expanded: false
-  b821a99d-63bd-4bb4-a097-36c5fb4101ee:
-    id: b821a99d-63bd-4bb4-a097-36c5fb4101ee
-    content: It should not inherit
-    children: []
-    metadata:
-      status: pending
-  e807f503-d07d-4794-a0c6-5d17031aed21:
-    id: e807f503-d07d-4794-a0c6-5d17031aed21
-    content: Now this happened on a workflow step node, not sure it's the same for all blueprint nodes
-    children:
-      - c9e1d2ea-b2e8-41e8-b0e0-96b44ec877c6
-    metadata:
-      status: pending
-  c9e1d2ea-b2e8-41e8-b0e0-96b44ec877c6:
-    id: c9e1d2ea-b2e8-41e8-b0e0-96b44ec877c6
-    content: I'll let you check that !
-    children: []
-    metadata:
-      status: pending
+      deleted: false
+      plugins: {}
   82443d07-8bee-4440-8de1-82b205fa2f3e:
     id: 82443d07-8bee-4440-8de1-82b205fa2f3e
     content: worktree
@@ -91964,18 +91951,18 @@ nodes:
     children: []
     metadata:
       status: pending
-  0f9e4d73-8938-4a3f-93ff-64985b33957b:
-    id: 0f9e4d73-8938-4a3f-93ff-64985b33957b
+  afd6f056-9bbe-478f-b92e-a5c0ff61852c:
+    id: afd6f056-9bbe-478f-b92e-a5c0ff61852c
     content: worktree
     children:
-      - 1e4270a5-9eff-4ded-9c1c-0b3e0b3255c8
+      - 5d8e22fd-7152-4685-90e2-ac915470f4f4
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  1e4270a5-9eff-4ded-9c1c-0b3e0b3255c8:
-    id: 1e4270a5-9eff-4ded-9c1c-0b3e0b3255c8
+  5d8e22fd-7152-4685-90e2-ac915470f4f4:
+    id: 5d8e22fd-7152-4685-90e2-ac915470f4f4
     content: '[Open in VSCode](vscode://file/Users/brianfox/dev/Arborescent-clipboard-self-write)'
     children: []
     metadata:
@@ -91983,31 +91970,31 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  42f94745-6cc3-4324-ab3d-e9e6052b3604:
-    id: 42f94745-6cc3-4324-ab3d-e9e6052b3604
+  e6d359d4-8401-4c39-aaf3-896b1add0de6:
+    id: e6d359d4-8401-4c39-aaf3-896b1add0de6
     content: Technical refinement
     children:
-      - bfd29799-7a72-428e-8336-d97437d9fcb3
-      - c5ac0978-1776-4dae-a4c7-c5ad3443020a
+      - b7277ed3-a143-443c-9758-c70acd55f68a
+      - 8f16f0dc-d4e7-45e1-9f92-36a8b3689610
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  bfd29799-7a72-428e-8336-d97437d9fcb3:
-    id: bfd29799-7a72-428e-8336-d97437d9fcb3
+  b7277ed3-a143-443c-9758-c70acd55f68a:
+    id: b7277ed3-a143-443c-9758-c70acd55f68a
     content: Flag complications
     children:
-      - 3a1c28fb-d577-4e7e-b907-364d10d54c25
-      - 19386032-1590-4edf-b711-3279b5099cc0
-      - 557a06dd-f04a-4c8d-9e4a-55469bbd5ebb
+      - 8862819f-fe1e-4b66-a9aa-8a4365ac43e8
+      - 3e71f4df-959c-4ee4-a6cd-7929e2d22266
+      - a6f7aa89-fccb-4b32-9abb-421868c4e96b
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  3a1c28fb-d577-4e7e-b907-364d10d54c25:
-    id: 3a1c28fb-d577-4e7e-b907-364d10d54c25
+  8862819f-fe1e-4b66-a9aa-8a4365ac43e8:
+    id: 8862819f-fe1e-4b66-a9aa-8a4365ac43e8
     content: Same content can legitimately come from an internal write and an external paste — must dedupe by exact text, accepting that an external paste of identical content right after an internal copy is silently ignored
     children: []
     metadata:
@@ -92015,8 +92002,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  19386032-1590-4edf-b711-3279b5099cc0:
-    id: 19386032-1590-4edf-b711-3279b5099cc0
+  3e71f4df-959c-4ee4-a6cd-7929e2d22266:
+    id: 3e71f4df-959c-4ee4-a6cd-7929e2d22266
     content: 'Race: clipboard monitor polls every 500ms; the renderer must register the self-write before the next poll, otherwise the polled value still triggers detection'
     children: []
     metadata:
@@ -92024,8 +92011,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  557a06dd-f04a-4c8d-9e4a-55469bbd5ebb:
-    id: 557a06dd-f04a-4c8d-9e4a-55469bbd5ebb
+  a6f7aa89-fccb-4b32-9abb-421868c4e96b:
+    id: a6f7aa89-fccb-4b32-9abb-421868c4e96b
     content: 'Out of scope: changing the polling-based monitor design, or filtering by node-shaped markdown (would re-introduce the same fragile heuristic)'
     children: []
     metadata:
@@ -92033,20 +92020,20 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  c5ac0978-1776-4dae-a4c7-c5ad3443020a:
-    id: c5ac0978-1776-4dae-a4c7-c5ad3443020a
+  8f16f0dc-d4e7-45e1-9f92-36a8b3689610:
+    id: 8f16f0dc-d4e7-45e1-9f92-36a8b3689610
     content: Summarise the approach
     children:
-      - d3b16ba8-0571-4bd4-b817-b40e979f73b1
-      - 2d5040c4-9c72-4209-8274-600ab1988535
-      - 03555681-de99-44ed-a8c6-bddfc217bd97
+      - 914776b5-2956-47b3-a877-83589e3082cb
+      - 2fc2ed68-fe61-4370-af02-5ba95454d547
+      - bb1e7637-4b70-4753-97b8-c95f1d50e721
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  d3b16ba8-0571-4bd4-b817-b40e979f73b1:
-    id: d3b16ba8-0571-4bd4-b817-b40e979f73b1
+  914776b5-2956-47b3-a877-83589e3082cb:
+    id: 914776b5-2956-47b3-a877-83589e3082cb
     content: Tag app-originated clipboard writes so the monitor ignores them — wire a new IPC (`clipboard-monitor-record-self-write`) from `clipboardService.writeToClipboard` to `ClipboardMonitor`, which updates `lastClipboardContent` to suppress the next change event
     children: []
     metadata:
@@ -92054,8 +92041,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  2d5040c4-9c72-4209-8274-600ab1988535:
-    id: 2d5040c4-9c72-4209-8274-600ab1988535
+  2fc2ed68-fe61-4370-af02-5ba95454d547:
+    id: 2fc2ed68-fe61-4370-af02-5ba95454d547
     content: Changes land in `src/renderer/services/clipboardService.ts`, `src/main/services/clipboardMonitor.ts`, `src/main/handlers/clipboardHandlers.ts`, and the preload bridge — no changes to feedback routing or `processIncomingFeedbackContent`
     children: []
     metadata:
@@ -92063,8 +92050,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  03555681-de99-44ed-a8c6-bddfc217bd97:
-    id: 03555681-de99-44ed-a8c6-bddfc217bd97
+  bb1e7637-4b70-4753-97b8-c95f1d50e721:
+    id: bb1e7637-4b70-4753-97b8-c95f1d50e721
     content: 'Non-obvious: the monitor''s existing 50-char and dedupe gates are not enough — node markdown easily exceeds 50 chars, so the suppression must be explicit rather than length-based'
     children: []
     metadata:
@@ -92072,21 +92059,21 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  eda4b28b-5d51-4dc9-b710-a3fd2553b589:
-    id: eda4b28b-5d51-4dc9-b710-a3fd2553b589
+  72e720c4-0510-4b6a-b40f-11b97b7c65eb:
+    id: 72e720c4-0510-4b6a-b40f-11b97b7c65eb
     content: Implement automated tests (TDD)
     children:
-      - bfdf72b1-d68d-4e5a-92f7-331ded1b483b
-      - d1a43dc9-e17a-406a-87f9-1e1676f9b11f
-      - ec6212df-1221-40e6-b276-81eefcfb032e
-      - 8fc393f5-af47-4b2a-921d-f9ba7bab11ab
+      - d668bcb3-21ca-4c5d-a021-46b4c94adca1
+      - ec1b1e50-9c9f-4dd1-a635-0c49b86fa80d
+      - b80476a0-43df-441d-a597-8c296cd04f98
+      - 1936186d-9df0-4649-ad8f-4c4763b36f0a
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  bfdf72b1-d68d-4e5a-92f7-331ded1b483b:
-    id: bfdf72b1-d68d-4e5a-92f7-331ded1b483b
+  d668bcb3-21ca-4c5d-a021-46b4c94adca1:
+    id: d668bcb3-21ca-4c5d-a021-46b4c94adca1
     content: New unit tests for `ClipboardMonitor.recordSelfWrite` in `src/main/services/tests/clipboardMonitor.test.ts` — covers suppression of matching poll, pass-through of differing external paste, pre-start self-write, repeated/empty self-writes, and one-shot suppression scope
     children: []
     metadata:
@@ -92094,8 +92081,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  d1a43dc9-e17a-406a-87f9-1e1676f9b11f:
-    id: d1a43dc9-e17a-406a-87f9-1e1676f9b11f
+  ec1b1e50-9c9f-4dd1-a635-0c49b86fa80d:
+    id: ec1b1e50-9c9f-4dd1-a635-0c49b86fa80d
     content: Updated `src/renderer/services/tests/clipboardService.test.ts` — `writeToClipboard` notifies main via `window.electron.recordClipboardSelfWrite` on success, skips on failure, and treats notification rejection as best-effort
     children: []
     metadata:
@@ -92103,8 +92090,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  ec6212df-1221-40e6-b276-81eefcfb032e:
-    id: ec6212df-1221-40e6-b276-81eefcfb032e
+  b80476a0-43df-441d-a597-8c296cd04f98:
+    id: b80476a0-43df-441d-a597-8c296cd04f98
     content: Updated `src/main/services/tests/ipcService.test.ts` — registers `clipboard-monitor-record-self-write` handler and routes the content arg to `clipboardMonitor.recordSelfWrite`
     children: []
     metadata:
@@ -92112,8 +92099,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  8fc393f5-af47-4b2a-921d-f9ba7bab11ab:
-    id: 8fc393f5-af47-4b2a-921d-f9ba7bab11ab
+  1936186d-9df0-4649-ad8f-4c4763b36f0a:
+    id: 1936186d-9df0-4649-ad8f-4c4763b36f0a
     content: 'Verified red state: 11 new tests fail (recordSelfWrite missing, IPC channel missing), 28 existing clipboard-related tests still pass'
     children: []
     metadata:
@@ -92121,22 +92108,24 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  13d05305-82ef-44be-ad49-b20856853b68:
-    id: 13d05305-82ef-44be-ad49-b20856853b68
+  81775b5e-0817-4909-abcd-4bdc0ed0eb2a:
+    id: 81775b5e-0817-4909-abcd-4bdc0ed0eb2a
     content: Implementation summary
     children:
-      - 51e67e0e-e4b6-424a-a3eb-593fac35ffb3
-      - a7f1a063-a938-497a-a8d2-2367b6bb2023
-      - d05079b1-803b-4541-a835-dd2fe84313aa
-      - c988f398-8b14-4cc2-92ec-76508bfe4d23
-      - 11c03abe-a08b-4a0f-997f-911328048ebe
+      - df6ad429-dffc-4cd9-82a4-edfb5e443ad6
+      - 1d3b2134-01a9-4e84-b17f-fb9097b91923
+      - 311f7f7a-1c09-4f83-8095-1d18adb0f74e
+      - 7853c29a-ff51-402c-8206-2beef27248ed
+      - c1042ea8-9ac5-4485-95d6-1ac9a4667099
+      - 8883711f-7464-474b-bc87-2c1edca4e6a0
+      - b5d177de-4733-4101-b6a8-f2c5c6a42886
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  51e67e0e-e4b6-424a-a3eb-593fac35ffb3:
-    id: 51e67e0e-e4b6-424a-a3eb-593fac35ffb3
+  df6ad429-dffc-4cd9-82a4-edfb5e443ad6:
+    id: df6ad429-dffc-4cd9-82a4-edfb5e443ad6
     content: '`ClipboardMonitor.recordSelfWrite(content)` updates `lastClipboardContent` to suppress the next change emission; `start()` only reads the live clipboard as baseline when no self-write has pre-seeded it'
     children: []
     metadata:
@@ -92144,8 +92133,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  a7f1a063-a938-497a-a8d2-2367b6bb2023:
-    id: a7f1a063-a938-497a-a8d2-2367b6bb2023
+  1d3b2134-01a9-4e84-b17f-fb9097b91923:
+    id: 1d3b2134-01a9-4e84-b17f-fb9097b91923
     content: New IPC `clipboard-monitor-record-self-write` registered in `clipboardHandlers.ts`, exposed via preload as `recordClipboardSelfWrite`, declared on `ElectronAPI`, mocked in `renderer/test/setup.ts`
     children: []
     metadata:
@@ -92153,8 +92142,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  d05079b1-803b-4541-a835-dd2fe84313aa:
-    id: d05079b1-803b-4541-a835-dd2fe84313aa
+  311f7f7a-1c09-4f83-8095-1d18adb0f74e:
+    id: 311f7f7a-1c09-4f83-8095-1d18adb0f74e
     content: '`writeToClipboard` notifies the monitor after a successful `navigator.clipboard.writeText`; notification failures are logged but don''t fail the write (best-effort)'
     children: []
     metadata:
@@ -92162,8 +92151,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  c988f398-8b14-4cc2-92ec-76508bfe4d23:
-    id: c988f398-8b14-4cc2-92ec-76508bfe4d23
+  7853c29a-ff51-402c-8206-2beef27248ed:
+    id: 7853c29a-ff51-402c-8206-2beef27248ed
     content: 'Verified green: 39 changed tests pass, 31 adjacent feedback-clipboard tests still pass, eslint clean on changed files, `tsc --noEmit` clean'
     children: []
     metadata:
@@ -92171,9 +92160,261 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  11c03abe-a08b-4a0f-997f-911328048ebe:
-    id: 11c03abe-a08b-4a0f-997f-911328048ebe
+  c1042ea8-9ac5-4485-95d6-1ac9a4667099:
+    id: c1042ea8-9ac5-4485-95d6-1ac9a4667099
     content: 'Known limitation (already in technical refinement): a ~1ms race exists between `writeText` and the IPC; if the monitor''s 500ms poll fires inside that window the suppression misses — acceptable per the flagged complication'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8883711f-7464-474b-bc87-2c1edca4e6a0:
+    id: 8883711f-7464-474b-bc87-2c1edca4e6a0
+    content: 'No documentation update needed: the user-facing collaboration round-trip is already described in `docs/workflow.md`; this fix restores expected behaviour without introducing user-visible capability'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b5d177de-4733-4101-b6a8-f2c5c6a42886:
+    id: b5d177de-4733-4101-b6a8-f2c5c6a42886
+    content: 'No changelog entry: the AI collaboration / clipboard-watching feature itself sits under `## Unreleased` in `CHANGELOG.md`, so per convention bug fixes against unreleased features are not logged'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ba4ff4ce-6f9d-4655-8e7c-53a7be6a7831:
+    id: ba4ff4ce-6f9d-4655-8e7c-53a7be6a7831
+    content: worktree
+    children:
+      - e5b5d912-d40e-41c9-8649-122aaf3303c4
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e5b5d912-d40e-41c9-8649-122aaf3303c4:
+    id: e5b5d912-d40e-41c9-8649-122aaf3303c4
+    content: '[Open in VSCode](vscode://file/Users/brianfox/dev/Arborescent-hyperlink-blueprint-inheritance)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d33ee848-0941-4850-aeb5-342d9d19889d:
+    id: d33ee848-0941-4850-aeb5-342d9d19889d
+    content: It should not inherit
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  90b85f00-564b-4788-b2be-5ae79bc8438e:
+    id: 90b85f00-564b-4788-b2be-5ae79bc8438e
+    content: Now this happened on a workflow step node, not sure it's the same for all blueprint nodes
+    children:
+      - 169b88d6-f4ba-466e-ade3-64a70fd02095
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  169b88d6-f4ba-466e-ade3-64a70fd02095:
+    id: 169b88d6-f4ba-466e-ade3-64a70fd02095
+    content: I'll let you check that !
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4ad3b351-b05a-4559-86ea-9cdeb9316f11:
+    id: 4ad3b351-b05a-4559-86ea-9cdeb9316f11
+    content: Technical refinement
+    children:
+      - b857714f-4cb3-40d2-ad2c-dbd3e4110b9b
+      - b93905d2-6b2c-488d-8697-9c934d399527
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b857714f-4cb3-40d2-ad2c-dbd3e4110b9b:
+    id: b857714f-4cb3-40d2-ad2c-dbd3e4110b9b
+    content: Flag complications
+    children:
+      - 474884b7-6dae-454a-b952-42ccc1c18673
+      - b4959faa-d779-4250-b3b7-4c5deaa8c84e
+      - 94c80f13-b78f-4235-b604-ddb97f69c8df
+      - db57941b-1147-4f5f-8161-d943f5222d7a
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  474884b7-6dae-454a-b952-42ccc1c18673:
+    id: 474884b7-6dae-454a-b952-42ccc1c18673
+    content: 'Confirmed not workflow-step-specific: every paste path checks `parent.metadata.isBlueprint === true` with no special-case for workflow steps, so any blueprint parent (workflow, step, plain blueprint branch) reproduces it'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b4959faa-d779-4250-b3b7-4c5deaa8c84e:
+    id: b4959faa-d779-4250-b3b7-4c5deaa8c84e
+    content: Two paste paths share the bug — internal hyperlink (`pasteAsHyperlink` in `clipboardActions.ts`) and external URL paste (`handleExternalUrlPaste` in `clipboardPasteHandlers.ts`); fixing only one would leave the other broken
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  94c80f13-b78f-4235-b604-ddb97f69c8df:
+    id: 94c80f13-b78f-4235-b604-ddb97f69c8df
+    content: 'Out of scope: changing the inheritance rule for regular content paste — that propagation is intentional and not part of this bug'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  db57941b-1147-4f5f-8161-d943f5222d7a:
+    id: db57941b-1147-4f5f-8161-d943f5222d7a
+    content: 'Out of scope: migrating existing blueprint files that already contain hyperlink children mistakenly flagged as `isBlueprint`'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b93905d2-6b2c-488d-8697-9c934d399527:
+    id: b93905d2-6b2c-488d-8697-9c934d399527
+    content: Summarise the approach
+    children:
+      - 9d69fa1b-de38-4829-bb74-2a56b155d5c5
+      - 5f7b7bcc-0203-4183-8ba0-75718ca609e3
+      - 8f3157d5-5253-4c63-97b8-e4b40874b837
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9d69fa1b-de38-4829-bb74-2a56b155d5c5:
+    id: 9d69fa1b-de38-4829-bb74-2a56b155d5c5
+    content: Drop the blueprint-flag inheritance for the two hyperlink paste paths only; the new link node is created without `isBlueprint`, regular content paste inheritance is untouched
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5f7b7bcc-0203-4183-8ba0-75718ca609e3:
+    id: 5f7b7bcc-0203-4183-8ba0-75718ca609e3
+    content: 'Touchpoints: `src/renderer/store/tree/actions/clipboardActions.ts` (`pasteAsHyperlink`) and `src/renderer/store/tree/actions/clipboardPasteHandlers.ts` (`handleExternalUrlPaste`)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8f3157d5-5253-4c63-97b8-e4b40874b837:
+    id: 8f3157d5-5253-4c63-97b8-e4b40874b837
+    content: 'Non-obvious: a hyperlink is a reference, not structural content — inheriting `isBlueprint` is misleading because the linked target may not itself be a blueprint, and downstream consumers (blueprint export, blueprint icon resolution) treat the link as part of the blueprint shape'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3fff1111-a7f3-42f4-afe8-b3274cbca037:
+    id: 3fff1111-a7f3-42f4-afe8-b3274cbca037
+    content: Implement automated tests (TDD)
+    children:
+      - 4f941abd-a784-4c12-9f46-70341174e582
+      - eb698b29-a178-4a3a-95c9-45edeaf5ad5d
+      - 5579b01e-3cc5-481c-b37b-4d4a73a04a0c
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4f941abd-a784-4c12-9f46-70341174e582:
+    id: 4f941abd-a784-4c12-9f46-70341174e582
+    content: Added a `blueprint inheritance` describe to the existing `pasteAsHyperlink` block in `src/renderer/store/tree/actions/tests/clipboardActions.test.ts` — covers blueprint parent, workflow-step parent (`isBlueprint + isWorkflow`), non-blueprint parent baseline, and a regression check that `isHyperlink`/`linkedNodeId` are still set when parent is a blueprint
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  eb698b29-a178-4a3a-95c9-45edeaf5ad5d:
+    id: eb698b29-a178-4a3a-95c9-45edeaf5ad5d
+    content: Added a `blueprint inheritance` describe to the existing `external URL detection` block — covers blueprint parent, workflow-step parent, and non-blueprint parent baseline; ensures `isBlueprint` does not appear on the URL-text node either
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5579b01e-3cc5-481c-b37b-4d4a73a04a0c:
+    id: 5579b01e-3cc5-481c-b37b-4d4a73a04a0c
+    content: 'Verified red state: 4 new tests fail (the four scenarios where parent is a blueprint or workflow step), baseline non-blueprint tests pass, 90 existing clipboardActions tests still pass'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  efb16a5e-ed26-4a27-81f3-8803f07cb50b:
+    id: efb16a5e-ed26-4a27-81f3-8803f07cb50b
+    content: Implementation summary
+    children:
+      - c766f39d-ca49-4108-a68b-f3ae26ae4954
+      - 27ffb86a-1e6a-4e9e-b259-3909be61b4c1
+      - 479049f2-a62c-4fc9-9d2f-5810722f6b8a
+      - 24d1c784-8cb4-44aa-bc42-2e27d6915398
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c766f39d-ca49-4108-a68b-f3ae26ae4954:
+    id: c766f39d-ca49-4108-a68b-f3ae26ae4954
+    content: 'Removed the explicit `{ isBlueprint: true }` spread from both paste handlers; `pasteAsHyperlink` and `handleExternalUrlPaste` no longer add the flag based on parent'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  27ffb86a-1e6a-4e9e-b259-3909be61b4c1:
+    id: 27ffb86a-1e6a-4e9e-b259-3909be61b4c1
+    content: '`CreateNodeCommand` still applies `shouldInheritBlueprint` for context-declaration / workflow-node / context-child parents, except when the new node is a hyperlink (`metadata.isHyperlink === true`) — hyperlinks now never inherit, satisfying the user''s "should not inherit" rule across all blueprint shapes including workflow nodes'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  479049f2-a62c-4fc9-9d2f-5810722f6b8a:
+    id: 479049f2-a62c-4fc9-9d2f-5810722f6b8a
+    content: 'External-URL pastes follow standard inheritance via `shouldInheritBlueprint`: pasted into a workflow-step (a blueprint child of a workflow node) the URL-text node is NOT marked, matching the original report''s location; the workflow-step test was corrected to model the real shape (step is a child of a workflow node, not a workflow node itself)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  24d1c784-8cb4-44aa-bc42-2e27d6915398:
+    id: 24d1c784-8cb4-44aa-bc42-2e27d6915398
+    content: 'Verified green: all 94 tests in the clipboard-actions suite pass, plus all CreateNodeCommand and nodeHelpers tests (437 in the impacted set), eslint clean on changed files (the two pre-existing `import/no-cycle` warnings are not introduced by this change), `tsc --noEmit` clean'
     children: []
     metadata:
       status: completed
