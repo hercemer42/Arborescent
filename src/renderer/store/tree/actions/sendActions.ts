@@ -368,25 +368,6 @@ export function createSendActions(
     collaborate: async (nodeId: string, flags?: ContextFlags) => {
       const state = get();
 
-      const blockingStore = getAllStores?.().find(
-        s => s.getState().collaboratingNodeId !== null && s.getState().collaborationSource === 'browser'
-      );
-      if (blockingStore) {
-        const blockingFilePath = blockingStore.getState().currentFilePath || '';
-        const fileName = blockingFilePath.split('/').pop() || blockingFilePath;
-        useToastStore.getState().addToast(
-          `Browser collaboration already in progress in ${fileName}`,
-          'error'
-        );
-        return;
-      }
-
-      if (state.collaboratingNodeId) {
-        showCollaborationInProgressError();
-        logger.error('Collaboration already in progress', new Error('Cannot start new collaboration'), 'SendActions');
-        return;
-      }
-
       const node = state.nodes[nodeId];
       if (!node) {
         logger.error('Node not found', new Error(`Node ${nodeId} not found`), 'SendActions');
@@ -395,6 +376,28 @@ export function createSendActions(
 
       try {
         const appliedContextId = getAppliedContextIdWithInheritance(nodeId, state.nodes, state.ancestorRegistry);
+
+        if (appliedContextId) {
+          const blockingStore = getAllStores?.().find(
+            s => s.getState().collaboratingNodeId !== null && s.getState().collaborationSource === 'browser'
+          );
+          if (blockingStore) {
+            const blockingFilePath = blockingStore.getState().currentFilePath || '';
+            const fileName = blockingFilePath.split('/').pop() || blockingFilePath;
+            useToastStore.getState().addToast(
+              `Browser collaboration already in progress in ${fileName}`,
+              'error'
+            );
+            return;
+          }
+
+          if (state.collaboratingNodeId) {
+            showCollaborationInProgressError();
+            logger.error('Collaboration already in progress', new Error('Cannot start new collaboration'), 'SendActions');
+            return;
+          }
+        }
+
         const resolvedFlags = flags ?? flagsForContext(appliedContextId, state);
         const decomposition = isDecompositionEnabled(nodeId, state.nodes, state.ancestorRegistry);
         const effectiveDecomposition = resolvedFlags.collaborate ? decomposition : false;
@@ -437,12 +440,6 @@ export function createSendActions(
     collaborateInTerminal: async (nodeId: string, terminalId: string, flags?: ContextFlags) => {
       const state = get();
 
-      if (state.collaboratingNodeId) {
-        showCollaborationInProgressError();
-        logger.error('Collaboration already in progress', new Error('Cannot start new collaboration'), 'SendActions');
-        return;
-      }
-
       if (!terminalId) {
         const error = new Error('No terminal selected');
         logger.error('Cannot collaborate in terminal', error, 'SendActions');
@@ -462,6 +459,12 @@ export function createSendActions(
           const { nodeContent } = buildContentWithContext(nodeId, state.nodes, state.ancestorRegistry);
           await executeInTerminal(terminalId, nodeContent);
           logger.info(`Sent bare node content to terminal for node: ${nodeId}`, 'SendActions');
+          return;
+        }
+
+        if (state.collaboratingNodeId) {
+          showCollaborationInProgressError();
+          logger.error('Collaboration already in progress', new Error('Cannot start new collaboration'), 'SendActions');
           return;
         }
 

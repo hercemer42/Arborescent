@@ -656,6 +656,38 @@ describe('sendActions', () => {
         expect.objectContaining({ collaboratingNodeId: 'child1' }),
       );
     });
+
+    describe('bare-content sends are not gated by an active collaboration', () => {
+      it('still copies bare content to clipboard when another collaboration is in progress', async () => {
+        mockState.collaboratingNodeId = 'child1';
+
+        await actions.collaborate('child2');
+
+        expect(mockClipboardWriteText).toHaveBeenCalledWith(expect.stringContaining('Child 2'));
+      });
+
+      it('does not log "Collaboration already in progress" for bare-content sends', async () => {
+        mockState.collaboratingNodeId = 'child1';
+
+        await actions.collaborate('child2');
+
+        expect(logger.error).not.toHaveBeenCalledWith(
+          'Collaboration already in progress',
+          expect.any(Error),
+          'SendActions',
+        );
+      });
+
+      it('does not overwrite the existing collaboratingNodeId when sending bare content', async () => {
+        mockState.collaboratingNodeId = 'child1';
+
+        await actions.collaborate('child2');
+
+        expect(mockSet).not.toHaveBeenCalledWith(
+          expect.objectContaining({ collaboratingNodeId: 'child2' }),
+        );
+      });
+    });
   });
 
   describe('four-state prompt composition (PR1 disjoint-blocks invariant)', () => {
@@ -940,6 +972,44 @@ describe('sendActions', () => {
 
       const terminalContent = vi.mocked(executeInTerminal).mock.calls[0][1];
       expect(terminalContent).toContain('Write your reviewed/updated list to this file');
+    });
+
+    describe('bare-content terminal sends are not gated by an active collaboration', () => {
+      it('still sends bare content to the terminal when another collaboration is in progress', async () => {
+        const { executeInTerminal } = await import('../../../../services/terminalExecution');
+        vi.mocked(executeInTerminal).mockResolvedValue(undefined);
+        mockState.collaboratingNodeId = 'child1';
+
+        await actions.collaborateInTerminal('child2', 'terminal-1');
+
+        expect(executeInTerminal).toHaveBeenCalledWith(
+          'terminal-1',
+          expect.stringContaining('Child 2'),
+        );
+      });
+
+      it('does not log "Collaboration already in progress" for bare-content terminal sends', async () => {
+        mockState.collaboratingNodeId = 'child1';
+
+        await actions.collaborateInTerminal('child2', 'terminal-1');
+
+        expect(logger.error).not.toHaveBeenCalledWith(
+          'Collaboration already in progress',
+          expect.any(Error),
+          'SendActions',
+        );
+      });
+
+      it('does not overwrite the existing collaboratingNodeId or start a feedback watcher', async () => {
+        mockState.collaboratingNodeId = 'child1';
+
+        await actions.collaborateInTerminal('child2', 'terminal-1');
+
+        expect(mockSet).not.toHaveBeenCalledWith(
+          expect.objectContaining({ collaboratingNodeId: 'child2' }),
+        );
+        expect(window.electron.startFeedbackFileWatcher).not.toHaveBeenCalled();
+      });
     });
   });
 
