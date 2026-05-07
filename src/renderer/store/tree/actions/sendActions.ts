@@ -689,7 +689,7 @@ export function createSendActions(
         stateWithRegistry.actions?.unregisterCollaboration?.(collaboratingNodeId);
 
         await cleanupFeedback(currentFilePath, tempFilePath);
-        usePanelStore.getState().closeFeedback();
+        usePanelStore.getState().closeFeedback(currentFilePath);
         window.dispatchEvent(new Event('collaboration-canceled'));
         logger.info('Collaboration cancelled', 'SendActions');
       } catch (error) {
@@ -743,7 +743,7 @@ export function createSendActions(
 
         const tempFilePath = nodes[collaboratingNodeId]?.metadata.feedbackTempFile as string | undefined;
         await cleanupFeedback(currentFilePath, tempFilePath);
-        usePanelStore.getState().closeFeedback();
+        usePanelStore.getState().closeFeedback(currentFilePath);
 
         window.dispatchEvent(new Event('collaboration-accepted'));
         logger.info('Feedback accepted and node replaced', 'SendActions');

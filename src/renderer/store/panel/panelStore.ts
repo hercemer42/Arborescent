@@ -38,7 +38,7 @@ interface PanelState {
   showBrowser: () => void;
   showFeedback: () => void;
   showFeedbackForFile: (filePath: string | null) => void;
-  closeFeedback: () => void;
+  closeFeedback: (filePath?: string | null) => void;
   hidePanel: () => void;
   removeFileState: (filePath: string) => void;
   restoreSession: () => Promise<void>;
@@ -179,20 +179,24 @@ export const usePanelStore = create<PanelState>((set, get) => ({
       return newState;
     }),
 
-  closeFeedback: () =>
+  closeFeedback: (filePath?: string | null) =>
     set((state) => {
-      if (!state.currentFilePath) return {};
-      const currentFileState = getFileState(state.fileStates, state.currentFilePath);
-      if (currentFileState.activeContent !== 'feedback') return {};
-      const newFileStates = updateFileState(state.fileStates, state.currentFilePath, {
-        activeContent: currentFileState.previousContent,
+      const targetFilePath = filePath !== undefined ? filePath : state.currentFilePath;
+      if (!targetFilePath) return {};
+      const targetFileState = getFileState(state.fileStates, targetFilePath);
+      if (targetFileState.activeContent !== 'feedback') return {};
+      const newFileStates = updateFileState(state.fileStates, targetFilePath, {
+        activeContent: targetFileState.previousContent,
         previousContent: null,
       });
-      const newState = {
-        activeContent: currentFileState.previousContent,
-        previousContent: null as PanelContentType,
-        fileStates: newFileStates,
-      };
+      const isCurrentFile = targetFilePath === state.currentFilePath;
+      const newState = isCurrentFile
+        ? {
+            activeContent: targetFileState.previousContent,
+            previousContent: null as PanelContentType,
+            fileStates: newFileStates,
+          }
+        : { fileStates: newFileStates };
       void savePanelSession({ ...state, ...newState });
       return newState;
     }),
