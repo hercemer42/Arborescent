@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-05-07T12:58:08.335Z'
+updated: '2026-05-07T14:43:51.958Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -565,8 +565,8 @@ nodes:
       - 1127dfe6-4578-4e72-a87c-48dbe8a805a8
       - 99c1ef4b-243f-4883-b0d9-9005eea177f9
       - 65ddf628-02ba-452f-9aa2-db85abaad45c
-      - b1cbfe2d-6e89-4337-ba2a-f8b6343e9f3f
       - e745084c-18b7-4b78-94d8-9e14e05bc1c0
+      - 407133fd-9a05-4618-8ecd-1979dc073c4c
       - 0f4e4680-4264-44b3-ae3b-7980d55791d3
       - 45f1a5a0-dae3-4080-97ed-b8e324b79a64
       - bfdf4f7e-06c7-4d79-a42f-c0ecf536e0c4
@@ -16652,7 +16652,7 @@ nodes:
       - c9d5f315-0979-4cf7-99a1-7a5df07ffb4b
     metadata:
       status: pending
-      expanded: true
+      expanded: false
       isBlueprint: true
       blueprintIcon: LayoutList
       blueprintColor: '#14b8a6'
@@ -16667,6 +16667,7 @@ nodes:
       - 0e6d1b24-74b5-4890-818c-15f2b0f15b46
       - 105c84c5-6181-4414-867e-2efc892ee2dc
       - 33437c60-1890-4cc8-aa5c-3d168d306ca6
+      - dd00d6f2-ae2a-4bd8-8919-303bfd92f6fc
     metadata:
       status: pending
       isBlueprint: true
@@ -17087,7 +17088,7 @@ nodes:
       isBlueprint: true
       blueprintIcon: MessageCircle
       blueprintColor: '#a855f7'
-      expanded: false
+      expanded: true
   e7c804ef-54bc-4c6c-b783-c39357069ae0:
     id: e7c804ef-54bc-4c6c-b783-c39357069ae0
     content: 'Clean up the comments made since last commit to be sure they match the following conventions :'
@@ -23851,7 +23852,14 @@ nodes:
   00714a63-f267-4ab1-a285-73ae4198eb42:
     id: 00714a63-f267-4ab1-a285-73ae4198eb42
     content: Technical refinement
-    children: []
+    children:
+      - 9f55ead4-f0e3-4969-8e10-8e61f33f89ec
+      - 6dfe8786-d370-4c64-a64a-73146ac8e11b
+      - ca7ad1fb-77fd-4fbd-aff2-8995ad06dbbf
+      - 2000dd5f-b23d-4c6f-87ad-3dc666c45b91
+      - b66f4108-240b-463d-8d00-30e6ec9239f9
+      - e29b62d3-542b-4f07-9a9f-ef3882f50e19
+      - 888e2888-bbad-4ff9-9307-0c8be747678d
     metadata:
       status: pending
       isBlueprint: true
@@ -25625,7 +25633,7 @@ nodes:
       appliedContextId: 1d30a613-a651-436c-bb2b-1fb3062af9fb
       expanded: true
       stepType: autonomous
-      recurse: true
+      recurse: false
   bbe17f66-d747-4cf0-8602-721ce87663fe:
     id: bbe17f66-d747-4cf0-8602-721ce87663fe
     content: Make sure there are no empty tests
@@ -74397,7 +74405,7 @@ nodes:
       blueprintColor: '#ef4444'
       isBlueprint: true
       contextMode: execute
-      expanded: true
+      expanded: false
   5c79a251-defe-4ef2-a9ce-30e2d89a8f35:
     id: 5c79a251-defe-4ef2-a9ce-30e2d89a8f35
     content: Squash commits if there are more than one
@@ -83237,7 +83245,7 @@ nodes:
       plugins: {}
   e745084c-18b7-4b78-94d8-9e14e05bc1c0:
     id: e745084c-18b7-4b78-94d8-9e14e05bc1c0
-    content: Move actions to a context type like execute, analyze
+    content: Move actions to a context type like execute, analyse
     children:
       - fe4dd17d-7a40-45f5-bdf5-ba536dd7b45b
     metadata:
@@ -83246,41 +83254,6 @@ nodes:
   fe4dd17d-7a40-45f5-bdf5-ba536dd7b45b:
     id: fe4dd17d-7a40-45f5-bdf5-ba536dd7b45b
     content: Sending a node with a context of this type sends only the context
-    children: []
-    metadata:
-      status: pending
-  b1cbfe2d-6e89-4337-ba2a-f8b6343e9f3f:
-    id: b1cbfe2d-6e89-4337-ba2a-f8b6343e9f3f
-    content: auto detect http or https at the start of a node and make it clickable
-    children:
-      - 1052ab6e-d8ea-4986-a1a2-bd3ba126300a
-      - 86e20423-95f3-4a6d-994c-015f0cf5680a
-      - 73ec2826-ac77-4750-ac58-041cfd517010
-      - d19d3d42-5c0c-4121-8aa4-be443bdb9b54
-    metadata:
-      status: pending
-      expanded: false
-  1052ab6e-d8ea-4986-a1a2-bd3ba126300a:
-    id: 1052ab6e-d8ea-4986-a1a2-bd3ba126300a
-    content: Should also probably make it so a http link is just clickable text in a regular node
-    children: []
-    metadata:
-      status: pending
-  86e20423-95f3-4a6d-994c-015f0cf5680a:
-    id: 86e20423-95f3-4a6d-994c-015f0cf5680a
-    content: This gets around the problem of not being able to send it in a workflow
-    children: []
-    metadata:
-      status: pending
-  73ec2826-ac77-4750-ac58-041cfd517010:
-    id: 73ec2826-ac77-4750-ac58-041cfd517010
-    content: Would have to refactor what currently happens when a html link is pasted in
-    children: []
-    metadata:
-      status: pending
-  d19d3d42-5c0c-4121-8aa4-be443bdb9b54:
-    id: d19d3d42-5c0c-4121-8aa4-be443bdb9b54
-    content: should also detect URIs (for instance, link to vscode URI like vscode://file etc
     children: []
     metadata:
       status: pending
@@ -83395,11 +83368,6 @@ nodes:
     id: 4c43c117-e89a-460c-9900-7ea15b8cc0e0
     content: User story creation
     children:
-      - 6dfe8786-d370-4c64-a64a-73146ac8e11b
-      - ca7ad1fb-77fd-4fbd-aff2-8995ad06dbbf
-      - 2000dd5f-b23d-4c6f-87ad-3dc666c45b91
-      - e29b62d3-542b-4f07-9a9f-ef3882f50e19
-      - 888e2888-bbad-4ff9-9307-0c8be747678d
       - 611a8d9e-c919-4f2b-97de-695d60787576
     metadata:
       status: pending
@@ -83468,8 +83436,7 @@ nodes:
   2d2c0539-d8cf-4708-bcd7-df70bd7d7cf4:
     id: 2d2c0539-d8cf-4708-bcd7-df70bd7d7cf4
     content: Worktree creation
-    children:
-      - 9f55ead4-f0e3-4969-8e10-8e61f33f89ec
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -84806,7 +84773,8 @@ nodes:
   ddd90208-5752-46cf-b72a-5fcbe040b2e0:
     id: ddd90208-5752-46cf-b72a-5fcbe040b2e0
     content: Merge to master
-    children: []
+    children:
+      - e6aff7fa-7787-43c4-a81e-8c4d4ed14a51
     metadata:
       status: pending
       isBlueprint: true
@@ -84814,6 +84782,7 @@ nodes:
       blueprintColor: '#ef4444'
       appliedContextId: f4300f5a-e503-4606-b6bc-f67f6d4a0ed4
       stepType: autonomous
+      recurse: true
   26d204d2-540c-4f9c-9de1-ac16b1c51065:
     id: 26d204d2-540c-4f9c-9de1-ac16b1c51065
     content: Verify pipelines
@@ -86490,6 +86459,8 @@ nodes:
     content: Would be nice to be able to auto create and auto close a session
     children:
       - ad53d1c5-da4a-4f67-9252-4a682806cde7
+      - 0624fb30-a727-4682-a2fa-31b83abab4f7
+      - 842f5774-faa6-4105-b546-ba96077140b3
     metadata:
       status: pending
       expanded: false
@@ -88776,8 +88747,10 @@ nodes:
     content: 'Bug : Pause workflow hook not always working'
     children:
       - 1f8f7b11-b46c-460d-b57c-b8bd7b44c163
+      - 145eb606-1be4-40bc-954d-4df9f4eb8a17
     metadata:
       status: pending
+      expanded: false
   1f8f7b11-b46c-460d-b57c-b8bd7b44c163:
     id: 1f8f7b11-b46c-460d-b57c-b8bd7b44c163
     content: "Sometimes does, sometimes doesn't\_"
@@ -90428,6 +90401,7 @@ nodes:
     id: 6ed7cdaf-51de-4029-967e-0e8e0018f138
     content: Make a new worktree for this feature
     children:
+      - 705fbcf5-aae7-4c3d-b64a-3264e42331c1
       - 942edd8a-1840-4859-9c66-e428d2dfa61e
       - 48209e8f-f520-4336-b113-55b7974d623f
     metadata:
@@ -90521,3 +90495,542 @@ nodes:
       deleted: false
       plugins: {}
       isBlueprint: true
+  145eb606-1be4-40bc-954d-4df9f4eb8a17:
+    id: 145eb606-1be4-40bc-954d-4df9f4eb8a17
+    content: 'Here''s a diagnosis of one time it didn''t work from a colleague :'
+    children:
+      - 04d9facf-3d91-47ab-a587-83895a742900
+    metadata:
+      status: pending
+  04d9facf-3d91-47ab-a587-83895a742900:
+    id: 04d9facf-3d91-47ab-a587-83895a742900
+    content: /Users/brianfox/dev/needsreview-hook-diagnosis.md
+    children: []
+    metadata:
+      status: pending
+  0624fb30-a727-4682-a2fa-31b83abab4f7:
+    id: 0624fb30-a727-4682-a2fa-31b83abab4f7
+    content: Either in a new terminal
+    children: []
+    metadata:
+      status: pending
+  842f5774-faa6-4105-b546-ba96077140b3:
+    id: 842f5774-faa6-4105-b546-ba96077140b3
+    content: Or maybe use tmux or another linux tool ?
+    children:
+      - 4308265b-92c9-4a62-b3e1-ac26122733ef
+    metadata:
+      status: pending
+  4308265b-92c9-4a62-b3e1-ac26122733ef:
+    id: 4308265b-92c9-4a62-b3e1-ac26122733ef
+    content: Look at how gastown does it for example
+    children: []
+    metadata:
+      status: pending
+  407133fd-9a05-4618-8ecd-1979dc073c4c:
+    id: 407133fd-9a05-4618-8ecd-1979dc073c4c
+    content: '''Revise after discussion'' could be in the right click context menu'
+    children:
+      - 33d7a477-1104-4500-b923-e28a55784b52
+      - 98962f4c-90af-48a3-bd07-71b389211b31
+    metadata:
+      status: pending
+      expanded: false
+  33d7a477-1104-4500-b923-e28a55784b52:
+    id: 33d7a477-1104-4500-b923-e28a55784b52
+    content: It's frequently used - also could be a hotkey.
+    children: []
+    metadata:
+      status: pending
+  98962f4c-90af-48a3-bd07-71b389211b31:
+    id: 98962f4c-90af-48a3-bd07-71b389211b31
+    content: Would imply it becomes a built-in context
+    children: []
+    metadata:
+      status: pending
+  dd00d6f2-ae2a-4bd8-8919-303bfd92f6fc:
+    id: dd00d6f2-ae2a-4bd8-8919-303bfd92f6fc
+    content: Do NOT leave any references to the PRD ticket in the comments
+    children: []
+    metadata:
+      isBlueprint: true
+  e6aff7fa-7787-43c4-a81e-8c4d4ed14a51:
+    id: e6aff7fa-7787-43c4-a81e-8c4d4ed14a51
+    content: Workflow advances prematurely when Claude backgrounds a check
+    children:
+      - 22e57588-04a9-4e65-acdf-216f97c65a01
+      - 690f88cc-19f9-46be-89ff-e0ce3a40a3e4
+      - 650d3807-bfa8-4a18-9137-81889e3d6827
+      - 5ed1747a-0d72-420f-bfbc-163db10acb3a
+      - 2b3e8fca-d86c-4850-940a-b581ded5c08c
+    metadata:
+      status: pending
+      expanded: false
+      deleted: false
+      plugins: {}
+  705fbcf5-aae7-4c3d-b64a-3264e42331c1:
+    id: 705fbcf5-aae7-4c3d-b64a-3264e42331c1
+    content: Check if you've already created a worktree
+    children:
+      - da4a3cfe-8453-4b2f-a7e3-777d204fe190
+      - f44630b4-f00c-4e3f-a284-9c4585b4da5a
+    metadata:
+      status: pending
+      isBlueprint: true
+  da4a3cfe-8453-4b2f-a7e3-777d204fe190:
+    id: da4a3cfe-8453-4b2f-a7e3-777d204fe190
+    content: Might have happened in another session
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  f44630b4-f00c-4e3f-a284-9c4585b4da5a:
+    id: f44630b4-f00c-4e3f-a284-9c4585b4da5a
+    content: In which case just use that one
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  b66f4108-240b-463d-8d00-30e6ec9239f9:
+    id: b66f4108-240b-463d-8d00-30e6ec9239f9
+    content: 'Bug : Pasting a hyperlink into a blueprint node also makes that node a blueprint'
+    children:
+      - b821a99d-63bd-4bb4-a097-36c5fb4101ee
+      - e807f503-d07d-4794-a0c6-5d17031aed21
+    metadata:
+      status: pending
+      expanded: false
+  b821a99d-63bd-4bb4-a097-36c5fb4101ee:
+    id: b821a99d-63bd-4bb4-a097-36c5fb4101ee
+    content: It should not inherit
+    children: []
+    metadata:
+      status: pending
+  e807f503-d07d-4794-a0c6-5d17031aed21:
+    id: e807f503-d07d-4794-a0c6-5d17031aed21
+    content: Now this happened on a workflow step node, not sure it's the same for all blueprint nodes
+    children:
+      - c9e1d2ea-b2e8-41e8-b0e0-96b44ec877c6
+    metadata:
+      status: pending
+  c9e1d2ea-b2e8-41e8-b0e0-96b44ec877c6:
+    id: c9e1d2ea-b2e8-41e8-b0e0-96b44ec877c6
+    content: I'll let you check that !
+    children: []
+    metadata:
+      status: pending
+  22e57588-04a9-4e65-acdf-216f97c65a01:
+    id: 22e57588-04a9-4e65-acdf-216f97c65a01
+    content: worktree
+    children:
+      - 227c6bba-df46-4d0e-a98a-676369237ee3
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  227c6bba-df46-4d0e-a98a-676369237ee3:
+    id: 227c6bba-df46-4d0e-a98a-676369237ee3
+    content: '[Open in VSCode](vscode://file/Users/brianfox/dev/Arborescent-inline-checks) — branch `fix/inline-checks` forked from `master` at `/Users/brianfox/dev/Arborescent-inline-checks`'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  690f88cc-19f9-46be-89ff-e0ce3a40a3e4:
+    id: 690f88cc-19f9-46be-89ff-e0ce3a40a3e4
+    content: 📄 Product spec
+    children:
+      - 50c5a4ff-93ea-4c69-9e95-78a4404f2a4d
+      - 2112faa3-c32b-40a4-964d-ec9d0251abb2
+      - 6d666c9d-ded3-4486-a4ba-5e9ecea0813a
+      - c52b2964-3e2c-4046-b6e9-1a8f39e1a7b4
+      - 6ef224de-a6c3-45bf-8d6f-9cff6b0fe9c1
+      - e45be7c0-f6de-4dc5-9635-11740841e608
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  50c5a4ff-93ea-4c69-9e95-78a4404f2a4d:
+    id: 50c5a4ff-93ea-4c69-9e95-78a4404f2a4d
+    content: Context — Arborescent advances to the next workflow step when Claude's main process emits the 'done' hook. When Claude runs a check in a child process (e.g. `yarn test`) and stays idle while watching it, the main process looks done and Arborescent dispatches the next step before the actual work has finished.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2112faa3-c32b-40a4-964d-ec9d0251abb2:
+    id: 2112faa3-c32b-40a4-964d-ec9d0251abb2
+    content: User — Arborescent user running multi-step workflows that include shell-executed checks such as build, tests, lint, or type-check
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6d666c9d-ded3-4486-a4ba-5e9ecea0813a:
+    id: 6d666c9d-ded3-4486-a4ba-5e9ecea0813a
+    content: Current experience
+    children:
+      - 447dcc4e-929c-4840-9d11-98de9d67f253
+      - c0501a8e-90d9-4c59-889d-418650ee28cf
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  447dcc4e-929c-4840-9d11-98de9d67f253:
+    id: 447dcc4e-929c-4840-9d11-98de9d67f253
+    content: User expects each workflow step to fully complete before the next is dispatched
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c0501a8e-90d9-4c59-889d-418650ee28cf:
+    id: c0501a8e-90d9-4c59-889d-418650ee28cf
+    content: In practice, when Claude backgrounds a check and watches it, Arborescent fires the next step early and corrupts the workflow ordering
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c52b2964-3e2c-4046-b6e9-1a8f39e1a7b4:
+    id: c52b2964-3e2c-4046-b6e9-1a8f39e1a7b4
+    content: Goal — each workflow step holds the workflow until its actual work has finished, including any background process Claude is waiting on
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6ef224de-a6c3-45bf-8d6f-9cff6b0fe9c1:
+    id: 6ef224de-a6c3-45bf-8d6f-9cff6b0fe9c1
+    content: Business rules
+    children:
+      - c86de9ab-a8b8-434e-9aa3-3b0ed35d2923
+      - 09495c12-accc-4810-9950-3caa77d9b0ae
+      - bb456c07-7ab4-47c3-8282-58bba75664ff
+      - 78210b62-90e2-466d-85b3-2143edff3203
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c86de9ab-a8b8-434e-9aa3-3b0ed35d2923:
+    id: c86de9ab-a8b8-434e-9aa3-3b0ed35d2923
+    content: 1. Default workflow instructions must direct Claude to run all checks (build, tests, lint, type-check) in the main process so the 'done' signal aligns with real completion.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  09495c12-accc-4810-9950-3caa77d9b0ae:
+    id: 09495c12-accc-4810-9950-3caa77d9b0ae
+    content: 2. If a step requires a long-running command, the instructions must require Claude to wait for it inline in the main process rather than backgrounding and polling.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bb456c07-7ab4-47c3-8282-58bba75664ff:
+    id: bb456c07-7ab4-47c3-8282-58bba75664ff
+    content: 3. Users can override these defaults on a per-workflow basis when they have a genuine reason to background execution.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  78210b62-90e2-466d-85b3-2143edff3203:
+    id: 78210b62-90e2-466d-85b3-2143edff3203
+    content: 4. If Claude ignores the guidance and the workflow advances early, the failure mode is documented so the user understands why it happened.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e45be7c0-f6de-4dc5-9635-11740841e608:
+    id: e45be7c0-f6de-4dc5-9635-11740841e608
+    content: Acceptance criteria
+    children:
+      - f61066a6-3dd5-431c-a8e6-eee1e0cceff7
+      - dab5e0b5-64d8-4fe2-8a13-7754756086da
+      - 589beaea-c1a3-4a53-8bf8-a8275e1bf1fc
+      - 3c913a00-35db-4a57-ab34-a3e188dd4060
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f61066a6-3dd5-431c-a8e6-eee1e0cceff7:
+    id: f61066a6-3dd5-431c-a8e6-eee1e0cceff7
+    content: Default workflow instructions explicitly tell Claude to run checks in the main process and avoid backgrounded child processes for workflow steps
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  dab5e0b5-64d8-4fe2-8a13-7754756086da:
+    id: dab5e0b5-64d8-4fe2-8a13-7754756086da
+    content: A workflow that runs `yarn test` (or equivalent) does not advance until the test command has finished
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  589beaea-c1a3-4a53-8bf8-a8275e1bf1fc:
+    id: 589beaea-c1a3-4a53-8bf8-a8275e1bf1fc
+    content: Workflows that already run checks inline continue to function unchanged
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3c913a00-35db-4a57-ab34-a3e188dd4060:
+    id: 3c913a00-35db-4a57-ab34-a3e188dd4060
+    content: In-app guidance or docs describe the limitation so users know the boundary of the mitigation
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  650d3807-bfa8-4a18-9137-81889e3d6827:
+    id: 650d3807-bfa8-4a18-9137-81889e3d6827
+    content: 🔧 Implementation proposal
+    children:
+      - 77a610a1-d532-4f57-9b45-e4085fd86a4a
+      - 16bb7014-1ad2-41ff-811d-c5731fff0c87
+      - 7bbaf15a-7da3-4264-a069-62870e155473
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  77a610a1-d532-4f57-9b45-e4085fd86a4a:
+    id: 77a610a1-d532-4f57-9b45-e4085fd86a4a
+    content: Approach — instruction-only change to the default workflow / collaboration instructions shipped with Arborescent, steering Claude away from backgrounded child processes for workflow steps; no hook protocol or process-detection rework
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  16bb7014-1ad2-41ff-811d-c5731fff0c87:
+    id: 16bb7014-1ad2-41ff-811d-c5731fff0c87
+    content: Touchpoints
+    children:
+      - 8babfd0f-a113-4801-97dd-f404cb3419ad
+      - 3d4afc04-60fe-4dce-905c-a9b57dc7abb5
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8babfd0f-a113-4801-97dd-f404cb3419ad:
+    id: 8babfd0f-a113-4801-97dd-f404cb3419ad
+    content: Default workflow instruction template (likely under `src/renderer/data/` or wherever default contexts/instructions live)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3d4afc04-60fe-4dce-905c-a9b57dc7abb5:
+    id: 3d4afc04-60fe-4dce-905c-a9b57dc7abb5
+    content: In-app guidance / docs describing workflow behaviour and this constraint
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7bbaf15a-7da3-4264-a069-62870e155473:
+    id: 7bbaf15a-7da3-4264-a069-62870e155473
+    content: Constraints to call out
+    children:
+      - 627915e1-018e-4e83-83c9-dfb3c32a9d4d
+      - 921e81c5-70f9-4164-9e5d-57ceb3d138af
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  627915e1-018e-4e83-83c9-dfb3c32a9d4d:
+    id: 627915e1-018e-4e83-83c9-dfb3c32a9d4d
+    content: Instruction-based steering is best-effort — Claude can ignore guidance, so this is a mitigation rather than a guaranteed fix
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  921e81c5-70f9-4164-9e5d-57ceb3d138af:
+    id: 921e81c5-70f9-4164-9e5d-57ceb3d138af
+    content: A bulletproof solution would require Arborescent to detect Claude-spawned child processes still running before honouring 'done', which is significantly more complex; flagged so the heavier fix is not pursued unless the instruction approach proves unreliable in practice
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5ed1747a-0d72-420f-bfbc-163db10acb3a:
+    id: 5ed1747a-0d72-420f-bfbc-163db10acb3a
+    content: 🛠 Technical refinement
+    children:
+      - 571f0a1e-e13b-4652-a63a-1a4543868b4a
+      - 6fe3abb7-8bdb-4449-8d4b-4659aedcd5da
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  571f0a1e-e13b-4652-a63a-1a4543868b4a:
+    id: 571f0a1e-e13b-4652-a63a-1a4543868b4a
+    content: Complications
+    children:
+      - 2843c783-5753-4532-a095-34d253573935
+      - acaf688a-58d5-4f33-97dd-edbffa81051f
+      - 19dbe9a3-4fe0-46c1-af4e-1db26900cce2
+      - 2ba49b57-682e-4bfc-a5bc-895e877d7fdc
+      - c03cf654-0c1b-4d67-9aaf-4deab86abce9
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2843c783-5753-4532-a095-34d253573935:
+    id: 2843c783-5753-4532-a095-34d253573935
+    content: The clause must land in the instruction surface actually injected at step-send time — confirm whether that is the default workflow context, the per-step prompt builder, or both
+    children:
+      - 4320deb7-f890-4809-8e17-d6cba1d2d844
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4320deb7-f890-4809-8e17-d6cba1d2d844:
+    id: 4320deb7-f890-4809-8e17-d6cba1d2d844
+    content: I confirm it's in the per-step prompt builder and not the default context.  It should apply to all contexts INCLUDING actions, but only if the step is automated.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  acaf688a-58d5-4f33-97dd-edbffa81051f:
+    id: acaf688a-58d5-4f33-97dd-edbffa81051f
+    content: Users who have customised their default context will not inherit the new clause automatically — decide between migrate, append, or call it out in release notes
+    children:
+      - 90fa1d46-88fa-4b8f-bcfb-092868b1a184
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  90fa1d46-88fa-4b8f-bcfb-092868b1a184:
+    id: 90fa1d46-88fa-4b8f-bcfb-092868b1a184
+    content: Not possible to customize default context, and the clause does not go in the default context, but in the prompt instructions.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  19dbe9a3-4fe0-46c1-af4e-1db26900cce2:
+    id: 19dbe9a3-4fe0-46c1-af4e-1db26900cce2
+    content: Terminal-send and browser-send paths may use separate instruction templates; both need the clause for consistent behaviour
+    children:
+      - fd07496d-d95e-419d-a20a-b1fbbdf9e8d4
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fd07496d-d95e-419d-a20a-b1fbbdf9e8d4:
+    id: fd07496d-d95e-419d-a20a-b1fbbdf9e8d4
+    content: This only applies to terminal, not to browser
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2ba49b57-682e-4bfc-a5bc-895e877d7fdc:
+    id: 2ba49b57-682e-4bfc-a5bc-895e877d7fdc
+    content: 'Out of scope: ''done'' hook protocol changes, child-process detection, sub-agent (Task tool) handling — sub-agents block their parent inline, so they don''t trigger this bug'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  c03cf654-0c1b-4d67-9aaf-4deab86abce9:
+    id: c03cf654-0c1b-4d67-9aaf-4deab86abce9
+    content: ROI watch — if reports persist after the clause ships, that's the trigger to revisit process-tree detection; do not pre-build it
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6fe3abb7-8bdb-4449-8d4b-4659aedcd5da:
+    id: 6fe3abb7-8bdb-4449-8d4b-4659aedcd5da
+    content: Approach summary
+    children:
+      - bab98c8b-7379-4aaa-ad28-0c3c2ec6e144
+      - e746c9c3-a611-4841-b99c-f841891831b6
+      - 980f6d50-8342-4b85-9674-adabb8681803
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bab98c8b-7379-4aaa-ad28-0c3c2ec6e144:
+    id: bab98c8b-7379-4aaa-ad28-0c3c2ec6e144
+    content: Add a "run checks inline; do not background or watch via `&`/poll loops" clause to the default workflow instruction template — no runtime or hook changes
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e746c9c3-a611-4841-b99c-f841891831b6:
+    id: e746c9c3-a611-4841-b99c-f841891831b6
+    content: Apply uniformly across terminal-send and browser-send templates so workflow behaviour matches across surfaces
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  980f6d50-8342-4b85-9674-adabb8681803:
+    id: 980f6d50-8342-4b85-9674-adabb8681803
+    content: 'Non-obvious for reviewers: this is a soft mitigation — the bug remains reachable if Claude ignores the clause or the user runs a custom context that doesn''t include it'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2b3e8fca-d86c-4850-940a-b581ded5c08c:
+    id: 2b3e8fca-d86c-4850-940a-b581ded5c08c
+    content: 'Implementation notes — clause shipped to autonomous-terminal prompt instructions only (terminal+autonomous, all flag combos, all contexts that hit the wrapper). Manual-terminal and web paths intentionally unchanged. Docs/in-app guidance (acceptance #4, touchpoint) deferred per "this is a coding task". One title-only test left for the bare-content/action path (no instruction wrapper) — the autonomous-action case is uncovered today; flag if it matters in practice. 8 new tests pass; 87 of 87 pass in sendActions.test.ts; lint and tsc clean on changed files.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
