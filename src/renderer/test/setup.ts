@@ -124,4 +124,6 @@ global.window.electron = {
   appQuit: vi.fn().mockResolvedValue(undefined),
   onCloseBrowserTab: vi.fn().mockReturnValue(vi.fn()),
   onHookEvent: vi.fn().mockReturnValue(vi.fn()),
+  startKeepAwake: vi.fn().mockResolvedValue(undefined),
+  stopKeepAwake: vi.fn().mockResolvedValue(undefined),
 };

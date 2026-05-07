@@ -124,6 +124,10 @@ export interface ElectronAPI {
   showNotification: (title: string, body: string) => Promise<void>;
   isWindowFocused: () => Promise<boolean>;
 
+  // Keep-awake bridge
+  startKeepAwake: () => Promise<void>;
+  stopKeepAwake: () => Promise<void>;
+
   // Hook server bridge
   onHookEvent: (callback: (event: HookEventPayload) => void) => Unsubscribe;
 }

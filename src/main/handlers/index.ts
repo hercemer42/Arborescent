@@ -9,6 +9,7 @@ import { registerFeedbackFileHandlers } from './feedbackFileHandlers';
 import { registerShellHandlers } from './shellHandlers';
 import { registerPreferencesHandlers } from './preferencesHandlers';
 import { registerNotificationHandlers } from './notificationHandlers';
+import { registerKeepAwakeHandlers } from './keepAwakeHandlers';
 
 // Note: terminal handlers (registerTerminalHandlers) are registered
 // separately in main.ts after window creation because they require the
@@ -25,4 +26,5 @@ export async function registerIpcHandlers(getMainWindow: () => BrowserWindow | n
   registerShellHandlers();
   registerPreferencesHandlers();
   registerNotificationHandlers(getMainWindow);
+  registerKeepAwakeHandlers();
 }

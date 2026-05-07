@@ -233,6 +233,8 @@ export const createWorkflowExecutionActions = (
       },
     });
 
+    void window.electron.startKeepAwake();
+
     stepTimeouts.start(nodeId);
     clearSessionManager.maybeClearThenSend(nodeId, terminalId);
     logger.info(
@@ -254,6 +256,8 @@ export const createWorkflowExecutionActions = (
     const updatedStates = { ...workflowExecutionStates };
     delete updatedStates[nodeId];
     set({ workflowExecutionStates: updatedStates });
+
+    void window.electron.stopKeepAwake();
 
     logger.info(
       `Stopped workflow execution for node ${nodeId}`,
@@ -341,6 +345,10 @@ export const createWorkflowExecutionActions = (
     delete updatedStates[nodeId];
 
     set({ workflowExecutionStates: updatedStates });
+
+    if (entry) {
+      void window.electron.stopKeepAwake();
+    }
 
     const node = nodes[nodeId];
     const nodeName = node?.content || nodeId;

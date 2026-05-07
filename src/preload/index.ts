@@ -113,6 +113,8 @@ const api: ElectronAPI = {
   },
   showNotification: (title: string, body: string) => ipcRenderer.invoke('show-notification', title, body),
   isWindowFocused: () => ipcRenderer.invoke('is-window-focused'),
+  startKeepAwake: () => ipcRenderer.invoke('keep-awake:start'),
+  stopKeepAwake: () => ipcRenderer.invoke('keep-awake:stop'),
   onHookEvent: (callback) => {
     const listener = (_event: Electron.IpcRendererEvent, data: { session_id: string; hook_event_name: string; terminal_id?: string; message?: string; source?: string }) => callback(data);
     ipcRenderer.on('hook-event', listener);
