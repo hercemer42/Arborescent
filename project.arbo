@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-05-07T16:40:50.449Z'
+updated: '2026-05-07T16:41:46.083Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -25624,7 +25624,6 @@ nodes:
     content: AI refactor
     children:
       - 9f55ead4-f0e3-4969-8e10-8e61f33f89ec
-      - ca7ad1fb-77fd-4fbd-aff2-8995ad06dbbf
       - 6dfe8786-d370-4c64-a64a-73146ac8e11b
     metadata:
       status: pending
@@ -79673,11 +79672,11 @@ nodes:
     id: ca7ad1fb-77fd-4fbd-aff2-8995ad06dbbf
     content: 'Bug : Sending a node with no attached context triggers ''collaboration in progress'''
     children:
-      - 2981c14b-3697-4df8-aeaf-743f6bbfd8c9
-      - 823865b4-a5d6-4440-8cfb-ca4aecb9e95d
-      - e8d98644-82b0-4fbd-bb25-404f2c46faf0
-      - 7ed08b40-ac5e-4583-9c24-cde81820f4d8
-      - 031474b8-60aa-4cc5-bcea-145a07befe31
+      - ac78b5e3-d1ef-4498-8fcc-937497fa9167
+      - 84a0c8e1-5b81-4035-96bb-b3d5a8152549
+      - 0c6883e6-952e-4269-81ed-8dc74b93be67
+      - 3420b82f-2961-49e1-8cd5-48ab2e85427b
+      - da1a1829-72e7-4443-b2c5-b0cb0f922f71
     metadata:
       status: completed
       expanded: false
@@ -84777,6 +84776,7 @@ nodes:
     content: Merge to master
     children:
       - 611a8d9e-c919-4f2b-97de-695d60787576
+      - ca7ad1fb-77fd-4fbd-aff2-8995ad06dbbf
     metadata:
       status: pending
       isBlueprint: true
@@ -91197,241 +91197,6 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  2981c14b-3697-4df8-aeaf-743f6bbfd8c9:
-    id: 2981c14b-3697-4df8-aeaf-743f6bbfd8c9
-    content: worktree
-    children:
-      - 83d8aa7f-70a6-414c-8651-b23f6d3b5dd1
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  83d8aa7f-70a6-414c-8651-b23f6d3b5dd1:
-    id: 83d8aa7f-70a6-414c-8651-b23f6d3b5dd1
-    content: '[Open in VSCode](vscode://file/Users/brianfox/dev/Arborescent-no-context-collaboration-flag)'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  823865b4-a5d6-4440-8cfb-ca4aecb9e95d:
-    id: 823865b4-a5d6-4440-8cfb-ca4aecb9e95d
-    content: It doesn't make sense as no collaboration is asked for
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  e8d98644-82b0-4fbd-bb25-404f2c46faf0:
-    id: e8d98644-82b0-4fbd-bb25-404f2c46faf0
-    content: Not sure if this is still an issue - check it, and flag the user if it's no longer a problem, and pause the workflow
-    children:
-      - bede2d6a-5354-41ed-b626-b08cf3f0e003
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  bede2d6a-5354-41ed-b626-b08cf3f0e003:
-    id: bede2d6a-5354-41ed-b626-b08cf3f0e003
-    content: 'Confirmed still present: in `collaborate` and `collaborateInTerminal` (sendActions.ts:384, :440), the `collaboratingNodeId` guard runs BEFORE the no-context bare-send branches (lines 410, 461), so bare-content sends are wrongly blocked while another collaboration is active'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  7ed08b40-ac5e-4583-9c24-cde81820f4d8:
-    id: 7ed08b40-ac5e-4583-9c24-cde81820f4d8
-    content: Technical refinement
-    children:
-      - 60ff934e-d0d5-4060-8321-a04dde668df4
-      - d523af5b-1caa-4b50-aa8a-e3fbe2b1fce8
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  60ff934e-d0d5-4060-8321-a04dde668df4:
-    id: 60ff934e-d0d5-4060-8321-a04dde668df4
-    content: Flag complications
-    children:
-      - 16a1b0f4-a23c-49e5-891b-8a45d7395eb3
-      - 3856567c-6c37-43d9-bcfe-644e577469e2
-      - 99661035-1389-4429-96d6-112e07f61db8
-      - 4582399f-80d0-46dc-a44d-1a01034c4089
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  16a1b0f4-a23c-49e5-891b-8a45d7395eb3:
-    id: 16a1b0f4-a23c-49e5-891b-8a45d7395eb3
-    content: Ambiguous what 'sending a node' covers - terminal send, browser send, or both - the trigger condition may differ per destination
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  3856567c-6c37-43d9-bcfe-644e577469e2:
-    id: 3856567c-6c37-43d9-bcfe-644e577469e2
-    content: If the 'collaboration in progress' flag also gates subsequent sends, users could hit a soft dead-end until it's manually cleared
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  99661035-1389-4429-96d6-112e07f61db8:
-    id: 99661035-1389-4429-96d6-112e07f61db8
-    content: 'Out of scope: legitimate ''collaboration in progress'' state when a context IS attached and AI is actually engaged'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  4582399f-80d0-46dc-a44d-1a01034c4089:
-    id: 4582399f-80d0-46dc-a44d-1a01034c4089
-    content: Low complexity, but ROI depends on whether this is a stale state bug or an intentional UX signal that needs rethinking
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  d523af5b-1caa-4b50-aa8a-e3fbe2b1fce8:
-    id: d523af5b-1caa-4b50-aa8a-e3fbe2b1fce8
-    content: Summarise the approach
-    children:
-      - 23a5daf5-0c87-4d96-938e-d7275fea5271
-      - 198a0c47-f96f-40f7-a862-462030772ad3
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  23a5daf5-0c87-4d96-938e-d7275fea5271:
-    id: 23a5daf5-0c87-4d96-938e-d7275fea5271
-    content: Treat 'collaboration in progress' as a signal of actual AI engagement, not of any send action - gate it on whether a context/AI handoff is in play
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  198a0c47-f96f-40f7-a862-462030772ad3:
-    id: 198a0c47-f96f-40f7-a862-462030772ad3
-    content: Change lands in the send action(s) in the store and any consumers reading the in-progress flag - small surface area
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  031474b8-60aa-4cc5-bcea-145a07befe31:
-    id: 031474b8-60aa-4cc5-bcea-145a07befe31
-    content: TDD tests written (red phase)
-    children:
-      - 9d8b2a89-0b65-4f75-9d61-46cd7bec58c8
-      - 8c957590-ce45-4c36-803f-f235c415b261
-      - 84bdeffd-5854-4a13-a23d-3abac18360c4
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  9d8b2a89-0b65-4f75-9d61-46cd7bec58c8:
-    id: 9d8b2a89-0b65-4f75-9d61-46cd7bec58c8
-    content: Added `bare-content sends are not gated by an active collaboration` describe block in sendActions.test.ts (collaborate)
-    children:
-      - 4d2edf8b-c7f6-4232-b5a6-7e6d7c605319
-      - 57b2298f-2705-497e-83e5-ee2bad6736b1
-      - 300e77bc-b12f-4f55-a022-dfdbd897fd56
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  4d2edf8b-c7f6-4232-b5a6-7e6d7c605319:
-    id: 4d2edf8b-c7f6-4232-b5a6-7e6d7c605319
-    content: still copies bare content to clipboard when another collaboration is in progress - FAILING (red)
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  57b2298f-2705-497e-83e5-ee2bad6736b1:
-    id: 57b2298f-2705-497e-83e5-ee2bad6736b1
-    content: does not log "Collaboration already in progress" for bare-content sends - FAILING (red)
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  300e77bc-b12f-4f55-a022-dfdbd897fd56:
-    id: 300e77bc-b12f-4f55-a022-dfdbd897fd56
-    content: does not overwrite the existing collaboratingNodeId when sending bare content - passing (already invariant)
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  8c957590-ce45-4c36-803f-f235c415b261:
-    id: 8c957590-ce45-4c36-803f-f235c415b261
-    content: Added `bare-content terminal sends are not gated by an active collaboration` describe block in sendActions.test.ts (collaborateInTerminal)
-    children:
-      - 9f434741-368a-473c-b121-3b43424498a8
-      - e928f2d0-3351-4f03-82da-ad1b77c770ab
-      - 190b2e07-7d68-44ea-b58b-2e2f2c4c7396
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  9f434741-368a-473c-b121-3b43424498a8:
-    id: 9f434741-368a-473c-b121-3b43424498a8
-    content: still sends bare content to the terminal when another collaboration is in progress - FAILING (red)
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  e928f2d0-3351-4f03-82da-ad1b77c770ab:
-    id: e928f2d0-3351-4f03-82da-ad1b77c770ab
-    content: does not log "Collaboration already in progress" for bare-content terminal sends - FAILING (red)
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  190b2e07-7d68-44ea-b58b-2e2f2c4c7396:
-    id: 190b2e07-7d68-44ea-b58b-2e2f2c4c7396
-    content: does not overwrite the existing collaboratingNodeId or start a feedback watcher - passing (already invariant)
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  84bdeffd-5854-4a13-a23d-3abac18360c4:
-    id: 84bdeffd-5854-4a13-a23d-3abac18360c4
-    content: 'Verified by running only sendActions.test.ts: 4 new tests fail with the expected assertion mismatches, no other regressions in the suite'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
   3af42276-565e-48a0-8a24-6116e6b5eb98:
     id: 3af42276-565e-48a0-8a24-6116e6b5eb98
     content: worktree
@@ -91930,6 +91695,241 @@ nodes:
     children: []
     metadata:
       status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  ac78b5e3-d1ef-4498-8fcc-937497fa9167:
+    id: ac78b5e3-d1ef-4498-8fcc-937497fa9167
+    content: worktree
+    children:
+      - a2fb9beb-ab38-4532-a360-e15f4c7ca96a
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a2fb9beb-ab38-4532-a360-e15f4c7ca96a:
+    id: a2fb9beb-ab38-4532-a360-e15f4c7ca96a
+    content: '[Open in VSCode](vscode://file/Users/brianfox/dev/Arborescent-no-context-collaboration-flag)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  84a0c8e1-5b81-4035-96bb-b3d5a8152549:
+    id: 84a0c8e1-5b81-4035-96bb-b3d5a8152549
+    content: It doesn't make sense as no collaboration is asked for
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0c6883e6-952e-4269-81ed-8dc74b93be67:
+    id: 0c6883e6-952e-4269-81ed-8dc74b93be67
+    content: Not sure if this is still an issue - check it, and flag the user if it's no longer a problem, and pause the workflow
+    children:
+      - 849e50d5-430a-47e7-bcbb-45d64dbea00a
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  849e50d5-430a-47e7-bcbb-45d64dbea00a:
+    id: 849e50d5-430a-47e7-bcbb-45d64dbea00a
+    content: 'Confirmed still present: in `collaborate` and `collaborateInTerminal` (sendActions.ts:384, :440), the `collaboratingNodeId` guard runs BEFORE the no-context bare-send branches (lines 410, 461), so bare-content sends are wrongly blocked while another collaboration is active'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3420b82f-2961-49e1-8cd5-48ab2e85427b:
+    id: 3420b82f-2961-49e1-8cd5-48ab2e85427b
+    content: Technical refinement
+    children:
+      - f090b02f-31c5-433a-87d1-16236040b4fd
+      - f874a80d-7b89-469d-a90a-5ee473c0f477
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f090b02f-31c5-433a-87d1-16236040b4fd:
+    id: f090b02f-31c5-433a-87d1-16236040b4fd
+    content: Flag complications
+    children:
+      - 2bae6143-54ea-469c-9ec5-6d006ab07414
+      - 159e0ef2-c592-4f6a-bbf7-b081895076b9
+      - 25eff925-f9ef-420b-b178-b170a36079c2
+      - 35eecbcd-2a37-4eca-b9dc-7b95935de967
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2bae6143-54ea-469c-9ec5-6d006ab07414:
+    id: 2bae6143-54ea-469c-9ec5-6d006ab07414
+    content: Ambiguous what 'sending a node' covers - terminal send, browser send, or both - the trigger condition may differ per destination
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  159e0ef2-c592-4f6a-bbf7-b081895076b9:
+    id: 159e0ef2-c592-4f6a-bbf7-b081895076b9
+    content: If the 'collaboration in progress' flag also gates subsequent sends, users could hit a soft dead-end until it's manually cleared
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  25eff925-f9ef-420b-b178-b170a36079c2:
+    id: 25eff925-f9ef-420b-b178-b170a36079c2
+    content: 'Out of scope: legitimate ''collaboration in progress'' state when a context IS attached and AI is actually engaged'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  35eecbcd-2a37-4eca-b9dc-7b95935de967:
+    id: 35eecbcd-2a37-4eca-b9dc-7b95935de967
+    content: Low complexity, but ROI depends on whether this is a stale state bug or an intentional UX signal that needs rethinking
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f874a80d-7b89-469d-a90a-5ee473c0f477:
+    id: f874a80d-7b89-469d-a90a-5ee473c0f477
+    content: Summarise the approach
+    children:
+      - af51a217-303b-4a0f-9cf7-b0bac7656b71
+      - 3bb30de2-1df1-4ef8-bdf9-59616a6eebc4
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  af51a217-303b-4a0f-9cf7-b0bac7656b71:
+    id: af51a217-303b-4a0f-9cf7-b0bac7656b71
+    content: Treat 'collaboration in progress' as a signal of actual AI engagement, not of any send action - gate it on whether a context/AI handoff is in play
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3bb30de2-1df1-4ef8-bdf9-59616a6eebc4:
+    id: 3bb30de2-1df1-4ef8-bdf9-59616a6eebc4
+    content: Change lands in the send action(s) in the store and any consumers reading the in-progress flag - small surface area
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  da1a1829-72e7-4443-b2c5-b0cb0f922f71:
+    id: da1a1829-72e7-4443-b2c5-b0cb0f922f71
+    content: TDD tests written (red phase)
+    children:
+      - 13d9c31b-837f-4e82-a102-18d45ab212c6
+      - cf1d73f1-4a72-44df-b0c4-9cb02c596b56
+      - 86f6455f-a3af-4849-a83f-3b38be8f3130
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  13d9c31b-837f-4e82-a102-18d45ab212c6:
+    id: 13d9c31b-837f-4e82-a102-18d45ab212c6
+    content: Added `bare-content sends are not gated by an active collaboration` describe block in sendActions.test.ts (collaborate)
+    children:
+      - 94cec2ac-c8d0-499c-b344-20abf5fd3e60
+      - 19d7250d-f2d0-482b-a93c-6dfc4b6c3361
+      - 49f3e6b9-9a00-4dbe-a869-c7a0e1d566e5
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  94cec2ac-c8d0-499c-b344-20abf5fd3e60:
+    id: 94cec2ac-c8d0-499c-b344-20abf5fd3e60
+    content: still copies bare content to clipboard when another collaboration is in progress - FAILING (red)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  19d7250d-f2d0-482b-a93c-6dfc4b6c3361:
+    id: 19d7250d-f2d0-482b-a93c-6dfc4b6c3361
+    content: does not log "Collaboration already in progress" for bare-content sends - FAILING (red)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  49f3e6b9-9a00-4dbe-a869-c7a0e1d566e5:
+    id: 49f3e6b9-9a00-4dbe-a869-c7a0e1d566e5
+    content: does not overwrite the existing collaboratingNodeId when sending bare content - passing (already invariant)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cf1d73f1-4a72-44df-b0c4-9cb02c596b56:
+    id: cf1d73f1-4a72-44df-b0c4-9cb02c596b56
+    content: Added `bare-content terminal sends are not gated by an active collaboration` describe block in sendActions.test.ts (collaborateInTerminal)
+    children:
+      - d9199e20-90c3-453b-a47c-5eed29d1bd13
+      - 4d7a659f-ef53-4774-a3dd-c39d102021af
+      - 0b112e75-a786-43ca-bd99-0adfd7543b6a
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d9199e20-90c3-453b-a47c-5eed29d1bd13:
+    id: d9199e20-90c3-453b-a47c-5eed29d1bd13
+    content: still sends bare content to the terminal when another collaboration is in progress - FAILING (red)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4d7a659f-ef53-4774-a3dd-c39d102021af:
+    id: 4d7a659f-ef53-4774-a3dd-c39d102021af
+    content: does not log "Collaboration already in progress" for bare-content terminal sends - FAILING (red)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0b112e75-a786-43ca-bd99-0adfd7543b6a:
+    id: 0b112e75-a786-43ca-bd99-0adfd7543b6a
+    content: does not overwrite the existing collaboratingNodeId or start a feedback watcher - passing (already invariant)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  86f6455f-a3af-4849-a83f-3b38be8f3130:
+    id: 86f6455f-a3af-4849-a83f-3b38be8f3130
+    content: 'Verified by running only sendActions.test.ts: 4 new tests fail with the expected assertion mismatches, no other regressions in the suite'
+    children: []
+    metadata:
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
