@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-05-07T14:43:51.958Z'
+updated: '2026-05-07T16:40:50.449Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -563,6 +563,7 @@ nodes:
     content: Opportunities
     children:
       - 1127dfe6-4578-4e72-a87c-48dbe8a805a8
+      - 0a46871d-9ad3-44f3-add8-d5afc63c36fc
       - 99c1ef4b-243f-4883-b0d9-9005eea177f9
       - 65ddf628-02ba-452f-9aa2-db85abaad45c
       - e745084c-18b7-4b78-94d8-9e14e05bc1c0
@@ -602,7 +603,7 @@ nodes:
       - e91d842b-d982-4f8b-a3c5-7f0a42c95604
     metadata:
       status: pending
-      expanded: false
+      expanded: true
       isBlueprint: true
       blueprintIcon: Brain
       blueprintColor: '#0ea5e9'
@@ -23853,9 +23854,6 @@ nodes:
     id: 00714a63-f267-4ab1-a285-73ae4198eb42
     content: Technical refinement
     children:
-      - 9f55ead4-f0e3-4969-8e10-8e61f33f89ec
-      - 6dfe8786-d370-4c64-a64a-73146ac8e11b
-      - ca7ad1fb-77fd-4fbd-aff2-8995ad06dbbf
       - 2000dd5f-b23d-4c6f-87ad-3dc666c45b91
       - b66f4108-240b-463d-8d00-30e6ec9239f9
       - e29b62d3-542b-4f07-9a9f-ef3882f50e19
@@ -25624,7 +25622,10 @@ nodes:
   333cb3e7-a25e-4d18-9dfa-82cf75328fff:
     id: 333cb3e7-a25e-4d18-9dfa-82cf75328fff
     content: AI refactor
-    children: []
+    children:
+      - 9f55ead4-f0e3-4969-8e10-8e61f33f89ec
+      - ca7ad1fb-77fd-4fbd-aff2-8995ad06dbbf
+      - 6dfe8786-d370-4c64-a64a-73146ac8e11b
     metadata:
       status: pending
       isBlueprint: true
@@ -25806,14 +25807,15 @@ nodes:
   bdceb696-248d-4199-9182-db0689445c07:
     id: bdceb696-248d-4199-9182-db0689445c07
     content: Documentation
-    children: []
+    children:
+      - e6aff7fa-7787-43c4-a81e-8c4d4ed14a51
     metadata:
       status: pending
       isBlueprint: true
       blueprintIcon: BookA
       blueprintColor: '#1074a2'
       appliedContextId: 0058432d-a010-473b-a707-ace2b1dee169
-      expanded: true
+      expanded: false
       stepType: checkpoint
       recurse: false
   9f4cb1c1-95ba-4523-9b59-86d02c56a0ed:
@@ -79671,17 +79673,16 @@ nodes:
     id: ca7ad1fb-77fd-4fbd-aff2-8995ad06dbbf
     content: 'Bug : Sending a node with no attached context triggers ''collaboration in progress'''
     children:
-      - dd94387e-d21c-4b76-a50e-5c95902cc17b
-      - b2668a12-dda1-41f0-92e7-bf4b26b4354c
+      - 2981c14b-3697-4df8-aeaf-743f6bbfd8c9
+      - 823865b4-a5d6-4440-8cfb-ca4aecb9e95d
+      - e8d98644-82b0-4fbd-bb25-404f2c46faf0
+      - 7ed08b40-ac5e-4583-9c24-cde81820f4d8
+      - 031474b8-60aa-4cc5-bcea-145a07befe31
     metadata:
-      status: pending
+      status: completed
       expanded: false
-  dd94387e-d21c-4b76-a50e-5c95902cc17b:
-    id: dd94387e-d21c-4b76-a50e-5c95902cc17b
-    content: It doesn't make sense as no collaboration is asked for
-    children: []
-    metadata:
-      status: pending
+      deleted: false
+      plugins: {}
   ecd1f697-fe54-4504-afa8-cfcbe471049f:
     id: ecd1f697-fe54-4504-afa8-cfcbe471049f
     content: Don't unnecessarily list implementation details that the user doesn't need to know and that won't affect the outcome
@@ -83237,7 +83238,9 @@ nodes:
     id: 611a8d9e-c919-4f2b-97de-695d60787576
     content: 'Problem : Computer goes to sleep while workflows are running'
     children:
-      - 60b7d640-857a-468b-b589-0948651d4430
+      - 3af42276-565e-48a0-8a24-6116e6b5eb98
+      - 895bca6c-4e5c-4243-b2a4-2ea1dbcfbe2c
+      - 60f2dcbd-b4a8-49b1-a4b9-1492a527edb6
     metadata:
       status: pending
       expanded: false
@@ -83367,8 +83370,7 @@ nodes:
   4c43c117-e89a-460c-9900-7ea15b8cc0e0:
     id: 4c43c117-e89a-460c-9900-7ea15b8cc0e0
     content: User story creation
-    children:
-      - 611a8d9e-c919-4f2b-97de-695d60787576
+    children: []
     metadata:
       status: pending
       expanded: true
@@ -84774,7 +84776,7 @@ nodes:
     id: ddd90208-5752-46cf-b72a-5fcbe040b2e0
     content: Merge to master
     children:
-      - e6aff7fa-7787-43c4-a81e-8c4d4ed14a51
+      - 611a8d9e-c919-4f2b-97de-695d60787576
     metadata:
       status: pending
       isBlueprint: true
@@ -86434,20 +86436,21 @@ nodes:
     metadata:
       status: pending
       isBlueprint: true
-  e5ba08a0-2db1-4e15-bb03-16e320f395c2:
-    id: e5ba08a0-2db1-4e15-bb03-16e320f395c2
-    content: It closes the feedback panel if there is also a manual one in progress
-    children: []
-    metadata:
-      status: pending
   6dfe8786-d370-4c64-a64a-73146ac8e11b:
     id: 6dfe8786-d370-4c64-a64a-73146ac8e11b
     content: 'Bug : If automated feedback is accepted'
     children:
-      - e5ba08a0-2db1-4e15-bb03-16e320f395c2
+      - 911696c6-f77d-4d3e-b79c-9ae19466107e
+      - 552ef5ea-7076-424d-aae8-289893de56a4
+      - 1abf54a9-b96f-4fa8-bc1b-39000a055baf
+      - c03776ed-737e-4225-b9ed-0e2e06ac6a56
+      - 0980f0e4-d921-4905-a87f-85a987c55c99
+      - 9bff9c51-f978-4e60-8396-8bf32c894689
     metadata:
-      status: pending
+      status: completed
       expanded: false
+      deleted: false
+      plugins: {}
   2000dd5f-b23d-4c6f-87ad-3dc666c45b91:
     id: 2000dd5f-b23d-4c6f-87ad-3dc666c45b91
     content: 'Bug : If we have a collaboration in progress, and copy/cut another node, then it gets detected by the clipboard, fills the feedback panel, and cancels the collaboration'
@@ -86461,6 +86464,7 @@ nodes:
       - ad53d1c5-da4a-4f67-9252-4a682806cde7
       - 0624fb30-a727-4682-a2fa-31b83abab4f7
       - 842f5774-faa6-4105-b546-ba96077140b3
+      - d1fbff2c-215a-4ce8-80e1-5df93100efa7
     metadata:
       status: pending
       expanded: false
@@ -86470,131 +86474,6 @@ nodes:
     children: []
     metadata:
       status: pending
-  b2668a12-dda1-41f0-92e7-bf4b26b4354c:
-    id: b2668a12-dda1-41f0-92e7-bf4b26b4354c
-    content: Not sure if this is still an issue - check it, and flag the user if it's no longer a problem, and pause the workflow
-    children: []
-    metadata:
-      status: pending
-  60b7d640-857a-468b-b589-0948651d4430:
-    id: 60b7d640-857a-468b-b589-0948651d4430
-    content: Should be able to keep the computer awake
-    children:
-      - 3579c45e-edca-4ca6-a605-e2c82db6e802
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  3579c45e-edca-4ca6-a605-e2c82db6e802:
-    id: 3579c45e-edca-4ca6-a605-e2c82db6e802
-    content: Technical refinement
-    children:
-      - 85bb47f0-e3c2-4294-9c5c-6656dc443ba9
-      - ec45ec15-61e5-45e7-80ed-60036cc886e7
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  85bb47f0-e3c2-4294-9c5c-6656dc443ba9:
-    id: 85bb47f0-e3c2-4294-9c5c-6656dc443ba9
-    content: Flag complications
-    children:
-      - 20ea6c5c-153d-4410-bad5-e03944170fd0
-      - 3737a637-fb38-46fb-9bdb-a9763334f637
-      - ef0c46a6-c8ca-42e6-988f-c4fd0fdd3989
-      - 785d3e44-ee8c-400e-a789-6f22b999d347
-      - 7395eb99-3882-4190-8264-40fff765d3c2
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  20ea6c5c-153d-4410-bad5-e03944170fd0:
-    id: 20ea6c5c-153d-4410-bad5-e03944170fd0
-    content: Must release the blocker when workflows finish, error, or are cancelled — a leaked blocker keeps the machine awake indefinitely
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  3737a637-fb38-46fb-9bdb-a9763334f637:
-    id: 3737a637-fb38-46fb-9bdb-a9763334f637
-    content: Concurrent workflows need ref-counting (or a single shared blocker keyed by active count) so finishing one doesn't release the lock for the others
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ef0c46a6-c8ca-42e6-988f-c4fd0fdd3989:
-    id: ef0c46a6-c8ca-42e6-988f-c4fd0fdd3989
-    content: Choose `prevent-app-suspension` (system stays awake, display can still sleep) vs `prevent-display-sleep` — the former is almost certainly what's wanted, but worth confirming
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  785d3e44-ee8c-400e-a789-6f22b999d347:
-    id: 785d3e44-ee8c-400e-a789-6f22b999d347
-    content: 'Out of scope: waking the machine from sleep, scheduling, battery-aware throttling, user toggle to override'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  7395eb99-3882-4190-8264-40fff765d3c2:
-    id: 7395eb99-3882-4190-8264-40fff765d3c2
-    content: ROI is solid — small, contained change using a built-in Electron API; main risk is the leak case above
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ec45ec15-61e5-45e7-80ed-60036cc886e7:
-    id: ec45ec15-61e5-45e7-80ed-60036cc886e7
-    content: Approach
-    children:
-      - b9575bd5-16f2-44a6-b3a6-7f704eea4eea
-      - 6c6d1515-457c-4f15-9a95-0b6bff94b842
-      - c6775914-d59c-41df-95b5-0c1920c11c50
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  b9575bd5-16f2-44a6-b3a6-7f704eea4eea:
-    id: b9575bd5-16f2-44a6-b3a6-7f704eea4eea
-    content: Use Electron's `powerSaveBlocker` in the main process, exposed via a small IPC service (`startKeepAwake` / `stopKeepAwake`)
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  6c6d1515-457c-4f15-9a95-0b6bff94b842:
-    id: 6c6d1515-457c-4f15-9a95-0b6bff94b842
-    content: Workflow runner increments on start and decrements on terminal state (success / failure / cancel); blocker is active iff count > 0
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  c6775914-d59c-41df-95b5-0c1920c11c50:
-    id: c6775914-d59c-41df-95b5-0c1920c11c50
-    content: 'Non-obvious: blocker dies with the main process, so a crash auto-recovers — no persistent state needed'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
   83284510-f8ba-4b5a-9f9a-9c2e942d406f:
     id: 83284510-f8ba-4b5a-9f9a-9c2e942d406f
     content: worktree
@@ -88746,17 +88625,16 @@ nodes:
     id: 9f55ead4-f0e3-4969-8e10-8e61f33f89ec
     content: 'Bug : Pause workflow hook not always working'
     children:
-      - 1f8f7b11-b46c-460d-b57c-b8bd7b44c163
-      - 145eb606-1be4-40bc-954d-4df9f4eb8a17
+      - fd64d153-480f-43e0-8f76-eb4d138c8bd8
+      - b6365d8f-c7af-4393-95e3-c1b6440a666e
+      - 3f0f7ebb-1569-4bb3-b3bf-ac2d2e2012bf
+      - 27bf4347-c5c7-4b83-92dd-8c777ce2f737
+      - 9ff6cb3f-17c8-4626-b10b-f8c2ce37e97a
     metadata:
-      status: pending
+      status: completed
       expanded: false
-  1f8f7b11-b46c-460d-b57c-b8bd7b44c163:
-    id: 1f8f7b11-b46c-460d-b57c-b8bd7b44c163
-    content: "Sometimes does, sometimes doesn't\_"
-    children: []
-    metadata:
-      status: pending
+      deleted: false
+      plugins: {}
   506438f5-dc34-4a20-ae15-3ce76d48615d:
     id: 506438f5-dc34-4a20-ae15-3ce76d48615d
     content: worktree
@@ -90495,19 +90373,6 @@ nodes:
       deleted: false
       plugins: {}
       isBlueprint: true
-  145eb606-1be4-40bc-954d-4df9f4eb8a17:
-    id: 145eb606-1be4-40bc-954d-4df9f4eb8a17
-    content: 'Here''s a diagnosis of one time it didn''t work from a colleague :'
-    children:
-      - 04d9facf-3d91-47ab-a587-83895a742900
-    metadata:
-      status: pending
-  04d9facf-3d91-47ab-a587-83895a742900:
-    id: 04d9facf-3d91-47ab-a587-83895a742900
-    content: /Users/brianfox/dev/needsreview-hook-diagnosis.md
-    children: []
-    metadata:
-      status: pending
   0624fb30-a727-4682-a2fa-31b83abab4f7:
     id: 0624fb30-a727-4682-a2fa-31b83abab4f7
     content: Either in a new terminal
@@ -90558,14 +90423,14 @@ nodes:
     id: e6aff7fa-7787-43c4-a81e-8c4d4ed14a51
     content: Workflow advances prematurely when Claude backgrounds a check
     children:
-      - 22e57588-04a9-4e65-acdf-216f97c65a01
-      - 690f88cc-19f9-46be-89ff-e0ce3a40a3e4
-      - 650d3807-bfa8-4a18-9137-81889e3d6827
-      - 5ed1747a-0d72-420f-bfbc-163db10acb3a
-      - 2b3e8fca-d86c-4850-940a-b581ded5c08c
+      - 82443d07-8bee-4440-8de1-82b205fa2f3e
+      - e6ba4c47-c4a9-45a4-8703-8db764228511
+      - e4582387-c2d0-4fb2-921f-393e3c3c11f0
+      - 3d649fef-befd-4007-92a3-812bf30e2d2f
+      - ae6737e4-2932-49de-a23c-389bab01c373
     metadata:
-      status: pending
-      expanded: false
+      status: completed
+      expanded: true
       deleted: false
       plugins: {}
   705fbcf5-aae7-4c3d-b64a-3264e42331c1:
@@ -90619,18 +90484,18 @@ nodes:
     children: []
     metadata:
       status: pending
-  22e57588-04a9-4e65-acdf-216f97c65a01:
-    id: 22e57588-04a9-4e65-acdf-216f97c65a01
+  82443d07-8bee-4440-8de1-82b205fa2f3e:
+    id: 82443d07-8bee-4440-8de1-82b205fa2f3e
     content: worktree
     children:
-      - 227c6bba-df46-4d0e-a98a-676369237ee3
+      - 6fe95d4d-ca12-418b-955c-7b7330e2563e
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  227c6bba-df46-4d0e-a98a-676369237ee3:
-    id: 227c6bba-df46-4d0e-a98a-676369237ee3
+  6fe95d4d-ca12-418b-955c-7b7330e2563e:
+    id: 6fe95d4d-ca12-418b-955c-7b7330e2563e
     content: '[Open in VSCode](vscode://file/Users/brianfox/dev/Arborescent-inline-checks) — branch `fix/inline-checks` forked from `master` at `/Users/brianfox/dev/Arborescent-inline-checks`'
     children: []
     metadata:
@@ -90638,23 +90503,23 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  690f88cc-19f9-46be-89ff-e0ce3a40a3e4:
-    id: 690f88cc-19f9-46be-89ff-e0ce3a40a3e4
+  e6ba4c47-c4a9-45a4-8703-8db764228511:
+    id: e6ba4c47-c4a9-45a4-8703-8db764228511
     content: 📄 Product spec
     children:
-      - 50c5a4ff-93ea-4c69-9e95-78a4404f2a4d
-      - 2112faa3-c32b-40a4-964d-ec9d0251abb2
-      - 6d666c9d-ded3-4486-a4ba-5e9ecea0813a
-      - c52b2964-3e2c-4046-b6e9-1a8f39e1a7b4
-      - 6ef224de-a6c3-45bf-8d6f-9cff6b0fe9c1
-      - e45be7c0-f6de-4dc5-9635-11740841e608
+      - a6e8e8e3-b32b-426e-886c-19155f523623
+      - 087d6c0d-03c2-40c2-9781-93e1230f4d90
+      - ae87bf85-2713-421b-80f3-adc7dbb95cbb
+      - a979590e-219d-4729-97d6-6a2cc39ebf5e
+      - 60dc8a23-fe61-48c9-9e29-163bad453045
+      - c55e0d92-3c49-4633-9cb8-69e269baa645
     metadata:
       status: pending
       expanded: true
       deleted: false
       plugins: {}
-  50c5a4ff-93ea-4c69-9e95-78a4404f2a4d:
-    id: 50c5a4ff-93ea-4c69-9e95-78a4404f2a4d
+  a6e8e8e3-b32b-426e-886c-19155f523623:
+    id: a6e8e8e3-b32b-426e-886c-19155f523623
     content: Context — Arborescent advances to the next workflow step when Claude's main process emits the 'done' hook. When Claude runs a check in a child process (e.g. `yarn test`) and stays idle while watching it, the main process looks done and Arborescent dispatches the next step before the actual work has finished.
     children: []
     metadata:
@@ -90662,8 +90527,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  2112faa3-c32b-40a4-964d-ec9d0251abb2:
-    id: 2112faa3-c32b-40a4-964d-ec9d0251abb2
+  087d6c0d-03c2-40c2-9781-93e1230f4d90:
+    id: 087d6c0d-03c2-40c2-9781-93e1230f4d90
     content: User — Arborescent user running multi-step workflows that include shell-executed checks such as build, tests, lint, or type-check
     children: []
     metadata:
@@ -90671,19 +90536,19 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  6d666c9d-ded3-4486-a4ba-5e9ecea0813a:
-    id: 6d666c9d-ded3-4486-a4ba-5e9ecea0813a
+  ae87bf85-2713-421b-80f3-adc7dbb95cbb:
+    id: ae87bf85-2713-421b-80f3-adc7dbb95cbb
     content: Current experience
     children:
-      - 447dcc4e-929c-4840-9d11-98de9d67f253
-      - c0501a8e-90d9-4c59-889d-418650ee28cf
+      - f2fd5ddb-0b5b-4549-a75b-03a7e52295fc
+      - 29ca8e17-a4a6-47fa-b547-c6125ef9362b
     metadata:
       status: pending
       expanded: true
       deleted: false
       plugins: {}
-  447dcc4e-929c-4840-9d11-98de9d67f253:
-    id: 447dcc4e-929c-4840-9d11-98de9d67f253
+  f2fd5ddb-0b5b-4549-a75b-03a7e52295fc:
+    id: f2fd5ddb-0b5b-4549-a75b-03a7e52295fc
     content: User expects each workflow step to fully complete before the next is dispatched
     children: []
     metadata:
@@ -90691,8 +90556,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  c0501a8e-90d9-4c59-889d-418650ee28cf:
-    id: c0501a8e-90d9-4c59-889d-418650ee28cf
+  29ca8e17-a4a6-47fa-b547-c6125ef9362b:
+    id: 29ca8e17-a4a6-47fa-b547-c6125ef9362b
     content: In practice, when Claude backgrounds a check and watches it, Arborescent fires the next step early and corrupts the workflow ordering
     children: []
     metadata:
@@ -90700,8 +90565,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  c52b2964-3e2c-4046-b6e9-1a8f39e1a7b4:
-    id: c52b2964-3e2c-4046-b6e9-1a8f39e1a7b4
+  a979590e-219d-4729-97d6-6a2cc39ebf5e:
+    id: a979590e-219d-4729-97d6-6a2cc39ebf5e
     content: Goal — each workflow step holds the workflow until its actual work has finished, including any background process Claude is waiting on
     children: []
     metadata:
@@ -90709,21 +90574,21 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  6ef224de-a6c3-45bf-8d6f-9cff6b0fe9c1:
-    id: 6ef224de-a6c3-45bf-8d6f-9cff6b0fe9c1
+  60dc8a23-fe61-48c9-9e29-163bad453045:
+    id: 60dc8a23-fe61-48c9-9e29-163bad453045
     content: Business rules
     children:
-      - c86de9ab-a8b8-434e-9aa3-3b0ed35d2923
-      - 09495c12-accc-4810-9950-3caa77d9b0ae
-      - bb456c07-7ab4-47c3-8282-58bba75664ff
-      - 78210b62-90e2-466d-85b3-2143edff3203
+      - f7bee38d-f5a6-4016-9601-2a9e27d1cd0c
+      - f470f24d-4953-4356-9472-a32eda51e23d
+      - 94131e54-7ea1-4b08-9eeb-3642ec9b4060
+      - f33b7765-5b35-421a-b6b0-c12a65a87cca
     metadata:
       status: pending
       expanded: true
       deleted: false
       plugins: {}
-  c86de9ab-a8b8-434e-9aa3-3b0ed35d2923:
-    id: c86de9ab-a8b8-434e-9aa3-3b0ed35d2923
+  f7bee38d-f5a6-4016-9601-2a9e27d1cd0c:
+    id: f7bee38d-f5a6-4016-9601-2a9e27d1cd0c
     content: 1. Default workflow instructions must direct Claude to run all checks (build, tests, lint, type-check) in the main process so the 'done' signal aligns with real completion.
     children: []
     metadata:
@@ -90731,8 +90596,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  09495c12-accc-4810-9950-3caa77d9b0ae:
-    id: 09495c12-accc-4810-9950-3caa77d9b0ae
+  f470f24d-4953-4356-9472-a32eda51e23d:
+    id: f470f24d-4953-4356-9472-a32eda51e23d
     content: 2. If a step requires a long-running command, the instructions must require Claude to wait for it inline in the main process rather than backgrounding and polling.
     children: []
     metadata:
@@ -90740,8 +90605,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  bb456c07-7ab4-47c3-8282-58bba75664ff:
-    id: bb456c07-7ab4-47c3-8282-58bba75664ff
+  94131e54-7ea1-4b08-9eeb-3642ec9b4060:
+    id: 94131e54-7ea1-4b08-9eeb-3642ec9b4060
     content: 3. Users can override these defaults on a per-workflow basis when they have a genuine reason to background execution.
     children: []
     metadata:
@@ -90749,30 +90614,30 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  78210b62-90e2-466d-85b3-2143edff3203:
-    id: 78210b62-90e2-466d-85b3-2143edff3203
+  f33b7765-5b35-421a-b6b0-c12a65a87cca:
+    id: f33b7765-5b35-421a-b6b0-c12a65a87cca
     content: 4. If Claude ignores the guidance and the workflow advances early, the failure mode is documented so the user understands why it happened.
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  e45be7c0-f6de-4dc5-9635-11740841e608:
-    id: e45be7c0-f6de-4dc5-9635-11740841e608
+  c55e0d92-3c49-4633-9cb8-69e269baa645:
+    id: c55e0d92-3c49-4633-9cb8-69e269baa645
     content: Acceptance criteria
     children:
-      - f61066a6-3dd5-431c-a8e6-eee1e0cceff7
-      - dab5e0b5-64d8-4fe2-8a13-7754756086da
-      - 589beaea-c1a3-4a53-8bf8-a8275e1bf1fc
-      - 3c913a00-35db-4a57-ab34-a3e188dd4060
+      - dd2dfdd1-480c-44ac-a9af-3bcbf7296530
+      - cb6bd5a9-0edb-4a9b-b2d0-098230467bd3
+      - a75d9aab-8141-445d-96af-3ccb4413b57b
+      - 73bc221c-05c1-4e08-9303-320232f6cdc6
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  f61066a6-3dd5-431c-a8e6-eee1e0cceff7:
-    id: f61066a6-3dd5-431c-a8e6-eee1e0cceff7
+  dd2dfdd1-480c-44ac-a9af-3bcbf7296530:
+    id: dd2dfdd1-480c-44ac-a9af-3bcbf7296530
     content: Default workflow instructions explicitly tell Claude to run checks in the main process and avoid backgrounded child processes for workflow steps
     children: []
     metadata:
@@ -90780,8 +90645,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  dab5e0b5-64d8-4fe2-8a13-7754756086da:
-    id: dab5e0b5-64d8-4fe2-8a13-7754756086da
+  cb6bd5a9-0edb-4a9b-b2d0-098230467bd3:
+    id: cb6bd5a9-0edb-4a9b-b2d0-098230467bd3
     content: A workflow that runs `yarn test` (or equivalent) does not advance until the test command has finished
     children: []
     metadata:
@@ -90789,8 +90654,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  589beaea-c1a3-4a53-8bf8-a8275e1bf1fc:
-    id: 589beaea-c1a3-4a53-8bf8-a8275e1bf1fc
+  a75d9aab-8141-445d-96af-3ccb4413b57b:
+    id: a75d9aab-8141-445d-96af-3ccb4413b57b
     content: Workflows that already run checks inline continue to function unchanged
     children: []
     metadata:
@@ -90798,29 +90663,29 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  3c913a00-35db-4a57-ab34-a3e188dd4060:
-    id: 3c913a00-35db-4a57-ab34-a3e188dd4060
+  73bc221c-05c1-4e08-9303-320232f6cdc6:
+    id: 73bc221c-05c1-4e08-9303-320232f6cdc6
     content: In-app guidance or docs describe the limitation so users know the boundary of the mitigation
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  650d3807-bfa8-4a18-9137-81889e3d6827:
-    id: 650d3807-bfa8-4a18-9137-81889e3d6827
+  e4582387-c2d0-4fb2-921f-393e3c3c11f0:
+    id: e4582387-c2d0-4fb2-921f-393e3c3c11f0
     content: 🔧 Implementation proposal
     children:
-      - 77a610a1-d532-4f57-9b45-e4085fd86a4a
-      - 16bb7014-1ad2-41ff-811d-c5731fff0c87
-      - 7bbaf15a-7da3-4264-a069-62870e155473
+      - aed9b039-7cad-4cbf-a5f3-abda02f18784
+      - 970b016d-e2a7-4eb5-84d2-072421157b34
+      - bd792f49-ecc2-4ce9-818b-deee01748140
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  77a610a1-d532-4f57-9b45-e4085fd86a4a:
-    id: 77a610a1-d532-4f57-9b45-e4085fd86a4a
+  aed9b039-7cad-4cbf-a5f3-abda02f18784:
+    id: aed9b039-7cad-4cbf-a5f3-abda02f18784
     content: Approach — instruction-only change to the default workflow / collaboration instructions shipped with Arborescent, steering Claude away from backgrounded child processes for workflow steps; no hook protocol or process-detection rework
     children: []
     metadata:
@@ -90828,19 +90693,19 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  16bb7014-1ad2-41ff-811d-c5731fff0c87:
-    id: 16bb7014-1ad2-41ff-811d-c5731fff0c87
+  970b016d-e2a7-4eb5-84d2-072421157b34:
+    id: 970b016d-e2a7-4eb5-84d2-072421157b34
     content: Touchpoints
     children:
-      - 8babfd0f-a113-4801-97dd-f404cb3419ad
-      - 3d4afc04-60fe-4dce-905c-a9b57dc7abb5
+      - 647a71b2-c843-4332-b914-b6f90269dcfe
+      - 1fda9b24-ab41-4e31-8371-651c9b0ab593
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  8babfd0f-a113-4801-97dd-f404cb3419ad:
-    id: 8babfd0f-a113-4801-97dd-f404cb3419ad
+  647a71b2-c843-4332-b914-b6f90269dcfe:
+    id: 647a71b2-c843-4332-b914-b6f90269dcfe
     content: Default workflow instruction template (likely under `src/renderer/data/` or wherever default contexts/instructions live)
     children: []
     metadata:
@@ -90848,28 +90713,28 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  3d4afc04-60fe-4dce-905c-a9b57dc7abb5:
-    id: 3d4afc04-60fe-4dce-905c-a9b57dc7abb5
+  1fda9b24-ab41-4e31-8371-651c9b0ab593:
+    id: 1fda9b24-ab41-4e31-8371-651c9b0ab593
     content: In-app guidance / docs describing workflow behaviour and this constraint
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  7bbaf15a-7da3-4264-a069-62870e155473:
-    id: 7bbaf15a-7da3-4264-a069-62870e155473
+  bd792f49-ecc2-4ce9-818b-deee01748140:
+    id: bd792f49-ecc2-4ce9-818b-deee01748140
     content: Constraints to call out
     children:
-      - 627915e1-018e-4e83-83c9-dfb3c32a9d4d
-      - 921e81c5-70f9-4164-9e5d-57ceb3d138af
+      - efcae569-f0d3-4854-bba5-0ece76a44b7e
+      - cc944ff6-d007-4a83-9ced-e51faeb114de
     metadata:
       status: pending
       expanded: true
       deleted: false
       plugins: {}
-  627915e1-018e-4e83-83c9-dfb3c32a9d4d:
-    id: 627915e1-018e-4e83-83c9-dfb3c32a9d4d
+  efcae569-f0d3-4854-bba5-0ece76a44b7e:
+    id: efcae569-f0d3-4854-bba5-0ece76a44b7e
     content: Instruction-based steering is best-effort — Claude can ignore guidance, so this is a mitigation rather than a guaranteed fix
     children: []
     metadata:
@@ -90877,8 +90742,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  921e81c5-70f9-4164-9e5d-57ceb3d138af:
-    id: 921e81c5-70f9-4164-9e5d-57ceb3d138af
+  cc944ff6-d007-4a83-9ced-e51faeb114de:
+    id: cc944ff6-d007-4a83-9ced-e51faeb114de
     content: A bulletproof solution would require Arborescent to detect Claude-spawned child processes still running before honouring 'done', which is significantly more complex; flagged so the heavier fix is not pursued unless the instruction approach proves unreliable in practice
     children: []
     metadata:
@@ -90886,43 +90751,43 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  5ed1747a-0d72-420f-bfbc-163db10acb3a:
-    id: 5ed1747a-0d72-420f-bfbc-163db10acb3a
+  3d649fef-befd-4007-92a3-812bf30e2d2f:
+    id: 3d649fef-befd-4007-92a3-812bf30e2d2f
     content: 🛠 Technical refinement
     children:
-      - 571f0a1e-e13b-4652-a63a-1a4543868b4a
-      - 6fe3abb7-8bdb-4449-8d4b-4659aedcd5da
+      - d0298c82-7a33-4cdc-9078-7bbc2456db66
+      - c0833a70-7241-4f10-8499-6eb32dfef5e7
     metadata:
       status: pending
-      expanded: true
+      expanded: false
       deleted: false
       plugins: {}
-  571f0a1e-e13b-4652-a63a-1a4543868b4a:
-    id: 571f0a1e-e13b-4652-a63a-1a4543868b4a
+  d0298c82-7a33-4cdc-9078-7bbc2456db66:
+    id: d0298c82-7a33-4cdc-9078-7bbc2456db66
     content: Complications
     children:
-      - 2843c783-5753-4532-a095-34d253573935
-      - acaf688a-58d5-4f33-97dd-edbffa81051f
-      - 19dbe9a3-4fe0-46c1-af4e-1db26900cce2
-      - 2ba49b57-682e-4bfc-a5bc-895e877d7fdc
-      - c03cf654-0c1b-4d67-9aaf-4deab86abce9
+      - 75bc6071-ef2f-4f9e-8f2b-0cfbdc0c7e5a
+      - 015418ed-e64d-4b99-88d2-a2b5dc071d58
+      - d0b39f34-9ee6-4d1b-8aea-ac44ca3d4ea6
+      - 1b37bcb6-d639-445d-bdf9-8bb10c0fb211
+      - 99e1aa73-c6bd-4550-b58d-634982cb62c6
     metadata:
       status: pending
       expanded: true
       deleted: false
       plugins: {}
-  2843c783-5753-4532-a095-34d253573935:
-    id: 2843c783-5753-4532-a095-34d253573935
+  75bc6071-ef2f-4f9e-8f2b-0cfbdc0c7e5a:
+    id: 75bc6071-ef2f-4f9e-8f2b-0cfbdc0c7e5a
     content: The clause must land in the instruction surface actually injected at step-send time — confirm whether that is the default workflow context, the per-step prompt builder, or both
     children:
-      - 4320deb7-f890-4809-8e17-d6cba1d2d844
+      - 78917ac7-d76b-42b0-b9d5-dd741fcc2bcc
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  4320deb7-f890-4809-8e17-d6cba1d2d844:
-    id: 4320deb7-f890-4809-8e17-d6cba1d2d844
+  78917ac7-d76b-42b0-b9d5-dd741fcc2bcc:
+    id: 78917ac7-d76b-42b0-b9d5-dd741fcc2bcc
     content: I confirm it's in the per-step prompt builder and not the default context.  It should apply to all contexts INCLUDING actions, but only if the step is automated.
     children: []
     metadata:
@@ -90930,18 +90795,18 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  acaf688a-58d5-4f33-97dd-edbffa81051f:
-    id: acaf688a-58d5-4f33-97dd-edbffa81051f
+  015418ed-e64d-4b99-88d2-a2b5dc071d58:
+    id: 015418ed-e64d-4b99-88d2-a2b5dc071d58
     content: Users who have customised their default context will not inherit the new clause automatically — decide between migrate, append, or call it out in release notes
     children:
-      - 90fa1d46-88fa-4b8f-bcfb-092868b1a184
+      - d0ab6d01-6317-4e60-b3eb-36e0e9b0bbd4
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  90fa1d46-88fa-4b8f-bcfb-092868b1a184:
-    id: 90fa1d46-88fa-4b8f-bcfb-092868b1a184
+  d0ab6d01-6317-4e60-b3eb-36e0e9b0bbd4:
+    id: d0ab6d01-6317-4e60-b3eb-36e0e9b0bbd4
     content: Not possible to customize default context, and the clause does not go in the default context, but in the prompt instructions.
     children: []
     metadata:
@@ -90949,18 +90814,18 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  19dbe9a3-4fe0-46c1-af4e-1db26900cce2:
-    id: 19dbe9a3-4fe0-46c1-af4e-1db26900cce2
+  d0b39f34-9ee6-4d1b-8aea-ac44ca3d4ea6:
+    id: d0b39f34-9ee6-4d1b-8aea-ac44ca3d4ea6
     content: Terminal-send and browser-send paths may use separate instruction templates; both need the clause for consistent behaviour
     children:
-      - fd07496d-d95e-419d-a20a-b1fbbdf9e8d4
+      - 5db6f702-cebe-44e8-9720-3347db41b49d
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  fd07496d-d95e-419d-a20a-b1fbbdf9e8d4:
-    id: fd07496d-d95e-419d-a20a-b1fbbdf9e8d4
+  5db6f702-cebe-44e8-9720-3347db41b49d:
+    id: 5db6f702-cebe-44e8-9720-3347db41b49d
     content: This only applies to terminal, not to browser
     children: []
     metadata:
@@ -90968,8 +90833,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  2ba49b57-682e-4bfc-a5bc-895e877d7fdc:
-    id: 2ba49b57-682e-4bfc-a5bc-895e877d7fdc
+  1b37bcb6-d639-445d-bdf9-8bb10c0fb211:
+    id: 1b37bcb6-d639-445d-bdf9-8bb10c0fb211
     content: 'Out of scope: ''done'' hook protocol changes, child-process detection, sub-agent (Task tool) handling — sub-agents block their parent inline, so they don''t trigger this bug'
     children: []
     metadata:
@@ -90977,8 +90842,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  c03cf654-0c1b-4d67-9aaf-4deab86abce9:
-    id: c03cf654-0c1b-4d67-9aaf-4deab86abce9
+  99e1aa73-c6bd-4550-b58d-634982cb62c6:
+    id: 99e1aa73-c6bd-4550-b58d-634982cb62c6
     content: ROI watch — if reports persist after the clause ships, that's the trigger to revisit process-tree detection; do not pre-build it
     children: []
     metadata:
@@ -90986,20 +90851,20 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  6fe3abb7-8bdb-4449-8d4b-4659aedcd5da:
-    id: 6fe3abb7-8bdb-4449-8d4b-4659aedcd5da
+  c0833a70-7241-4f10-8499-6eb32dfef5e7:
+    id: c0833a70-7241-4f10-8499-6eb32dfef5e7
     content: Approach summary
     children:
-      - bab98c8b-7379-4aaa-ad28-0c3c2ec6e144
-      - e746c9c3-a611-4841-b99c-f841891831b6
-      - 980f6d50-8342-4b85-9674-adabb8681803
+      - e663dad1-ed79-4806-9c5f-2120579ec96b
+      - 749d0e74-c17f-419e-a836-0a7a59d9c50b
+      - 7728d2fe-7622-4bfe-8114-c71651384657
     metadata:
       status: completed
-      expanded: true
+      expanded: false
       deleted: false
       plugins: {}
-  bab98c8b-7379-4aaa-ad28-0c3c2ec6e144:
-    id: bab98c8b-7379-4aaa-ad28-0c3c2ec6e144
+  e663dad1-ed79-4806-9c5f-2120579ec96b:
+    id: e663dad1-ed79-4806-9c5f-2120579ec96b
     content: Add a "run checks inline; do not background or watch via `&`/poll loops" clause to the default workflow instruction template — no runtime or hook changes
     children: []
     metadata:
@@ -91007,8 +90872,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  e746c9c3-a611-4841-b99c-f841891831b6:
-    id: e746c9c3-a611-4841-b99c-f841891831b6
+  749d0e74-c17f-419e-a836-0a7a59d9c50b:
+    id: 749d0e74-c17f-419e-a836-0a7a59d9c50b
     content: Apply uniformly across terminal-send and browser-send templates so workflow behaviour matches across surfaces
     children: []
     metadata:
@@ -91016,8 +90881,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  980f6d50-8342-4b85-9674-adabb8681803:
-    id: 980f6d50-8342-4b85-9674-adabb8681803
+  7728d2fe-7622-4bfe-8114-c71651384657:
+    id: 7728d2fe-7622-4bfe-8114-c71651384657
     content: 'Non-obvious for reviewers: this is a soft mitigation — the bug remains reachable if Claude ignores the clause or the user runs a custom context that doesn''t include it'
     children: []
     metadata:
@@ -91025,12 +90890,1046 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  2b3e8fca-d86c-4850-940a-b581ded5c08c:
-    id: 2b3e8fca-d86c-4850-940a-b581ded5c08c
+  ae6737e4-2932-49de-a23c-389bab01c373:
+    id: ae6737e4-2932-49de-a23c-389bab01c373
     content: 'Implementation notes — clause shipped to autonomous-terminal prompt instructions only (terminal+autonomous, all flag combos, all contexts that hit the wrapper). Manual-terminal and web paths intentionally unchanged. Docs/in-app guidance (acceptance #4, touchpoint) deferred per "this is a coding task". One title-only test left for the bare-content/action path (no instruction wrapper) — the autonomous-action case is uncovered today; flag if it matters in practice. 8 new tests pass; 87 of 87 pass in sendActions.test.ts; lint and tsc clean on changed files.'
     children: []
     metadata:
       status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0a46871d-9ad3-44f3-add8-d5afc63c36fc:
+    id: 0a46871d-9ad3-44f3-add8-d5afc63c36fc
+    content: Would be cool to highlight a node that is mapped to a session
+    children:
+      - 3c25db20-0aee-40c7-89dc-b0b114e58596
+    metadata:
+      status: pending
+      expanded: false
+  3c25db20-0aee-40c7-89dc-b0b114e58596:
+    id: 3c25db20-0aee-40c7-89dc-b0b114e58596
+    content: When we highlight a terminal window, if there is a node in progress in it, highlight the node
+    children:
+      - 4057f3e9-bb46-44bf-bcea-36a914f32ce8
+    metadata:
+      status: pending
+  4057f3e9-bb46-44bf-bcea-36a914f32ce8:
+    id: 4057f3e9-bb46-44bf-bcea-36a914f32ce8
+    content: Can consider doing this uniquely for nodes in a running workflow
+    children: []
+    metadata:
+      status: pending
+  d1fbff2c-215a-4ce8-80e1-5df93100efa7:
+    id: d1fbff2c-215a-4ce8-80e1-5df93100efa7
+    content: If we have this, maybe we don't need the 'recurse' option
+    children:
+      - cea6868d-d241-4eb4-8879-e147c16f5fd7
+      - 3e88306f-85f3-483b-b05f-a518571f5129
+      - 5f407706-ddf0-469e-a6bc-374b81135669
+    metadata:
+      status: pending
+  cea6868d-d241-4eb4-8879-e147c16f5fd7:
+    id: cea6868d-d241-4eb4-8879-e147c16f5fd7
+    content: The user can just kick off a bunch
+    children: []
+    metadata:
+      status: pending
+  3e88306f-85f3-483b-b05f-a518571f5129:
+    id: 3e88306f-85f3-483b-b05f-a518571f5129
+    content: Actually no - because we could have a case where a PR can be broken in several
+    children:
+      - 3e85a8ef-6d37-49eb-82db-916275cb7a92
+      - ba338a62-f19c-485d-89a5-04b8d99bc461
+    metadata:
+      status: pending
+  3e85a8ef-6d37-49eb-82db-916275cb7a92:
+    id: 3e85a8ef-6d37-49eb-82db-916275cb7a92
+    content: That's decomposition
+    children: []
+    metadata:
+      status: pending
+  ba338a62-f19c-485d-89a5-04b8d99bc461:
+    id: ba338a62-f19c-485d-89a5-04b8d99bc461
+    content: And perhaps recurse should be matched to decomposition
+    children:
+      - dea561db-184d-49af-9c32-2d880836e320
+    metadata:
+      status: pending
+  dea561db-184d-49af-9c32-2d880836e320:
+    id: dea561db-184d-49af-9c32-2d880836e320
+    content: Map a relation between decomposed nodes and when one is finished, go fetch the previous one
+    children: []
+    metadata:
+      status: pending
+  5f407706-ddf0-469e-a6bc-374b81135669:
+    id: 5f407706-ddf0-469e-a6bc-374b81135669
+    content: It is a bit of a shame though to not be able to queue up a bunch of tasks
+    children:
+      - d4863045-206a-45e7-be2b-20dfdcd56284
+      - 4188d153-7683-45f6-88af-b869a8349bcc
+    metadata:
+      status: pending
+  d4863045-206a-45e7-be2b-20dfdcd56284:
+    id: d4863045-206a-45e7-be2b-20dfdcd56284
+    content: So the tension is between - queuing up, and running in parallel
+    children: []
+    metadata:
+      status: pending
+  4188d153-7683-45f6-88af-b869a8349bcc:
+    id: 4188d153-7683-45f6-88af-b869a8349bcc
+    content: Think about it...
+    children: []
+    metadata:
+      status: pending
+  fd64d153-480f-43e0-8f76-eb4d138c8bd8:
+    id: fd64d153-480f-43e0-8f76-eb4d138c8bd8
+    content: worktree
+    children:
+      - 8e058ca3-dac6-4af4-8baf-f6818ca1a3f2
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8e058ca3-dac6-4af4-8baf-f6818ca1a3f2:
+    id: 8e058ca3-dac6-4af4-8baf-f6818ca1a3f2
+    content: vscode://file/Users/brianfox/dev/Arborescent-needs-review-hook-notification
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b6365d8f-c7af-4393-95e3-c1b6440a666e:
+    id: b6365d8f-c7af-4393-95e3-c1b6440a666e
+    content: Sometimes does, sometimes doesn't
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3f0f7ebb-1569-4bb3-b3bf-ac2d2e2012bf:
+    id: 3f0f7ebb-1569-4bb3-b3bf-ac2d2e2012bf
+    content: 'Here''s a diagnosis of one time it didn''t work from a colleague :'
+    children:
+      - 1b76395e-62b5-4641-a67e-504937493f22
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1b76395e-62b5-4641-a67e-504937493f22:
+    id: 1b76395e-62b5-4641-a67e-504937493f22
+    content: /Users/brianfox/dev/needsreview-hook-diagnosis.md
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  27bf4347-c5c7-4b83-92dd-8c777ce2f737:
+    id: 27bf4347-c5c7-4b83-92dd-8c777ce2f737
+    content: Technical refinement
+    children:
+      - 1662eaf0-127c-40f8-af11-2b0e982debe2
+      - 63ed6bee-ff38-4497-bd7f-69255ec342c8
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1662eaf0-127c-40f8-af11-2b0e982debe2:
+    id: 1662eaf0-127c-40f8-af11-2b0e982debe2
+    content: Flag complications
+    children:
+      - cbb2b07a-cca1-418f-939d-b665eac7b393
+      - f899240a-2f29-4b0a-bb38-2e8610deea08
+      - 5994071b-5ad1-4cef-b2ad-6c128313f084
+      - 6808063f-d4b1-49f8-a193-4e0597a6a3c6
+      - 72c70b56-2f9f-4727-9ac3-f6ac832a11d4
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cbb2b07a-cca1-418f-939d-b665eac7b393:
+    id: cbb2b07a-cca1-418f-939d-b665eac7b393
+    content: 'Diagnosis hypotheses point at server/auth/routing — actual cause is downstream in the renderer: the hook is accepted (200) and logged, but the `NeedsReview` branch only sets a `needsReview: true` flag on the execution entry, with no toast or system notification.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f899240a-2f29-4b0a-bb38-2e8610deea08:
+    id: f899240a-2f29-4b0a-bb38-2e8610deea08
+    content: That flag is only ever consumed when a subsequent `Stop` event arrives AND the step type is `autonomous`. For `manual` or `checkpoint` steps the flag is dead. If the entry's state isn't `running` at the moment `NeedsReview` arrives, the flag isn't even set.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5994071b-5ad1-4cef-b2ad-6c128313f084:
+    id: 5994071b-5ad1-4cef-b2ad-6c128313f084
+    content: 'This explains the "sometimes works" pattern: it works only when Claude is on an autonomous step and ends its turn cleanly with Stop; otherwise the signal is silently dropped.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6808063f-d4b1-49f8-a193-4e0597a6a3c6:
+    id: 6808063f-d4b1-49f8-a193-4e0597a6a3c6
+    content: 'Out of scope: hook server, auth header form, event-name allowlist, server-side routing — all of these are correct and verified.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  72c70b56-2f9f-4727-9ac3-f6ac832a11d4:
+    id: 72c70b56-2f9f-4727-9ac3-f6ac832a11d4
+    content: Decide whether `NeedsReview` should fire an immediate user-visible signal across all step types, or stay deferred-until-Stop with a fallback. Choosing wrong risks double-notifications when Stop later arrives on an autonomous step.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  63ed6bee-ff38-4497-bd7f-69255ec342c8:
+    id: 63ed6bee-ff38-4497-bd7f-69255ec342c8
+    content: Summarise the approach
+    children:
+      - fb16f06b-be9b-483c-b307-2f70b882719f
+      - 21cd2dc1-c57a-4b55-b227-9f6ad7c2c7c4
+      - d3d72c7c-d4da-4da8-b098-3874927b1be8
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fb16f06b-be9b-483c-b307-2f70b882719f:
+    id: fb16f06b-be9b-483c-b307-2f70b882719f
+    content: Change is local to `src/renderer/store/tree/actions/workflowHookEventHandler.ts`, in the `NeedsReview` branch (lines ~92–104) — currently a state mutation only, no UI surface.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  21cd2dc1-c57a-4b55-b227-9f6ad7c2c7c4:
+    id: 21cd2dc1-c57a-4b55-b227-9f6ad7c2c7c4
+    content: Make `NeedsReview` surface a toast + `notifyWorkflowEvent` at arrival time, independent of step type and entry state, so the user always gets a signal. Keep (or simplify) the deferred autonomous-Stop path so we don't double-notify.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d3d72c7c-d4da-4da8-b098-3874927b1be8:
+    id: d3d72c7c-d4da-4da8-b098-3874927b1be8
+    content: 'Non-obvious: the server returns 200 even when the renderer silently drops the event (no terminal mapped, no running node, wrong state). Diagnosis from outside the app can''t distinguish "accepted and surfaced" from "accepted and dropped" — worth promoting those drop-paths from `info` to `warn` while we''re in the file.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9ff6cb3f-17c8-4626-b10b-f8c2ce37e97a:
+    id: 9ff6cb3f-17c8-4626-b10b-f8c2ce37e97a
+    content: TDD tests added (red phase)
+    children:
+      - 16300000-9697-4e91-b724-b421f148f3dd
+      - c9e830e0-97fb-45e3-9f52-fd4f9e1627f0
+      - 5723d7ad-57e7-4249-a72b-fc4380cb2814
+      - 1064ecdc-1e99-4f1c-93af-200feddcfb3c
+      - bfefbd9c-ad95-4230-a7e8-9cc83732a932
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  16300000-9697-4e91-b724-b421f148f3dd:
+    id: 16300000-9697-4e91-b724-b421f148f3dd
+    content: Added "NeedsReview immediate user-visible signal (fix)" describe block in `src/renderer/store/tree/actions/tests/workflowExecutionActions.test.ts`
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c9e830e0-97fb-45e3-9f52-fd4f9e1627f0:
+    id: c9e830e0-97fb-45e3-9f52-fd4f9e1627f0
+    content: 5 failing tests assert the desired post-fix behavior — toast + `notifyWorkflowEvent` fire on NeedsReview arrival across autonomous / checkpoint / manual step types, with no double-notify when Stop follows on an autonomous step
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5723d7ad-57e7-4249-a72b-fc4380cb2814:
+    id: 5723d7ad-57e7-4249-a72b-fc4380cb2814
+    content: 7 title-only tests left for uncertain post-fix design choices — covers awaiting-validation surfacing, drop-path warn-logging, idempotency under rapid duplicate events, and missing/empty `terminal_id` payloads
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1064ecdc-1e99-4f1c-93af-200feddcfb3c:
+    id: 1064ecdc-1e99-4f1c-93af-200feddcfb3c
+    content: Reused inline harness from existing `workflowExecutionActions.test.ts` (no `tests/fixtures/` directory exists in this repo) — same `mockAddToast` / `mockNotifyWorkflowEvent` / state factories already used by sibling tests
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bfefbd9c-ad95-4230-a7e8-9cc83732a932:
+    id: bfefbd9c-ad95-4230-a7e8-9cc83732a932
+    content: 'Verified the changed test file runs in isolation: 5 fail (red, expected), 90 pass — feature code intentionally untouched'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2981c14b-3697-4df8-aeaf-743f6bbfd8c9:
+    id: 2981c14b-3697-4df8-aeaf-743f6bbfd8c9
+    content: worktree
+    children:
+      - 83d8aa7f-70a6-414c-8651-b23f6d3b5dd1
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  83d8aa7f-70a6-414c-8651-b23f6d3b5dd1:
+    id: 83d8aa7f-70a6-414c-8651-b23f6d3b5dd1
+    content: '[Open in VSCode](vscode://file/Users/brianfox/dev/Arborescent-no-context-collaboration-flag)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  823865b4-a5d6-4440-8cfb-ca4aecb9e95d:
+    id: 823865b4-a5d6-4440-8cfb-ca4aecb9e95d
+    content: It doesn't make sense as no collaboration is asked for
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e8d98644-82b0-4fbd-bb25-404f2c46faf0:
+    id: e8d98644-82b0-4fbd-bb25-404f2c46faf0
+    content: Not sure if this is still an issue - check it, and flag the user if it's no longer a problem, and pause the workflow
+    children:
+      - bede2d6a-5354-41ed-b626-b08cf3f0e003
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bede2d6a-5354-41ed-b626-b08cf3f0e003:
+    id: bede2d6a-5354-41ed-b626-b08cf3f0e003
+    content: 'Confirmed still present: in `collaborate` and `collaborateInTerminal` (sendActions.ts:384, :440), the `collaboratingNodeId` guard runs BEFORE the no-context bare-send branches (lines 410, 461), so bare-content sends are wrongly blocked while another collaboration is active'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7ed08b40-ac5e-4583-9c24-cde81820f4d8:
+    id: 7ed08b40-ac5e-4583-9c24-cde81820f4d8
+    content: Technical refinement
+    children:
+      - 60ff934e-d0d5-4060-8321-a04dde668df4
+      - d523af5b-1caa-4b50-aa8a-e3fbe2b1fce8
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  60ff934e-d0d5-4060-8321-a04dde668df4:
+    id: 60ff934e-d0d5-4060-8321-a04dde668df4
+    content: Flag complications
+    children:
+      - 16a1b0f4-a23c-49e5-891b-8a45d7395eb3
+      - 3856567c-6c37-43d9-bcfe-644e577469e2
+      - 99661035-1389-4429-96d6-112e07f61db8
+      - 4582399f-80d0-46dc-a44d-1a01034c4089
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  16a1b0f4-a23c-49e5-891b-8a45d7395eb3:
+    id: 16a1b0f4-a23c-49e5-891b-8a45d7395eb3
+    content: Ambiguous what 'sending a node' covers - terminal send, browser send, or both - the trigger condition may differ per destination
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3856567c-6c37-43d9-bcfe-644e577469e2:
+    id: 3856567c-6c37-43d9-bcfe-644e577469e2
+    content: If the 'collaboration in progress' flag also gates subsequent sends, users could hit a soft dead-end until it's manually cleared
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  99661035-1389-4429-96d6-112e07f61db8:
+    id: 99661035-1389-4429-96d6-112e07f61db8
+    content: 'Out of scope: legitimate ''collaboration in progress'' state when a context IS attached and AI is actually engaged'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4582399f-80d0-46dc-a44d-1a01034c4089:
+    id: 4582399f-80d0-46dc-a44d-1a01034c4089
+    content: Low complexity, but ROI depends on whether this is a stale state bug or an intentional UX signal that needs rethinking
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d523af5b-1caa-4b50-aa8a-e3fbe2b1fce8:
+    id: d523af5b-1caa-4b50-aa8a-e3fbe2b1fce8
+    content: Summarise the approach
+    children:
+      - 23a5daf5-0c87-4d96-938e-d7275fea5271
+      - 198a0c47-f96f-40f7-a862-462030772ad3
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  23a5daf5-0c87-4d96-938e-d7275fea5271:
+    id: 23a5daf5-0c87-4d96-938e-d7275fea5271
+    content: Treat 'collaboration in progress' as a signal of actual AI engagement, not of any send action - gate it on whether a context/AI handoff is in play
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  198a0c47-f96f-40f7-a862-462030772ad3:
+    id: 198a0c47-f96f-40f7-a862-462030772ad3
+    content: Change lands in the send action(s) in the store and any consumers reading the in-progress flag - small surface area
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  031474b8-60aa-4cc5-bcea-145a07befe31:
+    id: 031474b8-60aa-4cc5-bcea-145a07befe31
+    content: TDD tests written (red phase)
+    children:
+      - 9d8b2a89-0b65-4f75-9d61-46cd7bec58c8
+      - 8c957590-ce45-4c36-803f-f235c415b261
+      - 84bdeffd-5854-4a13-a23d-3abac18360c4
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9d8b2a89-0b65-4f75-9d61-46cd7bec58c8:
+    id: 9d8b2a89-0b65-4f75-9d61-46cd7bec58c8
+    content: Added `bare-content sends are not gated by an active collaboration` describe block in sendActions.test.ts (collaborate)
+    children:
+      - 4d2edf8b-c7f6-4232-b5a6-7e6d7c605319
+      - 57b2298f-2705-497e-83e5-ee2bad6736b1
+      - 300e77bc-b12f-4f55-a022-dfdbd897fd56
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4d2edf8b-c7f6-4232-b5a6-7e6d7c605319:
+    id: 4d2edf8b-c7f6-4232-b5a6-7e6d7c605319
+    content: still copies bare content to clipboard when another collaboration is in progress - FAILING (red)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  57b2298f-2705-497e-83e5-ee2bad6736b1:
+    id: 57b2298f-2705-497e-83e5-ee2bad6736b1
+    content: does not log "Collaboration already in progress" for bare-content sends - FAILING (red)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  300e77bc-b12f-4f55-a022-dfdbd897fd56:
+    id: 300e77bc-b12f-4f55-a022-dfdbd897fd56
+    content: does not overwrite the existing collaboratingNodeId when sending bare content - passing (already invariant)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8c957590-ce45-4c36-803f-f235c415b261:
+    id: 8c957590-ce45-4c36-803f-f235c415b261
+    content: Added `bare-content terminal sends are not gated by an active collaboration` describe block in sendActions.test.ts (collaborateInTerminal)
+    children:
+      - 9f434741-368a-473c-b121-3b43424498a8
+      - e928f2d0-3351-4f03-82da-ad1b77c770ab
+      - 190b2e07-7d68-44ea-b58b-2e2f2c4c7396
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9f434741-368a-473c-b121-3b43424498a8:
+    id: 9f434741-368a-473c-b121-3b43424498a8
+    content: still sends bare content to the terminal when another collaboration is in progress - FAILING (red)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e928f2d0-3351-4f03-82da-ad1b77c770ab:
+    id: e928f2d0-3351-4f03-82da-ad1b77c770ab
+    content: does not log "Collaboration already in progress" for bare-content terminal sends - FAILING (red)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  190b2e07-7d68-44ea-b58b-2e2f2c4c7396:
+    id: 190b2e07-7d68-44ea-b58b-2e2f2c4c7396
+    content: does not overwrite the existing collaboratingNodeId or start a feedback watcher - passing (already invariant)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  84bdeffd-5854-4a13-a23d-3abac18360c4:
+    id: 84bdeffd-5854-4a13-a23d-3abac18360c4
+    content: 'Verified by running only sendActions.test.ts: 4 new tests fail with the expected assertion mismatches, no other regressions in the suite'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3af42276-565e-48a0-8a24-6116e6b5eb98:
+    id: 3af42276-565e-48a0-8a24-6116e6b5eb98
+    content: worktree
+    children:
+      - db173589-c8b5-4f1e-9959-fa3604010718
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  db173589-c8b5-4f1e-9959-fa3604010718:
+    id: db173589-c8b5-4f1e-9959-fa3604010718
+    content: '[Open in VSCode](vscode://file/Users/brianfox/dev/Arborescent-keep-computer-awake) — branch `feat/keep-computer-awake` at `/Users/brianfox/dev/Arborescent-keep-computer-awake` (reused from prior session)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  895bca6c-4e5c-4243-b2a4-2ea1dbcfbe2c:
+    id: 895bca6c-4e5c-4243-b2a4-2ea1dbcfbe2c
+    content: Should be able to keep the computer awake
+    children:
+      - 2e7ba954-bee0-4bc5-a9cd-f786220abc5b
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2e7ba954-bee0-4bc5-a9cd-f786220abc5b:
+    id: 2e7ba954-bee0-4bc5-a9cd-f786220abc5b
+    content: Technical refinement
+    children:
+      - 777d1830-876e-450d-9138-be991e99570b
+      - 7f8b8481-0f1d-4157-893d-d096b9120eb4
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  777d1830-876e-450d-9138-be991e99570b:
+    id: 777d1830-876e-450d-9138-be991e99570b
+    content: Flag complications
+    children:
+      - edc26b7c-afd3-40d3-804a-a881e3218103
+      - 2569dc45-659c-4a30-8f72-08305b9264ab
+      - ef10c2de-62e7-4153-828a-d202d367e6c7
+      - df6844bc-9905-4f40-8cd7-1679e1cd25b7
+      - 4f75235d-7a75-4b2a-870f-11cf01c4d906
+      - 9739d06a-85a2-42bb-94db-2cc1ff92f4a1
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  edc26b7c-afd3-40d3-804a-a881e3218103:
+    id: edc26b7c-afd3-40d3-804a-a881e3218103
+    content: Must release the blocker when workflows finish, error, or are cancelled — a leaked blocker keeps the machine awake indefinitely
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2569dc45-659c-4a30-8f72-08305b9264ab:
+    id: 2569dc45-659c-4a30-8f72-08305b9264ab
+    content: Concurrent workflows need ref-counting (or a single shared blocker keyed by active count) so finishing one doesn't release the lock for the others
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ef10c2de-62e7-4153-828a-d202d367e6c7:
+    id: ef10c2de-62e7-4153-828a-d202d367e6c7
+    content: Choose `prevent-app-suspension` (system stays awake, display can still sleep) vs `prevent-display-sleep` — the former is almost certainly what's wanted, but worth confirming
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  df6844bc-9905-4f40-8cd7-1679e1cd25b7:
+    id: df6844bc-9905-4f40-8cd7-1679e1cd25b7
+    content: User has no indication the machine is being kept awake — fine for short autonomous runs, but on long chains a small status pill or tooltip would help (flag as scope-adjacent, not blocking)
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  4f75235d-7a75-4b2a-870f-11cf01c4d906:
+    id: 4f75235d-7a75-4b2a-870f-11cf01c4d906
+    content: 'Out of scope: waking the machine from sleep, scheduling, battery-aware throttling, user toggle to override'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  9739d06a-85a2-42bb-94db-2cc1ff92f4a1:
+    id: 9739d06a-85a2-42bb-94db-2cc1ff92f4a1
+    content: ROI is solid — small, contained change using a built-in Electron API; main risk is the leak case above
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7f8b8481-0f1d-4157-893d-d096b9120eb4:
+    id: 7f8b8481-0f1d-4157-893d-d096b9120eb4
+    content: Approach
+    children:
+      - 3f43bfc6-2574-42a5-96f2-d21d86f7f19b
+      - b643962e-9b54-44c2-96f7-f986641d1950
+      - 517ee5bf-cf4a-4898-9517-430750ca2f71
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3f43bfc6-2574-42a5-96f2-d21d86f7f19b:
+    id: 3f43bfc6-2574-42a5-96f2-d21d86f7f19b
+    content: Use Electron's `powerSaveBlocker` in the main process, exposed via a small IPC service (`startKeepAwake` / `stopKeepAwake`)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b643962e-9b54-44c2-96f7-f986641d1950:
+    id: b643962e-9b54-44c2-96f7-f986641d1950
+    content: Workflow runner increments on start and decrements on terminal state (success / failure / cancel); blocker is active iff count > 0
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  517ee5bf-cf4a-4898-9517-430750ca2f71:
+    id: 517ee5bf-cf4a-4898-9517-430750ca2f71
+    content: 'Non-obvious: blocker dies with the main process, so a crash or app quit auto-recovers — no persistent state needed, and the ref count is naturally global across renderer windows since it lives in main'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  60f2dcbd-b4a8-49b1-a4b9-1492a527edb6:
+    id: 60f2dcbd-b4a8-49b1-a4b9-1492a527edb6
+    content: 'Implementation notes — service in `src/main/services/keepAwake.ts` (factory + singleton, `prevent-app-suspension`, ref-counted, excess stops clamped). IPC at `keep-awake:start`/`keep-awake:stop`. Renderer wired in `workflowExecutionActions.ts` at startWorkflow / stopWorkflow / completeWorkflow, guarded by existing early-return logic so start/stop pairs match. 9 service unit tests + 10 workflow integration tests; 102/102 pass; lint and tsc clean on changed files. Known edge (deferred): workflows in `awaiting-validation` survive app restart but the keep-awake count resets to 0 with the main process, and `continueWorkflow` does not re-acquire — a resumed-after-restart workflow runs without keep-awake.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  911696c6-f77d-4d3e-b79c-9ae19466107e:
+    id: 911696c6-f77d-4d3e-b79c-9ae19466107e
+    content: worktree
+    children:
+      - 69ce63f5-3827-4cc3-8b5d-5d469706082c
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  69ce63f5-3827-4cc3-8b5d-5d469706082c:
+    id: 69ce63f5-3827-4cc3-8b5d-5d469706082c
+    content: '[Open in VSCode](vscode://file//Users/brianfox/dev/Arborescent-feedback-panel-manual-progress/)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  552ef5ea-7076-424d-aae8-289893de56a4:
+    id: 552ef5ea-7076-424d-aae8-289893de56a4
+    content: It closes the feedback panel if there is also a manual one in progress
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1abf54a9-b96f-4fa8-bc1b-39000a055baf:
+    id: 1abf54a9-b96f-4fa8-bc1b-39000a055baf
+    content: Technical refinement
+    children:
+      - 57c6c689-f6e8-45b6-af38-150b987e5d09
+      - dc7f3e69-1788-4a06-9abc-9baccc4cb234
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  57c6c689-f6e8-45b6-af38-150b987e5d09:
+    id: 57c6c689-f6e8-45b6-af38-150b987e5d09
+    content: Flag complications
+    children:
+      - a26401cd-a119-4622-9554-26721a823c32
+      - 6f1349bf-629f-4105-99c7-9e1e95a63176
+      - d5938ddf-ebab-4508-b8e9-ac8d4436a300
+      - a4fd7670-cf8c-412c-af17-8cbcd75c6136
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a26401cd-a119-4622-9554-26721a823c32:
+    id: a26401cd-a119-4622-9554-26721a823c32
+    content: 'Need to define what "manual in progress" means: draft text typed, awaiting submit, or actively running — the close behaviour likely differs per state'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6f1349bf-629f-4105-99c7-9e1e95a63176:
+    id: 6f1349bf-629f-4105-99c7-9e1e95a63176
+    content: Risk of losing unsaved manual draft text when the panel closes; acceptance criteria should specify whether the draft is preserved on reopen
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d5938ddf-ebab-4508-b8e9-ac8d4436a300:
+    id: d5938ddf-ebab-4508-b8e9-ac8d4436a300
+    content: Race condition if a manual feedback completes at the same moment automated is accepted — define which wins
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a4fd7670-cf8c-412c-af17-8cbcd75c6136:
+    id: a4fd7670-cf8c-412c-af17-8cbcd75c6136
+    content: 'Out of scope: redesigning the panel to host multiple concurrent feedback sessions side-by-side'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  dc7f3e69-1788-4a06-9abc-9baccc4cb234:
+    id: dc7f3e69-1788-4a06-9abc-9baccc4cb234
+    content: Approach
+    children:
+      - ec34d7ee-4f65-416d-bf5c-e96d5ac2721b
+      - ae96bb20-f157-4078-92c5-19ff6a7e4926
+      - 4dc0a2a3-582e-49fb-9a00-a8982762bbe1
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ec34d7ee-4f65-416d-bf5c-e96d5ac2721b:
+    id: ec34d7ee-4f65-416d-bf5c-e96d5ac2721b
+    content: Treat panel visibility as a function of all active feedback sessions, not a side-effect of any single accept/reject action
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ae96bb20-f157-4078-92c5-19ff6a7e4926:
+    id: ae96bb20-f157-4078-92c5-19ff6a7e4926
+    content: On automated-feedback acceptance, only close the panel if no other session (manual or automated) is active
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4dc0a2a3-582e-49fb-9a00-a8982762bbe1:
+    id: 4dc0a2a3-582e-49fb-9a00-a8982762bbe1
+    content: 'Likely surprise for reviewer: the fix probably lives in the feedback store/actions rather than the panel component itself'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c03776ed-737e-4225-b9ed-0e2e06ac6a56:
+    id: c03776ed-737e-4225-b9ed-0e2e06ac6a56
+    content: Automated tests (TDD)
+    children:
+      - ac14712f-adae-4f70-8851-860f04f8f44f
+      - 46bc18a2-c12f-4fbb-b6c8-9031fb7b7c55
+      - 395167ee-4d41-46ff-8e89-f3ccf26e74c3
+      - 49ad3b4c-3e3b-4972-9d44-84ae147b168f
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ac14712f-adae-4f70-8851-860f04f8f44f:
+    id: ac14712f-adae-4f70-8851-860f04f8f44f
+    content: 'Test file added: src/renderer/store/panel/tests/feedbackPanelCloseWithActiveSessions.test.ts'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  46bc18a2-c12f-4fbb-b6c8-9031fb7b7c55:
+    id: 46bc18a2-c12f-4fbb-b6c8-9031fb7b7c55
+    content: Title-only tests (bodies left empty — post-fix behaviour is uncertain per the technical refinement)
+    children:
+      - ee536d72-545a-4f3c-892c-ddd314c46a58
+      - c3d7cb92-e64f-4370-9663-0cc5937d509e
+      - 0208471f-97dc-4762-9625-5bf8e715a1a3
+      - aa57cb31-4f5d-4912-bf91-7a414c7e1456
+      - 29b5b211-3e95-4a8e-a80e-29a00d79b609
+      - b02ba37d-47b6-41ef-abd0-71d6089d356a
+      - 1e4e1427-3d03-4d11-bc07-915fb7ee038f
+      - fbaa4b94-8a7e-43b7-a174-f006d9426c02
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ee536d72-545a-4f3c-892c-ddd314c46a58:
+    id: ee536d72-545a-4f3c-892c-ddd314c46a58
+    content: Automated accept on file A while manual feedback in progress on file B (4 cases)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c3d7cb92-e64f-4370-9663-0cc5937d509e:
+    id: c3d7cb92-e64f-4370-9663-0cc5937d509e
+    content: Automated and manual feedback on the same file (3 cases)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0208471f-97dc-4762-9625-5bf8e715a1a3:
+    id: 0208471f-97dc-4762-9625-5bf8e715a1a3
+    content: Manual accept while automated feedback is still in progress (2 cases)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  aa57cb31-4f5d-4912-bf91-7a414c7e1456:
+    id: aa57cb31-4f5d-4912-bf91-7a414c7e1456
+    content: 'Race conditions: same-tick completion, accept before manual registered, two automated accepts (3 cases)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  29b5b211-3e95-4a8e-a80e-29a00d79b609:
+    id: 29b5b211-3e95-4a8e-a80e-29a00d79b609
+    content: 'Boundary and empty inputs: no currentFilePath, no active feedback, empty fileStates, single-session (4 cases)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b02ba37d-47b6-41ef-abd0-71d6089d356a:
+    id: b02ba37d-47b6-41ef-abd0-71d6089d356a
+    content: 'Error and failure states: command throw, automated session without file path (2 cases)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1e4e1427-3d03-4d11-bc07-915fb7ee038f:
+    id: 1e4e1427-3d03-4d11-bc07-915fb7ee038f
+    content: 'Repeated interactions: sequential accepts with persistent manual session, panel toggling (2 cases)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fbaa4b94-8a7e-43b7-a174-f006d9426c02:
+    id: fbaa4b94-8a7e-43b7-a174-f006d9426c02
+    content: 'Accessibility and UX: focus stealing, screen-reader announcements (2 cases)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  395167ee-4d41-46ff-8e89-f3ccf26e74c3:
+    id: 395167ee-4d41-46ff-8e89-f3ccf26e74c3
+    content: Verified the new test file is picked up by Vitest (22 pending tests, 0 failing setup)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  49ad3b4c-3e3b-4972-9d44-84ae147b168f:
+    id: 49ad3b4c-3e3b-4972-9d44-84ae147b168f
+    content: Fill test bodies once acceptance criteria for "manual in progress" and panel-close semantics are decided
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  0980f0e4-d921-4905-a87f-85a987c55c99:
+    id: 0980f0e4-d921-4905-a87f-85a987c55c99
+    content: Implementation notes
+    children:
+      - 2450537d-b13c-4c8d-8ffc-2c175f8b3969
+      - a45670ba-29ec-4a90-88e2-a138b8b85dee
+      - 90bb1282-b618-43cf-b4a8-d6fa5859abc8
+      - 5ceb5c6f-7151-4c67-9816-4636a3295802
+      - 859a7a5e-0bd0-4f3a-b7fe-8cd7013d8060
+      - 379fdb19-f95e-4090-9640-8558e648c684
+      - c027361d-27ef-449e-8019-f8a7942d3537
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2450537d-b13c-4c8d-8ffc-2c175f8b3969:
+    id: 2450537d-b13c-4c8d-8ffc-2c175f8b3969
+    content: 'Root cause: closeFeedback() ignored its file scope and always operated on panelStore.currentFilePath, so an accept on file A while viewing file B closed file B''s panel'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a45670ba-29ec-4a90-88e2-a138b8b85dee:
+    id: a45670ba-29ec-4a90-88e2-a138b8b85dee
+    content: 'Fix: closeFeedback now accepts an optional filePath; only mutates fileStates for that path; only updates the visible activeContent/previousContent when filePath matches currentFilePath'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  90bb1282-b618-43cf-b4a8-d6fa5859abc8:
+    id: 90bb1282-b618-43cf-b4a8-d6fa5859abc8
+    content: Callers (finishAccept, finishCancel in sendActions.ts) now pass the tree store's currentFilePath so the close stays scoped to the file whose feedback was resolved
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5ceb5c6f-7151-4c67-9816-4636a3295802:
+    id: 5ceb5c6f-7151-4c67-9816-4636a3295802
+    content: Filled test bodies for the cross-file scenario (4 cases) and the boundary/empty cases (4 cases); concurrent-on-same-file, race, error, repeated and a11y cases remain title-only since they depend on multi-session semantics that are out of scope here
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  859a7a5e-0bd0-4f3a-b7fe-8cd7013d8060:
+    id: 859a7a5e-0bd0-4f3a-b7fe-8cd7013d8060
+    content: Lint passed on changed files (only pre-existing import/no-cycle warning, present on master)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  379fdb19-f95e-4090-9640-8558e648c684:
+    id: 379fdb19-f95e-4090-9640-8558e648c684
+    content: type-check passed
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c027361d-27ef-449e-8019-f8a7942d3537:
+    id: c027361d-27ef-449e-8019-f8a7942d3537
+    content: Vitest passed for changed/new files (153 tests across panel/* and sendActions.test.ts)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9bff9c51-f978-4e60-8396-8bf32c894689:
+    id: 9bff9c51-f978-4e60-8396-8bf32c894689
+    content: 'Undone summary — only one item remains undone: filling the 14 still-title-only test bodies (same-file concurrent sessions ×3, race conditions ×3, error/failure ×2, repeated interactions ×2, a11y/UX ×2, manual-accept-while-automated ×2). Abandoned because each depends on product semantics that the technical refinement explicitly flagged as undecided (what "manual in progress" means, draft preservation, which session wins on simultaneous resolution, whether multiple concurrent sessions per file are even allowed). Filling them now would bake assumptions into the test suite that may need to be reversed.'
+    children: []
+    metadata:
+      status: abandoned
       expanded: true
       deleted: false
       plugins: {}
