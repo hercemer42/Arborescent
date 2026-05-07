@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-05-07T16:42:38.242Z'
+updated: '2026-05-07T16:44:07.713Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -25806,6 +25806,7 @@ nodes:
     content: Documentation
     children:
       - e6aff7fa-7787-43c4-a81e-8c4d4ed14a51
+      - 611a8d9e-c919-4f2b-97de-695d60787576
     metadata:
       status: pending
       isBlueprint: true
@@ -83235,11 +83236,11 @@ nodes:
     id: 611a8d9e-c919-4f2b-97de-695d60787576
     content: 'Problem : Computer goes to sleep while workflows are running'
     children:
-      - 3af42276-565e-48a0-8a24-6116e6b5eb98
-      - 895bca6c-4e5c-4243-b2a4-2ea1dbcfbe2c
-      - 60f2dcbd-b4a8-49b1-a4b9-1492a527edb6
+      - cffc2b99-54db-45d4-8c2d-d0d507fd9f6e
+      - 4d19ee62-91bb-493c-92d4-9fb35d5eeb53
+      - 987a43b5-84a5-4705-9fe4-1975f296f55b
     metadata:
-      status: pending
+      status: completed
       expanded: false
       deleted: false
       plugins: {}
@@ -84773,7 +84774,6 @@ nodes:
     id: ddd90208-5752-46cf-b72a-5fcbe040b2e0
     content: Merge to master
     children:
-      - 611a8d9e-c919-4f2b-97de-695d60787576
       - ca7ad1fb-77fd-4fbd-aff2-8995ad06dbbf
       - 9f55ead4-f0e3-4969-8e10-8e61f33f89ec
       - 6dfe8786-d370-4c64-a64a-73146ac8e11b
@@ -90982,163 +90982,6 @@ nodes:
     children: []
     metadata:
       status: pending
-  3af42276-565e-48a0-8a24-6116e6b5eb98:
-    id: 3af42276-565e-48a0-8a24-6116e6b5eb98
-    content: worktree
-    children:
-      - db173589-c8b5-4f1e-9959-fa3604010718
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  db173589-c8b5-4f1e-9959-fa3604010718:
-    id: db173589-c8b5-4f1e-9959-fa3604010718
-    content: '[Open in VSCode](vscode://file/Users/brianfox/dev/Arborescent-keep-computer-awake) — branch `feat/keep-computer-awake` at `/Users/brianfox/dev/Arborescent-keep-computer-awake` (reused from prior session)'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  895bca6c-4e5c-4243-b2a4-2ea1dbcfbe2c:
-    id: 895bca6c-4e5c-4243-b2a4-2ea1dbcfbe2c
-    content: Should be able to keep the computer awake
-    children:
-      - 2e7ba954-bee0-4bc5-a9cd-f786220abc5b
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  2e7ba954-bee0-4bc5-a9cd-f786220abc5b:
-    id: 2e7ba954-bee0-4bc5-a9cd-f786220abc5b
-    content: Technical refinement
-    children:
-      - 777d1830-876e-450d-9138-be991e99570b
-      - 7f8b8481-0f1d-4157-893d-d096b9120eb4
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  777d1830-876e-450d-9138-be991e99570b:
-    id: 777d1830-876e-450d-9138-be991e99570b
-    content: Flag complications
-    children:
-      - edc26b7c-afd3-40d3-804a-a881e3218103
-      - 2569dc45-659c-4a30-8f72-08305b9264ab
-      - ef10c2de-62e7-4153-828a-d202d367e6c7
-      - df6844bc-9905-4f40-8cd7-1679e1cd25b7
-      - 4f75235d-7a75-4b2a-870f-11cf01c4d906
-      - 9739d06a-85a2-42bb-94db-2cc1ff92f4a1
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  edc26b7c-afd3-40d3-804a-a881e3218103:
-    id: edc26b7c-afd3-40d3-804a-a881e3218103
-    content: Must release the blocker when workflows finish, error, or are cancelled — a leaked blocker keeps the machine awake indefinitely
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  2569dc45-659c-4a30-8f72-08305b9264ab:
-    id: 2569dc45-659c-4a30-8f72-08305b9264ab
-    content: Concurrent workflows need ref-counting (or a single shared blocker keyed by active count) so finishing one doesn't release the lock for the others
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  ef10c2de-62e7-4153-828a-d202d367e6c7:
-    id: ef10c2de-62e7-4153-828a-d202d367e6c7
-    content: Choose `prevent-app-suspension` (system stays awake, display can still sleep) vs `prevent-display-sleep` — the former is almost certainly what's wanted, but worth confirming
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  df6844bc-9905-4f40-8cd7-1679e1cd25b7:
-    id: df6844bc-9905-4f40-8cd7-1679e1cd25b7
-    content: User has no indication the machine is being kept awake — fine for short autonomous runs, but on long chains a small status pill or tooltip would help (flag as scope-adjacent, not blocking)
-    children: []
-    metadata:
-      status: abandoned
-      expanded: true
-      deleted: false
-      plugins: {}
-  4f75235d-7a75-4b2a-870f-11cf01c4d906:
-    id: 4f75235d-7a75-4b2a-870f-11cf01c4d906
-    content: 'Out of scope: waking the machine from sleep, scheduling, battery-aware throttling, user toggle to override'
-    children: []
-    metadata:
-      status: abandoned
-      expanded: true
-      deleted: false
-      plugins: {}
-  9739d06a-85a2-42bb-94db-2cc1ff92f4a1:
-    id: 9739d06a-85a2-42bb-94db-2cc1ff92f4a1
-    content: ROI is solid — small, contained change using a built-in Electron API; main risk is the leak case above
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  7f8b8481-0f1d-4157-893d-d096b9120eb4:
-    id: 7f8b8481-0f1d-4157-893d-d096b9120eb4
-    content: Approach
-    children:
-      - 3f43bfc6-2574-42a5-96f2-d21d86f7f19b
-      - b643962e-9b54-44c2-96f7-f986641d1950
-      - 517ee5bf-cf4a-4898-9517-430750ca2f71
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  3f43bfc6-2574-42a5-96f2-d21d86f7f19b:
-    id: 3f43bfc6-2574-42a5-96f2-d21d86f7f19b
-    content: Use Electron's `powerSaveBlocker` in the main process, exposed via a small IPC service (`startKeepAwake` / `stopKeepAwake`)
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  b643962e-9b54-44c2-96f7-f986641d1950:
-    id: b643962e-9b54-44c2-96f7-f986641d1950
-    content: Workflow runner increments on start and decrements on terminal state (success / failure / cancel); blocker is active iff count > 0
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  517ee5bf-cf4a-4898-9517-430750ca2f71:
-    id: 517ee5bf-cf4a-4898-9517-430750ca2f71
-    content: 'Non-obvious: blocker dies with the main process, so a crash or app quit auto-recovers — no persistent state needed, and the ref count is naturally global across renderer windows since it lives in main'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  60f2dcbd-b4a8-49b1-a4b9-1492a527edb6:
-    id: 60f2dcbd-b4a8-49b1-a4b9-1492a527edb6
-    content: 'Implementation notes — service in `src/main/services/keepAwake.ts` (factory + singleton, `prevent-app-suspension`, ref-counted, excess stops clamped). IPC at `keep-awake:start`/`keep-awake:stop`. Renderer wired in `workflowExecutionActions.ts` at startWorkflow / stopWorkflow / completeWorkflow, guarded by existing early-return logic so start/stop pairs match. 9 service unit tests + 10 workflow integration tests; 102/102 pass; lint and tsc clean on changed files. Known edge (deferred): workflows in `awaiting-validation` survive app restart but the keep-awake count resets to 0 with the main process, and `continueWorkflow` does not re-acquire — a resumed-after-restart workflow runs without keep-awake.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
   ac78b5e3-d1ef-4498-8fcc-937497fa9167:
     id: ac78b5e3-d1ef-4498-8fcc-937497fa9167
     content: worktree
@@ -91930,6 +91773,163 @@ nodes:
     children: []
     metadata:
       status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  cffc2b99-54db-45d4-8c2d-d0d507fd9f6e:
+    id: cffc2b99-54db-45d4-8c2d-d0d507fd9f6e
+    content: worktree
+    children:
+      - 14e99556-f5f4-4244-96aa-171cd0165f55
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  14e99556-f5f4-4244-96aa-171cd0165f55:
+    id: 14e99556-f5f4-4244-96aa-171cd0165f55
+    content: '[Open in VSCode](vscode://file/Users/brianfox/dev/Arborescent-keep-computer-awake) — branch `feat/keep-computer-awake` at `/Users/brianfox/dev/Arborescent-keep-computer-awake` (reused from prior session)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4d19ee62-91bb-493c-92d4-9fb35d5eeb53:
+    id: 4d19ee62-91bb-493c-92d4-9fb35d5eeb53
+    content: Should be able to keep the computer awake
+    children:
+      - 998d88ba-a057-406a-9382-6a3c2856128c
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  998d88ba-a057-406a-9382-6a3c2856128c:
+    id: 998d88ba-a057-406a-9382-6a3c2856128c
+    content: Technical refinement
+    children:
+      - 2dc01a42-85fe-4e73-bd65-b1efec9d21bd
+      - f1351667-52df-480b-a3f2-6754a08b6787
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2dc01a42-85fe-4e73-bd65-b1efec9d21bd:
+    id: 2dc01a42-85fe-4e73-bd65-b1efec9d21bd
+    content: Flag complications
+    children:
+      - 9d3a3d2a-39c7-424f-a911-9efd72ec536c
+      - 580dfe86-fb28-4f52-9b64-17e964fa2d54
+      - f9081397-12e5-4447-806a-0c32b3e59f60
+      - 0b536853-8bf3-45c7-ba01-1cb951002b00
+      - 1c6f1dff-9ff8-4750-ab38-30ecb89f9c86
+      - 674533bd-15be-495c-91c1-bd027770ae04
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9d3a3d2a-39c7-424f-a911-9efd72ec536c:
+    id: 9d3a3d2a-39c7-424f-a911-9efd72ec536c
+    content: Must release the blocker when workflows finish, error, or are cancelled — a leaked blocker keeps the machine awake indefinitely
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  580dfe86-fb28-4f52-9b64-17e964fa2d54:
+    id: 580dfe86-fb28-4f52-9b64-17e964fa2d54
+    content: Concurrent workflows need ref-counting (or a single shared blocker keyed by active count) so finishing one doesn't release the lock for the others
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f9081397-12e5-4447-806a-0c32b3e59f60:
+    id: f9081397-12e5-4447-806a-0c32b3e59f60
+    content: Choose `prevent-app-suspension` (system stays awake, display can still sleep) vs `prevent-display-sleep` — the former is almost certainly what's wanted, but worth confirming
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0b536853-8bf3-45c7-ba01-1cb951002b00:
+    id: 0b536853-8bf3-45c7-ba01-1cb951002b00
+    content: User has no indication the machine is being kept awake — fine for short autonomous runs, but on long chains a small status pill or tooltip would help (flag as scope-adjacent, not blocking)
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  1c6f1dff-9ff8-4750-ab38-30ecb89f9c86:
+    id: 1c6f1dff-9ff8-4750-ab38-30ecb89f9c86
+    content: 'Out of scope: waking the machine from sleep, scheduling, battery-aware throttling, user toggle to override'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  674533bd-15be-495c-91c1-bd027770ae04:
+    id: 674533bd-15be-495c-91c1-bd027770ae04
+    content: ROI is solid — small, contained change using a built-in Electron API; main risk is the leak case above
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f1351667-52df-480b-a3f2-6754a08b6787:
+    id: f1351667-52df-480b-a3f2-6754a08b6787
+    content: Approach
+    children:
+      - df8066b9-6740-4aad-b5fe-b4db5f4aac03
+      - 96b549e6-81e1-4ddd-941b-8b2e2e53486f
+      - 21e073b7-d10d-4ae1-9b6c-6bd22c1b0c1a
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  df8066b9-6740-4aad-b5fe-b4db5f4aac03:
+    id: df8066b9-6740-4aad-b5fe-b4db5f4aac03
+    content: Use Electron's `powerSaveBlocker` in the main process, exposed via a small IPC service (`startKeepAwake` / `stopKeepAwake`)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  96b549e6-81e1-4ddd-941b-8b2e2e53486f:
+    id: 96b549e6-81e1-4ddd-941b-8b2e2e53486f
+    content: Workflow runner increments on start and decrements on terminal state (success / failure / cancel); blocker is active iff count > 0
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  21e073b7-d10d-4ae1-9b6c-6bd22c1b0c1a:
+    id: 21e073b7-d10d-4ae1-9b6c-6bd22c1b0c1a
+    content: 'Non-obvious: blocker dies with the main process, so a crash or app quit auto-recovers — no persistent state needed, and the ref count is naturally global across renderer windows since it lives in main'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  987a43b5-84a5-4705-9fe4-1975f296f55b:
+    id: 987a43b5-84a5-4705-9fe4-1975f296f55b
+    content: 'Implementation notes — service in `src/main/services/keepAwake.ts` (factory + singleton, `prevent-app-suspension`, ref-counted, excess stops clamped). IPC at `keep-awake:start`/`keep-awake:stop`. Renderer wired in `workflowExecutionActions.ts` at startWorkflow / stopWorkflow / completeWorkflow, guarded by existing early-return logic so start/stop pairs match. 9 service unit tests + 10 workflow integration tests; 102/102 pass; lint and tsc clean on changed files. Known edge (deferred): workflows in `awaiting-validation` survive app restart but the keep-awake count resets to 0 with the main process, and `continueWorkflow` does not re-acquire — a resumed-after-restart workflow runs without keep-awake.'
+    children: []
+    metadata:
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
