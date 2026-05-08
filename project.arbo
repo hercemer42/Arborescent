@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-05-08T18:11:23.358Z'
+updated: '2026-05-08T18:11:58.903Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -14398,7 +14398,8 @@ nodes:
   c25cf481-a0d1-495d-9cea-498f1135eb8c:
     id: c25cf481-a0d1-495d-9cea-498f1135eb8c
     content: Feature implementation
-    children: []
+    children:
+      - 7a7b84f1-8323-427e-ace1-7d57c17dccd2
     metadata:
       status: completed
       expanded: true
@@ -27126,8 +27127,7 @@ nodes:
   9a392715-9ea2-4269-b35c-812b8998e3ec:
     id: 9a392715-9ea2-4269-b35c-812b8998e3ec
     content: Automated tests implementation (TDD)
-    children:
-      - 7a7b84f1-8323-427e-ace1-7d57c17dccd2
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -93455,12 +93455,13 @@ nodes:
     id: 7a7b84f1-8323-427e-ace1-7d57c17dccd2
     content: Copy a single leaf node as plain content, not markdown
     children:
-      - 69c4fa6b-b1e7-4fb1-b2b6-05569b049d13
-      - 56733e96-055c-493e-9569-b8e211387386
-      - 58487c6a-bffb-4537-99f9-b87256a0151c
-      - 2670abde-619c-4a93-affa-5c18ca4075a3
+      - 29fd3103-1d91-407b-97e0-6b8cf2f63eca
+      - b2a30db4-86a9-4264-b1a5-c98293262204
+      - 1cca5754-5e17-48b4-819b-b493d52523aa
+      - c6b8053e-7797-4aa0-ba33-5d2ccadfc59e
+      - e041dfe1-b4bf-4726-96c8-12b49f78ef4c
     metadata:
-      status: pending
+      status: completed
       expanded: false
       deleted: false
       plugins: {}
@@ -94963,392 +94964,6 @@ nodes:
       expanded: false
       deleted: false
       plugins: {}
-  69c4fa6b-b1e7-4fb1-b2b6-05569b049d13:
-    id: 69c4fa6b-b1e7-4fb1-b2b6-05569b049d13
-    content: 📄 Product spec
-    children:
-      - 7a13b886-795e-4374-924f-c56b49d0f177
-      - 1351b946-cd61-433f-817e-e8107a38d5e5
-      - 4c0853d0-e598-4189-af1a-d4879c3c262a
-      - e5e6e23e-1943-40a0-912e-2a746d5da4a2
-      - 668923a9-e985-43d3-8f51-e2cdd0ce3f57
-      - c5097ae3-57f9-41ac-a13c-6f01493b3804
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  7a13b886-795e-4374-924f-c56b49d0f177:
-    id: 7a13b886-795e-4374-924f-c56b49d0f177
-    content: Context — Arborescent currently funnels every copy through a markdown-tree serializer, so even a single leaf node lands on the system clipboard as `# [ ] Title\n\nBody`. When users copy a node to paste into Slack, email, a browser AI chat, or another node's body, they have to manually strip the heading and checkbox prefix.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  1351b946-cd61-433f-817e-e8107a38d5e5:
-    id: 1351b946-cd61-433f-817e-e8107a38d5e5
-    content: User — power users who treat individual nodes as text containers and routinely copy a node's content into external apps or another node's body
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  4c0853d0-e598-4189-af1a-d4879c3c262a:
-    id: 4c0853d0-e598-4189-af1a-d4879c3c262a
-    content: Current experience — copying a leaf node yields markdown chrome (`# [ ]`, blank line, body); pasting anywhere outside an Arborescent tree exposes the chrome and forces manual cleanup
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e5e6e23e-1943-40a0-912e-2a746d5da4a2:
-    id: e5e6e23e-1943-40a0-912e-2a746d5da4a2
-    content: Goal — copying a single leaf node puts only its content on the clipboard so external pastes land clean and internal pastes still round-trip
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  668923a9-e985-43d3-8f51-e2cdd0ce3f57:
-    id: 668923a9-e985-43d3-8f51-e2cdd0ce3f57
-    content: Business rules
-    children:
-      - f20cc046-1006-45b3-94af-94dd96538c5a
-      - d986644a-d9ab-432d-bcd9-3fb31fee21ee
-      - ce4b3a81-b567-436d-9e7c-940403f06041
-      - bf0ff4f7-9f58-4229-a189-cdbed2e13871
-      - f8092479-3c3f-478b-b3aa-195cf1564e97
-      - 135f7021-8304-4540-8f75-4f1757396d84
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f20cc046-1006-45b3-94af-94dd96538c5a:
-    id: f20cc046-1006-45b3-94af-94dd96538c5a
-    content: 1. When the selection is a single node with no children, the system clipboard receives only the node's content; if both title and body are present they are joined as `Title\n\nBody`, and an empty half is dropped (no leading blank line, no trailing newline).
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  d986644a-d9ab-432d-bcd9-3fb31fee21ee:
-    id: d986644a-d9ab-432d-bcd9-3fb31fee21ee
-    content: 2. When the selection is a single node that has at least one child, the existing markdown-tree serialization is preserved unchanged, because a parent-with-children is a subtree and has no faithful plain-text rendering.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ce4b3a81-b567-436d-9e7c-940403f06041:
-    id: ce4b3a81-b567-436d-9e7c-940403f06041
-    content: 3. When the selection contains two or more nodes, the existing markdown-tree serialization is preserved unchanged so structure survives the round trip.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  bf0ff4f7-9f58-4229-a189-cdbed2e13871:
-    id: bf0ff4f7-9f58-4229-a189-cdbed2e13871
-    content: 4. Cut produces the same clipboard payload as copy.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f8092479-3c3f-478b-b3aa-195cf1564e97:
-    id: f8092479-3c3f-478b-b3aa-195cf1564e97
-    content: 5. Body content is copied verbatim — markdown the user typed inside the body (e.g. their own `# Heading`) is never stripped; only the generated heading and checkbox wrapper is removed.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  135f7021-8304-4540-8f75-4f1757396d84:
-    id: 135f7021-8304-4540-8f75-4f1757396d84
-    content: 6. Pasting a freshly copied selection back into Arborescent in the same session reconstructs the original nodes via the in-memory clipboard cache, so internal copy→paste round-trips without re-parsing the clipboard text.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  c5097ae3-57f9-41ac-a13c-6f01493b3804:
-    id: c5097ae3-57f9-41ac-a13c-6f01493b3804
-    content: Acceptance criteria
-    children:
-      - d70c1eb8-220c-46d5-9ee2-6b1bd2bc9066
-      - 5b95fa3e-0e24-4f2d-8491-6b94e10c2ccb
-      - 4a483710-bed4-4817-b5e5-9cef88d6bdde
-      - c47b8187-bbc2-4414-963e-7d635c2913ca
-      - e31c5816-1499-4429-817f-ec1da25612f7
-      - 9c93341e-bb5e-4bb0-9c5b-0c4f8c286e35
-      - e12e8036-59d6-4aa9-a84c-ba8258f5f1d4
-      - 6b64b64c-b036-4caf-ba34-a1c927846639
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  d70c1eb8-220c-46d5-9ee2-6b1bd2bc9066:
-    id: d70c1eb8-220c-46d5-9ee2-6b1bd2bc9066
-    content: '- [ ] Copying a single leaf node with title and body puts exactly `Title\n\nBody` on the system clipboard, with no `# [ ]` prefix'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  5b95fa3e-0e24-4f2d-8491-6b94e10c2ccb:
-    id: 5b95fa3e-0e24-4f2d-8491-6b94e10c2ccb
-    content: '- [ ] Copying a single leaf node with only a title puts just the title on the clipboard'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  4a483710-bed4-4817-b5e5-9cef88d6bdde:
-    id: 4a483710-bed4-4817-b5e5-9cef88d6bdde
-    content: '- [ ] Copying a single leaf node with only a body puts just the body on the clipboard'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  c47b8187-bbc2-4414-963e-7d635c2913ca:
-    id: c47b8187-bbc2-4414-963e-7d635c2913ca
-    content: '- [ ] Copying a single node that has children produces the existing markdown-tree output, unchanged'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e31c5816-1499-4429-817f-ec1da25612f7:
-    id: e31c5816-1499-4429-817f-ec1da25612f7
-    content: '- [ ] Selecting two or more nodes and copying produces the existing markdown-tree output, unchanged'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  9c93341e-bb5e-4bb0-9c5b-0c4f8c286e35:
-    id: 9c93341e-bb5e-4bb0-9c5b-0c4f8c286e35
-    content: '- [ ] Cut on a single leaf node deletes the node and writes the same plain-content payload that copy would have written'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e12e8036-59d6-4aa9-a84c-ba8258f5f1d4:
-    id: e12e8036-59d6-4aa9-a84c-ba8258f5f1d4
-    content: '- [ ] Pasting a copied leaf node back into Arborescent in the same session reconstructs the node (not just its text into a body field)'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  6b64b64c-b036-4caf-ba34-a1c927846639:
-    id: 6b64b64c-b036-4caf-ba34-a1c927846639
-    content: '- [ ] A leaf node whose body contains user-typed markdown round-trips that markdown verbatim — none of it is stripped'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  56733e96-055c-493e-9569-b8e211387386:
-    id: 56733e96-055c-493e-9569-b8e211387386
-    content: 🔧 Implementation proposal
-    children:
-      - 1b09ef3c-a61c-4e2e-8903-4d6680aa3042
-      - b5406abe-1661-40ee-8e62-1a8a734b6e05
-      - 4ec58702-2994-4929-906c-500c39d7a33c
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  1b09ef3c-a61c-4e2e-8903-4d6680aa3042:
-    id: 1b09ef3c-a61c-4e2e-8903-4d6680aa3042
-    content: Approach — branch inside `exportSelectionAsMarkdown` in `src/renderer/store/tree/actions/clipboardHelpers.ts` (the single funnel used by both `copyNodes` and `cutNodes`). When `selection.type === 'single'` and the node has zero children, return the node's content directly (joining title and body as specified, dropping empty halves). All other paths fall through to today's serializer.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  b5406abe-1661-40ee-8e62-1a8a734b6e05:
-    id: b5406abe-1661-40ee-8e62-1a8a734b6e05
-    content: Touchpoints — `clipboardHelpers.ts` (the branch), tests covering the new leaf path and confirming non-leaf single and multi-select paths are unchanged. `markdown.ts:exportNodeAsMarkdown` is left alone because `nodeHelpers.ts` reuses it for AI-context export. No IPC, main-process, or store-shape changes; `clipboardCacheStore` already handles internal round-trip via cached source nodes.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  4ec58702-2994-4929-906c-500c39d7a33c:
-    id: 4ec58702-2994-4929-906c-500c39d7a33c
-    content: Constraints to call out — internal round-trip relies on `clipboardCacheStore` matching the live clipboard string against its cache to recover the source node references. The new payload must be cached the same way today's markdown is, otherwise paste-back regresses to a no-op (current `parseMarkdown` requires a `#` heading). No new clipboard MIME type is introduced; the "copy in Arborescent → close app → paste back later" path stays as-is (already lossy on status info, not made worse here).
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  58487c6a-bffb-4537-99f9-b87256a0151c:
-    id: 58487c6a-bffb-4537-99f9-b87256a0151c
-    content: Out of scope and deliberate non-goals
-    children:
-      - a3a60670-f79b-4d19-8e80-96f6bf9f3bc1
-      - d355560e-c96f-4477-9644-f81a8edc7165
-      - b4599530-5826-4a81-af65-ab97d312d7e4
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  a3a60670-f79b-4d19-8e80-96f6bf9f3bc1:
-    id: a3a60670-f79b-4d19-8e80-96f6bf9f3bc1
-    content: No new "Copy as plain text" menu item or modifier — the default is the fix
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  d355560e-c96f-4477-9644-f81a8edc7165:
-    id: d355560e-c96f-4477-9644-f81a8edc7165
-    content: No custom clipboard MIME type — existing in-memory cache covers internal round-trip
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  b4599530-5826-4a81-af65-ab97d312d7e4:
-    id: b4599530-5826-4a81-af65-ab97d312d7e4
-    content: No flattening of subtrees to plain text — non-leaf single copies and multi-select copies stay as markdown trees
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  2670abde-619c-4a93-affa-5c18ca4075a3:
-    id: 2670abde-619c-4a93-affa-5c18ca4075a3
-    content: Technical refinement
-    children:
-      - 8a7a36a0-9d07-4ca9-ab5f-23e5234db02e
-      - f6f32741-ac71-463f-995a-f33851a70c84
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  8a7a36a0-9d07-4ca9-ab5f-23e5234db02e:
-    id: 8a7a36a0-9d07-4ca9-ab5f-23e5234db02e
-    content: Complications
-    children:
-      - 22f372a6-9a8d-4ef2-ab4c-12d52210f846
-      - 0d08fb38-0c94-4160-a9ca-70dcda38f853
-      - 49dc9a49-6710-4755-989d-363409170166
-      - de5e3f6f-d1c5-40e8-bb3e-1259e4fa36c2
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  22f372a6-9a8d-4ef2-ab4c-12d52210f846:
-    id: 22f372a6-9a8d-4ef2-ab4c-12d52210f846
-    content: Cache-miss paste-back is silently lossy — once the clipboardCacheStore entry is evicted or the clipboard is touched by another app, pasting plain content back falls through to `parseMarkdown`, which requires a `#` heading and will produce nothing usable. The markdown-tree path degrades to a parsable tree on cache miss; the plain-content path degrades to "paste does nothing". Decide whether that's acceptable or whether the cache needs a longer lifetime for plain payloads.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  0d08fb38-0c94-4160-a9ca-70dcda38f853:
-    id: 0d08fb38-0c94-4160-a9ca-70dcda38f853
-    content: False cache hits become more likely — the cache keys on exact clipboard string. Plain leaf payloads (e.g. a single short title) collide far more easily with text copied from other apps than today's `# [ ]`-prefixed markdown does, so an external copy that happens to match a cached payload will paste as the cached node. Worth a guard (e.g. clear cache on focus loss, or fingerprint with a zero-width marker).
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  49dc9a49-6710-4755-989d-363409170166:
-    id: 49dc9a49-6710-4755-989d-363409170166
-    content: AC gap on the empty leaf — behavior when both title and body are empty isn't specified (empty-string clipboard write vs. no-op vs. fall through to markdown). Pick one and add an AC.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  de5e3f6f-d1c5-40e8-bb3e-1259e4fa36c2:
-    id: de5e3f6f-d1c5-40e8-bb3e-1259e4fa36c2
-    content: 'AC #5 vs. round-trip on cache miss — a body that begins with `# [ ]` is copied verbatim (correct per rule 5), but on cache-miss paste-back `parseMarkdown` will interpret it as a heading. Round-trip is only guaranteed via the in-memory cache, which is worth stating explicitly so reviewers don''t read AC #8 as a stronger guarantee than it is.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f6f32741-ac71-463f-995a-f33851a70c84:
-    id: f6f32741-ac71-463f-995a-f33851a70c84
-    content: Approach summary
-    children:
-      - dbe4ccb6-e81d-4ff8-9717-24e61f3ab216
-      - e7859d95-d4aa-404a-9212-b9126c4638ba
-      - 43fa517c-4bda-4368-8814-676197b80a48
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  dbe4ccb6-e81d-4ff8-9717-24e61f3ab216:
-    id: dbe4ccb6-e81d-4ff8-9717-24e61f3ab216
-    content: One branch added to the existing copy/cut funnel (`exportSelectionAsMarkdown`) — both actions inherit the new behavior; non-leaf and multi-select paths are untouched.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e7859d95-d4aa-404a-9212-b9126c4638ba:
-    id: e7859d95-d4aa-404a-9212-b9126c4638ba
-    content: Internal round-trip is carried by the existing `clipboardCacheStore` matching the exact clipboard string; no new MIME type, no IPC change, no store-shape change.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  43fa517c-4bda-4368-8814-676197b80a48:
-    id: 43fa517c-4bda-4368-8814-676197b80a48
-    content: 'Non-obvious bit for reviewers: the markdown serializer used by AI-context export (`exportNodeAsMarkdown`) is intentionally left alone — only the clipboard funnel changes, so AI sends still include headings.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
   ef1ee32b-94cf-4749-aed8-1afc47163cab:
     id: ef1ee32b-94cf-4749-aed8-1afc47163cab
     content: The following instruction sent with a prompt is unclear
@@ -96209,6 +95824,441 @@ nodes:
     children: []
     metadata:
       status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  29fd3103-1d91-407b-97e0-6b8cf2f63eca:
+    id: 29fd3103-1d91-407b-97e0-6b8cf2f63eca
+    content: 📄 Product spec
+    children:
+      - faf2f895-7047-45e3-81d3-efba8f86f2b8
+      - ceaabaa3-1907-485c-8d20-8f963d9dd81a
+      - c7bb53fc-2f25-466c-af32-d2c88682e94c
+      - e78672bb-ae01-4f8a-97cf-dda9d0e420f5
+      - 10a1a8f6-635c-4b8e-9370-d5eeb364742f
+      - bc234e8d-e25d-4ee5-bd3f-03bf0b490712
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  faf2f895-7047-45e3-81d3-efba8f86f2b8:
+    id: faf2f895-7047-45e3-81d3-efba8f86f2b8
+    content: Context — Arborescent currently funnels every copy through a markdown-tree serializer, so even a single leaf node lands on the system clipboard as `# [ ] Title\n\nBody`. When users copy a node to paste into Slack, email, a browser AI chat, or another node's body, they have to manually strip the heading and checkbox prefix.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ceaabaa3-1907-485c-8d20-8f963d9dd81a:
+    id: ceaabaa3-1907-485c-8d20-8f963d9dd81a
+    content: User — power users who treat individual nodes as text containers and routinely copy a node's content into external apps or another node's body
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c7bb53fc-2f25-466c-af32-d2c88682e94c:
+    id: c7bb53fc-2f25-466c-af32-d2c88682e94c
+    content: Current experience — copying a leaf node yields markdown chrome (`# [ ]`, blank line, body); pasting anywhere outside an Arborescent tree exposes the chrome and forces manual cleanup
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e78672bb-ae01-4f8a-97cf-dda9d0e420f5:
+    id: e78672bb-ae01-4f8a-97cf-dda9d0e420f5
+    content: Goal — copying a single leaf node puts only its content on the clipboard so external pastes land clean and internal pastes still round-trip
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  10a1a8f6-635c-4b8e-9370-d5eeb364742f:
+    id: 10a1a8f6-635c-4b8e-9370-d5eeb364742f
+    content: Business rules
+    children:
+      - e0d77268-af36-449d-b347-afb3b0174e27
+      - 3b1e3ccb-631d-4927-b3b5-8311c41fced7
+      - 01fd7c5a-64e2-461c-981c-c72a94cf4764
+      - 7d775655-bf32-4155-a5b6-02d1be938ca1
+      - 2c9007e1-8e15-40e9-bff2-7d3a26c8b7ed
+      - 95fe956c-238a-400b-82aa-915f35d706aa
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e0d77268-af36-449d-b347-afb3b0174e27:
+    id: e0d77268-af36-449d-b347-afb3b0174e27
+    content: 1. When the selection is a single node with no children, the system clipboard receives only the node's content; if both title and body are present they are joined as `Title\n\nBody`, and an empty half is dropped (no leading blank line, no trailing newline).
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3b1e3ccb-631d-4927-b3b5-8311c41fced7:
+    id: 3b1e3ccb-631d-4927-b3b5-8311c41fced7
+    content: 2. When the selection is a single node that has at least one child, the existing markdown-tree serialization is preserved unchanged, because a parent-with-children is a subtree and has no faithful plain-text rendering.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  01fd7c5a-64e2-461c-981c-c72a94cf4764:
+    id: 01fd7c5a-64e2-461c-981c-c72a94cf4764
+    content: 3. When the selection contains two or more nodes, the existing markdown-tree serialization is preserved unchanged so structure survives the round trip.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7d775655-bf32-4155-a5b6-02d1be938ca1:
+    id: 7d775655-bf32-4155-a5b6-02d1be938ca1
+    content: 4. Cut produces the same clipboard payload as copy.
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  2c9007e1-8e15-40e9-bff2-7d3a26c8b7ed:
+    id: 2c9007e1-8e15-40e9-bff2-7d3a26c8b7ed
+    content: 5. Body content is copied verbatim — markdown the user typed inside the body (e.g. their own `# Heading`) is never stripped; only the generated heading and checkbox wrapper is removed.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  95fe956c-238a-400b-82aa-915f35d706aa:
+    id: 95fe956c-238a-400b-82aa-915f35d706aa
+    content: 6. Pasting a freshly copied selection back into Arborescent in the same session reconstructs the original nodes via the in-memory clipboard cache, so internal copy→paste round-trips without re-parsing the clipboard text.
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  bc234e8d-e25d-4ee5-bd3f-03bf0b490712:
+    id: bc234e8d-e25d-4ee5-bd3f-03bf0b490712
+    content: Acceptance criteria
+    children:
+      - 9c5ae91f-f3fd-40fd-947e-f96824dae205
+      - 26341975-bcd5-4da4-8a24-b6a9fe4efc3e
+      - 2315f808-f2f3-4bb7-b5f0-d8a23ce5e040
+      - 4ccae0d4-4772-43fb-bd55-894d873edcd9
+      - 1cd54728-1a35-485d-88be-e9365f240cdf
+      - 7b64e322-7afa-47a1-9497-4ef4b9d36210
+      - 43bcb2e2-ddb6-42ee-912c-4e5c056ada1d
+      - 5a157233-6b94-4b0a-9d09-48ac74e3e5c9
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9c5ae91f-f3fd-40fd-947e-f96824dae205:
+    id: 9c5ae91f-f3fd-40fd-947e-f96824dae205
+    content: '- [ ] Copying a single leaf node with title and body puts exactly `Title\n\nBody` on the system clipboard, with no `# [ ]` prefix'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  26341975-bcd5-4da4-8a24-b6a9fe4efc3e:
+    id: 26341975-bcd5-4da4-8a24-b6a9fe4efc3e
+    content: '- [ ] Copying a single leaf node with only a title puts just the title on the clipboard'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2315f808-f2f3-4bb7-b5f0-d8a23ce5e040:
+    id: 2315f808-f2f3-4bb7-b5f0-d8a23ce5e040
+    content: '- [ ] Copying a single leaf node with only a body puts just the body on the clipboard'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  4ccae0d4-4772-43fb-bd55-894d873edcd9:
+    id: 4ccae0d4-4772-43fb-bd55-894d873edcd9
+    content: '- [ ] Copying a single node that has children produces the existing markdown-tree output, unchanged'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1cd54728-1a35-485d-88be-e9365f240cdf:
+    id: 1cd54728-1a35-485d-88be-e9365f240cdf
+    content: '- [ ] Selecting two or more nodes and copying produces the existing markdown-tree output, unchanged'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7b64e322-7afa-47a1-9497-4ef4b9d36210:
+    id: 7b64e322-7afa-47a1-9497-4ef4b9d36210
+    content: '- [ ] Cut on a single leaf node deletes the node and writes the same plain-content payload that copy would have written'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  43bcb2e2-ddb6-42ee-912c-4e5c056ada1d:
+    id: 43bcb2e2-ddb6-42ee-912c-4e5c056ada1d
+    content: '- [ ] Pasting a copied leaf node back into Arborescent in the same session reconstructs the node (not just its text into a body field)'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  5a157233-6b94-4b0a-9d09-48ac74e3e5c9:
+    id: 5a157233-6b94-4b0a-9d09-48ac74e3e5c9
+    content: '- [ ] A leaf node whose body contains user-typed markdown round-trips that markdown verbatim — none of it is stripped'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b2a30db4-86a9-4264-b1a5-c98293262204:
+    id: b2a30db4-86a9-4264-b1a5-c98293262204
+    content: 🔧 Implementation proposal
+    children:
+      - 2b9d8fc3-b710-46b1-ba3c-41b5da94df84
+      - bbf2f064-7bbf-41ef-bc5d-a4f5f83fa520
+      - 6beb949e-d61a-4b96-aff4-5e08b9b2a9a1
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2b9d8fc3-b710-46b1-ba3c-41b5da94df84:
+    id: 2b9d8fc3-b710-46b1-ba3c-41b5da94df84
+    content: Approach — branch inside `exportSelectionAsMarkdown` in `src/renderer/store/tree/actions/clipboardHelpers.ts` (the single funnel used by both `copyNodes` and `cutNodes`). When `selection.type === 'single'` and the node has zero children, return the node's content directly (joining title and body as specified, dropping empty halves). All other paths fall through to today's serializer.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  bbf2f064-7bbf-41ef-bc5d-a4f5f83fa520:
+    id: bbf2f064-7bbf-41ef-bc5d-a4f5f83fa520
+    content: Touchpoints — `clipboardHelpers.ts` (the branch), tests covering the new leaf path and confirming non-leaf single and multi-select paths are unchanged. `markdown.ts:exportNodeAsMarkdown` is left alone because `nodeHelpers.ts` reuses it for AI-context export. No IPC, main-process, or store-shape changes; `clipboardCacheStore` already handles internal round-trip via cached source nodes.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6beb949e-d61a-4b96-aff4-5e08b9b2a9a1:
+    id: 6beb949e-d61a-4b96-aff4-5e08b9b2a9a1
+    content: Constraints to call out — internal round-trip relies on `clipboardCacheStore` matching the live clipboard string against its cache to recover the source node references. The new payload must be cached the same way today's markdown is, otherwise paste-back regresses to a no-op (current `parseMarkdown` requires a `#` heading). No new clipboard MIME type is introduced; the "copy in Arborescent → close app → paste back later" path stays as-is (already lossy on status info, not made worse here).
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1cca5754-5e17-48b4-819b-b493d52523aa:
+    id: 1cca5754-5e17-48b4-819b-b493d52523aa
+    content: Out of scope and deliberate non-goals
+    children:
+      - bbf5a03f-0d6e-453e-af12-4184eb8eb75a
+      - 89d77a83-34e4-4ccc-87d5-8e155ccbede6
+      - a290df24-3a8b-4202-ac9f-3f45380ad06f
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  bbf5a03f-0d6e-453e-af12-4184eb8eb75a:
+    id: bbf5a03f-0d6e-453e-af12-4184eb8eb75a
+    content: No new "Copy as plain text" menu item or modifier — the default is the fix
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  89d77a83-34e4-4ccc-87d5-8e155ccbede6:
+    id: 89d77a83-34e4-4ccc-87d5-8e155ccbede6
+    content: No custom clipboard MIME type — existing in-memory cache covers internal round-trip
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a290df24-3a8b-4202-ac9f-3f45380ad06f:
+    id: a290df24-3a8b-4202-ac9f-3f45380ad06f
+    content: No flattening of subtrees to plain text — non-leaf single copies and multi-select copies stay as markdown trees
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c6b8053e-7797-4aa0-ba33-5d2ccadfc59e:
+    id: c6b8053e-7797-4aa0-ba33-5d2ccadfc59e
+    content: Technical refinement
+    children:
+      - e3a946e8-6489-4826-b803-c14c8d3c8b4f
+      - ef82d396-91bf-40f6-bcda-31dff6848cd3
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e3a946e8-6489-4826-b803-c14c8d3c8b4f:
+    id: e3a946e8-6489-4826-b803-c14c8d3c8b4f
+    content: Complications
+    children:
+      - 71c49547-eedb-458a-bd26-9830d0bce60b
+      - b8cd4039-79e5-41bf-a17c-840bb9db04b8
+      - cbc96475-768c-4538-94aa-b811cab4ebec
+      - ed36aa12-c4b6-4110-91ef-087777a4bca7
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  71c49547-eedb-458a-bd26-9830d0bce60b:
+    id: 71c49547-eedb-458a-bd26-9830d0bce60b
+    content: Cache-miss paste-back is silently lossy — once the clipboardCacheStore entry is evicted or the clipboard is touched by another app, pasting plain content back falls through to `parseMarkdown`, which requires a `#` heading and will produce nothing usable. The markdown-tree path degrades to a parsable tree on cache miss; the plain-content path degrades to "paste does nothing". Decide whether that's acceptable or whether the cache needs a longer lifetime for plain payloads.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b8cd4039-79e5-41bf-a17c-840bb9db04b8:
+    id: b8cd4039-79e5-41bf-a17c-840bb9db04b8
+    content: False cache hits become more likely — the cache keys on exact clipboard string. Plain leaf payloads (e.g. a single short title) collide far more easily with text copied from other apps than today's `# [ ]`-prefixed markdown does, so an external copy that happens to match a cached payload will paste as the cached node. Worth a guard (e.g. clear cache on focus loss, or fingerprint with a zero-width marker).
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  cbc96475-768c-4538-94aa-b811cab4ebec:
+    id: cbc96475-768c-4538-94aa-b811cab4ebec
+    content: AC gap on the empty leaf — behavior when both title and body are empty isn't specified (empty-string clipboard write vs. no-op vs. fall through to markdown). Pick one and add an AC.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ed36aa12-c4b6-4110-91ef-087777a4bca7:
+    id: ed36aa12-c4b6-4110-91ef-087777a4bca7
+    content: 'AC #5 vs. round-trip on cache miss — a body that begins with `# [ ]` is copied verbatim (correct per rule 5), but on cache-miss paste-back `parseMarkdown` will interpret it as a heading. Round-trip is only guaranteed via the in-memory cache, which is worth stating explicitly so reviewers don''t read AC #8 as a stronger guarantee than it is.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ef82d396-91bf-40f6-bcda-31dff6848cd3:
+    id: ef82d396-91bf-40f6-bcda-31dff6848cd3
+    content: Approach summary
+    children:
+      - 8bb6d274-04bf-4557-927c-0e0c2b96da8e
+      - fd9d994d-aa64-429d-9365-c9f85f23a6fb
+      - 31d49bfa-5230-44e8-854b-a6f2854590be
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8bb6d274-04bf-4557-927c-0e0c2b96da8e:
+    id: 8bb6d274-04bf-4557-927c-0e0c2b96da8e
+    content: One branch added to the existing copy/cut funnel (`exportSelectionAsMarkdown`) — both actions inherit the new behavior; non-leaf and multi-select paths are untouched.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fd9d994d-aa64-429d-9365-c9f85f23a6fb:
+    id: fd9d994d-aa64-429d-9365-c9f85f23a6fb
+    content: Internal round-trip is carried by the existing `clipboardCacheStore` matching the exact clipboard string; no new MIME type, no IPC change, no store-shape change.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  31d49bfa-5230-44e8-854b-a6f2854590be:
+    id: 31d49bfa-5230-44e8-854b-a6f2854590be
+    content: 'Non-obvious bit for reviewers: the markdown serializer used by AI-context export (`exportNodeAsMarkdown`) is intentionally left alone — only the clipboard funnel changes, so AI sends still include headings.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e041dfe1-b4bf-4726-96c8-12b49f78ef4c:
+    id: e041dfe1-b4bf-4726-96c8-12b49f78ef4c
+    content: Issues encountered while writing tests
+    children:
+      - 91393fc5-ef44-4401-a2c8-d6e76663e49a
+      - 33fa8d41-cb7e-41fd-b333-5b0322a7b011
+      - 5a289fa3-78ef-41cc-865e-f2566366d818
+      - 2ff51a95-658b-4a91-9602-7b0863927bbc
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  91393fc5-ef44-4401-a2c8-d6e76663e49a:
+    id: 91393fc5-ef44-4401-a2c8-d6e76663e49a
+    content: Test seam choice — wrote a focused unit-test file `src/renderer/store/tree/actions/tests/clipboardHelpers.test.ts` against `exportSelectionAsMarkdown` (the single funnel both copy and cut go through). This pins down the contract for ACs 1, 2, 4, 5, and 8 and most business rules, but does NOT exercise the integration paths for AC 6 (cut writes same payload as copy at the call-site) or AC 7 (paste-back round-trip via `clipboardCacheStore`). Those would need either additions to the existing 2000-line `clipboardActions.test.ts` or a new integration file; deferred to keep this round focused per the "cap boilerplate per test file" guidance — and because both fall out automatically once the helper branch lands (cut and copy both consume the helper's return value).
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  33fa8d41-cb7e-41fd-b333-5b0322a7b011:
+    id: 33fa8d41-cb7e-41fd-b333-5b0322a7b011
+    content: 'Body-only edge case left as `it.todo` — AC 3 ("Copying a single leaf node with only a body puts just the body on the clipboard") cannot be expressed unambiguously against the data model: `TreeNode.content` is a single string field, with no separate title/body. The "body-only" shape (e.g. `\n\nBar`) requires a normalisation decision (verbatim vs. trim leading newlines) that AC 5 ("verbatim") and AC 3 don''t reconcile. Marked as title-only `it.todo` per the "post-fix behavior is uncertain" guidance.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5a289fa3-78ef-41cc-865e-f2566366d818:
+    id: 5a289fa3-78ef-41cc-865e-f2566366d818
+    content: Empty-leaf edge case left as `it.todo` — same reason; the technical refinement already flags this as an explicit AC gap.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2ff51a95-658b-4a91-9602-7b0863927bbc:
+    id: 2ff51a95-658b-4a91-9602-7b0863927bbc
+    content: node_modules in worktree — worktree was created without node_modules per instructions; `npm install --prefer-offline` was run inside the worktree (no symlink) so vitest could execute. This took ~20s.
+    children: []
+    metadata:
+      status: pending
       expanded: true
       deleted: false
       plugins: {}
