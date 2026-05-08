@@ -28,6 +28,7 @@ vi.mock('@xterm/xterm', () => ({
     write: vi.fn(),
     dispose: vi.fn(),
     scrollToBottom: vi.fn(),
+    scrollLines: vi.fn(),
     refresh: vi.fn(),
     cols: 80,
     rows: 24,
@@ -58,8 +59,13 @@ describe('useTerminal — tab switching and blank terminal prevention', () => {
   let mockOnTerminalData: ReturnType<typeof vi.fn>;
   let mockOnTerminalExit: ReturnType<typeof vi.fn>;
 
-  function renderWithDimensions(id: string, width = 800, height = 600) {
-    const result = render(<Terminal id={id} />);
+  function renderWithDimensions(
+    id: string,
+    width = 800,
+    height = 600,
+    props: { pinnedToBottom?: boolean } = {},
+  ) {
+    const result = render(<Terminal id={id} {...props} />);
     const div = result.container.querySelector('.terminal-container')!;
     const boundingRectSpy = vi.spyOn(div, 'getBoundingClientRect').mockReturnValue({
       width, height, top: 0, left: 0, right: width, bottom: height, x: 0, y: 0,
@@ -504,5 +510,87 @@ describe('useTerminal — tab switching and blank terminal prevention', () => {
 
       await simulateShow(boundingRectSpy);
     });
+  });
+
+  describe('scroll viewport reconcile when terminal becomes visible', () => {
+    it('tab switch (pinned): scrolls to bottom on reveal so the latest output is visible', async () => {
+      const { Terminal: XTermCtor } = await import('@xterm/xterm');
+      const { boundingRectSpy } = renderWithDimensions('term-pinned');
+      await triggerFirstResizeObserver();
+
+      const xterm = vi.mocked(XTermCtor).mock.results[0]?.value;
+      xterm.scrollToBottom.mockClear();
+
+      await simulateHide(boundingRectSpy);
+      await simulateShow(boundingRectSpy);
+
+      expect(xterm.scrollToBottom).toHaveBeenCalled();
+    });
+
+    it('tab switch (pinned): does not scroll to bottom on plain resize where container was never hidden', async () => {
+      const { Terminal: XTermCtor } = await import('@xterm/xterm');
+      const { boundingRectSpy } = renderWithDimensions('term-pinned-resize');
+      await triggerFirstResizeObserver();
+
+      const xterm = vi.mocked(XTermCtor).mock.results[0]?.value;
+      xterm.scrollToBottom.mockClear();
+
+      // Plain resize, no hide — should not snap to bottom (it would surprise users mid-scroll)
+      await simulateShow(boundingRectSpy, 1024, 768);
+
+      expect(xterm.scrollToBottom).not.toHaveBeenCalled();
+    });
+
+    it('tab switch (unpinned): does NOT auto-scroll to bottom on reveal — preserves user position', async () => {
+      const { Terminal: XTermCtor } = await import('@xterm/xterm');
+      const { boundingRectSpy } = renderWithDimensions('term-unpinned', 800, 600, {
+        pinnedToBottom: false,
+      });
+      await triggerFirstResizeObserver();
+
+      const xterm = vi.mocked(XTermCtor).mock.results[0]?.value;
+      xterm.scrollToBottom.mockClear();
+
+      await simulateHide(boundingRectSpy);
+      await simulateShow(boundingRectSpy);
+
+      expect(xterm.scrollToBottom).not.toHaveBeenCalled();
+    });
+
+    it('tab switch (unpinned): reconciles viewport metrics on reveal so scrolling becomes possible again');
+
+    it('tab switch (pinned): scroll-to-bottom only fires on the hidden->visible transition, not on subsequent stable resizes', async () => {
+      const { Terminal: XTermCtor } = await import('@xterm/xterm');
+      const { boundingRectSpy } = renderWithDimensions('term-pinned-stable');
+      await triggerFirstResizeObserver();
+
+      const xterm = vi.mocked(XTermCtor).mock.results[0]?.value;
+
+      await simulateHide(boundingRectSpy);
+      await simulateShow(boundingRectSpy);
+      xterm.scrollToBottom.mockClear();
+
+      // Subsequent stable resize without a hide in between — should not re-trigger scrollToBottom
+      await simulateShow(boundingRectSpy, 1024, 768);
+
+      expect(xterm.scrollToBottom).not.toHaveBeenCalled();
+    });
+
+    it('rapid tab switching (pinned): each reveal scrolls to bottom', async () => {
+      const { Terminal: XTermCtor } = await import('@xterm/xterm');
+      const { boundingRectSpy } = renderWithDimensions('term-pinned-rapid');
+      await triggerFirstResizeObserver();
+
+      const xterm = vi.mocked(XTermCtor).mock.results[0]?.value;
+
+      for (let cycle = 0; cycle < 3; cycle++) {
+        await simulateHide(boundingRectSpy);
+        xterm.scrollToBottom.mockClear();
+        await simulateShow(boundingRectSpy);
+        expect(xterm.scrollToBottom).toHaveBeenCalled();
+      }
+    });
+
+    it('tab switch (pinned): scrollToBottom on reveal happens after fit() so geometry is correct first');
   });
 });

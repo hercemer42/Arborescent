@@ -94,8 +94,12 @@ export function useTerminal({ id, pinnedToBottom = true, onResize }: UseTerminal
           const { cols, rows } = xterm;
           if (wasHiddenRef.current && rows > 0) {
             wasHiddenRef.current = false;
-            // display:none leaves xterm's renderer stale — force a buffer repaint.
+            // display:none leaves xterm's renderer and viewport stale — repaint the
+            // buffer and reconcile the scroll position so the viewport matches the buffer.
             xterm.refresh(0, rows - 1);
+            if (pinnedToBottomRef.current) {
+              xterm.scrollToBottom();
+            }
           }
           void window.electron.terminalResize(id, cols, rows);
           onResizeRef.current?.(cols, rows);
