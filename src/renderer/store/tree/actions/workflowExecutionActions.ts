@@ -10,10 +10,12 @@ import {
   getWorkflowStepNumber,
   findFirstAutonomousStepInChain,
   findNextWaitingNode,
+  findNextDecomposedSibling,
   getArchiveConfigForNode,
   isDecompositionEnabled,
   WorkflowExecutionEntry,
 } from "../../../utils/workflowHelpers";
+import { getParentIdOrNull } from "../../../utils/parentLookup";
 import { parseFeedbackContent } from "../../../services/feedback/feedbackService";
 import { AcceptFeedbackCommand } from "../commands/AcceptFeedbackCommand";
 import { StepType } from "../commands/SetStepTypeCommand";
@@ -306,8 +308,30 @@ export const createWorkflowExecutionActions = (
     advanceNode(nodeId);
   }
 
+  function scheduleRecurseStart(nextNodeId: string, terminalId: string): boolean {
+    const counter = recurseCounters.get(terminalId) || 0;
+    if (counter >= MAX_RECURSE_ITERATIONS) {
+      useToastStore
+        .getState()
+        .addToast("Recurse limit reached — stopping automatic processing", "warning");
+      void notifyWorkflowEvent("alert", "Recurse limit reached", "Stopping automatic processing");
+      recurseCounters.delete(terminalId);
+      return false;
+    }
+    recurseCounters.set(terminalId, counter + 1);
+    setTimeout(() => startWorkflow(nextNodeId, terminalId), 2000);
+    return true;
+  }
+
   function checkRecurse(stepId: string, terminalId: string): void {
     const { nodes, ancestorRegistry, workflowExecutionStates } = get();
+
+    const sibling = findNextDecomposedSibling(stepId, nodes, workflowExecutionStates);
+    if (sibling) {
+      scheduleRecurseStart(sibling, terminalId);
+      return;
+    }
+
     const stepNode = nodes[stepId];
     if (!stepNode || stepNode.metadata.recurse !== true) return;
 
@@ -320,18 +344,7 @@ export const createWorkflowExecutionActions = (
       return;
     }
 
-    const counter = recurseCounters.get(terminalId) || 0;
-    if (counter >= MAX_RECURSE_ITERATIONS) {
-      useToastStore
-        .getState()
-        .addToast("Recurse limit reached — stopping automatic processing", "warning");
-      void notifyWorkflowEvent("alert", "Recurse limit reached", "Stopping automatic processing");
-      recurseCounters.delete(terminalId);
-      return;
-    }
-
-    recurseCounters.set(terminalId, counter + 1);
-    setTimeout(() => startWorkflow(nextNodeId, terminalId), 2000);
+    scheduleRecurseStart(nextNodeId, terminalId);
   }
 
   function completeWorkflow(nodeId: string): void {
@@ -711,6 +724,10 @@ export const createWorkflowExecutionActions = (
       ? parsed.rootNodeIds
       : parsed.rootNodeId;
 
+    const decompositionStepId = Array.isArray(rootNodeIdOrIds)
+      ? getParentIdOrNull(nodeId, ancestorRegistry)
+      : null;
+
     // AcceptFeedbackCommand sets activeNodeId to the accepted root, which
     // via useNodeCursor calls .focus() and triggers a browser scrollIntoView.
     // Capture the user's prior focus so it can be restored after the command
@@ -744,6 +761,10 @@ export const createWorkflowExecutionActions = (
     logger.info(`Auto-accepted feedback for node ${nodeId} (${parsed.nodeCount} nodes)`, "WorkflowExecution");
 
     advanceOrClearCollaborating(nodeId);
+
+    if (decompositionStepId && entry.terminalTabId) {
+      checkRecurse(decompositionStepId, entry.terminalTabId);
+    }
   }
 
   return {

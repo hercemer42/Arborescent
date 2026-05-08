@@ -741,4 +741,16 @@ describe('workflow auto-accept for autonomous collaborate steps', () => {
       expect(mockExecuteCommand).toHaveBeenCalled();
     });
   });
+
+  describe('decomposition multi-root play-forward (PR1)', () => {
+    it.todo('starts the workflow for each decomposed sibling sequentially on the same terminal in parsed.rootNodeIds order');
+    it.todo('passes the full parsed.rootNodeIds array to AcceptFeedbackCommand so every decomposed root enters the merged tree');
+    it.todo('still uses the single rootNodeId when decomposition produces exactly one root');
+    it.todo('flashes and toasts each currently-running sibling like single-node advancement');
+    it.todo('checkRecurse picks the next waiting decomposed sibling before falling back to the chain-traversal anchor');
+    it.todo('halts mid-sequence with the existing recurse-limit toast when MAX_RECURSE_ITERATIONS is reached');
+    it.todo('a manual or checkpoint next-step pauses the sequence on that sibling exactly like a non-decomposed handoff');
+    it.todo('a decomposition that returns exactly one root advances normally without leaving any sibling pending');
+    it.todo('stops the workflow with the parse-failure toast and never invokes AcceptFeedbackCommand when parsing fails on a decomposition response');
+  });
 });

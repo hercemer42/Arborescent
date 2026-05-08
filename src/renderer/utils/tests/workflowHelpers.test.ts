@@ -11,6 +11,7 @@ import {
   findPreviousStepTarget,
   findFirstAutonomousStepInChain,
   findNextWaitingNode,
+  findNextDecomposedSibling,
 } from '../workflowHelpers';
 import type { TreeNode } from '../../../shared/types';
 
@@ -567,6 +568,69 @@ describe('workflowHelpers', () => {
       };
 
       expect(findNextWaitingNode('s1', nodes, {})).toBeNull();
+    });
+  });
+
+  describe('findNextDecomposedSibling', () => {
+    it('returns the first child of a decomposition step that has no execution state', () => {
+      const nodes: Record<string, TreeNode> = {
+        'step-decomp': { id: 'step-decomp', content: 'Decomp', children: ['s1', 's2', 's3'], metadata: { decomposition: true } },
+        's1': { id: 's1', content: 'Sibling 1', children: [], metadata: {} },
+        's2': { id: 's2', content: 'Sibling 2', children: [], metadata: {} },
+        's3': { id: 's3', content: 'Sibling 3', children: [], metadata: {} },
+      };
+
+      expect(findNextDecomposedSibling('step-decomp', nodes, {})).toBe('s1');
+    });
+
+    it('skips siblings that already have an execution state and returns the next waiting one', () => {
+      const nodes: Record<string, TreeNode> = {
+        'step-decomp': { id: 'step-decomp', content: 'Decomp', children: ['s1', 's2', 's3'], metadata: { decomposition: true } },
+        's1': { id: 's1', content: 'Sibling 1', children: [], metadata: {} },
+        's2': { id: 's2', content: 'Sibling 2', children: [], metadata: {} },
+        's3': { id: 's3', content: 'Sibling 3', children: [], metadata: {} },
+      };
+      const execStates = {
+        's1': { state: 'awaiting-validation' as const, terminalTabId: 't1' },
+        's2': { state: 'running' as const, terminalTabId: 't1' },
+      };
+
+      expect(findNextDecomposedSibling('step-decomp', nodes, execStates)).toBe('s3');
+    });
+
+    it('returns null when every sibling has an execution state', () => {
+      const nodes: Record<string, TreeNode> = {
+        'step-decomp': { id: 'step-decomp', content: 'Decomp', children: ['s1', 's2'], metadata: { decomposition: true } },
+        's1': { id: 's1', content: 'Sibling 1', children: [], metadata: {} },
+        's2': { id: 's2', content: 'Sibling 2', children: [], metadata: {} },
+      };
+      const execStates = {
+        's1': { state: 'running' as const, terminalTabId: 't1' },
+        's2': { state: 'running' as const, terminalTabId: 't1' },
+      };
+
+      expect(findNextDecomposedSibling('step-decomp', nodes, execStates)).toBeNull();
+    });
+
+    it('returns null when the step has no children', () => {
+      const nodes: Record<string, TreeNode> = {
+        'step-decomp': { id: 'step-decomp', content: 'Decomp', children: [], metadata: { decomposition: true } },
+      };
+
+      expect(findNextDecomposedSibling('step-decomp', nodes, {})).toBeNull();
+    });
+
+    it('returns null when the step id does not exist in the node map', () => {
+      expect(findNextDecomposedSibling('does-not-exist', {}, {})).toBeNull();
+    });
+
+    it('returns null when the supplied step is not a decomposition step', () => {
+      const nodes: Record<string, TreeNode> = {
+        'step-plain': { id: 'step-plain', content: 'Plain', children: ['s1'], metadata: {} },
+        's1': { id: 's1', content: 'Sibling 1', children: [], metadata: {} },
+      };
+
+      expect(findNextDecomposedSibling('step-plain', nodes, {})).toBeNull();
     });
   });
 });
