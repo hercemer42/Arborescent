@@ -9,9 +9,9 @@ import {
   collectDescendantWorkflows,
   findNextStepTarget,
   findPreviousStepTarget,
-  findFirstAutonomousStepInChain,
   findNextWaitingNode,
   findNextDecomposedSibling,
+  findDecompositionStepInWorkflow,
 } from '../workflowHelpers';
 import type { TreeNode } from '../../../shared/types';
 
@@ -441,71 +441,21 @@ describe('workflowHelpers', () => {
     });
   });
 
-  describe('findFirstAutonomousStepInChain', () => {
-    it('should return the first step when all steps are autonomous', () => {
+  describe('findDecompositionStepInWorkflow', () => {
+    it('returns the decomposition step id when one exists in the surrounding workflow', () => {
       const nodes: Record<string, TreeNode> = {
         'root': { id: 'root', content: 'Root', children: ['workflow'], metadata: { isBlueprint: true } },
         'workflow': { id: 'workflow', content: 'WF', children: ['s1', 's2', 's3'], metadata: { isBlueprint: true, isWorkflow: true } },
         's1': { id: 's1', content: 'S1', children: [], metadata: { isBlueprint: true, stepType: 'autonomous' } },
-        's2': { id: 's2', content: 'S2', children: [], metadata: { isBlueprint: true, stepType: 'autonomous' } },
+        's2': { id: 's2', content: 'S2', children: [], metadata: { isBlueprint: true, stepType: 'autonomous', decomposition: true } },
         's3': { id: 's3', content: 'S3', children: [], metadata: { isBlueprint: true, stepType: 'autonomous' } },
       };
       const registry = { 'root': [], 'workflow': ['root'], 's1': ['root', 'workflow'], 's2': ['root', 'workflow'], 's3': ['root', 'workflow'] };
 
-      expect(findFirstAutonomousStepInChain('s3', nodes, registry)).toBe('s1');
+      expect(findDecompositionStepInWorkflow('s3', nodes, registry)).toBe('s2');
     });
 
-    it('should stop at a checkpoint step', () => {
-      const nodes: Record<string, TreeNode> = {
-        'root': { id: 'root', content: 'Root', children: ['workflow'], metadata: { isBlueprint: true } },
-        'workflow': { id: 'workflow', content: 'WF', children: ['s1', 's2', 's3'], metadata: { isBlueprint: true, isWorkflow: true } },
-        's1': { id: 's1', content: 'S1', children: [], metadata: { isBlueprint: true, stepType: 'checkpoint' } },
-        's2': { id: 's2', content: 'S2', children: [], metadata: { isBlueprint: true, stepType: 'autonomous' } },
-        's3': { id: 's3', content: 'S3', children: [], metadata: { isBlueprint: true, stepType: 'autonomous' } },
-      };
-      const registry = { 'root': [], 'workflow': ['root'], 's1': ['root', 'workflow'], 's2': ['root', 'workflow'], 's3': ['root', 'workflow'] };
-
-      expect(findFirstAutonomousStepInChain('s3', nodes, registry)).toBe('s2');
-    });
-
-    it('should stop at a manual step', () => {
-      const nodes: Record<string, TreeNode> = {
-        'root': { id: 'root', content: 'Root', children: ['workflow'], metadata: { isBlueprint: true } },
-        'workflow': { id: 'workflow', content: 'WF', children: ['s1', 's2', 's3'], metadata: { isBlueprint: true, isWorkflow: true } },
-        's1': { id: 's1', content: 'S1', children: [], metadata: { isBlueprint: true } },
-        's2': { id: 's2', content: 'S2', children: [], metadata: { isBlueprint: true, stepType: 'autonomous' } },
-        's3': { id: 's3', content: 'S3', children: [], metadata: { isBlueprint: true, stepType: 'autonomous' } },
-      };
-      const registry = { 'root': [], 'workflow': ['root'], 's1': ['root', 'workflow'], 's2': ['root', 'workflow'], 's3': ['root', 'workflow'] };
-
-      expect(findFirstAutonomousStepInChain('s3', nodes, registry)).toBe('s2');
-    });
-
-    it('should walk back within the correct workflow scope for nested workflows', () => {
-      const nodes: Record<string, TreeNode> = {
-        'root': { id: 'root', content: 'Root', children: ['outer-wf'], metadata: { isBlueprint: true } },
-        'outer-wf': { id: 'outer-wf', content: 'Outer', children: ['outer-s1', 'inner-wf', 'outer-s3'], metadata: { isBlueprint: true, isWorkflow: true } },
-        'outer-s1': { id: 'outer-s1', content: 'Outer S1', children: [], metadata: { isBlueprint: true, stepType: 'autonomous' } },
-        'inner-wf': { id: 'inner-wf', content: 'Inner', children: ['inner-s1', 'inner-s2'], metadata: { isBlueprint: true, isWorkflow: true } },
-        'outer-s3': { id: 'outer-s3', content: 'Outer S3', children: [], metadata: { isBlueprint: true, stepType: 'autonomous' } },
-        'inner-s1': { id: 'inner-s1', content: 'Inner S1', children: [], metadata: { isBlueprint: true, stepType: 'autonomous' } },
-        'inner-s2': { id: 'inner-s2', content: 'Inner S2', children: [], metadata: { isBlueprint: true, stepType: 'autonomous' } },
-      };
-      const registry = {
-        'root': [],
-        'outer-wf': ['root'],
-        'outer-s1': ['root', 'outer-wf'],
-        'inner-wf': ['root', 'outer-wf'],
-        'outer-s3': ['root', 'outer-wf'],
-        'inner-s1': ['root', 'outer-wf', 'inner-wf'],
-        'inner-s2': ['root', 'outer-wf', 'inner-wf'],
-      };
-
-      // inner-s2 should walk back within inner-wf only, not cross into outer-wf
-      expect(findFirstAutonomousStepInChain('inner-s2', nodes, registry)).toBe('inner-s1');
-    });
-
-    it('should return the step itself when it is the first step in the workflow', () => {
+    it('returns null when no step in the surrounding workflow has decomposition', () => {
       const nodes: Record<string, TreeNode> = {
         'root': { id: 'root', content: 'Root', children: ['workflow'], metadata: { isBlueprint: true } },
         'workflow': { id: 'workflow', content: 'WF', children: ['s1', 's2'], metadata: { isBlueprint: true, isWorkflow: true } },
@@ -514,7 +464,35 @@ describe('workflowHelpers', () => {
       };
       const registry = { 'root': [], 'workflow': ['root'], 's1': ['root', 'workflow'], 's2': ['root', 'workflow'] };
 
-      expect(findFirstAutonomousStepInChain('s1', nodes, registry)).toBe('s1');
+      expect(findDecompositionStepInWorkflow('s1', nodes, registry)).toBeNull();
+    });
+
+    it('returns null when the supplied step has no enclosing workflow', () => {
+      const nodes: Record<string, TreeNode> = {
+        'lonely': { id: 'lonely', content: 'L', children: [], metadata: {} },
+      };
+      const registry = { 'lonely': [] };
+
+      expect(findDecompositionStepInWorkflow('lonely', nodes, registry)).toBeNull();
+    });
+
+    it('walks the nearest enclosing workflow only — does not cross out to a parent workflow', () => {
+      const nodes: Record<string, TreeNode> = {
+        'root': { id: 'root', content: 'Root', children: ['outer-wf'], metadata: { isBlueprint: true } },
+        'outer-wf': { id: 'outer-wf', content: 'Outer', children: ['outer-s1', 'inner-wf'], metadata: { isBlueprint: true, isWorkflow: true } },
+        'outer-s1': { id: 'outer-s1', content: 'Outer S1', children: [], metadata: { isBlueprint: true, stepType: 'autonomous', decomposition: true } },
+        'inner-wf': { id: 'inner-wf', content: 'Inner', children: ['inner-s1'], metadata: { isBlueprint: true, isWorkflow: true } },
+        'inner-s1': { id: 'inner-s1', content: 'Inner S1', children: [], metadata: { isBlueprint: true, stepType: 'autonomous' } },
+      };
+      const registry = {
+        'root': [],
+        'outer-wf': ['root'],
+        'outer-s1': ['root', 'outer-wf'],
+        'inner-wf': ['root', 'outer-wf'],
+        'inner-s1': ['root', 'outer-wf', 'inner-wf'],
+      };
+
+      expect(findDecompositionStepInWorkflow('inner-s1', nodes, registry)).toBeNull();
     });
   });
 

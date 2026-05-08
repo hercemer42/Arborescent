@@ -27,7 +27,7 @@ export function StepOptionsSection({
         />
         Decomposition
       </label>
-      <div className="step-config-description">AI response creates multiple sibling nodes instead of replacing the original.</div>
+      <div className="step-config-description">AI response creates multiple sibling nodes instead of replacing the original. Pair with Recurse on a later step to play each sibling forward automatically.</div>
       <label className="step-config-checkbox-label">
         <input
           type="checkbox"
@@ -37,7 +37,7 @@ export function StepOptionsSection({
         />
         Recurse
       </label>
-      <div className="step-config-description">After completing this step, automatically start the next waiting item from the beginning of the automated chain.</div>
+      <div className="step-config-description">After completing this step, automatically process the next decomposed sibling on the same terminal. Requires Decomposition on a step in this workflow — without it, recurse does nothing.</div>
       <label
         className="step-config-checkbox-label"
         title="Sends /clear to the target terminal before this step's prompt. Wipes any unsent input in that terminal."

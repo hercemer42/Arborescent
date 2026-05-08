@@ -87,7 +87,9 @@ describe('StepConfigDialog', () => {
     it('should show decomposition helper text', () => {
       render(<StepConfigDialog {...defaultProps} />);
 
-      expect(screen.getByText('AI response creates multiple sibling nodes instead of replacing the original.')).toBeInTheDocument();
+      expect(
+        screen.getByText(/AI response creates multiple sibling nodes/i),
+      ).toBeInTheDocument();
     });
   });
 
@@ -260,5 +262,27 @@ describe('StepConfigDialog', () => {
 
       expect(screen.getByRole('radiogroup')).toBeInTheDocument();
     });
+  });
+
+  describe('decomposition + recurse dependency helper text (PR2)', () => {
+    it('renders helper text beneath the decomposition option that mentions its coupling with recurse', () => {
+      render(<StepConfigDialog {...defaultProps} />);
+
+      const decompositionCheckbox = screen.getByLabelText('Decomposition');
+      const description = decompositionCheckbox.closest('label')?.nextElementSibling;
+      expect(description).not.toBeNull();
+      expect(description?.textContent ?? '').toMatch(/recurse/i);
+    });
+
+    it('renders helper text beneath the recurse option that mentions its coupling with decomposition', () => {
+      render(<StepConfigDialog {...defaultProps} />);
+
+      const recurseCheckbox = screen.getByLabelText('Recurse');
+      const description = recurseCheckbox.closest('label')?.nextElementSibling;
+      expect(description).not.toBeNull();
+      expect(description?.textContent ?? '').toMatch(/decomposition/i);
+    });
+
+    it.todo('the helper text uses the light-grey description style consistent with other step-config descriptions');
   });
 });

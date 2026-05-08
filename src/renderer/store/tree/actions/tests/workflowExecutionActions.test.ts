@@ -1091,15 +1091,15 @@ describe('createWorkflowExecutionActions', () => {
       state.workflowSessionMap = { 'session-1': 'terminal-1' };
     });
 
-    it('should trigger recurse check after completeWorkflow when last step has recurse', () => {
+    it('should trigger recurse check after completeWorkflow when the originating decomposition step has waiting siblings', () => {
       vi.useFakeTimers();
 
-      // All steps autonomous so the chain is unbroken from step-1 to step-3
+      state.nodes['step-1'].metadata.decomposition = true;
       state.nodes['step-2'].metadata.stepType = 'autonomous';
       state.nodes['step-3'].metadata.stepType = 'autonomous';
       state.nodes['step-3'].metadata.recurse = true;
 
-      // task-a at step-3 (last step), task-b waiting in step-1
+      // task-a at step-3 (last step) just completed, task-b waiting at the decomposition step (step-1)
       state.nodes['step-3'].children = ['task-a'];
       state.nodes['step-1'].children = ['task-b'];
       state.ancestorRegistry['task-a'] = ['root', 'workflow', 'step-3'];
@@ -1108,8 +1108,6 @@ describe('createWorkflowExecutionActions', () => {
 
       actions.completeWorkflow('task-a');
 
-      // checkRecurse walks back through step-3→step-2→step-1 (all autonomous)
-      // finds task-b waiting in step-1, schedules startWorkflow after 2s
       vi.advanceTimersByTime(2500);
       expect(state.workflowExecutionStates['task-b']).toBeDefined();
 
@@ -1137,9 +1135,10 @@ describe('createWorkflowExecutionActions', () => {
     it('should stop recursing and show warning after exceeding safety limit', () => {
       vi.useFakeTimers();
 
-      // Single-step workflow: step-1 is last step, nodes complete after one Stop
+      // Single-step workflow with decomposition + recurse: 52 sibling tasks at the decomp step
       state.nodes['step-1'].metadata.stepType = 'autonomous';
       state.nodes['step-1'].metadata.recurse = true;
+      state.nodes['step-1'].metadata.decomposition = true;
       state.nodes['workflow'].children = ['step-1'];
       state.workflowSessionMap = { 'session-1': 'terminal-1' };
       delete state.nodes['step-2'];
@@ -1147,7 +1146,6 @@ describe('createWorkflowExecutionActions', () => {
       delete state.ancestorRegistry['step-2'];
       delete state.ancestorRegistry['step-3'];
 
-      // Create 52 task nodes in step-1
       const taskIds: string[] = [];
       for (let i = 0; i < 52; i++) {
         const id = `task-${i}`;
@@ -1252,6 +1250,7 @@ describe('createWorkflowExecutionActions', () => {
       vi.useFakeTimers();
 
       state.nodes['step-1'].metadata.recurse = true;
+      state.nodes['step-1'].metadata.decomposition = true;
       state.nodes['workflow'].children = ['step-1'];
       delete state.nodes['step-2'];
       delete state.nodes['step-3'];
@@ -1284,6 +1283,126 @@ describe('createWorkflowExecutionActions', () => {
       actions.handleHookEvent({ session_id: 'session-1', hook_event_name: 'Notification', message: 'Check output' });
 
       expect(mockNotifyWorkflowEvent).toHaveBeenCalledWith('alert', 'Workflow notification', 'Check output');
+    });
+  });
+
+  describe('recurse-without-decomposition warning (PR2)', () => {
+    beforeEach(() => {
+      state.nodes['step-1'].metadata.stepType = 'autonomous';
+      state.nodes['step-1'].metadata.recurse = true;
+      state.nodes['step-2'].metadata.stepType = 'autonomous';
+      state.workflowSessionMap = { 'session-1': 'terminal-1' };
+    });
+
+    it('fires the warning toast when a recurse step runs in a workflow with no decomposition step anywhere', () => {
+      vi.useFakeTimers();
+      state.nodes['step-1'].children = ['task-a'];
+      state.workflowExecutionStates['task-a'] = { state: 'running', terminalTabId: 'terminal-1' };
+
+      actions.handleHookEvent({ session_id: 'session-1', hook_event_name: 'Stop' });
+      vi.advanceTimersByTime(2500);
+
+      expect(mockAddToast).toHaveBeenCalledWith(
+        'Warning, you have recursion set without decomposition',
+        expect.anything(),
+      );
+      vi.useRealTimers();
+    });
+
+    it('fires the warning toast at most once per workflow run, even after multiple advances on the same terminal', () => {
+      vi.useFakeTimers();
+      state.nodes['step-1'].metadata.stepType = 'autonomous';
+      state.nodes['step-1'].metadata.recurse = true;
+      state.nodes['workflow'].children = ['step-1'];
+      delete state.nodes['step-2'];
+      delete state.nodes['step-3'];
+      delete state.ancestorRegistry['step-2'];
+      delete state.ancestorRegistry['step-3'];
+
+      const taskIds: string[] = [];
+      for (let i = 0; i < 5; i++) {
+        const id = `recurse-task-${i}`;
+        taskIds.push(id);
+        state.nodes[id] = { id, content: `Recurse task ${i}`, children: [], metadata: { isBlueprint: true } };
+        state.ancestorRegistry[id] = ['root', 'workflow', 'step-1'];
+      }
+      state.nodes['step-1'].children = taskIds;
+      state.workflowExecutionStates[taskIds[0]] = { state: 'running', terminalTabId: 'terminal-1' };
+
+      for (let i = 0; i < 4; i++) {
+        actions.handleHookEvent({ session_id: 'session-1', hook_event_name: 'Stop' });
+        vi.advanceTimersByTime(3000);
+      }
+
+      const warningCalls = mockAddToast.mock.calls.filter(
+        (call) => typeof call[0] === 'string' && call[0].includes('recursion set without decomposition'),
+      );
+      expect(warningCalls).toHaveLength(1);
+      vi.useRealTimers();
+    });
+
+    it('does not fire the warning when at least one step in the workflow has decomposition: true', () => {
+      vi.useFakeTimers();
+      state.nodes['step-2'].metadata.decomposition = true;
+      state.nodes['step-1'].children = ['task-a'];
+      state.workflowExecutionStates['task-a'] = { state: 'running', terminalTabId: 'terminal-1' };
+
+      actions.handleHookEvent({ session_id: 'session-1', hook_event_name: 'Stop' });
+      vi.advanceTimersByTime(2500);
+
+      const warningCalls = mockAddToast.mock.calls.filter(
+        (call) => typeof call[0] === 'string' && call[0].includes('recursion set without decomposition'),
+      );
+      expect(warningCalls).toHaveLength(0);
+      vi.useRealTimers();
+    });
+
+    it.todo('resets the once-per-run guard when the workflow is restarted on the same terminal so a fresh run sees the warning again');
+  });
+
+  describe('chain-traversal removal (PR2)', () => {
+    beforeEach(() => {
+      state.nodes['step-1'].metadata.stepType = 'autonomous';
+      state.nodes['step-2'].metadata.stepType = 'autonomous';
+      state.nodes['step-3'].metadata.stepType = 'autonomous';
+      state.workflowSessionMap = { 'session-1': 'terminal-1' };
+    });
+
+    it('completing a node on a non-decomposition workflow with recurse: true does not start any waiting node from earlier chain steps', () => {
+      vi.useFakeTimers();
+      // No step has decomposition. Only step-3 has recurse.
+      state.nodes['step-3'].metadata.recurse = true;
+      state.nodes['step-3'].children = ['task-a'];
+      state.nodes['step-1'].children = ['task-b'];
+      state.ancestorRegistry['task-a'] = ['root', 'workflow', 'step-3'];
+      state.workflowExecutionStates['task-a'] = { state: 'running', terminalTabId: 'terminal-1' };
+
+      actions.completeWorkflow('task-a');
+      vi.advanceTimersByTime(2500);
+
+      expect(state.workflowExecutionStates['task-b']).toBeUndefined();
+      vi.useRealTimers();
+    });
+
+    it('after the last decomposed sibling completes its pipeline, the workflow stops without picking up unrelated chain nodes', () => {
+      vi.useFakeTimers();
+      // step-1 is a decomposition step; step-3 has recurse. Only one sibling left at step-1, but it's already running.
+      // Once task-a finishes step-3, no further siblings are available at the decomp step → chain traversal must not pick up task-c in some other step.
+      state.nodes['step-1'].metadata.decomposition = true;
+      state.nodes['step-3'].metadata.recurse = true;
+      state.nodes['step-1'].children = []; // no more siblings waiting at decomp step
+      state.nodes['step-2'].children = ['task-c']; // an unrelated waiting node in a different step
+      state.ancestorRegistry['task-c'] = ['root', 'workflow', 'step-2'];
+      state.nodes['step-3'].children = ['task-a'];
+      state.ancestorRegistry['task-a'] = ['root', 'workflow', 'step-3'];
+      state.workflowExecutionStates['task-a'] = { state: 'running', terminalTabId: 'terminal-1' };
+
+      actions.completeWorkflow('task-a');
+      vi.advanceTimersByTime(2500);
+
+      // task-c lives outside the decomposition step's children, so it must not auto-start.
+      expect(state.workflowExecutionStates['task-c']).toBeUndefined();
+      vi.useRealTimers();
     });
   });
 });

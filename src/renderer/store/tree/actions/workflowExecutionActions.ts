@@ -8,9 +8,8 @@ import {
   findNextStepTarget,
   getWorkflowStepPosition,
   getWorkflowStepNumber,
-  findFirstAutonomousStepInChain,
-  findNextWaitingNode,
   findNextDecomposedSibling,
+  findDecompositionStepInWorkflow,
   getArchiveConfigForNode,
   isDecompositionEnabled,
   WorkflowExecutionEntry,
@@ -81,6 +80,7 @@ export const createWorkflowExecutionActions = (
   const ACK_TIMEOUT_MS = 5000;
   const ACK_RETRY_CAP = 3;
   const recurseCounters = new Map<string, number>();
+  const recurseWithoutDecompositionWarned = new Set<string>();
   const feedbackCollaborations = new Map<string, { filePath: string; terminalId?: string; kind: 'manual' | 'autonomous' }>();
   const pendingAcks = new Map<string, { terminalId: string; attempts: number; timer: ReturnType<typeof setTimeout> }>();
   // ACKs that arrived before their pending entry was registered (the
@@ -326,7 +326,14 @@ export const createWorkflowExecutionActions = (
   function checkRecurse(stepId: string, terminalId: string): void {
     const { nodes, ancestorRegistry, workflowExecutionStates } = get();
 
-    const sibling = findNextDecomposedSibling(stepId, nodes, workflowExecutionStates);
+    const decompositionStepId = findDecompositionStepInWorkflow(stepId, nodes, ancestorRegistry);
+
+    const sibling =
+      findNextDecomposedSibling(stepId, nodes, workflowExecutionStates)
+      ?? (decompositionStepId
+        ? findNextDecomposedSibling(decompositionStepId, nodes, workflowExecutionStates)
+        : null);
+
     if (sibling) {
       scheduleRecurseStart(sibling, terminalId);
       return;
@@ -335,16 +342,24 @@ export const createWorkflowExecutionActions = (
     const stepNode = nodes[stepId];
     if (!stepNode || stepNode.metadata.recurse !== true) return;
 
-    const firstStepId = findFirstAutonomousStepInChain(stepId, nodes, ancestorRegistry);
-    if (!firstStepId) return;
-
-    const nextNodeId = findNextWaitingNode(firstStepId, nodes, workflowExecutionStates);
-    if (!nextNodeId) {
-      recurseCounters.delete(terminalId);
-      return;
+    if (!decompositionStepId) {
+      warnRecurseWithoutDecomposition(terminalId);
     }
 
-    scheduleRecurseStart(nextNodeId, terminalId);
+    recurseCounters.delete(terminalId);
+  }
+
+  function warnRecurseWithoutDecomposition(terminalId: string): void {
+    if (recurseWithoutDecompositionWarned.has(terminalId)) return;
+    recurseWithoutDecompositionWarned.add(terminalId);
+    useToastStore
+      .getState()
+      .addToast("Warning, you have recursion set without decomposition", "warning");
+    void notifyWorkflowEvent(
+      "alert",
+      "Recursion without decomposition",
+      "Recurse only processes decomposed siblings — set decomposition on a step in this workflow to make recurse take effect.",
+    );
   }
 
   function completeWorkflow(nodeId: string): void {

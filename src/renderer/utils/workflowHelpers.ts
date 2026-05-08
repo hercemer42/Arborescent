@@ -291,32 +291,20 @@ export function isDecompositionEnabled(
   return nodes[position.currentStepId]?.metadata.decomposition === true;
 }
 
-export function findFirstAutonomousStepInChain(
+export function findDecompositionStepInWorkflow(
   stepId: string,
   nodes: Record<string, TreeNode>,
   ancestorRegistry: AncestorRegistry
 ): string | null {
-  const workflowId = getParentIdOrNull(stepId, ancestorRegistry);
+  const workflowId = ancestorRegistry[stepId]?.findLast(
+    (ancestorId) => nodes[ancestorId]?.metadata.isWorkflow === true,
+  );
   if (!workflowId) return null;
 
   const workflow = nodes[workflowId];
-  if (!workflow || workflow.metadata.isWorkflow !== true) return null;
+  if (!workflow) return null;
 
-  const stepIndex = workflow.children.indexOf(stepId);
-  if (stepIndex < 0) return null;
-
-  let firstAutonomous = stepId;
-  for (let i = stepIndex - 1; i >= 0; i--) {
-    const siblingId = workflow.children[i];
-    const sibling = nodes[siblingId];
-    if (!sibling || (sibling.metadata.stepType as string) !== 'autonomous') break;
-    firstAutonomous = siblingId;
-  }
-
-  const step = nodes[firstAutonomous];
-  if (!step || (step.metadata.stepType as string) !== 'autonomous') return null;
-
-  return firstAutonomous;
+  return workflow.children.find((childId) => nodes[childId]?.metadata.decomposition === true) ?? null;
 }
 
 export function findNextWaitingNode(
