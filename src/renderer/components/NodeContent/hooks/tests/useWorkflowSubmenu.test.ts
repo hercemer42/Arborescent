@@ -157,7 +157,7 @@ describe('buildWorkflowExecutionItems', () => {
     expect(result).toEqual([]);
   });
 
-  it('should not show Start Workflow for eligible nodes in checkpoint steps', () => {
+  it('should show Start Workflow for eligible nodes in checkpoint steps', () => {
     const checkpointNodes: Record<string, TreeNode> = {
       ...workflowNodes,
       'step1': createNode('step1', { children: ['task'], metadata: { isBlueprint: true, stepType: 'checkpoint' } }),
@@ -171,7 +171,46 @@ describe('buildWorkflowExecutionItems', () => {
       ...defaultCallbacks,
     });
 
-    expect(result).toEqual([]);
+    expect(result).toHaveLength(1);
+    expect(result[0].label).toBe('Start Workflow');
+  });
+
+  it('should wire Start Workflow click to onStartWorkflow for checkpoint steps', () => {
+    const onStartWorkflow = vi.fn();
+    const checkpointNodes: Record<string, TreeNode> = {
+      ...workflowNodes,
+      'step1': createNode('step1', { children: ['task'], metadata: { isBlueprint: true, stepType: 'checkpoint' } }),
+    };
+
+    const result = buildWorkflowExecutionItems({
+      node: checkpointNodes['task'],
+      nodes: checkpointNodes,
+      ancestorRegistry: ancestors,
+      workflowExecutionStates: {},
+      ...defaultCallbacks,
+      onStartWorkflow,
+    });
+
+    result[0].onClick?.();
+    expect(onStartWorkflow).toHaveBeenCalledTimes(1);
+  });
+
+  it('should still show Stop Workflow for running checkpoint-step nodes', () => {
+    const checkpointNodes: Record<string, TreeNode> = {
+      ...workflowNodes,
+      'step1': createNode('step1', { children: ['task'], metadata: { isBlueprint: true, stepType: 'checkpoint' } }),
+    };
+
+    const result = buildWorkflowExecutionItems({
+      node: checkpointNodes['task'],
+      nodes: checkpointNodes,
+      ancestorRegistry: ancestors,
+      workflowExecutionStates: { 'task': { state: 'running', terminalTabId: 'tab1' } },
+      ...defaultCallbacks,
+    });
+
+    expect(result).toHaveLength(1);
+    expect(result[0].label).toBe('Stop Workflow');
   });
 
   it('should not show Start Workflow when step type is undefined (defaults to manual)', () => {

@@ -91,7 +91,7 @@ export function buildWorkflowExecutionItems({
     const position = getWorkflowStepPosition(node.id, nodes, ancestorRegistry);
     const stepNode = position ? nodes[position.currentStepId] : null;
     const stepType = stepNode?.metadata.stepType as string | undefined;
-    if (stepType === 'autonomous') {
+    if (stepType === 'autonomous' || stepType === 'checkpoint') {
       return [{ label: 'Start Workflow', onClick: onStartWorkflow }];
     }
   }
