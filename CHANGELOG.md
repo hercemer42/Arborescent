@@ -35,6 +35,7 @@
 - **Copy as Hyperlink is now invalidated by any subsequent cut or copy** — previously a stale hyperlink could be pasted even after you copied other content over the clipboard, especially right after switching apps; pasting now reliably uses the most recent clipboard content
 - **Right-click "Set context" submenu now reflects context renames immediately** — editing a context declaration's label updated the node but the submenu kept the old text until the next app restart. Undo/redo of the rename also stays in sync.
 - **Switching back to a terminal tab now shows the latest output** — anchored terminals could appear stuck mid-buffer after a tab switch until you typed a key; they now snap to the bottom on reveal.
+- **Copying a single leaf branch writes plain content to the clipboard** — previously copy and cut always wrote markdown chrome (`# [ ]` heading and status symbol) to the system clipboard, so pasting a single branch into Slack, email, a browser AI, or another branch's body required manually stripping the prefix. A leaf branch (no children) now copies its content as-is. Branches with children and multi-select selections still produce the markdown tree, so internal paste-back round-trips structure unchanged.
 
 ## 0.1.0 - Initial Release
 

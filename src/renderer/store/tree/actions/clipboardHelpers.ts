@@ -76,7 +76,11 @@ export function exportSelectionAsMarkdown(
   }
   if (selection.type === 'single') {
     const node = nodes[selection.nodeId];
-    return node ? exportNodeAsMarkdown(node, nodes) : null;
+    if (!node) return null;
+    if (node.children.length === 0) {
+      return node.content;
+    }
+    return exportNodeAsMarkdown(node, nodes);
   }
   return null;
 }

@@ -638,6 +638,51 @@ describe('clipboardActions', () => {
     });
   });
 
+  describe('leaf node clipboard payload', () => {
+    it('cut on a single leaf writes plain content (no # [ ] chrome) to the system clipboard', async () => {
+      state.activeNodeId = 'node-2';
+
+      await actions.cutNodes();
+
+      expect(mockWriteToClipboard).toHaveBeenCalledWith('Task 2', expect.any(String));
+    });
+
+    it('cut and copy on the same leaf write identical clipboard payloads', async () => {
+      state.activeNodeId = 'node-2';
+      await actions.copyNodes();
+      const copyPayload = mockWriteToClipboard.mock.calls.at(-1)?.[0];
+
+      mockWriteToClipboard.mockClear();
+      state.activeNodeId = 'node-2';
+      await actions.cutNodes();
+      const cutPayload = mockWriteToClipboard.mock.calls.at(-1)?.[0];
+
+      expect(cutPayload).toBe(copyPayload);
+    });
+
+    it('cut on a leaf caches the same plain payload that was written to the clipboard', async () => {
+      state.activeNodeId = 'node-2';
+
+      await actions.cutNodes();
+
+      expect(currentMockCache?.clipboardText).toBe('Task 2');
+      expect(currentMockCache?.isCut).toBe(true);
+    });
+
+    it('copying a leaf then pasting round-trips via the in-memory cache (cache hit, no markdown re-parse)', async () => {
+      state.activeNodeId = 'node-2';
+      await actions.copyNodes();
+
+      state.activeNodeId = 'node-1';
+      const result = await actions.pasteNodes();
+
+      expect(result).toBe('pasted');
+      expect(currentMockCache?.clipboardText).toBe('Task 2');
+      expect(mockClipboardContent).toBe('Task 2');
+      expect(mockExecuteCommand).toHaveBeenCalled();
+    });
+  });
+
   describe('deleteSelectedNodes', () => {
     describe('single node selection', () => {
       it('should return no-selection when no active node', () => {
