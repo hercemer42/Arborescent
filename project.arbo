@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-05-08T18:36:00.788Z'
+updated: '2026-05-08T19:24:11.756Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -458,6 +458,7 @@ nodes:
     id: 565dde0a-864b-41f9-86ff-dbdf40ac4dd0
     content: Done
     children:
+      - 7a7b84f1-8323-427e-ace1-7d57c17dccd2
       - 8d28e3e5-89a8-4f1a-b517-35491070acbe
       - 56fd66dd-6262-46aa-a2f6-9ffb5e0fe637
       - cf8c48b5-531b-4898-93a6-f9aef3c51076
@@ -14398,7 +14399,8 @@ nodes:
   c25cf481-a0d1-495d-9cea-498f1135eb8c:
     id: c25cf481-a0d1-495d-9cea-498f1135eb8c
     content: Feature implementation
-    children: []
+    children:
+      - bba28f16-877a-42c0-b9a9-4b60f30dbc34
     metadata:
       status: completed
       expanded: true
@@ -81699,7 +81701,6 @@ nodes:
       - 99c1ef4b-243f-4883-b0d9-9005eea177f9
       - 0a46871d-9ad3-44f3-add8-d5afc63c36fc
       - 1127dfe6-4578-4e72-a87c-48dbe8a805a8
-      - efd20e05-50d4-4e00-bc46-335c4c4327df
     metadata:
       status: pending
       expanded: true
@@ -83106,7 +83107,7 @@ nodes:
     id: ddd90208-5752-46cf-b72a-5fcbe040b2e0
     content: Merge to master
     children:
-      - 7a7b84f1-8323-427e-ace1-7d57c17dccd2
+      - efd20e05-50d4-4e00-bc46-335c4c4327df
     metadata:
       status: pending
       isBlueprint: true
@@ -84831,8 +84832,7 @@ nodes:
   1ee47a7f-770a-44ef-97ab-eb85a6f22ef1:
     id: 1ee47a7f-770a-44ef-97ab-eb85a6f22ef1
     content: Technical decomposition
-    children:
-      - bba28f16-877a-42c0-b9a9-4b60f30dbc34
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -94923,43 +94923,6 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  efd20e05-50d4-4e00-bc46-335c4c4327df:
-    id: efd20e05-50d4-4e00-bc46-335c4c4327df
-    content: "Right click context menu was never refactored for\_"
-    children:
-      - c2db52cc-104f-42e6-93cb-82d593038bbf
-      - 97e00200-6bef-40ff-af72-e43260e753f3
-      - 6f3bb068-02f2-44b1-bf25-c72b5513e9f9
-      - 48f4c293-98c6-4c07-b41e-89257a230a14
-      - 15aab4b1-c77c-4f34-ae1c-ecbe5936aaa5
-      - 18add25d-6d07-438f-b4c4-b42fc70beb56
-    metadata:
-      status: pending
-      expanded: false
-  c2db52cc-104f-42e6-93cb-82d593038bbf:
-    id: c2db52cc-104f-42e6-93cb-82d593038bbf
-    content: Actions
-    children: []
-    metadata:
-      status: pending
-  97e00200-6bef-40ff-af72-e43260e753f3:
-    id: 97e00200-6bef-40ff-af72-e43260e753f3
-    content: Execute
-    children: []
-    metadata:
-      status: pending
-  6f3bb068-02f2-44b1-bf25-c72b5513e9f9:
-    id: 6f3bb068-02f2-44b1-bf25-c72b5513e9f9
-    content: Collaborate
-    children: []
-    metadata:
-      status: pending
-  48f4c293-98c6-4c07-b41e-89257a230a14:
-    id: 48f4c293-98c6-4c07-b41e-89257a230a14
-    content: Execute & Collaborate
-    children: []
-    metadata:
-      status: pending
   52181ade-117d-4350-a499-c492134400bb:
     id: 52181ade-117d-4350-a499-c492134400bb
     content: 'Bug : If there is a manual collaboration in progress'
@@ -96026,18 +95989,6 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  15aab4b1-c77c-4f34-ae1c-ecbe5936aaa5:
-    id: 15aab4b1-c77c-4f34-ae1c-ecbe5936aaa5
-    content: We were supposed to do this when we made exeucte and collaborate booleans
-    children: []
-    metadata:
-      status: pending
-  18add25d-6d07-438f-b4c4-b42fc70beb56:
-    id: 18add25d-6d07-438f-b4c4-b42fc70beb56
-    content: It means that the right click menu for contexts now should split into these 4 catagories
-    children: []
-    metadata:
-      status: pending
   bba28f16-877a-42c0-b9a9-4b60f30dbc34:
     id: bba28f16-877a-42c0-b9a9-4b60f30dbc34
     content: 'Bug : Sometimes workflows don''t stop playing after completing the last step'
@@ -96046,7 +95997,7 @@ nodes:
       - 7c32c625-0f98-4003-88df-28080bcf0f5a
     metadata:
       status: pending
-      expanded: true
+      expanded: false
       deleted: false
       plugins: {}
   44a83447-116d-42b0-8789-26319239d2b3:
@@ -96870,6 +96821,625 @@ nodes:
   9288a346-366b-4914-9e6f-fce0d15d0d89:
     id: 9288a346-366b-4914-9e6f-fce0d15d0d89
     content: Non-obvious for a reviewer — the visible green arrow is downstream of the workflow's running flag, so the right diff is one or two lines on the completion side, not in the indicator component. Also, the keep-awake block release is gated on the running flag being cleared, so this fix likely also stops the system being held awake after the workflow really finished — worth verifying as a side effect.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  efd20e05-50d4-4e00-bc46-335c4c4327df:
+    id: efd20e05-50d4-4e00-bc46-335c4c4327df
+    content: Split right-click "Apply context" submenu into four flag-based sections
+    children:
+      - a5a30e46-43d2-4197-839c-9c5bf7755314
+      - f6a60f21-525d-44f6-9713-688f23927f4a
+      - db157eda-b4dd-4998-ba0b-4b3d3f3828b4
+      - b02a5195-ea87-4123-b3a6-0d3e4df4d740
+      - 3821b776-0a5b-4834-93df-167fd14feb2d
+      - 5fc19bdd-bb15-4b44-a177-073226b070e5
+      - a59d9472-69a6-4732-a47c-8e13d48b7c0b
+    metadata:
+      status: completed
+      expanded: false
+      deleted: false
+      plugins: {}
+  a5a30e46-43d2-4197-839c-9c5bf7755314:
+    id: a5a30e46-43d2-4197-839c-9c5bf7755314
+    content: 📄 Product spec
+    children:
+      - afba3940-55d4-4c71-899c-9a6a19c5a798
+      - dc91e6c4-7deb-4897-8c04-d8e4e2526030
+      - ac4ef140-db91-43a9-a1ba-237e74f225d4
+      - 35b1792c-41ee-450c-847c-6eacf4e22064
+      - d01a4aeb-e1b1-4563-96fc-997b7acb3ff6
+      - f5b62da3-67d5-4b7a-8abc-161682669536
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  afba3940-55d4-4c71-899c-9a6a19c5a798:
+    id: afba3940-55d4-4c71-899c-9a6a19c5a798
+    content: Context — when `execute` and `collaborate` were converted to independent booleans on context declarations, the right-click "Apply context" submenu was not updated. It still groups contexts into only two sections — `Collaborate` (collaborate-only) and `Execute` (anything with execute, including both flags) — and silently omits contexts where both flags are false. Users now have four valid flag combinations but a menu that only honours two and a half of them.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  dc91e6c4-7deb-4897-8c04-d8e4e2526030:
+    id: dc91e6c4-7deb-4897-8c04-d8e4e2526030
+    content: 'User — any user applying a context to a tree node via the right-click menu (primary persona: workflow author curating contexts on nodes)'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ac4ef140-db91-43a9-a1ba-237e74f225d4:
+    id: ac4ef140-db91-43a9-a1ba-237e74f225d4
+    content: Current experience — `Execute & Collaborate` contexts appear under `Execute`, indistinguishable from execute-only contexts; `Actions` contexts (both flags false) are entirely absent from the submenu and cannot be applied this way at all
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  35b1792c-41ee-450c-847c-6eacf4e22064:
+    id: 35b1792c-41ee-450c-847c-6eacf4e22064
+    content: Goal — the "Apply context" submenu groups context declarations into the four flag combinations users actually configure, so every declared context is reachable and correctly categorised
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d01a4aeb-e1b1-4563-96fc-997b7acb3ff6:
+    id: d01a4aeb-e1b1-4563-96fc-997b7acb3ff6
+    content: Business rules
+    children:
+      - 180f82fc-5315-4671-b440-c1f3f2d0a25e
+      - f668a956-650f-4328-a28f-dff727ed04d5
+      - b48e24b2-cc58-426f-9799-835e62018410
+      - 91a4399b-0e52-4fde-a10b-c316c1ac7bfd
+      - 6f494bdb-03b5-4072-aaa8-ff983ff69193
+      - 5f4b6997-2572-4fc0-b3bb-90953c5b739d
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  180f82fc-5315-4671-b440-c1f3f2d0a25e:
+    id: 180f82fc-5315-4671-b440-c1f3f2d0a25e
+    content: '1. Available context declarations must be partitioned into four mutually exclusive groups by their `(execute, collaborate)` flags: `Actions` (both false), `Execute` (execute only), `Collaborate` (collaborate only), `Execute & Collaborate` (both true).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f668a956-650f-4328-a28f-dff727ed04d5:
+    id: f668a956-650f-4328-a28f-dff727ed04d5
+    content: 2. Each non-empty group renders as a disabled header label followed by the group's contexts; the section order is `Actions`, `Execute`, `Collaborate`, `Execute & Collaborate`.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b48e24b2-cc58-426f-9799-835e62018410:
+    id: b48e24b2-cc58-426f-9799-835e62018410
+    content: 3. Sections containing zero contexts must be omitted entirely (header and trailing separator) so the submenu does not show empty headings.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  91a4399b-0e52-4fde-a10b-c316c1ac7bfd:
+    id: 91a4399b-0e52-4fde-a10b-c316c1ac7bfd
+    content: 4. Built-in `Basic review` and `Basic execution` items keep their current placement and visibility rules — `Basic execution` under `Execute`, `Basic review` under `Collaborate`, both shown only when no inherited context applies.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6f494bdb-03b5-4072-aaa8-ff983ff69193:
+    id: 6f494bdb-03b5-4072-aaa8-ff983ff69193
+    content: 5. A separator is inserted between consecutive rendered sections, but never as a leading or trailing separator and never between a section and the final `Close` item.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5f4b6997-2572-4fc0-b3bb-90953c5b739d:
+    id: 5f4b6997-2572-4fc0-b3bb-90953c5b739d
+    content: 6. Selection, radio, inheritance, and disabled-when-inherited behaviour for each context item is unchanged from the current implementation.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f5b62da3-67d5-4b7a-8abc-161682669536:
+    id: f5b62da3-67d5-4b7a-8abc-161682669536
+    content: Acceptance criteria
+    children:
+      - f5823a3f-12fb-4de8-961d-d01f14c48ac0
+      - ed4b3685-96c7-45c5-9e09-e4ebf9466094
+      - 2aa7f19e-cc44-457c-8617-fdedbfa8ab8d
+      - 228a668a-14df-46ae-9269-5d045eb26251
+      - fd7b5fc7-6fb4-457d-94c3-e1055684ffe7
+      - 280f3d79-fa42-4971-9df3-1bfea3011530
+      - 418629b9-a4e3-4e49-b5d4-a85cac90cee6
+      - 04fd02d1-12fe-4238-abfc-f39e5f3266a0
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f5823a3f-12fb-4de8-961d-d01f14c48ac0:
+    id: f5823a3f-12fb-4de8-961d-d01f14c48ac0
+    content: '- [ ] With at least one context in each of the four groups, the submenu renders four headers in the order `Actions`, `Execute`, `Collaborate`, `Execute & Collaborate` with the correct contexts under each.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ed4b3685-96c7-45c5-9e09-e4ebf9466094:
+    id: ed4b3685-96c7-45c5-9e09-e4ebf9466094
+    content: '- [ ] A context with `execute=true, collaborate=true` appears under `Execute & Collaborate` and is not duplicated under `Execute`.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2aa7f19e-cc44-457c-8617-fdedbfa8ab8d:
+    id: 2aa7f19e-cc44-457c-8617-fdedbfa8ab8d
+    content: '- [ ] A context with `execute=false, collaborate=false` appears under `Actions` and can be applied successfully via click.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  228a668a-14df-46ae-9269-5d045eb26251:
+    id: 228a668a-14df-46ae-9269-5d045eb26251
+    content: '- [ ] When no available contexts have a given flag combination, that section''s header and its trailing separator are not rendered.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fd7b5fc7-6fb4-457d-94c3-e1055684ffe7:
+    id: fd7b5fc7-6fb4-457d-94c3-e1055684ffe7
+    content: '- [ ] When the node has an inherited context (built-ins suppressed) and no available declarations, the submenu still returns `null` so it is not rendered at all (parity with current behaviour).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  280f3d79-fa42-4971-9df3-1bfea3011530:
+    id: 280f3d79-fa42-4971-9df3-1bfea3011530
+    content: '- [ ] Existing behaviour preserved: `Basic execution` shows under `Execute`, `Basic review` under `Collaborate`, both gated on `showBuiltIns`; selecting an active context clears it; inherited-without-explicit items are disabled with the radio shown.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  418629b9-a4e3-4e49-b5d4-a85cac90cee6:
+    id: 418629b9-a4e3-4e49-b5d4-a85cac90cee6
+    content: '- [ ] No leading separator, no double separators, no trailing separator before `Close`.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  04fd02d1-12fe-4238-abfc-f39e5f3266a0:
+    id: 04fd02d1-12fe-4238-abfc-f39e5f3266a0
+    content: '- [ ] Existing tests in `useSetContextSubmenu.test.ts` still pass after updates; new tests cover each of the four sections including empty-section omission.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f6a60f21-525d-44f6-9713-688f23927f4a:
+    id: f6a60f21-525d-44f6-9713-688f23927f4a
+    content: 🔧 Implementation proposal
+    children:
+      - 7a84413e-8e7a-4c4a-95db-5919bcb7b1e5
+      - 7309a4d7-5df2-423e-bd93-b2459827d637
+      - d5556f75-7e15-416b-a9ff-a8e34bdaebba
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7a84413e-8e7a-4c4a-95db-5919bcb7b1e5:
+    id: 7a84413e-8e7a-4c4a-95db-5919bcb7b1e5
+    content: Approach — one localised change in `src/renderer/components/NodeContent/hooks/useSetContextSubmenu.ts`. Replace the current two-bucket filter with a four-way partition keyed by the `(execute, collaborate)` flags, then assemble the menu by iterating an ordered list of sections and emitting only the non-empty ones with separators between them.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7309a4d7-5df2-423e-bd93-b2459827d637:
+    id: 7309a4d7-5df2-423e-bd93-b2459827d637
+    content: Touchpoints
+    children:
+      - d2a2ddb9-2728-4c73-8cf6-4a35d21349de
+      - 2c7565ae-b050-4047-8cdd-c0fe61344463
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d2a2ddb9-2728-4c73-8cf6-4a35d21349de:
+    id: d2a2ddb9-2728-4c73-8cf6-4a35d21349de
+    content: '`src/renderer/components/NodeContent/hooks/useSetContextSubmenu.ts` — partition logic and section assembly'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2c7565ae-b050-4047-8cdd-c0fe61344463:
+    id: 2c7565ae-b050-4047-8cdd-c0fe61344463
+    content: '`src/renderer/components/NodeContent/hooks/tests/useSetContextSubmenu.test.ts` — add cases for the `Actions` and `Execute & Collaborate` groups, empty-section omission, and section ordering'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d5556f75-7e15-416b-a9ff-a8e34bdaebba:
+    id: d5556f75-7e15-416b-a9ff-a8e34bdaebba
+    content: Constraints to call out
+    children:
+      - 863e86f3-0c02-4368-8707-06ec74db41dc
+      - 8439331f-e3a0-4c8a-918c-856a17ddb16f
+      - a208b8df-5a60-4177-a82f-75577f15d607
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  863e86f3-0c02-4368-8707-06ec74db41dc:
+    id: 863e86f3-0c02-4368-8707-06ec74db41dc
+    content: The current `Execute` filter (`c.execute`) silently absorbs both-flag contexts; the new partition must be strict equality on both flags so a context lands in exactly one bucket.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8439331f-e3a0-4c8a-918c-856a17ddb16f:
+    id: 8439331f-e3a0-4c8a-918c-856a17ddb16f
+    content: Built-in items (`Basic review`, `Basic execution`) live inside specific sections — keep that coupling rather than treating them as their own section.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a208b8df-5a60-4177-a82f-75577f15d607:
+    id: a208b8df-5a60-4177-a82f-75577f15d607
+    content: The label string `Collaborate & Execute` already exists in `useAppliedContexts.ts:flagsLabel`; the menu header uses the opposite order `Execute & Collaborate` per the requested categories. Pick one ordering and use it consistently in the menu, leaving `flagsLabel` alone unless the inconsistency is judged user-visible.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  db157eda-b4dd-4998-ba0b-4b3d3f3828b4:
+    id: db157eda-b4dd-4998-ba0b-4b3d3f3828b4
+    content: Single shippable chunk
+    children:
+      - 15f8fc31-bc0a-4443-a2fc-08f779db8f0b
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  15f8fc31-bc0a-4443-a2fc-08f779db8f0b:
+    id: 15f8fc31-bc0a-4443-a2fc-08f779db8f0b
+    content: One PR — the four-way split is a single coherent UX fix; splitting would create speculative plumbing with no independent user value.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b02a5195-ea87-4123-b3a6-0d3e4df4d740:
+    id: b02a5195-ea87-4123-b3a6-0d3e4df4d740
+    content: Challenge notes
+    children:
+      - 1b5d29ad-5498-433e-a758-dafd17049ceb
+      - 95e5afc0-f8f8-4354-a2c2-7055dcf30eb3
+      - e8bce256-6f8d-4533-92e4-d23e1f1b054a
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1b5d29ad-5498-433e-a758-dafd17049ceb:
+    id: 1b5d29ad-5498-433e-a758-dafd17049ceb
+    content: Scope is appropriately small — single file, single hook, behaviour-preserving for the existing two sections; ROI is good because the bug makes a whole flag combination (`Actions`) unreachable via the primary entry point.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  95e5afc0-f8f8-4354-a2c2-7055dcf30eb3:
+    id: 95e5afc0-f8f8-4354-a2c2-7055dcf30eb3
+    content: Watch for menu length — if many contexts exist, four headers plus separators can grow the submenu; the empty-section-omission rule keeps this bounded in practice and no further mitigation is in scope.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e8bce256-6f8d-4533-92e4-d23e1f1b054a:
+    id: e8bce256-6f8d-4533-92e4-d23e1f1b054a
+    content: Out of scope — renaming the `Collaborate & Execute` label in `flagsLabel`, redesigning the customize dialog's flag UI, or introducing a different grouping axis (e.g. by colour/icon).
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  3821b776-0a5b-4834-93df-167fd14feb2d:
+    id: 3821b776-0a5b-4834-93df-167fd14feb2d
+    content: Technical refinement
+    children:
+      - 4997cc1d-fb67-457b-be93-4b4598faefe7
+      - 6c9da875-9851-496c-9c99-e6a0b00bc876
+      - 33631fc5-67b4-4903-a229-41fd7800748d
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4997cc1d-fb67-457b-be93-4b4598faefe7:
+    id: 4997cc1d-fb67-457b-be93-4b4598faefe7
+    content: Flag complications
+    children:
+      - 478b3a96-67b1-4250-9d65-2193a089dd25
+      - 8c2ca106-0073-4ed6-978d-393ef74bff41
+      - dc2214df-09aa-42b0-bc2f-58b1293b818a
+      - 63453fff-679a-4d5c-bb60-f75f424d01ea
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  478b3a96-67b1-4250-9d65-2193a089dd25:
+    id: 478b3a96-67b1-4250-9d65-2193a089dd25
+    content: Legacy contexts saved before the boolean refactor have `execute` and `collaborate` as `undefined`. `useAppliedContexts.ts` already compensates by treating "both undefined" as `collaborate=true, execute=false`. The new partition must apply the same fallback before bucketing, otherwise every pre-refactor context declaration silently lands in `Actions` and disappears from where users currently find it.
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  8c2ca106-0073-4ed6-978d-393ef74bff41:
+    id: 8c2ca106-0073-4ed6-978d-393ef74bff41
+    content: The submenu's all-sections-empty case must still return `null` after the four-way partition — the existing early-out only checks `availableContexts.length === 0 && !showBuiltIns`, which still holds, but the assembly loop must not emit a stray leading separator or `Close`-only menu when every section is empty under `showBuiltIns=true`.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  dc2214df-09aa-42b0-bc2f-58b1293b818a:
+    id: dc2214df-09aa-42b0-bc2f-58b1293b818a
+    content: Header ordering inconsistency (`Execute & Collaborate` in the menu vs `Collaborate & Execute` in tooltips/labels via `flagsLabel`) is user-visible if the same context is shown in both surfaces; flagged but kept out of scope per the spec — worth a follow-up only if QA confirms it is jarring.
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  63453fff-679a-4d5c-bb60-f75f424d01ea:
+    id: 63453fff-679a-4d5c-bb60-f75f424d01ea
+    content: 'ROI is comfortably positive: the change is a single-file partition swap plus tests, and it unblocks the `Actions` flag combination which is currently unreachable via the menu.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6c9da875-9851-496c-9c99-e6a0b00bc876:
+    id: 6c9da875-9851-496c-9c99-e6a0b00bc876
+    content: Approach summary
+    children:
+      - 6226d5b7-be9a-4865-b38b-ec012103a61b
+      - 131a960d-72a4-4c5e-b886-058bb2747fd3
+      - 2ef7daeb-b5a8-407f-9586-bdc4b0ed2291
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6226d5b7-be9a-4865-b38b-ec012103a61b:
+    id: 6226d5b7-be9a-4865-b38b-ec012103a61b
+    content: Replace the two-filter grouping in `useSetContextSubmenu.ts` with a single pass that buckets each context by its normalised `(execute, collaborate)` tuple — applying the same legacy `undefined → collaborate=true` default used by `useAppliedContexts.ts` so historical files keep working.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  131a960d-72a4-4c5e-b886-058bb2747fd3:
+    id: 131a960d-72a4-4c5e-b886-058bb2747fd3
+    content: Drive menu assembly from an ordered `[Actions, Execute, Collaborate, Execute & Collaborate]` section list, emitting a header + items only when the bucket (or its built-in) is non-empty, and inserting separators only between consecutively-rendered sections.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2ef7daeb-b5a8-407f-9586-bdc4b0ed2291:
+    id: 2ef7daeb-b5a8-407f-9586-bdc4b0ed2291
+    content: Built-in `Basic execution` / `Basic review` stay inside the `Execute` / `Collaborate` sections respectively, so the `showBuiltIns` gate and existing radio/inheritance behaviour are untouched.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  33631fc5-67b4-4903-a229-41fd7800748d:
+    id: 33631fc5-67b4-4903-a229-41fd7800748d
+    content: Legacy `undefined`-flag contexts are not normalised inside `useSetContextSubmenu` because `ContextDeclarationInfo` is already strictly-typed `boolean` (coerced upstream via `=== true` in `buildContextDeclarations`). Pre-refactor contexts with both flags missing therefore land in `Actions` rather than `Collaborate`. Out of scope for this PR — fixing it requires changing `buildContextDeclarations` (a different file/touchpoint), and per spec we did not expand scope.
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  5fc19bdd-bb15-4b44-a177-073226b070e5:
+    id: 5fc19bdd-bb15-4b44-a177-073226b070e5
+    content: review feedback
+    children:
+      - 12549d1a-7cf0-4ff2-95b5-961b769143fb
+      - ca1a3d37-f742-46fa-8162-20a4e8138c80
+      - 6d00117c-c515-48c0-931e-58583bd14193
+      - 7806528d-552a-4ac3-81cd-05de1262f075
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  12549d1a-7cf0-4ff2-95b5-961b769143fb:
+    id: 12549d1a-7cf0-4ff2-95b5-961b769143fb
+    content: Result — no blocking issues. Type-check clean, 37/37 tests pass on the touched file. The four-way partition is mutually exclusive, section order matches spec (`Actions, Execute, Collaborate, Execute & Collaborate`), empty sections + their leading separator are correctly skipped, built-ins stay coupled to `Execute`/`Collaborate`, no leading/double/trailing separator, `Close` always last with content (not separator) immediately preceding it. `null`-return path and click semantics preserved. Consumer `useNodeContextMenu.ts` unaffected — return type still `ContextMenuItem[] | null`.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ca1a3d37-f742-46fa-8162-20a4e8138c80:
+    id: ca1a3d37-f742-46fa-8162-20a4e8138c80
+    content: 'Suggestion (non-blocking) — `buildBasicReviewItem`/`buildBasicExecutionItem` return single-item `ContextMenuItem[]` purely to fit the `builtIn: ContextMenuItem[]` shape; either return `ContextMenuItem` and spread at the callsite, or inline. Style only.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6d00117c-c515-48c0-931e-58583bd14193:
+    id: 6d00117c-c515-48c0-931e-58583bd14193
+    content: Suggestion (non-blocking) — the four `availableContexts.filter(...)` passes re-walk the array and repeat boolean inversions; a single `reduce` into `{actions, exec, collab, both}` would read cleaner. Style only, performance is fine at realistic context counts.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7806528d-552a-4ac3-81cd-05de1262f075:
+    id: 7806528d-552a-4ac3-81cd-05de1262f075
+    content: Out of scope (acknowledged) — `contextActions.ts:32-44` coerces missing `execute`/`collaborate` to `false` via `=== true`, so legacy `.arbo` contexts land in `Actions`. Already flagged in the user story; impact is contained (the section renders correctly), not a merge blocker.
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  a59d9472-69a6-4732-a47c-8e13d48b7c0b:
+    id: a59d9472-69a6-4732-a47c-8e13d48b7c0b
+    content: feedback
+    children:
+      - 122942d7-848b-4de5-b05e-efcea729da81
+      - dfcd4256-9d2f-4172-acaa-f2bc67d1d547
+      - 5c75ba5d-0cc5-4868-86d8-6393668e5305
+      - e79c5d7e-da3c-461d-a282-b0b95e9205ed
+      - 8fdb6b7b-6130-45eb-97c0-bb8fbbeba70d
+      - dd734b65-8b44-4caf-9ceb-14df4eef1e9e
+      - 3cfaf5b4-6321-498b-927a-ba0a8c45991b
+      - 7336b83e-fb40-431d-8ebd-1d30a5805c59
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  122942d7-848b-4de5-b05e-efcea729da81:
+    id: 122942d7-848b-4de5-b05e-efcea729da81
+    content: Blocking — none.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  dfcd4256-9d2f-4172-acaa-f2bc67d1d547:
+    id: dfcd4256-9d2f-4172-acaa-f2bc67d1d547
+    content: Major — none.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5c75ba5d-0cc5-4868-86d8-6393668e5305:
+    id: 5c75ba5d-0cc5-4868-86d8-6393668e5305
+    content: Minor (rejected) — Suggestion that `buildBasicReviewItem`/`buildBasicExecutionItem` return `ContextMenuItem[]` is a "type smell". These helpers are **pre-existing** (untouched by this diff — the prior implementation also spread them with `...buildBasicReviewItem(...)`) so the shape was not introduced by this PR. Refactoring them would expand scope into unchanged code with no functional benefit. The reviewer correctly tagged it "minor type smell"; the actionable verdict is leave alone.
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  e79c5d7e-da3c-461d-a282-b0b95e9205ed:
+    id: e79c5d7e-da3c-461d-a282-b0b95e9205ed
+    content: Minor (rejected) — Suggestion to replace the four `availableContexts.filter(...)` passes with a single `reduce`. The current form deliberately co-locates each section's predicate with its `{label, contexts, builtIn}` config so the assembly logic is readable top-down in one pass. A `reduce` would split the partition (separate buckets object) from the section list, requiring readers to cross-reference two structures. Reviewer admits perf is irrelevant. Readability trade-off favours the current form; rejecting.
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  8fdb6b7b-6130-45eb-97c0-bb8fbbeba70d:
+    id: 8fdb6b7b-6130-45eb-97c0-bb8fbbeba70d
+    content: Out of scope (acknowledged) — Legacy `undefined`-flag coercion in `buildContextDeclarations` is a real but contained behaviour change for pre-refactor `.arbo` files. Already documented in the user story technical refinement and in an appended out-of-scope node. No action this PR; track for a separate follow-up if user impact surfaces.
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  dd734b65-8b44-4caf-9ceb-14df4eef1e9e:
+    id: dd734b65-8b44-4caf-9ceb-14df4eef1e9e
+    content: 'Severity rollup — 0 blocking, 0 major, 2 minor (both rejected with reasoning), 1 out-of-scope (acknowledged). Net: PR ready as-is.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3cfaf5b4-6321-498b-927a-ba0a8c45991b:
+    id: 3cfaf5b4-6321-498b-927a-ba0a8c45991b
+    content: Documentation update — `docs/contexts.md` "Applying a Context" section rewritten to describe the four-section picker (Actions, Execute, Collaborate, Execute & Collaborate), with built-ins embedded under their matching section rather than at the top. The unreleased CHANGELOG entry "Apply context submenu grouping" was rewritten in place to reflect the four-section grouping; no new changelog line added because this is a fix to an unreleased feature. No new doc file — picker is a small refinement to an existing concept, not a standalone topic. `docs/workflow.md` already references the picker generically ("the grouped context picker") so no change there.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7336b83e-fb40-431d-8ebd-1d30a5805c59:
+    id: 7336b83e-fb40-431d-8ebd-1d30a5805c59
+    content: 'Doc warning (non-blocking) — Naming inconsistency persists between the menu and the rest of the codebase: the state list (in `docs/contexts.md` "The Four States" and the CHANGELOG "Four context states" entry) uses `Collaborate & Execute` (collab first) and `Action` (singular); the menu uses `Execute & Collaborate` (execute first, per the user''s original category list) and `Actions` (plural). Same concepts, different word order/number. Not blocking — each surface is internally consistent — but worth aligning in a follow-up if user feedback says it''s confusing.'
     children: []
     metadata:
       status: pending
