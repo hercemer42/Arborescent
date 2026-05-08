@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-05-08T12:15:22.752Z'
+updated: '2026-05-08T14:19:15.908Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -25626,6 +25626,7 @@ nodes:
       - b66f4108-240b-463d-8d00-30e6ec9239f9
       - 888e2888-bbad-4ff9-9307-0c8be747678d
       - e29b62d3-542b-4f07-9a9f-ef3882f50e19
+      - 8d28e3e5-89a8-4f1a-b517-35491070acbe
     metadata:
       status: pending
       isBlueprint: true
@@ -81683,15 +81684,15 @@ nodes:
     id: 8d28e3e5-89a8-4f1a-b517-35491070acbe
     content: Reconcile and highlight changes inside the feedback panel
     children:
-      - cb0d320c-5cb8-449a-b127-7e3b01cb9c01
-      - dca8488b-ec7a-46c0-a2a4-84815b4bbb9e
-      - b7655aac-f09c-4e44-956f-41314ec5e006
-      - 70b4ae17-5253-4795-b8b9-bc91cddc41b2
-      - 91592890-35ca-4fd6-8139-ba51d11bc002
-      - 40682a3d-cf77-479d-b70f-d98091209386
-      - 4151f9ac-2fb2-4243-a9a0-f531a79d4df1
-      - d5eb21d7-8197-404d-98da-c05625e598d3
-      - edf0d59a-3539-4523-99b3-e3f5448398f9
+      - e23b3557-73a5-4635-96c9-b24be66053cf
+      - 0bde04fa-cad4-47c3-ae4a-2e2930234dd0
+      - fbd7aac0-c7d7-4d12-889d-13985f1b3039
+      - 29c0c540-518a-48be-8203-00f1a09d4e51
+      - 0a323c94-15c5-45f9-b9c3-f312b3126fb2
+      - 5b3116a6-ff05-4acc-a5d7-972e21750296
+      - 0769cbdb-49ec-419c-b14e-25f27ae6af69
+      - 8690b2d8-ec13-4c1f-aa26-3e4d1e994aaa
+      - c561a95c-6b21-492e-9de8-7690ef72530d
     metadata:
       status: completed
       expanded: false
@@ -83107,7 +83108,7 @@ nodes:
     id: ddd90208-5752-46cf-b72a-5fcbe040b2e0
     content: Merge to master
     children:
-      - 8d28e3e5-89a8-4f1a-b517-35491070acbe
+      - 56fd66dd-6262-46aa-a2f6-9ffb5e0fe637
     metadata:
       status: pending
       isBlueprint: true
@@ -84833,7 +84834,6 @@ nodes:
     id: 1ee47a7f-770a-44ef-97ab-eb85a6f22ef1
     content: Technical decomposition
     children:
-      - 56fd66dd-6262-46aa-a2f6-9ffb5e0fe637
       - cf8c48b5-531b-4898-93a6-f9aef3c51076
     metadata:
       status: pending
@@ -91455,949 +91455,14 @@ nodes:
     id: 56fd66dd-6262-46aa-a2f6-9ffb5e0fe637
     content: PR1 - Sequential play-forward of decomposed children, with recurse anchored to the decomposition point
     children:
-      - 4e10f710-f17f-4f07-be32-4fdc44bd436e
-      - 85628603-2cfa-4ed9-891a-68b92be90213
+      - 4dfb8720-3f92-47c7-8d1d-8b1cfa4ff6be
+      - 4fd5784a-b944-45ea-a139-a85e8e16e1ea
+      - e622609b-3ddc-4660-b948-d01e7dd97e04
+      - 3f333fc4-89c9-4eb9-8cb4-dd0e38d78659
+      - 70c97e80-1892-4d60-a279-8ace8ef80741
     metadata:
-      status: pending
+      status: completed
       expanded: false
-      deleted: false
-      plugins: {}
-  4e10f710-f17f-4f07-be32-4fdc44bd436e:
-    id: 4e10f710-f17f-4f07-be32-4fdc44bd436e
-    content: User story
-    children:
-      - 154980ec-4ec7-43c2-8b39-bd0bf84f8714
-      - 48177302-abd8-4357-834c-16c7ef52eb65
-      - ffce6060-55ba-4011-9e8f-380cac599752
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  154980ec-4ec7-43c2-8b39-bd0bf84f8714:
-    id: 154980ec-4ec7-43c2-8b39-bd0bf84f8714
-    content: 📄 Product spec
-    children:
-      - 1a03fdae-e69c-4b43-ac68-89f60ae47350
-      - 6a34df76-b96b-4ed4-9193-eb00c84bf5f3
-      - 5f68de01-0832-44b7-997c-e920d15f990d
-      - d585fc84-4a1e-4dd2-84d7-ddefa9747f28
-      - 9de90937-6385-4041-a087-f747e8dae1b6
-      - 38de01c4-7df0-4d11-88dc-a3e18da7887f
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  1a03fdae-e69c-4b43-ac68-89f60ae47350:
-    id: 1a03fdae-e69c-4b43-ac68-89f60ae47350
-    content: Context
-    children:
-      - 891497dc-a209-429c-9736-28658d572b25
-      - bf32a8cc-91c3-4e12-a22f-a561cca2028b
-      - 213d0796-633f-46df-9144-cbcad65ea6c3
-      - 17f2bcaf-3426-4905-a064-1e10c8a6527a
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  891497dc-a209-429c-9736-28658d572b25:
-    id: 891497dc-a209-429c-9736-28658d572b25
-    content: 'Autonomous workflow steps can have `decomposition: true`, in which case the AI may return multiple root nodes that AcceptFeedbackCommand swaps into the tree as siblings under the same step container'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  bf32a8cc-91c3-4e12-a22f-a561cca2028b:
-    id: bf32a8cc-91c3-4e12-a22f-a561cca2028b
-    content: Today only the original running node is handed to advanceNode, so freshly-created decomposed siblings are left in the step container with no execution state
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  213d0796-633f-46df-9144-cbcad65ea6c3:
-    id: 213d0796-633f-46df-9144-cbcad65ea6c3
-    content: checkRecurse anchors on findFirstAutonomousStepInChain, which walks backwards to the start of the autonomous chain, so it can skip past siblings still waiting at the last decomposition step
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  17f2bcaf-3426-4905-a064-1e10c8a6527a:
-    id: 17f2bcaf-3426-4905-a064-1e10c8a6527a
-    content: 'Net result: decomposed siblings are silently orphaned and the workflow stalls until the user starts each one manually'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  6a34df76-b96b-4ed4-9193-eb00c84bf5f3:
-    id: 6a34df76-b96b-4ed4-9193-eb00c84bf5f3
-    content: User
-    children:
-      - 1e490dbf-c410-45d1-ba21-60cf3b86f0dc
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  1e490dbf-c410-45d1-ba21-60cf3b86f0dc:
-    id: 1e490dbf-c410-45d1-ba21-60cf3b86f0dc
-    content: 'Brian, running an autonomous workflow that includes one or more steps with `decomposition: true`'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  5f68de01-0832-44b7-997c-e920d15f990d:
-    id: 5f68de01-0832-44b7-997c-e920d15f990d
-    content: Current experience
-    children:
-      - 5934f7b6-4e9c-4a28-95d5-7262b4d85fb8
-      - a61a771f-c6c9-45af-91b7-1dbc743b3c1e
-      - 1abed6e2-99e2-4bd3-a071-35b08101c820
-      - 521cd0be-0ebf-49e1-8aeb-5078dd7420f1
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  5934f7b6-4e9c-4a28-95d5-7262b4d85fb8:
-    id: 5934f7b6-4e9c-4a28-95d5-7262b4d85fb8
-    content: Step decomposes node N into N + X + Y as siblings under the step container
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  a61a771f-c6c9-45af-91b7-1dbc743b3c1e:
-    id: a61a771f-c6c9-45af-91b7-1dbc743b3c1e
-    content: Only N advances to the next step; X and Y sit in the step container with no execution state
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  1abed6e2-99e2-4bd3-a071-35b08101c820:
-    id: 1abed6e2-99e2-4bd3-a071-35b08101c820
-    content: checkRecurse fires on N's previous parent and finds either an unrelated waiting node earlier in the chain or nothing at all
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  521cd0be-0ebf-49e1-8aeb-5078dd7420f1:
-    id: 521cd0be-0ebf-49e1-8aeb-5078dd7420f1
-    content: User has to manually start workflows on X and Y, defeating the point of an autonomous run
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  d585fc84-4a1e-4dd2-84d7-ddefa9747f28:
-    id: d585fc84-4a1e-4dd2-84d7-ddefa9747f28
-    content: Goal
-    children:
-      - 9a390b4d-9e4f-4e67-a2c5-7cf7450b26bb
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  9a390b4d-9e4f-4e67-a2c5-7cf7450b26bb:
-    id: 9a390b4d-9e4f-4e67-a2c5-7cf7450b26bb
-    content: After an autonomous step decomposes a node into siblings, the runner plays each decomposed sibling forward sequentially on the same terminal, and recurse processes the decomposed siblings until every one has been handled
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  9de90937-6385-4041-a087-f747e8dae1b6:
-    id: 9de90937-6385-4041-a087-f747e8dae1b6
-    content: Business rules
-    children:
-      - 9010260e-b65e-41fa-b842-20811c54b86b
-      - fa45528c-6754-4eda-a37c-98dcefa3fc4a
-      - 3af06769-e171-4117-a966-47b08f0d02a3
-      - 7b7f5612-8a86-48ce-973d-4ee070dd5cfc
-      - aca8fe30-b0fa-4dc7-9159-ad37ef5304b3
-      - 665ecc3b-b16d-4ec1-a79e-d5b6512d6f23
-      - e27a34c7-0982-4417-84aa-fe0a6008e2ae
-      - 92f4cfb7-6e98-4503-bdb3-01309859707b
-      - e83f97e1-f73b-4f6c-9fd1-cf97a1447e59
-      - 468426ef-a6db-45a1-9909-9266ccca4863
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  9010260e-b65e-41fa-b842-20811c54b86b:
-    id: 9010260e-b65e-41fa-b842-20811c54b86b
-    content: 'When an autonomous step with `decomposition: true` produces N decomposed roots, every one of those roots must enter the workflow execution queue'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  fa45528c-6754-4eda-a37c-98dcefa3fc4a:
-    id: fa45528c-6754-4eda-a37c-98dcefa3fc4a
-    content: Decomposed siblings execute sequentially on the same terminal, in the order returned by parseFeedbackContent (parsed.rootNodeIds)
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  3af06769-e171-4117-a966-47b08f0d02a3:
-    id: 3af06769-e171-4117-a966-47b08f0d02a3
-    content: Recurse processes only the decomposed siblings of the current decomposition point — it does not walk back to earlier autonomous steps
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  7b7f5612-8a86-48ce-973d-4ee070dd5cfc:
-    id: 7b7f5612-8a86-48ce-973d-4ee070dd5cfc
-    content: Once every decomposed sibling at a decomposition point has been processed the workflow stops; there is no fallback chain traversal
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  aca8fe30-b0fa-4dc7-9159-ad37ef5304b3:
-    id: aca8fe30-b0fa-4dc7-9159-ad37ef5304b3
-    content: 'Recursion is tied to decomposition: a recurse step that runs in a workflow with no decomposition step does nothing and surfaces a toast warning reading "Warning, you have recursion set without decomposition"'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  665ecc3b-b16d-4ec1-a79e-d5b6512d6f23:
-    id: 665ecc3b-b16d-4ec1-a79e-d5b6512d6f23
-    content: The workflow settings UI surfaces this dependency via light grey helper text beneath the decomposition and recursion options
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e27a34c7-0982-4417-84aa-fe0a6008e2ae:
-    id: e27a34c7-0982-4417-84aa-fe0a6008e2ae
-    content: The existing MAX_RECURSE_ITERATIONS cap continues to apply across the combined sibling sequence; hitting it stops the run with the same toast and notification
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  92f4cfb7-6e98-4503-bdb3-01309859707b:
-    id: 92f4cfb7-6e98-4503-bdb3-01309859707b
-    content: If a decomposition produces exactly one root, only that single element is processed
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e83f97e1-f73b-4f6c-9fd1-cf97a1447e59:
-    id: e83f97e1-f73b-4f6c-9fd1-cf97a1447e59
-    content: 'If parseFeedbackContent fails for a decomposition response, today''s parse-failure handling stands: stop the workflow, surface the error toast, do not enqueue siblings'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  468426ef-a6db-45a1-9909-9266ccca4863:
-    id: 468426ef-a6db-45a1-9909-9266ccca4863
-    content: Manual steps (or checkpoints) interleaved in the chain still pause the sequence — a decomposed sibling whose next step is manual or a checkpoint must wait for the user, exactly like a non-decomposed node would
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  38de01c4-7df0-4d11-88dc-a3e18da7887f:
-    id: 38de01c4-7df0-4d11-88dc-a3e18da7887f
-    content: Acceptance criteria
-    children:
-      - a0c6b795-df2c-4fef-b9e1-17ee59ebeb57
-      - 5a1fb1cd-f396-409c-9486-770d7f1ce9d3
-      - 07bd4b88-42eb-4d1c-a607-983c41ed78ac
-      - 08053fb5-d13d-494d-938a-3215e5261e69
-      - b11cc98a-3287-4720-9598-f709b97c0c36
-      - 3517f11f-44b7-44b0-8a52-fcf8cfb07a3b
-      - b9b1ddeb-1c46-420d-b2b2-5bc5450544e8
-      - 164f7b43-d623-4af5-8afc-537ac81e6709
-      - 65601128-115f-4639-ab2f-b4104f3dae79
-      - ba37d346-3aa8-47c4-b25a-10bb5b810278
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  a0c6b795-df2c-4fef-b9e1-17ee59ebeb57:
-    id: a0c6b795-df2c-4fef-b9e1-17ee59ebeb57
-    content: An autonomous decomposition step that returns N>1 roots causes all N siblings to be processed in parsed.rootNodeIds order on the same terminal
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  5a1fb1cd-f396-409c-9486-770d7f1ce9d3:
-    id: 5a1fb1cd-f396-409c-9486-770d7f1ce9d3
-    content: After the last sibling at a decomposition point completes, the workflow stops — no chain traversal occurs
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  07bd4b88-42eb-4d1c-a607-983c41ed78ac:
-    id: 07bd4b88-42eb-4d1c-a607-983c41ed78ac
-    content: While siblings remain at a decomposition point, checkRecurse selects from those siblings only
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  08053fb5-d13d-494d-938a-3215e5261e69:
-    id: 08053fb5-d13d-494d-938a-3215e5261e69
-    content: A decomposition that returns exactly one root processes only that single element
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  b11cc98a-3287-4720-9598-f709b97c0c36:
-    id: b11cc98a-3287-4720-9598-f709b97c0c36
-    content: A parse failure during a decomposition response stops the workflow, shows the existing error toast and notification, and does not enqueue any siblings
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  3517f11f-44b7-44b0-8a52-fcf8cfb07a3b:
-    id: 3517f11f-44b7-44b0-8a52-fcf8cfb07a3b
-    content: Hitting MAX_RECURSE_ITERATIONS mid-sequence stops the run with the existing limit toast and notification, leaving any unprocessed siblings in place
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  b9b1ddeb-1c46-420d-b2b2-5bc5450544e8:
-    id: b9b1ddeb-1c46-420d-b2b2-5bc5450544e8
-    content: When a decomposed sibling's next step is manual or a checkpoint, the sequence pauses on that sibling exactly like a non-decomposed manual handoff
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  164f7b43-d623-4af5-8afc-537ac81e6709:
-    id: 164f7b43-d623-4af5-8afc-537ac81e6709
-    content: A workflow with a recurse step but no decomposition step performs no recursion and shows a toast warning reading "Warning, you have recursion set without decomposition"
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  65601128-115f-4639-ab2f-b4104f3dae79:
-    id: 65601128-115f-4639-ab2f-b4104f3dae79
-    content: The workflow settings UI shows light grey helper text beneath the decomposition and recursion options describing their dependency
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ba37d346-3aa8-47c4-b25a-10bb5b810278:
-    id: ba37d346-3aa8-47c4-b25a-10bb5b810278
-    content: The currently-running sibling is reflected in the workflow UI (toast + node flash) the same way single-node advancement is today
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  48177302-abd8-4357-834c-16c7ef52eb65:
-    id: 48177302-abd8-4357-834c-16c7ef52eb65
-    content: 🔧 Implementation proposal
-    children:
-      - d93df902-e67b-4094-b866-facae2de7e5e
-      - 52deca09-280c-4f2d-909d-707c1aaf5f46
-      - 9d4dba4d-860a-4325-a2a0-96f432bbd9a4
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  d93df902-e67b-4094-b866-facae2de7e5e:
-    id: d93df902-e67b-4094-b866-facae2de7e5e
-    content: Approach
-    children:
-      - 2afc1c7d-44e9-48f6-b95e-c8c18f1eb3bb
-      - 1e445a0c-8d7f-4891-8623-a197482622da
-      - 7e4f8d0a-bdc8-4821-ab3f-1b4361be3bcd
-      - 33b48a4a-ca54-412b-ae6b-b4817694640f
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  2afc1c7d-44e9-48f6-b95e-c8c18f1eb3bb:
-    id: 2afc1c7d-44e9-48f6-b95e-c8c18f1eb3bb
-    content: Inside handleAutonomousFeedback, when parsed.rootNodeIds.length > 1, register the sibling roots as the next-up sequence after AcceptFeedbackCommand runs
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  1e445a0c-8d7f-4891-8623-a197482622da:
-    id: 1e445a0c-8d7f-4891-8623-a197482622da
-    content: Rewrite checkRecurse to look only for waiting decomposed siblings at the current step container; remove the chain-traversal fallback
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  7e4f8d0a-bdc8-4821-ab3f-1b4361be3bcd:
-    id: 7e4f8d0a-bdc8-4821-ab3f-1b4361be3bcd
-    content: Add a recurse-without-decomposition guard that surfaces the warning toast when a recurse step runs in a workflow with no decomposition step
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  33b48a4a-ca54-412b-ae6b-b4817694640f:
-    id: 33b48a4a-ca54-412b-ae6b-b4817694640f
-    content: Add helper text in the workflow settings UI beneath the decomposition and recursion options describing the dependency
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  52deca09-280c-4f2d-909d-707c1aaf5f46:
-    id: 52deca09-280c-4f2d-909d-707c1aaf5f46
-    content: Touchpoints
-    children:
-      - f1fa768a-0b64-4cf6-9810-154d7e9993e2
-      - 715ce898-95ce-4b3d-bc3e-00692fd5929b
-      - c274ad88-6d2b-40d3-bc0a-79c831b01b18
-      - 0a9c30f1-c2c3-4750-b769-4a46832cc42e
-      - 95b7f745-0fb9-49b1-a67e-31612cd78d98
-      - a5775305-c61a-45f6-beb2-3ad74b9ca4da
-      - 9f85b5e2-906b-4ea7-b1e6-2415d505f66f
-      - 9c991537-03c4-484d-9901-b9a1bc1e03bc
-      - 034695cb-c1f9-4a14-b9b1-a62a58114b87
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f1fa768a-0b64-4cf6-9810-154d7e9993e2:
-    id: f1fa768a-0b64-4cf6-9810-154d7e9993e2
-    content: src/renderer/store/tree/actions/workflowExecutionActions.ts — handleAutonomousFeedback (enqueue sibling roots after AcceptFeedbackCommand)
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  715ce898-95ce-4b3d-bc3e-00692fd5929b:
-    id: 715ce898-95ce-4b3d-bc3e-00692fd5929b
-    content: src/renderer/store/tree/actions/workflowExecutionActions.ts — checkRecurse (sibling-only lookup, no chain fallback, warning toast when recursion runs without decomposition)
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  c274ad88-6d2b-40d3-bc0a-79c831b01b18:
-    id: c274ad88-6d2b-40d3-bc0a-79c831b01b18
-    content: src/renderer/store/tree/actions/workflowExecutionActions.ts — advanceNode (confirm the existing checkRecurse(previousParentId, …) call site still does the right thing)
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  0a9c30f1-c2c3-4750-b769-4a46832cc42e:
-    id: 0a9c30f1-c2c3-4750-b769-4a46832cc42e
-    content: src/renderer/utils/workflowHelpers.ts — add findNextDecomposedSibling(stepId, nodes, executionStates) that returns the next waiting child produced by a decomposition response
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  95b7f745-0fb9-49b1-a67e-31612cd78d98:
-    id: 95b7f745-0fb9-49b1-a67e-31612cd78d98
-    content: src/renderer/utils/workflowHelpers.ts — remove or stop using findFirstAutonomousStepInChain in the recurse path
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  a5775305-c61a-45f6-beb2-3ad74b9ca4da:
-    id: a5775305-c61a-45f6-beb2-3ad74b9ca4da
-    content: Workflow settings UI component — add light grey helper text beneath the decomposition and recursion options
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  9f85b5e2-906b-4ea7-b1e6-2415d505f66f:
-    id: 9f85b5e2-906b-4ea7-b1e6-2415d505f66f
-    content: Tests — extend src/renderer/store/tree/actions/tests/workflowAutoAccept.test.ts (and/or workflowContentPreservation.test.ts) with a multi-root decomposition that asserts sequential play-forward
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  9c991537-03c4-484d-9901-b9a1bc1e03bc:
-    id: 9c991537-03c4-484d-9901-b9a1bc1e03bc
-    content: Tests — co-locate a unit test for the new sibling-finder helper next to workflowHelpers.ts
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  034695cb-c1f9-4a14-b9b1-a62a58114b87:
-    id: 034695cb-c1f9-4a14-b9b1-a62a58114b87
-    content: Tests — cover the MAX_RECURSE_ITERATIONS interaction, the parse-failure interaction, and the recurse-without-decomposition warning in the autonomous feedback tests
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  9d4dba4d-860a-4325-a2a0-96f432bbd9a4:
-    id: 9d4dba4d-860a-4325-a2a0-96f432bbd9a4
-    content: Constraints to call out
-    children:
-      - 4ad08396-c228-4935-89d0-91a30fe05830
-      - d6dba173-7830-4ca7-a310-1f7e94fcd151
-      - ff87f8de-62e3-4a86-bda9-2d7776849678
-      - 090443fb-c6c1-4992-b4e2-dd4e95e5f6ee
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  4ad08396-c228-4935-89d0-91a30fe05830:
-    id: 4ad08396-c228-4935-89d0-91a30fe05830
-    content: checkRecurse currently uses setTimeout(…, 2000) as a UX pacing knob; sequential sibling starts must respect the same delay so the existing visual rhythm is preserved
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  d6dba173-7830-4ca7-a310-1f7e94fcd151:
-    id: d6dba173-7830-4ca7-a310-1f7e94fcd151
-    content: feedbackCollaborations is keyed by nodeId — each sibling will get its own collaboration registration when its workflow starts, consistent with today's single-node behaviour
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ff87f8de-62e3-4a86-bda9-2d7776849678:
-    id: ff87f8de-62e3-4a86-bda9-2d7776849678
-    content: This story is strictly sequential; parallel execution across unrelated branches is explicitly out of scope and must not be built speculatively
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  090443fb-c6c1-4992-b4e2-dd4e95e5f6ee:
-    id: 090443fb-c6c1-4992-b4e2-dd4e95e5f6ee
-    content: 'Removing the chain-traversal fallback is a behaviour change: any existing autonomous-chain test in workflowExecution.test.ts that relied on recurse walking backwards must be updated or replaced'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ffce6060-55ba-4011-9e8f-380cac599752:
-    id: ffce6060-55ba-4011-9e8f-380cac599752
-    content: Technical refinement
-    children:
-      - 81f2c836-1306-433e-8ef1-aa7e26d9707a
-      - 8d98a694-bd34-425c-96d2-0404713fb283
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  81f2c836-1306-433e-8ef1-aa7e26d9707a:
-    id: 81f2c836-1306-433e-8ef1-aa7e26d9707a
-    content: Complications to resolve before implementation
-    children:
-      - a1611234-f3d8-4314-83d2-08814afcc881
-      - 68528429-9aad-41d1-a57d-a1f5d9fef353
-      - 1ff0eb60-3e9e-439b-b5b5-1614a991088f
-      - 94a059f1-4842-4809-b01b-316a80bdcf5b
-      - e29b05e1-8458-45a4-b513-46fbb1494917
-      - 8e7ea75f-c12b-40f0-9547-9cce2852a5cc
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  a1611234-f3d8-4314-83d2-08814afcc881:
-    id: a1611234-f3d8-4314-83d2-08814afcc881
-    content: 'Manual/checkpoint pause mid-sequence orphans later siblings — AC says "pause like a non-decomposed handoff", but a non-decomposed handoff stops the workflow. If X pauses on a manual step, no rule says Y must run after X is hand-resumed, so Y silently never starts. Add an explicit rule: resuming a paused sibling re-anchors recurse so the remaining siblings continue.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  68528429-9aad-41d1-a57d-a1f5d9fef353:
-    id: 68528429-9aad-41d1-a57d-a1f5d9fef353
-    content: Same-terminal sequencing races with advanceNode — N is advanced to its next step before checkRecurse picks X, so X (decomposition step) and N (next step) compete for the same terminal. Either X must wait until N's pipeline fully completes, or "sequential on the same terminal" needs a sharper definition. This is the highest-risk gap in the spec.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  1ff0eb60-3e9e-439b-b5b5-1614a991088f:
-    id: 1ff0eb60-3e9e-439b-b5b5-1614a991088f
-    content: Recurse-without-decomposition warning will fire repeatedly — checkRecurse runs per advance, so a workflow with recurse but no decomposition will toast the warning on every step. Needs a once-per-run guard and ideally a static check at workflow-start time.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  94a059f1-4842-4809-b01b-316a80bdcf5b:
-    id: 94a059f1-4842-4809-b01b-316a80bdcf5b
-    content: Existing `.arbo` files that relied on cross-chain recurse silently stop working — the warning toast covers visibility, but user content can be downgraded without the user noticing during a run that previously completed. Worth a one-shot migration notice or a startup-time scan.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e29b05e1-8458-45a4-b513-46fbb1494917:
-    id: e29b05e1-8458-45a4-b513-46fbb1494917
-    content: completeWorkflow also calls checkRecurse with `position.currentStepId` (line 367) — the new sibling-only lookup must locate the originating decomposition step from any caller, not just from `previousParentId` at advanceNode-time. Anchor-selection is the bulk of the new helper, not traversal.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  8e7ea75f-c12b-40f0-9547-9cce2852a5cc:
-    id: 8e7ea75f-c12b-40f0-9547-9cce2852a5cc
-    content: 'Out of scope to state explicitly: nested decomposition (a sibling whose own pipeline contains another decomposition step) and any parallel-branch execution — both must not be built speculatively.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  8d98a694-bd34-425c-96d2-0404713fb283:
-    id: 8d98a694-bd34-425c-96d2-0404713fb283
-    content: Approach summary
-    children:
-      - e2145995-a148-4b54-97a2-e2743987d8a2
-      - 82a804a5-295f-4752-a46f-32b5ab9a71ed
-      - 8a7df284-4116-4d4a-9816-fa3907904bdb
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e2145995-a148-4b54-97a2-e2743987d8a2:
-    id: e2145995-a148-4b54-97a2-e2743987d8a2
-    content: All execution-layer changes land in workflowExecutionActions.ts + workflowHelpers.ts. AcceptFeedbackCommand already accepts `string | string[]` and handles multi-root tree-swap, so no command-layer change is needed — handleAutonomousFeedback already passes parsed.rootNodeIds when decomposition is on.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  82a804a5-295f-4752-a46f-32b5ab9a71ed:
-    id: 82a804a5-295f-4752-a46f-32b5ab9a71ed
-    content: The new sibling-finder is essentially findNextWaitingNode applied to the decomposition step container — most of the work is picking the right anchor, not new traversal logic.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  8a7df284-4116-4d4a-9816-fa3907904bdb:
-    id: 8a7df284-4116-4d4a-9816-fa3907904bdb
-    content: 'Non-obvious for reviewers: this is a *behaviour deletion* (cross-chain recurse) presented as a feature addition. The warning toast + settings helper text exist precisely to cushion that deletion; without the deletion the rest of the change would be additive and low-risk.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  85628603-2cfa-4ed9-891a-68b92be90213:
-    id: 85628603-2cfa-4ed9-891a-68b92be90213
-    content: PR scope — additive bug fix only
-    children:
-      - 0a189d32-78ba-46d7-ae36-90e58df51a7a
-      - 96296e31-ebec-4318-a984-df61c8b8007f
-      - c24113f3-f8f7-4594-a1ab-0deebf771e7a
-      - 56b42442-899f-4021-b634-f2be4dad1d21
-      - c0869755-60bd-4ed6-a66d-d3fb5a0eb106
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  0a189d32-78ba-46d7-ae36-90e58df51a7a:
-    id: 0a189d32-78ba-46d7-ae36-90e58df51a7a
-    content: Implement multi-root sibling enqueue and a sibling-preferred recurse path; keep the existing chain-traversal as a fallback so this PR cannot regress workflows that rely on cross-chain recurse today
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  96296e31-ebec-4318-a984-df61c8b8007f:
-    id: 96296e31-ebec-4318-a984-df61c8b8007f
-    content: Touchpoints in scope
-    children:
-      - 0fa56514-62ce-48d9-9e97-47f889424329
-      - 13f1ea9a-ff40-4161-9c8b-76bdbd721f00
-      - f346323a-bf05-45c9-b3b8-42e42d2ca40e
-      - 3e84731e-bdae-4846-917e-c69ddc292102
-      - 332eaa9e-c536-471a-a531-0b9f296ba577
-      - 203ebc0f-584a-4f04-89ee-a0f4004736bc
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  0fa56514-62ce-48d9-9e97-47f889424329:
-    id: 0fa56514-62ce-48d9-9e97-47f889424329
-    content: src/renderer/store/tree/actions/workflowExecutionActions.ts — handleAutonomousFeedback enqueues sibling roots in parsed.rootNodeIds order after AcceptFeedbackCommand
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  13f1ea9a-ff40-4161-9c8b-76bdbd721f00:
-    id: 13f1ea9a-ff40-4161-9c8b-76bdbd721f00
-    content: src/renderer/store/tree/actions/workflowExecutionActions.ts — checkRecurse selects waiting decomposed siblings first; falls back to today's findFirstAutonomousStepInChain → findNextWaitingNode if no siblings remain
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f346323a-bf05-45c9-b3b8-42e42d2ca40e:
-    id: f346323a-bf05-45c9-b3b8-42e42d2ca40e
-    content: src/renderer/store/tree/actions/workflowExecutionActions.ts — advanceNode call site for checkRecurse(previousParentId, …) verified
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  3e84731e-bdae-4846-917e-c69ddc292102:
-    id: 3e84731e-bdae-4846-917e-c69ddc292102
-    content: src/renderer/utils/workflowHelpers.ts — add findNextDecomposedSibling(stepId, nodes, executionStates)
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  332eaa9e-c536-471a-a531-0b9f296ba577:
-    id: 332eaa9e-c536-471a-a531-0b9f296ba577
-    content: Tests — extend workflowAutoAccept.test.ts (or workflowContentPreservation.test.ts) with a multi-root decomposition that asserts sequential play-forward, including the parse-failure and MAX_RECURSE_ITERATIONS interactions
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  203ebc0f-584a-4f04-89ee-a0f4004736bc:
-    id: 203ebc0f-584a-4f04-89ee-a0f4004736bc
-    content: Tests — co-locate a unit test for findNextDecomposedSibling
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  c24113f3-f8f7-4594-a1ab-0deebf771e7a:
-    id: c24113f3-f8f7-4594-a1ab-0deebf771e7a
-    content: AC subset satisfied by this PR
-    children:
-      - 5ef223b6-76b9-4fc6-9a79-25989cd00a35
-      - 9a9ef32f-fd81-4657-abee-d156a9b3b49d
-      - 8972b42f-c5a1-4b7e-9ae7-9fe6ef7c738b
-      - fe2896fc-17aa-483f-b4d9-2771ab9aed68
-      - 971e669f-5716-44f3-83c7-fa13c7bc567e
-      - ba80f4ff-b61d-48d3-9bd8-667aa3937fc3
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  5ef223b6-76b9-4fc6-9a79-25989cd00a35:
-    id: 5ef223b6-76b9-4fc6-9a79-25989cd00a35
-    content: An autonomous decomposition step that returns N>1 roots causes all N siblings to be processed in parsed.rootNodeIds order on the same terminal
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  9a9ef32f-fd81-4657-abee-d156a9b3b49d:
-    id: 9a9ef32f-fd81-4657-abee-d156a9b3b49d
-    content: While siblings remain at a decomposition point, checkRecurse selects from those siblings (with chain-traversal still available as a fallback in this PR)
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  8972b42f-c5a1-4b7e-9ae7-9fe6ef7c738b:
-    id: 8972b42f-c5a1-4b7e-9ae7-9fe6ef7c738b
-    content: A decomposition that returns exactly one root processes only that single element
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  fe2896fc-17aa-483f-b4d9-2771ab9aed68:
-    id: fe2896fc-17aa-483f-b4d9-2771ab9aed68
-    content: A parse failure during a decomposition response stops the workflow, shows the existing error toast and notification, and does not enqueue any siblings
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  971e669f-5716-44f3-83c7-fa13c7bc567e:
-    id: 971e669f-5716-44f3-83c7-fa13c7bc567e
-    content: Hitting MAX_RECURSE_ITERATIONS mid-sequence stops the run with the existing limit toast and notification
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ba80f4ff-b61d-48d3-9bd8-667aa3937fc3:
-    id: ba80f4ff-b61d-48d3-9bd8-667aa3937fc3
-    content: The currently-running sibling is reflected in the workflow UI (toast + node flash) like single-node advancement
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  56b42442-899f-4021-b634-f2be4dad1d21:
-    id: 56b42442-899f-4021-b634-f2be4dad1d21
-    content: Out of scope (handled by PR2)
-    children:
-      - f2786107-c162-4d28-9c90-ff21a6d1328f
-      - 9ab0c476-9b58-403d-a9f3-6f2d434c0b65
-      - 4e7f9d72-5fd0-4c98-a17c-cff04be7dfc6
-      - d21f1b15-d933-4114-a9fe-cea94819de0a
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f2786107-c162-4d28-9c90-ff21a6d1328f:
-    id: f2786107-c162-4d28-9c90-ff21a6d1328f
-    content: Removal of the chain-traversal fallback in checkRecurse
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  9ab0c476-9b58-403d-a9f3-6f2d434c0b65:
-    id: 9ab0c476-9b58-403d-a9f3-6f2d434c0b65
-    content: Recurse-without-decomposition warning toast
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  4e7f9d72-5fd0-4c98-a17c-cff04be7dfc6:
-    id: 4e7f9d72-5fd0-4c98-a17c-cff04be7dfc6
-    content: Settings UI helper text under the decomposition and recursion options
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  d21f1b15-d933-4114-a9fe-cea94819de0a:
-    id: d21f1b15-d933-4114-a9fe-cea94819de0a
-    content: Updates to existing autonomous-chain tests in workflowExecution.test.ts that rely on cross-chain recurse
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  c0869755-60bd-4ed6-a66d-d3fb5a0eb106:
-    id: c0869755-60bd-4ed6-a66d-d3fb5a0eb106
-    content: Note
-    children:
-      - f4bb86b6-9298-44cc-bebd-e0bcdd030d5c
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f4bb86b6-9298-44cc-bebd-e0bcdd030d5c:
-    id: f4bb86b6-9298-44cc-bebd-e0bcdd030d5c
-    content: This is a subtask of the overall user story. Please implement only this subtask. The others will be implemented in a separate PR.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
       deleted: false
       plugins: {}
   cf8c48b5-531b-4898-93a6-f9aef3c51076:
@@ -93309,18 +92374,18 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  cb0d320c-5cb8-449a-b127-7e3b01cb9c01:
-    id: cb0d320c-5cb8-449a-b127-7e3b01cb9c01
+  e23b3557-73a5-4635-96c9-b24be66053cf:
+    id: e23b3557-73a5-4635-96c9-b24be66053cf
     content: worktree
     children:
-      - d054c92c-68de-4121-bc6c-7fe0bc57a4f8
+      - a62547f8-7848-43c5-a96b-e2f1f3c579ae
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  d054c92c-68de-4121-bc6c-7fe0bc57a4f8:
-    id: d054c92c-68de-4121-bc6c-7fe0bc57a4f8
+  a62547f8-7848-43c5-a96b-e2f1f3c579ae:
+    id: a62547f8-7848-43c5-a96b-e2f1f3c579ae
     content: '[Open in VS Code](vscode://file/Users/brianfox/dev/Arborescent-feedback-reconcile-highlight)'
     children: []
     metadata:
@@ -93328,23 +92393,23 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  dca8488b-ec7a-46c0-a2a4-84815b4bbb9e:
-    id: dca8488b-ec7a-46c0-a2a4-84815b4bbb9e
+  0bde04fa-cad4-47c3-ae4a-2e2930234dd0:
+    id: 0bde04fa-cad4-47c3-ae4a-2e2930234dd0
     content: 📄 Product spec
     children:
-      - 69843c0d-861c-4634-843a-83fea8fa0906
-      - ab528ec8-2178-4d48-884b-13fb1eefb02b
-      - e2d27b50-e1f6-480f-9497-2526325fffed
-      - 2467fbbf-ad70-481f-acee-8d0d0b3c23f3
-      - a4b1c461-bd47-47af-a6c1-a13984075367
-      - e97dfecc-bde9-450c-a1c8-1feca71ef05b
+      - 8b0ae074-1691-4e3e-a860-14ba792a5828
+      - 0e0d9f15-3eae-418c-8058-0223f7e7dc32
+      - 08fb1728-cf7f-4a60-8480-1bce13db33d1
+      - c5198b43-5322-4be0-b63c-e0c48740bdaa
+      - da138d44-b2db-4d5d-8adf-fd7cf62f9998
+      - a3a9f191-150e-44e9-bda9-e926426739b1
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  69843c0d-861c-4634-843a-83fea8fa0906:
-    id: 69843c0d-861c-4634-843a-83fea8fa0906
+  8b0ae074-1691-4e3e-a860-14ba792a5828:
+    id: 8b0ae074-1691-4e3e-a860-14ba792a5828
     content: Context — Feedback currently regenerates UUIDs on every non-parent node and gives the user no visual cue for what the model proposed to change. The user loses stable identity on nodes that the model returned untouched (breaking selection, expansion state, links, and producing noisy `.arbo` diffs) and has to scan the whole subtree mentally to spot edits. Both problems share the same missing capability — a structural diff between the prior subtree and the feedback output — so a single LCS-based diff layer should drive both UUID preservation and the in-panel highlight.
     children: []
     metadata:
@@ -93352,8 +92417,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  ab528ec8-2178-4d48-884b-13fb1eefb02b:
-    id: ab528ec8-2178-4d48-884b-13fb1eefb02b
+  0e0d9f15-3eae-418c-8058-0223f7e7dc32:
+    id: 0e0d9f15-3eae-418c-8058-0223f7e7dc32
     content: User — Brian, the sole user of Arborescent, running the feedback workflow on a node with children
     children: []
     metadata:
@@ -93361,8 +92426,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  e2d27b50-e1f6-480f-9497-2526325fffed:
-    id: e2d27b50-e1f6-480f-9497-2526325fffed
+  08fb1728-cf7f-4a60-8480-1bce13db33d1:
+    id: 08fb1728-cf7f-4a60-8480-1bce13db33d1
     content: Current experience — After feedback runs, all non-parent UUIDs are replaced regardless of content and the panel shows the proposed subtree with no indication of what changed; the user has to compare against the prior tree from memory before accepting
     children: []
     metadata:
@@ -93370,8 +92435,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  2467fbbf-ad70-481f-acee-8d0d0b3c23f3:
-    id: 2467fbbf-ad70-481f-acee-8d0d0b3c23f3
+  c5198b43-5322-4be0-b63c-e0c48740bdaa:
+    id: c5198b43-5322-4be0-b63c-e0c48740bdaa
     content: Goal — When the feedback panel opens, classify every node in the proposed subtree against the prior subtree, retain the existing UUID for any node that maps to a prior one (changed or not), and visually highlight modifications, additions, and removals in the panel so the user can see the diff at a glance before accepting
     children: []
     metadata:
@@ -93379,29 +92444,29 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  a4b1c461-bd47-47af-a6c1-a13984075367:
-    id: a4b1c461-bd47-47af-a6c1-a13984075367
+  da138d44-b2db-4d5d-8adf-fd7cf62f9998:
+    id: da138d44-b2db-4d5d-8adf-fd7cf62f9998
     content: Business rules
     children:
-      - 0c42833f-e380-4f2f-bfb5-990025b4f4a6
-      - 6629e246-cac8-4385-844d-24909028e071
-      - b9ee568a-57b2-4a35-8ced-f1c524fbfdd5
-      - 1a220203-5e4d-4b7e-ae63-99df1e8c13f7
-      - b9c78d2d-7683-449a-8435-8f121b88894c
-      - 85ed4aac-a3ac-4419-8a68-3c340f121f3d
-      - 91245f44-3853-44a6-9de9-b2dbe0a693b0
-      - 8affbc49-59c6-4714-93b6-34bd01cf77b1
-      - c2ca8d02-2691-40ee-ad5c-e071576c3530
-      - 68358fd2-1f2a-453b-b91c-ee97cc3366aa
-      - 28cc7aa6-b93b-4b22-9ce0-65d5807e0bed
-      - 220d6293-7033-4765-8acb-f6235abdb686
+      - efc19d85-4de1-4eba-98b8-756ca9b97e42
+      - 01924a56-83db-4359-9c79-267621333c78
+      - e3ea0ea4-1598-48df-ab8f-2e21f9cfd8c0
+      - e31aff17-810f-4ba4-ac95-0ad57ade47ff
+      - 043ecd4a-6f2c-4fd4-beaf-891e0fcd842a
+      - a8c2f1c2-52dd-42a3-949e-5b2cda923c56
+      - 8b4d77b6-92b2-4a2d-824d-357f437d15c5
+      - 5d7fbc5c-1e0b-419a-8e54-7ad0e536b084
+      - 81c1641b-4f29-4151-ab3f-1ead7c8f9881
+      - 1fd5efd3-8e5f-4286-ad19-cf193a1b78bb
+      - 097542e8-c71a-46cf-86db-628ca1ad2ce9
+      - c6c71aab-c43c-4ada-be40-ab532c1fb6e0
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  0c42833f-e380-4f2f-bfb5-990025b4f4a6:
-    id: 0c42833f-e380-4f2f-bfb5-990025b4f4a6
+  efc19d85-4de1-4eba-98b8-756ca9b97e42:
+    id: efc19d85-4de1-4eba-98b8-756ca9b97e42
     content: 1. The parent node retains its existing UUID under all modes (no regression).
     children: []
     metadata:
@@ -93409,8 +92474,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  6629e246-cac8-4385-844d-24909028e071:
-    id: 6629e246-cac8-4385-844d-24909028e071
+  01924a56-83db-4359-9c79-267621333c78:
+    id: 01924a56-83db-4359-9c79-267621333c78
     content: 2. In normal feedback mode, every non-parent node in the proposed subtree is classified against the prior subtree as unchanged, modified, or added; every prior node that no longer maps to anything in the output is classified as removed.
     children: []
     metadata:
@@ -93418,8 +92483,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  b9ee568a-57b2-4a35-8ced-f1c524fbfdd5:
-    id: b9ee568a-57b2-4a35-8ced-f1c524fbfdd5
+  e3ea0ea4-1598-48df-ab8f-2e21f9cfd8c0:
+    id: e3ea0ea4-1598-48df-ab8f-2e21f9cfd8c0
     content: '3. Classification uses LCS (Myers) over content equality at each sibling level under a matched parent: equal nodes form unchanged anchors; the gaps between anchors are then matched by relative position to identify modified pairs, leftover insertions, and leftover deletions.'
     children: []
     metadata:
@@ -93427,8 +92492,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  1a220203-5e4d-4b7e-ae63-99df1e8c13f7:
-    id: 1a220203-5e4d-4b7e-ae63-99df1e8c13f7
+  e31aff17-810f-4ba4-ac95-0ad57ade47ff:
+    id: e31aff17-810f-4ba4-ac95-0ad57ade47ff
     content: 4. Unchanged and modified nodes both inherit the existing UUID from their prior counterpart — UUID is identity, not a content hash — and only added nodes receive freshly generated UUIDs.
     children: []
     metadata:
@@ -93436,8 +92501,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  b9c78d2d-7683-449a-8435-8f121b88894c:
-    id: b9c78d2d-7683-449a-8435-8f121b88894c
+  043ecd4a-6f2c-4fd4-beaf-891e0fcd842a:
+    id: 043ecd4a-6f2c-4fd4-beaf-891e0fcd842a
     content: '5. In decomposition mode the reconciliation is skipped entirely: every output node is treated as added and receives a fresh UUID, no removed list is shown, and no UUIDs are reused.'
     children: []
     metadata:
@@ -93445,8 +92510,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  85ed4aac-a3ac-4419-8a68-3c340f121f3d:
-    id: 85ed4aac-a3ac-4419-8a68-3c340f121f3d
+  a8c2f1c2-52dd-42a3-949e-5b2cda923c56:
+    id: a8c2f1c2-52dd-42a3-949e-5b2cda923c56
     content: 6. The diff runs once when the feedback panel opens. While the panel is open, in-panel text edits trigger only a cheap per-node comparison on edit commit (blur or explicit save) — flipping the affected node between modified and unchanged — and structural edits in the panel (inserting, deleting, or reordering a node) trigger an LCS re-run for that single sibling level only. Nothing re-runs per keystroke.
     children: []
     metadata:
@@ -93454,8 +92519,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  91245f44-3853-44a6-9de9-b2dbe0a693b0:
-    id: 91245f44-3853-44a6-9de9-b2dbe0a693b0
+  8b4d77b6-92b2-4a2d-824d-357f437d15c5:
+    id: 8b4d77b6-92b2-4a2d-824d-357f437d15c5
     content: 7. Classification flips and added/removed transitions in the panel use a brief CSS background transition (no jolt) so the user is not perturbed by mid-edit changes.
     children: []
     metadata:
@@ -93463,8 +92528,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  8affbc49-59c6-4714-93b6-34bd01cf77b1:
-    id: 8affbc49-59c6-4714-93b6-34bd01cf77b1
+  5d7fbc5c-1e0b-419a-8e54-7ad0e536b084:
+    id: 5d7fbc5c-1e0b-419a-8e54-7ad0e536b084
     content: 8. Highlights and the removed-node indicator live entirely inside the feedback panel and are never rendered in the main tree. They are persisted as part of the saved feedback panel record so a save-and-reload reopens the panel with the same visual state, but they never attach to the underlying tree nodes themselves.
     children: []
     metadata:
@@ -93472,8 +92537,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  c2ca8d02-2691-40ee-ad5c-e071576c3530:
-    id: c2ca8d02-2691-40ee-ad5c-e071576c3530
+  81c1641b-4f29-4151-ab3f-1ead7c8f9881:
+    id: 81c1641b-4f29-4151-ab3f-1ead7c8f9881
     content: 9. Modified nodes show a blue background, added nodes show a green background, and removed nodes show a red background with strikethrough in their original position within the panel.
     children: []
     metadata:
@@ -93481,8 +92546,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  68358fd2-1f2a-453b-b91c-ee97cc3366aa:
-    id: 68358fd2-1f2a-453b-b91c-ee97cc3366aa
+  1fd5efd3-8e5f-4286-ad19-cf193a1b78bb:
+    id: 1fd5efd3-8e5f-4286-ad19-cf193a1b78bb
     content: 10. The modified-node blue must be visibly distinct from the panel's selection and focus styling so the two states cannot be confused.
     children: []
     metadata:
@@ -93490,8 +92555,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  28cc7aa6-b93b-4b22-9ce0-65d5807e0bed:
-    id: 28cc7aa6-b93b-4b22-9ce0-65d5807e0bed
+  097542e8-c71a-46cf-86db-628ca1ad2ce9:
+    id: 097542e8-c71a-46cf-86db-628ca1ad2ce9
     content: 11. Accepting the panel commits the merged subtree (with UUIDs and content already resolved) atomically and discards the persisted panel record and its highlight state; rejecting discards both the merged subtree and the panel record.
     children: []
     metadata:
@@ -93499,8 +92564,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  220d6293-7033-4765-8acb-f6235abdb686:
-    id: 220d6293-7033-4765-8acb-f6235abdb686
+  c6c71aab-c43c-4ada-be40-ab532c1fb6e0:
+    id: c6c71aab-c43c-4ada-be40-ab532c1fb6e0
     content: 12. When duplicate-content siblings appear, relative position within an LCS gap drives matching so results are deterministic across repeated runs that produce the same output.
     children: []
     metadata:
@@ -93508,32 +92573,32 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  e97dfecc-bde9-450c-a1c8-1feca71ef05b:
-    id: e97dfecc-bde9-450c-a1c8-1feca71ef05b
+  a3a9f191-150e-44e9-bda9-e926426739b1:
+    id: a3a9f191-150e-44e9-bda9-e926426739b1
     content: Acceptance criteria
     children:
-      - 2fcf1eb5-5c3c-4f79-ac51-1d9d76bfd4c4
-      - c7a034df-88df-4957-a3b1-4304b20a5fbb
-      - 4f33b78e-4a08-4d5a-a4b5-aefd443d5c6f
-      - f8a23e37-a8e8-4da8-8579-c788cc632ae5
-      - a19a7ea5-ad26-49bd-95a9-7d017d0fbd6a
-      - 8735a818-30cd-423a-ba69-41de616d7577
-      - f8f4c8bb-b94f-49b6-847c-52b64d7f891f
-      - d05b0a54-c483-4bc6-befd-27cd4a4114e9
-      - 2361c761-f29e-4ef5-823e-64880a8d8632
-      - 0ef2ebd4-7de8-44b0-b988-be910cafb89e
-      - 474f1961-6731-4f96-92b5-a1c4b56ef9d2
-      - 00d9f82e-f5b7-4dd0-82f1-8260872385f7
-      - 3c4d771a-912b-4d1e-81cc-85d58f0b62ea
-      - 815f3594-2ecb-420e-87e3-fa1bffc3b93e
-      - e43f6a13-f414-4df1-9c4f-b486a9beba66
+      - 4b47580e-b141-4614-b2c2-842df2931036
+      - 7ee2046d-90ae-4065-813b-450c02ce82f9
+      - 2765d14e-5e03-4267-9f2c-f41d48d84986
+      - c1c9fe34-10e1-4b7e-872b-703cfe255e63
+      - 80904122-1cca-457f-b6bc-f069d70a65ea
+      - 1d198fd7-d658-4d98-a9e1-86b2f2dd5fbd
+      - 41b75434-88b3-453d-9bcb-f499c6b2c858
+      - bf5cb390-cbb0-4da1-b988-4b17ad5063c9
+      - 87db0cde-cfaa-41b3-b5a7-ac6f14a90cbe
+      - 87003f8b-0ee4-4c33-a4e4-1634632789b2
+      - 9b2da550-76cc-4868-a2f4-93872ac0daad
+      - afd8d0d5-0cf5-469a-b95c-065b974bbad4
+      - c87fe503-b573-4b26-b5be-9c37fa6da8f5
+      - feaae4a3-5de6-4f2e-91cb-280d7febe470
+      - d47e4e61-b8b7-4afd-9ab9-b67b99c6f684
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  2fcf1eb5-5c3c-4f79-ac51-1d9d76bfd4c4:
-    id: 2fcf1eb5-5c3c-4f79-ac51-1d9d76bfd4c4
+  4b47580e-b141-4614-b2c2-842df2931036:
+    id: 4b47580e-b141-4614-b2c2-842df2931036
     content: '- [x] Opening the feedback panel runs the diff and renders the three highlight states immediately, before the user interacts'
     children: []
     metadata:
@@ -93541,8 +92606,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  c7a034df-88df-4957-a3b1-4304b20a5fbb:
-    id: c7a034df-88df-4957-a3b1-4304b20a5fbb
+  7ee2046d-90ae-4065-813b-450c02ce82f9:
+    id: 7ee2046d-90ae-4065-813b-450c02ce82f9
     content: '- [x] Unchanged child nodes show no highlight in the panel and retain their existing UUID on accept'
     children: []
     metadata:
@@ -93550,8 +92615,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  4f33b78e-4a08-4d5a-a4b5-aefd443d5c6f:
-    id: 4f33b78e-4a08-4d5a-a4b5-aefd443d5c6f
+  2765d14e-5e03-4267-9f2c-f41d48d84986:
+    id: 2765d14e-5e03-4267-9f2c-f41d48d84986
     content: '- [x] Modified child nodes show a blue background highlight and retain their existing UUID on accept'
     children: []
     metadata:
@@ -93559,8 +92624,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  f8a23e37-a8e8-4da8-8579-c788cc632ae5:
-    id: f8a23e37-a8e8-4da8-8579-c788cc632ae5
+  c1c9fe34-10e1-4b7e-872b-703cfe255e63:
+    id: c1c9fe34-10e1-4b7e-872b-703cfe255e63
     content: '- [x] Added child nodes show a green background highlight and receive freshly generated UUIDs on accept'
     children: []
     metadata:
@@ -93568,8 +92633,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  a19a7ea5-ad26-49bd-95a9-7d017d0fbd6a:
-    id: a19a7ea5-ad26-49bd-95a9-7d017d0fbd6a
+  80904122-1cca-457f-b6bc-f069d70a65ea:
+    id: 80904122-1cca-457f-b6bc-f069d70a65ea
     content: '- [x] Removed prior nodes appear with a red background and strikethrough at their original position in the panel and are absent from the tree on accept'
     children: []
     metadata:
@@ -93577,8 +92642,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  8735a818-30cd-423a-ba69-41de616d7577:
-    id: 8735a818-30cd-423a-ba69-41de616d7577
+  1d198fd7-d658-4d98-a9e1-86b2f2dd5fbd:
+    id: 1d198fd7-d658-4d98-a9e1-86b2f2dd5fbd
     content: '- [x] A text edit in the panel triggers only a per-node compare on edit commit, flipping the node between modified and unchanged (e.g. editing a "modified" node back to its prior content reverts it to unchanged)'
     children: []
     metadata:
@@ -93586,8 +92651,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  f8f4c8bb-b94f-49b6-847c-52b64d7f891f:
-    id: f8f4c8bb-b94f-49b6-847c-52b64d7f891f
+  41b75434-88b3-453d-9bcb-f499c6b2c858:
+    id: 41b75434-88b3-453d-9bcb-f499c6b2c858
     content: '- [-] A structural edit in the panel (insert / delete / reorder) re-runs LCS only for the affected sibling level'
     children: []
     metadata:
@@ -93595,8 +92660,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  d05b0a54-c483-4bc6-befd-27cd4a4114e9:
-    id: d05b0a54-c483-4bc6-befd-27cd4a4114e9
+  bf5cb390-cbb0-4da1-b988-4b17ad5063c9:
+    id: bf5cb390-cbb0-4da1-b988-4b17ad5063c9
     content: '- [x] Classification flips animate via a brief CSS background transition rather than snapping'
     children: []
     metadata:
@@ -93604,8 +92669,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  2361c761-f29e-4ef5-823e-64880a8d8632:
-    id: 2361c761-f29e-4ef5-823e-64880a8d8632
+  87db0cde-cfaa-41b3-b5a7-ac6f14a90cbe:
+    id: 87db0cde-cfaa-41b3-b5a7-ac6f14a90cbe
     content: '- [x] Saving the file with the panel open and then reopening the file restores the panel with the same proposed subtree, in-panel edits, and highlight state'
     children: []
     metadata:
@@ -93613,8 +92678,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  0ef2ebd4-7de8-44b0-b988-be910cafb89e:
-    id: 0ef2ebd4-7de8-44b0-b988-be910cafb89e
+  87003f8b-0ee4-4c33-a4e4-1634632789b2:
+    id: 87003f8b-0ee4-4c33-a4e4-1634632789b2
     content: '- [x] In decomposition mode every output node is rendered as added (green), no UUIDs are reused, and no removed indicators appear'
     children: []
     metadata:
@@ -93622,8 +92687,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  474f1961-6731-4f96-92b5-a1c4b56ef9d2:
-    id: 474f1961-6731-4f96-92b5-a1c4b56ef9d2
+  9b2da550-76cc-4868-a2f4-93872ac0daad:
+    id: 9b2da550-76cc-4868-a2f4-93872ac0daad
     content: '- [x] The parent node''s UUID is preserved on accept (regression guard)'
     children: []
     metadata:
@@ -93631,8 +92696,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  00d9f82e-f5b7-4dd0-82f1-8260872385f7:
-    id: 00d9f82e-f5b7-4dd0-82f1-8260872385f7
+  afd8d0d5-0cf5-469a-b95c-065b974bbad4:
+    id: afd8d0d5-0cf5-469a-b95c-065b974bbad4
     content: '- [x] Highlight and classification state ride with the persisted feedback panel record but are never attached to nodes in the main tree'
     children: []
     metadata:
@@ -93640,8 +92705,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  3c4d771a-912b-4d1e-81cc-85d58f0b62ea:
-    id: 3c4d771a-912b-4d1e-81cc-85d58f0b62ea
+  c87fe503-b573-4b26-b5be-9c37fa6da8f5:
+    id: c87fe503-b573-4b26-b5be-9c37fa6da8f5
     content: '- [x] The blue "modified" highlight is visibly distinct from the panel''s selection and focus styles'
     children: []
     metadata:
@@ -93649,8 +92714,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  815f3594-2ecb-420e-87e3-fa1bffc3b93e:
-    id: 815f3594-2ecb-420e-87e3-fa1bffc3b93e
+  feaae4a3-5de6-4f2e-91cb-280d7febe470:
+    id: feaae4a3-5de6-4f2e-91cb-280d7febe470
     content: '- [x] Repeated feedback runs that produce identical output classify duplicate-content siblings the same way each time'
     children: []
     metadata:
@@ -93658,8 +92723,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  e43f6a13-f414-4df1-9c4f-b486a9beba66:
-    id: e43f6a13-f414-4df1-9c4f-b486a9beba66
+  d47e4e61-b8b7-4afd-9ab9-b67b99c6f684:
+    id: d47e4e61-b8b7-4afd-9ab9-b67b99c6f684
     content: '- [x] Diff on panel open, per-node compare on text-edit commit, and sibling-level LCS on structural edit all show no perceptible lag on a typical subtree (≤200 nodes)'
     children: []
     metadata:
@@ -93667,20 +92732,20 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  b7655aac-f09c-4e44-956f-41314ec5e006:
-    id: b7655aac-f09c-4e44-956f-41314ec5e006
+  fbd7aac0-c7d7-4d12-889d-13985f1b3039:
+    id: fbd7aac0-c7d7-4d12-889d-13985f1b3039
     content: 🔧 Implementation proposal
     children:
-      - a2eba4ac-707b-4094-95dd-b2348497de49
-      - 251b0ff0-ece4-4b33-8905-42b39935ce1e
-      - 11d7db8f-2959-4228-a4fa-807e06eef615
+      - 87ad5c31-37f9-488a-bca5-0562eec3abf2
+      - 9bda6dbf-64b3-420b-8e24-a28e652daf2b
+      - 3af0d778-548b-4b13-86e8-fc219f81dfbf
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  a2eba4ac-707b-4094-95dd-b2348497de49:
-    id: a2eba4ac-707b-4094-95dd-b2348497de49
+  87ad5c31-37f9-488a-bca5-0562eec3abf2:
+    id: 87ad5c31-37f9-488a-bca5-0562eec3abf2
     content: Approach — Add a reconciliation utility that runs in the feedback panel on open and a narrower update path while the panel is open. Use `diff`'s `diffArrays` (or `fast-array-diff`) for the per-level LCS over child arrays with a content-equality comparator; equal runs are unchanged anchors, and within the gaps between anchors match by relative position to identify modified pairs (UUID inherited from the prior counterpart) plus leftover added and removed nodes. Recurse into unchanged and modified pairs to diff their children. In decomposition mode, skip the diff and mark every output node as added with a fresh UUID. While the panel is open, a text edit triggers a single per-node compare on edit commit; only structural edits re-run LCS, and only at the affected sibling level. Hold the merged subtree, per-node classifications, and the removed-list on a feedback panel view model that is persisted alongside the panel so a save/reload restores the same state; on accept the view model collapses into a single store action that writes the merged subtree and clears the panel record.
     children: []
     metadata:
@@ -93688,24 +92753,24 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  251b0ff0-ece4-4b33-8905-42b39935ce1e:
-    id: 251b0ff0-ece4-4b33-8905-42b39935ce1e
+  9bda6dbf-64b3-420b-8e24-a28e652daf2b:
+    id: 9bda6dbf-64b3-420b-8e24-a28e652daf2b
     content: Touchpoints
     children:
-      - 01b93a00-6a26-4343-82cc-9e02b0102754
-      - f7fb1d45-2a93-472f-b4b1-1069f9691323
-      - b677cae8-8aa5-4694-95dd-d30e8e3719f6
-      - ce6ecd53-9ac3-4fb5-bb25-12a2d9259bb8
-      - 79f9b2b4-b4d9-4dae-8f78-70e33cd352db
-      - e9c574e9-432a-4eed-9060-e5a24ffbe740
-      - 76f9edc3-8ce3-442d-988a-927c33c896a4
+      - 5c33706a-4592-4990-97a7-41610a16bb44
+      - be6bb8f6-cdf2-4fbd-98dc-e3fad72c29bd
+      - 3e4651e2-ce8d-468e-8d41-ad1d97eced10
+      - cb4e1e8f-ef19-4487-bfaa-3b71a77d8503
+      - 0e133fd1-2f24-4d35-823e-7babc9696851
+      - 0f6ace24-55b1-495f-a7ec-feb22330e1c5
+      - 40f5348c-f455-4ba6-bce1-0cb84f4c32b1
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  01b93a00-6a26-4343-82cc-9e02b0102754:
-    id: 01b93a00-6a26-4343-82cc-9e02b0102754
+  5c33706a-4592-4990-97a7-41610a16bb44:
+    id: 5c33706a-4592-4990-97a7-41610a16bb44
     content: Feedback panel component — runs the diff on open, re-runs on edit commit, renders highlights, and surfaces the removed-list at the right tree position
     children: []
     metadata:
@@ -93713,8 +92778,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  f7fb1d45-2a93-472f-b4b1-1069f9691323:
-    id: f7fb1d45-2a93-472f-b4b1-1069f9691323
+  be6bb8f6-cdf2-4fbd-98dc-e3fad72c29bd:
+    id: be6bb8f6-cdf2-4fbd-98dc-e3fad72c29bd
     content: New reconciliation utility module — pure function `(oldSubtree, newSubtree, mode) => panelViewModel` returning the merged tree, per-node classifications, and removed-list
     children: []
     metadata:
@@ -93722,8 +92787,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  b677cae8-8aa5-4694-95dd-d30e8e3719f6:
-    id: b677cae8-8aa5-4694-95dd-d30e8e3719f6
+  3e4651e2-ce8d-468e-8d41-ad1d97eced10:
+    id: 3e4651e2-ce8d-468e-8d41-ad1d97eced10
     content: Dependency on `diff` (jsdiff) or `fast-array-diff` for the LCS pass
     children: []
     metadata:
@@ -93731,8 +92796,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  ce6ecd53-9ac3-4fb5-bb25-12a2d9259bb8:
-    id: ce6ecd53-9ac3-4fb5-bb25-12a2d9259bb8
+  cb4e1e8f-ef19-4487-bfaa-3b71a77d8503:
+    id: cb4e1e8f-ef19-4487-bfaa-3b71a77d8503
     content: Panel view-model state — held alongside the persisted feedback panel record so it survives save/reload, separate from the underlying tree node state
     children: []
     metadata:
@@ -93740,8 +92805,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  79f9b2b4-b4d9-4dae-8f78-70e33cd352db:
-    id: 79f9b2b4-b4d9-4dae-8f78-70e33cd352db
+  0e133fd1-2f24-4d35-823e-7babc9696851:
+    id: 0e133fd1-2f24-4d35-823e-7babc9696851
     content: CSS theme tokens — three background tokens (red+strikethrough, green, blue) with contrast checks against existing selection/focus tokens, plus a transition timing token for the highlight fade
     children: []
     metadata:
@@ -93749,8 +92814,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  e9c574e9-432a-4eed-9060-e5a24ffbe740:
-    id: e9c574e9-432a-4eed-9060-e5a24ffbe740
+  0f6ace24-55b1-495f-a7ec-feb22330e1c5:
+    id: 0f6ace24-55b1-495f-a7ec-feb22330e1c5
     content: Accept-handler store action — atomically writes the merged subtree (UUIDs already resolved) and clears the persisted panel record
     children: []
     metadata:
@@ -93758,8 +92823,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  76f9edc3-8ce3-442d-988a-927c33c896a4:
-    id: 76f9edc3-8ce3-442d-988a-927c33c896a4
+  40f5348c-f455-4ba6-bce1-0cb84f4c32b1:
+    id: 40f5348c-f455-4ba6-bce1-0cb84f4c32b1
     content: Tests — unit tests for the diff utility (unchanged, modified-with-UUID-retention, added, removed, reordered, duplicate-sibling, decomposition-mode, text-edit per-node compare, structural-edit sibling-level re-run); integration tests for panel open → edit → accept, panel open → edit → reject, and save → reload restoring the panel state
     children: []
     metadata:
@@ -93767,23 +92832,23 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  11d7db8f-2959-4228-a4fa-807e06eef615:
-    id: 11d7db8f-2959-4228-a4fa-807e06eef615
+  3af0d778-548b-4b13-86e8-fc219f81dfbf:
+    id: 3af0d778-548b-4b13-86e8-fc219f81dfbf
     content: Constraints to call out
     children:
-      - 13c1d73a-14c4-4f80-81a9-69abbef2a5ed
-      - 9148a8da-be85-4e74-a3ac-1d20eddb4744
-      - 23b2d615-7659-4c43-adb8-5a222ef0acf4
-      - 777dc7ab-a556-46ea-84f5-8eaee81d2b17
-      - 4deaa6fd-c3a0-447b-a147-46161bccc95e
-      - 286c6e38-63c2-491a-96a1-00859d57c2b5
+      - be41e04e-0495-4bd7-8c19-04401f7c271a
+      - 7eb7c459-4bd9-4be0-a176-4653d1c372d6
+      - 448f861b-1193-46fa-8354-1706a1ab4a88
+      - e7a9a5ec-46bc-436d-b115-2834c2d43a78
+      - 9739d015-54bd-44f2-a7c3-0646607417a8
+      - ed2e0f76-7ec2-4372-8dd2-0433b5833333
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  13c1d73a-14c4-4f80-81a9-69abbef2a5ed:
-    id: 13c1d73a-14c4-4f80-81a9-69abbef2a5ed
+  be41e04e-0495-4bd7-8c19-04401f7c271a:
+    id: be41e04e-0495-4bd7-8c19-04401f7c271a
     content: UUID semantics — modified nodes retain their existing UUID, because UUID identifies the node and is decoupled from content; reviewers expecting "modified ⇒ new UUID" should be told otherwise up front
     children: []
     metadata:
@@ -93791,8 +92856,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  9148a8da-be85-4e74-a3ac-1d20eddb4744:
-    id: 9148a8da-be85-4e74-a3ac-1d20eddb4744
+  7eb7c459-4bd9-4be0-a176-4653d1c372d6:
+    id: 7eb7c459-4bd9-4be0-a176-4653d1c372d6
     content: Decomposition-mode carve-out — explicit branch at the top of the diff utility; do not attempt content-equality matching in this mode, since duplicated content would otherwise produce wrong UUID reuse
     children: []
     metadata:
@@ -93800,8 +92865,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  23b2d615-7659-4c43-adb8-5a222ef0acf4:
-    id: 23b2d615-7659-4c43-adb8-5a222ef0acf4
+  448f861b-1193-46fa-8354-1706a1ab4a88:
+    id: 448f861b-1193-46fa-8354-1706a1ab4a88
     content: Highlight surface — feedback panel only; the change state rides with the persisted feedback panel record (so it survives save/reload) but is never attached to nodes in the main tree
     children: []
     metadata:
@@ -93809,8 +92874,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  777dc7ab-a556-46ea-84f5-8eaee81d2b17:
-    id: 777dc7ab-a556-46ea-84f5-8eaee81d2b17
+  e7a9a5ec-46bc-436d-b115-2834c2d43a78:
+    id: e7a9a5ec-46bc-436d-b115-2834c2d43a78
     content: Edit-commit cadence — text edits trigger only a per-node compare on blur/save; only structural edits re-run LCS, and only at the affected sibling level. Both transitions fade via a CSS background animation so highlight changes are not jarring while the user works in the panel
     children: []
     metadata:
@@ -93818,8 +92883,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  4deaa6fd-c3a0-447b-a147-46161bccc95e:
-    id: 4deaa6fd-c3a0-447b-a147-46161bccc95e
+  9739d015-54bd-44f2-a7c3-0646607417a8:
+    id: 9739d015-54bd-44f2-a7c3-0646607417a8
     content: Selection-versus-modified distinction — the modified blue must read clearly against the panel's selection/focus styling
     children: []
     metadata:
@@ -93827,8 +92892,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  286c6e38-63c2-491a-96a1-00859d57c2b5:
-    id: 286c6e38-63c2-491a-96a1-00859d57c2b5
+  ed2e0f76-7ec2-4372-8dd2-0433b5833333:
+    id: ed2e0f76-7ec2-4372-8dd2-0433b5833333
     content: Library choice — jsdiff / fast-array-diff covers the LCS need without pulling in `jsondiffpatch`'s delta format and unwanted move detection; reach for `jsondiffpatch` later only if per-field diffing inside a node becomes a requirement
     children: []
     metadata:
@@ -93836,20 +92901,20 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  70b4ae17-5253-4795-b8b9-bc91cddc41b2:
-    id: 70b4ae17-5253-4795-b8b9-bc91cddc41b2
+  29c0c540-518a-48be-8203-00f1a09d4e51:
+    id: 29c0c540-518a-48be-8203-00f1a09d4e51
     content: Scope and challenges
     children:
-      - 3965668a-ea66-4135-b458-11e0d4cc301c
-      - c249b6cf-4123-4060-be97-cc0e0bf66a50
-      - 6d9e18d8-403d-4690-914e-7b207134c367
+      - fe5a1df7-a09f-4db2-a8ce-f545466b779b
+      - 95d7c2ef-aa08-4504-8e33-6fc4e8dc8a75
+      - e73d19fa-4904-471e-b6c6-245aba739053
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  3965668a-ea66-4135-b458-11e0d4cc301c:
-    id: 3965668a-ea66-4135-b458-11e0d4cc301c
+  fe5a1df7-a09f-4db2-a8ce-f545466b779b:
+    id: fe5a1df7-a09f-4db2-a8ce-f545466b779b
     content: Single chunk — the diff layer is the shared core of UUID retention and in-panel highlighting; splitting would force either a throwaway exact-equality-only pass for the first half or shipping invisible plumbing without the user-facing payoff
     children: []
     metadata:
@@ -93857,8 +92922,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  c249b6cf-4123-4060-be97-cc0e0bf66a50:
-    id: c249b6cf-4123-4060-be97-cc0e0bf66a50
+  95d7c2ef-aa08-4504-8e33-6fc4e8dc8a75:
+    id: 95d7c2ef-aa08-4504-8e33-6fc4e8dc8a75
     content: Out of scope — fuzzy / rename matching, cross-subtree move detection, undo for accepted removals, persisting highlight history across sessions, per-field diffing within a single node, and any change indicators in the main tree
     children: []
     metadata:
@@ -93866,8 +92931,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  6d9e18d8-403d-4690-914e-7b207134c367:
-    id: 6d9e18d8-403d-4690-914e-7b207134c367
+  e73d19fa-4904-471e-b6c6-245aba739053:
+    id: e73d19fa-4904-471e-b6c6-245aba739053
     content: ROI — high; a single pass of well-understood library code preserves node identity across feedback rounds, removes a recurring source of `.arbo` diff churn, and gives the user immediate visibility into the model's proposed changes inside the workflow they use most
     children: []
     metadata:
@@ -93875,34 +92940,34 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  91592890-35ca-4fd6-8139-ba51d11bc002:
-    id: 91592890-35ca-4fd6-8139-ba51d11bc002
+  0a323c94-15c5-45f9-b9c3-f312b3126fb2:
+    id: 0a323c94-15c5-45f9-b9c3-f312b3126fb2
     content: Technical refinement
     children:
-      - facd57bf-888b-4a4d-a446-bf62a178356c
-      - 847553ba-549a-4bab-9cde-64e203a63392
+      - 9e8bbe40-31de-4c4d-96b8-5ce514f35da0
+      - 6ed3dd8a-b41a-42ef-a9ad-c178d234fda6
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  facd57bf-888b-4a4d-a446-bf62a178356c:
-    id: facd57bf-888b-4a4d-a446-bf62a178356c
+  9e8bbe40-31de-4c4d-96b8-5ce514f35da0:
+    id: 9e8bbe40-31de-4c4d-96b8-5ce514f35da0
     content: Complications
     children:
-      - 72caaab0-97ca-4091-9f50-f455014443e6
-      - 163bba63-9180-44c0-9d26-2c2ca6f3dd12
-      - 1c97c204-2a23-4a53-9110-43d1b8d962f8
-      - 6dd5b485-a4fa-4f2a-8bc6-ef84719ba655
-      - c3c8ce89-f83d-4372-a5ab-b45505f1ebde
-      - 12523c17-afe9-4c46-8f5d-8f10ada76671
+      - 117e9ccc-9df6-49a6-a8ac-fc0d3f611e97
+      - f4e530cc-61ee-4432-8f32-1ea7f869e1fc
+      - 5146bb8f-a818-4f0b-9469-4017b5a5a94e
+      - bbd79fdc-d4b4-4ab6-8735-d1037b463ab3
+      - 303a4dfd-e5bc-4a4a-8540-e6563c7ce444
+      - bc051864-7c92-401f-ad54-87a6892e9626
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  72caaab0-97ca-4091-9f50-f455014443e6:
-    id: 72caaab0-97ca-4091-9f50-f455014443e6
+  117e9ccc-9df6-49a6-a8ac-fc0d3f611e97:
+    id: 117e9ccc-9df6-49a6-a8ac-fc0d3f611e97
     content: Within-gap pairing can mis-inherit UUIDs — when an LCS gap holds a prior node and a new node at the same relative position whose contents are semantically unrelated (model rewrote a slot wholesale), the algorithm will mark it modified and reuse the prior UUID. Acceptable because UUID is identity and the user can still see the blue highlight, but reviewers will ask.
     children: []
     metadata:
@@ -93910,8 +92975,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  163bba63-9180-44c0-9d26-2c2ca6f3dd12:
-    id: 163bba63-9180-44c0-9d26-2c2ca6f3dd12
+  f4e530cc-61ee-4432-8f32-1ea7f869e1fc:
+    id: f4e530cc-61ee-4432-8f32-1ea7f869e1fc
     content: Recursion amplifies that effect — once a parent is classified modified, its children are diffed against the prior parent's children, so a wholesale rewrite at one level can cascade UUID retention into deeper subtrees.
     children: []
     metadata:
@@ -93919,8 +92984,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  1c97c204-2a23-4a53-9110-43d1b8d962f8:
-    id: 1c97c204-2a23-4a53-9110-43d1b8d962f8
+  5146bb8f-a818-4f0b-9469-4017b5a5a94e:
+    id: 5146bb8f-a818-4f0b-9469-4017b5a5a94e
     content: New persisted artefact — the feedback panel record is a separate persisted thing alongside the tree; its schema, file-format placement, and how it survives a tree edit made while the panel is closed-but-persisted all need a concrete answer before implementation.
     children: []
     metadata:
@@ -93928,8 +92993,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  6dd5b485-a4fa-4f2a-8bc6-ef84719ba655:
-    id: 6dd5b485-a4fa-4f2a-8bc6-ef84719ba655
+  bbd79fdc-d4b4-4ab6-8735-d1037b463ab3:
+    id: bbd79fdc-d4b4-4ab6-8735-d1037b463ab3
     content: Decomposition-mode detection — the diff utility branches on mode, so the caller must pass the correct mode; mis-tagging a decomposition run as normal feedback would falsely reuse UUIDs across duplicated content.
     children: []
     metadata:
@@ -93937,8 +93002,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  c3c8ce89-f83d-4372-a5ab-b45505f1ebde:
-    id: c3c8ce89-f83d-4372-a5ab-b45505f1ebde
+  303a4dfd-e5bc-4a4a-8540-e6563c7ce444:
+    id: 303a4dfd-e5bc-4a4a-8540-e6563c7ce444
     content: Out of scope (reminder) — no rename / move detection, no per-field diff inside a node, no undo for accepted removals, no main-tree change indicators.
     children: []
     metadata:
@@ -93946,8 +93011,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  12523c17-afe9-4c46-8f5d-8f10ada76671:
-    id: 12523c17-afe9-4c46-8f5d-8f10ada76671
+  bc051864-7c92-401f-ad54-87a6892e9626:
+    id: bc051864-7c92-401f-ad54-87a6892e9626
     content: ROI check — LCS via jsdiff is cheap and battle-tested, so the algorithmic side stays low-risk; the real cost is the new persisted panel-record format, which is genuine new surface area. Still a clear win, but worth flagging.
     children: []
     metadata:
@@ -93955,20 +93020,20 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  847553ba-549a-4bab-9cde-64e203a63392:
-    id: 847553ba-549a-4bab-9cde-64e203a63392
+  6ed3dd8a-b41a-42ef-a9ad-c178d234fda6:
+    id: 6ed3dd8a-b41a-42ef-a9ad-c178d234fda6
     content: Approach summary
     children:
-      - a6ba40db-1fe6-41fe-87a0-5092e6a49171
-      - 20430f5e-4239-4045-91dd-a64ff16b8c5e
-      - 707a40bd-17e2-4af0-ba7f-6a3831aa842f
+      - 980eb768-0530-4252-a5f4-cce4223f12bf
+      - 0e4ae527-34f5-45bc-81a7-cca657075258
+      - 73198b56-b273-4607-80b2-e4d6c7b57fd7
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  a6ba40db-1fe6-41fe-87a0-5092e6a49171:
-    id: a6ba40db-1fe6-41fe-87a0-5092e6a49171
+  980eb768-0530-4252-a5f4-cce4223f12bf:
+    id: 980eb768-0530-4252-a5f4-cce4223f12bf
     content: One new pure module — `(oldSubtree, newSubtree, mode) => panelViewModel` — backed by jsdiff/fast-array-diff for per-level LCS, recursing into matched pairs; consumed only by the feedback panel.
     children: []
     metadata:
@@ -93976,8 +93041,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  20430f5e-4239-4045-91dd-a64ff16b8c5e:
-    id: 20430f5e-4239-4045-91dd-a64ff16b8c5e
+  0e4ae527-34f5-45bc-81a7-cca657075258:
+    id: 0e4ae527-34f5-45bc-81a7-cca657075258
     content: Panel view model becomes a persisted artefact alongside the `.arbo` tree (not a node attribute); accept collapses it into a single store action that rewrites the subtree, reject discards it.
     children: []
     metadata:
@@ -93985,8 +93050,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  707a40bd-17e2-4af0-ba7f-6a3831aa842f:
-    id: 707a40bd-17e2-4af0-ba7f-6a3831aa842f
+  73198b56-b273-4607-80b2-e4d6c7b57fd7:
+    id: 73198b56-b273-4607-80b2-e4d6c7b57fd7
     content: Three highlight backgrounds (red+strikethrough / green / blue) live entirely in panel CSS with a fade transition — no main-tree renderer changes and no extra fields on serialised tree nodes.
     children: []
     metadata:
@@ -93994,20 +93059,20 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  40682a3d-cf77-479d-b70f-d98091209386:
-    id: 40682a3d-cf77-479d-b70f-d98091209386
+  5b3116a6-ff05-4acc-a5d7-972e21750296:
+    id: 5b3116a6-ff05-4acc-a5d7-972e21750296
     content: Tests (TDD red)
     children:
-      - bda42c5b-9b69-4110-b91f-51fcdc9f1bc0
-      - df60e996-9c54-4c5a-8510-dcaaeb93bf7e
-      - f9602792-4a94-40f2-aa35-01ea16c6a8b3
+      - fd50393a-12bc-4165-bb91-1889468683ac
+      - 06f84624-a18d-454c-8a77-fca107a3d441
+      - d93b37c1-0f7d-4ac8-9b91-fa036c40e24f
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  bda42c5b-9b69-4110-b91f-51fcdc9f1bc0:
-    id: bda42c5b-9b69-4110-b91f-51fcdc9f1bc0
+  fd50393a-12bc-4165-bb91-1889468683ac:
+    id: fd50393a-12bc-4165-bb91-1889468683ac
     content: '`src/renderer/store/feedback/tests/reconcileFeedback.test.ts` — fully bodied unit tests covering parent UUID retention, unchanged / modified / added classification with UUID inheritance, removed-list extraction, recursion into matched pairs, duplicate-sibling determinism, decomposition-mode UUID isolation, empty-input boundaries, and run-to-run stability. Currently fails with `Failed to resolve import "../reconcileFeedback"` — module not yet implemented.'
     children: []
     metadata:
@@ -94015,8 +93080,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  df60e996-9c54-4c5a-8510-dcaaeb93bf7e:
-    id: df60e996-9c54-4c5a-8510-dcaaeb93bf7e
+  06f84624-a18d-454c-8a77-fca107a3d441:
+    id: 06f84624-a18d-454c-8a77-fca107a3d441
     content: '`src/renderer/components/Feedback/tests/feedbackPanelDiff.test.tsx` — `it.todo` placeholders for diff-on-open, highlight rendering (blue / green / red+strikethrough), CSS transition, selection-vs-modified distinction, in-panel text and structural edits, persistence across save/reload, accept/reject UUID semantics, decomposition-mode UI, and non-functional latency. Bodies left empty pending the panel persistence schema and view-model wiring.'
     children: []
     metadata:
@@ -94024,8 +93089,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  f9602792-4a94-40f2-aa35-01ea16c6a8b3:
-    id: f9602792-4a94-40f2-aa35-01ea16c6a8b3
+  d93b37c1-0f7d-4ac8-9b91-fa036c40e24f:
+    id: d93b37c1-0f7d-4ac8-9b91-fa036c40e24f
     content: Title-only `it.todo` blocks inside `reconcileFeedback.test.ts` cover `reclassifyAfterTextEdit` flips, `reclassifyAfterStructuralEdit` insert / delete / reorder semantics, missing-prior-subtree handling, and successive-run isolation — flagged as todo because the reclassification API surface is not yet pinned.
     children: []
     metadata:
@@ -94033,26 +93098,26 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  4151f9ac-2fb2-4243-a9a0-f531a79d4df1:
-    id: 4151f9ac-2fb2-4243-a9a0-f531a79d4df1
+  0769cbdb-49ec-419c-b14e-25f27ae6af69:
+    id: 0769cbdb-49ec-419c-b14e-25f27ae6af69
     content: Implementation report — what shipped vs deferred
     children:
-      - a125858c-ec5b-4fb6-a55e-0144c0ca64de
-      - 5497cd6a-edb1-455b-bdca-08a71af260a5
-      - 2be0a5bc-7264-4af6-824c-01de38137041
-      - 5b23d2b6-c250-4fe5-9ca6-6dd5e11a7ba8
-      - 4fbbd0ce-cb2a-4ef2-bc8e-7fa0155bf41c
-      - 2914132b-12de-4430-bafe-a4911fd51024
-      - 6c2fdbc5-5fc2-4c4d-b2f2-344a6c8a5654
-      - 5ebd50d5-cb30-4b5c-86f5-24535c808673
-      - 9acbcd39-c3fd-42d8-bcd4-6f9e28a58606
+      - db885e3b-bf85-487c-893d-bc9c3e21bfba
+      - ac8db58e-9764-4c44-a4bc-a9d882f2fac9
+      - 1eee5e3f-76f0-40d2-936a-021fda4b9ddf
+      - 0b1f6048-fe79-41c6-8aac-34bc2117c309
+      - 6cca7db4-1e3a-4e4f-80af-d89d1fe11121
+      - 89018398-2ceb-4e13-9516-5d8282a1345a
+      - c6c66b22-2c18-419a-b9ee-025082f1d5a8
+      - e01f5511-50a9-4acf-ad97-13726593dae6
+      - bc9d37fa-5741-436e-8230-3ad62f0f850c
     metadata:
       status: pending
       expanded: true
       deleted: false
       plugins: {}
-  a125858c-ec5b-4fb6-a55e-0144c0ca64de:
-    id: a125858c-ec5b-4fb6-a55e-0144c0ca64de
+  db885e3b-bf85-487c-893d-bc9c3e21bfba:
+    id: db885e3b-bf85-487c-893d-bc9c3e21bfba
     content: 'Shipped: pure `reconcileFeedback` utility (`src/renderer/store/feedback/reconcileFeedback.ts`) backed by jsdiff `diffArrays`; 15 bodied unit tests pass; covers parent UUID retention, modified/unchanged/added classification, removed-list extraction, recursion into matched pairs, duplicate-sibling determinism, decomposition-mode (every node added, no UUIDs reused), and boundary inputs.'
     children: []
     metadata:
@@ -94060,8 +93125,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  5497cd6a-edb1-455b-bdca-08a71af260a5:
-    id: 5497cd6a-edb1-455b-bdca-08a71af260a5
+  ac8db58e-9764-4c44-a4bc-a9d882f2fac9:
+    id: ac8db58e-9764-4c44-a4bc-a9d882f2fac9
     content: 'Shipped: accept-path UUID retention. `AcceptFeedbackCommand` now accepts an optional `precomputedIdMap`; `sendActions.acceptFeedback` and `sendActions.finishAccept` compute the reconcile output and pass `view.idMap`. Multi-root decomposition still mints fresh UUIDs through the existing path. The two pre-existing acceptance tests in `sendActions.test.ts` were updated to reflect that descendant UUIDs are now inherited (not regenerated) when the new node aligns with a prior one by relative position.'
     children: []
     metadata:
@@ -94069,8 +93134,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  2be0a5bc-7264-4af6-824c-01de38137041:
-    id: 2be0a5bc-7264-4af6-824c-01de38137041
+  1eee5e3f-76f0-40d2-936a-021fda4b9ddf:
+    id: 1eee5e3f-76f0-40d2-936a-021fda4b9ddf
     content: 'Shipped: panel highlight rendering. Feedback init applies `metadata.feedbackBaselineKind` (and `metadata.feedbackPriorContent` for matched nodes) to each node in the feedback store. `TreeNode` derives an effective change kind at render time (`unchanged` ↔ `modified` flips on text edit by comparing current content to prior content), and applies `feedback-changekind-modified` (blue) or `feedback-changekind-added` (green) classes. Both `acceptFeedbackStrategies` paths strip the new metadata before merging into the main tree so it never lands in `.arbo`.'
     children: []
     metadata:
@@ -94078,8 +93143,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  5b23d2b6-c250-4fe5-9ca6-6dd5e11a7ba8:
-    id: 5b23d2b6-c250-4fe5-9ca6-6dd5e11a7ba8
+  0b1f6048-fe79-41c6-8aac-34bc2117c309:
+    id: 0b1f6048-fe79-41c6-8aac-34bc2117c309
     content: 'Shipped: CSS background transition (`200ms ease`) and a selection-vs-modified outline so the modified blue stays visually distinct under selection/focus.'
     children: []
     metadata:
@@ -94087,8 +93152,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  4fbbd0ce-cb2a-4ef2-bc8e-7fa0155bf41c:
-    id: 4fbbd0ce-cb2a-4ef2-bc8e-7fa0155bf41c
+  6cca7db4-1e3a-4e4f-80af-d89d1fe11121:
+    id: 6cca7db4-1e3a-4e4f-80af-d89d1fe11121
     content: 'Shipped: persistence. The new metadata fields are plain `NodeMetadata` keys, so the existing feedback temp-file persistence (`feedbackTreeStore.saveToPath` / restore on file load) carries the highlight state across save/reload without further work.'
     children: []
     metadata:
@@ -94096,8 +93161,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  2914132b-12de-4430-bafe-a4911fd51024:
-    id: 2914132b-12de-4430-bafe-a4911fd51024
+  89018398-2ceb-4e13-9516-5d8282a1345a:
+    id: 89018398-2ceb-4e13-9516-5d8282a1345a
     content: 'Deferred: removed-node visual placeholders (red background + strikethrough at the prior position). The `removed` list is computed and exposed on the panel view model, but rendering placeholder rows requires injecting non-existent nodes into the feedback tree''s children arrays plus paired changes in the accept path to skip them — material UI scope that would be better as a focused follow-up.'
     children: []
     metadata:
@@ -94105,8 +93170,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  6c2fdbc5-5fc2-4c4d-b2f2-344a6c8a5654:
-    id: 6c2fdbc5-5fc2-4c4d-b2f2-344a6c8a5654
+  c6c66b22-2c18-419a-b9ee-025082f1d5a8:
+    id: c6c66b22-2c18-419a-b9ee-025082f1d5a8
     content: 'Deferred: structural-edit LCS re-run for in-panel insert / delete / reorder. Text-edit reclassification works via the render-time content compare; structural edits inside the panel are uncommon and re-running LCS in response would require new reactive plumbing in the panel store. Marked with `it.todo` placeholders for a follow-up.'
     children: []
     metadata:
@@ -94114,8 +93179,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  5ebd50d5-cb30-4b5c-86f5-24535c808673:
-    id: 5ebd50d5-cb30-4b5c-86f5-24535c808673
+  e01f5511-50a9-4acf-ad97-13726593dae6:
+    id: e01f5511-50a9-4acf-ad97-13726593dae6
     content: 'Tests run only on changed files: `reconcileFeedback.test.ts`, `feedbackPanelDiff.test.tsx`, `feedbackTreeStore.test.ts`, `feedbackService.test.ts`, `sendActions.test.ts`, `workflowAutoAccept.test.ts`, plus all suites under `Feedback/tests`, `TreeNode/tests`, and `tree/commands` — 439 pass, 0 fail, 41 todo (the deferred behaviours).'
     children: []
     metadata:
@@ -94123,8 +93188,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  9acbcd39-c3fd-42d8-bcd4-6f9e28a58606:
-    id: 9acbcd39-c3fd-42d8-bcd4-6f9e28a58606
+  bc9d37fa-5741-436e-8230-3ad62f0f850c:
+    id: bc9d37fa-5741-436e-8230-3ad62f0f850c
     content: '`tsc --noEmit` clean. Lint on changed files clean apart from two pre-existing `import/no-cycle` warnings that pre-date this change.'
     children: []
     metadata:
@@ -94132,21 +93197,21 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  d5eb21d7-8197-404d-98da-c05625e598d3:
-    id: d5eb21d7-8197-404d-98da-c05625e598d3
+  8690b2d8-ec13-4c1f-aa26-3e4d1e994aaa:
+    id: 8690b2d8-ec13-4c1f-aa26-3e4d1e994aaa
     content: Verification pass — fixes applied to close acceptance gaps
     children:
-      - 3ebee9b4-4d0b-405c-a2ed-97ff9b20388c
-      - e9274ce6-debe-45f7-ae09-276fecf4348a
-      - 80cea736-3a15-44f7-9e0b-7e48205e4fb4
-      - 9772ef00-4cc0-4b0c-893b-ff8df27f958d
+      - ab81da48-2d0d-453d-8916-d4d6c6c92060
+      - 807660fd-86d5-4c86-8387-c76ebb3f1e39
+      - 50136be6-7639-4441-800e-c7dd5697f629
+      - d7ed1ecb-c039-489f-92d7-bf8c48b445a8
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  3ebee9b4-4d0b-405c-a2ed-97ff9b20388c:
-    id: 3ebee9b4-4d0b-405c-a2ed-97ff9b20388c
+  ab81da48-2d0d-453d-8916-d4d6c6c92060:
+    id: ab81da48-2d0d-453d-8916-d4d6c6c92060
     content: 'Implemented removed-node visual placeholders. `applyReconciliationMetadata` (`src/renderer/services/feedback/feedbackService.ts`) now injects synthetic `feedback-removed-<priorId>` nodes into the feedback tree at the prior child''s index, carrying `metadata.feedbackBaselineKind: ''removed''` and the prior content. `TreeNode` renders these with a new `feedback-changekind-removed` class (red background + strikethrough on the content). `extractFeedbackContent` strips placeholder nodes and removes them from parent `children` arrays before the proposed subtree reaches `AcceptFeedbackCommand`, so they never land in the main tree on accept.'
     children: []
     metadata:
@@ -94154,8 +93219,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  e9274ce6-debe-45f7-ae09-276fecf4348a:
-    id: e9274ce6-debe-45f7-ae09-276fecf4348a
+  807660fd-86d5-4c86-8387-c76ebb3f1e39:
+    id: 807660fd-86d5-4c86-8387-c76ebb3f1e39
     content: 'Test coverage added for the placeholder injection: unit tests in `feedbackService.test.ts` assert (a) placeholders are injected with the correct id, content, baseline, and parent position in feedback mode, (b) decomposition mode never injects placeholders, (c) `extractFeedbackContent` strips placeholders and updates parent children arrays. 442 tests pass on changed-file suites (up from 439).'
     children: []
     metadata:
@@ -94163,8 +93228,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  80cea736-3a15-44f7-9e0b-7e48205e4fb4:
-    id: 80cea736-3a15-44f7-9e0b-7e48205e4fb4
+  50136be6-7639-4441-800e-c7dd5697f629:
+    id: 50136be6-7639-4441-800e-c7dd5697f629
     content: Type-check and lint stay clean on the new code; only the pre-existing `import/no-cycle` warning remains.
     children: []
     metadata:
@@ -94172,8 +93237,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  9772ef00-4cc0-4b0c-893b-ff8df27f958d:
-    id: 9772ef00-4cc0-4b0c-893b-ff8df27f958d
+  d7ed1ecb-c039-489f-92d7-bf8c48b445a8:
+    id: d7ed1ecb-c039-489f-92d7-bf8c48b445a8
     content: Structural-edit LCS re-run remains deferred. Detecting in-panel insert / delete / reorder and re-running the diff would require either a new flag on the feedback `TreeStore` plus interception of `CreateNodeCommand` / `MoveNodeCommand` for that store, or a reactive subscription on the feedback children arrays — both touch broad surface area and risk regressions in the wider tree-command system. Left as `it.todo` placeholders; AC and Business rule 6 stay open accordingly.
     children: []
     metadata:
@@ -94181,20 +93246,20 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  edf0d59a-3539-4523-99b3-e3f5448398f9:
-    id: edf0d59a-3539-4523-99b3-e3f5448398f9
+  c561a95c-6b21-492e-9de8-7690ef72530d:
+    id: c561a95c-6b21-492e-9de8-7690ef72530d
     content: Refactor pass — convention-consistency review
     children:
-      - f3167ea2-b921-46aa-b193-6e07a55a70cc
-      - af240255-55ec-4f3c-8c9a-5e1e8c7a4e91
-      - 3cddb106-1c4c-4046-8418-eed6ab8344ac
+      - e2b96387-7f54-4aad-8f5b-e6ae472c8a94
+      - f32e3f53-d78d-42e3-86f2-6bef5b57efd5
+      - 60b73cee-4f12-4054-9dba-871d36e671df
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  f3167ea2-b921-46aa-b193-6e07a55a70cc:
-    id: f3167ea2-b921-46aa-b193-6e07a55a70cc
+  e2b96387-7f54-4aad-8f5b-e6ae472c8a94:
+    id: e2b96387-7f54-4aad-8f5b-e6ae472c8a94
     content: Removed an iteration-history block comment from `src/renderer/components/Feedback/tests/feedbackPanelDiff.test.tsx` — it referenced "the user story" and explained why each placeholder was todo, which violates the "no comments referencing user stories or iteration history" convention. The describe / it.todo titles already convey the contract on their own.
     children: []
     metadata:
@@ -94202,8 +93267,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  af240255-55ec-4f3c-8c9a-5e1e8c7a4e91:
-    id: af240255-55ec-4f3c-8c9a-5e1e8c7a4e91
+  f32e3f53-d78d-42e3-86f2-6bef5b57efd5:
+    id: f32e3f53-d78d-42e3-86f2-6bef5b57efd5
     content: 'Reviewed the rest of the diff against the project conventions: named functions over inline arrows in factories, file names match exported symbols (`reconcileFeedback`), tests live under `tests/` siblings of the modules they cover, no inline styles, no JSDoc, no other iteration-history comments, no abandoned attempts left behind. No further refactors needed.'
     children: []
     metadata:
@@ -94211,9 +93276,1094 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  3cddb106-1c4c-4046-8418-eed6ab8344ac:
-    id: 3cddb106-1c4c-4046-8418-eed6ab8344ac
+  60b73cee-4f12-4054-9dba-871d36e671df:
+    id: 60b73cee-4f12-4054-9dba-871d36e671df
     content: 'Final standard checks rerun on changed files only: `tsc --noEmit` clean, eslint reports 0 errors (the two `import/no-cycle` warnings on `feedbackService.ts` and `sendActions.ts` are pre-existing and unrelated to this work), vitest 442 pass / 0 fail / 41 todo on the changed-file suites.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4dfb8720-3f92-47c7-8d1d-8b1cfa4ff6be:
+    id: 4dfb8720-3f92-47c7-8d1d-8b1cfa4ff6be
+    content: User story
+    children:
+      - ebed6fdc-5dc0-442c-b039-eb7a4d14f037
+      - 4e1da788-1798-44d5-ad40-055d23e51421
+      - 9c13e1de-3c48-46d5-81a8-258dfdb36489
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ebed6fdc-5dc0-442c-b039-eb7a4d14f037:
+    id: ebed6fdc-5dc0-442c-b039-eb7a4d14f037
+    content: 📄 Product spec
+    children:
+      - 17829aa1-3f13-4798-a872-3ca7e51a331e
+      - 29aca7e0-f031-4790-a68b-d2669a1ab724
+      - b2da9f1e-4785-43b7-baba-1b9456155bad
+      - 62aa2a9d-e9e5-4ee3-9503-a333998e117b
+      - 778c214e-a8d1-4838-a007-0846d56b4919
+      - 8c5521bf-ef2e-42fa-a632-0c005ca59ef8
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  17829aa1-3f13-4798-a872-3ca7e51a331e:
+    id: 17829aa1-3f13-4798-a872-3ca7e51a331e
+    content: Context
+    children:
+      - 5338c098-cde0-4f63-9f1e-2225edecda8a
+      - cafb6240-eea7-41f4-b846-dd6dece8ab3b
+      - 8306bbab-61f4-4089-bf30-81f7418ced0e
+      - 8a0615fa-268c-4b5c-8ae4-75907a1acb32
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5338c098-cde0-4f63-9f1e-2225edecda8a:
+    id: 5338c098-cde0-4f63-9f1e-2225edecda8a
+    content: 'Autonomous workflow steps can have `decomposition: true`, in which case the AI may return multiple root nodes that AcceptFeedbackCommand swaps into the tree as siblings under the same step container'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  cafb6240-eea7-41f4-b846-dd6dece8ab3b:
+    id: cafb6240-eea7-41f4-b846-dd6dece8ab3b
+    content: Today only the original running node is handed to advanceNode, so freshly-created decomposed siblings are left in the step container with no execution state
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8306bbab-61f4-4089-bf30-81f7418ced0e:
+    id: 8306bbab-61f4-4089-bf30-81f7418ced0e
+    content: checkRecurse anchors on findFirstAutonomousStepInChain, which walks backwards to the start of the autonomous chain, so it can skip past siblings still waiting at the last decomposition step
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8a0615fa-268c-4b5c-8ae4-75907a1acb32:
+    id: 8a0615fa-268c-4b5c-8ae4-75907a1acb32
+    content: 'Net result: decomposed siblings are silently orphaned and the workflow stalls until the user starts each one manually'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  29aca7e0-f031-4790-a68b-d2669a1ab724:
+    id: 29aca7e0-f031-4790-a68b-d2669a1ab724
+    content: User
+    children:
+      - 1c20dba5-3fa4-46e8-9ca6-296dc15b20a2
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1c20dba5-3fa4-46e8-9ca6-296dc15b20a2:
+    id: 1c20dba5-3fa4-46e8-9ca6-296dc15b20a2
+    content: 'Brian, running an autonomous workflow that includes one or more steps with `decomposition: true`'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b2da9f1e-4785-43b7-baba-1b9456155bad:
+    id: b2da9f1e-4785-43b7-baba-1b9456155bad
+    content: Current experience
+    children:
+      - bc5bf7da-004e-4fdc-9503-48ef490c3485
+      - d1ad6394-88dc-4616-b0c3-62591de1839a
+      - 58afa57a-a365-494f-a426-1b89b4c83960
+      - 30e936aa-b53e-4324-8e2f-3a694d32ebcd
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  bc5bf7da-004e-4fdc-9503-48ef490c3485:
+    id: bc5bf7da-004e-4fdc-9503-48ef490c3485
+    content: Step decomposes node N into N + X + Y as siblings under the step container
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d1ad6394-88dc-4616-b0c3-62591de1839a:
+    id: d1ad6394-88dc-4616-b0c3-62591de1839a
+    content: Only N advances to the next step; X and Y sit in the step container with no execution state
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  58afa57a-a365-494f-a426-1b89b4c83960:
+    id: 58afa57a-a365-494f-a426-1b89b4c83960
+    content: checkRecurse fires on N's previous parent and finds either an unrelated waiting node earlier in the chain or nothing at all
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  30e936aa-b53e-4324-8e2f-3a694d32ebcd:
+    id: 30e936aa-b53e-4324-8e2f-3a694d32ebcd
+    content: User has to manually start workflows on X and Y, defeating the point of an autonomous run
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  62aa2a9d-e9e5-4ee3-9503-a333998e117b:
+    id: 62aa2a9d-e9e5-4ee3-9503-a333998e117b
+    content: Goal
+    children:
+      - e50c0ac4-3c52-4af2-98e6-4df0821fd0a0
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e50c0ac4-3c52-4af2-98e6-4df0821fd0a0:
+    id: e50c0ac4-3c52-4af2-98e6-4df0821fd0a0
+    content: After an autonomous step decomposes a node into siblings, the runner plays each decomposed sibling forward sequentially on the same terminal, and recurse processes the decomposed siblings until every one has been handled
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  778c214e-a8d1-4838-a007-0846d56b4919:
+    id: 778c214e-a8d1-4838-a007-0846d56b4919
+    content: Business rules
+    children:
+      - 0944c5c3-66a7-4661-b1c4-f6d83c0e5db3
+      - cb5a84b8-ac4f-4388-9113-8d24ca0a5698
+      - e425112c-4220-41bf-9604-7d4c5d6819e2
+      - 38b43048-42d4-471d-939f-2c6966463c31
+      - 6604c1e1-215c-4cf5-bc59-df7dfec27426
+      - 2199c07f-2c70-48a7-bf18-1ebb754e5166
+      - 961bdedc-8ed2-4d84-ad01-40aab5df3cb1
+      - 0c1a3e81-c33b-4984-9c81-fc98b2c2a8b2
+      - 4ef48c0f-d875-4599-9697-0f24d7357e71
+      - 452d18b2-0dd0-421b-b9ae-fe5049a9610e
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0944c5c3-66a7-4661-b1c4-f6d83c0e5db3:
+    id: 0944c5c3-66a7-4661-b1c4-f6d83c0e5db3
+    content: 'When an autonomous step with `decomposition: true` produces N decomposed roots, every one of those roots must enter the workflow execution queue'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cb5a84b8-ac4f-4388-9113-8d24ca0a5698:
+    id: cb5a84b8-ac4f-4388-9113-8d24ca0a5698
+    content: Decomposed siblings execute sequentially on the same terminal, in the order returned by parseFeedbackContent (parsed.rootNodeIds)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e425112c-4220-41bf-9604-7d4c5d6819e2:
+    id: e425112c-4220-41bf-9604-7d4c5d6819e2
+    content: Recurse processes only the decomposed siblings of the current decomposition point — it does not walk back to earlier autonomous steps
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  38b43048-42d4-471d-939f-2c6966463c31:
+    id: 38b43048-42d4-471d-939f-2c6966463c31
+    content: Once every decomposed sibling at a decomposition point has been processed the workflow stops; there is no fallback chain traversal
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6604c1e1-215c-4cf5-bc59-df7dfec27426:
+    id: 6604c1e1-215c-4cf5-bc59-df7dfec27426
+    content: 'Recursion is tied to decomposition: a recurse step that runs in a workflow with no decomposition step does nothing and surfaces a toast warning reading "Warning, you have recursion set without decomposition"'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2199c07f-2c70-48a7-bf18-1ebb754e5166:
+    id: 2199c07f-2c70-48a7-bf18-1ebb754e5166
+    content: The workflow settings UI surfaces this dependency via light grey helper text beneath the decomposition and recursion options
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  961bdedc-8ed2-4d84-ad01-40aab5df3cb1:
+    id: 961bdedc-8ed2-4d84-ad01-40aab5df3cb1
+    content: The existing MAX_RECURSE_ITERATIONS cap continues to apply across the combined sibling sequence; hitting it stops the run with the same toast and notification
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0c1a3e81-c33b-4984-9c81-fc98b2c2a8b2:
+    id: 0c1a3e81-c33b-4984-9c81-fc98b2c2a8b2
+    content: If a decomposition produces exactly one root, only that single element is processed
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4ef48c0f-d875-4599-9697-0f24d7357e71:
+    id: 4ef48c0f-d875-4599-9697-0f24d7357e71
+    content: 'If parseFeedbackContent fails for a decomposition response, today''s parse-failure handling stands: stop the workflow, surface the error toast, do not enqueue siblings'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  452d18b2-0dd0-421b-b9ae-fe5049a9610e:
+    id: 452d18b2-0dd0-421b-b9ae-fe5049a9610e
+    content: Manual steps (or checkpoints) interleaved in the chain still pause the sequence — a decomposed sibling whose next step is manual or a checkpoint must wait for the user, exactly like a non-decomposed node would
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8c5521bf-ef2e-42fa-a632-0c005ca59ef8:
+    id: 8c5521bf-ef2e-42fa-a632-0c005ca59ef8
+    content: Acceptance criteria
+    children:
+      - e0febd5c-8097-48b7-bb87-7d7f6d888def
+      - 1242e5be-2869-41bb-9d4c-150d9b6062fd
+      - c583611b-1640-4f02-b5ba-b85e6631b1d0
+      - ffe30bde-f444-4334-9f53-339cd9a33f4f
+      - 93025564-2f5d-4efe-9cd2-4a5d64129da7
+      - d924e6ff-dc5b-4262-96d9-8207b6cb5951
+      - 99cea2df-41fc-491f-b986-415fc485d10b
+      - 1da08dae-9c43-4336-bd5e-c7dd673bcf22
+      - fd0a7607-7367-423e-a6cc-90bce47a9aac
+      - 19b25270-1fb7-4065-abd6-8576f1db8995
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e0febd5c-8097-48b7-bb87-7d7f6d888def:
+    id: e0febd5c-8097-48b7-bb87-7d7f6d888def
+    content: An autonomous decomposition step that returns N>1 roots causes all N siblings to be processed in parsed.rootNodeIds order on the same terminal
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1242e5be-2869-41bb-9d4c-150d9b6062fd:
+    id: 1242e5be-2869-41bb-9d4c-150d9b6062fd
+    content: After the last sibling at a decomposition point completes, the workflow stops — no chain traversal occurs
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c583611b-1640-4f02-b5ba-b85e6631b1d0:
+    id: c583611b-1640-4f02-b5ba-b85e6631b1d0
+    content: While siblings remain at a decomposition point, checkRecurse selects from those siblings only
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ffe30bde-f444-4334-9f53-339cd9a33f4f:
+    id: ffe30bde-f444-4334-9f53-339cd9a33f4f
+    content: A decomposition that returns exactly one root processes only that single element
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  93025564-2f5d-4efe-9cd2-4a5d64129da7:
+    id: 93025564-2f5d-4efe-9cd2-4a5d64129da7
+    content: A parse failure during a decomposition response stops the workflow, shows the existing error toast and notification, and does not enqueue any siblings
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d924e6ff-dc5b-4262-96d9-8207b6cb5951:
+    id: d924e6ff-dc5b-4262-96d9-8207b6cb5951
+    content: Hitting MAX_RECURSE_ITERATIONS mid-sequence stops the run with the existing limit toast and notification, leaving any unprocessed siblings in place
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  99cea2df-41fc-491f-b986-415fc485d10b:
+    id: 99cea2df-41fc-491f-b986-415fc485d10b
+    content: When a decomposed sibling's next step is manual or a checkpoint, the sequence pauses on that sibling exactly like a non-decomposed manual handoff
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1da08dae-9c43-4336-bd5e-c7dd673bcf22:
+    id: 1da08dae-9c43-4336-bd5e-c7dd673bcf22
+    content: A workflow with a recurse step but no decomposition step performs no recursion and shows a toast warning reading "Warning, you have recursion set without decomposition"
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fd0a7607-7367-423e-a6cc-90bce47a9aac:
+    id: fd0a7607-7367-423e-a6cc-90bce47a9aac
+    content: The workflow settings UI shows light grey helper text beneath the decomposition and recursion options describing their dependency
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  19b25270-1fb7-4065-abd6-8576f1db8995:
+    id: 19b25270-1fb7-4065-abd6-8576f1db8995
+    content: The currently-running sibling is reflected in the workflow UI (toast + node flash) the same way single-node advancement is today
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4e1da788-1798-44d5-ad40-055d23e51421:
+    id: 4e1da788-1798-44d5-ad40-055d23e51421
+    content: 🔧 Implementation proposal
+    children:
+      - c1b7cd71-577a-4007-8c08-82ac5539a42a
+      - 9220c7f5-6721-452c-b92d-6d2957511b82
+      - 98585477-e461-4ca3-8aed-662fc5e385e3
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c1b7cd71-577a-4007-8c08-82ac5539a42a:
+    id: c1b7cd71-577a-4007-8c08-82ac5539a42a
+    content: Approach
+    children:
+      - 55dfbc06-8879-4c3d-9ccd-715e37ce89ba
+      - 7acf6b34-b7e6-4cc2-9be5-b0bc4f3ff0d1
+      - 72d3429f-7837-4627-984c-8efdcccc6d88
+      - d55f4eb0-0550-46a6-84d5-4b39ef779831
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  55dfbc06-8879-4c3d-9ccd-715e37ce89ba:
+    id: 55dfbc06-8879-4c3d-9ccd-715e37ce89ba
+    content: Inside handleAutonomousFeedback, when parsed.rootNodeIds.length > 1, register the sibling roots as the next-up sequence after AcceptFeedbackCommand runs
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7acf6b34-b7e6-4cc2-9be5-b0bc4f3ff0d1:
+    id: 7acf6b34-b7e6-4cc2-9be5-b0bc4f3ff0d1
+    content: Rewrite checkRecurse to look only for waiting decomposed siblings at the current step container; remove the chain-traversal fallback
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  72d3429f-7837-4627-984c-8efdcccc6d88:
+    id: 72d3429f-7837-4627-984c-8efdcccc6d88
+    content: Add a recurse-without-decomposition guard that surfaces the warning toast when a recurse step runs in a workflow with no decomposition step
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d55f4eb0-0550-46a6-84d5-4b39ef779831:
+    id: d55f4eb0-0550-46a6-84d5-4b39ef779831
+    content: Add helper text in the workflow settings UI beneath the decomposition and recursion options describing the dependency
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9220c7f5-6721-452c-b92d-6d2957511b82:
+    id: 9220c7f5-6721-452c-b92d-6d2957511b82
+    content: Touchpoints
+    children:
+      - 5c85c7cc-0617-452a-bb36-c93dc33d7ba6
+      - 4cd9508e-4351-4a65-9c78-9d1d30aad99b
+      - aa4355bb-2d7a-4f98-85bb-880c9a1b9601
+      - 5307b7e2-8121-401f-aae7-97cc992ec839
+      - ae7e7925-c36e-4fb7-a857-433414452a32
+      - c3e46ce6-f2dd-4218-b8e8-d6106964c4d8
+      - 38a64c1d-a498-4c2d-b325-7a53a46fc796
+      - bb23a083-067b-4da4-8d0a-33187b8f2228
+      - f458e2f2-584d-428b-887d-3ea8ff2d4537
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5c85c7cc-0617-452a-bb36-c93dc33d7ba6:
+    id: 5c85c7cc-0617-452a-bb36-c93dc33d7ba6
+    content: src/renderer/store/tree/actions/workflowExecutionActions.ts — handleAutonomousFeedback (enqueue sibling roots after AcceptFeedbackCommand)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4cd9508e-4351-4a65-9c78-9d1d30aad99b:
+    id: 4cd9508e-4351-4a65-9c78-9d1d30aad99b
+    content: src/renderer/store/tree/actions/workflowExecutionActions.ts — checkRecurse (sibling-only lookup, no chain fallback, warning toast when recursion runs without decomposition)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  aa4355bb-2d7a-4f98-85bb-880c9a1b9601:
+    id: aa4355bb-2d7a-4f98-85bb-880c9a1b9601
+    content: src/renderer/store/tree/actions/workflowExecutionActions.ts — advanceNode (confirm the existing checkRecurse(previousParentId, …) call site still does the right thing)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5307b7e2-8121-401f-aae7-97cc992ec839:
+    id: 5307b7e2-8121-401f-aae7-97cc992ec839
+    content: src/renderer/utils/workflowHelpers.ts — add findNextDecomposedSibling(stepId, nodes, executionStates) that returns the next waiting child produced by a decomposition response
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ae7e7925-c36e-4fb7-a857-433414452a32:
+    id: ae7e7925-c36e-4fb7-a857-433414452a32
+    content: src/renderer/utils/workflowHelpers.ts — remove or stop using findFirstAutonomousStepInChain in the recurse path
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c3e46ce6-f2dd-4218-b8e8-d6106964c4d8:
+    id: c3e46ce6-f2dd-4218-b8e8-d6106964c4d8
+    content: Workflow settings UI component — add light grey helper text beneath the decomposition and recursion options
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  38a64c1d-a498-4c2d-b325-7a53a46fc796:
+    id: 38a64c1d-a498-4c2d-b325-7a53a46fc796
+    content: Tests — extend src/renderer/store/tree/actions/tests/workflowAutoAccept.test.ts (and/or workflowContentPreservation.test.ts) with a multi-root decomposition that asserts sequential play-forward
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bb23a083-067b-4da4-8d0a-33187b8f2228:
+    id: bb23a083-067b-4da4-8d0a-33187b8f2228
+    content: Tests — co-locate a unit test for the new sibling-finder helper next to workflowHelpers.ts
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f458e2f2-584d-428b-887d-3ea8ff2d4537:
+    id: f458e2f2-584d-428b-887d-3ea8ff2d4537
+    content: Tests — cover the MAX_RECURSE_ITERATIONS interaction, the parse-failure interaction, and the recurse-without-decomposition warning in the autonomous feedback tests
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  98585477-e461-4ca3-8aed-662fc5e385e3:
+    id: 98585477-e461-4ca3-8aed-662fc5e385e3
+    content: Constraints to call out
+    children:
+      - a975bed1-5634-4ab6-a55e-075897ab6dbe
+      - ac078dc9-581b-44ba-83fe-b5344b9b1b12
+      - d333b8bc-5b0f-48e7-a1ba-5f029b493dcb
+      - 74d3aaa8-135b-4c81-a186-9d2531dcb3ff
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a975bed1-5634-4ab6-a55e-075897ab6dbe:
+    id: a975bed1-5634-4ab6-a55e-075897ab6dbe
+    content: checkRecurse currently uses setTimeout(…, 2000) as a UX pacing knob; sequential sibling starts must respect the same delay so the existing visual rhythm is preserved
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ac078dc9-581b-44ba-83fe-b5344b9b1b12:
+    id: ac078dc9-581b-44ba-83fe-b5344b9b1b12
+    content: feedbackCollaborations is keyed by nodeId — each sibling will get its own collaboration registration when its workflow starts, consistent with today's single-node behaviour
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d333b8bc-5b0f-48e7-a1ba-5f029b493dcb:
+    id: d333b8bc-5b0f-48e7-a1ba-5f029b493dcb
+    content: This story is strictly sequential; parallel execution across unrelated branches is explicitly out of scope and must not be built speculatively
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  74d3aaa8-135b-4c81-a186-9d2531dcb3ff:
+    id: 74d3aaa8-135b-4c81-a186-9d2531dcb3ff
+    content: 'Removing the chain-traversal fallback is a behaviour change: any existing autonomous-chain test in workflowExecution.test.ts that relied on recurse walking backwards must be updated or replaced'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9c13e1de-3c48-46d5-81a8-258dfdb36489:
+    id: 9c13e1de-3c48-46d5-81a8-258dfdb36489
+    content: Technical refinement
+    children:
+      - eb808b32-20f0-4812-b429-5ec5bbaaea03
+      - f7e61371-2983-4d80-9ca5-ecaf085fb8ca
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  eb808b32-20f0-4812-b429-5ec5bbaaea03:
+    id: eb808b32-20f0-4812-b429-5ec5bbaaea03
+    content: Complications to resolve before implementation
+    children:
+      - 9933a0eb-fdfc-4be9-ad38-b801da18f598
+      - 18f3ad24-a821-475a-af6b-c9febf41993a
+      - e2244df4-a172-48a6-8e23-fd880fe0efdc
+      - d61ef3c7-ec74-4d1d-be99-697c4c84b975
+      - 91189536-fd67-4492-8150-d2f0d7da06b1
+      - 89d75373-52b9-465d-a53b-190786f74db1
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9933a0eb-fdfc-4be9-ad38-b801da18f598:
+    id: 9933a0eb-fdfc-4be9-ad38-b801da18f598
+    content: 'Manual/checkpoint pause mid-sequence orphans later siblings — AC says "pause like a non-decomposed handoff", but a non-decomposed handoff stops the workflow. If X pauses on a manual step, no rule says Y must run after X is hand-resumed, so Y silently never starts. Add an explicit rule: resuming a paused sibling re-anchors recurse so the remaining siblings continue.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  18f3ad24-a821-475a-af6b-c9febf41993a:
+    id: 18f3ad24-a821-475a-af6b-c9febf41993a
+    content: Same-terminal sequencing races with advanceNode — N is advanced to its next step before checkRecurse picks X, so X (decomposition step) and N (next step) compete for the same terminal. Either X must wait until N's pipeline fully completes, or "sequential on the same terminal" needs a sharper definition. This is the highest-risk gap in the spec.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e2244df4-a172-48a6-8e23-fd880fe0efdc:
+    id: e2244df4-a172-48a6-8e23-fd880fe0efdc
+    content: Recurse-without-decomposition warning will fire repeatedly — checkRecurse runs per advance, so a workflow with recurse but no decomposition will toast the warning on every step. Needs a once-per-run guard and ideally a static check at workflow-start time.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d61ef3c7-ec74-4d1d-be99-697c4c84b975:
+    id: d61ef3c7-ec74-4d1d-be99-697c4c84b975
+    content: Existing `.arbo` files that relied on cross-chain recurse silently stop working — the warning toast covers visibility, but user content can be downgraded without the user noticing during a run that previously completed. Worth a one-shot migration notice or a startup-time scan.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  91189536-fd67-4492-8150-d2f0d7da06b1:
+    id: 91189536-fd67-4492-8150-d2f0d7da06b1
+    content: completeWorkflow also calls checkRecurse with `position.currentStepId` (line 367) — the new sibling-only lookup must locate the originating decomposition step from any caller, not just from `previousParentId` at advanceNode-time. Anchor-selection is the bulk of the new helper, not traversal.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  89d75373-52b9-465d-a53b-190786f74db1:
+    id: 89d75373-52b9-465d-a53b-190786f74db1
+    content: 'Out of scope to state explicitly: nested decomposition (a sibling whose own pipeline contains another decomposition step) and any parallel-branch execution — both must not be built speculatively.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f7e61371-2983-4d80-9ca5-ecaf085fb8ca:
+    id: f7e61371-2983-4d80-9ca5-ecaf085fb8ca
+    content: Approach summary
+    children:
+      - 3dedc539-8652-4b27-8719-f1dc1c57c4a9
+      - 73208809-59c5-4925-ba21-d1dc2df9213d
+      - 00e3b1ce-316d-4f4b-8177-a9fdd62b34c1
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3dedc539-8652-4b27-8719-f1dc1c57c4a9:
+    id: 3dedc539-8652-4b27-8719-f1dc1c57c4a9
+    content: All execution-layer changes land in workflowExecutionActions.ts + workflowHelpers.ts. AcceptFeedbackCommand already accepts `string | string[]` and handles multi-root tree-swap, so no command-layer change is needed — handleAutonomousFeedback already passes parsed.rootNodeIds when decomposition is on.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  73208809-59c5-4925-ba21-d1dc2df9213d:
+    id: 73208809-59c5-4925-ba21-d1dc2df9213d
+    content: The new sibling-finder is essentially findNextWaitingNode applied to the decomposition step container — most of the work is picking the right anchor, not new traversal logic.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  00e3b1ce-316d-4f4b-8177-a9fdd62b34c1:
+    id: 00e3b1ce-316d-4f4b-8177-a9fdd62b34c1
+    content: 'Non-obvious for reviewers: this is a *behaviour deletion* (cross-chain recurse) presented as a feature addition. The warning toast + settings helper text exist precisely to cushion that deletion; without the deletion the rest of the change would be additive and low-risk.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4fd5784a-b944-45ea-a139-a85e8e16e1ea:
+    id: 4fd5784a-b944-45ea-a139-a85e8e16e1ea
+    content: PR scope — additive bug fix only
+    children:
+      - 1964473e-ce49-407a-b7b7-81a718574e95
+      - 87aee3dc-b42f-49a9-b25f-ca41303d82ef
+      - 5bf373a1-5353-4ab0-af44-c527bd1781ca
+      - 073d4f23-64bf-428a-89d6-e4ba199407e9
+      - 8e633826-3c7b-4c1a-84ae-7cada5d311de
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1964473e-ce49-407a-b7b7-81a718574e95:
+    id: 1964473e-ce49-407a-b7b7-81a718574e95
+    content: Implement multi-root sibling enqueue and a sibling-preferred recurse path; keep the existing chain-traversal as a fallback so this PR cannot regress workflows that rely on cross-chain recurse today
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  87aee3dc-b42f-49a9-b25f-ca41303d82ef:
+    id: 87aee3dc-b42f-49a9-b25f-ca41303d82ef
+    content: Touchpoints in scope
+    children:
+      - f2502806-9068-43cf-8ffe-26b6015515b8
+      - db5822de-5632-4666-87b2-c97637bb7d1b
+      - 1a66f6e3-7a64-49d3-918c-8d1987e46315
+      - d6820f06-e33b-4e5c-80c0-ef02c87befec
+      - af3e3b76-e41b-4aae-b0fb-732ba74415d9
+      - 95da2ca0-8141-417f-9dea-3edab566a087
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f2502806-9068-43cf-8ffe-26b6015515b8:
+    id: f2502806-9068-43cf-8ffe-26b6015515b8
+    content: src/renderer/store/tree/actions/workflowExecutionActions.ts — handleAutonomousFeedback enqueues sibling roots in parsed.rootNodeIds order after AcceptFeedbackCommand
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  db5822de-5632-4666-87b2-c97637bb7d1b:
+    id: db5822de-5632-4666-87b2-c97637bb7d1b
+    content: src/renderer/store/tree/actions/workflowExecutionActions.ts — checkRecurse selects waiting decomposed siblings first; falls back to today's findFirstAutonomousStepInChain → findNextWaitingNode if no siblings remain
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1a66f6e3-7a64-49d3-918c-8d1987e46315:
+    id: 1a66f6e3-7a64-49d3-918c-8d1987e46315
+    content: src/renderer/store/tree/actions/workflowExecutionActions.ts — advanceNode call site for checkRecurse(previousParentId, …) verified
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d6820f06-e33b-4e5c-80c0-ef02c87befec:
+    id: d6820f06-e33b-4e5c-80c0-ef02c87befec
+    content: src/renderer/utils/workflowHelpers.ts — add findNextDecomposedSibling(stepId, nodes, executionStates)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  af3e3b76-e41b-4aae-b0fb-732ba74415d9:
+    id: af3e3b76-e41b-4aae-b0fb-732ba74415d9
+    content: Tests — extend workflowAutoAccept.test.ts (or workflowContentPreservation.test.ts) with a multi-root decomposition that asserts sequential play-forward, including the parse-failure and MAX_RECURSE_ITERATIONS interactions
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  95da2ca0-8141-417f-9dea-3edab566a087:
+    id: 95da2ca0-8141-417f-9dea-3edab566a087
+    content: Tests — co-locate a unit test for findNextDecomposedSibling
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5bf373a1-5353-4ab0-af44-c527bd1781ca:
+    id: 5bf373a1-5353-4ab0-af44-c527bd1781ca
+    content: AC subset satisfied by this PR
+    children:
+      - bb499b4b-0464-49ef-ad86-94b66877fa25
+      - dc64e366-4f2a-413d-8020-e11d20d695a5
+      - 684dc992-b038-4ccd-afdd-8b047eeeae88
+      - 95d1b7a3-4960-4ced-a62e-e67ec5afcf24
+      - 64d1ebf7-fc1f-4692-a7e4-134af331c7dc
+      - 8bb15a80-9e98-4cd8-90ef-aa3afb173987
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bb499b4b-0464-49ef-ad86-94b66877fa25:
+    id: bb499b4b-0464-49ef-ad86-94b66877fa25
+    content: An autonomous decomposition step that returns N>1 roots causes all N siblings to be processed in parsed.rootNodeIds order on the same terminal
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  dc64e366-4f2a-413d-8020-e11d20d695a5:
+    id: dc64e366-4f2a-413d-8020-e11d20d695a5
+    content: While siblings remain at a decomposition point, checkRecurse selects from those siblings (with chain-traversal still available as a fallback in this PR)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  684dc992-b038-4ccd-afdd-8b047eeeae88:
+    id: 684dc992-b038-4ccd-afdd-8b047eeeae88
+    content: A decomposition that returns exactly one root processes only that single element
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  95d1b7a3-4960-4ced-a62e-e67ec5afcf24:
+    id: 95d1b7a3-4960-4ced-a62e-e67ec5afcf24
+    content: A parse failure during a decomposition response stops the workflow, shows the existing error toast and notification, and does not enqueue any siblings
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  64d1ebf7-fc1f-4692-a7e4-134af331c7dc:
+    id: 64d1ebf7-fc1f-4692-a7e4-134af331c7dc
+    content: Hitting MAX_RECURSE_ITERATIONS mid-sequence stops the run with the existing limit toast and notification
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8bb15a80-9e98-4cd8-90ef-aa3afb173987:
+    id: 8bb15a80-9e98-4cd8-90ef-aa3afb173987
+    content: The currently-running sibling is reflected in the workflow UI (toast + node flash) like single-node advancement
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  073d4f23-64bf-428a-89d6-e4ba199407e9:
+    id: 073d4f23-64bf-428a-89d6-e4ba199407e9
+    content: Out of scope (handled by PR2)
+    children:
+      - 875ccffb-667a-4bbb-adbd-45f7935a2b58
+      - db542d3d-8120-4543-b95e-610d2d2ed9ed
+      - 340a1cf6-c9fa-4510-855c-2577096df0f4
+      - 8518c12a-3554-4bd4-9406-27b943697fb2
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  875ccffb-667a-4bbb-adbd-45f7935a2b58:
+    id: 875ccffb-667a-4bbb-adbd-45f7935a2b58
+    content: Removal of the chain-traversal fallback in checkRecurse
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  db542d3d-8120-4543-b95e-610d2d2ed9ed:
+    id: db542d3d-8120-4543-b95e-610d2d2ed9ed
+    content: Recurse-without-decomposition warning toast
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  340a1cf6-c9fa-4510-855c-2577096df0f4:
+    id: 340a1cf6-c9fa-4510-855c-2577096df0f4
+    content: Settings UI helper text under the decomposition and recursion options
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8518c12a-3554-4bd4-9406-27b943697fb2:
+    id: 8518c12a-3554-4bd4-9406-27b943697fb2
+    content: Updates to existing autonomous-chain tests in workflowExecution.test.ts that rely on cross-chain recurse
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8e633826-3c7b-4c1a-84ae-7cada5d311de:
+    id: 8e633826-3c7b-4c1a-84ae-7cada5d311de
+    content: Note
+    children:
+      - a98e26e7-026b-4cfb-8a9c-672edc6730d4
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a98e26e7-026b-4cfb-8a9c-672edc6730d4:
+    id: a98e26e7-026b-4cfb-8a9c-672edc6730d4
+    content: This is a subtask of the overall user story. Please implement only this subtask. The others will be implemented in a separate PR.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e622609b-3ddc-4660-b948-d01e7dd97e04:
+    id: e622609b-3ddc-4660-b948-d01e7dd97e04
+    content: Tests authored (TDD red)
+    children:
+      - 6a52d07d-9241-42bb-8485-981480e2e82d
+      - 6021b96c-cd69-4dcc-b30a-58d30b5e352c
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6a52d07d-9241-42bb-8485-981480e2e82d:
+    id: 6a52d07d-9241-42bb-8485-981480e2e82d
+    content: '`src/renderer/utils/tests/workflowHelpers.test.ts` — 5 bodied unit tests for `findNextDecomposedSibling` (first waiting child, skip-running siblings, all-running, no-children, missing step) plus 1 `it.todo` covering the "step is not a decomposition step" guard. Bodied tests fail with `TypeError: findNextDecomposedSibling is not a function` — the implementer''s contract for adding the helper to `workflowHelpers.ts`.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6021b96c-cd69-4dcc-b30a-58d30b5e352c:
+    id: 6021b96c-cd69-4dcc-b30a-58d30b5e352c
+    content: '`src/renderer/store/tree/actions/tests/workflowAutoAccept.test.ts` — new describe block `decomposition multi-root play-forward (PR1)` with 9 `it.todo` placeholders (sequential start in `parsed.rootNodeIds` order, ctor receives the array, single-root path, flash + toast per sibling, sibling-preferred recurse, MAX_RECURSE_ITERATIONS halt mid-sequence, manual / checkpoint pause, single-root no-pending, parse-failure stop). Title-only because the orchestration mechanism (queue, executeCommand sequencing, idMap exposure from AcceptFeedbackCommand) is genuinely uncertain post-fix; the assertions need the implementer to pin those down before bodying them.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3f333fc4-89c9-4eb9-8cb4-dd0e38d78659:
+    id: 3f333fc4-89c9-4eb9-8cb4-dd0e38d78659
+    content: Implementation report — PR1
+    children:
+      - e1728b60-2572-44ef-a38f-590edb4efa60
+      - f9a4068d-00a0-48cc-bbc1-563e093a0b66
+      - 72f87188-b665-499d-a93a-e3fa16dd4bb5
+      - 636a8916-191a-4eb2-90b1-62a90ced575f
+      - 2df6774c-e3b0-4b82-88e1-0aefc4e16f3d
+      - d20ac78a-1270-40f2-a95b-aeb142c3bb21
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e1728b60-2572-44ef-a38f-590edb4efa60:
+    id: e1728b60-2572-44ef-a38f-590edb4efa60
+    content: 'Shipped: `findNextDecomposedSibling(stepId, nodes, executionStates)` in `src/renderer/utils/workflowHelpers.ts`. The 5 previously-failing bodied unit tests in `workflowHelpers.test.ts` now pass.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f9a4068d-00a0-48cc-bbc1-563e093a0b66:
+    id: f9a4068d-00a0-48cc-bbc1-563e093a0b66
+    content: 'Shipped: sibling-preferred `checkRecurse` in `src/renderer/store/tree/actions/workflowExecutionActions.ts`. When the supplied step has `metadata.decomposition === true`, the new helper picks the next waiting sibling first (independent of the `recurse` flag, since decomposition itself implies sibling sequencing). When no waiting sibling remains the function falls through to today''s chain-traversal path (still gated by `recurse: true`) so this PR can''t regress workflows that rely on cross-chain recurse. Extracted `scheduleRecurseStart` to share the `MAX_RECURSE_ITERATIONS` check, the `recurseCounters` bump, and the 2000ms `setTimeout` between both branches, so the sibling sequence inherits the existing limit + visual rhythm without duplication.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  72f87188-b665-499d-a93a-e3fa16dd4bb5:
+    id: 72f87188-b665-499d-a93a-e3fa16dd4bb5
+    content: 'Shipped: multi-root play-forward kick-off in `handleAutonomousFeedback`. Captures `decompositionStepId` (via `getParentIdOrNull(nodeId, ancestorRegistry)`) before `AcceptFeedbackCommand` runs — the multi-root strategy deletes the collaborating node''s ancestry, so the anchor must be read from the pre-accept registry. After `cleanupAutonomousCollaboration` and `advanceOrClearCollaborating` finish, calls `checkRecurse(decompositionStepId, entry.terminalTabId)` to start the first sibling. Subsequent siblings cascade naturally: each sibling''s `completeWorkflow` calls `checkRecurse(position.currentStepId, …)`, which falls through to chain-traversal that walks back to the decomposition step and finds the next waiting sibling via `findNextWaitingNode`.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  636a8916-191a-4eb2-90b1-62a90ced575f:
+    id: 636a8916-191a-4eb2-90b1-62a90ced575f
+    content: 'AC verification: multi-root path-forward (the new direct kick-off), single-root unchanged (Array.isArray guard), parse-failure unchanged (existing early return), MAX_RECURSE_ITERATIONS now applies across siblings (shared via `scheduleRecurseStart`), UI feedback unchanged (sibling start uses the same `startWorkflow → executeInTerminal → flashNode/toast` chain as a single-node advance).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2df6774c-e3b0-4b82-88e1-0aefc4e16f3d:
+    id: 2df6774c-e3b0-4b82-88e1-0aefc4e16f3d
+    content: 'Tests pass on changed-area suites: `workflowHelpers.test.ts` (49), `workflowAutoAccept.test.ts` + `workflowExecutionActions.test.ts` + adjacent workflow* suites (193+88), `tsc --noEmit` clean, `eslint` reports 0 errors and only the pre-existing `import/no-cycle` warning that pre-dates this change.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d20ac78a-1270-40f2-a95b-aeb142c3bb21:
+    id: d20ac78a-1270-40f2-a95b-aeb142c3bb21
+    content: 'Out of scope and explicitly not done in this PR (per the PR scope — these are PR2 territory): removal of the chain-traversal fallback, the "Warning, you have recursion set without decomposition" toast, the workflow settings UI helper text, and updates to chain-traversal tests in `workflowExecutionActions.test.ts`. The chain-traversal fallback is intentionally retained so this PR cannot regress existing autonomous-chain workflows.'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  70c97e80-1892-4d60-a279-8ace8ef80741:
+    id: 70c97e80-1892-4d60-a279-8ace8ef80741
+    content: Refactor pass
+    children:
+      - cdc3c482-d751-48dd-9bb7-ab062c1c01e7
+      - 3962f8ba-abf7-4470-8353-fde97d3e57b4
+      - 729950d3-4587-48e2-873d-8fe3c60896d5
+      - b64cc54d-9ca9-4492-a343-26075921ebbe
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cdc3c482-d751-48dd-9bb7-ab062c1c01e7:
+    id: cdc3c482-d751-48dd-9bb7-ab062c1c01e7
+    content: De-duplicated `findNextDecomposedSibling` — was byte-for-byte identical to `findNextWaitingNode`. Now guards on `step.metadata.decomposition === true` and delegates the iteration to `findNextWaitingNode`. The helper is meaningfully different from its sibling, the call site no longer needs an outer `decomposition` check, and the previously-`it.todo` test for "returns null when the supplied step is not a decomposition step" is now bodied (226 pass, up from 225).
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3962f8ba-abf7-4470-8353-fde97d3e57b4:
+    id: 3962f8ba-abf7-4470-8353-fde97d3e57b4
+    content: 'Simplified `checkRecurse` — removed the redundant `stepNode?.metadata.decomposition === true` outer check now that the guard lives inside `findNextDecomposedSibling`. The function reads more directly: try sibling first (helper enforces decomposition), otherwise fall through to the chain-traversal path gated by `recurse: true`.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  729950d3-4587-48e2-873d-8fe3c60896d5:
+    id: 729950d3-4587-48e2-873d-8fe3c60896d5
+    content: 'Reviewed the rest of the diff against project conventions: named functions over inline arrows, file names match exported symbols, no JSDoc, no PR-ticket references in comments, no inline-history comments, no abandoned attempts left in the diff. `workflowExecutionActions.ts` is over the 500-line guideline (786 lines after this PR, was 763 before) but the convention''s "shared state would add unnecessary complexity" carve-out applies — the file holds factory-scoped state across multiple action functions and pre-dates this PR at >500 lines, so splitting is not a target for this work.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b64cc54d-9ca9-4492-a343-26075921ebbe:
+    id: b64cc54d-9ca9-4492-a343-26075921ebbe
+    content: 'Standard checks rerun on the four changed files: `tsc --noEmit` clean; eslint reports 0 errors with only the pre-existing `import/no-cycle` warning; vitest 226 pass / 0 fail on the related workflow suites.'
     children: []
     metadata:
       status: completed

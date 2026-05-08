@@ -31,6 +31,8 @@ The applied context's state determines what the AI is asked for. The four states
 
 Collaborate and Collaborate & Execute use the same feedback pipeline — the AI's response appears in the Feedback panel for you to review, then Accept or Cancel (undoable with `Ctrl+Z`). Execute and Action don't open the panel.
 
+The panel highlights what the AI changed: blue for modified branches, green for added ones, and red with strikethrough for branches the AI removed (shown where they used to sit). Editing a modified branch back to its original text in the panel clears its highlight. Branches the AI returned untouched keep their identity, so selection, expansion, and links to those branches survive feedback.
+
 Two built-in contexts are available when no user-defined context is applied:
 
 - **Basic review** — Collaborate. Reviews your content and suggests improvements. This is the default.
