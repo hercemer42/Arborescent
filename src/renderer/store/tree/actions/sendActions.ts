@@ -51,7 +51,8 @@ const SINGLE_ROOT_OUTPUT_FORMAT = `OUTPUT FORMAT:
 - Must have exactly one root node (single # heading)
 - Use markdown headings for hierarchy (# root, ## child, ### grandchild)
 - Use [ ] for pending items, [x] for completed, [-] for failed
-- Example: "## [ ] Task name" or "### [x] Completed task"`;
+- Example: "## [ ] Task name" or "### [x] Completed task"
+- Constrain your feedback to bullet points using markdown headings — no prose.`;
 
 const DECOMPOSITION_OUTPUT_FORMAT = `OUTPUT FORMAT:
 - Output one or more top-level items, each starting with a single # heading.
@@ -71,7 +72,8 @@ const DECOMPOSITION_OUTPUT_FORMAT = `OUTPUT FORMAT:
 ## [ ] Sub-item of first
 # [ ] Second item
 ## [ ] Sub-item of second
-# [ ] Third item`;
+# [ ] Third item
+- Constrain your feedback to bullet points using markdown headings — no prose.`;
 
 function getOutputFormat(decomposition: boolean): string {
   return decomposition ? DECOMPOSITION_OUTPUT_FORMAT : SINGLE_ROOT_OUTPUT_FORMAT;

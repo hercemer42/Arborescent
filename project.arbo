@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-05-08T09:20:15.326Z'
+updated: '2026-05-08T09:35:52.024Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -5101,7 +5101,8 @@ nodes:
       expanded: false
       blueprintColor: '#a855f7'
       isBlueprint: true
-      contextMode: execute
+      collaborate: true
+      execute: true
   59f2421c-d726-43ec-8347-ccf2874922a4:
     id: 59f2421c-d726-43ec-8347-ccf2874922a4
     content: Perform the below refactoring tasks
@@ -5515,7 +5516,8 @@ nodes:
       blueprintIcon: Wrench
       blueprintColor: '#14b8a6'
       isBlueprint: true
-      contextMode: execute
+      collaborate: true
+      execute: true
   5e0fa846-276d-4d99-ae49-a3f05b46b75c:
     id: 5e0fa846-276d-4d99-ae49-a3f05b46b75c
     content: Understand & Plan
@@ -8669,7 +8671,8 @@ nodes:
       blueprintColor: '#ef4444'
       isBlueprint: true
       expanded: false
-      contextMode: execute
+      collaborate: true
+      execute: true
   21179aff-4cb0-4e06-877a-6b13488017b3:
     id: 21179aff-4cb0-4e06-877a-6b13488017b3
     content: Perform the below bug fixes
@@ -8732,6 +8735,7 @@ nodes:
     id: 79b693ca-27ce-4410-8617-8092d7e81b07
     content: Issues
     children:
+      - d92d0ad5-f985-4084-af05-ccc8894d82be
       - 5cc686fc-7651-4d83-9ccf-78a29d1dff13
       - e9d700c8-784f-4b3f-9099-7be9ab864158
     metadata:
@@ -25410,7 +25414,8 @@ nodes:
       blueprintColor: '#f97316'
       isBlueprint: true
       expanded: false
-      contextMode: execute
+      collaborate: true
+      execute: true
   9f82ccb2-5099-4ad0-b8f2-3bba6e3554da:
     id: 9f82ccb2-5099-4ad0-b8f2-3bba6e3554da
     content: Run the standard checks
@@ -25464,7 +25469,8 @@ nodes:
       blueprintIcon: BugPlay
       blueprintColor: '#a855f7'
       isBlueprint: true
-      contextMode: execute
+      collaborate: true
+      execute: true
   644adefe-d77d-45d2-b414-a398eb757cef:
     id: 644adefe-d77d-45d2-b414-a398eb757cef
     content: Review code changes against acceptance criteria
@@ -33182,8 +33188,7 @@ nodes:
     content: Problems
     children:
       - a3dc1418-84c1-4d99-9d17-f658480f6517
-      - 31f67d4f-6aba-4307-b3b9-ee202f0a03be
-      - 4446dd01-7caf-4953-8dd2-36153adb9cfa
+      - f9e30528-a7f4-4a92-9c44-196b536e7a85
       - 321fe1d0-3ca3-45f5-bab8-56dd0f003e78
       - c0b354e9-aaa0-409e-ab47-6f534d03a97f
     metadata:
@@ -48325,50 +48330,6 @@ nodes:
       expanded: false
       deleted: false
       plugins: {}
-  413a84b6-97e7-4963-81ca-6667f2136d9a:
-    id: 413a84b6-97e7-4963-81ca-6667f2136d9a
-    content: Sometimes steps are not fully implemented
-    children:
-      - 294a8650-f553-4e8c-9bb0-a6e860cd34cc
-      - c92cfacd-6654-4ec8-b3bb-462f5ce50a33
-      - 7d3b730d-63f2-42a2-8d51-3ac155650cb5
-    metadata:
-      status: pending
-      expanded: false
-  294a8650-f553-4e8c-9bb0-a6e860cd34cc:
-    id: 294a8650-f553-4e8c-9bb0-a6e860cd34cc
-    content: For example, if during a coding session the AI discovers there are too many steps
-    children:
-      - 3e30c2d6-d84b-4bc8-b790-bdebd4d034f6
-    metadata:
-      status: pending
-  3e30c2d6-d84b-4bc8-b790-bdebd4d034f6:
-    id: 3e30c2d6-d84b-4bc8-b790-bdebd4d034f6
-    content: It will do some, and then make a summary of what is not done
-    children: []
-    metadata:
-      status: pending
-  c92cfacd-6654-4ec8-b3bb-462f5ce50a33:
-    id: c92cfacd-6654-4ec8-b3bb-462f5ce50a33
-    content: This happens when the user story is too large
-    children: []
-    metadata:
-      status: pending
-  7d3b730d-63f2-42a2-8d51-3ac155650cb5:
-    id: 7d3b730d-63f2-42a2-8d51-3ac155650cb5
-    content: Would be good to have a way for the AI to have knowledge of the workflow tree
-    children:
-      - 7710be30-1f3b-4cd9-a697-dea1f6b5a237
-      - 5aafe65f-cc2f-45b2-90db-505510c65b9a
-    metadata:
-      status: pending
-      expanded: true
-  7710be30-1f3b-4cd9-a697-dea1f6b5a237:
-    id: 7710be30-1f3b-4cd9-a697-dea1f6b5a237
-    content: And be able to roll back, split, then implement in parts
-    children: []
-    metadata:
-      status: pending
   614f1e7a-0243-4b10-b0f0-69a282a1cf07:
     id: 614f1e7a-0243-4b10-b0f0-69a282a1cf07
     content: Problem statement
@@ -72982,8 +72943,9 @@ nodes:
       blueprintIcon: GitMerge
       blueprintColor: '#ef4444'
       isBlueprint: true
-      contextMode: execute
       expanded: false
+      collaborate: true
+      execute: true
   5c79a251-defe-4ef2-a9ce-30e2d89a8f35:
     id: 5c79a251-defe-4ef2-a9ce-30e2d89a8f35
     content: Squash commits if there are more than one
@@ -73012,8 +72974,9 @@ nodes:
       blueprintIcon: FolderCog
       blueprintColor: '#14b8a6'
       isBlueprint: true
-      contextMode: execute
       expanded: false
+      collaborate: true
+      execute: true
   a81259d9-a847-453f-8db9-e86215d79cfb:
     id: a81259d9-a847-453f-8db9-e86215d79cfb
     content: For example in the automated workflow step Feature Implementation, after completion you write what was done in the temporary file, overwriting the original content
@@ -76147,7 +76110,8 @@ nodes:
       blueprintIcon: Gem
       blueprintColor: '#64748b'
       isBlueprint: true
-      contextMode: collaborate
+      collaborate: true
+      execute: false
   54a6b08d-8fa0-4a50-a962-8bf87cc4d734:
     id: 54a6b08d-8fa0-4a50-a962-8bf87cc4d734
     content: Flag complications
@@ -76252,7 +76216,8 @@ nodes:
       blueprintIcon: BrainCircuit
       blueprintColor: '#f97316'
       isBlueprint: true
-      contextMode: collaborate
+      collaborate: true
+      execute: false
   9c331578-cc2b-48f5-92ea-a831b25b118e:
     id: 9c331578-cc2b-48f5-92ea-a831b25b118e
     content: Ground yourself in the existing project
@@ -76483,7 +76448,8 @@ nodes:
       expanded: false
       blueprintColor: '#0ea5e9'
       isBlueprint: true
-      contextMode: collaborate
+      collaborate: true
+      execute: false
   34a89b8a-b13f-47a5-8689-dcf6307be4ef:
     id: 34a89b8a-b13f-47a5-8689-dcf6307be4ef
     content: Think like a product manager and an engineer
@@ -76696,7 +76662,8 @@ nodes:
       blueprintColor: '#14b8a6'
       isBlueprint: true
       expanded: false
-      contextMode: collaborate
+      collaborate: true
+      execute: false
   132e5564-e290-4d6c-8cae-f65f125ef78f:
     id: 132e5564-e290-4d6c-8cae-f65f125ef78f
     content: Check the following list against what is currently implemented
@@ -76756,7 +76723,8 @@ nodes:
       blueprintColor: '#0c6f9d'
       isContextDeclaration: true
       expanded: false
-      contextMode: execute
+      collaborate: true
+      execute: true
   bfe8794a-2209-4c09-ba88-c4c951928b76:
     id: bfe8794a-2209-4c09-ba88-c4c951928b76
     content: 'Document this feature given the following conventions :'
@@ -76855,8 +76823,9 @@ nodes:
       blueprintIcon: MessageSquare
       blueprintColor: '#c47f09'
       isBlueprint: true
-      contextMode: collaborate
       expanded: false
+      collaborate: true
+      execute: false
   83e682bc-2b2f-4e62-b6d6-2f691e58a239:
     id: 83e682bc-2b2f-4e62-b6d6-2f691e58a239
     content: Revise the following specification based on our discussion
@@ -76887,54 +76856,6 @@ nodes:
       blueprintIcon: Layers2
       blueprintColor: '#0ea5e9'
       expanded: true
-  5aafe65f-cc2f-45b2-90db-505510c65b9a:
-    id: 5aafe65f-cc2f-45b2-90db-505510c65b9a
-    content: 'Should just be an instruction :'
-    children:
-      - d7dd2d1c-767c-4bf8-afb6-d919e3910745
-      - e33dd4d8-5c57-43d7-87f7-8a2469234f4d
-    metadata:
-      status: pending
-  d7dd2d1c-767c-4bf8-afb6-d919e3910745:
-    id: d7dd2d1c-767c-4bf8-afb6-d919e3910745
-    content: 'In the user supplied context : Split the work into logic steps under ''Implementation order'' node'
-    children: []
-    metadata:
-      status: pending
-  e33dd4d8-5c57-43d7-87f7-8a2469234f4d:
-    id: e33dd4d8-5c57-43d7-87f7-8a2469234f4d
-    content: 'Recurse option : if there are unfinished items send it back to the start of the first automated chain'
-    children:
-      - 9ed91c84-d913-4c1e-a7ef-18e32080a78a
-      - 54efef9a-491e-408b-8918-4300cbab79a4
-    metadata:
-      status: pending
-  9ed91c84-d913-4c1e-a7ef-18e32080a78a:
-    id: 9ed91c84-d913-4c1e-a7ef-18e32080a78a
-    content: But what if there are checkpoints too ?
-    children: []
-    metadata:
-      status: pending
-  54efef9a-491e-408b-8918-4300cbab79a4:
-    id: 54efef9a-491e-408b-8918-4300cbab79a4
-    content: Ideally we can have a target node for the recurse option
-    children:
-      - 899eb41e-2040-4740-8bc2-6f5005ff16e5
-    metadata:
-      status: pending
-  899eb41e-2040-4740-8bc2-6f5005ff16e5:
-    id: 899eb41e-2040-4740-8bc2-6f5005ff16e5
-    content: Instead of a checkbox 'recurse' we can have a 'Recurse to :'
-    children:
-      - ebd1b1b1-a2cb-4962-ac09-86d3f2325945
-    metadata:
-      status: pending
-  ebd1b1b1-a2cb-4962-ac09-86d3f2325945:
-    id: ebd1b1b1-a2cb-4962-ac09-86d3f2325945
-    content: Matches by UUID, displays starting node name
-    children: []
-    metadata:
-      status: pending
   b639805f-a2d3-4f38-9faa-ffc4a91b8f80:
     id: b639805f-a2d3-4f38-9faa-ffc4a91b8f80
     content: Issue resolution
@@ -77228,7 +77149,8 @@ nodes:
       blueprintIcon: ListChecks
       blueprintColor: '#c47f09'
       isBlueprint: true
-      contextMode: collaborate
+      collaborate: true
+      execute: false
   a76c8f73-4d24-45db-aaa9-1e8e732adac3:
     id: a76c8f73-4d24-45db-aaa9-1e8e732adac3
     content: Analyse the following list and code automated tests
@@ -81764,36 +81686,22 @@ nodes:
       status: pending
   8d28e3e5-89a8-4f1a-b517-35491070acbe:
     id: 8d28e3e5-89a8-4f1a-b517-35491070acbe
-    content: We replace UUIDs on all but parent node during feedback
+    content: Preserve UUIDs for unchanged nodes during feedback
     children:
-      - df2d5ddf-09c1-4d5f-a3c7-d94460bad2c5
-      - de9e8446-028b-4394-9134-049287f50cd5
+      - 64b15ce0-e3cc-43e1-8709-ae549fda07c8
+      - 2cd297c7-eb49-4336-ae8b-1dbd8bc23380
+      - 8699105e-61d3-4b57-9b9f-f50be3650171
     metadata:
       status: pending
       expanded: false
-  df2d5ddf-09c1-4d5f-a3c7-d94460bad2c5:
-    id: df2d5ddf-09c1-4d5f-a3c7-d94460bad2c5
-    content: Only replace UUIDs if the node changes, don't replace on existing nodes
-    children: []
-    metadata:
-      status: pending
-  de9e8446-028b-4394-9134-049287f50cd5:
-    id: de9e8446-028b-4394-9134-049287f50cd5
-    content: Means we have to have some kind of diff
-    children:
-      - f038856c-5351-49d8-af0d-8640ef7e8e87
-    metadata:
-      status: pending
-  f038856c-5351-49d8-af0d-8640ef7e8e87:
-    id: f038856c-5351-49d8-af0d-8640ef7e8e87
-    content: Can just use exact equality, will cover 90% of cases
-    children: []
-    metadata:
-      status: pending
+      deleted: false
+      plugins: {}
   4c43c117-e89a-460c-9900-7ea15b8cc0e0:
     id: 4c43c117-e89a-460c-9900-7ea15b8cc0e0
     content: User story creation
-    children: []
+    children:
+      - 8d28e3e5-89a8-4f1a-b517-35491070acbe
+      - 4df7b6c2-8e56-4b58-bc83-2263ed86cfbf
     metadata:
       status: pending
       expanded: true
@@ -81842,6 +81750,7 @@ nodes:
     id: b74df1ac-29fa-4130-9228-a355bbbc5fd2
     content: Would be cool to be able to open a terminal with the session when clicking on it
     children:
+      - 9f35f7ae-8daf-4641-8122-ff395f211e49
       - 0632ae5b-5f74-4bbd-b777-d2ac14df2b5f
       - 38e4dd47-08b9-45e1-a632-067801b4f55d
     metadata:
@@ -81883,6 +81792,8 @@ nodes:
       blueprintIcon: FolderTree
       blueprintColor: '#f97316'
       isBlueprint: true
+      collaborate: true
+      execute: false
   2f4a316f-d42b-4bc3-a2ef-aca3a2ea2b50:
     id: 2f4a316f-d42b-4bc3-a2ef-aca3a2ea2b50
     content: 📄 Product spec
@@ -84574,8 +84485,9 @@ nodes:
       isContextDeclaration: true
       blueprintIcon: Book
       blueprintColor: '#c47f09'
-      contextMode: collaborate
       expanded: false
+      collaborate: true
+      execute: false
   d4ab7a90-ca35-403d-960c-312380f1d8ee:
     id: d4ab7a90-ca35-403d-960c-312380f1d8ee
     content: Use 2 agents for this and make them talk until they agree
@@ -85053,8 +84965,9 @@ nodes:
       blueprintIcon: Scissors
       blueprintColor: '#ef4444'
       isBlueprint: true
-      contextMode: collaborate
       expanded: false
+      collaborate: true
+      execute: false
   9773cf52-2f90-46a0-b8e0-d38673eb58ec:
     id: 9773cf52-2f90-46a0-b8e0-d38673eb58ec
     content: PR1 - Independent collaborate and execute flags on context — data, prompt composition, four-state behaviour
@@ -86883,21 +86796,6 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  51857dd8-bb91-43b8-aee4-b99e5fafe3e9:
-    id: 51857dd8-bb91-43b8-aee4-b99e5fafe3e9
-    content: Recurse is good but need to be able to set a startpoint
-    children:
-      - e1371276-72ef-4e6e-bc67-e6924d2207e5
-      - 3ad05355-c268-4e98-881b-c3570ff7ffd9
-    metadata:
-      status: pending
-      expanded: false
-  e1371276-72ef-4e6e-bc67-e6924d2207e5:
-    id: e1371276-72ef-4e6e-bc67-e6924d2207e5
-    content: We don't always want it to go to the first autonomous step in the chain
-    children: []
-    metadata:
-      status: pending
   9f55ead4-f0e3-4969-8e10-8e61f33f89ec:
     id: 9f55ead4-f0e3-4969-8e10-8e61f33f89ec
     content: 'Bug : Pause workflow hook not always working'
@@ -90208,18 +90106,15 @@ nodes:
       plugins: {}
   4df7b6c2-8e56-4b58-bc83-2263ed86cfbf:
     id: 4df7b6c2-8e56-4b58-bc83-2263ed86cfbf
-    content: What happens in an automated decomposition step ?
+    content: Sequential play-forward of decomposed children, with recurse anchored to the decomposition point
     children:
-      - 37793478-9e9d-4b31-bfab-30d834e35b71
+      - a8a318b9-7b00-43ec-8d17-9d4df72e0358
+      - 0553f46d-8faa-485e-b724-fbb6460c667a
     metadata:
       status: pending
       expanded: false
-  37793478-9e9d-4b31-bfab-30d834e35b71:
-    id: 37793478-9e9d-4b31-bfab-30d834e35b71
-    content: Do both decomposed tasks play forward ?
-    children: []
-    metadata:
-      status: pending
+      deleted: false
+      plugins: {}
   afd6f056-9bbe-478f-b92e-a5c0ff61852c:
     id: afd6f056-9bbe-478f-b92e-a5c0ff61852c
     content: worktree
@@ -90718,19 +90613,9 @@ nodes:
     id: a3dc1418-84c1-4d99-9d17-f658480f6517
     content: For release
     children:
-      - 4df7b6c2-8e56-4b58-bc83-2263ed86cfbf
-      - 51857dd8-bb91-43b8-aee4-b99e5fafe3e9
       - 6bf601f8-62e9-47cd-8d4f-9e93e0490b77
-      - 8d28e3e5-89a8-4f1a-b517-35491070acbe
       - a19255be-6b10-4b8d-9ecf-d38bffb96867
       - f7efa32d-b771-44a9-95ef-68c80dae4726
-    metadata:
-      status: pending
-  3ad05355-c268-4e98-881b-c3570ff7ffd9:
-    id: 3ad05355-c268-4e98-881b-c3570ff7ffd9
-    content: "Earlier thoughts :\_"
-    children:
-      - 413a84b6-97e7-4963-81ca-6667f2136d9a
     metadata:
       status: pending
   2e8242e4-fcd4-4321-b9ed-3c797810e057:
@@ -90806,7 +90691,7 @@ nodes:
       - 6573b620-bfc0-4c5b-8d92-13b9ace3461d
     metadata:
       status: pending
-      expanded: true
+      expanded: false
   042ee811-0108-4574-9a4c-2a7909572178:
     id: 042ee811-0108-4574-9a4c-2a7909572178
     content: Refactor right click menu
@@ -91488,3 +91373,859 @@ nodes:
     children: []
     metadata:
       isBlueprint: true
+  f9e30528-a7f4-4a92-9c44-196b536e7a85:
+    id: f9e30528-a7f4-4a92-9c44-196b536e7a85
+    content: Backlog
+    children:
+      - 31f67d4f-6aba-4307-b3b9-ee202f0a03be
+      - 4446dd01-7caf-4953-8dd2-36153adb9cfa
+    metadata:
+      status: pending
+      expanded: false
+  d92d0ad5-f985-4084-af05-ccc8894d82be:
+    id: d92d0ad5-f985-4084-af05-ccc8894d82be
+    content: Can't start workflow in checkpoint step
+    children: []
+    metadata:
+      status: pending
+  9f35f7ae-8daf-4641-8122-ff395f211e49:
+    id: 9f35f7ae-8daf-4641-8122-ff395f211e49
+    content: Like an OID
+    children: []
+    metadata:
+      status: pending
+  a8a318b9-7b00-43ec-8d17-9d4df72e0358:
+    id: a8a318b9-7b00-43ec-8d17-9d4df72e0358
+    content: 📄 Product spec
+    children:
+      - 2ba478e6-d625-44dc-9a96-4798e332d077
+      - c554e9cd-f9e0-46bc-a3ef-6a4bb938bd42
+      - a1248917-700a-4713-82bf-13de22006648
+      - d8a4c59b-44e7-4e92-b100-fe7790eedbc4
+      - 2b2156c9-0e1f-400f-a947-289828e0aa47
+      - ae4e8b43-2a77-4c7e-be9f-1e25640b19cb
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2ba478e6-d625-44dc-9a96-4798e332d077:
+    id: 2ba478e6-d625-44dc-9a96-4798e332d077
+    content: Context
+    children:
+      - 57db7c19-24be-4dbd-ba3e-4ffe45436757
+      - fabeabb4-8c3d-41b1-b589-66ff7d786819
+      - 3b694e59-cf68-4087-b61b-5fe5fe47ff50
+      - ce70ff04-df75-4144-ad87-eff802340726
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  57db7c19-24be-4dbd-ba3e-4ffe45436757:
+    id: 57db7c19-24be-4dbd-ba3e-4ffe45436757
+    content: 'Autonomous workflow steps can have `decomposition: true`, in which case the AI may return multiple root nodes that AcceptFeedbackCommand swaps into the tree as siblings under the same step container'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fabeabb4-8c3d-41b1-b589-66ff7d786819:
+    id: fabeabb4-8c3d-41b1-b589-66ff7d786819
+    content: Today only the original running node is handed to advanceNode, so freshly-created decomposed siblings are left in the step container with no execution state
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3b694e59-cf68-4087-b61b-5fe5fe47ff50:
+    id: 3b694e59-cf68-4087-b61b-5fe5fe47ff50
+    content: checkRecurse anchors on findFirstAutonomousStepInChain, which walks backwards to the start of the autonomous chain, so it can skip past siblings still waiting at the last decomposition step
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ce70ff04-df75-4144-ad87-eff802340726:
+    id: ce70ff04-df75-4144-ad87-eff802340726
+    content: 'Net result: decomposed siblings are silently orphaned and the workflow stalls until the user starts each one manually'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c554e9cd-f9e0-46bc-a3ef-6a4bb938bd42:
+    id: c554e9cd-f9e0-46bc-a3ef-6a4bb938bd42
+    content: User
+    children:
+      - db01a385-f3c1-48f6-ac5b-69ab674d9cfa
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  db01a385-f3c1-48f6-ac5b-69ab674d9cfa:
+    id: db01a385-f3c1-48f6-ac5b-69ab674d9cfa
+    content: 'Brian, running an autonomous workflow that includes one or more steps with `decomposition: true`'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a1248917-700a-4713-82bf-13de22006648:
+    id: a1248917-700a-4713-82bf-13de22006648
+    content: Current experience
+    children:
+      - 1c3bb2a6-dfac-4571-969c-2d5d9ca931f0
+      - a57f73ec-23a9-4366-b142-b82c3c291513
+      - da8ee503-2817-4339-83c7-227250303e0d
+      - af281ba3-0fcd-4365-8a23-bd1575f6ffb5
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1c3bb2a6-dfac-4571-969c-2d5d9ca931f0:
+    id: 1c3bb2a6-dfac-4571-969c-2d5d9ca931f0
+    content: Step decomposes node N into N + X + Y as siblings under the step container
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a57f73ec-23a9-4366-b142-b82c3c291513:
+    id: a57f73ec-23a9-4366-b142-b82c3c291513
+    content: Only N advances to the next step; X and Y sit in the step container with no execution state
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  da8ee503-2817-4339-83c7-227250303e0d:
+    id: da8ee503-2817-4339-83c7-227250303e0d
+    content: checkRecurse fires on N's previous parent and finds either an unrelated waiting node earlier in the chain or nothing at all
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  af281ba3-0fcd-4365-8a23-bd1575f6ffb5:
+    id: af281ba3-0fcd-4365-8a23-bd1575f6ffb5
+    content: User has to manually start workflows on X and Y, defeating the point of an autonomous run
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d8a4c59b-44e7-4e92-b100-fe7790eedbc4:
+    id: d8a4c59b-44e7-4e92-b100-fe7790eedbc4
+    content: Goal
+    children:
+      - 10c8043c-7c85-42d5-8378-03bbeee8602f
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  10c8043c-7c85-42d5-8378-03bbeee8602f:
+    id: 10c8043c-7c85-42d5-8378-03bbeee8602f
+    content: After an autonomous step decomposes a node into siblings, the runner plays each decomposed sibling forward sequentially on the same terminal, and recurse resumes at the decomposition point until every decomposed sibling has been processed
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2b2156c9-0e1f-400f-a947-289828e0aa47:
+    id: 2b2156c9-0e1f-400f-a947-289828e0aa47
+    content: Business rules
+    children:
+      - ed5dca58-9fe3-40b7-aeb3-5fbe55720aea
+      - 8d7212df-1390-4bee-9d9c-c81df6832b94
+      - 5c841a6f-f0f6-487b-beda-d405e3ba1ca5
+      - 64cadd7c-4934-4d76-aa50-dee3eba86c57
+      - 8e1b4b1d-bc30-4aa6-ba4e-a7b1aa7fa210
+      - 2356876b-e65a-4d7b-ab57-2c88b9557816
+      - 3c0b6edd-86e8-4e81-b9c7-a7ed5f1b9011
+      - 9fab2546-8557-45ec-b322-32af0a6a5e6d
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ed5dca58-9fe3-40b7-aeb3-5fbe55720aea:
+    id: ed5dca58-9fe3-40b7-aeb3-5fbe55720aea
+    content: 'When an autonomous step with `decomposition: true` produces N decomposed roots, every one of those roots must enter the workflow execution queue'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8d7212df-1390-4bee-9d9c-c81df6832b94:
+    id: 8d7212df-1390-4bee-9d9c-c81df6832b94
+    content: Decomposed siblings execute sequentially on the same terminal, in the order returned by parseFeedbackContent (parsed.rootNodeIds)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5c841a6f-f0f6-487b-beda-d405e3ba1ca5:
+    id: 5c841a6f-f0f6-487b-beda-d405e3ba1ca5
+    content: While decomposed siblings of a given step container are still waiting, recurse must prefer them over any earlier autonomous step in the chain
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  64cadd7c-4934-4d76-aa50-dee3eba86c57:
+    id: 64cadd7c-4934-4d76-aa50-dee3eba86c57
+    content: Once every decomposed sibling at a decomposition point has been processed, recurse falls back to today's behaviour (findFirstAutonomousStepInChain → findNextWaitingNode)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8e1b4b1d-bc30-4aa6-ba4e-a7b1aa7fa210:
+    id: 8e1b4b1d-bc30-4aa6-ba4e-a7b1aa7fa210
+    content: The existing MAX_RECURSE_ITERATIONS cap continues to apply across the combined sibling sequence; hitting it stops the run with the same toast and notification
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2356876b-e65a-4d7b-ab57-2c88b9557816:
+    id: 2356876b-e65a-4d7b-ab57-2c88b9557816
+    content: If a decomposition produces zero or one root, behaviour is identical to today
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3c0b6edd-86e8-4e81-b9c7-a7ed5f1b9011:
+    id: 3c0b6edd-86e8-4e81-b9c7-a7ed5f1b9011
+    content: 'If parseFeedbackContent fails for a decomposition response, today''s parse-failure handling stands: stop the workflow, surface the error toast, do not enqueue siblings'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9fab2546-8557-45ec-b322-32af0a6a5e6d:
+    id: 9fab2546-8557-45ec-b322-32af0a6a5e6d
+    content: Manual steps interleaved in the chain still pause the sequence — a decomposed sibling whose next step is manual must wait for the user, exactly like a non-decomposed node would
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ae4e8b43-2a77-4c7e-be9f-1e25640b19cb:
+    id: ae4e8b43-2a77-4c7e-be9f-1e25640b19cb
+    content: Acceptance criteria
+    children:
+      - 78b40bb8-b472-4af0-a511-65af9c1b2f4b
+      - 05787021-ca36-4598-9238-24a81115ad7b
+      - be325fd0-65c3-4b3b-87d2-0458346dc307
+      - 9395d139-ad43-4d7d-a3cd-b4fd11a3f586
+      - aa030972-a4e5-4d13-9927-d0c389a752b6
+      - a2c170ea-e9f9-4fa7-8dbe-65f31e668669
+      - 256260e5-511f-4881-9273-61e926b709cb
+      - 131dcc4f-8c37-43e1-a7a8-ab15384f43d5
+      - 70b182e8-826d-48cf-bb10-3137a8ceb5ee
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  78b40bb8-b472-4af0-a511-65af9c1b2f4b:
+    id: 78b40bb8-b472-4af0-a511-65af9c1b2f4b
+    content: An autonomous decomposition step that returns N>1 roots causes all N siblings to be processed in parsed.rootNodeIds order on the same terminal
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  05787021-ca36-4598-9238-24a81115ad7b:
+    id: 05787021-ca36-4598-9238-24a81115ad7b
+    content: After the last sibling completes, the workflow advances or recurses according to the existing chain rules
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  be325fd0-65c3-4b3b-87d2-0458346dc307:
+    id: be325fd0-65c3-4b3b-87d2-0458346dc307
+    content: While siblings remain at a decomposition point, checkRecurse selects from those siblings before walking back to findFirstAutonomousStepInChain
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9395d139-ad43-4d7d-a3cd-b4fd11a3f586:
+    id: 9395d139-ad43-4d7d-a3cd-b4fd11a3f586
+    content: A decomposition that returns exactly one root behaves byte-for-byte the same as today
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  aa030972-a4e5-4d13-9927-d0c389a752b6:
+    id: aa030972-a4e5-4d13-9927-d0c389a752b6
+    content: A parse failure during a decomposition response stops the workflow, shows the existing error toast and notification, and does not enqueue any siblings
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a2c170ea-e9f9-4fa7-8dbe-65f31e668669:
+    id: a2c170ea-e9f9-4fa7-8dbe-65f31e668669
+    content: Hitting MAX_RECURSE_ITERATIONS mid-sequence stops the run with the existing limit toast and notification, leaving any unprocessed siblings in place
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  256260e5-511f-4881-9273-61e926b709cb:
+    id: 256260e5-511f-4881-9273-61e926b709cb
+    content: When a decomposed sibling's next step is manual, the sequence pauses on that sibling exactly like a non-decomposed manual handoff
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  131dcc4f-8c37-43e1-a7a8-ab15384f43d5:
+    id: 131dcc4f-8c37-43e1-a7a8-ab15384f43d5
+    content: 'Workflows without any `decomposition: true` steps are unaffected; the autonomous-chain integration test in workflowExecution.test.ts continues to pass without modification'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  70b182e8-826d-48cf-bb10-3137a8ceb5ee:
+    id: 70b182e8-826d-48cf-bb10-3137a8ceb5ee
+    content: The currently-running sibling is reflected in the workflow UI (toast + node flash) the same way single-node advancement is today
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0553f46d-8faa-485e-b724-fbb6460c667a:
+    id: 0553f46d-8faa-485e-b724-fbb6460c667a
+    content: 🔧 Implementation proposal
+    children:
+      - e4fba196-c1a7-46b6-ac1f-80b84295a863
+      - 20347dc0-3061-4c35-b26b-622ee7449871
+      - 934fe027-f4de-483c-b858-51de33008125
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e4fba196-c1a7-46b6-ac1f-80b84295a863:
+    id: e4fba196-c1a7-46b6-ac1f-80b84295a863
+    content: Approach
+    children:
+      - 7f3bba23-a9c7-45e4-9bc9-3b82f84178a0
+      - 70a28a97-4c47-419f-aaf1-573b99d139fe
+      - af4bd0ef-42ff-4ccf-ad20-15260512145e
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7f3bba23-a9c7-45e4-9bc9-3b82f84178a0:
+    id: 7f3bba23-a9c7-45e4-9bc9-3b82f84178a0
+    content: Inside handleAutonomousFeedback, when parsed.rootNodeIds.length > 1, register the sibling roots as the next-up sequence after AcceptFeedbackCommand runs
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  70a28a97-4c47-419f-aaf1-573b99d139fe:
+    id: 70a28a97-4c47-419f-aaf1-573b99d139fe
+    content: Teach checkRecurse to prefer "waiting decomposed siblings at the current step container" over findFirstAutonomousStepInChain
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  af4bd0ef-42ff-4ccf-ad20-15260512145e:
+    id: af4bd0ef-42ff-4ccf-ad20-15260512145e
+    content: Reuse checkRecurse as the sequencing primitive — no new store, no new service, no schema changes
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  20347dc0-3061-4c35-b26b-622ee7449871:
+    id: 20347dc0-3061-4c35-b26b-622ee7449871
+    content: Touchpoints
+    children:
+      - ffaec6ac-5b7f-4377-b589-74fc3398876b
+      - e5b1fae8-46fb-4d43-a5f0-e9da631fe8ac
+      - d15838d0-c8c9-4111-8bd8-06d3a32089fe
+      - bd58afbd-fc0e-4dd0-9cc1-1b89695c0e61
+      - 81e09564-a5d2-4177-bebb-f86d23048802
+      - 4b59efae-d0db-4370-9069-6eeb8ea33457
+      - b4abe288-4605-47c6-9945-b7784b23c204
+      - 92bfe1da-6d9a-472a-95db-e0ce6b045439
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ffaec6ac-5b7f-4377-b589-74fc3398876b:
+    id: ffaec6ac-5b7f-4377-b589-74fc3398876b
+    content: src/renderer/store/tree/actions/workflowExecutionActions.ts — handleAutonomousFeedback (enqueue sibling roots after AcceptFeedbackCommand)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e5b1fae8-46fb-4d43-a5f0-e9da631fe8ac:
+    id: e5b1fae8-46fb-4d43-a5f0-e9da631fe8ac
+    content: src/renderer/store/tree/actions/workflowExecutionActions.ts — checkRecurse (sibling-first anchor lookup, fall back to chain start)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d15838d0-c8c9-4111-8bd8-06d3a32089fe:
+    id: d15838d0-c8c9-4111-8bd8-06d3a32089fe
+    content: src/renderer/store/tree/actions/workflowExecutionActions.ts — advanceNode (confirm the existing checkRecurse(previousParentId, …) call site still does the right thing)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  bd58afbd-fc0e-4dd0-9cc1-1b89695c0e61:
+    id: bd58afbd-fc0e-4dd0-9cc1-1b89695c0e61
+    content: src/renderer/utils/workflowHelpers.ts — add findNextDecomposedSibling(stepId, nodes, executionStates) that returns the next waiting child produced by a decomposition response
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  81e09564-a5d2-4177-bebb-f86d23048802:
+    id: 81e09564-a5d2-4177-bebb-f86d23048802
+    content: src/renderer/utils/workflowHelpers.ts — keep findFirstAutonomousStepInChain and findNextWaitingNode as the fallback path
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4b59efae-d0db-4370-9069-6eeb8ea33457:
+    id: 4b59efae-d0db-4370-9069-6eeb8ea33457
+    content: Tests — extend src/renderer/store/tree/actions/tests/workflowAutoAccept.test.ts (and/or workflowContentPreservation.test.ts) with a multi-root decomposition that asserts sequential play-forward
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b4abe288-4605-47c6-9945-b7784b23c204:
+    id: b4abe288-4605-47c6-9945-b7784b23c204
+    content: Tests — co-locate a unit test for the new sibling-finder helper next to workflowHelpers.ts
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  92bfe1da-6d9a-472a-95db-e0ce6b045439:
+    id: 92bfe1da-6d9a-472a-95db-e0ce6b045439
+    content: Tests — cover the MAX_RECURSE_ITERATIONS interaction and the parse-failure interaction in the autonomous feedback tests
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  934fe027-f4de-483c-b858-51de33008125:
+    id: 934fe027-f4de-483c-b858-51de33008125
+    content: Constraints to call out
+    children:
+      - f960d1a3-c3b2-4535-9f0e-6069f580bb3e
+      - 76cc63f4-de05-4f52-8f95-880568eb38c9
+      - 43c3420c-ffd6-41fb-97f1-bf0cdf5972c2
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f960d1a3-c3b2-4535-9f0e-6069f580bb3e:
+    id: f960d1a3-c3b2-4535-9f0e-6069f580bb3e
+    content: checkRecurse currently uses setTimeout(…, 2000) as a UX pacing knob; sequential sibling starts must respect the same delay so the existing visual rhythm is preserved
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  76cc63f4-de05-4f52-8f95-880568eb38c9:
+    id: 76cc63f4-de05-4f52-8f95-880568eb38c9
+    content: feedbackCollaborations is keyed by nodeId — each sibling will get its own collaboration registration when its workflow starts, consistent with today's single-node behaviour
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  43c3420c-ffd6-41fb-97f1-bf0cdf5972c2:
+    id: 43c3420c-ffd6-41fb-97f1-bf0cdf5972c2
+    content: This story is strictly sequential; parallel execution across unrelated branches is explicitly out of scope and must not be built speculatively
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  64b15ce0-e3cc-43e1-8709-ae549fda07c8:
+    id: 64b15ce0-e3cc-43e1-8709-ae549fda07c8
+    content: 📄 Product spec
+    children:
+      - da2d404a-aae1-4057-aabc-85167d38f62e
+      - 4aa9f500-db41-4f3b-907f-2d629b3ed3b6
+      - 22f30bc4-efbe-4a8b-b129-0be0583d054f
+      - 62c6f652-c150-43cd-acd9-81fc3f9a11f8
+      - 5989be99-e535-4d9d-aec4-b04d6a51b236
+      - 7b5bf3cd-f526-43ba-8c49-fb0d122257f9
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  da2d404a-aae1-4057-aabc-85167d38f62e:
+    id: da2d404a-aae1-4057-aabc-85167d38f62e
+    content: Context — Feedback currently regenerates UUIDs on every node except the parent when applied. This invalidates stable identity for nodes that did not actually change, breaking any reference (links, selections, expansion state, version-control history) that relied on the prior UUID and producing noisy diffs in `.arbo` files.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4aa9f500-db41-4f3b-907f-2d629b3ed3b6:
+    id: 4aa9f500-db41-4f3b-907f-2d629b3ed3b6
+    content: User — Brian, the sole user of Arborescent, running the feedback workflow on a node with children
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  22f30bc4-efbe-4a8b-b129-0be0583d054f:
+    id: 22f30bc4-efbe-4a8b-b129-0be0583d054f
+    content: Current experience — Running feedback replaces UUIDs on all non-parent nodes regardless of whether their content changed, which churns identity for nodes that the model returned unchanged
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  62c6f652-c150-43cd-acd9-81fc3f9a11f8:
+    id: 62c6f652-c150-43cd-acd9-81fc3f9a11f8
+    content: Goal — Preserve existing UUIDs for nodes whose content is unchanged after feedback, and assign new UUIDs only to nodes that actually changed or are newly created
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5989be99-e535-4d9d-aec4-b04d6a51b236:
+    id: 5989be99-e535-4d9d-aec4-b04d6a51b236
+    content: Business rules
+    children:
+      - 6183cd17-8de1-417e-848f-b467da0780e7
+      - ec2297ed-a2de-43b5-b4be-dce23a076aa3
+      - b2bd0b4f-6038-4f3a-a6c9-9a19e78a617c
+      - ab7bcd30-d8b4-4523-8fd4-61bea9c385c6
+      - 2d2e8002-ea13-40ae-8975-a220d7e921cf
+      - 34ca5867-c68d-444b-a2cb-77e9e8388ab5
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6183cd17-8de1-417e-848f-b467da0780e7:
+    id: 6183cd17-8de1-417e-848f-b467da0780e7
+    content: 1. The parent node retains its existing UUID (current behaviour, no regression).
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ec2297ed-a2de-43b5-b4be-dce23a076aa3:
+    id: ec2297ed-a2de-43b5-b4be-dce23a076aa3
+    content: 2. For each non-parent node in the feedback output, the system attempts to match it to an existing node in the same subtree before assigning a UUID.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b2bd0b4f-6038-4f3a-a6c9-9a19e78a617c:
+    id: b2bd0b4f-6038-4f3a-a6c9-9a19e78a617c
+    content: 3. A node is considered unchanged when its content is exactly equal to an existing node at the same structural position; in that case the existing UUID is reused.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ab7bcd30-d8b4-4523-8fd4-61bea9c385c6:
+    id: ab7bcd30-d8b4-4523-8fd4-61bea9c385c6
+    content: 4. A node whose content differs from any existing match is treated as changed and receives a new UUID.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2d2e8002-ea13-40ae-8975-a220d7e921cf:
+    id: 2d2e8002-ea13-40ae-8975-a220d7e921cf
+    content: 5. A node with no corresponding existing entry is treated as new and receives a new UUID.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  34ca5867-c68d-444b-a2cb-77e9e8388ab5:
+    id: 34ca5867-c68d-444b-a2cb-77e9e8388ab5
+    content: 6. Exact equality is the only matching strategy in this iteration; fuzzy or rename detection is out of scope.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7b5bf3cd-f526-43ba-8c49-fb0d122257f9:
+    id: 7b5bf3cd-f526-43ba-8c49-fb0d122257f9
+    content: Acceptance criteria
+    children:
+      - 31456168-1817-4c01-a261-ca5bcce2bbb3
+      - 7df87403-fd4f-4bca-8932-31821c8fe9ca
+      - 34bf91d6-3d23-4c36-b431-a107ec5a6dde
+      - e0d8c3af-3e7a-462d-b2a2-405a809657ff
+      - 6bb95603-efcc-4d2d-904c-5ff71c2357f4
+      - 4998d699-45ce-4d07-9ec7-008ca3c23d96
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  31456168-1817-4c01-a261-ca5bcce2bbb3:
+    id: 31456168-1817-4c01-a261-ca5bcce2bbb3
+    content: '- [ ] Applying feedback that returns identical content for a child node leaves that child''s UUID unchanged'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7df87403-fd4f-4bca-8932-31821c8fe9ca:
+    id: 7df87403-fd4f-4bca-8932-31821c8fe9ca
+    content: '- [ ] Applying feedback that modifies a child node''s text assigns a new UUID to that child'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  34bf91d6-3d23-4c36-b431-a107ec5a6dde:
+    id: 34bf91d6-3d23-4c36-b431-a107ec5a6dde
+    content: '- [ ] Newly added nodes in the feedback output receive freshly generated UUIDs'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e0d8c3af-3e7a-462d-b2a2-405a809657ff:
+    id: e0d8c3af-3e7a-462d-b2a2-405a809657ff
+    content: '- [ ] The parent node''s UUID is preserved after feedback (regression guard)'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6bb95603-efcc-4d2d-904c-5ff71c2357f4:
+    id: 6bb95603-efcc-4d2d-904c-5ff71c2357f4
+    content: '- [ ] When two siblings have identical content, structural position (order under parent) is used to keep matching deterministic'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4998d699-45ce-4d07-9ec7-008ca3c23d96:
+    id: 4998d699-45ce-4d07-9ec7-008ca3c23d96
+    content: '- [ ] Feedback application time on a typical tree (≤200 nodes) shows no perceptible regression'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2cd297c7-eb49-4336-ae8b-1dbd8bc23380:
+    id: 2cd297c7-eb49-4336-ae8b-1dbd8bc23380
+    content: 🔧 Implementation proposal
+    children:
+      - 06dabe22-b039-41f1-9b8e-4131d9eb43f7
+      - 029fabc6-5855-42d2-988d-188f2346b001
+      - 59df2608-5157-4116-8ecc-2e93f767b521
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  06dabe22-b039-41f1-9b8e-4131d9eb43f7:
+    id: 06dabe22-b039-41f1-9b8e-4131d9eb43f7
+    content: Approach — Insert a reconciliation step between parsing the feedback output and committing it to the store. Walk the returned subtree alongside the existing subtree under the same parent; for each output node, look up the corresponding existing node by structural position and compare content with exact equality. Reuse the existing UUID on match, generate a new UUID otherwise.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  029fabc6-5855-42d2-988d-188f2346b001:
+    id: 029fabc6-5855-42d2-988d-188f2346b001
+    content: Touchpoints
+    children:
+      - 7e1749ef-c947-4ff3-b70e-4fc312981e4f
+      - b4fc2789-e0b5-4f8c-ac1b-a3d6bdc39df2
+      - 4955c6e7-4bdc-40bf-aab8-b588a717a6fd
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7e1749ef-c947-4ff3-b70e-4fc312981e4f:
+    id: 7e1749ef-c947-4ff3-b70e-4fc312981e4f
+    content: Feedback application logic in the renderer store actions (where the parsed feedback tree is merged into state)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b4fc2789-e0b5-4f8c-ac1b-a3d6bdc39df2:
+    id: b4fc2789-e0b5-4f8c-ac1b-a3d6bdc39df2
+    content: UUID assignment helper (extend or wrap so it accepts an optional pre-existing UUID)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4955c6e7-4bdc-40bf-aab8-b588a717a6fd:
+    id: 4955c6e7-4bdc-40bf-aab8-b588a717a6fd
+    content: Tests covering the reconciliation behaviour (unchanged, changed, added, reordered, duplicate-sibling cases)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  59df2608-5157-4116-8ecc-2e93f767b521:
+    id: 59df2608-5157-4116-8ecc-2e93f767b521
+    content: Constraints to call out
+    children:
+      - d99d10f1-b200-4ee7-8f3a-b562c426f53d
+      - e93b62a0-0067-465f-b1ff-c6fef2f0f832
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d99d10f1-b200-4ee7-8f3a-b562c426f53d:
+    id: d99d10f1-b200-4ee7-8f3a-b562c426f53d
+    content: Matching key — exact equality plus structural position is the contract; document this so reviewers don't expect rename detection
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e93b62a0-0067-465f-b1ff-c6fef2f0f832:
+    id: e93b62a0-0067-465f-b1ff-c6fef2f0f832
+    content: Duplicate-sibling determinism — when siblings have identical content, ordering must drive the match to keep results stable across runs
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8699105e-61d3-4b57-9b9f-f50be3650171:
+    id: 8699105e-61d3-4b57-9b9f-f50be3650171
+    content: Scope and challenges
+    children:
+      - 20942a4a-3885-4a1e-a5ab-6d3e145d7e19
+      - 0936a7f0-9e36-4bb5-b42e-92b40f91be68
+      - fbe35a2c-a6b1-4d50-ad55-ec92524b7dbc
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  20942a4a-3885-4a1e-a5ab-6d3e145d7e19:
+    id: 20942a4a-3885-4a1e-a5ab-6d3e145d7e19
+    content: Single chunk — this is one coherent fix; splitting would not aid review or unblock independent merging
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0936a7f0-9e36-4bb5-b42e-92b40f91be68:
+    id: 0936a7f0-9e36-4bb5-b42e-92b40f91be68
+    content: Out of scope — fuzzy matching, rename detection, and cross-subtree moves; user accepted that exact equality covers ~90% of cases
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fbe35a2c-a6b1-4d50-ad55-ec92524b7dbc:
+    id: fbe35a2c-a6b1-4d50-ad55-ec92524b7dbc
+    content: ROI — high; the fix is small and removes a recurring source of identity churn in committed `.arbo` files
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
