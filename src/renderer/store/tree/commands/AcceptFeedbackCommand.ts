@@ -39,6 +39,7 @@ export class AcceptFeedbackCommand extends BaseCommand {
       rootNodeId: string;
       ancestorRegistry: Record<string, string[]>;
       blueprintModeEnabled: boolean;
+      collaboratingNodeId?: string | null;
     },
     private setState: (partial: {
       nodes?: Record<string, TreeNode>;
@@ -100,6 +101,12 @@ export class AcceptFeedbackCommand extends BaseCommand {
     }
     this.cachedIdMap = idMap;
     return idMap;
+  }
+
+  private collaborationClearIfOwned(state: ReturnType<typeof this.getState>): { collaboratingNodeId?: null; collaborationSource?: null } {
+    return state.collaboratingNodeId === this.collaboratingNodeId
+      ? { collaboratingNodeId: null, collaborationSource: null }
+      : {};
   }
 
   private executeArchive(): void {
@@ -193,8 +200,7 @@ export class AcceptFeedbackCommand extends BaseCommand {
       nodes: output.nodes,
       ancestorRegistry: output.ancestorRegistry,
       rootNodeId: state.rootNodeId,
-      collaboratingNodeId: null,
-      collaborationSource: null,
+      ...this.collaborationClearIfOwned(state),
       feedbackFadingNodeIds: new Set(this.createdNodeIds),
       activeNodeId: output.activeNodeId,
     });
@@ -263,8 +269,7 @@ export class AcceptFeedbackCommand extends BaseCommand {
       nodes: restoredNodesMap,
       ancestorRegistry: newAncestorRegistry,
       rootNodeId: state.rootNodeId,
-      collaboratingNodeId: null,
-      collaborationSource: null,
+      ...this.collaborationClearIfOwned(state),
       feedbackFadingNodeIds: new Set(),
       activeNodeId: this.snapshot.collaboratingNodeId,
     });

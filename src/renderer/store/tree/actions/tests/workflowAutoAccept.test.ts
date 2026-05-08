@@ -408,6 +408,32 @@ describe('workflow auto-accept for autonomous collaborate steps', () => {
     });
   });
 
+  describe('manual collaboration ownership during autonomous accept', () => {
+    beforeEach(() => {
+      state.workflowSessionMap = { 'session-1': 'terminal-1' };
+      state.workflowExecutionStates['task-a'] = {
+        state: 'running',
+        terminalTabId: 'terminal-1',
+        collaborating: true,
+        stopReceived: true,
+      };
+    });
+
+    it('should leave a manual collaboration registered for a different node intact', () => {
+      actions.registerManualCollaboration('step-2', '/manual-feedback.md');
+
+      actions.handleAutonomousFeedback('task-a', '# Task A');
+
+      expect(actions.findCollaborationByFeedbackFilePath('/manual-feedback.md'))
+        .toEqual({ nodeId: 'step-2', kind: 'manual' });
+    });
+
+    it.todo('should not call AcceptFeedbackCommand with a payload that overwrites collaboratingNodeId when the active session is on a different node');
+    it.todo('should not close the feedback panel for a file that owns an unrelated manual collaboration');
+    it.todo('should not delete the manual session\'s temp feedback file when an autonomous step on another node finishes');
+    it.todo('cross-file: an autonomous auto-accept in store A leaves a manual session in store B untouched');
+  });
+
   describe('concurrent autonomous collaborations', () => {
     beforeEach(() => {
       state.nodes['step-1'].children = ['task-a', 'task-b'];
