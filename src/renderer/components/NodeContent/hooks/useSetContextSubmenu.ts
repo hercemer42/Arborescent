@@ -41,26 +41,45 @@ export function buildSetContextSubmenu({
     return null;
   }
 
-  const collaborateContexts = availableContexts.filter(c => c.collaborate && !c.execute);
-  const executeContexts = availableContexts.filter(c => c.execute);
+  const sections: { label: string; contexts: ContextDeclarationInfo[]; builtIn: ContextMenuItem[] }[] = [
+    {
+      label: 'Actions',
+      contexts: availableContexts.filter(c => !c.execute && !c.collaborate),
+      builtIn: [],
+    },
+    {
+      label: 'Execute',
+      contexts: availableContexts.filter(c => c.execute && !c.collaborate),
+      builtIn: showBuiltIns ? buildBasicExecutionItem(explicitContextId, onSetAppliedContext) : [],
+    },
+    {
+      label: 'Collaborate',
+      contexts: availableContexts.filter(c => !c.execute && c.collaborate),
+      builtIn: showBuiltIns ? buildBasicReviewItem(explicitContextId, onSetAppliedContext) : [],
+    },
+    {
+      label: 'Execute & Collaborate',
+      contexts: availableContexts.filter(c => c.execute && c.collaborate),
+      builtIn: [],
+    },
+  ];
 
   const items: ContextMenuItem[] = [];
+  let renderedAny = false;
 
-  items.push({ label: 'Collaborate', disabled: true });
-  if (showBuiltIns) {
-    items.push(...buildBasicReviewItem(explicitContextId, onSetAppliedContext));
+  for (const section of sections) {
+    const sectionItems = [
+      ...section.builtIn,
+      ...buildContextItems(section.contexts, explicitContextId, inheritedContextId, onSetAppliedContext),
+    ];
+    if (sectionItems.length === 0) continue;
+
+    if (renderedAny) items.push(SEPARATOR);
+    items.push({ label: section.label, disabled: true });
+    items.push(...sectionItems);
+    renderedAny = true;
   }
-  items.push(...buildContextItems(collaborateContexts, explicitContextId, inheritedContextId, onSetAppliedContext));
 
-  items.push(SEPARATOR);
-
-  items.push({ label: 'Execute', disabled: true });
-  if (showBuiltIns) {
-    items.push(...buildBasicExecutionItem(explicitContextId, onSetAppliedContext));
-  }
-  items.push(...buildContextItems(executeContexts, explicitContextId, inheritedContextId, onSetAppliedContext));
-
-  items.push(SEPARATOR);
   items.push({ label: 'Close', onClick: () => {} });
 
   return items;

@@ -27,17 +27,20 @@ Context declarations are marked with an asterisk overlay to the left of the node
 
 ## Applying a Context
 
-Right-click any branch → **Apply context** to open the picker. Contexts are grouped by state. Two built-ins are at the top:
+Right-click any branch → **Apply context** to open the picker. Contexts are grouped into up to four sections matching their state: **Actions**, **Execute**, **Collaborate**, and **Execute & Collaborate**. Sections without contexts are omitted, so the picker only shows what's relevant.
 
-- **Basic review** — Collaborate
-- **Basic execution** — Collaborate & Execute
+Built-in defaults sit inside the section that matches their state:
+- **Basic review** appears under **Collaborate**
+- **Basic execution** appears under **Execute**
+
+Built-in defaults are hidden when a context is inherited from an ancestor.
 
 The applied context:
 - Becomes the default for that branch and all its descendants
 - Shows its icon in the gutter (left margin) at full opacity
 - Persists until you apply a different one
 
-Click an active context again to deselect it. When inherited from an ancestor, built-ins are hidden and the inherited context shows with "(inherited)".
+Click an active context again to deselect it. When inherited, the context shows with "(inherited)" appended.
 
 Hover the gutter icon to see the context name and state.
 
