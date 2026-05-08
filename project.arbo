@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-05-08T18:11:58.903Z'
+updated: '2026-05-08T18:19:15.102Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -14398,8 +14398,7 @@ nodes:
   c25cf481-a0d1-495d-9cea-498f1135eb8c:
     id: c25cf481-a0d1-495d-9cea-498f1135eb8c
     content: Feature implementation
-    children:
-      - 7a7b84f1-8323-427e-ace1-7d57c17dccd2
+    children: []
     metadata:
       status: completed
       expanded: true
@@ -25446,8 +25445,7 @@ nodes:
   333cb3e7-a25e-4d18-9dfa-82cf75328fff:
     id: 333cb3e7-a25e-4d18-9dfa-82cf75328fff
     content: AI refactor
-    children:
-      - 52181ade-117d-4350-a499-c492134400bb
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -25592,7 +25590,8 @@ nodes:
   fbf20e91-d852-4406-9815-952fa7727f33:
     id: fbf20e91-d852-4406-9815-952fa7727f33
     content: Test pass & issue resolution
-    children: []
+    children:
+      - 7a7b84f1-8323-427e-ace1-7d57c17dccd2
     metadata:
       status: pending
       appliedContextId: 4c3f0d67-a500-484f-8ccb-5dbf959ea27f
@@ -83104,6 +83103,7 @@ nodes:
     children:
       - 6b949aa9-f0c5-4454-ab90-f52dbba40ac4
       - ce455a0f-2686-475a-b913-cacdd502f808
+      - 52181ade-117d-4350-a499-c492134400bb
     metadata:
       status: pending
       isBlueprint: true
@@ -93455,11 +93455,12 @@ nodes:
     id: 7a7b84f1-8323-427e-ace1-7d57c17dccd2
     content: Copy a single leaf node as plain content, not markdown
     children:
-      - 29fd3103-1d91-407b-97e0-6b8cf2f63eca
-      - b2a30db4-86a9-4264-b1a5-c98293262204
-      - 1cca5754-5e17-48b4-819b-b493d52523aa
-      - c6b8053e-7797-4aa0-ba33-5d2ccadfc59e
-      - e041dfe1-b4bf-4726-96c8-12b49f78ef4c
+      - 45ffbebd-fd15-4089-afd4-67b750ba2d0a
+      - 08308b65-a33e-4432-802b-4adf6bb7cb98
+      - 2ad689b7-83ad-4c16-b66e-970060889c0c
+      - baff3d32-264e-4226-882e-634cd50b9b92
+      - 7795d7c2-fe01-4f6f-a323-27fe244b1dc0
+      - 0271b8ec-5fd4-4c80-bdcd-d00f8b93d461
     metadata:
       status: completed
       expanded: false
@@ -94955,10 +94956,13 @@ nodes:
     id: 52181ade-117d-4350-a499-c492134400bb
     content: 'Bug : If there is a manual collaboration in progress'
     children:
-      - 46be84c5-5c53-42b9-99aa-1ed22e1629f0
-      - 07639a0c-462f-4a70-b8f1-603bca8f62d0
-      - 851b111d-e917-476c-b6ab-51f0b3b8ba39
-      - e227817c-2aa2-4987-a6fb-bbd05e731626
+      - a253ab37-7019-43c9-8f8e-d6fac9a15d05
+      - 8a827ff8-3f07-4aa9-963e-b56fbda2fef0
+      - 7231ade1-8783-40ba-ab01-d1e3cb302da3
+      - 6af8dc91-d0a2-4aa1-97e1-4b888eac9bb1
+      - 1aa7a56e-212d-41ab-bba9-b8633d748c37
+      - dedd94bf-fdef-466e-95e4-7756206f0417
+      - 5ad20f33-ae03-46a3-a493-3f6a2fffb389
     metadata:
       status: completed
       expanded: false
@@ -95661,240 +95665,74 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  46be84c5-5c53-42b9-99aa-1ed22e1629f0:
-    id: 46be84c5-5c53-42b9-99aa-1ed22e1629f0
-    content: With a highlighted node
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  07639a0c-462f-4a70-b8f1-603bca8f62d0:
-    id: 07639a0c-462f-4a70-b8f1-603bca8f62d0
-    content: and an automated collaboration step on another node finishes
-    children:
-      - 1c12e4bd-0988-464b-b61c-013a0c1857c9
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  1c12e4bd-0988-464b-b61c-013a0c1857c9:
-    id: 1c12e4bd-0988-464b-b61c-013a0c1857c9
-    content: Then it cancels the manual collaboration
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  851b111d-e917-476c-b6ab-51f0b3b8ba39:
-    id: 851b111d-e917-476c-b6ab-51f0b3b8ba39
-    content: Technical refinement
-    children:
-      - 6c36fa8e-532b-435b-8862-b919ef996ecb
-      - 490688e8-0fac-4cc7-90c2-a3e82f00e749
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  6c36fa8e-532b-435b-8862-b919ef996ecb:
-    id: 6c36fa8e-532b-435b-8862-b919ef996ecb
-    content: Summary
-    children:
-      - 7a5bb252-73e5-4ad0-8327-49ba6b44f94e
-      - 4e479697-7fba-4c81-a12a-f19c89b4a9bc
-      - be1dcd30-8710-4399-8e8a-9fb20ba6b021
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  7a5bb252-73e5-4ad0-8327-49ba6b44f94e:
-    id: 7a5bb252-73e5-4ad0-8327-49ba6b44f94e
-    content: The store keeps a single `collaboratingNodeId` (+ `collaborationSource`), but `feedbackCollaborations` can hold both a manual and an autonomous entry concurrently — the two layers disagree on cardinality
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  4e479697-7fba-4c81-a12a-f19c89b4a9bc:
-    id: 4e479697-7fba-4c81-a12a-f19c89b4a9bc
-    content: 'When autonomous feedback returns, `handleAutonomousFeedback` runs `AcceptFeedbackCommand`, which unconditionally sets `collaboratingNodeId: null` / `collaborationSource: null` regardless of which node owns the current manual session'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  be1dcd30-8710-4399-8e8a-9fb20ba6b021:
-    id: be1dcd30-8710-4399-8e8a-9fb20ba6b021
-    content: Fix lands in `AcceptFeedbackCommand.execute` (and its undo path) plus the autonomous cleanup branch in `workflowExecutionActions` — gate the clear on ownership (`state.collaboratingNodeId === this.collaboratingNodeId`)
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  490688e8-0fac-4cc7-90c2-a3e82f00e749:
-    id: 490688e8-0fac-4cc7-90c2-a3e82f00e749
-    content: Complications
-    children:
-      - 6deb4879-ee0f-4e79-a5ed-20a52cecd778
-      - 7c5b9cf5-d943-4f95-9d1c-57a348d92528
-      - 8f1d83c8-55a4-476d-8f0a-870e8386f9c9
-      - 7373c38e-099a-4893-ad88-cd95b45f50a3
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  6deb4879-ee0f-4e79-a5ed-20a52cecd778:
-    id: 6deb4879-ee0f-4e79-a5ed-20a52cecd778
-    content: 'Same-file vs cross-file: stores are per file, so the bug only fires when manual + autonomous live in the same file''s store — scope the fix accordingly'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  7c5b9cf5-d943-4f95-9d1c-57a348d92528:
-    id: 7c5b9cf5-d943-4f95-9d1c-57a348d92528
-    content: Panel/temp-file side effects (`closeFeedback`, `cleanupFeedback`, `setFeedbackTempFile`) must also be ownership-gated, otherwise the manual session loses its panel/temp file even if `collaboratingNodeId` is preserved
-    children: []
-    metadata:
-      status: abandoned
-      expanded: true
-      deleted: false
-      plugins: {}
-  8f1d83c8-55a4-476d-8f0a-870e8386f9c9:
-    id: 8f1d83c8-55a4-476d-8f0a-870e8386f9c9
-    content: '`AcceptFeedbackCommand.undo` mirrors the same null-write — undoing an auto-accept must not clobber a manual session that started after the auto-accept'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  7373c38e-099a-4893-ad88-cd95b45f50a3:
-    id: 7373c38e-099a-4893-ad88-cd95b45f50a3
-    content: 'Out of scope: redesigning the single-`collaboratingNodeId` model into true multi-session state; this fix only stops the autonomous path from stomping the manual one'
-    children: []
-    metadata:
-      status: abandoned
-      expanded: true
-      deleted: false
-      plugins: {}
-  e227817c-2aa2-4987-a6fb-bbd05e731626:
-    id: e227817c-2aa2-4987-a6fb-bbd05e731626
-    content: Tests written (TDD)
-    children:
-      - a74cbef5-eeaf-4004-bc38-7d594eb6a2a6
-      - 02c3186a-4350-4400-bcb7-97527f8b6e0d
-      - 2d9c2855-372d-47b2-a29d-58abf92c794a
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  a74cbef5-eeaf-4004-bc38-7d594eb6a2a6:
-    id: a74cbef5-eeaf-4004-bc38-7d594eb6a2a6
-    content: 'AcceptFeedbackCommand.test.ts — added ''collaboration ownership'' describe with 6 cases (3 currently failing as required: execute single-root preserves, execute multi-root preserves, undo preserves on mid-execute manual takeover; 3 passing pin: clears when state owns it on execute and on undo, no-op when no session)'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  02c3186a-4350-4400-bcb7-97527f8b6e0d:
-    id: 02c3186a-4350-4400-bcb7-97527f8b6e0d
-    content: workflowAutoAccept.test.ts — added 'manual collaboration ownership during autonomous accept' describe; one real assertion confirms a manually-registered collaboration is not unregistered by `handleAutonomousFeedback` for a different node; three title-only tests document the panel/temp-file/payload invariants whose post-fix behavior is uncertain
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  2d9c2855-372d-47b2-a29d-58abf92c794a:
-    id: 2d9c2855-372d-47b2-a29d-58abf92c794a
-    content: 'Ran scoped suites only — AcceptFeedbackCommand: 31 pass / 3 fail (expected); workflowAutoAccept: 48 pass / 0 fail'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  29fd3103-1d91-407b-97e0-6b8cf2f63eca:
-    id: 29fd3103-1d91-407b-97e0-6b8cf2f63eca
+  45ffbebd-fd15-4089-afd4-67b750ba2d0a:
+    id: 45ffbebd-fd15-4089-afd4-67b750ba2d0a
     content: 📄 Product spec
     children:
-      - faf2f895-7047-45e3-81d3-efba8f86f2b8
-      - ceaabaa3-1907-485c-8d20-8f963d9dd81a
-      - c7bb53fc-2f25-466c-af32-d2c88682e94c
-      - e78672bb-ae01-4f8a-97cf-dda9d0e420f5
-      - 10a1a8f6-635c-4b8e-9370-d5eeb364742f
-      - bc234e8d-e25d-4ee5-bd3f-03bf0b490712
+      - ef2f1212-02c6-497c-9ea9-e48f39472b2b
+      - 676d7d0d-8e50-4fbf-ace2-aded79d78660
+      - 4b699136-1d35-4284-9be5-3ad4ca0d63fa
+      - 50e2764f-7902-4faf-9081-1f1a91ac8b88
+      - 16780eff-b7f4-4a8d-87c0-96a211e73f00
+      - 564548f8-f4f7-4f47-b48b-d1afa1bd606c
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  faf2f895-7047-45e3-81d3-efba8f86f2b8:
-    id: faf2f895-7047-45e3-81d3-efba8f86f2b8
+  ef2f1212-02c6-497c-9ea9-e48f39472b2b:
+    id: ef2f1212-02c6-497c-9ea9-e48f39472b2b
     content: Context — Arborescent currently funnels every copy through a markdown-tree serializer, so even a single leaf node lands on the system clipboard as `# [ ] Title\n\nBody`. When users copy a node to paste into Slack, email, a browser AI chat, or another node's body, they have to manually strip the heading and checkbox prefix.
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  ceaabaa3-1907-485c-8d20-8f963d9dd81a:
-    id: ceaabaa3-1907-485c-8d20-8f963d9dd81a
+  676d7d0d-8e50-4fbf-ace2-aded79d78660:
+    id: 676d7d0d-8e50-4fbf-ace2-aded79d78660
     content: User — power users who treat individual nodes as text containers and routinely copy a node's content into external apps or another node's body
     children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  c7bb53fc-2f25-466c-af32-d2c88682e94c:
-    id: c7bb53fc-2f25-466c-af32-d2c88682e94c
-    content: Current experience — copying a leaf node yields markdown chrome (`# [ ]`, blank line, body); pasting anywhere outside an Arborescent tree exposes the chrome and forces manual cleanup
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e78672bb-ae01-4f8a-97cf-dda9d0e420f5:
-    id: e78672bb-ae01-4f8a-97cf-dda9d0e420f5
-    content: Goal — copying a single leaf node puts only its content on the clipboard so external pastes land clean and internal pastes still round-trip
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  10a1a8f6-635c-4b8e-9370-d5eeb364742f:
-    id: 10a1a8f6-635c-4b8e-9370-d5eeb364742f
-    content: Business rules
-    children:
-      - e0d77268-af36-449d-b347-afb3b0174e27
-      - 3b1e3ccb-631d-4927-b3b5-8311c41fced7
-      - 01fd7c5a-64e2-461c-981c-c72a94cf4764
-      - 7d775655-bf32-4155-a5b6-02d1be938ca1
-      - 2c9007e1-8e15-40e9-bff2-7d3a26c8b7ed
-      - 95fe956c-238a-400b-82aa-915f35d706aa
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  e0d77268-af36-449d-b347-afb3b0174e27:
-    id: e0d77268-af36-449d-b347-afb3b0174e27
+  4b699136-1d35-4284-9be5-3ad4ca0d63fa:
+    id: 4b699136-1d35-4284-9be5-3ad4ca0d63fa
+    content: Current experience — copying a leaf node yields markdown chrome (`# [ ]`, blank line, body); pasting anywhere outside an Arborescent tree exposes the chrome and forces manual cleanup
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  50e2764f-7902-4faf-9081-1f1a91ac8b88:
+    id: 50e2764f-7902-4faf-9081-1f1a91ac8b88
+    content: Goal — copying a single leaf node puts only its content on the clipboard so external pastes land clean and internal pastes still round-trip
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  16780eff-b7f4-4a8d-87c0-96a211e73f00:
+    id: 16780eff-b7f4-4a8d-87c0-96a211e73f00
+    content: Business rules
+    children:
+      - 122a5d06-4d6a-4c72-9297-aa35d686f6e1
+      - 4f5e95f4-f414-4b37-b93d-7bed5b98af9d
+      - 6a6b82b8-7dc5-4918-8a4d-ef17d93bbfae
+      - 2988ed95-195c-40b2-9868-c6a8ae0f1433
+      - 5faa590a-bf6f-4020-9f3b-129018851a2d
+      - 4703416b-77cd-4653-b766-ed03f7438407
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  122a5d06-4d6a-4c72-9297-aa35d686f6e1:
+    id: 122a5d06-4d6a-4c72-9297-aa35d686f6e1
     content: 1. When the selection is a single node with no children, the system clipboard receives only the node's content; if both title and body are present they are joined as `Title\n\nBody`, and an empty half is dropped (no leading blank line, no trailing newline).
     children: []
     metadata:
@@ -95902,8 +95740,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  3b1e3ccb-631d-4927-b3b5-8311c41fced7:
-    id: 3b1e3ccb-631d-4927-b3b5-8311c41fced7
+  4f5e95f4-f414-4b37-b93d-7bed5b98af9d:
+    id: 4f5e95f4-f414-4b37-b93d-7bed5b98af9d
     content: 2. When the selection is a single node that has at least one child, the existing markdown-tree serialization is preserved unchanged, because a parent-with-children is a subtree and has no faithful plain-text rendering.
     children: []
     metadata:
@@ -95911,8 +95749,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  01fd7c5a-64e2-461c-981c-c72a94cf4764:
-    id: 01fd7c5a-64e2-461c-981c-c72a94cf4764
+  6a6b82b8-7dc5-4918-8a4d-ef17d93bbfae:
+    id: 6a6b82b8-7dc5-4918-8a4d-ef17d93bbfae
     content: 3. When the selection contains two or more nodes, the existing markdown-tree serialization is preserved unchanged so structure survives the round trip.
     children: []
     metadata:
@@ -95920,17 +95758,17 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  7d775655-bf32-4155-a5b6-02d1be938ca1:
-    id: 7d775655-bf32-4155-a5b6-02d1be938ca1
+  2988ed95-195c-40b2-9868-c6a8ae0f1433:
+    id: 2988ed95-195c-40b2-9868-c6a8ae0f1433
     content: 4. Cut produces the same clipboard payload as copy.
     children: []
     metadata:
-      status: abandoned
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  2c9007e1-8e15-40e9-bff2-7d3a26c8b7ed:
-    id: 2c9007e1-8e15-40e9-bff2-7d3a26c8b7ed
+  5faa590a-bf6f-4020-9f3b-129018851a2d:
+    id: 5faa590a-bf6f-4020-9f3b-129018851a2d
     content: 5. Body content is copied verbatim — markdown the user typed inside the body (e.g. their own `# Heading`) is never stripped; only the generated heading and checkbox wrapper is removed.
     children: []
     metadata:
@@ -95938,34 +95776,34 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  95fe956c-238a-400b-82aa-915f35d706aa:
-    id: 95fe956c-238a-400b-82aa-915f35d706aa
+  4703416b-77cd-4653-b766-ed03f7438407:
+    id: 4703416b-77cd-4653-b766-ed03f7438407
     content: 6. Pasting a freshly copied selection back into Arborescent in the same session reconstructs the original nodes via the in-memory clipboard cache, so internal copy→paste round-trips without re-parsing the clipboard text.
     children: []
-    metadata:
-      status: abandoned
-      expanded: true
-      deleted: false
-      plugins: {}
-  bc234e8d-e25d-4ee5-bd3f-03bf0b490712:
-    id: bc234e8d-e25d-4ee5-bd3f-03bf0b490712
-    content: Acceptance criteria
-    children:
-      - 9c5ae91f-f3fd-40fd-947e-f96824dae205
-      - 26341975-bcd5-4da4-8a24-b6a9fe4efc3e
-      - 2315f808-f2f3-4bb7-b5f0-d8a23ce5e040
-      - 4ccae0d4-4772-43fb-bd55-894d873edcd9
-      - 1cd54728-1a35-485d-88be-e9365f240cdf
-      - 7b64e322-7afa-47a1-9497-4ef4b9d36210
-      - 43bcb2e2-ddb6-42ee-912c-4e5c056ada1d
-      - 5a157233-6b94-4b0a-9d09-48ac74e3e5c9
     metadata:
       status: completed
       expanded: true
       deleted: false
       plugins: {}
-  9c5ae91f-f3fd-40fd-947e-f96824dae205:
-    id: 9c5ae91f-f3fd-40fd-947e-f96824dae205
+  564548f8-f4f7-4f47-b48b-d1afa1bd606c:
+    id: 564548f8-f4f7-4f47-b48b-d1afa1bd606c
+    content: Acceptance criteria
+    children:
+      - aa6c3e1a-fb22-4925-9b14-f31aa194bbb5
+      - a5b31589-3c62-477e-894e-b84f3065e640
+      - 08c3cea7-30d6-4fc2-8543-c9418e119214
+      - 6ab024da-965a-4c6a-803b-f9e1873bcb44
+      - 7451b3a8-2db1-43a0-9f23-0df513380e77
+      - 540b06ef-0a8e-4236-a6af-1a9becb5542b
+      - 14ace00f-58c1-4f37-9f43-7a8c2c25e635
+      - 9b80b627-98f0-44ff-b211-86332b48d2f1
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  aa6c3e1a-fb22-4925-9b14-f31aa194bbb5:
+    id: aa6c3e1a-fb22-4925-9b14-f31aa194bbb5
     content: '- [ ] Copying a single leaf node with title and body puts exactly `Title\n\nBody` on the system clipboard, with no `# [ ]` prefix'
     children: []
     metadata:
@@ -95973,8 +95811,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  26341975-bcd5-4da4-8a24-b6a9fe4efc3e:
-    id: 26341975-bcd5-4da4-8a24-b6a9fe4efc3e
+  a5b31589-3c62-477e-894e-b84f3065e640:
+    id: a5b31589-3c62-477e-894e-b84f3065e640
     content: '- [ ] Copying a single leaf node with only a title puts just the title on the clipboard'
     children: []
     metadata:
@@ -95982,8 +95820,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  2315f808-f2f3-4bb7-b5f0-d8a23ce5e040:
-    id: 2315f808-f2f3-4bb7-b5f0-d8a23ce5e040
+  08c3cea7-30d6-4fc2-8543-c9418e119214:
+    id: 08c3cea7-30d6-4fc2-8543-c9418e119214
     content: '- [ ] Copying a single leaf node with only a body puts just the body on the clipboard'
     children: []
     metadata:
@@ -95991,8 +95829,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  4ccae0d4-4772-43fb-bd55-894d873edcd9:
-    id: 4ccae0d4-4772-43fb-bd55-894d873edcd9
+  6ab024da-965a-4c6a-803b-f9e1873bcb44:
+    id: 6ab024da-965a-4c6a-803b-f9e1873bcb44
     content: '- [ ] Copying a single node that has children produces the existing markdown-tree output, unchanged'
     children: []
     metadata:
@@ -96000,8 +95838,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  1cd54728-1a35-485d-88be-e9365f240cdf:
-    id: 1cd54728-1a35-485d-88be-e9365f240cdf
+  7451b3a8-2db1-43a0-9f23-0df513380e77:
+    id: 7451b3a8-2db1-43a0-9f23-0df513380e77
     content: '- [ ] Selecting two or more nodes and copying produces the existing markdown-tree output, unchanged'
     children: []
     metadata:
@@ -96009,26 +95847,26 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  7b64e322-7afa-47a1-9497-4ef4b9d36210:
-    id: 7b64e322-7afa-47a1-9497-4ef4b9d36210
+  540b06ef-0a8e-4236-a6af-1a9becb5542b:
+    id: 540b06ef-0a8e-4236-a6af-1a9becb5542b
     content: '- [ ] Cut on a single leaf node deletes the node and writes the same plain-content payload that copy would have written'
     children: []
     metadata:
-      status: abandoned
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  43bcb2e2-ddb6-42ee-912c-4e5c056ada1d:
-    id: 43bcb2e2-ddb6-42ee-912c-4e5c056ada1d
+  14ace00f-58c1-4f37-9f43-7a8c2c25e635:
+    id: 14ace00f-58c1-4f37-9f43-7a8c2c25e635
     content: '- [ ] Pasting a copied leaf node back into Arborescent in the same session reconstructs the node (not just its text into a body field)'
     children: []
     metadata:
-      status: abandoned
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  5a157233-6b94-4b0a-9d09-48ac74e3e5c9:
-    id: 5a157233-6b94-4b0a-9d09-48ac74e3e5c9
+  9b80b627-98f0-44ff-b211-86332b48d2f1:
+    id: 9b80b627-98f0-44ff-b211-86332b48d2f1
     content: '- [ ] A leaf node whose body contains user-typed markdown round-trips that markdown verbatim — none of it is stripped'
     children: []
     metadata:
@@ -96036,229 +95874,631 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  b2a30db4-86a9-4264-b1a5-c98293262204:
-    id: b2a30db4-86a9-4264-b1a5-c98293262204
+  08308b65-a33e-4432-802b-4adf6bb7cb98:
+    id: 08308b65-a33e-4432-802b-4adf6bb7cb98
     content: 🔧 Implementation proposal
     children:
-      - 2b9d8fc3-b710-46b1-ba3c-41b5da94df84
-      - bbf2f064-7bbf-41ef-bc5d-a4f5f83fa520
-      - 6beb949e-d61a-4b96-aff4-5e08b9b2a9a1
+      - c03cfe7a-6309-4ea7-bd95-a830a15edccf
+      - 587e2b20-d4ad-4828-acf3-4686dccc3984
+      - e2d99469-6fe8-4a11-8159-dca5f8e72e99
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  2b9d8fc3-b710-46b1-ba3c-41b5da94df84:
-    id: 2b9d8fc3-b710-46b1-ba3c-41b5da94df84
+  c03cfe7a-6309-4ea7-bd95-a830a15edccf:
+    id: c03cfe7a-6309-4ea7-bd95-a830a15edccf
     content: Approach — branch inside `exportSelectionAsMarkdown` in `src/renderer/store/tree/actions/clipboardHelpers.ts` (the single funnel used by both `copyNodes` and `cutNodes`). When `selection.type === 'single'` and the node has zero children, return the node's content directly (joining title and body as specified, dropping empty halves). All other paths fall through to today's serializer.
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  bbf2f064-7bbf-41ef-bc5d-a4f5f83fa520:
-    id: bbf2f064-7bbf-41ef-bc5d-a4f5f83fa520
+  587e2b20-d4ad-4828-acf3-4686dccc3984:
+    id: 587e2b20-d4ad-4828-acf3-4686dccc3984
     content: Touchpoints — `clipboardHelpers.ts` (the branch), tests covering the new leaf path and confirming non-leaf single and multi-select paths are unchanged. `markdown.ts:exportNodeAsMarkdown` is left alone because `nodeHelpers.ts` reuses it for AI-context export. No IPC, main-process, or store-shape changes; `clipboardCacheStore` already handles internal round-trip via cached source nodes.
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  6beb949e-d61a-4b96-aff4-5e08b9b2a9a1:
-    id: 6beb949e-d61a-4b96-aff4-5e08b9b2a9a1
+  e2d99469-6fe8-4a11-8159-dca5f8e72e99:
+    id: e2d99469-6fe8-4a11-8159-dca5f8e72e99
     content: Constraints to call out — internal round-trip relies on `clipboardCacheStore` matching the live clipboard string against its cache to recover the source node references. The new payload must be cached the same way today's markdown is, otherwise paste-back regresses to a no-op (current `parseMarkdown` requires a `#` heading). No new clipboard MIME type is introduced; the "copy in Arborescent → close app → paste back later" path stays as-is (already lossy on status info, not made worse here).
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  1cca5754-5e17-48b4-819b-b493d52523aa:
-    id: 1cca5754-5e17-48b4-819b-b493d52523aa
+  2ad689b7-83ad-4c16-b66e-970060889c0c:
+    id: 2ad689b7-83ad-4c16-b66e-970060889c0c
     content: Out of scope and deliberate non-goals
     children:
-      - bbf5a03f-0d6e-453e-af12-4184eb8eb75a
-      - 89d77a83-34e4-4ccc-87d5-8e155ccbede6
-      - a290df24-3a8b-4202-ac9f-3f45380ad06f
+      - b0648f1b-fefc-45c9-9035-2a8f582480c2
+      - ca5fe03d-2bcb-4117-bae7-41467e6719b0
+      - daa473fb-8a1c-4b6f-9d5e-527a3468459d
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  bbf5a03f-0d6e-453e-af12-4184eb8eb75a:
-    id: bbf5a03f-0d6e-453e-af12-4184eb8eb75a
+  b0648f1b-fefc-45c9-9035-2a8f582480c2:
+    id: b0648f1b-fefc-45c9-9035-2a8f582480c2
     content: No new "Copy as plain text" menu item or modifier — the default is the fix
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  89d77a83-34e4-4ccc-87d5-8e155ccbede6:
-    id: 89d77a83-34e4-4ccc-87d5-8e155ccbede6
+  ca5fe03d-2bcb-4117-bae7-41467e6719b0:
+    id: ca5fe03d-2bcb-4117-bae7-41467e6719b0
     content: No custom clipboard MIME type — existing in-memory cache covers internal round-trip
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  a290df24-3a8b-4202-ac9f-3f45380ad06f:
-    id: a290df24-3a8b-4202-ac9f-3f45380ad06f
+  daa473fb-8a1c-4b6f-9d5e-527a3468459d:
+    id: daa473fb-8a1c-4b6f-9d5e-527a3468459d
     content: No flattening of subtrees to plain text — non-leaf single copies and multi-select copies stay as markdown trees
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  c6b8053e-7797-4aa0-ba33-5d2ccadfc59e:
-    id: c6b8053e-7797-4aa0-ba33-5d2ccadfc59e
+  baff3d32-264e-4226-882e-634cd50b9b92:
+    id: baff3d32-264e-4226-882e-634cd50b9b92
     content: Technical refinement
     children:
-      - e3a946e8-6489-4826-b803-c14c8d3c8b4f
-      - ef82d396-91bf-40f6-bcda-31dff6848cd3
+      - aa46063e-6db2-49da-8df3-ebe6f3808670
+      - 766fc2a0-49cf-4789-88b3-ff148cd8410c
     metadata:
-      status: pending
+      status: abandoned
       expanded: true
       deleted: false
       plugins: {}
-  e3a946e8-6489-4826-b803-c14c8d3c8b4f:
-    id: e3a946e8-6489-4826-b803-c14c8d3c8b4f
+  aa46063e-6db2-49da-8df3-ebe6f3808670:
+    id: aa46063e-6db2-49da-8df3-ebe6f3808670
     content: Complications
     children:
-      - 71c49547-eedb-458a-bd26-9830d0bce60b
-      - b8cd4039-79e5-41bf-a17c-840bb9db04b8
-      - cbc96475-768c-4538-94aa-b811cab4ebec
-      - ed36aa12-c4b6-4110-91ef-087777a4bca7
+      - c0a947f8-2818-4f39-b1cf-14dd65d19e98
+      - 65901fd0-eb3a-4db6-925a-3f66d54c20cd
+      - 0f034a27-5446-48e1-84f5-7fb251e7bad5
+      - 8ab4574d-25bd-4f50-a8b6-81d73b3a37a5
     metadata:
-      status: pending
+      status: abandoned
       expanded: true
       deleted: false
       plugins: {}
-  71c49547-eedb-458a-bd26-9830d0bce60b:
-    id: 71c49547-eedb-458a-bd26-9830d0bce60b
+  c0a947f8-2818-4f39-b1cf-14dd65d19e98:
+    id: c0a947f8-2818-4f39-b1cf-14dd65d19e98
     content: Cache-miss paste-back is silently lossy — once the clipboardCacheStore entry is evicted or the clipboard is touched by another app, pasting plain content back falls through to `parseMarkdown`, which requires a `#` heading and will produce nothing usable. The markdown-tree path degrades to a parsable tree on cache miss; the plain-content path degrades to "paste does nothing". Decide whether that's acceptable or whether the cache needs a longer lifetime for plain payloads.
     children: []
     metadata:
-      status: pending
+      status: abandoned
       expanded: true
       deleted: false
       plugins: {}
-  b8cd4039-79e5-41bf-a17c-840bb9db04b8:
-    id: b8cd4039-79e5-41bf-a17c-840bb9db04b8
+  65901fd0-eb3a-4db6-925a-3f66d54c20cd:
+    id: 65901fd0-eb3a-4db6-925a-3f66d54c20cd
     content: False cache hits become more likely — the cache keys on exact clipboard string. Plain leaf payloads (e.g. a single short title) collide far more easily with text copied from other apps than today's `# [ ]`-prefixed markdown does, so an external copy that happens to match a cached payload will paste as the cached node. Worth a guard (e.g. clear cache on focus loss, or fingerprint with a zero-width marker).
     children: []
     metadata:
-      status: pending
+      status: abandoned
       expanded: true
       deleted: false
       plugins: {}
-  cbc96475-768c-4538-94aa-b811cab4ebec:
-    id: cbc96475-768c-4538-94aa-b811cab4ebec
+  0f034a27-5446-48e1-84f5-7fb251e7bad5:
+    id: 0f034a27-5446-48e1-84f5-7fb251e7bad5
     content: AC gap on the empty leaf — behavior when both title and body are empty isn't specified (empty-string clipboard write vs. no-op vs. fall through to markdown). Pick one and add an AC.
     children: []
     metadata:
-      status: pending
+      status: abandoned
       expanded: true
       deleted: false
       plugins: {}
-  ed36aa12-c4b6-4110-91ef-087777a4bca7:
-    id: ed36aa12-c4b6-4110-91ef-087777a4bca7
+  8ab4574d-25bd-4f50-a8b6-81d73b3a37a5:
+    id: 8ab4574d-25bd-4f50-a8b6-81d73b3a37a5
     content: 'AC #5 vs. round-trip on cache miss — a body that begins with `# [ ]` is copied verbatim (correct per rule 5), but on cache-miss paste-back `parseMarkdown` will interpret it as a heading. Round-trip is only guaranteed via the in-memory cache, which is worth stating explicitly so reviewers don''t read AC #8 as a stronger guarantee than it is.'
     children: []
     metadata:
-      status: pending
+      status: abandoned
       expanded: true
       deleted: false
       plugins: {}
-  ef82d396-91bf-40f6-bcda-31dff6848cd3:
-    id: ef82d396-91bf-40f6-bcda-31dff6848cd3
+  766fc2a0-49cf-4789-88b3-ff148cd8410c:
+    id: 766fc2a0-49cf-4789-88b3-ff148cd8410c
     content: Approach summary
     children:
-      - 8bb6d274-04bf-4557-927c-0e0c2b96da8e
-      - fd9d994d-aa64-429d-9365-c9f85f23a6fb
-      - 31d49bfa-5230-44e8-854b-a6f2854590be
+      - 71d6c2d0-cacc-4e13-bc09-fc283ef9a758
+      - 87cf1536-4a06-4f42-bd22-e445add3da55
+      - 704c86c3-dd64-4f40-aa03-706a175e20f5
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  8bb6d274-04bf-4557-927c-0e0c2b96da8e:
-    id: 8bb6d274-04bf-4557-927c-0e0c2b96da8e
+  71d6c2d0-cacc-4e13-bc09-fc283ef9a758:
+    id: 71d6c2d0-cacc-4e13-bc09-fc283ef9a758
     content: One branch added to the existing copy/cut funnel (`exportSelectionAsMarkdown`) — both actions inherit the new behavior; non-leaf and multi-select paths are untouched.
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  fd9d994d-aa64-429d-9365-c9f85f23a6fb:
-    id: fd9d994d-aa64-429d-9365-c9f85f23a6fb
+  87cf1536-4a06-4f42-bd22-e445add3da55:
+    id: 87cf1536-4a06-4f42-bd22-e445add3da55
     content: Internal round-trip is carried by the existing `clipboardCacheStore` matching the exact clipboard string; no new MIME type, no IPC change, no store-shape change.
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  31d49bfa-5230-44e8-854b-a6f2854590be:
-    id: 31d49bfa-5230-44e8-854b-a6f2854590be
+  704c86c3-dd64-4f40-aa03-706a175e20f5:
+    id: 704c86c3-dd64-4f40-aa03-706a175e20f5
     content: 'Non-obvious bit for reviewers: the markdown serializer used by AI-context export (`exportNodeAsMarkdown`) is intentionally left alone — only the clipboard funnel changes, so AI sends still include headings.'
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  e041dfe1-b4bf-4726-96c8-12b49f78ef4c:
-    id: e041dfe1-b4bf-4726-96c8-12b49f78ef4c
+  7795d7c2-fe01-4f6f-a323-27fe244b1dc0:
+    id: 7795d7c2-fe01-4f6f-a323-27fe244b1dc0
     content: Issues encountered while writing tests
     children:
-      - 91393fc5-ef44-4401-a2c8-d6e76663e49a
-      - 33fa8d41-cb7e-41fd-b333-5b0322a7b011
-      - 5a289fa3-78ef-41cc-865e-f2566366d818
-      - 2ff51a95-658b-4a91-9602-7b0863927bbc
+      - f9fae9c8-836a-45bc-91e6-241e0f98cd92
+      - 3c7155b2-9318-485b-9d1f-e8f94185c387
+      - 20e1541b-dbed-49e7-a948-6f378f75dc7d
+      - de02db07-1de4-473f-978b-69ffef9ddab0
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  91393fc5-ef44-4401-a2c8-d6e76663e49a:
-    id: 91393fc5-ef44-4401-a2c8-d6e76663e49a
+  f9fae9c8-836a-45bc-91e6-241e0f98cd92:
+    id: f9fae9c8-836a-45bc-91e6-241e0f98cd92
     content: Test seam choice — wrote a focused unit-test file `src/renderer/store/tree/actions/tests/clipboardHelpers.test.ts` against `exportSelectionAsMarkdown` (the single funnel both copy and cut go through). This pins down the contract for ACs 1, 2, 4, 5, and 8 and most business rules, but does NOT exercise the integration paths for AC 6 (cut writes same payload as copy at the call-site) or AC 7 (paste-back round-trip via `clipboardCacheStore`). Those would need either additions to the existing 2000-line `clipboardActions.test.ts` or a new integration file; deferred to keep this round focused per the "cap boilerplate per test file" guidance — and because both fall out automatically once the helper branch lands (cut and copy both consume the helper's return value).
     children: []
     metadata:
-      status: pending
+      status: abandoned
       expanded: true
       deleted: false
       plugins: {}
-  33fa8d41-cb7e-41fd-b333-5b0322a7b011:
-    id: 33fa8d41-cb7e-41fd-b333-5b0322a7b011
+  3c7155b2-9318-485b-9d1f-e8f94185c387:
+    id: 3c7155b2-9318-485b-9d1f-e8f94185c387
     content: 'Body-only edge case left as `it.todo` — AC 3 ("Copying a single leaf node with only a body puts just the body on the clipboard") cannot be expressed unambiguously against the data model: `TreeNode.content` is a single string field, with no separate title/body. The "body-only" shape (e.g. `\n\nBar`) requires a normalisation decision (verbatim vs. trim leading newlines) that AC 5 ("verbatim") and AC 3 don''t reconcile. Marked as title-only `it.todo` per the "post-fix behavior is uncertain" guidance.'
     children: []
     metadata:
-      status: pending
+      status: abandoned
       expanded: true
       deleted: false
       plugins: {}
-  5a289fa3-78ef-41cc-865e-f2566366d818:
-    id: 5a289fa3-78ef-41cc-865e-f2566366d818
+  20e1541b-dbed-49e7-a948-6f378f75dc7d:
+    id: 20e1541b-dbed-49e7-a948-6f378f75dc7d
     content: Empty-leaf edge case left as `it.todo` — same reason; the technical refinement already flags this as an explicit AC gap.
     children: []
     metadata:
-      status: pending
+      status: abandoned
       expanded: true
       deleted: false
       plugins: {}
-  2ff51a95-658b-4a91-9602-7b0863927bbc:
-    id: 2ff51a95-658b-4a91-9602-7b0863927bbc
+  de02db07-1de4-473f-978b-69ffef9ddab0:
+    id: de02db07-1de4-473f-978b-69ffef9ddab0
     content: node_modules in worktree — worktree was created without node_modules per instructions; `npm install --prefer-offline` was run inside the worktree (no symlink) so vitest could execute. This took ~20s.
     children: []
     metadata:
-      status: pending
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0271b8ec-5fd4-4c80-bdcd-d00f8b93d461:
+    id: 0271b8ec-5fd4-4c80-bdcd-d00f8b93d461
+    content: Implementation notes
+    children:
+      - d7f76e19-0004-4b5b-a6c3-9eed040a356a
+      - f067b2cb-1efb-4c58-b8ad-25254b28af2f
+      - 7cc6f218-2963-4fe8-9f2d-bcd1ad24ae5b
+      - 4c1bbcdd-9c44-4308-bef9-5edaaf381d2f
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d7f76e19-0004-4b5b-a6c3-9eed040a356a:
+    id: d7f76e19-0004-4b5b-a6c3-9eed040a356a
+    content: Single edit to `src/renderer/store/tree/actions/clipboardHelpers.ts:exportSelectionAsMarkdown` — when selection is single and `node.children.length === 0`, return `node.content` directly; otherwise fall through to the existing `exportNodeAsMarkdown`/`exportMultipleNodesAsMarkdown` paths. No other files touched.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f067b2cb-1efb-4c58-b8ad-25254b28af2f:
+    id: f067b2cb-1efb-4c58-b8ad-25254b28af2f
+    content: Verification — 13/13 new helper tests pass, 103/103 existing `clipboardActions.test.ts` tests pass (no regressions; existing tests assert on parent-with-children or multi-select payloads, so the leaf-only branch doesn't intersect their expectations). ESLint and `tsc --noEmit` both clean on the changed files.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7cc6f218-2963-4fe8-9f2d-bcd1ad24ae5b:
+    id: 7cc6f218-2963-4fe8-9f2d-bcd1ad24ae5b
+    content: AC 3 (body-only) marked [-] because the data model has no separate title/body — `TreeNode.content` is a single string. The implementation returns content verbatim, which means a "body-only" shape like `\n\nBar` would round-trip the leading newlines. The AC's intended normalisation is undefined; flagged in the technical refinement and left for a follow-up decision rather than smuggled into this PR.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4c1bbcdd-9c44-4308-bef9-5edaaf381d2f:
+    id: 4c1bbcdd-9c44-4308-bef9-5edaaf381d2f
+    content: ACs 6 and 7 now satisfied by the implementation, even though no new integration tests were added — both `cutNodes` and `copyNodes` consume `exportSelectionAsMarkdown`'s return value and write it identically to both the system clipboard and `clipboardCacheStore`, so the round-trip cache match continues to work on string equality without changes to the paste flow.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a253ab37-7019-43c9-8f8e-d6fac9a15d05:
+    id: a253ab37-7019-43c9-8f8e-d6fac9a15d05
+    content: With a highlighted node
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8a827ff8-3f07-4aa9-963e-b56fbda2fef0:
+    id: 8a827ff8-3f07-4aa9-963e-b56fbda2fef0
+    content: and an automated collaboration step on another node finishes
+    children:
+      - 3ba3f549-b0cf-4ac3-8815-f1b64ffbfb89
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3ba3f549-b0cf-4ac3-8815-f1b64ffbfb89:
+    id: 3ba3f549-b0cf-4ac3-8815-f1b64ffbfb89
+    content: Then it cancels the manual collaboration
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7231ade1-8783-40ba-ab01-d1e3cb302da3:
+    id: 7231ade1-8783-40ba-ab01-d1e3cb302da3
+    content: Technical refinement
+    children:
+      - 73e49915-eb4d-46cf-ac9f-3d8596330bfb
+      - 319d0bfd-96c1-44ec-a248-1bdef7598d7d
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  73e49915-eb4d-46cf-ac9f-3d8596330bfb:
+    id: 73e49915-eb4d-46cf-ac9f-3d8596330bfb
+    content: Summary
+    children:
+      - a05656af-0c2a-4d5e-9bd1-7f80e9358477
+      - f0da975d-517c-471d-a548-b38676647c87
+      - adeb1bd6-bf1c-4816-882e-5775eaad490e
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a05656af-0c2a-4d5e-9bd1-7f80e9358477:
+    id: a05656af-0c2a-4d5e-9bd1-7f80e9358477
+    content: The store keeps a single `collaboratingNodeId` (+ `collaborationSource`), but `feedbackCollaborations` can hold both a manual and an autonomous entry concurrently — the two layers disagree on cardinality
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f0da975d-517c-471d-a548-b38676647c87:
+    id: f0da975d-517c-471d-a548-b38676647c87
+    content: 'When autonomous feedback returns, `handleAutonomousFeedback` runs `AcceptFeedbackCommand`, which unconditionally sets `collaboratingNodeId: null` / `collaborationSource: null` regardless of which node owns the current manual session'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  adeb1bd6-bf1c-4816-882e-5775eaad490e:
+    id: adeb1bd6-bf1c-4816-882e-5775eaad490e
+    content: Fix lands in `AcceptFeedbackCommand.execute` (and its undo path) plus the autonomous cleanup branch in `workflowExecutionActions` — gate the clear on ownership (`state.collaboratingNodeId === this.collaboratingNodeId`)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  319d0bfd-96c1-44ec-a248-1bdef7598d7d:
+    id: 319d0bfd-96c1-44ec-a248-1bdef7598d7d
+    content: Complications
+    children:
+      - 82989dcc-b366-4193-8d39-58f27a7adf1c
+      - 2aa39fc3-99dd-48cf-bf4f-e2d1b98148fb
+      - 07600131-607c-4fc4-b5d9-1c06741cb8ae
+      - 0e06f1f0-1a68-4381-8337-4a63cf87f477
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  82989dcc-b366-4193-8d39-58f27a7adf1c:
+    id: 82989dcc-b366-4193-8d39-58f27a7adf1c
+    content: 'Same-file vs cross-file: stores are per file, so the bug only fires when manual + autonomous live in the same file''s store — scope the fix accordingly'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2aa39fc3-99dd-48cf-bf4f-e2d1b98148fb:
+    id: 2aa39fc3-99dd-48cf-bf4f-e2d1b98148fb
+    content: Panel/temp-file side effects (`closeFeedback`, `cleanupFeedback`, `setFeedbackTempFile`) must also be ownership-gated, otherwise the manual session loses its panel/temp file even if `collaboratingNodeId` is preserved
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  07600131-607c-4fc4-b5d9-1c06741cb8ae:
+    id: 07600131-607c-4fc4-b5d9-1c06741cb8ae
+    content: '`AcceptFeedbackCommand.undo` mirrors the same null-write — undoing an auto-accept must not clobber a manual session that started after the auto-accept'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0e06f1f0-1a68-4381-8337-4a63cf87f477:
+    id: 0e06f1f0-1a68-4381-8337-4a63cf87f477
+    content: 'Out of scope: redesigning the single-`collaboratingNodeId` model into true multi-session state; this fix only stops the autonomous path from stomping the manual one'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  6af8dc91-d0a2-4aa1-97e1-4b888eac9bb1:
+    id: 6af8dc91-d0a2-4aa1-97e1-4b888eac9bb1
+    content: Tests written (TDD)
+    children:
+      - 926c6269-a38c-4cbc-ba8f-176cdd43fa63
+      - 3860896e-24c9-45e5-8e4e-a29253a2b481
+      - edc1f13d-ebf3-475e-ba84-b9bcb9ae5308
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  926c6269-a38c-4cbc-ba8f-176cdd43fa63:
+    id: 926c6269-a38c-4cbc-ba8f-176cdd43fa63
+    content: 'AcceptFeedbackCommand.test.ts — added ''collaboration ownership'' describe with 6 cases (3 currently failing as required: execute single-root preserves, execute multi-root preserves, undo preserves on mid-execute manual takeover; 3 passing pin: clears when state owns it on execute and on undo, no-op when no session)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3860896e-24c9-45e5-8e4e-a29253a2b481:
+    id: 3860896e-24c9-45e5-8e4e-a29253a2b481
+    content: workflowAutoAccept.test.ts — added 'manual collaboration ownership during autonomous accept' describe; one real assertion confirms a manually-registered collaboration is not unregistered by `handleAutonomousFeedback` for a different node; three title-only tests document the panel/temp-file/payload invariants whose post-fix behavior is uncertain
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  edc1f13d-ebf3-475e-ba84-b9bcb9ae5308:
+    id: edc1f13d-ebf3-475e-ba84-b9bcb9ae5308
+    content: 'Ran scoped suites only — AcceptFeedbackCommand: 31 pass / 3 fail (expected); workflowAutoAccept: 48 pass / 0 fail'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1aa7a56e-212d-41ab-bba9-b8633d748c37:
+    id: 1aa7a56e-212d-41ab-bba9-b8633d748c37
+    content: review feedback
+    children:
+      - f6b08029-caba-4163-a386-c44b9ef0a9b1
+      - 9a3a3f14-36b3-4d1c-bc4d-82764ff9e0b0
+      - 3b1f3994-0066-452d-8638-564b7552685b
+      - 2f908932-1f5c-432b-a38b-e88358dab8ff
+      - efc84580-d0cb-4e79-b08f-48ac2b6b47f3
+      - cdf2d3d6-ee17-475f-b205-80eea72460ac
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f6b08029-caba-4163-a386-c44b9ef0a9b1:
+    id: f6b08029-caba-4163-a386-c44b9ef0a9b1
+    content: 'Reviewer (pr-review-toolkit:code-reviewer): no blocking issues; nitpicks only'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9a3a3f14-36b3-4d1c-bc4d-82764ff9e0b0:
+    id: 9a3a3f14-36b3-4d1c-bc4d-82764ff9e0b0
+    content: 'Fixed: workflowAutoAccept.test.ts had three title-only `it(''...'')` (no fn body) at lines 431/433/435 that Vitest counts as passing — converted to `it.todo`. Also dropped the redundant ''manual collaboration coexistence on autonomous auto-accept'' describe near the bottom of the file since it duplicated the same to-do items now consolidated into the active ''manual collaboration ownership during autonomous accept'' block'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3b1f3994-0066-452d-8638-564b7552685b:
+    id: 3b1f3994-0066-452d-8638-564b7552685b
+    content: 'Skipped (taste): rename `collaborationClearIfOwned` → `collaborationClearPatchIfOwned` (low confidence ~40); current name reads fine in context'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  2f908932-1f5c-432b-a38b-e88358dab8ff:
+    id: 2f908932-1f5c-432b-a38b-e88358dab8ff
+    content: 'Skipped (taste): freeze a module-level empty patch object to avoid `{}` allocation in the no-op branch — not worth the indirection'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  efc84580-d0cb-4e79-b08f-48ac2b6b47f3:
+    id: efc84580-d0cb-4e79-b08f-48ac2b6b47f3
+    content: 'Skipped: extending the undo-preserves test to also assert `nodes`/`ancestorRegistry` restoration — those paths are already covered by the existing ''should undo and restore original node and descendants'' tests in the same file, so re-asserting them in the ownership test would just duplicate coverage'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  cdf2d3d6-ee17-475f-b205-80eea72460ac:
+    id: cdf2d3d6-ee17-475f-b205-80eea72460ac
+    content: Final scoped re-run after fixes — 79 pass / 0 fail (was 82; drop reflects removal of the duplicated `it.todo` block)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  dedd94bf-fdef-466e-95e4-7756206f0417:
+    id: dedd94bf-fdef-466e-95e4-7756206f0417
+    content: feedback
+    children:
+      - 999ee6bd-35d0-4265-90ee-29b8eb6100e7
+      - 7fd263fd-c588-4b1e-9279-f104b702b9e9
+      - 35ec3d07-a7c7-46bc-8ee6-736c108091fe
+      - 4aba1f7b-d2d7-4d06-b86b-3d8da086735b
+      - 8cdb7ad7-2297-4fd0-9275-17e02caa7d17
+      - 06c0828d-caee-464a-a0ce-4ad145f0ba2c
+      - f474382e-1f5e-4f1c-bc51-efd2a2017918
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  999ee6bd-35d0-4265-90ee-29b8eb6100e7:
+    id: 999ee6bd-35d0-4265-90ee-29b8eb6100e7
+    content: 'Major / blocking: none'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7fd263fd-c588-4b1e-9279-f104b702b9e9:
+    id: 7fd263fd-c588-4b1e-9279-f104b702b9e9
+    content: 'Minor — accepted (real): title-only `it(''…'')` registered as passing in Vitest. Verified independently: scoped suite count dropped by exactly 3 after converting the three bare `it()` calls to `it.todo`, matching the reviewer''s claim. Acted on'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  35ec3d07-a7c7-46bc-8ee6-736c108091fe:
+    id: 35ec3d07-a7c7-46bc-8ee6-736c108091fe
+    content: 'Trivial — disagree (taste): rename `collaborationClearIfOwned` → `collaborationClearPatchIfOwned`. Reviewer self-tagged confidence 40. Adding `Patch` is jargon that doesn''t carry weight inside this file (the codebase has no convention of ‑Patch suffixes). Rejected'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4aba1f7b-d2d7-4d06-b86b-3d8da086735b:
+    id: 4aba1f7b-d2d7-4d06-b86b-3d8da086735b
+    content: 'Trivial — disagree (low probability): freeze a module-level empty `{}` to avoid allocation. The branch executes once per accept/undo on the user''s main thread; allocation cost is unmeasurable. Reviewer offered this as ''minor'', appropriately low. Rejected'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8cdb7ad7-2297-4fd0-9275-17e02caa7d17:
+    id: 8cdb7ad7-2297-4fd0-9275-17e02caa7d17
+    content: 'Trivial — disagree (already covered): expand undo-preserves test to also assert `nodes`/`ancestorRegistry` restoration. Reviewer self-tagged confidence 60. The ''should undo and restore original node and descendants'' / ''should restore ancestor registry for the collaborating node after undo'' tests in the same file already pin those exact properties; duplicating them in the ownership test would couple two unrelated assertions. Rejected'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  06c0828d-caee-464a-a0ce-4ad145f0ba2c:
+    id: 06c0828d-caee-464a-a0ce-4ad145f0ba2c
+    content: 'Possible exaggeration: reviewer''s looser-typing nit on `collaborationClearIfOwned`''s return type is a mismatch in spirit only — the values returned (`null` literals) satisfy `string | null` / `''browser'' | ''terminal'' | null` exactly, so there is no real type laxity. Treated as informational, no action'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f474382e-1f5e-4f1c-bc51-efd2a2017918:
+    id: f474382e-1f5e-4f1c-bc51-efd2a2017918
+    content: 'Net: one real find (the title-only `it()` flagged) plus four low-confidence/taste items the reviewer correctly self-deprioritised'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5ad20f33-ae03-46a3-a493-3f6a2fffb389:
+    id: 5ad20f33-ae03-46a3-a493-3f6a2fffb389
+    content: 'Documentation: no changes needed'
+    children:
+      - d5b1c46f-079f-49e5-8947-9345e4a5cf25
+      - 9528d743-b703-497a-ab1d-6dd248210bd0
+      - 4262a8ae-5346-40d4-8bf6-56ec6ba92404
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  d5b1c46f-079f-49e5-8947-9345e4a5cf25:
+    id: d5b1c46f-079f-49e5-8947-9345e4a5cf25
+    content: 'Changelog: skipped per project rule "Don''t add a line to the changelog for a bug fix to a feature that was implemented after the last release". The `Auto-accept for autonomous collaborate steps` feature this bug touches is in `## Unreleased` — the bug never shipped to a released version'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  9528d743-b703-497a-ab1d-6dd248210bd0:
+    id: 9528d743-b703-497a-ab1d-6dd248210bd0
+    content: 'docs/ pages: no entry needed. Concurrent manual + autonomous collaborations across nodes is the implicit, expected behaviour; the fix only removes a regression. Per the project doc rule "If it''s implicit or discoverable and non-blocking, no need to mention it"'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  4262a8ae-5346-40d4-8bf6-56ec6ba92404:
+    id: 4262a8ae-5346-40d4-8bf6-56ec6ba92404
+    content: Verified no stale doc text references the bug as a known limitation (grep on docs/ + README.md returned no matches)
+    children: []
+    metadata:
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
