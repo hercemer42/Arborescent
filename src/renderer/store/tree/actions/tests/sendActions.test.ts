@@ -1574,5 +1574,70 @@ describe('sendActions', () => {
     });
 
     it('clause is not added when applied context resolves to the bare-content path (no instruction wrapper)');
+
+    describe('conditional phrasing for the precondition', () => {
+      const conditionalPreconditionRegex = /\bif\b[^.\n]{0,60}\bcheck/i;
+      const rationaleSubstring = 'Arborescent advances the workflow when this terminal returns to the prompt';
+      const oldImperativePrefix = '- Run any checks';
+
+      it('autonomous terminal execute prompt phrases the precondition conditionally, not imperatively', async () => {
+        const { executeInTerminal } = await import('../../../../services/terminalExecution');
+
+        await actions.autonomousCollaborateInTerminal('child1', 'terminal-1', { collaborate: false, execute: true });
+
+        const terminalContent = vi.mocked(executeInTerminal).mock.calls[0][1];
+        expect(terminalContent).toMatch(conditionalPreconditionRegex);
+        expect(terminalContent).not.toContain(oldImperativePrefix);
+      });
+
+      it('autonomous terminal both (collaborate + execute) prompt phrases the precondition conditionally, not imperatively', async () => {
+        const { executeInTerminal } = await import('../../../../services/terminalExecution');
+
+        await actions.autonomousCollaborateInTerminal('child1', 'terminal-1', { collaborate: true, execute: true });
+
+        const terminalContent = vi.mocked(executeInTerminal).mock.calls[0][1];
+        expect(terminalContent).toMatch(conditionalPreconditionRegex);
+        expect(terminalContent).not.toContain(oldImperativePrefix);
+      });
+
+      it('autonomous terminal execute prompt preserves the workflow-advancement rationale verbatim', async () => {
+        const { executeInTerminal } = await import('../../../../services/terminalExecution');
+
+        await actions.autonomousCollaborateInTerminal('child1', 'terminal-1', { collaborate: false, execute: true });
+
+        const terminalContent = vi.mocked(executeInTerminal).mock.calls[0][1];
+        expect(terminalContent).toContain(rationaleSubstring);
+      });
+
+      it('autonomous terminal both prompt preserves the workflow-advancement rationale verbatim', async () => {
+        const { executeInTerminal } = await import('../../../../services/terminalExecution');
+
+        await actions.autonomousCollaborateInTerminal('child1', 'terminal-1', { collaborate: true, execute: true });
+
+        const terminalContent = vi.mocked(executeInTerminal).mock.calls[0][1];
+        expect(terminalContent).toContain(rationaleSubstring);
+      });
+
+      it('keeps the no-background rule as a non-conditional execution constraint, not softened by the precondition split', async () => {
+        const { executeInTerminal } = await import('../../../../services/terminalExecution');
+
+        await actions.autonomousCollaborateInTerminal('child1', 'terminal-1', { collaborate: false, execute: true });
+
+        const terminalContent = vi.mocked(executeInTerminal).mock.calls[0][1];
+        const noBackgroundBullet = terminalContent.split('\n').find((line: string) => /background/i.test(line));
+        expect(noBackgroundBullet).toBeDefined();
+        expect(noBackgroundBullet).toMatch(/^- Do not background\b/i);
+        expect(noBackgroundBullet).not.toMatch(/\bif\b/i);
+      });
+
+      it('splits the conditional precondition from the execution constraint into distinct rules', async () => {
+        const { executeInTerminal } = await import('../../../../services/terminalExecution');
+
+        await actions.autonomousCollaborateInTerminal('child1', 'terminal-1', { collaborate: false, execute: true });
+
+        const terminalContent = vi.mocked(executeInTerminal).mock.calls[0][1];
+        expect(terminalContent).toMatch(/\n- If you need to run[^\n]*\n- Do not background/i);
+      });
+    });
   });
 });

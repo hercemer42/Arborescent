@@ -44,7 +44,7 @@ const DEFAULT_REVIEW_CONTEXT = `You are reviewing a hierarchical task list. Plea
 
 `;
 
-const AUTONOMOUS_INLINE_CHECKS_CLAUSE = '- Run any checks (build, tests, lint, type-check) and other long-running commands inline in this terminal session; do not background them with `&` or watch them via poll loops — Arborescent advances the workflow when this terminal returns to the prompt.';
+const AUTONOMOUS_INLINE_CHECKS_CLAUSE = '- If you need to run checks (build, tests, lint, type-check) or other long-running commands, run them inline in this terminal session.\n- Do not background them with `&` or watch them via poll loops — Arborescent advances the workflow when this terminal returns to the prompt.';
 
 export type ContentSource = 'clipboard' | 'file' | 'restore';
 
