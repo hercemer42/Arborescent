@@ -74,9 +74,9 @@ These two options combine naturally. Enable decomposition on an earlier step to 
 
 ## Running a Workflow
 
-Place an item inside an autonomous workflow step, then right-click → **Start Workflow** (requires a terminal tab open). The item's content is sent to the terminal and the workflow begins executing through the autonomous chain.
+Place an item inside an autonomous or checkpoint workflow step, then right-click → **Start Workflow** (requires a terminal tab open). The item's content is sent to the terminal and the workflow begins executing.
 
-**Start Workflow** is only available on autonomous steps — for manual and checkpoint steps, use **Send** to send content to the terminal directly.
+**Start Workflow** is not available on manual steps — use **Send** to send content to the terminal directly.
 
 What happens at each step depends on its type:
 
