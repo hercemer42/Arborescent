@@ -102,6 +102,34 @@
   opacity: 0.5;
 }
 
+.tree-node-wrapper.feedback-changekind-modified {
+  background-color: rgba(33, 150, 243, 0.18);
+  transition: background-color 200ms ease;
+}
+
+.tree-node-wrapper.feedback-changekind-added {
+  background-color: rgba(76, 175, 80, 0.18);
+  transition: background-color 200ms ease;
+}
+
+.tree-node-wrapper.feedback-changekind-removed {
+  background-color: rgba(244, 67, 54, 0.18);
+  transition: background-color 200ms ease;
+}
+
+.tree-node-wrapper.feedback-changekind-removed .node-content {
+  text-decoration: line-through;
+  opacity: 0.7;
+}
+
+.tree-node-wrapper.feedback-changekind-modified.selected,
+.tree-node-wrapper.feedback-changekind-added.selected,
+.tree-node-wrapper.feedback-changekind-removed.selected {
+  border-top: 1px solid var(--white);
+  border-bottom: 1px solid var(--white);
+  outline: 1px solid var(--white);
+}
+
 .tree-node-wrapper.flashing-light .node-content {
   animation: flash-light 0.5s ease-out;
 }

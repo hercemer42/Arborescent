@@ -1,4 +1,5 @@
 import { memo } from 'react';
+import type { TreeNode as TreeNodeType } from '../../../shared/types';
 import { NodeContent } from '../NodeContent';
 import { NodeGutter } from '../NodeGutter/NodeGutter';
 import { useStore } from '../../store/tree/useStore';
@@ -14,6 +15,21 @@ import './TreeNode.css';
 interface TreeNodeProps {
   nodeId: string;
   depth?: number;
+}
+
+function computeFeedbackChangeKindClass(node: TreeNodeType | undefined): string | undefined {
+  const baseline = node?.metadata.feedbackBaselineKind;
+  if (!baseline) return undefined;
+
+  if (baseline === 'added') return 'feedback-changekind-added';
+  if (baseline === 'removed') return 'feedback-changekind-removed';
+
+  const priorContent = node?.metadata.feedbackPriorContent;
+  if (priorContent === undefined) {
+    return baseline === 'modified' ? 'feedback-changekind-modified' : undefined;
+  }
+
+  return node && node.content === priorContent ? undefined : 'feedback-changekind-modified';
 }
 
 export const TreeNode = memo(function TreeNode({ nodeId, depth = 0 }: TreeNodeProps) {
@@ -50,6 +66,8 @@ export const TreeNode = memo(function TreeNode({ nodeId, depth = 0 }: TreeNodePr
     return null;
   }
 
+  const feedbackChangeKindClass = computeFeedbackChangeKindClass(node);
+
   const classNames = [
     'tree-node-wrapper',
     isSelected && 'selected',
@@ -63,6 +81,7 @@ export const TreeNode = memo(function TreeNode({ nodeId, depth = 0 }: TreeNodePr
     isOver && dropPosition && `drop-${dropPosition}`,
     flashIntensity && `flashing-${flashIntensity}`,
     isDeleting && 'deleting',
+    feedbackChangeKindClass,
   ].filter(Boolean).join(' ');
 
   return (

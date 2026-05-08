@@ -60,6 +60,8 @@ export interface NodeMetadata {
 
   // Feedback / collaboration
   feedbackTempFile?: string;
+  feedbackBaselineKind?: 'unchanged' | 'modified' | 'added' | 'removed';
+  feedbackPriorContent?: string;
 
   // Plugin + transient extension
   plugins?: Record<string, Record<string, unknown>>;

@@ -2,6 +2,7 @@ import { TreeNode } from '../../../shared/types';
 import { parseMarkdown } from '../../utils/markdown';
 import { wrapNodesWithHiddenRoot } from '../../utils/nodeHelpers';
 import { feedbackTreeStore } from '../../store/feedback/feedbackTreeStore';
+import { reconcileFeedback } from '../../store/feedback/reconcileFeedback';
 import { deleteFeedbackTempFile } from './feedbackTempFileService';
 import { logger } from '../logger';
 
@@ -41,16 +42,29 @@ export function parseFeedbackContent(content: string, decomposition: boolean = f
   };
 }
 
+export interface FeedbackReconcilePriorSubtree {
+  collaboratingNodeId: string;
+  priorNodes: Record<string, TreeNode>;
+  decomposition: boolean;
+}
+
 export function initializeFeedbackStore(
   filePath: string,
   parsedContent: ParsedFeedbackContent,
-  blueprintModeEnabled: boolean = false
+  blueprintModeEnabled: boolean = false,
+  priorSubtree?: FeedbackReconcilePriorSubtree
 ): void {
   const { nodes: nodesWithHiddenRoot, rootNodeId: hiddenRootId } = wrapNodesWithHiddenRoot(
     parsedContent.nodes,
     parsedContent.rootNodeIds,
     'feedback-root'
   );
+
+  const isMultiRoot = parsedContent.rootNodeIds.length > 1;
+  if (priorSubtree && !isMultiRoot) {
+    applyReconciliationMetadata(nodesWithHiddenRoot, parsedContent.rootNodeId, priorSubtree);
+  }
+
   feedbackTreeStore.initialize(filePath, nodesWithHiddenRoot, hiddenRootId);
 
   if (blueprintModeEnabled) {
@@ -61,6 +75,76 @@ export function initializeFeedbackStore(
   }
 
   logger.info(`Initialized feedback store with ${parsedContent.nodeCount} nodes`, 'FeedbackService');
+}
+
+function applyReconciliationMetadata(
+  nodes: Record<string, TreeNode>,
+  newRootNodeId: string,
+  priorSubtree: FeedbackReconcilePriorSubtree
+): void {
+  const view = reconcileFeedback({
+    priorRootId: priorSubtree.collaboratingNodeId,
+    priorNodes: priorSubtree.priorNodes,
+    newRootId: newRootNodeId,
+    newNodes: nodes,
+    mode: priorSubtree.decomposition ? 'decomposition' : 'feedback',
+  });
+
+  for (const [newId, resolvedId] of Object.entries(view.idMap)) {
+    const node = nodes[newId];
+    if (!node) continue;
+    const baseline = view.classifications[resolvedId];
+    if (!baseline) continue;
+    const priorContent = priorSubtree.priorNodes[resolvedId]?.content;
+    nodes[newId] = {
+      ...node,
+      metadata: {
+        ...node.metadata,
+        feedbackBaselineKind: baseline,
+        ...(priorContent !== undefined && { feedbackPriorContent: priorContent }),
+      },
+    };
+  }
+
+  injectRemovedPlaceholders(nodes, view);
+}
+
+function injectRemovedPlaceholders(
+  nodes: Record<string, TreeNode>,
+  view: ReturnType<typeof reconcileFeedback>
+): void {
+  if (view.removed.length === 0) return;
+
+  const reverseIdMap: Record<string, string> = {};
+  for (const [newId, priorId] of Object.entries(view.idMap)) {
+    reverseIdMap[priorId] = newId;
+  }
+
+  for (const removed of view.removed) {
+    const newParentId = reverseIdMap[removed.parentPriorId];
+    if (!newParentId) continue;
+    const newParent = nodes[newParentId];
+    if (!newParent) continue;
+
+    const placeholderId = `feedback-removed-${removed.priorId}`;
+    nodes[placeholderId] = {
+      id: placeholderId,
+      content: removed.node.content,
+      children: [],
+      metadata: {
+        feedbackBaselineKind: 'removed',
+        feedbackPriorContent: removed.node.content,
+      },
+    };
+
+    const updatedChildren = [...newParent.children];
+    const insertAt = Math.min(removed.index, updatedChildren.length);
+    updatedChildren.splice(insertAt, 0, placeholderId);
+    nodes[newParentId] = {
+      ...newParent,
+      children: updatedChildren,
+    };
+  }
 }
 
 export function extractFeedbackContent(
@@ -82,9 +166,32 @@ export function extractFeedbackContent(
 
   const rootNodeIds = hiddenRoot.children;
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { [feedbackRootNodeId]: _hiddenRoot, ...contentNodes } = feedbackNodes;
+  const { [feedbackRootNodeId]: _hiddenRoot, ...rest } = feedbackNodes;
+  const contentNodes = stripRemovedPlaceholderNodes(rest);
 
   return { rootNodeId: rootNodeIds[0], rootNodeIds, nodes: contentNodes };
+}
+
+function stripRemovedPlaceholderNodes(
+  nodes: Record<string, TreeNode>
+): Record<string, TreeNode> {
+  const placeholderIds = new Set<string>();
+  for (const [id, node] of Object.entries(nodes)) {
+    if (node.metadata.feedbackBaselineKind === 'removed') {
+      placeholderIds.add(id);
+    }
+  }
+  if (placeholderIds.size === 0) return nodes;
+
+  const result: Record<string, TreeNode> = {};
+  for (const [id, node] of Object.entries(nodes)) {
+    if (placeholderIds.has(id)) continue;
+    const filteredChildren = node.children.filter((childId) => !placeholderIds.has(childId));
+    result[id] = filteredChildren.length === node.children.length
+      ? node
+      : { ...node, children: filteredChildren };
+  }
+  return result;
 }
 
 export async function stopFeedbackMonitors(): Promise<void> {

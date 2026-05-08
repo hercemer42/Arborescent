@@ -26,6 +26,7 @@ import {
   ParsedFeedbackContent,
 } from '../../../services/feedback/feedbackService';
 import { feedbackTreeStore } from '../../feedback/feedbackTreeStore';
+import { reconcileFeedback } from '../../feedback/reconcileFeedback';
 import { isDecompositionEnabled, getArchiveConfigForNode } from '../../../utils/workflowHelpers';
 
 export const DEFAULT_EXECUTE_CONTEXT = `You are executing a coding task. Please:
@@ -353,17 +354,25 @@ export function createSendActions(
 
     acceptFeedback: (newRootNodeId: string, newNodesMap: Record<string, TreeNode>) => {
       const state = get() as TreeState & { actions?: { executeCommand?: (cmd: unknown) => void } };
-      const { collaboratingNodeId } = state;
+      const { collaboratingNodeId, nodes } = state;
 
-      if (!collaboratingNodeId || !state.nodes[collaboratingNodeId]) return;
+      if (!collaboratingNodeId || !nodes[collaboratingNodeId]) return;
 
       if (!state.actions?.executeCommand) {
         logger.error('executeCommand not available', new Error('Cannot accept feedback without command system'), 'SendActions');
         return;
       }
 
+      const reconciled = reconcileFeedback({
+        priorRootId: collaboratingNodeId,
+        priorNodes: nodes,
+        newRootId: newRootNodeId,
+        newNodes: newNodesMap,
+        mode: 'feedback',
+      });
+
       state.actions.executeCommand(
-        new AcceptFeedbackCommand(collaboratingNodeId, newRootNodeId, newNodesMap, get, set, autoSave)
+        new AcceptFeedbackCommand(collaboratingNodeId, newRootNodeId, newNodesMap, get, set, autoSave, undefined, reconciled.idMap)
       );
     },
 
@@ -643,7 +652,11 @@ export function createSendActions(
       }
 
       // Initialize feedback store (pass blueprintModeEnabled so new nodes also get blueprint metadata)
-      initializeFeedbackStore(currentFilePath, parsedContent, blueprintModeEnabled);
+      initializeFeedbackStore(currentFilePath, parsedContent, blueprintModeEnabled, {
+        collaboratingNodeId,
+        priorNodes: nodes,
+        decomposition,
+      });
       usePanelStore.getState().showFeedbackForFile(currentFilePath);
 
       // Stop clipboard monitor - we have content now
@@ -736,8 +749,19 @@ export function createSendActions(
           return;
         }
 
+        const isMultiRoot = Array.isArray(rootNodeIdOrIds);
+        const precomputedIdMap = isMultiRoot
+          ? undefined
+          : reconcileFeedback({
+              priorRootId: collaboratingNodeId,
+              priorNodes: currentNodes,
+              newRootId: rootNodeIdOrIds,
+              newNodes: feedbackContent.nodes,
+              mode: decomposition ? 'decomposition' : 'feedback',
+            }).idMap;
+
         stateWithActions.actions.executeCommand(
-          new AcceptFeedbackCommand(collaboratingNodeId, rootNodeIdOrIds, feedbackContent.nodes, get, set, autoSave, archiveConfig)
+          new AcceptFeedbackCommand(collaboratingNodeId, rootNodeIdOrIds, feedbackContent.nodes, get, set, autoSave, archiveConfig, precomputedIdMap)
         );
 
         const stateWithRegistry = get() as TreeState & { actions?: { unregisterCollaboration?: (nodeId: string) => void } };

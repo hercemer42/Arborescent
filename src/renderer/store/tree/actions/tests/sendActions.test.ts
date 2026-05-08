@@ -268,13 +268,12 @@ describe('sendActions', () => {
       // Original ID is preserved, content is updated
       expect(setCall.nodes!['child1'].content).toBe('Updated Child 1');
       expect(setCall.nodes!['child1'].id).toBe('child1');
-      // Descendant IDs are regenerated (not the original 'new-grandchild1')
+      // Descendant IDs are inherited from prior counterparts when matched by relative position
       expect(setCall.nodes!['child1'].children).toHaveLength(1);
       const grandchildId = setCall.nodes!['child1'].children[0];
       expect(grandchildId).not.toBe('new-grandchild1');
+      expect(grandchildId).toBe('grandchild1');
       expect(setCall.nodes![grandchildId].content).toBe('Updated Grandchild 1');
-      // Old descendants are removed
-      expect(setCall.nodes!['grandchild1']).toBeUndefined();
     });
 
     it('should preserve parent children since ID is retained', () => {
@@ -322,11 +321,10 @@ describe('sendActions', () => {
       const setCall = mockSet.mock.calls[0][0] as Partial<TreeState>;
       // Original node keeps its registry entry
       expect(setCall.ancestorRegistry!['child1']).toEqual(['root']);
-      // Descendant IDs are regenerated — look up by traversing the tree
+      // Descendant IDs are inherited from prior counterparts when matched by relative position
       const grandchildId = setCall.nodes!['child1'].children[0];
-      expect(setCall.ancestorRegistry![grandchildId]).toEqual(['root', 'child1']);
-      // Old descendants are removed
-      expect(setCall.ancestorRegistry!['grandchild1']).toBeUndefined();
+      expect(grandchildId).toBe('grandchild1');
+      expect(setCall.ancestorRegistry!['grandchild1']).toEqual(['root', 'child1']);
     });
 
     it('should preserve root node ID when collaborating on root', () => {
@@ -1419,7 +1417,8 @@ describe('sendActions', () => {
               }),
             }),
           }),
-          true
+          true,
+          expect.anything()
         );
       });
 
@@ -1443,7 +1442,8 @@ describe('sendActions', () => {
               }),
             }),
           }),
-          true
+          true,
+          expect.anything()
         );
       });
 
@@ -1464,7 +1464,8 @@ describe('sendActions', () => {
               }),
             }),
           }),
-          true
+          true,
+          expect.anything()
         );
       });
 
@@ -1482,7 +1483,8 @@ describe('sendActions', () => {
               }),
             }),
           }),
-          false
+          false,
+          expect.anything()
         );
       });
     });

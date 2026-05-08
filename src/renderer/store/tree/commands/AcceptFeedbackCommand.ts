@@ -50,7 +50,8 @@ export class AcceptFeedbackCommand extends BaseCommand {
       activeNodeId?: string | null;
     }) => void,
     private triggerAutosave?: () => void,
-    private archiveConfig?: ArchiveConfig
+    private archiveConfig?: ArchiveConfig,
+    private precomputedIdMap?: Record<string, string>
   ) {
     super();
     this.newRootNodeIds = Array.isArray(newRootNodeIdOrIds) ? newRootNodeIdOrIds : [newRootNodeIdOrIds];
@@ -88,7 +89,7 @@ export class AcceptFeedbackCommand extends BaseCommand {
   private getIdMap(preserveRootId: boolean): Record<string, string> {
     if (this.cachedIdMap) return this.cachedIdMap;
 
-    const idMap: Record<string, string> = {};
+    const idMap: Record<string, string> = this.precomputedIdMap ? { ...this.precomputedIdMap } : {};
     if (preserveRootId) {
       idMap[this.newRootNodeIds[0]] = this.collaboratingNodeId;
     }

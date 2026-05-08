@@ -258,6 +258,87 @@ describe('feedbackService', () => {
         'hidden-root'
       );
     });
+
+    it('injects a removed-node placeholder for prior children that disappear from the proposed subtree', async () => {
+      const { wrapNodesWithHiddenRoot } = await import('../../../utils/nodeHelpers');
+      vi.mocked(wrapNodesWithHiddenRoot).mockReturnValue({
+        nodes: {
+          'hidden-root': { id: 'hidden-root', content: '', children: ['new-parent'], metadata: {} },
+          'new-parent': { id: 'new-parent', content: 'Parent', children: ['kept'], metadata: {} },
+          'kept': { id: 'kept', content: 'Kept child', children: [], metadata: {} },
+        },
+        rootNodeId: 'hidden-root',
+      });
+
+      const parsedContent = {
+        nodes: {
+          'new-parent': { id: 'new-parent', content: 'Parent', children: ['kept'], metadata: {} },
+          'kept': { id: 'kept', content: 'Kept child', children: [], metadata: {} },
+        },
+        rootNodeId: 'new-parent',
+        rootNodeIds: ['new-parent'],
+        nodeCount: 2,
+      };
+
+      const priorNodes: Record<string, TreeNode> = {
+        'collab': { id: 'collab', content: 'Parent', children: ['prior-kept', 'prior-removed'], metadata: {} },
+        'prior-kept': { id: 'prior-kept', content: 'Kept child', children: [], metadata: {} },
+        'prior-removed': { id: 'prior-removed', content: 'Removed child', children: [], metadata: {} },
+      };
+
+      initializeFeedbackStore('/test/file.arbo', parsedContent, false, {
+        collaboratingNodeId: 'collab',
+        priorNodes,
+        decomposition: false,
+      });
+
+      const callArgs = mockFeedbackTreeStore.initialize.mock.calls[0];
+      const passedNodes = callArgs[1] as Record<string, TreeNode>;
+
+      const placeholderId = 'feedback-removed-prior-removed';
+      expect(passedNodes[placeholderId]).toBeDefined();
+      expect(passedNodes[placeholderId].metadata.feedbackBaselineKind).toBe('removed');
+      expect(passedNodes[placeholderId].content).toBe('Removed child');
+      expect(passedNodes['new-parent'].children).toContain(placeholderId);
+      expect(passedNodes['new-parent'].children).toContain('kept');
+      expect(passedNodes['kept'].metadata.feedbackBaselineKind).toBe('unchanged');
+    });
+
+    it('does not inject placeholders in decomposition mode', async () => {
+      const { wrapNodesWithHiddenRoot } = await import('../../../utils/nodeHelpers');
+      vi.mocked(wrapNodesWithHiddenRoot).mockReturnValue({
+        nodes: {
+          'hidden-root': { id: 'hidden-root', content: '', children: ['new-root'], metadata: {} },
+          'new-root': { id: 'new-root', content: 'Root', children: [], metadata: {} },
+        },
+        rootNodeId: 'hidden-root',
+      });
+
+      const parsedContent = {
+        nodes: {
+          'new-root': { id: 'new-root', content: 'Root', children: [], metadata: {} },
+        },
+        rootNodeId: 'new-root',
+        rootNodeIds: ['new-root'],
+        nodeCount: 1,
+      };
+
+      const priorNodes: Record<string, TreeNode> = {
+        'collab': { id: 'collab', content: 'Root', children: ['prior-removed'], metadata: {} },
+        'prior-removed': { id: 'prior-removed', content: 'Will be discarded', children: [], metadata: {} },
+      };
+
+      initializeFeedbackStore('/test/file.arbo', parsedContent, false, {
+        collaboratingNodeId: 'collab',
+        priorNodes,
+        decomposition: true,
+      });
+
+      const callArgs = mockFeedbackTreeStore.initialize.mock.calls[0];
+      const passedNodes = callArgs[1] as Record<string, TreeNode>;
+      const hasPlaceholder = Object.keys(passedNodes).some((id) => id.startsWith('feedback-removed-'));
+      expect(hasPlaceholder).toBe(false);
+    });
   });
 
   describe('findCollaboratingNode', () => {
@@ -323,6 +404,36 @@ describe('feedbackService', () => {
           'child1': { id: 'child1', children: [], content: 'Child', metadata: {} },
         },
       });
+    });
+
+    it('strips removed-node placeholders from extracted nodes and from parent children arrays', () => {
+      mockFeedbackTreeStore.getStoreForFile.mockReturnValue({
+        getState: () => ({
+          nodes: {
+            'feedback-root': { id: 'feedback-root', children: ['content-root'], content: '', metadata: {} },
+            'content-root': {
+              id: 'content-root',
+              children: ['feedback-removed-prior', 'kept'],
+              content: 'Content',
+              metadata: {},
+            },
+            'feedback-removed-prior': {
+              id: 'feedback-removed-prior',
+              children: [],
+              content: 'Was here',
+              metadata: { feedbackBaselineKind: 'removed' },
+            },
+            'kept': { id: 'kept', children: [], content: 'Kept', metadata: {} },
+          },
+          rootNodeId: 'feedback-root',
+        }),
+      });
+
+      const result = extractFeedbackContent('/test/file.arbo');
+      expect(result).not.toBeNull();
+      expect(result!.nodes['feedback-removed-prior']).toBeUndefined();
+      expect(result!.nodes['content-root'].children).toEqual(['kept']);
+      expect(result!.nodes['kept']).toBeDefined();
     });
 
     it('should extract multiple root nodes when hidden root has multiple children', () => {

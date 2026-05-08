@@ -89,6 +89,12 @@ export function applyBlueprintMetadata(
   return result;
 }
 
+function stripFeedbackReconcileMetadata(metadata: TreeNode['metadata']): TreeNode['metadata'] {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { feedbackBaselineKind, feedbackPriorContent, ...rest } = metadata;
+  return rest;
+}
+
 export const PRESERVED_METADATA_KEYS = [
   'appliedContextIds',
   'activeContextId',
@@ -128,19 +134,21 @@ export function executeSingleRootStrategy(input: StrategyInput): StrategyOutput 
   for (const [id, node] of Object.entries(newNodesMap)) {
     const newId = idMap[id];
     const remappedChildren = node.children.map((childId) => idMap[childId] || childId);
+    const sanitizedMetadata = stripFeedbackReconcileMetadata(node.metadata);
 
     if (id === newRootNodeId) {
       updatedNewNodesMap[newId] = {
         ...node,
         id: newId,
         children: remappedChildren,
-        metadata: { ...node.metadata, ...preservedMetadata },
+        metadata: { ...sanitizedMetadata, ...preservedMetadata },
       };
     } else {
       updatedNewNodesMap[newId] = {
         ...node,
         id: newId,
         children: remappedChildren,
+        metadata: sanitizedMetadata,
       };
     }
   }
@@ -218,13 +226,14 @@ export function executeMultiRootStrategy(input: StrategyInput): StrategyOutput {
     const newId = idMap[id];
     const remappedChildren = node.children.map((childId) => idMap[childId] || childId);
     const isRoot = newRootIdSet.has(id);
+    const sanitizedMetadata = stripFeedbackReconcileMetadata(node.metadata);
 
     updatedNewNodesMap[newId] = {
       ...node,
       id: newId,
       children: remappedChildren,
-      ...(isRoot && { metadata: { ...node.metadata, ...preservedMetadata } }),
-      ...(!isRoot && { metadata: { ...node.metadata } }),
+      ...(isRoot && { metadata: { ...sanitizedMetadata, ...preservedMetadata } }),
+      ...(!isRoot && { metadata: sanitizedMetadata }),
     };
   }
 
