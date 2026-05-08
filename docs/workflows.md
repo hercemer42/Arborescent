@@ -58,19 +58,19 @@ Requires the SessionStart hook — see [Hook Setup](#hook-setup).
 
 ## Recurse
 
-When a step produces multiple items — for example, decomposition turns one problem statement into five user stories — you typically want each of those items to continue through the remaining steps. Enable **Recurse** in the step configuration dialog to process them sequentially without manual intervention.
+When **decomposition** turns one item into many siblings — for example, a problem statement into five user stories — you typically want each of those items to continue through the remaining steps. Enable **Recurse** in the step configuration dialog to process them sequentially without manual intervention.
 
-When a node advances past or completes a recurse-enabled step, the system looks back through the autonomous step chain to find the first autonomous step, then picks up the next waiting item there and starts it on the same terminal. Items are processed in order (first child first). This repeats until no waiting items remain.
+After a node completes a recurse-enabled step, the system finds the next waiting sibling under the decomposition step that produced this batch and starts it on the same terminal. Siblings are processed in order (first child first), repeating until every one has been handled.
 
-Recurse only walks back through contiguous autonomous steps. If the chain hits a checkpoint or manual step, recursion stops there — you continue manually at that point.
+Recurse only processes decomposed siblings. Set recurse on a workflow that has no decomposition step and nothing happens — a warning toast tells you to pair recurse with decomposition somewhere in the workflow. The step settings dialog flags the dependency in the description text under each option.
 
-Stopping the workflow mid-recurse leaves all unprocessed items in their current steps. Nothing is lost. You can start them individually later or re-enable recurse and start again.
+Stopping the workflow mid-recurse leaves all unprocessed siblings in their current steps. Nothing is lost. You can start them individually later or restart the workflow.
 
 A safety limit of 50 sequential recurse iterations per terminal prevents runaway loops. If reached, recursion stops and a warning appears.
 
 ### Decomposition + Recurse
 
-These two options combine naturally. Enable decomposition on an earlier step to break one item into many, then enable recurse on a later step to process them all sequentially. For example: step 1 decomposes a problem into user stories, step 2 processes each user story through an implementation workflow — all automatically.
+These two options work together. Enable decomposition on an earlier step to split one item into many, then enable recurse on a later step to process them all. Step 1 decomposes a problem into user stories, step 2 processes each user story through an implementation workflow — all automatically. Recurse without decomposition is a misconfiguration; decomposition without recurse just produces siblings you start manually.
 
 ## Running a Workflow
 

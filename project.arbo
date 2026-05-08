@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-05-08T17:35:45.463Z'
+updated: '2026-05-08T17:41:08.245Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -5477,6 +5477,9 @@ nodes:
     id: 9a8f1538-7eb7-4e2d-9e0f-46e2c00675f4
     content: Technical
     children:
+      - e86d6ea9-ca79-4230-93b3-624180c9f973
+      - 1b6fadcf-809d-4992-85f4-55a4c51accc8
+      - a1d2cc92-2ce2-4a84-a8b0-49fbe06382df
       - e9deb148-5fe4-4a5c-ab6e-9f4c1f232f72
       - 03a24994-0c6d-4b4a-b9ee-fa96d2de8d03
       - 64ec6c6b-566e-4956-bff9-55ac881f4fdb
@@ -8732,8 +8735,6 @@ nodes:
     id: 79b693ca-27ce-4410-8617-8092d7e81b07
     content: Issues
     children:
-      - 6b949aa9-f0c5-4454-ab90-f52dbba40ac4
-      - ce455a0f-2686-475a-b913-cacdd502f808
       - 5cc686fc-7651-4d83-9ccf-78a29d1dff13
       - e9d700c8-784f-4b3f-9099-7be9ab864158
     metadata:
@@ -17051,7 +17052,7 @@ nodes:
       isBlueprint: true
       blueprintIcon: MessageCircle
       blueprintColor: '#a855f7'
-      expanded: true
+      expanded: false
   e7c804ef-54bc-4c6c-b783-c39357069ae0:
     id: e7c804ef-54bc-4c6c-b783-c39357069ae0
     content: 'Clean up the comments made since last commit to be sure they match the following conventions :'
@@ -23668,7 +23669,9 @@ nodes:
   00714a63-f267-4ab1-a285-73ae4198eb42:
     id: 00714a63-f267-4ab1-a285-73ae4198eb42
     content: Technical refinement
-    children: []
+    children:
+      - ce455a0f-2686-475a-b913-cacdd502f808
+      - 6b949aa9-f0c5-4454-ab90-f52dbba40ac4
     metadata:
       status: pending
       isBlueprint: true
@@ -25628,13 +25631,14 @@ nodes:
       - 8d28e3e5-89a8-4f1a-b517-35491070acbe
       - 56fd66dd-6262-46aa-a2f6-9ffb5e0fe637
       - d92d0ad5-f985-4084-af05-ccc8894d82be
+      - cf8c48b5-531b-4898-93a6-f9aef3c51076
     metadata:
       status: pending
       isBlueprint: true
       blueprintIcon: BookA
       blueprintColor: '#1074a2'
       appliedContextId: 0058432d-a010-473b-a707-ace2b1dee169
-      expanded: true
+      expanded: false
       stepType: checkpoint
       recurse: false
   9f4cb1c1-95ba-4523-9b59-86d02c56a0ed:
@@ -71092,7 +71096,7 @@ nodes:
       - 3c920ee5-223f-4f5b-bbfd-b004ff0475fa
     metadata:
       status: pending
-      expanded: true
+      expanded: false
   4f4b72e7-b0ae-43ce-bd54-23c1e180f3e1:
     id: 4f4b72e7-b0ae-43ce-bd54-23c1e180f3e1
     content: Easier to swop between them
@@ -83097,8 +83101,7 @@ nodes:
   ddd90208-5752-46cf-b72a-5fcbe040b2e0:
     id: ddd90208-5752-46cf-b72a-5fcbe040b2e0
     content: Merge to master
-    children:
-      - cf8c48b5-531b-4898-93a6-f9aef3c51076
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -84715,7 +84718,7 @@ nodes:
       blueprintIcon: BrickWall
       blueprintColor: '#c47f09'
       isContextDeclaration: false
-      expanded: true
+      expanded: false
   64ff36d6-ef8d-4864-b871-c47d7f23b563:
     id: 64ff36d6-ef8d-4864-b871-c47d7f23b563
     content: Build arborescent
@@ -90591,7 +90594,6 @@ nodes:
     id: a3dc1418-84c1-4d99-9d17-f658480f6517
     content: For release
     children:
-      - a19255be-6b10-4b8d-9ecf-d38bffb96867
       - f7efa32d-b771-44a9-95ef-68c80dae4726
     metadata:
       status: pending
@@ -91022,12 +91024,6 @@ nodes:
     children: []
     metadata:
       status: pending
-  a19255be-6b10-4b8d-9ecf-d38bffb96867:
-    id: a19255be-6b10-4b8d-9ecf-d38bffb96867
-    content: If we copy/paste one node, we shouldn't paste the markdown, just the content
-    children: []
-    metadata:
-      status: pending
   5be104d5-a421-4f46-80c6-26f1ff8c634e:
     id: 5be104d5-a421-4f46-80c6-26f1ff8c634e
     content: In which case, think of making it mac native
@@ -91381,7 +91377,7 @@ nodes:
       status: pending
   ce455a0f-2686-475a-b913-cacdd502f808:
     id: ce455a0f-2686-475a-b913-cacdd502f808
-    content: When we come back to a terminal
+    content: 'Bug : When we come back to a terminal'
     children:
       - 18c06403-c47f-4bb0-966b-9f2e6de44fb6
       - 28633259-c108-4d35-baea-6f2bd0c5e7c2
@@ -91429,8 +91425,9 @@ nodes:
       status: pending
   6b949aa9-f0c5-4454-ab90-f52dbba40ac4:
     id: 6b949aa9-f0c5-4454-ab90-f52dbba40ac4
-    content: Instruction needs clarification
+    content: 'Bug : Instruction needs clarification'
     children:
+      - 3e25a037-da06-44df-87f2-3dce53f93855
       - b760abd7-44c8-4795-9ba1-f95e24784c9b
     metadata:
       status: pending
@@ -91440,11 +91437,12 @@ nodes:
     content: "\_Run any checks (build, tests, lint, type-check) and other long-running commands inline in this terminal\_\_ \_ \_session; do not background them with `&` or watch them via poll loops — Arborescent advances the\_ \_ \_ \_ \_\n\_ \_ workflow when this terminal returns to the prompt.\_ \_\_"
     children:
       - e5958255-d9cf-4730-8542-bc084887b581
+      - 7f7ab89f-9553-42c1-b69f-06f608901ddb
     metadata:
       status: pending
   e5958255-d9cf-4730-8542-bc084887b581:
     id: e5958255-d9cf-4730-8542-bc084887b581
-    content: Sounds like an instruction, but this is optional
+    content: It sounds like an instruction, but this is optional
     children: []
     metadata:
       status: pending
@@ -91466,10 +91464,10 @@ nodes:
     id: cf8c48b5-531b-4898-93a6-f9aef3c51076
     content: PR2 - Sequential play-forward of decomposed children, with recurse anchored to the decomposition point
     children:
-      - 9a35a683-67ab-49cd-9750-0898c8430bea
-      - f1ab3962-f4eb-4386-b4bb-0c3d79bae7f9
-      - b4fbe009-7b7c-461f-93a5-2daff5802f7d
-      - cee43822-a13a-4337-88fd-cfb3e300d501
+      - 1ab3cd33-cc45-4cf9-acf4-073a85b00ec5
+      - c6c442e8-6074-42b2-a997-2d2c78001d8e
+      - 11b9ca7b-182b-45c9-b579-eae208e2efe2
+      - 22d5dc50-70c4-48df-8946-313beb2a153e
     metadata:
       status: completed
       expanded: false
@@ -93662,1032 +93660,6 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  9a35a683-67ab-49cd-9750-0898c8430bea:
-    id: 9a35a683-67ab-49cd-9750-0898c8430bea
-    content: User story
-    children:
-      - e83af47b-0f0a-4c2a-ac04-3d455ce76305
-      - 33c660b8-6d99-4f9a-93a2-f981b520031f
-      - 80c59426-60d6-451c-b51c-a594fcb19133
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  e83af47b-0f0a-4c2a-ac04-3d455ce76305:
-    id: e83af47b-0f0a-4c2a-ac04-3d455ce76305
-    content: 📄 Product spec
-    children:
-      - c37719e6-db8b-40fd-805d-5067fb76a7f4
-      - 7b15b997-9f93-4612-adab-92e18030de8f
-      - dd87d694-2d3c-4a1b-9a5b-08272e0470e0
-      - 428ad4ba-c8cf-4394-98f8-662a4df27f89
-      - 657e780b-b53d-44f7-9b32-75d937226bdd
-      - c5df1bcd-6374-4f4b-aa35-d49092ee905d
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  c37719e6-db8b-40fd-805d-5067fb76a7f4:
-    id: c37719e6-db8b-40fd-805d-5067fb76a7f4
-    content: Context
-    children:
-      - f91c80a8-6c96-4e45-bb86-07c0b381b9d0
-      - 2cb7a885-b364-4fe2-8478-88f24d7c9237
-      - eb88c40d-7c14-40a1-8c76-1f4e2dc15da7
-      - 07b92fde-67ac-4fd7-860b-a060d8e1e0e2
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f91c80a8-6c96-4e45-bb86-07c0b381b9d0:
-    id: f91c80a8-6c96-4e45-bb86-07c0b381b9d0
-    content: 'Autonomous workflow steps can have `decomposition: true`, in which case the AI may return multiple root nodes that AcceptFeedbackCommand swaps into the tree as siblings under the same step container'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  2cb7a885-b364-4fe2-8478-88f24d7c9237:
-    id: 2cb7a885-b364-4fe2-8478-88f24d7c9237
-    content: Today only the original running node is handed to advanceNode, so freshly-created decomposed siblings are left in the step container with no execution state
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  eb88c40d-7c14-40a1-8c76-1f4e2dc15da7:
-    id: eb88c40d-7c14-40a1-8c76-1f4e2dc15da7
-    content: checkRecurse anchors on findFirstAutonomousStepInChain, which walks backwards to the start of the autonomous chain, so it can skip past siblings still waiting at the last decomposition step
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  07b92fde-67ac-4fd7-860b-a060d8e1e0e2:
-    id: 07b92fde-67ac-4fd7-860b-a060d8e1e0e2
-    content: 'Net result: decomposed siblings are silently orphaned and the workflow stalls until the user starts each one manually'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  7b15b997-9f93-4612-adab-92e18030de8f:
-    id: 7b15b997-9f93-4612-adab-92e18030de8f
-    content: User
-    children:
-      - 31ae358b-6401-4235-a285-c8e3ecbe0fd5
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  31ae358b-6401-4235-a285-c8e3ecbe0fd5:
-    id: 31ae358b-6401-4235-a285-c8e3ecbe0fd5
-    content: 'Brian, running an autonomous workflow that includes one or more steps with `decomposition: true`'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  dd87d694-2d3c-4a1b-9a5b-08272e0470e0:
-    id: dd87d694-2d3c-4a1b-9a5b-08272e0470e0
-    content: Current experience
-    children:
-      - 332f8262-8f02-4ee1-8584-c449c65dd845
-      - ec17e089-ac54-4c13-bb8a-725943f03b17
-      - b9cb061a-d12d-4688-a9e1-579439875ebd
-      - bc33cb3f-2295-480c-a6f7-2884d1cb024c
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  332f8262-8f02-4ee1-8584-c449c65dd845:
-    id: 332f8262-8f02-4ee1-8584-c449c65dd845
-    content: Step decomposes node N into N + X + Y as siblings under the step container
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ec17e089-ac54-4c13-bb8a-725943f03b17:
-    id: ec17e089-ac54-4c13-bb8a-725943f03b17
-    content: Only N advances to the next step; X and Y sit in the step container with no execution state
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  b9cb061a-d12d-4688-a9e1-579439875ebd:
-    id: b9cb061a-d12d-4688-a9e1-579439875ebd
-    content: checkRecurse fires on N's previous parent and finds either an unrelated waiting node earlier in the chain or nothing at all
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  bc33cb3f-2295-480c-a6f7-2884d1cb024c:
-    id: bc33cb3f-2295-480c-a6f7-2884d1cb024c
-    content: User has to manually start workflows on X and Y, defeating the point of an autonomous run
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  428ad4ba-c8cf-4394-98f8-662a4df27f89:
-    id: 428ad4ba-c8cf-4394-98f8-662a4df27f89
-    content: Goal
-    children:
-      - c8e6823a-966b-43fd-86f6-30f7ce2d7067
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  c8e6823a-966b-43fd-86f6-30f7ce2d7067:
-    id: c8e6823a-966b-43fd-86f6-30f7ce2d7067
-    content: After an autonomous step decomposes a node into siblings, the runner plays each decomposed sibling forward sequentially on the same terminal, and recurse processes the decomposed siblings until every one has been handled
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  657e780b-b53d-44f7-9b32-75d937226bdd:
-    id: 657e780b-b53d-44f7-9b32-75d937226bdd
-    content: Business rules
-    children:
-      - deeec928-f561-4ca5-a40d-77bb86d6f1f2
-      - 7ecb95bf-1f83-43ff-942e-231a12f9f571
-      - cea95f15-0a57-47f7-8800-364074bb55f8
-      - e27f677d-1c9e-47f4-a8d5-6bea8940d7e2
-      - fbdefb42-3d6d-4ace-9239-d5f84fa19f5d
-      - 41ffea41-8b19-48c4-98a2-2681a82022e4
-      - 0f0de9d5-ddb4-4443-8b69-11aa2bb3df0a
-      - 9b6e2321-f4ef-46f0-9234-12e15785d2ea
-      - a59fa551-6439-454c-b12a-b283b3858e36
-      - 63d85bb7-d96e-4a9d-9ef9-660f57e0a231
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  deeec928-f561-4ca5-a40d-77bb86d6f1f2:
-    id: deeec928-f561-4ca5-a40d-77bb86d6f1f2
-    content: 'When an autonomous step with `decomposition: true` produces N decomposed roots, every one of those roots must enter the workflow execution queue'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  7ecb95bf-1f83-43ff-942e-231a12f9f571:
-    id: 7ecb95bf-1f83-43ff-942e-231a12f9f571
-    content: Decomposed siblings execute sequentially on the same terminal, in the order returned by parseFeedbackContent (parsed.rootNodeIds)
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  cea95f15-0a57-47f7-8800-364074bb55f8:
-    id: cea95f15-0a57-47f7-8800-364074bb55f8
-    content: Recurse processes only the decomposed siblings of the current decomposition point — it does not walk back to earlier autonomous steps
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  e27f677d-1c9e-47f4-a8d5-6bea8940d7e2:
-    id: e27f677d-1c9e-47f4-a8d5-6bea8940d7e2
-    content: Once every decomposed sibling at a decomposition point has been processed the workflow stops; there is no fallback chain traversal
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  fbdefb42-3d6d-4ace-9239-d5f84fa19f5d:
-    id: fbdefb42-3d6d-4ace-9239-d5f84fa19f5d
-    content: 'Recursion is tied to decomposition: a recurse step that runs in a workflow with no decomposition step does nothing and surfaces a toast warning reading "Warning, you have recursion set without decomposition"'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  41ffea41-8b19-48c4-98a2-2681a82022e4:
-    id: 41ffea41-8b19-48c4-98a2-2681a82022e4
-    content: The workflow settings UI surfaces this dependency via light grey helper text beneath the decomposition and recursion options
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  0f0de9d5-ddb4-4443-8b69-11aa2bb3df0a:
-    id: 0f0de9d5-ddb4-4443-8b69-11aa2bb3df0a
-    content: The existing MAX_RECURSE_ITERATIONS cap continues to apply across the combined sibling sequence; hitting it stops the run with the same toast and notification
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  9b6e2321-f4ef-46f0-9234-12e15785d2ea:
-    id: 9b6e2321-f4ef-46f0-9234-12e15785d2ea
-    content: If a decomposition produces exactly one root, only that single element is processed
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  a59fa551-6439-454c-b12a-b283b3858e36:
-    id: a59fa551-6439-454c-b12a-b283b3858e36
-    content: 'If parseFeedbackContent fails for a decomposition response, today''s parse-failure handling stands: stop the workflow, surface the error toast, do not enqueue siblings'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  63d85bb7-d96e-4a9d-9ef9-660f57e0a231:
-    id: 63d85bb7-d96e-4a9d-9ef9-660f57e0a231
-    content: Manual steps (or checkpoints) interleaved in the chain still pause the sequence — a decomposed sibling whose next step is manual or a checkpoint must wait for the user, exactly like a non-decomposed node would
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  c5df1bcd-6374-4f4b-aa35-d49092ee905d:
-    id: c5df1bcd-6374-4f4b-aa35-d49092ee905d
-    content: Acceptance criteria
-    children:
-      - 3789a1e3-419f-4769-888e-d12c00dd120d
-      - 9f1a412b-099a-45fd-aa44-1867383c9300
-      - e23b543a-6686-4e04-84c0-f32ab92e3871
-      - 3bcf9125-0b9d-469c-b65e-b2d8729a58e5
-      - dd10b7b4-a4ab-4f53-b6c1-5682daf8eceb
-      - 850a6858-dfe6-495b-8665-dd2f1bdb9737
-      - 9bc552f8-cfe7-4c34-a27c-0dc3b284ad2e
-      - 714c5f5c-93da-4433-ab1d-398603eda1ec
-      - cbc8e919-1e8f-41ee-b0d4-b7d368fd01a1
-      - e87befc6-d16c-4e51-896e-d2cd172ba7be
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  3789a1e3-419f-4769-888e-d12c00dd120d:
-    id: 3789a1e3-419f-4769-888e-d12c00dd120d
-    content: An autonomous decomposition step that returns N>1 roots causes all N siblings to be processed in parsed.rootNodeIds order on the same terminal
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  9f1a412b-099a-45fd-aa44-1867383c9300:
-    id: 9f1a412b-099a-45fd-aa44-1867383c9300
-    content: After the last sibling at a decomposition point completes, the workflow stops — no chain traversal occurs
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  e23b543a-6686-4e04-84c0-f32ab92e3871:
-    id: e23b543a-6686-4e04-84c0-f32ab92e3871
-    content: While siblings remain at a decomposition point, checkRecurse selects from those siblings only
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  3bcf9125-0b9d-469c-b65e-b2d8729a58e5:
-    id: 3bcf9125-0b9d-469c-b65e-b2d8729a58e5
-    content: A decomposition that returns exactly one root processes only that single element
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  dd10b7b4-a4ab-4f53-b6c1-5682daf8eceb:
-    id: dd10b7b4-a4ab-4f53-b6c1-5682daf8eceb
-    content: A parse failure during a decomposition response stops the workflow, shows the existing error toast and notification, and does not enqueue any siblings
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  850a6858-dfe6-495b-8665-dd2f1bdb9737:
-    id: 850a6858-dfe6-495b-8665-dd2f1bdb9737
-    content: Hitting MAX_RECURSE_ITERATIONS mid-sequence stops the run with the existing limit toast and notification, leaving any unprocessed siblings in place
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  9bc552f8-cfe7-4c34-a27c-0dc3b284ad2e:
-    id: 9bc552f8-cfe7-4c34-a27c-0dc3b284ad2e
-    content: When a decomposed sibling's next step is manual or a checkpoint, the sequence pauses on that sibling exactly like a non-decomposed manual handoff
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  714c5f5c-93da-4433-ab1d-398603eda1ec:
-    id: 714c5f5c-93da-4433-ab1d-398603eda1ec
-    content: A workflow with a recurse step but no decomposition step performs no recursion and shows a toast warning reading "Warning, you have recursion set without decomposition"
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  cbc8e919-1e8f-41ee-b0d4-b7d368fd01a1:
-    id: cbc8e919-1e8f-41ee-b0d4-b7d368fd01a1
-    content: The workflow settings UI shows light grey helper text beneath the decomposition and recursion options describing their dependency
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  e87befc6-d16c-4e51-896e-d2cd172ba7be:
-    id: e87befc6-d16c-4e51-896e-d2cd172ba7be
-    content: The currently-running sibling is reflected in the workflow UI (toast + node flash) the same way single-node advancement is today
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  33c660b8-6d99-4f9a-93a2-f981b520031f:
-    id: 33c660b8-6d99-4f9a-93a2-f981b520031f
-    content: 🔧 Implementation proposal
-    children:
-      - e184ab9b-4daa-4aaf-bc7f-aebb8d1f01b4
-      - 5eca07d5-68ac-4c74-801e-55b057526277
-      - 239d3b17-d5e3-4595-8620-3676b79c3e21
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  e184ab9b-4daa-4aaf-bc7f-aebb8d1f01b4:
-    id: e184ab9b-4daa-4aaf-bc7f-aebb8d1f01b4
-    content: Approach
-    children:
-      - 1eb7186c-1f63-445e-9e14-7419c18e431a
-      - d2b7c0a0-c30b-4752-9428-1eb14cf7ad08
-      - e7bcd8ab-479c-4d46-9ce3-d0c0b9ca3744
-      - 680155da-c47f-45c0-a1cc-1724b29f1045
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  1eb7186c-1f63-445e-9e14-7419c18e431a:
-    id: 1eb7186c-1f63-445e-9e14-7419c18e431a
-    content: Inside handleAutonomousFeedback, when parsed.rootNodeIds.length > 1, register the sibling roots as the next-up sequence after AcceptFeedbackCommand runs
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  d2b7c0a0-c30b-4752-9428-1eb14cf7ad08:
-    id: d2b7c0a0-c30b-4752-9428-1eb14cf7ad08
-    content: Rewrite checkRecurse to look only for waiting decomposed siblings at the current step container; remove the chain-traversal fallback
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  e7bcd8ab-479c-4d46-9ce3-d0c0b9ca3744:
-    id: e7bcd8ab-479c-4d46-9ce3-d0c0b9ca3744
-    content: Add a recurse-without-decomposition guard that surfaces the warning toast when a recurse step runs in a workflow with no decomposition step
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  680155da-c47f-45c0-a1cc-1724b29f1045:
-    id: 680155da-c47f-45c0-a1cc-1724b29f1045
-    content: Add helper text in the workflow settings UI beneath the decomposition and recursion options describing the dependency
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  5eca07d5-68ac-4c74-801e-55b057526277:
-    id: 5eca07d5-68ac-4c74-801e-55b057526277
-    content: Touchpoints
-    children:
-      - d03bffc2-0dd6-413a-b3a9-97be4109295a
-      - 28234f68-8bdd-46b9-ba50-b7ac26aee755
-      - 2f3c50e2-43f1-4ebb-afbc-354d51d1643a
-      - 1316dd99-4612-4c74-be09-e686917f712f
-      - 99154f36-e2e7-4f29-aec5-e78473bffc6f
-      - a7c129cd-1390-41a1-a17c-29772b2ac752
-      - 34b38c56-6802-43c3-86a1-1b973d02db37
-      - c745ad48-c2a3-450c-8952-54a7fe053f2c
-      - 49ac9de1-d71e-4cf0-a570-65842c58b6d0
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  d03bffc2-0dd6-413a-b3a9-97be4109295a:
-    id: d03bffc2-0dd6-413a-b3a9-97be4109295a
-    content: src/renderer/store/tree/actions/workflowExecutionActions.ts — handleAutonomousFeedback (enqueue sibling roots after AcceptFeedbackCommand)
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  28234f68-8bdd-46b9-ba50-b7ac26aee755:
-    id: 28234f68-8bdd-46b9-ba50-b7ac26aee755
-    content: src/renderer/store/tree/actions/workflowExecutionActions.ts — checkRecurse (sibling-only lookup, no chain fallback, warning toast when recursion runs without decomposition)
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  2f3c50e2-43f1-4ebb-afbc-354d51d1643a:
-    id: 2f3c50e2-43f1-4ebb-afbc-354d51d1643a
-    content: src/renderer/store/tree/actions/workflowExecutionActions.ts — advanceNode (confirm the existing checkRecurse(previousParentId, …) call site still does the right thing)
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  1316dd99-4612-4c74-be09-e686917f712f:
-    id: 1316dd99-4612-4c74-be09-e686917f712f
-    content: src/renderer/utils/workflowHelpers.ts — add findNextDecomposedSibling(stepId, nodes, executionStates) that returns the next waiting child produced by a decomposition response
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  99154f36-e2e7-4f29-aec5-e78473bffc6f:
-    id: 99154f36-e2e7-4f29-aec5-e78473bffc6f
-    content: src/renderer/utils/workflowHelpers.ts — remove or stop using findFirstAutonomousStepInChain in the recurse path
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  a7c129cd-1390-41a1-a17c-29772b2ac752:
-    id: a7c129cd-1390-41a1-a17c-29772b2ac752
-    content: Workflow settings UI component — add light grey helper text beneath the decomposition and recursion options
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  34b38c56-6802-43c3-86a1-1b973d02db37:
-    id: 34b38c56-6802-43c3-86a1-1b973d02db37
-    content: Tests — extend src/renderer/store/tree/actions/tests/workflowAutoAccept.test.ts (and/or workflowContentPreservation.test.ts) with a multi-root decomposition that asserts sequential play-forward
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  c745ad48-c2a3-450c-8952-54a7fe053f2c:
-    id: c745ad48-c2a3-450c-8952-54a7fe053f2c
-    content: Tests — co-locate a unit test for the new sibling-finder helper next to workflowHelpers.ts
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  49ac9de1-d71e-4cf0-a570-65842c58b6d0:
-    id: 49ac9de1-d71e-4cf0-a570-65842c58b6d0
-    content: Tests — cover the MAX_RECURSE_ITERATIONS interaction, the parse-failure interaction, and the recurse-without-decomposition warning in the autonomous feedback tests
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  239d3b17-d5e3-4595-8620-3676b79c3e21:
-    id: 239d3b17-d5e3-4595-8620-3676b79c3e21
-    content: Constraints to call out
-    children:
-      - de0edefe-8920-4ba8-abc8-cba7e5c5b594
-      - 07bb2892-4ed7-4166-9b11-a9081ac6bd7f
-      - 1d639ac4-987a-4567-80b8-9c7d156af771
-      - 798342e4-11cc-4296-9133-65c7dc80c3c9
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  de0edefe-8920-4ba8-abc8-cba7e5c5b594:
-    id: de0edefe-8920-4ba8-abc8-cba7e5c5b594
-    content: checkRecurse currently uses setTimeout(…, 2000) as a UX pacing knob; sequential sibling starts must respect the same delay so the existing visual rhythm is preserved
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  07bb2892-4ed7-4166-9b11-a9081ac6bd7f:
-    id: 07bb2892-4ed7-4166-9b11-a9081ac6bd7f
-    content: feedbackCollaborations is keyed by nodeId — each sibling will get its own collaboration registration when its workflow starts, consistent with today's single-node behaviour
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  1d639ac4-987a-4567-80b8-9c7d156af771:
-    id: 1d639ac4-987a-4567-80b8-9c7d156af771
-    content: This story is strictly sequential; parallel execution across unrelated branches is explicitly out of scope and must not be built speculatively
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  798342e4-11cc-4296-9133-65c7dc80c3c9:
-    id: 798342e4-11cc-4296-9133-65c7dc80c3c9
-    content: 'Removing the chain-traversal fallback is a behaviour change: any existing autonomous-chain test in workflowExecution.test.ts that relied on recurse walking backwards must be updated or replaced'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  80c59426-60d6-451c-b51c-a594fcb19133:
-    id: 80c59426-60d6-451c-b51c-a594fcb19133
-    content: Technical refinement
-    children:
-      - ade99f4d-e8ee-4423-bdaf-f9fab366f09f
-      - 0cd7be1c-5264-497a-848e-7324fdc48ac4
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ade99f4d-e8ee-4423-bdaf-f9fab366f09f:
-    id: ade99f4d-e8ee-4423-bdaf-f9fab366f09f
-    content: Complications to resolve before implementation
-    children:
-      - a795d5c4-4e60-44c0-b845-e8b4eddf481c
-      - 2bf770db-c7cf-44df-bc98-ffcc5c264f59
-      - 9522f915-9f82-4cbe-bd9d-a56b8f1e3c1d
-      - 6173a471-3af7-4fd1-abf9-8ea28384a316
-      - abbb3650-300c-4338-9f8b-e55c53b59d02
-      - 7764b72e-b609-4627-ad84-fdc81a18ff0d
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  a795d5c4-4e60-44c0-b845-e8b4eddf481c:
-    id: a795d5c4-4e60-44c0-b845-e8b4eddf481c
-    content: 'Manual/checkpoint pause mid-sequence orphans later siblings — AC says "pause like a non-decomposed handoff", but a non-decomposed handoff stops the workflow. If X pauses on a manual step, no rule says Y must run after X is hand-resumed, so Y silently never starts. Add an explicit rule: resuming a paused sibling re-anchors recurse so the remaining siblings continue.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  2bf770db-c7cf-44df-bc98-ffcc5c264f59:
-    id: 2bf770db-c7cf-44df-bc98-ffcc5c264f59
-    content: Same-terminal sequencing races with advanceNode — N is advanced to its next step before checkRecurse picks X, so X (decomposition step) and N (next step) compete for the same terminal. Either X must wait until N's pipeline fully completes, or "sequential on the same terminal" needs a sharper definition. This is the highest-risk gap in the spec.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  9522f915-9f82-4cbe-bd9d-a56b8f1e3c1d:
-    id: 9522f915-9f82-4cbe-bd9d-a56b8f1e3c1d
-    content: Recurse-without-decomposition warning will fire repeatedly — checkRecurse runs per advance, so a workflow with recurse but no decomposition will toast the warning on every step. Needs a once-per-run guard and ideally a static check at workflow-start time.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  6173a471-3af7-4fd1-abf9-8ea28384a316:
-    id: 6173a471-3af7-4fd1-abf9-8ea28384a316
-    content: Existing `.arbo` files that relied on cross-chain recurse silently stop working — the warning toast covers visibility, but user content can be downgraded without the user noticing during a run that previously completed. Worth a one-shot migration notice or a startup-time scan.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  abbb3650-300c-4338-9f8b-e55c53b59d02:
-    id: abbb3650-300c-4338-9f8b-e55c53b59d02
-    content: completeWorkflow also calls checkRecurse with `position.currentStepId` (line 367) — the new sibling-only lookup must locate the originating decomposition step from any caller, not just from `previousParentId` at advanceNode-time. Anchor-selection is the bulk of the new helper, not traversal.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  7764b72e-b609-4627-ad84-fdc81a18ff0d:
-    id: 7764b72e-b609-4627-ad84-fdc81a18ff0d
-    content: 'Out of scope to state explicitly: nested decomposition (a sibling whose own pipeline contains another decomposition step) and any parallel-branch execution — both must not be built speculatively.'
-    children: []
-    metadata:
-      status: abandoned
-      expanded: true
-      deleted: false
-      plugins: {}
-  0cd7be1c-5264-497a-848e-7324fdc48ac4:
-    id: 0cd7be1c-5264-497a-848e-7324fdc48ac4
-    content: Approach summary
-    children:
-      - 0c76c5ff-f90c-4f2a-80cf-dede8e9c51d4
-      - c003c39b-730d-41ff-96d0-14a463b9d9e9
-      - 88446283-e678-4612-90a8-e2ce0849916b
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  0c76c5ff-f90c-4f2a-80cf-dede8e9c51d4:
-    id: 0c76c5ff-f90c-4f2a-80cf-dede8e9c51d4
-    content: All execution-layer changes land in workflowExecutionActions.ts + workflowHelpers.ts. AcceptFeedbackCommand already accepts `string | string[]` and handles multi-root tree-swap, so no command-layer change is needed — handleAutonomousFeedback already passes parsed.rootNodeIds when decomposition is on.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  c003c39b-730d-41ff-96d0-14a463b9d9e9:
-    id: c003c39b-730d-41ff-96d0-14a463b9d9e9
-    content: The new sibling-finder is essentially findNextWaitingNode applied to the decomposition step container — most of the work is picking the right anchor, not new traversal logic.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  88446283-e678-4612-90a8-e2ce0849916b:
-    id: 88446283-e678-4612-90a8-e2ce0849916b
-    content: 'Non-obvious for reviewers: this is a *behaviour deletion* (cross-chain recurse) presented as a feature addition. The warning toast + settings helper text exist precisely to cushion that deletion; without the deletion the rest of the change would be additive and low-risk.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  f1ab3962-f4eb-4386-b4bb-0c3d79bae7f9:
-    id: f1ab3962-f4eb-4386-b4bb-0c3d79bae7f9
-    content: PR scope — tighten recursion semantics + UX cushion
-    children:
-      - 575651d0-78ff-4ce5-a5ca-662604d6639d
-      - ed139697-29b0-4fd0-893b-79ef815f2533
-      - 0d5ed52a-27eb-4052-b326-8ee6ed646692
-      - 29aaf715-2f5a-43fd-acc0-3a96874c02d2
-      - 482c2c10-f46c-4523-9113-0347e360f9b0
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  575651d0-78ff-4ce5-a5ca-662604d6639d:
-    id: 575651d0-78ff-4ce5-a5ca-662604d6639d
-    content: Remove the chain-traversal fallback that PR1 left in place, lock recursion to decomposition only, and surface the new coupling to the user via a warning toast and settings helper text
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  ed139697-29b0-4fd0-893b-79ef815f2533:
-    id: ed139697-29b0-4fd0-893b-79ef815f2533
-    content: Touchpoints in scope
-    children:
-      - 8b3caf61-e30e-42ec-bf53-d20e17e08628
-      - 8b8896a1-c5c4-4c1d-9a83-c026e2320050
-      - 9b3fb48e-d75a-41b8-bfc8-8936d9208324
-      - 5704a616-8891-4352-91ba-23ef55f7be85
-      - fa916a0f-edd2-4c77-bf52-27e38ba4c9cf
-      - 0cdb5341-6027-48da-9c1b-c328fb992a3f
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  8b3caf61-e30e-42ec-bf53-d20e17e08628:
-    id: 8b3caf61-e30e-42ec-bf53-d20e17e08628
-    content: 'src/renderer/store/tree/actions/workflowExecutionActions.ts — checkRecurse: delete the chain-traversal fallback so it only looks at decomposed siblings'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  8b8896a1-c5c4-4c1d-9a83-c026e2320050:
-    id: 8b8896a1-c5c4-4c1d-9a83-c026e2320050
-    content: 'src/renderer/store/tree/actions/workflowExecutionActions.ts — checkRecurse: emit "Warning, you have recursion set without decomposition" when a recurse step runs in a workflow whose steps include no decomposition; gate behind a once-per-run guard so the toast does not repeat per-advance'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  9b3fb48e-d75a-41b8-bfc8-8936d9208324:
-    id: 9b3fb48e-d75a-41b8-bfc8-8936d9208324
-    content: src/renderer/utils/workflowHelpers.ts — remove or stop using findFirstAutonomousStepInChain in the recurse path
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  5704a616-8891-4352-91ba-23ef55f7be85:
-    id: 5704a616-8891-4352-91ba-23ef55f7be85
-    content: Workflow settings UI component (StepConfigDialog / StepOptionsSection) — add light grey helper text beneath the decomposition and recursion options describing their dependency
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  fa916a0f-edd2-4c77-bf52-27e38ba4c9cf:
-    id: fa916a0f-edd2-4c77-bf52-27e38ba4c9cf
-    content: Tests — update or replace the autonomous-chain tests in workflowExecution.test.ts that previously relied on cross-chain recurse
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  0cdb5341-6027-48da-9c1b-c328fb992a3f:
-    id: 0cdb5341-6027-48da-9c1b-c328fb992a3f
-    content: Tests — cover the recurse-without-decomposition warning, including its once-per-run behaviour
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  0d5ed52a-27eb-4052-b326-8ee6ed646692:
-    id: 0d5ed52a-27eb-4052-b326-8ee6ed646692
-    content: AC subset satisfied by this PR
-    children:
-      - 69cac4ff-7af7-43f2-a65f-53ded7797767
-      - e5acaf42-147b-4a1f-be59-68152517aa2a
-      - a40f0b5a-26dc-4eb2-bb37-84f873e32f86
-      - 3d8943f8-acc0-403c-8f28-2be2972a37be
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  69cac4ff-7af7-43f2-a65f-53ded7797767:
-    id: 69cac4ff-7af7-43f2-a65f-53ded7797767
-    content: After the last sibling at a decomposition point completes, the workflow stops — no chain traversal occurs
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  e5acaf42-147b-4a1f-be59-68152517aa2a:
-    id: e5acaf42-147b-4a1f-be59-68152517aa2a
-    content: While siblings remain at a decomposition point, checkRecurse selects from those siblings only
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  a40f0b5a-26dc-4eb2-bb37-84f873e32f86:
-    id: a40f0b5a-26dc-4eb2-bb37-84f873e32f86
-    content: A workflow with a recurse step but no decomposition step performs no recursion and shows the warning toast exactly once
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  3d8943f8-acc0-403c-8f28-2be2972a37be:
-    id: 3d8943f8-acc0-403c-8f28-2be2972a37be
-    content: The workflow settings UI shows light grey helper text beneath the decomposition and recursion options
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  29aaf715-2f5a-43fd-acc0-3a96874c02d2:
-    id: 29aaf715-2f5a-43fd-acc0-3a96874c02d2
-    content: Merge-order dependency — read before opening
-    children:
-      - b3fc6e37-e166-4fd3-ad63-a42537938888
-      - 89a6a6de-5a5e-4192-9517-9da60364cbe0
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  b3fc6e37-e166-4fd3-ad63-a42537938888:
-    id: b3fc6e37-e166-4fd3-ad63-a42537938888
-    content: PR2 must merge AFTER PR1. Merging PR2 first removes the chain-traversal fallback before PR1's sibling-preferred recurse exists, which would silently break any existing workflow that depends on recurse for non-decomposition chains.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  89a6a6de-5a5e-4192-9517-9da60364cbe0:
-    id: 89a6a6de-5a5e-4192-9517-9da60364cbe0
-    content: If sequential merge cannot be guaranteed, gate the chain-traversal removal behind a feature flag in this PR and remove the flag in a follow-up — flag this to the user before opening the PR.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  482c2c10-f46c-4523-9113-0347e360f9b0:
-    id: 482c2c10-f46c-4523-9113-0347e360f9b0
-    content: Note
-    children:
-      - 829ca89c-7ba3-43ec-99b8-59483db029b5
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  829ca89c-7ba3-43ec-99b8-59483db029b5:
-    id: 829ca89c-7ba3-43ec-99b8-59483db029b5
-    content: This is a subtask of the overall user story. Please implement only this subtask. The others will be implemented in a separate PR.
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  b4fbe009-7b7c-461f-93a5-2daff5802f7d:
-    id: b4fbe009-7b7c-461f-93a5-2daff5802f7d
-    content: Tests authored (TDD red)
-    children:
-      - 2cdce3a0-755d-404e-a947-aa285d1b4353
-      - 44da515e-7f29-4ab7-99c0-9174cfed35b6
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  2cdce3a0-755d-404e-a947-aa285d1b4353:
-    id: 2cdce3a0-755d-404e-a947-aa285d1b4353
-    content: '`src/renderer/store/tree/actions/tests/workflowExecutionActions.test.ts` — new describe block `recurse-without-decomposition warning (PR2)` with 3 bodied tests (warning fires when recurse step runs without any decomposition; warning fires at most once per workflow run across multiple advances on the same terminal; warning does NOT fire when a decomposition step is present anywhere in the workflow) plus 1 `it.todo` for the once-per-run reset on workflow restart. Plus a sibling describe `chain-traversal removal (PR2)` with 3 `it.todo` placeholders for the chain-traversal removal contract — left as todos because bodying them would directly contradict the existing PR1 chain-traversal tests in this file (PR2 implementation will delete those alongside).'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  44da515e-7f29-4ab7-99c0-9174cfed35b6:
-    id: 44da515e-7f29-4ab7-99c0-9174cfed35b6
-    content: '`src/renderer/components/ui/StepConfigDialog/tests/StepConfigDialog.test.tsx` — 3 `it.todo` placeholders for the helper text under decomposition and recurse options describing their coupling. Title-only because the spec specifies location and intent ("light grey helper text beneath …describing their dependency") but leaves the exact wording to the implementer.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  cee43822-a13a-4337-88fd-cfb3e300d501:
-    id: cee43822-a13a-4337-88fd-cfb3e300d501
-    content: Implementation report — PR2
-    children:
-      - 2dea516d-2aaf-439b-9211-0f59d27905b7
-      - 00fe0b24-3714-4075-9734-3af4e74ed64f
-      - fcb07ba0-8b20-4542-ac7b-9ff5045eacee
-      - 1500f551-8e79-4066-820e-9bf74a86f9f8
-      - 6675b7cf-2ec4-4514-a7bb-b4fa53c60a27
-      - 00da17c6-d3bd-4931-8bd6-030152fac321
-      - 6c4ac25f-22a1-407d-860a-3e756661c8eb
-      - 8cca4d4e-6391-444e-b357-0e8c7468781d
-      - c21765be-a311-4e33-b67d-ebd3b432f19f
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  2dea516d-2aaf-439b-9211-0f59d27905b7:
-    id: 2dea516d-2aaf-439b-9211-0f59d27905b7
-    content: 'Shipped: chain-traversal fallback removed from `checkRecurse`. The function now tries the supplied step first, walks the surrounding workflow to its decomposition step (via the new `findDecompositionStepInWorkflow` helper) and tries that next, and stops if neither yields a waiting sibling. No more `findFirstAutonomousStepInChain` / `findNextWaitingNode` chain walk — siblings are the only thing recurse processes.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  00fe0b24-3714-4075-9734-3af4e74ed64f:
-    id: 00fe0b24-3714-4075-9734-3af4e74ed64f
-    content: 'Shipped: recurse-without-decomposition warning toast + once-per-run guard. When `recurse: true` is set on a step but no step in the surrounding workflow has `decomposition: true`, `checkRecurse` emits the toast `"Warning, you have recursion set without decomposition"` and a paired `notifyWorkflowEvent(''alert'', …)`. A factory-scoped `Set<terminalId>` (`recurseWithoutDecompositionWarned`) gates the toast so it fires once per terminal even after multiple advances.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  fcb07ba0-8b20-4542-ac7b-9ff5045eacee:
-    id: fcb07ba0-8b20-4542-ac7b-9ff5045eacee
-    content: 'Shipped: helper text in `StepOptionsSection`. The existing `step-config-description` paragraphs (the light-grey style already used elsewhere in the dialog) now mention the dependency: the decomposition description ends with "Pair with Recurse on a later step to play each sibling forward automatically", and the recurse description reads "After completing this step, automatically process the next decomposed sibling on the same terminal. Requires Decomposition on a step in this workflow — without it, recurse does nothing." No new CSS class needed — the existing style is the spec''d "light grey helper text".'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  1500f551-8e79-4066-820e-9bf74a86f9f8:
-    id: 1500f551-8e79-4066-820e-9bf74a86f9f8
-    content: 'Shipped: `findDecompositionStepInWorkflow(stepId, nodes, ancestorRegistry)` in `workflowHelpers.ts` replaces the deleted `findFirstAutonomousStepInChain`. It walks ancestry to find the nearest enclosing workflow (using `findLast` so nested workflows are scoped correctly) and returns the first child step in that workflow that has `decomposition: true`, or null. Used by checkRecurse for both the sibling-anchor lookup and the "is there any decomposition step?" warning gate, so there''s a single source of truth.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  6675b7cf-2ec4-4514-a7bb-b4fa53c60a27:
-    id: 6675b7cf-2ec4-4514-a7bb-b4fa53c60a27
-    content: 'Bodied previously-`it.todo` tests now that the implementation is concrete: 2 `chain-traversal removal (PR2)` tests assert that a recurse step in a no-decomposition workflow does not start earlier-step nodes, and that the workflow stops without picking up unrelated chain nodes after the last sibling. 2 `decomposition + recurse dependency helper text (PR2)` tests in `StepConfigDialog.test.tsx` assert the descriptions beneath each checkbox mention the coupled option (case-insensitive regex match so the implementation isn''t over-coupled to the exact wording).'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  00da17c6-d3bd-4931-8bd6-030152fac321:
-    id: 00da17c6-d3bd-4931-8bd6-030152fac321
-    content: 'Updated existing tests that relied on cross-chain recurse: the `recurse with completeWorkflow` test now uses `decomposition: true` on the originating step (its assertion that task-b starts after task-a completes still holds via the sibling lookup), and the two safety-limit tests (`recurse safety limit` + `notification wiring`''s recurse-limit case) add `decomposition: true` to step-1 so the iteration goes through the sibling-finder. The previously-failing `workflowHasDecompositionStep walks the nearest enclosing workflow only` test was renamed to `findDecompositionStepInWorkflow walks the nearest enclosing workflow only` and asserts the helper returns null for a deeper-workflow step whose decomposition lives in the outer workflow.'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  6c4ac25f-22a1-407d-860a-3e756661c8eb:
-    id: 6c4ac25f-22a1-407d-860a-3e756661c8eb
-    content: 'Standard checks: `tsc --noEmit` clean. ESLint reports 0 errors with only the pre-existing `import/no-cycle` warning. Vitest 175 pass / 0 fail / 2 todo on the changed-area suites (`workflowExecutionActions.test.ts`, `workflowHelpers.test.ts`, `StepConfigDialog.test.tsx`); 122 pass / 0 fail on the adjacent workflow suites (`workflowAdvancement.test.ts`, `workflowAutoAccept.test.ts`, `workflowActions.test.ts`).'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
-  8cca4d4e-6391-444e-b357-0e8c7468781d:
-    id: 8cca4d4e-6391-444e-b357-0e8c7468781d
-    content: 'Out of scope and explicitly not done in this PR (per the PR scope): handleAutonomousFeedback enqueue logic, advanceNode call-site verification, the `findNextDecomposedSibling` helper itself, and the multi-root play-forward integration tests — all of those are PR1 territory already shipped on master and untouched by this PR.'
-    children: []
-    metadata:
-      status: abandoned
-      expanded: true
-      deleted: false
-      plugins: {}
-  c21765be-a311-4e33-b67d-ebd3b432f19f:
-    id: c21765be-a311-4e33-b67d-ebd3b432f19f
-    content: 'Remaining `it.todo` placeholders (intentionally not bodied): once-per-run reset on workflow restart (depends on a workflow-restart hook that doesn''t currently exist as a single observable event) and the helper-text style assertion (would require snapshot/computed-style testing for marginal value).'
-    children: []
-    metadata:
-      status: completed
-      expanded: true
-      deleted: false
-      plugins: {}
   259f33e2-faad-4085-b1e4-53396a6da78e:
     id: 259f33e2-faad-4085-b1e4-53396a6da78e
     content: Agent code review
@@ -94695,10 +93667,1272 @@ nodes:
     metadata:
       status: pending
       isBlueprint: true
+      stepType: autonomous
   ef8172e7-9f00-4495-9f4e-69b862af7dde:
     id: ef8172e7-9f00-4495-9f4e-69b862af7dde
-    content: ''
+    content: AI code review resolution
     children: []
     metadata:
       status: pending
       isBlueprint: true
+      stepType: autonomous
+  03e85fd3-28e9-445a-b7da-834c1b84f00e:
+    id: 03e85fd3-28e9-445a-b7da-834c1b84f00e
+    content: Spawn the subagent pr-review-toolkit:code-reviewer
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  5af5689d-ae73-455b-8985-5a08abd32a9a:
+    id: 5af5689d-ae73-455b-8985-5a08abd32a9a
+    content: Check the calling code as well as the changes
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  e2c0d6ea-6736-4544-b110-2a2b6977cff6:
+    id: e2c0d6ea-6736-4544-b110-2a2b6977cff6
+    content: Check anything on the diff since last commit
+    children:
+      - 5af5689d-ae73-455b-8985-5a08abd32a9a
+    metadata:
+      status: pending
+      isBlueprint: true
+  3d8cf8b3-b3a0-4dfa-8e4e-97d5fcdd92e0:
+    id: 3d8cf8b3-b3a0-4dfa-8e4e-97d5fcdd92e0
+    content: In it, summarize your feedback in enough detail for another AI instance to understand but no more
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  201e7d7c-06bb-4bb7-b3d0-da5ba0f1310b:
+    id: 201e7d7c-06bb-4bb7-b3d0-da5ba0f1310b
+    content: Add a node 'review feedback' as the last child of the parent node
+    children:
+      - 3d8cf8b3-b3a0-4dfa-8e4e-97d5fcdd92e0
+    metadata:
+      status: pending
+      isBlueprint: true
+  16c2450a-6f21-4ac0-b607-38648a13c5fe:
+    id: 16c2450a-6f21-4ac0-b607-38648a13c5fe
+    content: You are a developer running a code review on this PR
+    children:
+      - 03e85fd3-28e9-445a-b7da-834c1b84f00e
+      - e2c0d6ea-6736-4544-b110-2a2b6977cff6
+      - 201e7d7c-06bb-4bb7-b3d0-da5ba0f1310b
+    metadata:
+      status: pending
+      isBlueprint: true
+  1b6fadcf-809d-4992-85f4-55a4c51accc8:
+    id: 1b6fadcf-809d-4992-85f4-55a4c51accc8
+    content: Agent code review
+    children:
+      - 16c2450a-6f21-4ac0-b607-38648a13c5fe
+    metadata:
+      isContextDeclaration: true
+      blueprintIcon: HatGlasses
+      blueprintColor: '#0ea5e9'
+      isBlueprint: true
+      expanded: false
+      collaborate: true
+      execute: false
+  54f8e1ab-c1ad-43c9-b080-94596d5ffa57:
+    id: 54f8e1ab-c1ad-43c9-b080-94596d5ffa57
+    content: Read the code review feedback in the last node
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  7afc88f4-d019-4c0e-9b5f-f33e8c4cc5c7:
+    id: 7afc88f4-d019-4c0e-9b5f-f33e8c4cc5c7
+    content: 'Fix if you find coherent applying these criteria :'
+    children:
+      - 31b45e13-c951-457a-86b0-c8d340cc3509
+    metadata:
+      status: pending
+      isBlueprint: true
+  ddbaee37-acf5-479e-bfe5-c3f242bbd122:
+    id: ddbaee37-acf5-479e-bfe5-c3f242bbd122
+    content: Say if a point isn't clear
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  524a8496-8020-4568-a517-4c6cef98df1d:
+    id: 524a8496-8020-4568-a517-4c6cef98df1d
+    content: Push back if you disagree with something
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  49ee316e-c4cb-4351-8981-ced57a41c57f:
+    id: 49ee316e-c4cb-4351-8981-ced57a41c57f
+    content: Accept when the feedback is justified
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  f68972a1-a6f6-498a-9cf7-21c99a0be57e:
+    id: f68972a1-a6f6-498a-9cf7-21c99a0be57e
+    content: Repeat until all feedback is resolved
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  664166df-8283-418b-8990-96678e3aad41:
+    id: 664166df-8283-418b-8990-96678e3aad41
+    content: Discuss directly with the agent via SendMessage
+    children:
+      - ddbaee37-acf5-479e-bfe5-c3f242bbd122
+      - 524a8496-8020-4568-a517-4c6cef98df1d
+      - 49ee316e-c4cb-4351-8981-ced57a41c57f
+      - f68972a1-a6f6-498a-9cf7-21c99a0be57e
+    metadata:
+      status: pending
+      isBlueprint: true
+  a1d2cc92-2ce2-4a84-a8b0-49fbe06382df:
+    id: a1d2cc92-2ce2-4a84-a8b0-49fbe06382df
+    content: AI code review resolution
+    children:
+      - 54f8e1ab-c1ad-43c9-b080-94596d5ffa57
+      - 7afc88f4-d019-4c0e-9b5f-f33e8c4cc5c7
+      - 664166df-8283-418b-8990-96678e3aad41
+    metadata:
+      isBlueprint: true
+      blueprintIcon: ClipboardCheck
+      blueprintColor: '#22c55e'
+      isContextDeclaration: true
+      expanded: false
+      collaborate: true
+      execute: true
+  234a092e-c31c-4cb0-a076-62a794ba11f7:
+    id: 234a092e-c31c-4cb0-a076-62a794ba11f7
+    content: Read the actual code including the calling code
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  dd60fab9-824f-4248-b3cf-cb80406cdc31:
+    id: dd60fab9-824f-4248-b3cf-cb80406cdc31
+    content: Don't blindly validate findings
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  dbbf4403-9d1b-4d3d-86bb-0efec4659927:
+    id: dbbf4403-9d1b-4d3d-86bb-0efec4659927
+    content: Intentional behaviour presented as an issue
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  411afdd4-f945-4d0b-acdb-c2e475885d9f:
+    id: 411afdd4-f945-4d0b-acdb-c2e475885d9f
+    content: Exaggerated severity
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  e9c23f25-760e-46a9-87d3-90cc7d3d15bf:
+    id: e9c23f25-760e-46a9-87d3-90cc7d3d15bf
+    content: Highlight anything with a low probability of actually occurring
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  cc9c0a37-ce59-44c1-9335-d1c9fdb0a8f5:
+    id: cc9c0a37-ce59-44c1-9335-d1c9fdb0a8f5
+    content: 'Pay attention to the following list of cases (not exclusive) :'
+    children:
+      - dbbf4403-9d1b-4d3d-86bb-0efec4659927
+      - 411afdd4-f945-4d0b-acdb-c2e475885d9f
+      - e9c23f25-760e-46a9-87d3-90cc7d3d15bf
+    metadata:
+      status: pending
+      isBlueprint: true
+  31ca6441-848e-46a4-a2b0-3502ac79072b:
+    id: 31ca6441-848e-46a4-a2b0-3502ac79072b
+    content: Add your feedback in it
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  f89ee217-cdd9-4f19-8fca-f11cd430e5ee:
+    id: f89ee217-cdd9-4f19-8fca-f11cd430e5ee
+    content: Categorise feedback by severity
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  e583fe48-a875-4897-beee-a1a812f1536a:
+    id: e583fe48-a875-4897-beee-a1a812f1536a
+    content: Add a node - feedback
+    children:
+      - 31ca6441-848e-46a4-a2b0-3502ac79072b
+      - f89ee217-cdd9-4f19-8fca-f11cd430e5ee
+    metadata:
+      status: pending
+      isBlueprint: true
+  e86d6ea9-ca79-4230-93b3-624180c9f973:
+    id: e86d6ea9-ca79-4230-93b3-624180c9f973
+    content: Reply to code review
+    children:
+      - 234a092e-c31c-4cb0-a076-62a794ba11f7
+      - dd60fab9-824f-4248-b3cf-cb80406cdc31
+      - cc9c0a37-ce59-44c1-9335-d1c9fdb0a8f5
+      - e583fe48-a875-4897-beee-a1a812f1536a
+    metadata:
+      isContextDeclaration: true
+      blueprintIcon: HatGlasses
+      blueprintColor: '#c47f09'
+      isBlueprint: true
+      expanded: false
+      collaborate: true
+      execute: false
+  31b45e13-c951-457a-86b0-c8d340cc3509:
+    id: 31b45e13-c951-457a-86b0-c8d340cc3509
+    content: Reply to code review
+    children: []
+    metadata:
+      status: pending
+      isHyperlink: true
+      linkedNodeId: e86d6ea9-ca79-4230-93b3-624180c9f973
+      isBlueprint: true
+  3e25a037-da06-44df-87f2-3dce53f93855:
+    id: 3e25a037-da06-44df-87f2-3dce53f93855
+    content: The following instruction sent with a prompt is unclear
+    children: []
+    metadata:
+      status: pending
+  7f7ab89f-9553-42c1-b69f-06f608901ddb:
+    id: 7f7ab89f-9553-42c1-b69f-06f608901ddb
+    content: Should say something like - IF you need to run any checks...
+    children: []
+    metadata:
+      status: pending
+  1ab3cd33-cc45-4cf9-acf4-073a85b00ec5:
+    id: 1ab3cd33-cc45-4cf9-acf4-073a85b00ec5
+    content: User story
+    children:
+      - ca7f069d-af48-4c07-b9e6-4d36feccc771
+      - 021e1d3d-b528-4594-ba8b-4382fb48cc2b
+      - 8050a757-147b-48c1-a655-aa2153da8a8b
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ca7f069d-af48-4c07-b9e6-4d36feccc771:
+    id: ca7f069d-af48-4c07-b9e6-4d36feccc771
+    content: 📄 Product spec
+    children:
+      - 37ea26a4-8088-492d-b16c-dc4d4d6f7ada
+      - f6385814-41d8-4284-b7fd-e755b3d7f9e0
+      - 3fac7727-0882-401e-ba0b-7b029ce0b7ab
+      - d9a3ee55-4887-4fdf-824e-590411912c62
+      - 7c9a3875-b09d-4d05-8e01-7d01e0950b66
+      - 105df158-9328-4326-9e01-84dab0105577
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  37ea26a4-8088-492d-b16c-dc4d4d6f7ada:
+    id: 37ea26a4-8088-492d-b16c-dc4d4d6f7ada
+    content: Context
+    children:
+      - 4ea1af3a-0b1a-4b4f-b597-64aebdccd00b
+      - 84e1d2da-ec86-4e9a-bd50-c8fc71aeba68
+      - b08cfdd5-2b3d-43dc-8694-d1f31d4fa394
+      - d7c3b98c-599b-4f82-bd06-5cb060554c6f
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4ea1af3a-0b1a-4b4f-b597-64aebdccd00b:
+    id: 4ea1af3a-0b1a-4b4f-b597-64aebdccd00b
+    content: 'Autonomous workflow steps can have `decomposition: true`, in which case the AI may return multiple root nodes that AcceptFeedbackCommand swaps into the tree as siblings under the same step container'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  84e1d2da-ec86-4e9a-bd50-c8fc71aeba68:
+    id: 84e1d2da-ec86-4e9a-bd50-c8fc71aeba68
+    content: Today only the original running node is handed to advanceNode, so freshly-created decomposed siblings are left in the step container with no execution state
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b08cfdd5-2b3d-43dc-8694-d1f31d4fa394:
+    id: b08cfdd5-2b3d-43dc-8694-d1f31d4fa394
+    content: checkRecurse anchors on findFirstAutonomousStepInChain, which walks backwards to the start of the autonomous chain, so it can skip past siblings still waiting at the last decomposition step
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d7c3b98c-599b-4f82-bd06-5cb060554c6f:
+    id: d7c3b98c-599b-4f82-bd06-5cb060554c6f
+    content: 'Net result: decomposed siblings are silently orphaned and the workflow stalls until the user starts each one manually'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f6385814-41d8-4284-b7fd-e755b3d7f9e0:
+    id: f6385814-41d8-4284-b7fd-e755b3d7f9e0
+    content: User
+    children:
+      - 5e08c2d6-bc98-4ac1-8441-363990974106
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5e08c2d6-bc98-4ac1-8441-363990974106:
+    id: 5e08c2d6-bc98-4ac1-8441-363990974106
+    content: 'Brian, running an autonomous workflow that includes one or more steps with `decomposition: true`'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3fac7727-0882-401e-ba0b-7b029ce0b7ab:
+    id: 3fac7727-0882-401e-ba0b-7b029ce0b7ab
+    content: Current experience
+    children:
+      - 039b197e-3ed8-4c8b-b092-28b2f17dd45b
+      - 75352666-62c3-425c-9590-483eb50ffe22
+      - 945c2689-f804-4a9d-874f-940e5dac46ee
+      - b75b7e8e-6a81-4fb2-a56f-8b41e42698b4
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  039b197e-3ed8-4c8b-b092-28b2f17dd45b:
+    id: 039b197e-3ed8-4c8b-b092-28b2f17dd45b
+    content: Step decomposes node N into N + X + Y as siblings under the step container
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  75352666-62c3-425c-9590-483eb50ffe22:
+    id: 75352666-62c3-425c-9590-483eb50ffe22
+    content: Only N advances to the next step; X and Y sit in the step container with no execution state
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  945c2689-f804-4a9d-874f-940e5dac46ee:
+    id: 945c2689-f804-4a9d-874f-940e5dac46ee
+    content: checkRecurse fires on N's previous parent and finds either an unrelated waiting node earlier in the chain or nothing at all
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b75b7e8e-6a81-4fb2-a56f-8b41e42698b4:
+    id: b75b7e8e-6a81-4fb2-a56f-8b41e42698b4
+    content: User has to manually start workflows on X and Y, defeating the point of an autonomous run
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d9a3ee55-4887-4fdf-824e-590411912c62:
+    id: d9a3ee55-4887-4fdf-824e-590411912c62
+    content: Goal
+    children:
+      - 402eb52e-ec9d-4256-bae7-51e453a865c2
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  402eb52e-ec9d-4256-bae7-51e453a865c2:
+    id: 402eb52e-ec9d-4256-bae7-51e453a865c2
+    content: After an autonomous step decomposes a node into siblings, the runner plays each decomposed sibling forward sequentially on the same terminal, and recurse processes the decomposed siblings until every one has been handled
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7c9a3875-b09d-4d05-8e01-7d01e0950b66:
+    id: 7c9a3875-b09d-4d05-8e01-7d01e0950b66
+    content: Business rules
+    children:
+      - b6b47d51-b24f-446b-bd76-dbd8e8821f9e
+      - ee375afe-7632-4e1e-9f18-c2d59f1e8086
+      - 3805d56c-722d-4a3b-a5bb-91b1ced222b7
+      - a16b6bda-8b65-48ec-8aa3-7db7cf39eb44
+      - 84bae4dd-cdbc-4ce2-abab-867da3f8a57a
+      - 43d0cf12-1001-4b76-a1eb-9eb2b0db608f
+      - cf791506-27f3-4293-acf3-9099b756d3a2
+      - 8dff6615-f469-4407-a8a9-17d007cb2913
+      - 6e8d6d45-c682-454b-a3b3-1702c00f1061
+      - 118d5d65-0186-41c0-93b8-ce8977b29d0c
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b6b47d51-b24f-446b-bd76-dbd8e8821f9e:
+    id: b6b47d51-b24f-446b-bd76-dbd8e8821f9e
+    content: 'When an autonomous step with `decomposition: true` produces N decomposed roots, every one of those roots must enter the workflow execution queue'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ee375afe-7632-4e1e-9f18-c2d59f1e8086:
+    id: ee375afe-7632-4e1e-9f18-c2d59f1e8086
+    content: Decomposed siblings execute sequentially on the same terminal, in the order returned by parseFeedbackContent (parsed.rootNodeIds)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3805d56c-722d-4a3b-a5bb-91b1ced222b7:
+    id: 3805d56c-722d-4a3b-a5bb-91b1ced222b7
+    content: Recurse processes only the decomposed siblings of the current decomposition point — it does not walk back to earlier autonomous steps
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a16b6bda-8b65-48ec-8aa3-7db7cf39eb44:
+    id: a16b6bda-8b65-48ec-8aa3-7db7cf39eb44
+    content: Once every decomposed sibling at a decomposition point has been processed the workflow stops; there is no fallback chain traversal
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  84bae4dd-cdbc-4ce2-abab-867da3f8a57a:
+    id: 84bae4dd-cdbc-4ce2-abab-867da3f8a57a
+    content: 'Recursion is tied to decomposition: a recurse step that runs in a workflow with no decomposition step does nothing and surfaces a toast warning reading "Warning, you have recursion set without decomposition"'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  43d0cf12-1001-4b76-a1eb-9eb2b0db608f:
+    id: 43d0cf12-1001-4b76-a1eb-9eb2b0db608f
+    content: The workflow settings UI surfaces this dependency via light grey helper text beneath the decomposition and recursion options
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cf791506-27f3-4293-acf3-9099b756d3a2:
+    id: cf791506-27f3-4293-acf3-9099b756d3a2
+    content: The existing MAX_RECURSE_ITERATIONS cap continues to apply across the combined sibling sequence; hitting it stops the run with the same toast and notification
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8dff6615-f469-4407-a8a9-17d007cb2913:
+    id: 8dff6615-f469-4407-a8a9-17d007cb2913
+    content: If a decomposition produces exactly one root, only that single element is processed
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6e8d6d45-c682-454b-a3b3-1702c00f1061:
+    id: 6e8d6d45-c682-454b-a3b3-1702c00f1061
+    content: 'If parseFeedbackContent fails for a decomposition response, today''s parse-failure handling stands: stop the workflow, surface the error toast, do not enqueue siblings'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  118d5d65-0186-41c0-93b8-ce8977b29d0c:
+    id: 118d5d65-0186-41c0-93b8-ce8977b29d0c
+    content: Manual steps (or checkpoints) interleaved in the chain still pause the sequence — a decomposed sibling whose next step is manual or a checkpoint must wait for the user, exactly like a non-decomposed node would
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  105df158-9328-4326-9e01-84dab0105577:
+    id: 105df158-9328-4326-9e01-84dab0105577
+    content: Acceptance criteria
+    children:
+      - 255974bf-a3d8-426a-9691-b034d10eb001
+      - ba9fe485-4cda-4c8c-ac87-91d39c8c33aa
+      - 56acd80d-7b80-44e7-bc9e-bcbfe2b5d33d
+      - 32a0ad7c-0cf1-40a1-acff-f4a91a198c20
+      - 4afbe9fd-72fb-4fdd-bacb-d699fbf91738
+      - 155d2ec6-a457-461f-a345-416f402cf20a
+      - f5f72c74-2167-4a26-9365-e84117f951fe
+      - 4ae8f16a-9e96-4a4f-a48e-ed49153e65dc
+      - 1469f6a0-433a-4715-8b5a-c672a9335f07
+      - 36270e55-1271-421c-9792-5736e74b406a
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  255974bf-a3d8-426a-9691-b034d10eb001:
+    id: 255974bf-a3d8-426a-9691-b034d10eb001
+    content: An autonomous decomposition step that returns N>1 roots causes all N siblings to be processed in parsed.rootNodeIds order on the same terminal
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ba9fe485-4cda-4c8c-ac87-91d39c8c33aa:
+    id: ba9fe485-4cda-4c8c-ac87-91d39c8c33aa
+    content: After the last sibling at a decomposition point completes, the workflow stops — no chain traversal occurs
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  56acd80d-7b80-44e7-bc9e-bcbfe2b5d33d:
+    id: 56acd80d-7b80-44e7-bc9e-bcbfe2b5d33d
+    content: While siblings remain at a decomposition point, checkRecurse selects from those siblings only
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  32a0ad7c-0cf1-40a1-acff-f4a91a198c20:
+    id: 32a0ad7c-0cf1-40a1-acff-f4a91a198c20
+    content: A decomposition that returns exactly one root processes only that single element
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4afbe9fd-72fb-4fdd-bacb-d699fbf91738:
+    id: 4afbe9fd-72fb-4fdd-bacb-d699fbf91738
+    content: A parse failure during a decomposition response stops the workflow, shows the existing error toast and notification, and does not enqueue any siblings
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  155d2ec6-a457-461f-a345-416f402cf20a:
+    id: 155d2ec6-a457-461f-a345-416f402cf20a
+    content: Hitting MAX_RECURSE_ITERATIONS mid-sequence stops the run with the existing limit toast and notification, leaving any unprocessed siblings in place
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f5f72c74-2167-4a26-9365-e84117f951fe:
+    id: f5f72c74-2167-4a26-9365-e84117f951fe
+    content: When a decomposed sibling's next step is manual or a checkpoint, the sequence pauses on that sibling exactly like a non-decomposed manual handoff
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4ae8f16a-9e96-4a4f-a48e-ed49153e65dc:
+    id: 4ae8f16a-9e96-4a4f-a48e-ed49153e65dc
+    content: A workflow with a recurse step but no decomposition step performs no recursion and shows a toast warning reading "Warning, you have recursion set without decomposition"
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1469f6a0-433a-4715-8b5a-c672a9335f07:
+    id: 1469f6a0-433a-4715-8b5a-c672a9335f07
+    content: The workflow settings UI shows light grey helper text beneath the decomposition and recursion options describing their dependency
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  36270e55-1271-421c-9792-5736e74b406a:
+    id: 36270e55-1271-421c-9792-5736e74b406a
+    content: The currently-running sibling is reflected in the workflow UI (toast + node flash) the same way single-node advancement is today
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  021e1d3d-b528-4594-ba8b-4382fb48cc2b:
+    id: 021e1d3d-b528-4594-ba8b-4382fb48cc2b
+    content: 🔧 Implementation proposal
+    children:
+      - ad77dccf-bab0-49bc-bb29-10b16528dfd2
+      - 801c06ae-c5b9-4d85-8a6f-984ddeb9acc0
+      - e9a79c0c-476b-4a22-864d-0e04175daa86
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ad77dccf-bab0-49bc-bb29-10b16528dfd2:
+    id: ad77dccf-bab0-49bc-bb29-10b16528dfd2
+    content: Approach
+    children:
+      - adaeb647-acbc-4e8c-a2ae-728a76c3dee0
+      - 7b73c7ca-c6c0-4539-b91b-09fb0f5317a2
+      - 22a3ccc2-fd1e-43bb-ad81-6d3adee4aa84
+      - 66088cfc-67d7-405e-8770-0491e0eb4b53
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  adaeb647-acbc-4e8c-a2ae-728a76c3dee0:
+    id: adaeb647-acbc-4e8c-a2ae-728a76c3dee0
+    content: Inside handleAutonomousFeedback, when parsed.rootNodeIds.length > 1, register the sibling roots as the next-up sequence after AcceptFeedbackCommand runs
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7b73c7ca-c6c0-4539-b91b-09fb0f5317a2:
+    id: 7b73c7ca-c6c0-4539-b91b-09fb0f5317a2
+    content: Rewrite checkRecurse to look only for waiting decomposed siblings at the current step container; remove the chain-traversal fallback
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  22a3ccc2-fd1e-43bb-ad81-6d3adee4aa84:
+    id: 22a3ccc2-fd1e-43bb-ad81-6d3adee4aa84
+    content: Add a recurse-without-decomposition guard that surfaces the warning toast when a recurse step runs in a workflow with no decomposition step
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  66088cfc-67d7-405e-8770-0491e0eb4b53:
+    id: 66088cfc-67d7-405e-8770-0491e0eb4b53
+    content: Add helper text in the workflow settings UI beneath the decomposition and recursion options describing the dependency
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  801c06ae-c5b9-4d85-8a6f-984ddeb9acc0:
+    id: 801c06ae-c5b9-4d85-8a6f-984ddeb9acc0
+    content: Touchpoints
+    children:
+      - 6685490b-1bb3-4603-94fa-6669e3c8456e
+      - 794ec9cc-a153-4c12-b9b5-afed0ceb3fdd
+      - f939125d-0e9c-4b42-93c5-604cc802b61b
+      - 9eb7270c-4772-4721-94ee-dd05dbcdf07e
+      - eee7e451-dccf-405a-ba8c-f206854679bb
+      - 9a16812d-60ad-470d-82ae-7b674c13c853
+      - 7564908c-3ea9-4e19-8a26-fc3ae8a4065c
+      - abf9a33a-e839-481b-9ec9-3e5857baffd7
+      - c239dd4d-b8a6-468b-b3ed-1032e0f08377
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6685490b-1bb3-4603-94fa-6669e3c8456e:
+    id: 6685490b-1bb3-4603-94fa-6669e3c8456e
+    content: src/renderer/store/tree/actions/workflowExecutionActions.ts — handleAutonomousFeedback (enqueue sibling roots after AcceptFeedbackCommand)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  794ec9cc-a153-4c12-b9b5-afed0ceb3fdd:
+    id: 794ec9cc-a153-4c12-b9b5-afed0ceb3fdd
+    content: src/renderer/store/tree/actions/workflowExecutionActions.ts — checkRecurse (sibling-only lookup, no chain fallback, warning toast when recursion runs without decomposition)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f939125d-0e9c-4b42-93c5-604cc802b61b:
+    id: f939125d-0e9c-4b42-93c5-604cc802b61b
+    content: src/renderer/store/tree/actions/workflowExecutionActions.ts — advanceNode (confirm the existing checkRecurse(previousParentId, …) call site still does the right thing)
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9eb7270c-4772-4721-94ee-dd05dbcdf07e:
+    id: 9eb7270c-4772-4721-94ee-dd05dbcdf07e
+    content: src/renderer/utils/workflowHelpers.ts — add findNextDecomposedSibling(stepId, nodes, executionStates) that returns the next waiting child produced by a decomposition response
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  eee7e451-dccf-405a-ba8c-f206854679bb:
+    id: eee7e451-dccf-405a-ba8c-f206854679bb
+    content: src/renderer/utils/workflowHelpers.ts — remove or stop using findFirstAutonomousStepInChain in the recurse path
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9a16812d-60ad-470d-82ae-7b674c13c853:
+    id: 9a16812d-60ad-470d-82ae-7b674c13c853
+    content: Workflow settings UI component — add light grey helper text beneath the decomposition and recursion options
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7564908c-3ea9-4e19-8a26-fc3ae8a4065c:
+    id: 7564908c-3ea9-4e19-8a26-fc3ae8a4065c
+    content: Tests — extend src/renderer/store/tree/actions/tests/workflowAutoAccept.test.ts (and/or workflowContentPreservation.test.ts) with a multi-root decomposition that asserts sequential play-forward
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  abf9a33a-e839-481b-9ec9-3e5857baffd7:
+    id: abf9a33a-e839-481b-9ec9-3e5857baffd7
+    content: Tests — co-locate a unit test for the new sibling-finder helper next to workflowHelpers.ts
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c239dd4d-b8a6-468b-b3ed-1032e0f08377:
+    id: c239dd4d-b8a6-468b-b3ed-1032e0f08377
+    content: Tests — cover the MAX_RECURSE_ITERATIONS interaction, the parse-failure interaction, and the recurse-without-decomposition warning in the autonomous feedback tests
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e9a79c0c-476b-4a22-864d-0e04175daa86:
+    id: e9a79c0c-476b-4a22-864d-0e04175daa86
+    content: Constraints to call out
+    children:
+      - a0b4fafb-b3cf-488e-894f-dd9b2c25542b
+      - 6c9264f1-3fb3-47ef-bd78-9f628876c3c7
+      - abfd8c05-c50a-4e4a-b1ee-5e5339ea0513
+      - 94929341-7681-437f-95cf-c8095d3c7525
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a0b4fafb-b3cf-488e-894f-dd9b2c25542b:
+    id: a0b4fafb-b3cf-488e-894f-dd9b2c25542b
+    content: checkRecurse currently uses setTimeout(…, 2000) as a UX pacing knob; sequential sibling starts must respect the same delay so the existing visual rhythm is preserved
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6c9264f1-3fb3-47ef-bd78-9f628876c3c7:
+    id: 6c9264f1-3fb3-47ef-bd78-9f628876c3c7
+    content: feedbackCollaborations is keyed by nodeId — each sibling will get its own collaboration registration when its workflow starts, consistent with today's single-node behaviour
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  abfd8c05-c50a-4e4a-b1ee-5e5339ea0513:
+    id: abfd8c05-c50a-4e4a-b1ee-5e5339ea0513
+    content: This story is strictly sequential; parallel execution across unrelated branches is explicitly out of scope and must not be built speculatively
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  94929341-7681-437f-95cf-c8095d3c7525:
+    id: 94929341-7681-437f-95cf-c8095d3c7525
+    content: 'Removing the chain-traversal fallback is a behaviour change: any existing autonomous-chain test in workflowExecution.test.ts that relied on recurse walking backwards must be updated or replaced'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8050a757-147b-48c1-a655-aa2153da8a8b:
+    id: 8050a757-147b-48c1-a655-aa2153da8a8b
+    content: Technical refinement
+    children:
+      - b378765f-5d0f-4c56-9aec-613732bef89d
+      - 707740a1-5f65-416d-8c6a-df3b6373bcdf
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b378765f-5d0f-4c56-9aec-613732bef89d:
+    id: b378765f-5d0f-4c56-9aec-613732bef89d
+    content: Complications to resolve before implementation
+    children:
+      - ef23a314-089f-4722-a87c-87c6ccf7f77b
+      - 7b53a6b9-b9d0-4152-b7ec-67c98a56a5e4
+      - eb59f400-8558-432d-9b1d-45f49e8951b9
+      - 0a5c7832-13fb-4008-8203-9f524356e70c
+      - 09890dbf-0368-4b32-84ac-28f69ba0cef6
+      - 6dd572e9-f542-4904-8695-bb8d3235685d
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ef23a314-089f-4722-a87c-87c6ccf7f77b:
+    id: ef23a314-089f-4722-a87c-87c6ccf7f77b
+    content: 'Manual/checkpoint pause mid-sequence orphans later siblings — AC says "pause like a non-decomposed handoff", but a non-decomposed handoff stops the workflow. If X pauses on a manual step, no rule says Y must run after X is hand-resumed, so Y silently never starts. Add an explicit rule: resuming a paused sibling re-anchors recurse so the remaining siblings continue.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7b53a6b9-b9d0-4152-b7ec-67c98a56a5e4:
+    id: 7b53a6b9-b9d0-4152-b7ec-67c98a56a5e4
+    content: Same-terminal sequencing races with advanceNode — N is advanced to its next step before checkRecurse picks X, so X (decomposition step) and N (next step) compete for the same terminal. Either X must wait until N's pipeline fully completes, or "sequential on the same terminal" needs a sharper definition. This is the highest-risk gap in the spec.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  eb59f400-8558-432d-9b1d-45f49e8951b9:
+    id: eb59f400-8558-432d-9b1d-45f49e8951b9
+    content: Recurse-without-decomposition warning will fire repeatedly — checkRecurse runs per advance, so a workflow with recurse but no decomposition will toast the warning on every step. Needs a once-per-run guard and ideally a static check at workflow-start time.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0a5c7832-13fb-4008-8203-9f524356e70c:
+    id: 0a5c7832-13fb-4008-8203-9f524356e70c
+    content: Existing `.arbo` files that relied on cross-chain recurse silently stop working — the warning toast covers visibility, but user content can be downgraded without the user noticing during a run that previously completed. Worth a one-shot migration notice or a startup-time scan.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  09890dbf-0368-4b32-84ac-28f69ba0cef6:
+    id: 09890dbf-0368-4b32-84ac-28f69ba0cef6
+    content: completeWorkflow also calls checkRecurse with `position.currentStepId` (line 367) — the new sibling-only lookup must locate the originating decomposition step from any caller, not just from `previousParentId` at advanceNode-time. Anchor-selection is the bulk of the new helper, not traversal.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6dd572e9-f542-4904-8695-bb8d3235685d:
+    id: 6dd572e9-f542-4904-8695-bb8d3235685d
+    content: 'Out of scope to state explicitly: nested decomposition (a sibling whose own pipeline contains another decomposition step) and any parallel-branch execution — both must not be built speculatively.'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  707740a1-5f65-416d-8c6a-df3b6373bcdf:
+    id: 707740a1-5f65-416d-8c6a-df3b6373bcdf
+    content: Approach summary
+    children:
+      - b224c8f1-de71-49f3-a7d7-d9cd8a03eca8
+      - c8320a24-273b-4fa7-a6aa-4de72555dcca
+      - 0b2aef50-56b8-4623-90cc-3eb2b96e55a4
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b224c8f1-de71-49f3-a7d7-d9cd8a03eca8:
+    id: b224c8f1-de71-49f3-a7d7-d9cd8a03eca8
+    content: All execution-layer changes land in workflowExecutionActions.ts + workflowHelpers.ts. AcceptFeedbackCommand already accepts `string | string[]` and handles multi-root tree-swap, so no command-layer change is needed — handleAutonomousFeedback already passes parsed.rootNodeIds when decomposition is on.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c8320a24-273b-4fa7-a6aa-4de72555dcca:
+    id: c8320a24-273b-4fa7-a6aa-4de72555dcca
+    content: The new sibling-finder is essentially findNextWaitingNode applied to the decomposition step container — most of the work is picking the right anchor, not new traversal logic.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0b2aef50-56b8-4623-90cc-3eb2b96e55a4:
+    id: 0b2aef50-56b8-4623-90cc-3eb2b96e55a4
+    content: 'Non-obvious for reviewers: this is a *behaviour deletion* (cross-chain recurse) presented as a feature addition. The warning toast + settings helper text exist precisely to cushion that deletion; without the deletion the rest of the change would be additive and low-risk.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c6c442e8-6074-42b2-a997-2d2c78001d8e:
+    id: c6c442e8-6074-42b2-a997-2d2c78001d8e
+    content: PR scope — tighten recursion semantics + UX cushion
+    children:
+      - 22d1c596-d0da-458d-a56b-1e7972699623
+      - 76d25571-2e11-42c7-8c17-abab050ecf2f
+      - e198a0ea-e9ca-4835-bc1a-5b3142f32058
+      - 1b4edbc4-a4f1-4086-9769-81c517a1f777
+      - 01a30fe0-626a-46b1-b6e5-1f9ecda9d6fe
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  22d1c596-d0da-458d-a56b-1e7972699623:
+    id: 22d1c596-d0da-458d-a56b-1e7972699623
+    content: Remove the chain-traversal fallback that PR1 left in place, lock recursion to decomposition only, and surface the new coupling to the user via a warning toast and settings helper text
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  76d25571-2e11-42c7-8c17-abab050ecf2f:
+    id: 76d25571-2e11-42c7-8c17-abab050ecf2f
+    content: Touchpoints in scope
+    children:
+      - cfc4dccb-305f-4655-b001-01ba10ba99db
+      - c10553d4-dc67-486a-9a9b-4879384c8005
+      - f2d81cd7-4e94-48a7-b40e-81bc8adbc819
+      - 8bc324b4-8a02-4253-aa8e-28f0ddf28aec
+      - 6204ee71-b117-4ee8-bcfa-bd3b281c41e0
+      - ea0aca42-7987-4915-9b55-fc1f4b91564d
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cfc4dccb-305f-4655-b001-01ba10ba99db:
+    id: cfc4dccb-305f-4655-b001-01ba10ba99db
+    content: 'src/renderer/store/tree/actions/workflowExecutionActions.ts — checkRecurse: delete the chain-traversal fallback so it only looks at decomposed siblings'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c10553d4-dc67-486a-9a9b-4879384c8005:
+    id: c10553d4-dc67-486a-9a9b-4879384c8005
+    content: 'src/renderer/store/tree/actions/workflowExecutionActions.ts — checkRecurse: emit "Warning, you have recursion set without decomposition" when a recurse step runs in a workflow whose steps include no decomposition; gate behind a once-per-run guard so the toast does not repeat per-advance'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f2d81cd7-4e94-48a7-b40e-81bc8adbc819:
+    id: f2d81cd7-4e94-48a7-b40e-81bc8adbc819
+    content: src/renderer/utils/workflowHelpers.ts — remove or stop using findFirstAutonomousStepInChain in the recurse path
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8bc324b4-8a02-4253-aa8e-28f0ddf28aec:
+    id: 8bc324b4-8a02-4253-aa8e-28f0ddf28aec
+    content: Workflow settings UI component (StepConfigDialog / StepOptionsSection) — add light grey helper text beneath the decomposition and recursion options describing their dependency
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6204ee71-b117-4ee8-bcfa-bd3b281c41e0:
+    id: 6204ee71-b117-4ee8-bcfa-bd3b281c41e0
+    content: Tests — update or replace the autonomous-chain tests in workflowExecution.test.ts that previously relied on cross-chain recurse
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ea0aca42-7987-4915-9b55-fc1f4b91564d:
+    id: ea0aca42-7987-4915-9b55-fc1f4b91564d
+    content: Tests — cover the recurse-without-decomposition warning, including its once-per-run behaviour
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e198a0ea-e9ca-4835-bc1a-5b3142f32058:
+    id: e198a0ea-e9ca-4835-bc1a-5b3142f32058
+    content: AC subset satisfied by this PR
+    children:
+      - 400e4b2a-011a-4c14-ab7d-30bd82d3b604
+      - 981319d5-dcee-40fa-9dcb-4a2c0c79eab0
+      - d4a286f9-9625-483b-a200-d019f276cd42
+      - c19311b0-3e62-4e16-8fbc-d9f677972301
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  400e4b2a-011a-4c14-ab7d-30bd82d3b604:
+    id: 400e4b2a-011a-4c14-ab7d-30bd82d3b604
+    content: After the last sibling at a decomposition point completes, the workflow stops — no chain traversal occurs
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  981319d5-dcee-40fa-9dcb-4a2c0c79eab0:
+    id: 981319d5-dcee-40fa-9dcb-4a2c0c79eab0
+    content: While siblings remain at a decomposition point, checkRecurse selects from those siblings only
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d4a286f9-9625-483b-a200-d019f276cd42:
+    id: d4a286f9-9625-483b-a200-d019f276cd42
+    content: A workflow with a recurse step but no decomposition step performs no recursion and shows the warning toast exactly once
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c19311b0-3e62-4e16-8fbc-d9f677972301:
+    id: c19311b0-3e62-4e16-8fbc-d9f677972301
+    content: The workflow settings UI shows light grey helper text beneath the decomposition and recursion options
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1b4edbc4-a4f1-4086-9769-81c517a1f777:
+    id: 1b4edbc4-a4f1-4086-9769-81c517a1f777
+    content: Merge-order dependency — read before opening
+    children:
+      - 530ec813-e242-40b5-88bb-5b5ba3c07a93
+      - f7340777-2e5e-467f-aad4-cf5a5c01f0c5
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  530ec813-e242-40b5-88bb-5b5ba3c07a93:
+    id: 530ec813-e242-40b5-88bb-5b5ba3c07a93
+    content: PR2 must merge AFTER PR1. Merging PR2 first removes the chain-traversal fallback before PR1's sibling-preferred recurse exists, which would silently break any existing workflow that depends on recurse for non-decomposition chains.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f7340777-2e5e-467f-aad4-cf5a5c01f0c5:
+    id: f7340777-2e5e-467f-aad4-cf5a5c01f0c5
+    content: If sequential merge cannot be guaranteed, gate the chain-traversal removal behind a feature flag in this PR and remove the flag in a follow-up — flag this to the user before opening the PR.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  01a30fe0-626a-46b1-b6e5-1f9ecda9d6fe:
+    id: 01a30fe0-626a-46b1-b6e5-1f9ecda9d6fe
+    content: Note
+    children:
+      - 84df5dfc-4124-4ddb-94ac-e75e87658adf
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  84df5dfc-4124-4ddb-94ac-e75e87658adf:
+    id: 84df5dfc-4124-4ddb-94ac-e75e87658adf
+    content: This is a subtask of the overall user story. Please implement only this subtask. The others will be implemented in a separate PR.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  11b9ca7b-182b-45c9-b579-eae208e2efe2:
+    id: 11b9ca7b-182b-45c9-b579-eae208e2efe2
+    content: Tests authored (TDD red)
+    children:
+      - 263e8249-f1d9-4599-bcc9-71af9e5656d5
+      - a910fcfd-5a5a-4257-b16e-fc64f2389e25
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  263e8249-f1d9-4599-bcc9-71af9e5656d5:
+    id: 263e8249-f1d9-4599-bcc9-71af9e5656d5
+    content: '`src/renderer/store/tree/actions/tests/workflowExecutionActions.test.ts` — new describe block `recurse-without-decomposition warning (PR2)` with 3 bodied tests (warning fires when recurse step runs without any decomposition; warning fires at most once per workflow run across multiple advances on the same terminal; warning does NOT fire when a decomposition step is present anywhere in the workflow) plus 1 `it.todo` for the once-per-run reset on workflow restart. Plus a sibling describe `chain-traversal removal (PR2)` with 3 `it.todo` placeholders for the chain-traversal removal contract — left as todos because bodying them would directly contradict the existing PR1 chain-traversal tests in this file (PR2 implementation will delete those alongside).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a910fcfd-5a5a-4257-b16e-fc64f2389e25:
+    id: a910fcfd-5a5a-4257-b16e-fc64f2389e25
+    content: '`src/renderer/components/ui/StepConfigDialog/tests/StepConfigDialog.test.tsx` — 3 `it.todo` placeholders for the helper text under decomposition and recurse options describing their coupling. Title-only because the spec specifies location and intent ("light grey helper text beneath …describing their dependency") but leaves the exact wording to the implementer.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  22d5dc50-70c4-48df-8946-313beb2a153e:
+    id: 22d5dc50-70c4-48df-8946-313beb2a153e
+    content: Implementation report — PR2
+    children:
+      - 50518ba1-098e-427f-9078-1884e32c2ff3
+      - 31b16a13-6d97-4f28-a707-70ed998001c5
+      - 30885878-f399-4305-8c4f-1dd6f8b085d6
+      - 7919bc17-7a9e-4e0a-b3c0-8b594fa37a17
+      - 5e2625d0-7170-4a77-a72b-cfe1c1409035
+      - bc77a91f-9873-438d-b7c8-ac6621409f11
+      - 9dc4c425-7f25-41b5-bd45-f25cee0120a7
+      - 8273ed80-5811-4f4c-8b5f-9e90414684a6
+      - 9bc619f6-4392-48ac-b802-9157abfa9434
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  50518ba1-098e-427f-9078-1884e32c2ff3:
+    id: 50518ba1-098e-427f-9078-1884e32c2ff3
+    content: 'Shipped: chain-traversal fallback removed from `checkRecurse`. The function now tries the supplied step first, walks the surrounding workflow to its decomposition step (via the new `findDecompositionStepInWorkflow` helper) and tries that next, and stops if neither yields a waiting sibling. No more `findFirstAutonomousStepInChain` / `findNextWaitingNode` chain walk — siblings are the only thing recurse processes.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  31b16a13-6d97-4f28-a707-70ed998001c5:
+    id: 31b16a13-6d97-4f28-a707-70ed998001c5
+    content: 'Shipped: recurse-without-decomposition warning toast + once-per-run guard. When `recurse: true` is set on a step but no step in the surrounding workflow has `decomposition: true`, `checkRecurse` emits the toast `"Warning, you have recursion set without decomposition"` and a paired `notifyWorkflowEvent(''alert'', …)`. A factory-scoped `Set<terminalId>` (`recurseWithoutDecompositionWarned`) gates the toast so it fires once per terminal even after multiple advances.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  30885878-f399-4305-8c4f-1dd6f8b085d6:
+    id: 30885878-f399-4305-8c4f-1dd6f8b085d6
+    content: 'Shipped: helper text in `StepOptionsSection`. The existing `step-config-description` paragraphs (the light-grey style already used elsewhere in the dialog) now mention the dependency: the decomposition description ends with "Pair with Recurse on a later step to play each sibling forward automatically", and the recurse description reads "After completing this step, automatically process the next decomposed sibling on the same terminal. Requires Decomposition on a step in this workflow — without it, recurse does nothing." No new CSS class needed — the existing style is the spec''d "light grey helper text".'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7919bc17-7a9e-4e0a-b3c0-8b594fa37a17:
+    id: 7919bc17-7a9e-4e0a-b3c0-8b594fa37a17
+    content: 'Shipped: `findDecompositionStepInWorkflow(stepId, nodes, ancestorRegistry)` in `workflowHelpers.ts` replaces the deleted `findFirstAutonomousStepInChain`. It walks ancestry to find the nearest enclosing workflow (using `findLast` so nested workflows are scoped correctly) and returns the first child step in that workflow that has `decomposition: true`, or null. Used by checkRecurse for both the sibling-anchor lookup and the "is there any decomposition step?" warning gate, so there''s a single source of truth.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5e2625d0-7170-4a77-a72b-cfe1c1409035:
+    id: 5e2625d0-7170-4a77-a72b-cfe1c1409035
+    content: 'Bodied previously-`it.todo` tests now that the implementation is concrete: 2 `chain-traversal removal (PR2)` tests assert that a recurse step in a no-decomposition workflow does not start earlier-step nodes, and that the workflow stops without picking up unrelated chain nodes after the last sibling. 2 `decomposition + recurse dependency helper text (PR2)` tests in `StepConfigDialog.test.tsx` assert the descriptions beneath each checkbox mention the coupled option (case-insensitive regex match so the implementation isn''t over-coupled to the exact wording).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bc77a91f-9873-438d-b7c8-ac6621409f11:
+    id: bc77a91f-9873-438d-b7c8-ac6621409f11
+    content: 'Updated existing tests that relied on cross-chain recurse: the `recurse with completeWorkflow` test now uses `decomposition: true` on the originating step (its assertion that task-b starts after task-a completes still holds via the sibling lookup), and the two safety-limit tests (`recurse safety limit` + `notification wiring`''s recurse-limit case) add `decomposition: true` to step-1 so the iteration goes through the sibling-finder. The previously-failing `workflowHasDecompositionStep walks the nearest enclosing workflow only` test was renamed to `findDecompositionStepInWorkflow walks the nearest enclosing workflow only` and asserts the helper returns null for a deeper-workflow step whose decomposition lives in the outer workflow.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9dc4c425-7f25-41b5-bd45-f25cee0120a7:
+    id: 9dc4c425-7f25-41b5-bd45-f25cee0120a7
+    content: 'Standard checks: `tsc --noEmit` clean. ESLint reports 0 errors with only the pre-existing `import/no-cycle` warning. Vitest 175 pass / 0 fail / 2 todo on the changed-area suites (`workflowExecutionActions.test.ts`, `workflowHelpers.test.ts`, `StepConfigDialog.test.tsx`); 122 pass / 0 fail on the adjacent workflow suites (`workflowAdvancement.test.ts`, `workflowAutoAccept.test.ts`, `workflowActions.test.ts`).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8273ed80-5811-4f4c-8b5f-9e90414684a6:
+    id: 8273ed80-5811-4f4c-8b5f-9e90414684a6
+    content: 'Out of scope and explicitly not done in this PR (per the PR scope): handleAutonomousFeedback enqueue logic, advanceNode call-site verification, the `findNextDecomposedSibling` helper itself, and the multi-root play-forward integration tests — all of those are PR1 territory already shipped on master and untouched by this PR.'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  9bc619f6-4392-48ac-b802-9157abfa9434:
+    id: 9bc619f6-4392-48ac-b802-9157abfa9434
+    content: 'Remaining `it.todo` placeholders (intentionally not bodied): once-per-run reset on workflow restart (depends on a workflow-restart hook that doesn''t currently exist as a single observable event) and the helper-text style assertion (would require snapshot/computed-style testing for marginal value).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
