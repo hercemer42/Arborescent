@@ -171,6 +171,7 @@ export const createClipboardActions = (
     actions.executeCommand(command);
 
     useClipboardCacheStore.getState().setCache(nodeIds, true, markdown, allCutIds, state.currentFilePath || undefined);
+    useHyperlinkClipboardStore.getState().clearCache();
 
     logger.info(`Cut ${nodeIds.length} node(s)`, 'ClipboardActions');
     return 'cut';
@@ -201,6 +202,7 @@ export const createClipboardActions = (
     clearCutState();
 
     useClipboardCacheStore.getState().setCache(nodeIds, false, markdown, undefined, state.currentFilePath || undefined);
+    useHyperlinkClipboardStore.getState().clearCache();
 
     flashNodes(nodeIds, visualEffects);
 

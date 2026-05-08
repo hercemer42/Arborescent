@@ -1732,6 +1732,109 @@ describe('clipboardActions', () => {
       });
     });
 
+    describe('hyperlink cache invalidation on competing clipboard writes', () => {
+      const matchingClipboardText = 'snapshot at copy time';
+
+      function seedHyperlinkCache() {
+        currentMockHyperlinkCache = {
+          nodeId: 'node-2',
+          content: 'Task 2',
+          sourceFilePath: '/test/file.arbo',
+          timestamp: Date.now(),
+          clipboardTextAtCopy: matchingClipboardText,
+        };
+      }
+
+      it('should clear hyperlink cache when copyNodes is called afterwards', async () => {
+        seedHyperlinkCache();
+        expect(currentMockHyperlinkCache).not.toBeNull();
+
+        state.activeNodeId = 'node-1';
+        await actions.copyNodes();
+
+        expect(currentMockHyperlinkCache).toBeNull();
+      });
+
+      it('should clear hyperlink cache when cutNodes is called afterwards', async () => {
+        seedHyperlinkCache();
+        expect(currentMockHyperlinkCache).not.toBeNull();
+
+        state.activeNodeId = 'node-1';
+        await actions.cutNodes();
+
+        expect(currentMockHyperlinkCache).toBeNull();
+      });
+
+      it('should make pasteAsHyperlink return no-content after copyNodes invalidates the cache, even if the clipboard text would still match the original snapshot', async () => {
+        seedHyperlinkCache();
+        state.activeNodeId = 'node-1';
+        await actions.copyNodes();
+
+        const result = actions.pasteAsHyperlink(matchingClipboardText);
+
+        expect(result).toBe('no-content');
+      });
+
+      it('should make pasteAsHyperlink return no-content after cutNodes invalidates the cache, even if the clipboard text would still match the original snapshot', async () => {
+        seedHyperlinkCache();
+        state.activeNodeId = 'node-1';
+        await actions.cutNodes();
+
+        const result = actions.pasteAsHyperlink(matchingClipboardText);
+
+        expect(result).toBe('no-content');
+      });
+
+      it('should allow re-establishing the hyperlink cache after a copyNodes invalidation', async () => {
+        seedHyperlinkCache();
+        state.activeNodeId = 'node-1';
+        await actions.copyNodes();
+        expect(currentMockHyperlinkCache).toBeNull();
+
+        state.activeNodeId = 'node-3';
+        await actions.copyAsHyperlink();
+
+        expect(currentMockHyperlinkCache).not.toBeNull();
+        expect(currentMockHyperlinkCache?.nodeId).toBe('node-3');
+      });
+
+      it('should not clear hyperlink cache when copyNodes returns no-selection (no clipboard write happened)', async () => {
+        seedHyperlinkCache();
+        state.activeNodeId = null;
+        state.multiSelectedNodeIds = new Set();
+
+        const result = await actions.copyNodes();
+
+        expect(result).toBe('no-selection');
+        expect(currentMockHyperlinkCache).not.toBeNull();
+      });
+
+      it('should not clear hyperlink cache when cutNodes returns no-selection (no clipboard write happened)', async () => {
+        seedHyperlinkCache();
+        state.activeNodeId = null;
+        state.multiSelectedNodeIds = new Set();
+
+        const result = await actions.cutNodes();
+
+        expect(result).toBe('no-selection');
+        expect(currentMockHyperlinkCache).not.toBeNull();
+      });
+
+      it('should not clear hyperlink cache when blueprint-mode copyNodes is rejected before the clipboard is written', async () => {
+        seedHyperlinkCache();
+        state.blueprintModeEnabled = true;
+        state.nodes['node-1'].metadata = {};
+        state.activeNodeId = 'node-1';
+
+        const result = await actions.copyNodes();
+
+        expect(result).toBe('no-selection');
+        expect(currentMockHyperlinkCache).not.toBeNull();
+      });
+
+      it('hyperlink cache invalidation on window focus regain (deferred — desired path is uncertain: invalidate on focus, on focus loss, or only on read mismatch)');
+    });
+
     describe('pasteNodes with hyperlinks', () => {
       it('should block pasting into hyperlink nodes', async () => {
         // Setup hyperlink node
