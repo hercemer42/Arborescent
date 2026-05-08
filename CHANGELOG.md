@@ -32,6 +32,7 @@
 - **Tree-editing shortcuts no longer fire in terminal/browser panels** — cut, copy, paste, delete, select all, Escape, and view mode toggles are now properly gated when focus is in the terminal or browser
 - **Pasting a hyperlink into a blueprint no longer marks the link as a blueprint itself** — a hyperlink is a reference to another node, so its blueprint status follows the link target, not where it's dropped
 - **Copy as Hyperlink is now invalidated by any subsequent cut or copy** — previously a stale hyperlink could be pasted even after you copied other content over the clipboard, especially right after switching apps; pasting now reliably uses the most recent clipboard content
+- **Right-click "Set context" submenu now reflects context renames immediately** — editing a context declaration's label updated the node but the submenu kept the old text until the next app restart. Undo/redo of the rename also stays in sync.
 
 ## 0.1.0 - Initial Release
 

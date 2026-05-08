@@ -53,7 +53,12 @@ export const createNodeActions = (
   }
 
   function updateContent(nodeId: string, content: string): void {
-    const state = get() as StoreState & { actions?: { executeCommand?: (cmd: unknown) => void } };
+    const state = get() as StoreState & {
+      actions?: {
+        executeCommand?: (cmd: unknown) => void;
+        refreshContextDeclarations?: () => void;
+      };
+    };
     const { nodes, collaboratingNodeId } = state;
     const node = nodes[nodeId];
     if (!node) return;
@@ -84,7 +89,8 @@ export const createNodeActions = (
       oldContent,
       content,
       (nodeId, cursorPosition) => set({ activeNodeId: nodeId, cursorPosition }),
-      triggerAutosave
+      triggerAutosave,
+      state.actions.refreshContextDeclarations
     );
     state.actions.executeCommand(command);
   }

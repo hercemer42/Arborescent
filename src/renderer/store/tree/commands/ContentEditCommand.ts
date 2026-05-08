@@ -12,12 +12,20 @@ export class ContentEditCommand extends BaseCommand {
     oldContent: string,
     newContent: string,
     private selectNode: (nodeId: string, cursorPosition: number) => void,
-    private triggerAutosave?: () => void
+    private triggerAutosave?: () => void,
+    private refreshContextDeclarations?: () => void
   ) {
     super();
     this.oldContent = oldContent;
     this.newContent = newContent;
     this.description = `Edit node ${nodeId}`;
+  }
+
+  private refreshIfContext(): void {
+    const node = this.getNodes()[this.nodeId];
+    if (node?.metadata.isContextDeclaration === true) {
+      this.refreshContextDeclarations?.();
+    }
   }
 
   execute(): void {
@@ -34,6 +42,7 @@ export class ContentEditCommand extends BaseCommand {
     });
 
     this.triggerAutosave?.();
+    this.refreshIfContext();
   }
 
   undo(): void {
@@ -51,6 +60,7 @@ export class ContentEditCommand extends BaseCommand {
 
     this.selectNode(this.nodeId, this.oldContent.length);
     this.triggerAutosave?.();
+    this.refreshIfContext();
   }
 
   redo(): void {
@@ -68,6 +78,7 @@ export class ContentEditCommand extends BaseCommand {
 
     this.selectNode(this.nodeId, this.newContent.length);
     this.triggerAutosave?.();
+    this.refreshIfContext();
   }
 
   canMergeWith(other: unknown): boolean {
