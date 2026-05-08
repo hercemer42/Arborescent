@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-05-08T18:32:53.250Z'
+updated: '2026-05-08T18:36:00.788Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -23683,8 +23683,7 @@ nodes:
   00714a63-f267-4ab1-a285-73ae4198eb42:
     id: 00714a63-f267-4ab1-a285-73ae4198eb42
     content: Technical refinement
-    children:
-      - bba28f16-877a-42c0-b9a9-4b60f30dbc34
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -84832,7 +84831,8 @@ nodes:
   1ee47a7f-770a-44ef-97ab-eb85a6f22ef1:
     id: 1ee47a7f-770a-44ef-97ab-eb85a6f22ef1
     content: Technical decomposition
-    children: []
+    children:
+      - bba28f16-877a-42c0-b9a9-4b60f30dbc34
     metadata:
       status: pending
       isBlueprint: true
@@ -96042,15 +96042,13 @@ nodes:
     id: bba28f16-877a-42c0-b9a9-4b60f30dbc34
     content: 'Bug : Sometimes workflows don''t stop playing after completing the last step'
     children:
-      - 7837d0c3-1c55-44f8-84f5-c46d0fb73139
+      - d985f74d-51de-430b-a876-232018495ec7
+      - 7c32c625-0f98-4003-88df-28080bcf0f5a
     metadata:
       status: pending
-  7837d0c3-1c55-44f8-84f5-c46d0fb73139:
-    id: 7837d0c3-1c55-44f8-84f5-c46d0fb73139
-    content: Arrow is still green even though there are no more steps
-    children: []
-    metadata:
-      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
   44a83447-116d-42b0-8789-26319239d2b3:
     id: 44a83447-116d-42b0-8789-26319239d2b3
     content: 📄 Product spec
@@ -96747,6 +96745,134 @@ nodes:
     children: []
     metadata:
       status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d985f74d-51de-430b-a876-232018495ec7:
+    id: d985f74d-51de-430b-a876-232018495ec7
+    content: Arrow is still green even though there are no more steps
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7c32c625-0f98-4003-88df-28080bcf0f5a:
+    id: 7c32c625-0f98-4003-88df-28080bcf0f5a
+    content: Technical refinement
+    children:
+      - eeaefb8a-eef6-4058-aabe-1fc2f16da13a
+      - 7e6f534e-c341-4d8f-b6b7-a430c2347fff
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  eeaefb8a-eef6-4058-aabe-1fc2f16da13a:
+    id: eeaefb8a-eef6-4058-aabe-1fc2f16da13a
+    content: Complications
+    children:
+      - 4e51001a-aef4-43c6-8094-5628853da749
+      - ec904dbc-905c-4c52-a082-a3b090e4a591
+      - a178cad0-0bee-4bc2-ba1e-8f56ff778b3e
+      - f242a6eb-2da5-4b3b-9ef6-64b8fcdcc935
+      - 9e7c525d-d18c-4ed2-ba93-6995a7b43b3f
+      - e4c3fa9e-9762-4493-afbf-1d8a3cf69c8b
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4e51001a-aef4-43c6-8094-5628853da749:
+    id: 4e51001a-aef4-43c6-8094-5628853da749
+    content: '"Sometimes" needs nailing down — the report says intermittent. The fix risk and scope change a lot depending on which path leaks: a plain Manual/Autonomous final step, the post-decomposition advancement path, the recurse iterator''s exit when it runs out of siblings, the 50-iteration safety stop, an autonomous step that completed via auto-accept vs. via terminal-completion hook, or a Checkpoint that the user validated. Worth narrowing the repro before assuming a single root cause.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ec904dbc-905c-4c52-a082-a3b090e4a591:
+    id: ec904dbc-905c-4c52-a082-a3b090e4a591
+    content: '"Last step" is ambiguous in the presence of decomposition + recurse. With recurse, the "last step" of each sibling-iteration is not the workflow''s last execution — and the recurse loop''s own exit condition (no more waiting siblings, or hitting the 50-iteration cap) is what should flip the workflow back to idle. The fix has to cover both the simple "ran the final numbered step" case and the "recurse loop drained" case.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a178cad0-0bee-4bc2-ba1e-8f56ff778b3e:
+    id: a178cad0-0bee-4bc2-ba1e-8f56ff778b3e
+    content: Symptom vs. state — the green arrow is the indicator; the underlying bug could be (a) the in-memory store still says running, (b) the persisted running flag on the workflow root never got cleared, or (c) the store is correct but the indicator selector reads a stale field. Need to check all three before patching only the visible end.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f242a6eb-2da5-4b3b-9ef6-64b8fcdcc935:
+    id: f242a6eb-2da5-4b3b-9ef6-64b8fcdcc935
+    content: Persistence and restart — if the running flag is persisted, existing `.arbo` files in the field may already have stuck-running workflows. Decide whether the fix only repairs new completions or also self-heals on load (e.g. if no terminal/process is associated with the workflow on startup, clear the flag rather than treating the workflow as resumable).
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9e7c525d-d18c-4ed2-ba93-6995a7b43b3f:
+    id: 9e7c525d-d18c-4ed2-ba93-6995a7b43b3f
+    content: Out of scope for a bug fix — adding a new "Done" terminal state, reworking the two-state (running / awaiting-validation) model, or changing the indicator UX. The fix should land on the existing completion path, not redesign it.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e4c3fa9e-9762-4493-afbf-1d8a3cf69c8b:
+    id: e4c3fa9e-9762-4493-afbf-1d8a3cf69c8b
+    content: ROI — this is a small, user-visible polish bug; the cost is bounded (one or two completion paths) but only if the repro narrows. If it turns out to be a race in the keep-awake + auto-advance + recurse interaction, it could grow — flag early if that's the case.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7e6f534e-c341-4d8f-b6b7-a430c2347fff:
+    id: 7e6f534e-c341-4d8f-b6b7-a430c2347fff
+    content: Approach summary
+    children:
+      - 3eb87e80-e560-4736-9f08-d82c4f8a04d2
+      - 4e1ba49e-dfce-4e81-aee1-d1ed1bc9f99a
+      - 9288a346-366b-4914-9e6f-fce0d15d0d89
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3eb87e80-e560-4736-9f08-d82c4f8a04d2:
+    id: 3eb87e80-e560-4736-9f08-d82c4f8a04d2
+    content: Land the fix on the workflow-completion path in `workflowExecutionActions` (and the recurse driver). When the final numbered step finishes — or when recurse exhausts its sibling queue or hits the iteration cap — call the same teardown that the disruption paths (terminal close, item delete/move, app restart) already use, so completion converges on `stopWorkflow`/clear-running rather than its own bespoke path.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4e1ba49e-dfce-4e81-aee1-d1ed1bc9f99a:
+    id: 4e1ba49e-dfce-4e81-aee1-d1ed1bc9f99a
+    content: 'Pin the fix with one regression test per completion shape that exists today: linear final-step completion, decomposition+recurse drain, recurse-cap stop, and (if intermittent) one targeted test for whichever path the repro identifies. The disruption-handling tests already prove the teardown works; this test set proves completion calls it.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9288a346-366b-4914-9e6f-fce0d15d0d89:
+    id: 9288a346-366b-4914-9e6f-fce0d15d0d89
+    content: Non-obvious for a reviewer — the visible green arrow is downstream of the workflow's running flag, so the right diff is one or two lines on the completion side, not in the indicator component. Also, the keep-awake block release is gated on the running flag being cleared, so this fix likely also stops the system being held awake after the workflow really finished — worth verifying as a side effect.
+    children: []
+    metadata:
+      status: pending
       expanded: true
       deleted: false
       plugins: {}
