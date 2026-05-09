@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-05-09T09:58:19.852Z'
+updated: '2026-05-09T11:43:02.196Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -548,6 +548,7 @@ nodes:
       - 03f0a426-d21a-4ef9-9e80-c752dd18b4af
       - 43ea2417-0b22-4d60-9997-e47414aa2143
       - 71035e9e-d48e-4e8d-bd06-c9eeb7933ac9
+      - 0a46871d-9ad3-44f3-add8-d5afc63c36fc
     metadata:
       status: completed
       expanded: false
@@ -14402,6 +14403,7 @@ nodes:
     id: c25cf481-a0d1-495d-9cea-498f1135eb8c
     content: Feature implementation
     children:
+      - 95ef9336-1693-492d-880d-61ab700984da
       - 0f4e4680-4264-44b3-ae3b-7980d55791d3
     metadata:
       status: completed
@@ -15214,6 +15216,9 @@ nodes:
     id: 5cc686fc-7651-4d83-9ccf-78a29d1dff13
     content: Done
     children:
+      - fab60ee2-124f-48d3-918a-25efbbcd55be
+      - 629bc0db-be09-4f61-b904-bf4371f3b6ad
+      - 50b070d9-82f3-4010-83c7-7a99e9ab187e
       - 1a32c3eb-e6b1-49f4-a527-b256b3f0cbfd
       - bba28f16-877a-42c0-b9a9-4b60f30dbc34
       - 52181ade-117d-4350-a499-c492134400bb
@@ -23690,8 +23695,7 @@ nodes:
     id: 00714a63-f267-4ab1-a285-73ae4198eb42
     content: Technical refinement
     children:
-      - 6601484b-e852-4fb6-a25c-875950c82c59
-      - 901813f7-011c-4c41-802b-53ecfdb96209
+      - 850f875c-f771-40be-9432-fd212a7f583c
     metadata:
       status: pending
       isBlueprint: true
@@ -25601,7 +25605,8 @@ nodes:
   fbf20e91-d852-4406-9815-952fa7727f33:
     id: fbf20e91-d852-4406-9815-952fa7727f33
     content: Test pass & issue resolution
-    children: []
+    children:
+      - 1bf140f0-ec8e-4e18-bad5-bfa99b255d0b
     metadata:
       status: pending
       appliedContextId: 4c3f0d67-a500-484f-8ccb-5dbf959ea27f
@@ -27136,8 +27141,7 @@ nodes:
   9a392715-9ea2-4269-b35c-812b8998e3ec:
     id: 9a392715-9ea2-4269-b35c-812b8998e3ec
     content: Automated tests implementation (TDD)
-    children:
-      - 1bf140f0-ec8e-4e18-bad5-bfa99b255d0b
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -73693,10 +73697,7 @@ nodes:
     id: 45f1a5a0-dae3-4080-97ed-b8e324b79a64
     content: Arborescent feature discussion (triage, related to file system storage)
     children:
-      - 311ae674-89c1-4baf-825f-158e69db2a72
       - d0ea5e49-409a-4f0a-9fc3-07afcad122c2
-      - 2ac19844-b4a2-49b1-b963-f3936939aa26
-      - 19271b40-a279-45ff-bb7e-0dc86042047b
       - 00fa9a3a-6ba7-4453-88d6-314a4a17d324
       - 52aae4b2-203b-4e1d-ada6-f92e4b1ee18d
       - d2d66dc1-b612-4449-9b05-1889c451aaa1
@@ -73706,65 +73707,6 @@ nodes:
       - a8368ca3-da2b-47cf-9ddc-0b485d8cc401
       - 295906d9-e3f5-41b9-ab61-fed5a35b9135
       - 58dc6c2f-c377-4cd4-89c2-7fde516e83e7
-    metadata:
-      status: pending
-      expanded: false
-      deleted: false
-      plugins: {}
-  311ae674-89c1-4baf-825f-158e69db2a72:
-    id: 311ae674-89c1-4baf-825f-158e69db2a72
-    content: Guiding principles (manifesto)
-    children:
-      - 4b032d7d-94d0-40eb-84fa-10350ab2fb2a
-      - f9c71f22-9dc2-4d54-991f-674cd64849bd
-      - e60a73be-dc55-4a0a-ab00-bce0131a9cf1
-      - 2a06d220-46bb-414b-aa15-a9e8f73cb177
-      - 069d6268-9137-46b2-b8b5-622057476d67
-    metadata:
-      status: pending
-      expanded: false
-      deleted: false
-      plugins: {}
-  4b032d7d-94d0-40eb-84fa-10350ab2fb2a:
-    id: 4b032d7d-94d0-40eb-84fa-10350ab2fb2a
-    content: The tree is the source of truth. All structural state lives in the tree, not in side-channel maps or workflow metadata
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f9c71f22-9dc2-4d54-991f-674cd64849bd:
-    id: f9c71f22-9dc2-4d54-991f-674cd64849bd
-    content: Each node type lives in its natural format. Markdown is a file, blueprints are folders, contexts are their own artefacts, tree nodes are arbo
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e60a73be-dc55-4a0a-ab00-bce0131a9cf1:
-    id: e60a73be-dc55-4a0a-ab00-bce0131a9cf1
-    content: The AI is the automation layer. Workflows operate on the tree; AI reads, transforms, and produces tree-shaped output
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  2a06d220-46bb-414b-aa15-a9e8f73cb177:
-    id: 2a06d220-46bb-414b-aa15-a9e8f73cb177
-    content: External tools write through their own UIs. Arborescent reads from external sources, never writes. Click-through to native UI (browser panel) and Claude-via-MCP handle all writes
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  069d6268-9137-46b2-b8b5-622057476d67:
-    id: 069d6268-9137-46b2-b8b5-622057476d67
-    content: When a decision is ambiguous, come back to these four lines — they are the test
-    children: []
     metadata:
       status: pending
       expanded: true
@@ -73783,7 +73725,7 @@ nodes:
       - caef96f5-a303-4436-8f0d-3440668613cf
     metadata:
       status: pending
-      expanded: false
+      expanded: true
       deleted: false
       plugins: {}
   93b63d1b-21d9-4cfe-a96c-a7bdcb57e40b:
@@ -73840,134 +73782,6 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  2ac19844-b4a2-49b1-b963-f3936939aa26:
-    id: 2ac19844-b4a2-49b1-b963-f3936939aa26
-    content: Chunk 2 — Kill decomposition as a distinct feature
-    children:
-      - 631d275d-fb26-497c-84fb-a71e900c3596
-      - 403932c0-89d0-4f89-bb6e-77641c10353d
-      - 82b17a31-6e02-4c5e-be20-193f2143db99
-      - 7d82d83d-c22f-4479-9e4d-01d276aa85fb
-      - 8835097c-1a61-4521-a2b3-7ca4f3e0f764
-      - f56a8264-fb15-479c-b0a3-a3c5ca24c211
-      - 6bf530ef-4c1c-4d06-b9bd-4a303c956c63
-      - b9194f74-3a05-4da8-83cd-5f400c1cbf75
-    metadata:
-      status: pending
-      expanded: false
-      deleted: false
-      plugins: {}
-  631d275d-fb26-497c-84fb-a71e900c3596:
-    id: 631d275d-fb26-497c-84fb-a71e900c3596
-    content: 'Goal: decomposition is no longer a flag on steps or contexts. It is a natural consequence of collaborate-mode contexts that ask the AI to add children'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  403932c0-89d0-4f89-bb6e-77641c10353d:
-    id: 403932c0-89d0-4f89-bb6e-77641c10353d
-    content: Remove the decomposition checkbox from the step config dialog
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  82b17a31-6e02-4c5e-be20-193f2143db99:
-    id: 82b17a31-6e02-4c5e-be20-193f2143db99
-    content: Remove any step-level or context-level decomposition metadata handling in prompt building
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  7d82d83d-c22f-4479-9e4d-01d276aa85fb:
-    id: 7d82d83d-c22f-4479-9e4d-01d276aa85fb
-    content: Ship a built-in "Break this into sub-tasks" context in collaborate mode that instructs the AI to return the node with children added
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  8835097c-1a61-4521-a2b3-7ca4f3e0f764:
-    id: 8835097c-1a61-4521-a2b3-7ca4f3e0f764
-    content: 'Archive-and-replace: convert to a user-invoked manual action ("Archive this node before modifying"), not a coupled-to-decomposition automated step'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f56a8264-fb15-479c-b0a3-a3c5ca24c211:
-    id: f56a8264-fb15-479c-b0a3-a3c5ca24c211
-    content: 'Recurse becomes: "for each task-list child of this parent, advance through the remaining workflow steps." No more sibling-position dance'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  6bf530ef-4c1c-4d06-b9bd-4a303c956c63:
-    id: 6bf530ef-4c1c-4d06-b9bd-4a303c956c63
-    content: Parent advances through a workflow step when its task-list children's tasks for that step are all done (aggregated via chunk 1's done/total)
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  b9194f74-3a05-4da8-83cd-5f400c1cbf75:
-    id: b9194f74-3a05-4da8-83cd-5f400c1cbf75
-    content: 'Out of scope: workflow state maps, proxy nodes, origin-pipeline tagging — the tree handles identity'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  19271b40-a279-45ff-bb7e-0dc86042047b:
-    id: 19271b40-a279-45ff-bb7e-0dc86042047b
-    content: Chunk 3 — Explicit-only contexts (already in flight in its own worktree)
-    children:
-      - 38655efc-20bb-4924-9bc9-8298b1702eee
-      - 85947fa5-1b2e-4d79-8c60-e6cdf742ee0a
-      - 2bfcd86a-119e-477c-9f2e-12ff3492266b
-    metadata:
-      status: pending
-      expanded: false
-      deleted: false
-      plugins: {}
-  38655efc-20bb-4924-9bc9-8298b1702eee:
-    id: 38655efc-20bb-4924-9bc9-8298b1702eee
-    content: 'Goal: remove the auto-apply of default contexts. A node with no context applied on its ancestor chain sends only its own content'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  85947fa5-1b2e-4d79-8c60-e6cdf742ee0a:
-    id: 85947fa5-1b2e-4d79-8c60-e6cdf742ee0a
-    content: See existing worktree fix-explicit-only-contexts for spec, tests, and acceptance criteria
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  2bfcd86a-119e-477c-9f2e-12ff3492266b:
-    id: 2bfcd86a-119e-477c-9f2e-12ff3492266b
-    content: Land this before chunks 4+ — cleaner mental model for the polymorphic work
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
   00fa9a3a-6ba7-4453-88d6-314a4a17d324:
     id: 00fa9a3a-6ba7-4453-88d6-314a4a17d324
     content: Chunk 4 — Node type primitive
@@ -73980,7 +73794,7 @@ nodes:
       - f86030bb-b4b7-4040-9331-fb49b817358f
     metadata:
       status: pending
-      expanded: false
+      expanded: true
       deleted: false
       plugins: {}
   be09e396-13e6-4a35-9f81-6a53f4ab9991:
@@ -77325,18 +77139,9 @@ nodes:
   caef96f5-a303-4436-8f0d-3440668613cf:
     id: caef96f5-a303-4436-8f0d-3440668613cf
     content: 'Think there is room for another user story after this, see :'
-    children:
-      - 2d320386-fc14-432a-accd-6dd437b16c33
-    metadata:
-      status: pending
-  2d320386-fc14-432a-accd-6dd437b16c33:
-    id: 2d320386-fc14-432a-accd-6dd437b16c33
-    content: Sometimes steps are not fully implemented
     children: []
     metadata:
       status: pending
-      isHyperlink: true
-      linkedNodeId: 413a84b6-97e7-4963-81ca-6667f2136d9a
   e30b1f16-d2c4-46a3-8c9f-15fc02d73bdf:
     id: e30b1f16-d2c4-46a3-8c9f-15fc02d73bdf
     content: Apply context sub menu is truncating sometimes
@@ -80653,14 +80458,15 @@ nodes:
     id: 0f4e4680-4264-44b3-ae3b-7980d55791d3
     content: Execute a node as a terminal command
     children:
-      - 70118836-b11f-4097-93c4-b7eeb70b4c70
-      - 7284faa6-d802-4f3d-9585-b3b3feabfe2e
+      - 539ac9a4-7c9f-48b7-bdf3-b3e38c1810d9
+      - bbe1d6de-dadd-4c19-a5be-3546b8064a9c
+      - 132e2856-11c1-493f-a778-075e8432365c
+      - 94f1e3ff-6093-4e46-ac85-683a5a5067f8
     metadata:
       status: pending
       expanded: false
       deleted: false
       plugins: {}
-      appliedContextId: d83909a8-6ca6-4dca-8c64-7b4ee9aeb43b
   858fba49-f0c5-4788-8bc4-6bad68162c8c:
     id: 858fba49-f0c5-4788-8bc4-6bad68162c8c
     content: Be brief
@@ -83046,7 +82852,8 @@ nodes:
   ddd90208-5752-46cf-b72a-5fcbe040b2e0:
     id: ddd90208-5752-46cf-b72a-5fcbe040b2e0
     content: Merge to master
-    children: []
+    children:
+      - 901813f7-011c-4c41-802b-53ecfdb96209
     metadata:
       status: pending
       isBlueprint: true
@@ -84767,128 +84574,28 @@ nodes:
       decomposition: true
       appliedContextId: e9deb148-5fe4-4a5c-ab6e-9f4c1f232f72
       recurse: false
-  d1305b5d-3a57-436d-a311-cdc445948980:
-    id: d1305b5d-3a57-436d-a311-cdc445948980
-    content: Split the following user story into technical sub tasks
-    children: []
-    metadata:
-      status: pending
-      isBlueprint: true
-  5bf3e3e1-a510-411d-bd9b-bf3be5f3f8b7:
-    id: 5bf3e3e1-a510-411d-bd9b-bf3be5f3f8b7
-    content: Do not create the PR yet
-    children: []
-    metadata:
-      status: pending
-      isBlueprint: true
-  daf29b28-0f3a-4dc1-b201-1b57efce9260:
-    id: daf29b28-0f3a-4dc1-b201-1b57efce9260
-    content: Each task will represent a PR
-    children:
-      - 5bf3e3e1-a510-411d-bd9b-bf3be5f3f8b7
-    metadata:
-      status: pending
-      isBlueprint: true
-  5cde239f-44a0-438c-abf7-c033c6a58125:
-    id: 5cde239f-44a0-438c-abf7-c033c6a58125
-    content: If the user story can be implemented all together in the one PR, do nothing
-    children: []
-    metadata:
-      status: pending
-      isBlueprint: true
-  1d886d67-db61-4deb-81a4-aa5280d69c3d:
-    id: 1d886d67-db61-4deb-81a4-aa5280d69c3d
-    content: Reason as a senior engineer decomposing a user story into implementable tasks
-    children: []
-    metadata:
-      status: pending
-      isBlueprint: true
-  1ffffe23-058d-49bb-b3fa-74453536e5d9:
-    id: 1ffffe23-058d-49bb-b3fa-74453536e5d9
-    content: If you have no choice but to do this, alert the user to create a work branch or feature flag.
-    children: []
-    metadata:
-      status: pending
-      isBlueprint: true
-  6299ebd9-9fda-4151-9aa4-4766e2a3db39:
-    id: 6299ebd9-9fda-4151-9aa4-4766e2a3db39
-    content: Do not breakdown a subtask if merging it on it's own will break production
-    children:
-      - 1ffffe23-058d-49bb-b3fa-74453536e5d9
-    metadata:
-      status: pending
-      isBlueprint: true
-  cdb11a82-b006-45fd-a6ba-1baa2e8392bb:
-    id: cdb11a82-b006-45fd-a6ba-1baa2e8392bb
-    content: Only decompose if it makes sense to have each subtask as a separate PR
-    children:
-      - 5cde239f-44a0-438c-abf7-c033c6a58125
-      - 1d886d67-db61-4deb-81a4-aa5280d69c3d
-      - 6299ebd9-9fda-4151-9aa4-4766e2a3db39
-    metadata:
-      status: pending
-      isBlueprint: true
-  d7b97d7f-46f8-444a-a2b6-088831cd6db2:
-    id: d7b97d7f-46f8-444a-a2b6-088831cd6db2
-    content: Each task should be decomposed into a separate node
-    children: []
-    metadata:
-      status: pending
-      isBlueprint: true
-  c4e93207-f607-46ea-b9e0-0ff09b7f4a5d:
-    id: c4e93207-f607-46ea-b9e0-0ff09b7f4a5d
-    content: For example, 'PR2 - The ticket title'
-    children: []
-    metadata:
-      status: pending
-      isBlueprint: true
-  69543b9c-2935-4662-9511-99b4ccaf11fe:
-    id: 69543b9c-2935-4662-9511-99b4ccaf11fe
-    content: The parent node of each PR should start with PR#, then user story title.
-    children:
-      - c4e93207-f607-46ea-b9e0-0ff09b7f4a5d
-    metadata:
-      status: pending
-      isBlueprint: true
-  830fd259-f9c5-4e83-8a82-af502690a8eb:
-    id: 830fd259-f9c5-4e83-8a82-af502690a8eb
-    content: Each task should duplicate the user story under a node 'User story'
-    children: []
-    metadata:
-      status: pending
-      isBlueprint: true
-  de3cca97-3bfa-404d-abc8-88d73107c729:
-    id: de3cca97-3bfa-404d-abc8-88d73107c729
-    content: "This is a subtask of the overall user story.\_ Please implement only this subtask.\_ The others will be implemented in a separate PR."
-    children: []
-    metadata:
-      status: pending
-      isBlueprint: true
-  425e6d1c-3bba-4a8a-9277-74a8296557d8:
-    id: 425e6d1c-3bba-4a8a-9277-74a8296557d8
-    content: 'Add an instruction at the end :'
-    children:
-      - de3cca97-3bfa-404d-abc8-88d73107c729
-    metadata:
-      status: pending
-      isBlueprint: true
   e9deb148-5fe4-4a5c-ab6e-9f4c1f232f72:
     id: e9deb148-5fe4-4a5c-ab6e-9f4c1f232f72
     content: Technical decomposition
     children:
       - d1305b5d-3a57-436d-a311-cdc445948980
       - daf29b28-0f3a-4dc1-b201-1b57efce9260
+      - bb7ce08d-f14f-4393-87b7-64f62f8e2dcf
       - cdb11a82-b006-45fd-a6ba-1baa2e8392bb
       - d7b97d7f-46f8-444a-a2b6-088831cd6db2
       - 69543b9c-2935-4662-9511-99b4ccaf11fe
       - 830fd259-f9c5-4e83-8a82-af502690a8eb
       - 425e6d1c-3bba-4a8a-9277-74a8296557d8
     metadata:
+      status: pending
+      expanded: false
+      deleted: false
+      plugins: {}
+      appliedContextId: d83909a8-6ca6-4dca-8c64-7b4ee9aeb43b
       isContextDeclaration: true
       blueprintIcon: Scissors
       blueprintColor: '#ef4444'
       isBlueprint: true
-      expanded: false
       collaborate: true
       execute: false
   9773cf52-2f90-46a0-b8e0-d38673eb58ec:
@@ -97172,11 +96879,7 @@ nodes:
   3406993a-2a35-4c96-9aa8-55d63dccc55f:
     id: 3406993a-2a35-4c96-9aa8-55d63dccc55f
     content: Delete worktree
-    children:
-      - 0a46871d-9ad3-44f3-add8-d5afc63c36fc
-      - fab60ee2-124f-48d3-918a-25efbbcd55be
-      - 629bc0db-be09-4f61-b904-bf4371f3b6ad
-      - 50b070d9-82f3-4010-83c7-7a99e9ab187e
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -97231,13 +96934,19 @@ nodes:
       isBlueprint: true
   901813f7-011c-4c41-802b-53ecfdb96209:
     id: 901813f7-011c-4c41-802b-53ecfdb96209
-    content: '(confirm still an issue) Bug : Compare feature in feedback panel isn''t working'
+    content: 'Bug : Compare feature in feedback panel isn''t working'
     children:
-      - d270757e-ec73-4287-91a5-d47ef5d0d1ef
-      - 952483bb-9e0a-406a-9783-9208f2cf5fbd
+      - a1ee33e7-ab16-4501-a096-29e764000766
+      - 4622923d-854f-4d0e-8a89-98497dce310a
+      - 5b83d4df-5255-4b8a-89f4-c179057dd5c0
+      - 0a466b41-7941-48ca-8dc9-2d6e7adc84da
+      - 126c8fd0-2d47-4310-8cec-8f19bfcd4749
+      - c32351b8-cabd-45eb-9df6-9867f2bef071
     metadata:
-      status: pending
-      expanded: true
+      status: completed
+      expanded: false
+      deleted: false
+      plugins: {}
   6931d611-3198-48b5-9bb6-2c474fefec79:
     id: 6931d611-3198-48b5-9bb6-2c474fefec79
     content: Modify prompt instructions so that the AI doesn't output the updated nodelist to the terminal window
@@ -97823,9 +97532,9 @@ nodes:
     id: 1bf140f0-ec8e-4e18-bad5-bfa99b255d0b
     content: PR1 - Resumable AI sessions per workflow step (foundation + manual resume)
     children:
-      - e823708e-9234-4f6d-891e-2cd1ab851048
-      - 095be7e6-b1d7-48da-855d-7b90485eaa5e
-      - 09bca99c-7dd8-4685-a997-779b3884de4c
+      - dcdc2a31-7af2-4a5c-a6ee-100a2c08f6cd
+      - a0d72423-97c4-4cb5-b300-855e1e83c0f8
+      - 3de1de21-fea9-4a69-80ee-afe65fc7eb1c
     metadata:
       status: pending
       expanded: false
@@ -98299,323 +98008,6 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  e823708e-9234-4f6d-891e-2cd1ab851048:
-    id: e823708e-9234-4f6d-891e-2cd1ab851048
-    content: User story
-    children:
-      - bc0aab70-af3d-429e-a328-f2d5808d57d0
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  bc0aab70-af3d-429e-a328-f2d5808d57d0:
-    id: bc0aab70-af3d-429e-a328-f2d5808d57d0
-    content: 📄 Product spec
-    children:
-      - a77ed7cd-d216-4e7c-8993-4beb53f72944
-      - 796c5485-e425-46c4-82e3-181f31609526
-      - 55537de8-4e68-4ba1-a232-427e2e7d38a0
-      - 0b177a8c-a4c9-450e-a554-c35134fbcd0a
-      - f18fbed0-9f30-4159-80cf-3ad5b732cf22
-      - 0dbec5ea-09b8-401a-aa0c-1f257a1c2341
-      - e0c325bb-bf56-4353-901b-fac4b603f0f2
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  a77ed7cd-d216-4e7c-8993-4beb53f72944:
-    id: a77ed7cd-d216-4e7c-8993-4beb53f72944
-    content: Context — Today, an AI session lives inside whichever terminal tab the user invoked it in. When a long autonomous step is running, that tab is effectively pinned to it; if the user closes the tab they lose the session, and if they walk away mid-step there is no UI to come back to it. To run several workflow steps in parallel without babysitting, the user wants the workflow to spin sessions up and tear them down on its own, and to be able to reattach to any active step from a fresh terminal tab.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  796c5485-e425-46c4-82e3-181f31609526:
-    id: 796c5485-e425-46c4-82e3-181f31609526
-    content: User — anyone running workflow steps that invoke a terminal AI session, particularly those running multiple in parallel or stepping away mid-step.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  55537de8-4e68-4ba1-a232-427e2e7d38a0:
-    id: 55537de8-4e68-4ba1-a232-427e2e7d38a0
-    content: Current experience — sessions are coupled 1:1 to the visible terminal tab. Closing the tab kills the session; switching tabs leaves it running but unfindable; resuming requires manually constructing a CLI flag in the right working directory. No node-level affordance to reopen a step that was started earlier.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  0b177a8c-a4c9-450e-a554-c35134fbcd0a:
-    id: 0b177a8c-a4c9-450e-a554-c35134fbcd0a
-    content: Goal — every workflow step that opens an AI session captures the session identifier on its node and offers a one-click "Resume session" from any terminal tab, surviving app restart. Starting a workflow auto-spawns a fresh terminal + session (or attaches to/resumes the workflow's prior session if one is still alive), and `recurse` chains stay inside the same session as the node they recursed from.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f18fbed0-9f30-4159-80cf-3ad5b732cf22:
-    id: f18fbed0-9f30-4159-80cf-3ad5b732cf22
-    content: Key distinction — "workflow stopped" and "session ended" are independent states. A workflow can be stopped from Arborescent's side while its underlying CLI session is still running in an open terminal tab. The feature must reason about *session liveness* (process + tab state), not workflow status, when deciding spawn vs resume vs attach.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  0dbec5ea-09b8-401a-aa0c-1f257a1c2341:
-    id: 0dbec5ea-09b8-401a-aa0c-1f257a1c2341
-    content: Business rules (full set — see overall story)
-    children:
-      - 224410c0-3db4-4b04-b12b-e0b1271069ae
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  224410c0-3db4-4b04-b12b-e0b1271069ae:
-    id: 224410c0-3db4-4b04-b12b-e0b1271069ae
-    content: Rules 1–11 as defined in the parent story; this PR realises rules 1, 2, 3 (originating-tab focus + close-doesn't-kill), 4 (independence), 5 (lost indicator + toast), 6 (no regression), and the originator-only half of rule 11.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e0c325bb-bf56-4353-901b-fac4b603f0f2:
-    id: e0c325bb-bf56-4353-901b-fac4b603f0f2
-    content: Acceptance criteria covered by this PR
-    children:
-      - 9cf3f308-1ad7-40be-b842-c980d1397b8c
-      - 4f37d6b8-2780-445c-8181-b4b2f6b1b7e7
-      - b48632eb-bab4-4fdf-b673-e7f9cfd93618
-      - 1de4b078-e18d-479c-a934-ac8b55dc25df
-      - c7e6f206-affa-4a30-807f-b9bd549d6ddf
-      - da67d718-ca44-4101-bfd1-a5cc397ad7fb
-      - 55b7931b-ac0a-425f-b5d9-923e31712a33
-      - 39b675e4-21ef-4458-9724-f2ce4c1f1ae8
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  9cf3f308-1ad7-40be-b842-c980d1397b8c:
-    id: 9cf3f308-1ad7-40be-b842-c980d1397b8c
-    content: '- [ ] Starting a workflow step writes a session id onto the node and persists it in the `.arbo` file before AI invocation begins.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  4f37d6b8-2780-445c-8181-b4b2f6b1b7e7:
-    id: 4f37d6b8-2780-445c-8181-b4b2f6b1b7e7
-    content: '- [ ] Right-clicking a node with a live session shows "Resume session"; clicking either focuses the existing tab (if still attached) or opens a new terminal tab attached to that session in the original working directory.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  b48632eb-bab4-4fdf-b673-e7f9cfd93618:
-    id: b48632eb-bab4-4fdf-b673-e7f9cfd93618
-    content: '- [ ] Closing the originating terminal tab does not terminate the session — the same session can still be resumed from another tab.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  1de4b078-e18d-479c-a934-ac8b55dc25df:
-    id: 1de4b078-e18d-479c-a934-ac8b55dc25df
-    content: '- [ ] When the session ends (not merely when the workflow is marked stopped), "Resume session" disappears from the node''s menu.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  c7e6f206-affa-4a30-807f-b9bd549d6ddf:
-    id: c7e6f206-affa-4a30-807f-b9bd549d6ddf
-    content: '- [ ] After app restart, a node whose session is still recoverable offers resume; otherwise the node shows a "session lost" indicator and a toast on resume attempt.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  da67d718-ca44-4101-bfd1-a5cc397ad7fb:
-    id: da67d718-ca44-4101-bfd1-a5cc397ad7fb
-    content: '- [ ] Two workflow steps running in parallel each have independent sessions; resuming one does not surface the other''s transcript.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  55b7931b-ac0a-425f-b5d9-923e31712a33:
-    id: 55b7931b-ac0a-425f-b5d9-923e31712a33
-    content: '- [ ] After a manual resume/attach transition, the originating node points at the tab that now hosts the session (originator-only — recurse descendants land in PR3).'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  39b675e4-21ef-4458-9724-f2ce4c1f1ae8:
-    id: 39b675e4-21ef-4458-9724-f2ce4c1f1ae8
-    content: '- [ ] Existing decomposition + recurse tests still pass unchanged.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  095be7e6-b1d7-48da-855d-7b90485eaa5e:
-    id: 095be7e6-b1d7-48da-855d-7b90485eaa5e
-    content: Subtask scope
-    children:
-      - 29cc0293-4453-496a-a2b0-5262e575dd64
-      - 47df005a-c324-44f6-ab43-bb6af6709b02
-      - dde9c1b6-4227-48c2-bc8a-79badbe3ed1f
-      - f55f895c-ecdb-4c96-8619-daee794061e1
-      - a70be158-abe5-4aba-a790-ba8910ded902
-      - b03f98b5-92f0-47eb-b47c-36d88872e3d1
-      - 96798c0a-8780-45bb-82e1-f0248f41b2b8
-      - 6e3833ed-6059-46d8-b7e1-25849a579354
-      - 03665d94-8d95-4a95-8c5e-d86a89e88e60
-      - f0b5c0c6-29dc-46cb-9ee7-aa2f174eeaa7
-      - fd714c77-7b71-401a-990e-c444a2c93b90
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  29cc0293-4453-496a-a2b0-5262e575dd64:
-    id: 29cc0293-4453-496a-a2b0-5262e575dd64
-    content: Capture session id from the spawned CLI at workflow-step start, including a "starting" marker before spawn so a crash mid-spawn can be reconciled on next load.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  47df005a-c324-44f6-ab43-bb6af6709b02:
-    id: 47df005a-c324-44f6-ab43-bb6af6709b02
-    content: Tree-node metadata in `src/shared/types/treeNode.ts` — session id, working directory, session liveness state (alive-attached / alive-detached / lost), and current terminal-tab pointer, separate from workflow status.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  dde9c1b6-4227-48c2-bc8a-79badbe3ed1f:
-    id: dde9c1b6-4227-48c2-bc8a-79badbe3ed1f
-    content: '`.arbo` save/load round-trip for the new persisted fields (session id, working directory, liveness). Terminal-tab pointer stays runtime-only.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f55f895c-ecdb-4c96-8619-daee794061e1:
-    id: f55f895c-ecdb-4c96-8619-daee794061e1
-    content: Terminal-tab registry — index of open tabs by session id; reconciled on tab close, app boot, and resume failure.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  a70be158-abe5-4aba-a790-ba8910ded902:
-    id: a70be158-abe5-4aba-a790-ba8910ded902
-    content: Session liveness probe — alive-attached / alive-detached / lost; fires the gating signal for the menu item and "session lost" indicator.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  b03f98b5-92f0-47eb-b47c-36d88872e3d1:
-    id: b03f98b5-92f0-47eb-b47c-36d88872e3d1
-    content: Node context-menu hook in `src/renderer/components/NodeContent/hooks/` — gated "Resume session" entry; toast on failure; "session lost" node indicator.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  96798c0a-8780-45bb-82e1-f0248f41b2b8:
-    id: 96798c0a-8780-45bb-82e1-f0248f41b2b8
-    content: Terminal handler — accept "focus existing tab for session X" and "open new tab and run resume command in dir X"; emit "session now hosted by tab Y" event.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  6e3833ed-6059-46d8-b7e1-25849a579354:
-    id: 6e3833ed-6059-46d8-b7e1-25849a579354
-    content: Originator-only node→terminal pointer rebinding driven by the terminal handler's "session now hosted by tab Y" event (descendant rebinding deferred to PR3).
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  03665d94-8d95-4a95-8c5e-d86a89e88e60:
-    id: 03665d94-8d95-4a95-8c5e-d86a89e88e60
-    content: Tests — session capture/teardown, persistence round-trip, manual resume focus-vs-new-tab, lost-indicator on dead session, originator pointer rebinding across resume transitions, context-menu gating.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f0b5c0c6-29dc-46cb-9ee7-aa2f174eeaa7:
-    id: f0b5c0c6-29dc-46cb-9ee7-aa2f174eeaa7
-    content: Out of scope here — workflow-start three-tier priority (PR2), recurse inheritance (PR3), descendant pointer rebinding (PR3).
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  fd714c77-7b71-401a-990e-c444a2c93b90:
-    id: fd714c77-7b71-401a-990e-c444a2c93b90
-    content: Production-safety check — additive only. Existing workflow execution still functions; new fields are extra metadata; the "Resume session" menu item only appears when liveness says alive. No feature flag required.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  09bca99c-7dd8-4685-a997-779b3884de4c:
-    id: 09bca99c-7dd8-4685-a997-779b3884de4c
-    content: Instruction
-    children:
-      - 54676fb3-10da-4e2d-ba04-cfc719c92a46
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  54676fb3-10da-4e2d-ba04-cfc719c92a46:
-    id: 54676fb3-10da-4e2d-ba04-cfc719c92a46
-    content: This is a subtask of the overall user story. Please implement only this subtask. The others will be implemented in a separate PR.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
   fab60ee2-124f-48d3-918a-25efbbcd55be:
     id: fab60ee2-124f-48d3-918a-25efbbcd55be
     content: 'PR1 - Bug : The terminal tab assignment is getting confused'
@@ -98648,10 +98040,11 @@ nodes:
       - 4495e73a-063c-4985-b5df-01370f140cfb
       - c38e0362-fed2-47d2-ba51-a031af21297d
     metadata:
-      status: pending
+      status: completed
       expanded: false
       deleted: false
       plugins: {}
+      resolvedAt: '2026-05-09T11:09:26.396Z'
   53e787b1-2be2-4754-907b-afb9e433f75e:
     id: 53e787b1-2be2-4754-907b-afb9e433f75e
     content: 📄 Product spec
@@ -99294,286 +98687,6 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  d270757e-ec73-4287-91a5-d47ef5d0d1ef:
-    id: d270757e-ec73-4287-91a5-d47ef5d0d1ef
-    content: Doesn't happen all the time
-    children: []
-    metadata:
-      status: pending
-  952483bb-9e0a-406a-9783-9208f2cf5fbd:
-    id: 952483bb-9e0a-406a-9783-9208f2cf5fbd
-    content: Happened in 2 out of 3 observes collaborations
-    children: []
-    metadata:
-      status: pending
-  70118836-b11f-4097-93c4-b7eeb70b4c70:
-    id: 70118836-b11f-4097-93c4-b7eeb70b4c70
-    content: 📄 Product spec
-    children:
-      - d30accac-717d-4088-bd5b-b6845d7887ab
-      - e23e3fa8-de36-46b2-8949-af83355afe0c
-      - c8560157-3b3e-46de-bec8-aada89384b87
-      - 653f8071-0d57-476b-88ed-28018607a379
-      - 04ee8084-9095-473b-a338-3b6be11b834e
-      - f7f31f51-6288-4853-8969-2e270523b506
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  d30accac-717d-4088-bd5b-b6845d7887ab:
-    id: d30accac-717d-4088-bd5b-b6845d7887ab
-    content: Context — Arborescent nodes already hold commands and snippets users keep alongside notes; today they have to be copied out and reformatted by hand before they run, so the markdown syntax leaks into the terminal.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e23e3fa8-de36-46b2-8949-af83355afe0c:
-    id: e23e3fa8-de36-46b2-8949-af83355afe0c
-    content: User — Developer using Arborescent to keep runnable commands organised next to documentation
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  c8560157-3b3e-46de-bec8-aada89384b87:
-    id: c8560157-3b3e-46de-bec8-aada89384b87
-    content: Current experience — Sending a node passes its markdown verbatim, so backticks, list bullets, and other syntax characters reach the terminal as literal text and the command fails or runs incorrectly
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  653f8071-0d57-476b-88ed-28018607a379:
-    id: 653f8071-0d57-476b-88ed-28018607a379
-    content: Goal — Let a user execute a single selected node against the terminal when the node is unambiguously a command, while keeping the same nodes available as prose when the intent is review, editing, or sharing
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  04ee8084-9095-473b-a338-3b6be11b834e:
-    id: 04ee8084-9095-473b-a338-3b6be11b834e
-    content: Business rules
-    children:
-      - fbac0970-1d02-450a-94fb-01a2235459ad
-      - 2a9c8e68-9374-4b43-b8ae-bd02953fff1f
-      - f1889bdf-0c30-4dcc-9103-c5bd9a8bf0e0
-      - d3285711-99ec-4d50-bc4c-ad3d73a4e459
-      - 91101070-fec1-42c9-9914-9c13baf72b8c
-      - da1c711e-6caf-4b55-b51f-1690164dfd7c
-      - 55e73592-dadd-4b4e-b255-1bf8fc552911
-      - e91494af-f38c-44bb-8893-2b7125f0e425
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  fbac0970-1d02-450a-94fb-01a2235459ad:
-    id: fbac0970-1d02-450a-94fb-01a2235459ad
-    content: 1. A node is a code-node candidate only when its entire content is wrapped in backticks; a node that mixes a backticked span with any other text or block is a normal node.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  2a9c8e68-9374-4b43-b8ae-bd02953fff1f:
-    id: 2a9c8e68-9374-4b43-b8ae-bd02953fff1f
-    content: 2. A code-node candidate is demoted to a normal node if it has children or has any context applied, since either signals review/editing intent rather than execution intent.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f1889bdf-0c30-4dcc-9103-c5bd9a8bf0e0:
-    id: f1889bdf-0c30-4dcc-9103-c5bd9a8bf0e0
-    content: 3. Execution as a command happens only when the selection is exactly one code node; any selection of two or more nodes is sent as markdown, even if every selected node would individually pass the code test.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  d3285711-99ec-4d50-bc4c-ad3d73a4e459:
-    id: d3285711-99ec-4d50-bc4c-ad3d73a4e459
-    content: 4. A single-code-node send reaches the terminal as raw text with the wrapping backticks stripped and is dispatched as one command.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  91101070-fec1-42c9-9914-9c13baf72b8c:
-    id: 91101070-fec1-42c9-9914-9c13baf72b8c
-    content: 5. Normal-node sends are emitted as markdown to the destination and are not executed as shell commands.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  da1c711e-6caf-4b55-b51f-1690164dfd7c:
-    id: da1c711e-6caf-4b55-b51f-1690164dfd7c
-    content: 6. Backticked spans inside any markdown-rendered output display as codeblocks, matching the behaviour seen in Slack, GitLab, and GitHub comment panels.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  55e73592-dadd-4b4e-b255-1bf8fc552911:
-    id: 55e73592-dadd-4b4e-b255-1bf8fc552911
-    content: 7. An empty or whitespace-only node sends nothing instead of dispatching a blank command.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e91494af-f38c-44bb-8893-2b7125f0e425:
-    id: e91494af-f38c-44bb-8893-2b7125f0e425
-    content: 8. If no terminal is connected when a single-code-node send is attempted, the action surfaces a user-visible error rather than failing silently.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f7f31f51-6288-4853-8969-2e270523b506:
-    id: f7f31f51-6288-4853-8969-2e270523b506
-    content: Acceptance criteria
-    children:
-      - b1663680-eacd-4875-83dc-7811eac35471
-      - 4dc622f1-ad68-46f2-bb59-f2ab3041bddd
-      - 470b37fd-fd08-4d7e-83d7-e429a759fa6c
-      - 592c8c43-d0a2-4f0d-ac95-8af3a2fb6bb3
-      - 27659fa4-9f91-4add-84e8-909326d65bf5
-      - 3e44970d-ec19-48ac-ac65-e0d1989b8250
-      - 861d57e3-4440-4736-913b-64b755a8e427
-      - 2290216b-9ce4-4370-a544-426520a64173
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  b1663680-eacd-4875-83dc-7811eac35471:
-    id: b1663680-eacd-4875-83dc-7811eac35471
-    content: '- [ ] A single-node selection whose entire content is a backtick block, with no children and no context, reaches the terminal as raw text with the backticks stripped'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  4dc622f1-ad68-46f2-bb59-f2ab3041bddd:
-    id: 4dc622f1-ad68-46f2-bb59-f2ab3041bddd
-    content: '- [ ] A node mixing a backticked span with other text is sent as markdown, not executed'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  470b37fd-fd08-4d7e-83d7-e429a759fa6c:
-    id: 470b37fd-fd08-4d7e-83d7-e429a759fa6c
-    content: '- [ ] A backtick-only node that has children is sent as markdown, not executed'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  592c8c43-d0a2-4f0d-ac95-8af3a2fb6bb3:
-    id: 592c8c43-d0a2-4f0d-ac95-8af3a2fb6bb3
-    content: '- [ ] A backtick-only node with a context applied is sent as markdown, not executed'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  27659fa4-9f91-4add-84e8-909326d65bf5:
-    id: 27659fa4-9f91-4add-84e8-909326d65bf5
-    content: '- [ ] A multi-node selection is always sent as markdown, even when every selected node would individually qualify as a code node'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  3e44970d-ec19-48ac-ac65-e0d1989b8250:
-    id: 3e44970d-ec19-48ac-ac65-e0d1989b8250
-    content: '- [ ] Backticked spans render as codeblocks in any markdown preview surface'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  861d57e3-4440-4736-913b-64b755a8e427:
-    id: 861d57e3-4440-4736-913b-64b755a8e427
-    content: '- [ ] An empty node produces no terminal input'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  2290216b-9ce4-4370-a544-426520a64173:
-    id: 2290216b-9ce4-4370-a544-426520a64173
-    content: '- [ ] A single-code-node send with no terminal connected surfaces a user-visible error'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  7284faa6-d802-4f3d-9585-b3b3feabfe2e:
-    id: 7284faa6-d802-4f3d-9585-b3b3feabfe2e
-    content: 🔧 Implementation proposal
-    children:
-      - b3397ac5-54e3-4c84-8da4-b5030a6f3fe7
-      - edb13d96-3624-4fd4-a512-2c645ad9bb89
-      - d7b7b152-46b0-41b5-962a-6bbef8c51856
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  b3397ac5-54e3-4c84-8da4-b5030a6f3fe7:
-    id: b3397ac5-54e3-4c84-8da4-b5030a6f3fe7
-    content: Approach — Add a node-level execute action that fires only when the selection size is exactly one and the single node passes the code test (entire content backticked, no children, no context applied). In that case the node is sent as raw text with backticks stripped through the terminal integration; every other case falls through to the existing markdown send path.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  edb13d96-3624-4fd4-a512-2c645ad9bb89:
-    id: edb13d96-3624-4fd4-a512-2c645ad9bb89
-    content: Touchpoints — node classifier (entire-content backtick test, hierarchy + context guards), selection-size gate, content serializer (raw vs markdown branch), node action menu, terminal/IPC bridge, preview renderer for backtick → codeblock display
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  d7b7b152-46b0-41b5-962a-6bbef8c51856:
-    id: d7b7b152-46b0-41b5-962a-6bbef8c51856
-    content: Constraints to call out — classification must be a pure function of node content + structure + applied context so the user can predict whether a send will execute; reuse the existing markdown tokenizer to detect "entirely encapsulated in backticks" rather than custom string matching; the single-node-only execution gesture should be discoverable so users learn that batching a code node with anything else turns it back into a markdown send
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
   ef2ae734-fe42-4390-a680-f606c2656ce5:
     id: ef2ae734-fe42-4390-a680-f606c2656ce5
     content: User story
@@ -99908,41 +99021,6 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  6601484b-e852-4fb6-a25c-875950c82c59:
-    id: 6601484b-e852-4fb6-a25c-875950c82c59
-    content: Bug - recurse not triggering
-    children:
-      - add49cc8-ea19-454d-8638-976af159ba52
-      - 94c398a1-4102-4f52-afb5-a5c894e697d0
-      - 49e9c84b-eea5-4d68-80c2-9c89fa96d2d7
-    metadata:
-      status: pending
-      expanded: false
-  add49cc8-ea19-454d-8638-976af159ba52:
-    id: add49cc8-ea19-454d-8638-976af159ba52
-    content: Check that decomposed nodes are related to each other
-    children: []
-    metadata:
-      status: pending
-  94c398a1-4102-4f52-afb5-a5c894e697d0:
-    id: 94c398a1-4102-4f52-afb5-a5c894e697d0
-    content: And that it persists between sessions
-    children: []
-    metadata:
-      status: pending
-  49e9c84b-eea5-4d68-80c2-9c89fa96d2d7:
-    id: 49e9c84b-eea5-4d68-80c2-9c89fa96d2d7
-    content: While we're at it - recurse should move the waiting decomposed items onto the next node and start their workflow from there, and not start them in a workflow in their current node
-    children:
-      - 198030df-29c2-4dfe-8b34-4c413fcfb84d
-    metadata:
-      status: pending
-  198030df-29c2-4dfe-8b34-4c413fcfb84d:
-    id: 198030df-29c2-4dfe-8b34-4c413fcfb84d
-    content: As they were already decomposed in the node they landed in
-    children: []
-    metadata:
-      status: pending
   2023117b-bb9a-4d9e-83c2-8724b01260bd:
     id: 2023117b-bb9a-4d9e-83c2-8724b01260bd
     content: User story
@@ -100104,6 +99182,1530 @@ nodes:
   508eacf6-cc9f-45d6-b2f2-a8277c523396:
     id: 508eacf6-cc9f-45d6-b2f2-a8277c523396
     content: 'Documentation decision — no changes needed. Changelog: "Workflow execution" is in CHANGELOG.md ## Unreleased and the last release tag is v0.1.1, so PR3 fixes another aspect of an unreleased feature → per convention "Don''t add a line to the changelog for a bug fix to a feature that was implemented after the last release", skip. Same reasoning as PR1 and PR2 (neither generated a changelog entry). Docs: behavior change is "workflows resumed via continueWorkflow continue to advance correctly even when the AI''s first hook event after resume arrives before SessionStart has propagated to the renderer''s session map" — a subtle internal-routing detail that users would expect to "just work"; existing docs/workflows.md does not promise the broken behavior. Per "If it''s implicit or discoverable and non-blocking, no need to mention it" and "Don''t add an entry if it''s not useful to the user or bloats the documentation", skip. No existing documentation references the broken pre-fix behavior, so nothing to retract. Note for next step: the implementation has the unreachable-fallback gap from the review (Finding 1) — the fix will land at the merge step (mirroring PR2''s pattern where I detected and fixed the disruption-handler regression before merging).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  850f875c-f771-40be-9432-fd212a7f583c:
+    id: 850f875c-f771-40be-9432-fd212a7f583c
+    content: Bug - still getting wires crossed about which session is which
+    children:
+      - 0c25948d-627a-4432-8ed8-001fd30696f1
+      - 4551d26a-52f8-4388-a412-ceac7969fc12
+      - 7c98d48f-b120-45ef-9109-fb7a6af9928c
+    metadata:
+      status: pending
+      expanded: false
+  0c25948d-627a-4432-8ed8-001fd30696f1:
+    id: 0c25948d-627a-4432-8ed8-001fd30696f1
+    content: A warning is appearing often saying that a terminal is already assigned to a node
+    children:
+      - 5b0d71bf-4498-4ebe-9e7d-d709015f9030
+    metadata:
+      status: pending
+  5b0d71bf-4498-4ebe-9e7d-d709015f9030:
+    id: 5b0d71bf-4498-4ebe-9e7d-d709015f9030
+    content: '''Terminal tab is already signed to a running workflow node'''
+    children: []
+    metadata:
+      status: pending
+  d1305b5d-3a57-436d-a311-cdc445948980:
+    id: d1305b5d-3a57-436d-a311-cdc445948980
+    content: Split the following user story into technical sub tasks
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  daf29b28-0f3a-4dc1-b201-1b57efce9260:
+    id: daf29b28-0f3a-4dc1-b201-1b57efce9260
+    content: Each task will represent a PR
+    children:
+      - 5bf3e3e1-a510-411d-bd9b-bf3be5f3f8b7
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  5bf3e3e1-a510-411d-bd9b-bf3be5f3f8b7:
+    id: 5bf3e3e1-a510-411d-bd9b-bf3be5f3f8b7
+    content: Do not create the PR yet
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  bb7ce08d-f14f-4393-87b7-64f62f8e2dcf:
+    id: bb7ce08d-f14f-4393-87b7-64f62f8e2dcf
+    content: Default to a single PR — the bar for splitting is high
+    children:
+      - 04ed9a68-f71a-4366-ab4e-c7f6207de80b
+      - 4a2b65f2-054e-471a-9a42-dce6b1819c0f
+      - 340764d4-714b-424f-9287-9045a309d0b5
+      - 09b1cf72-7175-4cab-983a-4d0caa028088
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  04ed9a68-f71a-4366-ab4e-c7f6207de80b:
+    id: 04ed9a68-f71a-4366-ab4e-c7f6207de80b
+    content: If the feature stays broken until all subtasks land, it must be one PR
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  4a2b65f2-054e-471a-9a42-dce6b1819c0f:
+    id: 4a2b65f2-054e-471a-9a42-dce6b1819c0f
+    content: If subtasks touch overlapping code paths and would have to be reviewed together to make sense, it should be one PR
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  340764d4-714b-424f-9287-9045a309d0b5:
+    id: 340764d4-714b-424f-9287-9045a309d0b5
+    content: Do not treat each bullet in the user story as a separate PR — bullets are scope, not PR boundaries
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  09b1cf72-7175-4cab-983a-4d0caa028088:
+    id: 09b1cf72-7175-4cab-983a-4d0caa028088
+    content: When in doubt, do not split; ask the user
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  cdb11a82-b006-45fd-a6ba-1baa2e8392bb:
+    id: cdb11a82-b006-45fd-a6ba-1baa2e8392bb
+    content: Only decompose if it makes sense to have each subtask as a separate PR
+    children:
+      - 0fbda90f-e8c4-4ecd-8169-3a8072ef3011
+      - 5cde239f-44a0-438c-abf7-c033c6a58125
+      - 1d886d67-db61-4deb-81a4-aa5280d69c3d
+      - 6299ebd9-9fda-4151-9aa4-4766e2a3db39
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  0fbda90f-e8c4-4ecd-8169-3a8072ef3011:
+    id: 0fbda90f-e8c4-4ecd-8169-3a8072ef3011
+    content: Each PR must be independently shippable and independently useful on its own
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  5cde239f-44a0-438c-abf7-c033c6a58125:
+    id: 5cde239f-44a0-438c-abf7-c033c6a58125
+    content: If the user story can be implemented all together in the one PR, do nothing
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  1d886d67-db61-4deb-81a4-aa5280d69c3d:
+    id: 1d886d67-db61-4deb-81a4-aa5280d69c3d
+    content: Reason as a senior engineer decomposing a user story into implementable tasks
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  6299ebd9-9fda-4151-9aa4-4766e2a3db39:
+    id: 6299ebd9-9fda-4151-9aa4-4766e2a3db39
+    content: Do not breakdown a subtask if merging it on it's own will break production
+    children:
+      - 1ffffe23-058d-49bb-b3fa-74453536e5d9
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  1ffffe23-058d-49bb-b3fa-74453536e5d9:
+    id: 1ffffe23-058d-49bb-b3fa-74453536e5d9
+    content: If you have no choice but to do this, alert the user to create a work branch or feature flag.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  d7b97d7f-46f8-444a-a2b6-088831cd6db2:
+    id: d7b97d7f-46f8-444a-a2b6-088831cd6db2
+    content: Each task should be decomposed into a separate node
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  69543b9c-2935-4662-9511-99b4ccaf11fe:
+    id: 69543b9c-2935-4662-9511-99b4ccaf11fe
+    content: The parent node of each PR should start with PR#, then user story title.
+    children:
+      - c4e93207-f607-46ea-b9e0-0ff09b7f4a5d
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  c4e93207-f607-46ea-b9e0-0ff09b7f4a5d:
+    id: c4e93207-f607-46ea-b9e0-0ff09b7f4a5d
+    content: For example, 'PR2 - The ticket title'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  830fd259-f9c5-4e83-8a82-af502690a8eb:
+    id: 830fd259-f9c5-4e83-8a82-af502690a8eb
+    content: Each task should duplicate the user story under a node 'User story'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  425e6d1c-3bba-4a8a-9277-74a8296557d8:
+    id: 425e6d1c-3bba-4a8a-9277-74a8296557d8
+    content: 'Add an instruction at the end :'
+    children:
+      - de3cca97-3bfa-404d-abc8-88d73107c729
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  de3cca97-3bfa-404d-abc8-88d73107c729:
+    id: de3cca97-3bfa-404d-abc8-88d73107c729
+    content: This is a subtask of the overall user story.  Please implement only this subtask.  The others will be implemented in a separate PR.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+      isBlueprint: true
+  95ef9336-1693-492d-880d-61ab700984da:
+    id: 95ef9336-1693-492d-880d-61ab700984da
+    content: 'PR1 - Fix recurse: triggering, persistence, and move-to-next-node semantics'
+    children:
+      - e1eaf9ff-cdad-4520-9277-7a21036d8730
+      - 721d4fba-d3aa-48fb-b19a-48a4ff7e5a35
+      - 1f6475e4-fd58-470d-81f8-3395aa2eb58b
+      - 90d685f9-2521-4cb2-9b53-c2ea19f4ae54
+      - 3a3e7c84-df16-4f9b-af12-b66b00c17517
+      - 41a87ac3-e0b9-4f0a-946e-6643240c48fc
+      - 6cbfd878-2c5e-439a-bac2-46932b44c36e
+      - 3ba47176-2e67-44ff-9128-f7439af73989
+      - 4f0d1489-a88e-47b9-9ea9-516ee4647752
+      - a26ed31f-2063-4ef9-8660-91c836005dca
+      - d3a4da69-cdb6-415c-9e7f-e0a8ff3b6467
+      - 4d852263-8c38-48eb-87b4-ca673097d4c9
+      - e1abd674-af1a-4a20-9ce3-ca0321ba37e1
+      - e0eed735-9df8-4309-9f9c-601e18afcc23
+    metadata:
+      status: pending
+      expanded: false
+      deleted: false
+      plugins: {}
+      appliedContextId: d83909a8-6ca6-4dca-8c64-7b4ee9aeb43b
+  4551d26a-52f8-4388-a412-ceac7969fc12:
+    id: 4551d26a-52f8-4388-a412-ceac7969fc12
+    content: Happens when there is more than one workflow in progress
+    children: []
+    metadata:
+      status: pending
+  7c98d48f-b120-45ef-9109-fb7a6af9928c:
+    id: 7c98d48f-b120-45ef-9109-fb7a6af9928c
+    content: Fix if the refactor for resumable AI sessions doesn't fix it
+    children: []
+    metadata:
+      status: pending
+  dcdc2a31-7af2-4a5c-a6ee-100a2c08f6cd:
+    id: dcdc2a31-7af2-4a5c-a6ee-100a2c08f6cd
+    content: User story
+    children:
+      - 8a0738e3-5ea0-48c6-a7bc-26ed5d7efee8
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8a0738e3-5ea0-48c6-a7bc-26ed5d7efee8:
+    id: 8a0738e3-5ea0-48c6-a7bc-26ed5d7efee8
+    content: 📄 Product spec
+    children:
+      - 86f0c4fe-b58b-4b02-97fe-e016c7aa459c
+      - 8a193d8b-c123-47a5-bb61-6b8da45b17df
+      - d7b5f9b4-c8e1-437f-89f3-5b0184243198
+      - d8e23682-3f21-4e52-ad2e-40d14661384e
+      - 3e80e699-96da-4e72-8b09-e99bb46b4245
+      - 74f18da2-7b45-4f1a-b4a4-acc3f6d7e7bd
+      - 1ef4915c-ea8e-4523-916f-ce87e69fa045
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  86f0c4fe-b58b-4b02-97fe-e016c7aa459c:
+    id: 86f0c4fe-b58b-4b02-97fe-e016c7aa459c
+    content: Context — Today, an AI session lives inside whichever terminal tab the user invoked it in. When a long autonomous step is running, that tab is effectively pinned to it; if the user closes the tab they lose the session, and if they walk away mid-step there is no UI to come back to it. To run several workflow steps in parallel without babysitting, the user wants the workflow to spin sessions up and tear them down on its own, and to be able to reattach to any active step from a fresh terminal tab.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8a193d8b-c123-47a5-bb61-6b8da45b17df:
+    id: 8a193d8b-c123-47a5-bb61-6b8da45b17df
+    content: User — anyone running workflow steps that invoke a terminal AI session, particularly those running multiple in parallel or stepping away mid-step.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d7b5f9b4-c8e1-437f-89f3-5b0184243198:
+    id: d7b5f9b4-c8e1-437f-89f3-5b0184243198
+    content: Current experience — sessions are coupled 1:1 to the visible terminal tab. Closing the tab kills the session; switching tabs leaves it running but unfindable; resuming requires manually constructing a CLI flag in the right working directory. No node-level affordance to reopen a step that was started earlier.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d8e23682-3f21-4e52-ad2e-40d14661384e:
+    id: d8e23682-3f21-4e52-ad2e-40d14661384e
+    content: Goal — every workflow step that opens an AI session captures the session identifier on its node and offers a one-click "Resume session" from any terminal tab, surviving app restart. Starting a workflow auto-spawns a fresh terminal + session (or attaches to/resumes the workflow's prior session if one is still alive), and `recurse` chains stay inside the same session as the node they recursed from.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3e80e699-96da-4e72-8b09-e99bb46b4245:
+    id: 3e80e699-96da-4e72-8b09-e99bb46b4245
+    content: Key distinction — "workflow stopped" and "session ended" are independent states. A workflow can be stopped from Arborescent's side while its underlying CLI session is still running in an open terminal tab. The feature must reason about *session liveness* (process + tab state), not workflow status, when deciding spawn vs resume vs attach.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  74f18da2-7b45-4f1a-b4a4-acc3f6d7e7bd:
+    id: 74f18da2-7b45-4f1a-b4a4-acc3f6d7e7bd
+    content: Business rules (full set — see overall story)
+    children:
+      - 5c4801f4-5370-48c6-9cfd-a4d1ce685608
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5c4801f4-5370-48c6-9cfd-a4d1ce685608:
+    id: 5c4801f4-5370-48c6-9cfd-a4d1ce685608
+    content: Rules 1–11 as defined in the parent story; this PR realises rules 1, 2, 3 (originating-tab focus + close-doesn't-kill), 4 (independence), 5 (lost indicator + toast), 6 (no regression), and the originator-only half of rule 11.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1ef4915c-ea8e-4523-916f-ce87e69fa045:
+    id: 1ef4915c-ea8e-4523-916f-ce87e69fa045
+    content: Acceptance criteria covered by this PR
+    children:
+      - 07751d0b-d0be-45b7-bba9-c4ae1d239995
+      - ba7d2008-9d41-48c5-ba9f-441a34103d27
+      - 94879c25-64a9-4ac7-88e8-59ed6ed10259
+      - cbb8713e-479d-4819-aee9-3c9c82a18745
+      - 3e1c3db8-cc8e-47e8-a21d-ba7f34f83bec
+      - 64784164-a484-42cb-b1e0-d03c0a0e048f
+      - 412bcdbe-64f7-4732-8030-6e9f268dc2ff
+      - 497b62dd-8360-46a4-8ee3-01eda53d8e11
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  07751d0b-d0be-45b7-bba9-c4ae1d239995:
+    id: 07751d0b-d0be-45b7-bba9-c4ae1d239995
+    content: '- [x] Starting a workflow step writes a session id onto the node and persists it in the `.arbo` file before AI invocation begins.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ba7d2008-9d41-48c5-ba9f-441a34103d27:
+    id: ba7d2008-9d41-48c5-ba9f-441a34103d27
+    content: '- [x] Right-clicking a node with a live session shows "Resume session"; clicking either focuses the existing tab (if still attached) or opens a new terminal tab attached to that session in the original working directory.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  94879c25-64a9-4ac7-88e8-59ed6ed10259:
+    id: 94879c25-64a9-4ac7-88e8-59ed6ed10259
+    content: '- [x] Closing the originating terminal tab does not terminate the session — the same session can still be resumed from another tab.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  cbb8713e-479d-4819-aee9-3c9c82a18745:
+    id: cbb8713e-479d-4819-aee9-3c9c82a18745
+    content: '- [x] When the session ends (not merely when the workflow is marked stopped), "Resume session" disappears from the node''s menu.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3e1c3db8-cc8e-47e8-a21d-ba7f34f83bec:
+    id: 3e1c3db8-cc8e-47e8-a21d-ba7f34f83bec
+    content: '- [x] After app restart, a node whose session is still recoverable offers resume; otherwise the node shows a "session lost" indicator and a toast on resume attempt.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  64784164-a484-42cb-b1e0-d03c0a0e048f:
+    id: 64784164-a484-42cb-b1e0-d03c0a0e048f
+    content: '- [x] Two workflow steps running in parallel each have independent sessions; resuming one does not surface the other''s transcript.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  412bcdbe-64f7-4732-8030-6e9f268dc2ff:
+    id: 412bcdbe-64f7-4732-8030-6e9f268dc2ff
+    content: '- [x] After a manual resume/attach transition, the originating node points at the tab that now hosts the session (originator-only — recurse descendants land in PR3).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  497b62dd-8360-46a4-8ee3-01eda53d8e11:
+    id: 497b62dd-8360-46a4-8ee3-01eda53d8e11
+    content: '- [x] Existing decomposition + recurse tests still pass unchanged.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a0d72423-97c4-4cb5-b300-855e1e83c0f8:
+    id: a0d72423-97c4-4cb5-b300-855e1e83c0f8
+    content: Subtask scope
+    children:
+      - 55c674b7-d1b7-4f1e-9771-ffa334846449
+      - f807a7b3-f4e4-4722-a570-7828cb6fe361
+      - 67ca89e3-e016-424a-ae7f-321fab4afdc1
+      - 74eecbfc-db9c-44ed-b146-be809df5940a
+      - e3e7bd13-34aa-46e1-a74e-951bb88fb3c5
+      - 6e567ef3-5cf5-4da0-92aa-4f21e86bd7df
+      - 716379f9-2388-4ca9-a851-474f1efb43ac
+      - 930b8e11-a3b5-47d3-a780-396cb115ae53
+      - 6f425c4e-cd76-4e3f-9661-6f79c2d66373
+      - 31c5f5b9-5a67-4965-b3d5-4984e72ed698
+      - a8d122f8-1aea-47e1-8507-c7c702a95685
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  55c674b7-d1b7-4f1e-9771-ffa334846449:
+    id: 55c674b7-d1b7-4f1e-9771-ffa334846449
+    content: Capture session id from the spawned CLI at workflow-step start, including a "starting" marker before spawn so a crash mid-spawn can be reconciled on next load.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f807a7b3-f4e4-4722-a570-7828cb6fe361:
+    id: f807a7b3-f4e4-4722-a570-7828cb6fe361
+    content: Tree-node metadata in `src/shared/types/treeNode.ts` — session id, working directory, session liveness state (alive-attached / alive-detached / lost), and current terminal-tab pointer, separate from workflow status.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  67ca89e3-e016-424a-ae7f-321fab4afdc1:
+    id: 67ca89e3-e016-424a-ae7f-321fab4afdc1
+    content: '`.arbo` save/load round-trip for the new persisted fields (session id, working directory, liveness). Terminal-tab pointer stays runtime-only.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  74eecbfc-db9c-44ed-b146-be809df5940a:
+    id: 74eecbfc-db9c-44ed-b146-be809df5940a
+    content: Terminal-tab registry — index of open tabs by session id; reconciled on tab close, app boot, and resume failure.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e3e7bd13-34aa-46e1-a74e-951bb88fb3c5:
+    id: e3e7bd13-34aa-46e1-a74e-951bb88fb3c5
+    content: Session liveness probe — alive-attached / alive-detached / lost; fires the gating signal for the menu item and "session lost" indicator.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6e567ef3-5cf5-4da0-92aa-4f21e86bd7df:
+    id: 6e567ef3-5cf5-4da0-92aa-4f21e86bd7df
+    content: Node context-menu hook in `src/renderer/components/NodeContent/hooks/` — gated "Resume session" entry; toast on failure; "session lost" node indicator.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  716379f9-2388-4ca9-a851-474f1efb43ac:
+    id: 716379f9-2388-4ca9-a851-474f1efb43ac
+    content: Terminal handler — accept "focus existing tab for session X" and "open new tab and run resume command in dir X"; emit "session now hosted by tab Y" event.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  930b8e11-a3b5-47d3-a780-396cb115ae53:
+    id: 930b8e11-a3b5-47d3-a780-396cb115ae53
+    content: Originator-only node→terminal pointer rebinding driven by the terminal handler's "session now hosted by tab Y" event (descendant rebinding deferred to PR3).
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6f425c4e-cd76-4e3f-9661-6f79c2d66373:
+    id: 6f425c4e-cd76-4e3f-9661-6f79c2d66373
+    content: Tests — session capture/teardown, persistence round-trip, manual resume focus-vs-new-tab, lost-indicator on dead session, originator pointer rebinding across resume transitions, context-menu gating.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  31c5f5b9-5a67-4965-b3d5-4984e72ed698:
+    id: 31c5f5b9-5a67-4965-b3d5-4984e72ed698
+    content: Out of scope here — workflow-start three-tier priority (PR2), recurse inheritance (PR3), descendant pointer rebinding (PR3).
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a8d122f8-1aea-47e1-8507-c7c702a95685:
+    id: a8d122f8-1aea-47e1-8507-c7c702a95685
+    content: Production-safety check — additive only. Existing workflow execution still functions; new fields are extra metadata; the "Resume session" menu item only appears when liveness says alive. No feature flag required.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3de1de21-fea9-4a69-80ee-afe65fc7eb1c:
+    id: 3de1de21-fea9-4a69-80ee-afe65fc7eb1c
+    content: Instruction
+    children:
+      - 507cb731-0a8d-4ff4-9d1c-582e3ac85c5e
+      - fbe714fe-2455-4a8d-b683-5f9ee1b6dc5a
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  507cb731-0a8d-4ff4-9d1c-582e3ac85c5e:
+    id: 507cb731-0a8d-4ff4-9d1c-582e3ac85c5e
+    content: This is a subtask of the overall user story. Please implement only this subtask. The others will be implemented in a separate PR.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fbe714fe-2455-4a8d-b683-5f9ee1b6dc5a:
+    id: fbe714fe-2455-4a8d-b683-5f9ee1b6dc5a
+    content: Implementation notes / scope reductions
+    children:
+      - e98e9223-08a9-485f-8705-96b98ee9cccf
+      - 653d8fde-2a6a-4e01-9216-b57ea563dac9
+      - 4d35b196-2d53-492a-8e2c-1fd71d2dc554
+      - 39d95e4e-b41f-4a65-9b09-f0ea054417d0
+      - d9bbff8f-a07c-4af0-82c0-0f76e29b9f22
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e98e9223-08a9-485f-8705-96b98ee9cccf:
+    id: e98e9223-08a9-485f-8705-96b98ee9cccf
+    content: Tab registry and liveness probe were not extracted into standalone modules. The existing `workflowSessionMap` (sessionId → terminalId) already serves as the index; liveness is a property on each node, not a separate service. The `normalizeSessionLiveness` load migration covers the "after restart" reconciliation.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  653d8fde-2a6a-4e01-9216-b57ea563dac9:
+    id: 653d8fde-2a6a-4e01-9216-b57ea563dac9
+    content: The "session now hosted by tab Y" event bus was collapsed into a direct mutation inside `resumeSession` because PR1 only rebinds the originator node. PR3 will need to extract this into an event when descendant nodes need the same signal.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4d35b196-2d53-492a-8e2c-1fd71d2dc554:
+    id: 4d35b196-2d53-492a-8e2c-1fd71d2dc554
+    content: The resume terminal is opened renderer-side via the existing `terminalCreate` IPC + `terminalWrite` of `claude --resume <id>` rather than a new dedicated `terminal:resume-session` IPC handler. Keeps the main-process surface unchanged.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  39d95e4e-b41f-4a65-9b09-f0ea054417d0:
+    id: 39d95e4e-b41f-4a65-9b09-f0ea054417d0
+    content: The pre-spawn "starting" marker persists only if an autosave fires between marker-set and capture. The current flow autosaves at the end of `startWorkflow` (before SessionStart capture), so the marker hits disk in normal operation.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d9bbff8f-a07c-4af0-82c0-0f76e29b9f22:
+    id: d9bbff8f-a07c-4af0-82c0-0f76e29b9f22
+    content: The `clearAiSessionExecution.test.ts` and related files have 10 pre-existing failures (`window.electron.startKeepAwake is not a function`) caused by incomplete mock stubs in those tests. Verified pre- vs post-edit failure counts are identical (10/167) — no regressions introduced.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e1eaf9ff-cdad-4520-9277-7a21036d8730:
+    id: e1eaf9ff-cdad-4520-9277-7a21036d8730
+    content: User story
+    children:
+      - f96ce5e2-f12e-4a0f-89d2-d5adaef72d6c
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f96ce5e2-f12e-4a0f-89d2-d5adaef72d6c:
+    id: f96ce5e2-f12e-4a0f-89d2-d5adaef72d6c
+    content: Bug - recurse not triggering
+    children:
+      - 5639222a-3927-4805-b1b5-58ee37cce9a7
+      - 04f2aba7-c96b-4bf8-b518-1c706078965e
+      - 1d1f51cc-6d50-4aa9-9284-bed1320f58a3
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5639222a-3927-4805-b1b5-58ee37cce9a7:
+    id: 5639222a-3927-4805-b1b5-58ee37cce9a7
+    content: Check that decomposed nodes are related to each other
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  04f2aba7-c96b-4bf8-b518-1c706078965e:
+    id: 04f2aba7-c96b-4bf8-b518-1c706078965e
+    content: And that it persists between sessions
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1d1f51cc-6d50-4aa9-9284-bed1320f58a3:
+    id: 1d1f51cc-6d50-4aa9-9284-bed1320f58a3
+    content: While we're at it - recurse should move the waiting decomposed items onto the next node and start their workflow from there, and not start them in a workflow in their current node
+    children:
+      - 43815e62-ebf5-44b0-89a2-8564c304f021
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  43815e62-ebf5-44b0-89a2-8564c304f021:
+    id: 43815e62-ebf5-44b0-89a2-8564c304f021
+    content: As they were already decomposed in the node they landed in
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  721d4fba-d3aa-48fb-b19a-48a4ff7e5a35:
+    id: 721d4fba-d3aa-48fb-b19a-48a4ff7e5a35
+    content: Diagnose why recurse currently fails to trigger on completion
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1f6475e4-fd58-470d-81f8-3395aa2eb58b:
+    id: 1f6475e4-fd58-470d-81f8-3395aa2eb58b
+    content: Introduce explicit decomposition-group link on waiting items so relatedness is deterministic
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  90d685f9-2521-4cb2-9b53-c2ea19f4ae54:
+    id: 90d685f9-2521-4cb2-9b53-c2ea19f4ae54
+    content: Update recurse logic in workflow store actions to use the new predicate
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3a3e7c84-df16-4f9b-af12-b66b00c17517:
+    id: 3a3e7c84-df16-4f9b-af12-b66b00c17517
+    content: Extend .arbo serialiser to persist the fields recurse depends on (waiting state, decomposition-group link)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  41a87ac3-e0b9-4f0a-946e-6643240c48fc:
+    id: 41a87ac3-e0b9-4f0a-946e-6643240c48fc
+    content: Verify backward-compat for existing .arbo files with stale or missing recurse state
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6cbfd878-2c5e-439a-bac2-46932b44c36e:
+    id: 6cbfd878-2c5e-439a-bac2-46932b44c36e
+    content: Detach decomposed children from the landing node's workflow before recurse fires
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3ba47176-2e67-44ff-9128-f7439af73989:
+    id: 3ba47176-2e67-44ff-9128-f7439af73989
+    content: Define behaviour when there is no "next node" (last sibling / root-level) — bubble up, skip, or stay put
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4f0d1489-a88e-47b9-9ea9-516ee4647752:
+    id: 4f0d1489-a88e-47b9-9ea9-516ee4647752
+    content: Guard against moving items that are already mid-workflow to avoid orphaning or duplication
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a26ed31f-2063-4ef9-8660-91c836005dca:
+    id: a26ed31f-2063-4ef9-8660-91c836005dca
+    content: Call out the move-to-next-node semantic shift clearly in the PR description so it can be reverted independently if it regresses anything
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d3a4da69-cdb6-415c-9e7f-e0a8ff3b6467:
+    id: d3a4da69-cdb6-415c-9e7f-e0a8ff3b6467
+    content: Technical refinement
+    children:
+      - 5fd1ef04-fd60-4b22-bddc-d671d15d34f6
+      - 60290bc0-0cb3-4e33-9810-02bb51f64ada
+      - 48e7b93b-96dc-45e8-a8cf-c3049ec939e7
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5fd1ef04-fd60-4b22-bddc-d671d15d34f6:
+    id: 5fd1ef04-fd60-4b22-bddc-d671d15d34f6
+    content: Flag complications
+    children:
+      - 8849a8ac-9d14-4eed-af4d-bc9baa6cb387
+      - fa13c9a6-4d8a-4dd8-a335-bd5ff1690d1e
+      - a04bd451-82da-4736-a15c-036e39b06b5a
+      - fcf3aa3d-f00a-47f6-a492-3d30ed5b7333
+      - 3bc4a2cd-5079-4a8b-9c16-1dd39a379134
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8849a8ac-9d14-4eed-af4d-bc9baa6cb387:
+    id: 8849a8ac-9d14-4eed-af4d-bc9baa6cb387
+    content: 'Risk: serialiser change must stay backward-compatible — older .arbo files without the decomposition-group link need a migration path or tolerant read'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fa13c9a6-4d8a-4dd8-a335-bd5ff1690d1e:
+    id: fa13c9a6-4d8a-4dd8-a335-bd5ff1690d1e
+    content: 'Risk: detaching decomposed children from the landing node''s workflow before recurse fires is a state-transition change, not just routing — easy to leave dangling references'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  a04bd451-82da-4736-a15c-036e39b06b5a:
+    id: a04bd451-82da-4736-a15c-036e39b06b5a
+    content: 'Edge case: "no next node" (last sibling / root-level) needs a defined fallback before implementation starts, not after'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fcf3aa3d-f00a-47f6-a492-3d30ed5b7333:
+    id: fcf3aa3d-f00a-47f6-a492-3d30ed5b7333
+    content: 'Out of scope: redesigning the decomposition model or adding UI for the recurse chain'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3bc4a2cd-5079-4a8b-9c16-1dd39a379134:
+    id: 3bc4a2cd-5079-4a8b-9c16-1dd39a379134
+    content: 'ROI: the move-to-next-node semantic shift is the riskiest piece — keep it isolated in the diff so it can be reverted without unwinding the bug fixes'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  60290bc0-0cb3-4e33-9810-02bb51f64ada:
+    id: 60290bc0-0cb3-4e33-9810-02bb51f64ada
+    content: Approach summary
+    children:
+      - 3f9d5417-07ae-4c36-b7b8-f97549ed31dd
+      - 059fa4d2-53ca-49ef-8146-45b1429b5504
+      - 7325cea1-a9aa-4ff5-a889-e32d1b0505d4
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3f9d5417-07ae-4c36-b7b8-f97549ed31dd:
+    id: 3f9d5417-07ae-4c36-b7b8-f97549ed31dd
+    content: Changes land in workflow store actions (trigger + relatedness predicate + detach/move) and the .arbo serialiser (persistence)
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  059fa4d2-53ca-49ef-8146-45b1429b5504:
+    id: 059fa4d2-53ca-49ef-8146-45b1429b5504
+    content: Relatedness becomes explicit via a decomposition-group link on waiting items, replacing whatever implicit predicate is failing today
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7325cea1-a9aa-4ff5-a889-e32d1b0505d4:
+    id: 7325cea1-a9aa-4ff5-a889-e32d1b0505d4
+    content: 'Non-obvious: this PR fixes two bugs and changes one behaviour — reviewer should expect a semantic shift in how decomposed children flow through workflows, not just a routing tweak'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  48e7b93b-96dc-45e8-a8cf-c3049ec939e7:
+    id: 48e7b93b-96dc-45e8-a8cf-c3049ec939e7
+    content: Decomposition decision
+    children:
+      - 04425a05-ab20-47c7-bd9d-d0fc08eca5a7
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  04425a05-ab20-47c7-bd9d-d0fc08eca5a7:
+    id: 04425a05-ab20-47c7-bd9d-d0fc08eca5a7
+    content: 'Kept as a single PR: the recurse feature stays broken until trigger fix, persistence fix, and semantic change all land, and all three touch overlapping code (workflow store actions + serialiser)'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4d852263-8c38-48eb-87b4-ca673097d4c9:
+    id: 4d852263-8c38-48eb-87b4-ca673097d4c9
+    content: Worktree created at /Users/brianfox/dev/Arborescent-recurse on branch fix/recurse (forked from master @ 9faf2a2); node_modules installed fresh, no symlink
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e1abd674-af1a-4a20-9ce3-ca0321ba37e1:
+    id: e1abd674-af1a-4a20-9ce3-ca0321ba37e1
+    content: 'TDD tests written at src/renderer/store/tree/actions/tests/recurseFix.test.ts: 1 concrete failing (move-to-next-node) + 2 concrete regression guards passing + 16 title-only `it.todo` tests covering relatedness, persistence, no-next-node fallback, mid-workflow guard, and trigger regression — type-check + lint clean'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e0eed735-9df8-4309-9f9c-601e18afcc23:
+    id: e0eed735-9df8-4309-9f9c-601e18afcc23
+    content: Implementation paused — needs user clarification on scope before coding
+    children:
+      - 3c7c3d6d-a65e-406f-afb0-59dec33f794d
+      - b5176697-fa5f-4280-9fed-ba961bd5b92a
+      - 30987ae4-1789-4a71-bcf0-e4762d4f8541
+      - f147036f-75bd-430c-a22e-1e0bd8134bc1
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3c7c3d6d-a65e-406f-afb0-59dec33f794d:
+    id: 3c7c3d6d-a65e-406f-afb0-59dec33f794d
+    content: 'Q1 — "Check that decomposed nodes are related to each other": is this asking for a NEW explicit decomposition-group stamp on AI-produced children (data model change in AcceptFeedbackCommand + metadata schema), or is it a diagnostic instruction to verify the EXISTING logic correctly identifies related siblings before patching anything?'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b5176697-fa5f-4280-9fed-ba961bd5b92a:
+    id: b5176697-fa5f-4280-9fed-ba961bd5b92a
+    content: 'Q2 — "Persists between sessions": which state needs to survive an app restart? (a) the in-memory recurse counter / warned set (currently lost on reload), (b) the relatedness link on each decomposed node (would ride on metadata YAML, automatic if we add a field), or (c) the ability to resume an in-flight recurse chain after closing/reopening the project?'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  30987ae4-1789-4a71-bcf0-e4762d4f8541:
+    id: 30987ae4-1789-4a71-bcf0-e4762d4f8541
+    content: 'Q3 — "Recurse not triggering": is there a concrete repro you can share? Without one I can only speculatively patch — likely candidates I see are (i) terminal still occupied when scheduleRecurseStart fires startWorkflow 2s later, (ii) findDecompositionStepInWorkflow returns the wrong step when multiple decomposition steps exist, or (iii) handleAutonomousFeedback path runs checkRecurse but the manual-feedback / stop-hook path skips it'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f147036f-75bd-430c-a22e-1e0bd8134bc1:
+    id: f147036f-75bd-430c-a22e-1e0bd8134bc1
+    content: 'Q4 — "Move to next node": confirm "next node" means the workflow step immediately after the decomposition step (so a sibling decomposed at step-1 starts its workflow at step-2), not the step where the originating task currently is'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  539ac9a4-7c9f-48b7-bdf3-b3e38c1810d9:
+    id: 539ac9a4-7c9f-48b7-bdf3-b3e38c1810d9
+    content: 📄 Product spec
+    children:
+      - 4eec50a2-9be8-434a-8bf0-1e07a3b35e28
+      - 726f82f5-98b3-4c98-97e2-c7a4b65517d2
+      - 07b2a368-8adf-4670-b3b7-d4f7ff67d4ec
+      - 7e964244-903d-4173-bf75-dfc314d2714a
+      - 4f1ce118-d3f2-4931-aed7-2334db34a3f8
+      - 8baf1522-1b1b-4a56-8597-dad20bf8a201
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4eec50a2-9be8-434a-8bf0-1e07a3b35e28:
+    id: 4eec50a2-9be8-434a-8bf0-1e07a3b35e28
+    content: Context — Arborescent nodes already hold commands and snippets users keep alongside notes; today they have to be copied out and reformatted by hand before they run, so the markdown syntax leaks into the terminal.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  726f82f5-98b3-4c98-97e2-c7a4b65517d2:
+    id: 726f82f5-98b3-4c98-97e2-c7a4b65517d2
+    content: User — Developer using Arborescent to keep runnable commands organised next to documentation
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  07b2a368-8adf-4670-b3b7-d4f7ff67d4ec:
+    id: 07b2a368-8adf-4670-b3b7-d4f7ff67d4ec
+    content: Current experience — Sending a node passes its markdown verbatim, so backticks, list bullets, and other syntax characters reach the terminal as literal text and the command fails or runs incorrectly
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7e964244-903d-4173-bf75-dfc314d2714a:
+    id: 7e964244-903d-4173-bf75-dfc314d2714a
+    content: Goal — Let a user execute a single selected node against the terminal when the node is unambiguously a command, while keeping the same nodes available as prose when the intent is review, editing, or sharing
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4f1ce118-d3f2-4931-aed7-2334db34a3f8:
+    id: 4f1ce118-d3f2-4931-aed7-2334db34a3f8
+    content: Business rules
+    children:
+      - dc29e839-287c-4124-83ac-569b52ddd608
+      - cd6d3d77-525c-42e5-9dcb-fe20fc272489
+      - 9a9e851b-227f-47d0-999f-a8a9990ed2d7
+      - 0726ca86-a0c7-4cae-a6c1-abe538152fd1
+      - 6ff9a565-b288-4e43-b00e-5bcc7db8dd21
+      - 80c7cdc2-e0fd-48dd-8d1a-50eba20d1e91
+      - 7db6e052-c1b8-4afe-8634-101de05621fe
+      - be112dfc-6dd6-408b-b65a-3f5b1c17f4f2
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  dc29e839-287c-4124-83ac-569b52ddd608:
+    id: dc29e839-287c-4124-83ac-569b52ddd608
+    content: 1. A node is a code-node candidate only when its entire content is wrapped in backticks; a node that mixes a backticked span with any other text or block is a normal node.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  cd6d3d77-525c-42e5-9dcb-fe20fc272489:
+    id: cd6d3d77-525c-42e5-9dcb-fe20fc272489
+    content: 2. A code-node candidate is demoted to a normal node if it has children or has any context applied, since either signals review/editing intent rather than execution intent.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  9a9e851b-227f-47d0-999f-a8a9990ed2d7:
+    id: 9a9e851b-227f-47d0-999f-a8a9990ed2d7
+    content: 3. Execution as a command happens only when the selection is exactly one code node; any selection of two or more nodes is sent as markdown, even if every selected node would individually pass the code test.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0726ca86-a0c7-4cae-a6c1-abe538152fd1:
+    id: 0726ca86-a0c7-4cae-a6c1-abe538152fd1
+    content: 4. A single-code-node send reaches the terminal as raw text with the wrapping backticks stripped and is dispatched as one command.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6ff9a565-b288-4e43-b00e-5bcc7db8dd21:
+    id: 6ff9a565-b288-4e43-b00e-5bcc7db8dd21
+    content: 5. Normal-node sends are emitted as markdown to the destination and are not executed as shell commands.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  80c7cdc2-e0fd-48dd-8d1a-50eba20d1e91:
+    id: 80c7cdc2-e0fd-48dd-8d1a-50eba20d1e91
+    content: 6. Backticked spans inside any markdown-rendered output display as codeblocks, matching the behaviour seen in Slack, GitLab, and GitHub comment panels.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7db6e052-c1b8-4afe-8634-101de05621fe:
+    id: 7db6e052-c1b8-4afe-8634-101de05621fe
+    content: 7. An empty or whitespace-only node sends nothing instead of dispatching a blank command.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  be112dfc-6dd6-408b-b65a-3f5b1c17f4f2:
+    id: be112dfc-6dd6-408b-b65a-3f5b1c17f4f2
+    content: 8. If no terminal is connected when a single-code-node send is attempted, the action surfaces a user-visible error rather than failing silently.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8baf1522-1b1b-4a56-8597-dad20bf8a201:
+    id: 8baf1522-1b1b-4a56-8597-dad20bf8a201
+    content: Acceptance criteria
+    children:
+      - 8fb9f3a2-3c08-4851-a746-e97d16a61e8c
+      - 7e380011-6045-4992-9577-40620d717bdf
+      - e2670e4a-d7e1-42e4-b813-807841f212b0
+      - 737dfa14-cd5f-47e8-ae26-c705910990c5
+      - 5d28236c-7603-4135-bb00-5f0b66984986
+      - f23230a5-2f3e-480e-9446-18face478f4d
+      - 29a21fab-61f3-421f-ba38-0c12645c4029
+      - 92221f6d-ddbe-4242-9de0-a6f8b43ea788
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8fb9f3a2-3c08-4851-a746-e97d16a61e8c:
+    id: 8fb9f3a2-3c08-4851-a746-e97d16a61e8c
+    content: '- [ ] A single-node selection whose entire content is a backtick block, with no children and no context, reaches the terminal as raw text with the backticks stripped'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7e380011-6045-4992-9577-40620d717bdf:
+    id: 7e380011-6045-4992-9577-40620d717bdf
+    content: '- [ ] A node mixing a backticked span with other text is sent as markdown, not executed'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  e2670e4a-d7e1-42e4-b813-807841f212b0:
+    id: e2670e4a-d7e1-42e4-b813-807841f212b0
+    content: '- [ ] A backtick-only node that has children is sent as markdown, not executed'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  737dfa14-cd5f-47e8-ae26-c705910990c5:
+    id: 737dfa14-cd5f-47e8-ae26-c705910990c5
+    content: '- [ ] A backtick-only node with a context applied is sent as markdown, not executed'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5d28236c-7603-4135-bb00-5f0b66984986:
+    id: 5d28236c-7603-4135-bb00-5f0b66984986
+    content: '- [ ] A multi-node selection is always sent as markdown, even when every selected node would individually qualify as a code node'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f23230a5-2f3e-480e-9446-18face478f4d:
+    id: f23230a5-2f3e-480e-9446-18face478f4d
+    content: '- [ ] Backticked spans render as codeblocks in any markdown preview surface'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  29a21fab-61f3-421f-ba38-0c12645c4029:
+    id: 29a21fab-61f3-421f-ba38-0c12645c4029
+    content: '- [ ] An empty node produces no terminal input'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  92221f6d-ddbe-4242-9de0-a6f8b43ea788:
+    id: 92221f6d-ddbe-4242-9de0-a6f8b43ea788
+    content: '- [ ] A single-code-node send with no terminal connected surfaces a user-visible error'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  bbe1d6de-dadd-4c19-a5be-3546b8064a9c:
+    id: bbe1d6de-dadd-4c19-a5be-3546b8064a9c
+    content: 🔧 Implementation proposal
+    children:
+      - 8c3ada10-fa35-425a-b7c8-0227f40cf241
+      - 1a116c87-313d-4569-94c1-48fab9958410
+      - 6adac67a-b097-44ed-8366-852e4b06eb31
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8c3ada10-fa35-425a-b7c8-0227f40cf241:
+    id: 8c3ada10-fa35-425a-b7c8-0227f40cf241
+    content: Approach — Add a node-level execute action that fires only when the selection size is exactly one and the single node passes the code test (entire content backticked, no children, no context applied). In that case the node is sent as raw text with backticks stripped through the terminal integration; every other case falls through to the existing markdown send path.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1a116c87-313d-4569-94c1-48fab9958410:
+    id: 1a116c87-313d-4569-94c1-48fab9958410
+    content: Touchpoints — node classifier (entire-content backtick test, hierarchy + context guards), selection-size gate, content serializer (raw vs markdown branch), node action menu, terminal/IPC bridge, preview renderer for backtick → codeblock display
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6adac67a-b097-44ed-8366-852e4b06eb31:
+    id: 6adac67a-b097-44ed-8366-852e4b06eb31
+    content: Constraints to call out — classification must be a pure function of node content + structure + applied context so the user can predict whether a send will execute; reuse the existing markdown tokenizer to detect "entirely encapsulated in backticks" rather than custom string matching; the single-node-only execution gesture should be discoverable so users learn that batching a code node with anything else turns it back into a markdown send
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  132e2856-11c1-493f-a778-075e8432365c:
+    id: 132e2856-11c1-493f-a778-075e8432365c
+    content: Worktree creation status note
+    children:
+      - c15e91e2-a8da-4a33-ba0b-0add782f5e8b
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  c15e91e2-a8da-4a33-ba0b-0add782f5e8b:
+    id: c15e91e2-a8da-4a33-ba0b-0add782f5e8b
+    content: Worktree created at `/Users/brianfox/dev/Arborescent-exec-code-node` on branch `feat/exec-code-node`, forked from `master` (9faf2a2). No `node_modules` symlink. The `worktree` link node was NOT added to the parent's children inside `project.arbo` because the file is actively managed by the running Arborescent workflow and direct edits could race with workflow state writes — please add the VSCode URI link node via the app (e.g. `vscode://file/Users/brianfox/dev/Arborescent-exec-code-node`).
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  94f1e3ff-6093-4e46-ac85-683a5a5067f8:
+    id: 94f1e3ff-6093-4e46-ac85-683a5a5067f8
+    content: TDD test status note
+    children:
+      - 15d6c94a-b04c-43ee-8737-e9504e2b81b5
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  15d6c94a-b04c-43ee-8737-e9504e2b81b5:
+    id: 15d6c94a-b04c-43ee-8737-e9504e2b81b5
+    content: 'Failing tests written at `src/renderer/utils/tests/codeNode.test.ts` (pure classifier `isCodeCommandNode` + extractor `extractWrappedCommand`, fails to load until module exists) and `src/renderer/store/tree/actions/tests/codeNodeExecution.test.ts` (15 tests around `collaborateInTerminal`: 5 failing TDD assertions for backtick-stripping + empty-content guard, 7 passing regression guards, 3 title-only stubs for rules 3/6 + concurrency). `npm install` was run in the worktree to enable the test runner since CONTEXT forbade symlinking node_modules.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a1ee33e7-ab16-4501-a096-29e764000766:
+    id: a1ee33e7-ab16-4501-a096-29e764000766
+    content: Doesn't happen all the time
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4622923d-854f-4d0e-8a89-98497dce310a:
+    id: 4622923d-854f-4d0e-8a89-98497dce310a
+    content: Happened in 2 out of 3 observes collaborations
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5b83d4df-5255-4b8a-89f4-c179057dd5c0:
+    id: 5b83d4df-5255-4b8a-89f4-c179057dd5c0
+    content: In the two times it didn't work
+    children:
+      - bf900d53-e74b-43ca-a7e5-80825b490609
+      - 13f6c042-325b-48eb-b2e7-7c608b1b7966
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  bf900d53-e74b-43ca-a7e5-80825b490609:
+    id: bf900d53-e74b-43ca-a7e5-80825b490609
+    content: The parent node was untouched
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  13f6c042-325b-48eb-b2e7-7c608b1b7966:
+    id: 13f6c042-325b-48eb-b2e7-7c608b1b7966
+    content: And all the descendants were green
+    children:
+      - fb4eabf6-e449-4cb3-b172-f42708518235
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fb4eabf6-e449-4cb3-b172-f42708518235:
+    id: fb4eabf6-e449-4cb3-b172-f42708518235
+    content: Even though only a few of the nodes were altered
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0a466b41-7941-48ca-8dc9-2d6e7adc84da:
+    id: 0a466b41-7941-48ca-8dc9-2d6e7adc84da
+    content: Technical refinement
+    children:
+      - 739b44c9-0037-4edd-ba0e-b53a54672f08
+      - 8c33dc64-0cf5-45d5-bea5-261cfb349f14
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  739b44c9-0037-4edd-ba0e-b53a54672f08:
+    id: 739b44c9-0037-4edd-ba0e-b53a54672f08
+    content: Approach
+    children:
+      - bfc2563f-0b73-430f-bb01-aba51b9b4a29
+      - 07f7ee18-9b10-4219-b6c4-88aaabc9a868
+      - 53984451-9fbd-470c-a363-4ea989006315
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bfc2563f-0b73-430f-bb01-aba51b9b4a29:
+    id: bfc2563f-0b73-430f-bb01-aba51b9b4a29
+    content: Bug lives in `reconcileFeedback.ts` + `sendActions.ts` — `priorNodes` is captured by reference, not deep-cloned, so it can drift before the diff runs
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  07f7ee18-9b10-4219-b6c4-88aaabc9a868:
+    id: 07f7ee18-9b10-4219-b6c4-88aaabc9a868
+    content: 'Fix: snapshot the collaborating subtree (deep clone) at send time and reconcile against that frozen baseline'
+    children: []
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  53984451-9fbd-470c-a363-4ea989006315:
+    id: 53984451-9fbd-470c-a363-4ea989006315
+    content: 'Symptom matches: LCS child diff uses content-equality, so if baseline children mutate before the diff, every child is classified `added` (green) while the unchanged parent stays untouched'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8c33dc64-0cf5-45d5-bea5-261cfb349f14:
+    id: 8c33dc64-0cf5-45d5-bea5-261cfb349f14
+    content: Complications
+    children:
+      - 4eb4e330-bcda-414e-84f4-b0e649bfbcb4
+      - 331c7ace-53e0-43a5-9f6c-02813864976d
+      - fa10a924-ea12-45c3-b264-56a76df7104f
+      - 59891eaa-5bc9-4d13-b578-d0f84d6ec6a8
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  4eb4e330-bcda-414e-84f4-b0e649bfbcb4:
+    id: 4eb4e330-bcda-414e-84f4-b0e649bfbcb4
+    content: Intermittency = race/ordering — need a deterministic repro before trusting any fix
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  331c7ace-53e0-43a5-9f6c-02813864976d:
+    id: 331c7ace-53e0-43a5-9f6c-02813864976d
+    content: Audit all readers of `priorSubtree.priorNodes` in case some path relies on it being a live reference
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fa10a924-ea12-45c3-b264-56a76df7104f:
+    id: fa10a924-ea12-45c3-b264-56a76df7104f
+    content: 'Edge case: collaborating node deleted or moved between send and response — confirm reconcile degrades gracefully'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  59891eaa-5bc9-4d13-b578-d0f84d6ec6a8:
+    id: 59891eaa-5bc9-4d13-b578-d0f84d6ec6a8
+    content: 'Out of scope: redesigning the green/blue/red highlighting model or making parent classification inherit from descendants'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  126c8fd0-2d47-4310-8cec-8f19bfcd4749:
+    id: 126c8fd0-2d47-4310-8cec-8f19bfcd4749
+    content: review feedback
+    children:
+      - c2be2f38-66dc-479f-9560-9e290d846633
+      - 88c7ec54-6c9d-4a24-9fea-01b86890842d
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c2be2f38-66dc-479f-9560-9e290d846633:
+    id: c2be2f38-66dc-479f-9560-9e290d846633
+    content: 'No blockers — fix is correct, minimal, and convention-compliant. Caller `applyReconciliationMetadata` (feedbackService.ts:93-107) handles the new behavior correctly: `idMap[newRootId]` now resolves to a fresh UUID with `classifications[freshUUID]=''added''`, so the new root gets `feedbackBaselineKind:''added''` stamped on it (previously unset → the bug). `priorNodes[freshUUID]` is correctly undefined, so `feedbackPriorContent` is omitted as expected for an added node. `injectRemovedPlaceholders` unaffected (no `view.removed` entries in this fallback path).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  88c7ec54-6c9d-4a24-9fea-01b86890842d:
+    id: 88c7ec54-6c9d-4a24-9fea-01b86890842d
+    content: 'Minor non-blocking: reconcileFeedback.ts:37 pre-seeds `view.idMap[newRootId]=priorRootId` then the fallback path deletes it three lines later — slightly noisy but functionally fine. The two new "missing prior root" tests overlap (second is a superset of the first) — could drop the first without losing coverage. The 10 `it.todo` placeholders are appropriate forward markers and follow project test style.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c32351b8-cabd-45eb-9df6-9867f2bef071:
+    id: c32351b8-cabd-45eb-9df6-9867f2bef071
+    content: feedback
+    children:
+      - 016c866d-785d-4541-a7f9-eb150b51e2a5
+      - d3b90ec9-3976-4f33-acf9-c1088dd5aef3
+      - 2231c0eb-45cc-4ab6-9116-f867459e02e9
+      - 15653b73-0f84-4d71-851c-c2046c985f24
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  016c866d-785d-4541-a7f9-eb150b51e2a5:
+    id: 016c866d-785d-4541-a7f9-eb150b51e2a5
+    content: 'Severity: agreed (low) — test overlap was real. Dropped the redundant "classifies the parent (not just descendants)" test; the stricter "classifies the parent as added — every visible node is the same kind" test fully covers the regression. Re-ran the file: 18 pass, 0 fail.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d3b90ec9-3976-4f33-acf9-c1088dd5aef3:
+    id: d3b90ec9-3976-4f33-acf9-c1088dd5aef3
+    content: 'Severity: disagreed (low) — seed-then-delete on `view.idMap[newRootId]` at reconcileFeedback.ts:37 is intentional. The seed establishes the default invariant ("new root maps to prior root") that both decomposition mode (line 39-42) and the happy path (line 51-54: `view.classifications[priorRootId] = ...`) depend on. Restructuring to compute the missing-root check first would require duplicating the seed in two branches and obscure the invariant. The localized `delete` in the fallback is the cheapest correct override.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2231c0eb-45cc-4ab6-9116-f867459e02e9:
+    id: 2231c0eb-45cc-4ab6-9116-f867459e02e9
+    content: 'Severity: noted (informational) — `it.todo` placeholders confirmed appropriate; no change.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  15653b73-0f84-4d71-851c-c2046c985f24:
+    id: 15653b73-0f84-4d71-851c-c2046c985f24
+    content: No documentation or changelog entries added — "Feedback panel highlights changes" is in CHANGELOG.md `## Unreleased`, so per project rule "Don't add a line to the changelog for a bug fix to a feature that was implemented after the last release" no changelog entry is warranted. Existing changelog description still accurately reflects the intended (and now actual) behavior; no user-facing docs needed.
     children: []
     metadata:
       status: completed
