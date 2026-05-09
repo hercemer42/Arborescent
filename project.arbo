@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-05-08T19:24:11.756Z'
+updated: '2026-05-09T05:47:07.331Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -23685,7 +23685,8 @@ nodes:
   00714a63-f267-4ab1-a285-73ae4198eb42:
     id: 00714a63-f267-4ab1-a285-73ae4198eb42
     content: Technical refinement
-    children: []
+    children:
+      - 1a32c3eb-e6b1-49f4-a527-b256b3f0cbfd
     metadata:
       status: pending
       isBlueprint: true
@@ -84800,21 +84801,18 @@ nodes:
       plugins: {}
   99c1ef4b-243f-4883-b0d9-9005eea177f9:
     id: 99c1ef4b-243f-4883-b0d9-9005eea177f9
-    content: Would be nice to be able to auto create and auto close a session
+    content: Resumable AI sessions per workflow step
     children:
-      - ad53d1c5-da4a-4f67-9252-4a682806cde7
-      - 0624fb30-a727-4682-a2fa-31b83abab4f7
-      - 842f5774-faa6-4105-b546-ba96077140b3
-      - d1fbff2c-215a-4ce8-80e1-5df93100efa7
+      - 329f29f7-aba2-4d05-b672-2498011ae2c5
+      - 27d9b678-aaeb-4c67-bdde-4305017755f6
+      - adec0975-276b-4a3f-a9d6-b520c814b972
+      - f3a35a19-9985-4337-a411-25f8beb2e314
+      - 5d263d5b-e71b-42fa-9c4c-ccbd9b7b0a6d
     metadata:
       status: pending
       expanded: false
-  ad53d1c5-da4a-4f67-9252-4a682806cde7:
-    id: ad53d1c5-da4a-4f67-9252-4a682806cde7
-    content: And be able to easily come back to it later
-    children: []
-    metadata:
-      status: pending
+      deleted: false
+      plugins: {}
   53af7db4-b5ec-4735-be6e-9db4f19c227e:
     id: 53af7db4-b5ec-4735-be6e-9db4f19c227e
     content: Do not add the thought process of your user story creation if it's not useful for the user
@@ -88546,25 +88544,6 @@ nodes:
       deleted: false
       plugins: {}
       isBlueprint: true
-  0624fb30-a727-4682-a2fa-31b83abab4f7:
-    id: 0624fb30-a727-4682-a2fa-31b83abab4f7
-    content: Either in a new terminal
-    children: []
-    metadata:
-      status: pending
-  842f5774-faa6-4105-b546-ba96077140b3:
-    id: 842f5774-faa6-4105-b546-ba96077140b3
-    content: Or maybe use tmux or another linux tool ?
-    children:
-      - 4308265b-92c9-4a62-b3e1-ac26122733ef
-    metadata:
-      status: pending
-  4308265b-92c9-4a62-b3e1-ac26122733ef:
-    id: 4308265b-92c9-4a62-b3e1-ac26122733ef
-    content: Look at how gastown does it for example
-    children: []
-    metadata:
-      status: pending
   407133fd-9a05-4618-8ecd-1979dc073c4c:
     id: 407133fd-9a05-4618-8ecd-1979dc073c4c
     content: '''Revise after discussion'' could be in the right click context menu'
@@ -89077,68 +89056,6 @@ nodes:
   4057f3e9-bb46-44bf-bcea-36a914f32ce8:
     id: 4057f3e9-bb46-44bf-bcea-36a914f32ce8
     content: Can consider doing this uniquely for nodes in a running workflow
-    children: []
-    metadata:
-      status: pending
-  d1fbff2c-215a-4ce8-80e1-5df93100efa7:
-    id: d1fbff2c-215a-4ce8-80e1-5df93100efa7
-    content: If we have this, maybe we don't need the 'recurse' option
-    children:
-      - cea6868d-d241-4eb4-8879-e147c16f5fd7
-      - 3e88306f-85f3-483b-b05f-a518571f5129
-      - 5f407706-ddf0-469e-a6bc-374b81135669
-    metadata:
-      status: pending
-  cea6868d-d241-4eb4-8879-e147c16f5fd7:
-    id: cea6868d-d241-4eb4-8879-e147c16f5fd7
-    content: The user can just kick off a bunch
-    children: []
-    metadata:
-      status: pending
-  3e88306f-85f3-483b-b05f-a518571f5129:
-    id: 3e88306f-85f3-483b-b05f-a518571f5129
-    content: Actually no - because we could have a case where a PR can be broken in several
-    children:
-      - 3e85a8ef-6d37-49eb-82db-916275cb7a92
-      - ba338a62-f19c-485d-89a5-04b8d99bc461
-    metadata:
-      status: pending
-  3e85a8ef-6d37-49eb-82db-916275cb7a92:
-    id: 3e85a8ef-6d37-49eb-82db-916275cb7a92
-    content: That's decomposition
-    children: []
-    metadata:
-      status: pending
-  ba338a62-f19c-485d-89a5-04b8d99bc461:
-    id: ba338a62-f19c-485d-89a5-04b8d99bc461
-    content: And perhaps recurse should be matched to decomposition
-    children:
-      - dea561db-184d-49af-9c32-2d880836e320
-    metadata:
-      status: pending
-  dea561db-184d-49af-9c32-2d880836e320:
-    id: dea561db-184d-49af-9c32-2d880836e320
-    content: Map a relation between decomposed nodes and when one is finished, go fetch the previous one
-    children: []
-    metadata:
-      status: pending
-  5f407706-ddf0-469e-a6bc-374b81135669:
-    id: 5f407706-ddf0-469e-a6bc-374b81135669
-    content: It is a bit of a shame though to not be able to queue up a bunch of tasks
-    children:
-      - d4863045-206a-45e7-be2b-20dfdcd56284
-      - 4188d153-7683-45f6-88af-b869a8349bcc
-    metadata:
-      status: pending
-  d4863045-206a-45e7-be2b-20dfdcd56284:
-    id: d4863045-206a-45e7-be2b-20dfdcd56284
-    content: So the tension is between - queuing up, and running in parallel
-    children: []
-    metadata:
-      status: pending
-  4188d153-7683-45f6-88af-b869a8349bcc:
-    id: 4188d153-7683-45f6-88af-b869a8349bcc
-    content: Think about it...
     children: []
     metadata:
       status: pending
@@ -97446,3 +97363,443 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
+  329f29f7-aba2-4d05-b672-2498011ae2c5:
+    id: 329f29f7-aba2-4d05-b672-2498011ae2c5
+    content: 📄 Product spec
+    children:
+      - b5cda166-1925-4b6e-b450-c0f43c26bb8a
+      - 3c3a707c-536c-487a-af85-a8eab60f118e
+      - 08f44792-3868-42b8-aae9-c852fdd2eb5f
+      - 6a16b39e-b158-41bd-9322-5065ac4250dc
+      - 2529bb73-5eeb-442b-95ca-2f552a6b1357
+      - b04ef9cb-befc-4a82-a1ff-0a2dcdabc927
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b5cda166-1925-4b6e-b450-c0f43c26bb8a:
+    id: b5cda166-1925-4b6e-b450-c0f43c26bb8a
+    content: Context — Today, an AI session lives inside whichever terminal tab the user invoked it in. When a long autonomous step is running, that tab is effectively pinned to it; if the user closes the tab they lose the session, and if they walk away mid-step there is no UI to come back to it. To run several workflow steps in parallel without babysitting, the user wants the workflow to spin sessions up and tear them down on its own, and to be able to reattach to any active step from a fresh terminal tab.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  3c3a707c-536c-487a-af85-a8eab60f118e:
+    id: 3c3a707c-536c-487a-af85-a8eab60f118e
+    content: User — anyone running workflow steps that invoke a terminal AI session, particularly those running multiple in parallel or stepping away mid-step.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  08f44792-3868-42b8-aae9-c852fdd2eb5f:
+    id: 08f44792-3868-42b8-aae9-c852fdd2eb5f
+    content: Current experience — sessions are coupled 1:1 to the visible terminal tab. Closing the tab kills the session; switching tabs leaves it running but unfindable; resuming requires manually constructing a CLI flag in the right working directory. No node-level affordance to reopen a step that was started earlier.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  6a16b39e-b158-41bd-9322-5065ac4250dc:
+    id: 6a16b39e-b158-41bd-9322-5065ac4250dc
+    content: Goal — every workflow step that opens an AI session captures the session identifier on its node and offers a one-click "Resume session" from any terminal tab, surviving app restart.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2529bb73-5eeb-442b-95ca-2f552a6b1357:
+    id: 2529bb73-5eeb-442b-95ca-2f552a6b1357
+    content: Business rules
+    children:
+      - 973eaef5-2b14-4e74-b4e2-2f4c27d8429c
+      - 11aa30e8-f7ef-4036-b9a8-32cf18cccdc1
+      - 94fb10cd-5b09-4cfc-9552-41811ba4f5fc
+      - d2fc21d1-dc63-4fab-96fd-720fd1dd129b
+      - cd72fa69-2d19-4bce-bbfd-b74ddca043c4
+      - 55df1d9e-d855-401b-8eed-61dab99a4e8e
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  973eaef5-2b14-4e74-b4e2-2f4c27d8429c:
+    id: 973eaef5-2b14-4e74-b4e2-2f4c27d8429c
+    content: 1. When a workflow step starts an AI session, the system must capture a stable session identifier from the underlying CLI and persist it on the originating node before AI work begins, so the session is recoverable independent of which terminal tab held it.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  11aa30e8-f7ef-4036-b9a8-32cf18cccdc1:
+    id: 11aa30e8-f7ef-4036-b9a8-32cf18cccdc1
+    content: 2. When the step completes (success, failure, or stop), the session must terminate cleanly and the node must stop offering "Resume session"; the node still surfaces the step's outcome (completed/failed) regardless of whether the user ever reopened the session.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  94fb10cd-5b09-4cfc-9552-41811ba4f5fc:
+    id: 94fb10cd-5b09-4cfc-9552-41811ba4f5fc
+    content: 3. While a session is live, "Resume session" on the originating node opens a fresh terminal tab and reattaches via the platform's native resume command (e.g. `claude --resume <id>`) in the node's original working directory. Closing the originating tab must not kill the session.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  d2fc21d1-dc63-4fab-96fd-720fd1dd129b:
+    id: d2fc21d1-dc63-4fab-96fd-720fd1dd129b
+    content: 4. Multiple workflow steps may run in parallel, each owning its own session; resuming one must not affect any other.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  cd72fa69-2d19-4bce-bbfd-b74ddca043c4:
+    id: cd72fa69-2d19-4bce-bbfd-b74ddca043c4
+    content: 5. If a session can no longer be resumed (process died, machine rebooted, daemon state wiped), the resume action must report the failure via toast and the node must update to a "session lost" indicator rather than silently failing.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  55df1d9e-d855-401b-8eed-61dab99a4e8e:
+    id: 55df1d9e-d855-401b-8eed-61dab99a4e8e
+    content: 6. Existing `decomposition` and `recurse` behaviour is unchanged — sessions are an additional capability, not a replacement for sequential chaining.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b04ef9cb-befc-4a82-a1ff-0a2dcdabc927:
+    id: b04ef9cb-befc-4a82-a1ff-0a2dcdabc927
+    content: Acceptance criteria
+    children:
+      - 4e3de643-08f0-402a-b0db-6cd79c83c24a
+      - ab5b0260-da01-4d75-a459-0a16e88136b9
+      - 4cc9693e-90a4-43ed-896d-4875148cd0ef
+      - 7942ef51-dad7-4ff1-81ce-ec8b04d5db86
+      - 0ebbb0c2-1dac-4f46-b9fa-18800aa26753
+      - 13b97ac4-2cd0-4e9d-b125-f0caac69bebf
+      - 5af570ff-fdeb-41f6-a41b-26243b899c6c
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4e3de643-08f0-402a-b0db-6cd79c83c24a:
+    id: 4e3de643-08f0-402a-b0db-6cd79c83c24a
+    content: '- [ ] Starting a workflow step writes a session id onto the node and persists it in the `.arbo` file before AI invocation begins.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  ab5b0260-da01-4d75-a459-0a16e88136b9:
+    id: ab5b0260-da01-4d75-a459-0a16e88136b9
+    content: '- [ ] Right-clicking a node with a live session shows "Resume session"; clicking opens a new terminal tab attached to that session in the original working directory.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  4cc9693e-90a4-43ed-896d-4875148cd0ef:
+    id: 4cc9693e-90a4-43ed-896d-4875148cd0ef
+    content: '- [ ] Closing the originating terminal tab does not terminate the session — the same session can still be resumed from another tab.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7942ef51-dad7-4ff1-81ce-ec8b04d5db86:
+    id: 7942ef51-dad7-4ff1-81ce-ec8b04d5db86
+    content: '- [ ] When the step finishes, the session is closed and "Resume session" disappears from the node''s menu.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0ebbb0c2-1dac-4f46-b9fa-18800aa26753:
+    id: 0ebbb0c2-1dac-4f46-b9fa-18800aa26753
+    content: '- [ ] After app restart, a node whose session is still recoverable offers resume; otherwise the node shows a "session lost" indicator and a toast on resume attempt.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  13b97ac4-2cd0-4e9d-b125-f0caac69bebf:
+    id: 13b97ac4-2cd0-4e9d-b125-f0caac69bebf
+    content: '- [ ] Two workflow steps running in parallel each have independent sessions; resuming one does not surface the other''s transcript.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5af570ff-fdeb-41f6-a41b-26243b899c6c:
+    id: 5af570ff-fdeb-41f6-a41b-26243b899c6c
+    content: '- [ ] Existing decomposition + recurse tests still pass unchanged.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  27d9b678-aaeb-4c67-bdde-4305017755f6:
+    id: 27d9b678-aaeb-4c67-bdde-4305017755f6
+    content: 🔧 Implementation proposal
+    children:
+      - 02ed2274-6d45-4aa4-8a56-9d60d0ea0303
+      - 40b8ff67-3ead-4490-82b3-7c76e6f7daaf
+      - 8cc24489-ed62-427c-996e-f1a323ca97ac
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  02ed2274-6d45-4aa4-8a56-9d60d0ea0303:
+    id: 02ed2274-6d45-4aa4-8a56-9d60d0ea0303
+    content: Approach — capture the session id at workflow-step process spawn, persist it on the node alongside working directory and live/ended status, and add a "Resume session" entry to the node right-click menu gated on live status. Use the underlying CLI's native session resume — do not introduce tmux or another multiplexer; the dependency cost is not justified when the CLI already exposes resume.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  40b8ff67-3ead-4490-82b3-7c76e6f7daaf:
+    id: 40b8ff67-3ead-4490-82b3-7c76e6f7daaf
+    content: Touchpoints
+    children:
+      - c5e3cb05-b60f-4bd8-a1af-d084ad7096f6
+      - 212d941a-9f1b-46e0-a95a-f71c543e7934
+      - 2a86a243-cd66-4d0b-a277-da97bbeca531
+      - 46317ed5-1e00-4701-9953-6794fae1a369
+      - 0422dde5-471d-46a7-a810-67d2721a1efa
+      - 7db17610-e6d7-4a03-af0f-4444c7c132cb
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c5e3cb05-b60f-4bd8-a1af-d084ad7096f6:
+    id: c5e3cb05-b60f-4bd8-a1af-d084ad7096f6
+    content: Main-process workflow execution service — capture session id from the spawned CLI, propagate to renderer
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  212d941a-9f1b-46e0-a95a-f71c543e7934:
+    id: 212d941a-9f1b-46e0-a95a-f71c543e7934
+    content: Tree-node metadata in `src/shared/types/treeNode.ts` — fields for session id, working directory, live/ended/lost status
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  2a86a243-cd66-4d0b-a277-da97bbeca531:
+    id: 2a86a243-cd66-4d0b-a277-da97bbeca531
+    content: '`.arbo` save/load — round-trip the new metadata'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  46317ed5-1e00-4701-9953-6794fae1a369:
+    id: 46317ed5-1e00-4701-9953-6794fae1a369
+    content: Node context menu hook in `src/renderer/components/NodeContent/hooks/` — gated "Resume session" item, plus toast wiring for the failure case
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  0422dde5-471d-46a7-a810-67d2721a1efa:
+    id: 0422dde5-471d-46a7-a810-67d2721a1efa
+    content: Terminal handler — accept "open new tab and run resume command in dir X" instruction
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  7db17610-e6d7-4a03-af0f-4444c7c132cb:
+    id: 7db17610-e6d7-4a03-af0f-4444c7c132cb
+    content: Tests — workflow execution unit tests for session capture/teardown, context-menu tests for resume gating, persistence round-trip test for the new metadata
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8cc24489-ed62-427c-996e-f1a323ca97ac:
+    id: 8cc24489-ed62-427c-996e-f1a323ca97ac
+    content: Constraints to call out
+    children:
+      - 17457990-74be-4b2b-84c5-cada7d42b5fe
+      - 84913771-7fc8-4ed4-ba8e-5fe31c780529
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  17457990-74be-4b2b-84c5-cada7d42b5fe:
+    id: 17457990-74be-4b2b-84c5-cada7d42b5fe
+    content: Restoration after app restart is best-effort and bounded by the underlying CLI's session lifetime; do not promise more than the tool delivers, surface "session lost" honestly.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  84913771-7fc8-4ed4-ba8e-5fe31c780529:
+    id: 84913771-7fc8-4ed4-ba8e-5fe31c780529
+    content: Session id capture must happen synchronously enough that a crash between spawn and persistence does not orphan the AI process unrecoverably; consider writing a "starting" marker before spawn and reconciling on next load.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  adec0975-276b-4a3f-a9d6-b520c814b972:
+    id: adec0975-276b-4a3f-a9d6-b520c814b972
+    content: Single shippable chunk
+    children:
+      - 68ea97e2-deb6-4c3d-be5d-2e177207907c
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  68ea97e2-deb6-4c3d-be5d-2e177207907c:
+    id: 68ea97e2-deb6-4c3d-be5d-2e177207907c
+    content: One PR — capturing the id without the resume action is speculative plumbing; the resume action without persistence breaks across restart. Both halves are needed for any user value.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  f3a35a19-9985-4337-a411-25f8beb2e314:
+    id: f3a35a19-9985-4337-a411-25f8beb2e314
+    content: Challenge notes
+    children:
+      - 8e7ed1ee-4d5d-493c-8bb8-ebab01f05ae5
+      - fd9426ae-47a7-4b83-8928-c0056455000a
+      - b7c30da7-b43b-4f0a-ac8f-7122ee97c974
+      - b7feadef-1bc3-432d-9487-16b37dbb60c0
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  8e7ed1ee-4d5d-493c-8bb8-ebab01f05ae5:
+    id: 8e7ed1ee-4d5d-493c-8bb8-ebab01f05ae5
+    content: tmux is the wrong axis — the underlying CLI exposes native `--resume <id>` and the existing terminal handler already spawns commands. Adding tmux means a new external dependency, a new state surface, and a fallback story for users who don't have it. Reject in favour of the native CLI affordance.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  fd9426ae-47a7-4b83-8928-c0056455000a:
+    id: fd9426ae-47a7-4b83-8928-c0056455000a
+    content: 'The user''s `recurse` reconsideration is self-resolved in their brainstorm: decomposition + recurse expresses sequential chaining of split work, while resumable sessions enable parallel kickoff. Keep `recurse`. Do not bundle this discussion into this story.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b7c30da7-b43b-4f0a-ac8f-7122ee97c974:
+    id: b7c30da7-b43b-4f0a-ac8f-7122ee97c974
+    content: The "queue up vs parallel" tension is a separate product question (an explicit task queue is its own feature) and is not a prerequisite for resumable sessions. Resumable sessions enable parallel without forcing it; if explicit queueing is later wanted, raise it as a distinct story.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  b7feadef-1bc3-432d-9487-16b37dbb60c0:
+    id: b7feadef-1bc3-432d-9487-16b37dbb60c0
+    content: '"Auto create / auto close" is implicit in starting and finishing a workflow step — the actionable user-facing capability is **resume**, so frame the feature around that to keep scope tight rather than around lifecycle automation that already exists.'
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  5d263d5b-e71b-42fa-9c4c-ccbd9b7b0a6d:
+    id: 5d263d5b-e71b-42fa-9c4c-ccbd9b7b0a6d
+    content: Open question
+    children:
+      - c07197ae-8c93-4d19-8ebc-136486f96503
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  c07197ae-8c93-4d19-8ebc-136486f96503:
+    id: c07197ae-8c93-4d19-8ebc-136486f96503
+    content: The brainstorm references "gastown" as a comparable tool — confirm what tool/UI pattern that points at before implementation, since it may encode a specific resume UX the user wants to mimic.
+    children: []
+    metadata:
+      status: pending
+      expanded: true
+      deleted: false
+      plugins: {}
+  1a32c3eb-e6b1-49f4-a527-b256b3f0cbfd:
+    id: 1a32c3eb-e6b1-49f4-a527-b256b3f0cbfd
+    content: 'Bug : Checklist sent to terminal window after task completion'
+    children:
+      - 517faccd-145d-467c-8cd2-11c8fd7269ce
+      - 87f438b3-c4c8-4217-92ee-22e3c8764d90
+      - 239c8cfb-8635-477b-a7ef-a8e71d14e56f
+      - 8a67d574-2364-4000-9198-232e840e1223
+    metadata:
+      status: pending
+      expanded: false
+  517faccd-145d-467c-8cd2-11c8fd7269ce:
+    id: 517faccd-145d-467c-8cd2-11c8fd7269ce
+    content: Modify prompt instructions so that the AI doesn't output the updated nodelist to the terminal window
+    children: []
+    metadata:
+      status: pending
+  87f438b3-c4c8-4217-92ee-22e3c8764d90:
+    id: 87f438b3-c4c8-4217-92ee-22e3c8764d90
+    content: It's redundant, we can already see it in Arborescent
+    children: []
+    metadata:
+      status: pending
+  239c8cfb-8635-477b-a7ef-a8e71d14e56f:
+    id: 239c8cfb-8635-477b-a7ef-a8e71d14e56f
+    content: It takes time
+    children: []
+    metadata:
+      status: pending
+  8a67d574-2364-4000-9198-232e840e1223:
+    id: 8a67d574-2364-4000-9198-232e840e1223
+    content: It interferes with workflows as it often finishes writing AFTER the stop hook is sent
+    children: []
+    metadata:
+      status: pending
