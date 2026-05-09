@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-05-09T11:43:02.196Z'
+updated: '2026-05-09T11:44:14.941Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -23696,6 +23696,7 @@ nodes:
     content: Technical refinement
     children:
       - 850f875c-f771-40be-9432-fd212a7f583c
+      - a45e5394-9ae7-4823-ac2a-387cb0223cfe
     metadata:
       status: pending
       isBlueprint: true
@@ -82852,8 +82853,7 @@ nodes:
   ddd90208-5752-46cf-b72a-5fcbe040b2e0:
     id: ddd90208-5752-46cf-b72a-5fcbe040b2e0
     content: Merge to master
-    children:
-      - 901813f7-011c-4c41-802b-53ecfdb96209
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -96879,7 +96879,8 @@ nodes:
   3406993a-2a35-4c96-9aa8-55d63dccc55f:
     id: 3406993a-2a35-4c96-9aa8-55d63dccc55f
     content: Delete worktree
-    children: []
+    children:
+      - 901813f7-011c-4c41-802b-53ecfdb96209
     metadata:
       status: pending
       isBlueprint: true
@@ -100712,3 +100713,16 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
+  a45e5394-9ae7-4823-ac2a-387cb0223cfe:
+    id: a45e5394-9ae7-4823-ac2a-387cb0223cfe
+    content: Bug - can't stop a workflow in pause, can only continue
+    children:
+      - 047c58db-ebd4-49f1-ad54-7358bc4c9b56
+    metadata:
+      status: pending
+  047c58db-ebd4-49f1-ad54-7358bc4c9b56:
+    id: 047c58db-ebd4-49f1-ad54-7358bc4c9b56
+    content: Need to be able to stop it too
+    children: []
+    metadata:
+      status: pending
