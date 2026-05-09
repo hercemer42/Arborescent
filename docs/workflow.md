@@ -40,6 +40,10 @@ Two built-in contexts are available when no user-defined context is applied:
 
 Keyboard shortcuts: `Ctrl+E` (send in terminal), `Ctrl+Shift+E` (send in browser).
 
+### Run a Branch as a Command
+
+A branch whose entire content is a single backticked snippet runs in the terminal as a raw command rather than as markdown. Wrap a one-liner with single backticks (`` `npm install` ``) or a multi-line script with triple backticks. The branch must have no children and no context applied — both signal review or editing intent — and only single-branch selections execute. Anything else falls back to the regular markdown send.
+
 ### How it works
 
 **Terminal mode**: Instructions tell the AI to write its response to a temporary file. Arborescent watches this file and displays the result in the Feedback panel when it changes.

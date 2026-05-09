@@ -28,6 +28,7 @@ import {
 import { feedbackTreeStore } from '../../feedback/feedbackTreeStore';
 import { reconcileFeedback } from '../../feedback/reconcileFeedback';
 import { isDecompositionEnabled, getArchiveConfigForNode } from '../../../utils/workflowHelpers';
+import { classifyTerminalSend } from '../../../utils/codeNode';
 
 export const DEFAULT_EXECUTE_CONTEXT = `You are executing a coding task. Please:
 - Implement the listed tasks by making changes directly in the codebase
@@ -462,6 +463,16 @@ export function createSendActions(
       }
 
       try {
+        const route = classifyTerminalSend(nodeId, state.nodes, state.ancestorRegistry, {
+          isMultiSelect: state.multiSelectedNodeIds.size > 1,
+        });
+        if (route.kind === 'skip') return;
+        if (route.kind === 'execute') {
+          await executeInTerminal(terminalId, route.command);
+          logger.info(`Executed code-node as raw command for node: ${nodeId}`, 'SendActions');
+          return;
+        }
+
         const appliedContextId = getAppliedContextIdWithInheritance(nodeId, state.nodes, state.ancestorRegistry);
 
         if (!appliedContextId) {
