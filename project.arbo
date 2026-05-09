@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-05-09T05:47:07.331Z'
+updated: '2026-05-09T06:14:48.499Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -5495,6 +5495,7 @@ nodes:
       - 1d30a613-a651-436c-bb2b-1fb3062af9fb
       - 64ea2af4-332b-44a6-8b88-78535cc9b79a
       - 6690289a-e02f-48bc-9225-a1083b7b324f
+      - 44b69d24-730a-4af1-95dd-7b2aface6c13
     metadata:
       status: pending
       expanded: true
@@ -12202,7 +12203,7 @@ nodes:
       resolvedAt: '2025-12-07T20:38:42.829Z'
   9c0a2ade-f9bb-4d04-b2a8-b142eaeb8d88:
     id: 9c0a2ade-f9bb-4d04-b2a8-b142eaeb8d88
-    content: Don't commit, I'll do that
+    content: Don't commit until asked specifically
     children: []
     metadata:
       status: pending
@@ -33372,6 +33373,7 @@ nodes:
       - ef8172e7-9f00-4495-9f4e-69b862af7dde
       - bdceb696-248d-4199-9182-db0689445c07
       - ddd90208-5752-46cf-b72a-5fcbe040b2e0
+      - 3406993a-2a35-4c96-9aa8-55d63dccc55f
     metadata:
       status: pending
       isBlueprint: true
@@ -83117,6 +83119,7 @@ nodes:
       appliedContextId: f4300f5a-e503-4606-b6bc-f67f6d4a0ed4
       stepType: autonomous
       recurse: true
+      expanded: false
   26d204d2-540c-4f9c-9de1-ac16b1c51065:
     id: 26d204d2-540c-4f9c-9de1-ac16b1c51065
     content: Verify pipelines
@@ -96654,7 +96657,8 @@ nodes:
   4e51001a-aef4-43c6-8094-5628853da749:
     id: 4e51001a-aef4-43c6-8094-5628853da749
     content: '"Sometimes" needs nailing down — the report says intermittent. The fix risk and scope change a lot depending on which path leaks: a plain Manual/Autonomous final step, the post-decomposition advancement path, the recurse iterator''s exit when it runs out of siblings, the 50-iteration safety stop, an autonomous step that completed via auto-accept vs. via terminal-completion hook, or a Checkpoint that the user validated. Worth narrowing the repro before assuming a single root cause.'
-    children: []
+    children:
+      - 927d5050-a2c1-4254-a9e4-900083a4d5ef
     metadata:
       status: pending
       expanded: true
@@ -96663,7 +96667,8 @@ nodes:
   ec904dbc-905c-4c52-a082-a3b090e4a591:
     id: ec904dbc-905c-4c52-a082-a3b090e4a591
     content: '"Last step" is ambiguous in the presence of decomposition + recurse. With recurse, the "last step" of each sibling-iteration is not the workflow''s last execution — and the recurse loop''s own exit condition (no more waiting siblings, or hitting the 50-iteration cap) is what should flip the workflow back to idle. The fix has to cover both the simple "ran the final numbered step" case and the "recurse loop drained" case.'
-    children: []
+    children:
+      - 262510a0-6fdc-40b8-885b-a570b3eca5f5
     metadata:
       status: pending
       expanded: true
@@ -96681,7 +96686,8 @@ nodes:
   f242a6eb-2da5-4b3b-9ef6-64b8fcdcc935:
     id: f242a6eb-2da5-4b3b-9ef6-64b8fcdcc935
     content: Persistence and restart — if the running flag is persisted, existing `.arbo` files in the field may already have stuck-running workflows. Decide whether the fix only repairs new completions or also self-heals on load (e.g. if no terminal/process is associated with the workflow on startup, clear the flag rather than treating the workflow as resumable).
-    children: []
+    children:
+      - e3a73431-1810-4e6a-ad69-3acca48b69a9
     metadata:
       status: pending
       expanded: true
@@ -96690,7 +96696,8 @@ nodes:
   9e7c525d-d18c-4ed2-ba93-6995a7b43b3f:
     id: 9e7c525d-d18c-4ed2-ba93-6995a7b43b3f
     content: Out of scope for a bug fix — adding a new "Done" terminal state, reworking the two-state (running / awaiting-validation) model, or changing the indicator UX. The fix should land on the existing completion path, not redesign it.
-    children: []
+    children:
+      - be77c1ad-5fa9-4dcc-b762-950b55ab7f56
     metadata:
       status: pending
       expanded: true
@@ -97800,6 +97807,99 @@ nodes:
   8a67d574-2364-4000-9198-232e840e1223:
     id: 8a67d574-2364-4000-9198-232e840e1223
     content: It interferes with workflows as it often finishes writing AFTER the stop hook is sent
+    children: []
+    metadata:
+      status: pending
+  3406993a-2a35-4c96-9aa8-55d63dccc55f:
+    id: 3406993a-2a35-4c96-9aa8-55d63dccc55f
+    content: Delete worktree
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+      blueprintIcon: RemoveFormatting
+      blueprintColor: '#14b8a6'
+      stepType: autonomous
+      appliedContextId: 44b69d24-730a-4af1-95dd-7b2aface6c13
+  278831ef-224c-46f3-aa1e-9707da5b27ff:
+    id: 278831ef-224c-46f3-aa1e-9707da5b27ff
+    content: Verify that the PR has been merged to main
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  754646fe-d21c-421e-95c1-fcf4a82c826d:
+    id: 754646fe-d21c-421e-95c1-fcf4a82c826d
+    content: Delete the worktree and local branch
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  5d73c19a-ba16-480d-93db-914f1eaa569a:
+    id: 5d73c19a-ba16-480d-93db-914f1eaa569a
+    content: Remote branch is normally auto closed once the PR has been merged
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  44b69d24-730a-4af1-95dd-7b2aface6c13:
+    id: 44b69d24-730a-4af1-95dd-7b2aface6c13
+    content: Delete worktree
+    children:
+      - e1935ebb-7307-4d8c-aa14-6fe50d1b0094
+      - 278831ef-224c-46f3-aa1e-9707da5b27ff
+      - 754646fe-d21c-421e-95c1-fcf4a82c826d
+      - 5d73c19a-ba16-480d-93db-914f1eaa569a
+    metadata:
+      isContextDeclaration: true
+      blueprintIcon: RemoveFormatting
+      blueprintColor: '#22c55e'
+      isBlueprint: true
+      expanded: false
+      collaborate: false
+      execute: true
+  e1935ebb-7307-4d8c-aa14-6fe50d1b0094:
+    id: e1935ebb-7307-4d8c-aa14-6fe50d1b0094
+    content: Commit any remaining changes
+    children: []
+    metadata:
+      status: pending
+      isBlueprint: true
+  927d5050-a2c1-4254-a9e4-900083a4d5ef:
+    id: 927d5050-a2c1-4254-a9e4-900083a4d5ef
+    content: Yes, it's intermittent, I can't tell you when exactly.
+    children: []
+    metadata:
+      status: pending
+  262510a0-6fdc-40b8-885b-a570b3eca5f5:
+    id: 262510a0-6fdc-40b8-885b-a570b3eca5f5
+    content: 'To clarify, Last step means :'
+    children:
+      - f028ecbe-012c-4e3e-8f00-4fe578b98955
+      - 85859833-2ac2-44f9-be6a-e2096d4710e6
+    metadata:
+      status: pending
+  f028ecbe-012c-4e3e-8f00-4fe578b98955:
+    id: f028ecbe-012c-4e3e-8f00-4fe578b98955
+    content: Last autonomous or checkpoint step in a chain - there is either no next step, or the next step is manual.
+    children: []
+    metadata:
+      status: pending
+  85859833-2ac2-44f9-be6a-e2096d4710e6:
+    id: 85859833-2ac2-44f9-be6a-e2096d4710e6
+    content: Recurse doesn't affect stopping - if the next step after recurse is autonomous or checkpoint, the node that just passed through it triggers recursion on the next item up the chain, but it itself continues as any other node would.
+    children: []
+    metadata:
+      status: pending
+  e3a73431-1810-4e6a-ad69-3acca48b69a9:
+    id: e3a73431-1810-4e6a-ad69-3acca48b69a9
+    content: No don't worry about that I'll cleanup manually, I'm the only person using the workflow feature for now
+    children: []
+    metadata:
+      status: pending
+  be77c1ad-5fa9-4dcc-b762-950b55ab7f56:
+    id: be77c1ad-5fa9-4dcc-b762-950b55ab7f56
+    content: Well, Claude should already send a 'stop' hook that we watch to tell if a workflow step is done
     children: []
     metadata:
       status: pending
