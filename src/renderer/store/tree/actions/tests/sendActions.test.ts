@@ -1640,4 +1640,53 @@ describe('sendActions', () => {
       });
     });
   });
+
+  describe('terminal prompts do not redundantly request list output to terminal', () => {
+    it('collaborate-mode terminal prompt omits the "Output the complete updated list." directive', async () => {
+      const { executeInTerminal } = await import('../../../../services/terminalExecution');
+
+      await actions.collaborateInTerminal('child1', 'terminal-1');
+
+      const terminalContent = vi.mocked(executeInTerminal).mock.calls[0][1];
+      expect(terminalContent).not.toContain('Output the complete updated list.');
+    });
+
+    it('both-mode (collaborate + execute) terminal prompt omits the "Output the complete updated list." directive', async () => {
+      const { executeInTerminal } = await import('../../../../services/terminalExecution');
+      mockState.nodes.child1.metadata.appliedContextId = 'exec-ctx';
+
+      await actions.collaborateInTerminal('child1', 'terminal-1', { collaborate: true, execute: true });
+
+      const terminalContent = vi.mocked(executeInTerminal).mock.calls[0][1];
+      expect(terminalContent).not.toContain('Output the complete updated list.');
+    });
+
+    it('autonomous both-mode terminal prompt omits the "Output the complete updated list." directive', async () => {
+      const { executeInTerminal } = await import('../../../../services/terminalExecution');
+      mockState.nodes.child1.metadata.appliedContextId = 'exec-ctx';
+
+      await actions.autonomousCollaborateInTerminal('child1', 'terminal-1', { collaborate: true, execute: true });
+
+      const terminalContent = vi.mocked(executeInTerminal).mock.calls[0][1];
+      expect(terminalContent).not.toContain('Output the complete updated list.');
+    });
+
+    it('collaborate-mode terminal prompt still includes the file-write command (regression guard)', async () => {
+      const { executeInTerminal } = await import('../../../../services/terminalExecution');
+
+      await actions.collaborateInTerminal('child1', 'terminal-1');
+
+      const terminalContent = vi.mocked(executeInTerminal).mock.calls[0][1];
+      expect(terminalContent).toContain('mkdir -p');
+      expect(terminalContent).toContain("cat <<'EOF' >");
+      expect(terminalContent).toContain('Write your reviewed/updated list to this file:');
+    });
+
+    it('web collaborate prompt still requests list output in a markdown code block (regression guard for browser flow)', async () => {
+      await actions.collaborate('child1');
+
+      const clipboardContent = mockClipboardWriteText.mock.calls[0][0];
+      expect(clipboardContent).toContain('Output the complete updated list in a markdown code block.');
+    });
+  });
 });

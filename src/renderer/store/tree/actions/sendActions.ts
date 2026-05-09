@@ -114,9 +114,7 @@ function buildFileWriteCommand(outputFilePath: string): string {
   return `Use this command to write the file safely:
 mkdir -p ${outputDir} && cat <<'EOF' > ${outputFilePath}
 [Your content here]
-EOF
-
-Output the complete updated list.`;
+EOF`;
 }
 
 function buildCollaborateFileOutputTarget(outputFilePath: string): string {
