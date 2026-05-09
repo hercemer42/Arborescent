@@ -1,7 +1,7 @@
 format: Arborescent
 version: 1.0.0
 created: '2025-10-11T00:00:00.000Z'
-updated: '2026-05-09T12:20:47.883Z'
+updated: '2026-05-09T13:00:03.914Z'
 author: brian@brianfox.fr
 rootNodeId: root
 nodes:
@@ -25642,7 +25642,8 @@ nodes:
   bdceb696-248d-4199-9182-db0689445c07:
     id: bdceb696-248d-4199-9182-db0689445c07
     content: Documentation
-    children: []
+    children:
+      - a1d066c3-7e32-4660-970d-665d375fe13c
     metadata:
       status: pending
       isBlueprint: true
@@ -27140,8 +27141,7 @@ nodes:
   9a392715-9ea2-4269-b35c-812b8998e3ec:
     id: 9a392715-9ea2-4269-b35c-812b8998e3ec
     content: Automated tests implementation (TDD)
-    children:
-      - 5dd8ab00-6dbc-4955-b301-1ad9c0bd5a83
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -82858,7 +82858,8 @@ nodes:
   ddd90208-5752-46cf-b72a-5fcbe040b2e0:
     id: ddd90208-5752-46cf-b72a-5fcbe040b2e0
     content: Merge to master
-    children: []
+    children:
+      - 5dd8ab00-6dbc-4955-b301-1ad9c0bd5a83
     metadata:
       status: pending
       isBlueprint: true
@@ -84567,8 +84568,7 @@ nodes:
   1ee47a7f-770a-44ef-97ab-eb85a6f22ef1:
     id: 1ee47a7f-770a-44ef-97ab-eb85a6f22ef1
     content: Technical decomposition
-    children:
-      - a1d066c3-7e32-4660-970d-665d375fe13c
+    children: []
     metadata:
       status: pending
       isBlueprint: true
@@ -97554,12 +97554,18 @@ nodes:
     id: 5dd8ab00-6dbc-4955-b301-1ad9c0bd5a83
     content: PR2 - Resumable AI sessions per workflow step (auto-attach on workflow start)
     children:
-      - b76e8b07-2b17-493c-8972-d36b960355d9
-      - 766834e6-e01c-4475-b8f9-301c1db97c9c
-      - 99f84040-61d1-4d69-b005-a0d996e873b3
-      - 9d84e96c-ea20-43c4-8644-17e21e1eeefb
+      - aa264ac3-6992-4cd5-acd6-9f90235144ef
+      - 36de30f4-ed54-4068-8bb5-2ec0fc3c836e
+      - 7eac9947-2557-4136-8bc7-ab3536b4b921
+      - 22b1f811-2bc5-4e34-b5b5-64131c307fb7
+      - 62c674ee-9869-411d-b83f-9c6f290270e4
+      - a73dc436-3db5-4cf5-b251-b5fca5804356
+      - 6cbbdde5-53d2-40a2-bb45-62e6d4d3eef0
+      - 1927b411-5cf8-43dd-b931-bdb2d0c0b0cb
+      - f31fd3ec-a44f-429f-9f9c-8deda1f55628
+      - 614e21bf-734a-4827-a7f1-ed93241328ea
     metadata:
-      status: pending
+      status: completed
       expanded: false
       deleted: false
       plugins: {}
@@ -97567,229 +97573,15 @@ nodes:
     id: a1d066c3-7e32-4660-970d-665d375fe13c
     content: PR3 - Resumable AI sessions per workflow step (recurse inheritance + descendant pointer rebinding)
     children:
-      - bac1370d-ddbd-4fc2-9784-98ef1185a2d5
-      - 2a197fb9-591e-4c03-9bdf-ea88906f0ef0
-      - 0b5174e3-3cc8-4772-84a6-43c344aa8247
+      - 96424e79-2221-46f7-ac34-950eb6e13988
+      - 87e84201-ff3d-4d70-baa0-bf84c9f92517
+      - 602286c9-1034-40d7-9a85-870968315fb6
+      - 0f829409-b873-4ca7-929a-f8686170b38c
+      - 04b17788-3083-49e0-985d-bc2a783ea9cc
+      - 80f1985a-c206-4996-9188-5387d2115cf9
     metadata:
-      status: pending
+      status: completed
       expanded: false
-      deleted: false
-      plugins: {}
-  bac1370d-ddbd-4fc2-9784-98ef1185a2d5:
-    id: bac1370d-ddbd-4fc2-9784-98ef1185a2d5
-    content: User story
-    children:
-      - ab1eccbb-8715-4e72-b7c3-2d792ffffffc
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  ab1eccbb-8715-4e72-b7c3-2d792ffffffc:
-    id: ab1eccbb-8715-4e72-b7c3-2d792ffffffc
-    content: 📄 Product spec
-    children:
-      - 2414ab12-15c5-4492-bd44-29d1a2caf7b4
-      - e93f8165-dc5e-4db4-bcf6-4b4218ab3ad7
-      - 255edb37-e466-4796-b64a-e41bb3281a75
-      - 15fda24a-316e-4f50-9062-d5d1232fa83f
-      - b1d90d4c-5a12-4126-83a3-03b256bf1c51
-      - 3e40703c-9968-4156-8c1b-bafc79d1f4cd
-      - bd4dab86-7053-4f73-add9-659d663aea92
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  2414ab12-15c5-4492-bd44-29d1a2caf7b4:
-    id: 2414ab12-15c5-4492-bd44-29d1a2caf7b4
-    content: Context — Today, an AI session lives inside whichever terminal tab the user invoked it in. When a long autonomous step is running, that tab is effectively pinned to it; if the user closes the tab they lose the session, and if they walk away mid-step there is no UI to come back to it. To run several workflow steps in parallel without babysitting, the user wants the workflow to spin sessions up and tear them down on its own, and to be able to reattach to any active step from a fresh terminal tab.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e93f8165-dc5e-4db4-bcf6-4b4218ab3ad7:
-    id: e93f8165-dc5e-4db4-bcf6-4b4218ab3ad7
-    content: User — anyone running workflow steps that invoke a terminal AI session, particularly those running multiple in parallel or stepping away mid-step.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  255edb37-e466-4796-b64a-e41bb3281a75:
-    id: 255edb37-e466-4796-b64a-e41bb3281a75
-    content: Current experience — sessions are coupled 1:1 to the visible terminal tab. Closing the tab kills the session; switching tabs leaves it running but unfindable; resuming requires manually constructing a CLI flag in the right working directory. No node-level affordance to reopen a step that was started earlier.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  15fda24a-316e-4f50-9062-d5d1232fa83f:
-    id: 15fda24a-316e-4f50-9062-d5d1232fa83f
-    content: Goal — every workflow step that opens an AI session captures the session identifier on its node and offers a one-click "Resume session" from any terminal tab, surviving app restart. Starting a workflow auto-spawns a fresh terminal + session (or attaches to/resumes the workflow's prior session if one is still alive), and `recurse` chains stay inside the same session as the node they recursed from.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  b1d90d4c-5a12-4126-83a3-03b256bf1c51:
-    id: b1d90d4c-5a12-4126-83a3-03b256bf1c51
-    content: Key distinction — "workflow stopped" and "session ended" are independent states. A workflow can be stopped from Arborescent's side while its underlying CLI session is still running in an open terminal tab. The feature must reason about *session liveness* (process + tab state), not workflow status, when deciding spawn vs resume vs attach.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  3e40703c-9968-4156-8c1b-bafc79d1f4cd:
-    id: 3e40703c-9968-4156-8c1b-bafc79d1f4cd
-    content: Business rules covered here — 10 (recurse three-tier exception, including broken-chain surfacing), and the descendant half of rule 11 (every node bound to a session id refreshes its terminal pointer on transitions).
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  bd4dab86-7053-4f73-add9-659d663aea92:
-    id: bd4dab86-7053-4f73-add9-659d663aea92
-    content: Acceptance criteria covered by this PR
-    children:
-      - 3173c3ac-06e6-4bd4-a0d4-a53c42d2df79
-      - 1bb1d7b6-86cd-4f14-ad8d-e17a8e22abec
-      - e94659b0-4549-4af6-9f2b-922789af7b97
-      - be1b3ba4-7a47-4256-afa9-529d8a33c8e7
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  3173c3ac-06e6-4bd4-a0d4-a53c42d2df79:
-    id: 3173c3ac-06e6-4bd4-a0d4-a53c42d2df79
-    content: '- [ ] A node reached via `recurse` whose parent session is alive and attached to an open tab sends its prompt to that tab and does not open a new one.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  1bb1d7b6-86cd-4f14-ad8d-e17a8e22abec:
-    id: 1bb1d7b6-86cd-4f14-ad8d-e17a8e22abec
-    content: '- [ ] A node reached via `recurse` whose parent session is alive but whose tab is closed opens a new tab, resumes the parent''s session there, and sends its prompt to it. The recursed node records the inherited session id.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  e94659b0-4549-4af6-9f2b-922789af7b97:
-    id: e94659b0-4549-4af6-9f2b-922789af7b97
-    content: '- [ ] A node reached via `recurse` whose parent session is dead spawns a fresh session, surfaces the broken-chain state, and is recorded with the new session id.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  be1b3ba4-7a47-4256-afa9-529d8a33c8e7:
-    id: be1b3ba4-7a47-4256-afa9-529d8a33c8e7
-    content: '- [ ] When a session is hosted by a tab that gets closed and later resumed in a new tab, every node bound to that session (including recurse descendants) refreshes its terminal pointer; no node sends prompts to the closed tab.'
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  2a197fb9-591e-4c03-9bdf-ea88906f0ef0:
-    id: 2a197fb9-591e-4c03-9bdf-ea88906f0ef0
-    content: Subtask scope
-    children:
-      - 2bccd219-b524-469b-b793-8354a32c5224
-      - 4bab858f-c371-479e-84f9-16a1cacd91a1
-      - 9fcd7e9f-267e-4fec-86d3-db3c222134b4
-      - f965c063-91a7-43b2-93f3-89127c4f98e3
-      - 55a23418-05ec-4b3c-a31a-68e86248eca0
-      - 848d725b-3266-40ae-8673-5a37987b28eb
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  2bccd219-b524-469b-b793-8354a32c5224:
-    id: 2bccd219-b524-469b-b793-8354a32c5224
-    content: Recurse traversal applies the same three-tier priority as workflow-start, against the *parent's* session id — (a) send to parent's open attached tab, (b) open new tab and resume parent's session there, (c) spawn fresh + surface broken chain.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  4bab858f-c371-479e-84f9-16a1cacd91a1:
-    id: 4bab858f-c371-479e-84f9-16a1cacd91a1
-    content: Recursed node inherits parent's session id in cases (a) and (b); records its own new session id in case (c); broken-chain state surfaced via node indicator.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  9fcd7e9f-267e-4fec-86d3-db3c222134b4:
-    id: 9fcd7e9f-267e-4fec-86d3-db3c222134b4
-    content: Extend node→terminal pointer rebinding from originator-only (PR1) to *every* node bound to a given session id — descendants refresh atomically with the tab transition, driven by the terminal handler's "session now hosted by tab Y" event.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  f965c063-91a7-43b2-93f3-89127c4f98e3:
-    id: f965c063-91a7-43b2-93f3-89127c4f98e3
-    content: Tests — recurse three-tier branch coverage including broken-chain fallback, descendant-rebinding correctness across tab close/resume cycles, no-misroute guarantee for older nodes in a chain, full integration test for chained prompts after a tab transition.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  55a23418-05ec-4b3c-a31a-68e86248eca0:
-    id: 55a23418-05ec-4b3c-a31a-68e86248eca0
-    content: Out of scope here — manual resume (PR1), workflow-start three-tier (PR2). Cross-machine resume, transcript persistence, task queue, and silent auto-resume on boot remain out of scope for the whole feature.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  848d725b-3266-40ae-8673-5a37987b28eb:
-    id: 848d725b-3266-40ae-8673-5a37987b28eb
-    content: Production-safety check — depends on PR1 + PR2. Builds only on internal APIs introduced in earlier PRs; no behavioural change for non-recurse paths. No feature flag required.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  0b5174e3-3cc8-4772-84a6-43c344aa8247:
-    id: 0b5174e3-3cc8-4772-84a6-43c344aa8247
-    content: Instruction
-    children:
-      - 1b00b201-1cf9-4f39-b316-4d597a3dcc5d
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  1b00b201-1cf9-4f39-b316-4d597a3dcc5d:
-    id: 1b00b201-1cf9-4f39-b316-4d597a3dcc5d
-    content: This is a subtask of the overall user story. Please implement only this subtask. The others will be implemented in a separate PR.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
       deleted: false
       plugins: {}
   fab60ee2-124f-48d3-918a-25efbbcd55be:
@@ -100949,34 +100741,53 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  b76e8b07-2b17-493c-8972-d36b960355d9:
-    id: b76e8b07-2b17-493c-8972-d36b960355d9
+  96424e79-2221-46f7-ac34-950eb6e13988:
+    id: 96424e79-2221-46f7-ac34-950eb6e13988
+    content: worktree
+    children:
+      - 368bd26f-a89e-488b-b6de-47d6bebe5f15
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  368bd26f-a89e-488b-b6de-47d6bebe5f15:
+    id: 368bd26f-a89e-488b-b6de-47d6bebe5f15
+    content: '[Open in VSCode](vscode://file/Users/brianfox/dev/Arborescent-resumable-sessions-pr3)'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  87e84201-ff3d-4d70-baa0-bf84c9f92517:
+    id: 87e84201-ff3d-4d70-baa0-bf84c9f92517
     content: User story
     children:
-      - da7556ee-e5ac-4be4-8d52-7b266ee81f46
+      - ce1672d0-5d4f-4c86-8a6b-b35285079004
     metadata:
       status: pending
       expanded: true
       deleted: false
       plugins: {}
-  da7556ee-e5ac-4be4-8d52-7b266ee81f46:
-    id: da7556ee-e5ac-4be4-8d52-7b266ee81f46
+  ce1672d0-5d4f-4c86-8a6b-b35285079004:
+    id: ce1672d0-5d4f-4c86-8a6b-b35285079004
     content: 📄 Product spec
     children:
-      - a9aea5f8-4675-496a-a3e1-84b299f882ec
-      - ecc1eb27-3c97-480b-aa19-5678e7331363
-      - eff9b653-cae2-4a6d-af87-4c1a8002f908
-      - cc4fedd1-e378-427c-bfb9-4ab109fc5f59
-      - cb8a24b9-e313-4f3f-9626-662dd6116a3f
-      - fbfd2a82-e292-4754-84a7-f7c731fa823b
-      - 04c78efb-7aba-49f2-ae56-abbbb80d082f
+      - 6b26cd70-fc24-4fb2-9f91-b2f08251b8ca
+      - ce5234c6-6130-4bb9-81bc-225061b219fd
+      - 7682b402-8319-4ecc-a34b-41f1ebe9b2c6
+      - aa688e7d-0491-4d16-84db-a41c0ed1fae8
+      - 5c0edbbb-380b-42c2-bcbc-bf53a0cea091
+      - 92079d83-2719-41f7-877e-4cda534ccdd8
+      - 7bae02ea-7a7e-4fce-9bbe-49ab1fb665ae
     metadata:
       status: pending
       expanded: true
       deleted: false
       plugins: {}
-  a9aea5f8-4675-496a-a3e1-84b299f882ec:
-    id: a9aea5f8-4675-496a-a3e1-84b299f882ec
+  6b26cd70-fc24-4fb2-9f91-b2f08251b8ca:
+    id: 6b26cd70-fc24-4fb2-9f91-b2f08251b8ca
     content: Context — Today, an AI session lives inside whichever terminal tab the user invoked it in. When a long autonomous step is running, that tab is effectively pinned to it; if the user closes the tab they lose the session, and if they walk away mid-step there is no UI to come back to it. To run several workflow steps in parallel without babysitting, the user wants the workflow to spin sessions up and tear them down on its own, and to be able to reattach to any active step from a fresh terminal tab.
     children: []
     metadata:
@@ -100984,8 +100795,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  ecc1eb27-3c97-480b-aa19-5678e7331363:
-    id: ecc1eb27-3c97-480b-aa19-5678e7331363
+  ce5234c6-6130-4bb9-81bc-225061b219fd:
+    id: ce5234c6-6130-4bb9-81bc-225061b219fd
     content: User — anyone running workflow steps that invoke a terminal AI session, particularly those running multiple in parallel or stepping away mid-step.
     children: []
     metadata:
@@ -100993,8 +100804,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  eff9b653-cae2-4a6d-af87-4c1a8002f908:
-    id: eff9b653-cae2-4a6d-af87-4c1a8002f908
+  7682b402-8319-4ecc-a34b-41f1ebe9b2c6:
+    id: 7682b402-8319-4ecc-a34b-41f1ebe9b2c6
     content: Current experience — sessions are coupled 1:1 to the visible terminal tab. Closing the tab kills the session; switching tabs leaves it running but unfindable; resuming requires manually constructing a CLI flag in the right working directory. No node-level affordance to reopen a step that was started earlier.
     children: []
     metadata:
@@ -101002,8 +100813,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  cc4fedd1-e378-427c-bfb9-4ab109fc5f59:
-    id: cc4fedd1-e378-427c-bfb9-4ab109fc5f59
+  aa688e7d-0491-4d16-84db-a41c0ed1fae8:
+    id: aa688e7d-0491-4d16-84db-a41c0ed1fae8
     content: Goal — every workflow step that opens an AI session captures the session identifier on its node and offers a one-click "Resume session" from any terminal tab, surviving app restart. Starting a workflow auto-spawns a fresh terminal + session (or attaches to/resumes the workflow's prior session if one is still alive), and `recurse` chains stay inside the same session as the node they recursed from.
     children: []
     metadata:
@@ -101011,8 +100822,8 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  cb8a24b9-e313-4f3f-9626-662dd6116a3f:
-    id: cb8a24b9-e313-4f3f-9626-662dd6116a3f
+  5c0edbbb-380b-42c2-bcbc-bf53a0cea091:
+    id: 5c0edbbb-380b-42c2-bcbc-bf53a0cea091
     content: Key distinction — "workflow stopped" and "session ended" are independent states. A workflow can be stopped from Arborescent's side while its underlying CLI session is still running in an open terminal tab. The feature must reason about *session liveness* (process + tab state), not workflow status, when deciding spawn vs resume vs attach.
     children: []
     metadata:
@@ -101020,175 +100831,934 @@ nodes:
       expanded: true
       deleted: false
       plugins: {}
-  fbfd2a82-e292-4754-84a7-f7c731fa823b:
-    id: fbfd2a82-e292-4754-84a7-f7c731fa823b
-    content: Business rules covered here — 7 (default new-terminal spawn), 8 (three-tier priority on start), 9 (no duplicate tab for same session id).
+  92079d83-2719-41f7-877e-4cda534ccdd8:
+    id: 92079d83-2719-41f7-877e-4cda534ccdd8
+    content: Business rules covered here — 10 (recurse three-tier exception, including broken-chain surfacing), and the descendant half of rule 11 (every node bound to a session id refreshes its terminal pointer on transitions).
     children: []
     metadata:
       status: pending
       expanded: true
       deleted: false
       plugins: {}
-  04c78efb-7aba-49f2-ae56-abbbb80d082f:
-    id: 04c78efb-7aba-49f2-ae56-abbbb80d082f
+  7bae02ea-7a7e-4fce-9bbe-49ab1fb665ae:
+    id: 7bae02ea-7a7e-4fce-9bbe-49ab1fb665ae
     content: Acceptance criteria covered by this PR
     children:
-      - a65c06a3-bab7-4851-8a19-9e457cb548ac
-      - b53fcd20-7297-470e-8de0-e4cdec1af964
-      - 469c6147-5422-49c2-9d88-7ed863856b7e
-      - a2dcd445-d4a2-4c85-abbf-1e91166da105
+      - c1296461-eacc-4b6c-9fbe-e54eebec681f
+      - ae6f10fa-c7a8-47d7-b26d-2d0f4d73aa73
+      - 97960648-a593-4d14-8da8-a931b727d435
+      - 6d251085-3c06-4d3d-8dbb-7fcd91eaec1b
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  a65c06a3-bab7-4851-8a19-9e457cb548ac:
-    id: a65c06a3-bab7-4851-8a19-9e457cb548ac
-    content: '- [ ] Starting a workflow with no prior session, or whose prior session is dead, opens a new terminal tab and a fresh AI session automatically.'
+  c1296461-eacc-4b6c-9fbe-e54eebec681f:
+    id: c1296461-eacc-4b6c-9fbe-e54eebec681f
+    content: '- [x] A node reached via `recurse` whose parent session is alive and attached to an open tab sends its prompt to that tab and does not open a new one.'
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  b53fcd20-7297-470e-8de0-e4cdec1af964:
-    id: b53fcd20-7297-470e-8de0-e4cdec1af964
-    content: '- [ ] Starting a workflow whose prior session is still alive in an open tab focuses that tab rather than spawning a duplicate; no new tab is created and the same session id is preserved.'
+  ae6f10fa-c7a8-47d7-b26d-2d0f4d73aa73:
+    id: ae6f10fa-c7a8-47d7-b26d-2d0f4d73aa73
+    content: '- [x] A node reached via `recurse` whose parent session is alive but whose tab is closed opens a new tab, resumes the parent''s session there, and sends its prompt to it. The recursed node records the inherited session id.'
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  469c6147-5422-49c2-9d88-7ed863856b7e:
-    id: 469c6147-5422-49c2-9d88-7ed863856b7e
-    content: '- [ ] Starting a workflow whose prior session is resumable but whose tab has been closed opens a new tab via the CLI''s native resume command for that session id.'
+  97960648-a593-4d14-8da8-a931b727d435:
+    id: 97960648-a593-4d14-8da8-a931b727d435
+    content: '- [x] A node reached via `recurse` whose parent session is dead spawns a fresh session, surfaces the broken-chain state, and is recorded with the new session id.'
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  a2dcd445-d4a2-4c85-abbf-1e91166da105:
-    id: a2dcd445-d4a2-4c85-abbf-1e91166da105
-    content: '- [ ] Starting a workflow that was previously *stopped* but whose session is still alive continues with that session per rule 8 — it does not spawn a new session.'
+  6d251085-3c06-4d3d-8dbb-7fcd91eaec1b:
+    id: 6d251085-3c06-4d3d-8dbb-7fcd91eaec1b
+    content: '- [x] When a session is hosted by a tab that gets closed and later resumed in a new tab, every node bound to that session (including recurse descendants) refreshes its terminal pointer; no node sends prompts to the closed tab.'
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  766834e6-e01c-4475-b8f9-301c1db97c9c:
-    id: 766834e6-e01c-4475-b8f9-301c1db97c9c
+  602286c9-1034-40d7-9a85-870968315fb6:
+    id: 602286c9-1034-40d7-9a85-870968315fb6
     content: Subtask scope
     children:
-      - fad5ff44-eca4-43b6-a6f2-89f0f62e5cdd
-      - a80c4045-9a06-4f49-b4d7-cfce0983532e
-      - a0de79ca-ee9b-45d9-928b-181fbaf4c0af
-      - d6f0ff80-660d-4c23-bcd2-c583f1e9f840
-      - 6e0a6146-e05e-4d88-b510-125206cf3b6e
-      - 1e4790b2-955d-4d3c-be69-5a95006d23ee
-      - cd993a51-eb3f-407a-8a1e-54734e4c636a
+      - 24aa8920-ac73-43f1-a243-99464375356f
+      - c5e0bba8-0a79-4d2c-8fe2-08b6170cf22f
+      - a96d55b2-356b-414b-910e-0cd888801d55
+      - 324e9c55-cc3b-40de-82af-29070d4fe829
+      - 4dffb552-8bf0-4c7b-85d9-d531648d0c21
+      - 6fbbd6b2-7a8d-4763-955d-17b083285999
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  fad5ff44-eca4-43b6-a6f2-89f0f62e5cdd:
-    id: fad5ff44-eca4-43b6-a6f2-89f0f62e5cdd
-    content: Workflow-level session pointer — track the workflow's currently-associated session so start-workflow can run the rule-8 check; cleared when liveness reports dead, not when the workflow is marked stopped.
+  24aa8920-ac73-43f1-a243-99464375356f:
+    id: 24aa8920-ac73-43f1-a243-99464375356f
+    content: Recurse traversal applies the same three-tier priority as workflow-start, against the *parent's* session id — (a) send to parent's open attached tab, (b) open new tab and resume parent's session there, (c) spawn fresh + surface broken chain.
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  a80c4045-9a06-4f49-b4d7-cfce0983532e:
-    id: a80c4045-9a06-4f49-b4d7-cfce0983532e
-    content: Persist the workflow-level session pointer through `.arbo` save/load.
+  c5e0bba8-0a79-4d2c-8fe2-08b6170cf22f:
+    id: c5e0bba8-0a79-4d2c-8fe2-08b6170cf22f
+    content: Recursed node inherits parent's session id in cases (a) and (b); records its own new session id in case (c); broken-chain state surfaced via node indicator.
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  a0de79ca-ee9b-45d9-928b-181fbaf4c0af:
-    id: a0de79ca-ee9b-45d9-928b-181fbaf4c0af
-    content: Three-tier priority decision module at workflow start — (a) focus open tab attached to recorded session, (b) open new tab and resume via CLI's native resume, (c) spawn fresh terminal + session. Keyed on session liveness, independent of workflow status.
+  a96d55b2-356b-414b-910e-0cd888801d55:
+    id: a96d55b2-356b-414b-910e-0cd888801d55
+    content: Extend node→terminal pointer rebinding from originator-only (PR1) to *every* node bound to a given session id — descendants refresh atomically with the tab transition, driven by the terminal handler's "session now hosted by tab Y" event.
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  d6f0ff80-660d-4c23-bcd2-c583f1e9f840:
-    id: d6f0ff80-660d-4c23-bcd2-c583f1e9f840
-    content: Terminal handler — extend to accept "open new tab and start fresh session in dir X" if not already present; ensure focus-existing-tab path used in (a).
+  324e9c55-cc3b-40de-82af-29070d4fe829:
+    id: 324e9c55-cc3b-40de-82af-29070d4fe829
+    content: Tests — recurse three-tier branch coverage including broken-chain fallback, descendant-rebinding correctness across tab close/resume cycles, no-misroute guarantee for older nodes in a chain, full integration test for chained prompts after a tab transition.
     children: []
     metadata:
-      status: pending
+      status: completed
       expanded: true
       deleted: false
       plugins: {}
-  6e0a6146-e05e-4d88-b510-125206cf3b6e:
-    id: 6e0a6146-e05e-4d88-b510-125206cf3b6e
-    content: Tests — three-tier branch coverage on start, stopped-workflow-with-live-session continuation, no-duplicate-tab guarantee, persistence round-trip of workflow session pointer.
+  4dffb552-8bf0-4c7b-85d9-d531648d0c21:
+    id: 4dffb552-8bf0-4c7b-85d9-d531648d0c21
+    content: Out of scope here — manual resume (PR1), workflow-start three-tier (PR2). Cross-machine resume, transcript persistence, task queue, and silent auto-resume on boot remain out of scope for the whole feature.
     children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  1e4790b2-955d-4d3c-be69-5a95006d23ee:
-    id: 1e4790b2-955d-4d3c-be69-5a95006d23ee
-    content: Out of scope here — manual resume foundation (PR1), recurse inheritance and descendant rebinding (PR3).
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  cd993a51-eb3f-407a-8a1e-54734e4c636a:
-    id: cd993a51-eb3f-407a-8a1e-54734e4c636a
-    content: Production-safety check — depends on PR1 metadata. The new behaviour activates only when a workflow has a recorded session; for any workflow without one (i.e. all existing workflows pre-feature) the path is "spawn fresh," matching today's behaviour. No feature flag required.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  99f84040-61d1-4d69-b005-a0d996e873b3:
-    id: 99f84040-61d1-4d69-b005-a0d996e873b3
-    content: Instruction
-    children:
-      - b16454ed-22f9-486d-93f5-0ed82fef956c
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  b16454ed-22f9-486d-93f5-0ed82fef956c:
-    id: b16454ed-22f9-486d-93f5-0ed82fef956c
-    content: This is a subtask of the overall user story. Please implement only this subtask. The others will be implemented in a separate PR.
-    children: []
-    metadata:
-      status: pending
-      expanded: true
-      deleted: false
-      plugins: {}
-  9d84e96c-ea20-43c4-8644-17e21e1eeefb:
-    id: 9d84e96c-ea20-43c4-8644-17e21e1eeefb
-    content: Worktree creation status note
-    children:
-      - 53870792-b0d7-4598-9a6a-8e96f174894c
     metadata:
       status: abandoned
       expanded: true
       deleted: false
       plugins: {}
-  53870792-b0d7-4598-9a6a-8e96f174894c:
-    id: 53870792-b0d7-4598-9a6a-8e96f174894c
+  6fbbd6b2-7a8d-4763-955d-17b083285999:
+    id: 6fbbd6b2-7a8d-4763-955d-17b083285999
+    content: Production-safety check — depends on PR1 + PR2. Builds only on internal APIs introduced in earlier PRs; no behavioural change for non-recurse paths. No feature flag required.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0f829409-b873-4ca7-929a-f8686170b38c:
+    id: 0f829409-b873-4ca7-929a-f8686170b38c
+    content: Instruction
+    children:
+      - 73e27285-deca-4cbe-b0d8-1ac92f5a6ba5
+      - 9dee378d-0458-4cc0-8394-c7e390b3d34c
+      - 59939281-7343-44ec-b5d2-299af7df7117
+      - 80053a32-7ca6-4fa8-8e22-8edd32d214f7
+      - 72ca354c-4fe8-4178-9541-f2ddc478c31c
+      - 9f2939d8-0ac7-4b80-9f99-4f6c8f847c2a
+      - e5de315e-f483-451f-9a17-ee004c4501cf
+      - 9a80ee3b-de4c-47be-9d7c-ec45fd9969c4
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  73e27285-deca-4cbe-b0d8-1ac92f5a6ba5:
+    id: 73e27285-deca-4cbe-b0d8-1ac92f5a6ba5
+    content: This is a subtask of the overall user story. Please implement only this subtask. The others will be implemented in a separate PR.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9dee378d-0458-4cc0-8394-c7e390b3d34c:
+    id: 9dee378d-0458-4cc0-8394-c7e390b3d34c
+    content: 'PR2 fork-point note — PR3 forks from master, not from `feat/resumable-sessions-pr2`. Reason: the PR2 branch has no commits ahead of master at this time (its worktree exists at the same SHA as master with no uncommitted work), so forking from PR2 would silently fork from master anyway per the workflow guidance ("if the parent branch has no commits before forking, the worktree silently forks from main"). When PR2 eventually lands commits and merges to master, this branch will need a rebase to pick them up.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  59939281-7343-44ec-b5d2-299af7df7117:
+    id: 59939281-7343-44ec-b5d2-299af7df7117
+    content: PR2 dependency reality — the spec says PR3 builds on PR1 + PR2's "shared three-tier priority utility". PR2 has not landed. I implemented the recurse-side three-tier logic in this PR (`classifyRecurseInheritance` + `dispatchRecurseStart` in `workflowSessionResume.ts` + `workflowExecutionActions.ts`); when PR2 introduces its workflow-start three-tier code, it can refactor to share `classifyRecurseInheritance` since the input shape is the same (parent metadata + live tab id set). Flagging because it's a small scope expansion vs. strictly waiting for PR2.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  80053a32-7ca6-4fa8-8e22-8edd32d214f7:
+    id: 80053a32-7ca6-4fa8-8e22-8edd32d214f7
+    content: Implementation notes
+    children:
+      - 5608d853-e175-4e19-b46e-e8e7561a0621
+      - 267564e5-4339-472f-bab7-2cd12e481ea2
+      - f8206dc0-d08a-4e82-a645-31858105acb5
+      - 91c92ad1-3b9a-490c-8785-c8f20d65c839
+      - 53b6da31-da4a-4897-866d-17eee6a25304
+      - 54ad0c11-f8ed-4635-918b-b657d1b8dea3
+      - 672c2d2b-433a-4916-ab5c-00fe247cbf3e
+      - ed925f46-c7c5-4b89-9367-3415a9f99bc5
+      - c0665cc2-726a-45f8-871a-b380acb0b817
+      - c62f4278-a8e7-42f2-94d6-6a08c551900d
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5608d853-e175-4e19-b46e-e8e7561a0621:
+    id: 5608d853-e175-4e19-b46e-e8e7561a0621
+    content: Three-tier dispatch lives in `dispatchRecurseStart` (renderer/store/tree/actions/workflowExecutionActions.ts). `scheduleRecurseStart` retains the 50-iteration safety counter and the 2-second cushion, then hands off to `dispatchRecurseStart` which classifies the parent's session via `terminalNodeAssignments[terminalId]` and `classifyRecurseInheritance`.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  267564e5-4339-472f-bab7-2cd12e481ea2:
+    id: 267564e5-4339-472f-bab7-2cd12e481ea2
+    content: 'Tier (a) reuse — explicit inheritance: `inheritSessionOnNode` writes the parent''s `sessionId`, `sessionLiveness=''alive-attached''`, `sessionTabId`, and `sessionWorkingDirectory` onto the recursed node before calling `startWorkflow`, because the existing CLI does not re-fire SessionStart for subsequent prompts.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f8206dc0-d08a-4e82-a645-31858105acb5:
+    id: f8206dc0-d08a-4e82-a645-31858105acb5
+    content: Tier (b) resume-in-new-tab — opens a new terminal in the parent's recorded cwd via `terminalCreate` IPC, writes `claude --resume <parentSessionId>\r`, then calls `startWorkflow` on the new tabId. The implicit SessionStart from the resumed CLI fires `registerSession` → `captureSessionOnNode` which captures the same sessionId on the recursed node (sessionId reuse is how `claude --resume` works).
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  91c92ad1-3b9a-490c-8785-c8f20d65c839:
+    id: 91c92ad1-3b9a-490c-8785-c8f20d65c839
+    content: Tier (c) fresh — `markBrokenChainOnNode` sets `metadata.brokenChain=true` on the recursed node, a warning toast announces the break, and the existing `startWorkflow` flow runs on the original `terminalId` so a fresh CLI spawn captures a new sessionId.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  53b6da31-da4a-4897-866d-17eee6a25304:
+    id: 53b6da31-da4a-4897-866d-17eee6a25304
+    content: Tier (b) failure path — if `createNewTerminal` or the terminal-write rejects, the dispatch falls back to tier (c) (mark broken-chain + fresh spawn) so the chain still advances. Logged via the existing logger.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  54ad0c11-f8ed-4635-918b-b657d1b8dea3:
+    id: 54ad0c11-f8ed-4635-918b-b657d1b8dea3
+    content: Descendant pointer rebinding — `bindSessionTab` now delegates to `rebindNodesForSession` (new pure helper exported from `workflowSessionResume.ts`) which scans `nodes` for every entry whose `metadata.sessionId === sessionId` and atomically updates `sessionTabId` + `sessionLiveness='alive-attached'` in a single set call. PR1's originator-only behaviour is preserved as a single-element case.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  672c2d2b-433a-4916-ab5c-00fe247cbf3e:
+    id: 672c2d2b-433a-4916-ab5c-00fe247cbf3e
+    content: 'Broken-chain UI — added `brokenChain?: boolean` to `NodeMetadata`, the `.broken-chain-indicator` and `.node-content.broken-chain` rules to `NodeContent.css` (amber dot + dashed border to distinguish from the red session-lost dot), and a `<span role="img" aria-label="Broken session chain — parent session was lost, this step started a fresh one">` in `NodeContent.tsx`. Both indicators can coexist on a node (broken-chain on the parent-session origin + alive-attached on the new fresh session).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ed925f46-c7c5-4b89-9367-3415a9f99bc5:
+    id: ed925f46-c7c5-4b89-9367-3415a9f99bc5
+    content: 'Out of scope but allowed: `inheritSessionOnNode` clears `brokenChain` on tier (a)/(b) success — if a previously broken node later inherits a session via a successful tier (a)/(b) advance, the indicator goes away. No context-menu dismiss action wired up — out of scope per acceptance criteria.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c0665cc2-726a-45f8-871a-b380acb0b817:
+    id: c0665cc2-726a-45f8-871a-b380acb0b817
+    content: No new IPC channel; reuses `terminalCreate` (with the cwd parameter PR1 added) and `terminalWrite`.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c62f4278-a8e7-42f2-94d6-6a08c551900d:
+    id: c62f4278-a8e7-42f2-94d6-6a08c551900d
+    content: 'Tests verified: 112 passing real assertions across PR3 + regression files (workflowExecutionActions, integration), 116 `it.todo` placeholders (PR1''s existing scaffolds + PR3''s new ones), 0 failures. Type-check clean, lint clean across `treeNode.ts`, `workflowSessionResume.ts`, `workflowExecutionActions.ts`, `NodeContent.tsx`.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  72ca354c-4fe8-4178-9541-f2ddc478c31c:
+    id: 72ca354c-4fe8-4178-9541-f2ddc478c31c
+    content: 'Test-pass review — caught one real AC4 gap in tier (b): `dispatchRecurseStart` opened a new tab and inherited the sessionId on the recursed node, but did NOT rebind older chain members (siblings A, B that ran on the now-closed tab) to the new tabId. Their `sessionTabId` would have stayed `undefined` (cleared on tab close) which is functional for the tab they never see but violates AC4''s "every node bound to that session refreshes its terminal pointer" when the chain transitions. Fix: exposed `bindSessionTab` on `SessionResumeManager` and call it from `dispatchRecurseStart` tier (b) after `inheritSessionOnNode` — `rebindNodesForSession` then includes every chain member (the new node has the inherited sessionId, the prior members have it from earlier captures). Idempotent on the new node (matches target tabId). Re-verified: 116 passed / 116 todo / 0 failed; type-check + lint clean.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9f2939d8-0ac7-4b80-9f99-4f6c8f847c2a:
+    id: 9f2939d8-0ac7-4b80-9f99-4f6c8f847c2a
+    content: 'Test-pass review — AC1/AC2/AC3 walked end-to-end against the actual code: tier (a) routes via existing `terminalNodeAssignments` lookup + `inheritSessionOnNode` (no new tab, no new spawn — verified by call inspection); tier (b) is the only path that creates a new tab via `createNewTerminal(''Resume'', cwd)` and writes the resume command; tier (c) routes through the existing `startWorkflow` on the original terminal so a user-restarted Claude session in that tab captures a fresh sessionId via the existing SessionStart hook (consistent with PR1''s "user runs claude in their terminal" model — note that the PR3 spec''s "spawns a fresh session" wording does NOT mean we auto-launch claude; we can''t, since the codebase doesn''t auto-launch claude on spawn). All four AC items match the implementation semantically.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e5de315e-f483-451f-9a17-ee004c4501cf:
+    id: e5de315e-f483-451f-9a17-ee004c4501cf
+    content: No spurious implementation — every code path I added traces to one of the 4 ACs. No orphan API. `SessionResumeManager.bindSessionTab` is now used by both `resumeSession` (PR1's manual path) and `dispatchRecurseStart` (PR3's tier b path); was originator-only via direct mutation in PR1, now it's the centralized rebind primitive.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9a80ee3b-de4c-47be-9d7c-ec45fd9969c4:
+    id: 9a80ee3b-de4c-47be-9d7c-ec45fd9969c4
+    content: 'Refactor pass — diff vs HEAD: 5 modified files (treeNode.ts, workflowSessionResume.ts, workflowExecutionActions.ts, NodeContent.tsx/css) + 4 new test files. Convention checks: `workflowExecutionActions.ts` at 943 lines is pre-existing (was 982 → 829 after PR1''s extract; PR3 adds ~114). `workflowSessionResume.ts` at 280 lines well under 500. `dispatchRecurseStart` is 47 lines (under the 50-line split threshold) and reads as a clean tier-switch dispatcher. No PR ticket refs in comments, no JSDoc, single rationale comment in `workflowSessionResume.ts:259`. All naming consistent with existing factory pattern (`classifyRecurseInheritance`, `inheritSessionOnNode`, `rebindNodesForSession`, `markBrokenChainOnNode`, `dispatchRecurseStart`, `openInheritedResumeTerminal`, `announceBrokenChain`). No abandoned files. No empty `it()` bodies — all 117 placeholders use `it.todo()`. Added one missing `it.todo` for the auto-clear behaviour `inheritSessionOnNode` introduces (broken-chain indicator clears on successful tier-a/b inheritance) since the convention requires tests for behaviour changes. Standard checks final: type-check clean, lint clean across all 4 source files + 4 test files, 116 passed / 117 todo / 0 failed.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  04b17788-3083-49e0-985d-bc2a783ea9cc:
+    id: 04b17788-3083-49e0-985d-bc2a783ea9cc
+    content: review feedback
+    children:
+      - 71a4f7cc-f574-4cc2-ab12-cd8fd7fe6ff1
+      - 0b28d7a6-575c-48fc-a218-12fffc44af2c
+      - bad42111-c3c9-47f2-84ec-fe4dc6657092
+      - 76fb292e-20d2-4012-a10b-0f9adc6626b4
+      - 28f3f78b-a93c-4683-9b6b-e469c349d5ef
+      - 0e28541c-e7d8-4953-97d0-f65b8d874843
+      - 667725d4-9df5-47de-b05d-c326a69b4287
+      - 1d18c0af-2ceb-4d73-a6ed-7174930f3e01
+      - 05428808-1be2-41aa-a5c4-e379f39af8a8
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  71a4f7cc-f574-4cc2-ab12-cd8fd7fe6ff1:
+    id: 71a4f7cc-f574-4cc2-ab12-cd8fd7fe6ff1
+    content: Reviewer pr-review-toolkit:code-reviewer ran against the PR3 diff. Two real issues blocked the headline scenario; both fixed. Three suggestion-tier items reviewed; one no-op (theme tokens), two acknowledged but not changed. Final pass green.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0b28d7a6-575c-48fc-a218-12fffc44af2c:
+    id: 0b28d7a6-575c-48fc-a218-12fffc44af2c
+    content: 'FIXED — Critical: `dispatchRecurseStart` could not find parent metadata in the natural recurse-after-complete flow. `completeWorkflow` calls `releaseTerminalAssignmentForNode(nodeId)` BEFORE scheduling recurse (line ~493, 2s before `dispatchRecurseStart` runs at line ~513), so by dispatch time `terminalNodeAssignments[terminalId]` was empty, `parentMetadata` was `undefined`, and `classifyRecurseInheritance` returned `''fresh-spawn''` for every advance — defeating tier (a)/(b) entirely and forcing every chain to fall through to broken-chain. Fix: thread the just-completed `nodeId` through `checkRecurse → scheduleRecurseStart → dispatchRecurseStart` as `parentNodeId`, and look up parent metadata directly from `get().nodes[parentNodeId]?.metadata`. Updated the three call sites of `checkRecurse` (at `completeWorkflow`, `advanceNode`, and the autonomous-feedback completion path) to pass the just-completed `nodeId`.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bad42111-c3c9-47f2-84ec-fe4dc6657092:
+    id: bad42111-c3c9-47f2-84ec-fe4dc6657092
+    content: 'FIXED — Important: `MAX_RECURSE_ITERATIONS` safety counter regressed across tier (b) tab transitions because the counter was keyed on `terminalId`. Each new tab id reset the counter to zero. Fix: introduced `recurseChainKey(parentNodeId, terminalId)` which prefers the parent''s `sessionId` (`session:<id>`) and falls back to `terminal:<id>` for chains without a session. The counter now follows the chain across tier (a)/(b) transitions because the parent''s sessionId is stable. Tier (c) gets a fresh budget (intentional — broken chain is a new chain). The cleanup `recurseCounters.delete(...)` in `checkRecurse` was also migrated to use the chain key. Resolves the same-fix the reviewer''s "stale counter leak per tier-b transition" finding raised.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  76fb292e-20d2-4012-a10b-0f9adc6626b4:
+    id: 76fb292e-20d2-4012-a10b-0f9adc6626b4
+    content: 'NOT-AN-ISSUE — Suggestion: `--amber-700` / `--amber-50` not defined in theme tokens. Confirmed in `theme-dark.css:17` and `theme-light.css:17`. The hardcoded fallbacks (`#b45309`, `rgba(245, 158, 11, 0.06)`) are functional and the `.session-lost` indicator added in PR1 uses the same `--red-50` shortcut pattern, so this is internal-consistency cleanup not a regression. Not changed; flagging for a future theme-token consolidation pass.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  28f3f78b-a93c-4683-9b6b-e469c349d5ef:
+    id: 28f3f78b-a93c-4683-9b6b-e469c349d5ef
+    content: 'DEFERRED — Suggestion: tier (b)→(c) fallback uses the original `terminalId` for `startWorkflow`; if that tab is also closed, `startWorkflow` only handles `terminalId === null`. Reviewer notes this is low-priority since the toast warns the user. Adding a "tab still in `terminalStore.terminals` before send" guard would harden it but is out of PR3''s explicit scope. Documented for follow-up.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0e28541c-e7d8-4953-97d0-f65b8d874843:
+    id: 0e28541c-e7d8-4953-97d0-f65b8d874843
+    content: 'DEFERRED — Suggestion: `bindSessionTab` invocation in tier (b) is technically redundant with `inheritSessionOnNode` for the new node (idempotent skip in `rebindNodesForSession`). Kept the call because (i) it is the canonical write-path for `workflowSessionMap[sessionId] = newTabId` and (ii) it rebinds prior chain members atomically — both effects ARE needed even though the new-node update collapses to a no-op. Code comment skipped because the convention is "comments for *why*"; the code is small enough that the intent reads cleanly.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  667725d4-9df5-47de-b05d-c326a69b4287:
+    id: 667725d4-9df5-47de-b05d-c326a69b4287
+    content: 'NOT-AN-ISSUE — Race window: SessionStart can fire between `await openInheritedResumeTerminal` returning and `set({ nodes: inherited })` landing. Reviewer marked benign because `inheritSessionOnNode` is the canonical metadata writer and `workflowSessionMap` updates are idempotent. Verified: even if the SessionStart hook fires first and `registerSession` skips `captureSessionOnNode` (no running node yet), the subsequent `inheritSessionOnNode` writes the same sessionId, `bindSessionTab` then runs `rebindNodesForSession` which is idempotent on already-correct nodes. No corruption window.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1d18c0af-2ceb-4d73-a6ed-7174930f3e01:
+    id: 1d18c0af-2ceb-4d73-a6ed-7174930f3e01
+    content: 'What''s good — reviewer confirmed: pure-helper extraction of `rebindNodesForSession` is clean and idempotent; `classifyRecurseInheritance` is signature-pure and has clean boundary handling; `inheritSessionOnNode` correctly clears `sessionStarting` and `brokenChain`; type-check passes; no JSDoc / PR-refs / what-comments; test structure conventional; broken-chain indicator correctly gated on strict equality with `role="img"` + distinct aria-label; both indicators can render simultaneously; `triggerAutosave` only fires on real changes; no dead code.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  05428808-1be2-41aa-a5c4-e379f39af8a8:
+    id: 05428808-1be2-41aa-a5c4-e379f39af8a8
+    content: 'Final standard checks after fixes — type-check clean (`tsc --noEmit`); lint clean across all changed files; tests: workflowExecutionActions (94/94 + 1 skipped) + integration workflowExecution + PR3 file scaffolds all pass; 112 passing assertions / 76 todo / 0 failed across the run.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  80f1985a-c206-4996-9188-5387d2115cf9:
+    id: 80f1985a-c206-4996-9188-5387d2115cf9
+    content: feedback
+    children:
+      - d796fb67-770b-4a9c-a1f5-3923a683ae16
+      - b9563514-368b-4d94-879b-64c8cc33d493
+      - 19d15d32-08d7-4b07-865d-9b5ca14ee571
+      - 3f20a0bd-5926-4275-ba09-97442e6dea18
+      - 071489ea-b3cd-4ffe-8a9d-de6a2127c178
+      - 752dfaf9-7381-4ec1-821c-d0db550658aa
+      - ad02ea18-350f-45c8-a013-12c637c3bdb2
+      - a2279cbf-1c44-439a-9e9c-7d58041f1744
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  d796fb67-770b-4a9c-a1f5-3923a683ae16:
+    id: d796fb67-770b-4a9c-a1f5-3923a683ae16
+    content: Reviewer accuracy this round was high — unlike PR1 where 4 of 6 findings had exaggerated severity, PR3's two non-suggestion findings (critical lookup bug + counter regression) were both genuine blocking issues that would have made the headline feature unusable in practice. Both deserved their classifications. No exaggerations to call out, no "intentional behaviour presented as an issue".
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  b9563514-368b-4d94-879b-64c8cc33d493:
+    id: b9563514-368b-4d94-879b-64c8cc33d493
+    content: 'CRITICAL — Critical lookup bug (#1) confirmed real and high-probability: traced `completeWorkflow` lines 495–520, `releaseTerminalAssignmentForNode(nodeId)` at 499 fires BEFORE `checkRecurse` at 519 (which schedules a 2s delay). 100% of recurse advances through the natural chain-completion path would have hit it. Fix correct: threading the just-completed `nodeId` directly bypasses the released mapping and reads from `nodes[parentNodeId]` (which `delete updatedStates[nodeId]` does NOT touch — it only removes from `workflowExecutionStates`, not from `nodes`). All three call sites (`completeWorkflow`, `advanceNode`, autonomous-feedback completion) updated. Severity: critical, no exaggeration.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  19d15d32-08d7-4b07-865d-9b5ca14ee571:
+    id: 19d15d32-08d7-4b07-865d-9b5ca14ee571
+    content: 'IMPORTANT — Counter regression (#2) confirmed real, medium probability: the safety limit''s intent is to bound runaway loops on a single chain. Tier (b) breaks the assumption "1 chain = 1 terminalId" because tab transitions create new ids. With my new `recurseChainKey` (`session:<parentSessionId>` for chains with sessions), the counter follows the chain regardless of which tab hosts it. Severity: important, fair classification.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  3f20a0bd-5926-4275-ba09-97442e6dea18:
+    id: 3f20a0bd-5926-4275-ba09-97442e6dea18
+    content: 'LOW PROBABILITY — Tier (b)→(c) fallback to closed terminalId (suggestion #2): only fires when (a) parent''s session is alive-detached AND (b) `createNewTerminal` rejects. The terminal-create call is renderer→IPC→TerminalManager — its failure modes are exhaustion, OS-level deny, or the renderer being torn down. Realistic occurrence: <1% of tier (b) attempts. Reviewer''s "low priority" classification is correct; deferral is appropriate. No fix needed for PR3 scope.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  071489ea-b3cd-4ffe-8a9d-de6a2127c178:
+    id: 071489ea-b3cd-4ffe-8a9d-de6a2127c178
+    content: 'LOW PRIORITY — `bindSessionTab` partial redundancy (suggestion #3): not actually redundant — the workflowSessionMap update and descendant-rebind ARE both needed. The new-node update IS technically idempotent post-`inheritSessionOnNode`, but skipping `bindSessionTab` would also skip the workflowSessionMap update. Reviewer correctly flagged it as a *suggestion* rather than a defect.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  752dfaf9-7381-4ec1-821c-d0db550658aa:
+    id: 752dfaf9-7381-4ec1-821c-d0db550658aa
+    content: 'NOT-AN-ISSUE — Race window (suggestion #5): reviewer self-marked benign and was correct. Walked through the timeline: SessionStart can arrive after `terminalWrite(''claude --resume X\r'')` lands but before `set({ nodes: inherited })` runs. registerSession''s `findRunningNodeOnTerminal(newTabId)` returns null (no entry yet), captureSessionOnNode is skipped, but `workflowSessionMap[X] = newTabId` is set. Then `inheritSessionOnNode` writes the canonical metadata. Net: no corruption, no lost state. Reviewer didn''t ask for a fix; my code didn''t add one. Correct.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ad02ea18-350f-45c8-a013-12c637c3bdb2:
+    id: ad02ea18-350f-45c8-a013-12c637c3bdb2
+    content: 'NOT-AN-ISSUE — Theme tokens (suggestion #1): the inconsistency exists pre-PR3 (PR1''s `.session-lost` uses `--red-50` the same way). Calling it out as a PR3 review item is fair scope-creep — flagging-for-future is the right level. Severity correctly tagged as "suggested" not "important".'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a2279cbf-1c44-439a-9e9c-7d58041f1744:
+    id: a2279cbf-1c44-439a-9e9c-7d58041f1744
+    content: 'NET ASSESSMENT — Reviewer found 2 real blockers + 3 fair suggestions + 1 self-corrected benign race. No false positives, no severity exaggerations, no over-broad framing. The two blocker fixes were narrow (~30 LOC combined: thread one parameter through 3 call sites + change one Map key derivation), so the reviewer''s accurate classification translated directly into focused, low-risk fixes. Confidence in the reviewer for this kind of code (workflow state-machine + cross-cutting metadata) is high.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  aa264ac3-6992-4cd5-acd6-9f90235144ef:
+    id: aa264ac3-6992-4cd5-acd6-9f90235144ef
+    content: User story
+    children:
+      - 20b78b32-f739-4cef-b26d-2c13819b297d
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  20b78b32-f739-4cef-b26d-2c13819b297d:
+    id: 20b78b32-f739-4cef-b26d-2c13819b297d
+    content: 📄 Product spec
+    children:
+      - 72b77658-5696-4172-b5e1-979194e651c6
+      - a5712d0e-e29d-4b42-8509-11d97267d8a2
+      - 0c090499-04a0-4e04-988d-74aa9f87bbc7
+      - e374b938-e5fc-45e0-a9b3-7354477f715a
+      - 6f249585-d9c0-437e-9dd6-bbb9e3155e9e
+      - f225345e-c801-4b18-b340-24b4e03b69ba
+      - 7100ad91-2d4f-4314-ab51-e4b3891cb1d8
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  72b77658-5696-4172-b5e1-979194e651c6:
+    id: 72b77658-5696-4172-b5e1-979194e651c6
+    content: Context — Today, an AI session lives inside whichever terminal tab the user invoked it in. When a long autonomous step is running, that tab is effectively pinned to it; if the user closes the tab they lose the session, and if they walk away mid-step there is no UI to come back to it. To run several workflow steps in parallel without babysitting, the user wants the workflow to spin sessions up and tear them down on its own, and to be able to reattach to any active step from a fresh terminal tab.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a5712d0e-e29d-4b42-8509-11d97267d8a2:
+    id: a5712d0e-e29d-4b42-8509-11d97267d8a2
+    content: User — anyone running workflow steps that invoke a terminal AI session, particularly those running multiple in parallel or stepping away mid-step.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0c090499-04a0-4e04-988d-74aa9f87bbc7:
+    id: 0c090499-04a0-4e04-988d-74aa9f87bbc7
+    content: Current experience — sessions are coupled 1:1 to the visible terminal tab. Closing the tab kills the session; switching tabs leaves it running but unfindable; resuming requires manually constructing a CLI flag in the right working directory. No node-level affordance to reopen a step that was started earlier.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  e374b938-e5fc-45e0-a9b3-7354477f715a:
+    id: e374b938-e5fc-45e0-a9b3-7354477f715a
+    content: Goal — every workflow step that opens an AI session captures the session identifier on its node and offers a one-click "Resume session" from any terminal tab, surviving app restart. Starting a workflow auto-spawns a fresh terminal + session (or attaches to/resumes the workflow's prior session if one is still alive), and `recurse` chains stay inside the same session as the node they recursed from.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6f249585-d9c0-437e-9dd6-bbb9e3155e9e:
+    id: 6f249585-d9c0-437e-9dd6-bbb9e3155e9e
+    content: Key distinction — "workflow stopped" and "session ended" are independent states. A workflow can be stopped from Arborescent's side while its underlying CLI session is still running in an open terminal tab. The feature must reason about *session liveness* (process + tab state), not workflow status, when deciding spawn vs resume vs attach.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f225345e-c801-4b18-b340-24b4e03b69ba:
+    id: f225345e-c801-4b18-b340-24b4e03b69ba
+    content: Business rules covered here — 7 (default new-terminal spawn), 8 (three-tier priority on start), 9 (no duplicate tab for same session id).
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7100ad91-2d4f-4314-ab51-e4b3891cb1d8:
+    id: 7100ad91-2d4f-4314-ab51-e4b3891cb1d8
+    content: Acceptance criteria covered by this PR
+    children:
+      - 8b20b51b-6a36-40e0-b6c7-b241c57ab02d
+      - 16bbec3f-9ed2-436d-9620-06d4ea5a1117
+      - 21b3131c-8a4e-4d5b-8ab5-f3ee5fe6fad5
+      - 73d6fd8e-a5f8-4d73-80dd-97157dd6b448
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  8b20b51b-6a36-40e0-b6c7-b241c57ab02d:
+    id: 8b20b51b-6a36-40e0-b6c7-b241c57ab02d
+    content: '- [x] Starting a workflow with no prior session, or whose prior session is dead, opens a new terminal tab and a fresh AI session automatically.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  16bbec3f-9ed2-436d-9620-06d4ea5a1117:
+    id: 16bbec3f-9ed2-436d-9620-06d4ea5a1117
+    content: '- [x] Starting a workflow whose prior session is still alive in an open tab focuses that tab rather than spawning a duplicate; no new tab is created and the same session id is preserved.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  21b3131c-8a4e-4d5b-8ab5-f3ee5fe6fad5:
+    id: 21b3131c-8a4e-4d5b-8ab5-f3ee5fe6fad5
+    content: '- [x] Starting a workflow whose prior session is resumable but whose tab has been closed opens a new tab via the CLI''s native resume command for that session id.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  73d6fd8e-a5f8-4d73-80dd-97157dd6b448:
+    id: 73d6fd8e-a5f8-4d73-80dd-97157dd6b448
+    content: '- [x] Starting a workflow that was previously *stopped* but whose session is still alive continues with that session per rule 8 — it does not spawn a new session.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  36de30f4-ed54-4068-8bb5-2ec0fc3c836e:
+    id: 36de30f4-ed54-4068-8bb5-2ec0fc3c836e
+    content: 🔧 Implementation proposal
+    children:
+      - 94084da8-4ec7-4e53-ad49-68c5584c793b
+      - fa968df1-eb8f-4608-8f36-0abac64f7d98
+      - aacdbbf4-2509-4cba-b12f-993f0cdebfb3
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  94084da8-4ec7-4e53-ad49-68c5584c793b:
+    id: 94084da8-4ec7-4e53-ad49-68c5584c793b
+    content: Approach — Add a node-level execute action that fires only when the selection size is exactly one and the single node passes the code test (entire content backticked, no children, no context applied). In that case the node is sent as raw text with backticks stripped through the terminal integration; every other case falls through to the existing markdown send path.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  fa968df1-eb8f-4608-8f36-0abac64f7d98:
+    id: fa968df1-eb8f-4608-8f36-0abac64f7d98
+    content: Touchpoints — node classifier (entire-content backtick test, hierarchy + context guards), selection-size gate, content serializer (raw vs markdown branch), node action menu, terminal/IPC bridge, preview renderer for backtick → codeblock display
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  aacdbbf4-2509-4cba-b12f-993f0cdebfb3:
+    id: aacdbbf4-2509-4cba-b12f-993f0cdebfb3
+    content: Constraints to call out — classification must be a pure function of node content + structure + applied context so the user can predict whether a send will execute; reuse the existing markdown tokenizer to detect "entirely encapsulated in backticks" rather than custom string matching; the single-node-only execution gesture should be discoverable so users learn that batching a code node with anything else turns it back into a markdown send
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  7eac9947-2557-4136-8bc7-ab3536b4b921:
+    id: 7eac9947-2557-4136-8bc7-ab3536b4b921
+    content: Subtask scope
+    children:
+      - 9c955d67-210e-488b-b2d0-0488de147af0
+      - 6511ff24-6b70-4cd6-b0fa-93374e3ba2e0
+      - 038c6763-b6a5-4ffc-b9e8-4cf32d022f00
+      - 5cb89a5e-4bec-4850-94db-124fd4131314
+      - 301f9a49-dc50-4dac-bad9-e4cf691cc8c8
+      - 96761990-1d0d-4188-93ec-f432c35b9ef2
+      - 2403d550-b3db-4626-9268-5c80494c27c7
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  9c955d67-210e-488b-b2d0-0488de147af0:
+    id: 9c955d67-210e-488b-b2d0-0488de147af0
+    content: Workflow-level session pointer — track the workflow's currently-associated session so start-workflow can run the rule-8 check; cleared when liveness reports dead, not when the workflow is marked stopped.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6511ff24-6b70-4cd6-b0fa-93374e3ba2e0:
+    id: 6511ff24-6b70-4cd6-b0fa-93374e3ba2e0
+    content: Persist the workflow-level session pointer through `.arbo` save/load.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  038c6763-b6a5-4ffc-b9e8-4cf32d022f00:
+    id: 038c6763-b6a5-4ffc-b9e8-4cf32d022f00
+    content: Three-tier priority decision module at workflow start — (a) focus open tab attached to recorded session, (b) open new tab and resume via CLI's native resume, (c) spawn fresh terminal + session. Keyed on session liveness, independent of workflow status.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  5cb89a5e-4bec-4850-94db-124fd4131314:
+    id: 5cb89a5e-4bec-4850-94db-124fd4131314
+    content: Terminal handler — extend to accept "open new tab and start fresh session in dir X" if not already present; ensure focus-existing-tab path used in (a).
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  301f9a49-dc50-4dac-bad9-e4cf691cc8c8:
+    id: 301f9a49-dc50-4dac-bad9-e4cf691cc8c8
+    content: Tests — three-tier branch coverage on start, stopped-workflow-with-live-session continuation, no-duplicate-tab guarantee, persistence round-trip of workflow session pointer.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  96761990-1d0d-4188-93ec-f432c35b9ef2:
+    id: 96761990-1d0d-4188-93ec-f432c35b9ef2
+    content: Out of scope here — manual resume foundation (PR1), recurse inheritance and descendant rebinding (PR3).
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  2403d550-b3db-4626-9268-5c80494c27c7:
+    id: 2403d550-b3db-4626-9268-5c80494c27c7
+    content: Production-safety check — depends on PR1 metadata. The new behaviour activates only when a workflow has a recorded session; for any workflow without one (i.e. all existing workflows pre-feature) the path is "spawn fresh," matching today's behaviour. No feature flag required.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  22b1f811-2bc5-4e34-b5b5-64131c307fb7:
+    id: 22b1f811-2bc5-4e34-b5b5-64131c307fb7
+    content: Instruction
+    children:
+      - 0607efe5-d537-478e-91fb-9d157b119997
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0607efe5-d537-478e-91fb-9d157b119997:
+    id: 0607efe5-d537-478e-91fb-9d157b119997
+    content: This is a subtask of the overall user story. Please implement only this subtask. The others will be implemented in a separate PR.
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  62c674ee-9869-411d-b83f-9c6f290270e4:
+    id: 62c674ee-9869-411d-b83f-9c6f290270e4
+    content: Worktree creation status note
+    children:
+      - a97da413-2441-4263-b30d-6785bec024e4
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  a97da413-2441-4263-b30d-6785bec024e4:
+    id: a97da413-2441-4263-b30d-6785bec024e4
     content: Worktree created at `/Users/brianfox/dev/Arborescent-resumable-sessions-pr2` on branch `feat/resumable-sessions-pr2`, forked from `master` (4a2c4b6). PR1's commits (e.g. a278d4b, 4a786e2) are already in master's history, so master is the correct fork point — PR2 inherits the metadata field PR1 introduced without needing to stack on PR1's worktree branch. No `node_modules` symlink. The `worktree` link node was NOT added to the parent's children inside `project.arbo` because the file is actively managed by the running Arborescent workflow and direct edits could race with workflow state writes — please add the VSCode URI link node via the app (e.g. `vscode://file/Users/brianfox/dev/Arborescent-resumable-sessions-pr2`).
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  a73dc436-3db5-4cf5-b251-b5fca5804356:
+    id: a73dc436-3db5-4cf5-b251-b5fca5804356
+    content: TDD test status note
+    children:
+      - c78dfe56-6444-4360-ad98-037dfba882b8
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  c78dfe56-6444-4360-ad98-037dfba882b8:
+    id: c78dfe56-6444-4360-ad98-037dfba882b8
+    content: 'PR1 (commit `e84dd49 feat: resumable AI sessions per workflow step (manual resume)`) landed in master AFTER the worktree was created at 4a2c4b6, so the worktree was rebased onto the new master tip (`e84dd49`) before writing tests. PR1 already contributes the per-node session metadata (`sessionId`, `sessionLiveness`, `sessionWorkingDirectory`, `sessionTabId`, `sessionStarting`), the `markNodeStartingSession` / `captureSessionOnNode` helpers, and a manual `resumeSession` action — so PR2''s "workflow-level session pointer" is effectively the per-step `sessionId` already on each node, and PR2''s job is to wire startWorkflow to consult it and route via the three-tier priority. Failing tests written at: (1) `src/renderer/utils/tests/workflowStartRoute.test.ts` — 14 unit cases for a new pure function `decideWorkflowStartRoute(input): { kind: ''spawn-fresh'' | ''focus-existing-tab'' | ''resume-in-new-tab'', ... }` (entire file fails to load until `src/renderer/utils/workflowStartRoute.ts` is created); covers no-session/lost → spawn-fresh, alive-attached + tab open → focus-existing-tab (rule 9 dedup), alive-detached or alive-attached-but-tab-gone → resume-in-new-tab with cwd, priority order, empty/orphan inputs, and one title-only stub for "decision is independent of workflow status" because the function under test doesn''t see workflow status. (2) `src/renderer/store/tree/actions/tests/workflowStartSession.test.ts` — 8 integration cases on `startWorkflow` mocking `useTerminalStore` (`setActiveTerminal`, `createNewTerminal`, `terminals`); 4 fail TDD-correctly (focus-existing tab not invoked, createNewTerminal+`claude --resume` not written, post-restart resume, stopped-workflow continuation), 3 pass as regression guards on the existing spawn-fresh path, 1 title-only stub for full save/load round-trip since no save/load harness exists in this test file (PR1''s `normalizeSessionLiveness` already covers metadata round-trip). Lint clean on the new files except the expected `import/no-unresolved` for `../workflowStartRoute`. Ran `npm install` in the rebased worktree to enable the test runner.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  6cbbdde5-53d2-40a2-bb45-62e6d4d3eef0:
+    id: 6cbbdde5-53d2-40a2-bb45-62e6d4d3eef0
+    content: Implementation status note
+    children:
+      - 4a907d5c-7669-4315-99a3-da9698dc3431
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  4a907d5c-7669-4315-99a3-da9698dc3431:
+    id: 4a907d5c-7669-4315-99a3-da9698dc3431
+    content: 'Implemented `src/renderer/utils/workflowStartRoute.ts` exporting the pure `decideWorkflowStartRoute` plus its `WorkflowStartRoute` discriminated union and `WorkflowStartRouteInput` shape. Wired it into `startWorkflow` in `src/renderer/store/tree/actions/workflowExecutionActions.ts`: the function is now `async`, computes the route from the node''s session metadata + `useTerminalStore.getState().terminals`, and dispatches — `spawn-fresh` keeps the existing terminal-id-required path with the toast for `null` (preserving the old behaviour for nodes with no recorded session, exactly what the production-safety analysis required); `focus-existing-tab` and `resume-in-new-tab` delegate to the existing `sessionResumeManager.resumeSession(nodeId)` from PR1, then read the resolved `sessionTabId` back off the node and continue startup on that terminal. Extracted the post-route startup work into a small private `startWorkflowOnTerminal(nodeId, terminalId, markStarting)` helper so the dispatcher itself stays under the 50-line convention; `markStarting` is true only for spawn-fresh (the other routes already know the sessionId). The `WorkflowExecutionActions.startWorkflow` interface signature changed from `=> void` to `=> Promise<void>`. Re-exported `SessionLiveness` from `src/shared/types/index.ts` so the route input type can be referenced from `@shared/types`. Final test counts: 21/21 new tests pass (13 pure-function + 8 integration), 226/226 broader workflow-execution tests pass (no regressions). Lint clean on changed/new files (only the pre-existing `import/no-cycle` warning at line 18 of `workflowExecutionActions.ts`, unrelated to my changes). Type-check passes globally. Out of scope and intentionally not done in this PR per the spec: recurse inheritance and descendant rebinding (PR3).'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  1927b411-5cf8-43dd-b931-bdb2d0c0b0cb:
+    id: 1927b411-5cf8-43dd-b931-bdb2d0c0b0cb
+    content: AI refactor status note
+    children:
+      - 0f89c688-836b-420f-9521-5f06d6af2366
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  0f89c688-836b-420f-9521-5f06d6af2366:
+    id: 0f89c688-836b-420f-9521-5f06d6af2366
+    content: 'Found and fixed one behavioural inconsistency: `startWorkflowOnTerminal` was unconditionally invoking `clearSessionManager.maybeClearThenSend`, which would re-send the workflow prompt after `focus-existing-tab` and `resume-in-new-tab` routes — directly contradicting AC2''s "session id is preserved" and AC4''s "continues with that session" semantics (an already-running session would be interrupted, a just-resumed one would race with the `claude --resume` it had just been handed). Refactored the helper''s `markStarting: boolean` parameter into a clearer `mode: ''spawn'' | ''reattach''` discriminant; for `''reattach''`, both `markNodeStartingSession` and `clearSessionManager.maybeClearThenSend` are skipped — the dispatcher does only the state/assignment/keep-awake/timeouts/autosave work, leaving the resumed session untouched. Promoted the formerly title-only `workflowStartSession.test.ts` "sessionId preserved across stop" stub into an explicit assertion (start → stop → check `metadata.sessionId` and `metadata.sessionLiveness` survive). Added two new tests under `reattach must not re-send the workflow prompt` that pin the prompt-skip behaviour for both reattach routes (no `executeInTerminal` call; only the single `claude --resume <id>` write for the resume route). Deleted one structural title-only test in `workflowStartRoute.test.ts` ("does not depend on workflow execution status") because its premise was a property of the function signature, not behaviour-uncertain post-fix work — keeping it as documentation violated the no-empty-tests rule without earning anything in return. Final state on changed/new files: 22/22 tests pass in the new files, full workflow-execution suite still green, lint clean except the pre-existing `import/no-cycle` warning at workflowExecutionActions.ts:18, type-check passes globally.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  f31fd3ec-a44f-429f-9f9c-8deda1f55628:
+    id: f31fd3ec-a44f-429f-9f9c-8deda1f55628
+    content: review feedback
+    children:
+      - 74cd4663-deb0-4169-8a08-bf6bc0259e2f
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  74cd4663-deb0-4169-8a08-bf6bc0259e2f:
+    id: 74cd4663-deb0-4169-8a08-bf6bc0259e2f
+    content: 'Code-reviewer agent flagged two must-fix issues, three nice-to-have items, and one minor cleanup. Fixed both must-fixes and the relevant nice-to-haves. Must-fix #1 (correctness): when `sessionResumeManager.resumeSession` fails (e.g. `createNewTerminal` rejects, or no recorded `cwd`), it returned without binding a new tab, leaving `sessionTabId` pointing at the now-defunct id that triggered the resume route in the first place. My code then read it back and marked the workflow `running` on a stale terminal — the user would see "running" with no live session and only the step-timeout would eventually fire. Fixed in `workflowExecutionActions.ts:268-275` by re-reading `useTerminalStore.getState().terminals` after `resumeSession` and bailing if the resolved `sessionTabId` is not in the live set; added a regression test ("does not mark the workflow running when resumeSession bails") that mocks `createNewTerminal` to reject and asserts `workflowExecutionStates[''task-a'']` stays undefined. Must-fix #2 (test quality): the four "no re-prompt" assertions and the AC4 test were checking `mockExecuteInTerminal.not.toHaveBeenCalled()`, but `startWorkflow`''s prompt path goes through `autonomousCollaborateInTerminal` (5th positional factory arg), not `executeInTerminal` — so the assertions were vacuous. Hoisted `mockAutonomousCollaborate` and rewired the factory to use it; the AC4 test and both reattach-prompt-skip tests now assert `mockAutonomousCollaborate.not.toHaveBeenCalled()`, which is the actual prompt-sending channel. Nice-to-have (rule 9 test now genuinely exercises the route): the previous "no duplicate tab" test passed because the second `startWorkflow` bailed at `isEligibleForExecution` (state was already `running`), not because the route resolved to focus-existing-tab. Inserted `actions.stopWorkflow(''task-a'')` between the two starts and added explicit `setActiveTerminal` call-count assertions; rule-9 dedup is now proven by the route, not by the eligibility guard. Removed the redundant `as SessionLiveness | undefined` cast (and the unused `SessionLiveness` import) since `node.metadata.sessionLiveness` is already typed via PR1''s `NodeMetadata`. Declined: (a) refactoring caller `.then(...)` patterns in `useNodeContextMenu.ts` and `scheduleRecurseStart` to add explicit `.catch` handlers — out of PR2 scope, the new `Promise<void>` signature doesn''t surface failure modes worse than the original sync `void` did; (b) moving the reattach-prompt-skip into `clearSessionManager.skipForReattach` — the reviewer agreed "currently fine, but if a third start path appears it will duplicate the rule"; the gating naturally lives at the dispatcher today and the architectural seam can be carved out when there''s a second consumer. Final state: 116/116 related tests pass (workflowStartRoute + workflowStartSession + workflowExecutionActions), lint clean except the pre-existing cycle warning, type-check clean globally.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  614e21bf-734a-4827-a7f1-ed93241328ea:
+    id: 614e21bf-734a-4827-a7f1-ed93241328ea
+    content: feedback
+    children:
+      - 649112fa-0586-4d94-924a-e22dda57b6b7
+      - 689c66fd-98b3-4344-938b-fe8c41eddb99
+      - bcd1492f-60b4-442d-954b-3a2a3c393a9e
+      - c4d4608c-d675-48d9-b271-8b9a40064f77
+      - ff5f7426-6e39-46bd-8bcb-a082beed07dc
+      - 0ddd77be-86b7-4b7a-a3f4-c48c1d2822b4
+    metadata:
+      status: abandoned
+      expanded: true
+      deleted: false
+      plugins: {}
+  649112fa-0586-4d94-924a-e22dda57b6b7:
+    id: 649112fa-0586-4d94-924a-e22dda57b6b7
+    content: 'Validated and applied (must-fix #1 — stale sessionTabId): real correctness bug. The probability of the trigger is genuinely lower than the "must-fix" tag implies (resumeSession only bails on missing cwd or `createNewTerminal` rejection — both rare in practice; PR1''s capture pipeline ensures cwd is recorded), but the failure mode ("workflow shows running with no live session, only the step-timeout fires") is hard to debug for users, so the severity escalation is defensible even if slightly inflated. Fix landed and is small.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  689c66fd-98b3-4344-938b-fe8c41eddb99:
+    id: 689c66fd-98b3-4344-938b-fe8c41eddb99
+    content: 'Validated and applied (must-fix #2 — wrong-level mock): correctly tagged must-fix. Vacuous assertions hide regressions silently; this is exactly the test-quality issue the convention guards against ("Mock at the right level — mock the imported module, not underlying APIs"). My original mock was too far downstream of where the prompt-send actually happens. Fix landed and the assertions now hit the real channel.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  bcd1492f-60b4-442d-954b-3a2a3c393a9e:
+    id: bcd1492f-60b4-442d-954b-3a2a3c393a9e
+    content: 'Validated and applied (nice-to-have — rule-9 test relied on the eligibility guard): correctly tagged nice-to-have. The test was passing for the wrong reason; without the stop-between-starts setup, it was proving `isEligibleForExecution` works, not that `decideWorkflowStartRoute` dedups. Reviewer''s severity is right — this isn''t a correctness bug in the product, just a regression-coverage gap.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  c4d4608c-d675-48d9-b271-8b9a40064f77:
+    id: c4d4608c-d675-48d9-b271-8b9a40064f77
+    content: 'Declined and reasoning revisited (nice-to-have — floating promises): I had said "the new `Promise<void>` doesn''t surface failure modes worse than the original sync `void`". On re-reading my own code that''s not strictly true — the new `await sessionResumeManager.resumeSession(nodeId)` introduces an async point that *could* reject. In practice it doesn''t (PR1''s `resumeSession` wraps `openResumeTerminal` in try/catch and toasts internally rather than rejecting), so the floating-promise concern is theoretical, not actual; reviewer''s "low severity" is correct. Sticking with the decline; the call sites at `useNodeContextMenu.ts:215`/`:196` already swallow the void return today and the `scheduleRecurseStart` `setTimeout` would only see a rejection if PR1''s resumeSession changed shape. Worth a brief ping in the PR description for the reviewer.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  ff5f7426-6e39-46bd-8bcb-a082beed07dc:
+    id: ff5f7426-6e39-46bd-8bcb-a082beed07dc
+    content: 'Declined and architectural feedback (nice-to-have — gating layer): the reviewer themselves wrote "currently fine, but if a third start path appears it will duplicate the rule". Premature abstraction with one consumer would just push the same dispatch-table into a different file. Accepted as deferred and noted.'
+    children: []
+    metadata:
+      status: completed
+      expanded: true
+      deleted: false
+      plugins: {}
+  0ddd77be-86b7-4b7a-a3f4-c48c1d2822b4:
+    id: 0ddd77be-86b7-4b7a-a3f4-c48c1d2822b4
+    content: 'Severity inflation note: of the six findings, severity was on the high side for must-fix #1 and arguably for the floating-promises item; the rest were correctly tagged. The reviewer''s pattern is conservative-leaning, which is what I want from a review of session/terminal-routing code where silent breakage is hard to spot. No pushback on tone; the inflation didn''t change outcomes — both must-fixes were worth fixing.'
     children: []
     metadata:
       status: completed
