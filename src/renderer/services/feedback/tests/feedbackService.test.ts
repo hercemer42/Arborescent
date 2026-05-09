@@ -304,6 +304,62 @@ describe('feedbackService', () => {
       expect(passedNodes['kept'].metadata.feedbackBaselineKind).toBe('unchanged');
     });
 
+    describe('compare bug — prior subtree snapshot lifecycle', () => {
+      it('classifies a mix of unchanged and modified children correctly when parent content matches', async () => {
+        const { wrapNodesWithHiddenRoot } = await import('../../../utils/nodeHelpers');
+        vi.mocked(wrapNodesWithHiddenRoot).mockReturnValue({
+          nodes: {
+            'hidden-root': { id: 'hidden-root', content: '', children: ['new-parent'], metadata: {} },
+            'new-parent': { id: 'new-parent', content: 'Parent', children: ['new-a', 'new-b', 'new-c'], metadata: {} },
+            'new-a': { id: 'new-a', content: 'kept-a', children: [], metadata: {} },
+            'new-b': { id: 'new-b', content: 'edited-b', children: [], metadata: {} },
+            'new-c': { id: 'new-c', content: 'kept-c', children: [], metadata: {} },
+          },
+          rootNodeId: 'hidden-root',
+        });
+
+        const parsedContent = {
+          nodes: {
+            'new-parent': { id: 'new-parent', content: 'Parent', children: ['new-a', 'new-b', 'new-c'], metadata: {} },
+            'new-a': { id: 'new-a', content: 'kept-a', children: [], metadata: {} },
+            'new-b': { id: 'new-b', content: 'edited-b', children: [], metadata: {} },
+            'new-c': { id: 'new-c', content: 'kept-c', children: [], metadata: {} },
+          },
+          rootNodeId: 'new-parent',
+          rootNodeIds: ['new-parent'],
+          nodeCount: 4,
+        };
+
+        const priorNodes: Record<string, TreeNode> = {
+          'collab': { id: 'collab', content: 'Parent', children: ['prior-a', 'prior-b', 'prior-c'], metadata: {} },
+          'prior-a': { id: 'prior-a', content: 'kept-a', children: [], metadata: {} },
+          'prior-b': { id: 'prior-b', content: 'kept-b', children: [], metadata: {} },
+          'prior-c': { id: 'prior-c', content: 'kept-c', children: [], metadata: {} },
+        };
+
+        initializeFeedbackStore('/test/file.arbo', parsedContent, false, {
+          collaboratingNodeId: 'collab',
+          priorNodes,
+          decomposition: false,
+        });
+
+        const callArgs = mockFeedbackTreeStore.initialize.mock.calls[0];
+        const passedNodes = callArgs[1] as Record<string, TreeNode>;
+
+        expect(passedNodes['new-a'].metadata.feedbackBaselineKind).toBe('unchanged');
+        expect(passedNodes['new-b'].metadata.feedbackBaselineKind).toBe('modified');
+        expect(passedNodes['new-c'].metadata.feedbackBaselineKind).toBe('unchanged');
+        expect(passedNodes['new-parent'].metadata.feedbackBaselineKind).toBe('unchanged');
+      });
+
+      it.todo('produces stable classifications when initializeFeedbackStore is called twice in a row with the same priorNodes reference');
+      it.todo('is unaffected by callers mutating priorNodes children arrays after initializeFeedbackStore returns');
+      it.todo('is unaffected by callers replacing nodes inside priorNodes (immutable update style) between snapshot capture and reconcile');
+      it.todo('snapshots only the collaborating subtree — unrelated workspace nodes in priorNodes do not affect classification');
+      it.todo('does not depend on identity of TreeNode references — equivalent priorNodes maps yield identical classifications');
+      it.todo('does not silently fall back to all-added when priorRootId resolves to a node with stale children pointers');
+    });
+
     it('does not inject placeholders in decomposition mode', async () => {
       const { wrapNodesWithHiddenRoot } = await import('../../../utils/nodeHelpers');
       vi.mocked(wrapNodesWithHiddenRoot).mockReturnValue({

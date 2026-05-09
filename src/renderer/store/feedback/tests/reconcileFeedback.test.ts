@@ -329,3 +329,91 @@ describe('reconcileFeedback (boundary inputs)', () => {
   it.todo('handles a missing prior subtree gracefully (e.g. first-time feedback against a new node)');
   it.todo('handles repeated successive feedback runs without leaking classifications between them');
 });
+
+describe('reconcileFeedback (compare bug — parent untouched, descendants all green)', () => {
+  it('does not classify all descendants as added when parent content is unchanged and only some children were modified', () => {
+    const prior = priorTree([
+      makeNode('p1', 'kept-1'),
+      makeNode('p2', 'kept-2'),
+      makeNode('p3', 'kept-3'),
+    ]);
+    const next = newTree([
+      makeNode('n1', 'kept-1'),
+      makeNode('n2', 'edited-2'),
+      makeNode('n3', 'kept-3'),
+    ]);
+
+    const view = reconcileFeedback({
+      priorRootId: prior.rootId,
+      priorNodes: prior.nodes,
+      newRootId: next.rootId,
+      newNodes: next.nodes,
+      mode: 'feedback',
+    });
+
+    expect(view.classifications[PRIOR_PARENT_ID]).toBe('unchanged');
+    expect(view.classifications.p1).toBe('unchanged');
+    expect(view.classifications.p2).toBe('modified');
+    expect(view.classifications.p3).toBe('unchanged');
+    const addedClassifications = Object.values(view.classifications).filter((c) => c === 'added');
+    expect(addedClassifications).toEqual([]);
+  });
+
+  it('classifies grandchildren correctly when an unchanged parent has an unchanged child whose own children mix unchanged and modified', () => {
+    const priorParent = makeNode(PRIOR_PARENT_ID, 'parent', ['p1']);
+    const priorChild = makeNode('p1', 'child', ['p1a', 'p1b', 'p1c']);
+    const priorGrand1 = makeNode('p1a', 'grand-a');
+    const priorGrand2 = makeNode('p1b', 'grand-b');
+    const priorGrand3 = makeNode('p1c', 'grand-c');
+    const priorNodes = buildTree([priorParent, priorChild, priorGrand1, priorGrand2, priorGrand3]);
+
+    const newParent = makeNode('new-parent', 'parent', ['n1']);
+    const newChild = makeNode('n1', 'child', ['n1a', 'n1b', 'n1c']);
+    const newGrand1 = makeNode('n1a', 'grand-a');
+    const newGrand2 = makeNode('n1b', 'grand-b-EDITED');
+    const newGrand3 = makeNode('n1c', 'grand-c');
+    const newNodes = buildTree([newParent, newChild, newGrand1, newGrand2, newGrand3]);
+
+    const view = reconcileFeedback({
+      priorRootId: PRIOR_PARENT_ID,
+      priorNodes,
+      newRootId: 'new-parent',
+      newNodes,
+      mode: 'feedback',
+    });
+
+    expect(view.classifications[PRIOR_PARENT_ID]).toBe('unchanged');
+    expect(view.classifications.p1).toBe('unchanged');
+    expect(view.classifications.p1a).toBe('unchanged');
+    expect(view.classifications.p1b).toBe('modified');
+    expect(view.classifications.p1c).toBe('unchanged');
+  });
+
+  it('classifies the parent as added when the prior root is missing — every visible node is the same kind', () => {
+    const next = newTree([makeNode('n1', 'A'), makeNode('n2', 'B')]);
+
+    const view = reconcileFeedback({
+      priorRootId: 'missing-prior-root',
+      priorNodes: {},
+      newRootId: next.rootId,
+      newNodes: next.nodes,
+      mode: 'feedback',
+    });
+
+    const rootResolvedId = view.idMap[next.rootId];
+    const childResolvedIds = [view.idMap.n1, view.idMap.n2];
+    const rootKind = view.classifications[rootResolvedId];
+    expect(rootKind).toBe('added');
+    for (const id of childResolvedIds) {
+      expect(view.classifications[id]).toBe(rootKind);
+    }
+  });
+
+  it.todo('does not regress to all-added when reconcile is invoked with the same priorNodes reference twice in a row');
+  it.todo('is unaffected by mutations to priorNodes that occur after reconcileFeedback returns');
+  it.todo('is unaffected by an external caller replacing priorNodes entries (immutable update style) on the store between capture and reconcile');
+  it.todo('treats a child whose content differs only by trailing whitespace as modified, not added (LCS comparator boundary case)');
+  it.todo('treats a child whose content differs only by leading whitespace as modified, not added (LCS comparator boundary case)');
+  it.todo('treats reordered children with unchanged content as unchanged rather than added+removed pairs');
+  it.todo('does not classify the entire descendant set as added when priorNodes contains the collaborating subtree plus unrelated workspace nodes');
+});

@@ -44,7 +44,8 @@ export function reconcileFeedback(input: ReconcileInput): ReconcilePanelView {
   const priorRoot = priorNodes[priorRootId];
   const newRoot = newNodes[newRootId];
   if (!priorRoot || !newRoot) {
-    addEverythingAsNew(newRootId, newNodes, view, /* skipRootMint */ true);
+    delete view.idMap[newRootId];
+    addEverythingAsNew(newRootId, newNodes, view, /* skipRootMint */ false);
     return view;
   }
 
