@@ -121,6 +121,8 @@ Undoing a deletion (`Ctrl+Z`) restores the node but not its execution state — 
 
 You can run multiple items through the same workflow simultaneously — each in its own terminal tab. Each item advances independently based on the step types it encounters. Start each item with **Run Workflow** and select a different terminal tab for each one.
 
+The active terminal's bound node is marked in the tree with a thin blue stripe on the left edge, so you can see at a glance which item the focused tab is driving. Switching tabs moves the stripe; it never changes your selection.
+
 ## Moving Items Manually
 
 Right-click an item inside a workflow step → **Next step** or **Previous step**. The item moves to the adjacent step. If the destination step is Autonomous or Checkpoint, the workflow starts automatically on a terminal — no need to right-click **Start Workflow** separately. Moving to a Manual step just moves the item without starting anything. Step numbers update automatically when you reorder, add, or remove steps.

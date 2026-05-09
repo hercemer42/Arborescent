@@ -94,6 +94,7 @@ describe('send prompt — write-back disambiguation', () => {
       deleteAnimationCallback: null,
       collaboratingNodeId: null,
       collaborationSource: null,
+      collaboratingTerminalId: null,
       decomposition: false,
       feedbackFadingNodeIds: new Set(),
       contextDeclarations: [],

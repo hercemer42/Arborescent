@@ -347,7 +347,7 @@ export function createSendActions(
     },
 
     cancelCollaboration: () => {
-      set({ collaboratingNodeId: null, collaborationSource: null });
+      set({ collaboratingNodeId: null, collaborationSource: null, collaboratingTerminalId: null });
     },
 
     acceptFeedback: (newRootNodeId: string, newNodesMap: Record<string, TreeNode>) => {
@@ -435,7 +435,7 @@ export function createSendActions(
         );
 
         if (resolvedFlags.collaborate) {
-          set({ collaboratingNodeId: nodeId, collaborationSource: 'browser', decomposition: effectiveDecomposition });
+          set({ collaboratingNodeId: nodeId, collaborationSource: 'browser', collaboratingTerminalId: null, decomposition: effectiveDecomposition });
         }
         usePanelStore.getState().showBrowser();
 
@@ -499,7 +499,7 @@ export function createSendActions(
         await executeInTerminal(terminalId, terminalInstruction);
 
         if (resolvedFlags.collaborate && feedbackResponseFile) {
-          set({ collaboratingNodeId: nodeId, collaborationSource: 'terminal', decomposition: effectiveDecomposition });
+          set({ collaboratingNodeId: nodeId, collaborationSource: 'terminal', collaboratingTerminalId: terminalId, decomposition: effectiveDecomposition });
           await window.electron.startFeedbackFileWatcher(feedbackResponseFile);
 
           const stateWithRegistry = get() as TreeState & { actions?: { registerManualCollaboration?: (nodeId: string, filePath: string) => void } };
@@ -692,10 +692,10 @@ export function createSendActions(
 
         if (tempFilePath) {
           setFeedbackTempFile(collaboratingNodeId, undefined);
-          set({ collaboratingNodeId: null, collaborationSource: null });
+          set({ collaboratingNodeId: null, collaborationSource: null, collaboratingTerminalId: null });
           autoSave();
         } else {
-          set({ collaboratingNodeId: null, collaborationSource: null });
+          set({ collaboratingNodeId: null, collaborationSource: null, collaboratingTerminalId: null });
         }
 
         const stateWithRegistry = get() as TreeState & { actions?: { unregisterCollaboration?: (nodeId: string) => void } };
@@ -742,7 +742,7 @@ export function createSendActions(
             'warning',
             { persistent: true, actions: [{ label: 'OK', onClick: () => {} }] }
           );
-          set({ collaboratingNodeId: null, collaborationSource: null });
+          set({ collaboratingNodeId: null, collaborationSource: null, collaboratingTerminalId: null });
           await cleanupFeedback(currentFilePath, currentNodes[collaboratingNodeId]?.metadata.feedbackTempFile as string | undefined);
           return;
         }

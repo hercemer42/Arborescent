@@ -160,6 +160,7 @@ describe('sendActions', () => {
       deleteAnimationCallback: null,
       collaboratingNodeId: null,
       collaborationSource: null,
+      collaboratingTerminalId: null,
       decomposition: false,
       feedbackFadingNodeIds: new Set(),
       contextDeclarations: [],
@@ -231,7 +232,7 @@ describe('sendActions', () => {
 
       actions.cancelCollaboration();
 
-      expect(mockSet).toHaveBeenCalledWith({ collaboratingNodeId: null, collaborationSource: null });
+      expect(mockSet).toHaveBeenCalledWith({ collaboratingNodeId: null, collaborationSource: null, collaboratingTerminalId: null });
     });
   });
 
@@ -1303,7 +1304,7 @@ describe('sendActions', () => {
 
         await actions.finishCancel();
 
-        expect(mockSet).toHaveBeenCalledWith({ collaboratingNodeId: null, collaborationSource: null });
+        expect(mockSet).toHaveBeenCalledWith({ collaboratingNodeId: null, collaborationSource: null, collaboratingTerminalId: null });
       });
     });
 

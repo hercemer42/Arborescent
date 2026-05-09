@@ -97,6 +97,7 @@ describe('browser collaboration guard across files', () => {
       deleteAnimationCallback: null,
       collaboratingNodeId: null,
       collaborationSource: null,
+      collaboratingTerminalId: null,
       decomposition: false,
       feedbackFadingNodeIds: new Set(),
       contextDeclarations: [],

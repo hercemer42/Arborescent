@@ -51,6 +51,7 @@ export interface TreeState {
   deleteAnimationCallback: (() => void) | null;
   collaboratingNodeId: string | null;
   collaborationSource: 'browser' | 'terminal' | null;
+  collaboratingTerminalId: string | null;
   decomposition: boolean;
   feedbackFadingNodeIds: Set<string>;
   contextDeclarations: ContextDeclarationInfo[];
@@ -113,6 +114,7 @@ export function createTreeStore(treeType: TreeType = 'workspace') {
       deleteAnimationCallback: null,
       collaboratingNodeId: null,
       collaborationSource: null,
+      collaboratingTerminalId: null,
       decomposition: false,
       feedbackFadingNodeIds: new Set(),
       contextDeclarations: [],

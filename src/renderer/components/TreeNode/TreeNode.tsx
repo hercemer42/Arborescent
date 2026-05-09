@@ -3,6 +3,8 @@ import type { TreeNode as TreeNodeType } from '../../../shared/types';
 import { NodeContent } from '../NodeContent';
 import { NodeGutter } from '../NodeGutter/NodeGutter';
 import { useStore } from '../../store/tree/useStore';
+import { useTerminalStore } from '../../store/terminal/terminalStore';
+import { selectActiveSessionNodeId } from '../../store/tree/selectors/activeSessionNodeId';
 import { useNodeMouse } from './hooks/useNodeMouse';
 import { useNodeEffects } from './hooks/useNodeEffects';
 import { useNodeDragDrop } from './hooks/useNodeDragDrop';
@@ -42,6 +44,8 @@ export const TreeNode = memo(function TreeNode({ nodeId, depth = 0 }: TreeNodePr
     return collaboratingNodeId !== null && ancestorRegistry[nodeId]?.includes(collaboratingNodeId);
   });
   const isFeedbackFading = useStore((state) => state.feedbackFadingNodeIds.has(nodeId));
+  const activeTerminalId = useTerminalStore((state) => state.activeTerminalId);
+  const isActiveSession = useStore((state) => selectActiveSessionNodeId(state, activeTerminalId) === nodeId);
   const isCutNode = node?.metadata.transient?.isCut === true;
 
   const appliedContext = useAppliedContext(node);
@@ -74,6 +78,7 @@ export const TreeNode = memo(function TreeNode({ nodeId, depth = 0 }: TreeNodePr
     isMultiSelected && 'multi-selected',
     isCollaborating && 'collaborating',
     isCollaboratingDescendant && 'collaborating-descendant',
+    isActiveSession && 'active-session',
     isFeedbackFading && 'feedback-fading',
     isCutNode && 'cut-node',
     hasChildren && !expanded && 'collapsed-parent',

@@ -2,6 +2,7 @@ import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { render, screen, cleanup } from '@testing-library/react';
 import { TreeStoreContext } from '../../../store/tree/TreeStoreContext';
 import { createTreeStore, TreeStore } from '../../../store/tree/treeStore';
+import { useTerminalStore } from '../../../store/terminal/terminalStore';
 import type { TreeNode as TreeNodeType } from '@shared/types';
 
 // Mock hooks to avoid bundling heavy dependencies (@dnd-kit, plugins) that cause OOM during compilation
@@ -141,4 +142,101 @@ describe('TreeNode', () => {
 
   // NOTE: Toggle/collapse behavior tests have been moved to useNodeToggle.test.tsx
   // since they require non-mocked hooks that cause OOM during compilation
+
+  describe('active-session highlight', () => {
+    afterEach(() => {
+      useTerminalStore.setState({ activeTerminalId: null });
+    });
+
+    it('applies active-session class when a running workflow step is bound to the focused terminal', () => {
+      const mockNode: TreeNodeType = {
+        id: 'step-node',
+        content: 'Step',
+        children: [],
+        metadata: {},
+      };
+      store.setState({
+        nodes: { 'step-node': mockNode },
+        workflowExecutionStates: {
+          'step-node': { state: 'running', terminalTabId: 'terminal-1' },
+        },
+      });
+      useTerminalStore.setState({ activeTerminalId: 'terminal-1' });
+
+      const { container } = renderWithProvider(<TreeNode nodeId="step-node" />);
+      expect(container.querySelector('.tree-node-wrapper')?.classList.contains('active-session')).toBe(true);
+    });
+
+    it('applies active-session class when a terminal collaboration is bound to the focused terminal', () => {
+      const mockNode: TreeNodeType = {
+        id: 'collab-node',
+        content: 'Collab',
+        children: [],
+        metadata: {},
+      };
+      store.setState({
+        nodes: { 'collab-node': mockNode },
+        collaboratingNodeId: 'collab-node',
+        collaborationSource: 'terminal',
+        collaboratingTerminalId: 'terminal-1',
+      });
+      useTerminalStore.setState({ activeTerminalId: 'terminal-1' });
+
+      const { container } = renderWithProvider(<TreeNode nodeId="collab-node" />);
+      expect(container.querySelector('.tree-node-wrapper')?.classList.contains('active-session')).toBe(true);
+    });
+
+    it('does not apply active-session class when the focused terminal has no binding', () => {
+      const mockNode: TreeNodeType = {
+        id: 'plain-node',
+        content: 'Plain',
+        children: [],
+        metadata: {},
+      };
+      store.setState({ nodes: { 'plain-node': mockNode } });
+      useTerminalStore.setState({ activeTerminalId: 'terminal-1' });
+
+      const { container } = renderWithProvider(<TreeNode nodeId="plain-node" />);
+      expect(container.querySelector('.tree-node-wrapper')?.classList.contains('active-session')).toBe(false);
+    });
+
+    it('does not apply active-session class to a node bound to a non-focused terminal', () => {
+      const mockNode: TreeNodeType = {
+        id: 'other-step',
+        content: 'Other',
+        children: [],
+        metadata: {},
+      };
+      store.setState({
+        nodes: { 'other-step': mockNode },
+        workflowExecutionStates: {
+          'other-step': { state: 'running', terminalTabId: 'terminal-2' },
+        },
+      });
+      useTerminalStore.setState({ activeTerminalId: 'terminal-1' });
+
+      const { container } = renderWithProvider(<TreeNode nodeId="other-step" />);
+      expect(container.querySelector('.tree-node-wrapper')?.classList.contains('active-session')).toBe(false);
+    });
+
+    it('does not modify activeNodeId (selection) when the active-session highlight applies', () => {
+      const mockNode: TreeNodeType = {
+        id: 'step-node',
+        content: 'Step',
+        children: [],
+        metadata: {},
+      };
+      store.setState({
+        nodes: { 'step-node': mockNode },
+        activeNodeId: 'some-other-node',
+        workflowExecutionStates: {
+          'step-node': { state: 'running', terminalTabId: 'terminal-1' },
+        },
+      });
+      useTerminalStore.setState({ activeTerminalId: 'terminal-1' });
+
+      renderWithProvider(<TreeNode nodeId="step-node" />);
+      expect(store.getState().activeNodeId).toBe('some-other-node');
+    });
+  });
 });

@@ -113,6 +113,7 @@ describe('Workflow steps preserve the original node content', () => {
       deleteAnimationCallback: null,
       collaboratingNodeId: null,
       collaborationSource: null,
+      collaboratingTerminalId: null,
       decomposition: false,
       feedbackFadingNodeIds: new Set(),
       contextDeclarations: [],
