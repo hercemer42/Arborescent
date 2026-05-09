@@ -12,6 +12,7 @@ export interface SessionResumeManager {
   resumeSession: (nodeId: string) => Promise<void>;
   markSessionLost: (nodeId: string) => void;
   refreshSessionCwd: (nodeId: string, terminalId: string) => Promise<void>;
+  bindSessionTab: (terminalId: string, sessionId: string) => void;
 }
 
 export interface SessionResumeDeps {
@@ -35,20 +36,77 @@ export function markNodeStartingSession(
 ): Record<string, TreeNode> {
   const node = nodes[nodeId];
   if (!node) return nodes;
-  if (node.metadata.sessionStarting === true && node.metadata.sessionTabId === terminalId) {
+  if (
+    node.metadata.sessionStarting === true
+    && node.metadata.sessionTabId === terminalId
+    && node.metadata.brokenChain !== true
+  ) {
     return nodes;
   }
   const cwd = lookupTerminalCwd(terminalId);
-  const updated: TreeNode = {
-    ...node,
-    metadata: {
-      ...node.metadata,
-      sessionStarting: true,
-      sessionTabId: terminalId,
-      ...(cwd ? { sessionWorkingDirectory: cwd } : {}),
-    },
+  const nextMetadata = {
+    ...node.metadata,
+    sessionStarting: true,
+    sessionTabId: terminalId,
+    ...(cwd ? { sessionWorkingDirectory: cwd } : {}),
   };
-  return { ...nodes, [nodeId]: updated };
+  delete nextMetadata.brokenChain;
+  return { ...nodes, [nodeId]: { ...node, metadata: nextMetadata } };
+}
+
+export function rebindNodesForSession(
+  nodes: Record<string, TreeNode>,
+  sessionId: string,
+  terminalId: string,
+): Record<string, TreeNode> {
+  let updated: Record<string, TreeNode> | null = null;
+  for (const [id, node] of Object.entries(nodes)) {
+    if (node.metadata.sessionId !== sessionId) continue;
+    if (node.metadata.sessionTabId === terminalId && node.metadata.sessionLiveness === 'alive-attached') continue;
+
+    const nextMetadata = {
+      ...node.metadata,
+      sessionTabId: terminalId,
+      sessionLiveness: 'alive-attached' as const,
+    };
+    if (!updated) updated = { ...nodes };
+    updated[id] = { ...node, metadata: nextMetadata };
+  }
+  return updated ?? nodes;
+}
+
+export function inheritSessionOnNode(
+  nodes: Record<string, TreeNode>,
+  nodeId: string,
+  terminalId: string,
+  parentSessionId: string,
+  parentCwd: string | undefined,
+): Record<string, TreeNode> {
+  const node = nodes[nodeId];
+  if (!node) return nodes;
+  const nextMetadata = {
+    ...node.metadata,
+    sessionId: parentSessionId,
+    sessionLiveness: 'alive-attached' as const,
+    sessionTabId: terminalId,
+    ...(parentCwd ? { sessionWorkingDirectory: parentCwd } : {}),
+  };
+  delete nextMetadata.sessionStarting;
+  delete nextMetadata.brokenChain;
+  return { ...nodes, [nodeId]: { ...node, metadata: nextMetadata } };
+}
+
+export function markBrokenChainOnNode(
+  nodes: Record<string, TreeNode>,
+  nodeId: string,
+): Record<string, TreeNode> {
+  const node = nodes[nodeId];
+  if (!node) return nodes;
+  if (node.metadata.brokenChain === true) return nodes;
+  return {
+    ...nodes,
+    [nodeId]: { ...node, metadata: { ...node.metadata, brokenChain: true } },
+  };
 }
 
 export function captureSessionOnNode(
@@ -71,6 +129,7 @@ export function captureSessionOnNode(
     ...(cwd ? { sessionWorkingDirectory: cwd } : {}),
   };
   delete nextMetadata.sessionStarting;
+  delete nextMetadata.brokenChain;
 
   return { ...nodes, [nodeId]: { ...node, metadata: nextMetadata } };
 }
@@ -95,7 +154,7 @@ export function createSessionResumeManager(deps: SessionResumeDeps): SessionResu
 
     const focused = focusExistingSessionTab(node.metadata.sessionTabId);
     if (focused) {
-      bindSessionTab(nodeId, focused, sessionId);
+      bindSessionTab(focused, sessionId);
       return;
     }
 
@@ -106,7 +165,7 @@ export function createSessionResumeManager(deps: SessionResumeDeps): SessionResu
 
     try {
       const newId = await openResumeTerminal(sessionId, cwd);
-      bindSessionTab(nodeId, newId, sessionId);
+      bindSessionTab(newId, sessionId);
     } catch (error) {
       logger.error('Failed to resume session', error as Error, 'WorkflowExecution');
       useToastStore.getState().addToast('Failed to resume session — terminal could not be opened', 'error');
@@ -128,10 +187,9 @@ export function createSessionResumeManager(deps: SessionResumeDeps): SessionResu
     return created.id;
   }
 
-  function bindSessionTab(nodeId: string, terminalId: string, sessionId: string): void {
+  function bindSessionTab(terminalId: string, sessionId: string): void {
+    if (!terminalId || !sessionId) return;
     const { nodes, workflowSessionMap } = get();
-    const node = nodes[nodeId];
-    if (!node) return;
 
     const updatedMap = { ...workflowSessionMap };
     for (const [existingSession, existingTerminal] of Object.entries(updatedMap)) {
@@ -139,17 +197,12 @@ export function createSessionResumeManager(deps: SessionResumeDeps): SessionResu
     }
     updatedMap[sessionId] = terminalId;
 
-    const updatedNode: TreeNode = {
-      ...node,
-      metadata: {
-        ...node.metadata,
-        sessionTabId: terminalId,
-        sessionLiveness: 'alive-attached',
-      },
-    };
+    const updatedNodes = rebindNodesForSession(nodes, sessionId, terminalId);
+
+    if (updatedNodes === nodes && updatedMap[sessionId] === workflowSessionMap[sessionId]) return;
 
     set({
-      nodes: { ...nodes, [nodeId]: updatedNode },
+      nodes: updatedNodes,
       workflowSessionMap: updatedMap,
     });
     triggerAutosave?.();
@@ -191,5 +244,5 @@ export function createSessionResumeManager(deps: SessionResumeDeps): SessionResu
     triggerAutosave?.();
   }
 
-  return { resumeSession, markSessionLost, refreshSessionCwd };
+  return { resumeSession, markSessionLost, refreshSessionCwd, bindSessionTab };
 }

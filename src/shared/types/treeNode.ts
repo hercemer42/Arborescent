@@ -55,6 +55,7 @@ export interface NodeMetadata {
   sessionLiveness?: SessionLiveness;
   sessionStarting?: boolean;
   sessionTabId?: string;
+  brokenChain?: boolean;
 
   // Archive / step settings
   archiveDestinationId?: string;

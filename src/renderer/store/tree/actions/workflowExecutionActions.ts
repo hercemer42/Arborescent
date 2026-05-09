@@ -34,6 +34,8 @@ import {
   createSessionResumeManager,
   captureSessionOnNode,
   markNodeStartingSession,
+  inheritSessionOnNode,
+  markBrokenChainOnNode,
 } from "./workflowSessionResume";
 import { decideWorkflowStartRoute } from "../../../utils/workflowStartRoute";
 import { useTerminalStore } from "../../terminal/terminalStore";
@@ -250,34 +252,34 @@ export const createWorkflowExecutionActions = (
       openTerminalIds,
     });
 
-    if (route.kind === "spawn-fresh") {
-      if (terminalId === null) {
-        useToastStore
-          .getState()
-          .addToast(
-            "No terminal tab available. Open a terminal to start workflow execution.",
-            "warning",
-          );
+    if (route.kind !== "spawn-fresh") {
+      await sessionResumeManager.resumeSession(nodeId);
+      const resolvedTerminalId = get().nodes[nodeId]?.metadata.sessionTabId;
+      const liveTerminalIds = new Set(
+        useTerminalStore.getState().terminals.map((t) => t.id),
+      );
+      if (resolvedTerminalId && liveTerminalIds.has(resolvedTerminalId)) {
+        startWorkflowOnTerminal(nodeId, resolvedTerminalId, "reattach");
         return;
       }
-      startWorkflowOnTerminal(nodeId, terminalId, "spawn");
-      return;
     }
 
-    await sessionResumeManager.resumeSession(nodeId);
-    const resolvedTerminalId = get().nodes[nodeId]?.metadata.sessionTabId;
-    if (!resolvedTerminalId) return;
-    const liveTerminalIds = new Set(
-      useTerminalStore.getState().terminals.map((t) => t.id),
-    );
-    if (!liveTerminalIds.has(resolvedTerminalId)) return;
-    startWorkflowOnTerminal(nodeId, resolvedTerminalId, "reattach");
+    if (terminalId === null) {
+      useToastStore
+        .getState()
+        .addToast(
+          "No terminal tab available. Open a terminal to start workflow execution.",
+          "warning",
+        );
+      return;
+    }
+    startWorkflowOnTerminal(nodeId, terminalId, "spawn");
   }
 
   function startWorkflowOnTerminal(
     nodeId: string,
     terminalId: string,
-    mode: "spawn" | "reattach",
+    mode: "spawn" | "reattach" | "recurse",
   ): void {
     const { nodes, workflowExecutionStates } = get();
 
@@ -316,7 +318,7 @@ export const createWorkflowExecutionActions = (
     void window.electron.startKeepAwake();
 
     stepTimeouts.start(nodeId);
-    if (mode === "spawn") {
+    if (mode !== "reattach") {
       clearSessionManager.maybeClearThenSend(nodeId, terminalId);
     }
     logger.info(
@@ -390,22 +392,98 @@ export const createWorkflowExecutionActions = (
     advanceNode(nodeId);
   }
 
-  function scheduleRecurseStart(nextNodeId: string, terminalId: string): boolean {
-    const counter = recurseCounters.get(terminalId) || 0;
+  function recurseChainKey(parentNodeId: string, terminalId: string): string {
+    const parentSessionId = get().nodes[parentNodeId]?.metadata.sessionId;
+    return parentSessionId && parentSessionId.trim().length > 0
+      ? `session:${parentSessionId}`
+      : `terminal:${terminalId}`;
+  }
+
+  function scheduleRecurseStart(nextNodeId: string, terminalId: string, parentNodeId: string): boolean {
+    const chainKey = recurseChainKey(parentNodeId, terminalId);
+    const counter = recurseCounters.get(chainKey) || 0;
     if (counter >= MAX_RECURSE_ITERATIONS) {
       useToastStore
         .getState()
         .addToast("Recurse limit reached — stopping automatic processing", "warning");
       void notifyWorkflowEvent("alert", "Recurse limit reached", "Stopping automatic processing");
-      recurseCounters.delete(terminalId);
+      recurseCounters.delete(chainKey);
       return false;
     }
-    recurseCounters.set(terminalId, counter + 1);
-    setTimeout(() => startWorkflow(nextNodeId, terminalId), 2000);
+    recurseCounters.set(chainKey, counter + 1);
+    setTimeout(() => { void dispatchRecurseStart(nextNodeId, terminalId, parentNodeId); }, 2000);
     return true;
   }
 
-  function checkRecurse(stepId: string, terminalId: string): void {
+  async function dispatchRecurseStart(nextNodeId: string, terminalId: string, parentNodeId: string): Promise<void> {
+    const parent = get().nodes[parentNodeId]?.metadata;
+    const route = decideWorkflowStartRoute({
+      sessionId: parent?.sessionId,
+      sessionLiveness: parent?.sessionLiveness,
+      sessionTabId: parent?.sessionTabId,
+      sessionWorkingDirectory: parent?.sessionWorkingDirectory,
+      openTerminalIds: new Set(useTerminalStore.getState().terminals.map((t) => t.id)),
+    });
+
+    if (route.kind === 'focus-existing-tab' && parent?.sessionId) {
+      const inherited = inheritSessionOnNode(
+        get().nodes,
+        nextNodeId,
+        route.terminalId,
+        parent.sessionId,
+        parent.sessionWorkingDirectory,
+      );
+      if (inherited !== get().nodes) set({ nodes: inherited });
+      startWorkflowOnTerminal(nextNodeId, route.terminalId, 'recurse');
+      return;
+    }
+
+    if (route.kind === 'resume-in-new-tab') {
+      try {
+        const newTabId = await openInheritedResumeTerminal(route.sessionId, route.cwd);
+        const inherited = inheritSessionOnNode(
+          get().nodes,
+          nextNodeId,
+          newTabId,
+          route.sessionId,
+          route.cwd,
+        );
+        if (inherited !== get().nodes) set({ nodes: inherited });
+        sessionResumeManager.bindSessionTab(newTabId, route.sessionId);
+        startWorkflowOnTerminal(nextNodeId, newTabId, 'recurse');
+        return;
+      } catch (error) {
+        logger.error('Failed to resume parent session for recurse — falling back to fresh', error as Error, 'WorkflowExecution');
+        announceBrokenChain(nextNodeId);
+        await startWorkflow(nextNodeId, terminalId);
+        return;
+      }
+    }
+
+    announceBrokenChain(nextNodeId);
+    await startWorkflow(nextNodeId, terminalId);
+  }
+
+  async function openInheritedResumeTerminal(sessionId: string, cwd: string | undefined): Promise<string> {
+    const created = await useTerminalStore.getState().createNewTerminal('Resume', cwd);
+    if (!created) throw new Error('Resume terminal was not created');
+    await window.electron.terminalWrite(created.id, `claude --resume ${sessionId}\r`);
+    return created.id;
+  }
+
+  function announceBrokenChain(nodeId: string): void {
+    const updated = markBrokenChainOnNode(get().nodes, nodeId);
+    if (updated !== get().nodes) {
+      set({ nodes: updated });
+      triggerAutosave?.();
+    }
+    useToastStore.getState().addToast(
+      'Recurse chain broken — previous session unavailable, starting a fresh one for this step',
+      'warning',
+    );
+  }
+
+  function checkRecurse(stepId: string, terminalId: string, completedNodeId: string): void {
     const { nodes, ancestorRegistry, workflowExecutionStates } = get();
 
     const decompositionStepId = findDecompositionStepInWorkflow(stepId, nodes, ancestorRegistry);
@@ -417,7 +495,7 @@ export const createWorkflowExecutionActions = (
         : null);
 
     if (sibling) {
-      scheduleRecurseStart(sibling, terminalId);
+      scheduleRecurseStart(sibling, terminalId, completedNodeId);
       return;
     }
 
@@ -428,7 +506,7 @@ export const createWorkflowExecutionActions = (
       warnRecurseWithoutDecomposition(terminalId);
     }
 
-    recurseCounters.delete(terminalId);
+    recurseCounters.delete(recurseChainKey(completedNodeId, terminalId));
   }
 
   function warnRecurseWithoutDecomposition(terminalId: string): void {
@@ -475,7 +553,7 @@ export const createWorkflowExecutionActions = (
     triggerAutosave?.();
 
     if (position && terminalId) {
-      checkRecurse(position.currentStepId, terminalId);
+      checkRecurse(position.currentStepId, terminalId, nodeId);
     }
   }
 
@@ -550,7 +628,7 @@ export const createWorkflowExecutionActions = (
 
     const previousParentId = actualParentIds[0];
     if (previousParentId) {
-      checkRecurse(previousParentId, entry.terminalTabId);
+      checkRecurse(previousParentId, entry.terminalTabId, nodeId);
     }
   }
 
@@ -885,7 +963,7 @@ export const createWorkflowExecutionActions = (
     advanceOrClearCollaborating(nodeId);
 
     if (decompositionStepId && entry.terminalTabId) {
-      checkRecurse(decompositionStepId, entry.terminalTabId);
+      checkRecurse(decompositionStepId, entry.terminalTabId, nodeId);
     }
   }
 

@@ -119,7 +119,7 @@ describe('Integration: Workflow Execution', () => {
       vi.useFakeTimers();
       const state = () => stateRef.current;
 
-      actions.startWorkflow('task', 'term-1');
+      void actions.startWorkflow('task', 'term-1');
       actions.registerSession('session-1', 'term-1');
 
       expect(state().workflowExecutionStates['task'].state).toBe('running');
@@ -150,7 +150,7 @@ describe('Integration: Workflow Execution', () => {
 
       state().nodes['s3'].metadata.stepType = 'autonomous';
 
-      actions.startWorkflow('task', 'term-1');
+      void actions.startWorkflow('task', 'term-1');
       actions.registerSession('session-1', 'term-1');
 
       actions.handleHookEvent({ session_id: 'session-1', hook_event_name: 'Stop' });
@@ -172,7 +172,7 @@ describe('Integration: Workflow Execution', () => {
 
       state().nodes['s2'].metadata.stepType = 'checkpoint';
 
-      actions.startWorkflow('task', 'term-1');
+      void actions.startWorkflow('task', 'term-1');
       actions.registerSession('session-1', 'term-1');
 
       actions.handleHookEvent({ session_id: 'session-1', hook_event_name: 'Stop' });
@@ -205,7 +205,7 @@ describe('Integration: Workflow Execution', () => {
     it('should traverse into nested workflow and back out depth-first', () => {
       const state = () => stateRef.current;
 
-      actions.startWorkflow('task', 'term-1');
+      void actions.startWorkflow('task', 'term-1');
       actions.registerSession('session-1', 'term-1');
 
       actions.handleHookEvent({ session_id: 'session-1', hook_event_name: 'Stop' });
@@ -233,10 +233,10 @@ describe('Integration: Workflow Execution', () => {
       state().nodes['task2'] = { id: 'task2', content: 'Task 2', children: [], metadata: { isBlueprint: true } };
       state().ancestorRegistry['task2'] = ['root', 'wf', 's1'];
 
-      actions.startWorkflow('task', 'term-1');
+      void actions.startWorkflow('task', 'term-1');
       actions.registerSession('session-1', 'term-1');
 
-      actions.startWorkflow('task2', 'term-2');
+      void actions.startWorkflow('task2', 'term-2');
       actions.registerSession('session-2', 'term-2');
 
       expect(state().workflowExecutionStates['task'].state).toBe('running');
@@ -254,10 +254,10 @@ describe('Integration: Workflow Execution', () => {
   });
 
   describe('disruption mid-workflow then restart', () => {
-    it('should stop on terminal close and allow restart on new terminal', () => {
+    it('should stop on terminal close and allow restart on new terminal', async () => {
       const state = () => stateRef.current;
 
-      actions.startWorkflow('task', 'term-1');
+      void actions.startWorkflow('task', 'term-1');
       actions.registerSession('session-1', 'term-1');
 
       actions.handleHookEvent({ session_id: 'session-1', hook_event_name: 'Stop' });
@@ -268,17 +268,17 @@ describe('Integration: Workflow Execution', () => {
 
       // Must use startWorkflow again (not continueWorkflow — that's only for awaiting-validation)
       mockAutonomousCollaborate.mockClear();
-      actions.startWorkflow('task', 'term-2');
+      await actions.startWorkflow('task', 'term-2');
 
       expect(state().workflowExecutionStates['task'].state).toBe('running');
       expect(state().workflowExecutionStates['task'].terminalTabId).toBe('term-2');
       expect(mockAutonomousCollaborate).toHaveBeenCalledWith('task', 'term-2', expect.objectContaining({ collaborate: expect.any(Boolean), execute: expect.any(Boolean) }));
     });
 
-    it('should handle app restart mid-workflow', () => {
+    it('should handle app restart mid-workflow', async () => {
       const state = () => stateRef.current;
 
-      actions.startWorkflow('task', 'term-1');
+      void actions.startWorkflow('task', 'term-1');
       actions.registerSession('session-1', 'term-1');
 
       actions.handleHookEvent({ session_id: 'session-1', hook_event_name: 'Stop' });
@@ -292,7 +292,7 @@ describe('Integration: Workflow Execution', () => {
       expect(state().nodes['s2'].children).toContain('task');
 
       // Restart with new terminal
-      actions.startWorkflow('task', 'term-3');
+      await actions.startWorkflow('task', 'term-3');
       actions.registerSession('session-3', 'term-3');
 
       expect(state().workflowExecutionStates['task'].state).toBe('running');
@@ -303,7 +303,7 @@ describe('Integration: Workflow Execution', () => {
     it('should advance to correct step after steps are reordered', () => {
       const state = () => stateRef.current;
 
-      actions.startWorkflow('task', 'term-1');
+      void actions.startWorkflow('task', 'term-1');
       actions.registerSession('session-1', 'term-1');
 
       state().nodes['wf'].children = ['s3', 's1', 's2'];
@@ -316,7 +316,7 @@ describe('Integration: Workflow Execution', () => {
     it('should advance to a newly inserted step', () => {
       const state = () => stateRef.current;
 
-      actions.startWorkflow('task', 'term-1');
+      void actions.startWorkflow('task', 'term-1');
       actions.registerSession('session-1', 'term-1');
 
       state().nodes['s-new'] = { id: 's-new', content: 'New Step', children: [], metadata: { isBlueprint: true, stepType: 'autonomous' } };
@@ -332,7 +332,7 @@ describe('Integration: Workflow Execution', () => {
     it('should stop and notify when current step is deleted', () => {
       const state = () => stateRef.current;
 
-      actions.startWorkflow('task', 'term-1');
+      void actions.startWorkflow('task', 'term-1');
 
       actions.handleStepDeleted('s1');
 
@@ -351,7 +351,7 @@ describe('Integration: Workflow Execution', () => {
       state().nodes['s2'].metadata.stepType = 'autonomous';
       state().nodes['s3'].metadata.stepType = 'autonomous';
 
-      actions.startWorkflow('task', 'term-1');
+      void actions.startWorkflow('task', 'term-1');
       actions.registerSession('session-1', 'term-1');
 
       state().nodes['s2'].metadata.stepType = 'manual';
@@ -368,7 +368,7 @@ describe('Integration: Workflow Execution', () => {
 
       state().nodes['s2'].metadata.stepType = 'autonomous';
 
-      actions.startWorkflow('task', 'term-1');
+      void actions.startWorkflow('task', 'term-1');
       actions.registerSession('session-1', 'term-1');
 
       state().nodes['s2'].metadata.stepType = 'checkpoint';
@@ -386,7 +386,7 @@ describe('Integration: Workflow Execution', () => {
     it('should stop and show message on Notification event', () => {
       const state = () => stateRef.current;
 
-      actions.startWorkflow('task', 'term-1');
+      void actions.startWorkflow('task', 'term-1');
       actions.registerSession('session-1', 'term-1');
 
       actions.handleHookEvent({
@@ -409,7 +409,7 @@ describe('Integration: Workflow Execution', () => {
 
       state().nodes['s3'].metadata.stepType = 'autonomous';
 
-      actions.startWorkflow('task', 'term-1');
+      void actions.startWorkflow('task', 'term-1');
       actions.registerSession('session-1', 'term-1');
 
       expect(state().ancestorRegistry['task']).toEqual(['root', 'wf', 's1']);
@@ -434,7 +434,7 @@ describe('Integration: Workflow Execution', () => {
       state().nodes['s2'].children = ['task'];
       state().ancestorRegistry['task'] = ['root', 'wf', 's2'];
 
-      actions.startWorkflow('task', 'term-1');
+      void actions.startWorkflow('task', 'term-1');
       actions.registerSession('session-1', 'term-1');
 
       expect(state().nodes['s2'].children).toContain('task');
@@ -451,7 +451,7 @@ describe('Integration: Workflow Execution', () => {
 
       state().nodes['s1'].metadata.stepType = 'checkpoint';
 
-      actions.startWorkflow('task', 'term-1');
+      void actions.startWorkflow('task', 'term-1');
       actions.registerSession('session-1', 'term-1');
 
       // First Stop at checkpoint → awaiting-validation
@@ -471,7 +471,7 @@ describe('Integration: Workflow Execution', () => {
       state().nodes['s2'].metadata.stepType = 'autonomous';
       // s3 is manual (default)
 
-      actions.startWorkflow('task', 'term-1');
+      void actions.startWorkflow('task', 'term-1');
       actions.registerSession('session-1', 'term-1');
 
       // Run at s1 (checkpoint), AI finishes → awaiting-validation
@@ -500,7 +500,7 @@ describe('Integration: Workflow Execution', () => {
       state().nodes['s3'].children = ['task'];
       state().ancestorRegistry['task'] = ['root', 'wf', 's3'];
 
-      actions.startWorkflow('task', 'term-1');
+      void actions.startWorkflow('task', 'term-1');
       actions.registerSession('session-1', 'term-1');
 
       // AI finishes at s3 (last step) → auto-completes
@@ -514,10 +514,10 @@ describe('Integration: Workflow Execution', () => {
   });
 
   describe('stop and restart', () => {
-    it('should allow stopping a running workflow and restarting it', () => {
+    it('should allow stopping a running workflow and restarting it', async () => {
       const state = () => stateRef.current;
 
-      actions.startWorkflow('task', 'term-1');
+      void actions.startWorkflow('task', 'term-1');
       actions.registerSession('session-1', 'term-1');
 
       // Advance once
@@ -530,7 +530,7 @@ describe('Integration: Workflow Execution', () => {
 
       // Restart — starts at current position (s2), not from beginning
       mockAutonomousCollaborate.mockClear();
-      actions.startWorkflow('task', 'term-1');
+      await actions.startWorkflow('task', 'term-1');
       expect(state().workflowExecutionStates['task'].state).toBe('running');
       expect(state().nodes['s2'].children).toContain('task');
       expect(mockAutonomousCollaborate).toHaveBeenCalledWith('task', 'term-1', expect.objectContaining({ collaborate: expect.any(Boolean), execute: expect.any(Boolean) }));

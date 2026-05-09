@@ -57,7 +57,7 @@ function NodeContentComponent({
   return (
     <>
       <div
-        className={`node-content ${isSelected ? 'selected' : ''}${node.metadata.sessionLiveness === 'lost' ? ' session-lost' : ''}`}
+        className={`node-content ${isSelected ? 'selected' : ''}${node.metadata.sessionLiveness === 'lost' ? ' session-lost' : ''}${node.metadata.brokenChain === true ? ' broken-chain' : ''}`}
         onContextMenu={handleContextMenu}
         style={{
           paddingLeft: `${(depth * 20) + 15}px`,
@@ -70,6 +70,14 @@ function NodeContentComponent({
             className="session-lost-indicator"
             aria-label="Session lost"
             title="Session lost — the AI session is no longer available"
+          />
+        )}
+        {node.metadata.brokenChain === true && node.metadata.sessionLiveness !== 'lost' && (
+          <span
+            role="img"
+            className="broken-chain-indicator"
+            aria-label="Broken session chain — parent session was lost, this step started a fresh one"
+            title="Broken session chain — parent session was lost, this step started a fresh one"
           />
         )}
         <div className={`status-checkbox-wrapper ${!isSelected ? 'not-selected' : ''}`}>

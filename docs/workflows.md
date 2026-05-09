@@ -127,6 +127,14 @@ Closing a terminal tab no longer terminates the underlying session — the workf
 
 A red dot next to a workflow node means the session is gone and can't be resumed. Start the workflow again to spawn a fresh one.
 
+## Recurse and AI Sessions
+
+When **recurse** advances the chain to the next sibling, the new step stays inside the same Claude session as the previous one — your prior turns are still in context. No fresh session starts as long as the parent's session is alive.
+
+If the parent's tab was closed, recurse opens a fresh tab in the recorded working directory and resumes the same session there before sending the next prompt. The whole chain rebinds to the new tab in one step; older siblings no longer point at the closed one.
+
+If the parent session is gone (lost from Claude's session store), the next sibling starts in a fresh session and shows an amber dot — the **broken chain** indicator. The step itself runs normally; only the prior context is gone. The dot clears automatically once the chain is healed by a subsequent recurse advance into a live session.
+
 ## Running Multiple Items
 
 You can run multiple items through the same workflow simultaneously — each in its own terminal tab. Each item advances independently based on the step types it encounters. Start each item with **Run Workflow** and select a different terminal tab for each one.

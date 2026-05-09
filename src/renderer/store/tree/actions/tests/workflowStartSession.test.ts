@@ -242,8 +242,9 @@ describe('startWorkflow — auto session routing (PR2)', () => {
       );
     });
 
-    it('does not mark the workflow running when resumeSession bails (e.g. createNewTerminal rejects) — must not leave a stale terminalTabId', async () => {
+    it('falls back to the user-supplied terminal when resumeSession bails (e.g. createNewTerminal rejects) — never leaves a stale terminalTabId', async () => {
       mockCreateNewTerminal.mockRejectedValueOnce(new Error('terminal create failed'));
+      mockTerminals.push({ id: 'terminal-1' });
       state.nodes['task-a'].metadata.sessionId = 'sess-1';
       state.nodes['task-a'].metadata.sessionLiveness = 'alive-detached';
       state.nodes['task-a'].metadata.sessionTabId = 'terminal-old-gone';
@@ -251,7 +252,7 @@ describe('startWorkflow — auto session routing (PR2)', () => {
 
       await actions.startWorkflow('task-a', 'terminal-1');
 
-      expect(state.workflowExecutionStates['task-a']).toBeUndefined();
+      expect(state.workflowExecutionStates['task-a']?.terminalTabId).toBe('terminal-1');
     });
   });
 
